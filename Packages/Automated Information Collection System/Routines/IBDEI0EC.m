@@ -1,130 +1,138 @@
-IBDEI0EC ; ; 19-NOV-2015
+IBDEI0EC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6259,1,3,0)
- ;;=3^Open Bite of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6259,1,4,0)
- ;;=4^S61.255A
- ;;^UTILITY(U,$J,358.3,6259,2)
- ;;=^5032876
- ;;^UTILITY(U,$J,358.3,6260,0)
- ;;=S41.052A^^40^387^27
- ;;^UTILITY(U,$J,358.3,6260,1,0)
+ ;;^UTILITY(U,$J,358.3,6597,1,4,0)
+ ;;=4^C65.9
+ ;;^UTILITY(U,$J,358.3,6597,2)
+ ;;=^5001253
+ ;;^UTILITY(U,$J,358.3,6598,0)
+ ;;=C50.912^^30^396^129
+ ;;^UTILITY(U,$J,358.3,6598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6260,1,3,0)
- ;;=3^Open Bite of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,6260,1,4,0)
- ;;=4^S41.052A
- ;;^UTILITY(U,$J,358.3,6260,2)
- ;;=^5026324
- ;;^UTILITY(U,$J,358.3,6261,0)
- ;;=S71.152A^^40^387^28
- ;;^UTILITY(U,$J,358.3,6261,1,0)
+ ;;^UTILITY(U,$J,358.3,6598,1,3,0)
+ ;;=3^Malig Neop Left Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6598,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,6598,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,6599,0)
+ ;;=C50.911^^30^396^151
+ ;;^UTILITY(U,$J,358.3,6599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6261,1,3,0)
- ;;=3^Open Bite of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,6261,1,4,0)
- ;;=4^S71.152A
- ;;^UTILITY(U,$J,358.3,6261,2)
- ;;=^5037041
- ;;^UTILITY(U,$J,358.3,6262,0)
- ;;=S61.152A^^40^387^29
- ;;^UTILITY(U,$J,358.3,6262,1,0)
+ ;;^UTILITY(U,$J,358.3,6599,1,3,0)
+ ;;=3^Malig Neop Right Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6599,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,6599,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,6600,0)
+ ;;=C50.919^^30^396^121
+ ;;^UTILITY(U,$J,358.3,6600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6262,1,3,0)
- ;;=3^Open Bite of Left Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6262,1,4,0)
- ;;=4^S61.152A
- ;;^UTILITY(U,$J,358.3,6262,2)
- ;;=^5135729
- ;;^UTILITY(U,$J,358.3,6263,0)
- ;;=S61.052A^^40^387^30
- ;;^UTILITY(U,$J,358.3,6263,1,0)
+ ;;^UTILITY(U,$J,358.3,6600,1,3,0)
+ ;;=3^Malig Neop Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6600,1,4,0)
+ ;;=4^C50.919
+ ;;^UTILITY(U,$J,358.3,6600,2)
+ ;;=^5001197
+ ;;^UTILITY(U,$J,358.3,6601,0)
+ ;;=C62.90^^30^396^159
+ ;;^UTILITY(U,$J,358.3,6601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6263,1,3,0)
- ;;=3^Open Bite of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6263,1,4,0)
- ;;=4^S61.052A
- ;;^UTILITY(U,$J,358.3,6263,2)
- ;;=^5032717
- ;;^UTILITY(U,$J,358.3,6264,0)
- ;;=S61.552A^^40^387^31
- ;;^UTILITY(U,$J,358.3,6264,1,0)
+ ;;^UTILITY(U,$J,358.3,6601,1,3,0)
+ ;;=3^Malig Neop Testis,Unspec
+ ;;^UTILITY(U,$J,358.3,6601,1,4,0)
+ ;;=4^C62.90
+ ;;^UTILITY(U,$J,358.3,6601,2)
+ ;;=^5001236
+ ;;^UTILITY(U,$J,358.3,6602,0)
+ ;;=D03.9^^30^396^161
+ ;;^UTILITY(U,$J,358.3,6602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6264,1,3,0)
- ;;=3^Open Bite of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,6264,1,4,0)
- ;;=4^S61.552A
- ;;^UTILITY(U,$J,358.3,6264,2)
- ;;=^5033053
- ;;^UTILITY(U,$J,358.3,6265,0)
- ;;=S01.25XA^^40^387^34
- ;;^UTILITY(U,$J,358.3,6265,1,0)
+ ;;^UTILITY(U,$J,358.3,6602,1,3,0)
+ ;;=3^Melanoma in Situ,Unspec
+ ;;^UTILITY(U,$J,358.3,6602,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,6602,2)
+ ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,6603,0)
+ ;;=C45.0^^30^396^162
+ ;;^UTILITY(U,$J,358.3,6603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6265,1,3,0)
- ;;=3^Open Bite of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,6265,1,4,0)
- ;;=4^S01.25XA
- ;;^UTILITY(U,$J,358.3,6265,2)
- ;;=^5020105
- ;;^UTILITY(U,$J,358.3,6266,0)
- ;;=S01.85XA^^40^387^1
- ;;^UTILITY(U,$J,358.3,6266,1,0)
+ ;;^UTILITY(U,$J,358.3,6603,1,3,0)
+ ;;=3^Mesothelioma of Pleura
+ ;;^UTILITY(U,$J,358.3,6603,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,6603,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,6604,0)
+ ;;=C90.01^^30^396^164
+ ;;^UTILITY(U,$J,358.3,6604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6266,1,3,0)
- ;;=3^Open Bite of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6266,1,4,0)
- ;;=4^S01.85XA
- ;;^UTILITY(U,$J,358.3,6266,2)
- ;;=^5020237
- ;;^UTILITY(U,$J,358.3,6267,0)
- ;;=S11.85XA^^40^387^32
- ;;^UTILITY(U,$J,358.3,6267,1,0)
+ ;;^UTILITY(U,$J,358.3,6604,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,6604,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,6604,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,6605,0)
+ ;;=C90.00^^30^396^165
+ ;;^UTILITY(U,$J,358.3,6605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6267,1,3,0)
- ;;=3^Open Bite of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6267,1,4,0)
- ;;=4^S11.85XA
- ;;^UTILITY(U,$J,358.3,6267,2)
- ;;=^5021521
- ;;^UTILITY(U,$J,358.3,6268,0)
- ;;=S91.051A^^40^387^37
- ;;^UTILITY(U,$J,358.3,6268,1,0)
+ ;;^UTILITY(U,$J,358.3,6605,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6605,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,6605,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,6606,0)
+ ;;=C94.6^^30^396^166
+ ;;^UTILITY(U,$J,358.3,6606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6268,1,3,0)
- ;;=3^Open Bite of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,6268,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,6268,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,6269,0)
- ;;=S31.815A^^40^387^38
- ;;^UTILITY(U,$J,358.3,6269,1,0)
+ ;;^UTILITY(U,$J,358.3,6606,1,3,0)
+ ;;=3^Myelodysplastic Disease NEC
+ ;;^UTILITY(U,$J,358.3,6606,1,4,0)
+ ;;=4^C94.6
+ ;;^UTILITY(U,$J,358.3,6606,2)
+ ;;=^5001846
+ ;;^UTILITY(U,$J,358.3,6607,0)
+ ;;=D61.82^^30^396^167
+ ;;^UTILITY(U,$J,358.3,6607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6269,1,3,0)
- ;;=3^Open Bite of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,6269,1,4,0)
- ;;=4^S31.815A
- ;;^UTILITY(U,$J,358.3,6269,2)
- ;;=^5024305
- ;;^UTILITY(U,$J,358.3,6270,0)
- ;;=S01.451A^^40^387^39
- ;;^UTILITY(U,$J,358.3,6270,1,0)
+ ;;^UTILITY(U,$J,358.3,6607,1,3,0)
+ ;;=3^Myelophthisis
+ ;;^UTILITY(U,$J,358.3,6607,1,4,0)
+ ;;=4^D61.82
+ ;;^UTILITY(U,$J,358.3,6607,2)
+ ;;=^334037
+ ;;^UTILITY(U,$J,358.3,6608,0)
+ ;;=D47.9^^30^396^168
+ ;;^UTILITY(U,$J,358.3,6608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6270,1,3,0)
- ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,6270,1,4,0)
- ;;=4^S01.451A
- ;;^UTILITY(U,$J,358.3,6270,2)
- ;;=^5020177
- ;;^UTILITY(U,$J,358.3,6271,0)
- ;;=S01.351A^^40^387^40
- ;;^UTILITY(U,$J,358.3,6271,1,0)
+ ;;^UTILITY(U,$J,358.3,6608,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,6608,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,6608,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,6609,0)
+ ;;=D53.9^^30^396^172
+ ;;^UTILITY(U,$J,358.3,6609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6271,1,3,0)
- ;;=3^Open Bite of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,6271,1,4,0)
- ;;=4^S01.351A
- ;;^UTILITY(U,$J,358.3,6271,2)
- ;;=^5020138
+ ;;^UTILITY(U,$J,358.3,6609,1,3,0)
+ ;;=3^Nutritional Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,6609,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,6609,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,6610,0)
+ ;;=D47.4^^30^396^173
+ ;;^UTILITY(U,$J,358.3,6610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6610,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,6610,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,6610,2)
+ ;;=^5002259

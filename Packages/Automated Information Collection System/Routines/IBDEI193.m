@@ -1,138 +1,132 @@
-IBDEI193 ; ; 19-NOV-2015
+IBDEI193 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20913,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,20913,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,20913,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,20914,0)
- ;;=Z60.9^^99^998^4
- ;;^UTILITY(U,$J,358.3,20914,1,0)
+ ;;^UTILITY(U,$J,358.3,21252,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,21253,0)
+ ;;=W05.2XXA^^84^948^47
+ ;;^UTILITY(U,$J,358.3,21253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20914,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,20914,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,20914,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,20915,0)
- ;;=F65.4^^99^999^6
- ;;^UTILITY(U,$J,358.3,20915,1,0)
+ ;;^UTILITY(U,$J,358.3,21253,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21253,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,21253,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,21254,0)
+ ;;=W05.2XXD^^84^948^48
+ ;;^UTILITY(U,$J,358.3,21254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20915,1,3,0)
- ;;=3^Pedophilia Disorder
- ;;^UTILITY(U,$J,358.3,20915,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,20915,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,20916,0)
- ;;=F65.2^^99^999^1
- ;;^UTILITY(U,$J,358.3,20916,1,0)
+ ;;^UTILITY(U,$J,358.3,21254,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21254,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,21254,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,21255,0)
+ ;;=W06.XXXA^^84^948^29
+ ;;^UTILITY(U,$J,358.3,21255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20916,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,20916,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,20916,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,20917,0)
- ;;=F65.3^^99^999^10
- ;;^UTILITY(U,$J,358.3,20917,1,0)
+ ;;^UTILITY(U,$J,358.3,21255,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21255,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,21255,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,21256,0)
+ ;;=W06.XXXD^^84^948^30
+ ;;^UTILITY(U,$J,358.3,21256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20917,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,20917,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,20917,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,20918,0)
- ;;=F65.81^^99^999^3
- ;;^UTILITY(U,$J,358.3,20918,1,0)
+ ;;^UTILITY(U,$J,358.3,21256,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21256,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,21256,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,21257,0)
+ ;;=W07.XXXA^^84^948^37
+ ;;^UTILITY(U,$J,358.3,21257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20918,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,20918,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,20918,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,20919,0)
- ;;=F65.51^^99^999^7
- ;;^UTILITY(U,$J,358.3,20919,1,0)
+ ;;^UTILITY(U,$J,358.3,21257,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21257,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,21257,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,21258,0)
+ ;;=W07.XXXD^^84^948^38
+ ;;^UTILITY(U,$J,358.3,21258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20919,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,20919,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,20919,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,20920,0)
- ;;=F65.52^^99^999^8
- ;;^UTILITY(U,$J,358.3,20920,1,0)
+ ;;^UTILITY(U,$J,358.3,21258,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21258,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,21258,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,21259,0)
+ ;;=W10.1XXA^^84^948^81
+ ;;^UTILITY(U,$J,358.3,21259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20920,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,20920,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,20920,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,20921,0)
- ;;=F65.0^^99^999^2
- ;;^UTILITY(U,$J,358.3,20921,1,0)
+ ;;^UTILITY(U,$J,358.3,21259,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21259,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,21259,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,21260,0)
+ ;;=W10.1XXD^^84^948^82
+ ;;^UTILITY(U,$J,358.3,21260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20921,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,20921,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,20921,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,20922,0)
- ;;=F65.1^^99^999^9
- ;;^UTILITY(U,$J,358.3,20922,1,0)
+ ;;^UTILITY(U,$J,358.3,21260,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21260,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,21260,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,21261,0)
+ ;;=W11.XXXA^^84^948^41
+ ;;^UTILITY(U,$J,358.3,21261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20922,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,20922,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,20922,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,20923,0)
- ;;=F65.89^^99^999^4
- ;;^UTILITY(U,$J,358.3,20923,1,0)
+ ;;^UTILITY(U,$J,358.3,21261,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21261,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,21261,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,21262,0)
+ ;;=W11.XXXD^^84^948^42
+ ;;^UTILITY(U,$J,358.3,21262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20923,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,20923,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,20923,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,20924,0)
- ;;=F65.9^^99^999^5
- ;;^UTILITY(U,$J,358.3,20924,1,0)
+ ;;^UTILITY(U,$J,358.3,21262,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21262,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,21262,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,21263,0)
+ ;;=W13.0XXA^^84^948^67
+ ;;^UTILITY(U,$J,358.3,21263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20924,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,20924,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,20924,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,20925,0)
- ;;=F60.0^^99^1000^8
- ;;^UTILITY(U,$J,358.3,20925,1,0)
+ ;;^UTILITY(U,$J,358.3,21263,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21263,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,21263,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,21264,0)
+ ;;=W13.0XXD^^84^948^68
+ ;;^UTILITY(U,$J,358.3,21264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20925,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,20925,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,20925,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,20926,0)
- ;;=F60.1^^99^1000^11
- ;;^UTILITY(U,$J,358.3,20926,1,0)
+ ;;^UTILITY(U,$J,358.3,21264,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21264,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,21264,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,21265,0)
+ ;;=W13.1XXA^^84^948^31
+ ;;^UTILITY(U,$J,358.3,21265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20926,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,20926,1,4,0)
- ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,21265,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr

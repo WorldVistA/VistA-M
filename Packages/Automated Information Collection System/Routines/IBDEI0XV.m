@@ -1,138 +1,132 @@
-IBDEI0XV ; ; 19-NOV-2015
+IBDEI0XV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15610,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,15611,0)
- ;;=J20.3^^85^823^2
- ;;^UTILITY(U,$J,358.3,15611,1,0)
+ ;;^UTILITY(U,$J,358.3,15878,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15878,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,15878,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,15879,0)
+ ;;=F95.2^^58^702^19
+ ;;^UTILITY(U,$J,358.3,15879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15611,1,3,0)
- ;;=3^Acute Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,15611,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,15611,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,15612,0)
- ;;=J20.1^^85^823^3
- ;;^UTILITY(U,$J,358.3,15612,1,0)
+ ;;^UTILITY(U,$J,358.3,15879,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,15879,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,15879,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,15880,0)
+ ;;=F15.929^^58^703^7
+ ;;^UTILITY(U,$J,358.3,15880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15612,1,3,0)
- ;;=3^Acute Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,15612,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,15612,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,15613,0)
- ;;=J20.0^^85^823^4
- ;;^UTILITY(U,$J,358.3,15613,1,0)
+ ;;^UTILITY(U,$J,358.3,15880,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,15880,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,15880,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,15881,0)
+ ;;=F15.93^^58^703^8
+ ;;^UTILITY(U,$J,358.3,15881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15613,1,3,0)
- ;;=3^Acute Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,15613,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,15613,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,15614,0)
- ;;=J42.^^85^823^16
- ;;^UTILITY(U,$J,358.3,15614,1,0)
+ ;;^UTILITY(U,$J,358.3,15881,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,15881,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,15881,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,15882,0)
+ ;;=F15.180^^58^703^1
+ ;;^UTILITY(U,$J,358.3,15882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15614,1,3,0)
- ;;=3^Chronic Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,15614,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,15614,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,15615,0)
- ;;=J45.998^^85^823^11
- ;;^UTILITY(U,$J,358.3,15615,1,0)
+ ;;^UTILITY(U,$J,358.3,15882,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15882,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,15882,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,15883,0)
+ ;;=F15.280^^58^703^2
+ ;;^UTILITY(U,$J,358.3,15883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15615,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,15615,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,15615,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,15616,0)
- ;;=J45.909^^85^823^13
- ;;^UTILITY(U,$J,358.3,15616,1,0)
+ ;;^UTILITY(U,$J,358.3,15883,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15883,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,15883,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,15884,0)
+ ;;=F15.980^^58^703^3
+ ;;^UTILITY(U,$J,358.3,15884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15616,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,15616,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,15616,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,15617,0)
- ;;=J45.902^^85^823^12
- ;;^UTILITY(U,$J,358.3,15617,1,0)
+ ;;^UTILITY(U,$J,358.3,15884,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15884,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,15884,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,15885,0)
+ ;;=F15.182^^58^703^4
+ ;;^UTILITY(U,$J,358.3,15885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15617,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,15617,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,15617,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,15618,0)
- ;;=J44.9^^85^823^15
- ;;^UTILITY(U,$J,358.3,15618,1,0)
+ ;;^UTILITY(U,$J,358.3,15885,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15885,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,15885,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,15886,0)
+ ;;=F15.282^^58^703^5
+ ;;^UTILITY(U,$J,358.3,15886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15618,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,15618,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,15618,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,15619,0)
- ;;=J61.^^85^823^24
- ;;^UTILITY(U,$J,358.3,15619,1,0)
+ ;;^UTILITY(U,$J,358.3,15886,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15886,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,15886,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,15887,0)
+ ;;=F15.982^^58^703^6
+ ;;^UTILITY(U,$J,358.3,15887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15619,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,15619,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,15619,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,15620,0)
- ;;=R09.1^^85^823^23
- ;;^UTILITY(U,$J,358.3,15620,1,0)
+ ;;^UTILITY(U,$J,358.3,15887,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15887,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,15887,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,15888,0)
+ ;;=F15.99^^58^703^9
+ ;;^UTILITY(U,$J,358.3,15888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15620,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,15620,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,15620,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,15621,0)
- ;;=J84.17^^85^823^19
- ;;^UTILITY(U,$J,358.3,15621,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15621,1,3,0)
- ;;=3^Interstitial Pulmonary Disease w/ Fibrosis NEC
- ;;^UTILITY(U,$J,358.3,15621,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,15621,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,15622,0)
- ;;=J98.4^^85^823^20
- ;;^UTILITY(U,$J,358.3,15622,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15622,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,15622,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,15622,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,15623,0)
- ;;=G47.30^^85^823^26
- ;;^UTILITY(U,$J,358.3,15623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15623,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,15623,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,15623,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,15624,0)
- ;;=R06.02^^85^823^25
+ ;;^UTILITY(U,$J,358.3,15888,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15888,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,15888,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,15889,0)
+ ;;=A4220^^59^704^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15889,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15889,1,1,0)
+ ;;=1^A4220
+ ;;^UTILITY(U,$J,358.3,15889,1,3,0)
+ ;;=3^Infusion Pump Refill Kit
+ ;;^UTILITY(U,$J,358.3,15890,0)
+ ;;=99195^^59^705^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15890,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15890,1,1,0)
+ ;;=1^99195
+ ;;^UTILITY(U,$J,358.3,15890,1,3,0)
+ ;;=3^Phlebotomy
+ ;;^UTILITY(U,$J,358.3,15891,0)
+ ;;=20220^^59^706^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15891,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15891,1,1,0)
+ ;;=1^20220

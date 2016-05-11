@@ -1,6 +1,7 @@
 SDRPA04 ;BP-OIFO/ESW - SDRPA00 continuation PAIT - REPAIR ;11/2/04 11:47am  ; 5/31/07 5:29pm
- ;;5.3;Scheduling;**376,491,634**;Aug 13, 1993;Build 3
+ ;;5.3;Scheduling;**376,491,634,639**;Aug 13, 1993;Build 7
  ;SD/491 - not to error out while repairing with acks having received
+ ;SD*639 Disable SD-PAIT REPAIR option
  Q
 MSGT(CRUNID,SDPEN,SDFIN,SDTOT,SDSTOP) ;create completion messages
  ;CRUNID - current run number
@@ -103,6 +104,12 @@ CLEAN(CRUNID) ;housekeeping
  ..S ^XTMP("SDRPA-"_$P(ZNODE,"^",3),"CLEAN",+$P(ZNODE,"^",4),0)=ZNODE ;diagnostics
  Q
 RPAIT(RUN) ;
+ ; SD*639 Disable SD-PAIT REPAIR option
+ D BMES^XPDUTL("This SD-PAIT REPAIR option has been placed Out of Order")
+ D MES^XPDUTL("by SD*5.3*639.")
+ D MES^XPDUTL("")
+ Q
+ ;
  ;RUN - run number - entry ^SDWL(409.6,RUN,0) to be repaired
  Q:+$G(RUN)'>1
  W !,"The repairing in progress...",!

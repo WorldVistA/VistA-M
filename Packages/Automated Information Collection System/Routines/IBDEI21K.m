@@ -1,122 +1,142 @@
-IBDEI21K ; ; 19-NOV-2015
+IBDEI21K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34226,0)
- ;;=95975^^156^1738^5^^^^1
- ;;^UTILITY(U,$J,358.3,34226,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34226,1,2,0)
- ;;=2^95975
- ;;^UTILITY(U,$J,358.3,34226,1,3,0)
- ;;=3^Cranial Neurostim,Complex,Ea Addl 30 Min
- ;;^UTILITY(U,$J,358.3,34227,0)
- ;;=G40.A01^^157^1739^3
- ;;^UTILITY(U,$J,358.3,34227,1,0)
+ ;;^UTILITY(U,$J,358.3,34630,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,34630,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,34631,0)
+ ;;=J98.01^^131^1690^11
+ ;;^UTILITY(U,$J,358.3,34631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34227,1,3,0)
- ;;=3^Absence Seizures Not Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34227,1,4,0)
- ;;=4^G40.A01
- ;;^UTILITY(U,$J,358.3,34227,2)
- ;;=^5003868
- ;;^UTILITY(U,$J,358.3,34228,0)
- ;;=G40.A09^^157^1739^4
- ;;^UTILITY(U,$J,358.3,34228,1,0)
+ ;;^UTILITY(U,$J,358.3,34631,1,3,0)
+ ;;=3^Bronchospasm,Acute
+ ;;^UTILITY(U,$J,358.3,34631,1,4,0)
+ ;;=4^J98.01
+ ;;^UTILITY(U,$J,358.3,34631,2)
+ ;;=^334092
+ ;;^UTILITY(U,$J,358.3,34632,0)
+ ;;=G47.30^^131^1690^53
+ ;;^UTILITY(U,$J,358.3,34632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34228,1,3,0)
- ;;=3^Absence Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34228,1,4,0)
- ;;=4^G40.A09
- ;;^UTILITY(U,$J,358.3,34228,2)
- ;;=^5003869
- ;;^UTILITY(U,$J,358.3,34229,0)
- ;;=G40.A11^^157^1739^1
- ;;^UTILITY(U,$J,358.3,34229,1,0)
+ ;;^UTILITY(U,$J,358.3,34632,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,34632,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,34632,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,34633,0)
+ ;;=R06.02^^131^1690^52
+ ;;^UTILITY(U,$J,358.3,34633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34229,1,3,0)
- ;;=3^Absence Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34229,1,4,0)
- ;;=4^G40.A11
- ;;^UTILITY(U,$J,358.3,34229,2)
- ;;=^5003870
- ;;^UTILITY(U,$J,358.3,34230,0)
- ;;=G40.A19^^157^1739^2
- ;;^UTILITY(U,$J,358.3,34230,1,0)
+ ;;^UTILITY(U,$J,358.3,34633,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,34633,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,34633,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,34634,0)
+ ;;=R06.09^^131^1690^17
+ ;;^UTILITY(U,$J,358.3,34634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34230,1,3,0)
- ;;=3^Absence Seizures Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34230,1,4,0)
- ;;=4^G40.A19
- ;;^UTILITY(U,$J,358.3,34230,2)
- ;;=^5003871
- ;;^UTILITY(U,$J,358.3,34231,0)
- ;;=G40.309^^157^1739^17
- ;;^UTILITY(U,$J,358.3,34231,1,0)
+ ;;^UTILITY(U,$J,358.3,34634,1,3,0)
+ ;;=3^Dyspnea,Other Forms
+ ;;^UTILITY(U,$J,358.3,34634,1,4,0)
+ ;;=4^R06.09
+ ;;^UTILITY(U,$J,358.3,34634,2)
+ ;;=^5019182
+ ;;^UTILITY(U,$J,358.3,34635,0)
+ ;;=R06.00^^131^1690^18
+ ;;^UTILITY(U,$J,358.3,34635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34231,1,3,0)
- ;;=3^Generalized Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34231,1,4,0)
- ;;=4^G40.309
- ;;^UTILITY(U,$J,358.3,34231,2)
- ;;=^5003842
- ;;^UTILITY(U,$J,358.3,34232,0)
- ;;=G40.311^^157^1739^15
- ;;^UTILITY(U,$J,358.3,34232,1,0)
+ ;;^UTILITY(U,$J,358.3,34635,1,3,0)
+ ;;=3^Dyspnea,Unspec
+ ;;^UTILITY(U,$J,358.3,34635,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,34635,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,34636,0)
+ ;;=R06.89^^131^1690^6
+ ;;^UTILITY(U,$J,358.3,34636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34232,1,3,0)
- ;;=3^Generalized Seizures Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34232,1,4,0)
- ;;=4^G40.311
- ;;^UTILITY(U,$J,358.3,34232,2)
- ;;=^5003843
- ;;^UTILITY(U,$J,358.3,34233,0)
- ;;=G40.319^^157^1739^16
- ;;^UTILITY(U,$J,358.3,34233,1,0)
+ ;;^UTILITY(U,$J,358.3,34636,1,3,0)
+ ;;=3^Breathing Abnormalities,Other
+ ;;^UTILITY(U,$J,358.3,34636,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,34636,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,34637,0)
+ ;;=R06.83^^131^1690^54
+ ;;^UTILITY(U,$J,358.3,34637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34233,1,3,0)
- ;;=3^Generalized Seizures Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34233,1,4,0)
- ;;=4^G40.319
- ;;^UTILITY(U,$J,358.3,34233,2)
- ;;=^5003844
- ;;^UTILITY(U,$J,358.3,34234,0)
- ;;=G40.409^^157^1739^20
- ;;^UTILITY(U,$J,358.3,34234,1,0)
+ ;;^UTILITY(U,$J,358.3,34637,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,34637,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,34637,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,34638,0)
+ ;;=R06.3^^131^1690^32
+ ;;^UTILITY(U,$J,358.3,34638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34234,1,3,0)
- ;;=3^Generalized Seizures,Other, Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34234,1,4,0)
- ;;=4^G40.409
- ;;^UTILITY(U,$J,358.3,34234,2)
- ;;=^5003846
- ;;^UTILITY(U,$J,358.3,34235,0)
- ;;=G40.411^^157^1739^18
- ;;^UTILITY(U,$J,358.3,34235,1,0)
+ ;;^UTILITY(U,$J,358.3,34638,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,34638,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,34638,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,34639,0)
+ ;;=R06.1^^131^1690^56
+ ;;^UTILITY(U,$J,358.3,34639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34235,1,3,0)
- ;;=3^Generalized Seizures,Other, Intractable w/ Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34235,1,4,0)
- ;;=4^G40.411
- ;;^UTILITY(U,$J,358.3,34235,2)
- ;;=^5003847
- ;;^UTILITY(U,$J,358.3,34236,0)
- ;;=G40.419^^157^1739^19
- ;;^UTILITY(U,$J,358.3,34236,1,0)
+ ;;^UTILITY(U,$J,358.3,34639,1,3,0)
+ ;;=3^Stridor
+ ;;^UTILITY(U,$J,358.3,34639,1,4,0)
+ ;;=4^R06.1
+ ;;^UTILITY(U,$J,358.3,34639,2)
+ ;;=^5019183
+ ;;^UTILITY(U,$J,358.3,34640,0)
+ ;;=R05.^^131^1690^15
+ ;;^UTILITY(U,$J,358.3,34640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34236,1,3,0)
- ;;=3^Generalized Seizures,Other, Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34236,1,4,0)
- ;;=4^G40.419
- ;;^UTILITY(U,$J,358.3,34236,2)
- ;;=^5003848
- ;;^UTILITY(U,$J,358.3,34237,0)
- ;;=G40.209^^157^1739^7
- ;;^UTILITY(U,$J,358.3,34237,1,0)
+ ;;^UTILITY(U,$J,358.3,34640,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,34640,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,34640,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,34641,0)
+ ;;=R04.2^^131^1690^24
+ ;;^UTILITY(U,$J,358.3,34641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34237,1,3,0)
- ;;=3^Complex Partial Seizures Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,34237,1,4,0)
- ;;=4^G40.209
- ;;^UTILITY(U,$J,358.3,34237,2)
- ;;=^5003838
+ ;;^UTILITY(U,$J,358.3,34641,1,3,0)
+ ;;=3^Hemoptysis
+ ;;^UTILITY(U,$J,358.3,34641,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,34641,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,34642,0)
+ ;;=R91.8^^131^1690^1
+ ;;^UTILITY(U,$J,358.3,34642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34642,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
+ ;;^UTILITY(U,$J,358.3,34642,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,34642,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,34643,0)
+ ;;=R06.2^^131^1690^57
+ ;;^UTILITY(U,$J,358.3,34643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34643,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,34643,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,34643,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,34644,0)
+ ;;=J44.0^^131^1690^13
+ ;;^UTILITY(U,$J,358.3,34644,1,0)
+ ;;=^358.31IA^4^2

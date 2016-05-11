@@ -1,126 +1,138 @@
-IBDEI15T ; ; 19-NOV-2015
+IBDEI15T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19370,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,19370,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,19371,0)
- ;;=M48.50XD^^94^922^22
- ;;^UTILITY(U,$J,358.3,19371,1,0)
+ ;;^UTILITY(U,$J,358.3,19721,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,19722,0)
+ ;;=E66.9^^84^921^43
+ ;;^UTILITY(U,$J,358.3,19722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19371,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,19371,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,19371,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,19372,0)
- ;;=M48.52XA^^94^922^23
- ;;^UTILITY(U,$J,358.3,19372,1,0)
+ ;;^UTILITY(U,$J,358.3,19722,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,19722,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,19722,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,19723,0)
+ ;;=E74.39^^84^921^35
+ ;;^UTILITY(U,$J,358.3,19723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19372,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,19372,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,19372,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,19373,0)
- ;;=M48.52XD^^94^922^24
- ;;^UTILITY(U,$J,358.3,19373,1,0)
+ ;;^UTILITY(U,$J,358.3,19723,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,19723,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,19723,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,19724,0)
+ ;;=E83.30^^84^921^46
+ ;;^UTILITY(U,$J,358.3,19724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19373,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,19373,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,19373,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,19374,0)
- ;;=M48.54XA^^94^922^32
- ;;^UTILITY(U,$J,358.3,19374,1,0)
+ ;;^UTILITY(U,$J,358.3,19724,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19724,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,19724,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,19725,0)
+ ;;=E83.51^^84^921^28
+ ;;^UTILITY(U,$J,358.3,19725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19374,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,19374,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,19374,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,19375,0)
- ;;=M48.54XD^^94^922^33
- ;;^UTILITY(U,$J,358.3,19375,1,0)
+ ;;^UTILITY(U,$J,358.3,19725,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,19725,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,19725,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,19726,0)
+ ;;=E83.52^^84^921^26
+ ;;^UTILITY(U,$J,358.3,19726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19375,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,19375,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,19375,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,19376,0)
- ;;=M48.57XA^^94^922^25
- ;;^UTILITY(U,$J,358.3,19376,1,0)
+ ;;^UTILITY(U,$J,358.3,19726,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,19726,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,19726,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,19727,0)
+ ;;=E87.5^^84^921^27
+ ;;^UTILITY(U,$J,358.3,19727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19376,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,19376,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,19376,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,19377,0)
- ;;=M48.57XD^^94^922^26
- ;;^UTILITY(U,$J,358.3,19377,1,0)
+ ;;^UTILITY(U,$J,358.3,19727,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,19727,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,19727,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,19728,0)
+ ;;=E89.2^^84^921^48
+ ;;^UTILITY(U,$J,358.3,19728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19377,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,19377,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,19377,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,19378,0)
- ;;=M50.30^^94^922^13
- ;;^UTILITY(U,$J,358.3,19378,1,0)
+ ;;^UTILITY(U,$J,358.3,19728,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,19728,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,19728,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,19729,0)
+ ;;=E89.6^^84^921^47
+ ;;^UTILITY(U,$J,358.3,19729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19378,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,19378,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,19378,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,19379,0)
- ;;=M51.14^^94^922^52
- ;;^UTILITY(U,$J,358.3,19379,1,0)
+ ;;^UTILITY(U,$J,358.3,19729,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,19729,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,19729,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,19730,0)
+ ;;=L68.0^^84^921^25
+ ;;^UTILITY(U,$J,358.3,19730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19379,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,19379,1,4,0)
- ;;=4^M51.14
- ;;^UTILITY(U,$J,358.3,19379,2)
- ;;=^5012243
- ;;^UTILITY(U,$J,358.3,19380,0)
- ;;=M51.17^^94^922^51
- ;;^UTILITY(U,$J,358.3,19380,1,0)
+ ;;^UTILITY(U,$J,358.3,19730,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,19730,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,19730,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,19731,0)
+ ;;=M80.00XA^^84^921^2
+ ;;^UTILITY(U,$J,358.3,19731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19380,1,3,0)
- ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,19380,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,19380,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,19381,0)
- ;;=M51.34^^94^922^50
- ;;^UTILITY(U,$J,358.3,19381,1,0)
+ ;;^UTILITY(U,$J,358.3,19731,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19731,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,19731,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,19732,0)
+ ;;=M81.0^^84^921^3
+ ;;^UTILITY(U,$J,358.3,19732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19381,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Thoracic Region
- ;;^UTILITY(U,$J,358.3,19381,1,4,0)
- ;;=4^M51.34
- ;;^UTILITY(U,$J,358.3,19381,2)
- ;;=^5012251
- ;;^UTILITY(U,$J,358.3,19382,0)
- ;;=M51.37^^94^922^49
- ;;^UTILITY(U,$J,358.3,19382,1,0)
+ ;;^UTILITY(U,$J,358.3,19732,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,19732,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,19732,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,19733,0)
+ ;;=M85.80^^84^921^44
+ ;;^UTILITY(U,$J,358.3,19733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19382,1,3,0)
- ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,19382,1,4,0)
- ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,19733,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19733,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,19733,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,19734,0)
+ ;;=N62.^^84^921^24
+ ;;^UTILITY(U,$J,358.3,19734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19734,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,19734,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,19734,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,19735,0)
+ ;;=E10.43^^84^921^6

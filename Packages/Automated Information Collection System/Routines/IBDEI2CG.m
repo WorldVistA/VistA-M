@@ -1,124 +1,132 @@
-IBDEI2CG ; ; 19-NOV-2015
+IBDEI2CG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39367,0)
- ;;=I69.954^^183^2019^12
- ;;^UTILITY(U,$J,358.3,39367,1,0)
+ ;;^UTILITY(U,$J,358.3,39741,1,4,0)
+ ;;=4^C44.129
+ ;;^UTILITY(U,$J,358.3,39741,2)
+ ;;=^5001024
+ ;;^UTILITY(U,$J,358.3,39742,0)
+ ;;=C44.122^^153^1928^86
+ ;;^UTILITY(U,$J,358.3,39742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39367,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff left nondom side
- ;;^UTILITY(U,$J,358.3,39367,1,4,0)
- ;;=4^I69.954
- ;;^UTILITY(U,$J,358.3,39367,2)
- ;;=^5133587
- ;;^UTILITY(U,$J,358.3,39368,0)
- ;;=I69.951^^183^2019^13
- ;;^UTILITY(U,$J,358.3,39368,1,0)
+ ;;^UTILITY(U,$J,358.3,39742,1,3,0)
+ ;;=3^SCC Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,39742,1,4,0)
+ ;;=4^C44.122
+ ;;^UTILITY(U,$J,358.3,39742,2)
+ ;;=^5001023
+ ;;^UTILITY(U,$J,358.3,39743,0)
+ ;;=H04.542^^153^1928^103
+ ;;^UTILITY(U,$J,358.3,39743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39368,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff right dominant side
- ;;^UTILITY(U,$J,358.3,39368,1,4,0)
- ;;=4^I69.951
- ;;^UTILITY(U,$J,358.3,39368,2)
- ;;=^5007561
- ;;^UTILITY(U,$J,358.3,39369,0)
- ;;=I69.953^^183^2019^14
- ;;^UTILITY(U,$J,358.3,39369,1,0)
+ ;;^UTILITY(U,$J,358.3,39743,1,3,0)
+ ;;=3^Stenosis Left Lacrimal Canaliculi
+ ;;^UTILITY(U,$J,358.3,39743,1,4,0)
+ ;;=4^H04.542
+ ;;^UTILITY(U,$J,358.3,39743,2)
+ ;;=^5004535
+ ;;^UTILITY(U,$J,358.3,39744,0)
+ ;;=H04.572^^153^1928^104
+ ;;^UTILITY(U,$J,358.3,39744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39369,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff right nondom side
- ;;^UTILITY(U,$J,358.3,39369,1,4,0)
- ;;=4^I69.953
- ;;^UTILITY(U,$J,358.3,39369,2)
- ;;=^5007562
- ;;^UTILITY(U,$J,358.3,39370,0)
- ;;=G81.92^^183^2019^7
- ;;^UTILITY(U,$J,358.3,39370,1,0)
+ ;;^UTILITY(U,$J,358.3,39744,1,3,0)
+ ;;=3^Stenosis Left Lacrimal Sac
+ ;;^UTILITY(U,$J,358.3,39744,1,4,0)
+ ;;=4^H04.572
+ ;;^UTILITY(U,$J,358.3,39744,2)
+ ;;=^5004547
+ ;;^UTILITY(U,$J,358.3,39745,0)
+ ;;=H04.541^^153^1928^105
+ ;;^UTILITY(U,$J,358.3,39745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39370,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting left dominant side
- ;;^UTILITY(U,$J,358.3,39370,1,4,0)
- ;;=4^G81.92
- ;;^UTILITY(U,$J,358.3,39370,2)
- ;;=^5004122
- ;;^UTILITY(U,$J,358.3,39371,0)
- ;;=G81.94^^183^2019^8
- ;;^UTILITY(U,$J,358.3,39371,1,0)
+ ;;^UTILITY(U,$J,358.3,39745,1,3,0)
+ ;;=3^Stenosis Right Lacrimal Canaliculi
+ ;;^UTILITY(U,$J,358.3,39745,1,4,0)
+ ;;=4^H04.541
+ ;;^UTILITY(U,$J,358.3,39745,2)
+ ;;=^5004534
+ ;;^UTILITY(U,$J,358.3,39746,0)
+ ;;=H04.571^^153^1928^106
+ ;;^UTILITY(U,$J,358.3,39746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39371,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting left nondominant side
- ;;^UTILITY(U,$J,358.3,39371,1,4,0)
- ;;=4^G81.94
- ;;^UTILITY(U,$J,358.3,39371,2)
- ;;=^5004124
- ;;^UTILITY(U,$J,358.3,39372,0)
- ;;=G81.91^^183^2019^9
- ;;^UTILITY(U,$J,358.3,39372,1,0)
+ ;;^UTILITY(U,$J,358.3,39746,1,3,0)
+ ;;=3^Stenosis Right Lacrimal Sac
+ ;;^UTILITY(U,$J,358.3,39746,1,4,0)
+ ;;=4^H04.571
+ ;;^UTILITY(U,$J,358.3,39746,2)
+ ;;=^5004546
+ ;;^UTILITY(U,$J,358.3,39747,0)
+ ;;=H02.055^^153^1928^107
+ ;;^UTILITY(U,$J,358.3,39747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39372,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting right dominant side
- ;;^UTILITY(U,$J,358.3,39372,1,4,0)
- ;;=4^G81.91
- ;;^UTILITY(U,$J,358.3,39372,2)
- ;;=^5004121
- ;;^UTILITY(U,$J,358.3,39373,0)
- ;;=G81.93^^183^2019^10
- ;;^UTILITY(U,$J,358.3,39373,1,0)
+ ;;^UTILITY(U,$J,358.3,39747,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39747,1,4,0)
+ ;;=4^H02.055
+ ;;^UTILITY(U,$J,358.3,39747,2)
+ ;;=^5133405
+ ;;^UTILITY(U,$J,358.3,39748,0)
+ ;;=H02.054^^153^1928^108
+ ;;^UTILITY(U,$J,358.3,39748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39373,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting right nondominant side
- ;;^UTILITY(U,$J,358.3,39373,1,4,0)
- ;;=4^G81.93
- ;;^UTILITY(U,$J,358.3,39373,2)
- ;;=^5004123
- ;;^UTILITY(U,$J,358.3,39374,0)
- ;;=I69.942^^183^2019^23
- ;;^UTILITY(U,$J,358.3,39374,1,0)
+ ;;^UTILITY(U,$J,358.3,39748,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39748,1,4,0)
+ ;;=4^H02.054
+ ;;^UTILITY(U,$J,358.3,39748,2)
+ ;;=^5004301
+ ;;^UTILITY(U,$J,358.3,39749,0)
+ ;;=H02.052^^153^1928^109
+ ;;^UTILITY(U,$J,358.3,39749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39374,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left dom side
- ;;^UTILITY(U,$J,358.3,39374,1,4,0)
- ;;=4^I69.942
- ;;^UTILITY(U,$J,358.3,39374,2)
- ;;=^5133582
- ;;^UTILITY(U,$J,358.3,39375,0)
- ;;=I69.944^^183^2019^24
- ;;^UTILITY(U,$J,358.3,39375,1,0)
+ ;;^UTILITY(U,$J,358.3,39749,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39749,1,4,0)
+ ;;=4^H02.052
+ ;;^UTILITY(U,$J,358.3,39749,2)
+ ;;=^5004299
+ ;;^UTILITY(U,$J,358.3,39750,0)
+ ;;=H02.051^^153^1928^110
+ ;;^UTILITY(U,$J,358.3,39750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39375,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left nondom side
- ;;^UTILITY(U,$J,358.3,39375,1,4,0)
- ;;=4^I69.944
- ;;^UTILITY(U,$J,358.3,39375,2)
- ;;=^5133585
- ;;^UTILITY(U,$J,358.3,39376,0)
- ;;=I69.941^^183^2019^25
- ;;^UTILITY(U,$J,358.3,39376,1,0)
+ ;;^UTILITY(U,$J,358.3,39750,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39750,1,4,0)
+ ;;=4^H02.051
+ ;;^UTILITY(U,$J,358.3,39750,2)
+ ;;=^5004298
+ ;;^UTILITY(U,$J,358.3,39751,0)
+ ;;=H05.10^^153^1928^16
+ ;;^UTILITY(U,$J,358.3,39751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39376,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right dom side
- ;;^UTILITY(U,$J,358.3,39376,1,4,0)
- ;;=4^I69.941
- ;;^UTILITY(U,$J,358.3,39376,2)
- ;;=^5133581
- ;;^UTILITY(U,$J,358.3,39377,0)
- ;;=I69.943^^183^2019^26
- ;;^UTILITY(U,$J,358.3,39377,1,0)
+ ;;^UTILITY(U,$J,358.3,39751,1,3,0)
+ ;;=3^Chronic Inflammatory Orbit Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,39751,1,4,0)
+ ;;=4^H05.10
+ ;;^UTILITY(U,$J,358.3,39751,2)
+ ;;=^5004576
+ ;;^UTILITY(U,$J,358.3,39752,0)
+ ;;=H05.402^^153^1928^35
+ ;;^UTILITY(U,$J,358.3,39752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39377,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right nondom side
- ;;^UTILITY(U,$J,358.3,39377,1,4,0)
- ;;=4^I69.943
- ;;^UTILITY(U,$J,358.3,39377,2)
- ;;=^5133584
- ;;^UTILITY(U,$J,358.3,39378,0)
- ;;=G35.^^183^2019^27
- ;;^UTILITY(U,$J,358.3,39378,1,0)
+ ;;^UTILITY(U,$J,358.3,39752,1,3,0)
+ ;;=3^Enophthalmos Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39752,1,4,0)
+ ;;=4^H05.402
+ ;;^UTILITY(U,$J,358.3,39752,2)
+ ;;=^5004632
+ ;;^UTILITY(U,$J,358.3,39753,0)
+ ;;=H05.401^^153^1928^36
+ ;;^UTILITY(U,$J,358.3,39753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39378,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,39378,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,39378,2)
- ;;=^79761
+ ;;^UTILITY(U,$J,358.3,39753,1,3,0)
+ ;;=3^Enophthalmos Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39753,1,4,0)
+ ;;=4^H05.401
+ ;;^UTILITY(U,$J,358.3,39753,2)
+ ;;=^5004631
+ ;;^UTILITY(U,$J,358.3,39754,0)
+ ;;=H02.005^^153^1928^37
+ ;;^UTILITY(U,$J,358.3,39754,1,0)
+ ;;=^358.31IA^4^2

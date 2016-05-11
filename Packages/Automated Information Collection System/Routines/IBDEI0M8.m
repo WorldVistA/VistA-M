@@ -1,136 +1,134 @@
-IBDEI0M8 ; ; 19-NOV-2015
+IBDEI0M8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10145,2)
- ;;=^5009051
- ;;^UTILITY(U,$J,358.3,10146,0)
- ;;=L03.316^^68^664^114
- ;;^UTILITY(U,$J,358.3,10146,1,0)
+ ;;^UTILITY(U,$J,358.3,10363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10146,1,3,0)
- ;;=3^Cellulitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,10146,1,4,0)
- ;;=4^L03.316
- ;;^UTILITY(U,$J,358.3,10146,2)
- ;;=^5009052
- ;;^UTILITY(U,$J,358.3,10147,0)
- ;;=L03.319^^68^664^113
- ;;^UTILITY(U,$J,358.3,10147,1,0)
+ ;;^UTILITY(U,$J,358.3,10363,1,3,0)
+ ;;=3^Refractive Amblyopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,10363,1,4,0)
+ ;;=4^H53.021
+ ;;^UTILITY(U,$J,358.3,10363,2)
+ ;;=^5006299
+ ;;^UTILITY(U,$J,358.3,10364,0)
+ ;;=H53.022^^44^504^25
+ ;;^UTILITY(U,$J,358.3,10364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10147,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,10147,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,10147,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,10148,0)
- ;;=L03.321^^68^664^13
- ;;^UTILITY(U,$J,358.3,10148,1,0)
+ ;;^UTILITY(U,$J,358.3,10364,1,3,0)
+ ;;=3^Refractive Amblyopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,10364,1,4,0)
+ ;;=4^H53.022
+ ;;^UTILITY(U,$J,358.3,10364,2)
+ ;;=^5006300
+ ;;^UTILITY(U,$J,358.3,10365,0)
+ ;;=H53.31^^44^504^1
+ ;;^UTILITY(U,$J,358.3,10365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10148,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,10148,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,10148,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,10149,0)
- ;;=L03.322^^68^664^14
- ;;^UTILITY(U,$J,358.3,10149,1,0)
+ ;;^UTILITY(U,$J,358.3,10365,1,3,0)
+ ;;=3^Abnormal Retinal Correspondence
+ ;;^UTILITY(U,$J,358.3,10365,1,4,0)
+ ;;=4^H53.31
+ ;;^UTILITY(U,$J,358.3,10365,2)
+ ;;=^268844
+ ;;^UTILITY(U,$J,358.3,10366,0)
+ ;;=H53.30^^44^504^5
+ ;;^UTILITY(U,$J,358.3,10366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10149,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,10149,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,10149,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,10150,0)
- ;;=L03.323^^68^664^15
- ;;^UTILITY(U,$J,358.3,10150,1,0)
+ ;;^UTILITY(U,$J,358.3,10366,1,3,0)
+ ;;=3^Binocular Vision Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10366,1,4,0)
+ ;;=4^H53.30
+ ;;^UTILITY(U,$J,358.3,10366,2)
+ ;;=^5006322
+ ;;^UTILITY(U,$J,358.3,10367,0)
+ ;;=H53.481^^44^504^6
+ ;;^UTILITY(U,$J,358.3,10367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10150,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,10150,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,10150,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,10151,0)
- ;;=L03.324^^68^664^17
- ;;^UTILITY(U,$J,358.3,10151,1,0)
+ ;;^UTILITY(U,$J,358.3,10367,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Right Eye
+ ;;^UTILITY(U,$J,358.3,10367,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,10367,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,10368,0)
+ ;;=H53.482^^44^504^7
+ ;;^UTILITY(U,$J,358.3,10368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10151,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,10151,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,10151,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,10152,0)
- ;;=L03.325^^68^664^23
- ;;^UTILITY(U,$J,358.3,10152,1,0)
+ ;;^UTILITY(U,$J,358.3,10368,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Left Eye
+ ;;^UTILITY(U,$J,358.3,10368,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,10368,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,10369,0)
+ ;;=H53.483^^44^504^8
+ ;;^UTILITY(U,$J,358.3,10369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10152,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,10152,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,10152,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,10153,0)
- ;;=L03.326^^68^664^29
- ;;^UTILITY(U,$J,358.3,10153,1,0)
+ ;;^UTILITY(U,$J,358.3,10369,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Bilateral
+ ;;^UTILITY(U,$J,358.3,10369,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,10369,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,10370,0)
+ ;;=H51.12^^44^504^9
+ ;;^UTILITY(U,$J,358.3,10370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10153,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,10153,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,10153,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,10154,0)
- ;;=L03.329^^68^664^28
- ;;^UTILITY(U,$J,358.3,10154,1,0)
+ ;;^UTILITY(U,$J,358.3,10370,1,3,0)
+ ;;=3^Convergence Excess
+ ;;^UTILITY(U,$J,358.3,10370,1,4,0)
+ ;;=4^H51.12
+ ;;^UTILITY(U,$J,358.3,10370,2)
+ ;;=^5006252
+ ;;^UTILITY(U,$J,358.3,10371,0)
+ ;;=H51.11^^44^504^10
+ ;;^UTILITY(U,$J,358.3,10371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10154,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,10154,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,10154,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,10155,0)
- ;;=L08.9^^68^664^167
- ;;^UTILITY(U,$J,358.3,10155,1,0)
+ ;;^UTILITY(U,$J,358.3,10371,1,3,0)
+ ;;=3^Convergence Insufficiency
+ ;;^UTILITY(U,$J,358.3,10371,1,4,0)
+ ;;=4^H51.11
+ ;;^UTILITY(U,$J,358.3,10371,2)
+ ;;=^5006251
+ ;;^UTILITY(U,$J,358.3,10372,0)
+ ;;=H52.03^^44^504^11
+ ;;^UTILITY(U,$J,358.3,10372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10155,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,10155,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,10155,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,10156,0)
- ;;=L11.0^^68^664^9
- ;;^UTILITY(U,$J,358.3,10156,1,0)
+ ;;^UTILITY(U,$J,358.3,10372,1,3,0)
+ ;;=3^Hypermetropia,Bilateral
+ ;;^UTILITY(U,$J,358.3,10372,1,4,0)
+ ;;=4^H52.03
+ ;;^UTILITY(U,$J,358.3,10372,2)
+ ;;=^5006262
+ ;;^UTILITY(U,$J,358.3,10373,0)
+ ;;=H55.89^^44^504^14
+ ;;^UTILITY(U,$J,358.3,10373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10156,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,10156,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,10156,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,10157,0)
- ;;=L20.0^^68^664^90
- ;;^UTILITY(U,$J,358.3,10157,1,0)
+ ;;^UTILITY(U,$J,358.3,10373,1,3,0)
+ ;;=3^Irregular Eye Movements NEC
+ ;;^UTILITY(U,$J,358.3,10373,1,4,0)
+ ;;=4^H55.89
+ ;;^UTILITY(U,$J,358.3,10373,2)
+ ;;=^5006374
+ ;;^UTILITY(U,$J,358.3,10374,0)
+ ;;=H53.62^^44^504^19
+ ;;^UTILITY(U,$J,358.3,10374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10157,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,10157,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,10157,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,10158,0)
- ;;=L20.81^^68^664^87
- ;;^UTILITY(U,$J,358.3,10158,1,0)
+ ;;^UTILITY(U,$J,358.3,10374,1,3,0)
+ ;;=3^Night Blindness,Acquired
+ ;;^UTILITY(U,$J,358.3,10374,1,4,0)
+ ;;=4^H53.62
+ ;;^UTILITY(U,$J,358.3,10374,2)
+ ;;=^265401
+ ;;^UTILITY(U,$J,358.3,10375,0)
+ ;;=H53.63^^44^504^20
+ ;;^UTILITY(U,$J,358.3,10375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10158,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,10158,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,10158,2)
- ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,10375,1,3,0)
+ ;;=3^Night Blindness,Congenital
+ ;;^UTILITY(U,$J,358.3,10375,1,4,0)
+ ;;=4^H53.63
+ ;;^UTILITY(U,$J,358.3,10375,2)
+ ;;=^265396
+ ;;^UTILITY(U,$J,358.3,10376,0)
+ ;;=H53.69^^44^504^18

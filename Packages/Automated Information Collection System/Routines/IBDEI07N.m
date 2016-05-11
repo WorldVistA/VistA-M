@@ -1,138 +1,140 @@
-IBDEI07N ; ; 19-NOV-2015
+IBDEI07N ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3006,1,0)
+ ;;^UTILITY(U,$J,358.3,3272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3006,1,3,0)
- ;;=3^Personal Hx of PUD
- ;;^UTILITY(U,$J,358.3,3006,1,4,0)
- ;;=4^Z87.11
- ;;^UTILITY(U,$J,358.3,3006,2)
- ;;=^5063482
- ;;^UTILITY(U,$J,358.3,3007,0)
- ;;=D73.9^^28^245^70
- ;;^UTILITY(U,$J,358.3,3007,1,0)
+ ;;^UTILITY(U,$J,358.3,3272,1,3,0)
+ ;;=3^Urinary Stream,Poor
+ ;;^UTILITY(U,$J,358.3,3272,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,3272,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,3273,0)
+ ;;=R39.13^^18^216^103
+ ;;^UTILITY(U,$J,358.3,3273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3007,1,3,0)
- ;;=3^Spleen Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3007,1,4,0)
- ;;=4^D73.9
- ;;^UTILITY(U,$J,358.3,3007,2)
- ;;=^5002386
- ;;^UTILITY(U,$J,358.3,3008,0)
- ;;=K26.7^^28^245^71
- ;;^UTILITY(U,$J,358.3,3008,1,0)
+ ;;^UTILITY(U,$J,358.3,3273,1,3,0)
+ ;;=3^Urinary Stream,Splitting
+ ;;^UTILITY(U,$J,358.3,3273,1,4,0)
+ ;;=4^R39.13
+ ;;^UTILITY(U,$J,358.3,3273,2)
+ ;;=^5019343
+ ;;^UTILITY(U,$J,358.3,3274,0)
+ ;;=N39.9^^18^216^104
+ ;;^UTILITY(U,$J,358.3,3274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3008,1,3,0)
- ;;=3^Ulcer,Chronic Duodenal w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,3008,1,4,0)
- ;;=4^K26.7
- ;;^UTILITY(U,$J,358.3,3008,2)
- ;;=^5008526
- ;;^UTILITY(U,$J,358.3,3009,0)
- ;;=K25.7^^28^245^72
- ;;^UTILITY(U,$J,358.3,3009,1,0)
+ ;;^UTILITY(U,$J,358.3,3274,1,3,0)
+ ;;=3^Urinary System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3274,1,4,0)
+ ;;=4^N39.9
+ ;;^UTILITY(U,$J,358.3,3274,2)
+ ;;=^5015688
+ ;;^UTILITY(U,$J,358.3,3275,0)
+ ;;=N39.0^^18^216^80
+ ;;^UTILITY(U,$J,358.3,3275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3009,1,3,0)
- ;;=3^Ulcer,Chronic Gastric w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,3009,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,3009,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,3010,0)
- ;;=K27.7^^28^245^73
- ;;^UTILITY(U,$J,358.3,3010,1,0)
+ ;;^UTILITY(U,$J,358.3,3275,1,3,0)
+ ;;=3^UTI,Site not Specified
+ ;;^UTILITY(U,$J,358.3,3275,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,3275,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,3276,0)
+ ;;=Z87.440^^18^216^57
+ ;;^UTILITY(U,$J,358.3,3276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3010,1,3,0)
- ;;=3^Ulcer,Chronic Peptic w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,3010,1,4,0)
- ;;=4^K27.7
- ;;^UTILITY(U,$J,358.3,3010,2)
- ;;=^5008535
- ;;^UTILITY(U,$J,358.3,3011,0)
- ;;=D55.9^^28^246^1
- ;;^UTILITY(U,$J,358.3,3011,1,0)
+ ;;^UTILITY(U,$J,358.3,3276,1,3,0)
+ ;;=3^Personal Hx of UTI
+ ;;^UTILITY(U,$J,358.3,3276,1,4,0)
+ ;;=4^Z87.440
+ ;;^UTILITY(U,$J,358.3,3276,2)
+ ;;=^5063495
+ ;;^UTILITY(U,$J,358.3,3277,0)
+ ;;=R39.15^^18^216^105
+ ;;^UTILITY(U,$J,358.3,3277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3011,1,3,0)
- ;;=3^Anemia d/t Enzyme Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3011,1,4,0)
- ;;=4^D55.9
- ;;^UTILITY(U,$J,358.3,3011,2)
- ;;=^5002304
- ;;^UTILITY(U,$J,358.3,3012,0)
- ;;=D63.1^^28^246^2
- ;;^UTILITY(U,$J,358.3,3012,1,0)
+ ;;^UTILITY(U,$J,358.3,3277,1,3,0)
+ ;;=3^Urinary Urgency
+ ;;^UTILITY(U,$J,358.3,3277,1,4,0)
+ ;;=4^R39.15
+ ;;^UTILITY(U,$J,358.3,3277,2)
+ ;;=^5019345
+ ;;^UTILITY(U,$J,358.3,3278,0)
+ ;;=R39.0^^18^216^87
+ ;;^UTILITY(U,$J,358.3,3278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3012,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,3012,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,3012,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,3013,0)
- ;;=D63.0^^28^246^3
- ;;^UTILITY(U,$J,358.3,3013,1,0)
+ ;;^UTILITY(U,$J,358.3,3278,1,3,0)
+ ;;=3^Urinary Extravasation
+ ;;^UTILITY(U,$J,358.3,3278,1,4,0)
+ ;;=4^R39.0
+ ;;^UTILITY(U,$J,358.3,3278,2)
+ ;;=^5019340
+ ;;^UTILITY(U,$J,358.3,3279,0)
+ ;;=N93.9^^18^216^81
+ ;;^UTILITY(U,$J,358.3,3279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3013,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,3013,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,3013,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,3014,0)
- ;;=D63.8^^28^246^4
- ;;^UTILITY(U,$J,358.3,3014,1,0)
+ ;;^UTILITY(U,$J,358.3,3279,1,3,0)
+ ;;=3^Uerine/Vaginal Bleeding,Abnormal,Unspec
+ ;;^UTILITY(U,$J,358.3,3279,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,3279,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,3280,0)
+ ;;=N85.9^^18^216^107
+ ;;^UTILITY(U,$J,358.3,3280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3014,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,3014,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,3014,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,3015,0)
- ;;=D59.9^^28^246^5
- ;;^UTILITY(U,$J,358.3,3015,1,0)
+ ;;^UTILITY(U,$J,358.3,3280,1,3,0)
+ ;;=3^Uterus Noninflammatory Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3280,1,4,0)
+ ;;=4^N85.9
+ ;;^UTILITY(U,$J,358.3,3280,2)
+ ;;=^5015873
+ ;;^UTILITY(U,$J,358.3,3281,0)
+ ;;=N71.9^^18^216^106
+ ;;^UTILITY(U,$J,358.3,3281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3015,1,3,0)
- ;;=3^Anemia,Acquired Hemolytic,Unspec
- ;;^UTILITY(U,$J,358.3,3015,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,3015,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,3016,0)
- ;;=D62.^^28^246^6
- ;;^UTILITY(U,$J,358.3,3016,1,0)
+ ;;^UTILITY(U,$J,358.3,3281,1,3,0)
+ ;;=3^Uterus Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3281,1,4,0)
+ ;;=4^N71.9
+ ;;^UTILITY(U,$J,358.3,3281,2)
+ ;;=^5015811
+ ;;^UTILITY(U,$J,358.3,3282,0)
+ ;;=N76.89^^18^216^109
+ ;;^UTILITY(U,$J,358.3,3282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3016,1,3,0)
- ;;=3^Anemia,Acute Posthemorrhagic
- ;;^UTILITY(U,$J,358.3,3016,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,3016,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,3017,0)
- ;;=D61.9^^28^246^7
- ;;^UTILITY(U,$J,358.3,3017,1,0)
+ ;;^UTILITY(U,$J,358.3,3282,1,3,0)
+ ;;=3^Vagina/Vulva Inflammation,Other Spec
+ ;;^UTILITY(U,$J,358.3,3282,1,4,0)
+ ;;=4^N76.89
+ ;;^UTILITY(U,$J,358.3,3282,2)
+ ;;=^5015833
+ ;;^UTILITY(U,$J,358.3,3283,0)
+ ;;=N89.9^^18^216^108
+ ;;^UTILITY(U,$J,358.3,3283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3017,1,3,0)
- ;;=3^Anemia,Aplastic,Unspec
- ;;^UTILITY(U,$J,358.3,3017,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,3017,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,3018,0)
- ;;=D52.9^^28^246^8
- ;;^UTILITY(U,$J,358.3,3018,1,0)
+ ;;^UTILITY(U,$J,358.3,3283,1,3,0)
+ ;;=3^Vagina Noninflammatory Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3283,1,4,0)
+ ;;=4^N89.9
+ ;;^UTILITY(U,$J,358.3,3283,2)
+ ;;=^5015890
+ ;;^UTILITY(U,$J,358.3,3284,0)
+ ;;=N76.0^^18^216^110
+ ;;^UTILITY(U,$J,358.3,3284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3018,1,3,0)
- ;;=3^Anemia,Folate Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,3018,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,3018,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,3019,0)
- ;;=D58.9^^28^246^9
- ;;^UTILITY(U,$J,358.3,3019,1,0)
+ ;;^UTILITY(U,$J,358.3,3284,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,3284,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,3284,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,3285,0)
+ ;;=N76.1^^18^216^111
+ ;;^UTILITY(U,$J,358.3,3285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3019,1,3,0)
- ;;=3^Anemia,Herediatary Hemolytic,Unspec
+ ;;^UTILITY(U,$J,358.3,3285,1,3,0)
+ ;;=3^Vaginitis,Subacute/Chronic
+ ;;^UTILITY(U,$J,358.3,3285,1,4,0)
+ ;;=4^N76.1

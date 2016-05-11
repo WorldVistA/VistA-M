@@ -1,124 +1,130 @@
-IBDEI0QZ ; ; 19-NOV-2015
+IBDEI0QZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12352,1,4,0)
- ;;=4^S61.204A
- ;;^UTILITY(U,$J,358.3,12352,2)
- ;;=^5032753
- ;;^UTILITY(U,$J,358.3,12353,0)
- ;;=S61.205A^^71^708^163
- ;;^UTILITY(U,$J,358.3,12353,1,0)
+ ;;^UTILITY(U,$J,358.3,12658,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,12658,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,12658,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,12659,0)
+ ;;=I25.700^^53^579^12
+ ;;^UTILITY(U,$J,358.3,12659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12353,1,3,0)
- ;;=3^Open wnd of left ring finger w/o damage to nail unspec,
- ;;^UTILITY(U,$J,358.3,12353,1,4,0)
- ;;=4^S61.205A
- ;;^UTILITY(U,$J,358.3,12353,2)
- ;;=^5032756
- ;;^UTILITY(U,$J,358.3,12354,0)
- ;;=S61.206A^^71^708^170
- ;;^UTILITY(U,$J,358.3,12354,1,0)
+ ;;^UTILITY(U,$J,358.3,12659,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12659,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,12659,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,12660,0)
+ ;;=I25.2^^53^579^13
+ ;;^UTILITY(U,$J,358.3,12660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12354,1,3,0)
- ;;=3^Open wnd of right little finger w/o damage to nail unspec,
- ;;^UTILITY(U,$J,358.3,12354,1,4,0)
- ;;=4^S61.206A
- ;;^UTILITY(U,$J,358.3,12354,2)
- ;;=^5032759
- ;;^UTILITY(U,$J,358.3,12355,0)
- ;;=S61.207A^^71^708^160
- ;;^UTILITY(U,$J,358.3,12355,1,0)
+ ;;^UTILITY(U,$J,358.3,12660,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,12660,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,12660,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,12661,0)
+ ;;=I20.8^^53^579^2
+ ;;^UTILITY(U,$J,358.3,12661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12355,1,3,0)
- ;;=3^Open wnd of left little finger w/o damage to nail unspec,init enctr
- ;;^UTILITY(U,$J,358.3,12355,1,4,0)
- ;;=4^S61.207A
- ;;^UTILITY(U,$J,358.3,12355,2)
- ;;=^5032762
- ;;^UTILITY(U,$J,358.3,12356,0)
- ;;=S91.301A^^71^708^166
- ;;^UTILITY(U,$J,358.3,12356,1,0)
+ ;;^UTILITY(U,$J,358.3,12661,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,12661,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,12661,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,12662,0)
+ ;;=I20.1^^53^579^1
+ ;;^UTILITY(U,$J,358.3,12662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12356,1,3,0)
- ;;=3^Open wnd of right foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12356,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,12356,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,12357,0)
- ;;=S91.302A^^71^708^156
- ;;^UTILITY(U,$J,358.3,12357,1,0)
+ ;;^UTILITY(U,$J,358.3,12662,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,12662,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,12662,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,12663,0)
+ ;;=I25.119^^53^579^5
+ ;;^UTILITY(U,$J,358.3,12663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12357,1,3,0)
- ;;=3^Open wnd of left foot unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12357,1,4,0)
- ;;=4^S91.302A
- ;;^UTILITY(U,$J,358.3,12357,2)
- ;;=^5044317
- ;;^UTILITY(U,$J,358.3,12358,0)
- ;;=S51.801A^^71^708^167
- ;;^UTILITY(U,$J,358.3,12358,1,0)
+ ;;^UTILITY(U,$J,358.3,12663,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,12663,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,12663,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,12664,0)
+ ;;=I25.701^^53^579^9
+ ;;^UTILITY(U,$J,358.3,12664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12358,1,3,0)
- ;;=3^Open wnd of right forearm unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,12358,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,12358,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,12359,0)
- ;;=S51.802A^^71^708^157
- ;;^UTILITY(U,$J,358.3,12359,1,0)
+ ;;^UTILITY(U,$J,358.3,12664,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,12664,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,12664,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,12665,0)
+ ;;=I25.708^^53^579^10
+ ;;^UTILITY(U,$J,358.3,12665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12359,1,3,0)
- ;;=3^Open wnd of left forearm unspec, initial encount
- ;;^UTILITY(U,$J,358.3,12359,1,4,0)
- ;;=4^S51.802A
- ;;^UTILITY(U,$J,358.3,12359,2)
- ;;=^5028662
- ;;^UTILITY(U,$J,358.3,12360,0)
- ;;=S61.401A^^71^708^168
- ;;^UTILITY(U,$J,358.3,12360,1,0)
+ ;;^UTILITY(U,$J,358.3,12665,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12665,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,12665,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,12666,0)
+ ;;=I20.9^^53^579^3
+ ;;^UTILITY(U,$J,358.3,12666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12360,1,3,0)
- ;;=3^Open wnd of right hand unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12360,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,12360,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,12361,0)
- ;;=S61.402A^^71^708^158
- ;;^UTILITY(U,$J,358.3,12361,1,0)
+ ;;^UTILITY(U,$J,358.3,12666,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,12666,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,12666,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,12667,0)
+ ;;=I25.729^^53^579^4
+ ;;^UTILITY(U,$J,358.3,12667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12361,1,3,0)
- ;;=3^Open wnd of left hand unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12361,1,4,0)
- ;;=4^S61.402A
- ;;^UTILITY(U,$J,358.3,12361,2)
- ;;=^5032984
- ;;^UTILITY(U,$J,358.3,12362,0)
- ;;=S81.801A^^71^708^171
- ;;^UTILITY(U,$J,358.3,12362,1,0)
+ ;;^UTILITY(U,$J,358.3,12667,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12667,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,12667,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,12668,0)
+ ;;=I25.709^^53^579^11
+ ;;^UTILITY(U,$J,358.3,12668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12362,1,3,0)
- ;;=3^Open wnd of right lower leg unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,12362,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,12362,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,12363,0)
- ;;=S81.802A^^71^708^161
- ;;^UTILITY(U,$J,358.3,12363,1,0)
+ ;;^UTILITY(U,$J,358.3,12668,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12668,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,12668,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,12669,0)
+ ;;=I25.10^^53^579^6
+ ;;^UTILITY(U,$J,358.3,12669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12363,1,3,0)
- ;;=3^Open wnd of left lower leg unspec, initial encount
- ;;^UTILITY(U,$J,358.3,12363,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,12363,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,12364,0)
- ;;=B18.2^^71^709^13
- ;;^UTILITY(U,$J,358.3,12364,1,0)
+ ;;^UTILITY(U,$J,358.3,12669,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,12669,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,12669,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,12670,0)
+ ;;=I25.810^^53^579^8
+ ;;^UTILITY(U,$J,358.3,12670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12364,1,3,0)
- ;;=3^Chronic viral hepatitis C
+ ;;^UTILITY(U,$J,358.3,12670,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,12670,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,12670,2)
+ ;;=^5007141

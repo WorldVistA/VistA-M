@@ -1,140 +1,126 @@
-IBDEI03T ; ; 19-NOV-2015
+IBDEI03T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1076,1,3,0)
- ;;=3^Hepatitis,Chr Unspec
- ;;^UTILITY(U,$J,358.3,1076,1,4,0)
- ;;=4^K73.9
- ;;^UTILITY(U,$J,358.3,1076,2)
- ;;=^5008815
- ;;^UTILITY(U,$J,358.3,1077,0)
- ;;=R31.9^^12^126^7
- ;;^UTILITY(U,$J,358.3,1077,1,0)
+ ;;^UTILITY(U,$J,358.3,1356,1,4,0)
+ ;;=4^T45.1X5D
+ ;;^UTILITY(U,$J,358.3,1356,2)
+ ;;=^5051027
+ ;;^UTILITY(U,$J,358.3,1357,0)
+ ;;=T45.1X5S^^8^135^4
+ ;;^UTILITY(U,$J,358.3,1357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1077,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,1077,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,1077,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,1078,0)
- ;;=N43.3^^12^126^20
- ;;^UTILITY(U,$J,358.3,1078,1,0)
+ ;;^UTILITY(U,$J,358.3,1357,1,3,0)
+ ;;=3^Adverse effect of antineopl and immunosup drugs, sequela
+ ;;^UTILITY(U,$J,358.3,1357,1,4,0)
+ ;;=4^T45.1X5S
+ ;;^UTILITY(U,$J,358.3,1357,2)
+ ;;=^5051028
+ ;;^UTILITY(U,$J,358.3,1358,0)
+ ;;=T36.8X5A^^8^135^7
+ ;;^UTILITY(U,$J,358.3,1358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1078,1,3,0)
- ;;=3^Hydrocele,Unspec
- ;;^UTILITY(U,$J,358.3,1078,1,4,0)
- ;;=4^N43.3
- ;;^UTILITY(U,$J,358.3,1078,2)
- ;;=^5015700
- ;;^UTILITY(U,$J,358.3,1079,0)
- ;;=R51.^^12^126^3
- ;;^UTILITY(U,$J,358.3,1079,1,0)
+ ;;^UTILITY(U,$J,358.3,1358,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, init encntr
+ ;;^UTILITY(U,$J,358.3,1358,1,4,0)
+ ;;=4^T36.8X5A
+ ;;^UTILITY(U,$J,358.3,1358,2)
+ ;;=^5049412
+ ;;^UTILITY(U,$J,358.3,1359,0)
+ ;;=T36.8X5D^^8^135^8
+ ;;^UTILITY(U,$J,358.3,1359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1079,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,1079,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,1079,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,1080,0)
- ;;=Z22.52^^12^126^16
- ;;^UTILITY(U,$J,358.3,1080,1,0)
+ ;;^UTILITY(U,$J,358.3,1359,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, subs encntr
+ ;;^UTILITY(U,$J,358.3,1359,1,4,0)
+ ;;=4^T36.8X5D
+ ;;^UTILITY(U,$J,358.3,1359,2)
+ ;;=^5049413
+ ;;^UTILITY(U,$J,358.3,1360,0)
+ ;;=T36.8X5S^^8^135^9
+ ;;^UTILITY(U,$J,358.3,1360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1080,1,3,0)
- ;;=3^Hepatitis C Carrier
- ;;^UTILITY(U,$J,358.3,1080,1,4,0)
- ;;=4^Z22.52
- ;;^UTILITY(U,$J,358.3,1080,2)
- ;;=^5062790
- ;;^UTILITY(U,$J,358.3,1081,0)
- ;;=Z21.^^12^126^1
- ;;^UTILITY(U,$J,358.3,1081,1,0)
+ ;;^UTILITY(U,$J,358.3,1360,1,3,0)
+ ;;=3^Adverse effect of other systemic antibiotics, sequela
+ ;;^UTILITY(U,$J,358.3,1360,1,4,0)
+ ;;=4^T36.8X5S
+ ;;^UTILITY(U,$J,358.3,1360,2)
+ ;;=^5049414
+ ;;^UTILITY(U,$J,358.3,1361,0)
+ ;;=T49.6X5A^^8^135^10
+ ;;^UTILITY(U,$J,358.3,1361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1081,1,3,0)
- ;;=3^HIV Status,Asymptomatic
- ;;^UTILITY(U,$J,358.3,1081,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,1081,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,1082,0)
- ;;=K62.5^^12^126^12
- ;;^UTILITY(U,$J,358.3,1082,1,0)
+ ;;^UTILITY(U,$J,358.3,1361,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, init
+ ;;^UTILITY(U,$J,358.3,1361,1,4,0)
+ ;;=4^T49.6X5A
+ ;;^UTILITY(U,$J,358.3,1361,2)
+ ;;=^5051926
+ ;;^UTILITY(U,$J,358.3,1362,0)
+ ;;=T49.6X5D^^8^135^11
+ ;;^UTILITY(U,$J,358.3,1362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1082,1,3,0)
- ;;=3^Hemorrhage Anus & Rectum
- ;;^UTILITY(U,$J,358.3,1082,1,4,0)
- ;;=4^K62.5
- ;;^UTILITY(U,$J,358.3,1082,2)
- ;;=^5008755
- ;;^UTILITY(U,$J,358.3,1083,0)
- ;;=E74.39^^12^127^15
- ;;^UTILITY(U,$J,358.3,1083,1,0)
+ ;;^UTILITY(U,$J,358.3,1362,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, subs
+ ;;^UTILITY(U,$J,358.3,1362,1,4,0)
+ ;;=4^T49.6X5D
+ ;;^UTILITY(U,$J,358.3,1362,2)
+ ;;=^5051927
+ ;;^UTILITY(U,$J,358.3,1363,0)
+ ;;=T49.6X5S^^8^135^12
+ ;;^UTILITY(U,$J,358.3,1363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1083,1,3,0)
- ;;=3^Intestinal Carbohydrate Absorption Disorder,Other
- ;;^UTILITY(U,$J,358.3,1083,1,4,0)
- ;;=4^E74.39
- ;;^UTILITY(U,$J,358.3,1083,2)
- ;;=^5002928
- ;;^UTILITY(U,$J,358.3,1084,0)
- ;;=H61.23^^12^127^3
- ;;^UTILITY(U,$J,358.3,1084,1,0)
+ ;;^UTILITY(U,$J,358.3,1363,1,3,0)
+ ;;=3^Adverse effect of otorhino drugs and preparations, sequela
+ ;;^UTILITY(U,$J,358.3,1363,1,4,0)
+ ;;=4^T49.6X5S
+ ;;^UTILITY(U,$J,358.3,1363,2)
+ ;;=^5051928
+ ;;^UTILITY(U,$J,358.3,1364,0)
+ ;;=T36.95XA^^8^135^13
+ ;;^UTILITY(U,$J,358.3,1364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1084,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral
- ;;^UTILITY(U,$J,358.3,1084,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,1084,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,1085,0)
- ;;=H61.21^^12^127^5
- ;;^UTILITY(U,$J,358.3,1085,1,0)
+ ;;^UTILITY(U,$J,358.3,1364,1,3,0)
+ ;;=3^Adverse effect of unsp systemic antibiotic, init encntr
+ ;;^UTILITY(U,$J,358.3,1364,1,4,0)
+ ;;=4^T36.95XA
+ ;;^UTILITY(U,$J,358.3,1364,2)
+ ;;=^5049430
+ ;;^UTILITY(U,$J,358.3,1365,0)
+ ;;=T36.95XD^^8^135^14
+ ;;^UTILITY(U,$J,358.3,1365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1085,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,1085,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,1085,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,1086,0)
- ;;=H61.22^^12^127^4
- ;;^UTILITY(U,$J,358.3,1086,1,0)
+ ;;^UTILITY(U,$J,358.3,1365,1,3,0)
+ ;;=3^Adverse effect of unsp systemic antibiotic, subs encntr
+ ;;^UTILITY(U,$J,358.3,1365,1,4,0)
+ ;;=4^T36.95XD
+ ;;^UTILITY(U,$J,358.3,1365,2)
+ ;;=^5049431
+ ;;^UTILITY(U,$J,358.3,1366,0)
+ ;;=T36.95XS^^8^135^15
+ ;;^UTILITY(U,$J,358.3,1366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1086,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,1086,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,1086,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,1087,0)
- ;;=J11.1^^12^127^10
- ;;^UTILITY(U,$J,358.3,1087,1,0)
+ ;;^UTILITY(U,$J,358.3,1366,1,3,0)
+ ;;=3^Adverse effect of unspecified systemic antibiotic, sequela
+ ;;^UTILITY(U,$J,358.3,1366,1,4,0)
+ ;;=4^T36.95XS
+ ;;^UTILITY(U,$J,358.3,1366,2)
+ ;;=^5049432
+ ;;^UTILITY(U,$J,358.3,1367,0)
+ ;;=S04.60XA^^8^135^16
+ ;;^UTILITY(U,$J,358.3,1367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1087,1,3,0)
- ;;=3^Influenza d/t Unident Influ Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,1087,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,1087,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,1088,0)
- ;;=J10.1^^12^127^9
- ;;^UTILITY(U,$J,358.3,1088,1,0)
+ ;;^UTILITY(U,$J,358.3,1367,1,3,0)
+ ;;=3^Injury of acoustic nerve, unspecified side, init encntr
+ ;;^UTILITY(U,$J,358.3,1367,1,4,0)
+ ;;=4^S04.60XA
+ ;;^UTILITY(U,$J,358.3,1367,2)
+ ;;=^5020537
+ ;;^UTILITY(U,$J,358.3,1368,0)
+ ;;=S04.9XXA^^8^135^17
+ ;;^UTILITY(U,$J,358.3,1368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1088,1,3,0)
- ;;=3^Influenza d/t  Indent Influ Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,1088,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,1088,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,1089,0)
- ;;=K58.9^^12^127^1
- ;;^UTILITY(U,$J,358.3,1089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1089,1,3,0)
- ;;=3^IBS w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,1089,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,1089,2)
- ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,1368,1,3,0)
+ ;;=3^Injury of unspecified cranial nerve, initial encounter
+ ;;^UTILITY(U,$J,358.3,1368,1,4,0)
+ ;;=4^S04.9XXA

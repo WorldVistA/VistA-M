@@ -1,4 +1,4 @@
-IBXX18 ; COMPILED XREF FOR FILE #399 ; 05/12/15
+IBXX18 ; COMPILED XREF FOR FILE #399 ; 04/18/16
  ; 
  I X'="" S ^DGCR(399,"CAP",$E(X,1,30),DA)=""
  S DIKZ("M")=$G(^DGCR(399,DA,"M"))
@@ -171,6 +171,39 @@ IBXX18 ; COMPILED XREF FOR FILE #399 ; 05/12/15
  S DIKZ("M1")=$G(^DGCR(399,DA,"M1"))
  S X=$P($G(DIKZ("M1")),U,8)
  I X'="" S ^DGCR(399,"AG",$E(X,1,30),DA)=""
+ S X=$P($G(DIKZ("M1")),U,13)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,3),X=X S DIU=X K Y S X=DIV N %I,%H,% D NOW^%DTC S X=% X ^DD(399,471,1,1,1.4)
+ S X=$P($G(DIKZ("M1")),U,13)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,4),X=X S DIU=X K Y S X=DIV S X=$S(($D(DUZ)#2):DUZ,1:"") X ^DD(399,471,1,2,1.4)
+ S DIKZ("M1")=$G(^DGCR(399,DA,"M1"))
+ S X=$P($G(DIKZ("M1")),U,14)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,5),X=X S DIU=X K Y S X=DIV N %I,%H,% D NOW^%DTC S X=% X ^DD(399,472,1,1,1.4)
+ S X=$P($G(DIKZ("M1")),U,14)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,6),X=X S DIU=X K Y S X=DIV S X=$S(($D(DUZ)#2):DUZ,1:"") X ^DD(399,472,1,2,1.4)
+ S DIKZ("M1")=$G(^DGCR(399,DA,"M1"))
+ S X=$P($G(DIKZ("M1")),U,15)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,7),X=X S DIU=X K Y S X=DIV N %I,%H,% D NOW^%DTC S X=% X ^DD(399,473,1,1,1.4)
+ S X=$P($G(DIKZ("M1")),U,15)
+ I X'="" D
+ .N DIK,DIV,DIU,DIN
+ .K DIV S DIV=X,D0=DA,DIV(0)=D0 S Y(1)=$S($D(^DGCR(399,D0,"MP")):^("MP"),1:"") S X=$P(Y(1),U,8),X=X S DIU=X K Y S X=DIV S X=$S(($D(DUZ)#2):DUZ,1:"") X ^DD(399,473,1,2,1.4)
+ S DIKZ("MP")=$G(^DGCR(399,DA,"MP"))
+ S X=$P($G(DIKZ("MP")),U,3)
+ I X'="" S ^DGCR(399,"E",$E(X,1,30),DA)=""
+ S X=$P($G(DIKZ("MP")),U,5)
+ I X'="" S ^DGCR(399,"F",$E(X,1,30),DA)=""
+ S X=$P($G(DIKZ("MP")),U,7)
+ I X'="" S ^DGCR(399,"G",$E(X,1,30),DA)=""
 CR1 S DIXR=139
  K X
  S DIKZ("M")=$G(^DGCR(399,DA,"M"))

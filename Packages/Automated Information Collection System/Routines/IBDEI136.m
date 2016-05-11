@@ -1,134 +1,130 @@
-IBDEI136 ; ; 19-NOV-2015
+IBDEI136 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18137,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,18137,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,18138,0)
- ;;=I11.9^^94^904^10
- ;;^UTILITY(U,$J,358.3,18138,1,0)
+ ;;^UTILITY(U,$J,358.3,18464,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,18464,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,18465,0)
+ ;;=C91.40^^79^879^51
+ ;;^UTILITY(U,$J,358.3,18465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18138,1,3,0)
- ;;=3^Hypertensive Heart Disease w/o Heart Failure
- ;;^UTILITY(U,$J,358.3,18138,1,4,0)
- ;;=4^I11.9
- ;;^UTILITY(U,$J,358.3,18138,2)
- ;;=^5007064
- ;;^UTILITY(U,$J,358.3,18139,0)
- ;;=I11.0^^94^904^9
- ;;^UTILITY(U,$J,358.3,18139,1,0)
+ ;;^UTILITY(U,$J,358.3,18465,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18465,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,18465,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,18466,0)
+ ;;=C90.00^^79^879^52
+ ;;^UTILITY(U,$J,358.3,18466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18139,1,3,0)
- ;;=3^Hypertensive Heart Disease w/ Heart Failure
- ;;^UTILITY(U,$J,358.3,18139,1,4,0)
- ;;=4^I11.0
- ;;^UTILITY(U,$J,358.3,18139,2)
- ;;=^5007063
- ;;^UTILITY(U,$J,358.3,18140,0)
- ;;=I12.0^^94^904^8
- ;;^UTILITY(U,$J,358.3,18140,1,0)
+ ;;^UTILITY(U,$J,358.3,18466,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18466,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,18466,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,18467,0)
+ ;;=C90.01^^79^879^53
+ ;;^UTILITY(U,$J,358.3,18467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18140,1,3,0)
- ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
- ;;^UTILITY(U,$J,358.3,18140,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,18140,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,18141,0)
- ;;=I13.10^^94^904^6
- ;;^UTILITY(U,$J,358.3,18141,1,0)
+ ;;^UTILITY(U,$J,358.3,18467,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,18467,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,18467,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,18468,0)
+ ;;=C91.00^^79^879^54
+ ;;^UTILITY(U,$J,358.3,18468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18141,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,18141,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,18141,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,18142,0)
- ;;=I13.0^^94^904^4
- ;;^UTILITY(U,$J,358.3,18142,1,0)
+ ;;^UTILITY(U,$J,358.3,18468,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18468,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,18468,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,18469,0)
+ ;;=C91.01^^79^879^55
+ ;;^UTILITY(U,$J,358.3,18469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18142,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
- ;;^UTILITY(U,$J,358.3,18142,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,18142,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,18143,0)
- ;;=I13.11^^94^904^7
- ;;^UTILITY(U,$J,358.3,18143,1,0)
+ ;;^UTILITY(U,$J,358.3,18469,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18469,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,18469,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,18470,0)
+ ;;=C91.10^^79^879^56
+ ;;^UTILITY(U,$J,358.3,18470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18143,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
- ;;^UTILITY(U,$J,358.3,18143,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,18143,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,18144,0)
- ;;=I13.2^^94^904^5
- ;;^UTILITY(U,$J,358.3,18144,1,0)
+ ;;^UTILITY(U,$J,358.3,18470,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia B-Cell Type,Not in Remissio
+ ;;^UTILITY(U,$J,358.3,18470,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,18470,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,18471,0)
+ ;;=C91.11^^79^879^57
+ ;;^UTILITY(U,$J,358.3,18471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18144,1,3,0)
- ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
- ;;^UTILITY(U,$J,358.3,18144,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,18144,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,18145,0)
- ;;=I48.91^^94^904^1
- ;;^UTILITY(U,$J,358.3,18145,1,0)
+ ;;^UTILITY(U,$J,358.3,18471,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,18471,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,18471,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,18472,0)
+ ;;=C92.00^^79^879^58
+ ;;^UTILITY(U,$J,358.3,18472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18145,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,18145,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,18145,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,18146,0)
- ;;=I48.92^^94^904^2
- ;;^UTILITY(U,$J,358.3,18146,1,0)
+ ;;^UTILITY(U,$J,358.3,18472,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18472,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,18472,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,18473,0)
+ ;;=C92.01^^79^879^59
+ ;;^UTILITY(U,$J,358.3,18473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18146,1,3,0)
- ;;=3^Atrial Flutter,Unspec
- ;;^UTILITY(U,$J,358.3,18146,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,18146,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,18147,0)
- ;;=B07.9^^94^905^288
- ;;^UTILITY(U,$J,358.3,18147,1,0)
+ ;;^UTILITY(U,$J,358.3,18473,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18473,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,18473,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,18474,0)
+ ;;=C92.41^^79^879^60
+ ;;^UTILITY(U,$J,358.3,18474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18147,1,3,0)
- ;;=3^Viral Wart,Unspec
- ;;^UTILITY(U,$J,358.3,18147,1,4,0)
- ;;=4^B07.9
- ;;^UTILITY(U,$J,358.3,18147,2)
- ;;=^5000519
- ;;^UTILITY(U,$J,358.3,18148,0)
- ;;=A63.0^^94^905^34
- ;;^UTILITY(U,$J,358.3,18148,1,0)
+ ;;^UTILITY(U,$J,358.3,18474,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18474,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,18474,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,18475,0)
+ ;;=C92.41^^79^879^61
+ ;;^UTILITY(U,$J,358.3,18475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18148,1,3,0)
- ;;=3^Anogenital (Venereal) Warts
- ;;^UTILITY(U,$J,358.3,18148,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,18148,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,18149,0)
- ;;=B35.0^^94^905^279
- ;;^UTILITY(U,$J,358.3,18149,1,0)
+ ;;^UTILITY(U,$J,358.3,18475,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,18475,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,18475,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,18476,0)
+ ;;=C92.50^^79^879^62
+ ;;^UTILITY(U,$J,358.3,18476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18149,1,3,0)
- ;;=3^Tinea Barbae and Tinea Capitis
- ;;^UTILITY(U,$J,358.3,18149,1,4,0)
- ;;=4^B35.0
- ;;^UTILITY(U,$J,358.3,18149,2)
- ;;=^5000604
- ;;^UTILITY(U,$J,358.3,18150,0)
- ;;=B35.1^^94^905^284
- ;;^UTILITY(U,$J,358.3,18150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18150,1,3,0)
- ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,18476,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,18476,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,18476,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,18477,0)
+ ;;=C92.51^^79^879^63

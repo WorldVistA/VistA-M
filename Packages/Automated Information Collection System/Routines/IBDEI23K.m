@@ -1,130 +1,134 @@
-IBDEI23K ; ; 19-NOV-2015
+IBDEI23K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35193,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,35193,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,35194,0)
- ;;=E11.40^^163^1793^10
- ;;^UTILITY(U,$J,358.3,35194,1,0)
+ ;;^UTILITY(U,$J,358.3,35570,0)
+ ;;=H60.92^^134^1724^15
+ ;;^UTILITY(U,$J,358.3,35570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35194,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,35194,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,35194,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,35195,0)
- ;;=E11.41^^163^1793^9
- ;;^UTILITY(U,$J,358.3,35195,1,0)
+ ;;^UTILITY(U,$J,358.3,35570,1,3,0)
+ ;;=3^Otitis Externa Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,35570,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,35570,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,35571,0)
+ ;;=H60.91^^134^1724^16
+ ;;^UTILITY(U,$J,358.3,35571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35195,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
- ;;^UTILITY(U,$J,358.3,35195,1,4,0)
- ;;=4^E11.41
- ;;^UTILITY(U,$J,358.3,35195,2)
- ;;=^5002645
- ;;^UTILITY(U,$J,358.3,35196,0)
- ;;=E11.42^^163^1793^13
- ;;^UTILITY(U,$J,358.3,35196,1,0)
+ ;;^UTILITY(U,$J,358.3,35571,1,3,0)
+ ;;=3^Otitis Externa Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,35571,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,35571,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,35572,0)
+ ;;=J30.9^^134^1724^4
+ ;;^UTILITY(U,$J,358.3,35572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35196,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,35196,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,35196,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,35197,0)
- ;;=E11.43^^163^1793^7
- ;;^UTILITY(U,$J,358.3,35197,1,0)
+ ;;^UTILITY(U,$J,358.3,35572,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,35572,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,35572,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,35573,0)
+ ;;=J38.00^^134^1724^20
+ ;;^UTILITY(U,$J,358.3,35573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35197,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,35197,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,35197,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,35198,0)
- ;;=E11.51^^163^1793^11
- ;;^UTILITY(U,$J,358.3,35198,1,0)
+ ;;^UTILITY(U,$J,358.3,35573,1,3,0)
+ ;;=3^Paralysis of Vocal Cords/Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,35573,1,4,0)
+ ;;=4^J38.00
+ ;;^UTILITY(U,$J,358.3,35573,2)
+ ;;=^5008219
+ ;;^UTILITY(U,$J,358.3,35574,0)
+ ;;=K92.2^^134^1725^2
+ ;;^UTILITY(U,$J,358.3,35574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35198,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,35198,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,35198,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,35199,0)
- ;;=E11.52^^163^1793^12
- ;;^UTILITY(U,$J,358.3,35199,1,0)
+ ;;^UTILITY(U,$J,358.3,35574,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,35574,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,35574,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,35575,0)
+ ;;=K27.9^^134^1725^3
+ ;;^UTILITY(U,$J,358.3,35575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35199,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,35199,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,35199,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,35200,0)
- ;;=E11.621^^163^1793^14
- ;;^UTILITY(U,$J,358.3,35200,1,0)
+ ;;^UTILITY(U,$J,358.3,35575,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35575,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,35575,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,35576,0)
+ ;;=K46.9^^134^1725^1
+ ;;^UTILITY(U,$J,358.3,35576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35200,1,3,0)
- ;;=3^DM Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,35200,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,35200,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,35201,0)
- ;;=E11.641^^163^1793^16
- ;;^UTILITY(U,$J,358.3,35201,1,0)
+ ;;^UTILITY(U,$J,358.3,35576,1,3,0)
+ ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
+ ;;^UTILITY(U,$J,358.3,35576,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,35576,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,35577,0)
+ ;;=N14.0^^134^1726^1
+ ;;^UTILITY(U,$J,358.3,35577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35201,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,35201,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,35201,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,35202,0)
- ;;=E11.649^^163^1793^17
- ;;^UTILITY(U,$J,358.3,35202,1,0)
+ ;;^UTILITY(U,$J,358.3,35577,1,3,0)
+ ;;=3^Analgesic Nephropathy
+ ;;^UTILITY(U,$J,358.3,35577,1,4,0)
+ ;;=4^N14.0
+ ;;^UTILITY(U,$J,358.3,35577,2)
+ ;;=^5015590
+ ;;^UTILITY(U,$J,358.3,35578,0)
+ ;;=N15.0^^134^1726^2
+ ;;^UTILITY(U,$J,358.3,35578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35202,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,35202,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,35202,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,35203,0)
- ;;=H40.11X0^^163^1794^8
- ;;^UTILITY(U,$J,358.3,35203,1,0)
+ ;;^UTILITY(U,$J,358.3,35578,1,3,0)
+ ;;=3^Balkan Nephropathy
+ ;;^UTILITY(U,$J,358.3,35578,1,4,0)
+ ;;=4^N15.0
+ ;;^UTILITY(U,$J,358.3,35578,2)
+ ;;=^12543
+ ;;^UTILITY(U,$J,358.3,35579,0)
+ ;;=N18.9^^134^1726^3
+ ;;^UTILITY(U,$J,358.3,35579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35203,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Unspec Stage
- ;;^UTILITY(U,$J,358.3,35203,1,4,0)
- ;;=4^H40.11X0
- ;;^UTILITY(U,$J,358.3,35203,2)
- ;;=^5005753
- ;;^UTILITY(U,$J,358.3,35204,0)
- ;;=H40.11X1^^163^1794^5
- ;;^UTILITY(U,$J,358.3,35204,1,0)
+ ;;^UTILITY(U,$J,358.3,35579,1,3,0)
+ ;;=3^Chr Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,35579,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,35579,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,35580,0)
+ ;;=N28.9^^134^1726^17
+ ;;^UTILITY(U,$J,358.3,35580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35204,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
- ;;^UTILITY(U,$J,358.3,35204,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,35204,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,35205,0)
- ;;=H40.11X2^^163^1794^6
- ;;^UTILITY(U,$J,358.3,35205,1,0)
+ ;;^UTILITY(U,$J,358.3,35580,1,3,0)
+ ;;=3^Kidney/Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,35580,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,35580,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,35581,0)
+ ;;=N40.0^^134^1726^4
+ ;;^UTILITY(U,$J,358.3,35581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35205,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
- ;;^UTILITY(U,$J,358.3,35205,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,35205,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,35206,0)
- ;;=H40.11X3^^163^1794^7
+ ;;^UTILITY(U,$J,358.3,35581,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,35581,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,35581,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,35582,0)
+ ;;=N07.6^^134^1726^5
+ ;;^UTILITY(U,$J,358.3,35582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35582,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Dense Deposit Disease NEC
+ ;;^UTILITY(U,$J,358.3,35582,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,35582,2)
+ ;;=^5015565

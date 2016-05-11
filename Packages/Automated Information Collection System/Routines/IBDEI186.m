@@ -1,132 +1,138 @@
-IBDEI186 ; ; 19-NOV-2015
+IBDEI186 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20477,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,20478,0)
- ;;=E11.40^^97^961^10
- ;;^UTILITY(U,$J,358.3,20478,1,0)
+ ;;^UTILITY(U,$J,358.3,20829,0)
+ ;;=F55.8^^84^941^124
+ ;;^UTILITY(U,$J,358.3,20829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20478,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,20478,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,20478,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,20479,0)
- ;;=E11.41^^97^961^9
- ;;^UTILITY(U,$J,358.3,20479,1,0)
+ ;;^UTILITY(U,$J,358.3,20829,1,3,0)
+ ;;=3^Non-Psychoactive Substance Abuse
+ ;;^UTILITY(U,$J,358.3,20829,1,4,0)
+ ;;=4^F55.8
+ ;;^UTILITY(U,$J,358.3,20829,2)
+ ;;=^5003633
+ ;;^UTILITY(U,$J,358.3,20830,0)
+ ;;=F55.4^^84^941^161
+ ;;^UTILITY(U,$J,358.3,20830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20479,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
- ;;^UTILITY(U,$J,358.3,20479,1,4,0)
- ;;=4^E11.41
- ;;^UTILITY(U,$J,358.3,20479,2)
- ;;=^5002645
- ;;^UTILITY(U,$J,358.3,20480,0)
- ;;=E11.42^^97^961^13
- ;;^UTILITY(U,$J,358.3,20480,1,0)
+ ;;^UTILITY(U,$J,358.3,20830,1,3,0)
+ ;;=3^Vitamin Abuse
+ ;;^UTILITY(U,$J,358.3,20830,1,4,0)
+ ;;=4^F55.4
+ ;;^UTILITY(U,$J,358.3,20830,2)
+ ;;=^5003632
+ ;;^UTILITY(U,$J,358.3,20831,0)
+ ;;=F55.3^^84^941^151
+ ;;^UTILITY(U,$J,358.3,20831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20480,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,20480,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,20480,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,20481,0)
- ;;=E11.43^^97^961^7
- ;;^UTILITY(U,$J,358.3,20481,1,0)
+ ;;^UTILITY(U,$J,358.3,20831,1,3,0)
+ ;;=3^Steroid/Hormone Abuse
+ ;;^UTILITY(U,$J,358.3,20831,1,4,0)
+ ;;=4^F55.3
+ ;;^UTILITY(U,$J,358.3,20831,2)
+ ;;=^5003631
+ ;;^UTILITY(U,$J,358.3,20832,0)
+ ;;=F51.09^^84^941^97
+ ;;^UTILITY(U,$J,358.3,20832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20481,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,20481,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,20481,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,20482,0)
- ;;=E11.51^^97^961^11
- ;;^UTILITY(U,$J,358.3,20482,1,0)
+ ;;^UTILITY(U,$J,358.3,20832,1,3,0)
+ ;;=3^Insomnia not d/t Substance/Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,20832,1,4,0)
+ ;;=4^F51.09
+ ;;^UTILITY(U,$J,358.3,20832,2)
+ ;;=^5003608
+ ;;^UTILITY(U,$J,358.3,20833,0)
+ ;;=H53.9^^84^941^159
+ ;;^UTILITY(U,$J,358.3,20833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20482,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,20482,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,20482,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,20483,0)
- ;;=E11.52^^97^961^12
- ;;^UTILITY(U,$J,358.3,20483,1,0)
+ ;;^UTILITY(U,$J,358.3,20833,1,3,0)
+ ;;=3^Visual Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,20833,1,4,0)
+ ;;=4^H53.9
+ ;;^UTILITY(U,$J,358.3,20833,2)
+ ;;=^124001
+ ;;^UTILITY(U,$J,358.3,20834,0)
+ ;;=I89.0^^84^941^113
+ ;;^UTILITY(U,$J,358.3,20834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20483,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,20483,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,20483,2)
- ;;=^5002651
- ;;^UTILITY(U,$J,358.3,20484,0)
- ;;=E11.621^^97^961^14
- ;;^UTILITY(U,$J,358.3,20484,1,0)
+ ;;^UTILITY(U,$J,358.3,20834,1,3,0)
+ ;;=3^Lymphedema NEC
+ ;;^UTILITY(U,$J,358.3,20834,1,4,0)
+ ;;=4^I89.0
+ ;;^UTILITY(U,$J,358.3,20834,2)
+ ;;=^5008073
+ ;;^UTILITY(U,$J,358.3,20835,0)
+ ;;=I87.1^^84^941^158
+ ;;^UTILITY(U,$J,358.3,20835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20484,1,3,0)
- ;;=3^DM Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,20484,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,20484,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,20485,0)
- ;;=E11.641^^97^961^16
- ;;^UTILITY(U,$J,358.3,20485,1,0)
+ ;;^UTILITY(U,$J,358.3,20835,1,3,0)
+ ;;=3^Vein Compression
+ ;;^UTILITY(U,$J,358.3,20835,1,4,0)
+ ;;=4^I87.1
+ ;;^UTILITY(U,$J,358.3,20835,2)
+ ;;=^269850
+ ;;^UTILITY(U,$J,358.3,20836,0)
+ ;;=K08.8^^84^941^60
+ ;;^UTILITY(U,$J,358.3,20836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20485,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
- ;;^UTILITY(U,$J,358.3,20485,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,20485,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,20486,0)
- ;;=E11.649^^97^961^17
- ;;^UTILITY(U,$J,358.3,20486,1,0)
+ ;;^UTILITY(U,$J,358.3,20836,1,3,0)
+ ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
+ ;;^UTILITY(U,$J,358.3,20836,1,4,0)
+ ;;=4^K08.8
+ ;;^UTILITY(U,$J,358.3,20836,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,20837,0)
+ ;;=N39.3^^84^941^152
+ ;;^UTILITY(U,$J,358.3,20837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20486,1,3,0)
- ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,20486,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,20486,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,20487,0)
- ;;=H40.11X0^^97^962^8
- ;;^UTILITY(U,$J,358.3,20487,1,0)
+ ;;^UTILITY(U,$J,358.3,20837,1,3,0)
+ ;;=3^Stress Incontinence (Female/Male)
+ ;;^UTILITY(U,$J,358.3,20837,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,20837,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,20838,0)
+ ;;=R26.2^^84^941^58
+ ;;^UTILITY(U,$J,358.3,20838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20487,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Unspec Stage
- ;;^UTILITY(U,$J,358.3,20487,1,4,0)
- ;;=4^H40.11X0
- ;;^UTILITY(U,$J,358.3,20487,2)
- ;;=^5005753
- ;;^UTILITY(U,$J,358.3,20488,0)
- ;;=H40.11X1^^97^962^5
- ;;^UTILITY(U,$J,358.3,20488,1,0)
+ ;;^UTILITY(U,$J,358.3,20838,1,3,0)
+ ;;=3^Difficulty in Walking NEC
+ ;;^UTILITY(U,$J,358.3,20838,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,20838,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,20839,0)
+ ;;=M54.6^^84^941^154
+ ;;^UTILITY(U,$J,358.3,20839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20488,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
- ;;^UTILITY(U,$J,358.3,20488,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,20488,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,20489,0)
- ;;=H40.11X2^^97^962^6
- ;;^UTILITY(U,$J,358.3,20489,1,0)
+ ;;^UTILITY(U,$J,358.3,20839,1,3,0)
+ ;;=3^Thoracic Spine Pain
+ ;;^UTILITY(U,$J,358.3,20839,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,20839,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,20840,0)
+ ;;=E66.8^^84^941^125
+ ;;^UTILITY(U,$J,358.3,20840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20489,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
- ;;^UTILITY(U,$J,358.3,20489,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,20489,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,20490,0)
- ;;=H40.11X3^^97^962^7
- ;;^UTILITY(U,$J,358.3,20490,1,0)
+ ;;^UTILITY(U,$J,358.3,20840,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,20840,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,20840,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,20841,0)
+ ;;=E66.9^^84^941^126
+ ;;^UTILITY(U,$J,358.3,20841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20490,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Severe Stage
+ ;;^UTILITY(U,$J,358.3,20841,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,20841,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,20841,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,20842,0)
+ ;;=F18.120^^84^941^94
+ ;;^UTILITY(U,$J,358.3,20842,1,0)
+ ;;=^358.31IA^4^2

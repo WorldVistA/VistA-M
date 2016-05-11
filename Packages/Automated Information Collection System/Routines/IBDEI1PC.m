@@ -1,138 +1,124 @@
-IBDEI1PC ; ; 19-NOV-2015
+IBDEI1PC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28482,1,3,0)
- ;;=3^Poor Urinary Stream
- ;;^UTILITY(U,$J,358.3,28482,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,28482,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,28483,0)
- ;;=R39.14^^132^1332^73
- ;;^UTILITY(U,$J,358.3,28483,1,0)
+ ;;^UTILITY(U,$J,358.3,28925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28483,1,3,0)
- ;;=3^Feeling of Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,28483,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,28483,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,28484,0)
- ;;=R41.4^^132^1332^122
- ;;^UTILITY(U,$J,358.3,28484,1,0)
+ ;;^UTILITY(U,$J,358.3,28925,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28925,1,4,0)
+ ;;=4^O99.351
+ ;;^UTILITY(U,$J,358.3,28925,2)
+ ;;=^5017965
+ ;;^UTILITY(U,$J,358.3,28926,0)
+ ;;=O99.352^^115^1453^11
+ ;;^UTILITY(U,$J,358.3,28926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28484,1,3,0)
- ;;=3^Neurologic Neglect Syndrome
- ;;^UTILITY(U,$J,358.3,28484,1,4,0)
- ;;=4^R41.4
- ;;^UTILITY(U,$J,358.3,28484,2)
- ;;=^303316
- ;;^UTILITY(U,$J,358.3,28485,0)
- ;;=R41.81^^132^1332^32
- ;;^UTILITY(U,$J,358.3,28485,1,0)
+ ;;^UTILITY(U,$J,358.3,28926,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28926,1,4,0)
+ ;;=4^O99.352
+ ;;^UTILITY(U,$J,358.3,28926,2)
+ ;;=^5017966
+ ;;^UTILITY(U,$J,358.3,28927,0)
+ ;;=O99.353^^115^1453^12
+ ;;^UTILITY(U,$J,358.3,28927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28485,1,3,0)
- ;;=3^Age-Related Cognitive Decline
- ;;^UTILITY(U,$J,358.3,28485,1,4,0)
- ;;=4^R41.81
- ;;^UTILITY(U,$J,358.3,28485,2)
- ;;=^5019440
- ;;^UTILITY(U,$J,358.3,28486,0)
- ;;=R41.0^^132^1332^61
- ;;^UTILITY(U,$J,358.3,28486,1,0)
+ ;;^UTILITY(U,$J,358.3,28927,1,3,0)
+ ;;=3^Diseases of the nervous sys comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28927,1,4,0)
+ ;;=4^O99.353
+ ;;^UTILITY(U,$J,358.3,28927,2)
+ ;;=^5017967
+ ;;^UTILITY(U,$J,358.3,28928,0)
+ ;;=O26.851^^115^1453^24
+ ;;^UTILITY(U,$J,358.3,28928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28486,1,3,0)
- ;;=3^Disorientation/Confusion/Delrium,Unspec
- ;;^UTILITY(U,$J,358.3,28486,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,28486,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,28487,0)
- ;;=R41.82^^132^1332^34
- ;;^UTILITY(U,$J,358.3,28487,1,0)
+ ;;^UTILITY(U,$J,358.3,28928,1,3,0)
+ ;;=3^Spotting complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28928,1,4,0)
+ ;;=4^O26.851
+ ;;^UTILITY(U,$J,358.3,28928,2)
+ ;;=^5016349
+ ;;^UTILITY(U,$J,358.3,28929,0)
+ ;;=O26.852^^115^1453^25
+ ;;^UTILITY(U,$J,358.3,28929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28487,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,28487,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,28487,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,28488,0)
- ;;=R43.0^^132^1332^37
- ;;^UTILITY(U,$J,358.3,28488,1,0)
+ ;;^UTILITY(U,$J,358.3,28929,1,3,0)
+ ;;=3^Spotting complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28929,1,4,0)
+ ;;=4^O26.852
+ ;;^UTILITY(U,$J,358.3,28929,2)
+ ;;=^5016350
+ ;;^UTILITY(U,$J,358.3,28930,0)
+ ;;=O26.853^^115^1453^26
+ ;;^UTILITY(U,$J,358.3,28930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28488,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,28488,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,28488,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,28489,0)
- ;;=R43.1^^132^1332^132
- ;;^UTILITY(U,$J,358.3,28489,1,0)
+ ;;^UTILITY(U,$J,358.3,28930,1,3,0)
+ ;;=3^Spotting complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28930,1,4,0)
+ ;;=4^O26.853
+ ;;^UTILITY(U,$J,358.3,28930,2)
+ ;;=^5016351
+ ;;^UTILITY(U,$J,358.3,28931,0)
+ ;;=O26.841^^115^1453^28
+ ;;^UTILITY(U,$J,358.3,28931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28489,1,3,0)
- ;;=3^Parosmia
- ;;^UTILITY(U,$J,358.3,28489,1,4,0)
- ;;=4^R43.1
- ;;^UTILITY(U,$J,358.3,28489,2)
- ;;=^5019451
- ;;^UTILITY(U,$J,358.3,28490,0)
- ;;=R43.2^^132^1332^129
- ;;^UTILITY(U,$J,358.3,28490,1,0)
+ ;;^UTILITY(U,$J,358.3,28931,1,3,0)
+ ;;=3^Uterine size-date discrepancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28931,1,4,0)
+ ;;=4^O26.841
+ ;;^UTILITY(U,$J,358.3,28931,2)
+ ;;=^5016345
+ ;;^UTILITY(U,$J,358.3,28932,0)
+ ;;=O26.842^^115^1453^29
+ ;;^UTILITY(U,$J,358.3,28932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28490,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,28490,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,28490,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,28491,0)
- ;;=R43.9^^132^1332^148
- ;;^UTILITY(U,$J,358.3,28491,1,0)
+ ;;^UTILITY(U,$J,358.3,28932,1,3,0)
+ ;;=3^Uterine size-date discrepancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28932,1,4,0)
+ ;;=4^O26.842
+ ;;^UTILITY(U,$J,358.3,28932,2)
+ ;;=^5016346
+ ;;^UTILITY(U,$J,358.3,28933,0)
+ ;;=O26.843^^115^1453^30
+ ;;^UTILITY(U,$J,358.3,28933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28491,1,3,0)
- ;;=3^Smell and Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,28491,1,4,0)
- ;;=4^R43.9
- ;;^UTILITY(U,$J,358.3,28491,2)
- ;;=^5019454
- ;;^UTILITY(U,$J,358.3,28492,0)
- ;;=R44.0^^132^1332^44
- ;;^UTILITY(U,$J,358.3,28492,1,0)
+ ;;^UTILITY(U,$J,358.3,28933,1,3,0)
+ ;;=3^Uterine size-date discrepancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28933,1,4,0)
+ ;;=4^O26.843
+ ;;^UTILITY(U,$J,358.3,28933,2)
+ ;;=^5016347
+ ;;^UTILITY(U,$J,358.3,28934,0)
+ ;;=O26.872^^115^1453^6
+ ;;^UTILITY(U,$J,358.3,28934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28492,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,28492,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,28492,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,28493,0)
- ;;=R44.2^^132^1332^78
- ;;^UTILITY(U,$J,358.3,28493,1,0)
+ ;;^UTILITY(U,$J,358.3,28934,1,3,0)
+ ;;=3^Cervical shortening, second trimester
+ ;;^UTILITY(U,$J,358.3,28934,1,4,0)
+ ;;=4^O26.872
+ ;;^UTILITY(U,$J,358.3,28934,2)
+ ;;=^5016354
+ ;;^UTILITY(U,$J,358.3,28935,0)
+ ;;=O26.873^^115^1453^7
+ ;;^UTILITY(U,$J,358.3,28935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28493,1,3,0)
- ;;=3^Hallucinations NEC
- ;;^UTILITY(U,$J,358.3,28493,1,4,0)
- ;;=4^R44.2
- ;;^UTILITY(U,$J,358.3,28493,2)
- ;;=^5019457
- ;;^UTILITY(U,$J,358.3,28494,0)
- ;;=R44.3^^132^1332^79
- ;;^UTILITY(U,$J,358.3,28494,1,0)
+ ;;^UTILITY(U,$J,358.3,28935,1,3,0)
+ ;;=3^Cervical shortening, third trimester
+ ;;^UTILITY(U,$J,358.3,28935,1,4,0)
+ ;;=4^O26.873
+ ;;^UTILITY(U,$J,358.3,28935,2)
+ ;;=^5016355
+ ;;^UTILITY(U,$J,358.3,28936,0)
+ ;;=O30.001^^115^1454^77
+ ;;^UTILITY(U,$J,358.3,28936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28494,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,28494,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,28494,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,28495,0)
- ;;=R45.0^^132^1332^121
- ;;^UTILITY(U,$J,358.3,28495,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28495,1,3,0)
- ;;=3^Nervousness
- ;;^UTILITY(U,$J,358.3,28495,1,4,0)
- ;;=4^R45.0
+ ;;^UTILITY(U,$J,358.3,28936,1,3,0)
+ ;;=3^Twin pregnancy, unsp num plcnta & amnio sacs, first trimester
+ ;;^UTILITY(U,$J,358.3,28936,1,4,0)
+ ;;=4^O30.001
+ ;;^UTILITY(U,$J,358.3,28936,2)
+ ;;=^5016429
+ ;;^UTILITY(U,$J,358.3,28937,0)
+ ;;=O30.002^^115^1454^78

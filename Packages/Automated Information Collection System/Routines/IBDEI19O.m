@@ -1,124 +1,142 @@
-IBDEI19O ; ; 19-NOV-2015
+IBDEI19O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21183,1,4,0)
- ;;=4^I69.892
- ;;^UTILITY(U,$J,358.3,21183,2)
- ;;=^5007548
- ;;^UTILITY(U,$J,358.3,21184,0)
- ;;=I69.351^^101^1027^39
- ;;^UTILITY(U,$J,358.3,21184,1,0)
+ ;;^UTILITY(U,$J,358.3,21548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21184,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,21184,1,4,0)
- ;;=4^I69.351
- ;;^UTILITY(U,$J,358.3,21184,2)
- ;;=^5007504
- ;;^UTILITY(U,$J,358.3,21185,0)
- ;;=I69.352^^101^1027^38
- ;;^UTILITY(U,$J,358.3,21185,1,0)
+ ;;^UTILITY(U,$J,358.3,21548,1,3,0)
+ ;;=3^Migraine,Unspec
+ ;;^UTILITY(U,$J,358.3,21548,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,21548,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,21549,0)
+ ;;=H91.90^^87^965^25
+ ;;^UTILITY(U,$J,358.3,21549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21185,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,21185,1,4,0)
- ;;=4^I69.352
- ;;^UTILITY(U,$J,358.3,21185,2)
- ;;=^5007505
- ;;^UTILITY(U,$J,358.3,21186,0)
- ;;=I69.353^^101^1027^40
- ;;^UTILITY(U,$J,358.3,21186,1,0)
+ ;;^UTILITY(U,$J,358.3,21549,1,3,0)
+ ;;=3^Hearing Loss,Unspecified Ear
+ ;;^UTILITY(U,$J,358.3,21549,1,4,0)
+ ;;=4^H91.90
+ ;;^UTILITY(U,$J,358.3,21549,2)
+ ;;=^5006943
+ ;;^UTILITY(U,$J,358.3,21550,0)
+ ;;=H91.91^^87^965^24
+ ;;^UTILITY(U,$J,358.3,21550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21186,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,21186,1,4,0)
- ;;=4^I69.353
- ;;^UTILITY(U,$J,358.3,21186,2)
- ;;=^5007506
- ;;^UTILITY(U,$J,358.3,21187,0)
- ;;=I69.354^^101^1027^41
- ;;^UTILITY(U,$J,358.3,21187,1,0)
+ ;;^UTILITY(U,$J,358.3,21550,1,3,0)
+ ;;=3^Hearing Loss,Right Ear
+ ;;^UTILITY(U,$J,358.3,21550,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,21550,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,21551,0)
+ ;;=H91.92^^87^965^23
+ ;;^UTILITY(U,$J,358.3,21551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21187,1,3,0)
- ;;=3^Hemiplga fol cerebral infrc affecting left nondom side
- ;;^UTILITY(U,$J,358.3,21187,1,4,0)
- ;;=4^I69.354
- ;;^UTILITY(U,$J,358.3,21187,2)
- ;;=^5007507
- ;;^UTILITY(U,$J,358.3,21188,0)
- ;;=I69.151^^101^1027^44
- ;;^UTILITY(U,$J,358.3,21188,1,0)
+ ;;^UTILITY(U,$J,358.3,21551,1,3,0)
+ ;;=3^Hearing Loss,Left Ear
+ ;;^UTILITY(U,$J,358.3,21551,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,21551,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,21552,0)
+ ;;=H91.93^^87^965^22
+ ;;^UTILITY(U,$J,358.3,21552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21188,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,21188,1,4,0)
- ;;=4^I69.151
- ;;^UTILITY(U,$J,358.3,21188,2)
- ;;=^5007441
- ;;^UTILITY(U,$J,358.3,21189,0)
- ;;=I69.152^^101^1027^42
- ;;^UTILITY(U,$J,358.3,21189,1,0)
+ ;;^UTILITY(U,$J,358.3,21552,1,3,0)
+ ;;=3^Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,21552,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,21552,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,21553,0)
+ ;;=I10.^^87^965^29
+ ;;^UTILITY(U,$J,358.3,21553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21189,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,21189,1,4,0)
- ;;=4^I69.152
- ;;^UTILITY(U,$J,358.3,21189,2)
- ;;=^5007442
- ;;^UTILITY(U,$J,358.3,21190,0)
- ;;=I69.153^^101^1027^45
- ;;^UTILITY(U,$J,358.3,21190,1,0)
+ ;;^UTILITY(U,$J,358.3,21553,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,21553,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,21553,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,21554,0)
+ ;;=I50.9^^87^965^14
+ ;;^UTILITY(U,$J,358.3,21554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21190,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,21190,1,4,0)
- ;;=4^I69.153
- ;;^UTILITY(U,$J,358.3,21190,2)
- ;;=^5007443
- ;;^UTILITY(U,$J,358.3,21191,0)
- ;;=I69.154^^101^1027^43
- ;;^UTILITY(U,$J,358.3,21191,1,0)
+ ;;^UTILITY(U,$J,358.3,21554,1,3,0)
+ ;;=3^Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,21554,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,21554,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,21555,0)
+ ;;=I67.89^^87^965^13
+ ;;^UTILITY(U,$J,358.3,21555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21191,1,3,0)
- ;;=3^Hemiplga fol ntrm intcrbl hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,21191,1,4,0)
- ;;=4^I69.154
- ;;^UTILITY(U,$J,358.3,21191,2)
- ;;=^5007444
- ;;^UTILITY(U,$J,358.3,21192,0)
- ;;=I69.851^^101^1027^50
- ;;^UTILITY(U,$J,358.3,21192,1,0)
+ ;;^UTILITY(U,$J,358.3,21555,1,3,0)
+ ;;=3^Cerebrovascular Disease,Oth
+ ;;^UTILITY(U,$J,358.3,21555,1,4,0)
+ ;;=4^I67.89
+ ;;^UTILITY(U,$J,358.3,21555,2)
+ ;;=^5007388
+ ;;^UTILITY(U,$J,358.3,21556,0)
+ ;;=J32.8^^87^965^49
+ ;;^UTILITY(U,$J,358.3,21556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21192,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right dominant side
- ;;^UTILITY(U,$J,358.3,21192,1,4,0)
- ;;=4^I69.851
- ;;^UTILITY(U,$J,358.3,21192,2)
- ;;=^5007535
- ;;^UTILITY(U,$J,358.3,21193,0)
- ;;=I69.852^^101^1027^51
- ;;^UTILITY(U,$J,358.3,21193,1,0)
+ ;;^UTILITY(U,$J,358.3,21556,1,3,0)
+ ;;=3^Sinusitis,Chr,Oth
+ ;;^UTILITY(U,$J,358.3,21556,1,4,0)
+ ;;=4^J32.8
+ ;;^UTILITY(U,$J,358.3,21556,2)
+ ;;=^269890
+ ;;^UTILITY(U,$J,358.3,21557,0)
+ ;;=J32.4^^87^965^48
+ ;;^UTILITY(U,$J,358.3,21557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21193,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left dominant side
- ;;^UTILITY(U,$J,358.3,21193,1,4,0)
- ;;=4^I69.852
- ;;^UTILITY(U,$J,358.3,21193,2)
- ;;=^5007536
- ;;^UTILITY(U,$J,358.3,21194,0)
- ;;=I69.853^^101^1027^52
- ;;^UTILITY(U,$J,358.3,21194,1,0)
+ ;;^UTILITY(U,$J,358.3,21557,1,3,0)
+ ;;=3^Pansinusitis,Chr
+ ;;^UTILITY(U,$J,358.3,21557,1,4,0)
+ ;;=4^J32.4
+ ;;^UTILITY(U,$J,358.3,21557,2)
+ ;;=^5008206
+ ;;^UTILITY(U,$J,358.3,21558,0)
+ ;;=J40.^^87^965^8
+ ;;^UTILITY(U,$J,358.3,21558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21194,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff right nondom side
- ;;^UTILITY(U,$J,358.3,21194,1,4,0)
- ;;=4^I69.853
- ;;^UTILITY(U,$J,358.3,21194,2)
- ;;=^5007537
- ;;^UTILITY(U,$J,358.3,21195,0)
- ;;=I69.854^^101^1027^53
- ;;^UTILITY(U,$J,358.3,21195,1,0)
+ ;;^UTILITY(U,$J,358.3,21558,1,3,0)
+ ;;=3^Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21558,1,4,0)
+ ;;=4^J40.
+ ;;^UTILITY(U,$J,358.3,21558,2)
+ ;;=^17164
+ ;;^UTILITY(U,$J,358.3,21559,0)
+ ;;=J45.909^^87^965^4
+ ;;^UTILITY(U,$J,358.3,21559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21195,1,3,0)
- ;;=3^Hemiplga fol oth cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,21559,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21559,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,21559,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,21560,0)
+ ;;=J44.9^^87^965^9
+ ;;^UTILITY(U,$J,358.3,21560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21560,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,21560,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,21560,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,21561,0)
+ ;;=K21.9^^87^965^21
+ ;;^UTILITY(U,$J,358.3,21561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21561,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,21561,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,21561,2)
+ ;;=^5008505

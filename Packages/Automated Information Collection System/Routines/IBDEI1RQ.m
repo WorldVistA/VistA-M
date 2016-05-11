@@ -1,132 +1,138 @@
-IBDEI1RQ ; ; 19-NOV-2015
+IBDEI1RQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29605,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,29605,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,29605,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,29606,0)
- ;;=E10.21^^135^1364^8
- ;;^UTILITY(U,$J,358.3,29606,1,0)
+ ;;^UTILITY(U,$J,358.3,30057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29606,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,29606,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,29606,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,29607,0)
- ;;=E10.9^^135^1364^12
- ;;^UTILITY(U,$J,358.3,29607,1,0)
+ ;;^UTILITY(U,$J,358.3,30057,1,3,0)
+ ;;=3^Coagulation Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,30057,1,4,0)
+ ;;=4^D68.9
+ ;;^UTILITY(U,$J,358.3,30057,2)
+ ;;=^5002364
+ ;;^UTILITY(U,$J,358.3,30058,0)
+ ;;=D69.1^^118^1496^22
+ ;;^UTILITY(U,$J,358.3,30058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29607,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,29607,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,29607,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,29608,0)
- ;;=E11.21^^135^1364^17
- ;;^UTILITY(U,$J,358.3,29608,1,0)
+ ;;^UTILITY(U,$J,358.3,30058,1,3,0)
+ ;;=3^Qualitative platelet defects
+ ;;^UTILITY(U,$J,358.3,30058,1,4,0)
+ ;;=4^D69.1
+ ;;^UTILITY(U,$J,358.3,30058,2)
+ ;;=^101922
+ ;;^UTILITY(U,$J,358.3,30059,0)
+ ;;=D47.3^^118^1496^8
+ ;;^UTILITY(U,$J,358.3,30059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29608,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,29608,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,29608,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,29609,0)
- ;;=E11.39^^135^1364^18
- ;;^UTILITY(U,$J,358.3,29609,1,0)
+ ;;^UTILITY(U,$J,358.3,30059,1,3,0)
+ ;;=3^Essential (hemorrhagic) thrombocythemia
+ ;;^UTILITY(U,$J,358.3,30059,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,30059,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,30060,0)
+ ;;=D69.0^^118^1496^3
+ ;;^UTILITY(U,$J,358.3,30060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29609,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
- ;;^UTILITY(U,$J,358.3,29609,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,29609,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,29610,0)
- ;;=E11.43^^135^1364^15
- ;;^UTILITY(U,$J,358.3,29610,1,0)
+ ;;^UTILITY(U,$J,358.3,30060,1,3,0)
+ ;;=3^Allergic purpura
+ ;;^UTILITY(U,$J,358.3,30060,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,30060,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,30061,0)
+ ;;=D69.2^^118^1496^19
+ ;;^UTILITY(U,$J,358.3,30061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29610,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
- ;;^UTILITY(U,$J,358.3,29610,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,29610,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,29611,0)
- ;;=E11.59^^135^1364^13
- ;;^UTILITY(U,$J,358.3,29611,1,0)
+ ;;^UTILITY(U,$J,358.3,30061,1,3,0)
+ ;;=3^Nonthrombocytopenic purpura NEC
+ ;;^UTILITY(U,$J,358.3,30061,1,4,0)
+ ;;=4^D69.2
+ ;;^UTILITY(U,$J,358.3,30061,2)
+ ;;=^5002366
+ ;;^UTILITY(U,$J,358.3,30062,0)
+ ;;=D69.3^^118^1496^18
+ ;;^UTILITY(U,$J,358.3,30062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29611,1,3,0)
- ;;=3^DM Type 2 w/ Circulatory Complications NEC
- ;;^UTILITY(U,$J,358.3,29611,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,29611,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,29612,0)
- ;;=E11.618^^135^1364^14
- ;;^UTILITY(U,$J,358.3,29612,1,0)
+ ;;^UTILITY(U,$J,358.3,30062,1,3,0)
+ ;;=3^Immune thrombocytopenic purpura
+ ;;^UTILITY(U,$J,358.3,30062,1,4,0)
+ ;;=4^D69.3
+ ;;^UTILITY(U,$J,358.3,30062,2)
+ ;;=^332746
+ ;;^UTILITY(U,$J,358.3,30063,0)
+ ;;=D69.41^^118^1496^9
+ ;;^UTILITY(U,$J,358.3,30063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29612,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
- ;;^UTILITY(U,$J,358.3,29612,1,4,0)
- ;;=4^E11.618
- ;;^UTILITY(U,$J,358.3,29612,2)
- ;;=^5002654
- ;;^UTILITY(U,$J,358.3,29613,0)
- ;;=E11.621^^135^1364^16
- ;;^UTILITY(U,$J,358.3,29613,1,0)
+ ;;^UTILITY(U,$J,358.3,30063,1,3,0)
+ ;;=3^Evans syndrome
+ ;;^UTILITY(U,$J,358.3,30063,1,4,0)
+ ;;=4^D69.41
+ ;;^UTILITY(U,$J,358.3,30063,2)
+ ;;=^332747
+ ;;^UTILITY(U,$J,358.3,30064,0)
+ ;;=D69.51^^118^1496^21
+ ;;^UTILITY(U,$J,358.3,30064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29613,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,29613,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,29613,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,29614,0)
- ;;=E11.622^^135^1364^20
- ;;^UTILITY(U,$J,358.3,29614,1,0)
+ ;;^UTILITY(U,$J,358.3,30064,1,3,0)
+ ;;=3^Posttransfusion purpura
+ ;;^UTILITY(U,$J,358.3,30064,1,4,0)
+ ;;=4^D69.51
+ ;;^UTILITY(U,$J,358.3,30064,2)
+ ;;=^5002368
+ ;;^UTILITY(U,$J,358.3,30065,0)
+ ;;=D69.59^^118^1496^23
+ ;;^UTILITY(U,$J,358.3,30065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29614,1,3,0)
- ;;=3^DM Type 2 w/ Skin Ulcer NEC
- ;;^UTILITY(U,$J,358.3,29614,1,4,0)
- ;;=4^E11.622
- ;;^UTILITY(U,$J,358.3,29614,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,29615,0)
- ;;=E11.65^^135^1364^19
- ;;^UTILITY(U,$J,358.3,29615,1,0)
+ ;;^UTILITY(U,$J,358.3,30065,1,3,0)
+ ;;=3^Secondary thrombocytopenia NEC
+ ;;^UTILITY(U,$J,358.3,30065,1,4,0)
+ ;;=4^D69.59
+ ;;^UTILITY(U,$J,358.3,30065,2)
+ ;;=^5002369
+ ;;^UTILITY(U,$J,358.3,30066,0)
+ ;;=D69.8^^118^1496^10
+ ;;^UTILITY(U,$J,358.3,30066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29615,1,3,0)
- ;;=3^DM Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,29615,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,29615,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,29616,0)
- ;;=E11.9^^135^1364^21
- ;;^UTILITY(U,$J,358.3,29616,1,0)
+ ;;^UTILITY(U,$J,358.3,30066,1,3,0)
+ ;;=3^Hemorrhagic Conditions NEC
+ ;;^UTILITY(U,$J,358.3,30066,1,4,0)
+ ;;=4^D69.8
+ ;;^UTILITY(U,$J,358.3,30066,2)
+ ;;=^88074
+ ;;^UTILITY(U,$J,358.3,30067,0)
+ ;;=D69.6^^118^1496^24
+ ;;^UTILITY(U,$J,358.3,30067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29616,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,29616,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,29616,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,29617,0)
- ;;=E13.9^^135^1364^22
- ;;^UTILITY(U,$J,358.3,29617,1,0)
+ ;;^UTILITY(U,$J,358.3,30067,1,3,0)
+ ;;=3^Thrombocytopenia, unspecified
+ ;;^UTILITY(U,$J,358.3,30067,1,4,0)
+ ;;=4^D69.6
+ ;;^UTILITY(U,$J,358.3,30067,2)
+ ;;=^5002370
+ ;;^UTILITY(U,$J,358.3,30068,0)
+ ;;=M31.1^^118^1496^25
+ ;;^UTILITY(U,$J,358.3,30068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29617,1,3,0)
- ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
- ;;^UTILITY(U,$J,358.3,29617,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,29617,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,29618,0)
- ;;=E16.2^^135^1364^29
+ ;;^UTILITY(U,$J,358.3,30068,1,3,0)
+ ;;=3^Thrombotic microangiopathy
+ ;;^UTILITY(U,$J,358.3,30068,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,30068,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,30069,0)
+ ;;=D69.9^^118^1496^11
+ ;;^UTILITY(U,$J,358.3,30069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30069,1,3,0)
+ ;;=3^Hemorrhagic condition, unspecified
+ ;;^UTILITY(U,$J,358.3,30069,1,4,0)
+ ;;=4^D69.9
+ ;;^UTILITY(U,$J,358.3,30069,2)
+ ;;=^5002371
+ ;;^UTILITY(U,$J,358.3,30070,0)
+ ;;=I80.9^^118^1496^20
+ ;;^UTILITY(U,$J,358.3,30070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30070,1,3,0)
+ ;;=3^Phlebitis and thrombophlebitis of unspecified site

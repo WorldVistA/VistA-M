@@ -1,134 +1,140 @@
-IBDEI0AA ; ; 19-NOV-2015
+IBDEI0AA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4284,0)
- ;;=Z72.0^^28^263^168
- ;;^UTILITY(U,$J,358.3,4284,1,0)
+ ;;^UTILITY(U,$J,358.3,4577,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4577,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,4577,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,4578,0)
+ ;;=L03.116^^21^285^25
+ ;;^UTILITY(U,$J,358.3,4578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4284,1,3,0)
- ;;=3^Tobacco Use
- ;;^UTILITY(U,$J,358.3,4284,1,4,0)
- ;;=4^Z72.0
- ;;^UTILITY(U,$J,358.3,4284,2)
- ;;=^5063255
- ;;^UTILITY(U,$J,358.3,4285,0)
- ;;=Z94.9^^28^263^169
- ;;^UTILITY(U,$J,358.3,4285,1,0)
+ ;;^UTILITY(U,$J,358.3,4578,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4578,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,4578,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,4579,0)
+ ;;=L03.221^^21^285^28
+ ;;^UTILITY(U,$J,358.3,4579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4285,1,3,0)
- ;;=3^Transplanted Organ/Tissue Status,Unspec
- ;;^UTILITY(U,$J,358.3,4285,1,4,0)
- ;;=4^Z94.9
- ;;^UTILITY(U,$J,358.3,4285,2)
- ;;=^5063667
- ;;^UTILITY(U,$J,358.3,4286,0)
- ;;=R76.11^^28^263^166
- ;;^UTILITY(U,$J,358.3,4286,1,0)
+ ;;^UTILITY(U,$J,358.3,4579,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,4579,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,4579,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,4580,0)
+ ;;=L03.031^^21^285^31
+ ;;^UTILITY(U,$J,358.3,4580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4286,1,3,0)
- ;;=3^TB Skin Test,Nonspecific Reaction w/o Active Tuberculosis
- ;;^UTILITY(U,$J,358.3,4286,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,4286,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,4287,0)
- ;;=W10.9XXS^^28^264^18
- ;;^UTILITY(U,$J,358.3,4287,1,0)
+ ;;^UTILITY(U,$J,358.3,4580,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,4580,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,4580,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,4581,0)
+ ;;=L03.032^^21^285^26
+ ;;^UTILITY(U,$J,358.3,4581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4287,1,3,0)
- ;;=3^Fall from Stairs/Steps,Sequela
- ;;^UTILITY(U,$J,358.3,4287,1,4,0)
- ;;=4^W10.9XXS
- ;;^UTILITY(U,$J,358.3,4287,2)
- ;;=^5059594
- ;;^UTILITY(U,$J,358.3,4288,0)
- ;;=W10.0XXS^^28^264^9
- ;;^UTILITY(U,$J,358.3,4288,1,0)
+ ;;^UTILITY(U,$J,358.3,4581,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,4581,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,4581,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,4582,0)
+ ;;=L03.319^^21^285^33
+ ;;^UTILITY(U,$J,358.3,4582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4288,1,3,0)
- ;;=3^Fall from Escalator,Sequela
- ;;^UTILITY(U,$J,358.3,4288,1,4,0)
- ;;=4^W10.0XXS
- ;;^UTILITY(U,$J,358.3,4288,2)
- ;;=^5059582
- ;;^UTILITY(U,$J,358.3,4289,0)
- ;;=W10.2XXS^^28^264^11
- ;;^UTILITY(U,$J,358.3,4289,1,0)
+ ;;^UTILITY(U,$J,358.3,4582,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,4582,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,4582,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,4583,0)
+ ;;=L03.90^^21^285^34
+ ;;^UTILITY(U,$J,358.3,4583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4289,1,3,0)
- ;;=3^Fall from Incline,Sequela
- ;;^UTILITY(U,$J,358.3,4289,1,4,0)
- ;;=4^W10.2XXS
- ;;^UTILITY(U,$J,358.3,4289,2)
- ;;=^5059588
- ;;^UTILITY(U,$J,358.3,4290,0)
- ;;=W10.1XXS^^28^264^17
- ;;^UTILITY(U,$J,358.3,4290,1,0)
+ ;;^UTILITY(U,$J,358.3,4583,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,4583,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,4583,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,4584,0)
+ ;;=L72.9^^21^285^41
+ ;;^UTILITY(U,$J,358.3,4584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4290,1,3,0)
- ;;=3^Fall from Sidewalk/Curb,Sequela
- ;;^UTILITY(U,$J,358.3,4290,1,4,0)
- ;;=4^W10.1XXS
- ;;^UTILITY(U,$J,358.3,4290,2)
- ;;=^5059585
- ;;^UTILITY(U,$J,358.3,4291,0)
- ;;=W06.XXXS^^28^264^7
- ;;^UTILITY(U,$J,358.3,4291,1,0)
+ ;;^UTILITY(U,$J,358.3,4584,1,3,0)
+ ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,4584,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,4584,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,4585,0)
+ ;;=L12.1^^21^285^35
+ ;;^UTILITY(U,$J,358.3,4585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4291,1,3,0)
- ;;=3^Fall from Bed,Sequela
- ;;^UTILITY(U,$J,358.3,4291,1,4,0)
- ;;=4^W06.XXXS
- ;;^UTILITY(U,$J,358.3,4291,2)
- ;;=^5059561
- ;;^UTILITY(U,$J,358.3,4292,0)
- ;;=W07.XXXS^^28^264^8
- ;;^UTILITY(U,$J,358.3,4292,1,0)
+ ;;^UTILITY(U,$J,358.3,4585,1,3,0)
+ ;;=3^Cicatricial Pemphigoid
+ ;;^UTILITY(U,$J,358.3,4585,1,4,0)
+ ;;=4^L12.1
+ ;;^UTILITY(U,$J,358.3,4585,2)
+ ;;=^5009096
+ ;;^UTILITY(U,$J,358.3,4586,0)
+ ;;=L30.2^^21^285^38
+ ;;^UTILITY(U,$J,358.3,4586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4292,1,3,0)
- ;;=3^Fall from Chair,Sequela
- ;;^UTILITY(U,$J,358.3,4292,1,4,0)
- ;;=4^W07.XXXS
- ;;^UTILITY(U,$J,358.3,4292,2)
- ;;=^5059564
- ;;^UTILITY(U,$J,358.3,4293,0)
- ;;=W05.2XXS^^28^264^13
- ;;^UTILITY(U,$J,358.3,4293,1,0)
+ ;;^UTILITY(U,$J,358.3,4586,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,4586,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,4586,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,4587,0)
+ ;;=B37.83^^21^285^2
+ ;;^UTILITY(U,$J,358.3,4587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4293,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Sequela
- ;;^UTILITY(U,$J,358.3,4293,1,4,0)
- ;;=4^W05.2XXS
- ;;^UTILITY(U,$J,358.3,4293,2)
- ;;=^5059558
- ;;^UTILITY(U,$J,358.3,4294,0)
- ;;=W05.1XXS^^28^264^14
- ;;^UTILITY(U,$J,358.3,4294,1,0)
+ ;;^UTILITY(U,$J,358.3,4587,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,4587,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,4587,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,4588,0)
+ ;;=B37.0^^21^285^3
+ ;;^UTILITY(U,$J,358.3,4588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4294,1,3,0)
- ;;=3^Fall from Non-Moving Nonmotorized Scooter,Sequela
- ;;^UTILITY(U,$J,358.3,4294,1,4,0)
- ;;=4^W05.1XXS
- ;;^UTILITY(U,$J,358.3,4294,2)
- ;;=^5059555
- ;;^UTILITY(U,$J,358.3,4295,0)
- ;;=W05.0XXS^^28^264^15
- ;;^UTILITY(U,$J,358.3,4295,1,0)
+ ;;^UTILITY(U,$J,358.3,4588,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,4588,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,4588,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,4589,0)
+ ;;=D04.9^^21^285^18
+ ;;^UTILITY(U,$J,358.3,4589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4295,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Sequela
- ;;^UTILITY(U,$J,358.3,4295,1,4,0)
- ;;=4^W05.0XXS
- ;;^UTILITY(U,$J,358.3,4295,2)
- ;;=^5059552
- ;;^UTILITY(U,$J,358.3,4296,0)
- ;;=W18.12XS^^28^264^19
- ;;^UTILITY(U,$J,358.3,4296,1,0)
+ ;;^UTILITY(U,$J,358.3,4589,1,3,0)
+ ;;=3^Carcinoma in Situ Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,4589,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,4589,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,4590,0)
+ ;;=D04.0^^21^285^10
+ ;;^UTILITY(U,$J,358.3,4590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4296,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
- ;;^UTILITY(U,$J,358.3,4296,1,4,0)
- ;;=4^W18.12XS
- ;;^UTILITY(U,$J,358.3,4296,2)
- ;;=^5059805
+ ;;^UTILITY(U,$J,358.3,4590,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Lip
+ ;;^UTILITY(U,$J,358.3,4590,1,4,0)
+ ;;=4^D04.0
+ ;;^UTILITY(U,$J,358.3,4590,2)
+ ;;=^267725

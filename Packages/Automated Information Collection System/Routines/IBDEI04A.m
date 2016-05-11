@@ -1,126 +1,138 @@
-IBDEI04A ; ; 19-NOV-2015
+IBDEI04A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1319,0)
- ;;=92541^^13^143^8^^^^1
- ;;^UTILITY(U,$J,358.3,1319,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1319,1,2,0)
- ;;=2^92541
- ;;^UTILITY(U,$J,358.3,1319,1,3,0)
- ;;=3^Spontaneous Nystagmus Test W/Recording
- ;;^UTILITY(U,$J,358.3,1320,0)
- ;;=92540^^13^143^1^^^^1
- ;;^UTILITY(U,$J,358.3,1320,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1320,1,2,0)
- ;;=2^92540
- ;;^UTILITY(U,$J,358.3,1320,1,3,0)
- ;;=3^Basic Vestibular Eval w/Recordings
- ;;^UTILITY(U,$J,358.3,1321,0)
- ;;=92531^^13^144^1^^^^1
- ;;^UTILITY(U,$J,358.3,1321,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1321,1,2,0)
- ;;=2^92531
- ;;^UTILITY(U,$J,358.3,1321,1,3,0)
- ;;=3^Spontaneous Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1322,0)
- ;;=92532^^13^144^2^^^^1
- ;;^UTILITY(U,$J,358.3,1322,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1322,1,2,0)
- ;;=2^92532
- ;;^UTILITY(U,$J,358.3,1322,1,3,0)
- ;;=3^Positional Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1323,0)
- ;;=92533^^13^144^3^^^^1
- ;;^UTILITY(U,$J,358.3,1323,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1323,1,2,0)
- ;;=2^92533
- ;;^UTILITY(U,$J,358.3,1323,1,3,0)
- ;;=3^Caloric Vestibular Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1324,0)
- ;;=92534^^13^144^4^^^^1
- ;;^UTILITY(U,$J,358.3,1324,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1324,1,2,0)
- ;;=2^92534
- ;;^UTILITY(U,$J,358.3,1324,1,3,0)
- ;;=3^Opokinetic Nystagmus Test, W/O Recording
- ;;^UTILITY(U,$J,358.3,1325,0)
- ;;=92626^^13^145^3^^^^1
- ;;^UTILITY(U,$J,358.3,1325,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1325,1,2,0)
- ;;=2^92626
- ;;^UTILITY(U,$J,358.3,1325,1,3,0)
- ;;=3^Eval of Auditory Rehab Status,1st Hr
- ;;^UTILITY(U,$J,358.3,1326,0)
- ;;=92627^^13^145^4^^^^1
- ;;^UTILITY(U,$J,358.3,1326,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1326,1,2,0)
- ;;=2^92627
- ;;^UTILITY(U,$J,358.3,1326,1,3,0)
- ;;=3^Eval of Auditory Rehab Status,Ea Addl 15min
- ;;^UTILITY(U,$J,358.3,1327,0)
- ;;=92630^^13^145^1^^^^1
- ;;^UTILITY(U,$J,358.3,1327,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1327,1,2,0)
- ;;=2^92630
- ;;^UTILITY(U,$J,358.3,1327,1,3,0)
- ;;=3^Auditory Rehab;Prelingual Hearing Loss
- ;;^UTILITY(U,$J,358.3,1328,0)
- ;;=92633^^13^145^2^^^^1
- ;;^UTILITY(U,$J,358.3,1328,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1328,1,2,0)
- ;;=2^92633
- ;;^UTILITY(U,$J,358.3,1328,1,3,0)
- ;;=3^Auditory Rehab;Postlingual Hearing Loss
- ;;^UTILITY(U,$J,358.3,1329,0)
- ;;=92625^^13^145^5^^^^1
- ;;^UTILITY(U,$J,358.3,1329,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1329,1,2,0)
- ;;=2^92625
- ;;^UTILITY(U,$J,358.3,1329,1,3,0)
- ;;=3^Tinnitus Assessment
- ;;^UTILITY(U,$J,358.3,1330,0)
- ;;=99366^^13^146^1^^^^1
- ;;^UTILITY(U,$J,358.3,1330,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1330,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,1330,1,3,0)
- ;;=3^Team Conf w/ Pt by HC Pro,30 Min
- ;;^UTILITY(U,$J,358.3,1331,0)
- ;;=99368^^13^146^2^^^^1
- ;;^UTILITY(U,$J,358.3,1331,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1331,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,1331,1,3,0)
- ;;=3^Team Conf w/o Pt by HC Pro,30 Min
- ;;^UTILITY(U,$J,358.3,1332,0)
- ;;=S04.61XA^^14^147^4
- ;;^UTILITY(U,$J,358.3,1332,1,0)
+ ;;^UTILITY(U,$J,358.3,1578,2)
+ ;;=^5007134
+ ;;^UTILITY(U,$J,358.3,1579,0)
+ ;;=I20.8^^11^144^1
+ ;;^UTILITY(U,$J,358.3,1579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1332,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, initial encounter
- ;;^UTILITY(U,$J,358.3,1332,1,4,0)
- ;;=4^S04.61XA
- ;;^UTILITY(U,$J,358.3,1332,2)
- ;;=^5020540
- ;;^UTILITY(U,$J,358.3,1333,0)
- ;;=S04.61XD^^14^147^5
- ;;^UTILITY(U,$J,358.3,1333,1,0)
+ ;;^UTILITY(U,$J,358.3,1579,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,1579,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,1579,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,1580,0)
+ ;;=I20.9^^11^144^2
+ ;;^UTILITY(U,$J,358.3,1580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1333,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1333,1,4,0)
- ;;=4^S04.61XD
+ ;;^UTILITY(U,$J,358.3,1580,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,1580,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,1580,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,1581,0)
+ ;;=R07.9^^11^144^38
+ ;;^UTILITY(U,$J,358.3,1581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1581,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,1581,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,1581,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,1582,0)
+ ;;=R07.2^^11^144^41
+ ;;^UTILITY(U,$J,358.3,1582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1582,1,3,0)
+ ;;=3^Precordial Pain
+ ;;^UTILITY(U,$J,358.3,1582,1,4,0)
+ ;;=4^R07.2
+ ;;^UTILITY(U,$J,358.3,1582,2)
+ ;;=^5019197
+ ;;^UTILITY(U,$J,358.3,1583,0)
+ ;;=R07.1^^11^144^37
+ ;;^UTILITY(U,$J,358.3,1583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1583,1,3,0)
+ ;;=3^Chest Pain on Breathing
+ ;;^UTILITY(U,$J,358.3,1583,1,4,0)
+ ;;=4^R07.1
+ ;;^UTILITY(U,$J,358.3,1583,2)
+ ;;=^5019196
+ ;;^UTILITY(U,$J,358.3,1584,0)
+ ;;=R07.81^^11^144^40
+ ;;^UTILITY(U,$J,358.3,1584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1584,1,3,0)
+ ;;=3^Pleurodynia
+ ;;^UTILITY(U,$J,358.3,1584,1,4,0)
+ ;;=4^R07.81
+ ;;^UTILITY(U,$J,358.3,1584,2)
+ ;;=^5019198
+ ;;^UTILITY(U,$J,358.3,1585,0)
+ ;;=R07.82^^11^144^39
+ ;;^UTILITY(U,$J,358.3,1585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1585,1,3,0)
+ ;;=3^Intercostal Pain
+ ;;^UTILITY(U,$J,358.3,1585,1,4,0)
+ ;;=4^R07.82
+ ;;^UTILITY(U,$J,358.3,1585,2)
+ ;;=^5019199
+ ;;^UTILITY(U,$J,358.3,1586,0)
+ ;;=R07.89^^11^144^36
+ ;;^UTILITY(U,$J,358.3,1586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1586,1,3,0)
+ ;;=3^Chest Pain NEC
+ ;;^UTILITY(U,$J,358.3,1586,1,4,0)
+ ;;=4^R07.89
+ ;;^UTILITY(U,$J,358.3,1586,2)
+ ;;=^5019200
+ ;;^UTILITY(U,$J,358.3,1587,0)
+ ;;=I26.09^^11^145^47
+ ;;^UTILITY(U,$J,358.3,1587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1587,1,3,0)
+ ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,1587,1,4,0)
+ ;;=4^I26.09
+ ;;^UTILITY(U,$J,358.3,1587,2)
+ ;;=^5007147
+ ;;^UTILITY(U,$J,358.3,1588,0)
+ ;;=I26.90^^11^145^53
+ ;;^UTILITY(U,$J,358.3,1588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1588,1,3,0)
+ ;;=3^Septic Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,1588,1,4,0)
+ ;;=4^I26.90
+ ;;^UTILITY(U,$J,358.3,1588,2)
+ ;;=^5007148
+ ;;^UTILITY(U,$J,358.3,1589,0)
+ ;;=I26.99^^11^145^48
+ ;;^UTILITY(U,$J,358.3,1589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1589,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale NEC
+ ;;^UTILITY(U,$J,358.3,1589,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,1589,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,1590,0)
+ ;;=T80.0XXA^^11^145^3
+ ;;^UTILITY(U,$J,358.3,1590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1590,1,3,0)
+ ;;=3^Air Embolism Following Infusion/Transfusion/Therapeutic Inj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1590,1,4,0)
+ ;;=4^T80.0XXA
+ ;;^UTILITY(U,$J,358.3,1590,2)
+ ;;=^5054344
+ ;;^UTILITY(U,$J,358.3,1591,0)
+ ;;=T81.718A^^11^145^10
+ ;;^UTILITY(U,$J,358.3,1591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1591,1,3,0)
+ ;;=3^Complication of Artery Following Procedure NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1591,1,4,0)
+ ;;=4^T81.718A
+ ;;^UTILITY(U,$J,358.3,1591,2)
+ ;;=^5054644
+ ;;^UTILITY(U,$J,358.3,1592,0)
+ ;;=T81.72XA^^11^145^15

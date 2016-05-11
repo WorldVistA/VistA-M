@@ -1,134 +1,130 @@
-IBDEI0LA ; ; 19-NOV-2015
+IBDEI0LA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9655,0)
- ;;=J0735^^66^629^13^^^^1
- ;;^UTILITY(U,$J,358.3,9655,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9655,1,2,0)
- ;;=2^J0735
- ;;^UTILITY(U,$J,358.3,9655,1,3,0)
- ;;=3^Clonidine HCL 1mg
- ;;^UTILITY(U,$J,358.3,9656,0)
- ;;=J3360^^66^629^16^^^^1
- ;;^UTILITY(U,$J,358.3,9656,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9656,1,2,0)
- ;;=2^J3360
- ;;^UTILITY(U,$J,358.3,9656,1,3,0)
- ;;=3^Diazepam up to 5mg
- ;;^UTILITY(U,$J,358.3,9657,0)
- ;;=J1160^^66^629^17^^^^1
- ;;^UTILITY(U,$J,358.3,9657,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9657,1,2,0)
- ;;=2^J1160
- ;;^UTILITY(U,$J,358.3,9657,1,3,0)
- ;;=3^Digoxin up to 0.5mg
- ;;^UTILITY(U,$J,358.3,9658,0)
- ;;=J1020^^66^629^35^^^^1
- ;;^UTILITY(U,$J,358.3,9658,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9658,1,2,0)
- ;;=2^J1020
- ;;^UTILITY(U,$J,358.3,9658,1,3,0)
- ;;=3^Methylpredinsolone Acetate 20mg
- ;;^UTILITY(U,$J,358.3,9659,0)
- ;;=J1030^^66^629^36^^^^1
- ;;^UTILITY(U,$J,358.3,9659,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9659,1,2,0)
- ;;=2^J1030
- ;;^UTILITY(U,$J,358.3,9659,1,3,0)
- ;;=3^Methylpredinsolone Acetate 40mg
- ;;^UTILITY(U,$J,358.3,9660,0)
- ;;=J2765^^66^629^37^^^^1
- ;;^UTILITY(U,$J,358.3,9660,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9660,1,2,0)
- ;;=2^J2765
- ;;^UTILITY(U,$J,358.3,9660,1,3,0)
- ;;=3^Metoclopramide HCL up to 10mg
- ;;^UTILITY(U,$J,358.3,9661,0)
- ;;=J2310^^66^629^39^^^^1
- ;;^UTILITY(U,$J,358.3,9661,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9661,1,2,0)
- ;;=2^J2310
- ;;^UTILITY(U,$J,358.3,9661,1,3,0)
- ;;=3^Naloxone HCL per 1mg
- ;;^UTILITY(U,$J,358.3,9662,0)
- ;;=J7050^^66^629^40^^^^1
- ;;^UTILITY(U,$J,358.3,9662,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9662,1,2,0)
- ;;=2^J7050
- ;;^UTILITY(U,$J,358.3,9662,1,3,0)
- ;;=3^Normal Saline Solution 250cc
- ;;^UTILITY(U,$J,358.3,9663,0)
- ;;=J2405^^66^629^41^^^^1
- ;;^UTILITY(U,$J,358.3,9663,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9663,1,2,0)
- ;;=2^J2405
- ;;^UTILITY(U,$J,358.3,9663,1,3,0)
- ;;=3^Ondansetron HCL per 1mg
- ;;^UTILITY(U,$J,358.3,9664,0)
- ;;=J3480^^66^629^43^^^^1
- ;;^UTILITY(U,$J,358.3,9664,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9664,1,2,0)
- ;;=2^J3480
- ;;^UTILITY(U,$J,358.3,9664,1,3,0)
- ;;=3^Potassium Chloride per 2mEq
- ;;^UTILITY(U,$J,358.3,9665,0)
- ;;=J3430^^66^629^48^^^^1
- ;;^UTILITY(U,$J,358.3,9665,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9665,1,2,0)
- ;;=2^J3430
- ;;^UTILITY(U,$J,358.3,9665,1,3,0)
- ;;=3^Vitamin K per 1mg
- ;;^UTILITY(U,$J,358.3,9666,0)
- ;;=J0153^^66^629^3^^^^1
- ;;^UTILITY(U,$J,358.3,9666,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9666,1,2,0)
- ;;=2^J0153
- ;;^UTILITY(U,$J,358.3,9666,1,3,0)
- ;;=3^Adenosine 1mg
- ;;^UTILITY(U,$J,358.3,9667,0)
- ;;=J3121^^66^629^45^^^^1
- ;;^UTILITY(U,$J,358.3,9667,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9667,1,2,0)
- ;;=2^J3121
- ;;^UTILITY(U,$J,358.3,9667,1,3,0)
- ;;=3^Testosterone Enanthate 1mg
- ;;^UTILITY(U,$J,358.3,9668,0)
- ;;=J1165^^66^629^15^^^^1
- ;;^UTILITY(U,$J,358.3,9668,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9668,1,2,0)
- ;;=2^J1165
- ;;^UTILITY(U,$J,358.3,9668,1,3,0)
- ;;=3^Dialantin 50mg
- ;;^UTILITY(U,$J,358.3,9669,0)
- ;;=J1200^^66^629^18^^^^1
- ;;^UTILITY(U,$J,358.3,9669,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9669,1,2,0)
- ;;=2^J1200
- ;;^UTILITY(U,$J,358.3,9669,1,3,0)
- ;;=3^Diphenhydramine HCL,up to 50mg
- ;;^UTILITY(U,$J,358.3,9670,0)
- ;;=J1650^^66^629^19^^^^1
- ;;^UTILITY(U,$J,358.3,9670,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9670,1,2,0)
- ;;=2^J1650
- ;;^UTILITY(U,$J,358.3,9670,1,3,0)
- ;;=3^Enoxaprin Sodium 10mg
- ;;^UTILITY(U,$J,358.3,9671,0)
- ;;=J1327^^66^629^20^^^^1
+ ;;^UTILITY(U,$J,358.3,9931,2)
+ ;;=^5005835
+ ;;^UTILITY(U,$J,358.3,9932,0)
+ ;;=H40.241^^44^496^115
+ ;;^UTILITY(U,$J,358.3,9932,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9932,1,3,0)
+ ;;=3^Residual Stage Angle-Closure Glaucoma,Right Eye
+ ;;^UTILITY(U,$J,358.3,9932,1,4,0)
+ ;;=4^H40.241
+ ;;^UTILITY(U,$J,358.3,9932,2)
+ ;;=^5005843
+ ;;^UTILITY(U,$J,358.3,9933,0)
+ ;;=H40.242^^44^496^114
+ ;;^UTILITY(U,$J,358.3,9933,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9933,1,3,0)
+ ;;=3^Residual Stage Angle-Closure Glaucoma,Left Eye
+ ;;^UTILITY(U,$J,358.3,9933,1,4,0)
+ ;;=4^H40.242
+ ;;^UTILITY(U,$J,358.3,9933,2)
+ ;;=^5005844
+ ;;^UTILITY(U,$J,358.3,9934,0)
+ ;;=H40.61X0^^44^496^43
+ ;;^UTILITY(U,$J,358.3,9934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9934,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9934,1,4,0)
+ ;;=4^H40.61X0
+ ;;^UTILITY(U,$J,358.3,9934,2)
+ ;;=^5005906
+ ;;^UTILITY(U,$J,358.3,9935,0)
+ ;;=H40.61X2^^44^496^41
+ ;;^UTILITY(U,$J,358.3,9935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9935,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9935,1,4,0)
+ ;;=4^H40.61X2
+ ;;^UTILITY(U,$J,358.3,9935,2)
+ ;;=^5005908
+ ;;^UTILITY(U,$J,358.3,9936,0)
+ ;;=H40.61X3^^44^496^42
+ ;;^UTILITY(U,$J,358.3,9936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9936,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9936,1,4,0)
+ ;;=4^H40.61X3
+ ;;^UTILITY(U,$J,358.3,9936,2)
+ ;;=^5133509
+ ;;^UTILITY(U,$J,358.3,9937,0)
+ ;;=H40.61X4^^44^496^39
+ ;;^UTILITY(U,$J,358.3,9937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9937,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9937,1,4,0)
+ ;;=4^H40.61X4
+ ;;^UTILITY(U,$J,358.3,9937,2)
+ ;;=^5005909
+ ;;^UTILITY(U,$J,358.3,9938,0)
+ ;;=H40.62X1^^44^496^35
+ ;;^UTILITY(U,$J,358.3,9938,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9938,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9938,1,4,0)
+ ;;=4^H40.62X1
+ ;;^UTILITY(U,$J,358.3,9938,2)
+ ;;=^5005911
+ ;;^UTILITY(U,$J,358.3,9939,0)
+ ;;=H40.62X0^^44^496^38
+ ;;^UTILITY(U,$J,358.3,9939,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9939,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9939,1,4,0)
+ ;;=4^H40.62X0
+ ;;^UTILITY(U,$J,358.3,9939,2)
+ ;;=^5005910
+ ;;^UTILITY(U,$J,358.3,9940,0)
+ ;;=H40.62X2^^44^496^36
+ ;;^UTILITY(U,$J,358.3,9940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9940,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9940,1,4,0)
+ ;;=4^H40.62X2
+ ;;^UTILITY(U,$J,358.3,9940,2)
+ ;;=^5005912
+ ;;^UTILITY(U,$J,358.3,9941,0)
+ ;;=H40.62X3^^44^496^37
+ ;;^UTILITY(U,$J,358.3,9941,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9941,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9941,1,4,0)
+ ;;=4^H40.62X3
+ ;;^UTILITY(U,$J,358.3,9941,2)
+ ;;=^5133510
+ ;;^UTILITY(U,$J,358.3,9942,0)
+ ;;=H40.62X4^^44^496^34
+ ;;^UTILITY(U,$J,358.3,9942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9942,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9942,1,4,0)
+ ;;=4^H40.62X4
+ ;;^UTILITY(U,$J,358.3,9942,2)
+ ;;=^5005913
+ ;;^UTILITY(U,$J,358.3,9943,0)
+ ;;=H40.63X0^^44^496^33
+ ;;^UTILITY(U,$J,358.3,9943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9943,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9943,1,4,0)
+ ;;=4^H40.63X0
+ ;;^UTILITY(U,$J,358.3,9943,2)
+ ;;=^5005914
+ ;;^UTILITY(U,$J,358.3,9944,0)
+ ;;=H40.63X1^^44^496^30
+ ;;^UTILITY(U,$J,358.3,9944,1,0)
+ ;;=^358.31IA^4^2

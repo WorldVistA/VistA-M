@@ -1,126 +1,138 @@
-IBDEI1D8 ; ; 19-NOV-2015
+IBDEI1D8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22765,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,Not in Remission
- ;;^UTILITY(U,$J,358.3,22765,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,22765,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,22766,0)
- ;;=C91.40^^104^1062^7
- ;;^UTILITY(U,$J,358.3,22766,1,0)
+ ;;^UTILITY(U,$J,358.3,23212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22766,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,22766,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,22766,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,22767,0)
- ;;=C81.90^^104^1062^19
- ;;^UTILITY(U,$J,358.3,22767,1,0)
+ ;;^UTILITY(U,$J,358.3,23212,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,23212,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,23212,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,23213,0)
+ ;;=R22.43^^87^993^104
+ ;;^UTILITY(U,$J,358.3,23213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22767,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,22767,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,22767,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,22768,0)
- ;;=C81.99^^104^1062^26
- ;;^UTILITY(U,$J,358.3,22768,1,0)
+ ;;^UTILITY(U,$J,358.3,23213,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,23213,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,23213,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,23214,0)
+ ;;=R22.9^^87^993^112
+ ;;^UTILITY(U,$J,358.3,23214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22768,1,3,0)
- ;;=3^Lymphoma,Extrnod & Solid Org Sites,Unspec
- ;;^UTILITY(U,$J,358.3,22768,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,22768,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,22769,0)
- ;;=C81.00^^104^1062^16
- ;;^UTILITY(U,$J,358.3,22769,1,0)
+ ;;^UTILITY(U,$J,358.3,23214,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,23214,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,23214,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,23215,0)
+ ;;=R23.0^^87^993^57
+ ;;^UTILITY(U,$J,358.3,23215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22769,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Lymphocyte,Unspec Site
- ;;^UTILITY(U,$J,358.3,22769,1,4,0)
- ;;=4^C81.00
- ;;^UTILITY(U,$J,358.3,22769,2)
- ;;=^5001391
- ;;^UTILITY(U,$J,358.3,22770,0)
- ;;=C81.09^^104^1062^15
- ;;^UTILITY(U,$J,358.3,22770,1,0)
+ ;;^UTILITY(U,$J,358.3,23215,1,3,0)
+ ;;=3^Cyanosis
+ ;;^UTILITY(U,$J,358.3,23215,1,4,0)
+ ;;=4^R23.0
+ ;;^UTILITY(U,$J,358.3,23215,2)
+ ;;=^5019293
+ ;;^UTILITY(U,$J,358.3,23216,0)
+ ;;=R23.1^^87^993^128
+ ;;^UTILITY(U,$J,358.3,23216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22770,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Lymphocyte,Extrnod & Solid Org Site
- ;;^UTILITY(U,$J,358.3,22770,1,4,0)
- ;;=4^C81.09
- ;;^UTILITY(U,$J,358.3,22770,2)
- ;;=^5001400
- ;;^UTILITY(U,$J,358.3,22771,0)
- ;;=C81.40^^104^1062^12
- ;;^UTILITY(U,$J,358.3,22771,1,0)
+ ;;^UTILITY(U,$J,358.3,23216,1,3,0)
+ ;;=3^Pallor
+ ;;^UTILITY(U,$J,358.3,23216,1,4,0)
+ ;;=4^R23.1
+ ;;^UTILITY(U,$J,358.3,23216,2)
+ ;;=^5019294
+ ;;^UTILITY(U,$J,358.3,23217,0)
+ ;;=R23.2^^87^993^75
+ ;;^UTILITY(U,$J,358.3,23217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22771,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte-Rich,Unspec Site
- ;;^UTILITY(U,$J,358.3,22771,1,4,0)
- ;;=4^C81.40
- ;;^UTILITY(U,$J,358.3,22771,2)
- ;;=^5001431
- ;;^UTILITY(U,$J,358.3,22772,0)
- ;;=C81.49^^104^1062^11
- ;;^UTILITY(U,$J,358.3,22772,1,0)
+ ;;^UTILITY(U,$J,358.3,23217,1,3,0)
+ ;;=3^Flushing
+ ;;^UTILITY(U,$J,358.3,23217,1,4,0)
+ ;;=4^R23.2
+ ;;^UTILITY(U,$J,358.3,23217,2)
+ ;;=^47184
+ ;;^UTILITY(U,$J,358.3,23218,0)
+ ;;=R23.4^^87^993^147
+ ;;^UTILITY(U,$J,358.3,23218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22772,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte-Rich,Extrnod & Solid Org Sites
- ;;^UTILITY(U,$J,358.3,22772,1,4,0)
- ;;=4^C81.49
- ;;^UTILITY(U,$J,358.3,22772,2)
- ;;=^5001440
- ;;^UTILITY(U,$J,358.3,22773,0)
- ;;=C81.30^^104^1062^10
- ;;^UTILITY(U,$J,358.3,22773,1,0)
+ ;;^UTILITY(U,$J,358.3,23218,1,3,0)
+ ;;=3^Skin Texture Changes
+ ;;^UTILITY(U,$J,358.3,23218,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,23218,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,23219,0)
+ ;;=R26.0^^87^993^43
+ ;;^UTILITY(U,$J,358.3,23219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22773,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte Depleted,Unspec Site
- ;;^UTILITY(U,$J,358.3,22773,1,4,0)
- ;;=4^C81.30
- ;;^UTILITY(U,$J,358.3,22773,2)
- ;;=^5001421
- ;;^UTILITY(U,$J,358.3,22774,0)
- ;;=C81.39^^104^1062^9
- ;;^UTILITY(U,$J,358.3,22774,1,0)
+ ;;^UTILITY(U,$J,358.3,23219,1,3,0)
+ ;;=3^Ataxic Gait
+ ;;^UTILITY(U,$J,358.3,23219,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,23219,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,23220,0)
+ ;;=R26.1^^87^993^130
+ ;;^UTILITY(U,$J,358.3,23220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22774,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte Depleted,Extrnod & Solid Org Site
- ;;^UTILITY(U,$J,358.3,22774,1,4,0)
- ;;=4^C81.39
- ;;^UTILITY(U,$J,358.3,22774,2)
- ;;=^5001430
- ;;^UTILITY(U,$J,358.3,22775,0)
- ;;=C81.20^^104^1062^14
- ;;^UTILITY(U,$J,358.3,22775,1,0)
+ ;;^UTILITY(U,$J,358.3,23220,1,3,0)
+ ;;=3^Paralytic Gait
+ ;;^UTILITY(U,$J,358.3,23220,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,23220,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,23221,0)
+ ;;=R26.81^^87^993^156
+ ;;^UTILITY(U,$J,358.3,23221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22775,1,3,0)
- ;;=3^Hodgkin Lymphoma,Mixed Cellularity,Unspec Site
- ;;^UTILITY(U,$J,358.3,22775,1,4,0)
- ;;=4^C81.20
- ;;^UTILITY(U,$J,358.3,22775,2)
- ;;=^5001411
- ;;^UTILITY(U,$J,358.3,22776,0)
- ;;=C81.29^^104^1062^13
- ;;^UTILITY(U,$J,358.3,22776,1,0)
+ ;;^UTILITY(U,$J,358.3,23221,1,3,0)
+ ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,23221,1,4,0)
+ ;;=4^R26.81
+ ;;^UTILITY(U,$J,358.3,23221,2)
+ ;;=^5019307
+ ;;^UTILITY(U,$J,358.3,23222,0)
+ ;;=R26.89^^87^993^30
+ ;;^UTILITY(U,$J,358.3,23222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22776,1,3,0)
- ;;=3^Hodgkin Lymphoma,Mixed Cellularity,Extrnod & Solid Org Sites
- ;;^UTILITY(U,$J,358.3,22776,1,4,0)
- ;;=4^C81.29
- ;;^UTILITY(U,$J,358.3,22776,2)
- ;;=^5001420
- ;;^UTILITY(U,$J,358.3,22777,0)
- ;;=C81.10^^104^1062^18
- ;;^UTILITY(U,$J,358.3,22777,1,0)
+ ;;^UTILITY(U,$J,358.3,23222,1,3,0)
+ ;;=3^Abnormalities of Gait and Mobility NEC
+ ;;^UTILITY(U,$J,358.3,23222,1,4,0)
+ ;;=4^R26.89
+ ;;^UTILITY(U,$J,358.3,23222,2)
+ ;;=^5019308
+ ;;^UTILITY(U,$J,358.3,23223,0)
+ ;;=R26.9^^87^993^31
+ ;;^UTILITY(U,$J,358.3,23223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22777,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Sclerosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,23223,1,3,0)
+ ;;=3^Abnormalities of Gait and Mobility,Unspec
+ ;;^UTILITY(U,$J,358.3,23223,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,23223,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,23224,0)
+ ;;=R27.0^^87^993^42
+ ;;^UTILITY(U,$J,358.3,23224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23224,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,23224,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,23224,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,23225,0)
+ ;;=R27.8^^87^993^100
+ ;;^UTILITY(U,$J,358.3,23225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23225,1,3,0)
+ ;;=3^Lack of Coordination NEC

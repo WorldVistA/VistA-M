@@ -1,138 +1,138 @@
-IBDEI08U ; ; 19-NOV-2015
+IBDEI08U ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3588,1,0)
+ ;;^UTILITY(U,$J,358.3,3850,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,3851,0)
+ ;;=Z71.6^^18^224^35
+ ;;^UTILITY(U,$J,358.3,3851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3588,1,3,0)
- ;;=3^Infection,Dermatophytosis,Unspec
- ;;^UTILITY(U,$J,358.3,3588,1,4,0)
- ;;=4^B35.9
- ;;^UTILITY(U,$J,358.3,3588,2)
- ;;=^5000607
- ;;^UTILITY(U,$J,358.3,3589,0)
- ;;=A49.2^^28^256^8
- ;;^UTILITY(U,$J,358.3,3589,1,0)
+ ;;^UTILITY(U,$J,358.3,3851,1,3,0)
+ ;;=3^Counseling,Tobacco Abuse
+ ;;^UTILITY(U,$J,358.3,3851,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,3851,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,3852,0)
+ ;;=Z71.41^^18^224^28
+ ;;^UTILITY(U,$J,358.3,3852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3589,1,3,0)
- ;;=3^Infection,Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,3589,1,4,0)
- ;;=4^A49.2
- ;;^UTILITY(U,$J,358.3,3589,2)
- ;;=^5000238
- ;;^UTILITY(U,$J,358.3,3590,0)
- ;;=B00.9^^28^256^9
- ;;^UTILITY(U,$J,358.3,3590,1,0)
+ ;;^UTILITY(U,$J,358.3,3852,1,3,0)
+ ;;=3^Counseling,Alcohol Abuse
+ ;;^UTILITY(U,$J,358.3,3852,1,4,0)
+ ;;=4^Z71.41
+ ;;^UTILITY(U,$J,358.3,3852,2)
+ ;;=^5063246
+ ;;^UTILITY(U,$J,358.3,3853,0)
+ ;;=Z71.51^^18^224^30
+ ;;^UTILITY(U,$J,358.3,3853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3590,1,3,0)
- ;;=3^Infection,Herpesviral,Unspec
- ;;^UTILITY(U,$J,358.3,3590,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,3590,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,3591,0)
- ;;=B20.^^28^256^7
- ;;^UTILITY(U,$J,358.3,3591,1,0)
+ ;;^UTILITY(U,$J,358.3,3853,1,3,0)
+ ;;=3^Counseling,Drug Abuser
+ ;;^UTILITY(U,$J,358.3,3853,1,4,0)
+ ;;=4^Z71.51
+ ;;^UTILITY(U,$J,358.3,3853,2)
+ ;;=^5063248
+ ;;^UTILITY(U,$J,358.3,3854,0)
+ ;;=Z71.3^^18^224^29
+ ;;^UTILITY(U,$J,358.3,3854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3591,1,3,0)
- ;;=3^Infection,HIV
- ;;^UTILITY(U,$J,358.3,3591,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,3591,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,3592,0)
- ;;=B82.9^^28^256^10
- ;;^UTILITY(U,$J,358.3,3592,1,0)
+ ;;^UTILITY(U,$J,358.3,3854,1,3,0)
+ ;;=3^Counseling,Dietary
+ ;;^UTILITY(U,$J,358.3,3854,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,3854,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,3855,0)
+ ;;=Z71.81^^18^224^34
+ ;;^UTILITY(U,$J,358.3,3855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3592,1,3,0)
- ;;=3^Infection,Intestinal Parasitism,Unspec
- ;;^UTILITY(U,$J,358.3,3592,1,4,0)
- ;;=4^B82.9
- ;;^UTILITY(U,$J,358.3,3592,2)
- ;;=^5000798
- ;;^UTILITY(U,$J,358.3,3593,0)
- ;;=A49.02^^28^256^11
- ;;^UTILITY(U,$J,358.3,3593,1,0)
+ ;;^UTILITY(U,$J,358.3,3855,1,3,0)
+ ;;=3^Counseling,Spiritual/Religious
+ ;;^UTILITY(U,$J,358.3,3855,1,4,0)
+ ;;=4^Z71.81
+ ;;^UTILITY(U,$J,358.3,3855,2)
+ ;;=^5063252
+ ;;^UTILITY(U,$J,358.3,3856,0)
+ ;;=Z71.9^^18^224^36
+ ;;^UTILITY(U,$J,358.3,3856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3593,1,3,0)
- ;;=3^Infection,MRSA,Unspec Site
- ;;^UTILITY(U,$J,358.3,3593,1,4,0)
- ;;=4^A49.02
- ;;^UTILITY(U,$J,358.3,3593,2)
- ;;=^5000236
- ;;^UTILITY(U,$J,358.3,3594,0)
- ;;=A49.3^^28^256^12
- ;;^UTILITY(U,$J,358.3,3594,1,0)
+ ;;^UTILITY(U,$J,358.3,3856,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,3856,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,3856,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,3857,0)
+ ;;=F05.^^18^224^37
+ ;;^UTILITY(U,$J,358.3,3857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3594,1,3,0)
- ;;=3^Infection,Mycoplasma,Unspec Site
- ;;^UTILITY(U,$J,358.3,3594,1,4,0)
- ;;=4^A49.3
- ;;^UTILITY(U,$J,358.3,3594,2)
- ;;=^5000239
- ;;^UTILITY(U,$J,358.3,3595,0)
- ;;=B49.^^28^256^13
- ;;^UTILITY(U,$J,358.3,3595,1,0)
+ ;;^UTILITY(U,$J,358.3,3857,1,3,0)
+ ;;=3^Delirium d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,3857,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,3857,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,3858,0)
+ ;;=Z97.2^^18^224^38
+ ;;^UTILITY(U,$J,358.3,3858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3595,1,3,0)
- ;;=3^Infection,Mycoses,Unspec
- ;;^UTILITY(U,$J,358.3,3595,1,4,0)
- ;;=4^B49.
- ;;^UTILITY(U,$J,358.3,3595,2)
- ;;=^5000690
- ;;^UTILITY(U,$J,358.3,3596,0)
- ;;=B89.^^28^256^14
- ;;^UTILITY(U,$J,358.3,3596,1,0)
+ ;;^UTILITY(U,$J,358.3,3858,1,3,0)
+ ;;=3^Dental Prosthetic Device
+ ;;^UTILITY(U,$J,358.3,3858,1,4,0)
+ ;;=4^Z97.2
+ ;;^UTILITY(U,$J,358.3,3858,2)
+ ;;=^5063728
+ ;;^UTILITY(U,$J,358.3,3859,0)
+ ;;=Z99.89^^18^224^39
+ ;;^UTILITY(U,$J,358.3,3859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3596,1,3,0)
- ;;=3^Infection,Parasitic Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3596,1,4,0)
- ;;=4^B89.
- ;;^UTILITY(U,$J,358.3,3596,2)
- ;;=^5000822
- ;;^UTILITY(U,$J,358.3,3597,0)
- ;;=B64.^^28^256^15
- ;;^UTILITY(U,$J,358.3,3597,1,0)
+ ;;^UTILITY(U,$J,358.3,3859,1,3,0)
+ ;;=3^Dependence on Enabling Machines/Devices
+ ;;^UTILITY(U,$J,358.3,3859,1,4,0)
+ ;;=4^Z99.89
+ ;;^UTILITY(U,$J,358.3,3859,2)
+ ;;=^5063761
+ ;;^UTILITY(U,$J,358.3,3860,0)
+ ;;=Z66.^^18^224^40
+ ;;^UTILITY(U,$J,358.3,3860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3597,1,3,0)
- ;;=3^Infection,Protozoal Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3597,1,4,0)
- ;;=4^B64.
- ;;^UTILITY(U,$J,358.3,3597,2)
- ;;=^5000742
- ;;^UTILITY(U,$J,358.3,3598,0)
- ;;=A77.9^^28^256^17
- ;;^UTILITY(U,$J,358.3,3598,1,0)
+ ;;^UTILITY(U,$J,358.3,3860,1,3,0)
+ ;;=3^Do Not Resuscitate
+ ;;^UTILITY(U,$J,358.3,3860,1,4,0)
+ ;;=4^Z66.
+ ;;^UTILITY(U,$J,358.3,3860,2)
+ ;;=^5063187
+ ;;^UTILITY(U,$J,358.3,3861,0)
+ ;;=Z79.2^^18^224^41
+ ;;^UTILITY(U,$J,358.3,3861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3598,1,3,0)
- ;;=3^Infection,Spotted Fever,Unspec
- ;;^UTILITY(U,$J,358.3,3598,1,4,0)
- ;;=4^A77.9
- ;;^UTILITY(U,$J,358.3,3598,2)
- ;;=^5000399
- ;;^UTILITY(U,$J,358.3,3599,0)
- ;;=A64.^^28^256^16
- ;;^UTILITY(U,$J,358.3,3599,1,0)
+ ;;^UTILITY(U,$J,358.3,3861,1,3,0)
+ ;;=3^Drug Therapy,Antibiotics,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,3861,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,3861,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,3862,0)
+ ;;=Z79.01^^18^224^42
+ ;;^UTILITY(U,$J,358.3,3862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3599,1,3,0)
- ;;=3^Infection,Sexually Transmitted Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3599,1,4,0)
- ;;=4^A64.
- ;;^UTILITY(U,$J,358.3,3599,2)
- ;;=^5000362
- ;;^UTILITY(U,$J,358.3,3600,0)
- ;;=A49.1^^28^256^18
- ;;^UTILITY(U,$J,358.3,3600,1,0)
+ ;;^UTILITY(U,$J,358.3,3862,1,3,0)
+ ;;=3^Drug Therapy,Anticoagulants,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,3862,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,3862,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,3863,0)
+ ;;=Z79.02^^18^224^43
+ ;;^UTILITY(U,$J,358.3,3863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3600,1,3,0)
- ;;=3^Infection,Streptococcal,Unspec Site
- ;;^UTILITY(U,$J,358.3,3600,1,4,0)
- ;;=4^A49.1
- ;;^UTILITY(U,$J,358.3,3600,2)
- ;;=^5000237
- ;;^UTILITY(U,$J,358.3,3601,0)
- ;;=A15.9^^28^256^19
- ;;^UTILITY(U,$J,358.3,3601,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3601,1,3,0)
- ;;=3^Infection,Tuberculosis,Respiratory,Unspec
+ ;;^UTILITY(U,$J,358.3,3863,1,3,0)
+ ;;=3^Drug Therapy,Antithrombotics/Antiplateletes,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,3863,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,3863,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,3864,0)
+ ;;=Z79.82^^18^224^44

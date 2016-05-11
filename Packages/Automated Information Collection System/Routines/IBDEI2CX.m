@@ -1,128 +1,134 @@
-IBDEI2CX ; ; 19-NOV-2015
+IBDEI2CX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39581,2)
- ;;=^5135514
- ;;^UTILITY(U,$J,358.3,39582,0)
- ;;=S56.911A^^183^2026^63
- ;;^UTILITY(U,$J,358.3,39582,1,0)
+ ;;^UTILITY(U,$J,358.3,39960,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,39960,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,39960,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,39961,0)
+ ;;=H57.12^^153^1932^15
+ ;;^UTILITY(U,$J,358.3,39961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39582,1,3,0)
- ;;=3^Strain of unsp musc/fasc/tend at forarm lv, right arm, init
- ;;^UTILITY(U,$J,358.3,39582,1,4,0)
- ;;=4^S56.911A
- ;;^UTILITY(U,$J,358.3,39582,2)
- ;;=^5135513
- ;;^UTILITY(U,$J,358.3,39583,0)
- ;;=M77.01^^183^2026^29
- ;;^UTILITY(U,$J,358.3,39583,1,0)
+ ;;^UTILITY(U,$J,358.3,39961,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,39961,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,39961,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,39962,0)
+ ;;=I10.^^153^1932^8
+ ;;^UTILITY(U,$J,358.3,39962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39583,1,3,0)
- ;;=3^Medial epicondylitis, right elbow
- ;;^UTILITY(U,$J,358.3,39583,1,4,0)
- ;;=4^M77.01
- ;;^UTILITY(U,$J,358.3,39583,2)
- ;;=^5013301
- ;;^UTILITY(U,$J,358.3,39584,0)
- ;;=M75.112^^183^2026^22
- ;;^UTILITY(U,$J,358.3,39584,1,0)
+ ;;^UTILITY(U,$J,358.3,39962,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,39962,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,39962,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,39963,0)
+ ;;=L71.9^^153^1932^19
+ ;;^UTILITY(U,$J,358.3,39963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39584,1,3,0)
- ;;=3^Incomplete rotatr-cuff tear/ruptr of l shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,39584,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,39584,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,39585,0)
- ;;=M75.111^^183^2026^23
- ;;^UTILITY(U,$J,358.3,39585,1,0)
+ ;;^UTILITY(U,$J,358.3,39963,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,39963,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,39963,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,39964,0)
+ ;;=L71.8^^153^1932^18
+ ;;^UTILITY(U,$J,358.3,39964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39585,1,3,0)
- ;;=3^Incomplete rotatr-cuff tear/ruptr of r shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,39585,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,39585,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,39586,0)
- ;;=M23.8X2^^183^2026^24
- ;;^UTILITY(U,$J,358.3,39586,1,0)
+ ;;^UTILITY(U,$J,358.3,39964,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,39964,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,39964,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,39965,0)
+ ;;=L71.1^^153^1932^17
+ ;;^UTILITY(U,$J,358.3,39965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39586,1,3,0)
- ;;=3^Internal Derangement,Left Knee NEC
- ;;^UTILITY(U,$J,358.3,39586,1,4,0)
- ;;=4^M23.8X2
- ;;^UTILITY(U,$J,358.3,39586,2)
- ;;=^5011274
- ;;^UTILITY(U,$J,358.3,39587,0)
- ;;=M23.8X1^^183^2026^25
- ;;^UTILITY(U,$J,358.3,39587,1,0)
+ ;;^UTILITY(U,$J,358.3,39965,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,39965,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,39965,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,39966,0)
+ ;;=S05.31XA^^153^1932^13
+ ;;^UTILITY(U,$J,358.3,39966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39587,1,3,0)
- ;;=3^Internal Derangement,Right Knee NEC
- ;;^UTILITY(U,$J,358.3,39587,1,4,0)
- ;;=4^M23.8X1
- ;;^UTILITY(U,$J,358.3,39587,2)
- ;;=^5011273
- ;;^UTILITY(U,$J,358.3,39588,0)
- ;;=M62.838^^183^2026^30
- ;;^UTILITY(U,$J,358.3,39588,1,0)
+ ;;^UTILITY(U,$J,358.3,39966,1,3,0)
+ ;;=3^Ocular Laceration Right Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39966,1,4,0)
+ ;;=4^S05.31XA
+ ;;^UTILITY(U,$J,358.3,39966,2)
+ ;;=^5020606
+ ;;^UTILITY(U,$J,358.3,39967,0)
+ ;;=S05.32XA^^153^1932^12
+ ;;^UTILITY(U,$J,358.3,39967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39588,1,3,0)
- ;;=3^Muscle spasm NEC
- ;;^UTILITY(U,$J,358.3,39588,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,39588,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,39589,0)
- ;;=M76.52^^183^2026^43
- ;;^UTILITY(U,$J,358.3,39589,1,0)
+ ;;^UTILITY(U,$J,358.3,39967,1,3,0)
+ ;;=3^Ocular Laceration Left Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39967,1,4,0)
+ ;;=4^S05.32XA
+ ;;^UTILITY(U,$J,358.3,39967,2)
+ ;;=^5020609
+ ;;^UTILITY(U,$J,358.3,39968,0)
+ ;;=Z21.^^153^1932^2
+ ;;^UTILITY(U,$J,358.3,39968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39589,1,3,0)
- ;;=3^Patellar tendinitis, left knee
- ;;^UTILITY(U,$J,358.3,39589,1,4,0)
- ;;=4^M76.52
- ;;^UTILITY(U,$J,358.3,39589,2)
- ;;=^5013283
- ;;^UTILITY(U,$J,358.3,39590,0)
- ;;=M76.51^^183^2026^44
- ;;^UTILITY(U,$J,358.3,39590,1,0)
+ ;;^UTILITY(U,$J,358.3,39968,1,3,0)
+ ;;=3^Asymptomatic HIV Infection Status
+ ;;^UTILITY(U,$J,358.3,39968,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,39968,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,39969,0)
+ ;;=Z83.511^^153^1932^6
+ ;;^UTILITY(U,$J,358.3,39969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39590,1,3,0)
- ;;=3^Patellar tendinitis, right knee
- ;;^UTILITY(U,$J,358.3,39590,1,4,0)
- ;;=4^M76.51
- ;;^UTILITY(U,$J,358.3,39590,2)
- ;;=^5013282
- ;;^UTILITY(U,$J,358.3,39591,0)
- ;;=M65.4^^183^2026^45
- ;;^UTILITY(U,$J,358.3,39591,1,0)
+ ;;^UTILITY(U,$J,358.3,39969,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,39969,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,39969,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,39970,0)
+ ;;=Z83.518^^153^1932^5
+ ;;^UTILITY(U,$J,358.3,39970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39591,1,3,0)
- ;;=3^Radial styloid tenosynovitis [de Quervain]
- ;;^UTILITY(U,$J,358.3,39591,1,4,0)
- ;;=4^M65.4
- ;;^UTILITY(U,$J,358.3,39591,2)
- ;;=^5012792
- ;;^UTILITY(U,$J,358.3,39592,0)
- ;;=M75.102^^183^2026^68
- ;;^UTILITY(U,$J,358.3,39592,1,0)
+ ;;^UTILITY(U,$J,358.3,39970,1,3,0)
+ ;;=3^Family Hx of Eye Disorder NEC
+ ;;^UTILITY(U,$J,358.3,39970,1,4,0)
+ ;;=4^Z83.518
+ ;;^UTILITY(U,$J,358.3,39970,2)
+ ;;=^5063383
+ ;;^UTILITY(U,$J,358.3,39971,0)
+ ;;=Z79.899^^153^1932^10
+ ;;^UTILITY(U,$J,358.3,39971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39592,1,3,0)
- ;;=3^Unsp rotatr-cuff tear/ruptr of left shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,39592,1,4,0)
- ;;=4^M75.102
- ;;^UTILITY(U,$J,358.3,39592,2)
- ;;=^5013243
- ;;^UTILITY(U,$J,358.3,39593,0)
- ;;=M75.101^^183^2026^69
- ;;^UTILITY(U,$J,358.3,39593,1,0)
+ ;;^UTILITY(U,$J,358.3,39971,1,3,0)
+ ;;=3^Long Term Current Drug Therapy NEC
+ ;;^UTILITY(U,$J,358.3,39971,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,39971,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,39972,0)
+ ;;=Z01.00^^153^1932^4
+ ;;^UTILITY(U,$J,358.3,39972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39593,1,3,0)
- ;;=3^Unsp rotatr-cuff tear/ruptr of right shoulder, not trauma
- ;;^UTILITY(U,$J,358.3,39593,1,4,0)
- ;;=4^M75.101
- ;;^UTILITY(U,$J,358.3,39593,2)
- ;;=^5013242
- ;;^UTILITY(U,$J,358.3,39594,0)
- ;;=M67.02^^183^2026^46
+ ;;^UTILITY(U,$J,358.3,39972,1,3,0)
+ ;;=3^Eye/Vision Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,39972,1,4,0)
+ ;;=4^Z01.00
+ ;;^UTILITY(U,$J,358.3,39972,2)
+ ;;=^5062612
+ ;;^UTILITY(U,$J,358.3,39973,0)
+ ;;=Z01.01^^153^1932^3
+ ;;^UTILITY(U,$J,358.3,39973,1,0)
+ ;;=^358.31IA^4^2

@@ -1,128 +1,140 @@
-IBDEI11M ; ; 19-NOV-2015
+IBDEI11M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17367,0)
- ;;=Z79.02^^88^861^43
- ;;^UTILITY(U,$J,358.3,17367,1,0)
+ ;;^UTILITY(U,$J,358.3,17708,1,3,0)
+ ;;=3^Giardiasis
+ ;;^UTILITY(U,$J,358.3,17708,1,4,0)
+ ;;=4^A07.1
+ ;;^UTILITY(U,$J,358.3,17708,2)
+ ;;=^5000049
+ ;;^UTILITY(U,$J,358.3,17709,0)
+ ;;=B15.9^^76^858^103
+ ;;^UTILITY(U,$J,358.3,17709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17367,1,3,0)
- ;;=3^Drug Therapy,Antithrombotics/Antiplateletes,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17367,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,17367,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,17368,0)
- ;;=Z79.82^^88^861^44
- ;;^UTILITY(U,$J,358.3,17368,1,0)
+ ;;^UTILITY(U,$J,358.3,17709,1,3,0)
+ ;;=3^Hepatitis A w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,17709,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,17709,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,17710,0)
+ ;;=B19.10^^76^858^104
+ ;;^UTILITY(U,$J,358.3,17710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17368,1,3,0)
- ;;=3^Drug Therapy,Aspirin,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17368,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,17368,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,17369,0)
- ;;=Z79.83^^88^861^45
- ;;^UTILITY(U,$J,358.3,17369,1,0)
+ ;;^UTILITY(U,$J,358.3,17710,1,3,0)
+ ;;=3^Hepatitis B w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,17710,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,17710,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,17711,0)
+ ;;=B19.20^^76^858^107
+ ;;^UTILITY(U,$J,358.3,17711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17369,1,3,0)
- ;;=3^Drug Therapy,Bisphosphonates,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17369,1,4,0)
- ;;=4^Z79.83
- ;;^UTILITY(U,$J,358.3,17369,2)
- ;;=^5063341
- ;;^UTILITY(U,$J,358.3,17370,0)
- ;;=Z79.890^^88^861^46
- ;;^UTILITY(U,$J,358.3,17370,1,0)
+ ;;^UTILITY(U,$J,358.3,17711,1,3,0)
+ ;;=3^Hepatitis C w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,17711,1,4,0)
+ ;;=4^B19.20
+ ;;^UTILITY(U,$J,358.3,17711,2)
+ ;;=^331436
+ ;;^UTILITY(U,$J,358.3,17712,0)
+ ;;=B19.9^^76^858^111
+ ;;^UTILITY(U,$J,358.3,17712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17370,1,3,0)
- ;;=3^Drug Therapy,Hormone Replacement Therapy
- ;;^UTILITY(U,$J,358.3,17370,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,17370,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,17371,0)
- ;;=Z79.4^^88^861^48
- ;;^UTILITY(U,$J,358.3,17371,1,0)
+ ;;^UTILITY(U,$J,358.3,17712,1,3,0)
+ ;;=3^Hepatitis w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,17712,1,4,0)
+ ;;=4^B19.9
+ ;;^UTILITY(U,$J,358.3,17712,2)
+ ;;=^5000554
+ ;;^UTILITY(U,$J,358.3,17713,0)
+ ;;=K75.89^^76^858^110
+ ;;^UTILITY(U,$J,358.3,17713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17371,1,3,0)
- ;;=3^Drug Therapy,Insulin,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17371,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,17371,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,17372,0)
- ;;=Z79.1^^88^861^49
- ;;^UTILITY(U,$J,358.3,17372,1,0)
+ ;;^UTILITY(U,$J,358.3,17713,1,3,0)
+ ;;=3^Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,17713,1,4,0)
+ ;;=4^K75.89
+ ;;^UTILITY(U,$J,358.3,17713,2)
+ ;;=^5008829
+ ;;^UTILITY(U,$J,358.3,17714,0)
+ ;;=B00.1^^76^858^113
+ ;;^UTILITY(U,$J,358.3,17714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17372,1,3,0)
- ;;=3^Drug Therapy,NSAID,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17372,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,17372,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,17373,0)
- ;;=Z79.891^^88^861^50
- ;;^UTILITY(U,$J,358.3,17373,1,0)
+ ;;^UTILITY(U,$J,358.3,17714,1,3,0)
+ ;;=3^Herpes Simplex, Lip
+ ;;^UTILITY(U,$J,358.3,17714,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,17714,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,17715,0)
+ ;;=B00.2^^76^858^117
+ ;;^UTILITY(U,$J,358.3,17715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17373,1,3,0)
- ;;=3^Drug Therapy,Opiate Analgesic,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17373,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,17373,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,17374,0)
- ;;=Z79.899^^88^861^51
- ;;^UTILITY(U,$J,358.3,17374,1,0)
+ ;;^UTILITY(U,$J,358.3,17715,1,3,0)
+ ;;=3^Herpesvirial gingivostomatitis and pharyngotonsillitis
+ ;;^UTILITY(U,$J,358.3,17715,1,4,0)
+ ;;=4^B00.2
+ ;;^UTILITY(U,$J,358.3,17715,2)
+ ;;=^5000469
+ ;;^UTILITY(U,$J,358.3,17716,0)
+ ;;=B02.9^^76^858^114
+ ;;^UTILITY(U,$J,358.3,17716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17374,1,3,0)
- ;;=3^Drug Therapy,Other Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17374,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,17374,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,17375,0)
- ;;=Z76.0^^88^861^71
- ;;^UTILITY(U,$J,358.3,17375,1,0)
+ ;;^UTILITY(U,$J,358.3,17716,1,3,0)
+ ;;=3^Herpes Zoster NOS
+ ;;^UTILITY(U,$J,358.3,17716,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,17716,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,17717,0)
+ ;;=A60.01^^76^858^118
+ ;;^UTILITY(U,$J,358.3,17717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17375,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,17375,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,17375,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,17376,0)
- ;;=Z79.810^^88^861^52
- ;;^UTILITY(U,$J,358.3,17376,1,0)
+ ;;^UTILITY(U,$J,358.3,17717,1,3,0)
+ ;;=3^Herpetic Infect of Penis
+ ;;^UTILITY(U,$J,358.3,17717,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,17717,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,17718,0)
+ ;;=A60.04^^76^858^119
+ ;;^UTILITY(U,$J,358.3,17718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17376,1,3,0)
- ;;=3^Drug Therapy,SERMs,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17376,1,4,0)
- ;;=4^Z79.810
- ;;^UTILITY(U,$J,358.3,17376,2)
- ;;=^5063337
- ;;^UTILITY(U,$J,358.3,17377,0)
- ;;=Z79.51^^88^861^47
- ;;^UTILITY(U,$J,358.3,17377,1,0)
+ ;;^UTILITY(U,$J,358.3,17718,1,3,0)
+ ;;=3^Herpetic Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,17718,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,17718,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,17719,0)
+ ;;=B01.9^^76^858^116
+ ;;^UTILITY(U,$J,358.3,17719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17377,1,3,0)
- ;;=3^Drug Therapy,Inhaled Steroids,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17377,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,17377,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,17378,0)
- ;;=Z79.52^^88^861^53
- ;;^UTILITY(U,$J,358.3,17378,1,0)
+ ;;^UTILITY(U,$J,358.3,17719,1,3,0)
+ ;;=3^Herpes, varicella
+ ;;^UTILITY(U,$J,358.3,17719,1,4,0)
+ ;;=4^B01.9
+ ;;^UTILITY(U,$J,358.3,17719,2)
+ ;;=^5000487
+ ;;^UTILITY(U,$J,358.3,17720,0)
+ ;;=B00.3^^76^858^115
+ ;;^UTILITY(U,$J,358.3,17720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17378,1,3,0)
- ;;=3^Drug Therapy,Systemic Steroids,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17378,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,17378,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,17379,0)
- ;;=R68.2^^88^861^54
- ;;^UTILITY(U,$J,358.3,17379,1,0)
+ ;;^UTILITY(U,$J,358.3,17720,1,3,0)
+ ;;=3^Herpes, Meningitis
+ ;;^UTILITY(U,$J,358.3,17720,1,4,0)
+ ;;=4^B00.3
+ ;;^UTILITY(U,$J,358.3,17720,2)
+ ;;=^5000470
+ ;;^UTILITY(U,$J,358.3,17721,0)
+ ;;=B00.9^^76^858^112
+ ;;^UTILITY(U,$J,358.3,17721,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17721,1,3,0)
+ ;;=3^Herpes NEC
+ ;;^UTILITY(U,$J,358.3,17721,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,17721,2)
+ ;;=^5000480

@@ -1,134 +1,128 @@
-IBDEI0M4 ; ; 19-NOV-2015
+IBDEI0M4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10093,1,0)
+ ;;^UTILITY(U,$J,358.3,10311,2)
+ ;;=^5020081
+ ;;^UTILITY(U,$J,358.3,10312,0)
+ ;;=C44.199^^44^503^66
+ ;;^UTILITY(U,$J,358.3,10312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10093,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,10093,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,10093,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,10094,0)
- ;;=L02.211^^68^664^117
- ;;^UTILITY(U,$J,358.3,10094,1,0)
+ ;;^UTILITY(U,$J,358.3,10312,1,3,0)
+ ;;=3^Malig Neop Skin Left Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,10312,1,4,0)
+ ;;=4^C44.199
+ ;;^UTILITY(U,$J,358.3,10312,2)
+ ;;=^5001027
+ ;;^UTILITY(U,$J,358.3,10313,0)
+ ;;=C44.192^^44^503^68
+ ;;^UTILITY(U,$J,358.3,10313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10094,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,10094,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,10094,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,10095,0)
- ;;=L02.212^^68^664^118
- ;;^UTILITY(U,$J,358.3,10095,1,0)
+ ;;^UTILITY(U,$J,358.3,10313,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,10313,1,4,0)
+ ;;=4^C44.192
+ ;;^UTILITY(U,$J,358.3,10313,2)
+ ;;=^5001026
+ ;;^UTILITY(U,$J,358.3,10314,0)
+ ;;=S05.42XA^^44^503^79
+ ;;^UTILITY(U,$J,358.3,10314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10095,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,10095,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,10095,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,10096,0)
- ;;=L02.213^^68^664^119
- ;;^UTILITY(U,$J,358.3,10096,1,0)
+ ;;^UTILITY(U,$J,358.3,10314,1,3,0)
+ ;;=3^Penetrating Wound of Orbit,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10314,1,4,0)
+ ;;=4^S05.42XA
+ ;;^UTILITY(U,$J,358.3,10314,2)
+ ;;=^5020618
+ ;;^UTILITY(U,$J,358.3,10315,0)
+ ;;=S05.41XA^^44^503^80
+ ;;^UTILITY(U,$J,358.3,10315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10096,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,10096,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,10096,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,10097,0)
- ;;=L02.214^^68^664^121
- ;;^UTILITY(U,$J,358.3,10097,1,0)
+ ;;^UTILITY(U,$J,358.3,10315,1,3,0)
+ ;;=3^Penetrating Wound of Orbit,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10315,1,4,0)
+ ;;=4^S05.41XA
+ ;;^UTILITY(U,$J,358.3,10315,2)
+ ;;=^5020615
+ ;;^UTILITY(U,$J,358.3,10316,0)
+ ;;=S01.142A^^44^503^81
+ ;;^UTILITY(U,$J,358.3,10316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10097,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,10097,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,10097,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,10098,0)
- ;;=L02.215^^68^664^126
- ;;^UTILITY(U,$J,358.3,10098,1,0)
+ ;;^UTILITY(U,$J,358.3,10316,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10316,1,4,0)
+ ;;=4^S01.142A
+ ;;^UTILITY(U,$J,358.3,10316,2)
+ ;;=^5134196
+ ;;^UTILITY(U,$J,358.3,10317,0)
+ ;;=S01.141A^^44^503^82
+ ;;^UTILITY(U,$J,358.3,10317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10098,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,10098,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,10098,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,10099,0)
- ;;=L02.216^^68^664^131
- ;;^UTILITY(U,$J,358.3,10099,1,0)
+ ;;^UTILITY(U,$J,358.3,10317,1,3,0)
+ ;;=3^Puncture Wound w/ FB,Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10317,1,4,0)
+ ;;=4^S01.141A
+ ;;^UTILITY(U,$J,358.3,10317,2)
+ ;;=^5020078
+ ;;^UTILITY(U,$J,358.3,10318,0)
+ ;;=S01.132A^^44^503^83
+ ;;^UTILITY(U,$J,358.3,10318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10099,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,10099,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,10099,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,10100,0)
- ;;=L02.219^^68^664^130
- ;;^UTILITY(U,$J,358.3,10100,1,0)
+ ;;^UTILITY(U,$J,358.3,10318,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10318,1,4,0)
+ ;;=4^S01.132A
+ ;;^UTILITY(U,$J,358.3,10318,2)
+ ;;=^5020072
+ ;;^UTILITY(U,$J,358.3,10319,0)
+ ;;=S01.131A^^44^503^84
+ ;;^UTILITY(U,$J,358.3,10319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10100,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,10100,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,10100,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,10101,0)
- ;;=L02.32^^68^664^154
- ;;^UTILITY(U,$J,358.3,10101,1,0)
+ ;;^UTILITY(U,$J,358.3,10319,1,3,0)
+ ;;=3^Puncture Wound w/o FB,Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10319,1,4,0)
+ ;;=4^S01.131A
+ ;;^UTILITY(U,$J,358.3,10319,2)
+ ;;=^5020069
+ ;;^UTILITY(U,$J,358.3,10320,0)
+ ;;=H02.135^^44^503^87
+ ;;^UTILITY(U,$J,358.3,10320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10101,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,10101,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,10101,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,10102,0)
- ;;=L02.33^^68^664^92
- ;;^UTILITY(U,$J,358.3,10102,1,0)
+ ;;^UTILITY(U,$J,358.3,10320,1,3,0)
+ ;;=3^Senile Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10320,1,4,0)
+ ;;=4^H02.135
+ ;;^UTILITY(U,$J,358.3,10320,2)
+ ;;=^5133414
+ ;;^UTILITY(U,$J,358.3,10321,0)
+ ;;=H02.134^^44^503^88
+ ;;^UTILITY(U,$J,358.3,10321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10102,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,10102,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,10102,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,10103,0)
- ;;=L02.415^^68^664^129
- ;;^UTILITY(U,$J,358.3,10103,1,0)
+ ;;^UTILITY(U,$J,358.3,10321,1,3,0)
+ ;;=3^Senile Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10321,1,4,0)
+ ;;=4^H02.134
+ ;;^UTILITY(U,$J,358.3,10321,2)
+ ;;=^5004320
+ ;;^UTILITY(U,$J,358.3,10322,0)
+ ;;=H02.132^^44^503^89
+ ;;^UTILITY(U,$J,358.3,10322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10103,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,10103,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,10103,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,10104,0)
- ;;=L02.416^^68^664^124
- ;;^UTILITY(U,$J,358.3,10104,1,0)
+ ;;^UTILITY(U,$J,358.3,10322,1,3,0)
+ ;;=3^Senile Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10322,1,4,0)
+ ;;=4^H02.132
+ ;;^UTILITY(U,$J,358.3,10322,2)
+ ;;=^5004318
+ ;;^UTILITY(U,$J,358.3,10323,0)
+ ;;=H02.131^^44^503^90
+ ;;^UTILITY(U,$J,358.3,10323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10104,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,10104,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,10104,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,10105,0)
- ;;=L02.511^^68^664^128
- ;;^UTILITY(U,$J,358.3,10105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10105,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,10105,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,10105,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,10106,0)
- ;;=L02.512^^68^664^123
+ ;;^UTILITY(U,$J,358.3,10323,1,3,0)
+ ;;=3^Senile Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10323,1,4,0)
+ ;;=4^H02.131
+ ;;^UTILITY(U,$J,358.3,10323,2)
+ ;;=^5004317
+ ;;^UTILITY(U,$J,358.3,10324,0)
+ ;;=H02.035^^44^503^91

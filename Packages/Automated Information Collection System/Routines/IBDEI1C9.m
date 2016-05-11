@@ -1,126 +1,136 @@
-IBDEI1C9 ; ; 19-NOV-2015
+IBDEI1C9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22303,1,4,0)
- ;;=4^S22.031S
- ;;^UTILITY(U,$J,358.3,22303,2)
- ;;=^5022906
- ;;^UTILITY(U,$J,358.3,22304,0)
- ;;=S32.111S^^101^1039^20
- ;;^UTILITY(U,$J,358.3,22304,1,0)
+ ;;^UTILITY(U,$J,358.3,22754,0)
+ ;;=J03.91^^87^983^80
+ ;;^UTILITY(U,$J,358.3,22754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22304,1,3,0)
- ;;=3^Minimally displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22304,1,4,0)
- ;;=4^S32.111S
- ;;^UTILITY(U,$J,358.3,22304,2)
- ;;=^5024538
- ;;^UTILITY(U,$J,358.3,22305,0)
- ;;=S32.121S^^101^1039^21
- ;;^UTILITY(U,$J,358.3,22305,1,0)
+ ;;^UTILITY(U,$J,358.3,22754,1,3,0)
+ ;;=3^Tonsillitis,Acute Recurrent,Unspec
+ ;;^UTILITY(U,$J,358.3,22754,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,22754,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,22755,0)
+ ;;=K70.0^^87^984^3
+ ;;^UTILITY(U,$J,358.3,22755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22305,1,3,0)
- ;;=3^Minimally displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22305,1,4,0)
- ;;=4^S32.121S
- ;;^UTILITY(U,$J,358.3,22305,2)
- ;;=^5024562
- ;;^UTILITY(U,$J,358.3,22306,0)
- ;;=S32.131S^^101^1039^22
- ;;^UTILITY(U,$J,358.3,22306,1,0)
+ ;;^UTILITY(U,$J,358.3,22755,1,3,0)
+ ;;=3^Alcoholic Fatty Liver
+ ;;^UTILITY(U,$J,358.3,22755,1,4,0)
+ ;;=4^K70.0
+ ;;^UTILITY(U,$J,358.3,22755,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,22756,0)
+ ;;=K70.11^^87^984^7
+ ;;^UTILITY(U,$J,358.3,22756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22306,1,3,0)
- ;;=3^Minimally displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22306,1,4,0)
- ;;=4^S32.131S
- ;;^UTILITY(U,$J,358.3,22306,2)
- ;;=^5024586
- ;;^UTILITY(U,$J,358.3,22307,0)
- ;;=S32.110S^^101^1039^24
- ;;^UTILITY(U,$J,358.3,22307,1,0)
+ ;;^UTILITY(U,$J,358.3,22756,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,22756,1,4,0)
+ ;;=4^K70.11
+ ;;^UTILITY(U,$J,358.3,22756,2)
+ ;;=^5008786
+ ;;^UTILITY(U,$J,358.3,22757,0)
+ ;;=K70.10^^87^984^8
+ ;;^UTILITY(U,$J,358.3,22757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22307,1,3,0)
- ;;=3^Nondisp Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22307,1,4,0)
- ;;=4^S32.110S
- ;;^UTILITY(U,$J,358.3,22307,2)
- ;;=^5024532
- ;;^UTILITY(U,$J,358.3,22308,0)
- ;;=S32.120S^^101^1039^25
- ;;^UTILITY(U,$J,358.3,22308,1,0)
+ ;;^UTILITY(U,$J,358.3,22757,1,3,0)
+ ;;=3^Alcoholic Hepatitis w/o Ascites
+ ;;^UTILITY(U,$J,358.3,22757,1,4,0)
+ ;;=4^K70.10
+ ;;^UTILITY(U,$J,358.3,22757,2)
+ ;;=^5008785
+ ;;^UTILITY(U,$J,358.3,22758,0)
+ ;;=K70.2^^87^984^4
+ ;;^UTILITY(U,$J,358.3,22758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22308,1,3,0)
- ;;=3^Nondisp Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22308,1,4,0)
- ;;=4^S32.120S
- ;;^UTILITY(U,$J,358.3,22308,2)
- ;;=^5024556
- ;;^UTILITY(U,$J,358.3,22309,0)
- ;;=S32.130S^^101^1039^26
- ;;^UTILITY(U,$J,358.3,22309,1,0)
+ ;;^UTILITY(U,$J,358.3,22758,1,3,0)
+ ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
+ ;;^UTILITY(U,$J,358.3,22758,1,4,0)
+ ;;=4^K70.2
+ ;;^UTILITY(U,$J,358.3,22758,2)
+ ;;=^5008787
+ ;;^UTILITY(U,$J,358.3,22759,0)
+ ;;=K70.30^^87^984^2
+ ;;^UTILITY(U,$J,358.3,22759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22309,1,3,0)
- ;;=3^Nondisp Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22309,1,4,0)
- ;;=4^S32.130S
- ;;^UTILITY(U,$J,358.3,22309,2)
- ;;=^5024580
- ;;^UTILITY(U,$J,358.3,22310,0)
- ;;=S32.112S^^101^1039^30
- ;;^UTILITY(U,$J,358.3,22310,1,0)
+ ;;^UTILITY(U,$J,358.3,22759,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
+ ;;^UTILITY(U,$J,358.3,22759,1,4,0)
+ ;;=4^K70.30
+ ;;^UTILITY(U,$J,358.3,22759,2)
+ ;;=^5008788
+ ;;^UTILITY(U,$J,358.3,22760,0)
+ ;;=K70.31^^87^984^1
+ ;;^UTILITY(U,$J,358.3,22760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22310,1,3,0)
- ;;=3^Severely displaced Zone I fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22310,1,4,0)
- ;;=4^S32.112S
- ;;^UTILITY(U,$J,358.3,22310,2)
- ;;=^5024544
- ;;^UTILITY(U,$J,358.3,22311,0)
- ;;=S32.122S^^101^1039^31
- ;;^UTILITY(U,$J,358.3,22311,1,0)
+ ;;^UTILITY(U,$J,358.3,22760,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,22760,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,22760,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,22761,0)
+ ;;=K70.9^^87^984^9
+ ;;^UTILITY(U,$J,358.3,22761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22311,1,3,0)
- ;;=3^Severely displaced Zone II fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22311,1,4,0)
- ;;=4^S32.122S
- ;;^UTILITY(U,$J,358.3,22311,2)
- ;;=^5024568
- ;;^UTILITY(U,$J,358.3,22312,0)
- ;;=S32.132S^^101^1039^32
- ;;^UTILITY(U,$J,358.3,22312,1,0)
+ ;;^UTILITY(U,$J,358.3,22761,1,3,0)
+ ;;=3^Alcoholic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,22761,1,4,0)
+ ;;=4^K70.9
+ ;;^UTILITY(U,$J,358.3,22761,2)
+ ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,22762,0)
+ ;;=K70.40^^87^984^6
+ ;;^UTILITY(U,$J,358.3,22762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22312,1,3,0)
- ;;=3^Severely displaced Zone III fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22312,1,4,0)
- ;;=4^S32.132S
- ;;^UTILITY(U,$J,358.3,22312,2)
- ;;=^5024592
- ;;^UTILITY(U,$J,358.3,22313,0)
- ;;=S32.14XS^^101^1039^47
- ;;^UTILITY(U,$J,358.3,22313,1,0)
+ ;;^UTILITY(U,$J,358.3,22762,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/o Coma
+ ;;^UTILITY(U,$J,358.3,22762,1,4,0)
+ ;;=4^K70.40
+ ;;^UTILITY(U,$J,358.3,22762,2)
+ ;;=^5008790
+ ;;^UTILITY(U,$J,358.3,22763,0)
+ ;;=K70.41^^87^984^5
+ ;;^UTILITY(U,$J,358.3,22763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22313,1,3,0)
- ;;=3^Type 1 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22313,1,4,0)
- ;;=4^S32.14XS
- ;;^UTILITY(U,$J,358.3,22313,2)
- ;;=^5024604
- ;;^UTILITY(U,$J,358.3,22314,0)
- ;;=S32.15XS^^101^1039^48
- ;;^UTILITY(U,$J,358.3,22314,1,0)
+ ;;^UTILITY(U,$J,358.3,22763,1,3,0)
+ ;;=3^Alcoholic Hepatic Failure w/ Coma
+ ;;^UTILITY(U,$J,358.3,22763,1,4,0)
+ ;;=4^K70.41
+ ;;^UTILITY(U,$J,358.3,22763,2)
+ ;;=^5008791
+ ;;^UTILITY(U,$J,358.3,22764,0)
+ ;;=K73.0^^87^984^15
+ ;;^UTILITY(U,$J,358.3,22764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22314,1,3,0)
- ;;=3^Type 2 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22314,1,4,0)
- ;;=4^S32.15XS
- ;;^UTILITY(U,$J,358.3,22314,2)
- ;;=^5024610
- ;;^UTILITY(U,$J,358.3,22315,0)
- ;;=S32.16XS^^101^1039^49
- ;;^UTILITY(U,$J,358.3,22315,1,0)
+ ;;^UTILITY(U,$J,358.3,22764,1,3,0)
+ ;;=3^Hepatitis, Chronic Persistent NEC
+ ;;^UTILITY(U,$J,358.3,22764,1,4,0)
+ ;;=4^K73.0
+ ;;^UTILITY(U,$J,358.3,22764,2)
+ ;;=^5008811
+ ;;^UTILITY(U,$J,358.3,22765,0)
+ ;;=K74.0^^87^984^14
+ ;;^UTILITY(U,$J,358.3,22765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22315,1,3,0)
- ;;=3^Type 3 fracture of sacrum, sequela
- ;;^UTILITY(U,$J,358.3,22315,1,4,0)
- ;;=4^S32.16XS
+ ;;^UTILITY(U,$J,358.3,22765,1,3,0)
+ ;;=3^Hepatic Fibrosis
+ ;;^UTILITY(U,$J,358.3,22765,1,4,0)
+ ;;=4^K74.0
+ ;;^UTILITY(U,$J,358.3,22765,2)
+ ;;=^5008816
+ ;;^UTILITY(U,$J,358.3,22766,0)
+ ;;=K74.69^^87^984^10
+ ;;^UTILITY(U,$J,358.3,22766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22766,1,3,0)
+ ;;=3^Cirrhosis of Liver,Oth
+ ;;^UTILITY(U,$J,358.3,22766,1,4,0)
+ ;;=4^K74.69
+ ;;^UTILITY(U,$J,358.3,22766,2)
+ ;;=^5008823
+ ;;^UTILITY(U,$J,358.3,22767,0)
+ ;;=K74.60^^87^984^11

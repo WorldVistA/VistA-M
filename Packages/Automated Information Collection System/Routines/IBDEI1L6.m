@@ -1,134 +1,126 @@
-IBDEI1L6 ; ; 19-NOV-2015
+IBDEI1L6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26532,1,4,0)
- ;;=4^H02.104
- ;;^UTILITY(U,$J,358.3,26532,2)
- ;;=^5004305
- ;;^UTILITY(U,$J,358.3,26533,0)
- ;;=H02.105^^130^1292^17
- ;;^UTILITY(U,$J,358.3,26533,1,0)
+ ;;^UTILITY(U,$J,358.3,26897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26533,1,3,0)
- ;;=3^Ectropion,Left Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,26533,1,4,0)
- ;;=4^H02.105
- ;;^UTILITY(U,$J,358.3,26533,2)
- ;;=^5133409
- ;;^UTILITY(U,$J,358.3,26534,0)
- ;;=H02.401^^130^1292^38
- ;;^UTILITY(U,$J,358.3,26534,1,0)
+ ;;^UTILITY(U,$J,358.3,26897,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26897,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,26897,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,26898,0)
+ ;;=F16.259^^100^1294^8
+ ;;^UTILITY(U,$J,358.3,26898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26534,1,3,0)
- ;;=3^Ptosis,Right Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,26534,1,4,0)
- ;;=4^H02.401
- ;;^UTILITY(U,$J,358.3,26534,2)
- ;;=^5004353
- ;;^UTILITY(U,$J,358.3,26535,0)
- ;;=H02.402^^130^1292^37
- ;;^UTILITY(U,$J,358.3,26535,1,0)
+ ;;^UTILITY(U,$J,358.3,26898,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26898,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,26898,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,26899,0)
+ ;;=F16.959^^100^1294^9
+ ;;^UTILITY(U,$J,358.3,26899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26535,1,3,0)
- ;;=3^Ptosis,Left Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,26535,1,4,0)
- ;;=4^H02.402
- ;;^UTILITY(U,$J,358.3,26535,2)
- ;;=^5004354
- ;;^UTILITY(U,$J,358.3,26536,0)
- ;;=H02.403^^130^1292^36
- ;;^UTILITY(U,$J,358.3,26536,1,0)
+ ;;^UTILITY(U,$J,358.3,26899,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26899,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,26899,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,26900,0)
+ ;;=F16.99^^100^1294^20
+ ;;^UTILITY(U,$J,358.3,26900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26536,1,3,0)
- ;;=3^Ptosis,Bilateral Eyelids,Unspec
- ;;^UTILITY(U,$J,358.3,26536,1,4,0)
- ;;=4^H02.403
- ;;^UTILITY(U,$J,358.3,26536,2)
- ;;=^5004355
- ;;^UTILITY(U,$J,358.3,26537,0)
- ;;=H02.31^^130^1292^8
- ;;^UTILITY(U,$J,358.3,26537,1,0)
+ ;;^UTILITY(U,$J,358.3,26900,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26900,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,26900,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,26901,0)
+ ;;=F11.10^^100^1295^23
+ ;;^UTILITY(U,$J,358.3,26901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26537,1,3,0)
- ;;=3^Blepharochalasis,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,26537,1,4,0)
- ;;=4^H02.31
- ;;^UTILITY(U,$J,358.3,26537,2)
- ;;=^5004348
- ;;^UTILITY(U,$J,358.3,26538,0)
- ;;=H02.32^^130^1292^7
- ;;^UTILITY(U,$J,358.3,26538,1,0)
+ ;;^UTILITY(U,$J,358.3,26901,1,3,0)
+ ;;=3^Opioid Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26901,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,26901,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,26902,0)
+ ;;=F11.129^^100^1295^19
+ ;;^UTILITY(U,$J,358.3,26902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26538,1,3,0)
- ;;=3^Blepharochalasis,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,26538,1,4,0)
- ;;=4^H02.32
- ;;^UTILITY(U,$J,358.3,26538,2)
- ;;=^5004349
- ;;^UTILITY(U,$J,358.3,26539,0)
- ;;=H02.34^^130^1292^6
- ;;^UTILITY(U,$J,358.3,26539,1,0)
+ ;;^UTILITY(U,$J,358.3,26902,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26902,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,26902,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,26903,0)
+ ;;=F11.14^^100^1295^27
+ ;;^UTILITY(U,$J,358.3,26903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26539,1,3,0)
- ;;=3^Blepharochalasis,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,26539,1,4,0)
- ;;=4^H02.34
- ;;^UTILITY(U,$J,358.3,26539,2)
- ;;=^5004351
- ;;^UTILITY(U,$J,358.3,26540,0)
- ;;=H02.35^^130^1292^5
- ;;^UTILITY(U,$J,358.3,26540,1,0)
+ ;;^UTILITY(U,$J,358.3,26903,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26903,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,26903,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,26904,0)
+ ;;=F11.182^^100^1295^29
+ ;;^UTILITY(U,$J,358.3,26904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26540,1,3,0)
- ;;=3^Blepharochalasis,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,26540,1,4,0)
- ;;=4^H02.35
- ;;^UTILITY(U,$J,358.3,26540,2)
- ;;=^5133426
- ;;^UTILITY(U,$J,358.3,26541,0)
- ;;=H02.61^^130^1292^47
- ;;^UTILITY(U,$J,358.3,26541,1,0)
+ ;;^UTILITY(U,$J,358.3,26904,1,3,0)
+ ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26904,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,26904,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,26905,0)
+ ;;=F11.20^^100^1295^24
+ ;;^UTILITY(U,$J,358.3,26905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26541,1,3,0)
- ;;=3^Xanthelasma,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,26541,1,4,0)
- ;;=4^H02.61
- ;;^UTILITY(U,$J,358.3,26541,2)
- ;;=^5004386
- ;;^UTILITY(U,$J,358.3,26542,0)
- ;;=H02.62^^130^1292^46
- ;;^UTILITY(U,$J,358.3,26542,1,0)
+ ;;^UTILITY(U,$J,358.3,26905,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26905,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,26905,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,26906,0)
+ ;;=F11.21^^100^1295^25
+ ;;^UTILITY(U,$J,358.3,26906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26542,1,3,0)
- ;;=3^Xanthelasma,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,26542,1,4,0)
- ;;=4^H02.62
- ;;^UTILITY(U,$J,358.3,26542,2)
- ;;=^5004387
- ;;^UTILITY(U,$J,358.3,26543,0)
- ;;=H02.64^^130^1292^45
- ;;^UTILITY(U,$J,358.3,26543,1,0)
+ ;;^UTILITY(U,$J,358.3,26906,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,26906,1,4,0)
+ ;;=4^F11.21
+ ;;^UTILITY(U,$J,358.3,26906,2)
+ ;;=^5003128
+ ;;^UTILITY(U,$J,358.3,26907,0)
+ ;;=F11.23^^100^1295^26
+ ;;^UTILITY(U,$J,358.3,26907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26543,1,3,0)
- ;;=3^Xanthelasma,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,26543,1,4,0)
- ;;=4^H02.64
- ;;^UTILITY(U,$J,358.3,26543,2)
- ;;=^5004389
- ;;^UTILITY(U,$J,358.3,26544,0)
- ;;=H02.65^^130^1292^44
- ;;^UTILITY(U,$J,358.3,26544,1,0)
+ ;;^UTILITY(U,$J,358.3,26907,1,3,0)
+ ;;=3^Opioid Withdrawal
+ ;;^UTILITY(U,$J,358.3,26907,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,26907,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,26908,0)
+ ;;=F11.24^^100^1295^28
+ ;;^UTILITY(U,$J,358.3,26908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26544,1,3,0)
- ;;=3^Xanthelasma,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,26544,1,4,0)
- ;;=4^H02.65
- ;;^UTILITY(U,$J,358.3,26544,2)
- ;;=^5133432
- ;;^UTILITY(U,$J,358.3,26545,0)
- ;;=H02.831^^130^1292^16
- ;;^UTILITY(U,$J,358.3,26545,1,0)
+ ;;^UTILITY(U,$J,358.3,26908,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26908,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,26908,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,26909,0)
+ ;;=F11.29^^100^1295^2
+ ;;^UTILITY(U,$J,358.3,26909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26545,1,3,0)
- ;;=3^Dermatochalasis,Right Upper Eyelid

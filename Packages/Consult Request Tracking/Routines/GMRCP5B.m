@@ -1,5 +1,5 @@
-GMRCP5B ;SLC/DCM,RJS - Print Consult form 513 (Gather Data - Footers, Provisional Diagnosis and Reason For Request) ;01/29/14  06:26
- ;;3.0;CONSULT/REQUEST TRACKING;**4,13,12,15,24,23,22,29,65,66,73**;Dec 27, 1997;Build 22
+GMRCP5B ;SLC/DCM,RJS - Print Consult form 513 (Gather Data - Footers, Provisional Diagnosis and Reason For Request) ;12/10/14  14:16
+ ;;3.0;CONSULT/REQUEST TRACKING;**4,13,12,15,24,23,22,29,65,66,73,81**;Dec 27, 1997;Build 6
  ;
  ; Patch #23 add "SERVICE RENDERED AS:" to SF513
  ;ICRs
@@ -76,28 +76,28 @@ PDIAG ;
  ;
  D BLD("PDIAG",1,1,0,"REQUESTED BY: ")
  D BLD("PDIAG",1,0,35,"|PLACE:")
- D BLD("PDIAG",1,0,59,"|URGENCY:")
+ D BLD("PDIAG",1,0,58,"|URGENCY:")
  ;
  D BLD("PDIAG",1,1,0,$E(GMRCQSTR,1,37))
  D BLD("PDIAG",1,0,35,"|"_$E($P($G(^ORD(101,+$P(GMRCRD,U,10),0)),U,2),1,20))
- D BLD("PDIAG",1,0,59,"|"_$E($P($G(^ORD(101,+$P(GMRCRD,U,9),0)),U,2),1,18))
+ D BLD("PDIAG",1,0,58,"|"_$E($P($G(^ORD(101,+$P(GMRCRD,U,9),0)),U,2),1,18))
  ;
  I $L(GMRCQSTT) D
  .D BLD("PDIAG",1,1,0,GMRCQSTT)
  .D BLD("PDIAG",1,0,35,"|")
- .D BLD("PDIAG",1,0,59,"|")
+ .D BLD("PDIAG",1,0,58,"|")
  D BLD("PDIAG",1,1,0,GMRCPGR)
  D BLD("PDIAG",1,0,35,"|SERVICE RENDERED AS:")
- D BLD("PDIAG",1,0,59,"|EARLIEST DATE:") ;WAT/66
- D BLD("PDIAG",1,0,59,"|")
+ D BLD("PDIAG",1,0,58,"|CLINICALLY IND. DATE:") ;WAT/66/81
+ D BLD("PDIAG",1,0,58,"|")
  S GMRCINOU=$S($P(GMRCRD,U,18)="O":"Outpatient",1:"Inpatient")
  I $D(GMRCIPH)>0 D
  .D BLD("PDIAG",1,1,0,GMRCIPH)
  .D BLD("PDIAG",1,0,35,"|"_GMRCINOU)
  E  D
  .D BLD("PDIAG",1,1,35,"|"_GMRCINOU)
- D BLD("PDIAG",1,0,59,"|")
- D BLD("PDIAG",1,0,59,"|"_$$FMTE^XLFDT($P(GMRCRD,U,24),1)) ;WAT/66
+ D BLD("PDIAG",1,0,58,"|")
+ D BLD("PDIAG",1,0,58,"|"_$$FMTE^XLFDT($P(GMRCRD,U,24),1)) ;WAT/66/81
  K GMRCINOU
  ;***************************************************************
  D BLD("PDIAG",1,1,0,GMRCDVL)

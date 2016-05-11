@@ -1,120 +1,134 @@
-IBDEI1AJ ; ; 19-NOV-2015
+IBDEI1AJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21564,1,0)
+ ;;^UTILITY(U,$J,358.3,21946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21564,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,21564,1,4,0)
- ;;=4^S06.356S
- ;;^UTILITY(U,$J,358.3,21564,2)
- ;;=^5020926
- ;;^UTILITY(U,$J,358.3,21565,0)
- ;;=S06.353S^^101^1032^84
- ;;^UTILITY(U,$J,358.3,21565,1,0)
+ ;;^UTILITY(U,$J,358.3,21946,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,21946,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,21946,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,21947,0)
+ ;;=H65.23^^87^971^15
+ ;;^UTILITY(U,$J,358.3,21947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21565,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of 1-5 hrs 59 minutes, sequela
- ;;^UTILITY(U,$J,358.3,21565,1,4,0)
- ;;=4^S06.353S
- ;;^UTILITY(U,$J,358.3,21565,2)
- ;;=^5020917
- ;;^UTILITY(U,$J,358.3,21566,0)
- ;;=S06.351S^^101^1032^85
- ;;^UTILITY(U,$J,358.3,21566,1,0)
+ ;;^UTILITY(U,$J,358.3,21947,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,21947,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,21947,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,21948,0)
+ ;;=H65.22^^87^971^16
+ ;;^UTILITY(U,$J,358.3,21948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21566,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,21566,1,4,0)
- ;;=4^S06.351S
- ;;^UTILITY(U,$J,358.3,21566,2)
- ;;=^5020911
- ;;^UTILITY(U,$J,358.3,21567,0)
- ;;=S06.352S^^101^1032^86
- ;;^UTILITY(U,$J,358.3,21567,1,0)
+ ;;^UTILITY(U,$J,358.3,21948,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,21948,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,21948,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,21949,0)
+ ;;=H65.21^^87^971^17
+ ;;^UTILITY(U,$J,358.3,21949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21567,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21567,1,4,0)
- ;;=4^S06.352S
- ;;^UTILITY(U,$J,358.3,21567,2)
- ;;=^5020914
- ;;^UTILITY(U,$J,358.3,21568,0)
- ;;=S06.354S^^101^1032^87
- ;;^UTILITY(U,$J,358.3,21568,1,0)
+ ;;^UTILITY(U,$J,358.3,21949,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,21949,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,21949,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,21950,0)
+ ;;=H66.012^^87^971^6
+ ;;^UTILITY(U,$J,358.3,21950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21568,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,21568,1,4,0)
- ;;=4^S06.354S
- ;;^UTILITY(U,$J,358.3,21568,2)
- ;;=^5020920
- ;;^UTILITY(U,$J,358.3,21569,0)
- ;;=S06.359S^^101^1032^88
- ;;^UTILITY(U,$J,358.3,21569,1,0)
+ ;;^UTILITY(U,$J,358.3,21950,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,21950,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,21950,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,21951,0)
+ ;;=H66.011^^87^971^7
+ ;;^UTILITY(U,$J,358.3,21951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21569,1,3,0)
- ;;=3^Traum hemor left cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,21569,1,4,0)
- ;;=4^S06.359S
- ;;^UTILITY(U,$J,358.3,21569,2)
- ;;=^5020935
- ;;^UTILITY(U,$J,358.3,21570,0)
- ;;=S06.350S^^101^1032^89
- ;;^UTILITY(U,$J,358.3,21570,1,0)
+ ;;^UTILITY(U,$J,358.3,21951,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,21951,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,21951,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,21952,0)
+ ;;=H66.91^^87^971^36
+ ;;^UTILITY(U,$J,358.3,21952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21570,1,3,0)
- ;;=3^Traum hemor left cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,21570,1,4,0)
- ;;=4^S06.350S
- ;;^UTILITY(U,$J,358.3,21570,2)
- ;;=^5020908
- ;;^UTILITY(U,$J,358.3,21571,0)
- ;;=S06.345S^^101^1032^90
- ;;^UTILITY(U,$J,358.3,21571,1,0)
+ ;;^UTILITY(U,$J,358.3,21952,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,21952,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,21952,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,21953,0)
+ ;;=H66.92^^87^971^35
+ ;;^UTILITY(U,$J,358.3,21953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21571,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,21571,1,4,0)
- ;;=4^S06.345S
- ;;^UTILITY(U,$J,358.3,21571,2)
- ;;=^5020893
- ;;^UTILITY(U,$J,358.3,21572,0)
- ;;=S06.346S^^101^1032^91
- ;;^UTILITY(U,$J,358.3,21572,1,0)
+ ;;^UTILITY(U,$J,358.3,21953,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,21953,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,21953,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,21954,0)
+ ;;=H66.93^^87^971^34
+ ;;^UTILITY(U,$J,358.3,21954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21572,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,21572,1,4,0)
- ;;=4^S06.346S
- ;;^UTILITY(U,$J,358.3,21572,2)
- ;;=^5020896
- ;;^UTILITY(U,$J,358.3,21573,0)
- ;;=S06.343S^^101^1032^97
- ;;^UTILITY(U,$J,358.3,21573,1,0)
+ ;;^UTILITY(U,$J,358.3,21954,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,21954,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,21954,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,21955,0)
+ ;;=H81.10^^87^971^37
+ ;;^UTILITY(U,$J,358.3,21955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21573,1,3,0)
- ;;=3^Traum hemor right cerebrumb w LOC of 1-5 hrs 59 minutes, sequela
- ;;^UTILITY(U,$J,358.3,21573,1,4,0)
- ;;=4^S06.343S
- ;;^UTILITY(U,$J,358.3,21573,2)
- ;;=^5020887
- ;;^UTILITY(U,$J,358.3,21574,0)
- ;;=S06.341S^^101^1032^92
- ;;^UTILITY(U,$J,358.3,21574,1,0)
+ ;;^UTILITY(U,$J,358.3,21955,1,3,0)
+ ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,21955,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,21955,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,21956,0)
+ ;;=H93.13^^87^971^38
+ ;;^UTILITY(U,$J,358.3,21956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21574,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,21574,1,4,0)
- ;;=4^S06.341S
- ;;^UTILITY(U,$J,358.3,21574,2)
- ;;=^5020881
- ;;^UTILITY(U,$J,358.3,21575,0)
- ;;=S06.342S^^101^1032^93
- ;;^UTILITY(U,$J,358.3,21575,1,0)
+ ;;^UTILITY(U,$J,358.3,21956,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,21956,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,21956,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,21957,0)
+ ;;=H93.12^^87^971^39
+ ;;^UTILITY(U,$J,358.3,21957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21575,1,3,0)
- ;;=3^Traum hemor right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21575,1,4,0)
- ;;=4^S06.342S
+ ;;^UTILITY(U,$J,358.3,21957,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,21957,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,21957,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,21958,0)
+ ;;=H93.11^^87^971^40
+ ;;^UTILITY(U,$J,358.3,21958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21958,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,21958,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,21958,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,21959,0)
+ ;;=H92.01^^87^971^33

@@ -1,124 +1,138 @@
-IBDEI0OL ; ; 19-NOV-2015
+IBDEI0OL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11250,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,11250,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,11250,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,11251,0)
- ;;=M47.814^^68^681^153
- ;;^UTILITY(U,$J,358.3,11251,1,0)
+ ;;^UTILITY(U,$J,358.3,11487,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,11488,0)
+ ;;=Z96.653^^47^533^79
+ ;;^UTILITY(U,$J,358.3,11488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11251,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,11251,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,11251,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,11252,0)
- ;;=M47.817^^68^681^154
- ;;^UTILITY(U,$J,358.3,11252,1,0)
+ ;;^UTILITY(U,$J,358.3,11488,1,3,0)
+ ;;=3^Knee Joint,Artificial,Bilateral
+ ;;^UTILITY(U,$J,358.3,11488,1,4,0)
+ ;;=4^Z96.653
+ ;;^UTILITY(U,$J,358.3,11488,2)
+ ;;=^5063707
+ ;;^UTILITY(U,$J,358.3,11489,0)
+ ;;=M40.209^^47^533^82
+ ;;^UTILITY(U,$J,358.3,11489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11252,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,11252,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,11252,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,11253,0)
- ;;=M48.50XA^^68^681^21
- ;;^UTILITY(U,$J,358.3,11253,1,0)
+ ;;^UTILITY(U,$J,358.3,11489,1,3,0)
+ ;;=3^Kyphosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11489,1,4,0)
+ ;;=4^M40.209
+ ;;^UTILITY(U,$J,358.3,11489,2)
+ ;;=^5011817
+ ;;^UTILITY(U,$J,358.3,11490,0)
+ ;;=M32.9^^47^533^83
+ ;;^UTILITY(U,$J,358.3,11490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11253,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,11253,1,4,0)
- ;;=4^M48.50XA
- ;;^UTILITY(U,$J,358.3,11253,2)
- ;;=^5012159
- ;;^UTILITY(U,$J,358.3,11254,0)
- ;;=M48.50XD^^68^681^22
- ;;^UTILITY(U,$J,358.3,11254,1,0)
+ ;;^UTILITY(U,$J,358.3,11490,1,3,0)
+ ;;=3^Lupus Erythematosus,Systemic,Unspec
+ ;;^UTILITY(U,$J,358.3,11490,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,11490,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,11491,0)
+ ;;=M62.830^^47^533^85
+ ;;^UTILITY(U,$J,358.3,11491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11254,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11254,1,4,0)
- ;;=4^M48.50XD
- ;;^UTILITY(U,$J,358.3,11254,2)
- ;;=^5012160
- ;;^UTILITY(U,$J,358.3,11255,0)
- ;;=M48.52XA^^68^681^23
- ;;^UTILITY(U,$J,358.3,11255,1,0)
+ ;;^UTILITY(U,$J,358.3,11491,1,3,0)
+ ;;=3^Muscle Spasm,Back
+ ;;^UTILITY(U,$J,358.3,11491,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,11491,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,11492,0)
+ ;;=M62.831^^47^533^86
+ ;;^UTILITY(U,$J,358.3,11492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11255,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,11255,1,4,0)
- ;;=4^M48.52XA
- ;;^UTILITY(U,$J,358.3,11255,2)
- ;;=^5012167
- ;;^UTILITY(U,$J,358.3,11256,0)
- ;;=M48.52XD^^68^681^24
- ;;^UTILITY(U,$J,358.3,11256,1,0)
+ ;;^UTILITY(U,$J,358.3,11492,1,3,0)
+ ;;=3^Muscle Spasm,Calf
+ ;;^UTILITY(U,$J,358.3,11492,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,11492,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,11493,0)
+ ;;=M62.838^^47^533^87
+ ;;^UTILITY(U,$J,358.3,11493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11256,1,3,0)
- ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,11256,1,4,0)
- ;;=4^M48.52XD
- ;;^UTILITY(U,$J,358.3,11256,2)
- ;;=^5012168
- ;;^UTILITY(U,$J,358.3,11257,0)
- ;;=M48.54XA^^68^681^32
- ;;^UTILITY(U,$J,358.3,11257,1,0)
+ ;;^UTILITY(U,$J,358.3,11493,1,3,0)
+ ;;=3^Muscle Spasm,Other
+ ;;^UTILITY(U,$J,358.3,11493,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,11493,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,11494,0)
+ ;;=M62.50^^47^533^88
+ ;;^UTILITY(U,$J,358.3,11494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11257,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,11257,1,4,0)
- ;;=4^M48.54XA
- ;;^UTILITY(U,$J,358.3,11257,2)
- ;;=^5012175
- ;;^UTILITY(U,$J,358.3,11258,0)
- ;;=M48.54XD^^68^681^33
- ;;^UTILITY(U,$J,358.3,11258,1,0)
+ ;;^UTILITY(U,$J,358.3,11494,1,3,0)
+ ;;=3^Muscle Wasting/Atrophy,Unspec Site NEC
+ ;;^UTILITY(U,$J,358.3,11494,1,4,0)
+ ;;=4^M62.50
+ ;;^UTILITY(U,$J,358.3,11494,2)
+ ;;=^5012655
+ ;;^UTILITY(U,$J,358.3,11495,0)
+ ;;=M62.81^^47^533^89
+ ;;^UTILITY(U,$J,358.3,11495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11258,1,3,0)
- ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11258,1,4,0)
- ;;=4^M48.54XD
- ;;^UTILITY(U,$J,358.3,11258,2)
- ;;=^5012176
- ;;^UTILITY(U,$J,358.3,11259,0)
- ;;=M48.57XA^^68^681^25
- ;;^UTILITY(U,$J,358.3,11259,1,0)
+ ;;^UTILITY(U,$J,358.3,11495,1,3,0)
+ ;;=3^Muscle Weakness,Generalized
+ ;;^UTILITY(U,$J,358.3,11495,1,4,0)
+ ;;=4^M62.81
+ ;;^UTILITY(U,$J,358.3,11495,2)
+ ;;=^332922
+ ;;^UTILITY(U,$J,358.3,11496,0)
+ ;;=M61.9^^47^533^90
+ ;;^UTILITY(U,$J,358.3,11496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11259,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
- ;;^UTILITY(U,$J,358.3,11259,1,4,0)
- ;;=4^M48.57XA
- ;;^UTILITY(U,$J,358.3,11259,2)
- ;;=^5012187
- ;;^UTILITY(U,$J,358.3,11260,0)
- ;;=M48.57XD^^68^681^26
- ;;^UTILITY(U,$J,358.3,11260,1,0)
+ ;;^UTILITY(U,$J,358.3,11496,1,3,0)
+ ;;=3^Muscle,Calcification/Ossification,Unspec
+ ;;^UTILITY(U,$J,358.3,11496,1,4,0)
+ ;;=4^M61.9
+ ;;^UTILITY(U,$J,358.3,11496,2)
+ ;;=^5012561
+ ;;^UTILITY(U,$J,358.3,11497,0)
+ ;;=M62.40^^47^533^91
+ ;;^UTILITY(U,$J,358.3,11497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11260,1,3,0)
- ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
- ;;^UTILITY(U,$J,358.3,11260,1,4,0)
- ;;=4^M48.57XD
- ;;^UTILITY(U,$J,358.3,11260,2)
- ;;=^5012188
- ;;^UTILITY(U,$J,358.3,11261,0)
- ;;=M50.30^^68^681^13
- ;;^UTILITY(U,$J,358.3,11261,1,0)
+ ;;^UTILITY(U,$J,358.3,11497,1,3,0)
+ ;;=3^Muscle,Contracture,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11497,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,11497,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,11498,0)
+ ;;=M62.9^^47^533^84
+ ;;^UTILITY(U,$J,358.3,11498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11261,1,3,0)
- ;;=3^Cervical Disc Degeneration,Unspec Region
- ;;^UTILITY(U,$J,358.3,11261,1,4,0)
- ;;=4^M50.30
- ;;^UTILITY(U,$J,358.3,11261,2)
- ;;=^5012227
- ;;^UTILITY(U,$J,358.3,11262,0)
- ;;=M51.14^^68^681^52
- ;;^UTILITY(U,$J,358.3,11262,1,0)
+ ;;^UTILITY(U,$J,358.3,11498,1,3,0)
+ ;;=3^Muscle Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11498,1,4,0)
+ ;;=4^M62.9
+ ;;^UTILITY(U,$J,358.3,11498,2)
+ ;;=^5012684
+ ;;^UTILITY(U,$J,358.3,11499,0)
+ ;;=M62.20^^47^533^92
+ ;;^UTILITY(U,$J,358.3,11499,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11499,1,3,0)
+ ;;=3^Muscle,Nontraumatic Ischemic Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11499,1,4,0)
+ ;;=4^M62.20
+ ;;^UTILITY(U,$J,358.3,11499,2)
+ ;;=^5012607
+ ;;^UTILITY(U,$J,358.3,11500,0)
+ ;;=M79.1^^47^533^93
+ ;;^UTILITY(U,$J,358.3,11500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11500,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,11500,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,11500,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,11501,0)
+ ;;=G72.1^^47^533^94

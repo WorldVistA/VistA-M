@@ -1,5 +1,5 @@
-ORMBLD ; SLC/MKB/JDL - Build outgoing ORM msgs ;4/12/04  12:33
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,33,26,45,79,97,133,168,187,190,195,215**;Dec 17, 1997
+ORMBLD ; SLC/MKB/JDL - Build outgoing ORM msgs ;04/16/14  12:58
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**3,33,26,45,79,97,133,168,187,190,195,215,350**;Dec 17, 1997;Build 77
  ;
 NEW(IFN,CODE) ; -- Send NW order message to pkg
  ;I $P($G(^ORD(101.42,+$$VALUE^ORCSAVE2(IFN,"URGENCY"),0)),U)="DONE" D STATUS^ORCSAVE2(IFN,2) Q  ; complete -> don't send to pkg
@@ -154,7 +154,7 @@ PS ; -- new Pharmacy order
  I +$$VALUE^ORCSAVE2(IFN,"URGENCY")=99,$P(OR3,U,11)'="B" D  Q  ;only send DONE orders from BCMA
  . D STATUS^ORCSAVE2(IFN,2) K ORMSG
  . I $P(OR3,U,11)=1,$P($G(^OR(100,+$P(OR3,U,5),3)),U,3)=5 D MSG(+$P(OR3,U,5),"CA") ;cancel original instead
- I ORDG=$O(^ORD(100.98,"B","IV RX",0))!(ORDG=$O(^ORD(100.98,"B","TPN",0)))!(IVDLG=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",0))) D IV^ORMBLDPS Q
+ I ORDG=$O(^ORD(100.98,"B","IV RX",0))!(ORDG=$O(^ORD(100.98,"B","TPN",0)))!(IVDLG=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",0)))!(IVDLG=$O(^ORD(101.41,"B","CLINIC OR PAT FLUID OE",0))) D IV^ORMBLDPS Q
  D @($S(PKG="PSIV":"IV",PKG="PSO":"OUT",PKG="PSH":"NVA",1:"UD")_"^ORMBLDPS")
  Q
  ;

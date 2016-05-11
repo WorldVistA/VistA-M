@@ -1,134 +1,128 @@
-IBDEI1VX ; ; 19-NOV-2015
+IBDEI1VX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31564,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,31564,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,31565,0)
- ;;=F34.8^^138^1430^6
- ;;^UTILITY(U,$J,358.3,31565,1,0)
+ ;;^UTILITY(U,$J,358.3,32012,1,4,0)
+ ;;=4^S92.024A
+ ;;^UTILITY(U,$J,358.3,32012,2)
+ ;;=^5044430
+ ;;^UTILITY(U,$J,358.3,32013,0)
+ ;;=S92.021A^^126^1609^80
+ ;;^UTILITY(U,$J,358.3,32013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31565,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,31565,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,31565,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,31566,0)
- ;;=F32.8^^138^1430^1
- ;;^UTILITY(U,$J,358.3,31566,1,0)
+ ;;^UTILITY(U,$J,358.3,32013,1,3,0)
+ ;;=3^Disp fx of anterior process of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32013,1,4,0)
+ ;;=4^S92.021A
+ ;;^UTILITY(U,$J,358.3,32013,2)
+ ;;=^5044409
+ ;;^UTILITY(U,$J,358.3,32014,0)
+ ;;=S92.022A^^126^1609^79
+ ;;^UTILITY(U,$J,358.3,32014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31566,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,31566,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,31566,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,31567,0)
- ;;=F34.1^^138^1430^22
- ;;^UTILITY(U,$J,358.3,31567,1,0)
+ ;;^UTILITY(U,$J,358.3,32014,1,3,0)
+ ;;=3^Disp fx of anterior process of lft calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32014,1,4,0)
+ ;;=4^S92.022A
+ ;;^UTILITY(U,$J,358.3,32014,2)
+ ;;=^5044416
+ ;;^UTILITY(U,$J,358.3,32015,0)
+ ;;=S92.015A^^126^1609^306
+ ;;^UTILITY(U,$J,358.3,32015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31567,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,31567,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,31567,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,31568,0)
- ;;=F32.9^^138^1430^5
- ;;^UTILITY(U,$J,358.3,31568,1,0)
+ ;;^UTILITY(U,$J,358.3,32015,1,3,0)
+ ;;=3^Nondisp fx of body of lft calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32015,1,4,0)
+ ;;=4^S92.015A
+ ;;^UTILITY(U,$J,358.3,32015,2)
+ ;;=^5044395
+ ;;^UTILITY(U,$J,358.3,32016,0)
+ ;;=S92.014A^^126^1609^308
+ ;;^UTILITY(U,$J,358.3,32016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31568,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31568,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,31568,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,31569,0)
- ;;=N94.3^^138^1430^23
- ;;^UTILITY(U,$J,358.3,31569,1,0)
+ ;;^UTILITY(U,$J,358.3,32016,1,3,0)
+ ;;=3^Nondisp fx of body of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32016,1,4,0)
+ ;;=4^S92.014A
+ ;;^UTILITY(U,$J,358.3,32016,2)
+ ;;=^5044388
+ ;;^UTILITY(U,$J,358.3,32017,0)
+ ;;=S92.033A^^126^1609^9
+ ;;^UTILITY(U,$J,358.3,32017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31569,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,31569,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,31569,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,31570,0)
- ;;=G31.84^^138^1430^21
- ;;^UTILITY(U,$J,358.3,31570,1,0)
+ ;;^UTILITY(U,$J,358.3,32017,1,3,0)
+ ;;=3^Disp avulsion fx tuberosity of calcaneus, unspec, init
+ ;;^UTILITY(U,$J,358.3,32017,1,4,0)
+ ;;=4^S92.033A
+ ;;^UTILITY(U,$J,358.3,32017,2)
+ ;;=^5044465
+ ;;^UTILITY(U,$J,358.3,32018,0)
+ ;;=S92.034A^^126^1609^233
+ ;;^UTILITY(U,$J,358.3,32018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31570,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,31570,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,31570,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,31571,0)
- ;;=F44.81^^138^1431^5
- ;;^UTILITY(U,$J,358.3,31571,1,0)
+ ;;^UTILITY(U,$J,358.3,32018,1,3,0)
+ ;;=3^Nondisp avulsion fx of tuberosity of rt calcaneus, init
+ ;;^UTILITY(U,$J,358.3,32018,1,4,0)
+ ;;=4^S92.034A
+ ;;^UTILITY(U,$J,358.3,32018,2)
+ ;;=^5044472
+ ;;^UTILITY(U,$J,358.3,32019,0)
+ ;;=S92.902A^^126^1609^193
+ ;;^UTILITY(U,$J,358.3,32019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31571,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,31571,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,31571,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,31572,0)
- ;;=F44.9^^138^1431^4
- ;;^UTILITY(U,$J,358.3,31572,1,0)
+ ;;^UTILITY(U,$J,358.3,32019,1,3,0)
+ ;;=3^Fx of lft foot, unspec, init
+ ;;^UTILITY(U,$J,358.3,32019,1,4,0)
+ ;;=4^S92.902A
+ ;;^UTILITY(U,$J,358.3,32019,2)
+ ;;=^5045585
+ ;;^UTILITY(U,$J,358.3,32020,0)
+ ;;=S92.901A^^126^1609^211
+ ;;^UTILITY(U,$J,358.3,32020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31572,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31572,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,31572,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,31573,0)
- ;;=F44.0^^138^1431^2
- ;;^UTILITY(U,$J,358.3,31573,1,0)
+ ;;^UTILITY(U,$J,358.3,32020,1,3,0)
+ ;;=3^Fx of rt ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,32020,1,4,0)
+ ;;=4^S92.901A
+ ;;^UTILITY(U,$J,358.3,32020,2)
+ ;;=^5045578
+ ;;^UTILITY(U,$J,358.3,32021,0)
+ ;;=S92.192A^^126^1609^199
+ ;;^UTILITY(U,$J,358.3,32021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31573,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,31573,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,31573,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,31574,0)
- ;;=F48.1^^138^1431^1
- ;;^UTILITY(U,$J,358.3,31574,1,0)
+ ;;^UTILITY(U,$J,358.3,32021,1,3,0)
+ ;;=3^Fx of lft talus, oth, init
+ ;;^UTILITY(U,$J,358.3,32021,1,4,0)
+ ;;=4^S92.192A
+ ;;^UTILITY(U,$J,358.3,32021,2)
+ ;;=^5137581
+ ;;^UTILITY(U,$J,358.3,32022,0)
+ ;;=S92.191A^^126^1609^216
+ ;;^UTILITY(U,$J,358.3,32022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31574,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,31574,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,31574,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,31575,0)
- ;;=F44.89^^138^1431^3
- ;;^UTILITY(U,$J,358.3,31575,1,0)
+ ;;^UTILITY(U,$J,358.3,32022,1,3,0)
+ ;;=3^Fx of rt talus, oth, init
+ ;;^UTILITY(U,$J,358.3,32022,1,4,0)
+ ;;=4^S92.191A
+ ;;^UTILITY(U,$J,358.3,32022,2)
+ ;;=^5044815
+ ;;^UTILITY(U,$J,358.3,32023,0)
+ ;;=S92.155A^^126^1609^230
+ ;;^UTILITY(U,$J,358.3,32023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31575,1,3,0)
- ;;=3^Dissociative Disorder NEC
- ;;^UTILITY(U,$J,358.3,31575,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,31575,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,31576,0)
- ;;=F50.02^^138^1432^1
- ;;^UTILITY(U,$J,358.3,31576,1,0)
+ ;;^UTILITY(U,$J,358.3,32023,1,3,0)
+ ;;=3^Nondisp avulsion fx (chip) of lft talus, init
+ ;;^UTILITY(U,$J,358.3,32023,1,4,0)
+ ;;=4^S92.155A
+ ;;^UTILITY(U,$J,358.3,32023,2)
+ ;;=^5044801
+ ;;^UTILITY(U,$J,358.3,32024,0)
+ ;;=S92.154A^^126^1609^231
+ ;;^UTILITY(U,$J,358.3,32024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31576,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,31576,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,31576,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,31577,0)
- ;;=F50.01^^138^1432^2
- ;;^UTILITY(U,$J,358.3,31577,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31577,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
+ ;;^UTILITY(U,$J,358.3,32024,1,3,0)
+ ;;=3^Nondisp avulsion fx (chip) of rt talus, init
+ ;;^UTILITY(U,$J,358.3,32024,1,4,0)
+ ;;=4^S92.154A
+ ;;^UTILITY(U,$J,358.3,32024,2)
+ ;;=^5044794

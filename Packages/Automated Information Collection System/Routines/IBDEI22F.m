@@ -1,124 +1,124 @@
-IBDEI22F ; ; 19-NOV-2015
+IBDEI22F ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34633,2)
- ;;=^5020716
- ;;^UTILITY(U,$J,358.3,34634,0)
- ;;=S06.1X7A^^160^1761^59
- ;;^UTILITY(U,$J,358.3,34634,1,0)
+ ;;^UTILITY(U,$J,358.3,35030,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,35030,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,35031,0)
+ ;;=R40.2222^^131^1698^20
+ ;;^UTILITY(U,$J,358.3,35031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34634,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, init
- ;;^UTILITY(U,$J,358.3,34634,1,4,0)
- ;;=4^S06.1X7A
- ;;^UTILITY(U,$J,358.3,34634,2)
- ;;=^5020717
- ;;^UTILITY(U,$J,358.3,34635,0)
- ;;=S06.1X7D^^160^1761^60
- ;;^UTILITY(U,$J,358.3,34635,1,0)
+ ;;^UTILITY(U,$J,358.3,35031,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,35031,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,35031,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,35032,0)
+ ;;=R40.2221^^131^1698^21
+ ;;^UTILITY(U,$J,358.3,35032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34635,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, subs
- ;;^UTILITY(U,$J,358.3,34635,1,4,0)
- ;;=4^S06.1X7D
- ;;^UTILITY(U,$J,358.3,34635,2)
- ;;=^5020718
- ;;^UTILITY(U,$J,358.3,34636,0)
- ;;=S06.1X7S^^160^1761^61
- ;;^UTILITY(U,$J,358.3,34636,1,0)
+ ;;^UTILITY(U,$J,358.3,35032,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,35032,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,35032,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,35033,0)
+ ;;=R40.2220^^131^1698^22
+ ;;^UTILITY(U,$J,358.3,35033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34636,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t brain inj bf consc, sqla
- ;;^UTILITY(U,$J,358.3,34636,1,4,0)
- ;;=4^S06.1X7S
- ;;^UTILITY(U,$J,358.3,34636,2)
- ;;=^5020719
- ;;^UTILITY(U,$J,358.3,34637,0)
- ;;=S06.1X8A^^160^1761^62
- ;;^UTILITY(U,$J,358.3,34637,1,0)
+ ;;^UTILITY(U,$J,358.3,35033,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,35033,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,35033,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,35034,0)
+ ;;=R40.2214^^131^1698^23
+ ;;^UTILITY(U,$J,358.3,35034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34637,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, init
- ;;^UTILITY(U,$J,358.3,34637,1,4,0)
- ;;=4^S06.1X8A
- ;;^UTILITY(U,$J,358.3,34637,2)
- ;;=^5020720
- ;;^UTILITY(U,$J,358.3,34638,0)
- ;;=S06.1X8D^^160^1761^63
- ;;^UTILITY(U,$J,358.3,34638,1,0)
+ ;;^UTILITY(U,$J,358.3,35034,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,35034,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,35034,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,35035,0)
+ ;;=R40.2213^^131^1698^25
+ ;;^UTILITY(U,$J,358.3,35035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34638,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, subs
- ;;^UTILITY(U,$J,358.3,34638,1,4,0)
- ;;=4^S06.1X8D
- ;;^UTILITY(U,$J,358.3,34638,2)
- ;;=^5020721
- ;;^UTILITY(U,$J,358.3,34639,0)
- ;;=S06.1X8S^^160^1761^64
- ;;^UTILITY(U,$J,358.3,34639,1,0)
+ ;;^UTILITY(U,$J,358.3,35035,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,35035,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,35035,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,35036,0)
+ ;;=R40.2212^^131^1698^24
+ ;;^UTILITY(U,$J,358.3,35036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34639,1,3,0)
- ;;=3^Traum cereb edema w LOC w death d/t oth cause bf consc, sqla
- ;;^UTILITY(U,$J,358.3,34639,1,4,0)
- ;;=4^S06.1X8S
- ;;^UTILITY(U,$J,358.3,34639,2)
- ;;=^5020722
- ;;^UTILITY(U,$J,358.3,34640,0)
- ;;=S06.1X9A^^160^1761^56
- ;;^UTILITY(U,$J,358.3,34640,1,0)
+ ;;^UTILITY(U,$J,358.3,35036,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,35036,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,35036,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,35037,0)
+ ;;=R40.2344^^131^1698^6
+ ;;^UTILITY(U,$J,358.3,35037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34640,1,3,0)
- ;;=3^Traum cereb edema w LOC of unsp duration, init
- ;;^UTILITY(U,$J,358.3,34640,1,4,0)
- ;;=4^S06.1X9A
- ;;^UTILITY(U,$J,358.3,34640,2)
- ;;=^5020723
- ;;^UTILITY(U,$J,358.3,34641,0)
- ;;=S06.1X9D^^160^1761^57
- ;;^UTILITY(U,$J,358.3,34641,1,0)
+ ;;^UTILITY(U,$J,358.3,35037,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,35037,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,35037,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,35038,0)
+ ;;=R40.2343^^131^1698^7
+ ;;^UTILITY(U,$J,358.3,35038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34641,1,3,0)
- ;;=3^Traum cereb edema w LOC of unsp duration, subs
- ;;^UTILITY(U,$J,358.3,34641,1,4,0)
- ;;=4^S06.1X9D
- ;;^UTILITY(U,$J,358.3,34641,2)
- ;;=^5020724
- ;;^UTILITY(U,$J,358.3,34642,0)
- ;;=S06.1X9S^^160^1761^58
- ;;^UTILITY(U,$J,358.3,34642,1,0)
+ ;;^UTILITY(U,$J,358.3,35038,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,35038,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,35038,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,35039,0)
+ ;;=R40.2342^^131^1698^8
+ ;;^UTILITY(U,$J,358.3,35039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34642,1,3,0)
- ;;=3^Traum cereb edema w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,34642,1,4,0)
- ;;=4^S06.1X9S
- ;;^UTILITY(U,$J,358.3,34642,2)
- ;;=^5020725
- ;;^UTILITY(U,$J,358.3,34643,0)
- ;;=M54.2^^160^1762^4
- ;;^UTILITY(U,$J,358.3,34643,1,0)
+ ;;^UTILITY(U,$J,358.3,35039,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,35039,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,35039,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,35040,0)
+ ;;=R40.2341^^131^1698^9
+ ;;^UTILITY(U,$J,358.3,35040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34643,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,34643,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,34643,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,34644,0)
- ;;=I65.21^^160^1762^9
- ;;^UTILITY(U,$J,358.3,34644,1,0)
+ ;;^UTILITY(U,$J,358.3,35040,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,35040,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,35040,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,35041,0)
+ ;;=R40.2340^^131^1698^10
+ ;;^UTILITY(U,$J,358.3,35041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34644,1,3,0)
- ;;=3^Occlusion and stenosis of right carotid artery
- ;;^UTILITY(U,$J,358.3,34644,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,34644,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,34645,0)
- ;;=I65.22^^160^1762^8
- ;;^UTILITY(U,$J,358.3,34645,1,0)
+ ;;^UTILITY(U,$J,358.3,35041,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,35041,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,35041,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,35042,0)
+ ;;=R40.2324^^131^1698^1
+ ;;^UTILITY(U,$J,358.3,35042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34645,1,3,0)
- ;;=3^Occlusion and stenosis of left carotid artery
- ;;^UTILITY(U,$J,358.3,34645,1,4,0)
- ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,35042,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs

@@ -1,124 +1,130 @@
-IBDEI2FY ; ; 19-NOV-2015
+IBDEI2FY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40981,0)
- ;;=S92.254K^^189^2086^337
- ;;^UTILITY(U,$J,358.3,40981,1,0)
+ ;;^UTILITY(U,$J,358.3,41405,1,4,0)
+ ;;=4^C80.1
+ ;;^UTILITY(U,$J,358.3,41405,2)
+ ;;=^5001389
+ ;;^UTILITY(U,$J,358.3,41406,0)
+ ;;=C80.0^^159^2004^164
+ ;;^UTILITY(U,$J,358.3,41406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40981,1,3,0)
- ;;=3^Nondisp fx of navclr rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40981,1,4,0)
- ;;=4^S92.254K
- ;;^UTILITY(U,$J,358.3,40981,2)
- ;;=^5045029
- ;;^UTILITY(U,$J,358.3,40982,0)
- ;;=S92.144K^^189^2086^248
- ;;^UTILITY(U,$J,358.3,40982,1,0)
+ ;;^UTILITY(U,$J,358.3,41406,1,3,0)
+ ;;=3^Malig Neop,Unspec Primary or Secondary
+ ;;^UTILITY(U,$J,358.3,41406,1,4,0)
+ ;;=4^C80.0
+ ;;^UTILITY(U,$J,358.3,41406,2)
+ ;;=^5001388
+ ;;^UTILITY(U,$J,358.3,41407,0)
+ ;;=Z85.818^^159^2005^92
+ ;;^UTILITY(U,$J,358.3,41407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40982,1,3,0)
- ;;=3^Nondisp dome fx of rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40982,1,4,0)
- ;;=4^S92.144K
- ;;^UTILITY(U,$J,358.3,40982,2)
- ;;=^5044756
- ;;^UTILITY(U,$J,358.3,40983,0)
- ;;=S92.524K^^189^2086^333
- ;;^UTILITY(U,$J,358.3,40983,1,0)
+ ;;^UTILITY(U,$J,358.3,41407,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
+ ;;^UTILITY(U,$J,358.3,41407,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,41407,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,41408,0)
+ ;;=Z85.819^^159^2005^93
+ ;;^UTILITY(U,$J,358.3,41408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40983,1,3,0)
- ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40983,1,4,0)
- ;;=4^S92.524K
- ;;^UTILITY(U,$J,358.3,40983,2)
- ;;=^5045498
- ;;^UTILITY(U,$J,358.3,40984,0)
- ;;=S92.145K^^189^2086^246
- ;;^UTILITY(U,$J,358.3,40984,1,0)
+ ;;^UTILITY(U,$J,358.3,41408,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,41408,1,4,0)
+ ;;=4^Z85.819
+ ;;^UTILITY(U,$J,358.3,41408,2)
+ ;;=^5063440
+ ;;^UTILITY(U,$J,358.3,41409,0)
+ ;;=Z85.01^^159^2005^88
+ ;;^UTILITY(U,$J,358.3,41409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40984,1,3,0)
- ;;=3^Nondisp dome fx of lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40984,1,4,0)
- ;;=4^S92.145K
- ;;^UTILITY(U,$J,358.3,40984,2)
- ;;=^5044763
- ;;^UTILITY(U,$J,358.3,40985,0)
- ;;=S92.522K^^189^2086^107
- ;;^UTILITY(U,$J,358.3,40985,1,0)
+ ;;^UTILITY(U,$J,358.3,41409,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Esophagus
+ ;;^UTILITY(U,$J,358.3,41409,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,41409,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,41410,0)
+ ;;=Z85.028^^159^2005^99
+ ;;^UTILITY(U,$J,358.3,41410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40985,1,3,0)
- ;;=3^Disp fx of med phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40985,1,4,0)
- ;;=4^S92.522K
- ;;^UTILITY(U,$J,358.3,40985,2)
- ;;=^5045484
- ;;^UTILITY(U,$J,358.3,40986,0)
- ;;=S92.521K^^189^2086^109
- ;;^UTILITY(U,$J,358.3,40986,1,0)
+ ;;^UTILITY(U,$J,358.3,41410,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,41410,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,41410,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,41411,0)
+ ;;=Z85.038^^159^2005^90
+ ;;^UTILITY(U,$J,358.3,41411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40986,1,3,0)
- ;;=3^Disp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40986,1,4,0)
- ;;=4^S92.521K
- ;;^UTILITY(U,$J,358.3,40986,2)
- ;;=^5045477
- ;;^UTILITY(U,$J,358.3,40987,0)
- ;;=S92.515K^^189^2086^346
- ;;^UTILITY(U,$J,358.3,40987,1,0)
+ ;;^UTILITY(U,$J,358.3,41411,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,41411,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,41411,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,41412,0)
+ ;;=Z85.048^^159^2005^97
+ ;;^UTILITY(U,$J,358.3,41412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40987,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of lft lsr toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40987,1,4,0)
- ;;=4^S92.515K
- ;;^UTILITY(U,$J,358.3,40987,2)
- ;;=^5045463
- ;;^UTILITY(U,$J,358.3,40988,0)
- ;;=S92.514K^^189^2086^350
- ;;^UTILITY(U,$J,358.3,40988,1,0)
+ ;;^UTILITY(U,$J,358.3,41412,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
+ ;;^UTILITY(U,$J,358.3,41412,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,41412,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,41413,0)
+ ;;=Z85.118^^159^2005^86
+ ;;^UTILITY(U,$J,358.3,41413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40988,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40988,1,4,0)
- ;;=4^S92.514K
- ;;^UTILITY(U,$J,358.3,40988,2)
- ;;=^5045456
- ;;^UTILITY(U,$J,358.3,40989,0)
- ;;=S92.512K^^189^2086^2
- ;;^UTILITY(U,$J,358.3,40989,1,0)
+ ;;^UTILITY(U,$J,358.3,41413,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
+ ;;^UTILITY(U,$J,358.3,41413,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,41413,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,41414,0)
+ ;;=Z85.21^^159^2005^91
+ ;;^UTILITY(U,$J,358.3,41414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40989,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,40989,1,4,0)
- ;;=4^S92.512K
- ;;^UTILITY(U,$J,358.3,40989,2)
- ;;=^5045442
- ;;^UTILITY(U,$J,358.3,40990,0)
- ;;=S92.512K^^189^2086^121
- ;;^UTILITY(U,$J,358.3,40990,1,0)
+ ;;^UTILITY(U,$J,358.3,41414,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Larynx
+ ;;^UTILITY(U,$J,358.3,41414,1,4,0)
+ ;;=4^Z85.21
+ ;;^UTILITY(U,$J,358.3,41414,2)
+ ;;=^5063411
+ ;;^UTILITY(U,$J,358.3,41415,0)
+ ;;=Z85.3^^159^2005^85
+ ;;^UTILITY(U,$J,358.3,41415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40990,1,3,0)
- ;;=3^Disp fx of prox phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40990,1,4,0)
- ;;=4^S92.512K
- ;;^UTILITY(U,$J,358.3,40990,2)
- ;;=^5045442
- ;;^UTILITY(U,$J,358.3,40991,0)
- ;;=S92.511K^^189^2086^124
- ;;^UTILITY(U,$J,358.3,40991,1,0)
+ ;;^UTILITY(U,$J,358.3,41415,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,41415,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,41415,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,41416,0)
+ ;;=Z85.41^^159^2005^87
+ ;;^UTILITY(U,$J,358.3,41416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40991,1,3,0)
- ;;=3^Disp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40991,1,4,0)
- ;;=4^S92.511K
- ;;^UTILITY(U,$J,358.3,40991,2)
- ;;=^5045435
- ;;^UTILITY(U,$J,358.3,40992,0)
- ;;=S92.505K^^189^2086^266
- ;;^UTILITY(U,$J,358.3,40992,1,0)
+ ;;^UTILITY(U,$J,358.3,41416,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,41416,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,41416,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,41417,0)
+ ;;=Z85.43^^159^2005^95
+ ;;^UTILITY(U,$J,358.3,41417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40992,1,3,0)
- ;;=3^Nondisp fx lft lsr toe(s), subs for nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40992,1,4,0)
- ;;=4^S92.505K
- ;;^UTILITY(U,$J,358.3,40992,2)
- ;;=^5045428
+ ;;^UTILITY(U,$J,358.3,41417,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,41417,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,41417,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,41418,0)
+ ;;=Z85.46^^159^2005^96

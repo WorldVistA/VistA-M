@@ -1,140 +1,132 @@
-IBDEI094 ; ; 19-NOV-2015
+IBDEI094 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3721,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,3721,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,3722,0)
- ;;=Z96.651^^28^258^81
- ;;^UTILITY(U,$J,358.3,3722,1,0)
+ ;;^UTILITY(U,$J,358.3,3981,1,3,0)
+ ;;=3^Problems Related to Adverse Discrimination/Persecution
+ ;;^UTILITY(U,$J,358.3,3981,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,3981,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,3982,0)
+ ;;=Z75.3^^18^224^158
+ ;;^UTILITY(U,$J,358.3,3982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3722,1,3,0)
- ;;=3^Knee Joint,Artificial,Right
- ;;^UTILITY(U,$J,358.3,3722,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,3722,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,3723,0)
- ;;=Z96.653^^28^258^79
- ;;^UTILITY(U,$J,358.3,3723,1,0)
+ ;;^UTILITY(U,$J,358.3,3982,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,3982,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,3982,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,3983,0)
+ ;;=Z75.4^^18^224^159
+ ;;^UTILITY(U,$J,358.3,3983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3723,1,3,0)
- ;;=3^Knee Joint,Artificial,Bilateral
- ;;^UTILITY(U,$J,358.3,3723,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,3723,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,3724,0)
- ;;=M40.209^^28^258^82
- ;;^UTILITY(U,$J,358.3,3724,1,0)
+ ;;^UTILITY(U,$J,358.3,3983,1,3,0)
+ ;;=3^Problems Related to Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,3983,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,3983,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,3984,0)
+ ;;=Z65.9^^18^224^153
+ ;;^UTILITY(U,$J,358.3,3984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3724,1,3,0)
- ;;=3^Kyphosis,Unspec Site
- ;;^UTILITY(U,$J,358.3,3724,1,4,0)
- ;;=4^M40.209
- ;;^UTILITY(U,$J,358.3,3724,2)
- ;;=^5011817
- ;;^UTILITY(U,$J,358.3,3725,0)
- ;;=M32.9^^28^258^83
- ;;^UTILITY(U,$J,358.3,3725,1,0)
+ ;;^UTILITY(U,$J,358.3,3984,1,3,0)
+ ;;=3^Problems Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,3984,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,3984,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,3985,0)
+ ;;=Z75.2^^18^224^160
+ ;;^UTILITY(U,$J,358.3,3985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3725,1,3,0)
- ;;=3^Lupus Erythematosus,Systemic,Unspec
- ;;^UTILITY(U,$J,358.3,3725,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,3725,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,3726,0)
- ;;=M62.830^^28^258^85
- ;;^UTILITY(U,$J,358.3,3726,1,0)
+ ;;^UTILITY(U,$J,358.3,3985,1,3,0)
+ ;;=3^Problems Related to Waiting Period for Investigation/Treatment
+ ;;^UTILITY(U,$J,358.3,3985,1,4,0)
+ ;;=4^Z75.2
+ ;;^UTILITY(U,$J,358.3,3985,2)
+ ;;=^5063291
+ ;;^UTILITY(U,$J,358.3,3986,0)
+ ;;=Z75.5^^18^224^161
+ ;;^UTILITY(U,$J,358.3,3986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3726,1,3,0)
- ;;=3^Muscle Spasm,Back
- ;;^UTILITY(U,$J,358.3,3726,1,4,0)
- ;;=4^M62.830
- ;;^UTILITY(U,$J,358.3,3726,2)
- ;;=^5012680
- ;;^UTILITY(U,$J,358.3,3727,0)
- ;;=M62.831^^28^258^86
- ;;^UTILITY(U,$J,358.3,3727,1,0)
+ ;;^UTILITY(U,$J,358.3,3986,1,3,0)
+ ;;=3^Respite/Holiday Relief Care
+ ;;^UTILITY(U,$J,358.3,3986,1,4,0)
+ ;;=4^Z75.5
+ ;;^UTILITY(U,$J,358.3,3986,2)
+ ;;=^5063294
+ ;;^UTILITY(U,$J,358.3,3987,0)
+ ;;=R68.89^^18^224^165
+ ;;^UTILITY(U,$J,358.3,3987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3727,1,3,0)
- ;;=3^Muscle Spasm,Calf
- ;;^UTILITY(U,$J,358.3,3727,1,4,0)
- ;;=4^M62.831
- ;;^UTILITY(U,$J,358.3,3727,2)
- ;;=^5012681
- ;;^UTILITY(U,$J,358.3,3728,0)
- ;;=M62.838^^28^258^87
- ;;^UTILITY(U,$J,358.3,3728,1,0)
+ ;;^UTILITY(U,$J,358.3,3987,1,3,0)
+ ;;=3^Symptoms/Signs,General,Other
+ ;;^UTILITY(U,$J,358.3,3987,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,3987,2)
+ ;;=^5019557
+ ;;^UTILITY(U,$J,358.3,3988,0)
+ ;;=Z72.0^^18^224^168
+ ;;^UTILITY(U,$J,358.3,3988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3728,1,3,0)
- ;;=3^Muscle Spasm,Other
- ;;^UTILITY(U,$J,358.3,3728,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,3728,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,3729,0)
- ;;=M62.50^^28^258^88
- ;;^UTILITY(U,$J,358.3,3729,1,0)
+ ;;^UTILITY(U,$J,358.3,3988,1,3,0)
+ ;;=3^Tobacco Use
+ ;;^UTILITY(U,$J,358.3,3988,1,4,0)
+ ;;=4^Z72.0
+ ;;^UTILITY(U,$J,358.3,3988,2)
+ ;;=^5063255
+ ;;^UTILITY(U,$J,358.3,3989,0)
+ ;;=Z94.9^^18^224^169
+ ;;^UTILITY(U,$J,358.3,3989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3729,1,3,0)
- ;;=3^Muscle Wasting/Atrophy,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,3729,1,4,0)
- ;;=4^M62.50
- ;;^UTILITY(U,$J,358.3,3729,2)
- ;;=^5012655
- ;;^UTILITY(U,$J,358.3,3730,0)
- ;;=M62.81^^28^258^89
- ;;^UTILITY(U,$J,358.3,3730,1,0)
+ ;;^UTILITY(U,$J,358.3,3989,1,3,0)
+ ;;=3^Transplanted Organ/Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,3989,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,3989,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,3990,0)
+ ;;=R76.11^^18^224^166
+ ;;^UTILITY(U,$J,358.3,3990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3730,1,3,0)
- ;;=3^Muscle Weakness,Generalized
- ;;^UTILITY(U,$J,358.3,3730,1,4,0)
- ;;=4^M62.81
- ;;^UTILITY(U,$J,358.3,3730,2)
- ;;=^332922
- ;;^UTILITY(U,$J,358.3,3731,0)
- ;;=M61.9^^28^258^90
- ;;^UTILITY(U,$J,358.3,3731,1,0)
+ ;;^UTILITY(U,$J,358.3,3990,1,3,0)
+ ;;=3^TB Skin Test,Nonspecific Reaction w/o Active Tuberculosis
+ ;;^UTILITY(U,$J,358.3,3990,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,3990,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,3991,0)
+ ;;=W10.9XXS^^18^225^18
+ ;;^UTILITY(U,$J,358.3,3991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3731,1,3,0)
- ;;=3^Muscle,Calcification/Ossification,Unspec
- ;;^UTILITY(U,$J,358.3,3731,1,4,0)
- ;;=4^M61.9
- ;;^UTILITY(U,$J,358.3,3731,2)
- ;;=^5012561
- ;;^UTILITY(U,$J,358.3,3732,0)
- ;;=M62.40^^28^258^91
- ;;^UTILITY(U,$J,358.3,3732,1,0)
+ ;;^UTILITY(U,$J,358.3,3991,1,3,0)
+ ;;=3^Fall from Stairs/Steps,Sequela
+ ;;^UTILITY(U,$J,358.3,3991,1,4,0)
+ ;;=4^W10.9XXS
+ ;;^UTILITY(U,$J,358.3,3991,2)
+ ;;=^5059594
+ ;;^UTILITY(U,$J,358.3,3992,0)
+ ;;=W10.0XXS^^18^225^9
+ ;;^UTILITY(U,$J,358.3,3992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3732,1,3,0)
- ;;=3^Muscle,Contracture,Unspec Site
- ;;^UTILITY(U,$J,358.3,3732,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,3732,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,3733,0)
- ;;=M62.9^^28^258^84
- ;;^UTILITY(U,$J,358.3,3733,1,0)
+ ;;^UTILITY(U,$J,358.3,3992,1,3,0)
+ ;;=3^Fall from Escalator,Sequela
+ ;;^UTILITY(U,$J,358.3,3992,1,4,0)
+ ;;=4^W10.0XXS
+ ;;^UTILITY(U,$J,358.3,3992,2)
+ ;;=^5059582
+ ;;^UTILITY(U,$J,358.3,3993,0)
+ ;;=W10.2XXS^^18^225^11
+ ;;^UTILITY(U,$J,358.3,3993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3733,1,3,0)
- ;;=3^Muscle Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3733,1,4,0)
- ;;=4^M62.9
- ;;^UTILITY(U,$J,358.3,3733,2)
- ;;=^5012684
- ;;^UTILITY(U,$J,358.3,3734,0)
- ;;=M62.20^^28^258^92
- ;;^UTILITY(U,$J,358.3,3734,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3734,1,3,0)
- ;;=3^Muscle,Nontraumatic Ischemic Infarction,Unspec Site
- ;;^UTILITY(U,$J,358.3,3734,1,4,0)
- ;;=4^M62.20
- ;;^UTILITY(U,$J,358.3,3734,2)
- ;;=^5012607
- ;;^UTILITY(U,$J,358.3,3735,0)
- ;;=M79.1^^28^258^93
+ ;;^UTILITY(U,$J,358.3,3993,1,3,0)
+ ;;=3^Fall from Incline,Sequela
+ ;;^UTILITY(U,$J,358.3,3993,1,4,0)
+ ;;=4^W10.2XXS
+ ;;^UTILITY(U,$J,358.3,3993,2)
+ ;;=^5059588
+ ;;^UTILITY(U,$J,358.3,3994,0)
+ ;;=W10.1XXS^^18^225^17

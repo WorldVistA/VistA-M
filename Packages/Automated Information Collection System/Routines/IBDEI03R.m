@@ -1,140 +1,136 @@
-IBDEI03R ; ; 19-NOV-2015
+IBDEI03R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1049,0)
- ;;=K82.9^^12^125^2
- ;;^UTILITY(U,$J,358.3,1049,1,0)
+ ;;^UTILITY(U,$J,358.3,1330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1049,1,3,0)
- ;;=3^Gallbladder Disease,Unspec
- ;;^UTILITY(U,$J,358.3,1049,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,1049,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,1050,0)
- ;;=K92.2^^12^125^6
- ;;^UTILITY(U,$J,358.3,1050,1,0)
+ ;;^UTILITY(U,$J,358.3,1330,1,3,0)
+ ;;=3^Ototoxic hearing loss, right ear
+ ;;^UTILITY(U,$J,358.3,1330,1,4,0)
+ ;;=4^H91.01
+ ;;^UTILITY(U,$J,358.3,1330,2)
+ ;;=^5006928
+ ;;^UTILITY(U,$J,358.3,1331,0)
+ ;;=H91.13^^8^132^16
+ ;;^UTILITY(U,$J,358.3,1331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1050,1,3,0)
- ;;=3^Gastrointestinal Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,1050,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,1050,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,1051,0)
- ;;=K25.9^^12^125^3
- ;;^UTILITY(U,$J,358.3,1051,1,0)
+ ;;^UTILITY(U,$J,358.3,1331,1,3,0)
+ ;;=3^Presbycusis, bilateral
+ ;;^UTILITY(U,$J,358.3,1331,1,4,0)
+ ;;=4^H91.13
+ ;;^UTILITY(U,$J,358.3,1331,2)
+ ;;=^5006935
+ ;;^UTILITY(U,$J,358.3,1332,0)
+ ;;=H91.12^^8^132^17
+ ;;^UTILITY(U,$J,358.3,1332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1051,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,1051,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,1051,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,1052,0)
- ;;=I69.959^^12^126^11
- ;;^UTILITY(U,$J,358.3,1052,1,0)
+ ;;^UTILITY(U,$J,358.3,1332,1,3,0)
+ ;;=3^Presbycusis, left ear
+ ;;^UTILITY(U,$J,358.3,1332,1,4,0)
+ ;;=4^H91.12
+ ;;^UTILITY(U,$J,358.3,1332,2)
+ ;;=^5006934
+ ;;^UTILITY(U,$J,358.3,1333,0)
+ ;;=H91.11^^8^132^18
+ ;;^UTILITY(U,$J,358.3,1333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1052,1,3,0)
- ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
- ;;^UTILITY(U,$J,358.3,1052,1,4,0)
- ;;=4^I69.959
- ;;^UTILITY(U,$J,358.3,1052,2)
- ;;=^5007563
- ;;^UTILITY(U,$J,358.3,1053,0)
- ;;=D89.2^^12^126^22
- ;;^UTILITY(U,$J,358.3,1053,1,0)
+ ;;^UTILITY(U,$J,358.3,1333,1,3,0)
+ ;;=3^Presbycusis, right ear
+ ;;^UTILITY(U,$J,358.3,1333,1,4,0)
+ ;;=4^H91.11
+ ;;^UTILITY(U,$J,358.3,1333,2)
+ ;;=^5006933
+ ;;^UTILITY(U,$J,358.3,1334,0)
+ ;;=H90.3^^8^132^19
+ ;;^UTILITY(U,$J,358.3,1334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1053,1,3,0)
- ;;=3^Hypergammaglobulinemia,Unspec
- ;;^UTILITY(U,$J,358.3,1053,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,1053,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,1054,0)
- ;;=B19.10^^12^126^15
- ;;^UTILITY(U,$J,358.3,1054,1,0)
+ ;;^UTILITY(U,$J,358.3,1334,1,3,0)
+ ;;=3^Sensorineural hearing loss, bilateral
+ ;;^UTILITY(U,$J,358.3,1334,1,4,0)
+ ;;=4^H90.3
+ ;;^UTILITY(U,$J,358.3,1334,2)
+ ;;=^335328
+ ;;^UTILITY(U,$J,358.3,1335,0)
+ ;;=H90.42^^8^132^20
+ ;;^UTILITY(U,$J,358.3,1335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1054,1,3,0)
- ;;=3^Hepatitis B w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,1054,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,1054,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,1055,0)
- ;;=B17.10^^12^126^17
- ;;^UTILITY(U,$J,358.3,1055,1,0)
+ ;;^UTILITY(U,$J,358.3,1335,1,3,0)
+ ;;=3^Snsrnrl hear loss, uni, left ear, w unrestr hear cntra side
+ ;;^UTILITY(U,$J,358.3,1335,1,4,0)
+ ;;=4^H90.42
+ ;;^UTILITY(U,$J,358.3,1335,2)
+ ;;=^5006922
+ ;;^UTILITY(U,$J,358.3,1336,0)
+ ;;=H90.41^^8^132^21
+ ;;^UTILITY(U,$J,358.3,1336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1055,1,3,0)
- ;;=3^Hepatitis C w/o Hepatic Coma,Acute
- ;;^UTILITY(U,$J,358.3,1055,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,1055,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,1056,0)
- ;;=B18.2^^12^126^18
- ;;^UTILITY(U,$J,358.3,1056,1,0)
+ ;;^UTILITY(U,$J,358.3,1336,1,3,0)
+ ;;=3^Snsrnrl hear loss, uni, right ear, w unrestr hear cntra side
+ ;;^UTILITY(U,$J,358.3,1336,1,4,0)
+ ;;=4^H90.41
+ ;;^UTILITY(U,$J,358.3,1336,2)
+ ;;=^5006921
+ ;;^UTILITY(U,$J,358.3,1337,0)
+ ;;=H91.23^^8^132^22
+ ;;^UTILITY(U,$J,358.3,1337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1056,1,3,0)
- ;;=3^Hepatitis C,Chr
- ;;^UTILITY(U,$J,358.3,1056,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,1056,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,1057,0)
- ;;=E03.9^^12^126^31
- ;;^UTILITY(U,$J,358.3,1057,1,0)
+ ;;^UTILITY(U,$J,358.3,1337,1,3,0)
+ ;;=3^Sudden idiopathic hearing loss, bilateral
+ ;;^UTILITY(U,$J,358.3,1337,1,4,0)
+ ;;=4^H91.23
+ ;;^UTILITY(U,$J,358.3,1337,2)
+ ;;=^5006939
+ ;;^UTILITY(U,$J,358.3,1338,0)
+ ;;=H91.22^^8^132^23
+ ;;^UTILITY(U,$J,358.3,1338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1057,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,1057,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,1057,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,1058,0)
- ;;=E16.2^^12^126^28
- ;;^UTILITY(U,$J,358.3,1058,1,0)
+ ;;^UTILITY(U,$J,358.3,1338,1,3,0)
+ ;;=3^Sudden idiopathic hearing loss, left ear
+ ;;^UTILITY(U,$J,358.3,1338,1,4,0)
+ ;;=4^H91.22
+ ;;^UTILITY(U,$J,358.3,1338,2)
+ ;;=^5006938
+ ;;^UTILITY(U,$J,358.3,1339,0)
+ ;;=H91.21^^8^132^24
+ ;;^UTILITY(U,$J,358.3,1339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1058,1,3,0)
- ;;=3^Hypoglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,1058,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,1058,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,1059,0)
- ;;=E78.0^^12^126^21
- ;;^UTILITY(U,$J,358.3,1059,1,0)
+ ;;^UTILITY(U,$J,358.3,1339,1,3,0)
+ ;;=3^Sudden idiopathic hearing loss, right ear
+ ;;^UTILITY(U,$J,358.3,1339,1,4,0)
+ ;;=4^H91.21
+ ;;^UTILITY(U,$J,358.3,1339,2)
+ ;;=^5006937
+ ;;^UTILITY(U,$J,358.3,1340,0)
+ ;;=H91.93^^8^132^8
+ ;;^UTILITY(U,$J,358.3,1340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1059,1,3,0)
- ;;=3^Hypercholesterolemia,Pure
- ;;^UTILITY(U,$J,358.3,1059,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,1059,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,1060,0)
- ;;=E78.1^^12^126^23
- ;;^UTILITY(U,$J,358.3,1060,1,0)
+ ;;^UTILITY(U,$J,358.3,1340,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,1340,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,1340,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,1341,0)
+ ;;=H91.91^^8^132^12
+ ;;^UTILITY(U,$J,358.3,1341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1060,1,3,0)
- ;;=3^Hyperglyceridemia,Pure
- ;;^UTILITY(U,$J,358.3,1060,1,4,0)
- ;;=4^E78.1
- ;;^UTILITY(U,$J,358.3,1060,2)
- ;;=^101303
- ;;^UTILITY(U,$J,358.3,1061,0)
- ;;=E78.5^^12^126^26
- ;;^UTILITY(U,$J,358.3,1061,1,0)
+ ;;^UTILITY(U,$J,358.3,1341,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,1341,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,1341,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,1342,0)
+ ;;=H91.92^^8^132^10
+ ;;^UTILITY(U,$J,358.3,1342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1061,1,3,0)
- ;;=3^Hyperlipidemia,Unspec
- ;;^UTILITY(U,$J,358.3,1061,1,4,0)
- ;;=4^E78.5
- ;;^UTILITY(U,$J,358.3,1061,2)
- ;;=^5002969
- ;;^UTILITY(U,$J,358.3,1062,0)
- ;;=E78.4^^12^126^25
- ;;^UTILITY(U,$J,358.3,1062,1,0)
+ ;;^UTILITY(U,$J,358.3,1342,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,1342,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,1342,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,1343,0)
+ ;;=H83.3X1^^8^133^3
+ ;;^UTILITY(U,$J,358.3,1343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1062,1,3,0)
- ;;=3^Hyperlipidemia,Other

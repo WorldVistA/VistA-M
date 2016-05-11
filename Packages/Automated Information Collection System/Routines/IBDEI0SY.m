@@ -1,132 +1,132 @@
-IBDEI0SY ; ; 19-NOV-2015
+IBDEI0SY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13314,1,0)
+ ;;^UTILITY(U,$J,358.3,13576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13314,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,13314,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,13314,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,13315,0)
- ;;=E09.359^^80^758^30
- ;;^UTILITY(U,$J,358.3,13315,1,0)
+ ;;^UTILITY(U,$J,358.3,13576,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,13576,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,13576,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,13577,0)
+ ;;=Z85.528^^53^594^89
+ ;;^UTILITY(U,$J,358.3,13577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13315,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,13315,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,13315,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,13316,0)
- ;;=H52.4^^80^759^57
- ;;^UTILITY(U,$J,358.3,13316,1,0)
+ ;;^UTILITY(U,$J,358.3,13577,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,13577,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,13577,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,13578,0)
+ ;;=Z85.6^^53^594^80
+ ;;^UTILITY(U,$J,358.3,13578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13316,1,3,0)
- ;;=3^Presbyopia
- ;;^UTILITY(U,$J,358.3,13316,1,4,0)
- ;;=4^H52.4
- ;;^UTILITY(U,$J,358.3,13316,2)
- ;;=^98095
- ;;^UTILITY(U,$J,358.3,13317,0)
- ;;=H01.004^^80^759^6
- ;;^UTILITY(U,$J,358.3,13317,1,0)
+ ;;^UTILITY(U,$J,358.3,13578,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,13578,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,13578,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,13579,0)
+ ;;=Z85.72^^53^594^104
+ ;;^UTILITY(U,$J,358.3,13579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13317,1,3,0)
- ;;=3^Blepharitis,Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13317,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,13317,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,13318,0)
- ;;=H01.005^^80^759^5
- ;;^UTILITY(U,$J,358.3,13318,1,0)
+ ;;^UTILITY(U,$J,358.3,13579,1,3,0)
+ ;;=3^Personal Hx of Non-Hodgkin Lymphomas
+ ;;^UTILITY(U,$J,358.3,13579,1,4,0)
+ ;;=4^Z85.72
+ ;;^UTILITY(U,$J,358.3,13579,2)
+ ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,13580,0)
+ ;;=Z85.79^^53^594^94
+ ;;^UTILITY(U,$J,358.3,13580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13318,1,3,0)
- ;;=3^Blepharitis,Left Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13318,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,13318,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,13319,0)
- ;;=H02.105^^80^759^24
- ;;^UTILITY(U,$J,358.3,13319,1,0)
+ ;;^UTILITY(U,$J,358.3,13580,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
+ ;;^UTILITY(U,$J,358.3,13580,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,13580,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,13581,0)
+ ;;=Z85.820^^53^594^83
+ ;;^UTILITY(U,$J,358.3,13581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13319,1,3,0)
- ;;=3^Ectropion,Left Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13319,1,4,0)
- ;;=4^H02.105
- ;;^UTILITY(U,$J,358.3,13319,2)
- ;;=^5133409
- ;;^UTILITY(U,$J,358.3,13320,0)
- ;;=H02.104^^80^759^25
- ;;^UTILITY(U,$J,358.3,13320,1,0)
+ ;;^UTILITY(U,$J,358.3,13581,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,13581,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,13581,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,13582,0)
+ ;;=Z85.828^^53^594^98
+ ;;^UTILITY(U,$J,358.3,13582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13320,1,3,0)
- ;;=3^Ectropion,Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13320,1,4,0)
- ;;=4^H02.104
- ;;^UTILITY(U,$J,358.3,13320,2)
- ;;=^5004305
- ;;^UTILITY(U,$J,358.3,13321,0)
- ;;=H02.101^^80^759^27
- ;;^UTILITY(U,$J,358.3,13321,1,0)
+ ;;^UTILITY(U,$J,358.3,13582,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,13582,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,13582,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,13583,0)
+ ;;=Z85.71^^53^594^78
+ ;;^UTILITY(U,$J,358.3,13583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13321,1,3,0)
- ;;=3^Ectropion,Right Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13321,1,4,0)
- ;;=4^H02.101
- ;;^UTILITY(U,$J,358.3,13321,2)
- ;;=^5004303
- ;;^UTILITY(U,$J,358.3,13322,0)
- ;;=H02.102^^80^759^26
- ;;^UTILITY(U,$J,358.3,13322,1,0)
+ ;;^UTILITY(U,$J,358.3,13583,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,13583,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,13583,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,13584,0)
+ ;;=Z65.8^^53^594^138
+ ;;^UTILITY(U,$J,358.3,13584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13322,1,3,0)
- ;;=3^Ectropion,Right Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,13322,1,4,0)
- ;;=4^H02.102
- ;;^UTILITY(U,$J,358.3,13322,2)
- ;;=^5133407
- ;;^UTILITY(U,$J,358.3,13323,0)
- ;;=H04.121^^80^759^23
- ;;^UTILITY(U,$J,358.3,13323,1,0)
+ ;;^UTILITY(U,$J,358.3,13584,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,13584,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,13584,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,13585,0)
+ ;;=Z86.11^^53^594^115
+ ;;^UTILITY(U,$J,358.3,13585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13323,1,3,0)
- ;;=3^Dry Eye Syndrome,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13323,1,4,0)
- ;;=4^H04.121
- ;;^UTILITY(U,$J,358.3,13323,2)
- ;;=^5004463
- ;;^UTILITY(U,$J,358.3,13324,0)
- ;;=H04.122^^80^759^22
- ;;^UTILITY(U,$J,358.3,13324,1,0)
+ ;;^UTILITY(U,$J,358.3,13585,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,13585,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,13585,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,13586,0)
+ ;;=Z86.13^^53^594^82
+ ;;^UTILITY(U,$J,358.3,13586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13324,1,3,0)
- ;;=3^Dry Eye Syndrome,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13324,1,4,0)
- ;;=4^H04.122
- ;;^UTILITY(U,$J,358.3,13324,2)
- ;;=^5004464
- ;;^UTILITY(U,$J,358.3,13325,0)
- ;;=H43.811^^80^759^80
- ;;^UTILITY(U,$J,358.3,13325,1,0)
+ ;;^UTILITY(U,$J,358.3,13586,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,13586,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,13586,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,13587,0)
+ ;;=Z86.73^^53^594^112
+ ;;^UTILITY(U,$J,358.3,13587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13325,1,3,0)
- ;;=3^Vitreous Degeneration,Right Eye
- ;;^UTILITY(U,$J,358.3,13325,1,4,0)
- ;;=4^H43.811
- ;;^UTILITY(U,$J,358.3,13325,2)
- ;;=^5005953
- ;;^UTILITY(U,$J,358.3,13326,0)
- ;;=H43.812^^80^759^79
- ;;^UTILITY(U,$J,358.3,13326,1,0)
+ ;;^UTILITY(U,$J,358.3,13587,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,13587,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,13587,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,13588,0)
+ ;;=Z86.79^^53^594^75
+ ;;^UTILITY(U,$J,358.3,13588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13326,1,3,0)
- ;;=3^Vitreous Degeneration,Left Eye
- ;;^UTILITY(U,$J,358.3,13326,1,4,0)
- ;;=4^H43.812
- ;;^UTILITY(U,$J,358.3,13326,2)
- ;;=^5005954
+ ;;^UTILITY(U,$J,358.3,13588,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,13588,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,13588,2)
+ ;;=^5063479

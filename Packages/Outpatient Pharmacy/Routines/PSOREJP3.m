@@ -1,5 +1,5 @@
 PSOREJP3 ;ALB/SS - Third Party Reject Display Screen - Comments ;10/27/06
- ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**260,287,289,290,358,359,385,403,421,427**;DEC 1997;Build 21
  ;Reference to GETDAT^BPSBUTL supported by IA 4719
  ;
 COM ; Builds the Comments section in the Reject Display Screen
@@ -283,6 +283,15 @@ SEND(OVRCOD,CLA,PA) ; - Sends Claim to ECME and closes Reject
  I $G(RESP) D  Q
  . W !!?10,"Claim could not be submitted. Please try again later!"
  . W !,?10,"Reason: ",$S($P(RESP,"^",2)="":"UNKNOWN",1:$P(RESP,"^",2)),$C(7) H 2
+ ;
+ ; Get the ePharmacy Response Pause and hang for that amount of time (default is 2 if not set)
+ N PAUSE,IEN5286
+ I $G(PSOSITE)="" N PSOSITE S PSOSITE=$$RXSITE^PSOBPSUT(RX,FILL)
+ S IEN5286=$O(^PS(52.86,"B",+PSOSITE,""))
+ S PAUSE=$$GET1^DIQ(52.86,IEN5286_",",6)
+ I PAUSE="" S PAUSE=2
+ I PAUSE H PAUSE
+ ;
  I $$PTLBL^PSOREJP2(RX,FILL) D PRINT(RX,FILL)
  N PSOTRIC S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
  I $$GET1^DIQ(52,RX,100,"I")=5&(PSOTRIC) D

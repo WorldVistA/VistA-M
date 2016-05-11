@@ -1,140 +1,120 @@
-IBDEI1IB ; ; 19-NOV-2015
+IBDEI1IB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25180,0)
- ;;=D86.9^^124^1241^28
- ;;^UTILITY(U,$J,358.3,25180,1,0)
+ ;;^UTILITY(U,$J,358.3,25563,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
+ ;;^UTILITY(U,$J,358.3,25563,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,25563,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,25564,0)
+ ;;=F13.182^^95^1171^8
+ ;;^UTILITY(U,$J,358.3,25564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25180,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,25180,1,4,0)
- ;;=4^D86.9
- ;;^UTILITY(U,$J,358.3,25180,2)
- ;;=^5002454
- ;;^UTILITY(U,$J,358.3,25181,0)
- ;;=E88.01^^124^1241^6
- ;;^UTILITY(U,$J,358.3,25181,1,0)
+ ;;^UTILITY(U,$J,358.3,25564,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25564,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,25564,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,25565,0)
+ ;;=F13.20^^95^1171^2
+ ;;^UTILITY(U,$J,358.3,25565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25181,1,3,0)
- ;;=3^Alpha-1 Antitrypsin Deficiency
- ;;^UTILITY(U,$J,358.3,25181,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,25181,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,25182,0)
- ;;=J18.9^^124^1241^21
- ;;^UTILITY(U,$J,358.3,25182,1,0)
+ ;;^UTILITY(U,$J,358.3,25565,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,25565,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,25565,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,25566,0)
+ ;;=F13.21^^95^1171^3
+ ;;^UTILITY(U,$J,358.3,25566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25182,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,25182,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,25182,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,25183,0)
- ;;=J40.^^124^1241^10
- ;;^UTILITY(U,$J,358.3,25183,1,0)
+ ;;^UTILITY(U,$J,358.3,25566,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,25566,1,4,0)
+ ;;=4^F13.21
+ ;;^UTILITY(U,$J,358.3,25566,2)
+ ;;=^331934
+ ;;^UTILITY(U,$J,358.3,25567,0)
+ ;;=F13.232^^95^1171^4
+ ;;^UTILITY(U,$J,358.3,25567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25183,1,3,0)
- ;;=3^Bronchitis
- ;;^UTILITY(U,$J,358.3,25183,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,25183,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,25184,0)
- ;;=J43.9^^124^1241^17
- ;;^UTILITY(U,$J,358.3,25184,1,0)
+ ;;^UTILITY(U,$J,358.3,25567,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,25567,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,25567,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,25568,0)
+ ;;=F13.239^^95^1171^5
+ ;;^UTILITY(U,$J,358.3,25568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25184,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,25184,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,25184,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,25185,0)
- ;;=J45.909^^124^1241^7
- ;;^UTILITY(U,$J,358.3,25185,1,0)
+ ;;^UTILITY(U,$J,358.3,25568,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,25568,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,25568,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,25569,0)
+ ;;=F13.24^^95^1171^9
+ ;;^UTILITY(U,$J,358.3,25569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25185,1,3,0)
- ;;=3^Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,25185,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,25185,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,25186,0)
- ;;=J47.9^^124^1241^9
- ;;^UTILITY(U,$J,358.3,25186,1,0)
+ ;;^UTILITY(U,$J,358.3,25569,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
+ ;;^UTILITY(U,$J,358.3,25569,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,25569,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,25570,0)
+ ;;=F13.231^^95^1171^6
+ ;;^UTILITY(U,$J,358.3,25570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25186,1,3,0)
- ;;=3^Bronchiectasis,Uncomplicated
- ;;^UTILITY(U,$J,358.3,25186,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,25186,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,25187,0)
- ;;=J44.9^^124^1241^11
- ;;^UTILITY(U,$J,358.3,25187,1,0)
+ ;;^UTILITY(U,$J,358.3,25570,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,25570,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,25570,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,25571,0)
+ ;;=F17.200^^95^1172^9
+ ;;^UTILITY(U,$J,358.3,25571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25187,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,25187,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,25187,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,25188,0)
- ;;=R09.1^^124^1241^20
- ;;^UTILITY(U,$J,358.3,25188,1,0)
+ ;;^UTILITY(U,$J,358.3,25571,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,25571,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,25571,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,25572,0)
+ ;;=F17.201^^95^1172^10
+ ;;^UTILITY(U,$J,358.3,25572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25188,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,25188,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,25188,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,25189,0)
- ;;=J90.^^124^1241^19
- ;;^UTILITY(U,$J,358.3,25189,1,0)
+ ;;^UTILITY(U,$J,358.3,25572,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,25572,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,25572,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,25573,0)
+ ;;=F17.203^^95^1172^11
+ ;;^UTILITY(U,$J,358.3,25573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25189,1,3,0)
- ;;=3^Pleural Effusion NEC
- ;;^UTILITY(U,$J,358.3,25189,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,25189,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,25190,0)
- ;;=J95.811^^124^1241^22
- ;;^UTILITY(U,$J,358.3,25190,1,0)
+ ;;^UTILITY(U,$J,358.3,25573,1,3,0)
+ ;;=3^Nicotine Withdrawal
+ ;;^UTILITY(U,$J,358.3,25573,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,25573,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,25574,0)
+ ;;=F17.210^^95^1172^4
+ ;;^UTILITY(U,$J,358.3,25574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25190,1,3,0)
- ;;=3^Pneumothorax,Postprocedural
- ;;^UTILITY(U,$J,358.3,25190,1,4,0)
- ;;=4^J95.811
- ;;^UTILITY(U,$J,358.3,25190,2)
- ;;=^5008336
- ;;^UTILITY(U,$J,358.3,25191,0)
- ;;=J84.10^^124^1241^25
- ;;^UTILITY(U,$J,358.3,25191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25191,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,25191,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,25191,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,25192,0)
- ;;=J84.89^^124^1241^18
- ;;^UTILITY(U,$J,358.3,25192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25192,1,3,0)
- ;;=3^Interstitial Pulmonary Diseases
- ;;^UTILITY(U,$J,358.3,25192,1,4,0)
- ;;=4^J84.89
- ;;^UTILITY(U,$J,358.3,25192,2)
- ;;=^5008303
- ;;^UTILITY(U,$J,358.3,25193,0)
- ;;=J98.11^^124^1241^8
- ;;^UTILITY(U,$J,358.3,25193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25193,1,3,0)
- ;;=3^Atelectasis
+ ;;^UTILITY(U,$J,358.3,25574,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25574,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,25574,2)
+ ;;=^5003365

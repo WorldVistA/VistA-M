@@ -1,128 +1,130 @@
-IBDEI14M ; ; 19-NOV-2015
+IBDEI14M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18813,1,0)
+ ;;^UTILITY(U,$J,358.3,19156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18813,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18813,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,18813,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,18814,0)
- ;;=C92.61^^94^916^9
- ;;^UTILITY(U,$J,358.3,18814,1,0)
+ ;;^UTILITY(U,$J,358.3,19156,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,19156,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,19156,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,19157,0)
+ ;;=H53.40^^82^906^29
+ ;;^UTILITY(U,$J,358.3,19157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18814,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,18814,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,18814,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,18815,0)
- ;;=C92.60^^94^916^10
- ;;^UTILITY(U,$J,358.3,18815,1,0)
+ ;;^UTILITY(U,$J,358.3,19157,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,19157,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,19157,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,19158,0)
+ ;;=H47.9^^82^906^30
+ ;;^UTILITY(U,$J,358.3,19158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18815,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,18815,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,18815,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,18816,0)
- ;;=C92.A1^^94^916^11
- ;;^UTILITY(U,$J,358.3,18816,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18816,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,18816,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,18816,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,18817,0)
- ;;=C92.A0^^94^916^12
- ;;^UTILITY(U,$J,358.3,18817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18817,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18817,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,18817,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,18818,0)
- ;;=C92.51^^94^916^13
- ;;^UTILITY(U,$J,358.3,18818,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18818,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18818,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,18818,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,18819,0)
- ;;=C92.50^^94^916^14
- ;;^UTILITY(U,$J,358.3,18819,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18819,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,18819,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,18819,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,18820,0)
- ;;=C94.40^^94^916^17
- ;;^UTILITY(U,$J,358.3,18820,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18820,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,18820,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,18820,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,18821,0)
- ;;=C94.42^^94^916^15
- ;;^UTILITY(U,$J,358.3,18821,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18821,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,18821,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,18821,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,18822,0)
- ;;=C94.41^^94^916^16
- ;;^UTILITY(U,$J,358.3,18822,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18822,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,18822,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,18822,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,18823,0)
- ;;=D62.^^94^916^18
- ;;^UTILITY(U,$J,358.3,18823,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18823,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,18823,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,18823,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,18824,0)
- ;;=C92.41^^94^916^19
- ;;^UTILITY(U,$J,358.3,18824,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18824,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,18824,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,18824,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,18825,0)
- ;;=C92.40^^94^916^20
- ;;^UTILITY(U,$J,358.3,18825,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18825,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,19158,1,3,0)
+ ;;=3^Visual Pathway Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,19158,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,19158,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,19159,0)
+ ;;=G0155^^83^907^1^^^^1
+ ;;^UTILITY(U,$J,358.3,19159,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19159,1,2,0)
+ ;;=2^G0155
+ ;;^UTILITY(U,$J,358.3,19159,1,3,0)
+ ;;=3^MFH Coord (LCSW) vst in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,19160,0)
+ ;;=G0151^^83^907^8^^^^1
+ ;;^UTILITY(U,$J,358.3,19160,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19160,1,2,0)
+ ;;=2^G0151
+ ;;^UTILITY(U,$J,358.3,19160,1,3,0)
+ ;;=3^MFH Phy Ther in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,19161,0)
+ ;;=G0152^^83^907^7^^^^1
+ ;;^UTILITY(U,$J,358.3,19161,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19161,1,2,0)
+ ;;=2^G0152
+ ;;^UTILITY(U,$J,358.3,19161,1,3,0)
+ ;;=3^MFH Occ Ther in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,19162,0)
+ ;;=G0153^^83^907^9^^^^1
+ ;;^UTILITY(U,$J,358.3,19162,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19162,1,2,0)
+ ;;=2^G0153
+ ;;^UTILITY(U,$J,358.3,19162,1,3,0)
+ ;;=3^MFH S/L Path in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,19163,0)
+ ;;=G0156^^83^907^4^^^^1
+ ;;^UTILITY(U,$J,358.3,19163,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19163,1,2,0)
+ ;;=2^G0156
+ ;;^UTILITY(U,$J,358.3,19163,1,3,0)
+ ;;=3^MFH Home Hlth Aid,ea 15min
+ ;;^UTILITY(U,$J,358.3,19164,0)
+ ;;=S9446^^83^907^15^^^^1
+ ;;^UTILITY(U,$J,358.3,19164,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19164,1,2,0)
+ ;;=2^S9446
+ ;;^UTILITY(U,$J,358.3,19164,1,3,0)
+ ;;=3^Pt Educ,group,non-phys,per session
+ ;;^UTILITY(U,$J,358.3,19165,0)
+ ;;=S9445^^83^907^14^^^^1
+ ;;^UTILITY(U,$J,358.3,19165,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19165,1,2,0)
+ ;;=2^S9445
+ ;;^UTILITY(U,$J,358.3,19165,1,3,0)
+ ;;=3^Pt Educ,Ind,non-phys,per session
+ ;;^UTILITY(U,$J,358.3,19166,0)
+ ;;=99510^^83^907^5^^^^1
+ ;;^UTILITY(U,$J,358.3,19166,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19166,1,2,0)
+ ;;=2^99510
+ ;;^UTILITY(U,$J,358.3,19166,1,3,0)
+ ;;=3^MFH Ind/Fam/Marr Counseling in home
+ ;;^UTILITY(U,$J,358.3,19167,0)
+ ;;=99499^^83^907^6^^^^1
+ ;;^UTILITY(U,$J,358.3,19167,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19167,1,2,0)
+ ;;=2^99499
+ ;;^UTILITY(U,$J,358.3,19167,1,3,0)
+ ;;=3^MFH Kinesiotherapy
+ ;;^UTILITY(U,$J,358.3,19168,0)
+ ;;=G0155^^83^907^10^^^^1
+ ;;^UTILITY(U,$J,358.3,19168,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19168,1,2,0)
+ ;;=2^G0155
+ ;;^UTILITY(U,$J,358.3,19168,1,3,0)
+ ;;=3^MFH SW in home,ea 15min
+ ;;^UTILITY(U,$J,358.3,19169,0)
+ ;;=97802^^83^907^11^^^^1
+ ;;^UTILITY(U,$J,358.3,19169,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19169,1,2,0)
+ ;;=2^97802
+ ;;^UTILITY(U,$J,358.3,19169,1,3,0)
+ ;;=3^MNT, Init Assess,ea 15min
+ ;;^UTILITY(U,$J,358.3,19170,0)
+ ;;=97803^^83^907^13^^^^1
+ ;;^UTILITY(U,$J,358.3,19170,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,19170,1,2,0)
+ ;;=2^97803
+ ;;^UTILITY(U,$J,358.3,19170,1,3,0)
+ ;;=3^MNT,Re-Assess,Indiv,ea 15min
+ ;;^UTILITY(U,$J,358.3,19171,0)
+ ;;=97804^^83^907^12^^^^1

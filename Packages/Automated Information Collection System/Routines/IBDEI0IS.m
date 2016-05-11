@@ -1,134 +1,134 @@
-IBDEI0IS ; ; 19-NOV-2015
+IBDEI0IS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8441,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,8441,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,8442,0)
- ;;=Z85.048^^55^538^107
- ;;^UTILITY(U,$J,358.3,8442,1,0)
+ ;;^UTILITY(U,$J,358.3,8731,2)
+ ;;=^5005089
+ ;;^UTILITY(U,$J,358.3,8732,0)
+ ;;=H18.602^^41^468^105
+ ;;^UTILITY(U,$J,358.3,8732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8442,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of rectum, rectosig junct, and anus
- ;;^UTILITY(U,$J,358.3,8442,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,8442,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,8443,0)
- ;;=Z85.118^^55^538^98
- ;;^UTILITY(U,$J,358.3,8443,1,0)
+ ;;^UTILITY(U,$J,358.3,8732,1,3,0)
+ ;;=3^Keratoconus,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8732,1,4,0)
+ ;;=4^H18.602
+ ;;^UTILITY(U,$J,358.3,8732,2)
+ ;;=^5005090
+ ;;^UTILITY(U,$J,358.3,8733,0)
+ ;;=H10.32^^41^468^42
+ ;;^UTILITY(U,$J,358.3,8733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8443,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of bronchus/lung
- ;;^UTILITY(U,$J,358.3,8443,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,8443,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,8444,0)
- ;;=Z85.21^^55^538^103
- ;;^UTILITY(U,$J,358.3,8444,1,0)
+ ;;^UTILITY(U,$J,358.3,8733,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8733,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,8733,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,8734,0)
+ ;;=H10.31^^41^468^43
+ ;;^UTILITY(U,$J,358.3,8734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8444,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of larynx
- ;;^UTILITY(U,$J,358.3,8444,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,8444,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,8445,0)
- ;;=Z85.3^^55^538^97
- ;;^UTILITY(U,$J,358.3,8445,1,0)
+ ;;^UTILITY(U,$J,358.3,8734,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8734,1,4,0)
+ ;;=4^H10.31
+ ;;^UTILITY(U,$J,358.3,8734,2)
+ ;;=^5133458
+ ;;^UTILITY(U,$J,358.3,8735,0)
+ ;;=H10.021^^41^468^120
+ ;;^UTILITY(U,$J,358.3,8735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8445,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of breast
- ;;^UTILITY(U,$J,358.3,8445,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,8445,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,8446,0)
- ;;=Z85.41^^55^538^99
- ;;^UTILITY(U,$J,358.3,8446,1,0)
+ ;;^UTILITY(U,$J,358.3,8735,1,3,0)
+ ;;=3^Mucopurulent Conjunctivitis,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,8735,1,4,0)
+ ;;=4^H10.021
+ ;;^UTILITY(U,$J,358.3,8735,2)
+ ;;=^5004660
+ ;;^UTILITY(U,$J,358.3,8736,0)
+ ;;=H10.022^^41^468^119
+ ;;^UTILITY(U,$J,358.3,8736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8446,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of cervix uteri
- ;;^UTILITY(U,$J,358.3,8446,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,8446,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,8447,0)
- ;;=Z85.43^^55^538^105
- ;;^UTILITY(U,$J,358.3,8447,1,0)
+ ;;^UTILITY(U,$J,358.3,8736,1,3,0)
+ ;;=3^Mucopurulent Conjunctivitis,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,8736,1,4,0)
+ ;;=4^H10.022
+ ;;^UTILITY(U,$J,358.3,8736,2)
+ ;;=^5004661
+ ;;^UTILITY(U,$J,358.3,8737,0)
+ ;;=H10.11^^41^468^11
+ ;;^UTILITY(U,$J,358.3,8737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8447,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of ovary
- ;;^UTILITY(U,$J,358.3,8447,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,8447,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,8448,0)
- ;;=Z85.46^^55^538^106
- ;;^UTILITY(U,$J,358.3,8448,1,0)
+ ;;^UTILITY(U,$J,358.3,8737,1,3,0)
+ ;;=3^Atopic Conjuntivitis,Right Eye,Acute
+ ;;^UTILITY(U,$J,358.3,8737,1,4,0)
+ ;;=4^H10.11
+ ;;^UTILITY(U,$J,358.3,8737,2)
+ ;;=^5004665
+ ;;^UTILITY(U,$J,358.3,8738,0)
+ ;;=H10.12^^41^468^10
+ ;;^UTILITY(U,$J,358.3,8738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8448,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of prostate
- ;;^UTILITY(U,$J,358.3,8448,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,8448,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,8449,0)
- ;;=Z85.47^^55^538^111
- ;;^UTILITY(U,$J,358.3,8449,1,0)
+ ;;^UTILITY(U,$J,358.3,8738,1,3,0)
+ ;;=3^Atopic Conjuntivitis,Left Eye,Acute
+ ;;^UTILITY(U,$J,358.3,8738,1,4,0)
+ ;;=4^H10.12
+ ;;^UTILITY(U,$J,358.3,8738,2)
+ ;;=^5004666
+ ;;^UTILITY(U,$J,358.3,8739,0)
+ ;;=H10.13^^41^468^9
+ ;;^UTILITY(U,$J,358.3,8739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8449,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of testis
- ;;^UTILITY(U,$J,358.3,8449,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,8449,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,8450,0)
- ;;=Z85.51^^55^538^96
- ;;^UTILITY(U,$J,358.3,8450,1,0)
+ ;;^UTILITY(U,$J,358.3,8739,1,3,0)
+ ;;=3^Atopic Conjuntivitis,Bilateral,Acute
+ ;;^UTILITY(U,$J,358.3,8739,1,4,0)
+ ;;=4^H10.13
+ ;;^UTILITY(U,$J,358.3,8739,2)
+ ;;=^5004667
+ ;;^UTILITY(U,$J,358.3,8740,0)
+ ;;=H10.211^^41^468^159
+ ;;^UTILITY(U,$J,358.3,8740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8450,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of bladder
- ;;^UTILITY(U,$J,358.3,8450,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,8450,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,8451,0)
- ;;=Z85.528^^55^538^101
- ;;^UTILITY(U,$J,358.3,8451,1,0)
+ ;;^UTILITY(U,$J,358.3,8740,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Right Eye,Acute
+ ;;^UTILITY(U,$J,358.3,8740,1,4,0)
+ ;;=4^H10.211
+ ;;^UTILITY(U,$J,358.3,8740,2)
+ ;;=^5004668
+ ;;^UTILITY(U,$J,358.3,8741,0)
+ ;;=H10.212^^41^468^158
+ ;;^UTILITY(U,$J,358.3,8741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8451,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of kidney
- ;;^UTILITY(U,$J,358.3,8451,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,8451,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,8452,0)
- ;;=Z85.6^^55^538^94
- ;;^UTILITY(U,$J,358.3,8452,1,0)
+ ;;^UTILITY(U,$J,358.3,8741,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Left Eye,Acute
+ ;;^UTILITY(U,$J,358.3,8741,1,4,0)
+ ;;=4^H10.212
+ ;;^UTILITY(U,$J,358.3,8741,2)
+ ;;=^5004669
+ ;;^UTILITY(U,$J,358.3,8742,0)
+ ;;=H10.401^^41^468^46
+ ;;^UTILITY(U,$J,358.3,8742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8452,1,3,0)
- ;;=3^Prsnl hx of leukemia
- ;;^UTILITY(U,$J,358.3,8452,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,8452,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,8453,0)
- ;;=Z85.79^^55^538^104
- ;;^UTILITY(U,$J,358.3,8453,1,0)
+ ;;^UTILITY(U,$J,358.3,8742,1,3,0)
+ ;;=3^Conjunctivitis,Right Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,8742,1,4,0)
+ ;;=4^H10.401
+ ;;^UTILITY(U,$J,358.3,8742,2)
+ ;;=^5004681
+ ;;^UTILITY(U,$J,358.3,8743,0)
+ ;;=H10.402^^41^468^45
+ ;;^UTILITY(U,$J,358.3,8743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8453,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of lymphoid, hematpoetc & rel tiss
- ;;^UTILITY(U,$J,358.3,8453,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,8453,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,8454,0)
- ;;=Z85.820^^55^538^95
- ;;^UTILITY(U,$J,358.3,8454,1,0)
+ ;;^UTILITY(U,$J,358.3,8743,1,3,0)
+ ;;=3^Conjunctivitis,Left Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,8743,1,4,0)
+ ;;=4^H10.402
+ ;;^UTILITY(U,$J,358.3,8743,2)
+ ;;=^5004682
+ ;;^UTILITY(U,$J,358.3,8744,0)
+ ;;=H10.411^^41^468^79
+ ;;^UTILITY(U,$J,358.3,8744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8454,1,3,0)
- ;;=3^Prsnl hx of malig melanoma of skin
+ ;;^UTILITY(U,$J,358.3,8744,1,3,0)
+ ;;=3^Giant Papillary Conjunctivitis,Right Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,8744,1,4,0)
+ ;;=4^H10.411

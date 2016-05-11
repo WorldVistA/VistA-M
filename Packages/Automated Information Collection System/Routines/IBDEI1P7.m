@@ -1,132 +1,124 @@
-IBDEI1P7 ; ; 19-NOV-2015
+IBDEI1P7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28415,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,28415,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,28415,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,28416,0)
- ;;=F18.120^^132^1332^94
- ;;^UTILITY(U,$J,358.3,28416,1,0)
+ ;;^UTILITY(U,$J,358.3,28864,2)
+ ;;=^5017761
+ ;;^UTILITY(U,$J,358.3,28865,0)
+ ;;=O26.611^^115^1452^35
+ ;;^UTILITY(U,$J,358.3,28865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28416,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,28416,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,28416,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,28417,0)
- ;;=G44.1^^132^1332^157
- ;;^UTILITY(U,$J,358.3,28417,1,0)
+ ;;^UTILITY(U,$J,358.3,28865,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28865,1,4,0)
+ ;;=4^O26.611
+ ;;^UTILITY(U,$J,358.3,28865,2)
+ ;;=^5016321
+ ;;^UTILITY(U,$J,358.3,28866,0)
+ ;;=O26.612^^115^1452^36
+ ;;^UTILITY(U,$J,358.3,28866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28417,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,28417,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,28417,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,28418,0)
- ;;=G93.3^^132^1332^144
- ;;^UTILITY(U,$J,358.3,28418,1,0)
+ ;;^UTILITY(U,$J,358.3,28866,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28866,1,4,0)
+ ;;=4^O26.612
+ ;;^UTILITY(U,$J,358.3,28866,2)
+ ;;=^5016322
+ ;;^UTILITY(U,$J,358.3,28867,0)
+ ;;=O26.613^^115^1452^37
+ ;;^UTILITY(U,$J,358.3,28867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28418,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,28418,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,28418,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,28419,0)
- ;;=K08.101^^132^1332^52
- ;;^UTILITY(U,$J,358.3,28419,1,0)
+ ;;^UTILITY(U,$J,358.3,28867,1,3,0)
+ ;;=3^Liver and biliary tract disord in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28867,1,4,0)
+ ;;=4^O26.613
+ ;;^UTILITY(U,$J,358.3,28867,2)
+ ;;=^5016323
+ ;;^UTILITY(U,$J,358.3,28868,0)
+ ;;=O98.111^^115^1452^80
+ ;;^UTILITY(U,$J,358.3,28868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28419,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,28419,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,28419,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,28420,0)
- ;;=K08.102^^132^1332^53
- ;;^UTILITY(U,$J,358.3,28420,1,0)
+ ;;^UTILITY(U,$J,358.3,28868,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28868,1,4,0)
+ ;;=4^O98.111
+ ;;^UTILITY(U,$J,358.3,28868,2)
+ ;;=^5017863
+ ;;^UTILITY(U,$J,358.3,28869,0)
+ ;;=O98.112^^115^1452^81
+ ;;^UTILITY(U,$J,358.3,28869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28420,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,28420,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,28420,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,28421,0)
- ;;=K08.103^^132^1332^54
- ;;^UTILITY(U,$J,358.3,28421,1,0)
+ ;;^UTILITY(U,$J,358.3,28869,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28869,1,4,0)
+ ;;=4^O98.112
+ ;;^UTILITY(U,$J,358.3,28869,2)
+ ;;=^5017864
+ ;;^UTILITY(U,$J,358.3,28870,0)
+ ;;=O98.113^^115^1452^82
+ ;;^UTILITY(U,$J,358.3,28870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28421,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,28421,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,28421,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,28422,0)
- ;;=K08.104^^132^1332^55
- ;;^UTILITY(U,$J,358.3,28422,1,0)
+ ;;^UTILITY(U,$J,358.3,28870,1,3,0)
+ ;;=3^Syphilis complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28870,1,4,0)
+ ;;=4^O98.113
+ ;;^UTILITY(U,$J,358.3,28870,2)
+ ;;=^5017865
+ ;;^UTILITY(U,$J,358.3,28871,0)
+ ;;=O98.13^^115^1452^83
+ ;;^UTILITY(U,$J,358.3,28871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28422,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,28422,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,28422,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,28423,0)
- ;;=K08.109^^132^1332^56
- ;;^UTILITY(U,$J,358.3,28423,1,0)
+ ;;^UTILITY(U,$J,358.3,28871,1,3,0)
+ ;;=3^Syphilis complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28871,1,4,0)
+ ;;=4^O98.13
+ ;;^UTILITY(U,$J,358.3,28871,2)
+ ;;=^5017868
+ ;;^UTILITY(U,$J,358.3,28872,0)
+ ;;=O98.211^^115^1452^29
+ ;;^UTILITY(U,$J,358.3,28872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28423,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,28423,1,4,0)
- ;;=4^K08.109
- ;;^UTILITY(U,$J,358.3,28423,2)
- ;;=^5008410
- ;;^UTILITY(U,$J,358.3,28424,0)
- ;;=K08.401^^132^1332^133
- ;;^UTILITY(U,$J,358.3,28424,1,0)
+ ;;^UTILITY(U,$J,358.3,28872,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28872,1,4,0)
+ ;;=4^O98.211
+ ;;^UTILITY(U,$J,358.3,28872,2)
+ ;;=^5017869
+ ;;^UTILITY(U,$J,358.3,28873,0)
+ ;;=O98.212^^115^1452^30
+ ;;^UTILITY(U,$J,358.3,28873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28424,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,28424,1,4,0)
- ;;=4^K08.401
- ;;^UTILITY(U,$J,358.3,28424,2)
- ;;=^5008432
- ;;^UTILITY(U,$J,358.3,28425,0)
- ;;=K08.402^^132^1332^134
- ;;^UTILITY(U,$J,358.3,28425,1,0)
+ ;;^UTILITY(U,$J,358.3,28873,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28873,1,4,0)
+ ;;=4^O98.212
+ ;;^UTILITY(U,$J,358.3,28873,2)
+ ;;=^5017870
+ ;;^UTILITY(U,$J,358.3,28874,0)
+ ;;=O98.213^^115^1452^31
+ ;;^UTILITY(U,$J,358.3,28874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28425,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,28425,1,4,0)
- ;;=4^K08.402
- ;;^UTILITY(U,$J,358.3,28425,2)
- ;;=^5008433
- ;;^UTILITY(U,$J,358.3,28426,0)
- ;;=K08.403^^132^1332^135
- ;;^UTILITY(U,$J,358.3,28426,1,0)
+ ;;^UTILITY(U,$J,358.3,28874,1,3,0)
+ ;;=3^Gonorrhea complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28874,1,4,0)
+ ;;=4^O98.213
+ ;;^UTILITY(U,$J,358.3,28874,2)
+ ;;=^5017871
+ ;;^UTILITY(U,$J,358.3,28875,0)
+ ;;=O98.23^^115^1452^32
+ ;;^UTILITY(U,$J,358.3,28875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28426,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,28426,1,4,0)
- ;;=4^K08.403
- ;;^UTILITY(U,$J,358.3,28426,2)
- ;;=^5008434
- ;;^UTILITY(U,$J,358.3,28427,0)
- ;;=K08.404^^132^1332^136
- ;;^UTILITY(U,$J,358.3,28427,1,0)
+ ;;^UTILITY(U,$J,358.3,28875,1,3,0)
+ ;;=3^Gonorrhea complicating the puerperium
+ ;;^UTILITY(U,$J,358.3,28875,1,4,0)
+ ;;=4^O98.23
+ ;;^UTILITY(U,$J,358.3,28875,2)
+ ;;=^5017874
+ ;;^UTILITY(U,$J,358.3,28876,0)
+ ;;=O98.011^^115^1452^84
+ ;;^UTILITY(U,$J,358.3,28876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28427,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,28427,1,4,0)
- ;;=4^K08.404
- ;;^UTILITY(U,$J,358.3,28427,2)
- ;;=^5008435
- ;;^UTILITY(U,$J,358.3,28428,0)
- ;;=K08.409^^132^1332^137
+ ;;^UTILITY(U,$J,358.3,28876,1,3,0)
+ ;;=3^Tuberculosis complicating pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28876,1,4,0)
+ ;;=4^O98.011

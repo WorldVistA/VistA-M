@@ -1,130 +1,130 @@
-IBDEI057 ; ; 19-NOV-2015
+IBDEI057 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1760,1,3,0)
- ;;=3^Remove PM Pulse Gen w/Replc PM Gen,Single
- ;;^UTILITY(U,$J,358.3,1761,0)
- ;;=33228^^17^169^48^^^^1
- ;;^UTILITY(U,$J,358.3,1761,1,0)
+ ;;^UTILITY(U,$J,358.3,2043,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1761,1,2,0)
- ;;=2^33228
- ;;^UTILITY(U,$J,358.3,1761,1,3,0)
- ;;=3^Remove PM Pulse Gen w/Replc PM Gen,Dual
- ;;^UTILITY(U,$J,358.3,1762,0)
- ;;=33229^^17^169^49^^^^1
- ;;^UTILITY(U,$J,358.3,1762,1,0)
+ ;;^UTILITY(U,$J,358.3,2043,1,2,0)
+ ;;=2^92950
+ ;;^UTILITY(U,$J,358.3,2043,1,3,0)
+ ;;=3^CPR
+ ;;^UTILITY(U,$J,358.3,2044,0)
+ ;;=33010^^12^165^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2044,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1762,1,2,0)
- ;;=2^33229
- ;;^UTILITY(U,$J,358.3,1762,1,3,0)
- ;;=3^Remove PM Pulse Gen w/Replc PM Gen,Mult
- ;;^UTILITY(U,$J,358.3,1763,0)
- ;;=33230^^17^169^19^^^^1
- ;;^UTILITY(U,$J,358.3,1763,1,0)
+ ;;^UTILITY(U,$J,358.3,2044,1,2,0)
+ ;;=2^33010
+ ;;^UTILITY(U,$J,358.3,2044,1,3,0)
+ ;;=3^Pericardiocentesis
+ ;;^UTILITY(U,$J,358.3,2045,0)
+ ;;=92970^^12^165^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2045,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1763,1,2,0)
- ;;=2^33230
- ;;^UTILITY(U,$J,358.3,1763,1,3,0)
- ;;=3^Insert ICD Gen Only,Existing Single
- ;;^UTILITY(U,$J,358.3,1764,0)
- ;;=33231^^17^169^18^^^^1
- ;;^UTILITY(U,$J,358.3,1764,1,0)
+ ;;^UTILITY(U,$J,358.3,2045,1,2,0)
+ ;;=2^92970
+ ;;^UTILITY(U,$J,358.3,2045,1,3,0)
+ ;;=3^Cardio Assist Dev Insert
+ ;;^UTILITY(U,$J,358.3,2046,0)
+ ;;=94760^^12^165^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2046,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1764,1,2,0)
- ;;=2^33231
- ;;^UTILITY(U,$J,358.3,1764,1,3,0)
- ;;=3^Insert ICD Gen Only,Existing Mult
- ;;^UTILITY(U,$J,358.3,1765,0)
- ;;=33233^^17^169^44^^^^1
- ;;^UTILITY(U,$J,358.3,1765,1,0)
+ ;;^UTILITY(U,$J,358.3,2046,1,2,0)
+ ;;=2^94760
+ ;;^UTILITY(U,$J,358.3,2046,1,3,0)
+ ;;=3^MEASURE BLOOD OXYGEN LEVEL
+ ;;^UTILITY(U,$J,358.3,2047,0)
+ ;;=93503^^12^166^23^^^^1
+ ;;^UTILITY(U,$J,358.3,2047,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1765,1,2,0)
- ;;=2^33233
- ;;^UTILITY(U,$J,358.3,1765,1,3,0)
- ;;=3^Removal of PM Generator Only
- ;;^UTILITY(U,$J,358.3,1766,0)
- ;;=33262^^17^169^54^^^^1
- ;;^UTILITY(U,$J,358.3,1766,1,0)
+ ;;^UTILITY(U,$J,358.3,2047,1,2,0)
+ ;;=2^93503
+ ;;^UTILITY(U,$J,358.3,2047,1,3,0)
+ ;;=3^Swan Ganz Placement
+ ;;^UTILITY(U,$J,358.3,2048,0)
+ ;;=93451^^12^166^20^^^^1
+ ;;^UTILITY(U,$J,358.3,2048,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1766,1,2,0)
- ;;=2^33262
- ;;^UTILITY(U,$J,358.3,1766,1,3,0)
- ;;=3^Remv ICD Gen w/Replc PM Gen,Single
- ;;^UTILITY(U,$J,358.3,1767,0)
- ;;=33263^^17^169^52^^^^1
- ;;^UTILITY(U,$J,358.3,1767,1,0)
+ ;;^UTILITY(U,$J,358.3,2048,1,2,0)
+ ;;=2^93451
+ ;;^UTILITY(U,$J,358.3,2048,1,3,0)
+ ;;=3^Right Hrt Cath incl O2 & Cardiac Outpt
+ ;;^UTILITY(U,$J,358.3,2049,0)
+ ;;=93452^^12^166^12^^^^1
+ ;;^UTILITY(U,$J,358.3,2049,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1767,1,2,0)
- ;;=2^33263
- ;;^UTILITY(U,$J,358.3,1767,1,3,0)
- ;;=3^Remv ICD Gen w/Replc PM Gen,Dual
- ;;^UTILITY(U,$J,358.3,1768,0)
- ;;=33264^^17^169^53^^^^1
- ;;^UTILITY(U,$J,358.3,1768,1,0)
+ ;;^UTILITY(U,$J,358.3,2049,1,2,0)
+ ;;=2^93452
+ ;;^UTILITY(U,$J,358.3,2049,1,3,0)
+ ;;=3^LHC w/V-Gram, incl S&I
+ ;;^UTILITY(U,$J,358.3,2050,0)
+ ;;=93453^^12^166^18^^^^1
+ ;;^UTILITY(U,$J,358.3,2050,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1768,1,2,0)
- ;;=2^33264
- ;;^UTILITY(U,$J,358.3,1768,1,3,0)
- ;;=3^Remv ICD Gen w/Replc PM Gen,Multiple
- ;;^UTILITY(U,$J,358.3,1769,0)
- ;;=93286^^17^169^40^^^^1
- ;;^UTILITY(U,$J,358.3,1769,1,0)
+ ;;^UTILITY(U,$J,358.3,2050,1,2,0)
+ ;;=2^93453
+ ;;^UTILITY(U,$J,358.3,2050,1,3,0)
+ ;;=3^R&L HC w/V-Gram, incl S&I
+ ;;^UTILITY(U,$J,358.3,2051,0)
+ ;;=93454^^12^166^5^^^^1
+ ;;^UTILITY(U,$J,358.3,2051,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1769,1,2,0)
- ;;=2^93286
- ;;^UTILITY(U,$J,358.3,1769,1,3,0)
- ;;=3^Pre-Op PM Device Eval w/Review&Rpt
- ;;^UTILITY(U,$J,358.3,1770,0)
- ;;=93287^^17^169^39^^^^1
- ;;^UTILITY(U,$J,358.3,1770,1,0)
+ ;;^UTILITY(U,$J,358.3,2051,1,2,0)
+ ;;=2^93454
+ ;;^UTILITY(U,$J,358.3,2051,1,3,0)
+ ;;=3^Coronary Angiography, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,2052,0)
+ ;;=93455^^12^166^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2052,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1770,1,2,0)
- ;;=2^93287
- ;;^UTILITY(U,$J,358.3,1770,1,3,0)
- ;;=3^Pre-Op ICD Device Eval
- ;;^UTILITY(U,$J,358.3,1771,0)
- ;;=93290^^17^169^12^^^^1
- ;;^UTILITY(U,$J,358.3,1771,1,0)
+ ;;^UTILITY(U,$J,358.3,2052,1,2,0)
+ ;;=2^93455
+ ;;^UTILITY(U,$J,358.3,2052,1,3,0)
+ ;;=3^Cor Angio incl inj & S&I, and Bypass angio
+ ;;^UTILITY(U,$J,358.3,2053,0)
+ ;;=93456^^12^166^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2053,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1771,1,2,0)
- ;;=2^93290
- ;;^UTILITY(U,$J,358.3,1771,1,3,0)
- ;;=3^ICM Device Eval
- ;;^UTILITY(U,$J,358.3,1772,0)
- ;;=93293^^17^169^35^^^^1
- ;;^UTILITY(U,$J,358.3,1772,1,0)
+ ;;^UTILITY(U,$J,358.3,2053,1,2,0)
+ ;;=2^93456
+ ;;^UTILITY(U,$J,358.3,2053,1,3,0)
+ ;;=3^Cor Angio incl inj & S&I, and R Heart Cath
+ ;;^UTILITY(U,$J,358.3,2054,0)
+ ;;=93457^^12^166^21^^^^1
+ ;;^UTILITY(U,$J,358.3,2054,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1772,1,2,0)
- ;;=2^93293
- ;;^UTILITY(U,$J,358.3,1772,1,3,0)
- ;;=3^PM Phone R-Strip Device Eval
- ;;^UTILITY(U,$J,358.3,1773,0)
- ;;=33223^^17^169^59^^^^1
- ;;^UTILITY(U,$J,358.3,1773,1,0)
+ ;;^UTILITY(U,$J,358.3,2054,1,2,0)
+ ;;=2^93457
+ ;;^UTILITY(U,$J,358.3,2054,1,3,0)
+ ;;=3^Rt Hrt Angio,Bypass Grft,incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,2055,0)
+ ;;=93458^^12^166^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2055,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1773,1,2,0)
- ;;=2^33223
- ;;^UTILITY(U,$J,358.3,1773,1,3,0)
- ;;=3^Revision Skin Pckt, ICD
- ;;^UTILITY(U,$J,358.3,1774,0)
- ;;=33224^^17^169^25^^^^1
- ;;^UTILITY(U,$J,358.3,1774,1,0)
+ ;;^UTILITY(U,$J,358.3,2055,1,2,0)
+ ;;=2^93458
+ ;;^UTILITY(U,$J,358.3,2055,1,3,0)
+ ;;=3^Cor Angio, LHC, V-Gram, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,2056,0)
+ ;;=93459^^12^166^13^^^^1
+ ;;^UTILITY(U,$J,358.3,2056,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1774,1,2,0)
- ;;=2^33224
- ;;^UTILITY(U,$J,358.3,1774,1,3,0)
- ;;=3^Insertion of Pacing Electrode
- ;;^UTILITY(U,$J,358.3,1775,0)
- ;;=33214^^17^169^65^^^^1
- ;;^UTILITY(U,$J,358.3,1775,1,0)
+ ;;^UTILITY(U,$J,358.3,2056,1,2,0)
+ ;;=2^93459
+ ;;^UTILITY(U,$J,358.3,2056,1,3,0)
+ ;;=3^Lt Hrt Angio,V-Gram,Bypass,incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,2057,0)
+ ;;=93460^^12^166^4^^^^1
+ ;;^UTILITY(U,$J,358.3,2057,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1775,1,2,0)
- ;;=2^33214
- ;;^UTILITY(U,$J,358.3,1775,1,3,0)
- ;;=3^Upgrade Sng to Dual PM System
- ;;^UTILITY(U,$J,358.3,1776,0)
- ;;=33215^^17^169^57^^^^1
- ;;^UTILITY(U,$J,358.3,1776,1,0)
+ ;;^UTILITY(U,$J,358.3,2057,1,2,0)
+ ;;=2^93460
+ ;;^UTILITY(U,$J,358.3,2057,1,3,0)
+ ;;=3^Cor Angio, RHC/LHC, V-Gram, incl inj & S&I
+ ;;^UTILITY(U,$J,358.3,2058,0)
+ ;;=93461^^12^166^19^^^^1
+ ;;^UTILITY(U,$J,358.3,2058,1,0)
  ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2058,1,2,0)
+ ;;=2^93461
+ ;;^UTILITY(U,$J,358.3,2058,1,3,0)
+ ;;=3^R&L Hrt Angio,V-Gram,Bypass,incl inj & S&I

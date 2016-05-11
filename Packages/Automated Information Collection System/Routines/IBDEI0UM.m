@@ -1,128 +1,122 @@
-IBDEI0UM ; ; 19-NOV-2015
+IBDEI0UM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14090,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,14090,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,14091,0)
- ;;=H40.31X2^^82^770^136
- ;;^UTILITY(U,$J,358.3,14091,1,0)
+ ;;^UTILITY(U,$J,358.3,14363,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,14364,0)
+ ;;=S53.401A^^53^606^14
+ ;;^UTILITY(U,$J,358.3,14364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14091,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14091,1,4,0)
- ;;=4^H40.31X2
- ;;^UTILITY(U,$J,358.3,14091,2)
- ;;=^5005854
- ;;^UTILITY(U,$J,358.3,14092,0)
- ;;=H40.31X3^^82^770^137
- ;;^UTILITY(U,$J,358.3,14092,1,0)
+ ;;^UTILITY(U,$J,358.3,14364,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,14364,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,14364,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,14365,0)
+ ;;=S53.402A^^53^606^3
+ ;;^UTILITY(U,$J,358.3,14365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14092,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14092,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,14092,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,14093,0)
- ;;=H40.31X4^^82^770^134
- ;;^UTILITY(U,$J,358.3,14093,1,0)
+ ;;^UTILITY(U,$J,358.3,14365,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,14365,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,14365,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,14366,0)
+ ;;=S56.011A^^53^606^55
+ ;;^UTILITY(U,$J,358.3,14366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14093,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14093,1,4,0)
- ;;=4^H40.31X4
- ;;^UTILITY(U,$J,358.3,14093,2)
- ;;=^5005855
- ;;^UTILITY(U,$J,358.3,14094,0)
- ;;=H40.32X0^^82^770^133
- ;;^UTILITY(U,$J,358.3,14094,1,0)
+ ;;^UTILITY(U,$J,358.3,14366,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14366,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,14366,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,14367,0)
+ ;;=S56.012A^^53^606^36
+ ;;^UTILITY(U,$J,358.3,14367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14094,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14094,1,4,0)
- ;;=4^H40.32X0
- ;;^UTILITY(U,$J,358.3,14094,2)
- ;;=^5005856
- ;;^UTILITY(U,$J,358.3,14095,0)
- ;;=H40.32X1^^82^770^130
- ;;^UTILITY(U,$J,358.3,14095,1,0)
+ ;;^UTILITY(U,$J,358.3,14367,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14367,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,14367,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,14368,0)
+ ;;=S56.111A^^53^606^43
+ ;;^UTILITY(U,$J,358.3,14368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14095,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14095,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,14095,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,14096,0)
- ;;=H40.32X2^^82^770^131
- ;;^UTILITY(U,$J,358.3,14096,1,0)
+ ;;^UTILITY(U,$J,358.3,14368,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14368,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,14368,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,14369,0)
+ ;;=S56.112A^^53^606^23
+ ;;^UTILITY(U,$J,358.3,14369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14096,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14096,1,4,0)
- ;;=4^H40.32X2
- ;;^UTILITY(U,$J,358.3,14096,2)
- ;;=^5005858
- ;;^UTILITY(U,$J,358.3,14097,0)
- ;;=H40.32X3^^82^770^132
- ;;^UTILITY(U,$J,358.3,14097,1,0)
+ ;;^UTILITY(U,$J,358.3,14369,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14369,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,14369,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,14370,0)
+ ;;=S56.113A^^53^606^51
+ ;;^UTILITY(U,$J,358.3,14370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14097,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14097,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,14097,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,14098,0)
- ;;=H40.32X4^^82^770^129
- ;;^UTILITY(U,$J,358.3,14098,1,0)
+ ;;^UTILITY(U,$J,358.3,14370,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14370,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,14370,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,14371,0)
+ ;;=S56.114A^^53^606^31
+ ;;^UTILITY(U,$J,358.3,14371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14098,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14098,1,4,0)
- ;;=4^H40.32X4
- ;;^UTILITY(U,$J,358.3,14098,2)
- ;;=^5005859
- ;;^UTILITY(U,$J,358.3,14099,0)
- ;;=H40.33X0^^82^770^128
- ;;^UTILITY(U,$J,358.3,14099,1,0)
+ ;;^UTILITY(U,$J,358.3,14371,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14371,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,14371,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,14372,0)
+ ;;=S56.115A^^53^606^53
+ ;;^UTILITY(U,$J,358.3,14372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14099,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14099,1,4,0)
- ;;=4^H40.33X0
- ;;^UTILITY(U,$J,358.3,14099,2)
- ;;=^5005860
- ;;^UTILITY(U,$J,358.3,14100,0)
- ;;=H40.33X1^^82^770^125
- ;;^UTILITY(U,$J,358.3,14100,1,0)
+ ;;^UTILITY(U,$J,358.3,14372,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14372,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,14372,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,14373,0)
+ ;;=S56.417A^^53^606^45
+ ;;^UTILITY(U,$J,358.3,14373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14100,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,14100,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,14100,2)
- ;;=^5005861
- ;;^UTILITY(U,$J,358.3,14101,0)
- ;;=H40.33X2^^82^770^126
- ;;^UTILITY(U,$J,358.3,14101,1,0)
+ ;;^UTILITY(U,$J,358.3,14373,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14373,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,14373,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,14374,0)
+ ;;=S56.418A^^53^606^25
+ ;;^UTILITY(U,$J,358.3,14374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14101,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14101,1,4,0)
- ;;=4^H40.33X2
- ;;^UTILITY(U,$J,358.3,14101,2)
- ;;=^5005862
- ;;^UTILITY(U,$J,358.3,14102,0)
- ;;=H40.33X3^^82^770^127
- ;;^UTILITY(U,$J,358.3,14102,1,0)
+ ;;^UTILITY(U,$J,358.3,14374,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14374,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,14374,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,14375,0)
+ ;;=S56.811A^^53^606^41
+ ;;^UTILITY(U,$J,358.3,14375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14102,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,14102,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,14102,2)
- ;;=^5005863
+ ;;^UTILITY(U,$J,358.3,14375,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon

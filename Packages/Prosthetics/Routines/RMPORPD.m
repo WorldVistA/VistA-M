@@ -1,11 +1,14 @@
 RMPORPD ;(NG)/DG/CAP/HINES CIOFO/HNC -PRESCRIPTION EXPIRE DATE ACTIVE PATIENTS ; 5/19/00 9:12am
- ;;3.0;PROSTHETICS;**29,46,49**;Feb 09, 1996
+ ;;3.0;PROSTHETICS;**29,46,49,179**;Feb 09, 1996;Build 7
+ ;
+ ;RMPR*3.0*179 Check for deceased patients. Add to report by
+ ;             displaying asterisk (*) if patient deceased.
  ;
 SITE ;   Set up the site variables.
  D HOSITE^RMPOUTL0  Q:'$D(RMPOXITE)
  ;
 LI ;   List the sought patient.
- N WHO S WHO=0
+ N WHO S WHO=0,RMPODCNT=0
  S (RMEND,RMPORPT,PAGE,COUNT)=0
  D NOW^%DTC  S Y=%  X ^DD("DD")
  S RPTDT=$P(Y,"@",1)_"  "_$P($P(Y,"@",2),":",1,2)
@@ -15,8 +18,8 @@ LI ;   List the sought patient.
  S DIS(0)="I $P($G(^RMPR(665,D0,""RMPOA"")),U,7)=RMPOXITE,$P($G(^RMPR(665,D0,""RMPOA"")),U,2)'="""",$P($G(^RMPR(665,D0,""RMPOA"")),U,3)="""""
  S DHIT="D CNT^RMPORPD"
  S DHD="W ?0 D RPTHDR^RMPORPD"
- S DIOEND="I $G(Y)'[U W !!,?50,""Total Patients: "",$J(COUNT,6) S RMEND=1 S:IOST[""P-"" RMPORPT=1"
- S FLDS="W $$RXDT^RMPORPD();C1;L10"
+ S DIOEND="I $G(Y)'[U D DIOEND^RMPORPD S RMEND=1 S:IOST[""P-"" RMPORPT=1"
+ S FLDS="W $$RXDT^RMPORPD();C1;L11"
  S FLDS(1)=".01;C12;L22"
  S FLDS(2)="W $$SSN^RMPORPD();C36;L4"
  S FLDS(3)="W $$PITEM^RMPORPD();C41;L30"
@@ -39,8 +42,9 @@ CNT ;*** COUNT NAMES
  Q
  ;
  ;*** CONVERT DATE FROM FILEMAN FORMAT TO MM/DD/YYYY
-DATE(FMD) ;
- Q $E(FMD,4,5)_"/"_$E(FMD,6,7)_"/"_($E(FMD,1,3)+1700)
+DATE(FMD) ;  RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
+ N RMPOEXP S RMPOEXP=" " I +$G(^DPT(D0,.35)) S RMPOEXP="*",RMPODCNT=RMPODCNT+1
+ Q $E(FMD,4,5)_"/"_$E(FMD,6,7)_"/"_($E(FMD,1,3)+1700)_RMPOEXP
  ;
 PITEM() ;*** GET PRIMARY ITEM AND ACTIVATION DATE
  N PITM,E
@@ -66,7 +70,7 @@ PRESORT ;*** SORT BY EXPIRATION DATE
 RPTHDR ;*** REPORT HEADER
  N RA S RA=RMPO("NAME"),PAGE=PAGE+1
  W RPTDT,?(40-($L(RA)/2)),RA,?68,"Page: "_PAGE
- W !?20,"Prescription Expiration Date",!,"Date Current",!,"Prescription"
+ W !?20,"Prescription Expiration Date",!,"Date Current",?55,"'*' patient is deceased",!,"Prescription"   ;RMPR*3.0*179
  W !?1,"Expires",?11,"Name",?35,"SSN",?41,"Primary Item",?73,"Active"
  W !,"==========",?11,"=======================",?35,"====",?41,"==============================",?72,"========",!
  Q
@@ -75,7 +79,7 @@ RPTHDR ;*** REPORT HEADER
  ; MODE      Date format: 0 - MM/DD/YYYY or "N/A" (default)
  ;                        1 - YYYMMDD or "N/A"
 RXDT(MODE) ;
- N J,D,Y,RA  S (D,RA,Y)=""
+ N J,D,Y,RA S (D,RA,Y)=""
  F  S D=$O(^RMPR(665,D0,"RMPOB","B",D))  Q:D=""  D
  . S J=$O(^RMPR(665,D0,"RMPOB","B",D,""),-1)  Q:J=""  S:J>RA RA=J
  S:RA'="" Y=$P($G(^RMPR(665,D0,"RMPOB",RA,0)),U,3)
@@ -87,3 +91,9 @@ SSN() ;*** SOCIAL SECURITY NUMBER
  S DFN=D0  D ^VADPT
  S X=$P(VA("PID"),"-",3)
  Q X
+DIOEND ;TOTAL PRINT
+ S COUNT=$E("      ",1,(6-$L(COUNT)))_COUNT
+ W !!,?47,"Total Patients: ",COUNT
+ S RMPODCNT=$E("      ",1,(6-$L(RMPODCNT)))_RMPODCNT   ;RMPR*3.0*179
+ W !,?38,"Total Deceased Patients: ",RMPODCNT   ;RMPR*3.0*179
+ Q

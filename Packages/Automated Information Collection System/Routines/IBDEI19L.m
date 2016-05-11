@@ -1,128 +1,130 @@
-IBDEI19L ; ; 19-NOV-2015
+IBDEI19L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21147,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21147,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,21147,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,21147,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,21148,0)
- ;;=I69.320^^101^1027^2
- ;;^UTILITY(U,$J,358.3,21148,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21148,1,3,0)
- ;;=3^Aphasia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,21148,1,4,0)
- ;;=4^I69.320
- ;;^UTILITY(U,$J,358.3,21148,2)
- ;;=^5007491
- ;;^UTILITY(U,$J,358.3,21149,0)
- ;;=I69.120^^101^1027^3
- ;;^UTILITY(U,$J,358.3,21149,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21149,1,3,0)
- ;;=3^Aphasia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,21149,1,4,0)
- ;;=4^I69.120
- ;;^UTILITY(U,$J,358.3,21149,2)
- ;;=^5007427
- ;;^UTILITY(U,$J,358.3,21150,0)
- ;;=I69.020^^101^1027^4
- ;;^UTILITY(U,$J,358.3,21150,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21150,1,3,0)
- ;;=3^Aphasia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,21150,1,4,0)
- ;;=4^I69.020
- ;;^UTILITY(U,$J,358.3,21150,2)
- ;;=^5007395
- ;;^UTILITY(U,$J,358.3,21151,0)
- ;;=I69.820^^101^1027^5
- ;;^UTILITY(U,$J,358.3,21151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21151,1,3,0)
- ;;=3^Aphasia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,21151,1,4,0)
- ;;=4^I69.820
- ;;^UTILITY(U,$J,358.3,21151,2)
- ;;=^5007522
- ;;^UTILITY(U,$J,358.3,21152,0)
- ;;=I69.220^^101^1027^6
- ;;^UTILITY(U,$J,358.3,21152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21152,1,3,0)
- ;;=3^Aphasia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,21152,1,4,0)
- ;;=4^I69.220
- ;;^UTILITY(U,$J,358.3,21152,2)
- ;;=^5007459
- ;;^UTILITY(U,$J,358.3,21153,0)
- ;;=I69.290^^101^1027^11
- ;;^UTILITY(U,$J,358.3,21153,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21153,1,3,0)
- ;;=3^Apraxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,21153,1,4,0)
- ;;=4^I69.290
- ;;^UTILITY(U,$J,358.3,21153,2)
- ;;=^5007484
- ;;^UTILITY(U,$J,358.3,21154,0)
- ;;=I69.390^^101^1027^7
- ;;^UTILITY(U,$J,358.3,21154,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21154,1,3,0)
- ;;=3^Apraxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,21154,1,4,0)
- ;;=4^I69.390
- ;;^UTILITY(U,$J,358.3,21154,2)
- ;;=^5007515
- ;;^UTILITY(U,$J,358.3,21155,0)
- ;;=I69.190^^101^1027^8
- ;;^UTILITY(U,$J,358.3,21155,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21155,1,3,0)
- ;;=3^Apraxia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,21155,1,4,0)
- ;;=4^I69.190
- ;;^UTILITY(U,$J,358.3,21155,2)
- ;;=^5007452
- ;;^UTILITY(U,$J,358.3,21156,0)
- ;;=I69.090^^101^1027^9
- ;;^UTILITY(U,$J,358.3,21156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21156,1,3,0)
- ;;=3^Apraxia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,21156,1,4,0)
- ;;=4^I69.090
- ;;^UTILITY(U,$J,358.3,21156,2)
- ;;=^5007420
- ;;^UTILITY(U,$J,358.3,21157,0)
- ;;=I69.890^^101^1027^10
- ;;^UTILITY(U,$J,358.3,21157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21157,1,3,0)
- ;;=3^Apraxia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,21157,1,4,0)
- ;;=4^I69.890
- ;;^UTILITY(U,$J,358.3,21157,2)
- ;;=^5007546
- ;;^UTILITY(U,$J,358.3,21158,0)
- ;;=I69.393^^101^1027^12
- ;;^UTILITY(U,$J,358.3,21158,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21158,1,3,0)
- ;;=3^Ataxia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,21158,1,4,0)
- ;;=4^I69.393
- ;;^UTILITY(U,$J,358.3,21158,2)
- ;;=^5007518
- ;;^UTILITY(U,$J,358.3,21159,0)
- ;;=I69.193^^101^1027^13
- ;;^UTILITY(U,$J,358.3,21159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21159,1,3,0)
- ;;=3^Ataxia following nontraumatic intracerebral hemorrhage
+ ;;^UTILITY(U,$J,358.3,21503,0)
+ ;;=20604^^86^958^5^^^^1
+ ;;^UTILITY(U,$J,358.3,21503,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21503,1,2,0)
+ ;;=2^20604
+ ;;^UTILITY(U,$J,358.3,21503,1,3,0)
+ ;;=3^Arthrocentesis,Small Jt w/ US Guidance
+ ;;^UTILITY(U,$J,358.3,21504,0)
+ ;;=20611^^86^958^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21504,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21504,1,2,0)
+ ;;=2^20611
+ ;;^UTILITY(U,$J,358.3,21504,1,3,0)
+ ;;=3^Arthrocentesis,Major Jt w/ US Guidance
+ ;;^UTILITY(U,$J,358.3,21505,0)
+ ;;=20606^^86^958^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21505,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21505,1,2,0)
+ ;;=2^20606
+ ;;^UTILITY(U,$J,358.3,21505,1,3,0)
+ ;;=3^Arthrocentesis,Intermediate Jt w/ US Guidance
+ ;;^UTILITY(U,$J,358.3,21506,0)
+ ;;=78740^^86^958^28^^^^1
+ ;;^UTILITY(U,$J,358.3,21506,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21506,1,2,0)
+ ;;=2^78740
+ ;;^UTILITY(U,$J,358.3,21506,1,3,0)
+ ;;=3^Urethral Reflux Study
+ ;;^UTILITY(U,$J,358.3,21507,0)
+ ;;=69210^^86^958^15^^^^1
+ ;;^UTILITY(U,$J,358.3,21507,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21507,1,2,0)
+ ;;=2^69210
+ ;;^UTILITY(U,$J,358.3,21507,1,3,0)
+ ;;=3^Ear Cleaning/Req Instrumentation (MD Only)
+ ;;^UTILITY(U,$J,358.3,21508,0)
+ ;;=93000^^86^958^13^^^^1
+ ;;^UTILITY(U,$J,358.3,21508,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21508,1,2,0)
+ ;;=2^93000
+ ;;^UTILITY(U,$J,358.3,21508,1,3,0)
+ ;;=3^EKG,Complete
+ ;;^UTILITY(U,$J,358.3,21509,0)
+ ;;=69209^^86^958^14^^^^1
+ ;;^UTILITY(U,$J,358.3,21509,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21509,1,2,0)
+ ;;=2^69209
+ ;;^UTILITY(U,$J,358.3,21509,1,3,0)
+ ;;=3^Ear Cleaning/Lavage/Irrigation (MD Only)
+ ;;^UTILITY(U,$J,358.3,21510,0)
+ ;;=29105^^86^959^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21510,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21510,1,2,0)
+ ;;=2^29105
+ ;;^UTILITY(U,$J,358.3,21510,1,3,0)
+ ;;=3^Long Arm Splint
+ ;;^UTILITY(U,$J,358.3,21511,0)
+ ;;=29125^^86^959^4^^^^1
+ ;;^UTILITY(U,$J,358.3,21511,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21511,1,2,0)
+ ;;=2^29125
+ ;;^UTILITY(U,$J,358.3,21511,1,3,0)
+ ;;=3^Short Arm Splint; Static
+ ;;^UTILITY(U,$J,358.3,21512,0)
+ ;;=29126^^86^959^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21512,1,2,0)
+ ;;=2^29126
+ ;;^UTILITY(U,$J,358.3,21512,1,3,0)
+ ;;=3^Short Arm Splint; Dynamic
+ ;;^UTILITY(U,$J,358.3,21513,0)
+ ;;=29130^^86^959^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21513,1,2,0)
+ ;;=2^29130
+ ;;^UTILITY(U,$J,358.3,21513,1,3,0)
+ ;;=3^Finger Splint
+ ;;^UTILITY(U,$J,358.3,21514,0)
+ ;;=12001^^86^960^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21514,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21514,1,2,0)
+ ;;=2^12001
+ ;;^UTILITY(U,$J,358.3,21514,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,21515,0)
+ ;;=12002^^86^960^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21515,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21515,1,2,0)
+ ;;=2^12002
+ ;;^UTILITY(U,$J,358.3,21515,1,3,0)
+ ;;=3^Simple repair; 2.6 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,21516,0)
+ ;;=12004^^86^960^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21516,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21516,1,2,0)
+ ;;=2^12004
+ ;;^UTILITY(U,$J,358.3,21516,1,3,0)
+ ;;=3^Simple repair; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,21517,0)
+ ;;=12005^^86^960^4^^^^1
+ ;;^UTILITY(U,$J,358.3,21517,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21517,1,2,0)
+ ;;=2^12005
+ ;;^UTILITY(U,$J,358.3,21517,1,3,0)
+ ;;=3^Simple repair; 12.6 cm to 20 cm
+ ;;^UTILITY(U,$J,358.3,21518,0)
+ ;;=12006^^86^960^5^^^^1
+ ;;^UTILITY(U,$J,358.3,21518,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21518,1,2,0)
+ ;;=2^12006

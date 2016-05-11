@@ -1,6 +1,6 @@
 IBOUNP1 ;ALB/CJM - OUTPATIENT INSURANCE REPORT ;JAN 25,1992
- ;;2.0;INTEGRATED BILLING;**249**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**249,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; VAUTD =1 if all divisions selected
  ; VAUTD() - list of selected divisions
@@ -9,14 +9,19 @@ IBOUNP1 ;ALB/CJM - OUTPATIENT INSURANCE REPORT ;JAN 25,1992
  ; IBOEND - end of the date range for the report
  ; IBOBEG - start of the date range for report
  ; IBOQUIT - flag to exit
- ; IBOUK =1 if vets whose insurance is unknow should be included
+ ; IBOUK =1 if vets whose insurance is unknown should be included
  ; IBOUI =1 if vets that are no insured should be included
  ; IBOEXP = 1 if vets whose insurance is expiring should be included
+ ; IBOUT = "E" if output should be in Excel format, = "R" otherwise
 MAIN ;
  ;***
  ;
+ N IBOQUIT,IBOUI,IBOEXP,IBOUK,IBOUT,IBOPICK
  S IBOQUIT=0 K ^TMP($J,"SDAMA301"),^TMP("IBOUNP",$J)
  D CLINIC,CATGRY:'IBOQUIT,DRANGE:'IBOQUIT
+ ;
+ S IBOUT=$$OUT G:IBOUT="" EXIT
+ ;
  D:'IBOQUIT DEVICE
  G:IBOQUIT EXIT
 QUEUED ; entry point if queued
@@ -35,12 +40,12 @@ QUEUED ; entry point if queued
  ;
  D:'IBOQUIT LOOPPT^IBOUNP2,REPORT^IBOUNP3
 EXIT ; 
- K ^TMP($J,"SDAMA301")
+ K ^TMP($J,"SDAMA301"),^TMP("IBOUNP",$J)
  ;
  ;
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
- K IBOQUIT,IBOBEG,IBOEND,IBOUK,IBOUI,IBOEXP,VAUTC,VAUTD,IBARRAY,IBCOUNT
+ K IBOQUIT,IBOBEG,IBOEND,IBOUK,IBOUI,IBOEXP,VAUTC,VAUTD,IBARRAY,IBCOUNT,IBOUT
  K Y,POP,X1,X2,X,VAEL,VAERR,IBSDDAT,IBODIV,IBOCLN,DIRUT,VADM,VAOA,VAPD
  Q
  ;
@@ -52,10 +57,11 @@ DRANGE ; select a date range for report
  ;
 DEVICE ;
  I $D(ZTQUEUED) Q
- W !!,*7,"*** Margin width of this output is 132 ***"
+ I IBOUT="R" W !!,*7,"*** Margin width of this output is 132 ***"
  W !,"*** This output should be queued ***"
  S %ZIS="MQ" D ^%ZIS I POP S IBOQUIT=1 Q
  I $D(IO("Q")) S ZTRTN="QUEUED^IBOUNP1",ZTIO=ION,ZTSAVE("VA*")="",ZTSAVE("IBO*")="",ZTDESC="OUTPATIENT INSURANCE REPORT" D ^%ZTLOAD W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED") D HOME^%ZIS S IBOQUIT=1 Q
+ U IO
  Q
  ;
 CLINIC ; gets list of selected clinics,or sets VAUTC=1 if all selected
@@ -87,3 +93,12 @@ CATGRY ; allows user to select categories to include in report
  S DIR("B")="YES" D ^DIR K DIR I $D(DIRUT) S IBOQUIT=1 Q
  S IBOUI=Y
  Q
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

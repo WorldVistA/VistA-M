@@ -1,140 +1,140 @@
-IBDEI0IE ; ; 19-NOV-2015
+IBDEI0IE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8258,0)
- ;;=E11.21^^55^537^61
- ;;^UTILITY(U,$J,358.3,8258,1,0)
+ ;;^UTILITY(U,$J,358.3,8539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8258,1,3,0)
- ;;=3^Type 2 diabetes mellitus with diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,8258,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,8258,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,8259,0)
- ;;=E83.41^^55^537^29
- ;;^UTILITY(U,$J,358.3,8259,1,0)
+ ;;^UTILITY(U,$J,358.3,8539,1,3,0)
+ ;;=3^Chronic laryngitis
+ ;;^UTILITY(U,$J,358.3,8539,1,4,0)
+ ;;=4^J37.0
+ ;;^UTILITY(U,$J,358.3,8539,2)
+ ;;=^269902
+ ;;^UTILITY(U,$J,358.3,8540,0)
+ ;;=J30.9^^39^461^2
+ ;;^UTILITY(U,$J,358.3,8540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8259,1,3,0)
- ;;=3^Hypermagnesemia
- ;;^UTILITY(U,$J,358.3,8259,1,4,0)
- ;;=4^E83.41
- ;;^UTILITY(U,$J,358.3,8259,2)
- ;;=^5003002
- ;;^UTILITY(U,$J,358.3,8260,0)
- ;;=E83.42^^55^537^35
- ;;^UTILITY(U,$J,358.3,8260,1,0)
+ ;;^UTILITY(U,$J,358.3,8540,1,3,0)
+ ;;=3^Allergic rhinitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8540,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,8540,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,8541,0)
+ ;;=J30.0^^39^461^23
+ ;;^UTILITY(U,$J,358.3,8541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8260,1,3,0)
- ;;=3^Hypomagnesemia
- ;;^UTILITY(U,$J,358.3,8260,1,4,0)
- ;;=4^E83.42
- ;;^UTILITY(U,$J,358.3,8260,2)
- ;;=^5003003
- ;;^UTILITY(U,$J,358.3,8261,0)
- ;;=E83.51^^55^537^33
- ;;^UTILITY(U,$J,358.3,8261,1,0)
+ ;;^UTILITY(U,$J,358.3,8541,1,3,0)
+ ;;=3^Vasomotor rhinitis
+ ;;^UTILITY(U,$J,358.3,8541,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,8541,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,8542,0)
+ ;;=J34.3^^39^461^14
+ ;;^UTILITY(U,$J,358.3,8542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8261,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,8261,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,8261,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,8262,0)
- ;;=E83.52^^55^537^27
- ;;^UTILITY(U,$J,358.3,8262,1,0)
+ ;;^UTILITY(U,$J,358.3,8542,1,3,0)
+ ;;=3^Hypertrophy of nasal turbinates
+ ;;^UTILITY(U,$J,358.3,8542,1,4,0)
+ ;;=4^J34.3
+ ;;^UTILITY(U,$J,358.3,8542,2)
+ ;;=^269909
+ ;;^UTILITY(U,$J,358.3,8543,0)
+ ;;=M95.0^^39^461^1
+ ;;^UTILITY(U,$J,358.3,8543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8262,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,8262,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,8262,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,8263,0)
- ;;=E87.0^^55^537^30
- ;;^UTILITY(U,$J,358.3,8263,1,0)
+ ;;^UTILITY(U,$J,358.3,8543,1,3,0)
+ ;;=3^Acquired deformity of nose
+ ;;^UTILITY(U,$J,358.3,8543,1,4,0)
+ ;;=4^M95.0
+ ;;^UTILITY(U,$J,358.3,8543,2)
+ ;;=^5015367
+ ;;^UTILITY(U,$J,358.3,8544,0)
+ ;;=J38.00^^39^461^18
+ ;;^UTILITY(U,$J,358.3,8544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8263,1,3,0)
- ;;=3^Hyperosmolality and hypernatremia
- ;;^UTILITY(U,$J,358.3,8263,1,4,0)
- ;;=4^E87.0
- ;;^UTILITY(U,$J,358.3,8263,2)
- ;;=^5003018
- ;;^UTILITY(U,$J,358.3,8264,0)
- ;;=E87.1^^55^537^31
- ;;^UTILITY(U,$J,358.3,8264,1,0)
+ ;;^UTILITY(U,$J,358.3,8544,1,3,0)
+ ;;=3^Paralysis of vocal cords and larynx, unspecified
+ ;;^UTILITY(U,$J,358.3,8544,1,4,0)
+ ;;=4^J38.00
+ ;;^UTILITY(U,$J,358.3,8544,2)
+ ;;=^5008219
+ ;;^UTILITY(U,$J,358.3,8545,0)
+ ;;=J38.1^^39^461^22
+ ;;^UTILITY(U,$J,358.3,8545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8264,1,3,0)
- ;;=3^Hypo-osmolality and hyponatremia
- ;;^UTILITY(U,$J,358.3,8264,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,8264,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,8265,0)
- ;;=E87.5^^55^537^28
- ;;^UTILITY(U,$J,358.3,8265,1,0)
+ ;;^UTILITY(U,$J,358.3,8545,1,3,0)
+ ;;=3^Polyp of vocal cord and larynx
+ ;;^UTILITY(U,$J,358.3,8545,1,4,0)
+ ;;=4^J38.1
+ ;;^UTILITY(U,$J,358.3,8545,2)
+ ;;=^5008222
+ ;;^UTILITY(U,$J,358.3,8546,0)
+ ;;=J38.7^^39^461^15
+ ;;^UTILITY(U,$J,358.3,8546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8265,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,8265,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,8265,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,8266,0)
- ;;=E87.6^^55^537^34
- ;;^UTILITY(U,$J,358.3,8266,1,0)
+ ;;^UTILITY(U,$J,358.3,8546,1,3,0)
+ ;;=3^Larynx Diseases NEC
+ ;;^UTILITY(U,$J,358.3,8546,1,4,0)
+ ;;=4^J38.7
+ ;;^UTILITY(U,$J,358.3,8546,2)
+ ;;=^5008227
+ ;;^UTILITY(U,$J,358.3,8547,0)
+ ;;=K13.21^^39^461^16
+ ;;^UTILITY(U,$J,358.3,8547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8266,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,8266,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,8266,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,8267,0)
- ;;=F52.0^^55^537^32
- ;;^UTILITY(U,$J,358.3,8267,1,0)
+ ;;^UTILITY(U,$J,358.3,8547,1,3,0)
+ ;;=3^Leukoplakia of oral mucosa, including tongue
+ ;;^UTILITY(U,$J,358.3,8547,1,4,0)
+ ;;=4^K13.21
+ ;;^UTILITY(U,$J,358.3,8547,2)
+ ;;=^270054
+ ;;^UTILITY(U,$J,358.3,8548,0)
+ ;;=R43.0^^39^461^3
+ ;;^UTILITY(U,$J,358.3,8548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8267,1,3,0)
- ;;=3^Hypoactive sexual desire disorder
- ;;^UTILITY(U,$J,358.3,8267,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,8267,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,8268,0)
- ;;=F52.21^^55^537^39
- ;;^UTILITY(U,$J,358.3,8268,1,0)
+ ;;^UTILITY(U,$J,358.3,8548,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,8548,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,8548,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,8549,0)
+ ;;=R49.0^^39^461^12
+ ;;^UTILITY(U,$J,358.3,8549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8268,1,3,0)
- ;;=3^Male erectile disorder
- ;;^UTILITY(U,$J,358.3,8268,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,8268,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,8269,0)
- ;;=I12.9^^55^537^25
- ;;^UTILITY(U,$J,358.3,8269,1,0)
+ ;;^UTILITY(U,$J,358.3,8549,1,3,0)
+ ;;=3^Dysphonia
+ ;;^UTILITY(U,$J,358.3,8549,1,4,0)
+ ;;=4^R49.0
+ ;;^UTILITY(U,$J,358.3,8549,2)
+ ;;=^5019501
+ ;;^UTILITY(U,$J,358.3,8550,0)
+ ;;=R04.0^^39^461^13
+ ;;^UTILITY(U,$J,358.3,8550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8269,1,3,0)
- ;;=3^Hyp chr kidney disease w stage 1-4/unsp chr kdny
- ;;^UTILITY(U,$J,358.3,8269,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,8269,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,8270,0)
- ;;=I12.0^^55^537^26
- ;;^UTILITY(U,$J,358.3,8270,1,0)
+ ;;^UTILITY(U,$J,358.3,8550,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,8550,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,8550,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,8551,0)
+ ;;=J34.89^^39^461^17
+ ;;^UTILITY(U,$J,358.3,8551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8270,1,3,0)
- ;;=3^Hyp chr kidney disease w stage 5 chr kidney disease or ESRD
- ;;^UTILITY(U,$J,358.3,8270,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,8270,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,8271,0)
- ;;=K40.90^^55^537^62
- ;;^UTILITY(U,$J,358.3,8271,1,0)
+ ;;^UTILITY(U,$J,358.3,8551,1,3,0)
+ ;;=3^Nose & Nasal Sinus Disorders,Oth Specified
+ ;;^UTILITY(U,$J,358.3,8551,1,4,0)
+ ;;=4^J34.89
+ ;;^UTILITY(U,$J,358.3,8551,2)
+ ;;=^5008211
+ ;;^UTILITY(U,$J,358.3,8552,0)
+ ;;=H60.391^^39^462^34
+ ;;^UTILITY(U,$J,358.3,8552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8271,1,3,0)
- ;;=3^Unil inguinal hernia, w/o obst or gangr, not spcf as recur
+ ;;^UTILITY(U,$J,358.3,8552,1,3,0)
+ ;;=3^Infective otitis externa, right ear NEC
+ ;;^UTILITY(U,$J,358.3,8552,1,4,0)
+ ;;=4^H60.391

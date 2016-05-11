@@ -1,130 +1,136 @@
-IBDEI1II ; ; 19-NOV-2015
+IBDEI1II ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25273,0)
- ;;=M19.012^^124^1244^37
- ;;^UTILITY(U,$J,358.3,25273,1,0)
+ ;;^UTILITY(U,$J,358.3,25651,0)
+ ;;=F54.^^95^1178^12
+ ;;^UTILITY(U,$J,358.3,25651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25273,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,25273,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,25273,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,25274,0)
- ;;=M19.211^^124^1244^68
- ;;^UTILITY(U,$J,358.3,25274,1,0)
+ ;;^UTILITY(U,$J,358.3,25651,1,3,0)
+ ;;=3^Psychological Factors Affecting Oth Med Conditions
+ ;;^UTILITY(U,$J,358.3,25651,1,4,0)
+ ;;=4^F54.
+ ;;^UTILITY(U,$J,358.3,25651,2)
+ ;;=^5003627
+ ;;^UTILITY(U,$J,358.3,25652,0)
+ ;;=F91.2^^95^1179^1
+ ;;^UTILITY(U,$J,358.3,25652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25274,1,3,0)
- ;;=3^Secondary Osteoarthritis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,25274,1,4,0)
- ;;=4^M19.211
- ;;^UTILITY(U,$J,358.3,25274,2)
- ;;=^5010838
- ;;^UTILITY(U,$J,358.3,25275,0)
- ;;=M19.212^^124^1244^64
- ;;^UTILITY(U,$J,358.3,25275,1,0)
+ ;;^UTILITY(U,$J,358.3,25652,1,3,0)
+ ;;=3^Conduct Disorder,Adolescent-Onset Type
+ ;;^UTILITY(U,$J,358.3,25652,1,4,0)
+ ;;=4^F91.2
+ ;;^UTILITY(U,$J,358.3,25652,2)
+ ;;=^5003699
+ ;;^UTILITY(U,$J,358.3,25653,0)
+ ;;=F91.1^^95^1179^2
+ ;;^UTILITY(U,$J,358.3,25653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25275,1,3,0)
- ;;=3^Secondary Osteoarthritis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,25275,1,4,0)
- ;;=4^M19.212
- ;;^UTILITY(U,$J,358.3,25275,2)
- ;;=^5010839
- ;;^UTILITY(U,$J,358.3,25276,0)
- ;;=M19.021^^124^1244^40
- ;;^UTILITY(U,$J,358.3,25276,1,0)
+ ;;^UTILITY(U,$J,358.3,25653,1,3,0)
+ ;;=3^Conduct Disorder,Childhood-Onset Type
+ ;;^UTILITY(U,$J,358.3,25653,1,4,0)
+ ;;=4^F91.1
+ ;;^UTILITY(U,$J,358.3,25653,2)
+ ;;=^5003698
+ ;;^UTILITY(U,$J,358.3,25654,0)
+ ;;=F91.9^^95^1179^3
+ ;;^UTILITY(U,$J,358.3,25654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25276,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Elbow
- ;;^UTILITY(U,$J,358.3,25276,1,4,0)
- ;;=4^M19.021
- ;;^UTILITY(U,$J,358.3,25276,2)
- ;;=^5010811
- ;;^UTILITY(U,$J,358.3,25277,0)
- ;;=M19.022^^124^1244^33
- ;;^UTILITY(U,$J,358.3,25277,1,0)
+ ;;^UTILITY(U,$J,358.3,25654,1,3,0)
+ ;;=3^Conduct Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25654,1,4,0)
+ ;;=4^F91.9
+ ;;^UTILITY(U,$J,358.3,25654,2)
+ ;;=^5003701
+ ;;^UTILITY(U,$J,358.3,25655,0)
+ ;;=F63.81^^95^1179^5
+ ;;^UTILITY(U,$J,358.3,25655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25277,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Elbow
- ;;^UTILITY(U,$J,358.3,25277,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,25277,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,25278,0)
- ;;=M19.031^^124^1244^45
- ;;^UTILITY(U,$J,358.3,25278,1,0)
+ ;;^UTILITY(U,$J,358.3,25655,1,3,0)
+ ;;=3^Intermittent Explosive Disorder
+ ;;^UTILITY(U,$J,358.3,25655,1,4,0)
+ ;;=4^F63.81
+ ;;^UTILITY(U,$J,358.3,25655,2)
+ ;;=^5003644
+ ;;^UTILITY(U,$J,358.3,25656,0)
+ ;;=F63.2^^95^1179^6
+ ;;^UTILITY(U,$J,358.3,25656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25278,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Wrist
- ;;^UTILITY(U,$J,358.3,25278,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,25278,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,25279,0)
- ;;=M19.032^^124^1244^38
- ;;^UTILITY(U,$J,358.3,25279,1,0)
+ ;;^UTILITY(U,$J,358.3,25656,1,3,0)
+ ;;=3^Kleptomania
+ ;;^UTILITY(U,$J,358.3,25656,1,4,0)
+ ;;=4^F63.2
+ ;;^UTILITY(U,$J,358.3,25656,2)
+ ;;=^5003642
+ ;;^UTILITY(U,$J,358.3,25657,0)
+ ;;=F91.3^^95^1179^7
+ ;;^UTILITY(U,$J,358.3,25657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25279,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Wrist
- ;;^UTILITY(U,$J,358.3,25279,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,25279,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,25280,0)
- ;;=M19.041^^124^1244^41
- ;;^UTILITY(U,$J,358.3,25280,1,0)
+ ;;^UTILITY(U,$J,358.3,25657,1,3,0)
+ ;;=3^Oppositional Defiant Disorder
+ ;;^UTILITY(U,$J,358.3,25657,1,4,0)
+ ;;=4^F91.3
+ ;;^UTILITY(U,$J,358.3,25657,2)
+ ;;=^331955
+ ;;^UTILITY(U,$J,358.3,25658,0)
+ ;;=F91.8^^95^1179^4
+ ;;^UTILITY(U,$J,358.3,25658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25280,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Hand
- ;;^UTILITY(U,$J,358.3,25280,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,25280,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,25281,0)
- ;;=M19.042^^124^1244^34
- ;;^UTILITY(U,$J,358.3,25281,1,0)
+ ;;^UTILITY(U,$J,358.3,25658,1,3,0)
+ ;;=3^Disruptive,Impulse-Control,Conduct Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,25658,1,4,0)
+ ;;=4^F91.8
+ ;;^UTILITY(U,$J,358.3,25658,2)
+ ;;=^5003700
+ ;;^UTILITY(U,$J,358.3,25659,0)
+ ;;=F63.1^^95^1179^8
+ ;;^UTILITY(U,$J,358.3,25659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25281,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Hand
- ;;^UTILITY(U,$J,358.3,25281,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,25281,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,25282,0)
- ;;=M19.221^^124^1244^66
- ;;^UTILITY(U,$J,358.3,25282,1,0)
+ ;;^UTILITY(U,$J,358.3,25659,1,3,0)
+ ;;=3^Pyromania
+ ;;^UTILITY(U,$J,358.3,25659,1,4,0)
+ ;;=4^F63.1
+ ;;^UTILITY(U,$J,358.3,25659,2)
+ ;;=^5003641
+ ;;^UTILITY(U,$J,358.3,25660,0)
+ ;;=F98.0^^95^1180^5
+ ;;^UTILITY(U,$J,358.3,25660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25282,1,3,0)
- ;;=3^Secondary Osteoarthritis,Right Elbow
- ;;^UTILITY(U,$J,358.3,25282,1,4,0)
- ;;=4^M19.221
- ;;^UTILITY(U,$J,358.3,25282,2)
- ;;=^5010841
- ;;^UTILITY(U,$J,358.3,25283,0)
- ;;=M19.222^^124^1244^62
- ;;^UTILITY(U,$J,358.3,25283,1,0)
+ ;;^UTILITY(U,$J,358.3,25660,1,3,0)
+ ;;=3^Enuresis
+ ;;^UTILITY(U,$J,358.3,25660,1,4,0)
+ ;;=4^F98.0
+ ;;^UTILITY(U,$J,358.3,25660,2)
+ ;;=^5003711
+ ;;^UTILITY(U,$J,358.3,25661,0)
+ ;;=F98.1^^95^1180^4
+ ;;^UTILITY(U,$J,358.3,25661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25283,1,3,0)
- ;;=3^Secondary Osteoarthritis,Left Elbow
- ;;^UTILITY(U,$J,358.3,25283,1,4,0)
- ;;=4^M19.222
- ;;^UTILITY(U,$J,358.3,25283,2)
- ;;=^5010842
- ;;^UTILITY(U,$J,358.3,25284,0)
- ;;=M19.231^^124^1244^69
- ;;^UTILITY(U,$J,358.3,25284,1,0)
+ ;;^UTILITY(U,$J,358.3,25661,1,3,0)
+ ;;=3^Encopresis
+ ;;^UTILITY(U,$J,358.3,25661,1,4,0)
+ ;;=4^F98.1
+ ;;^UTILITY(U,$J,358.3,25661,2)
+ ;;=^5003712
+ ;;^UTILITY(U,$J,358.3,25662,0)
+ ;;=N39.498^^95^1180^2
+ ;;^UTILITY(U,$J,358.3,25662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25284,1,3,0)
- ;;=3^Secondary Osteoarthritis,Right Wrist
- ;;^UTILITY(U,$J,358.3,25284,1,4,0)
- ;;=4^M19.231
- ;;^UTILITY(U,$J,358.3,25284,2)
- ;;=^5010844
- ;;^UTILITY(U,$J,358.3,25285,0)
- ;;=M19.232^^124^1244^65
- ;;^UTILITY(U,$J,358.3,25285,1,0)
+ ;;^UTILITY(U,$J,358.3,25662,1,3,0)
+ ;;=3^Elimination Disorder w/ Urinary Symptoms,Oth Specified
+ ;;^UTILITY(U,$J,358.3,25662,1,4,0)
+ ;;=4^N39.498
+ ;;^UTILITY(U,$J,358.3,25662,2)
+ ;;=^5015686
+ ;;^UTILITY(U,$J,358.3,25663,0)
+ ;;=R15.9^^95^1180^1
+ ;;^UTILITY(U,$J,358.3,25663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25285,1,3,0)
- ;;=3^Secondary Osteoarthritis,Left Wrist
+ ;;^UTILITY(U,$J,358.3,25663,1,3,0)
+ ;;=3^Elimination Disorder w/ Fecal Symptoms,Other Specified
+ ;;^UTILITY(U,$J,358.3,25663,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,25663,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,25664,0)
+ ;;=R32.^^95^1180^3

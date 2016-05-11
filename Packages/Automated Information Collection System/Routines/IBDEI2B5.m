@@ -1,130 +1,132 @@
-IBDEI2B5 ; ; 19-NOV-2015
+IBDEI2B5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38759,1,0)
+ ;;^UTILITY(U,$J,358.3,39151,2)
+ ;;=^5004992
+ ;;^UTILITY(U,$J,358.3,39152,0)
+ ;;=H18.001^^153^1920^49
+ ;;^UTILITY(U,$J,358.3,39152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38759,1,3,0)
- ;;=3^Traumatic arthropathy, right hip
- ;;^UTILITY(U,$J,358.3,38759,1,4,0)
- ;;=4^M12.551
- ;;^UTILITY(U,$J,358.3,38759,2)
- ;;=^5010631
- ;;^UTILITY(U,$J,358.3,38760,0)
- ;;=M12.561^^180^1985^55
- ;;^UTILITY(U,$J,358.3,38760,1,0)
+ ;;^UTILITY(U,$J,358.3,39152,1,3,0)
+ ;;=3^Corneal Deposit,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39152,1,4,0)
+ ;;=4^H18.001
+ ;;^UTILITY(U,$J,358.3,39152,2)
+ ;;=^5005004
+ ;;^UTILITY(U,$J,358.3,39153,0)
+ ;;=H18.002^^153^1920^48
+ ;;^UTILITY(U,$J,358.3,39153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38760,1,3,0)
- ;;=3^Traumatic arthropathy, right knee
- ;;^UTILITY(U,$J,358.3,38760,1,4,0)
- ;;=4^M12.561
- ;;^UTILITY(U,$J,358.3,38760,2)
- ;;=^5010634
- ;;^UTILITY(U,$J,358.3,38761,0)
- ;;=M12.511^^180^1985^56
- ;;^UTILITY(U,$J,358.3,38761,1,0)
+ ;;^UTILITY(U,$J,358.3,39153,1,3,0)
+ ;;=3^Corneal Deposit,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39153,1,4,0)
+ ;;=4^H18.002
+ ;;^UTILITY(U,$J,358.3,39153,2)
+ ;;=^5005005
+ ;;^UTILITY(U,$J,358.3,39154,0)
+ ;;=H18.051^^153^1920^135
+ ;;^UTILITY(U,$J,358.3,39154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38761,1,3,0)
- ;;=3^Traumatic arthropathy, right shoulder
- ;;^UTILITY(U,$J,358.3,38761,1,4,0)
- ;;=4^M12.511
- ;;^UTILITY(U,$J,358.3,38761,2)
- ;;=^5010619
- ;;^UTILITY(U,$J,358.3,38762,0)
- ;;=M12.531^^180^1985^57
- ;;^UTILITY(U,$J,358.3,38762,1,0)
+ ;;^UTILITY(U,$J,358.3,39154,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Right Eye
+ ;;^UTILITY(U,$J,358.3,39154,1,4,0)
+ ;;=4^H18.051
+ ;;^UTILITY(U,$J,358.3,39154,2)
+ ;;=^5005023
+ ;;^UTILITY(U,$J,358.3,39155,0)
+ ;;=H18.052^^153^1920^134
+ ;;^UTILITY(U,$J,358.3,39155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38762,1,3,0)
- ;;=3^Traumatic arthropathy, right wrist
- ;;^UTILITY(U,$J,358.3,38762,1,4,0)
- ;;=4^M12.531
- ;;^UTILITY(U,$J,358.3,38762,2)
- ;;=^5010625
- ;;^UTILITY(U,$J,358.3,38763,0)
- ;;=M12.9^^180^1985^1
- ;;^UTILITY(U,$J,358.3,38763,1,0)
+ ;;^UTILITY(U,$J,358.3,39155,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Left Eye
+ ;;^UTILITY(U,$J,358.3,39155,1,4,0)
+ ;;=4^H18.052
+ ;;^UTILITY(U,$J,358.3,39155,2)
+ ;;=^5005024
+ ;;^UTILITY(U,$J,358.3,39156,0)
+ ;;=H18.20^^153^1920^51
+ ;;^UTILITY(U,$J,358.3,39156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38763,1,3,0)
- ;;=3^Arthropathy, unspecified
- ;;^UTILITY(U,$J,358.3,38763,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,38763,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,38764,0)
- ;;=M18.9^^180^1985^16
- ;;^UTILITY(U,$J,358.3,38764,1,0)
+ ;;^UTILITY(U,$J,358.3,39156,1,3,0)
+ ;;=3^Corneal Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,39156,1,4,0)
+ ;;=4^H18.20
+ ;;^UTILITY(U,$J,358.3,39156,2)
+ ;;=^5005035
+ ;;^UTILITY(U,$J,358.3,39157,0)
+ ;;=H18.11^^153^1920^25
+ ;;^UTILITY(U,$J,358.3,39157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38764,1,3,0)
- ;;=3^Osteoarthritis of first carpometacarpal joint, unspecified
- ;;^UTILITY(U,$J,358.3,38764,1,4,0)
- ;;=4^M18.9
- ;;^UTILITY(U,$J,358.3,38764,2)
- ;;=^5010807
- ;;^UTILITY(U,$J,358.3,38765,0)
- ;;=M16.9^^180^1985^17
- ;;^UTILITY(U,$J,358.3,38765,1,0)
+ ;;^UTILITY(U,$J,358.3,39157,1,3,0)
+ ;;=3^Bullous Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,39157,1,4,0)
+ ;;=4^H18.11
+ ;;^UTILITY(U,$J,358.3,39157,2)
+ ;;=^5005032
+ ;;^UTILITY(U,$J,358.3,39158,0)
+ ;;=H18.12^^153^1920^24
+ ;;^UTILITY(U,$J,358.3,39158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38765,1,3,0)
- ;;=3^Osteoarthritis of hip, unspecified
- ;;^UTILITY(U,$J,358.3,38765,1,4,0)
- ;;=4^M16.9
- ;;^UTILITY(U,$J,358.3,38765,2)
- ;;=^5010783
- ;;^UTILITY(U,$J,358.3,38766,0)
- ;;=M17.9^^180^1985^18
- ;;^UTILITY(U,$J,358.3,38766,1,0)
+ ;;^UTILITY(U,$J,358.3,39158,1,3,0)
+ ;;=3^Bullous Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,39158,1,4,0)
+ ;;=4^H18.12
+ ;;^UTILITY(U,$J,358.3,39158,2)
+ ;;=^5005033
+ ;;^UTILITY(U,$J,358.3,39159,0)
+ ;;=H18.831^^153^1920^150
+ ;;^UTILITY(U,$J,358.3,39159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38766,1,3,0)
- ;;=3^Osteoarthritis of knee, unspecified
- ;;^UTILITY(U,$J,358.3,38766,1,4,0)
- ;;=4^M17.9
- ;;^UTILITY(U,$J,358.3,38766,2)
- ;;=^5010794
- ;;^UTILITY(U,$J,358.3,38767,0)
- ;;=M15.0^^180^1985^19
- ;;^UTILITY(U,$J,358.3,38767,1,0)
+ ;;^UTILITY(U,$J,358.3,39159,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Right Eye
+ ;;^UTILITY(U,$J,358.3,39159,1,4,0)
+ ;;=4^H18.831
+ ;;^UTILITY(U,$J,358.3,39159,2)
+ ;;=^5005126
+ ;;^UTILITY(U,$J,358.3,39160,0)
+ ;;=H18.832^^153^1920^149
+ ;;^UTILITY(U,$J,358.3,39160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38767,1,3,0)
- ;;=3^Primary generalized (osteo)arthritis
- ;;^UTILITY(U,$J,358.3,38767,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,38767,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,38768,0)
- ;;=M19.072^^180^1985^20
- ;;^UTILITY(U,$J,358.3,38768,1,0)
+ ;;^UTILITY(U,$J,358.3,39160,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Left Eye
+ ;;^UTILITY(U,$J,358.3,39160,1,4,0)
+ ;;=4^H18.832
+ ;;^UTILITY(U,$J,358.3,39160,2)
+ ;;=^5005127
+ ;;^UTILITY(U,$J,358.3,39161,0)
+ ;;=H18.421^^153^1920^14
+ ;;^UTILITY(U,$J,358.3,39161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38768,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,38768,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,38768,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,38769,0)
- ;;=M19.042^^180^1985^21
- ;;^UTILITY(U,$J,358.3,38769,1,0)
+ ;;^UTILITY(U,$J,358.3,39161,1,3,0)
+ ;;=3^Band Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,39161,1,4,0)
+ ;;=4^H18.421
+ ;;^UTILITY(U,$J,358.3,39161,2)
+ ;;=^5005066
+ ;;^UTILITY(U,$J,358.3,39162,0)
+ ;;=H18.422^^153^1920^13
+ ;;^UTILITY(U,$J,358.3,39162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38769,1,3,0)
- ;;=3^Primary osteoarthritis, left hand
- ;;^UTILITY(U,$J,358.3,38769,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,38769,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,38770,0)
- ;;=M19.012^^180^1985^22
- ;;^UTILITY(U,$J,358.3,38770,1,0)
+ ;;^UTILITY(U,$J,358.3,39162,1,3,0)
+ ;;=3^Band Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,39162,1,4,0)
+ ;;=4^H18.422
+ ;;^UTILITY(U,$J,358.3,39162,2)
+ ;;=^5005067
+ ;;^UTILITY(U,$J,358.3,39163,0)
+ ;;=H18.50^^153^1920^80
+ ;;^UTILITY(U,$J,358.3,39163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38770,1,3,0)
- ;;=3^Primary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,38770,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,38770,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,38771,0)
- ;;=M19.071^^180^1985^23
- ;;^UTILITY(U,$J,358.3,38771,1,0)
+ ;;^UTILITY(U,$J,358.3,39163,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec
+ ;;^UTILITY(U,$J,358.3,39163,1,4,0)
+ ;;=4^H18.50
+ ;;^UTILITY(U,$J,358.3,39163,2)
+ ;;=^5005084
+ ;;^UTILITY(U,$J,358.3,39164,0)
+ ;;=H18.51^^153^1920^61
+ ;;^UTILITY(U,$J,358.3,39164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38771,1,3,0)
- ;;=3^Primary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,38771,1,4,0)
- ;;=4^M19.071
+ ;;^UTILITY(U,$J,358.3,39164,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy

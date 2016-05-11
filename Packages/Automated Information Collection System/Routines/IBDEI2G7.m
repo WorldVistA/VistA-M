@@ -1,124 +1,134 @@
-IBDEI2G7 ; ; 19-NOV-2015
+IBDEI2G7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41087,1,3,0)
- ;;=3^Disp fx navicular lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41087,1,4,0)
- ;;=4^S92.252K
- ;;^UTILITY(U,$J,358.3,41087,2)
- ;;=^5045015
- ;;^UTILITY(U,$J,358.3,41088,0)
- ;;=S92.251K^^189^2086^56
- ;;^UTILITY(U,$J,358.3,41088,1,0)
+ ;;^UTILITY(U,$J,358.3,41521,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,41521,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,41522,0)
+ ;;=Z96.653^^159^2005^122
+ ;;^UTILITY(U,$J,358.3,41522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41088,1,3,0)
- ;;=3^Disp fx navicular rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41088,1,4,0)
- ;;=4^S92.251K
- ;;^UTILITY(U,$J,358.3,41088,2)
- ;;=^5045008
- ;;^UTILITY(U,$J,358.3,41089,0)
- ;;=S92.245K^^189^2086^274
- ;;^UTILITY(U,$J,358.3,41089,1,0)
+ ;;^UTILITY(U,$J,358.3,41522,1,3,0)
+ ;;=3^Presence of Artificial Knee Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,41522,1,4,0)
+ ;;=4^Z96.653
+ ;;^UTILITY(U,$J,358.3,41522,2)
+ ;;=^5063707
+ ;;^UTILITY(U,$J,358.3,41523,0)
+ ;;=Z96.7^^159^2005^125
+ ;;^UTILITY(U,$J,358.3,41523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41089,1,3,0)
- ;;=3^Nondisp fx med cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41089,1,4,0)
- ;;=4^S92.245K
- ;;^UTILITY(U,$J,358.3,41089,2)
- ;;=^5044994
- ;;^UTILITY(U,$J,358.3,41090,0)
- ;;=S92.244K^^189^2086^275
- ;;^UTILITY(U,$J,358.3,41090,1,0)
+ ;;^UTILITY(U,$J,358.3,41523,1,3,0)
+ ;;=3^Presence of Bone/Tendon Implants NEC
+ ;;^UTILITY(U,$J,358.3,41523,1,4,0)
+ ;;=4^Z96.7
+ ;;^UTILITY(U,$J,358.3,41523,2)
+ ;;=^5063716
+ ;;^UTILITY(U,$J,358.3,41524,0)
+ ;;=Z97.11^^159^2005^133
+ ;;^UTILITY(U,$J,358.3,41524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41090,1,3,0)
- ;;=3^Nondisp fx med cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41090,1,4,0)
- ;;=4^S92.244K
- ;;^UTILITY(U,$J,358.3,41090,2)
- ;;=^5044987
- ;;^UTILITY(U,$J,358.3,41091,0)
- ;;=S92.232K^^189^2086^36
- ;;^UTILITY(U,$J,358.3,41091,1,0)
+ ;;^UTILITY(U,$J,358.3,41524,1,3,0)
+ ;;=3^Presence of Right Artificial Arm
+ ;;^UTILITY(U,$J,358.3,41524,1,4,0)
+ ;;=4^Z97.11
+ ;;^UTILITY(U,$J,358.3,41524,2)
+ ;;=^5063722
+ ;;^UTILITY(U,$J,358.3,41525,0)
+ ;;=Z97.12^^159^2005^128
+ ;;^UTILITY(U,$J,358.3,41525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41091,1,3,0)
- ;;=3^Disp fx intermed cuneiform of lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41091,1,4,0)
- ;;=4^S92.232K
- ;;^UTILITY(U,$J,358.3,41091,2)
- ;;=^5044931
- ;;^UTILITY(U,$J,358.3,41092,0)
- ;;=S92.231K^^189^2086^37
- ;;^UTILITY(U,$J,358.3,41092,1,0)
+ ;;^UTILITY(U,$J,358.3,41525,1,3,0)
+ ;;=3^Presence of Left Artificial Arm
+ ;;^UTILITY(U,$J,358.3,41525,1,4,0)
+ ;;=4^Z97.12
+ ;;^UTILITY(U,$J,358.3,41525,2)
+ ;;=^5063723
+ ;;^UTILITY(U,$J,358.3,41526,0)
+ ;;=Z97.13^^159^2005^136
+ ;;^UTILITY(U,$J,358.3,41526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41092,1,3,0)
- ;;=3^Disp fx intermed cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41092,1,4,0)
- ;;=4^S92.231K
- ;;^UTILITY(U,$J,358.3,41092,2)
- ;;=^5044924
- ;;^UTILITY(U,$J,358.3,41093,0)
- ;;=S92.225K^^189^2086^267
- ;;^UTILITY(U,$J,358.3,41093,1,0)
+ ;;^UTILITY(U,$J,358.3,41526,1,3,0)
+ ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,41526,1,4,0)
+ ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,41526,2)
+ ;;=^5063724
+ ;;^UTILITY(U,$J,358.3,41527,0)
+ ;;=Z97.14^^159^2005^131
+ ;;^UTILITY(U,$J,358.3,41527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41093,1,3,0)
- ;;=3^Nondisp fx ltrl cuneiform of lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41093,1,4,0)
- ;;=4^S92.225K
- ;;^UTILITY(U,$J,358.3,41093,2)
- ;;=^5044910
- ;;^UTILITY(U,$J,358.3,41094,0)
- ;;=S92.224K^^189^2086^326
- ;;^UTILITY(U,$J,358.3,41094,1,0)
+ ;;^UTILITY(U,$J,358.3,41527,1,3,0)
+ ;;=3^Presence of Left Artificial Leg
+ ;;^UTILITY(U,$J,358.3,41527,1,4,0)
+ ;;=4^Z97.14
+ ;;^UTILITY(U,$J,358.3,41527,2)
+ ;;=^5063725
+ ;;^UTILITY(U,$J,358.3,41528,0)
+ ;;=Z97.15^^159^2005^123
+ ;;^UTILITY(U,$J,358.3,41528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41094,1,3,0)
- ;;=3^Nondisp fx of ltrl cuneiform of rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41094,1,4,0)
- ;;=4^S92.224K
- ;;^UTILITY(U,$J,358.3,41094,2)
- ;;=^5044903
- ;;^UTILITY(U,$J,358.3,41095,0)
- ;;=S92.222K^^189^2086^40
- ;;^UTILITY(U,$J,358.3,41095,1,0)
+ ;;^UTILITY(U,$J,358.3,41528,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Arms
+ ;;^UTILITY(U,$J,358.3,41528,1,4,0)
+ ;;=4^Z97.15
+ ;;^UTILITY(U,$J,358.3,41528,2)
+ ;;=^5063726
+ ;;^UTILITY(U,$J,358.3,41529,0)
+ ;;=Z97.16^^159^2005^124
+ ;;^UTILITY(U,$J,358.3,41529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41095,1,3,0)
- ;;=3^Disp fx ltrl cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41095,1,4,0)
- ;;=4^S92.222K
- ;;^UTILITY(U,$J,358.3,41095,2)
- ;;=^5044889
- ;;^UTILITY(U,$J,358.3,41096,0)
- ;;=S92.221K^^189^2086^41
- ;;^UTILITY(U,$J,358.3,41096,1,0)
+ ;;^UTILITY(U,$J,358.3,41529,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Legs
+ ;;^UTILITY(U,$J,358.3,41529,1,4,0)
+ ;;=4^Z97.16
+ ;;^UTILITY(U,$J,358.3,41529,2)
+ ;;=^5063727
+ ;;^UTILITY(U,$J,358.3,41530,0)
+ ;;=Z98.61^^159^2005^17
+ ;;^UTILITY(U,$J,358.3,41530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41096,1,3,0)
- ;;=3^Disp fx ltrl cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41096,1,4,0)
- ;;=4^S92.221K
- ;;^UTILITY(U,$J,358.3,41096,2)
- ;;=^5044882
- ;;^UTILITY(U,$J,358.3,41097,0)
- ;;=S92.241K^^189^2086^49
- ;;^UTILITY(U,$J,358.3,41097,1,0)
+ ;;^UTILITY(U,$J,358.3,41530,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,41530,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,41530,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,41531,0)
+ ;;=Z98.62^^159^2005^73
+ ;;^UTILITY(U,$J,358.3,41531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41097,1,3,0)
- ;;=3^Disp fx med cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41097,1,4,0)
- ;;=4^S92.241K
- ;;^UTILITY(U,$J,358.3,41097,2)
- ;;=^5044966
- ;;^UTILITY(U,$J,358.3,41098,0)
- ;;=S92.242K^^189^2086^48
- ;;^UTILITY(U,$J,358.3,41098,1,0)
+ ;;^UTILITY(U,$J,358.3,41531,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,41531,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,41531,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,41532,0)
+ ;;=Z98.84^^159^2005^12
+ ;;^UTILITY(U,$J,358.3,41532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41098,1,3,0)
- ;;=3^Disp fx med cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41098,1,4,0)
- ;;=4^S92.242K
- ;;^UTILITY(U,$J,358.3,41098,2)
- ;;=^5044973
- ;;^UTILITY(U,$J,358.3,41099,0)
- ;;=S92.235K^^189^2086^263
- ;;^UTILITY(U,$J,358.3,41099,1,0)
+ ;;^UTILITY(U,$J,358.3,41532,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,41532,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,41532,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,41533,0)
+ ;;=Z99.2^^159^2005^141
+ ;;^UTILITY(U,$J,358.3,41533,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41533,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,41533,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,41533,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,41534,0)
+ ;;=Z99.81^^159^2005^144
+ ;;^UTILITY(U,$J,358.3,41534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41534,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence

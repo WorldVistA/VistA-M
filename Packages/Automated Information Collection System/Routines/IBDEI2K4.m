@@ -1,124 +1,132 @@
-IBDEI2K4 ; ; 19-NOV-2015
+IBDEI2K4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42877,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,42877,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,42878,0)
- ;;=L97.521^^192^2149^11
- ;;^UTILITY(U,$J,358.3,42878,1,0)
+ ;;^UTILITY(U,$J,358.3,43387,1,4,0)
+ ;;=4^E10.630
+ ;;^UTILITY(U,$J,358.3,43387,2)
+ ;;=^5002619
+ ;;^UTILITY(U,$J,358.3,43388,0)
+ ;;=E10.641^^167^2078^87
+ ;;^UTILITY(U,$J,358.3,43388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42878,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft lmt to brkdwn skin, oth prt
- ;;^UTILITY(U,$J,358.3,42878,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,42878,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,42879,0)
- ;;=L97.519^^192^2149^35
- ;;^UTILITY(U,$J,358.3,42879,1,0)
+ ;;^UTILITY(U,$J,358.3,43388,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,43388,1,4,0)
+ ;;=4^E10.641
+ ;;^UTILITY(U,$J,358.3,43388,2)
+ ;;=^5002621
+ ;;^UTILITY(U,$J,358.3,43389,0)
+ ;;=E10.649^^167^2078^88
+ ;;^UTILITY(U,$J,358.3,43389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42879,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ unsp sev, oth prt
- ;;^UTILITY(U,$J,358.3,42879,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,42879,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,42880,0)
- ;;=L97.514^^192^2149^33
- ;;^UTILITY(U,$J,358.3,42880,1,0)
+ ;;^UTILITY(U,$J,358.3,43389,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,43389,1,4,0)
+ ;;=4^E10.649
+ ;;^UTILITY(U,$J,358.3,43389,2)
+ ;;=^5002622
+ ;;^UTILITY(U,$J,358.3,43390,0)
+ ;;=E10.65^^167^2078^86
+ ;;^UTILITY(U,$J,358.3,43390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42880,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ necr of bone, oth prt
- ;;^UTILITY(U,$J,358.3,42880,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,42880,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,42881,0)
- ;;=L97.513^^192^2149^34
- ;;^UTILITY(U,$J,358.3,42881,1,0)
+ ;;^UTILITY(U,$J,358.3,43390,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,43390,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,43390,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,43391,0)
+ ;;=E11.40^^167^2078^95
+ ;;^UTILITY(U,$J,358.3,43391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42881,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ necr muscl, oth prt
- ;;^UTILITY(U,$J,358.3,42881,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,42881,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,42882,0)
- ;;=L97.511^^192^2149^31
- ;;^UTILITY(U,$J,358.3,42882,1,0)
+ ;;^UTILITY(U,$J,358.3,43391,1,3,0)
+ ;;=3^DM Type 2 w/ DM Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,43391,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,43391,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,43392,0)
+ ;;=E11.42^^167^2078^98
+ ;;^UTILITY(U,$J,358.3,43392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42882,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft lmt to brkdwn skin, oth prt
- ;;^UTILITY(U,$J,358.3,42882,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,42882,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,42883,0)
- ;;=L97.512^^192^2149^32
- ;;^UTILITY(U,$J,358.3,42883,1,0)
+ ;;^UTILITY(U,$J,358.3,43392,1,3,0)
+ ;;=3^DM Type 2 w/ DM Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,43392,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,43392,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,43393,0)
+ ;;=E11.43^^167^2078^91
+ ;;^UTILITY(U,$J,358.3,43393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42883,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ fat layer expos, oth prt
- ;;^UTILITY(U,$J,358.3,42883,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,42883,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,42884,0)
- ;;=L97.529^^192^2149^15
- ;;^UTILITY(U,$J,358.3,42884,1,0)
+ ;;^UTILITY(U,$J,358.3,43393,1,3,0)
+ ;;=3^DM Type 2 w/ DM Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,43393,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,43393,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,43394,0)
+ ;;=E11.49^^167^2078^93
+ ;;^UTILITY(U,$J,358.3,43394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42884,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ unsp sev, oth prt
- ;;^UTILITY(U,$J,358.3,42884,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,42884,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,42885,0)
- ;;=L97.524^^192^2149^13
- ;;^UTILITY(U,$J,358.3,42885,1,0)
+ ;;^UTILITY(U,$J,358.3,43394,1,3,0)
+ ;;=3^DM Type 2 w/ DM Neurological Complications
+ ;;^UTILITY(U,$J,358.3,43394,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,43394,2)
+ ;;=^5002649
+ ;;^UTILITY(U,$J,358.3,43395,0)
+ ;;=E11.51^^167^2078^96
+ ;;^UTILITY(U,$J,358.3,43395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42885,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr of bone, oth prt
- ;;^UTILITY(U,$J,358.3,42885,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,42885,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,42886,0)
- ;;=L97.523^^192^2149^14
- ;;^UTILITY(U,$J,358.3,42886,1,0)
+ ;;^UTILITY(U,$J,358.3,43395,1,3,0)
+ ;;=3^DM Type 2 w/ DM Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,43395,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,43395,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,43396,0)
+ ;;=E11.52^^167^2078^97
+ ;;^UTILITY(U,$J,358.3,43396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42886,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr muscle, oth prt
- ;;^UTILITY(U,$J,358.3,42886,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,42886,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,42887,0)
- ;;=L97.522^^192^2149^12
- ;;^UTILITY(U,$J,358.3,42887,1,0)
+ ;;^UTILITY(U,$J,358.3,43396,1,3,0)
+ ;;=3^DM Type 2 w/ DM Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,43396,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,43396,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,43397,0)
+ ;;=E11.610^^167^2078^94
+ ;;^UTILITY(U,$J,358.3,43397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42887,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ fat layer exp, oth prt
- ;;^UTILITY(U,$J,358.3,42887,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,42887,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,42888,0)
- ;;=L98.499^^192^2149^42
- ;;^UTILITY(U,$J,358.3,42888,1,0)
+ ;;^UTILITY(U,$J,358.3,43397,1,3,0)
+ ;;=3^DM Type 2 w/ DM Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,43397,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,43397,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,43398,0)
+ ;;=E11.620^^167^2078^92
+ ;;^UTILITY(U,$J,358.3,43398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42888,1,3,0)
- ;;=3^Non-pressure chron ulcer skin, sites w/ unsp severity
- ;;^UTILITY(U,$J,358.3,42888,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,42888,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,42889,0)
- ;;=R26.81^^192^2149^43
- ;;^UTILITY(U,$J,358.3,42889,1,0)
+ ;;^UTILITY(U,$J,358.3,43398,1,3,0)
+ ;;=3^DM Type 2 w/ DM Dermatitis
+ ;;^UTILITY(U,$J,358.3,43398,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,43398,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,43399,0)
+ ;;=E11.621^^167^2078^99
+ ;;^UTILITY(U,$J,358.3,43399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42889,1,3,0)
- ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,43399,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,43399,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,43399,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,43400,0)
+ ;;=E11.622^^167^2078^104
+ ;;^UTILITY(U,$J,358.3,43400,1,0)
+ ;;=^358.31IA^4^2

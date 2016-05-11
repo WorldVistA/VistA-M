@@ -1,140 +1,136 @@
-IBDEI0L3 ; ; 19-NOV-2015
+IBDEI0L3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9553,1,0)
+ ;;^UTILITY(U,$J,358.3,9843,0)
+ ;;=H16.423^^44^495^121
+ ;;^UTILITY(U,$J,358.3,9843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9553,1,3,0)
- ;;=3^Posterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9553,1,4,0)
- ;;=4^G46.2
- ;;^UTILITY(U,$J,358.3,9553,2)
- ;;=^5003962
- ;;^UTILITY(U,$J,358.3,9554,0)
- ;;=G46.3^^65^618^3
- ;;^UTILITY(U,$J,358.3,9554,1,0)
+ ;;^UTILITY(U,$J,358.3,9843,1,3,0)
+ ;;=3^Pannus Corneal,Bilateral
+ ;;^UTILITY(U,$J,358.3,9843,1,4,0)
+ ;;=4^H16.423
+ ;;^UTILITY(U,$J,358.3,9843,2)
+ ;;=^5004974
+ ;;^UTILITY(U,$J,358.3,9844,0)
+ ;;=H17.823^^44^495^127
+ ;;^UTILITY(U,$J,358.3,9844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9554,1,3,0)
- ;;=3^Brain Stem Stroke Syndrome
- ;;^UTILITY(U,$J,358.3,9554,1,4,0)
- ;;=4^G46.3
- ;;^UTILITY(U,$J,358.3,9554,2)
- ;;=^5003963
- ;;^UTILITY(U,$J,358.3,9555,0)
- ;;=G46.7^^65^618^7
- ;;^UTILITY(U,$J,358.3,9555,1,0)
+ ;;^UTILITY(U,$J,358.3,9844,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,9844,1,4,0)
+ ;;=4^H17.823
+ ;;^UTILITY(U,$J,358.3,9844,2)
+ ;;=^5005000
+ ;;^UTILITY(U,$J,358.3,9845,0)
+ ;;=H11.153^^44^495^130
+ ;;^UTILITY(U,$J,358.3,9845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9555,1,3,0)
- ;;=3^Lacunar Syndromes,Other
- ;;^UTILITY(U,$J,358.3,9555,1,4,0)
- ;;=4^G46.7
- ;;^UTILITY(U,$J,358.3,9555,2)
- ;;=^5003967
- ;;^UTILITY(U,$J,358.3,9556,0)
- ;;=G46.8^^65^618^14
- ;;^UTILITY(U,$J,358.3,9556,1,0)
+ ;;^UTILITY(U,$J,358.3,9845,1,3,0)
+ ;;=3^Pinguecula,Bilateral
+ ;;^UTILITY(U,$J,358.3,9845,1,4,0)
+ ;;=4^H11.153
+ ;;^UTILITY(U,$J,358.3,9845,2)
+ ;;=^5004763
+ ;;^UTILITY(U,$J,358.3,9846,0)
+ ;;=H18.053^^44^495^133
+ ;;^UTILITY(U,$J,358.3,9846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9556,1,3,0)
- ;;=3^Vascular Syndromes of Brain in CVD,Other
- ;;^UTILITY(U,$J,358.3,9556,1,4,0)
- ;;=4^G46.8
- ;;^UTILITY(U,$J,358.3,9556,2)
- ;;=^5003968
- ;;^UTILITY(U,$J,358.3,9557,0)
- ;;=I67.2^^65^618^5
- ;;^UTILITY(U,$J,358.3,9557,1,0)
+ ;;^UTILITY(U,$J,358.3,9846,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Bilateral
+ ;;^UTILITY(U,$J,358.3,9846,1,4,0)
+ ;;=4^H18.053
+ ;;^UTILITY(U,$J,358.3,9846,2)
+ ;;=^5005025
+ ;;^UTILITY(U,$J,358.3,9847,0)
+ ;;=H21.543^^44^495^136
+ ;;^UTILITY(U,$J,358.3,9847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9557,1,3,0)
- ;;=3^Cerebral Atherosclerosis
- ;;^UTILITY(U,$J,358.3,9557,1,4,0)
- ;;=4^I67.2
- ;;^UTILITY(U,$J,358.3,9557,2)
- ;;=^21571
- ;;^UTILITY(U,$J,358.3,9558,0)
- ;;=I69.898^^65^618^6
- ;;^UTILITY(U,$J,358.3,9558,1,0)
+ ;;^UTILITY(U,$J,358.3,9847,1,3,0)
+ ;;=3^Posterior Synechiae,Bilateral
+ ;;^UTILITY(U,$J,358.3,9847,1,4,0)
+ ;;=4^H21.543
+ ;;^UTILITY(U,$J,358.3,9847,2)
+ ;;=^5005253
+ ;;^UTILITY(U,$J,358.3,9848,0)
+ ;;=H11.003^^44^495^139
+ ;;^UTILITY(U,$J,358.3,9848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9558,1,3,0)
- ;;=3^Cerebrovascular Disease Sequelae,Other
- ;;^UTILITY(U,$J,358.3,9558,1,4,0)
- ;;=4^I69.898
- ;;^UTILITY(U,$J,358.3,9558,2)
- ;;=^5007550
- ;;^UTILITY(U,$J,358.3,9559,0)
- ;;=Z86.73^^65^618^9
- ;;^UTILITY(U,$J,358.3,9559,1,0)
+ ;;^UTILITY(U,$J,358.3,9848,1,3,0)
+ ;;=3^Pterygium,Bilateral
+ ;;^UTILITY(U,$J,358.3,9848,1,4,0)
+ ;;=4^H11.003
+ ;;^UTILITY(U,$J,358.3,9848,2)
+ ;;=^5004719
+ ;;^UTILITY(U,$J,358.3,9849,0)
+ ;;=H16.143^^44^495^142
+ ;;^UTILITY(U,$J,358.3,9849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9559,1,3,0)
- ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
- ;;^UTILITY(U,$J,358.3,9559,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,9559,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,9560,0)
- ;;=H81.10^^65^619^1
- ;;^UTILITY(U,$J,358.3,9560,1,0)
+ ;;^UTILITY(U,$J,358.3,9849,1,3,0)
+ ;;=3^Punctate Keratitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,9849,1,4,0)
+ ;;=4^H16.143
+ ;;^UTILITY(U,$J,358.3,9849,2)
+ ;;=^5004915
+ ;;^UTILITY(U,$J,358.3,9850,0)
+ ;;=H21.553^^44^495^145
+ ;;^UTILITY(U,$J,358.3,9850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9560,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo
- ;;^UTILITY(U,$J,358.3,9560,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,9560,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,9561,0)
- ;;=H81.49^^65^619^2
- ;;^UTILITY(U,$J,358.3,9561,1,0)
+ ;;^UTILITY(U,$J,358.3,9850,1,3,0)
+ ;;=3^Recession of Chamber Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,9850,1,4,0)
+ ;;=4^H21.553
+ ;;^UTILITY(U,$J,358.3,9850,2)
+ ;;=^5005257
+ ;;^UTILITY(U,$J,358.3,9851,0)
+ ;;=H18.833^^44^495^148
+ ;;^UTILITY(U,$J,358.3,9851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9561,1,3,0)
- ;;=3^Central Vertigo
- ;;^UTILITY(U,$J,358.3,9561,1,4,0)
- ;;=4^H81.49
- ;;^UTILITY(U,$J,358.3,9561,2)
- ;;=^5006883
- ;;^UTILITY(U,$J,358.3,9562,0)
- ;;=R55.^^65^619^4
- ;;^UTILITY(U,$J,358.3,9562,1,0)
+ ;;^UTILITY(U,$J,358.3,9851,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,9851,1,4,0)
+ ;;=4^H18.833
+ ;;^UTILITY(U,$J,358.3,9851,2)
+ ;;=^5005128
+ ;;^UTILITY(U,$J,358.3,9852,0)
+ ;;=H11.233^^44^495^154
+ ;;^UTILITY(U,$J,358.3,9852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9562,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,9562,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,9562,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,9563,0)
- ;;=R42.^^65^619^3
- ;;^UTILITY(U,$J,358.3,9563,1,0)
+ ;;^UTILITY(U,$J,358.3,9852,1,3,0)
+ ;;=3^Symblepharon,Bilateral
+ ;;^UTILITY(U,$J,358.3,9852,1,4,0)
+ ;;=4^H11.233
+ ;;^UTILITY(U,$J,358.3,9852,2)
+ ;;=^5004775
+ ;;^UTILITY(U,$J,358.3,9853,0)
+ ;;=H10.213^^44^495^157
+ ;;^UTILITY(U,$J,358.3,9853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9563,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,9563,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,9563,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,9564,0)
- ;;=F10.27^^65^620^1
- ;;^UTILITY(U,$J,358.3,9564,1,0)
+ ;;^UTILITY(U,$J,358.3,9853,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Bilateral,Acute
+ ;;^UTILITY(U,$J,358.3,9853,1,4,0)
+ ;;=4^H10.213
+ ;;^UTILITY(U,$J,358.3,9853,2)
+ ;;=^5004670
+ ;;^UTILITY(U,$J,358.3,9854,0)
+ ;;=H21.1X1^^44^495^162
+ ;;^UTILITY(U,$J,358.3,9854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9564,1,3,0)
- ;;=3^Alcoholic Encephalopathy
- ;;^UTILITY(U,$J,358.3,9564,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,9564,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,9565,0)
- ;;=G92.^^65^620^4
- ;;^UTILITY(U,$J,358.3,9565,1,0)
+ ;;^UTILITY(U,$J,358.3,9854,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,9854,1,4,0)
+ ;;=4^H21.1X1
+ ;;^UTILITY(U,$J,358.3,9854,2)
+ ;;=^5005175
+ ;;^UTILITY(U,$J,358.3,9855,0)
+ ;;=H21.1X2^^44^495^161
+ ;;^UTILITY(U,$J,358.3,9855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9565,1,3,0)
- ;;=3^Toxic Encephalopathy
- ;;^UTILITY(U,$J,358.3,9565,1,4,0)
- ;;=4^G92.
- ;;^UTILITY(U,$J,358.3,9565,2)
- ;;=^259061
- ;;^UTILITY(U,$J,358.3,9566,0)
- ;;=G96.8^^65^620^2
- ;;^UTILITY(U,$J,358.3,9566,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9566,1,3,0)
- ;;=3^Disorder of Central Nervous System,Other Spec
- ;;^UTILITY(U,$J,358.3,9566,1,4,0)
- ;;=4^G96.8
+ ;;^UTILITY(U,$J,358.3,9855,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,9855,1,4,0)
+ ;;=4^H21.1X2
+ ;;^UTILITY(U,$J,358.3,9855,2)
+ ;;=^5005176
+ ;;^UTILITY(U,$J,358.3,9856,0)
+ ;;=H21.1X3^^44^495^160

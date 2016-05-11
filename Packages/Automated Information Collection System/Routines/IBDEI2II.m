@@ -1,134 +1,130 @@
-IBDEI2II ; ; 19-NOV-2015
+IBDEI2II ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42162,1,4,0)
- ;;=4^M21.961
- ;;^UTILITY(U,$J,358.3,42162,2)
- ;;=^5011171
- ;;^UTILITY(U,$J,358.3,42163,0)
- ;;=M21.072^^192^2135^45
- ;;^UTILITY(U,$J,358.3,42163,1,0)
+ ;;^UTILITY(U,$J,358.3,42585,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,42586,0)
+ ;;=F19.97^^159^2024^29
+ ;;^UTILITY(U,$J,358.3,42586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42163,1,3,0)
- ;;=3^Deformity,Valgus Left Ankle NEC
- ;;^UTILITY(U,$J,358.3,42163,1,4,0)
- ;;=4^M21.072
- ;;^UTILITY(U,$J,358.3,42163,2)
- ;;=^5011070
- ;;^UTILITY(U,$J,358.3,42164,0)
- ;;=M21.071^^192^2135^46
- ;;^UTILITY(U,$J,358.3,42164,1,0)
+ ;;^UTILITY(U,$J,358.3,42586,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,42586,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,42586,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,42587,0)
+ ;;=F03.90^^159^2024^15
+ ;;^UTILITY(U,$J,358.3,42587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42164,1,3,0)
- ;;=3^Deformity,Valgus Right Ankle NEC
- ;;^UTILITY(U,$J,358.3,42164,1,4,0)
- ;;=4^M21.071
- ;;^UTILITY(U,$J,358.3,42164,2)
- ;;=^5011069
- ;;^UTILITY(U,$J,358.3,42165,0)
- ;;=Q66.89^^192^2135^38
- ;;^UTILITY(U,$J,358.3,42165,1,0)
+ ;;^UTILITY(U,$J,358.3,42587,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,42587,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,42587,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,42588,0)
+ ;;=G30.0^^159^2024^2
+ ;;^UTILITY(U,$J,358.3,42588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42165,1,3,0)
- ;;=3^Deformitis of Feet,Congenital NEC
- ;;^UTILITY(U,$J,358.3,42165,1,4,0)
- ;;=4^Q66.89
- ;;^UTILITY(U,$J,358.3,42165,2)
- ;;=^5018874
- ;;^UTILITY(U,$J,358.3,42166,0)
- ;;=E11.40^^192^2135^28
- ;;^UTILITY(U,$J,358.3,42166,1,0)
+ ;;^UTILITY(U,$J,358.3,42588,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,42588,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,42588,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,42589,0)
+ ;;=G30.1^^159^2024^3
+ ;;^UTILITY(U,$J,358.3,42589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42166,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,42166,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,42166,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,42167,0)
- ;;=E11.41^^192^2135^25
- ;;^UTILITY(U,$J,358.3,42167,1,0)
+ ;;^UTILITY(U,$J,358.3,42589,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,42589,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,42589,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,42590,0)
+ ;;=G30.9^^159^2024^4
+ ;;^UTILITY(U,$J,358.3,42590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42167,1,3,0)
- ;;=3^DM Type 2 w/ Diab Mononeuropathy
- ;;^UTILITY(U,$J,358.3,42167,1,4,0)
- ;;=4^E11.41
- ;;^UTILITY(U,$J,358.3,42167,2)
- ;;=^5002645
- ;;^UTILITY(U,$J,358.3,42168,0)
- ;;=E11.42^^192^2135^31
- ;;^UTILITY(U,$J,358.3,42168,1,0)
+ ;;^UTILITY(U,$J,358.3,42590,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,42590,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,42590,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,42591,0)
+ ;;=G10.^^159^2024^19
+ ;;^UTILITY(U,$J,358.3,42591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42168,1,3,0)
- ;;=3^DM Type 2 w/ Diab Polyneuropathy
- ;;^UTILITY(U,$J,358.3,42168,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,42168,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,42169,0)
- ;;=E11.43^^192^2135^23
- ;;^UTILITY(U,$J,358.3,42169,1,0)
+ ;;^UTILITY(U,$J,358.3,42591,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,42591,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,42591,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,42592,0)
+ ;;=G10.^^159^2024^20
+ ;;^UTILITY(U,$J,358.3,42592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42169,1,3,0)
- ;;=3^DM Type 2 w/ Diab Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,42169,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,42169,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,42170,0)
- ;;=E11.44^^192^2135^21
- ;;^UTILITY(U,$J,358.3,42170,1,0)
+ ;;^UTILITY(U,$J,358.3,42592,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42592,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,42592,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,42593,0)
+ ;;=G90.3^^159^2024^21
+ ;;^UTILITY(U,$J,358.3,42593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42170,1,3,0)
- ;;=3^DM Type 2 w/ Diab Amyotrophy
- ;;^UTILITY(U,$J,358.3,42170,1,4,0)
- ;;=4^E11.44
- ;;^UTILITY(U,$J,358.3,42170,2)
- ;;=^5002648
- ;;^UTILITY(U,$J,358.3,42171,0)
- ;;=E11.49^^192^2135^26
- ;;^UTILITY(U,$J,358.3,42171,1,0)
+ ;;^UTILITY(U,$J,358.3,42593,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,42593,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,42593,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,42594,0)
+ ;;=G91.2^^159^2024^22
+ ;;^UTILITY(U,$J,358.3,42594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42171,1,3,0)
- ;;=3^DM Type 2 w/ Diab Neurolog Compl NEC
- ;;^UTILITY(U,$J,358.3,42171,1,4,0)
- ;;=4^E11.49
- ;;^UTILITY(U,$J,358.3,42171,2)
- ;;=^5002649
- ;;^UTILITY(U,$J,358.3,42172,0)
- ;;=E10.40^^192^2135^11
- ;;^UTILITY(U,$J,358.3,42172,1,0)
+ ;;^UTILITY(U,$J,358.3,42594,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42594,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,42594,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,42595,0)
+ ;;=G91.2^^159^2024^23
+ ;;^UTILITY(U,$J,358.3,42595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42172,1,3,0)
- ;;=3^DM Type 1 w/ Diab Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,42172,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,42172,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,42173,0)
- ;;=E10.41^^192^2135^8
- ;;^UTILITY(U,$J,358.3,42173,1,0)
+ ;;^UTILITY(U,$J,358.3,42595,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42595,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,42595,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,42596,0)
+ ;;=G30.8^^159^2024^5
+ ;;^UTILITY(U,$J,358.3,42596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42173,1,3,0)
- ;;=3^DM Type 1 w/ Diab Mononeuropathy
- ;;^UTILITY(U,$J,358.3,42173,1,4,0)
- ;;=4^E10.41
- ;;^UTILITY(U,$J,358.3,42173,2)
- ;;=^5002605
- ;;^UTILITY(U,$J,358.3,42174,0)
- ;;=E10.42^^192^2135^14
- ;;^UTILITY(U,$J,358.3,42174,1,0)
+ ;;^UTILITY(U,$J,358.3,42596,1,3,0)
+ ;;=3^Alzheimer's Diseases NEC
+ ;;^UTILITY(U,$J,358.3,42596,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,42596,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,42597,0)
+ ;;=G31.09^^159^2024^16
+ ;;^UTILITY(U,$J,358.3,42597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42174,1,3,0)
- ;;=3^DM Type 1 w/ Diab Polyneuropathy
- ;;^UTILITY(U,$J,358.3,42174,1,4,0)
- ;;=4^E10.42
- ;;^UTILITY(U,$J,358.3,42174,2)
- ;;=^5002606
- ;;^UTILITY(U,$J,358.3,42175,0)
- ;;=E10.43^^192^2135^6
- ;;^UTILITY(U,$J,358.3,42175,1,0)
+ ;;^UTILITY(U,$J,358.3,42597,1,3,0)
+ ;;=3^Frontotemporal Dementia NEC
+ ;;^UTILITY(U,$J,358.3,42597,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,42597,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,42598,0)
+ ;;=G20.^^159^2024^24
+ ;;^UTILITY(U,$J,358.3,42598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42175,1,3,0)
- ;;=3^DM Type 1 w/ Diab Autonomic Polyneuropathy

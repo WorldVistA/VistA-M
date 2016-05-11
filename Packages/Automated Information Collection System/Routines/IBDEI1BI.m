@@ -1,124 +1,138 @@
-IBDEI1BI ; ; 19-NOV-2015
+IBDEI1BI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21983,1,4,0)
- ;;=4^S32.415S
- ;;^UTILITY(U,$J,358.3,21983,2)
- ;;=^5024730
- ;;^UTILITY(U,$J,358.3,21984,0)
- ;;=S32.414S^^101^1036^31
- ;;^UTILITY(U,$J,358.3,21984,1,0)
+ ;;^UTILITY(U,$J,358.3,22402,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,22402,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,22403,0)
+ ;;=C31.9^^87^981^105
+ ;;^UTILITY(U,$J,358.3,22403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21984,1,3,0)
- ;;=3^Nondisp fx of anterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21984,1,4,0)
- ;;=4^S32.414S
- ;;^UTILITY(U,$J,358.3,21984,2)
- ;;=^5024724
- ;;^UTILITY(U,$J,358.3,21985,0)
- ;;=S32.475S^^101^1036^37
- ;;^UTILITY(U,$J,358.3,21985,1,0)
+ ;;^UTILITY(U,$J,358.3,22403,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,22403,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,22403,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,22404,0)
+ ;;=C24.1^^87^981^107
+ ;;^UTILITY(U,$J,358.3,22404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21985,1,3,0)
- ;;=3^Nondisp fx of medial wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21985,1,4,0)
- ;;=4^S32.475S
- ;;^UTILITY(U,$J,358.3,21985,2)
- ;;=^5024946
- ;;^UTILITY(U,$J,358.3,21986,0)
- ;;=S32.474S^^101^1036^38
- ;;^UTILITY(U,$J,358.3,21986,1,0)
+ ;;^UTILITY(U,$J,358.3,22404,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,22404,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,22404,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,22405,0)
+ ;;=C21.0^^87^981^108
+ ;;^UTILITY(U,$J,358.3,22405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21986,1,3,0)
- ;;=3^Nondisp fx of medial wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21986,1,4,0)
- ;;=4^S32.474S
- ;;^UTILITY(U,$J,358.3,21986,2)
- ;;=^5024940
- ;;^UTILITY(U,$J,358.3,21987,0)
- ;;=S32.445S^^101^1036^39
- ;;^UTILITY(U,$J,358.3,21987,1,0)
+ ;;^UTILITY(U,$J,358.3,22405,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,22405,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,22405,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,22406,0)
+ ;;=C67.9^^87^981^111
+ ;;^UTILITY(U,$J,358.3,22406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21987,1,3,0)
- ;;=3^Nondisp fx of posterior column of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21987,1,4,0)
- ;;=4^S32.445S
- ;;^UTILITY(U,$J,358.3,21987,2)
- ;;=^5024838
- ;;^UTILITY(U,$J,358.3,21988,0)
- ;;=S32.444S^^101^1036^40
- ;;^UTILITY(U,$J,358.3,21988,1,0)
+ ;;^UTILITY(U,$J,358.3,22406,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,22406,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,22406,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,22407,0)
+ ;;=C71.9^^87^981^115
+ ;;^UTILITY(U,$J,358.3,22407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21988,1,3,0)
- ;;=3^Nondisp fx of posterior column of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21988,1,4,0)
- ;;=4^S32.444S
- ;;^UTILITY(U,$J,358.3,21988,2)
- ;;=^5024832
- ;;^UTILITY(U,$J,358.3,21989,0)
- ;;=S32.425S^^101^1036^41
- ;;^UTILITY(U,$J,358.3,21989,1,0)
+ ;;^UTILITY(U,$J,358.3,22407,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,22407,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,22407,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,22408,0)
+ ;;=C18.9^^87^981^117
+ ;;^UTILITY(U,$J,358.3,22408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21989,1,3,0)
- ;;=3^Nondisp fx of posterior wall of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21989,1,4,0)
- ;;=4^S32.425S
- ;;^UTILITY(U,$J,358.3,21989,2)
- ;;=^5024766
- ;;^UTILITY(U,$J,358.3,21990,0)
- ;;=S32.424S^^101^1036^42
- ;;^UTILITY(U,$J,358.3,21990,1,0)
+ ;;^UTILITY(U,$J,358.3,22408,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,22408,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,22408,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,22409,0)
+ ;;=C49.9^^87^981^118
+ ;;^UTILITY(U,$J,358.3,22409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21990,1,3,0)
- ;;=3^Nondisp fx of posterior wall of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21990,1,4,0)
- ;;=4^S32.424S
- ;;^UTILITY(U,$J,358.3,21990,2)
- ;;=^5024760
- ;;^UTILITY(U,$J,358.3,21991,0)
- ;;=S32.455S^^101^1036^43
- ;;^UTILITY(U,$J,358.3,21991,1,0)
+ ;;^UTILITY(U,$J,358.3,22409,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,22409,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,22409,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,22410,0)
+ ;;=C62.12^^87^981^119
+ ;;^UTILITY(U,$J,358.3,22410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21991,1,3,0)
- ;;=3^Nondisp fx of transverse of left acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21991,1,4,0)
- ;;=4^S32.455S
- ;;^UTILITY(U,$J,358.3,21991,2)
- ;;=^5024874
- ;;^UTILITY(U,$J,358.3,21992,0)
- ;;=S32.454S^^101^1036^44
- ;;^UTILITY(U,$J,358.3,21992,1,0)
+ ;;^UTILITY(U,$J,358.3,22410,1,3,0)
+ ;;=3^Malig Neop Descended Left Testis
+ ;;^UTILITY(U,$J,358.3,22410,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,22410,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,22411,0)
+ ;;=C62.11^^87^981^120
+ ;;^UTILITY(U,$J,358.3,22411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21992,1,3,0)
- ;;=3^Nondisp fx of transverse of right acetabulum, sequela
- ;;^UTILITY(U,$J,358.3,21992,1,4,0)
- ;;=4^S32.454S
- ;;^UTILITY(U,$J,358.3,21992,2)
- ;;=^5024868
- ;;^UTILITY(U,$J,358.3,21993,0)
- ;;=M84.350S^^101^1036^45
- ;;^UTILITY(U,$J,358.3,21993,1,0)
+ ;;^UTILITY(U,$J,358.3,22411,1,3,0)
+ ;;=3^Malig Neop Descended Right Testis
+ ;;^UTILITY(U,$J,358.3,22411,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,22411,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,22412,0)
+ ;;=C15.9^^87^981^121
+ ;;^UTILITY(U,$J,358.3,22412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21993,1,3,0)
- ;;=3^Stress fracture, pelvis, sequela
- ;;^UTILITY(U,$J,358.3,21993,1,4,0)
- ;;=4^M84.350S
- ;;^UTILITY(U,$J,358.3,21993,2)
- ;;=^5013679
- ;;^UTILITY(U,$J,358.3,21994,0)
- ;;=S42.222S^^101^1037^1
- ;;^UTILITY(U,$J,358.3,21994,1,0)
+ ;;^UTILITY(U,$J,358.3,22412,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,22412,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,22412,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,22413,0)
+ ;;=C24.0^^87^981^122
+ ;;^UTILITY(U,$J,358.3,22413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21994,1,3,0)
- ;;=3^2-part disp fx of surgical neck of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,21994,1,4,0)
- ;;=4^S42.222S
- ;;^UTILITY(U,$J,358.3,21994,2)
- ;;=^5026816
- ;;^UTILITY(U,$J,358.3,21995,0)
- ;;=S42.221S^^101^1037^2
- ;;^UTILITY(U,$J,358.3,21995,1,0)
+ ;;^UTILITY(U,$J,358.3,22413,1,3,0)
+ ;;=3^Malig Neop Extrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,22413,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,22413,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,22414,0)
+ ;;=C23.^^87^981^124
+ ;;^UTILITY(U,$J,358.3,22414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21995,1,3,0)
- ;;=3^2-part disp fx of surgical neck of right humerus, sequela
+ ;;^UTILITY(U,$J,358.3,22414,1,3,0)
+ ;;=3^Malig Neop Gallbladder
+ ;;^UTILITY(U,$J,358.3,22414,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,22414,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,22415,0)
+ ;;=C32.9^^87^981^128
+ ;;^UTILITY(U,$J,358.3,22415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22415,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,22415,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,22415,2)
+ ;;=^5000956

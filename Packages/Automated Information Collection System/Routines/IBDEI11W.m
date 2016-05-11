@@ -1,132 +1,138 @@
-IBDEI11W ; ; 19-NOV-2015
+IBDEI11W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17494,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,17495,0)
- ;;=W10.9XXS^^88^862^18
- ;;^UTILITY(U,$J,358.3,17495,1,0)
+ ;;^UTILITY(U,$J,358.3,17843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17495,1,3,0)
- ;;=3^Fall from Stairs/Steps,Sequela
- ;;^UTILITY(U,$J,358.3,17495,1,4,0)
- ;;=4^W10.9XXS
- ;;^UTILITY(U,$J,358.3,17495,2)
- ;;=^5059594
- ;;^UTILITY(U,$J,358.3,17496,0)
- ;;=W10.0XXS^^88^862^9
- ;;^UTILITY(U,$J,358.3,17496,1,0)
+ ;;^UTILITY(U,$J,358.3,17843,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,17843,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,17843,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,17844,0)
+ ;;=A31.0^^76^858^162
+ ;;^UTILITY(U,$J,358.3,17844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17496,1,3,0)
- ;;=3^Fall from Escalator,Sequela
- ;;^UTILITY(U,$J,358.3,17496,1,4,0)
- ;;=4^W10.0XXS
- ;;^UTILITY(U,$J,358.3,17496,2)
- ;;=^5059582
- ;;^UTILITY(U,$J,358.3,17497,0)
- ;;=W10.2XXS^^88^862^11
- ;;^UTILITY(U,$J,358.3,17497,1,0)
+ ;;^UTILITY(U,$J,358.3,17844,1,3,0)
+ ;;=3^Non-tuberculous Mycobacteria (diseases of other mycobacteria)
+ ;;^UTILITY(U,$J,358.3,17844,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,17844,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,17845,0)
+ ;;=B44.9^^76^858^20
+ ;;^UTILITY(U,$J,358.3,17845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17497,1,3,0)
- ;;=3^Fall from Incline,Sequela
- ;;^UTILITY(U,$J,358.3,17497,1,4,0)
- ;;=4^W10.2XXS
- ;;^UTILITY(U,$J,358.3,17497,2)
- ;;=^5059588
- ;;^UTILITY(U,$J,358.3,17498,0)
- ;;=W10.1XXS^^88^862^17
- ;;^UTILITY(U,$J,358.3,17498,1,0)
+ ;;^UTILITY(U,$J,358.3,17845,1,3,0)
+ ;;=3^Aspergillosis,Unspecified
+ ;;^UTILITY(U,$J,358.3,17845,1,4,0)
+ ;;=4^B44.9
+ ;;^UTILITY(U,$J,358.3,17845,2)
+ ;;=^5000668
+ ;;^UTILITY(U,$J,358.3,17846,0)
+ ;;=B40.9^^76^858^27
+ ;;^UTILITY(U,$J,358.3,17846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17498,1,3,0)
- ;;=3^Fall from Sidewalk/Curb,Sequela
- ;;^UTILITY(U,$J,358.3,17498,1,4,0)
- ;;=4^W10.1XXS
- ;;^UTILITY(U,$J,358.3,17498,2)
- ;;=^5059585
- ;;^UTILITY(U,$J,358.3,17499,0)
- ;;=W06.XXXS^^88^862^7
- ;;^UTILITY(U,$J,358.3,17499,1,0)
+ ;;^UTILITY(U,$J,358.3,17846,1,3,0)
+ ;;=3^Blastomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,17846,1,4,0)
+ ;;=4^B40.9
+ ;;^UTILITY(U,$J,358.3,17846,2)
+ ;;=^5000646
+ ;;^UTILITY(U,$J,358.3,17847,0)
+ ;;=B37.9^^76^858^36
+ ;;^UTILITY(U,$J,358.3,17847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17499,1,3,0)
- ;;=3^Fall from Bed,Sequela
- ;;^UTILITY(U,$J,358.3,17499,1,4,0)
- ;;=4^W06.XXXS
- ;;^UTILITY(U,$J,358.3,17499,2)
- ;;=^5059561
- ;;^UTILITY(U,$J,358.3,17500,0)
- ;;=W07.XXXS^^88^862^8
- ;;^UTILITY(U,$J,358.3,17500,1,0)
+ ;;^UTILITY(U,$J,358.3,17847,1,3,0)
+ ;;=3^Candidiasis,Unspec
+ ;;^UTILITY(U,$J,358.3,17847,1,4,0)
+ ;;=4^B37.9
+ ;;^UTILITY(U,$J,358.3,17847,2)
+ ;;=^5000624
+ ;;^UTILITY(U,$J,358.3,17848,0)
+ ;;=B38.9^^76^858^45
+ ;;^UTILITY(U,$J,358.3,17848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17500,1,3,0)
- ;;=3^Fall from Chair,Sequela
- ;;^UTILITY(U,$J,358.3,17500,1,4,0)
- ;;=4^W07.XXXS
- ;;^UTILITY(U,$J,358.3,17500,2)
- ;;=^5059564
- ;;^UTILITY(U,$J,358.3,17501,0)
- ;;=W05.2XXS^^88^862^13
- ;;^UTILITY(U,$J,358.3,17501,1,0)
+ ;;^UTILITY(U,$J,358.3,17848,1,3,0)
+ ;;=3^Coccidioides,Unspec
+ ;;^UTILITY(U,$J,358.3,17848,1,4,0)
+ ;;=4^B38.9
+ ;;^UTILITY(U,$J,358.3,17848,2)
+ ;;=^5000631
+ ;;^UTILITY(U,$J,358.3,17849,0)
+ ;;=B45.9^^76^858^51
+ ;;^UTILITY(U,$J,358.3,17849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17501,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Sequela
- ;;^UTILITY(U,$J,358.3,17501,1,4,0)
- ;;=4^W05.2XXS
- ;;^UTILITY(U,$J,358.3,17501,2)
- ;;=^5059558
- ;;^UTILITY(U,$J,358.3,17502,0)
- ;;=W05.1XXS^^88^862^14
- ;;^UTILITY(U,$J,358.3,17502,1,0)
+ ;;^UTILITY(U,$J,358.3,17849,1,3,0)
+ ;;=3^Cryptococcus
+ ;;^UTILITY(U,$J,358.3,17849,1,4,0)
+ ;;=4^B45.9
+ ;;^UTILITY(U,$J,358.3,17849,2)
+ ;;=^5000675
+ ;;^UTILITY(U,$J,358.3,17850,0)
+ ;;=B35.9^^76^858^61
+ ;;^UTILITY(U,$J,358.3,17850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17502,1,3,0)
- ;;=3^Fall from Non-Moving Nonmotorized Scooter,Sequela
- ;;^UTILITY(U,$J,358.3,17502,1,4,0)
- ;;=4^W05.1XXS
- ;;^UTILITY(U,$J,358.3,17502,2)
- ;;=^5059555
- ;;^UTILITY(U,$J,358.3,17503,0)
- ;;=W05.0XXS^^88^862^15
- ;;^UTILITY(U,$J,358.3,17503,1,0)
+ ;;^UTILITY(U,$J,358.3,17850,1,3,0)
+ ;;=3^Dermatophytosis,Unspec
+ ;;^UTILITY(U,$J,358.3,17850,1,4,0)
+ ;;=4^B35.9
+ ;;^UTILITY(U,$J,358.3,17850,2)
+ ;;=^5000607
+ ;;^UTILITY(U,$J,358.3,17851,0)
+ ;;=B39.4^^76^858^122
+ ;;^UTILITY(U,$J,358.3,17851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17503,1,3,0)
- ;;=3^Fall from Non-Moving Wheelchair,Sequela
- ;;^UTILITY(U,$J,358.3,17503,1,4,0)
- ;;=4^W05.0XXS
- ;;^UTILITY(U,$J,358.3,17503,2)
- ;;=^5059552
- ;;^UTILITY(U,$J,358.3,17504,0)
- ;;=W18.12XS^^88^862^19
- ;;^UTILITY(U,$J,358.3,17504,1,0)
+ ;;^UTILITY(U,$J,358.3,17851,1,3,0)
+ ;;=3^Histoplasmosis capsulati, unspecified
+ ;;^UTILITY(U,$J,358.3,17851,1,4,0)
+ ;;=4^B39.4
+ ;;^UTILITY(U,$J,358.3,17851,2)
+ ;;=^5000636
+ ;;^UTILITY(U,$J,358.3,17852,0)
+ ;;=B46.9^^76^858^247
+ ;;^UTILITY(U,$J,358.3,17852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17504,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
- ;;^UTILITY(U,$J,358.3,17504,1,4,0)
- ;;=4^W18.12XS
- ;;^UTILITY(U,$J,358.3,17504,2)
- ;;=^5059805
- ;;^UTILITY(U,$J,358.3,17505,0)
- ;;=W18.11XS^^88^862^20
- ;;^UTILITY(U,$J,358.3,17505,1,0)
+ ;;^UTILITY(U,$J,358.3,17852,1,3,0)
+ ;;=3^Zygomycosis, unspecified
+ ;;^UTILITY(U,$J,358.3,17852,1,4,0)
+ ;;=4^B46.9
+ ;;^UTILITY(U,$J,358.3,17852,2)
+ ;;=^5000683
+ ;;^UTILITY(U,$J,358.3,17853,0)
+ ;;=B41.9^^76^858^174
+ ;;^UTILITY(U,$J,358.3,17853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17505,1,3,0)
- ;;=3^Fall from Toilet,Sequela
- ;;^UTILITY(U,$J,358.3,17505,1,4,0)
- ;;=4^W18.11XS
- ;;^UTILITY(U,$J,358.3,17505,2)
- ;;=^5059803
- ;;^UTILITY(U,$J,358.3,17506,0)
- ;;=W08.XXXS^^88^862^10
- ;;^UTILITY(U,$J,358.3,17506,1,0)
+ ;;^UTILITY(U,$J,358.3,17853,1,3,0)
+ ;;=3^Paracoccidioidomycosis, unspecified
+ ;;^UTILITY(U,$J,358.3,17853,1,4,0)
+ ;;=4^B41.9
+ ;;^UTILITY(U,$J,358.3,17853,2)
+ ;;=^5000650
+ ;;^UTILITY(U,$J,358.3,17854,0)
+ ;;=B48.8^^76^858^180
+ ;;^UTILITY(U,$J,358.3,17854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17506,1,3,0)
- ;;=3^Fall from Furniture,Sequela
- ;;^UTILITY(U,$J,358.3,17506,1,4,0)
- ;;=4^W08.XXXS
- ;;^UTILITY(U,$J,358.3,17506,2)
- ;;=^5059567
- ;;^UTILITY(U,$J,358.3,17507,0)
- ;;=W18.2XXS^^88^862^21
- ;;^UTILITY(U,$J,358.3,17507,1,0)
+ ;;^UTILITY(U,$J,358.3,17854,1,3,0)
+ ;;=3^Phaeohyphomycosis
+ ;;^UTILITY(U,$J,358.3,17854,1,4,0)
+ ;;=4^B48.8
+ ;;^UTILITY(U,$J,358.3,17854,2)
+ ;;=^5000689
+ ;;^UTILITY(U,$J,358.3,17855,0)
+ ;;=B59.^^76^858^182
+ ;;^UTILITY(U,$J,358.3,17855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17507,1,3,0)
- ;;=3^Fall in Shower/Bathtub,Sequela
+ ;;^UTILITY(U,$J,358.3,17855,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,17855,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,17855,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,17856,0)
+ ;;=B42.9^^76^858^216
+ ;;^UTILITY(U,$J,358.3,17856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17856,1,3,0)
+ ;;=3^Sporotrichosis, unspecified

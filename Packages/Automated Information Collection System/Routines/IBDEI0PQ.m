@@ -1,142 +1,128 @@
-IBDEI0PQ ; ; 19-NOV-2015
+IBDEI0PQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11784,2)
- ;;=^270517
- ;;^UTILITY(U,$J,358.3,11785,0)
- ;;=N84.9^^68^691^46
- ;;^UTILITY(U,$J,358.3,11785,1,0)
+ ;;^UTILITY(U,$J,358.3,12028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11785,1,3,0)
- ;;=3^Polyp of Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,11785,1,4,0)
- ;;=4^N84.9
- ;;^UTILITY(U,$J,358.3,11785,2)
- ;;=^5015869
- ;;^UTILITY(U,$J,358.3,11786,0)
- ;;=N84.1^^68^691^44
- ;;^UTILITY(U,$J,358.3,11786,1,0)
+ ;;^UTILITY(U,$J,358.3,12028,1,3,0)
+ ;;=3^Problems Related to Activity Limitations d/t Disability
+ ;;^UTILITY(U,$J,358.3,12028,1,4,0)
+ ;;=4^Z73.6
+ ;;^UTILITY(U,$J,358.3,12028,2)
+ ;;=^5063274
+ ;;^UTILITY(U,$J,358.3,12029,0)
+ ;;=Z60.2^^47^538^143
+ ;;^UTILITY(U,$J,358.3,12029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11786,1,3,0)
- ;;=3^Polyp of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,11786,1,4,0)
- ;;=4^N84.1
- ;;^UTILITY(U,$J,358.3,11786,2)
- ;;=^5015866
- ;;^UTILITY(U,$J,358.3,11787,0)
- ;;=N89.1^^68^691^63
- ;;^UTILITY(U,$J,358.3,11787,1,0)
+ ;;^UTILITY(U,$J,358.3,12029,1,3,0)
+ ;;=3^Problems Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,12029,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,12029,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,12030,0)
+ ;;=Z59.3^^47^538^144
+ ;;^UTILITY(U,$J,358.3,12030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11787,1,3,0)
- ;;=3^Vaginal Dysplasia,Moderate
- ;;^UTILITY(U,$J,358.3,11787,1,4,0)
- ;;=4^N89.1
- ;;^UTILITY(U,$J,358.3,11787,2)
- ;;=^5015886
- ;;^UTILITY(U,$J,358.3,11788,0)
- ;;=N89.0^^68^691^62
- ;;^UTILITY(U,$J,358.3,11788,1,0)
+ ;;^UTILITY(U,$J,358.3,12030,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,12030,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,12030,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,12031,0)
+ ;;=Z59.6^^47^538^145
+ ;;^UTILITY(U,$J,358.3,12031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11788,1,3,0)
- ;;=3^Vaginal Dysplasia,Mild
- ;;^UTILITY(U,$J,358.3,11788,1,4,0)
- ;;=4^N89.0
- ;;^UTILITY(U,$J,358.3,11788,2)
- ;;=^5015885
- ;;^UTILITY(U,$J,358.3,11789,0)
- ;;=N89.3^^68^691^64
- ;;^UTILITY(U,$J,358.3,11789,1,0)
+ ;;^UTILITY(U,$J,358.3,12031,1,3,0)
+ ;;=3^Problems Related to Low Income
+ ;;^UTILITY(U,$J,358.3,12031,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,12031,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,12032,0)
+ ;;=Z75.9^^47^538^146
+ ;;^UTILITY(U,$J,358.3,12032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11789,1,3,0)
- ;;=3^Vaginal Dysplasia,Unspec
- ;;^UTILITY(U,$J,358.3,11789,1,4,0)
- ;;=4^N89.3
- ;;^UTILITY(U,$J,358.3,11789,2)
- ;;=^5015887
- ;;^UTILITY(U,$J,358.3,11790,0)
- ;;=N90.4^^68^691^32
- ;;^UTILITY(U,$J,358.3,11790,1,0)
+ ;;^UTILITY(U,$J,358.3,12032,1,3,0)
+ ;;=3^Problems Related to Med Facilities/Health Care
+ ;;^UTILITY(U,$J,358.3,12032,1,4,0)
+ ;;=4^Z75.9
+ ;;^UTILITY(U,$J,358.3,12032,2)
+ ;;=^5063296
+ ;;^UTILITY(U,$J,358.3,12033,0)
+ ;;=Z75.0^^47^538^147
+ ;;^UTILITY(U,$J,358.3,12033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11790,1,3,0)
- ;;=3^Leukoplakia of Vulva
- ;;^UTILITY(U,$J,358.3,11790,1,4,0)
- ;;=4^N90.4
- ;;^UTILITY(U,$J,358.3,11790,2)
- ;;=^5015894
- ;;^UTILITY(U,$J,358.3,11791,0)
- ;;=N94.1^^68^691^17
- ;;^UTILITY(U,$J,358.3,11791,1,0)
+ ;;^UTILITY(U,$J,358.3,12033,1,3,0)
+ ;;=3^Problems Related to Med Services not Available in Home
+ ;;^UTILITY(U,$J,358.3,12033,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,12033,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,12034,0)
+ ;;=Z74.2^^47^538^149
+ ;;^UTILITY(U,$J,358.3,12034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11791,1,3,0)
- ;;=3^Dyspareunia
- ;;^UTILITY(U,$J,358.3,11791,1,4,0)
- ;;=4^N94.1
- ;;^UTILITY(U,$J,358.3,11791,2)
- ;;=^5015917
- ;;^UTILITY(U,$J,358.3,11792,0)
- ;;=N94.2^^68^691^65
- ;;^UTILITY(U,$J,358.3,11792,1,0)
+ ;;^UTILITY(U,$J,358.3,12034,1,3,0)
+ ;;=3^Problems Related to Need for Assistance at Home
+ ;;^UTILITY(U,$J,358.3,12034,1,4,0)
+ ;;=4^Z74.2
+ ;;^UTILITY(U,$J,358.3,12034,2)
+ ;;=^5063285
+ ;;^UTILITY(U,$J,358.3,12035,0)
+ ;;=Z74.1^^47^538^150
+ ;;^UTILITY(U,$J,358.3,12035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11792,1,3,0)
- ;;=3^Vaginismus
- ;;^UTILITY(U,$J,358.3,11792,1,4,0)
- ;;=4^N94.2
- ;;^UTILITY(U,$J,358.3,11792,2)
- ;;=^5015918
- ;;^UTILITY(U,$J,358.3,11793,0)
- ;;=N94.0^^68^691^36
- ;;^UTILITY(U,$J,358.3,11793,1,0)
+ ;;^UTILITY(U,$J,358.3,12035,1,3,0)
+ ;;=3^Problems Related to Need for Assistance w/ Personal Care
+ ;;^UTILITY(U,$J,358.3,12035,1,4,0)
+ ;;=4^Z74.1
+ ;;^UTILITY(U,$J,358.3,12035,2)
+ ;;=^5063284
+ ;;^UTILITY(U,$J,358.3,12036,0)
+ ;;=Z74.3^^47^538^151
+ ;;^UTILITY(U,$J,358.3,12036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11793,1,3,0)
- ;;=3^Mittelschmerz
- ;;^UTILITY(U,$J,358.3,11793,1,4,0)
- ;;=4^N94.0
- ;;^UTILITY(U,$J,358.3,11793,2)
- ;;=^265259
- ;;^UTILITY(U,$J,358.3,11794,0)
- ;;=N94.6^^68^691^16
- ;;^UTILITY(U,$J,358.3,11794,1,0)
+ ;;^UTILITY(U,$J,358.3,12036,1,3,0)
+ ;;=3^Problems Related to Need for Continuous Supervision
+ ;;^UTILITY(U,$J,358.3,12036,1,4,0)
+ ;;=4^Z74.3
+ ;;^UTILITY(U,$J,358.3,12036,2)
+ ;;=^5063286
+ ;;^UTILITY(U,$J,358.3,12037,0)
+ ;;=Z75.1^^47^538^126
+ ;;^UTILITY(U,$J,358.3,12037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11794,1,3,0)
- ;;=3^Dysmenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,11794,1,4,0)
- ;;=4^N94.6
- ;;^UTILITY(U,$J,358.3,11794,2)
- ;;=^5015922
- ;;^UTILITY(U,$J,358.3,11795,0)
- ;;=N94.5^^68^691^15
- ;;^UTILITY(U,$J,358.3,11795,1,0)
+ ;;^UTILITY(U,$J,358.3,12037,1,3,0)
+ ;;=3^Problems Related to Awaiting Facility Admission
+ ;;^UTILITY(U,$J,358.3,12037,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,12037,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,12038,0)
+ ;;=Z63.9^^47^538^152
+ ;;^UTILITY(U,$J,358.3,12038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11795,1,3,0)
- ;;=3^Dysmenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,11795,1,4,0)
- ;;=4^N94.5
- ;;^UTILITY(U,$J,358.3,11795,2)
- ;;=^5015921
- ;;^UTILITY(U,$J,358.3,11796,0)
- ;;=N94.4^^68^691^14
- ;;^UTILITY(U,$J,358.3,11796,1,0)
+ ;;^UTILITY(U,$J,358.3,12038,1,3,0)
+ ;;=3^Problems Related to Primary Support Group
+ ;;^UTILITY(U,$J,358.3,12038,1,4,0)
+ ;;=4^Z63.9
+ ;;^UTILITY(U,$J,358.3,12038,2)
+ ;;=^5063175
+ ;;^UTILITY(U,$J,358.3,12039,0)
+ ;;=Z74.09^^47^538^154
+ ;;^UTILITY(U,$J,358.3,12039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11796,1,3,0)
- ;;=3^Dysmenorrhea,Primary
- ;;^UTILITY(U,$J,358.3,11796,1,4,0)
- ;;=4^N94.4
- ;;^UTILITY(U,$J,358.3,11796,2)
- ;;=^5015920
- ;;^UTILITY(U,$J,358.3,11797,0)
- ;;=N94.3^^68^691^51
- ;;^UTILITY(U,$J,358.3,11797,1,0)
+ ;;^UTILITY(U,$J,358.3,12039,1,3,0)
+ ;;=3^Problems Related to Reduced Mobility
+ ;;^UTILITY(U,$J,358.3,12039,1,4,0)
+ ;;=4^Z74.09
+ ;;^UTILITY(U,$J,358.3,12039,2)
+ ;;=^5063283
+ ;;^UTILITY(U,$J,358.3,12040,0)
+ ;;=Z60.9^^47^538^156
+ ;;^UTILITY(U,$J,358.3,12040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11797,1,3,0)
- ;;=3^Premenstrual Tension Syndrome
- ;;^UTILITY(U,$J,358.3,11797,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,11797,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,11798,0)
- ;;=N91.0^^68^691^6
- ;;^UTILITY(U,$J,358.3,11798,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11798,1,3,0)
- ;;=3^Amenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,12040,1,3,0)
+ ;;=3^Problems Related to Social Environment

@@ -1,122 +1,140 @@
-IBDEI2GB ; ; 19-NOV-2015
+IBDEI2GB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41134,1,4,0)
- ;;=4^S82.842M
- ;;^UTILITY(U,$J,358.3,41134,2)
- ;;=^5042505
- ;;^UTILITY(U,$J,358.3,41135,0)
- ;;=S82.842K^^189^2086^12
- ;;^UTILITY(U,$J,358.3,41135,1,0)
+ ;;^UTILITY(U,$J,358.3,41573,2)
+ ;;=^5000291
+ ;;^UTILITY(U,$J,358.3,41574,0)
+ ;;=A52.9^^159^2006^49
+ ;;^UTILITY(U,$J,358.3,41574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41135,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41135,1,4,0)
- ;;=4^S82.842K
- ;;^UTILITY(U,$J,358.3,41135,2)
- ;;=^5042504
- ;;^UTILITY(U,$J,358.3,41136,0)
- ;;=S82.841N^^189^2086^16
- ;;^UTILITY(U,$J,358.3,41136,1,0)
+ ;;^UTILITY(U,$J,358.3,41574,1,3,0)
+ ;;=3^Late Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,41574,1,4,0)
+ ;;=4^A52.9
+ ;;^UTILITY(U,$J,358.3,41574,2)
+ ;;=^5000308
+ ;;^UTILITY(U,$J,358.3,41575,0)
+ ;;=A53.9^^159^2006^79
+ ;;^UTILITY(U,$J,358.3,41575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41136,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41136,1,4,0)
- ;;=4^S82.841N
- ;;^UTILITY(U,$J,358.3,41136,2)
- ;;=^5042490
- ;;^UTILITY(U,$J,358.3,41137,0)
- ;;=S82.841M^^189^2086^17
- ;;^UTILITY(U,$J,358.3,41137,1,0)
+ ;;^UTILITY(U,$J,358.3,41575,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,41575,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,41575,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,41576,0)
+ ;;=B37.3^^159^2006^17
+ ;;^UTILITY(U,$J,358.3,41576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41137,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41137,1,4,0)
- ;;=4^S82.841M
- ;;^UTILITY(U,$J,358.3,41137,2)
- ;;=^5042489
- ;;^UTILITY(U,$J,358.3,41138,0)
- ;;=S82.841K^^189^2086^15
- ;;^UTILITY(U,$J,358.3,41138,1,0)
+ ;;^UTILITY(U,$J,358.3,41576,1,3,0)
+ ;;=3^Candidiasis Vulva/Vagina
+ ;;^UTILITY(U,$J,358.3,41576,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,41576,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,41577,0)
+ ;;=B58.9^^159^2006^82
+ ;;^UTILITY(U,$J,358.3,41577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41138,1,3,0)
- ;;=3^Disp bimal fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41138,1,4,0)
- ;;=4^S82.841K
- ;;^UTILITY(U,$J,358.3,41138,2)
- ;;=^5042488
- ;;^UTILITY(U,$J,358.3,41139,0)
- ;;=M84.452K^^189^2086^400
- ;;^UTILITY(U,$J,358.3,41139,1,0)
+ ;;^UTILITY(U,$J,358.3,41577,1,3,0)
+ ;;=3^Toxoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,41577,1,4,0)
+ ;;=4^B58.9
+ ;;^UTILITY(U,$J,358.3,41577,2)
+ ;;=^5000733
+ ;;^UTILITY(U,$J,358.3,41578,0)
+ ;;=A59.01^^159^2006^83
+ ;;^UTILITY(U,$J,358.3,41578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41139,1,3,0)
- ;;=3^Path fx lft fem, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41139,1,4,0)
- ;;=4^M84.452K
- ;;^UTILITY(U,$J,358.3,41139,2)
- ;;=^5013911
- ;;^UTILITY(U,$J,358.3,41140,0)
- ;;=M84.672K^^189^2086^399
- ;;^UTILITY(U,$J,358.3,41140,1,0)
+ ;;^UTILITY(U,$J,358.3,41578,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,41578,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,41578,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,41579,0)
+ ;;=B59.^^159^2006^66
+ ;;^UTILITY(U,$J,358.3,41579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41140,1,3,0)
- ;;=3^Path fx lft ankl, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,41140,1,4,0)
- ;;=4^M84.672K
- ;;^UTILITY(U,$J,358.3,41140,2)
- ;;=^5134030
- ;;^UTILITY(U,$J,358.3,41141,0)
- ;;=M84.671K^^189^2086^413
- ;;^UTILITY(U,$J,358.3,41141,1,0)
+ ;;^UTILITY(U,$J,358.3,41579,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,41579,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,41579,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,41580,0)
+ ;;=H83.09^^159^2006^48
+ ;;^UTILITY(U,$J,358.3,41580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41141,1,3,0)
- ;;=3^Path fx rt ankl, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,41141,1,4,0)
- ;;=4^M84.671K
- ;;^UTILITY(U,$J,358.3,41141,2)
- ;;=^5014295
- ;;^UTILITY(U,$J,358.3,41142,0)
- ;;=S82.55XN^^189^2086^277
- ;;^UTILITY(U,$J,358.3,41142,1,0)
+ ;;^UTILITY(U,$J,358.3,41580,1,3,0)
+ ;;=3^Labyrinthitis,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,41580,1,4,0)
+ ;;=4^H83.09
+ ;;^UTILITY(U,$J,358.3,41580,2)
+ ;;=^5006897
+ ;;^UTILITY(U,$J,358.3,41581,0)
+ ;;=H83.01^^159^2006^47
+ ;;^UTILITY(U,$J,358.3,41581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41142,1,3,0)
- ;;=3^Nondisp fx med mall lft tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41142,1,4,0)
- ;;=4^S82.55XN
- ;;^UTILITY(U,$J,358.3,41142,2)
- ;;=^5042290
- ;;^UTILITY(U,$J,358.3,41143,0)
- ;;=S82.55XM^^189^2086^278
- ;;^UTILITY(U,$J,358.3,41143,1,0)
+ ;;^UTILITY(U,$J,358.3,41581,1,3,0)
+ ;;=3^Labyrinthitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,41581,1,4,0)
+ ;;=4^H83.01
+ ;;^UTILITY(U,$J,358.3,41581,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,41582,0)
+ ;;=H83.03^^159^2006^45
+ ;;^UTILITY(U,$J,358.3,41582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41143,1,3,0)
- ;;=3^Nondisp fx med mall lft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41143,1,4,0)
- ;;=4^S82.55XM
- ;;^UTILITY(U,$J,358.3,41143,2)
- ;;=^5042289
- ;;^UTILITY(U,$J,358.3,41144,0)
- ;;=S82.55XK^^189^2086^276
- ;;^UTILITY(U,$J,358.3,41144,1,0)
+ ;;^UTILITY(U,$J,358.3,41582,1,3,0)
+ ;;=3^Labyrinthitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,41582,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,41582,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,41583,0)
+ ;;=H83.02^^159^2006^46
+ ;;^UTILITY(U,$J,358.3,41583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41144,1,3,0)
- ;;=3^Nondisp fx med mall lft tib, subs for clo fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41144,1,4,0)
- ;;=4^S82.55XK
- ;;^UTILITY(U,$J,358.3,41144,2)
- ;;=^5042288
- ;;^UTILITY(U,$J,358.3,41145,0)
- ;;=S82.54XN^^189^2086^280
- ;;^UTILITY(U,$J,358.3,41145,1,0)
+ ;;^UTILITY(U,$J,358.3,41583,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,41583,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,41583,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,41584,0)
+ ;;=J01.91^^159^2006^76
+ ;;^UTILITY(U,$J,358.3,41584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41145,1,3,0)
- ;;=3^Nondisp fx med mall rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41145,1,4,0)
- ;;=4^S82.54XN
- ;;^UTILITY(U,$J,358.3,41145,2)
- ;;=^5042274
- ;;^UTILITY(U,$J,358.3,41146,0)
- ;;=S82.54XM^^189^2086^281
- ;;^UTILITY(U,$J,358.3,41146,1,0)
+ ;;^UTILITY(U,$J,358.3,41584,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,41584,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,41584,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,41585,0)
+ ;;=J03.90^^159^2006^81
+ ;;^UTILITY(U,$J,358.3,41585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41585,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,41585,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,41585,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,41586,0)
+ ;;=J01.90^^159^2006^77
+ ;;^UTILITY(U,$J,358.3,41586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41586,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,41586,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,41586,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,41587,0)
+ ;;=J20.1^^159^2006^10
+ ;;^UTILITY(U,$J,358.3,41587,1,0)
  ;;=^358.31IA^4^2

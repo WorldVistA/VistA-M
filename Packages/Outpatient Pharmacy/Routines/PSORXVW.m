@@ -1,5 +1,5 @@
 PSORXVW ;BHAM ISC/SAB - listman view of a prescription ;6/7/12 7:00pm
- ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**14,35,46,96,103,88,117,131,146,156,185,210,148,233,260,264,281,359,385,400,391,313,427**;DEC 1997;Build 21
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference ^PSDRUG( supported by DBIA 221
@@ -56,8 +56,8 @@ DP ; DBIA #4711 entry point from ECME
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="      Orderable Item: "_$S($D(^PS(50.7,$P(+RXOR,"^"),0)):$P(^PS(50.7,$P(+RXOR,"^"),0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^"),1:"No Pharmacy Orderable Item")
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S($D(^PSDRUG("AQ",$P(RX0,"^",6))):"           CMOP ",1:"                ")_"Drug: "_$P(^PSDRUG($P(RX0,"^",6),0),"^")
  S:$G(^PSRX(RXN,"TN"))]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="          Trade Name: "_$G(^PSRX(RXN,"TN"))
- I $$STATUS^PSOBPSUT(RXN,0)'="",$$RXRLDT^PSOBPSUT(RXN,0) D
- . S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="                 NDC: "_$$GETNDC^PSONDCUT(RXN,0)
+ ; Always display the NDC# - PSO*7*427
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="                 NDC: "_$$GETNDC^PSONDCUT(RXN,0)
  D DOSE^PSORXVW1
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Patient Instructions:" I $O(^PSRX(RXN,"INS1",0)) D
  . F I=0:0 S I=$O(^PSRX(RXN,"INS1",I)) Q:'I  D

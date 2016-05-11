@@ -1,134 +1,124 @@
-IBDEI2EP ; ; 19-NOV-2015
+IBDEI2EP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40419,0)
- ;;=C43.9^^186^2076^314
- ;;^UTILITY(U,$J,358.3,40419,1,0)
+ ;;^UTILITY(U,$J,358.3,40823,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,40823,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,40824,0)
+ ;;=L97.924^^159^1993^194
+ ;;^UTILITY(U,$J,358.3,40824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40419,1,3,0)
- ;;=3^Malig Melanoma,Skin,Unspec
- ;;^UTILITY(U,$J,358.3,40419,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,40419,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,40420,0)
- ;;=T85.49XA^^186^2076^341
- ;;^UTILITY(U,$J,358.3,40420,1,0)
+ ;;^UTILITY(U,$J,358.3,40824,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,40824,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,40824,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,40825,0)
+ ;;=L97.929^^159^1993^195
+ ;;^UTILITY(U,$J,358.3,40825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40420,1,3,0)
- ;;=3^Mech Complication,Oth,Breast Implant
- ;;^UTILITY(U,$J,358.3,40420,1,4,0)
- ;;=4^T85.49XA
- ;;^UTILITY(U,$J,358.3,40420,2)
- ;;=^5055574
- ;;^UTILITY(U,$J,358.3,40421,0)
- ;;=L76.22^^186^2076^362
- ;;^UTILITY(U,$J,358.3,40421,1,0)
+ ;;^UTILITY(U,$J,358.3,40825,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,40825,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,40825,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,40826,0)
+ ;;=L98.2^^159^1993^149
+ ;;^UTILITY(U,$J,358.3,40826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40421,1,3,0)
- ;;=3^Postprocedural Hemorr/Hematoma of Skin,Following Procedure
- ;;^UTILITY(U,$J,358.3,40421,1,4,0)
- ;;=4^L76.22
- ;;^UTILITY(U,$J,358.3,40421,2)
- ;;=^5009307
- ;;^UTILITY(U,$J,358.3,40422,0)
- ;;=M65.4^^186^2076^368
- ;;^UTILITY(U,$J,358.3,40422,1,0)
+ ;;^UTILITY(U,$J,358.3,40826,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,40826,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,40826,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,40827,0)
+ ;;=L98.9^^159^1993^267
+ ;;^UTILITY(U,$J,358.3,40827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40422,1,3,0)
- ;;=3^RAdial Styloid Tenosynovitis (de Quervain)
- ;;^UTILITY(U,$J,358.3,40422,1,4,0)
- ;;=4^M65.4
- ;;^UTILITY(U,$J,358.3,40422,2)
- ;;=^5012792
- ;;^UTILITY(U,$J,358.3,40423,0)
- ;;=C44.521^^186^2076^372
- ;;^UTILITY(U,$J,358.3,40423,1,0)
+ ;;^UTILITY(U,$J,358.3,40827,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,40827,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,40827,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,40828,0)
+ ;;=I70.731^^159^1993^80
+ ;;^UTILITY(U,$J,358.3,40828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40423,1,3,0)
- ;;=3^SCC Skin Breast
- ;;^UTILITY(U,$J,358.3,40423,1,4,0)
- ;;=4^C44.521
- ;;^UTILITY(U,$J,358.3,40423,2)
- ;;=^5001058
- ;;^UTILITY(U,$J,358.3,40424,0)
- ;;=C44.321^^186^2076^375
- ;;^UTILITY(U,$J,358.3,40424,1,0)
+ ;;^UTILITY(U,$J,358.3,40828,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,40828,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,40828,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,40829,0)
+ ;;=I70.732^^159^1993^81
+ ;;^UTILITY(U,$J,358.3,40829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40424,1,3,0)
- ;;=3^SCC Skin Nose
- ;;^UTILITY(U,$J,358.3,40424,1,4,0)
- ;;=4^C44.321
- ;;^UTILITY(U,$J,358.3,40424,2)
- ;;=^5001047
- ;;^UTILITY(U,$J,358.3,40425,0)
- ;;=C44.329^^186^2076^376
- ;;^UTILITY(U,$J,358.3,40425,1,0)
+ ;;^UTILITY(U,$J,358.3,40829,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,40829,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,40829,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,40830,0)
+ ;;=I70.733^^159^1993^82
+ ;;^UTILITY(U,$J,358.3,40830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40425,1,3,0)
- ;;=3^SCC Skin Oth Parts of Face
- ;;^UTILITY(U,$J,358.3,40425,1,4,0)
- ;;=4^C44.329
- ;;^UTILITY(U,$J,358.3,40425,2)
- ;;=^5001048
- ;;^UTILITY(U,$J,358.3,40426,0)
- ;;=C44.529^^186^2076^380
- ;;^UTILITY(U,$J,358.3,40426,1,0)
+ ;;^UTILITY(U,$J,358.3,40830,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,40830,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,40830,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,40831,0)
+ ;;=I70.734^^159^1993^83
+ ;;^UTILITY(U,$J,358.3,40831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40426,1,3,0)
- ;;=3^SCC Skin Trunk
- ;;^UTILITY(U,$J,358.3,40426,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,40426,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,40427,0)
- ;;=T86.821^^186^2076^384
- ;;^UTILITY(U,$J,358.3,40427,1,0)
+ ;;^UTILITY(U,$J,358.3,40831,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,40831,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,40831,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,40832,0)
+ ;;=I70.735^^159^1993^84
+ ;;^UTILITY(U,$J,358.3,40832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40427,1,3,0)
- ;;=3^Skin Graft Failure
- ;;^UTILITY(U,$J,358.3,40427,1,4,0)
- ;;=4^T86.821
- ;;^UTILITY(U,$J,358.3,40427,2)
- ;;=^5055735
- ;;^UTILITY(U,$J,358.3,40428,0)
- ;;=T86.822^^186^2076^385
- ;;^UTILITY(U,$J,358.3,40428,1,0)
+ ;;^UTILITY(U,$J,358.3,40832,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,40832,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,40832,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,40833,0)
+ ;;=I70.741^^159^1993^79
+ ;;^UTILITY(U,$J,358.3,40833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40428,1,3,0)
- ;;=3^Skin Graft Infection
- ;;^UTILITY(U,$J,358.3,40428,1,4,0)
- ;;=4^T86.822
- ;;^UTILITY(U,$J,358.3,40428,2)
- ;;=^5055736
- ;;^UTILITY(U,$J,358.3,40429,0)
- ;;=T86.820^^186^2076^386
- ;;^UTILITY(U,$J,358.3,40429,1,0)
+ ;;^UTILITY(U,$J,358.3,40833,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,40833,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,40833,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,40834,0)
+ ;;=I70.742^^159^1993^76
+ ;;^UTILITY(U,$J,358.3,40834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40429,1,3,0)
- ;;=3^Skin Graft Rejection
- ;;^UTILITY(U,$J,358.3,40429,1,4,0)
- ;;=4^T86.820
- ;;^UTILITY(U,$J,358.3,40429,2)
- ;;=^5055734
- ;;^UTILITY(U,$J,358.3,40430,0)
- ;;=11719^^187^2077^4^^^^1
- ;;^UTILITY(U,$J,358.3,40430,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40430,1,2,0)
- ;;=2^Trimming Nondystrophic Nails, any number
- ;;^UTILITY(U,$J,358.3,40430,1,3,0)
- ;;=3^11719
- ;;^UTILITY(U,$J,358.3,40431,0)
- ;;=G0127^^187^2077^3^^^^1
- ;;^UTILITY(U,$J,358.3,40431,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,40431,1,2,0)
- ;;=2^Trimming Dystrophic Nails, any number
- ;;^UTILITY(U,$J,358.3,40431,1,3,0)
- ;;=3^G0127
- ;;^UTILITY(U,$J,358.3,40432,0)
- ;;=11720^^187^2077^1^^^^1
- ;;^UTILITY(U,$J,358.3,40432,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,40834,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,40834,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,40834,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,40835,0)
+ ;;=I70.743^^159^1993^75
+ ;;^UTILITY(U,$J,358.3,40835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40835,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer

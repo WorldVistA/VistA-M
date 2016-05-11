@@ -1,5 +1,5 @@
 ICDEXLK2 ;SLC/KER - ICD Extractor - Lookup, SBR/Ask/One/Mul ;12/19/2014
- ;;18.0;DRG Grouper;**57,67**;Oct 20, 2000;Build 1
+ ;;18.0;DRG Grouper;**57,67,82**;Oct 20, 2000;Build 21
  ;               
  ; Global Variables
  ;    ^TMP(SUB,$J         SACC 2.3.2.5.1
@@ -47,7 +47,7 @@ SBR ;   Space-Bar Return DIC(0) not contain "A"
  . I +($G(Y))'>0,$L($G(INP)) S X=$G(INP) Q
  . I +($G(Y))>0 D:$G(DIC(0))'["F" SAV^ICDEXLK6(+($G(Y)),ROOT)
  S:+Y>0&($L($P(Y,"^",2))) X=$P(Y,"^",2)
- I ANS'>0 K INP,X,Y,^TMP(SUB,$J)
+ I ANS'>0 K INP,X,Y,^TMP(SUB,$J) S X="",Y="-1^No user input"
  Q
 ONE(X) ;   One Entry Found
  S:'$D(DDS) X=$$ONERS S:$D(DDS) X=$$ONESM S ICDOREV=1

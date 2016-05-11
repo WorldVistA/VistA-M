@@ -1,134 +1,142 @@
-IBDEI08L ; ; 19-NOV-2015
+IBDEI08L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3466,1,0)
+ ;;^UTILITY(U,$J,358.3,3726,1,4,0)
+ ;;=4^R06.9
+ ;;^UTILITY(U,$J,358.3,3726,2)
+ ;;=^5019194
+ ;;^UTILITY(U,$J,358.3,3727,0)
+ ;;=J47.1^^18^222^9
+ ;;^UTILITY(U,$J,358.3,3727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3466,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,3466,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,3466,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,3467,0)
- ;;=W18.09XA^^28^254^6
- ;;^UTILITY(U,$J,358.3,3467,1,0)
+ ;;^UTILITY(U,$J,358.3,3727,1,3,0)
+ ;;=3^Branchietasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,3727,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,3727,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,3728,0)
+ ;;=J47.0^^18^222^10
+ ;;^UTILITY(U,$J,358.3,3728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3467,1,3,0)
- ;;=3^Fall d/t Striking Against Other Object,Init Encntr
- ;;^UTILITY(U,$J,358.3,3467,1,4,0)
- ;;=4^W18.09XA
- ;;^UTILITY(U,$J,358.3,3467,2)
- ;;=^5059799
- ;;^UTILITY(U,$J,358.3,3468,0)
- ;;=W00.9XXA^^28^254^5
- ;;^UTILITY(U,$J,358.3,3468,1,0)
+ ;;^UTILITY(U,$J,358.3,3728,1,3,0)
+ ;;=3^Branchietasis w/ Acute Lower Repiratory Infection
+ ;;^UTILITY(U,$J,358.3,3728,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,3728,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,3729,0)
+ ;;=J47.9^^18^222^8
+ ;;^UTILITY(U,$J,358.3,3729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3468,1,3,0)
- ;;=3^Fall d/t Snow/Ice,Init Encntr
- ;;^UTILITY(U,$J,358.3,3468,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,3468,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,3469,0)
- ;;=R29.6^^28^254^24
- ;;^UTILITY(U,$J,358.3,3469,1,0)
+ ;;^UTILITY(U,$J,358.3,3729,1,3,0)
+ ;;=3^Branchietasis Uncomplicated
+ ;;^UTILITY(U,$J,358.3,3729,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,3729,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,3730,0)
+ ;;=J21.9^^18^222^12
+ ;;^UTILITY(U,$J,358.3,3730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3469,1,3,0)
- ;;=3^Repeated Falls
- ;;^UTILITY(U,$J,358.3,3469,1,4,0)
- ;;=4^R29.6
- ;;^UTILITY(U,$J,358.3,3469,2)
- ;;=^5019317
- ;;^UTILITY(U,$J,358.3,3470,0)
- ;;=W18.40XA^^28^254^25
- ;;^UTILITY(U,$J,358.3,3470,1,0)
+ ;;^UTILITY(U,$J,358.3,3730,1,3,0)
+ ;;=3^Bronchiolitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,3730,1,4,0)
+ ;;=4^J21.9
+ ;;^UTILITY(U,$J,358.3,3730,2)
+ ;;=^5008199
+ ;;^UTILITY(U,$J,358.3,3731,0)
+ ;;=J20.9^^18^222^13
+ ;;^UTILITY(U,$J,358.3,3731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3470,1,3,0)
- ;;=3^Slip/Trip/Stumble w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,3470,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,3470,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,3471,0)
- ;;=Z90.710^^28^255^2
- ;;^UTILITY(U,$J,358.3,3471,1,0)
+ ;;^UTILITY(U,$J,358.3,3731,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,3731,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,3731,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,3732,0)
+ ;;=J41.1^^18^222^14
+ ;;^UTILITY(U,$J,358.3,3732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3471,1,3,0)
- ;;=3^Acquired Absence of Cervix & Uterus
- ;;^UTILITY(U,$J,358.3,3471,1,4,0)
- ;;=4^Z90.710
- ;;^UTILITY(U,$J,358.3,3471,2)
- ;;=^5063591
- ;;^UTILITY(U,$J,358.3,3472,0)
- ;;=Z90.712^^28^255^3
- ;;^UTILITY(U,$J,358.3,3472,1,0)
+ ;;^UTILITY(U,$J,358.3,3732,1,3,0)
+ ;;=3^Bronchitis,Chronic,Mucopurulent
+ ;;^UTILITY(U,$J,358.3,3732,1,4,0)
+ ;;=4^J41.1
+ ;;^UTILITY(U,$J,358.3,3732,2)
+ ;;=^269949
+ ;;^UTILITY(U,$J,358.3,3733,0)
+ ;;=J41.0^^18^222^15
+ ;;^UTILITY(U,$J,358.3,3733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3472,1,3,0)
- ;;=3^Acquired Absence of Cervix w/ Remaining Uterus
- ;;^UTILITY(U,$J,358.3,3472,1,4,0)
- ;;=4^Z90.712
- ;;^UTILITY(U,$J,358.3,3472,2)
- ;;=^5063593
- ;;^UTILITY(U,$J,358.3,3473,0)
- ;;=Z90.711^^28^255^4
- ;;^UTILITY(U,$J,358.3,3473,1,0)
+ ;;^UTILITY(U,$J,358.3,3733,1,3,0)
+ ;;=3^Bronchitis,Chronic,Simple
+ ;;^UTILITY(U,$J,358.3,3733,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,3733,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,3734,0)
+ ;;=J42.^^18^222^16
+ ;;^UTILITY(U,$J,358.3,3734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3473,1,3,0)
- ;;=3^Acquired Absence of Uterus w/ Remaining Cervical Stump
- ;;^UTILITY(U,$J,358.3,3473,1,4,0)
- ;;=4^Z90.711
- ;;^UTILITY(U,$J,358.3,3473,2)
- ;;=^5063592
- ;;^UTILITY(U,$J,358.3,3474,0)
- ;;=R34.^^28^255^5
- ;;^UTILITY(U,$J,358.3,3474,1,0)
+ ;;^UTILITY(U,$J,358.3,3734,1,3,0)
+ ;;=3^Bronchitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,3734,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,3734,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,3735,0)
+ ;;=J40.^^18^222^17
+ ;;^UTILITY(U,$J,358.3,3735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3474,1,3,0)
- ;;=3^Anuria & Oliguria
- ;;^UTILITY(U,$J,358.3,3474,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,3474,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,3475,0)
- ;;=Z93.50^^28^255^6
- ;;^UTILITY(U,$J,358.3,3475,1,0)
+ ;;^UTILITY(U,$J,358.3,3735,1,3,0)
+ ;;=3^Bronchitis,Unspec as Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,3735,1,4,0)
+ ;;=4^J40.
+ ;;^UTILITY(U,$J,358.3,3735,2)
+ ;;=^17164
+ ;;^UTILITY(U,$J,358.3,3736,0)
+ ;;=J44.1^^18^222^18
+ ;;^UTILITY(U,$J,358.3,3736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3475,1,3,0)
- ;;=3^Artificial Opening,Cystostomy,Unspec
- ;;^UTILITY(U,$J,358.3,3475,1,4,0)
- ;;=4^Z93.50
- ;;^UTILITY(U,$J,358.3,3475,2)
- ;;=^5063647
- ;;^UTILITY(U,$J,358.3,3476,0)
- ;;=Z93.6^^28^255^7
- ;;^UTILITY(U,$J,358.3,3476,1,0)
+ ;;^UTILITY(U,$J,358.3,3736,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,3736,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,3736,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,3737,0)
+ ;;=J44.0^^18^222^19
+ ;;^UTILITY(U,$J,358.3,3737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3476,1,3,0)
- ;;=3^Artificial Opening,Urinary Tract,Other
- ;;^UTILITY(U,$J,358.3,3476,1,4,0)
- ;;=4^Z93.6
- ;;^UTILITY(U,$J,358.3,3476,2)
- ;;=^5063651
- ;;^UTILITY(U,$J,358.3,3477,0)
- ;;=N32.9^^28^255^8
- ;;^UTILITY(U,$J,358.3,3477,1,0)
+ ;;^UTILITY(U,$J,358.3,3737,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,3737,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,3737,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,3738,0)
+ ;;=J44.9^^18^222^20
+ ;;^UTILITY(U,$J,358.3,3738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3477,1,3,0)
- ;;=3^Baldder Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3477,1,4,0)
- ;;=4^N32.9
- ;;^UTILITY(U,$J,358.3,3477,2)
- ;;=^5015653
- ;;^UTILITY(U,$J,358.3,3478,0)
- ;;=R39.14^^28^255^10
- ;;^UTILITY(U,$J,358.3,3478,1,0)
+ ;;^UTILITY(U,$J,358.3,3738,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,3738,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,3738,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,3739,0)
+ ;;=R05.^^18^222^21
+ ;;^UTILITY(U,$J,358.3,3739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3478,1,3,0)
- ;;=3^Bladder Emptying,Imcomplete Feeling
- ;;^UTILITY(U,$J,358.3,3478,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,3478,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,3479,0)
- ;;=N31.9^^28^255^11
+ ;;^UTILITY(U,$J,358.3,3739,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,3739,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,3739,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,3740,0)
+ ;;=R06.00^^18^222^22
+ ;;^UTILITY(U,$J,358.3,3740,1,0)
+ ;;=^358.31IA^4^2

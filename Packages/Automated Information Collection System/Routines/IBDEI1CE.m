@@ -1,120 +1,134 @@
-IBDEI1CE ; ; 19-NOV-2015
+IBDEI1CE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22364,0)
- ;;=S59.111S^^101^1040^138
- ;;^UTILITY(U,$J,358.3,22364,1,0)
+ ;;^UTILITY(U,$J,358.3,22819,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,22820,0)
+ ;;=R25.8^^87^986^2
+ ;;^UTILITY(U,$J,358.3,22820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22364,1,3,0)
- ;;=3^Sltr-haris Type I physl fx upper end radius, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22364,1,4,0)
- ;;=4^S59.111S
- ;;^UTILITY(U,$J,358.3,22364,2)
- ;;=^5032068
- ;;^UTILITY(U,$J,358.3,22365,0)
- ;;=S59.222S^^101^1040^139
- ;;^UTILITY(U,$J,358.3,22365,1,0)
+ ;;^UTILITY(U,$J,358.3,22820,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Other
+ ;;^UTILITY(U,$J,358.3,22820,1,4,0)
+ ;;=4^R25.8
+ ;;^UTILITY(U,$J,358.3,22820,2)
+ ;;=^5019302
+ ;;^UTILITY(U,$J,358.3,22821,0)
+ ;;=M02.30^^87^987^141
+ ;;^UTILITY(U,$J,358.3,22821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22365,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,22365,1,4,0)
- ;;=4^S59.222S
- ;;^UTILITY(U,$J,358.3,22365,2)
- ;;=^5135632
- ;;^UTILITY(U,$J,358.3,22366,0)
- ;;=S59.221S^^101^1040^140
- ;;^UTILITY(U,$J,358.3,22366,1,0)
+ ;;^UTILITY(U,$J,358.3,22821,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22821,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,22821,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,22822,0)
+ ;;=M10.9^^87^987^40
+ ;;^UTILITY(U,$J,358.3,22822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22366,1,3,0)
- ;;=3^Sltr-haris Type II physl fx lower end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22366,1,4,0)
- ;;=4^S59.221S
- ;;^UTILITY(U,$J,358.3,22366,2)
- ;;=^5032164
- ;;^UTILITY(U,$J,358.3,22367,0)
- ;;=S59.122S^^101^1040^143
- ;;^UTILITY(U,$J,358.3,22367,1,0)
+ ;;^UTILITY(U,$J,358.3,22822,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,22822,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,22822,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,22823,0)
+ ;;=G90.59^^87^987^34
+ ;;^UTILITY(U,$J,358.3,22823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22367,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,22367,1,4,0)
- ;;=4^S59.122S
- ;;^UTILITY(U,$J,358.3,22367,2)
- ;;=^5032092
- ;;^UTILITY(U,$J,358.3,22368,0)
- ;;=S59.121S^^101^1040^144
- ;;^UTILITY(U,$J,358.3,22368,1,0)
+ ;;^UTILITY(U,$J,358.3,22823,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,22823,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,22823,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,22824,0)
+ ;;=G56.01^^87^987^12
+ ;;^UTILITY(U,$J,358.3,22824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22368,1,3,0)
- ;;=3^Sltr-haris Type II physl fx upper end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22368,1,4,0)
- ;;=4^S59.121S
- ;;^UTILITY(U,$J,358.3,22368,2)
- ;;=^5032086
- ;;^UTILITY(U,$J,358.3,22369,0)
- ;;=S59.232S^^101^1040^145
- ;;^UTILITY(U,$J,358.3,22369,1,0)
+ ;;^UTILITY(U,$J,358.3,22824,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22824,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,22824,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,22825,0)
+ ;;=G56.02^^87^987^11
+ ;;^UTILITY(U,$J,358.3,22825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22369,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end rad, left arm, sqla
- ;;^UTILITY(U,$J,358.3,22369,1,4,0)
- ;;=4^S59.232S
- ;;^UTILITY(U,$J,358.3,22369,2)
- ;;=^5135638
- ;;^UTILITY(U,$J,358.3,22370,0)
- ;;=S59.231S^^101^1040^146
- ;;^UTILITY(U,$J,358.3,22370,1,0)
+ ;;^UTILITY(U,$J,358.3,22825,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22825,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,22825,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,22826,0)
+ ;;=G56.21^^87^987^56
+ ;;^UTILITY(U,$J,358.3,22826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22370,1,3,0)
- ;;=3^Sltr-haris Type III physl fx lower end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22370,1,4,0)
- ;;=4^S59.231S
- ;;^UTILITY(U,$J,358.3,22370,2)
- ;;=^5032170
- ;;^UTILITY(U,$J,358.3,22371,0)
- ;;=S59.132S^^101^1040^149
- ;;^UTILITY(U,$J,358.3,22371,1,0)
+ ;;^UTILITY(U,$J,358.3,22826,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22826,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,22826,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,22827,0)
+ ;;=G56.22^^87^987^55
+ ;;^UTILITY(U,$J,358.3,22827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22371,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end rad, left arm, sqla
- ;;^UTILITY(U,$J,358.3,22371,1,4,0)
- ;;=4^S59.132S
- ;;^UTILITY(U,$J,358.3,22371,2)
- ;;=^5032110
- ;;^UTILITY(U,$J,358.3,22372,0)
- ;;=S59.131S^^101^1040^150
- ;;^UTILITY(U,$J,358.3,22372,1,0)
+ ;;^UTILITY(U,$J,358.3,22827,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22827,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,22827,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,22828,0)
+ ;;=M26.60^^87^987^180
+ ;;^UTILITY(U,$J,358.3,22828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22372,1,3,0)
- ;;=3^Sltr-haris Type III physl fx upper end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22372,1,4,0)
- ;;=4^S59.131S
- ;;^UTILITY(U,$J,358.3,22372,2)
- ;;=^5032104
- ;;^UTILITY(U,$J,358.3,22373,0)
- ;;=S59.242S^^101^1040^151
- ;;^UTILITY(U,$J,358.3,22373,1,0)
+ ;;^UTILITY(U,$J,358.3,22828,1,3,0)
+ ;;=3^Temporomandibular Joint Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,22828,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,22828,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,22829,0)
+ ;;=L40.52^^87^987^137
+ ;;^UTILITY(U,$J,358.3,22829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22373,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end radius, left arm, sqla
- ;;^UTILITY(U,$J,358.3,22373,1,4,0)
- ;;=4^S59.242S
- ;;^UTILITY(U,$J,358.3,22373,2)
- ;;=^5135644
- ;;^UTILITY(U,$J,358.3,22374,0)
- ;;=S59.241S^^101^1040^152
- ;;^UTILITY(U,$J,358.3,22374,1,0)
+ ;;^UTILITY(U,$J,358.3,22829,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,22829,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,22829,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,22830,0)
+ ;;=L40.53^^87^987^138
+ ;;^UTILITY(U,$J,358.3,22830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22374,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx lower end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22374,1,4,0)
- ;;=4^S59.241S
- ;;^UTILITY(U,$J,358.3,22374,2)
- ;;=^5032176
- ;;^UTILITY(U,$J,358.3,22375,0)
- ;;=S59.142S^^101^1040^155
- ;;^UTILITY(U,$J,358.3,22375,1,0)
+ ;;^UTILITY(U,$J,358.3,22830,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,22830,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,22830,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,22831,0)
+ ;;=M32.9^^87^987^179
+ ;;^UTILITY(U,$J,358.3,22831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22375,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end radius, left arm, sqla
+ ;;^UTILITY(U,$J,358.3,22831,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,22831,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,22831,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,22832,0)
+ ;;=M32.0^^87^987^175
+ ;;^UTILITY(U,$J,358.3,22832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22832,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,22832,1,4,0)
+ ;;=4^M32.0

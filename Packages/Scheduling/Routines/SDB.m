@@ -1,5 +1,5 @@
-SDB ;FLA/RF,BSN/GRR - SET UP A CLINIC ;9/30/10  15:59
- ;;5.3;Scheduling;**20,63,167,455,568,586**;Aug 13, 1993;Build 28
+SDB ;FLA/RF,BSN/GRR - SET UP A CLINIC ;JAN 15, 2016
+ ;;5.3;Scheduling;**20,63,167,455,568,586,627**;Aug 13, 1993;Build 249
  ;
  ; ICDFMT Added for Patch SD*5.3*586 - ICD10 remediation
  N ICDFMT
@@ -10,6 +10,7 @@ C Q:$D(SDREACT)!('$D(SDTOP))  W !! D DT^DICRW S (DLAYGO,DIC)=44,DIC(0)="MAQEZL",
  K SDIN,SDINH,SDRE,SDRE1 I $D(^SC(DA,"I")),+^("I")>0 S SDIN=+^("I"),SDINH=SDIN,SDRE=+$P(^("I"),"^",2)
  S DR="[SDB]",ICDFMT=4 S:'$D(^SC(DA,"ST",0)) ^SC(DA,"ST",0)="^44.005" D ^DIE K DIE("NO^")
 EN ;Q:$D(SDONE)&('$D(SDTOP))  SD*5.3*455 added 2nd Go on next line
+ D:$P(^SC(DA,0),U,3)="C" SDRES^SDECUTL2(DA)   ;alb/sat 627
  G C:'$D(^SC(DA,"SL")) G C:'+$G(^SC(DA,"SL")) S SL=^("SL"),STARTDAY=8,X=$P(SL,U,3),D=$P(SL,U,6),SI=$S(D:D,1:4),DIC(0)="MAQEZL",(DIC,DIE)="^SC("_DA_",""T"",",DIC("W")=$P($T(DOW),";",3) S:'$D(^("T",0)) ^(0)="^44.002D" S:$L(X) STARTDAY=X
  ;K SDREACT
 G1 D:$D(SDREACT)&('$D(SDTOP)) E1 S SI=$P(SL,"^",6) K Y,HY S SDFSW="" S:$D(SDINH) SDIN=SDINH D PRINT

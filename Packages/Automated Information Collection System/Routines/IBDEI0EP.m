@@ -1,126 +1,142 @@
-IBDEI0EP ; ; 19-NOV-2015
+IBDEI0EP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6425,1,0)
+ ;;^UTILITY(U,$J,358.3,6767,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,6767,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,6768,0)
+ ;;=Z93.1^^30^397^52
+ ;;^UTILITY(U,$J,358.3,6768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6425,1,3,0)
- ;;=3^Sedatv/Hyp/Anxiolytc Abuse w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6425,1,4,0)
- ;;=4^F13.150
- ;;^UTILITY(U,$J,358.3,6425,2)
- ;;=^5003194
- ;;^UTILITY(U,$J,358.3,6426,0)
- ;;=F14.150^^43^397^4
- ;;^UTILITY(U,$J,358.3,6426,1,0)
+ ;;^UTILITY(U,$J,358.3,6768,1,3,0)
+ ;;=3^Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,6768,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,6768,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,6769,0)
+ ;;=Z93.2^^30^397^58
+ ;;^UTILITY(U,$J,358.3,6769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6426,1,3,0)
- ;;=3^Cocaine Abuse w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6426,1,4,0)
- ;;=4^F14.150
- ;;^UTILITY(U,$J,358.3,6426,2)
- ;;=^5003245
- ;;^UTILITY(U,$J,358.3,6427,0)
- ;;=F14.250^^43^397^7
- ;;^UTILITY(U,$J,358.3,6427,1,0)
+ ;;^UTILITY(U,$J,358.3,6769,1,3,0)
+ ;;=3^Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,6769,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,6769,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,6770,0)
+ ;;=Z93.3^^30^397^15
+ ;;^UTILITY(U,$J,358.3,6770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6427,1,3,0)
- ;;=3^Cocaine Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6427,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,6427,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,6428,0)
- ;;=F19.250^^43^397^22
- ;;^UTILITY(U,$J,358.3,6428,1,0)
+ ;;^UTILITY(U,$J,358.3,6770,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,6770,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,6770,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,6771,0)
+ ;;=Z94.0^^30^397^63
+ ;;^UTILITY(U,$J,358.3,6771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6428,1,3,0)
- ;;=3^Psychoactive Subs Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6428,1,4,0)
- ;;=4^F19.250
- ;;^UTILITY(U,$J,358.3,6428,2)
- ;;=^5003442
- ;;^UTILITY(U,$J,358.3,6429,0)
- ;;=F16.250^^43^397^10
- ;;^UTILITY(U,$J,358.3,6429,1,0)
+ ;;^UTILITY(U,$J,358.3,6771,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,6771,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,6771,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,6772,0)
+ ;;=Z94.1^^30^397^56
+ ;;^UTILITY(U,$J,358.3,6772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6429,1,3,0)
- ;;=3^Hallucinogen Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6429,1,4,0)
- ;;=4^F16.250
- ;;^UTILITY(U,$J,358.3,6429,2)
- ;;=^5003342
- ;;^UTILITY(U,$J,358.3,6430,0)
- ;;=F11.250^^43^397^14
- ;;^UTILITY(U,$J,358.3,6430,1,0)
+ ;;^UTILITY(U,$J,358.3,6772,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,6772,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,6772,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,6773,0)
+ ;;=Z94.2^^30^397^66
+ ;;^UTILITY(U,$J,358.3,6773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6430,1,3,0)
- ;;=3^Opioid Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6430,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,6430,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,6431,0)
- ;;=F19.150^^43^397^18
- ;;^UTILITY(U,$J,358.3,6431,1,0)
+ ;;^UTILITY(U,$J,358.3,6773,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,6773,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,6773,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,6774,0)
+ ;;=Z94.3^^30^397^55
+ ;;^UTILITY(U,$J,358.3,6774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6431,1,3,0)
- ;;=3^Psychoactive Subs Abuse w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6431,1,4,0)
- ;;=4^F19.150
- ;;^UTILITY(U,$J,358.3,6431,2)
- ;;=^5003422
- ;;^UTILITY(U,$J,358.3,6432,0)
- ;;=F15.251^^43^397^45
- ;;^UTILITY(U,$J,358.3,6432,1,0)
+ ;;^UTILITY(U,$J,358.3,6774,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,6774,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,6774,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,6775,0)
+ ;;=Z94.4^^30^397^65
+ ;;^UTILITY(U,$J,358.3,6775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6432,1,3,0)
- ;;=3^Stimulant Dependence w/ Psych Disorder w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,6432,1,4,0)
- ;;=4^F15.251
- ;;^UTILITY(U,$J,358.3,6432,2)
- ;;=^5003304
- ;;^UTILITY(U,$J,358.3,6433,0)
- ;;=F15.151^^43^397^41
- ;;^UTILITY(U,$J,358.3,6433,1,0)
+ ;;^UTILITY(U,$J,358.3,6775,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,6775,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,6775,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,6776,0)
+ ;;=Z94.84^^30^397^143
+ ;;^UTILITY(U,$J,358.3,6776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6433,1,3,0)
- ;;=3^Stimulant Abuse w/ Psych Disorder w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,6433,1,4,0)
- ;;=4^F15.151
- ;;^UTILITY(U,$J,358.3,6433,2)
- ;;=^5003289
- ;;^UTILITY(U,$J,358.3,6434,0)
- ;;=F13.251^^43^397^37
- ;;^UTILITY(U,$J,358.3,6434,1,0)
+ ;;^UTILITY(U,$J,358.3,6776,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,6776,1,4,0)
+ ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,6776,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,6777,0)
+ ;;=Z96.21^^30^397^14
+ ;;^UTILITY(U,$J,358.3,6777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6434,1,3,0)
- ;;=3^Sedatv/Hyp/Anxiolytc Dependence w/ Psych Disorder w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,6434,1,4,0)
- ;;=4^F13.251
- ;;^UTILITY(U,$J,358.3,6434,2)
- ;;=^5003212
- ;;^UTILITY(U,$J,358.3,6435,0)
- ;;=F13.151^^43^397^31
- ;;^UTILITY(U,$J,358.3,6435,1,0)
+ ;;^UTILITY(U,$J,358.3,6777,1,3,0)
+ ;;=3^Cochlear Implant Status
+ ;;^UTILITY(U,$J,358.3,6777,1,4,0)
+ ;;=4^Z96.21
+ ;;^UTILITY(U,$J,358.3,6777,2)
+ ;;=^5063684
+ ;;^UTILITY(U,$J,358.3,6778,0)
+ ;;=Z96.41^^30^397^126
+ ;;^UTILITY(U,$J,358.3,6778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6435,1,3,0)
- ;;=3^Sedatv/Hyp/Anxiolytc Abuse w/ Psych Disorder w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,6435,1,4,0)
- ;;=4^F13.151
- ;;^UTILITY(U,$J,358.3,6435,2)
- ;;=^5003195
- ;;^UTILITY(U,$J,358.3,6436,0)
- ;;=F12.251^^43^397^2
- ;;^UTILITY(U,$J,358.3,6436,1,0)
+ ;;^UTILITY(U,$J,358.3,6778,1,3,0)
+ ;;=3^Presence of Insulin Pump
+ ;;^UTILITY(U,$J,358.3,6778,1,4,0)
+ ;;=4^Z96.41
+ ;;^UTILITY(U,$J,358.3,6778,2)
+ ;;=^5063688
+ ;;^UTILITY(U,$J,358.3,6779,0)
+ ;;=Z96.641^^30^397^134
+ ;;^UTILITY(U,$J,358.3,6779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6436,1,3,0)
- ;;=3^Cannabis Dependence w/ Psych Disorder w/ Hallucinations
- ;;^UTILITY(U,$J,358.3,6436,1,4,0)
- ;;=4^F12.251
- ;;^UTILITY(U,$J,358.3,6436,2)
- ;;=^5003173
- ;;^UTILITY(U,$J,358.3,6437,0)
- ;;=F14.151^^43^397^6
- ;;^UTILITY(U,$J,358.3,6437,1,0)
+ ;;^UTILITY(U,$J,358.3,6779,1,3,0)
+ ;;=3^Presence of Right Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,6779,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,6779,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,6780,0)
+ ;;=Z96.642^^30^397^129
+ ;;^UTILITY(U,$J,358.3,6780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6780,1,3,0)
+ ;;=3^Presence of Left Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,6780,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,6780,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,6781,0)
+ ;;=Z96.643^^30^397^121
+ ;;^UTILITY(U,$J,358.3,6781,1,0)
  ;;=^358.31IA^4^2

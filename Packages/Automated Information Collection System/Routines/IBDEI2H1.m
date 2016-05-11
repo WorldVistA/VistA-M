@@ -1,124 +1,134 @@
-IBDEI2H1 ; ; 19-NOV-2015
+IBDEI2H1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41459,1,0)
+ ;;^UTILITY(U,$J,358.3,41909,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,41909,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,41910,0)
+ ;;=G30.9^^159^2011^4
+ ;;^UTILITY(U,$J,358.3,41910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41459,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc & inflam, unsp site
- ;;^UTILITY(U,$J,358.3,41459,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,41459,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,41460,0)
- ;;=I83.218^^189^2099^14
- ;;^UTILITY(U,$J,358.3,41460,1,0)
+ ;;^UTILITY(U,$J,358.3,41910,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,41910,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,41910,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,41911,0)
+ ;;=G21.4^^159^2011^45
+ ;;^UTILITY(U,$J,358.3,41911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41460,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc lwr extrm & inflam, oth prt
- ;;^UTILITY(U,$J,358.3,41460,1,4,0)
- ;;=4^I83.218
- ;;^UTILITY(U,$J,358.3,41460,2)
- ;;=^5008002
- ;;^UTILITY(U,$J,358.3,41461,0)
- ;;=I83.215^^189^2099^15
- ;;^UTILITY(U,$J,358.3,41461,1,0)
+ ;;^UTILITY(U,$J,358.3,41911,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,41911,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,41911,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,41912,0)
+ ;;=G20.^^159^2011^34
+ ;;^UTILITY(U,$J,358.3,41912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41461,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc oth prt of ft & inflam
- ;;^UTILITY(U,$J,358.3,41461,1,4,0)
- ;;=4^I83.215
- ;;^UTILITY(U,$J,358.3,41461,2)
- ;;=^5008001
- ;;^UTILITY(U,$J,358.3,41462,0)
- ;;=I83.229^^189^2099^2
- ;;^UTILITY(U,$J,358.3,41462,1,0)
+ ;;^UTILITY(U,$J,358.3,41912,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,41912,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,41912,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,41913,0)
+ ;;=G25.0^^159^2011^15
+ ;;^UTILITY(U,$J,358.3,41913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41462,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc & inflam, unsp site
- ;;^UTILITY(U,$J,358.3,41462,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,41462,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,41463,0)
- ;;=I83.228^^189^2099^6
- ;;^UTILITY(U,$J,358.3,41463,1,0)
+ ;;^UTILITY(U,$J,358.3,41913,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,41913,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,41913,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,41914,0)
+ ;;=G25.2^^159^2011^44
+ ;;^UTILITY(U,$J,358.3,41914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41463,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc lwr extrm & inflam, oth prt
- ;;^UTILITY(U,$J,358.3,41463,1,4,0)
- ;;=4^I83.228
- ;;^UTILITY(U,$J,358.3,41463,2)
- ;;=^5008009
- ;;^UTILITY(U,$J,358.3,41464,0)
- ;;=I83.221^^189^2099^8
- ;;^UTILITY(U,$J,358.3,41464,1,0)
+ ;;^UTILITY(U,$J,358.3,41914,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,41914,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,41914,2)
+ ;;=^5003793
+ ;;^UTILITY(U,$J,358.3,41915,0)
+ ;;=G25.1^^159^2011^43
+ ;;^UTILITY(U,$J,358.3,41915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41464,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc thigh & inflam
- ;;^UTILITY(U,$J,358.3,41464,1,4,0)
- ;;=4^I83.221
- ;;^UTILITY(U,$J,358.3,41464,2)
- ;;=^5008004
- ;;^UTILITY(U,$J,358.3,41465,0)
- ;;=I83.223^^189^2099^3
- ;;^UTILITY(U,$J,358.3,41465,1,0)
+ ;;^UTILITY(U,$J,358.3,41915,1,3,0)
+ ;;=3^Tremor,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,41915,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,41915,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,41916,0)
+ ;;=G25.81^^159^2011^38
+ ;;^UTILITY(U,$J,358.3,41916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41465,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc ankl & inflam
- ;;^UTILITY(U,$J,358.3,41465,1,4,0)
- ;;=4^I83.223
- ;;^UTILITY(U,$J,358.3,41465,2)
- ;;=^5008006
- ;;^UTILITY(U,$J,358.3,41466,0)
- ;;=I83.222^^189^2099^4
- ;;^UTILITY(U,$J,358.3,41466,1,0)
+ ;;^UTILITY(U,$J,358.3,41916,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,41916,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,41916,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,41917,0)
+ ;;=G35.^^159^2011^31
+ ;;^UTILITY(U,$J,358.3,41917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41466,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc calf & inflam
- ;;^UTILITY(U,$J,358.3,41466,1,4,0)
- ;;=4^I83.222
- ;;^UTILITY(U,$J,358.3,41466,2)
- ;;=^5008005
- ;;^UTILITY(U,$J,358.3,41467,0)
- ;;=I83.224^^189^2099^5
- ;;^UTILITY(U,$J,358.3,41467,1,0)
+ ;;^UTILITY(U,$J,358.3,41917,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,41917,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,41917,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,41918,0)
+ ;;=G40.901^^159^2011^13
+ ;;^UTILITY(U,$J,358.3,41918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41467,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc heel/midft & inflam
- ;;^UTILITY(U,$J,358.3,41467,1,4,0)
- ;;=4^I83.224
- ;;^UTILITY(U,$J,358.3,41467,2)
- ;;=^5008007
- ;;^UTILITY(U,$J,358.3,41468,0)
- ;;=I83.225^^189^2099^7
- ;;^UTILITY(U,$J,358.3,41468,1,0)
+ ;;^UTILITY(U,$J,358.3,41918,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,41918,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,41918,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,41919,0)
+ ;;=G40.909^^159^2011^14
+ ;;^UTILITY(U,$J,358.3,41919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41468,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ ulc oth prt ft & inflam
- ;;^UTILITY(U,$J,358.3,41468,1,4,0)
- ;;=4^I83.225
- ;;^UTILITY(U,$J,358.3,41468,2)
- ;;=^5008008
- ;;^UTILITY(U,$J,358.3,41469,0)
- ;;=B07.9^^189^2099^23
- ;;^UTILITY(U,$J,358.3,41469,1,0)
+ ;;^UTILITY(U,$J,358.3,41919,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,41919,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,41919,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,41920,0)
+ ;;=G43.809^^159^2011^28
+ ;;^UTILITY(U,$J,358.3,41920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41469,1,3,0)
- ;;=3^Viral wart, unspecified
- ;;^UTILITY(U,$J,358.3,41469,1,4,0)
- ;;=4^B07.9
- ;;^UTILITY(U,$J,358.3,41469,2)
- ;;=^5000519
- ;;^UTILITY(U,$J,358.3,41470,0)
- ;;=I87.2^^189^2099^22
- ;;^UTILITY(U,$J,358.3,41470,1,0)
+ ;;^UTILITY(U,$J,358.3,41920,1,3,0)
+ ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,41920,1,4,0)
+ ;;=4^G43.809
+ ;;^UTILITY(U,$J,358.3,41920,2)
+ ;;=^5003901
+ ;;^UTILITY(U,$J,358.3,41921,0)
+ ;;=G43.B0^^159^2011^30
+ ;;^UTILITY(U,$J,358.3,41921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41470,1,3,0)
- ;;=3^Venous insufficiency (chronic) (peripheral)
- ;;^UTILITY(U,$J,358.3,41470,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,41470,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,41471,0)
- ;;=I87.9^^189^2099^21
+ ;;^UTILITY(U,$J,358.3,41921,1,3,0)
+ ;;=3^Migraine,Ophthalmoplegic Not Intractable
+ ;;^UTILITY(U,$J,358.3,41921,1,4,0)
+ ;;=4^G43.B0
+ ;;^UTILITY(U,$J,358.3,41921,2)
+ ;;=^5003914
+ ;;^UTILITY(U,$J,358.3,41922,0)
+ ;;=G43.C0^^159^2011^17
+ ;;^UTILITY(U,$J,358.3,41922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41922,1,3,0)
+ ;;=3^Headache Syndromes,Periodic Not Intractable

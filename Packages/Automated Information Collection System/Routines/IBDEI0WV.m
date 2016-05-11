@@ -1,140 +1,130 @@
-IBDEI0WV ; ; 19-NOV-2015
+IBDEI0WV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15153,1,0)
+ ;;^UTILITY(U,$J,358.3,15421,0)
+ ;;=G23.1^^58^662^34
+ ;;^UTILITY(U,$J,358.3,15421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15153,1,3,0)
- ;;=3^Cholelithiasis w/o Obstruction NEC
- ;;^UTILITY(U,$J,358.3,15153,1,4,0)
- ;;=4^K80.80
- ;;^UTILITY(U,$J,358.3,15153,2)
- ;;=^5008871
- ;;^UTILITY(U,$J,358.3,15154,0)
- ;;=K81.9^^85^809^15
- ;;^UTILITY(U,$J,358.3,15154,1,0)
+ ;;^UTILITY(U,$J,358.3,15421,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,15421,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,15421,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,15422,0)
+ ;;=F03.91^^58^662^15
+ ;;^UTILITY(U,$J,358.3,15422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15154,1,3,0)
- ;;=3^Cholecystitis,Unspec
- ;;^UTILITY(U,$J,358.3,15154,1,4,0)
- ;;=4^K81.9
- ;;^UTILITY(U,$J,358.3,15154,2)
- ;;=^87388
- ;;^UTILITY(U,$J,358.3,15155,0)
- ;;=K92.1^^85^809^84
- ;;^UTILITY(U,$J,358.3,15155,1,0)
+ ;;^UTILITY(U,$J,358.3,15422,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,15422,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,15422,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,15423,0)
+ ;;=F03.90^^58^662^17
+ ;;^UTILITY(U,$J,358.3,15423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15155,1,3,0)
- ;;=3^Melena
- ;;^UTILITY(U,$J,358.3,15155,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,15155,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,15156,0)
- ;;=K94.01^^85^809^19
- ;;^UTILITY(U,$J,358.3,15156,1,0)
+ ;;^UTILITY(U,$J,358.3,15423,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,15423,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,15423,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,15424,0)
+ ;;=F06.30^^58^663^2
+ ;;^UTILITY(U,$J,358.3,15424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15156,1,3,0)
- ;;=3^Colostomy Hemorrhage
- ;;^UTILITY(U,$J,358.3,15156,1,4,0)
- ;;=4^K94.01
- ;;^UTILITY(U,$J,358.3,15156,2)
- ;;=^5008919
- ;;^UTILITY(U,$J,358.3,15157,0)
- ;;=K94.02^^85^809^20
- ;;^UTILITY(U,$J,358.3,15157,1,0)
+ ;;^UTILITY(U,$J,358.3,15424,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,15424,1,4,0)
+ ;;=4^F06.30
+ ;;^UTILITY(U,$J,358.3,15424,2)
+ ;;=^5003056
+ ;;^UTILITY(U,$J,358.3,15425,0)
+ ;;=F06.31^^58^663^3
+ ;;^UTILITY(U,$J,358.3,15425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15157,1,3,0)
- ;;=3^Colostomy Infection
- ;;^UTILITY(U,$J,358.3,15157,1,4,0)
- ;;=4^K94.02
- ;;^UTILITY(U,$J,358.3,15157,2)
- ;;=^5008920
- ;;^UTILITY(U,$J,358.3,15158,0)
- ;;=K94.03^^85^809^21
- ;;^UTILITY(U,$J,358.3,15158,1,0)
+ ;;^UTILITY(U,$J,358.3,15425,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Depressive Features
+ ;;^UTILITY(U,$J,358.3,15425,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,15425,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,15426,0)
+ ;;=F06.32^^58^663^4
+ ;;^UTILITY(U,$J,358.3,15426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15158,1,3,0)
- ;;=3^Colostomy Malfunction
- ;;^UTILITY(U,$J,358.3,15158,1,4,0)
- ;;=4^K94.03
- ;;^UTILITY(U,$J,358.3,15158,2)
- ;;=^5008921
- ;;^UTILITY(U,$J,358.3,15159,0)
- ;;=K94.09^^85^809^18
- ;;^UTILITY(U,$J,358.3,15159,1,0)
+ ;;^UTILITY(U,$J,358.3,15426,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition w/ Major Depressive-Like Episode
+ ;;^UTILITY(U,$J,358.3,15426,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,15426,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,15427,0)
+ ;;=F32.9^^58^663^20
+ ;;^UTILITY(U,$J,358.3,15427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15159,1,3,0)
- ;;=3^Colostomy Complications NEC
- ;;^UTILITY(U,$J,358.3,15159,1,4,0)
- ;;=4^K94.09
- ;;^UTILITY(U,$J,358.3,15159,2)
- ;;=^5008922
- ;;^UTILITY(U,$J,358.3,15160,0)
- ;;=K94.11^^85^809^28
- ;;^UTILITY(U,$J,358.3,15160,1,0)
+ ;;^UTILITY(U,$J,358.3,15427,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,15427,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,15427,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,15428,0)
+ ;;=F32.0^^58^663^17
+ ;;^UTILITY(U,$J,358.3,15428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15160,1,3,0)
- ;;=3^Enterostomy Hemorrhage
- ;;^UTILITY(U,$J,358.3,15160,1,4,0)
- ;;=4^K94.11
- ;;^UTILITY(U,$J,358.3,15160,2)
- ;;=^5008924
- ;;^UTILITY(U,$J,358.3,15161,0)
- ;;=K94.12^^85^809^29
- ;;^UTILITY(U,$J,358.3,15161,1,0)
+ ;;^UTILITY(U,$J,358.3,15428,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,15428,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,15428,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,15429,0)
+ ;;=F32.1^^58^663^18
+ ;;^UTILITY(U,$J,358.3,15429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15161,1,3,0)
- ;;=3^Enterostomy Infection
- ;;^UTILITY(U,$J,358.3,15161,1,4,0)
- ;;=4^K94.12
- ;;^UTILITY(U,$J,358.3,15161,2)
- ;;=^5008925
- ;;^UTILITY(U,$J,358.3,15162,0)
- ;;=K94.13^^85^809^30
- ;;^UTILITY(U,$J,358.3,15162,1,0)
+ ;;^UTILITY(U,$J,358.3,15429,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,15429,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,15429,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,15430,0)
+ ;;=F32.2^^58^663^19
+ ;;^UTILITY(U,$J,358.3,15430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15162,1,3,0)
- ;;=3^Enterostomy Malfunction
- ;;^UTILITY(U,$J,358.3,15162,1,4,0)
- ;;=4^K94.13
- ;;^UTILITY(U,$J,358.3,15162,2)
- ;;=^5008926
- ;;^UTILITY(U,$J,358.3,15163,0)
- ;;=K94.19^^85^809^27
- ;;^UTILITY(U,$J,358.3,15163,1,0)
+ ;;^UTILITY(U,$J,358.3,15430,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,15430,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,15430,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,15431,0)
+ ;;=F32.3^^58^663^14
+ ;;^UTILITY(U,$J,358.3,15431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15163,1,3,0)
- ;;=3^Enterostomy Complications NEC
- ;;^UTILITY(U,$J,358.3,15163,1,4,0)
- ;;=4^K94.19
- ;;^UTILITY(U,$J,358.3,15163,2)
- ;;=^5008927
- ;;^UTILITY(U,$J,358.3,15164,0)
- ;;=K94.21^^85^809^37
- ;;^UTILITY(U,$J,358.3,15164,1,0)
+ ;;^UTILITY(U,$J,358.3,15431,1,3,0)
+ ;;=3^MDD,Single Episode w Psychotic Features
+ ;;^UTILITY(U,$J,358.3,15431,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,15431,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,15432,0)
+ ;;=F32.4^^58^663^16
+ ;;^UTILITY(U,$J,358.3,15432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15164,1,3,0)
- ;;=3^Gastrostomy Hemorrhage
- ;;^UTILITY(U,$J,358.3,15164,1,4,0)
- ;;=4^K94.21
- ;;^UTILITY(U,$J,358.3,15164,2)
- ;;=^5008929
- ;;^UTILITY(U,$J,358.3,15165,0)
- ;;=K94.22^^85^809^38
- ;;^UTILITY(U,$J,358.3,15165,1,0)
+ ;;^UTILITY(U,$J,358.3,15432,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,15432,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,15432,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,15433,0)
+ ;;=F32.5^^58^663^15
+ ;;^UTILITY(U,$J,358.3,15433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15165,1,3,0)
- ;;=3^Gastrostomy Infection
- ;;^UTILITY(U,$J,358.3,15165,1,4,0)
- ;;=4^K94.22
- ;;^UTILITY(U,$J,358.3,15165,2)
- ;;=^5008930
- ;;^UTILITY(U,$J,358.3,15166,0)
- ;;=K94.23^^85^809^39
- ;;^UTILITY(U,$J,358.3,15166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15166,1,3,0)
- ;;=3^Gastrostomy Malfunction
- ;;^UTILITY(U,$J,358.3,15166,1,4,0)
- ;;=4^K94.23
+ ;;^UTILITY(U,$J,358.3,15433,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission

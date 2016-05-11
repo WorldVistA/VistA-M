@@ -1,132 +1,136 @@
-IBDEI0A8 ; ; 19-NOV-2015
+IBDEI0A8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4258,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,4258,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,4259,0)
- ;;=Z59.7^^28^263^139
- ;;^UTILITY(U,$J,358.3,4259,1,0)
+ ;;^UTILITY(U,$J,358.3,4550,2)
+ ;;=^5009206
+ ;;^UTILITY(U,$J,358.3,4551,0)
+ ;;=B35.0^^21^282^2
+ ;;^UTILITY(U,$J,358.3,4551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4259,1,3,0)
- ;;=3^Problems Related to Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,4259,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,4259,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,4260,0)
- ;;=Z59.4^^28^263^140
- ;;^UTILITY(U,$J,358.3,4260,1,0)
+ ;;^UTILITY(U,$J,358.3,4551,1,3,0)
+ ;;=3^Tinea Barae/Capitis
+ ;;^UTILITY(U,$J,358.3,4551,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,4551,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,4552,0)
+ ;;=B36.3^^21^282^3
+ ;;^UTILITY(U,$J,358.3,4552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4260,1,3,0)
- ;;=3^Problems Related to Lack of Food/Drinking Water
- ;;^UTILITY(U,$J,358.3,4260,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,4260,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,4261,0)
- ;;=Z73.9^^28^263^141
- ;;^UTILITY(U,$J,358.3,4261,1,0)
+ ;;^UTILITY(U,$J,358.3,4552,1,3,0)
+ ;;=3^Tinea Blanca
+ ;;^UTILITY(U,$J,358.3,4552,1,4,0)
+ ;;=4^B36.3
+ ;;^UTILITY(U,$J,358.3,4552,2)
+ ;;=^266864
+ ;;^UTILITY(U,$J,358.3,4553,0)
+ ;;=B36.1^^21^282^7
+ ;;^UTILITY(U,$J,358.3,4553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4261,1,3,0)
- ;;=3^Problems Related to Life Management Difficulty
- ;;^UTILITY(U,$J,358.3,4261,1,4,0)
- ;;=4^Z73.9
- ;;^UTILITY(U,$J,358.3,4261,2)
- ;;=^5063281
- ;;^UTILITY(U,$J,358.3,4262,0)
- ;;=Z72.9^^28^263^142
- ;;^UTILITY(U,$J,358.3,4262,1,0)
+ ;;^UTILITY(U,$J,358.3,4553,1,3,0)
+ ;;=3^Tinea Nigra
+ ;;^UTILITY(U,$J,358.3,4553,1,4,0)
+ ;;=4^B36.1
+ ;;^UTILITY(U,$J,358.3,4553,2)
+ ;;=^264999
+ ;;^UTILITY(U,$J,358.3,4554,0)
+ ;;=B36.0^^21^282^10
+ ;;^UTILITY(U,$J,358.3,4554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4262,1,3,0)
- ;;=3^Problems Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,4262,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,4262,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,4263,0)
- ;;=Z73.6^^28^263^124
- ;;^UTILITY(U,$J,358.3,4263,1,0)
+ ;;^UTILITY(U,$J,358.3,4554,1,3,0)
+ ;;=3^Tinea Veriscolor
+ ;;^UTILITY(U,$J,358.3,4554,1,4,0)
+ ;;=4^B36.0
+ ;;^UTILITY(U,$J,358.3,4554,2)
+ ;;=^5000608
+ ;;^UTILITY(U,$J,358.3,4555,0)
+ ;;=L81.8^^21^282^1
+ ;;^UTILITY(U,$J,358.3,4555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4263,1,3,0)
- ;;=3^Problems Related to Activity Limitations d/t Disability
- ;;^UTILITY(U,$J,358.3,4263,1,4,0)
- ;;=4^Z73.6
- ;;^UTILITY(U,$J,358.3,4263,2)
- ;;=^5063274
- ;;^UTILITY(U,$J,358.3,4264,0)
- ;;=Z60.2^^28^263^143
- ;;^UTILITY(U,$J,358.3,4264,1,0)
+ ;;^UTILITY(U,$J,358.3,4555,1,3,0)
+ ;;=3^Tattoo Pigmentation
+ ;;^UTILITY(U,$J,358.3,4555,1,4,0)
+ ;;=4^L81.8
+ ;;^UTILITY(U,$J,358.3,4555,2)
+ ;;=^5009318
+ ;;^UTILITY(U,$J,358.3,4556,0)
+ ;;=L80.^^21^283^12
+ ;;^UTILITY(U,$J,358.3,4556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4264,1,3,0)
- ;;=3^Problems Related to Living Alone
- ;;^UTILITY(U,$J,358.3,4264,1,4,0)
- ;;=4^Z60.2
- ;;^UTILITY(U,$J,358.3,4264,2)
- ;;=^5063140
- ;;^UTILITY(U,$J,358.3,4265,0)
- ;;=Z59.3^^28^263^144
- ;;^UTILITY(U,$J,358.3,4265,1,0)
+ ;;^UTILITY(U,$J,358.3,4556,1,3,0)
+ ;;=3^Vitiligo
+ ;;^UTILITY(U,$J,358.3,4556,1,4,0)
+ ;;=4^L80.
+ ;;^UTILITY(U,$J,358.3,4556,2)
+ ;;=^127071
+ ;;^UTILITY(U,$J,358.3,4557,0)
+ ;;=I83.019^^21^283^7
+ ;;^UTILITY(U,$J,358.3,4557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4265,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,4265,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,4265,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,4266,0)
- ;;=Z59.6^^28^263^145
- ;;^UTILITY(U,$J,358.3,4266,1,0)
+ ;;^UTILITY(U,$J,358.3,4557,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,4557,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,4557,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,4558,0)
+ ;;=I83.029^^21^283^2
+ ;;^UTILITY(U,$J,358.3,4558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4266,1,3,0)
- ;;=3^Problems Related to Low Income
- ;;^UTILITY(U,$J,358.3,4266,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,4266,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,4267,0)
- ;;=Z75.9^^28^263^146
- ;;^UTILITY(U,$J,358.3,4267,1,0)
+ ;;^UTILITY(U,$J,358.3,4558,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Site Unspec
+ ;;^UTILITY(U,$J,358.3,4558,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,4558,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,4559,0)
+ ;;=I83.012^^21^283^8
+ ;;^UTILITY(U,$J,358.3,4559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4267,1,3,0)
- ;;=3^Problems Related to Med Facilities/Health Care
- ;;^UTILITY(U,$J,358.3,4267,1,4,0)
- ;;=4^Z75.9
- ;;^UTILITY(U,$J,358.3,4267,2)
- ;;=^5063296
- ;;^UTILITY(U,$J,358.3,4268,0)
- ;;=Z75.0^^28^263^147
- ;;^UTILITY(U,$J,358.3,4268,1,0)
+ ;;^UTILITY(U,$J,358.3,4559,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,4559,1,4,0)
+ ;;=4^I83.012
+ ;;^UTILITY(U,$J,358.3,4559,2)
+ ;;=^5007974
+ ;;^UTILITY(U,$J,358.3,4560,0)
+ ;;=I83.013^^21^283^9
+ ;;^UTILITY(U,$J,358.3,4560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4268,1,3,0)
- ;;=3^Problems Related to Med Services not Available in Home
- ;;^UTILITY(U,$J,358.3,4268,1,4,0)
- ;;=4^Z75.0
- ;;^UTILITY(U,$J,358.3,4268,2)
- ;;=^5063289
- ;;^UTILITY(U,$J,358.3,4269,0)
- ;;=Z74.2^^28^263^149
- ;;^UTILITY(U,$J,358.3,4269,1,0)
+ ;;^UTILITY(U,$J,358.3,4560,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,4560,1,4,0)
+ ;;=4^I83.013
+ ;;^UTILITY(U,$J,358.3,4560,2)
+ ;;=^5007975
+ ;;^UTILITY(U,$J,358.3,4561,0)
+ ;;=I83.014^^21^283^10
+ ;;^UTILITY(U,$J,358.3,4561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4269,1,3,0)
- ;;=3^Problems Related to Need for Assistance at Home
- ;;^UTILITY(U,$J,358.3,4269,1,4,0)
- ;;=4^Z74.2
- ;;^UTILITY(U,$J,358.3,4269,2)
- ;;=^5063285
- ;;^UTILITY(U,$J,358.3,4270,0)
- ;;=Z74.1^^28^263^150
- ;;^UTILITY(U,$J,358.3,4270,1,0)
+ ;;^UTILITY(U,$J,358.3,4561,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,4561,1,4,0)
+ ;;=4^I83.014
+ ;;^UTILITY(U,$J,358.3,4561,2)
+ ;;=^5007976
+ ;;^UTILITY(U,$J,358.3,4562,0)
+ ;;=I83.11^^21^283^6
+ ;;^UTILITY(U,$J,358.3,4562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4270,1,3,0)
- ;;=3^Problems Related to Need for Assistance w/ Personal Care
- ;;^UTILITY(U,$J,358.3,4270,1,4,0)
- ;;=4^Z74.1
- ;;^UTILITY(U,$J,358.3,4270,2)
- ;;=^5063284
- ;;^UTILITY(U,$J,358.3,4271,0)
- ;;=Z74.3^^28^263^151
- ;;^UTILITY(U,$J,358.3,4271,1,0)
+ ;;^UTILITY(U,$J,358.3,4562,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,4562,1,4,0)
+ ;;=4^I83.11
+ ;;^UTILITY(U,$J,358.3,4562,2)
+ ;;=^5007988
+ ;;^UTILITY(U,$J,358.3,4563,0)
+ ;;=I83.022^^21^283^3
+ ;;^UTILITY(U,$J,358.3,4563,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4563,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,4563,1,4,0)
+ ;;=4^I83.022
+ ;;^UTILITY(U,$J,358.3,4563,2)
+ ;;=^5007981

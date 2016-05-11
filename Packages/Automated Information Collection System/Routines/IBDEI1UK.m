@@ -1,126 +1,124 @@
-IBDEI1UK ; ; 19-NOV-2015
+IBDEI1UK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30923,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,30923,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,30923,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,30924,0)
- ;;=F11.259^^135^1386^42
- ;;^UTILITY(U,$J,358.3,30924,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30924,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,30924,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,30924,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,30925,0)
- ;;=F11.251^^135^1386^35
- ;;^UTILITY(U,$J,358.3,30925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30925,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,30925,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,30925,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,30926,0)
- ;;=F11.250^^135^1386^36
- ;;^UTILITY(U,$J,358.3,30926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30926,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,30926,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,30926,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,30927,0)
- ;;=F11.24^^135^1386^41
- ;;^UTILITY(U,$J,358.3,30927,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30927,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,30927,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,30927,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,30928,0)
- ;;=F11.23^^135^1386^47
- ;;^UTILITY(U,$J,358.3,30928,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30928,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,30928,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,30928,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,30929,0)
- ;;=F11.20^^135^1386^48
- ;;^UTILITY(U,$J,358.3,30929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30929,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30929,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,30929,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,30930,0)
- ;;=F11.229^^135^1386^40
- ;;^UTILITY(U,$J,358.3,30930,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30930,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,30930,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,30930,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,30931,0)
- ;;=F11.222^^135^1386^38
- ;;^UTILITY(U,$J,358.3,30931,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30931,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,30931,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,30931,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,30932,0)
- ;;=F11.221^^135^1386^37
- ;;^UTILITY(U,$J,358.3,30932,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30932,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,30932,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,30932,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,30933,0)
- ;;=F11.220^^135^1386^39
- ;;^UTILITY(U,$J,358.3,30933,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30933,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30933,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,30933,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,30934,0)
- ;;=F14.29^^135^1386^21
- ;;^UTILITY(U,$J,358.3,30934,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30934,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,30934,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,30934,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,30935,0)
- ;;=F14.288^^135^1386^20
- ;;^UTILITY(U,$J,358.3,30935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30935,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,31371,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31371,1,2,0)
+ ;;=2^Injection, anesthetic agent; other peripheral nerve or branch
+ ;;^UTILITY(U,$J,358.3,31371,1,3,0)
+ ;;=3^64450
+ ;;^UTILITY(U,$J,358.3,31372,0)
+ ;;=20550^^125^1589^16^^^^1
+ ;;^UTILITY(U,$J,358.3,31372,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31372,1,2,0)
+ ;;=2^Injection; tendon sheath, ligament, ganglion cyst
+ ;;^UTILITY(U,$J,358.3,31372,1,3,0)
+ ;;=3^20550
+ ;;^UTILITY(U,$J,358.3,31373,0)
+ ;;=20500^^125^1589^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31373,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31373,1,2,0)
+ ;;=2^Injection of sinus tract; therapeutic diagnostic
+ ;;^UTILITY(U,$J,358.3,31373,1,3,0)
+ ;;=3^20500
+ ;;^UTILITY(U,$J,358.3,31374,0)
+ ;;=96402^^125^1589^9^^^^1
+ ;;^UTILITY(U,$J,358.3,31374,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31374,1,2,0)
+ ;;=2^Injec,IM,anti-neplastic horm
+ ;;^UTILITY(U,$J,358.3,31374,1,3,0)
+ ;;=3^96402
+ ;;^UTILITY(U,$J,358.3,31375,0)
+ ;;=64450^^125^1589^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31375,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31375,1,2,0)
+ ;;=2^Injection, Nerve Block
+ ;;^UTILITY(U,$J,358.3,31375,1,3,0)
+ ;;=3^64450
+ ;;^UTILITY(U,$J,358.3,31376,0)
+ ;;=96360^^125^1589^7^^^^1
+ ;;^UTILITY(U,$J,358.3,31376,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31376,1,2,0)
+ ;;=2^Hydration IV Inf,31-60 min
+ ;;^UTILITY(U,$J,358.3,31376,1,3,0)
+ ;;=3^96360
+ ;;^UTILITY(U,$J,358.3,31377,0)
+ ;;=96361^^125^1589^8^^^^1
+ ;;^UTILITY(U,$J,358.3,31377,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31377,1,2,0)
+ ;;=2^Hydration IV Infus,Ea Add Hr
+ ;;^UTILITY(U,$J,358.3,31377,1,3,0)
+ ;;=3^96361
+ ;;^UTILITY(U,$J,358.3,31378,0)
+ ;;=96365^^125^1589^18^^^^1
+ ;;^UTILITY(U,$J,358.3,31378,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31378,1,2,0)
+ ;;=2^Ther/Proph/Diag IV Inf,Init Hr
+ ;;^UTILITY(U,$J,358.3,31378,1,3,0)
+ ;;=3^96365
+ ;;^UTILITY(U,$J,358.3,31379,0)
+ ;;=96366^^125^1589^17^^^^1
+ ;;^UTILITY(U,$J,358.3,31379,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31379,1,2,0)
+ ;;=2^Ther/Proph/Diag IV Inf,Ea Add Hr
+ ;;^UTILITY(U,$J,358.3,31379,1,3,0)
+ ;;=3^96366
+ ;;^UTILITY(U,$J,358.3,31380,0)
+ ;;=96372^^125^1589^19^^^^1
+ ;;^UTILITY(U,$J,358.3,31380,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31380,1,2,0)
+ ;;=2^Ther/Proph/Diag Inj, SC/IM
+ ;;^UTILITY(U,$J,358.3,31380,1,3,0)
+ ;;=3^96372
+ ;;^UTILITY(U,$J,358.3,31381,0)
+ ;;=20501^^125^1589^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31381,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31381,1,2,0)
+ ;;=2^Injection of sinus tract;diagnostic
+ ;;^UTILITY(U,$J,358.3,31381,1,3,0)
+ ;;=3^20501
+ ;;^UTILITY(U,$J,358.3,31382,0)
+ ;;=20604^^125^1589^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31382,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31382,1,2,0)
+ ;;=2^Arthroc,Aspir/Inj Sm Joint/Bursa,US,Rec/Rpt
+ ;;^UTILITY(U,$J,358.3,31382,1,3,0)
+ ;;=3^20604
+ ;;^UTILITY(U,$J,358.3,31383,0)
+ ;;=20606^^125^1589^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31383,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31383,1,2,0)
+ ;;=2^Arthroc,Aspir/Inj Joint/Bursa,US,Rec/Rpt
+ ;;^UTILITY(U,$J,358.3,31383,1,3,0)
+ ;;=3^20606
+ ;;^UTILITY(U,$J,358.3,31384,0)
+ ;;=20612^^125^1589^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31384,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31384,1,2,0)
+ ;;=2^Aspirate/Inj Ganglion Cyst
+ ;;^UTILITY(U,$J,358.3,31384,1,3,0)
+ ;;=3^20612
+ ;;^UTILITY(U,$J,358.3,31385,0)
+ ;;=J0690^^125^1590^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31385,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31385,1,2,0)
+ ;;=2^Cefazolin Sodium Inj 500mg
+ ;;^UTILITY(U,$J,358.3,31385,1,3,0)
+ ;;=3^J0690
+ ;;^UTILITY(U,$J,358.3,31386,0)
+ ;;=S0077^^125^1590^3^^^^1

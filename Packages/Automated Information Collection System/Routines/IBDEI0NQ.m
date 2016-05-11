@@ -1,134 +1,134 @@
-IBDEI0NQ ; ; 19-NOV-2015
+IBDEI0NQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10847,1,0)
+ ;;^UTILITY(U,$J,358.3,11078,1,4,0)
+ ;;=4^H81.93
+ ;;^UTILITY(U,$J,358.3,11078,2)
+ ;;=^5006889
+ ;;^UTILITY(U,$J,358.3,11079,0)
+ ;;=R63.0^^47^527^1
+ ;;^UTILITY(U,$J,358.3,11079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10847,1,3,0)
- ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,10847,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,10847,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,10848,0)
- ;;=C79.51^^68^675^111
- ;;^UTILITY(U,$J,358.3,10848,1,0)
+ ;;^UTILITY(U,$J,358.3,11079,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,11079,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,11079,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,11080,0)
+ ;;=R64.^^47^527^2
+ ;;^UTILITY(U,$J,358.3,11080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10848,1,3,0)
- ;;=3^Malig Neop Bone,Secondary
- ;;^UTILITY(U,$J,358.3,10848,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,10848,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,10849,0)
- ;;=C79.52^^68^675^110
- ;;^UTILITY(U,$J,358.3,10849,1,0)
+ ;;^UTILITY(U,$J,358.3,11080,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,11080,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,11080,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,11081,0)
+ ;;=E86.0^^47^527^4
+ ;;^UTILITY(U,$J,358.3,11081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10849,1,3,0)
- ;;=3^Malig Neop Bone Marrow,Secondary
- ;;^UTILITY(U,$J,358.3,10849,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,10849,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,10850,0)
- ;;=C79.31^^68^675^112
- ;;^UTILITY(U,$J,358.3,10850,1,0)
+ ;;^UTILITY(U,$J,358.3,11081,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,11081,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,11081,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,11082,0)
+ ;;=Z86.31^^47^527^75
+ ;;^UTILITY(U,$J,358.3,11082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10850,1,3,0)
- ;;=3^Malig Neop Brain,Secondary
- ;;^UTILITY(U,$J,358.3,10850,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,10850,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,10851,0)
- ;;=C79.72^^68^675^127
- ;;^UTILITY(U,$J,358.3,10851,1,0)
+ ;;^UTILITY(U,$J,358.3,11082,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,11082,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,11082,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,11083,0)
+ ;;=E10.8^^47^527^5
+ ;;^UTILITY(U,$J,358.3,11083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10851,1,3,0)
- ;;=3^Malig Neop Left Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,10851,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,10851,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,10852,0)
- ;;=C78.02^^68^675^131
- ;;^UTILITY(U,$J,358.3,10852,1,0)
+ ;;^UTILITY(U,$J,358.3,11083,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,11083,1,4,0)
+ ;;=4^E10.8
+ ;;^UTILITY(U,$J,358.3,11083,2)
+ ;;=^5002625
+ ;;^UTILITY(U,$J,358.3,11084,0)
+ ;;=E10.9^^47^527^6
+ ;;^UTILITY(U,$J,358.3,11084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10852,1,3,0)
- ;;=3^Malig Neop Left Lung,Secondary
- ;;^UTILITY(U,$J,358.3,10852,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,10852,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,10853,0)
- ;;=C78.7^^68^675^136
- ;;^UTILITY(U,$J,358.3,10853,1,0)
+ ;;^UTILITY(U,$J,358.3,11084,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,11084,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,11084,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,11085,0)
+ ;;=E11.40^^47^527^15
+ ;;^UTILITY(U,$J,358.3,11085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10853,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,10853,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,10853,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,10854,0)
- ;;=C79.71^^68^675^149
- ;;^UTILITY(U,$J,358.3,10854,1,0)
+ ;;^UTILITY(U,$J,358.3,11085,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,11085,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,11085,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,11086,0)
+ ;;=E11.620^^47^527^11
+ ;;^UTILITY(U,$J,358.3,11086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10854,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,10854,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,10854,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,10855,0)
- ;;=C78.01^^68^675^153
- ;;^UTILITY(U,$J,358.3,10855,1,0)
+ ;;^UTILITY(U,$J,358.3,11086,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Dermatitis
+ ;;^UTILITY(U,$J,358.3,11086,1,4,0)
+ ;;=4^E11.620
+ ;;^UTILITY(U,$J,358.3,11086,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,11087,0)
+ ;;=E11.610^^47^527^14
+ ;;^UTILITY(U,$J,358.3,11087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10855,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,10855,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,10855,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,10856,0)
- ;;=C79.70^^68^675^104
- ;;^UTILITY(U,$J,358.3,10856,1,0)
+ ;;^UTILITY(U,$J,358.3,11087,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,11087,1,4,0)
+ ;;=4^E11.610
+ ;;^UTILITY(U,$J,358.3,11087,2)
+ ;;=^5002653
+ ;;^UTILITY(U,$J,358.3,11088,0)
+ ;;=E11.52^^47^527^17
+ ;;^UTILITY(U,$J,358.3,11088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10856,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,10856,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,10856,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,10857,0)
- ;;=C78.00^^68^675^137
- ;;^UTILITY(U,$J,358.3,10857,1,0)
+ ;;^UTILITY(U,$J,358.3,11088,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Periph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,11088,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,11088,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,11089,0)
+ ;;=E11.51^^47^527^18
+ ;;^UTILITY(U,$J,358.3,11089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10857,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,10857,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,10857,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,10858,0)
- ;;=D57.1^^68^675^178
- ;;^UTILITY(U,$J,358.3,10858,1,0)
+ ;;^UTILITY(U,$J,358.3,11089,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Periph Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,11089,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,11089,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,11090,0)
+ ;;=E11.621^^47^527^21
+ ;;^UTILITY(U,$J,358.3,11090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10858,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,10858,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,10858,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,10859,0)
- ;;=D75.1^^68^675^176
- ;;^UTILITY(U,$J,358.3,10859,1,0)
+ ;;^UTILITY(U,$J,358.3,11090,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,11090,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,11090,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,11091,0)
+ ;;=E11.44^^47^527^8
+ ;;^UTILITY(U,$J,358.3,11091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10859,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,10859,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,10859,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,10860,0)
- ;;=C90.30^^68^675^179
+ ;;^UTILITY(U,$J,358.3,11091,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Amyotrophy

@@ -1,124 +1,132 @@
-IBDEI2EJ ; ; 19-NOV-2015
+IBDEI2EJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40343,1,4,0)
- ;;=4^S85.902A
- ;;^UTILITY(U,$J,358.3,40343,2)
- ;;=^5137130
- ;;^UTILITY(U,$J,358.3,40344,0)
- ;;=S45.902A^^186^2076^218
- ;;^UTILITY(U,$J,358.3,40344,1,0)
+ ;;^UTILITY(U,$J,358.3,40752,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,40752,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,40752,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,40753,0)
+ ;;=L89.301^^159^1993^237
+ ;;^UTILITY(U,$J,358.3,40753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40344,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40344,1,4,0)
- ;;=4^S45.902A
- ;;^UTILITY(U,$J,358.3,40344,2)
- ;;=^5028125
- ;;^UTILITY(U,$J,358.3,40345,0)
- ;;=S65.902A^^186^2076^219
- ;;^UTILITY(U,$J,358.3,40345,1,0)
+ ;;^UTILITY(U,$J,358.3,40753,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,40753,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,40753,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,40754,0)
+ ;;=L89.302^^159^1993^238
+ ;;^UTILITY(U,$J,358.3,40754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40345,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Left Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40345,1,4,0)
- ;;=4^S65.902A
- ;;^UTILITY(U,$J,358.3,40345,2)
- ;;=^5136085
- ;;^UTILITY(U,$J,358.3,40346,0)
- ;;=S95.901A^^186^2076^220
- ;;^UTILITY(U,$J,358.3,40346,1,0)
+ ;;^UTILITY(U,$J,358.3,40754,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,40754,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,40754,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,40755,0)
+ ;;=L89.303^^159^1993^239
+ ;;^UTILITY(U,$J,358.3,40755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40346,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Ankle/Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,40346,1,4,0)
- ;;=4^S95.901A
- ;;^UTILITY(U,$J,358.3,40346,2)
- ;;=^5046038
- ;;^UTILITY(U,$J,358.3,40347,0)
- ;;=S55.901A^^186^2076^221
- ;;^UTILITY(U,$J,358.3,40347,1,0)
+ ;;^UTILITY(U,$J,358.3,40755,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,40755,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,40755,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,40756,0)
+ ;;=L89.304^^159^1993^240
+ ;;^UTILITY(U,$J,358.3,40756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40347,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40347,1,4,0)
- ;;=4^S55.901A
- ;;^UTILITY(U,$J,358.3,40347,2)
- ;;=^5031547
- ;;^UTILITY(U,$J,358.3,40348,0)
- ;;=S75.901A^^186^2076^222
- ;;^UTILITY(U,$J,358.3,40348,1,0)
+ ;;^UTILITY(U,$J,358.3,40756,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,40756,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,40756,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,40757,0)
+ ;;=L89.309^^159^1993^241
+ ;;^UTILITY(U,$J,358.3,40757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40348,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Hip/Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,40348,1,4,0)
- ;;=4^S75.901A
- ;;^UTILITY(U,$J,358.3,40348,2)
- ;;=^5039492
- ;;^UTILITY(U,$J,358.3,40349,0)
- ;;=S85.901A^^186^2076^223
- ;;^UTILITY(U,$J,358.3,40349,1,0)
+ ;;^UTILITY(U,$J,358.3,40757,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,40757,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,40757,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,40758,0)
+ ;;=L89.90^^159^1993^247
+ ;;^UTILITY(U,$J,358.3,40758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40349,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,40349,1,4,0)
- ;;=4^S85.901A
- ;;^UTILITY(U,$J,358.3,40349,2)
- ;;=^5043415
- ;;^UTILITY(U,$J,358.3,40350,0)
- ;;=S45.901A^^186^2076^225
- ;;^UTILITY(U,$J,358.3,40350,1,0)
+ ;;^UTILITY(U,$J,358.3,40758,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,40758,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,40758,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,40759,0)
+ ;;=L89.91^^159^1993^243
+ ;;^UTILITY(U,$J,358.3,40759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40350,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40350,1,4,0)
- ;;=4^S45.901A
- ;;^UTILITY(U,$J,358.3,40350,2)
- ;;=^5028122
- ;;^UTILITY(U,$J,358.3,40351,0)
- ;;=S85.901A^^186^2076^224
- ;;^UTILITY(U,$J,358.3,40351,1,0)
+ ;;^UTILITY(U,$J,358.3,40759,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,40759,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,40759,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,40760,0)
+ ;;=L89.92^^159^1993^244
+ ;;^UTILITY(U,$J,358.3,40760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40351,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,40351,1,4,0)
- ;;=4^S85.901A
- ;;^UTILITY(U,$J,358.3,40351,2)
- ;;=^5043415
- ;;^UTILITY(U,$J,358.3,40352,0)
- ;;=S45.901A^^186^2076^226
- ;;^UTILITY(U,$J,358.3,40352,1,0)
+ ;;^UTILITY(U,$J,358.3,40760,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,40760,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,40760,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,40761,0)
+ ;;=L89.93^^159^1993^245
+ ;;^UTILITY(U,$J,358.3,40761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40352,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40352,1,4,0)
- ;;=4^S45.901A
- ;;^UTILITY(U,$J,358.3,40352,2)
- ;;=^5028122
- ;;^UTILITY(U,$J,358.3,40353,0)
- ;;=S65.901A^^186^2076^227
- ;;^UTILITY(U,$J,358.3,40353,1,0)
+ ;;^UTILITY(U,$J,358.3,40761,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,40761,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,40761,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,40762,0)
+ ;;=L89.94^^159^1993^246
+ ;;^UTILITY(U,$J,358.3,40762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40353,1,3,0)
- ;;=3^Injury Blood Vessel Unspec Right Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40353,1,4,0)
- ;;=4^S65.901A
- ;;^UTILITY(U,$J,358.3,40353,2)
- ;;=^5036066
- ;;^UTILITY(U,$J,358.3,40354,0)
- ;;=C44.40^^186^2076^327
- ;;^UTILITY(U,$J,358.3,40354,1,0)
+ ;;^UTILITY(U,$J,358.3,40762,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,40762,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,40762,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,40763,0)
+ ;;=L89.95^^159^1993^248
+ ;;^UTILITY(U,$J,358.3,40763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40354,1,3,0)
- ;;=3^Malig Neop Skin Scalp/Neck,Unspec
- ;;^UTILITY(U,$J,358.3,40354,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,40354,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,40355,0)
- ;;=C44.90^^186^2076^332
- ;;^UTILITY(U,$J,358.3,40355,1,0)
+ ;;^UTILITY(U,$J,358.3,40763,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,40763,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,40763,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,40764,0)
+ ;;=L92.0^^159^1993^156
+ ;;^UTILITY(U,$J,358.3,40764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40355,1,3,0)
- ;;=3^Malig Neop Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,40764,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,40764,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,40764,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,40765,0)
+ ;;=L95.1^^159^1993^143

@@ -1,130 +1,132 @@
-IBDEI1KY ; ; 19-NOV-2015
+IBDEI1KY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26429,2)
- ;;=^5005775
- ;;^UTILITY(U,$J,358.3,26430,0)
- ;;=H40.1311^^130^1290^64
- ;;^UTILITY(U,$J,358.3,26430,1,0)
+ ;;^UTILITY(U,$J,358.3,26800,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,26800,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,26801,0)
+ ;;=F51.4^^100^1290^20
+ ;;^UTILITY(U,$J,358.3,26801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26430,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,26430,1,4,0)
- ;;=4^H40.1311
- ;;^UTILITY(U,$J,358.3,26430,2)
- ;;=^5005776
- ;;^UTILITY(U,$J,358.3,26431,0)
- ;;=H40.1312^^130^1290^65
- ;;^UTILITY(U,$J,358.3,26431,1,0)
+ ;;^UTILITY(U,$J,358.3,26801,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,26801,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,26801,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,26802,0)
+ ;;=F51.5^^100^1290^18
+ ;;^UTILITY(U,$J,358.3,26802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26431,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26431,1,4,0)
- ;;=4^H40.1312
- ;;^UTILITY(U,$J,358.3,26431,2)
- ;;=^5005777
- ;;^UTILITY(U,$J,358.3,26432,0)
- ;;=H40.1313^^130^1290^66
- ;;^UTILITY(U,$J,358.3,26432,1,0)
+ ;;^UTILITY(U,$J,358.3,26802,1,3,0)
+ ;;=3^Nightmare Disorder
+ ;;^UTILITY(U,$J,358.3,26802,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,26802,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,26803,0)
+ ;;=G47.52^^100^1290^22
+ ;;^UTILITY(U,$J,358.3,26803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26432,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,26432,1,4,0)
- ;;=4^H40.1313
- ;;^UTILITY(U,$J,358.3,26432,2)
- ;;=^5005778
- ;;^UTILITY(U,$J,358.3,26433,0)
- ;;=H40.1314^^130^1290^63
- ;;^UTILITY(U,$J,358.3,26433,1,0)
+ ;;^UTILITY(U,$J,358.3,26803,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,26803,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,26803,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,26804,0)
+ ;;=G25.81^^100^1290^23
+ ;;^UTILITY(U,$J,358.3,26804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26433,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26433,1,4,0)
- ;;=4^H40.1314
- ;;^UTILITY(U,$J,358.3,26433,2)
- ;;=^5005779
- ;;^UTILITY(U,$J,358.3,26434,0)
- ;;=H40.1320^^130^1290^62
- ;;^UTILITY(U,$J,358.3,26434,1,0)
+ ;;^UTILITY(U,$J,358.3,26804,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,26804,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,26804,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,26805,0)
+ ;;=G47.19^^100^1290^11
+ ;;^UTILITY(U,$J,358.3,26805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26434,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,26434,1,4,0)
- ;;=4^H40.1320
- ;;^UTILITY(U,$J,358.3,26434,2)
- ;;=^5005780
- ;;^UTILITY(U,$J,358.3,26435,0)
- ;;=H40.1321^^130^1290^59
- ;;^UTILITY(U,$J,358.3,26435,1,0)
+ ;;^UTILITY(U,$J,358.3,26805,1,3,0)
+ ;;=3^Hypersomnolence Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26805,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,26805,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,26806,0)
+ ;;=G47.8^^100^1290^27
+ ;;^UTILITY(U,$J,358.3,26806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26435,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,26435,1,4,0)
- ;;=4^H40.1321
- ;;^UTILITY(U,$J,358.3,26435,2)
- ;;=^5005781
- ;;^UTILITY(U,$J,358.3,26436,0)
- ;;=H40.1322^^130^1290^60
- ;;^UTILITY(U,$J,358.3,26436,1,0)
+ ;;^UTILITY(U,$J,358.3,26806,1,3,0)
+ ;;=3^Sleep-Wake Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26806,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,26806,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,26807,0)
+ ;;=G47.411^^100^1290^16
+ ;;^UTILITY(U,$J,358.3,26807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26436,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26436,1,4,0)
- ;;=4^H40.1322
- ;;^UTILITY(U,$J,358.3,26436,2)
- ;;=^5005782
- ;;^UTILITY(U,$J,358.3,26437,0)
- ;;=H40.1323^^130^1290^61
- ;;^UTILITY(U,$J,358.3,26437,1,0)
+ ;;^UTILITY(U,$J,358.3,26807,1,3,0)
+ ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,26807,1,4,0)
+ ;;=4^G47.411
+ ;;^UTILITY(U,$J,358.3,26807,2)
+ ;;=^5003981
+ ;;^UTILITY(U,$J,358.3,26808,0)
+ ;;=G47.37^^100^1290^2
+ ;;^UTILITY(U,$J,358.3,26808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26437,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,26437,1,4,0)
- ;;=4^H40.1323
- ;;^UTILITY(U,$J,358.3,26437,2)
- ;;=^5133495
- ;;^UTILITY(U,$J,358.3,26438,0)
- ;;=H40.1324^^130^1290^58
- ;;^UTILITY(U,$J,358.3,26438,1,0)
+ ;;^UTILITY(U,$J,358.3,26808,1,3,0)
+ ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
+ ;;^UTILITY(U,$J,358.3,26808,1,4,0)
+ ;;=4^G47.37
+ ;;^UTILITY(U,$J,358.3,26808,2)
+ ;;=^332767
+ ;;^UTILITY(U,$J,358.3,26809,0)
+ ;;=G47.31^^100^1290^3
+ ;;^UTILITY(U,$J,358.3,26809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26438,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26438,1,4,0)
- ;;=4^H40.1324
- ;;^UTILITY(U,$J,358.3,26438,2)
- ;;=^5005783
- ;;^UTILITY(U,$J,358.3,26439,0)
- ;;=H40.1330^^130^1290^57
- ;;^UTILITY(U,$J,358.3,26439,1,0)
+ ;;^UTILITY(U,$J,358.3,26809,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,26809,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,26809,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,26810,0)
+ ;;=F51.11^^100^1290^10
+ ;;^UTILITY(U,$J,358.3,26810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26439,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Stage Unspec
- ;;^UTILITY(U,$J,358.3,26439,1,4,0)
- ;;=4^H40.1330
- ;;^UTILITY(U,$J,358.3,26439,2)
- ;;=^5005784
- ;;^UTILITY(U,$J,358.3,26440,0)
- ;;=H40.1331^^130^1290^54
- ;;^UTILITY(U,$J,358.3,26440,1,0)
+ ;;^UTILITY(U,$J,358.3,26810,1,3,0)
+ ;;=3^Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,26810,1,4,0)
+ ;;=4^F51.11
+ ;;^UTILITY(U,$J,358.3,26810,2)
+ ;;=^5003609
+ ;;^UTILITY(U,$J,358.3,26811,0)
+ ;;=F51.01^^100^1290^13
+ ;;^UTILITY(U,$J,358.3,26811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26440,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,26440,1,4,0)
- ;;=4^H40.1331
- ;;^UTILITY(U,$J,358.3,26440,2)
- ;;=^5005785
- ;;^UTILITY(U,$J,358.3,26441,0)
- ;;=H40.1332^^130^1290^55
- ;;^UTILITY(U,$J,358.3,26441,1,0)
+ ;;^UTILITY(U,$J,358.3,26811,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,26811,1,4,0)
+ ;;=4^F51.01
+ ;;^UTILITY(U,$J,358.3,26811,2)
+ ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,26812,0)
+ ;;=G47.36^^100^1290^24
+ ;;^UTILITY(U,$J,358.3,26812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26441,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26441,1,4,0)
- ;;=4^H40.1332
- ;;^UTILITY(U,$J,358.3,26441,2)
- ;;=^5005786
- ;;^UTILITY(U,$J,358.3,26442,0)
- ;;=H40.1333^^130^1290^56
- ;;^UTILITY(U,$J,358.3,26442,1,0)
+ ;;^UTILITY(U,$J,358.3,26812,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26812,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,26812,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,26813,0)
+ ;;=G47.35^^100^1290^25
+ ;;^UTILITY(U,$J,358.3,26813,1,0)
  ;;=^358.31IA^4^2

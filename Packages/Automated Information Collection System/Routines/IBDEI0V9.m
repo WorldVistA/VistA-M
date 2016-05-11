@@ -1,128 +1,130 @@
-IBDEI0V9 ; ; 19-NOV-2015
+IBDEI0V9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14384,1,0)
+ ;;^UTILITY(U,$J,358.3,14652,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14652,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,14652,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,14653,0)
+ ;;=W17.2XXA^^53^612^77
+ ;;^UTILITY(U,$J,358.3,14653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14384,1,3,0)
- ;;=3^Epiphora d/t Excess Lacrimation,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,14384,1,4,0)
- ;;=4^H04.212
- ;;^UTILITY(U,$J,358.3,14384,2)
- ;;=^5004488
- ;;^UTILITY(U,$J,358.3,14385,0)
- ;;=H04.211^^82^777^44
- ;;^UTILITY(U,$J,358.3,14385,1,0)
+ ;;^UTILITY(U,$J,358.3,14653,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14653,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,14653,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,14654,0)
+ ;;=W17.2XXD^^53^612^78
+ ;;^UTILITY(U,$J,358.3,14654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14385,1,3,0)
- ;;=3^Epiphora d/t Excess Lacrimation,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,14385,1,4,0)
- ;;=4^H04.211
- ;;^UTILITY(U,$J,358.3,14385,2)
- ;;=^5004487
- ;;^UTILITY(U,$J,358.3,14386,0)
- ;;=H04.222^^82^777^45
- ;;^UTILITY(U,$J,358.3,14386,1,0)
+ ;;^UTILITY(U,$J,358.3,14654,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14654,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,14654,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,14655,0)
+ ;;=W17.3XXA^^53^612^75
+ ;;^UTILITY(U,$J,358.3,14655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14386,1,3,0)
- ;;=3^Epiphora d/t Insufficient Drainage,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,14386,1,4,0)
- ;;=4^H04.222
- ;;^UTILITY(U,$J,358.3,14386,2)
- ;;=^5004492
- ;;^UTILITY(U,$J,358.3,14387,0)
- ;;=H04.221^^82^777^46
- ;;^UTILITY(U,$J,358.3,14387,1,0)
+ ;;^UTILITY(U,$J,358.3,14655,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14655,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,14655,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,14656,0)
+ ;;=W17.3XXD^^53^612^76
+ ;;^UTILITY(U,$J,358.3,14656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14387,1,3,0)
- ;;=3^Epiphora d/t Insufficient Drainage,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,14387,1,4,0)
- ;;=4^H04.221
- ;;^UTILITY(U,$J,358.3,14387,2)
- ;;=^5004491
- ;;^UTILITY(U,$J,358.3,14388,0)
- ;;=H04.522^^82^777^47
- ;;^UTILITY(U,$J,358.3,14388,1,0)
+ ;;^UTILITY(U,$J,358.3,14656,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14656,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,14656,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,14657,0)
+ ;;=W17.4XXA^^53^612^39
+ ;;^UTILITY(U,$J,358.3,14657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14388,1,3,0)
- ;;=3^Eversion Left Lacrimal Punctum
- ;;^UTILITY(U,$J,358.3,14388,1,4,0)
- ;;=4^H04.522
- ;;^UTILITY(U,$J,358.3,14388,2)
- ;;=^5004527
- ;;^UTILITY(U,$J,358.3,14389,0)
- ;;=H04.521^^82^777^48
- ;;^UTILITY(U,$J,358.3,14389,1,0)
+ ;;^UTILITY(U,$J,358.3,14657,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14657,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,14657,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,14658,0)
+ ;;=W17.4XXD^^53^612^40
+ ;;^UTILITY(U,$J,358.3,14658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14389,1,3,0)
- ;;=3^Eversion Right Lacrimal Punctum
- ;;^UTILITY(U,$J,358.3,14389,1,4,0)
- ;;=4^H04.521
- ;;^UTILITY(U,$J,358.3,14389,2)
- ;;=^5004526
- ;;^UTILITY(U,$J,358.3,14390,0)
- ;;=S02.42XA^^82^777^51
- ;;^UTILITY(U,$J,358.3,14390,1,0)
+ ;;^UTILITY(U,$J,358.3,14658,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14658,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,14658,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,14659,0)
+ ;;=W17.81XA^^53^612^27
+ ;;^UTILITY(U,$J,358.3,14659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14390,1,3,0)
- ;;=3^Fx of Alveolus of Maxilla,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,14390,1,4,0)
- ;;=4^S02.42XA
- ;;^UTILITY(U,$J,358.3,14390,2)
- ;;=^5020354
- ;;^UTILITY(U,$J,358.3,14391,0)
- ;;=S02.8XXA^^82^777^52
- ;;^UTILITY(U,$J,358.3,14391,1,0)
+ ;;^UTILITY(U,$J,358.3,14659,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14659,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,14659,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,14660,0)
+ ;;=W17.81XD^^53^612^28
+ ;;^UTILITY(U,$J,358.3,14660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14391,1,3,0)
- ;;=3^Fx of Skull/Facial Bones,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,14391,1,4,0)
- ;;=4^S02.8XXA
- ;;^UTILITY(U,$J,358.3,14391,2)
- ;;=^5020426
- ;;^UTILITY(U,$J,358.3,14392,0)
- ;;=H00.015^^82^777^53
- ;;^UTILITY(U,$J,358.3,14392,1,0)
+ ;;^UTILITY(U,$J,358.3,14660,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14660,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,14660,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,14661,0)
+ ;;=W17.89XA^^53^612^55
+ ;;^UTILITY(U,$J,358.3,14661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14392,1,3,0)
- ;;=3^Hordeolum Externum Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14392,1,4,0)
- ;;=4^H00.015
- ;;^UTILITY(U,$J,358.3,14392,2)
- ;;=^5133372
- ;;^UTILITY(U,$J,358.3,14393,0)
- ;;=H00.014^^82^777^54
- ;;^UTILITY(U,$J,358.3,14393,1,0)
+ ;;^UTILITY(U,$J,358.3,14661,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14661,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,14661,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,14662,0)
+ ;;=W17.89XD^^53^612^56
+ ;;^UTILITY(U,$J,358.3,14662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14393,1,3,0)
- ;;=3^Hordeolum Externum Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14393,1,4,0)
- ;;=4^H00.014
- ;;^UTILITY(U,$J,358.3,14393,2)
- ;;=^5004221
- ;;^UTILITY(U,$J,358.3,14394,0)
- ;;=H00.012^^82^777^55
- ;;^UTILITY(U,$J,358.3,14394,1,0)
+ ;;^UTILITY(U,$J,358.3,14662,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14662,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,14662,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,14663,0)
+ ;;=W18.11XA^^53^612^63
+ ;;^UTILITY(U,$J,358.3,14663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14394,1,3,0)
- ;;=3^Hordeolum Externum Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14394,1,4,0)
- ;;=4^H00.012
- ;;^UTILITY(U,$J,358.3,14394,2)
- ;;=^5004219
- ;;^UTILITY(U,$J,358.3,14395,0)
- ;;=H00.011^^82^777^56
- ;;^UTILITY(U,$J,358.3,14395,1,0)
+ ;;^UTILITY(U,$J,358.3,14663,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14663,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,14663,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,14664,0)
+ ;;=W18.11XD^^53^612^64
+ ;;^UTILITY(U,$J,358.3,14664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14395,1,3,0)
- ;;=3^Hordeolum Externum Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14395,1,4,0)
- ;;=4^H00.011
- ;;^UTILITY(U,$J,358.3,14395,2)
- ;;=^5004218
- ;;^UTILITY(U,$J,358.3,14396,0)
- ;;=H00.025^^82^777^57
- ;;^UTILITY(U,$J,358.3,14396,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14396,1,3,0)
- ;;=3^Hordeolum Internum Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,14664,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14664,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,14664,2)
+ ;;=^5059802

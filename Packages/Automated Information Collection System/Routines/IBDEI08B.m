@@ -1,134 +1,138 @@
-IBDEI08B ; ; 19-NOV-2015
+IBDEI08B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3331,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,3331,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,3332,0)
- ;;=E11.9^^28^252^29
- ;;^UTILITY(U,$J,358.3,3332,1,0)
+ ;;^UTILITY(U,$J,358.3,3590,1,4,0)
+ ;;=4^G25.70
+ ;;^UTILITY(U,$J,358.3,3590,2)
+ ;;=^5003798
+ ;;^UTILITY(U,$J,358.3,3591,0)
+ ;;=G35.^^18^220^81
+ ;;^UTILITY(U,$J,358.3,3591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3332,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,3332,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,3332,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,3333,0)
- ;;=E11.36^^28^252^9
- ;;^UTILITY(U,$J,358.3,3333,1,0)
+ ;;^UTILITY(U,$J,358.3,3591,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,3591,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,3591,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,3592,0)
+ ;;=G25.3^^18^220^82
+ ;;^UTILITY(U,$J,358.3,3592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3333,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,3333,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,3333,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,3334,0)
- ;;=E11.22^^28^252^10
- ;;^UTILITY(U,$J,358.3,3334,1,0)
+ ;;^UTILITY(U,$J,358.3,3592,1,3,0)
+ ;;=3^Myoclonus
+ ;;^UTILITY(U,$J,358.3,3592,1,4,0)
+ ;;=4^G25.3
+ ;;^UTILITY(U,$J,358.3,3592,2)
+ ;;=^80620
+ ;;^UTILITY(U,$J,358.3,3593,0)
+ ;;=G70.9^^18^220^83
+ ;;^UTILITY(U,$J,358.3,3593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3334,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,3334,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,3334,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,3335,0)
- ;;=E11.29^^28^252^12
- ;;^UTILITY(U,$J,358.3,3335,1,0)
+ ;;^UTILITY(U,$J,358.3,3593,1,3,0)
+ ;;=3^Myoneural Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3593,1,4,0)
+ ;;=4^G70.9
+ ;;^UTILITY(U,$J,358.3,3593,2)
+ ;;=^5004087
+ ;;^UTILITY(U,$J,358.3,3594,0)
+ ;;=G31.9^^18^220^84
+ ;;^UTILITY(U,$J,358.3,3594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3335,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,3335,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,3335,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,3336,0)
- ;;=E11.21^^28^252^13
- ;;^UTILITY(U,$J,358.3,3336,1,0)
+ ;;^UTILITY(U,$J,358.3,3594,1,3,0)
+ ;;=3^Nervous System Degenerative Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3594,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,3594,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,3595,0)
+ ;;=G50.0^^18^220^86
+ ;;^UTILITY(U,$J,358.3,3595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3336,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,3336,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,3336,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,3337,0)
- ;;=E11.39^^28^252^16
- ;;^UTILITY(U,$J,358.3,3337,1,0)
+ ;;^UTILITY(U,$J,358.3,3595,1,3,0)
+ ;;=3^Neuralgia,Trigeminal
+ ;;^UTILITY(U,$J,358.3,3595,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,3595,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,3596,0)
+ ;;=G62.81^^18^220^92
+ ;;^UTILITY(U,$J,358.3,3596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3337,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication
- ;;^UTILITY(U,$J,358.3,3337,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,3337,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,3338,0)
- ;;=E11.311^^28^252^20
- ;;^UTILITY(U,$J,358.3,3338,1,0)
+ ;;^UTILITY(U,$J,358.3,3596,1,3,0)
+ ;;=3^Neuropathy,Critical Illness Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,3596,1,4,0)
+ ;;=4^G62.81
+ ;;^UTILITY(U,$J,358.3,3596,2)
+ ;;=^328481
+ ;;^UTILITY(U,$J,358.3,3597,0)
+ ;;=G62.1^^18^220^87
+ ;;^UTILITY(U,$J,358.3,3597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3338,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,3338,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,3338,2)
- ;;=^5002632
- ;;^UTILITY(U,$J,358.3,3339,0)
- ;;=E11.319^^28^252^19
- ;;^UTILITY(U,$J,358.3,3339,1,0)
+ ;;^UTILITY(U,$J,358.3,3597,1,3,0)
+ ;;=3^Neuropathy,Alcoholic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,3597,1,4,0)
+ ;;=4^G62.1
+ ;;^UTILITY(U,$J,358.3,3597,2)
+ ;;=^5004076
+ ;;^UTILITY(U,$J,358.3,3598,0)
+ ;;=G51.0^^18^220^88
+ ;;^UTILITY(U,$J,358.3,3598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3339,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Reinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,3339,1,4,0)
- ;;=4^E11.319
- ;;^UTILITY(U,$J,358.3,3339,2)
- ;;=^5002633
- ;;^UTILITY(U,$J,358.3,3340,0)
- ;;=Z72.4^^28^252^30
- ;;^UTILITY(U,$J,358.3,3340,1,0)
+ ;;^UTILITY(U,$J,358.3,3598,1,3,0)
+ ;;=3^Neuropathy,Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,3598,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,3598,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,3599,0)
+ ;;=G56.01^^18^220^90
+ ;;^UTILITY(U,$J,358.3,3599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3340,1,3,0)
- ;;=3^Diet & Eating Habits,Inappropriate
- ;;^UTILITY(U,$J,358.3,3340,1,4,0)
- ;;=4^Z72.4
- ;;^UTILITY(U,$J,358.3,3340,2)
- ;;=^5063257
- ;;^UTILITY(U,$J,358.3,3341,0)
- ;;=R68.81^^28^252^31
- ;;^UTILITY(U,$J,358.3,3341,1,0)
+ ;;^UTILITY(U,$J,358.3,3599,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,3599,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,3599,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,3600,0)
+ ;;=G56.02^^18^220^89
+ ;;^UTILITY(U,$J,358.3,3600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3341,1,3,0)
- ;;=3^Early Satiety
- ;;^UTILITY(U,$J,358.3,3341,1,4,0)
- ;;=4^R68.81
- ;;^UTILITY(U,$J,358.3,3341,2)
- ;;=^5019554
- ;;^UTILITY(U,$J,358.3,3342,0)
- ;;=E34.9^^28^252^32
- ;;^UTILITY(U,$J,358.3,3342,1,0)
+ ;;^UTILITY(U,$J,358.3,3600,1,3,0)
+ ;;=3^Neuropathy,Carpal Tunnel Syndrome,Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,3600,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,3600,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,3601,0)
+ ;;=G52.9^^18^220^91
+ ;;^UTILITY(U,$J,358.3,3601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3342,1,3,0)
- ;;=3^Endocrine Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3342,1,4,0)
- ;;=4^E34.9
- ;;^UTILITY(U,$J,358.3,3342,2)
- ;;=^5002777
- ;;^UTILITY(U,$J,358.3,3343,0)
- ;;=R62.7^^28^252^33
- ;;^UTILITY(U,$J,358.3,3343,1,0)
+ ;;^UTILITY(U,$J,358.3,3601,1,3,0)
+ ;;=3^Neuropathy,Cranial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3601,1,4,0)
+ ;;=4^G52.9
+ ;;^UTILITY(U,$J,358.3,3601,2)
+ ;;=^5004005
+ ;;^UTILITY(U,$J,358.3,3602,0)
+ ;;=G51.9^^18^220^95
+ ;;^UTILITY(U,$J,358.3,3602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3343,1,3,0)
- ;;=3^Failure to Thrive,Adult
- ;;^UTILITY(U,$J,358.3,3343,1,4,0)
- ;;=4^R62.7
- ;;^UTILITY(U,$J,358.3,3343,2)
- ;;=^322019
- ;;^UTILITY(U,$J,358.3,3344,0)
- ;;=R63.3^^28^252^34
- ;;^UTILITY(U,$J,358.3,3344,1,0)
+ ;;^UTILITY(U,$J,358.3,3602,1,3,0)
+ ;;=3^Neuropathy,Facial Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3602,1,4,0)
+ ;;=4^G51.9
+ ;;^UTILITY(U,$J,358.3,3602,2)
+ ;;=^5003998
+ ;;^UTILITY(U,$J,358.3,3603,0)
+ ;;=G62.0^^18^220^93
+ ;;^UTILITY(U,$J,358.3,3603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3344,1,3,0)
- ;;=3^Feeding Difficulty
+ ;;^UTILITY(U,$J,358.3,3603,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,3603,1,4,0)
+ ;;=4^G62.0
+ ;;^UTILITY(U,$J,358.3,3603,2)
+ ;;=^5004075

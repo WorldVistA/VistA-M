@@ -1,5 +1,5 @@
 ICDDG010 ;KUM - DRG GROUPER PROCESSING BEGINS ;05/02/12 4:06pm
- ;;18.0;DRG Grouper;**64**;Oct 20, 2000;Build 103
+ ;;18.0;DRG Grouper;**64,82**;Oct 20, 2000;Build 21
  ;
  ;GROUPING PROCESS BEGINS
  ;
@@ -124,7 +124,7 @@ DEFAULT G:ICDMDC=15 GETMOR S (ICDRG,ICDRGH)=$O(ICDODRG(0)) G:ICDRG'>0 ENTER
  D DODRG
  G:ICDRG'>0 AGAIN
  Q
-ENTER I 'ICDNOR,ICDORNR'=0,ICDMDC'=20,ICDMDC'=15 S ICDRG=983 Q
+ENTER I 'ICDNOR,ICDORNR'=0,ICDMDC'=20,ICDMDC'=15 S ICDRG=983
 GETMOR S (ICDRG,ICDRGH)=$O(ICDPDRG(0)) S:ICDRG'>0 (ICDRG,ICDRGH)=998
 CKDRG D DODRG
  Q
@@ -220,7 +220,7 @@ PREMDC ; Check if any Surgical Procedure Code in Pre-MDC and, if so, use that DR
  D
  . I $D(ICD10OR("q")) S ICDRGT=$S(ICDMCC=2:1,1:2) Q  ;Heart Transplant
  . I $D(ICD10OR("r")) S ICDRGT=7 Q  ;Lung Transplant
- . I $D(ICD10OR(135)) S ICDRGT=8 Q  ;Simultaneous Pancreas/Kidney Transplant
+ . I $D(ICD10OR(245)) S ICDRGT=8 Q  ;Simultaneous Pancreas/Kidney Transplant
  . I $D(ICD10OR(116)) S ICDRGT=10 Q  ;Pancreas Transplant
  . ;Next Block for DRGs 3 and 4: PreMDC ECMO/Tracheostomy/MV96+/Major OR/PDX Except Face,Mount not DRG11,12 or 13
  . I $D(ICD10OR(44)) S ICDRGT=3 Q  ;ECMO

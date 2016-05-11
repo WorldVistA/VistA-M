@@ -1,132 +1,128 @@
-IBDEI1DV ; ; 19-NOV-2015
+IBDEI1DV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23069,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,23069,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,23070,0)
- ;;=G30.0^^107^1087^2
- ;;^UTILITY(U,$J,358.3,23070,1,0)
+ ;;^UTILITY(U,$J,358.3,23508,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
+ ;;^UTILITY(U,$J,358.3,23508,1,4,0)
+ ;;=4^R40.2114
+ ;;^UTILITY(U,$J,358.3,23508,2)
+ ;;=^5019359
+ ;;^UTILITY(U,$J,358.3,23509,0)
+ ;;=R40.2113^^87^999^30
+ ;;^UTILITY(U,$J,358.3,23509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23070,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,23070,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,23070,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,23071,0)
- ;;=G30.1^^107^1087^3
- ;;^UTILITY(U,$J,358.3,23071,1,0)
+ ;;^UTILITY(U,$J,358.3,23509,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23509,1,4,0)
+ ;;=4^R40.2113
+ ;;^UTILITY(U,$J,358.3,23509,2)
+ ;;=^5019358
+ ;;^UTILITY(U,$J,358.3,23510,0)
+ ;;=R40.2112^^87^999^27
+ ;;^UTILITY(U,$J,358.3,23510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23071,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,23071,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,23071,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,23072,0)
- ;;=G30.9^^107^1087^4
- ;;^UTILITY(U,$J,358.3,23072,1,0)
+ ;;^UTILITY(U,$J,358.3,23510,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,23510,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,23510,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,23511,0)
+ ;;=R40.2111^^87^999^28
+ ;;^UTILITY(U,$J,358.3,23511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23072,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23072,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,23072,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,23073,0)
- ;;=G10.^^107^1087^19
- ;;^UTILITY(U,$J,358.3,23073,1,0)
+ ;;^UTILITY(U,$J,358.3,23511,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;^UTILITY(U,$J,358.3,23511,1,4,0)
+ ;;=4^R40.2111
+ ;;^UTILITY(U,$J,358.3,23511,2)
+ ;;=^5019356
+ ;;^UTILITY(U,$J,358.3,23512,0)
+ ;;=R40.2110^^87^999^29
+ ;;^UTILITY(U,$J,358.3,23512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23073,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23073,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,23073,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,23074,0)
- ;;=G10.^^107^1087^20
- ;;^UTILITY(U,$J,358.3,23074,1,0)
+ ;;^UTILITY(U,$J,358.3,23512,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23512,1,4,0)
+ ;;=4^R40.2110
+ ;;^UTILITY(U,$J,358.3,23512,2)
+ ;;=^5019355
+ ;;^UTILITY(U,$J,358.3,23513,0)
+ ;;=R40.20^^87^999^36
+ ;;^UTILITY(U,$J,358.3,23513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23074,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23074,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,23074,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,23075,0)
- ;;=G90.3^^107^1087^21
- ;;^UTILITY(U,$J,358.3,23075,1,0)
+ ;;^UTILITY(U,$J,358.3,23513,1,3,0)
+ ;;=3^Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,23513,1,4,0)
+ ;;=4^R40.20
+ ;;^UTILITY(U,$J,358.3,23513,2)
+ ;;=^5019354
+ ;;^UTILITY(U,$J,358.3,23514,0)
+ ;;=R40.2123^^87^999^35
+ ;;^UTILITY(U,$J,358.3,23514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23075,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,23075,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,23075,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,23076,0)
- ;;=G91.2^^107^1087^22
- ;;^UTILITY(U,$J,358.3,23076,1,0)
+ ;;^UTILITY(U,$J,358.3,23514,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23514,1,4,0)
+ ;;=4^R40.2123
+ ;;^UTILITY(U,$J,358.3,23514,2)
+ ;;=^5019363
+ ;;^UTILITY(U,$J,358.3,23515,0)
+ ;;=R40.2122^^87^999^32
+ ;;^UTILITY(U,$J,358.3,23515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23076,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23076,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,23076,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,23077,0)
- ;;=G91.2^^107^1087^23
- ;;^UTILITY(U,$J,358.3,23077,1,0)
+ ;;^UTILITY(U,$J,358.3,23515,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23515,1,4,0)
+ ;;=4^R40.2122
+ ;;^UTILITY(U,$J,358.3,23515,2)
+ ;;=^5019362
+ ;;^UTILITY(U,$J,358.3,23516,0)
+ ;;=R40.2124^^87^999^31
+ ;;^UTILITY(U,$J,358.3,23516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23077,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23077,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,23077,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,23078,0)
- ;;=G30.8^^107^1087^5
- ;;^UTILITY(U,$J,358.3,23078,1,0)
+ ;;^UTILITY(U,$J,358.3,23516,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23516,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,23516,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,23517,0)
+ ;;=R40.2211^^87^999^17
+ ;;^UTILITY(U,$J,358.3,23517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23078,1,3,0)
- ;;=3^Alzheimer's Diseases NEC
- ;;^UTILITY(U,$J,358.3,23078,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,23078,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,23079,0)
- ;;=G31.09^^107^1087^16
- ;;^UTILITY(U,$J,358.3,23079,1,0)
+ ;;^UTILITY(U,$J,358.3,23517,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,23517,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,23517,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,23518,0)
+ ;;=R40.2210^^87^999^16
+ ;;^UTILITY(U,$J,358.3,23518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23079,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,23079,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,23079,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,23080,0)
- ;;=G20.^^107^1087^24
- ;;^UTILITY(U,$J,358.3,23080,1,0)
+ ;;^UTILITY(U,$J,358.3,23518,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23518,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,23518,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,23519,0)
+ ;;=R40.2224^^87^999^18
+ ;;^UTILITY(U,$J,358.3,23519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23080,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23080,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,23080,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,23081,0)
- ;;=G20.^^107^1087^25
- ;;^UTILITY(U,$J,358.3,23081,1,0)
+ ;;^UTILITY(U,$J,358.3,23519,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23519,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,23519,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,23520,0)
+ ;;=R40.2223^^87^999^19
+ ;;^UTILITY(U,$J,358.3,23520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23081,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23081,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,23081,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,23082,0)
- ;;=G31.01^^107^1087^26
- ;;^UTILITY(U,$J,358.3,23082,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23520,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23520,1,4,0)
+ ;;=4^R40.2223

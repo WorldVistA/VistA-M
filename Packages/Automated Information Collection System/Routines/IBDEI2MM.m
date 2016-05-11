@@ -1,136 +1,62 @@
-IBDEI2MM ; ; 19-NOV-2015
+IBDEI2MM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.5)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44078,2)
- ;;=^5003036
- ;;^UTILITY(U,$J,358.3,44079,0)
- ;;=H40.9^^200^2221^9
- ;;^UTILITY(U,$J,358.3,44079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44079,1,3,0)
- ;;=3^Glaucoma,Unspec
- ;;^UTILITY(U,$J,358.3,44079,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,44079,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,44080,0)
- ;;=H26.9^^200^2221^5
- ;;^UTILITY(U,$J,358.3,44080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44080,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,44080,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,44080,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,44081,0)
- ;;=H10.9^^200^2221^8
- ;;^UTILITY(U,$J,358.3,44081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44081,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,44081,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,44081,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,44082,0)
- ;;=H11.32^^200^2221^6
- ;;^UTILITY(U,$J,358.3,44082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44082,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,44082,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,44082,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,44083,0)
- ;;=H11.31^^200^2221^7
- ;;^UTILITY(U,$J,358.3,44083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44083,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,44083,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,44083,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,44084,0)
- ;;=H01.002^^200^2221^3
- ;;^UTILITY(U,$J,358.3,44084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44084,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,44084,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,44084,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,44085,0)
- ;;=H01.004^^200^2221^2
- ;;^UTILITY(U,$J,358.3,44085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44085,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,44085,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,44085,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,44086,0)
- ;;=H01.005^^200^2221^1
- ;;^UTILITY(U,$J,358.3,44086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44086,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,44086,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,44086,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,44087,0)
- ;;=H01.001^^200^2221^4
- ;;^UTILITY(U,$J,358.3,44087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44087,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,44087,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,44087,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,44088,0)
- ;;=H57.13^^200^2221^10
- ;;^UTILITY(U,$J,358.3,44088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44088,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,44088,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,44088,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,44089,0)
- ;;=H57.12^^200^2221^11
- ;;^UTILITY(U,$J,358.3,44089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44089,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,44089,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,44089,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,44090,0)
- ;;=H57.11^^200^2221^12
- ;;^UTILITY(U,$J,358.3,44090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44090,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,44090,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,44090,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,44091,0)
- ;;=S05.02XA^^200^2222^3
- ;;^UTILITY(U,$J,358.3,44091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44091,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,44091,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,44091,2)
- ;;=^5020582
+ ;;^DIC(358.5,0,"GL")
+ ;;=^IBE(358.5,
+ ;;^DIC("B","IMP/EXP DATA FIELD",358.5)
+ ;;=
+ ;;^DIC(358.5,"%D",0)
+ ;;=^^1^1^2940829^^^^
+ ;;^DIC(358.5,"%D",1,0)
+ ;;=Used by the import/export utility as a workspace.
+ ;;^DIC(358.5,"%D",2,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",3,0)
+ ;;= 
+ ;;^DIC(358.5,"%D",4,0)
+ ;;=This file is nearly identical to file #357.5. It is used by the
+ ;;^DIC(358.5,"%D",5,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.5,"%D",6,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.5,0)
+ ;;=FIELD^^2^13
+ ;;^DD(358.5,0,"DDA")
+ ;;=N
+ ;;^DD(358.5,0,"DT")
+ ;;=2930730
+ ;;^DD(358.5,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.5,0,"ID",.03)
+ ;;=W ""
+ ;;^DD(358.5,0,"IX","B",358.5,.01)
+ ;;=
+ ;;^DD(358.5,0,"IX","C",358.5,.02)
+ ;;=
+ ;;^DD(358.5,0,"NM","IMP/EXP DATA FIELD")
+ ;;=
+ ;;^DD(358.5,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.5,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.5,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.5,.01,1,1,0)
+ ;;=358.5^B
+ ;;^DD(358.5,.01,1,1,1)
+ ;;=S ^IBE(358.5,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.5,.01,1,1,2)
+ ;;=K ^IBE(358.5,"B",$E(X,1,30),DA)
+ ;;^DD(358.5,.01,3)
+ ;;=Answer must be 3-30 characters in length.
+ ;;^DD(358.5,.01,21,0)
+ ;;=^^3^3^2930419^^^
+ ;;^DD(358.5,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.5,.01,21,2,0)
+ ;;=The name is used to identify the field within a block. It can be anything
+ ;;^DD(358.5,.01,21,3,0)
+ ;;=the designer of a form wants it to be.
+ ;;^DD(358.5,.01,"DT")
+ ;;=2930419

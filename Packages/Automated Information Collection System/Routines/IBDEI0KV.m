@@ -1,140 +1,136 @@
-IBDEI0KV ; ; 19-NOV-2015
+IBDEI0KV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9445,2)
- ;;=^5003967
- ;;^UTILITY(U,$J,358.3,9446,0)
- ;;=G46.8^^63^605^14
- ;;^UTILITY(U,$J,358.3,9446,1,0)
+ ;;^UTILITY(U,$J,358.3,9737,0)
+ ;;=H16.401^^44^495^54
+ ;;^UTILITY(U,$J,358.3,9737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9446,1,3,0)
- ;;=3^Vascular Syndromes of Brain in CVD,Other
- ;;^UTILITY(U,$J,358.3,9446,1,4,0)
- ;;=4^G46.8
- ;;^UTILITY(U,$J,358.3,9446,2)
- ;;=^5003968
- ;;^UTILITY(U,$J,358.3,9447,0)
- ;;=I67.2^^63^605^5
- ;;^UTILITY(U,$J,358.3,9447,1,0)
+ ;;^UTILITY(U,$J,358.3,9737,1,3,0)
+ ;;=3^Corneal Neovascularization,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9737,1,4,0)
+ ;;=4^H16.401
+ ;;^UTILITY(U,$J,358.3,9737,2)
+ ;;=^5004965
+ ;;^UTILITY(U,$J,358.3,9738,0)
+ ;;=H16.402^^44^495^53
+ ;;^UTILITY(U,$J,358.3,9738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9447,1,3,0)
- ;;=3^Cerebral Atherosclerosis
- ;;^UTILITY(U,$J,358.3,9447,1,4,0)
- ;;=4^I67.2
- ;;^UTILITY(U,$J,358.3,9447,2)
- ;;=^21571
- ;;^UTILITY(U,$J,358.3,9448,0)
- ;;=I69.898^^63^605^6
- ;;^UTILITY(U,$J,358.3,9448,1,0)
+ ;;^UTILITY(U,$J,358.3,9738,1,3,0)
+ ;;=3^Corneal Neovascularization,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9738,1,4,0)
+ ;;=4^H16.402
+ ;;^UTILITY(U,$J,358.3,9738,2)
+ ;;=^5004966
+ ;;^UTILITY(U,$J,358.3,9739,0)
+ ;;=H16.421^^44^495^123
+ ;;^UTILITY(U,$J,358.3,9739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9448,1,3,0)
- ;;=3^Cerebrovascular Disease Sequelae,Other
- ;;^UTILITY(U,$J,358.3,9448,1,4,0)
- ;;=4^I69.898
- ;;^UTILITY(U,$J,358.3,9448,2)
- ;;=^5007550
- ;;^UTILITY(U,$J,358.3,9449,0)
- ;;=Z86.73^^63^605^9
- ;;^UTILITY(U,$J,358.3,9449,1,0)
+ ;;^UTILITY(U,$J,358.3,9739,1,3,0)
+ ;;=3^Pannus Corneal,Right Eye
+ ;;^UTILITY(U,$J,358.3,9739,1,4,0)
+ ;;=4^H16.421
+ ;;^UTILITY(U,$J,358.3,9739,2)
+ ;;=^5004972
+ ;;^UTILITY(U,$J,358.3,9740,0)
+ ;;=H16.422^^44^495^122
+ ;;^UTILITY(U,$J,358.3,9740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9449,1,3,0)
- ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
- ;;^UTILITY(U,$J,358.3,9449,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,9449,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,9450,0)
- ;;=H81.10^^63^606^1
- ;;^UTILITY(U,$J,358.3,9450,1,0)
+ ;;^UTILITY(U,$J,358.3,9740,1,3,0)
+ ;;=3^Pannus Corneal,Left Eye
+ ;;^UTILITY(U,$J,358.3,9740,1,4,0)
+ ;;=4^H16.422
+ ;;^UTILITY(U,$J,358.3,9740,2)
+ ;;=^5004973
+ ;;^UTILITY(U,$J,358.3,9741,0)
+ ;;=H17.9^^44^495^56
+ ;;^UTILITY(U,$J,358.3,9741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9450,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo
- ;;^UTILITY(U,$J,358.3,9450,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,9450,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,9451,0)
- ;;=H81.49^^63^606^2
- ;;^UTILITY(U,$J,358.3,9451,1,0)
+ ;;^UTILITY(U,$J,358.3,9741,1,3,0)
+ ;;=3^Corneal Scar & Opacity,Unspec
+ ;;^UTILITY(U,$J,358.3,9741,1,4,0)
+ ;;=4^H17.9
+ ;;^UTILITY(U,$J,358.3,9741,2)
+ ;;=^5005003
+ ;;^UTILITY(U,$J,358.3,9742,0)
+ ;;=H17.89^^44^495^55
+ ;;^UTILITY(U,$J,358.3,9742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9451,1,3,0)
- ;;=3^Central Vertigo
- ;;^UTILITY(U,$J,358.3,9451,1,4,0)
- ;;=4^H81.49
- ;;^UTILITY(U,$J,358.3,9451,2)
- ;;=^5006883
- ;;^UTILITY(U,$J,358.3,9452,0)
- ;;=R55.^^63^606^4
- ;;^UTILITY(U,$J,358.3,9452,1,0)
+ ;;^UTILITY(U,$J,358.3,9742,1,3,0)
+ ;;=3^Corneal Scar & Opacity NEC
+ ;;^UTILITY(U,$J,358.3,9742,1,4,0)
+ ;;=4^H17.89
+ ;;^UTILITY(U,$J,358.3,9742,2)
+ ;;=^5005002
+ ;;^UTILITY(U,$J,358.3,9743,0)
+ ;;=H17.821^^44^495^129
+ ;;^UTILITY(U,$J,358.3,9743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9452,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,9452,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,9452,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,9453,0)
- ;;=R42.^^63^606^3
- ;;^UTILITY(U,$J,358.3,9453,1,0)
+ ;;^UTILITY(U,$J,358.3,9743,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Right Eye
+ ;;^UTILITY(U,$J,358.3,9743,1,4,0)
+ ;;=4^H17.821
+ ;;^UTILITY(U,$J,358.3,9743,2)
+ ;;=^5004998
+ ;;^UTILITY(U,$J,358.3,9744,0)
+ ;;=H17.822^^44^495^128
+ ;;^UTILITY(U,$J,358.3,9744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9453,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,9453,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,9453,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,9454,0)
- ;;=F10.27^^63^607^1
- ;;^UTILITY(U,$J,358.3,9454,1,0)
+ ;;^UTILITY(U,$J,358.3,9744,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Left Eye
+ ;;^UTILITY(U,$J,358.3,9744,1,4,0)
+ ;;=4^H17.822
+ ;;^UTILITY(U,$J,358.3,9744,2)
+ ;;=^5004999
+ ;;^UTILITY(U,$J,358.3,9745,0)
+ ;;=H17.11^^44^495^28
+ ;;^UTILITY(U,$J,358.3,9745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9454,1,3,0)
- ;;=3^Alcoholic Encephalopathy
- ;;^UTILITY(U,$J,358.3,9454,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,9454,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,9455,0)
- ;;=G92.^^63^607^4
- ;;^UTILITY(U,$J,358.3,9455,1,0)
+ ;;^UTILITY(U,$J,358.3,9745,1,3,0)
+ ;;=3^Central Corneal Opacity,Right Eye
+ ;;^UTILITY(U,$J,358.3,9745,1,4,0)
+ ;;=4^H17.11
+ ;;^UTILITY(U,$J,358.3,9745,2)
+ ;;=^5004991
+ ;;^UTILITY(U,$J,358.3,9746,0)
+ ;;=H17.12^^44^495^27
+ ;;^UTILITY(U,$J,358.3,9746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9455,1,3,0)
- ;;=3^Toxic Encephalopathy
- ;;^UTILITY(U,$J,358.3,9455,1,4,0)
- ;;=4^G92.
- ;;^UTILITY(U,$J,358.3,9455,2)
- ;;=^259061
- ;;^UTILITY(U,$J,358.3,9456,0)
- ;;=G96.8^^63^607^2
- ;;^UTILITY(U,$J,358.3,9456,1,0)
+ ;;^UTILITY(U,$J,358.3,9746,1,3,0)
+ ;;=3^Central Corneal Opacity,Left Eye
+ ;;^UTILITY(U,$J,358.3,9746,1,4,0)
+ ;;=4^H17.12
+ ;;^UTILITY(U,$J,358.3,9746,2)
+ ;;=^5004992
+ ;;^UTILITY(U,$J,358.3,9747,0)
+ ;;=H18.001^^44^495^49
+ ;;^UTILITY(U,$J,358.3,9747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9456,1,3,0)
- ;;=3^Disorder of Central Nervous System,Other Spec
- ;;^UTILITY(U,$J,358.3,9456,1,4,0)
- ;;=4^G96.8
- ;;^UTILITY(U,$J,358.3,9456,2)
- ;;=^5004199
- ;;^UTILITY(U,$J,358.3,9457,0)
- ;;=G98.8^^63^607^3
- ;;^UTILITY(U,$J,358.3,9457,1,0)
+ ;;^UTILITY(U,$J,358.3,9747,1,3,0)
+ ;;=3^Corneal Deposit,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9747,1,4,0)
+ ;;=4^H18.001
+ ;;^UTILITY(U,$J,358.3,9747,2)
+ ;;=^5005004
+ ;;^UTILITY(U,$J,358.3,9748,0)
+ ;;=H18.002^^44^495^48
+ ;;^UTILITY(U,$J,358.3,9748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9457,1,3,0)
- ;;=3^Disorder of Nervous System,Other
- ;;^UTILITY(U,$J,358.3,9457,1,4,0)
- ;;=4^G98.8
- ;;^UTILITY(U,$J,358.3,9457,2)
- ;;=^5004214
- ;;^UTILITY(U,$J,358.3,9458,0)
- ;;=G43.009^^63^608^7
- ;;^UTILITY(U,$J,358.3,9458,1,0)
+ ;;^UTILITY(U,$J,358.3,9748,1,3,0)
+ ;;=3^Corneal Deposit,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9748,1,4,0)
+ ;;=4^H18.002
+ ;;^UTILITY(U,$J,358.3,9748,2)
+ ;;=^5005005
+ ;;^UTILITY(U,$J,358.3,9749,0)
+ ;;=H18.051^^44^495^135
+ ;;^UTILITY(U,$J,358.3,9749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9458,1,3,0)
- ;;=3^Migraine w/o Aura Not Intractable 
- ;;^UTILITY(U,$J,358.3,9458,1,4,0)
- ;;=4^G43.009
- ;;^UTILITY(U,$J,358.3,9458,2)
- ;;=^5003877
- ;;^UTILITY(U,$J,358.3,9459,0)
- ;;=G43.019^^63^608^6
- ;;^UTILITY(U,$J,358.3,9459,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9749,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Right Eye
+ ;;^UTILITY(U,$J,358.3,9749,1,4,0)
+ ;;=4^H18.051
+ ;;^UTILITY(U,$J,358.3,9749,2)
+ ;;=^5005023
+ ;;^UTILITY(U,$J,358.3,9750,0)
+ ;;=H18.052^^44^495^134

@@ -1,134 +1,136 @@
-IBDEI2L4 ; ; 19-NOV-2015
+IBDEI2L4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43356,0)
- ;;=I51.9^^197^2187^4
- ;;^UTILITY(U,$J,358.3,43356,1,0)
+ ;;^UTILITY(U,$J,358.3,43875,0)
+ ;;=N76.3^^170^2107^100
+ ;;^UTILITY(U,$J,358.3,43875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43356,1,3,0)
- ;;=3^Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43356,1,4,0)
- ;;=4^I51.9
- ;;^UTILITY(U,$J,358.3,43356,2)
- ;;=^5007258
- ;;^UTILITY(U,$J,358.3,43357,0)
- ;;=K70.9^^197^2187^1
- ;;^UTILITY(U,$J,358.3,43357,1,0)
+ ;;^UTILITY(U,$J,358.3,43875,1,3,0)
+ ;;=3^Vulvitis,Subacute and Chronic
+ ;;^UTILITY(U,$J,358.3,43875,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,43875,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,43876,0)
+ ;;=N95.2^^170^2107^94
+ ;;^UTILITY(U,$J,358.3,43876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43357,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,43357,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,43357,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,43358,0)
- ;;=R03.0^^197^2187^3
- ;;^UTILITY(U,$J,358.3,43358,1,0)
+ ;;^UTILITY(U,$J,358.3,43876,1,3,0)
+ ;;=3^Vaginitis,Atrophic,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,43876,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,43876,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,43877,0)
+ ;;=N76.4^^170^2107^96
+ ;;^UTILITY(U,$J,358.3,43877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43358,1,3,0)
- ;;=3^Elevated B/P Reading w/o Diagnosis of HTN
- ;;^UTILITY(U,$J,358.3,43358,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,43358,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,43359,0)
- ;;=Z12.31^^197^2188^1
- ;;^UTILITY(U,$J,358.3,43359,1,0)
+ ;;^UTILITY(U,$J,358.3,43877,1,3,0)
+ ;;=3^Vulva,Abscess
+ ;;^UTILITY(U,$J,358.3,43877,1,4,0)
+ ;;=4^N76.4
+ ;;^UTILITY(U,$J,358.3,43877,2)
+ ;;=^5015830
+ ;;^UTILITY(U,$J,358.3,43878,0)
+ ;;=N76.5^^170^2107^91
+ ;;^UTILITY(U,$J,358.3,43878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43359,1,3,0)
- ;;=3^Screening Mammogram for Malig Neop Breast
- ;;^UTILITY(U,$J,358.3,43359,1,4,0)
- ;;=4^Z12.31
- ;;^UTILITY(U,$J,358.3,43359,2)
- ;;=^5062685
- ;;^UTILITY(U,$J,358.3,43360,0)
- ;;=Z12.39^^197^2188^8
- ;;^UTILITY(U,$J,358.3,43360,1,0)
+ ;;^UTILITY(U,$J,358.3,43878,1,3,0)
+ ;;=3^Vagina,Ulceration
+ ;;^UTILITY(U,$J,358.3,43878,1,4,0)
+ ;;=4^N76.5
+ ;;^UTILITY(U,$J,358.3,43878,2)
+ ;;=^5015831
+ ;;^UTILITY(U,$J,358.3,43879,0)
+ ;;=N76.6^^170^2107^97
+ ;;^UTILITY(U,$J,358.3,43879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43360,1,3,0)
- ;;=3^Screening for Malig Neop Breast
- ;;^UTILITY(U,$J,358.3,43360,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,43360,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,43361,0)
- ;;=Z11.51^^197^2188^5
- ;;^UTILITY(U,$J,358.3,43361,1,0)
+ ;;^UTILITY(U,$J,358.3,43879,1,3,0)
+ ;;=3^Vulva,Ulceration
+ ;;^UTILITY(U,$J,358.3,43879,1,4,0)
+ ;;=4^N76.6
+ ;;^UTILITY(U,$J,358.3,43879,2)
+ ;;=^270477
+ ;;^UTILITY(U,$J,358.3,43880,0)
+ ;;=N76.81^^170^2107^67
+ ;;^UTILITY(U,$J,358.3,43880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43361,1,3,0)
- ;;=3^Screening for HPV
- ;;^UTILITY(U,$J,358.3,43361,1,4,0)
- ;;=4^Z11.51
- ;;^UTILITY(U,$J,358.3,43361,2)
- ;;=^5062674
- ;;^UTILITY(U,$J,358.3,43362,0)
- ;;=Z11.59^^197^2188^16
- ;;^UTILITY(U,$J,358.3,43362,1,0)
+ ;;^UTILITY(U,$J,358.3,43880,1,3,0)
+ ;;=3^Mucositis,Vagina & Vulva
+ ;;^UTILITY(U,$J,358.3,43880,1,4,0)
+ ;;=4^N76.81
+ ;;^UTILITY(U,$J,358.3,43880,2)
+ ;;=^5015832
+ ;;^UTILITY(U,$J,358.3,43881,0)
+ ;;=N76.89^^170^2107^54
+ ;;^UTILITY(U,$J,358.3,43881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43362,1,3,0)
- ;;=3^Screening for Viral Diseases
- ;;^UTILITY(U,$J,358.3,43362,1,4,0)
- ;;=4^Z11.59
- ;;^UTILITY(U,$J,358.3,43362,2)
- ;;=^5062675
- ;;^UTILITY(U,$J,358.3,43363,0)
- ;;=Z11.3^^197^2188^6
- ;;^UTILITY(U,$J,358.3,43363,1,0)
+ ;;^UTILITY(U,$J,358.3,43881,1,3,0)
+ ;;=3^Inflammation,Vagina & Vulva,Other Specified
+ ;;^UTILITY(U,$J,358.3,43881,1,4,0)
+ ;;=4^N76.89
+ ;;^UTILITY(U,$J,358.3,43881,2)
+ ;;=^5015833
+ ;;^UTILITY(U,$J,358.3,43882,0)
+ ;;=N91.1^^170^2107^12
+ ;;^UTILITY(U,$J,358.3,43882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43363,1,3,0)
- ;;=3^Screening for Infections w/ Sexual Mode of Transmission
- ;;^UTILITY(U,$J,358.3,43363,1,4,0)
- ;;=4^Z11.3
- ;;^UTILITY(U,$J,358.3,43363,2)
- ;;=^5062672
- ;;^UTILITY(U,$J,358.3,43364,0)
- ;;=Z11.9^^197^2188^7
- ;;^UTILITY(U,$J,358.3,43364,1,0)
+ ;;^UTILITY(U,$J,358.3,43882,1,3,0)
+ ;;=3^Amenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,43882,1,4,0)
+ ;;=4^N91.1
+ ;;^UTILITY(U,$J,358.3,43882,2)
+ ;;=^5015903
+ ;;^UTILITY(U,$J,358.3,43883,0)
+ ;;=N91.3^^170^2107^69
+ ;;^UTILITY(U,$J,358.3,43883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43364,1,3,0)
- ;;=3^Screening for Infectious/Parasitic Diseases
- ;;^UTILITY(U,$J,358.3,43364,1,4,0)
- ;;=4^Z11.9
- ;;^UTILITY(U,$J,358.3,43364,2)
- ;;=^5062678
- ;;^UTILITY(U,$J,358.3,43365,0)
- ;;=Z12.2^^197^2188^13
- ;;^UTILITY(U,$J,358.3,43365,1,0)
+ ;;^UTILITY(U,$J,358.3,43883,1,3,0)
+ ;;=3^Oligomenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,43883,1,4,0)
+ ;;=4^N91.3
+ ;;^UTILITY(U,$J,358.3,43883,2)
+ ;;=^5015905
+ ;;^UTILITY(U,$J,358.3,43884,0)
+ ;;=N91.4^^170^2107^70
+ ;;^UTILITY(U,$J,358.3,43884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43365,1,3,0)
- ;;=3^Screening for Malig Neop Respiratory Organs
- ;;^UTILITY(U,$J,358.3,43365,1,4,0)
- ;;=4^Z12.2
- ;;^UTILITY(U,$J,358.3,43365,2)
- ;;=^5062684
- ;;^UTILITY(U,$J,358.3,43366,0)
- ;;=Z12.4^^197^2188^9
- ;;^UTILITY(U,$J,358.3,43366,1,0)
+ ;;^UTILITY(U,$J,358.3,43884,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,43884,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,43884,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,43885,0)
+ ;;=N91.5^^170^2107^71
+ ;;^UTILITY(U,$J,358.3,43885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43366,1,3,0)
- ;;=3^Screening for Malig Neop Cervix
- ;;^UTILITY(U,$J,358.3,43366,1,4,0)
- ;;=4^Z12.4
- ;;^UTILITY(U,$J,358.3,43366,2)
- ;;=^5062687
- ;;^UTILITY(U,$J,358.3,43367,0)
- ;;=Z12.12^^197^2188^12
- ;;^UTILITY(U,$J,358.3,43367,1,0)
+ ;;^UTILITY(U,$J,358.3,43885,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,43885,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,43885,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,43886,0)
+ ;;=N92.0^^170^2107^42
+ ;;^UTILITY(U,$J,358.3,43886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43367,1,3,0)
- ;;=3^Screening for Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,43367,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,43367,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,43368,0)
- ;;=Z12.5^^197^2188^11
- ;;^UTILITY(U,$J,358.3,43368,1,0)
+ ;;^UTILITY(U,$J,358.3,43886,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,43886,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,43886,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,43887,0)
+ ;;=N92.1^^170^2107^41
+ ;;^UTILITY(U,$J,358.3,43887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43368,1,3,0)
- ;;=3^Screening for Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,43368,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,43368,2)
- ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,43887,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Irregular Cycle
+ ;;^UTILITY(U,$J,358.3,43887,1,4,0)
+ ;;=4^N92.1
+ ;;^UTILITY(U,$J,358.3,43887,2)
+ ;;=^5015909
+ ;;^UTILITY(U,$J,358.3,43888,0)
+ ;;=N92.3^^170^2107^72

@@ -1,136 +1,126 @@
-IBDEI2BI ; ; 19-NOV-2015
+IBDEI2BI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38923,0)
- ;;=M21.42^^180^1989^10
- ;;^UTILITY(U,$J,358.3,38923,1,0)
+ ;;^UTILITY(U,$J,358.3,39316,1,4,0)
+ ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,39316,2)
+ ;;=^5005787
+ ;;^UTILITY(U,$J,358.3,39317,0)
+ ;;=H40.1334^^153^1921^87
+ ;;^UTILITY(U,$J,358.3,39317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38923,1,3,0)
- ;;=3^Flat Foot,Left Foot
- ;;^UTILITY(U,$J,358.3,38923,1,4,0)
- ;;=4^M21.42
- ;;^UTILITY(U,$J,358.3,38923,2)
- ;;=^5011115
- ;;^UTILITY(U,$J,358.3,38924,0)
- ;;=M21.41^^180^1989^11
- ;;^UTILITY(U,$J,358.3,38924,1,0)
+ ;;^UTILITY(U,$J,358.3,39317,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39317,1,4,0)
+ ;;=4^H40.1334
+ ;;^UTILITY(U,$J,358.3,39317,2)
+ ;;=^5005788
+ ;;^UTILITY(U,$J,358.3,39318,0)
+ ;;=H40.151^^153^1921^118
+ ;;^UTILITY(U,$J,358.3,39318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38924,1,3,0)
- ;;=3^Flat Foot,Right Foot
- ;;^UTILITY(U,$J,358.3,38924,1,4,0)
- ;;=4^M21.41
- ;;^UTILITY(U,$J,358.3,38924,2)
- ;;=^5011114
- ;;^UTILITY(U,$J,358.3,38925,0)
- ;;=G58.9^^180^1989^17
- ;;^UTILITY(U,$J,358.3,38925,1,0)
+ ;;^UTILITY(U,$J,358.3,39318,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Right Eye
+ ;;^UTILITY(U,$J,358.3,39318,1,4,0)
+ ;;=4^H40.151
+ ;;^UTILITY(U,$J,358.3,39318,2)
+ ;;=^5138037
+ ;;^UTILITY(U,$J,358.3,39319,0)
+ ;;=H40.152^^153^1921^117
+ ;;^UTILITY(U,$J,358.3,39319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38925,1,3,0)
- ;;=3^Mononeuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,38925,1,4,0)
- ;;=4^G58.9
- ;;^UTILITY(U,$J,358.3,38925,2)
- ;;=^5004065
- ;;^UTILITY(U,$J,358.3,38926,0)
- ;;=M79.1^^180^1989^18
- ;;^UTILITY(U,$J,358.3,38926,1,0)
+ ;;^UTILITY(U,$J,358.3,39319,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Left Eye
+ ;;^UTILITY(U,$J,358.3,39319,1,4,0)
+ ;;=4^H40.152
+ ;;^UTILITY(U,$J,358.3,39319,2)
+ ;;=^5138038
+ ;;^UTILITY(U,$J,358.3,39320,0)
+ ;;=H40.153^^153^1921^116
+ ;;^UTILITY(U,$J,358.3,39320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38926,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,38926,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,38926,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,38927,0)
- ;;=M60.9^^180^1989^19
- ;;^UTILITY(U,$J,358.3,38927,1,0)
+ ;;^UTILITY(U,$J,358.3,39320,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Bilateral
+ ;;^UTILITY(U,$J,358.3,39320,1,4,0)
+ ;;=4^H40.153
+ ;;^UTILITY(U,$J,358.3,39320,2)
+ ;;=^5138039
+ ;;^UTILITY(U,$J,358.3,39321,0)
+ ;;=H40.20X1^^153^1921^103
+ ;;^UTILITY(U,$J,358.3,39321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38927,1,3,0)
- ;;=3^Myositis,Unspec
- ;;^UTILITY(U,$J,358.3,38927,1,4,0)
- ;;=4^M60.9
- ;;^UTILITY(U,$J,358.3,38927,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,38928,0)
- ;;=L59.9^^180^1989^32
- ;;^UTILITY(U,$J,358.3,38928,1,0)
+ ;;^UTILITY(U,$J,358.3,39321,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39321,1,4,0)
+ ;;=4^H40.20X1
+ ;;^UTILITY(U,$J,358.3,39321,2)
+ ;;=^5005814
+ ;;^UTILITY(U,$J,358.3,39322,0)
+ ;;=H40.20X2^^153^1921^104
+ ;;^UTILITY(U,$J,358.3,39322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38928,1,3,0)
- ;;=3^Skin Disorder,Related to Radiation,Unspec
- ;;^UTILITY(U,$J,358.3,38928,1,4,0)
- ;;=4^L59.9
- ;;^UTILITY(U,$J,358.3,38928,2)
- ;;=^5009233
- ;;^UTILITY(U,$J,358.3,38929,0)
- ;;=T65.91XS^^180^1989^36
- ;;^UTILITY(U,$J,358.3,38929,1,0)
+ ;;^UTILITY(U,$J,358.3,39322,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39322,1,4,0)
+ ;;=4^H40.20X2
+ ;;^UTILITY(U,$J,358.3,39322,2)
+ ;;=^5005815
+ ;;^UTILITY(U,$J,358.3,39323,0)
+ ;;=H40.20X3^^153^1921^105
+ ;;^UTILITY(U,$J,358.3,39323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38929,1,3,0)
- ;;=3^Toxic effect of unsp substance, accidental, sequela
- ;;^UTILITY(U,$J,358.3,38929,1,4,0)
- ;;=4^T65.91XS
- ;;^UTILITY(U,$J,358.3,38929,2)
- ;;=^5053908
- ;;^UTILITY(U,$J,358.3,38930,0)
- ;;=T65.92XS^^180^1989^37
- ;;^UTILITY(U,$J,358.3,38930,1,0)
+ ;;^UTILITY(U,$J,358.3,39323,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39323,1,4,0)
+ ;;=4^H40.20X3
+ ;;^UTILITY(U,$J,358.3,39323,2)
+ ;;=^5005816
+ ;;^UTILITY(U,$J,358.3,39324,0)
+ ;;=H40.20X4^^153^1921^102
+ ;;^UTILITY(U,$J,358.3,39324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38930,1,3,0)
- ;;=3^Toxic effect of unsp substance, self-harm, sequela
- ;;^UTILITY(U,$J,358.3,38930,1,4,0)
- ;;=4^T65.92XS
- ;;^UTILITY(U,$J,358.3,38930,2)
- ;;=^5053911
- ;;^UTILITY(U,$J,358.3,38931,0)
- ;;=T65.93XS^^180^1989^38
- ;;^UTILITY(U,$J,358.3,38931,1,0)
+ ;;^UTILITY(U,$J,358.3,39324,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39324,1,4,0)
+ ;;=4^H40.20X4
+ ;;^UTILITY(U,$J,358.3,39324,2)
+ ;;=^5005817
+ ;;^UTILITY(U,$J,358.3,39325,0)
+ ;;=H40.2211^^153^1921^23
+ ;;^UTILITY(U,$J,358.3,39325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38931,1,3,0)
- ;;=3^Toxic effect of unspecified substance, assault, sequela
- ;;^UTILITY(U,$J,358.3,38931,1,4,0)
- ;;=4^T65.93XS
- ;;^UTILITY(U,$J,358.3,38931,2)
- ;;=^5053914
- ;;^UTILITY(U,$J,358.3,38932,0)
- ;;=T65.94XS^^180^1989^39
- ;;^UTILITY(U,$J,358.3,38932,1,0)
+ ;;^UTILITY(U,$J,358.3,39325,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39325,1,4,0)
+ ;;=4^H40.2211
+ ;;^UTILITY(U,$J,358.3,39325,2)
+ ;;=^5005823
+ ;;^UTILITY(U,$J,358.3,39326,0)
+ ;;=H40.2212^^153^1921^24
+ ;;^UTILITY(U,$J,358.3,39326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38932,1,3,0)
- ;;=3^Toxic effect of unspecified substance, undetermined, sequela
- ;;^UTILITY(U,$J,358.3,38932,1,4,0)
- ;;=4^T65.94XS
- ;;^UTILITY(U,$J,358.3,38932,2)
- ;;=^5053917
- ;;^UTILITY(U,$J,358.3,38933,0)
- ;;=R20.0^^180^1989^21
- ;;^UTILITY(U,$J,358.3,38933,1,0)
+ ;;^UTILITY(U,$J,358.3,39326,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39326,1,4,0)
+ ;;=4^H40.2212
+ ;;^UTILITY(U,$J,358.3,39326,2)
+ ;;=^5005824
+ ;;^UTILITY(U,$J,358.3,39327,0)
+ ;;=H40.2213^^153^1921^25
+ ;;^UTILITY(U,$J,358.3,39327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38933,1,3,0)
- ;;=3^Numbness of Skin
- ;;^UTILITY(U,$J,358.3,38933,1,4,0)
- ;;=4^R20.0
- ;;^UTILITY(U,$J,358.3,38933,2)
- ;;=^5019278
- ;;^UTILITY(U,$J,358.3,38934,0)
- ;;=R63.0^^180^1989^1
- ;;^UTILITY(U,$J,358.3,38934,1,0)
+ ;;^UTILITY(U,$J,358.3,39327,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39327,1,4,0)
+ ;;=4^H40.2213
+ ;;^UTILITY(U,$J,358.3,39327,2)
+ ;;=^5005825
+ ;;^UTILITY(U,$J,358.3,39328,0)
+ ;;=H40.2214^^153^1921^22
+ ;;^UTILITY(U,$J,358.3,39328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38934,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,38934,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,38934,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,38935,0)
- ;;=R43.0^^180^1989^2
- ;;^UTILITY(U,$J,358.3,38935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38935,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,38935,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,38935,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,38936,0)
- ;;=T20.00XS^^180^1989^3
+ ;;^UTILITY(U,$J,358.3,39328,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39328,1,4,0)
+ ;;=4^H40.2214

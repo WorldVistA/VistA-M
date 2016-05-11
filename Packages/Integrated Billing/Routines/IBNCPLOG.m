@@ -1,6 +1,6 @@
 IBNCPLOG ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
- ;;2.0;INTEGRATED BILLING;**342,339,363,383,411,435,452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**342,339,363,383,411,435,452,534**;21-MAR-94;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;store data related to the IB calls made by ECME package in the file #366.14
  ;input:
@@ -14,7 +14,7 @@ IBNCPLOG ;BHAM ISC/SS - IB ECME EVNT REPORT ;3/5/08  14:02
  ;output:
  ;none
 LOG(IBIBD,DFN,IBPROC,IBRESULT,IBJOB,IBDTTM,IBUSR) ;Store the data
- N NDX,Z,REF,IBDATE,IBDTIEN,IBEVNIEN,IBIBDTYP,IBRETV
+ N NDX,Z,REF,IBDATE,IBDTIEN,IBEVNIEN,IBIBDTYP,IBRETV,IBPTR
  S IBRESULT=$G(IBRESULT)
  ;
  I '$G(IBJOB) S IBJOB=$J
@@ -37,6 +37,9 @@ LOG(IBIBD,DFN,IBPROC,IBRESULT,IBJOB,IBDTTM,IBUSR) ;Store the data
  I IBRESULT'="" D
  . S IBRETV=+$$FILLFLDS^IBNCPUT1(366.141,".07",IBEVNIEN_","_IBDTIEN,+IBRESULT) ;RESULT
  . S IBRETV=+$$FILLFLDS^IBNCPUT1(366.141,".08",IBEVNIEN_","_IBDTIEN,$P(IBRESULT,U,2)) ;RESULT MESSAGE
+ . I IBPROC="BILLABLE STATUS CHECK",$P(IBRESULT,U,2)]"" D
+ .. S IBPTR=$$GETREAS($P(IBRESULT,U,2))
+ .. I IBPTR S IBRETV=+$$FILLFLDS^IBNCPUT1(366.141,".02",IBEVNIEN_","_IBDTIEN,IBPTR) ; Non-Billable Status Reason
  . I $P(IBRESULT,U,3)'="" S IBRETV=+$$FILLFLDS^IBNCPUT1(366.141,"7.05",IBEVNIEN_","_IBDTIEN,$P(IBRESULT,U,3)) ; Eligibility from IB billing determination (IB*2*452)
  . Q
  ;
@@ -213,3 +216,28 @@ ADDINS(IBDTIEN,IBEVIEN) ;
  . S IBX2=$$INSITEM^IBNCPUT1(366.1412,IBEVIEN_","_IBDTIEN,IBX,IBX)
  Q +$O(^IBCNR(366.14,IBDTIEN,1,IBEVIEN,5,"B",IBX,0))
  ;
+GETREAS(REASON) ;
+ ; Get the pointer of the IB NCPDP NON-BILLABLE REASON file - Create the 
+ ;   entry if needed.
+ ;
+ ; Input:
+ ;   REASON: Non-billable reason text
+ ; Output:
+ ;   IEN of the IB NCPPD NON-BILLABLE REASON file
+ ;
+ I $G(REASON)="" Q ""
+ N NBSTS,DIC,X,Y,DTOUT,DUOUT
+ ;
+ ; Make uppercase and less than 60 characters
+ S REASON=$TR($E($$UP^XLFSTR(REASON),1,60),"^")
+ I $E(REASON,$L(REASON))="." S REASON=$E(REASON,1,$L(REASON)-1)
+ ;
+ ; Check if it already exists.  If so, return the IEN
+ S NBSTS=$O(^IBCNR(366.17,"B",REASON,""))
+ I NBSTS Q NBSTS
+ ;
+ ; If it does not exist not, add to the dictionary
+ S DIC="^IBCNR(366.17,",DIC(0)="F",X=REASON
+ D FILE^DICN
+ I Y=-1 Q ""
+ Q +Y

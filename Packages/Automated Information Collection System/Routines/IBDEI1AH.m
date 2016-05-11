@@ -1,122 +1,122 @@
-IBDEI1AH ; ; 19-NOV-2015
+IBDEI1AH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21540,1,4,0)
- ;;=4^S06.826S
- ;;^UTILITY(U,$J,358.3,21540,2)
- ;;=^5021166
- ;;^UTILITY(U,$J,358.3,21541,0)
- ;;=S06.823S^^101^1032^65
- ;;^UTILITY(U,$J,358.3,21541,1,0)
+ ;;^UTILITY(U,$J,358.3,21922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21541,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,21541,1,4,0)
- ;;=4^S06.823S
- ;;^UTILITY(U,$J,358.3,21541,2)
- ;;=^5021157
- ;;^UTILITY(U,$J,358.3,21542,0)
- ;;=S06.821S^^101^1032^66
- ;;^UTILITY(U,$J,358.3,21542,1,0)
+ ;;^UTILITY(U,$J,358.3,21922,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,21922,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,21922,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,21923,0)
+ ;;=L97.912^^87^970^222
+ ;;^UTILITY(U,$J,358.3,21923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21542,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,21542,1,4,0)
- ;;=4^S06.821S
- ;;^UTILITY(U,$J,358.3,21542,2)
- ;;=^5021151
- ;;^UTILITY(U,$J,358.3,21543,0)
- ;;=S06.822S^^101^1032^67
- ;;^UTILITY(U,$J,358.3,21543,1,0)
+ ;;^UTILITY(U,$J,358.3,21923,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,21923,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,21923,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,21924,0)
+ ;;=L97.913^^87^970^223
+ ;;^UTILITY(U,$J,358.3,21924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21543,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21543,1,4,0)
- ;;=4^S06.822S
- ;;^UTILITY(U,$J,358.3,21543,2)
- ;;=^5021154
- ;;^UTILITY(U,$J,358.3,21544,0)
- ;;=S06.824S^^101^1032^68
- ;;^UTILITY(U,$J,358.3,21544,1,0)
+ ;;^UTILITY(U,$J,358.3,21924,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,21924,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,21924,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,21925,0)
+ ;;=L97.914^^87^970^224
+ ;;^UTILITY(U,$J,358.3,21925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21544,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,21544,1,4,0)
- ;;=4^S06.824S
- ;;^UTILITY(U,$J,358.3,21544,2)
- ;;=^5021160
- ;;^UTILITY(U,$J,358.3,21545,0)
- ;;=S06.829S^^101^1032^69
- ;;^UTILITY(U,$J,358.3,21545,1,0)
+ ;;^UTILITY(U,$J,358.3,21925,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,21925,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,21925,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,21926,0)
+ ;;=L97.919^^87^970^225
+ ;;^UTILITY(U,$J,358.3,21926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21545,1,3,0)
- ;;=3^Inj left int carotid, intcr w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,21545,1,4,0)
- ;;=4^S06.829S
- ;;^UTILITY(U,$J,358.3,21545,2)
- ;;=^5021175
- ;;^UTILITY(U,$J,358.3,21546,0)
- ;;=S06.820S^^101^1032^70
- ;;^UTILITY(U,$J,358.3,21546,1,0)
+ ;;^UTILITY(U,$J,358.3,21926,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,21926,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,21926,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,21927,0)
+ ;;=L97.921^^87^970^191
+ ;;^UTILITY(U,$J,358.3,21927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21546,1,3,0)
- ;;=3^Inj left int carotid, intcr w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,21546,1,4,0)
- ;;=4^S06.820S
- ;;^UTILITY(U,$J,358.3,21546,2)
- ;;=^5021148
- ;;^UTILITY(U,$J,358.3,21547,0)
- ;;=S06.815S^^101^1032^71
- ;;^UTILITY(U,$J,358.3,21547,1,0)
+ ;;^UTILITY(U,$J,358.3,21927,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,21927,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,21927,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,21928,0)
+ ;;=L97.922^^87^970^192
+ ;;^UTILITY(U,$J,358.3,21928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21547,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,21547,1,4,0)
- ;;=4^S06.815S
- ;;^UTILITY(U,$J,358.3,21547,2)
- ;;=^5021133
- ;;^UTILITY(U,$J,358.3,21548,0)
- ;;=S06.816S^^101^1032^72
- ;;^UTILITY(U,$J,358.3,21548,1,0)
+ ;;^UTILITY(U,$J,358.3,21928,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,21928,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,21928,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,21929,0)
+ ;;=L97.923^^87^970^193
+ ;;^UTILITY(U,$J,358.3,21929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21548,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,21548,1,4,0)
- ;;=4^S06.816S
- ;;^UTILITY(U,$J,358.3,21548,2)
- ;;=^5021136
- ;;^UTILITY(U,$J,358.3,21549,0)
- ;;=S06.813S^^101^1032^73
- ;;^UTILITY(U,$J,358.3,21549,1,0)
+ ;;^UTILITY(U,$J,358.3,21929,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,21929,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,21929,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,21930,0)
+ ;;=L97.924^^87^970^194
+ ;;^UTILITY(U,$J,358.3,21930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21549,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,21549,1,4,0)
- ;;=4^S06.813S
- ;;^UTILITY(U,$J,358.3,21549,2)
- ;;=^5021127
- ;;^UTILITY(U,$J,358.3,21550,0)
- ;;=S06.811S^^101^1032^74
- ;;^UTILITY(U,$J,358.3,21550,1,0)
+ ;;^UTILITY(U,$J,358.3,21930,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,21930,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,21930,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,21931,0)
+ ;;=L97.929^^87^970^195
+ ;;^UTILITY(U,$J,358.3,21931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21550,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,21550,1,4,0)
- ;;=4^S06.811S
- ;;^UTILITY(U,$J,358.3,21550,2)
- ;;=^5021121
- ;;^UTILITY(U,$J,358.3,21551,0)
- ;;=S06.812S^^101^1032^75
- ;;^UTILITY(U,$J,358.3,21551,1,0)
+ ;;^UTILITY(U,$J,358.3,21931,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,21931,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,21931,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,21932,0)
+ ;;=L98.2^^87^970^149
+ ;;^UTILITY(U,$J,358.3,21932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21551,1,3,0)
- ;;=3^Inj right int carotid, intcr w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21551,1,4,0)
- ;;=4^S06.812S
- ;;^UTILITY(U,$J,358.3,21551,2)
- ;;=^5021124
- ;;^UTILITY(U,$J,358.3,21552,0)
- ;;=S06.814S^^101^1032^76
- ;;^UTILITY(U,$J,358.3,21552,1,0)
+ ;;^UTILITY(U,$J,358.3,21932,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,21932,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,21932,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,21933,0)
+ ;;=L98.9^^87^970^267
+ ;;^UTILITY(U,$J,358.3,21933,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21933,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,21933,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,21933,2)
+ ;;=^5009595

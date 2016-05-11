@@ -1,5 +1,5 @@
 VPSRPC16  ;BPOIFO/EL,WOIFO/BT - Patient Demographic (continue);07/31/14 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**4**;Jul 31, 2014;Build 27
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14**;Jul 31, 2014;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -25,21 +25,26 @@ GETDEM(VPSARR,DFN) ;given DFN, returns the patient demographics, insurance, and 
  D DEM(.VPSARR,DFN) ; Store Patient Demographic Data
  D SENLOG(.VPSARR,DFN) ; Store Patient Sensitive Record File-38.1
  D ELIG(.VPSARR,DFN) ; Store Patient Eligibily
- D ENR(.VPSARR,DFN) ; Store Patient Enrollment
+ ;D ENR(.VPSARR,DFN) ; Store Patient Enrollment
+ N X,Y
+ S X="",X=$O(^DGEN(27.11,"C",DFN,X),-1) Q:$G(X)=""
+ S Y="",Y=$$GET1^DIQ(27.11,X_",",.04,"E")
+ I $G(Y)'="" D SET(.VPSARR,27.11,DFN,".04",Y)
  D ADD(.VPSARR,DFN) ; Store Patient Address
  D OAD(.VPSARR,DFN) ; Store Other Patient Variables
+ D INP(.VPSARR,DFN) ; Inpatient information
  D IBB^VPSRPC26(.VPSARR,DFN) ; Store Patient Insurance Info
  D REC^VPSRPC26(.VPSARR,DFN) ; Store Patient Record Flag
  D DGS^VPSRPC26(.VPSARR,DFN) ; Store Pre-Registration Audit
  D BAL^VPSRPC26(.VPSARR,DFN) ; Store Balance
- D OTH^VPSRPC26(.VPSARR,DFN) ; Store Other information not in KNOWN API
- D POW^VPSRPC26(.VPSARR,DFN) ; Store POW
- D PH^VPSRPC26(.VPSARR,DFN) ; Store Purple Heart
- D MP^VPSRPC26(.VPSARR,DFN) ; Store Missing Person
- D SVC^VPSRPC26(.VPSARR,DFN) ; Store Service Connected and Rated Disabilities
- D CHG^VPSRPC26(.VPSARR,DFN) ; Store Change DT/TM
- D BLPAT^VPSRPC26(.VPSARR,DFN) ; Store Billing Patient
- D PCT^VPSRPC26(.VPSARR,DFN) ; Primary Care Team
+ ;D OTH^VPSRPC26(.VPSARR,DFN) ; Store Other information not in KNOWN API
+ ;D POW^VPSRPC26(.VPSARR,DFN) ; Store POW
+ ;D PH^VPSRPC26(.VPSARR,DFN) ; Store Purple Heart
+ ;D MP^VPSRPC26(.VPSARR,DFN) ; Store Missing Person
+ ;D SVC^VPSRPC26(.VPSARR,DFN) ; Store Service Connected and Rated Disabilities
+ ;D CHG^VPSRPC26(.VPSARR,DFN) ; Store Change DT/TM
+ ;D BLPAT^VPSRPC26(.VPSARR,DFN) ; Store Billing Patient
+ ;D PCT^VPSRPC26(.VPSARR,DFN) ; Primary Care Team
  Q
  ;
 DEM(VPSARR,DFN) ; Store Patient Demographic Data
@@ -129,10 +134,19 @@ ELIG(VPSARR,DFN) ; Eligibily
  I MTIEN S VAL=$$GET1^DIQ(408.31,MTIEN_",",.2,"E") D SET(.VPSARR,408.31,DFN_";"_MTIEN,.2,VAL) ; HARDSHIP?
  QUIT
  ;
+INP(VPSARR,DFN) ;
+ N VAIP
+ D IN5^VADPT
+ D SET(.VPSARR,2,DFN,"",$S(VAIP(5)]"":"YES",1:"NO"),"INPATIENT STATUS") ; Inpatient Status
+ D SET(.VPSARR,2,DFN,.1,$P(VAIP(5),U,2),"") ; Patient Ward Location
+ D SET(.VPSARR,2,DFN,.101,$P(VAIP(6),U,2),"") ; Patient Bed Assignment
+ D SET(.VPSARR,2,DFN,.109,$P(VAIP(19,1),U,2),"") ; Facility Directory Preference
+ QUIT
+ ;
 ENR(VPSARR,DFN) ; Enrollment
  N ENRIEN S ENRIEN=$O(^DGEN(27.11,"C",DFN,""),-1)
  QUIT:ENRIEN=""
- N DFENR D GET^DGENA(ENRIEN,.DGENR)
+ N DGENR D GET^DGENA(ENRIEN,.DGENR)
  N VAL
  S VAL=$G(DGENR("STATUS")),VAL=$$GET1^DIQ(27.11,ENRIEN_",",.04,"E") D SET(.VPSARR,27.11,DFN_";"_ENRIEN,.04,VAL) ;ENROLLMENT STATUS
  S VAL=$G(DGENR("ELIG","CODE")),VAL=$$GET1^DIQ(27.11,ENRIEN_",",50.01,"E") D SET(.VPSARR,27.11,DFN_";"_ENRIEN,50.01,VAL) ;ELIGIBILITY CODE

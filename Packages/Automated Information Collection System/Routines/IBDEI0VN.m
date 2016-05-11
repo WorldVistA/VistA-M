@@ -1,130 +1,130 @@
-IBDEI0VN ; ; 19-NOV-2015
+IBDEI0VN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14563,1,4,0)
- ;;=4^H35.713
- ;;^UTILITY(U,$J,358.3,14563,2)
- ;;=^5005705
- ;;^UTILITY(U,$J,358.3,14564,0)
- ;;=H35.721^^82^779^102
- ;;^UTILITY(U,$J,358.3,14564,1,0)
+ ;;^UTILITY(U,$J,358.3,14838,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,14838,1,4,0)
+ ;;=4^L89.120
+ ;;^UTILITY(U,$J,358.3,14838,2)
+ ;;=^5009358
+ ;;^UTILITY(U,$J,358.3,14839,0)
+ ;;=L89.121^^56^633^49
+ ;;^UTILITY(U,$J,358.3,14839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14564,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Right Eye
- ;;^UTILITY(U,$J,358.3,14564,1,4,0)
- ;;=4^H35.721
- ;;^UTILITY(U,$J,358.3,14564,2)
- ;;=^5005707
- ;;^UTILITY(U,$J,358.3,14565,0)
- ;;=H35.722^^82^779^103
- ;;^UTILITY(U,$J,358.3,14565,1,0)
+ ;;^UTILITY(U,$J,358.3,14839,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,14839,1,4,0)
+ ;;=4^L89.121
+ ;;^UTILITY(U,$J,358.3,14839,2)
+ ;;=^5009359
+ ;;^UTILITY(U,$J,358.3,14840,0)
+ ;;=L89.122^^56^633^50
+ ;;^UTILITY(U,$J,358.3,14840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14565,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,14565,1,4,0)
- ;;=4^H35.722
- ;;^UTILITY(U,$J,358.3,14565,2)
- ;;=^5005708
- ;;^UTILITY(U,$J,358.3,14566,0)
- ;;=H35.723^^82^779^104
- ;;^UTILITY(U,$J,358.3,14566,1,0)
+ ;;^UTILITY(U,$J,358.3,14840,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,14840,1,4,0)
+ ;;=4^L89.122
+ ;;^UTILITY(U,$J,358.3,14840,2)
+ ;;=^5009360
+ ;;^UTILITY(U,$J,358.3,14841,0)
+ ;;=L89.123^^56^633^51
+ ;;^UTILITY(U,$J,358.3,14841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14566,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Bilateral
- ;;^UTILITY(U,$J,358.3,14566,1,4,0)
- ;;=4^H35.723
- ;;^UTILITY(U,$J,358.3,14566,2)
- ;;=^5005709
- ;;^UTILITY(U,$J,358.3,14567,0)
- ;;=H35.731^^82^779^46
- ;;^UTILITY(U,$J,358.3,14567,1,0)
+ ;;^UTILITY(U,$J,358.3,14841,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,14841,1,4,0)
+ ;;=4^L89.123
+ ;;^UTILITY(U,$J,358.3,14841,2)
+ ;;=^5009361
+ ;;^UTILITY(U,$J,358.3,14842,0)
+ ;;=L89.124^^56^633^52
+ ;;^UTILITY(U,$J,358.3,14842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14567,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Right Eye
- ;;^UTILITY(U,$J,358.3,14567,1,4,0)
- ;;=4^H35.731
- ;;^UTILITY(U,$J,358.3,14567,2)
- ;;=^5005711
- ;;^UTILITY(U,$J,358.3,14568,0)
- ;;=H35.732^^82^779^47
- ;;^UTILITY(U,$J,358.3,14568,1,0)
+ ;;^UTILITY(U,$J,358.3,14842,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,14842,1,4,0)
+ ;;=4^L89.124
+ ;;^UTILITY(U,$J,358.3,14842,2)
+ ;;=^5009362
+ ;;^UTILITY(U,$J,358.3,14843,0)
+ ;;=L89.129^^56^633^53
+ ;;^UTILITY(U,$J,358.3,14843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14568,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,14568,1,4,0)
- ;;=4^H35.732
- ;;^UTILITY(U,$J,358.3,14568,2)
- ;;=^5005712
- ;;^UTILITY(U,$J,358.3,14569,0)
- ;;=H35.341^^82^779^60
- ;;^UTILITY(U,$J,358.3,14569,1,0)
+ ;;^UTILITY(U,$J,358.3,14843,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,14843,1,4,0)
+ ;;=4^L89.129
+ ;;^UTILITY(U,$J,358.3,14843,2)
+ ;;=^5133652
+ ;;^UTILITY(U,$J,358.3,14844,0)
+ ;;=L89.130^^56^633^96
+ ;;^UTILITY(U,$J,358.3,14844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14569,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Right Eye
- ;;^UTILITY(U,$J,358.3,14569,1,4,0)
- ;;=4^H35.341
- ;;^UTILITY(U,$J,358.3,14569,2)
- ;;=^5005650
- ;;^UTILITY(U,$J,358.3,14570,0)
- ;;=H35.342^^82^779^59
- ;;^UTILITY(U,$J,358.3,14570,1,0)
+ ;;^UTILITY(U,$J,358.3,14844,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,14844,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,14844,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,14845,0)
+ ;;=L89.131^^56^633^91
+ ;;^UTILITY(U,$J,358.3,14845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14570,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Left Eye
- ;;^UTILITY(U,$J,358.3,14570,1,4,0)
- ;;=4^H35.342
- ;;^UTILITY(U,$J,358.3,14570,2)
- ;;=^5005651
- ;;^UTILITY(U,$J,358.3,14571,0)
- ;;=H35.343^^82^779^58
- ;;^UTILITY(U,$J,358.3,14571,1,0)
+ ;;^UTILITY(U,$J,358.3,14845,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,14845,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,14845,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,14846,0)
+ ;;=L89.132^^56^633^92
+ ;;^UTILITY(U,$J,358.3,14846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14571,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Bilateral
- ;;^UTILITY(U,$J,358.3,14571,1,4,0)
- ;;=4^H35.343
- ;;^UTILITY(U,$J,358.3,14571,2)
- ;;=^5005652
- ;;^UTILITY(U,$J,358.3,14572,0)
- ;;=H35.381^^82^779^108
- ;;^UTILITY(U,$J,358.3,14572,1,0)
+ ;;^UTILITY(U,$J,358.3,14846,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,14846,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,14846,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,14847,0)
+ ;;=L89.133^^56^633^93
+ ;;^UTILITY(U,$J,358.3,14847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14572,1,3,0)
- ;;=3^Toxic Maculopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,14572,1,4,0)
- ;;=4^H35.381
- ;;^UTILITY(U,$J,358.3,14572,2)
- ;;=^5005666
- ;;^UTILITY(U,$J,358.3,14573,0)
- ;;=H35.382^^82^779^107
- ;;^UTILITY(U,$J,358.3,14573,1,0)
+ ;;^UTILITY(U,$J,358.3,14847,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,14847,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,14847,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,14848,0)
+ ;;=L89.134^^56^633^94
+ ;;^UTILITY(U,$J,358.3,14848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14573,1,3,0)
- ;;=3^Toxic Maculopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,14573,1,4,0)
- ;;=4^H35.382
- ;;^UTILITY(U,$J,358.3,14573,2)
- ;;=^5005667
- ;;^UTILITY(U,$J,358.3,14574,0)
- ;;=H35.371^^82^779^73
- ;;^UTILITY(U,$J,358.3,14574,1,0)
+ ;;^UTILITY(U,$J,358.3,14848,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,14848,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,14848,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,14849,0)
+ ;;=L89.139^^56^633^95
+ ;;^UTILITY(U,$J,358.3,14849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14574,1,3,0)
- ;;=3^Puckering of Macular,Right Eye
- ;;^UTILITY(U,$J,358.3,14574,1,4,0)
- ;;=4^H35.371
- ;;^UTILITY(U,$J,358.3,14574,2)
- ;;=^5005662
- ;;^UTILITY(U,$J,358.3,14575,0)
- ;;=H35.372^^82^779^72
- ;;^UTILITY(U,$J,358.3,14575,1,0)
+ ;;^UTILITY(U,$J,358.3,14849,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,14849,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,14849,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,14850,0)
+ ;;=L89.140^^56^633^48
+ ;;^UTILITY(U,$J,358.3,14850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14575,1,3,0)
- ;;=3^Puckering of Macular,Left Eye
- ;;^UTILITY(U,$J,358.3,14575,1,4,0)
- ;;=4^H35.372
- ;;^UTILITY(U,$J,358.3,14575,2)
- ;;=^5005663
- ;;^UTILITY(U,$J,358.3,14576,0)
- ;;=H35.362^^82^779^40
+ ;;^UTILITY(U,$J,358.3,14850,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,14850,1,4,0)
+ ;;=4^L89.140
+ ;;^UTILITY(U,$J,358.3,14850,2)
+ ;;=^5133655

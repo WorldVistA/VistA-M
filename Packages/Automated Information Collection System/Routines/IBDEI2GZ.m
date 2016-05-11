@@ -1,122 +1,136 @@
-IBDEI2GZ ; ; 19-NOV-2015
+IBDEI2GZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41435,0)
- ;;=L97.421^^189^2098^20
- ;;^UTILITY(U,$J,358.3,41435,1,0)
+ ;;^UTILITY(U,$J,358.3,41884,0)
+ ;;=M85.822^^159^2010^86
+ ;;^UTILITY(U,$J,358.3,41884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41435,1,3,0)
- ;;=3^Non-pressure chron ulcer lft heel/midft lmt to brkdwn skin
- ;;^UTILITY(U,$J,358.3,41435,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,41435,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,41436,0)
- ;;=L97.419^^189^2098^41
- ;;^UTILITY(U,$J,358.3,41436,1,0)
+ ;;^UTILITY(U,$J,358.3,41884,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,41884,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,41884,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,41885,0)
+ ;;=M85.89^^159^2010^87
+ ;;^UTILITY(U,$J,358.3,41885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41436,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ unsp serverity
- ;;^UTILITY(U,$J,358.3,41436,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,41436,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,41437,0)
- ;;=L97.521^^189^2098^11
- ;;^UTILITY(U,$J,358.3,41437,1,0)
+ ;;^UTILITY(U,$J,358.3,41885,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,41885,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,41885,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,41886,0)
+ ;;=M85.88^^159^2010^88
+ ;;^UTILITY(U,$J,358.3,41886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41437,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft lmt to brkdwn skin, oth prt
- ;;^UTILITY(U,$J,358.3,41437,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,41437,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,41438,0)
- ;;=L97.519^^189^2098^35
- ;;^UTILITY(U,$J,358.3,41438,1,0)
+ ;;^UTILITY(U,$J,358.3,41886,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,41886,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,41886,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,41887,0)
+ ;;=M85.871^^159^2010^89
+ ;;^UTILITY(U,$J,358.3,41887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41438,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ unsp sev, oth prt
- ;;^UTILITY(U,$J,358.3,41438,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,41438,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,41439,0)
- ;;=L97.514^^189^2098^33
- ;;^UTILITY(U,$J,358.3,41439,1,0)
+ ;;^UTILITY(U,$J,358.3,41887,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,41887,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,41887,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,41888,0)
+ ;;=M85.831^^159^2010^90
+ ;;^UTILITY(U,$J,358.3,41888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41439,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ necr of bone, oth prt
- ;;^UTILITY(U,$J,358.3,41439,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,41439,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,41440,0)
- ;;=L97.513^^189^2098^34
- ;;^UTILITY(U,$J,358.3,41440,1,0)
+ ;;^UTILITY(U,$J,358.3,41888,1,3,0)
+ ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,41888,1,4,0)
+ ;;=4^M85.831
+ ;;^UTILITY(U,$J,358.3,41888,2)
+ ;;=^5014480
+ ;;^UTILITY(U,$J,358.3,41889,0)
+ ;;=M85.841^^159^2010^91
+ ;;^UTILITY(U,$J,358.3,41889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41440,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ necr muscl, oth prt
- ;;^UTILITY(U,$J,358.3,41440,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,41440,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,41441,0)
- ;;=L97.511^^189^2098^31
- ;;^UTILITY(U,$J,358.3,41441,1,0)
+ ;;^UTILITY(U,$J,358.3,41889,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,41889,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,41889,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,41890,0)
+ ;;=M85.861^^159^2010^92
+ ;;^UTILITY(U,$J,358.3,41890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41441,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft lmt to brkdwn skin, oth prt
- ;;^UTILITY(U,$J,358.3,41441,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,41441,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,41442,0)
- ;;=L97.512^^189^2098^32
- ;;^UTILITY(U,$J,358.3,41442,1,0)
+ ;;^UTILITY(U,$J,358.3,41890,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,41890,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,41890,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,41891,0)
+ ;;=M85.811^^159^2010^93
+ ;;^UTILITY(U,$J,358.3,41891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41442,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ft w/ fat layer expos, oth prt
- ;;^UTILITY(U,$J,358.3,41442,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,41442,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,41443,0)
- ;;=L97.529^^189^2098^15
- ;;^UTILITY(U,$J,358.3,41443,1,0)
+ ;;^UTILITY(U,$J,358.3,41891,1,3,0)
+ ;;=3^Osteopenia,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41891,1,4,0)
+ ;;=4^M85.811
+ ;;^UTILITY(U,$J,358.3,41891,2)
+ ;;=^5014474
+ ;;^UTILITY(U,$J,358.3,41892,0)
+ ;;=M85.851^^159^2010^94
+ ;;^UTILITY(U,$J,358.3,41892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41443,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ unsp sev, oth prt
- ;;^UTILITY(U,$J,358.3,41443,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,41443,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,41444,0)
- ;;=L97.524^^189^2098^13
- ;;^UTILITY(U,$J,358.3,41444,1,0)
+ ;;^UTILITY(U,$J,358.3,41892,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,41892,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,41892,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,41893,0)
+ ;;=M85.821^^159^2010^95
+ ;;^UTILITY(U,$J,358.3,41893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41444,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr of bone, oth prt
- ;;^UTILITY(U,$J,358.3,41444,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,41444,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,41445,0)
- ;;=L97.523^^189^2098^14
- ;;^UTILITY(U,$J,358.3,41445,1,0)
+ ;;^UTILITY(U,$J,358.3,41893,1,3,0)
+ ;;=3^Osteopenia,Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,41893,1,4,0)
+ ;;=4^M85.821
+ ;;^UTILITY(U,$J,358.3,41893,2)
+ ;;=^5014477
+ ;;^UTILITY(U,$J,358.3,41894,0)
+ ;;=M85.80^^159^2010^96
+ ;;^UTILITY(U,$J,358.3,41894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41445,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ necr muscle, oth prt
- ;;^UTILITY(U,$J,358.3,41445,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,41445,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,41446,0)
- ;;=L97.522^^189^2098^12
- ;;^UTILITY(U,$J,358.3,41446,1,0)
+ ;;^UTILITY(U,$J,358.3,41894,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41894,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,41894,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,41895,0)
+ ;;=B02.0^^159^2011^46
+ ;;^UTILITY(U,$J,358.3,41895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41446,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ft w/ fat layer exp, oth prt
- ;;^UTILITY(U,$J,358.3,41446,1,4,0)
- ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,41895,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,41895,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,41895,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,41896,0)
+ ;;=B02.29^^159^2011^36
+ ;;^UTILITY(U,$J,358.3,41896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41896,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,41896,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,41896,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,41897,0)
+ ;;=F03.90^^159^2011^10

@@ -1,130 +1,124 @@
-IBDEI0D4 ; ; 19-NOV-2015
+IBDEI0D4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5701,0)
- ;;=S01.00XA^^40^375^62
- ;;^UTILITY(U,$J,358.3,5701,1,0)
+ ;;^UTILITY(U,$J,358.3,6019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5701,1,3,0)
- ;;=3^Open Wound of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,5701,1,4,0)
- ;;=4^S01.00XA
- ;;^UTILITY(U,$J,358.3,5701,2)
- ;;=^5020033
- ;;^UTILITY(U,$J,358.3,5702,0)
- ;;=S01.402A^^40^375^7
- ;;^UTILITY(U,$J,358.3,5702,1,0)
+ ;;^UTILITY(U,$J,358.3,6019,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,6019,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,6019,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,6020,0)
+ ;;=L97.112^^30^385^227
+ ;;^UTILITY(U,$J,358.3,6020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5702,1,3,0)
- ;;=3^Open Wound of Left Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,5702,1,4,0)
- ;;=4^S01.402A
- ;;^UTILITY(U,$J,358.3,5702,2)
- ;;=^5020150
- ;;^UTILITY(U,$J,358.3,5703,0)
- ;;=S01.401A^^40^375^38
- ;;^UTILITY(U,$J,358.3,5703,1,0)
+ ;;^UTILITY(U,$J,358.3,6020,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6020,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,6020,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,6021,0)
+ ;;=L97.113^^30^385^228
+ ;;^UTILITY(U,$J,358.3,6021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5703,1,3,0)
- ;;=3^Open Wound of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,5703,1,4,0)
- ;;=4^S01.401A
- ;;^UTILITY(U,$J,358.3,5703,2)
- ;;=^5020147
- ;;^UTILITY(U,$J,358.3,5704,0)
- ;;=S01.80XA^^40^375^1
- ;;^UTILITY(U,$J,358.3,5704,1,0)
+ ;;^UTILITY(U,$J,358.3,6021,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,6021,1,4,0)
+ ;;=4^L97.113
+ ;;^UTILITY(U,$J,358.3,6021,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,6022,0)
+ ;;=L97.114^^30^385^229
+ ;;^UTILITY(U,$J,358.3,6022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5704,1,3,0)
- ;;=3^Open Wound of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,5704,1,4,0)
- ;;=4^S01.80XA
- ;;^UTILITY(U,$J,358.3,5704,2)
- ;;=^5020222
- ;;^UTILITY(U,$J,358.3,5705,0)
- ;;=S01.90XA^^40^375^2
- ;;^UTILITY(U,$J,358.3,5705,1,0)
+ ;;^UTILITY(U,$J,358.3,6022,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,6022,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,6022,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,6023,0)
+ ;;=L97.119^^30^385^230
+ ;;^UTILITY(U,$J,358.3,6023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5705,1,3,0)
- ;;=3^Open Wound of Head,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,5705,1,4,0)
- ;;=4^S01.90XA
- ;;^UTILITY(U,$J,358.3,5705,2)
- ;;=^5020240
- ;;^UTILITY(U,$J,358.3,5706,0)
- ;;=S11.80XA^^40^375^31
- ;;^UTILITY(U,$J,358.3,5706,1,0)
+ ;;^UTILITY(U,$J,358.3,6023,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,6023,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,6023,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,6024,0)
+ ;;=L97.121^^30^385^196
+ ;;^UTILITY(U,$J,358.3,6024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5706,1,3,0)
- ;;=3^Open Wound of Neck NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,5706,1,4,0)
- ;;=4^S11.80XA
- ;;^UTILITY(U,$J,358.3,5706,2)
- ;;=^5021506
- ;;^UTILITY(U,$J,358.3,5707,0)
- ;;=S11.90XA^^40^375^32
- ;;^UTILITY(U,$J,358.3,5707,1,0)
+ ;;^UTILITY(U,$J,358.3,6024,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,6024,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,6024,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,6025,0)
+ ;;=L97.122^^30^385^197
+ ;;^UTILITY(U,$J,358.3,6025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5707,1,3,0)
- ;;=3^Open Wound of Neck,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,5707,1,4,0)
- ;;=4^S11.90XA
- ;;^UTILITY(U,$J,358.3,5707,2)
- ;;=^5021527
- ;;^UTILITY(U,$J,358.3,5708,0)
- ;;=S31.819A^^40^375^37
- ;;^UTILITY(U,$J,358.3,5708,1,0)
+ ;;^UTILITY(U,$J,358.3,6025,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6025,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,6025,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,6026,0)
+ ;;=L97.123^^30^385^198
+ ;;^UTILITY(U,$J,358.3,6026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5708,1,3,0)
- ;;=3^Open Wound of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,5708,1,4,0)
- ;;=4^S31.819A
- ;;^UTILITY(U,$J,358.3,5708,2)
- ;;=^5024308
- ;;^UTILITY(U,$J,358.3,5709,0)
- ;;=S31.829A^^40^375^6
- ;;^UTILITY(U,$J,358.3,5709,1,0)
+ ;;^UTILITY(U,$J,358.3,6026,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,6026,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,6026,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,6027,0)
+ ;;=L97.124^^30^385^199
+ ;;^UTILITY(U,$J,358.3,6027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5709,1,3,0)
- ;;=3^Open Wound of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,5709,1,4,0)
- ;;=4^S31.829A
- ;;^UTILITY(U,$J,358.3,5709,2)
- ;;=^5024320
- ;;^UTILITY(U,$J,358.3,5710,0)
- ;;=S31.100A^^40^375^35
- ;;^UTILITY(U,$J,358.3,5710,1,0)
+ ;;^UTILITY(U,$J,358.3,6027,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,6027,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,6027,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,6028,0)
+ ;;=L97.129^^30^385^200
+ ;;^UTILITY(U,$J,358.3,6028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5710,1,3,0)
- ;;=3^Open Wound of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,5710,1,4,0)
- ;;=4^S31.100A
- ;;^UTILITY(U,$J,358.3,5710,2)
- ;;=^5024023
- ;;^UTILITY(U,$J,358.3,5711,0)
- ;;=S31.101A^^40^375^4
- ;;^UTILITY(U,$J,358.3,5711,1,0)
+ ;;^UTILITY(U,$J,358.3,6028,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,6028,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,6028,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,6029,0)
+ ;;=L97.211^^30^385^206
+ ;;^UTILITY(U,$J,358.3,6029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5711,1,3,0)
- ;;=3^Open Wound of LUQ Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,5711,1,4,0)
- ;;=4^S31.101A
- ;;^UTILITY(U,$J,358.3,5711,2)
- ;;=^5024026
- ;;^UTILITY(U,$J,358.3,5712,0)
- ;;=S31.103A^^40^375^34
- ;;^UTILITY(U,$J,358.3,5712,1,0)
+ ;;^UTILITY(U,$J,358.3,6029,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,6029,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,6029,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,6030,0)
+ ;;=L97.212^^30^385^207
+ ;;^UTILITY(U,$J,358.3,6030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5712,1,3,0)
- ;;=3^Open Wound of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,5712,1,4,0)
- ;;=4^S31.103A
- ;;^UTILITY(U,$J,358.3,5712,2)
- ;;=^5024032
- ;;^UTILITY(U,$J,358.3,5713,0)
- ;;=S31.104A^^40^375^3
- ;;^UTILITY(U,$J,358.3,5713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5713,1,3,0)
- ;;=3^Open Wound of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
+ ;;^UTILITY(U,$J,358.3,6030,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,6030,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,6030,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,6031,0)
+ ;;=L97.213^^30^385^208

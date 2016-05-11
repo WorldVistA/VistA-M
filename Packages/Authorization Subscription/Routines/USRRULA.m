@@ -1,5 +1,10 @@
-USRRULA ; SLC/JER - Rule Browser actions ;2/6/98  17:12
- ;;1.0;AUTHORIZATION/SUBSCRIPTION;**3,28,29**;Jun 20, 1997;Build 7
+USRRULA  ; SLC/JER - Rule Browser actions ;2/6/98  17:12
+ ;;1.0;AUTHORIZATION/SUBSCRIPTION;**3,28,29,37**;Sep 25, 2015;Build 31
+ ;Per VA Directive 6402, this routine should not be modified
+ ;
+ ; External References          DBIA#
+ ; POSTX^HMPEVNT                6301
+ ;
 EDIT ; Edit an existing rule
  N DUP,REDIT,USRDA,USRI,DIROUT,USRCHNG,USRLST,USRRBLD,SAVEDATA
  I '$D(VALMY) D EN^VALM2(XQORNOD(0))
@@ -26,6 +31,7 @@ EDIT1 ; Single record edit
  I '+$G(USRDA) W !,"No Classes selected." H 2 S USRCHNG=0 Q
  S DIE="^USR(8930.1,",DA=USRDA,DR="[USR DEFINE AUTHORIZATIONS]"
  D FULL^VALM1,^DIE S USRCHNG=1
+ D POSTX^HMPEVNT("asu-rule",DA)  ;DBIA 6301
  I '$D(DA) W !!,"<Business Rule DELETED>" H 3 Q
  S XUSRQ=^USR(8930.1,+DA,0),REDIT=0
  I $P(XUSRQ,"^",1)=""!($P(XUSRQ,"^",2)="")!($P(XUSRQ,"^",3)="")!(($P(XUSRQ,"^",4)="")&($P(XUSRQ,"^",6)="")) D  Q
@@ -49,6 +55,7 @@ ADD ; Add a member to the class
  D ^DIC K DLAYGO Q:+Y'>0  S DA=+Y
  S DIE=8930.1,DR="[USR DEFINE AUTHORIZATIONS]"
  D ^DIE
+ I $D(DA) D POSTX^HMPEVNT("asu-rule",DA)  ;DBIA 6301
  I '$D(DA) S VALMSG="<Business Rule DELETED>" Q
  S DIK="^USR(8930.1,"
  S XUSRQ=^USR(8930.1,+DA,0)
@@ -80,7 +87,7 @@ DOCPICK() ; Function to pick a document for which rule will be created
  D ^DIC K DIC("S")
  Q Y
  ;
-DUP() ; Function to determine if new or edited rule is a duplicate of an existing rule
+DUP()    ; Function to determine if new or edited rule is a duplicate of an existing rule
  N DHIT,XDA,XDATA,DIK
  S (DHIT,XDA)=0 F  S XDA=$O(^USR(8930.1,XDA)) Q:XDA=""  Q:+XDA'>0  D  Q:DHIT
  . I XDA=+DA Q
@@ -91,7 +98,7 @@ DUP() ; Function to determine if new or edited rule is a duplicate of an existin
  . . I $P($G(^USR(8930.1,+DA,0)),"^",5)="!",$P($G(XDATA),"^",5)="" S DHIT=1 Q
  Q DHIT
  ;
-DELETE ; Delete a member to the class
+DELETE   ; Delete a member to the class
  N USRDA,USRCHNG,USRI,USRLST,DIE,X,Y,USRRBLD K DIROUT
  D FULL^VALM1
  I '$D(VALMY) D EN^VALM2(XQORNOD(0))
@@ -99,7 +106,7 @@ DELETE ; Delete a member to the class
  F  S USRI=$O(VALMY(USRI)) Q:+USRI'>0  D  Q:$D(DIROUT)
  . S USRDA=+$O(^TMP("USRRUL",$J,"INDEX",USRI,0)) Q:+USRDA'>0
  . W !!,"Deleting #",+USRI,!
- . D DELETE1(USRDA)
+ . D DELETE1(USRDA),POSTX^HMPEVNT("asu-rule",USRDA,"@")  ;DBIA 6301
  . S:+USRCHNG USRLST=$S(+$G(USRLST):USRLST_", ",1:"")_+USRI
  I +$G(USRLST) D
  . S USRRBLD=$P($G(@VALMAR@(0)),U,1,4) D INIT^USRRUL,HDR^USRRUL

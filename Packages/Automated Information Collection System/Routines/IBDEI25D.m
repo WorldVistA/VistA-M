@@ -1,124 +1,134 @@
-IBDEI25D ; ; 19-NOV-2015
+IBDEI25D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36016,1,4,0)
- ;;=4^O41.1010
- ;;^UTILITY(U,$J,358.3,36016,2)
- ;;=^5017241
- ;;^UTILITY(U,$J,358.3,36017,0)
- ;;=O41.1011^^166^1828^22
- ;;^UTILITY(U,$J,358.3,36017,1,0)
+ ;;^UTILITY(U,$J,358.3,36429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36017,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 1
- ;;^UTILITY(U,$J,358.3,36017,1,4,0)
- ;;=4^O41.1011
- ;;^UTILITY(U,$J,358.3,36017,2)
- ;;=^5017242
- ;;^UTILITY(U,$J,358.3,36018,0)
- ;;=O41.1012^^166^1828^23
- ;;^UTILITY(U,$J,358.3,36018,1,0)
+ ;;^UTILITY(U,$J,358.3,36429,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,36429,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,36429,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,36430,0)
+ ;;=I35.0^^137^1760^61
+ ;;^UTILITY(U,$J,358.3,36430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36018,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 2
- ;;^UTILITY(U,$J,358.3,36018,1,4,0)
- ;;=4^O41.1012
- ;;^UTILITY(U,$J,358.3,36018,2)
- ;;=^5017243
- ;;^UTILITY(U,$J,358.3,36019,0)
- ;;=O41.1013^^166^1828^24
- ;;^UTILITY(U,$J,358.3,36019,1,0)
+ ;;^UTILITY(U,$J,358.3,36430,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,36430,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,36430,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,36431,0)
+ ;;=I35.2^^137^1760^62
+ ;;^UTILITY(U,$J,358.3,36431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36019,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 3
- ;;^UTILITY(U,$J,358.3,36019,1,4,0)
- ;;=4^O41.1013
- ;;^UTILITY(U,$J,358.3,36019,2)
- ;;=^5017244
- ;;^UTILITY(U,$J,358.3,36020,0)
- ;;=O41.1014^^166^1828^25
- ;;^UTILITY(U,$J,358.3,36020,1,0)
+ ;;^UTILITY(U,$J,358.3,36431,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,36431,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,36431,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,36432,0)
+ ;;=I35.9^^137^1760^58
+ ;;^UTILITY(U,$J,358.3,36432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36020,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 4
- ;;^UTILITY(U,$J,358.3,36020,1,4,0)
- ;;=4^O41.1014
- ;;^UTILITY(U,$J,358.3,36020,2)
- ;;=^5017245
- ;;^UTILITY(U,$J,358.3,36021,0)
- ;;=O41.1015^^166^1828^26
- ;;^UTILITY(U,$J,358.3,36021,1,0)
+ ;;^UTILITY(U,$J,358.3,36432,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36432,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,36432,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,36433,0)
+ ;;=I21.4^^137^1760^57
+ ;;^UTILITY(U,$J,358.3,36433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36021,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, first tri, fetus 5
- ;;^UTILITY(U,$J,358.3,36021,1,4,0)
- ;;=4^O41.1015
- ;;^UTILITY(U,$J,358.3,36021,2)
- ;;=^5017246
- ;;^UTILITY(U,$J,358.3,36022,0)
- ;;=O41.1020^^166^1828^27
- ;;^UTILITY(U,$J,358.3,36022,1,0)
+ ;;^UTILITY(U,$J,358.3,36433,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,36433,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,36433,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,36434,0)
+ ;;=I42.8^^137^1760^46
+ ;;^UTILITY(U,$J,358.3,36434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36022,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, unsp
- ;;^UTILITY(U,$J,358.3,36022,1,4,0)
- ;;=4^O41.1020
- ;;^UTILITY(U,$J,358.3,36022,2)
- ;;=^5017248
- ;;^UTILITY(U,$J,358.3,36023,0)
- ;;=O41.1021^^166^1828^28
- ;;^UTILITY(U,$J,358.3,36023,1,0)
+ ;;^UTILITY(U,$J,358.3,36434,1,3,0)
+ ;;=3^Cardiomypathies NEC
+ ;;^UTILITY(U,$J,358.3,36434,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,36434,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,36435,0)
+ ;;=I20.8^^137^1760^7
+ ;;^UTILITY(U,$J,358.3,36435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36023,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,36023,1,4,0)
- ;;=4^O41.1021
- ;;^UTILITY(U,$J,358.3,36023,2)
- ;;=^5017249
- ;;^UTILITY(U,$J,358.3,36024,0)
- ;;=O41.1022^^166^1828^29
- ;;^UTILITY(U,$J,358.3,36024,1,0)
+ ;;^UTILITY(U,$J,358.3,36435,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,36435,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,36435,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,36436,0)
+ ;;=I42.2^^137^1760^56
+ ;;^UTILITY(U,$J,358.3,36436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36024,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,36024,1,4,0)
- ;;=4^O41.1022
- ;;^UTILITY(U,$J,358.3,36024,2)
- ;;=^5017250
- ;;^UTILITY(U,$J,358.3,36025,0)
- ;;=O41.1023^^166^1828^30
- ;;^UTILITY(U,$J,358.3,36025,1,0)
+ ;;^UTILITY(U,$J,358.3,36436,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,36436,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,36436,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,36437,0)
+ ;;=I35.8^^137^1760^59
+ ;;^UTILITY(U,$J,358.3,36437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36025,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,36025,1,4,0)
- ;;=4^O41.1023
- ;;^UTILITY(U,$J,358.3,36025,2)
- ;;=^5017251
- ;;^UTILITY(U,$J,358.3,36026,0)
- ;;=O41.1024^^166^1828^31
- ;;^UTILITY(U,$J,358.3,36026,1,0)
+ ;;^UTILITY(U,$J,358.3,36437,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,36437,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,36437,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,36438,0)
+ ;;=I42.5^^137^1760^65
+ ;;^UTILITY(U,$J,358.3,36438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36026,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,36026,1,4,0)
- ;;=4^O41.1024
- ;;^UTILITY(U,$J,358.3,36026,2)
- ;;=^5017252
- ;;^UTILITY(U,$J,358.3,36027,0)
- ;;=O41.1025^^166^1828^32
- ;;^UTILITY(U,$J,358.3,36027,1,0)
+ ;;^UTILITY(U,$J,358.3,36438,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,36438,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,36438,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,36439,0)
+ ;;=I05.8^^137^1760^69
+ ;;^UTILITY(U,$J,358.3,36439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36027,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,36027,1,4,0)
- ;;=4^O41.1025
- ;;^UTILITY(U,$J,358.3,36027,2)
- ;;=^5017253
- ;;^UTILITY(U,$J,358.3,36028,0)
- ;;=O41.1030^^166^1828^33
- ;;^UTILITY(U,$J,358.3,36028,1,0)
+ ;;^UTILITY(U,$J,358.3,36439,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,36439,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,36439,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,36440,0)
+ ;;=I08.8^^137^1760^70
+ ;;^UTILITY(U,$J,358.3,36440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36028,1,3,0)
- ;;=3^Infct of amniotic sac/membrns, third tri, unsp
+ ;;^UTILITY(U,$J,358.3,36440,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,36440,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,36440,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,36441,0)
+ ;;=I47.9^^137^1760^63
+ ;;^UTILITY(U,$J,358.3,36441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36441,1,3,0)
+ ;;=3^Paroxysmal Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,36441,1,4,0)
+ ;;=4^I47.9
+ ;;^UTILITY(U,$J,358.3,36441,2)
+ ;;=^5007224
+ ;;^UTILITY(U,$J,358.3,36442,0)
+ ;;=I05.1^^137^1760^66

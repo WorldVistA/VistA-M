@@ -1,128 +1,132 @@
-IBDEI04W ; ; 19-NOV-2015
+IBDEI04W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1603,1,2,0)
- ;;=2^97116
- ;;^UTILITY(U,$J,358.3,1603,1,3,0)
- ;;=3^Basic Mobility/Gait Training,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,1604,0)
- ;;=97532^^15^159^3^^^^1
- ;;^UTILITY(U,$J,358.3,1604,1,0)
+ ;;^UTILITY(U,$J,358.3,1868,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1604,1,2,0)
- ;;=2^97532
- ;;^UTILITY(U,$J,358.3,1604,1,3,0)
- ;;=3^Cognitive Skills Development,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,1605,0)
- ;;=97533^^15^159^7^^^^1
- ;;^UTILITY(U,$J,358.3,1605,1,0)
+ ;;^UTILITY(U,$J,358.3,1868,1,2,0)
+ ;;=2^33234
+ ;;^UTILITY(U,$J,358.3,1868,1,3,0)
+ ;;=3^Rem Transv Elec Atria/Vent(Sgl)
+ ;;^UTILITY(U,$J,358.3,1869,0)
+ ;;=33235^^12^160^42^^^^1
+ ;;^UTILITY(U,$J,358.3,1869,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1605,1,2,0)
- ;;=2^97533
- ;;^UTILITY(U,$J,358.3,1605,1,3,0)
- ;;=3^Sensory Integration Techniques,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,1606,0)
- ;;=97535^^15^159^6^^^^1
- ;;^UTILITY(U,$J,358.3,1606,1,0)
+ ;;^UTILITY(U,$J,358.3,1869,1,2,0)
+ ;;=2^33235
+ ;;^UTILITY(U,$J,358.3,1869,1,3,0)
+ ;;=3^Rem Transv Elec Atria/Vent(Dual)
+ ;;^UTILITY(U,$J,358.3,1870,0)
+ ;;=33240^^12^160^22^^^^1
+ ;;^UTILITY(U,$J,358.3,1870,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1606,1,2,0)
- ;;=2^97535
- ;;^UTILITY(U,$J,358.3,1606,1,3,0)
- ;;=3^Self Care Mgmt/ADL,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,1607,0)
- ;;=97537^^15^159^4^^^^1
- ;;^UTILITY(U,$J,358.3,1607,1,0)
+ ;;^UTILITY(U,$J,358.3,1870,1,2,0)
+ ;;=2^33240
+ ;;^UTILITY(U,$J,358.3,1870,1,3,0)
+ ;;=3^Insert Single/Dual Pulse Gen
+ ;;^UTILITY(U,$J,358.3,1871,0)
+ ;;=33241^^12^160^60^^^^1
+ ;;^UTILITY(U,$J,358.3,1871,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1607,1,2,0)
- ;;=2^97537
- ;;^UTILITY(U,$J,358.3,1607,1,3,0)
- ;;=3^Community/Occupation Trng,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,1608,0)
- ;;=97139^^15^159^9^^^^1
- ;;^UTILITY(U,$J,358.3,1608,1,0)
+ ;;^UTILITY(U,$J,358.3,1871,1,2,0)
+ ;;=2^33241
+ ;;^UTILITY(U,$J,358.3,1871,1,3,0)
+ ;;=3^Subq Remove Sgl/Dual Pulse Gen
+ ;;^UTILITY(U,$J,358.3,1872,0)
+ ;;=33244^^12^160^64^^^^1
+ ;;^UTILITY(U,$J,358.3,1872,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1608,1,2,0)
- ;;=2^97139
- ;;^UTILITY(U,$J,358.3,1608,1,3,0)
- ;;=3^Therapeutic Service NEC
- ;;^UTILITY(U,$J,358.3,1609,0)
- ;;=97762^^15^159^2^^^^1
- ;;^UTILITY(U,$J,358.3,1609,1,0)
+ ;;^UTILITY(U,$J,358.3,1872,1,2,0)
+ ;;=2^33244
+ ;;^UTILITY(U,$J,358.3,1872,1,3,0)
+ ;;=3^Transv Remove Sgl/Dual Elec
+ ;;^UTILITY(U,$J,358.3,1873,0)
+ ;;=33249^^12^160^16^^^^1
+ ;;^UTILITY(U,$J,358.3,1873,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1609,1,2,0)
- ;;=2^97762
- ;;^UTILITY(U,$J,358.3,1609,1,3,0)
- ;;=3^C/O for Orthotic/Prosth Use
- ;;^UTILITY(U,$J,358.3,1610,0)
- ;;=98960^^15^159^5^^^^1
- ;;^UTILITY(U,$J,358.3,1610,1,0)
+ ;;^UTILITY(U,$J,358.3,1873,1,2,0)
+ ;;=2^33249
+ ;;^UTILITY(U,$J,358.3,1873,1,3,0)
+ ;;=3^Ins/Reposit Lead, Insert Pulse Gen
+ ;;^UTILITY(U,$J,358.3,1874,0)
+ ;;=93285^^12^160^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1874,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1610,1,2,0)
- ;;=2^98960
- ;;^UTILITY(U,$J,358.3,1610,1,3,0)
- ;;=3^Ed/Training,Self-Mgmnt,Ea 15 min
- ;;^UTILITY(U,$J,358.3,1611,0)
- ;;=96153^^15^160^5^^^^1
- ;;^UTILITY(U,$J,358.3,1611,1,0)
+ ;;^UTILITY(U,$J,358.3,1874,1,2,0)
+ ;;=2^93285
+ ;;^UTILITY(U,$J,358.3,1874,1,3,0)
+ ;;=3^ILR Device Eval Progr
+ ;;^UTILITY(U,$J,358.3,1875,0)
+ ;;=93291^^12^160^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1875,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1611,1,2,0)
- ;;=2^96153
- ;;^UTILITY(U,$J,358.3,1611,1,3,0)
- ;;=3^H&B Intervention Grp 2>,Ea 15min
- ;;^UTILITY(U,$J,358.3,1612,0)
- ;;=96154^^15^160^6^^^^1
- ;;^UTILITY(U,$J,358.3,1612,1,0)
+ ;;^UTILITY(U,$J,358.3,1875,1,2,0)
+ ;;=2^93291
+ ;;^UTILITY(U,$J,358.3,1875,1,3,0)
+ ;;=3^ILR Device Interrogate
+ ;;^UTILITY(U,$J,358.3,1876,0)
+ ;;=93294^^12^160^31^^^^1
+ ;;^UTILITY(U,$J,358.3,1876,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1612,1,2,0)
- ;;=2^96154
- ;;^UTILITY(U,$J,358.3,1612,1,3,0)
- ;;=3^H&B Intervention Indv w/pt/fam,Ea 15min
- ;;^UTILITY(U,$J,358.3,1613,0)
- ;;=96155^^15^160^4^^^^1
- ;;^UTILITY(U,$J,358.3,1613,1,0)
+ ;;^UTILITY(U,$J,358.3,1876,1,2,0)
+ ;;=2^93294
+ ;;^UTILITY(U,$J,358.3,1876,1,3,0)
+ ;;=3^PM Device Interrogate Remote
+ ;;^UTILITY(U,$J,358.3,1877,0)
+ ;;=93280^^12^160^32^^^^1
+ ;;^UTILITY(U,$J,358.3,1877,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1613,1,2,0)
- ;;=2^96155
- ;;^UTILITY(U,$J,358.3,1613,1,3,0)
- ;;=3^H&B Intervention Fam w/o patient,Ea 15min
- ;;^UTILITY(U,$J,358.3,1614,0)
- ;;=97150^^15^160^3^^^^1
- ;;^UTILITY(U,$J,358.3,1614,1,0)
+ ;;^UTILITY(U,$J,358.3,1877,1,2,0)
+ ;;=2^93280
+ ;;^UTILITY(U,$J,358.3,1877,1,3,0)
+ ;;=3^PM Device Progr Eval,Dual
+ ;;^UTILITY(U,$J,358.3,1878,0)
+ ;;=93288^^12^160^30^^^^1
+ ;;^UTILITY(U,$J,358.3,1878,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1614,1,2,0)
- ;;=2^97150
- ;;^UTILITY(U,$J,358.3,1614,1,3,0)
- ;;=3^Group Therapeutic Procedures
- ;;^UTILITY(U,$J,358.3,1615,0)
- ;;=98961^^15^160^1^^^^1
- ;;^UTILITY(U,$J,358.3,1615,1,0)
+ ;;^UTILITY(U,$J,358.3,1878,1,2,0)
+ ;;=2^93288
+ ;;^UTILITY(U,$J,358.3,1878,1,3,0)
+ ;;=3^PM Device Eval in Person
+ ;;^UTILITY(U,$J,358.3,1879,0)
+ ;;=93279^^12^160^34^^^^1
+ ;;^UTILITY(U,$J,358.3,1879,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1615,1,2,0)
- ;;=2^98961
- ;;^UTILITY(U,$J,358.3,1615,1,3,0)
- ;;=3^Ed/Training,Self-Mgmnt,2-4 Pts,Ea 15 min
- ;;^UTILITY(U,$J,358.3,1616,0)
- ;;=98962^^15^160^2^^^^1
- ;;^UTILITY(U,$J,358.3,1616,1,0)
+ ;;^UTILITY(U,$J,358.3,1879,1,2,0)
+ ;;=2^93279
+ ;;^UTILITY(U,$J,358.3,1879,1,3,0)
+ ;;=3^PM Device Progr Eval,Sngl
+ ;;^UTILITY(U,$J,358.3,1880,0)
+ ;;=93282^^12^160^9^^^^1
+ ;;^UTILITY(U,$J,358.3,1880,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1616,1,2,0)
- ;;=2^98962
- ;;^UTILITY(U,$J,358.3,1616,1,3,0)
- ;;=3^Ed/Training,Self-Mgmnt,5-8 Pts,Ea 15 min
- ;;^UTILITY(U,$J,358.3,1617,0)
- ;;=99366^^15^161^1^^^^1
- ;;^UTILITY(U,$J,358.3,1617,1,0)
+ ;;^UTILITY(U,$J,358.3,1880,1,2,0)
+ ;;=2^93282
+ ;;^UTILITY(U,$J,358.3,1880,1,3,0)
+ ;;=3^ICD Device Prog Eval,1 Sngl
+ ;;^UTILITY(U,$J,358.3,1881,0)
+ ;;=93289^^12^160^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1881,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1617,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,1617,1,3,0)
- ;;=3^Interdisc. Team Mtg. w/Pt w/o Physician
- ;;^UTILITY(U,$J,358.3,1618,0)
- ;;=99368^^15^161^3^^^^1
- ;;^UTILITY(U,$J,358.3,1618,1,0)
+ ;;^UTILITY(U,$J,358.3,1881,1,2,0)
+ ;;=2^93289
+ ;;^UTILITY(U,$J,358.3,1881,1,3,0)
+ ;;=3^ICD Device Interrogatate
+ ;;^UTILITY(U,$J,358.3,1882,0)
+ ;;=93292^^12^160^66^^^^1
+ ;;^UTILITY(U,$J,358.3,1882,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1618,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,1618,1,3,0)
- ;;=3^Interdisc. Team Mtg. w/o Pt w/o Phys
+ ;;^UTILITY(U,$J,358.3,1882,1,2,0)
+ ;;=2^93292
+ ;;^UTILITY(U,$J,358.3,1882,1,3,0)
+ ;;=3^WCD Device Interrogate
+ ;;^UTILITY(U,$J,358.3,1883,0)
+ ;;=93295^^12^160^8^^^^1
+ ;;^UTILITY(U,$J,358.3,1883,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1883,1,2,0)
+ ;;=2^93295
+ ;;^UTILITY(U,$J,358.3,1883,1,3,0)
+ ;;=3^ICD Device Interrogate Remote
+ ;;^UTILITY(U,$J,358.3,1884,0)
+ ;;=93283^^12^160^10^^^^1

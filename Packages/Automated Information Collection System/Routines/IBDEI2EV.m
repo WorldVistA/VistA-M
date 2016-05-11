@@ -1,126 +1,130 @@
-IBDEI2EV ; ; 19-NOV-2015
+IBDEI2EV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40496,2)
- ;;=^5007673
- ;;^UTILITY(U,$J,358.3,40497,0)
- ;;=I70.445^^189^2081^50
- ;;^UTILITY(U,$J,358.3,40497,1,0)
+ ;;^UTILITY(U,$J,358.3,40901,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,40901,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,40902,0)
+ ;;=I69.328^^159^1995^23
+ ;;^UTILITY(U,$J,358.3,40902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40497,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,40497,1,4,0)
- ;;=4^I70.445
- ;;^UTILITY(U,$J,358.3,40497,2)
- ;;=^5007675
- ;;^UTILITY(U,$J,358.3,40498,0)
- ;;=I70.442^^189^2081^49
- ;;^UTILITY(U,$J,358.3,40498,1,0)
+ ;;^UTILITY(U,$J,358.3,40902,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,40902,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,40902,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,40903,0)
+ ;;=E04.0^^159^1996^39
+ ;;^UTILITY(U,$J,358.3,40903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40498,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,40498,1,4,0)
- ;;=4^I70.442
- ;;^UTILITY(U,$J,358.3,40498,2)
- ;;=^5007672
- ;;^UTILITY(U,$J,358.3,40499,0)
- ;;=I70.444^^189^2081^51
- ;;^UTILITY(U,$J,358.3,40499,1,0)
+ ;;^UTILITY(U,$J,358.3,40903,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,40903,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,40903,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,40904,0)
+ ;;=E04.1^^159^1996^41
+ ;;^UTILITY(U,$J,358.3,40904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40499,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,40499,1,4,0)
- ;;=4^I70.444
- ;;^UTILITY(U,$J,358.3,40499,2)
- ;;=^5007674
- ;;^UTILITY(U,$J,358.3,40500,0)
- ;;=I70.433^^189^2081^52
- ;;^UTILITY(U,$J,358.3,40500,1,0)
+ ;;^UTILITY(U,$J,358.3,40904,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,40904,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,40904,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,40905,0)
+ ;;=E04.2^^159^1996^40
+ ;;^UTILITY(U,$J,358.3,40905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40500,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,40500,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,40500,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,40501,0)
- ;;=I70.435^^189^2081^54
- ;;^UTILITY(U,$J,358.3,40501,1,0)
+ ;;^UTILITY(U,$J,358.3,40905,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,40905,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,40905,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,40906,0)
+ ;;=E01.1^^159^1996^36
+ ;;^UTILITY(U,$J,358.3,40906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40501,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,40501,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,40501,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,40502,0)
- ;;=I70.432^^189^2081^53
- ;;^UTILITY(U,$J,358.3,40502,1,0)
+ ;;^UTILITY(U,$J,358.3,40906,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,40906,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,40906,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,40907,0)
+ ;;=E05.00^^159^1996^56
+ ;;^UTILITY(U,$J,358.3,40907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40502,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,40502,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,40502,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,40503,0)
- ;;=I70.434^^189^2081^55
- ;;^UTILITY(U,$J,358.3,40503,1,0)
+ ;;^UTILITY(U,$J,358.3,40907,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,40907,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,40907,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,40908,0)
+ ;;=E05.01^^159^1996^55
+ ;;^UTILITY(U,$J,358.3,40908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40503,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,40503,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,40503,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,40504,0)
- ;;=I70.343^^189^2081^56
- ;;^UTILITY(U,$J,358.3,40504,1,0)
+ ;;^UTILITY(U,$J,358.3,40908,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,40908,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,40908,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,40909,0)
+ ;;=E05.90^^159^1996^58
+ ;;^UTILITY(U,$J,358.3,40909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40504,1,3,0)
- ;;=3^Athscl Bypass,Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,40504,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,40504,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,40505,0)
- ;;=I70.344^^189^2081^57
- ;;^UTILITY(U,$J,358.3,40505,1,0)
+ ;;^UTILITY(U,$J,358.3,40909,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,40909,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,40909,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,40910,0)
+ ;;=E05.91^^159^1996^57
+ ;;^UTILITY(U,$J,358.3,40910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40505,1,3,0)
- ;;=3^Athscl Bypass,Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,40505,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,40505,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,40506,0)
- ;;=I70.334^^189^2081^59
- ;;^UTILITY(U,$J,358.3,40506,1,0)
+ ;;^UTILITY(U,$J,358.3,40910,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,40910,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,40910,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,40911,0)
+ ;;=E89.0^^159^1996^50
+ ;;^UTILITY(U,$J,358.3,40911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40506,1,3,0)
- ;;=3^Athscl Bypass,Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,40506,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,40506,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,40507,0)
- ;;=I70.333^^189^2081^58
- ;;^UTILITY(U,$J,358.3,40507,1,0)
+ ;;^UTILITY(U,$J,358.3,40911,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,40911,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,40911,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,40912,0)
+ ;;=E03.2^^159^1996^32
+ ;;^UTILITY(U,$J,358.3,40912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40507,1,3,0)
- ;;=3^Athscl Bypass,Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,40507,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,40507,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,40508,0)
- ;;=I70.242^^189^2081^65
- ;;^UTILITY(U,$J,358.3,40508,1,0)
+ ;;^UTILITY(U,$J,358.3,40912,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,40912,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,40912,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,40913,0)
+ ;;=E03.9^^159^1996^33
+ ;;^UTILITY(U,$J,358.3,40913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40508,1,3,0)
- ;;=3^Athscl Native Arteries,Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,40508,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,40508,2)
- ;;=^5007596
+ ;;^UTILITY(U,$J,358.3,40913,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,40913,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,40913,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,40914,0)
+ ;;=E06.0^^159^1996^53

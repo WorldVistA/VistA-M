@@ -1,122 +1,134 @@
-IBDEI2D4 ; ; 19-NOV-2015
+IBDEI2D4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39670,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,39670,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,39671,0)
- ;;=M05.79^^183^2029^9
- ;;^UTILITY(U,$J,358.3,39671,1,0)
+ ;;^UTILITY(U,$J,358.3,40064,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,40064,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,40065,0)
+ ;;=N18.6^^156^1949^3
+ ;;^UTILITY(U,$J,358.3,40065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39671,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of mult site w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39671,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,39671,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,39672,0)
- ;;=M05.771^^183^2029^10
- ;;^UTILITY(U,$J,358.3,39672,1,0)
+ ;;^UTILITY(U,$J,358.3,40065,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,40065,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,40065,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,40066,0)
+ ;;=B17.11^^156^1950^2
+ ;;^UTILITY(U,$J,358.3,40066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39672,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right ank/ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39672,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,39672,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,39673,0)
- ;;=M05.721^^183^2029^11
- ;;^UTILITY(U,$J,358.3,39673,1,0)
+ ;;^UTILITY(U,$J,358.3,40066,1,3,0)
+ ;;=3^Acute hepatitis C with hepatic coma
+ ;;^UTILITY(U,$J,358.3,40066,1,4,0)
+ ;;=4^B17.11
+ ;;^UTILITY(U,$J,358.3,40066,2)
+ ;;=^331777
+ ;;^UTILITY(U,$J,358.3,40067,0)
+ ;;=B18.2^^156^1950^9
+ ;;^UTILITY(U,$J,358.3,40067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39673,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right elbowlbow w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39673,1,4,0)
- ;;=4^M05.721
- ;;^UTILITY(U,$J,358.3,39673,2)
- ;;=^5010004
- ;;^UTILITY(U,$J,358.3,39674,0)
- ;;=M05.741^^183^2029^12
- ;;^UTILITY(U,$J,358.3,39674,1,0)
+ ;;^UTILITY(U,$J,358.3,40067,1,3,0)
+ ;;=3^Chronic viral hepatitis C
+ ;;^UTILITY(U,$J,358.3,40067,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,40067,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,40068,0)
+ ;;=B17.10^^156^1950^3
+ ;;^UTILITY(U,$J,358.3,40068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39674,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hand w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39674,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,39674,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,39675,0)
- ;;=M05.751^^183^2029^13
- ;;^UTILITY(U,$J,358.3,39675,1,0)
+ ;;^UTILITY(U,$J,358.3,40068,1,3,0)
+ ;;=3^Acute hepatitis C without hepatic coma
+ ;;^UTILITY(U,$J,358.3,40068,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,40068,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,40069,0)
+ ;;=B19.20^^156^1950^23
+ ;;^UTILITY(U,$J,358.3,40069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39675,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hip w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39675,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,39675,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,39676,0)
- ;;=M05.761^^183^2029^14
- ;;^UTILITY(U,$J,358.3,39676,1,0)
+ ;;^UTILITY(U,$J,358.3,40069,1,3,0)
+ ;;=3^Viral hepatitis C without hepatic coma,Unspec
+ ;;^UTILITY(U,$J,358.3,40069,1,4,0)
+ ;;=4^B19.20
+ ;;^UTILITY(U,$J,358.3,40069,2)
+ ;;=^331436
+ ;;^UTILITY(U,$J,358.3,40070,0)
+ ;;=B19.21^^156^1950^22
+ ;;^UTILITY(U,$J,358.3,40070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39676,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39676,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,39676,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,39677,0)
- ;;=M05.711^^183^2029^15
- ;;^UTILITY(U,$J,358.3,39677,1,0)
+ ;;^UTILITY(U,$J,358.3,40070,1,3,0)
+ ;;=3^Viral hepatitis C with hepatic coma,Unspec
+ ;;^UTILITY(U,$J,358.3,40070,1,4,0)
+ ;;=4^B19.21
+ ;;^UTILITY(U,$J,358.3,40070,2)
+ ;;=^331437
+ ;;^UTILITY(U,$J,358.3,40071,0)
+ ;;=C22.0^^156^1950^15
+ ;;^UTILITY(U,$J,358.3,40071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39677,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39677,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,39677,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,39678,0)
- ;;=M05.731^^183^2029^16
- ;;^UTILITY(U,$J,358.3,39678,1,0)
+ ;;^UTILITY(U,$J,358.3,40071,1,3,0)
+ ;;=3^Liver cell carcinoma
+ ;;^UTILITY(U,$J,358.3,40071,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,40071,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,40072,0)
+ ;;=C22.7^^156^1950^7
+ ;;^UTILITY(U,$J,358.3,40072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39678,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,39678,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,39678,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,39679,0)
- ;;=M06.072^^183^2029^17
- ;;^UTILITY(U,$J,358.3,39679,1,0)
+ ;;^UTILITY(U,$J,358.3,40072,1,3,0)
+ ;;=3^Carcinomas of liver NEC
+ ;;^UTILITY(U,$J,358.3,40072,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,40072,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,40073,0)
+ ;;=C22.8^^156^1950^18
+ ;;^UTILITY(U,$J,358.3,40073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39679,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left ank/ft
- ;;^UTILITY(U,$J,358.3,39679,1,4,0)
- ;;=4^M06.072
- ;;^UTILITY(U,$J,358.3,39679,2)
- ;;=^5010067
- ;;^UTILITY(U,$J,358.3,39680,0)
- ;;=M06.022^^183^2029^18
- ;;^UTILITY(U,$J,358.3,39680,1,0)
+ ;;^UTILITY(U,$J,358.3,40073,1,3,0)
+ ;;=3^Malignant neoplasm of liver, primary
+ ;;^UTILITY(U,$J,358.3,40073,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,40073,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,40074,0)
+ ;;=C22.1^^156^1950^13
+ ;;^UTILITY(U,$J,358.3,40074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39680,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left elbow
- ;;^UTILITY(U,$J,358.3,39680,1,4,0)
- ;;=4^M06.022
- ;;^UTILITY(U,$J,358.3,39680,2)
- ;;=^5010052
- ;;^UTILITY(U,$J,358.3,39681,0)
- ;;=M06.042^^183^2029^19
- ;;^UTILITY(U,$J,358.3,39681,1,0)
+ ;;^UTILITY(U,$J,358.3,40074,1,3,0)
+ ;;=3^Intrahepatic bile duct carcinoma
+ ;;^UTILITY(U,$J,358.3,40074,1,4,0)
+ ;;=4^C22.1
+ ;;^UTILITY(U,$J,358.3,40074,2)
+ ;;=^5000934
+ ;;^UTILITY(U,$J,358.3,40075,0)
+ ;;=C22.9^^156^1950^17
+ ;;^UTILITY(U,$J,358.3,40075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39681,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left hand
- ;;^UTILITY(U,$J,358.3,39681,1,4,0)
- ;;=4^M06.042
- ;;^UTILITY(U,$J,358.3,39681,2)
- ;;=^5010058
- ;;^UTILITY(U,$J,358.3,39682,0)
- ;;=M06.052^^183^2029^20
- ;;^UTILITY(U,$J,358.3,39682,1,0)
+ ;;^UTILITY(U,$J,358.3,40075,1,3,0)
+ ;;=3^Malignant neoplasm of liver
+ ;;^UTILITY(U,$J,358.3,40075,1,4,0)
+ ;;=4^C22.9
+ ;;^UTILITY(U,$J,358.3,40075,2)
+ ;;=^267096
+ ;;^UTILITY(U,$J,358.3,40076,0)
+ ;;=C78.7^^156^1950^21
+ ;;^UTILITY(U,$J,358.3,40076,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40076,1,3,0)
+ ;;=3^Secondary malig neoplasm of liver and intrahepatic bile duct
+ ;;^UTILITY(U,$J,358.3,40076,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,40076,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,40077,0)
+ ;;=K74.60^^156^1950^11
+ ;;^UTILITY(U,$J,358.3,40077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40077,1,3,0)
+ ;;=3^Cirrhosis of liver,Unspec

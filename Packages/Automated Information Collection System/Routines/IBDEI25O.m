@@ -1,124 +1,136 @@
-IBDEI25O ; ; 19-NOV-2015
+IBDEI25O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36150,2)
- ;;=^5016062
- ;;^UTILITY(U,$J,358.3,36151,0)
- ;;=O09.41^^166^1834^26
- ;;^UTILITY(U,$J,358.3,36151,1,0)
+ ;;^UTILITY(U,$J,358.3,36571,1,4,0)
+ ;;=4^J18.1
+ ;;^UTILITY(U,$J,358.3,36571,2)
+ ;;=^5008183
+ ;;^UTILITY(U,$J,358.3,36572,0)
+ ;;=A19.9^^137^1767^63
+ ;;^UTILITY(U,$J,358.3,36572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36151,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, first trimester
- ;;^UTILITY(U,$J,358.3,36151,1,4,0)
- ;;=4^O09.41
- ;;^UTILITY(U,$J,358.3,36151,2)
- ;;=^5016069
- ;;^UTILITY(U,$J,358.3,36152,0)
- ;;=O09.42^^166^1834^27
- ;;^UTILITY(U,$J,358.3,36152,1,0)
+ ;;^UTILITY(U,$J,358.3,36572,1,3,0)
+ ;;=3^Miliary Tuberculosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36572,1,4,0)
+ ;;=4^A19.9
+ ;;^UTILITY(U,$J,358.3,36572,2)
+ ;;=^5000104
+ ;;^UTILITY(U,$J,358.3,36573,0)
+ ;;=R76.11^^137^1767^82
+ ;;^UTILITY(U,$J,358.3,36573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36152,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, second trimester
- ;;^UTILITY(U,$J,358.3,36152,1,4,0)
- ;;=4^O09.42
- ;;^UTILITY(U,$J,358.3,36152,2)
- ;;=^5016070
- ;;^UTILITY(U,$J,358.3,36153,0)
- ;;=O09.43^^166^1834^28
- ;;^UTILITY(U,$J,358.3,36153,1,0)
+ ;;^UTILITY(U,$J,358.3,36573,1,3,0)
+ ;;=3^Reaction to Skin Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,36573,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,36573,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,36574,0)
+ ;;=B45.3^^137^1767^67
+ ;;^UTILITY(U,$J,358.3,36574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36153,1,3,0)
- ;;=3^Suprvsn of preg w grand multiparity, third trimester
- ;;^UTILITY(U,$J,358.3,36153,1,4,0)
- ;;=4^O09.43
- ;;^UTILITY(U,$J,358.3,36153,2)
- ;;=^5016071
- ;;^UTILITY(U,$J,358.3,36154,0)
- ;;=O09.31^^166^1834^38
- ;;^UTILITY(U,$J,358.3,36154,1,0)
+ ;;^UTILITY(U,$J,358.3,36574,1,3,0)
+ ;;=3^Osseous Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,36574,1,4,0)
+ ;;=4^B45.3
+ ;;^UTILITY(U,$J,358.3,36574,2)
+ ;;=^5000672
+ ;;^UTILITY(U,$J,358.3,36575,0)
+ ;;=B44.89^^137^1767^44
+ ;;^UTILITY(U,$J,358.3,36575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36154,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, first trimester
- ;;^UTILITY(U,$J,358.3,36154,1,4,0)
- ;;=4^O09.31
- ;;^UTILITY(U,$J,358.3,36154,2)
- ;;=^5016065
- ;;^UTILITY(U,$J,358.3,36155,0)
- ;;=O09.32^^166^1834^39
- ;;^UTILITY(U,$J,358.3,36155,1,0)
+ ;;^UTILITY(U,$J,358.3,36575,1,3,0)
+ ;;=3^Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,36575,1,4,0)
+ ;;=4^B44.89
+ ;;^UTILITY(U,$J,358.3,36575,2)
+ ;;=^5000667
+ ;;^UTILITY(U,$J,358.3,36576,0)
+ ;;=B45.8^^137^1767^53
+ ;;^UTILITY(U,$J,358.3,36576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36155,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, second tri
- ;;^UTILITY(U,$J,358.3,36155,1,4,0)
- ;;=4^O09.32
- ;;^UTILITY(U,$J,358.3,36155,2)
- ;;=^5016066
- ;;^UTILITY(U,$J,358.3,36156,0)
- ;;=O09.33^^166^1834^40
- ;;^UTILITY(U,$J,358.3,36156,1,0)
+ ;;^UTILITY(U,$J,358.3,36576,1,3,0)
+ ;;=3^Cryptococcosis NEC
+ ;;^UTILITY(U,$J,358.3,36576,1,4,0)
+ ;;=4^B45.8
+ ;;^UTILITY(U,$J,358.3,36576,2)
+ ;;=^5000674
+ ;;^UTILITY(U,$J,358.3,36577,0)
+ ;;=H60.593^^137^1767^64
+ ;;^UTILITY(U,$J,358.3,36577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36156,1,3,0)
- ;;=3^Suprvsn of preg w insufficient antenat care, third trimester
- ;;^UTILITY(U,$J,358.3,36156,1,4,0)
- ;;=4^O09.33
- ;;^UTILITY(U,$J,358.3,36156,2)
- ;;=^5016067
- ;;^UTILITY(U,$J,358.3,36157,0)
- ;;=O09.511^^166^1834^14
- ;;^UTILITY(U,$J,358.3,36157,1,0)
+ ;;^UTILITY(U,$J,358.3,36577,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,36577,1,4,0)
+ ;;=4^H60.593
+ ;;^UTILITY(U,$J,358.3,36577,2)
+ ;;=^5006491
+ ;;^UTILITY(U,$J,358.3,36578,0)
+ ;;=H60.592^^137^1767^65
+ ;;^UTILITY(U,$J,358.3,36578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36157,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,36157,1,4,0)
- ;;=4^O09.511
- ;;^UTILITY(U,$J,358.3,36157,2)
- ;;=^5016072
- ;;^UTILITY(U,$J,358.3,36158,0)
- ;;=O09.512^^166^1834^15
- ;;^UTILITY(U,$J,358.3,36158,1,0)
+ ;;^UTILITY(U,$J,358.3,36578,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,36578,1,4,0)
+ ;;=4^H60.592
+ ;;^UTILITY(U,$J,358.3,36578,2)
+ ;;=^5133527
+ ;;^UTILITY(U,$J,358.3,36579,0)
+ ;;=H60.591^^137^1767^66
+ ;;^UTILITY(U,$J,358.3,36579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36158,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,36158,1,4,0)
- ;;=4^O09.512
- ;;^UTILITY(U,$J,358.3,36158,2)
- ;;=^5016073
- ;;^UTILITY(U,$J,358.3,36159,0)
- ;;=O09.513^^166^1834^16
- ;;^UTILITY(U,$J,358.3,36159,1,0)
+ ;;^UTILITY(U,$J,358.3,36579,1,3,0)
+ ;;=3^Noninfective AC Otitis Externa,Right Ear NEC
+ ;;^UTILITY(U,$J,358.3,36579,1,4,0)
+ ;;=4^H60.591
+ ;;^UTILITY(U,$J,358.3,36579,2)
+ ;;=^5006490
+ ;;^UTILITY(U,$J,358.3,36580,0)
+ ;;=J18.8^^137^1767^73
+ ;;^UTILITY(U,$J,358.3,36580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36159,1,3,0)
- ;;=3^Suprvsn of elderly primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,36159,1,4,0)
- ;;=4^O09.513
- ;;^UTILITY(U,$J,358.3,36159,2)
- ;;=^5016074
- ;;^UTILITY(U,$J,358.3,36160,0)
- ;;=O09.521^^166^1834^11
- ;;^UTILITY(U,$J,358.3,36160,1,0)
+ ;;^UTILITY(U,$J,358.3,36580,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,36580,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,36580,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,36581,0)
+ ;;=B44.1^^137^1767^76
+ ;;^UTILITY(U,$J,358.3,36581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36160,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,36160,1,4,0)
- ;;=4^O09.521
- ;;^UTILITY(U,$J,358.3,36160,2)
- ;;=^5016076
- ;;^UTILITY(U,$J,358.3,36161,0)
- ;;=O09.522^^166^1834^12
- ;;^UTILITY(U,$J,358.3,36161,1,0)
+ ;;^UTILITY(U,$J,358.3,36581,1,3,0)
+ ;;=3^Pulmonary Aspergillosis NEC
+ ;;^UTILITY(U,$J,358.3,36581,1,4,0)
+ ;;=4^B44.1
+ ;;^UTILITY(U,$J,358.3,36581,2)
+ ;;=^5000664
+ ;;^UTILITY(U,$J,358.3,36582,0)
+ ;;=B48.4^^137^1767^68
+ ;;^UTILITY(U,$J,358.3,36582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36161,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, second trimester
- ;;^UTILITY(U,$J,358.3,36161,1,4,0)
- ;;=4^O09.522
- ;;^UTILITY(U,$J,358.3,36161,2)
- ;;=^5016077
- ;;^UTILITY(U,$J,358.3,36162,0)
- ;;=O09.523^^166^1834^13
- ;;^UTILITY(U,$J,358.3,36162,1,0)
+ ;;^UTILITY(U,$J,358.3,36582,1,3,0)
+ ;;=3^Penicillosis
+ ;;^UTILITY(U,$J,358.3,36582,1,4,0)
+ ;;=4^B48.4
+ ;;^UTILITY(U,$J,358.3,36582,2)
+ ;;=^5000688
+ ;;^UTILITY(U,$J,358.3,36583,0)
+ ;;=J14.^^137^1767^69
+ ;;^UTILITY(U,$J,358.3,36583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36162,1,3,0)
- ;;=3^Suprvsn of elderly multigravida, third trimester
- ;;^UTILITY(U,$J,358.3,36162,1,4,0)
- ;;=4^O09.523
+ ;;^UTILITY(U,$J,358.3,36583,1,3,0)
+ ;;=3^Pneumonia d/t Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,36583,1,4,0)
+ ;;=4^J14.
+ ;;^UTILITY(U,$J,358.3,36583,2)
+ ;;=^5008171
+ ;;^UTILITY(U,$J,358.3,36584,0)
+ ;;=J13.^^137^1767^70
+ ;;^UTILITY(U,$J,358.3,36584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36584,1,3,0)
+ ;;=3^Pneumonia d/t Streptococcus Pneumoniae
+ ;;^UTILITY(U,$J,358.3,36584,1,4,0)
+ ;;=4^J13.

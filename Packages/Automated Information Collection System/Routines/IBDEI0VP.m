@@ -1,134 +1,134 @@
-IBDEI0VP ; ; 19-NOV-2015
+IBDEI0VP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14588,2)
- ;;=^5005699
- ;;^UTILITY(U,$J,358.3,14589,0)
- ;;=H35.62^^82^779^84
- ;;^UTILITY(U,$J,358.3,14589,1,0)
+ ;;^UTILITY(U,$J,358.3,14863,1,4,0)
+ ;;=4^L89.211
+ ;;^UTILITY(U,$J,358.3,14863,2)
+ ;;=^5009380
+ ;;^UTILITY(U,$J,358.3,14864,0)
+ ;;=L89.212^^56^633^86
+ ;;^UTILITY(U,$J,358.3,14864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14589,1,3,0)
- ;;=3^Retinal Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,14589,1,4,0)
- ;;=4^H35.62
- ;;^UTILITY(U,$J,358.3,14589,2)
- ;;=^5005700
- ;;^UTILITY(U,$J,358.3,14590,0)
- ;;=H35.63^^82^779^83
- ;;^UTILITY(U,$J,358.3,14590,1,0)
+ ;;^UTILITY(U,$J,358.3,14864,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,14864,1,4,0)
+ ;;=4^L89.212
+ ;;^UTILITY(U,$J,358.3,14864,2)
+ ;;=^5009381
+ ;;^UTILITY(U,$J,358.3,14865,0)
+ ;;=L89.213^^56^633^87
+ ;;^UTILITY(U,$J,358.3,14865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14590,1,3,0)
- ;;=3^Retinal Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,14590,1,4,0)
- ;;=4^H35.63
- ;;^UTILITY(U,$J,358.3,14590,2)
- ;;=^5005701
- ;;^UTILITY(U,$J,358.3,14591,0)
- ;;=H35.82^^82^779^86
- ;;^UTILITY(U,$J,358.3,14591,1,0)
+ ;;^UTILITY(U,$J,358.3,14865,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,14865,1,4,0)
+ ;;=4^L89.213
+ ;;^UTILITY(U,$J,358.3,14865,2)
+ ;;=^5009382
+ ;;^UTILITY(U,$J,358.3,14866,0)
+ ;;=L89.214^^56^633^88
+ ;;^UTILITY(U,$J,358.3,14866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14591,1,3,0)
- ;;=3^Retinal Ischemia
- ;;^UTILITY(U,$J,358.3,14591,1,4,0)
- ;;=4^H35.82
- ;;^UTILITY(U,$J,358.3,14591,2)
- ;;=^5005716
- ;;^UTILITY(U,$J,358.3,14592,0)
- ;;=H30.93^^82^779^15
- ;;^UTILITY(U,$J,358.3,14592,1,0)
+ ;;^UTILITY(U,$J,358.3,14866,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,14866,1,4,0)
+ ;;=4^L89.214
+ ;;^UTILITY(U,$J,358.3,14866,2)
+ ;;=^5009383
+ ;;^UTILITY(U,$J,358.3,14867,0)
+ ;;=L89.219^^56^633^89
+ ;;^UTILITY(U,$J,358.3,14867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14592,1,3,0)
- ;;=3^Chorioretinal Inflammation,Bilateral
- ;;^UTILITY(U,$J,358.3,14592,1,4,0)
- ;;=4^H30.93
- ;;^UTILITY(U,$J,358.3,14592,2)
- ;;=^5005435
- ;;^UTILITY(U,$J,358.3,14593,0)
- ;;=H30.91^^82^779^19
- ;;^UTILITY(U,$J,358.3,14593,1,0)
+ ;;^UTILITY(U,$J,358.3,14867,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,14867,1,4,0)
+ ;;=4^L89.219
+ ;;^UTILITY(U,$J,358.3,14867,2)
+ ;;=^5133661
+ ;;^UTILITY(U,$J,358.3,14868,0)
+ ;;=L89.220^^56^633^42
+ ;;^UTILITY(U,$J,358.3,14868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14593,1,3,0)
- ;;=3^Chorioretinal Inflammation,Right Eye
- ;;^UTILITY(U,$J,358.3,14593,1,4,0)
- ;;=4^H30.91
- ;;^UTILITY(U,$J,358.3,14593,2)
- ;;=^5133481
- ;;^UTILITY(U,$J,358.3,14594,0)
- ;;=H30.92^^82^779^17
- ;;^UTILITY(U,$J,358.3,14594,1,0)
+ ;;^UTILITY(U,$J,358.3,14868,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,14868,1,4,0)
+ ;;=4^L89.220
+ ;;^UTILITY(U,$J,358.3,14868,2)
+ ;;=^5009384
+ ;;^UTILITY(U,$J,358.3,14869,0)
+ ;;=L89.221^^56^633^37
+ ;;^UTILITY(U,$J,358.3,14869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14594,1,3,0)
- ;;=3^Chorioretinal Inflammation,Left Eye
- ;;^UTILITY(U,$J,358.3,14594,1,4,0)
- ;;=4^H30.92
- ;;^UTILITY(U,$J,358.3,14594,2)
- ;;=^5133482
- ;;^UTILITY(U,$J,358.3,14595,0)
- ;;=H30.891^^82^779^20
- ;;^UTILITY(U,$J,358.3,14595,1,0)
+ ;;^UTILITY(U,$J,358.3,14869,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,14869,1,4,0)
+ ;;=4^L89.221
+ ;;^UTILITY(U,$J,358.3,14869,2)
+ ;;=^5009385
+ ;;^UTILITY(U,$J,358.3,14870,0)
+ ;;=L89.222^^56^633^38
+ ;;^UTILITY(U,$J,358.3,14870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14595,1,3,0)
- ;;=3^Chorioretinal Inflammation,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,14595,1,4,0)
- ;;=4^H30.891
- ;;^UTILITY(U,$J,358.3,14595,2)
- ;;=^5005430
- ;;^UTILITY(U,$J,358.3,14596,0)
- ;;=H30.892^^82^779^18
- ;;^UTILITY(U,$J,358.3,14596,1,0)
+ ;;^UTILITY(U,$J,358.3,14870,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,14870,1,4,0)
+ ;;=4^L89.222
+ ;;^UTILITY(U,$J,358.3,14870,2)
+ ;;=^5009386
+ ;;^UTILITY(U,$J,358.3,14871,0)
+ ;;=L89.223^^56^633^39
+ ;;^UTILITY(U,$J,358.3,14871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14596,1,3,0)
- ;;=3^Chorioretinal Inflammation,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,14596,1,4,0)
- ;;=4^H30.892
- ;;^UTILITY(U,$J,358.3,14596,2)
- ;;=^5005431
- ;;^UTILITY(U,$J,358.3,14597,0)
- ;;=H30.893^^82^779^16
- ;;^UTILITY(U,$J,358.3,14597,1,0)
+ ;;^UTILITY(U,$J,358.3,14871,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,14871,1,4,0)
+ ;;=4^L89.223
+ ;;^UTILITY(U,$J,358.3,14871,2)
+ ;;=^5009387
+ ;;^UTILITY(U,$J,358.3,14872,0)
+ ;;=L89.224^^56^633^40
+ ;;^UTILITY(U,$J,358.3,14872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14597,1,3,0)
- ;;=3^Chorioretinal Inflammation,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,14597,1,4,0)
- ;;=4^H30.893
- ;;^UTILITY(U,$J,358.3,14597,2)
- ;;=^5005432
- ;;^UTILITY(U,$J,358.3,14598,0)
- ;;=H31.001^^82^779^23
- ;;^UTILITY(U,$J,358.3,14598,1,0)
+ ;;^UTILITY(U,$J,358.3,14872,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,14872,1,4,0)
+ ;;=4^L89.224
+ ;;^UTILITY(U,$J,358.3,14872,2)
+ ;;=^5009388
+ ;;^UTILITY(U,$J,358.3,14873,0)
+ ;;=L89.229^^56^633^41
+ ;;^UTILITY(U,$J,358.3,14873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14598,1,3,0)
- ;;=3^Chorioretinal Scars,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14598,1,4,0)
- ;;=4^H31.001
- ;;^UTILITY(U,$J,358.3,14598,2)
- ;;=^5005436
- ;;^UTILITY(U,$J,358.3,14599,0)
- ;;=H31.002^^82^779^22
- ;;^UTILITY(U,$J,358.3,14599,1,0)
+ ;;^UTILITY(U,$J,358.3,14873,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,14873,1,4,0)
+ ;;=4^L89.229
+ ;;^UTILITY(U,$J,358.3,14873,2)
+ ;;=^5133662
+ ;;^UTILITY(U,$J,358.3,14874,0)
+ ;;=L89.310^^56^633^72
+ ;;^UTILITY(U,$J,358.3,14874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14599,1,3,0)
- ;;=3^Chorioretinal Scars,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14599,1,4,0)
- ;;=4^H31.002
- ;;^UTILITY(U,$J,358.3,14599,2)
- ;;=^5005437
- ;;^UTILITY(U,$J,358.3,14600,0)
- ;;=H31.003^^82^779^21
- ;;^UTILITY(U,$J,358.3,14600,1,0)
+ ;;^UTILITY(U,$J,358.3,14874,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,14874,1,4,0)
+ ;;=4^L89.310
+ ;;^UTILITY(U,$J,358.3,14874,2)
+ ;;=^5009394
+ ;;^UTILITY(U,$J,358.3,14875,0)
+ ;;=L89.311^^56^633^67
+ ;;^UTILITY(U,$J,358.3,14875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14600,1,3,0)
- ;;=3^Chorioretinal Scars,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,14600,1,4,0)
- ;;=4^H31.003
- ;;^UTILITY(U,$J,358.3,14600,2)
- ;;=^5005438
- ;;^UTILITY(U,$J,358.3,14601,0)
- ;;=H31.021^^82^779^95
- ;;^UTILITY(U,$J,358.3,14601,1,0)
+ ;;^UTILITY(U,$J,358.3,14875,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,14875,1,4,0)
+ ;;=4^L89.311
+ ;;^UTILITY(U,$J,358.3,14875,2)
+ ;;=^5009395
+ ;;^UTILITY(U,$J,358.3,14876,0)
+ ;;=L89.312^^56^633^68
+ ;;^UTILITY(U,$J,358.3,14876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14601,1,3,0)
- ;;=3^Retinopathy,Solar,Right Eye
- ;;^UTILITY(U,$J,358.3,14601,1,4,0)
- ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,14876,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 2

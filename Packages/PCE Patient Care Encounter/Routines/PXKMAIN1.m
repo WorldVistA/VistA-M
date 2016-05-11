@@ -1,5 +1,5 @@
-PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;5/6/1999
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178**;Aug 12, 1996
+PXKMAIN1 ;ISL/JVS,ISA/Zoltan - Main Routine for Data Capture ;09/03/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,124,178,210**;Aug 12, 1996;Build 21
  ;+This routine is responsible for:
  ;+ - creating new entries in PCE files,
  ;+ - processing modifications to existing entries,
@@ -50,6 +50,7 @@ ERROR ;+Check for missing required fields
 CLEAN ;--Clean out the PXKAV array
  S PXKJ=""
  F  S PXKJ=$O(PXKBV(PXKJ)) Q:PXKJ=""  D
+ . I PXKCAT="IMM",PXKJ?1(1"2",1"3",1"11") D CLEAN^PXKIMM(PXKJ) Q
  . S PXKI=""
  . F  S PXKI=$O(PXKBV(PXKJ,PXKI)) Q:PXKI=""  D
  . . I $G(PXKBV(PXKJ,PXKI))=$G(PXKAV(PXKJ,PXKI)) K PXKAV(PXKJ,PXKI)
@@ -67,6 +68,7 @@ FILE ;+Create a new entry in file and get IEN
  S (PXKPIEN,DA)=+Y
  S DR=""
  K DIC,Y,X
+ I PXKCAT="IMM",PXKPIEN S PXVNEWIM=PXKPIEN S:$D(PXVNEWDA) PXVNEWDA=PXKPIEN ; PX*1*210
  Q
  ;
 AUD12 ;--Set both audit fields
@@ -95,8 +97,10 @@ AUD2 ;--Set second audit fields
  ;
 DRDIE ;--Set the DR string and DO DIE
  I PXKCAT="VST" D UPD^PXKFVST Q
+ ;
  S DIE=$P($T(GLOBAL^@PXKRTN),";;",2)_"(" K PXKPTR
  S PXKLR=$P($T(GLOBAL^@PXKRTN),";;",2)_"(DA)"
+ ;
  S PXKNOD=""
  F  S PXKNOD=$O(PXKAV(PXKNOD)) Q:PXKNOD=""  D
  . I PXKFGAD=1,PXKNOD=0 S PXKPCE=1 D
@@ -108,6 +112,9 @@ DRDIE ;--Set the DR string and DO DIE
  .. D DIE
  .. I $G(^TMP("PXK",$J,PXKCAT,PXKSEQ,"IEN"))]"" Q
  .. D UPD^PXKMOD
+ . ;
+ . I PXKCAT="IMM",PXKNOD?1(1"2",1"3",1"11") D DIE^PXKIMM Q
+ . ;
  . F  S PXKPCE=$O(PXKAV(PXKNOD,PXKPCE)) Q:PXKPCE=""  D
  ..D EN1^@PXKRTN
  ..I $G(PXKER)'="" D
@@ -122,6 +129,7 @@ DRDIE ;--Set the DR string and DO DIE
  ..I $G(PXKER)'="" S DR=DR_PXKER_"PXKAV("_PXKNOD_","_PXKPCE_"));"
  ..I $L(DR)>200 D DIE
  D DIE
+ I PXKCAT="IMM",$G(PXVNEWIM) D STOCK^PXVXR K PXVNEWIM ; PX*1*210
  K DIE,PXKLR,DIC(0)
  D ER
  Q
@@ -169,6 +177,7 @@ ER ;--PXKERROR MAKING IF NOT POPULATED CORRECTLY
  S PXKMOD=PXKSEQ#1 I $G(PXKMOD) Q
  S PXKN=""
  F  S PXKN=$O(PXKAV(PXKN)) Q:PXKN=""  D
+ . I PXKCAT="IMM",PXKN?1(1"2",1"3",1"11") D ER^PXKIMM Q
  . S PXKP=""
  . F  S PXKP=$O(PXKAV(PXKN,PXKP)) Q:PXKP=""  D
  .. S PXKRRT=$P($T(GLOBAL^@PXKRTN),";;",2)_"("_DA_","

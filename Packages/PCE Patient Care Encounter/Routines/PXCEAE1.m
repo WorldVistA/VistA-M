@@ -1,5 +1,5 @@
-PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;08/12/2014
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201**;Aug 12, 1996;Build 41
+PXCEAE1 ;ISL/dee,ISA/KWP,SLC/ajb - Builds the List Manager display of a visit and related v-files ;08/27/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**22,73,199,201,210**;Aug 12, 1996;Build 21
  ;; ;
  Q
  ;
@@ -45,16 +45,23 @@ DISPLAY(ENTRY,PXCECODE,ARRAY,ARRAYIX,LINE,COUNT,VIEW) ; -- display the data
  F PXCELINE=1:1 S PXCETEXT=$P($T(FORMAT+PXCELINE^@PXCECODE),";;",2) Q:PXCETEXT']""  D
  . ; save original PXCETEXT for multiple diagnosis ouput ; ajb
  . I VFILE="^AUPNVIMM",+PXCETEXT=3 N TMPTXT S TMPTXT=PXCETEXT ; ajb
+ . I VFILE="^AUPNVIMM",+PXCETEXT=2 N TMPTXT S TMPTXT=PXCETEXT ; PX*1*210
  . S (PXCEEXT,PXCEINT)=$P(ENTRY($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
  . ; get entries from diagnosis multiple ; ajb
  . I VFILE="^AUPNVIMM",+PXCETEXT=3 D  S:PXCEINT="" PXCEINT="^" S PXCEEXT=PXCEINT ; ajb
  . . N CNT,NIEN S (CNT,NIEN)=0 F  S NIEN=$O(^AUPNVIMM(IEN,3,NIEN)) Q:'+NIEN  D  ; ajb
  . . . S CNT=CNT+1,$P(PXCEINT,U,CNT)=$G(^AUPNVIMM(IEN,3,NIEN,0)) ; ajb
- . ; ajb
+ . ; ajb - above / PX*1*210 - below
+ . ; get entries from vis offered/given to patient multiple ; PX*1*210
+ . I VFILE="^AUPNVIMM",+PXCETEXT=2 D  S:PXCEINT="" PXCEINT="^" S PXCEEXT=PXCEINT
+ . . N CNT,NIEN S (CNT,NIEN)=0 F  S NIEN=$O(^AUPNVIMM(IEN,2,NIEN)) Q:'+NIEN  D
+ . . . S CNT=CNT+1,$P(PXCEINT,U,CNT)=$P($G(^AUPNVIMM(IEN,2,NIEN,0)),"^")
+ . ; PX*1*210
  . I PXCETEXT'["CPT Modifier",PXCEINT="" Q  ;Q:PXCEINT=""
  . Q:$P(PXCETEXT,"~",10)="N"
  . I VIEW'="D",$P(PXCETEXT,"~",10)="D" Q
  . I PXCECODE="PXCECSTP",$P(PXCETEXT,"~",3)=.01 Q
+ . I VFILE="^AUPNVIMM",+PXCETEXT=2,+PXCEINT D VIS Q
  . I $P(PXCETEXT,"~",6)]"" D  Q:PXCEEXT=""
  .. ;I PXCECODE["CPT",$P(PXCETEXT,"~",6)["DNAR" B  
  .. S @("PXCEEXT="_$P(PXCETEXT,"~",6)_"("""_$S($P(PXCETEXT,"~",3)=.01:ENTRY($P(PXCETEXT,"~",1)),1:PXCEINT)_""")")
@@ -94,5 +101,11 @@ ADDLINE ;
  . F  S PXCECOUN=$O(PXCEWRAP(PXCECOUN)) Q:PXCECOUN']""  D
  .. S LINE=LINE+1
  .. S @ARRAY@(LINE,0)=$J("",PXCEHEAD)_PXCEWRAP(PXCECOUN)
+ Q
+VIS ; get vaccine information statement info ; adm
+ S PXCEEXT=""
+ N CNT F CNT=1:1:$L(PXCEINT,U) S $P(PXCEEXT,U,CNT)=$$DISPVIS^PXCEVIS($P(PXCEINT,U,CNT))
+ N TEMP S TEMP=PXCEEXT
+ N PXI F PXI=1:1 Q:$P(TEMP,"^",PXI)=""  S PXCEEXT=$P(TEMP,"^",PXI) D ADDLINE S:+$D(TMPTXT) PXCETEXT=TMPTXT
  Q
  ;

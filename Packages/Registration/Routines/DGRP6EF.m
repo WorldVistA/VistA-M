@@ -1,5 +1,5 @@
-DGRP6EF ;ALB/TMK,EG,BAJ - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS; 07/20/2006
- ;;5.3;Registration;**689,659,737,688**;Aug 13, 1993;Build 29
+DGRP6EF ;ALB/TMK,EG,BAJ,JLS - REGISTRATION SCREEN 6 FIELDS FOR EXPOSURE FACTORS ;05 Feb 2015  11:06 AM
+ ;;5.3;Registration;**689,659,737,688,909**;Aug 13,1993;Build 32
  ;
 EN(DFN,QUIT) ; Display Environmental exposure factors/allow to edit
  N I,IND,DG321,DG322,DGCT,DIR,Z,X,Y,DIE,DR,DA,DGNONT
@@ -31,15 +31,36 @@ EN1 D CLEAR^VALM1
  I $G(DGRPV) S DGNONT=1
  S DGCT=DGCT+1,DIR("A",DGCT)=$S(DGNONT:"<",1:"[")_"4"_$S(DGNONT:">",1:"]")_"   N/T Radium: " N DGNT S DGRPX=$$GETCUR^DGNTAPI(DFN,"DGNT") S DIR("A",DGCT)=DIR("A",DGCT)_$G(DGNT("INTRP"))
  ;
+ ; DG*5.3*909 Display Camp Lejeune info in entirety
+ N DG3217CL S DG3217CL=$G(^DPT(DFN,.3217))
+ N DGCLE S DGCLE=$$CLE^DGENCLEA(DFN)
+ I DGCLE=1,$G(^DPT(DFN,.32171))=1 S DGCLE=0
+ S IND=$S('DGCLE:"<>",1:IND)
+ S Z=$E(IND)_"5"_$E(IND,2)
+ S DGCT=DGCT+1,DIR("A",DGCT)=Z_" Camp Lejeune: "
+ S DIR("A",DGCT)=DIR("A",DGCT)_$$YN^DGRP6CL(DG3217CL,1)
+ ;
  S DGCT=DGCT+1,DIR("A",DGCT)=" "
- S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (1-"_(4-DGNONT)_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")
+ N DGENDTXT S DGENDTXT=$S(DGNONT&DGCLE:"3,5",DGNONT&'DGCLE:"3",'DGNONT&DGCLE:"5",1:"4")  ; DG*5.3*909 Determine available choices based also on Camp Lejeune eligibility
+ S DIR("A")=$S('$G(DGRPV):"SELECT AN ENVIRONMENTAL FACTOR (1-"_DGENDTXT_") OR (Q)UIT: ",1:"PRESS RETURN TO CONTINUE ")  ;DG*5.3*909 Camp Lejeune choice added
  ;Env Contam name changed to SW Asia Conditions, DG*5.3*688
- S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_"Q:QUIT",1:"EA")
+ S DIR(0)=$S('$G(DGRPV):"SA^1:A/O Exp;2:ION Rad;3:SW Asia Cond;"_$S(DGNONT:"",1:"4:N/T Radium;")_$S(DGCLE:"5:Camp Lejeune;",1:"")_"Q:QUIT",1:"EA")  ; DG*5.3*909 Camp Lejeune choice added
  I '$G(DGRPV) S DIR("B")="QUIT"
- D ^DIR K DIR
+ I 'DGCLE,$G(^DPT(DFN,.32171))=1,$P($G(XQY0),U)'="DG REGISTRATION VIEW" D
+ . S DGHECMSG(1)="Camp Lejeune data has been verified by HEC, please "
+ . S DGHECMSG(1)=DGHECMSG(1)_"notify the HEC via"
+ . S DGHECMSG(2)="the HEC Alert process if changes are required."
+ . S DGHECMSG(3)="Press Return key to continue"
+ . S DIR("PRE")="I X=5 W !!,DGHECMSG(1),!,DGHECMSG(2),!!,DGHECMSG(3)"
+ . S DIR("PRE")=DIR("PRE")_" R *DGANSWER S X="""""
+ D ^DIR K DIR,DGANSWER,DGHECMSG
  I $G(DGRPV)!$D(DUOUT)!$D(DTOUT)!(Y="Q") S:Y'="Q" QUIT=1 G QUIT
  S Z="603"_$E("0",2-$L(+Y))_+Y
- S DIE=2,DA=DFN,DR=$P($T(@Z),";;",2) D:DR'="" ^DIE
+ S DIE=2,DA=DFN,DR=$P($T(@Z),";;",2)
+ ;
+ ; DG*5.3*909 Camp Lejeune logic added
+ I Y'=5 D:DR'="" ^DIE
+ E  X DR D AUTOUPD^DGENA2(DFN)
  K DIE,DA,DR
  G EN1
  ;
@@ -71,6 +92,13 @@ EF(DFN,LIN) ;
  I "NO"'[$G(DGNT("INTRP")) D
  . I 'LIN S LIN=LIN+1,LIN(LIN)=""
  . S SEQ=4 D SETLNEX^DGRP6("N/T Radium ("_$P(DGNT("INTRP"),"YES,",2)_")",SEQ,.LIN,.LENGTH)
+ ; DG*5.3*909 Get latest Camp Lejeune information from PATIENT file
+ N DG3217CL
+ S DG3217CL=$G(^DPT(DFN,.3217))
+ I $P(DG3217CL,U,1)="Y" D
+ . I 'LIN S LIN=LIN+1,LIN(LIN)=""
+ . S Z="Camp Lejeune",SEQ=5
+ . D SETLNEX^DGRP6(Z,SEQ,.LIN,.LENGTH)
   Q
   ; The following tag is a table of values.  Do not change location of values including null at SELTBL+0
 SELTBL ;;
@@ -85,4 +113,5 @@ SELTBL ;;
 60302 ;;.32103//NO;S:X'="Y" Y="@66";.3212;.32111;@66;
 60303 ;;.322013//NO;S:X'="Y" Y="@612";.322014;Q;.322015;@612;
 60304 ;;D REG^DGNTQ(DFN)
+60305 ;;D ADDEDTCL^DGENCLEA(DFN)
  ;;

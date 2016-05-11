@@ -1,124 +1,130 @@
-IBDEI0XY ; ; 19-NOV-2015
+IBDEI0XY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15650,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15650,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,15650,1,4,0)
- ;;=4^I70.238
- ;;^UTILITY(U,$J,358.3,15650,2)
- ;;=^5007593
- ;;^UTILITY(U,$J,358.3,15651,0)
- ;;=I70.239^^85^825^28
- ;;^UTILITY(U,$J,358.3,15651,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15651,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,15651,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,15651,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,15652,0)
- ;;=I70.241^^85^825^20
- ;;^UTILITY(U,$J,358.3,15652,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15652,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,15652,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,15652,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,15653,0)
- ;;=I70.242^^85^825^16
- ;;^UTILITY(U,$J,358.3,15653,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15653,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,15653,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,15653,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,15654,0)
- ;;=I70.243^^85^825^15
- ;;^UTILITY(U,$J,358.3,15654,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15654,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,15654,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,15654,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,15655,0)
- ;;=I70.244^^85^825^18
- ;;^UTILITY(U,$J,358.3,15655,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15655,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,15655,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,15655,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,15656,0)
- ;;=I70.245^^85^825^17
- ;;^UTILITY(U,$J,358.3,15656,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15656,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,15656,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,15656,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,15657,0)
- ;;=I70.248^^85^825^19
- ;;^UTILITY(U,$J,358.3,15657,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15657,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,15657,1,4,0)
- ;;=4^I70.248
- ;;^UTILITY(U,$J,358.3,15657,2)
- ;;=^5007600
- ;;^UTILITY(U,$J,358.3,15658,0)
- ;;=I70.249^^85^825^21
- ;;^UTILITY(U,$J,358.3,15658,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15658,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,15658,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,15658,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,15659,0)
- ;;=I70.331^^85^825^64
- ;;^UTILITY(U,$J,358.3,15659,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15659,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,15659,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,15659,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,15660,0)
- ;;=I70.332^^85^825^65
- ;;^UTILITY(U,$J,358.3,15660,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15660,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,15660,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,15660,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,15661,0)
- ;;=I70.333^^85^825^66
- ;;^UTILITY(U,$J,358.3,15661,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15661,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,15661,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,15661,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,15662,0)
- ;;=I70.334^^85^825^67
+ ;;^UTILITY(U,$J,358.3,15924,0)
+ ;;=96361^^59^708^20^^^^1
+ ;;^UTILITY(U,$J,358.3,15924,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15924,1,1,0)
+ ;;=1^96361
+ ;;^UTILITY(U,$J,358.3,15924,1,3,0)
+ ;;=3^Hydration IV Infusn Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,15925,0)
+ ;;=96365^^59^708^26^^^^1
+ ;;^UTILITY(U,$J,358.3,15925,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15925,1,1,0)
+ ;;=1^96365
+ ;;^UTILITY(U,$J,358.3,15925,1,3,0)
+ ;;=3^Ther/Diag/Proph,IV Infusn,Init hr
+ ;;^UTILITY(U,$J,358.3,15926,0)
+ ;;=96366^^59^708^27^^^^1
+ ;;^UTILITY(U,$J,358.3,15926,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15926,1,1,0)
+ ;;=1^96366
+ ;;^UTILITY(U,$J,358.3,15926,1,3,0)
+ ;;=3^Ther/Diag/Proph, IV Infusn,Ea Add Hr
+ ;;^UTILITY(U,$J,358.3,15927,0)
+ ;;=96372^^59^708^22^^^^1
+ ;;^UTILITY(U,$J,358.3,15927,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15927,1,1,0)
+ ;;=1^96372
+ ;;^UTILITY(U,$J,358.3,15927,1,3,0)
+ ;;=3^Ther/Diag/Proph IM/SQ injection
+ ;;^UTILITY(U,$J,358.3,15928,0)
+ ;;=96374^^59^708^25^^^^1
+ ;;^UTILITY(U,$J,358.3,15928,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15928,1,1,0)
+ ;;=1^96374
+ ;;^UTILITY(U,$J,358.3,15928,1,3,0)
+ ;;=3^Ther/Diag/Proph IV push, Init
+ ;;^UTILITY(U,$J,358.3,15929,0)
+ ;;=96375^^59^708^24^^^^1
+ ;;^UTILITY(U,$J,358.3,15929,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15929,1,1,0)
+ ;;=1^96375
+ ;;^UTILITY(U,$J,358.3,15929,1,3,0)
+ ;;=3^Ther/Diag/Proph IV push ea add seql,new drug
+ ;;^UTILITY(U,$J,358.3,15930,0)
+ ;;=96367^^59^708^28^^^^1
+ ;;^UTILITY(U,$J,358.3,15930,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15930,1,1,0)
+ ;;=1^96367
+ ;;^UTILITY(U,$J,358.3,15930,1,3,0)
+ ;;=3^Ther/Diag/Proph,IV Infusn,Ea add hr seql
+ ;;^UTILITY(U,$J,358.3,15931,0)
+ ;;=96368^^59^708^23^^^^1
+ ;;^UTILITY(U,$J,358.3,15931,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15931,1,1,0)
+ ;;=1^96368
+ ;;^UTILITY(U,$J,358.3,15931,1,3,0)
+ ;;=3^Ther/Diag/Proph IV Infusn, Concurrent
+ ;;^UTILITY(U,$J,358.3,15932,0)
+ ;;=96446^^59^708^4^^^^1
+ ;;^UTILITY(U,$J,358.3,15932,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15932,1,1,0)
+ ;;=1^96446
+ ;;^UTILITY(U,$J,358.3,15932,1,3,0)
+ ;;=3^Chemo Admn, Peritoneal Cavity
+ ;;^UTILITY(U,$J,358.3,15933,0)
+ ;;=J9000^^59^709^9^^^^1
+ ;;^UTILITY(U,$J,358.3,15933,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15933,1,1,0)
+ ;;=1^J9000
+ ;;^UTILITY(U,$J,358.3,15933,1,3,0)
+ ;;=3^Doxorubicin 10mg
+ ;;^UTILITY(U,$J,358.3,15934,0)
+ ;;=J9031^^59^709^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15934,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15934,1,1,0)
+ ;;=1^J9031
+ ;;^UTILITY(U,$J,358.3,15934,1,3,0)
+ ;;=3^B C G (Intravesical)
+ ;;^UTILITY(U,$J,358.3,15935,0)
+ ;;=J9040^^59^709^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15935,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15935,1,1,0)
+ ;;=1^J9040
+ ;;^UTILITY(U,$J,358.3,15935,1,3,0)
+ ;;=3^Bleomycin Sulfate Inj 15U
+ ;;^UTILITY(U,$J,358.3,15936,0)
+ ;;=J9045^^59^709^4^^^^1
+ ;;^UTILITY(U,$J,358.3,15936,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15936,1,1,0)
+ ;;=1^J9045
+ ;;^UTILITY(U,$J,358.3,15936,1,3,0)
+ ;;=3^Carboplatin 50mg
+ ;;^UTILITY(U,$J,358.3,15937,0)
+ ;;=J9060^^59^709^5^^^^1
+ ;;^UTILITY(U,$J,358.3,15937,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15937,1,1,0)
+ ;;=1^J9060
+ ;;^UTILITY(U,$J,358.3,15937,1,3,0)
+ ;;=3^Cisplatin 10 MG injection
+ ;;^UTILITY(U,$J,358.3,15938,0)
+ ;;=J9100^^59^709^7^^^^1
+ ;;^UTILITY(U,$J,358.3,15938,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15938,1,1,0)
+ ;;=1^J9100
+ ;;^UTILITY(U,$J,358.3,15938,1,3,0)
+ ;;=3^Cytarabine (arac) 100mg
+ ;;^UTILITY(U,$J,358.3,15939,0)
+ ;;=J9181^^59^709^11^^^^1
+ ;;^UTILITY(U,$J,358.3,15939,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15939,1,1,0)
+ ;;=1^J9181

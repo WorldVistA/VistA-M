@@ -1,124 +1,140 @@
-IBDEI1QV ; ; 19-NOV-2015
+IBDEI1QV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29210,0)
- ;;=I70.219^^135^1359^3
- ;;^UTILITY(U,$J,358.3,29210,1,0)
+ ;;^UTILITY(U,$J,358.3,29603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29210,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
- ;;^UTILITY(U,$J,358.3,29210,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,29210,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,29211,0)
- ;;=I70.213^^135^1359^4
- ;;^UTILITY(U,$J,358.3,29211,1,0)
+ ;;^UTILITY(U,$J,358.3,29603,1,3,0)
+ ;;=3^Depo Provera,Refill
+ ;;^UTILITY(U,$J,358.3,29603,1,4,0)
+ ;;=4^Z30.49
+ ;;^UTILITY(U,$J,358.3,29603,2)
+ ;;=^5062826
+ ;;^UTILITY(U,$J,358.3,29604,0)
+ ;;=Z30.013^^115^1475^4
+ ;;^UTILITY(U,$J,358.3,29604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29211,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,29211,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,29211,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,29212,0)
- ;;=I70.212^^135^1359^5
- ;;^UTILITY(U,$J,358.3,29212,1,0)
+ ;;^UTILITY(U,$J,358.3,29604,1,3,0)
+ ;;=3^Depo Provera,Initial
+ ;;^UTILITY(U,$J,358.3,29604,1,4,0)
+ ;;=4^Z30.013
+ ;;^UTILITY(U,$J,358.3,29604,2)
+ ;;=^5062812
+ ;;^UTILITY(U,$J,358.3,29605,0)
+ ;;=Z30.018^^115^1475^6
+ ;;^UTILITY(U,$J,358.3,29605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29212,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,29212,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,29212,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,29213,0)
- ;;=I70.211^^135^1359^6
- ;;^UTILITY(U,$J,358.3,29213,1,0)
+ ;;^UTILITY(U,$J,358.3,29605,1,3,0)
+ ;;=3^Diaphragm Fit
+ ;;^UTILITY(U,$J,358.3,29605,1,4,0)
+ ;;=4^Z30.018
+ ;;^UTILITY(U,$J,358.3,29605,2)
+ ;;=^5062814
+ ;;^UTILITY(U,$J,358.3,29606,0)
+ ;;=Z30.012^^115^1475^7
+ ;;^UTILITY(U,$J,358.3,29606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29213,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,29213,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,29213,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,29214,0)
- ;;=I70.25^^135^1359^2
- ;;^UTILITY(U,$J,358.3,29214,1,0)
+ ;;^UTILITY(U,$J,358.3,29606,1,3,0)
+ ;;=3^Emergency Contraception
+ ;;^UTILITY(U,$J,358.3,29606,1,4,0)
+ ;;=4^Z30.012
+ ;;^UTILITY(U,$J,358.3,29606,2)
+ ;;=^5062811
+ ;;^UTILITY(U,$J,358.3,29607,0)
+ ;;=Z30.430^^115^1475^9
+ ;;^UTILITY(U,$J,358.3,29607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29214,1,3,0)
- ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
- ;;^UTILITY(U,$J,358.3,29214,1,4,0)
- ;;=4^I70.25
- ;;^UTILITY(U,$J,358.3,29214,2)
- ;;=^5007602
- ;;^UTILITY(U,$J,358.3,29215,0)
- ;;=I70.249^^135^1359^7
- ;;^UTILITY(U,$J,358.3,29215,1,0)
+ ;;^UTILITY(U,$J,358.3,29607,1,3,0)
+ ;;=3^IUD Insertion
+ ;;^UTILITY(U,$J,358.3,29607,1,4,0)
+ ;;=4^Z30.430
+ ;;^UTILITY(U,$J,358.3,29607,2)
+ ;;=^5062822
+ ;;^UTILITY(U,$J,358.3,29608,0)
+ ;;=Z79.890^^115^1475^8
+ ;;^UTILITY(U,$J,358.3,29608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29215,1,3,0)
- ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
- ;;^UTILITY(U,$J,358.3,29215,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,29215,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,29216,0)
- ;;=I70.239^^135^1359^8
- ;;^UTILITY(U,$J,358.3,29216,1,0)
+ ;;^UTILITY(U,$J,358.3,29608,1,3,0)
+ ;;=3^HRT Start/Surveillance
+ ;;^UTILITY(U,$J,358.3,29608,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,29608,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,29609,0)
+ ;;=Z30.431^^115^1475^13
+ ;;^UTILITY(U,$J,358.3,29609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29216,1,3,0)
- ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,29216,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,29216,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,29217,0)
- ;;=I70.269^^135^1359^9
- ;;^UTILITY(U,$J,358.3,29217,1,0)
+ ;;^UTILITY(U,$J,358.3,29609,1,3,0)
+ ;;=3^IUD Surveillance
+ ;;^UTILITY(U,$J,358.3,29609,1,4,0)
+ ;;=4^Z30.431
+ ;;^UTILITY(U,$J,358.3,29609,2)
+ ;;=^5062823
+ ;;^UTILITY(U,$J,358.3,29610,0)
+ ;;=Z30.49^^115^1475^15
+ ;;^UTILITY(U,$J,358.3,29610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29217,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,29217,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,29217,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,29218,0)
- ;;=I70.263^^135^1359^10
- ;;^UTILITY(U,$J,358.3,29218,1,0)
+ ;;^UTILITY(U,$J,358.3,29610,1,3,0)
+ ;;=3^Nexplanon Insertion
+ ;;^UTILITY(U,$J,358.3,29610,1,4,0)
+ ;;=4^Z30.49
+ ;;^UTILITY(U,$J,358.3,29610,2)
+ ;;=^5062826
+ ;;^UTILITY(U,$J,358.3,29611,0)
+ ;;=Z30.49^^115^1475^16
+ ;;^UTILITY(U,$J,358.3,29611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29218,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
- ;;^UTILITY(U,$J,358.3,29218,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,29218,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,29219,0)
- ;;=I70.262^^135^1359^11
- ;;^UTILITY(U,$J,358.3,29219,1,0)
+ ;;^UTILITY(U,$J,358.3,29611,1,3,0)
+ ;;=3^Nexplanon Removal
+ ;;^UTILITY(U,$J,358.3,29611,1,4,0)
+ ;;=4^Z30.49
+ ;;^UTILITY(U,$J,358.3,29611,2)
+ ;;=^5062826
+ ;;^UTILITY(U,$J,358.3,29612,0)
+ ;;=Z30.41^^115^1475^18
+ ;;^UTILITY(U,$J,358.3,29612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29219,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
- ;;^UTILITY(U,$J,358.3,29219,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,29219,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,29220,0)
- ;;=I70.261^^135^1359^12
- ;;^UTILITY(U,$J,358.3,29220,1,0)
+ ;;^UTILITY(U,$J,358.3,29612,1,3,0)
+ ;;=3^OCP Surveillance/Refill
+ ;;^UTILITY(U,$J,358.3,29612,1,4,0)
+ ;;=4^Z30.41
+ ;;^UTILITY(U,$J,358.3,29612,2)
+ ;;=^5062820
+ ;;^UTILITY(U,$J,358.3,29613,0)
+ ;;=Z30.011^^115^1475^17
+ ;;^UTILITY(U,$J,358.3,29613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29220,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
- ;;^UTILITY(U,$J,358.3,29220,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,29220,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,29221,0)
- ;;=I71.2^^135^1359^20
- ;;^UTILITY(U,$J,358.3,29221,1,0)
+ ;;^UTILITY(U,$J,358.3,29613,1,3,0)
+ ;;=3^OCP Initial
+ ;;^UTILITY(U,$J,358.3,29613,1,4,0)
+ ;;=4^Z30.011
+ ;;^UTILITY(U,$J,358.3,29613,2)
+ ;;=^5062810
+ ;;^UTILITY(U,$J,358.3,29614,0)
+ ;;=Z97.5^^115^1475^19
+ ;;^UTILITY(U,$J,358.3,29614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29221,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,29221,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,29221,2)
- ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,29614,1,3,0)
+ ;;=3^Presence of IUD
+ ;;^UTILITY(U,$J,358.3,29614,1,4,0)
+ ;;=4^Z97.5
+ ;;^UTILITY(U,$J,358.3,29614,2)
+ ;;=^5063731
+ ;;^UTILITY(U,$J,358.3,29615,0)
+ ;;=Z30.432^^115^1475^10
+ ;;^UTILITY(U,$J,358.3,29615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29615,1,3,0)
+ ;;=3^IUD Removal
+ ;;^UTILITY(U,$J,358.3,29615,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,29615,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,29616,0)
+ ;;=Z30.433^^115^1475^11
+ ;;^UTILITY(U,$J,358.3,29616,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29616,1,3,0)
+ ;;=3^IUD Removal and Reinsertion
+ ;;^UTILITY(U,$J,358.3,29616,1,4,0)
+ ;;=4^Z30.433

@@ -1,134 +1,126 @@
-IBDEI26T ; ; 19-NOV-2015
+IBDEI26T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36728,1,4,0)
- ;;=4^D56.2
- ;;^UTILITY(U,$J,358.3,36728,2)
- ;;=^340496
- ;;^UTILITY(U,$J,358.3,36729,0)
- ;;=D56.3^^169^1858^18
- ;;^UTILITY(U,$J,358.3,36729,1,0)
+ ;;^UTILITY(U,$J,358.3,37108,1,3,0)
+ ;;=3^Inflmtry spndylopthies, thoracic regn, unspec
+ ;;^UTILITY(U,$J,358.3,37108,1,4,0)
+ ;;=4^M46.94
+ ;;^UTILITY(U,$J,358.3,37108,2)
+ ;;=^5012034
+ ;;^UTILITY(U,$J,358.3,37109,0)
+ ;;=M46.95^^140^1787^172
+ ;;^UTILITY(U,$J,358.3,37109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36729,1,3,0)
- ;;=3^Thalassemia minor
- ;;^UTILITY(U,$J,358.3,36729,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,36729,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,36730,0)
- ;;=D56.5^^169^1858^7
- ;;^UTILITY(U,$J,358.3,36730,1,0)
+ ;;^UTILITY(U,$J,358.3,37109,1,3,0)
+ ;;=3^Inflmtry spndylopthies, thoracolmbr regn, unspec
+ ;;^UTILITY(U,$J,358.3,37109,1,4,0)
+ ;;=4^M46.95
+ ;;^UTILITY(U,$J,358.3,37109,2)
+ ;;=^5012035
+ ;;^UTILITY(U,$J,358.3,37110,0)
+ ;;=M46.96^^140^1787^168
+ ;;^UTILITY(U,$J,358.3,37110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36730,1,3,0)
- ;;=3^Hemoglobin E-beta thalassemia
- ;;^UTILITY(U,$J,358.3,36730,1,4,0)
- ;;=4^D56.5
- ;;^UTILITY(U,$J,358.3,36730,2)
- ;;=^340498
- ;;^UTILITY(U,$J,358.3,36731,0)
- ;;=D56.8^^169^1858^19
- ;;^UTILITY(U,$J,358.3,36731,1,0)
+ ;;^UTILITY(U,$J,358.3,37110,1,3,0)
+ ;;=3^Inflmtry spndylopthies, lmbr regn, unspec
+ ;;^UTILITY(U,$J,358.3,37110,1,4,0)
+ ;;=4^M46.96
+ ;;^UTILITY(U,$J,358.3,37110,2)
+ ;;=^5012036
+ ;;^UTILITY(U,$J,358.3,37111,0)
+ ;;=M46.97^^140^1787^167
+ ;;^UTILITY(U,$J,358.3,37111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36731,1,3,0)
- ;;=3^Thalassemias NEC
- ;;^UTILITY(U,$J,358.3,36731,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,36731,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,36732,0)
- ;;=D57.3^^169^1858^16
- ;;^UTILITY(U,$J,358.3,36732,1,0)
+ ;;^UTILITY(U,$J,358.3,37111,1,3,0)
+ ;;=3^Inflmtry spndylopthies, lmboscrl regn, unspec
+ ;;^UTILITY(U,$J,358.3,37111,1,4,0)
+ ;;=4^M46.97
+ ;;^UTILITY(U,$J,358.3,37111,2)
+ ;;=^5012037
+ ;;^UTILITY(U,$J,358.3,37112,0)
+ ;;=M46.98^^140^1787^170
+ ;;^UTILITY(U,$J,358.3,37112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36732,1,3,0)
- ;;=3^Sickle-cell trait
- ;;^UTILITY(U,$J,358.3,36732,1,4,0)
- ;;=4^D57.3
- ;;^UTILITY(U,$J,358.3,36732,2)
- ;;=^5002313
- ;;^UTILITY(U,$J,358.3,36733,0)
- ;;=D57.1^^169^1858^13
- ;;^UTILITY(U,$J,358.3,36733,1,0)
+ ;;^UTILITY(U,$J,358.3,37112,1,3,0)
+ ;;=3^Inflmtry spndylopthies, sacr/sacrocygle regn, unspec
+ ;;^UTILITY(U,$J,358.3,37112,1,4,0)
+ ;;=4^M46.98
+ ;;^UTILITY(U,$J,358.3,37112,2)
+ ;;=^5012038
+ ;;^UTILITY(U,$J,358.3,37113,0)
+ ;;=M47.812^^140^1787^242
+ ;;^UTILITY(U,$J,358.3,37113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36733,1,3,0)
- ;;=3^Sickle-cell disease without crisis
- ;;^UTILITY(U,$J,358.3,36733,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,36733,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,36734,0)
- ;;=D57.02^^169^1858^6
- ;;^UTILITY(U,$J,358.3,36734,1,0)
+ ;;^UTILITY(U,$J,358.3,37113,1,3,0)
+ ;;=3^Spndylsis w/o mylopthy or radclpthy, crvcl regn
+ ;;^UTILITY(U,$J,358.3,37113,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,37113,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,37114,0)
+ ;;=M47.12^^140^1787^238
+ ;;^UTILITY(U,$J,358.3,37114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36734,1,3,0)
- ;;=3^Hb-SS disease with splenic sequestration
- ;;^UTILITY(U,$J,358.3,36734,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,36734,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,36735,0)
- ;;=D57.01^^169^1858^4
- ;;^UTILITY(U,$J,358.3,36735,1,0)
+ ;;^UTILITY(U,$J,358.3,37114,1,3,0)
+ ;;=3^Spndylsis w/ mylopthy, crvcl regn, oth
+ ;;^UTILITY(U,$J,358.3,37114,1,4,0)
+ ;;=4^M47.12
+ ;;^UTILITY(U,$J,358.3,37114,2)
+ ;;=^5012052
+ ;;^UTILITY(U,$J,358.3,37115,0)
+ ;;=M47.814^^140^1787^245
+ ;;^UTILITY(U,$J,358.3,37115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36735,1,3,0)
- ;;=3^Hb-SS disease with acute chest syndrome
- ;;^UTILITY(U,$J,358.3,36735,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,36735,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,36736,0)
- ;;=D57.00^^169^1858^5
- ;;^UTILITY(U,$J,358.3,36736,1,0)
+ ;;^UTILITY(U,$J,358.3,37115,1,3,0)
+ ;;=3^Spndylsis w/o mylopthy or radclpthy, thor regn
+ ;;^UTILITY(U,$J,358.3,37115,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,37115,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,37116,0)
+ ;;=M47.817^^140^1787^243
+ ;;^UTILITY(U,$J,358.3,37116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36736,1,3,0)
- ;;=3^Hb-SS disease with crisis, unspecified
- ;;^UTILITY(U,$J,358.3,36736,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,36736,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,36737,0)
- ;;=D57.20^^169^1858^17
- ;;^UTILITY(U,$J,358.3,36737,1,0)
+ ;;^UTILITY(U,$J,358.3,37116,1,3,0)
+ ;;=3^Spndylsis w/o mylopthy or radclpthy, lumbosacr regn
+ ;;^UTILITY(U,$J,358.3,37116,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,37116,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,37117,0)
+ ;;=M47.14^^140^1787^240
+ ;;^UTILITY(U,$J,358.3,37117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36737,1,3,0)
- ;;=3^Sickle-cell/Hb-C disease without crisis
- ;;^UTILITY(U,$J,358.3,36737,1,4,0)
- ;;=4^D57.20
- ;;^UTILITY(U,$J,358.3,36737,2)
- ;;=^330080
- ;;^UTILITY(U,$J,358.3,36738,0)
- ;;=D57.811^^169^1858^10
- ;;^UTILITY(U,$J,358.3,36738,1,0)
+ ;;^UTILITY(U,$J,358.3,37117,1,3,0)
+ ;;=3^Spndylsis w/ mylopthy, thoracic regn, oth
+ ;;^UTILITY(U,$J,358.3,37117,1,4,0)
+ ;;=4^M47.14
+ ;;^UTILITY(U,$J,358.3,37117,2)
+ ;;=^5012054
+ ;;^UTILITY(U,$J,358.3,37118,0)
+ ;;=M47.16^^140^1787^239
+ ;;^UTILITY(U,$J,358.3,37118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36738,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Acute Chest Syndrome NEC
- ;;^UTILITY(U,$J,358.3,36738,1,4,0)
- ;;=4^D57.811
- ;;^UTILITY(U,$J,358.3,36738,2)
- ;;=^5002318
- ;;^UTILITY(U,$J,358.3,36739,0)
- ;;=D57.812^^169^1858^11
- ;;^UTILITY(U,$J,358.3,36739,1,0)
+ ;;^UTILITY(U,$J,358.3,37118,1,3,0)
+ ;;=3^Spndylsis w/ mylopthy, lumbar regn, oth
+ ;;^UTILITY(U,$J,358.3,37118,1,4,0)
+ ;;=4^M47.16
+ ;;^UTILITY(U,$J,358.3,37118,2)
+ ;;=^5012056
+ ;;^UTILITY(U,$J,358.3,37119,0)
+ ;;=M48.20^^140^1787^184
+ ;;^UTILITY(U,$J,358.3,37119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36739,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,36739,1,4,0)
- ;;=4^D57.812
- ;;^UTILITY(U,$J,358.3,36739,2)
- ;;=^5002319
- ;;^UTILITY(U,$J,358.3,36740,0)
- ;;=D57.819^^169^1858^12
- ;;^UTILITY(U,$J,358.3,36740,1,0)
+ ;;^UTILITY(U,$J,358.3,37119,1,3,0)
+ ;;=3^Kissing spine, site unspec
+ ;;^UTILITY(U,$J,358.3,37119,1,4,0)
+ ;;=4^M48.20
+ ;;^UTILITY(U,$J,358.3,37119,2)
+ ;;=^5012106
+ ;;^UTILITY(U,$J,358.3,37120,0)
+ ;;=M48.21^^140^1787^183
+ ;;^UTILITY(U,$J,358.3,37120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36740,1,3,0)
- ;;=3^Sickle-Cell Disorders w/ Unspec Crisis NEC
- ;;^UTILITY(U,$J,358.3,36740,1,4,0)
- ;;=4^D57.819
- ;;^UTILITY(U,$J,358.3,36740,2)
- ;;=^5002320
- ;;^UTILITY(U,$J,358.3,36741,0)
- ;;=D58.8^^169^1858^9
- ;;^UTILITY(U,$J,358.3,36741,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36741,1,3,0)
- ;;=3^Hereditary Hemolytic Anemias NEC
+ ;;^UTILITY(U,$J,358.3,37120,1,3,0)
+ ;;=3^Kissing spine, occipito-atlanto-axial region

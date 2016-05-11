@@ -1,122 +1,134 @@
-IBDEI24Y ; ; 19-NOV-2015
+IBDEI24Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35839,1,4,0)
- ;;=4^O36.0115
- ;;^UTILITY(U,$J,358.3,35839,2)
- ;;=^5016847
- ;;^UTILITY(U,$J,358.3,35840,0)
- ;;=O36.0120^^166^1827^49
- ;;^UTILITY(U,$J,358.3,35840,1,0)
+ ;;^UTILITY(U,$J,358.3,36235,0)
+ ;;=B44.0^^137^1755^10
+ ;;^UTILITY(U,$J,358.3,36235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35840,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second trimester, unsp
- ;;^UTILITY(U,$J,358.3,35840,1,4,0)
- ;;=4^O36.0120
- ;;^UTILITY(U,$J,358.3,35840,2)
- ;;=^5016849
- ;;^UTILITY(U,$J,358.3,35841,0)
- ;;=O36.0121^^166^1827^50
- ;;^UTILITY(U,$J,358.3,35841,1,0)
+ ;;^UTILITY(U,$J,358.3,36235,1,3,0)
+ ;;=3^Aspergillosis,Invasive Pulmonary
+ ;;^UTILITY(U,$J,358.3,36235,1,4,0)
+ ;;=4^B44.0
+ ;;^UTILITY(U,$J,358.3,36235,2)
+ ;;=^5000663
+ ;;^UTILITY(U,$J,358.3,36236,0)
+ ;;=J44.9^^137^1755^24
+ ;;^UTILITY(U,$J,358.3,36236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35841,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35841,1,4,0)
- ;;=4^O36.0121
- ;;^UTILITY(U,$J,358.3,35841,2)
- ;;=^5016850
- ;;^UTILITY(U,$J,358.3,35842,0)
- ;;=O36.0122^^166^1827^51
- ;;^UTILITY(U,$J,358.3,35842,1,0)
+ ;;^UTILITY(U,$J,358.3,36236,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,36236,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,36236,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,36237,0)
+ ;;=J45.20^^137^1755^13
+ ;;^UTILITY(U,$J,358.3,36237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35842,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35842,1,4,0)
- ;;=4^O36.0122
- ;;^UTILITY(U,$J,358.3,35842,2)
- ;;=^5016851
- ;;^UTILITY(U,$J,358.3,35843,0)
- ;;=O36.0123^^166^1827^52
- ;;^UTILITY(U,$J,358.3,35843,1,0)
+ ;;^UTILITY(U,$J,358.3,36237,1,3,0)
+ ;;=3^Asthma,Mild Intermittent Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36237,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,36237,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,36238,0)
+ ;;=J45.21^^137^1755^14
+ ;;^UTILITY(U,$J,358.3,36238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35843,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35843,1,4,0)
- ;;=4^O36.0123
- ;;^UTILITY(U,$J,358.3,35843,2)
- ;;=^5016852
- ;;^UTILITY(U,$J,358.3,35844,0)
- ;;=O36.0124^^166^1827^53
- ;;^UTILITY(U,$J,358.3,35844,1,0)
+ ;;^UTILITY(U,$J,358.3,36238,1,3,0)
+ ;;=3^Asthma,Mild Intermittent w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,36238,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,36238,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,36239,0)
+ ;;=J45.909^^137^1755^15
+ ;;^UTILITY(U,$J,358.3,36239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35844,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,35844,1,4,0)
- ;;=4^O36.0124
- ;;^UTILITY(U,$J,358.3,35844,2)
- ;;=^5016853
- ;;^UTILITY(U,$J,358.3,35845,0)
- ;;=O36.0125^^166^1827^54
- ;;^UTILITY(U,$J,358.3,35845,1,0)
+ ;;^UTILITY(U,$J,358.3,36239,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,36239,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,36239,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,36240,0)
+ ;;=J45.902^^137^1755^12
+ ;;^UTILITY(U,$J,358.3,36240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35845,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,35845,1,4,0)
- ;;=4^O36.0125
- ;;^UTILITY(U,$J,358.3,35845,2)
- ;;=^5016854
- ;;^UTILITY(U,$J,358.3,35846,0)
- ;;=O36.0130^^166^1827^55
- ;;^UTILITY(U,$J,358.3,35846,1,0)
+ ;;^UTILITY(U,$J,358.3,36240,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,36240,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,36240,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,36241,0)
+ ;;=J98.11^^137^1755^16
+ ;;^UTILITY(U,$J,358.3,36241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35846,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,35846,1,4,0)
- ;;=4^O36.0130
- ;;^UTILITY(U,$J,358.3,35846,2)
- ;;=^5016856
- ;;^UTILITY(U,$J,358.3,35847,0)
- ;;=O36.0131^^166^1827^56
- ;;^UTILITY(U,$J,358.3,35847,1,0)
+ ;;^UTILITY(U,$J,358.3,36241,1,3,0)
+ ;;=3^Atelectasis
+ ;;^UTILITY(U,$J,358.3,36241,1,4,0)
+ ;;=4^J98.11
+ ;;^UTILITY(U,$J,358.3,36241,2)
+ ;;=^5008360
+ ;;^UTILITY(U,$J,358.3,36242,0)
+ ;;=A31.9^^137^1755^55
+ ;;^UTILITY(U,$J,358.3,36242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35847,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35847,1,4,0)
- ;;=4^O36.0131
- ;;^UTILITY(U,$J,358.3,35847,2)
- ;;=^5016857
- ;;^UTILITY(U,$J,358.3,35848,0)
- ;;=O36.0132^^166^1827^57
- ;;^UTILITY(U,$J,358.3,35848,1,0)
+ ;;^UTILITY(U,$J,358.3,36242,1,3,0)
+ ;;=3^Mycobacterial Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,36242,1,4,0)
+ ;;=4^A31.9
+ ;;^UTILITY(U,$J,358.3,36242,2)
+ ;;=^5000153
+ ;;^UTILITY(U,$J,358.3,36243,0)
+ ;;=A31.0^^137^1755^54
+ ;;^UTILITY(U,$J,358.3,36243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35848,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35848,1,4,0)
- ;;=4^O36.0132
- ;;^UTILITY(U,$J,358.3,35848,2)
- ;;=^5016858
- ;;^UTILITY(U,$J,358.3,35849,0)
- ;;=O36.0133^^166^1827^58
- ;;^UTILITY(U,$J,358.3,35849,1,0)
+ ;;^UTILITY(U,$J,358.3,36243,1,3,0)
+ ;;=3^Mycobacterial Infection,Pulmonary
+ ;;^UTILITY(U,$J,358.3,36243,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,36243,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,36244,0)
+ ;;=A31.2^^137^1755^32
+ ;;^UTILITY(U,$J,358.3,36244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35849,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35849,1,4,0)
- ;;=4^O36.0133
- ;;^UTILITY(U,$J,358.3,35849,2)
- ;;=^5016859
- ;;^UTILITY(U,$J,358.3,35850,0)
- ;;=O36.0134^^166^1827^59
- ;;^UTILITY(U,$J,358.3,35850,1,0)
+ ;;^UTILITY(U,$J,358.3,36244,1,3,0)
+ ;;=3^Disseminated Mycobacterium Avium-Intracellulare Complex
+ ;;^UTILITY(U,$J,358.3,36244,1,4,0)
+ ;;=4^A31.2
+ ;;^UTILITY(U,$J,358.3,36244,2)
+ ;;=^5000151
+ ;;^UTILITY(U,$J,358.3,36245,0)
+ ;;=J47.9^^137^1755^18
+ ;;^UTILITY(U,$J,358.3,36245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35850,1,3,0)
- ;;=3^Maternal care for anti-D antibodies, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,35850,1,4,0)
- ;;=4^O36.0134
- ;;^UTILITY(U,$J,358.3,35850,2)
- ;;=^5016860
- ;;^UTILITY(U,$J,358.3,35851,0)
- ;;=O36.0135^^166^1827^60
- ;;^UTILITY(U,$J,358.3,35851,1,0)
+ ;;^UTILITY(U,$J,358.3,36245,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36245,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,36245,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,36246,0)
+ ;;=J41.8^^137^1755^20
+ ;;^UTILITY(U,$J,358.3,36246,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36246,1,3,0)
+ ;;=3^Bronchitis,Chr,Mixed Simple & Mucopurulent
+ ;;^UTILITY(U,$J,358.3,36246,1,4,0)
+ ;;=4^J41.8
+ ;;^UTILITY(U,$J,358.3,36246,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,36247,0)
+ ;;=J20.9^^137^1755^19
+ ;;^UTILITY(U,$J,358.3,36247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36247,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,36247,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,36247,2)
+ ;;=^5008195

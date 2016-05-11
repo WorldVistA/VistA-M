@@ -1,126 +1,136 @@
-IBDEI295 ; ; 19-NOV-2015
+IBDEI295 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37824,1,2,0)
- ;;=2^Phrenic Nerve Block
- ;;^UTILITY(U,$J,358.3,37824,1,4,0)
- ;;=4^64410
- ;;^UTILITY(U,$J,358.3,37825,0)
- ;;=64417^^174^1901^3^^^^1
- ;;^UTILITY(U,$J,358.3,37825,1,0)
+ ;;^UTILITY(U,$J,358.3,38207,1,3,0)
+ ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,38207,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,38207,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,38208,0)
+ ;;=F29.^^145^1851^6
+ ;;^UTILITY(U,$J,358.3,38208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37825,1,2,0)
- ;;=2^Axillary Nerve Block
- ;;^UTILITY(U,$J,358.3,37825,1,4,0)
- ;;=4^64417
- ;;^UTILITY(U,$J,358.3,37826,0)
- ;;=64413^^174^1901^5^^^^1
- ;;^UTILITY(U,$J,358.3,37826,1,0)
+ ;;^UTILITY(U,$J,358.3,38208,1,3,0)
+ ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38208,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,38208,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,38209,0)
+ ;;=F52.32^^145^1852^1
+ ;;^UTILITY(U,$J,358.3,38209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37826,1,2,0)
- ;;=2^Cervical Nerve Block
- ;;^UTILITY(U,$J,358.3,37826,1,4,0)
- ;;=4^64413
- ;;^UTILITY(U,$J,358.3,37827,0)
- ;;=64415^^174^1901^4^^^^1
- ;;^UTILITY(U,$J,358.3,37827,1,0)
+ ;;^UTILITY(U,$J,358.3,38209,1,3,0)
+ ;;=3^Delayed Ejaculation
+ ;;^UTILITY(U,$J,358.3,38209,1,4,0)
+ ;;=4^F52.32
+ ;;^UTILITY(U,$J,358.3,38209,2)
+ ;;=^331927
+ ;;^UTILITY(U,$J,358.3,38210,0)
+ ;;=F52.21^^145^1852^2
+ ;;^UTILITY(U,$J,358.3,38210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37827,1,2,0)
- ;;=2^Brachial Plexus Nerve Block
- ;;^UTILITY(U,$J,358.3,37827,1,4,0)
- ;;=4^64415
- ;;^UTILITY(U,$J,358.3,37828,0)
- ;;=64435^^174^1901^21^^^^1
- ;;^UTILITY(U,$J,358.3,37828,1,0)
+ ;;^UTILITY(U,$J,358.3,38210,1,3,0)
+ ;;=3^Erectile Disorder
+ ;;^UTILITY(U,$J,358.3,38210,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,38210,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,38211,0)
+ ;;=F52.31^^145^1852^3
+ ;;^UTILITY(U,$J,358.3,38211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37828,1,2,0)
- ;;=2^Paracervical Nerve Block
- ;;^UTILITY(U,$J,358.3,37828,1,4,0)
- ;;=4^64435
- ;;^UTILITY(U,$J,358.3,37829,0)
- ;;=64450^^174^1901^28^^^^1
- ;;^UTILITY(U,$J,358.3,37829,1,0)
+ ;;^UTILITY(U,$J,358.3,38211,1,3,0)
+ ;;=3^Female Orgasmic Disorder
+ ;;^UTILITY(U,$J,358.3,38211,1,4,0)
+ ;;=4^F52.31
+ ;;^UTILITY(U,$J,358.3,38211,2)
+ ;;=^331926
+ ;;^UTILITY(U,$J,358.3,38212,0)
+ ;;=F52.22^^145^1852^4
+ ;;^UTILITY(U,$J,358.3,38212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37829,1,2,0)
- ;;=2^Peripheral Nerve Block
- ;;^UTILITY(U,$J,358.3,37829,1,4,0)
- ;;=4^64450
- ;;^UTILITY(U,$J,358.3,37830,0)
- ;;=64479^^174^1901^33^^^^1
- ;;^UTILITY(U,$J,358.3,37830,1,0)
+ ;;^UTILITY(U,$J,358.3,38212,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,38212,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,38212,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,38213,0)
+ ;;=F52.6^^145^1852^5
+ ;;^UTILITY(U,$J,358.3,38213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37830,1,2,0)
- ;;=2^Selective Nerve Block,Cervical/Thoracic
- ;;^UTILITY(U,$J,358.3,37830,1,4,0)
- ;;=4^64479
- ;;^UTILITY(U,$J,358.3,37831,0)
- ;;=64480^^174^1901^32^^^^1
- ;;^UTILITY(U,$J,358.3,37831,1,0)
+ ;;^UTILITY(U,$J,358.3,38213,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,38213,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,38213,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,38214,0)
+ ;;=F52.0^^145^1852^6
+ ;;^UTILITY(U,$J,358.3,38214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37831,1,2,0)
- ;;=2^Select Nerve Block,Cerv/Thor,Addl Levels
- ;;^UTILITY(U,$J,358.3,37831,1,4,0)
- ;;=4^64480
- ;;^UTILITY(U,$J,358.3,37832,0)
- ;;=64483^^174^1901^35^^^^1
- ;;^UTILITY(U,$J,358.3,37832,1,0)
+ ;;^UTILITY(U,$J,358.3,38214,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,38214,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,38214,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,38215,0)
+ ;;=F52.4^^145^1852^7
+ ;;^UTILITY(U,$J,358.3,38215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37832,1,2,0)
- ;;=2^Selective Nerve Block,Lumbar/Sacral
- ;;^UTILITY(U,$J,358.3,37832,1,4,0)
- ;;=4^64483
- ;;^UTILITY(U,$J,358.3,37833,0)
- ;;=64484^^174^1901^34^^^^1
- ;;^UTILITY(U,$J,358.3,37833,1,0)
+ ;;^UTILITY(U,$J,358.3,38215,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,38215,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,38215,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,38216,0)
+ ;;=F52.8^^145^1852^9
+ ;;^UTILITY(U,$J,358.3,38216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37833,1,2,0)
- ;;=2^Selective Nerve Block,Lumbar,Addl Levels
- ;;^UTILITY(U,$J,358.3,37833,1,4,0)
- ;;=4^64484
- ;;^UTILITY(U,$J,358.3,37834,0)
- ;;=64490^^174^1901^24^^^^1
- ;;^UTILITY(U,$J,358.3,37834,1,0)
+ ;;^UTILITY(U,$J,358.3,38216,1,3,0)
+ ;;=3^Sexual Dysfuntion NEC
+ ;;^UTILITY(U,$J,358.3,38216,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,38216,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,38217,0)
+ ;;=F52.9^^145^1852^8
+ ;;^UTILITY(U,$J,358.3,38217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37834,1,2,0)
- ;;=2^Paravert Facet Block,Cerv/Thor,1st Lev
- ;;^UTILITY(U,$J,358.3,37834,1,4,0)
- ;;=4^64490
- ;;^UTILITY(U,$J,358.3,37835,0)
- ;;=64491^^174^1901^25^^^^1
- ;;^UTILITY(U,$J,358.3,37835,1,0)
+ ;;^UTILITY(U,$J,358.3,38217,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,38217,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,38217,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,38218,0)
+ ;;=G47.09^^145^1853^14
+ ;;^UTILITY(U,$J,358.3,38218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37835,1,2,0)
- ;;=2^Paravert Facet Block,Cerv/Thor,2nd Lev
- ;;^UTILITY(U,$J,358.3,37835,1,4,0)
- ;;=4^64491
- ;;^UTILITY(U,$J,358.3,37836,0)
- ;;=64492^^174^1901^22^^^^1
- ;;^UTILITY(U,$J,358.3,37836,1,0)
+ ;;^UTILITY(U,$J,358.3,38218,1,3,0)
+ ;;=3^Insomnia,Other
+ ;;^UTILITY(U,$J,358.3,38218,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,38218,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,38219,0)
+ ;;=G47.00^^145^1853^15
+ ;;^UTILITY(U,$J,358.3,38219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37836,1,2,0)
- ;;=2^Paravert Facet Blk,Cerv/Thor,Ea Addl Lev
- ;;^UTILITY(U,$J,358.3,37836,1,4,0)
- ;;=4^64492
- ;;^UTILITY(U,$J,358.3,37837,0)
- ;;=64493^^174^1901^26^^^^1
- ;;^UTILITY(U,$J,358.3,37837,1,0)
+ ;;^UTILITY(U,$J,358.3,38219,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,38219,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,38219,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,38220,0)
+ ;;=G47.10^^145^1853^12
+ ;;^UTILITY(U,$J,358.3,38220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37837,1,2,0)
- ;;=2^Paravert Facet Block,Thor/Lumb,1st Lev
- ;;^UTILITY(U,$J,358.3,37837,1,4,0)
- ;;=4^64493
- ;;^UTILITY(U,$J,358.3,37838,0)
- ;;=64494^^174^1901^27^^^^1
- ;;^UTILITY(U,$J,358.3,37838,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37838,1,2,0)
- ;;=2^Paravert Facet Block,Thor/Lumb,2nd Lev
- ;;^UTILITY(U,$J,358.3,37838,1,4,0)
- ;;=4^64494
- ;;^UTILITY(U,$J,358.3,37839,0)
- ;;=64495^^174^1901^23^^^^1
- ;;^UTILITY(U,$J,358.3,37839,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37839,1,2,0)
- ;;=2^Paravert Facet Blk,Thor/Lum,Ea Addl Lev
+ ;;^UTILITY(U,$J,358.3,38220,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder

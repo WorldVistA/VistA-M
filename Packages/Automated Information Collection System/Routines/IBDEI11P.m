@@ -1,130 +1,136 @@
-IBDEI11P ; ; 19-NOV-2015
+IBDEI11P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17406,1,0)
+ ;;^UTILITY(U,$J,358.3,17749,0)
+ ;;=A31.2^^76^858^67
+ ;;^UTILITY(U,$J,358.3,17749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17406,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,17406,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,17406,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,17407,0)
- ;;=Z91.120^^88^861^77
- ;;^UTILITY(U,$J,358.3,17407,1,0)
+ ;;^UTILITY(U,$J,358.3,17749,1,3,0)
+ ;;=3^Disseminated mycobacterium avian-intracellulare complex(DMAC)
+ ;;^UTILITY(U,$J,358.3,17749,1,4,0)
+ ;;=4^A31.2
+ ;;^UTILITY(U,$J,358.3,17749,2)
+ ;;=^5000151
+ ;;^UTILITY(U,$J,358.3,17750,0)
+ ;;=A31.8^^76^858^158
+ ;;^UTILITY(U,$J,358.3,17750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17407,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,17407,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,17407,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,17408,0)
- ;;=Z91.128^^88^861^78
- ;;^UTILITY(U,$J,358.3,17408,1,0)
+ ;;^UTILITY(U,$J,358.3,17750,1,3,0)
+ ;;=3^Mycobacterium, Non-Tuberculosis NEC
+ ;;^UTILITY(U,$J,358.3,17750,1,4,0)
+ ;;=4^A31.8
+ ;;^UTILITY(U,$J,358.3,17750,2)
+ ;;=^5000152
+ ;;^UTILITY(U,$J,358.3,17751,0)
+ ;;=J00.^^76^858^15
+ ;;^UTILITY(U,$J,358.3,17751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17408,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,17408,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,17408,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,17409,0)
- ;;=Z91.130^^88^861^76
- ;;^UTILITY(U,$J,358.3,17409,1,0)
+ ;;^UTILITY(U,$J,358.3,17751,1,3,0)
+ ;;=3^Acute nasopharyngitis [common cold]
+ ;;^UTILITY(U,$J,358.3,17751,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,17751,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,17752,0)
+ ;;=R11.2^^76^858^160
+ ;;^UTILITY(U,$J,358.3,17752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17409,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,17409,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,17409,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,17410,0)
- ;;=Z91.138^^88^861^75
- ;;^UTILITY(U,$J,358.3,17410,1,0)
+ ;;^UTILITY(U,$J,358.3,17752,1,3,0)
+ ;;=3^Nausea with vomiting, unspecified
+ ;;^UTILITY(U,$J,358.3,17752,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,17752,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,17753,0)
+ ;;=D70.9^^76^858^161
+ ;;^UTILITY(U,$J,358.3,17753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17410,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen Unintentional
- ;;^UTILITY(U,$J,358.3,17410,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,17410,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,17411,0)
- ;;=Z91.19^^88^861^79
- ;;^UTILITY(U,$J,358.3,17411,1,0)
+ ;;^UTILITY(U,$J,358.3,17753,1,3,0)
+ ;;=3^Neutropenia, unspecified
+ ;;^UTILITY(U,$J,358.3,17753,1,4,0)
+ ;;=4^D70.9
+ ;;^UTILITY(U,$J,358.3,17753,2)
+ ;;=^334186
+ ;;^UTILITY(U,$J,358.3,17754,0)
+ ;;=M86.10^^76^858^166
+ ;;^UTILITY(U,$J,358.3,17754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17411,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,17411,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,17411,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,17412,0)
- ;;=Z91.15^^88^861^80
- ;;^UTILITY(U,$J,358.3,17412,1,0)
+ ;;^UTILITY(U,$J,358.3,17754,1,3,0)
+ ;;=3^Osteomyelitis, acute - NOS
+ ;;^UTILITY(U,$J,358.3,17754,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,17754,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,17755,0)
+ ;;=M86.60^^76^858^167
+ ;;^UTILITY(U,$J,358.3,17755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17412,1,3,0)
- ;;=3^Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,17412,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,17412,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,17413,0)
- ;;=Z57.2^^88^861^85
- ;;^UTILITY(U,$J,358.3,17413,1,0)
+ ;;^UTILITY(U,$J,358.3,17755,1,3,0)
+ ;;=3^Osteomyelitis, chronic - NOS
+ ;;^UTILITY(U,$J,358.3,17755,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,17755,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,17756,0)
+ ;;=H60.501^^76^858^170
+ ;;^UTILITY(U,$J,358.3,17756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17413,1,3,0)
- ;;=3^Occupational Exposure to Dust
- ;;^UTILITY(U,$J,358.3,17413,1,4,0)
- ;;=4^Z57.2
- ;;^UTILITY(U,$J,358.3,17413,2)
- ;;=^5063120
- ;;^UTILITY(U,$J,358.3,17414,0)
- ;;=Z57.31^^88^861^91
- ;;^UTILITY(U,$J,358.3,17414,1,0)
+ ;;^UTILITY(U,$J,358.3,17756,1,3,0)
+ ;;=3^Otitis, externa, right ear
+ ;;^UTILITY(U,$J,358.3,17756,1,4,0)
+ ;;=4^H60.501
+ ;;^UTILITY(U,$J,358.3,17756,2)
+ ;;=^5006467
+ ;;^UTILITY(U,$J,358.3,17757,0)
+ ;;=H60.502^^76^858^169
+ ;;^UTILITY(U,$J,358.3,17757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17414,1,3,0)
- ;;=3^Occupational Exposure to Tobacco Smoke,Environmental
- ;;^UTILITY(U,$J,358.3,17414,1,4,0)
- ;;=4^Z57.31
- ;;^UTILITY(U,$J,358.3,17414,2)
- ;;=^5063121
- ;;^UTILITY(U,$J,358.3,17415,0)
- ;;=Z57.6^^88^861^86
- ;;^UTILITY(U,$J,358.3,17415,1,0)
+ ;;^UTILITY(U,$J,358.3,17757,1,3,0)
+ ;;=3^Otitis, externa, left ear
+ ;;^UTILITY(U,$J,358.3,17757,1,4,0)
+ ;;=4^H60.502
+ ;;^UTILITY(U,$J,358.3,17757,2)
+ ;;=^5006468
+ ;;^UTILITY(U,$J,358.3,17758,0)
+ ;;=H60.503^^76^858^168
+ ;;^UTILITY(U,$J,358.3,17758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17415,1,3,0)
- ;;=3^Occupational Exposure to Extreme Temperature
- ;;^UTILITY(U,$J,358.3,17415,1,4,0)
- ;;=4^Z57.6
- ;;^UTILITY(U,$J,358.3,17415,2)
- ;;=^5063125
- ;;^UTILITY(U,$J,358.3,17416,0)
- ;;=Z57.0^^88^861^88
- ;;^UTILITY(U,$J,358.3,17416,1,0)
+ ;;^UTILITY(U,$J,358.3,17758,1,3,0)
+ ;;=3^Otitis, externa, bilateral
+ ;;^UTILITY(U,$J,358.3,17758,1,4,0)
+ ;;=4^H60.503
+ ;;^UTILITY(U,$J,358.3,17758,2)
+ ;;=^5006469
+ ;;^UTILITY(U,$J,358.3,17759,0)
+ ;;=H66.91^^76^858^173
+ ;;^UTILITY(U,$J,358.3,17759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17416,1,3,0)
- ;;=3^Occupational Exposure to Noise
- ;;^UTILITY(U,$J,358.3,17416,1,4,0)
- ;;=4^Z57.0
- ;;^UTILITY(U,$J,358.3,17416,2)
- ;;=^5063118
- ;;^UTILITY(U,$J,358.3,17417,0)
- ;;=Z57.39^^88^861^84
- ;;^UTILITY(U,$J,358.3,17417,1,0)
+ ;;^UTILITY(U,$J,358.3,17759,1,3,0)
+ ;;=3^Otitis, media, right ear
+ ;;^UTILITY(U,$J,358.3,17759,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,17759,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,17760,0)
+ ;;=H66.92^^76^858^172
+ ;;^UTILITY(U,$J,358.3,17760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17417,1,3,0)
- ;;=3^Occupational Exposure to Air Contaminants
- ;;^UTILITY(U,$J,358.3,17417,1,4,0)
- ;;=4^Z57.39
- ;;^UTILITY(U,$J,358.3,17417,2)
- ;;=^5063122
- ;;^UTILITY(U,$J,358.3,17418,0)
- ;;=Z57.8^^88^861^89
- ;;^UTILITY(U,$J,358.3,17418,1,0)
+ ;;^UTILITY(U,$J,358.3,17760,1,3,0)
+ ;;=3^Otitis, media, left ear
+ ;;^UTILITY(U,$J,358.3,17760,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,17760,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,17761,0)
+ ;;=H66.93^^76^858^171
+ ;;^UTILITY(U,$J,358.3,17761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17418,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,17418,1,4,0)
- ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,17761,1,3,0)
+ ;;=3^Otitis, media, bilateral
+ ;;^UTILITY(U,$J,358.3,17761,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,17761,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,17762,0)
+ ;;=B89.^^76^858^175

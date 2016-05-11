@@ -1,142 +1,140 @@
-IBDEI084 ; ; 19-NOV-2015
+IBDEI084 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3238,1,0)
+ ;;^UTILITY(U,$J,358.3,3499,1,3,0)
+ ;;=3^Spine,Kissing,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3499,1,4,0)
+ ;;=4^M48.20
+ ;;^UTILITY(U,$J,358.3,3499,2)
+ ;;=^5012106
+ ;;^UTILITY(U,$J,358.3,3500,0)
+ ;;=M40.50^^18^219^154
+ ;;^UTILITY(U,$J,358.3,3500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3238,1,3,0)
- ;;=3^Hypertension,Secondary
- ;;^UTILITY(U,$J,358.3,3238,1,4,0)
- ;;=4^I15.8
- ;;^UTILITY(U,$J,358.3,3238,2)
- ;;=^5007074
- ;;^UTILITY(U,$J,358.3,3239,0)
- ;;=I15.0^^28^249^45
- ;;^UTILITY(U,$J,358.3,3239,1,0)
+ ;;^UTILITY(U,$J,358.3,3500,1,3,0)
+ ;;=3^Spine,Lordosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3500,1,4,0)
+ ;;=4^M40.50
+ ;;^UTILITY(U,$J,358.3,3500,2)
+ ;;=^5011831
+ ;;^UTILITY(U,$J,358.3,3501,0)
+ ;;=M43.10^^18^219^155
+ ;;^UTILITY(U,$J,358.3,3501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3239,1,3,0)
- ;;=3^Hypertension,Renovascular
- ;;^UTILITY(U,$J,358.3,3239,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,3239,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,3240,0)
- ;;=I95.1^^28^249^47
- ;;^UTILITY(U,$J,358.3,3240,1,0)
+ ;;^UTILITY(U,$J,358.3,3501,1,3,0)
+ ;;=3^Spondylolisthesis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3501,1,4,0)
+ ;;=4^M43.10
+ ;;^UTILITY(U,$J,358.3,3501,2)
+ ;;=^5011921
+ ;;^UTILITY(U,$J,358.3,3502,0)
+ ;;=M43.00^^18^219^156
+ ;;^UTILITY(U,$J,358.3,3502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3240,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,3240,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,3240,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,3241,0)
- ;;=I95.89^^28^249^48
- ;;^UTILITY(U,$J,358.3,3241,1,0)
+ ;;^UTILITY(U,$J,358.3,3502,1,3,0)
+ ;;=3^Spondylolysis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3502,1,4,0)
+ ;;=4^M43.00
+ ;;^UTILITY(U,$J,358.3,3502,2)
+ ;;=^5011911
+ ;;^UTILITY(U,$J,358.3,3503,0)
+ ;;=M46.90^^18^219^157
+ ;;^UTILITY(U,$J,358.3,3503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3241,1,3,0)
- ;;=3^Hypotension,Other
- ;;^UTILITY(U,$J,358.3,3241,1,4,0)
- ;;=4^I95.89
- ;;^UTILITY(U,$J,358.3,3241,2)
- ;;=^5008079
- ;;^UTILITY(U,$J,358.3,3242,0)
- ;;=I25.9^^28^249^49
- ;;^UTILITY(U,$J,358.3,3242,1,0)
+ ;;^UTILITY(U,$J,358.3,3503,1,3,0)
+ ;;=3^Spondylopathy,Inflammatory,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3503,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,3503,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,3504,0)
+ ;;=M48.30^^18^219^158
+ ;;^UTILITY(U,$J,358.3,3504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3242,1,3,0)
- ;;=3^Ischemic Heart Disease,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,3242,1,4,0)
- ;;=4^I25.9
- ;;^UTILITY(U,$J,358.3,3242,2)
- ;;=^5007144
- ;;^UTILITY(U,$J,358.3,3243,0)
- ;;=I89.0^^28^249^50
- ;;^UTILITY(U,$J,358.3,3243,1,0)
+ ;;^UTILITY(U,$J,358.3,3504,1,3,0)
+ ;;=3^Spondylopathy,Traumatic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3504,1,4,0)
+ ;;=4^M48.30
+ ;;^UTILITY(U,$J,358.3,3504,2)
+ ;;=^5012114
+ ;;^UTILITY(U,$J,358.3,3505,0)
+ ;;=M48.9^^18^219^159
+ ;;^UTILITY(U,$J,358.3,3505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3243,1,3,0)
- ;;=3^Lymphedema NEC
- ;;^UTILITY(U,$J,358.3,3243,1,4,0)
- ;;=4^I89.0
- ;;^UTILITY(U,$J,358.3,3243,2)
- ;;=^5008073
- ;;^UTILITY(U,$J,358.3,3244,0)
- ;;=R01.1^^28^249^51
- ;;^UTILITY(U,$J,358.3,3244,1,0)
+ ;;^UTILITY(U,$J,358.3,3505,1,3,0)
+ ;;=3^Spondylopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3505,1,4,0)
+ ;;=4^M48.9
+ ;;^UTILITY(U,$J,358.3,3505,2)
+ ;;=^5012204
+ ;;^UTILITY(U,$J,358.3,3506,0)
+ ;;=M47.9^^18^219^160
+ ;;^UTILITY(U,$J,358.3,3506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3244,1,3,0)
- ;;=3^Murmur,Cardia,Unspec
- ;;^UTILITY(U,$J,358.3,3244,1,4,0)
- ;;=4^R01.1
- ;;^UTILITY(U,$J,358.3,3244,2)
- ;;=^5019169
- ;;^UTILITY(U,$J,358.3,3245,0)
- ;;=I21.3^^28^249^52
- ;;^UTILITY(U,$J,358.3,3245,1,0)
+ ;;^UTILITY(U,$J,358.3,3506,1,3,0)
+ ;;=3^Spondylosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3506,1,4,0)
+ ;;=4^M47.9
+ ;;^UTILITY(U,$J,358.3,3506,2)
+ ;;=^5012086
+ ;;^UTILITY(U,$J,358.3,3507,0)
+ ;;=M67.90^^18^219^161
+ ;;^UTILITY(U,$J,358.3,3507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3245,1,3,0)
- ;;=3^Myocardial Infarction,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,3245,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,3245,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,3246,0)
- ;;=I25.2^^28^249^53
- ;;^UTILITY(U,$J,358.3,3246,1,0)
+ ;;^UTILITY(U,$J,358.3,3507,1,3,0)
+ ;;=3^Tendon & Synovium Disorder,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3507,1,4,0)
+ ;;=4^M67.90
+ ;;^UTILITY(U,$J,358.3,3507,2)
+ ;;=^5013020
+ ;;^UTILITY(U,$J,358.3,3508,0)
+ ;;=M51.9^^18^219^162
+ ;;^UTILITY(U,$J,358.3,3508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3246,1,3,0)
- ;;=3^Myocardial Infarction,Old
- ;;^UTILITY(U,$J,358.3,3246,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,3246,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,3247,0)
- ;;=I78.1^^28^249^54
- ;;^UTILITY(U,$J,358.3,3247,1,0)
+ ;;^UTILITY(U,$J,358.3,3508,1,3,0)
+ ;;=3^Thoracic/Thoracolumbar/Lumbosacral Intvrt Disc Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3508,1,4,0)
+ ;;=4^M51.9
+ ;;^UTILITY(U,$J,358.3,3508,2)
+ ;;=^5012263
+ ;;^UTILITY(U,$J,358.3,3509,0)
+ ;;=M43.6^^18^219^163
+ ;;^UTILITY(U,$J,358.3,3509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3247,1,3,0)
- ;;=3^Nevus,Non-Neoplastic
- ;;^UTILITY(U,$J,358.3,3247,1,4,0)
- ;;=4^I78.1
- ;;^UTILITY(U,$J,358.3,3247,2)
- ;;=^269807
- ;;^UTILITY(U,$J,358.3,3248,0)
- ;;=Z95.0^^28^249^61
- ;;^UTILITY(U,$J,358.3,3248,1,0)
+ ;;^UTILITY(U,$J,358.3,3509,1,3,0)
+ ;;=3^Torticollis
+ ;;^UTILITY(U,$J,358.3,3509,1,4,0)
+ ;;=4^M43.6
+ ;;^UTILITY(U,$J,358.3,3509,2)
+ ;;=^120492
+ ;;^UTILITY(U,$J,358.3,3510,0)
+ ;;=G45.3^^18^220^1
+ ;;^UTILITY(U,$J,358.3,3510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3248,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,3248,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,3248,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,3249,0)
- ;;=I73.9^^28^249^55
- ;;^UTILITY(U,$J,358.3,3249,1,0)
+ ;;^UTILITY(U,$J,358.3,3510,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,3510,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,3510,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,3511,0)
+ ;;=R41.3^^18^220^2
+ ;;^UTILITY(U,$J,358.3,3511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3249,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,3249,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,3249,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,3250,0)
- ;;=I80.9^^28^249^56
- ;;^UTILITY(U,$J,358.3,3250,1,0)
+ ;;^UTILITY(U,$J,358.3,3511,1,3,0)
+ ;;=3^Amnesia,Other
+ ;;^UTILITY(U,$J,358.3,3511,1,4,0)
+ ;;=4^R41.3
+ ;;^UTILITY(U,$J,358.3,3511,2)
+ ;;=^5019439
+ ;;^UTILITY(U,$J,358.3,3512,0)
+ ;;=G45.4^^18^220^3
+ ;;^UTILITY(U,$J,358.3,3512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3250,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,3250,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,3250,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,3251,0)
- ;;=Z98.61^^28^249^57
- ;;^UTILITY(U,$J,358.3,3251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3251,1,3,0)
- ;;=3^Postprocedural State,Coronary Angioplasty
- ;;^UTILITY(U,$J,358.3,3251,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,3251,2)
- ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,3512,1,3,0)
+ ;;=3^Amnesia,Transient Global
+ ;;^UTILITY(U,$J,358.3,3512,1,4,0)
+ ;;=4^G45.4
+ ;;^UTILITY(U,$J,358.3,3512,2)
+ ;;=^293883

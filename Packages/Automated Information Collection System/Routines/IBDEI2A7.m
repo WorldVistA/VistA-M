@@ -1,128 +1,136 @@
-IBDEI2A7 ; ; 19-NOV-2015
+IBDEI2A7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38313,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38313,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,38313,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,38314,0)
- ;;=F12.180^^177^1942^2
- ;;^UTILITY(U,$J,358.3,38314,1,0)
+ ;;^UTILITY(U,$J,358.3,38703,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,38703,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,38704,0)
+ ;;=L23.2^^151^1897^4
+ ;;^UTILITY(U,$J,358.3,38704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38314,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
- ;;^UTILITY(U,$J,358.3,38314,1,4,0)
- ;;=4^F12.180
- ;;^UTILITY(U,$J,358.3,38314,2)
- ;;=^5003163
- ;;^UTILITY(U,$J,358.3,38315,0)
- ;;=F12.188^^177^1942^3
- ;;^UTILITY(U,$J,358.3,38315,1,0)
+ ;;^UTILITY(U,$J,358.3,38704,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Cosmetics
+ ;;^UTILITY(U,$J,358.3,38704,1,4,0)
+ ;;=4^L23.2
+ ;;^UTILITY(U,$J,358.3,38704,2)
+ ;;=^5009117
+ ;;^UTILITY(U,$J,358.3,38705,0)
+ ;;=L24.3^^151^1897^12
+ ;;^UTILITY(U,$J,358.3,38705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38315,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38315,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,38315,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,38316,0)
- ;;=F12.20^^177^1942^4
- ;;^UTILITY(U,$J,358.3,38316,1,0)
+ ;;^UTILITY(U,$J,358.3,38705,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Cosmetics
+ ;;^UTILITY(U,$J,358.3,38705,1,4,0)
+ ;;=4^L24.3
+ ;;^UTILITY(U,$J,358.3,38705,2)
+ ;;=^5009129
+ ;;^UTILITY(U,$J,358.3,38706,0)
+ ;;=L27.2^^151^1897^1
+ ;;^UTILITY(U,$J,358.3,38706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38316,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38316,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,38316,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,38317,0)
- ;;=F12.21^^177^1942^5
- ;;^UTILITY(U,$J,358.3,38317,1,0)
+ ;;^UTILITY(U,$J,358.3,38706,1,3,0)
+ ;;=3^Dermatitis d/t Ingested Food
+ ;;^UTILITY(U,$J,358.3,38706,1,4,0)
+ ;;=4^L27.2
+ ;;^UTILITY(U,$J,358.3,38706,2)
+ ;;=^5009146
+ ;;^UTILITY(U,$J,358.3,38707,0)
+ ;;=L21.8^^151^1897^20
+ ;;^UTILITY(U,$J,358.3,38707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38317,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,38317,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,38317,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,38318,0)
- ;;=F12.288^^177^1942^6
- ;;^UTILITY(U,$J,358.3,38318,1,0)
+ ;;^UTILITY(U,$J,358.3,38707,1,3,0)
+ ;;=3^Dermatitis,Seborrheic
+ ;;^UTILITY(U,$J,358.3,38707,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,38707,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,38708,0)
+ ;;=L20.89^^151^1897^7
+ ;;^UTILITY(U,$J,358.3,38708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38318,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,38318,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,38318,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,38319,0)
- ;;=F12.280^^177^1942^7
- ;;^UTILITY(U,$J,358.3,38319,1,0)
+ ;;^UTILITY(U,$J,358.3,38708,1,3,0)
+ ;;=3^Dermatitis,Atopic
+ ;;^UTILITY(U,$J,358.3,38708,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,38708,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,38709,0)
+ ;;=E08.622^^151^1897^23
+ ;;^UTILITY(U,$J,358.3,38709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38319,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38319,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,38319,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,38320,0)
- ;;=F16.10^^177^1943^1
- ;;^UTILITY(U,$J,358.3,38320,1,0)
+ ;;^UTILITY(U,$J,358.3,38709,1,3,0)
+ ;;=3^Diabetes d/t Underlying Condition w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,38709,1,4,0)
+ ;;=4^E08.622
+ ;;^UTILITY(U,$J,358.3,38709,2)
+ ;;=^5002535
+ ;;^UTILITY(U,$J,358.3,38710,0)
+ ;;=T81.31XA^^151^1897^26
+ ;;^UTILITY(U,$J,358.3,38710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38320,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38320,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,38320,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,38321,0)
- ;;=F16.20^^177^1943^2
- ;;^UTILITY(U,$J,358.3,38321,1,0)
+ ;;^UTILITY(U,$J,358.3,38710,1,3,0)
+ ;;=3^Disruption External Surgical Wound NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,38710,1,4,0)
+ ;;=4^T81.31XA
+ ;;^UTILITY(U,$J,358.3,38710,2)
+ ;;=^5054470
+ ;;^UTILITY(U,$J,358.3,38711,0)
+ ;;=L26.^^151^1897^8
+ ;;^UTILITY(U,$J,358.3,38711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38321,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38321,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,38321,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,38322,0)
- ;;=F16.21^^177^1943^3
- ;;^UTILITY(U,$J,358.3,38322,1,0)
+ ;;^UTILITY(U,$J,358.3,38711,1,3,0)
+ ;;=3^Dermatitis,Exfoliative
+ ;;^UTILITY(U,$J,358.3,38711,1,4,0)
+ ;;=4^L26.
+ ;;^UTILITY(U,$J,358.3,38711,2)
+ ;;=^263886
+ ;;^UTILITY(U,$J,358.3,38712,0)
+ ;;=L98.1^^151^1897^9
+ ;;^UTILITY(U,$J,358.3,38712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38322,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,38322,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,38322,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,38323,0)
- ;;=F11.10^^177^1944^4
- ;;^UTILITY(U,$J,358.3,38323,1,0)
+ ;;^UTILITY(U,$J,358.3,38712,1,3,0)
+ ;;=3^Dermatitis,Factitial
+ ;;^UTILITY(U,$J,358.3,38712,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,38712,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,38713,0)
+ ;;=L30.3^^151^1897^11
+ ;;^UTILITY(U,$J,358.3,38713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38323,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38323,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,38323,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,38324,0)
- ;;=F11.129^^177^1944^3
- ;;^UTILITY(U,$J,358.3,38324,1,0)
+ ;;^UTILITY(U,$J,358.3,38713,1,3,0)
+ ;;=3^Dermatitis,Infective
+ ;;^UTILITY(U,$J,358.3,38713,1,4,0)
+ ;;=4^L30.3
+ ;;^UTILITY(U,$J,358.3,38713,2)
+ ;;=^5009156
+ ;;^UTILITY(U,$J,358.3,38714,0)
+ ;;=L56.2^^151^1897^19
+ ;;^UTILITY(U,$J,358.3,38714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38324,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38324,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,38324,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,38325,0)
- ;;=F11.14^^177^1944^8
- ;;^UTILITY(U,$J,358.3,38325,1,0)
+ ;;^UTILITY(U,$J,358.3,38714,1,3,0)
+ ;;=3^Dermatitis,Photocontact
+ ;;^UTILITY(U,$J,358.3,38714,1,4,0)
+ ;;=4^L56.2
+ ;;^UTILITY(U,$J,358.3,38714,2)
+ ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,38715,0)
+ ;;=L71.0^^151^1897^18
+ ;;^UTILITY(U,$J,358.3,38715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38325,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38325,1,4,0)
- ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,38715,1,3,0)
+ ;;=3^Dermatitis,Perioral
+ ;;^UTILITY(U,$J,358.3,38715,1,4,0)
+ ;;=4^L71.0
+ ;;^UTILITY(U,$J,358.3,38715,2)
+ ;;=^5009274
+ ;;^UTILITY(U,$J,358.3,38716,0)
+ ;;=L23.1^^151^1897^2
+ ;;^UTILITY(U,$J,358.3,38716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38716,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Adhesives
+ ;;^UTILITY(U,$J,358.3,38716,1,4,0)
+ ;;=4^L23.1

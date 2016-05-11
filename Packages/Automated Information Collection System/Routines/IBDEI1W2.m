@@ -1,138 +1,126 @@
-IBDEI1W2 ; ; 19-NOV-2015
+IBDEI1W2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31630,1,0)
+ ;;^UTILITY(U,$J,358.3,32074,1,4,0)
+ ;;=4^S92.312A
+ ;;^UTILITY(U,$J,358.3,32074,2)
+ ;;=^5045067
+ ;;^UTILITY(U,$J,358.3,32075,0)
+ ;;=S92.311A^^126^1609^60
+ ;;^UTILITY(U,$J,358.3,32075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31630,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,31630,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,31630,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,31631,0)
- ;;=Z91.5^^138^1439^10
- ;;^UTILITY(U,$J,358.3,31631,1,0)
+ ;;^UTILITY(U,$J,358.3,32075,1,3,0)
+ ;;=3^Disp fx of 1st metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32075,1,4,0)
+ ;;=4^S92.311A
+ ;;^UTILITY(U,$J,358.3,32075,2)
+ ;;=^5045060
+ ;;^UTILITY(U,$J,358.3,32076,0)
+ ;;=S92.332A^^126^1609^67
+ ;;^UTILITY(U,$J,358.3,32076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31631,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,31631,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,31631,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,31632,0)
- ;;=Z91.82^^138^1439^8
- ;;^UTILITY(U,$J,358.3,31632,1,0)
+ ;;^UTILITY(U,$J,358.3,32076,1,3,0)
+ ;;=3^Disp fx of 3rd metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32076,1,4,0)
+ ;;=4^S92.332A
+ ;;^UTILITY(U,$J,358.3,32076,2)
+ ;;=^5045151
+ ;;^UTILITY(U,$J,358.3,32077,0)
+ ;;=S92.331A^^126^1609^68
+ ;;^UTILITY(U,$J,358.3,32077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31632,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,31632,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,31632,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,31633,0)
- ;;=Z91.89^^138^1439^11
- ;;^UTILITY(U,$J,358.3,31633,1,0)
+ ;;^UTILITY(U,$J,358.3,32077,1,3,0)
+ ;;=3^Disp fx of 3rd metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32077,1,4,0)
+ ;;=4^S92.331A
+ ;;^UTILITY(U,$J,358.3,32077,2)
+ ;;=^5045144
+ ;;^UTILITY(U,$J,358.3,32078,0)
+ ;;=S92.334A^^126^1609^293
+ ;;^UTILITY(U,$J,358.3,32078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31633,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,31633,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,31633,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,31634,0)
- ;;=Z72.9^^138^1439^12
- ;;^UTILITY(U,$J,358.3,31634,1,0)
+ ;;^UTILITY(U,$J,358.3,32078,1,3,0)
+ ;;=3^Nondisp fx of 3rd metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32078,1,4,0)
+ ;;=4^S92.334A
+ ;;^UTILITY(U,$J,358.3,32078,2)
+ ;;=^5045165
+ ;;^UTILITY(U,$J,358.3,32079,0)
+ ;;=S92.335A^^126^1609^292
+ ;;^UTILITY(U,$J,358.3,32079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31634,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,31634,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,31634,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,31635,0)
- ;;=Z72.811^^138^1439^1
- ;;^UTILITY(U,$J,358.3,31635,1,0)
+ ;;^UTILITY(U,$J,358.3,32079,1,3,0)
+ ;;=3^Nondisp fx of 3rd metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32079,1,4,0)
+ ;;=4^S92.335A
+ ;;^UTILITY(U,$J,358.3,32079,2)
+ ;;=^5045172
+ ;;^UTILITY(U,$J,358.3,32080,0)
+ ;;=S92.344A^^126^1609^297
+ ;;^UTILITY(U,$J,358.3,32080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31635,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,31635,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,31635,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,31636,0)
- ;;=Z91.19^^138^1439^5
- ;;^UTILITY(U,$J,358.3,31636,1,0)
+ ;;^UTILITY(U,$J,358.3,32080,1,3,0)
+ ;;=3^Nondisp fx of 4th metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32080,1,4,0)
+ ;;=4^S92.344A
+ ;;^UTILITY(U,$J,358.3,32080,2)
+ ;;=^5045207
+ ;;^UTILITY(U,$J,358.3,32081,0)
+ ;;=S92.342A^^126^1609^71
+ ;;^UTILITY(U,$J,358.3,32081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31636,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,31636,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,31636,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,31637,0)
- ;;=E66.9^^138^1439^6
- ;;^UTILITY(U,$J,358.3,31637,1,0)
+ ;;^UTILITY(U,$J,358.3,32081,1,3,0)
+ ;;=3^Disp fx of 4th metatarsal bone, lft ft,  init
+ ;;^UTILITY(U,$J,358.3,32081,1,4,0)
+ ;;=4^S92.342A
+ ;;^UTILITY(U,$J,358.3,32081,2)
+ ;;=^5045193
+ ;;^UTILITY(U,$J,358.3,32082,0)
+ ;;=S92.355A^^126^1609^300
+ ;;^UTILITY(U,$J,358.3,32082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31637,1,3,0)
- ;;=3^Obesity
- ;;^UTILITY(U,$J,358.3,31637,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,31637,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,31638,0)
- ;;=Z76.5^^138^1439^3
- ;;^UTILITY(U,$J,358.3,31638,1,0)
+ ;;^UTILITY(U,$J,358.3,32082,1,3,0)
+ ;;=3^Nondisp fx of 5th metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32082,1,4,0)
+ ;;=4^S92.355A
+ ;;^UTILITY(U,$J,358.3,32082,2)
+ ;;=^5045256
+ ;;^UTILITY(U,$J,358.3,32083,0)
+ ;;=S92.301A^^126^1609^205
+ ;;^UTILITY(U,$J,358.3,32083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31638,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,31638,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,31638,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,31639,0)
- ;;=R41.83^^138^1439^2
- ;;^UTILITY(U,$J,358.3,31639,1,0)
+ ;;^UTILITY(U,$J,358.3,32083,1,3,0)
+ ;;=3^Fx of metatarsal bone(s), rt ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,32083,1,4,0)
+ ;;=4^S92.301A
+ ;;^UTILITY(U,$J,358.3,32083,2)
+ ;;=^5045046
+ ;;^UTILITY(U,$J,358.3,32084,0)
+ ;;=S92.302A^^126^1609^204
+ ;;^UTILITY(U,$J,358.3,32084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31639,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,31639,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,31639,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,31640,0)
- ;;=Z56.82^^138^1439^4
- ;;^UTILITY(U,$J,358.3,31640,1,0)
+ ;;^UTILITY(U,$J,358.3,32084,1,3,0)
+ ;;=3^Fx of metatarsal bone(s), lft ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,32084,1,4,0)
+ ;;=4^S92.302A
+ ;;^UTILITY(U,$J,358.3,32084,2)
+ ;;=^5045053
+ ;;^UTILITY(U,$J,358.3,32085,0)
+ ;;=S92.202A^^126^1609^223
+ ;;^UTILITY(U,$J,358.3,32085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31640,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,31640,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,31640,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,31641,0)
- ;;=E66.3^^138^1439^7
- ;;^UTILITY(U,$J,358.3,31641,1,0)
+ ;;^UTILITY(U,$J,358.3,32085,1,3,0)
+ ;;=3^Fx of tarsal bone(s) of lft ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,32085,1,4,0)
+ ;;=4^S92.202A
+ ;;^UTILITY(U,$J,358.3,32085,2)
+ ;;=^5044829
+ ;;^UTILITY(U,$J,358.3,32086,0)
+ ;;=S92.201A^^126^1609^224
+ ;;^UTILITY(U,$J,358.3,32086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31641,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,31641,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,31641,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,31642,0)
- ;;=F90.0^^138^1440^3
- ;;^UTILITY(U,$J,358.3,31642,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31642,1,3,0)
- ;;=3^ADHD,Inattentive Type
- ;;^UTILITY(U,$J,358.3,31642,1,4,0)
- ;;=4^F90.0
- ;;^UTILITY(U,$J,358.3,31642,2)
- ;;=^5003692
- ;;^UTILITY(U,$J,358.3,31643,0)
- ;;=F90.2^^138^1440^1
- ;;^UTILITY(U,$J,358.3,31643,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31643,1,3,0)
- ;;=3^ADHD,Combined Type
+ ;;^UTILITY(U,$J,358.3,32086,1,3,0)
+ ;;=3^Fx of tarsal bone(s) of rt ft, unspec, init
+ ;;^UTILITY(U,$J,358.3,32086,1,4,0)
+ ;;=4^S92.201A

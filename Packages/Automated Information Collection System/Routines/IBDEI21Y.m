@@ -1,134 +1,130 @@
-IBDEI21Y ; ; 19-NOV-2015
+IBDEI21Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34405,2)
- ;;=^5003724
- ;;^UTILITY(U,$J,358.3,34406,0)
- ;;=G04.00^^157^1749^1
- ;;^UTILITY(U,$J,358.3,34406,1,0)
+ ;;^UTILITY(U,$J,358.3,34817,0)
+ ;;=R39.81^^131^1692^92
+ ;;^UTILITY(U,$J,358.3,34817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34406,1,3,0)
- ;;=3^Acute Disseminated Encephalitis/Encephalomyelitis,Unspec
- ;;^UTILITY(U,$J,358.3,34406,1,4,0)
- ;;=4^G04.00
- ;;^UTILITY(U,$J,358.3,34406,2)
- ;;=^5003730
- ;;^UTILITY(U,$J,358.3,34407,0)
- ;;=G04.90^^157^1749^5
- ;;^UTILITY(U,$J,358.3,34407,1,0)
+ ;;^UTILITY(U,$J,358.3,34817,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,34817,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,34817,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,34818,0)
+ ;;=R29.6^^131^1692^146
+ ;;^UTILITY(U,$J,358.3,34818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34407,1,3,0)
- ;;=3^Encephalitis/Encephalomyelitis,Unspec
- ;;^UTILITY(U,$J,358.3,34407,1,4,0)
- ;;=4^G04.90
- ;;^UTILITY(U,$J,358.3,34407,2)
- ;;=^5003741
- ;;^UTILITY(U,$J,358.3,34408,0)
- ;;=G35.^^157^1749^7
- ;;^UTILITY(U,$J,358.3,34408,1,0)
+ ;;^UTILITY(U,$J,358.3,34818,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,34818,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,34818,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,34819,0)
+ ;;=R44.1^^131^1692^160
+ ;;^UTILITY(U,$J,358.3,34819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34408,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,34408,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,34408,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,34409,0)
- ;;=G36.0^^157^1749^8
- ;;^UTILITY(U,$J,358.3,34409,1,0)
+ ;;^UTILITY(U,$J,358.3,34819,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,34819,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,34819,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,34820,0)
+ ;;=S43.51XA^^131^1693^12
+ ;;^UTILITY(U,$J,358.3,34820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34409,1,3,0)
- ;;=3^Neuromyelitis Optica
- ;;^UTILITY(U,$J,358.3,34409,1,4,0)
- ;;=4^G36.0
- ;;^UTILITY(U,$J,358.3,34409,2)
- ;;=^5003817
- ;;^UTILITY(U,$J,358.3,34410,0)
- ;;=G37.3^^157^1749^2
- ;;^UTILITY(U,$J,358.3,34410,1,0)
+ ;;^UTILITY(U,$J,358.3,34820,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,34820,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,34820,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,34821,0)
+ ;;=S43.52XA^^131^1693^1
+ ;;^UTILITY(U,$J,358.3,34821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34410,1,3,0)
- ;;=3^Acute Transverse Myelitis in Demyelinating Disease of CNSL
- ;;^UTILITY(U,$J,358.3,34410,1,4,0)
- ;;=4^G37.3
- ;;^UTILITY(U,$J,358.3,34410,2)
- ;;=^5003824
- ;;^UTILITY(U,$J,358.3,34411,0)
- ;;=G61.0^^157^1749^6
- ;;^UTILITY(U,$J,358.3,34411,1,0)
+ ;;^UTILITY(U,$J,358.3,34821,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,34821,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,34821,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,34822,0)
+ ;;=S43.421A^^131^1693^17
+ ;;^UTILITY(U,$J,358.3,34822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34411,1,3,0)
- ;;=3^Guillain-Barre Syndrome
- ;;^UTILITY(U,$J,358.3,34411,1,4,0)
- ;;=4^G61.0
- ;;^UTILITY(U,$J,358.3,34411,2)
- ;;=^53405
- ;;^UTILITY(U,$J,358.3,34412,0)
- ;;=G61.81^^157^1749^4
- ;;^UTILITY(U,$J,358.3,34412,1,0)
+ ;;^UTILITY(U,$J,358.3,34822,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,34822,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,34822,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,34823,0)
+ ;;=S43.422A^^131^1693^6
+ ;;^UTILITY(U,$J,358.3,34823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34412,1,3,0)
- ;;=3^Chronic Inflammatory Demyelinating Polyneuritis
- ;;^UTILITY(U,$J,358.3,34412,1,4,0)
- ;;=4^G61.81
- ;;^UTILITY(U,$J,358.3,34412,2)
- ;;=^328480
- ;;^UTILITY(U,$J,358.3,34413,0)
- ;;=D86.81^^157^1749^9
- ;;^UTILITY(U,$J,358.3,34413,1,0)
+ ;;^UTILITY(U,$J,358.3,34823,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,34823,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,34823,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,34824,0)
+ ;;=S53.401A^^131^1693^14
+ ;;^UTILITY(U,$J,358.3,34824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34413,1,3,0)
- ;;=3^Sarcoid Meningitis
- ;;^UTILITY(U,$J,358.3,34413,1,4,0)
- ;;=4^D86.81
- ;;^UTILITY(U,$J,358.3,34413,2)
- ;;=^5002446
- ;;^UTILITY(U,$J,358.3,34414,0)
- ;;=G51.0^^157^1750^2
- ;;^UTILITY(U,$J,358.3,34414,1,0)
+ ;;^UTILITY(U,$J,358.3,34824,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,34824,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,34824,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,34825,0)
+ ;;=S53.402A^^131^1693^3
+ ;;^UTILITY(U,$J,358.3,34825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34414,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,34414,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,34414,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,34415,0)
- ;;=G54.0^^157^1750^3
- ;;^UTILITY(U,$J,358.3,34415,1,0)
+ ;;^UTILITY(U,$J,358.3,34825,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,34825,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,34825,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,34826,0)
+ ;;=S56.011A^^131^1693^55
+ ;;^UTILITY(U,$J,358.3,34826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34415,1,3,0)
- ;;=3^Brachial Plexus Disorders
- ;;^UTILITY(U,$J,358.3,34415,1,4,0)
- ;;=4^G54.0
- ;;^UTILITY(U,$J,358.3,34415,2)
- ;;=^5004007
- ;;^UTILITY(U,$J,358.3,34416,0)
- ;;=G56.00^^157^1750^4
- ;;^UTILITY(U,$J,358.3,34416,1,0)
+ ;;^UTILITY(U,$J,358.3,34826,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,34826,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,34826,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,34827,0)
+ ;;=S56.012A^^131^1693^36
+ ;;^UTILITY(U,$J,358.3,34827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34416,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,34416,1,4,0)
- ;;=4^G56.00
- ;;^UTILITY(U,$J,358.3,34416,2)
- ;;=^5004017
- ;;^UTILITY(U,$J,358.3,34417,0)
- ;;=G56.20^^157^1750^14
- ;;^UTILITY(U,$J,358.3,34417,1,0)
+ ;;^UTILITY(U,$J,358.3,34827,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,34827,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,34827,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,34828,0)
+ ;;=S56.111A^^131^1693^43
+ ;;^UTILITY(U,$J,358.3,34828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34417,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,34417,1,4,0)
- ;;=4^G56.20
- ;;^UTILITY(U,$J,358.3,34417,2)
- ;;=^5004023
- ;;^UTILITY(U,$J,358.3,34418,0)
- ;;=G56.90^^157^1750^18
- ;;^UTILITY(U,$J,358.3,34418,1,0)
+ ;;^UTILITY(U,$J,358.3,34828,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,34828,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,34828,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,34829,0)
+ ;;=S56.112A^^131^1693^23
+ ;;^UTILITY(U,$J,358.3,34829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34418,1,3,0)
- ;;=3^Mononeuropathy,Unspec Upper Limb
- ;;^UTILITY(U,$J,358.3,34418,1,4,0)
- ;;=4^G56.90
+ ;;^UTILITY(U,$J,358.3,34829,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon

@@ -1,126 +1,130 @@
-IBDEI0PY ; ; 19-NOV-2015
+IBDEI0PY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11887,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,11887,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,11887,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,11888,0)
- ;;=R40.2310^^68^693^13
- ;;^UTILITY(U,$J,358.3,11888,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11888,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,11888,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,11888,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,11889,0)
- ;;=R40.4^^68^693^38
- ;;^UTILITY(U,$J,358.3,11889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11889,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,11889,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,11889,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,11890,0)
- ;;=V00.811A^^68^694^45
- ;;^UTILITY(U,$J,358.3,11890,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11890,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,11890,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,11890,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,11891,0)
- ;;=V00.811D^^68^694^46
- ;;^UTILITY(U,$J,358.3,11891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11891,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,11891,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,11891,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,11892,0)
- ;;=V00.812A^^68^694^133
- ;;^UTILITY(U,$J,358.3,11892,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11892,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,11892,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,11892,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,11893,0)
- ;;=V00.812D^^68^694^134
- ;;^UTILITY(U,$J,358.3,11893,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11893,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11893,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,11893,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,11894,0)
- ;;=V00.818A^^68^694^131
- ;;^UTILITY(U,$J,358.3,11894,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11894,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,11894,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,11894,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,11895,0)
- ;;=V00.818D^^68^694^132
- ;;^UTILITY(U,$J,358.3,11895,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11895,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11895,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,11895,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,11896,0)
- ;;=V00.831A^^68^694^43
- ;;^UTILITY(U,$J,358.3,11896,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11896,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,11896,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,11896,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,11897,0)
- ;;=V00.831D^^68^694^44
- ;;^UTILITY(U,$J,358.3,11897,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11897,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11897,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,11897,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,11898,0)
- ;;=V00.832A^^68^694^95
- ;;^UTILITY(U,$J,358.3,11898,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11898,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,11898,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,11898,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,11899,0)
- ;;=V00.832D^^68^694^96
- ;;^UTILITY(U,$J,358.3,11899,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11899,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,12135,1,2,0)
+ ;;=2^43235
+ ;;^UTILITY(U,$J,358.3,12135,1,3,0)
+ ;;=3^EGD, Diagnostic
+ ;;^UTILITY(U,$J,358.3,12136,0)
+ ;;=43239^^49^546^3^^^^1
+ ;;^UTILITY(U,$J,358.3,12136,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12136,1,2,0)
+ ;;=2^43239
+ ;;^UTILITY(U,$J,358.3,12136,1,3,0)
+ ;;=3^EGD w/Biopsy
+ ;;^UTILITY(U,$J,358.3,12137,0)
+ ;;=43250^^49^546^18^^^^1
+ ;;^UTILITY(U,$J,358.3,12137,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12137,1,2,0)
+ ;;=2^43250
+ ;;^UTILITY(U,$J,358.3,12137,1,3,0)
+ ;;=3^EGD w/Tumor Removal by Hot Forceps
+ ;;^UTILITY(U,$J,358.3,12138,0)
+ ;;=43251^^49^546^17^^^^1
+ ;;^UTILITY(U,$J,358.3,12138,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12138,1,2,0)
+ ;;=2^43251
+ ;;^UTILITY(U,$J,358.3,12138,1,3,0)
+ ;;=3^EGD w/Tumor Removal By Snare
+ ;;^UTILITY(U,$J,358.3,12139,0)
+ ;;=43247^^49^546^11^^^^1
+ ;;^UTILITY(U,$J,358.3,12139,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12139,1,2,0)
+ ;;=2^43247
+ ;;^UTILITY(U,$J,358.3,12139,1,3,0)
+ ;;=3^EGD w/FB Removal
+ ;;^UTILITY(U,$J,358.3,12140,0)
+ ;;=43255^^49^546^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12140,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12140,1,2,0)
+ ;;=2^43255
+ ;;^UTILITY(U,$J,358.3,12140,1,3,0)
+ ;;=3^EGD w/Control of Hemorrhage
+ ;;^UTILITY(U,$J,358.3,12141,0)
+ ;;=43245^^49^546^6^^^^1
+ ;;^UTILITY(U,$J,358.3,12141,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12141,1,2,0)
+ ;;=2^43245
+ ;;^UTILITY(U,$J,358.3,12141,1,3,0)
+ ;;=3^EGD w/Dilation of Gatric Outlet Obstr
+ ;;^UTILITY(U,$J,358.3,12142,0)
+ ;;=43248^^49^546^10^^^^1
+ ;;^UTILITY(U,$J,358.3,12142,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12142,1,2,0)
+ ;;=2^43248
+ ;;^UTILITY(U,$J,358.3,12142,1,3,0)
+ ;;=3^EGD w/Esoph Dilation over wire
+ ;;^UTILITY(U,$J,358.3,12143,0)
+ ;;=43249^^49^546^8^^^^1
+ ;;^UTILITY(U,$J,358.3,12143,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12143,1,2,0)
+ ;;=2^43249
+ ;;^UTILITY(U,$J,358.3,12143,1,3,0)
+ ;;=3^EGD w/Esoph Dilation Balloon <30mm
+ ;;^UTILITY(U,$J,358.3,12144,0)
+ ;;=43244^^49^546^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12144,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12144,1,2,0)
+ ;;=2^43244
+ ;;^UTILITY(U,$J,358.3,12144,1,3,0)
+ ;;=3^EGD w/Band Ligation
+ ;;^UTILITY(U,$J,358.3,12145,0)
+ ;;=43243^^49^546^13^^^^1
+ ;;^UTILITY(U,$J,358.3,12145,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12145,1,2,0)
+ ;;=2^43243
+ ;;^UTILITY(U,$J,358.3,12145,1,3,0)
+ ;;=3^EGD w/Sclerosis Injection
+ ;;^UTILITY(U,$J,358.3,12146,0)
+ ;;=43205^^49^546^33^^^^1
+ ;;^UTILITY(U,$J,358.3,12146,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12146,1,2,0)
+ ;;=2^43205
+ ;;^UTILITY(U,$J,358.3,12146,1,3,0)
+ ;;=3^Esophagoscopy w/ Ligation of Varices
+ ;;^UTILITY(U,$J,358.3,12147,0)
+ ;;=43201^^49^546^39^^^^1
+ ;;^UTILITY(U,$J,358.3,12147,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12147,1,2,0)
+ ;;=2^43201
+ ;;^UTILITY(U,$J,358.3,12147,1,3,0)
+ ;;=3^Esophagoscopy w/ Submucosal Inj
+ ;;^UTILITY(U,$J,358.3,12148,0)
+ ;;=43204^^49^546^38^^^^1
+ ;;^UTILITY(U,$J,358.3,12148,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12148,1,2,0)
+ ;;=2^43204
+ ;;^UTILITY(U,$J,358.3,12148,1,3,0)
+ ;;=3^Esophagoscopy w/ Sclerosis Inj
+ ;;^UTILITY(U,$J,358.3,12149,0)
+ ;;=43216^^49^546^36^^^^1
+ ;;^UTILITY(U,$J,358.3,12149,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12149,1,2,0)
+ ;;=2^43216
+ ;;^UTILITY(U,$J,358.3,12149,1,3,0)
+ ;;=3^Esophagoscopy w/ Remov Tumor/Polyp-Hot Bx
+ ;;^UTILITY(U,$J,358.3,12150,0)
+ ;;=43217^^49^546^37^^^^1
+ ;;^UTILITY(U,$J,358.3,12150,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12150,1,2,0)
+ ;;=2^43217
+ ;;^UTILITY(U,$J,358.3,12150,1,3,0)
+ ;;=3^Esophagoscopy w/ Remov Tumor/Polyp-Snare
+ ;;^UTILITY(U,$J,358.3,12151,0)
+ ;;=43231^^49^546^30^^^^1

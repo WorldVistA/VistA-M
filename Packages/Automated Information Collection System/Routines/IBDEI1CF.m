@@ -1,124 +1,130 @@
-IBDEI1CF ; ; 19-NOV-2015
+IBDEI1CF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22375,1,4,0)
- ;;=4^S59.142S
- ;;^UTILITY(U,$J,358.3,22375,2)
- ;;=^5032128
- ;;^UTILITY(U,$J,358.3,22376,0)
- ;;=S59.141S^^101^1040^156
- ;;^UTILITY(U,$J,358.3,22376,1,0)
+ ;;^UTILITY(U,$J,358.3,22832,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,22833,0)
+ ;;=M32.13^^87^987^177
+ ;;^UTILITY(U,$J,358.3,22833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22376,1,3,0)
- ;;=3^Sltr-haris Type IV physl fx upper end rad, right arm, sqla
- ;;^UTILITY(U,$J,358.3,22376,1,4,0)
- ;;=4^S59.141S
- ;;^UTILITY(U,$J,358.3,22376,2)
- ;;=^5032122
- ;;^UTILITY(U,$J,358.3,22377,0)
- ;;=S52.542S^^101^1040^157
- ;;^UTILITY(U,$J,358.3,22377,1,0)
+ ;;^UTILITY(U,$J,358.3,22833,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,22833,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,22833,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,22834,0)
+ ;;=M32.14^^87^987^176
+ ;;^UTILITY(U,$J,358.3,22834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22377,1,3,0)
- ;;=3^Smith's fracture of left radius, sequela
- ;;^UTILITY(U,$J,358.3,22377,1,4,0)
- ;;=4^S52.542S
- ;;^UTILITY(U,$J,358.3,22377,2)
- ;;=^5030800
- ;;^UTILITY(U,$J,358.3,22378,0)
- ;;=S52.541S^^101^1040^158
- ;;^UTILITY(U,$J,358.3,22378,1,0)
+ ;;^UTILITY(U,$J,358.3,22834,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,22834,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,22834,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,22835,0)
+ ;;=M32.12^^87^987^178
+ ;;^UTILITY(U,$J,358.3,22835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22378,1,3,0)
- ;;=3^Smith's fracture of right radius, sequela
- ;;^UTILITY(U,$J,358.3,22378,1,4,0)
- ;;=4^S52.541S
- ;;^UTILITY(U,$J,358.3,22378,2)
- ;;=^5030784
- ;;^UTILITY(U,$J,358.3,22379,0)
- ;;=M84.334S^^101^1040^159
- ;;^UTILITY(U,$J,358.3,22379,1,0)
+ ;;^UTILITY(U,$J,358.3,22835,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,22835,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,22835,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,22836,0)
+ ;;=M05.59^^87^987^159
+ ;;^UTILITY(U,$J,358.3,22836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22379,1,3,0)
- ;;=3^Stress fracture, left radius, sequela
- ;;^UTILITY(U,$J,358.3,22379,1,4,0)
- ;;=4^M84.334S
- ;;^UTILITY(U,$J,358.3,22379,2)
- ;;=^5013631
- ;;^UTILITY(U,$J,358.3,22380,0)
- ;;=M84.333S^^101^1040^161
- ;;^UTILITY(U,$J,358.3,22380,1,0)
+ ;;^UTILITY(U,$J,358.3,22836,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,22836,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,22836,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,22837,0)
+ ;;=M05.711^^87^987^153
+ ;;^UTILITY(U,$J,358.3,22837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22380,1,3,0)
- ;;=3^Stress fracture, right radius, sequela
- ;;^UTILITY(U,$J,358.3,22380,1,4,0)
- ;;=4^M84.333S
- ;;^UTILITY(U,$J,358.3,22380,2)
- ;;=^5013625
- ;;^UTILITY(U,$J,358.3,22381,0)
- ;;=S52.522S^^101^1040^163
- ;;^UTILITY(U,$J,358.3,22381,1,0)
+ ;;^UTILITY(U,$J,358.3,22837,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,22837,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,22837,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,22838,0)
+ ;;=M05.712^^87^987^146
+ ;;^UTILITY(U,$J,358.3,22838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22381,1,3,0)
- ;;=3^Torus fracture of lower end of left radius, sequela
- ;;^UTILITY(U,$J,358.3,22381,1,4,0)
- ;;=4^S52.522S
- ;;^UTILITY(U,$J,358.3,22381,2)
- ;;=^5135272
- ;;^UTILITY(U,$J,358.3,22382,0)
- ;;=S52.521S^^101^1040^165
- ;;^UTILITY(U,$J,358.3,22382,1,0)
+ ;;^UTILITY(U,$J,358.3,22838,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,22838,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,22838,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,22839,0)
+ ;;=M05.731^^87^987^154
+ ;;^UTILITY(U,$J,358.3,22839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22382,1,3,0)
- ;;=3^Torus fracture of lower end of right radius, sequela
- ;;^UTILITY(U,$J,358.3,22382,1,4,0)
- ;;=4^S52.521S
- ;;^UTILITY(U,$J,358.3,22382,2)
- ;;=^5030720
- ;;^UTILITY(U,$J,358.3,22383,0)
- ;;=S52.111S^^101^1040^169
- ;;^UTILITY(U,$J,358.3,22383,1,0)
+ ;;^UTILITY(U,$J,358.3,22839,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,22839,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,22839,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,22840,0)
+ ;;=M05.732^^87^987^147
+ ;;^UTILITY(U,$J,358.3,22840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22383,1,3,0)
- ;;=3^Torus fracture of upper end of right radius, sequela
- ;;^UTILITY(U,$J,358.3,22383,1,4,0)
- ;;=4^S52.111S
- ;;^UTILITY(U,$J,358.3,22383,2)
- ;;=^5029034
- ;;^UTILITY(U,$J,358.3,22384,0)
- ;;=S52.112S^^101^1040^167
- ;;^UTILITY(U,$J,358.3,22384,1,0)
+ ;;^UTILITY(U,$J,358.3,22840,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,22840,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,22840,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,22841,0)
+ ;;=M05.741^^87^987^150
+ ;;^UTILITY(U,$J,358.3,22841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22384,1,3,0)
- ;;=3^Torus fracture of upper end of left radius, sequela
- ;;^UTILITY(U,$J,358.3,22384,1,4,0)
- ;;=4^S52.112S
- ;;^UTILITY(U,$J,358.3,22384,2)
- ;;=^5029040
- ;;^UTILITY(U,$J,358.3,22385,0)
- ;;=S62.142S^^101^1040^9
- ;;^UTILITY(U,$J,358.3,22385,1,0)
+ ;;^UTILITY(U,$J,358.3,22841,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,22841,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,22841,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,22842,0)
+ ;;=M05.742^^87^987^143
+ ;;^UTILITY(U,$J,358.3,22842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22385,1,3,0)
- ;;=3^Disp fx of body of hamate bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,22385,1,4,0)
- ;;=4^S62.142S
- ;;^UTILITY(U,$J,358.3,22385,2)
- ;;=^5033352
- ;;^UTILITY(U,$J,358.3,22386,0)
- ;;=S62.141S^^101^1040^10
- ;;^UTILITY(U,$J,358.3,22386,1,0)
+ ;;^UTILITY(U,$J,358.3,22842,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,22842,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,22842,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,22843,0)
+ ;;=M05.751^^87^987^151
+ ;;^UTILITY(U,$J,358.3,22843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22386,1,3,0)
- ;;=3^Disp fx of body of hamate bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,22386,1,4,0)
- ;;=4^S62.141S
- ;;^UTILITY(U,$J,358.3,22386,2)
- ;;=^5033345
- ;;^UTILITY(U,$J,358.3,22387,0)
- ;;=S62.132S^^101^1040^11
- ;;^UTILITY(U,$J,358.3,22387,1,0)
+ ;;^UTILITY(U,$J,358.3,22843,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,22843,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,22843,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,22844,0)
+ ;;=M05.752^^87^987^144
+ ;;^UTILITY(U,$J,358.3,22844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22387,1,3,0)
- ;;=3^Disp fx of capitate bone, left wrist, sequela 
+ ;;^UTILITY(U,$J,358.3,22844,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,22844,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,22844,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,22845,0)
+ ;;=M05.761^^87^987^152
+ ;;^UTILITY(U,$J,358.3,22845,1,0)
+ ;;=^358.31IA^4^2

@@ -1,130 +1,132 @@
-IBDEI0IL ; ; 19-NOV-2015
+IBDEI0IL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8352,0)
- ;;=C50.911^^55^538^84
- ;;^UTILITY(U,$J,358.3,8352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8352,1,3,0)
- ;;=3^Malignant neoplasm of unsp site of right female breast
- ;;^UTILITY(U,$J,358.3,8352,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,8352,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,8353,0)
- ;;=C50.912^^55^538^83
- ;;^UTILITY(U,$J,358.3,8353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8353,1,3,0)
- ;;=3^Malignant neoplasm of unsp site of left female breast
- ;;^UTILITY(U,$J,358.3,8353,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,8353,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,8354,0)
- ;;=C46.9^^55^538^43
- ;;^UTILITY(U,$J,358.3,8354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8354,1,3,0)
- ;;=3^Kaposi's sarcoma, unspecified
- ;;^UTILITY(U,$J,358.3,8354,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,8354,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,8355,0)
- ;;=C61.^^55^538^72
- ;;^UTILITY(U,$J,358.3,8355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8355,1,3,0)
- ;;=3^Malignant neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,8355,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,8355,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,8356,0)
- ;;=C62.11^^55^538^57
- ;;^UTILITY(U,$J,358.3,8356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8356,1,3,0)
- ;;=3^Malignant neoplasm of descended right testis
- ;;^UTILITY(U,$J,358.3,8356,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,8356,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,8357,0)
- ;;=C62.12^^55^538^56
- ;;^UTILITY(U,$J,358.3,8357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8357,1,3,0)
- ;;=3^Malignant neoplasm of descended left testis
- ;;^UTILITY(U,$J,358.3,8357,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,8357,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,8358,0)
- ;;=C62.91^^55^538^76
- ;;^UTILITY(U,$J,358.3,8358,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8358,1,3,0)
- ;;=3^Malignant neoplasm of right testis, unsp descended or undescended
- ;;^UTILITY(U,$J,358.3,8358,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,8358,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,8359,0)
- ;;=C62.92^^55^538^65
- ;;^UTILITY(U,$J,358.3,8359,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8359,1,3,0)
- ;;=3^Malignant neoplasm of left testis, unsp descended or undescended
- ;;^UTILITY(U,$J,358.3,8359,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,8359,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,8360,0)
- ;;=C67.9^^55^538^52
- ;;^UTILITY(U,$J,358.3,8360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8360,1,3,0)
- ;;=3^Malignant neoplasm of bladder, unspecified
- ;;^UTILITY(U,$J,358.3,8360,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,8360,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,8361,0)
- ;;=C64.2^^55^538^63
- ;;^UTILITY(U,$J,358.3,8361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8361,1,3,0)
- ;;=3^Malignant neoplasm of left kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,8361,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,8361,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,8362,0)
- ;;=C64.1^^55^538^74
- ;;^UTILITY(U,$J,358.3,8362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8362,1,3,0)
- ;;=3^Malignant neoplasm of right kidney, except renal pelvis
- ;;^UTILITY(U,$J,358.3,8362,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,8362,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,8363,0)
- ;;=C65.1^^55^538^75
- ;;^UTILITY(U,$J,358.3,8363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8363,1,3,0)
- ;;=3^Malignant neoplasm of right renal pelvis
- ;;^UTILITY(U,$J,358.3,8363,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,8363,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,8364,0)
- ;;=C65.2^^55^538^64
- ;;^UTILITY(U,$J,358.3,8364,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8364,1,3,0)
- ;;=3^Malignant neoplasm of left renal pelvis
+ ;;^UTILITY(U,$J,358.3,8633,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8633,1,2,0)
+ ;;=2^Low Vision Aid Fitting, Single Element
+ ;;^UTILITY(U,$J,358.3,8633,1,3,0)
+ ;;=3^92354
+ ;;^UTILITY(U,$J,358.3,8634,0)
+ ;;=92355^^40^466^11^^^^1
+ ;;^UTILITY(U,$J,358.3,8634,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8634,1,2,0)
+ ;;=2^Low Vision Aid Fitting, Telescopic/Compound Lens
+ ;;^UTILITY(U,$J,358.3,8634,1,3,0)
+ ;;=3^92355
+ ;;^UTILITY(U,$J,358.3,8635,0)
+ ;;=92370^^40^466^13^^^^1
+ ;;^UTILITY(U,$J,358.3,8635,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8635,1,2,0)
+ ;;=2^Repair/Refit Glasses
+ ;;^UTILITY(U,$J,358.3,8635,1,3,0)
+ ;;=3^92370
+ ;;^UTILITY(U,$J,358.3,8636,0)
+ ;;=92371^^40^466^14^^^^1
+ ;;^UTILITY(U,$J,358.3,8636,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8636,1,2,0)
+ ;;=2^Repair/Refit Glasses for Aphakia
+ ;;^UTILITY(U,$J,358.3,8636,1,3,0)
+ ;;=3^92371
+ ;;^UTILITY(U,$J,358.3,8637,0)
+ ;;=92071^^40^466^2^^^^1
+ ;;^UTILITY(U,$J,358.3,8637,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8637,1,2,0)
+ ;;=2^Contact Lens Tx for Ocular Disease
+ ;;^UTILITY(U,$J,358.3,8637,1,3,0)
+ ;;=3^92071
+ ;;^UTILITY(U,$J,358.3,8638,0)
+ ;;=92072^^40^466^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8638,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8638,1,2,0)
+ ;;=2^Contact Lens Mgmt Keratoconus,Init
+ ;;^UTILITY(U,$J,358.3,8638,1,3,0)
+ ;;=3^92072
+ ;;^UTILITY(U,$J,358.3,8639,0)
+ ;;=99024^^40^466^12^^^^1
+ ;;^UTILITY(U,$J,358.3,8639,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8639,1,2,0)
+ ;;=2^Postop Follow-Up Visit
+ ;;^UTILITY(U,$J,358.3,8639,1,3,0)
+ ;;=3^99024
+ ;;^UTILITY(U,$J,358.3,8640,0)
+ ;;=65430^^40^467^6^^^^1
+ ;;^UTILITY(U,$J,358.3,8640,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8640,1,2,0)
+ ;;=2^Corneal Scrape* (dx culture)
+ ;;^UTILITY(U,$J,358.3,8640,1,3,0)
+ ;;=3^65430
+ ;;^UTILITY(U,$J,358.3,8641,0)
+ ;;=92285^^40^467^10^^^^1
+ ;;^UTILITY(U,$J,358.3,8641,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8641,1,2,0)
+ ;;=2^External Eye Photography
+ ;;^UTILITY(U,$J,358.3,8641,1,3,0)
+ ;;=3^92285
+ ;;^UTILITY(U,$J,358.3,8642,0)
+ ;;=92225^^40^467^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8642,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8642,1,2,0)
+ ;;=2^Extended Ophthalmoscopy,Initial
+ ;;^UTILITY(U,$J,358.3,8642,1,3,0)
+ ;;=3^92225
+ ;;^UTILITY(U,$J,358.3,8643,0)
+ ;;=92235^^40^467^11^^^^1
+ ;;^UTILITY(U,$J,358.3,8643,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8643,1,2,0)
+ ;;=2^Fluorescein Angio
+ ;;^UTILITY(U,$J,358.3,8643,1,3,0)
+ ;;=3^92235
+ ;;^UTILITY(U,$J,358.3,8644,0)
+ ;;=92250^^40^467^12^^^^1
+ ;;^UTILITY(U,$J,358.3,8644,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8644,1,2,0)
+ ;;=2^Fundus Photography
+ ;;^UTILITY(U,$J,358.3,8644,1,3,0)
+ ;;=3^92250
+ ;;^UTILITY(U,$J,358.3,8645,0)
+ ;;=92020^^40^467^14^^^^1
+ ;;^UTILITY(U,$J,358.3,8645,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8645,1,2,0)
+ ;;=2^Gonioscopy
+ ;;^UTILITY(U,$J,358.3,8645,1,3,0)
+ ;;=3^92020
+ ;;^UTILITY(U,$J,358.3,8646,0)
+ ;;=92081^^40^467^23^^^^1
+ ;;^UTILITY(U,$J,358.3,8646,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8646,1,2,0)
+ ;;=2^Visual Field - Screening
+ ;;^UTILITY(U,$J,358.3,8646,1,3,0)
+ ;;=3^92081
+ ;;^UTILITY(U,$J,358.3,8647,0)
+ ;;=92082^^40^467^22^^^^1
+ ;;^UTILITY(U,$J,358.3,8647,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8647,1,2,0)
+ ;;=2^Visual Field - Intermediate
+ ;;^UTILITY(U,$J,358.3,8647,1,3,0)
+ ;;=3^92082
+ ;;^UTILITY(U,$J,358.3,8648,0)
+ ;;=92083^^40^467^24^^^^1
+ ;;^UTILITY(U,$J,358.3,8648,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8648,1,2,0)
+ ;;=2^Visual Field - Threshold
+ ;;^UTILITY(U,$J,358.3,8648,1,3,0)
+ ;;=3^92083
+ ;;^UTILITY(U,$J,358.3,8649,0)
+ ;;=92100^^40^467^21^^^^1

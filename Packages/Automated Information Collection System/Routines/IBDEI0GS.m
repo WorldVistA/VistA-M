@@ -1,138 +1,134 @@
-IBDEI0GS ; ; 19-NOV-2015
+IBDEI0GS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7490,1,0)
+ ;;^UTILITY(U,$J,358.3,7760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7490,1,3,0)
- ;;=3^Thrombosis of Vascular Graft,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7490,1,4,0)
- ;;=4^T82.868D
- ;;^UTILITY(U,$J,358.3,7490,2)
- ;;=^5054948
- ;;^UTILITY(U,$J,358.3,7491,0)
- ;;=N28.1^^52^502^1
- ;;^UTILITY(U,$J,358.3,7491,1,0)
+ ;;^UTILITY(U,$J,358.3,7760,1,3,0)
+ ;;=3^Fall from Non-Moving Non-Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7760,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,7760,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,7761,0)
+ ;;=W05.2XXA^^30^415^47
+ ;;^UTILITY(U,$J,358.3,7761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7491,1,3,0)
- ;;=3^Cyst of Kidney,Acquired
- ;;^UTILITY(U,$J,358.3,7491,1,4,0)
- ;;=4^N28.1
- ;;^UTILITY(U,$J,358.3,7491,2)
- ;;=^270380
- ;;^UTILITY(U,$J,358.3,7492,0)
- ;;=Q61.9^^52^502^2
- ;;^UTILITY(U,$J,358.3,7492,1,0)
+ ;;^UTILITY(U,$J,358.3,7761,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7761,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,7761,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,7762,0)
+ ;;=W05.2XXD^^30^415^48
+ ;;^UTILITY(U,$J,358.3,7762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7492,1,3,0)
- ;;=3^Cystic Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,7492,1,4,0)
- ;;=4^Q61.9
- ;;^UTILITY(U,$J,358.3,7492,2)
- ;;=^5018800
- ;;^UTILITY(U,$J,358.3,7493,0)
- ;;=Q61.2^^52^502^6
- ;;^UTILITY(U,$J,358.3,7493,1,0)
+ ;;^UTILITY(U,$J,358.3,7762,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7762,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,7762,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,7763,0)
+ ;;=W06.XXXA^^30^415^29
+ ;;^UTILITY(U,$J,358.3,7763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7493,1,3,0)
- ;;=3^Polycystic Kidney,Adult Type
- ;;^UTILITY(U,$J,358.3,7493,1,4,0)
- ;;=4^Q61.2
- ;;^UTILITY(U,$J,358.3,7493,2)
- ;;=^5018796
- ;;^UTILITY(U,$J,358.3,7494,0)
- ;;=Q61.5^^52^502^4
- ;;^UTILITY(U,$J,358.3,7494,1,0)
+ ;;^UTILITY(U,$J,358.3,7763,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7763,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,7763,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,7764,0)
+ ;;=W06.XXXD^^30^415^30
+ ;;^UTILITY(U,$J,358.3,7764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7494,1,3,0)
- ;;=3^Medullary Cystic Kidney
- ;;^UTILITY(U,$J,358.3,7494,1,4,0)
- ;;=4^Q61.5
- ;;^UTILITY(U,$J,358.3,7494,2)
- ;;=^67073
- ;;^UTILITY(U,$J,358.3,7495,0)
- ;;=Z82.71^^52^502^3
- ;;^UTILITY(U,$J,358.3,7495,1,0)
+ ;;^UTILITY(U,$J,358.3,7764,1,3,0)
+ ;;=3^Fall from Bed,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7764,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,7764,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,7765,0)
+ ;;=W07.XXXA^^30^415^37
+ ;;^UTILITY(U,$J,358.3,7765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7495,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,7495,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,7495,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,7496,0)
- ;;=Q61.5^^52^502^5
- ;;^UTILITY(U,$J,358.3,7496,1,0)
+ ;;^UTILITY(U,$J,358.3,7765,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7765,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,7765,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,7766,0)
+ ;;=W07.XXXD^^30^415^38
+ ;;^UTILITY(U,$J,358.3,7766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7496,1,3,0)
- ;;=3^Medullary Sponge Kidney
- ;;^UTILITY(U,$J,358.3,7496,1,4,0)
- ;;=4^Q61.5
- ;;^UTILITY(U,$J,358.3,7496,2)
- ;;=^67073
- ;;^UTILITY(U,$J,358.3,7497,0)
- ;;=Q61.3^^52^502^7
- ;;^UTILITY(U,$J,358.3,7497,1,0)
+ ;;^UTILITY(U,$J,358.3,7766,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7766,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,7766,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,7767,0)
+ ;;=W10.1XXA^^30^415^81
+ ;;^UTILITY(U,$J,358.3,7767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7497,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,7497,1,4,0)
- ;;=4^Q61.3
- ;;^UTILITY(U,$J,358.3,7497,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,7498,0)
- ;;=E11.65^^52^503^11
- ;;^UTILITY(U,$J,358.3,7498,1,0)
+ ;;^UTILITY(U,$J,358.3,7767,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7767,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,7767,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,7768,0)
+ ;;=W10.1XXD^^30^415^82
+ ;;^UTILITY(U,$J,358.3,7768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7498,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,7498,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,7498,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,7499,0)
- ;;=E10.65^^52^503^6
- ;;^UTILITY(U,$J,358.3,7499,1,0)
+ ;;^UTILITY(U,$J,358.3,7768,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7768,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,7768,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,7769,0)
+ ;;=W11.XXXA^^30^415^41
+ ;;^UTILITY(U,$J,358.3,7769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7499,1,3,0)
- ;;=3^Diabetes Type 1 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,7499,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,7499,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,7500,0)
- ;;=E11.21^^52^503^9
- ;;^UTILITY(U,$J,358.3,7500,1,0)
+ ;;^UTILITY(U,$J,358.3,7769,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7769,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,7769,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,7770,0)
+ ;;=W11.XXXD^^30^415^42
+ ;;^UTILITY(U,$J,358.3,7770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7500,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,7500,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,7500,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,7501,0)
- ;;=E10.29^^52^503^3
- ;;^UTILITY(U,$J,358.3,7501,1,0)
+ ;;^UTILITY(U,$J,358.3,7770,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7770,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,7770,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,7771,0)
+ ;;=W13.0XXA^^30^415^67
+ ;;^UTILITY(U,$J,358.3,7771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7501,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,7501,1,4,0)
- ;;=4^E10.29
- ;;^UTILITY(U,$J,358.3,7501,2)
- ;;=^5002591
- ;;^UTILITY(U,$J,358.3,7502,0)
- ;;=E10.21^^52^503^4
- ;;^UTILITY(U,$J,358.3,7502,1,0)
+ ;;^UTILITY(U,$J,358.3,7771,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7771,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,7771,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,7772,0)
+ ;;=W13.0XXD^^30^415^68
+ ;;^UTILITY(U,$J,358.3,7772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7502,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,7502,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,7502,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,7503,0)
- ;;=E11.40^^52^503^10
- ;;^UTILITY(U,$J,358.3,7503,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7503,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Neuropathy
+ ;;^UTILITY(U,$J,358.3,7772,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7772,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,7772,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,7773,0)
+ ;;=W13.1XXA^^30^415^31

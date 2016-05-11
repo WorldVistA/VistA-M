@@ -1,128 +1,138 @@
-IBDEI11T ; ; 19-NOV-2015
+IBDEI11T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17457,1,3,0)
- ;;=3^Problems Related to Dependent Relative Needing Care at Home
- ;;^UTILITY(U,$J,358.3,17457,1,4,0)
- ;;=4^Z63.6
- ;;^UTILITY(U,$J,358.3,17457,2)
- ;;=^5063170
- ;;^UTILITY(U,$J,358.3,17458,0)
- ;;=Z59.2^^88^861^131
- ;;^UTILITY(U,$J,358.3,17458,1,0)
+ ;;^UTILITY(U,$J,358.3,17802,1,4,0)
+ ;;=4^N30.90
+ ;;^UTILITY(U,$J,358.3,17802,2)
+ ;;=^5015642
+ ;;^UTILITY(U,$J,358.3,17803,0)
+ ;;=N76.0^^76^858^243
+ ;;^UTILITY(U,$J,358.3,17803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17458,1,3,0)
- ;;=3^Problems Related to Discord w/ Neighbors/Lodgers/Landlord
- ;;^UTILITY(U,$J,358.3,17458,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,17458,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,17459,0)
- ;;=Z63.5^^88^861^155
- ;;^UTILITY(U,$J,358.3,17459,1,0)
+ ;;^UTILITY(U,$J,358.3,17803,1,3,0)
+ ;;=3^Vaginitis, Unspecified cause, acute
+ ;;^UTILITY(U,$J,358.3,17803,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,17803,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,17804,0)
+ ;;=N76.2^^76^858^16
+ ;;^UTILITY(U,$J,358.3,17804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17459,1,3,0)
- ;;=3^Problems Related to Separation/Divorce
- ;;^UTILITY(U,$J,358.3,17459,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,17459,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,17460,0)
- ;;=Z55.9^^88^861^132
- ;;^UTILITY(U,$J,358.3,17460,1,0)
+ ;;^UTILITY(U,$J,358.3,17804,1,3,0)
+ ;;=3^Acute vulvitis
+ ;;^UTILITY(U,$J,358.3,17804,1,4,0)
+ ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,17804,2)
+ ;;=^5015828
+ ;;^UTILITY(U,$J,358.3,17805,0)
+ ;;=N76.3^^76^858^226
+ ;;^UTILITY(U,$J,358.3,17805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17460,1,3,0)
- ;;=3^Problems Related to Education/Literacy,Unspec
- ;;^UTILITY(U,$J,358.3,17460,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,17460,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,17461,0)
- ;;=Z56.9^^88^861^133
- ;;^UTILITY(U,$J,358.3,17461,1,0)
+ ;;^UTILITY(U,$J,358.3,17805,1,3,0)
+ ;;=3^Subacute and chronic vulvitis
+ ;;^UTILITY(U,$J,358.3,17805,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,17805,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,17806,0)
+ ;;=N76.1^^76^858^225
+ ;;^UTILITY(U,$J,358.3,17806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17461,1,3,0)
- ;;=3^Problems Related to Employment,Unspec
- ;;^UTILITY(U,$J,358.3,17461,1,4,0)
- ;;=4^Z56.9
- ;;^UTILITY(U,$J,358.3,17461,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,17462,0)
- ;;=Z65.5^^88^861^130
- ;;^UTILITY(U,$J,358.3,17462,1,0)
+ ;;^UTILITY(U,$J,358.3,17806,1,3,0)
+ ;;=3^Subacute and chronic vaginitis
+ ;;^UTILITY(U,$J,358.3,17806,1,4,0)
+ ;;=4^N76.1
+ ;;^UTILITY(U,$J,358.3,17806,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,17807,0)
+ ;;=B97.89^^76^858^244
+ ;;^UTILITY(U,$J,358.3,17807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17462,1,3,0)
- ;;=3^Problems Related to Disaster/War/Other Hostilities
- ;;^UTILITY(U,$J,358.3,17462,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,17462,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,17463,0)
- ;;=Z59.5^^88^861^134
- ;;^UTILITY(U,$J,358.3,17463,1,0)
+ ;;^UTILITY(U,$J,358.3,17807,1,3,0)
+ ;;=3^Viral syndrome
+ ;;^UTILITY(U,$J,358.3,17807,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,17807,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,17808,0)
+ ;;=Z77.21^^76^858^84
+ ;;^UTILITY(U,$J,358.3,17808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17463,1,3,0)
- ;;=3^Problems Related to Extreme Poverty
- ;;^UTILITY(U,$J,358.3,17463,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,17463,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,17464,0)
- ;;=Z59.0^^88^861^136
- ;;^UTILITY(U,$J,358.3,17464,1,0)
+ ;;^UTILITY(U,$J,358.3,17808,1,3,0)
+ ;;=3^Exposure to potentially hazardous bodily fluids
+ ;;^UTILITY(U,$J,358.3,17808,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,17808,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,17809,0)
+ ;;=Z72.51^^76^858^120
+ ;;^UTILITY(U,$J,358.3,17809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17464,1,3,0)
- ;;=3^Problems Related to Homelessness
- ;;^UTILITY(U,$J,358.3,17464,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,17464,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,17465,0)
- ;;=Z59.9^^88^861^137
- ;;^UTILITY(U,$J,358.3,17465,1,0)
+ ;;^UTILITY(U,$J,358.3,17809,1,3,0)
+ ;;=3^High Risk Sexual Behaviors
+ ;;^UTILITY(U,$J,358.3,17809,1,4,0)
+ ;;=4^Z72.51
+ ;;^UTILITY(U,$J,358.3,17809,2)
+ ;;=^5063258
+ ;;^UTILITY(U,$J,358.3,17810,0)
+ ;;=Z20.828^^76^858^47
+ ;;^UTILITY(U,$J,358.3,17810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17465,1,3,0)
- ;;=3^Problems Related to Housing/Economic Circumstances
- ;;^UTILITY(U,$J,358.3,17465,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,17465,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,17466,0)
- ;;=Z59.1^^88^861^138
- ;;^UTILITY(U,$J,358.3,17466,1,0)
+ ;;^UTILITY(U,$J,358.3,17810,1,3,0)
+ ;;=3^Contact or exposure to other viral diseases
+ ;;^UTILITY(U,$J,358.3,17810,1,4,0)
+ ;;=4^Z20.828
+ ;;^UTILITY(U,$J,358.3,17810,2)
+ ;;=^5062774
+ ;;^UTILITY(U,$J,358.3,17811,0)
+ ;;=Z79.899^^76^858^146
+ ;;^UTILITY(U,$J,358.3,17811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17466,1,3,0)
- ;;=3^Problems Related to Inadequate Housing
- ;;^UTILITY(U,$J,358.3,17466,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,17466,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,17467,0)
- ;;=Z59.7^^88^861^139
- ;;^UTILITY(U,$J,358.3,17467,1,0)
+ ;;^UTILITY(U,$J,358.3,17811,1,3,0)
+ ;;=3^Long term use of medications
+ ;;^UTILITY(U,$J,358.3,17811,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,17811,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,17812,0)
+ ;;=Z23.^^76^858^74
+ ;;^UTILITY(U,$J,358.3,17812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17467,1,3,0)
- ;;=3^Problems Related to Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,17467,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,17467,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,17468,0)
- ;;=Z59.4^^88^861^140
- ;;^UTILITY(U,$J,358.3,17468,1,0)
+ ;;^UTILITY(U,$J,358.3,17812,1,3,0)
+ ;;=3^Encounter for immunization
+ ;;^UTILITY(U,$J,358.3,17812,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,17812,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,17813,0)
+ ;;=A08.4^^76^858^96
+ ;;^UTILITY(U,$J,358.3,17813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17468,1,3,0)
- ;;=3^Problems Related to Lack of Food/Drinking Water
- ;;^UTILITY(U,$J,358.3,17468,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,17468,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,17469,0)
- ;;=Z73.9^^88^861^141
- ;;^UTILITY(U,$J,358.3,17469,1,0)
+ ;;^UTILITY(U,$J,358.3,17813,1,3,0)
+ ;;=3^Gastroenteritis, viral
+ ;;^UTILITY(U,$J,358.3,17813,1,4,0)
+ ;;=4^A08.4
+ ;;^UTILITY(U,$J,358.3,17813,2)
+ ;;=^5000059
+ ;;^UTILITY(U,$J,358.3,17814,0)
+ ;;=B16.9^^76^858^105
+ ;;^UTILITY(U,$J,358.3,17814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17469,1,3,0)
- ;;=3^Problems Related to Life Management Difficulty
- ;;^UTILITY(U,$J,358.3,17469,1,4,0)
- ;;=4^Z73.9
+ ;;^UTILITY(U,$J,358.3,17814,1,3,0)
+ ;;=3^Hepatitis B, acute
+ ;;^UTILITY(U,$J,358.3,17814,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,17814,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,17815,0)
+ ;;=B18.1^^76^858^106
+ ;;^UTILITY(U,$J,358.3,17815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17815,1,3,0)
+ ;;=3^Hepatitis B, chronic without coma
+ ;;^UTILITY(U,$J,358.3,17815,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,17815,2)
+ ;;=^5000547

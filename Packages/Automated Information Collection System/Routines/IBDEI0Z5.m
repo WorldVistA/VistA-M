@@ -1,132 +1,132 @@
-IBDEI0Z5 ; ; 19-NOV-2015
+IBDEI0Z5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16188,1,3,0)
- ;;=3^Hepatic Cirrhosis,Unspec
- ;;^UTILITY(U,$J,358.3,16188,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,16188,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,16189,0)
- ;;=K72.01^^88^843^40
- ;;^UTILITY(U,$J,358.3,16189,1,0)
+ ;;^UTILITY(U,$J,358.3,16516,1,3,0)
+ ;;=3^Myelomonocytic Leukemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16516,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,16516,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,16517,0)
+ ;;=C78.7^^67^759^36
+ ;;^UTILITY(U,$J,358.3,16517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16189,1,3,0)
- ;;=3^Hepatic Failure,Acute/Subacute w/ Coma
- ;;^UTILITY(U,$J,358.3,16189,1,4,0)
- ;;=4^K72.01
- ;;^UTILITY(U,$J,358.3,16189,2)
- ;;=^5008806
- ;;^UTILITY(U,$J,358.3,16190,0)
- ;;=K72.00^^88^843^41
- ;;^UTILITY(U,$J,358.3,16190,1,0)
+ ;;^UTILITY(U,$J,358.3,16517,1,3,0)
+ ;;=3^Secondary Malig Neop Liver & Intrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,16517,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,16517,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,16518,0)
+ ;;=C91.10^^67^759^4
+ ;;^UTILITY(U,$J,358.3,16518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16190,1,3,0)
- ;;=3^Hepatic Failure,Acute/Subacute w/o Coma
- ;;^UTILITY(U,$J,358.3,16190,1,4,0)
- ;;=4^K72.00
- ;;^UTILITY(U,$J,358.3,16190,2)
- ;;=^5008805
- ;;^UTILITY(U,$J,358.3,16191,0)
- ;;=K72.11^^88^843^42
- ;;^UTILITY(U,$J,358.3,16191,1,0)
+ ;;^UTILITY(U,$J,358.3,16518,1,3,0)
+ ;;=3^Lymphocytic Leukemia B-Cell Type,Chronic,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16518,1,4,0)
+ ;;=4^C91.10
+ ;;^UTILITY(U,$J,358.3,16518,2)
+ ;;=^5001765
+ ;;^UTILITY(U,$J,358.3,16519,0)
+ ;;=D46.9^^67^759^26
+ ;;^UTILITY(U,$J,358.3,16519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16191,1,3,0)
- ;;=3^Hepatic Failure,Chronic w/ Coma
- ;;^UTILITY(U,$J,358.3,16191,1,4,0)
- ;;=4^K72.11
- ;;^UTILITY(U,$J,358.3,16191,2)
- ;;=^5008808
- ;;^UTILITY(U,$J,358.3,16192,0)
- ;;=K72.10^^88^843^43
- ;;^UTILITY(U,$J,358.3,16192,1,0)
+ ;;^UTILITY(U,$J,358.3,16519,1,3,0)
+ ;;=3^Myelodysplastic Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,16519,1,4,0)
+ ;;=4^D46.9
+ ;;^UTILITY(U,$J,358.3,16519,2)
+ ;;=^334031
+ ;;^UTILITY(U,$J,358.3,16520,0)
+ ;;=C79.31^^67^759^33
+ ;;^UTILITY(U,$J,358.3,16520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16192,1,3,0)
- ;;=3^Hepatic Failure,Chronic w/o Coma
- ;;^UTILITY(U,$J,358.3,16192,1,4,0)
- ;;=4^K72.10
- ;;^UTILITY(U,$J,358.3,16192,2)
- ;;=^5008807
- ;;^UTILITY(U,$J,358.3,16193,0)
- ;;=K72.91^^88^843^44
- ;;^UTILITY(U,$J,358.3,16193,1,0)
+ ;;^UTILITY(U,$J,358.3,16520,1,3,0)
+ ;;=3^Secondary Malig Neop Brain
+ ;;^UTILITY(U,$J,358.3,16520,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,16520,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,16521,0)
+ ;;=C79.32^^67^759^34
+ ;;^UTILITY(U,$J,358.3,16521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16193,1,3,0)
- ;;=3^Hepatic Failure,Unspec w/ Coma
- ;;^UTILITY(U,$J,358.3,16193,1,4,0)
- ;;=4^K72.91
- ;;^UTILITY(U,$J,358.3,16193,2)
- ;;=^5008810
- ;;^UTILITY(U,$J,358.3,16194,0)
- ;;=K72.90^^88^843^45
- ;;^UTILITY(U,$J,358.3,16194,1,0)
+ ;;^UTILITY(U,$J,358.3,16521,1,3,0)
+ ;;=3^Secondary Malig Neop Cerebral Meninges
+ ;;^UTILITY(U,$J,358.3,16521,1,4,0)
+ ;;=4^C79.32
+ ;;^UTILITY(U,$J,358.3,16521,2)
+ ;;=^5001348
+ ;;^UTILITY(U,$J,358.3,16522,0)
+ ;;=G89.3^^67^759^28
+ ;;^UTILITY(U,$J,358.3,16522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16194,1,3,0)
- ;;=3^Hepatic Failure,Unspec w/o Coma
- ;;^UTILITY(U,$J,358.3,16194,1,4,0)
- ;;=4^K72.90
- ;;^UTILITY(U,$J,358.3,16194,2)
- ;;=^5008809
- ;;^UTILITY(U,$J,358.3,16195,0)
- ;;=K73.9^^88^843^50
- ;;^UTILITY(U,$J,358.3,16195,1,0)
+ ;;^UTILITY(U,$J,358.3,16522,1,3,0)
+ ;;=3^Neoplasm Related Pain
+ ;;^UTILITY(U,$J,358.3,16522,1,4,0)
+ ;;=4^G89.3
+ ;;^UTILITY(U,$J,358.3,16522,2)
+ ;;=^5004159
+ ;;^UTILITY(U,$J,358.3,16523,0)
+ ;;=C79.82^^67^759^35
+ ;;^UTILITY(U,$J,358.3,16523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16195,1,3,0)
- ;;=3^Hepatitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,16195,1,4,0)
- ;;=4^K73.9
- ;;^UTILITY(U,$J,358.3,16195,2)
- ;;=^5008815
- ;;^UTILITY(U,$J,358.3,16196,0)
- ;;=K45.8^^88^843^52
- ;;^UTILITY(U,$J,358.3,16196,1,0)
+ ;;^UTILITY(U,$J,358.3,16523,1,3,0)
+ ;;=3^Secondary Malig Neop Genital Organs
+ ;;^UTILITY(U,$J,358.3,16523,1,4,0)
+ ;;=4^C79.82
+ ;;^UTILITY(U,$J,358.3,16523,2)
+ ;;=^267339
+ ;;^UTILITY(U,$J,358.3,16524,0)
+ ;;=I50.9^^67^760^7
+ ;;^UTILITY(U,$J,358.3,16524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16196,1,3,0)
- ;;=3^Hernia,Abdominal w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16196,1,4,0)
- ;;=4^K45.8
- ;;^UTILITY(U,$J,358.3,16196,2)
- ;;=^5008620
- ;;^UTILITY(U,$J,358.3,16197,0)
- ;;=K45.0^^88^843^51
- ;;^UTILITY(U,$J,358.3,16197,1,0)
+ ;;^UTILITY(U,$J,358.3,16524,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,16524,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,16524,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,16525,0)
+ ;;=I73.9^^67^760^13
+ ;;^UTILITY(U,$J,358.3,16525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16197,1,3,0)
- ;;=3^Hernia,Abdominal w/ Obstruction w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16197,1,4,0)
- ;;=4^K45.0
- ;;^UTILITY(U,$J,358.3,16197,2)
- ;;=^5008618
- ;;^UTILITY(U,$J,358.3,16198,0)
- ;;=K41.00^^88^843^53
- ;;^UTILITY(U,$J,358.3,16198,1,0)
+ ;;^UTILITY(U,$J,358.3,16525,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16525,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,16525,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,16526,0)
+ ;;=I35.0^^67^760^11
+ ;;^UTILITY(U,$J,358.3,16526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16198,1,3,0)
- ;;=3^Hernia,Bilat Femoral w/ Obstructions w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16198,1,4,0)
- ;;=4^K41.00
- ;;^UTILITY(U,$J,358.3,16198,2)
- ;;=^5008593
- ;;^UTILITY(U,$J,358.3,16199,0)
- ;;=K40.20^^88^843^54
- ;;^UTILITY(U,$J,358.3,16199,1,0)
+ ;;^UTILITY(U,$J,358.3,16526,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,16526,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,16526,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,16527,0)
+ ;;=I35.1^^67^760^10
+ ;;^UTILITY(U,$J,358.3,16527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16199,1,3,0)
- ;;=3^Hernia,Bilat Femoral w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16199,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,16199,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,16200,0)
- ;;=K42.0^^88^843^55
- ;;^UTILITY(U,$J,358.3,16200,1,0)
+ ;;^UTILITY(U,$J,358.3,16527,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,16527,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,16527,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,16528,0)
+ ;;=I35.2^^67^760^12
+ ;;^UTILITY(U,$J,358.3,16528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16200,1,3,0)
- ;;=3^Hernia,Umbilical w/ Obstruction w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16200,1,4,0)
- ;;=4^K42.0
- ;;^UTILITY(U,$J,358.3,16200,2)
- ;;=^5008605
- ;;^UTILITY(U,$J,358.3,16201,0)
- ;;=K42.9^^88^843^56
+ ;;^UTILITY(U,$J,358.3,16528,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,16528,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,16528,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,16529,0)
+ ;;=I35.9^^67^760^9

@@ -1,132 +1,134 @@
-IBDEI17A ; ; 19-NOV-2015
+IBDEI17A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20056,2)
- ;;=^5059608
- ;;^UTILITY(U,$J,358.3,20057,0)
- ;;=W13.3XXA^^94^935^83
- ;;^UTILITY(U,$J,358.3,20057,1,0)
+ ;;^UTILITY(U,$J,358.3,20410,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,20411,0)
+ ;;=M86.20^^84^931^62
+ ;;^UTILITY(U,$J,358.3,20411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20057,1,3,0)
- ;;=3^Fall through Floor,Init Encntr
- ;;^UTILITY(U,$J,358.3,20057,1,4,0)
- ;;=4^W13.3XXA
- ;;^UTILITY(U,$J,358.3,20057,2)
- ;;=^5059610
- ;;^UTILITY(U,$J,358.3,20058,0)
- ;;=W13.3XXD^^94^935^84
- ;;^UTILITY(U,$J,358.3,20058,1,0)
+ ;;^UTILITY(U,$J,358.3,20411,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20411,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,20411,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,20412,0)
+ ;;=M86.10^^84^931^58
+ ;;^UTILITY(U,$J,358.3,20412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20058,1,3,0)
- ;;=3^Fall through Floor,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20058,1,4,0)
- ;;=4^W13.3XXD
- ;;^UTILITY(U,$J,358.3,20058,2)
- ;;=^5059611
- ;;^UTILITY(U,$J,358.3,20059,0)
- ;;=W13.4XXA^^94^935^71
- ;;^UTILITY(U,$J,358.3,20059,1,0)
+ ;;^UTILITY(U,$J,358.3,20412,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20412,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,20412,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,20413,0)
+ ;;=M86.00^^84^931^57
+ ;;^UTILITY(U,$J,358.3,20413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20059,1,3,0)
- ;;=3^Fall from/through Window,Init Encntr
- ;;^UTILITY(U,$J,358.3,20059,1,4,0)
- ;;=4^W13.4XXA
- ;;^UTILITY(U,$J,358.3,20059,2)
- ;;=^5059613
- ;;^UTILITY(U,$J,358.3,20060,0)
- ;;=W13.4XXD^^94^935^72
- ;;^UTILITY(U,$J,358.3,20060,1,0)
+ ;;^UTILITY(U,$J,358.3,20413,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20413,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,20413,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,20414,0)
+ ;;=M86.50^^84^931^59
+ ;;^UTILITY(U,$J,358.3,20414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20060,1,3,0)
- ;;=3^Fall from/through Window,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20060,1,4,0)
- ;;=4^W13.4XXD
- ;;^UTILITY(U,$J,358.3,20060,2)
- ;;=^5059614
- ;;^UTILITY(U,$J,358.3,20061,0)
- ;;=W13.8XXA^^94^935^35
- ;;^UTILITY(U,$J,358.3,20061,1,0)
+ ;;^UTILITY(U,$J,358.3,20414,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20414,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,20414,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,20415,0)
+ ;;=M86.30^^84^931^60
+ ;;^UTILITY(U,$J,358.3,20415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20061,1,3,0)
- ;;=3^Fall from Building/Structure,Init Encntr
- ;;^UTILITY(U,$J,358.3,20061,1,4,0)
- ;;=4^W13.8XXA
- ;;^UTILITY(U,$J,358.3,20061,2)
- ;;=^5059616
- ;;^UTILITY(U,$J,358.3,20062,0)
- ;;=W13.8XXD^^94^935^36
- ;;^UTILITY(U,$J,358.3,20062,1,0)
+ ;;^UTILITY(U,$J,358.3,20415,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20415,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,20415,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,20416,0)
+ ;;=M86.8X9^^84^931^63
+ ;;^UTILITY(U,$J,358.3,20416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20062,1,3,0)
- ;;=3^Fall from Building/Structure,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20062,1,4,0)
- ;;=4^W13.8XXD
- ;;^UTILITY(U,$J,358.3,20062,2)
- ;;=^5059617
- ;;^UTILITY(U,$J,358.3,20063,0)
- ;;=W13.9XXA^^94^935^33
- ;;^UTILITY(U,$J,358.3,20063,1,0)
+ ;;^UTILITY(U,$J,358.3,20416,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,20416,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,20416,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,20417,0)
+ ;;=M86.60^^84^931^61
+ ;;^UTILITY(U,$J,358.3,20417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20063,1,3,0)
- ;;=3^Fall from Building NOS,Init Encntr
- ;;^UTILITY(U,$J,358.3,20063,1,4,0)
- ;;=4^W13.9XXA
- ;;^UTILITY(U,$J,358.3,20063,2)
- ;;=^5059619
- ;;^UTILITY(U,$J,358.3,20064,0)
- ;;=W13.9XXD^^94^935^34
- ;;^UTILITY(U,$J,358.3,20064,1,0)
+ ;;^UTILITY(U,$J,358.3,20417,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20417,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,20417,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,20418,0)
+ ;;=M86.40^^84^931^56
+ ;;^UTILITY(U,$J,358.3,20418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20064,1,3,0)
- ;;=3^Fall from Building NOS,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20064,1,4,0)
- ;;=4^W13.9XXD
- ;;^UTILITY(U,$J,358.3,20064,2)
- ;;=^5059620
- ;;^UTILITY(U,$J,358.3,20065,0)
- ;;=W14.XXXA^^94^935^65
- ;;^UTILITY(U,$J,358.3,20065,1,0)
+ ;;^UTILITY(U,$J,358.3,20418,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20418,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,20418,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,20419,0)
+ ;;=R50.2^^84^931^23
+ ;;^UTILITY(U,$J,358.3,20419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20065,1,3,0)
- ;;=3^Fall from Tree,Init Encntr
- ;;^UTILITY(U,$J,358.3,20065,1,4,0)
- ;;=4^W14.XXXA
- ;;^UTILITY(U,$J,358.3,20065,2)
- ;;=^5059622
- ;;^UTILITY(U,$J,358.3,20066,0)
- ;;=W14.XXXD^^94^935^66
- ;;^UTILITY(U,$J,358.3,20066,1,0)
+ ;;^UTILITY(U,$J,358.3,20419,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,20419,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,20419,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,20420,0)
+ ;;=R50.9^^84^931^27
+ ;;^UTILITY(U,$J,358.3,20420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20066,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20066,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,20066,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,20067,0)
- ;;=W17.2XXA^^94^935^77
- ;;^UTILITY(U,$J,358.3,20067,1,0)
+ ;;^UTILITY(U,$J,358.3,20420,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,20420,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,20420,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,20421,0)
+ ;;=R76.11^^84^931^1
+ ;;^UTILITY(U,$J,358.3,20421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20067,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,20067,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,20067,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,20068,0)
- ;;=W17.2XXD^^94^935^78
- ;;^UTILITY(U,$J,358.3,20068,1,0)
+ ;;^UTILITY(U,$J,358.3,20421,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,20421,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,20421,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,20422,0)
+ ;;=Z21.^^84^931^30
+ ;;^UTILITY(U,$J,358.3,20422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20068,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20068,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,20068,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,20069,0)
- ;;=W17.3XXA^^94^935^75
- ;;^UTILITY(U,$J,358.3,20069,1,0)
+ ;;^UTILITY(U,$J,358.3,20422,1,3,0)
+ ;;=3^HIV Asymptomatic,Infection Status
+ ;;^UTILITY(U,$J,358.3,20422,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,20422,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,20423,0)
+ ;;=B37.0^^84^931^16
+ ;;^UTILITY(U,$J,358.3,20423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20069,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20423,1,3,0)
+ ;;=3^Candidal Stomatitis (Oral Thrush)
+ ;;^UTILITY(U,$J,358.3,20423,1,4,0)
+ ;;=4^B37.0

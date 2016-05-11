@@ -1,128 +1,134 @@
-IBDEI2B8 ; ; 19-NOV-2015
+IBDEI2B8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38796,2)
- ;;=^5045598
- ;;^UTILITY(U,$J,358.3,38797,0)
- ;;=S62.91XS^^180^1986^33
- ;;^UTILITY(U,$J,358.3,38797,1,0)
+ ;;^UTILITY(U,$J,358.3,39190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38797,1,3,0)
- ;;=3^Fracture of right wrist and hand, sequela
- ;;^UTILITY(U,$J,358.3,38797,1,4,0)
- ;;=4^S62.91XS
- ;;^UTILITY(U,$J,358.3,38797,2)
- ;;=^5034885
- ;;^UTILITY(U,$J,358.3,38798,0)
- ;;=S42.302S^^180^1986^34
- ;;^UTILITY(U,$J,358.3,38798,1,0)
+ ;;^UTILITY(U,$J,358.3,39190,1,3,0)
+ ;;=3^Conjunctival Concretions,Left Eye
+ ;;^UTILITY(U,$J,358.3,39190,1,4,0)
+ ;;=4^H11.122
+ ;;^UTILITY(U,$J,358.3,39190,2)
+ ;;=^5004750
+ ;;^UTILITY(U,$J,358.3,39191,0)
+ ;;=H11.231^^153^1920^156
+ ;;^UTILITY(U,$J,358.3,39191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38798,1,3,0)
- ;;=3^Fracture of shaft of humerus, left arm, sequela
- ;;^UTILITY(U,$J,358.3,38798,1,4,0)
- ;;=4^S42.302S
- ;;^UTILITY(U,$J,358.3,38798,2)
- ;;=^5027044
- ;;^UTILITY(U,$J,358.3,38799,0)
- ;;=S42.301S^^180^1986^35
- ;;^UTILITY(U,$J,358.3,38799,1,0)
+ ;;^UTILITY(U,$J,358.3,39191,1,3,0)
+ ;;=3^Symblepharon,Right Eye
+ ;;^UTILITY(U,$J,358.3,39191,1,4,0)
+ ;;=4^H11.231
+ ;;^UTILITY(U,$J,358.3,39191,2)
+ ;;=^5004773
+ ;;^UTILITY(U,$J,358.3,39192,0)
+ ;;=H11.232^^153^1920^155
+ ;;^UTILITY(U,$J,358.3,39192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38799,1,3,0)
- ;;=3^Fracture of shaft of humerus, right arm, sequela
- ;;^UTILITY(U,$J,358.3,38799,1,4,0)
- ;;=4^S42.301S
- ;;^UTILITY(U,$J,358.3,38799,2)
- ;;=^5027037
- ;;^UTILITY(U,$J,358.3,38800,0)
- ;;=S42.202S^^180^1986^42
- ;;^UTILITY(U,$J,358.3,38800,1,0)
+ ;;^UTILITY(U,$J,358.3,39192,1,3,0)
+ ;;=3^Symblepharon,Left Eye
+ ;;^UTILITY(U,$J,358.3,39192,1,4,0)
+ ;;=4^H11.232
+ ;;^UTILITY(U,$J,358.3,39192,2)
+ ;;=^5004774
+ ;;^UTILITY(U,$J,358.3,39193,0)
+ ;;=H11.31^^153^1920^40
+ ;;^UTILITY(U,$J,358.3,39193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38800,1,3,0)
- ;;=3^Fracture of upper end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,38800,1,4,0)
- ;;=4^S42.202S
- ;;^UTILITY(U,$J,358.3,38800,2)
- ;;=^5026774
- ;;^UTILITY(U,$J,358.3,38801,0)
- ;;=S42.201S^^180^1986^43
- ;;^UTILITY(U,$J,358.3,38801,1,0)
+ ;;^UTILITY(U,$J,358.3,39193,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,39193,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,39193,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,39194,0)
+ ;;=H11.32^^153^1920^39
+ ;;^UTILITY(U,$J,358.3,39194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38801,1,3,0)
- ;;=3^Fracture of upper end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,38801,1,4,0)
- ;;=4^S42.201S
- ;;^UTILITY(U,$J,358.3,38801,2)
- ;;=^5026767
- ;;^UTILITY(U,$J,358.3,38802,0)
- ;;=S79.002S^^180^1986^51
- ;;^UTILITY(U,$J,358.3,38802,1,0)
+ ;;^UTILITY(U,$J,358.3,39194,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,39194,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,39194,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,39195,0)
+ ;;=H11.441^^153^1920^37
+ ;;^UTILITY(U,$J,358.3,39195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38802,1,3,0)
- ;;=3^Physeal fracture of upper end of left femur, sequela
- ;;^UTILITY(U,$J,358.3,38802,1,4,0)
- ;;=4^S79.002S
- ;;^UTILITY(U,$J,358.3,38802,2)
- ;;=^5039767
- ;;^UTILITY(U,$J,358.3,38803,0)
- ;;=S79.001S^^180^1986^52
- ;;^UTILITY(U,$J,358.3,38803,1,0)
+ ;;^UTILITY(U,$J,358.3,39195,1,3,0)
+ ;;=3^Conjunctival Cysts,Right Eye
+ ;;^UTILITY(U,$J,358.3,39195,1,4,0)
+ ;;=4^H11.441
+ ;;^UTILITY(U,$J,358.3,39195,2)
+ ;;=^5004797
+ ;;^UTILITY(U,$J,358.3,39196,0)
+ ;;=H11.442^^153^1920^36
+ ;;^UTILITY(U,$J,358.3,39196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38803,1,3,0)
- ;;=3^Physeal fracture of upper end of right femur, sequela
- ;;^UTILITY(U,$J,358.3,38803,1,4,0)
- ;;=4^S79.001S
- ;;^UTILITY(U,$J,358.3,38803,2)
- ;;=^5039761
- ;;^UTILITY(U,$J,358.3,38804,0)
- ;;=Z87.81^^180^1986^50
- ;;^UTILITY(U,$J,358.3,38804,1,0)
+ ;;^UTILITY(U,$J,358.3,39196,1,3,0)
+ ;;=3^Conjunctival Cysts,Left Eye
+ ;;^UTILITY(U,$J,358.3,39196,1,4,0)
+ ;;=4^H11.442
+ ;;^UTILITY(U,$J,358.3,39196,2)
+ ;;=^5004798
+ ;;^UTILITY(U,$J,358.3,39197,0)
+ ;;=H02.201^^153^1920^110
+ ;;^UTILITY(U,$J,358.3,39197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38804,1,3,0)
- ;;=3^Personal Hx of Traumatic Fx
- ;;^UTILITY(U,$J,358.3,38804,1,4,0)
- ;;=4^Z87.81
- ;;^UTILITY(U,$J,358.3,38804,2)
- ;;=^5063513
- ;;^UTILITY(U,$J,358.3,38805,0)
- ;;=S02.67XS^^180^1986^1
- ;;^UTILITY(U,$J,358.3,38805,1,0)
+ ;;^UTILITY(U,$J,358.3,39197,1,3,0)
+ ;;=3^Lagophthalmos,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39197,1,4,0)
+ ;;=4^H02.201
+ ;;^UTILITY(U,$J,358.3,39197,2)
+ ;;=^5004327
+ ;;^UTILITY(U,$J,358.3,39198,0)
+ ;;=H02.202^^153^1920^109
+ ;;^UTILITY(U,$J,358.3,39198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38805,1,3,0)
- ;;=3^Fracture of alveolus of mandible, sequela
- ;;^UTILITY(U,$J,358.3,38805,1,4,0)
- ;;=4^S02.67XS
- ;;^UTILITY(U,$J,358.3,38805,2)
- ;;=^5020419
- ;;^UTILITY(U,$J,358.3,38806,0)
- ;;=S02.42XS^^180^1986^2
- ;;^UTILITY(U,$J,358.3,38806,1,0)
+ ;;^UTILITY(U,$J,358.3,39198,1,3,0)
+ ;;=3^Lagophthalmos,Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39198,1,4,0)
+ ;;=4^H02.202
+ ;;^UTILITY(U,$J,358.3,39198,2)
+ ;;=^5004328
+ ;;^UTILITY(U,$J,358.3,39199,0)
+ ;;=H02.204^^153^1920^108
+ ;;^UTILITY(U,$J,358.3,39199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38806,1,3,0)
- ;;=3^Fracture of alveolus of maxilla, sequela
- ;;^UTILITY(U,$J,358.3,38806,1,4,0)
- ;;=4^S02.42XS
- ;;^UTILITY(U,$J,358.3,38806,2)
- ;;=^5020359
- ;;^UTILITY(U,$J,358.3,38807,0)
- ;;=S02.65XS^^180^1986^3
- ;;^UTILITY(U,$J,358.3,38807,1,0)
+ ;;^UTILITY(U,$J,358.3,39199,1,3,0)
+ ;;=3^Lagophthalmos,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39199,1,4,0)
+ ;;=4^H02.204
+ ;;^UTILITY(U,$J,358.3,39199,2)
+ ;;=^5004330
+ ;;^UTILITY(U,$J,358.3,39200,0)
+ ;;=H02.205^^153^1920^107
+ ;;^UTILITY(U,$J,358.3,39200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38807,1,3,0)
- ;;=3^Fracture of angle of mandible, sequela
- ;;^UTILITY(U,$J,358.3,38807,1,4,0)
- ;;=4^S02.65XS
- ;;^UTILITY(U,$J,358.3,38807,2)
- ;;=^5020407
- ;;^UTILITY(U,$J,358.3,38808,0)
- ;;=S02.19XS^^180^1986^4
- ;;^UTILITY(U,$J,358.3,38808,1,0)
+ ;;^UTILITY(U,$J,358.3,39200,1,3,0)
+ ;;=3^Lagophthalmos,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39200,1,4,0)
+ ;;=4^H02.205
+ ;;^UTILITY(U,$J,358.3,39200,2)
+ ;;=^5133418
+ ;;^UTILITY(U,$J,358.3,39201,0)
+ ;;=H15.101^^153^1920^64
+ ;;^UTILITY(U,$J,358.3,39201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38808,1,3,0)
- ;;=3^Fracture of base of skull NEC, sequela
- ;;^UTILITY(U,$J,358.3,38808,1,4,0)
- ;;=4^S02.19XS
- ;;^UTILITY(U,$J,358.3,38808,2)
- ;;=^5020305
- ;;^UTILITY(U,$J,358.3,38809,0)
- ;;=S02.10XS^^180^1986^5
+ ;;^UTILITY(U,$J,358.3,39201,1,3,0)
+ ;;=3^Episcleritis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39201,1,4,0)
+ ;;=4^H15.101
+ ;;^UTILITY(U,$J,358.3,39201,2)
+ ;;=^5004835
+ ;;^UTILITY(U,$J,358.3,39202,0)
+ ;;=H15.102^^153^1920^63
+ ;;^UTILITY(U,$J,358.3,39202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39202,1,3,0)
+ ;;=3^Episcleritis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39202,1,4,0)
+ ;;=4^H15.102
+ ;;^UTILITY(U,$J,358.3,39202,2)
+ ;;=^5004836
+ ;;^UTILITY(U,$J,358.3,39203,0)
+ ;;=H15.001^^153^1920^152

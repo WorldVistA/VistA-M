@@ -1,138 +1,138 @@
-IBDEI08T ; ; 19-NOV-2015
+IBDEI08T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3574,2)
- ;;=^5019340
- ;;^UTILITY(U,$J,358.3,3575,0)
- ;;=N93.9^^28^255^81
- ;;^UTILITY(U,$J,358.3,3575,1,0)
+ ;;^UTILITY(U,$J,358.3,3837,1,3,0)
+ ;;=3^Allergy to Seafood
+ ;;^UTILITY(U,$J,358.3,3837,1,4,0)
+ ;;=4^Z91.013
+ ;;^UTILITY(U,$J,358.3,3837,2)
+ ;;=^5063602
+ ;;^UTILITY(U,$J,358.3,3838,0)
+ ;;=Z88.7^^18^224^18
+ ;;^UTILITY(U,$J,358.3,3838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3575,1,3,0)
- ;;=3^Uerine/Vaginal Bleeding,Abnormal,Unspec
- ;;^UTILITY(U,$J,358.3,3575,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,3575,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,3576,0)
- ;;=N85.9^^28^255^107
- ;;^UTILITY(U,$J,358.3,3576,1,0)
+ ;;^UTILITY(U,$J,358.3,3838,1,3,0)
+ ;;=3^Allergy to Serum and Vaccine
+ ;;^UTILITY(U,$J,358.3,3838,1,4,0)
+ ;;=4^Z88.7
+ ;;^UTILITY(U,$J,358.3,3838,2)
+ ;;=^5063528
+ ;;^UTILITY(U,$J,358.3,3839,0)
+ ;;=Z88.2^^18^224^19
+ ;;^UTILITY(U,$J,358.3,3839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3576,1,3,0)
- ;;=3^Uterus Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3576,1,4,0)
- ;;=4^N85.9
- ;;^UTILITY(U,$J,358.3,3576,2)
- ;;=^5015873
- ;;^UTILITY(U,$J,358.3,3577,0)
- ;;=N71.9^^28^255^106
- ;;^UTILITY(U,$J,358.3,3577,1,0)
+ ;;^UTILITY(U,$J,358.3,3839,1,3,0)
+ ;;=3^Allergy to Sulfonamides
+ ;;^UTILITY(U,$J,358.3,3839,1,4,0)
+ ;;=4^Z88.2
+ ;;^UTILITY(U,$J,358.3,3839,2)
+ ;;=^5063523
+ ;;^UTILITY(U,$J,358.3,3840,0)
+ ;;=Z72.811^^18^224^20
+ ;;^UTILITY(U,$J,358.3,3840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3577,1,3,0)
- ;;=3^Uterus Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3577,1,4,0)
- ;;=4^N71.9
- ;;^UTILITY(U,$J,358.3,3577,2)
- ;;=^5015811
- ;;^UTILITY(U,$J,358.3,3578,0)
- ;;=N76.89^^28^255^109
- ;;^UTILITY(U,$J,358.3,3578,1,0)
+ ;;^UTILITY(U,$J,358.3,3840,1,3,0)
+ ;;=3^Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,3840,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,3840,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,3841,0)
+ ;;=Z93.9^^18^224^21
+ ;;^UTILITY(U,$J,358.3,3841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3578,1,3,0)
- ;;=3^Vagina/Vulva Inflammation,Other Spec
- ;;^UTILITY(U,$J,358.3,3578,1,4,0)
- ;;=4^N76.89
- ;;^UTILITY(U,$J,358.3,3578,2)
- ;;=^5015833
- ;;^UTILITY(U,$J,358.3,3579,0)
- ;;=N89.9^^28^255^108
- ;;^UTILITY(U,$J,358.3,3579,1,0)
+ ;;^UTILITY(U,$J,358.3,3841,1,3,0)
+ ;;=3^Artificial Opening Status,Unspec
+ ;;^UTILITY(U,$J,358.3,3841,1,4,0)
+ ;;=4^Z93.9
+ ;;^UTILITY(U,$J,358.3,3841,2)
+ ;;=^5063653
+ ;;^UTILITY(U,$J,358.3,3842,0)
+ ;;=Z74.01^^18^224^22
+ ;;^UTILITY(U,$J,358.3,3842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3579,1,3,0)
- ;;=3^Vagina Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3579,1,4,0)
- ;;=4^N89.9
- ;;^UTILITY(U,$J,358.3,3579,2)
- ;;=^5015890
- ;;^UTILITY(U,$J,358.3,3580,0)
- ;;=N76.0^^28^255^110
- ;;^UTILITY(U,$J,358.3,3580,1,0)
+ ;;^UTILITY(U,$J,358.3,3842,1,3,0)
+ ;;=3^Bed Confinement Status
+ ;;^UTILITY(U,$J,358.3,3842,1,4,0)
+ ;;=4^Z74.01
+ ;;^UTILITY(U,$J,358.3,3842,2)
+ ;;=^5063282
+ ;;^UTILITY(U,$J,358.3,3843,0)
+ ;;=R68.83^^18^224^23
+ ;;^UTILITY(U,$J,358.3,3843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3580,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,3580,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,3580,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,3581,0)
- ;;=N76.1^^28^255^111
- ;;^UTILITY(U,$J,358.3,3581,1,0)
+ ;;^UTILITY(U,$J,358.3,3843,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,3843,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,3843,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,3844,0)
+ ;;=R68.3^^18^224^24
+ ;;^UTILITY(U,$J,358.3,3844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3581,1,3,0)
- ;;=3^Vaginitis,Subacute/Chronic
- ;;^UTILITY(U,$J,358.3,3581,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,3581,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,3582,0)
- ;;=N90.9^^28^255^112
- ;;^UTILITY(U,$J,358.3,3582,1,0)
+ ;;^UTILITY(U,$J,358.3,3844,1,3,0)
+ ;;=3^Clubbing of Fingers
+ ;;^UTILITY(U,$J,358.3,3844,1,4,0)
+ ;;=4^R68.3
+ ;;^UTILITY(U,$J,358.3,3844,2)
+ ;;=^5019553
+ ;;^UTILITY(U,$J,358.3,3845,0)
+ ;;=T81.89XA^^18^224^25
+ ;;^UTILITY(U,$J,358.3,3845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3582,1,3,0)
- ;;=3^Vulva/Perineum Noninflammaotory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3582,1,4,0)
- ;;=4^N90.9
- ;;^UTILITY(U,$J,358.3,3582,2)
- ;;=^5015901
- ;;^UTILITY(U,$J,358.3,3583,0)
- ;;=A49.9^^28^256^1
- ;;^UTILITY(U,$J,358.3,3583,1,0)
+ ;;^UTILITY(U,$J,358.3,3845,1,3,0)
+ ;;=3^Complications of Procedures,Init Encntr,NEC
+ ;;^UTILITY(U,$J,358.3,3845,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,3845,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,3846,0)
+ ;;=T81.89XD^^18^224^27
+ ;;^UTILITY(U,$J,358.3,3846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3583,1,3,0)
- ;;=3^Infection,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,3583,1,4,0)
- ;;=4^A49.9
- ;;^UTILITY(U,$J,358.3,3583,2)
- ;;=^5000241
- ;;^UTILITY(U,$J,358.3,3584,0)
- ;;=B37.9^^28^256^2
- ;;^UTILITY(U,$J,358.3,3584,1,0)
+ ;;^UTILITY(U,$J,358.3,3846,1,3,0)
+ ;;=3^Complications of Procedures,Subsequent Encntr,NEC
+ ;;^UTILITY(U,$J,358.3,3846,1,4,0)
+ ;;=4^T81.89XD
+ ;;^UTILITY(U,$J,358.3,3846,2)
+ ;;=^5054663
+ ;;^UTILITY(U,$J,358.3,3847,0)
+ ;;=T81.89XS^^18^224^26
+ ;;^UTILITY(U,$J,358.3,3847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3584,1,3,0)
- ;;=3^Infection,Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,3584,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,3584,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,3585,0)
- ;;=Z20.9^^28^256^3
- ;;^UTILITY(U,$J,358.3,3585,1,0)
+ ;;^UTILITY(U,$J,358.3,3847,1,3,0)
+ ;;=3^Complications of Procedures,Sequela,NEC
+ ;;^UTILITY(U,$J,358.3,3847,1,4,0)
+ ;;=4^T81.89XS
+ ;;^UTILITY(U,$J,358.3,3847,2)
+ ;;=^5054664
+ ;;^UTILITY(U,$J,358.3,3848,0)
+ ;;=Z71.42^^18^224^31
+ ;;^UTILITY(U,$J,358.3,3848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3585,1,3,0)
- ;;=3^Infection,Communicable Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3585,1,4,0)
- ;;=4^Z20.9
- ;;^UTILITY(U,$J,358.3,3585,2)
- ;;=^5062776
- ;;^UTILITY(U,$J,358.3,3586,0)
- ;;=B30.9^^28^256^4
- ;;^UTILITY(U,$J,358.3,3586,1,0)
+ ;;^UTILITY(U,$J,358.3,3848,1,3,0)
+ ;;=3^Counseling,Family Member of Alcoholic
+ ;;^UTILITY(U,$J,358.3,3848,1,4,0)
+ ;;=4^Z71.42
+ ;;^UTILITY(U,$J,358.3,3848,2)
+ ;;=^5063247
+ ;;^UTILITY(U,$J,358.3,3849,0)
+ ;;=Z71.52^^18^224^32
+ ;;^UTILITY(U,$J,358.3,3849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3586,1,3,0)
- ;;=3^Infection,Conjunctivitis,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,3586,1,4,0)
- ;;=4^B30.9
- ;;^UTILITY(U,$J,358.3,3586,2)
- ;;=^5000586
- ;;^UTILITY(U,$J,358.3,3587,0)
- ;;=B25.9^^28^256^5
- ;;^UTILITY(U,$J,358.3,3587,1,0)
+ ;;^UTILITY(U,$J,358.3,3849,1,3,0)
+ ;;=3^Counseling,Family Member of Drug Abuser
+ ;;^UTILITY(U,$J,358.3,3849,1,4,0)
+ ;;=4^Z71.52
+ ;;^UTILITY(U,$J,358.3,3849,2)
+ ;;=^5063249
+ ;;^UTILITY(U,$J,358.3,3850,0)
+ ;;=Z71.7^^18^224^33
+ ;;^UTILITY(U,$J,358.3,3850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3587,1,3,0)
- ;;=3^Infection,Cytomegaloviral Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3587,1,4,0)
- ;;=4^B25.9
- ;;^UTILITY(U,$J,358.3,3587,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,3588,0)
- ;;=B35.9^^28^256^6
+ ;;^UTILITY(U,$J,358.3,3850,1,3,0)
+ ;;=3^Counseling,HIV
+ ;;^UTILITY(U,$J,358.3,3850,1,4,0)
+ ;;=4^Z71.7

@@ -1,132 +1,136 @@
-IBDEI11Z ; ; 19-NOV-2015
+IBDEI11Z ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17532,2)
- ;;=^5059526
- ;;^UTILITY(U,$J,358.3,17533,0)
- ;;=W01.0XXD^^88^863^3
- ;;^UTILITY(U,$J,358.3,17533,1,0)
+ ;;^UTILITY(U,$J,358.3,17884,1,3,0)
+ ;;=3^Aspiration Pneumonia
+ ;;^UTILITY(U,$J,358.3,17884,1,4,0)
+ ;;=4^J69.0
+ ;;^UTILITY(U,$J,358.3,17884,2)
+ ;;=^5008288
+ ;;^UTILITY(U,$J,358.3,17885,0)
+ ;;=J69.1^^76^858^187
+ ;;^UTILITY(U,$J,358.3,17885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17533,1,3,0)
- ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
- ;;^UTILITY(U,$J,358.3,17533,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,17533,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,17534,0)
- ;;=W18.30XD^^88^863^4
- ;;^UTILITY(U,$J,358.3,17534,1,0)
+ ;;^UTILITY(U,$J,358.3,17885,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
+ ;;^UTILITY(U,$J,358.3,17885,1,4,0)
+ ;;=4^J69.1
+ ;;^UTILITY(U,$J,358.3,17885,2)
+ ;;=^95664
+ ;;^UTILITY(U,$J,358.3,17886,0)
+ ;;=J68.0^^76^858^29
+ ;;^UTILITY(U,$J,358.3,17886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17534,1,3,0)
- ;;=3^Fall Same Level,Unspec,Subsequent
- ;;^UTILITY(U,$J,358.3,17534,1,4,0)
- ;;=4^W18.30XD
- ;;^UTILITY(U,$J,358.3,17534,2)
- ;;=^5059810
- ;;^UTILITY(U,$J,358.3,17535,0)
- ;;=W04.XXXD^^88^863^6
- ;;^UTILITY(U,$J,358.3,17535,1,0)
+ ;;^UTILITY(U,$J,358.3,17886,1,3,0)
+ ;;=3^Bronchitis/Pneumonitis d/t Chemicals/Gases/Fumes/Vapors
+ ;;^UTILITY(U,$J,358.3,17886,1,4,0)
+ ;;=4^J68.0
+ ;;^UTILITY(U,$J,358.3,17886,2)
+ ;;=^5008281
+ ;;^UTILITY(U,$J,358.3,17887,0)
+ ;;=A77.49^^76^858^72
+ ;;^UTILITY(U,$J,358.3,17887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17535,1,3,0)
- ;;=3^Fall While Being Carried by Oth Persons,Subsequent
- ;;^UTILITY(U,$J,358.3,17535,1,4,0)
- ;;=4^W04.XXXD
- ;;^UTILITY(U,$J,358.3,17535,2)
- ;;=^5059548
- ;;^UTILITY(U,$J,358.3,17536,0)
- ;;=W17.89XD^^88^863^18
- ;;^UTILITY(U,$J,358.3,17536,1,0)
+ ;;^UTILITY(U,$J,358.3,17887,1,3,0)
+ ;;=3^Ehrlichiosis,Specified Organism
+ ;;^UTILITY(U,$J,358.3,17887,1,4,0)
+ ;;=4^A77.49
+ ;;^UTILITY(U,$J,358.3,17887,2)
+ ;;=^321976
+ ;;^UTILITY(U,$J,358.3,17888,0)
+ ;;=A77.40^^76^858^70
+ ;;^UTILITY(U,$J,358.3,17888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17536,1,3,0)
- ;;=3^Fall from One Level to Another,Subsequent
- ;;^UTILITY(U,$J,358.3,17536,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,17536,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,17537,0)
- ;;=W03.XXXD^^88^863^1
- ;;^UTILITY(U,$J,358.3,17537,1,0)
+ ;;^UTILITY(U,$J,358.3,17888,1,3,0)
+ ;;=3^Ehrlichiosis
+ ;;^UTILITY(U,$J,358.3,17888,1,4,0)
+ ;;=4^A77.40
+ ;;^UTILITY(U,$J,358.3,17888,2)
+ ;;=^321974
+ ;;^UTILITY(U,$J,358.3,17889,0)
+ ;;=A77.41^^76^858^71
+ ;;^UTILITY(U,$J,358.3,17889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17537,1,3,0)
- ;;=3^Fall Same Level d/t Collision w/ Another Person,Subsequent
- ;;^UTILITY(U,$J,358.3,17537,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,17537,2)
- ;;=^5059545
- ;;^UTILITY(U,$J,358.3,17538,0)
- ;;=W18.00XD^^88^863^8
- ;;^UTILITY(U,$J,358.3,17538,1,0)
+ ;;^UTILITY(U,$J,358.3,17889,1,3,0)
+ ;;=3^Ehrlichiosis 2/2 Sennetu
+ ;;^UTILITY(U,$J,358.3,17889,1,4,0)
+ ;;=4^A77.41
+ ;;^UTILITY(U,$J,358.3,17889,2)
+ ;;=^321975
+ ;;^UTILITY(U,$J,358.3,17890,0)
+ ;;=S90.861A^^76^858^131
+ ;;^UTILITY(U,$J,358.3,17890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17538,1,3,0)
- ;;=3^Fall d/t Striking Unspec Object,Subsequent
- ;;^UTILITY(U,$J,358.3,17538,1,4,0)
- ;;=4^W18.00XD
- ;;^UTILITY(U,$J,358.3,17538,2)
- ;;=^5059791
- ;;^UTILITY(U,$J,358.3,17539,0)
- ;;=W00.9XXD^^88^863^7
- ;;^UTILITY(U,$J,358.3,17539,1,0)
+ ;;^UTILITY(U,$J,358.3,17890,1,3,0)
+ ;;=3^Insect Bite,Right Foot
+ ;;^UTILITY(U,$J,358.3,17890,1,4,0)
+ ;;=4^S90.861A
+ ;;^UTILITY(U,$J,358.3,17890,2)
+ ;;=^5044087
+ ;;^UTILITY(U,$J,358.3,17891,0)
+ ;;=S90.862A^^76^858^130
+ ;;^UTILITY(U,$J,358.3,17891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17539,1,3,0)
- ;;=3^Fall d/t Snow/Ice,Subsequent
- ;;^UTILITY(U,$J,358.3,17539,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,17539,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,17540,0)
- ;;=W19.XXXD^^88^863^5
- ;;^UTILITY(U,$J,358.3,17540,1,0)
+ ;;^UTILITY(U,$J,358.3,17891,1,3,0)
+ ;;=3^Insect Bite,Left Foot
+ ;;^UTILITY(U,$J,358.3,17891,1,4,0)
+ ;;=4^S90.862A
+ ;;^UTILITY(U,$J,358.3,17891,2)
+ ;;=^5044090
+ ;;^UTILITY(U,$J,358.3,17892,0)
+ ;;=Z21.^^76^859^.1
+ ;;^UTILITY(U,$J,358.3,17892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17540,1,3,0)
- ;;=3^Fall Unspec,Subsequent
- ;;^UTILITY(U,$J,358.3,17540,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,17540,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,17541,0)
- ;;=W18.40XD^^88^863^24
- ;;^UTILITY(U,$J,358.3,17541,1,0)
+ ;;^UTILITY(U,$J,358.3,17892,1,3,0)
+ ;;=3^HIV+ Status (Asymptomatic)
+ ;;^UTILITY(U,$J,358.3,17892,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,17892,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,17893,0)
+ ;;=B20.^^76^859^.5
+ ;;^UTILITY(U,$J,358.3,17893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17541,1,3,0)
- ;;=3^Slip/Trip/Stumble w/o Falling,Subsequent
- ;;^UTILITY(U,$J,358.3,17541,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,17541,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,17542,0)
- ;;=R27.0^^88^864^2
- ;;^UTILITY(U,$J,358.3,17542,1,0)
+ ;;^UTILITY(U,$J,358.3,17893,1,3,0)
+ ;;=3^HIV+ (Symptomatic)/AIDS
+ ;;^UTILITY(U,$J,358.3,17893,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,17893,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,17894,0)
+ ;;=Z23.^^76^859^28
+ ;;^UTILITY(U,$J,358.3,17894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17542,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,17542,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,17542,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,17543,0)
- ;;=Z74.1^^88^864^1
- ;;^UTILITY(U,$J,358.3,17543,1,0)
+ ;;^UTILITY(U,$J,358.3,17894,1,3,0)
+ ;;=3^Encounter for Immunization
+ ;;^UTILITY(U,$J,358.3,17894,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,17894,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,17895,0)
+ ;;=Z20.828^^76^859^17
+ ;;^UTILITY(U,$J,358.3,17895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17543,1,3,0)
- ;;=3^Assistance Needed for Personal Care
- ;;^UTILITY(U,$J,358.3,17543,1,4,0)
- ;;=4^Z74.1
- ;;^UTILITY(U,$J,358.3,17543,2)
- ;;=^5063284
- ;;^UTILITY(U,$J,358.3,17544,0)
- ;;=R27.9^^88^864^3
- ;;^UTILITY(U,$J,358.3,17544,1,0)
+ ;;^UTILITY(U,$J,358.3,17895,1,3,0)
+ ;;=3^Contact/Exposure to Viral Diseases
+ ;;^UTILITY(U,$J,358.3,17895,1,4,0)
+ ;;=4^Z20.828
+ ;;^UTILITY(U,$J,358.3,17895,2)
+ ;;=^5062774
+ ;;^UTILITY(U,$J,358.3,17896,0)
+ ;;=Z77.21^^76^859^16
+ ;;^UTILITY(U,$J,358.3,17896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17544,1,3,0)
- ;;=3^Coordination,Lack of,Unspec
- ;;^UTILITY(U,$J,358.3,17544,1,4,0)
- ;;=4^R27.9
- ;;^UTILITY(U,$J,358.3,17544,2)
- ;;=^5019312
- ;;^UTILITY(U,$J,358.3,17545,0)
- ;;=R26.9^^88^864^6
- ;;^UTILITY(U,$J,358.3,17545,1,0)
+ ;;^UTILITY(U,$J,358.3,17896,1,3,0)
+ ;;=3^Contact/Exposure to Potentially Hazardous Body Fluids
+ ;;^UTILITY(U,$J,358.3,17896,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,17896,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,17897,0)
+ ;;=Z72.51^^76^859^56
+ ;;^UTILITY(U,$J,358.3,17897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17545,1,3,0)
- ;;=3^Gait/Mobility,Abnormalities,Unspec
+ ;;^UTILITY(U,$J,358.3,17897,1,3,0)
+ ;;=3^High Risk Sexual Behaviors

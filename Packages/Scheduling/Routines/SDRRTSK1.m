@@ -1,5 +1,5 @@
-SDRRTSK1 ;10N20/MAH;Recall Reminder-Clinic Print Task; 09/20/2004
- ;;5.3;Scheduling;**536,579**;Aug 13, 1993;Build 3
+SDRRTSK1 ;10N20/MAH - Recall Reminder-Clinic Print Task ;FEB 04, 2016
+ ;;5.3;Scheduling;**536,579,643**;Aug 13, 1993;Build 14
  ;;This routine is called from SDRR TASK JOB CARD
  ;;and will be called if PARAM IS cards
 START Q:'$D(^SD(403.53,0))
@@ -24,7 +24,9 @@ START Q:'$D(^SD(403.53,0))
  ....I $P($G(^SD(403.5,D0,0)),"^",9)>45 S TIME=$P($G(^SD(403.5,D0,0)),"^",9) S TIME="**"_TIME_"**"
  ....S LAB=$S($P($G(^SD(403.5,D0,0)),"^",8)="f":"**FL",$P(^SD(403.5,D0,0),"^",8)="n":"**NFL",1:"")
  ....S DFN=+DTA
- ....Q:$P(DTA,U,6)<ZSDT!($P(DTA,U,6)>ZEDT)
+ ....;Q:$P(DTA,U,6)<ZSDT!($P(DTA,U,6)>ZEDT)
+ ....Q:$P(DTA,U,6)>ZEDT     ;alb/sat 643
+ ....Q:$P(DTA,U,10)'=""     ;alb/sat 643
  ....Q:$$TESTPAT^VADPT(DFN)
  ....D ADD^VADPT,DEM^VADPT
  ....S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)

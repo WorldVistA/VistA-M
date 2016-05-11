@@ -1,136 +1,128 @@
-IBDEI1EW ; ; 19-NOV-2015
+IBDEI1EW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23567,1,3,0)
- ;;=3^Pain in left arm
- ;;^UTILITY(U,$J,358.3,23567,1,4,0)
- ;;=4^M79.602
- ;;^UTILITY(U,$J,358.3,23567,2)
- ;;=^5013326
- ;;^UTILITY(U,$J,358.3,23568,0)
- ;;=M79.604^^113^1136^28
- ;;^UTILITY(U,$J,358.3,23568,1,0)
+ ;;^UTILITY(U,$J,358.3,24003,1,4,0)
+ ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,24003,2)
+ ;;=^5003809
+ ;;^UTILITY(U,$J,358.3,24004,0)
+ ;;=G94.^^90^1039^7
+ ;;^UTILITY(U,$J,358.3,24004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23568,1,3,0)
- ;;=3^Pain in right leg
- ;;^UTILITY(U,$J,358.3,23568,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,23568,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,23569,0)
- ;;=M79.605^^113^1136^19
- ;;^UTILITY(U,$J,358.3,23569,1,0)
+ ;;^UTILITY(U,$J,358.3,24004,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,24004,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,24004,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,24005,0)
+ ;;=G31.83^^90^1039^16
+ ;;^UTILITY(U,$J,358.3,24005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23569,1,3,0)
- ;;=3^Pain in left leg
- ;;^UTILITY(U,$J,358.3,23569,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,23569,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,23570,0)
- ;;=F60.2^^113^1137^1
- ;;^UTILITY(U,$J,358.3,23570,1,0)
+ ;;^UTILITY(U,$J,358.3,24005,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,24005,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,24005,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,24006,0)
+ ;;=G31.89^^90^1039^11
+ ;;^UTILITY(U,$J,358.3,24006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23570,1,3,0)
- ;;=3^Antisocial personality disorder
- ;;^UTILITY(U,$J,358.3,23570,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,23570,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,23571,0)
- ;;=F60.6^^113^1137^2
- ;;^UTILITY(U,$J,358.3,23571,1,0)
+ ;;^UTILITY(U,$J,358.3,24006,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,24006,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,24006,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,24007,0)
+ ;;=G31.9^^90^1039^12
+ ;;^UTILITY(U,$J,358.3,24007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23571,1,3,0)
- ;;=3^Avoidant personality disorder
- ;;^UTILITY(U,$J,358.3,23571,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,23571,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,23572,0)
- ;;=F60.3^^113^1137^3
- ;;^UTILITY(U,$J,358.3,23572,1,0)
+ ;;^UTILITY(U,$J,358.3,24007,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,24007,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,24007,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,24008,0)
+ ;;=G23.8^^90^1039^10
+ ;;^UTILITY(U,$J,358.3,24008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23572,1,3,0)
- ;;=3^Borderline personality disorder
- ;;^UTILITY(U,$J,358.3,23572,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,23572,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,23573,0)
- ;;=F34.0^^113^1137^4
- ;;^UTILITY(U,$J,358.3,23573,1,0)
+ ;;^UTILITY(U,$J,358.3,24008,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,24008,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,24008,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,24009,0)
+ ;;=G31.09^^90^1039^22
+ ;;^UTILITY(U,$J,358.3,24009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23573,1,3,0)
- ;;=3^Cyclothymic disorder
- ;;^UTILITY(U,$J,358.3,23573,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,23573,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,23574,0)
- ;;=F60.7^^113^1137^5
- ;;^UTILITY(U,$J,358.3,23574,1,0)
+ ;;^UTILITY(U,$J,358.3,24009,1,3,0)
+ ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,24009,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,24009,2)
+ ;;=^329916^F02.81
+ ;;^UTILITY(U,$J,358.3,24010,0)
+ ;;=G30.0^^90^1039^3
+ ;;^UTILITY(U,$J,358.3,24010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23574,1,3,0)
- ;;=3^Dependent personality disorder
- ;;^UTILITY(U,$J,358.3,23574,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,23574,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,23575,0)
- ;;=F60.4^^113^1137^6
- ;;^UTILITY(U,$J,358.3,23575,1,0)
+ ;;^UTILITY(U,$J,358.3,24010,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,24010,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,24010,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,24011,0)
+ ;;=G30.1^^90^1039^4
+ ;;^UTILITY(U,$J,358.3,24011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23575,1,3,0)
- ;;=3^Histrionic personality disorder
- ;;^UTILITY(U,$J,358.3,23575,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,23575,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,23576,0)
- ;;=F60.81^^113^1137^7
- ;;^UTILITY(U,$J,358.3,23576,1,0)
+ ;;^UTILITY(U,$J,358.3,24011,1,3,0)
+ ;;=3^Alzheimer's Disease with Late Onset
+ ;;^UTILITY(U,$J,358.3,24011,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,24011,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,24012,0)
+ ;;=B20.^^90^1039^18
+ ;;^UTILITY(U,$J,358.3,24012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23576,1,3,0)
- ;;=3^Narcissistic personality disorder
- ;;^UTILITY(U,$J,358.3,23576,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,23576,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,23577,0)
- ;;=F60.5^^113^1137^8
- ;;^UTILITY(U,$J,358.3,23577,1,0)
+ ;;^UTILITY(U,$J,358.3,24012,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,24012,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,24012,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,24013,0)
+ ;;=B20.^^90^1039^19
+ ;;^UTILITY(U,$J,358.3,24013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23577,1,3,0)
- ;;=3^Obsessive-compulsive personality disorder
- ;;^UTILITY(U,$J,358.3,23577,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,23577,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,23578,0)
- ;;=F60.0^^113^1137^9
- ;;^UTILITY(U,$J,358.3,23578,1,0)
+ ;;^UTILITY(U,$J,358.3,24013,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,24013,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,24013,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,24014,0)
+ ;;=G10.^^90^1039^20
+ ;;^UTILITY(U,$J,358.3,24014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23578,1,3,0)
- ;;=3^Paranoid personality disorder
- ;;^UTILITY(U,$J,358.3,23578,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,23578,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,23579,0)
- ;;=F60.89^^113^1137^10
- ;;^UTILITY(U,$J,358.3,23579,1,0)
+ ;;^UTILITY(U,$J,358.3,24014,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,24014,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,24014,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,24015,0)
+ ;;=G10.^^90^1039^21
+ ;;^UTILITY(U,$J,358.3,24015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23579,1,3,0)
- ;;=3^Personality disorders, spec, other
- ;;^UTILITY(U,$J,358.3,23579,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,23579,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,23580,0)
- ;;=F60.1^^113^1137^11
- ;;^UTILITY(U,$J,358.3,23580,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23580,1,3,0)
- ;;=3^Schizoid personality disorder
+ ;;^UTILITY(U,$J,358.3,24015,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,24015,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,24015,2)
+ ;;=^5003751^F02.80

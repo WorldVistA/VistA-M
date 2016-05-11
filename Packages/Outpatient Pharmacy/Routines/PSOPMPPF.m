@@ -1,5 +1,5 @@
 PSOPMPPF ;BIRM/MFR - Patient Medication Profile - Preferences ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**260**;DEC 1997;Build 84
+ ;;7.0;OUTPATIENT PHARMACY;**260,427**;DEC 1997;Build 21
  ;
 EN ; - Menu option entry point
  N PSOCHNG,PSOQUIT,DIR,DIRUT,DIROUT
@@ -144,10 +144,11 @@ LOAD(SITE,USER) ; Loading Factory/Division/User preferences
  S PSOSTSEQ("PH")="3^HOLD^PH"             ; Provider Hold
  S PSOSTSEQ("N")="4^NON-VERIFIED^N"       ; Non-Verified
  ;
- S PSORDSEQ("T")="1^REFILL TOO SOON/DUR REJECTS(Third Party)"
- S PSORDSEQ("R")="2^CURRENT ORDERS"
- S PSORDSEQ("P")="3^PENDING"
- S PSORDSEQ("N")="4^NON-VA MEDS (Not dispensed by VA)"
+ S PSORDSEQ("T")="1^REFILL TOO SOON/DUR REJECTS (Third Party)"
+ S PSORDSEQ("H")="2^OTHER REJECTS PENDING RESOLUTION"     ; added for *427
+ S PSORDSEQ("R")="3^CURRENT ORDERS"
+ S PSORDSEQ("P")="4^PENDING"
+ S PSORDSEQ("N")="5^NON-VA MEDS (Not dispensed by VA)"
  ;
  ; - User's preferences
  I $G(USER),$D(^PS(52.85,SITE,"USER",USER,0)) D SET(^PS(52.85,SITE,"USER",USER,0)) Q

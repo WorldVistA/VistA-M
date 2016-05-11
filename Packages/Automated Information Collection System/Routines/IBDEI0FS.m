@@ -1,140 +1,140 @@
-IBDEI0FS ; ; 19-NOV-2015
+IBDEI0FS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6976,0)
- ;;=L03.115^^46^459^30
- ;;^UTILITY(U,$J,358.3,6976,1,0)
+ ;;^UTILITY(U,$J,358.3,7288,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,7288,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,7289,0)
+ ;;=R91.8^^30^406^1
+ ;;^UTILITY(U,$J,358.3,7289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6976,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,6976,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,6976,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,6977,0)
- ;;=L03.116^^46^459^25
- ;;^UTILITY(U,$J,358.3,6977,1,0)
+ ;;^UTILITY(U,$J,358.3,7289,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
+ ;;^UTILITY(U,$J,358.3,7289,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,7289,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,7290,0)
+ ;;=R06.2^^30^406^64
+ ;;^UTILITY(U,$J,358.3,7290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6977,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,6977,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,6977,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,6978,0)
- ;;=L03.221^^46^459^28
- ;;^UTILITY(U,$J,358.3,6978,1,0)
+ ;;^UTILITY(U,$J,358.3,7290,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,7290,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,7290,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,7291,0)
+ ;;=J44.0^^30^406^17
+ ;;^UTILITY(U,$J,358.3,7291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6978,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,6978,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,6978,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,6979,0)
- ;;=L03.031^^46^459^31
- ;;^UTILITY(U,$J,358.3,6979,1,0)
+ ;;^UTILITY(U,$J,358.3,7291,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,7291,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,7291,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,7292,0)
+ ;;=J94.1^^30^406^27
+ ;;^UTILITY(U,$J,358.3,7292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6979,1,3,0)
- ;;=3^Cellulitis of Right Toe
- ;;^UTILITY(U,$J,358.3,6979,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,6979,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,6980,0)
- ;;=L03.032^^46^459^26
- ;;^UTILITY(U,$J,358.3,6980,1,0)
+ ;;^UTILITY(U,$J,358.3,7292,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,7292,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,7292,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,7293,0)
+ ;;=G47.33^^30^406^35
+ ;;^UTILITY(U,$J,358.3,7293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6980,1,3,0)
- ;;=3^Cellulitis of Left Toe
- ;;^UTILITY(U,$J,358.3,6980,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,6980,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,6981,0)
- ;;=L03.319^^46^459^33
- ;;^UTILITY(U,$J,358.3,6981,1,0)
+ ;;^UTILITY(U,$J,358.3,7293,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,7293,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,7293,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,7294,0)
+ ;;=R91.1^^30^406^61
+ ;;^UTILITY(U,$J,358.3,7294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6981,1,3,0)
- ;;=3^Cellulitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,6981,1,4,0)
- ;;=4^L03.319
- ;;^UTILITY(U,$J,358.3,6981,2)
- ;;=^5009054
- ;;^UTILITY(U,$J,358.3,6982,0)
- ;;=L03.90^^46^459^34
- ;;^UTILITY(U,$J,358.3,6982,1,0)
+ ;;^UTILITY(U,$J,358.3,7294,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,7294,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,7294,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,7295,0)
+ ;;=J06.9^^30^406^2
+ ;;^UTILITY(U,$J,358.3,7295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6982,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,6982,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,6982,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,6983,0)
- ;;=L72.9^^46^459^41
- ;;^UTILITY(U,$J,358.3,6983,1,0)
+ ;;^UTILITY(U,$J,358.3,7295,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,7295,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,7295,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,7296,0)
+ ;;=J20.8^^30^406^12
+ ;;^UTILITY(U,$J,358.3,7296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6983,1,3,0)
- ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,6983,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,6983,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,6984,0)
- ;;=L12.1^^46^459^35
- ;;^UTILITY(U,$J,358.3,6984,1,0)
+ ;;^UTILITY(U,$J,358.3,7296,1,3,0)
+ ;;=3^Bronchitis,Acute,d/t Oth Specified Organisms
+ ;;^UTILITY(U,$J,358.3,7296,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,7296,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,7297,0)
+ ;;=J20.9^^30^406^11
+ ;;^UTILITY(U,$J,358.3,7297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6984,1,3,0)
- ;;=3^Cicatricial Pemphigoid
- ;;^UTILITY(U,$J,358.3,6984,1,4,0)
- ;;=4^L12.1
- ;;^UTILITY(U,$J,358.3,6984,2)
- ;;=^5009096
- ;;^UTILITY(U,$J,358.3,6985,0)
- ;;=L30.2^^46^459^38
- ;;^UTILITY(U,$J,358.3,6985,1,0)
+ ;;^UTILITY(U,$J,358.3,7297,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,7297,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,7297,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,7298,0)
+ ;;=J41.0^^30^406^13
+ ;;^UTILITY(U,$J,358.3,7298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6985,1,3,0)
- ;;=3^Cutaneous Autosensitization
- ;;^UTILITY(U,$J,358.3,6985,1,4,0)
- ;;=4^L30.2
- ;;^UTILITY(U,$J,358.3,6985,2)
- ;;=^5009155
- ;;^UTILITY(U,$J,358.3,6986,0)
- ;;=B37.83^^46^459^2
- ;;^UTILITY(U,$J,358.3,6986,1,0)
+ ;;^UTILITY(U,$J,358.3,7298,1,3,0)
+ ;;=3^Bronchitis,Simple,Chronic
+ ;;^UTILITY(U,$J,358.3,7298,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,7298,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,7299,0)
+ ;;=J18.8^^30^406^43
+ ;;^UTILITY(U,$J,358.3,7299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6986,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,6986,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,6986,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,6987,0)
- ;;=B37.0^^46^459^3
- ;;^UTILITY(U,$J,358.3,6987,1,0)
+ ;;^UTILITY(U,$J,358.3,7299,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism,Other
+ ;;^UTILITY(U,$J,358.3,7299,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,7299,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,7300,0)
+ ;;=J18.9^^30^406^42
+ ;;^UTILITY(U,$J,358.3,7300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6987,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,6987,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,6987,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,6988,0)
- ;;=D04.9^^46^459^18
- ;;^UTILITY(U,$J,358.3,6988,1,0)
+ ;;^UTILITY(U,$J,358.3,7300,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,7300,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,7300,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,7301,0)
+ ;;=J39.8^^30^406^63
+ ;;^UTILITY(U,$J,358.3,7301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6988,1,3,0)
- ;;=3^Carcinoma in Situ Skin,Unspec
- ;;^UTILITY(U,$J,358.3,6988,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,6988,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,6989,0)
- ;;=D04.0^^46^459^10
- ;;^UTILITY(U,$J,358.3,6989,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6989,1,3,0)
- ;;=3^Carcinoma in Situ Skin Lip
+ ;;^UTILITY(U,$J,358.3,7301,1,3,0)
+ ;;=3^Upper Respiratory Tract Disease,Other Spec
+ ;;^UTILITY(U,$J,358.3,7301,1,4,0)
+ ;;=4^J39.8
+ ;;^UTILITY(U,$J,358.3,7301,2)
+ ;;=^5008231
+ ;;^UTILITY(U,$J,358.3,7302,0)
+ ;;=T74.21XA^^30^407^1

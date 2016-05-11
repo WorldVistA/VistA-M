@@ -1,126 +1,134 @@
-IBDEI2AT ; ; 19-NOV-2015
+IBDEI2AT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38608,1,3,0)
- ;;=3^Ankylosing hyperostosis, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,38608,1,4,0)
- ;;=4^M48.15
- ;;^UTILITY(U,$J,358.3,38608,2)
- ;;=^5012101
- ;;^UTILITY(U,$J,358.3,38609,0)
- ;;=M48.13^^180^1980^2
- ;;^UTILITY(U,$J,358.3,38609,1,0)
+ ;;^UTILITY(U,$J,358.3,38992,0)
+ ;;=L03.90^^151^1910^34
+ ;;^UTILITY(U,$J,358.3,38992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38609,1,3,0)
- ;;=3^Ankylosing hyperostosis, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,38609,1,4,0)
- ;;=4^M48.13
- ;;^UTILITY(U,$J,358.3,38609,2)
- ;;=^5012099
- ;;^UTILITY(U,$J,358.3,38610,0)
- ;;=M48.14^^180^1980^8
- ;;^UTILITY(U,$J,358.3,38610,1,0)
+ ;;^UTILITY(U,$J,358.3,38992,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38992,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,38992,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,38993,0)
+ ;;=L72.9^^151^1910^41
+ ;;^UTILITY(U,$J,358.3,38993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38610,1,3,0)
- ;;=3^Ankylosing hyperostosis, thoracic region
- ;;^UTILITY(U,$J,358.3,38610,1,4,0)
- ;;=4^M48.14
- ;;^UTILITY(U,$J,358.3,38610,2)
- ;;=^5012100
- ;;^UTILITY(U,$J,358.3,38611,0)
- ;;=M45.2^^180^1980^10
- ;;^UTILITY(U,$J,358.3,38611,1,0)
+ ;;^UTILITY(U,$J,358.3,38993,1,3,0)
+ ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,38993,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,38993,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,38994,0)
+ ;;=L12.1^^151^1910^35
+ ;;^UTILITY(U,$J,358.3,38994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38611,1,3,0)
- ;;=3^Ankylosing spondylitis of cervical region
- ;;^UTILITY(U,$J,358.3,38611,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,38611,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,38612,0)
- ;;=M45.3^^180^1980^11
- ;;^UTILITY(U,$J,358.3,38612,1,0)
+ ;;^UTILITY(U,$J,358.3,38994,1,3,0)
+ ;;=3^Cicatricial Pemphigoid
+ ;;^UTILITY(U,$J,358.3,38994,1,4,0)
+ ;;=4^L12.1
+ ;;^UTILITY(U,$J,358.3,38994,2)
+ ;;=^5009096
+ ;;^UTILITY(U,$J,358.3,38995,0)
+ ;;=L30.2^^151^1910^38
+ ;;^UTILITY(U,$J,358.3,38995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38612,1,3,0)
- ;;=3^Ankylosing spondylitis of cervicothoracic region
- ;;^UTILITY(U,$J,358.3,38612,1,4,0)
- ;;=4^M45.3
- ;;^UTILITY(U,$J,358.3,38612,2)
- ;;=^5011963
- ;;^UTILITY(U,$J,358.3,38613,0)
- ;;=M45.7^^180^1980^13
- ;;^UTILITY(U,$J,358.3,38613,1,0)
+ ;;^UTILITY(U,$J,358.3,38995,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,38995,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,38995,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,38996,0)
+ ;;=B37.83^^151^1910^2
+ ;;^UTILITY(U,$J,358.3,38996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38613,1,3,0)
- ;;=3^Ankylosing spondylitis of lumbosacral region
- ;;^UTILITY(U,$J,358.3,38613,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,38613,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,38614,0)
- ;;=M45.0^^180^1980^14
- ;;^UTILITY(U,$J,358.3,38614,1,0)
+ ;;^UTILITY(U,$J,358.3,38996,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,38996,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,38996,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,38997,0)
+ ;;=B37.0^^151^1910^3
+ ;;^UTILITY(U,$J,358.3,38997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38614,1,3,0)
- ;;=3^Ankylosing spondylitis of multiple sites in spine
- ;;^UTILITY(U,$J,358.3,38614,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,38614,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,38615,0)
- ;;=M45.1^^180^1980^15
- ;;^UTILITY(U,$J,358.3,38615,1,0)
+ ;;^UTILITY(U,$J,358.3,38997,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,38997,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,38997,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,38998,0)
+ ;;=D04.9^^151^1910^18
+ ;;^UTILITY(U,$J,358.3,38998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38615,1,3,0)
- ;;=3^Ankylosing spondylitis of occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,38615,1,4,0)
- ;;=4^M45.1
- ;;^UTILITY(U,$J,358.3,38615,2)
- ;;=^5011961
- ;;^UTILITY(U,$J,358.3,38616,0)
- ;;=M45.8^^180^1980^16
- ;;^UTILITY(U,$J,358.3,38616,1,0)
+ ;;^UTILITY(U,$J,358.3,38998,1,3,0)
+ ;;=3^Carcinoma in Situ Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,38998,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,38998,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,38999,0)
+ ;;=D04.0^^151^1910^10
+ ;;^UTILITY(U,$J,358.3,38999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38616,1,3,0)
- ;;=3^Ankylosing spondylitis of sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,38616,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,38616,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,38617,0)
- ;;=M45.4^^180^1980^17
- ;;^UTILITY(U,$J,358.3,38617,1,0)
+ ;;^UTILITY(U,$J,358.3,38999,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Lip
+ ;;^UTILITY(U,$J,358.3,38999,1,4,0)
+ ;;=4^D04.0
+ ;;^UTILITY(U,$J,358.3,38999,2)
+ ;;=^267725
+ ;;^UTILITY(U,$J,358.3,39000,0)
+ ;;=D04.11^^151^1910^13
+ ;;^UTILITY(U,$J,358.3,39000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38617,1,3,0)
- ;;=3^Ankylosing spondylitis of thoracic region
- ;;^UTILITY(U,$J,358.3,38617,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,38617,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,38618,0)
- ;;=M45.6^^180^1980^12
- ;;^UTILITY(U,$J,358.3,38618,1,0)
+ ;;^UTILITY(U,$J,358.3,39000,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,39000,1,4,0)
+ ;;=4^D04.11
+ ;;^UTILITY(U,$J,358.3,39000,2)
+ ;;=^5001910
+ ;;^UTILITY(U,$J,358.3,39001,0)
+ ;;=D04.12^^151^1910^7
+ ;;^UTILITY(U,$J,358.3,39001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38618,1,3,0)
- ;;=3^Ankylosing spondylitis of lumbar region
- ;;^UTILITY(U,$J,358.3,38618,1,4,0)
- ;;=4^M45.6
- ;;^UTILITY(U,$J,358.3,38618,2)
- ;;=^5011966
- ;;^UTILITY(U,$J,358.3,38619,0)
- ;;=M50.03^^180^1980^18
- ;;^UTILITY(U,$J,358.3,38619,1,0)
+ ;;^UTILITY(U,$J,358.3,39001,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,39001,1,4,0)
+ ;;=4^D04.12
+ ;;^UTILITY(U,$J,358.3,39001,2)
+ ;;=^5001911
+ ;;^UTILITY(U,$J,358.3,39002,0)
+ ;;=D04.21^^151^1910^12
+ ;;^UTILITY(U,$J,358.3,39002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38619,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,38619,1,4,0)
- ;;=4^M50.03
- ;;^UTILITY(U,$J,358.3,38619,2)
- ;;=^5012218
- ;;^UTILITY(U,$J,358.3,38620,0)
- ;;=M50.02^^180^1980^20
- ;;^UTILITY(U,$J,358.3,38620,1,0)
+ ;;^UTILITY(U,$J,358.3,39002,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,39002,1,4,0)
+ ;;=4^D04.21
+ ;;^UTILITY(U,$J,358.3,39002,2)
+ ;;=^5001913
+ ;;^UTILITY(U,$J,358.3,39003,0)
+ ;;=D04.22^^151^1910^6
+ ;;^UTILITY(U,$J,358.3,39003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38620,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, mid-cervical region
+ ;;^UTILITY(U,$J,358.3,39003,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,39003,1,4,0)
+ ;;=4^D04.22
+ ;;^UTILITY(U,$J,358.3,39003,2)
+ ;;=^5001914
+ ;;^UTILITY(U,$J,358.3,39004,0)
+ ;;=D04.30^^151^1910^5
+ ;;^UTILITY(U,$J,358.3,39004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39004,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,39004,1,4,0)
+ ;;=4^D04.30
+ ;;^UTILITY(U,$J,358.3,39004,2)
+ ;;=^5001915

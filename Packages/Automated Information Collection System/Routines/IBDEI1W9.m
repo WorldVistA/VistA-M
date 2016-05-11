@@ -1,130 +1,122 @@
-IBDEI1W9 ; ; 19-NOV-2015
+IBDEI1W9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31721,1,4,0)
- ;;=4^F51.3
- ;;^UTILITY(U,$J,358.3,31721,2)
- ;;=^5003613
- ;;^UTILITY(U,$J,358.3,31722,0)
- ;;=F51.4^^138^1450^15
- ;;^UTILITY(U,$J,358.3,31722,1,0)
+ ;;^UTILITY(U,$J,358.3,32160,0)
+ ;;=S92.341K^^126^1609^73
+ ;;^UTILITY(U,$J,358.3,32160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31722,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
- ;;^UTILITY(U,$J,358.3,31722,1,4,0)
- ;;=4^F51.4
- ;;^UTILITY(U,$J,358.3,31722,2)
- ;;=^5003614
- ;;^UTILITY(U,$J,358.3,31723,0)
- ;;=F51.5^^138^1450^13
- ;;^UTILITY(U,$J,358.3,31723,1,0)
+ ;;^UTILITY(U,$J,358.3,32160,1,3,0)
+ ;;=3^Disp fx of 4th metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32160,1,4,0)
+ ;;=4^S92.341K
+ ;;^UTILITY(U,$J,358.3,32160,2)
+ ;;=^5045190
+ ;;^UTILITY(U,$J,358.3,32161,0)
+ ;;=S92.335K^^126^1609^294
+ ;;^UTILITY(U,$J,358.3,32161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31723,1,3,0)
- ;;=3^Nightmare Disorder
- ;;^UTILITY(U,$J,358.3,31723,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,31723,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,31724,0)
- ;;=G47.52^^138^1450^17
- ;;^UTILITY(U,$J,358.3,31724,1,0)
+ ;;^UTILITY(U,$J,358.3,32161,1,3,0)
+ ;;=3^Nondisp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32161,1,4,0)
+ ;;=4^S92.335K
+ ;;^UTILITY(U,$J,358.3,32161,2)
+ ;;=^5045176
+ ;;^UTILITY(U,$J,358.3,32162,0)
+ ;;=S92.334K^^126^1609^295
+ ;;^UTILITY(U,$J,358.3,32162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31724,1,3,0)
- ;;=3^Rapid Eye Movement Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,31724,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,31724,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,31725,0)
- ;;=G25.81^^138^1450^18
- ;;^UTILITY(U,$J,358.3,31725,1,0)
+ ;;^UTILITY(U,$J,358.3,32162,1,3,0)
+ ;;=3^Nondisp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32162,1,4,0)
+ ;;=4^S92.334K
+ ;;^UTILITY(U,$J,358.3,32162,2)
+ ;;=^5045169
+ ;;^UTILITY(U,$J,358.3,32163,0)
+ ;;=S92.332K^^126^1609^69
+ ;;^UTILITY(U,$J,358.3,32163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31725,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,31725,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,31725,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,31726,0)
- ;;=G47.19^^138^1450^8
- ;;^UTILITY(U,$J,358.3,31726,1,0)
+ ;;^UTILITY(U,$J,358.3,32163,1,3,0)
+ ;;=3^Disp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32163,1,4,0)
+ ;;=4^S92.332K
+ ;;^UTILITY(U,$J,358.3,32163,2)
+ ;;=^5045155
+ ;;^UTILITY(U,$J,358.3,32164,0)
+ ;;=S92.331K^^126^1609^70
+ ;;^UTILITY(U,$J,358.3,32164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31726,1,3,0)
- ;;=3^Hypersomnolence Disorder NEC
- ;;^UTILITY(U,$J,358.3,31726,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,31726,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,31727,0)
- ;;=G47.8^^138^1450^19
- ;;^UTILITY(U,$J,358.3,31727,1,0)
+ ;;^UTILITY(U,$J,358.3,32164,1,3,0)
+ ;;=3^Disp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32164,1,4,0)
+ ;;=4^S92.331K
+ ;;^UTILITY(U,$J,358.3,32164,2)
+ ;;=^5045148
+ ;;^UTILITY(U,$J,358.3,32165,0)
+ ;;=S92.325K^^126^1609^290
+ ;;^UTILITY(U,$J,358.3,32165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31727,1,3,0)
- ;;=3^Sleep-Wake Disorder NEC
- ;;^UTILITY(U,$J,358.3,31727,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,31727,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,31728,0)
- ;;=F10.10^^138^1451^1
- ;;^UTILITY(U,$J,358.3,31728,1,0)
+ ;;^UTILITY(U,$J,358.3,32165,1,3,0)
+ ;;=3^Nondisp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32165,1,4,0)
+ ;;=4^S92.325K
+ ;;^UTILITY(U,$J,358.3,32165,2)
+ ;;=^5045134
+ ;;^UTILITY(U,$J,358.3,32166,0)
+ ;;=S92.324K^^126^1609^291
+ ;;^UTILITY(U,$J,358.3,32166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31728,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,31728,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,31728,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,31729,0)
- ;;=F10.14^^138^1451^8
- ;;^UTILITY(U,$J,358.3,31729,1,0)
+ ;;^UTILITY(U,$J,358.3,32166,1,3,0)
+ ;;=3^Nondisp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32166,1,4,0)
+ ;;=4^S92.324K
+ ;;^UTILITY(U,$J,358.3,32166,2)
+ ;;=^5045127
+ ;;^UTILITY(U,$J,358.3,32167,0)
+ ;;=S92.322K^^126^1609^65
+ ;;^UTILITY(U,$J,358.3,32167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31729,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31729,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,31729,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,31730,0)
- ;;=F10.182^^138^1451^10
- ;;^UTILITY(U,$J,358.3,31730,1,0)
+ ;;^UTILITY(U,$J,358.3,32167,1,3,0)
+ ;;=3^Disp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32167,1,4,0)
+ ;;=4^S92.322K
+ ;;^UTILITY(U,$J,358.3,32167,2)
+ ;;=^5045113
+ ;;^UTILITY(U,$J,358.3,32168,0)
+ ;;=S92.321K^^126^1609^66
+ ;;^UTILITY(U,$J,358.3,32168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31730,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31730,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,31730,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,31731,0)
- ;;=F10.20^^138^1451^2
- ;;^UTILITY(U,$J,358.3,31731,1,0)
+ ;;^UTILITY(U,$J,358.3,32168,1,3,0)
+ ;;=3^Disp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32168,1,4,0)
+ ;;=4^S92.321K
+ ;;^UTILITY(U,$J,358.3,32168,2)
+ ;;=^5045106
+ ;;^UTILITY(U,$J,358.3,32169,0)
+ ;;=S92.315K^^126^1609^285
+ ;;^UTILITY(U,$J,358.3,32169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31731,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,31731,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,31731,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,31732,0)
- ;;=F10.21^^138^1451^3
- ;;^UTILITY(U,$J,358.3,31732,1,0)
+ ;;^UTILITY(U,$J,358.3,32169,1,3,0)
+ ;;=3^Nondisp fx of 1st metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32169,1,4,0)
+ ;;=4^S92.315K
+ ;;^UTILITY(U,$J,358.3,32169,2)
+ ;;=^5045092
+ ;;^UTILITY(U,$J,358.3,32170,0)
+ ;;=S92.314K^^126^1609^286
+ ;;^UTILITY(U,$J,358.3,32170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31732,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,31732,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,31732,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,31733,0)
- ;;=F10.230^^138^1451^4
- ;;^UTILITY(U,$J,358.3,31733,1,0)
+ ;;^UTILITY(U,$J,358.3,32170,1,3,0)
+ ;;=3^Nondisp fx of 1st metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32170,1,4,0)
+ ;;=4^S92.314K
+ ;;^UTILITY(U,$J,358.3,32170,2)
+ ;;=^5045085
+ ;;^UTILITY(U,$J,358.3,32171,0)
+ ;;=S92.312K^^126^1609^61
+ ;;^UTILITY(U,$J,358.3,32171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31733,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,31733,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,31733,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,31734,0)
- ;;=F10.231^^138^1451^5
+ ;;^UTILITY(U,$J,358.3,32171,1,3,0)
+ ;;=3^Disp fx of 1st metrsl bone, lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32171,1,4,0)
+ ;;=4^S92.312K

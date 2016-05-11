@@ -1,130 +1,138 @@
-IBDEI0DC ; ; 19-NOV-2015
+IBDEI0DC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5800,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,5800,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,5801,0)
- ;;=M47.811^^40^376^32
- ;;^UTILITY(U,$J,358.3,5801,1,0)
+ ;;^UTILITY(U,$J,358.3,6118,0)
+ ;;=H60.12^^30^386^13
+ ;;^UTILITY(U,$J,358.3,6118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5801,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Occipito/Atlanto/Axial Region
- ;;^UTILITY(U,$J,358.3,5801,1,4,0)
- ;;=4^M47.811
- ;;^UTILITY(U,$J,358.3,5801,2)
- ;;=^5012068
- ;;^UTILITY(U,$J,358.3,5802,0)
- ;;=M47.818^^40^376^33
- ;;^UTILITY(U,$J,358.3,5802,1,0)
+ ;;^UTILITY(U,$J,358.3,6118,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,6118,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,6118,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,6119,0)
+ ;;=H60.11^^30^386^14
+ ;;^UTILITY(U,$J,358.3,6119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5802,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,5802,1,4,0)
- ;;=4^M47.818
- ;;^UTILITY(U,$J,358.3,5802,2)
- ;;=^5012075
- ;;^UTILITY(U,$J,358.3,5803,0)
- ;;=M47.814^^40^376^34
- ;;^UTILITY(U,$J,358.3,5803,1,0)
+ ;;^UTILITY(U,$J,358.3,6119,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,6119,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,6119,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,6120,0)
+ ;;=H61.21^^30^386^26
+ ;;^UTILITY(U,$J,358.3,6120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5803,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,5803,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,5803,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,5804,0)
- ;;=M47.815^^40^376^35
- ;;^UTILITY(U,$J,358.3,5804,1,0)
+ ;;^UTILITY(U,$J,358.3,6120,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,6120,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,6120,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,6121,0)
+ ;;=H61.22^^30^386^25
+ ;;^UTILITY(U,$J,358.3,6121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5804,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,5804,1,4,0)
- ;;=4^M47.815
- ;;^UTILITY(U,$J,358.3,5804,2)
- ;;=^5012072
- ;;^UTILITY(U,$J,358.3,5805,0)
- ;;=S08.111A^^40^377^3
- ;;^UTILITY(U,$J,358.3,5805,1,0)
+ ;;^UTILITY(U,$J,358.3,6121,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,6121,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,6121,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,6122,0)
+ ;;=H61.23^^30^386^24
+ ;;^UTILITY(U,$J,358.3,6122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5805,1,3,0)
- ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,5805,1,4,0)
- ;;=4^S08.111A
- ;;^UTILITY(U,$J,358.3,5805,2)
- ;;=^5021251
- ;;^UTILITY(U,$J,358.3,5806,0)
- ;;=S08.112A^^40^377^2
- ;;^UTILITY(U,$J,358.3,5806,1,0)
+ ;;^UTILITY(U,$J,358.3,6122,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,6122,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,6122,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,6123,0)
+ ;;=H81.01^^30^386^29
+ ;;^UTILITY(U,$J,358.3,6123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5806,1,3,0)
- ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,5806,1,4,0)
- ;;=4^S08.112A
- ;;^UTILITY(U,$J,358.3,5806,2)
- ;;=^5021254
- ;;^UTILITY(U,$J,358.3,5807,0)
- ;;=S08.0XXA^^40^377^1
- ;;^UTILITY(U,$J,358.3,5807,1,0)
+ ;;^UTILITY(U,$J,358.3,6123,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,6123,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,6123,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,6124,0)
+ ;;=H81.02^^30^386^28
+ ;;^UTILITY(U,$J,358.3,6124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5807,1,3,0)
- ;;=3^Avulsion of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,5807,1,4,0)
- ;;=4^S08.0XXA
- ;;^UTILITY(U,$J,358.3,5807,2)
- ;;=^5021248
- ;;^UTILITY(U,$J,358.3,5808,0)
- ;;=S09.90XA^^40^377^6
- ;;^UTILITY(U,$J,358.3,5808,1,0)
+ ;;^UTILITY(U,$J,358.3,6124,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,6124,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,6124,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,6125,0)
+ ;;=H81.03^^30^386^27
+ ;;^UTILITY(U,$J,358.3,6125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5808,1,3,0)
- ;;=3^Injury of Head,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,5808,1,4,0)
- ;;=4^S09.90XA
- ;;^UTILITY(U,$J,358.3,5808,2)
- ;;=^5021332
- ;;^UTILITY(U,$J,358.3,5809,0)
- ;;=S09.8XXA^^40^377^5
- ;;^UTILITY(U,$J,358.3,5809,1,0)
+ ;;^UTILITY(U,$J,358.3,6125,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,6125,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,6125,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,6126,0)
+ ;;=H81.12^^30^386^9
+ ;;^UTILITY(U,$J,358.3,6126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5809,1,3,0)
- ;;=3^Injury of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,5809,1,4,0)
- ;;=4^S09.8XXA
- ;;^UTILITY(U,$J,358.3,5809,2)
- ;;=^5021329
- ;;^UTILITY(U,$J,358.3,5810,0)
- ;;=S08.89XA^^40^377^7
- ;;^UTILITY(U,$J,358.3,5810,1,0)
+ ;;^UTILITY(U,$J,358.3,6126,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,6126,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,6126,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,6127,0)
+ ;;=H81.11^^30^386^10
+ ;;^UTILITY(U,$J,358.3,6127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5810,1,3,0)
- ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,5810,1,4,0)
- ;;=4^S08.89XA
- ;;^UTILITY(U,$J,358.3,5810,2)
- ;;=^5021275
- ;;^UTILITY(U,$J,358.3,5811,0)
- ;;=S09.93XA^^40^377^4
- ;;^UTILITY(U,$J,358.3,5811,1,0)
+ ;;^UTILITY(U,$J,358.3,6127,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,6127,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,6127,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,6128,0)
+ ;;=H81.13^^30^386^8
+ ;;^UTILITY(U,$J,358.3,6128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5811,1,3,0)
- ;;=3^Injury of Face,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,5811,1,4,0)
- ;;=4^S09.93XA
- ;;^UTILITY(U,$J,358.3,5811,2)
- ;;=^5021341
- ;;^UTILITY(U,$J,358.3,5812,0)
- ;;=M79.671^^40^378^13
- ;;^UTILITY(U,$J,358.3,5812,1,0)
+ ;;^UTILITY(U,$J,358.3,6128,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,6128,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,6128,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,6129,0)
+ ;;=H81.10^^30^386^11
+ ;;^UTILITY(U,$J,358.3,6129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5812,1,3,0)
- ;;=3^Right Foot Pain
- ;;^UTILITY(U,$J,358.3,5812,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,5812,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,5813,0)
- ;;=M79.675^^40^378^9
+ ;;^UTILITY(U,$J,358.3,6129,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,6129,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,6129,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,6130,0)
+ ;;=B37.84^^30^386^12
+ ;;^UTILITY(U,$J,358.3,6130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6130,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,6130,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,6130,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,6131,0)
+ ;;=H60.313^^30^386^18
+ ;;^UTILITY(U,$J,358.3,6131,1,0)
+ ;;=^358.31IA^4^2

@@ -1,122 +1,136 @@
-IBDEI1C0 ; ; 19-NOV-2015
+IBDEI1C0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22197,1,0)
+ ;;^UTILITY(U,$J,358.3,22636,0)
+ ;;=Z98.61^^87^982^17
+ ;;^UTILITY(U,$J,358.3,22636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22197,1,3,0)
- ;;=3^Disp fx of comminuted shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22197,1,4,0)
- ;;=4^S82.451S
- ;;^UTILITY(U,$J,358.3,22197,2)
- ;;=^5042017
- ;;^UTILITY(U,$J,358.3,22198,0)
- ;;=S82.62XS^^101^1038^9
- ;;^UTILITY(U,$J,358.3,22198,1,0)
+ ;;^UTILITY(U,$J,358.3,22636,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,22636,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,22636,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,22637,0)
+ ;;=Z98.62^^87^982^73
+ ;;^UTILITY(U,$J,358.3,22637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22198,1,3,0)
- ;;=3^Disp fx of lateral malleolus of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22198,1,4,0)
- ;;=4^S82.62XS
- ;;^UTILITY(U,$J,358.3,22198,2)
- ;;=^5042342
- ;;^UTILITY(U,$J,358.3,22199,0)
- ;;=S82.61XS^^101^1038^10
- ;;^UTILITY(U,$J,358.3,22199,1,0)
+ ;;^UTILITY(U,$J,358.3,22637,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,22637,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,22637,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,22638,0)
+ ;;=Z98.84^^87^982^12
+ ;;^UTILITY(U,$J,358.3,22638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22199,1,3,0)
- ;;=3^Disp fx of lateral malleolus of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22199,1,4,0)
- ;;=4^S82.61XS
- ;;^UTILITY(U,$J,358.3,22199,2)
- ;;=^5042326
- ;;^UTILITY(U,$J,358.3,22200,0)
- ;;=S82.432S^^101^1038^17
- ;;^UTILITY(U,$J,358.3,22200,1,0)
+ ;;^UTILITY(U,$J,358.3,22638,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,22638,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,22638,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,22639,0)
+ ;;=Z99.2^^87^982^141
+ ;;^UTILITY(U,$J,358.3,22639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22200,1,3,0)
- ;;=3^Disp fx of oblique shaft of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22200,1,4,0)
- ;;=4^S82.432S
- ;;^UTILITY(U,$J,358.3,22200,2)
- ;;=^5041841
- ;;^UTILITY(U,$J,358.3,22201,0)
- ;;=S82.431S^^101^1038^19
- ;;^UTILITY(U,$J,358.3,22201,1,0)
+ ;;^UTILITY(U,$J,358.3,22639,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,22639,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,22639,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,22640,0)
+ ;;=Z99.81^^87^982^144
+ ;;^UTILITY(U,$J,358.3,22640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22201,1,3,0)
- ;;=3^Disp fx of oblique shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22201,1,4,0)
- ;;=4^S82.431S
- ;;^UTILITY(U,$J,358.3,22201,2)
- ;;=^5041825
- ;;^UTILITY(U,$J,358.3,22202,0)
- ;;=S82.462S^^101^1038^25
- ;;^UTILITY(U,$J,358.3,22202,1,0)
+ ;;^UTILITY(U,$J,358.3,22640,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,22640,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,22640,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,22641,0)
+ ;;=Z90.79^^87^982^2
+ ;;^UTILITY(U,$J,358.3,22641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22202,1,3,0)
- ;;=3^Disp fx of segmental shaft of left fibula, sequela     
- ;;^UTILITY(U,$J,358.3,22202,1,4,0)
- ;;=4^S82.462S
- ;;^UTILITY(U,$J,358.3,22202,2)
- ;;=^5042129
- ;;^UTILITY(U,$J,358.3,22203,0)
- ;;=S82.461S^^101^1038^27
- ;;^UTILITY(U,$J,358.3,22203,1,0)
+ ;;^UTILITY(U,$J,358.3,22641,1,3,0)
+ ;;=3^Acquired Absence of Genital Organs NEC
+ ;;^UTILITY(U,$J,358.3,22641,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,22641,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,22642,0)
+ ;;=Z90.5^^87^982^3
+ ;;^UTILITY(U,$J,358.3,22642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22203,1,3,0)
- ;;=3^Disp fx of segmental shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22203,1,4,0)
- ;;=4^S82.461S
- ;;^UTILITY(U,$J,358.3,22203,2)
- ;;=^5042113
- ;;^UTILITY(U,$J,358.3,22204,0)
- ;;=S82.442S^^101^1038^29
- ;;^UTILITY(U,$J,358.3,22204,1,0)
+ ;;^UTILITY(U,$J,358.3,22642,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,22642,1,4,0)
+ ;;=4^Z90.5
+ ;;^UTILITY(U,$J,358.3,22642,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,22643,0)
+ ;;=Z90.2^^87^982^6
+ ;;^UTILITY(U,$J,358.3,22643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22204,1,3,0)
- ;;=3^Disp fx of spiral shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22204,1,4,0)
- ;;=4^S82.442S
- ;;^UTILITY(U,$J,358.3,22204,2)
- ;;=^5041937
- ;;^UTILITY(U,$J,358.3,22205,0)
- ;;=S82.441S^^101^1038^31
- ;;^UTILITY(U,$J,358.3,22205,1,0)
+ ;;^UTILITY(U,$J,358.3,22643,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,22643,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,22643,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,22644,0)
+ ;;=Z98.1^^87^982^10
+ ;;^UTILITY(U,$J,358.3,22644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22205,1,3,0)
- ;;=3^Disp fx of spiral shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22205,1,4,0)
- ;;=4^S82.441S
- ;;^UTILITY(U,$J,358.3,22205,2)
- ;;=^5041921
- ;;^UTILITY(U,$J,358.3,22206,0)
- ;;=S82.422S^^101^1038^33
- ;;^UTILITY(U,$J,358.3,22206,1,0)
+ ;;^UTILITY(U,$J,358.3,22644,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,22644,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,22644,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,22645,0)
+ ;;=Z94.7^^87^982^16
+ ;;^UTILITY(U,$J,358.3,22645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22206,1,3,0)
- ;;=3^Disp fx of transverse shaft of left fibula, sequela    
- ;;^UTILITY(U,$J,358.3,22206,1,4,0)
- ;;=4^S82.422S
- ;;^UTILITY(U,$J,358.3,22206,2)
- ;;=^5041745
- ;;^UTILITY(U,$J,358.3,22207,0)
- ;;=S82.421S^^101^1038^35
- ;;^UTILITY(U,$J,358.3,22207,1,0)
+ ;;^UTILITY(U,$J,358.3,22645,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,22645,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,22645,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,22646,0)
+ ;;=Z83.511^^87^982^30
+ ;;^UTILITY(U,$J,358.3,22646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22207,1,3,0)
- ;;=3^Disp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22207,1,4,0)
- ;;=4^S82.421S
- ;;^UTILITY(U,$J,358.3,22207,2)
- ;;=^5041729
- ;;^UTILITY(U,$J,358.3,22208,0)
- ;;=S82.455S^^101^1038^42
- ;;^UTILITY(U,$J,358.3,22208,1,0)
+ ;;^UTILITY(U,$J,358.3,22646,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,22646,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,22646,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,22647,0)
+ ;;=Z80.52^^87^982^33
+ ;;^UTILITY(U,$J,358.3,22647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22208,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22208,1,4,0)
- ;;=4^S82.455S
- ;;^UTILITY(U,$J,358.3,22208,2)
- ;;=^5042081
+ ;;^UTILITY(U,$J,358.3,22647,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,22647,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,22647,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,22648,0)
+ ;;=Z80.51^^87^982^36
+ ;;^UTILITY(U,$J,358.3,22648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22648,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,22648,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,22648,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,22649,0)
+ ;;=Z83.41^^87^982^43

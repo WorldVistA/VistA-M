@@ -1,5 +1,6 @@
-IBCNBOE ;ALB/ARH-Ins Buffer: Employee Report ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82**;21-MAR-94
+IBCNBOE ;ALB/ARH - Ins Buffer: Employee Report ;1 Jun 97
+ ;;2.0;INTEGRATED BILLING;**82,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;get parameters then run the report
  N IBX S IBX=$$WR Q:'IBX  I IBX=1 G ^IBCNBOF ; WHICH REPORT?  entered or processed
@@ -17,6 +18,8 @@ EN ;get parameters then run the report
  ;
  S IBMONTH=$$MONTH G:IBMONTH="" EXIT  W !!
  ;
+ S IBOUT=$$OUT G:IBOUT="" EXIT
+ ;
 DEV ;get the device
  S %ZIS="QM",%ZIS("A")="OUTPUT DEVICE: " D ^%ZIS G:POP EXIT
  I $D(IO("Q")) S ZTRTN="RPT^IBCNBOE",ZTDESC=IBHDR,ZTSAVE("IB*")="" D ^%ZTLOAD K IO("Q") G EXIT
@@ -26,9 +29,9 @@ RPT ; run report
  S IBQUIT=0
  ;
  D SEARCH(IBBEG,IBEND,IBMONTH,IBEMPL) G:IBQUIT EXIT
- D PRINT(IBBEG,IBEND,IBEMPL)
+ D PRINT(IBBEG,IBEND,IBEMPL,IBOUT)
  ;
-EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBQUIT,IBEMPL
+EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBOUT,IBQUIT,IBEMPL
  Q:$D(ZTQUEUED)
  D ^%ZISC
  Q
@@ -94,14 +97,30 @@ TMP1(XREF,S1,S2,IC,GC,PC) ;
  ;
  ;
  ;
-PRINT(IBBEG,IBEND,IBEMPL) ;
- N IBXREF,IBLABLE,IBS1,IBS2,IBS3,IBINS,IBGRP,IBPOL,IBCNT,IBIP,IBGP,IBPP,IBRDT,IBPGN,IBRANGE,IBLN,IBI
+PRINT(IBBEG,IBEND,IBEMPL,IBOUT) ;
+ N IBXREF,IBLABLE,IBEMPN,IBS1,IBS2,IBS3,IBINS,IBGRP,IBPOL,IBCNT,IBIP,IBGP,IBPP,IBRDT,IBPGN,IBRANGE,IBLN,IBI
  ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  S IBRANGE=$$FMTE^XLFDT(IBBEG)_" - "_$$FMTE^XLFDT(IBEND)
- S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),IBPGN=0
+ S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),(IBLN,IBPGN)=0
+ ;
+ ; Excel output
+ I IBOUT="E" D PHDL D  S IBI=$$PAUSE Q
+ . S IBXREF="IBCNBOE",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D
+ .. S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D
+ ... S IBLABLE=$S(IBS2=99999:"TOTALS",($E(IBBEG,1,5)<IBS2)&($E(IBEND,1,5)>IBS2):$$FMTE^XLFDT(IBS2_"00"),1:"")
+ ... I IBLABLE="" S IBLABLE=$$FMTE^XLFDT($S($E(IBBEG,1,5)<IBS2:IBS2_"01",1:IBBEG))_" - "_$$FMTE^XLFDT($S($E(IBEND,1,5)>IBS2:$$SCH^XLFDT("1M(L)",IBS2_11),1:IBEND))
+ ... S IBEMPN=$P($G(^VA(200,IBS1,0)),U,1)
+ ... S IBS3="" F  S IBS3=$O(^TMP($J,IBXREF,IBS1,IBS2,IBS3)) Q:'IBS3  D PRTLN
+ ... ;
+ ... S IBINS=+$G(^TMP($J,"IBCNBOEC",IBS1,IBS2,"I")),IBGRP=+$G(^TMP($J,"IBCNBOEC",IBS1,IBS2,"G"))
+ ... S IBPOL=+$G(^TMP($J,"IBCNBOEC",IBS1,IBS2,"P")),IBCNT=+$G(^TMP($J,"IBCNBOEC",IBS1,IBS2,"CNT"))
+ ... S (IBIP,IBGP,IBPP)=0 I IBCNT'=0 S IBIP=((IBINS/IBCNT)*100)\1,IBGP=((IBGRP/IBCNT)*100)\1,IBPP=((IBPOL/IBCNT)*100)\1
+ ... W U_IBINS_U_IBIP_"%"_U_IBGRP_U_IBGP_"%"_U_IBPOL_U_IBPP_"%"
+ ;
  D HDR
  ;
- S IBXREF="IBCNBOE",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D
+ S IBXREF="IBCNBOE",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D  Q:IBQUIT
  . ;
  . S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D:IBLN>(IOSL-15) HDR Q:IBQUIT  D  S IBLN=IBLN+8
  .. S IBLABLE=$S(IBS2=99999:"TOTALS",($E(IBBEG,1,5)<IBS2)&($E(IBEND,1,5)>IBS2):$$FMTE^XLFDT(IBS2_"00"),1:"")
@@ -121,7 +140,7 @@ PRINT(IBBEG,IBEND,IBEMPL) ;
  .. W IBGRP," New Group/Plan",$S(IBGRP=1:"",1:"s")," (",IBGP,"%), "
  .. W IBPOL," New Patient Polic",$S(IBPOL=1:"y",1:"ies")," (",IBPP,"%)",!
  ;
- S IBI=$$PAUSE
+ I 'IBQUIT S IBI=$$PAUSE
  Q
  ;
 PRTLN ;
@@ -134,6 +153,10 @@ PRTLN ;
  S IBLS=$G(^TMP($J,IBXREF,IBS1,IBS2,IBS3,"LS"))
  S IBTCNT=$G(^TMP($J,IBXREF,IBS1,IBS2,9,"CNT")) Q:'IBTCNT
  ;
+ ; Excel output
+ I IBOUT="E" W !,IBEMPN_U_IBLABLE_U_IBSTX_U_$FN(IBCNT,",")_U_((IBCNT/IBTCNT)*100)_"%"_U_$$STD((IBTM/IBCNT))_U_$$STD(IBHG)_U_$$STD(IBLS) Q
+ ;
+ ; Report output
  W !,IBSTX,?20,$J($FN(IBCNT,","),7),?30,$J(((IBCNT/IBTCNT)*100),6,1),"%",?43,$J($$STD((IBTM/IBCNT)),6,1),?56,$J($$STD(IBHG),6,1),?68,$J($$STD(IBLS),6,1)
  Q
  ;
@@ -153,6 +176,13 @@ HDR ;print the report header
  W ?(IOM-22),IBRDT,?(IOM-7)," PAGE ",IBPGN,!
  I +$G(IBEMPL) W !,"EMPLOYEE:  ",$P($G(^VA(200,+IBEMPL,0)),U,1),!
  S IBI="",$P(IBI,"-",IOM+1)="" W IBI,!
+ Q
+ ;
+PHDL ; - Print the header line for the Excel spreadsheet
+ N X
+ S X="EMPLOYEE^MONTH^STATUS^COUNT^PERCENT^AVERAGE # DAYS^LONGEST # DAYS^SHORTEST # DAYS^New Companies^% New Companies^New Group/Plans^% New Group/Plans^New Patient Policies^% New Patient Policies"
+ W X
+ K X
  Q
  ;
 PAUSE() ;pause at end of screen if beeing displayed on a terminal
@@ -205,3 +235,12 @@ MONTH() ;
  S DIR("A")="Report By Month",DIR(0)="Y",DIR("B")="No" D ^DIR
  S IBX=$S(Y=1:Y,Y=0:Y,1:"")
  Q IBX
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

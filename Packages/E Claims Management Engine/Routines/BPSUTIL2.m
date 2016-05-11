@@ -1,6 +1,6 @@
-BPSUTIL2 ;BHAM ISC/SS - General Utility functions ;Jun 06, 2014@19:13:53
- ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,17**;JUN 2004;Build 99
- ;Per VA Directive 6402, this routine should not be modified.
+BPSUTIL2 ;BHAM ISC/SS - General Utility functions ;08/01/2006
+ ;;1.0;E CLAIMS MGMT ENGINE;**7,8,10,11,17,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -122,6 +122,7 @@ GETRQST(IEN59) ; Return the BPS Request IEN for a BPS Transaction record
  ;Return the COB (payer sequence) by IEN of the BPS TRANSACTION file
 COB59(BPSIEN59) ;
  ;try to get it from 9002313.59, if it was not created yet then get it from IEN itself
+ I '$G(BPSIEN59) Q ""
  Q $S($P($G(^BPST(BPSIEN59,0)),U,14):$P(^BPST(BPSIEN59,0),U,14),1:$E($P(BPSIEN59,".",2),5,5))
  ;
  ;Return the plan's COB (from PATIENT file) by IEN of the BPS TRANSACTION file and entry # 

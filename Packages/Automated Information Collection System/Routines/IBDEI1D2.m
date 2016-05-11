@@ -1,136 +1,134 @@
-IBDEI1D2 ; ; 19-NOV-2015
+IBDEI1D2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22685,1,4,0)
- ;;=4^E83.110
- ;;^UTILITY(U,$J,358.3,22685,2)
- ;;=^339602
- ;;^UTILITY(U,$J,358.3,22686,0)
- ;;=D47.3^^104^1056^6
- ;;^UTILITY(U,$J,358.3,22686,1,0)
+ ;;^UTILITY(U,$J,358.3,23132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22686,1,3,0)
- ;;=3^Hemorrhagic Thrombocythemia,Essential
- ;;^UTILITY(U,$J,358.3,22686,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,22686,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,22687,0)
- ;;=D69.1^^104^1056^9
- ;;^UTILITY(U,$J,358.3,22687,1,0)
+ ;;^UTILITY(U,$J,358.3,23132,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
+ ;;^UTILITY(U,$J,358.3,23132,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,23132,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,23133,0)
+ ;;=R06.2^^87^991^57
+ ;;^UTILITY(U,$J,358.3,23133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22687,1,3,0)
- ;;=3^Qualitative Platelet Defects
- ;;^UTILITY(U,$J,358.3,22687,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,22687,2)
- ;;=^101922
- ;;^UTILITY(U,$J,358.3,22688,0)
- ;;=D69.6^^104^1056^10
- ;;^UTILITY(U,$J,358.3,22688,1,0)
+ ;;^UTILITY(U,$J,358.3,23133,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,23133,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,23133,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,23134,0)
+ ;;=J44.0^^87^991^13
+ ;;^UTILITY(U,$J,358.3,23134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22688,1,3,0)
- ;;=3^Thrombocytopenia,Unspec
- ;;^UTILITY(U,$J,358.3,22688,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,22688,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,22689,0)
- ;;=I80.9^^104^1056^8
- ;;^UTILITY(U,$J,358.3,22689,1,0)
+ ;;^UTILITY(U,$J,358.3,23134,1,3,0)
+ ;;=3^COPD w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,23134,1,4,0)
+ ;;=4^J44.0
+ ;;^UTILITY(U,$J,358.3,23134,2)
+ ;;=^5008239
+ ;;^UTILITY(U,$J,358.3,23135,0)
+ ;;=J94.1^^87^991^23
+ ;;^UTILITY(U,$J,358.3,23135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22689,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,22689,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,22689,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,22690,0)
- ;;=M31.1^^104^1056^11
- ;;^UTILITY(U,$J,358.3,22690,1,0)
+ ;;^UTILITY(U,$J,358.3,23135,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,23135,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,23135,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,23136,0)
+ ;;=G47.33^^87^991^31
+ ;;^UTILITY(U,$J,358.3,23136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22690,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,22690,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,22690,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,22691,0)
- ;;=D68.312^^104^1056^1
- ;;^UTILITY(U,$J,358.3,22691,1,0)
+ ;;^UTILITY(U,$J,358.3,23136,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,23136,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,23136,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,23137,0)
+ ;;=R91.1^^87^991^55
+ ;;^UTILITY(U,$J,358.3,23137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22691,1,3,0)
- ;;=3^Antiphospholipid Antibody w/ Hemorrhagic Disorder
- ;;^UTILITY(U,$J,358.3,22691,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,22691,2)
- ;;=^340503
- ;;^UTILITY(U,$J,358.3,22692,0)
- ;;=D68.318^^104^1056^5
- ;;^UTILITY(U,$J,358.3,22692,1,0)
+ ;;^UTILITY(U,$J,358.3,23137,1,3,0)
+ ;;=3^Solitary Pulmonary Nodule
+ ;;^UTILITY(U,$J,358.3,23137,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,23137,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,23138,0)
+ ;;=T74.21XA^^87^992^1
+ ;;^UTILITY(U,$J,358.3,23138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22692,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Circ Anticoag NEC
- ;;^UTILITY(U,$J,358.3,22692,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,22692,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,22693,0)
- ;;=D68.311^^104^1056^4
- ;;^UTILITY(U,$J,358.3,22693,1,0)
+ ;;^UTILITY(U,$J,358.3,23138,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23138,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,23138,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,23139,0)
+ ;;=T76.21XA^^87^992^4
+ ;;^UTILITY(U,$J,358.3,23139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22693,1,3,0)
- ;;=3^Hemophilia,Acquired
- ;;^UTILITY(U,$J,358.3,22693,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,22693,2)
- ;;=^340502
- ;;^UTILITY(U,$J,358.3,22694,0)
- ;;=Z51.89^^104^1057^8
- ;;^UTILITY(U,$J,358.3,22694,1,0)
+ ;;^UTILITY(U,$J,358.3,23139,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23139,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,23139,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,23140,0)
+ ;;=Y07.9^^87^992^9
+ ;;^UTILITY(U,$J,358.3,23140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22694,1,3,0)
- ;;=3^Specified Aftercare Encounter
- ;;^UTILITY(U,$J,358.3,22694,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,22694,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,22695,0)
- ;;=Z51.11^^104^1057^1
- ;;^UTILITY(U,$J,358.3,22695,1,0)
+ ;;^UTILITY(U,$J,358.3,23140,1,3,0)
+ ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
+ ;;^UTILITY(U,$J,358.3,23140,1,4,0)
+ ;;=4^Y07.9
+ ;;^UTILITY(U,$J,358.3,23140,2)
+ ;;=^5061209
+ ;;^UTILITY(U,$J,358.3,23141,0)
+ ;;=T74.21XD^^87^992^3
+ ;;^UTILITY(U,$J,358.3,23141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22695,1,3,0)
- ;;=3^Antineoplastic Chemotherapy Encounter
- ;;^UTILITY(U,$J,358.3,22695,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,22695,2)
- ;;=^5063061
- ;;^UTILITY(U,$J,358.3,22696,0)
- ;;=Z71.3^^104^1057^5
- ;;^UTILITY(U,$J,358.3,22696,1,0)
+ ;;^UTILITY(U,$J,358.3,23141,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,23141,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,23141,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,23142,0)
+ ;;=T74.21XS^^87^992^2
+ ;;^UTILITY(U,$J,358.3,23142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22696,1,3,0)
- ;;=3^Dietary Counseling & Surveillance
- ;;^UTILITY(U,$J,358.3,22696,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,22696,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,22697,0)
- ;;=Z31.5^^104^1057^6
- ;;^UTILITY(U,$J,358.3,22697,1,0)
+ ;;^UTILITY(U,$J,358.3,23142,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,23142,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,23142,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,23143,0)
+ ;;=T76.21XD^^87^992^6
+ ;;^UTILITY(U,$J,358.3,23143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22697,1,3,0)
- ;;=3^Genetic Counseling
- ;;^UTILITY(U,$J,358.3,22697,1,4,0)
- ;;=4^Z31.5
- ;;^UTILITY(U,$J,358.3,22697,2)
- ;;=^5062838
- ;;^UTILITY(U,$J,358.3,22698,0)
- ;;=Z71.89^^104^1057^4
- ;;^UTILITY(U,$J,358.3,22698,1,0)
+ ;;^UTILITY(U,$J,358.3,23143,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,23143,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,23143,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,23144,0)
+ ;;=T76.21XS^^87^992^5
+ ;;^UTILITY(U,$J,358.3,23144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22698,1,3,0)
- ;;=3^Counseling,Other Spec
- ;;^UTILITY(U,$J,358.3,22698,1,4,0)
- ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,23144,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,23144,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,23144,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,23145,0)
+ ;;=Y07.53^^87^992^7

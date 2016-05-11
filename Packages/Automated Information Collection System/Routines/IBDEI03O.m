@@ -1,138 +1,134 @@
-IBDEI03O ; ; 19-NOV-2015
+IBDEI03O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1008,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,1008,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,1009,0)
- ;;=E86.0^^12^123^1
- ;;^UTILITY(U,$J,358.3,1009,1,0)
+ ;;^UTILITY(U,$J,358.3,1290,1,4,0)
+ ;;=4^H72.812
+ ;;^UTILITY(U,$J,358.3,1290,2)
+ ;;=^5006755
+ ;;^UTILITY(U,$J,358.3,1291,0)
+ ;;=H72.811^^8^130^28
+ ;;^UTILITY(U,$J,358.3,1291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1009,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,1009,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,1009,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,1010,0)
- ;;=F03.90^^12^123^4
- ;;^UTILITY(U,$J,358.3,1010,1,0)
+ ;;^UTILITY(U,$J,358.3,1291,1,3,0)
+ ;;=3^Multiple perforations of tympanic membrane, right ear
+ ;;^UTILITY(U,$J,358.3,1291,1,4,0)
+ ;;=4^H72.811
+ ;;^UTILITY(U,$J,358.3,1291,2)
+ ;;=^5006754
+ ;;^UTILITY(U,$J,358.3,1292,0)
+ ;;=H72.2X3^^8^130^23
+ ;;^UTILITY(U,$J,358.3,1292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1010,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,1010,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,1010,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,1011,0)
- ;;=F02.80^^12^123^3
- ;;^UTILITY(U,$J,358.3,1011,1,0)
+ ;;^UTILITY(U,$J,358.3,1292,1,3,0)
+ ;;=3^Marginal perforations of tympanic membrane, bilateral NEC
+ ;;^UTILITY(U,$J,358.3,1292,1,4,0)
+ ;;=4^H72.2X3
+ ;;^UTILITY(U,$J,358.3,1292,2)
+ ;;=^5006752
+ ;;^UTILITY(U,$J,358.3,1293,0)
+ ;;=H72.2X2^^8^130^24
+ ;;^UTILITY(U,$J,358.3,1293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1011,1,3,0)
- ;;=3^Dementia in Oth Diseases w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,1011,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,1011,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,1012,0)
- ;;=F02.81^^12^123^2
- ;;^UTILITY(U,$J,358.3,1012,1,0)
+ ;;^UTILITY(U,$J,358.3,1293,1,3,0)
+ ;;=3^Marginal perforations of tympanic membrane, left ear NEC
+ ;;^UTILITY(U,$J,358.3,1293,1,4,0)
+ ;;=4^H72.2X2
+ ;;^UTILITY(U,$J,358.3,1293,2)
+ ;;=^5006751
+ ;;^UTILITY(U,$J,358.3,1294,0)
+ ;;=H72.2X1^^8^130^25
+ ;;^UTILITY(U,$J,358.3,1294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1012,1,3,0)
- ;;=3^Dementia in Oth Diseases w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,1012,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,1012,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,1013,0)
- ;;=F32.9^^12^123^6
- ;;^UTILITY(U,$J,358.3,1013,1,0)
+ ;;^UTILITY(U,$J,358.3,1294,1,3,0)
+ ;;=3^Marginal perforations of tympanic membrane, right ear NEC
+ ;;^UTILITY(U,$J,358.3,1294,1,4,0)
+ ;;=4^H72.2X1
+ ;;^UTILITY(U,$J,358.3,1294,2)
+ ;;=^5006750
+ ;;^UTILITY(U,$J,358.3,1295,0)
+ ;;=H69.83^^8^130^14
+ ;;^UTILITY(U,$J,358.3,1295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1013,1,3,0)
- ;;=3^Depressive Disorder,Major,Single Episode,Unspec
- ;;^UTILITY(U,$J,358.3,1013,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,1013,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,1014,0)
- ;;=K57.30^^12^123^19
- ;;^UTILITY(U,$J,358.3,1014,1,0)
+ ;;^UTILITY(U,$J,358.3,1295,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,1295,1,4,0)
+ ;;=4^H69.83
+ ;;^UTILITY(U,$J,358.3,1295,2)
+ ;;=^5006680
+ ;;^UTILITY(U,$J,358.3,1296,0)
+ ;;=H69.82^^8^130^16
+ ;;^UTILITY(U,$J,358.3,1296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1014,1,3,0)
- ;;=3^Diverticulosis Lg Intest w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,1014,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,1014,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,1015,0)
- ;;=R42.^^12^123^20
- ;;^UTILITY(U,$J,358.3,1015,1,0)
+ ;;^UTILITY(U,$J,358.3,1296,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,1296,1,4,0)
+ ;;=4^H69.82
+ ;;^UTILITY(U,$J,358.3,1296,2)
+ ;;=^5006679
+ ;;^UTILITY(U,$J,358.3,1297,0)
+ ;;=H69.81^^8^130^18
+ ;;^UTILITY(U,$J,358.3,1297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1015,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,1015,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,1015,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,1016,0)
- ;;=R06.00^^12^123^24
- ;;^UTILITY(U,$J,358.3,1016,1,0)
+ ;;^UTILITY(U,$J,358.3,1297,1,3,0)
+ ;;=3^Eustachian Tube Disorders,Right Ear NEC
+ ;;^UTILITY(U,$J,358.3,1297,1,4,0)
+ ;;=4^H69.81
+ ;;^UTILITY(U,$J,358.3,1297,2)
+ ;;=^5006678
+ ;;^UTILITY(U,$J,358.3,1298,0)
+ ;;=H69.03^^8^130^29
+ ;;^UTILITY(U,$J,358.3,1298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1016,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,1016,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,1016,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,1017,0)
- ;;=R13.10^^12^123^23
- ;;^UTILITY(U,$J,358.3,1017,1,0)
+ ;;^UTILITY(U,$J,358.3,1298,1,3,0)
+ ;;=3^Patulous Eustachian tube, bilateral
+ ;;^UTILITY(U,$J,358.3,1298,1,4,0)
+ ;;=4^H69.03
+ ;;^UTILITY(U,$J,358.3,1298,2)
+ ;;=^5006676
+ ;;^UTILITY(U,$J,358.3,1299,0)
+ ;;=H69.02^^8^130^30
+ ;;^UTILITY(U,$J,358.3,1299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1017,1,3,0)
- ;;=3^Dysphagia,Unspec
- ;;^UTILITY(U,$J,358.3,1017,1,4,0)
- ;;=4^R13.10
- ;;^UTILITY(U,$J,358.3,1017,2)
- ;;=^335307
- ;;^UTILITY(U,$J,358.3,1018,0)
- ;;=R19.7^^12^123^18
- ;;^UTILITY(U,$J,358.3,1018,1,0)
+ ;;^UTILITY(U,$J,358.3,1299,1,3,0)
+ ;;=3^Patulous Eustachian tube, left ear
+ ;;^UTILITY(U,$J,358.3,1299,1,4,0)
+ ;;=4^H69.02
+ ;;^UTILITY(U,$J,358.3,1299,2)
+ ;;=^5006675
+ ;;^UTILITY(U,$J,358.3,1300,0)
+ ;;=H69.01^^8^130^31
+ ;;^UTILITY(U,$J,358.3,1300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1018,1,3,0)
- ;;=3^Diarrhea,Unspec
- ;;^UTILITY(U,$J,358.3,1018,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,1018,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,1019,0)
- ;;=L30.9^^12^123^7
- ;;^UTILITY(U,$J,358.3,1019,1,0)
+ ;;^UTILITY(U,$J,358.3,1300,1,3,0)
+ ;;=3^Patulous Eustachian tube, right ear
+ ;;^UTILITY(U,$J,358.3,1300,1,4,0)
+ ;;=4^H69.01
+ ;;^UTILITY(U,$J,358.3,1300,2)
+ ;;=^5006674
+ ;;^UTILITY(U,$J,358.3,1301,0)
+ ;;=H60.333^^8^130^32
+ ;;^UTILITY(U,$J,358.3,1301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1019,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,1019,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,1019,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,1020,0)
- ;;=F33.9^^12^123^5
- ;;^UTILITY(U,$J,358.3,1020,1,0)
+ ;;^UTILITY(U,$J,358.3,1301,1,3,0)
+ ;;=3^Swimmer's ear, bilateral
+ ;;^UTILITY(U,$J,358.3,1301,1,4,0)
+ ;;=4^H60.333
+ ;;^UTILITY(U,$J,358.3,1301,2)
+ ;;=^5006457
+ ;;^UTILITY(U,$J,358.3,1302,0)
+ ;;=H60.332^^8^130^33
+ ;;^UTILITY(U,$J,358.3,1302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1020,1,3,0)
- ;;=3^Depression Disorder,Major,Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,1020,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,1020,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,1021,0)
- ;;=K44.9^^12^123^17
- ;;^UTILITY(U,$J,358.3,1021,1,0)
+ ;;^UTILITY(U,$J,358.3,1302,1,3,0)
+ ;;=3^Swimmer's ear, left ear
+ ;;^UTILITY(U,$J,358.3,1302,1,4,0)
+ ;;=4^H60.332
+ ;;^UTILITY(U,$J,358.3,1302,2)
+ ;;=^5006456
+ ;;^UTILITY(U,$J,358.3,1303,0)
+ ;;=H60.331^^8^130^34
+ ;;^UTILITY(U,$J,358.3,1303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1021,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obst/Gangr
- ;;^UTILITY(U,$J,358.3,1021,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,1021,2)
- ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,1303,1,3,0)
+ ;;=3^Swimmer's ear, right ear

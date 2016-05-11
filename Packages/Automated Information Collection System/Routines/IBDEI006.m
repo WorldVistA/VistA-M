@@ -1,97 +1,85 @@
-IBDEI006 ; ; 19-NOV-2015
+IBDEI006 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358,43,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,43,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,43,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,43,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,44,0)
- ;;=NATIONAL INPATIENT FY16-Q1^0^National Inpatient Form November 2015^1^0^1^1^^133^80^12^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,44,2,0)
- ;;=^358.02I^7^7
- ;;^UTILITY(U,$J,358,44,2,1,0)
- ;;=1^1
  ;;^UTILITY(U,$J,358,44,2,2,0)
  ;;=2^1
  ;;^UTILITY(U,$J,358,44,2,3,0)
  ;;=3^1
  ;;^UTILITY(U,$J,358,44,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,44,2,5,0)
  ;;=4^1
- ;;^UTILITY(U,$J,358,44,2,6,0)
+ ;;^UTILITY(U,$J,358,44,2,5,0)
  ;;=5^1
- ;;^UTILITY(U,$J,358,44,2,7,0)
+ ;;^UTILITY(U,$J,358,44,2,6,0)
  ;;=6^1
  ;;^UTILITY(U,$J,358,45,0)
- ;;=NATIONAL IR FY16-Q1^0^NATIONAL INTERVENTIONAL RADIOLOGY November 2015^1^0^1^1^^133^80^8^1^^1^p^1^2.1
+ ;;=NATL PREVENTIVE HEALTH FY16-Q2^1^National Preventive Health January 2016^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,45,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,45,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,45,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,45,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,45,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,45,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,45,2,6,0)
+ ;;=5^1
  ;;^UTILITY(U,$J,358,46,0)
- ;;=NATL LOW VISION-OPTOM FY16-Q1^1^National Low Vision Optometry November 2015^1^0^1^1^^133^80^7^1^^1^p^1
+ ;;=NATIONAL PRIMARY CARE FY16-Q2^1^National Primary Care Form February 2016^1^0^1^1^^133^80^30^1^^1^p^1^2.1
  ;;^UTILITY(U,$J,358,46,2,0)
- ;;=^358.02I^3^3
+ ;;=^358.02I^6^6
  ;;^UTILITY(U,$J,358,46,2,1,0)
  ;;=1^1
  ;;^UTILITY(U,$J,358,46,2,2,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,46,2,3,0)
  ;;=2^1
+ ;;^UTILITY(U,$J,358,46,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,46,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,46,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,46,2,6,0)
+ ;;=5^1
  ;;^UTILITY(U,$J,358,47,0)
- ;;=NATL MED FOSTER HOME FY16-Q1^1^National Medical Foster Home-October 2015^1^0^1^1^^133^80^29^1^^1^p^1^2.1
+ ;;=NATIONAL PULMONARY FY16-Q2^0^National Pulmonary February 2016^1^0^0^1^^133^80^12^1^^1^p^1
  ;;^UTILITY(U,$J,358,47,2,0)
- ;;=^358.02I^6^6
+ ;;=^358.02I^2^2
  ;;^UTILITY(U,$J,358,47,2,1,0)
  ;;=1^1
  ;;^UTILITY(U,$J,358,47,2,2,0)
  ;;=2^1
- ;;^UTILITY(U,$J,358,47,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,47,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,47,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,47,2,6,0)
- ;;=5^1
  ;;^UTILITY(U,$J,358,48,0)
- ;;=NATIONAL MEDICINE FY16-Q1^1^National Medicine Form October 2015^1^0^1^1^^133^80^29^1^^1^p^1^2.1
+ ;;=NATIONAL RESP THERAPY FY16-Q2^0^National Repiratory Therapy (PFT/Sleep/Oxygen) February 2016^1^0^1^1^^133^80^12^1^^1^p^1^2.1
  ;;^UTILITY(U,$J,358,48,2,0)
- ;;=^358.02I^6^6
+ ;;=^358.02I^2^2
  ;;^UTILITY(U,$J,358,48,2,1,0)
- ;;=1^1
+ ;;=2^1
  ;;^UTILITY(U,$J,358,48,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,48,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,48,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,48,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,48,2,6,0)
- ;;=5^1
+ ;;=1^1
  ;;^UTILITY(U,$J,358,49,0)
- ;;=NATIONAL MH MHICM FY16-Q1^1^National MH Intensive Program October 2015^1^0^1^1^^133^80^8^1^^1^p^1^3
+ ;;=NATIONAL RHEUMATOLOGY FY16-Q2^1^National Rheumatology January 2016^1^0^1^1^^133^80^10^1^^1^p^1^2.1
  ;;^UTILITY(U,$J,358,49,2,0)
  ;;=^358.02I^3^3
  ;;^UTILITY(U,$J,358,49,2,1,0)
  ;;=1^1
  ;;^UTILITY(U,$J,358,49,2,2,0)
- ;;=2^1
+ ;;=4^1
  ;;^UTILITY(U,$J,358,49,2,3,0)
  ;;=3^1
  ;;^UTILITY(U,$J,358,50,0)
- ;;=NATIONAL MH NURSE FY16-Q1^0^National Mental Health Nurse October 2015^1^0^1^1^^133^80^7^1^^1^p^1^3
+ ;;=NATIONAL SLEEP MED FY16-Q2^0^NATIONAL SLEEP MEDICINE January 2016^1^0^1^1^^133^80^2^0^^1^p^1^2.1
  ;;^UTILITY(U,$J,358,50,2,0)
  ;;=^358.02I^2^2
  ;;^UTILITY(U,$J,358,50,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,50,2,2,0)
  ;;=2^1
+ ;;^UTILITY(U,$J,358,50,2,2,0)
+ ;;=1^1
  ;;^UTILITY(U,$J,358,51,0)
- ;;=NATIONAL MH PHARM FY16-Q1^2^NATIONAL MHS CLINICAL PHARMACISTS-REVIEWED/REVISED October 2015^1^0^1^1^^133^80^6^1^^1^p^1^2.1
+ ;;=NATIONAL SWS MH FY16-Q2^0^National Social Work Service Mental Health February 2016^1^0^1^1^^133^80^9^1^^1^p^1^3
  ;;^UTILITY(U,$J,358,51,2,0)
  ;;=^358.02I^2^2
  ;;^UTILITY(U,$J,358,51,2,1,0)
@@ -99,23 +87,25 @@ Q Q
  ;;^UTILITY(U,$J,358,51,2,2,0)
  ;;=2^1
  ;;^UTILITY(U,$J,358,52,0)
- ;;=NATL MH PSYCHIATRIST FY16-Q1^0^National Mental Health Psychiatrist October 2015^1^0^1^1^^133^80^7^1^^1^p^1^3
+ ;;=NATIONAL TBI FY16-Q2^1^National Traumatic Brain Injury January 2016^1^0^1^1^^133^80^2^1^^1^p^1^2.1
  ;;^UTILITY(U,$J,358,52,2,0)
- ;;=^358.02I^2^2
+ ;;=^358.02I^6^6
  ;;^UTILITY(U,$J,358,52,2,1,0)
  ;;=1^1
  ;;^UTILITY(U,$J,358,52,2,2,0)
  ;;=2^1
- ;;^UTILITY(U,$J,358,53,0)
- ;;=NATL MH PSYCHOLOGIST FY16-Q1^0^National Mental Health Psychologist October 2015^1^0^1^1^^133^80^7^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,53,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,53,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,53,2,2,0)
+ ;;^UTILITY(U,$J,358,52,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,52,2,4,0)
  ;;=2^1
+ ;;^UTILITY(U,$J,358,52,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,52,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,53,0)
+ ;;=NATIONAL TELEDERM FY16-Q2^0^National Telederm January 2016^1^0^^1^^133^80^6^1^^1^p^1^3
  ;;^UTILITY(U,$J,358,54,0)
- ;;=NATIONAL MOVE! FY16-Q1^2^NATIONAL MOVE!-November 2015^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;=NATIONAL TELERETINAL FY16-Q2^2^National Teleretinal Exams-February 2016^1^0^1^1^^133^80^12^1^^1^p^1^3
  ;;^UTILITY(U,$J,358,54,2,0)
  ;;=^358.02I^2^2
  ;;^UTILITY(U,$J,358,54,2,1,0)
@@ -123,4 +113,14 @@ Q Q
  ;;^UTILITY(U,$J,358,54,2,2,0)
  ;;=2^1
  ;;^UTILITY(U,$J,358,55,0)
- ;;=NATIONAL NEPHROLOGY FY16-Q1^2^National Nephrology November 2015^1^0^1^1^^133^80^6^1^^1^p^1^3
+ ;;=NATIONAL TRANSPLANT FY16-Q2^0^National Transplant February 2016^1^0^1^1^^133^80^4^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,56,0)
+ ;;=NATIONAL URGENT CARE FY16-Q2^2^NATIONAL URGENT CARE February 2016^1^0^0^1^^133^80^30^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,56,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,56,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,56,2,2,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,56,2,3,0)
+ ;;=2^1

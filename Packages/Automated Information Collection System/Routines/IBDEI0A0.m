@@ -1,134 +1,138 @@
-IBDEI0A0 ; ; 19-NOV-2015
+IBDEI0A0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4153,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,4153,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,4154,0)
- ;;=Z97.2^^28^263^38
- ;;^UTILITY(U,$J,358.3,4154,1,0)
+ ;;^UTILITY(U,$J,358.3,4441,1,4,0)
+ ;;=4^C4A.12
+ ;;^UTILITY(U,$J,358.3,4441,2)
+ ;;=^5001140
+ ;;^UTILITY(U,$J,358.3,4442,0)
+ ;;=C4A.11^^21^277^75
+ ;;^UTILITY(U,$J,358.3,4442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4154,1,3,0)
- ;;=3^Dental Prosthetic Device
- ;;^UTILITY(U,$J,358.3,4154,1,4,0)
- ;;=4^Z97.2
- ;;^UTILITY(U,$J,358.3,4154,2)
- ;;=^5063728
- ;;^UTILITY(U,$J,358.3,4155,0)
- ;;=Z99.89^^28^263^39
- ;;^UTILITY(U,$J,358.3,4155,1,0)
+ ;;^UTILITY(U,$J,358.3,4442,1,3,0)
+ ;;=3^Merkle Cell CA,Right Eyelid,Incl Canthus
+ ;;^UTILITY(U,$J,358.3,4442,1,4,0)
+ ;;=4^C4A.11
+ ;;^UTILITY(U,$J,358.3,4442,2)
+ ;;=^5001139
+ ;;^UTILITY(U,$J,358.3,4443,0)
+ ;;=C4A.72^^21^277^67
+ ;;^UTILITY(U,$J,358.3,4443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4155,1,3,0)
- ;;=3^Dependence on Enabling Machines/Devices
- ;;^UTILITY(U,$J,358.3,4155,1,4,0)
- ;;=4^Z99.89
- ;;^UTILITY(U,$J,358.3,4155,2)
- ;;=^5063761
- ;;^UTILITY(U,$J,358.3,4156,0)
- ;;=Z66.^^28^263^40
- ;;^UTILITY(U,$J,358.3,4156,1,0)
+ ;;^UTILITY(U,$J,358.3,4443,1,3,0)
+ ;;=3^Merkle Cell CA,Left Lower Limb,Incl Hip
+ ;;^UTILITY(U,$J,358.3,4443,1,4,0)
+ ;;=4^C4A.72
+ ;;^UTILITY(U,$J,358.3,4443,2)
+ ;;=^5001156
+ ;;^UTILITY(U,$J,358.3,4444,0)
+ ;;=C4A.62^^21^277^68
+ ;;^UTILITY(U,$J,358.3,4444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4156,1,3,0)
- ;;=3^Do Not Resuscitate
- ;;^UTILITY(U,$J,358.3,4156,1,4,0)
- ;;=4^Z66.
- ;;^UTILITY(U,$J,358.3,4156,2)
- ;;=^5063187
- ;;^UTILITY(U,$J,358.3,4157,0)
- ;;=Z79.2^^28^263^41
- ;;^UTILITY(U,$J,358.3,4157,1,0)
+ ;;^UTILITY(U,$J,358.3,4444,1,3,0)
+ ;;=3^Merkle Cell CA,Left Upper Limb,Incl Shoulder
+ ;;^UTILITY(U,$J,358.3,4444,1,4,0)
+ ;;=4^C4A.62
+ ;;^UTILITY(U,$J,358.3,4444,2)
+ ;;=^5001153
+ ;;^UTILITY(U,$J,358.3,4445,0)
+ ;;=C4A.71^^21^277^76
+ ;;^UTILITY(U,$J,358.3,4445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4157,1,3,0)
- ;;=3^Drug Therapy,Antibiotics,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4157,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,4157,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,4158,0)
- ;;=Z79.01^^28^263^42
- ;;^UTILITY(U,$J,358.3,4158,1,0)
+ ;;^UTILITY(U,$J,358.3,4445,1,3,0)
+ ;;=3^Merkle Cell CA,Right Lower Limb,Incl Hip
+ ;;^UTILITY(U,$J,358.3,4445,1,4,0)
+ ;;=4^C4A.71
+ ;;^UTILITY(U,$J,358.3,4445,2)
+ ;;=^5001155
+ ;;^UTILITY(U,$J,358.3,4446,0)
+ ;;=C4A.61^^21^277^77
+ ;;^UTILITY(U,$J,358.3,4446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4158,1,3,0)
- ;;=3^Drug Therapy,Anticoagulants,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4158,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,4158,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,4159,0)
- ;;=Z79.02^^28^263^43
- ;;^UTILITY(U,$J,358.3,4159,1,0)
+ ;;^UTILITY(U,$J,358.3,4446,1,3,0)
+ ;;=3^Merkle Cell CA,Right Upper Limb,Incl Shoulder
+ ;;^UTILITY(U,$J,358.3,4446,1,4,0)
+ ;;=4^C4A.61
+ ;;^UTILITY(U,$J,358.3,4446,2)
+ ;;=^5001152
+ ;;^UTILITY(U,$J,358.3,4447,0)
+ ;;=C4A.31^^21^277^70
+ ;;^UTILITY(U,$J,358.3,4447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4159,1,3,0)
- ;;=3^Drug Therapy,Antithrombotics/Antiplateletes,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4159,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,4159,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,4160,0)
- ;;=Z79.82^^28^263^44
- ;;^UTILITY(U,$J,358.3,4160,1,0)
+ ;;^UTILITY(U,$J,358.3,4447,1,3,0)
+ ;;=3^Merkle Cell CA,Nose
+ ;;^UTILITY(U,$J,358.3,4447,1,4,0)
+ ;;=4^C4A.31
+ ;;^UTILITY(U,$J,358.3,4447,2)
+ ;;=^5001145
+ ;;^UTILITY(U,$J,358.3,4448,0)
+ ;;=C4A.39^^21^277^72
+ ;;^UTILITY(U,$J,358.3,4448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4160,1,3,0)
- ;;=3^Drug Therapy,Aspirin,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4160,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,4160,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,4161,0)
- ;;=Z79.83^^28^263^45
- ;;^UTILITY(U,$J,358.3,4161,1,0)
+ ;;^UTILITY(U,$J,358.3,4448,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Face,Other
+ ;;^UTILITY(U,$J,358.3,4448,1,4,0)
+ ;;=4^C4A.39
+ ;;^UTILITY(U,$J,358.3,4448,2)
+ ;;=^5001146
+ ;;^UTILITY(U,$J,358.3,4449,0)
+ ;;=C4A.59^^21^277^73
+ ;;^UTILITY(U,$J,358.3,4449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4161,1,3,0)
- ;;=3^Drug Therapy,Bisphosphonates,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4161,1,4,0)
- ;;=4^Z79.83
- ;;^UTILITY(U,$J,358.3,4161,2)
- ;;=^5063341
- ;;^UTILITY(U,$J,358.3,4162,0)
- ;;=Z79.890^^28^263^46
- ;;^UTILITY(U,$J,358.3,4162,1,0)
+ ;;^UTILITY(U,$J,358.3,4449,1,3,0)
+ ;;=3^Merkle Cell CA,Parts of Trunk,Other
+ ;;^UTILITY(U,$J,358.3,4449,1,4,0)
+ ;;=4^C4A.59
+ ;;^UTILITY(U,$J,358.3,4449,2)
+ ;;=^5001150
+ ;;^UTILITY(U,$J,358.3,4450,0)
+ ;;=C4A.8^^21^277^71
+ ;;^UTILITY(U,$J,358.3,4450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4162,1,3,0)
- ;;=3^Drug Therapy,Hormone Replacement Therapy
- ;;^UTILITY(U,$J,358.3,4162,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,4162,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,4163,0)
- ;;=Z79.4^^28^263^48
- ;;^UTILITY(U,$J,358.3,4163,1,0)
+ ;;^UTILITY(U,$J,358.3,4450,1,3,0)
+ ;;=3^Merkle Cell CA,Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,4450,1,4,0)
+ ;;=4^C4A.8
+ ;;^UTILITY(U,$J,358.3,4450,2)
+ ;;=^5001157
+ ;;^UTILITY(U,$J,358.3,4451,0)
+ ;;=C4A.9^^21^277^78
+ ;;^UTILITY(U,$J,358.3,4451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4163,1,3,0)
- ;;=3^Drug Therapy,Insulin,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4163,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,4163,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,4164,0)
- ;;=Z79.1^^28^263^49
- ;;^UTILITY(U,$J,358.3,4164,1,0)
+ ;;^UTILITY(U,$J,358.3,4451,1,3,0)
+ ;;=3^Merkle Cell CA,Unspec
+ ;;^UTILITY(U,$J,358.3,4451,1,4,0)
+ ;;=4^C4A.9
+ ;;^UTILITY(U,$J,358.3,4451,2)
+ ;;=^5001158
+ ;;^UTILITY(U,$J,358.3,4452,0)
+ ;;=I78.1^^21^278^8
+ ;;^UTILITY(U,$J,358.3,4452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4164,1,3,0)
- ;;=3^Drug Therapy,NSAID,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4164,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,4164,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,4165,0)
- ;;=Z79.891^^28^263^50
- ;;^UTILITY(U,$J,358.3,4165,1,0)
+ ;;^UTILITY(U,$J,358.3,4452,1,3,0)
+ ;;=3^Nevus,Non-Neoplastic
+ ;;^UTILITY(U,$J,358.3,4452,1,4,0)
+ ;;=4^I78.1
+ ;;^UTILITY(U,$J,358.3,4452,2)
+ ;;=^269807
+ ;;^UTILITY(U,$J,358.3,4453,0)
+ ;;=L60.3^^21^278^2
+ ;;^UTILITY(U,$J,358.3,4453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4165,1,3,0)
- ;;=3^Drug Therapy,Opiate Analgesic,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,4165,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,4165,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,4166,0)
- ;;=Z79.899^^28^263^51
- ;;^UTILITY(U,$J,358.3,4166,1,0)
+ ;;^UTILITY(U,$J,358.3,4453,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,4453,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,4453,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,4454,0)
+ ;;=L92.1^^21^278^4
+ ;;^UTILITY(U,$J,358.3,4454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4166,1,3,0)
- ;;=3^Drug Therapy,Other Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,4454,1,3,0)
+ ;;=3^Necrobiosis Lipoidica NEC
+ ;;^UTILITY(U,$J,358.3,4454,1,4,0)
+ ;;=4^L92.1
+ ;;^UTILITY(U,$J,358.3,4454,2)
+ ;;=^5009462

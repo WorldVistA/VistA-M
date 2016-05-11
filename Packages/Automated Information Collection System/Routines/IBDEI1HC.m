@@ -1,140 +1,124 @@
-IBDEI1HC ; ; 19-NOV-2015
+IBDEI1HC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24741,0)
- ;;=T50.905A^^121^1222^83
- ;;^UTILITY(U,$J,358.3,24741,1,0)
+ ;;^UTILITY(U,$J,358.3,25122,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,25122,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,25123,0)
+ ;;=T74.21XA^^95^1139^13
+ ;;^UTILITY(U,$J,358.3,25123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24741,1,3,0)
- ;;=3^Side Effect of Medication,Init Encntr
- ;;^UTILITY(U,$J,358.3,24741,1,4,0)
- ;;=4^T50.905A
- ;;^UTILITY(U,$J,358.3,24741,2)
- ;;=^5052160
- ;;^UTILITY(U,$J,358.3,24742,0)
- ;;=J01.90^^121^1222^84
- ;;^UTILITY(U,$J,358.3,24742,1,0)
+ ;;^UTILITY(U,$J,358.3,25123,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,25123,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,25123,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,25124,0)
+ ;;=T74.21XD^^95^1139^14
+ ;;^UTILITY(U,$J,358.3,25124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24742,1,3,0)
- ;;=3^Sinusitis,Acute
- ;;^UTILITY(U,$J,358.3,24742,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,24742,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,24743,0)
- ;;=J32.9^^121^1222^85
- ;;^UTILITY(U,$J,358.3,24743,1,0)
+ ;;^UTILITY(U,$J,358.3,25124,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,25124,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,25124,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,25125,0)
+ ;;=T76.21XA^^95^1139^15
+ ;;^UTILITY(U,$J,358.3,25125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24743,1,3,0)
- ;;=3^Sinusitis,Chronic
- ;;^UTILITY(U,$J,358.3,24743,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,24743,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,24744,0)
- ;;=R61.^^121^1222^86
- ;;^UTILITY(U,$J,358.3,24744,1,0)
+ ;;^UTILITY(U,$J,358.3,25125,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,25125,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,25125,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,25126,0)
+ ;;=T76.21XD^^95^1139^16
+ ;;^UTILITY(U,$J,358.3,25126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24744,1,3,0)
- ;;=3^Sweats/Night Sweats
- ;;^UTILITY(U,$J,358.3,24744,1,4,0)
- ;;=4^R61.
- ;;^UTILITY(U,$J,358.3,24744,2)
- ;;=^331970
- ;;^UTILITY(U,$J,358.3,24745,0)
- ;;=A51.0^^121^1222^88
- ;;^UTILITY(U,$J,358.3,24745,1,0)
+ ;;^UTILITY(U,$J,358.3,25126,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,25126,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,25126,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,25127,0)
+ ;;=Z69.81^^95^1139^27
+ ;;^UTILITY(U,$J,358.3,25127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24745,1,3,0)
- ;;=3^Syphilis,Genital,Primary
- ;;^UTILITY(U,$J,358.3,24745,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,24745,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,24746,0)
- ;;=A51.5^^121^1222^87
- ;;^UTILITY(U,$J,358.3,24746,1,0)
+ ;;^UTILITY(U,$J,358.3,25127,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,25127,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,25127,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,25128,0)
+ ;;=Z69.82^^95^1139^21
+ ;;^UTILITY(U,$J,358.3,25128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24746,1,3,0)
- ;;=3^Syphilis,EArly Latent
- ;;^UTILITY(U,$J,358.3,24746,1,4,0)
- ;;=4^A51.5
- ;;^UTILITY(U,$J,358.3,24746,2)
- ;;=^266730
- ;;^UTILITY(U,$J,358.3,24747,0)
- ;;=A52.8^^121^1222^89
- ;;^UTILITY(U,$J,358.3,24747,1,0)
+ ;;^UTILITY(U,$J,358.3,25128,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,25128,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,25128,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,25129,0)
+ ;;=T74.01XA^^95^1139^1
+ ;;^UTILITY(U,$J,358.3,25129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24747,1,3,0)
- ;;=3^Syphilis,Late Latent
- ;;^UTILITY(U,$J,358.3,24747,1,4,0)
- ;;=4^A52.8
- ;;^UTILITY(U,$J,358.3,24747,2)
- ;;=^266779
- ;;^UTILITY(U,$J,358.3,24748,0)
- ;;=A52.3^^121^1222^90
- ;;^UTILITY(U,$J,358.3,24748,1,0)
+ ;;^UTILITY(U,$J,358.3,25129,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,25129,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,25129,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,25130,0)
+ ;;=T74.01XD^^95^1139^2
+ ;;^UTILITY(U,$J,358.3,25130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24748,1,3,0)
- ;;=3^Syphilis,Neurosyphilis
- ;;^UTILITY(U,$J,358.3,24748,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,24748,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,24749,0)
- ;;=A52.9^^121^1222^91
- ;;^UTILITY(U,$J,358.3,24749,1,0)
+ ;;^UTILITY(U,$J,358.3,25130,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,25130,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,25130,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,25131,0)
+ ;;=T76.01XA^^95^1139^3
+ ;;^UTILITY(U,$J,358.3,25131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24749,1,3,0)
- ;;=3^Syphilis,Tertiary
- ;;^UTILITY(U,$J,358.3,24749,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,24749,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,24750,0)
- ;;=A15.8^^121^1222^93
- ;;^UTILITY(U,$J,358.3,24750,1,0)
+ ;;^UTILITY(U,$J,358.3,25131,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,25131,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,25131,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,25132,0)
+ ;;=T76.01XD^^95^1139^4
+ ;;^UTILITY(U,$J,358.3,25132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24750,1,3,0)
- ;;=3^Tuberculosis NEC
- ;;^UTILITY(U,$J,358.3,24750,1,4,0)
- ;;=4^A15.8
- ;;^UTILITY(U,$J,358.3,24750,2)
- ;;=^266093
- ;;^UTILITY(U,$J,358.3,24751,0)
- ;;=A15.0^^121^1222^95
- ;;^UTILITY(U,$J,358.3,24751,1,0)
+ ;;^UTILITY(U,$J,358.3,25132,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,25132,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,25132,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,25133,0)
+ ;;=Z91.412^^95^1139^31
+ ;;^UTILITY(U,$J,358.3,25133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24751,1,3,0)
- ;;=3^Tuberculosis,Pulmonary
- ;;^UTILITY(U,$J,358.3,24751,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,24751,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,24752,0)
- ;;=R76.11^^121^1222^94
- ;;^UTILITY(U,$J,358.3,24752,1,0)
+ ;;^UTILITY(U,$J,358.3,25133,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,25133,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,25133,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,25134,0)
+ ;;=T74.31XA^^95^1139^9
+ ;;^UTILITY(U,$J,358.3,25134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24752,1,3,0)
- ;;=3^Tuberculosis,Latent
- ;;^UTILITY(U,$J,358.3,24752,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,24752,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,24753,0)
- ;;=N34.2^^121^1222^97
- ;;^UTILITY(U,$J,358.3,24753,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24753,1,3,0)
- ;;=3^Urethritis NEC
- ;;^UTILITY(U,$J,358.3,24753,1,4,0)
- ;;=4^N34.2
- ;;^UTILITY(U,$J,358.3,24753,2)
- ;;=^88231
- ;;^UTILITY(U,$J,358.3,24754,0)
- ;;=N39.0^^121^1222^96
- ;;^UTILITY(U,$J,358.3,24754,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24754,1,3,0)
- ;;=3^UTI
+ ;;^UTILITY(U,$J,358.3,25134,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  

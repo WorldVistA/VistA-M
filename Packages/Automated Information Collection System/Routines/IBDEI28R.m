@@ -1,124 +1,126 @@
-IBDEI28R ; ; 19-NOV-2015
+IBDEI28R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37637,2)
- ;;=^5027663
- ;;^UTILITY(U,$J,358.3,37638,0)
- ;;=S40.012D^^172^1888^14
- ;;^UTILITY(U,$J,358.3,37638,1,0)
+ ;;^UTILITY(U,$J,358.3,38025,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,38025,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,38025,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,38026,0)
+ ;;=G90.3^^145^1832^25
+ ;;^UTILITY(U,$J,358.3,38026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37638,1,3,0)
- ;;=3^Contusion of left shoulder, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37638,1,4,0)
- ;;=4^S40.012D
- ;;^UTILITY(U,$J,358.3,37638,2)
- ;;=^5026157
- ;;^UTILITY(U,$J,358.3,37639,0)
- ;;=S40.011D^^172^1888^16
- ;;^UTILITY(U,$J,358.3,37639,1,0)
+ ;;^UTILITY(U,$J,358.3,38026,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,38026,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,38026,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,38027,0)
+ ;;=G91.2^^145^1832^26
+ ;;^UTILITY(U,$J,358.3,38027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37639,1,3,0)
- ;;=3^Contusion of right shoulder, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37639,1,4,0)
- ;;=4^S40.011D
- ;;^UTILITY(U,$J,358.3,37639,2)
- ;;=^5026154
- ;;^UTILITY(U,$J,358.3,37640,0)
- ;;=S43.102D^^172^1888^18
- ;;^UTILITY(U,$J,358.3,37640,1,0)
+ ;;^UTILITY(U,$J,358.3,38027,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,38027,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,38027,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,38028,0)
+ ;;=G91.2^^145^1832^27
+ ;;^UTILITY(U,$J,358.3,38028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37640,1,3,0)
- ;;=3^Dislocation of left acromioclavicular joint, subs
- ;;^UTILITY(U,$J,358.3,37640,1,4,0)
- ;;=4^S43.102D
- ;;^UTILITY(U,$J,358.3,37640,2)
- ;;=^5027733
- ;;^UTILITY(U,$J,358.3,37641,0)
- ;;=S43.101D^^172^1888^22
- ;;^UTILITY(U,$J,358.3,37641,1,0)
+ ;;^UTILITY(U,$J,358.3,38028,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavorial Disturbances
+ ;;^UTILITY(U,$J,358.3,38028,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,38028,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,38029,0)
+ ;;=G30.8^^145^1832^2
+ ;;^UTILITY(U,$J,358.3,38029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37641,1,3,0)
- ;;=3^Dislocation of right acromioclavicular joint, subs
- ;;^UTILITY(U,$J,358.3,37641,1,4,0)
- ;;=4^S43.101D
- ;;^UTILITY(U,$J,358.3,37641,2)
- ;;=^5027730
- ;;^UTILITY(U,$J,358.3,37642,0)
- ;;=S43.004D^^172^1888^24
- ;;^UTILITY(U,$J,358.3,37642,1,0)
+ ;;^UTILITY(U,$J,358.3,38029,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,38029,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,38029,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,38030,0)
+ ;;=A81.89^^145^1832^6
+ ;;^UTILITY(U,$J,358.3,38030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37642,1,3,0)
- ;;=3^Dislocation of right shoulder joint, subs encntr
- ;;^UTILITY(U,$J,358.3,37642,1,4,0)
- ;;=4^S43.004D
- ;;^UTILITY(U,$J,358.3,37642,2)
- ;;=^5027664
- ;;^UTILITY(U,$J,358.3,37643,0)
- ;;=S42.002D^^172^1888^27
- ;;^UTILITY(U,$J,358.3,37643,1,0)
+ ;;^UTILITY(U,$J,358.3,38030,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,38030,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,38030,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,38031,0)
+ ;;=F19.97^^145^1832^35
+ ;;^UTILITY(U,$J,358.3,38031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37643,1,3,0)
- ;;=3^Fx unsp part of l clavicle, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,37643,1,4,0)
- ;;=4^S42.002D
- ;;^UTILITY(U,$J,358.3,37643,2)
- ;;=^5026378
- ;;^UTILITY(U,$J,358.3,37644,0)
- ;;=S42.001D^^172^1888^28
- ;;^UTILITY(U,$J,358.3,37644,1,0)
+ ;;^UTILITY(U,$J,358.3,38031,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,38031,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,38031,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,38032,0)
+ ;;=G20.^^145^1832^28
+ ;;^UTILITY(U,$J,358.3,38032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37644,1,3,0)
- ;;=3^Fx unsp part of r clavicle, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,37644,1,4,0)
- ;;=4^S42.001D
- ;;^UTILITY(U,$J,358.3,37644,2)
- ;;=^5026371
- ;;^UTILITY(U,$J,358.3,37645,0)
- ;;=S43.025D^^172^1888^38
- ;;^UTILITY(U,$J,358.3,37645,1,0)
+ ;;^UTILITY(U,$J,358.3,38032,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,38032,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,38032,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,38033,0)
+ ;;=G20.^^145^1832^29
+ ;;^UTILITY(U,$J,358.3,38033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37645,1,3,0)
- ;;=3^Posterior dislocation of left humerus, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37645,1,4,0)
- ;;=4^S43.025D
- ;;^UTILITY(U,$J,358.3,37645,2)
- ;;=^5027700
- ;;^UTILITY(U,$J,358.3,37646,0)
- ;;=S43.024D^^172^1888^40
- ;;^UTILITY(U,$J,358.3,37646,1,0)
+ ;;^UTILITY(U,$J,358.3,38033,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,38033,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,38033,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,38034,0)
+ ;;=G23.1^^145^1832^34
+ ;;^UTILITY(U,$J,358.3,38034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37646,1,3,0)
- ;;=3^Posterior dislocation of right humerus, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37646,1,4,0)
- ;;=4^S43.024D
- ;;^UTILITY(U,$J,358.3,37646,2)
- ;;=^5027697
- ;;^UTILITY(U,$J,358.3,37647,0)
- ;;=M19.111^^172^1888^36
- ;;^UTILITY(U,$J,358.3,37647,1,0)
+ ;;^UTILITY(U,$J,358.3,38034,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,38034,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,38034,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,38035,0)
+ ;;=F03.91^^145^1832^15
+ ;;^UTILITY(U,$J,358.3,38035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37647,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,37647,1,4,0)
- ;;=4^M19.111
- ;;^UTILITY(U,$J,358.3,37647,2)
- ;;=^5010823
- ;;^UTILITY(U,$J,358.3,37648,0)
- ;;=M19.112^^172^1888^35
- ;;^UTILITY(U,$J,358.3,37648,1,0)
+ ;;^UTILITY(U,$J,358.3,38035,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,38035,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,38035,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,38036,0)
+ ;;=F03.90^^145^1832^17
+ ;;^UTILITY(U,$J,358.3,38036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37648,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,37648,1,4,0)
- ;;=4^M19.112
- ;;^UTILITY(U,$J,358.3,37648,2)
- ;;=^5010824
- ;;^UTILITY(U,$J,358.3,37649,0)
- ;;=M19.211^^172^1888^48
- ;;^UTILITY(U,$J,358.3,37649,1,0)
+ ;;^UTILITY(U,$J,358.3,38036,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,38036,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,38036,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,38037,0)
+ ;;=F06.30^^145^1833^2
+ ;;^UTILITY(U,$J,358.3,38037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37649,1,3,0)
- ;;=3^Secondary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,37649,1,4,0)
- ;;=4^M19.211
+ ;;^UTILITY(U,$J,358.3,38037,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec

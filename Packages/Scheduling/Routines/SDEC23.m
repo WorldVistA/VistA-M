@@ -1,0 +1,111 @@
+SDEC23 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
+ ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+ ;
+ Q
+ ;
+ ;
+EVENT(SDECEVENT,SDECPARAM,SDECSIP,SDECSPT) ;EP
+ ;Raise event to interested clients
+ ;Clients are listed in ^TMP("SDEC23",$J,"EVENT",EVENT_NAME,IP,PORT)
+ ;SDECSIP and SDECSPT represent the sender's IP and PORT.
+ ;The event will not be raised back to the sender if these are non-null
+ ;
+ N POP,X
+ Q:'$D(^TMP("SDEC23",$J,"EVENT",SDECEVENT))
+ S SDECIP=0 F  S SDECIP=$O(^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP)) Q:SDECIP=""  D
+ . S SDECPORT=0 F  S SDECPORT=$O(^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT)) Q:'+SDECPORT  D
+ . . I SDECIP=SDECSIP Q  ;,SDECPORT=SDECSPT Q
+ . . D CALL^%ZISTCP(SDECIP,SDECPORT,5)
+ . . I POP K ^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT) Q
+ . . ;U IO R X#3:5
+ . . I X'="ACK" K ^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT) Q
+ . . S SDECPARAM=$S(SDECPARAM="":"",1:U_SDECPARAM)
+ . . U IO W SDECEVENT,SDECPARAM,!
+ . . D ^%ZISC
+ . . Q
+ . Q
+ Q
+ ;
+EVERR(SDECEVENT,SDECIP,SDECPORT) ;
+ ;
+ Q:$G(SDECEVENT)=""
+ Q:$G(SDECIP)=""
+ Q:$G(SDECIP)=""
+ K ^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT)
+ Q
+ ;
+REGET ;EP
+ ;Error trap from REGEVNT
+ ;
+ I '$D(SDECI) N SDECI S SDECI=999
+ S SDECI=SDECI+1
+ D REGERR(SDECI,99)
+ Q
+ ;
+REGERR(SDECI,SDECERID) ;Error processing
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)=SDECERID_$C(30)
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)=$C(31)
+ Q
+ ;
+ ;
+REGEVENT(SDECY,SDECEVENT,SDECIP,SDECPORT) ;Called by client to inform VISTA server of client's interest in SDECEVENT
+ ;REGEVENT(SDECY,SDECEVENT,SDECIP,SDECPORT)  external parameter tag is in SDEC
+ ;SDECEVENT - Event to register with VistA
+ ;SDECIP    - Client IP address
+ ;SDECPORT  - Client Port
+ ;Returns RECORDSET with field ERRORID.
+ ;If everything ok then ERRORID = 0;
+ ;
+ N SDECI
+ S SDECI=0
+ S SDECY="^TMP(""SDEC"","_$J_")"
+ K @SDECY
+ S ^TMP("SDEC",$J,0)="I00020ERRORID"_$C(30)
+ I '+SDECPORT D REGERR(SDECI,1) Q
+ I SDECIP="" D REGERR(SDECI,2) Q
+ S ^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT)=""
+ ;
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)="0"_$C(30)_$C(31)
+ Q
+ ;
+UNREGEV(SDECY,SDECEVENT,SDECIP,SDECPORT) ;Called by client to Unregister client's interest in SDECEVENT
+ ;UNREGEV(SDECY,SDECEVENT,SDECIP,SDECPORT)  external parameter tag in SDEC
+ ;Returns RECORDSET with field ERRORID.
+ ;If everything ok then ERRORID = 0;
+ ;
+ N SDECI
+ S SDECI=0
+ S SDECY="^TMP(""SDEC"","_$J_")"
+ K @SDECY
+ S ^TMP("SDEC",$J,0)="I00020ERRORID"_$C(30)
+ I '+SDECPORT D REGERR(SDECI,1) Q
+ I SDECIP="" D REGERR(SDECI,2) Q
+ K ^TMP("SDEC23",$J,"EVENT",SDECEVENT,SDECIP,SDECPORT)
+ ;
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)="0"_$C(30)_$C(31)
+ Q
+ ;
+RAISEVNT(SDECY,SDECEVENT,SDECPARAM,SDECSIP,SDECSPT) ;RAISE EVENT
+ ;RAISEVNT(SDECY,SDECEVENT,SDECPARAM,SDECSIP,SDECSPT)  external parameter tag is in SDEC
+ ;RPC Called to raise event SDECEVENT with parameter SDECPARAM
+ ;SDECSIP and SDECSPT represent the sender's IP and PORT.
+ ;If not null, these will prevent the event from being raised back
+ ;to the sender.
+ ;Returns a RECORDSET wit the field ERRORID.
+ ;If everything ok then ERRORID = 0;
+ ;
+ N SDECI
+ S SDECI=0
+ S SDECY="^TMP(""SDEC"","_$J_")"
+ K @SDECY
+ S ^TMP("SDEC",$J,0)="I00020ERRORID"_$C(30)
+ ;
+ D EVENT(SDECEVENT,SDECPARAM,SDECSIP,SDECSPT)
+ ;
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)="0"_$C(30)_$C(31)
+ Q

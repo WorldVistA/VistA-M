@@ -1,122 +1,126 @@
-IBDEI1Q6 ; ; 19-NOV-2015
+IBDEI1Q6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28861,0)
- ;;=W17.89XA^^132^1339^55
- ;;^UTILITY(U,$J,358.3,28861,1,0)
+ ;;^UTILITY(U,$J,358.3,29278,2)
+ ;;=^5017260
+ ;;^UTILITY(U,$J,358.3,29279,0)
+ ;;=O41.1210^^115^1456^7
+ ;;^UTILITY(U,$J,358.3,29279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28861,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,28861,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,28861,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,28862,0)
- ;;=W17.89XD^^132^1339^56
- ;;^UTILITY(U,$J,358.3,28862,1,0)
+ ;;^UTILITY(U,$J,358.3,29279,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,29279,1,4,0)
+ ;;=4^O41.1210
+ ;;^UTILITY(U,$J,358.3,29279,2)
+ ;;=^5017267
+ ;;^UTILITY(U,$J,358.3,29280,0)
+ ;;=O41.1211^^115^1456^2
+ ;;^UTILITY(U,$J,358.3,29280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28862,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28862,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,28862,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,28863,0)
- ;;=W18.11XA^^132^1339^63
- ;;^UTILITY(U,$J,358.3,28863,1,0)
+ ;;^UTILITY(U,$J,358.3,29280,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29280,1,4,0)
+ ;;=4^O41.1211
+ ;;^UTILITY(U,$J,358.3,29280,2)
+ ;;=^5017268
+ ;;^UTILITY(U,$J,358.3,29281,0)
+ ;;=O41.1212^^115^1456^3
+ ;;^UTILITY(U,$J,358.3,29281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28863,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,28863,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,28863,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,28864,0)
- ;;=W18.11XD^^132^1339^64
- ;;^UTILITY(U,$J,358.3,28864,1,0)
+ ;;^UTILITY(U,$J,358.3,29281,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29281,1,4,0)
+ ;;=4^O41.1212
+ ;;^UTILITY(U,$J,358.3,29281,2)
+ ;;=^5017269
+ ;;^UTILITY(U,$J,358.3,29282,0)
+ ;;=O41.1213^^115^1456^4
+ ;;^UTILITY(U,$J,358.3,29282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28864,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28864,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,28864,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,28865,0)
- ;;=W18.12XA^^132^1339^61
- ;;^UTILITY(U,$J,358.3,28865,1,0)
+ ;;^UTILITY(U,$J,358.3,29282,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29282,1,4,0)
+ ;;=4^O41.1213
+ ;;^UTILITY(U,$J,358.3,29282,2)
+ ;;=^5017270
+ ;;^UTILITY(U,$J,358.3,29283,0)
+ ;;=O41.1214^^115^1456^5
+ ;;^UTILITY(U,$J,358.3,29283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28865,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,28865,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,28865,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,28866,0)
- ;;=W18.12XD^^132^1339^62
- ;;^UTILITY(U,$J,358.3,28866,1,0)
+ ;;^UTILITY(U,$J,358.3,29283,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29283,1,4,0)
+ ;;=4^O41.1214
+ ;;^UTILITY(U,$J,358.3,29283,2)
+ ;;=^5017271
+ ;;^UTILITY(U,$J,358.3,29284,0)
+ ;;=O41.1215^^115^1456^6
+ ;;^UTILITY(U,$J,358.3,29284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28866,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28866,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,28866,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,28867,0)
- ;;=W18.2XXA^^132^1339^73
- ;;^UTILITY(U,$J,358.3,28867,1,0)
+ ;;^UTILITY(U,$J,358.3,29284,1,3,0)
+ ;;=3^Chorioamnionitis, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29284,1,4,0)
+ ;;=4^O41.1215
+ ;;^UTILITY(U,$J,358.3,29284,2)
+ ;;=^5017272
+ ;;^UTILITY(U,$J,358.3,29285,0)
+ ;;=O41.1220^^115^1456^13
+ ;;^UTILITY(U,$J,358.3,29285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28867,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,28867,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,28867,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,28868,0)
- ;;=W18.2XXD^^132^1339^74
- ;;^UTILITY(U,$J,358.3,28868,1,0)
+ ;;^UTILITY(U,$J,358.3,29285,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,29285,1,4,0)
+ ;;=4^O41.1220
+ ;;^UTILITY(U,$J,358.3,29285,2)
+ ;;=^5017274
+ ;;^UTILITY(U,$J,358.3,29286,0)
+ ;;=O41.1221^^115^1456^8
+ ;;^UTILITY(U,$J,358.3,29286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28868,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28868,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,28868,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,28869,0)
- ;;=W18.40XA^^132^1339^105
- ;;^UTILITY(U,$J,358.3,28869,1,0)
+ ;;^UTILITY(U,$J,358.3,29286,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29286,1,4,0)
+ ;;=4^O41.1221
+ ;;^UTILITY(U,$J,358.3,29286,2)
+ ;;=^5017275
+ ;;^UTILITY(U,$J,358.3,29287,0)
+ ;;=O41.1222^^115^1456^9
+ ;;^UTILITY(U,$J,358.3,29287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28869,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,28869,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,28869,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,28870,0)
- ;;=W18.40XD^^132^1339^106
- ;;^UTILITY(U,$J,358.3,28870,1,0)
+ ;;^UTILITY(U,$J,358.3,29287,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29287,1,4,0)
+ ;;=4^O41.1222
+ ;;^UTILITY(U,$J,358.3,29287,2)
+ ;;=^5017276
+ ;;^UTILITY(U,$J,358.3,29288,0)
+ ;;=O41.1223^^115^1456^10
+ ;;^UTILITY(U,$J,358.3,29288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28870,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28870,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,28870,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,28871,0)
- ;;=W18.41XA^^132^1339^107
- ;;^UTILITY(U,$J,358.3,28871,1,0)
+ ;;^UTILITY(U,$J,358.3,29288,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29288,1,4,0)
+ ;;=4^O41.1223
+ ;;^UTILITY(U,$J,358.3,29288,2)
+ ;;=^5017277
+ ;;^UTILITY(U,$J,358.3,29289,0)
+ ;;=O41.1224^^115^1456^11
+ ;;^UTILITY(U,$J,358.3,29289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28871,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,28871,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,28871,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,28872,0)
- ;;=W18.41XD^^132^1339^108
- ;;^UTILITY(U,$J,358.3,28872,1,0)
+ ;;^UTILITY(U,$J,358.3,29289,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29289,1,4,0)
+ ;;=4^O41.1224
+ ;;^UTILITY(U,$J,358.3,29289,2)
+ ;;=^5017278
+ ;;^UTILITY(U,$J,358.3,29290,0)
+ ;;=O41.1225^^115^1456^12
+ ;;^UTILITY(U,$J,358.3,29290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28872,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28872,1,4,0)
- ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,29290,1,3,0)
+ ;;=3^Chorioamnionitis, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29290,1,4,0)
+ ;;=4^O41.1225
+ ;;^UTILITY(U,$J,358.3,29290,2)
+ ;;=^5017279

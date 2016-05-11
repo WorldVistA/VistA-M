@@ -1,126 +1,128 @@
-IBDEI0HA ; ; 19-NOV-2015
+IBDEI0HA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7729,1,4,0)
- ;;=4^N06.3
- ;;^UTILITY(U,$J,358.3,7729,2)
- ;;=^5015552
- ;;^UTILITY(U,$J,358.3,7730,0)
- ;;=N06.4^^52^518^35
- ;;^UTILITY(U,$J,358.3,7730,1,0)
+ ;;^UTILITY(U,$J,358.3,8001,1,4,0)
+ ;;=4^S40.862A
+ ;;^UTILITY(U,$J,358.3,8001,2)
+ ;;=^5026264
+ ;;^UTILITY(U,$J,358.3,8002,0)
+ ;;=S50.861A^^33^431^110
+ ;;^UTILITY(U,$J,358.3,8002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7730,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,7730,1,4,0)
- ;;=4^N06.4
- ;;^UTILITY(U,$J,358.3,7730,2)
- ;;=^5015553
- ;;^UTILITY(U,$J,358.3,7731,0)
- ;;=N06.5^^52^518^38
- ;;^UTILITY(U,$J,358.3,7731,1,0)
+ ;;^UTILITY(U,$J,358.3,8002,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of right forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8002,1,4,0)
+ ;;=4^S50.861A
+ ;;^UTILITY(U,$J,358.3,8002,2)
+ ;;=^5028590
+ ;;^UTILITY(U,$J,358.3,8003,0)
+ ;;=S50.862A^^33^431^108
+ ;;^UTILITY(U,$J,358.3,8003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7731,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse mesangiocapillary glomrlneph
- ;;^UTILITY(U,$J,358.3,7731,1,4,0)
- ;;=4^N06.5
- ;;^UTILITY(U,$J,358.3,7731,2)
- ;;=^5015554
- ;;^UTILITY(U,$J,358.3,7732,0)
- ;;=N06.6^^52^518^33
- ;;^UTILITY(U,$J,358.3,7732,1,0)
+ ;;^UTILITY(U,$J,358.3,8003,1,3,0)
+ ;;=3^Insect bite (nonvenomous) of left forearm, initial encounter
+ ;;^UTILITY(U,$J,358.3,8003,1,4,0)
+ ;;=4^S50.862A
+ ;;^UTILITY(U,$J,358.3,8003,2)
+ ;;=^5028593
+ ;;^UTILITY(U,$J,358.3,8004,0)
+ ;;=S91.351A^^33^431^148
+ ;;^UTILITY(U,$J,358.3,8004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7732,1,3,0)
- ;;=3^Isolated proteinuria w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,7732,1,4,0)
- ;;=4^N06.6
- ;;^UTILITY(U,$J,358.3,7732,2)
- ;;=^5015555
- ;;^UTILITY(U,$J,358.3,7733,0)
- ;;=N06.7^^52^518^34
- ;;^UTILITY(U,$J,358.3,7733,1,0)
+ ;;^UTILITY(U,$J,358.3,8004,1,3,0)
+ ;;=3^Open bite, right foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,8004,1,4,0)
+ ;;=4^S91.351A
+ ;;^UTILITY(U,$J,358.3,8004,2)
+ ;;=^5044344
+ ;;^UTILITY(U,$J,358.3,8005,0)
+ ;;=S91.352A^^33^431^140
+ ;;^UTILITY(U,$J,358.3,8005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7733,1,3,0)
- ;;=3^Isolated proteinuria w/ diffuse crescentic glomerulonephritis
- ;;^UTILITY(U,$J,358.3,7733,1,4,0)
- ;;=4^N06.7
- ;;^UTILITY(U,$J,358.3,7733,2)
- ;;=^5015556
- ;;^UTILITY(U,$J,358.3,7734,0)
- ;;=N06.8^^52^518^41
- ;;^UTILITY(U,$J,358.3,7734,1,0)
+ ;;^UTILITY(U,$J,358.3,8005,1,3,0)
+ ;;=3^Open bite, left foot, initial encounter
+ ;;^UTILITY(U,$J,358.3,8005,1,4,0)
+ ;;=4^S91.352A
+ ;;^UTILITY(U,$J,358.3,8005,2)
+ ;;=^5044347
+ ;;^UTILITY(U,$J,358.3,8006,0)
+ ;;=S61.451A^^33^431^151
+ ;;^UTILITY(U,$J,358.3,8006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7734,1,3,0)
- ;;=3^Isolated proteinuria w/ other morphologic lesion
- ;;^UTILITY(U,$J,358.3,7734,1,4,0)
- ;;=4^N06.8
- ;;^UTILITY(U,$J,358.3,7734,2)
- ;;=^5015557
- ;;^UTILITY(U,$J,358.3,7735,0)
- ;;=N06.9^^52^518^42
- ;;^UTILITY(U,$J,358.3,7735,1,0)
+ ;;^UTILITY(U,$J,358.3,8006,1,3,0)
+ ;;=3^Open bite, right hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,8006,1,4,0)
+ ;;=4^S61.451A
+ ;;^UTILITY(U,$J,358.3,8006,2)
+ ;;=^5033011
+ ;;^UTILITY(U,$J,358.3,8007,0)
+ ;;=S61.452A^^33^431^143
+ ;;^UTILITY(U,$J,358.3,8007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7735,1,3,0)
- ;;=3^Isolated proteinuria w/ unspecified morphologic lesion
- ;;^UTILITY(U,$J,358.3,7735,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,7735,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,7736,0)
- ;;=N07.0^^52^518^30
- ;;^UTILITY(U,$J,358.3,7736,1,0)
+ ;;^UTILITY(U,$J,358.3,8007,1,3,0)
+ ;;=3^Open bite, left hand, initial encounter
+ ;;^UTILITY(U,$J,358.3,8007,1,4,0)
+ ;;=4^S61.452A
+ ;;^UTILITY(U,$J,358.3,8007,2)
+ ;;=^5033014
+ ;;^UTILITY(U,$J,358.3,8008,0)
+ ;;=S81.851A^^33^431^153
+ ;;^UTILITY(U,$J,358.3,8008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7736,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ minor glomerular abnormality
- ;;^UTILITY(U,$J,358.3,7736,1,4,0)
- ;;=4^N07.0
- ;;^UTILITY(U,$J,358.3,7736,2)
- ;;=^5015559
- ;;^UTILITY(U,$J,358.3,7737,0)
- ;;=N07.1^^52^518^29
- ;;^UTILITY(U,$J,358.3,7737,1,0)
+ ;;^UTILITY(U,$J,358.3,8008,1,3,0)
+ ;;=3^Open bite, right lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,8008,1,4,0)
+ ;;=4^S81.851A
+ ;;^UTILITY(U,$J,358.3,8008,2)
+ ;;=^5040095
+ ;;^UTILITY(U,$J,358.3,8009,0)
+ ;;=S81.852A^^33^431^145
+ ;;^UTILITY(U,$J,358.3,8009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7737,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ focal & seg glomerular lesions
- ;;^UTILITY(U,$J,358.3,7737,1,4,0)
- ;;=4^N07.1
- ;;^UTILITY(U,$J,358.3,7737,2)
- ;;=^5015560
- ;;^UTILITY(U,$J,358.3,7738,0)
- ;;=N07.2^^52^518^24
- ;;^UTILITY(U,$J,358.3,7738,1,0)
+ ;;^UTILITY(U,$J,358.3,8009,1,3,0)
+ ;;=3^Open bite, left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,8009,1,4,0)
+ ;;=4^S81.852A
+ ;;^UTILITY(U,$J,358.3,8009,2)
+ ;;=^5040098
+ ;;^UTILITY(U,$J,358.3,8010,0)
+ ;;=S91.151A^^33^431^150
+ ;;^UTILITY(U,$J,358.3,8010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7738,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse membranous glomrlneph
- ;;^UTILITY(U,$J,358.3,7738,1,4,0)
- ;;=4^N07.2
- ;;^UTILITY(U,$J,358.3,7738,2)
- ;;=^5015561
- ;;^UTILITY(U,$J,358.3,7739,0)
- ;;=N07.3^^52^518^25
- ;;^UTILITY(U,$J,358.3,7739,1,0)
+ ;;^UTILITY(U,$J,358.3,8010,1,3,0)
+ ;;=3^Open bite, right great toe w/o damage to nail, init encntr
+ ;;^UTILITY(U,$J,358.3,8010,1,4,0)
+ ;;=4^S91.151A
+ ;;^UTILITY(U,$J,358.3,8010,2)
+ ;;=^5044243
+ ;;^UTILITY(U,$J,358.3,8011,0)
+ ;;=S91.152A^^33^431^142
+ ;;^UTILITY(U,$J,358.3,8011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7739,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,7739,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,7739,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,7740,0)
- ;;=N07.3^^52^518^26
- ;;^UTILITY(U,$J,358.3,7740,1,0)
+ ;;^UTILITY(U,$J,358.3,8011,1,3,0)
+ ;;=3^Open bite, left great toe w/o damage to nail, init encntr
+ ;;^UTILITY(U,$J,358.3,8011,1,4,0)
+ ;;=4^S91.152A
+ ;;^UTILITY(U,$J,358.3,8011,2)
+ ;;=^5044246
+ ;;^UTILITY(U,$J,358.3,8012,0)
+ ;;=S91.154A^^33^431^152
+ ;;^UTILITY(U,$J,358.3,8012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7740,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,7740,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,7740,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,7741,0)
- ;;=N07.4^^52^518^23
- ;;^UTILITY(U,$J,358.3,7741,1,0)
+ ;;^UTILITY(U,$J,358.3,8012,1,3,0)
+ ;;=3^Open bite, right lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8012,1,4,0)
+ ;;=4^S91.154A
+ ;;^UTILITY(U,$J,358.3,8012,2)
+ ;;=^5044252
+ ;;^UTILITY(U,$J,358.3,8013,0)
+ ;;=S91.155A^^33^431^144
+ ;;^UTILITY(U,$J,358.3,8013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7741,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,7741,1,4,0)
- ;;=4^N07.4
+ ;;^UTILITY(U,$J,358.3,8013,1,3,0)
+ ;;=3^Open bite, left lesser toe(s) w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8013,1,4,0)
+ ;;=4^S91.155A
+ ;;^UTILITY(U,$J,358.3,8013,2)
+ ;;=^5044255

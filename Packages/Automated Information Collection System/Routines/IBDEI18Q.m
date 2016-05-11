@@ -1,120 +1,132 @@
-IBDEI18Q ; ; 19-NOV-2015
+IBDEI18Q ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20747,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,20747,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,20747,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,20748,0)
- ;;=F31.13^^99^983^5
- ;;^UTILITY(U,$J,358.3,20748,1,0)
+ ;;^UTILITY(U,$J,358.3,21087,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,21087,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,21088,0)
+ ;;=I83.219^^84^944^4
+ ;;^UTILITY(U,$J,358.3,21088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20748,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,20748,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,20748,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,20749,0)
- ;;=F31.2^^99^983^6
- ;;^UTILITY(U,$J,358.3,20749,1,0)
+ ;;^UTILITY(U,$J,358.3,21088,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,21088,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,21088,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,21089,0)
+ ;;=I83.029^^84^944^1
+ ;;^UTILITY(U,$J,358.3,21089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20749,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,20749,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,20749,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,20750,0)
- ;;=F31.73^^99^983^7
- ;;^UTILITY(U,$J,358.3,20750,1,0)
+ ;;^UTILITY(U,$J,358.3,21089,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,21089,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,21089,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,21090,0)
+ ;;=I83.229^^84^944^2
+ ;;^UTILITY(U,$J,358.3,21090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20750,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,20750,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,20750,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,20751,0)
- ;;=F31.74^^99^983^8
- ;;^UTILITY(U,$J,358.3,20751,1,0)
+ ;;^UTILITY(U,$J,358.3,21090,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,21090,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,21090,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,21091,0)
+ ;;=B00.81^^84^945^25
+ ;;^UTILITY(U,$J,358.3,21091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20751,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,20751,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,20751,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,20752,0)
- ;;=F31.30^^99^983^9
- ;;^UTILITY(U,$J,358.3,20752,1,0)
+ ;;^UTILITY(U,$J,358.3,21091,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,21091,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,21091,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,21092,0)
+ ;;=D25.9^^84^945^31
+ ;;^UTILITY(U,$J,358.3,21092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20752,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,20752,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,20752,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,20753,0)
- ;;=F31.31^^99^983^10
- ;;^UTILITY(U,$J,358.3,20753,1,0)
+ ;;^UTILITY(U,$J,358.3,21092,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,21092,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,21092,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,21093,0)
+ ;;=F52.9^^84^945^55
+ ;;^UTILITY(U,$J,358.3,21093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20753,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,20753,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,20753,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,20754,0)
- ;;=F31.32^^99^983^11
- ;;^UTILITY(U,$J,358.3,20754,1,0)
+ ;;^UTILITY(U,$J,358.3,21093,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,21093,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,21093,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,21094,0)
+ ;;=R37.^^84^945^56
+ ;;^UTILITY(U,$J,358.3,21094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20754,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,20754,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,20754,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,20755,0)
- ;;=F31.4^^99^983^12
- ;;^UTILITY(U,$J,358.3,20755,1,0)
+ ;;^UTILITY(U,$J,358.3,21094,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,21094,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,21094,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,21095,0)
+ ;;=N60.01^^84^945^59
+ ;;^UTILITY(U,$J,358.3,21095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20755,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,20755,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,20755,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,20756,0)
- ;;=F31.5^^99^983^13
- ;;^UTILITY(U,$J,358.3,20756,1,0)
+ ;;^UTILITY(U,$J,358.3,21095,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,21095,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,21095,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,21096,0)
+ ;;=N60.02^^84^945^58
+ ;;^UTILITY(U,$J,358.3,21096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20756,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,20756,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,20756,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,20757,0)
- ;;=F31.75^^99^983^14
- ;;^UTILITY(U,$J,358.3,20757,1,0)
+ ;;^UTILITY(U,$J,358.3,21096,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,21096,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,21096,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,21097,0)
+ ;;=N60.09^^84^945^60
+ ;;^UTILITY(U,$J,358.3,21097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20757,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,20757,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,20757,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,20758,0)
- ;;=F31.76^^99^983^15
- ;;^UTILITY(U,$J,358.3,20758,1,0)
+ ;;^UTILITY(U,$J,358.3,21097,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,21097,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,21097,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,21098,0)
+ ;;=N60.11^^84^945^12
+ ;;^UTILITY(U,$J,358.3,21098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20758,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,20758,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,20758,2)
- ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,21098,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,21098,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,21098,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,21099,0)
+ ;;=N60.12^^84^945^11
+ ;;^UTILITY(U,$J,358.3,21099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21099,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,21099,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,21099,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,21100,0)
+ ;;=N60.19^^84^945^13
+ ;;^UTILITY(U,$J,358.3,21100,1,0)
+ ;;=^358.31IA^4^2

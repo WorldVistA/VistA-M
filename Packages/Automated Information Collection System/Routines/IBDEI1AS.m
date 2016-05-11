@@ -1,120 +1,136 @@
-IBDEI1AS ; ; 19-NOV-2015
+IBDEI1AS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21672,0)
- ;;=S72.464S^^101^1033^86
- ;;^UTILITY(U,$J,358.3,21672,1,0)
+ ;;^UTILITY(U,$J,358.3,22065,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
+ ;;^UTILITY(U,$J,358.3,22065,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,22065,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,22066,0)
+ ;;=E66.3^^87^973^45
+ ;;^UTILITY(U,$J,358.3,22066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21672,1,3,0)
- ;;=3^Nondisp suprcndl fx w intrcndl extn lower end r femur, sqla
- ;;^UTILITY(U,$J,358.3,21672,1,4,0)
- ;;=4^S72.464S
- ;;^UTILITY(U,$J,358.3,21672,2)
- ;;=^5039106
- ;;^UTILITY(U,$J,358.3,21673,0)
- ;;=S72.465S^^101^1033^87
- ;;^UTILITY(U,$J,358.3,21673,1,0)
+ ;;^UTILITY(U,$J,358.3,22066,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,22066,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,22066,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,22067,0)
+ ;;=E89.1^^87^973^49
+ ;;^UTILITY(U,$J,358.3,22067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21673,1,3,0)
- ;;=3^Nondisp suprcndl fx w intrcndl extn lower end l femur, sqla
- ;;^UTILITY(U,$J,358.3,21673,1,4,0)
- ;;=4^S72.465S
- ;;^UTILITY(U,$J,358.3,21673,2)
- ;;=^5136457
- ;;^UTILITY(U,$J,358.3,21674,0)
- ;;=S72.471S^^101^1033^109
- ;;^UTILITY(U,$J,358.3,21674,1,0)
+ ;;^UTILITY(U,$J,358.3,22067,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,22067,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,22067,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,22068,0)
+ ;;=H40.9^^87^974^9
+ ;;^UTILITY(U,$J,358.3,22068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21674,1,3,0)
- ;;=3^Torus fracture of lower end of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21674,1,4,0)
- ;;=4^S72.471S
- ;;^UTILITY(U,$J,358.3,21674,2)
- ;;=^5039117
- ;;^UTILITY(U,$J,358.3,21675,0)
- ;;=S72.472S^^101^1033^108
- ;;^UTILITY(U,$J,358.3,21675,1,0)
+ ;;^UTILITY(U,$J,358.3,22068,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,22068,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,22068,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,22069,0)
+ ;;=H26.9^^87^974^5
+ ;;^UTILITY(U,$J,358.3,22069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21675,1,3,0)
- ;;=3^Torus fracture of lower end of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21675,1,4,0)
- ;;=4^S72.472S
- ;;^UTILITY(U,$J,358.3,21675,2)
- ;;=^5039123
- ;;^UTILITY(U,$J,358.3,21676,0)
- ;;=S79.011S^^101^1033^98
- ;;^UTILITY(U,$J,358.3,21676,1,0)
+ ;;^UTILITY(U,$J,358.3,22069,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,22069,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,22069,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,22070,0)
+ ;;=H10.9^^87^974^8
+ ;;^UTILITY(U,$J,358.3,22070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21676,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r femur, sequela
- ;;^UTILITY(U,$J,358.3,21676,1,4,0)
- ;;=4^S79.011S
- ;;^UTILITY(U,$J,358.3,21676,2)
- ;;=^5039773
- ;;^UTILITY(U,$J,358.3,21677,0)
- ;;=S79.012S^^101^1033^99
- ;;^UTILITY(U,$J,358.3,21677,1,0)
+ ;;^UTILITY(U,$J,358.3,22070,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,22070,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,22070,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,22071,0)
+ ;;=H11.32^^87^974^6
+ ;;^UTILITY(U,$J,358.3,22071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21677,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of l femur, sequela
- ;;^UTILITY(U,$J,358.3,21677,1,4,0)
- ;;=4^S79.012S
- ;;^UTILITY(U,$J,358.3,21677,2)
- ;;=^5039779
- ;;^UTILITY(U,$J,358.3,21678,0)
- ;;=S79.111S^^101^1033^96
- ;;^UTILITY(U,$J,358.3,21678,1,0)
+ ;;^UTILITY(U,$J,358.3,22071,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,22071,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,22071,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,22072,0)
+ ;;=H11.31^^87^974^7
+ ;;^UTILITY(U,$J,358.3,22072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21678,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of r femur, sequela
- ;;^UTILITY(U,$J,358.3,21678,1,4,0)
- ;;=4^S79.111S
- ;;^UTILITY(U,$J,358.3,21678,2)
- ;;=^5039803
- ;;^UTILITY(U,$J,358.3,21679,0)
- ;;=S79.112S^^101^1033^97
- ;;^UTILITY(U,$J,358.3,21679,1,0)
+ ;;^UTILITY(U,$J,358.3,22072,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,22072,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,22072,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,22073,0)
+ ;;=H01.002^^87^974^3
+ ;;^UTILITY(U,$J,358.3,22073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21679,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of l femur, sequela
- ;;^UTILITY(U,$J,358.3,21679,1,4,0)
- ;;=4^S79.112S
- ;;^UTILITY(U,$J,358.3,21679,2)
- ;;=^5136666
- ;;^UTILITY(U,$J,358.3,21680,0)
- ;;=S79.121S^^101^1033^100
- ;;^UTILITY(U,$J,358.3,21680,1,0)
+ ;;^UTILITY(U,$J,358.3,22073,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,22073,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,22073,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,22074,0)
+ ;;=H01.004^^87^974^2
+ ;;^UTILITY(U,$J,358.3,22074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21680,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r femur, sequela
- ;;^UTILITY(U,$J,358.3,21680,1,4,0)
- ;;=4^S79.121S
- ;;^UTILITY(U,$J,358.3,21680,2)
- ;;=^5039815
- ;;^UTILITY(U,$J,358.3,21681,0)
- ;;=S79.122S^^101^1033^101
- ;;^UTILITY(U,$J,358.3,21681,1,0)
+ ;;^UTILITY(U,$J,358.3,22074,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,22074,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,22074,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,22075,0)
+ ;;=H01.005^^87^974^1
+ ;;^UTILITY(U,$J,358.3,22075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21681,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l femur, sequela
- ;;^UTILITY(U,$J,358.3,21681,1,4,0)
- ;;=4^S79.122S
- ;;^UTILITY(U,$J,358.3,21681,2)
- ;;=^5039821
- ;;^UTILITY(U,$J,358.3,21682,0)
- ;;=S79.131S^^101^1033^102
- ;;^UTILITY(U,$J,358.3,21682,1,0)
+ ;;^UTILITY(U,$J,358.3,22075,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,22075,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,22075,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,22076,0)
+ ;;=H01.001^^87^974^4
+ ;;^UTILITY(U,$J,358.3,22076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21682,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx lower end of r femur, sequela
- ;;^UTILITY(U,$J,358.3,21682,1,4,0)
- ;;=4^S79.131S
- ;;^UTILITY(U,$J,358.3,21682,2)
- ;;=^5039833
- ;;^UTILITY(U,$J,358.3,21683,0)
- ;;=S79.132S^^101^1033^103
- ;;^UTILITY(U,$J,358.3,21683,1,0)
+ ;;^UTILITY(U,$J,358.3,22076,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,22076,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,22076,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,22077,0)
+ ;;=H57.13^^87^974^10
+ ;;^UTILITY(U,$J,358.3,22077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21683,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx lower end of l femur, sequela
+ ;;^UTILITY(U,$J,358.3,22077,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,22077,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,22077,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,22078,0)
+ ;;=H57.12^^87^974^11
+ ;;^UTILITY(U,$J,358.3,22078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22078,1,3,0)
+ ;;=3^Ocular Pain,Left Eye

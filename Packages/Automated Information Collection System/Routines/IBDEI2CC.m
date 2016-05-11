@@ -1,130 +1,128 @@
-IBDEI2CC ; ; 19-NOV-2015
+IBDEI2CC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39317,0)
- ;;=M50.02^^183^2018^20
- ;;^UTILITY(U,$J,358.3,39317,1,0)
+ ;;^UTILITY(U,$J,358.3,39691,2)
+ ;;=^5020354
+ ;;^UTILITY(U,$J,358.3,39692,0)
+ ;;=S02.8XXA^^153^1928^52
+ ;;^UTILITY(U,$J,358.3,39692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39317,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, mid-cervical region
- ;;^UTILITY(U,$J,358.3,39317,1,4,0)
- ;;=4^M50.02
- ;;^UTILITY(U,$J,358.3,39317,2)
- ;;=^5012217
- ;;^UTILITY(U,$J,358.3,39318,0)
- ;;=M50.01^^183^2018^19
- ;;^UTILITY(U,$J,358.3,39318,1,0)
+ ;;^UTILITY(U,$J,358.3,39692,1,3,0)
+ ;;=3^Fx of Skull/Facial Bones,Init Encntr for Closed Fx
+ ;;^UTILITY(U,$J,358.3,39692,1,4,0)
+ ;;=4^S02.8XXA
+ ;;^UTILITY(U,$J,358.3,39692,2)
+ ;;=^5020426
+ ;;^UTILITY(U,$J,358.3,39693,0)
+ ;;=H00.015^^153^1928^53
+ ;;^UTILITY(U,$J,358.3,39693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39318,1,3,0)
- ;;=3^Cervical disc disorder w myelopathy, high cervical region
- ;;^UTILITY(U,$J,358.3,39318,1,4,0)
- ;;=4^M50.01
- ;;^UTILITY(U,$J,358.3,39318,2)
- ;;=^5012216
- ;;^UTILITY(U,$J,358.3,39319,0)
- ;;=M54.2^^183^2018^21
- ;;^UTILITY(U,$J,358.3,39319,1,0)
+ ;;^UTILITY(U,$J,358.3,39693,1,3,0)
+ ;;=3^Hordeolum Externum Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39693,1,4,0)
+ ;;=4^H00.015
+ ;;^UTILITY(U,$J,358.3,39693,2)
+ ;;=^5133372
+ ;;^UTILITY(U,$J,358.3,39694,0)
+ ;;=H00.014^^153^1928^54
+ ;;^UTILITY(U,$J,358.3,39694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39319,1,3,0)
- ;;=3^Cervicalgia
- ;;^UTILITY(U,$J,358.3,39319,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,39319,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,39320,0)
- ;;=M51.06^^183^2018^22
- ;;^UTILITY(U,$J,358.3,39320,1,0)
+ ;;^UTILITY(U,$J,358.3,39694,1,3,0)
+ ;;=3^Hordeolum Externum Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39694,1,4,0)
+ ;;=4^H00.014
+ ;;^UTILITY(U,$J,358.3,39694,2)
+ ;;=^5004221
+ ;;^UTILITY(U,$J,358.3,39695,0)
+ ;;=H00.012^^153^1928^55
+ ;;^UTILITY(U,$J,358.3,39695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39320,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,39320,1,4,0)
- ;;=4^M51.06
- ;;^UTILITY(U,$J,358.3,39320,2)
- ;;=^5012241
- ;;^UTILITY(U,$J,358.3,39321,0)
- ;;=M51.04^^183^2018^23
- ;;^UTILITY(U,$J,358.3,39321,1,0)
+ ;;^UTILITY(U,$J,358.3,39695,1,3,0)
+ ;;=3^Hordeolum Externum Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39695,1,4,0)
+ ;;=4^H00.012
+ ;;^UTILITY(U,$J,358.3,39695,2)
+ ;;=^5004219
+ ;;^UTILITY(U,$J,358.3,39696,0)
+ ;;=H00.011^^153^1928^56
+ ;;^UTILITY(U,$J,358.3,39696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39321,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,39321,1,4,0)
- ;;=4^M51.04
- ;;^UTILITY(U,$J,358.3,39321,2)
- ;;=^5012239
- ;;^UTILITY(U,$J,358.3,39322,0)
- ;;=M51.05^^183^2018^24
- ;;^UTILITY(U,$J,358.3,39322,1,0)
+ ;;^UTILITY(U,$J,358.3,39696,1,3,0)
+ ;;=3^Hordeolum Externum Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39696,1,4,0)
+ ;;=4^H00.011
+ ;;^UTILITY(U,$J,358.3,39696,2)
+ ;;=^5004218
+ ;;^UTILITY(U,$J,358.3,39697,0)
+ ;;=H00.025^^153^1928^57
+ ;;^UTILITY(U,$J,358.3,39697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39322,1,3,0)
- ;;=3^Intvrt disc disorders w myelopathy, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,39322,1,4,0)
- ;;=4^M51.05
- ;;^UTILITY(U,$J,358.3,39322,2)
- ;;=^5012240
- ;;^UTILITY(U,$J,358.3,39323,0)
- ;;=M48.22^^183^2018^25
- ;;^UTILITY(U,$J,358.3,39323,1,0)
+ ;;^UTILITY(U,$J,358.3,39697,1,3,0)
+ ;;=3^Hordeolum Internum Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39697,1,4,0)
+ ;;=4^H00.025
+ ;;^UTILITY(U,$J,358.3,39697,2)
+ ;;=^5133374
+ ;;^UTILITY(U,$J,358.3,39698,0)
+ ;;=H00.024^^153^1928^58
+ ;;^UTILITY(U,$J,358.3,39698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39323,1,3,0)
- ;;=3^Kissing spine, cervical region
- ;;^UTILITY(U,$J,358.3,39323,1,4,0)
- ;;=4^M48.22
- ;;^UTILITY(U,$J,358.3,39323,2)
- ;;=^5012108
- ;;^UTILITY(U,$J,358.3,39324,0)
- ;;=M48.26^^183^2018^26
- ;;^UTILITY(U,$J,358.3,39324,1,0)
+ ;;^UTILITY(U,$J,358.3,39698,1,3,0)
+ ;;=3^Hordeolum Internum Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39698,1,4,0)
+ ;;=4^H00.024
+ ;;^UTILITY(U,$J,358.3,39698,2)
+ ;;=^5004226
+ ;;^UTILITY(U,$J,358.3,39699,0)
+ ;;=H00.022^^153^1928^59
+ ;;^UTILITY(U,$J,358.3,39699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39324,1,3,0)
- ;;=3^Kissing spine, lumbar region
- ;;^UTILITY(U,$J,358.3,39324,1,4,0)
- ;;=4^M48.26
- ;;^UTILITY(U,$J,358.3,39324,2)
- ;;=^5012112
- ;;^UTILITY(U,$J,358.3,39325,0)
- ;;=M48.27^^183^2018^27
- ;;^UTILITY(U,$J,358.3,39325,1,0)
+ ;;^UTILITY(U,$J,358.3,39699,1,3,0)
+ ;;=3^Hordeolum Internum Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39699,1,4,0)
+ ;;=4^H00.022
+ ;;^UTILITY(U,$J,358.3,39699,2)
+ ;;=^5004224
+ ;;^UTILITY(U,$J,358.3,39700,0)
+ ;;=H00.021^^153^1928^60
+ ;;^UTILITY(U,$J,358.3,39700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39325,1,3,0)
- ;;=3^Kissing spine, lumbosacral region
- ;;^UTILITY(U,$J,358.3,39325,1,4,0)
- ;;=4^M48.27
- ;;^UTILITY(U,$J,358.3,39325,2)
- ;;=^5012113
- ;;^UTILITY(U,$J,358.3,39326,0)
- ;;=M48.21^^183^2018^28
- ;;^UTILITY(U,$J,358.3,39326,1,0)
+ ;;^UTILITY(U,$J,358.3,39700,1,3,0)
+ ;;=3^Hordeolum Internum Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39700,1,4,0)
+ ;;=4^H00.021
+ ;;^UTILITY(U,$J,358.3,39700,2)
+ ;;=^5004223
+ ;;^UTILITY(U,$J,358.3,39701,0)
+ ;;=S01.122A^^153^1928^61
+ ;;^UTILITY(U,$J,358.3,39701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39326,1,3,0)
- ;;=3^Kissing spine, occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,39326,1,4,0)
- ;;=4^M48.21
- ;;^UTILITY(U,$J,358.3,39326,2)
- ;;=^5012107
- ;;^UTILITY(U,$J,358.3,39327,0)
- ;;=M48.25^^183^2018^30
- ;;^UTILITY(U,$J,358.3,39327,1,0)
+ ;;^UTILITY(U,$J,358.3,39701,1,3,0)
+ ;;=3^Laceration w/ FB Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39701,1,4,0)
+ ;;=4^S01.122A
+ ;;^UTILITY(U,$J,358.3,39701,2)
+ ;;=^5134190
+ ;;^UTILITY(U,$J,358.3,39702,0)
+ ;;=S01.121A^^153^1928^62
+ ;;^UTILITY(U,$J,358.3,39702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39327,1,3,0)
- ;;=3^Kissing spine, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,39327,1,4,0)
- ;;=4^M48.25
- ;;^UTILITY(U,$J,358.3,39327,2)
- ;;=^5012111
- ;;^UTILITY(U,$J,358.3,39328,0)
- ;;=M48.24^^183^2018^29
- ;;^UTILITY(U,$J,358.3,39328,1,0)
+ ;;^UTILITY(U,$J,358.3,39702,1,3,0)
+ ;;=3^Laceration w/ FB Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39702,1,4,0)
+ ;;=4^S01.121A
+ ;;^UTILITY(U,$J,358.3,39702,2)
+ ;;=^5020066
+ ;;^UTILITY(U,$J,358.3,39703,0)
+ ;;=S01.112A^^153^1928^63
+ ;;^UTILITY(U,$J,358.3,39703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39328,1,3,0)
- ;;=3^Kissing spine, thoracic region
- ;;^UTILITY(U,$J,358.3,39328,1,4,0)
- ;;=4^M48.24
- ;;^UTILITY(U,$J,358.3,39328,2)
- ;;=^5012110
- ;;^UTILITY(U,$J,358.3,39329,0)
- ;;=M54.5^^183^2018^31
- ;;^UTILITY(U,$J,358.3,39329,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39329,1,3,0)
- ;;=3^Low back pain
+ ;;^UTILITY(U,$J,358.3,39703,1,3,0)
+ ;;=3^Laceration w/o FB Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39703,1,4,0)
+ ;;=4^S01.112A
+ ;;^UTILITY(U,$J,358.3,39703,2)
+ ;;=^5020060
+ ;;^UTILITY(U,$J,358.3,39704,0)
+ ;;=S01.111A^^153^1928^64

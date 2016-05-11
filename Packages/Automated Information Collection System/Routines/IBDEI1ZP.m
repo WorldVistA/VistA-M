@@ -1,124 +1,138 @@
-IBDEI1ZP ; ; 19-NOV-2015
+IBDEI1ZP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33318,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,33319,0)
- ;;=F03.90^^148^1635^17
- ;;^UTILITY(U,$J,358.3,33319,1,0)
+ ;;^UTILITY(U,$J,358.3,33763,2)
+ ;;=^5019598
+ ;;^UTILITY(U,$J,358.3,33764,0)
+ ;;=R80.3^^131^1676^84
+ ;;^UTILITY(U,$J,358.3,33764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33319,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,33319,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,33319,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,33320,0)
- ;;=F06.30^^148^1636^2
- ;;^UTILITY(U,$J,358.3,33320,1,0)
+ ;;^UTILITY(U,$J,358.3,33764,1,3,0)
+ ;;=3^Proteinuria Bence Jones
+ ;;^UTILITY(U,$J,358.3,33764,1,4,0)
+ ;;=4^R80.3
+ ;;^UTILITY(U,$J,358.3,33764,2)
+ ;;=^13272
+ ;;^UTILITY(U,$J,358.3,33765,0)
+ ;;=R80.9^^131^1676^89
+ ;;^UTILITY(U,$J,358.3,33765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33320,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec
- ;;^UTILITY(U,$J,358.3,33320,1,4,0)
- ;;=4^F06.30
- ;;^UTILITY(U,$J,358.3,33320,2)
- ;;=^5003056
- ;;^UTILITY(U,$J,358.3,33321,0)
- ;;=F06.31^^148^1636^3
- ;;^UTILITY(U,$J,358.3,33321,1,0)
+ ;;^UTILITY(U,$J,358.3,33765,1,3,0)
+ ;;=3^Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,33765,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,33765,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,33766,0)
+ ;;=Z87.442^^131^1676^77
+ ;;^UTILITY(U,$J,358.3,33766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33321,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition w/ Depressive Features
- ;;^UTILITY(U,$J,358.3,33321,1,4,0)
- ;;=4^F06.31
- ;;^UTILITY(U,$J,358.3,33321,2)
- ;;=^5003057
- ;;^UTILITY(U,$J,358.3,33322,0)
- ;;=F06.32^^148^1636^4
- ;;^UTILITY(U,$J,358.3,33322,1,0)
+ ;;^UTILITY(U,$J,358.3,33766,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,33766,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,33766,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,33767,0)
+ ;;=N18.1^^131^1676^13
+ ;;^UTILITY(U,$J,358.3,33767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33322,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition w/ Major Depressive-Like Episode
- ;;^UTILITY(U,$J,358.3,33322,1,4,0)
- ;;=4^F06.32
- ;;^UTILITY(U,$J,358.3,33322,2)
- ;;=^5003058
- ;;^UTILITY(U,$J,358.3,33323,0)
- ;;=F32.9^^148^1636^14
- ;;^UTILITY(U,$J,358.3,33323,1,0)
+ ;;^UTILITY(U,$J,358.3,33767,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,33767,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,33767,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,33768,0)
+ ;;=N18.2^^131^1676^14
+ ;;^UTILITY(U,$J,358.3,33768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33323,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,Unspec
- ;;^UTILITY(U,$J,358.3,33323,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,33323,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,33324,0)
- ;;=F32.0^^148^1636^15
- ;;^UTILITY(U,$J,358.3,33324,1,0)
+ ;;^UTILITY(U,$J,358.3,33768,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,33768,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,33768,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,33769,0)
+ ;;=N18.3^^131^1676^15
+ ;;^UTILITY(U,$J,358.3,33769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33324,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,Mild
- ;;^UTILITY(U,$J,358.3,33324,1,4,0)
- ;;=4^F32.0
- ;;^UTILITY(U,$J,358.3,33324,2)
- ;;=^5003521
- ;;^UTILITY(U,$J,358.3,33325,0)
- ;;=F32.1^^148^1636^16
- ;;^UTILITY(U,$J,358.3,33325,1,0)
+ ;;^UTILITY(U,$J,358.3,33769,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 3
+ ;;^UTILITY(U,$J,358.3,33769,1,4,0)
+ ;;=4^N18.3
+ ;;^UTILITY(U,$J,358.3,33769,2)
+ ;;=^5015604
+ ;;^UTILITY(U,$J,358.3,33770,0)
+ ;;=N18.4^^131^1676^16
+ ;;^UTILITY(U,$J,358.3,33770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33325,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,Moderate
- ;;^UTILITY(U,$J,358.3,33325,1,4,0)
- ;;=4^F32.1
- ;;^UTILITY(U,$J,358.3,33325,2)
- ;;=^5003522
- ;;^UTILITY(U,$J,358.3,33326,0)
- ;;=F32.2^^148^1636^17
- ;;^UTILITY(U,$J,358.3,33326,1,0)
+ ;;^UTILITY(U,$J,358.3,33770,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,33770,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,33770,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,33771,0)
+ ;;=N18.5^^131^1676^17
+ ;;^UTILITY(U,$J,358.3,33771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33326,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,Severe
- ;;^UTILITY(U,$J,358.3,33326,1,4,0)
- ;;=4^F32.2
- ;;^UTILITY(U,$J,358.3,33326,2)
- ;;=^5003523
- ;;^UTILITY(U,$J,358.3,33327,0)
- ;;=F32.3^^148^1636^18
- ;;^UTILITY(U,$J,358.3,33327,1,0)
+ ;;^UTILITY(U,$J,358.3,33771,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,33771,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,33771,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,33772,0)
+ ;;=Q61.3^^131^1676^80
+ ;;^UTILITY(U,$J,358.3,33772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33327,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode w Psychotic Features
- ;;^UTILITY(U,$J,358.3,33327,1,4,0)
- ;;=4^F32.3
- ;;^UTILITY(U,$J,358.3,33327,2)
- ;;=^5003524
- ;;^UTILITY(U,$J,358.3,33328,0)
- ;;=F32.4^^148^1636^19
- ;;^UTILITY(U,$J,358.3,33328,1,0)
+ ;;^UTILITY(U,$J,358.3,33772,1,3,0)
+ ;;=3^Polycystic Kidney,Unspec
+ ;;^UTILITY(U,$J,358.3,33772,1,4,0)
+ ;;=4^Q61.3
+ ;;^UTILITY(U,$J,358.3,33772,2)
+ ;;=^5018797
+ ;;^UTILITY(U,$J,358.3,33773,0)
+ ;;=N20.1^^131^1676^9
+ ;;^UTILITY(U,$J,358.3,33773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33328,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,In Partial Remission
- ;;^UTILITY(U,$J,358.3,33328,1,4,0)
- ;;=4^F32.4
- ;;^UTILITY(U,$J,358.3,33328,2)
- ;;=^5003525
- ;;^UTILITY(U,$J,358.3,33329,0)
- ;;=F32.5^^148^1636^20
- ;;^UTILITY(U,$J,358.3,33329,1,0)
+ ;;^UTILITY(U,$J,358.3,33773,1,3,0)
+ ;;=3^Calculus Ureter
+ ;;^UTILITY(U,$J,358.3,33773,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,33773,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,33774,0)
+ ;;=N18.9^^131^1676^18
+ ;;^UTILITY(U,$J,358.3,33774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33329,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,33329,1,4,0)
- ;;=4^F32.5
- ;;^UTILITY(U,$J,358.3,33329,2)
- ;;=^5003526
- ;;^UTILITY(U,$J,358.3,33330,0)
- ;;=F33.9^^148^1636^13
- ;;^UTILITY(U,$J,358.3,33330,1,0)
+ ;;^UTILITY(U,$J,358.3,33774,1,3,0)
+ ;;=3^Chronic Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,33774,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,33774,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,33775,0)
+ ;;=N18.6^^131^1676^28
+ ;;^UTILITY(U,$J,358.3,33775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33330,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,33330,1,4,0)
- ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,33775,1,3,0)
+ ;;=3^End Stage Renal Disease (ESRD)
+ ;;^UTILITY(U,$J,358.3,33775,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,33775,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,33776,0)
+ ;;=N52.9^^131^1676^44
+ ;;^UTILITY(U,$J,358.3,33776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33776,1,3,0)
+ ;;=3^Erectile Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,33776,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,33776,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,33777,0)
+ ;;=N32.81^^131^1676^75

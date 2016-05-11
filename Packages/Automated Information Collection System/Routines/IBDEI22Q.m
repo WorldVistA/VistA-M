@@ -1,132 +1,122 @@
-IBDEI22Q ; ; 19-NOV-2015
+IBDEI22Q ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34773,1,4,0)
- ;;=4^C72.31
- ;;^UTILITY(U,$J,358.3,34773,2)
- ;;=^5001303
- ;;^UTILITY(U,$J,358.3,34774,0)
- ;;=C72.32^^160^1769^15
- ;;^UTILITY(U,$J,358.3,34774,1,0)
+ ;;^UTILITY(U,$J,358.3,35165,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,35165,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,35166,0)
+ ;;=Y36.6X0D^^131^1699^115
+ ;;^UTILITY(U,$J,358.3,35166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34774,1,3,0)
- ;;=3^Malignant neoplasm of left optic nerve
- ;;^UTILITY(U,$J,358.3,34774,1,4,0)
- ;;=4^C72.32
- ;;^UTILITY(U,$J,358.3,34774,2)
- ;;=^5001304
- ;;^UTILITY(U,$J,358.3,34775,0)
- ;;=C72.41^^160^1769^20
- ;;^UTILITY(U,$J,358.3,34775,1,0)
+ ;;^UTILITY(U,$J,358.3,35166,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35166,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,35166,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,35167,0)
+ ;;=Y36.7X0A^^131^1699^128
+ ;;^UTILITY(U,$J,358.3,35167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34775,1,3,0)
- ;;=3^Malignant neoplasm of right acoustic nerve
- ;;^UTILITY(U,$J,358.3,34775,1,4,0)
- ;;=4^C72.41
- ;;^UTILITY(U,$J,358.3,34775,2)
- ;;=^5001306
- ;;^UTILITY(U,$J,358.3,34776,0)
- ;;=C72.42^^160^1769^13
- ;;^UTILITY(U,$J,358.3,34776,1,0)
+ ;;^UTILITY(U,$J,358.3,35167,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35167,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,35167,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,35168,0)
+ ;;=Y36.7X0D^^131^1699^129
+ ;;^UTILITY(U,$J,358.3,35168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34776,1,3,0)
- ;;=3^Malignant neoplasm of left acoustic nerve
- ;;^UTILITY(U,$J,358.3,34776,1,4,0)
- ;;=4^C72.42
- ;;^UTILITY(U,$J,358.3,34776,2)
- ;;=^5001307
- ;;^UTILITY(U,$J,358.3,34777,0)
- ;;=C72.59^^160^1769^17
- ;;^UTILITY(U,$J,358.3,34777,1,0)
+ ;;^UTILITY(U,$J,358.3,35168,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35168,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,35168,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,35169,0)
+ ;;=Y36.810A^^131^1699^22
+ ;;^UTILITY(U,$J,358.3,35169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34777,1,3,0)
- ;;=3^Malignant neoplasm of other cranial nerves
- ;;^UTILITY(U,$J,358.3,34777,1,4,0)
- ;;=4^C72.59
- ;;^UTILITY(U,$J,358.3,34777,2)
- ;;=^5001309
- ;;^UTILITY(U,$J,358.3,34778,0)
- ;;=C72.9^^160^1769^8
- ;;^UTILITY(U,$J,358.3,34778,1,0)
+ ;;^UTILITY(U,$J,358.3,35169,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35169,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,35169,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,35170,0)
+ ;;=Y36.810D^^131^1699^23
+ ;;^UTILITY(U,$J,358.3,35170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34778,1,3,0)
- ;;=3^Malignant neoplasm of central nervous system, unspecified
- ;;^UTILITY(U,$J,358.3,34778,1,4,0)
- ;;=4^C72.9
- ;;^UTILITY(U,$J,358.3,34778,2)
- ;;=^5001310
- ;;^UTILITY(U,$J,358.3,34779,0)
- ;;=C70.0^^160^1769^10
- ;;^UTILITY(U,$J,358.3,34779,1,0)
+ ;;^UTILITY(U,$J,358.3,35170,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35170,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,35170,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,35171,0)
+ ;;=Y36.820A^^131^1699^19
+ ;;^UTILITY(U,$J,358.3,35171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34779,1,3,0)
- ;;=3^Malignant neoplasm of cerebral meninges
- ;;^UTILITY(U,$J,358.3,34779,1,4,0)
- ;;=4^C70.0
- ;;^UTILITY(U,$J,358.3,34779,2)
- ;;=^267291
- ;;^UTILITY(U,$J,358.3,34780,0)
- ;;=C70.1^^160^1769^24
- ;;^UTILITY(U,$J,358.3,34780,1,0)
+ ;;^UTILITY(U,$J,358.3,35171,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35171,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,35171,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,35172,0)
+ ;;=Y36.820D^^131^1699^20
+ ;;^UTILITY(U,$J,358.3,35172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34780,1,3,0)
- ;;=3^Malignant neoplasm of spinal meninges
- ;;^UTILITY(U,$J,358.3,34780,1,4,0)
- ;;=4^C70.1
- ;;^UTILITY(U,$J,358.3,34780,2)
- ;;=^267293
- ;;^UTILITY(U,$J,358.3,34781,0)
- ;;=99211^^161^1770^1
- ;;^UTILITY(U,$J,358.3,34781,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,34781,1,1,0)
- ;;=1^NURSING VISIT
- ;;^UTILITY(U,$J,358.3,34781,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,34782,0)
- ;;=J3420^^162^1771^5^^^^1
- ;;^UTILITY(U,$J,358.3,34782,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34782,1,2,0)
- ;;=2^J3420
- ;;^UTILITY(U,$J,358.3,34782,1,3,0)
- ;;=3^B12 INJ. UP TO 1,000MCG
- ;;^UTILITY(U,$J,358.3,34783,0)
- ;;=J0800^^162^1771^10^^^^1
- ;;^UTILITY(U,$J,358.3,34783,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34783,1,2,0)
- ;;=2^J0800
- ;;^UTILITY(U,$J,358.3,34783,1,3,0)
- ;;=3^CORTISON INJ, UP TO 40U
- ;;^UTILITY(U,$J,358.3,34784,0)
- ;;=J1631^^162^1771^22^^^^1
- ;;^UTILITY(U,$J,358.3,34784,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34784,1,2,0)
- ;;=2^J1631
- ;;^UTILITY(U,$J,358.3,34784,1,3,0)
- ;;=3^HALDOL 50MG
- ;;^UTILITY(U,$J,358.3,34785,0)
- ;;=J2680^^162^1771^54^^^^1
- ;;^UTILITY(U,$J,358.3,34785,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34785,1,2,0)
- ;;=2^J2680
- ;;^UTILITY(U,$J,358.3,34785,1,3,0)
- ;;=3^PROLIXIN INJ UP TO 25MG
- ;;^UTILITY(U,$J,358.3,34786,0)
- ;;=J1630^^162^1771^23^^^^1
- ;;^UTILITY(U,$J,358.3,34786,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34786,1,2,0)
- ;;=2^J1630
- ;;^UTILITY(U,$J,358.3,34786,1,3,0)
- ;;=3^HALDOL 5MG
- ;;^UTILITY(U,$J,358.3,34787,0)
- ;;=J9202^^162^1771^65^^^^1
- ;;^UTILITY(U,$J,358.3,34787,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,34787,1,2,0)
- ;;=2^J9202
+ ;;^UTILITY(U,$J,358.3,35172,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35172,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,35172,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,35173,0)
+ ;;=Y37.200A^^131^1699^91
+ ;;^UTILITY(U,$J,358.3,35173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35173,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35173,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,35173,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,35174,0)
+ ;;=Y37.200D^^131^1699^92
+ ;;^UTILITY(U,$J,358.3,35174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35174,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35174,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,35174,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,35175,0)
+ ;;=X00.1XXA^^131^1699^13
+ ;;^UTILITY(U,$J,358.3,35175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35175,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35175,1,4,0)
+ ;;=4^X00.1XXA
+ ;;^UTILITY(U,$J,358.3,35175,2)
+ ;;=^5060664
+ ;;^UTILITY(U,$J,358.3,35176,0)
+ ;;=X00.1XXD^^131^1699^14
+ ;;^UTILITY(U,$J,358.3,35176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35176,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35176,1,4,0)
+ ;;=4^X00.1XXD
+ ;;^UTILITY(U,$J,358.3,35176,2)
+ ;;=^5060665
+ ;;^UTILITY(U,$J,358.3,35177,0)
+ ;;=Y36.820S^^131^1699^21
+ ;;^UTILITY(U,$J,358.3,35177,1,0)
+ ;;=^358.31IA^4^2

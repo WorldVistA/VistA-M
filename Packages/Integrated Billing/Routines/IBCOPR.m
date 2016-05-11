@@ -1,12 +1,12 @@
-IBCOPR ;WISC/RFJ,BOISE/WRL-print dollar amts for pre-registration ; 05 May 97  8:30 AM [7/22/03 11:59am]
- ;;2.0; INTEGRATED BILLING ;**75,345**; 21-MAR-94;Build 28
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCOPR ;WISC/RFJ,BOISE/WRL - print dollar amts for pre-registration ;05 May 97  8:30 AM [7/22/03 11:59am]
+ ;;2.0;INTEGRATED BILLING;**75,345,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  W !!,"This report will sort through insurance policies in the patient file"
  W !,"and print patients, bills, and payments with an insurance policy source"
  W !,"of information equal to the user selected criteria."
  ;
- N DATEEND,DATESTRT,IBCNFSUM,IBCNESOI
+ N DATEEND,DATESTRT,IBCNFSUM,IBCNESOI,IBCNOUT
  ;
  ;  select date range
  W ! D DATESEL I '$G(DATEEND) Q
@@ -15,6 +15,8 @@ IBCOPR ;WISC/RFJ,BOISE/WRL-print dollar amts for pre-registration ; 05 May 97  8
  W ! D SOISEL I '$D(IBCNESOI) Q
  ;
  S IBCNFSUM=$$SUMMARY I 'IBCNFSUM Q
+ ;
+ S IBCNOUT=$$OUT
  ;
  W !!,"Since this report has to loop through all patients and check all insurance"
  W !,"policies, it is recommended this report be queued."
@@ -25,7 +27,7 @@ IBCOPR ;WISC/RFJ,BOISE/WRL-print dollar amts for pre-registration ; 05 May 97  8
  .   S ZTDESC="Source of Information Report",ZTRTN="DQ^IBCOPR"
  .   S ZTSAVE("DATE*")="",ZTSAVE("IBCN*")="",ZTSAVE("ZTREQ")="@"
  ;
- W !!,"<*> please wait <*>"
+ I IBCNOUT="R" W !!,"<*> please wait <*>"
  ;
 DQ ;  report (queue) starts here
  N AMOUNT,BILLNUM,CANCEL,CLASS,COUNTNEW,DA,DATA,DATE,DFN,INSCO,PAYMTAMT,PAYMTCNT,TOTALAMT,TOTALCNT,TRANDA,VA,Y,SOI
@@ -145,3 +147,11 @@ SUMMARY() ;  ask to print detailed or summary report
  I $D(DIRUT) Q 0
  Q $S(Y="S":1,Y="D":2,1:0)
  ;
+OUT() ; select Excel or Report format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

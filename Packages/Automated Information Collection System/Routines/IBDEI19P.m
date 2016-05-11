@@ -1,124 +1,136 @@
-IBDEI19P ; ; 19-NOV-2015
+IBDEI19P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21195,1,4,0)
- ;;=4^I69.854
- ;;^UTILITY(U,$J,358.3,21195,2)
- ;;=^5007538
- ;;^UTILITY(U,$J,358.3,21196,0)
- ;;=I69.251^^101^1027^54
- ;;^UTILITY(U,$J,358.3,21196,1,0)
+ ;;^UTILITY(U,$J,358.3,21562,0)
+ ;;=N40.0^^87^965^20
+ ;;^UTILITY(U,$J,358.3,21562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21196,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,21196,1,4,0)
- ;;=4^I69.251
- ;;^UTILITY(U,$J,358.3,21196,2)
- ;;=^5007473
- ;;^UTILITY(U,$J,358.3,21197,0)
- ;;=I69.252^^101^1027^55
- ;;^UTILITY(U,$J,358.3,21197,1,0)
+ ;;^UTILITY(U,$J,358.3,21562,1,3,0)
+ ;;=3^Enlarged Prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,21562,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,21562,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,21563,0)
+ ;;=N40.1^^87^965^19
+ ;;^UTILITY(U,$J,358.3,21563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21197,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,21197,1,4,0)
- ;;=4^I69.252
- ;;^UTILITY(U,$J,358.3,21197,2)
- ;;=^5007474
- ;;^UTILITY(U,$J,358.3,21198,0)
- ;;=I69.253^^101^1027^56
- ;;^UTILITY(U,$J,358.3,21198,1,0)
+ ;;^UTILITY(U,$J,358.3,21563,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,21563,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,21563,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,21564,0)
+ ;;=L03.811^^87^965^10
+ ;;^UTILITY(U,$J,358.3,21564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21198,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,21198,1,4,0)
- ;;=4^I69.253
- ;;^UTILITY(U,$J,358.3,21198,2)
- ;;=^5007475
- ;;^UTILITY(U,$J,358.3,21199,0)
- ;;=I69.254^^101^1027^57
- ;;^UTILITY(U,$J,358.3,21199,1,0)
+ ;;^UTILITY(U,$J,358.3,21564,1,3,0)
+ ;;=3^Cellulitis,Head (Except Face)
+ ;;^UTILITY(U,$J,358.3,21564,1,4,0)
+ ;;=4^L03.811
+ ;;^UTILITY(U,$J,358.3,21564,2)
+ ;;=^5009063
+ ;;^UTILITY(U,$J,358.3,21565,0)
+ ;;=L03.818^^87^965^11
+ ;;^UTILITY(U,$J,358.3,21565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21199,1,3,0)
- ;;=3^Hemiplga fol oth ntrm intcrn hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,21199,1,4,0)
- ;;=4^I69.254
- ;;^UTILITY(U,$J,358.3,21199,2)
- ;;=^5007476
- ;;^UTILITY(U,$J,358.3,21200,0)
- ;;=I69.341^^101^1027^58
- ;;^UTILITY(U,$J,358.3,21200,1,0)
+ ;;^UTILITY(U,$J,358.3,21565,1,3,0)
+ ;;=3^Cellulitis,Oth Sites
+ ;;^UTILITY(U,$J,358.3,21565,1,4,0)
+ ;;=4^L03.818
+ ;;^UTILITY(U,$J,358.3,21565,2)
+ ;;=^5009064
+ ;;^UTILITY(U,$J,358.3,21566,0)
+ ;;=L03.891^^87^965^35
+ ;;^UTILITY(U,$J,358.3,21566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21200,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right dominant side
- ;;^UTILITY(U,$J,358.3,21200,1,4,0)
- ;;=4^I69.341
- ;;^UTILITY(U,$J,358.3,21200,2)
- ;;=^5007501
- ;;^UTILITY(U,$J,358.3,21201,0)
- ;;=I69.342^^101^1027^59
- ;;^UTILITY(U,$J,358.3,21201,1,0)
+ ;;^UTILITY(U,$J,358.3,21566,1,3,0)
+ ;;=3^Lymphangitis,Head (Except Face),Acute
+ ;;^UTILITY(U,$J,358.3,21566,1,4,0)
+ ;;=4^L03.891
+ ;;^UTILITY(U,$J,358.3,21566,2)
+ ;;=^5009065
+ ;;^UTILITY(U,$J,358.3,21567,0)
+ ;;=L03.898^^87^965^36
+ ;;^UTILITY(U,$J,358.3,21567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21201,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left dominant side
- ;;^UTILITY(U,$J,358.3,21201,1,4,0)
- ;;=4^I69.342
- ;;^UTILITY(U,$J,358.3,21201,2)
- ;;=^5133575
- ;;^UTILITY(U,$J,358.3,21202,0)
- ;;=I69.343^^101^1027^60
- ;;^UTILITY(U,$J,358.3,21202,1,0)
+ ;;^UTILITY(U,$J,358.3,21567,1,3,0)
+ ;;=3^Lymphangitis,Oth Sites,Acute
+ ;;^UTILITY(U,$J,358.3,21567,1,4,0)
+ ;;=4^L03.898
+ ;;^UTILITY(U,$J,358.3,21567,2)
+ ;;=^5009066
+ ;;^UTILITY(U,$J,358.3,21568,0)
+ ;;=L03.90^^87^965^12
+ ;;^UTILITY(U,$J,358.3,21568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21202,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff right nondom side
- ;;^UTILITY(U,$J,358.3,21202,1,4,0)
- ;;=4^I69.343
- ;;^UTILITY(U,$J,358.3,21202,2)
- ;;=^5007502
- ;;^UTILITY(U,$J,358.3,21203,0)
- ;;=I69.344^^101^1027^61
- ;;^UTILITY(U,$J,358.3,21203,1,0)
+ ;;^UTILITY(U,$J,358.3,21568,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21568,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,21568,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,21569,0)
+ ;;=L03.91^^87^965^34
+ ;;^UTILITY(U,$J,358.3,21569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21203,1,3,0)
- ;;=3^Monoplg low lmb fol cerebral infrc aff left nondom side
- ;;^UTILITY(U,$J,358.3,21203,1,4,0)
- ;;=4^I69.344
- ;;^UTILITY(U,$J,358.3,21203,2)
- ;;=^5133576
- ;;^UTILITY(U,$J,358.3,21204,0)
- ;;=I69.141^^101^1027^62
- ;;^UTILITY(U,$J,358.3,21204,1,0)
+ ;;^UTILITY(U,$J,358.3,21569,1,3,0)
+ ;;=3^Lymphangitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,21569,1,4,0)
+ ;;=4^L03.91
+ ;;^UTILITY(U,$J,358.3,21569,2)
+ ;;=^5009068
+ ;;^UTILITY(U,$J,358.3,21570,0)
+ ;;=M51.26^^87^965^32
+ ;;^UTILITY(U,$J,358.3,21570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21204,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,21204,1,4,0)
- ;;=4^I69.141
- ;;^UTILITY(U,$J,358.3,21204,2)
- ;;=^5007437
- ;;^UTILITY(U,$J,358.3,21205,0)
- ;;=I69.142^^101^1027^63
- ;;^UTILITY(U,$J,358.3,21205,1,0)
+ ;;^UTILITY(U,$J,358.3,21570,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,21570,1,4,0)
+ ;;=4^M51.26
+ ;;^UTILITY(U,$J,358.3,21570,2)
+ ;;=^5012249
+ ;;^UTILITY(U,$J,358.3,21571,0)
+ ;;=M51.27^^87^965^33
+ ;;^UTILITY(U,$J,358.3,21571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21205,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,21205,1,4,0)
- ;;=4^I69.142
- ;;^UTILITY(U,$J,358.3,21205,2)
- ;;=^5133573
- ;;^UTILITY(U,$J,358.3,21206,0)
- ;;=I69.143^^101^1027^64
- ;;^UTILITY(U,$J,358.3,21206,1,0)
+ ;;^UTILITY(U,$J,358.3,21571,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,21571,1,4,0)
+ ;;=4^M51.27
+ ;;^UTILITY(U,$J,358.3,21571,2)
+ ;;=^5012250
+ ;;^UTILITY(U,$J,358.3,21572,0)
+ ;;=G47.33^^87^965^51
+ ;;^UTILITY(U,$J,358.3,21572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21206,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,21206,1,4,0)
- ;;=4^I69.143
- ;;^UTILITY(U,$J,358.3,21206,2)
- ;;=^5007438
- ;;^UTILITY(U,$J,358.3,21207,0)
- ;;=I69.144^^101^1027^65
- ;;^UTILITY(U,$J,358.3,21207,1,0)
+ ;;^UTILITY(U,$J,358.3,21572,1,3,0)
+ ;;=3^Sleep Apnea,Obstructive
+ ;;^UTILITY(U,$J,358.3,21572,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,21572,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,21573,0)
+ ;;=G44.1^^87^965^55
+ ;;^UTILITY(U,$J,358.3,21573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21207,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm intcrbl hemor aff left nondom side
+ ;;^UTILITY(U,$J,358.3,21573,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,21573,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,21573,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,21574,0)
+ ;;=R73.01^^87^965^30
+ ;;^UTILITY(U,$J,358.3,21574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21574,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,21574,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,21574,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,21575,0)
+ ;;=R74.8^^87^965^1

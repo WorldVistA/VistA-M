@@ -1,132 +1,138 @@
-IBDEI0S5 ; ; 19-NOV-2015
+IBDEI0S5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12950,1,0)
+ ;;^UTILITY(U,$J,358.3,13198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12950,1,3,0)
- ;;=3^Filamentary Keratitis,Right Eye
- ;;^UTILITY(U,$J,358.3,12950,1,4,0)
- ;;=4^H16.121
- ;;^UTILITY(U,$J,358.3,12950,2)
- ;;=^5004905
- ;;^UTILITY(U,$J,358.3,12951,0)
- ;;=H16.122^^80^753^74
- ;;^UTILITY(U,$J,358.3,12951,1,0)
+ ;;^UTILITY(U,$J,358.3,13198,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,13198,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,13198,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,13199,0)
+ ;;=K59.1^^53^588^32
+ ;;^UTILITY(U,$J,358.3,13199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12951,1,3,0)
- ;;=3^Filamentary Keratitis,Left Eye
- ;;^UTILITY(U,$J,358.3,12951,1,4,0)
- ;;=4^H16.122
- ;;^UTILITY(U,$J,358.3,12951,2)
- ;;=^5004906
- ;;^UTILITY(U,$J,358.3,12952,0)
- ;;=H16.221^^80^753^97
- ;;^UTILITY(U,$J,358.3,12952,1,0)
+ ;;^UTILITY(U,$J,358.3,13199,1,3,0)
+ ;;=3^Diarrhea,Functional
+ ;;^UTILITY(U,$J,358.3,13199,1,4,0)
+ ;;=4^K59.1
+ ;;^UTILITY(U,$J,358.3,13199,2)
+ ;;=^270281
+ ;;^UTILITY(U,$J,358.3,13200,0)
+ ;;=K61.4^^53^588^4
+ ;;^UTILITY(U,$J,358.3,13200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12952,1,3,0)
- ;;=3^Keratoconjunct Sicca,Right Eye
- ;;^UTILITY(U,$J,358.3,12952,1,4,0)
- ;;=4^H16.221
- ;;^UTILITY(U,$J,358.3,12952,2)
- ;;=^5004924
- ;;^UTILITY(U,$J,358.3,12953,0)
- ;;=H16.222^^80^753^96
- ;;^UTILITY(U,$J,358.3,12953,1,0)
+ ;;^UTILITY(U,$J,358.3,13200,1,3,0)
+ ;;=3^Abscess,Intrasphincteric
+ ;;^UTILITY(U,$J,358.3,13200,1,4,0)
+ ;;=4^K61.4
+ ;;^UTILITY(U,$J,358.3,13200,2)
+ ;;=^5008752
+ ;;^UTILITY(U,$J,358.3,13201,0)
+ ;;=K61.0^^53^588^2
+ ;;^UTILITY(U,$J,358.3,13201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12953,1,3,0)
- ;;=3^Keratoconjunct Sicca,Left Eye
- ;;^UTILITY(U,$J,358.3,12953,1,4,0)
- ;;=4^H16.222
- ;;^UTILITY(U,$J,358.3,12953,2)
- ;;=^5004925
- ;;^UTILITY(U,$J,358.3,12954,0)
- ;;=H16.223^^80^753^95
- ;;^UTILITY(U,$J,358.3,12954,1,0)
+ ;;^UTILITY(U,$J,358.3,13201,1,3,0)
+ ;;=3^Abscess,Anal
+ ;;^UTILITY(U,$J,358.3,13201,1,4,0)
+ ;;=4^K61.0
+ ;;^UTILITY(U,$J,358.3,13201,2)
+ ;;=^5008749
+ ;;^UTILITY(U,$J,358.3,13202,0)
+ ;;=K61.1^^53^588^6
+ ;;^UTILITY(U,$J,358.3,13202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12954,1,3,0)
- ;;=3^Keratoconjunct Sicca,Bilateral
- ;;^UTILITY(U,$J,358.3,12954,1,4,0)
- ;;=4^H16.223
- ;;^UTILITY(U,$J,358.3,12954,2)
- ;;=^5004926
- ;;^UTILITY(U,$J,358.3,12955,0)
- ;;=H16.211^^80^753^67
- ;;^UTILITY(U,$J,358.3,12955,1,0)
+ ;;^UTILITY(U,$J,358.3,13202,1,3,0)
+ ;;=3^Abscess,Rectal
+ ;;^UTILITY(U,$J,358.3,13202,1,4,0)
+ ;;=4^K61.1
+ ;;^UTILITY(U,$J,358.3,13202,2)
+ ;;=^259588
+ ;;^UTILITY(U,$J,358.3,13203,0)
+ ;;=K61.2^^53^588^3
+ ;;^UTILITY(U,$J,358.3,13203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12955,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Right Eye
- ;;^UTILITY(U,$J,358.3,12955,1,4,0)
- ;;=4^H16.211
- ;;^UTILITY(U,$J,358.3,12955,2)
- ;;=^5004920
- ;;^UTILITY(U,$J,358.3,12956,0)
- ;;=H16.212^^80^753^66
- ;;^UTILITY(U,$J,358.3,12956,1,0)
+ ;;^UTILITY(U,$J,358.3,13203,1,3,0)
+ ;;=3^Abscess,Anorectal
+ ;;^UTILITY(U,$J,358.3,13203,1,4,0)
+ ;;=4^K61.2
+ ;;^UTILITY(U,$J,358.3,13203,2)
+ ;;=^5008750
+ ;;^UTILITY(U,$J,358.3,13204,0)
+ ;;=K61.3^^53^588^5
+ ;;^UTILITY(U,$J,358.3,13204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12956,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Left Eye
- ;;^UTILITY(U,$J,358.3,12956,1,4,0)
- ;;=4^H16.212
- ;;^UTILITY(U,$J,358.3,12956,2)
- ;;=^5004921
- ;;^UTILITY(U,$J,358.3,12957,0)
- ;;=H16.201^^80^753^103
- ;;^UTILITY(U,$J,358.3,12957,1,0)
+ ;;^UTILITY(U,$J,358.3,13204,1,3,0)
+ ;;=3^Abscess,Ischiorectal
+ ;;^UTILITY(U,$J,358.3,13204,1,4,0)
+ ;;=4^K61.3
+ ;;^UTILITY(U,$J,358.3,13204,2)
+ ;;=^5008751
+ ;;^UTILITY(U,$J,358.3,13205,0)
+ ;;=K50.014^^53^588^22
+ ;;^UTILITY(U,$J,358.3,13205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12957,1,3,0)
- ;;=3^Keratoconjunctivitis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12957,1,4,0)
- ;;=4^H16.201
- ;;^UTILITY(U,$J,358.3,12957,2)
- ;;=^5004917
- ;;^UTILITY(U,$J,358.3,12958,0)
- ;;=H16.202^^80^753^101
- ;;^UTILITY(U,$J,358.3,12958,1,0)
+ ;;^UTILITY(U,$J,358.3,13205,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,13205,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,13205,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,13206,0)
+ ;;=K50.114^^53^588^21
+ ;;^UTILITY(U,$J,358.3,13206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12958,1,3,0)
- ;;=3^Keratoconjunctivitis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12958,1,4,0)
- ;;=4^H16.202
- ;;^UTILITY(U,$J,358.3,12958,2)
- ;;=^5004918
- ;;^UTILITY(U,$J,358.3,12959,0)
- ;;=H16.291^^80^753^102
- ;;^UTILITY(U,$J,358.3,12959,1,0)
+ ;;^UTILITY(U,$J,358.3,13206,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,13206,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,13206,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,13207,0)
+ ;;=D12.6^^53^588^7
+ ;;^UTILITY(U,$J,358.3,13207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12959,1,3,0)
- ;;=3^Keratoconjunctivitis,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,12959,1,4,0)
- ;;=4^H16.291
- ;;^UTILITY(U,$J,358.3,12959,2)
- ;;=^5004944
- ;;^UTILITY(U,$J,358.3,12960,0)
- ;;=H16.292^^80^753^100
- ;;^UTILITY(U,$J,358.3,12960,1,0)
+ ;;^UTILITY(U,$J,358.3,13207,1,3,0)
+ ;;=3^Adenomatous Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,13207,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,13207,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,13208,0)
+ ;;=K64.9^^53^588^57
+ ;;^UTILITY(U,$J,358.3,13208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12960,1,3,0)
- ;;=3^Keratoconjunctivitis,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,12960,1,4,0)
- ;;=4^H16.292
- ;;^UTILITY(U,$J,358.3,12960,2)
- ;;=^5133471
- ;;^UTILITY(U,$J,358.3,12961,0)
- ;;=H16.401^^80^753^54
- ;;^UTILITY(U,$J,358.3,12961,1,0)
+ ;;^UTILITY(U,$J,358.3,13208,1,3,0)
+ ;;=3^Hemorrhoids w/o Complication
+ ;;^UTILITY(U,$J,358.3,13208,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,13208,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,13209,0)
+ ;;=K50.814^^53^588^30
+ ;;^UTILITY(U,$J,358.3,13209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12961,1,3,0)
- ;;=3^Corneal Neovascularization,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12961,1,4,0)
- ;;=4^H16.401
- ;;^UTILITY(U,$J,358.3,12961,2)
- ;;=^5004965
- ;;^UTILITY(U,$J,358.3,12962,0)
- ;;=H16.402^^80^753^53
- ;;^UTILITY(U,$J,358.3,12962,1,0)
+ ;;^UTILITY(U,$J,358.3,13209,1,3,0)
+ ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,13209,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,13209,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,13210,0)
+ ;;=D12.9^^53^588^9
+ ;;^UTILITY(U,$J,358.3,13210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12962,1,3,0)
- ;;=3^Corneal Neovascularization,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12962,1,4,0)
- ;;=4^H16.402
- ;;^UTILITY(U,$J,358.3,12962,2)
- ;;=^5004966
+ ;;^UTILITY(U,$J,358.3,13210,1,3,0)
+ ;;=3^Benign Neop of Anus
+ ;;^UTILITY(U,$J,358.3,13210,1,4,0)
+ ;;=4^D12.9
+ ;;^UTILITY(U,$J,358.3,13210,2)
+ ;;=^5001972
+ ;;^UTILITY(U,$J,358.3,13211,0)
+ ;;=D12.8^^53^588^15
+ ;;^UTILITY(U,$J,358.3,13211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13211,1,3,0)
+ ;;=3^Benign Neop of Rectum

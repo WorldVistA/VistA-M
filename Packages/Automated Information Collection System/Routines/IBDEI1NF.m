@@ -1,134 +1,128 @@
-IBDEI1NF ; ; 19-NOV-2015
+IBDEI1NF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27587,1,4,0)
- ;;=4^I47.1
- ;;^UTILITY(U,$J,358.3,27587,2)
- ;;=^5007223
- ;;^UTILITY(U,$J,358.3,27588,0)
- ;;=I48.0^^132^1319^15
- ;;^UTILITY(U,$J,358.3,27588,1,0)
+ ;;^UTILITY(U,$J,358.3,27984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27588,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,27588,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,27588,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,27589,0)
- ;;=I49.5^^132^1319^23
- ;;^UTILITY(U,$J,358.3,27589,1,0)
+ ;;^UTILITY(U,$J,358.3,27984,1,3,0)
+ ;;=3^Unqualified Visual Loss,Left Eye
+ ;;^UTILITY(U,$J,358.3,27984,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,27984,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,27985,0)
+ ;;=S64.11XA^^109^1397^7
+ ;;^UTILITY(U,$J,358.3,27985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27589,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,27589,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,27589,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,27590,0)
- ;;=I49.8^^132^1319^3
- ;;^UTILITY(U,$J,358.3,27590,1,0)
+ ;;^UTILITY(U,$J,358.3,27985,1,3,0)
+ ;;=3^Inj of Median Nerve,Rt Arm at Wrs/Hand Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,27985,1,4,0)
+ ;;=4^S64.11XA
+ ;;^UTILITY(U,$J,358.3,27985,2)
+ ;;=^5035772
+ ;;^UTILITY(U,$J,358.3,27986,0)
+ ;;=S64.11XD^^109^1397^8
+ ;;^UTILITY(U,$J,358.3,27986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27590,1,3,0)
- ;;=3^Cardiac Arrhythmias
- ;;^UTILITY(U,$J,358.3,27590,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,27590,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,27591,0)
- ;;=I49.9^^132^1319^2
- ;;^UTILITY(U,$J,358.3,27591,1,0)
+ ;;^UTILITY(U,$J,358.3,27986,1,3,0)
+ ;;=3^Inj of Median Nerve,Rt Arm at Wrs/Hand Level,Subs
+ ;;^UTILITY(U,$J,358.3,27986,1,4,0)
+ ;;=4^S64.11XD
+ ;;^UTILITY(U,$J,358.3,27986,2)
+ ;;=^5035773
+ ;;^UTILITY(U,$J,358.3,27987,0)
+ ;;=S64.12XA^^109^1397^5
+ ;;^UTILITY(U,$J,358.3,27987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27591,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,27591,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,27591,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,27592,0)
- ;;=R00.1^^132^1319^1
- ;;^UTILITY(U,$J,358.3,27592,1,0)
+ ;;^UTILITY(U,$J,358.3,27987,1,3,0)
+ ;;=3^Inj of Median Nerve,Lt Arm at Wrs/Hand Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,27987,1,4,0)
+ ;;=4^S64.12XA
+ ;;^UTILITY(U,$J,358.3,27987,2)
+ ;;=^5035775
+ ;;^UTILITY(U,$J,358.3,27988,0)
+ ;;=S64.12XD^^109^1397^6
+ ;;^UTILITY(U,$J,358.3,27988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27592,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,27592,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,27592,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,27593,0)
- ;;=I34.1^^132^1319^14
- ;;^UTILITY(U,$J,358.3,27593,1,0)
+ ;;^UTILITY(U,$J,358.3,27988,1,3,0)
+ ;;=3^Inj of Median Nerve,Lt Arm at Wrs/Hand Level,Subs
+ ;;^UTILITY(U,$J,358.3,27988,1,4,0)
+ ;;=4^S64.12XD
+ ;;^UTILITY(U,$J,358.3,27988,2)
+ ;;=^5035776
+ ;;^UTILITY(U,$J,358.3,27989,0)
+ ;;=G56.22^^109^1397^11
+ ;;^UTILITY(U,$J,358.3,27989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27593,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,27593,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,27593,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,27594,0)
- ;;=D68.4^^132^1320^1
- ;;^UTILITY(U,$J,358.3,27594,1,0)
+ ;;^UTILITY(U,$J,358.3,27989,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,27989,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,27989,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,27990,0)
+ ;;=G56.21^^109^1397^12
+ ;;^UTILITY(U,$J,358.3,27990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27594,1,3,0)
- ;;=3^Acquired Coagulation Factor Deficiency
- ;;^UTILITY(U,$J,358.3,27594,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,27594,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,27595,0)
- ;;=D59.9^^132^1320^2
- ;;^UTILITY(U,$J,358.3,27595,1,0)
+ ;;^UTILITY(U,$J,358.3,27990,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,27990,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,27990,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,27991,0)
+ ;;=G56.11^^109^1397^10
+ ;;^UTILITY(U,$J,358.3,27991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27595,1,3,0)
- ;;=3^Acquired Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,27595,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,27595,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,27596,0)
- ;;=C91.00^^132^1320^5
- ;;^UTILITY(U,$J,358.3,27596,1,0)
+ ;;^UTILITY(U,$J,358.3,27991,1,3,0)
+ ;;=3^Lesion of Median Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,27991,1,4,0)
+ ;;=4^G56.11
+ ;;^UTILITY(U,$J,358.3,27991,2)
+ ;;=^5004021
+ ;;^UTILITY(U,$J,358.3,27992,0)
+ ;;=G56.12^^109^1397^9
+ ;;^UTILITY(U,$J,358.3,27992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27596,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,27596,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,27596,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,27597,0)
- ;;=C91.01^^132^1320^4
- ;;^UTILITY(U,$J,358.3,27597,1,0)
+ ;;^UTILITY(U,$J,358.3,27992,1,3,0)
+ ;;=3^Lesion of Median Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,27992,1,4,0)
+ ;;=4^G56.12
+ ;;^UTILITY(U,$J,358.3,27992,2)
+ ;;=^5004022
+ ;;^UTILITY(U,$J,358.3,27993,0)
+ ;;=G56.01^^109^1397^3
+ ;;^UTILITY(U,$J,358.3,27993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27597,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,27597,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,27597,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,27598,0)
- ;;=C92.01^^132^1320^7
- ;;^UTILITY(U,$J,358.3,27598,1,0)
+ ;;^UTILITY(U,$J,358.3,27993,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,27993,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,27993,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,27994,0)
+ ;;=G56.02^^109^1397^2
+ ;;^UTILITY(U,$J,358.3,27994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27598,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,27598,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,27598,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,27599,0)
- ;;=C92.00^^132^1320^8
- ;;^UTILITY(U,$J,358.3,27599,1,0)
+ ;;^UTILITY(U,$J,358.3,27994,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,27994,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,27994,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,27995,0)
+ ;;=R26.89^^109^1397^1
+ ;;^UTILITY(U,$J,358.3,27995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27599,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,27599,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,27599,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,27600,0)
- ;;=C92.61^^132^1320^9
- ;;^UTILITY(U,$J,358.3,27600,1,0)
+ ;;^UTILITY(U,$J,358.3,27995,1,3,0)
+ ;;=3^Abnormalities of Gait & Mobility NEC
+ ;;^UTILITY(U,$J,358.3,27995,1,4,0)
+ ;;=4^R26.89
+ ;;^UTILITY(U,$J,358.3,27995,2)
+ ;;=^5019308
+ ;;^UTILITY(U,$J,358.3,27996,0)
+ ;;=M79.602^^109^1397^13
+ ;;^UTILITY(U,$J,358.3,27996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27600,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,27996,1,3,0)
+ ;;=3^Pain in Left Arm

@@ -1,126 +1,126 @@
-IBDEI1UY ; ; 19-NOV-2015
+IBDEI1UY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31100,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,31101,0)
- ;;=V00.812A^^135^1391^133
- ;;^UTILITY(U,$J,358.3,31101,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31101,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,31101,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,31101,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,31102,0)
- ;;=V00.812D^^135^1391^134
- ;;^UTILITY(U,$J,358.3,31102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31102,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31102,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,31102,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,31103,0)
- ;;=V00.818A^^135^1391^131
- ;;^UTILITY(U,$J,358.3,31103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31103,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,31103,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,31103,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,31104,0)
- ;;=V00.818D^^135^1391^132
- ;;^UTILITY(U,$J,358.3,31104,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31104,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31104,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,31104,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,31105,0)
- ;;=V00.831A^^135^1391^43
- ;;^UTILITY(U,$J,358.3,31105,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31105,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,31105,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,31105,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,31106,0)
- ;;=V00.831D^^135^1391^44
- ;;^UTILITY(U,$J,358.3,31106,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31106,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31106,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,31106,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,31107,0)
- ;;=V00.832A^^135^1391^95
- ;;^UTILITY(U,$J,358.3,31107,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31107,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,31107,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,31107,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,31108,0)
- ;;=V00.832D^^135^1391^96
- ;;^UTILITY(U,$J,358.3,31108,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31108,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31108,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,31108,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,31109,0)
- ;;=V00.838A^^135^1391^93
- ;;^UTILITY(U,$J,358.3,31109,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31109,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,31109,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,31109,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,31110,0)
- ;;=V00.838D^^135^1391^94
- ;;^UTILITY(U,$J,358.3,31110,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31110,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31110,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,31110,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,31111,0)
- ;;=V00.891A^^135^1391^57
- ;;^UTILITY(U,$J,358.3,31111,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31111,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
- ;;^UTILITY(U,$J,358.3,31111,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,31111,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,31112,0)
- ;;=V00.891D^^135^1391^58
- ;;^UTILITY(U,$J,358.3,31112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31112,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31112,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,31112,2)
- ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,31561,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31561,1,2,0)
+ ;;=2^Arthrodesis, great toe; interphlangeal joint
+ ;;^UTILITY(U,$J,358.3,31561,1,3,0)
+ ;;=3^28755
+ ;;^UTILITY(U,$J,358.3,31562,0)
+ ;;=27870^^125^1596^3^^^^1
+ ;;^UTILITY(U,$J,358.3,31562,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31562,1,2,0)
+ ;;=2^Arthrodesis, ankle, any method
+ ;;^UTILITY(U,$J,358.3,31562,1,3,0)
+ ;;=3^27870
+ ;;^UTILITY(U,$J,358.3,31563,0)
+ ;;=27871^^125^1596^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31563,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31563,1,2,0)
+ ;;=2^Arthrodesis, tibiofibular joint, proximal or distal
+ ;;^UTILITY(U,$J,358.3,31563,1,3,0)
+ ;;=3^27871
+ ;;^UTILITY(U,$J,358.3,31564,0)
+ ;;=29358^^125^1597^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31564,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31564,1,2,0)
+ ;;=2^Application Of Long Leg Cast Brace
+ ;;^UTILITY(U,$J,358.3,31564,1,3,0)
+ ;;=3^29358
+ ;;^UTILITY(U,$J,358.3,31565,0)
+ ;;=29405^^125^1597^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31565,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31565,1,2,0)
+ ;;=2^Application Of Short Leg Cast
+ ;;^UTILITY(U,$J,358.3,31565,1,3,0)
+ ;;=3^29405
+ ;;^UTILITY(U,$J,358.3,31566,0)
+ ;;=29425^^125^1597^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31566,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31566,1,2,0)
+ ;;=2^Application Of Short Leg Cast; Walking Or Ambulatory Type
+ ;;^UTILITY(U,$J,358.3,31566,1,3,0)
+ ;;=3^29425
+ ;;^UTILITY(U,$J,358.3,31567,0)
+ ;;=29440^^125^1597^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31567,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31567,1,2,0)
+ ;;=2^Adding Walker to Previous Cast
+ ;;^UTILITY(U,$J,358.3,31567,1,3,0)
+ ;;=3^29440
+ ;;^UTILITY(U,$J,358.3,31568,0)
+ ;;=29445^^125^1597^3^^^^1
+ ;;^UTILITY(U,$J,358.3,31568,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31568,1,2,0)
+ ;;=2^Application Of Rigid Total Contact Leg Cast
+ ;;^UTILITY(U,$J,358.3,31568,1,3,0)
+ ;;=3^29445
+ ;;^UTILITY(U,$J,358.3,31569,0)
+ ;;=29515^^125^1597^6^^^^1
+ ;;^UTILITY(U,$J,358.3,31569,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31569,1,2,0)
+ ;;=2^Application Of Short Leg Splint (Calf To Foot)
+ ;;^UTILITY(U,$J,358.3,31569,1,3,0)
+ ;;=3^29515
+ ;;^UTILITY(U,$J,358.3,31570,0)
+ ;;=29540^^125^1597^9^^^^1
+ ;;^UTILITY(U,$J,358.3,31570,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31570,1,2,0)
+ ;;=2^Strapping;Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,31570,1,3,0)
+ ;;=3^29540
+ ;;^UTILITY(U,$J,358.3,31571,0)
+ ;;=29530^^125^1597^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31571,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31571,1,2,0)
+ ;;=2^Strapping;Knee
+ ;;^UTILITY(U,$J,358.3,31571,1,3,0)
+ ;;=3^29530
+ ;;^UTILITY(U,$J,358.3,31572,0)
+ ;;=29550^^125^1597^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31572,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31572,1,2,0)
+ ;;=2^Strapping;Toes
+ ;;^UTILITY(U,$J,358.3,31572,1,3,0)
+ ;;=3^29550
+ ;;^UTILITY(U,$J,358.3,31573,0)
+ ;;=29580^^125^1597^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31573,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31573,1,2,0)
+ ;;=2^Strapping;Unna Boot
+ ;;^UTILITY(U,$J,358.3,31573,1,3,0)
+ ;;=3^29580
+ ;;^UTILITY(U,$J,358.3,31574,0)
+ ;;=29581^^125^1597^7^^^^1
+ ;;^UTILITY(U,$J,358.3,31574,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31574,1,2,0)
+ ;;=2^Multilay Venous Wound Comp System
+ ;;^UTILITY(U,$J,358.3,31574,1,3,0)
+ ;;=3^29581
+ ;;^UTILITY(U,$J,358.3,31575,0)
+ ;;=29582^^125^1597^8^^^^1
+ ;;^UTILITY(U,$J,358.3,31575,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31575,1,2,0)
+ ;;=2^Multilay Wnd Comp Syst Thigh,Incl Ft
+ ;;^UTILITY(U,$J,358.3,31575,1,3,0)
+ ;;=3^29582
+ ;;^UTILITY(U,$J,358.3,31576,0)
+ ;;=29700^^125^1598^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31576,1,0)
+ ;;=^358.31IA^3^2

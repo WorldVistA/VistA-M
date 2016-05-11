@@ -1,11 +1,15 @@
 RMPORMB ;HIN/RVD - Home Oxygen Monthly Billing Report ;12/13/99
- ;;3.0;PROSTHETICS;**29,43,44,49,55,159**;Feb 09, 1996;Build 2
+ ;;3.0;PROSTHETICS;**29,43,44,49,55,159,179**;Feb 09, 1996;Build 7
  ;ODJ - 5/17/00 - fix FCP problem (patch 49)
  ;      5/25/00 - fix crash if FCP in ^RMPO(665.72) and not ^RMPR(669.9)
  ;      5/31/00 - fix crash if FCP is null
  ;
  ;ODJ - 10/31/00 - patch 55 - fix problem where totals not being
  ;                            displayed when page contains 16 pats.
+ ;
+ ;RMPR*3.0*179 Flag a deceased patient by adding an '*'
+ ;             in front of SSN. 
+ ;
 START ;
  K RQUIT,RSP,RCNT,RPAGE,RDASH,RPTDT,RSHODT,VA,VADM,DFN,RNAM,RMNADFN
  K Y,RAMT,RLINE,ROVNDR,^TMP($J),RMEND,QUIT
@@ -21,7 +25,7 @@ DEV S %ZIS="MQ" K IOP D ^%ZIS G:POP EXIT I '$D(IO("Q")) U IO G PROC
  S ZTSAVE("RMPO(""NAME"")")=""
  D ^%ZTLOAD W:$D(ZTSK) !,"REQUEST QUEUED!" H 1 G EXIT
 PROC ;
- S (RPAGE,RMEND,RMPORPT,RVCNT,RPCNT,RVPRCNT)=0
+ S (RPAGE,RMEND,RMPORPT,RVCNT,RPCNT,RVPRCNT,RMPODCNT)=0    ;RMPR*3.0*179
  S Y=RMPODATE D DD^%DT S RSHODT=Y
  S $P(RSP," ",79)=" ",RCNT=0,$P(RDASH,"-",80)=""
  D NOW^%DTC S Y=% X ^DD("DD")
@@ -53,8 +57,9 @@ NAME ;Write out the name
 LINE ;Process entire line (one for each patient)
  W:$E(IOST)["C" "processing..."
  F RV=0:0 S RV=$O(^RMPO(665.72,RMPOXITE,1,RMPODATE,1,RV)) Q:RV'>0  D SETRV F RN=0:0 S RN=$O(^RMPO(665.72,RMPOXITE,1,RMPODATE,1,RV,"V",RN)) Q:RN'>0  D
+ . S RMPOEXP=" " I +$G(^DPT(RN,.35)) S RMPOEXP="*",RMPODCNT=RMPODCNT+1    ;RMPR*3.0*179 Flag a deceased patient by attaching an '*' to SSN. ^DPT(D0,.35) direct read supported by ICR #10035
  .K VA,VADM S DFN=RN D ^VADPT
- .S RNAM=$E(VADM(1),1,12)_"^"_$P(VA("PID"),"-",3)
+ .S RNAM=$E(VADM(1),1,12)_"^"_$P(VA("PID"),"-",3)_RMPOEXP    ;RMPR*3.0*179
  .S RACPT=$P(^RMPO(665.72,RMPOXITE,1,RMPODATE,1,RV,"V",RN,0),U,2)
  .S RPSTD=$P(^RMPO(665.72,RMPOXITE,1,RMPODATE,1,RV,"V",RN,0),U,3)
  .S RAMT(RV,1)=0,RAMT(RV,2)=0,RAMT(RV,3)=0,RAMT(RV,"SUSP")=0
@@ -115,8 +120,8 @@ RPTHDR ; Print out the report header
  S RA=RMPO("NAME"),RPAGE=RPAGE+1,RCNT=0
  I $E(IOST)["C"!(RPAGE>1) W @IOF
  W RPTDT,?(40-($L(RA)/2)),RA,?68,"Page: "_RPAGE
- W !?15,RSHODT_" Monthly Home Oxygen Billing",!
- W ?50,"Station",!?50,"Fund Control"
+ W !?10,RSHODT_" Monthly Home Oxygen Billing",?50,"'*' denotes deceased patient",!
+ W ?45,"Station",!?45,"Fund Control"
  W !,"ACC",?4,"Name",?18,"SSN",?24,"Vendor"
  W ?37,"910     Point     Other    Susp     Total"
  W !,RDASH
@@ -131,7 +136,9 @@ DND ; Print REPORT totals
  . D AMTS(RMTT9,RMTTS,RMTTO,RMTSP)
  . W !,?20,"Totals: ",RLINE
  S RPCNT=$E("  ",1,(6-$L(RPCNT)))_RPCNT
- W !!,?30,"Total Patients: ",RPCNT
+ W !!,?29,"Total Patients: ",RPCNT
+ S RMPODCNT=$E("  ",1,(6-$L(RMPODCNT)))_RMPODCNT
+ W !!,?20,"Total Deceased Patients: ",RMPODCNT
  S RVPRCNT=RVPRCNT+1,RPCNT=0
  I $E(IOST)["C",(RVCNT'=RVPRCNT) D  ; if terminal
  .K DIR S DIR("A")="Enter RETURN to continue or '^' to QUIT",DIR(0)="E"

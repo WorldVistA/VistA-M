@@ -1,128 +1,138 @@
-IBDEI0QA ; ; 19-NOV-2015
+IBDEI0QA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12035,1,0)
+ ;;^UTILITY(U,$J,358.3,12318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12035,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,12035,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,12035,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,12036,0)
- ;;=B20.^^68^695^17
- ;;^UTILITY(U,$J,358.3,12036,1,0)
+ ;;^UTILITY(U,$J,358.3,12318,1,3,0)
+ ;;=3^Esophageal w/ Tracheoesophageal Fistula/Atresia
+ ;;^UTILITY(U,$J,358.3,12318,1,4,0)
+ ;;=4^Q39.1
+ ;;^UTILITY(U,$J,358.3,12318,2)
+ ;;=^5018656
+ ;;^UTILITY(U,$J,358.3,12319,0)
+ ;;=A63.0^^50^559^7
+ ;;^UTILITY(U,$J,358.3,12319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12036,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,12036,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,12036,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,12037,0)
- ;;=B20.^^68^695^18
- ;;^UTILITY(U,$J,358.3,12037,1,0)
+ ;;^UTILITY(U,$J,358.3,12319,1,3,0)
+ ;;=3^Anogenital (venereal) warts
+ ;;^UTILITY(U,$J,358.3,12319,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,12319,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,12320,0)
+ ;;=C18.9^^50^559^42
+ ;;^UTILITY(U,$J,358.3,12320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12037,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,12037,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,12037,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,12038,0)
- ;;=F10.27^^68^695^1
- ;;^UTILITY(U,$J,358.3,12038,1,0)
+ ;;^UTILITY(U,$J,358.3,12320,1,3,0)
+ ;;=3^Malignant neoplasm of colon, unspecified
+ ;;^UTILITY(U,$J,358.3,12320,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,12320,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,12321,0)
+ ;;=D12.5^^50^559^16
+ ;;^UTILITY(U,$J,358.3,12321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12038,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,12038,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,12038,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,12039,0)
- ;;=F19.97^^68^695^29
- ;;^UTILITY(U,$J,358.3,12039,1,0)
+ ;;^UTILITY(U,$J,358.3,12321,1,3,0)
+ ;;=3^Benign neoplasm of sigmoid colon
+ ;;^UTILITY(U,$J,358.3,12321,1,4,0)
+ ;;=4^D12.5
+ ;;^UTILITY(U,$J,358.3,12321,2)
+ ;;=^5001968
+ ;;^UTILITY(U,$J,358.3,12322,0)
+ ;;=D12.4^^50^559^13
+ ;;^UTILITY(U,$J,358.3,12322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12039,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,12039,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,12039,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,12040,0)
- ;;=F03.90^^68^695^15
- ;;^UTILITY(U,$J,358.3,12040,1,0)
+ ;;^UTILITY(U,$J,358.3,12322,1,3,0)
+ ;;=3^Benign neoplasm of descending colon
+ ;;^UTILITY(U,$J,358.3,12322,1,4,0)
+ ;;=4^D12.4
+ ;;^UTILITY(U,$J,358.3,12322,2)
+ ;;=^5001967
+ ;;^UTILITY(U,$J,358.3,12323,0)
+ ;;=D12.2^^50^559^10
+ ;;^UTILITY(U,$J,358.3,12323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12040,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,12040,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,12040,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,12041,0)
- ;;=G30.0^^68^695^2
- ;;^UTILITY(U,$J,358.3,12041,1,0)
+ ;;^UTILITY(U,$J,358.3,12323,1,3,0)
+ ;;=3^Benign neoplasm of ascending colon
+ ;;^UTILITY(U,$J,358.3,12323,1,4,0)
+ ;;=4^D12.2
+ ;;^UTILITY(U,$J,358.3,12323,2)
+ ;;=^5001965
+ ;;^UTILITY(U,$J,358.3,12324,0)
+ ;;=D12.3^^50^559^17
+ ;;^UTILITY(U,$J,358.3,12324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12041,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,12041,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,12041,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,12042,0)
- ;;=G30.1^^68^695^3
- ;;^UTILITY(U,$J,358.3,12042,1,0)
+ ;;^UTILITY(U,$J,358.3,12324,1,3,0)
+ ;;=3^Benign neoplasm of transverse colon
+ ;;^UTILITY(U,$J,358.3,12324,1,4,0)
+ ;;=4^D12.3
+ ;;^UTILITY(U,$J,358.3,12324,2)
+ ;;=^5001966
+ ;;^UTILITY(U,$J,358.3,12325,0)
+ ;;=K62.0^^50^559^4
+ ;;^UTILITY(U,$J,358.3,12325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12042,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,12042,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,12042,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,12043,0)
- ;;=G30.9^^68^695^4
- ;;^UTILITY(U,$J,358.3,12043,1,0)
+ ;;^UTILITY(U,$J,358.3,12325,1,3,0)
+ ;;=3^Anal polyp
+ ;;^UTILITY(U,$J,358.3,12325,1,4,0)
+ ;;=4^K62.0
+ ;;^UTILITY(U,$J,358.3,12325,2)
+ ;;=^5008753
+ ;;^UTILITY(U,$J,358.3,12326,0)
+ ;;=K62.1^^50^559^47
+ ;;^UTILITY(U,$J,358.3,12326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12043,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,12043,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,12043,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,12044,0)
- ;;=G10.^^68^695^19
- ;;^UTILITY(U,$J,358.3,12044,1,0)
+ ;;^UTILITY(U,$J,358.3,12326,1,3,0)
+ ;;=3^Rectal polyp
+ ;;^UTILITY(U,$J,358.3,12326,1,4,0)
+ ;;=4^K62.1
+ ;;^UTILITY(U,$J,358.3,12326,2)
+ ;;=^104099
+ ;;^UTILITY(U,$J,358.3,12327,0)
+ ;;=K63.5^^50^559^45
+ ;;^UTILITY(U,$J,358.3,12327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12044,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,12044,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,12044,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,12045,0)
- ;;=G10.^^68^695^20
- ;;^UTILITY(U,$J,358.3,12045,1,0)
+ ;;^UTILITY(U,$J,358.3,12327,1,3,0)
+ ;;=3^Polyp of colon
+ ;;^UTILITY(U,$J,358.3,12327,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,12327,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,12328,0)
+ ;;=D12.6^^50^559^12
+ ;;^UTILITY(U,$J,358.3,12328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12045,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,12045,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,12045,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,12046,0)
- ;;=G90.3^^68^695^21
- ;;^UTILITY(U,$J,358.3,12046,1,0)
+ ;;^UTILITY(U,$J,358.3,12328,1,3,0)
+ ;;=3^Benign neoplasm of colon, unspecified
+ ;;^UTILITY(U,$J,358.3,12328,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,12328,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,12329,0)
+ ;;=D12.1^^50^559^9
+ ;;^UTILITY(U,$J,358.3,12329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12046,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,12046,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,12046,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,12047,0)
- ;;=G91.2^^68^695^22
- ;;^UTILITY(U,$J,358.3,12047,1,0)
+ ;;^UTILITY(U,$J,358.3,12329,1,3,0)
+ ;;=3^Benign neoplasm of appendix
+ ;;^UTILITY(U,$J,358.3,12329,1,4,0)
+ ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,12329,2)
+ ;;=^5001964
+ ;;^UTILITY(U,$J,358.3,12330,0)
+ ;;=D12.0^^50^559^11
+ ;;^UTILITY(U,$J,358.3,12330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12047,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,12330,1,3,0)
+ ;;=3^Benign neoplasm of cecum
+ ;;^UTILITY(U,$J,358.3,12330,1,4,0)
+ ;;=4^D12.0
+ ;;^UTILITY(U,$J,358.3,12330,2)
+ ;;=^5001963
+ ;;^UTILITY(U,$J,358.3,12331,0)
+ ;;=D12.7^^50^559^14
+ ;;^UTILITY(U,$J,358.3,12331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12331,1,3,0)
+ ;;=3^Benign neoplasm of rectosigmoid junction

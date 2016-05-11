@@ -1,140 +1,126 @@
-IBDEI0HI ; ; 19-NOV-2015
+IBDEI0HI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7837,0)
- ;;=B35.5^^55^531^146
- ;;^UTILITY(U,$J,358.3,7837,1,0)
+ ;;^UTILITY(U,$J,358.3,8100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7837,1,3,0)
- ;;=3^Tinea imbricata
- ;;^UTILITY(U,$J,358.3,7837,1,4,0)
- ;;=4^B35.5
- ;;^UTILITY(U,$J,358.3,7837,2)
- ;;=^119725
- ;;^UTILITY(U,$J,358.3,7838,0)
- ;;=B35.8^^55^531^30
- ;;^UTILITY(U,$J,358.3,7838,1,0)
+ ;;^UTILITY(U,$J,358.3,8100,1,3,0)
+ ;;=3^Laceration w/o fb of left foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8100,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,8100,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,8101,0)
+ ;;=S51.811A^^33^431^125
+ ;;^UTILITY(U,$J,358.3,8101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7838,1,3,0)
- ;;=3^Dermatophytoses NEC
- ;;^UTILITY(U,$J,358.3,7838,1,4,0)
- ;;=4^B35.8
- ;;^UTILITY(U,$J,358.3,7838,2)
- ;;=^5000606
- ;;^UTILITY(U,$J,358.3,7839,0)
- ;;=B36.9^^55^531^142
- ;;^UTILITY(U,$J,358.3,7839,1,0)
+ ;;^UTILITY(U,$J,358.3,8101,1,3,0)
+ ;;=3^Laceration w/o fb of right forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8101,1,4,0)
+ ;;=4^S51.811A
+ ;;^UTILITY(U,$J,358.3,8101,2)
+ ;;=^5028665
+ ;;^UTILITY(U,$J,358.3,8102,0)
+ ;;=S51.812A^^33^431^113
+ ;;^UTILITY(U,$J,358.3,8102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7839,1,3,0)
- ;;=3^Superficial mycosis, unspecified
- ;;^UTILITY(U,$J,358.3,7839,1,4,0)
- ;;=4^B36.9
- ;;^UTILITY(U,$J,358.3,7839,2)
- ;;=^5000611
- ;;^UTILITY(U,$J,358.3,7840,0)
- ;;=B17.9^^55^531^4
- ;;^UTILITY(U,$J,358.3,7840,1,0)
+ ;;^UTILITY(U,$J,358.3,8102,1,3,0)
+ ;;=3^Laceration w/o fb of left forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8102,1,4,0)
+ ;;=4^S51.812A
+ ;;^UTILITY(U,$J,358.3,8102,2)
+ ;;=^5028668
+ ;;^UTILITY(U,$J,358.3,8103,0)
+ ;;=S61.411A^^33^431^127
+ ;;^UTILITY(U,$J,358.3,8103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7840,1,3,0)
- ;;=3^Acute viral hepatitis, unspecified
- ;;^UTILITY(U,$J,358.3,7840,1,4,0)
- ;;=4^B17.9
- ;;^UTILITY(U,$J,358.3,7840,2)
- ;;=^5000545
- ;;^UTILITY(U,$J,358.3,7841,0)
- ;;=D69.0^^55^531^5
- ;;^UTILITY(U,$J,358.3,7841,1,0)
+ ;;^UTILITY(U,$J,358.3,8103,1,3,0)
+ ;;=3^Laceration w/o fb of right hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8103,1,4,0)
+ ;;=4^S61.411A
+ ;;^UTILITY(U,$J,358.3,8103,2)
+ ;;=^5032987
+ ;;^UTILITY(U,$J,358.3,8104,0)
+ ;;=S61.412A^^33^431^115
+ ;;^UTILITY(U,$J,358.3,8104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7841,1,3,0)
- ;;=3^Allergic purpura
- ;;^UTILITY(U,$J,358.3,7841,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,7841,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,7842,0)
- ;;=H05.011^^55^531^23
- ;;^UTILITY(U,$J,358.3,7842,1,0)
+ ;;^UTILITY(U,$J,358.3,8104,1,3,0)
+ ;;=3^Laceration w/o fb of left hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8104,1,4,0)
+ ;;=4^S61.412A
+ ;;^UTILITY(U,$J,358.3,8104,2)
+ ;;=^5032990
+ ;;^UTILITY(U,$J,358.3,8105,0)
+ ;;=S81.811A^^33^431^131
+ ;;^UTILITY(U,$J,358.3,8105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7842,1,3,0)
- ;;=3^Cellulitis of right orbit
- ;;^UTILITY(U,$J,358.3,7842,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,7842,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,7843,0)
- ;;=H05.012^^55^531^17
- ;;^UTILITY(U,$J,358.3,7843,1,0)
+ ;;^UTILITY(U,$J,358.3,8105,1,3,0)
+ ;;=3^Laceration w/o fb of right lower leg, init encntr
+ ;;^UTILITY(U,$J,358.3,8105,1,4,0)
+ ;;=4^S81.811A
+ ;;^UTILITY(U,$J,358.3,8105,2)
+ ;;=^5040071
+ ;;^UTILITY(U,$J,358.3,8106,0)
+ ;;=S81.812A^^33^431^119
+ ;;^UTILITY(U,$J,358.3,8106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7843,1,3,0)
- ;;=3^Cellulitis of left orbit
- ;;^UTILITY(U,$J,358.3,7843,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,7843,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,7844,0)
- ;;=H05.013^^55^531^13
- ;;^UTILITY(U,$J,358.3,7844,1,0)
+ ;;^UTILITY(U,$J,358.3,8106,1,3,0)
+ ;;=3^Laceration w/o fb of left lower leg, init encntr
+ ;;^UTILITY(U,$J,358.3,8106,1,4,0)
+ ;;=4^S81.812A
+ ;;^UTILITY(U,$J,358.3,8106,2)
+ ;;=^5040074
+ ;;^UTILITY(U,$J,358.3,8107,0)
+ ;;=S01.01XA^^33^431^136
+ ;;^UTILITY(U,$J,358.3,8107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7844,1,3,0)
- ;;=3^Cellulitis of bilateral orbits
- ;;^UTILITY(U,$J,358.3,7844,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,7844,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,7845,0)
- ;;=I87.2^^55^531^150
- ;;^UTILITY(U,$J,358.3,7845,1,0)
+ ;;^UTILITY(U,$J,358.3,8107,1,3,0)
+ ;;=3^Laceration w/o fb of scalp, initial encounter
+ ;;^UTILITY(U,$J,358.3,8107,1,4,0)
+ ;;=4^S01.01XA
+ ;;^UTILITY(U,$J,358.3,8107,2)
+ ;;=^5020036
+ ;;^UTILITY(U,$J,358.3,8108,0)
+ ;;=S61.011A^^33^431^134
+ ;;^UTILITY(U,$J,358.3,8108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7845,1,3,0)
- ;;=3^Venous insufficiency (chronic) (peripheral)
- ;;^UTILITY(U,$J,358.3,7845,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,7845,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,7846,0)
- ;;=K12.0^^55^531^134
- ;;^UTILITY(U,$J,358.3,7846,1,0)
+ ;;^UTILITY(U,$J,358.3,8108,1,3,0)
+ ;;=3^Laceration w/o fb of right thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8108,1,4,0)
+ ;;=4^S61.011A
+ ;;^UTILITY(U,$J,358.3,8108,2)
+ ;;=^5032690
+ ;;^UTILITY(U,$J,358.3,8109,0)
+ ;;=S61.012A^^33^431^122
+ ;;^UTILITY(U,$J,358.3,8109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7846,1,3,0)
- ;;=3^Recurrent oral aphthae
- ;;^UTILITY(U,$J,358.3,7846,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,7846,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,7847,0)
- ;;=L02.33^^55^531^11
- ;;^UTILITY(U,$J,358.3,7847,1,0)
+ ;;^UTILITY(U,$J,358.3,8109,1,3,0)
+ ;;=3^Laceration w/o fb of left thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8109,1,4,0)
+ ;;=4^S61.012A
+ ;;^UTILITY(U,$J,358.3,8109,2)
+ ;;=^5032693
+ ;;^UTILITY(U,$J,358.3,8110,0)
+ ;;=S91.111A^^33^431^126
+ ;;^UTILITY(U,$J,358.3,8110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7847,1,3,0)
- ;;=3^Carbuncle of buttock
- ;;^UTILITY(U,$J,358.3,7847,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,7847,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,7848,0)
- ;;=L02.92^^55^531^43
- ;;^UTILITY(U,$J,358.3,7848,1,0)
+ ;;^UTILITY(U,$J,358.3,8110,1,3,0)
+ ;;=3^Laceration w/o fb of right great toe w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8110,1,4,0)
+ ;;=4^S91.111A
+ ;;^UTILITY(U,$J,358.3,8110,2)
+ ;;=^5044183
+ ;;^UTILITY(U,$J,358.3,8111,0)
+ ;;=S91.112A^^33^431^114
+ ;;^UTILITY(U,$J,358.3,8111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7848,1,3,0)
- ;;=3^Furuncle, unspecified
- ;;^UTILITY(U,$J,358.3,7848,1,4,0)
- ;;=4^L02.92
- ;;^UTILITY(U,$J,358.3,7848,2)
- ;;=^5009017
- ;;^UTILITY(U,$J,358.3,7849,0)
- ;;=L02.93^^55^531^12
- ;;^UTILITY(U,$J,358.3,7849,1,0)
+ ;;^UTILITY(U,$J,358.3,8111,1,3,0)
+ ;;=3^Laceration w/o fb of left great toe w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8111,1,4,0)
+ ;;=4^S91.112A
+ ;;^UTILITY(U,$J,358.3,8111,2)
+ ;;=^5044186
+ ;;^UTILITY(U,$J,358.3,8112,0)
+ ;;=S91.114A^^33^431^129
+ ;;^UTILITY(U,$J,358.3,8112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7849,1,3,0)
- ;;=3^Carbuncle, unspecified
- ;;^UTILITY(U,$J,358.3,7849,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,7849,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,7850,0)
- ;;=L03.011^^55^531^21
- ;;^UTILITY(U,$J,358.3,7850,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7850,1,3,0)
- ;;=3^Cellulitis of right finger

@@ -1,4 +1,4 @@
-IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/12/15
+IBXX1 ; COMPILED XREF FOR FILE #399 ; 04/18/16
  ; 
  S DIKZK=2
  S DIKZ(0)=$G(^DGCR(399,DA,0))
@@ -204,6 +204,13 @@ IBXX1 ; COMPILED XREF FOR FILE #399 ; 05/12/15
  S DIKZ("M1")=$G(^DGCR(399,DA,"M1"))
  S X=$P($G(DIKZ("M1")),U,8)
  I X'="" K ^DGCR(399,"AG",$E(X,1,30),DA)
+ S DIKZ("MP")=$G(^DGCR(399,DA,"MP"))
+ S X=$P($G(DIKZ("MP")),U,3)
+ I X'="" K ^DGCR(399,"E",$E(X,1,30),DA)
+ S X=$P($G(DIKZ("MP")),U,5)
+ I X'="" K ^DGCR(399,"F",$E(X,1,30),DA)
+ S X=$P($G(DIKZ("MP")),U,7)
+ I X'="" K ^DGCR(399,"G",$E(X,1,30),DA)
  S DIKZ(0)=$G(^DGCR(399,DA,0))
  S X=$P($G(DIKZ(0)),U,1)
  I X'="" K ^DGCR(399,"B",$E(X,1,30),DA)

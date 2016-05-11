@@ -1,5 +1,5 @@
 LRHYB ;DALOI/HOAK - HOWDY B DRIVER ;9/16/2000
- ;;5.2;LAB SERVICE;**405,417,446**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**405,417,446,457**;Sep 27, 1994;Build 6
  ;
 TEST ;
  S DIC=2 S DIC(0)="AEMQZ" D ^DIC
@@ -38,11 +38,12 @@ ORDCHK ; Here is where the search for an order number starts
  S LRAHEAD=$G(^LRHY(69.86,LRHYSITE,18))
  S LRPAST=$G(^LRHY(69.86,LRHYSITE,20))
  K LRWCZZZ,LREXORD
- F LRI=-LRPAST:1:LRAHEAD D  ;Search window set by site file.
+ S LRLOCS=0 ; flag for non-EXLOC and EXLOC on same specimen number
+ F LRI=-LRPAST:1:LRAHEAD D  Q:$G(LRLOCS)  ;Search window set by site file.
  .  S X1=DT S X2=LRI D C^%DTC S LR3DTN=X
  .  I $D(^LRO(69,LR3DTN,1,"AA",LRDFN)) S LRHYOK=1 D
  ..  S LR3SN=0
- ..  F  S LR3SN=$O(^LRO(69,LR3DTN,1,"AA",LRDFN,LR3SN)) Q:+LR3SN'>0  D
+ ..  F  S LR3SN=$O(^LRO(69,LR3DTN,1,"AA",LRDFN,LR3SN)) Q:+LR3SN'>0  D  Q:$G(LRLOCS)
  ...  Q:$P($G(^LRO(69,LR3DTN,1,LR3SN,1)),U,4)="C"  ;collected
  ...  K LRWCZZZ
  ...  ;
@@ -82,6 +83,7 @@ ORDCHK ; Here is where the search for an order number starts
  ....  S ^TMP("LRHYDY",$J,"LRSN",LR3DTN,^LRO(69,LR3DTN,1,LR3SN,.1))=""
  ....  S LRDTX=""
  ....  S LRDTX=$O(^LRO(69,"C",^LRO(69,LR3DTN,1,LR3SN,.1),0))
+ ....  I $D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)),LR3DTN=DT,$G(LRDTX) S ^TMP("LRHYDY",$J,"MT",LRDTX)=""
  ....  I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) I $G(LRDTX) S ^TMP("LRHYDY",$J,"MT",LRDTX)=""
  ;
  ;

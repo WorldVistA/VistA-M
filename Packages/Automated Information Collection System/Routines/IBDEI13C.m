@@ -1,134 +1,134 @@
-IBDEI13C ; ; 19-NOV-2015
+IBDEI13C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18213,1,3,0)
- ;;=3^Cutaneous Abscess of Chest Wall
- ;;^UTILITY(U,$J,358.3,18213,1,4,0)
- ;;=4^L02.213
- ;;^UTILITY(U,$J,358.3,18213,2)
- ;;=^5008952
- ;;^UTILITY(U,$J,358.3,18214,0)
- ;;=L02.214^^94^905^121
- ;;^UTILITY(U,$J,358.3,18214,1,0)
+ ;;^UTILITY(U,$J,358.3,18541,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,18541,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,18542,0)
+ ;;=H60.311^^79^880^45
+ ;;^UTILITY(U,$J,358.3,18542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18214,1,3,0)
- ;;=3^Cutaneous Abscess of Groin
- ;;^UTILITY(U,$J,358.3,18214,1,4,0)
- ;;=4^L02.214
- ;;^UTILITY(U,$J,358.3,18214,2)
- ;;=^5008953
- ;;^UTILITY(U,$J,358.3,18215,0)
- ;;=L02.215^^94^905^126
- ;;^UTILITY(U,$J,358.3,18215,1,0)
+ ;;^UTILITY(U,$J,358.3,18542,1,3,0)
+ ;;=3^Diffuse Otitis Externa of Right Ear
+ ;;^UTILITY(U,$J,358.3,18542,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,18542,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,18543,0)
+ ;;=H60.312^^79^880^44
+ ;;^UTILITY(U,$J,358.3,18543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18215,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,18215,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,18215,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,18216,0)
- ;;=L02.216^^94^905^131
- ;;^UTILITY(U,$J,358.3,18216,1,0)
+ ;;^UTILITY(U,$J,358.3,18543,1,3,0)
+ ;;=3^Diffuse Otitis Externa of Left Ear
+ ;;^UTILITY(U,$J,358.3,18543,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,18543,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,18544,0)
+ ;;=H60.313^^79^880^43
+ ;;^UTILITY(U,$J,358.3,18544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18216,1,3,0)
- ;;=3^Cutaneous Abscess of Unbilicus
- ;;^UTILITY(U,$J,358.3,18216,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,18216,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,18217,0)
- ;;=L02.219^^94^905^130
- ;;^UTILITY(U,$J,358.3,18217,1,0)
+ ;;^UTILITY(U,$J,358.3,18544,1,3,0)
+ ;;=3^Diffuse Otitis Externa of Bilateral Ears
+ ;;^UTILITY(U,$J,358.3,18544,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,18544,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,18545,0)
+ ;;=H60.391^^79^880^68
+ ;;^UTILITY(U,$J,358.3,18545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18217,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,18217,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,18217,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,18218,0)
- ;;=L02.32^^94^905^154
- ;;^UTILITY(U,$J,358.3,18218,1,0)
+ ;;^UTILITY(U,$J,358.3,18545,1,3,0)
+ ;;=3^Infective Otitis Externa of Right Ear NEC
+ ;;^UTILITY(U,$J,358.3,18545,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,18545,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,18546,0)
+ ;;=H60.392^^79^880^67
+ ;;^UTILITY(U,$J,358.3,18546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18218,1,3,0)
- ;;=3^Furuncle of Buttock
- ;;^UTILITY(U,$J,358.3,18218,1,4,0)
- ;;=4^L02.32
- ;;^UTILITY(U,$J,358.3,18218,2)
- ;;=^5008972
- ;;^UTILITY(U,$J,358.3,18219,0)
- ;;=L02.33^^94^905^92
- ;;^UTILITY(U,$J,358.3,18219,1,0)
+ ;;^UTILITY(U,$J,358.3,18546,1,3,0)
+ ;;=3^Infective Otitis Externa of Left Ear NEC
+ ;;^UTILITY(U,$J,358.3,18546,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,18546,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,18547,0)
+ ;;=H60.393^^79^880^66
+ ;;^UTILITY(U,$J,358.3,18547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18219,1,3,0)
- ;;=3^Carbuncle of Buttock
- ;;^UTILITY(U,$J,358.3,18219,1,4,0)
- ;;=4^L02.33
- ;;^UTILITY(U,$J,358.3,18219,2)
- ;;=^5008973
- ;;^UTILITY(U,$J,358.3,18220,0)
- ;;=L02.415^^94^905^129
- ;;^UTILITY(U,$J,358.3,18220,1,0)
+ ;;^UTILITY(U,$J,358.3,18547,1,3,0)
+ ;;=3^Infective Otitis Externa of Bilateral Ears NEC
+ ;;^UTILITY(U,$J,358.3,18547,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,18547,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,18548,0)
+ ;;=H60.01^^79^880^3
+ ;;^UTILITY(U,$J,358.3,18548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18220,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,18220,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,18220,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,18221,0)
- ;;=L02.416^^94^905^124
- ;;^UTILITY(U,$J,358.3,18221,1,0)
+ ;;^UTILITY(U,$J,358.3,18548,1,3,0)
+ ;;=3^Abscess of Right External Ear
+ ;;^UTILITY(U,$J,358.3,18548,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,18548,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,18549,0)
+ ;;=H60.02^^79^880^2
+ ;;^UTILITY(U,$J,358.3,18549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18221,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,18221,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,18221,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,18222,0)
- ;;=L02.511^^94^905^128
- ;;^UTILITY(U,$J,358.3,18222,1,0)
+ ;;^UTILITY(U,$J,358.3,18549,1,3,0)
+ ;;=3^Abscess of Left External Ear
+ ;;^UTILITY(U,$J,358.3,18549,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,18549,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,18550,0)
+ ;;=H60.03^^79^880^1
+ ;;^UTILITY(U,$J,358.3,18550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18222,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,18222,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,18222,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,18223,0)
- ;;=L02.512^^94^905^123
- ;;^UTILITY(U,$J,358.3,18223,1,0)
+ ;;^UTILITY(U,$J,358.3,18550,1,3,0)
+ ;;=3^Abscess of Bilateral External Ears
+ ;;^UTILITY(U,$J,358.3,18550,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,18550,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,18551,0)
+ ;;=H60.91^^79^880^84
+ ;;^UTILITY(U,$J,358.3,18551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18223,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,18223,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,18223,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,18224,0)
- ;;=L02.611^^94^905^127
- ;;^UTILITY(U,$J,358.3,18224,1,0)
+ ;;^UTILITY(U,$J,358.3,18551,1,3,0)
+ ;;=3^Otitis Externa of Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18551,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,18551,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,18552,0)
+ ;;=H60.92^^79^880^83
+ ;;^UTILITY(U,$J,358.3,18552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18224,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,18224,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,18224,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,18225,0)
- ;;=L02.612^^94^905^122
- ;;^UTILITY(U,$J,358.3,18225,1,0)
+ ;;^UTILITY(U,$J,358.3,18552,1,3,0)
+ ;;=3^Otitis Externa of Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,18552,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,18552,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,18553,0)
+ ;;=H60.93^^79^880^82
+ ;;^UTILITY(U,$J,358.3,18553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18225,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,18225,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,18225,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,18226,0)
- ;;=L02.92^^94^905^155
- ;;^UTILITY(U,$J,358.3,18226,1,0)
+ ;;^UTILITY(U,$J,358.3,18553,1,3,0)
+ ;;=3^Otitis Externa of Bilateral Ears,Unspec
+ ;;^UTILITY(U,$J,358.3,18553,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,18553,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,18554,0)
+ ;;=H83.01^^79^880^73
+ ;;^UTILITY(U,$J,358.3,18554,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18554,1,3,0)
+ ;;=3^Labyrinthitis of Right Ear

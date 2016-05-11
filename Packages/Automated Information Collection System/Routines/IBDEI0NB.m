@@ -1,134 +1,138 @@
-IBDEI0NB ; ; 19-NOV-2015
+IBDEI0NB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10652,2)
- ;;=^5003941
- ;;^UTILITY(U,$J,358.3,10653,0)
- ;;=G44.209^^68^672^8
- ;;^UTILITY(U,$J,358.3,10653,1,0)
+ ;;^UTILITY(U,$J,358.3,10879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10653,1,3,0)
- ;;=3^Tension-Type Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,10653,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,10653,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,10654,0)
- ;;=I50.32^^68^673^5
- ;;^UTILITY(U,$J,358.3,10654,1,0)
+ ;;^UTILITY(U,$J,358.3,10879,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Heel & Foot
+ ;;^UTILITY(U,$J,358.3,10879,1,4,0)
+ ;;=4^L97.409
+ ;;^UTILITY(U,$J,358.3,10879,2)
+ ;;=^5009529
+ ;;^UTILITY(U,$J,358.3,10880,0)
+ ;;=L97.509^^47^522^66
+ ;;^UTILITY(U,$J,358.3,10880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10654,1,3,0)
- ;;=3^Diastolic Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,10654,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,10654,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,10655,0)
- ;;=I50.33^^68^673^4
- ;;^UTILITY(U,$J,358.3,10655,1,0)
+ ;;^UTILITY(U,$J,358.3,10880,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Foot,Unspec Part
+ ;;^UTILITY(U,$J,358.3,10880,1,4,0)
+ ;;=4^L97.509
+ ;;^UTILITY(U,$J,358.3,10880,2)
+ ;;=^5009544
+ ;;^UTILITY(U,$J,358.3,10881,0)
+ ;;=L97.909^^47^522^68
+ ;;^UTILITY(U,$J,358.3,10881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10655,1,3,0)
- ;;=3^Diastolic Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,10655,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,10655,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,10656,0)
- ;;=I50.40^^68^673^9
- ;;^UTILITY(U,$J,358.3,10656,1,0)
+ ;;^UTILITY(U,$J,358.3,10881,1,3,0)
+ ;;=3^Nonpressure Chr Ulcer of Lower Leg,Unspec Part
+ ;;^UTILITY(U,$J,358.3,10881,1,4,0)
+ ;;=4^L97.909
+ ;;^UTILITY(U,$J,358.3,10881,2)
+ ;;=^5133687
+ ;;^UTILITY(U,$J,358.3,10882,0)
+ ;;=L44.9^^47^522^71
+ ;;^UTILITY(U,$J,358.3,10882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10656,1,3,0)
- ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
- ;;^UTILITY(U,$J,358.3,10656,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,10656,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,10657,0)
- ;;=I51.7^^68^673^2
- ;;^UTILITY(U,$J,358.3,10657,1,0)
+ ;;^UTILITY(U,$J,358.3,10882,1,3,0)
+ ;;=3^Papulosquamous Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10882,1,4,0)
+ ;;=4^L44.9
+ ;;^UTILITY(U,$J,358.3,10882,2)
+ ;;=^5009188
+ ;;^UTILITY(U,$J,358.3,10883,0)
+ ;;=L41.9^^47^522^72
+ ;;^UTILITY(U,$J,358.3,10883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10657,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,10657,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,10657,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,10658,0)
- ;;=I42.6^^68^673^1
- ;;^UTILITY(U,$J,358.3,10658,1,0)
+ ;;^UTILITY(U,$J,358.3,10883,1,3,0)
+ ;;=3^Parapsoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,10883,1,4,0)
+ ;;=4^L41.9
+ ;;^UTILITY(U,$J,358.3,10883,2)
+ ;;=^5009177
+ ;;^UTILITY(U,$J,358.3,10884,0)
+ ;;=L12.9^^47^522^73
+ ;;^UTILITY(U,$J,358.3,10884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10658,1,3,0)
- ;;=3^Alcoholic Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,10658,1,4,0)
- ;;=4^I42.6
- ;;^UTILITY(U,$J,358.3,10658,2)
- ;;=^5007197
- ;;^UTILITY(U,$J,358.3,10659,0)
- ;;=I50.1^^68^673^8
- ;;^UTILITY(U,$J,358.3,10659,1,0)
+ ;;^UTILITY(U,$J,358.3,10884,1,3,0)
+ ;;=3^Pemphigoid,Unspec
+ ;;^UTILITY(U,$J,358.3,10884,1,4,0)
+ ;;=4^L12.9
+ ;;^UTILITY(U,$J,358.3,10884,2)
+ ;;=^5009102
+ ;;^UTILITY(U,$J,358.3,10885,0)
+ ;;=L10.9^^47^522^74
+ ;;^UTILITY(U,$J,358.3,10885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10659,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,10659,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,10659,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,10660,0)
- ;;=I50.20^^68^673^13
- ;;^UTILITY(U,$J,358.3,10660,1,0)
+ ;;^UTILITY(U,$J,358.3,10885,1,3,0)
+ ;;=3^Pemphigus,Unspec
+ ;;^UTILITY(U,$J,358.3,10885,1,4,0)
+ ;;=4^L10.9
+ ;;^UTILITY(U,$J,358.3,10885,2)
+ ;;=^5009090
+ ;;^UTILITY(U,$J,358.3,10886,0)
+ ;;=L81.9^^47^522^75
+ ;;^UTILITY(U,$J,358.3,10886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10660,1,3,0)
- ;;=3^Systolic Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,10660,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,10660,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,10661,0)
- ;;=I50.21^^68^673^10
- ;;^UTILITY(U,$J,358.3,10661,1,0)
+ ;;^UTILITY(U,$J,358.3,10886,1,3,0)
+ ;;=3^Pigmentation Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10886,1,4,0)
+ ;;=4^L81.9
+ ;;^UTILITY(U,$J,358.3,10886,2)
+ ;;=^5009319
+ ;;^UTILITY(U,$J,358.3,10887,0)
+ ;;=L05.01^^47^522^76
+ ;;^UTILITY(U,$J,358.3,10887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10661,1,3,0)
- ;;=3^Systolic Heart Failure,Acute
- ;;^UTILITY(U,$J,358.3,10661,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,10661,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,10662,0)
- ;;=I50.22^^68^673^12
- ;;^UTILITY(U,$J,358.3,10662,1,0)
+ ;;^UTILITY(U,$J,358.3,10887,1,3,0)
+ ;;=3^Pilonidal Cyst w/ Abscess
+ ;;^UTILITY(U,$J,358.3,10887,1,4,0)
+ ;;=4^L05.01
+ ;;^UTILITY(U,$J,358.3,10887,2)
+ ;;=^271899
+ ;;^UTILITY(U,$J,358.3,10888,0)
+ ;;=L05.91^^47^522^77
+ ;;^UTILITY(U,$J,358.3,10888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10662,1,3,0)
- ;;=3^Systolic Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,10662,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,10662,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,10663,0)
- ;;=I50.23^^68^673^11
- ;;^UTILITY(U,$J,358.3,10663,1,0)
+ ;;^UTILITY(U,$J,358.3,10888,1,3,0)
+ ;;=3^Pilonidal Cyst w/o Abscess
+ ;;^UTILITY(U,$J,358.3,10888,1,4,0)
+ ;;=4^L05.91
+ ;;^UTILITY(U,$J,358.3,10888,2)
+ ;;=^5009076
+ ;;^UTILITY(U,$J,358.3,10889,0)
+ ;;=L05.02^^47^522^78
+ ;;^UTILITY(U,$J,358.3,10889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10663,1,3,0)
- ;;=3^Systolic Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,10663,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,10663,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,10664,0)
- ;;=I50.30^^68^673^6
- ;;^UTILITY(U,$J,358.3,10664,1,0)
+ ;;^UTILITY(U,$J,358.3,10889,1,3,0)
+ ;;=3^Pilonidal Sinus w/ Abscess
+ ;;^UTILITY(U,$J,358.3,10889,1,4,0)
+ ;;=4^L05.02
+ ;;^UTILITY(U,$J,358.3,10889,2)
+ ;;=^5009075
+ ;;^UTILITY(U,$J,358.3,10890,0)
+ ;;=L05.92^^47^522^79
+ ;;^UTILITY(U,$J,358.3,10890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10664,1,3,0)
- ;;=3^Diastolic Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,10664,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,10664,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,10665,0)
- ;;=I50.9^^68^673^7
- ;;^UTILITY(U,$J,358.3,10665,1,0)
+ ;;^UTILITY(U,$J,358.3,10890,1,3,0)
+ ;;=3^Pilonidal Sinus w/o Abscess
+ ;;^UTILITY(U,$J,358.3,10890,1,4,0)
+ ;;=4^L05.92
+ ;;^UTILITY(U,$J,358.3,10890,2)
+ ;;=^5009077
+ ;;^UTILITY(U,$J,358.3,10891,0)
+ ;;=L42.^^47^522^80
+ ;;^UTILITY(U,$J,358.3,10891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10665,1,3,0)
- ;;=3^Heart Failure,Unspec (CHF Unspec)
- ;;^UTILITY(U,$J,358.3,10665,1,4,0)
- ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,10891,1,3,0)
+ ;;=3^Pityriasis Rosea
+ ;;^UTILITY(U,$J,358.3,10891,1,4,0)
+ ;;=4^L42.
+ ;;^UTILITY(U,$J,358.3,10891,2)
+ ;;=^94726
+ ;;^UTILITY(U,$J,358.3,10892,0)
+ ;;=L89.91^^47^522^81
+ ;;^UTILITY(U,$J,358.3,10892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10892,1,3,0)
+ ;;=3^Pressure Ulcer,Stage 1,Unspec Site

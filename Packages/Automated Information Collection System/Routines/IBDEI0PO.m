@@ -1,132 +1,132 @@
-IBDEI0PO ; ; 19-NOV-2015
+IBDEI0PO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11758,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,11758,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,11759,0)
- ;;=I83.219^^68^690^4
- ;;^UTILITY(U,$J,358.3,11759,1,0)
+ ;;^UTILITY(U,$J,358.3,12002,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,12003,0)
+ ;;=Z86.11^^47^538^117
+ ;;^UTILITY(U,$J,358.3,12003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11759,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,11759,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,11759,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,11760,0)
- ;;=I83.029^^68^690^1
- ;;^UTILITY(U,$J,358.3,11760,1,0)
+ ;;^UTILITY(U,$J,358.3,12003,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,12003,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,12003,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,12004,0)
+ ;;=Z87.440^^47^538^119
+ ;;^UTILITY(U,$J,358.3,12004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11760,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,11760,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,11760,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,11761,0)
- ;;=I83.229^^68^690^2
- ;;^UTILITY(U,$J,358.3,11761,1,0)
+ ;;^UTILITY(U,$J,358.3,12004,1,3,0)
+ ;;=3^Personal Hx of Urinary Tract Infections
+ ;;^UTILITY(U,$J,358.3,12004,1,4,0)
+ ;;=4^Z87.440
+ ;;^UTILITY(U,$J,358.3,12004,2)
+ ;;=^5063495
+ ;;^UTILITY(U,$J,358.3,12005,0)
+ ;;=Z87.442^^47^538^118
+ ;;^UTILITY(U,$J,358.3,12005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11761,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,11761,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,11761,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,11762,0)
- ;;=B00.81^^68^691^25
- ;;^UTILITY(U,$J,358.3,11762,1,0)
+ ;;^UTILITY(U,$J,358.3,12005,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,12005,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,12005,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,12006,0)
+ ;;=Z91.83^^47^538^120
+ ;;^UTILITY(U,$J,358.3,12006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11762,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,11762,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,11762,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,11763,0)
- ;;=D25.9^^68^691^31
- ;;^UTILITY(U,$J,358.3,11763,1,0)
+ ;;^UTILITY(U,$J,358.3,12006,1,3,0)
+ ;;=3^Personal Hx of Wandering
+ ;;^UTILITY(U,$J,358.3,12006,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,12006,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,12007,0)
+ ;;=Z76.89^^47^538^121
+ ;;^UTILITY(U,$J,358.3,12007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11763,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,11763,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,11763,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,11764,0)
- ;;=F52.9^^68^691^55
- ;;^UTILITY(U,$J,358.3,11764,1,0)
+ ;;^UTILITY(U,$J,358.3,12007,1,3,0)
+ ;;=3^Persons Encountering Health Services
+ ;;^UTILITY(U,$J,358.3,12007,1,4,0)
+ ;;=4^Z76.89
+ ;;^UTILITY(U,$J,358.3,12007,2)
+ ;;=^5063304
+ ;;^UTILITY(U,$J,358.3,12008,0)
+ ;;=Z60.0^^47^538^122
+ ;;^UTILITY(U,$J,358.3,12008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11764,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,11764,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,11764,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,11765,0)
- ;;=R37.^^68^691^56
- ;;^UTILITY(U,$J,358.3,11765,1,0)
+ ;;^UTILITY(U,$J,358.3,12008,1,3,0)
+ ;;=3^Problems Adjusting to Life-Cycle Transitions
+ ;;^UTILITY(U,$J,358.3,12008,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,12008,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,12009,0)
+ ;;=Z63.31^^47^538^148
+ ;;^UTILITY(U,$J,358.3,12009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11765,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,11765,1,4,0)
- ;;=4^R37.
- ;;^UTILITY(U,$J,358.3,11765,2)
- ;;=^5019339
- ;;^UTILITY(U,$J,358.3,11766,0)
- ;;=N60.01^^68^691^59
- ;;^UTILITY(U,$J,358.3,11766,1,0)
+ ;;^UTILITY(U,$J,358.3,12009,1,3,0)
+ ;;=3^Problems Related to Military Deployment Absence
+ ;;^UTILITY(U,$J,358.3,12009,1,4,0)
+ ;;=4^Z63.31
+ ;;^UTILITY(U,$J,358.3,12009,2)
+ ;;=^5063166
+ ;;^UTILITY(U,$J,358.3,12010,0)
+ ;;=Z63.32^^47^538^135
+ ;;^UTILITY(U,$J,358.3,12010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11766,1,3,0)
- ;;=3^Solitary Cyst of Right Breast
- ;;^UTILITY(U,$J,358.3,11766,1,4,0)
- ;;=4^N60.01
- ;;^UTILITY(U,$J,358.3,11766,2)
- ;;=^5015770
- ;;^UTILITY(U,$J,358.3,11767,0)
- ;;=N60.02^^68^691^58
- ;;^UTILITY(U,$J,358.3,11767,1,0)
+ ;;^UTILITY(U,$J,358.3,12010,1,3,0)
+ ;;=3^Problems Related to Family Member Absence
+ ;;^UTILITY(U,$J,358.3,12010,1,4,0)
+ ;;=4^Z63.32
+ ;;^UTILITY(U,$J,358.3,12010,2)
+ ;;=^5063167
+ ;;^UTILITY(U,$J,358.3,12011,0)
+ ;;=Z60.3^^47^538^123
+ ;;^UTILITY(U,$J,358.3,12011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11767,1,3,0)
- ;;=3^Solitary Cyst of Left Breast
- ;;^UTILITY(U,$J,358.3,11767,1,4,0)
- ;;=4^N60.02
- ;;^UTILITY(U,$J,358.3,11767,2)
- ;;=^5015771
- ;;^UTILITY(U,$J,358.3,11768,0)
- ;;=N60.09^^68^691^60
- ;;^UTILITY(U,$J,358.3,11768,1,0)
+ ;;^UTILITY(U,$J,358.3,12011,1,3,0)
+ ;;=3^Problems Related to Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,12011,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,12011,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,12012,0)
+ ;;=Z74.9^^47^538^128
+ ;;^UTILITY(U,$J,358.3,12012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11768,1,3,0)
- ;;=3^Solitary Cyst of Unspec Breast
- ;;^UTILITY(U,$J,358.3,11768,1,4,0)
- ;;=4^N60.09
- ;;^UTILITY(U,$J,358.3,11768,2)
- ;;=^5015772
- ;;^UTILITY(U,$J,358.3,11769,0)
- ;;=N60.11^^68^691^12
- ;;^UTILITY(U,$J,358.3,11769,1,0)
+ ;;^UTILITY(U,$J,358.3,12012,1,3,0)
+ ;;=3^Problems Related to Care Provider Dependency,Unspec
+ ;;^UTILITY(U,$J,358.3,12012,1,4,0)
+ ;;=4^Z74.9
+ ;;^UTILITY(U,$J,358.3,12012,2)
+ ;;=^5063288
+ ;;^UTILITY(U,$J,358.3,12013,0)
+ ;;=Z63.4^^47^538^127
+ ;;^UTILITY(U,$J,358.3,12013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11769,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Right Breast
- ;;^UTILITY(U,$J,358.3,11769,1,4,0)
- ;;=4^N60.11
- ;;^UTILITY(U,$J,358.3,11769,2)
- ;;=^5015773
- ;;^UTILITY(U,$J,358.3,11770,0)
- ;;=N60.12^^68^691^11
- ;;^UTILITY(U,$J,358.3,11770,1,0)
+ ;;^UTILITY(U,$J,358.3,12013,1,3,0)
+ ;;=3^Problems Related to Bereavement
+ ;;^UTILITY(U,$J,358.3,12013,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,12013,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,12014,0)
+ ;;=Z63.6^^47^538^129
+ ;;^UTILITY(U,$J,358.3,12014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11770,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Left Breast
- ;;^UTILITY(U,$J,358.3,11770,1,4,0)
- ;;=4^N60.12
- ;;^UTILITY(U,$J,358.3,11770,2)
- ;;=^5015774
- ;;^UTILITY(U,$J,358.3,11771,0)
- ;;=N60.19^^68^691^13
- ;;^UTILITY(U,$J,358.3,11771,1,0)
+ ;;^UTILITY(U,$J,358.3,12014,1,3,0)
+ ;;=3^Problems Related to Dependent Relative Needing Care at Home
+ ;;^UTILITY(U,$J,358.3,12014,1,4,0)
+ ;;=4^Z63.6
+ ;;^UTILITY(U,$J,358.3,12014,2)
+ ;;=^5063170
+ ;;^UTILITY(U,$J,358.3,12015,0)
+ ;;=Z59.2^^47^538^131
+ ;;^UTILITY(U,$J,358.3,12015,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12015,1,3,0)
+ ;;=3^Problems Related to Discord w/ Neighbors/Lodgers/Landlord

@@ -1,134 +1,136 @@
-IBDEI0S6 ; ; 19-NOV-2015
+IBDEI0S6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12963,0)
- ;;=H16.421^^80^753^123
- ;;^UTILITY(U,$J,358.3,12963,1,0)
+ ;;^UTILITY(U,$J,358.3,13211,1,4,0)
+ ;;=4^D12.8
+ ;;^UTILITY(U,$J,358.3,13211,2)
+ ;;=^5001971
+ ;;^UTILITY(U,$J,358.3,13212,0)
+ ;;=K92.2^^53^588^49
+ ;;^UTILITY(U,$J,358.3,13212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12963,1,3,0)
- ;;=3^Pannus Corneal,Right Eye
- ;;^UTILITY(U,$J,358.3,12963,1,4,0)
- ;;=4^H16.421
- ;;^UTILITY(U,$J,358.3,12963,2)
- ;;=^5004972
- ;;^UTILITY(U,$J,358.3,12964,0)
- ;;=H16.422^^80^753^122
- ;;^UTILITY(U,$J,358.3,12964,1,0)
+ ;;^UTILITY(U,$J,358.3,13212,1,3,0)
+ ;;=3^GI Bleed,Unspec
+ ;;^UTILITY(U,$J,358.3,13212,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,13212,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,13213,0)
+ ;;=K62.5^^53^588^8
+ ;;^UTILITY(U,$J,358.3,13213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12964,1,3,0)
- ;;=3^Pannus Corneal,Left Eye
- ;;^UTILITY(U,$J,358.3,12964,1,4,0)
- ;;=4^H16.422
- ;;^UTILITY(U,$J,358.3,12964,2)
- ;;=^5004973
- ;;^UTILITY(U,$J,358.3,12965,0)
- ;;=H17.9^^80^753^56
- ;;^UTILITY(U,$J,358.3,12965,1,0)
+ ;;^UTILITY(U,$J,358.3,13213,1,3,0)
+ ;;=3^BRBPR
+ ;;^UTILITY(U,$J,358.3,13213,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,13213,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,13214,0)
+ ;;=K92.1^^53^588^71
+ ;;^UTILITY(U,$J,358.3,13214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12965,1,3,0)
- ;;=3^Corneal Scar & Opacity,Unspec
- ;;^UTILITY(U,$J,358.3,12965,1,4,0)
- ;;=4^H17.9
- ;;^UTILITY(U,$J,358.3,12965,2)
- ;;=^5005003
- ;;^UTILITY(U,$J,358.3,12966,0)
- ;;=H17.89^^80^753^55
- ;;^UTILITY(U,$J,358.3,12966,1,0)
+ ;;^UTILITY(U,$J,358.3,13214,1,3,0)
+ ;;=3^Melena/Hematochezia
+ ;;^UTILITY(U,$J,358.3,13214,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,13214,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,13215,0)
+ ;;=R19.5^^53^588^48
+ ;;^UTILITY(U,$J,358.3,13215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12966,1,3,0)
- ;;=3^Corneal Scar & Opacity NEC
- ;;^UTILITY(U,$J,358.3,12966,1,4,0)
- ;;=4^H17.89
- ;;^UTILITY(U,$J,358.3,12966,2)
- ;;=^5005002
- ;;^UTILITY(U,$J,358.3,12967,0)
- ;;=H17.821^^80^753^129
- ;;^UTILITY(U,$J,358.3,12967,1,0)
+ ;;^UTILITY(U,$J,358.3,13215,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,13215,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,13215,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,13216,0)
+ ;;=E53.8^^53^588^81
+ ;;^UTILITY(U,$J,358.3,13216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12967,1,3,0)
- ;;=3^Peripheral Opacity of Cornea,Right Eye
- ;;^UTILITY(U,$J,358.3,12967,1,4,0)
- ;;=4^H17.821
- ;;^UTILITY(U,$J,358.3,12967,2)
- ;;=^5004998
- ;;^UTILITY(U,$J,358.3,12968,0)
- ;;=H17.822^^80^753^128
- ;;^UTILITY(U,$J,358.3,12968,1,0)
+ ;;^UTILITY(U,$J,358.3,13216,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,13216,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,13216,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,13217,0)
+ ;;=A54.00^^53^589^47
+ ;;^UTILITY(U,$J,358.3,13217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12968,1,3,0)
- ;;=3^Peripheral Opacity of Cornea,Left Eye
- ;;^UTILITY(U,$J,358.3,12968,1,4,0)
- ;;=4^H17.822
- ;;^UTILITY(U,$J,358.3,12968,2)
- ;;=^5004999
- ;;^UTILITY(U,$J,358.3,12969,0)
- ;;=H17.11^^80^753^28
- ;;^UTILITY(U,$J,358.3,12969,1,0)
+ ;;^UTILITY(U,$J,358.3,13217,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,13217,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,13217,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,13218,0)
+ ;;=A54.09^^53^589^48
+ ;;^UTILITY(U,$J,358.3,13218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12969,1,3,0)
- ;;=3^Central Corneal Opacity,Right Eye
- ;;^UTILITY(U,$J,358.3,12969,1,4,0)
- ;;=4^H17.11
- ;;^UTILITY(U,$J,358.3,12969,2)
- ;;=^5004991
- ;;^UTILITY(U,$J,358.3,12970,0)
- ;;=H17.12^^80^753^27
- ;;^UTILITY(U,$J,358.3,12970,1,0)
+ ;;^UTILITY(U,$J,358.3,13218,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,13218,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,13218,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,13219,0)
+ ;;=A54.02^^53^589^49
+ ;;^UTILITY(U,$J,358.3,13219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12970,1,3,0)
- ;;=3^Central Corneal Opacity,Left Eye
- ;;^UTILITY(U,$J,358.3,12970,1,4,0)
- ;;=4^H17.12
- ;;^UTILITY(U,$J,358.3,12970,2)
- ;;=^5004992
- ;;^UTILITY(U,$J,358.3,12971,0)
- ;;=H18.001^^80^753^49
- ;;^UTILITY(U,$J,358.3,12971,1,0)
+ ;;^UTILITY(U,$J,358.3,13219,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,13219,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,13219,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,13220,0)
+ ;;=A54.1^^53^589^46
+ ;;^UTILITY(U,$J,358.3,13220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12971,1,3,0)
- ;;=3^Corneal Deposit,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12971,1,4,0)
- ;;=4^H18.001
- ;;^UTILITY(U,$J,358.3,12971,2)
- ;;=^5005004
- ;;^UTILITY(U,$J,358.3,12972,0)
- ;;=H18.002^^80^753^48
- ;;^UTILITY(U,$J,358.3,12972,1,0)
+ ;;^UTILITY(U,$J,358.3,13220,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,13220,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,13220,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,13221,0)
+ ;;=A54.01^^53^589^45
+ ;;^UTILITY(U,$J,358.3,13221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12972,1,3,0)
- ;;=3^Corneal Deposit,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,12972,1,4,0)
- ;;=4^H18.002
- ;;^UTILITY(U,$J,358.3,12972,2)
- ;;=^5005005
- ;;^UTILITY(U,$J,358.3,12973,0)
- ;;=H18.051^^80^753^135
- ;;^UTILITY(U,$J,358.3,12973,1,0)
+ ;;^UTILITY(U,$J,358.3,13221,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,13221,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,13221,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,13222,0)
+ ;;=B37.49^^53^589^12
+ ;;^UTILITY(U,$J,358.3,13222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12973,1,3,0)
- ;;=3^Posterior Corneal Pigmentations,Right Eye
- ;;^UTILITY(U,$J,358.3,12973,1,4,0)
- ;;=4^H18.051
- ;;^UTILITY(U,$J,358.3,12973,2)
- ;;=^5005023
- ;;^UTILITY(U,$J,358.3,12974,0)
- ;;=H18.052^^80^753^134
- ;;^UTILITY(U,$J,358.3,12974,1,0)
+ ;;^UTILITY(U,$J,358.3,13222,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,13222,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,13222,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,13223,0)
+ ;;=B37.41^^53^589^11
+ ;;^UTILITY(U,$J,358.3,13223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12974,1,3,0)
- ;;=3^Posterior Corneal Pigmentations,Left Eye
- ;;^UTILITY(U,$J,358.3,12974,1,4,0)
- ;;=4^H18.052
- ;;^UTILITY(U,$J,358.3,12974,2)
- ;;=^5005024
- ;;^UTILITY(U,$J,358.3,12975,0)
- ;;=H18.20^^80^753^51
- ;;^UTILITY(U,$J,358.3,12975,1,0)
+ ;;^UTILITY(U,$J,358.3,13223,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,13223,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,13223,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,13224,0)
+ ;;=B37.42^^53^589^10
+ ;;^UTILITY(U,$J,358.3,13224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12975,1,3,0)
- ;;=3^Corneal Edema,Unspec
- ;;^UTILITY(U,$J,358.3,12975,1,4,0)
- ;;=4^H18.20
- ;;^UTILITY(U,$J,358.3,12975,2)
- ;;=^5005035
+ ;;^UTILITY(U,$J,358.3,13224,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,13224,1,4,0)
+ ;;=4^B37.42

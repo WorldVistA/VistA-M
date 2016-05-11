@@ -1,130 +1,134 @@
-IBDEI02K ; ; 19-NOV-2015
+IBDEI02K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,432,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,432,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,433,0)
- ;;=F13.182^^3^55^8
- ;;^UTILITY(U,$J,358.3,433,1,0)
+ ;;^UTILITY(U,$J,358.3,714,1,2,0)
+ ;;=2^NERVE BLK SCIATIC NERVE,SNGL INJ
+ ;;^UTILITY(U,$J,358.3,714,1,4,0)
+ ;;=4^64445
+ ;;^UTILITY(U,$J,358.3,715,0)
+ ;;=64446^^5^72^20^^^^1
+ ;;^UTILITY(U,$J,358.3,715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,433,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,433,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,433,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,434,0)
- ;;=F13.20^^3^55^2
- ;;^UTILITY(U,$J,358.3,434,1,0)
+ ;;^UTILITY(U,$J,358.3,715,1,2,0)
+ ;;=2^NERVE BLK SCIATIC NERVE,CONT INFUSION
+ ;;^UTILITY(U,$J,358.3,715,1,4,0)
+ ;;=4^64446
+ ;;^UTILITY(U,$J,358.3,716,0)
+ ;;=64418^^5^72^23^^^^1
+ ;;^UTILITY(U,$J,358.3,716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,434,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,434,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,434,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,435,0)
- ;;=F13.21^^3^55^3
- ;;^UTILITY(U,$J,358.3,435,1,0)
+ ;;^UTILITY(U,$J,358.3,716,1,2,0)
+ ;;=2^NERVE BLK SUPRASCAPULAR NERVE
+ ;;^UTILITY(U,$J,358.3,716,1,4,0)
+ ;;=4^64418
+ ;;^UTILITY(U,$J,358.3,717,0)
+ ;;=64400^^5^72^24^^^^1
+ ;;^UTILITY(U,$J,358.3,717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,435,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,435,1,4,0)
- ;;=4^F13.21
- ;;^UTILITY(U,$J,358.3,435,2)
- ;;=^331934
- ;;^UTILITY(U,$J,358.3,436,0)
- ;;=F13.232^^3^55^4
- ;;^UTILITY(U,$J,358.3,436,1,0)
+ ;;^UTILITY(U,$J,358.3,717,1,2,0)
+ ;;=2^NERVE BLK TRIGEMINAL,ANY DIVIS/BRANCH
+ ;;^UTILITY(U,$J,358.3,717,1,4,0)
+ ;;=4^64400
+ ;;^UTILITY(U,$J,358.3,718,0)
+ ;;=64408^^5^72^25^^^^1
+ ;;^UTILITY(U,$J,358.3,718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,436,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,436,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,436,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,437,0)
- ;;=F13.239^^3^55^5
- ;;^UTILITY(U,$J,358.3,437,1,0)
+ ;;^UTILITY(U,$J,358.3,718,1,2,0)
+ ;;=2^NERVE BLK VAGUS NERVE,INJ
+ ;;^UTILITY(U,$J,358.3,718,1,4,0)
+ ;;=4^64408
+ ;;^UTILITY(U,$J,358.3,719,0)
+ ;;=64417^^5^72^2^^^^1
+ ;;^UTILITY(U,$J,358.3,719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,437,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,437,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,437,2)
- ;;=^5003209
- ;;^UTILITY(U,$J,358.3,438,0)
- ;;=F13.24^^3^55^9
- ;;^UTILITY(U,$J,358.3,438,1,0)
+ ;;^UTILITY(U,$J,358.3,719,1,2,0)
+ ;;=2^NERVE BLK AXILLARY NERVE
+ ;;^UTILITY(U,$J,358.3,719,1,4,0)
+ ;;=4^64417
+ ;;^UTILITY(U,$J,358.3,720,0)
+ ;;=01991^^5^72^1^^^^1
+ ;;^UTILITY(U,$J,358.3,720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,438,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
- ;;^UTILITY(U,$J,358.3,438,1,4,0)
- ;;=4^F13.24
- ;;^UTILITY(U,$J,358.3,438,2)
- ;;=^5003210
- ;;^UTILITY(U,$J,358.3,439,0)
- ;;=F13.231^^3^55^6
- ;;^UTILITY(U,$J,358.3,439,1,0)
+ ;;^UTILITY(U,$J,358.3,720,1,2,0)
+ ;;=2^ANESTH NERVE BLOCK/INJ DONE BY DIFF MD
+ ;;^UTILITY(U,$J,358.3,720,1,4,0)
+ ;;=4^01991
+ ;;^UTILITY(U,$J,358.3,721,0)
+ ;;=93503^^5^73^2^^^^1
+ ;;^UTILITY(U,$J,358.3,721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,439,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,439,1,4,0)
- ;;=4^F13.231
- ;;^UTILITY(U,$J,358.3,439,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,440,0)
- ;;=F17.200^^3^56^1
- ;;^UTILITY(U,$J,358.3,440,1,0)
+ ;;^UTILITY(U,$J,358.3,721,1,2,0)
+ ;;=2^INSERT SWAN GANZ CATH
+ ;;^UTILITY(U,$J,358.3,721,1,4,0)
+ ;;=4^93503
+ ;;^UTILITY(U,$J,358.3,722,0)
+ ;;=01920^^5^73^1^^^^1
+ ;;^UTILITY(U,$J,358.3,722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,440,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,440,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,440,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,441,0)
- ;;=F17.201^^3^56^2
- ;;^UTILITY(U,$J,358.3,441,1,0)
+ ;;^UTILITY(U,$J,358.3,722,1,2,0)
+ ;;=2^ANESTH CARDIAC CATH/ANGIO/VENTRICULOGR
+ ;;^UTILITY(U,$J,358.3,722,1,4,0)
+ ;;=4^01920
+ ;;^UTILITY(U,$J,358.3,723,0)
+ ;;=36556^^5^74^1^^^^1
+ ;;^UTILITY(U,$J,358.3,723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,441,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,441,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,441,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,442,0)
- ;;=F17.203^^3^56^3
- ;;^UTILITY(U,$J,358.3,442,1,0)
+ ;;^UTILITY(U,$J,358.3,723,1,2,0)
+ ;;=2^INSERT CENTRAL VENOUS CATHETER
+ ;;^UTILITY(U,$J,358.3,723,1,4,0)
+ ;;=4^36556
+ ;;^UTILITY(U,$J,358.3,724,0)
+ ;;=62273^^5^75^1^^^^1
+ ;;^UTILITY(U,$J,358.3,724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,442,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,442,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,442,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,443,0)
- ;;=F17.210^^3^56^4
- ;;^UTILITY(U,$J,358.3,443,1,0)
+ ;;^UTILITY(U,$J,358.3,724,1,2,0)
+ ;;=2^INJ,EPIDURAL OF BLOOD/CLOT PATCH
+ ;;^UTILITY(U,$J,358.3,724,1,4,0)
+ ;;=4^62273
+ ;;^UTILITY(U,$J,358.3,725,0)
+ ;;=62319^^5^75^3^^^^1
+ ;;^UTILITY(U,$J,358.3,725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,443,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,443,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,443,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,444,0)
- ;;=F17.211^^3^56^5
- ;;^UTILITY(U,$J,358.3,444,1,0)
+ ;;^UTILITY(U,$J,358.3,725,1,2,0)
+ ;;=2^INJECT SPINE W/CATH L/S (CD)
+ ;;^UTILITY(U,$J,358.3,725,1,4,0)
+ ;;=4^62319
+ ;;^UTILITY(U,$J,358.3,726,0)
+ ;;=62318^^5^75^2^^^^1
+ ;;^UTILITY(U,$J,358.3,726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,444,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,444,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,444,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,445,0)
- ;;=F17.220^^3^56^6
+ ;;^UTILITY(U,$J,358.3,726,1,2,0)
+ ;;=2^INJECT SPINE W/CATH C/T
+ ;;^UTILITY(U,$J,358.3,726,1,4,0)
+ ;;=4^62318
+ ;;^UTILITY(U,$J,358.3,727,0)
+ ;;=01850^^5^76^1^^^^1
+ ;;^UTILITY(U,$J,358.3,727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,727,1,2,0)
+ ;;=2^ANESTH VENOOUS PROC FOREARM/WRIST/HAND
+ ;;^UTILITY(U,$J,358.3,727,1,4,0)
+ ;;=4^01850
+ ;;^UTILITY(U,$J,358.3,728,0)
+ ;;=00104^^5^77^1^^^^1
+ ;;^UTILITY(U,$J,358.3,728,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,728,1,2,0)
+ ;;=2^ECT,ANESTHESIA
+ ;;^UTILITY(U,$J,358.3,728,1,4,0)
+ ;;=4^00104
+ ;;^UTILITY(U,$J,358.3,729,0)
+ ;;=00534^^5^78^1^^^^1
+ ;;^UTILITY(U,$J,358.3,729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,729,1,2,0)
+ ;;=2^AICD INSERT/REPLACE,ANESTH
+ ;;^UTILITY(U,$J,358.3,729,1,4,0)
+ ;;=4^00534
+ ;;^UTILITY(U,$J,358.3,730,0)
+ ;;=00560^^5^78^2^^^^1
+ ;;^UTILITY(U,$J,358.3,730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,730,1,2,0)
+ ;;=2^AORTIC ANGIOGRAPHY,ANESTH

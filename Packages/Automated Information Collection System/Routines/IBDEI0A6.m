@@ -1,134 +1,136 @@
-IBDEI0A6 ; ; 19-NOV-2015
+IBDEI0A6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4232,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,4233,0)
- ;;=Z86.12^^28^263^112
- ;;^UTILITY(U,$J,358.3,4233,1,0)
+ ;;^UTILITY(U,$J,358.3,4523,1,3,0)
+ ;;=3^SCC Anal Skin
+ ;;^UTILITY(U,$J,358.3,4523,1,4,0)
+ ;;=4^C44.520
+ ;;^UTILITY(U,$J,358.3,4523,2)
+ ;;=^5001057
+ ;;^UTILITY(U,$J,358.3,4524,0)
+ ;;=C44.521^^21^281^2
+ ;;^UTILITY(U,$J,358.3,4524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4233,1,3,0)
- ;;=3^Personal Hx of Poliomyelitis
- ;;^UTILITY(U,$J,358.3,4233,1,4,0)
- ;;=4^Z86.12
- ;;^UTILITY(U,$J,358.3,4233,2)
- ;;=^5063462
- ;;^UTILITY(U,$J,358.3,4234,0)
- ;;=Z87.430^^28^263^113
- ;;^UTILITY(U,$J,358.3,4234,1,0)
+ ;;^UTILITY(U,$J,358.3,4524,1,3,0)
+ ;;=3^SCC Skin Breast
+ ;;^UTILITY(U,$J,358.3,4524,1,4,0)
+ ;;=4^C44.521
+ ;;^UTILITY(U,$J,358.3,4524,2)
+ ;;=^5001058
+ ;;^UTILITY(U,$J,358.3,4525,0)
+ ;;=C44.529^^21^281^9
+ ;;^UTILITY(U,$J,358.3,4525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4234,1,3,0)
- ;;=3^Personal Hx of Prostatic Dysplasia
- ;;^UTILITY(U,$J,358.3,4234,1,4,0)
- ;;=4^Z87.430
- ;;^UTILITY(U,$J,358.3,4234,2)
- ;;=^5063493
- ;;^UTILITY(U,$J,358.3,4235,0)
- ;;=Z91.49^^28^263^114
- ;;^UTILITY(U,$J,358.3,4235,1,0)
+ ;;^UTILITY(U,$J,358.3,4525,1,3,0)
+ ;;=3^SCC Skin Oth Part of Trunk
+ ;;^UTILITY(U,$J,358.3,4525,1,4,0)
+ ;;=4^C44.529
+ ;;^UTILITY(U,$J,358.3,4525,2)
+ ;;=^5001059
+ ;;^UTILITY(U,$J,358.3,4526,0)
+ ;;=C44.622^^21^281^15
+ ;;^UTILITY(U,$J,358.3,4526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4235,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma NEC
- ;;^UTILITY(U,$J,358.3,4235,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,4235,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,4236,0)
- ;;=Z91.5^^28^263^115
- ;;^UTILITY(U,$J,358.3,4236,1,0)
+ ;;^UTILITY(U,$J,358.3,4526,1,3,0)
+ ;;=3^SCC Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4526,1,4,0)
+ ;;=4^C44.622
+ ;;^UTILITY(U,$J,358.3,4526,2)
+ ;;=^5001070
+ ;;^UTILITY(U,$J,358.3,4527,0)
+ ;;=C44.629^^21^281^6
+ ;;^UTILITY(U,$J,358.3,4527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4236,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,4236,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,4236,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,4237,0)
- ;;=Z86.73^^28^263^116
- ;;^UTILITY(U,$J,358.3,4237,1,0)
+ ;;^UTILITY(U,$J,358.3,4527,1,3,0)
+ ;;=3^SCC Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,4527,1,4,0)
+ ;;=4^C44.629
+ ;;^UTILITY(U,$J,358.3,4527,2)
+ ;;=^5001071
+ ;;^UTILITY(U,$J,358.3,4528,0)
+ ;;=C44.722^^21^281^14
+ ;;^UTILITY(U,$J,358.3,4528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4237,1,3,0)
- ;;=3^Personal Hx of TIA/Cerebral Infarction w/o Resid Deficits
- ;;^UTILITY(U,$J,358.3,4237,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,4237,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,4238,0)
- ;;=Z86.11^^28^263^117
- ;;^UTILITY(U,$J,358.3,4238,1,0)
+ ;;^UTILITY(U,$J,358.3,4528,1,3,0)
+ ;;=3^SCC Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4528,1,4,0)
+ ;;=4^C44.722
+ ;;^UTILITY(U,$J,358.3,4528,2)
+ ;;=^5001082
+ ;;^UTILITY(U,$J,358.3,4529,0)
+ ;;=C44.729^^21^281^5
+ ;;^UTILITY(U,$J,358.3,4529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4238,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,4238,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,4238,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,4239,0)
- ;;=Z87.440^^28^263^119
- ;;^UTILITY(U,$J,358.3,4239,1,0)
+ ;;^UTILITY(U,$J,358.3,4529,1,3,0)
+ ;;=3^SCC Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4529,1,4,0)
+ ;;=4^C44.729
+ ;;^UTILITY(U,$J,358.3,4529,2)
+ ;;=^5001083
+ ;;^UTILITY(U,$J,358.3,4530,0)
+ ;;=C44.82^^21^281^10
+ ;;^UTILITY(U,$J,358.3,4530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4239,1,3,0)
- ;;=3^Personal Hx of Urinary Tract Infections
- ;;^UTILITY(U,$J,358.3,4239,1,4,0)
- ;;=4^Z87.440
- ;;^UTILITY(U,$J,358.3,4239,2)
- ;;=^5063495
- ;;^UTILITY(U,$J,358.3,4240,0)
- ;;=Z87.442^^28^263^118
- ;;^UTILITY(U,$J,358.3,4240,1,0)
+ ;;^UTILITY(U,$J,358.3,4530,1,3,0)
+ ;;=3^SCC Skin Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,4530,1,4,0)
+ ;;=4^C44.82
+ ;;^UTILITY(U,$J,358.3,4530,2)
+ ;;=^5001089
+ ;;^UTILITY(U,$J,358.3,4531,0)
+ ;;=L57.8^^21^281^22
+ ;;^UTILITY(U,$J,358.3,4531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4240,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,4240,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,4240,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,4241,0)
- ;;=Z91.83^^28^263^120
- ;;^UTILITY(U,$J,358.3,4241,1,0)
+ ;;^UTILITY(U,$J,358.3,4531,1,3,0)
+ ;;=3^Skin Changes d/t Chr Exposure to Nonionizing Radiation
+ ;;^UTILITY(U,$J,358.3,4531,1,4,0)
+ ;;=4^L57.8
+ ;;^UTILITY(U,$J,358.3,4531,2)
+ ;;=^5009226
+ ;;^UTILITY(U,$J,358.3,4532,0)
+ ;;=L27.0^^21^281^23
+ ;;^UTILITY(U,$J,358.3,4532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4241,1,3,0)
- ;;=3^Personal Hx of Wandering
- ;;^UTILITY(U,$J,358.3,4241,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,4241,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,4242,0)
- ;;=Z76.89^^28^263^121
- ;;^UTILITY(U,$J,358.3,4242,1,0)
+ ;;^UTILITY(U,$J,358.3,4532,1,3,0)
+ ;;=3^Skin Eruption,Generalized d/t Drugs/Meds Taken Internally
+ ;;^UTILITY(U,$J,358.3,4532,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,4532,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,4533,0)
+ ;;=L27.1^^21^281^24
+ ;;^UTILITY(U,$J,358.3,4533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4242,1,3,0)
- ;;=3^Persons Encountering Health Services
- ;;^UTILITY(U,$J,358.3,4242,1,4,0)
- ;;=4^Z76.89
- ;;^UTILITY(U,$J,358.3,4242,2)
- ;;=^5063304
- ;;^UTILITY(U,$J,358.3,4243,0)
- ;;=Z60.0^^28^263^122
- ;;^UTILITY(U,$J,358.3,4243,1,0)
+ ;;^UTILITY(U,$J,358.3,4533,1,3,0)
+ ;;=3^Skin Eruption,Localized d/t Drugs/Meds Taken Internally
+ ;;^UTILITY(U,$J,358.3,4533,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,4533,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,4534,0)
+ ;;=L51.1^^21^281^29
+ ;;^UTILITY(U,$J,358.3,4534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4243,1,3,0)
- ;;=3^Problems Adjusting to Life-Cycle Transitions
- ;;^UTILITY(U,$J,358.3,4243,1,4,0)
- ;;=4^Z60.0
- ;;^UTILITY(U,$J,358.3,4243,2)
- ;;=^5063139
- ;;^UTILITY(U,$J,358.3,4244,0)
- ;;=Z63.31^^28^263^148
- ;;^UTILITY(U,$J,358.3,4244,1,0)
+ ;;^UTILITY(U,$J,358.3,4534,1,3,0)
+ ;;=3^Stevens-Johnson Syndrome
+ ;;^UTILITY(U,$J,358.3,4534,1,4,0)
+ ;;=4^L51.1
+ ;;^UTILITY(U,$J,358.3,4534,2)
+ ;;=^336636
+ ;;^UTILITY(U,$J,358.3,4535,0)
+ ;;=L51.3^^21^281^30
+ ;;^UTILITY(U,$J,358.3,4535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4244,1,3,0)
- ;;=3^Problems Related to Military Deployment Absence
- ;;^UTILITY(U,$J,358.3,4244,1,4,0)
- ;;=4^Z63.31
- ;;^UTILITY(U,$J,358.3,4244,2)
- ;;=^5063166
- ;;^UTILITY(U,$J,358.3,4245,0)
- ;;=Z63.32^^28^263^135
- ;;^UTILITY(U,$J,358.3,4245,1,0)
+ ;;^UTILITY(U,$J,358.3,4535,1,3,0)
+ ;;=3^Stevens-Johnson Syndrome-Toxic Epdrml Necrolysis Overlap Syndrome
+ ;;^UTILITY(U,$J,358.3,4535,1,4,0)
+ ;;=4^L51.3
+ ;;^UTILITY(U,$J,358.3,4535,2)
+ ;;=^336637
+ ;;^UTILITY(U,$J,358.3,4536,0)
+ ;;=Z12.83^^21^281^19
+ ;;^UTILITY(U,$J,358.3,4536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4245,1,3,0)
- ;;=3^Problems Related to Family Member Absence
- ;;^UTILITY(U,$J,358.3,4245,1,4,0)
- ;;=4^Z63.32
+ ;;^UTILITY(U,$J,358.3,4536,1,3,0)
+ ;;=3^Screening for Malig Neop of Skin

@@ -1,136 +1,124 @@
-IBDEI0UR ; ; 19-NOV-2015
+IBDEI0UR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14154,1,3,0)
- ;;=3^Aphakia,Right Eye
- ;;^UTILITY(U,$J,358.3,14154,1,4,0)
- ;;=4^H27.01
- ;;^UTILITY(U,$J,358.3,14154,2)
- ;;=^5005365
- ;;^UTILITY(U,$J,358.3,14155,0)
- ;;=H27.02^^82^772^2
- ;;^UTILITY(U,$J,358.3,14155,1,0)
+ ;;^UTILITY(U,$J,358.3,14424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14155,1,3,0)
- ;;=3^Aphakia,Left Eye
- ;;^UTILITY(U,$J,358.3,14155,1,4,0)
- ;;=4^H27.02
- ;;^UTILITY(U,$J,358.3,14155,2)
- ;;=^5005366
- ;;^UTILITY(U,$J,358.3,14156,0)
- ;;=H27.03^^82^772^1
- ;;^UTILITY(U,$J,358.3,14156,1,0)
+ ;;^UTILITY(U,$J,358.3,14424,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,14424,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,14424,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,14425,0)
+ ;;=F11.222^^53^607^38
+ ;;^UTILITY(U,$J,358.3,14425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14156,1,3,0)
- ;;=3^Aphakia,Bilateral
- ;;^UTILITY(U,$J,358.3,14156,1,4,0)
- ;;=4^H27.03
- ;;^UTILITY(U,$J,358.3,14156,2)
- ;;=^5005367
- ;;^UTILITY(U,$J,358.3,14157,0)
- ;;=Q12.0^^82^772^7
- ;;^UTILITY(U,$J,358.3,14157,1,0)
+ ;;^UTILITY(U,$J,358.3,14425,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,14425,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,14425,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,14426,0)
+ ;;=F11.221^^53^607^37
+ ;;^UTILITY(U,$J,358.3,14426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14157,1,3,0)
- ;;=3^Cataract,Congenital
- ;;^UTILITY(U,$J,358.3,14157,1,4,0)
- ;;=4^Q12.0
- ;;^UTILITY(U,$J,358.3,14157,2)
- ;;=^27422
- ;;^UTILITY(U,$J,358.3,14158,0)
- ;;=T85.29XA^^82^772^25
- ;;^UTILITY(U,$J,358.3,14158,1,0)
+ ;;^UTILITY(U,$J,358.3,14426,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,14426,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,14426,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,14427,0)
+ ;;=F11.220^^53^607^39
+ ;;^UTILITY(U,$J,358.3,14427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14158,1,3,0)
- ;;=3^Mech Compl of Intraocular Lens,Init Encntr
- ;;^UTILITY(U,$J,358.3,14158,1,4,0)
- ;;=4^T85.29XA
- ;;^UTILITY(U,$J,358.3,14158,2)
- ;;=^5055532
- ;;^UTILITY(U,$J,358.3,14159,0)
- ;;=T85.22XA^^82^772^24
- ;;^UTILITY(U,$J,358.3,14159,1,0)
+ ;;^UTILITY(U,$J,358.3,14427,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14427,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,14427,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,14428,0)
+ ;;=F14.29^^53^607^21
+ ;;^UTILITY(U,$J,358.3,14428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14159,1,3,0)
- ;;=3^Displacement of Intraocular Lens,Init Encntr
- ;;^UTILITY(U,$J,358.3,14159,1,4,0)
- ;;=4^T85.22XA
- ;;^UTILITY(U,$J,358.3,14159,2)
- ;;=^5055529
- ;;^UTILITY(U,$J,358.3,14160,0)
- ;;=Z96.1^^82^772^26
- ;;^UTILITY(U,$J,358.3,14160,1,0)
+ ;;^UTILITY(U,$J,358.3,14428,1,3,0)
+ ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,14428,1,4,0)
+ ;;=4^F14.29
+ ;;^UTILITY(U,$J,358.3,14428,2)
+ ;;=^5003268
+ ;;^UTILITY(U,$J,358.3,14429,0)
+ ;;=F14.288^^53^607^20
+ ;;^UTILITY(U,$J,358.3,14429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14160,1,3,0)
- ;;=3^Pseudophakia,Presence of Intraocular Lens
- ;;^UTILITY(U,$J,358.3,14160,1,4,0)
- ;;=4^Z96.1
- ;;^UTILITY(U,$J,358.3,14160,2)
- ;;=^5063682
- ;;^UTILITY(U,$J,358.3,14161,0)
- ;;=H25.11^^82^772^6
- ;;^UTILITY(U,$J,358.3,14161,1,0)
+ ;;^UTILITY(U,$J,358.3,14429,1,3,0)
+ ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,14429,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,14429,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,14430,0)
+ ;;=F14.282^^53^607^14
+ ;;^UTILITY(U,$J,358.3,14430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14161,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Right Eye
- ;;^UTILITY(U,$J,358.3,14161,1,4,0)
- ;;=4^H25.11
- ;;^UTILITY(U,$J,358.3,14161,2)
- ;;=^5005284
- ;;^UTILITY(U,$J,358.3,14162,0)
- ;;=H25.12^^82^772^5
- ;;^UTILITY(U,$J,358.3,14162,1,0)
+ ;;^UTILITY(U,$J,358.3,14430,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,14430,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,14430,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,14431,0)
+ ;;=F14.281^^53^607^15
+ ;;^UTILITY(U,$J,358.3,14431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14162,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Left Eye
- ;;^UTILITY(U,$J,358.3,14162,1,4,0)
- ;;=4^H25.12
- ;;^UTILITY(U,$J,358.3,14162,2)
- ;;=^5005285
- ;;^UTILITY(U,$J,358.3,14163,0)
- ;;=H25.13^^82^772^4
- ;;^UTILITY(U,$J,358.3,14163,1,0)
+ ;;^UTILITY(U,$J,358.3,14431,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,14431,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,14431,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,14432,0)
+ ;;=F14.280^^53^607^12
+ ;;^UTILITY(U,$J,358.3,14432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14163,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Bilateral
- ;;^UTILITY(U,$J,358.3,14163,1,4,0)
- ;;=4^H25.13
- ;;^UTILITY(U,$J,358.3,14163,2)
- ;;=^5005286
- ;;^UTILITY(U,$J,358.3,14164,0)
- ;;=H54.0^^82^773^1
- ;;^UTILITY(U,$J,358.3,14164,1,0)
+ ;;^UTILITY(U,$J,358.3,14432,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,14432,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,14432,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,14433,0)
+ ;;=F14.259^^53^607^11
+ ;;^UTILITY(U,$J,358.3,14433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14164,1,3,0)
- ;;=3^Blindness,Both Eyes
- ;;^UTILITY(U,$J,358.3,14164,1,4,0)
- ;;=4^H54.0
- ;;^UTILITY(U,$J,358.3,14164,2)
- ;;=^5006357
- ;;^UTILITY(U,$J,358.3,14165,0)
- ;;=H54.12^^82^773^2
- ;;^UTILITY(U,$J,358.3,14165,1,0)
+ ;;^UTILITY(U,$J,358.3,14433,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,14433,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,14433,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,14434,0)
+ ;;=F14.251^^53^607^10
+ ;;^UTILITY(U,$J,358.3,14434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14165,1,3,0)
- ;;=3^Blindness-Left Eye/Low Vision-Right Eye
- ;;^UTILITY(U,$J,358.3,14165,1,4,0)
- ;;=4^H54.12
- ;;^UTILITY(U,$J,358.3,14165,2)
- ;;=^5006360
- ;;^UTILITY(U,$J,358.3,14166,0)
- ;;=H54.11^^82^773^4
- ;;^UTILITY(U,$J,358.3,14166,1,0)
+ ;;^UTILITY(U,$J,358.3,14434,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,14434,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,14434,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,14435,0)
+ ;;=F14.250^^53^607^9
+ ;;^UTILITY(U,$J,358.3,14435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14166,1,3,0)
- ;;=3^Blindness-Right Eye/Low Vision-Left Eye
- ;;^UTILITY(U,$J,358.3,14166,1,4,0)
- ;;=4^H54.11
- ;;^UTILITY(U,$J,358.3,14166,2)
- ;;=^5006359
- ;;^UTILITY(U,$J,358.3,14167,0)
- ;;=H54.2^^82^773^7
- ;;^UTILITY(U,$J,358.3,14167,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14167,1,3,0)
- ;;=3^Low Vision,Both Eyes
+ ;;^UTILITY(U,$J,358.3,14435,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,14435,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,14435,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,14436,0)
+ ;;=F14.24^^53^607^13

@@ -1,6 +1,6 @@
 BPSNCPD1 ;BHAM ISC/LJE - Pharmacy API part 2 ;06/16/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,6,7,8,9,10,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Call to $$NCPDPQTY^PSSBPSUT supported by IA# 4992
  ; Call to $$RXRLDT^PSOBPSUT supported by IA# 4701
@@ -108,7 +108,7 @@ STATUS(BRXIEN,BFILL,REBILL,REVONLY,BPSTART,BWHERE,BPREQIEN,BPSCOB,BPSELIG,IEN59,
  I WFLG=1 W !
  Q
  ;
-BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ; Send a Bulletin to the OPECC
+BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP,COB) ; Send a Bulletin to the OPECC
  ; Input:
  ;   RXI      -> IEN of the Rx
  ;   RXR      -> Refill #
@@ -119,6 +119,7 @@ BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ; Send a Bulletin to the OP
  ;   BPSERTXT -> Claim status/error text
  ;   BPSRESP  -> Response flag; used in BULL1 below to determine
  ;               whether to add addition text to the message.
+ ;   COB      -> Coordination of Benefits indicator
  ;
  ; If the Rx-fill has been released, then don't send a message (esg - 12/20/12 - BPS*1*15)
  I $$RXRLDT^PSOBPSUT($G(RXI),$G(RXR)) G BULLX      ; DBIA# 4701
@@ -141,6 +142,7 @@ BULL(RXI,RXR,SITE,DFN,PATNAME,BPST,BPSERTXT,BPSRESP) ; Send a Bulletin to the OP
  S ZTIO="",ZTDTH=%,ZTDESC="IN PROGRESS BULLETIN"
  S (ZTSAVE("RXR"),ZTSAVE("RXI"),ZTSAVE("BPSERTXT"))="",ZTSAVE("BPSRESP")=""
  S (ZTSAVE("SITENM"),ZTSAVE("PATNAME"),ZTSAVE("SSN"),ZTSAVE("BPST"))=""
+ S ZTSAVE("COB")=""
  S ZTRTN="BULL1^BPSNCPD1"
  D ^%ZTLOAD
 BULLX ;
@@ -148,9 +150,12 @@ BULLX ;
  ;
  ;
 BULL1 ;
- N BPSRX,BPSL,XMDUZ,XMY,BPSX,XMZ,XMSUB,BPTYPE,BPSUB
+ N BPSRX,BPSL,XMDUZ,XMY,BPSX,XMZ,XMSUB,BPTYPE,BPSUB,IEN59,ECMENUM
  S BPSL=0,BPSRX=$$RXAPI1^BPSUTIL1(RXI,.01,"E")
  S BPTYPE=$S($G(BPST)="T":"TRICARE",$G(BPST)="C":"CHAMPVA",1:"")
+ S ECMENUM=""
+ S IEN59=$$IEN59^BPSOSRX(RXI,RXR,COB)
+ I IEN59 S ECMENUM=$$ECMENUM^BPSSCRU2(IEN59)
  S XMSUB=BPTYPE_" RX not processed for site "_$G(SITENM)
  I $G(BPST)]"" D
  . S BPSL=BPSL+1,BPSX(BPSL)="Prescription "_BPSRX_" for fill number "_(+RXR)_" could not be filled because of a"
@@ -161,20 +166,19 @@ BULL1 ;
  . S BPSL=BPSL+1,BPSX(BPSL)="Please monitor the progress of the claim.  If the claim is eventually"
  . S BPSL=BPSL+1,BPSX(BPSL)="returned as payable, the Rx label will be printed when Print from Suspense"
  . S BPSL=BPSL+1,BPSX(BPSL)="occurs or it may be Pulled Early from Suspense.  If a reject occurs, the"
- . S BPSL=BPSL+1,BPSX(BPSL)="Rx will be placed in the REFILL TOO SOON/DUR REJECTS (Third Party) section"
- . S BPSL=BPSL+1,BPSX(BPSL)="of the medication profile and placed on the Pharmacy Reject Worklist."
- ;
+ . S BPSL=BPSL+1,BPSX(BPSL)="Rx will be placed in the appropriate section of the medication profile"
+ . S BPSL=BPSL+1,BPSX(BPSL)="and placed on the Pharmacy Reject Worklist."
  ;
  I $G(BPSERTXT)'="" S BPSL=BPSL+1,BPSX(BPSL)=BPSERTXT
  S BPSL=BPSL+1,BPSX(BPSL)=" "
  I $G(BPSRESP)'=4 D
- . S BPSL=BPSL+1,BPSX(BPSL)="For more information on this prescription's activity, please view the ECME"
- . S BPSL=BPSL+1,BPSX(BPSL)="log within the View Prescription (VP) option on the Further Research (FR)"
- . S BPSL=BPSL+1,BPSX(BPSL)="menu of the ECME user screen."
+ . S BPSL=BPSL+1,BPSX(BPSL)="For more information on this prescription's activity, please view the Claim Log"
+ . S BPSL=BPSL+1,BPSX(BPSL)="within View ePharmacy Rx (VER)."
  . S BPSL=BPSL+1,BPSX(BPSL)=" "
  S BPSL=BPSL+1,BPSX(BPSL)=BPTYPE_" Patient Name: "_$G(PATNAME)_" ("_$G(SSN)_")"
  S BPSL=BPSL+1,BPSX(BPSL)="Prescription: "_BPSRX_"  Fill: "_(+RXR)
- S BPSL=BPSL+1,BPSX(BPSL)="Drug Name:  "_$$RXAPI1^BPSUTIL1(RXI,6,"E")
+ S BPSL=BPSL+1,BPSX(BPSL)="ECME: "_ECMENUM
+ S BPSL=BPSL+1,BPSX(BPSL)="Drug Name: "_$$RXAPI1^BPSUTIL1(RXI,6,"E")
  ;
  S XMDUZ="BPS PACKAGE",XMTEXT="BPSX("
  ;

@@ -1,5 +1,5 @@
-SCRPW62 ;BP-CIOFO/KEITH - SC veterans awaiting appointments ; 23 August 2002@20:23  ; Compiled August 20, 2007 14:21:08
- ;;5.3;Scheduling;**267,269,358,491**;AUG 13, 1993;Build 53
+SCRPW62 ;BP-CIOFO/KEITH - SC veterans awaiting appointments ;1/5/16 12:26pm
+ ;;5.3;Scheduling;**267,269,358,491,645**;AUG 13, 1993;Build 7
  ;
  ;Prompt for report parameters
  ;
@@ -10,9 +10,12 @@ SCRPW62 ;BP-CIOFO/KEITH - SC veterans awaiting appointments ; 23 August 2002@20:
  W !,"Note: Once the scheduling replacement application has been implemented at your"
  W !,"site, this report will no longer be accurate."
 RPT D SUBT^SCRPW50("**** Report Type Selection ****")
- S DIR(0)="S^E:ENTERED WITH NO APPOINTMENT PROVIDED;A:APPOINTMENTS BEYOND DATE DESIRED",DIR("A")="Select report type"
+ ; SD*5.3*645 - replaced 'DATE DESIRED' with 'CID/PREFERRED DATE'
+ ;S DIR(0)="S^E:ENTERED WITH NO APPOINTMENT PROVIDED;A:APPOINTMENTS BEYOND DATE DESIRED",DIR("A")="Select report type"
+ S DIR(0)="S^E:ENTERED WITH NO APPOINTMENT PROVIDED;A:APPOINTMENTS BEYOND CID/PREFERRED DATE",DIR("A")="Select report type"
  S DIR("?",1)="Specify 'E' to return SC veterans entered but not yet provided an appointment,"
- S DIR("?")="'A' to return SC veterans with appointments beyond the date desired."
+ ;S DIR("?")="'A' to return SC veterans with appointments beyond the date desired."
+ S DIR("?")="'A' to return SC veterans with appointments beyond the CID/Preferred date."
  W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S SDOUT=1 G EXIT
  K DIR S SDRPT=Y D ENT:SDRPT="E",APPT:SDRPT="A" G:SDOUT EXIT
  D SUBT^SCRPW50("**** Patient Eligibility Selection ****")
@@ -65,9 +68,12 @@ APPT ;Appointment delay parameters
  ;
  ;Following logic suppressed by request
  D SUBT^SCRPW50("**** Report Time Frame ****")
- S DIR(0)="S^30:>30 DAYS BEYOND 'DESIRED DATE';60:>60 DAYS BEYOND 'DESIRED DATE;90:>90 DAYS BEYOND 'DESIRED DATE';180:>180 DAYS BEYOND 'DESIRED DATE'"
+ ; SD*5.3*645 - replaced 'DESIRED DATE' with 'CID/PREFERRED DATE', 'CID/Preferred date'
+ ;S DIR(0)="S^30:>30 DAYS BEYOND 'DESIRED DATE';60:>60 DAYS BEYOND 'DESIRED DATE;90:>90 DAYS BEYOND 'DESIRED DATE';180:>180 DAYS BEYOND 'DESIRED DATE'"
+ S DIR(0)="S^30:>30 DAYS BEYOND 'CID/PREFERRED DATE';60:>60 DAYS BEYOND 'CID/PREFERRED DATE;90:>90 DAYS BEYOND 'CID/PREFERRED DATE';180:>180 DAYS BEYOND 'CID/PREFERRED DATE'"
  S DIR("A")="Include SC veterans with future appointments greater than"
- S DIR("?")="Specify the difference between 'desired date' and the appointement date."
+ ;S DIR("?")="Specify the difference between 'desired date' and the appointement date."
+ S DIR("?")="Specify the difference between 'CID/Preferred date' and the appointement date."
  W ! D ^DIR I $D(DTOUT)!$D(DUOUT) S SDOUT=1 Q
  S SDATES=Y
  Q
@@ -80,7 +86,8 @@ START ;Gather report data
  S SDPNOW=$$FMTE^XLFDT($E($$NOW^XLFDT(),1,12))
  S SDX=$S(SDSCVT=1:"SC 50-100% ",SDSCVT=2:"SC < 50% ",1:"")
  S SDT(1)="<*>  SC VETERANS AWAITING APPOINTMENTS  <*>"
- S SDT(2)=$S(SDRPT="E":SDX_"PATIENTS ENTERED IN THE PAST "_$S(SDATES=1:"YEAR",1:SDATES_" YEARS")_" WITHOUT AN APPOINTMENT",1:SDX_"PATIENTS WAITING > "_SDATES_" DAYS BEYOND APPOINTMENT 'DESIRED DATE'")
+ ; SD*5.3*645 - replaced 'DESIRED DATE' with 'CID/Preferred date'
+ S SDT(2)=$S(SDRPT="E":SDX_"PATIENTS ENTERED IN THE PAST "_$S(SDATES=1:"YEAR",1:SDATES_" YEARS")_" WITHOUT AN APPOINTMENT",1:SDX_"PATIENTS WAITING > "_SDATES_" DAYS BEYOND APPOINTMENT 'CID/PREFERRED DATE'")
  D @(SDRPT_"^SCRPW63") W !!
  D EXIT
  Q
@@ -121,7 +128,8 @@ HDRD ;Header for delimited report
  W !,SDLINE S X=0 F  S X=$O(SDT(X)) Q:'X  W !,SDT(X)
  W !,"Date printed: ",SDPNOW,!,SDLINE
  N ARR S ARR(1)="NAME^SSN^PRIM. ELIG.^DATE ENTERED^STREET ADDRESS^CITY^STATE^ZIP^PHONE NUMBER"
- S:SDRPT="A" ARR(1)=ARR(1)_"^APPOINTMENT DATE^CLINIC^CREDIT PAIR^DIVISION^DATE APPT. ENTERED^DESIRED DATE^DIFFERENCE (DESIRED DATE - APPT. DATE)^DIFFERENCE (DATE APPT. ENTERED - DESIRED DATE)"
+ ; SD*5.3*645 - replaced 'DESIRED DATE' with 'CID/PREFERRED DATE'
+ S:SDRPT="A" ARR(1)=ARR(1)_"^APPOINTMENT DATE^CLINIC^CREDIT PAIR^DIVISION^DATE APPT. ENTERED^CID/PREFERRED DATE^DIFFERENCE (CID/PREFERRED DATE - APPT. DATE)^DIFFERENCE (DATE APPT. ENTERED - CID/PREFERRED DATE)"
  D DELIM(.ARR)
  S SDPAGE=SDPAGE+1 Q
  Q

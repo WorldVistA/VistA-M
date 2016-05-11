@@ -1,6 +1,6 @@
 BPSPRRX3 ;ALB/SS - ePharmacy secondary billing ;16-DEC-08
- ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;External reference to file 399.3 supported by IA 3822
  ;External reference to $$INSUR^IBBAPI supported by IA 4419
@@ -124,10 +124,10 @@ PROMPTS(RX,FILL,DOS,BPSPRARR) ;
  . K BPSPAID
  . S (BPCNT,BPX,BPQ,TOTAL)=0
  . ; BPS NCPDP FIELD DEFS for field 342 codes
- . S BPSSET=$$GETCDLST(342,BPSPSHV)
+ . S BPSSET=$$GETCDLST(BPSPSHV)
  . F BPX1=0:1 S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX)) Q:'BPX  D  Q:BPQ=1
  . . S BPSQUAL=$P(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0),U,2)
- . . I BPSQUAL="  " S BPSQUAL="00"
+ . . S BPSQUAL=$$GET1^DIQ(9002313.2,BPSQUAL,.01)
  . . S BPSAMT=$P(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0),U,1)
  . . S BPQ=$$ASKPAID(BPSSET,BPSQUAL,BPSAMT,.BPCNT,.BPSPAID)
  . ;
@@ -135,7 +135,6 @@ PROMPTS(RX,FILL,DOS,BPSPRARR) ;
  . ; Enter updated values into the BPSPRARR array
  . K BPSPRARR("OTHER PAYER",BPSPIEN,"P")
  . S BPX=0 F BPX1=0:1 S BPX=$O(BPSPAID(1,BPX)) Q:BPX=""  D
- . . I $P(BPSPAID(1,BPX),U,2)="00" S $P(BPSPAID(1,BPX),U,2)="  "
  . . S BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)=BPSPAID(1,BPX)
  . . S TOTAL=TOTAL+BPSPAID(1,BPX)
  . . ;
@@ -200,7 +199,7 @@ ASK1 S RETV1=$$PROMPT("SOA"_U_BPSSET,"OTHER PAYER AMOUNT PAID QUALIFIER:  ",$G(B
  . . . S BPSPRA=$P(BPSPAID(1,BPSX),U),$P(BPSPAID(1,BPSX),U)=BPSPRA+RETV2,BPSQ=1
  . . . W !,"  $",$FN(RETV2,",",2)," has been added to amount $",$FN(BPSPRA,",",2)," for Qualifier ",RETV1
  S BPCNT=BPCNT+1
- S BPSPAID(1,BPCNT)=RETV2_U_RETV1
+ S BPSPAID(1,BPCNT)=RETV2_U_$$GETPDIEN^BPSPRRX6(RETV1)
  S BPSPAID(2,RETV1)=""
  I RETV1="08" Q 1
  Q 0
@@ -236,8 +235,7 @@ DISPSEC(BPSPRARR) ;
  I $D(BPSPRARR("OTHER PAYER",BPSPIEN,"P")) D
  . S BPX=0 F  S BPX=$O(BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX)) Q:BPX=""  D
  . . S DATA=BPSPRARR("OTHER PAYER",BPSPIEN,"P",BPX,0)
- . . I $P(DATA,U,2)="  " S $P(DATA,U,2)="00"
- . . W !,"Other Payer Paid Qualifier:  "_$P(DATA,U,2)_" ("_$$TRANCODE(342,$P(DATA,U,2))_")"
+ . . W !,"Other Payer Paid Qualifier:  "_$$GET1^DIQ(9002313.2,$P(DATA,U,2),.01)_" ("_$$GET1^DIQ(9002313.2,$P(DATA,U,2),.02)_")"
  . . W !,"Other Payer Amount Paid:  $"_$FN($P(DATA,U,1),",",2)
  ;
  ; Write Reject Codes if previous claims if they are there
@@ -261,18 +259,15 @@ PROMPT(ZERONODE,PRMTMSG,DFLTVAL,BPSHLP) ;
  I (Y=-1)!$D(DIROUT)!$D(DUOUT)!$D(DTOUT) Q -1
  Q Y
  ;
-GETCDLST(FLD,VERSION) ; Returns a list of codes by field/version for use in PROMPTS
- N FILE,CSUB,VSUB,ARRAY,BPSFIEN,IEN,X,BPSSET,BPSCD,BPSV,BPSOK
+GETCDLST(VERSION) ; Returns a list of codes by field/version for use in PROMPTS
+ N CSUB,VSUB,ARRAY,X,BPSSET,BPSCD,BPSV,BPSOK
+ S VERSION=$G(VERSION)
  S VERSION=$S(VERSION=5.1:51,VERSION=51:51,VERSION="D.0":"D0",VERSION="D0":"D0",1:"D0")
- S FILE=9002313.94,BPSSET=""
- S BPSFIEN=$O(^BPSF(9002313.91,"B",FLD,0))
- Q:BPSFIEN="" BPSSET
- S IEN=$O(^BPS(FILE,"B",BPSFIEN,0))
- Q:IEN="" BPSSET
- S BPSCD=0 F  S BPSCD=$O(^BPS(FILE,IEN,1,BPSCD)) Q:BPSCD=""  D
- . S (BPSOK,BPSV)=0 F  S BPSV=$O(^BPS(FILE,IEN,1,BPSCD,1,BPSV)) Q:BPSV=""  D  Q:BPSOK
- . . I $P($G(^BPS(FILE,IEN,1,BPSCD,1,BPSV,0)),U)=VERSION S BPSOK=1
- . I BPSOK S ARRAY(BPSCD)=$P(^BPS(FILE,IEN,1,BPSCD,0),U,1)_U_$P(^BPS(FILE,IEN,1,BPSCD,0),U,2)
+ S BPSSET=""
+ S BPSCD=0 F  S BPSCD=$O(^BPS(9002313.2,BPSCD)) Q:BPSCD=""  D
+ . S (BPSOK,BPSV)=0 F  S BPSV=$O(^BPS(9002313.2,BPSCD,1,BPSV)) Q:BPSV=""  D  Q:BPSOK
+ . . I $P($G(^BPS(9002313.2,BPSCD,1,BPSV,0)),U)=VERSION S BPSOK=1
+ . I BPSOK S ARRAY(BPSCD)=$P(^BPS(9002313.2,BPSCD,0),U,1)_U_$P(^BPS(9002313.2,BPSCD,0),U,2)
  S X=0 F  S X=$O(ARRAY(X)) Q:X=""  D
  . S BPSSET=BPSSET_$P(ARRAY(X),U)_":"_$P(ARRAY(X),U,2)_";"
  Q BPSSET
@@ -286,19 +281,6 @@ PAYSHTV(BPSPLAN) ;Get the Billing Payer Sheet version for this plan
  I +BPSPSH S BPSBPSH=$P($P(BPSPSH,"^",2),",")
  I $G(BPSBPSH)']"" Q ""
  Q $P(^BPSF(9002313.92,BPSBPSH,1),U,2)
- ;
-TRANCODE(FLD,CODE) ;CODE will be the incoming reason for NCPDP code
- N BPSFIEN,BPSDESC,BPSDIEN,IEN,FILE,CSUB,X,ARRAY
- S BPSDIEN=0
- S BPSFIEN=$O(^BPSF(9002313.91,"B",FLD,0))
- S IEN=$O(^BPS(9002313.94,"B",BPSFIEN,0))
- S FILE=9002313.94,CSUB=9002313.941
- D GETS^DIQ(FILE,IEN_",","**","IE","ARRAY")
- S X=0 F  S X=$O(ARRAY(CSUB,X)) Q:X=""  D
- . Q:ARRAY(CSUB,X,.01,"I")'=CODE
- . S BPSDESC=ARRAY(CSUB,X,1,"E")
- S:$G(BPSDESC)="" BPSDESC="Description not found for NCPDP field code"
- Q BPSDESC
  ;
  ;because the set of codes is too long to fit the MUMPS code line - use a special code to populte set of codes
 SET308(BPSSET) ;

@@ -1,118 +1,128 @@
-IBDEI1I4 ; ; 19-NOV-2015
+IBDEI1I4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25093,1,0)
+ ;;^UTILITY(U,$J,358.3,25478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25093,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following Oth Procedure
- ;;^UTILITY(U,$J,358.3,25093,1,4,0)
- ;;=4^G97.52
- ;;^UTILITY(U,$J,358.3,25093,2)
- ;;=^5004210
- ;;^UTILITY(U,$J,358.3,25094,0)
- ;;=H59.311^^124^1239^186
- ;;^UTILITY(U,$J,358.3,25094,1,0)
+ ;;^UTILITY(U,$J,358.3,25478,1,3,0)
+ ;;=3^Alcohol Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25478,1,4,0)
+ ;;=4^F10.99
+ ;;^UTILITY(U,$J,358.3,25478,2)
+ ;;=^5133351
+ ;;^UTILITY(U,$J,358.3,25479,0)
+ ;;=F15.10^^95^1166^4
+ ;;^UTILITY(U,$J,358.3,25479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25094,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Ophth Procedure
- ;;^UTILITY(U,$J,358.3,25094,1,4,0)
- ;;=4^H59.311
- ;;^UTILITY(U,$J,358.3,25094,2)
- ;;=^5006417
- ;;^UTILITY(U,$J,358.3,25095,0)
- ;;=H59.312^^124^1239^178
- ;;^UTILITY(U,$J,358.3,25095,1,0)
+ ;;^UTILITY(U,$J,358.3,25479,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,25479,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,25479,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,25480,0)
+ ;;=F15.14^^95^1166^2
+ ;;^UTILITY(U,$J,358.3,25480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25095,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Ophth Procedure
- ;;^UTILITY(U,$J,358.3,25095,1,4,0)
- ;;=4^H59.312
- ;;^UTILITY(U,$J,358.3,25095,2)
- ;;=^5006418
- ;;^UTILITY(U,$J,358.3,25096,0)
- ;;=H59.313^^124^1239^166
- ;;^UTILITY(U,$J,358.3,25096,1,0)
+ ;;^UTILITY(U,$J,358.3,25480,1,3,0)
+ ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25480,1,4,0)
+ ;;=4^F15.14
+ ;;^UTILITY(U,$J,358.3,25480,2)
+ ;;=^5003287
+ ;;^UTILITY(U,$J,358.3,25481,0)
+ ;;=F15.182^^95^1166^3
+ ;;^UTILITY(U,$J,358.3,25481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25096,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eyes/Adnexa Following Ophth Procedure
- ;;^UTILITY(U,$J,358.3,25096,1,4,0)
- ;;=4^H59.313
- ;;^UTILITY(U,$J,358.3,25096,2)
- ;;=^5006419
- ;;^UTILITY(U,$J,358.3,25097,0)
- ;;=H59.321^^124^1239^187
- ;;^UTILITY(U,$J,358.3,25097,1,0)
+ ;;^UTILITY(U,$J,358.3,25481,1,3,0)
+ ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25481,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,25481,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,25482,0)
+ ;;=F15.20^^95^1166^5
+ ;;^UTILITY(U,$J,358.3,25482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25097,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Right Eye/Adnexa Following Oth Procedure
- ;;^UTILITY(U,$J,358.3,25097,1,4,0)
- ;;=4^H59.321
- ;;^UTILITY(U,$J,358.3,25097,2)
- ;;=^5006421
- ;;^UTILITY(U,$J,358.3,25098,0)
- ;;=H59.322^^124^1239^179
- ;;^UTILITY(U,$J,358.3,25098,1,0)
+ ;;^UTILITY(U,$J,358.3,25482,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,25482,1,4,0)
+ ;;=4^F15.20
+ ;;^UTILITY(U,$J,358.3,25482,2)
+ ;;=^5003295
+ ;;^UTILITY(U,$J,358.3,25483,0)
+ ;;=F15.21^^95^1166^6
+ ;;^UTILITY(U,$J,358.3,25483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25098,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Left Eye/Adnexa Following Oth Procedure
- ;;^UTILITY(U,$J,358.3,25098,1,4,0)
- ;;=4^H59.322
- ;;^UTILITY(U,$J,358.3,25098,2)
- ;;=^5006422
- ;;^UTILITY(U,$J,358.3,25099,0)
- ;;=H59.323^^124^1239^167
- ;;^UTILITY(U,$J,358.3,25099,1,0)
+ ;;^UTILITY(U,$J,358.3,25483,1,3,0)
+ ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,25483,1,4,0)
+ ;;=4^F15.21
+ ;;^UTILITY(U,$J,358.3,25483,2)
+ ;;=^5003296
+ ;;^UTILITY(U,$J,358.3,25484,0)
+ ;;=F15.23^^95^1166^1
+ ;;^UTILITY(U,$J,358.3,25484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25099,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Bilateral Eye/Adnexa Following Oth Procedure
- ;;^UTILITY(U,$J,358.3,25099,1,4,0)
- ;;=4^H59.323
- ;;^UTILITY(U,$J,358.3,25099,2)
- ;;=^5006423
- ;;^UTILITY(U,$J,358.3,25100,0)
- ;;=H95.41^^124^1239^174
- ;;^UTILITY(U,$J,358.3,25100,1,0)
+ ;;^UTILITY(U,$J,358.3,25484,1,3,0)
+ ;;=3^Amphetamine or Other Stimulant Withdrawal
+ ;;^UTILITY(U,$J,358.3,25484,1,4,0)
+ ;;=4^F15.23
+ ;;^UTILITY(U,$J,358.3,25484,2)
+ ;;=^5003301
+ ;;^UTILITY(U,$J,358.3,25485,0)
+ ;;=F12.10^^95^1167^16
+ ;;^UTILITY(U,$J,358.3,25485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25100,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Ear/Mastoid Procedure
- ;;^UTILITY(U,$J,358.3,25100,1,4,0)
- ;;=4^H95.41
- ;;^UTILITY(U,$J,358.3,25100,2)
- ;;=^5007030
- ;;^UTILITY(U,$J,358.3,25101,0)
- ;;=H95.42^^124^1239^175
- ;;^UTILITY(U,$J,358.3,25101,1,0)
+ ;;^UTILITY(U,$J,358.3,25485,1,3,0)
+ ;;=3^Cannabis Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,25485,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,25485,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,25486,0)
+ ;;=F12.180^^95^1167^20
+ ;;^UTILITY(U,$J,358.3,25486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25101,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Ear/Mastoid Following Oth Procedure
- ;;^UTILITY(U,$J,358.3,25101,1,4,0)
- ;;=4^H95.42
- ;;^UTILITY(U,$J,358.3,25101,2)
- ;;=^5007031
- ;;^UTILITY(U,$J,358.3,25102,0)
- ;;=I97.610^^124^1239^168
- ;;^UTILITY(U,$J,358.3,25102,1,0)
+ ;;^UTILITY(U,$J,358.3,25486,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
+ ;;^UTILITY(U,$J,358.3,25486,1,4,0)
+ ;;=4^F12.180
+ ;;^UTILITY(U,$J,358.3,25486,2)
+ ;;=^5003163
+ ;;^UTILITY(U,$J,358.3,25487,0)
+ ;;=F12.188^^95^1167^22
+ ;;^UTILITY(U,$J,358.3,25487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25102,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following a Cardiac Cath
- ;;^UTILITY(U,$J,358.3,25102,1,4,0)
- ;;=4^I97.610
- ;;^UTILITY(U,$J,358.3,25102,2)
- ;;=^5008099
- ;;^UTILITY(U,$J,358.3,25103,0)
- ;;=I97.611^^124^1239^169
- ;;^UTILITY(U,$J,358.3,25103,1,0)
+ ;;^UTILITY(U,$J,358.3,25487,1,3,0)
+ ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25487,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,25487,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,25488,0)
+ ;;=F12.20^^95^1167^17
+ ;;^UTILITY(U,$J,358.3,25488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25103,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Cardiac Bypass
- ;;^UTILITY(U,$J,358.3,25103,1,4,0)
- ;;=4^I97.611
- ;;^UTILITY(U,$J,358.3,25103,2)
- ;;=^5008100
- ;;^UTILITY(U,$J,358.3,25104,0)
- ;;=I97.618^^124^1239^170
- ;;^UTILITY(U,$J,358.3,25104,1,0)
+ ;;^UTILITY(U,$J,358.3,25488,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,25488,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,25488,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,25489,0)
+ ;;=F12.21^^95^1167^18
+ ;;^UTILITY(U,$J,358.3,25489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25104,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Circ Sys Following Oth Circ Sys Procedure
+ ;;^UTILITY(U,$J,358.3,25489,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,25489,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,25489,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,25490,0)
+ ;;=F12.288^^95^1167^19
+ ;;^UTILITY(U,$J,358.3,25490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25490,1,3,0)
+ ;;=3^Cannabis Withdrawal

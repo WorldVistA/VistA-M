@@ -1,132 +1,126 @@
-IBDEI1W6 ; ; 19-NOV-2015
+IBDEI1W6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31682,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,31683,0)
- ;;=Z64.0^^138^1446^4
- ;;^UTILITY(U,$J,358.3,31683,1,0)
+ ;;^UTILITY(U,$J,358.3,32123,2)
+ ;;=^5049237
+ ;;^UTILITY(U,$J,358.3,32124,0)
+ ;;=T34.831S^^126^1609^189
+ ;;^UTILITY(U,$J,358.3,32124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31683,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,31683,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,31683,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,31684,0)
- ;;=Z64.1^^138^1446^3
- ;;^UTILITY(U,$J,358.3,31684,1,0)
+ ;;^UTILITY(U,$J,358.3,32124,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,32124,1,4,0)
+ ;;=4^T34.831S
+ ;;^UTILITY(U,$J,358.3,32124,2)
+ ;;=^5049243
+ ;;^UTILITY(U,$J,358.3,32125,0)
+ ;;=T34.832S^^126^1609^184
+ ;;^UTILITY(U,$J,358.3,32125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31684,1,3,0)
- ;;=3^Problems Related to Multiparity
- ;;^UTILITY(U,$J,358.3,31684,1,4,0)
- ;;=4^Z64.1
- ;;^UTILITY(U,$J,358.3,31684,2)
- ;;=^5063177
- ;;^UTILITY(U,$J,358.3,31685,0)
- ;;=Z64.4^^138^1446^1
- ;;^UTILITY(U,$J,358.3,31685,1,0)
+ ;;^UTILITY(U,$J,358.3,32125,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft toe(s), sequela
+ ;;^UTILITY(U,$J,358.3,32125,1,4,0)
+ ;;=4^T34.832S
+ ;;^UTILITY(U,$J,358.3,32125,2)
+ ;;=^5049246
+ ;;^UTILITY(U,$J,358.3,32126,0)
+ ;;=S80.851A^^126^1609^174
+ ;;^UTILITY(U,$J,358.3,32126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31685,1,3,0)
- ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
- ;;^UTILITY(U,$J,358.3,31685,1,4,0)
- ;;=4^Z64.4
- ;;^UTILITY(U,$J,358.3,31685,2)
- ;;=^5063178
- ;;^UTILITY(U,$J,358.3,31686,0)
- ;;=Z65.5^^138^1446^2
- ;;^UTILITY(U,$J,358.3,31686,1,0)
+ ;;^UTILITY(U,$J,358.3,32126,1,3,0)
+ ;;=3^Foreign body, rt lwr leg,Superficial,init
+ ;;^UTILITY(U,$J,358.3,32126,1,4,0)
+ ;;=4^S80.851A
+ ;;^UTILITY(U,$J,358.3,32126,2)
+ ;;=^5039987
+ ;;^UTILITY(U,$J,358.3,32127,0)
+ ;;=S90.451A^^126^1609^172
+ ;;^UTILITY(U,$J,358.3,32127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31686,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,31686,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,31686,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,31687,0)
- ;;=Z62.820^^138^1447^4
- ;;^UTILITY(U,$J,358.3,31687,1,0)
+ ;;^UTILITY(U,$J,358.3,32127,1,3,0)
+ ;;=3^Foreign body, rt grt toe, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32127,1,4,0)
+ ;;=4^S90.451A
+ ;;^UTILITY(U,$J,358.3,32127,2)
+ ;;=^5043943
+ ;;^UTILITY(U,$J,358.3,32128,0)
+ ;;=S90.454A^^126^1609^173
+ ;;^UTILITY(U,$J,358.3,32128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31687,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,31687,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,31687,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,31688,0)
- ;;=Z62.891^^138^1447^6
- ;;^UTILITY(U,$J,358.3,31688,1,0)
+ ;;^UTILITY(U,$J,358.3,32128,1,3,0)
+ ;;=3^Foreign body, rt lsr toe(s),Superficial,init
+ ;;^UTILITY(U,$J,358.3,32128,1,4,0)
+ ;;=4^S90.454A
+ ;;^UTILITY(U,$J,358.3,32128,2)
+ ;;=^5043952
+ ;;^UTILITY(U,$J,358.3,32129,0)
+ ;;=S80.852A^^126^1609^170
+ ;;^UTILITY(U,$J,358.3,32129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31688,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,31688,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,31688,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,31689,0)
- ;;=Z62.898^^138^1447^1
- ;;^UTILITY(U,$J,358.3,31689,1,0)
+ ;;^UTILITY(U,$J,358.3,32129,1,3,0)
+ ;;=3^Foreign body, lft lwr leg, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32129,1,4,0)
+ ;;=4^S80.852A
+ ;;^UTILITY(U,$J,358.3,32129,2)
+ ;;=^5039990
+ ;;^UTILITY(U,$J,358.3,32130,0)
+ ;;=S90.452A^^126^1609^168
+ ;;^UTILITY(U,$J,358.3,32130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31689,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,31689,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,31689,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,31690,0)
- ;;=Z63.0^^138^1447^5
- ;;^UTILITY(U,$J,358.3,31690,1,0)
+ ;;^UTILITY(U,$J,358.3,32130,1,3,0)
+ ;;=3^Foreign body, lft grt toe, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32130,1,4,0)
+ ;;=4^S90.452A
+ ;;^UTILITY(U,$J,358.3,32130,2)
+ ;;=^5043946
+ ;;^UTILITY(U,$J,358.3,32131,0)
+ ;;=S90.455A^^126^1609^169
+ ;;^UTILITY(U,$J,358.3,32131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31690,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,31690,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,31690,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,31691,0)
- ;;=Z63.5^^138^1447^2
- ;;^UTILITY(U,$J,358.3,31691,1,0)
+ ;;^UTILITY(U,$J,358.3,32131,1,3,0)
+ ;;=3^Foreign body, lft lsr toe(s), Superficial,init
+ ;;^UTILITY(U,$J,358.3,32131,1,4,0)
+ ;;=4^S90.455A
+ ;;^UTILITY(U,$J,358.3,32131,2)
+ ;;=^5043955
+ ;;^UTILITY(U,$J,358.3,32132,0)
+ ;;=S90.851A^^126^1609^171
+ ;;^UTILITY(U,$J,358.3,32132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31691,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,31691,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,31691,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,31692,0)
- ;;=Z63.8^^138^1447^3
- ;;^UTILITY(U,$J,358.3,31692,1,0)
+ ;;^UTILITY(U,$J,358.3,32132,1,3,0)
+ ;;=3^Foreign body, rt ft, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32132,1,4,0)
+ ;;=4^S90.851A
+ ;;^UTILITY(U,$J,358.3,32132,2)
+ ;;=^5044078
+ ;;^UTILITY(U,$J,358.3,32133,0)
+ ;;=S90.852A^^126^1609^167
+ ;;^UTILITY(U,$J,358.3,32133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31692,1,3,0)
- ;;=3^High Exporessed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,31692,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,31692,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,31693,0)
- ;;=Z63.4^^138^1447^7
- ;;^UTILITY(U,$J,358.3,31693,1,0)
+ ;;^UTILITY(U,$J,358.3,32133,1,3,0)
+ ;;=3^Foreign body, lft ft, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32133,1,4,0)
+ ;;=4^S90.852A
+ ;;^UTILITY(U,$J,358.3,32133,2)
+ ;;=^5044081
+ ;;^UTILITY(U,$J,358.3,32134,0)
+ ;;=T34.821A^^126^1609^188
+ ;;^UTILITY(U,$J,358.3,32134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31693,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,31693,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,31693,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,31694,0)
- ;;=F20.9^^138^1448^5
- ;;^UTILITY(U,$J,358.3,31694,1,0)
+ ;;^UTILITY(U,$J,358.3,32134,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt ft, init
+ ;;^UTILITY(U,$J,358.3,32134,1,4,0)
+ ;;=4^T34.821A
+ ;;^UTILITY(U,$J,358.3,32134,2)
+ ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,32135,0)
+ ;;=T34.822A^^126^1609^183
+ ;;^UTILITY(U,$J,358.3,32135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31694,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,31694,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,31694,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,31695,0)
- ;;=F20.81^^138^1448^6
- ;;^UTILITY(U,$J,358.3,31695,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31695,1,3,0)
- ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,32135,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft ft, init
+ ;;^UTILITY(U,$J,358.3,32135,1,4,0)
+ ;;=4^T34.822A
+ ;;^UTILITY(U,$J,358.3,32135,2)
+ ;;=^5049235

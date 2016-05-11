@@ -1,122 +1,134 @@
-IBDEI2BS ; ; 19-NOV-2015
+IBDEI2BS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39047,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,39047,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,39048,0)
- ;;=M05.552^^180^1991^84
- ;;^UTILITY(U,$J,358.3,39048,1,0)
+ ;;^UTILITY(U,$J,358.3,39439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39048,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left hip
- ;;^UTILITY(U,$J,358.3,39048,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,39048,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,39049,0)
- ;;=M05.562^^180^1991^85
- ;;^UTILITY(U,$J,358.3,39049,1,0)
+ ;;^UTILITY(U,$J,358.3,39439,1,3,0)
+ ;;=3^Cataract,Secondary,Bilateral
+ ;;^UTILITY(U,$J,358.3,39439,1,4,0)
+ ;;=4^H26.493
+ ;;^UTILITY(U,$J,358.3,39439,2)
+ ;;=^5005360
+ ;;^UTILITY(U,$J,358.3,39440,0)
+ ;;=H26.9^^153^1923^23
+ ;;^UTILITY(U,$J,358.3,39440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39049,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left knee
- ;;^UTILITY(U,$J,358.3,39049,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,39049,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,39050,0)
- ;;=M05.512^^180^1991^86
- ;;^UTILITY(U,$J,358.3,39050,1,0)
+ ;;^UTILITY(U,$J,358.3,39440,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,39440,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,39440,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,39441,0)
+ ;;=H27.01^^153^1923^3
+ ;;^UTILITY(U,$J,358.3,39441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39050,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left shoulder
- ;;^UTILITY(U,$J,358.3,39050,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,39050,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,39051,0)
- ;;=M05.532^^180^1991^87
- ;;^UTILITY(U,$J,358.3,39051,1,0)
+ ;;^UTILITY(U,$J,358.3,39441,1,3,0)
+ ;;=3^Aphakia,Right Eye
+ ;;^UTILITY(U,$J,358.3,39441,1,4,0)
+ ;;=4^H27.01
+ ;;^UTILITY(U,$J,358.3,39441,2)
+ ;;=^5005365
+ ;;^UTILITY(U,$J,358.3,39442,0)
+ ;;=H27.02^^153^1923^2
+ ;;^UTILITY(U,$J,358.3,39442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39051,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left wrist
- ;;^UTILITY(U,$J,358.3,39051,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,39051,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,39052,0)
- ;;=M05.59^^180^1991^88
- ;;^UTILITY(U,$J,358.3,39052,1,0)
+ ;;^UTILITY(U,$J,358.3,39442,1,3,0)
+ ;;=3^Aphakia,Left Eye
+ ;;^UTILITY(U,$J,358.3,39442,1,4,0)
+ ;;=4^H27.02
+ ;;^UTILITY(U,$J,358.3,39442,2)
+ ;;=^5005366
+ ;;^UTILITY(U,$J,358.3,39443,0)
+ ;;=H27.03^^153^1923^1
+ ;;^UTILITY(U,$J,358.3,39443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39052,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of mult site
- ;;^UTILITY(U,$J,358.3,39052,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,39052,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,39053,0)
- ;;=M05.571^^180^1991^89
- ;;^UTILITY(U,$J,358.3,39053,1,0)
+ ;;^UTILITY(U,$J,358.3,39443,1,3,0)
+ ;;=3^Aphakia,Bilateral
+ ;;^UTILITY(U,$J,358.3,39443,1,4,0)
+ ;;=4^H27.03
+ ;;^UTILITY(U,$J,358.3,39443,2)
+ ;;=^5005367
+ ;;^UTILITY(U,$J,358.3,39444,0)
+ ;;=Q12.0^^153^1923^7
+ ;;^UTILITY(U,$J,358.3,39444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39053,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right ank/ft
- ;;^UTILITY(U,$J,358.3,39053,1,4,0)
- ;;=4^M05.571
- ;;^UTILITY(U,$J,358.3,39053,2)
- ;;=^5009973
- ;;^UTILITY(U,$J,358.3,39054,0)
- ;;=M05.521^^180^1991^90
- ;;^UTILITY(U,$J,358.3,39054,1,0)
+ ;;^UTILITY(U,$J,358.3,39444,1,3,0)
+ ;;=3^Cataract,Congenital
+ ;;^UTILITY(U,$J,358.3,39444,1,4,0)
+ ;;=4^Q12.0
+ ;;^UTILITY(U,$J,358.3,39444,2)
+ ;;=^27422
+ ;;^UTILITY(U,$J,358.3,39445,0)
+ ;;=T85.29XA^^153^1923^25
+ ;;^UTILITY(U,$J,358.3,39445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39054,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right elbow
- ;;^UTILITY(U,$J,358.3,39054,1,4,0)
- ;;=4^M05.521
- ;;^UTILITY(U,$J,358.3,39054,2)
- ;;=^5009958
- ;;^UTILITY(U,$J,358.3,39055,0)
- ;;=M05.541^^180^1991^91
- ;;^UTILITY(U,$J,358.3,39055,1,0)
+ ;;^UTILITY(U,$J,358.3,39445,1,3,0)
+ ;;=3^Mech Compl of Intraocular Lens,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39445,1,4,0)
+ ;;=4^T85.29XA
+ ;;^UTILITY(U,$J,358.3,39445,2)
+ ;;=^5055532
+ ;;^UTILITY(U,$J,358.3,39446,0)
+ ;;=T85.22XA^^153^1923^24
+ ;;^UTILITY(U,$J,358.3,39446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39055,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
- ;;^UTILITY(U,$J,358.3,39055,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,39055,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,39056,0)
- ;;=M05.541^^180^1991^92
- ;;^UTILITY(U,$J,358.3,39056,1,0)
+ ;;^UTILITY(U,$J,358.3,39446,1,3,0)
+ ;;=3^Displacement of Intraocular Lens,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39446,1,4,0)
+ ;;=4^T85.22XA
+ ;;^UTILITY(U,$J,358.3,39446,2)
+ ;;=^5055529
+ ;;^UTILITY(U,$J,358.3,39447,0)
+ ;;=Z96.1^^153^1923^29
+ ;;^UTILITY(U,$J,358.3,39447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39056,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hand
- ;;^UTILITY(U,$J,358.3,39056,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,39056,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,39057,0)
- ;;=M05.551^^180^1991^93
- ;;^UTILITY(U,$J,358.3,39057,1,0)
+ ;;^UTILITY(U,$J,358.3,39447,1,3,0)
+ ;;=3^Pseudophakia,Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,39447,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,39447,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,39448,0)
+ ;;=H25.11^^153^1923^6
+ ;;^UTILITY(U,$J,358.3,39448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39057,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right hip
- ;;^UTILITY(U,$J,358.3,39057,1,4,0)
- ;;=4^M05.551
- ;;^UTILITY(U,$J,358.3,39057,2)
- ;;=^5009967
- ;;^UTILITY(U,$J,358.3,39058,0)
- ;;=M05.561^^180^1991^94
- ;;^UTILITY(U,$J,358.3,39058,1,0)
+ ;;^UTILITY(U,$J,358.3,39448,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Right Eye
+ ;;^UTILITY(U,$J,358.3,39448,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,39448,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,39449,0)
+ ;;=H25.12^^153^1923^5
+ ;;^UTILITY(U,$J,358.3,39449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39058,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right knee
- ;;^UTILITY(U,$J,358.3,39058,1,4,0)
- ;;=4^M05.561
- ;;^UTILITY(U,$J,358.3,39058,2)
- ;;=^5009970
- ;;^UTILITY(U,$J,358.3,39059,0)
- ;;=M05.511^^180^1991^95
- ;;^UTILITY(U,$J,358.3,39059,1,0)
+ ;;^UTILITY(U,$J,358.3,39449,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Left Eye
+ ;;^UTILITY(U,$J,358.3,39449,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,39449,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,39450,0)
+ ;;=H25.13^^153^1923^4
+ ;;^UTILITY(U,$J,358.3,39450,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39450,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Bilateral
+ ;;^UTILITY(U,$J,358.3,39450,1,4,0)
+ ;;=4^H25.13
+ ;;^UTILITY(U,$J,358.3,39450,2)
+ ;;=^5005286
+ ;;^UTILITY(U,$J,358.3,39451,0)
+ ;;=H40.013^^153^1923^26
+ ;;^UTILITY(U,$J,358.3,39451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39451,1,3,0)
+ ;;=3^Open Angle w/ Boderline Findings,Low Risk,Bilateral
+ ;;^UTILITY(U,$J,358.3,39451,1,4,0)
+ ;;=4^H40.013
+ ;;^UTILITY(U,$J,358.3,39451,2)
+ ;;=^5005726
+ ;;^UTILITY(U,$J,358.3,39452,0)
+ ;;=H40.012^^153^1923^27

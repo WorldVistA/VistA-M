@@ -1,144 +1,134 @@
-IBDEI0L5 ; ; 19-NOV-2015
+IBDEI0L5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9580,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,9580,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,9580,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,9581,0)
- ;;=G25.3^^65^622^6
- ;;^UTILITY(U,$J,358.3,9581,1,0)
+ ;;^UTILITY(U,$J,358.3,9869,0)
+ ;;=H40.033^^44^496^1
+ ;;^UTILITY(U,$J,358.3,9869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9581,1,3,0)
- ;;=3^Myoclonus
- ;;^UTILITY(U,$J,358.3,9581,1,4,0)
- ;;=4^G25.3
- ;;^UTILITY(U,$J,358.3,9581,2)
- ;;=^80620
- ;;^UTILITY(U,$J,358.3,9582,0)
- ;;=G25.69^^65^622^11
- ;;^UTILITY(U,$J,358.3,9582,1,0)
+ ;;^UTILITY(U,$J,358.3,9869,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,9869,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,9869,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,9870,0)
+ ;;=H40.041^^44^496^123
+ ;;^UTILITY(U,$J,358.3,9870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9582,1,3,0)
- ;;=3^Tics,Organic Origin,Other
- ;;^UTILITY(U,$J,358.3,9582,1,4,0)
- ;;=4^G25.69
- ;;^UTILITY(U,$J,358.3,9582,2)
- ;;=^5003797
- ;;^UTILITY(U,$J,358.3,9583,0)
- ;;=G25.61^^65^622^2
- ;;^UTILITY(U,$J,358.3,9583,1,0)
+ ;;^UTILITY(U,$J,358.3,9870,1,3,0)
+ ;;=3^Steroid Responder,Right Eye
+ ;;^UTILITY(U,$J,358.3,9870,1,4,0)
+ ;;=4^H40.041
+ ;;^UTILITY(U,$J,358.3,9870,2)
+ ;;=^5005736
+ ;;^UTILITY(U,$J,358.3,9871,0)
+ ;;=H40.042^^44^496^122
+ ;;^UTILITY(U,$J,358.3,9871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9583,1,3,0)
- ;;=3^Drug-Induced Tics
- ;;^UTILITY(U,$J,358.3,9583,1,4,0)
- ;;=4^G25.61
- ;;^UTILITY(U,$J,358.3,9583,2)
- ;;=^5003796
- ;;^UTILITY(U,$J,358.3,9584,0)
- ;;=G25.9^^65^622^5
- ;;^UTILITY(U,$J,358.3,9584,1,0)
+ ;;^UTILITY(U,$J,358.3,9871,1,3,0)
+ ;;=3^Steroid Responder,Left Eye
+ ;;^UTILITY(U,$J,358.3,9871,1,4,0)
+ ;;=4^H40.042
+ ;;^UTILITY(U,$J,358.3,9871,2)
+ ;;=^5005737
+ ;;^UTILITY(U,$J,358.3,9872,0)
+ ;;=H40.051^^44^496^76
+ ;;^UTILITY(U,$J,358.3,9872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9584,1,3,0)
- ;;=3^Extrapyramidal & Movement Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,9584,1,4,0)
- ;;=4^G25.9
- ;;^UTILITY(U,$J,358.3,9584,2)
- ;;=^5003803
- ;;^UTILITY(U,$J,358.3,9585,0)
- ;;=G25.82^^65^622^10
- ;;^UTILITY(U,$J,358.3,9585,1,0)
+ ;;^UTILITY(U,$J,358.3,9872,1,3,0)
+ ;;=3^Ocular Hypertension,Right Eye
+ ;;^UTILITY(U,$J,358.3,9872,1,4,0)
+ ;;=4^H40.051
+ ;;^UTILITY(U,$J,358.3,9872,2)
+ ;;=^5005740
+ ;;^UTILITY(U,$J,358.3,9873,0)
+ ;;=H40.052^^44^496^75
+ ;;^UTILITY(U,$J,358.3,9873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9585,1,3,0)
- ;;=3^Stiff-Man Syndrome
- ;;^UTILITY(U,$J,358.3,9585,1,4,0)
- ;;=4^G25.82
- ;;^UTILITY(U,$J,358.3,9585,2)
- ;;=^185540
- ;;^UTILITY(U,$J,358.3,9586,0)
- ;;=G25.81^^65^622^8
- ;;^UTILITY(U,$J,358.3,9586,1,0)
+ ;;^UTILITY(U,$J,358.3,9873,1,3,0)
+ ;;=3^Ocular Hypertension,Left Eye
+ ;;^UTILITY(U,$J,358.3,9873,1,4,0)
+ ;;=4^H40.052
+ ;;^UTILITY(U,$J,358.3,9873,2)
+ ;;=^5005741
+ ;;^UTILITY(U,$J,358.3,9874,0)
+ ;;=H40.053^^44^496^74
+ ;;^UTILITY(U,$J,358.3,9874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9586,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,9586,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,9586,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,9587,0)
- ;;=R27.0^^65^622^1
- ;;^UTILITY(U,$J,358.3,9587,1,0)
+ ;;^UTILITY(U,$J,358.3,9874,1,3,0)
+ ;;=3^Ocular Hypertension,Bilateral
+ ;;^UTILITY(U,$J,358.3,9874,1,4,0)
+ ;;=4^H40.053
+ ;;^UTILITY(U,$J,358.3,9874,2)
+ ;;=^5005742
+ ;;^UTILITY(U,$J,358.3,9875,0)
+ ;;=H40.061^^44^496^106
+ ;;^UTILITY(U,$J,358.3,9875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9587,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,9587,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,9587,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,9588,0)
- ;;=C71.9^^65^623^3
- ;;^UTILITY(U,$J,358.3,9588,1,0)
+ ;;^UTILITY(U,$J,358.3,9875,1,3,0)
+ ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Right Eye
+ ;;^UTILITY(U,$J,358.3,9875,1,4,0)
+ ;;=4^H40.061
+ ;;^UTILITY(U,$J,358.3,9875,2)
+ ;;=^5005744
+ ;;^UTILITY(U,$J,358.3,9876,0)
+ ;;=H40.062^^44^496^107
+ ;;^UTILITY(U,$J,358.3,9876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9588,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,9588,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,9588,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,9589,0)
- ;;=C72.0^^65^623^5
- ;;^UTILITY(U,$J,358.3,9589,1,0)
+ ;;^UTILITY(U,$J,358.3,9876,1,3,0)
+ ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Left Eye
+ ;;^UTILITY(U,$J,358.3,9876,1,4,0)
+ ;;=4^H40.062
+ ;;^UTILITY(U,$J,358.3,9876,2)
+ ;;=^5005745
+ ;;^UTILITY(U,$J,358.3,9877,0)
+ ;;=H40.10X0^^44^496^81
+ ;;^UTILITY(U,$J,358.3,9877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9589,1,3,0)
- ;;=3^Malig Neop Spinal Cord
- ;;^UTILITY(U,$J,358.3,9589,1,4,0)
- ;;=4^C72.0
- ;;^UTILITY(U,$J,358.3,9589,2)
- ;;=^267292
- ;;^UTILITY(U,$J,358.3,9590,0)
- ;;=C72.1^^65^623^4
- ;;^UTILITY(U,$J,358.3,9590,1,0)
+ ;;^UTILITY(U,$J,358.3,9877,1,3,0)
+ ;;=3^Open-Angle Glaucoma,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,9877,1,4,0)
+ ;;=4^H40.10X0
+ ;;^UTILITY(U,$J,358.3,9877,2)
+ ;;=^5005748
+ ;;^UTILITY(U,$J,358.3,9878,0)
+ ;;=H40.10X1^^44^496^78
+ ;;^UTILITY(U,$J,358.3,9878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9590,1,3,0)
- ;;=3^Malig Neop Cauda Equina
- ;;^UTILITY(U,$J,358.3,9590,1,4,0)
- ;;=4^C72.1
- ;;^UTILITY(U,$J,358.3,9590,2)
- ;;=^5001298
- ;;^UTILITY(U,$J,358.3,9591,0)
- ;;=C79.31^^65^623^6
- ;;^UTILITY(U,$J,358.3,9591,1,0)
+ ;;^UTILITY(U,$J,358.3,9878,1,3,0)
+ ;;=3^Open-Angle Glaucoma,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9878,1,4,0)
+ ;;=4^H40.10X1
+ ;;^UTILITY(U,$J,358.3,9878,2)
+ ;;=^5005749
+ ;;^UTILITY(U,$J,358.3,9879,0)
+ ;;=H40.10X2^^44^496^79
+ ;;^UTILITY(U,$J,358.3,9879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9591,1,3,0)
- ;;=3^Secondary Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,9591,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,9591,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,9592,0)
- ;;=D32.0^^65^623^1
- ;;^UTILITY(U,$J,358.3,9592,1,0)
+ ;;^UTILITY(U,$J,358.3,9879,1,3,0)
+ ;;=3^Open-Angle Glaucoma,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9879,1,4,0)
+ ;;=4^H40.10X2
+ ;;^UTILITY(U,$J,358.3,9879,2)
+ ;;=^5005750
+ ;;^UTILITY(U,$J,358.3,9880,0)
+ ;;=H40.10X3^^44^496^80
+ ;;^UTILITY(U,$J,358.3,9880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9592,1,3,0)
- ;;=3^Benign Neop Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,9592,1,4,0)
- ;;=4^D32.0
- ;;^UTILITY(U,$J,358.3,9592,2)
- ;;=^267681
- ;;^UTILITY(U,$J,358.3,9593,0)
- ;;=D33.4^^65^623^2
- ;;^UTILITY(U,$J,358.3,9593,1,0)
+ ;;^UTILITY(U,$J,358.3,9880,1,3,0)
+ ;;=3^Open-Angle Glaucoma,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9880,1,4,0)
+ ;;=4^H40.10X3
+ ;;^UTILITY(U,$J,358.3,9880,2)
+ ;;=^5005751
+ ;;^UTILITY(U,$J,358.3,9881,0)
+ ;;=H40.10X4^^44^496^77
+ ;;^UTILITY(U,$J,358.3,9881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9593,1,3,0)
- ;;=3^Benign Neop Spinal Cord
- ;;^UTILITY(U,$J,358.3,9593,1,4,0)
- ;;=4^D33.4
- ;;^UTILITY(U,$J,358.3,9593,2)
- ;;=^267682
- ;;^UTILITY(U,$J,358.3,9594,0)
- ;;=F03.90^^65^624^3
- ;;^UTILITY(U,$J,358.3,9594,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9881,1,3,0)
+ ;;=3^Open-Angle Glaucoma,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9881,1,4,0)
+ ;;=4^H40.10X4
+ ;;^UTILITY(U,$J,358.3,9881,2)
+ ;;=^5005752

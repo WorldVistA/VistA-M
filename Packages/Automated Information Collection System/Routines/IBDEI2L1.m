@@ -1,132 +1,134 @@
-IBDEI2L1 ; ; 19-NOV-2015
+IBDEI2L1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43317,1,0)
+ ;;^UTILITY(U,$J,358.3,43835,1,3,0)
+ ;;=3^Abnormal & Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,43835,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,43835,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,43836,0)
+ ;;=R92.0^^170^2107^63
+ ;;^UTILITY(U,$J,358.3,43836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43317,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,43317,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,43317,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,43318,0)
- ;;=Z82.71^^197^2185^38
- ;;^UTILITY(U,$J,358.3,43318,1,0)
+ ;;^UTILITY(U,$J,358.3,43836,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,43836,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,43836,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,43837,0)
+ ;;=R92.1^^170^2107^62
+ ;;^UTILITY(U,$J,358.3,43837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43318,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,43318,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,43318,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,43319,0)
- ;;=Z82.2^^197^2185^6
- ;;^UTILITY(U,$J,358.3,43319,1,0)
+ ;;^UTILITY(U,$J,358.3,43837,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,43837,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,43837,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,43838,0)
+ ;;=R92.2^^170^2107^53
+ ;;^UTILITY(U,$J,358.3,43838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43319,1,3,0)
- ;;=3^Family Hx of Deafness & Hearing Loss
- ;;^UTILITY(U,$J,358.3,43319,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,43319,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,43320,0)
- ;;=Z84.0^^197^2185^40
- ;;^UTILITY(U,$J,358.3,43320,1,0)
+ ;;^UTILITY(U,$J,358.3,43838,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,43838,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,43838,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,43839,0)
+ ;;=R87.619^^170^2107^4
+ ;;^UTILITY(U,$J,358.3,43839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43320,1,3,0)
- ;;=3^Family Hx of Skin & Subcutaneous Tissue Diseases
- ;;^UTILITY(U,$J,358.3,43320,1,4,0)
- ;;=4^Z84.0
- ;;^UTILITY(U,$J,358.3,43320,2)
- ;;=^5063388
- ;;^UTILITY(U,$J,358.3,43321,0)
- ;;=Z82.79^^197^2185^5
- ;;^UTILITY(U,$J,358.3,43321,1,0)
+ ;;^UTILITY(U,$J,358.3,43839,1,3,0)
+ ;;=3^Abnormal Cytology in Specimen from Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,43839,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,43839,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,43840,0)
+ ;;=R87.610^^170^2107^2
+ ;;^UTILITY(U,$J,358.3,43840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43321,1,3,0)
- ;;=3^Family Hx of Congenital Malformations
- ;;^UTILITY(U,$J,358.3,43321,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,43321,2)
- ;;=^5063374
- ;;^UTILITY(U,$J,358.3,43322,0)
- ;;=Z80.49^^197^2185^24
- ;;^UTILITY(U,$J,358.3,43322,1,0)
+ ;;^UTILITY(U,$J,358.3,43840,1,3,0)
+ ;;=3^ASC-US
+ ;;^UTILITY(U,$J,358.3,43840,1,4,0)
+ ;;=4^R87.610
+ ;;^UTILITY(U,$J,358.3,43840,2)
+ ;;=^5019668
+ ;;^UTILITY(U,$J,358.3,43841,0)
+ ;;=R87.611^^170^2107^1
+ ;;^UTILITY(U,$J,358.3,43841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43322,1,3,0)
- ;;=3^Family Hx of Malig Neop Genital Organs
- ;;^UTILITY(U,$J,358.3,43322,1,4,0)
- ;;=4^Z80.49
- ;;^UTILITY(U,$J,358.3,43322,2)
- ;;=^5063351
- ;;^UTILITY(U,$J,358.3,43323,0)
- ;;=Z80.51^^197^2185^25
- ;;^UTILITY(U,$J,358.3,43323,1,0)
+ ;;^UTILITY(U,$J,358.3,43841,1,3,0)
+ ;;=3^ASC-H
+ ;;^UTILITY(U,$J,358.3,43841,1,4,0)
+ ;;=4^R87.611
+ ;;^UTILITY(U,$J,358.3,43841,2)
+ ;;=^5019669
+ ;;^UTILITY(U,$J,358.3,43842,0)
+ ;;=R87.612^^170^2107^59
+ ;;^UTILITY(U,$J,358.3,43842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43323,1,3,0)
- ;;=3^Family Hx of Malig Neop Kidney
- ;;^UTILITY(U,$J,358.3,43323,1,4,0)
- ;;=4^Z80.51
- ;;^UTILITY(U,$J,358.3,43323,2)
- ;;=^321159
- ;;^UTILITY(U,$J,358.3,43324,0)
- ;;=Z80.52^^197^2185^21
- ;;^UTILITY(U,$J,358.3,43324,1,0)
+ ;;^UTILITY(U,$J,358.3,43842,1,3,0)
+ ;;=3^LGSIL
+ ;;^UTILITY(U,$J,358.3,43842,1,4,0)
+ ;;=4^R87.612
+ ;;^UTILITY(U,$J,358.3,43842,2)
+ ;;=^5019670
+ ;;^UTILITY(U,$J,358.3,43843,0)
+ ;;=R87.613^^170^2107^52
+ ;;^UTILITY(U,$J,358.3,43843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43324,1,3,0)
- ;;=3^Family Hx of Malig Neop Bladder
- ;;^UTILITY(U,$J,358.3,43324,1,4,0)
- ;;=4^Z80.52
- ;;^UTILITY(U,$J,358.3,43324,2)
- ;;=^5063352
- ;;^UTILITY(U,$J,358.3,43325,0)
- ;;=Z80.59^^197^2185^31
- ;;^UTILITY(U,$J,358.3,43325,1,0)
+ ;;^UTILITY(U,$J,358.3,43843,1,3,0)
+ ;;=3^HGSIL
+ ;;^UTILITY(U,$J,358.3,43843,1,4,0)
+ ;;=4^R87.613
+ ;;^UTILITY(U,$J,358.3,43843,2)
+ ;;=^5019671
+ ;;^UTILITY(U,$J,358.3,43844,0)
+ ;;=R87.810^^170^2107^24
+ ;;^UTILITY(U,$J,358.3,43844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43325,1,3,0)
- ;;=3^Family Hx of Malig Neop Urinary Tract Organ
- ;;^UTILITY(U,$J,358.3,43325,1,4,0)
- ;;=4^Z80.59
- ;;^UTILITY(U,$J,358.3,43325,2)
- ;;=^5063353
- ;;^UTILITY(U,$J,358.3,43326,0)
- ;;=Z80.7^^197^2185^26
- ;;^UTILITY(U,$J,358.3,43326,1,0)
+ ;;^UTILITY(U,$J,358.3,43844,1,3,0)
+ ;;=3^Cervical High Risk HPV DNA Test Positive
+ ;;^UTILITY(U,$J,358.3,43844,1,4,0)
+ ;;=4^R87.810
+ ;;^UTILITY(U,$J,358.3,43844,2)
+ ;;=^331573
+ ;;^UTILITY(U,$J,358.3,43845,0)
+ ;;=R87.614^^170^2107^31
+ ;;^UTILITY(U,$J,358.3,43845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43326,1,3,0)
- ;;=3^Family Hx of Malig Neop Lymphoid,Hematopoietic & Related Tissues
- ;;^UTILITY(U,$J,358.3,43326,1,4,0)
- ;;=4^Z80.7
- ;;^UTILITY(U,$J,358.3,43326,2)
- ;;=^5063355
- ;;^UTILITY(U,$J,358.3,43327,0)
- ;;=Z80.9^^197^2185^33
- ;;^UTILITY(U,$J,358.3,43327,1,0)
+ ;;^UTILITY(U,$J,358.3,43845,1,3,0)
+ ;;=3^Cytologic Evidence of Malig on Smear of Cervix
+ ;;^UTILITY(U,$J,358.3,43845,1,4,0)
+ ;;=4^R87.614
+ ;;^UTILITY(U,$J,358.3,43845,2)
+ ;;=^5019672
+ ;;^UTILITY(U,$J,358.3,43846,0)
+ ;;=Z85.3^^170^2107^75
+ ;;^UTILITY(U,$J,358.3,43846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43327,1,3,0)
- ;;=3^Family Hx of Malig Neop,Unspec
- ;;^UTILITY(U,$J,358.3,43327,1,4,0)
- ;;=4^Z80.9
- ;;^UTILITY(U,$J,358.3,43327,2)
- ;;=^5063357
- ;;^UTILITY(U,$J,358.3,43328,0)
- ;;=Z82.0^^197^2185^11
- ;;^UTILITY(U,$J,358.3,43328,1,0)
+ ;;^UTILITY(U,$J,358.3,43846,1,3,0)
+ ;;=3^Personal Hx Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,43846,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,43846,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,43847,0)
+ ;;=Z85.43^^170^2107^76
+ ;;^UTILITY(U,$J,358.3,43847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43328,1,3,0)
- ;;=3^Family Hx of Epilepsy
- ;;^UTILITY(U,$J,358.3,43328,1,4,0)
- ;;=4^Z82.0
- ;;^UTILITY(U,$J,358.3,43328,2)
- ;;=^5063364
- ;;^UTILITY(U,$J,358.3,43329,0)
- ;;=Z82.41^^197^2185^42
- ;;^UTILITY(U,$J,358.3,43329,1,0)
+ ;;^UTILITY(U,$J,358.3,43847,1,3,0)
+ ;;=3^Personal Hx Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,43847,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,43847,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,43848,0)
+ ;;=Z30.09^^170^2107^26
+ ;;^UTILITY(U,$J,358.3,43848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43329,1,3,0)
- ;;=3^Family Hx of Sudden Cardiac Death
- ;;^UTILITY(U,$J,358.3,43329,1,4,0)
- ;;=4^Z82.41
- ;;^UTILITY(U,$J,358.3,43329,2)
- ;;=^5063368

@@ -1,130 +1,136 @@
-IBDEI0NI ; ; 19-NOV-2015
+IBDEI0NI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10743,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10743,1,4,0)
- ;;=4^C82.39
- ;;^UTILITY(U,$J,358.3,10743,2)
- ;;=^5001500
- ;;^UTILITY(U,$J,358.3,10744,0)
- ;;=C82.30^^68^675^69
- ;;^UTILITY(U,$J,358.3,10744,1,0)
+ ;;^UTILITY(U,$J,358.3,10973,1,3,0)
+ ;;=3^Arteritis,Unspec
+ ;;^UTILITY(U,$J,358.3,10973,1,4,0)
+ ;;=4^I77.6
+ ;;^UTILITY(U,$J,358.3,10973,2)
+ ;;=^5007813
+ ;;^UTILITY(U,$J,358.3,10974,0)
+ ;;=I25.810^^47^524^15
+ ;;^UTILITY(U,$J,358.3,10974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10744,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
- ;;^UTILITY(U,$J,358.3,10744,1,4,0)
- ;;=4^C82.30
- ;;^UTILITY(U,$J,358.3,10744,2)
- ;;=^5001491
- ;;^UTILITY(U,$J,358.3,10745,0)
- ;;=C82.49^^68^675^70
- ;;^UTILITY(U,$J,358.3,10745,1,0)
+ ;;^UTILITY(U,$J,358.3,10974,1,3,0)
+ ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,10974,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,10974,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,10975,0)
+ ;;=I70.91^^47^524^16
+ ;;^UTILITY(U,$J,358.3,10975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10745,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10745,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,10745,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,10746,0)
- ;;=C82.40^^68^675^71
- ;;^UTILITY(U,$J,358.3,10746,1,0)
+ ;;^UTILITY(U,$J,358.3,10975,1,3,0)
+ ;;=3^Atherosclerosis,Generalized
+ ;;^UTILITY(U,$J,358.3,10975,1,4,0)
+ ;;=4^I70.91
+ ;;^UTILITY(U,$J,358.3,10975,2)
+ ;;=^5007785
+ ;;^UTILITY(U,$J,358.3,10976,0)
+ ;;=I70.90^^47^524^17
+ ;;^UTILITY(U,$J,358.3,10976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10746,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,10746,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,10746,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,10747,0)
- ;;=C82.99^^68^675^72
- ;;^UTILITY(U,$J,358.3,10747,1,0)
+ ;;^UTILITY(U,$J,358.3,10976,1,3,0)
+ ;;=3^Atherosclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,10976,1,4,0)
+ ;;=4^I70.90
+ ;;^UTILITY(U,$J,358.3,10976,2)
+ ;;=^5007784
+ ;;^UTILITY(U,$J,358.3,10977,0)
+ ;;=I25.10^^47^524^18
+ ;;^UTILITY(U,$J,358.3,10977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10747,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10747,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,10747,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,10748,0)
- ;;=C82.90^^68^675^73
- ;;^UTILITY(U,$J,358.3,10748,1,0)
+ ;;^UTILITY(U,$J,358.3,10977,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,10977,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,10977,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,10978,0)
+ ;;=I48.91^^47^524^19
+ ;;^UTILITY(U,$J,358.3,10978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10748,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,10748,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,10748,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,10749,0)
- ;;=R59.1^^68^675^58
- ;;^UTILITY(U,$J,358.3,10749,1,0)
+ ;;^UTILITY(U,$J,358.3,10978,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,10978,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,10978,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,10979,0)
+ ;;=Z95.1^^47^524^21
+ ;;^UTILITY(U,$J,358.3,10979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10749,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,10749,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,10749,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,10750,0)
- ;;=C91.40^^68^675^77
- ;;^UTILITY(U,$J,358.3,10750,1,0)
+ ;;^UTILITY(U,$J,358.3,10979,1,3,0)
+ ;;=3^Bypass Graft,Aortocoronary
+ ;;^UTILITY(U,$J,358.3,10979,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,10979,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,10980,0)
+ ;;=I78.9^^47^524^22
+ ;;^UTILITY(U,$J,358.3,10980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10750,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,10750,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,10750,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,10751,0)
- ;;=C91.42^^68^675^75
- ;;^UTILITY(U,$J,358.3,10751,1,0)
+ ;;^UTILITY(U,$J,358.3,10980,1,3,0)
+ ;;=3^Capillary Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10980,1,4,0)
+ ;;=4^I78.9
+ ;;^UTILITY(U,$J,358.3,10980,2)
+ ;;=^5007816
+ ;;^UTILITY(U,$J,358.3,10981,0)
+ ;;=I51.7^^47^524^23
+ ;;^UTILITY(U,$J,358.3,10981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10751,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,10751,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,10751,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,10752,0)
- ;;=C91.41^^68^675^76
- ;;^UTILITY(U,$J,358.3,10752,1,0)
+ ;;^UTILITY(U,$J,358.3,10981,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,10981,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,10981,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,10982,0)
+ ;;=I42.1^^47^524^24
+ ;;^UTILITY(U,$J,358.3,10982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10752,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,10752,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,10752,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,10753,0)
- ;;=D57.01^^68^675^78
- ;;^UTILITY(U,$J,358.3,10753,1,0)
+ ;;^UTILITY(U,$J,358.3,10982,1,3,0)
+ ;;=3^Cardiomyopathy,Obstructive Hypertrophic
+ ;;^UTILITY(U,$J,358.3,10982,1,4,0)
+ ;;=4^I42.1
+ ;;^UTILITY(U,$J,358.3,10982,2)
+ ;;=^340520
+ ;;^UTILITY(U,$J,358.3,10983,0)
+ ;;=I42.2^^47^524^25
+ ;;^UTILITY(U,$J,358.3,10983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10753,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,10753,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,10753,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,10754,0)
- ;;=D57.00^^68^675^79
- ;;^UTILITY(U,$J,358.3,10754,1,0)
+ ;;^UTILITY(U,$J,358.3,10983,1,3,0)
+ ;;=3^Cardiomyopathy,Other Hypertrophic
+ ;;^UTILITY(U,$J,358.3,10983,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,10983,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,10984,0)
+ ;;=Z13.6^^47^524^26
+ ;;^UTILITY(U,$J,358.3,10984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10754,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,10754,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,10754,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,10755,0)
- ;;=D57.02^^68^675^80
- ;;^UTILITY(U,$J,358.3,10755,1,0)
+ ;;^UTILITY(U,$J,358.3,10984,1,3,0)
+ ;;=3^Cardiovascular Disorder Screening
+ ;;^UTILITY(U,$J,358.3,10984,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,10984,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,10985,0)
+ ;;=G45.1^^47^524^27
+ ;;^UTILITY(U,$J,358.3,10985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10755,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,10755,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,10755,2)
- ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,10985,1,3,0)
+ ;;=3^Carotid Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,10985,1,4,0)
+ ;;=4^G45.1
+ ;;^UTILITY(U,$J,358.3,10985,2)
+ ;;=^5003956
+ ;;^UTILITY(U,$J,358.3,10986,0)
+ ;;=I65.29^^47^524^28
+ ;;^UTILITY(U,$J,358.3,10986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10986,1,3,0)
+ ;;=3^Carotid Artery,Occlusion & Stenosis,Unspec

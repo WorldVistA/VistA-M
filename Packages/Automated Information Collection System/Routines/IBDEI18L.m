@@ -1,128 +1,128 @@
-IBDEI18L ; ; 19-NOV-2015
+IBDEI18L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20682,1,2,0)
- ;;=2^G0437
- ;;^UTILITY(U,$J,358.3,20682,1,3,0)
- ;;=3^Tob/Smoking Cess Counsel Asymp Pt > 10min
- ;;^UTILITY(U,$J,358.3,20683,0)
- ;;=96101^^98^975^14^^^^1
- ;;^UTILITY(U,$J,358.3,20683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20683,1,2,0)
- ;;=2^96101
- ;;^UTILITY(U,$J,358.3,20683,1,3,0)
- ;;=3^Psych Test by Psychologist,per hr
- ;;^UTILITY(U,$J,358.3,20684,0)
- ;;=90899^^98^975^25^^^^1
- ;;^UTILITY(U,$J,358.3,20684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20684,1,2,0)
- ;;=2^90899
- ;;^UTILITY(U,$J,358.3,20684,1,3,0)
- ;;=3^Unlisted Psychiatric Service
- ;;^UTILITY(U,$J,358.3,20685,0)
- ;;=96150^^98^976^1^^^^1
- ;;^UTILITY(U,$J,358.3,20685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20685,1,2,0)
- ;;=2^96150
- ;;^UTILITY(U,$J,358.3,20685,1,3,0)
- ;;=3^Behavior Assess,Initial,ea 15min
- ;;^UTILITY(U,$J,358.3,20686,0)
- ;;=96151^^98^976^2^^^^1
- ;;^UTILITY(U,$J,358.3,20686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20686,1,2,0)
- ;;=2^96151
- ;;^UTILITY(U,$J,358.3,20686,1,3,0)
- ;;=3^Behavior Reassess,ea 15min
- ;;^UTILITY(U,$J,358.3,20687,0)
- ;;=96152^^98^976^3^^^^1
- ;;^UTILITY(U,$J,358.3,20687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20687,1,2,0)
- ;;=2^96152
- ;;^UTILITY(U,$J,358.3,20687,1,3,0)
- ;;=3^Behavior Intervent,Ind,ea 15min
- ;;^UTILITY(U,$J,358.3,20688,0)
- ;;=96153^^98^976^4^^^^1
- ;;^UTILITY(U,$J,358.3,20688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20688,1,2,0)
- ;;=2^96153
- ;;^UTILITY(U,$J,358.3,20688,1,3,0)
- ;;=3^Behavior Intervent,Grp,ea 15min
- ;;^UTILITY(U,$J,358.3,20689,0)
- ;;=96154^^98^976^5^^^^1
- ;;^UTILITY(U,$J,358.3,20689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20689,1,2,0)
- ;;=2^96154
- ;;^UTILITY(U,$J,358.3,20689,1,3,0)
- ;;=3^Behavior Intervent,Fam w/Pt,ea 15min
- ;;^UTILITY(U,$J,358.3,20690,0)
- ;;=96155^^98^976^6^^^^1
- ;;^UTILITY(U,$J,358.3,20690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20690,1,2,0)
- ;;=2^96155
- ;;^UTILITY(U,$J,358.3,20690,1,3,0)
- ;;=3^Behavior Intervent,Fam w/o Pt,ea 15min
- ;;^UTILITY(U,$J,358.3,20691,0)
- ;;=99368^^98^977^2^^^^1
- ;;^UTILITY(U,$J,358.3,20691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20691,1,2,0)
- ;;=2^99368
- ;;^UTILITY(U,$J,358.3,20691,1,3,0)
- ;;=3^Non-phys Team Conf w/o Pt &/or Family 30+ min
- ;;^UTILITY(U,$J,358.3,20692,0)
- ;;=99366^^98^977^1^^^^1
- ;;^UTILITY(U,$J,358.3,20692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20692,1,2,0)
- ;;=2^99366
- ;;^UTILITY(U,$J,358.3,20692,1,3,0)
- ;;=3^Non-phys Team Conf w/ Pt &/or Family 30+ min
- ;;^UTILITY(U,$J,358.3,20693,0)
- ;;=90785^^98^978^1^^^^1
- ;;^UTILITY(U,$J,358.3,20693,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20693,1,2,0)
- ;;=2^90785
- ;;^UTILITY(U,$J,358.3,20693,1,3,0)
- ;;=3^Interactive Complexity
- ;;^UTILITY(U,$J,358.3,20694,0)
- ;;=H0001^^98^979^1^^^^1
- ;;^UTILITY(U,$J,358.3,20694,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20694,1,2,0)
- ;;=2^H0001
- ;;^UTILITY(U,$J,358.3,20694,1,3,0)
- ;;=3^Addictions Assessment
- ;;^UTILITY(U,$J,358.3,20695,0)
- ;;=H0002^^98^979^10^^^^1
- ;;^UTILITY(U,$J,358.3,20695,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20695,1,2,0)
- ;;=2^H0002
- ;;^UTILITY(U,$J,358.3,20695,1,3,0)
- ;;=3^Screen for Addictions Admission Eligibility
- ;;^UTILITY(U,$J,358.3,20696,0)
- ;;=H0003^^98^979^6^^^^1
- ;;^UTILITY(U,$J,358.3,20696,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20696,1,2,0)
- ;;=2^H0003
- ;;^UTILITY(U,$J,358.3,20696,1,3,0)
- ;;=3^Alcohol/Drug Screen;lab analysis
- ;;^UTILITY(U,$J,358.3,20697,0)
- ;;=H0004^^98^979^7^^^^1
- ;;^UTILITY(U,$J,358.3,20697,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,20697,1,2,0)
- ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,21025,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,21025,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,21025,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,21026,0)
+ ;;=S86.811A^^84^942^48
+ ;;^UTILITY(U,$J,358.3,21026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21026,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,21026,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,21026,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,21027,0)
+ ;;=S86.812A^^84^942^28
+ ;;^UTILITY(U,$J,358.3,21027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21027,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,21027,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,21027,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,21028,0)
+ ;;=S86.111A^^84^942^50
+ ;;^UTILITY(U,$J,358.3,21028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21028,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,21028,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,21028,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,21029,0)
+ ;;=S86.112A^^84^942^30
+ ;;^UTILITY(U,$J,358.3,21029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21029,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,21029,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,21029,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,21030,0)
+ ;;=S83.401A^^84^942^15
+ ;;^UTILITY(U,$J,358.3,21030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21030,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,21030,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,21030,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,21031,0)
+ ;;=S83.402A^^84^942^4
+ ;;^UTILITY(U,$J,358.3,21031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21031,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,21031,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,21031,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,21032,0)
+ ;;=S93.402A^^84^942^2
+ ;;^UTILITY(U,$J,358.3,21032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21032,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,21032,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,21032,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,21033,0)
+ ;;=S93.401A^^84^942^13
+ ;;^UTILITY(U,$J,358.3,21033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21033,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,21033,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,21033,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,21034,0)
+ ;;=S56.511A^^84^942^39
+ ;;^UTILITY(U,$J,358.3,21034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21034,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,21034,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,21034,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,21035,0)
+ ;;=S56.512A^^84^942^19
+ ;;^UTILITY(U,$J,358.3,21035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21035,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,21035,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,21035,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,21036,0)
+ ;;=S13.8XXA^^84^942^10
+ ;;^UTILITY(U,$J,358.3,21036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21036,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21036,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,21036,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,21037,0)
+ ;;=S16.1XXA^^84^942^37
+ ;;^UTILITY(U,$J,358.3,21037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21037,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21037,1,4,0)
+ ;;=4^S16.1XXA

@@ -1,6 +1,9 @@
 BPSSCRCL ;BHAM ISC/SS - ECME SCREEN CLOSE CLAIMS ;05-APR-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to FIND^PSOREJUT supported by ICR #4706
+ ;
  Q
  ;
 CLO ;entry point to close claims
@@ -40,6 +43,13 @@ CLOSE(BP59ARR) ;
  . . D DISPREJ^BPSSCRU6(BP59)
  . . ;can't close a closed claim. The user must reopen first.
  . . I $$CLOSED02^BPSSCR03($P($G(^BPST(BP59,0)),U,4)) W !,"This claim is already closed." S BPQ="^" Q
+ . . ; Check for unresolved rejects - BPS*1*19
+ . . S BPSZ=$$RXREF^BPSSCRU2(BP59)
+ . . I $$FIND^PSOREJUT($P(BPSZ,U),$P(BPSZ,U,2)) D  Q
+ . . . W !,"The Prescription is currently open in the pharmacist's Third Party Payer"
+ . . . W !,"Reject Worklist. The claim cannot be closed until action is taken by the"
+ . . . W !,"pharmacist."
+ . . . S BPQ="^"
  . . ;get claim status from transaction
  . . S BPCLST=$$CLAIMST^BPSSCRU3(BP59)
  . . ;Is this a secondary claim?

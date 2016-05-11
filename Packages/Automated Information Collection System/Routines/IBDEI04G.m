@@ -1,132 +1,144 @@
-IBDEI04G ; ; 19-NOV-2015
+IBDEI04G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1400,1,0)
+ ;;^UTILITY(U,$J,358.3,1656,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,1657,0)
+ ;;=I31.2^^11^147^13
+ ;;^UTILITY(U,$J,358.3,1657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1400,1,3,0)
- ;;=3^Atrophic flaccid tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1400,1,4,0)
- ;;=4^H73.811
- ;;^UTILITY(U,$J,358.3,1400,2)
- ;;=^5006780
- ;;^UTILITY(U,$J,358.3,1401,0)
- ;;=H73.823^^14^151^4
- ;;^UTILITY(U,$J,358.3,1401,1,0)
+ ;;^UTILITY(U,$J,358.3,1657,1,3,0)
+ ;;=3^Hemopericardium NEC
+ ;;^UTILITY(U,$J,358.3,1657,1,4,0)
+ ;;=4^I31.2
+ ;;^UTILITY(U,$J,358.3,1657,2)
+ ;;=^5007163
+ ;;^UTILITY(U,$J,358.3,1658,0)
+ ;;=R60.9^^11^147^11
+ ;;^UTILITY(U,$J,358.3,1658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1401,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1401,1,4,0)
- ;;=4^H73.823
- ;;^UTILITY(U,$J,358.3,1401,2)
- ;;=^5006786
- ;;^UTILITY(U,$J,358.3,1402,0)
- ;;=H73.822^^14^151^5
- ;;^UTILITY(U,$J,358.3,1402,1,0)
+ ;;^UTILITY(U,$J,358.3,1658,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,1658,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,1658,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,1659,0)
+ ;;=R00.0^^11^147^24
+ ;;^UTILITY(U,$J,358.3,1659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1402,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1402,1,4,0)
- ;;=4^H73.822
- ;;^UTILITY(U,$J,358.3,1402,2)
- ;;=^5006785
- ;;^UTILITY(U,$J,358.3,1403,0)
- ;;=H73.821^^14^151^6
- ;;^UTILITY(U,$J,358.3,1403,1,0)
+ ;;^UTILITY(U,$J,358.3,1659,1,3,0)
+ ;;=3^Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,1659,1,4,0)
+ ;;=4^R00.0
+ ;;^UTILITY(U,$J,358.3,1659,2)
+ ;;=^5019163
+ ;;^UTILITY(U,$J,358.3,1660,0)
+ ;;=R00.2^^11^147^19
+ ;;^UTILITY(U,$J,358.3,1660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1403,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1403,1,4,0)
- ;;=4^H73.821
- ;;^UTILITY(U,$J,358.3,1403,2)
- ;;=^5006784
- ;;^UTILITY(U,$J,358.3,1404,0)
- ;;=H72.13^^14^151^7
- ;;^UTILITY(U,$J,358.3,1404,1,0)
+ ;;^UTILITY(U,$J,358.3,1660,1,3,0)
+ ;;=3^Palpitations
+ ;;^UTILITY(U,$J,358.3,1660,1,4,0)
+ ;;=4^R00.2
+ ;;^UTILITY(U,$J,358.3,1660,2)
+ ;;=^5019165
+ ;;^UTILITY(U,$J,358.3,1661,0)
+ ;;=R01.1^^11^147^6
+ ;;^UTILITY(U,$J,358.3,1661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1404,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1404,1,4,0)
- ;;=4^H72.13
- ;;^UTILITY(U,$J,358.3,1404,2)
- ;;=^5006749
- ;;^UTILITY(U,$J,358.3,1405,0)
- ;;=H72.12^^14^151^8
- ;;^UTILITY(U,$J,358.3,1405,1,0)
+ ;;^UTILITY(U,$J,358.3,1661,1,3,0)
+ ;;=3^Cardiac Murmur,Unspec
+ ;;^UTILITY(U,$J,358.3,1661,1,4,0)
+ ;;=4^R01.1
+ ;;^UTILITY(U,$J,358.3,1661,2)
+ ;;=^5019169
+ ;;^UTILITY(U,$J,358.3,1662,0)
+ ;;=R01.0^^11^147^5
+ ;;^UTILITY(U,$J,358.3,1662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1405,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1405,1,4,0)
- ;;=4^H72.12
- ;;^UTILITY(U,$J,358.3,1405,2)
- ;;=^5006748
- ;;^UTILITY(U,$J,358.3,1406,0)
- ;;=H72.11^^14^151^9
- ;;^UTILITY(U,$J,358.3,1406,1,0)
+ ;;^UTILITY(U,$J,358.3,1662,1,3,0)
+ ;;=3^Benign/Innocent Cardiac Murmurs
+ ;;^UTILITY(U,$J,358.3,1662,1,4,0)
+ ;;=4^R01.0
+ ;;^UTILITY(U,$J,358.3,1662,2)
+ ;;=^5019168
+ ;;^UTILITY(U,$J,358.3,1663,0)
+ ;;=R57.0^^11^147^7
+ ;;^UTILITY(U,$J,358.3,1663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1406,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1406,1,4,0)
- ;;=4^H72.11
- ;;^UTILITY(U,$J,358.3,1406,2)
- ;;=^5006747
- ;;^UTILITY(U,$J,358.3,1407,0)
- ;;=H51.0^^14^151^10
- ;;^UTILITY(U,$J,358.3,1407,1,0)
+ ;;^UTILITY(U,$J,358.3,1663,1,3,0)
+ ;;=3^Cardiogenic Shock
+ ;;^UTILITY(U,$J,358.3,1663,1,4,0)
+ ;;=4^R57.0
+ ;;^UTILITY(U,$J,358.3,1663,2)
+ ;;=^5019525
+ ;;^UTILITY(U,$J,358.3,1664,0)
+ ;;=R06.01^^11^147^18
+ ;;^UTILITY(U,$J,358.3,1664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1407,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,1407,1,4,0)
- ;;=4^H51.0
- ;;^UTILITY(U,$J,358.3,1407,2)
- ;;=^5006250
- ;;^UTILITY(U,$J,358.3,1408,0)
- ;;=H72.03^^14^151^11
- ;;^UTILITY(U,$J,358.3,1408,1,0)
+ ;;^UTILITY(U,$J,358.3,1664,1,3,0)
+ ;;=3^Orthopnea
+ ;;^UTILITY(U,$J,358.3,1664,1,4,0)
+ ;;=4^R06.01
+ ;;^UTILITY(U,$J,358.3,1664,2)
+ ;;=^186737
+ ;;^UTILITY(U,$J,358.3,1665,0)
+ ;;=R06.81^^11^147^3
+ ;;^UTILITY(U,$J,358.3,1665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1408,1,3,0)
- ;;=3^Central perforation of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1408,1,4,0)
- ;;=4^H72.03
- ;;^UTILITY(U,$J,358.3,1408,2)
- ;;=^5006745
- ;;^UTILITY(U,$J,358.3,1409,0)
- ;;=H72.02^^14^151^12
- ;;^UTILITY(U,$J,358.3,1409,1,0)
+ ;;^UTILITY(U,$J,358.3,1665,1,3,0)
+ ;;=3^Apnea NEC
+ ;;^UTILITY(U,$J,358.3,1665,1,4,0)
+ ;;=4^R06.81
+ ;;^UTILITY(U,$J,358.3,1665,2)
+ ;;=^5019190
+ ;;^UTILITY(U,$J,358.3,1666,0)
+ ;;=R06.02^^11^147^22
+ ;;^UTILITY(U,$J,358.3,1666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1409,1,3,0)
- ;;=3^Central perforation of tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1409,1,4,0)
- ;;=4^H72.02
- ;;^UTILITY(U,$J,358.3,1409,2)
- ;;=^5006744
- ;;^UTILITY(U,$J,358.3,1410,0)
- ;;=H72.01^^14^151^13
- ;;^UTILITY(U,$J,358.3,1410,1,0)
+ ;;^UTILITY(U,$J,358.3,1666,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,1666,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,1666,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,1667,0)
+ ;;=R06.82^^11^147^25
+ ;;^UTILITY(U,$J,358.3,1667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1410,1,3,0)
- ;;=3^Central perforation of tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1410,1,4,0)
- ;;=4^H72.01
- ;;^UTILITY(U,$J,358.3,1410,2)
- ;;=^5006743
- ;;^UTILITY(U,$J,358.3,1411,0)
- ;;=H61.23^^14^151^20
- ;;^UTILITY(U,$J,358.3,1411,1,0)
+ ;;^UTILITY(U,$J,358.3,1667,1,3,0)
+ ;;=3^Tachypnea NEC
+ ;;^UTILITY(U,$J,358.3,1667,1,4,0)
+ ;;=4^R06.82
+ ;;^UTILITY(U,$J,358.3,1667,2)
+ ;;=^5019191
+ ;;^UTILITY(U,$J,358.3,1668,0)
+ ;;=R94.30^^11^147^1
+ ;;^UTILITY(U,$J,358.3,1668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1411,1,3,0)
- ;;=3^Impacted cerumen, bilateral
- ;;^UTILITY(U,$J,358.3,1411,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,1411,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,1412,0)
- ;;=H61.22^^14^151^21
- ;;^UTILITY(U,$J,358.3,1412,1,0)
+ ;;^UTILITY(U,$J,358.3,1668,1,3,0)
+ ;;=3^Abnormal Cardiovascular Function Study,Unspec
+ ;;^UTILITY(U,$J,358.3,1668,1,4,0)
+ ;;=4^R94.30
+ ;;^UTILITY(U,$J,358.3,1668,2)
+ ;;=^5019738
+ ;;^UTILITY(U,$J,358.3,1669,0)
+ ;;=R94.31^^11^147^2
+ ;;^UTILITY(U,$J,358.3,1669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1412,1,3,0)
- ;;=3^Impacted cerumen, left ear
- ;;^UTILITY(U,$J,358.3,1412,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,1412,2)
- ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,1669,1,3,0)
+ ;;=3^Abnormal Electrocardiogram
+ ;;^UTILITY(U,$J,358.3,1669,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,1669,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,1670,0)
+ ;;=G90.9^^11^147^4
+ ;;^UTILITY(U,$J,358.3,1670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1670,1,3,0)
+ ;;=3^Autonomic Nervous System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,1670,1,4,0)
+ ;;=4^G90.9

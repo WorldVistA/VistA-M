@@ -1,122 +1,134 @@
-IBDEI0MJ ; ; 19-NOV-2015
+IBDEI0MJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10288,1,0)
+ ;;^UTILITY(U,$J,358.3,10504,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,10504,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,10505,0)
+ ;;=H43.23^^44^505^28
+ ;;^UTILITY(U,$J,358.3,10505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10288,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,10288,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,10288,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,10289,0)
- ;;=L97.512^^68^664^212
- ;;^UTILITY(U,$J,358.3,10289,1,0)
+ ;;^UTILITY(U,$J,358.3,10505,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,10505,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,10505,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,10506,0)
+ ;;=H43.11^^44^505^119
+ ;;^UTILITY(U,$J,358.3,10506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10289,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,10289,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,10289,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,10290,0)
- ;;=L97.513^^68^664^213
- ;;^UTILITY(U,$J,358.3,10290,1,0)
+ ;;^UTILITY(U,$J,358.3,10506,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,10506,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,10506,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,10507,0)
+ ;;=H43.12^^44^505^118
+ ;;^UTILITY(U,$J,358.3,10507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10290,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,10290,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,10290,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,10291,0)
- ;;=L97.514^^68^664^214
- ;;^UTILITY(U,$J,358.3,10291,1,0)
+ ;;^UTILITY(U,$J,358.3,10507,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,10507,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,10507,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,10508,0)
+ ;;=H43.391^^44^505^122
+ ;;^UTILITY(U,$J,358.3,10508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10291,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,10291,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,10291,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,10292,0)
- ;;=L97.519^^68^664^215
- ;;^UTILITY(U,$J,358.3,10292,1,0)
+ ;;^UTILITY(U,$J,358.3,10508,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,10508,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,10508,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,10509,0)
+ ;;=H43.392^^44^505^121
+ ;;^UTILITY(U,$J,358.3,10509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10292,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,10292,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,10292,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,10293,0)
- ;;=L97.521^^68^664^181
- ;;^UTILITY(U,$J,358.3,10293,1,0)
+ ;;^UTILITY(U,$J,358.3,10509,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,10509,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,10509,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,10510,0)
+ ;;=H43.393^^44^505^120
+ ;;^UTILITY(U,$J,358.3,10510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10293,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,10293,1,4,0)
- ;;=4^L97.521
- ;;^UTILITY(U,$J,358.3,10293,2)
- ;;=^5009550
- ;;^UTILITY(U,$J,358.3,10294,0)
- ;;=L97.522^^68^664^182
- ;;^UTILITY(U,$J,358.3,10294,1,0)
+ ;;^UTILITY(U,$J,358.3,10510,1,3,0)
+ ;;=3^Vitreous Opacities,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,10510,1,4,0)
+ ;;=4^H43.393
+ ;;^UTILITY(U,$J,358.3,10510,2)
+ ;;=^5005951
+ ;;^UTILITY(U,$J,358.3,10511,0)
+ ;;=H43.01^^44^505^125
+ ;;^UTILITY(U,$J,358.3,10511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10294,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,10294,1,4,0)
- ;;=4^L97.522
- ;;^UTILITY(U,$J,358.3,10294,2)
- ;;=^5009551
- ;;^UTILITY(U,$J,358.3,10295,0)
- ;;=L97.523^^68^664^183
- ;;^UTILITY(U,$J,358.3,10295,1,0)
+ ;;^UTILITY(U,$J,358.3,10511,1,3,0)
+ ;;=3^Vitreous Prolapse,Right Eye
+ ;;^UTILITY(U,$J,358.3,10511,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,10511,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,10512,0)
+ ;;=H43.02^^44^505^124
+ ;;^UTILITY(U,$J,358.3,10512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10295,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,10295,1,4,0)
- ;;=4^L97.523
- ;;^UTILITY(U,$J,358.3,10295,2)
- ;;=^5009552
- ;;^UTILITY(U,$J,358.3,10296,0)
- ;;=L97.524^^68^664^184
- ;;^UTILITY(U,$J,358.3,10296,1,0)
+ ;;^UTILITY(U,$J,358.3,10512,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,10512,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,10512,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,10513,0)
+ ;;=H43.03^^44^505^123
+ ;;^UTILITY(U,$J,358.3,10513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10296,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,10296,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,10296,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,10297,0)
- ;;=L97.529^^68^664^185
- ;;^UTILITY(U,$J,358.3,10297,1,0)
+ ;;^UTILITY(U,$J,358.3,10513,1,3,0)
+ ;;=3^Vitreous Prolapse,Bilateral
+ ;;^UTILITY(U,$J,358.3,10513,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,10513,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,10514,0)
+ ;;=H43.821^^44^505^114
+ ;;^UTILITY(U,$J,358.3,10514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10297,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,10297,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,10297,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,10298,0)
- ;;=L97.911^^68^664^221
- ;;^UTILITY(U,$J,358.3,10298,1,0)
+ ;;^UTILITY(U,$J,358.3,10514,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,10514,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,10514,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,10515,0)
+ ;;=H43.822^^44^505^113
+ ;;^UTILITY(U,$J,358.3,10515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10298,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,10298,1,4,0)
- ;;=4^L97.911
- ;;^UTILITY(U,$J,358.3,10298,2)
- ;;=^5133679
- ;;^UTILITY(U,$J,358.3,10299,0)
- ;;=L97.912^^68^664^222
- ;;^UTILITY(U,$J,358.3,10299,1,0)
+ ;;^UTILITY(U,$J,358.3,10515,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,10515,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,10515,2)
+ ;;=^5005958
+ ;;^UTILITY(U,$J,358.3,10516,0)
+ ;;=H43.823^^44^505^112
+ ;;^UTILITY(U,$J,358.3,10516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10299,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,10299,1,4,0)
- ;;=4^L97.912
- ;;^UTILITY(U,$J,358.3,10299,2)
- ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,10516,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Bilateral
+ ;;^UTILITY(U,$J,358.3,10516,1,4,0)
+ ;;=4^H43.823
+ ;;^UTILITY(U,$J,358.3,10516,2)
+ ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,10517,0)
+ ;;=H35.353^^44^505^31
+ ;;^UTILITY(U,$J,358.3,10517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10517,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral

@@ -1,140 +1,132 @@
-IBDEI0IZ ; ; 19-NOV-2015
+IBDEI0IZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8534,1,4,0)
- ;;=4^N70.91
- ;;^UTILITY(U,$J,358.3,8534,2)
- ;;=^5015806
- ;;^UTILITY(U,$J,358.3,8535,0)
- ;;=N70.92^^55^540^84
- ;;^UTILITY(U,$J,358.3,8535,1,0)
+ ;;^UTILITY(U,$J,358.3,8824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8535,1,3,0)
- ;;=3^Oophoritis, unspecified
- ;;^UTILITY(U,$J,358.3,8535,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,8535,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,8536,0)
- ;;=N73.9^^55^540^59
- ;;^UTILITY(U,$J,358.3,8536,1,0)
+ ;;^UTILITY(U,$J,358.3,8824,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Bilateral,Acute
+ ;;^UTILITY(U,$J,358.3,8824,1,4,0)
+ ;;=4^H10.213
+ ;;^UTILITY(U,$J,358.3,8824,2)
+ ;;=^5004670
+ ;;^UTILITY(U,$J,358.3,8825,0)
+ ;;=H21.1X1^^41^468^162
+ ;;^UTILITY(U,$J,358.3,8825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8536,1,3,0)
- ;;=3^Female pelvic inflammatory disease, unspecified
- ;;^UTILITY(U,$J,358.3,8536,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,8536,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,8537,0)
- ;;=N72.^^55^540^73
- ;;^UTILITY(U,$J,358.3,8537,1,0)
+ ;;^UTILITY(U,$J,358.3,8825,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,8825,1,4,0)
+ ;;=4^H21.1X1
+ ;;^UTILITY(U,$J,358.3,8825,2)
+ ;;=^5005175
+ ;;^UTILITY(U,$J,358.3,8826,0)
+ ;;=H21.1X2^^41^468^161
+ ;;^UTILITY(U,$J,358.3,8826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8537,1,3,0)
- ;;=3^Inflammatory disease of cervix uteri
- ;;^UTILITY(U,$J,358.3,8537,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,8537,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,8538,0)
- ;;=N76.0^^55^540^24
- ;;^UTILITY(U,$J,358.3,8538,1,0)
+ ;;^UTILITY(U,$J,358.3,8826,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,8826,1,4,0)
+ ;;=4^H21.1X2
+ ;;^UTILITY(U,$J,358.3,8826,2)
+ ;;=^5005176
+ ;;^UTILITY(U,$J,358.3,8827,0)
+ ;;=H21.1X3^^41^468^160
+ ;;^UTILITY(U,$J,358.3,8827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8538,1,3,0)
- ;;=3^Acute vaginitis
- ;;^UTILITY(U,$J,358.3,8538,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,8538,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,8539,0)
- ;;=N76.1^^55^540^96
- ;;^UTILITY(U,$J,358.3,8539,1,0)
+ ;;^UTILITY(U,$J,358.3,8827,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,8827,1,4,0)
+ ;;=4^H21.1X3
+ ;;^UTILITY(U,$J,358.3,8827,2)
+ ;;=^5005177
+ ;;^UTILITY(U,$J,358.3,8828,0)
+ ;;=H31.401^^41^469^13
+ ;;^UTILITY(U,$J,358.3,8828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8539,1,3,0)
- ;;=3^Subacute and chronic vaginitis
- ;;^UTILITY(U,$J,358.3,8539,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,8539,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,8540,0)
- ;;=L03.011^^55^540^39
- ;;^UTILITY(U,$J,358.3,8540,1,0)
+ ;;^UTILITY(U,$J,358.3,8828,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8828,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,8828,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,8829,0)
+ ;;=H31.402^^41^469^12
+ ;;^UTILITY(U,$J,358.3,8829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8540,1,3,0)
- ;;=3^Cellulitis of right finger
- ;;^UTILITY(U,$J,358.3,8540,1,4,0)
- ;;=4^L03.011
- ;;^UTILITY(U,$J,358.3,8540,2)
- ;;=^5009019
- ;;^UTILITY(U,$J,358.3,8541,0)
- ;;=L03.012^^55^540^32
- ;;^UTILITY(U,$J,358.3,8541,1,0)
+ ;;^UTILITY(U,$J,358.3,8829,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8829,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,8829,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,8830,0)
+ ;;=H31.421^^41^469^120
+ ;;^UTILITY(U,$J,358.3,8830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8541,1,3,0)
- ;;=3^Cellulitis of left finger
- ;;^UTILITY(U,$J,358.3,8541,1,4,0)
- ;;=4^L03.012
- ;;^UTILITY(U,$J,358.3,8541,2)
- ;;=^5009020
- ;;^UTILITY(U,$J,358.3,8542,0)
- ;;=L03.021^^55^540^14
- ;;^UTILITY(U,$J,358.3,8542,1,0)
+ ;;^UTILITY(U,$J,358.3,8830,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,8830,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,8830,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,8831,0)
+ ;;=H31.422^^41^469^119
+ ;;^UTILITY(U,$J,358.3,8831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8542,1,3,0)
- ;;=3^Acute lymphangitis of right finger
- ;;^UTILITY(U,$J,358.3,8542,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,8542,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,8543,0)
- ;;=L03.022^^55^540^9
- ;;^UTILITY(U,$J,358.3,8543,1,0)
+ ;;^UTILITY(U,$J,358.3,8831,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,8831,1,4,0)
+ ;;=4^H31.422
+ ;;^UTILITY(U,$J,358.3,8831,2)
+ ;;=^5005484
+ ;;^UTILITY(U,$J,358.3,8832,0)
+ ;;=H21.231^^41^469^28
+ ;;^UTILITY(U,$J,358.3,8832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8543,1,3,0)
- ;;=3^Acute lymphangitis of left finger
- ;;^UTILITY(U,$J,358.3,8543,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,8543,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,8544,0)
- ;;=L03.031^^55^540^42
- ;;^UTILITY(U,$J,358.3,8544,1,0)
+ ;;^UTILITY(U,$J,358.3,8832,1,3,0)
+ ;;=3^Degeneration of Iris,Right Eye
+ ;;^UTILITY(U,$J,358.3,8832,1,4,0)
+ ;;=4^H21.231
+ ;;^UTILITY(U,$J,358.3,8832,2)
+ ;;=^5005187
+ ;;^UTILITY(U,$J,358.3,8833,0)
+ ;;=H21.232^^41^469^27
+ ;;^UTILITY(U,$J,358.3,8833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8544,1,3,0)
- ;;=3^Cellulitis of right toe
- ;;^UTILITY(U,$J,358.3,8544,1,4,0)
- ;;=4^L03.031
- ;;^UTILITY(U,$J,358.3,8544,2)
- ;;=^5009025
- ;;^UTILITY(U,$J,358.3,8545,0)
- ;;=L03.032^^55^540^35
- ;;^UTILITY(U,$J,358.3,8545,1,0)
+ ;;^UTILITY(U,$J,358.3,8833,1,3,0)
+ ;;=3^Degeneration of Iris,Left Eye
+ ;;^UTILITY(U,$J,358.3,8833,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,8833,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,8834,0)
+ ;;=H40.011^^41^469^85
+ ;;^UTILITY(U,$J,358.3,8834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8545,1,3,0)
- ;;=3^Cellulitis of left toe
- ;;^UTILITY(U,$J,358.3,8545,1,4,0)
- ;;=4^L03.032
- ;;^UTILITY(U,$J,358.3,8545,2)
- ;;=^5009026
- ;;^UTILITY(U,$J,358.3,8546,0)
- ;;=L03.041^^55^540^16
- ;;^UTILITY(U,$J,358.3,8546,1,0)
+ ;;^UTILITY(U,$J,358.3,8834,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,8834,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,8834,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,8835,0)
+ ;;=H40.012^^41^469^86
+ ;;^UTILITY(U,$J,358.3,8835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8546,1,3,0)
- ;;=3^Acute lymphangitis of right toe
- ;;^UTILITY(U,$J,358.3,8546,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,8546,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,8547,0)
- ;;=L03.042^^55^540^11
- ;;^UTILITY(U,$J,358.3,8547,1,0)
+ ;;^UTILITY(U,$J,358.3,8835,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,8835,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,8835,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,8836,0)
+ ;;=H40.021^^41^469^82
+ ;;^UTILITY(U,$J,358.3,8836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8547,1,3,0)
- ;;=3^Acute lymphangitis of left toe
- ;;^UTILITY(U,$J,358.3,8547,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,8547,2)
- ;;=^5009029
- ;;^UTILITY(U,$J,358.3,8548,0)
- ;;=L03.211^^55^540^30
+ ;;^UTILITY(U,$J,358.3,8836,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,8836,1,4,0)
+ ;;=4^H40.021
+ ;;^UTILITY(U,$J,358.3,8836,2)
+ ;;=^5005728

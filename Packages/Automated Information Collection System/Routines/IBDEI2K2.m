@@ -1,124 +1,128 @@
-IBDEI2K2 ; ; 19-NOV-2015
+IBDEI2K2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42853,1,4,0)
- ;;=4^L97.224
- ;;^UTILITY(U,$J,358.3,42853,2)
- ;;=^5009508
- ;;^UTILITY(U,$J,358.3,42854,0)
- ;;=L97.221^^192^2149^6
- ;;^UTILITY(U,$J,358.3,42854,1,0)
+ ;;^UTILITY(U,$J,358.3,43358,1,4,0)
+ ;;=4^93924
+ ;;^UTILITY(U,$J,358.3,43359,0)
+ ;;=93930^^166^2077^17^^^^1
+ ;;^UTILITY(U,$J,358.3,43359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42854,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,42854,1,4,0)
- ;;=4^L97.221
- ;;^UTILITY(U,$J,358.3,42854,2)
- ;;=^5009505
- ;;^UTILITY(U,$J,358.3,42855,0)
- ;;=L97.222^^192^2149^7
- ;;^UTILITY(U,$J,358.3,42855,1,0)
+ ;;^UTILITY(U,$J,358.3,43359,1,2,0)
+ ;;=2^DUS Upper Ext or BPG, Comp/BL
+ ;;^UTILITY(U,$J,358.3,43359,1,4,0)
+ ;;=4^93930
+ ;;^UTILITY(U,$J,358.3,43360,0)
+ ;;=93931^^166^2077^18^^^^1
+ ;;^UTILITY(U,$J,358.3,43360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42855,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,42855,1,4,0)
- ;;=4^L97.222
- ;;^UTILITY(U,$J,358.3,42855,2)
- ;;=^5009506
- ;;^UTILITY(U,$J,358.3,42856,0)
- ;;=L97.223^^192^2149^9
- ;;^UTILITY(U,$J,358.3,42856,1,0)
+ ;;^UTILITY(U,$J,358.3,43360,1,2,0)
+ ;;=2^DUS Upper Ext or BPG, Unil/Limited
+ ;;^UTILITY(U,$J,358.3,43360,1,4,0)
+ ;;=4^93931
+ ;;^UTILITY(U,$J,358.3,43361,0)
+ ;;=93965^^166^2077^4^^^^1
+ ;;^UTILITY(U,$J,358.3,43361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42856,1,3,0)
- ;;=3^Non-pressure chron ulcer lft calf w/ necrosis of muscle
- ;;^UTILITY(U,$J,358.3,42856,1,4,0)
- ;;=4^L97.223
- ;;^UTILITY(U,$J,358.3,42856,2)
- ;;=^5009507
- ;;^UTILITY(U,$J,358.3,42857,0)
- ;;=L97.312^^192^2149^22
- ;;^UTILITY(U,$J,358.3,42857,1,0)
+ ;;^UTILITY(U,$J,358.3,43361,1,2,0)
+ ;;=2^APG/PPG Ext Veins Cmprssn, Comp/BL
+ ;;^UTILITY(U,$J,358.3,43361,1,4,0)
+ ;;=4^93965
+ ;;^UTILITY(U,$J,358.3,43362,0)
+ ;;=93970^^166^2077^12^^^^1
+ ;;^UTILITY(U,$J,358.3,43362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42857,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,42857,1,4,0)
- ;;=4^L97.312
- ;;^UTILITY(U,$J,358.3,42857,2)
- ;;=^5009516
- ;;^UTILITY(U,$J,358.3,42858,0)
- ;;=L97.311^^192^2149^21
- ;;^UTILITY(U,$J,358.3,42858,1,0)
+ ;;^UTILITY(U,$J,358.3,43362,1,2,0)
+ ;;=2^DUS Ext Veins Resp Cmprssn, Comp/BL
+ ;;^UTILITY(U,$J,358.3,43362,1,4,0)
+ ;;=4^93970
+ ;;^UTILITY(U,$J,358.3,43363,0)
+ ;;=93975^^166^2077^8^^^^1
+ ;;^UTILITY(U,$J,358.3,43363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42858,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,42858,1,4,0)
- ;;=4^L97.311
- ;;^UTILITY(U,$J,358.3,42858,2)
- ;;=^5009515
- ;;^UTILITY(U,$J,358.3,42859,0)
- ;;=L97.313^^192^2149^23
- ;;^UTILITY(U,$J,358.3,42859,1,0)
+ ;;^UTILITY(U,$J,358.3,43363,1,2,0)
+ ;;=2^DUS Art Inflow/Ven Outflow, Abdom, Comp
+ ;;^UTILITY(U,$J,358.3,43363,1,4,0)
+ ;;=4^93975
+ ;;^UTILITY(U,$J,358.3,43364,0)
+ ;;=93978^^166^2077^7^^^^1
+ ;;^UTILITY(U,$J,358.3,43364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42859,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ necr of muscle
- ;;^UTILITY(U,$J,358.3,42859,1,4,0)
- ;;=4^L97.313
- ;;^UTILITY(U,$J,358.3,42859,2)
- ;;=^5009517
- ;;^UTILITY(U,$J,358.3,42860,0)
- ;;=L97.314^^192^2149^24
- ;;^UTILITY(U,$J,358.3,42860,1,0)
+ ;;^UTILITY(U,$J,358.3,43364,1,2,0)
+ ;;=2^DUS Aorta, InfVC, Iliac Vasc, BPG Comp
+ ;;^UTILITY(U,$J,358.3,43364,1,4,0)
+ ;;=4^93978
+ ;;^UTILITY(U,$J,358.3,43365,0)
+ ;;=93979^^166^2077^6^^^^1
+ ;;^UTILITY(U,$J,358.3,43365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42860,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ necr of bone
- ;;^UTILITY(U,$J,358.3,42860,1,4,0)
- ;;=4^L97.314
- ;;^UTILITY(U,$J,358.3,42860,2)
- ;;=^5009518
- ;;^UTILITY(U,$J,358.3,42861,0)
- ;;=L97.321^^192^2149^1
- ;;^UTILITY(U,$J,358.3,42861,1,0)
+ ;;^UTILITY(U,$J,358.3,43365,1,2,0)
+ ;;=2^DUS Aorta, Inf VC, Iliac Vasc, BPG Unil
+ ;;^UTILITY(U,$J,358.3,43365,1,4,0)
+ ;;=4^93979
+ ;;^UTILITY(U,$J,358.3,43366,0)
+ ;;=93990^^166^2077^14^^^^1
+ ;;^UTILITY(U,$J,358.3,43366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42861,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl limited to brkdwn skin
- ;;^UTILITY(U,$J,358.3,42861,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,42861,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,42862,0)
- ;;=L97.319^^192^2149^25
- ;;^UTILITY(U,$J,358.3,42862,1,0)
+ ;;^UTILITY(U,$J,358.3,43366,1,2,0)
+ ;;=2^DUS Hemodialysis Access
+ ;;^UTILITY(U,$J,358.3,43366,1,4,0)
+ ;;=4^93990
+ ;;^UTILITY(U,$J,358.3,43367,0)
+ ;;=93880^^166^2077^10^^^^1
+ ;;^UTILITY(U,$J,358.3,43367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42862,1,3,0)
- ;;=3^Non-pressure chron ulcer rt ankl w/ unsp severity
- ;;^UTILITY(U,$J,358.3,42862,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,42862,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,42863,0)
- ;;=L97.322^^192^2149^2
- ;;^UTILITY(U,$J,358.3,42863,1,0)
+ ;;^UTILITY(U,$J,358.3,43367,1,2,0)
+ ;;=2^DUS ExCranial Art, Comp/BL
+ ;;^UTILITY(U,$J,358.3,43367,1,4,0)
+ ;;=4^93880
+ ;;^UTILITY(U,$J,358.3,43368,0)
+ ;;=93882^^166^2077^11^^^^1
+ ;;^UTILITY(U,$J,358.3,43368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42863,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,42863,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,42863,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,42864,0)
- ;;=L97.323^^192^2149^3
- ;;^UTILITY(U,$J,358.3,42864,1,0)
+ ;;^UTILITY(U,$J,358.3,43368,1,2,0)
+ ;;=2^DUS ExCranial Art, Unil/Limited
+ ;;^UTILITY(U,$J,358.3,43368,1,4,0)
+ ;;=4^93882
+ ;;^UTILITY(U,$J,358.3,43369,0)
+ ;;=93982^^166^2077^21^^^^1
+ ;;^UTILITY(U,$J,358.3,43369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42864,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ necr of muscle
- ;;^UTILITY(U,$J,358.3,42864,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,42864,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,42865,0)
- ;;=L97.329^^192^2149^5
- ;;^UTILITY(U,$J,358.3,42865,1,0)
+ ;;^UTILITY(U,$J,358.3,43369,1,2,0)
+ ;;=2^Implant Sensor AAA S/P EVAR,Comp
+ ;;^UTILITY(U,$J,358.3,43369,1,4,0)
+ ;;=4^93982
+ ;;^UTILITY(U,$J,358.3,43370,0)
+ ;;=76775^^166^2077^1^^^^1
+ ;;^UTILITY(U,$J,358.3,43370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42865,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ unsp severity
+ ;;^UTILITY(U,$J,358.3,43370,1,2,0)
+ ;;=2^AAA
+ ;;^UTILITY(U,$J,358.3,43370,1,4,0)
+ ;;=4^76775
+ ;;^UTILITY(U,$J,358.3,43371,0)
+ ;;=93976^^166^2077^9^^^^1
+ ;;^UTILITY(U,$J,358.3,43371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43371,1,2,0)
+ ;;=2^DUS Art Inflow/Ven Outflow,Abdom,Limited
+ ;;^UTILITY(U,$J,358.3,43371,1,4,0)
+ ;;=4^93976
+ ;;^UTILITY(U,$J,358.3,43372,0)
+ ;;=93886^^166^2077^24^^^^1
+ ;;^UTILITY(U,$J,358.3,43372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43372,1,2,0)
+ ;;=2^Intracranial Doppler,Complete
+ ;;^UTILITY(U,$J,358.3,43372,1,4,0)
+ ;;=4^93886
+ ;;^UTILITY(U,$J,358.3,43373,0)
+ ;;=93888^^166^2077^25^^^^1
+ ;;^UTILITY(U,$J,358.3,43373,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43373,1,2,0)
+ ;;=2^Intracranial Doppler,Limited
+ ;;^UTILITY(U,$J,358.3,43373,1,4,0)
+ ;;=4^93888
+ ;;^UTILITY(U,$J,358.3,43374,0)
+ ;;=93893^^166^2077^27^^^^1

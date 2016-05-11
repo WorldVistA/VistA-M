@@ -1,136 +1,134 @@
-IBDEI0Z4 ; ; 19-NOV-2015
+IBDEI0Z4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16175,1,0)
+ ;;^UTILITY(U,$J,358.3,16503,1,3,0)
+ ;;=3^Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,16503,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,16503,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,16504,0)
+ ;;=C43.9^^67^759^5
+ ;;^UTILITY(U,$J,358.3,16504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16175,1,3,0)
- ;;=3^Gallbladder Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16175,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,16175,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,16176,0)
- ;;=R14.1^^88^843^33
- ;;^UTILITY(U,$J,358.3,16176,1,0)
+ ;;^UTILITY(U,$J,358.3,16504,1,3,0)
+ ;;=3^Malig Melanoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16504,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,16504,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,16505,0)
+ ;;=C22.9^^67^759^20
+ ;;^UTILITY(U,$J,358.3,16505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16176,1,3,0)
- ;;=3^Gas Pain
- ;;^UTILITY(U,$J,358.3,16176,1,4,0)
- ;;=4^R14.1
- ;;^UTILITY(U,$J,358.3,16176,2)
- ;;=^5019241
- ;;^UTILITY(U,$J,358.3,16177,0)
- ;;=A09.^^88^843^34
- ;;^UTILITY(U,$J,358.3,16177,1,0)
+ ;;^UTILITY(U,$J,358.3,16505,1,3,0)
+ ;;=3^Malig Neop Liver,Unspec as Prim/Second
+ ;;^UTILITY(U,$J,358.3,16505,1,4,0)
+ ;;=4^C22.9
+ ;;^UTILITY(U,$J,358.3,16505,2)
+ ;;=^267096
+ ;;^UTILITY(U,$J,358.3,16506,0)
+ ;;=C32.9^^67^759^18
+ ;;^UTILITY(U,$J,358.3,16506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16177,1,3,0)
- ;;=3^Gastroenteritis & Colitis,Infectious,Unspec
- ;;^UTILITY(U,$J,358.3,16177,1,4,0)
- ;;=4^A09.
- ;;^UTILITY(U,$J,358.3,16177,2)
- ;;=^5000061
- ;;^UTILITY(U,$J,358.3,16178,0)
- ;;=K52.9^^88^843^35
- ;;^UTILITY(U,$J,358.3,16178,1,0)
+ ;;^UTILITY(U,$J,358.3,16506,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16506,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,16506,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,16507,0)
+ ;;=C50.911^^67^759^10
+ ;;^UTILITY(U,$J,358.3,16507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16178,1,3,0)
- ;;=3^Gastroenteritis & Colitis,Noninfectious,Unspec
- ;;^UTILITY(U,$J,358.3,16178,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,16178,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,16179,0)
- ;;=K21.0^^88^843^30
- ;;^UTILITY(U,$J,358.3,16179,1,0)
+ ;;^UTILITY(U,$J,358.3,16507,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Female
+ ;;^UTILITY(U,$J,358.3,16507,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,16507,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,16508,0)
+ ;;=C50.912^^67^759^9
+ ;;^UTILITY(U,$J,358.3,16508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16179,1,3,0)
- ;;=3^GERD w/ Esophagitis
- ;;^UTILITY(U,$J,358.3,16179,1,4,0)
- ;;=4^K21.0
- ;;^UTILITY(U,$J,358.3,16179,2)
- ;;=^5008504
- ;;^UTILITY(U,$J,358.3,16180,0)
- ;;=K21.9^^88^843^31
- ;;^UTILITY(U,$J,358.3,16180,1,0)
+ ;;^UTILITY(U,$J,358.3,16508,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Female
+ ;;^UTILITY(U,$J,358.3,16508,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,16508,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,16509,0)
+ ;;=C24.9^^67^759^6
+ ;;^UTILITY(U,$J,358.3,16509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16180,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,16180,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,16180,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,16181,0)
- ;;=K64.4^^88^843^36
- ;;^UTILITY(U,$J,358.3,16181,1,0)
+ ;;^UTILITY(U,$J,358.3,16509,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,16509,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,16509,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,16510,0)
+ ;;=C90.00^^67^759^24
+ ;;^UTILITY(U,$J,358.3,16510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16181,1,3,0)
- ;;=3^Hemorrhoidal Skin Tags,Residual
- ;;^UTILITY(U,$J,358.3,16181,1,4,0)
- ;;=4^K64.4
- ;;^UTILITY(U,$J,358.3,16181,2)
- ;;=^269834
- ;;^UTILITY(U,$J,358.3,16182,0)
- ;;=K64.8^^88^843^37
- ;;^UTILITY(U,$J,358.3,16182,1,0)
+ ;;^UTILITY(U,$J,358.3,16510,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16510,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,16510,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,16511,0)
+ ;;=C85.89^^67^759^29
+ ;;^UTILITY(U,$J,358.3,16511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16182,1,3,0)
- ;;=3^Hemorrhoids,Other
- ;;^UTILITY(U,$J,358.3,16182,1,4,0)
- ;;=4^K64.8
- ;;^UTILITY(U,$J,358.3,16182,2)
- ;;=^5008774
- ;;^UTILITY(U,$J,358.3,16183,0)
- ;;=K64.5^^88^843^38
- ;;^UTILITY(U,$J,358.3,16183,1,0)
+ ;;^UTILITY(U,$J,358.3,16511,1,3,0)
+ ;;=3^Non-Hodgkin Lymphoma NEC,Extranodal & Solid Organ
+ ;;^UTILITY(U,$J,358.3,16511,1,4,0)
+ ;;=4^C85.89
+ ;;^UTILITY(U,$J,358.3,16511,2)
+ ;;=^5001730
+ ;;^UTILITY(U,$J,358.3,16512,0)
+ ;;=C79.51^^67^759^32
+ ;;^UTILITY(U,$J,358.3,16512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16183,1,3,0)
- ;;=3^Hemorrhoids,Perianal Venous Thrombosis
- ;;^UTILITY(U,$J,358.3,16183,1,4,0)
- ;;=4^K64.5
- ;;^UTILITY(U,$J,358.3,16183,2)
- ;;=^5008773
- ;;^UTILITY(U,$J,358.3,16184,0)
- ;;=K70.9^^88^843^46
- ;;^UTILITY(U,$J,358.3,16184,1,0)
+ ;;^UTILITY(U,$J,358.3,16512,1,3,0)
+ ;;=3^Secondary Malig Neop Bone
+ ;;^UTILITY(U,$J,358.3,16512,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,16512,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,16513,0)
+ ;;=C79.52^^67^759^31
+ ;;^UTILITY(U,$J,358.3,16513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16184,1,3,0)
- ;;=3^Hepatic Liver Disease,Alcoholic,Unspec
- ;;^UTILITY(U,$J,358.3,16184,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,16184,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,16185,0)
- ;;=K75.9^^88^843^47
- ;;^UTILITY(U,$J,358.3,16185,1,0)
+ ;;^UTILITY(U,$J,358.3,16513,1,3,0)
+ ;;=3^Secondary Malig Neop  Bone Marrow
+ ;;^UTILITY(U,$J,358.3,16513,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,16513,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,16514,0)
+ ;;=C92.00^^67^759^25
+ ;;^UTILITY(U,$J,358.3,16514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16185,1,3,0)
- ;;=3^Hepatic Liver Disease,Inflammatory,Unspec
- ;;^UTILITY(U,$J,358.3,16185,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,16185,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,16186,0)
- ;;=K71.9^^88^843^48
- ;;^UTILITY(U,$J,358.3,16186,1,0)
+ ;;^UTILITY(U,$J,358.3,16514,1,3,0)
+ ;;=3^Myeloblastic Leukemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16514,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,16514,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,16515,0)
+ ;;=C92.40^^67^759^30
+ ;;^UTILITY(U,$J,358.3,16515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16186,1,3,0)
- ;;=3^Hepatic Liver Disease,Toxic,Unspec
- ;;^UTILITY(U,$J,358.3,16186,1,4,0)
- ;;=4^K71.9
- ;;^UTILITY(U,$J,358.3,16186,2)
- ;;=^5008804
- ;;^UTILITY(U,$J,358.3,16187,0)
- ;;=K76.9^^88^843^49
- ;;^UTILITY(U,$J,358.3,16187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16187,1,3,0)
- ;;=3^Hepatic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16187,1,4,0)
- ;;=4^K76.9
- ;;^UTILITY(U,$J,358.3,16187,2)
- ;;=^5008836
- ;;^UTILITY(U,$J,358.3,16188,0)
- ;;=K74.60^^88^843^39
- ;;^UTILITY(U,$J,358.3,16188,1,0)
+ ;;^UTILITY(U,$J,358.3,16515,1,3,0)
+ ;;=3^Promyelocytic Leukemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16515,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,16515,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,16516,0)
+ ;;=C92.50^^67^759^27
+ ;;^UTILITY(U,$J,358.3,16516,1,0)
  ;;=^358.31IA^4^2

@@ -1,128 +1,132 @@
-IBDEI2AA ; ; 19-NOV-2015
+IBDEI2AA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38349,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,38349,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,38350,0)
- ;;=F17.203^^177^1947^3
- ;;^UTILITY(U,$J,358.3,38350,1,0)
+ ;;^UTILITY(U,$J,358.3,38742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38350,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,38350,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,38350,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,38351,0)
- ;;=F17.210^^177^1947^4
- ;;^UTILITY(U,$J,358.3,38351,1,0)
+ ;;^UTILITY(U,$J,358.3,38742,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 70-79% Body Surface
+ ;;^UTILITY(U,$J,358.3,38742,1,4,0)
+ ;;=4^L49.7
+ ;;^UTILITY(U,$J,358.3,38742,2)
+ ;;=^5009197
+ ;;^UTILITY(U,$J,358.3,38743,0)
+ ;;=L49.8^^151^1898^22
+ ;;^UTILITY(U,$J,358.3,38743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38351,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38351,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,38351,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,38352,0)
- ;;=F17.211^^177^1947^5
- ;;^UTILITY(U,$J,358.3,38352,1,0)
+ ;;^UTILITY(U,$J,358.3,38743,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 80-89% Body Surface
+ ;;^UTILITY(U,$J,358.3,38743,1,4,0)
+ ;;=4^L49.8
+ ;;^UTILITY(U,$J,358.3,38743,2)
+ ;;=^5009198
+ ;;^UTILITY(U,$J,358.3,38744,0)
+ ;;=L49.9^^151^1898^25
+ ;;^UTILITY(U,$J,358.3,38744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38352,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,38352,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,38352,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,38353,0)
- ;;=F17.220^^177^1947^6
- ;;^UTILITY(U,$J,358.3,38353,1,0)
+ ;;^UTILITY(U,$J,358.3,38744,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
+ ;;^UTILITY(U,$J,358.3,38744,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,38744,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,38745,0)
+ ;;=Z65.5^^151^1898^26
+ ;;^UTILITY(U,$J,358.3,38745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38353,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38353,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,38353,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,38354,0)
- ;;=F17.221^^177^1947^7
- ;;^UTILITY(U,$J,358.3,38354,1,0)
+ ;;^UTILITY(U,$J,358.3,38745,1,3,0)
+ ;;=3^Exposure to Disaster/War/Hostilities
+ ;;^UTILITY(U,$J,358.3,38745,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,38745,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,38746,0)
+ ;;=Z77.22^^151^1898^27
+ ;;^UTILITY(U,$J,358.3,38746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38354,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,38354,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,38354,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,38355,0)
- ;;=F17.290^^177^1947^8
- ;;^UTILITY(U,$J,358.3,38355,1,0)
+ ;;^UTILITY(U,$J,358.3,38746,1,3,0)
+ ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
+ ;;^UTILITY(U,$J,358.3,38746,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,38746,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,38747,0)
+ ;;=L30.9^^151^1898^5
+ ;;^UTILITY(U,$J,358.3,38747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38355,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38355,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,38355,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,38356,0)
- ;;=F17.291^^177^1947^9
- ;;^UTILITY(U,$J,358.3,38356,1,0)
+ ;;^UTILITY(U,$J,358.3,38747,1,3,0)
+ ;;=3^Eczema,Unspec
+ ;;^UTILITY(U,$J,358.3,38747,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,38747,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,38748,0)
+ ;;=L23.9^^151^1898^2
+ ;;^UTILITY(U,$J,358.3,38748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38356,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,38356,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,38356,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,38357,0)
- ;;=F14.10^^177^1948^1
- ;;^UTILITY(U,$J,358.3,38357,1,0)
+ ;;^UTILITY(U,$J,358.3,38748,1,3,0)
+ ;;=3^Eczema,Allergic Contact,Unspec
+ ;;^UTILITY(U,$J,358.3,38748,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,38748,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,38749,0)
+ ;;=L20.82^^151^1898^3
+ ;;^UTILITY(U,$J,358.3,38749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38357,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38357,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,38357,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,38358,0)
- ;;=F14.14^^177^1948^5
- ;;^UTILITY(U,$J,358.3,38358,1,0)
+ ;;^UTILITY(U,$J,358.3,38749,1,3,0)
+ ;;=3^Eczema,Flexural
+ ;;^UTILITY(U,$J,358.3,38749,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,38749,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,38750,0)
+ ;;=L20.84^^151^1898^4
+ ;;^UTILITY(U,$J,358.3,38750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38358,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38358,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,38358,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,38359,0)
- ;;=F14.182^^177^1948^6
- ;;^UTILITY(U,$J,358.3,38359,1,0)
+ ;;^UTILITY(U,$J,358.3,38750,1,3,0)
+ ;;=3^Eczema,Intrinsic
+ ;;^UTILITY(U,$J,358.3,38750,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,38750,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,38751,0)
+ ;;=L51.8^^151^1898^10
+ ;;^UTILITY(U,$J,358.3,38751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38359,1,3,0)
- ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38359,1,4,0)
- ;;=4^F14.182
- ;;^UTILITY(U,$J,358.3,38359,2)
- ;;=^5003250
- ;;^UTILITY(U,$J,358.3,38360,0)
- ;;=F14.20^^177^1948^3
- ;;^UTILITY(U,$J,358.3,38360,1,0)
+ ;;^UTILITY(U,$J,358.3,38751,1,3,0)
+ ;;=3^Erythema Multiforme,Other
+ ;;^UTILITY(U,$J,358.3,38751,1,4,0)
+ ;;=4^L51.8
+ ;;^UTILITY(U,$J,358.3,38751,2)
+ ;;=^336639
+ ;;^UTILITY(U,$J,358.3,38752,0)
+ ;;=R23.4^^151^1898^14
+ ;;^UTILITY(U,$J,358.3,38752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38360,1,3,0)
- ;;=3^Cocaine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38360,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,38360,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,38361,0)
- ;;=F14.21^^177^1948^2
- ;;^UTILITY(U,$J,358.3,38361,1,0)
+ ;;^UTILITY(U,$J,358.3,38752,1,3,0)
+ ;;=3^Eschar/Desquamination of Skin
+ ;;^UTILITY(U,$J,358.3,38752,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,38752,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,38753,0)
+ ;;=L49.9^^151^1898^23
+ ;;^UTILITY(U,$J,358.3,38753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38361,1,3,0)
- ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,38361,1,4,0)
- ;;=4^F14.21
- ;;^UTILITY(U,$J,358.3,38361,2)
- ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,38753,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
+ ;;^UTILITY(U,$J,358.3,38753,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,38753,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,38754,0)
+ ;;=L74.9^^151^1898^1
+ ;;^UTILITY(U,$J,358.3,38754,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38754,1,3,0)
+ ;;=3^Eccrine Sweat Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38754,1,4,0)
+ ;;=4^L74.9
+ ;;^UTILITY(U,$J,358.3,38754,2)
+ ;;=^5009296

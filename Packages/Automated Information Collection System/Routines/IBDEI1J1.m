@@ -1,136 +1,124 @@
-IBDEI1J1 ; ; 19-NOV-2015
+IBDEI1J1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25521,0)
- ;;=A92.30^^124^1247^149
- ;;^UTILITY(U,$J,358.3,25521,1,0)
+ ;;^UTILITY(U,$J,358.3,25914,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,25914,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,25915,0)
+ ;;=F01.50^^98^1213^31
+ ;;^UTILITY(U,$J,358.3,25915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25521,1,3,0)
- ;;=3^West Nile
- ;;^UTILITY(U,$J,358.3,25521,1,4,0)
- ;;=4^A92.30
- ;;^UTILITY(U,$J,358.3,25521,2)
- ;;=^5000443
- ;;^UTILITY(U,$J,358.3,25522,0)
- ;;=A41.4^^124^1247^110
- ;;^UTILITY(U,$J,358.3,25522,1,0)
+ ;;^UTILITY(U,$J,358.3,25915,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,25915,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,25915,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,25916,0)
+ ;;=F01.51^^98^1213^32
+ ;;^UTILITY(U,$J,358.3,25916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25522,1,3,0)
- ;;=3^Sepsis due to anaerobes
- ;;^UTILITY(U,$J,358.3,25522,1,4,0)
- ;;=4^A41.4
- ;;^UTILITY(U,$J,358.3,25522,2)
- ;;=^5000206
- ;;^UTILITY(U,$J,358.3,25523,0)
- ;;=Z16.30^^124^1247^49
- ;;^UTILITY(U,$J,358.3,25523,1,0)
+ ;;^UTILITY(U,$J,358.3,25916,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,25916,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,25916,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,25917,0)
+ ;;=F10.27^^98^1213^1
+ ;;^UTILITY(U,$J,358.3,25917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25523,1,3,0)
- ;;=3^Infection with drug-resistant organism
- ;;^UTILITY(U,$J,358.3,25523,1,4,0)
- ;;=4^Z16.30
- ;;^UTILITY(U,$J,358.3,25523,2)
- ;;=^5062737
- ;;^UTILITY(U,$J,358.3,25524,0)
- ;;=B96.4^^124^1247^104
- ;;^UTILITY(U,$J,358.3,25524,1,0)
+ ;;^UTILITY(U,$J,358.3,25917,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,25917,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,25917,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,25918,0)
+ ;;=F19.97^^98^1213^37
+ ;;^UTILITY(U,$J,358.3,25918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25524,1,3,0)
- ;;=3^Proteus spp. (other)
- ;;^UTILITY(U,$J,358.3,25524,1,4,0)
- ;;=4^B96.4
- ;;^UTILITY(U,$J,358.3,25524,2)
- ;;=^5000853
- ;;^UTILITY(U,$J,358.3,25525,0)
- ;;=B96.5^^124^1247^105
- ;;^UTILITY(U,$J,358.3,25525,1,0)
+ ;;^UTILITY(U,$J,358.3,25918,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,25918,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,25918,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,25919,0)
+ ;;=F02.80^^98^1213^13
+ ;;^UTILITY(U,$J,358.3,25919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25525,1,3,0)
- ;;=3^Pseudomonas spp.(other)
- ;;^UTILITY(U,$J,358.3,25525,1,4,0)
- ;;=4^B96.5
- ;;^UTILITY(U,$J,358.3,25525,2)
- ;;=^5000854
- ;;^UTILITY(U,$J,358.3,25526,0)
- ;;=B95.8^^124^1247^121
- ;;^UTILITY(U,$J,358.3,25526,1,0)
+ ;;^UTILITY(U,$J,358.3,25919,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,25919,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,25919,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,25920,0)
+ ;;=F02.81^^98^1213^14
+ ;;^UTILITY(U,$J,358.3,25920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25526,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-susceptible
- ;;^UTILITY(U,$J,358.3,25526,1,4,0)
- ;;=4^B95.8
- ;;^UTILITY(U,$J,358.3,25526,2)
- ;;=^5000844
- ;;^UTILITY(U,$J,358.3,25527,0)
- ;;=B95.61^^124^1247^120
- ;;^UTILITY(U,$J,358.3,25527,1,0)
+ ;;^UTILITY(U,$J,358.3,25920,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,25920,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,25920,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,25921,0)
+ ;;=F06.8^^98^1213^24
+ ;;^UTILITY(U,$J,358.3,25921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25527,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-resistant
- ;;^UTILITY(U,$J,358.3,25527,1,4,0)
- ;;=4^B95.61
- ;;^UTILITY(U,$J,358.3,25527,2)
- ;;=^5000841
- ;;^UTILITY(U,$J,358.3,25528,0)
- ;;=B95.7^^124^1247^122
- ;;^UTILITY(U,$J,358.3,25528,1,0)
+ ;;^UTILITY(U,$J,358.3,25921,1,3,0)
+ ;;=3^Mental Disorder d/t Another Medical Condition NEC
+ ;;^UTILITY(U,$J,358.3,25921,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,25921,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,25922,0)
+ ;;=G30.9^^98^1213^5
+ ;;^UTILITY(U,$J,358.3,25922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25528,1,3,0)
- ;;=3^Staphylococcus spp.(other)
- ;;^UTILITY(U,$J,358.3,25528,1,4,0)
- ;;=4^B95.7
- ;;^UTILITY(U,$J,358.3,25528,2)
- ;;=^5000843
- ;;^UTILITY(U,$J,358.3,25529,0)
- ;;=B95.0^^124^1247^125
- ;;^UTILITY(U,$J,358.3,25529,1,0)
+ ;;^UTILITY(U,$J,358.3,25922,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,25922,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,25922,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,25923,0)
+ ;;=G31.9^^98^1213^23
+ ;;^UTILITY(U,$J,358.3,25923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25529,1,3,0)
- ;;=3^Streptococcus, Group A
- ;;^UTILITY(U,$J,358.3,25529,1,4,0)
- ;;=4^B95.0
- ;;^UTILITY(U,$J,358.3,25529,2)
- ;;=^5000835
- ;;^UTILITY(U,$J,358.3,25530,0)
- ;;=B95.1^^124^1247^126
- ;;^UTILITY(U,$J,358.3,25530,1,0)
+ ;;^UTILITY(U,$J,358.3,25923,1,3,0)
+ ;;=3^Major Neurocognitive Disorder d/t Alzheimer's Disease,Possible
+ ;;^UTILITY(U,$J,358.3,25923,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,25923,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,25924,0)
+ ;;=G31.01^^98^1213^30
+ ;;^UTILITY(U,$J,358.3,25924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25530,1,3,0)
- ;;=3^Streptococcus, Group B
- ;;^UTILITY(U,$J,358.3,25530,1,4,0)
- ;;=4^B95.1
- ;;^UTILITY(U,$J,358.3,25530,2)
- ;;=^5000836
- ;;^UTILITY(U,$J,358.3,25531,0)
- ;;=B95.3^^124^1247^123
- ;;^UTILITY(U,$J,358.3,25531,1,0)
+ ;;^UTILITY(U,$J,358.3,25924,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,25924,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,25924,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,25925,0)
+ ;;=G31.1^^98^1213^36
+ ;;^UTILITY(U,$J,358.3,25925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25531,1,3,0)
- ;;=3^Streptococcus pneumoniae
- ;;^UTILITY(U,$J,358.3,25531,1,4,0)
- ;;=4^B95.3
- ;;^UTILITY(U,$J,358.3,25531,2)
- ;;=^5000838
- ;;^UTILITY(U,$J,358.3,25532,0)
- ;;=B95.4^^124^1247^124
- ;;^UTILITY(U,$J,358.3,25532,1,0)
+ ;;^UTILITY(U,$J,358.3,25925,1,3,0)
+ ;;=3^Senile Degeneration of the Brain NOS
+ ;;^UTILITY(U,$J,358.3,25925,1,4,0)
+ ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,25925,2)
+ ;;=^5003809
+ ;;^UTILITY(U,$J,358.3,25926,0)
+ ;;=G94.^^98^1213^7
+ ;;^UTILITY(U,$J,358.3,25926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25532,1,3,0)
- ;;=3^Streptococcus spp. (other)
- ;;^UTILITY(U,$J,358.3,25532,1,4,0)
- ;;=4^B95.4
- ;;^UTILITY(U,$J,358.3,25532,2)
- ;;=^5000839
- ;;^UTILITY(U,$J,358.3,25533,0)
- ;;=A02.0^^124^1247^108
- ;;^UTILITY(U,$J,358.3,25533,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25533,1,3,0)
- ;;=3^Salmonella enteritis
- ;;^UTILITY(U,$J,358.3,25533,1,4,0)
- ;;=4^A02.0
- ;;^UTILITY(U,$J,358.3,25533,2)
- ;;=^5000011
- ;;^UTILITY(U,$J,358.3,25534,0)
- ;;=A41.2^^124^1247^111
+ ;;^UTILITY(U,$J,358.3,25926,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC

@@ -1,120 +1,134 @@
-IBDEI250 ; ; 19-NOV-2015
+IBDEI250 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35863,0)
- ;;=O36.0925^^166^1827^193
- ;;^UTILITY(U,$J,358.3,35863,1,0)
+ ;;^UTILITY(U,$J,358.3,36261,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,36261,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,36262,0)
+ ;;=C34.12^^137^1755^50
+ ;;^UTILITY(U,$J,358.3,36262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35863,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,35863,1,4,0)
- ;;=4^O36.0925
- ;;^UTILITY(U,$J,358.3,35863,2)
- ;;=^5016881
- ;;^UTILITY(U,$J,358.3,35864,0)
- ;;=O36.0930^^166^1827^194
- ;;^UTILITY(U,$J,358.3,35864,1,0)
+ ;;^UTILITY(U,$J,358.3,36262,1,3,0)
+ ;;=3^Malig Neop Upper Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36262,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,36262,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,36263,0)
+ ;;=C34.2^^137^1755^44
+ ;;^UTILITY(U,$J,358.3,36263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35864,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,35864,1,4,0)
- ;;=4^O36.0930
- ;;^UTILITY(U,$J,358.3,35864,2)
- ;;=^5016882
- ;;^UTILITY(U,$J,358.3,35865,0)
- ;;=O36.0931^^166^1827^195
- ;;^UTILITY(U,$J,358.3,35865,1,0)
+ ;;^UTILITY(U,$J,358.3,36263,1,3,0)
+ ;;=3^Malig Neop Middle Lobe,Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36263,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,36263,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,36264,0)
+ ;;=C34.31^^137^1755^42
+ ;;^UTILITY(U,$J,358.3,36264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35865,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35865,1,4,0)
- ;;=4^O36.0931
- ;;^UTILITY(U,$J,358.3,35865,2)
- ;;=^5016883
- ;;^UTILITY(U,$J,358.3,35866,0)
- ;;=O36.0932^^166^1827^196
- ;;^UTILITY(U,$J,358.3,35866,1,0)
+ ;;^UTILITY(U,$J,358.3,36264,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36264,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,36264,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,36265,0)
+ ;;=C34.32^^137^1755^41
+ ;;^UTILITY(U,$J,358.3,36265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35866,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35866,1,4,0)
- ;;=4^O36.0932
- ;;^UTILITY(U,$J,358.3,35866,2)
- ;;=^5016884
- ;;^UTILITY(U,$J,358.3,35867,0)
- ;;=O36.0933^^166^1827^197
- ;;^UTILITY(U,$J,358.3,35867,1,0)
+ ;;^UTILITY(U,$J,358.3,36265,1,3,0)
+ ;;=3^Malig Neop Lower Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36265,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,36265,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,36266,0)
+ ;;=C34.81^^137^1755^46
+ ;;^UTILITY(U,$J,358.3,36266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35867,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35867,1,4,0)
- ;;=4^O36.0933
- ;;^UTILITY(U,$J,358.3,35867,2)
- ;;=^5016885
- ;;^UTILITY(U,$J,358.3,35868,0)
- ;;=O36.0934^^166^1827^198
- ;;^UTILITY(U,$J,358.3,35868,1,0)
+ ;;^UTILITY(U,$J,358.3,36266,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36266,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,36266,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,36267,0)
+ ;;=C34.82^^137^1755^45
+ ;;^UTILITY(U,$J,358.3,36267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35868,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,35868,1,4,0)
- ;;=4^O36.0934
- ;;^UTILITY(U,$J,358.3,35868,2)
- ;;=^5016886
- ;;^UTILITY(U,$J,358.3,35869,0)
- ;;=O36.0935^^166^1827^199
- ;;^UTILITY(U,$J,358.3,35869,1,0)
+ ;;^UTILITY(U,$J,358.3,36267,1,3,0)
+ ;;=3^Malig Neop Overlapping Sites,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36267,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,36267,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,36268,0)
+ ;;=C34.91^^137^1755^49
+ ;;^UTILITY(U,$J,358.3,36268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35869,1,3,0)
- ;;=3^Maternal care for oth rhesus isoimmun, third tri, fetus 5
- ;;^UTILITY(U,$J,358.3,35869,1,4,0)
- ;;=4^O36.0935
- ;;^UTILITY(U,$J,358.3,35869,2)
- ;;=^5016887
- ;;^UTILITY(U,$J,358.3,35870,0)
- ;;=O36.1110^^166^1827^19
- ;;^UTILITY(U,$J,358.3,35870,1,0)
+ ;;^UTILITY(U,$J,358.3,36268,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36268,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,36268,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,36269,0)
+ ;;=C34.92^^137^1755^48
+ ;;^UTILITY(U,$J,358.3,36269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35870,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, first tri, unsp
- ;;^UTILITY(U,$J,358.3,35870,1,4,0)
- ;;=4^O36.1110
- ;;^UTILITY(U,$J,358.3,35870,2)
- ;;=^5016893
- ;;^UTILITY(U,$J,358.3,35871,0)
- ;;=O36.1111^^166^1827^20
- ;;^UTILITY(U,$J,358.3,35871,1,0)
+ ;;^UTILITY(U,$J,358.3,36269,1,3,0)
+ ;;=3^Malig Neop Unspec Part,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36269,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,36269,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,36270,0)
+ ;;=C38.4^^137^1755^47
+ ;;^UTILITY(U,$J,358.3,36270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35871,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35871,1,4,0)
- ;;=4^O36.1111
- ;;^UTILITY(U,$J,358.3,35871,2)
- ;;=^5016894
- ;;^UTILITY(U,$J,358.3,35872,0)
- ;;=O36.1112^^166^1827^21
- ;;^UTILITY(U,$J,358.3,35872,1,0)
+ ;;^UTILITY(U,$J,358.3,36270,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,36270,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,36270,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,36271,0)
+ ;;=C39.9^^137^1755^43
+ ;;^UTILITY(U,$J,358.3,36271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35872,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35872,1,4,0)
- ;;=4^O36.1112
- ;;^UTILITY(U,$J,358.3,35872,2)
- ;;=^5016895
- ;;^UTILITY(U,$J,358.3,35873,0)
- ;;=O36.1113^^166^1827^22
- ;;^UTILITY(U,$J,358.3,35873,1,0)
+ ;;^UTILITY(U,$J,358.3,36271,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract
+ ;;^UTILITY(U,$J,358.3,36271,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,36271,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,36272,0)
+ ;;=R76.11^^137^1755^87
+ ;;^UTILITY(U,$J,358.3,36272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35873,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35873,1,4,0)
- ;;=4^O36.1113
- ;;^UTILITY(U,$J,358.3,35873,2)
- ;;=^5016896
- ;;^UTILITY(U,$J,358.3,35874,0)
- ;;=O36.1114^^166^1827^23
- ;;^UTILITY(U,$J,358.3,35874,1,0)
+ ;;^UTILITY(U,$J,358.3,36272,1,3,0)
+ ;;=3^Reaction to Skin Test w/o Active TB
+ ;;^UTILITY(U,$J,358.3,36272,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,36272,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,36273,0)
+ ;;=E66.9^^137^1755^65
+ ;;^UTILITY(U,$J,358.3,36273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35874,1,3,0)
- ;;=3^Maternal care for Anti-A sensitization, first tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,36273,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,36273,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,36273,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,36274,0)
+ ;;=I26.99^^137^1755^79
+ ;;^UTILITY(U,$J,358.3,36274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36274,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale

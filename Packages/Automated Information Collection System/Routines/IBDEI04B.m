@@ -1,132 +1,134 @@
-IBDEI04B ; ; 19-NOV-2015
+IBDEI04B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1333,2)
- ;;=^5020541
- ;;^UTILITY(U,$J,358.3,1334,0)
- ;;=S04.61XS^^14^147^6
- ;;^UTILITY(U,$J,358.3,1334,1,0)
+ ;;^UTILITY(U,$J,358.3,1592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1334,1,3,0)
- ;;=3^Injury of acoustic nerve, right side, sequela
- ;;^UTILITY(U,$J,358.3,1334,1,4,0)
- ;;=4^S04.61XS
- ;;^UTILITY(U,$J,358.3,1334,2)
- ;;=^5020542
- ;;^UTILITY(U,$J,358.3,1335,0)
- ;;=S04.62XA^^14^147^1
- ;;^UTILITY(U,$J,358.3,1335,1,0)
+ ;;^UTILITY(U,$J,358.3,1592,1,3,0)
+ ;;=3^Complication of Vein Following Procedure NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1592,1,4,0)
+ ;;=4^T81.72XA
+ ;;^UTILITY(U,$J,358.3,1592,2)
+ ;;=^5054650
+ ;;^UTILITY(U,$J,358.3,1593,0)
+ ;;=T82.817A^^11^145^20
+ ;;^UTILITY(U,$J,358.3,1593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1335,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, initial encounter
- ;;^UTILITY(U,$J,358.3,1335,1,4,0)
- ;;=4^S04.62XA
- ;;^UTILITY(U,$J,358.3,1335,2)
- ;;=^5020543
- ;;^UTILITY(U,$J,358.3,1336,0)
- ;;=S04.62XD^^14^147^3
- ;;^UTILITY(U,$J,358.3,1336,1,0)
+ ;;^UTILITY(U,$J,358.3,1593,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1593,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,1593,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,1594,0)
+ ;;=T82.818A^^11^145^21
+ ;;^UTILITY(U,$J,358.3,1594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1336,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1336,1,4,0)
- ;;=4^S04.62XD
- ;;^UTILITY(U,$J,358.3,1336,2)
- ;;=^5020544
- ;;^UTILITY(U,$J,358.3,1337,0)
- ;;=S04.62XS^^14^147^2
- ;;^UTILITY(U,$J,358.3,1337,1,0)
+ ;;^UTILITY(U,$J,358.3,1594,1,3,0)
+ ;;=3^Embolism of Vascular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1594,1,4,0)
+ ;;=4^T82.818A
+ ;;^UTILITY(U,$J,358.3,1594,2)
+ ;;=^5054917
+ ;;^UTILITY(U,$J,358.3,1595,0)
+ ;;=I26.99^^11^145^49
+ ;;^UTILITY(U,$J,358.3,1595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1337,1,3,0)
- ;;=3^Injury of acoustic nerve, left side, sequela
- ;;^UTILITY(U,$J,358.3,1337,1,4,0)
- ;;=4^S04.62XS
- ;;^UTILITY(U,$J,358.3,1337,2)
- ;;=^5020545
- ;;^UTILITY(U,$J,358.3,1338,0)
- ;;=S04.9XXA^^14^147^7
- ;;^UTILITY(U,$J,358.3,1338,1,0)
+ ;;^UTILITY(U,$J,358.3,1595,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale NEC
+ ;;^UTILITY(U,$J,358.3,1595,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,1595,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,1596,0)
+ ;;=I27.0^^11^145^46
+ ;;^UTILITY(U,$J,358.3,1596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1338,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, initial encounter
- ;;^UTILITY(U,$J,358.3,1338,1,4,0)
- ;;=4^S04.9XXA
- ;;^UTILITY(U,$J,358.3,1338,2)
- ;;=^5020573
- ;;^UTILITY(U,$J,358.3,1339,0)
- ;;=S04.9XXD^^14^147^9
- ;;^UTILITY(U,$J,358.3,1339,1,0)
+ ;;^UTILITY(U,$J,358.3,1596,1,3,0)
+ ;;=3^Primary Pulmonary Hypertension
+ ;;^UTILITY(U,$J,358.3,1596,1,4,0)
+ ;;=4^I27.0
+ ;;^UTILITY(U,$J,358.3,1596,2)
+ ;;=^265310
+ ;;^UTILITY(U,$J,358.3,1597,0)
+ ;;=I27.1^^11^145^32
+ ;;^UTILITY(U,$J,358.3,1597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1339,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, subsequent encounter
- ;;^UTILITY(U,$J,358.3,1339,1,4,0)
- ;;=4^S04.9XXD
- ;;^UTILITY(U,$J,358.3,1339,2)
- ;;=^5020574
- ;;^UTILITY(U,$J,358.3,1340,0)
- ;;=S04.9XXS^^14^147^8
- ;;^UTILITY(U,$J,358.3,1340,1,0)
+ ;;^UTILITY(U,$J,358.3,1597,1,3,0)
+ ;;=3^Kyphoscoliotic Hrt Disease
+ ;;^UTILITY(U,$J,358.3,1597,1,4,0)
+ ;;=4^I27.1
+ ;;^UTILITY(U,$J,358.3,1597,2)
+ ;;=^265120
+ ;;^UTILITY(U,$J,358.3,1598,0)
+ ;;=I27.2^^11^145^52
+ ;;^UTILITY(U,$J,358.3,1598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1340,1,3,0)
- ;;=3^Injury of unspecified cranial nerve, sequela
- ;;^UTILITY(U,$J,358.3,1340,1,4,0)
- ;;=4^S04.9XXS
- ;;^UTILITY(U,$J,358.3,1340,2)
- ;;=^5020575
- ;;^UTILITY(U,$J,358.3,1341,0)
- ;;=H93.213^^14^148^5
- ;;^UTILITY(U,$J,358.3,1341,1,0)
+ ;;^UTILITY(U,$J,358.3,1598,1,3,0)
+ ;;=3^Secondary Pulmonary Hypertension NEC
+ ;;^UTILITY(U,$J,358.3,1598,1,4,0)
+ ;;=4^I27.2
+ ;;^UTILITY(U,$J,358.3,1598,2)
+ ;;=^5007151
+ ;;^UTILITY(U,$J,358.3,1599,0)
+ ;;=I27.89^^11^145^50
+ ;;^UTILITY(U,$J,358.3,1599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1341,1,3,0)
- ;;=3^Auditory recruitment, bilateral
- ;;^UTILITY(U,$J,358.3,1341,1,4,0)
- ;;=4^H93.213
- ;;^UTILITY(U,$J,358.3,1341,2)
- ;;=^5006970
- ;;^UTILITY(U,$J,358.3,1342,0)
- ;;=H93.212^^14^148^6
- ;;^UTILITY(U,$J,358.3,1342,1,0)
+ ;;^UTILITY(U,$J,358.3,1599,1,3,0)
+ ;;=3^Pulmonary Hrt Diseases NEC
+ ;;^UTILITY(U,$J,358.3,1599,1,4,0)
+ ;;=4^I27.89
+ ;;^UTILITY(U,$J,358.3,1599,2)
+ ;;=^5007153
+ ;;^UTILITY(U,$J,358.3,1600,0)
+ ;;=I27.81^^11^145^18
+ ;;^UTILITY(U,$J,358.3,1600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1342,1,3,0)
- ;;=3^Auditory recruitment, left ear
- ;;^UTILITY(U,$J,358.3,1342,1,4,0)
- ;;=4^H93.212
- ;;^UTILITY(U,$J,358.3,1342,2)
- ;;=^5006969
- ;;^UTILITY(U,$J,358.3,1343,0)
- ;;=H93.211^^14^148^7
- ;;^UTILITY(U,$J,358.3,1343,1,0)
+ ;;^UTILITY(U,$J,358.3,1600,1,3,0)
+ ;;=3^Cor Pulmonale,Chronic
+ ;;^UTILITY(U,$J,358.3,1600,1,4,0)
+ ;;=4^I27.81
+ ;;^UTILITY(U,$J,358.3,1600,2)
+ ;;=^5007152
+ ;;^UTILITY(U,$J,358.3,1601,0)
+ ;;=I42.1^^11^145^36
+ ;;^UTILITY(U,$J,358.3,1601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1343,1,3,0)
- ;;=3^Auditory recruitment, right ear
- ;;^UTILITY(U,$J,358.3,1343,1,4,0)
- ;;=4^H93.211
- ;;^UTILITY(U,$J,358.3,1343,2)
- ;;=^5006968
- ;;^UTILITY(U,$J,358.3,1344,0)
- ;;=H93.25^^14^148^8
- ;;^UTILITY(U,$J,358.3,1344,1,0)
+ ;;^UTILITY(U,$J,358.3,1601,1,3,0)
+ ;;=3^Obstructive Hypertrophic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,1601,1,4,0)
+ ;;=4^I42.1
+ ;;^UTILITY(U,$J,358.3,1601,2)
+ ;;=^340520
+ ;;^UTILITY(U,$J,358.3,1602,0)
+ ;;=I42.2^^11^145^31
+ ;;^UTILITY(U,$J,358.3,1602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1344,1,3,0)
- ;;=3^Central auditory processing disorder
- ;;^UTILITY(U,$J,358.3,1344,1,4,0)
- ;;=4^H93.25
- ;;^UTILITY(U,$J,358.3,1344,2)
- ;;=^5006984
- ;;^UTILITY(U,$J,358.3,1345,0)
- ;;=H93.223^^14^148^9
- ;;^UTILITY(U,$J,358.3,1345,1,0)
+ ;;^UTILITY(U,$J,358.3,1602,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,1602,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,1602,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,1603,0)
+ ;;=I42.5^^11^145^51
+ ;;^UTILITY(U,$J,358.3,1603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1345,1,3,0)
- ;;=3^Diplacusis, bilateral
- ;;^UTILITY(U,$J,358.3,1345,1,4,0)
- ;;=4^H93.223
- ;;^UTILITY(U,$J,358.3,1345,2)
- ;;=^5006974
- ;;^UTILITY(U,$J,358.3,1346,0)
- ;;=H93.222^^14^148^10
- ;;^UTILITY(U,$J,358.3,1346,1,0)
+ ;;^UTILITY(U,$J,358.3,1603,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,1603,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,1603,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,1604,0)
+ ;;=I42.6^^11^145^4
+ ;;^UTILITY(U,$J,358.3,1604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1346,1,3,0)
- ;;=3^Diplacusis, left ear
+ ;;^UTILITY(U,$J,358.3,1604,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,1604,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,1604,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,1605,0)
+ ;;=I43.^^11^145^8

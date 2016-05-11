@@ -1,136 +1,134 @@
-IBDEI1N8 ; ; 19-NOV-2015
+IBDEI1N8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27495,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,27496,0)
- ;;=N47.1^^132^1316^78
- ;;^UTILITY(U,$J,358.3,27496,1,0)
+ ;;^UTILITY(U,$J,358.3,27891,2)
+ ;;=^53405
+ ;;^UTILITY(U,$J,358.3,27892,0)
+ ;;=G61.81^^109^1391^4
+ ;;^UTILITY(U,$J,358.3,27892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27496,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,27496,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,27496,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,27497,0)
- ;;=N47.3^^132^1316^24
- ;;^UTILITY(U,$J,358.3,27497,1,0)
+ ;;^UTILITY(U,$J,358.3,27892,1,3,0)
+ ;;=3^Chronic Inflammatory Demyelinating Polyneuritis
+ ;;^UTILITY(U,$J,358.3,27892,1,4,0)
+ ;;=4^G61.81
+ ;;^UTILITY(U,$J,358.3,27892,2)
+ ;;=^328480
+ ;;^UTILITY(U,$J,358.3,27893,0)
+ ;;=D86.81^^109^1391^9
+ ;;^UTILITY(U,$J,358.3,27893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27497,1,3,0)
- ;;=3^Deficient Foreskin
- ;;^UTILITY(U,$J,358.3,27497,1,4,0)
- ;;=4^N47.3
- ;;^UTILITY(U,$J,358.3,27497,2)
- ;;=^5015726
- ;;^UTILITY(U,$J,358.3,27498,0)
- ;;=N47.5^^132^1316^1
- ;;^UTILITY(U,$J,358.3,27498,1,0)
+ ;;^UTILITY(U,$J,358.3,27893,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,27893,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,27893,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,27894,0)
+ ;;=G51.0^^109^1392^2
+ ;;^UTILITY(U,$J,358.3,27894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27498,1,3,0)
- ;;=3^Adhesions Prepuce & Glans Penis
- ;;^UTILITY(U,$J,358.3,27498,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,27498,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,27499,0)
- ;;=N47.4^^132^1316^19
- ;;^UTILITY(U,$J,358.3,27499,1,0)
+ ;;^UTILITY(U,$J,358.3,27894,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,27894,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,27894,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,27895,0)
+ ;;=G54.0^^109^1392^3
+ ;;^UTILITY(U,$J,358.3,27895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27499,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,27499,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,27499,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,27500,0)
- ;;=N47.8^^132^1316^25
- ;;^UTILITY(U,$J,358.3,27500,1,0)
+ ;;^UTILITY(U,$J,358.3,27895,1,3,0)
+ ;;=3^Brachial Plexus Disorders
+ ;;^UTILITY(U,$J,358.3,27895,1,4,0)
+ ;;=4^G54.0
+ ;;^UTILITY(U,$J,358.3,27895,2)
+ ;;=^5004007
+ ;;^UTILITY(U,$J,358.3,27896,0)
+ ;;=G56.00^^109^1392^4
+ ;;^UTILITY(U,$J,358.3,27896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27500,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,27500,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,27500,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,27501,0)
- ;;=N47.7^^132^1316^58
- ;;^UTILITY(U,$J,358.3,27501,1,0)
+ ;;^UTILITY(U,$J,358.3,27896,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Unspec Upper Limb
+ ;;^UTILITY(U,$J,358.3,27896,1,4,0)
+ ;;=4^G56.00
+ ;;^UTILITY(U,$J,358.3,27896,2)
+ ;;=^5004017
+ ;;^UTILITY(U,$J,358.3,27897,0)
+ ;;=G56.20^^109^1392^14
+ ;;^UTILITY(U,$J,358.3,27897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27501,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,27501,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,27501,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,27502,0)
- ;;=N47.6^^132^1316^3
- ;;^UTILITY(U,$J,358.3,27502,1,0)
+ ;;^UTILITY(U,$J,358.3,27897,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Unspec Upper Limb
+ ;;^UTILITY(U,$J,358.3,27897,1,4,0)
+ ;;=4^G56.20
+ ;;^UTILITY(U,$J,358.3,27897,2)
+ ;;=^5004023
+ ;;^UTILITY(U,$J,358.3,27898,0)
+ ;;=G56.90^^109^1392^18
+ ;;^UTILITY(U,$J,358.3,27898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27502,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,27502,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,27502,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,27503,0)
- ;;=N48.1^^132^1316^2
- ;;^UTILITY(U,$J,358.3,27503,1,0)
+ ;;^UTILITY(U,$J,358.3,27898,1,3,0)
+ ;;=3^Mononeuropathy,Unspec Upper Limb
+ ;;^UTILITY(U,$J,358.3,27898,1,4,0)
+ ;;=4^G56.90
+ ;;^UTILITY(U,$J,358.3,27898,2)
+ ;;=^5004035
+ ;;^UTILITY(U,$J,358.3,27899,0)
+ ;;=G57.00^^109^1392^13
+ ;;^UTILITY(U,$J,358.3,27899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27503,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,27503,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,27503,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,27504,0)
- ;;=N52.34^^132^1316^38
- ;;^UTILITY(U,$J,358.3,27504,1,0)
+ ;;^UTILITY(U,$J,358.3,27899,1,3,0)
+ ;;=3^Lesion Sciatic Nerve,Unspec Lower Limb
+ ;;^UTILITY(U,$J,358.3,27899,1,4,0)
+ ;;=4^G57.00
+ ;;^UTILITY(U,$J,358.3,27899,2)
+ ;;=^5004038
+ ;;^UTILITY(U,$J,358.3,27900,0)
+ ;;=G57.10^^109^1392^15
+ ;;^UTILITY(U,$J,358.3,27900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27504,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,27504,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,27504,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,27505,0)
- ;;=N52.39^^132^1316^40
- ;;^UTILITY(U,$J,358.3,27505,1,0)
+ ;;^UTILITY(U,$J,358.3,27900,1,3,0)
+ ;;=3^Meralgia Paresthetica,Unspec Lower Limb
+ ;;^UTILITY(U,$J,358.3,27900,1,4,0)
+ ;;=4^G57.10
+ ;;^UTILITY(U,$J,358.3,27900,2)
+ ;;=^5004041
+ ;;^UTILITY(U,$J,358.3,27901,0)
+ ;;=G57.90^^109^1392^17
+ ;;^UTILITY(U,$J,358.3,27901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27505,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,27505,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,27505,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,27506,0)
- ;;=N52.33^^132^1316^39
- ;;^UTILITY(U,$J,358.3,27506,1,0)
+ ;;^UTILITY(U,$J,358.3,27901,1,3,0)
+ ;;=3^Mononeuropathy,Unspec Lower Limb
+ ;;^UTILITY(U,$J,358.3,27901,1,4,0)
+ ;;=4^G57.90
+ ;;^UTILITY(U,$J,358.3,27901,2)
+ ;;=^5004061
+ ;;^UTILITY(U,$J,358.3,27902,0)
+ ;;=G58.7^^109^1392^16
+ ;;^UTILITY(U,$J,358.3,27902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27506,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,27506,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,27506,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,27507,0)
- ;;=N52.32^^132^1316^36
- ;;^UTILITY(U,$J,358.3,27507,1,0)
+ ;;^UTILITY(U,$J,358.3,27902,1,3,0)
+ ;;=3^Mononeuritis Multiplex
+ ;;^UTILITY(U,$J,358.3,27902,1,4,0)
+ ;;=4^G58.7
+ ;;^UTILITY(U,$J,358.3,27902,2)
+ ;;=^5004063
+ ;;^UTILITY(U,$J,358.3,27903,0)
+ ;;=G60.0^^109^1392^8
+ ;;^UTILITY(U,$J,358.3,27903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27507,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,27507,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,27507,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,27508,0)
- ;;=N52.31^^132^1316^37
- ;;^UTILITY(U,$J,358.3,27508,1,0)
+ ;;^UTILITY(U,$J,358.3,27903,1,3,0)
+ ;;=3^Hereditary Motor & Sensory Neuropathy
+ ;;^UTILITY(U,$J,358.3,27903,1,4,0)
+ ;;=4^G60.0
+ ;;^UTILITY(U,$J,358.3,27903,2)
+ ;;=^5004067
+ ;;^UTILITY(U,$J,358.3,27904,0)
+ ;;=G60.3^^109^1392^9
+ ;;^UTILITY(U,$J,358.3,27904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27508,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,27508,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,27508,2)
- ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,27904,1,3,0)
+ ;;=3^Idiopathic Progressive Neuropathy
+ ;;^UTILITY(U,$J,358.3,27904,1,4,0)
+ ;;=4^G60.3

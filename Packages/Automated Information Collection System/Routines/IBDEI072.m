@@ -1,132 +1,138 @@
-IBDEI072 ; ; 19-NOV-2015
+IBDEI072 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2725,1,0)
+ ;;^UTILITY(U,$J,358.3,2989,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2989,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,2989,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,2990,0)
+ ;;=H91.91^^18^211^8
+ ;;^UTILITY(U,$J,358.3,2990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2725,1,3,0)
- ;;=3^Unequal limb length (acq), rt tibia
- ;;^UTILITY(U,$J,358.3,2725,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,2725,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,2726,0)
- ;;=M21.762^^25^225^111
- ;;^UTILITY(U,$J,358.3,2726,1,0)
+ ;;^UTILITY(U,$J,358.3,2990,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2990,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,2990,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,2991,0)
+ ;;=H60.93^^18^211^11
+ ;;^UTILITY(U,$J,358.3,2991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2726,1,3,0)
- ;;=3^Unequal limb length (acq), lft tibia
- ;;^UTILITY(U,$J,358.3,2726,1,4,0)
- ;;=4^M21.762
- ;;^UTILITY(U,$J,358.3,2726,2)
- ;;=^5011144
- ;;^UTILITY(U,$J,358.3,2727,0)
- ;;=M21.763^^25^225^112
- ;;^UTILITY(U,$J,358.3,2727,1,0)
+ ;;^UTILITY(U,$J,358.3,2991,1,3,0)
+ ;;=3^Otitis Externa,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,2991,1,4,0)
+ ;;=4^H60.93
+ ;;^UTILITY(U,$J,358.3,2991,2)
+ ;;=^5006498
+ ;;^UTILITY(U,$J,358.3,2992,0)
+ ;;=H60.92^^18^211^12
+ ;;^UTILITY(U,$J,358.3,2992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2727,1,3,0)
- ;;=3^Unequal limb length (acq), right fibula
- ;;^UTILITY(U,$J,358.3,2727,1,4,0)
- ;;=4^M21.763
- ;;^UTILITY(U,$J,358.3,2727,2)
- ;;=^5011145
- ;;^UTILITY(U,$J,358.3,2728,0)
- ;;=M21.764^^25^225^110
- ;;^UTILITY(U,$J,358.3,2728,1,0)
+ ;;^UTILITY(U,$J,358.3,2992,1,3,0)
+ ;;=3^Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2992,1,4,0)
+ ;;=4^H60.92
+ ;;^UTILITY(U,$J,358.3,2992,2)
+ ;;=^5133525
+ ;;^UTILITY(U,$J,358.3,2993,0)
+ ;;=H60.91^^18^211^14
+ ;;^UTILITY(U,$J,358.3,2993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2728,1,3,0)
- ;;=3^Unequal limb length (acq), lft fibula
- ;;^UTILITY(U,$J,358.3,2728,1,4,0)
- ;;=4^M21.764
- ;;^UTILITY(U,$J,358.3,2728,2)
- ;;=^5011146
- ;;^UTILITY(U,$J,358.3,2729,0)
- ;;=M21.769^^25^225^115
- ;;^UTILITY(U,$J,358.3,2729,1,0)
+ ;;^UTILITY(U,$J,358.3,2993,1,3,0)
+ ;;=3^Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2993,1,4,0)
+ ;;=4^H60.91
+ ;;^UTILITY(U,$J,358.3,2993,2)
+ ;;=^5133524
+ ;;^UTILITY(U,$J,358.3,2994,0)
+ ;;=H66.93^^18^211^16
+ ;;^UTILITY(U,$J,358.3,2994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2729,1,3,0)
- ;;=3^Unequal limb length (acq), tibia/fibula, unspec
- ;;^UTILITY(U,$J,358.3,2729,1,4,0)
- ;;=4^M21.769
- ;;^UTILITY(U,$J,358.3,2729,2)
- ;;=^5011147
- ;;^UTILITY(U,$J,358.3,2730,0)
- ;;=M99.86^^25^225^8
- ;;^UTILITY(U,$J,358.3,2730,1,0)
+ ;;^UTILITY(U,$J,358.3,2994,1,3,0)
+ ;;=3^Otitis Media,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,2994,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,2994,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,2995,0)
+ ;;=H66.92^^18^211^13
+ ;;^UTILITY(U,$J,358.3,2995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2730,1,3,0)
- ;;=3^Biomech lesions of lwr extr
- ;;^UTILITY(U,$J,358.3,2730,1,4,0)
- ;;=4^M99.86
- ;;^UTILITY(U,$J,358.3,2730,2)
- ;;=^5015486
- ;;^UTILITY(U,$J,358.3,2731,0)
- ;;=M99.87^^25^225^9
- ;;^UTILITY(U,$J,358.3,2731,1,0)
+ ;;^UTILITY(U,$J,358.3,2995,1,3,0)
+ ;;=3^Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2995,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,2995,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,2996,0)
+ ;;=H66.91^^18^211^15
+ ;;^UTILITY(U,$J,358.3,2996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2731,1,3,0)
- ;;=3^Biomechl lesions of upr extr
- ;;^UTILITY(U,$J,358.3,2731,1,4,0)
- ;;=4^M99.87
- ;;^UTILITY(U,$J,358.3,2731,2)
- ;;=^5015487
- ;;^UTILITY(U,$J,358.3,2732,0)
- ;;=M99.89^^25^225^7
- ;;^UTILITY(U,$J,358.3,2732,1,0)
+ ;;^UTILITY(U,$J,358.3,2996,1,3,0)
+ ;;=3^Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,2996,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,2996,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,2997,0)
+ ;;=H81.01^^18^212^3
+ ;;^UTILITY(U,$J,358.3,2997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2732,1,3,0)
- ;;=3^Biomech lesions of abdmn & oth regns
- ;;^UTILITY(U,$J,358.3,2732,1,4,0)
- ;;=4^M99.89
- ;;^UTILITY(U,$J,358.3,2732,2)
- ;;=^5015489
- ;;^UTILITY(U,$J,358.3,2733,0)
- ;;=G44.221^^25^226^2
- ;;^UTILITY(U,$J,358.3,2733,1,0)
+ ;;^UTILITY(U,$J,358.3,2997,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,2997,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,2997,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,2998,0)
+ ;;=H81.02^^18^212^2
+ ;;^UTILITY(U,$J,358.3,2998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2733,1,3,0)
- ;;=3^Chronic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2733,1,4,0)
- ;;=4^G44.221
- ;;^UTILITY(U,$J,358.3,2733,2)
- ;;=^5003939
- ;;^UTILITY(U,$J,358.3,2734,0)
- ;;=G44.229^^25^226^3
- ;;^UTILITY(U,$J,358.3,2734,1,0)
+ ;;^UTILITY(U,$J,358.3,2998,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,2998,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,2998,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,2999,0)
+ ;;=H81.03^^18^212^1
+ ;;^UTILITY(U,$J,358.3,2999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2734,1,3,0)
- ;;=3^Chronic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2734,1,4,0)
- ;;=4^G44.229
- ;;^UTILITY(U,$J,358.3,2734,2)
- ;;=^5003940
- ;;^UTILITY(U,$J,358.3,2735,0)
- ;;=G44.211^^25^226^4
- ;;^UTILITY(U,$J,358.3,2735,1,0)
+ ;;^UTILITY(U,$J,358.3,2999,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,2999,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,2999,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,3000,0)
+ ;;=H81.21^^18^212^6
+ ;;^UTILITY(U,$J,358.3,3000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2735,1,3,0)
- ;;=3^Episodic tension-type headache, intractable
- ;;^UTILITY(U,$J,358.3,2735,1,4,0)
- ;;=4^G44.211
- ;;^UTILITY(U,$J,358.3,2735,2)
- ;;=^5003937
- ;;^UTILITY(U,$J,358.3,2736,0)
- ;;=G44.219^^25^226^5
- ;;^UTILITY(U,$J,358.3,2736,1,0)
+ ;;^UTILITY(U,$J,358.3,3000,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Right Ear
+ ;;^UTILITY(U,$J,358.3,3000,1,4,0)
+ ;;=4^H81.21
+ ;;^UTILITY(U,$J,358.3,3000,2)
+ ;;=^5006869
+ ;;^UTILITY(U,$J,358.3,3001,0)
+ ;;=H81.22^^18^212^5
+ ;;^UTILITY(U,$J,358.3,3001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2736,1,3,0)
- ;;=3^Episodic tension-type headache, not intractable
- ;;^UTILITY(U,$J,358.3,2736,1,4,0)
- ;;=4^G44.219
- ;;^UTILITY(U,$J,358.3,2736,2)
- ;;=^5003938
- ;;^UTILITY(U,$J,358.3,2737,0)
- ;;=G43.109^^25^226^7
- ;;^UTILITY(U,$J,358.3,2737,1,0)
+ ;;^UTILITY(U,$J,358.3,3001,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Left Ear
+ ;;^UTILITY(U,$J,358.3,3001,1,4,0)
+ ;;=4^H81.22
+ ;;^UTILITY(U,$J,358.3,3001,2)
+ ;;=^5006870
+ ;;^UTILITY(U,$J,358.3,3002,0)
+ ;;=H81.23^^18^212^4
+ ;;^UTILITY(U,$J,358.3,3002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2737,1,3,0)
- ;;=3^Migraine with aura, not intractable, w/o status migrainosus
- ;;^UTILITY(U,$J,358.3,2737,1,4,0)
- ;;=4^G43.109
- ;;^UTILITY(U,$J,358.3,2737,2)
- ;;=^5003881
+ ;;^UTILITY(U,$J,358.3,3002,1,3,0)
+ ;;=3^Neuronitis,Vestibular,Bilateral
+ ;;^UTILITY(U,$J,358.3,3002,1,4,0)
+ ;;=4^H81.23

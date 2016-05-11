@@ -1,136 +1,132 @@
-IBDEI1OC ; ; 19-NOV-2015
+IBDEI1OC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28012,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,28012,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,28012,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,28013,0)
- ;;=M86.60^^132^1322^61
- ;;^UTILITY(U,$J,358.3,28013,1,0)
+ ;;^UTILITY(U,$J,358.3,28445,1,3,0)
+ ;;=3^DM Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,28445,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,28445,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,28446,0)
+ ;;=E11.641^^112^1421^16
+ ;;^UTILITY(U,$J,358.3,28446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28013,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,28013,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,28013,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,28014,0)
- ;;=M86.40^^132^1322^56
- ;;^UTILITY(U,$J,358.3,28014,1,0)
+ ;;^UTILITY(U,$J,358.3,28446,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,28446,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,28446,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,28447,0)
+ ;;=E11.649^^112^1421^17
+ ;;^UTILITY(U,$J,358.3,28447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28014,1,3,0)
- ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,28014,1,4,0)
- ;;=4^M86.40
- ;;^UTILITY(U,$J,358.3,28014,2)
- ;;=^5014583
- ;;^UTILITY(U,$J,358.3,28015,0)
- ;;=R50.2^^132^1322^23
- ;;^UTILITY(U,$J,358.3,28015,1,0)
+ ;;^UTILITY(U,$J,358.3,28447,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,28447,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,28447,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,28448,0)
+ ;;=H40.11X0^^112^1422^9
+ ;;^UTILITY(U,$J,358.3,28448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28015,1,3,0)
- ;;=3^Fever,Drug-Induced
- ;;^UTILITY(U,$J,358.3,28015,1,4,0)
- ;;=4^R50.2
- ;;^UTILITY(U,$J,358.3,28015,2)
- ;;=^5019507
- ;;^UTILITY(U,$J,358.3,28016,0)
- ;;=R50.9^^132^1322^27
- ;;^UTILITY(U,$J,358.3,28016,1,0)
+ ;;^UTILITY(U,$J,358.3,28448,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,28448,1,4,0)
+ ;;=4^H40.11X0
+ ;;^UTILITY(U,$J,358.3,28448,2)
+ ;;=^5005753
+ ;;^UTILITY(U,$J,358.3,28449,0)
+ ;;=H40.11X1^^112^1422^6
+ ;;^UTILITY(U,$J,358.3,28449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28016,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,28016,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,28016,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,28017,0)
- ;;=R76.11^^132^1322^1
- ;;^UTILITY(U,$J,358.3,28017,1,0)
+ ;;^UTILITY(U,$J,358.3,28449,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
+ ;;^UTILITY(U,$J,358.3,28449,1,4,0)
+ ;;=4^H40.11X1
+ ;;^UTILITY(U,$J,358.3,28449,2)
+ ;;=^5005754
+ ;;^UTILITY(U,$J,358.3,28450,0)
+ ;;=H40.11X2^^112^1422^7
+ ;;^UTILITY(U,$J,358.3,28450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28017,1,3,0)
- ;;=3^Abnormal Reaction to TB Test w/o Active TB
- ;;^UTILITY(U,$J,358.3,28017,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,28017,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,28018,0)
- ;;=Z21.^^132^1322^30
- ;;^UTILITY(U,$J,358.3,28018,1,0)
+ ;;^UTILITY(U,$J,358.3,28450,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,28450,1,4,0)
+ ;;=4^H40.11X2
+ ;;^UTILITY(U,$J,358.3,28450,2)
+ ;;=^5005755
+ ;;^UTILITY(U,$J,358.3,28451,0)
+ ;;=H40.11X3^^112^1422^8
+ ;;^UTILITY(U,$J,358.3,28451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28018,1,3,0)
- ;;=3^HIV Asymptomatic,Infection Status
- ;;^UTILITY(U,$J,358.3,28018,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,28018,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,28019,0)
- ;;=B37.0^^132^1322^16
- ;;^UTILITY(U,$J,358.3,28019,1,0)
+ ;;^UTILITY(U,$J,358.3,28451,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Severe Stage
+ ;;^UTILITY(U,$J,358.3,28451,1,4,0)
+ ;;=4^H40.11X3
+ ;;^UTILITY(U,$J,358.3,28451,2)
+ ;;=^5005756
+ ;;^UTILITY(U,$J,358.3,28452,0)
+ ;;=H40.11X4^^112^1422^5
+ ;;^UTILITY(U,$J,358.3,28452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28019,1,3,0)
- ;;=3^Candidal Stomatitis (Oral Thrush)
- ;;^UTILITY(U,$J,358.3,28019,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,28019,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,28020,0)
- ;;=B97.10^^132^1322^22
- ;;^UTILITY(U,$J,358.3,28020,1,0)
+ ;;^UTILITY(U,$J,358.3,28452,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,28452,1,4,0)
+ ;;=4^H40.11X4
+ ;;^UTILITY(U,$J,358.3,28452,2)
+ ;;=^5005757
+ ;;^UTILITY(U,$J,358.3,28453,0)
+ ;;=H11.33^^112^1422^2
+ ;;^UTILITY(U,$J,358.3,28453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28020,1,3,0)
- ;;=3^Enterovirus,Unspec,as Cause of Disease
- ;;^UTILITY(U,$J,358.3,28020,1,4,0)
- ;;=4^B97.10
- ;;^UTILITY(U,$J,358.3,28020,2)
- ;;=^5000861
- ;;^UTILITY(U,$J,358.3,28021,0)
- ;;=R50.82^^132^1322^24
- ;;^UTILITY(U,$J,358.3,28021,1,0)
+ ;;^UTILITY(U,$J,358.3,28453,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,28453,1,4,0)
+ ;;=4^H11.33
+ ;;^UTILITY(U,$J,358.3,28453,2)
+ ;;=^5004784
+ ;;^UTILITY(U,$J,358.3,28454,0)
+ ;;=H11.31^^112^1422^4
+ ;;^UTILITY(U,$J,358.3,28454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28021,1,3,0)
- ;;=3^Fever,Postprocedural
- ;;^UTILITY(U,$J,358.3,28021,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,28021,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,28022,0)
- ;;=R50.83^^132^1322^26
- ;;^UTILITY(U,$J,358.3,28022,1,0)
+ ;;^UTILITY(U,$J,358.3,28454,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,28454,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,28454,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,28455,0)
+ ;;=H11.32^^112^1422^3
+ ;;^UTILITY(U,$J,358.3,28455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28022,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,28022,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,28022,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,28023,0)
- ;;=R50.84^^132^1322^25
- ;;^UTILITY(U,$J,358.3,28023,1,0)
+ ;;^UTILITY(U,$J,358.3,28455,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,28455,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,28455,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,28456,0)
+ ;;=H61.23^^112^1422^13
+ ;;^UTILITY(U,$J,358.3,28456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28023,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,28023,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,28023,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,28024,0)
- ;;=B02.23^^132^1322^70
- ;;^UTILITY(U,$J,358.3,28024,1,0)
+ ;;^UTILITY(U,$J,358.3,28456,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral
+ ;;^UTILITY(U,$J,358.3,28456,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,28456,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,28457,0)
+ ;;=H61.22^^112^1422^14
+ ;;^UTILITY(U,$J,358.3,28457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28024,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,28024,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,28024,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,28025,0)
- ;;=B02.22^^132^1322^71
- ;;^UTILITY(U,$J,358.3,28025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28025,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,28457,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,28457,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,28457,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,28458,0)
+ ;;=H66.91^^112^1422^18

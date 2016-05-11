@@ -1,126 +1,124 @@
-IBDEI2E6 ; ; 19-NOV-2015
+IBDEI2E6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40183,0)
- ;;=S61.222A^^186^2076^287
- ;;^UTILITY(U,$J,358.3,40183,1,0)
+ ;;^UTILITY(U,$J,358.3,40582,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,40582,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,40583,0)
+ ;;=I70.442^^159^1993^36
+ ;;^UTILITY(U,$J,358.3,40583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40183,1,3,0)
- ;;=3^Laceration w/ FB Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,40183,1,4,0)
- ;;=4^S61.222A
- ;;^UTILITY(U,$J,358.3,40183,2)
- ;;=^5032804
- ;;^UTILITY(U,$J,358.3,40184,0)
- ;;=S61.224A^^186^2076^288
- ;;^UTILITY(U,$J,358.3,40184,1,0)
+ ;;^UTILITY(U,$J,358.3,40583,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,40583,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,40583,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,40584,0)
+ ;;=I70.443^^159^1993^37
+ ;;^UTILITY(U,$J,358.3,40584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40184,1,3,0)
- ;;=3^Laceration w/ FB Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,40184,1,4,0)
- ;;=4^S61.224A
- ;;^UTILITY(U,$J,358.3,40184,2)
- ;;=^5032807
- ;;^UTILITY(U,$J,358.3,40185,0)
- ;;=S41.021A^^186^2076^289
- ;;^UTILITY(U,$J,358.3,40185,1,0)
+ ;;^UTILITY(U,$J,358.3,40584,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,40584,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,40584,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,40585,0)
+ ;;=I70.444^^159^1993^38
+ ;;^UTILITY(U,$J,358.3,40585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40185,1,3,0)
- ;;=3^Laceration w/ FB Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,40185,1,4,0)
- ;;=4^S41.021A
- ;;^UTILITY(U,$J,358.3,40185,2)
- ;;=^5026306
- ;;^UTILITY(U,$J,358.3,40186,0)
- ;;=S61.521A^^186^2076^293
- ;;^UTILITY(U,$J,358.3,40186,1,0)
+ ;;^UTILITY(U,$J,358.3,40585,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,40585,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,40585,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,40586,0)
+ ;;=I70.445^^159^1993^39
+ ;;^UTILITY(U,$J,358.3,40586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40186,1,3,0)
- ;;=3^Laceration w/ FB Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,40186,1,4,0)
- ;;=4^S61.521A
- ;;^UTILITY(U,$J,358.3,40186,2)
- ;;=^5033035
- ;;^UTILITY(U,$J,358.3,40187,0)
- ;;=S01.02XA^^186^2076^294
- ;;^UTILITY(U,$J,358.3,40187,1,0)
+ ;;^UTILITY(U,$J,358.3,40586,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,40586,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,40586,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,40587,0)
+ ;;=I70.531^^159^1993^60
+ ;;^UTILITY(U,$J,358.3,40587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40187,1,3,0)
- ;;=3^Laceration w/ FB Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,40187,1,4,0)
- ;;=4^S01.02XA
- ;;^UTILITY(U,$J,358.3,40187,2)
- ;;=^5020039
- ;;^UTILITY(U,$J,358.3,40188,0)
- ;;=S01.429A^^186^2076^295
- ;;^UTILITY(U,$J,358.3,40188,1,0)
+ ;;^UTILITY(U,$J,358.3,40587,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,40587,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,40587,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,40588,0)
+ ;;=I70.532^^159^1993^61
+ ;;^UTILITY(U,$J,358.3,40588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40188,1,3,0)
- ;;=3^Laceration w/ FB Unspec Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,40188,1,4,0)
- ;;=4^S01.429A
- ;;^UTILITY(U,$J,358.3,40188,2)
- ;;=^5134223
- ;;^UTILITY(U,$J,358.3,40189,0)
- ;;=S91.322A^^186^2076^262
- ;;^UTILITY(U,$J,358.3,40189,1,0)
+ ;;^UTILITY(U,$J,358.3,40588,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,40588,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,40588,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,40589,0)
+ ;;=I70.533^^159^1993^62
+ ;;^UTILITY(U,$J,358.3,40589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40189,1,3,0)
- ;;=3^Laceration w/ FB Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,40189,1,4,0)
- ;;=4^S91.322A
- ;;^UTILITY(U,$J,358.3,40189,2)
- ;;=^5137527
- ;;^UTILITY(U,$J,358.3,40190,0)
- ;;=S71.022A^^186^2076^267
- ;;^UTILITY(U,$J,358.3,40190,1,0)
+ ;;^UTILITY(U,$J,358.3,40589,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,40589,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,40589,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,40590,0)
+ ;;=I70.534^^159^1993^63
+ ;;^UTILITY(U,$J,358.3,40590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40190,1,3,0)
- ;;=3^Laceration w/ FB Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,40190,1,4,0)
- ;;=4^S71.022A
- ;;^UTILITY(U,$J,358.3,40190,2)
- ;;=^5136178
- ;;^UTILITY(U,$J,358.3,40191,0)
- ;;=S71.122A^^186^2076^274
- ;;^UTILITY(U,$J,358.3,40191,1,0)
+ ;;^UTILITY(U,$J,358.3,40590,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,40590,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,40590,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,40591,0)
+ ;;=I70.535^^159^1993^64
+ ;;^UTILITY(U,$J,358.3,40591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40191,1,3,0)
- ;;=3^Laceration w/ FB Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,40191,1,4,0)
- ;;=4^S71.122A
- ;;^UTILITY(U,$J,358.3,40191,2)
- ;;=^5136193
- ;;^UTILITY(U,$J,358.3,40192,0)
- ;;=S91.321A^^186^2076^279
- ;;^UTILITY(U,$J,358.3,40192,1,0)
+ ;;^UTILITY(U,$J,358.3,40591,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,40591,1,4,0)
+ ;;=4^I70.535
+ ;;^UTILITY(U,$J,358.3,40591,2)
+ ;;=^5007706
+ ;;^UTILITY(U,$J,358.3,40592,0)
+ ;;=I70.541^^159^1993^55
+ ;;^UTILITY(U,$J,358.3,40592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40192,1,3,0)
- ;;=3^Laceration w/ FB Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,40192,1,4,0)
- ;;=4^S91.321A
- ;;^UTILITY(U,$J,358.3,40192,2)
- ;;=^5044329
- ;;^UTILITY(U,$J,358.3,40193,0)
- ;;=S71.021A^^186^2076^283
- ;;^UTILITY(U,$J,358.3,40193,1,0)
+ ;;^UTILITY(U,$J,358.3,40592,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,40592,1,4,0)
+ ;;=4^I70.541
+ ;;^UTILITY(U,$J,358.3,40592,2)
+ ;;=^5007709
+ ;;^UTILITY(U,$J,358.3,40593,0)
+ ;;=I70.542^^159^1993^56
+ ;;^UTILITY(U,$J,358.3,40593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40193,1,3,0)
- ;;=3^Laceration w/ FB Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,40193,1,4,0)
- ;;=4^S71.021A
- ;;^UTILITY(U,$J,358.3,40193,2)
- ;;=^5036984
- ;;^UTILITY(U,$J,358.3,40194,0)
- ;;=S71.121A^^186^2076^290
- ;;^UTILITY(U,$J,358.3,40194,1,0)
+ ;;^UTILITY(U,$J,358.3,40593,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,40593,1,4,0)
+ ;;=4^I70.542
+ ;;^UTILITY(U,$J,358.3,40593,2)
+ ;;=^5007710
+ ;;^UTILITY(U,$J,358.3,40594,0)
+ ;;=I70.543^^159^1993^57
+ ;;^UTILITY(U,$J,358.3,40594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40194,1,3,0)
- ;;=3^Laceration w/ FB Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,40194,1,4,0)
- ;;=4^S71.121A
- ;;^UTILITY(U,$J,358.3,40194,2)
- ;;=^5037023
- ;;^UTILITY(U,$J,358.3,40195,0)
- ;;=G56.32^^186^2076^296
+ ;;^UTILITY(U,$J,358.3,40594,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle

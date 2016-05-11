@@ -1,128 +1,130 @@
-IBDEI2BE ; ; 19-NOV-2015
+IBDEI2BE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38872,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,38873,0)
- ;;=M25.571^^180^1988^38
- ;;^UTILITY(U,$J,358.3,38873,1,0)
+ ;;^UTILITY(U,$J,358.3,39267,0)
+ ;;=H21.232^^153^1921^27
+ ;;^UTILITY(U,$J,358.3,39267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38873,1,3,0)
- ;;=3^Pain in right ankle & foot joints
- ;;^UTILITY(U,$J,358.3,38873,1,4,0)
- ;;=4^M25.571
- ;;^UTILITY(U,$J,358.3,38873,2)
- ;;=^5011617
- ;;^UTILITY(U,$J,358.3,38874,0)
- ;;=M25.521^^180^1988^39
- ;;^UTILITY(U,$J,358.3,38874,1,0)
+ ;;^UTILITY(U,$J,358.3,39267,1,3,0)
+ ;;=3^Degeneration of Iris,Left Eye
+ ;;^UTILITY(U,$J,358.3,39267,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,39267,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,39268,0)
+ ;;=H40.011^^153^1921^85
+ ;;^UTILITY(U,$J,358.3,39268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38874,1,3,0)
- ;;=3^Pain in right elbow
- ;;^UTILITY(U,$J,358.3,38874,1,4,0)
- ;;=4^M25.521
- ;;^UTILITY(U,$J,358.3,38874,2)
- ;;=^5011605
- ;;^UTILITY(U,$J,358.3,38875,0)
- ;;=M79.641^^180^1988^40
- ;;^UTILITY(U,$J,358.3,38875,1,0)
+ ;;^UTILITY(U,$J,358.3,39268,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,39268,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,39268,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,39269,0)
+ ;;=H40.012^^153^1921^86
+ ;;^UTILITY(U,$J,358.3,39269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38875,1,3,0)
- ;;=3^Pain in right hand
- ;;^UTILITY(U,$J,358.3,38875,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,38875,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,38876,0)
- ;;=M25.551^^180^1988^41
- ;;^UTILITY(U,$J,358.3,38876,1,0)
+ ;;^UTILITY(U,$J,358.3,39269,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,39269,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,39269,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,39270,0)
+ ;;=H40.021^^153^1921^82
+ ;;^UTILITY(U,$J,358.3,39270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38876,1,3,0)
- ;;=3^Pain in right hip
- ;;^UTILITY(U,$J,358.3,38876,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,38876,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,38877,0)
- ;;=M25.531^^180^1988^42
- ;;^UTILITY(U,$J,358.3,38877,1,0)
+ ;;^UTILITY(U,$J,358.3,39270,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,39270,1,4,0)
+ ;;=4^H40.021
+ ;;^UTILITY(U,$J,358.3,39270,2)
+ ;;=^5005728
+ ;;^UTILITY(U,$J,358.3,39271,0)
+ ;;=H40.022^^153^1921^83
+ ;;^UTILITY(U,$J,358.3,39271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38877,1,3,0)
- ;;=3^Pain in right wrist
- ;;^UTILITY(U,$J,358.3,38877,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,38877,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,38878,0)
- ;;=S43.422A^^180^1988^56
- ;;^UTILITY(U,$J,358.3,38878,1,0)
+ ;;^UTILITY(U,$J,358.3,39271,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,39271,1,4,0)
+ ;;=4^H40.022
+ ;;^UTILITY(U,$J,358.3,39271,2)
+ ;;=^5005729
+ ;;^UTILITY(U,$J,358.3,39272,0)
+ ;;=H40.031^^153^1921^3
+ ;;^UTILITY(U,$J,358.3,39272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38878,1,3,0)
- ;;=3^Sprain of left rotator cuff capsule, initial encounter
- ;;^UTILITY(U,$J,358.3,38878,1,4,0)
- ;;=4^S43.422A
- ;;^UTILITY(U,$J,358.3,38878,2)
- ;;=^5027882
- ;;^UTILITY(U,$J,358.3,38879,0)
- ;;=S43.421A^^180^1988^57
- ;;^UTILITY(U,$J,358.3,38879,1,0)
+ ;;^UTILITY(U,$J,358.3,39272,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,39272,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,39272,2)
+ ;;=^5005732
+ ;;^UTILITY(U,$J,358.3,39273,0)
+ ;;=H40.032^^153^1921^2
+ ;;^UTILITY(U,$J,358.3,39273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38879,1,3,0)
- ;;=3^Sprain of right rotator cuff capsule, initial encounter
- ;;^UTILITY(U,$J,358.3,38879,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,38879,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,38880,0)
- ;;=S93.402A^^180^1988^58
- ;;^UTILITY(U,$J,358.3,38880,1,0)
+ ;;^UTILITY(U,$J,358.3,39273,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,39273,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,39273,2)
+ ;;=^5005733
+ ;;^UTILITY(U,$J,358.3,39274,0)
+ ;;=H40.033^^153^1921^1
+ ;;^UTILITY(U,$J,358.3,39274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38880,1,3,0)
- ;;=3^Sprain of unspecified ligament of left ankle, init encntr
- ;;^UTILITY(U,$J,358.3,38880,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,38880,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,38881,0)
- ;;=S93.401A^^180^1988^59
- ;;^UTILITY(U,$J,358.3,38881,1,0)
+ ;;^UTILITY(U,$J,358.3,39274,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,39274,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,39274,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,39275,0)
+ ;;=H40.041^^153^1921^123
+ ;;^UTILITY(U,$J,358.3,39275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38881,1,3,0)
- ;;=3^Sprain of unspecified ligament of right ankle, init encntr
- ;;^UTILITY(U,$J,358.3,38881,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,38881,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,38882,0)
- ;;=S96.912A^^180^1988^60
- ;;^UTILITY(U,$J,358.3,38882,1,0)
+ ;;^UTILITY(U,$J,358.3,39275,1,3,0)
+ ;;=3^Steroid Responder,Right Eye
+ ;;^UTILITY(U,$J,358.3,39275,1,4,0)
+ ;;=4^H40.041
+ ;;^UTILITY(U,$J,358.3,39275,2)
+ ;;=^5005736
+ ;;^UTILITY(U,$J,358.3,39276,0)
+ ;;=H40.042^^153^1921^122
+ ;;^UTILITY(U,$J,358.3,39276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38882,1,3,0)
- ;;=3^Strain of unsp msl/tnd at ank/ft level, left foot, init
- ;;^UTILITY(U,$J,358.3,38882,1,4,0)
- ;;=4^S96.912A
- ;;^UTILITY(U,$J,358.3,38882,2)
- ;;=^5137751
- ;;^UTILITY(U,$J,358.3,38883,0)
- ;;=S96.911A^^180^1988^61
- ;;^UTILITY(U,$J,358.3,38883,1,0)
+ ;;^UTILITY(U,$J,358.3,39276,1,3,0)
+ ;;=3^Steroid Responder,Left Eye
+ ;;^UTILITY(U,$J,358.3,39276,1,4,0)
+ ;;=4^H40.042
+ ;;^UTILITY(U,$J,358.3,39276,2)
+ ;;=^5005737
+ ;;^UTILITY(U,$J,358.3,39277,0)
+ ;;=H40.051^^153^1921^76
+ ;;^UTILITY(U,$J,358.3,39277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38883,1,3,0)
- ;;=3^Strain of unsp msl/tnd at ank/ft level, right foot, init
- ;;^UTILITY(U,$J,358.3,38883,1,4,0)
- ;;=4^S96.911A
- ;;^UTILITY(U,$J,358.3,38883,2)
- ;;=^5137750
- ;;^UTILITY(U,$J,358.3,38884,0)
- ;;=S56.912A^^180^1988^62
- ;;^UTILITY(U,$J,358.3,38884,1,0)
+ ;;^UTILITY(U,$J,358.3,39277,1,3,0)
+ ;;=3^Ocular Hypertension,Right Eye
+ ;;^UTILITY(U,$J,358.3,39277,1,4,0)
+ ;;=4^H40.051
+ ;;^UTILITY(U,$J,358.3,39277,2)
+ ;;=^5005740
+ ;;^UTILITY(U,$J,358.3,39278,0)
+ ;;=H40.052^^153^1921^75
+ ;;^UTILITY(U,$J,358.3,39278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38884,1,3,0)
- ;;=3^Strain of unsp musc/fasc/tend at forarm lv, left arm, init
- ;;^UTILITY(U,$J,358.3,38884,1,4,0)
- ;;=4^S56.912A
- ;;^UTILITY(U,$J,358.3,38884,2)
- ;;=^5135514
- ;;^UTILITY(U,$J,358.3,38885,0)
- ;;=S56.911A^^180^1988^63
+ ;;^UTILITY(U,$J,358.3,39278,1,3,0)
+ ;;=3^Ocular Hypertension,Left Eye
+ ;;^UTILITY(U,$J,358.3,39278,1,4,0)
+ ;;=4^H40.052
+ ;;^UTILITY(U,$J,358.3,39278,2)
+ ;;=^5005741
+ ;;^UTILITY(U,$J,358.3,39279,0)
+ ;;=H40.053^^153^1921^74
+ ;;^UTILITY(U,$J,358.3,39279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39279,1,3,0)
+ ;;=3^Ocular Hypertension,Bilateral

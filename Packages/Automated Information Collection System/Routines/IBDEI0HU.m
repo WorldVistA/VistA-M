@@ -1,128 +1,138 @@
-IBDEI0HU ; ; 19-NOV-2015
+IBDEI0HU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7992,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,7992,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,7993,0)
- ;;=E10.321^^55^532^5
- ;;^UTILITY(U,$J,358.3,7993,1,0)
+ ;;^UTILITY(U,$J,358.3,8250,0)
+ ;;=Z02.71^^33^433^3
+ ;;^UTILITY(U,$J,358.3,8250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7993,1,3,0)
- ;;=3^Type 1 diab w mild nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,7993,1,4,0)
- ;;=4^E10.321
- ;;^UTILITY(U,$J,358.3,7993,2)
- ;;=^5002594
- ;;^UTILITY(U,$J,358.3,7994,0)
- ;;=E10.329^^55^532^6
- ;;^UTILITY(U,$J,358.3,7994,1,0)
+ ;;^UTILITY(U,$J,358.3,8250,1,3,0)
+ ;;=3^Disability determination
+ ;;^UTILITY(U,$J,358.3,8250,1,4,0)
+ ;;=4^Z02.71
+ ;;^UTILITY(U,$J,358.3,8250,2)
+ ;;=^5062640
+ ;;^UTILITY(U,$J,358.3,8251,0)
+ ;;=Z02.79^^33^433^7
+ ;;^UTILITY(U,$J,358.3,8251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7994,1,3,0)
- ;;=3^Type 1 diab w mild nonprlf diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,7994,1,4,0)
- ;;=4^E10.329
- ;;^UTILITY(U,$J,358.3,7994,2)
- ;;=^5002595
- ;;^UTILITY(U,$J,358.3,7995,0)
- ;;=E10.331^^55^532^7
- ;;^UTILITY(U,$J,358.3,7995,1,0)
+ ;;^UTILITY(U,$J,358.3,8251,1,3,0)
+ ;;=3^Medical Certificate Issues NEC
+ ;;^UTILITY(U,$J,358.3,8251,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,8251,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,8252,0)
+ ;;=Z00.00^^33^433^6
+ ;;^UTILITY(U,$J,358.3,8252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7995,1,3,0)
- ;;=3^Type 1 diab w moderate nonprlf diab rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,7995,1,4,0)
- ;;=4^E10.331
- ;;^UTILITY(U,$J,358.3,7995,2)
- ;;=^5002596
- ;;^UTILITY(U,$J,358.3,7996,0)
- ;;=E10.339^^55^532^8
- ;;^UTILITY(U,$J,358.3,7996,1,0)
+ ;;^UTILITY(U,$J,358.3,8252,1,3,0)
+ ;;=3^General Adult Med Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,8252,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,8252,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,8253,0)
+ ;;=Z02.83^^33^433^2
+ ;;^UTILITY(U,$J,358.3,8253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7996,1,3,0)
- ;;=3^Type 1 diab w moderate nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,7996,1,4,0)
- ;;=4^E10.339
- ;;^UTILITY(U,$J,358.3,7996,2)
- ;;=^5002597
- ;;^UTILITY(U,$J,358.3,7997,0)
- ;;=E10.311^^55^532^11
- ;;^UTILITY(U,$J,358.3,7997,1,0)
+ ;;^UTILITY(U,$J,358.3,8253,1,3,0)
+ ;;=3^Blood-alcohol and blood-drug test
+ ;;^UTILITY(U,$J,358.3,8253,1,4,0)
+ ;;=4^Z02.83
+ ;;^UTILITY(U,$J,358.3,8253,2)
+ ;;=^5062644
+ ;;^UTILITY(U,$J,358.3,8254,0)
+ ;;=Z02.81^^33^433^8
+ ;;^UTILITY(U,$J,358.3,8254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7997,1,3,0)
- ;;=3^Type 1 diab w unsp diabetic retinopathy w macular edema
- ;;^UTILITY(U,$J,358.3,7997,1,4,0)
- ;;=4^E10.311
- ;;^UTILITY(U,$J,358.3,7997,2)
- ;;=^5002592
- ;;^UTILITY(U,$J,358.3,7998,0)
- ;;=E10.319^^55^532^12
- ;;^UTILITY(U,$J,358.3,7998,1,0)
+ ;;^UTILITY(U,$J,358.3,8254,1,3,0)
+ ;;=3^Paternity Testing
+ ;;^UTILITY(U,$J,358.3,8254,1,4,0)
+ ;;=4^Z02.81
+ ;;^UTILITY(U,$J,358.3,8254,2)
+ ;;=^5062642
+ ;;^UTILITY(U,$J,358.3,8255,0)
+ ;;=Z02.3^^33^433^10
+ ;;^UTILITY(U,$J,358.3,8255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7998,1,3,0)
- ;;=3^Type 1 diab w unsp diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,7998,1,4,0)
- ;;=4^E10.319
- ;;^UTILITY(U,$J,358.3,7998,2)
- ;;=^5002593
- ;;^UTILITY(U,$J,358.3,7999,0)
- ;;=E10.341^^55^532^10
- ;;^UTILITY(U,$J,358.3,7999,1,0)
+ ;;^UTILITY(U,$J,358.3,8255,1,3,0)
+ ;;=3^Recruitment to Armed Forces Exam
+ ;;^UTILITY(U,$J,358.3,8255,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,8255,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,8256,0)
+ ;;=Z02.1^^33^433^9
+ ;;^UTILITY(U,$J,358.3,8256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7999,1,3,0)
- ;;=3^Type 1 diab w severe nonprlf diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,7999,1,4,0)
- ;;=4^E10.341
- ;;^UTILITY(U,$J,358.3,7999,2)
- ;;=^5002598
- ;;^UTILITY(U,$J,358.3,8000,0)
- ;;=E10.349^^55^532^9
- ;;^UTILITY(U,$J,358.3,8000,1,0)
+ ;;^UTILITY(U,$J,358.3,8256,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,8256,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,8256,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,8257,0)
+ ;;=Z02.89^^33^433^1
+ ;;^UTILITY(U,$J,358.3,8257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8000,1,3,0)
- ;;=3^Type 1 diab w severe nonprlf diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,8000,1,4,0)
- ;;=4^E10.349
- ;;^UTILITY(U,$J,358.3,8000,2)
- ;;=^5002599
- ;;^UTILITY(U,$J,358.3,8001,0)
- ;;=E11.40^^55^532^14
- ;;^UTILITY(U,$J,358.3,8001,1,0)
+ ;;^UTILITY(U,$J,358.3,8257,1,3,0)
+ ;;=3^Administrative Exam NEC
+ ;;^UTILITY(U,$J,358.3,8257,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,8257,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,8258,0)
+ ;;=Z01.00^^33^433^5
+ ;;^UTILITY(U,$J,358.3,8258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8001,1,3,0)
- ;;=3^Type 2 diab w diabetic neuropathy, unsp
- ;;^UTILITY(U,$J,358.3,8001,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,8001,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,8002,0)
- ;;=E10.40^^55^532^2
- ;;^UTILITY(U,$J,358.3,8002,1,0)
+ ;;^UTILITY(U,$J,358.3,8258,1,3,0)
+ ;;=3^Eyes/Vision Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,8258,1,4,0)
+ ;;=4^Z01.00
+ ;;^UTILITY(U,$J,358.3,8258,2)
+ ;;=^5062612
+ ;;^UTILITY(U,$J,358.3,8259,0)
+ ;;=Z01.01^^33^433^4
+ ;;^UTILITY(U,$J,358.3,8259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8002,1,3,0)
- ;;=3^Type 1 diab w diabetic neuropathy, unsp
- ;;^UTILITY(U,$J,358.3,8002,1,4,0)
- ;;=4^E10.40
- ;;^UTILITY(U,$J,358.3,8002,2)
- ;;=^5002604
- ;;^UTILITY(U,$J,358.3,8003,0)
- ;;=E11.51^^55^532^15
- ;;^UTILITY(U,$J,358.3,8003,1,0)
+ ;;^UTILITY(U,$J,358.3,8259,1,3,0)
+ ;;=3^Eyes/Vision Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,8259,1,4,0)
+ ;;=4^Z01.01
+ ;;^UTILITY(U,$J,358.3,8259,2)
+ ;;=^5062613
+ ;;^UTILITY(U,$J,358.3,8260,0)
+ ;;=Z11.1^^33^433^11
+ ;;^UTILITY(U,$J,358.3,8260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8003,1,3,0)
- ;;=3^Type 2 diab w diabetic peripheral angiopath w/o gangrene
- ;;^UTILITY(U,$J,358.3,8003,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,8003,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,8004,0)
- ;;=E11.52^^55^532^16
- ;;^UTILITY(U,$J,358.3,8004,1,0)
+ ;;^UTILITY(U,$J,358.3,8260,1,3,0)
+ ;;=3^Respiratory Tuberculosis Screen
+ ;;^UTILITY(U,$J,358.3,8260,1,4,0)
+ ;;=4^Z11.1
+ ;;^UTILITY(U,$J,358.3,8260,2)
+ ;;=^5062670
+ ;;^UTILITY(U,$J,358.3,8261,0)
+ ;;=Z09.^^33^434^1
+ ;;^UTILITY(U,$J,358.3,8261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8004,1,3,0)
- ;;=3^Type 2 diab w diabetic peripheral angiopathy w gangrene
- ;;^UTILITY(U,$J,358.3,8004,1,4,0)
- ;;=4^E11.52
- ;;^UTILITY(U,$J,358.3,8004,2)
- ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,8261,1,3,0)
+ ;;=3^F/U Exam after Trtmt for Conditions Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,8261,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,8261,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,8262,0)
+ ;;=Z08.^^33^434^2
+ ;;^UTILITY(U,$J,358.3,8262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8262,1,3,0)
+ ;;=3^F/U Exam after Trtmt for Malig Neop
+ ;;^UTILITY(U,$J,358.3,8262,1,4,0)
+ ;;=4^Z08.
+ ;;^UTILITY(U,$J,358.3,8262,2)
+ ;;=^5062667
+ ;;^UTILITY(U,$J,358.3,8263,0)
+ ;;=Z23.^^33^435^1
+ ;;^UTILITY(U,$J,358.3,8263,1,0)
+ ;;=^358.31IA^4^2

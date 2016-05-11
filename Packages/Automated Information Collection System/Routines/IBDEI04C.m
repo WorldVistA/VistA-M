@@ -1,140 +1,134 @@
-IBDEI04C ; ; 19-NOV-2015
+IBDEI04C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1346,1,4,0)
- ;;=4^H93.222
- ;;^UTILITY(U,$J,358.3,1346,2)
- ;;=^5006973
- ;;^UTILITY(U,$J,358.3,1347,0)
- ;;=H93.221^^14^148^11
- ;;^UTILITY(U,$J,358.3,1347,1,0)
+ ;;^UTILITY(U,$J,358.3,1605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1347,1,3,0)
- ;;=3^Diplacusis, right ear
- ;;^UTILITY(U,$J,358.3,1347,1,4,0)
- ;;=4^H93.221
- ;;^UTILITY(U,$J,358.3,1347,2)
- ;;=^5006972
- ;;^UTILITY(U,$J,358.3,1348,0)
- ;;=R42.^^14^148^12
- ;;^UTILITY(U,$J,358.3,1348,1,0)
+ ;;^UTILITY(U,$J,358.3,1605,1,3,0)
+ ;;=3^Cardiomyopathy in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,1605,1,4,0)
+ ;;=4^I43.
+ ;;^UTILITY(U,$J,358.3,1605,2)
+ ;;=^5007201
+ ;;^UTILITY(U,$J,358.3,1606,0)
+ ;;=I42.7^^11^145^7
+ ;;^UTILITY(U,$J,358.3,1606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1348,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,1348,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,1348,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,1349,0)
- ;;=Z45.49^^14^148^4
- ;;^UTILITY(U,$J,358.3,1349,1,0)
+ ;;^UTILITY(U,$J,358.3,1606,1,3,0)
+ ;;=3^Cardiomyopathy d/t Drug/External Agent
+ ;;^UTILITY(U,$J,358.3,1606,1,4,0)
+ ;;=4^I42.7
+ ;;^UTILITY(U,$J,358.3,1606,2)
+ ;;=^5007198
+ ;;^UTILITY(U,$J,358.3,1607,0)
+ ;;=I42.9^^11^145^9
+ ;;^UTILITY(U,$J,358.3,1607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1349,1,3,0)
- ;;=3^Adjust/Mgmt of Implanted Nervous System Device
- ;;^UTILITY(U,$J,358.3,1349,1,4,0)
- ;;=4^Z45.49
- ;;^UTILITY(U,$J,358.3,1349,2)
- ;;=^5063006
- ;;^UTILITY(U,$J,358.3,1350,0)
- ;;=Z46.1^^14^148^17
- ;;^UTILITY(U,$J,358.3,1350,1,0)
+ ;;^UTILITY(U,$J,358.3,1607,1,3,0)
+ ;;=3^Cardiomyopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,1607,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,1607,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,1608,0)
+ ;;=I50.9^^11^145^22
+ ;;^UTILITY(U,$J,358.3,1608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1350,1,3,0)
- ;;=3^Fit/Adjust of Hearing Aid
- ;;^UTILITY(U,$J,358.3,1350,1,4,0)
- ;;=4^Z46.1
- ;;^UTILITY(U,$J,358.3,1350,2)
- ;;=^5063014
- ;;^UTILITY(U,$J,358.3,1351,0)
- ;;=Z46.2^^14^148^15
- ;;^UTILITY(U,$J,358.3,1351,1,0)
+ ;;^UTILITY(U,$J,358.3,1608,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,1608,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,1608,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,1609,0)
+ ;;=I50.1^^11^145^33
+ ;;^UTILITY(U,$J,358.3,1609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1351,1,3,0)
- ;;=3^Fit/Adjust Device Rel to Nervous System/Special Senses
- ;;^UTILITY(U,$J,358.3,1351,1,4,0)
- ;;=4^Z46.2
- ;;^UTILITY(U,$J,358.3,1351,2)
- ;;=^5063015
- ;;^UTILITY(U,$J,358.3,1352,0)
- ;;=Z44.8^^14^148^16
- ;;^UTILITY(U,$J,358.3,1352,1,0)
+ ;;^UTILITY(U,$J,358.3,1609,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,1609,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,1609,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,1610,0)
+ ;;=I50.20^^11^145^55
+ ;;^UTILITY(U,$J,358.3,1610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1352,1,3,0)
- ;;=3^Fit/Adjust of External Prosthetic Devices
- ;;^UTILITY(U,$J,358.3,1352,1,4,0)
- ;;=4^Z44.8
- ;;^UTILITY(U,$J,358.3,1352,2)
- ;;=^5062992
- ;;^UTILITY(U,$J,358.3,1353,0)
- ;;=Z82.2^^14^148^13
- ;;^UTILITY(U,$J,358.3,1353,1,0)
+ ;;^UTILITY(U,$J,358.3,1610,1,3,0)
+ ;;=3^Systolic Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,1610,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,1610,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,1611,0)
+ ;;=I50.30^^11^145^19
+ ;;^UTILITY(U,$J,358.3,1611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1353,1,3,0)
- ;;=3^Family history of deafness and hearing loss
- ;;^UTILITY(U,$J,358.3,1353,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,1353,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,1354,0)
- ;;=Z83.52^^14^148^14
- ;;^UTILITY(U,$J,358.3,1354,1,0)
+ ;;^UTILITY(U,$J,358.3,1611,1,3,0)
+ ;;=3^Diastolic Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,1611,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,1611,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,1612,0)
+ ;;=I50.40^^11^145^54
+ ;;^UTILITY(U,$J,358.3,1612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1354,1,3,0)
- ;;=3^Family history of ear disorders
- ;;^UTILITY(U,$J,358.3,1354,1,4,0)
- ;;=4^Z83.52
- ;;^UTILITY(U,$J,358.3,1354,2)
- ;;=^5063384
- ;;^UTILITY(U,$J,358.3,1355,0)
- ;;=H93.233^^14^148^18
- ;;^UTILITY(U,$J,358.3,1355,1,0)
+ ;;^UTILITY(U,$J,358.3,1612,1,3,0)
+ ;;=3^Systolic & Diastolic Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,1612,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,1612,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,1613,0)
+ ;;=I51.7^^11^145^6
+ ;;^UTILITY(U,$J,358.3,1613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1355,1,3,0)
- ;;=3^Hyperacusis, bilateral
- ;;^UTILITY(U,$J,358.3,1355,1,4,0)
- ;;=4^H93.233
- ;;^UTILITY(U,$J,358.3,1355,2)
- ;;=^5006978
- ;;^UTILITY(U,$J,358.3,1356,0)
- ;;=H93.232^^14^148^19
- ;;^UTILITY(U,$J,358.3,1356,1,0)
+ ;;^UTILITY(U,$J,358.3,1613,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,1613,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,1613,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,1614,0)
+ ;;=I97.111^^11^145^42
+ ;;^UTILITY(U,$J,358.3,1614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1356,1,3,0)
- ;;=3^Hyperacusis, left ear
- ;;^UTILITY(U,$J,358.3,1356,1,4,0)
- ;;=4^H93.232
- ;;^UTILITY(U,$J,358.3,1356,2)
- ;;=^5006977
- ;;^UTILITY(U,$J,358.3,1357,0)
- ;;=H93.231^^14^148^20
- ;;^UTILITY(U,$J,358.3,1357,1,0)
+ ;;^UTILITY(U,$J,358.3,1614,1,3,0)
+ ;;=3^Postprocedural Cardiac Insufficiency Following Oth Surgery
+ ;;^UTILITY(U,$J,358.3,1614,1,4,0)
+ ;;=4^I97.111
+ ;;^UTILITY(U,$J,358.3,1614,2)
+ ;;=^5008084
+ ;;^UTILITY(U,$J,358.3,1615,0)
+ ;;=I97.120^^11^145^38
+ ;;^UTILITY(U,$J,358.3,1615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1357,1,3,0)
- ;;=3^Hyperacusis, right ear
- ;;^UTILITY(U,$J,358.3,1357,1,4,0)
- ;;=4^H93.231
- ;;^UTILITY(U,$J,358.3,1357,2)
- ;;=^5006976
- ;;^UTILITY(U,$J,358.3,1358,0)
- ;;=H92.03^^14^148^22
- ;;^UTILITY(U,$J,358.3,1358,1,0)
+ ;;^UTILITY(U,$J,358.3,1615,1,3,0)
+ ;;=3^Postprocedural Cardiac Arrest Following Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,1615,1,4,0)
+ ;;=4^I97.120
+ ;;^UTILITY(U,$J,358.3,1615,2)
+ ;;=^5008085
+ ;;^UTILITY(U,$J,358.3,1616,0)
+ ;;=I97.121^^11^145^39
+ ;;^UTILITY(U,$J,358.3,1616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1358,1,3,0)
- ;;=3^Otalgia, bilateral
- ;;^UTILITY(U,$J,358.3,1358,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,1358,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,1359,0)
- ;;=H92.02^^14^148^23
- ;;^UTILITY(U,$J,358.3,1359,1,0)
+ ;;^UTILITY(U,$J,358.3,1616,1,3,0)
+ ;;=3^Postprocedural Cardiac Arrest Following Oth Surgery
+ ;;^UTILITY(U,$J,358.3,1616,1,4,0)
+ ;;=4^I97.121
+ ;;^UTILITY(U,$J,358.3,1616,2)
+ ;;=^5008086
+ ;;^UTILITY(U,$J,358.3,1617,0)
+ ;;=I97.130^^11^145^44
+ ;;^UTILITY(U,$J,358.3,1617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1359,1,3,0)
- ;;=3^Otalgia, left ear
- ;;^UTILITY(U,$J,358.3,1359,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,1359,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,1360,0)
- ;;=H92.01^^14^148^24
+ ;;^UTILITY(U,$J,358.3,1617,1,3,0)
+ ;;=3^Postprocedural Heart Failure Following Cardiac Surgery
+ ;;^UTILITY(U,$J,358.3,1617,1,4,0)
+ ;;=4^I97.130
+ ;;^UTILITY(U,$J,358.3,1617,2)
+ ;;=^5008087
+ ;;^UTILITY(U,$J,358.3,1618,0)
+ ;;=I97.131^^11^145^45

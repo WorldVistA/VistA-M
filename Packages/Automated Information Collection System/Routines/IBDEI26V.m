@@ -1,122 +1,128 @@
-IBDEI26V ; ; 19-NOV-2015
+IBDEI26V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36753,2)
- ;;=^5001410
- ;;^UTILITY(U,$J,358.3,36754,0)
- ;;=C81.20^^169^1859^54
- ;;^UTILITY(U,$J,358.3,36754,1,0)
+ ;;^UTILITY(U,$J,358.3,37133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36754,1,3,0)
- ;;=3^Mixed cellularity classical Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,36754,1,4,0)
- ;;=4^C81.20
- ;;^UTILITY(U,$J,358.3,36754,2)
- ;;=^5001411
- ;;^UTILITY(U,$J,358.3,36755,0)
- ;;=C81.29^^169^1859^53
- ;;^UTILITY(U,$J,358.3,36755,1,0)
+ ;;^UTILITY(U,$J,358.3,37133,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], lumbar region
+ ;;^UTILITY(U,$J,358.3,37133,1,4,0)
+ ;;=4^M48.16
+ ;;^UTILITY(U,$J,358.3,37133,2)
+ ;;=^5012102
+ ;;^UTILITY(U,$J,358.3,37134,0)
+ ;;=M48.17^^140^1787^51
+ ;;^UTILITY(U,$J,358.3,37134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36755,1,3,0)
- ;;=3^Mix cellular class Hdgkn lymph, extrnod and solid org sites
- ;;^UTILITY(U,$J,358.3,36755,1,4,0)
- ;;=4^C81.29
- ;;^UTILITY(U,$J,358.3,36755,2)
- ;;=^5001420
- ;;^UTILITY(U,$J,358.3,36756,0)
- ;;=C81.30^^169^1859^48
- ;;^UTILITY(U,$J,358.3,36756,1,0)
+ ;;^UTILITY(U,$J,358.3,37134,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], lumbosac region
+ ;;^UTILITY(U,$J,358.3,37134,1,4,0)
+ ;;=4^M48.17
+ ;;^UTILITY(U,$J,358.3,37134,2)
+ ;;=^5012103
+ ;;^UTILITY(U,$J,358.3,37135,0)
+ ;;=M48.18^^140^1787^54
+ ;;^UTILITY(U,$J,358.3,37135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36756,1,3,0)
- ;;=3^Lymphocyte depleted classical Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,36756,1,4,0)
- ;;=4^C81.30
- ;;^UTILITY(U,$J,358.3,36756,2)
- ;;=^5001421
- ;;^UTILITY(U,$J,358.3,36757,0)
- ;;=C81.39^^169^1859^47
- ;;^UTILITY(U,$J,358.3,36757,1,0)
+ ;;^UTILITY(U,$J,358.3,37135,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], scrl & scrlcocygl regn
+ ;;^UTILITY(U,$J,358.3,37135,1,4,0)
+ ;;=4^M48.18
+ ;;^UTILITY(U,$J,358.3,37135,2)
+ ;;=^5012104
+ ;;^UTILITY(U,$J,358.3,37136,0)
+ ;;=M48.19^^140^1787^52
+ ;;^UTILITY(U,$J,358.3,37136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36757,1,3,0)
- ;;=3^Lymphocy deplet class Hdgkn lymph, extrnod & solid org site
- ;;^UTILITY(U,$J,358.3,36757,1,4,0)
- ;;=4^C81.39
- ;;^UTILITY(U,$J,358.3,36757,2)
- ;;=^5001430
- ;;^UTILITY(U,$J,358.3,36758,0)
- ;;=C81.40^^169^1859^49
- ;;^UTILITY(U,$J,358.3,36758,1,0)
+ ;;^UTILITY(U,$J,358.3,37136,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], mltpl sites in spine
+ ;;^UTILITY(U,$J,358.3,37136,1,4,0)
+ ;;=4^M48.19
+ ;;^UTILITY(U,$J,358.3,37136,2)
+ ;;=^5012105
+ ;;^UTILITY(U,$J,358.3,37137,0)
+ ;;=M48.30^^140^1787^291
+ ;;^UTILITY(U,$J,358.3,37137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36758,1,3,0)
- ;;=3^Lymphocyte-rich classical Hodgkin lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,36758,1,4,0)
- ;;=4^C81.40
- ;;^UTILITY(U,$J,358.3,36758,2)
- ;;=^5001431
- ;;^UTILITY(U,$J,358.3,36759,0)
- ;;=C81.49^^169^1859^44
- ;;^UTILITY(U,$J,358.3,36759,1,0)
+ ;;^UTILITY(U,$J,358.3,37137,1,3,0)
+ ;;=3^Traumatic spndylpthy, site unspec
+ ;;^UTILITY(U,$J,358.3,37137,1,4,0)
+ ;;=4^M48.30
+ ;;^UTILITY(U,$J,358.3,37137,2)
+ ;;=^5012114
+ ;;^UTILITY(U,$J,358.3,37138,0)
+ ;;=M48.31^^140^1787^289
+ ;;^UTILITY(U,$J,358.3,37138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36759,1,3,0)
- ;;=3^Lymp-rich class Hodgkin lymph, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36759,1,4,0)
- ;;=4^C81.49
- ;;^UTILITY(U,$J,358.3,36759,2)
- ;;=^5001440
- ;;^UTILITY(U,$J,358.3,36760,0)
- ;;=C81.99^^169^1859^42
- ;;^UTILITY(U,$J,358.3,36760,1,0)
+ ;;^UTILITY(U,$J,358.3,37138,1,3,0)
+ ;;=3^Traumatic spndylpthy, ocpito-atlanto-ax regn
+ ;;^UTILITY(U,$J,358.3,37138,1,4,0)
+ ;;=4^M48.31
+ ;;^UTILITY(U,$J,358.3,37138,2)
+ ;;=^5012115
+ ;;^UTILITY(U,$J,358.3,37139,0)
+ ;;=M48.32^^140^1787^285
+ ;;^UTILITY(U,$J,358.3,37139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36760,1,3,0)
- ;;=3^Hodgkin lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,36760,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,36760,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,36761,0)
- ;;=C81.90^^169^1859^43
- ;;^UTILITY(U,$J,358.3,36761,1,0)
+ ;;^UTILITY(U,$J,358.3,37139,1,3,0)
+ ;;=3^Traumatic spndylpthy, cervical regn
+ ;;^UTILITY(U,$J,358.3,37139,1,4,0)
+ ;;=4^M48.32
+ ;;^UTILITY(U,$J,358.3,37139,2)
+ ;;=^5012116
+ ;;^UTILITY(U,$J,358.3,37140,0)
+ ;;=M48.33^^140^1787^286
+ ;;^UTILITY(U,$J,358.3,37140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36761,1,3,0)
- ;;=3^Hodgkin lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,36761,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,36761,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,36762,0)
- ;;=C82.69^^169^1859^17
- ;;^UTILITY(U,$J,358.3,36762,1,0)
+ ;;^UTILITY(U,$J,358.3,37140,1,3,0)
+ ;;=3^Traumatic spndylpthy, cervicothoracic regn
+ ;;^UTILITY(U,$J,358.3,37140,1,4,0)
+ ;;=4^M48.33
+ ;;^UTILITY(U,$J,358.3,37140,2)
+ ;;=^5012117
+ ;;^UTILITY(U,$J,358.3,37141,0)
+ ;;=M48.34^^140^1787^292
+ ;;^UTILITY(U,$J,358.3,37141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36762,1,3,0)
- ;;=3^Cutan folicl center lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36762,1,4,0)
- ;;=4^C82.69
- ;;^UTILITY(U,$J,358.3,36762,2)
- ;;=^5001530
- ;;^UTILITY(U,$J,358.3,36763,0)
- ;;=C82.60^^169^1859^18
- ;;^UTILITY(U,$J,358.3,36763,1,0)
+ ;;^UTILITY(U,$J,358.3,37141,1,3,0)
+ ;;=3^Traumatic spndylpthy, thoracic regn
+ ;;^UTILITY(U,$J,358.3,37141,1,4,0)
+ ;;=4^M48.34
+ ;;^UTILITY(U,$J,358.3,37141,2)
+ ;;=^5012118
+ ;;^UTILITY(U,$J,358.3,37142,0)
+ ;;=M48.35^^140^1787^293
+ ;;^UTILITY(U,$J,358.3,37142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36763,1,3,0)
- ;;=3^Cutaneous follicle center lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,36763,1,4,0)
- ;;=4^C82.60
- ;;^UTILITY(U,$J,358.3,36763,2)
- ;;=^5001521
- ;;^UTILITY(U,$J,358.3,36764,0)
- ;;=C82.49^^169^1859^33
- ;;^UTILITY(U,$J,358.3,36764,1,0)
+ ;;^UTILITY(U,$J,358.3,37142,1,3,0)
+ ;;=3^Traumatic spndylpthy, thoracolumbar regn
+ ;;^UTILITY(U,$J,358.3,37142,1,4,0)
+ ;;=4^M48.35
+ ;;^UTILITY(U,$J,358.3,37142,2)
+ ;;=^5012119
+ ;;^UTILITY(U,$J,358.3,37143,0)
+ ;;=M48.36^^140^1787^287
+ ;;^UTILITY(U,$J,358.3,37143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36764,1,3,0)
- ;;=3^Follicular lymphoma grade IIIb, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36764,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,36764,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,36765,0)
- ;;=C82.40^^169^1859^34
- ;;^UTILITY(U,$J,358.3,36765,1,0)
+ ;;^UTILITY(U,$J,358.3,37143,1,3,0)
+ ;;=3^Traumatic spndylpthy, lumbar regn
+ ;;^UTILITY(U,$J,358.3,37143,1,4,0)
+ ;;=4^M48.36
+ ;;^UTILITY(U,$J,358.3,37143,2)
+ ;;=^5012120
+ ;;^UTILITY(U,$J,358.3,37144,0)
+ ;;=M48.37^^140^1787^288
+ ;;^UTILITY(U,$J,358.3,37144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36765,1,3,0)
- ;;=3^Follicular lymphoma grade IIIb, unspecified site
+ ;;^UTILITY(U,$J,358.3,37144,1,3,0)
+ ;;=3^Traumatic spndylpthy, lumbosacral regn
+ ;;^UTILITY(U,$J,358.3,37144,1,4,0)
+ ;;=4^M48.37
+ ;;^UTILITY(U,$J,358.3,37144,2)
+ ;;=^5012121
+ ;;^UTILITY(U,$J,358.3,37145,0)
+ ;;=M48.38^^140^1787^290
+ ;;^UTILITY(U,$J,358.3,37145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37145,1,3,0)
+ ;;=3^Traumatic spndylpthy, sacral & sacrococygl regn

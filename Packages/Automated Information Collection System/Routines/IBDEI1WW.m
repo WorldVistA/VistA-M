@@ -1,136 +1,124 @@
-IBDEI1WW ; ; 19-NOV-2015
+IBDEI1WW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32013,2)
- ;;=^5063114
- ;;^UTILITY(U,$J,358.3,32014,0)
- ;;=Z56.9^^141^1482^8
- ;;^UTILITY(U,$J,358.3,32014,1,0)
+ ;;^UTILITY(U,$J,358.3,32437,2)
+ ;;=^5137436
+ ;;^UTILITY(U,$J,358.3,32438,0)
+ ;;=S91.121A^^126^1613^4
+ ;;^UTILITY(U,$J,358.3,32438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32014,1,3,0)
- ;;=3^Problems Related to Employment NEC
- ;;^UTILITY(U,$J,358.3,32014,1,4,0)
- ;;=4^Z56.9
- ;;^UTILITY(U,$J,358.3,32014,2)
- ;;=^5063117
- ;;^UTILITY(U,$J,358.3,32015,0)
- ;;=Z56.82^^141^1482^6
- ;;^UTILITY(U,$J,358.3,32015,1,0)
+ ;;^UTILITY(U,$J,358.3,32438,1,3,0)
+ ;;=3^Lacrtn w/ foregin body rt grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32438,1,4,0)
+ ;;=4^S91.121A
+ ;;^UTILITY(U,$J,358.3,32438,2)
+ ;;=^5044204
+ ;;^UTILITY(U,$J,358.3,32439,0)
+ ;;=S91.221A^^126^1613^11
+ ;;^UTILITY(U,$J,358.3,32439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32015,1,3,0)
- ;;=3^Problems Related to Current Military Deployment Status
- ;;^UTILITY(U,$J,358.3,32015,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,32015,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,32016,0)
- ;;=Z56.0^^141^1482^13
- ;;^UTILITY(U,$J,358.3,32016,1,0)
+ ;;^UTILITY(U,$J,358.3,32439,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32439,1,4,0)
+ ;;=4^S91.221A
+ ;;^UTILITY(U,$J,358.3,32439,2)
+ ;;=^5137460
+ ;;^UTILITY(U,$J,358.3,32440,0)
+ ;;=S91.222A^^126^1613^6
+ ;;^UTILITY(U,$J,358.3,32440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32016,1,3,0)
- ;;=3^Unemployeement,Unspec
- ;;^UTILITY(U,$J,358.3,32016,1,4,0)
- ;;=4^Z56.0
- ;;^UTILITY(U,$J,358.3,32016,2)
- ;;=^5063107
- ;;^UTILITY(U,$J,358.3,32017,0)
- ;;=Z56.1^^141^1482^2
- ;;^UTILITY(U,$J,358.3,32017,1,0)
+ ;;^UTILITY(U,$J,358.3,32440,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32440,1,4,0)
+ ;;=4^S91.222A
+ ;;^UTILITY(U,$J,358.3,32440,2)
+ ;;=^5137461
+ ;;^UTILITY(U,$J,358.3,32441,0)
+ ;;=S91.225A^^126^1613^9
+ ;;^UTILITY(U,$J,358.3,32441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32017,1,3,0)
- ;;=3^Change of Job
- ;;^UTILITY(U,$J,358.3,32017,1,4,0)
- ;;=4^Z56.1
- ;;^UTILITY(U,$J,358.3,32017,2)
- ;;=^5063108
- ;;^UTILITY(U,$J,358.3,32018,0)
- ;;=Z56.2^^141^1482^11
- ;;^UTILITY(U,$J,358.3,32018,1,0)
+ ;;^UTILITY(U,$J,358.3,32441,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32441,1,4,0)
+ ;;=4^S91.225A
+ ;;^UTILITY(U,$J,358.3,32441,2)
+ ;;=^5137467
+ ;;^UTILITY(U,$J,358.3,32442,0)
+ ;;=S91.224A^^126^1613^13
+ ;;^UTILITY(U,$J,358.3,32442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32018,1,3,0)
- ;;=3^Threat of Job Loss
- ;;^UTILITY(U,$J,358.3,32018,1,4,0)
- ;;=4^Z56.2
- ;;^UTILITY(U,$J,358.3,32018,2)
- ;;=^5063109
- ;;^UTILITY(U,$J,358.3,32019,0)
- ;;=Z56.3^^141^1482^10
- ;;^UTILITY(U,$J,358.3,32019,1,0)
+ ;;^UTILITY(U,$J,358.3,32442,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32442,1,4,0)
+ ;;=4^S91.224A
+ ;;^UTILITY(U,$J,358.3,32442,2)
+ ;;=^5137466
+ ;;^UTILITY(U,$J,358.3,32443,0)
+ ;;=S81.811A^^126^1613^29
+ ;;^UTILITY(U,$J,358.3,32443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32019,1,3,0)
- ;;=3^Stressful Work Schedule
- ;;^UTILITY(U,$J,358.3,32019,1,4,0)
- ;;=4^Z56.3
- ;;^UTILITY(U,$J,358.3,32019,2)
- ;;=^5063110
- ;;^UTILITY(U,$J,358.3,32020,0)
- ;;=Z56.4^^141^1482^3
- ;;^UTILITY(U,$J,358.3,32020,1,0)
+ ;;^UTILITY(U,$J,358.3,32443,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,32443,1,4,0)
+ ;;=4^S81.811A
+ ;;^UTILITY(U,$J,358.3,32443,2)
+ ;;=^5040071
+ ;;^UTILITY(U,$J,358.3,32444,0)
+ ;;=S81.812A^^126^1613^22
+ ;;^UTILITY(U,$J,358.3,32444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32020,1,3,0)
- ;;=3^Discord w/ Boss & Workmates
- ;;^UTILITY(U,$J,358.3,32020,1,4,0)
- ;;=4^Z56.4
- ;;^UTILITY(U,$J,358.3,32020,2)
- ;;=^5063111
- ;;^UTILITY(U,$J,358.3,32021,0)
- ;;=Z56.5^^141^1482^12
- ;;^UTILITY(U,$J,358.3,32021,1,0)
+ ;;^UTILITY(U,$J,358.3,32444,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,32444,1,4,0)
+ ;;=4^S81.812A
+ ;;^UTILITY(U,$J,358.3,32444,2)
+ ;;=^5040074
+ ;;^UTILITY(U,$J,358.3,32445,0)
+ ;;=S91.311A^^126^1613^24
+ ;;^UTILITY(U,$J,358.3,32445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32021,1,3,0)
- ;;=3^Uncongenial Work Environment
- ;;^UTILITY(U,$J,358.3,32021,1,4,0)
- ;;=4^Z56.5
- ;;^UTILITY(U,$J,358.3,32021,2)
- ;;=^5063112
- ;;^UTILITY(U,$J,358.3,32022,0)
- ;;=Z56.6^^141^1482^5
- ;;^UTILITY(U,$J,358.3,32022,1,0)
+ ;;^UTILITY(U,$J,358.3,32445,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt ft, init
+ ;;^UTILITY(U,$J,358.3,32445,1,4,0)
+ ;;=4^S91.311A
+ ;;^UTILITY(U,$J,358.3,32445,2)
+ ;;=^5044320
+ ;;^UTILITY(U,$J,358.3,32446,0)
+ ;;=S91.114A^^126^1613^27
+ ;;^UTILITY(U,$J,358.3,32446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32022,1,3,0)
- ;;=3^Physical & Mental Strain Related to Work NEC
- ;;^UTILITY(U,$J,358.3,32022,1,4,0)
- ;;=4^Z56.6
- ;;^UTILITY(U,$J,358.3,32022,2)
- ;;=^5063113
- ;;^UTILITY(U,$J,358.3,32023,0)
- ;;=Z56.82^^141^1482^4
- ;;^UTILITY(U,$J,358.3,32023,1,0)
+ ;;^UTILITY(U,$J,358.3,32446,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32446,1,4,0)
+ ;;=4^S91.114A
+ ;;^UTILITY(U,$J,358.3,32446,2)
+ ;;=^5044192
+ ;;^UTILITY(U,$J,358.3,32447,0)
+ ;;=S91.214A^^126^1613^28
+ ;;^UTILITY(U,$J,358.3,32447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32023,1,3,0)
- ;;=3^Military Deployment Status
- ;;^UTILITY(U,$J,358.3,32023,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,32023,2)
- ;;=^5063115
- ;;^UTILITY(U,$J,358.3,32024,0)
- ;;=Z56.89^^141^1482^7
- ;;^UTILITY(U,$J,358.3,32024,1,0)
+ ;;^UTILITY(U,$J,358.3,32447,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32447,1,4,0)
+ ;;=4^S91.214A
+ ;;^UTILITY(U,$J,358.3,32447,2)
+ ;;=^5044279
+ ;;^UTILITY(U,$J,358.3,32448,0)
+ ;;=S91.212A^^126^1613^18
+ ;;^UTILITY(U,$J,358.3,32448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32024,1,3,0)
- ;;=3^Problems Related to Employment,Other
- ;;^UTILITY(U,$J,358.3,32024,1,4,0)
- ;;=4^Z56.89
- ;;^UTILITY(U,$J,358.3,32024,2)
- ;;=^5063116
- ;;^UTILITY(U,$J,358.3,32025,0)
- ;;=F64.1^^141^1483^2
- ;;^UTILITY(U,$J,358.3,32025,1,0)
+ ;;^UTILITY(U,$J,358.3,32448,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32448,1,4,0)
+ ;;=4^S91.212A
+ ;;^UTILITY(U,$J,358.3,32448,2)
+ ;;=^5044276
+ ;;^UTILITY(U,$J,358.3,32449,0)
+ ;;=S91.211A^^126^1613^25
+ ;;^UTILITY(U,$J,358.3,32449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32025,1,3,0)
- ;;=3^Gender Dysphoria in Adolescents & Adults
- ;;^UTILITY(U,$J,358.3,32025,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,32025,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,32026,0)
- ;;=F64.8^^141^1483^1
- ;;^UTILITY(U,$J,358.3,32026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32026,1,3,0)
- ;;=3^Gender Dysphoria NEC
- ;;^UTILITY(U,$J,358.3,32026,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,32026,2)
- ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,32449,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32449,1,4,0)
+ ;;=4^S91.211A

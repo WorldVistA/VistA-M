@@ -1,134 +1,138 @@
-IBDEI1F2 ; ; 19-NOV-2015
+IBDEI1F2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23646,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,23647,0)
- ;;=R45.850^^113^1143^9
- ;;^UTILITY(U,$J,358.3,23647,1,0)
+ ;;^UTILITY(U,$J,358.3,24081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23647,1,3,0)
- ;;=3^Homicidal Ideations
- ;;^UTILITY(U,$J,358.3,23647,1,4,0)
- ;;=4^R45.850
- ;;^UTILITY(U,$J,358.3,23647,2)
- ;;=^5019473
- ;;^UTILITY(U,$J,358.3,23648,0)
- ;;=I80.201^^113^1144^5
- ;;^UTILITY(U,$J,358.3,23648,1,0)
+ ;;^UTILITY(U,$J,358.3,24081,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,24081,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,24081,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,24082,0)
+ ;;=Z59.1^^90^1045^5
+ ;;^UTILITY(U,$J,358.3,24082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23648,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Right Lower Extrem
- ;;^UTILITY(U,$J,358.3,23648,1,4,0)
- ;;=4^I80.201
- ;;^UTILITY(U,$J,358.3,23648,2)
- ;;=^5007828
- ;;^UTILITY(U,$J,358.3,23649,0)
- ;;=I80.202^^113^1144^4
- ;;^UTILITY(U,$J,358.3,23649,1,0)
+ ;;^UTILITY(U,$J,358.3,24082,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,24082,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,24082,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,24083,0)
+ ;;=Z59.3^^90^1045^9
+ ;;^UTILITY(U,$J,358.3,24083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23649,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Left Lower Extrem
- ;;^UTILITY(U,$J,358.3,23649,1,4,0)
- ;;=4^I80.202
- ;;^UTILITY(U,$J,358.3,23649,2)
- ;;=^5007829
- ;;^UTILITY(U,$J,358.3,23650,0)
- ;;=I80.203^^113^1144^3
- ;;^UTILITY(U,$J,358.3,23650,1,0)
+ ;;^UTILITY(U,$J,358.3,24083,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,24083,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,24083,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,24084,0)
+ ;;=Z59.4^^90^1045^7
+ ;;^UTILITY(U,$J,358.3,24084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23650,1,3,0)
- ;;=3^Thombophlb & Phlbts Deep Vessels Bilateral Lower Extrem
- ;;^UTILITY(U,$J,358.3,23650,1,4,0)
- ;;=4^I80.203
- ;;^UTILITY(U,$J,358.3,23650,2)
- ;;=^5007830
- ;;^UTILITY(U,$J,358.3,23651,0)
- ;;=J06.9^^113^1144^14
- ;;^UTILITY(U,$J,358.3,23651,1,0)
+ ;;^UTILITY(U,$J,358.3,24084,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,24084,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,24084,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,24085,0)
+ ;;=Z59.5^^90^1045^2
+ ;;^UTILITY(U,$J,358.3,24085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23651,1,3,0)
- ;;=3^Upper resp infect, acute, unspec
- ;;^UTILITY(U,$J,358.3,23651,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,23651,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,23652,0)
- ;;=B35.3^^113^1144^7
- ;;^UTILITY(U,$J,358.3,23652,1,0)
+ ;;^UTILITY(U,$J,358.3,24085,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,24085,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,24085,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,24086,0)
+ ;;=Z59.6^^90^1045^8
+ ;;^UTILITY(U,$J,358.3,24086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23652,1,3,0)
- ;;=3^Tinea pedis
- ;;^UTILITY(U,$J,358.3,23652,1,4,0)
- ;;=4^B35.3
- ;;^UTILITY(U,$J,358.3,23652,2)
- ;;=^119732
- ;;^UTILITY(U,$J,358.3,23653,0)
- ;;=H93.11^^113^1144^10
- ;;^UTILITY(U,$J,358.3,23653,1,0)
+ ;;^UTILITY(U,$J,358.3,24086,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,24086,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,24086,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,24087,0)
+ ;;=Z59.7^^90^1045^6
+ ;;^UTILITY(U,$J,358.3,24087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23653,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,23653,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,23653,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,23654,0)
- ;;=H93.12^^113^1144^9
- ;;^UTILITY(U,$J,358.3,23654,1,0)
+ ;;^UTILITY(U,$J,358.3,24087,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,24087,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,24087,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,24088,0)
+ ;;=Z59.9^^90^1045^4
+ ;;^UTILITY(U,$J,358.3,24088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23654,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,23654,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,23654,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,23655,0)
- ;;=H93.13^^113^1144^8
- ;;^UTILITY(U,$J,358.3,23655,1,0)
+ ;;^UTILITY(U,$J,358.3,24088,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,24088,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,24088,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,24089,0)
+ ;;=G21.19^^90^1046^11
+ ;;^UTILITY(U,$J,358.3,24089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23655,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,23655,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,23655,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,23656,0)
- ;;=K26.9^^113^1144^11
- ;;^UTILITY(U,$J,358.3,23656,1,0)
+ ;;^UTILITY(U,$J,358.3,24089,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism NEC
+ ;;^UTILITY(U,$J,358.3,24089,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,24089,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,24090,0)
+ ;;=G21.11^^90^1046^14
+ ;;^UTILITY(U,$J,358.3,24090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23656,1,3,0)
- ;;=3^Ulcer,Duodenal w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,23656,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,23656,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,23657,0)
- ;;=K25.9^^113^1144^12
- ;;^UTILITY(U,$J,358.3,23657,1,0)
+ ;;^UTILITY(U,$J,358.3,24090,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,24090,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,24090,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,24091,0)
+ ;;=G24.02^^90^1046^8
+ ;;^UTILITY(U,$J,358.3,24091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23657,1,3,0)
- ;;=3^Ulcer,Gastric w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,23657,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,23657,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,23658,0)
- ;;=K27.9^^113^1144^13
- ;;^UTILITY(U,$J,358.3,23658,1,0)
+ ;;^UTILITY(U,$J,358.3,24091,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,24091,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,24091,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,24092,0)
+ ;;=G24.01^^90^1046^16
+ ;;^UTILITY(U,$J,358.3,24092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23658,1,3,0)
- ;;=3^Ulcer,Peptic w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,23658,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,23658,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,23659,0)
- ;;=N34.1^^113^1144^15
- ;;^UTILITY(U,$J,358.3,23659,1,0)
+ ;;^UTILITY(U,$J,358.3,24092,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,24092,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,24092,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,24093,0)
+ ;;=G24.09^^90^1046^17
+ ;;^UTILITY(U,$J,358.3,24093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23659,1,3,0)
- ;;=3^Urethritis, nonspec
- ;;^UTILITY(U,$J,358.3,23659,1,4,0)
- ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,24093,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,24093,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,24093,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,24094,0)
+ ;;=G25.1^^90^1046^12
+ ;;^UTILITY(U,$J,358.3,24094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24094,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor

@@ -1,136 +1,134 @@
-IBDEI18P ; ; 19-NOV-2015
+IBDEI18P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20734,1,0)
+ ;;^UTILITY(U,$J,358.3,21074,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,21074,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,21075,0)
+ ;;=F17.221^^84^943^24
+ ;;^UTILITY(U,$J,358.3,21075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20734,1,3,0)
- ;;=3^Animal Type Phobias
- ;;^UTILITY(U,$J,358.3,20734,1,4,0)
- ;;=4^F40.218
- ;;^UTILITY(U,$J,358.3,20734,2)
- ;;=^5003547
- ;;^UTILITY(U,$J,358.3,20735,0)
- ;;=F40.228^^99^982^13
- ;;^UTILITY(U,$J,358.3,20735,1,0)
+ ;;^UTILITY(U,$J,358.3,21075,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,21075,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,21075,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,21076,0)
+ ;;=F17.220^^84^943^25
+ ;;^UTILITY(U,$J,358.3,21076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20735,1,3,0)
- ;;=3^Natural Environment Type Phobia
- ;;^UTILITY(U,$J,358.3,20735,1,4,0)
- ;;=4^F40.228
- ;;^UTILITY(U,$J,358.3,20735,2)
- ;;=^5003549
- ;;^UTILITY(U,$J,358.3,20736,0)
- ;;=F40.230^^99^982^8
- ;;^UTILITY(U,$J,358.3,20736,1,0)
+ ;;^UTILITY(U,$J,358.3,21076,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21076,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,21076,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,21077,0)
+ ;;=F17.211^^84^943^26
+ ;;^UTILITY(U,$J,358.3,21077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20736,1,3,0)
- ;;=3^Fear of Blood
- ;;^UTILITY(U,$J,358.3,20736,1,4,0)
- ;;=4^F40.230
- ;;^UTILITY(U,$J,358.3,20736,2)
- ;;=^5003550
- ;;^UTILITY(U,$J,358.3,20737,0)
- ;;=F40.231^^99^982^9
- ;;^UTILITY(U,$J,358.3,20737,1,0)
+ ;;^UTILITY(U,$J,358.3,21077,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,21077,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,21077,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,21078,0)
+ ;;=F17.200^^84^943^31
+ ;;^UTILITY(U,$J,358.3,21078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20737,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,20737,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,20737,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,20738,0)
- ;;=F40.232^^99^982^11
- ;;^UTILITY(U,$J,358.3,20738,1,0)
+ ;;^UTILITY(U,$J,358.3,21078,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21078,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,21078,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,21079,0)
+ ;;=F11.120^^84^943^32
+ ;;^UTILITY(U,$J,358.3,21079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20738,1,3,0)
- ;;=3^Fear of Oth Medical Care
- ;;^UTILITY(U,$J,358.3,20738,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,20738,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,20739,0)
- ;;=F40.233^^99^982^10
- ;;^UTILITY(U,$J,358.3,20739,1,0)
+ ;;^UTILITY(U,$J,358.3,21079,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21079,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,21079,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,21080,0)
+ ;;=F11.10^^84^943^34
+ ;;^UTILITY(U,$J,358.3,21080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20739,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,20739,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,20739,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,20740,0)
- ;;=F40.240^^99^982^7
- ;;^UTILITY(U,$J,358.3,20740,1,0)
+ ;;^UTILITY(U,$J,358.3,21080,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21080,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,21080,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,21081,0)
+ ;;=F11.129^^84^943^33
+ ;;^UTILITY(U,$J,358.3,21081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20740,1,3,0)
- ;;=3^Claustrophobia
- ;;^UTILITY(U,$J,358.3,20740,1,4,0)
- ;;=4^F40.240
- ;;^UTILITY(U,$J,358.3,20740,2)
- ;;=^5003554
- ;;^UTILITY(U,$J,358.3,20741,0)
- ;;=F40.241^^99^982^1
- ;;^UTILITY(U,$J,358.3,20741,1,0)
+ ;;^UTILITY(U,$J,358.3,21081,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,21081,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,21081,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,21082,0)
+ ;;=F10.21^^84^943^3
+ ;;^UTILITY(U,$J,358.3,21082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20741,1,3,0)
- ;;=3^Acrophobia
- ;;^UTILITY(U,$J,358.3,20741,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,20741,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,20742,0)
- ;;=F40.248^^99^982^15
- ;;^UTILITY(U,$J,358.3,20742,1,0)
+ ;;^UTILITY(U,$J,358.3,21082,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,21082,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,21082,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,21083,0)
+ ;;=F12.10^^84^943^5
+ ;;^UTILITY(U,$J,358.3,21083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20742,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,20742,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,20742,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,20743,0)
- ;;=F40.01^^99^982^3
- ;;^UTILITY(U,$J,358.3,20743,1,0)
+ ;;^UTILITY(U,$J,358.3,21083,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21083,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,21083,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,21084,0)
+ ;;=F12.20^^84^943^7
+ ;;^UTILITY(U,$J,358.3,21084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20743,1,3,0)
- ;;=3^Agoraphobia w/ Panic Disorder
- ;;^UTILITY(U,$J,358.3,20743,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,20743,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,20744,0)
- ;;=F06.33^^99^983^1
- ;;^UTILITY(U,$J,358.3,20744,1,0)
+ ;;^UTILITY(U,$J,358.3,21084,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21084,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,21084,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,21085,0)
+ ;;=F12.21^^84^943^6
+ ;;^UTILITY(U,$J,358.3,21085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20744,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,20744,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,20744,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,20745,0)
- ;;=F06.34^^99^983^2
- ;;^UTILITY(U,$J,358.3,20745,1,0)
+ ;;^UTILITY(U,$J,358.3,21085,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,21085,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,21085,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,21086,0)
+ ;;=F12.90^^84^943^8
+ ;;^UTILITY(U,$J,358.3,21086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20745,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,20745,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,20745,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,20746,0)
- ;;=F31.11^^99^983^3
- ;;^UTILITY(U,$J,358.3,20746,1,0)
+ ;;^UTILITY(U,$J,358.3,21086,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,21086,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,21086,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,21087,0)
+ ;;=I83.019^^84^944^3
+ ;;^UTILITY(U,$J,358.3,21087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20746,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,20746,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,20746,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,20747,0)
- ;;=F31.12^^99^983^4
- ;;^UTILITY(U,$J,358.3,20747,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21087,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec

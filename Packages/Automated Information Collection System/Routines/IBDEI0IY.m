@@ -1,134 +1,138 @@
-IBDEI0IY ; ; 19-NOV-2015
+IBDEI0IY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8521,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,8521,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,8522,0)
- ;;=K52.9^^55^540^81
- ;;^UTILITY(U,$J,358.3,8522,1,0)
+ ;;^UTILITY(U,$J,358.3,8810,2)
+ ;;=^5004945
+ ;;^UTILITY(U,$J,358.3,8811,0)
+ ;;=H16.203^^41^468^99
+ ;;^UTILITY(U,$J,358.3,8811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8522,1,3,0)
- ;;=3^Noninfective gastroenteritis and colitis, unspecified
- ;;^UTILITY(U,$J,358.3,8522,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,8522,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,8523,0)
- ;;=K57.32^^55^540^55
- ;;^UTILITY(U,$J,358.3,8523,1,0)
+ ;;^UTILITY(U,$J,358.3,8811,1,3,0)
+ ;;=3^Keratoconjunctivitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,8811,1,4,0)
+ ;;=4^H16.203
+ ;;^UTILITY(U,$J,358.3,8811,2)
+ ;;=^5004919
+ ;;^UTILITY(U,$J,358.3,8812,0)
+ ;;=H18.603^^41^468^104
+ ;;^UTILITY(U,$J,358.3,8812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8523,1,3,0)
- ;;=3^Dvtrcli of lg int w/o perforation or abscess w/o bleeding
- ;;^UTILITY(U,$J,358.3,8523,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,8523,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,8524,0)
- ;;=K70.10^^55^540^25
- ;;^UTILITY(U,$J,358.3,8524,1,0)
+ ;;^UTILITY(U,$J,358.3,8812,1,3,0)
+ ;;=3^Keratoconus,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,8812,1,4,0)
+ ;;=4^H18.603
+ ;;^UTILITY(U,$J,358.3,8812,2)
+ ;;=^5005091
+ ;;^UTILITY(U,$J,358.3,8813,0)
+ ;;=H16.043^^41^468^115
+ ;;^UTILITY(U,$J,358.3,8813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8524,1,3,0)
- ;;=3^Alcoholic hepatitis without ascites
- ;;^UTILITY(U,$J,358.3,8524,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,8524,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,8525,0)
- ;;=K73.0^^55^540^45
- ;;^UTILITY(U,$J,358.3,8525,1,0)
+ ;;^UTILITY(U,$J,358.3,8813,1,3,0)
+ ;;=3^Marginal Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,8813,1,4,0)
+ ;;=4^H16.043
+ ;;^UTILITY(U,$J,358.3,8813,2)
+ ;;=^5004884
+ ;;^UTILITY(U,$J,358.3,8814,0)
+ ;;=H16.423^^41^468^121
+ ;;^UTILITY(U,$J,358.3,8814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8525,1,3,0)
- ;;=3^Chronic persistent hepatitis, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,8525,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,8525,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,8526,0)
- ;;=N12.^^55^540^104
- ;;^UTILITY(U,$J,358.3,8526,1,0)
+ ;;^UTILITY(U,$J,358.3,8814,1,3,0)
+ ;;=3^Pannus Corneal,Bilateral
+ ;;^UTILITY(U,$J,358.3,8814,1,4,0)
+ ;;=4^H16.423
+ ;;^UTILITY(U,$J,358.3,8814,2)
+ ;;=^5004974
+ ;;^UTILITY(U,$J,358.3,8815,0)
+ ;;=H17.823^^41^468^127
+ ;;^UTILITY(U,$J,358.3,8815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8526,1,3,0)
- ;;=3^Tubulo-interstitial nephritis, not spcf as acute or chronic
- ;;^UTILITY(U,$J,358.3,8526,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,8526,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,8527,0)
- ;;=N30.90^^55^540^51
- ;;^UTILITY(U,$J,358.3,8527,1,0)
+ ;;^UTILITY(U,$J,358.3,8815,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,8815,1,4,0)
+ ;;=4^H17.823
+ ;;^UTILITY(U,$J,358.3,8815,2)
+ ;;=^5005000
+ ;;^UTILITY(U,$J,358.3,8816,0)
+ ;;=H11.153^^41^468^130
+ ;;^UTILITY(U,$J,358.3,8816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8527,1,3,0)
- ;;=3^Cystitis, unspecified without hematuria
- ;;^UTILITY(U,$J,358.3,8527,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,8527,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,8528,0)
- ;;=N30.91^^55^540^50
- ;;^UTILITY(U,$J,358.3,8528,1,0)
+ ;;^UTILITY(U,$J,358.3,8816,1,3,0)
+ ;;=3^Pinguecula,Bilateral
+ ;;^UTILITY(U,$J,358.3,8816,1,4,0)
+ ;;=4^H11.153
+ ;;^UTILITY(U,$J,358.3,8816,2)
+ ;;=^5004763
+ ;;^UTILITY(U,$J,358.3,8817,0)
+ ;;=H18.053^^41^468^133
+ ;;^UTILITY(U,$J,358.3,8817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8528,1,3,0)
- ;;=3^Cystitis, unspecified with hematuria
- ;;^UTILITY(U,$J,358.3,8528,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,8528,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,8529,0)
- ;;=N34.1^^55^540^83
- ;;^UTILITY(U,$J,358.3,8529,1,0)
+ ;;^UTILITY(U,$J,358.3,8817,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Bilateral
+ ;;^UTILITY(U,$J,358.3,8817,1,4,0)
+ ;;=4^H18.053
+ ;;^UTILITY(U,$J,358.3,8817,2)
+ ;;=^5005025
+ ;;^UTILITY(U,$J,358.3,8818,0)
+ ;;=H21.543^^41^468^136
+ ;;^UTILITY(U,$J,358.3,8818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8529,1,3,0)
- ;;=3^Nonspecific urethritis
- ;;^UTILITY(U,$J,358.3,8529,1,4,0)
- ;;=4^N34.1
- ;;^UTILITY(U,$J,358.3,8529,2)
- ;;=^5015655
- ;;^UTILITY(U,$J,358.3,8530,0)
- ;;=N39.0^^55^540^107
- ;;^UTILITY(U,$J,358.3,8530,1,0)
+ ;;^UTILITY(U,$J,358.3,8818,1,3,0)
+ ;;=3^Posterior Synechiae,Bilateral
+ ;;^UTILITY(U,$J,358.3,8818,1,4,0)
+ ;;=4^H21.543
+ ;;^UTILITY(U,$J,358.3,8818,2)
+ ;;=^5005253
+ ;;^UTILITY(U,$J,358.3,8819,0)
+ ;;=H11.003^^41^468^139
+ ;;^UTILITY(U,$J,358.3,8819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8530,1,3,0)
- ;;=3^Urinary tract infection, site not specified
- ;;^UTILITY(U,$J,358.3,8530,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,8530,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,8531,0)
- ;;=N41.9^^55^540^74
- ;;^UTILITY(U,$J,358.3,8531,1,0)
+ ;;^UTILITY(U,$J,358.3,8819,1,3,0)
+ ;;=3^Pterygium,Bilateral
+ ;;^UTILITY(U,$J,358.3,8819,1,4,0)
+ ;;=4^H11.003
+ ;;^UTILITY(U,$J,358.3,8819,2)
+ ;;=^5004719
+ ;;^UTILITY(U,$J,358.3,8820,0)
+ ;;=H16.143^^41^468^142
+ ;;^UTILITY(U,$J,358.3,8820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8531,1,3,0)
- ;;=3^Inflammatory disease of prostate, unspecified
- ;;^UTILITY(U,$J,358.3,8531,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,8531,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,8532,0)
- ;;=N45.1^^55^540^58
- ;;^UTILITY(U,$J,358.3,8532,1,0)
+ ;;^UTILITY(U,$J,358.3,8820,1,3,0)
+ ;;=3^Punctate Keratitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,8820,1,4,0)
+ ;;=4^H16.143
+ ;;^UTILITY(U,$J,358.3,8820,2)
+ ;;=^5004915
+ ;;^UTILITY(U,$J,358.3,8821,0)
+ ;;=H21.553^^41^468^145
+ ;;^UTILITY(U,$J,358.3,8821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8532,1,3,0)
- ;;=3^Epididymitis
- ;;^UTILITY(U,$J,358.3,8532,1,4,0)
- ;;=4^N45.1
- ;;^UTILITY(U,$J,358.3,8532,2)
- ;;=^41396
- ;;^UTILITY(U,$J,358.3,8533,0)
- ;;=N70.93^^55^540^94
- ;;^UTILITY(U,$J,358.3,8533,1,0)
+ ;;^UTILITY(U,$J,358.3,8821,1,3,0)
+ ;;=3^Recession of Chamber Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,8821,1,4,0)
+ ;;=4^H21.553
+ ;;^UTILITY(U,$J,358.3,8821,2)
+ ;;=^5005257
+ ;;^UTILITY(U,$J,358.3,8822,0)
+ ;;=H18.833^^41^468^148
+ ;;^UTILITY(U,$J,358.3,8822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8533,1,3,0)
- ;;=3^Salpingitis and oophoritis, unspecified
- ;;^UTILITY(U,$J,358.3,8533,1,4,0)
- ;;=4^N70.93
- ;;^UTILITY(U,$J,358.3,8533,2)
- ;;=^5015808
- ;;^UTILITY(U,$J,358.3,8534,0)
- ;;=N70.91^^55^540^95
- ;;^UTILITY(U,$J,358.3,8534,1,0)
+ ;;^UTILITY(U,$J,358.3,8822,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,8822,1,4,0)
+ ;;=4^H18.833
+ ;;^UTILITY(U,$J,358.3,8822,2)
+ ;;=^5005128
+ ;;^UTILITY(U,$J,358.3,8823,0)
+ ;;=H11.233^^41^468^154
+ ;;^UTILITY(U,$J,358.3,8823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8534,1,3,0)
- ;;=3^Salpingitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8823,1,3,0)
+ ;;=3^Symblepharon,Bilateral
+ ;;^UTILITY(U,$J,358.3,8823,1,4,0)
+ ;;=4^H11.233
+ ;;^UTILITY(U,$J,358.3,8823,2)
+ ;;=^5004775
+ ;;^UTILITY(U,$J,358.3,8824,0)
+ ;;=H10.213^^41^468^157

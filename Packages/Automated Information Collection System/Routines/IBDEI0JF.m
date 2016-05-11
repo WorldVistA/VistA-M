@@ -1,138 +1,128 @@
-IBDEI0JF ; ; 19-NOV-2015
+IBDEI0JF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8745,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,8745,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,8746,0)
- ;;=F10.27^^55^545^6
- ;;^UTILITY(U,$J,358.3,8746,1,0)
+ ;;^UTILITY(U,$J,358.3,9027,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,9028,0)
+ ;;=H54.8^^41^472^7
+ ;;^UTILITY(U,$J,358.3,9028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8746,1,3,0)
- ;;=3^Alcohol dependence with alcohol-induced persisting dementia
- ;;^UTILITY(U,$J,358.3,8746,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,8746,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,8747,0)
- ;;=G44.209^^55^545^62
- ;;^UTILITY(U,$J,358.3,8747,1,0)
+ ;;^UTILITY(U,$J,358.3,9028,1,3,0)
+ ;;=3^Legal Blindness,as Defined in USA
+ ;;^UTILITY(U,$J,358.3,9028,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,9028,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,9029,0)
+ ;;=H54.10^^41^472^4
+ ;;^UTILITY(U,$J,358.3,9029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8747,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,8747,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,8747,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,8748,0)
- ;;=G30.9^^55^545^7
- ;;^UTILITY(U,$J,358.3,8748,1,0)
+ ;;^UTILITY(U,$J,358.3,9029,1,3,0)
+ ;;=3^Blindness-One Eye/Low Vision-Other Eye,Unspec Eyes
+ ;;^UTILITY(U,$J,358.3,9029,1,4,0)
+ ;;=4^H54.10
+ ;;^UTILITY(U,$J,358.3,9029,2)
+ ;;=^5006358
+ ;;^UTILITY(U,$J,358.3,9030,0)
+ ;;=E11.9^^41^473^26
+ ;;^UTILITY(U,$J,358.3,9030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8748,1,3,0)
- ;;=3^Alzheimer's disease, unspecified
- ;;^UTILITY(U,$J,358.3,8748,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,8748,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,8749,0)
- ;;=G20.^^55^545^52
- ;;^UTILITY(U,$J,358.3,8749,1,0)
+ ;;^UTILITY(U,$J,358.3,9030,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,9030,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,9030,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,9031,0)
+ ;;=E11.39^^41^473^15
+ ;;^UTILITY(U,$J,358.3,9031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8749,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,8749,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,8749,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,8750,0)
- ;;=G25.0^^55^545^30
- ;;^UTILITY(U,$J,358.3,8750,1,0)
+ ;;^UTILITY(U,$J,358.3,9031,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
+ ;;^UTILITY(U,$J,358.3,9031,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,9031,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,9032,0)
+ ;;=E11.36^^41^473^14
+ ;;^UTILITY(U,$J,358.3,9032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8750,1,3,0)
- ;;=3^Essential tremor
- ;;^UTILITY(U,$J,358.3,8750,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,8750,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,8751,0)
- ;;=G25.1^^55^545^26
- ;;^UTILITY(U,$J,358.3,8751,1,0)
+ ;;^UTILITY(U,$J,358.3,9032,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Cataract
+ ;;^UTILITY(U,$J,358.3,9032,1,4,0)
+ ;;=4^E11.36
+ ;;^UTILITY(U,$J,358.3,9032,2)
+ ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,9033,0)
+ ;;=E11.359^^41^473^20
+ ;;^UTILITY(U,$J,358.3,9033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8751,1,3,0)
- ;;=3^Drug-induced tremor
- ;;^UTILITY(U,$J,358.3,8751,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,8751,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,8752,0)
- ;;=G25.2^^55^545^64
- ;;^UTILITY(U,$J,358.3,8752,1,0)
+ ;;^UTILITY(U,$J,358.3,9033,1,3,0)
+ ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,9033,1,4,0)
+ ;;=4^E11.359
+ ;;^UTILITY(U,$J,358.3,9033,2)
+ ;;=^5002641
+ ;;^UTILITY(U,$J,358.3,9034,0)
+ ;;=E11.351^^41^473^21
+ ;;^UTILITY(U,$J,358.3,9034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8752,1,3,0)
- ;;=3^Tremor NEC
- ;;^UTILITY(U,$J,358.3,8752,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,8752,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,8753,0)
- ;;=G25.81^^55^545^57
- ;;^UTILITY(U,$J,358.3,8753,1,0)
+ ;;^UTILITY(U,$J,358.3,9034,1,3,0)
+ ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,9034,1,4,0)
+ ;;=4^E11.351
+ ;;^UTILITY(U,$J,358.3,9034,2)
+ ;;=^5002640
+ ;;^UTILITY(U,$J,358.3,9035,0)
+ ;;=E11.349^^41^473^22
+ ;;^UTILITY(U,$J,358.3,9035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8753,1,3,0)
- ;;=3^Restless legs syndrome
- ;;^UTILITY(U,$J,358.3,8753,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,8753,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,8754,0)
- ;;=G90.59^^55^545^19
- ;;^UTILITY(U,$J,358.3,8754,1,0)
+ ;;^UTILITY(U,$J,358.3,9035,1,3,0)
+ ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,9035,1,4,0)
+ ;;=4^E11.349
+ ;;^UTILITY(U,$J,358.3,9035,2)
+ ;;=^5002639
+ ;;^UTILITY(U,$J,358.3,9036,0)
+ ;;=E11.341^^41^473^23
+ ;;^UTILITY(U,$J,358.3,9036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8754,1,3,0)
- ;;=3^Complex regional pain syndrome I of other specified site
- ;;^UTILITY(U,$J,358.3,8754,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,8754,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,8755,0)
- ;;=G35.^^55^545^43
- ;;^UTILITY(U,$J,358.3,8755,1,0)
+ ;;^UTILITY(U,$J,358.3,9036,1,3,0)
+ ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,9036,1,4,0)
+ ;;=4^E11.341
+ ;;^UTILITY(U,$J,358.3,9036,2)
+ ;;=^5002638
+ ;;^UTILITY(U,$J,358.3,9037,0)
+ ;;=E11.339^^41^473^18
+ ;;^UTILITY(U,$J,358.3,9037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8755,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,8755,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,8755,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,8756,0)
- ;;=G82.20^^55^545^50
- ;;^UTILITY(U,$J,358.3,8756,1,0)
+ ;;^UTILITY(U,$J,358.3,9037,1,3,0)
+ ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,9037,1,4,0)
+ ;;=4^E11.339
+ ;;^UTILITY(U,$J,358.3,9037,2)
+ ;;=^5002637
+ ;;^UTILITY(U,$J,358.3,9038,0)
+ ;;=E11.331^^41^473^19
+ ;;^UTILITY(U,$J,358.3,9038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8756,1,3,0)
- ;;=3^Paraplegia, unspecified
- ;;^UTILITY(U,$J,358.3,8756,1,4,0)
- ;;=4^G82.20
- ;;^UTILITY(U,$J,358.3,8756,2)
- ;;=^5004125
- ;;^UTILITY(U,$J,358.3,8757,0)
- ;;=G40.909^^55^545^29
- ;;^UTILITY(U,$J,358.3,8757,1,0)
+ ;;^UTILITY(U,$J,358.3,9038,1,3,0)
+ ;;=3^DM Type 2 w/ Moderate NonProlif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,9038,1,4,0)
+ ;;=4^E11.331
+ ;;^UTILITY(U,$J,358.3,9038,2)
+ ;;=^5002636
+ ;;^UTILITY(U,$J,358.3,9039,0)
+ ;;=E11.329^^41^473^16
+ ;;^UTILITY(U,$J,358.3,9039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8757,1,3,0)
- ;;=3^Epilepsy, unsp, not intractable, without status epilepticus
- ;;^UTILITY(U,$J,358.3,8757,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,8757,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,8758,0)
- ;;=G40.901^^55^545^28
- ;;^UTILITY(U,$J,358.3,8758,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8758,1,3,0)
- ;;=3^Epilepsy, unsp, not intractable, with status epilepticus
- ;;^UTILITY(U,$J,358.3,8758,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,8758,2)
- ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,9039,1,3,0)
+ ;;=3^DM Type 2 w/ Mild NonProlif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,9039,1,4,0)
+ ;;=4^E11.329
+ ;;^UTILITY(U,$J,358.3,9039,2)
+ ;;=^5002635
+ ;;^UTILITY(U,$J,358.3,9040,0)
+ ;;=E11.321^^41^473^17

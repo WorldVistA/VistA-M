@@ -1,6 +1,6 @@
 IBCNERPF ;BP/YMG - IBCNE USER INTERFACE EIV INSURANCE UPDATE REPORT ;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416**;16-SEP-09;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Variables:
  ;   IBCNERTN = "IBCNERPF" (current routine name for queueing the 
@@ -11,10 +11,11 @@ IBCNERPF ;BP/YMG - IBCNE USER INTERFACE EIV INSURANCE UPDATE REPORT ;16-SEP-2009
  ;   IBCNESPC("PAT",ien) = patient iens for report, if IBCNESPC("PAT")="A", then include all
  ;   IBCNESPC("SORT") = sort by: 1 - Payer name, 2 - Patient Name, 3 - Clerk Name
  ;   IBCNESPC("TYPE") = report type: "S" - summary, "D" - detailed
+ ;   IBOUT = "R" for Report format or "E" for Excel format
  ;
  Q
 EN ; entry point
- N STOP,IBCNERTN,IBCNESPC
+ N STOP,IBCNERTN,IBCNESPC,IBOUT
  ;
  S STOP=0,IBCNERTN="IBCNERPF"
  W @IOF
@@ -30,8 +31,10 @@ P30 D DTRANGE I STOP G:$$STOP^IBCNERP1 EXIT G P20
 P40 D PATIENT I STOP G:$$STOP^IBCNERP1 EXIT G P30
  ; Sort by parameter - Payer Name, Patient Name, or Clerk Name
 P50 D SORT I STOP G:$$STOP^IBCNERP1 EXIT G P40
+ ; Select the output type
+P60 S IBOUT=$$OUT^IBCNERP1 I STOP G:$$STOP^IBCNERP1 EXIT G P50
  ; Select the output device
-P100 D DEVICE^IBCNERP1(IBCNERTN,.IBCNESPC) I STOP G:$$STOP^IBCNERP1 EXIT G P50
+P100 D DEVICE^IBCNERP1(IBCNERTN,.IBCNESPC,IBOUT) I STOP G:$$STOP^IBCNERP1 EXIT G P50
  ;
 EXIT ;
  Q

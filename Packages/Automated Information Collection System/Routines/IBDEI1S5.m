@@ -1,140 +1,130 @@
-IBDEI1S5 ; ; 19-NOV-2015
+IBDEI1S5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29798,1,4,0)
- ;;=4^N45.1
- ;;^UTILITY(U,$J,358.3,29798,2)
- ;;=^41396
- ;;^UTILITY(U,$J,358.3,29799,0)
- ;;=N45.2^^135^1368^74
- ;;^UTILITY(U,$J,358.3,29799,1,0)
+ ;;^UTILITY(U,$J,358.3,30246,0)
+ ;;=C79.71^^118^1503^17
+ ;;^UTILITY(U,$J,358.3,30246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29799,1,3,0)
- ;;=3^Orchitis
- ;;^UTILITY(U,$J,358.3,29799,1,4,0)
- ;;=4^N45.2
- ;;^UTILITY(U,$J,358.3,29799,2)
- ;;=^86174
- ;;^UTILITY(U,$J,358.3,29800,0)
- ;;=N45.3^^135^1368^32
- ;;^UTILITY(U,$J,358.3,29800,1,0)
+ ;;^UTILITY(U,$J,358.3,30246,1,3,0)
+ ;;=3^Secondary malignant neoplasm of right adrenal gland
+ ;;^UTILITY(U,$J,358.3,30246,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,30246,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,30247,0)
+ ;;=C79.72^^118^1503^10
+ ;;^UTILITY(U,$J,358.3,30247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29800,1,3,0)
- ;;=3^Epididymo-orchitis
- ;;^UTILITY(U,$J,358.3,29800,1,4,0)
- ;;=4^N45.3
- ;;^UTILITY(U,$J,358.3,29800,2)
- ;;=^5015707
- ;;^UTILITY(U,$J,358.3,29801,0)
- ;;=N47.2^^135^1368^76
- ;;^UTILITY(U,$J,358.3,29801,1,0)
+ ;;^UTILITY(U,$J,358.3,30247,1,3,0)
+ ;;=3^Secondary malignant neoplasm of left adrenal gland
+ ;;^UTILITY(U,$J,358.3,30247,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,30247,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,30248,0)
+ ;;=C77.5^^118^1503^8
+ ;;^UTILITY(U,$J,358.3,30248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29801,1,3,0)
- ;;=3^Paraphimosis
- ;;^UTILITY(U,$J,358.3,29801,1,4,0)
- ;;=4^N47.2
- ;;^UTILITY(U,$J,358.3,29801,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,29802,0)
- ;;=N47.1^^135^1368^78
- ;;^UTILITY(U,$J,358.3,29802,1,0)
+ ;;^UTILITY(U,$J,358.3,30248,1,3,0)
+ ;;=3^Secondary malignant neoplasm of intrapelvic nodes
+ ;;^UTILITY(U,$J,358.3,30248,1,4,0)
+ ;;=4^C77.5
+ ;;^UTILITY(U,$J,358.3,30248,2)
+ ;;=^267319
+ ;;^UTILITY(U,$J,358.3,30249,0)
+ ;;=C48.2^^118^1504^24
+ ;;^UTILITY(U,$J,358.3,30249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29802,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,29802,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,29802,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,29803,0)
- ;;=N47.3^^135^1368^24
- ;;^UTILITY(U,$J,358.3,29803,1,0)
+ ;;^UTILITY(U,$J,358.3,30249,1,3,0)
+ ;;=3^Malignant neoplasm of peritoneum, unspecified
+ ;;^UTILITY(U,$J,358.3,30249,1,4,0)
+ ;;=4^C48.2
+ ;;^UTILITY(U,$J,358.3,30249,2)
+ ;;=^5001122
+ ;;^UTILITY(U,$J,358.3,30250,0)
+ ;;=C45.0^^118^1504^30
+ ;;^UTILITY(U,$J,358.3,30250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29803,1,3,0)
- ;;=3^Deficient Foreskin
- ;;^UTILITY(U,$J,358.3,29803,1,4,0)
- ;;=4^N47.3
- ;;^UTILITY(U,$J,358.3,29803,2)
- ;;=^5015726
- ;;^UTILITY(U,$J,358.3,29804,0)
- ;;=N47.5^^135^1368^1
- ;;^UTILITY(U,$J,358.3,29804,1,0)
+ ;;^UTILITY(U,$J,358.3,30250,1,3,0)
+ ;;=3^Mesothelioma of pleura
+ ;;^UTILITY(U,$J,358.3,30250,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,30250,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,30251,0)
+ ;;=C38.4^^118^1504^25
+ ;;^UTILITY(U,$J,358.3,30251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29804,1,3,0)
- ;;=3^Adhesions Prepuce & Glans Penis
- ;;^UTILITY(U,$J,358.3,29804,1,4,0)
- ;;=4^N47.5
- ;;^UTILITY(U,$J,358.3,29804,2)
- ;;=^5015728
- ;;^UTILITY(U,$J,358.3,29805,0)
- ;;=N47.4^^135^1368^19
- ;;^UTILITY(U,$J,358.3,29805,1,0)
+ ;;^UTILITY(U,$J,358.3,30251,1,3,0)
+ ;;=3^Malignant neoplasm of pleura
+ ;;^UTILITY(U,$J,358.3,30251,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,30251,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,30252,0)
+ ;;=C41.9^^118^1504^16
+ ;;^UTILITY(U,$J,358.3,30252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29805,1,3,0)
- ;;=3^Cyst of Prepuce,Benign
- ;;^UTILITY(U,$J,358.3,29805,1,4,0)
- ;;=4^N47.4
- ;;^UTILITY(U,$J,358.3,29805,2)
- ;;=^5015727
- ;;^UTILITY(U,$J,358.3,29806,0)
- ;;=N47.8^^135^1368^25
- ;;^UTILITY(U,$J,358.3,29806,1,0)
+ ;;^UTILITY(U,$J,358.3,30252,1,3,0)
+ ;;=3^Malignant neoplasm of bone and articular cartilage, unsp
+ ;;^UTILITY(U,$J,358.3,30252,1,4,0)
+ ;;=4^C41.9
+ ;;^UTILITY(U,$J,358.3,30252,2)
+ ;;=^5000993
+ ;;^UTILITY(U,$J,358.3,30253,0)
+ ;;=C49.9^^118^1504^19
+ ;;^UTILITY(U,$J,358.3,30253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29806,1,3,0)
- ;;=3^Disorders of Prepuce
- ;;^UTILITY(U,$J,358.3,29806,1,4,0)
- ;;=4^N47.8
- ;;^UTILITY(U,$J,358.3,29806,2)
- ;;=^5015730
- ;;^UTILITY(U,$J,358.3,29807,0)
- ;;=N47.7^^135^1368^58
- ;;^UTILITY(U,$J,358.3,29807,1,0)
+ ;;^UTILITY(U,$J,358.3,30253,1,3,0)
+ ;;=3^Malignant neoplasm of connective and soft tissue, unsp
+ ;;^UTILITY(U,$J,358.3,30253,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,30253,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,30254,0)
+ ;;=C47.9^^118^1504^14
+ ;;^UTILITY(U,$J,358.3,30254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29807,1,3,0)
- ;;=3^Inflammatory Diseases of Prepuce
- ;;^UTILITY(U,$J,358.3,29807,1,4,0)
- ;;=4^N47.7
- ;;^UTILITY(U,$J,358.3,29807,2)
- ;;=^5015729
- ;;^UTILITY(U,$J,358.3,29808,0)
- ;;=N47.6^^135^1368^3
- ;;^UTILITY(U,$J,358.3,29808,1,0)
+ ;;^UTILITY(U,$J,358.3,30254,1,3,0)
+ ;;=3^Malig neoplasm of prph nerves and autonm nervous sys, unsp
+ ;;^UTILITY(U,$J,358.3,30254,1,4,0)
+ ;;=4^C47.9
+ ;;^UTILITY(U,$J,358.3,30254,2)
+ ;;=^5001121
+ ;;^UTILITY(U,$J,358.3,30255,0)
+ ;;=C43.9^^118^1504^15
+ ;;^UTILITY(U,$J,358.3,30255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29808,1,3,0)
- ;;=3^Balanoposthitis
- ;;^UTILITY(U,$J,358.3,29808,1,4,0)
- ;;=4^N47.6
- ;;^UTILITY(U,$J,358.3,29808,2)
- ;;=^12530
- ;;^UTILITY(U,$J,358.3,29809,0)
- ;;=N48.1^^135^1368^2
- ;;^UTILITY(U,$J,358.3,29809,1,0)
+ ;;^UTILITY(U,$J,358.3,30255,1,3,0)
+ ;;=3^Malignant melanoma of skin, unspecified
+ ;;^UTILITY(U,$J,358.3,30255,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,30255,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,30256,0)
+ ;;=D03.9^^118^1504^29
+ ;;^UTILITY(U,$J,358.3,30256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29809,1,3,0)
- ;;=3^Balanitis
- ;;^UTILITY(U,$J,358.3,29809,1,4,0)
- ;;=4^N48.1
- ;;^UTILITY(U,$J,358.3,29809,2)
- ;;=^12525
- ;;^UTILITY(U,$J,358.3,29810,0)
- ;;=N52.34^^135^1368^38
- ;;^UTILITY(U,$J,358.3,29810,1,0)
+ ;;^UTILITY(U,$J,358.3,30256,1,3,0)
+ ;;=3^Melanoma in situ, unspecified
+ ;;^UTILITY(U,$J,358.3,30256,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,30256,2)
+ ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,30257,0)
+ ;;=C44.01^^118^1504^5
+ ;;^UTILITY(U,$J,358.3,30257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29810,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,29810,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,29810,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,29811,0)
- ;;=N52.39^^135^1368^40
- ;;^UTILITY(U,$J,358.3,29811,1,0)
+ ;;^UTILITY(U,$J,358.3,30257,1,3,0)
+ ;;=3^Basal cell carcinoma of skin of lip
+ ;;^UTILITY(U,$J,358.3,30257,1,4,0)
+ ;;=4^C44.01
+ ;;^UTILITY(U,$J,358.3,30257,2)
+ ;;=^340464
+ ;;^UTILITY(U,$J,358.3,30258,0)
+ ;;=C44.02^^118^1504^35
+ ;;^UTILITY(U,$J,358.3,30258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29811,1,3,0)
- ;;=3^Erectile Dysfunction Post-Surgical
- ;;^UTILITY(U,$J,358.3,29811,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,29811,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,29812,0)
- ;;=N52.33^^135^1368^39
+ ;;^UTILITY(U,$J,358.3,30258,1,3,0)
+ ;;=3^Squamous cell carcinoma of skin of lip

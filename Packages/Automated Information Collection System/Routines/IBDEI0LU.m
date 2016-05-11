@@ -1,140 +1,136 @@
-IBDEI0LU ; ; 19-NOV-2015
+IBDEI0LU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9965,2)
- ;;=^5003379
- ;;^UTILITY(U,$J,358.3,9966,0)
- ;;=Z51.81^^68^660^17
- ;;^UTILITY(U,$J,358.3,9966,1,0)
+ ;;^UTILITY(U,$J,358.3,10182,2)
+ ;;=^5006274
+ ;;^UTILITY(U,$J,358.3,10183,0)
+ ;;=Z13.5^^44^501^63
+ ;;^UTILITY(U,$J,358.3,10183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9966,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,9966,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,9966,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,9967,0)
- ;;=Z02.79^^68^660^11
- ;;^UTILITY(U,$J,358.3,9967,1,0)
+ ;;^UTILITY(U,$J,358.3,10183,1,3,0)
+ ;;=3^Screening for Eye & Ear Disorders
+ ;;^UTILITY(U,$J,358.3,10183,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,10183,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,10184,0)
+ ;;=H34.832^^44^501^64
+ ;;^UTILITY(U,$J,358.3,10184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9967,1,3,0)
- ;;=3^Issue of Medical Certificate NEC
- ;;^UTILITY(U,$J,358.3,9967,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,9967,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,9968,0)
- ;;=Z76.0^^68^660^12
- ;;^UTILITY(U,$J,358.3,9968,1,0)
+ ;;^UTILITY(U,$J,358.3,10184,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,10184,1,4,0)
+ ;;=4^H34.832
+ ;;^UTILITY(U,$J,358.3,10184,2)
+ ;;=^5005577
+ ;;^UTILITY(U,$J,358.3,10185,0)
+ ;;=H34.831^^44^501^65
+ ;;^UTILITY(U,$J,358.3,10185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9968,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,9968,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,9968,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,9969,0)
- ;;=Z04.9^^68^660^3
- ;;^UTILITY(U,$J,358.3,9969,1,0)
+ ;;^UTILITY(U,$J,358.3,10185,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,10185,1,4,0)
+ ;;=4^H34.831
+ ;;^UTILITY(U,$J,358.3,10185,2)
+ ;;=^5005576
+ ;;^UTILITY(U,$J,358.3,10186,0)
+ ;;=H53.143^^44^501^75
+ ;;^UTILITY(U,$J,358.3,10186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9969,1,3,0)
- ;;=3^Exam & Observation for Unsp Reason
- ;;^UTILITY(U,$J,358.3,9969,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,9969,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,9970,0)
- ;;=Z02.2^^68^660^4
- ;;^UTILITY(U,$J,358.3,9970,1,0)
+ ;;^UTILITY(U,$J,358.3,10186,1,3,0)
+ ;;=3^Visual Discomfort,Bilateral
+ ;;^UTILITY(U,$J,358.3,10186,1,4,0)
+ ;;=4^H53.143
+ ;;^UTILITY(U,$J,358.3,10186,2)
+ ;;=^5006319
+ ;;^UTILITY(U,$J,358.3,10187,0)
+ ;;=H53.142^^44^501^76
+ ;;^UTILITY(U,$J,358.3,10187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9970,1,3,0)
- ;;=3^Exam for Admission to Residential Institution
- ;;^UTILITY(U,$J,358.3,9970,1,4,0)
- ;;=4^Z02.2
- ;;^UTILITY(U,$J,358.3,9970,2)
- ;;=^5062635
- ;;^UTILITY(U,$J,358.3,9971,0)
- ;;=Z02.4^^68^660^5
- ;;^UTILITY(U,$J,358.3,9971,1,0)
+ ;;^UTILITY(U,$J,358.3,10187,1,3,0)
+ ;;=3^Visual Discomfort,Left Eye
+ ;;^UTILITY(U,$J,358.3,10187,1,4,0)
+ ;;=4^H53.142
+ ;;^UTILITY(U,$J,358.3,10187,2)
+ ;;=^5006318
+ ;;^UTILITY(U,$J,358.3,10188,0)
+ ;;=H53.141^^44^501^77
+ ;;^UTILITY(U,$J,358.3,10188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9971,1,3,0)
- ;;=3^Exam for Driving License
- ;;^UTILITY(U,$J,358.3,9971,1,4,0)
- ;;=4^Z02.4
- ;;^UTILITY(U,$J,358.3,9971,2)
- ;;=^5062637
- ;;^UTILITY(U,$J,358.3,9972,0)
- ;;=Z00.5^^68^660^7
- ;;^UTILITY(U,$J,358.3,9972,1,0)
+ ;;^UTILITY(U,$J,358.3,10188,1,3,0)
+ ;;=3^Visual Discomfort,Right Eye
+ ;;^UTILITY(U,$J,358.3,10188,1,4,0)
+ ;;=4^H53.141
+ ;;^UTILITY(U,$J,358.3,10188,2)
+ ;;=^5006317
+ ;;^UTILITY(U,$J,358.3,10189,0)
+ ;;=C72.31^^44^502^31
+ ;;^UTILITY(U,$J,358.3,10189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9972,1,3,0)
- ;;=3^Exam of Potential Donor of Organ/Tissue
- ;;^UTILITY(U,$J,358.3,9972,1,4,0)
- ;;=4^Z00.5
- ;;^UTILITY(U,$J,358.3,9972,2)
- ;;=^5062607
- ;;^UTILITY(U,$J,358.3,9973,0)
- ;;=Z02.3^^68^660^6
- ;;^UTILITY(U,$J,358.3,9973,1,0)
+ ;;^UTILITY(U,$J,358.3,10189,1,3,0)
+ ;;=3^Malig Neop of Right Optic Nerve
+ ;;^UTILITY(U,$J,358.3,10189,1,4,0)
+ ;;=4^C72.31
+ ;;^UTILITY(U,$J,358.3,10189,2)
+ ;;=^5001303
+ ;;^UTILITY(U,$J,358.3,10190,0)
+ ;;=C72.32^^44^502^30
+ ;;^UTILITY(U,$J,358.3,10190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9973,1,3,0)
- ;;=3^Exam for Recruitment to Armed Forces
- ;;^UTILITY(U,$J,358.3,9973,1,4,0)
- ;;=4^Z02.3
- ;;^UTILITY(U,$J,358.3,9973,2)
- ;;=^5062636
- ;;^UTILITY(U,$J,358.3,9974,0)
- ;;=Z02.89^^68^660^1
- ;;^UTILITY(U,$J,358.3,9974,1,0)
+ ;;^UTILITY(U,$J,358.3,10190,1,3,0)
+ ;;=3^Malig Neop of Left Optic Nerve
+ ;;^UTILITY(U,$J,358.3,10190,1,4,0)
+ ;;=4^C72.32
+ ;;^UTILITY(U,$J,358.3,10190,2)
+ ;;=^5001304
+ ;;^UTILITY(U,$J,358.3,10191,0)
+ ;;=D33.3^^44^502^5
+ ;;^UTILITY(U,$J,358.3,10191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9974,1,3,0)
- ;;=3^Admin Exam NEC
- ;;^UTILITY(U,$J,358.3,9974,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,9974,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,9975,0)
- ;;=Z00.8^^68^660^8
- ;;^UTILITY(U,$J,358.3,9975,1,0)
+ ;;^UTILITY(U,$J,358.3,10191,1,3,0)
+ ;;=3^Benigh Neop of Cranial Nerves
+ ;;^UTILITY(U,$J,358.3,10191,1,4,0)
+ ;;=4^D33.3
+ ;;^UTILITY(U,$J,358.3,10191,2)
+ ;;=^13298
+ ;;^UTILITY(U,$J,358.3,10192,0)
+ ;;=G24.5^^44^502^8
+ ;;^UTILITY(U,$J,358.3,10192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9975,1,3,0)
- ;;=3^General Exam NEC
- ;;^UTILITY(U,$J,358.3,9975,1,4,0)
- ;;=4^Z00.8
- ;;^UTILITY(U,$J,358.3,9975,2)
- ;;=^5062611
- ;;^UTILITY(U,$J,358.3,9976,0)
- ;;=Z02.1^^68^660^14
- ;;^UTILITY(U,$J,358.3,9976,1,0)
+ ;;^UTILITY(U,$J,358.3,10192,1,3,0)
+ ;;=3^Blepharospasm
+ ;;^UTILITY(U,$J,358.3,10192,1,4,0)
+ ;;=4^G24.5
+ ;;^UTILITY(U,$J,358.3,10192,2)
+ ;;=^15293
+ ;;^UTILITY(U,$J,358.3,10193,0)
+ ;;=G43.909^^44^502^32
+ ;;^UTILITY(U,$J,358.3,10193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9976,1,3,0)
- ;;=3^Pre-Employment Exam
- ;;^UTILITY(U,$J,358.3,9976,1,4,0)
- ;;=4^Z02.1
- ;;^UTILITY(U,$J,358.3,9976,2)
- ;;=^5062634
- ;;^UTILITY(U,$J,358.3,9977,0)
- ;;=Z01.810^^68^660^2
- ;;^UTILITY(U,$J,358.3,9977,1,0)
+ ;;^UTILITY(U,$J,358.3,10193,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,10193,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,10193,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,10194,0)
+ ;;=G93.2^^44^502^6
+ ;;^UTILITY(U,$J,358.3,10194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9977,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,9977,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,9977,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,9978,0)
- ;;=Z01.811^^68^660^16
- ;;^UTILITY(U,$J,358.3,9978,1,0)
+ ;;^UTILITY(U,$J,358.3,10194,1,3,0)
+ ;;=3^Benign Intracranial Hypertension
+ ;;^UTILITY(U,$J,358.3,10194,1,4,0)
+ ;;=4^G93.2
+ ;;^UTILITY(U,$J,358.3,10194,2)
+ ;;=^5004180
+ ;;^UTILITY(U,$J,358.3,10195,0)
+ ;;=G50.9^^44^502^55
+ ;;^UTILITY(U,$J,358.3,10195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9978,1,3,0)
- ;;=3^Respiratory Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,9978,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,9978,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,9979,0)
- ;;=Z01.812^^68^660^13
- ;;^UTILITY(U,$J,358.3,9979,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10195,1,3,0)
+ ;;=3^Trigeminal Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10195,1,4,0)
+ ;;=4^G50.9
+ ;;^UTILITY(U,$J,358.3,10195,2)
+ ;;=^5003993

@@ -1,126 +1,134 @@
-IBDEI21V ; ; 19-NOV-2015
+IBDEI21V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34367,1,0)
+ ;;^UTILITY(U,$J,358.3,34778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34367,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,34367,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,34367,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,34368,0)
- ;;=F02.81^^157^1746^14
- ;;^UTILITY(U,$J,358.3,34368,1,0)
+ ;;^UTILITY(U,$J,358.3,34778,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,34778,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,34778,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,34779,0)
+ ;;=R73.09^^131^1692^15
+ ;;^UTILITY(U,$J,358.3,34779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34368,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturb
- ;;^UTILITY(U,$J,358.3,34368,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,34368,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,34369,0)
- ;;=F02.80^^157^1746^15
- ;;^UTILITY(U,$J,358.3,34369,1,0)
+ ;;^UTILITY(U,$J,358.3,34779,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,34779,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,34779,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,34780,0)
+ ;;=R73.9^^131^1692^84
+ ;;^UTILITY(U,$J,358.3,34780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34369,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,34369,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,34369,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,34370,0)
- ;;=F19.97^^157^1746^35
- ;;^UTILITY(U,$J,358.3,34370,1,0)
+ ;;^UTILITY(U,$J,358.3,34780,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,34780,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,34780,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,34781,0)
+ ;;=R76.11^^131^1692^142
+ ;;^UTILITY(U,$J,358.3,34781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34370,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,34370,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,34370,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,34371,0)
- ;;=F01.51^^157^1746^37
- ;;^UTILITY(U,$J,358.3,34371,1,0)
+ ;;^UTILITY(U,$J,358.3,34781,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,34781,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,34781,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,34782,0)
+ ;;=R79.1^^131^1692^3
+ ;;^UTILITY(U,$J,358.3,34782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34371,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,34371,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,34371,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,34372,0)
- ;;=G10.^^157^1746^24
- ;;^UTILITY(U,$J,358.3,34372,1,0)
+ ;;^UTILITY(U,$J,358.3,34782,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,34782,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,34782,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,34783,0)
+ ;;=R82.5^^131^1692^69
+ ;;^UTILITY(U,$J,358.3,34783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34372,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,34372,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,34372,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,34373,0)
- ;;=G10.^^157^1746^25
- ;;^UTILITY(U,$J,358.3,34373,1,0)
+ ;;^UTILITY(U,$J,358.3,34783,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,34783,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,34783,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,34784,0)
+ ;;=R82.6^^131^1692^26
+ ;;^UTILITY(U,$J,358.3,34784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34373,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,34373,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,34373,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,34374,0)
- ;;=G90.3^^157^1746^27
- ;;^UTILITY(U,$J,358.3,34374,1,0)
+ ;;^UTILITY(U,$J,358.3,34784,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,34784,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,34784,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,34785,0)
+ ;;=R82.7^^131^1692^27
+ ;;^UTILITY(U,$J,358.3,34785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34374,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,34374,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,34374,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,34375,0)
- ;;=G91.2^^157^1746^28
- ;;^UTILITY(U,$J,358.3,34375,1,0)
+ ;;^UTILITY(U,$J,358.3,34785,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,34785,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,34785,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,34786,0)
+ ;;=R82.8^^131^1692^23
+ ;;^UTILITY(U,$J,358.3,34786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34375,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,34375,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,34375,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,34376,0)
- ;;=G91.2^^157^1746^29
- ;;^UTILITY(U,$J,358.3,34376,1,0)
+ ;;^UTILITY(U,$J,358.3,34786,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,34786,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,34786,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,34787,0)
+ ;;=R82.90^^131^1692^25
+ ;;^UTILITY(U,$J,358.3,34787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34376,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,34376,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,34376,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,34377,0)
- ;;=G30.8^^157^1746^2
- ;;^UTILITY(U,$J,358.3,34377,1,0)
+ ;;^UTILITY(U,$J,358.3,34787,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,34787,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,34787,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,34788,0)
+ ;;=R82.91^^131^1692^49
+ ;;^UTILITY(U,$J,358.3,34788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34377,1,3,0)
- ;;=3^Alzheimer's Disease NEC
- ;;^UTILITY(U,$J,358.3,34377,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,34377,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,34378,0)
- ;;=G31.09^^157^1746^19
- ;;^UTILITY(U,$J,358.3,34378,1,0)
+ ;;^UTILITY(U,$J,358.3,34788,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,34788,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,34788,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,34789,0)
+ ;;=R82.99^^131^1692^24
+ ;;^UTILITY(U,$J,358.3,34789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34378,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,34378,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,34378,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,34379,0)
- ;;=G20.^^157^1746^30
- ;;^UTILITY(U,$J,358.3,34379,1,0)
+ ;;^UTILITY(U,$J,358.3,34789,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,34789,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,34789,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,34790,0)
+ ;;=R89.9^^131^1692^19
+ ;;^UTILITY(U,$J,358.3,34790,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34790,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,34790,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,34790,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,34791,0)
+ ;;=R90.0^^131^1692^98

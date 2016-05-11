@@ -1,136 +1,136 @@
-IBDEI1FW ; ; 19-NOV-2015
+IBDEI1FW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24043,1,3,0)
- ;;=3^Narcissistic personality disorder
- ;;^UTILITY(U,$J,358.3,24043,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,24043,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,24044,0)
- ;;=F60.5^^116^1177^8
- ;;^UTILITY(U,$J,358.3,24044,1,0)
+ ;;^UTILITY(U,$J,358.3,24458,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,24459,0)
+ ;;=F63.0^^90^1077^1
+ ;;^UTILITY(U,$J,358.3,24459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24044,1,3,0)
- ;;=3^Obsessive-compulsive personality disorder
- ;;^UTILITY(U,$J,358.3,24044,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,24044,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,24045,0)
- ;;=F60.0^^116^1177^9
- ;;^UTILITY(U,$J,358.3,24045,1,0)
+ ;;^UTILITY(U,$J,358.3,24459,1,3,0)
+ ;;=3^Gambling Disorder
+ ;;^UTILITY(U,$J,358.3,24459,1,4,0)
+ ;;=4^F63.0
+ ;;^UTILITY(U,$J,358.3,24459,2)
+ ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,24460,0)
+ ;;=F99.^^90^1078^1
+ ;;^UTILITY(U,$J,358.3,24460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24045,1,3,0)
- ;;=3^Paranoid personality disorder
- ;;^UTILITY(U,$J,358.3,24045,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,24045,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,24046,0)
- ;;=F60.89^^116^1177^10
- ;;^UTILITY(U,$J,358.3,24046,1,0)
+ ;;^UTILITY(U,$J,358.3,24460,1,3,0)
+ ;;=3^Mental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,24460,1,4,0)
+ ;;=4^F99.
+ ;;^UTILITY(U,$J,358.3,24460,2)
+ ;;=^5003720
+ ;;^UTILITY(U,$J,358.3,24461,0)
+ ;;=F06.8^^90^1078^2
+ ;;^UTILITY(U,$J,358.3,24461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24046,1,3,0)
- ;;=3^Personality disorders, spec, other
- ;;^UTILITY(U,$J,358.3,24046,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,24046,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,24047,0)
- ;;=F60.1^^116^1177^11
- ;;^UTILITY(U,$J,358.3,24047,1,0)
+ ;;^UTILITY(U,$J,358.3,24461,1,3,0)
+ ;;=3^Mental Disorders,Oth Specified,d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,24461,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,24461,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,24462,0)
+ ;;=F09.^^90^1078^3
+ ;;^UTILITY(U,$J,358.3,24462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24047,1,3,0)
- ;;=3^Schizoid personality disorder
- ;;^UTILITY(U,$J,358.3,24047,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,24047,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,24048,0)
- ;;=F21.^^116^1177^12
- ;;^UTILITY(U,$J,358.3,24048,1,0)
+ ;;^UTILITY(U,$J,358.3,24462,1,3,0)
+ ;;=3^Mental Disorders,Unspec,d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,24462,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,24462,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,24463,0)
+ ;;=R45.851^^90^1078^4
+ ;;^UTILITY(U,$J,358.3,24463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24048,1,3,0)
- ;;=3^Schizotypal disorder
- ;;^UTILITY(U,$J,358.3,24048,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,24048,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,24049,0)
- ;;=M54.10^^116^1178^3
- ;;^UTILITY(U,$J,358.3,24049,1,0)
+ ;;^UTILITY(U,$J,358.3,24463,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,24463,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,24463,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,24464,0)
+ ;;=F84.0^^90^1079^1
+ ;;^UTILITY(U,$J,358.3,24464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24049,1,3,0)
- ;;=3^Radiculopathy, site unspec
- ;;^UTILITY(U,$J,358.3,24049,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,24049,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,24050,0)
- ;;=R21.^^116^1178^5
- ;;^UTILITY(U,$J,358.3,24050,1,0)
+ ;;^UTILITY(U,$J,358.3,24464,1,3,0)
+ ;;=3^Autistic Disorder
+ ;;^UTILITY(U,$J,358.3,24464,1,4,0)
+ ;;=4^F84.0
+ ;;^UTILITY(U,$J,358.3,24464,2)
+ ;;=^5003684
+ ;;^UTILITY(U,$J,358.3,24465,0)
+ ;;=F80.9^^90^1079^2
+ ;;^UTILITY(U,$J,358.3,24465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24050,1,3,0)
- ;;=3^Rash & other nonspec skin eruption
- ;;^UTILITY(U,$J,358.3,24050,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,24050,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,24051,0)
- ;;=M06.9^^116^1178^6
- ;;^UTILITY(U,$J,358.3,24051,1,0)
+ ;;^UTILITY(U,$J,358.3,24465,1,3,0)
+ ;;=3^Communication Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24465,1,4,0)
+ ;;=4^F80.9
+ ;;^UTILITY(U,$J,358.3,24465,2)
+ ;;=^5003678
+ ;;^UTILITY(U,$J,358.3,24466,0)
+ ;;=F82.^^90^1079^3
+ ;;^UTILITY(U,$J,358.3,24466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24051,1,3,0)
- ;;=3^Rheumatoid arthritis, unspec
- ;;^UTILITY(U,$J,358.3,24051,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,24051,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,24052,0)
- ;;=J31.0^^116^1178^7
- ;;^UTILITY(U,$J,358.3,24052,1,0)
+ ;;^UTILITY(U,$J,358.3,24466,1,3,0)
+ ;;=3^Developmental Coordination Disorder
+ ;;^UTILITY(U,$J,358.3,24466,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,24466,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,24467,0)
+ ;;=F98.5^^90^1079^4
+ ;;^UTILITY(U,$J,358.3,24467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24052,1,3,0)
- ;;=3^Rhinitis, chronic
- ;;^UTILITY(U,$J,358.3,24052,1,4,0)
- ;;=4^J31.0
- ;;^UTILITY(U,$J,358.3,24052,2)
- ;;=^24434
- ;;^UTILITY(U,$J,358.3,24053,0)
- ;;=M54.12^^116^1178^1
- ;;^UTILITY(U,$J,358.3,24053,1,0)
+ ;;^UTILITY(U,$J,358.3,24467,1,3,0)
+ ;;=3^Fluency Disorder,Adult-Onset
+ ;;^UTILITY(U,$J,358.3,24467,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,24467,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,24468,0)
+ ;;=F88.^^90^1079^5
+ ;;^UTILITY(U,$J,358.3,24468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24053,1,3,0)
- ;;=3^Radiculopathy, cervical region
- ;;^UTILITY(U,$J,358.3,24053,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,24053,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,24054,0)
- ;;=M54.16^^116^1178^2
- ;;^UTILITY(U,$J,358.3,24054,1,0)
+ ;;^UTILITY(U,$J,358.3,24468,1,3,0)
+ ;;=3^Global Developmental Delay
+ ;;^UTILITY(U,$J,358.3,24468,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,24468,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,24469,0)
+ ;;=F80.2^^90^1079^6
+ ;;^UTILITY(U,$J,358.3,24469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24054,1,3,0)
- ;;=3^Radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,24054,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,24054,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,24055,0)
- ;;=M54.14^^116^1178^4
- ;;^UTILITY(U,$J,358.3,24055,1,0)
+ ;;^UTILITY(U,$J,358.3,24469,1,3,0)
+ ;;=3^Language Disorder
+ ;;^UTILITY(U,$J,358.3,24469,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,24469,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,24470,0)
+ ;;=F81.2^^90^1079^7
+ ;;^UTILITY(U,$J,358.3,24470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24055,1,3,0)
- ;;=3^Radiculopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,24055,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,24055,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,24056,0)
- ;;=L72.3^^116^1179^1
- ;;^UTILITY(U,$J,358.3,24056,1,0)
+ ;;^UTILITY(U,$J,358.3,24470,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,24470,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,24470,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,24471,0)
+ ;;=F81.0^^90^1079^8
+ ;;^UTILITY(U,$J,358.3,24471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24056,1,3,0)
- ;;=3^Sebaceous cyst
+ ;;^UTILITY(U,$J,358.3,24471,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,24471,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,24471,2)
+ ;;=^5003679

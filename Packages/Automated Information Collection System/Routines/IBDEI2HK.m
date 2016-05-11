@@ -1,118 +1,134 @@
-IBDEI2HK ; ; 19-NOV-2015
+IBDEI2HK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41720,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
- ;;^UTILITY(U,$J,358.3,41720,1,3,0)
- ;;=3^29894
- ;;^UTILITY(U,$J,358.3,41721,0)
- ;;=29897^^191^2122^1^^^^1
- ;;^UTILITY(U,$J,358.3,41721,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41721,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, limited
- ;;^UTILITY(U,$J,358.3,41721,1,3,0)
- ;;=3^29897
- ;;^UTILITY(U,$J,358.3,41722,0)
- ;;=29898^^191^2122^2^^^^1
- ;;^UTILITY(U,$J,358.3,41722,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41722,1,2,0)
- ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
- ;;^UTILITY(U,$J,358.3,41722,1,3,0)
- ;;=3^29898
- ;;^UTILITY(U,$J,358.3,41723,0)
- ;;=20220^^191^2122^8^^^^1
- ;;^UTILITY(U,$J,358.3,41723,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41723,1,2,0)
- ;;=2^Biopsy, bone, trocar, or needle; superficial
- ;;^UTILITY(U,$J,358.3,41723,1,3,0)
- ;;=3^20220
- ;;^UTILITY(U,$J,358.3,41724,0)
- ;;=20650^^191^2122^14^^^^1
- ;;^UTILITY(U,$J,358.3,41724,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41724,1,2,0)
- ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
- ;;^UTILITY(U,$J,358.3,41724,1,3,0)
- ;;=3^20650
- ;;^UTILITY(U,$J,358.3,41725,0)
- ;;=64726^^191^2122^10^^^^1
- ;;^UTILITY(U,$J,358.3,41725,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41725,1,2,0)
- ;;=2^Decompression; plantar digital nerve
- ;;^UTILITY(U,$J,358.3,41725,1,3,0)
- ;;=3^64726
- ;;^UTILITY(U,$J,358.3,41726,0)
- ;;=64999^^191^2122^20^^^^1
- ;;^UTILITY(U,$J,358.3,41726,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41726,1,2,0)
- ;;=2^Unlisted procedure, nervous system
- ;;^UTILITY(U,$J,358.3,41726,1,3,0)
- ;;=3^64999
- ;;^UTILITY(U,$J,358.3,41727,0)
- ;;=93922^^191^2122^18^^^^1
- ;;^UTILITY(U,$J,358.3,41727,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41727,1,2,0)
- ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
- ;;^UTILITY(U,$J,358.3,41727,1,3,0)
- ;;=3^93922
- ;;^UTILITY(U,$J,358.3,41728,0)
- ;;=29904^^191^2122^6^^^^1
- ;;^UTILITY(U,$J,358.3,41728,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41728,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
- ;;^UTILITY(U,$J,358.3,41728,1,3,0)
- ;;=3^29904
- ;;^UTILITY(U,$J,358.3,41729,0)
- ;;=29905^^191^2122^5^^^^1
- ;;^UTILITY(U,$J,358.3,41729,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41729,1,2,0)
- ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
- ;;^UTILITY(U,$J,358.3,41729,1,3,0)
- ;;=3^29905
- ;;^UTILITY(U,$J,358.3,41730,0)
- ;;=29906^^191^2122^4^^^^1
- ;;^UTILITY(U,$J,358.3,41730,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41730,1,2,0)
- ;;=2^Arthroscopy, subtalar jt,w/ debridement
- ;;^UTILITY(U,$J,358.3,41730,1,3,0)
- ;;=3^29906
- ;;^UTILITY(U,$J,358.3,41731,0)
- ;;=29907^^191^2122^7^^^^1
- ;;^UTILITY(U,$J,358.3,41731,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41731,1,2,0)
- ;;=2^Arthroscopy,subtalar w/ fusion
- ;;^UTILITY(U,$J,358.3,41731,1,3,0)
- ;;=3^29907
- ;;^UTILITY(U,$J,358.3,41732,0)
- ;;=97605^^191^2122^16^^^^1
- ;;^UTILITY(U,$J,358.3,41732,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41732,1,2,0)
- ;;=2^Neg Press Wound Tx <= 50 cm
- ;;^UTILITY(U,$J,358.3,41732,1,3,0)
- ;;=3^97605
- ;;^UTILITY(U,$J,358.3,41733,0)
- ;;=97606^^191^2122^17^^^^1
- ;;^UTILITY(U,$J,358.3,41733,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41733,1,2,0)
- ;;=2^Neg Press Wound Tx > 50 cm
- ;;^UTILITY(U,$J,358.3,41733,1,3,0)
- ;;=3^97606
- ;;^UTILITY(U,$J,358.3,41734,0)
- ;;=2028F^^191^2122^12^^^^1
- ;;^UTILITY(U,$J,358.3,41734,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41734,1,2,0)
- ;;=2^Foot Exam Performed
+ ;;^UTILITY(U,$J,358.3,42162,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42162,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,42162,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,42162,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,42163,0)
+ ;;=R73.09^^159^2016^15
+ ;;^UTILITY(U,$J,358.3,42163,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42163,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,42163,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,42163,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,42164,0)
+ ;;=R73.9^^159^2016^84
+ ;;^UTILITY(U,$J,358.3,42164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42164,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,42164,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,42164,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,42165,0)
+ ;;=R76.11^^159^2016^142
+ ;;^UTILITY(U,$J,358.3,42165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42165,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,42165,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,42165,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,42166,0)
+ ;;=R79.1^^159^2016^3
+ ;;^UTILITY(U,$J,358.3,42166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42166,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,42166,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,42166,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,42167,0)
+ ;;=R82.5^^159^2016^69
+ ;;^UTILITY(U,$J,358.3,42167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42167,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,42167,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,42167,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,42168,0)
+ ;;=R82.6^^159^2016^26
+ ;;^UTILITY(U,$J,358.3,42168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42168,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,42168,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,42168,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,42169,0)
+ ;;=R82.7^^159^2016^27
+ ;;^UTILITY(U,$J,358.3,42169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42169,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,42169,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,42169,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,42170,0)
+ ;;=R82.8^^159^2016^23
+ ;;^UTILITY(U,$J,358.3,42170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42170,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,42170,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,42170,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,42171,0)
+ ;;=R82.90^^159^2016^25
+ ;;^UTILITY(U,$J,358.3,42171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42171,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,42171,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,42171,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,42172,0)
+ ;;=R82.91^^159^2016^49
+ ;;^UTILITY(U,$J,358.3,42172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42172,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,42172,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,42172,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,42173,0)
+ ;;=R82.99^^159^2016^24
+ ;;^UTILITY(U,$J,358.3,42173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42173,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,42173,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,42173,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,42174,0)
+ ;;=R89.9^^159^2016^19
+ ;;^UTILITY(U,$J,358.3,42174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42174,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,42174,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,42174,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,42175,0)
+ ;;=R90.0^^159^2016^98

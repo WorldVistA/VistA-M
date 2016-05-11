@@ -1,124 +1,128 @@
-IBDEI249 ; ; 19-NOV-2015
+IBDEI249 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35539,1,4,0)
- ;;=4^O10.411
- ;;^UTILITY(U,$J,358.3,35539,2)
- ;;=^5016132
- ;;^UTILITY(U,$J,358.3,35540,0)
- ;;=O10.412^^166^1821^35
- ;;^UTILITY(U,$J,358.3,35540,1,0)
+ ;;^UTILITY(U,$J,358.3,35892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35540,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35540,1,4,0)
- ;;=4^O10.412
- ;;^UTILITY(U,$J,358.3,35540,2)
- ;;=^5016133
- ;;^UTILITY(U,$J,358.3,35541,0)
- ;;=O10.413^^166^1821^36
- ;;^UTILITY(U,$J,358.3,35541,1,0)
+ ;;^UTILITY(U,$J,358.3,35892,1,3,0)
+ ;;=3^Rheumatoid Nodule Unspec Site
+ ;;^UTILITY(U,$J,358.3,35892,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,35892,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,35893,0)
+ ;;=M06.38^^134^1731^139
+ ;;^UTILITY(U,$J,358.3,35893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35541,1,3,0)
- ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35541,1,4,0)
- ;;=4^O10.413
- ;;^UTILITY(U,$J,358.3,35541,2)
- ;;=^5016134
- ;;^UTILITY(U,$J,358.3,35542,0)
- ;;=O10.43^^166^1821^37
- ;;^UTILITY(U,$J,358.3,35542,1,0)
+ ;;^UTILITY(U,$J,358.3,35893,1,3,0)
+ ;;=3^Rheumatoid Nodule Vertebrae
+ ;;^UTILITY(U,$J,358.3,35893,1,4,0)
+ ;;=4^M06.38
+ ;;^UTILITY(U,$J,358.3,35893,2)
+ ;;=^5010118
+ ;;^UTILITY(U,$J,358.3,35894,0)
+ ;;=M05.572^^134^1731^74
+ ;;^UTILITY(U,$J,358.3,35894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35542,1,3,0)
- ;;=3^Pre-existing secondary htn comp the puerperium
- ;;^UTILITY(U,$J,358.3,35542,1,4,0)
- ;;=4^O10.43
- ;;^UTILITY(U,$J,358.3,35542,2)
- ;;=^5016137
- ;;^UTILITY(U,$J,358.3,35543,0)
- ;;=O10.111^^166^1821^24
- ;;^UTILITY(U,$J,358.3,35543,1,0)
+ ;;^UTILITY(U,$J,358.3,35894,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35894,1,4,0)
+ ;;=4^M05.572
+ ;;^UTILITY(U,$J,358.3,35894,2)
+ ;;=^5009974
+ ;;^UTILITY(U,$J,358.3,35895,0)
+ ;;=M05.522^^134^1731^75
+ ;;^UTILITY(U,$J,358.3,35895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35543,1,3,0)
- ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35543,1,4,0)
- ;;=4^O10.111
- ;;^UTILITY(U,$J,358.3,35543,2)
- ;;=^5016114
- ;;^UTILITY(U,$J,358.3,35544,0)
- ;;=O10.211^^166^1821^17
- ;;^UTILITY(U,$J,358.3,35544,1,0)
+ ;;^UTILITY(U,$J,358.3,35895,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Elbow
+ ;;^UTILITY(U,$J,358.3,35895,1,4,0)
+ ;;=4^M05.522
+ ;;^UTILITY(U,$J,358.3,35895,2)
+ ;;=^5009959
+ ;;^UTILITY(U,$J,358.3,35896,0)
+ ;;=M05.542^^134^1731^76
+ ;;^UTILITY(U,$J,358.3,35896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35544,1,3,0)
- ;;=3^Pre-exist hyp chronic kidney disease comp preg, first tri
- ;;^UTILITY(U,$J,358.3,35544,1,4,0)
- ;;=4^O10.211
- ;;^UTILITY(U,$J,358.3,35544,2)
- ;;=^5016120
- ;;^UTILITY(U,$J,358.3,35545,0)
- ;;=O10.212^^166^1821^18
- ;;^UTILITY(U,$J,358.3,35545,1,0)
+ ;;^UTILITY(U,$J,358.3,35896,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hand
+ ;;^UTILITY(U,$J,358.3,35896,1,4,0)
+ ;;=4^M05.542
+ ;;^UTILITY(U,$J,358.3,35896,2)
+ ;;=^5009965
+ ;;^UTILITY(U,$J,358.3,35897,0)
+ ;;=M05.552^^134^1731^77
+ ;;^UTILITY(U,$J,358.3,35897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35545,1,3,0)
- ;;=3^Pre-exist hyp chronic kidney disease comp preg, second tri
- ;;^UTILITY(U,$J,358.3,35545,1,4,0)
- ;;=4^O10.212
- ;;^UTILITY(U,$J,358.3,35545,2)
- ;;=^5016121
- ;;^UTILITY(U,$J,358.3,35546,0)
- ;;=O10.213^^166^1821^19
- ;;^UTILITY(U,$J,358.3,35546,1,0)
+ ;;^UTILITY(U,$J,358.3,35897,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Hip
+ ;;^UTILITY(U,$J,358.3,35897,1,4,0)
+ ;;=4^M05.552
+ ;;^UTILITY(U,$J,358.3,35897,2)
+ ;;=^5009968
+ ;;^UTILITY(U,$J,358.3,35898,0)
+ ;;=M05.562^^134^1731^78
+ ;;^UTILITY(U,$J,358.3,35898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35546,1,3,0)
- ;;=3^Pre-exist hyp chronic kidney disease comp preg, third tri
- ;;^UTILITY(U,$J,358.3,35546,1,4,0)
- ;;=4^O10.213
- ;;^UTILITY(U,$J,358.3,35546,2)
- ;;=^5016122
- ;;^UTILITY(U,$J,358.3,35547,0)
- ;;=O10.311^^166^1821^20
- ;;^UTILITY(U,$J,358.3,35547,1,0)
+ ;;^UTILITY(U,$J,358.3,35898,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Knee
+ ;;^UTILITY(U,$J,358.3,35898,1,4,0)
+ ;;=4^M05.562
+ ;;^UTILITY(U,$J,358.3,35898,2)
+ ;;=^5009971
+ ;;^UTILITY(U,$J,358.3,35899,0)
+ ;;=M05.512^^134^1731^79
+ ;;^UTILITY(U,$J,358.3,35899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35547,1,3,0)
- ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, first tri
- ;;^UTILITY(U,$J,358.3,35547,1,4,0)
- ;;=4^O10.311
- ;;^UTILITY(U,$J,358.3,35547,2)
- ;;=^5016126
- ;;^UTILITY(U,$J,358.3,35548,0)
- ;;=O10.312^^166^1821^21
- ;;^UTILITY(U,$J,358.3,35548,1,0)
+ ;;^UTILITY(U,$J,358.3,35899,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Shoulder
+ ;;^UTILITY(U,$J,358.3,35899,1,4,0)
+ ;;=4^M05.512
+ ;;^UTILITY(U,$J,358.3,35899,2)
+ ;;=^5009956
+ ;;^UTILITY(U,$J,358.3,35900,0)
+ ;;=M05.532^^134^1731^80
+ ;;^UTILITY(U,$J,358.3,35900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35548,1,3,0)
- ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, second tri
- ;;^UTILITY(U,$J,358.3,35548,1,4,0)
- ;;=4^O10.312
- ;;^UTILITY(U,$J,358.3,35548,2)
- ;;=^5016127
- ;;^UTILITY(U,$J,358.3,35549,0)
- ;;=O10.313^^166^1821^22
- ;;^UTILITY(U,$J,358.3,35549,1,0)
+ ;;^UTILITY(U,$J,358.3,35900,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Left Wrist
+ ;;^UTILITY(U,$J,358.3,35900,1,4,0)
+ ;;=4^M05.532
+ ;;^UTILITY(U,$J,358.3,35900,2)
+ ;;=^5009962
+ ;;^UTILITY(U,$J,358.3,35901,0)
+ ;;=M05.59^^134^1731^81
+ ;;^UTILITY(U,$J,358.3,35901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35549,1,3,0)
- ;;=3^Pre-exist hyp heart and chr kidney dis comp preg, third tri
- ;;^UTILITY(U,$J,358.3,35549,1,4,0)
- ;;=4^O10.313
- ;;^UTILITY(U,$J,358.3,35549,2)
- ;;=^5016128
- ;;^UTILITY(U,$J,358.3,35550,0)
- ;;=O11.1^^166^1821^30
- ;;^UTILITY(U,$J,358.3,35550,1,0)
+ ;;^UTILITY(U,$J,358.3,35901,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Mult Sites
+ ;;^UTILITY(U,$J,358.3,35901,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,35901,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,35902,0)
+ ;;=M05.571^^134^1731^82
+ ;;^UTILITY(U,$J,358.3,35902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35550,1,3,0)
- ;;=3^Pre-existing hypertension w pre-eclampsia, first trimester
- ;;^UTILITY(U,$J,358.3,35550,1,4,0)
- ;;=4^O11.1
- ;;^UTILITY(U,$J,358.3,35550,2)
- ;;=^5016142
- ;;^UTILITY(U,$J,358.3,35551,0)
- ;;=O11.2^^166^1821^31
- ;;^UTILITY(U,$J,358.3,35551,1,0)
+ ;;^UTILITY(U,$J,358.3,35902,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35902,1,4,0)
+ ;;=4^M05.571
+ ;;^UTILITY(U,$J,358.3,35902,2)
+ ;;=^5009973
+ ;;^UTILITY(U,$J,358.3,35903,0)
+ ;;=M05.521^^134^1731^83
+ ;;^UTILITY(U,$J,358.3,35903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35551,1,3,0)
- ;;=3^Pre-existing hypertension w pre-eclampsia, second trimester
+ ;;^UTILITY(U,$J,358.3,35903,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Elbow
+ ;;^UTILITY(U,$J,358.3,35903,1,4,0)
+ ;;=4^M05.521
+ ;;^UTILITY(U,$J,358.3,35903,2)
+ ;;=^5009958
+ ;;^UTILITY(U,$J,358.3,35904,0)
+ ;;=M05.541^^134^1731^84
+ ;;^UTILITY(U,$J,358.3,35904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35904,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hand

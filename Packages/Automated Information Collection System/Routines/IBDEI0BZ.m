@@ -1,130 +1,136 @@
-IBDEI0BZ ; ; 19-NOV-2015
+IBDEI0BZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5160,0)
- ;;=C50.212^^40^355^24
- ;;^UTILITY(U,$J,358.3,5160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5160,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5160,1,4,0)
- ;;=4^C50.212
- ;;^UTILITY(U,$J,358.3,5160,2)
- ;;=^5001172
- ;;^UTILITY(U,$J,358.3,5161,0)
- ;;=C50.311^^40^355^15
- ;;^UTILITY(U,$J,358.3,5161,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5161,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5161,1,4,0)
- ;;=4^C50.311
- ;;^UTILITY(U,$J,358.3,5161,2)
- ;;=^5001177
- ;;^UTILITY(U,$J,358.3,5162,0)
- ;;=C50.312^^40^355^14
- ;;^UTILITY(U,$J,358.3,5162,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5162,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5162,1,4,0)
- ;;=4^C50.312
- ;;^UTILITY(U,$J,358.3,5162,2)
- ;;=^5133333
- ;;^UTILITY(U,$J,358.3,5163,0)
- ;;=C50.411^^40^355^27
- ;;^UTILITY(U,$J,358.3,5163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5163,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5163,1,4,0)
- ;;=4^C50.411
- ;;^UTILITY(U,$J,358.3,5163,2)
- ;;=^5001179
- ;;^UTILITY(U,$J,358.3,5164,0)
- ;;=C50.412^^40^355^26
- ;;^UTILITY(U,$J,358.3,5164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5164,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5164,1,4,0)
- ;;=4^C50.412
- ;;^UTILITY(U,$J,358.3,5164,2)
- ;;=^5133335
- ;;^UTILITY(U,$J,358.3,5165,0)
- ;;=C50.511^^40^355^17
- ;;^UTILITY(U,$J,358.3,5165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5165,1,3,0)
- ;;=3^Malig Neop of Lower-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5165,1,4,0)
- ;;=4^C50.511
- ;;^UTILITY(U,$J,358.3,5165,2)
- ;;=^5001181
- ;;^UTILITY(U,$J,358.3,5166,0)
- ;;=C50.512^^40^355^16
- ;;^UTILITY(U,$J,358.3,5166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5166,1,3,0)
- ;;=3^Malig Neop of Lower-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5166,1,4,0)
- ;;=4^C50.512
- ;;^UTILITY(U,$J,358.3,5166,2)
- ;;=^5133337
- ;;^UTILITY(U,$J,358.3,5167,0)
- ;;=C50.611^^40^355^10
- ;;^UTILITY(U,$J,358.3,5167,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5167,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Right Breast
- ;;^UTILITY(U,$J,358.3,5167,1,4,0)
- ;;=4^C50.611
- ;;^UTILITY(U,$J,358.3,5167,2)
- ;;=^5001183
- ;;^UTILITY(U,$J,358.3,5168,0)
- ;;=C50.612^^40^355^9
- ;;^UTILITY(U,$J,358.3,5168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5168,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Left Breast
- ;;^UTILITY(U,$J,358.3,5168,1,4,0)
- ;;=4^C50.612
- ;;^UTILITY(U,$J,358.3,5168,2)
- ;;=^5001184
- ;;^UTILITY(U,$J,358.3,5169,0)
- ;;=C50.811^^40^355^21
- ;;^UTILITY(U,$J,358.3,5169,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5169,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Right Breast
- ;;^UTILITY(U,$J,358.3,5169,1,4,0)
- ;;=4^C50.811
- ;;^UTILITY(U,$J,358.3,5169,2)
- ;;=^5001189
- ;;^UTILITY(U,$J,358.3,5170,0)
- ;;=C50.812^^40^355^20
- ;;^UTILITY(U,$J,358.3,5170,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5170,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Left Breast
- ;;^UTILITY(U,$J,358.3,5170,1,4,0)
- ;;=4^C50.812
- ;;^UTILITY(U,$J,358.3,5170,2)
- ;;=^5001190
- ;;^UTILITY(U,$J,358.3,5171,0)
- ;;=C50.911^^40^355^22
- ;;^UTILITY(U,$J,358.3,5171,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5171,1,3,0)
- ;;=3^Malig Neop of Right Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,5171,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,5171,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,5172,0)
- ;;=C50.912^^40^355^13
- ;;^UTILITY(U,$J,358.3,5172,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5172,1,3,0)
- ;;=3^Malig Neop of Left Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,5431,1,2,0)
+ ;;=2^J2405
+ ;;^UTILITY(U,$J,358.3,5431,1,3,0)
+ ;;=3^Ondansetron HCL per 1mg
+ ;;^UTILITY(U,$J,358.3,5432,0)
+ ;;=J3480^^28^350^43^^^^1
+ ;;^UTILITY(U,$J,358.3,5432,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5432,1,2,0)
+ ;;=2^J3480
+ ;;^UTILITY(U,$J,358.3,5432,1,3,0)
+ ;;=3^Potassium Chloride per 2mEq
+ ;;^UTILITY(U,$J,358.3,5433,0)
+ ;;=J3430^^28^350^48^^^^1
+ ;;^UTILITY(U,$J,358.3,5433,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5433,1,2,0)
+ ;;=2^J3430
+ ;;^UTILITY(U,$J,358.3,5433,1,3,0)
+ ;;=3^Vitamin K per 1mg
+ ;;^UTILITY(U,$J,358.3,5434,0)
+ ;;=J0153^^28^350^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5434,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5434,1,2,0)
+ ;;=2^J0153
+ ;;^UTILITY(U,$J,358.3,5434,1,3,0)
+ ;;=3^Adenosine 1mg
+ ;;^UTILITY(U,$J,358.3,5435,0)
+ ;;=J3121^^28^350^45^^^^1
+ ;;^UTILITY(U,$J,358.3,5435,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5435,1,2,0)
+ ;;=2^J3121
+ ;;^UTILITY(U,$J,358.3,5435,1,3,0)
+ ;;=3^Testosterone Enanthate 1mg
+ ;;^UTILITY(U,$J,358.3,5436,0)
+ ;;=J1165^^28^350^15^^^^1
+ ;;^UTILITY(U,$J,358.3,5436,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5436,1,2,0)
+ ;;=2^J1165
+ ;;^UTILITY(U,$J,358.3,5436,1,3,0)
+ ;;=3^Dialantin 50mg
+ ;;^UTILITY(U,$J,358.3,5437,0)
+ ;;=J1200^^28^350^18^^^^1
+ ;;^UTILITY(U,$J,358.3,5437,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5437,1,2,0)
+ ;;=2^J1200
+ ;;^UTILITY(U,$J,358.3,5437,1,3,0)
+ ;;=3^Diphenhydramine HCL,up to 50mg
+ ;;^UTILITY(U,$J,358.3,5438,0)
+ ;;=J1650^^28^350^19^^^^1
+ ;;^UTILITY(U,$J,358.3,5438,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5438,1,2,0)
+ ;;=2^J1650
+ ;;^UTILITY(U,$J,358.3,5438,1,3,0)
+ ;;=3^Enoxaprin Sodium 10mg
+ ;;^UTILITY(U,$J,358.3,5439,0)
+ ;;=J1327^^28^350^20^^^^1
+ ;;^UTILITY(U,$J,358.3,5439,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5439,1,2,0)
+ ;;=2^J1327
+ ;;^UTILITY(U,$J,358.3,5439,1,3,0)
+ ;;=3^Eptifibatide 5mg
+ ;;^UTILITY(U,$J,358.3,5440,0)
+ ;;=J1642^^28^350^23^^^^1
+ ;;^UTILITY(U,$J,358.3,5440,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5440,1,2,0)
+ ;;=2^J1642
+ ;;^UTILITY(U,$J,358.3,5440,1,3,0)
+ ;;=3^Heparin Sodium per 10U
+ ;;^UTILITY(U,$J,358.3,5441,0)
+ ;;=J1644^^28^350^22^^^^1
+ ;;^UTILITY(U,$J,358.3,5441,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5441,1,2,0)
+ ;;=2^J1644
+ ;;^UTILITY(U,$J,358.3,5441,1,3,0)
+ ;;=3^Heparin Sodium per 1000U
+ ;;^UTILITY(U,$J,358.3,5442,0)
+ ;;=J3410^^28^350^25^^^^1
+ ;;^UTILITY(U,$J,358.3,5442,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5442,1,2,0)
+ ;;=2^J3410
+ ;;^UTILITY(U,$J,358.3,5442,1,3,0)
+ ;;=3^Hydroxyzine HCL,up to 25mg
+ ;;^UTILITY(U,$J,358.3,5443,0)
+ ;;=J7120^^28^350^27^^^^1
+ ;;^UTILITY(U,$J,358.3,5443,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5443,1,2,0)
+ ;;=2^J7120
+ ;;^UTILITY(U,$J,358.3,5443,1,3,0)
+ ;;=3^Infusion,Ringers Lactate,up to 1000cc
+ ;;^UTILITY(U,$J,358.3,5444,0)
+ ;;=J1815^^28^350^28^^^^1
+ ;;^UTILITY(U,$J,358.3,5444,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5444,1,2,0)
+ ;;=2^J1815
+ ;;^UTILITY(U,$J,358.3,5444,1,3,0)
+ ;;=3^Insulin 5U
+ ;;^UTILITY(U,$J,358.3,5445,0)
+ ;;=J1956^^28^350^31^^^^1
+ ;;^UTILITY(U,$J,358.3,5445,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5445,1,2,0)
+ ;;=2^J1956
+ ;;^UTILITY(U,$J,358.3,5445,1,3,0)
+ ;;=3^Levofloxacin 250mg
+ ;;^UTILITY(U,$J,358.3,5446,0)
+ ;;=J1050^^28^350^33^^^^1
+ ;;^UTILITY(U,$J,358.3,5446,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5446,1,2,0)
+ ;;=2^J1050
+ ;;^UTILITY(U,$J,358.3,5446,1,3,0)
+ ;;=3^Medroxyprogesterone Acetate 1mg
+ ;;^UTILITY(U,$J,358.3,5447,0)
+ ;;=J2175^^28^350^34^^^^1
+ ;;^UTILITY(U,$J,358.3,5447,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5447,1,2,0)
+ ;;=2^J2175
+ ;;^UTILITY(U,$J,358.3,5447,1,3,0)
+ ;;=3^Meperdine HCL 100mg

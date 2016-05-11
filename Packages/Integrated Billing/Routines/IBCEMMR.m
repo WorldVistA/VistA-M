@@ -1,6 +1,6 @@
 IBCEMMR ;ALB/ESG - IB MRA Report of Patients w/o Medicare WNR ;20-NOV-2003
- ;;2.0;INTEGRATED BILLING;**155,366**;21-MAR-94;Build 3
- ;
+ ;;2.0;INTEGRATED BILLING;**155,366,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; Find patients with Medicare supplemental insurance or Medigap
  ; insurance (etc.) but who do not have MEDICARE (WNR) on file as
  ; one of their insurances.
@@ -8,8 +8,9 @@ IBCEMMR ;ALB/ESG - IB MRA Report of Patients w/o Medicare WNR ;20-NOV-2003
  Q
  ;
 EN ; Entry Point
- NEW IBMSORT
+ NEW IBMSORT,IBOUT
  D SORT I 'IBMSORT G EX
+ S IBOUT=$$OUT G:IBOUT="" EX
  D DEVICE
 EX ; Exit Point
  Q
@@ -40,7 +41,7 @@ COMPILE ; Entry point for both background and foreground task execution
  NEW RTN,DFN,CNT,MS,DPT,PTNM,SSN,APPT,APDTE,A
  NEW INS,GRP,PLN,INSNM,PLNTYP,SORT,X,IBNEXT
  S RTN="IBCEMMR"
- K ^TMP($J,RTN),^("IBCEPT"),^("IBSDNEXT"),^("IBDPT"),^("IBLAST")
+ K ^TMP($J,RTN),^("IBCEPT"),^("IBSDNEXT"),^("IBDPT"),^("IBNEXT"),^("IBLAST")
  S DFN=" ",CNT=0
  F  S DFN=$O(^DPT(DFN),-1) Q:'DFN!($G(ZTSTOP))  D
  . S CNT=CNT+1
@@ -82,7 +83,7 @@ COMPILE ; Entry point for both background and foreground task execution
  ;
  I '$G(ZTSTOP) D PRINT             ; print the report
  D ^%ZISC                          ; close the device
- K ^TMP($J,RTN),^("IBCEPT"),^("IBSDNEXT"),^("IBDPT"),^("IBLAST") ;cleanup
+ K ^TMP($J,RTN),^("IBCEPT"),^("IBSDNEXT"),^("IBDPT"),^("IBNEXT"),^("IBLAST") ;cleanup
  I $D(ZTQUEUED) S ZTREQ="@"        ; purge the task record
 COMPX ;
  Q
@@ -92,9 +93,12 @@ PRINT ; print the report to the device specified
  I IOST["C-" S MAXCNT=IOSL-3,CRT=1
  E  S MAXCNT=IOSL-6,CRT=0
  S PAGECNT=0,STOP=0
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  ;
  ; Check for no data
  I '$D(^TMP($J,RTN)) D HEADER W !!?5,"No Data Found"
+ ;
+ I IBOUT="E" D HEADER
  ;
  S SORT=""
  F  S SORT=$O(^TMP($J,RTN,SORT)) Q:SORT=""  D  Q:STOP
@@ -105,6 +109,9 @@ PRINT ; print the report to the device specified
  ... S A=0
  ... F  S A=$O(^TMP($J,RTN,SORT,PTNM,DFN,A)) Q:'A  D  Q:STOP
  .... S DATA=$G(^TMP($J,RTN,SORT,PTNM,DFN,A))
+ .... ; Excel output
+ .... I IBOUT="E" W !,PTNM_U_DATA Q
+ .... ; Report output
  .... I $Y+1>MAXCNT!'PAGECNT D HEADER Q:STOP
  .... W !,$E(PTNM,1,20),?23,$P(DATA,U,1),?30,$E($P(DATA,U,2),1,20)
  .... W ?53,$E($P(DATA,U,3),1,13),?69,$P(DATA,U,4)
@@ -122,6 +129,8 @@ PRINTX ;
 HEADER ; page break and report header information
  NEW LIN,HDR,TAB
  S STOP=0
+ ; Excel output
+ I IBOUT="E" W "Patient Name^SSN^Insurance Company^Type of Plan^ApptDate" Q
  ; ask screen user if they want to continue
  I CRT,PAGECNT>0,'$D(ZTQUEUED) D  I STOP G HEADERX
  . I MAXCNT<51 F LIN=1:1:(MAXCNT-$Y) W !
@@ -195,13 +204,21 @@ DEVICE ; This procedure displays a warning message and prompts for the
  W !!?2,"The active insurance coverage for all living patients is analyzed."
  W !!?2,"It is recommended that you queue this report to the background and"
  W !?2,"run it after hours or on the weekend."
- W !!?2,"This report is 80 characters wide."
+ I IBOUT="R" W !!?2,"This report is 80 characters wide."
  W !
  ;
  S ZTRTN="COMPILE^IBCEMMR"
  S ZTDESC="Patients without MEDICARE (WNR) Insurance"
- S ZTSAVE("IBMSORT")=""
+ S ZTSAVE("IBMSORT")="",ZTSAVE("IBOUT")=""
  D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE)
 DEVICEX ;
  Q
  ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

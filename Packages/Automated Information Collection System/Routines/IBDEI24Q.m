@@ -1,120 +1,136 @@
-IBDEI24Q ; ; 19-NOV-2015
+IBDEI24Q ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35745,1,3,0)
- ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts4
- ;;^UTILITY(U,$J,358.3,35745,1,4,0)
- ;;=4^O31.13X4
- ;;^UTILITY(U,$J,358.3,35745,2)
- ;;=^5016555
- ;;^UTILITY(U,$J,358.3,35746,0)
- ;;=O31.11X5^^166^1826^38
- ;;^UTILITY(U,$J,358.3,35746,1,0)
+ ;;^UTILITY(U,$J,358.3,36112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35746,1,3,0)
- ;;=3^Cont preg aft spon abort of 1 fetus or more, 1st tri, fts5
- ;;^UTILITY(U,$J,358.3,35746,1,4,0)
- ;;=4^O31.11X5
- ;;^UTILITY(U,$J,358.3,35746,2)
- ;;=^5016542
- ;;^UTILITY(U,$J,358.3,35747,0)
- ;;=O31.12X5^^166^1826^39
- ;;^UTILITY(U,$J,358.3,35747,1,0)
+ ;;^UTILITY(U,$J,358.3,36112,1,3,0)
+ ;;=3^Noninfective Gastroenteritis/Colitis
+ ;;^UTILITY(U,$J,358.3,36112,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,36112,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,36113,0)
+ ;;=R30.9^^134^1742^59
+ ;;^UTILITY(U,$J,358.3,36113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35747,1,3,0)
- ;;=3^Cont preg aft spon abort of 1 fetus or more, 2nd tri, fts5
- ;;^UTILITY(U,$J,358.3,35747,1,4,0)
- ;;=4^O31.12X5
- ;;^UTILITY(U,$J,358.3,35747,2)
- ;;=^5016549
- ;;^UTILITY(U,$J,358.3,35748,0)
- ;;=O31.13X5^^166^1826^40
- ;;^UTILITY(U,$J,358.3,35748,1,0)
+ ;;^UTILITY(U,$J,358.3,36113,1,3,0)
+ ;;=3^Painful Micturition,Unspec
+ ;;^UTILITY(U,$J,358.3,36113,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,36113,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,36114,0)
+ ;;=R00.2^^134^1742^60
+ ;;^UTILITY(U,$J,358.3,36114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35748,1,3,0)
- ;;=3^Cont preg aft spon abort of 1 fetus or more, 3rd tri, fts5
- ;;^UTILITY(U,$J,358.3,35748,1,4,0)
- ;;=4^O31.13X5
- ;;^UTILITY(U,$J,358.3,35748,2)
- ;;=^5016556
- ;;^UTILITY(U,$J,358.3,35749,0)
- ;;=O31.31X0^^166^1826^4
- ;;^UTILITY(U,$J,358.3,35749,1,0)
+ ;;^UTILITY(U,$J,358.3,36114,1,3,0)
+ ;;=3^Palpitations
+ ;;^UTILITY(U,$J,358.3,36114,1,4,0)
+ ;;=4^R00.2
+ ;;^UTILITY(U,$J,358.3,36114,2)
+ ;;=^5019165
+ ;;^UTILITY(U,$J,358.3,36115,0)
+ ;;=M84.58XA^^134^1742^61
+ ;;^UTILITY(U,$J,358.3,36115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35749,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, unsp
- ;;^UTILITY(U,$J,358.3,35749,1,4,0)
- ;;=4^O31.31X0
- ;;^UTILITY(U,$J,358.3,35749,2)
- ;;=^5016593
- ;;^UTILITY(U,$J,358.3,35750,0)
- ;;=O31.32X0^^166^1826^5
- ;;^UTILITY(U,$J,358.3,35750,1,0)
+ ;;^UTILITY(U,$J,358.3,36115,1,3,0)
+ ;;=3^Pathological Fx in Neoplastic Disease,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36115,1,4,0)
+ ;;=4^M84.58XA
+ ;;^UTILITY(U,$J,358.3,36115,2)
+ ;;=^5014208
+ ;;^UTILITY(U,$J,358.3,36116,0)
+ ;;=M84.68XA^^134^1742^62
+ ;;^UTILITY(U,$J,358.3,36116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35750,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, unsp
- ;;^UTILITY(U,$J,358.3,35750,1,4,0)
- ;;=4^O31.32X0
- ;;^UTILITY(U,$J,358.3,35750,2)
- ;;=^5016600
- ;;^UTILITY(U,$J,358.3,35751,0)
- ;;=O31.33X0^^166^1826^6
- ;;^UTILITY(U,$J,358.3,35751,1,0)
+ ;;^UTILITY(U,$J,358.3,36116,1,3,0)
+ ;;=3^Pathological Fx in Oth Disease,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36116,1,4,0)
+ ;;=4^M84.68XA
+ ;;^UTILITY(U,$J,358.3,36116,2)
+ ;;=^5134051
+ ;;^UTILITY(U,$J,358.3,36117,0)
+ ;;=M84.48XA^^134^1742^63
+ ;;^UTILITY(U,$J,358.3,36117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35751,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, unsp
- ;;^UTILITY(U,$J,358.3,35751,1,4,0)
- ;;=4^O31.33X0
- ;;^UTILITY(U,$J,358.3,35751,2)
- ;;=^5016607
- ;;^UTILITY(U,$J,358.3,35752,0)
- ;;=O31.31X1^^166^1826^7
- ;;^UTILITY(U,$J,358.3,35752,1,0)
+ ;;^UTILITY(U,$J,358.3,36117,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36117,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,36117,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,36118,0)
+ ;;=R06.3^^134^1742^64
+ ;;^UTILITY(U,$J,358.3,36118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35752,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts1
- ;;^UTILITY(U,$J,358.3,35752,1,4,0)
- ;;=4^O31.31X1
- ;;^UTILITY(U,$J,358.3,35752,2)
- ;;=^5016594
- ;;^UTILITY(U,$J,358.3,35753,0)
- ;;=O31.32X1^^166^1826^8
- ;;^UTILITY(U,$J,358.3,35753,1,0)
+ ;;^UTILITY(U,$J,358.3,36118,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,36118,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,36118,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,36119,0)
+ ;;=G93.3^^134^1742^65
+ ;;^UTILITY(U,$J,358.3,36119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35753,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts1
- ;;^UTILITY(U,$J,358.3,35753,1,4,0)
- ;;=4^O31.32X1
- ;;^UTILITY(U,$J,358.3,35753,2)
- ;;=^5016601
- ;;^UTILITY(U,$J,358.3,35754,0)
- ;;=O31.33X1^^166^1826^9
- ;;^UTILITY(U,$J,358.3,35754,1,0)
+ ;;^UTILITY(U,$J,358.3,36119,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,36119,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,36119,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,36120,0)
+ ;;=G47.9^^134^1742^67
+ ;;^UTILITY(U,$J,358.3,36120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35754,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,3rd tri, fts1
- ;;^UTILITY(U,$J,358.3,35754,1,4,0)
- ;;=4^O31.33X1
- ;;^UTILITY(U,$J,358.3,35754,2)
- ;;=^5016608
- ;;^UTILITY(U,$J,358.3,35755,0)
- ;;=O31.31X2^^166^1826^10
- ;;^UTILITY(U,$J,358.3,35755,1,0)
+ ;;^UTILITY(U,$J,358.3,36120,1,3,0)
+ ;;=3^Sleep Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36120,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,36120,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,36121,0)
+ ;;=R06.83^^134^1742^68
+ ;;^UTILITY(U,$J,358.3,36121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35755,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,1st tri, fts2
- ;;^UTILITY(U,$J,358.3,35755,1,4,0)
- ;;=4^O31.31X2
- ;;^UTILITY(U,$J,358.3,35755,2)
- ;;=^5016595
- ;;^UTILITY(U,$J,358.3,35756,0)
- ;;=O31.32X2^^166^1826^11
- ;;^UTILITY(U,$J,358.3,35756,1,0)
+ ;;^UTILITY(U,$J,358.3,36121,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,36121,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,36121,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,36122,0)
+ ;;=R55.^^134^1742^69
+ ;;^UTILITY(U,$J,358.3,36122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35756,1,3,0)
- ;;=3^Cont preg aft elctv fetl rdct of 1 fts or more,2nd tri, fts2
- ;;^UTILITY(U,$J,358.3,35756,1,4,0)
- ;;=4^O31.32X2
- ;;^UTILITY(U,$J,358.3,35756,2)
- ;;=^5016602
+ ;;^UTILITY(U,$J,358.3,36122,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,36122,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,36122,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,36123,0)
+ ;;=M41.30^^134^1742^72
+ ;;^UTILITY(U,$J,358.3,36123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36123,1,3,0)
+ ;;=3^Thoracogenic Scoliosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,36123,1,4,0)
+ ;;=4^M41.30
+ ;;^UTILITY(U,$J,358.3,36123,2)
+ ;;=^5011864
+ ;;^UTILITY(U,$J,358.3,36124,0)
+ ;;=M41.35^^134^1742^71
+ ;;^UTILITY(U,$J,358.3,36124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36124,1,3,0)
+ ;;=3^Thoracogenic Scoliosis,Thoracolumbar Region
+ ;;^UTILITY(U,$J,358.3,36124,1,4,0)
+ ;;=4^M41.35
+ ;;^UTILITY(U,$J,358.3,36124,2)
+ ;;=^5011866
+ ;;^UTILITY(U,$J,358.3,36125,0)
+ ;;=M41.34^^134^1742^70
+ ;;^UTILITY(U,$J,358.3,36125,1,0)
+ ;;=^358.31IA^4^2

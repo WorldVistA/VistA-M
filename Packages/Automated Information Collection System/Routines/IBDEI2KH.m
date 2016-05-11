@@ -1,126 +1,132 @@
-IBDEI2KH ; ; 19-NOV-2015
+IBDEI2KH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43058,1,4,0)
- ;;=4^S02.92XA
- ;;^UTILITY(U,$J,358.3,43058,2)
- ;;=^5020438
- ;;^UTILITY(U,$J,358.3,43059,0)
- ;;=S02.0XXB^^195^2166^15
- ;;^UTILITY(U,$J,358.3,43059,1,0)
+ ;;^UTILITY(U,$J,358.3,43554,1,4,0)
+ ;;=4^R10.13
+ ;;^UTILITY(U,$J,358.3,43554,2)
+ ;;=^5019208
+ ;;^UTILITY(U,$J,358.3,43555,0)
+ ;;=R10.84^^167^2079^1
+ ;;^UTILITY(U,$J,358.3,43555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43059,1,3,0)
- ;;=3^Fracture of vault of skull, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,43059,1,4,0)
- ;;=4^S02.0XXB
- ;;^UTILITY(U,$J,358.3,43059,2)
- ;;=^5020253
- ;;^UTILITY(U,$J,358.3,43060,0)
- ;;=S02.2XXB^^195^2166^9
- ;;^UTILITY(U,$J,358.3,43060,1,0)
+ ;;^UTILITY(U,$J,358.3,43555,1,3,0)
+ ;;=3^Abdominal Pain,Generalized
+ ;;^UTILITY(U,$J,358.3,43555,1,4,0)
+ ;;=4^R10.84
+ ;;^UTILITY(U,$J,358.3,43555,2)
+ ;;=^5019229
+ ;;^UTILITY(U,$J,358.3,43556,0)
+ ;;=Z48.01^^167^2080^4
+ ;;^UTILITY(U,$J,358.3,43556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43060,1,3,0)
- ;;=3^Fracture of nasal bones, initial encounter for open fracture
- ;;^UTILITY(U,$J,358.3,43060,1,4,0)
- ;;=4^S02.2XXB
- ;;^UTILITY(U,$J,358.3,43060,2)
- ;;=^5020307
- ;;^UTILITY(U,$J,358.3,43061,0)
- ;;=S02.402B^^195^2166^22
- ;;^UTILITY(U,$J,358.3,43061,1,0)
+ ;;^UTILITY(U,$J,358.3,43556,1,3,0)
+ ;;=3^Wound Dressing Change/Removal
+ ;;^UTILITY(U,$J,358.3,43556,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,43556,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,43557,0)
+ ;;=Z48.02^^167^2080^3
+ ;;^UTILITY(U,$J,358.3,43557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43061,1,3,0)
- ;;=3^Zygomatic fracture, unsp, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,43061,1,4,0)
- ;;=4^S02.402B
- ;;^UTILITY(U,$J,358.3,43061,2)
- ;;=^5020331
- ;;^UTILITY(U,$J,358.3,43062,0)
- ;;=S02.91XB^^195^2166^13
- ;;^UTILITY(U,$J,358.3,43062,1,0)
+ ;;^UTILITY(U,$J,358.3,43557,1,3,0)
+ ;;=3^Suture Removal
+ ;;^UTILITY(U,$J,358.3,43557,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,43557,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,43558,0)
+ ;;=Z48.812^^167^2080^1
+ ;;^UTILITY(U,$J,358.3,43558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43062,1,3,0)
- ;;=3^Fracture of skull unspec, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,43062,1,4,0)
- ;;=4^S02.91XB
- ;;^UTILITY(U,$J,358.3,43062,2)
- ;;=^5020433
- ;;^UTILITY(U,$J,358.3,43063,0)
- ;;=S02.0XXD^^195^2166^17
- ;;^UTILITY(U,$J,358.3,43063,1,0)
+ ;;^UTILITY(U,$J,358.3,43558,1,3,0)
+ ;;=3^Circulatory System Surgery Aftercare
+ ;;^UTILITY(U,$J,358.3,43558,1,4,0)
+ ;;=4^Z48.812
+ ;;^UTILITY(U,$J,358.3,43558,2)
+ ;;=^5063049
+ ;;^UTILITY(U,$J,358.3,43559,0)
+ ;;=Z09.^^167^2080^2
+ ;;^UTILITY(U,$J,358.3,43559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43063,1,3,0)
- ;;=3^Fracture of vault of skull, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,43063,1,4,0)
- ;;=4^S02.0XXD
- ;;^UTILITY(U,$J,358.3,43063,2)
- ;;=^5020254
- ;;^UTILITY(U,$J,358.3,43064,0)
- ;;=S02.10XD^^195^2166^3
- ;;^UTILITY(U,$J,358.3,43064,1,0)
+ ;;^UTILITY(U,$J,358.3,43559,1,3,0)
+ ;;=3^F/U Exam Aftr Tx for Cond Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,43559,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,43559,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,43560,0)
+ ;;=I25.10^^167^2081^2
+ ;;^UTILITY(U,$J,358.3,43560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43064,1,3,0)
- ;;=3^Fracture of base of skull unspec, subs for fx w routn heal
- ;;^UTILITY(U,$J,358.3,43064,1,4,0)
- ;;=4^S02.10XD
- ;;^UTILITY(U,$J,358.3,43064,2)
- ;;=^5020260
- ;;^UTILITY(U,$J,358.3,43065,0)
- ;;=S02.0XXS^^195^2166^16
- ;;^UTILITY(U,$J,358.3,43065,1,0)
+ ;;^UTILITY(U,$J,358.3,43560,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43560,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,43560,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,43561,0)
+ ;;=I25.110^^167^2081^3
+ ;;^UTILITY(U,$J,358.3,43561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43065,1,3,0)
- ;;=3^Fracture of vault of skull, sequela
- ;;^UTILITY(U,$J,358.3,43065,1,4,0)
- ;;=4^S02.0XXS
- ;;^UTILITY(U,$J,358.3,43065,2)
- ;;=^5020257
- ;;^UTILITY(U,$J,358.3,43066,0)
- ;;=S02.10XS^^195^2166^2
- ;;^UTILITY(U,$J,358.3,43066,1,0)
+ ;;^UTILITY(U,$J,358.3,43561,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43561,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,43561,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,43562,0)
+ ;;=I25.111^^167^2081^4
+ ;;^UTILITY(U,$J,358.3,43562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43066,1,3,0)
- ;;=3^Fracture of base of skull unspec, sequela
- ;;^UTILITY(U,$J,358.3,43066,1,4,0)
- ;;=4^S02.10XS
- ;;^UTILITY(U,$J,358.3,43066,2)
- ;;=^5020263
- ;;^UTILITY(U,$J,358.3,43067,0)
- ;;=S02.2XXS^^195^2166^10
- ;;^UTILITY(U,$J,358.3,43067,1,0)
+ ;;^UTILITY(U,$J,358.3,43562,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Ang Pctrs w/ Spasm
+ ;;^UTILITY(U,$J,358.3,43562,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,43562,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,43563,0)
+ ;;=I25.118^^167^2081^5
+ ;;^UTILITY(U,$J,358.3,43563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43067,1,3,0)
- ;;=3^Fracture of nasal bones, sequela
- ;;^UTILITY(U,$J,358.3,43067,1,4,0)
- ;;=4^S02.2XXS
- ;;^UTILITY(U,$J,358.3,43067,2)
- ;;=^5020311
- ;;^UTILITY(U,$J,358.3,43068,0)
- ;;=S02.401S^^195^2166^19
- ;;^UTILITY(U,$J,358.3,43068,1,0)
+ ;;^UTILITY(U,$J,358.3,43563,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Oth Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43563,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,43563,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,43564,0)
+ ;;=I25.119^^167^2081^6
+ ;;^UTILITY(U,$J,358.3,43564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43068,1,3,0)
- ;;=3^Maxillary fracture, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,43068,1,4,0)
- ;;=4^S02.401S
- ;;^UTILITY(U,$J,358.3,43068,2)
- ;;=^5020329
- ;;^UTILITY(U,$J,358.3,43069,0)
- ;;=S02.402S^^195^2166^23
- ;;^UTILITY(U,$J,358.3,43069,1,0)
+ ;;^UTILITY(U,$J,358.3,43564,1,3,0)
+ ;;=3^Athscl Hrt Dis,Ntv Cor Art w/ Unspec Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43564,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,43564,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,43565,0)
+ ;;=I50.9^^167^2081^12
+ ;;^UTILITY(U,$J,358.3,43565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43069,1,3,0)
- ;;=3^Zygomatic fracture, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,43069,1,4,0)
- ;;=4^S02.402S
- ;;^UTILITY(U,$J,358.3,43069,2)
- ;;=^5020335
- ;;^UTILITY(U,$J,358.3,43070,0)
- ;;=S02.91XS^^195^2166^14
- ;;^UTILITY(U,$J,358.3,43070,1,0)
+ ;;^UTILITY(U,$J,358.3,43565,1,3,0)
+ ;;=3^Heart Failure,Comp/Uncomp
+ ;;^UTILITY(U,$J,358.3,43565,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,43565,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,43566,0)
+ ;;=I65.21^^167^2081^16
+ ;;^UTILITY(U,$J,358.3,43566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43070,1,3,0)
- ;;=3^Fracture of skull unspec, sequela
- ;;^UTILITY(U,$J,358.3,43070,1,4,0)
- ;;=4^S02.91XS
+ ;;^UTILITY(U,$J,358.3,43566,1,3,0)
+ ;;=3^Occl & Sten,Rt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43566,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,43566,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,43567,0)
+ ;;=I65.22^^167^2081^14
+ ;;^UTILITY(U,$J,358.3,43567,1,0)
+ ;;=^358.31IA^4^2

@@ -1,140 +1,140 @@
-IBDEI07I ; ; 19-NOV-2015
+IBDEI07I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2939,1,0)
+ ;;^UTILITY(U,$J,358.3,3204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2939,1,3,0)
- ;;=3^Acquired Absence of Spleen
- ;;^UTILITY(U,$J,358.3,2939,1,4,0)
- ;;=4^Z90.81
- ;;^UTILITY(U,$J,358.3,2939,2)
- ;;=^5063597
- ;;^UTILITY(U,$J,358.3,2940,0)
- ;;=K62.9^^28^245^3
- ;;^UTILITY(U,$J,358.3,2940,1,0)
+ ;;^UTILITY(U,$J,358.3,3204,1,3,0)
+ ;;=3^Genital Organ Inflammatory Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,3204,1,4,0)
+ ;;=4^N49.9
+ ;;^UTILITY(U,$J,358.3,3204,2)
+ ;;=^5015749
+ ;;^UTILITY(U,$J,358.3,3205,0)
+ ;;=N50.9^^18^216^33
+ ;;^UTILITY(U,$J,358.3,3205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2940,1,3,0)
- ;;=3^Anus & Rectum Disease,Unspec
- ;;^UTILITY(U,$J,358.3,2940,1,4,0)
- ;;=4^K62.9
- ;;^UTILITY(U,$J,358.3,2940,2)
- ;;=^5008760
- ;;^UTILITY(U,$J,358.3,2941,0)
- ;;=Z93.3^^28^245^4
- ;;^UTILITY(U,$J,358.3,2941,1,0)
+ ;;^UTILITY(U,$J,358.3,3205,1,3,0)
+ ;;=3^Genital Organ Disorder,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,3205,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,3205,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,3206,0)
+ ;;=N81.10^^18^216^23
+ ;;^UTILITY(U,$J,358.3,3206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2941,1,3,0)
- ;;=3^Artificial Opening,Colostomy Status
- ;;^UTILITY(U,$J,358.3,2941,1,4,0)
- ;;=4^Z93.3
- ;;^UTILITY(U,$J,358.3,2941,2)
- ;;=^5063645
- ;;^UTILITY(U,$J,358.3,2942,0)
- ;;=Z93.4^^28^245^5
- ;;^UTILITY(U,$J,358.3,2942,1,0)
+ ;;^UTILITY(U,$J,358.3,3206,1,3,0)
+ ;;=3^Cystocele,Unspec
+ ;;^UTILITY(U,$J,358.3,3206,1,4,0)
+ ;;=4^N81.10
+ ;;^UTILITY(U,$J,358.3,3206,2)
+ ;;=^5015838
+ ;;^UTILITY(U,$J,358.3,3207,0)
+ ;;=R39.9^^18^216^35
+ ;;^UTILITY(U,$J,358.3,3207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2942,1,3,0)
- ;;=3^Artificial Opening,GI Tract
- ;;^UTILITY(U,$J,358.3,2942,1,4,0)
- ;;=4^Z93.4
- ;;^UTILITY(U,$J,358.3,2942,2)
- ;;=^5063646
- ;;^UTILITY(U,$J,358.3,2943,0)
- ;;=Z93.1^^28^245^6
- ;;^UTILITY(U,$J,358.3,2943,1,0)
+ ;;^UTILITY(U,$J,358.3,3207,1,3,0)
+ ;;=3^Genitourinary System,Unspec Signs/Symptoms
+ ;;^UTILITY(U,$J,358.3,3207,1,4,0)
+ ;;=4^R39.9
+ ;;^UTILITY(U,$J,358.3,3207,2)
+ ;;=^5019351
+ ;;^UTILITY(U,$J,358.3,3208,0)
+ ;;=R31.9^^18^216^36
+ ;;^UTILITY(U,$J,358.3,3208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2943,1,3,0)
- ;;=3^Artificial Opening,Gastrostomy Status
- ;;^UTILITY(U,$J,358.3,2943,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,2943,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,2944,0)
- ;;=Z93.2^^28^245^7
- ;;^UTILITY(U,$J,358.3,2944,1,0)
+ ;;^UTILITY(U,$J,358.3,3208,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,3208,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,3208,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,3209,0)
+ ;;=R39.11^^18^216^37
+ ;;^UTILITY(U,$J,358.3,3209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2944,1,3,0)
- ;;=3^Artificial Opening,Ileostomy Status
- ;;^UTILITY(U,$J,358.3,2944,1,4,0)
- ;;=4^Z93.2
- ;;^UTILITY(U,$J,358.3,2944,2)
- ;;=^5063644
- ;;^UTILITY(U,$J,358.3,2945,0)
- ;;=K83.9^^28^245^8
- ;;^UTILITY(U,$J,358.3,2945,1,0)
+ ;;^UTILITY(U,$J,358.3,3209,1,3,0)
+ ;;=3^Hesitancy of Micturition
+ ;;^UTILITY(U,$J,358.3,3209,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,3209,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,3210,0)
+ ;;=N43.3^^18^216^38
+ ;;^UTILITY(U,$J,358.3,3210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2945,1,3,0)
- ;;=3^Biliary Tract Disease,Unspec
- ;;^UTILITY(U,$J,358.3,2945,1,4,0)
- ;;=4^K83.9
- ;;^UTILITY(U,$J,358.3,2945,2)
- ;;=^5008881
- ;;^UTILITY(U,$J,358.3,2946,0)
- ;;=R14.2^^28^245^9
- ;;^UTILITY(U,$J,358.3,2946,1,0)
+ ;;^UTILITY(U,$J,358.3,3210,1,3,0)
+ ;;=3^Hydrocele,Unspec
+ ;;^UTILITY(U,$J,358.3,3210,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,3210,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,3211,0)
+ ;;=N95.1^^18^216^39
+ ;;^UTILITY(U,$J,358.3,3211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2946,1,3,0)
- ;;=3^Burping-Belching
- ;;^UTILITY(U,$J,358.3,2946,1,4,0)
- ;;=4^R14.2
- ;;^UTILITY(U,$J,358.3,2946,2)
- ;;=^5019242
- ;;^UTILITY(U,$J,358.3,2947,0)
- ;;=K90.0^^28^245^10
- ;;^UTILITY(U,$J,358.3,2947,1,0)
+ ;;^UTILITY(U,$J,358.3,3211,1,3,0)
+ ;;=3^Menopausal & Female Climacteric States
+ ;;^UTILITY(U,$J,358.3,3211,1,4,0)
+ ;;=4^N95.1
+ ;;^UTILITY(U,$J,358.3,3211,2)
+ ;;=^5015927
+ ;;^UTILITY(U,$J,358.3,3212,0)
+ ;;=N95.9^^18^216^40
+ ;;^UTILITY(U,$J,358.3,3212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2947,1,3,0)
- ;;=3^Celiac Disease
- ;;^UTILITY(U,$J,358.3,2947,1,4,0)
- ;;=4^K90.0
- ;;^UTILITY(U,$J,358.3,2947,2)
- ;;=^20828
- ;;^UTILITY(U,$J,358.3,2948,0)
- ;;=K51.00^^28^245^12
- ;;^UTILITY(U,$J,358.3,2948,1,0)
+ ;;^UTILITY(U,$J,358.3,3212,1,3,0)
+ ;;=3^Menopausal & Perimenopausal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3212,1,4,0)
+ ;;=4^N95.9
+ ;;^UTILITY(U,$J,358.3,3212,2)
+ ;;=^5015929
+ ;;^UTILITY(U,$J,358.3,3213,0)
+ ;;=R35.1^^18^216^41
+ ;;^UTILITY(U,$J,358.3,3213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2948,1,3,0)
- ;;=3^Colitis,Ulcerative
- ;;^UTILITY(U,$J,358.3,2948,1,4,0)
- ;;=4^K51.00
- ;;^UTILITY(U,$J,358.3,2948,2)
- ;;=^5008652
- ;;^UTILITY(U,$J,358.3,2949,0)
- ;;=K94.00^^28^245^13
- ;;^UTILITY(U,$J,358.3,2949,1,0)
+ ;;^UTILITY(U,$J,358.3,3213,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,3213,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,3213,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,3214,0)
+ ;;=N45.2^^18^216^42
+ ;;^UTILITY(U,$J,358.3,3214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2949,1,3,0)
- ;;=3^Complication of Colostomy,Unspec
- ;;^UTILITY(U,$J,358.3,2949,1,4,0)
- ;;=4^K94.00
- ;;^UTILITY(U,$J,358.3,2949,2)
- ;;=^5008918
- ;;^UTILITY(U,$J,358.3,2950,0)
- ;;=K94.10^^28^245^14
- ;;^UTILITY(U,$J,358.3,2950,1,0)
+ ;;^UTILITY(U,$J,358.3,3214,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,3214,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,3214,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,3215,0)
+ ;;=N45.1^^18^216^28
+ ;;^UTILITY(U,$J,358.3,3215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2950,1,3,0)
- ;;=3^Complication of Enterostomy,Unspec
- ;;^UTILITY(U,$J,358.3,2950,1,4,0)
- ;;=4^K94.10
- ;;^UTILITY(U,$J,358.3,2950,2)
- ;;=^5008923
- ;;^UTILITY(U,$J,358.3,2951,0)
- ;;=K94.30^^28^245^15
- ;;^UTILITY(U,$J,358.3,2951,1,0)
+ ;;^UTILITY(U,$J,358.3,3215,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,3215,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,3215,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,3216,0)
+ ;;=R30.9^^18^216^43
+ ;;^UTILITY(U,$J,358.3,3216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2951,1,3,0)
- ;;=3^Complication of Esophagostomy,Unspec
- ;;^UTILITY(U,$J,358.3,2951,1,4,0)
- ;;=4^K94.30
- ;;^UTILITY(U,$J,358.3,2951,2)
- ;;=^5008933
- ;;^UTILITY(U,$J,358.3,2952,0)
- ;;=K94.20^^28^245^16
- ;;^UTILITY(U,$J,358.3,2952,1,0)
+ ;;^UTILITY(U,$J,358.3,3216,1,3,0)
+ ;;=3^Painful Micturition,Unspec
+ ;;^UTILITY(U,$J,358.3,3216,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,3216,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,3217,0)
+ ;;=N73.9^^18^216^44
+ ;;^UTILITY(U,$J,358.3,3217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2952,1,3,0)
- ;;=3^Complication of Gastrostomy,Unspec
- ;;^UTILITY(U,$J,358.3,2952,1,4,0)
- ;;=4^K94.20
+ ;;^UTILITY(U,$J,358.3,3217,1,3,0)
+ ;;=3^Pelvic Inflammatory Disease,Female,Unspec
+ ;;^UTILITY(U,$J,358.3,3217,1,4,0)
+ ;;=4^N73.9

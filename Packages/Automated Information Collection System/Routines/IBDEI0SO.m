@@ -1,126 +1,134 @@
-IBDEI0SO ; ; 19-NOV-2015
+IBDEI0SO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13189,1,4,0)
- ;;=4^H40.1422
- ;;^UTILITY(U,$J,358.3,13189,2)
- ;;=^5138024
- ;;^UTILITY(U,$J,358.3,13190,0)
- ;;=H40.1423^^80^754^6
- ;;^UTILITY(U,$J,358.3,13190,1,0)
+ ;;^UTILITY(U,$J,358.3,13447,0)
+ ;;=D05.01^^53^593^99
+ ;;^UTILITY(U,$J,358.3,13447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13190,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13190,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,13190,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,13191,0)
- ;;=H40.1424^^80^754^7
- ;;^UTILITY(U,$J,358.3,13191,1,0)
+ ;;^UTILITY(U,$J,358.3,13447,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,13447,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,13447,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,13448,0)
+ ;;=D05.00^^53^593^100
+ ;;^UTILITY(U,$J,358.3,13448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13191,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13191,1,4,0)
- ;;=4^H40.1424
- ;;^UTILITY(U,$J,358.3,13191,2)
- ;;=^5138026
- ;;^UTILITY(U,$J,358.3,13192,0)
- ;;=H40.31X0^^80^754^138
- ;;^UTILITY(U,$J,358.3,13192,1,0)
+ ;;^UTILITY(U,$J,358.3,13448,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,13448,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,13448,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,13449,0)
+ ;;=R59.0^^53^593^61
+ ;;^UTILITY(U,$J,358.3,13449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13192,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13192,1,4,0)
- ;;=4^H40.31X0
- ;;^UTILITY(U,$J,358.3,13192,2)
- ;;=^5005852
- ;;^UTILITY(U,$J,358.3,13193,0)
- ;;=H40.31X1^^80^754^135
- ;;^UTILITY(U,$J,358.3,13193,1,0)
+ ;;^UTILITY(U,$J,358.3,13449,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,13449,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,13449,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,13450,0)
+ ;;=C83.59^^53^593^101
+ ;;^UTILITY(U,$J,358.3,13450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13193,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13193,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,13193,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,13194,0)
- ;;=H40.31X2^^80^754^136
- ;;^UTILITY(U,$J,358.3,13194,1,0)
+ ;;^UTILITY(U,$J,358.3,13450,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13450,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,13450,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,13451,0)
+ ;;=C83.50^^53^593^102
+ ;;^UTILITY(U,$J,358.3,13451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13194,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13194,1,4,0)
- ;;=4^H40.31X2
- ;;^UTILITY(U,$J,358.3,13194,2)
- ;;=^5005854
- ;;^UTILITY(U,$J,358.3,13195,0)
- ;;=H40.31X3^^80^754^137
- ;;^UTILITY(U,$J,358.3,13195,1,0)
+ ;;^UTILITY(U,$J,358.3,13451,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13451,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,13451,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,13452,0)
+ ;;=C43.9^^53^593^104
+ ;;^UTILITY(U,$J,358.3,13452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13195,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13195,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,13195,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,13196,0)
- ;;=H40.31X4^^80^754^134
- ;;^UTILITY(U,$J,358.3,13196,1,0)
+ ;;^UTILITY(U,$J,358.3,13452,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13452,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,13452,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,13453,0)
+ ;;=C31.9^^53^593^105
+ ;;^UTILITY(U,$J,358.3,13453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13196,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13196,1,4,0)
- ;;=4^H40.31X4
- ;;^UTILITY(U,$J,358.3,13196,2)
- ;;=^5005855
- ;;^UTILITY(U,$J,358.3,13197,0)
- ;;=H40.32X0^^80^754^133
- ;;^UTILITY(U,$J,358.3,13197,1,0)
+ ;;^UTILITY(U,$J,358.3,13453,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,13453,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,13453,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,13454,0)
+ ;;=C24.1^^53^593^107
+ ;;^UTILITY(U,$J,358.3,13454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13197,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13197,1,4,0)
- ;;=4^H40.32X0
- ;;^UTILITY(U,$J,358.3,13197,2)
- ;;=^5005856
- ;;^UTILITY(U,$J,358.3,13198,0)
- ;;=H40.32X1^^80^754^130
- ;;^UTILITY(U,$J,358.3,13198,1,0)
+ ;;^UTILITY(U,$J,358.3,13454,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,13454,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,13454,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,13455,0)
+ ;;=C21.0^^53^593^108
+ ;;^UTILITY(U,$J,358.3,13455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13198,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13198,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,13198,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,13199,0)
- ;;=H40.32X2^^80^754^131
- ;;^UTILITY(U,$J,358.3,13199,1,0)
+ ;;^UTILITY(U,$J,358.3,13455,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,13455,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,13455,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,13456,0)
+ ;;=C67.9^^53^593^111
+ ;;^UTILITY(U,$J,358.3,13456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13199,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13199,1,4,0)
- ;;=4^H40.32X2
- ;;^UTILITY(U,$J,358.3,13199,2)
- ;;=^5005858
- ;;^UTILITY(U,$J,358.3,13200,0)
- ;;=H40.32X3^^80^754^132
- ;;^UTILITY(U,$J,358.3,13200,1,0)
+ ;;^UTILITY(U,$J,358.3,13456,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,13456,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,13456,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,13457,0)
+ ;;=C71.9^^53^593^115
+ ;;^UTILITY(U,$J,358.3,13457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13200,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13200,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,13200,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,13201,0)
- ;;=H40.32X4^^80^754^129
- ;;^UTILITY(U,$J,358.3,13201,1,0)
+ ;;^UTILITY(U,$J,358.3,13457,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,13457,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,13457,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,13458,0)
+ ;;=C18.9^^53^593^117
+ ;;^UTILITY(U,$J,358.3,13458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13201,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13201,1,4,0)
- ;;=4^H40.32X4
+ ;;^UTILITY(U,$J,358.3,13458,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,13458,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,13458,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,13459,0)
+ ;;=C49.9^^53^593^118
+ ;;^UTILITY(U,$J,358.3,13459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13459,1,3,0)
+ ;;=3^Malig Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,13459,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,13459,2)
+ ;;=^5001136

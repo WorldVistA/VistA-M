@@ -1,126 +1,138 @@
-IBDEI176 ; ; 19-NOV-2015
+IBDEI176 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20007,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,20007,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,20007,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,20008,0)
- ;;=V00.811D^^94^935^46
- ;;^UTILITY(U,$J,358.3,20008,1,0)
+ ;;^UTILITY(U,$J,358.3,20358,1,3,0)
+ ;;=3^Candidiasis Vulva/Vagina
+ ;;^UTILITY(U,$J,358.3,20358,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,20358,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,20359,0)
+ ;;=B58.9^^84^931^82
+ ;;^UTILITY(U,$J,358.3,20359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20008,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,20008,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,20008,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,20009,0)
- ;;=V00.812A^^94^935^133
- ;;^UTILITY(U,$J,358.3,20009,1,0)
+ ;;^UTILITY(U,$J,358.3,20359,1,3,0)
+ ;;=3^Toxoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,20359,1,4,0)
+ ;;=4^B58.9
+ ;;^UTILITY(U,$J,358.3,20359,2)
+ ;;=^5000733
+ ;;^UTILITY(U,$J,358.3,20360,0)
+ ;;=A59.01^^84^931^83
+ ;;^UTILITY(U,$J,358.3,20360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20009,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,20009,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,20009,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,20010,0)
- ;;=V00.812D^^94^935^134
- ;;^UTILITY(U,$J,358.3,20010,1,0)
+ ;;^UTILITY(U,$J,358.3,20360,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,20360,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,20360,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,20361,0)
+ ;;=B59.^^84^931^66
+ ;;^UTILITY(U,$J,358.3,20361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20010,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20010,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,20010,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,20011,0)
- ;;=V00.818A^^94^935^131
- ;;^UTILITY(U,$J,358.3,20011,1,0)
+ ;;^UTILITY(U,$J,358.3,20361,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,20361,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,20361,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,20362,0)
+ ;;=H83.09^^84^931^48
+ ;;^UTILITY(U,$J,358.3,20362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20011,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,20011,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,20011,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,20012,0)
- ;;=V00.818D^^94^935^132
- ;;^UTILITY(U,$J,358.3,20012,1,0)
+ ;;^UTILITY(U,$J,358.3,20362,1,3,0)
+ ;;=3^Labyrinthitis,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,20362,1,4,0)
+ ;;=4^H83.09
+ ;;^UTILITY(U,$J,358.3,20362,2)
+ ;;=^5006897
+ ;;^UTILITY(U,$J,358.3,20363,0)
+ ;;=H83.01^^84^931^47
+ ;;^UTILITY(U,$J,358.3,20363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20012,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20012,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,20012,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,20013,0)
- ;;=V00.831A^^94^935^43
- ;;^UTILITY(U,$J,358.3,20013,1,0)
+ ;;^UTILITY(U,$J,358.3,20363,1,3,0)
+ ;;=3^Labyrinthitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,20363,1,4,0)
+ ;;=4^H83.01
+ ;;^UTILITY(U,$J,358.3,20363,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,20364,0)
+ ;;=H83.03^^84^931^45
+ ;;^UTILITY(U,$J,358.3,20364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20013,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,20013,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,20013,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,20014,0)
- ;;=V00.831D^^94^935^44
- ;;^UTILITY(U,$J,358.3,20014,1,0)
+ ;;^UTILITY(U,$J,358.3,20364,1,3,0)
+ ;;=3^Labyrinthitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,20364,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,20364,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,20365,0)
+ ;;=H83.02^^84^931^46
+ ;;^UTILITY(U,$J,358.3,20365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20014,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20014,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,20014,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,20015,0)
- ;;=V00.832A^^94^935^95
- ;;^UTILITY(U,$J,358.3,20015,1,0)
+ ;;^UTILITY(U,$J,358.3,20365,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,20365,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,20365,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,20366,0)
+ ;;=J01.91^^84^931^76
+ ;;^UTILITY(U,$J,358.3,20366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20015,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,20015,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,20015,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,20016,0)
- ;;=V00.832D^^94^935^96
- ;;^UTILITY(U,$J,358.3,20016,1,0)
+ ;;^UTILITY(U,$J,358.3,20366,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,20366,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,20366,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,20367,0)
+ ;;=J03.90^^84^931^81
+ ;;^UTILITY(U,$J,358.3,20367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20016,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20016,1,4,0)
- ;;=4^V00.832D
- ;;^UTILITY(U,$J,358.3,20016,2)
- ;;=^5055959
- ;;^UTILITY(U,$J,358.3,20017,0)
- ;;=V00.838A^^94^935^93
- ;;^UTILITY(U,$J,358.3,20017,1,0)
+ ;;^UTILITY(U,$J,358.3,20367,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,20367,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,20367,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,20368,0)
+ ;;=J01.90^^84^931^77
+ ;;^UTILITY(U,$J,358.3,20368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20017,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,20017,1,4,0)
- ;;=4^V00.838A
- ;;^UTILITY(U,$J,358.3,20017,2)
- ;;=^5055961
- ;;^UTILITY(U,$J,358.3,20018,0)
- ;;=V00.838D^^94^935^94
- ;;^UTILITY(U,$J,358.3,20018,1,0)
+ ;;^UTILITY(U,$J,358.3,20368,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,20368,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,20368,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,20369,0)
+ ;;=J20.1^^84^931^10
+ ;;^UTILITY(U,$J,358.3,20369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20018,1,3,0)
- ;;=3^Mobility Scooter Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20018,1,4,0)
- ;;=4^V00.838D
- ;;^UTILITY(U,$J,358.3,20018,2)
- ;;=^5055962
- ;;^UTILITY(U,$J,358.3,20019,0)
- ;;=V00.891A^^94^935^57
- ;;^UTILITY(U,$J,358.3,20019,1,0)
+ ;;^UTILITY(U,$J,358.3,20369,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,20369,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,20369,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,20370,0)
+ ;;=J20.0^^84^931^11
+ ;;^UTILITY(U,$J,358.3,20370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20019,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20370,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,20370,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,20370,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,20371,0)
+ ;;=J20.2^^84^931^6
+ ;;^UTILITY(U,$J,358.3,20371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20371,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,20371,1,4,0)
+ ;;=4^J20.2

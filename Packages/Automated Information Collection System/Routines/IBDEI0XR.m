@@ -1,136 +1,134 @@
-IBDEI0XR ; ; 19-NOV-2015
+IBDEI0XR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15560,1,0)
+ ;;^UTILITY(U,$J,358.3,15825,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,15825,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,15826,0)
+ ;;=Z00.6^^58^696^1
+ ;;^UTILITY(U,$J,358.3,15826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15560,1,3,0)
- ;;=3^Cutaneous Abscess of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,15560,1,4,0)
- ;;=4^L02.219
- ;;^UTILITY(U,$J,358.3,15560,2)
- ;;=^5008956
- ;;^UTILITY(U,$J,358.3,15561,0)
- ;;=L02.216^^85^821^78
- ;;^UTILITY(U,$J,358.3,15561,1,0)
+ ;;^UTILITY(U,$J,358.3,15826,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,15826,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,15826,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,15827,0)
+ ;;=F45.22^^58^697^1
+ ;;^UTILITY(U,$J,358.3,15827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15561,1,3,0)
- ;;=3^Cutaneous Abscess of Umbilicus
- ;;^UTILITY(U,$J,358.3,15561,1,4,0)
- ;;=4^L02.216
- ;;^UTILITY(U,$J,358.3,15561,2)
- ;;=^5008955
- ;;^UTILITY(U,$J,358.3,15562,0)
- ;;=L02.91^^85^821^79
- ;;^UTILITY(U,$J,358.3,15562,1,0)
+ ;;^UTILITY(U,$J,358.3,15827,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,15827,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,15827,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,15828,0)
+ ;;=F45.20^^58^697^7
+ ;;^UTILITY(U,$J,358.3,15828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15562,1,3,0)
- ;;=3^Cutaneous Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,15562,1,4,0)
- ;;=4^L02.91
- ;;^UTILITY(U,$J,358.3,15562,2)
- ;;=^5009016
- ;;^UTILITY(U,$J,358.3,15563,0)
- ;;=L98.3^^85^821^82
- ;;^UTILITY(U,$J,358.3,15563,1,0)
+ ;;^UTILITY(U,$J,358.3,15828,1,3,0)
+ ;;=3^Hypochondiacal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15828,1,4,0)
+ ;;=4^F45.20
+ ;;^UTILITY(U,$J,358.3,15828,2)
+ ;;=^5003586
+ ;;^UTILITY(U,$J,358.3,15829,0)
+ ;;=F45.21^^58^697^9
+ ;;^UTILITY(U,$J,358.3,15829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15563,1,3,0)
- ;;=3^Eosinophilic Cellulitis,Skin/Subcutaneous
- ;;^UTILITY(U,$J,358.3,15563,1,4,0)
- ;;=4^L98.3
- ;;^UTILITY(U,$J,358.3,15563,2)
- ;;=^5009576
- ;;^UTILITY(U,$J,358.3,15564,0)
- ;;=L72.0^^85^821^83
- ;;^UTILITY(U,$J,358.3,15564,1,0)
+ ;;^UTILITY(U,$J,358.3,15829,1,3,0)
+ ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,15829,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,15829,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,15830,0)
+ ;;=F45.29^^58^697^8
+ ;;^UTILITY(U,$J,358.3,15830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15564,1,3,0)
- ;;=3^Epidermal Cyst
- ;;^UTILITY(U,$J,358.3,15564,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,15564,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,15565,0)
- ;;=L72.9^^85^821^84
- ;;^UTILITY(U,$J,358.3,15565,1,0)
+ ;;^UTILITY(U,$J,358.3,15830,1,3,0)
+ ;;=3^Hypochondriacal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,15830,1,4,0)
+ ;;=4^F45.29
+ ;;^UTILITY(U,$J,358.3,15830,2)
+ ;;=^5003589
+ ;;^UTILITY(U,$J,358.3,15831,0)
+ ;;=F45.8^^58^697^15
+ ;;^UTILITY(U,$J,358.3,15831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15565,1,3,0)
- ;;=3^Follicular Cyst of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,15565,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,15565,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,15566,0)
- ;;=L60.0^^85^821^86
- ;;^UTILITY(U,$J,358.3,15566,1,0)
+ ;;^UTILITY(U,$J,358.3,15831,1,3,0)
+ ;;=3^Somatoform Disorders NEC
+ ;;^UTILITY(U,$J,358.3,15831,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,15831,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,15832,0)
+ ;;=F45.41^^58^697^10
+ ;;^UTILITY(U,$J,358.3,15832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15566,1,3,0)
- ;;=3^Ingrowing Nail
- ;;^UTILITY(U,$J,358.3,15566,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,15566,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,15567,0)
- ;;=C43.9^^85^821^87
- ;;^UTILITY(U,$J,358.3,15567,1,0)
+ ;;^UTILITY(U,$J,358.3,15832,1,3,0)
+ ;;=3^Pain Disorder Exclusively Related to Psychological Factors
+ ;;^UTILITY(U,$J,358.3,15832,1,4,0)
+ ;;=4^F45.41
+ ;;^UTILITY(U,$J,358.3,15832,2)
+ ;;=^5003590
+ ;;^UTILITY(U,$J,358.3,15833,0)
+ ;;=F45.42^^58^697^11
+ ;;^UTILITY(U,$J,358.3,15833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15567,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,15567,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,15567,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,15568,0)
- ;;=D03.9^^85^821^91
- ;;^UTILITY(U,$J,358.3,15568,1,0)
+ ;;^UTILITY(U,$J,358.3,15833,1,3,0)
+ ;;=3^Pain Disorder w/ Related Psychological Factors
+ ;;^UTILITY(U,$J,358.3,15833,1,4,0)
+ ;;=4^F45.42
+ ;;^UTILITY(U,$J,358.3,15833,2)
+ ;;=^5003591
+ ;;^UTILITY(U,$J,358.3,15834,0)
+ ;;=F45.0^^58^697^13
+ ;;^UTILITY(U,$J,358.3,15834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15568,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,15568,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,15568,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,15569,0)
- ;;=L72.8^^85^821^85
- ;;^UTILITY(U,$J,358.3,15569,1,0)
+ ;;^UTILITY(U,$J,358.3,15834,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,15834,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,15834,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,15835,0)
+ ;;=F45.9^^58^697^14
+ ;;^UTILITY(U,$J,358.3,15835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15569,1,3,0)
- ;;=3^Follicular Cyst of Skin/Subcutaneous Tissue NEC
- ;;^UTILITY(U,$J,358.3,15569,1,4,0)
- ;;=4^L72.8
- ;;^UTILITY(U,$J,358.3,15569,2)
- ;;=^5009282
- ;;^UTILITY(U,$J,358.3,15570,0)
- ;;=L72.2^^85^821^92
- ;;^UTILITY(U,$J,358.3,15570,1,0)
+ ;;^UTILITY(U,$J,358.3,15835,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15835,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,15835,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,15836,0)
+ ;;=F45.1^^58^697^16
+ ;;^UTILITY(U,$J,358.3,15836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15570,1,3,0)
- ;;=3^Steatocystoma Multiplex
- ;;^UTILITY(U,$J,358.3,15570,1,4,0)
- ;;=4^L72.2
- ;;^UTILITY(U,$J,358.3,15570,2)
- ;;=^5009280
- ;;^UTILITY(U,$J,358.3,15571,0)
- ;;=L72.12^^85^821^93
- ;;^UTILITY(U,$J,358.3,15571,1,0)
+ ;;^UTILITY(U,$J,358.3,15836,1,3,0)
+ ;;=3^Undifferntiated Somatoform Disorder
+ ;;^UTILITY(U,$J,358.3,15836,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,15836,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,15837,0)
+ ;;=F44.4^^58^697^2
+ ;;^UTILITY(U,$J,358.3,15837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15571,1,3,0)
- ;;=3^Trichodermal Cyst
- ;;^UTILITY(U,$J,358.3,15571,1,4,0)
- ;;=4^L72.12
- ;;^UTILITY(U,$J,358.3,15571,2)
- ;;=^5009279
- ;;^UTILITY(U,$J,358.3,15572,0)
- ;;=E11.621^^85^821^81
- ;;^UTILITY(U,$J,358.3,15572,1,0)
+ ;;^UTILITY(U,$J,358.3,15837,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement
+ ;;^UTILITY(U,$J,358.3,15837,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,15837,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,15838,0)
+ ;;=F44.6^^58^697^3
+ ;;^UTILITY(U,$J,358.3,15838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15572,1,3,0)
- ;;=3^Diabetes Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,15572,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,15572,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,15573,0)
- ;;=C44.309^^85^821^88
- ;;^UTILITY(U,$J,358.3,15573,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15838,1,3,0)
+ ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss

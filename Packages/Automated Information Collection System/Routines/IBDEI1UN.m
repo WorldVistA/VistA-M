@@ -1,130 +1,116 @@
-IBDEI1UN ; ; 19-NOV-2015
+IBDEI1UN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30960,0)
- ;;=F11.10^^135^1386^34
- ;;^UTILITY(U,$J,358.3,30960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30960,1,3,0)
- ;;=3^Opioid Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30960,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,30960,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,30961,0)
- ;;=F11.129^^135^1386^33
- ;;^UTILITY(U,$J,358.3,30961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30961,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,30961,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,30961,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,30962,0)
- ;;=F10.21^^135^1386^3
- ;;^UTILITY(U,$J,358.3,30962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30962,1,3,0)
- ;;=3^Alcohol Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,30962,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,30962,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,30963,0)
- ;;=F12.10^^135^1386^5
- ;;^UTILITY(U,$J,358.3,30963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30963,1,3,0)
- ;;=3^Cannabis Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30963,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,30963,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,30964,0)
- ;;=F12.20^^135^1386^7
- ;;^UTILITY(U,$J,358.3,30964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30964,1,3,0)
- ;;=3^Cannabis Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30964,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,30964,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,30965,0)
- ;;=F12.21^^135^1386^6
- ;;^UTILITY(U,$J,358.3,30965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30965,1,3,0)
- ;;=3^Cannabis Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,30965,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,30965,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,30966,0)
- ;;=F12.90^^135^1386^8
- ;;^UTILITY(U,$J,358.3,30966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30966,1,3,0)
- ;;=3^Cannabis Use,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,30966,1,4,0)
- ;;=4^F12.90
- ;;^UTILITY(U,$J,358.3,30966,2)
- ;;=^5003178
- ;;^UTILITY(U,$J,358.3,30967,0)
- ;;=I83.019^^135^1387^3
- ;;^UTILITY(U,$J,358.3,30967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30967,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,30967,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,30967,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,30968,0)
- ;;=I83.219^^135^1387^4
- ;;^UTILITY(U,$J,358.3,30968,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30968,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,30968,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,30968,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,30969,0)
- ;;=I83.029^^135^1387^1
- ;;^UTILITY(U,$J,358.3,30969,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30969,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,30969,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,30969,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,30970,0)
- ;;=I83.229^^135^1387^2
- ;;^UTILITY(U,$J,358.3,30970,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30970,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,30970,1,4,0)
- ;;=4^I83.229
- ;;^UTILITY(U,$J,358.3,30970,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,30971,0)
- ;;=B00.81^^135^1388^25
- ;;^UTILITY(U,$J,358.3,30971,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30971,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,30971,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,30971,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,30972,0)
- ;;=D25.9^^135^1388^31
- ;;^UTILITY(U,$J,358.3,30972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30972,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,31414,1,2,0)
+ ;;=2^Ostectomy, partial, exostectomy or condylectomy, metatarsal head, each metatarsal head
+ ;;^UTILITY(U,$J,358.3,31414,1,3,0)
+ ;;=3^28288
+ ;;^UTILITY(U,$J,358.3,31415,0)
+ ;;=28290^^125^1591^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31415,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31415,1,2,0)
+ ;;=2^Correction, hallux valgus, with or without sesamoidectomy; simple exostectomy
+ ;;^UTILITY(U,$J,358.3,31415,1,3,0)
+ ;;=3^28290
+ ;;^UTILITY(U,$J,358.3,31416,0)
+ ;;=28292^^125^1591^22^^^^1
+ ;;^UTILITY(U,$J,358.3,31416,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31416,1,2,0)
+ ;;=2^Resection of joint by Keller Type
+ ;;^UTILITY(U,$J,358.3,31416,1,3,0)
+ ;;=3^28292
+ ;;^UTILITY(U,$J,358.3,31417,0)
+ ;;=28293^^125^1591^25^^^^1
+ ;;^UTILITY(U,$J,358.3,31417,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31417,1,2,0)
+ ;;=2^Resection of joint with implant
+ ;;^UTILITY(U,$J,358.3,31417,1,3,0)
+ ;;=3^28293
+ ;;^UTILITY(U,$J,358.3,31418,0)
+ ;;=28296^^125^1591^26^^^^1
+ ;;^UTILITY(U,$J,358.3,31418,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31418,1,2,0)
+ ;;=2^Resection of joint with metatarsal osteotomy
+ ;;^UTILITY(U,$J,358.3,31418,1,3,0)
+ ;;=3^28296
+ ;;^UTILITY(U,$J,358.3,31419,0)
+ ;;=28298^^125^1591^24^^^^1
+ ;;^UTILITY(U,$J,358.3,31419,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31419,1,2,0)
+ ;;=2^Resection of joint by Phalanx Osteotomy
+ ;;^UTILITY(U,$J,358.3,31419,1,3,0)
+ ;;=3^28298
+ ;;^UTILITY(U,$J,358.3,31420,0)
+ ;;=28299^^125^1591^21^^^^1
+ ;;^UTILITY(U,$J,358.3,31420,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31420,1,2,0)
+ ;;=2^Resection of joint by Double Osteotomy 
+ ;;^UTILITY(U,$J,358.3,31420,1,3,0)
+ ;;=3^28299
+ ;;^UTILITY(U,$J,358.3,31421,0)
+ ;;=28300^^125^1591^23^^^^1
+ ;;^UTILITY(U,$J,358.3,31421,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31421,1,2,0)
+ ;;=2^Resection of joint by Lapidus Type
+ ;;^UTILITY(U,$J,358.3,31421,1,3,0)
+ ;;=3^28300
+ ;;^UTILITY(U,$J,358.3,31422,0)
+ ;;=28302^^125^1591^13^^^^1
+ ;;^UTILITY(U,$J,358.3,31422,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31422,1,2,0)
+ ;;=2^Osteotomy; talus
+ ;;^UTILITY(U,$J,358.3,31422,1,3,0)
+ ;;=3^28302
+ ;;^UTILITY(U,$J,358.3,31423,0)
+ ;;=28304^^125^1591^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31423,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31423,1,2,0)
+ ;;=2^Osteotomy, tarsal bones, other than calcaneus or talus
+ ;;^UTILITY(U,$J,358.3,31423,1,3,0)
+ ;;=3^28304
+ ;;^UTILITY(U,$J,358.3,31424,0)
+ ;;=28306^^125^1591^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31424,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31424,1,2,0)
+ ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; 1st metatarsal
+ ;;^UTILITY(U,$J,358.3,31424,1,3,0)
+ ;;=3^28306
+ ;;^UTILITY(U,$J,358.3,31425,0)
+ ;;=28308^^125^1591^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31425,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31425,1,2,0)
+ ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; other than first metatarsal, each
+ ;;^UTILITY(U,$J,358.3,31425,1,3,0)
+ ;;=3^28308
+ ;;^UTILITY(U,$J,358.3,31426,0)
+ ;;=28315^^125^1591^27^^^^1
+ ;;^UTILITY(U,$J,358.3,31426,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31426,1,2,0)
+ ;;=2^Sesamoidectomy, first toe
+ ;;^UTILITY(U,$J,358.3,31426,1,3,0)
+ ;;=3^28315
+ ;;^UTILITY(U,$J,358.3,31427,0)
+ ;;=28001^^125^1592^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31427,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31427,1,2,0)
+ ;;=2^Incision and Drainage, bursa, foot
+ ;;^UTILITY(U,$J,358.3,31427,1,3,0)
+ ;;=3^28001
+ ;;^UTILITY(U,$J,358.3,31428,0)
+ ;;=28002^^125^1592^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31428,1,0)
+ ;;=^358.31IA^3^2

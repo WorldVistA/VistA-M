@@ -1,134 +1,134 @@
-IBDEI2AD ; ; 19-NOV-2015
+IBDEI2AD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38388,1,0)
+ ;;^UTILITY(U,$J,358.3,38781,1,4,0)
+ ;;=4^L74.0
+ ;;^UTILITY(U,$J,358.3,38781,2)
+ ;;=^277258
+ ;;^UTILITY(U,$J,358.3,38782,0)
+ ;;=D22.9^^151^1902^46
+ ;;^UTILITY(U,$J,358.3,38782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38388,1,3,0)
- ;;=3^Intellectual Disabilities,Oth Specified
- ;;^UTILITY(U,$J,358.3,38388,1,4,0)
- ;;=4^F78.
- ;;^UTILITY(U,$J,358.3,38388,2)
- ;;=^5003672
- ;;^UTILITY(U,$J,358.3,38389,0)
- ;;=F79.^^177^1951^6
- ;;^UTILITY(U,$J,358.3,38389,1,0)
+ ;;^UTILITY(U,$J,358.3,38782,1,3,0)
+ ;;=3^Melanocytic Nevi,Unspec
+ ;;^UTILITY(U,$J,358.3,38782,1,4,0)
+ ;;=4^D22.9
+ ;;^UTILITY(U,$J,358.3,38782,2)
+ ;;=^5002058
+ ;;^UTILITY(U,$J,358.3,38783,0)
+ ;;=C44.00^^151^1902^23
+ ;;^UTILITY(U,$J,358.3,38783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38389,1,3,0)
- ;;=3^Intellectual Disabilities,Unspec
- ;;^UTILITY(U,$J,358.3,38389,1,4,0)
- ;;=4^F79.
- ;;^UTILITY(U,$J,358.3,38389,2)
- ;;=^5003673
- ;;^UTILITY(U,$J,358.3,38390,0)
- ;;=Z00.6^^177^1952^1
- ;;^UTILITY(U,$J,358.3,38390,1,0)
+ ;;^UTILITY(U,$J,358.3,38783,1,3,0)
+ ;;=3^Malig Neop Skin of Lip,Unspec
+ ;;^UTILITY(U,$J,358.3,38783,1,4,0)
+ ;;=4^C44.00
+ ;;^UTILITY(U,$J,358.3,38783,2)
+ ;;=^340596
+ ;;^UTILITY(U,$J,358.3,38784,0)
+ ;;=C44.192^^151^1902^27
+ ;;^UTILITY(U,$J,358.3,38784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38390,1,3,0)
- ;;=3^Exam of Participant of Control in Clinical Research Program
- ;;^UTILITY(U,$J,358.3,38390,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,38390,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,38391,0)
- ;;=F45.22^^177^1953^1
- ;;^UTILITY(U,$J,358.3,38391,1,0)
+ ;;^UTILITY(U,$J,358.3,38784,1,3,0)
+ ;;=3^Malig Neop Skin of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,38784,1,4,0)
+ ;;=4^C44.192
+ ;;^UTILITY(U,$J,358.3,38784,2)
+ ;;=^5001026
+ ;;^UTILITY(U,$J,358.3,38785,0)
+ ;;=C44.199^^151^1902^20
+ ;;^UTILITY(U,$J,358.3,38785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38391,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,38391,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,38391,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,38392,0)
- ;;=F45.20^^177^1953^2
- ;;^UTILITY(U,$J,358.3,38392,1,0)
+ ;;^UTILITY(U,$J,358.3,38785,1,3,0)
+ ;;=3^Malig Neop Skin of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,38785,1,4,0)
+ ;;=4^C44.199
+ ;;^UTILITY(U,$J,358.3,38785,2)
+ ;;=^5001027
+ ;;^UTILITY(U,$J,358.3,38786,0)
+ ;;=C44.202^^151^1902^26
+ ;;^UTILITY(U,$J,358.3,38786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38392,1,3,0)
- ;;=3^Hypochondiacal Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38392,1,4,0)
- ;;=4^F45.20
- ;;^UTILITY(U,$J,358.3,38392,2)
- ;;=^5003586
- ;;^UTILITY(U,$J,358.3,38393,0)
- ;;=F45.21^^177^1953^4
- ;;^UTILITY(U,$J,358.3,38393,1,0)
+ ;;^UTILITY(U,$J,358.3,38786,1,3,0)
+ ;;=3^Malig Neop Skin of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,38786,1,4,0)
+ ;;=4^C44.202
+ ;;^UTILITY(U,$J,358.3,38786,2)
+ ;;=^5001029
+ ;;^UTILITY(U,$J,358.3,38787,0)
+ ;;=C44.209^^151^1902^19
+ ;;^UTILITY(U,$J,358.3,38787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38393,1,3,0)
- ;;=3^Hypochondriasis
- ;;^UTILITY(U,$J,358.3,38393,1,4,0)
- ;;=4^F45.21
- ;;^UTILITY(U,$J,358.3,38393,2)
- ;;=^5003587
- ;;^UTILITY(U,$J,358.3,38394,0)
- ;;=F45.29^^177^1953^3
- ;;^UTILITY(U,$J,358.3,38394,1,0)
+ ;;^UTILITY(U,$J,358.3,38787,1,3,0)
+ ;;=3^Malig Neop Skin of Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,38787,1,4,0)
+ ;;=4^C44.209
+ ;;^UTILITY(U,$J,358.3,38787,2)
+ ;;=^5001030
+ ;;^UTILITY(U,$J,358.3,38788,0)
+ ;;=C44.301^^151^1902^24
+ ;;^UTILITY(U,$J,358.3,38788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38394,1,3,0)
- ;;=3^Hypochondriacal Disorders NEC
- ;;^UTILITY(U,$J,358.3,38394,1,4,0)
- ;;=4^F45.29
- ;;^UTILITY(U,$J,358.3,38394,2)
- ;;=^5003589
- ;;^UTILITY(U,$J,358.3,38395,0)
- ;;=F45.8^^177^1953^9
- ;;^UTILITY(U,$J,358.3,38395,1,0)
+ ;;^UTILITY(U,$J,358.3,38788,1,3,0)
+ ;;=3^Malig Neop Skin of Nose
+ ;;^UTILITY(U,$J,358.3,38788,1,4,0)
+ ;;=4^C44.301
+ ;;^UTILITY(U,$J,358.3,38788,2)
+ ;;=^5001041
+ ;;^UTILITY(U,$J,358.3,38789,0)
+ ;;=C44.49^^151^1902^30
+ ;;^UTILITY(U,$J,358.3,38789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38395,1,3,0)
- ;;=3^Somatoform Disorders NEC
- ;;^UTILITY(U,$J,358.3,38395,1,4,0)
- ;;=4^F45.8
- ;;^UTILITY(U,$J,358.3,38395,2)
- ;;=^331915
- ;;^UTILITY(U,$J,358.3,38396,0)
- ;;=F45.41^^177^1953^5
- ;;^UTILITY(U,$J,358.3,38396,1,0)
+ ;;^UTILITY(U,$J,358.3,38789,1,3,0)
+ ;;=3^Malig Neop Skin of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,38789,1,4,0)
+ ;;=4^C44.49
+ ;;^UTILITY(U,$J,358.3,38789,2)
+ ;;=^340478
+ ;;^UTILITY(U,$J,358.3,38790,0)
+ ;;=C44.509^^151^1902^31
+ ;;^UTILITY(U,$J,358.3,38790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38396,1,3,0)
- ;;=3^Pain Disorder Exclusively Related to Psychological Factors
- ;;^UTILITY(U,$J,358.3,38396,1,4,0)
- ;;=4^F45.41
- ;;^UTILITY(U,$J,358.3,38396,2)
- ;;=^5003590
- ;;^UTILITY(U,$J,358.3,38397,0)
- ;;=F45.42^^177^1953^6
- ;;^UTILITY(U,$J,358.3,38397,1,0)
+ ;;^UTILITY(U,$J,358.3,38790,1,3,0)
+ ;;=3^Malig Neop Skin of Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,38790,1,4,0)
+ ;;=4^C44.509
+ ;;^UTILITY(U,$J,358.3,38790,2)
+ ;;=^5001053
+ ;;^UTILITY(U,$J,358.3,38791,0)
+ ;;=C44.590^^151^1902^17
+ ;;^UTILITY(U,$J,358.3,38791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38397,1,3,0)
- ;;=3^Pain Disorder w/ Related Psychological Factors
- ;;^UTILITY(U,$J,358.3,38397,1,4,0)
- ;;=4^F45.42
- ;;^UTILITY(U,$J,358.3,38397,2)
- ;;=^5003591
- ;;^UTILITY(U,$J,358.3,38398,0)
- ;;=F45.0^^177^1953^7
- ;;^UTILITY(U,$J,358.3,38398,1,0)
+ ;;^UTILITY(U,$J,358.3,38791,1,3,0)
+ ;;=3^Malig Neop Skin of Anus
+ ;;^UTILITY(U,$J,358.3,38791,1,4,0)
+ ;;=4^C44.590
+ ;;^UTILITY(U,$J,358.3,38791,2)
+ ;;=^5001060
+ ;;^UTILITY(U,$J,358.3,38792,0)
+ ;;=C44.591^^151^1902^18
+ ;;^UTILITY(U,$J,358.3,38792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38398,1,3,0)
- ;;=3^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,38398,1,4,0)
- ;;=4^F45.0
- ;;^UTILITY(U,$J,358.3,38398,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,38399,0)
- ;;=F45.9^^177^1953^8
- ;;^UTILITY(U,$J,358.3,38399,1,0)
+ ;;^UTILITY(U,$J,358.3,38792,1,3,0)
+ ;;=3^Malig Neop Skin of Breast
+ ;;^UTILITY(U,$J,358.3,38792,1,4,0)
+ ;;=4^C44.591
+ ;;^UTILITY(U,$J,358.3,38792,2)
+ ;;=^5001061
+ ;;^UTILITY(U,$J,358.3,38793,0)
+ ;;=C44.692^^151^1902^29
+ ;;^UTILITY(U,$J,358.3,38793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38399,1,3,0)
- ;;=3^Somatoform Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38399,1,4,0)
- ;;=4^F45.9
- ;;^UTILITY(U,$J,358.3,38399,2)
- ;;=^5003592
- ;;^UTILITY(U,$J,358.3,38400,0)
- ;;=F45.1^^177^1953^10
- ;;^UTILITY(U,$J,358.3,38400,1,0)
+ ;;^UTILITY(U,$J,358.3,38793,1,3,0)
+ ;;=3^Malig Neop Skin of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,38793,1,4,0)
+ ;;=4^C44.692
+ ;;^UTILITY(U,$J,358.3,38793,2)
+ ;;=^5001073
+ ;;^UTILITY(U,$J,358.3,38794,0)
+ ;;=C44.699^^151^1902^22
+ ;;^UTILITY(U,$J,358.3,38794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38400,1,3,0)
- ;;=3^Undifferntiated Somatoform Disorder
- ;;^UTILITY(U,$J,358.3,38400,1,4,0)
- ;;=4^F45.1
- ;;^UTILITY(U,$J,358.3,38400,2)
- ;;=^5003585
- ;;^UTILITY(U,$J,358.3,38401,0)
- ;;=99221^^178^1954^1
+ ;;^UTILITY(U,$J,358.3,38794,1,3,0)
+ ;;=3^Malig Neop Skin of Left Upper Limb

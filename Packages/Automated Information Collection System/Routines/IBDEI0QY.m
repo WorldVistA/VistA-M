@@ -1,124 +1,138 @@
-IBDEI0QY ; ; 19-NOV-2015
+IBDEI0QY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12340,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,12340,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,12341,0)
- ;;=T69.9XXA^^71^708^56
- ;;^UTILITY(U,$J,358.3,12341,1,0)
+ ;;^UTILITY(U,$J,358.3,12645,0)
+ ;;=Z02.4^^53^578^5
+ ;;^UTILITY(U,$J,358.3,12645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12341,1,3,0)
- ;;=3^Effect of reduced temperature, unspecified, init encntr
- ;;^UTILITY(U,$J,358.3,12341,1,4,0)
- ;;=4^T69.9XXA
- ;;^UTILITY(U,$J,358.3,12341,2)
- ;;=^5053978
- ;;^UTILITY(U,$J,358.3,12342,0)
- ;;=T69.8XXA^^71^708^57
- ;;^UTILITY(U,$J,358.3,12342,1,0)
+ ;;^UTILITY(U,$J,358.3,12645,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,12645,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,12645,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,12646,0)
+ ;;=Z00.5^^53^578^7
+ ;;^UTILITY(U,$J,358.3,12646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12342,1,3,0)
- ;;=3^Effects of Reduced Temperature NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,12342,1,4,0)
- ;;=4^T69.8XXA
- ;;^UTILITY(U,$J,358.3,12342,2)
- ;;=^5053975
- ;;^UTILITY(U,$J,358.3,12343,0)
- ;;=L57.8^^71^708^196
- ;;^UTILITY(U,$J,358.3,12343,1,0)
+ ;;^UTILITY(U,$J,358.3,12646,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,12646,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,12646,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,12647,0)
+ ;;=Z02.3^^53^578^6
+ ;;^UTILITY(U,$J,358.3,12647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12343,1,3,0)
- ;;=3^Skin Changes d/t Chr Expsr to Nonionizing Radiation NEC
- ;;^UTILITY(U,$J,358.3,12343,1,4,0)
- ;;=4^L57.8
- ;;^UTILITY(U,$J,358.3,12343,2)
- ;;=^5009226
- ;;^UTILITY(U,$J,358.3,12344,0)
- ;;=S91.001A^^71^708^165
- ;;^UTILITY(U,$J,358.3,12344,1,0)
+ ;;^UTILITY(U,$J,358.3,12647,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,12647,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,12647,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,12648,0)
+ ;;=Z02.89^^53^578^1
+ ;;^UTILITY(U,$J,358.3,12648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12344,1,3,0)
- ;;=3^Open wnd of right ankle unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12344,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,12344,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,12345,0)
- ;;=S91.002A^^71^708^155
- ;;^UTILITY(U,$J,358.3,12345,1,0)
+ ;;^UTILITY(U,$J,358.3,12648,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,12648,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,12648,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,12649,0)
+ ;;=Z00.8^^53^578^8
+ ;;^UTILITY(U,$J,358.3,12649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12345,1,3,0)
- ;;=3^Open wnd of left ankle unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12345,1,4,0)
- ;;=4^S91.002A
- ;;^UTILITY(U,$J,358.3,12345,2)
- ;;=^5044132
- ;;^UTILITY(U,$J,358.3,12346,0)
- ;;=S41.101A^^71^708^174
- ;;^UTILITY(U,$J,358.3,12346,1,0)
+ ;;^UTILITY(U,$J,358.3,12649,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,12649,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,12649,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,12650,0)
+ ;;=Z02.1^^53^578^14
+ ;;^UTILITY(U,$J,358.3,12650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12346,1,3,0)
- ;;=3^Open wnd of right upper arm unspec, initial enco
- ;;^UTILITY(U,$J,358.3,12346,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,12346,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,12347,0)
- ;;=S41.102A^^71^708^164
- ;;^UTILITY(U,$J,358.3,12347,1,0)
+ ;;^UTILITY(U,$J,358.3,12650,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,12650,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,12650,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,12651,0)
+ ;;=Z01.810^^53^578^2
+ ;;^UTILITY(U,$J,358.3,12651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12347,1,3,0)
- ;;=3^Open wnd of left upper arm unspec, initial encou
- ;;^UTILITY(U,$J,358.3,12347,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,12347,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,12348,0)
- ;;=S61.200A^^71^708^169
- ;;^UTILITY(U,$J,358.3,12348,1,0)
+ ;;^UTILITY(U,$J,358.3,12651,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,12651,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,12651,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,12652,0)
+ ;;=Z01.811^^53^578^16
+ ;;^UTILITY(U,$J,358.3,12652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12348,1,3,0)
- ;;=3^Open wnd of right idx fngr w/o damage to nail unspec, init
- ;;^UTILITY(U,$J,358.3,12348,1,4,0)
- ;;=4^S61.200A
- ;;^UTILITY(U,$J,358.3,12348,2)
- ;;=^5032741
- ;;^UTILITY(U,$J,358.3,12349,0)
- ;;=S61.201A^^71^708^159
- ;;^UTILITY(U,$J,358.3,12349,1,0)
+ ;;^UTILITY(U,$J,358.3,12652,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,12652,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,12652,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,12653,0)
+ ;;=Z01.812^^53^578^13
+ ;;^UTILITY(U,$J,358.3,12653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12349,1,3,0)
- ;;=3^Open wnd of left idx fngr w/o damage to nail unspec, init
- ;;^UTILITY(U,$J,358.3,12349,1,4,0)
- ;;=4^S61.201A
- ;;^UTILITY(U,$J,358.3,12349,2)
- ;;=^5032744
- ;;^UTILITY(U,$J,358.3,12350,0)
- ;;=S61.202A^^71^708^172
- ;;^UTILITY(U,$J,358.3,12350,1,0)
+ ;;^UTILITY(U,$J,358.3,12653,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,12653,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,12653,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,12654,0)
+ ;;=Z01.818^^53^578^15
+ ;;^UTILITY(U,$J,358.3,12654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12350,1,3,0)
- ;;=3^Open wnd of right mid finger w/o damage to nail unspec, ini
- ;;^UTILITY(U,$J,358.3,12350,1,4,0)
- ;;=4^S61.202A
- ;;^UTILITY(U,$J,358.3,12350,2)
- ;;=^5032747
- ;;^UTILITY(U,$J,358.3,12351,0)
- ;;=S61.203A^^71^708^162
- ;;^UTILITY(U,$J,358.3,12351,1,0)
+ ;;^UTILITY(U,$J,358.3,12654,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,12654,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,12654,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,12655,0)
+ ;;=Z71.0^^53^578^9
+ ;;^UTILITY(U,$J,358.3,12655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12351,1,3,0)
- ;;=3^Open wnd of left mid finger w/o damage to nail unspec, ini
- ;;^UTILITY(U,$J,358.3,12351,1,4,0)
- ;;=4^S61.203A
- ;;^UTILITY(U,$J,358.3,12351,2)
- ;;=^5032750
- ;;^UTILITY(U,$J,358.3,12352,0)
- ;;=S61.204A^^71^708^173
- ;;^UTILITY(U,$J,358.3,12352,1,0)
+ ;;^UTILITY(U,$J,358.3,12655,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,12655,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,12655,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,12656,0)
+ ;;=Z59.8^^53^578^10
+ ;;^UTILITY(U,$J,358.3,12656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12352,1,3,0)
- ;;=3^Open wnd of right rng fngr w/o damage to nail unspec, init
+ ;;^UTILITY(U,$J,358.3,12656,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,12656,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,12656,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,12657,0)
+ ;;=I20.0^^53^579^14
+ ;;^UTILITY(U,$J,358.3,12657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12657,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,12657,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,12657,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,12658,0)
+ ;;=I25.110^^53^579^7
+ ;;^UTILITY(U,$J,358.3,12658,1,0)
+ ;;=^358.31IA^4^2

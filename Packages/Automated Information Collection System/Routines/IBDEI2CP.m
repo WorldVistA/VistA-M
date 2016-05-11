@@ -1,130 +1,126 @@
-IBDEI2CP ; ; 19-NOV-2015
+IBDEI2CP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39480,1,4,0)
- ;;=4^S32.9XXS
- ;;^UTILITY(U,$J,358.3,39480,2)
- ;;=^5025126
- ;;^UTILITY(U,$J,358.3,39481,0)
- ;;=S92.902S^^183^2024^10
- ;;^UTILITY(U,$J,358.3,39481,1,0)
+ ;;^UTILITY(U,$J,358.3,39857,2)
+ ;;=^5005570
+ ;;^UTILITY(U,$J,358.3,39858,0)
+ ;;=H34.831^^153^1930^108
+ ;;^UTILITY(U,$J,358.3,39858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39481,1,3,0)
- ;;=3^Fracture of left foot, sequela
- ;;^UTILITY(U,$J,358.3,39481,1,4,0)
- ;;=4^S92.902S
- ;;^UTILITY(U,$J,358.3,39481,2)
- ;;=^5045591
- ;;^UTILITY(U,$J,358.3,39482,0)
- ;;=S52.92XS^^183^2024^11
- ;;^UTILITY(U,$J,358.3,39482,1,0)
+ ;;^UTILITY(U,$J,358.3,39858,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39858,1,4,0)
+ ;;=4^H34.831
+ ;;^UTILITY(U,$J,358.3,39858,2)
+ ;;=^5005576
+ ;;^UTILITY(U,$J,358.3,39859,0)
+ ;;=H34.832^^153^1930^107
+ ;;^UTILITY(U,$J,358.3,39859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39482,1,3,0)
- ;;=3^Fracture of left forearm, sequela
- ;;^UTILITY(U,$J,358.3,39482,1,4,0)
- ;;=4^S52.92XS
- ;;^UTILITY(U,$J,358.3,39482,2)
- ;;=^5031189
- ;;^UTILITY(U,$J,358.3,39483,0)
- ;;=S82.92XS^^183^2024^12
- ;;^UTILITY(U,$J,358.3,39483,1,0)
+ ;;^UTILITY(U,$J,358.3,39859,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,39859,1,4,0)
+ ;;=4^H34.832
+ ;;^UTILITY(U,$J,358.3,39859,2)
+ ;;=^5005577
+ ;;^UTILITY(U,$J,358.3,39860,0)
+ ;;=H34.833^^153^1930^106
+ ;;^UTILITY(U,$J,358.3,39860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39483,1,3,0)
- ;;=3^Fracture of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,39483,1,4,0)
- ;;=4^S82.92XS
- ;;^UTILITY(U,$J,358.3,39483,2)
- ;;=^5136992
- ;;^UTILITY(U,$J,358.3,39484,0)
- ;;=S82.002S^^183^2024^13
- ;;^UTILITY(U,$J,358.3,39484,1,0)
+ ;;^UTILITY(U,$J,358.3,39860,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,39860,1,4,0)
+ ;;=4^H34.833
+ ;;^UTILITY(U,$J,358.3,39860,2)
+ ;;=^5005578
+ ;;^UTILITY(U,$J,358.3,39861,0)
+ ;;=H35.711^^153^1930^14
+ ;;^UTILITY(U,$J,358.3,39861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39484,1,3,0)
- ;;=3^Fracture of left patella, sequela
- ;;^UTILITY(U,$J,358.3,39484,1,4,0)
- ;;=4^S82.002S
- ;;^UTILITY(U,$J,358.3,39484,2)
- ;;=^5040135
- ;;^UTILITY(U,$J,358.3,39485,0)
- ;;=S92.912S^^183^2024^15
- ;;^UTILITY(U,$J,358.3,39485,1,0)
+ ;;^UTILITY(U,$J,358.3,39861,1,3,0)
+ ;;=3^Central Serouos Chorioretinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,39861,1,4,0)
+ ;;=4^H35.711
+ ;;^UTILITY(U,$J,358.3,39861,2)
+ ;;=^5005703
+ ;;^UTILITY(U,$J,358.3,39862,0)
+ ;;=H35.712^^153^1930^13
+ ;;^UTILITY(U,$J,358.3,39862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39485,1,3,0)
- ;;=3^Fracture of left toe(s), sequela
- ;;^UTILITY(U,$J,358.3,39485,1,4,0)
- ;;=4^S92.912S
- ;;^UTILITY(U,$J,358.3,39485,2)
- ;;=^5045605
- ;;^UTILITY(U,$J,358.3,39486,0)
- ;;=S62.92XS^^183^2024^16
- ;;^UTILITY(U,$J,358.3,39486,1,0)
+ ;;^UTILITY(U,$J,358.3,39862,1,3,0)
+ ;;=3^Central Serouos Chorioretinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,39862,1,4,0)
+ ;;=4^H35.712
+ ;;^UTILITY(U,$J,358.3,39862,2)
+ ;;=^5005704
+ ;;^UTILITY(U,$J,358.3,39863,0)
+ ;;=H35.713^^153^1930^12
+ ;;^UTILITY(U,$J,358.3,39863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39486,1,3,0)
- ;;=3^Fracture of left wrist and hand, sequela
- ;;^UTILITY(U,$J,358.3,39486,1,4,0)
- ;;=4^S62.92XS
- ;;^UTILITY(U,$J,358.3,39486,2)
- ;;=^5034892
- ;;^UTILITY(U,$J,358.3,39487,0)
- ;;=S42.402S^^183^2024^17
- ;;^UTILITY(U,$J,358.3,39487,1,0)
+ ;;^UTILITY(U,$J,358.3,39863,1,3,0)
+ ;;=3^Central Serouos Chorioretinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,39863,1,4,0)
+ ;;=4^H35.713
+ ;;^UTILITY(U,$J,358.3,39863,2)
+ ;;=^5005705
+ ;;^UTILITY(U,$J,358.3,39864,0)
+ ;;=H35.721^^153^1930^98
+ ;;^UTILITY(U,$J,358.3,39864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39487,1,3,0)
- ;;=3^Fracture of lower end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,39487,1,4,0)
- ;;=4^S42.402S
- ;;^UTILITY(U,$J,358.3,39487,2)
- ;;=^5134725
- ;;^UTILITY(U,$J,358.3,39488,0)
- ;;=S42.401S^^183^2024^18
- ;;^UTILITY(U,$J,358.3,39488,1,0)
+ ;;^UTILITY(U,$J,358.3,39864,1,3,0)
+ ;;=3^Serous Detachment of Retinal Pigment Epithelium,Right Eye
+ ;;^UTILITY(U,$J,358.3,39864,1,4,0)
+ ;;=4^H35.721
+ ;;^UTILITY(U,$J,358.3,39864,2)
+ ;;=^5005707
+ ;;^UTILITY(U,$J,358.3,39865,0)
+ ;;=H35.722^^153^1930^99
+ ;;^UTILITY(U,$J,358.3,39865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39488,1,3,0)
- ;;=3^Fracture of lower end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,39488,1,4,0)
- ;;=4^S42.401S
- ;;^UTILITY(U,$J,358.3,39488,2)
- ;;=^5027300
- ;;^UTILITY(U,$J,358.3,39489,0)
- ;;=S92.901S^^183^2024^27
- ;;^UTILITY(U,$J,358.3,39489,1,0)
+ ;;^UTILITY(U,$J,358.3,39865,1,3,0)
+ ;;=3^Serous Detachment of Retinal Pigment Epithelium,Left Eye
+ ;;^UTILITY(U,$J,358.3,39865,1,4,0)
+ ;;=4^H35.722
+ ;;^UTILITY(U,$J,358.3,39865,2)
+ ;;=^5005708
+ ;;^UTILITY(U,$J,358.3,39866,0)
+ ;;=H35.723^^153^1930^100
+ ;;^UTILITY(U,$J,358.3,39866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39489,1,3,0)
- ;;=3^Fracture of right foot, sequela
- ;;^UTILITY(U,$J,358.3,39489,1,4,0)
- ;;=4^S92.901S
- ;;^UTILITY(U,$J,358.3,39489,2)
- ;;=^5045584
- ;;^UTILITY(U,$J,358.3,39490,0)
- ;;=S52.91XS^^183^2024^28
- ;;^UTILITY(U,$J,358.3,39490,1,0)
+ ;;^UTILITY(U,$J,358.3,39866,1,3,0)
+ ;;=3^Serous Detachment of Retinal Pigment Epithelium,Bilateral
+ ;;^UTILITY(U,$J,358.3,39866,1,4,0)
+ ;;=4^H35.723
+ ;;^UTILITY(U,$J,358.3,39866,2)
+ ;;=^5005709
+ ;;^UTILITY(U,$J,358.3,39867,0)
+ ;;=H35.731^^153^1930^43
+ ;;^UTILITY(U,$J,358.3,39867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39490,1,3,0)
- ;;=3^Fracture of right forearm, sequela
- ;;^UTILITY(U,$J,358.3,39490,1,4,0)
- ;;=4^S52.91XS
- ;;^UTILITY(U,$J,358.3,39490,2)
- ;;=^5031173
- ;;^UTILITY(U,$J,358.3,39491,0)
- ;;=S82.91XS^^183^2024^29
- ;;^UTILITY(U,$J,358.3,39491,1,0)
+ ;;^UTILITY(U,$J,358.3,39867,1,3,0)
+ ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Right Eye
+ ;;^UTILITY(U,$J,358.3,39867,1,4,0)
+ ;;=4^H35.731
+ ;;^UTILITY(U,$J,358.3,39867,2)
+ ;;=^5005711
+ ;;^UTILITY(U,$J,358.3,39868,0)
+ ;;=H35.732^^153^1930^44
+ ;;^UTILITY(U,$J,358.3,39868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39491,1,3,0)
- ;;=3^Fracture of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,39491,1,4,0)
- ;;=4^S82.91XS
- ;;^UTILITY(U,$J,358.3,39491,2)
- ;;=^5136991
- ;;^UTILITY(U,$J,358.3,39492,0)
- ;;=S82.001S^^183^2024^30
- ;;^UTILITY(U,$J,358.3,39492,1,0)
+ ;;^UTILITY(U,$J,358.3,39868,1,3,0)
+ ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Left Eye
+ ;;^UTILITY(U,$J,358.3,39868,1,4,0)
+ ;;=4^H35.732
+ ;;^UTILITY(U,$J,358.3,39868,2)
+ ;;=^5005712
+ ;;^UTILITY(U,$J,358.3,39869,0)
+ ;;=H35.341^^153^1930^57
+ ;;^UTILITY(U,$J,358.3,39869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39492,1,3,0)
- ;;=3^Fracture of right patella, sequela
- ;;^UTILITY(U,$J,358.3,39492,1,4,0)
- ;;=4^S82.001S
- ;;^UTILITY(U,$J,358.3,39492,2)
- ;;=^5040119
- ;;^UTILITY(U,$J,358.3,39493,0)
- ;;=S92.911S^^183^2024^32
+ ;;^UTILITY(U,$J,358.3,39869,1,3,0)
+ ;;=3^Macular Cyst/Hole/Pseudohole,Right Eye
+ ;;^UTILITY(U,$J,358.3,39869,1,4,0)
+ ;;=4^H35.341
+ ;;^UTILITY(U,$J,358.3,39869,2)
+ ;;=^5005650

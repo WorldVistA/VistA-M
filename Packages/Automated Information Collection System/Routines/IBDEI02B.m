@@ -1,144 +1,136 @@
-IBDEI02B ; ; 19-NOV-2015
+IBDEI02B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,312,1,3,0)
- ;;=3^Acculturation Difficulty
- ;;^UTILITY(U,$J,358.3,312,1,4,0)
- ;;=4^Z60.3
- ;;^UTILITY(U,$J,358.3,312,2)
- ;;=^5063141
- ;;^UTILITY(U,$J,358.3,313,0)
- ;;=Z60.4^^3^40^5
- ;;^UTILITY(U,$J,358.3,313,1,0)
+ ;;^UTILITY(U,$J,358.3,588,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,588,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,588,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,589,0)
+ ;;=F43.10^^3^58^11
+ ;;^UTILITY(U,$J,358.3,589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,313,1,3,0)
- ;;=3^Social Exclusion or Rejection
- ;;^UTILITY(U,$J,358.3,313,1,4,0)
- ;;=4^Z60.4
- ;;^UTILITY(U,$J,358.3,313,2)
- ;;=^5063142
- ;;^UTILITY(U,$J,358.3,314,0)
- ;;=Z60.5^^3^40^6
- ;;^UTILITY(U,$J,358.3,314,1,0)
+ ;;^UTILITY(U,$J,358.3,589,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,589,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,589,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,590,0)
+ ;;=F43.8^^3^58^12
+ ;;^UTILITY(U,$J,358.3,590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,314,1,3,0)
- ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
- ;;^UTILITY(U,$J,358.3,314,1,4,0)
- ;;=4^Z60.5
- ;;^UTILITY(U,$J,358.3,314,2)
- ;;=^5063143
- ;;^UTILITY(U,$J,358.3,315,0)
- ;;=Z60.9^^3^40^4
- ;;^UTILITY(U,$J,358.3,315,1,0)
+ ;;^UTILITY(U,$J,358.3,590,1,3,0)
+ ;;=3^Reaction to Severe Stress,Other
+ ;;^UTILITY(U,$J,358.3,590,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,590,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,591,0)
+ ;;=F43.9^^3^58^13
+ ;;^UTILITY(U,$J,358.3,591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,315,1,3,0)
- ;;=3^Problem Related to Social Environment,Unspec
- ;;^UTILITY(U,$J,358.3,315,1,4,0)
- ;;=4^Z60.9
- ;;^UTILITY(U,$J,358.3,315,2)
- ;;=^5063145
- ;;^UTILITY(U,$J,358.3,316,0)
- ;;=F65.4^^3^41^6
- ;;^UTILITY(U,$J,358.3,316,1,0)
+ ;;^UTILITY(U,$J,358.3,591,1,3,0)
+ ;;=3^Reaction to Severe Stress,Unspec
+ ;;^UTILITY(U,$J,358.3,591,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,591,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,592,0)
+ ;;=F94.1^^3^58^14
+ ;;^UTILITY(U,$J,358.3,592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,316,1,3,0)
- ;;=3^Pedophilia Disorder
- ;;^UTILITY(U,$J,358.3,316,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,316,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,317,0)
- ;;=F65.2^^3^41^1
- ;;^UTILITY(U,$J,358.3,317,1,0)
+ ;;^UTILITY(U,$J,358.3,592,1,3,0)
+ ;;=3^Reactive Attachment Disorder
+ ;;^UTILITY(U,$J,358.3,592,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,592,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,593,0)
+ ;;=F94.2^^3^58^8
+ ;;^UTILITY(U,$J,358.3,593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,317,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,317,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,317,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,318,0)
- ;;=F65.3^^3^41^10
- ;;^UTILITY(U,$J,358.3,318,1,0)
+ ;;^UTILITY(U,$J,358.3,593,1,3,0)
+ ;;=3^Disinhibited Social Engagement Disorder
+ ;;^UTILITY(U,$J,358.3,593,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,593,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,594,0)
+ ;;=F18.10^^3^59^21
+ ;;^UTILITY(U,$J,358.3,594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,318,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,318,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,318,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,319,0)
- ;;=F65.81^^3^41^3
- ;;^UTILITY(U,$J,358.3,319,1,0)
+ ;;^UTILITY(U,$J,358.3,594,1,3,0)
+ ;;=3^Inhalant Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,594,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,594,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,595,0)
+ ;;=F18.20^^3^59^22
+ ;;^UTILITY(U,$J,358.3,595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,319,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,319,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,319,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,320,0)
- ;;=F65.51^^3^41^7
- ;;^UTILITY(U,$J,358.3,320,1,0)
+ ;;^UTILITY(U,$J,358.3,595,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,595,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,595,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,596,0)
+ ;;=F18.21^^3^59^23
+ ;;^UTILITY(U,$J,358.3,596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,320,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,320,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,320,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,321,0)
- ;;=F65.52^^3^41^8
- ;;^UTILITY(U,$J,358.3,321,1,0)
+ ;;^UTILITY(U,$J,358.3,596,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,596,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,596,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,597,0)
+ ;;=F18.14^^3^59^24
+ ;;^UTILITY(U,$J,358.3,597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,321,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,321,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,321,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,322,0)
- ;;=F65.0^^3^41^2
- ;;^UTILITY(U,$J,358.3,322,1,0)
+ ;;^UTILITY(U,$J,358.3,597,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,597,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,597,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,598,0)
+ ;;=F18.24^^3^59^25
+ ;;^UTILITY(U,$J,358.3,598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,322,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,322,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,322,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,323,0)
- ;;=F65.1^^3^41^9
- ;;^UTILITY(U,$J,358.3,323,1,0)
+ ;;^UTILITY(U,$J,358.3,598,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,598,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,598,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,599,0)
+ ;;=F18.121^^3^59^14
+ ;;^UTILITY(U,$J,358.3,599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,323,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,323,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,323,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,324,0)
- ;;=F65.89^^3^41^4
- ;;^UTILITY(U,$J,358.3,324,1,0)
+ ;;^UTILITY(U,$J,358.3,599,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,599,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,599,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,600,0)
+ ;;=F18.221^^3^59^15
+ ;;^UTILITY(U,$J,358.3,600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,324,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,324,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,324,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,325,0)
- ;;=F65.9^^3^41^5
- ;;^UTILITY(U,$J,358.3,325,1,0)
+ ;;^UTILITY(U,$J,358.3,600,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,600,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,600,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,601,0)
+ ;;=F18.921^^3^59^16
+ ;;^UTILITY(U,$J,358.3,601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,325,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,325,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,325,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,326,0)
- ;;=F60.0^^3^42^8
- ;;^UTILITY(U,$J,358.3,326,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,601,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder

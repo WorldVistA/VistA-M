@@ -1,122 +1,138 @@
-IBDEI0UV ; ; 19-NOV-2015
+IBDEI0UV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14203,2)
- ;;=^5002514
- ;;^UTILITY(U,$J,358.3,14204,0)
- ;;=E08.339^^82^774^38
- ;;^UTILITY(U,$J,358.3,14204,1,0)
+ ;;^UTILITY(U,$J,358.3,14474,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,14474,1,4,0)
+ ;;=4^N60.19
+ ;;^UTILITY(U,$J,358.3,14474,2)
+ ;;=^5015775
+ ;;^UTILITY(U,$J,358.3,14475,0)
+ ;;=N64.4^^53^609^34
+ ;;^UTILITY(U,$J,358.3,14475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14204,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14204,1,4,0)
- ;;=4^E08.339
- ;;^UTILITY(U,$J,358.3,14204,2)
- ;;=^5002515
- ;;^UTILITY(U,$J,358.3,14205,0)
- ;;=E08.341^^82^774^39
- ;;^UTILITY(U,$J,358.3,14205,1,0)
+ ;;^UTILITY(U,$J,358.3,14475,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,14475,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,14475,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,14476,0)
+ ;;=N63.^^53^609^33
+ ;;^UTILITY(U,$J,358.3,14476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14205,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14205,1,4,0)
- ;;=4^E08.341
- ;;^UTILITY(U,$J,358.3,14205,2)
- ;;=^5002516
- ;;^UTILITY(U,$J,358.3,14206,0)
- ;;=E08.349^^82^774^40
- ;;^UTILITY(U,$J,358.3,14206,1,0)
+ ;;^UTILITY(U,$J,358.3,14476,1,3,0)
+ ;;=3^Lump in Breast,Unspec
+ ;;^UTILITY(U,$J,358.3,14476,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,14476,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,14477,0)
+ ;;=N64.51^^53^609^28
+ ;;^UTILITY(U,$J,358.3,14477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14206,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14206,1,4,0)
- ;;=4^E08.349
- ;;^UTILITY(U,$J,358.3,14206,2)
- ;;=^5002517
- ;;^UTILITY(U,$J,358.3,14207,0)
- ;;=E09.311^^82^774^31
- ;;^UTILITY(U,$J,358.3,14207,1,0)
+ ;;^UTILITY(U,$J,358.3,14477,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,14477,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,14477,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,14478,0)
+ ;;=N64.59^^53^609^57
+ ;;^UTILITY(U,$J,358.3,14478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14207,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14207,1,4,0)
- ;;=4^E09.311
- ;;^UTILITY(U,$J,358.3,14207,2)
- ;;=^5002552
- ;;^UTILITY(U,$J,358.3,14208,0)
- ;;=E09.319^^82^774^32
- ;;^UTILITY(U,$J,358.3,14208,1,0)
+ ;;^UTILITY(U,$J,358.3,14478,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,14478,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,14478,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,14479,0)
+ ;;=N64.52^^53^609^37
+ ;;^UTILITY(U,$J,358.3,14479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14208,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14208,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,14208,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,14209,0)
- ;;=E09.321^^82^774^27
- ;;^UTILITY(U,$J,358.3,14209,1,0)
+ ;;^UTILITY(U,$J,358.3,14479,1,3,0)
+ ;;=3^Nipple Discharge
+ ;;^UTILITY(U,$J,358.3,14479,1,4,0)
+ ;;=4^N64.52
+ ;;^UTILITY(U,$J,358.3,14479,2)
+ ;;=^259531
+ ;;^UTILITY(U,$J,358.3,14480,0)
+ ;;=N64.53^^53^609^54
+ ;;^UTILITY(U,$J,358.3,14480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14209,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14209,1,4,0)
- ;;=4^E09.321
- ;;^UTILITY(U,$J,358.3,14209,2)
- ;;=^5002554
- ;;^UTILITY(U,$J,358.3,14210,0)
- ;;=E09.329^^82^774^28
- ;;^UTILITY(U,$J,358.3,14210,1,0)
+ ;;^UTILITY(U,$J,358.3,14480,1,3,0)
+ ;;=3^Retraction of Nipple
+ ;;^UTILITY(U,$J,358.3,14480,1,4,0)
+ ;;=4^N64.53
+ ;;^UTILITY(U,$J,358.3,14480,2)
+ ;;=^5015796
+ ;;^UTILITY(U,$J,358.3,14481,0)
+ ;;=N75.1^^53^609^5
+ ;;^UTILITY(U,$J,358.3,14481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14210,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14210,1,4,0)
- ;;=4^E09.329
- ;;^UTILITY(U,$J,358.3,14210,2)
- ;;=^5002555
- ;;^UTILITY(U,$J,358.3,14211,0)
- ;;=E09.351^^82^774^29
- ;;^UTILITY(U,$J,358.3,14211,1,0)
+ ;;^UTILITY(U,$J,358.3,14481,1,3,0)
+ ;;=3^Abscess of Bartholin's Gland
+ ;;^UTILITY(U,$J,358.3,14481,1,4,0)
+ ;;=4^N75.1
+ ;;^UTILITY(U,$J,358.3,14481,2)
+ ;;=^5015823
+ ;;^UTILITY(U,$J,358.3,14482,0)
+ ;;=N80.9^^53^609^18
+ ;;^UTILITY(U,$J,358.3,14482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14211,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14211,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,14211,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,14212,0)
- ;;=E09.359^^82^774^30
- ;;^UTILITY(U,$J,358.3,14212,1,0)
+ ;;^UTILITY(U,$J,358.3,14482,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,14482,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,14482,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,14483,0)
+ ;;=N81.4^^53^609^61
+ ;;^UTILITY(U,$J,358.3,14483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14212,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14212,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,14212,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,14213,0)
- ;;=H52.4^^82^775^57
- ;;^UTILITY(U,$J,358.3,14213,1,0)
+ ;;^UTILITY(U,$J,358.3,14483,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Unspec
+ ;;^UTILITY(U,$J,358.3,14483,1,4,0)
+ ;;=4^N81.4
+ ;;^UTILITY(U,$J,358.3,14483,2)
+ ;;=^5015841
+ ;;^UTILITY(U,$J,358.3,14484,0)
+ ;;=N83.20^^53^609^42
+ ;;^UTILITY(U,$J,358.3,14484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14213,1,3,0)
- ;;=3^Presbyopia
- ;;^UTILITY(U,$J,358.3,14213,1,4,0)
- ;;=4^H52.4
- ;;^UTILITY(U,$J,358.3,14213,2)
- ;;=^98095
- ;;^UTILITY(U,$J,358.3,14214,0)
- ;;=H01.004^^82^775^6
- ;;^UTILITY(U,$J,358.3,14214,1,0)
+ ;;^UTILITY(U,$J,358.3,14484,1,3,0)
+ ;;=3^Ovarian Cysts,Unspec
+ ;;^UTILITY(U,$J,358.3,14484,1,4,0)
+ ;;=4^N83.20
+ ;;^UTILITY(U,$J,358.3,14484,2)
+ ;;=^5015855
+ ;;^UTILITY(U,$J,358.3,14485,0)
+ ;;=N83.29^^53^609^41
+ ;;^UTILITY(U,$J,358.3,14485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14214,1,3,0)
- ;;=3^Blepharitis,Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,14214,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,14214,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,14215,0)
- ;;=H01.005^^82^775^5
- ;;^UTILITY(U,$J,358.3,14215,1,0)
+ ;;^UTILITY(U,$J,358.3,14485,1,3,0)
+ ;;=3^Ovarian Cysts,Other
+ ;;^UTILITY(U,$J,358.3,14485,1,4,0)
+ ;;=4^N83.29
+ ;;^UTILITY(U,$J,358.3,14485,2)
+ ;;=^5015856
+ ;;^UTILITY(U,$J,358.3,14486,0)
+ ;;=N84.8^^53^609^47
+ ;;^UTILITY(U,$J,358.3,14486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14215,1,3,0)
- ;;=3^Blepharitis,Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,14486,1,3,0)
+ ;;=3^Polyp of Other Parts of Female Genital Tract
+ ;;^UTILITY(U,$J,358.3,14486,1,4,0)
+ ;;=4^N84.8
+ ;;^UTILITY(U,$J,358.3,14486,2)
+ ;;=^5015868
+ ;;^UTILITY(U,$J,358.3,14487,0)
+ ;;=N84.0^^53^609^45
+ ;;^UTILITY(U,$J,358.3,14487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14487,1,3,0)
+ ;;=3^Polyp of Corpus Uteri
+ ;;^UTILITY(U,$J,358.3,14487,1,4,0)
+ ;;=4^N84.0

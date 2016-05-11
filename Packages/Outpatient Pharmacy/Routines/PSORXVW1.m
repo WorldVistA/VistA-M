@@ -1,5 +1,5 @@
-PSORXVW1 ;BIR/SAB-view prescription con't ; 12/4/07 12:28pm
- ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408**;DEC 1997;Build 100
+PSORXVW1 ;BIR/SAB - view prescription con't ;12/4/07 12:28pm
+ ;;7.0;OUTPATIENT PHARMACY;**35,47,46,71,99,117,156,193,210,148,258,260,240,281,359,354,367,386,408,427**;DEC 1997;Build 21
  ;External reference to ^DD(52 supported by DBIA 999
  ;External reference to ^VA(200 supported by DBIA 10060
  ;PSO*210 add call to WORDWRAP api
@@ -81,7 +81,8 @@ RF ;refill log
  .S PSDIV=$S($D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^",6),1:"Unknown"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Division: "_PSDIV_$E("        ",$L(PSDIV)+1,8)_"  "
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"Dispensed: "_$S($P(P1,"^",19):$E($P(P1,"^",19),4,5)_"/"_$E($P(P1,"^",19),6,7)_"/"_$E($P(P1,"^",19),2,3),1:"")_"  "
  .S RTS=$S($P(P1,"^",16):" Returned to Stock: "_$E($P(P1,"^",16),4,5)_"/"_$E($P(P1,"^",16),6,7)_"/"_$E($P(P1,"^",16),2,3),1:" Released: "_$S($$RXRLDT^PSOBPSUT(DA,N):$$FMTE^XLFDT($$RXRLDT^PSOBPSUT(DA,N)\1,2),1:""))
- .I $$STATUS^PSOBPSUT(DA,N)'="",$$RXRLDT^PSOBPSUT(DA,N) S RTS=RTS_"  NDC: "_$$GETNDC^PSONDCUT(DA,N)
+ .;Always display the NDC# - PSO*427
+ .S RTS=RTS_"  NDC: "_$$GETNDC^PSONDCUT(DA,N)
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RTS
  .S:$P(P1,"^",3)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="   Remarks: "_$P(P1,"^",3)
  K RTS Q

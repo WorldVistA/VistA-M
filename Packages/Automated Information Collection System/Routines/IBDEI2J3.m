@@ -1,122 +1,126 @@
-IBDEI2J3 ; ; 19-NOV-2015
+IBDEI2J3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42423,0)
- ;;=S92.144K^^192^2137^248
- ;;^UTILITY(U,$J,358.3,42423,1,0)
+ ;;^UTILITY(U,$J,358.3,42889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42423,1,3,0)
- ;;=3^Nondisp dome fx of rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42423,1,4,0)
- ;;=4^S92.144K
- ;;^UTILITY(U,$J,358.3,42423,2)
- ;;=^5044756
- ;;^UTILITY(U,$J,358.3,42424,0)
- ;;=S92.524K^^192^2137^333
- ;;^UTILITY(U,$J,358.3,42424,1,0)
+ ;;^UTILITY(U,$J,358.3,42889,1,3,0)
+ ;;=3^Leakage of cystostomy cath,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42889,1,4,0)
+ ;;=4^T83.030A
+ ;;^UTILITY(U,$J,358.3,42889,2)
+ ;;=^5054971
+ ;;^UTILITY(U,$J,358.3,42890,0)
+ ;;=T83.090A^^162^2049^20
+ ;;^UTILITY(U,$J,358.3,42890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42424,1,3,0)
- ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42424,1,4,0)
- ;;=4^S92.524K
- ;;^UTILITY(U,$J,358.3,42424,2)
- ;;=^5045498
- ;;^UTILITY(U,$J,358.3,42425,0)
- ;;=S92.145K^^192^2137^246
- ;;^UTILITY(U,$J,358.3,42425,1,0)
+ ;;^UTILITY(U,$J,358.3,42890,1,3,0)
+ ;;=3^Mech compl cystostomy cath,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42890,1,4,0)
+ ;;=4^T83.090A
+ ;;^UTILITY(U,$J,358.3,42890,2)
+ ;;=^5054977
+ ;;^UTILITY(U,$J,358.3,42891,0)
+ ;;=T83.110A^^162^2049^5
+ ;;^UTILITY(U,$J,358.3,42891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42425,1,3,0)
- ;;=3^Nondisp dome fx of lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42425,1,4,0)
- ;;=4^S92.145K
- ;;^UTILITY(U,$J,358.3,42425,2)
- ;;=^5044763
- ;;^UTILITY(U,$J,358.3,42426,0)
- ;;=S92.522K^^192^2137^107
- ;;^UTILITY(U,$J,358.3,42426,1,0)
+ ;;^UTILITY(U,$J,358.3,42891,1,3,0)
+ ;;=3^Breakdown (mech) urinary elec stimltr dvc,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42891,1,4,0)
+ ;;=4^T83.110A
+ ;;^UTILITY(U,$J,358.3,42891,2)
+ ;;=^5054983
+ ;;^UTILITY(U,$J,358.3,42892,0)
+ ;;=T83.111A^^162^2049^6
+ ;;^UTILITY(U,$J,358.3,42892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42426,1,3,0)
- ;;=3^Disp fx of med phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42426,1,4,0)
- ;;=4^S92.522K
- ;;^UTILITY(U,$J,358.3,42426,2)
- ;;=^5045484
- ;;^UTILITY(U,$J,358.3,42427,0)
- ;;=S92.521K^^192^2137^109
- ;;^UTILITY(U,$J,358.3,42427,1,0)
+ ;;^UTILITY(U,$J,358.3,42892,1,3,0)
+ ;;=3^Breakdown (mech) urinary sphnctr implnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42892,1,4,0)
+ ;;=4^T83.111A
+ ;;^UTILITY(U,$J,358.3,42892,2)
+ ;;=^5054986
+ ;;^UTILITY(U,$J,358.3,42893,0)
+ ;;=T83.112A^^162^2049^7
+ ;;^UTILITY(U,$J,358.3,42893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42427,1,3,0)
- ;;=3^Disp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42427,1,4,0)
- ;;=4^S92.521K
- ;;^UTILITY(U,$J,358.3,42427,2)
- ;;=^5045477
- ;;^UTILITY(U,$J,358.3,42428,0)
- ;;=S92.515K^^192^2137^346
- ;;^UTILITY(U,$J,358.3,42428,1,0)
+ ;;^UTILITY(U,$J,358.3,42893,1,3,0)
+ ;;=3^Breakdown (mech) urinary stnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42893,1,4,0)
+ ;;=4^T83.112A
+ ;;^UTILITY(U,$J,358.3,42893,2)
+ ;;=^5054989
+ ;;^UTILITY(U,$J,358.3,42894,0)
+ ;;=T83.118A^^162^2049^4
+ ;;^UTILITY(U,$J,358.3,42894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42428,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of lft lsr toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42428,1,4,0)
- ;;=4^S92.515K
- ;;^UTILITY(U,$J,358.3,42428,2)
- ;;=^5045463
- ;;^UTILITY(U,$J,358.3,42429,0)
- ;;=S92.514K^^192^2137^350
- ;;^UTILITY(U,$J,358.3,42429,1,0)
+ ;;^UTILITY(U,$J,358.3,42894,1,3,0)
+ ;;=3^Breakdown (mech) urinary dvc/implnt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42894,1,4,0)
+ ;;=4^T83.118A
+ ;;^UTILITY(U,$J,358.3,42894,2)
+ ;;=^5054992
+ ;;^UTILITY(U,$J,358.3,42895,0)
+ ;;=T83.191A^^162^2049^25
+ ;;^UTILITY(U,$J,358.3,42895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42429,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42429,1,4,0)
- ;;=4^S92.514K
- ;;^UTILITY(U,$J,358.3,42429,2)
- ;;=^5045456
- ;;^UTILITY(U,$J,358.3,42430,0)
- ;;=S92.512K^^192^2137^2
- ;;^UTILITY(U,$J,358.3,42430,1,0)
+ ;;^UTILITY(U,$J,358.3,42895,1,3,0)
+ ;;=3^Mech compl urinary sphinct implnt,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42895,1,4,0)
+ ;;=4^T83.191A
+ ;;^UTILITY(U,$J,358.3,42895,2)
+ ;;=^5055010
+ ;;^UTILITY(U,$J,358.3,42896,0)
+ ;;=T83.192A^^162^2049^26
+ ;;^UTILITY(U,$J,358.3,42896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42430,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,42430,1,4,0)
- ;;=4^S92.512K
- ;;^UTILITY(U,$J,358.3,42430,2)
- ;;=^5045442
- ;;^UTILITY(U,$J,358.3,42431,0)
- ;;=S92.512K^^192^2137^121
- ;;^UTILITY(U,$J,358.3,42431,1,0)
+ ;;^UTILITY(U,$J,358.3,42896,1,3,0)
+ ;;=3^Mech complstnt urinary stent,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42896,1,4,0)
+ ;;=4^T83.192A
+ ;;^UTILITY(U,$J,358.3,42896,2)
+ ;;=^5055013
+ ;;^UTILITY(U,$J,358.3,42897,0)
+ ;;=T83.198A^^162^2049^21
+ ;;^UTILITY(U,$J,358.3,42897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42431,1,3,0)
- ;;=3^Disp fx of prox phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42431,1,4,0)
- ;;=4^S92.512K
- ;;^UTILITY(U,$J,358.3,42431,2)
- ;;=^5045442
- ;;^UTILITY(U,$J,358.3,42432,0)
- ;;=S92.511K^^192^2137^124
- ;;^UTILITY(U,$J,358.3,42432,1,0)
+ ;;^UTILITY(U,$J,358.3,42897,1,3,0)
+ ;;=3^Mech compl oth urinary dvc/implnts,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42897,1,4,0)
+ ;;=4^T83.198A
+ ;;^UTILITY(U,$J,358.3,42897,2)
+ ;;=^5055016
+ ;;^UTILITY(U,$J,358.3,42898,0)
+ ;;=T83.410A^^162^2049^3
+ ;;^UTILITY(U,$J,358.3,42898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42432,1,3,0)
- ;;=3^Disp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42432,1,4,0)
- ;;=4^S92.511K
- ;;^UTILITY(U,$J,358.3,42432,2)
- ;;=^5045435
- ;;^UTILITY(U,$J,358.3,42433,0)
- ;;=S92.505K^^192^2137^266
- ;;^UTILITY(U,$J,358.3,42433,1,0)
+ ;;^UTILITY(U,$J,358.3,42898,1,3,0)
+ ;;=3^Breakdown (mech) penile (implanted) prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42898,1,4,0)
+ ;;=4^T83.410A
+ ;;^UTILITY(U,$J,358.3,42898,2)
+ ;;=^5055040
+ ;;^UTILITY(U,$J,358.3,42899,0)
+ ;;=T83.418A^^162^2049^8
+ ;;^UTILITY(U,$J,358.3,42899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42433,1,3,0)
- ;;=3^Nondisp fx lft lsr toe(s), subs for nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42433,1,4,0)
- ;;=4^S92.505K
- ;;^UTILITY(U,$J,358.3,42433,2)
- ;;=^5045428
- ;;^UTILITY(U,$J,358.3,42434,0)
- ;;=S92.504K^^192^2137^359
- ;;^UTILITY(U,$J,358.3,42434,1,0)
+ ;;^UTILITY(U,$J,358.3,42899,1,3,0)
+ ;;=3^Breakdown prosth dvc/implnt/grft of genitl trct,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42899,1,4,0)
+ ;;=4^T83.418A
+ ;;^UTILITY(U,$J,358.3,42899,2)
+ ;;=^5055043
+ ;;^UTILITY(U,$J,358.3,42900,0)
+ ;;=T83.420A^^162^2049^15
+ ;;^UTILITY(U,$J,358.3,42900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42434,1,3,0)
- ;;=3^Nondisp fx rt lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42434,1,4,0)
- ;;=4^S92.504K
+ ;;^UTILITY(U,$J,358.3,42900,1,3,0)
+ ;;=3^Dsplcmnt penile (implanted) prosth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42900,1,4,0)
+ ;;=4^T83.420A
+ ;;^UTILITY(U,$J,358.3,42900,2)
+ ;;=^5055046
+ ;;^UTILITY(U,$J,358.3,42901,0)
+ ;;=T83.428A^^162^2049^16
+ ;;^UTILITY(U,$J,358.3,42901,1,0)
+ ;;=^358.31IA^4^2

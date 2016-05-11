@@ -1,134 +1,130 @@
-IBDEI2JS ; ; 19-NOV-2015
+IBDEI2JS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42727,1,0)
+ ;;^UTILITY(U,$J,358.3,43217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42727,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,42727,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,42727,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,42728,0)
- ;;=M15.9^^192^2144^27
- ;;^UTILITY(U,$J,358.3,42728,1,0)
+ ;;^UTILITY(U,$J,358.3,43217,1,3,0)
+ ;;=3^Compl of Surg/Med Care,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43217,1,4,0)
+ ;;=4^T88.8XXA
+ ;;^UTILITY(U,$J,358.3,43217,2)
+ ;;=^5055814
+ ;;^UTILITY(U,$J,358.3,43218,0)
+ ;;=T81.31XA^^164^2065^3
+ ;;^UTILITY(U,$J,358.3,43218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42728,1,3,0)
- ;;=3^Polyosteoarthritis, unspec
- ;;^UTILITY(U,$J,358.3,42728,1,4,0)
- ;;=4^M15.9
- ;;^UTILITY(U,$J,358.3,42728,2)
- ;;=^5010768
- ;;^UTILITY(U,$J,358.3,42729,0)
- ;;=M19.90^^192^2144^17
- ;;^UTILITY(U,$J,358.3,42729,1,0)
+ ;;^UTILITY(U,$J,358.3,43218,1,3,0)
+ ;;=3^Disruption of External Surg Wound,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43218,1,4,0)
+ ;;=4^T81.31XA
+ ;;^UTILITY(U,$J,358.3,43218,2)
+ ;;=^5054470
+ ;;^UTILITY(U,$J,358.3,43219,0)
+ ;;=T81.4XXA^^164^2065^4
+ ;;^UTILITY(U,$J,358.3,43219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42729,1,3,0)
- ;;=3^Osteoarthritis, unspec site, unspec
- ;;^UTILITY(U,$J,358.3,42729,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,42729,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,42730,0)
- ;;=M90.80^^192^2144^22
- ;;^UTILITY(U,$J,358.3,42730,1,0)
+ ;;^UTILITY(U,$J,358.3,43219,1,3,0)
+ ;;=3^Infection Following Procedure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43219,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,43219,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,43220,0)
+ ;;=T81.83XA^^164^2065^5
+ ;;^UTILITY(U,$J,358.3,43220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42730,1,3,0)
- ;;=3^Osteopathy in diseases class elsewhere, unspec site
- ;;^UTILITY(U,$J,358.3,42730,1,4,0)
- ;;=4^M90.80
- ;;^UTILITY(U,$J,358.3,42730,2)
- ;;=^5015168
- ;;^UTILITY(U,$J,358.3,42731,0)
- ;;=M25.775^^192^2144^24
- ;;^UTILITY(U,$J,358.3,42731,1,0)
+ ;;^UTILITY(U,$J,358.3,43220,1,3,0)
+ ;;=3^Persistent Postprocedural Fistual,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43220,1,4,0)
+ ;;=4^T81.83XA
+ ;;^UTILITY(U,$J,358.3,43220,2)
+ ;;=^5054659
+ ;;^UTILITY(U,$J,358.3,43221,0)
+ ;;=T81.89XA^^164^2065^1
+ ;;^UTILITY(U,$J,358.3,43221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42731,1,3,0)
- ;;=3^Osteophyte, left foot
- ;;^UTILITY(U,$J,358.3,42731,1,4,0)
- ;;=4^M25.775
- ;;^UTILITY(U,$J,358.3,42731,2)
- ;;=^5011668
- ;;^UTILITY(U,$J,358.3,42732,0)
- ;;=M25.774^^192^2144^26
- ;;^UTILITY(U,$J,358.3,42732,1,0)
+ ;;^UTILITY(U,$J,358.3,43221,1,3,0)
+ ;;=3^Compl of Procedure NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43221,1,4,0)
+ ;;=4^T81.89XA
+ ;;^UTILITY(U,$J,358.3,43221,2)
+ ;;=^5054662
+ ;;^UTILITY(U,$J,358.3,43222,0)
+ ;;=C34.11^^164^2066^13
+ ;;^UTILITY(U,$J,358.3,43222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42732,1,3,0)
- ;;=3^Osteophyte, right foot
- ;;^UTILITY(U,$J,358.3,42732,1,4,0)
- ;;=4^M25.774
- ;;^UTILITY(U,$J,358.3,42732,2)
- ;;=^5011667
- ;;^UTILITY(U,$J,358.3,42733,0)
- ;;=M25.772^^192^2144^23
- ;;^UTILITY(U,$J,358.3,42733,1,0)
+ ;;^UTILITY(U,$J,358.3,43222,1,3,0)
+ ;;=3^Malig Neop,Upper Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43222,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,43222,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,43223,0)
+ ;;=C34.12^^164^2066^12
+ ;;^UTILITY(U,$J,358.3,43223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42733,1,3,0)
- ;;=3^Osteophyte, left ankle
- ;;^UTILITY(U,$J,358.3,42733,1,4,0)
- ;;=4^M25.772
- ;;^UTILITY(U,$J,358.3,42733,2)
- ;;=^5011665
- ;;^UTILITY(U,$J,358.3,42734,0)
- ;;=M25.771^^192^2144^25
- ;;^UTILITY(U,$J,358.3,42734,1,0)
+ ;;^UTILITY(U,$J,358.3,43223,1,3,0)
+ ;;=3^Malig Neop,Upper Lobe,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43223,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,43223,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,43224,0)
+ ;;=C34.2^^164^2066^7
+ ;;^UTILITY(U,$J,358.3,43224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42734,1,3,0)
- ;;=3^Osteophyte, right ankle
- ;;^UTILITY(U,$J,358.3,42734,1,4,0)
- ;;=4^M25.771
- ;;^UTILITY(U,$J,358.3,42734,2)
- ;;=^5011664
- ;;^UTILITY(U,$J,358.3,42735,0)
- ;;=L60.1^^192^2144^15
- ;;^UTILITY(U,$J,358.3,42735,1,0)
+ ;;^UTILITY(U,$J,358.3,43224,1,3,0)
+ ;;=3^Malig Neop,Middle Lobe,Lung
+ ;;^UTILITY(U,$J,358.3,43224,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,43224,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,43225,0)
+ ;;=C34.31^^164^2066^6
+ ;;^UTILITY(U,$J,358.3,43225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42735,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,42735,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,42735,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,42736,0)
- ;;=M86.272^^192^2144^30
- ;;^UTILITY(U,$J,358.3,42736,1,0)
+ ;;^UTILITY(U,$J,358.3,43225,1,3,0)
+ ;;=3^Malig Neop,Lower Lobe,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43225,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,43225,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,43226,0)
+ ;;=C34.32^^164^2066^5
+ ;;^UTILITY(U,$J,358.3,43226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42736,1,3,0)
- ;;=3^Subacute osteomyelitis, lft ankl & foot
- ;;^UTILITY(U,$J,358.3,42736,1,4,0)
- ;;=4^M86.272
- ;;^UTILITY(U,$J,358.3,42736,2)
- ;;=^5014555
- ;;^UTILITY(U,$J,358.3,42737,0)
- ;;=M86.071^^192^2144^2
- ;;^UTILITY(U,$J,358.3,42737,1,0)
+ ;;^UTILITY(U,$J,358.3,43226,1,3,0)
+ ;;=3^Malig Neop,Lower Lobe,Lt Bronch/Lung
+ ;;^UTILITY(U,$J,358.3,43226,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,43226,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,43227,0)
+ ;;=C34.81^^164^2066^9
+ ;;^UTILITY(U,$J,358.3,43227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42737,1,3,0)
- ;;=3^Acute hematogenous osteomyelitis, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,42737,1,4,0)
- ;;=4^M86.071
- ;;^UTILITY(U,$J,358.3,42737,2)
- ;;=^5014516
- ;;^UTILITY(U,$J,358.3,42738,0)
- ;;=M86.072^^192^2144^1
- ;;^UTILITY(U,$J,358.3,42738,1,0)
+ ;;^UTILITY(U,$J,358.3,43227,1,3,0)
+ ;;=3^Malig Neop,Overlapping,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43227,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,43227,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,43228,0)
+ ;;=C34.82^^164^2066^8
+ ;;^UTILITY(U,$J,358.3,43228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42738,1,3,0)
- ;;=3^Acute hematogenous osteomyelitis, lft ankl & ft
- ;;^UTILITY(U,$J,358.3,42738,1,4,0)
- ;;=4^M86.072
- ;;^UTILITY(U,$J,358.3,42738,2)
- ;;=^5014517
- ;;^UTILITY(U,$J,358.3,42739,0)
- ;;=M86.171^^192^2144^4
- ;;^UTILITY(U,$J,358.3,42739,1,0)
+ ;;^UTILITY(U,$J,358.3,43228,1,3,0)
+ ;;=3^Malig Neop,Overlapping,Lt Bronch/Lung
+ ;;^UTILITY(U,$J,358.3,43228,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,43228,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,43229,0)
+ ;;=C34.91^^164^2066^11
+ ;;^UTILITY(U,$J,358.3,43229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42739,1,3,0)
- ;;=3^Acute osteomyelitis, rt ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42739,1,4,0)
- ;;=4^M86.171
- ;;^UTILITY(U,$J,358.3,42739,2)
- ;;=^5014530
- ;;^UTILITY(U,$J,358.3,42740,0)
- ;;=M86.172^^192^2144^3
+ ;;^UTILITY(U,$J,358.3,43229,1,3,0)
+ ;;=3^Malig Neop,Unspec Part,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43229,1,4,0)
+ ;;=4^C34.91

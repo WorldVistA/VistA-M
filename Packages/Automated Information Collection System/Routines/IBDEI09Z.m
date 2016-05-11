@@ -1,138 +1,140 @@
-IBDEI09Z ; ; 19-NOV-2015
+IBDEI09Z ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4140,1,0)
+ ;;^UTILITY(U,$J,358.3,4428,0)
+ ;;=D22.5^^21^277^44
+ ;;^UTILITY(U,$J,358.3,4428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4140,1,3,0)
- ;;=3^Clubbing of Fingers
- ;;^UTILITY(U,$J,358.3,4140,1,4,0)
- ;;=4^R68.3
- ;;^UTILITY(U,$J,358.3,4140,2)
- ;;=^5019553
- ;;^UTILITY(U,$J,358.3,4141,0)
- ;;=T81.89XA^^28^263^25
- ;;^UTILITY(U,$J,358.3,4141,1,0)
+ ;;^UTILITY(U,$J,358.3,4428,1,3,0)
+ ;;=3^Melanocytic Nevi of Trunk
+ ;;^UTILITY(U,$J,358.3,4428,1,4,0)
+ ;;=4^D22.5
+ ;;^UTILITY(U,$J,358.3,4428,2)
+ ;;=^5002051
+ ;;^UTILITY(U,$J,358.3,4429,0)
+ ;;=D22.61^^21^277^42
+ ;;^UTILITY(U,$J,358.3,4429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4141,1,3,0)
- ;;=3^Complications of Procedures,Init Encntr,NEC
- ;;^UTILITY(U,$J,358.3,4141,1,4,0)
- ;;=4^T81.89XA
- ;;^UTILITY(U,$J,358.3,4141,2)
- ;;=^5054662
- ;;^UTILITY(U,$J,358.3,4142,0)
- ;;=T81.89XD^^28^263^27
- ;;^UTILITY(U,$J,358.3,4142,1,0)
+ ;;^UTILITY(U,$J,358.3,4429,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4429,1,4,0)
+ ;;=4^D22.61
+ ;;^UTILITY(U,$J,358.3,4429,2)
+ ;;=^5002053
+ ;;^UTILITY(U,$J,358.3,4430,0)
+ ;;=D22.62^^21^277^37
+ ;;^UTILITY(U,$J,358.3,4430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4142,1,3,0)
- ;;=3^Complications of Procedures,Subsequent Encntr,NEC
- ;;^UTILITY(U,$J,358.3,4142,1,4,0)
- ;;=4^T81.89XD
- ;;^UTILITY(U,$J,358.3,4142,2)
- ;;=^5054663
- ;;^UTILITY(U,$J,358.3,4143,0)
- ;;=T81.89XS^^28^263^26
- ;;^UTILITY(U,$J,358.3,4143,1,0)
+ ;;^UTILITY(U,$J,358.3,4430,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,4430,1,4,0)
+ ;;=4^D22.62
+ ;;^UTILITY(U,$J,358.3,4430,2)
+ ;;=^5002054
+ ;;^UTILITY(U,$J,358.3,4431,0)
+ ;;=D22.71^^21^277^41
+ ;;^UTILITY(U,$J,358.3,4431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4143,1,3,0)
- ;;=3^Complications of Procedures,Sequela,NEC
- ;;^UTILITY(U,$J,358.3,4143,1,4,0)
- ;;=4^T81.89XS
- ;;^UTILITY(U,$J,358.3,4143,2)
- ;;=^5054664
- ;;^UTILITY(U,$J,358.3,4144,0)
- ;;=Z71.42^^28^263^31
- ;;^UTILITY(U,$J,358.3,4144,1,0)
+ ;;^UTILITY(U,$J,358.3,4431,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4431,1,4,0)
+ ;;=4^D22.71
+ ;;^UTILITY(U,$J,358.3,4431,2)
+ ;;=^5002056
+ ;;^UTILITY(U,$J,358.3,4432,0)
+ ;;=D22.72^^21^277^36
+ ;;^UTILITY(U,$J,358.3,4432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4144,1,3,0)
- ;;=3^Counseling,Family Member of Alcoholic
- ;;^UTILITY(U,$J,358.3,4144,1,4,0)
- ;;=4^Z71.42
- ;;^UTILITY(U,$J,358.3,4144,2)
- ;;=^5063247
- ;;^UTILITY(U,$J,358.3,4145,0)
- ;;=Z71.52^^28^263^32
- ;;^UTILITY(U,$J,358.3,4145,1,0)
+ ;;^UTILITY(U,$J,358.3,4432,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4432,1,4,0)
+ ;;=4^D22.72
+ ;;^UTILITY(U,$J,358.3,4432,2)
+ ;;=^5002057
+ ;;^UTILITY(U,$J,358.3,4433,0)
+ ;;=C44.390^^21^277^32
+ ;;^UTILITY(U,$J,358.3,4433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4145,1,3,0)
- ;;=3^Counseling,Family Member of Drug Abuser
- ;;^UTILITY(U,$J,358.3,4145,1,4,0)
- ;;=4^Z71.52
- ;;^UTILITY(U,$J,358.3,4145,2)
- ;;=^5063249
- ;;^UTILITY(U,$J,358.3,4146,0)
- ;;=Z71.7^^28^263^33
- ;;^UTILITY(U,$J,358.3,4146,1,0)
+ ;;^UTILITY(U,$J,358.3,4433,1,3,0)
+ ;;=3^Malig Neop Skin of Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,4433,1,4,0)
+ ;;=4^C44.390
+ ;;^UTILITY(U,$J,358.3,4433,2)
+ ;;=^5001049
+ ;;^UTILITY(U,$J,358.3,4434,0)
+ ;;=L81.1^^21^277^62
+ ;;^UTILITY(U,$J,358.3,4434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4146,1,3,0)
- ;;=3^Counseling,HIV
- ;;^UTILITY(U,$J,358.3,4146,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,4146,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,4147,0)
- ;;=Z71.6^^28^263^35
- ;;^UTILITY(U,$J,358.3,4147,1,0)
+ ;;^UTILITY(U,$J,358.3,4434,1,3,0)
+ ;;=3^Melasma
+ ;;^UTILITY(U,$J,358.3,4434,1,4,0)
+ ;;=4^L81.1
+ ;;^UTILITY(U,$J,358.3,4434,2)
+ ;;=^5009311
+ ;;^UTILITY(U,$J,358.3,4435,0)
+ ;;=L72.0^^21^277^80
+ ;;^UTILITY(U,$J,358.3,4435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4147,1,3,0)
- ;;=3^Counseling,Tobacco Abuse
- ;;^UTILITY(U,$J,358.3,4147,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,4147,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,4148,0)
- ;;=Z71.41^^28^263^28
- ;;^UTILITY(U,$J,358.3,4148,1,0)
+ ;;^UTILITY(U,$J,358.3,4435,1,3,0)
+ ;;=3^Milium
+ ;;^UTILITY(U,$J,358.3,4435,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,4435,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,4436,0)
+ ;;=C4A.51^^21^277^63
+ ;;^UTILITY(U,$J,358.3,4436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4148,1,3,0)
- ;;=3^Counseling,Alcohol Abuse
- ;;^UTILITY(U,$J,358.3,4148,1,4,0)
- ;;=4^Z71.41
- ;;^UTILITY(U,$J,358.3,4148,2)
- ;;=^5063246
- ;;^UTILITY(U,$J,358.3,4149,0)
- ;;=Z71.51^^28^263^30
- ;;^UTILITY(U,$J,358.3,4149,1,0)
+ ;;^UTILITY(U,$J,358.3,4436,1,3,0)
+ ;;=3^Merkle Cell CA,Anal Skin
+ ;;^UTILITY(U,$J,358.3,4436,1,4,0)
+ ;;=4^C4A.51
+ ;;^UTILITY(U,$J,358.3,4436,2)
+ ;;=^5001148
+ ;;^UTILITY(U,$J,358.3,4437,0)
+ ;;=C4A.52^^21^277^64
+ ;;^UTILITY(U,$J,358.3,4437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4149,1,3,0)
- ;;=3^Counseling,Drug Abuser
- ;;^UTILITY(U,$J,358.3,4149,1,4,0)
- ;;=4^Z71.51
- ;;^UTILITY(U,$J,358.3,4149,2)
- ;;=^5063248
- ;;^UTILITY(U,$J,358.3,4150,0)
- ;;=Z71.3^^28^263^29
- ;;^UTILITY(U,$J,358.3,4150,1,0)
+ ;;^UTILITY(U,$J,358.3,4437,1,3,0)
+ ;;=3^Merkle Cell CA,Breast Skin
+ ;;^UTILITY(U,$J,358.3,4437,1,4,0)
+ ;;=4^C4A.52
+ ;;^UTILITY(U,$J,358.3,4437,2)
+ ;;=^5001149
+ ;;^UTILITY(U,$J,358.3,4438,0)
+ ;;=C4A.22^^21^277^65
+ ;;^UTILITY(U,$J,358.3,4438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4150,1,3,0)
- ;;=3^Counseling,Dietary
- ;;^UTILITY(U,$J,358.3,4150,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,4150,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,4151,0)
- ;;=Z71.81^^28^263^34
- ;;^UTILITY(U,$J,358.3,4151,1,0)
+ ;;^UTILITY(U,$J,358.3,4438,1,3,0)
+ ;;=3^Merkle Cell CA,Left Ear & Ext Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4438,1,4,0)
+ ;;=4^C4A.22
+ ;;^UTILITY(U,$J,358.3,4438,2)
+ ;;=^5001143
+ ;;^UTILITY(U,$J,358.3,4439,0)
+ ;;=C4A.0^^21^277^69
+ ;;^UTILITY(U,$J,358.3,4439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4151,1,3,0)
- ;;=3^Counseling,Spiritual/Religious
- ;;^UTILITY(U,$J,358.3,4151,1,4,0)
- ;;=4^Z71.81
- ;;^UTILITY(U,$J,358.3,4151,2)
- ;;=^5063252
- ;;^UTILITY(U,$J,358.3,4152,0)
- ;;=Z71.9^^28^263^36
- ;;^UTILITY(U,$J,358.3,4152,1,0)
+ ;;^UTILITY(U,$J,358.3,4439,1,3,0)
+ ;;=3^Merkle Cell CA,Lip
+ ;;^UTILITY(U,$J,358.3,4439,1,4,0)
+ ;;=4^C4A.0
+ ;;^UTILITY(U,$J,358.3,4439,2)
+ ;;=^5001137
+ ;;^UTILITY(U,$J,358.3,4440,0)
+ ;;=C4A.21^^21^277^74
+ ;;^UTILITY(U,$J,358.3,4440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4152,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,4152,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,4152,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,4153,0)
- ;;=F05.^^28^263^37
- ;;^UTILITY(U,$J,358.3,4153,1,0)
+ ;;^UTILITY(U,$J,358.3,4440,1,3,0)
+ ;;=3^Merkle Cell CA,Right Ear & Ext Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4440,1,4,0)
+ ;;=4^C4A.21
+ ;;^UTILITY(U,$J,358.3,4440,2)
+ ;;=^5001142
+ ;;^UTILITY(U,$J,358.3,4441,0)
+ ;;=C4A.12^^21^277^66
+ ;;^UTILITY(U,$J,358.3,4441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4153,1,3,0)
- ;;=3^Delirium d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,4441,1,3,0)
+ ;;=3^Merkle Cell CA,Left Eyelid,Incl Canthus

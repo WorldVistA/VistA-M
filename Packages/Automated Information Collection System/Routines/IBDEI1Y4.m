@@ -1,126 +1,128 @@
-IBDEI1Y4 ; ; 19-NOV-2015
+IBDEI1Y4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32575,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,32575,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,32575,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,32576,0)
- ;;=F16.20^^143^1546^2
- ;;^UTILITY(U,$J,358.3,32576,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32576,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,32576,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,32576,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,32577,0)
- ;;=F16.21^^143^1546^3
- ;;^UTILITY(U,$J,358.3,32577,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32577,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,32577,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,32577,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,32578,0)
- ;;=F11.10^^143^1547^4
- ;;^UTILITY(U,$J,358.3,32578,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32578,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,32578,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,32578,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,32579,0)
- ;;=F11.129^^143^1547^3
- ;;^UTILITY(U,$J,358.3,32579,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32579,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,32579,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,32579,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,32580,0)
- ;;=F11.14^^143^1547^8
- ;;^UTILITY(U,$J,358.3,32580,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32580,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,32580,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,32580,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,32581,0)
- ;;=F11.182^^143^1547^10
- ;;^UTILITY(U,$J,358.3,32581,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32581,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,32581,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,32581,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,32582,0)
- ;;=F11.20^^143^1547^5
- ;;^UTILITY(U,$J,358.3,32582,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32582,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,32582,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,32582,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,32583,0)
- ;;=F11.21^^143^1547^6
- ;;^UTILITY(U,$J,358.3,32583,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32583,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,32583,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,32583,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,32584,0)
- ;;=F11.23^^143^1547^7
- ;;^UTILITY(U,$J,358.3,32584,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32584,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,32584,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,32584,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,32585,0)
- ;;=F11.24^^143^1547^9
- ;;^UTILITY(U,$J,358.3,32585,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32585,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,32585,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,32585,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,32586,0)
- ;;=F11.29^^143^1547^2
- ;;^UTILITY(U,$J,358.3,32586,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32586,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,32586,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,32586,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,32587,0)
- ;;=F11.220^^143^1547^1
- ;;^UTILITY(U,$J,358.3,32587,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32587,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33028,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33028,1,2,0)
+ ;;=2^99395
+ ;;^UTILITY(U,$J,358.3,33028,1,3,0)
+ ;;=3^Preventive Med,Est Pt 18-39
+ ;;^UTILITY(U,$J,358.3,33029,0)
+ ;;=99396^^130^1658^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33029,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33029,1,2,0)
+ ;;=2^99396
+ ;;^UTILITY(U,$J,358.3,33029,1,3,0)
+ ;;=3^Preventive Med,Est Pt 40-64
+ ;;^UTILITY(U,$J,358.3,33030,0)
+ ;;=99397^^130^1658^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33030,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33030,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,33030,1,3,0)
+ ;;=3^Preventive Med,Est Pt > 64
+ ;;^UTILITY(U,$J,358.3,33031,0)
+ ;;=99385^^130^1659^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33031,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33031,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,33031,1,3,0)
+ ;;=3^Preventive Med,New Pt 18-39
+ ;;^UTILITY(U,$J,358.3,33032,0)
+ ;;=99386^^130^1659^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33032,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33032,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,33032,1,3,0)
+ ;;=3^Preventive Med,New Pt 40-64
+ ;;^UTILITY(U,$J,358.3,33033,0)
+ ;;=99387^^130^1659^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33033,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33033,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,33033,1,3,0)
+ ;;=3^Preventive Med,New Pt > 64
+ ;;^UTILITY(U,$J,358.3,33034,0)
+ ;;=99401^^130^1660^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33034,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33034,1,2,0)
+ ;;=2^99401
+ ;;^UTILITY(U,$J,358.3,33034,1,3,0)
+ ;;=3^Preventive Counseling 15 Min
+ ;;^UTILITY(U,$J,358.3,33035,0)
+ ;;=99402^^130^1660^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33035,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33035,1,2,0)
+ ;;=2^99402
+ ;;^UTILITY(U,$J,358.3,33035,1,3,0)
+ ;;=3^Preventive Counseling 30 Min
+ ;;^UTILITY(U,$J,358.3,33036,0)
+ ;;=99403^^130^1660^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33036,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33036,1,2,0)
+ ;;=2^99403
+ ;;^UTILITY(U,$J,358.3,33036,1,3,0)
+ ;;=3^Preventive Counseling 45 Min
+ ;;^UTILITY(U,$J,358.3,33037,0)
+ ;;=99411^^130^1661^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33037,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33037,1,2,0)
+ ;;=2^99411
+ ;;^UTILITY(U,$J,358.3,33037,1,3,0)
+ ;;=3^Preventive Counseling,Grp 30min
+ ;;^UTILITY(U,$J,358.3,33038,0)
+ ;;=99412^^130^1661^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33038,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33038,1,2,0)
+ ;;=2^99412
+ ;;^UTILITY(U,$J,358.3,33038,1,3,0)
+ ;;=3^Preventive Counseling,Grp 60min
+ ;;^UTILITY(U,$J,358.3,33039,0)
+ ;;=99354^^130^1662^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33039,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33039,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,33039,1,3,0)
+ ;;=3^Prolonged Service,Pt Contact,1st hr
+ ;;^UTILITY(U,$J,358.3,33040,0)
+ ;;=99355^^130^1662^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33040,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33040,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,33040,1,3,0)
+ ;;=3^Prolonged Service,Pt Contact,ea addl 30 min
+ ;;^UTILITY(U,$J,358.3,33041,0)
+ ;;=99358^^130^1662^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33041,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33041,1,2,0)
+ ;;=2^99358
+ ;;^UTILITY(U,$J,358.3,33041,1,3,0)
+ ;;=3^Prolonged Service w/o Pt Contact,1st hr
+ ;;^UTILITY(U,$J,358.3,33042,0)
+ ;;=99359^^130^1662^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33042,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33042,1,2,0)
+ ;;=2^99359
+ ;;^UTILITY(U,$J,358.3,33042,1,3,0)
+ ;;=3^Prolonged Service w/o Pt Contact,ea addl 30 min
+ ;;^UTILITY(U,$J,358.3,33043,0)
+ ;;=90471^^130^1663^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33043,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33043,1,2,0)
+ ;;=2^90471

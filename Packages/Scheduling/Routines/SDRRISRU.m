@@ -1,5 +1,6 @@
-SDRRISRU ;10N20/MAH;Recall Reminder Utilities ;01/18/2008  11:32
- ;;5.3;Scheduling;**536**;Aug 13, 1993;Build 53
+SDRRISRU ;10N20/MAH - Recall Reminder Utilities ;JAN 15, 2016
+ ;;5.3;Scheduling;**536,627**;Aug 13, 1993;Build 249
+ ;
 OPENSLOT(SDRRIEN,SDRRST,SDRRND) ; Function returns the number of open (available)
  ; slots at the clinic during the time period.
  ; SDRRIEN - IEN of clinic in file #44
@@ -66,7 +67,7 @@ DELUSER(SDRRIEN) ; Record deleted by a user.
  N SDRRFDA
  S SDRRFDA(403.56,"+1,",201)=$E($$NOW^XLFDT(),1,12) ; delete date
  S SDRRFDA(403.56,"+1,",202)=DUZ ; delete clerk
- S:$G(SDRRFTR) SDRRFDA(403.56,"+1,",203)=SDRRFTR ; delete reason: 
+ S:$G(SDRRFTR) SDRRFDA(403.56,"+1,",203)=SDRRFTR ; delete reason:
  D DELSET(SDRRIEN,.SDRRFDA)
  Q
 DELSET(SDRRIEN,SDRRFDA) ;
@@ -83,5 +84,6 @@ DELSET(SDRRIEN,SDRRFDA) ;
  S SDRRFDA(403.56,"+1,",5)=$P(SDRRREC,U,6)   ; recall date
  S SDRRFDA(403.56,"+1,",6)=$P(SDRRREC,U,10)  ; date reminder sent
  S SDRRFDA(403.56,"+1,",7)=$P(SDRRREC,U,11)  ; user who entered recall
+ S SDRRFDA(403.56,"+1,",7.5)=$P(SDRRREC,U,14) ;DATE/TIME RECALL ADDED   ;alb/sat SD*5.3*627
  D UPDATE^DIE("","SDRRFDA")
  Q

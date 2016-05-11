@@ -1,134 +1,132 @@
-IBDEI1O8 ; ; 19-NOV-2015
+IBDEI1O8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27960,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,27960,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,27961,0)
- ;;=H83.02^^132^1322^46
- ;;^UTILITY(U,$J,358.3,27961,1,0)
+ ;;^UTILITY(U,$J,358.3,28393,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,28393,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,28393,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,28394,0)
+ ;;=I35.1^^112^1419^16
+ ;;^UTILITY(U,$J,358.3,28394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27961,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,27961,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,27961,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,27962,0)
- ;;=J01.91^^132^1322^76
- ;;^UTILITY(U,$J,358.3,27962,1,0)
+ ;;^UTILITY(U,$J,358.3,28394,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,28394,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,28394,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,28395,0)
+ ;;=I35.2^^112^1419^18
+ ;;^UTILITY(U,$J,358.3,28395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27962,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,27962,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,27962,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,27963,0)
- ;;=J03.90^^132^1322^81
- ;;^UTILITY(U,$J,358.3,27963,1,0)
+ ;;^UTILITY(U,$J,358.3,28395,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,28395,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,28395,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,28396,0)
+ ;;=I35.8^^112^1419^14
+ ;;^UTILITY(U,$J,358.3,28396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27963,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,27963,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,27963,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,27964,0)
- ;;=J01.90^^132^1322^77
- ;;^UTILITY(U,$J,358.3,27964,1,0)
+ ;;^UTILITY(U,$J,358.3,28396,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Other
+ ;;^UTILITY(U,$J,358.3,28396,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,28396,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,28397,0)
+ ;;=I35.9^^112^1419^15
+ ;;^UTILITY(U,$J,358.3,28397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27964,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,27964,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,27964,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,27965,0)
- ;;=J20.1^^132^1322^10
- ;;^UTILITY(U,$J,358.3,27965,1,0)
+ ;;^UTILITY(U,$J,358.3,28397,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,28397,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,28397,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,28398,0)
+ ;;=I48.91^^112^1419^5
+ ;;^UTILITY(U,$J,358.3,28398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27965,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,27965,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,27965,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,27966,0)
- ;;=J20.0^^132^1322^11
- ;;^UTILITY(U,$J,358.3,27966,1,0)
+ ;;^UTILITY(U,$J,358.3,28398,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,28398,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,28398,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,28399,0)
+ ;;=I49.9^^112^1419^8
+ ;;^UTILITY(U,$J,358.3,28399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27966,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,27966,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,27966,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,27967,0)
- ;;=J20.2^^132^1322^6
- ;;^UTILITY(U,$J,358.3,27967,1,0)
+ ;;^UTILITY(U,$J,358.3,28399,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,28399,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,28399,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,28400,0)
+ ;;=I50.9^^112^1419^12
+ ;;^UTILITY(U,$J,358.3,28400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27967,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,27967,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,27967,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,27968,0)
- ;;=J20.4^^132^1322^13
- ;;^UTILITY(U,$J,358.3,27968,1,0)
+ ;;^UTILITY(U,$J,358.3,28400,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,28400,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,28400,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,28401,0)
+ ;;=I73.9^^112^1419^19
+ ;;^UTILITY(U,$J,358.3,28401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27968,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,27968,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,27968,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,27969,0)
- ;;=J20.3^^132^1322^8
- ;;^UTILITY(U,$J,358.3,27969,1,0)
+ ;;^UTILITY(U,$J,358.3,28401,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,28401,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,28401,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,28402,0)
+ ;;=I87.2^^112^1419^26
+ ;;^UTILITY(U,$J,358.3,28402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27969,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,27969,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,27969,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,27970,0)
- ;;=J20.9^^132^1322^7
- ;;^UTILITY(U,$J,358.3,27970,1,0)
+ ;;^UTILITY(U,$J,358.3,28402,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,28402,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,28402,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,28403,0)
+ ;;=R03.0^^112^1419^11
+ ;;^UTILITY(U,$J,358.3,28403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27970,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,27970,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,27970,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,27971,0)
- ;;=J20.8^^132^1322^12
- ;;^UTILITY(U,$J,358.3,27971,1,0)
+ ;;^UTILITY(U,$J,358.3,28403,1,3,0)
+ ;;=3^Elevated B/P Reading w/o HTN Dx
+ ;;^UTILITY(U,$J,358.3,28403,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,28403,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,28404,0)
+ ;;=I25.110^^112^1419^3
+ ;;^UTILITY(U,$J,358.3,28404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27971,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,27971,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,27971,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,27972,0)
- ;;=J20.5^^132^1322^14
- ;;^UTILITY(U,$J,358.3,27972,1,0)
+ ;;^UTILITY(U,$J,358.3,28404,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,28404,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,28404,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,28405,0)
+ ;;=I25.119^^112^1419^4
+ ;;^UTILITY(U,$J,358.3,28405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27972,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,27972,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,27972,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,27973,0)
- ;;=J20.7^^132^1322^9
- ;;^UTILITY(U,$J,358.3,27973,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27973,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,28405,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unspec Angina
+ ;;^UTILITY(U,$J,358.3,28405,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,28405,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,28406,0)
+ ;;=I48.0^^112^1419^20

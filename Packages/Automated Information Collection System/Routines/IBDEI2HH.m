@@ -1,116 +1,140 @@
-IBDEI2HH ; ; 19-NOV-2015
+IBDEI2HH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41680,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41680,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,41680,1,3,0)
- ;;=3^28022
- ;;^UTILITY(U,$J,358.3,41681,0)
- ;;=28024^^191^2120^9^^^^1
- ;;^UTILITY(U,$J,358.3,41681,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41681,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; interphalangeal joint
- ;;^UTILITY(U,$J,358.3,41681,1,3,0)
- ;;=3^28024
- ;;^UTILITY(U,$J,358.3,41682,0)
- ;;=28035^^191^2120^11^^^^1
- ;;^UTILITY(U,$J,358.3,41682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41682,1,2,0)
- ;;=2^Release, tarsal tunnel
- ;;^UTILITY(U,$J,358.3,41682,1,3,0)
- ;;=3^28035
- ;;^UTILITY(U,$J,358.3,41683,0)
- ;;=28055^^191^2120^10^^^^1
- ;;^UTILITY(U,$J,358.3,41683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41683,1,2,0)
- ;;=2^Neurectomy, Foot
- ;;^UTILITY(U,$J,358.3,41683,1,3,0)
- ;;=3^28055
- ;;^UTILITY(U,$J,358.3,41684,0)
- ;;=28043^^191^2121^5^^^^1
- ;;^UTILITY(U,$J,358.3,41684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41684,1,2,0)
- ;;=2^Excision Tumor-Foot,SQ Tissue >1.5cm
- ;;^UTILITY(U,$J,358.3,41684,1,3,0)
- ;;=3^28043
- ;;^UTILITY(U,$J,358.3,41685,0)
- ;;=28045^^191^2121^4^^^^1
- ;;^UTILITY(U,$J,358.3,41685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41685,1,2,0)
- ;;=2^Excision Tumor-Foot,Deep Subfascial >1.5cm
- ;;^UTILITY(U,$J,358.3,41685,1,3,0)
- ;;=3^28045
- ;;^UTILITY(U,$J,358.3,41686,0)
- ;;=28050^^191^2121^2^^^^1
- ;;^UTILITY(U,$J,358.3,41686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41686,1,2,0)
- ;;=2^Arthrotomy with biopsy; intertarsal or tarsometatarsal joint 
- ;;^UTILITY(U,$J,358.3,41686,1,3,0)
- ;;=3^28050
- ;;^UTILITY(U,$J,358.3,41687,0)
- ;;=28052^^191^2121^3^^^^1
- ;;^UTILITY(U,$J,358.3,41687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41687,1,2,0)
- ;;=2^Arthrotomy with biopsy; metatarsophalangeal joint 
- ;;^UTILITY(U,$J,358.3,41687,1,3,0)
- ;;=3^28052
- ;;^UTILITY(U,$J,358.3,41688,0)
- ;;=28054^^191^2121^1^^^^1
- ;;^UTILITY(U,$J,358.3,41688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41688,1,2,0)
- ;;=2^Arthrotomy with biopsy; interphalangeal joint
- ;;^UTILITY(U,$J,358.3,41688,1,3,0)
- ;;=3^28054
- ;;^UTILITY(U,$J,358.3,41689,0)
- ;;=28060^^191^2121^21^^^^1
- ;;^UTILITY(U,$J,358.3,41689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41689,1,2,0)
- ;;=2^Fasciectomy, plantar fascia; partial 
- ;;^UTILITY(U,$J,358.3,41689,1,3,0)
- ;;=3^28060
- ;;^UTILITY(U,$J,358.3,41690,0)
- ;;=28062^^191^2121^22^^^^1
- ;;^UTILITY(U,$J,358.3,41690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41690,1,2,0)
- ;;=2^Fasciectomy, plantar fascia; radical
- ;;^UTILITY(U,$J,358.3,41690,1,3,0)
- ;;=3^28062
- ;;^UTILITY(U,$J,358.3,41691,0)
- ;;=28080^^191^2121^20^^^^1
- ;;^UTILITY(U,$J,358.3,41691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41691,1,2,0)
- ;;=2^Excision, interdigital (Morton) neuroma, single, each
- ;;^UTILITY(U,$J,358.3,41691,1,3,0)
- ;;=3^28080
- ;;^UTILITY(U,$J,358.3,41692,0)
- ;;=28090^^191^2121^6^^^^1
- ;;^UTILITY(U,$J,358.3,41692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41692,1,2,0)
- ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; foot
- ;;^UTILITY(U,$J,358.3,41692,1,3,0)
- ;;=3^28090
- ;;^UTILITY(U,$J,358.3,41693,0)
- ;;=28092^^191^2121^7^^^^1
- ;;^UTILITY(U,$J,358.3,41693,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41693,1,2,0)
- ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; toe(s), each
- ;;^UTILITY(U,$J,358.3,41693,1,3,0)
- ;;=3^28092
- ;;^UTILITY(U,$J,358.3,41694,0)
- ;;=28100^^191^2121^14^^^^1
+ ;;^UTILITY(U,$J,358.3,42121,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42121,1,3,0)
+ ;;=3^Tetany
+ ;;^UTILITY(U,$J,358.3,42121,1,4,0)
+ ;;=4^R29.0
+ ;;^UTILITY(U,$J,358.3,42121,2)
+ ;;=^118032
+ ;;^UTILITY(U,$J,358.3,42122,0)
+ ;;=R29.1^^159^2016^118
+ ;;^UTILITY(U,$J,358.3,42122,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42122,1,3,0)
+ ;;=3^Meningismus
+ ;;^UTILITY(U,$J,358.3,42122,1,4,0)
+ ;;=4^R29.1
+ ;;^UTILITY(U,$J,358.3,42122,2)
+ ;;=^5019313
+ ;;^UTILITY(U,$J,358.3,42123,0)
+ ;;=R29.5^^159^2016^155
+ ;;^UTILITY(U,$J,358.3,42123,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42123,1,3,0)
+ ;;=3^Transient Paralysis
+ ;;^UTILITY(U,$J,358.3,42123,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,42123,2)
+ ;;=^5019316
+ ;;^UTILITY(U,$J,358.3,42124,0)
+ ;;=R34.^^159^2016^39
+ ;;^UTILITY(U,$J,358.3,42124,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42124,1,3,0)
+ ;;=3^Anuria and Oliguria
+ ;;^UTILITY(U,$J,358.3,42124,1,4,0)
+ ;;=4^R34.
+ ;;^UTILITY(U,$J,358.3,42124,2)
+ ;;=^5019333
+ ;;^UTILITY(U,$J,358.3,42125,0)
+ ;;=R35.8^^159^2016^140
+ ;;^UTILITY(U,$J,358.3,42125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42125,1,3,0)
+ ;;=3^Polyuria NEC
+ ;;^UTILITY(U,$J,358.3,42125,1,4,0)
+ ;;=4^R35.8
+ ;;^UTILITY(U,$J,358.3,42125,2)
+ ;;=^5019336
+ ;;^UTILITY(U,$J,358.3,42126,0)
+ ;;=R39.12^^159^2016^141
+ ;;^UTILITY(U,$J,358.3,42126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42126,1,3,0)
+ ;;=3^Poor Urinary Stream
+ ;;^UTILITY(U,$J,358.3,42126,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,42126,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,42127,0)
+ ;;=R39.14^^159^2016^73
+ ;;^UTILITY(U,$J,358.3,42127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42127,1,3,0)
+ ;;=3^Feeling of Incomplete Bladder Emptying
+ ;;^UTILITY(U,$J,358.3,42127,1,4,0)
+ ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,42127,2)
+ ;;=^5019344
+ ;;^UTILITY(U,$J,358.3,42128,0)
+ ;;=R41.4^^159^2016^122
+ ;;^UTILITY(U,$J,358.3,42128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42128,1,3,0)
+ ;;=3^Neurologic Neglect Syndrome
+ ;;^UTILITY(U,$J,358.3,42128,1,4,0)
+ ;;=4^R41.4
+ ;;^UTILITY(U,$J,358.3,42128,2)
+ ;;=^303316
+ ;;^UTILITY(U,$J,358.3,42129,0)
+ ;;=R41.81^^159^2016^32
+ ;;^UTILITY(U,$J,358.3,42129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42129,1,3,0)
+ ;;=3^Age-Related Cognitive Decline
+ ;;^UTILITY(U,$J,358.3,42129,1,4,0)
+ ;;=4^R41.81
+ ;;^UTILITY(U,$J,358.3,42129,2)
+ ;;=^5019440
+ ;;^UTILITY(U,$J,358.3,42130,0)
+ ;;=R41.0^^159^2016^61
+ ;;^UTILITY(U,$J,358.3,42130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42130,1,3,0)
+ ;;=3^Disorientation/Confusion/Delrium,Unspec
+ ;;^UTILITY(U,$J,358.3,42130,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,42130,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,42131,0)
+ ;;=R41.82^^159^2016^34
+ ;;^UTILITY(U,$J,358.3,42131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42131,1,3,0)
+ ;;=3^Altered Mental Status,Unspec
+ ;;^UTILITY(U,$J,358.3,42131,1,4,0)
+ ;;=4^R41.82
+ ;;^UTILITY(U,$J,358.3,42131,2)
+ ;;=^5019441
+ ;;^UTILITY(U,$J,358.3,42132,0)
+ ;;=R43.0^^159^2016^37
+ ;;^UTILITY(U,$J,358.3,42132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42132,1,3,0)
+ ;;=3^Anosmia
+ ;;^UTILITY(U,$J,358.3,42132,1,4,0)
+ ;;=4^R43.0
+ ;;^UTILITY(U,$J,358.3,42132,2)
+ ;;=^7949
+ ;;^UTILITY(U,$J,358.3,42133,0)
+ ;;=R43.1^^159^2016^132
+ ;;^UTILITY(U,$J,358.3,42133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42133,1,3,0)
+ ;;=3^Parosmia
+ ;;^UTILITY(U,$J,358.3,42133,1,4,0)
+ ;;=4^R43.1
+ ;;^UTILITY(U,$J,358.3,42133,2)
+ ;;=^5019451
+ ;;^UTILITY(U,$J,358.3,42134,0)
+ ;;=R43.2^^159^2016^129
+ ;;^UTILITY(U,$J,358.3,42134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42134,1,3,0)
+ ;;=3^Parageusia
+ ;;^UTILITY(U,$J,358.3,42134,1,4,0)
+ ;;=4^R43.2

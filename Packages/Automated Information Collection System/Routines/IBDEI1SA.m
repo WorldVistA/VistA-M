@@ -1,134 +1,128 @@
-IBDEI1SA ; ; 19-NOV-2015
+IBDEI1SA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29864,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,29864,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,29865,0)
- ;;=I50.40^^135^1370^9
- ;;^UTILITY(U,$J,358.3,29865,1,0)
+ ;;^UTILITY(U,$J,358.3,30307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29865,1,3,0)
- ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
- ;;^UTILITY(U,$J,358.3,29865,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,29865,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,29866,0)
- ;;=I51.7^^135^1370^2
- ;;^UTILITY(U,$J,358.3,29866,1,0)
+ ;;^UTILITY(U,$J,358.3,30307,1,3,0)
+ ;;=3^Myeloid sarcoma, in remission
+ ;;^UTILITY(U,$J,358.3,30307,1,4,0)
+ ;;=4^C92.31
+ ;;^UTILITY(U,$J,358.3,30307,2)
+ ;;=^5001799
+ ;;^UTILITY(U,$J,358.3,30308,0)
+ ;;=C92.32^^118^1505^55
+ ;;^UTILITY(U,$J,358.3,30308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29866,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,29866,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,29866,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,29867,0)
- ;;=I42.6^^135^1370^1
- ;;^UTILITY(U,$J,358.3,29867,1,0)
+ ;;^UTILITY(U,$J,358.3,30308,1,3,0)
+ ;;=3^Myeloid sarcoma, in relapse
+ ;;^UTILITY(U,$J,358.3,30308,1,4,0)
+ ;;=4^C92.32
+ ;;^UTILITY(U,$J,358.3,30308,2)
+ ;;=^5001800
+ ;;^UTILITY(U,$J,358.3,30309,0)
+ ;;=C92.90^^118^1505^54
+ ;;^UTILITY(U,$J,358.3,30309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29867,1,3,0)
- ;;=3^Alcoholic Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,29867,1,4,0)
- ;;=4^I42.6
- ;;^UTILITY(U,$J,358.3,29867,2)
- ;;=^5007197
- ;;^UTILITY(U,$J,358.3,29868,0)
- ;;=I50.1^^135^1370^8
- ;;^UTILITY(U,$J,358.3,29868,1,0)
+ ;;^UTILITY(U,$J,358.3,30309,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,30309,1,4,0)
+ ;;=4^C92.90
+ ;;^UTILITY(U,$J,358.3,30309,2)
+ ;;=^5001810
+ ;;^UTILITY(U,$J,358.3,30310,0)
+ ;;=C92.91^^118^1505^53
+ ;;^UTILITY(U,$J,358.3,30310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29868,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,29868,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,29868,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,29869,0)
- ;;=I50.20^^135^1370^13
- ;;^UTILITY(U,$J,358.3,29869,1,0)
+ ;;^UTILITY(U,$J,358.3,30310,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified in remission
+ ;;^UTILITY(U,$J,358.3,30310,1,4,0)
+ ;;=4^C92.91
+ ;;^UTILITY(U,$J,358.3,30310,2)
+ ;;=^5001811
+ ;;^UTILITY(U,$J,358.3,30311,0)
+ ;;=C92.92^^118^1505^52
+ ;;^UTILITY(U,$J,358.3,30311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29869,1,3,0)
- ;;=3^Systolic Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,29869,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,29869,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,29870,0)
- ;;=I50.21^^135^1370^10
- ;;^UTILITY(U,$J,358.3,29870,1,0)
+ ;;^UTILITY(U,$J,358.3,30311,1,3,0)
+ ;;=3^Myeloid leukemia, unspecified in relapse
+ ;;^UTILITY(U,$J,358.3,30311,1,4,0)
+ ;;=4^C92.92
+ ;;^UTILITY(U,$J,358.3,30311,2)
+ ;;=^5001812
+ ;;^UTILITY(U,$J,358.3,30312,0)
+ ;;=C93.00^^118^1505^12
+ ;;^UTILITY(U,$J,358.3,30312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29870,1,3,0)
- ;;=3^Systolic Heart Failure,Acute
- ;;^UTILITY(U,$J,358.3,29870,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,29870,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,29871,0)
- ;;=I50.22^^135^1370^12
- ;;^UTILITY(U,$J,358.3,29871,1,0)
+ ;;^UTILITY(U,$J,358.3,30312,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, not achieve remission
+ ;;^UTILITY(U,$J,358.3,30312,1,4,0)
+ ;;=4^C93.00
+ ;;^UTILITY(U,$J,358.3,30312,2)
+ ;;=^5001819
+ ;;^UTILITY(U,$J,358.3,30313,0)
+ ;;=C93.01^^118^1505^10
+ ;;^UTILITY(U,$J,358.3,30313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29871,1,3,0)
- ;;=3^Systolic Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,29871,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,29871,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,29872,0)
- ;;=I50.23^^135^1370^11
- ;;^UTILITY(U,$J,358.3,29872,1,0)
+ ;;^UTILITY(U,$J,358.3,30313,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,30313,1,4,0)
+ ;;=4^C93.01
+ ;;^UTILITY(U,$J,358.3,30313,2)
+ ;;=^5001820
+ ;;^UTILITY(U,$J,358.3,30314,0)
+ ;;=C93.02^^118^1505^11
+ ;;^UTILITY(U,$J,358.3,30314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29872,1,3,0)
- ;;=3^Systolic Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,29872,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,29872,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,29873,0)
- ;;=I50.30^^135^1370^6
- ;;^UTILITY(U,$J,358.3,29873,1,0)
+ ;;^UTILITY(U,$J,358.3,30314,1,3,0)
+ ;;=3^Acute monoblastic/monocytic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,30314,1,4,0)
+ ;;=4^C93.02
+ ;;^UTILITY(U,$J,358.3,30314,2)
+ ;;=^5001821
+ ;;^UTILITY(U,$J,358.3,30315,0)
+ ;;=C93.10^^118^1505^31
+ ;;^UTILITY(U,$J,358.3,30315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29873,1,3,0)
- ;;=3^Diastolic Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,29873,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,29873,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,29874,0)
- ;;=I50.9^^135^1370^7
- ;;^UTILITY(U,$J,358.3,29874,1,0)
+ ;;^UTILITY(U,$J,358.3,30315,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia not achieve remission
+ ;;^UTILITY(U,$J,358.3,30315,1,4,0)
+ ;;=4^C93.10
+ ;;^UTILITY(U,$J,358.3,30315,2)
+ ;;=^5001822
+ ;;^UTILITY(U,$J,358.3,30316,0)
+ ;;=C93.11^^118^1505^33
+ ;;^UTILITY(U,$J,358.3,30316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29874,1,3,0)
- ;;=3^Heart Failure,Unspec (CHF Unspec)
- ;;^UTILITY(U,$J,358.3,29874,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,29874,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,29875,0)
- ;;=I50.31^^135^1370^3
- ;;^UTILITY(U,$J,358.3,29875,1,0)
+ ;;^UTILITY(U,$J,358.3,30316,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,30316,1,4,0)
+ ;;=4^C93.11
+ ;;^UTILITY(U,$J,358.3,30316,2)
+ ;;=^5001823
+ ;;^UTILITY(U,$J,358.3,30317,0)
+ ;;=C93.12^^118^1505^32
+ ;;^UTILITY(U,$J,358.3,30317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29875,1,3,0)
- ;;=3^Diastolic Heart Failure,Acute
- ;;^UTILITY(U,$J,358.3,29875,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,29875,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,29876,0)
- ;;=I30.0^^135^1371^5
- ;;^UTILITY(U,$J,358.3,29876,1,0)
+ ;;^UTILITY(U,$J,358.3,30317,1,3,0)
+ ;;=3^Chronic myelomonocytic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,30317,1,4,0)
+ ;;=4^C93.12
+ ;;^UTILITY(U,$J,358.3,30317,2)
+ ;;=^5001824
+ ;;^UTILITY(U,$J,358.3,30318,0)
+ ;;=C93.90^^118^1505^48
+ ;;^UTILITY(U,$J,358.3,30318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29876,1,3,0)
- ;;=3^Idiopathic Pericarditis,Acute Nonspec
- ;;^UTILITY(U,$J,358.3,29876,1,4,0)
- ;;=4^I30.0
- ;;^UTILITY(U,$J,358.3,29876,2)
- ;;=^5007157
- ;;^UTILITY(U,$J,358.3,29877,0)
- ;;=I34.8^^135^1371^6
- ;;^UTILITY(U,$J,358.3,29877,1,0)
+ ;;^UTILITY(U,$J,358.3,30318,1,3,0)
+ ;;=3^Monocytic leukemia, unsp, not having achieved remission
+ ;;^UTILITY(U,$J,358.3,30318,1,4,0)
+ ;;=4^C93.90
+ ;;^UTILITY(U,$J,358.3,30318,2)
+ ;;=^5001828
+ ;;^UTILITY(U,$J,358.3,30319,0)
+ ;;=C93.91^^118^1505^50
+ ;;^UTILITY(U,$J,358.3,30319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29877,1,3,0)
- ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,30319,1,3,0)
+ ;;=3^Monocytic leukemia, unspecified in remission

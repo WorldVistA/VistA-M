@@ -1,126 +1,138 @@
-IBDEI2IW ; ; 19-NOV-2015
+IBDEI2IW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42338,1,0)
+ ;;^UTILITY(U,$J,358.3,42797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42338,1,3,0)
- ;;=3^Disp fx of dist phalanx of rt grt toe, init
- ;;^UTILITY(U,$J,358.3,42338,1,4,0)
- ;;=4^S92.421A
- ;;^UTILITY(U,$J,358.3,42338,2)
- ;;=^5045340
- ;;^UTILITY(U,$J,358.3,42339,0)
- ;;=S92.415A^^192^2137^344
- ;;^UTILITY(U,$J,358.3,42339,1,0)
+ ;;^UTILITY(U,$J,358.3,42797,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,42797,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,42797,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,42798,0)
+ ;;=R30.9^^162^2042^13
+ ;;^UTILITY(U,$J,358.3,42798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42339,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of lft grt toe, init
- ;;^UTILITY(U,$J,358.3,42339,1,4,0)
- ;;=4^S92.415A
- ;;^UTILITY(U,$J,358.3,42339,2)
- ;;=^5045326
- ;;^UTILITY(U,$J,358.3,42340,0)
- ;;=S92.414A^^192^2137^347
- ;;^UTILITY(U,$J,358.3,42340,1,0)
+ ;;^UTILITY(U,$J,358.3,42798,1,3,0)
+ ;;=3^Painful micturition, Unspec
+ ;;^UTILITY(U,$J,358.3,42798,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,42798,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,42799,0)
+ ;;=S37.001A^^162^2042^12
+ ;;^UTILITY(U,$J,358.3,42799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42340,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of rt grt toe, init
- ;;^UTILITY(U,$J,358.3,42340,1,4,0)
- ;;=4^S92.414A
- ;;^UTILITY(U,$J,358.3,42340,2)
- ;;=^5045319
- ;;^UTILITY(U,$J,358.3,42341,0)
- ;;=S92.414A^^192^2137^348
- ;;^UTILITY(U,$J,358.3,42341,1,0)
+ ;;^UTILITY(U,$J,358.3,42799,1,3,0)
+ ;;=3^Injury Right Kidney,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,42799,1,4,0)
+ ;;=4^S37.001A
+ ;;^UTILITY(U,$J,358.3,42799,2)
+ ;;=^5025817
+ ;;^UTILITY(U,$J,358.3,42800,0)
+ ;;=S37.002A^^162^2042^11
+ ;;^UTILITY(U,$J,358.3,42800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42341,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of rt grt toe, init
- ;;^UTILITY(U,$J,358.3,42341,1,4,0)
- ;;=4^S92.414A
- ;;^UTILITY(U,$J,358.3,42341,2)
- ;;=^5045319
- ;;^UTILITY(U,$J,358.3,42342,0)
- ;;=S92.412A^^192^2137^119
- ;;^UTILITY(U,$J,358.3,42342,1,0)
+ ;;^UTILITY(U,$J,358.3,42800,1,3,0)
+ ;;=3^Injury Left Kidney,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,42800,1,4,0)
+ ;;=4^S37.002A
+ ;;^UTILITY(U,$J,358.3,42800,2)
+ ;;=^5025820
+ ;;^UTILITY(U,$J,358.3,42801,0)
+ ;;=C61.^^162^2043^20
+ ;;^UTILITY(U,$J,358.3,42801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42342,1,3,0)
- ;;=3^Disp fx of prox phalanx of lft grt toe, init
- ;;^UTILITY(U,$J,358.3,42342,1,4,0)
- ;;=4^S92.412A
- ;;^UTILITY(U,$J,358.3,42342,2)
- ;;=^5045305
- ;;^UTILITY(U,$J,358.3,42343,0)
- ;;=S92.411A^^192^2137^122
- ;;^UTILITY(U,$J,358.3,42343,1,0)
+ ;;^UTILITY(U,$J,358.3,42801,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,42801,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,42801,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,42802,0)
+ ;;=C62.12^^162^2043^10
+ ;;^UTILITY(U,$J,358.3,42802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42343,1,3,0)
- ;;=3^Disp fx of prox phalanx of rt grt toe, init
- ;;^UTILITY(U,$J,358.3,42343,1,4,0)
- ;;=4^S92.411A
- ;;^UTILITY(U,$J,358.3,42343,2)
- ;;=^5045298
- ;;^UTILITY(U,$J,358.3,42344,0)
- ;;=S92.592A^^192^2137^197
- ;;^UTILITY(U,$J,358.3,42344,1,0)
+ ;;^UTILITY(U,$J,358.3,42802,1,3,0)
+ ;;=3^Malig Neop Descended Lt Testis
+ ;;^UTILITY(U,$J,358.3,42802,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,42802,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,42803,0)
+ ;;=C62.11^^162^2043^11
+ ;;^UTILITY(U,$J,358.3,42803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42344,1,3,0)
- ;;=3^Fx of lft lsr toe(s), oth, init
- ;;^UTILITY(U,$J,358.3,42344,1,4,0)
- ;;=4^S92.592A
- ;;^UTILITY(U,$J,358.3,42344,2)
- ;;=^5045564
- ;;^UTILITY(U,$J,358.3,42345,0)
- ;;=S92.591A^^192^2137^214
- ;;^UTILITY(U,$J,358.3,42345,1,0)
+ ;;^UTILITY(U,$J,358.3,42803,1,3,0)
+ ;;=3^Malig Neop Descended Rt Testis
+ ;;^UTILITY(U,$J,358.3,42803,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,42803,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,42804,0)
+ ;;=C62.91^^162^2043^25
+ ;;^UTILITY(U,$J,358.3,42804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42345,1,3,0)
- ;;=3^Fx of rt lsr toe(s), oth, init
- ;;^UTILITY(U,$J,358.3,42345,1,4,0)
- ;;=4^S92.591A
- ;;^UTILITY(U,$J,358.3,42345,2)
- ;;=^5045557
- ;;^UTILITY(U,$J,358.3,42346,0)
- ;;=S92.535A^^192^2137^314
- ;;^UTILITY(U,$J,358.3,42346,1,0)
+ ;;^UTILITY(U,$J,358.3,42804,1,3,0)
+ ;;=3^Malig Neop Rt Testis
+ ;;^UTILITY(U,$J,358.3,42804,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,42804,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,42805,0)
+ ;;=C62.92^^162^2043^17
+ ;;^UTILITY(U,$J,358.3,42805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42346,1,3,0)
- ;;=3^Nondisp fx of dist phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42346,1,4,0)
- ;;=4^S92.535A
- ;;^UTILITY(U,$J,358.3,42346,2)
- ;;=^5045543
- ;;^UTILITY(U,$J,358.3,42347,0)
- ;;=S92.534A^^192^2137^316
- ;;^UTILITY(U,$J,358.3,42347,1,0)
+ ;;^UTILITY(U,$J,358.3,42805,1,3,0)
+ ;;=3^Malig Neop Lt Testis
+ ;;^UTILITY(U,$J,358.3,42805,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,42805,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,42806,0)
+ ;;=C60.0^^162^2043^19
+ ;;^UTILITY(U,$J,358.3,42806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42347,1,3,0)
- ;;=3^Nondisp fx of dist phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42347,1,4,0)
- ;;=4^S92.534A
- ;;^UTILITY(U,$J,358.3,42347,2)
- ;;=^5045536
- ;;^UTILITY(U,$J,358.3,42348,0)
- ;;=S92.532A^^192^2137^87
- ;;^UTILITY(U,$J,358.3,42348,1,0)
+ ;;^UTILITY(U,$J,358.3,42806,1,3,0)
+ ;;=3^Malig Neop Prepuce
+ ;;^UTILITY(U,$J,358.3,42806,1,4,0)
+ ;;=4^C60.0
+ ;;^UTILITY(U,$J,358.3,42806,2)
+ ;;=^267244
+ ;;^UTILITY(U,$J,358.3,42807,0)
+ ;;=C60.1^^162^2043^12
+ ;;^UTILITY(U,$J,358.3,42807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42348,1,3,0)
- ;;=3^Disp fx of dist phalanc of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42348,1,4,0)
- ;;=4^S92.532A
- ;;^UTILITY(U,$J,358.3,42348,2)
- ;;=^5045522
- ;;^UTILITY(U,$J,358.3,42349,0)
- ;;=S92.525A^^192^2137^330
- ;;^UTILITY(U,$J,358.3,42349,1,0)
+ ;;^UTILITY(U,$J,358.3,42807,1,3,0)
+ ;;=3^Malig Neop Glans Penis
+ ;;^UTILITY(U,$J,358.3,42807,1,4,0)
+ ;;=4^C60.1
+ ;;^UTILITY(U,$J,358.3,42807,2)
+ ;;=^267245
+ ;;^UTILITY(U,$J,358.3,42808,0)
+ ;;=C60.2^^162^2043^9
+ ;;^UTILITY(U,$J,358.3,42808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42349,1,3,0)
- ;;=3^Nondisp fx of med phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42349,1,4,0)
- ;;=4^S92.525A
- ;;^UTILITY(U,$J,358.3,42349,2)
- ;;=^5045501
- ;;^UTILITY(U,$J,358.3,42350,0)
- ;;=S92.531A^^192^2137^92
- ;;^UTILITY(U,$J,358.3,42350,1,0)
+ ;;^UTILITY(U,$J,358.3,42808,1,3,0)
+ ;;=3^Malig Neop Body of Penis
+ ;;^UTILITY(U,$J,358.3,42808,1,4,0)
+ ;;=4^C60.2
+ ;;^UTILITY(U,$J,358.3,42808,2)
+ ;;=^267246
+ ;;^UTILITY(U,$J,358.3,42809,0)
+ ;;=C63.01^^162^2043^21
+ ;;^UTILITY(U,$J,358.3,42809,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42809,1,3,0)
+ ;;=3^Malig Neop Rt Epididymis
+ ;;^UTILITY(U,$J,358.3,42809,1,4,0)
+ ;;=4^C63.01
+ ;;^UTILITY(U,$J,358.3,42809,2)
+ ;;=^5001240
+ ;;^UTILITY(U,$J,358.3,42810,0)
+ ;;=C63.02^^162^2043^13
+ ;;^UTILITY(U,$J,358.3,42810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42810,1,3,0)
+ ;;=3^Malig Neop Lt Epididymis

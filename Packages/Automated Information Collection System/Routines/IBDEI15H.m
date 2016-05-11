@@ -1,134 +1,122 @@
-IBDEI15H ; ; 19-NOV-2015
+IBDEI15H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19214,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,19215,0)
- ;;=N76.0^^94^918^87
- ;;^UTILITY(U,$J,358.3,19215,1,0)
+ ;;^UTILITY(U,$J,358.3,19568,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,19569,0)
+ ;;=L97.312^^84^918^202
+ ;;^UTILITY(U,$J,358.3,19569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19215,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,19215,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,19215,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,19216,0)
- ;;=M00.20^^94^918^3
- ;;^UTILITY(U,$J,358.3,19216,1,0)
+ ;;^UTILITY(U,$J,358.3,19569,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19569,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,19569,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,19570,0)
+ ;;=L97.313^^84^918^203
+ ;;^UTILITY(U,$J,358.3,19570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19216,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,19216,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,19216,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,19217,0)
- ;;=M00.80^^94^918^4
- ;;^UTILITY(U,$J,358.3,19217,1,0)
+ ;;^UTILITY(U,$J,358.3,19570,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19570,1,4,0)
+ ;;=4^L97.313
+ ;;^UTILITY(U,$J,358.3,19570,2)
+ ;;=^5009517
+ ;;^UTILITY(U,$J,358.3,19571,0)
+ ;;=L97.314^^84^918^204
+ ;;^UTILITY(U,$J,358.3,19571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19217,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,19217,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,19217,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,19218,0)
- ;;=M00.9^^94^918^72
- ;;^UTILITY(U,$J,358.3,19218,1,0)
+ ;;^UTILITY(U,$J,358.3,19571,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19571,1,4,0)
+ ;;=4^L97.314
+ ;;^UTILITY(U,$J,358.3,19571,2)
+ ;;=^5009518
+ ;;^UTILITY(U,$J,358.3,19572,0)
+ ;;=L97.319^^84^918^205
+ ;;^UTILITY(U,$J,358.3,19572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19218,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,19218,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,19218,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,19219,0)
- ;;=M00.00^^94^918^78
- ;;^UTILITY(U,$J,358.3,19219,1,0)
+ ;;^UTILITY(U,$J,358.3,19572,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19572,1,4,0)
+ ;;=4^L97.319
+ ;;^UTILITY(U,$J,358.3,19572,2)
+ ;;=^5009519
+ ;;^UTILITY(U,$J,358.3,19573,0)
+ ;;=L97.321^^84^918^171
+ ;;^UTILITY(U,$J,358.3,19573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19219,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,19219,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,19219,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,19220,0)
- ;;=M00.10^^94^918^65
- ;;^UTILITY(U,$J,358.3,19220,1,0)
+ ;;^UTILITY(U,$J,358.3,19573,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19573,1,4,0)
+ ;;=4^L97.321
+ ;;^UTILITY(U,$J,358.3,19573,2)
+ ;;=^5009520
+ ;;^UTILITY(U,$J,358.3,19574,0)
+ ;;=L97.322^^84^918^172
+ ;;^UTILITY(U,$J,358.3,19574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19220,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,19220,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,19220,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,19221,0)
- ;;=M86.20^^94^918^62
- ;;^UTILITY(U,$J,358.3,19221,1,0)
+ ;;^UTILITY(U,$J,358.3,19574,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19574,1,4,0)
+ ;;=4^L97.322
+ ;;^UTILITY(U,$J,358.3,19574,2)
+ ;;=^5009521
+ ;;^UTILITY(U,$J,358.3,19575,0)
+ ;;=L97.323^^84^918^173
+ ;;^UTILITY(U,$J,358.3,19575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19221,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,19221,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,19221,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,19222,0)
- ;;=M86.10^^94^918^58
- ;;^UTILITY(U,$J,358.3,19222,1,0)
+ ;;^UTILITY(U,$J,358.3,19575,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19575,1,4,0)
+ ;;=4^L97.323
+ ;;^UTILITY(U,$J,358.3,19575,2)
+ ;;=^5009522
+ ;;^UTILITY(U,$J,358.3,19576,0)
+ ;;=L97.324^^84^918^174
+ ;;^UTILITY(U,$J,358.3,19576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19222,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,19222,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,19222,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,19223,0)
- ;;=M86.00^^94^918^57
- ;;^UTILITY(U,$J,358.3,19223,1,0)
+ ;;^UTILITY(U,$J,358.3,19576,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19576,1,4,0)
+ ;;=4^L97.324
+ ;;^UTILITY(U,$J,358.3,19576,2)
+ ;;=^5009523
+ ;;^UTILITY(U,$J,358.3,19577,0)
+ ;;=L97.329^^84^918^175
+ ;;^UTILITY(U,$J,358.3,19577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19223,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,19223,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,19223,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,19224,0)
- ;;=M86.50^^94^918^59
- ;;^UTILITY(U,$J,358.3,19224,1,0)
+ ;;^UTILITY(U,$J,358.3,19577,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19577,1,4,0)
+ ;;=4^L97.329
+ ;;^UTILITY(U,$J,358.3,19577,2)
+ ;;=^5009524
+ ;;^UTILITY(U,$J,358.3,19578,0)
+ ;;=L97.411^^84^918^216
+ ;;^UTILITY(U,$J,358.3,19578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19224,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,19224,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,19224,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,19225,0)
- ;;=M86.30^^94^918^60
- ;;^UTILITY(U,$J,358.3,19225,1,0)
+ ;;^UTILITY(U,$J,358.3,19578,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19578,1,4,0)
+ ;;=4^L97.411
+ ;;^UTILITY(U,$J,358.3,19578,2)
+ ;;=^5009530
+ ;;^UTILITY(U,$J,358.3,19579,0)
+ ;;=L97.412^^84^918^217
+ ;;^UTILITY(U,$J,358.3,19579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19225,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,19225,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,19225,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,19226,0)
- ;;=M86.8X9^^94^918^63
- ;;^UTILITY(U,$J,358.3,19226,1,0)
+ ;;^UTILITY(U,$J,358.3,19579,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19579,1,4,0)
+ ;;=4^L97.412
+ ;;^UTILITY(U,$J,358.3,19579,2)
+ ;;=^5009531
+ ;;^UTILITY(U,$J,358.3,19580,0)
+ ;;=L97.413^^84^918^218
+ ;;^UTILITY(U,$J,358.3,19580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19226,1,3,0)
- ;;=3^Osteomyelitis,Unspec Sites
- ;;^UTILITY(U,$J,358.3,19226,1,4,0)
- ;;=4^M86.8X9
- ;;^UTILITY(U,$J,358.3,19226,2)
- ;;=^5014655
- ;;^UTILITY(U,$J,358.3,19227,0)
- ;;=M86.60^^94^918^61
- ;;^UTILITY(U,$J,358.3,19227,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19227,1,3,0)
- ;;=3^Osteomyelitis,Chronic,Unspec Site
- ;;^UTILITY(U,$J,358.3,19227,1,4,0)
- ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,19580,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle

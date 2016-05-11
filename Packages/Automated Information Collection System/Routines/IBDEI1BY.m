@@ -1,122 +1,140 @@
-IBDEI1BY ; ; 19-NOV-2015
+IBDEI1BY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22173,1,4,0)
- ;;=4^M84.461S
- ;;^UTILITY(U,$J,358.3,22173,2)
- ;;=^5013937
- ;;^UTILITY(U,$J,358.3,22174,0)
- ;;=S89.112S^^101^1038^79
- ;;^UTILITY(U,$J,358.3,22174,1,0)
+ ;;^UTILITY(U,$J,358.3,22609,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,22609,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,22610,0)
+ ;;=Z91.14^^87^982^71
+ ;;^UTILITY(U,$J,358.3,22610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22174,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22174,1,4,0)
- ;;=4^S89.112S
- ;;^UTILITY(U,$J,358.3,22174,2)
- ;;=^5137294
- ;;^UTILITY(U,$J,358.3,22175,0)
- ;;=S89.012S^^101^1038^83
- ;;^UTILITY(U,$J,358.3,22175,1,0)
+ ;;^UTILITY(U,$J,358.3,22610,1,3,0)
+ ;;=3^Noncompliance w/ Medication Regimen
+ ;;^UTILITY(U,$J,358.3,22610,1,4,0)
+ ;;=4^Z91.14
+ ;;^UTILITY(U,$J,358.3,22610,2)
+ ;;=^5063616
+ ;;^UTILITY(U,$J,358.3,22611,0)
+ ;;=Z91.19^^87^982^70
+ ;;^UTILITY(U,$J,358.3,22611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22175,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22175,1,4,0)
- ;;=4^S89.012S
- ;;^UTILITY(U,$J,358.3,22175,2)
- ;;=^5043654
- ;;^UTILITY(U,$J,358.3,22176,0)
- ;;=S89.011S^^101^1038^84
- ;;^UTILITY(U,$J,358.3,22176,1,0)
+ ;;^UTILITY(U,$J,358.3,22611,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment & Regimen
+ ;;^UTILITY(U,$J,358.3,22611,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,22611,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,22612,0)
+ ;;=Z93.1^^87^982^52
+ ;;^UTILITY(U,$J,358.3,22612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22176,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22176,1,4,0)
- ;;=4^S89.011S
- ;;^UTILITY(U,$J,358.3,22176,2)
- ;;=^5043648
- ;;^UTILITY(U,$J,358.3,22177,0)
- ;;=S89.111S^^101^1038^80
- ;;^UTILITY(U,$J,358.3,22177,1,0)
+ ;;^UTILITY(U,$J,358.3,22612,1,3,0)
+ ;;=3^Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,22612,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,22612,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,22613,0)
+ ;;=Z93.2^^87^982^58
+ ;;^UTILITY(U,$J,358.3,22613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22177,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22177,1,4,0)
- ;;=4^S89.111S
- ;;^UTILITY(U,$J,358.3,22177,2)
- ;;=^5043732
- ;;^UTILITY(U,$J,358.3,22178,0)
- ;;=S89.122S^^101^1038^87
- ;;^UTILITY(U,$J,358.3,22178,1,0)
+ ;;^UTILITY(U,$J,358.3,22613,1,3,0)
+ ;;=3^Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,22613,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,22613,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,22614,0)
+ ;;=Z93.3^^87^982^15
+ ;;^UTILITY(U,$J,358.3,22614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22178,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22178,1,4,0)
- ;;=4^S89.122S
- ;;^UTILITY(U,$J,358.3,22178,2)
- ;;=^5137300
- ;;^UTILITY(U,$J,358.3,22179,0)
- ;;=S89.121S^^101^1038^88
- ;;^UTILITY(U,$J,358.3,22179,1,0)
+ ;;^UTILITY(U,$J,358.3,22614,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,22614,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,22614,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,22615,0)
+ ;;=Z94.0^^87^982^63
+ ;;^UTILITY(U,$J,358.3,22615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22179,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22179,1,4,0)
- ;;=4^S89.121S
- ;;^UTILITY(U,$J,358.3,22179,2)
- ;;=^5043744
- ;;^UTILITY(U,$J,358.3,22180,0)
- ;;=S89.022S^^101^1038^91
- ;;^UTILITY(U,$J,358.3,22180,1,0)
+ ;;^UTILITY(U,$J,358.3,22615,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,22615,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,22615,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,22616,0)
+ ;;=Z94.1^^87^982^56
+ ;;^UTILITY(U,$J,358.3,22616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22180,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22180,1,4,0)
- ;;=4^S89.022S
- ;;^UTILITY(U,$J,358.3,22180,2)
- ;;=^5043672
- ;;^UTILITY(U,$J,358.3,22181,0)
- ;;=S89.021S^^101^1038^92
- ;;^UTILITY(U,$J,358.3,22181,1,0)
+ ;;^UTILITY(U,$J,358.3,22616,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,22616,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,22616,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,22617,0)
+ ;;=Z94.2^^87^982^66
+ ;;^UTILITY(U,$J,358.3,22617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22181,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22181,1,4,0)
- ;;=4^S89.021S
- ;;^UTILITY(U,$J,358.3,22181,2)
- ;;=^5043666
- ;;^UTILITY(U,$J,358.3,22182,0)
- ;;=S89.132S^^101^1038^95
- ;;^UTILITY(U,$J,358.3,22182,1,0)
+ ;;^UTILITY(U,$J,358.3,22617,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,22617,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,22617,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,22618,0)
+ ;;=Z94.3^^87^982^55
+ ;;^UTILITY(U,$J,358.3,22618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22182,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx lower end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22182,1,4,0)
- ;;=4^S89.132S
- ;;^UTILITY(U,$J,358.3,22182,2)
- ;;=^5137306
- ;;^UTILITY(U,$J,358.3,22183,0)
- ;;=S89.131S^^101^1038^96
- ;;^UTILITY(U,$J,358.3,22183,1,0)
+ ;;^UTILITY(U,$J,358.3,22618,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,22618,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,22618,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,22619,0)
+ ;;=Z94.4^^87^982^65
+ ;;^UTILITY(U,$J,358.3,22619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22183,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx lower end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22183,1,4,0)
- ;;=4^S89.131S
- ;;^UTILITY(U,$J,358.3,22183,2)
- ;;=^5043750
- ;;^UTILITY(U,$J,358.3,22184,0)
- ;;=S89.032S^^101^1038^97
- ;;^UTILITY(U,$J,358.3,22184,1,0)
+ ;;^UTILITY(U,$J,358.3,22619,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,22619,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,22619,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,22620,0)
+ ;;=Z94.84^^87^982^143
+ ;;^UTILITY(U,$J,358.3,22620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22184,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx upper end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22184,1,4,0)
- ;;=4^S89.032S
- ;;^UTILITY(U,$J,358.3,22184,2)
- ;;=^5043690
- ;;^UTILITY(U,$J,358.3,22185,0)
- ;;=S89.031S^^101^1038^98
- ;;^UTILITY(U,$J,358.3,22185,1,0)
+ ;;^UTILITY(U,$J,358.3,22620,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,22620,1,4,0)
+ ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,22620,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,22621,0)
+ ;;=Z96.21^^87^982^14
+ ;;^UTILITY(U,$J,358.3,22621,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22621,1,3,0)
+ ;;=3^Cochlear Implant Status
+ ;;^UTILITY(U,$J,358.3,22621,1,4,0)
+ ;;=4^Z96.21
+ ;;^UTILITY(U,$J,358.3,22621,2)
+ ;;=^5063684
+ ;;^UTILITY(U,$J,358.3,22622,0)
+ ;;=Z96.41^^87^982^126
+ ;;^UTILITY(U,$J,358.3,22622,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22622,1,3,0)
+ ;;=3^Presence of Insulin Pump
+ ;;^UTILITY(U,$J,358.3,22622,1,4,0)
+ ;;=4^Z96.41
+ ;;^UTILITY(U,$J,358.3,22622,2)
+ ;;=^5063688
+ ;;^UTILITY(U,$J,358.3,22623,0)
+ ;;=Z96.641^^87^982^134

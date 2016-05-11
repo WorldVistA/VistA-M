@@ -1,128 +1,132 @@
-IBDEI17I ; ; 19-NOV-2015
+IBDEI17I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20155,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,20155,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,20155,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,20156,0)
- ;;=F19.97^^94^936^29
- ;;^UTILITY(U,$J,358.3,20156,1,0)
+ ;;^UTILITY(U,$J,358.3,20515,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,20515,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,20515,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,20516,0)
+ ;;=M05.732^^84^935^147
+ ;;^UTILITY(U,$J,358.3,20516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20156,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,20156,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,20156,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,20157,0)
- ;;=F03.90^^94^936^15
- ;;^UTILITY(U,$J,358.3,20157,1,0)
+ ;;^UTILITY(U,$J,358.3,20516,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,20516,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,20516,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,20517,0)
+ ;;=M05.741^^84^935^150
+ ;;^UTILITY(U,$J,358.3,20517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20157,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,20157,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,20157,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,20158,0)
- ;;=G30.0^^94^936^2
- ;;^UTILITY(U,$J,358.3,20158,1,0)
+ ;;^UTILITY(U,$J,358.3,20517,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,20517,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,20517,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,20518,0)
+ ;;=M05.742^^84^935^143
+ ;;^UTILITY(U,$J,358.3,20518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20158,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,20158,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,20158,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,20159,0)
- ;;=G30.1^^94^936^3
- ;;^UTILITY(U,$J,358.3,20159,1,0)
+ ;;^UTILITY(U,$J,358.3,20518,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,20518,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,20518,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,20519,0)
+ ;;=M05.751^^84^935^151
+ ;;^UTILITY(U,$J,358.3,20519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20159,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,20159,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,20159,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,20160,0)
- ;;=G30.9^^94^936^4
- ;;^UTILITY(U,$J,358.3,20160,1,0)
+ ;;^UTILITY(U,$J,358.3,20519,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,20519,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,20519,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,20520,0)
+ ;;=M05.752^^84^935^144
+ ;;^UTILITY(U,$J,358.3,20520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20160,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,20160,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,20160,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,20161,0)
- ;;=G10.^^94^936^19
- ;;^UTILITY(U,$J,358.3,20161,1,0)
+ ;;^UTILITY(U,$J,358.3,20520,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,20520,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,20520,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,20521,0)
+ ;;=M05.761^^84^935^152
+ ;;^UTILITY(U,$J,358.3,20521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20161,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,20161,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,20161,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,20162,0)
- ;;=G10.^^94^936^20
- ;;^UTILITY(U,$J,358.3,20162,1,0)
+ ;;^UTILITY(U,$J,358.3,20521,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,20521,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,20521,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,20522,0)
+ ;;=M05.762^^84^935^145
+ ;;^UTILITY(U,$J,358.3,20522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20162,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,20162,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,20162,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,20163,0)
- ;;=G90.3^^94^936^21
- ;;^UTILITY(U,$J,358.3,20163,1,0)
+ ;;^UTILITY(U,$J,358.3,20522,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,20522,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,20522,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,20523,0)
+ ;;=M05.771^^84^935^149
+ ;;^UTILITY(U,$J,358.3,20523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20163,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,20163,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,20163,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,20164,0)
- ;;=G91.2^^94^936^22
- ;;^UTILITY(U,$J,358.3,20164,1,0)
+ ;;^UTILITY(U,$J,358.3,20523,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;^UTILITY(U,$J,358.3,20523,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,20523,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,20524,0)
+ ;;=M05.772^^84^935^142
+ ;;^UTILITY(U,$J,358.3,20524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20164,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,20164,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,20164,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,20165,0)
- ;;=G91.2^^94^936^23
- ;;^UTILITY(U,$J,358.3,20165,1,0)
+ ;;^UTILITY(U,$J,358.3,20524,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;^UTILITY(U,$J,358.3,20524,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,20524,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,20525,0)
+ ;;=M05.79^^84^935^148
+ ;;^UTILITY(U,$J,358.3,20525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20165,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,20165,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,20165,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,20166,0)
- ;;=G30.8^^94^936^5
- ;;^UTILITY(U,$J,358.3,20166,1,0)
+ ;;^UTILITY(U,$J,358.3,20525,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Multiple Sites
+ ;;^UTILITY(U,$J,358.3,20525,1,4,0)
+ ;;=4^M05.79
+ ;;^UTILITY(U,$J,358.3,20525,2)
+ ;;=^5010022
+ ;;^UTILITY(U,$J,358.3,20526,0)
+ ;;=M06.00^^84^935^155
+ ;;^UTILITY(U,$J,358.3,20526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20166,1,3,0)
- ;;=3^Alzheimer's Diseases NEC
- ;;^UTILITY(U,$J,358.3,20166,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,20166,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,20167,0)
- ;;=G31.09^^94^936^16
- ;;^UTILITY(U,$J,358.3,20167,1,0)
+ ;;^UTILITY(U,$J,358.3,20526,1,3,0)
+ ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20526,1,4,0)
+ ;;=4^M06.00
+ ;;^UTILITY(U,$J,358.3,20526,2)
+ ;;=^5010047
+ ;;^UTILITY(U,$J,358.3,20527,0)
+ ;;=M06.30^^84^935^158
+ ;;^UTILITY(U,$J,358.3,20527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20167,1,3,0)
- ;;=3^Frontotemporal Dementia NEC
- ;;^UTILITY(U,$J,358.3,20167,1,4,0)
- ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,20527,1,3,0)
+ ;;=3^Rheumatoid Nodule,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20527,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,20527,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,20528,0)
+ ;;=M06.4^^84^935^48

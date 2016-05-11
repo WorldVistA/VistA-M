@@ -1,126 +1,136 @@
-IBDEI0SP ; ; 19-NOV-2015
+IBDEI0SP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13201,2)
- ;;=^5005859
- ;;^UTILITY(U,$J,358.3,13202,0)
- ;;=H40.33X0^^80^754^128
- ;;^UTILITY(U,$J,358.3,13202,1,0)
+ ;;^UTILITY(U,$J,358.3,13460,0)
+ ;;=C62.12^^53^593^119
+ ;;^UTILITY(U,$J,358.3,13460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13202,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13202,1,4,0)
- ;;=4^H40.33X0
- ;;^UTILITY(U,$J,358.3,13202,2)
- ;;=^5005860
- ;;^UTILITY(U,$J,358.3,13203,0)
- ;;=H40.33X1^^80^754^125
- ;;^UTILITY(U,$J,358.3,13203,1,0)
+ ;;^UTILITY(U,$J,358.3,13460,1,3,0)
+ ;;=3^Malig Neop Descended Left Testis
+ ;;^UTILITY(U,$J,358.3,13460,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,13460,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,13461,0)
+ ;;=C62.11^^53^593^120
+ ;;^UTILITY(U,$J,358.3,13461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13203,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,13203,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,13203,2)
- ;;=^5005861
- ;;^UTILITY(U,$J,358.3,13204,0)
- ;;=H40.33X2^^80^754^126
- ;;^UTILITY(U,$J,358.3,13204,1,0)
+ ;;^UTILITY(U,$J,358.3,13461,1,3,0)
+ ;;=3^Malig Neop Descended Right Testis
+ ;;^UTILITY(U,$J,358.3,13461,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,13461,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,13462,0)
+ ;;=C15.9^^53^593^121
+ ;;^UTILITY(U,$J,358.3,13462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13204,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13204,1,4,0)
- ;;=4^H40.33X2
- ;;^UTILITY(U,$J,358.3,13204,2)
- ;;=^5005862
- ;;^UTILITY(U,$J,358.3,13205,0)
- ;;=H40.33X3^^80^754^127
- ;;^UTILITY(U,$J,358.3,13205,1,0)
+ ;;^UTILITY(U,$J,358.3,13462,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,13462,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,13462,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,13463,0)
+ ;;=C24.0^^53^593^122
+ ;;^UTILITY(U,$J,358.3,13463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13205,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,13205,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,13205,2)
- ;;=^5005863
- ;;^UTILITY(U,$J,358.3,13206,0)
- ;;=H40.33X4^^80^754^124
- ;;^UTILITY(U,$J,358.3,13206,1,0)
+ ;;^UTILITY(U,$J,358.3,13463,1,3,0)
+ ;;=3^Malig Neop Extrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,13463,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,13463,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,13464,0)
+ ;;=C23.^^53^593^124
+ ;;^UTILITY(U,$J,358.3,13464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13206,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13206,1,4,0)
- ;;=4^H40.33X4
- ;;^UTILITY(U,$J,358.3,13206,2)
- ;;=^5005864
- ;;^UTILITY(U,$J,358.3,13207,0)
- ;;=H21.233^^80^754^26
- ;;^UTILITY(U,$J,358.3,13207,1,0)
+ ;;^UTILITY(U,$J,358.3,13464,1,3,0)
+ ;;=3^Malig Neop Gallbladder
+ ;;^UTILITY(U,$J,358.3,13464,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,13464,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,13465,0)
+ ;;=C32.9^^53^593^128
+ ;;^UTILITY(U,$J,358.3,13465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13207,1,3,0)
- ;;=3^Degeneration of Iris,Bilateral
- ;;^UTILITY(U,$J,358.3,13207,1,4,0)
- ;;=4^H21.233
- ;;^UTILITY(U,$J,358.3,13207,2)
- ;;=^5005189
- ;;^UTILITY(U,$J,358.3,13208,0)
- ;;=H40.61X1^^80^754^40
- ;;^UTILITY(U,$J,358.3,13208,1,0)
+ ;;^UTILITY(U,$J,358.3,13465,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,13465,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,13465,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,13466,0)
+ ;;=C64.2^^53^593^132
+ ;;^UTILITY(U,$J,358.3,13466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13208,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13208,1,4,0)
- ;;=4^H40.61X1
- ;;^UTILITY(U,$J,358.3,13208,2)
- ;;=^5005907
- ;;^UTILITY(U,$J,358.3,13209,0)
- ;;=H40.013^^80^754^59
- ;;^UTILITY(U,$J,358.3,13209,1,0)
+ ;;^UTILITY(U,$J,358.3,13466,1,3,0)
+ ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,13466,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,13466,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,13467,0)
+ ;;=C65.2^^53^593^135
+ ;;^UTILITY(U,$J,358.3,13467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13209,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,13209,1,4,0)
- ;;=4^H40.013
- ;;^UTILITY(U,$J,358.3,13209,2)
- ;;=^5005726
- ;;^UTILITY(U,$J,358.3,13210,0)
- ;;=H40.012^^80^754^60
- ;;^UTILITY(U,$J,358.3,13210,1,0)
+ ;;^UTILITY(U,$J,358.3,13467,1,3,0)
+ ;;=3^Malig Neop Left Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,13467,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,13467,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,13468,0)
+ ;;=C62.92^^53^593^136
+ ;;^UTILITY(U,$J,358.3,13468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13210,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,13210,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,13210,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,13211,0)
- ;;=H40.011^^80^754^61
- ;;^UTILITY(U,$J,358.3,13211,1,0)
+ ;;^UTILITY(U,$J,358.3,13468,1,3,0)
+ ;;=3^Malig Neop Left Testis,Unspec
+ ;;^UTILITY(U,$J,358.3,13468,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,13468,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,13469,0)
+ ;;=C22.8^^53^593^137
+ ;;^UTILITY(U,$J,358.3,13469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13211,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,13211,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,13211,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,13212,0)
- ;;=H40.023^^80^754^84
- ;;^UTILITY(U,$J,358.3,13212,1,0)
+ ;;^UTILITY(U,$J,358.3,13469,1,3,0)
+ ;;=3^Malig Neop Liver,Primary
+ ;;^UTILITY(U,$J,358.3,13469,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,13469,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,13470,0)
+ ;;=C06.9^^53^593^140
+ ;;^UTILITY(U,$J,358.3,13470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13212,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,13212,1,4,0)
- ;;=4^H40.023
- ;;^UTILITY(U,$J,358.3,13212,2)
- ;;=^5005730
- ;;^UTILITY(U,$J,358.3,13213,0)
- ;;=H40.063^^80^754^108
- ;;^UTILITY(U,$J,358.3,13213,1,0)
+ ;;^UTILITY(U,$J,358.3,13470,1,3,0)
+ ;;=3^Malig Neop Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,13470,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,13470,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,13471,0)
+ ;;=C11.9^^53^593^141
+ ;;^UTILITY(U,$J,358.3,13471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13213,1,3,0)
- ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Bilateral
- ;;^UTILITY(U,$J,358.3,13213,1,4,0)
- ;;=4^H40.063
- ;;^UTILITY(U,$J,358.3,13213,2)
- ;;=^5005746
+ ;;^UTILITY(U,$J,358.3,13471,1,3,0)
+ ;;=3^Malig Neop Nasopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,13471,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,13471,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,13472,0)
+ ;;=C10.9^^53^593^144
+ ;;^UTILITY(U,$J,358.3,13472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13472,1,3,0)
+ ;;=3^Malig Neop Oropharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,13472,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,13472,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,13473,0)
+ ;;=C25.9^^53^593^145

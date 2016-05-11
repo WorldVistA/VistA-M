@@ -1,144 +1,136 @@
-IBDEI037 ; ; 19-NOV-2015
+IBDEI037 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,754,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,755,0)
- ;;=B00.9^^9^88^87
- ;;^UTILITY(U,$J,358.3,755,1,0)
+ ;;^UTILITY(U,$J,358.3,1048,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,1049,0)
+ ;;=R10.2^^6^109^20
+ ;;^UTILITY(U,$J,358.3,1049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,755,1,3,0)
- ;;=3^Herpesviral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,755,1,4,0)
- ;;=4^B00.9
- ;;^UTILITY(U,$J,358.3,755,2)
- ;;=^5000480
- ;;^UTILITY(U,$J,358.3,756,0)
- ;;=R49.0^^9^88^88
- ;;^UTILITY(U,$J,358.3,756,1,0)
+ ;;^UTILITY(U,$J,358.3,1049,1,3,0)
+ ;;=3^Pelvic & Perineal Pain
+ ;;^UTILITY(U,$J,358.3,1049,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,1049,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,1050,0)
+ ;;=Z51.5^^6^109^17
+ ;;^UTILITY(U,$J,358.3,1050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,756,1,3,0)
- ;;=3^Hoarseness
- ;;^UTILITY(U,$J,358.3,756,1,4,0)
- ;;=4^R49.0
- ;;^UTILITY(U,$J,358.3,756,2)
- ;;=^5019501
- ;;^UTILITY(U,$J,358.3,757,0)
- ;;=R06.4^^9^88^89
- ;;^UTILITY(U,$J,358.3,757,1,0)
+ ;;^UTILITY(U,$J,358.3,1050,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,1050,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,1050,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,1051,0)
+ ;;=Z95.3^^6^109^36
+ ;;^UTILITY(U,$J,358.3,1051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,757,1,3,0)
- ;;=3^Hyperventilation
- ;;^UTILITY(U,$J,358.3,757,1,4,0)
- ;;=4^R06.4
- ;;^UTILITY(U,$J,358.3,757,2)
- ;;=^5019186
- ;;^UTILITY(U,$J,358.3,758,0)
- ;;=R68.0^^9^88^90
- ;;^UTILITY(U,$J,358.3,758,1,0)
+ ;;^UTILITY(U,$J,358.3,1051,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,1051,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,1051,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,1052,0)
+ ;;=Z95.1^^6^109^35
+ ;;^UTILITY(U,$J,358.3,1052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,758,1,3,0)
- ;;=3^Hypothermia,Not Associated w/ Low Environmental Temperature
- ;;^UTILITY(U,$J,358.3,758,1,4,0)
- ;;=4^R68.0
- ;;^UTILITY(U,$J,358.3,758,2)
- ;;=^5019549
- ;;^UTILITY(U,$J,358.3,759,0)
- ;;=L50.1^^9^88^91
- ;;^UTILITY(U,$J,358.3,759,1,0)
+ ;;^UTILITY(U,$J,358.3,1052,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,1052,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,1052,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,1053,0)
+ ;;=Z98.89^^6^109^34
+ ;;^UTILITY(U,$J,358.3,1053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,759,1,3,0)
- ;;=3^Idiopathic Urticaria
- ;;^UTILITY(U,$J,358.3,759,1,4,0)
- ;;=4^L50.1
- ;;^UTILITY(U,$J,358.3,759,2)
- ;;=^271936
- ;;^UTILITY(U,$J,358.3,760,0)
- ;;=R53.81^^9^88^101
- ;;^UTILITY(U,$J,358.3,760,1,0)
+ ;;^UTILITY(U,$J,358.3,1053,1,3,0)
+ ;;=3^Postprocedural States,Other Specified
+ ;;^UTILITY(U,$J,358.3,1053,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,1053,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,1054,0)
+ ;;=I80.201^^6^109^25
+ ;;^UTILITY(U,$J,358.3,1054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,760,1,3,0)
- ;;=3^Malaise,Other
- ;;^UTILITY(U,$J,358.3,760,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,760,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,761,0)
- ;;=G43.809^^9^88^102
- ;;^UTILITY(U,$J,358.3,761,1,0)
+ ;;^UTILITY(U,$J,358.3,1054,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1054,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,1054,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,1055,0)
+ ;;=I80.202^^6^109^26
+ ;;^UTILITY(U,$J,358.3,1055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,761,1,3,0)
- ;;=3^Migraine,Not Intractable,w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,761,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,761,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,762,0)
- ;;=G43.909^^9^88^103
- ;;^UTILITY(U,$J,358.3,762,1,0)
+ ;;^UTILITY(U,$J,358.3,1055,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1055,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,1055,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,1056,0)
+ ;;=I80.203^^6^109^27
+ ;;^UTILITY(U,$J,358.3,1056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,762,1,3,0)
- ;;=3^Migraine,Unspec,Not Intractable w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,762,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,762,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,763,0)
- ;;=J45.20^^9^88^104
- ;;^UTILITY(U,$J,358.3,763,1,0)
+ ;;^UTILITY(U,$J,358.3,1056,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Bilateral Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1056,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,1056,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,1057,0)
+ ;;=K27.9^^6^109^21
+ ;;^UTILITY(U,$J,358.3,1057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,763,1,3,0)
- ;;=3^Mild Intermittent Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,763,1,4,0)
- ;;=4^J45.20
- ;;^UTILITY(U,$J,358.3,763,2)
- ;;=^5008242
- ;;^UTILITY(U,$J,358.3,764,0)
- ;;=I88.9^^9^88^105
- ;;^UTILITY(U,$J,358.3,764,1,0)
+ ;;^UTILITY(U,$J,358.3,1057,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,1057,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,1057,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,1058,0)
+ ;;=J31.0^^6^110^4
+ ;;^UTILITY(U,$J,358.3,1058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,764,1,3,0)
- ;;=3^Nonspec Lymphadenitis,Unspec
- ;;^UTILITY(U,$J,358.3,764,1,4,0)
- ;;=4^I88.9
- ;;^UTILITY(U,$J,358.3,764,2)
- ;;=^5008072
- ;;^UTILITY(U,$J,358.3,765,0)
- ;;=L29.9^^9^88^106
- ;;^UTILITY(U,$J,358.3,765,1,0)
+ ;;^UTILITY(U,$J,358.3,1058,1,3,0)
+ ;;=3^Rhinitis,Chronic
+ ;;^UTILITY(U,$J,358.3,1058,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,1058,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,1059,0)
+ ;;=M06.9^^6^110^3
+ ;;^UTILITY(U,$J,358.3,1059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,765,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,765,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,765,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,766,0)
- ;;=L71.9^^9^88^108
- ;;^UTILITY(U,$J,358.3,766,1,0)
+ ;;^UTILITY(U,$J,358.3,1059,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,1059,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,1059,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,1060,0)
+ ;;=M54.10^^6^110^1
+ ;;^UTILITY(U,$J,358.3,1060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,766,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,766,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,766,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,767,0)
- ;;=R55.^^9^88^111
- ;;^UTILITY(U,$J,358.3,767,1,0)
+ ;;^UTILITY(U,$J,358.3,1060,1,3,0)
+ ;;=3^Radiculopathy,Site Unspec
+ ;;^UTILITY(U,$J,358.3,1060,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,1060,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,1061,0)
+ ;;=R21.^^6^110^2
+ ;;^UTILITY(U,$J,358.3,1061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,767,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,767,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,767,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,768,0)
- ;;=L50.2^^9^88^112
- ;;^UTILITY(U,$J,358.3,768,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,768,1,3,0)
- ;;=3^Urticaria d/t Cold & Heat
- ;;^UTILITY(U,$J,358.3,768,1,4,0)
- ;;=4^L50.2
+ ;;^UTILITY(U,$J,358.3,1061,1,3,0)
+ ;;=3^Rash & Oth Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,1061,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,1061,2)
+ ;;=^5019283

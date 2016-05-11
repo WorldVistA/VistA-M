@@ -1,5 +1,5 @@
-ORCMEDT4 ;SLC/MKB-Prompt Editor ;6/19/01  15:05
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245,313**;Dec 17, 1997;Build 12
+ORCMEDT4 ;SLC/MKB-Prompt Editor ;04/01/15  13:32
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**8,46,95,245,313,389**;Dec 17, 1997;Build 17
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 EN ; -- Enter/edit prompts
  N PRMT F  S PRMT=+$$PROMPT Q:PRMT'>0  D  W !
@@ -41,8 +41,9 @@ NM I $L($P($G(^ORD(101.41,IFN,0)),U,3))>0 W !,!,"(This "_$$GETITM(IFN)_" has bee
  I X="@" D  G NM:X=""
  . I $D(^ORD(101.41,"AD",IFN)) W $C(7),!,"Cannot delete - currently in use!",! S X="" Q
  . I $$INUSE^ORCMEDT5(IFN) W $C(7),!,"Cannot delete - currently an Add Orders Menu!",! S X="" Q
+ . S NODELETE=$$PTRCHK(IFN,"ORDLG PTRS") I NODELETE W $C(7),!,"Cannot delete - other file entries point to this order dialog!",! D PTRRPT("ORDLG PTRS",IFN)
  . I NODELETE D DISABLE(IFN) S X="" Q
- . I '$$SURE(IFN) S X="" Q  ;reask       
+ . I '$$SURE(IFN) S X="" Q  ;reask
  . N IDX1,IDX2 S IDX1=0
  . F  S IDX1=$O(^ORD(101.44,"C",IFN,IDX1)) Q:'IDX1  D
  . . S IDX2=0
@@ -51,6 +52,7 @@ NM I $L($P($G(^ORD(101.41,IFN,0)),U,3))>0 W !,!,"(This "_$$GETITM(IFN)_" has bee
  . K DA S DA=IFN,DIK="^ORD(101.41," D ^DIK W "  ...deleted." S (X,Y)="@"
  I ISPQO,Y'="^",X'="@",Y'=OLDNAME D  G NM
  . W $C(7),!,"Cannot rename a personal quick order",!
+ K ^TMP($J,"ORDLG PTRS")
  Q Y
  ;
 GETITM(DLG) ;
@@ -70,7 +72,7 @@ SURE(DLG) ; -- Are you sure?
  ;
 DISABLE(DLG) ; Disable item - return true if disabled
  N DIR,X,Y,ITM,DA,DR,DIE,DIDEL,DISABLED
- W $C(7),!,!,"Deletion not allowed outside of FileMan."
+ ;W $C(7),!,!,"Deletion not allowed outside of FileMan."
  S ITM=$$GETITM(DLG)
  S DISABLED=$L($P($G(^ORD(101.41,IFN,0)),U,3))>0
  S DIR(0)="YA"
@@ -199,3 +201,46 @@ FILENAME(FNUM) ; -- Returns name of file FNUM
  N ORY,Y D:$G(FNUM) FILE^DID(+FNUM,,"NAME","ORY")
  S Y=$G(ORY("NAME"))
  Q Y
+PTRCHK(DLG,ARRNAME) ; --check for pointers to order dialog
+ K ^TMP($J,ARRNAME)
+ N AREPTRS,INC S AREPTRS=0
+ I +$G(DLG) D
+ .D OR100(DLG,ARRNAME)
+ .D ORD10098(DLG,ARRNAME)
+ .D PTR80141^ORQQPXRM(DLG_";ORD(101.41,",ARRNAME)
+ S AREPTRS=$D(^TMP($J,ARRNAME))
+ Q +AREPTRS
+PTRRPT(ARRNAME,ORIFN) ; --show list of pointers to order dialog
+ N FILENUM,ITEMIEN,IEN,TAB,ITEM S FILENUM="",ITEMIEN="",IEN=""
+ W !,$P(^ORD(101.41,ORIFN,0),U)_" is pointed to by:"
+ W !,"FILE #",?10,"IEN",?20,"NAME"
+ W !,$$REPEAT^XLFSTR("-",24)
+ F FILENUM=100,100.98,801.41 D
+ .I $D(^TMP($J,ARRNAME,FILENUM)) D
+ ..F  S ITEMIEN=$O(^TMP($J,ARRNAME,FILENUM,ITEMIEN)) Q:ITEMIEN=""  D
+ ...S ITEM=^TMP($J,ARRNAME,FILENUM,ITEMIEN)
+ ...W !,FILENUM,?10,ITEMIEN
+ ...W ?20,$S(FILENUM=100:"N/A",1:ITEM),!
+ Q
+OR100(DLG,ARR) ;100
+ N ORIFN,TEMP
+ S TEMP=DLG_";ORD(101.41,",ORIFN=""
+ I $D(^OR(100,"C",TEMP)) D
+ .F  S ORIFN=$O(^OR(100,"C",TEMP,ORIFN)) Q:ORIFN=""  D
+ ..I $P(^OR(100,ORIFN,0),U,5)=TEMP D  ;if DIALOG has pointer to order dialog
+ ...S ^TMP($J,ARR,100,ORIFN)=$P(^OR(100,ORIFN,0),U,5)
+ I $D(^OR(100,"D",TEMP)) D
+ .F  S ORIFN=$O(^OR(100,"D",TEMP,ORIFN)) Q:ORIFN=""  D
+ ..I $P(^OR(100,ORIFN,3),U,4)=TEMP D  ;if ITEM ORDERED has pointer to order dialog
+ ...S ^TMP($J,ARR,100,ORIFN)=$P(^OR(100,ORIFN,3),U,4)
+ Q
+ ;
+ORD10098(DLG,ARR) ;100.98
+ N DISGRP,DISIEN S DISGRP="",DISIEN=""
+ F  S DISGRP=$O(^ORD(100.98,"B",DISGRP)) Q:DISGRP=""  D
+ .F  S DISIEN=$O(^ORD(100.98,"B",DISGRP,DISIEN)) Q:DISIEN=""  D
+ ..Q:^ORD(100.98,"B",DISGRP,DISIEN)=1  ;second B x-ref entry for SHORT NAME, Q to avoid duplicates in results
+ ..I $P(^ORD(100.98,DISIEN,0),U,4)=DLG D  ;if DEFAULT DIALOG has pointer to order dialog
+ ...S ^TMP($J,ARR,100.98,DISIEN)=$P(^ORD(100.98,DISIEN,0),U)
+ Q
+ ;

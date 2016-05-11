@@ -1,140 +1,128 @@
-IBDEI03U ; ; 19-NOV-2015
+IBDEI03U ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1090,0)
- ;;=G47.00^^12^127^13
- ;;^UTILITY(U,$J,358.3,1090,1,0)
+ ;;^UTILITY(U,$J,358.3,1368,2)
+ ;;=^5020573
+ ;;^UTILITY(U,$J,358.3,1369,0)
+ ;;=R49.8^^8^135^92
+ ;;^UTILITY(U,$J,358.3,1369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1090,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,1090,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,1090,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,1091,0)
- ;;=T81.4XXA^^12^127^7
- ;;^UTILITY(U,$J,358.3,1091,1,0)
+ ;;^UTILITY(U,$J,358.3,1369,1,3,0)
+ ;;=3^Voice and Resonance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,1369,1,4,0)
+ ;;=4^R49.8
+ ;;^UTILITY(U,$J,358.3,1369,2)
+ ;;=^5019505
+ ;;^UTILITY(U,$J,358.3,1370,0)
+ ;;=T36.5X1A^^8^135^19
+ ;;^UTILITY(U,$J,358.3,1370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1091,1,3,0)
- ;;=3^Infection Following Procedure,Initial Encounter
- ;;^UTILITY(U,$J,358.3,1091,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,1091,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,1092,0)
- ;;=K40.90^^12^127^12
- ;;^UTILITY(U,$J,358.3,1092,1,0)
+ ;;^UTILITY(U,$J,358.3,1370,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, accidental, init
+ ;;^UTILITY(U,$J,358.3,1370,1,4,0)
+ ;;=4^T36.5X1A
+ ;;^UTILITY(U,$J,358.3,1370,2)
+ ;;=^5049346
+ ;;^UTILITY(U,$J,358.3,1371,0)
+ ;;=T36.5X1D^^8^135^20
+ ;;^UTILITY(U,$J,358.3,1371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1092,1,3,0)
- ;;=3^Inguinal Hernia,Unil w/o Obst/Gangr
- ;;^UTILITY(U,$J,358.3,1092,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,1092,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,1093,0)
- ;;=K40.20^^12^127^11
- ;;^UTILITY(U,$J,358.3,1093,1,0)
+ ;;^UTILITY(U,$J,358.3,1371,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, accidental, subs
+ ;;^UTILITY(U,$J,358.3,1371,1,4,0)
+ ;;=4^T36.5X1D
+ ;;^UTILITY(U,$J,358.3,1371,2)
+ ;;=^5049347
+ ;;^UTILITY(U,$J,358.3,1372,0)
+ ;;=T36.5X1S^^8^135^21
+ ;;^UTILITY(U,$J,358.3,1372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1093,1,3,0)
- ;;=3^Inguinal Hernia,Bilat w/o Obst/Gangr
- ;;^UTILITY(U,$J,358.3,1093,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,1093,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,1094,0)
- ;;=K43.2^^12^127^6
- ;;^UTILITY(U,$J,358.3,1094,1,0)
+ ;;^UTILITY(U,$J,358.3,1372,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,1372,1,4,0)
+ ;;=4^T36.5X1S
+ ;;^UTILITY(U,$J,358.3,1372,2)
+ ;;=^5049348
+ ;;^UTILITY(U,$J,358.3,1373,0)
+ ;;=T36.5X3A^^8^135^22
+ ;;^UTILITY(U,$J,358.3,1373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1094,1,3,0)
- ;;=3^Incisional Hernia w/o Obst/Gangr
- ;;^UTILITY(U,$J,358.3,1094,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,1094,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,1095,0)
- ;;=K75.9^^12^127^8
- ;;^UTILITY(U,$J,358.3,1095,1,0)
+ ;;^UTILITY(U,$J,358.3,1373,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, assault, initial encounter
+ ;;^UTILITY(U,$J,358.3,1373,1,4,0)
+ ;;=4^T36.5X3A
+ ;;^UTILITY(U,$J,358.3,1373,2)
+ ;;=^5049352
+ ;;^UTILITY(U,$J,358.3,1374,0)
+ ;;=T36.5X3D^^8^135^23
+ ;;^UTILITY(U,$J,358.3,1374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1095,1,3,0)
- ;;=3^Inflammatory Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,1095,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,1095,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,1096,0)
- ;;=M51.9^^12^127^14
- ;;^UTILITY(U,$J,358.3,1096,1,0)
+ ;;^UTILITY(U,$J,358.3,1374,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, assault, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1374,1,4,0)
+ ;;=4^T36.5X3D
+ ;;^UTILITY(U,$J,358.3,1374,2)
+ ;;=^5049353
+ ;;^UTILITY(U,$J,358.3,1375,0)
+ ;;=T36.5X3S^^8^135^24
+ ;;^UTILITY(U,$J,358.3,1375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1096,1,3,0)
- ;;=3^Intervertebral Disc Disorder Thoracic,Thoracolumbar & Lumbar
- ;;^UTILITY(U,$J,358.3,1096,1,4,0)
- ;;=4^M51.9
- ;;^UTILITY(U,$J,358.3,1096,2)
- ;;=^5012263
- ;;^UTILITY(U,$J,358.3,1097,0)
- ;;=I30.0^^12^127^2
- ;;^UTILITY(U,$J,358.3,1097,1,0)
+ ;;^UTILITY(U,$J,358.3,1375,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, assault, sequela
+ ;;^UTILITY(U,$J,358.3,1375,1,4,0)
+ ;;=4^T36.5X3S
+ ;;^UTILITY(U,$J,358.3,1375,2)
+ ;;=^5049354
+ ;;^UTILITY(U,$J,358.3,1376,0)
+ ;;=T36.5X2A^^8^135^25
+ ;;^UTILITY(U,$J,358.3,1376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1097,1,3,0)
- ;;=3^Idiopathic Pericarditis Acute
- ;;^UTILITY(U,$J,358.3,1097,1,4,0)
- ;;=4^I30.0
- ;;^UTILITY(U,$J,358.3,1097,2)
- ;;=^5007157
- ;;^UTILITY(U,$J,358.3,1098,0)
- ;;=N18.9^^12^128^3
- ;;^UTILITY(U,$J,358.3,1098,1,0)
+ ;;^UTILITY(U,$J,358.3,1376,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, intentional self-harm, init
+ ;;^UTILITY(U,$J,358.3,1376,1,4,0)
+ ;;=4^T36.5X2A
+ ;;^UTILITY(U,$J,358.3,1376,2)
+ ;;=^5049349
+ ;;^UTILITY(U,$J,358.3,1377,0)
+ ;;=T36.5X2D^^8^135^26
+ ;;^UTILITY(U,$J,358.3,1377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1098,1,3,0)
- ;;=3^Kidney Disease,Chr,Unspec
- ;;^UTILITY(U,$J,358.3,1098,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,1098,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,1099,0)
- ;;=J04.0^^12^128^6
- ;;^UTILITY(U,$J,358.3,1099,1,0)
+ ;;^UTILITY(U,$J,358.3,1377,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, intentional self-harm, subs
+ ;;^UTILITY(U,$J,358.3,1377,1,4,0)
+ ;;=4^T36.5X2D
+ ;;^UTILITY(U,$J,358.3,1377,2)
+ ;;=^5049350
+ ;;^UTILITY(U,$J,358.3,1378,0)
+ ;;=T36.5X2S^^8^135^27
+ ;;^UTILITY(U,$J,358.3,1378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1099,1,3,0)
- ;;=3^Laryngitis,Acute
- ;;^UTILITY(U,$J,358.3,1099,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,1099,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,1100,0)
- ;;=J05.0^^12^128^7
- ;;^UTILITY(U,$J,358.3,1100,1,0)
+ ;;^UTILITY(U,$J,358.3,1378,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, intentional self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,1378,1,4,0)
+ ;;=4^T36.5X2S
+ ;;^UTILITY(U,$J,358.3,1378,2)
+ ;;=^5049351
+ ;;^UTILITY(U,$J,358.3,1379,0)
+ ;;=T36.5X4A^^8^135^28
+ ;;^UTILITY(U,$J,358.3,1379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1100,1,3,0)
- ;;=3^Laryngitis,Acute Obstructive (Croup)
- ;;^UTILITY(U,$J,358.3,1100,1,4,0)
- ;;=4^J05.0
- ;;^UTILITY(U,$J,358.3,1100,2)
- ;;=^5008141
- ;;^UTILITY(U,$J,358.3,1101,0)
- ;;=R17.^^12^128^1
- ;;^UTILITY(U,$J,358.3,1101,1,0)
+ ;;^UTILITY(U,$J,358.3,1379,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, undetermined, init encntr
+ ;;^UTILITY(U,$J,358.3,1379,1,4,0)
+ ;;=4^T36.5X4A
+ ;;^UTILITY(U,$J,358.3,1379,2)
+ ;;=^5049355
+ ;;^UTILITY(U,$J,358.3,1380,0)
+ ;;=T36.5X4D^^8^135^29
+ ;;^UTILITY(U,$J,358.3,1380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1101,1,3,0)
- ;;=3^Jaundice,Unspec
- ;;^UTILITY(U,$J,358.3,1101,1,4,0)
- ;;=4^R17.
- ;;^UTILITY(U,$J,358.3,1101,2)
- ;;=^5019251
- ;;^UTILITY(U,$J,358.3,1102,0)
- ;;=N17.9^^12^128^4
- ;;^UTILITY(U,$J,358.3,1102,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1102,1,3,0)
- ;;=3^Kidney Failure,Acute
- ;;^UTILITY(U,$J,358.3,1102,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,1102,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,1103,0)
- ;;=N18.9^^12^128^5
- ;;^UTILITY(U,$J,358.3,1103,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1103,1,3,0)
- ;;=3^Kidney Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,1380,1,3,0)
+ ;;=3^Poisoning by aminoglycosides, undetermined, subs encntr
+ ;;^UTILITY(U,$J,358.3,1380,1,4,0)
+ ;;=4^T36.5X4D
+ ;;^UTILITY(U,$J,358.3,1380,2)
+ ;;=^5049356
+ ;;^UTILITY(U,$J,358.3,1381,0)
+ ;;=T36.5X4S^^8^135^30

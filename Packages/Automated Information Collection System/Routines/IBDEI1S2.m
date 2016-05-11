@@ -1,130 +1,128 @@
-IBDEI1S2 ; ; 19-NOV-2015
+IBDEI1S2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29759,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,29760,0)
- ;;=F52.22^^135^1368^93
- ;;^UTILITY(U,$J,358.3,29760,1,0)
+ ;;^UTILITY(U,$J,358.3,30209,0)
+ ;;=C94.41^^118^1502^6
+ ;;^UTILITY(U,$J,358.3,30209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29760,1,3,0)
- ;;=3^Sexual Arousal Disorder,Female
- ;;^UTILITY(U,$J,358.3,29760,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,29760,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,29761,0)
- ;;=F52.8^^135^1368^94
- ;;^UTILITY(U,$J,358.3,29761,1,0)
+ ;;^UTILITY(U,$J,358.3,30209,1,3,0)
+ ;;=3^Acute panmyelosis with myelofibrosis, in remission
+ ;;^UTILITY(U,$J,358.3,30209,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,30209,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,30210,0)
+ ;;=C94.40^^118^1502^4
+ ;;^UTILITY(U,$J,358.3,30210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29761,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
- ;;^UTILITY(U,$J,358.3,29761,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,29761,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,29762,0)
- ;;=F52.21^^135^1368^33
- ;;^UTILITY(U,$J,358.3,29762,1,0)
+ ;;^UTILITY(U,$J,358.3,30210,1,3,0)
+ ;;=3^Acute panmyelosis w myelofibrosis not achieve remission
+ ;;^UTILITY(U,$J,358.3,30210,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,30210,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,30211,0)
+ ;;=D47.2^^118^1502^55
+ ;;^UTILITY(U,$J,358.3,30211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29762,1,3,0)
- ;;=3^Erectile Disorder,Male (Psychogenic)
- ;;^UTILITY(U,$J,358.3,29762,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,29762,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,29763,0)
- ;;=I12.9^^135^1368^55
- ;;^UTILITY(U,$J,358.3,29763,1,0)
+ ;;^UTILITY(U,$J,358.3,30211,1,3,0)
+ ;;=3^Monoclonal gammopathy
+ ;;^UTILITY(U,$J,358.3,30211,1,4,0)
+ ;;=4^D47.2
+ ;;^UTILITY(U,$J,358.3,30211,2)
+ ;;=^5002257
+ ;;^UTILITY(U,$J,358.3,30212,0)
+ ;;=C88.0^^118^1502^76
+ ;;^UTILITY(U,$J,358.3,30212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29763,1,3,0)
- ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
- ;;^UTILITY(U,$J,358.3,29763,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,29763,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,29764,0)
- ;;=N04.9^^135^1368^69
- ;;^UTILITY(U,$J,358.3,29764,1,0)
+ ;;^UTILITY(U,$J,358.3,30212,1,3,0)
+ ;;=3^Waldenstrom macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,30212,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,30212,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,30213,0)
+ ;;=C81.70^^118^1502^41
+ ;;^UTILITY(U,$J,358.3,30213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29764,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,29764,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,29764,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,29765,0)
- ;;=N02.9^^135^1368^50
- ;;^UTILITY(U,$J,358.3,29765,1,0)
+ ;;^UTILITY(U,$J,358.3,30213,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Classical,Unspec Site NEC
+ ;;^UTILITY(U,$J,358.3,30213,1,4,0)
+ ;;=4^C81.70
+ ;;^UTILITY(U,$J,358.3,30213,2)
+ ;;=^5001441
+ ;;^UTILITY(U,$J,358.3,30214,0)
+ ;;=C81.79^^118^1502^40
+ ;;^UTILITY(U,$J,358.3,30214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29765,1,3,0)
- ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
- ;;^UTILITY(U,$J,358.3,29765,1,4,0)
- ;;=4^N02.9
- ;;^UTILITY(U,$J,358.3,29765,2)
- ;;=^5015520
- ;;^UTILITY(U,$J,358.3,29766,0)
- ;;=N06.9^^135^1368^86
- ;;^UTILITY(U,$J,358.3,29766,1,0)
+ ;;^UTILITY(U,$J,358.3,30214,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Classical,Extrnod/Solid Organ Sites NEC
+ ;;^UTILITY(U,$J,358.3,30214,1,4,0)
+ ;;=4^C81.79
+ ;;^UTILITY(U,$J,358.3,30214,2)
+ ;;=^5001450
+ ;;^UTILITY(U,$J,358.3,30215,0)
+ ;;=C82.50^^118^1502^20
+ ;;^UTILITY(U,$J,358.3,30215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29766,1,3,0)
- ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
- ;;^UTILITY(U,$J,358.3,29766,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,29766,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,29767,0)
- ;;=N05.9^^135^1368^66
- ;;^UTILITY(U,$J,358.3,29767,1,0)
+ ;;^UTILITY(U,$J,358.3,30215,1,3,0)
+ ;;=3^Diffuse Follicle Center Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30215,1,4,0)
+ ;;=4^C82.50
+ ;;^UTILITY(U,$J,358.3,30215,2)
+ ;;=^5001511
+ ;;^UTILITY(U,$J,358.3,30216,0)
+ ;;=C82.59^^118^1502^19
+ ;;^UTILITY(U,$J,358.3,30216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29767,1,3,0)
- ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,29767,1,4,0)
- ;;=4^N05.9
- ;;^UTILITY(U,$J,358.3,29767,2)
- ;;=^5134086
- ;;^UTILITY(U,$J,358.3,29768,0)
- ;;=N07.9^^135^1368^68
- ;;^UTILITY(U,$J,358.3,29768,1,0)
+ ;;^UTILITY(U,$J,358.3,30216,1,3,0)
+ ;;=3^Diffuse Follicle Center Lymphoma,Extrnod/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,30216,1,4,0)
+ ;;=4^C82.59
+ ;;^UTILITY(U,$J,358.3,30216,2)
+ ;;=^5001520
+ ;;^UTILITY(U,$J,358.3,30217,0)
+ ;;=C82.80^^118^1502^24
+ ;;^UTILITY(U,$J,358.3,30217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29768,1,3,0)
- ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
- ;;^UTILITY(U,$J,358.3,29768,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,29768,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,29769,0)
- ;;=N15.9^^135^1368^92
- ;;^UTILITY(U,$J,358.3,29769,1,0)
+ ;;^UTILITY(U,$J,358.3,30217,1,3,0)
+ ;;=3^Follicular Lymphoma,Unspec Site NEC
+ ;;^UTILITY(U,$J,358.3,30217,1,4,0)
+ ;;=4^C82.80
+ ;;^UTILITY(U,$J,358.3,30217,2)
+ ;;=^5001531
+ ;;^UTILITY(U,$J,358.3,30218,0)
+ ;;=C82.89^^118^1502^23
+ ;;^UTILITY(U,$J,358.3,30218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29769,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,29769,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,29769,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,29770,0)
- ;;=N17.9^^135^1368^61
- ;;^UTILITY(U,$J,358.3,29770,1,0)
+ ;;^UTILITY(U,$J,358.3,30218,1,3,0)
+ ;;=3^Follicular Lymphoma,Extrnod/Solid Organ Sites NEC
+ ;;^UTILITY(U,$J,358.3,30218,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,30218,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,30219,0)
+ ;;=C83.00^^118^1502^75
+ ;;^UTILITY(U,$J,358.3,30219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29770,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,29770,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,29770,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,29771,0)
- ;;=N19.^^135^1368^62
- ;;^UTILITY(U,$J,358.3,29771,1,0)
+ ;;^UTILITY(U,$J,358.3,30219,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,30219,1,4,0)
+ ;;=4^C83.00
+ ;;^UTILITY(U,$J,358.3,30219,2)
+ ;;=^5001551
+ ;;^UTILITY(U,$J,358.3,30220,0)
+ ;;=C83.09^^118^1502^74
+ ;;^UTILITY(U,$J,358.3,30220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29771,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,29771,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,29771,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,29772,0)
- ;;=N11.0^^135^1368^90
- ;;^UTILITY(U,$J,358.3,29772,1,0)
+ ;;^UTILITY(U,$J,358.3,30220,1,3,0)
+ ;;=3^Small Cell B-Cell Lymphoma,Extrnod/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,30220,1,4,0)
+ ;;=4^C83.09
+ ;;^UTILITY(U,$J,358.3,30220,2)
+ ;;=^5001560
+ ;;^UTILITY(U,$J,358.3,30221,0)
+ ;;=C83.30^^118^1502^21
+ ;;^UTILITY(U,$J,358.3,30221,1,0)
  ;;=^358.31IA^4^2

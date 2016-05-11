@@ -1,122 +1,138 @@
-IBDEI1HS ; ; 19-NOV-2015
+IBDEI1HS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24955,1,4,0)
- ;;=4^T82.590A
- ;;^UTILITY(U,$J,358.3,24955,2)
- ;;=^5054884
- ;;^UTILITY(U,$J,358.3,24956,0)
- ;;=T82.591A^^124^1239^154
- ;;^UTILITY(U,$J,358.3,24956,1,0)
+ ;;^UTILITY(U,$J,358.3,25325,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,25325,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,25326,0)
+ ;;=F07.0^^95^1152^4
+ ;;^UTILITY(U,$J,358.3,25326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24956,1,3,0)
- ;;=3^Mechanical Compl of Surgically Created AV Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,24956,1,4,0)
- ;;=4^T82.591A
- ;;^UTILITY(U,$J,358.3,24956,2)
- ;;=^5054887
- ;;^UTILITY(U,$J,358.3,24957,0)
- ;;=T82.593A^^124^1239^138
- ;;^UTILITY(U,$J,358.3,24957,1,0)
+ ;;^UTILITY(U,$J,358.3,25326,1,3,0)
+ ;;=3^Personality Change d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,25326,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,25326,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,25327,0)
+ ;;=Z91.49^^95^1153^12
+ ;;^UTILITY(U,$J,358.3,25327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24957,1,3,0)
- ;;=3^Mechanical Compl of Balloon Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,24957,1,4,0)
- ;;=4^T82.593A
- ;;^UTILITY(U,$J,358.3,24957,2)
- ;;=^5054893
- ;;^UTILITY(U,$J,358.3,24958,0)
- ;;=T82.595A^^124^1239^155
- ;;^UTILITY(U,$J,358.3,24958,1,0)
+ ;;^UTILITY(U,$J,358.3,25327,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,25327,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,25327,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,25328,0)
+ ;;=Z91.5^^95^1153^13
+ ;;^UTILITY(U,$J,358.3,25328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24958,1,3,0)
- ;;=3^Mechanical Compl of Umbrella Device,Init Encntr
- ;;^UTILITY(U,$J,358.3,24958,1,4,0)
- ;;=4^T82.595A
- ;;^UTILITY(U,$J,358.3,24958,2)
- ;;=^5054899
- ;;^UTILITY(U,$J,358.3,24959,0)
- ;;=T82.599A^^124^1239^140
- ;;^UTILITY(U,$J,358.3,24959,1,0)
+ ;;^UTILITY(U,$J,358.3,25328,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,25328,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,25328,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,25329,0)
+ ;;=Z91.82^^95^1153^11
+ ;;^UTILITY(U,$J,358.3,25329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24959,1,3,0)
- ;;=3^Mechanical Compl of Cardiac/Vascular Device/Implant Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,24959,1,4,0)
- ;;=4^T82.599A
- ;;^UTILITY(U,$J,358.3,24959,2)
- ;;=^5054905
- ;;^UTILITY(U,$J,358.3,24960,0)
- ;;=T85.01XA^^124^1239^19
- ;;^UTILITY(U,$J,358.3,24960,1,0)
+ ;;^UTILITY(U,$J,358.3,25329,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,25329,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,25329,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,25330,0)
+ ;;=Z91.89^^95^1153^14
+ ;;^UTILITY(U,$J,358.3,25330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24960,1,3,0)
- ;;=3^Breakdown of Ventricular Intracranial Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,24960,1,4,0)
- ;;=4^T85.01XA
- ;;^UTILITY(U,$J,358.3,24960,2)
- ;;=^5055478
- ;;^UTILITY(U,$J,358.3,24961,0)
- ;;=T85.02XA^^124^1239^48
- ;;^UTILITY(U,$J,358.3,24961,1,0)
+ ;;^UTILITY(U,$J,358.3,25330,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,25330,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,25330,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,25331,0)
+ ;;=Z72.9^^95^1153^15
+ ;;^UTILITY(U,$J,358.3,25331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24961,1,3,0)
- ;;=3^Displacement of Ventricular Intracranial Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,24961,1,4,0)
- ;;=4^T85.02XA
- ;;^UTILITY(U,$J,358.3,24961,2)
- ;;=^5055481
- ;;^UTILITY(U,$J,358.3,24962,0)
- ;;=T85.03XA^^124^1239^136
- ;;^UTILITY(U,$J,358.3,24962,1,0)
+ ;;^UTILITY(U,$J,358.3,25331,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,25331,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,25331,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,25332,0)
+ ;;=Z72.811^^95^1153^1
+ ;;^UTILITY(U,$J,358.3,25332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24962,1,3,0)
- ;;=3^Leakage of Ventricular Intracranial Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,24962,1,4,0)
- ;;=4^T85.03XA
- ;;^UTILITY(U,$J,358.3,24962,2)
- ;;=^5055484
- ;;^UTILITY(U,$J,358.3,24963,0)
- ;;=T85.09XA^^124^1239^157
- ;;^UTILITY(U,$J,358.3,24963,1,0)
+ ;;^UTILITY(U,$J,358.3,25332,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,25332,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,25332,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,25333,0)
+ ;;=Z91.19^^95^1153^5
+ ;;^UTILITY(U,$J,358.3,25333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24963,1,3,0)
- ;;=3^Mechanical Compl of Ventricular Intracranial Shunt,Init Encntr
- ;;^UTILITY(U,$J,358.3,24963,1,4,0)
- ;;=4^T85.09XA
- ;;^UTILITY(U,$J,358.3,24963,2)
- ;;=^5055487
- ;;^UTILITY(U,$J,358.3,24964,0)
- ;;=T85.110A^^124^1239^9
- ;;^UTILITY(U,$J,358.3,24964,1,0)
+ ;;^UTILITY(U,$J,358.3,25333,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,25333,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,25333,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,25334,0)
+ ;;=E66.9^^95^1153^6
+ ;;^UTILITY(U,$J,358.3,25334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24964,1,3,0)
- ;;=3^Breakdown of Implanted Electronic Neurostim of Brain,Init Encntr
- ;;^UTILITY(U,$J,358.3,24964,1,4,0)
- ;;=4^T85.110A
- ;;^UTILITY(U,$J,358.3,24964,2)
- ;;=^5055490
- ;;^UTILITY(U,$J,358.3,24965,0)
- ;;=T85.111A^^124^1239^10
- ;;^UTILITY(U,$J,358.3,24965,1,0)
+ ;;^UTILITY(U,$J,358.3,25334,1,3,0)
+ ;;=3^Obesity
+ ;;^UTILITY(U,$J,358.3,25334,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,25334,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,25335,0)
+ ;;=Z76.5^^95^1153^3
+ ;;^UTILITY(U,$J,358.3,25335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24965,1,3,0)
- ;;=3^Breakdown of Implanted Electronic Neurostim of Periph Nrv,Init Encntr
- ;;^UTILITY(U,$J,358.3,24965,1,4,0)
- ;;=4^T85.111A
- ;;^UTILITY(U,$J,358.3,24965,2)
- ;;=^5055493
- ;;^UTILITY(U,$J,358.3,24966,0)
- ;;=T85.112A^^124^1239^11
- ;;^UTILITY(U,$J,358.3,24966,1,0)
+ ;;^UTILITY(U,$J,358.3,25335,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,25335,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,25335,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,25336,0)
+ ;;=R41.83^^95^1153^2
+ ;;^UTILITY(U,$J,358.3,25336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24966,1,3,0)
- ;;=3^Breakdown of Implanted Electronic Neurostim of Spinal Cord,Init Encntr
- ;;^UTILITY(U,$J,358.3,24966,1,4,0)
- ;;=4^T85.112A
- ;;^UTILITY(U,$J,358.3,24966,2)
- ;;=^5055496
- ;;^UTILITY(U,$J,358.3,24967,0)
- ;;=T85.118A^^124^1239^12
- ;;^UTILITY(U,$J,358.3,24967,1,0)
+ ;;^UTILITY(U,$J,358.3,25336,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,25336,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,25336,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,25337,0)
+ ;;=Z56.82^^95^1153^4
+ ;;^UTILITY(U,$J,358.3,25337,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25337,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,25337,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,25337,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,25338,0)
+ ;;=E66.3^^95^1153^7
+ ;;^UTILITY(U,$J,358.3,25338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25338,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,25338,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,25338,2)
+ ;;=^5002830

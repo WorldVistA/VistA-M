@@ -1,126 +1,126 @@
-IBDEI0TP ; ; 19-NOV-2015
+IBDEI0TP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13662,1,0)
+ ;;^UTILITY(U,$J,358.3,13927,1,4,0)
+ ;;=4^M45.8
+ ;;^UTILITY(U,$J,358.3,13927,2)
+ ;;=^5011968
+ ;;^UTILITY(U,$J,358.3,13928,0)
+ ;;=M47.22^^53^599^172
+ ;;^UTILITY(U,$J,358.3,13928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13662,1,3,0)
- ;;=3^Tributary Retinal Vein Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,13662,1,4,0)
- ;;=4^H34.832
- ;;^UTILITY(U,$J,358.3,13662,2)
- ;;=^5005577
- ;;^UTILITY(U,$J,358.3,13663,0)
- ;;=H34.833^^80^763^110
- ;;^UTILITY(U,$J,358.3,13663,1,0)
+ ;;^UTILITY(U,$J,358.3,13928,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
+ ;;^UTILITY(U,$J,358.3,13928,1,4,0)
+ ;;=4^M47.22
+ ;;^UTILITY(U,$J,358.3,13928,2)
+ ;;=^5012061
+ ;;^UTILITY(U,$J,358.3,13929,0)
+ ;;=M47.24^^53^599^174
+ ;;^UTILITY(U,$J,358.3,13929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13663,1,3,0)
- ;;=3^Tributary Retinal Vein Occlusion,Bilateral
- ;;^UTILITY(U,$J,358.3,13663,1,4,0)
- ;;=4^H34.833
- ;;^UTILITY(U,$J,358.3,13663,2)
- ;;=^5005578
- ;;^UTILITY(U,$J,358.3,13664,0)
- ;;=H35.711^^80^763^14
- ;;^UTILITY(U,$J,358.3,13664,1,0)
+ ;;^UTILITY(U,$J,358.3,13929,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
+ ;;^UTILITY(U,$J,358.3,13929,1,4,0)
+ ;;=4^M47.24
+ ;;^UTILITY(U,$J,358.3,13929,2)
+ ;;=^5012063
+ ;;^UTILITY(U,$J,358.3,13930,0)
+ ;;=M47.27^^53^599^173
+ ;;^UTILITY(U,$J,358.3,13930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13664,1,3,0)
- ;;=3^Central Serouos Chorioretinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,13664,1,4,0)
- ;;=4^H35.711
- ;;^UTILITY(U,$J,358.3,13664,2)
- ;;=^5005703
- ;;^UTILITY(U,$J,358.3,13665,0)
- ;;=H35.712^^80^763^13
- ;;^UTILITY(U,$J,358.3,13665,1,0)
+ ;;^UTILITY(U,$J,358.3,13930,1,3,0)
+ ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
+ ;;^UTILITY(U,$J,358.3,13930,1,4,0)
+ ;;=4^M47.27
+ ;;^UTILITY(U,$J,358.3,13930,2)
+ ;;=^5012066
+ ;;^UTILITY(U,$J,358.3,13931,0)
+ ;;=M47.812^^53^599^169
+ ;;^UTILITY(U,$J,358.3,13931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13665,1,3,0)
- ;;=3^Central Serouos Chorioretinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,13665,1,4,0)
- ;;=4^H35.712
- ;;^UTILITY(U,$J,358.3,13665,2)
- ;;=^5005704
- ;;^UTILITY(U,$J,358.3,13666,0)
- ;;=H35.713^^80^763^12
- ;;^UTILITY(U,$J,358.3,13666,1,0)
+ ;;^UTILITY(U,$J,358.3,13931,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
+ ;;^UTILITY(U,$J,358.3,13931,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,13931,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,13932,0)
+ ;;=M47.814^^53^599^170
+ ;;^UTILITY(U,$J,358.3,13932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13666,1,3,0)
- ;;=3^Central Serouos Chorioretinopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,13666,1,4,0)
- ;;=4^H35.713
- ;;^UTILITY(U,$J,358.3,13666,2)
- ;;=^5005705
- ;;^UTILITY(U,$J,358.3,13667,0)
- ;;=H35.721^^80^763^102
- ;;^UTILITY(U,$J,358.3,13667,1,0)
+ ;;^UTILITY(U,$J,358.3,13932,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,13932,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,13932,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,13933,0)
+ ;;=M47.817^^53^599^171
+ ;;^UTILITY(U,$J,358.3,13933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13667,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Right Eye
- ;;^UTILITY(U,$J,358.3,13667,1,4,0)
- ;;=4^H35.721
- ;;^UTILITY(U,$J,358.3,13667,2)
- ;;=^5005707
- ;;^UTILITY(U,$J,358.3,13668,0)
- ;;=H35.722^^80^763^103
- ;;^UTILITY(U,$J,358.3,13668,1,0)
+ ;;^UTILITY(U,$J,358.3,13933,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,13933,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,13933,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,13934,0)
+ ;;=M48.50XA^^53^599^21
+ ;;^UTILITY(U,$J,358.3,13934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13668,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,13668,1,4,0)
- ;;=4^H35.722
- ;;^UTILITY(U,$J,358.3,13668,2)
- ;;=^5005708
- ;;^UTILITY(U,$J,358.3,13669,0)
- ;;=H35.723^^80^763^104
- ;;^UTILITY(U,$J,358.3,13669,1,0)
+ ;;^UTILITY(U,$J,358.3,13934,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13934,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,13934,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,13935,0)
+ ;;=M48.50XD^^53^599^22
+ ;;^UTILITY(U,$J,358.3,13935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13669,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Bilateral
- ;;^UTILITY(U,$J,358.3,13669,1,4,0)
- ;;=4^H35.723
- ;;^UTILITY(U,$J,358.3,13669,2)
- ;;=^5005709
- ;;^UTILITY(U,$J,358.3,13670,0)
- ;;=H35.731^^80^763^46
- ;;^UTILITY(U,$J,358.3,13670,1,0)
+ ;;^UTILITY(U,$J,358.3,13935,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,13935,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,13935,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,13936,0)
+ ;;=M48.52XA^^53^599^23
+ ;;^UTILITY(U,$J,358.3,13936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13670,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Right Eye
- ;;^UTILITY(U,$J,358.3,13670,1,4,0)
- ;;=4^H35.731
- ;;^UTILITY(U,$J,358.3,13670,2)
- ;;=^5005711
- ;;^UTILITY(U,$J,358.3,13671,0)
- ;;=H35.732^^80^763^47
- ;;^UTILITY(U,$J,358.3,13671,1,0)
+ ;;^UTILITY(U,$J,358.3,13936,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13936,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,13936,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,13937,0)
+ ;;=M48.52XD^^53^599^24
+ ;;^UTILITY(U,$J,358.3,13937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13671,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,13671,1,4,0)
- ;;=4^H35.732
- ;;^UTILITY(U,$J,358.3,13671,2)
- ;;=^5005712
- ;;^UTILITY(U,$J,358.3,13672,0)
- ;;=H35.341^^80^763^60
- ;;^UTILITY(U,$J,358.3,13672,1,0)
+ ;;^UTILITY(U,$J,358.3,13937,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,13937,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,13937,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,13938,0)
+ ;;=M48.54XA^^53^599^32
+ ;;^UTILITY(U,$J,358.3,13938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13672,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Right Eye
- ;;^UTILITY(U,$J,358.3,13672,1,4,0)
- ;;=4^H35.341
- ;;^UTILITY(U,$J,358.3,13672,2)
- ;;=^5005650
- ;;^UTILITY(U,$J,358.3,13673,0)
- ;;=H35.342^^80^763^59
- ;;^UTILITY(U,$J,358.3,13673,1,0)
+ ;;^UTILITY(U,$J,358.3,13938,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,13938,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,13938,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,13939,0)
+ ;;=M48.54XD^^53^599^33
+ ;;^UTILITY(U,$J,358.3,13939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13673,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Left Eye
- ;;^UTILITY(U,$J,358.3,13673,1,4,0)
- ;;=4^H35.342
- ;;^UTILITY(U,$J,358.3,13673,2)
- ;;=^5005651
- ;;^UTILITY(U,$J,358.3,13674,0)
- ;;=H35.343^^80^763^58
- ;;^UTILITY(U,$J,358.3,13674,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13939,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,13939,1,4,0)
+ ;;=4^M48.54XD

@@ -1,138 +1,134 @@
-IBDEI1GL ; ; 19-NOV-2015
+IBDEI1GL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24371,1,4,0)
- ;;=4^Z75.0
- ;;^UTILITY(U,$J,358.3,24371,2)
- ;;=^5063289
- ;;^UTILITY(U,$J,358.3,24372,0)
- ;;=Z75.1^^118^1213^4
- ;;^UTILITY(U,$J,358.3,24372,1,0)
+ ;;^UTILITY(U,$J,358.3,24784,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,24784,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,24785,0)
+ ;;=F60.7^^93^1109^4
+ ;;^UTILITY(U,$J,358.3,24785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24372,1,3,0)
- ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
- ;;^UTILITY(U,$J,358.3,24372,1,4,0)
- ;;=4^Z75.1
- ;;^UTILITY(U,$J,358.3,24372,2)
- ;;=^5063290
- ;;^UTILITY(U,$J,358.3,24373,0)
- ;;=Z75.4^^118^1213^6
- ;;^UTILITY(U,$J,358.3,24373,1,0)
+ ;;^UTILITY(U,$J,358.3,24785,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24785,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,24785,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,24786,0)
+ ;;=F60.2^^93^1109^1
+ ;;^UTILITY(U,$J,358.3,24786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24373,1,3,0)
- ;;=3^Unavailability/Inaccessibility of Helping Agencies
- ;;^UTILITY(U,$J,358.3,24373,1,4,0)
- ;;=4^Z75.4
- ;;^UTILITY(U,$J,358.3,24373,2)
- ;;=^5063293
- ;;^UTILITY(U,$J,358.3,24374,0)
- ;;=Z75.8^^118^1213^2
- ;;^UTILITY(U,$J,358.3,24374,1,0)
+ ;;^UTILITY(U,$J,358.3,24786,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24786,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,24786,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,24787,0)
+ ;;=F60.81^^93^1109^6
+ ;;^UTILITY(U,$J,358.3,24787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24374,1,3,0)
- ;;=3^Medical Facilities/Health Care Problems
- ;;^UTILITY(U,$J,358.3,24374,1,4,0)
- ;;=4^Z75.8
- ;;^UTILITY(U,$J,358.3,24374,2)
- ;;=^5063295
- ;;^UTILITY(U,$J,358.3,24375,0)
- ;;=Z71.9^^118^1213^1
- ;;^UTILITY(U,$J,358.3,24375,1,0)
+ ;;^UTILITY(U,$J,358.3,24787,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24787,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,24787,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,24788,0)
+ ;;=F60.6^^93^1109^2
+ ;;^UTILITY(U,$J,358.3,24788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24375,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,24375,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,24375,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,24376,0)
- ;;=Z51.89^^118^1214^1
- ;;^UTILITY(U,$J,358.3,24376,1,0)
+ ;;^UTILITY(U,$J,358.3,24788,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24788,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,24788,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,24789,0)
+ ;;=F60.3^^93^1109^3
+ ;;^UTILITY(U,$J,358.3,24789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24376,1,3,0)
- ;;=3^Aftercare,Oth Spec
- ;;^UTILITY(U,$J,358.3,24376,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,24376,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,24377,0)
- ;;=Z51.5^^118^1214^2
- ;;^UTILITY(U,$J,358.3,24377,1,0)
+ ;;^UTILITY(U,$J,358.3,24789,1,3,0)
+ ;;=3^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24789,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,24789,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,24790,0)
+ ;;=F60.89^^93^1109^9
+ ;;^UTILITY(U,$J,358.3,24790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24377,1,3,0)
- ;;=3^Palliative Care
- ;;^UTILITY(U,$J,358.3,24377,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,24377,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,24378,0)
- ;;=99201^^119^1215^1
- ;;^UTILITY(U,$J,358.3,24378,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24378,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,24378,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,24379,0)
- ;;=99202^^119^1215^2
- ;;^UTILITY(U,$J,358.3,24379,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24379,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,24379,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,24380,0)
- ;;=99203^^119^1215^3
- ;;^UTILITY(U,$J,358.3,24380,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24380,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,24380,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,24381,0)
- ;;=99204^^119^1215^4
- ;;^UTILITY(U,$J,358.3,24381,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24381,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,24381,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,24382,0)
- ;;=99205^^119^1215^5
- ;;^UTILITY(U,$J,358.3,24382,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24382,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,24382,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,24383,0)
- ;;=99211^^119^1216^1
- ;;^UTILITY(U,$J,358.3,24383,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24383,1,1,0)
- ;;=1^Nursing Visit (no MD seen)
- ;;^UTILITY(U,$J,358.3,24383,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,24384,0)
- ;;=99212^^119^1216^2
- ;;^UTILITY(U,$J,358.3,24384,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24384,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,24384,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,24385,0)
- ;;=99213^^119^1216^3
- ;;^UTILITY(U,$J,358.3,24385,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24385,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,24385,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,24386,0)
- ;;=99214^^119^1216^4
- ;;^UTILITY(U,$J,358.3,24386,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,24386,1,1,0)
- ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,24790,1,3,0)
+ ;;=3^Personality Disorder NEC
+ ;;^UTILITY(U,$J,358.3,24790,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,24790,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,24791,0)
+ ;;=F60.9^^93^1109^10
+ ;;^UTILITY(U,$J,358.3,24791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24791,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24791,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,24791,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,24792,0)
+ ;;=Z65.4^^93^1110^4
+ ;;^UTILITY(U,$J,358.3,24792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24792,1,3,0)
+ ;;=3^Victim of Crime,Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,24792,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,24792,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,24793,0)
+ ;;=Z65.0^^93^1110^1
+ ;;^UTILITY(U,$J,358.3,24793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24793,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,24793,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,24793,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,24794,0)
+ ;;=Z65.2^^93^1110^3
+ ;;^UTILITY(U,$J,358.3,24794,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24794,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,24794,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,24794,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,24795,0)
+ ;;=Z65.3^^93^1110^2
+ ;;^UTILITY(U,$J,358.3,24795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24795,1,3,0)
+ ;;=3^Problems Related to Oth Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,24795,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,24795,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,24796,0)
+ ;;=Z65.8^^93^1111^5
+ ;;^UTILITY(U,$J,358.3,24796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24796,1,3,0)
+ ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,24796,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,24796,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,24797,0)
+ ;;=Z64.0^^93^1111^4
+ ;;^UTILITY(U,$J,358.3,24797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24797,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy

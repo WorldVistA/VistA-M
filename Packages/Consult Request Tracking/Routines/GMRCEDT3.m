@@ -1,5 +1,5 @@
-GMRCEDT3 ;SLC/DCM,JFR - file edit/resubmit ;07/06/12  13:15
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,15,22,66,73**;DEC 27, 1997;Build 22
+GMRCEDT3 ;SLC/DCM,JFR - file edit/resubmit ;12/10/14  14:42
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,15,22,66,73,81**;DEC 27, 1997;Build 6
  ;
  ;IRCS in use: #2053 (DIE), #2056 (GET1^DIQ), #10103 (XLFDT), #10104 (XLFSTR)
  ;
@@ -27,7 +27,7 @@ EN(GMRCDA) ;File tracking Data from array
  ....N CAPTION S CAPTION=$S(GMRCND=5:"Urgency: ",GMRCND=6:"Place of Consultation: ",1:"Type of Request: ")
  ....S ^GMR(123,GMRCDA,40,DA,1,GMRCOUNT,0)=CAPTION_$S($L($P(GMRCFLD(GMRCND),U)):$P(GMRCFLD(GMRCND),U),1:"No Previous Value")
  ...I GMRCND=7 S ^GMR(123,GMRCDA,40,DA,1,GMRCOUNT,0)="Attention: "_$S($L($P(GMRCFLD(GMRCND),U)):$P(GMRCFLD(GMRCND),U),1:"No Previous Value") Q
- ...I GMRCND=17 S ^GMR(123,GMRCDA,40,DA,1,GMRCOUNT,0)="Earliest Appropriate Date: "_$S($L($P(GMRCFLD(GMRCND),U)):$P(GMRCFLD(GMRCND),U),1:"No Previous Value") ;wat/66
+ ...I GMRCND=17 S ^GMR(123,GMRCDA,40,DA,1,GMRCOUNT,0)="Clinically Indicated Date: "_$S($L($P(GMRCFLD(GMRCND),U)):$P(GMRCFLD(GMRCND),U),1:"No Previous Value") ;wat/66/81
  ...I GMRCND=20 N GMRCND1 S GMRCND1=0,GMRCOUNT=GMRCOUNT+1 D  Q
  ....S ^GMR(123,GMRCDA,40,DA,1,GMRCOUNT,0)="Reason for Request: "
  ....S GMRCOUNT=GMRCOUNT+1

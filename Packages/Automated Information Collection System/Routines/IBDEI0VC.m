@@ -1,130 +1,128 @@
-IBDEI0VC ; ; 19-NOV-2015
+IBDEI0VC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14421,1,4,0)
- ;;=4^S01.141A
- ;;^UTILITY(U,$J,358.3,14421,2)
- ;;=^5020078
- ;;^UTILITY(U,$J,358.3,14422,0)
- ;;=S01.132A^^82^777^83
- ;;^UTILITY(U,$J,358.3,14422,1,0)
+ ;;^UTILITY(U,$J,358.3,14689,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14689,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,14689,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,14690,0)
+ ;;=X32.XXXD^^53^612^16
+ ;;^UTILITY(U,$J,358.3,14690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14422,1,3,0)
- ;;=3^Puncture Wound w/o FB,Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14422,1,4,0)
- ;;=4^S01.132A
- ;;^UTILITY(U,$J,358.3,14422,2)
- ;;=^5020072
- ;;^UTILITY(U,$J,358.3,14423,0)
- ;;=S01.131A^^82^777^84
- ;;^UTILITY(U,$J,358.3,14423,1,0)
+ ;;^UTILITY(U,$J,358.3,14690,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14690,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,14690,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,14691,0)
+ ;;=Y04.0XXA^^53^612^7
+ ;;^UTILITY(U,$J,358.3,14691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14423,1,3,0)
- ;;=3^Puncture Wound w/o FB,Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14423,1,4,0)
- ;;=4^S01.131A
- ;;^UTILITY(U,$J,358.3,14423,2)
- ;;=^5020069
- ;;^UTILITY(U,$J,358.3,14424,0)
- ;;=H02.135^^82^777^87
- ;;^UTILITY(U,$J,358.3,14424,1,0)
+ ;;^UTILITY(U,$J,358.3,14691,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14691,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,14691,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,14692,0)
+ ;;=Y04.0XXD^^53^612^8
+ ;;^UTILITY(U,$J,358.3,14692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14424,1,3,0)
- ;;=3^Senile Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14424,1,4,0)
- ;;=4^H02.135
- ;;^UTILITY(U,$J,358.3,14424,2)
- ;;=^5133414
- ;;^UTILITY(U,$J,358.3,14425,0)
- ;;=H02.134^^82^777^88
- ;;^UTILITY(U,$J,358.3,14425,1,0)
+ ;;^UTILITY(U,$J,358.3,14692,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14692,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,14692,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,14693,0)
+ ;;=Y04.1XXA^^53^612^1
+ ;;^UTILITY(U,$J,358.3,14693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14425,1,3,0)
- ;;=3^Senile Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14425,1,4,0)
- ;;=4^H02.134
- ;;^UTILITY(U,$J,358.3,14425,2)
- ;;=^5004320
- ;;^UTILITY(U,$J,358.3,14426,0)
- ;;=H02.132^^82^777^89
- ;;^UTILITY(U,$J,358.3,14426,1,0)
+ ;;^UTILITY(U,$J,358.3,14693,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14693,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,14693,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,14694,0)
+ ;;=Y04.1XXD^^53^612^2
+ ;;^UTILITY(U,$J,358.3,14694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14426,1,3,0)
- ;;=3^Senile Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14426,1,4,0)
- ;;=4^H02.132
- ;;^UTILITY(U,$J,358.3,14426,2)
- ;;=^5004318
- ;;^UTILITY(U,$J,358.3,14427,0)
- ;;=H02.131^^82^777^90
- ;;^UTILITY(U,$J,358.3,14427,1,0)
+ ;;^UTILITY(U,$J,358.3,14694,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14694,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,14694,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,14695,0)
+ ;;=Y04.2XXA^^53^612^5
+ ;;^UTILITY(U,$J,358.3,14695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14427,1,3,0)
- ;;=3^Senile Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14427,1,4,0)
- ;;=4^H02.131
- ;;^UTILITY(U,$J,358.3,14427,2)
- ;;=^5004317
- ;;^UTILITY(U,$J,358.3,14428,0)
- ;;=H02.035^^82^777^91
- ;;^UTILITY(U,$J,358.3,14428,1,0)
+ ;;^UTILITY(U,$J,358.3,14695,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14695,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,14695,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,14696,0)
+ ;;=Y04.8XXA^^53^612^3
+ ;;^UTILITY(U,$J,358.3,14696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14428,1,3,0)
- ;;=3^Senile Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14428,1,4,0)
- ;;=4^H02.035
- ;;^UTILITY(U,$J,358.3,14428,2)
- ;;=^5133401
- ;;^UTILITY(U,$J,358.3,14429,0)
- ;;=H02.034^^82^777^92
- ;;^UTILITY(U,$J,358.3,14429,1,0)
+ ;;^UTILITY(U,$J,358.3,14696,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14696,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,14696,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,14697,0)
+ ;;=Y04.2XXD^^53^612^6
+ ;;^UTILITY(U,$J,358.3,14697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14429,1,3,0)
- ;;=3^Senile Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14429,1,4,0)
- ;;=4^H02.034
- ;;^UTILITY(U,$J,358.3,14429,2)
- ;;=^5004291
- ;;^UTILITY(U,$J,358.3,14430,0)
- ;;=H02.032^^82^777^93
- ;;^UTILITY(U,$J,358.3,14430,1,0)
+ ;;^UTILITY(U,$J,358.3,14697,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14697,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,14697,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,14698,0)
+ ;;=Y04.8XXD^^53^612^4
+ ;;^UTILITY(U,$J,358.3,14698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14430,1,3,0)
- ;;=3^Senile Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14430,1,4,0)
- ;;=4^H02.032
- ;;^UTILITY(U,$J,358.3,14430,2)
- ;;=^5004289
- ;;^UTILITY(U,$J,358.3,14431,0)
- ;;=H02.031^^82^777^94
- ;;^UTILITY(U,$J,358.3,14431,1,0)
+ ;;^UTILITY(U,$J,358.3,14698,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14698,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,14698,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,14699,0)
+ ;;=Y36.200A^^53^612^124
+ ;;^UTILITY(U,$J,358.3,14699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14431,1,3,0)
- ;;=3^Senile Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14431,1,4,0)
- ;;=4^H02.031
- ;;^UTILITY(U,$J,358.3,14431,2)
- ;;=^5004288
- ;;^UTILITY(U,$J,358.3,14432,0)
- ;;=H02.145^^82^777^95
- ;;^UTILITY(U,$J,358.3,14432,1,0)
+ ;;^UTILITY(U,$J,358.3,14699,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14699,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,14699,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,14700,0)
+ ;;=Y36.200D^^53^612^125
+ ;;^UTILITY(U,$J,358.3,14700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14432,1,3,0)
- ;;=3^Spastic Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14432,1,4,0)
- ;;=4^H02.145
- ;;^UTILITY(U,$J,358.3,14432,2)
- ;;=^5133416
- ;;^UTILITY(U,$J,358.3,14433,0)
- ;;=H02.144^^82^777^96
- ;;^UTILITY(U,$J,358.3,14433,1,0)
+ ;;^UTILITY(U,$J,358.3,14700,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14700,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,14700,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,14701,0)
+ ;;=Y36.300A^^53^612^126
+ ;;^UTILITY(U,$J,358.3,14701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14433,1,3,0)
- ;;=3^Spastic Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14433,1,4,0)
- ;;=4^H02.144
- ;;^UTILITY(U,$J,358.3,14433,2)
- ;;=^5004325
- ;;^UTILITY(U,$J,358.3,14434,0)
- ;;=H02.142^^82^777^97
+ ;;^UTILITY(U,$J,358.3,14701,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14701,1,4,0)
+ ;;=4^Y36.300A

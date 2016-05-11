@@ -1,126 +1,140 @@
-IBDEI0UI ; ; 19-NOV-2015
+IBDEI0UI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14042,1,4,0)
- ;;=4^H40.2221
- ;;^UTILITY(U,$J,358.3,14042,2)
- ;;=^5005828
- ;;^UTILITY(U,$J,358.3,14043,0)
- ;;=H40.2222^^82^770^20
- ;;^UTILITY(U,$J,358.3,14043,1,0)
+ ;;^UTILITY(U,$J,358.3,14311,1,4,0)
+ ;;=4^R63.2
+ ;;^UTILITY(U,$J,358.3,14311,2)
+ ;;=^5019540
+ ;;^UTILITY(U,$J,358.3,14312,0)
+ ;;=R63.3^^53^605^72
+ ;;^UTILITY(U,$J,358.3,14312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14043,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14043,1,4,0)
- ;;=4^H40.2222
- ;;^UTILITY(U,$J,358.3,14043,2)
- ;;=^5005829
- ;;^UTILITY(U,$J,358.3,14044,0)
- ;;=H40.2223^^82^770^21
- ;;^UTILITY(U,$J,358.3,14044,1,0)
+ ;;^UTILITY(U,$J,358.3,14312,1,3,0)
+ ;;=3^Feeding Difficulties
+ ;;^UTILITY(U,$J,358.3,14312,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,14312,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,14313,0)
+ ;;=R63.4^^53^605^29
+ ;;^UTILITY(U,$J,358.3,14313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14044,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14044,1,4,0)
- ;;=4^H40.2223
- ;;^UTILITY(U,$J,358.3,14044,2)
- ;;=^5133501
- ;;^UTILITY(U,$J,358.3,14045,0)
- ;;=H40.2224^^82^770^18
- ;;^UTILITY(U,$J,358.3,14045,1,0)
+ ;;^UTILITY(U,$J,358.3,14313,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,14313,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,14313,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,14314,0)
+ ;;=R63.5^^53^605^28
+ ;;^UTILITY(U,$J,358.3,14314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14045,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14045,1,4,0)
- ;;=4^H40.2224
- ;;^UTILITY(U,$J,358.3,14045,2)
- ;;=^5005830
- ;;^UTILITY(U,$J,358.3,14046,0)
- ;;=H40.2231^^82^770^15
- ;;^UTILITY(U,$J,358.3,14046,1,0)
+ ;;^UTILITY(U,$J,358.3,14314,1,3,0)
+ ;;=3^Abnormal Weight Gain
+ ;;^UTILITY(U,$J,358.3,14314,1,4,0)
+ ;;=4^R63.5
+ ;;^UTILITY(U,$J,358.3,14314,2)
+ ;;=^5019543
+ ;;^UTILITY(U,$J,358.3,14315,0)
+ ;;=R64.^^53^605^46
+ ;;^UTILITY(U,$J,358.3,14315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14046,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,14046,1,4,0)
- ;;=4^H40.2231
- ;;^UTILITY(U,$J,358.3,14046,2)
- ;;=^5005832
- ;;^UTILITY(U,$J,358.3,14047,0)
- ;;=H40.2232^^82^770^16
- ;;^UTILITY(U,$J,358.3,14047,1,0)
+ ;;^UTILITY(U,$J,358.3,14315,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,14315,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,14315,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,14316,0)
+ ;;=R68.3^^53^605^51
+ ;;^UTILITY(U,$J,358.3,14316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14047,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14047,1,4,0)
- ;;=4^H40.2232
- ;;^UTILITY(U,$J,358.3,14047,2)
- ;;=^5005833
- ;;^UTILITY(U,$J,358.3,14048,0)
- ;;=H40.2233^^82^770^17
- ;;^UTILITY(U,$J,358.3,14048,1,0)
+ ;;^UTILITY(U,$J,358.3,14316,1,3,0)
+ ;;=3^Clubbing of Fingers
+ ;;^UTILITY(U,$J,358.3,14316,1,4,0)
+ ;;=4^R68.3
+ ;;^UTILITY(U,$J,358.3,14316,2)
+ ;;=^5019553
+ ;;^UTILITY(U,$J,358.3,14317,0)
+ ;;=R73.01^^53^605^89
+ ;;^UTILITY(U,$J,358.3,14317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14048,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,14048,1,4,0)
- ;;=4^H40.2233
- ;;^UTILITY(U,$J,358.3,14048,2)
- ;;=^5005834
- ;;^UTILITY(U,$J,358.3,14049,0)
- ;;=H40.2234^^82^770^14
- ;;^UTILITY(U,$J,358.3,14049,1,0)
+ ;;^UTILITY(U,$J,358.3,14317,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,14317,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,14317,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,14318,0)
+ ;;=R73.02^^53^605^90
+ ;;^UTILITY(U,$J,358.3,14318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14049,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14049,1,4,0)
- ;;=4^H40.2234
- ;;^UTILITY(U,$J,358.3,14049,2)
- ;;=^5005835
- ;;^UTILITY(U,$J,358.3,14050,0)
- ;;=H40.241^^82^770^115
- ;;^UTILITY(U,$J,358.3,14050,1,0)
+ ;;^UTILITY(U,$J,358.3,14318,1,3,0)
+ ;;=3^Impaired Glucose Tolerance (oral)
+ ;;^UTILITY(U,$J,358.3,14318,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,14318,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,14319,0)
+ ;;=R73.09^^53^605^15
+ ;;^UTILITY(U,$J,358.3,14319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14050,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Right Eye
- ;;^UTILITY(U,$J,358.3,14050,1,4,0)
- ;;=4^H40.241
- ;;^UTILITY(U,$J,358.3,14050,2)
- ;;=^5005843
- ;;^UTILITY(U,$J,358.3,14051,0)
- ;;=H40.242^^82^770^114
- ;;^UTILITY(U,$J,358.3,14051,1,0)
+ ;;^UTILITY(U,$J,358.3,14319,1,3,0)
+ ;;=3^Abnormal Glucose NEC
+ ;;^UTILITY(U,$J,358.3,14319,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,14319,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,14320,0)
+ ;;=R73.9^^53^605^84
+ ;;^UTILITY(U,$J,358.3,14320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14051,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Left Eye
- ;;^UTILITY(U,$J,358.3,14051,1,4,0)
- ;;=4^H40.242
- ;;^UTILITY(U,$J,358.3,14051,2)
- ;;=^5005844
- ;;^UTILITY(U,$J,358.3,14052,0)
- ;;=H40.61X0^^82^770^43
- ;;^UTILITY(U,$J,358.3,14052,1,0)
+ ;;^UTILITY(U,$J,358.3,14320,1,3,0)
+ ;;=3^Hyperglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,14320,1,4,0)
+ ;;=4^R73.9
+ ;;^UTILITY(U,$J,358.3,14320,2)
+ ;;=^5019564
+ ;;^UTILITY(U,$J,358.3,14321,0)
+ ;;=R76.11^^53^605^142
+ ;;^UTILITY(U,$J,358.3,14321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14052,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14052,1,4,0)
- ;;=4^H40.61X0
- ;;^UTILITY(U,$J,358.3,14052,2)
- ;;=^5005906
- ;;^UTILITY(U,$J,358.3,14053,0)
- ;;=H40.61X2^^82^770^41
- ;;^UTILITY(U,$J,358.3,14053,1,0)
+ ;;^UTILITY(U,$J,358.3,14321,1,3,0)
+ ;;=3^Positive PPD
+ ;;^UTILITY(U,$J,358.3,14321,1,4,0)
+ ;;=4^R76.11
+ ;;^UTILITY(U,$J,358.3,14321,2)
+ ;;=^5019570
+ ;;^UTILITY(U,$J,358.3,14322,0)
+ ;;=R79.1^^53^605^3
+ ;;^UTILITY(U,$J,358.3,14322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14053,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14053,1,4,0)
- ;;=4^H40.61X2
- ;;^UTILITY(U,$J,358.3,14053,2)
- ;;=^5005908
- ;;^UTILITY(U,$J,358.3,14054,0)
- ;;=H40.61X3^^82^770^42
- ;;^UTILITY(U,$J,358.3,14054,1,0)
+ ;;^UTILITY(U,$J,358.3,14322,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,14322,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,14322,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,14323,0)
+ ;;=R82.5^^53^605^69
+ ;;^UTILITY(U,$J,358.3,14323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14054,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14054,1,4,0)
- ;;=4^H40.61X3
+ ;;^UTILITY(U,$J,358.3,14323,1,3,0)
+ ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,14323,1,4,0)
+ ;;=4^R82.5
+ ;;^UTILITY(U,$J,358.3,14323,2)
+ ;;=^5019605
+ ;;^UTILITY(U,$J,358.3,14324,0)
+ ;;=R82.6^^53^605^26
+ ;;^UTILITY(U,$J,358.3,14324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14324,1,3,0)
+ ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
+ ;;^UTILITY(U,$J,358.3,14324,1,4,0)
+ ;;=4^R82.6
+ ;;^UTILITY(U,$J,358.3,14324,2)
+ ;;=^5019606
+ ;;^UTILITY(U,$J,358.3,14325,0)
+ ;;=R82.7^^53^605^27

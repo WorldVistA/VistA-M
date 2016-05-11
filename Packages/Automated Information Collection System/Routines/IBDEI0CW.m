@@ -1,122 +1,140 @@
-IBDEI0CW ; ; 19-NOV-2015
+IBDEI0CW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5597,2)
- ;;=^5020114
- ;;^UTILITY(U,$J,358.3,5598,0)
- ;;=S51.011A^^40^371^43
- ;;^UTILITY(U,$J,358.3,5598,1,0)
+ ;;^UTILITY(U,$J,358.3,5909,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,5909,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,5910,0)
+ ;;=L03.221^^30^385^106
+ ;;^UTILITY(U,$J,358.3,5910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5598,1,3,0)
- ;;=3^Laceration w/o FB of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,5598,1,4,0)
- ;;=4^S51.011A
- ;;^UTILITY(U,$J,358.3,5598,2)
- ;;=^5028626
- ;;^UTILITY(U,$J,358.3,5599,0)
- ;;=S91.211A^^40^371^45
- ;;^UTILITY(U,$J,358.3,5599,1,0)
+ ;;^UTILITY(U,$J,358.3,5910,1,3,0)
+ ;;=3^Cellulitis of Neck
+ ;;^UTILITY(U,$J,358.3,5910,1,4,0)
+ ;;=4^L03.221
+ ;;^UTILITY(U,$J,358.3,5910,2)
+ ;;=^5009045
+ ;;^UTILITY(U,$J,358.3,5911,0)
+ ;;=L03.222^^30^385^22
+ ;;^UTILITY(U,$J,358.3,5911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5599,1,3,0)
- ;;=3^Laceration w/o FB of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5599,1,4,0)
- ;;=4^S91.211A
- ;;^UTILITY(U,$J,358.3,5599,2)
- ;;=^5044273
- ;;^UTILITY(U,$J,358.3,5600,0)
- ;;=S91.111A^^40^371^46
- ;;^UTILITY(U,$J,358.3,5600,1,0)
+ ;;^UTILITY(U,$J,358.3,5911,1,3,0)
+ ;;=3^Acute Lymphangitis of Neck
+ ;;^UTILITY(U,$J,358.3,5911,1,4,0)
+ ;;=4^L03.222
+ ;;^UTILITY(U,$J,358.3,5911,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,5912,0)
+ ;;=L03.311^^30^385^95
+ ;;^UTILITY(U,$J,358.3,5912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5600,1,3,0)
- ;;=3^Laceration w/o FB of Right Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5600,1,4,0)
- ;;=4^S91.111A
- ;;^UTILITY(U,$J,358.3,5600,2)
- ;;=^5044183
- ;;^UTILITY(U,$J,358.3,5601,0)
- ;;=S61.411A^^40^371^47
- ;;^UTILITY(U,$J,358.3,5601,1,0)
+ ;;^UTILITY(U,$J,358.3,5912,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,5912,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,5912,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,5913,0)
+ ;;=L03.312^^30^385^96
+ ;;^UTILITY(U,$J,358.3,5913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5601,1,3,0)
- ;;=3^Laceration w/o FB of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,5601,1,4,0)
- ;;=4^S61.411A
- ;;^UTILITY(U,$J,358.3,5601,2)
- ;;=^5032987
- ;;^UTILITY(U,$J,358.3,5602,0)
- ;;=S61.310A^^40^371^49
- ;;^UTILITY(U,$J,358.3,5602,1,0)
+ ;;^UTILITY(U,$J,358.3,5913,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,5913,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,5913,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,5914,0)
+ ;;=L03.313^^30^385^98
+ ;;^UTILITY(U,$J,358.3,5914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5602,1,3,0)
- ;;=3^Laceration w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5602,1,4,0)
- ;;=4^S61.310A
- ;;^UTILITY(U,$J,358.3,5602,2)
- ;;=^5032906
- ;;^UTILITY(U,$J,358.3,5603,0)
- ;;=S61.210A^^40^371^50
- ;;^UTILITY(U,$J,358.3,5603,1,0)
+ ;;^UTILITY(U,$J,358.3,5914,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,5914,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,5914,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,5915,0)
+ ;;=L03.314^^30^385^100
+ ;;^UTILITY(U,$J,358.3,5915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5603,1,3,0)
- ;;=3^Laceration w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5603,1,4,0)
- ;;=4^S61.210A
- ;;^UTILITY(U,$J,358.3,5603,2)
- ;;=^5032771
- ;;^UTILITY(U,$J,358.3,5604,0)
- ;;=S91.214A^^40^371^52
- ;;^UTILITY(U,$J,358.3,5604,1,0)
+ ;;^UTILITY(U,$J,358.3,5915,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,5915,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,5915,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,5916,0)
+ ;;=L03.315^^30^385^107
+ ;;^UTILITY(U,$J,358.3,5916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5604,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5604,1,4,0)
- ;;=4^S91.214A
- ;;^UTILITY(U,$J,358.3,5604,2)
- ;;=^5044279
- ;;^UTILITY(U,$J,358.3,5605,0)
- ;;=S91.114A^^40^371^53
- ;;^UTILITY(U,$J,358.3,5605,1,0)
+ ;;^UTILITY(U,$J,358.3,5916,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,5916,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,5916,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,5917,0)
+ ;;=L03.316^^30^385^114
+ ;;^UTILITY(U,$J,358.3,5917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5605,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5605,1,4,0)
- ;;=4^S91.114A
- ;;^UTILITY(U,$J,358.3,5605,2)
- ;;=^5044192
- ;;^UTILITY(U,$J,358.3,5606,0)
- ;;=S61.316A^^40^371^54
- ;;^UTILITY(U,$J,358.3,5606,1,0)
+ ;;^UTILITY(U,$J,358.3,5917,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,5917,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,5917,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,5918,0)
+ ;;=L03.319^^30^385^113
+ ;;^UTILITY(U,$J,358.3,5918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5606,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5606,1,4,0)
- ;;=4^S61.316A
- ;;^UTILITY(U,$J,358.3,5606,2)
- ;;=^5032924
- ;;^UTILITY(U,$J,358.3,5607,0)
- ;;=S61.216A^^40^371^55
- ;;^UTILITY(U,$J,358.3,5607,1,0)
+ ;;^UTILITY(U,$J,358.3,5918,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,5918,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,5918,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,5919,0)
+ ;;=L03.321^^30^385^13
+ ;;^UTILITY(U,$J,358.3,5919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5607,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5607,1,4,0)
- ;;=4^S61.216A
- ;;^UTILITY(U,$J,358.3,5607,2)
- ;;=^5032789
- ;;^UTILITY(U,$J,358.3,5608,0)
- ;;=S61.312A^^40^371^57
- ;;^UTILITY(U,$J,358.3,5608,1,0)
+ ;;^UTILITY(U,$J,358.3,5919,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,5919,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,5919,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,5920,0)
+ ;;=L03.322^^30^385^14
+ ;;^UTILITY(U,$J,358.3,5920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5608,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5608,1,4,0)
- ;;=4^S61.312A
- ;;^UTILITY(U,$J,358.3,5608,2)
- ;;=^5032912
- ;;^UTILITY(U,$J,358.3,5609,0)
- ;;=S61.212A^^40^371^58
- ;;^UTILITY(U,$J,358.3,5609,1,0)
+ ;;^UTILITY(U,$J,358.3,5920,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,5920,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,5920,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,5921,0)
+ ;;=L03.323^^30^385^15
+ ;;^UTILITY(U,$J,358.3,5921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5609,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5921,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,5921,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,5921,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,5922,0)
+ ;;=L03.324^^30^385^17
+ ;;^UTILITY(U,$J,358.3,5922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5922,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,5922,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,5922,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,5923,0)
+ ;;=L03.325^^30^385^23

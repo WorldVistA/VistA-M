@@ -1,122 +1,134 @@
-IBDEI1ZI ; ; 19-NOV-2015
+IBDEI1ZI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33232,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,33232,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,33233,0)
- ;;=T76.01XA^^148^1631^18
- ;;^UTILITY(U,$J,358.3,33233,1,0)
+ ;;^UTILITY(U,$J,358.3,33672,0)
+ ;;=K92.2^^131^1675^49
+ ;;^UTILITY(U,$J,358.3,33672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33233,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
- ;;^UTILITY(U,$J,358.3,33233,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,33233,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,33234,0)
- ;;=T76.01XD^^148^1631^19
- ;;^UTILITY(U,$J,358.3,33234,1,0)
+ ;;^UTILITY(U,$J,358.3,33672,1,3,0)
+ ;;=3^GI Bleed,Unspec
+ ;;^UTILITY(U,$J,358.3,33672,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,33672,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,33673,0)
+ ;;=K62.5^^131^1675^8
+ ;;^UTILITY(U,$J,358.3,33673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33234,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,33234,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,33234,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,33235,0)
- ;;=Z91.412^^148^1631^7
- ;;^UTILITY(U,$J,358.3,33235,1,0)
+ ;;^UTILITY(U,$J,358.3,33673,1,3,0)
+ ;;=3^BRBPR
+ ;;^UTILITY(U,$J,358.3,33673,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,33673,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,33674,0)
+ ;;=K92.1^^131^1675^71
+ ;;^UTILITY(U,$J,358.3,33674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33235,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,33235,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,33235,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,33236,0)
- ;;=T74.31XA^^148^1631^20
- ;;^UTILITY(U,$J,358.3,33236,1,0)
+ ;;^UTILITY(U,$J,358.3,33674,1,3,0)
+ ;;=3^Melena/Hematochezia
+ ;;^UTILITY(U,$J,358.3,33674,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,33674,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,33675,0)
+ ;;=R19.5^^131^1675^48
+ ;;^UTILITY(U,$J,358.3,33675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33236,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
- ;;^UTILITY(U,$J,358.3,33236,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,33236,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,33237,0)
- ;;=T74.31XD^^148^1631^21
- ;;^UTILITY(U,$J,358.3,33237,1,0)
+ ;;^UTILITY(U,$J,358.3,33675,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,33675,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,33675,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,33676,0)
+ ;;=E53.8^^131^1675^81
+ ;;^UTILITY(U,$J,358.3,33676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33237,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,33237,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,33237,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,33238,0)
- ;;=T76.31XA^^148^1631^22
- ;;^UTILITY(U,$J,358.3,33238,1,0)
+ ;;^UTILITY(U,$J,358.3,33676,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,33676,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,33676,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,33677,0)
+ ;;=A54.00^^131^1676^47
+ ;;^UTILITY(U,$J,358.3,33677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33238,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
- ;;^UTILITY(U,$J,358.3,33238,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,33238,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,33239,0)
- ;;=T76.31XD^^148^1631^23
- ;;^UTILITY(U,$J,358.3,33239,1,0)
+ ;;^UTILITY(U,$J,358.3,33677,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,33677,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,33677,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,33678,0)
+ ;;=A54.09^^131^1676^48
+ ;;^UTILITY(U,$J,358.3,33678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33239,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,33239,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,33239,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,33240,0)
- ;;=Z91.411^^148^1631^6
- ;;^UTILITY(U,$J,358.3,33240,1,0)
+ ;;^UTILITY(U,$J,358.3,33678,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,33678,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,33678,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,33679,0)
+ ;;=A54.02^^131^1676^49
+ ;;^UTILITY(U,$J,358.3,33679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33240,1,3,0)
- ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
- ;;^UTILITY(U,$J,358.3,33240,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,33240,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,33241,0)
- ;;=F06.4^^148^1632^6
- ;;^UTILITY(U,$J,358.3,33241,1,0)
+ ;;^UTILITY(U,$J,358.3,33679,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33679,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,33679,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,33680,0)
+ ;;=A54.1^^131^1676^46
+ ;;^UTILITY(U,$J,358.3,33680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33241,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,33241,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,33241,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,33242,0)
- ;;=F41.0^^148^1632^14
- ;;^UTILITY(U,$J,358.3,33242,1,0)
+ ;;^UTILITY(U,$J,358.3,33680,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,33680,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,33680,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,33681,0)
+ ;;=A54.01^^131^1676^45
+ ;;^UTILITY(U,$J,358.3,33681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33242,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,33242,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,33242,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,33243,0)
- ;;=F41.1^^148^1632^12
- ;;^UTILITY(U,$J,358.3,33243,1,0)
+ ;;^UTILITY(U,$J,358.3,33681,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,33681,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,33681,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,33682,0)
+ ;;=B37.49^^131^1676^12
+ ;;^UTILITY(U,$J,358.3,33682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33243,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,33243,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,33243,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,33244,0)
- ;;=F41.9^^148^1632^5
- ;;^UTILITY(U,$J,358.3,33244,1,0)
+ ;;^UTILITY(U,$J,358.3,33682,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,33682,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,33682,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,33683,0)
+ ;;=B37.41^^131^1676^11
+ ;;^UTILITY(U,$J,358.3,33683,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33683,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,33683,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,33683,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,33684,0)
+ ;;=B37.42^^131^1676^10
+ ;;^UTILITY(U,$J,358.3,33684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33684,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,33684,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,33684,2)
+ ;;=^5000617

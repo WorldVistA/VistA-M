@@ -1,126 +1,128 @@
-IBDEI1JJ ; ; 19-NOV-2015
+IBDEI1JJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25764,2)
- ;;=^5007952
- ;;^UTILITY(U,$J,358.3,25765,0)
- ;;=I82.623^^127^1266^82
- ;;^UTILITY(U,$J,358.3,25765,1,0)
+ ;;^UTILITY(U,$J,358.3,26147,1,3,0)
+ ;;=3^Hypersomnolence Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26147,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,26147,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,26148,0)
+ ;;=G47.8^^98^1234^27
+ ;;^UTILITY(U,$J,358.3,26148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25765,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Bilateral Upper Extremities
- ;;^UTILITY(U,$J,358.3,25765,1,4,0)
- ;;=4^I82.623
- ;;^UTILITY(U,$J,358.3,25765,2)
- ;;=^5007921
- ;;^UTILITY(U,$J,358.3,25766,0)
- ;;=I82.622^^127^1266^84
- ;;^UTILITY(U,$J,358.3,25766,1,0)
+ ;;^UTILITY(U,$J,358.3,26148,1,3,0)
+ ;;=3^Sleep-Wake Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26148,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,26148,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,26149,0)
+ ;;=G47.411^^98^1234^16
+ ;;^UTILITY(U,$J,358.3,26149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25766,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Left Upper Extremity
- ;;^UTILITY(U,$J,358.3,25766,1,4,0)
- ;;=4^I82.622
- ;;^UTILITY(U,$J,358.3,25766,2)
- ;;=^5007920
- ;;^UTILITY(U,$J,358.3,25767,0)
- ;;=I82.621^^127^1266^86
- ;;^UTILITY(U,$J,358.3,25767,1,0)
+ ;;^UTILITY(U,$J,358.3,26149,1,3,0)
+ ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,26149,1,4,0)
+ ;;=4^G47.411
+ ;;^UTILITY(U,$J,358.3,26149,2)
+ ;;=^5003981
+ ;;^UTILITY(U,$J,358.3,26150,0)
+ ;;=G47.37^^98^1234^2
+ ;;^UTILITY(U,$J,358.3,26150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25767,1,3,0)
- ;;=3^Embolism/Thrombosis of Deep Veins of Right Upper Extremity
- ;;^UTILITY(U,$J,358.3,25767,1,4,0)
- ;;=4^I82.621
- ;;^UTILITY(U,$J,358.3,25767,2)
- ;;=^5007919
- ;;^UTILITY(U,$J,358.3,25768,0)
- ;;=I82.A12^^127^1266^88
- ;;^UTILITY(U,$J,358.3,25768,1,0)
+ ;;^UTILITY(U,$J,358.3,26150,1,3,0)
+ ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
+ ;;^UTILITY(U,$J,358.3,26150,1,4,0)
+ ;;=4^G47.37
+ ;;^UTILITY(U,$J,358.3,26150,2)
+ ;;=^332767
+ ;;^UTILITY(U,$J,358.3,26151,0)
+ ;;=G47.31^^98^1234^3
+ ;;^UTILITY(U,$J,358.3,26151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25768,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Axillary Vein
- ;;^UTILITY(U,$J,358.3,25768,1,4,0)
- ;;=4^I82.A12
- ;;^UTILITY(U,$J,358.3,25768,2)
- ;;=^5007943
- ;;^UTILITY(U,$J,358.3,25769,0)
- ;;=I82.412^^127^1266^89
- ;;^UTILITY(U,$J,358.3,25769,1,0)
+ ;;^UTILITY(U,$J,358.3,26151,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,26151,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,26151,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,26152,0)
+ ;;=F51.11^^98^1234^10
+ ;;^UTILITY(U,$J,358.3,26152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25769,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,25769,1,4,0)
- ;;=4^I82.412
- ;;^UTILITY(U,$J,358.3,25769,2)
- ;;=^5007858
- ;;^UTILITY(U,$J,358.3,25770,0)
- ;;=I82.422^^127^1266^90
- ;;^UTILITY(U,$J,358.3,25770,1,0)
+ ;;^UTILITY(U,$J,358.3,26152,1,3,0)
+ ;;=3^Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,26152,1,4,0)
+ ;;=4^F51.11
+ ;;^UTILITY(U,$J,358.3,26152,2)
+ ;;=^5003609
+ ;;^UTILITY(U,$J,358.3,26153,0)
+ ;;=F51.01^^98^1234^13
+ ;;^UTILITY(U,$J,358.3,26153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25770,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,25770,1,4,0)
- ;;=4^I82.422
- ;;^UTILITY(U,$J,358.3,25770,2)
- ;;=^5007862
- ;;^UTILITY(U,$J,358.3,25771,0)
- ;;=I82.C12^^127^1266^91
- ;;^UTILITY(U,$J,358.3,25771,1,0)
+ ;;^UTILITY(U,$J,358.3,26153,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,26153,1,4,0)
+ ;;=4^F51.01
+ ;;^UTILITY(U,$J,358.3,26153,2)
+ ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,26154,0)
+ ;;=G47.36^^98^1234^24
+ ;;^UTILITY(U,$J,358.3,26154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25771,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Internal Jugular Vein
- ;;^UTILITY(U,$J,358.3,25771,1,4,0)
- ;;=4^I82.C12
- ;;^UTILITY(U,$J,358.3,25771,2)
- ;;=^5007959
- ;;^UTILITY(U,$J,358.3,25772,0)
- ;;=I82.432^^127^1266^92
- ;;^UTILITY(U,$J,358.3,25772,1,0)
+ ;;^UTILITY(U,$J,358.3,26154,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26154,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,26154,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,26155,0)
+ ;;=G47.35^^98^1234^25
+ ;;^UTILITY(U,$J,358.3,26155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25772,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,25772,1,4,0)
- ;;=4^I82.432
- ;;^UTILITY(U,$J,358.3,25772,2)
- ;;=^5007866
- ;;^UTILITY(U,$J,358.3,25773,0)
- ;;=I82.B12^^127^1266^93
- ;;^UTILITY(U,$J,358.3,25773,1,0)
+ ;;^UTILITY(U,$J,358.3,26155,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26155,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,26155,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,26156,0)
+ ;;=G47.34^^98^1234^26
+ ;;^UTILITY(U,$J,358.3,26156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25773,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Subclavian Vein
- ;;^UTILITY(U,$J,358.3,25773,1,4,0)
- ;;=4^I82.B12
- ;;^UTILITY(U,$J,358.3,25773,2)
- ;;=^5007951
- ;;^UTILITY(U,$J,358.3,25774,0)
- ;;=I82.890^^127^1266^97
- ;;^UTILITY(U,$J,358.3,25774,1,0)
+ ;;^UTILITY(U,$J,358.3,26156,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26156,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,26156,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,26157,0)
+ ;;=G47.9^^98^1234^28
+ ;;^UTILITY(U,$J,358.3,26157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25774,1,3,0)
- ;;=3^Embolism/Thrombosis of Oth Specified Veins
- ;;^UTILITY(U,$J,358.3,25774,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,25774,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,25775,0)
- ;;=I82.A11^^127^1266^98
- ;;^UTILITY(U,$J,358.3,25775,1,0)
+ ;;^UTILITY(U,$J,358.3,26157,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26157,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,26157,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,26158,0)
+ ;;=F10.10^^98^1235^27
+ ;;^UTILITY(U,$J,358.3,26158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25775,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Axillary Vein
- ;;^UTILITY(U,$J,358.3,25775,1,4,0)
- ;;=4^I82.A11
- ;;^UTILITY(U,$J,358.3,25775,2)
- ;;=^5007942
- ;;^UTILITY(U,$J,358.3,25776,0)
- ;;=I82.411^^127^1266^99
- ;;^UTILITY(U,$J,358.3,25776,1,0)
+ ;;^UTILITY(U,$J,358.3,26158,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26158,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,26158,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,26159,0)
+ ;;=F10.14^^98^1235^34
+ ;;^UTILITY(U,$J,358.3,26159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25776,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,25776,1,4,0)
- ;;=4^I82.411
- ;;^UTILITY(U,$J,358.3,25776,2)
- ;;=^5007857
+ ;;^UTILITY(U,$J,358.3,26159,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26159,1,4,0)
+ ;;=4^F10.14

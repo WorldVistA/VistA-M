@@ -1,140 +1,136 @@
-IBDEI07P ; ; 19-NOV-2015
+IBDEI07P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3033,1,0)
+ ;;^UTILITY(U,$J,358.3,3299,1,3,0)
+ ;;=3^Infection,Mycoses,Unspec
+ ;;^UTILITY(U,$J,358.3,3299,1,4,0)
+ ;;=4^B49.
+ ;;^UTILITY(U,$J,358.3,3299,2)
+ ;;=^5000690
+ ;;^UTILITY(U,$J,358.3,3300,0)
+ ;;=B89.^^18^217^14
+ ;;^UTILITY(U,$J,358.3,3300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3033,1,3,0)
- ;;=3^Coagulation Profile,Abnormal
- ;;^UTILITY(U,$J,358.3,3033,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,3033,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,3034,0)
- ;;=R79.82^^28^246^24
- ;;^UTILITY(U,$J,358.3,3034,1,0)
+ ;;^UTILITY(U,$J,358.3,3300,1,3,0)
+ ;;=3^Infection,Parasitic Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3300,1,4,0)
+ ;;=4^B89.
+ ;;^UTILITY(U,$J,358.3,3300,2)
+ ;;=^5000822
+ ;;^UTILITY(U,$J,358.3,3301,0)
+ ;;=B64.^^18^217^15
+ ;;^UTILITY(U,$J,358.3,3301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3034,1,3,0)
- ;;=3^C-Reactive Protein,Elevated
- ;;^UTILITY(U,$J,358.3,3034,1,4,0)
- ;;=4^R79.82
- ;;^UTILITY(U,$J,358.3,3034,2)
- ;;=^331570
- ;;^UTILITY(U,$J,358.3,3035,0)
- ;;=D75.9^^28^246^25
- ;;^UTILITY(U,$J,358.3,3035,1,0)
+ ;;^UTILITY(U,$J,358.3,3301,1,3,0)
+ ;;=3^Infection,Protozoal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3301,1,4,0)
+ ;;=4^B64.
+ ;;^UTILITY(U,$J,358.3,3301,2)
+ ;;=^5000742
+ ;;^UTILITY(U,$J,358.3,3302,0)
+ ;;=A77.9^^18^217^17
+ ;;^UTILITY(U,$J,358.3,3302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3035,1,3,0)
- ;;=3^Blood/Blood-Forming Organ Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3035,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,3035,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,3036,0)
- ;;=R97.1^^28^246^26
- ;;^UTILITY(U,$J,358.3,3036,1,0)
+ ;;^UTILITY(U,$J,358.3,3302,1,3,0)
+ ;;=3^Infection,Spotted Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,3302,1,4,0)
+ ;;=4^A77.9
+ ;;^UTILITY(U,$J,358.3,3302,2)
+ ;;=^5000399
+ ;;^UTILITY(U,$J,358.3,3303,0)
+ ;;=A64.^^18^217^16
+ ;;^UTILITY(U,$J,358.3,3303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3036,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,3036,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,3036,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,3037,0)
- ;;=R97.0^^28^246^27
- ;;^UTILITY(U,$J,358.3,3037,1,0)
+ ;;^UTILITY(U,$J,358.3,3303,1,3,0)
+ ;;=3^Infection,Sexually Transmitted Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3303,1,4,0)
+ ;;=4^A64.
+ ;;^UTILITY(U,$J,358.3,3303,2)
+ ;;=^5000362
+ ;;^UTILITY(U,$J,358.3,3304,0)
+ ;;=A49.1^^18^217^18
+ ;;^UTILITY(U,$J,358.3,3304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3037,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen
- ;;^UTILITY(U,$J,358.3,3037,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,3037,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,3038,0)
- ;;=R74.0^^28^246^28
- ;;^UTILITY(U,$J,358.3,3038,1,0)
+ ;;^UTILITY(U,$J,358.3,3304,1,3,0)
+ ;;=3^Infection,Streptococcal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3304,1,4,0)
+ ;;=4^A49.1
+ ;;^UTILITY(U,$J,358.3,3304,2)
+ ;;=^5000237
+ ;;^UTILITY(U,$J,358.3,3305,0)
+ ;;=A15.9^^18^217^19
+ ;;^UTILITY(U,$J,358.3,3305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3038,1,3,0)
- ;;=3^Elevated Liver Function Test
- ;;^UTILITY(U,$J,358.3,3038,1,4,0)
- ;;=4^R74.0
- ;;^UTILITY(U,$J,358.3,3038,2)
- ;;=^5019565
- ;;^UTILITY(U,$J,358.3,3039,0)
- ;;=R97.2^^28^246^29
- ;;^UTILITY(U,$J,358.3,3039,1,0)
+ ;;^UTILITY(U,$J,358.3,3305,1,3,0)
+ ;;=3^Infection,Tuberculosis,Respiratory,Unspec
+ ;;^UTILITY(U,$J,358.3,3305,1,4,0)
+ ;;=4^A15.9
+ ;;^UTILITY(U,$J,358.3,3305,2)
+ ;;=^5000066
+ ;;^UTILITY(U,$J,358.3,3306,0)
+ ;;=B01.9^^18^217^20
+ ;;^UTILITY(U,$J,358.3,3306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3039,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,3039,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,3039,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,3040,0)
- ;;=D72.1^^28^246^30
- ;;^UTILITY(U,$J,358.3,3040,1,0)
+ ;;^UTILITY(U,$J,358.3,3306,1,3,0)
+ ;;=3^Infection,Varicella w/o Complication
+ ;;^UTILITY(U,$J,358.3,3306,1,4,0)
+ ;;=4^B01.9
+ ;;^UTILITY(U,$J,358.3,3306,2)
+ ;;=^5000487
+ ;;^UTILITY(U,$J,358.3,3307,0)
+ ;;=A86.^^18^217^21
+ ;;^UTILITY(U,$J,358.3,3307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3040,1,3,0)
- ;;=3^Eosinophilia
- ;;^UTILITY(U,$J,358.3,3040,1,4,0)
- ;;=4^D72.1
- ;;^UTILITY(U,$J,358.3,3040,2)
- ;;=^41173
- ;;^UTILITY(U,$J,358.3,3041,0)
- ;;=R73.09^^28^246^31
- ;;^UTILITY(U,$J,358.3,3041,1,0)
+ ;;^UTILITY(U,$J,358.3,3307,1,3,0)
+ ;;=3^Infection,Viral Encephalitis,Unspec
+ ;;^UTILITY(U,$J,358.3,3307,1,4,0)
+ ;;=4^A86.
+ ;;^UTILITY(U,$J,358.3,3307,2)
+ ;;=^5000431
+ ;;^UTILITY(U,$J,358.3,3308,0)
+ ;;=B19.9^^18^217^22
+ ;;^UTILITY(U,$J,358.3,3308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3041,1,3,0)
- ;;=3^Glucose,Abnormal (HgbA1c)
- ;;^UTILITY(U,$J,358.3,3041,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,3041,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,3042,0)
- ;;=R58.^^28^246^32
- ;;^UTILITY(U,$J,358.3,3042,1,0)
+ ;;^UTILITY(U,$J,358.3,3308,1,3,0)
+ ;;=3^Infection,Viral Hepatitis w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,3308,1,4,0)
+ ;;=4^B19.9
+ ;;^UTILITY(U,$J,358.3,3308,2)
+ ;;=^5000554
+ ;;^UTILITY(U,$J,358.3,3309,0)
+ ;;=A87.9^^18^217^23
+ ;;^UTILITY(U,$J,358.3,3309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3042,1,3,0)
- ;;=3^Hemorrhage NEC
- ;;^UTILITY(U,$J,358.3,3042,1,4,0)
- ;;=4^R58.
- ;;^UTILITY(U,$J,358.3,3042,2)
- ;;=^5019528
- ;;^UTILITY(U,$J,358.3,3043,0)
- ;;=E88.09^^28^246^33
- ;;^UTILITY(U,$J,358.3,3043,1,0)
+ ;;^UTILITY(U,$J,358.3,3309,1,3,0)
+ ;;=3^Infection,Viral Meningitis,Unspec
+ ;;^UTILITY(U,$J,358.3,3309,1,4,0)
+ ;;=4^A87.9
+ ;;^UTILITY(U,$J,358.3,3309,2)
+ ;;=^5000435
+ ;;^UTILITY(U,$J,358.3,3310,0)
+ ;;=B34.9^^18^217^24
+ ;;^UTILITY(U,$J,358.3,3310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3043,1,3,0)
- ;;=3^Hypoalbuminemia NEC
- ;;^UTILITY(U,$J,358.3,3043,1,4,0)
- ;;=4^E88.09
- ;;^UTILITY(U,$J,358.3,3043,2)
- ;;=^5003027
- ;;^UTILITY(U,$J,358.3,3044,0)
- ;;=D70.9^^28^246^34
- ;;^UTILITY(U,$J,358.3,3044,1,0)
+ ;;^UTILITY(U,$J,358.3,3310,1,3,0)
+ ;;=3^Infection,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,3310,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,3310,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,3311,0)
+ ;;=B02.9^^18^217^25
+ ;;^UTILITY(U,$J,358.3,3311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3044,1,3,0)
- ;;=3^Neutropenia,Unspec
- ;;^UTILITY(U,$J,358.3,3044,1,4,0)
- ;;=4^D70.9
- ;;^UTILITY(U,$J,358.3,3044,2)
- ;;=^334186
- ;;^UTILITY(U,$J,358.3,3045,0)
- ;;=D72.819^^28^246^35
- ;;^UTILITY(U,$J,358.3,3045,1,0)
+ ;;^UTILITY(U,$J,358.3,3311,1,3,0)
+ ;;=3^Infection,Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,3311,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,3311,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,3312,0)
+ ;;=Z87.01^^18^217^26
+ ;;^UTILITY(U,$J,358.3,3312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3045,1,3,0)
- ;;=3^White Blood Cell Count,Decreased,Unspec
- ;;^UTILITY(U,$J,358.3,3045,1,4,0)
- ;;=4^D72.819
- ;;^UTILITY(U,$J,358.3,3045,2)
- ;;=^5002376
- ;;^UTILITY(U,$J,358.3,3046,0)
- ;;=D72.829^^28^246^36
- ;;^UTILITY(U,$J,358.3,3046,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3046,1,3,0)
- ;;=3^White Blood Cell Count,Elevated,Unspec
- ;;^UTILITY(U,$J,358.3,3046,1,4,0)
- ;;=4^D72.829
+ ;;^UTILITY(U,$J,358.3,3312,1,3,0)
+ ;;=3^Person Hx of Pneumonia

@@ -1,134 +1,130 @@
-IBDEI15V ; ; 19-NOV-2015
+IBDEI15V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19396,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
- ;;^UTILITY(U,$J,358.3,19396,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,19396,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,19397,0)
- ;;=M72.0^^94^922^100
- ;;^UTILITY(U,$J,358.3,19397,1,0)
+ ;;^UTILITY(U,$J,358.3,19748,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,19748,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,19748,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,19749,0)
+ ;;=H01.002^^84^922^3
+ ;;^UTILITY(U,$J,358.3,19749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19397,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,19397,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,19397,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,19398,0)
- ;;=M75.111^^94^922^144
- ;;^UTILITY(U,$J,358.3,19398,1,0)
+ ;;^UTILITY(U,$J,358.3,19749,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,19749,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,19749,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,19750,0)
+ ;;=H01.004^^84^922^2
+ ;;^UTILITY(U,$J,358.3,19750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19398,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,19398,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,19398,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,19399,0)
- ;;=M75.112^^94^922^143
- ;;^UTILITY(U,$J,358.3,19399,1,0)
+ ;;^UTILITY(U,$J,358.3,19750,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,19750,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,19750,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,19751,0)
+ ;;=H01.005^^84^922^1
+ ;;^UTILITY(U,$J,358.3,19751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19399,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,19399,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,19399,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,19400,0)
- ;;=M75.51^^94^922^10
- ;;^UTILITY(U,$J,358.3,19400,1,0)
+ ;;^UTILITY(U,$J,358.3,19751,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,19751,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,19751,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,19752,0)
+ ;;=H01.001^^84^922^4
+ ;;^UTILITY(U,$J,358.3,19752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19400,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,19400,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,19400,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,19401,0)
- ;;=M75.52^^94^922^9
- ;;^UTILITY(U,$J,358.3,19401,1,0)
+ ;;^UTILITY(U,$J,358.3,19752,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,19752,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,19752,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,19753,0)
+ ;;=H57.13^^84^922^10
+ ;;^UTILITY(U,$J,358.3,19753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19401,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,19401,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,19401,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,19402,0)
- ;;=M77.11^^94^922^54
- ;;^UTILITY(U,$J,358.3,19402,1,0)
+ ;;^UTILITY(U,$J,358.3,19753,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,19753,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,19753,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,19754,0)
+ ;;=H57.12^^84^922^11
+ ;;^UTILITY(U,$J,358.3,19754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19402,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,19402,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,19402,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,19403,0)
- ;;=M77.12^^94^922^53
- ;;^UTILITY(U,$J,358.3,19403,1,0)
+ ;;^UTILITY(U,$J,358.3,19754,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,19754,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,19754,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,19755,0)
+ ;;=H57.11^^84^922^12
+ ;;^UTILITY(U,$J,358.3,19755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19403,1,3,0)
- ;;=3^Lateral Epicondylitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,19403,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,19403,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,19404,0)
- ;;=M79.1^^94^922^61
- ;;^UTILITY(U,$J,358.3,19404,1,0)
+ ;;^UTILITY(U,$J,358.3,19755,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,19755,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,19755,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,19756,0)
+ ;;=S05.02XA^^84^923^3
+ ;;^UTILITY(U,$J,358.3,19756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19404,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,19404,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,19404,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,19405,0)
- ;;=M79.7^^94^922^39
- ;;^UTILITY(U,$J,358.3,19405,1,0)
+ ;;^UTILITY(U,$J,358.3,19756,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,19756,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,19756,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,19757,0)
+ ;;=S05.01XA^^84^923^4
+ ;;^UTILITY(U,$J,358.3,19757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19405,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,19405,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,19405,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,19406,0)
- ;;=M80.08XA^^94^922^1
- ;;^UTILITY(U,$J,358.3,19406,1,0)
+ ;;^UTILITY(U,$J,358.3,19757,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,19757,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,19757,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,19758,0)
+ ;;=T15.02XA^^84^923^1
+ ;;^UTILITY(U,$J,358.3,19758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19406,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
- ;;^UTILITY(U,$J,358.3,19406,1,4,0)
- ;;=4^M80.08XA
- ;;^UTILITY(U,$J,358.3,19406,2)
- ;;=^5013495
- ;;^UTILITY(U,$J,358.3,19407,0)
- ;;=M80.08XD^^94^922^2
- ;;^UTILITY(U,$J,358.3,19407,1,0)
+ ;;^UTILITY(U,$J,358.3,19758,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19758,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,19758,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,19759,0)
+ ;;=T15.01XA^^84^923^2
+ ;;^UTILITY(U,$J,358.3,19759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19407,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
- ;;^UTILITY(U,$J,358.3,19407,1,4,0)
- ;;=4^M80.08XD
- ;;^UTILITY(U,$J,358.3,19407,2)
- ;;=^5013496
- ;;^UTILITY(U,$J,358.3,19408,0)
- ;;=M84.48XA^^94^922^101
- ;;^UTILITY(U,$J,358.3,19408,1,0)
+ ;;^UTILITY(U,$J,358.3,19759,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19759,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,19759,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,19760,0)
+ ;;=S00.252A^^84^923^5
+ ;;^UTILITY(U,$J,358.3,19760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19408,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,19408,1,4,0)
- ;;=4^M84.48XA
- ;;^UTILITY(U,$J,358.3,19408,2)
- ;;=^5014016
- ;;^UTILITY(U,$J,358.3,19409,0)
- ;;=M84.48XD^^94^922^102
- ;;^UTILITY(U,$J,358.3,19409,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19760,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19760,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,19760,2)
+ ;;=^5019820

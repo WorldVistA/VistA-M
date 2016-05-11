@@ -1,138 +1,124 @@
-IBDEI1IZ ; ; 19-NOV-2015
+IBDEI1IZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25494,0)
- ;;=J32.9^^124^1247^118
- ;;^UTILITY(U,$J,358.3,25494,1,0)
+ ;;^UTILITY(U,$J,358.3,25890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25494,1,3,0)
- ;;=3^Sinusitis, chronic
- ;;^UTILITY(U,$J,358.3,25494,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,25494,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,25495,0)
- ;;=A49.01^^124^1247^72
- ;;^UTILITY(U,$J,358.3,25495,1,0)
+ ;;^UTILITY(U,$J,358.3,25890,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
+ ;;^UTILITY(U,$J,358.3,25890,1,4,0)
+ ;;=4^F31.30
+ ;;^UTILITY(U,$J,358.3,25890,2)
+ ;;=^5003500
+ ;;^UTILITY(U,$J,358.3,25891,0)
+ ;;=F31.31^^98^1211^13
+ ;;^UTILITY(U,$J,358.3,25891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25495,1,3,0)
- ;;=3^Methicillin Susceptible Staphylococcus Aureus Infection
- ;;^UTILITY(U,$J,358.3,25495,1,4,0)
- ;;=4^A49.01
- ;;^UTILITY(U,$J,358.3,25495,2)
- ;;=^5000235
- ;;^UTILITY(U,$J,358.3,25496,0)
- ;;=R61.^^124^1247^131
- ;;^UTILITY(U,$J,358.3,25496,1,0)
+ ;;^UTILITY(U,$J,358.3,25891,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
+ ;;^UTILITY(U,$J,358.3,25891,1,4,0)
+ ;;=4^F31.31
+ ;;^UTILITY(U,$J,358.3,25891,2)
+ ;;=^5003501
+ ;;^UTILITY(U,$J,358.3,25892,0)
+ ;;=F31.32^^98^1211^14
+ ;;^UTILITY(U,$J,358.3,25892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25496,1,3,0)
- ;;=3^Sweats/Night Sweats
- ;;^UTILITY(U,$J,358.3,25496,1,4,0)
- ;;=4^R61.
- ;;^UTILITY(U,$J,358.3,25496,2)
- ;;=^331970
- ;;^UTILITY(U,$J,358.3,25497,0)
- ;;=A51.0^^124^1247^132
- ;;^UTILITY(U,$J,358.3,25497,1,0)
+ ;;^UTILITY(U,$J,358.3,25892,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
+ ;;^UTILITY(U,$J,358.3,25892,1,4,0)
+ ;;=4^F31.32
+ ;;^UTILITY(U,$J,358.3,25892,2)
+ ;;=^5003502
+ ;;^UTILITY(U,$J,358.3,25893,0)
+ ;;=F31.4^^98^1211^15
+ ;;^UTILITY(U,$J,358.3,25893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25497,1,3,0)
- ;;=3^Syphilis genital, primary
- ;;^UTILITY(U,$J,358.3,25497,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,25497,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,25498,0)
- ;;=A51.5^^124^1247^133
- ;;^UTILITY(U,$J,358.3,25498,1,0)
+ ;;^UTILITY(U,$J,358.3,25893,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
+ ;;^UTILITY(U,$J,358.3,25893,1,4,0)
+ ;;=4^F31.4
+ ;;^UTILITY(U,$J,358.3,25893,2)
+ ;;=^5003503
+ ;;^UTILITY(U,$J,358.3,25894,0)
+ ;;=F31.5^^98^1211^16
+ ;;^UTILITY(U,$J,358.3,25894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25498,1,3,0)
- ;;=3^Syphilis,Early Latent
- ;;^UTILITY(U,$J,358.3,25498,1,4,0)
- ;;=4^A51.5
- ;;^UTILITY(U,$J,358.3,25498,2)
- ;;=^266730
- ;;^UTILITY(U,$J,358.3,25499,0)
- ;;=A52.8^^124^1247^134
- ;;^UTILITY(U,$J,358.3,25499,1,0)
+ ;;^UTILITY(U,$J,358.3,25894,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,25894,1,4,0)
+ ;;=4^F31.5
+ ;;^UTILITY(U,$J,358.3,25894,2)
+ ;;=^5003504
+ ;;^UTILITY(U,$J,358.3,25895,0)
+ ;;=F31.75^^98^1211^17
+ ;;^UTILITY(U,$J,358.3,25895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25499,1,3,0)
- ;;=3^Syphilis,Late Latent
- ;;^UTILITY(U,$J,358.3,25499,1,4,0)
- ;;=4^A52.8
- ;;^UTILITY(U,$J,358.3,25499,2)
- ;;=^266779
- ;;^UTILITY(U,$J,358.3,25500,0)
- ;;=A52.9^^124^1247^136
- ;;^UTILITY(U,$J,358.3,25500,1,0)
+ ;;^UTILITY(U,$J,358.3,25895,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,25895,1,4,0)
+ ;;=4^F31.75
+ ;;^UTILITY(U,$J,358.3,25895,2)
+ ;;=^5003515
+ ;;^UTILITY(U,$J,358.3,25896,0)
+ ;;=F31.76^^98^1211^18
+ ;;^UTILITY(U,$J,358.3,25896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25500,1,3,0)
- ;;=3^Syphilis,Tertiary
- ;;^UTILITY(U,$J,358.3,25500,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,25500,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,25501,0)
- ;;=A52.3^^124^1247^135
- ;;^UTILITY(U,$J,358.3,25501,1,0)
+ ;;^UTILITY(U,$J,358.3,25896,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
+ ;;^UTILITY(U,$J,358.3,25896,1,4,0)
+ ;;=4^F31.76
+ ;;^UTILITY(U,$J,358.3,25896,2)
+ ;;=^5003516
+ ;;^UTILITY(U,$J,358.3,25897,0)
+ ;;=F31.9^^98^1211^19
+ ;;^UTILITY(U,$J,358.3,25897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25501,1,3,0)
- ;;=3^Syphilis,Neurosyphilis
- ;;^UTILITY(U,$J,358.3,25501,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,25501,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,25502,0)
- ;;=J03.90^^124^1247^138
- ;;^UTILITY(U,$J,358.3,25502,1,0)
+ ;;^UTILITY(U,$J,358.3,25897,1,3,0)
+ ;;=3^Bipolar I Disorder,Current/Recent Episode Unspec
+ ;;^UTILITY(U,$J,358.3,25897,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,25897,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,25898,0)
+ ;;=F31.81^^98^1211^20
+ ;;^UTILITY(U,$J,358.3,25898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25502,1,3,0)
- ;;=3^Tonsillitis, acute, unspecified
- ;;^UTILITY(U,$J,358.3,25502,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,25502,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,25503,0)
- ;;=A15.0^^124^1247^142
- ;;^UTILITY(U,$J,358.3,25503,1,0)
+ ;;^UTILITY(U,$J,358.3,25898,1,3,0)
+ ;;=3^Bipolar II Disorder
+ ;;^UTILITY(U,$J,358.3,25898,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,25898,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,25899,0)
+ ;;=F34.0^^98^1211^22
+ ;;^UTILITY(U,$J,358.3,25899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25503,1,3,0)
- ;;=3^Tuberculosis, pulmonary
- ;;^UTILITY(U,$J,358.3,25503,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,25503,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,25504,0)
- ;;=R76.11^^124^1247^141
- ;;^UTILITY(U,$J,358.3,25504,1,0)
+ ;;^UTILITY(U,$J,358.3,25899,1,3,0)
+ ;;=3^Cyclothymic Disorder
+ ;;^UTILITY(U,$J,358.3,25899,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,25899,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,25900,0)
+ ;;=F31.0^^98^1211^3
+ ;;^UTILITY(U,$J,358.3,25900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25504,1,3,0)
- ;;=3^Tuberculosis, latent
- ;;^UTILITY(U,$J,358.3,25504,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,25504,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,25505,0)
- ;;=A15.8^^124^1247^140
- ;;^UTILITY(U,$J,358.3,25505,1,0)
+ ;;^UTILITY(U,$J,358.3,25900,1,3,0)
+ ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,25900,1,4,0)
+ ;;=4^F31.0
+ ;;^UTILITY(U,$J,358.3,25900,2)
+ ;;=^5003494
+ ;;^UTILITY(U,$J,358.3,25901,0)
+ ;;=F31.71^^98^1211^4
+ ;;^UTILITY(U,$J,358.3,25901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25505,1,3,0)
- ;;=3^Tuberculosis NEC
- ;;^UTILITY(U,$J,358.3,25505,1,4,0)
- ;;=4^A15.8
- ;;^UTILITY(U,$J,358.3,25505,2)
- ;;=^266093
- ;;^UTILITY(U,$J,358.3,25506,0)
- ;;=J06.9^^124^1247^143
- ;;^UTILITY(U,$J,358.3,25506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25506,1,3,0)
- ;;=3^URI/Cold Symptoms
- ;;^UTILITY(U,$J,358.3,25506,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,25506,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,25507,0)
- ;;=N34.2^^124^1247^145
- ;;^UTILITY(U,$J,358.3,25507,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25901,1,3,0)
+ ;;=3^Bipolar Disorder,Current/Recent Episode Hypomanic,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,25901,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,25901,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,25902,0)
+ ;;=F31.72^^98^1211^5

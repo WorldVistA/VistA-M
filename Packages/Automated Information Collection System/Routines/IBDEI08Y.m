@@ -1,134 +1,132 @@
-IBDEI08Y ; ; 19-NOV-2015
+IBDEI08Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3642,1,0)
+ ;;^UTILITY(U,$J,358.3,3904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3642,1,3,0)
- ;;=3^Renal Tubular Function Impaired,Disorder from,Unspec
- ;;^UTILITY(U,$J,358.3,3642,1,4,0)
- ;;=4^N25.9
- ;;^UTILITY(U,$J,358.3,3642,2)
- ;;=^5015619
- ;;^UTILITY(U,$J,358.3,3643,0)
- ;;=M89.00^^28^258^1
- ;;^UTILITY(U,$J,358.3,3643,1,0)
+ ;;^UTILITY(U,$J,358.3,3904,1,3,0)
+ ;;=3^Noncompliance w/ Med Regimen d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,3904,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,3904,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,3905,0)
+ ;;=Z91.130^^18^224^76
+ ;;^UTILITY(U,$J,358.3,3905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3643,1,3,0)
- ;;=3^Algoneurodystrophy (RSD),Unspec Site
- ;;^UTILITY(U,$J,358.3,3643,1,4,0)
- ;;=4^M89.00
- ;;^UTILITY(U,$J,358.3,3643,2)
- ;;=^5014900
- ;;^UTILITY(U,$J,358.3,3644,0)
- ;;=Z89.612^^28^258^2
- ;;^UTILITY(U,$J,358.3,3644,1,0)
+ ;;^UTILITY(U,$J,358.3,3905,1,3,0)
+ ;;=3^Noncompliance w/ Med Regimen d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,3905,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,3905,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,3906,0)
+ ;;=Z91.138^^18^224^75
+ ;;^UTILITY(U,$J,358.3,3906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3644,1,3,0)
- ;;=3^Amputation,Acquired Absence,Left Leg above Knee
- ;;^UTILITY(U,$J,358.3,3644,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,3644,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,3645,0)
- ;;=Z89.512^^28^258^3
- ;;^UTILITY(U,$J,358.3,3645,1,0)
+ ;;^UTILITY(U,$J,358.3,3906,1,3,0)
+ ;;=3^Noncompliance w/ Med Regimen Unintentional
+ ;;^UTILITY(U,$J,358.3,3906,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,3906,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,3907,0)
+ ;;=Z91.19^^18^224^79
+ ;;^UTILITY(U,$J,358.3,3907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3645,1,3,0)
- ;;=3^Amputation,Acquired Absence,Left Leg below Knee
- ;;^UTILITY(U,$J,358.3,3645,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,3645,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,3646,0)
- ;;=Z89.611^^28^258^4
- ;;^UTILITY(U,$J,358.3,3646,1,0)
+ ;;^UTILITY(U,$J,358.3,3907,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,3907,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,3907,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,3908,0)
+ ;;=Z91.15^^18^224^80
+ ;;^UTILITY(U,$J,358.3,3908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3646,1,3,0)
- ;;=3^Amputation,Acquired Absence,Right Leg above Knee
- ;;^UTILITY(U,$J,358.3,3646,1,4,0)
- ;;=4^Z89.611
- ;;^UTILITY(U,$J,358.3,3646,2)
- ;;=^5063572
- ;;^UTILITY(U,$J,358.3,3647,0)
- ;;=Z89.511^^28^258^5
- ;;^UTILITY(U,$J,358.3,3647,1,0)
+ ;;^UTILITY(U,$J,358.3,3908,1,3,0)
+ ;;=3^Noncompliance w/ Renal Dialysis
+ ;;^UTILITY(U,$J,358.3,3908,1,4,0)
+ ;;=4^Z91.15
+ ;;^UTILITY(U,$J,358.3,3908,2)
+ ;;=^5063617
+ ;;^UTILITY(U,$J,358.3,3909,0)
+ ;;=Z57.2^^18^224^85
+ ;;^UTILITY(U,$J,358.3,3909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3647,1,3,0)
- ;;=3^Amputation,Acquired Absence,Right Leg below Knee
- ;;^UTILITY(U,$J,358.3,3647,1,4,0)
- ;;=4^Z89.511
- ;;^UTILITY(U,$J,358.3,3647,2)
- ;;=^5063566
- ;;^UTILITY(U,$J,358.3,3648,0)
- ;;=M48.10^^28^258^6
- ;;^UTILITY(U,$J,358.3,3648,1,0)
+ ;;^UTILITY(U,$J,358.3,3909,1,3,0)
+ ;;=3^Occupational Exposure to Dust
+ ;;^UTILITY(U,$J,358.3,3909,1,4,0)
+ ;;=4^Z57.2
+ ;;^UTILITY(U,$J,358.3,3909,2)
+ ;;=^5063120
+ ;;^UTILITY(U,$J,358.3,3910,0)
+ ;;=Z57.31^^18^224^91
+ ;;^UTILITY(U,$J,358.3,3910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3648,1,3,0)
- ;;=3^Ankylosing Hyperostosis,Unspec Site
- ;;^UTILITY(U,$J,358.3,3648,1,4,0)
- ;;=4^M48.10
- ;;^UTILITY(U,$J,358.3,3648,2)
- ;;=^5012096
- ;;^UTILITY(U,$J,358.3,3649,0)
- ;;=M45.9^^28^258^7
- ;;^UTILITY(U,$J,358.3,3649,1,0)
+ ;;^UTILITY(U,$J,358.3,3910,1,3,0)
+ ;;=3^Occupational Exposure to Tobacco Smoke,Environmental
+ ;;^UTILITY(U,$J,358.3,3910,1,4,0)
+ ;;=4^Z57.31
+ ;;^UTILITY(U,$J,358.3,3910,2)
+ ;;=^5063121
+ ;;^UTILITY(U,$J,358.3,3911,0)
+ ;;=Z57.6^^18^224^86
+ ;;^UTILITY(U,$J,358.3,3911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3649,1,3,0)
- ;;=3^Ankylosing Spondylitis,Spine,Unspec Site
- ;;^UTILITY(U,$J,358.3,3649,1,4,0)
- ;;=4^M45.9
- ;;^UTILITY(U,$J,358.3,3649,2)
- ;;=^5011969
- ;;^UTILITY(U,$J,358.3,3650,0)
- ;;=M13.0^^28^258^11
- ;;^UTILITY(U,$J,358.3,3650,1,0)
+ ;;^UTILITY(U,$J,358.3,3911,1,3,0)
+ ;;=3^Occupational Exposure to Extreme Temperature
+ ;;^UTILITY(U,$J,358.3,3911,1,4,0)
+ ;;=4^Z57.6
+ ;;^UTILITY(U,$J,358.3,3911,2)
+ ;;=^5063125
+ ;;^UTILITY(U,$J,358.3,3912,0)
+ ;;=Z57.0^^18^224^88
+ ;;^UTILITY(U,$J,358.3,3912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3650,1,3,0)
- ;;=3^Arthritis,Polyarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,3650,1,4,0)
- ;;=4^M13.0
- ;;^UTILITY(U,$J,358.3,3650,2)
- ;;=^5010667
- ;;^UTILITY(U,$J,358.3,3651,0)
- ;;=M15.9^^28^258^12
- ;;^UTILITY(U,$J,358.3,3651,1,0)
+ ;;^UTILITY(U,$J,358.3,3912,1,3,0)
+ ;;=3^Occupational Exposure to Noise
+ ;;^UTILITY(U,$J,358.3,3912,1,4,0)
+ ;;=4^Z57.0
+ ;;^UTILITY(U,$J,358.3,3912,2)
+ ;;=^5063118
+ ;;^UTILITY(U,$J,358.3,3913,0)
+ ;;=Z57.39^^18^224^84
+ ;;^UTILITY(U,$J,358.3,3913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3651,1,3,0)
- ;;=3^Arthritis,Polyosteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,3651,1,4,0)
- ;;=4^M15.9
- ;;^UTILITY(U,$J,358.3,3651,2)
- ;;=^5010768
- ;;^UTILITY(U,$J,358.3,3652,0)
- ;;=M15.4^^28^258^8
- ;;^UTILITY(U,$J,358.3,3652,1,0)
+ ;;^UTILITY(U,$J,358.3,3913,1,3,0)
+ ;;=3^Occupational Exposure to Air Contaminants
+ ;;^UTILITY(U,$J,358.3,3913,1,4,0)
+ ;;=4^Z57.39
+ ;;^UTILITY(U,$J,358.3,3913,2)
+ ;;=^5063122
+ ;;^UTILITY(U,$J,358.3,3914,0)
+ ;;=Z57.8^^18^224^89
+ ;;^UTILITY(U,$J,358.3,3914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3652,1,3,0)
- ;;=3^Arthritis (Osteo),Erosive
- ;;^UTILITY(U,$J,358.3,3652,1,4,0)
- ;;=4^M15.4
- ;;^UTILITY(U,$J,358.3,3652,2)
- ;;=^5010766
- ;;^UTILITY(U,$J,358.3,3653,0)
- ;;=M15.0^^28^258^9
- ;;^UTILITY(U,$J,358.3,3653,1,0)
+ ;;^UTILITY(U,$J,358.3,3914,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,3914,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,3914,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,3915,0)
+ ;;=Z57.1^^18^224^90
+ ;;^UTILITY(U,$J,358.3,3915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3653,1,3,0)
- ;;=3^Arthritis (Osteo),Primary Generalized
- ;;^UTILITY(U,$J,358.3,3653,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,3653,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,3654,0)
- ;;=M13.10^^28^258^10
- ;;^UTILITY(U,$J,358.3,3654,1,0)
+ ;;^UTILITY(U,$J,358.3,3915,1,3,0)
+ ;;=3^Occupational Exposure to Radiation
+ ;;^UTILITY(U,$J,358.3,3915,1,4,0)
+ ;;=4^Z57.1
+ ;;^UTILITY(U,$J,358.3,3915,2)
+ ;;=^5063119
+ ;;^UTILITY(U,$J,358.3,3916,0)
+ ;;=Z57.4^^18^224^83
+ ;;^UTILITY(U,$J,358.3,3916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3654,1,3,0)
- ;;=3^Arthritis,Monoarthritis,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,3654,1,4,0)
- ;;=4^M13.10
- ;;^UTILITY(U,$J,358.3,3654,2)
- ;;=^5010668
- ;;^UTILITY(U,$J,358.3,3655,0)
- ;;=M15.3^^28^258^13
+ ;;^UTILITY(U,$J,358.3,3916,1,3,0)
+ ;;=3^Occupational Exposure to Agriculture Toxic Agents
+ ;;^UTILITY(U,$J,358.3,3916,1,4,0)
+ ;;=4^Z57.4
+ ;;^UTILITY(U,$J,358.3,3916,2)
+ ;;=^5063123

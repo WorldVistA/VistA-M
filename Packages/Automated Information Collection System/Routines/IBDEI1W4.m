@@ -1,138 +1,126 @@
-IBDEI1W4 ; ; 19-NOV-2015
+IBDEI1W4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31656,1,4,0)
- ;;=4^F65.4
- ;;^UTILITY(U,$J,358.3,31656,2)
- ;;=^5003655
- ;;^UTILITY(U,$J,358.3,31657,0)
- ;;=F65.2^^138^1443^1
- ;;^UTILITY(U,$J,358.3,31657,1,0)
+ ;;^UTILITY(U,$J,358.3,32099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31657,1,3,0)
- ;;=3^Exhibitionistic Disorder
- ;;^UTILITY(U,$J,358.3,31657,1,4,0)
- ;;=4^F65.2
- ;;^UTILITY(U,$J,358.3,31657,2)
- ;;=^5003653
- ;;^UTILITY(U,$J,358.3,31658,0)
- ;;=F65.3^^138^1443^10
- ;;^UTILITY(U,$J,358.3,31658,1,0)
+ ;;^UTILITY(U,$J,358.3,32099,1,3,0)
+ ;;=3^Fx of rt lsr toe(s), oth, init
+ ;;^UTILITY(U,$J,358.3,32099,1,4,0)
+ ;;=4^S92.591A
+ ;;^UTILITY(U,$J,358.3,32099,2)
+ ;;=^5045557
+ ;;^UTILITY(U,$J,358.3,32100,0)
+ ;;=S92.535A^^126^1609^314
+ ;;^UTILITY(U,$J,358.3,32100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31658,1,3,0)
- ;;=3^Voyeuristic Disorder
- ;;^UTILITY(U,$J,358.3,31658,1,4,0)
- ;;=4^F65.3
- ;;^UTILITY(U,$J,358.3,31658,2)
- ;;=^5003654
- ;;^UTILITY(U,$J,358.3,31659,0)
- ;;=F65.81^^138^1443^3
- ;;^UTILITY(U,$J,358.3,31659,1,0)
+ ;;^UTILITY(U,$J,358.3,32100,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32100,1,4,0)
+ ;;=4^S92.535A
+ ;;^UTILITY(U,$J,358.3,32100,2)
+ ;;=^5045543
+ ;;^UTILITY(U,$J,358.3,32101,0)
+ ;;=S92.534A^^126^1609^316
+ ;;^UTILITY(U,$J,358.3,32101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31659,1,3,0)
- ;;=3^Frotteuristic Disorder
- ;;^UTILITY(U,$J,358.3,31659,1,4,0)
- ;;=4^F65.81
- ;;^UTILITY(U,$J,358.3,31659,2)
- ;;=^5003659
- ;;^UTILITY(U,$J,358.3,31660,0)
- ;;=F65.51^^138^1443^7
- ;;^UTILITY(U,$J,358.3,31660,1,0)
+ ;;^UTILITY(U,$J,358.3,32101,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32101,1,4,0)
+ ;;=4^S92.534A
+ ;;^UTILITY(U,$J,358.3,32101,2)
+ ;;=^5045536
+ ;;^UTILITY(U,$J,358.3,32102,0)
+ ;;=S92.532A^^126^1609^87
+ ;;^UTILITY(U,$J,358.3,32102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31660,1,3,0)
- ;;=3^Sexual Masochism Disorder
- ;;^UTILITY(U,$J,358.3,31660,1,4,0)
- ;;=4^F65.51
- ;;^UTILITY(U,$J,358.3,31660,2)
- ;;=^5003657
- ;;^UTILITY(U,$J,358.3,31661,0)
- ;;=F65.52^^138^1443^8
- ;;^UTILITY(U,$J,358.3,31661,1,0)
+ ;;^UTILITY(U,$J,358.3,32102,1,3,0)
+ ;;=3^Disp fx of dist phalanc of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32102,1,4,0)
+ ;;=4^S92.532A
+ ;;^UTILITY(U,$J,358.3,32102,2)
+ ;;=^5045522
+ ;;^UTILITY(U,$J,358.3,32103,0)
+ ;;=S92.525A^^126^1609^330
+ ;;^UTILITY(U,$J,358.3,32103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31661,1,3,0)
- ;;=3^Sexual Sadism Disorder
- ;;^UTILITY(U,$J,358.3,31661,1,4,0)
- ;;=4^F65.52
- ;;^UTILITY(U,$J,358.3,31661,2)
- ;;=^5003658
- ;;^UTILITY(U,$J,358.3,31662,0)
- ;;=F65.0^^138^1443^2
- ;;^UTILITY(U,$J,358.3,31662,1,0)
+ ;;^UTILITY(U,$J,358.3,32103,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32103,1,4,0)
+ ;;=4^S92.525A
+ ;;^UTILITY(U,$J,358.3,32103,2)
+ ;;=^5045501
+ ;;^UTILITY(U,$J,358.3,32104,0)
+ ;;=S92.531A^^126^1609^92
+ ;;^UTILITY(U,$J,358.3,32104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31662,1,3,0)
- ;;=3^Fetishistic Disorder
- ;;^UTILITY(U,$J,358.3,31662,1,4,0)
- ;;=4^F65.0
- ;;^UTILITY(U,$J,358.3,31662,2)
- ;;=^5003651
- ;;^UTILITY(U,$J,358.3,31663,0)
- ;;=F65.1^^138^1443^9
- ;;^UTILITY(U,$J,358.3,31663,1,0)
+ ;;^UTILITY(U,$J,358.3,32104,1,3,0)
+ ;;=3^Disp fx of dist phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32104,1,4,0)
+ ;;=4^S92.531A
+ ;;^UTILITY(U,$J,358.3,32104,2)
+ ;;=^5045515
+ ;;^UTILITY(U,$J,358.3,32105,0)
+ ;;=S92.524A^^126^1609^332
+ ;;^UTILITY(U,$J,358.3,32105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31663,1,3,0)
- ;;=3^Transvestic Disorder
- ;;^UTILITY(U,$J,358.3,31663,1,4,0)
- ;;=4^F65.1
- ;;^UTILITY(U,$J,358.3,31663,2)
- ;;=^5003652
- ;;^UTILITY(U,$J,358.3,31664,0)
- ;;=F65.89^^138^1443^4
- ;;^UTILITY(U,$J,358.3,31664,1,0)
+ ;;^UTILITY(U,$J,358.3,32105,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32105,1,4,0)
+ ;;=4^S92.524A
+ ;;^UTILITY(U,$J,358.3,32105,2)
+ ;;=^5045494
+ ;;^UTILITY(U,$J,358.3,32106,0)
+ ;;=S92.522A^^126^1609^106
+ ;;^UTILITY(U,$J,358.3,32106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31664,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,31664,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,31664,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,31665,0)
- ;;=F65.9^^138^1443^5
- ;;^UTILITY(U,$J,358.3,31665,1,0)
+ ;;^UTILITY(U,$J,358.3,32106,1,3,0)
+ ;;=3^Disp fx of med phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32106,1,4,0)
+ ;;=4^S92.522A
+ ;;^UTILITY(U,$J,358.3,32106,2)
+ ;;=^5045480
+ ;;^UTILITY(U,$J,358.3,32107,0)
+ ;;=S92.521A^^126^1609^108
+ ;;^UTILITY(U,$J,358.3,32107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31665,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31665,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,31665,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,31666,0)
- ;;=F60.0^^138^1444^8
- ;;^UTILITY(U,$J,358.3,31666,1,0)
+ ;;^UTILITY(U,$J,358.3,32107,1,3,0)
+ ;;=3^Disp fx of med phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32107,1,4,0)
+ ;;=4^S92.521A
+ ;;^UTILITY(U,$J,358.3,32107,2)
+ ;;=^5045473
+ ;;^UTILITY(U,$J,358.3,32108,0)
+ ;;=S92.515A^^126^1609^345
+ ;;^UTILITY(U,$J,358.3,32108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31666,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,31666,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,31666,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,31667,0)
- ;;=F60.1^^138^1444^11
- ;;^UTILITY(U,$J,358.3,31667,1,0)
+ ;;^UTILITY(U,$J,358.3,32108,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32108,1,4,0)
+ ;;=4^S92.515A
+ ;;^UTILITY(U,$J,358.3,32108,2)
+ ;;=^5045459
+ ;;^UTILITY(U,$J,358.3,32109,0)
+ ;;=S92.514A^^126^1609^349
+ ;;^UTILITY(U,$J,358.3,32109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31667,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,31667,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,31667,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,31668,0)
- ;;=F21.^^138^1444^12
- ;;^UTILITY(U,$J,358.3,31668,1,0)
+ ;;^UTILITY(U,$J,358.3,32109,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32109,1,4,0)
+ ;;=4^S92.514A
+ ;;^UTILITY(U,$J,358.3,32109,2)
+ ;;=^5045452
+ ;;^UTILITY(U,$J,358.3,32110,0)
+ ;;=S92.512A^^126^1609^120
+ ;;^UTILITY(U,$J,358.3,32110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31668,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,31668,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,31668,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,31669,0)
- ;;=F60.5^^138^1444^7
- ;;^UTILITY(U,$J,358.3,31669,1,0)
+ ;;^UTILITY(U,$J,358.3,32110,1,3,0)
+ ;;=3^Disp fx of prox phalanx of lft lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32110,1,4,0)
+ ;;=4^S92.512A
+ ;;^UTILITY(U,$J,358.3,32110,2)
+ ;;=^5045438
+ ;;^UTILITY(U,$J,358.3,32111,0)
+ ;;=S92.511A^^126^1609^123
+ ;;^UTILITY(U,$J,358.3,32111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31669,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,31669,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,31669,2)
- ;;=^331918

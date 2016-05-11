@@ -1,134 +1,136 @@
-IBDEI16D ; ; 19-NOV-2015
+IBDEI16D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19633,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,19633,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,19634,0)
- ;;=K08.102^^94^928^53
- ;;^UTILITY(U,$J,358.3,19634,1,0)
+ ;;^UTILITY(U,$J,358.3,19983,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,19983,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,19983,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,19984,0)
+ ;;=I07.9^^84^928^22
+ ;;^UTILITY(U,$J,358.3,19984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19634,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,19634,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,19634,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,19635,0)
- ;;=K08.103^^94^928^54
- ;;^UTILITY(U,$J,358.3,19635,1,0)
+ ;;^UTILITY(U,$J,358.3,19984,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19984,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,19984,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,19985,0)
+ ;;=I08.0^^84^928^16
+ ;;^UTILITY(U,$J,358.3,19985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19635,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,19635,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,19635,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,19636,0)
- ;;=K08.104^^94^928^55
- ;;^UTILITY(U,$J,358.3,19636,1,0)
+ ;;^UTILITY(U,$J,358.3,19985,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,19985,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,19985,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,19986,0)
+ ;;=I09.89^^84^928^17
+ ;;^UTILITY(U,$J,358.3,19986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19636,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,19636,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,19636,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,19637,0)
- ;;=K08.109^^94^928^56
- ;;^UTILITY(U,$J,358.3,19637,1,0)
+ ;;^UTILITY(U,$J,358.3,19986,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,19986,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,19986,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,19987,0)
+ ;;=I47.1^^84^928^24
+ ;;^UTILITY(U,$J,358.3,19987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19637,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,19637,1,4,0)
- ;;=4^K08.109
- ;;^UTILITY(U,$J,358.3,19637,2)
- ;;=^5008410
- ;;^UTILITY(U,$J,358.3,19638,0)
- ;;=K08.401^^94^928^133
- ;;^UTILITY(U,$J,358.3,19638,1,0)
+ ;;^UTILITY(U,$J,358.3,19987,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,19987,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,19987,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,19988,0)
+ ;;=I48.0^^84^928^15
+ ;;^UTILITY(U,$J,358.3,19988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19638,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,19638,1,4,0)
- ;;=4^K08.401
- ;;^UTILITY(U,$J,358.3,19638,2)
- ;;=^5008432
- ;;^UTILITY(U,$J,358.3,19639,0)
- ;;=K08.402^^94^928^134
- ;;^UTILITY(U,$J,358.3,19639,1,0)
+ ;;^UTILITY(U,$J,358.3,19988,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,19988,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,19988,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,19989,0)
+ ;;=I49.5^^84^928^23
+ ;;^UTILITY(U,$J,358.3,19989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19639,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,19639,1,4,0)
- ;;=4^K08.402
- ;;^UTILITY(U,$J,358.3,19639,2)
- ;;=^5008433
- ;;^UTILITY(U,$J,358.3,19640,0)
- ;;=K08.403^^94^928^135
- ;;^UTILITY(U,$J,358.3,19640,1,0)
+ ;;^UTILITY(U,$J,358.3,19989,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,19989,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,19989,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,19990,0)
+ ;;=I49.8^^84^928^3
+ ;;^UTILITY(U,$J,358.3,19990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19640,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,19640,1,4,0)
- ;;=4^K08.403
- ;;^UTILITY(U,$J,358.3,19640,2)
- ;;=^5008434
- ;;^UTILITY(U,$J,358.3,19641,0)
- ;;=K08.404^^94^928^136
- ;;^UTILITY(U,$J,358.3,19641,1,0)
+ ;;^UTILITY(U,$J,358.3,19990,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,19990,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,19990,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,19991,0)
+ ;;=I49.9^^84^928^2
+ ;;^UTILITY(U,$J,358.3,19991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19641,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,19641,1,4,0)
- ;;=4^K08.404
- ;;^UTILITY(U,$J,358.3,19641,2)
- ;;=^5008435
- ;;^UTILITY(U,$J,358.3,19642,0)
- ;;=K08.409^^94^928^137
- ;;^UTILITY(U,$J,358.3,19642,1,0)
+ ;;^UTILITY(U,$J,358.3,19991,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,19991,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,19991,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,19992,0)
+ ;;=R00.1^^84^928^1
+ ;;^UTILITY(U,$J,358.3,19992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19642,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,19642,1,4,0)
- ;;=4^K08.409
- ;;^UTILITY(U,$J,358.3,19642,2)
- ;;=^5008436
- ;;^UTILITY(U,$J,358.3,19643,0)
- ;;=N39.42^^94^928^93
- ;;^UTILITY(U,$J,358.3,19643,1,0)
+ ;;^UTILITY(U,$J,358.3,19992,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,19992,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,19992,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,19993,0)
+ ;;=I34.1^^84^928^14
+ ;;^UTILITY(U,$J,358.3,19993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19643,1,3,0)
- ;;=3^Incontinence w/o Sensory Awareness
- ;;^UTILITY(U,$J,358.3,19643,1,4,0)
- ;;=4^N39.42
- ;;^UTILITY(U,$J,358.3,19643,2)
- ;;=^5015681
- ;;^UTILITY(U,$J,358.3,19644,0)
- ;;=N39.43^^94^928^143
- ;;^UTILITY(U,$J,358.3,19644,1,0)
+ ;;^UTILITY(U,$J,358.3,19993,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,19993,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,19993,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,19994,0)
+ ;;=D68.4^^84^929^1
+ ;;^UTILITY(U,$J,358.3,19994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19644,1,3,0)
- ;;=3^Post-Void Dribbling
- ;;^UTILITY(U,$J,358.3,19644,1,4,0)
- ;;=4^N39.43
- ;;^UTILITY(U,$J,358.3,19644,2)
- ;;=^5015682
- ;;^UTILITY(U,$J,358.3,19645,0)
- ;;=N39.44^^94^928^123
- ;;^UTILITY(U,$J,358.3,19645,1,0)
+ ;;^UTILITY(U,$J,358.3,19994,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,19994,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,19994,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,19995,0)
+ ;;=D59.9^^84^929^2
+ ;;^UTILITY(U,$J,358.3,19995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19645,1,3,0)
- ;;=3^Nocturnal Enuresis
- ;;^UTILITY(U,$J,358.3,19645,1,4,0)
- ;;=4^N39.44
- ;;^UTILITY(U,$J,358.3,19645,2)
- ;;=^5015683
- ;;^UTILITY(U,$J,358.3,19646,0)
- ;;=N39.46^^94^928^119
- ;;^UTILITY(U,$J,358.3,19646,1,0)
+ ;;^UTILITY(U,$J,358.3,19995,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19995,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,19995,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,19996,0)
+ ;;=C91.00^^84^929^5
+ ;;^UTILITY(U,$J,358.3,19996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19646,1,3,0)
- ;;=3^Mixed Incontinence
+ ;;^UTILITY(U,$J,358.3,19996,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission

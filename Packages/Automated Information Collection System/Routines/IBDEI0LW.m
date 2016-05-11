@@ -1,128 +1,132 @@
-IBDEI0LW ; ; 19-NOV-2015
+IBDEI0LW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9992,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,9992,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,9992,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,9993,0)
- ;;=I25.729^^68^661^4
- ;;^UTILITY(U,$J,358.3,9993,1,0)
+ ;;^UTILITY(U,$J,358.3,10209,1,3,0)
+ ;;=3^Pseudopapilledema of Optic Disc,Right Eye
+ ;;^UTILITY(U,$J,358.3,10209,1,4,0)
+ ;;=4^H47.331
+ ;;^UTILITY(U,$J,358.3,10209,2)
+ ;;=^5006145
+ ;;^UTILITY(U,$J,358.3,10210,0)
+ ;;=H47.332^^44^502^42
+ ;;^UTILITY(U,$J,358.3,10210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9993,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,9993,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,9993,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,9994,0)
- ;;=I25.709^^68^661^11
- ;;^UTILITY(U,$J,358.3,9994,1,0)
+ ;;^UTILITY(U,$J,358.3,10210,1,3,0)
+ ;;=3^Pseudopapilledema of Optic Disc,Left Eye
+ ;;^UTILITY(U,$J,358.3,10210,1,4,0)
+ ;;=4^H47.332
+ ;;^UTILITY(U,$J,358.3,10210,2)
+ ;;=^5006146
+ ;;^UTILITY(U,$J,358.3,10211,0)
+ ;;=H47.333^^44^502^41
+ ;;^UTILITY(U,$J,358.3,10211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9994,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,9994,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,9994,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,9995,0)
- ;;=I25.10^^68^661^6
- ;;^UTILITY(U,$J,358.3,9995,1,0)
+ ;;^UTILITY(U,$J,358.3,10211,1,3,0)
+ ;;=3^Pseudopapilledema of Optic Disc,Bilateral
+ ;;^UTILITY(U,$J,358.3,10211,1,4,0)
+ ;;=4^H47.333
+ ;;^UTILITY(U,$J,358.3,10211,2)
+ ;;=^5006147
+ ;;^UTILITY(U,$J,358.3,10212,0)
+ ;;=H46.9^^44^502^36
+ ;;^UTILITY(U,$J,358.3,10212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9995,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,9995,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,9995,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,9996,0)
- ;;=I25.810^^68^661^8
- ;;^UTILITY(U,$J,358.3,9996,1,0)
+ ;;^UTILITY(U,$J,358.3,10212,1,3,0)
+ ;;=3^Optic Neuritis,Unspec
+ ;;^UTILITY(U,$J,358.3,10212,1,4,0)
+ ;;=4^H46.9
+ ;;^UTILITY(U,$J,358.3,10212,2)
+ ;;=^5006104
+ ;;^UTILITY(U,$J,358.3,10213,0)
+ ;;=H47.011^^44^502^28
+ ;;^UTILITY(U,$J,358.3,10213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9996,1,3,0)
- ;;=3^Athscl of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,9996,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,9996,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,9997,0)
- ;;=I65.29^^68^662^18
- ;;^UTILITY(U,$J,358.3,9997,1,0)
+ ;;^UTILITY(U,$J,358.3,10213,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,10213,1,4,0)
+ ;;=4^H47.011
+ ;;^UTILITY(U,$J,358.3,10213,2)
+ ;;=^5006105
+ ;;^UTILITY(U,$J,358.3,10214,0)
+ ;;=H47.012^^44^502^27
+ ;;^UTILITY(U,$J,358.3,10214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9997,1,3,0)
- ;;=3^Occlusion & Stenosis Unspec Carotid Artery
- ;;^UTILITY(U,$J,358.3,9997,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,9997,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,9998,0)
- ;;=I65.22^^68^662^16
- ;;^UTILITY(U,$J,358.3,9998,1,0)
+ ;;^UTILITY(U,$J,358.3,10214,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,10214,1,4,0)
+ ;;=4^H47.012
+ ;;^UTILITY(U,$J,358.3,10214,2)
+ ;;=^5006106
+ ;;^UTILITY(U,$J,358.3,10215,0)
+ ;;=H49.881^^44^502^40
+ ;;^UTILITY(U,$J,358.3,10215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9998,1,3,0)
- ;;=3^Occlusion & Stenosis Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,9998,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,9998,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,9999,0)
- ;;=I65.23^^68^662^15
- ;;^UTILITY(U,$J,358.3,9999,1,0)
+ ;;^UTILITY(U,$J,358.3,10215,1,3,0)
+ ;;=3^Paralytic Strabismus,Right Eye
+ ;;^UTILITY(U,$J,358.3,10215,1,4,0)
+ ;;=4^H49.881
+ ;;^UTILITY(U,$J,358.3,10215,2)
+ ;;=^5006203
+ ;;^UTILITY(U,$J,358.3,10216,0)
+ ;;=H49.882^^44^502^39
+ ;;^UTILITY(U,$J,358.3,10216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9999,1,3,0)
- ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,9999,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,9999,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,10000,0)
- ;;=I65.21^^68^662^17
- ;;^UTILITY(U,$J,358.3,10000,1,0)
+ ;;^UTILITY(U,$J,358.3,10216,1,3,0)
+ ;;=3^Paralytic Strabismus,Left Eye
+ ;;^UTILITY(U,$J,358.3,10216,1,4,0)
+ ;;=4^H49.882
+ ;;^UTILITY(U,$J,358.3,10216,2)
+ ;;=^5006204
+ ;;^UTILITY(U,$J,358.3,10217,0)
+ ;;=H49.01^^44^502^50
+ ;;^UTILITY(U,$J,358.3,10217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10000,1,3,0)
- ;;=3^Occlusion & Stenosis Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,10000,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,10000,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,10001,0)
- ;;=I70.219^^68^662^3
- ;;^UTILITY(U,$J,358.3,10001,1,0)
+ ;;^UTILITY(U,$J,358.3,10217,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,10217,1,4,0)
+ ;;=4^H49.01
+ ;;^UTILITY(U,$J,358.3,10217,2)
+ ;;=^5006180
+ ;;^UTILITY(U,$J,358.3,10218,0)
+ ;;=H49.02^^44^502^49
+ ;;^UTILITY(U,$J,358.3,10218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10001,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
- ;;^UTILITY(U,$J,358.3,10001,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,10001,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,10002,0)
- ;;=I70.213^^68^662^4
- ;;^UTILITY(U,$J,358.3,10002,1,0)
+ ;;^UTILITY(U,$J,358.3,10218,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,10218,1,4,0)
+ ;;=4^H49.02
+ ;;^UTILITY(U,$J,358.3,10218,2)
+ ;;=^5006181
+ ;;^UTILITY(U,$J,358.3,10219,0)
+ ;;=H49.11^^44^502^21
+ ;;^UTILITY(U,$J,358.3,10219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10002,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,10002,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,10002,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,10003,0)
- ;;=I70.212^^68^662^5
- ;;^UTILITY(U,$J,358.3,10003,1,0)
+ ;;^UTILITY(U,$J,358.3,10219,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,10219,1,4,0)
+ ;;=4^H49.11
+ ;;^UTILITY(U,$J,358.3,10219,2)
+ ;;=^5006184
+ ;;^UTILITY(U,$J,358.3,10220,0)
+ ;;=H49.12^^44^502^20
+ ;;^UTILITY(U,$J,358.3,10220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10003,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,10003,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,10003,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,10004,0)
- ;;=I70.211^^68^662^6
- ;;^UTILITY(U,$J,358.3,10004,1,0)
+ ;;^UTILITY(U,$J,358.3,10220,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,10220,1,4,0)
+ ;;=4^H49.12
+ ;;^UTILITY(U,$J,358.3,10220,2)
+ ;;=^5006185
+ ;;^UTILITY(U,$J,358.3,10221,0)
+ ;;=H49.21^^44^502^46
+ ;;^UTILITY(U,$J,358.3,10221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10004,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,10004,1,4,0)
- ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,10221,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,10221,1,4,0)
+ ;;=4^H49.21
+ ;;^UTILITY(U,$J,358.3,10221,2)
+ ;;=^5006188
+ ;;^UTILITY(U,$J,358.3,10222,0)
+ ;;=H49.22^^44^502^45

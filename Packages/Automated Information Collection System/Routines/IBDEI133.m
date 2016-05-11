@@ -1,130 +1,140 @@
-IBDEI133 ; ; 19-NOV-2015
+IBDEI133 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18100,0)
- ;;=I20.0^^94^902^14
- ;;^UTILITY(U,$J,358.3,18100,1,0)
+ ;;^UTILITY(U,$J,358.3,18424,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,18425,0)
+ ;;=C22.8^^79^879^11
+ ;;^UTILITY(U,$J,358.3,18425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18100,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,18100,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,18100,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,18101,0)
- ;;=I25.110^^94^902^7
- ;;^UTILITY(U,$J,358.3,18101,1,0)
+ ;;^UTILITY(U,$J,358.3,18425,1,3,0)
+ ;;=3^Malig Neop of Liver,Primary
+ ;;^UTILITY(U,$J,358.3,18425,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,18425,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,18426,0)
+ ;;=C22.7^^79^879^12
+ ;;^UTILITY(U,$J,358.3,18426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18101,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,18101,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,18101,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,18102,0)
- ;;=I25.700^^94^902^12
- ;;^UTILITY(U,$J,358.3,18102,1,0)
+ ;;^UTILITY(U,$J,358.3,18426,1,3,0)
+ ;;=3^Carcinoma of Liver NEC
+ ;;^UTILITY(U,$J,358.3,18426,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,18426,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,18427,0)
+ ;;=C22.2^^79^879^13
+ ;;^UTILITY(U,$J,358.3,18427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18102,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,18102,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,18102,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,18103,0)
- ;;=I25.2^^94^902^13
- ;;^UTILITY(U,$J,358.3,18103,1,0)
+ ;;^UTILITY(U,$J,358.3,18427,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,18427,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,18427,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,18428,0)
+ ;;=C22.0^^79^879^14
+ ;;^UTILITY(U,$J,358.3,18428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18103,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,18103,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,18103,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,18104,0)
- ;;=I20.8^^94^902^2
- ;;^UTILITY(U,$J,358.3,18104,1,0)
+ ;;^UTILITY(U,$J,358.3,18428,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,18428,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,18428,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,18429,0)
+ ;;=C22.4^^79^879^15
+ ;;^UTILITY(U,$J,358.3,18429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18104,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,18104,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,18104,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,18105,0)
- ;;=I20.1^^94^902^1
- ;;^UTILITY(U,$J,358.3,18105,1,0)
+ ;;^UTILITY(U,$J,358.3,18429,1,3,0)
+ ;;=3^Liver Sarcomas NEC
+ ;;^UTILITY(U,$J,358.3,18429,1,4,0)
+ ;;=4^C22.4
+ ;;^UTILITY(U,$J,358.3,18429,2)
+ ;;=^5000937
+ ;;^UTILITY(U,$J,358.3,18430,0)
+ ;;=C22.3^^79^879^16
+ ;;^UTILITY(U,$J,358.3,18430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18105,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,18105,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,18105,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,18106,0)
- ;;=I25.119^^94^902^5
- ;;^UTILITY(U,$J,358.3,18106,1,0)
+ ;;^UTILITY(U,$J,358.3,18430,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,18430,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,18430,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,18431,0)
+ ;;=C23.^^79^879^17
+ ;;^UTILITY(U,$J,358.3,18431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18106,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,18106,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,18106,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,18107,0)
- ;;=I25.701^^94^902^9
- ;;^UTILITY(U,$J,358.3,18107,1,0)
+ ;;^UTILITY(U,$J,358.3,18431,1,3,0)
+ ;;=3^Malig Neop of Gallbladder
+ ;;^UTILITY(U,$J,358.3,18431,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,18431,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,18432,0)
+ ;;=C24.0^^79^879^18
+ ;;^UTILITY(U,$J,358.3,18432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18107,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,18107,1,4,0)
- ;;=4^I25.701
- ;;^UTILITY(U,$J,358.3,18107,2)
- ;;=^5007118
- ;;^UTILITY(U,$J,358.3,18108,0)
- ;;=I25.708^^94^902^10
- ;;^UTILITY(U,$J,358.3,18108,1,0)
+ ;;^UTILITY(U,$J,358.3,18432,1,3,0)
+ ;;=3^Malig Neop of Extrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,18432,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,18432,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,18433,0)
+ ;;=C24.1^^79^879^19
+ ;;^UTILITY(U,$J,358.3,18433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18108,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
- ;;^UTILITY(U,$J,358.3,18108,1,4,0)
- ;;=4^I25.708
- ;;^UTILITY(U,$J,358.3,18108,2)
- ;;=^5007119
- ;;^UTILITY(U,$J,358.3,18109,0)
- ;;=I20.9^^94^902^3
- ;;^UTILITY(U,$J,358.3,18109,1,0)
+ ;;^UTILITY(U,$J,358.3,18433,1,3,0)
+ ;;=3^Malig Neop of Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,18433,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,18433,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,18434,0)
+ ;;=C25.9^^79^879^20
+ ;;^UTILITY(U,$J,358.3,18434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18109,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,18109,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,18109,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,18110,0)
- ;;=I25.729^^94^902^4
- ;;^UTILITY(U,$J,358.3,18110,1,0)
+ ;;^UTILITY(U,$J,358.3,18434,1,3,0)
+ ;;=3^Malig Neop of Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,18434,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,18434,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,18435,0)
+ ;;=C31.9^^79^879^21
+ ;;^UTILITY(U,$J,358.3,18435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18110,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,18110,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,18110,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,18111,0)
- ;;=I25.709^^94^902^11
- ;;^UTILITY(U,$J,358.3,18111,1,0)
+ ;;^UTILITY(U,$J,358.3,18435,1,3,0)
+ ;;=3^Malig Neop of Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,18435,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,18435,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,18436,0)
+ ;;=C32.9^^79^879^22
+ ;;^UTILITY(U,$J,358.3,18436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18111,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
- ;;^UTILITY(U,$J,358.3,18111,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,18111,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,18112,0)
- ;;=I25.10^^94^902^6
- ;;^UTILITY(U,$J,358.3,18112,1,0)
+ ;;^UTILITY(U,$J,358.3,18436,1,3,0)
+ ;;=3^Malig Neop of Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,18436,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,18436,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,18437,0)
+ ;;=C34.91^^79^879^23
+ ;;^UTILITY(U,$J,358.3,18437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18112,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,18437,1,3,0)
+ ;;=3^Malig Neop of Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,18437,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,18437,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,18438,0)
+ ;;=C34.92^^79^879^24
+ ;;^UTILITY(U,$J,358.3,18438,1,0)
+ ;;=^358.31IA^4^2

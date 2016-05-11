@@ -1,5 +1,5 @@
 VPSRPC13  ;WOIFO/BT - Patient Demographic RPC - Consult/Procedure;08/14/14 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**4**;Aug 14, 2014;Build 27
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14**;Aug 14, 2014;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -10,15 +10,17 @@ VPSRPC13  ;WOIFO/BT - Patient Demographic RPC - Consult/Procedure;08/14/14 13:07
  ; #6116 - Read-Only access to File #123, Fields .01,.03,3,5,8,10,13,17 (Controlled Subs)
  QUIT
  ;
-GETCNSLT(VPSARR,DFN) ;given DFN, returns the patient lab
+GETCNSLT(VPSARR,DFN,PARAMS) ;given DFN, returns the patient lab
  ; OUTPUT
  ;   VPSARR   - passed in by reference; this is the output array to store Consult
  ; INPUT
  ;   DFN      - patient DFN (This value must be validated before calling this procedure)
+ ;   PARAMS   - optional date range
  ;
  N ORSERV S ORSERV="" ;Service
- N ORSDT S ORSDT="" ;Beg Date for Search
- N OREDT S OREDT="" ;End Date for Search
+ S PARAMS=$G(PARAMS)
+ N ORSDT S ORSDT=$P(PARAMS,":") ;Beg Date for Search
+ N OREDT S OREDT=$P(PARAMS,":",2) ;End Date for Search
  N ORSTATUS S ORSTATUS="" ;ALL STATI
  N GMRCOER S GMRCOER=2 ;0 if request is from CONSULTS, 1 if request is for CPRS List Manager, 2 if for CPRS GUI
  ;

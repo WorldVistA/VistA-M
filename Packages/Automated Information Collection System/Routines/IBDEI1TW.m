@@ -1,138 +1,122 @@
-IBDEI1TW ; ; 19-NOV-2015
+IBDEI1TW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30611,0)
- ;;=G89.3^^135^1380^9
- ;;^UTILITY(U,$J,358.3,30611,1,0)
+ ;;^UTILITY(U,$J,358.3,31058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30611,1,3,0)
- ;;=3^Neoplasm Related Pain,Acute/Chronic
- ;;^UTILITY(U,$J,358.3,30611,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,30611,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,30612,0)
- ;;=G89.4^^135^1380^2
- ;;^UTILITY(U,$J,358.3,30612,1,0)
+ ;;^UTILITY(U,$J,358.3,31058,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31058,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,31058,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,31059,0)
+ ;;=F12.229^^123^1557^12
+ ;;^UTILITY(U,$J,358.3,31059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30612,1,3,0)
- ;;=3^Chronic Pain Syndrome
- ;;^UTILITY(U,$J,358.3,30612,1,4,0)
- ;;=4^G89.4
- ;;^UTILITY(U,$J,358.3,30612,2)
- ;;=^334079
- ;;^UTILITY(U,$J,358.3,30613,0)
- ;;=M27.0^^135^1380^3
- ;;^UTILITY(U,$J,358.3,30613,1,0)
+ ;;^UTILITY(U,$J,358.3,31059,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31059,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,31059,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,31060,0)
+ ;;=F12.122^^123^1557^9
+ ;;^UTILITY(U,$J,358.3,31060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30613,1,3,0)
- ;;=3^Developmental Disorder of Jaws
- ;;^UTILITY(U,$J,358.3,30613,1,4,0)
- ;;=4^M27.0
- ;;^UTILITY(U,$J,358.3,30613,2)
- ;;=^5011722
- ;;^UTILITY(U,$J,358.3,30614,0)
- ;;=M27.9^^135^1380^4
- ;;^UTILITY(U,$J,358.3,30614,1,0)
+ ;;^UTILITY(U,$J,358.3,31060,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31060,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,31060,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,31061,0)
+ ;;=F12.222^^123^1557^10
+ ;;^UTILITY(U,$J,358.3,31061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30614,1,3,0)
- ;;=3^Disease of Jaws,Unspec
- ;;^UTILITY(U,$J,358.3,30614,1,4,0)
- ;;=4^M27.9
- ;;^UTILITY(U,$J,358.3,30614,2)
- ;;=^5011737
- ;;^UTILITY(U,$J,358.3,30615,0)
- ;;=R68.84^^135^1380^8
- ;;^UTILITY(U,$J,358.3,30615,1,0)
+ ;;^UTILITY(U,$J,358.3,31061,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31061,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,31061,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,31062,0)
+ ;;=F12.129^^123^1557^14
+ ;;^UTILITY(U,$J,358.3,31062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30615,1,3,0)
- ;;=3^Jaw Pain
- ;;^UTILITY(U,$J,358.3,30615,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,30615,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,30616,0)
- ;;=N48.9^^135^1380^6
- ;;^UTILITY(U,$J,358.3,30616,1,0)
+ ;;^UTILITY(U,$J,358.3,31062,1,3,0)
+ ;;=3^Cannabis Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,31062,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,31062,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,31063,0)
+ ;;=F12.922^^123^1557^11
+ ;;^UTILITY(U,$J,358.3,31063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30616,1,3,0)
- ;;=3^Disorder of Penis,Unspec
- ;;^UTILITY(U,$J,358.3,30616,1,4,0)
- ;;=4^N48.9
- ;;^UTILITY(U,$J,358.3,30616,2)
- ;;=^5015743
- ;;^UTILITY(U,$J,358.3,30617,0)
- ;;=N50.9^^135^1380^5
- ;;^UTILITY(U,$J,358.3,30617,1,0)
+ ;;^UTILITY(U,$J,358.3,31063,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31063,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,31063,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,31064,0)
+ ;;=F12.980^^123^1557^1
+ ;;^UTILITY(U,$J,358.3,31064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30617,1,3,0)
- ;;=3^Disorder of Male Genital Organs,Unspec
- ;;^UTILITY(U,$J,358.3,30617,1,4,0)
- ;;=4^N50.9
- ;;^UTILITY(U,$J,358.3,30617,2)
- ;;=^5015751
- ;;^UTILITY(U,$J,358.3,30618,0)
- ;;=R10.2^^135^1380^13
- ;;^UTILITY(U,$J,358.3,30618,1,0)
+ ;;^UTILITY(U,$J,358.3,31064,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31064,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,31064,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,31065,0)
+ ;;=F12.159^^123^1557^2
+ ;;^UTILITY(U,$J,358.3,31065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30618,1,3,0)
- ;;=3^Pelvic/Perineal Pain
- ;;^UTILITY(U,$J,358.3,30618,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,30618,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,30619,0)
- ;;=N94.89^^135^1380^7
- ;;^UTILITY(U,$J,358.3,30619,1,0)
+ ;;^UTILITY(U,$J,358.3,31065,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,31065,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,31065,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,31066,0)
+ ;;=F12.259^^123^1557^3
+ ;;^UTILITY(U,$J,358.3,31066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30619,1,3,0)
- ;;=3^Female Genital Organs/Menstrual Cycle,Oth Cond
- ;;^UTILITY(U,$J,358.3,30619,1,4,0)
- ;;=4^N94.89
- ;;^UTILITY(U,$J,358.3,30619,2)
- ;;=^5015925
- ;;^UTILITY(U,$J,358.3,30620,0)
- ;;=N23.^^135^1380^18
- ;;^UTILITY(U,$J,358.3,30620,1,0)
+ ;;^UTILITY(U,$J,358.3,31066,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,31066,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,31066,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,31067,0)
+ ;;=F12.959^^123^1557^4
+ ;;^UTILITY(U,$J,358.3,31067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30620,1,3,0)
- ;;=3^Renal Colic,Unspec
- ;;^UTILITY(U,$J,358.3,30620,1,4,0)
- ;;=4^N23.
- ;;^UTILITY(U,$J,358.3,30620,2)
- ;;=^5015615
- ;;^UTILITY(U,$J,358.3,30621,0)
- ;;=Z71.89^^135^1381^1
- ;;^UTILITY(U,$J,358.3,30621,1,0)
+ ;;^UTILITY(U,$J,358.3,31067,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31067,1,4,0)
+ ;;=4^F12.959
+ ;;^UTILITY(U,$J,358.3,31067,2)
+ ;;=^5003185
+ ;;^UTILITY(U,$J,358.3,31068,0)
+ ;;=F12.988^^123^1557^5
+ ;;^UTILITY(U,$J,358.3,31068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30621,1,3,0)
- ;;=3^Activity/Exercise Counseling
- ;;^UTILITY(U,$J,358.3,30621,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,30621,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,30622,0)
- ;;=Z13.89^^135^1381^2
- ;;^UTILITY(U,$J,358.3,30622,1,0)
+ ;;^UTILITY(U,$J,358.3,31068,1,3,0)
+ ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31068,1,4,0)
+ ;;=4^F12.988
+ ;;^UTILITY(U,$J,358.3,31068,2)
+ ;;=^5003187
+ ;;^UTILITY(U,$J,358.3,31069,0)
+ ;;=F12.929^^123^1557^13
+ ;;^UTILITY(U,$J,358.3,31069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30622,1,3,0)
- ;;=3^Alcohol Use Screen
- ;;^UTILITY(U,$J,358.3,30622,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,30622,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,30623,0)
- ;;=Z12.39^^135^1381^3
- ;;^UTILITY(U,$J,358.3,30623,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30623,1,3,0)
- ;;=3^Breast Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,30623,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,30623,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,30624,0)
- ;;=Z12.4^^135^1381^5
- ;;^UTILITY(U,$J,358.3,30624,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31069,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,31069,1,4,0)
+ ;;=4^F12.929
+ ;;^UTILITY(U,$J,358.3,31069,2)
+ ;;=^5003182

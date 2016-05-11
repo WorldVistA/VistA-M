@@ -1,128 +1,134 @@
-IBDEI1OJ ; ; 19-NOV-2015
+IBDEI1OJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28104,1,0)
+ ;;^UTILITY(U,$J,358.3,28538,0)
+ ;;=M17.31^^112^1427^11
+ ;;^UTILITY(U,$J,358.3,28538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28104,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,28104,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,28104,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,28105,0)
- ;;=M32.13^^132^1326^160
- ;;^UTILITY(U,$J,358.3,28105,1,0)
+ ;;^UTILITY(U,$J,358.3,28538,1,3,0)
+ ;;=3^Post-Traumatic OA of Right Knee
+ ;;^UTILITY(U,$J,358.3,28538,1,4,0)
+ ;;=4^M17.31
+ ;;^UTILITY(U,$J,358.3,28538,2)
+ ;;=^5010790
+ ;;^UTILITY(U,$J,358.3,28539,0)
+ ;;=M17.32^^112^1427^9
+ ;;^UTILITY(U,$J,358.3,28539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28105,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
- ;;^UTILITY(U,$J,358.3,28105,1,4,0)
- ;;=4^M32.13
- ;;^UTILITY(U,$J,358.3,28105,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,28106,0)
- ;;=M32.14^^132^1326^159
- ;;^UTILITY(U,$J,358.3,28106,1,0)
+ ;;^UTILITY(U,$J,358.3,28539,1,3,0)
+ ;;=3^Post-Traumatic OA of Left Knee
+ ;;^UTILITY(U,$J,358.3,28539,1,4,0)
+ ;;=4^M17.32
+ ;;^UTILITY(U,$J,358.3,28539,2)
+ ;;=^5010791
+ ;;^UTILITY(U,$J,358.3,28540,0)
+ ;;=G30.9^^112^1428^1
+ ;;^UTILITY(U,$J,358.3,28540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28106,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
- ;;^UTILITY(U,$J,358.3,28106,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,28106,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,28107,0)
- ;;=M32.12^^132^1326^161
- ;;^UTILITY(U,$J,358.3,28107,1,0)
+ ;;^UTILITY(U,$J,358.3,28540,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,28540,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,28540,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,28541,0)
+ ;;=G20.^^112^1428^8
+ ;;^UTILITY(U,$J,358.3,28541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28107,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
- ;;^UTILITY(U,$J,358.3,28107,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,28107,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,28108,0)
- ;;=M05.59^^132^1326^142
- ;;^UTILITY(U,$J,358.3,28108,1,0)
+ ;;^UTILITY(U,$J,358.3,28541,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,28541,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,28541,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,28542,0)
+ ;;=G35.^^112^1428^7
+ ;;^UTILITY(U,$J,358.3,28542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28108,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
- ;;^UTILITY(U,$J,358.3,28108,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,28108,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,28109,0)
- ;;=M05.711^^132^1326^136
- ;;^UTILITY(U,$J,358.3,28109,1,0)
+ ;;^UTILITY(U,$J,358.3,28542,1,3,0)
+ ;;=3^Multiple Sclerosis
+ ;;^UTILITY(U,$J,358.3,28542,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,28542,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,28543,0)
+ ;;=G60.9^^112^1428^5
+ ;;^UTILITY(U,$J,358.3,28543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28109,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,28109,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,28109,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,28110,0)
- ;;=M05.712^^132^1326^129
- ;;^UTILITY(U,$J,358.3,28110,1,0)
+ ;;^UTILITY(U,$J,358.3,28543,1,3,0)
+ ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,28543,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,28543,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,28544,0)
+ ;;=I69.90^^112^1428^2
+ ;;^UTILITY(U,$J,358.3,28544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28110,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,28110,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,28110,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,28111,0)
- ;;=M05.731^^132^1326^137
- ;;^UTILITY(U,$J,358.3,28111,1,0)
+ ;;^UTILITY(U,$J,358.3,28544,1,3,0)
+ ;;=3^Cerebrovascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,28544,1,4,0)
+ ;;=4^I69.90
+ ;;^UTILITY(U,$J,358.3,28544,2)
+ ;;=^5007551
+ ;;^UTILITY(U,$J,358.3,28545,0)
+ ;;=R56.9^^112^1428^4
+ ;;^UTILITY(U,$J,358.3,28545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28111,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,28111,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,28111,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,28112,0)
- ;;=M05.732^^132^1326^130
- ;;^UTILITY(U,$J,358.3,28112,1,0)
+ ;;^UTILITY(U,$J,358.3,28545,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,28545,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,28545,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,28546,0)
+ ;;=S14.109S^^112^1428^3
+ ;;^UTILITY(U,$J,358.3,28546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28112,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,28112,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,28112,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,28113,0)
- ;;=M05.741^^132^1326^133
- ;;^UTILITY(U,$J,358.3,28113,1,0)
+ ;;^UTILITY(U,$J,358.3,28546,1,3,0)
+ ;;=3^Cervical Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,28546,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,28546,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,28547,0)
+ ;;=S24.109S^^112^1428^10
+ ;;^UTILITY(U,$J,358.3,28547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28113,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,28113,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,28113,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,28114,0)
- ;;=M05.742^^132^1326^126
- ;;^UTILITY(U,$J,358.3,28114,1,0)
+ ;;^UTILITY(U,$J,358.3,28547,1,3,0)
+ ;;=3^Thoracic Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,28547,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,28547,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,28548,0)
+ ;;=S34.109S^^112^1428^6
+ ;;^UTILITY(U,$J,358.3,28548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28114,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,28114,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,28114,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,28115,0)
- ;;=M05.751^^132^1326^134
- ;;^UTILITY(U,$J,358.3,28115,1,0)
+ ;;^UTILITY(U,$J,358.3,28548,1,3,0)
+ ;;=3^Lumbar Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,28548,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,28548,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,28549,0)
+ ;;=S34.139S^^112^1428^9
+ ;;^UTILITY(U,$J,358.3,28549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28115,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,28115,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,28115,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,28116,0)
- ;;=M05.752^^132^1326^127
- ;;^UTILITY(U,$J,358.3,28116,1,0)
+ ;;^UTILITY(U,$J,358.3,28549,1,3,0)
+ ;;=3^Sacral Spinal Cord Injury,Unspec,Sequela
+ ;;^UTILITY(U,$J,358.3,28549,1,4,0)
+ ;;=4^S34.139S
+ ;;^UTILITY(U,$J,358.3,28549,2)
+ ;;=^5025249
+ ;;^UTILITY(U,$J,358.3,28550,0)
+ ;;=Z43.0^^112^1429^10
+ ;;^UTILITY(U,$J,358.3,28550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28116,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,28550,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,28550,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,28550,2)
+ ;;=^5062958

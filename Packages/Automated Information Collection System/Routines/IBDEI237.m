@@ -1,132 +1,134 @@
-IBDEI237 ; ; 19-NOV-2015
+IBDEI237 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35021,2)
- ;;=^5009419
- ;;^UTILITY(U,$J,358.3,35022,0)
- ;;=L89.519^^163^1788^65
- ;;^UTILITY(U,$J,358.3,35022,1,0)
+ ;;^UTILITY(U,$J,358.3,35402,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,35402,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,35403,0)
+ ;;=J98.09^^134^1717^22
+ ;;^UTILITY(U,$J,358.3,35403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35022,1,3,0)
- ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
- ;;^UTILITY(U,$J,358.3,35022,1,4,0)
- ;;=4^L89.519
- ;;^UTILITY(U,$J,358.3,35022,2)
- ;;=^5133673
- ;;^UTILITY(U,$J,358.3,35023,0)
- ;;=L89.520^^163^1788^18
- ;;^UTILITY(U,$J,358.3,35023,1,0)
+ ;;^UTILITY(U,$J,358.3,35403,1,3,0)
+ ;;=3^Bronchus Diseases NEC
+ ;;^UTILITY(U,$J,358.3,35403,1,4,0)
+ ;;=4^J98.09
+ ;;^UTILITY(U,$J,358.3,35403,2)
+ ;;=^5008359
+ ;;^UTILITY(U,$J,358.3,35404,0)
+ ;;=A15.0^^134^1717^99
+ ;;^UTILITY(U,$J,358.3,35404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35023,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Unstageable
- ;;^UTILITY(U,$J,358.3,35023,1,4,0)
- ;;=4^L89.520
- ;;^UTILITY(U,$J,358.3,35023,2)
- ;;=^5009420
- ;;^UTILITY(U,$J,358.3,35024,0)
- ;;=L89.521^^163^1788^13
- ;;^UTILITY(U,$J,358.3,35024,1,0)
+ ;;^UTILITY(U,$J,358.3,35404,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,35404,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,35404,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,35405,0)
+ ;;=J05.0^^134^1717^40
+ ;;^UTILITY(U,$J,358.3,35405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35024,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 1
- ;;^UTILITY(U,$J,358.3,35024,1,4,0)
- ;;=4^L89.521
- ;;^UTILITY(U,$J,358.3,35024,2)
- ;;=^5009421
- ;;^UTILITY(U,$J,358.3,35025,0)
- ;;=L89.522^^163^1788^14
- ;;^UTILITY(U,$J,358.3,35025,1,0)
+ ;;^UTILITY(U,$J,358.3,35405,1,3,0)
+ ;;=3^Laryngitis,Obstructive,Acute
+ ;;^UTILITY(U,$J,358.3,35405,1,4,0)
+ ;;=4^J05.0
+ ;;^UTILITY(U,$J,358.3,35405,2)
+ ;;=^5008141
+ ;;^UTILITY(U,$J,358.3,35406,0)
+ ;;=J06.9^^134^1717^89
+ ;;^UTILITY(U,$J,358.3,35406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35025,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 2
- ;;^UTILITY(U,$J,358.3,35025,1,4,0)
- ;;=4^L89.522
- ;;^UTILITY(U,$J,358.3,35025,2)
- ;;=^5009422
- ;;^UTILITY(U,$J,358.3,35026,0)
- ;;=L89.523^^163^1788^15
- ;;^UTILITY(U,$J,358.3,35026,1,0)
+ ;;^UTILITY(U,$J,358.3,35406,1,3,0)
+ ;;=3^Respiratory Infection,Upper,Acute
+ ;;^UTILITY(U,$J,358.3,35406,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,35406,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,35407,0)
+ ;;=R63.4^^134^1717^100
+ ;;^UTILITY(U,$J,358.3,35407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35026,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 3
- ;;^UTILITY(U,$J,358.3,35026,1,4,0)
- ;;=4^L89.523
- ;;^UTILITY(U,$J,358.3,35026,2)
- ;;=^5009423
- ;;^UTILITY(U,$J,358.3,35027,0)
- ;;=L89.524^^163^1788^16
- ;;^UTILITY(U,$J,358.3,35027,1,0)
+ ;;^UTILITY(U,$J,358.3,35407,1,3,0)
+ ;;=3^Weight Loss,Abnormal
+ ;;^UTILITY(U,$J,358.3,35407,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,35407,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,35408,0)
+ ;;=I26.09^^134^1717^78
+ ;;^UTILITY(U,$J,358.3,35408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35027,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 4
- ;;^UTILITY(U,$J,358.3,35027,1,4,0)
- ;;=4^L89.524
- ;;^UTILITY(U,$J,358.3,35027,2)
- ;;=^5009424
- ;;^UTILITY(U,$J,358.3,35028,0)
- ;;=L89.529^^163^1788^17
- ;;^UTILITY(U,$J,358.3,35028,1,0)
+ ;;^UTILITY(U,$J,358.3,35408,1,3,0)
+ ;;=3^Pulmonary Embolism w/ Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,35408,1,4,0)
+ ;;=4^I26.09
+ ;;^UTILITY(U,$J,358.3,35408,2)
+ ;;=^5007147
+ ;;^UTILITY(U,$J,358.3,35409,0)
+ ;;=I26.99^^134^1717^80
+ ;;^UTILITY(U,$J,358.3,35409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35028,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
- ;;^UTILITY(U,$J,358.3,35028,1,4,0)
- ;;=4^L89.529
- ;;^UTILITY(U,$J,358.3,35028,2)
- ;;=^5133674
- ;;^UTILITY(U,$J,358.3,35029,0)
- ;;=L89.610^^163^1788^84
- ;;^UTILITY(U,$J,358.3,35029,1,0)
+ ;;^UTILITY(U,$J,358.3,35409,1,3,0)
+ ;;=3^Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,35409,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,35409,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,35410,0)
+ ;;=I27.0^^134^1717^84
+ ;;^UTILITY(U,$J,358.3,35410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35029,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Unstageable
- ;;^UTILITY(U,$J,358.3,35029,1,4,0)
- ;;=4^L89.610
- ;;^UTILITY(U,$J,358.3,35029,2)
- ;;=^5009430
- ;;^UTILITY(U,$J,358.3,35030,0)
- ;;=L89.611^^163^1788^79
- ;;^UTILITY(U,$J,358.3,35030,1,0)
+ ;;^UTILITY(U,$J,358.3,35410,1,3,0)
+ ;;=3^Pulmonary Hypertension,Primary
+ ;;^UTILITY(U,$J,358.3,35410,1,4,0)
+ ;;=4^I27.0
+ ;;^UTILITY(U,$J,358.3,35410,2)
+ ;;=^265310
+ ;;^UTILITY(U,$J,358.3,35411,0)
+ ;;=I27.2^^134^1717^85
+ ;;^UTILITY(U,$J,358.3,35411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35030,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,35030,1,4,0)
- ;;=4^L89.611
- ;;^UTILITY(U,$J,358.3,35030,2)
- ;;=^5009431
- ;;^UTILITY(U,$J,358.3,35031,0)
- ;;=L89.612^^163^1788^80
- ;;^UTILITY(U,$J,358.3,35031,1,0)
+ ;;^UTILITY(U,$J,358.3,35411,1,3,0)
+ ;;=3^Pulmonary Hypertension,Secondary
+ ;;^UTILITY(U,$J,358.3,35411,1,4,0)
+ ;;=4^I27.2
+ ;;^UTILITY(U,$J,358.3,35411,2)
+ ;;=^5007151
+ ;;^UTILITY(U,$J,358.3,35412,0)
+ ;;=I26.01^^134^1717^93
+ ;;^UTILITY(U,$J,358.3,35412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35031,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 2
- ;;^UTILITY(U,$J,358.3,35031,1,4,0)
- ;;=4^L89.612
- ;;^UTILITY(U,$J,358.3,35031,2)
- ;;=^5009432
- ;;^UTILITY(U,$J,358.3,35032,0)
- ;;=L89.613^^163^1788^81
- ;;^UTILITY(U,$J,358.3,35032,1,0)
+ ;;^UTILITY(U,$J,358.3,35412,1,3,0)
+ ;;=3^Septic Pulmonary Embolism w/ Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,35412,1,4,0)
+ ;;=4^I26.01
+ ;;^UTILITY(U,$J,358.3,35412,2)
+ ;;=^5007145
+ ;;^UTILITY(U,$J,358.3,35413,0)
+ ;;=I26.90^^134^1717^94
+ ;;^UTILITY(U,$J,358.3,35413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35032,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 3
- ;;^UTILITY(U,$J,358.3,35032,1,4,0)
- ;;=4^L89.613
- ;;^UTILITY(U,$J,358.3,35032,2)
- ;;=^5009433
- ;;^UTILITY(U,$J,358.3,35033,0)
- ;;=L89.614^^163^1788^82
- ;;^UTILITY(U,$J,358.3,35033,1,0)
+ ;;^UTILITY(U,$J,358.3,35413,1,3,0)
+ ;;=3^Septic Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,35413,1,4,0)
+ ;;=4^I26.90
+ ;;^UTILITY(U,$J,358.3,35413,2)
+ ;;=^5007148
+ ;;^UTILITY(U,$J,358.3,35414,0)
+ ;;=J06.9^^134^1717^1
+ ;;^UTILITY(U,$J,358.3,35414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35033,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 4
- ;;^UTILITY(U,$J,358.3,35033,1,4,0)
- ;;=4^L89.614
- ;;^UTILITY(U,$J,358.3,35033,2)
- ;;=^5009434
- ;;^UTILITY(U,$J,358.3,35034,0)
- ;;=L89.619^^163^1788^83
- ;;^UTILITY(U,$J,358.3,35034,1,0)
+ ;;^UTILITY(U,$J,358.3,35414,1,3,0)
+ ;;=3^AC Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,35414,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,35414,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,35415,0)
+ ;;=E66.01^^134^1717^52
+ ;;^UTILITY(U,$J,358.3,35415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35034,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,35415,1,3,0)
+ ;;=3^Morbid Obesity

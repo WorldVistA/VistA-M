@@ -1,126 +1,142 @@
-IBDEI1A8 ; ; 19-NOV-2015
+IBDEI1A8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21431,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right knee
- ;;^UTILITY(U,$J,358.3,21431,1,4,0)
- ;;=4^M05.561
- ;;^UTILITY(U,$J,358.3,21431,2)
- ;;=^5009970
- ;;^UTILITY(U,$J,358.3,21432,0)
- ;;=M05.511^^101^1030^121
- ;;^UTILITY(U,$J,358.3,21432,1,0)
+ ;;^UTILITY(U,$J,358.3,21807,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,21808,0)
+ ;;=L40.4^^87^970^157
+ ;;^UTILITY(U,$J,358.3,21808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21432,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right shoulder 
- ;;^UTILITY(U,$J,358.3,21432,1,4,0)
- ;;=4^M05.511
- ;;^UTILITY(U,$J,358.3,21432,2)
- ;;=^5009955
- ;;^UTILITY(U,$J,358.3,21433,0)
- ;;=M05.531^^101^1030^122
- ;;^UTILITY(U,$J,358.3,21433,1,0)
+ ;;^UTILITY(U,$J,358.3,21808,1,3,0)
+ ;;=3^Guttate Psoriasis
+ ;;^UTILITY(U,$J,358.3,21808,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,21808,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,21809,0)
+ ;;=L40.8^^87^970^252
+ ;;^UTILITY(U,$J,358.3,21809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21433,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right wrist 
- ;;^UTILITY(U,$J,358.3,21433,1,4,0)
- ;;=4^M05.531
- ;;^UTILITY(U,$J,358.3,21433,2)
- ;;=^5009961
- ;;^UTILITY(U,$J,358.3,21434,0)
- ;;=M19.272^^101^1030^153
- ;;^UTILITY(U,$J,358.3,21434,1,0)
+ ;;^UTILITY(U,$J,358.3,21809,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,21809,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,21809,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,21810,0)
+ ;;=L40.9^^87^970^254
+ ;;^UTILITY(U,$J,358.3,21810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21434,1,3,0)
- ;;=3^Secondary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,21434,1,4,0)
- ;;=4^M19.272
- ;;^UTILITY(U,$J,358.3,21434,2)
- ;;=^5010851
- ;;^UTILITY(U,$J,358.3,21435,0)
- ;;=M19.271^^101^1030^156
- ;;^UTILITY(U,$J,358.3,21435,1,0)
+ ;;^UTILITY(U,$J,358.3,21810,1,3,0)
+ ;;=3^Psoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,21810,1,4,0)
+ ;;=4^L40.9
+ ;;^UTILITY(U,$J,358.3,21810,2)
+ ;;=^5009171
+ ;;^UTILITY(U,$J,358.3,21811,0)
+ ;;=L50.9^^87^970^286
+ ;;^UTILITY(U,$J,358.3,21811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21435,1,3,0)
- ;;=3^Secondary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,21435,1,4,0)
- ;;=4^M19.271
- ;;^UTILITY(U,$J,358.3,21435,2)
- ;;=^5010850
- ;;^UTILITY(U,$J,358.3,21436,0)
- ;;=M19.242^^101^1030^154
- ;;^UTILITY(U,$J,358.3,21436,1,0)
+ ;;^UTILITY(U,$J,358.3,21811,1,3,0)
+ ;;=3^Urticaria,Unspec
+ ;;^UTILITY(U,$J,358.3,21811,1,4,0)
+ ;;=4^L50.9
+ ;;^UTILITY(U,$J,358.3,21811,2)
+ ;;=^5009204
+ ;;^UTILITY(U,$J,358.3,21812,0)
+ ;;=L53.8^^87^970^147
+ ;;^UTILITY(U,$J,358.3,21812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21436,1,3,0)
- ;;=3^Secondary osteoarthritis, left hand
- ;;^UTILITY(U,$J,358.3,21436,1,4,0)
- ;;=4^M19.242
- ;;^UTILITY(U,$J,358.3,21436,2)
- ;;=^5010848
- ;;^UTILITY(U,$J,358.3,21437,0)
- ;;=M19.212^^101^1030^155
- ;;^UTILITY(U,$J,358.3,21437,1,0)
+ ;;^UTILITY(U,$J,358.3,21812,1,3,0)
+ ;;=3^Erythematous Conditions NEC
+ ;;^UTILITY(U,$J,358.3,21812,1,4,0)
+ ;;=4^L53.8
+ ;;^UTILITY(U,$J,358.3,21812,2)
+ ;;=^88044
+ ;;^UTILITY(U,$J,358.3,21813,0)
+ ;;=L53.9^^87^970^146
+ ;;^UTILITY(U,$J,358.3,21813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21437,1,3,0)
- ;;=3^Secondary osteoarthritis, left shoulder
- ;;^UTILITY(U,$J,358.3,21437,1,4,0)
- ;;=4^M19.212
- ;;^UTILITY(U,$J,358.3,21437,2)
- ;;=^5010839
- ;;^UTILITY(U,$J,358.3,21438,0)
- ;;=M19.241^^101^1030^157
- ;;^UTILITY(U,$J,358.3,21438,1,0)
+ ;;^UTILITY(U,$J,358.3,21813,1,3,0)
+ ;;=3^Erythematous Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,21813,1,4,0)
+ ;;=4^L53.9
+ ;;^UTILITY(U,$J,358.3,21813,2)
+ ;;=^5009210
+ ;;^UTILITY(U,$J,358.3,21814,0)
+ ;;=L54.^^87^970^145
+ ;;^UTILITY(U,$J,358.3,21814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21438,1,3,0)
- ;;=3^Secondary osteoarthritis, right hand
- ;;^UTILITY(U,$J,358.3,21438,1,4,0)
- ;;=4^M19.241
- ;;^UTILITY(U,$J,358.3,21438,2)
- ;;=^5010847
- ;;^UTILITY(U,$J,358.3,21439,0)
- ;;=M19.211^^101^1030^158
- ;;^UTILITY(U,$J,358.3,21439,1,0)
+ ;;^UTILITY(U,$J,358.3,21814,1,3,0)
+ ;;=3^Erythema in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,21814,1,4,0)
+ ;;=4^L54.
+ ;;^UTILITY(U,$J,358.3,21814,2)
+ ;;=^5009211
+ ;;^UTILITY(U,$J,358.3,21815,0)
+ ;;=L56.0^^87^970^139
+ ;;^UTILITY(U,$J,358.3,21815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21439,1,3,0)
- ;;=3^Secondary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,21439,1,4,0)
- ;;=4^M19.211
- ;;^UTILITY(U,$J,358.3,21439,2)
- ;;=^5010838
- ;;^UTILITY(U,$J,358.3,21440,0)
- ;;=M67.02^^101^1030^159
- ;;^UTILITY(U,$J,358.3,21440,1,0)
+ ;;^UTILITY(U,$J,358.3,21815,1,3,0)
+ ;;=3^Drug Phototoxic Response
+ ;;^UTILITY(U,$J,358.3,21815,1,4,0)
+ ;;=4^L56.0
+ ;;^UTILITY(U,$J,358.3,21815,2)
+ ;;=^5009214
+ ;;^UTILITY(U,$J,358.3,21816,0)
+ ;;=L56.1^^87^970^138
+ ;;^UTILITY(U,$J,358.3,21816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21440,1,3,0)
- ;;=3^Short Achilles tendon (acquired), left ankle
- ;;^UTILITY(U,$J,358.3,21440,1,4,0)
- ;;=4^M67.02
- ;;^UTILITY(U,$J,358.3,21440,2)
- ;;=^5012907
- ;;^UTILITY(U,$J,358.3,21441,0)
- ;;=M67.01^^101^1030^160
- ;;^UTILITY(U,$J,358.3,21441,1,0)
+ ;;^UTILITY(U,$J,358.3,21816,1,3,0)
+ ;;=3^Drug Photoallergic Response
+ ;;^UTILITY(U,$J,358.3,21816,1,4,0)
+ ;;=4^L56.1
+ ;;^UTILITY(U,$J,358.3,21816,2)
+ ;;=^5009215
+ ;;^UTILITY(U,$J,358.3,21817,0)
+ ;;=L56.2^^87^970^236
+ ;;^UTILITY(U,$J,358.3,21817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21441,1,3,0)
- ;;=3^Short Achilles tendon (acquired), right ankle
- ;;^UTILITY(U,$J,358.3,21441,1,4,0)
- ;;=4^M67.01
- ;;^UTILITY(U,$J,358.3,21441,2)
- ;;=^5012906
- ;;^UTILITY(U,$J,358.3,21442,0)
- ;;=M66.232^^101^1030^161
- ;;^UTILITY(U,$J,358.3,21442,1,0)
+ ;;^UTILITY(U,$J,358.3,21817,1,3,0)
+ ;;=3^Photocontact Dermatitis
+ ;;^UTILITY(U,$J,358.3,21817,1,4,0)
+ ;;=4^L56.2
+ ;;^UTILITY(U,$J,358.3,21817,2)
+ ;;=^5009216
+ ;;^UTILITY(U,$J,358.3,21818,0)
+ ;;=L56.3^^87^970^268
+ ;;^UTILITY(U,$J,358.3,21818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21442,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left forearm
- ;;^UTILITY(U,$J,358.3,21442,1,4,0)
- ;;=4^M66.232
- ;;^UTILITY(U,$J,358.3,21442,2)
- ;;=^5012855
- ;;^UTILITY(U,$J,358.3,21443,0)
- ;;=M66.242^^101^1030^162
- ;;^UTILITY(U,$J,358.3,21443,1,0)
+ ;;^UTILITY(U,$J,358.3,21818,1,3,0)
+ ;;=3^Solar Urticaria
+ ;;^UTILITY(U,$J,358.3,21818,1,4,0)
+ ;;=4^L56.3
+ ;;^UTILITY(U,$J,358.3,21818,2)
+ ;;=^5009217
+ ;;^UTILITY(U,$J,358.3,21819,0)
+ ;;=L57.0^^87^970^12
+ ;;^UTILITY(U,$J,358.3,21819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21443,1,3,0)
- ;;=3^Spontaneous rupture of extensor tendons, left hand
+ ;;^UTILITY(U,$J,358.3,21819,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,21819,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,21819,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,21820,0)
+ ;;=L60.0^^87^970^161
+ ;;^UTILITY(U,$J,358.3,21820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21820,1,3,0)
+ ;;=3^Ingrowing Nail
+ ;;^UTILITY(U,$J,358.3,21820,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,21820,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,21821,0)
+ ;;=L60.1^^87^970^234
+ ;;^UTILITY(U,$J,358.3,21821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21821,1,3,0)
+ ;;=3^Onycholysis

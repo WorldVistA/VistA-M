@@ -1,132 +1,134 @@
-IBDEI1LW ; ; 19-NOV-2015
+IBDEI1LW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26880,1,3,0)
- ;;=3^Cardiovascular Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,26880,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,26880,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,26881,0)
- ;;=Z01.811^^132^1305^16
- ;;^UTILITY(U,$J,358.3,26881,1,0)
+ ;;^UTILITY(U,$J,358.3,27254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26881,1,3,0)
- ;;=3^Respiratory Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,26881,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,26881,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,26882,0)
- ;;=Z01.812^^132^1305^13
- ;;^UTILITY(U,$J,358.3,26882,1,0)
+ ;;^UTILITY(U,$J,358.3,27254,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD, Stage 1-4
+ ;;^UTILITY(U,$J,358.3,27254,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,27254,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,27255,0)
+ ;;=I13.11^^106^1345^12
+ ;;^UTILITY(U,$J,358.3,27255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26882,1,3,0)
- ;;=3^Lab Preprocedural Exam
- ;;^UTILITY(U,$J,358.3,26882,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,26882,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,26883,0)
- ;;=Z01.818^^132^1305^15
- ;;^UTILITY(U,$J,358.3,26883,1,0)
+ ;;^UTILITY(U,$J,358.3,27255,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD,Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,27255,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,27255,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,27256,0)
+ ;;=I50.1^^106^1345^15
+ ;;^UTILITY(U,$J,358.3,27256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26883,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,26883,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,26883,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,26884,0)
- ;;=Z71.0^^132^1305^9
- ;;^UTILITY(U,$J,358.3,26884,1,0)
+ ;;^UTILITY(U,$J,358.3,27256,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,27256,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,27256,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,27257,0)
+ ;;=E21.3^^106^1346^17
+ ;;^UTILITY(U,$J,358.3,27257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26884,1,3,0)
- ;;=3^Hlth Service to Consult on Behalf of Another
- ;;^UTILITY(U,$J,358.3,26884,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,26884,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,26885,0)
- ;;=Z59.8^^132^1305^10
- ;;^UTILITY(U,$J,358.3,26885,1,0)
+ ;;^UTILITY(U,$J,358.3,27257,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,27257,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,27257,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,27258,0)
+ ;;=E78.5^^106^1346^16
+ ;;^UTILITY(U,$J,358.3,27258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26885,1,3,0)
- ;;=3^Housing/Economic Circumstance Problems
- ;;^UTILITY(U,$J,358.3,26885,1,4,0)
- ;;=4^Z59.8
- ;;^UTILITY(U,$J,358.3,26885,2)
- ;;=^5063137
- ;;^UTILITY(U,$J,358.3,26886,0)
- ;;=I20.0^^132^1306^14
- ;;^UTILITY(U,$J,358.3,26886,1,0)
+ ;;^UTILITY(U,$J,358.3,27258,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,27258,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,27258,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,27259,0)
+ ;;=M10.30^^106^1346^11
+ ;;^UTILITY(U,$J,358.3,27259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26886,1,3,0)
- ;;=3^Unstable Angina
- ;;^UTILITY(U,$J,358.3,26886,1,4,0)
- ;;=4^I20.0
- ;;^UTILITY(U,$J,358.3,26886,2)
- ;;=^5007076
- ;;^UTILITY(U,$J,358.3,26887,0)
- ;;=I25.110^^132^1306^7
- ;;^UTILITY(U,$J,358.3,26887,1,0)
+ ;;^UTILITY(U,$J,358.3,27259,1,3,0)
+ ;;=3^Gout d/t Renal Impairment,Unspec Site
+ ;;^UTILITY(U,$J,358.3,27259,1,4,0)
+ ;;=4^M10.30
+ ;;^UTILITY(U,$J,358.3,27259,2)
+ ;;=^5010356
+ ;;^UTILITY(U,$J,358.3,27260,0)
+ ;;=E66.9^^106^1346^33
+ ;;^UTILITY(U,$J,358.3,27260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26887,1,3,0)
- ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,26887,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,26887,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,26888,0)
- ;;=I25.700^^132^1306^12
- ;;^UTILITY(U,$J,358.3,26888,1,0)
+ ;;^UTILITY(U,$J,358.3,27260,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,27260,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,27260,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,27261,0)
+ ;;=E66.01^^106^1346^32
+ ;;^UTILITY(U,$J,358.3,27261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26888,1,3,0)
- ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
- ;;^UTILITY(U,$J,358.3,26888,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,26888,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,26889,0)
- ;;=I25.2^^132^1306^13
- ;;^UTILITY(U,$J,358.3,26889,1,0)
+ ;;^UTILITY(U,$J,358.3,27261,1,3,0)
+ ;;=3^Obesity,Morbid,d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,27261,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,27261,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,27262,0)
+ ;;=D50.9^^106^1346^2
+ ;;^UTILITY(U,$J,358.3,27262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26889,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,26889,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,26889,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,26890,0)
- ;;=I20.8^^132^1306^2
- ;;^UTILITY(U,$J,358.3,26890,1,0)
+ ;;^UTILITY(U,$J,358.3,27262,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,27262,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,27262,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,27263,0)
+ ;;=D63.1^^106^1346^1
+ ;;^UTILITY(U,$J,358.3,27263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26890,1,3,0)
- ;;=3^Angina Pectoris,Oth Forms
- ;;^UTILITY(U,$J,358.3,26890,1,4,0)
- ;;=4^I20.8
- ;;^UTILITY(U,$J,358.3,26890,2)
- ;;=^5007078
- ;;^UTILITY(U,$J,358.3,26891,0)
- ;;=I20.1^^132^1306^1
- ;;^UTILITY(U,$J,358.3,26891,1,0)
+ ;;^UTILITY(U,$J,358.3,27263,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,27263,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,27263,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,27264,0)
+ ;;=G60.9^^106^1346^31
+ ;;^UTILITY(U,$J,358.3,27264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26891,1,3,0)
- ;;=3^Angina Pectoris w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,26891,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,26891,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,26892,0)
- ;;=I25.119^^132^1306^5
- ;;^UTILITY(U,$J,358.3,26892,1,0)
+ ;;^UTILITY(U,$J,358.3,27264,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,27264,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,27264,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,27265,0)
+ ;;=I73.9^^106^1346^34
+ ;;^UTILITY(U,$J,358.3,27265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26892,1,3,0)
- ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
- ;;^UTILITY(U,$J,358.3,26892,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,26892,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,26893,0)
- ;;=I25.701^^132^1306^9
+ ;;^UTILITY(U,$J,358.3,27265,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,27265,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,27265,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,27266,0)
+ ;;=N04.9^^106^1346^30
+ ;;^UTILITY(U,$J,358.3,27266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27266,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,27266,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,27266,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,27267,0)
+ ;;=N25.0^^106^1346^35

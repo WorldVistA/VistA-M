@@ -1,5 +1,5 @@
-SDWLROF ;;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT 1;06/12/2002 ; 29 Aug 2002  2:54 PM
- ;;5.3;scheduling;**263,414**;AUG 13 1993
+SDWLROF ;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT 1 ;1/5/16 9:26am
+ ;;5.3;scheduling;**263,414,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -71,7 +71,9 @@ PRINT ;Print Report
  ....S SDWLPH=$G(VAPA(8))
  ....I SDWLAPTD'="" S Y=SDWLAPTD D DD^%DT S SDWLAPTD=Y
  ....W !!,SDWLNAM
- ....W ?35,SDWLSSN I SDWLAPTD'="" W ?50,"Desired Date: ",SDWLAPTD
+ ....; SD*5.3*645 - replaced 'Desired Date' with 'CID/Preferred Date'
+ ....;W ?35,SDWLSSN I SDWLAPTD'="" W ?50,"Desired Date: ",SDWLAPTD
+ ....W ?35,SDWLSSN I SDWLAPTD'="" W ?48,"CID/Preferred Date: ",SDWLAPTD
  ....W !,"Primary Eligibility: ",SDWLELIG
  ....W !,"Comments: ",SDWLCOM,!
  ....I SDWLRBY W !,"Requested by: ",$$EXTERNAL^DILFD(409.3,11,,SDWLRBY)

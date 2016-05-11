@@ -1,120 +1,134 @@
-IBDEI2G2 ; ; 19-NOV-2015
+IBDEI2G2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41028,1,4,0)
- ;;=4^S82.872N
- ;;^UTILITY(U,$J,358.3,41028,2)
- ;;=^5042794
- ;;^UTILITY(U,$J,358.3,41029,0)
- ;;=S82.871M^^189^2086^147
- ;;^UTILITY(U,$J,358.3,41029,1,0)
+ ;;^UTILITY(U,$J,358.3,41456,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,41456,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,41457,0)
+ ;;=Z80.41^^159^2005^38
+ ;;^UTILITY(U,$J,358.3,41457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41029,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type I/2 w/ nonunion
- ;;^UTILITY(U,$J,358.3,41029,1,4,0)
- ;;=4^S82.871M
- ;;^UTILITY(U,$J,358.3,41029,2)
- ;;=^5042777
- ;;^UTILITY(U,$J,358.3,41030,0)
- ;;=S82.872M^^189^2086^142
- ;;^UTILITY(U,$J,358.3,41030,1,0)
+ ;;^UTILITY(U,$J,358.3,41457,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,41457,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,41457,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,41458,0)
+ ;;=Z80.42^^159^2005^39
+ ;;^UTILITY(U,$J,358.3,41458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41030,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type I/2 w/nonunion
- ;;^UTILITY(U,$J,358.3,41030,1,4,0)
- ;;=4^S82.872M
- ;;^UTILITY(U,$J,358.3,41030,2)
- ;;=^5042793
- ;;^UTILITY(U,$J,358.3,41031,0)
- ;;=S82.871K^^189^2086^148
- ;;^UTILITY(U,$J,358.3,41031,1,0)
+ ;;^UTILITY(U,$J,358.3,41458,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,41458,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,41458,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,41459,0)
+ ;;=Z80.43^^159^2005^40
+ ;;^UTILITY(U,$J,358.3,41459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41031,1,3,0)
- ;;=3^Disp pilon fx rt tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41031,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,41031,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,41032,0)
- ;;=S82.872K^^189^2086^143
- ;;^UTILITY(U,$J,358.3,41032,1,0)
+ ;;^UTILITY(U,$J,358.3,41459,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,41459,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,41459,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,41460,0)
+ ;;=Z80.6^^159^2005^32
+ ;;^UTILITY(U,$J,358.3,41460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41032,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41032,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,41032,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,41033,0)
- ;;=S82.874N^^189^2086^372
- ;;^UTILITY(U,$J,358.3,41033,1,0)
+ ;;^UTILITY(U,$J,358.3,41460,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,41460,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,41460,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,41461,0)
+ ;;=Z80.8^^159^2005^37
+ ;;^UTILITY(U,$J,358.3,41461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41033,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41033,1,4,0)
- ;;=4^S82.874N
- ;;^UTILITY(U,$J,358.3,41033,2)
- ;;=^5042826
- ;;^UTILITY(U,$J,358.3,41034,0)
- ;;=S82.875N^^189^2086^367
- ;;^UTILITY(U,$J,358.3,41034,1,0)
+ ;;^UTILITY(U,$J,358.3,41461,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,41461,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,41461,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,41462,0)
+ ;;=Z81.8^^159^2005^42
+ ;;^UTILITY(U,$J,358.3,41462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41034,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41034,1,4,0)
- ;;=4^S82.875N
- ;;^UTILITY(U,$J,358.3,41034,2)
- ;;=^5042842
- ;;^UTILITY(U,$J,358.3,41035,0)
- ;;=S82.874M^^189^2086^373
- ;;^UTILITY(U,$J,358.3,41035,1,0)
+ ;;^UTILITY(U,$J,358.3,41462,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,41462,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,41462,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,41463,0)
+ ;;=Z82.3^^159^2005^49
+ ;;^UTILITY(U,$J,358.3,41463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41035,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41035,1,4,0)
- ;;=4^S82.874M
- ;;^UTILITY(U,$J,358.3,41035,2)
- ;;=^5042825
- ;;^UTILITY(U,$J,358.3,41036,0)
- ;;=S82.875M^^189^2086^368
- ;;^UTILITY(U,$J,358.3,41036,1,0)
+ ;;^UTILITY(U,$J,358.3,41463,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,41463,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,41463,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,41464,0)
+ ;;=Z82.49^^159^2005^31
+ ;;^UTILITY(U,$J,358.3,41464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41036,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41036,1,4,0)
- ;;=4^S82.875M
- ;;^UTILITY(U,$J,358.3,41036,2)
- ;;=^5042841
- ;;^UTILITY(U,$J,358.3,41037,0)
- ;;=S82.874K^^189^2086^371
- ;;^UTILITY(U,$J,358.3,41037,1,0)
+ ;;^UTILITY(U,$J,358.3,41464,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,41464,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,41464,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,41465,0)
+ ;;=Z82.5^^159^2005^22
+ ;;^UTILITY(U,$J,358.3,41465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41037,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41037,1,4,0)
- ;;=4^S82.874K
- ;;^UTILITY(U,$J,358.3,41037,2)
- ;;=^5042824
- ;;^UTILITY(U,$J,358.3,41038,0)
- ;;=S82.875K^^189^2086^366
- ;;^UTILITY(U,$J,358.3,41038,1,0)
+ ;;^UTILITY(U,$J,358.3,41465,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,41465,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,41465,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,41466,0)
+ ;;=Z82.61^^159^2005^21
+ ;;^UTILITY(U,$J,358.3,41466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41038,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41038,1,4,0)
- ;;=4^S82.875K
- ;;^UTILITY(U,$J,358.3,41038,2)
- ;;=^5042840
- ;;^UTILITY(U,$J,358.3,41039,0)
- ;;=S82.845K^^189^2086^240
- ;;^UTILITY(U,$J,358.3,41039,1,0)
+ ;;^UTILITY(U,$J,358.3,41466,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,41466,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,41466,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,41467,0)
+ ;;=Z82.69^^159^2005^44
+ ;;^UTILITY(U,$J,358.3,41467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41039,1,3,0)
- ;;=3^Nondisp bimalleol fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41039,1,4,0)
- ;;=4^S82.845K
- ;;^UTILITY(U,$J,358.3,41039,2)
- ;;=^5042552
- ;;^UTILITY(U,$J,358.3,41040,0)
- ;;=S82.844K^^189^2086^241
+ ;;^UTILITY(U,$J,358.3,41467,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,41467,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,41467,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,41468,0)
+ ;;=Z83.3^^159^2005^28
+ ;;^UTILITY(U,$J,358.3,41468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41468,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,41468,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,41468,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,41469,0)
+ ;;=Z83.2^^159^2005^24
+ ;;^UTILITY(U,$J,358.3,41469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41469,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases

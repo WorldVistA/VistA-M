@@ -1,122 +1,130 @@
-IBDEI2GY ; ; 19-NOV-2015
+IBDEI2GY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41423,1,0)
+ ;;^UTILITY(U,$J,358.3,41871,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,41871,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,41871,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,41872,0)
+ ;;=M48.57XS^^159^2010^28
+ ;;^UTILITY(U,$J,358.3,41872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41423,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ necr of muscle
- ;;^UTILITY(U,$J,358.3,41423,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,41423,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,41424,0)
- ;;=L97.329^^189^2098^5
- ;;^UTILITY(U,$J,358.3,41424,1,0)
+ ;;^UTILITY(U,$J,358.3,41872,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,41872,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,41872,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,41873,0)
+ ;;=M48.54XD^^159^2010^29
+ ;;^UTILITY(U,$J,358.3,41873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41424,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ unsp severity
- ;;^UTILITY(U,$J,358.3,41424,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,41424,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,41425,0)
- ;;=L97.324^^189^2098^4
- ;;^UTILITY(U,$J,358.3,41425,1,0)
+ ;;^UTILITY(U,$J,358.3,41873,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,41873,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,41873,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,41874,0)
+ ;;=M48.57XG^^159^2010^30
+ ;;^UTILITY(U,$J,358.3,41874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41425,1,3,0)
- ;;=3^Non-pressure chron ulcer lft ankl w/ necr of bone
- ;;^UTILITY(U,$J,358.3,41425,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,41425,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,41426,0)
- ;;=L97.412^^189^2098^36
- ;;^UTILITY(U,$J,358.3,41426,1,0)
+ ;;^UTILITY(U,$J,358.3,41874,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,41874,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,41874,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,41875,0)
+ ;;=M48.54XS^^159^2010^31
+ ;;^UTILITY(U,$J,358.3,41875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41426,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ fat layer exposed
- ;;^UTILITY(U,$J,358.3,41426,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,41426,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,41427,0)
- ;;=L97.414^^189^2098^37
- ;;^UTILITY(U,$J,358.3,41427,1,0)
+ ;;^UTILITY(U,$J,358.3,41875,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,41875,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,41875,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,41876,0)
+ ;;=M62.830^^159^2010^59
+ ;;^UTILITY(U,$J,358.3,41876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41427,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr of bone
- ;;^UTILITY(U,$J,358.3,41427,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,41427,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,41428,0)
- ;;=L97.413^^189^2098^38
- ;;^UTILITY(U,$J,358.3,41428,1,0)
+ ;;^UTILITY(U,$J,358.3,41876,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,41876,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,41876,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,41877,0)
+ ;;=M19.92^^159^2010^120
+ ;;^UTILITY(U,$J,358.3,41877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41428,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft w/ necr muscle
- ;;^UTILITY(U,$J,358.3,41428,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,41428,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,41429,0)
- ;;=L97.411^^189^2098^39
- ;;^UTILITY(U,$J,358.3,41429,1,0)
+ ;;^UTILITY(U,$J,358.3,41877,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41877,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,41877,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,41878,0)
+ ;;=M85.872^^159^2010^80
+ ;;^UTILITY(U,$J,358.3,41878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41429,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
- ;;^UTILITY(U,$J,358.3,41429,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,41429,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,41430,0)
- ;;=L97.411^^189^2098^40
- ;;^UTILITY(U,$J,358.3,41430,1,0)
+ ;;^UTILITY(U,$J,358.3,41878,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,41878,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,41878,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,41879,0)
+ ;;=M85.832^^159^2010^81
+ ;;^UTILITY(U,$J,358.3,41879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41430,1,3,0)
- ;;=3^Non-pressure chron ulcer rt heel/midft lmt to brkdwn skin
- ;;^UTILITY(U,$J,358.3,41430,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,41430,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,41431,0)
- ;;=L97.429^^189^2098^16
- ;;^UTILITY(U,$J,358.3,41431,1,0)
+ ;;^UTILITY(U,$J,358.3,41879,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,41879,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,41879,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,41880,0)
+ ;;=M85.842^^159^2010^82
+ ;;^UTILITY(U,$J,358.3,41880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41431,1,3,0)
- ;;=3^Non-pressure chron ulcer lft heel/midft w/ unsp severity
- ;;^UTILITY(U,$J,358.3,41431,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,41431,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,41432,0)
- ;;=L97.424^^189^2098^17
- ;;^UTILITY(U,$J,358.3,41432,1,0)
+ ;;^UTILITY(U,$J,358.3,41880,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,41880,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,41880,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,41881,0)
+ ;;=M85.862^^159^2010^83
+ ;;^UTILITY(U,$J,358.3,41881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41432,1,3,0)
- ;;=3^Non-pressure chron ulcer lft heel/midft w/ necr of bone
- ;;^UTILITY(U,$J,358.3,41432,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,41432,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,41433,0)
- ;;=L97.423^^189^2098^18
- ;;^UTILITY(U,$J,358.3,41433,1,0)
+ ;;^UTILITY(U,$J,358.3,41881,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,41881,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,41881,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,41882,0)
+ ;;=M85.812^^159^2010^84
+ ;;^UTILITY(U,$J,358.3,41882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41433,1,3,0)
- ;;=3^Non-pressure chron ulcer lft heel/midft w/ necr muscle
- ;;^UTILITY(U,$J,358.3,41433,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,41433,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,41434,0)
- ;;=L97.422^^189^2098^19
- ;;^UTILITY(U,$J,358.3,41434,1,0)
+ ;;^UTILITY(U,$J,358.3,41882,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41882,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,41882,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,41883,0)
+ ;;=M85.852^^159^2010^85
+ ;;^UTILITY(U,$J,358.3,41883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41434,1,3,0)
- ;;=3^Non-pressure chron ulcer lft heel/midft w/ fat layer expos
- ;;^UTILITY(U,$J,358.3,41434,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,41434,2)
- ;;=^5009536
+ ;;^UTILITY(U,$J,358.3,41883,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,41883,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,41883,2)
+ ;;=^5014487

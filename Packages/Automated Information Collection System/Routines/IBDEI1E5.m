@@ -1,132 +1,134 @@
-IBDEI1E5 ; ; 19-NOV-2015
+IBDEI1E5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23207,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food & Vomit
- ;;^UTILITY(U,$J,358.3,23207,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,23207,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,23208,0)
- ;;=J98.9^^110^1104^15
- ;;^UTILITY(U,$J,358.3,23208,1,0)
+ ;;^UTILITY(U,$J,358.3,23631,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,23631,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,23632,0)
+ ;;=W54.0XXD^^87^1000^12
+ ;;^UTILITY(U,$J,358.3,23632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23208,1,3,0)
- ;;=3^Respiratory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23208,1,4,0)
- ;;=4^J98.9
- ;;^UTILITY(U,$J,358.3,23208,2)
- ;;=^5008366
- ;;^UTILITY(U,$J,358.3,23209,0)
- ;;=J91.8^^110^1104^12
- ;;^UTILITY(U,$J,358.3,23209,1,0)
+ ;;^UTILITY(U,$J,358.3,23632,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23632,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,23632,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,23633,0)
+ ;;=W55.01XA^^87^1000^9
+ ;;^UTILITY(U,$J,358.3,23633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23209,1,3,0)
- ;;=3^Pleural Effusion in Oth Conditions Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,23209,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,23209,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,23210,0)
- ;;=J84.10^^110^1104^14
- ;;^UTILITY(U,$J,358.3,23210,1,0)
+ ;;^UTILITY(U,$J,358.3,23633,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23633,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,23633,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,23634,0)
+ ;;=W55.01XD^^87^1000^10
+ ;;^UTILITY(U,$J,358.3,23634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23210,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,23210,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,23210,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,23211,0)
- ;;=R22.2^^110^1104^20
- ;;^UTILITY(U,$J,358.3,23211,1,0)
+ ;;^UTILITY(U,$J,358.3,23634,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23634,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,23634,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,23635,0)
+ ;;=W55.03XA^^87^1000^101
+ ;;^UTILITY(U,$J,358.3,23635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23211,1,3,0)
- ;;=3^Swelling,Mass & Lump,Trunk
- ;;^UTILITY(U,$J,358.3,23211,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,23211,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,23212,0)
- ;;=R06.02^^110^1104^19
- ;;^UTILITY(U,$J,358.3,23212,1,0)
+ ;;^UTILITY(U,$J,358.3,23635,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23635,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,23635,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,23636,0)
+ ;;=W55.03XD^^87^1000^102
+ ;;^UTILITY(U,$J,358.3,23636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23212,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,23212,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,23212,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,23213,0)
- ;;=J96.10^^110^1104^8
- ;;^UTILITY(U,$J,358.3,23213,1,0)
+ ;;^UTILITY(U,$J,358.3,23636,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23636,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,23636,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,23637,0)
+ ;;=X00.8XXA^^87^1000^17
+ ;;^UTILITY(U,$J,358.3,23637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23213,1,3,0)
- ;;=3^Chronic Respiratory Failure
- ;;^UTILITY(U,$J,358.3,23213,1,4,0)
- ;;=4^J96.10
- ;;^UTILITY(U,$J,358.3,23213,2)
- ;;=^5008350
- ;;^UTILITY(U,$J,358.3,23214,0)
- ;;=J96.01^^110^1104^3
- ;;^UTILITY(U,$J,358.3,23214,1,0)
+ ;;^UTILITY(U,$J,358.3,23637,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23637,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,23637,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,23638,0)
+ ;;=X00.8XXD^^87^1000^18
+ ;;^UTILITY(U,$J,358.3,23638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23214,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23214,1,4,0)
- ;;=4^J96.01
- ;;^UTILITY(U,$J,358.3,23214,2)
- ;;=^5008348
- ;;^UTILITY(U,$J,358.3,23215,0)
- ;;=J96.02^^110^1104^2
- ;;^UTILITY(U,$J,358.3,23215,1,0)
+ ;;^UTILITY(U,$J,358.3,23638,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23638,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,23638,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,23639,0)
+ ;;=X32.XXXA^^87^1000^15
+ ;;^UTILITY(U,$J,358.3,23639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23215,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23215,1,4,0)
- ;;=4^J96.02
- ;;^UTILITY(U,$J,358.3,23215,2)
- ;;=^5008349
- ;;^UTILITY(U,$J,358.3,23216,0)
- ;;=J96.21^^110^1104^6
- ;;^UTILITY(U,$J,358.3,23216,1,0)
+ ;;^UTILITY(U,$J,358.3,23639,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23639,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,23639,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,23640,0)
+ ;;=X32.XXXD^^87^1000^16
+ ;;^UTILITY(U,$J,358.3,23640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23216,1,3,0)
- ;;=3^Acute/Chr Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23216,1,4,0)
- ;;=4^J96.21
- ;;^UTILITY(U,$J,358.3,23216,2)
- ;;=^5008354
- ;;^UTILITY(U,$J,358.3,23217,0)
- ;;=J96.22^^110^1104^5
- ;;^UTILITY(U,$J,358.3,23217,1,0)
+ ;;^UTILITY(U,$J,358.3,23640,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23640,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,23640,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,23641,0)
+ ;;=Y04.0XXA^^87^1000^7
+ ;;^UTILITY(U,$J,358.3,23641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23217,1,3,0)
- ;;=3^Acute/Chr Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23217,1,4,0)
- ;;=4^J96.22
- ;;^UTILITY(U,$J,358.3,23217,2)
- ;;=^5008355
- ;;^UTILITY(U,$J,358.3,23218,0)
- ;;=J96.11^^110^1104^10
- ;;^UTILITY(U,$J,358.3,23218,1,0)
+ ;;^UTILITY(U,$J,358.3,23641,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23641,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,23641,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,23642,0)
+ ;;=Y04.0XXD^^87^1000^8
+ ;;^UTILITY(U,$J,358.3,23642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23218,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23218,1,4,0)
- ;;=4^J96.11
- ;;^UTILITY(U,$J,358.3,23218,2)
- ;;=^5008351
- ;;^UTILITY(U,$J,358.3,23219,0)
- ;;=J96.12^^110^1104^9
- ;;^UTILITY(U,$J,358.3,23219,1,0)
+ ;;^UTILITY(U,$J,358.3,23642,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23642,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,23642,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,23643,0)
+ ;;=Y04.1XXA^^87^1000^1
+ ;;^UTILITY(U,$J,358.3,23643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23219,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23219,1,4,0)
- ;;=4^J96.12
- ;;^UTILITY(U,$J,358.3,23219,2)
- ;;=^5008352
- ;;^UTILITY(U,$J,358.3,23220,0)
- ;;=J96.91^^110^1104^18
+ ;;^UTILITY(U,$J,358.3,23643,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23643,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,23643,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,23644,0)
+ ;;=Y04.1XXD^^87^1000^2
+ ;;^UTILITY(U,$J,358.3,23644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23644,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr

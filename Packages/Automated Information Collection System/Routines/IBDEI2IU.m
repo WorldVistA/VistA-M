@@ -1,126 +1,136 @@
-IBDEI2IU ; ; 19-NOV-2015
+IBDEI2IU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42313,1,4,0)
- ;;=4^S92.351A
- ;;^UTILITY(U,$J,358.3,42313,2)
- ;;=^5045228
- ;;^UTILITY(U,$J,358.3,42314,0)
- ;;=S92.345A^^192^2137^296
- ;;^UTILITY(U,$J,358.3,42314,1,0)
+ ;;^UTILITY(U,$J,358.3,42770,2)
+ ;;=^5015632
+ ;;^UTILITY(U,$J,358.3,42771,0)
+ ;;=N30.01^^162^2040^1
+ ;;^UTILITY(U,$J,358.3,42771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42314,1,3,0)
- ;;=3^Nondisp fx of 4th metatarsal bone, lft ft
- ;;^UTILITY(U,$J,358.3,42314,1,4,0)
- ;;=4^S92.345A
- ;;^UTILITY(U,$J,358.3,42314,2)
- ;;=^5045214
- ;;^UTILITY(U,$J,358.3,42315,0)
- ;;=S92.325A^^192^2137^288
- ;;^UTILITY(U,$J,358.3,42315,1,0)
+ ;;^UTILITY(U,$J,358.3,42771,1,3,0)
+ ;;=3^Acute cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,42771,1,4,0)
+ ;;=4^N30.01
+ ;;^UTILITY(U,$J,358.3,42771,2)
+ ;;=^5015633
+ ;;^UTILITY(U,$J,358.3,42772,0)
+ ;;=N30.10^^162^2040^7
+ ;;^UTILITY(U,$J,358.3,42772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42315,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42315,1,4,0)
- ;;=4^S92.325A
- ;;^UTILITY(U,$J,358.3,42315,2)
- ;;=^5045130
- ;;^UTILITY(U,$J,358.3,42316,0)
- ;;=S92.324A^^192^2137^289
- ;;^UTILITY(U,$J,358.3,42316,1,0)
+ ;;^UTILITY(U,$J,358.3,42772,1,3,0)
+ ;;=3^Interstitial cystitis w/o hematuria
+ ;;^UTILITY(U,$J,358.3,42772,1,4,0)
+ ;;=4^N30.10
+ ;;^UTILITY(U,$J,358.3,42772,2)
+ ;;=^5015634
+ ;;^UTILITY(U,$J,358.3,42773,0)
+ ;;=N30.11^^162^2040^6
+ ;;^UTILITY(U,$J,358.3,42773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42316,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,42316,1,4,0)
- ;;=4^S92.324A
- ;;^UTILITY(U,$J,358.3,42316,2)
- ;;=^5045123
- ;;^UTILITY(U,$J,358.3,42317,0)
- ;;=S92.322A^^192^2137^63
- ;;^UTILITY(U,$J,358.3,42317,1,0)
+ ;;^UTILITY(U,$J,358.3,42773,1,3,0)
+ ;;=3^Interstitial cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,42773,1,4,0)
+ ;;=4^N30.11
+ ;;^UTILITY(U,$J,358.3,42773,2)
+ ;;=^5015635
+ ;;^UTILITY(U,$J,358.3,42774,0)
+ ;;=N30.40^^162^2040^9
+ ;;^UTILITY(U,$J,358.3,42774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42317,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42317,1,4,0)
- ;;=4^S92.322A
- ;;^UTILITY(U,$J,358.3,42317,2)
- ;;=^5045109
- ;;^UTILITY(U,$J,358.3,42318,0)
- ;;=S92.321A^^192^2137^64
- ;;^UTILITY(U,$J,358.3,42318,1,0)
+ ;;^UTILITY(U,$J,358.3,42774,1,3,0)
+ ;;=3^Irradiation cystitis w/o hematuria
+ ;;^UTILITY(U,$J,358.3,42774,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,42774,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,42775,0)
+ ;;=N30.41^^162^2040^8
+ ;;^UTILITY(U,$J,358.3,42775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42318,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, rt ft
- ;;^UTILITY(U,$J,358.3,42318,1,4,0)
- ;;=4^S92.321A
- ;;^UTILITY(U,$J,358.3,42318,2)
- ;;=^5045102
- ;;^UTILITY(U,$J,358.3,42319,0)
- ;;=S92.315A^^192^2137^284
- ;;^UTILITY(U,$J,358.3,42319,1,0)
+ ;;^UTILITY(U,$J,358.3,42775,1,3,0)
+ ;;=3^Irradiation cystitis w/ hematuria
+ ;;^UTILITY(U,$J,358.3,42775,1,4,0)
+ ;;=4^N30.41
+ ;;^UTILITY(U,$J,358.3,42775,2)
+ ;;=^5015640
+ ;;^UTILITY(U,$J,358.3,42776,0)
+ ;;=N32.0^^162^2040^4
+ ;;^UTILITY(U,$J,358.3,42776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42319,1,3,0)
- ;;=3^Nondisp fx of 1st metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42319,1,4,0)
- ;;=4^S92.315A
- ;;^UTILITY(U,$J,358.3,42319,2)
- ;;=^5045088
- ;;^UTILITY(U,$J,358.3,42320,0)
- ;;=S92.312A^^192^2137^59
- ;;^UTILITY(U,$J,358.3,42320,1,0)
+ ;;^UTILITY(U,$J,358.3,42776,1,3,0)
+ ;;=3^Bladder-neck obstruction
+ ;;^UTILITY(U,$J,358.3,42776,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,42776,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,42777,0)
+ ;;=N31.9^^162^2040^10
+ ;;^UTILITY(U,$J,358.3,42777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42320,1,3,0)
- ;;=3^Disp fx of 1st metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42320,1,4,0)
- ;;=4^S92.312A
- ;;^UTILITY(U,$J,358.3,42320,2)
- ;;=^5045067
- ;;^UTILITY(U,$J,358.3,42321,0)
- ;;=S92.311A^^192^2137^60
- ;;^UTILITY(U,$J,358.3,42321,1,0)
+ ;;^UTILITY(U,$J,358.3,42777,1,3,0)
+ ;;=3^Neuromusc Dysfunction Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,42777,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,42777,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,42778,0)
+ ;;=N31.0^^162^2040^14
+ ;;^UTILITY(U,$J,358.3,42778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42321,1,3,0)
- ;;=3^Disp fx of 1st metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,42321,1,4,0)
- ;;=4^S92.311A
- ;;^UTILITY(U,$J,358.3,42321,2)
- ;;=^5045060
- ;;^UTILITY(U,$J,358.3,42322,0)
- ;;=S92.332A^^192^2137^67
- ;;^UTILITY(U,$J,358.3,42322,1,0)
+ ;;^UTILITY(U,$J,358.3,42778,1,3,0)
+ ;;=3^Uninhibited neuropathic bladder, NEC
+ ;;^UTILITY(U,$J,358.3,42778,1,4,0)
+ ;;=4^N31.0
+ ;;^UTILITY(U,$J,358.3,42778,2)
+ ;;=^5015644
+ ;;^UTILITY(U,$J,358.3,42779,0)
+ ;;=N31.1^^162^2040^12
+ ;;^UTILITY(U,$J,358.3,42779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42322,1,3,0)
- ;;=3^Disp fx of 3rd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42322,1,4,0)
- ;;=4^S92.332A
- ;;^UTILITY(U,$J,358.3,42322,2)
- ;;=^5045151
- ;;^UTILITY(U,$J,358.3,42323,0)
- ;;=S92.331A^^192^2137^68
- ;;^UTILITY(U,$J,358.3,42323,1,0)
+ ;;^UTILITY(U,$J,358.3,42779,1,3,0)
+ ;;=3^Reflex neuropathic bladder NEC
+ ;;^UTILITY(U,$J,358.3,42779,1,4,0)
+ ;;=4^N31.1
+ ;;^UTILITY(U,$J,358.3,42779,2)
+ ;;=^5015645
+ ;;^UTILITY(U,$J,358.3,42780,0)
+ ;;=Z87.440^^162^2040^11
+ ;;^UTILITY(U,$J,358.3,42780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42323,1,3,0)
- ;;=3^Disp fx of 3rd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,42323,1,4,0)
- ;;=4^S92.331A
- ;;^UTILITY(U,$J,358.3,42323,2)
- ;;=^5045144
- ;;^UTILITY(U,$J,358.3,42324,0)
- ;;=S92.334A^^192^2137^293
- ;;^UTILITY(U,$J,358.3,42324,1,0)
+ ;;^UTILITY(U,$J,358.3,42780,1,3,0)
+ ;;=3^Personal Hx of UTI
+ ;;^UTILITY(U,$J,358.3,42780,1,4,0)
+ ;;=4^Z87.440
+ ;;^UTILITY(U,$J,358.3,42780,2)
+ ;;=^5063495
+ ;;^UTILITY(U,$J,358.3,42781,0)
+ ;;=N39.0^^162^2040^13
+ ;;^UTILITY(U,$J,358.3,42781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42324,1,3,0)
- ;;=3^Nondisp fx of 3rd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,42324,1,4,0)
- ;;=4^S92.334A
- ;;^UTILITY(U,$J,358.3,42324,2)
- ;;=^5045165
- ;;^UTILITY(U,$J,358.3,42325,0)
- ;;=S92.335A^^192^2137^292
- ;;^UTILITY(U,$J,358.3,42325,1,0)
+ ;;^UTILITY(U,$J,358.3,42781,1,3,0)
+ ;;=3^UTI,Site Unspec
+ ;;^UTILITY(U,$J,358.3,42781,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,42781,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,42782,0)
+ ;;=D30.01^^162^2041^4
+ ;;^UTILITY(U,$J,358.3,42782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42325,1,3,0)
- ;;=3^Nondisp fx of 3rd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42325,1,4,0)
- ;;=4^S92.335A
+ ;;^UTILITY(U,$J,358.3,42782,1,3,0)
+ ;;=3^Benign neoplasm of right kidney
+ ;;^UTILITY(U,$J,358.3,42782,1,4,0)
+ ;;=4^D30.01
+ ;;^UTILITY(U,$J,358.3,42782,2)
+ ;;=^5002101
+ ;;^UTILITY(U,$J,358.3,42783,0)
+ ;;=D30.02^^162^2041^1
+ ;;^UTILITY(U,$J,358.3,42783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42783,1,3,0)
+ ;;=3^Benign neoplasm of left kidney
+ ;;^UTILITY(U,$J,358.3,42783,1,4,0)
+ ;;=4^D30.02
+ ;;^UTILITY(U,$J,358.3,42783,2)
+ ;;=^5002102

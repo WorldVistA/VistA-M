@@ -1,132 +1,130 @@
-IBDEI1T0 ; ; 19-NOV-2015
+IBDEI1T0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30198,1,0)
+ ;;^UTILITY(U,$J,358.3,30654,1,3,0)
+ ;;=3^Anaphylactic Reaction d/t Adverse Eff Drug/Med Prop Admin,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30654,1,4,0)
+ ;;=4^T88.6XXA
+ ;;^UTILITY(U,$J,358.3,30654,2)
+ ;;=^5055808
+ ;;^UTILITY(U,$J,358.3,30655,0)
+ ;;=T81.10XA^^121^1525^16
+ ;;^UTILITY(U,$J,358.3,30655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30198,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,30198,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,30198,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,30199,0)
- ;;=Z96.21^^135^1373^14
- ;;^UTILITY(U,$J,358.3,30199,1,0)
+ ;;^UTILITY(U,$J,358.3,30655,1,3,0)
+ ;;=3^Postprocedural Shock,Unspec,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30655,1,4,0)
+ ;;=4^T81.10XA
+ ;;^UTILITY(U,$J,358.3,30655,2)
+ ;;=^5054455
+ ;;^UTILITY(U,$J,358.3,30656,0)
+ ;;=T81.12XA^^121^1525^15
+ ;;^UTILITY(U,$J,358.3,30656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30199,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,30199,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,30199,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,30200,0)
- ;;=Z96.41^^135^1373^126
- ;;^UTILITY(U,$J,358.3,30200,1,0)
+ ;;^UTILITY(U,$J,358.3,30656,1,3,0)
+ ;;=3^Postprocedural Septic Shock,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30656,1,4,0)
+ ;;=4^T81.12XA
+ ;;^UTILITY(U,$J,358.3,30656,2)
+ ;;=^5054461
+ ;;^UTILITY(U,$J,358.3,30657,0)
+ ;;=Z45.2^^121^1525^18
+ ;;^UTILITY(U,$J,358.3,30657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30200,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,30200,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,30200,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,30201,0)
- ;;=Z96.641^^135^1373^134
- ;;^UTILITY(U,$J,358.3,30201,1,0)
+ ;;^UTILITY(U,$J,358.3,30657,1,3,0)
+ ;;=3^VAD Adjustment & Management Encounter
+ ;;^UTILITY(U,$J,358.3,30657,1,4,0)
+ ;;=4^Z45.2
+ ;;^UTILITY(U,$J,358.3,30657,2)
+ ;;=^5062999
+ ;;^UTILITY(U,$J,358.3,30658,0)
+ ;;=Z71.1^^121^1525^11
+ ;;^UTILITY(U,$J,358.3,30658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30201,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,30201,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,30201,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,30202,0)
- ;;=Z96.642^^135^1373^129
- ;;^UTILITY(U,$J,358.3,30202,1,0)
+ ;;^UTILITY(U,$J,358.3,30658,1,3,0)
+ ;;=3^Feared Hlth Complaint-No Diagnosis Made
+ ;;^UTILITY(U,$J,358.3,30658,1,4,0)
+ ;;=4^Z71.1
+ ;;^UTILITY(U,$J,358.3,30658,2)
+ ;;=^5063243
+ ;;^UTILITY(U,$J,358.3,30659,0)
+ ;;=Z00.6^^121^1525^9
+ ;;^UTILITY(U,$J,358.3,30659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30202,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,30202,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,30202,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,30203,0)
- ;;=Z96.643^^135^1373^121
- ;;^UTILITY(U,$J,358.3,30203,1,0)
+ ;;^UTILITY(U,$J,358.3,30659,1,3,0)
+ ;;=3^Exam for Nrml Cmprsn & Ctrl in Clncl Research Prog
+ ;;^UTILITY(U,$J,358.3,30659,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,30659,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,30660,0)
+ ;;=Z00.8^^121^1525^12
+ ;;^UTILITY(U,$J,358.3,30660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30203,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,30203,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,30203,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,30204,0)
- ;;=Z96.651^^135^1373^135
- ;;^UTILITY(U,$J,358.3,30204,1,0)
+ ;;^UTILITY(U,$J,358.3,30660,1,3,0)
+ ;;=3^General Examination Encounter
+ ;;^UTILITY(U,$J,358.3,30660,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,30660,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,30661,0)
+ ;;=Z01.818^^121^1526^3
+ ;;^UTILITY(U,$J,358.3,30661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30204,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,30204,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,30204,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,30205,0)
- ;;=Z96.652^^135^1373^130
- ;;^UTILITY(U,$J,358.3,30205,1,0)
+ ;;^UTILITY(U,$J,358.3,30661,1,3,0)
+ ;;=3^Preprocedural Examination
+ ;;^UTILITY(U,$J,358.3,30661,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,30661,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,30662,0)
+ ;;=Z01.810^^121^1526^2
+ ;;^UTILITY(U,$J,358.3,30662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30205,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,30205,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,30205,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,30206,0)
- ;;=Z96.653^^135^1373^122
- ;;^UTILITY(U,$J,358.3,30206,1,0)
+ ;;^UTILITY(U,$J,358.3,30662,1,3,0)
+ ;;=3^Preprocedural Cardiovascular Examination
+ ;;^UTILITY(U,$J,358.3,30662,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,30662,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,30663,0)
+ ;;=Z01.811^^121^1526^4
+ ;;^UTILITY(U,$J,358.3,30663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30206,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,30206,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,30206,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,30207,0)
- ;;=Z96.7^^135^1373^125
- ;;^UTILITY(U,$J,358.3,30207,1,0)
+ ;;^UTILITY(U,$J,358.3,30663,1,3,0)
+ ;;=3^Preprocedural Respiratory Examination
+ ;;^UTILITY(U,$J,358.3,30663,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,30663,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,30664,0)
+ ;;=Z48.89^^121^1526^1
+ ;;^UTILITY(U,$J,358.3,30664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30207,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,30207,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,30207,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,30208,0)
- ;;=Z97.11^^135^1373^133
- ;;^UTILITY(U,$J,358.3,30208,1,0)
+ ;;^UTILITY(U,$J,358.3,30664,1,3,0)
+ ;;=3^Postsurgical Aftercare
+ ;;^UTILITY(U,$J,358.3,30664,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,30664,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,30665,0)
+ ;;=J95.821^^121^1527^5
+ ;;^UTILITY(U,$J,358.3,30665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30208,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,30208,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,30208,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,30209,0)
- ;;=Z97.12^^135^1373^128
- ;;^UTILITY(U,$J,358.3,30209,1,0)
+ ;;^UTILITY(U,$J,358.3,30665,1,3,0)
+ ;;=3^Acute Postprocedural Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,30665,1,4,0)
+ ;;=4^J95.821
+ ;;^UTILITY(U,$J,358.3,30665,2)
+ ;;=^5008338
+ ;;^UTILITY(U,$J,358.3,30666,0)
+ ;;=J96.00^^121^1527^8
+ ;;^UTILITY(U,$J,358.3,30666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30209,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,30209,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,30209,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,30210,0)
- ;;=Z97.13^^135^1373^136
- ;;^UTILITY(U,$J,358.3,30210,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30210,1,3,0)
- ;;=3^Presence of Right Artificial Leg
- ;;^UTILITY(U,$J,358.3,30210,1,4,0)
- ;;=4^Z97.13
- ;;^UTILITY(U,$J,358.3,30210,2)
- ;;=^5063724
+ ;;^UTILITY(U,$J,358.3,30666,1,3,0)
+ ;;=3^Acute Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,30666,1,4,0)
+ ;;=4^J96.00
+ ;;^UTILITY(U,$J,358.3,30666,2)
+ ;;=^5008347

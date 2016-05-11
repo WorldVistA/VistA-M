@@ -1,122 +1,134 @@
-IBDEI1AV ; ; 19-NOV-2015
+IBDEI1AV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21707,1,4,0)
- ;;=4^S92.531S
- ;;^UTILITY(U,$J,358.3,21707,2)
- ;;=^5045521
- ;;^UTILITY(U,$J,358.3,21708,0)
- ;;=S92.522S^^101^1034^40
- ;;^UTILITY(U,$J,358.3,21708,1,0)
+ ;;^UTILITY(U,$J,358.3,22104,1,3,0)
+ ;;=3^Benign Neop of Descending Colon
+ ;;^UTILITY(U,$J,358.3,22104,1,4,0)
+ ;;=4^D12.4
+ ;;^UTILITY(U,$J,358.3,22104,2)
+ ;;=^5001967
+ ;;^UTILITY(U,$J,358.3,22105,0)
+ ;;=D73.2^^87^976^19
+ ;;^UTILITY(U,$J,358.3,22105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21708,1,3,0)
- ;;=3^Disp medial cuneiform fx of left lesser toe(s),sequela
- ;;^UTILITY(U,$J,358.3,21708,1,4,0)
- ;;=4^S92.522S
- ;;^UTILITY(U,$J,358.3,21708,2)
- ;;=^5045486
- ;;^UTILITY(U,$J,358.3,21709,0)
- ;;=S92.521S^^101^1034^43
- ;;^UTILITY(U,$J,358.3,21709,1,0)
+ ;;^UTILITY(U,$J,358.3,22105,1,3,0)
+ ;;=3^Congestive Splenomegaly,Chronic
+ ;;^UTILITY(U,$J,358.3,22105,1,4,0)
+ ;;=4^D73.2
+ ;;^UTILITY(U,$J,358.3,22105,2)
+ ;;=^268000
+ ;;^UTILITY(U,$J,358.3,22106,0)
+ ;;=I85.00^^87^976^46
+ ;;^UTILITY(U,$J,358.3,22106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21709,1,3,0)
- ;;=3^Disp medial phalanx fx of right lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21709,1,4,0)
- ;;=4^S92.521S
- ;;^UTILITY(U,$J,358.3,21709,2)
- ;;=^5045479
- ;;^UTILITY(U,$J,358.3,21710,0)
- ;;=S92.412S^^101^1034^50
- ;;^UTILITY(U,$J,358.3,21710,1,0)
+ ;;^UTILITY(U,$J,358.3,22106,1,3,0)
+ ;;=3^Esophageal Varices w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,22106,1,4,0)
+ ;;=4^I85.00
+ ;;^UTILITY(U,$J,358.3,22106,2)
+ ;;=^5008023
+ ;;^UTILITY(U,$J,358.3,22107,0)
+ ;;=K20.9^^87^976^47
+ ;;^UTILITY(U,$J,358.3,22107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21710,1,3,0)
- ;;=3^Disp proximal phalanx fx of left great toe, sequela
- ;;^UTILITY(U,$J,358.3,21710,1,4,0)
- ;;=4^S92.412S
- ;;^UTILITY(U,$J,358.3,21710,2)
- ;;=^5045311
- ;;^UTILITY(U,$J,358.3,21711,0)
- ;;=S92.512S^^101^1034^51
- ;;^UTILITY(U,$J,358.3,21711,1,0)
+ ;;^UTILITY(U,$J,358.3,22107,1,3,0)
+ ;;=3^Esophagitis,Unspec
+ ;;^UTILITY(U,$J,358.3,22107,1,4,0)
+ ;;=4^K20.9
+ ;;^UTILITY(U,$J,358.3,22107,2)
+ ;;=^295809
+ ;;^UTILITY(U,$J,358.3,22108,0)
+ ;;=K21.9^^87^976^55
+ ;;^UTILITY(U,$J,358.3,22108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21711,1,3,0)
- ;;=3^Disp proximal phalanx fx of left lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21711,1,4,0)
- ;;=4^S92.512S
- ;;^UTILITY(U,$J,358.3,21711,2)
- ;;=s92411s^5045444
- ;;^UTILITY(U,$J,358.3,21712,0)
- ;;=S92.411S^^101^1034^52
- ;;^UTILITY(U,$J,358.3,21712,1,0)
+ ;;^UTILITY(U,$J,358.3,22108,1,3,0)
+ ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,22108,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,22108,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,22109,0)
+ ;;=K25.7^^87^976^50
+ ;;^UTILITY(U,$J,358.3,22109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21712,1,3,0)
- ;;=3^Disp proximal phalanx fx of right great toe, sequela
- ;;^UTILITY(U,$J,358.3,21712,1,4,0)
- ;;=4^S92.411S
- ;;^UTILITY(U,$J,358.3,21712,2)
- ;;=^5045304
- ;;^UTILITY(U,$J,358.3,21713,0)
- ;;=S92.511S^^101^1034^53
- ;;^UTILITY(U,$J,358.3,21713,1,0)
+ ;;^UTILITY(U,$J,358.3,22109,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
+ ;;^UTILITY(U,$J,358.3,22109,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,22109,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,22110,0)
+ ;;=K26.9^^87^976^44
+ ;;^UTILITY(U,$J,358.3,22110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21713,1,3,0)
- ;;=3^Disp proximal phalanx fx of right lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21713,1,4,0)
- ;;=4^S92.511S
- ;;^UTILITY(U,$J,358.3,21713,2)
- ;;=s92425s^5045437
- ;;^UTILITY(U,$J,358.3,21714,0)
- ;;=S92.425S^^101^1034^80
- ;;^UTILITY(U,$J,358.3,21714,1,0)
+ ;;^UTILITY(U,$J,358.3,22110,1,3,0)
+ ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,22110,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,22110,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,22111,0)
+ ;;=K27.9^^87^976^72
+ ;;^UTILITY(U,$J,358.3,22111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21714,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left great toe, sequela
- ;;^UTILITY(U,$J,358.3,21714,1,4,0)
- ;;=4^S92.425S
- ;;^UTILITY(U,$J,358.3,21714,2)
- ;;=^5045374
- ;;^UTILITY(U,$J,358.3,21715,0)
- ;;=S92.535S^^101^1034^81
- ;;^UTILITY(U,$J,358.3,21715,1,0)
+ ;;^UTILITY(U,$J,358.3,22111,1,3,0)
+ ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
+ ;;^UTILITY(U,$J,358.3,22111,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,22111,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,22112,0)
+ ;;=K29.70^^87^976^51
+ ;;^UTILITY(U,$J,358.3,22112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21715,1,3,0)
- ;;=3^Nondisp distal phalanx fx of left lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21715,1,4,0)
- ;;=4^S92.535S
- ;;^UTILITY(U,$J,358.3,21715,2)
- ;;=^5045549
- ;;^UTILITY(U,$J,358.3,21716,0)
- ;;=S92.424S^^101^1034^82
- ;;^UTILITY(U,$J,358.3,21716,1,0)
+ ;;^UTILITY(U,$J,358.3,22112,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,22112,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,22112,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,22113,0)
+ ;;=K29.90^^87^976^52
+ ;;^UTILITY(U,$J,358.3,22113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21716,1,3,0)
- ;;=3^Nondisp distal phalanx fx of right great toe, sequela
- ;;^UTILITY(U,$J,358.3,21716,1,4,0)
- ;;=4^S92.424S
- ;;^UTILITY(U,$J,358.3,21716,2)
- ;;=^5045367
- ;;^UTILITY(U,$J,358.3,21717,0)
- ;;=S92.534S^^101^1034^83
- ;;^UTILITY(U,$J,358.3,21717,1,0)
+ ;;^UTILITY(U,$J,358.3,22113,1,3,0)
+ ;;=3^Gastroduodenitis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,22113,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,22113,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,22114,0)
+ ;;=K30.^^87^976^45
+ ;;^UTILITY(U,$J,358.3,22114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21717,1,3,0)
- ;;=3^Nondisp distal phalanx fx of right lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21717,1,4,0)
- ;;=4^S92.534S
- ;;^UTILITY(U,$J,358.3,21717,2)
- ;;=^5045542
- ;;^UTILITY(U,$J,358.3,21718,0)
- ;;=S92.525S^^101^1034^94
- ;;^UTILITY(U,$J,358.3,21718,1,0)
+ ;;^UTILITY(U,$J,358.3,22114,1,3,0)
+ ;;=3^Dyspepsia,Functional
+ ;;^UTILITY(U,$J,358.3,22114,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,22114,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,22115,0)
+ ;;=K31.89^^87^976^34
+ ;;^UTILITY(U,$J,358.3,22115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21718,1,3,0)
- ;;=3^Nondisp medial phalanx fx of left lesser toe(s), sequela
- ;;^UTILITY(U,$J,358.3,21718,1,4,0)
- ;;=4^S92.525S
- ;;^UTILITY(U,$J,358.3,21718,2)
- ;;=^5045507
- ;;^UTILITY(U,$J,358.3,21719,0)
- ;;=S92.524S^^101^1034^95
- ;;^UTILITY(U,$J,358.3,21719,1,0)
+ ;;^UTILITY(U,$J,358.3,22115,1,3,0)
+ ;;=3^Diseases of Stomach & Duodenum,Other
+ ;;^UTILITY(U,$J,358.3,22115,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,22115,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,22116,0)
+ ;;=K31.9^^87^976^33
+ ;;^UTILITY(U,$J,358.3,22116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22116,1,3,0)
+ ;;=3^Disease of Stomach & Duodenum,Unspec
+ ;;^UTILITY(U,$J,358.3,22116,1,4,0)
+ ;;=4^K31.9
+ ;;^UTILITY(U,$J,358.3,22116,2)
+ ;;=^5008570
+ ;;^UTILITY(U,$J,358.3,22117,0)
+ ;;=K40.90^^87^976^68
+ ;;^UTILITY(U,$J,358.3,22117,1,0)
  ;;=^358.31IA^4^2

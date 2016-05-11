@@ -1,128 +1,134 @@
-IBDEI1V3 ; ; 19-NOV-2015
+IBDEI1V3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31162,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,31162,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,31163,0)
- ;;=W17.4XXA^^135^1391^39
- ;;^UTILITY(U,$J,358.3,31163,1,0)
+ ;;^UTILITY(U,$J,358.3,31636,1,4,0)
+ ;;=4^I70.203
+ ;;^UTILITY(U,$J,358.3,31636,2)
+ ;;=^5007575
+ ;;^UTILITY(U,$J,358.3,31637,0)
+ ;;=I70.208^^126^1604^60
+ ;;^UTILITY(U,$J,358.3,31637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31163,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,31163,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,31163,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,31164,0)
- ;;=W17.4XXD^^135^1391^40
- ;;^UTILITY(U,$J,358.3,31164,1,0)
+ ;;^UTILITY(U,$J,358.3,31637,1,3,0)
+ ;;=3^Athscl Native Arteries of Extr, Oth, Unsp
+ ;;^UTILITY(U,$J,358.3,31637,1,4,0)
+ ;;=4^I70.208
+ ;;^UTILITY(U,$J,358.3,31637,2)
+ ;;=^5007576
+ ;;^UTILITY(U,$J,358.3,31638,0)
+ ;;=L02.612^^126^1604^11
+ ;;^UTILITY(U,$J,358.3,31638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31164,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31164,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,31164,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,31165,0)
- ;;=W17.81XA^^135^1391^27
- ;;^UTILITY(U,$J,358.3,31165,1,0)
+ ;;^UTILITY(U,$J,358.3,31638,1,3,0)
+ ;;=3^Abscess,Cutaneous Left Foot
+ ;;^UTILITY(U,$J,358.3,31638,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,31638,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,31639,0)
+ ;;=L02.611^^126^1604^12
+ ;;^UTILITY(U,$J,358.3,31639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31165,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,31165,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,31165,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,31166,0)
- ;;=W17.81XD^^135^1391^28
- ;;^UTILITY(U,$J,358.3,31166,1,0)
+ ;;^UTILITY(U,$J,358.3,31639,1,3,0)
+ ;;=3^Abscess,Cutaneous Right Foot
+ ;;^UTILITY(U,$J,358.3,31639,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,31639,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,31640,0)
+ ;;=L90.8^^126^1604^103
+ ;;^UTILITY(U,$J,358.3,31640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31166,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31166,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,31166,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,31167,0)
- ;;=W17.89XA^^135^1391^55
- ;;^UTILITY(U,$J,358.3,31167,1,0)
+ ;;^UTILITY(U,$J,358.3,31640,1,3,0)
+ ;;=3^Atrophic Disorders of Skin, Oth
+ ;;^UTILITY(U,$J,358.3,31640,1,4,0)
+ ;;=4^L90.8
+ ;;^UTILITY(U,$J,358.3,31640,2)
+ ;;=^5009457
+ ;;^UTILITY(U,$J,358.3,31641,0)
+ ;;=L74.4^^126^1604^23
+ ;;^UTILITY(U,$J,358.3,31641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31167,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,31167,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,31167,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,31168,0)
- ;;=W17.89XD^^135^1391^56
- ;;^UTILITY(U,$J,358.3,31168,1,0)
+ ;;^UTILITY(U,$J,358.3,31641,1,3,0)
+ ;;=3^Anhidrosis
+ ;;^UTILITY(U,$J,358.3,31641,1,4,0)
+ ;;=4^L74.4
+ ;;^UTILITY(U,$J,358.3,31641,2)
+ ;;=^7648
+ ;;^UTILITY(U,$J,358.3,31642,0)
+ ;;=M00.272^^126^1604^43
+ ;;^UTILITY(U,$J,358.3,31642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31168,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31168,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,31168,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,31169,0)
- ;;=W18.11XA^^135^1391^63
- ;;^UTILITY(U,$J,358.3,31169,1,0)
+ ;;^UTILITY(U,$J,358.3,31642,1,3,0)
+ ;;=3^Arthritis, Streptococcal, lft ank & ft, Oth
+ ;;^UTILITY(U,$J,358.3,31642,1,4,0)
+ ;;=4^M00.272
+ ;;^UTILITY(U,$J,358.3,31642,2)
+ ;;=^5009665
+ ;;^UTILITY(U,$J,358.3,31643,0)
+ ;;=M00.271^^126^1604^44
+ ;;^UTILITY(U,$J,358.3,31643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31169,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,31169,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,31169,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,31170,0)
- ;;=W18.11XD^^135^1391^64
- ;;^UTILITY(U,$J,358.3,31170,1,0)
+ ;;^UTILITY(U,$J,358.3,31643,1,3,0)
+ ;;=3^Arthritis, Streptococcal, rt ank & ft, Oth
+ ;;^UTILITY(U,$J,358.3,31643,1,4,0)
+ ;;=4^M00.271
+ ;;^UTILITY(U,$J,358.3,31643,2)
+ ;;=^5009664
+ ;;^UTILITY(U,$J,358.3,31644,0)
+ ;;=M00.872^^126^1604^26
+ ;;^UTILITY(U,$J,358.3,31644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31170,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31170,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,31170,2)
- ;;=^5059802
- ;;^UTILITY(U,$J,358.3,31171,0)
- ;;=W18.12XA^^135^1391^61
- ;;^UTILITY(U,$J,358.3,31171,1,0)
+ ;;^UTILITY(U,$J,358.3,31644,1,3,0)
+ ;;=3^Arthritis d/t oth bacteria, lft ank & foot
+ ;;^UTILITY(U,$J,358.3,31644,1,4,0)
+ ;;=4^M00.872
+ ;;^UTILITY(U,$J,358.3,31644,2)
+ ;;=^5009689
+ ;;^UTILITY(U,$J,358.3,31645,0)
+ ;;=M00.871^^126^1604^27
+ ;;^UTILITY(U,$J,358.3,31645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31171,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,31171,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,31171,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,31172,0)
- ;;=W18.12XD^^135^1391^62
- ;;^UTILITY(U,$J,358.3,31172,1,0)
+ ;;^UTILITY(U,$J,358.3,31645,1,3,0)
+ ;;=3^Arthritis d/t oth bacteria, rt ank & ft
+ ;;^UTILITY(U,$J,358.3,31645,1,4,0)
+ ;;=4^M00.871
+ ;;^UTILITY(U,$J,358.3,31645,2)
+ ;;=^5009688
+ ;;^UTILITY(U,$J,358.3,31646,0)
+ ;;=M00.172^^126^1604^28
+ ;;^UTILITY(U,$J,358.3,31646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31172,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31172,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,31172,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,31173,0)
- ;;=W18.2XXA^^135^1391^73
- ;;^UTILITY(U,$J,358.3,31173,1,0)
+ ;;^UTILITY(U,$J,358.3,31646,1,3,0)
+ ;;=3^Arthritis, Pneumococcal, lft ank & ft
+ ;;^UTILITY(U,$J,358.3,31646,1,4,0)
+ ;;=4^M00.172
+ ;;^UTILITY(U,$J,358.3,31646,2)
+ ;;=^5009641
+ ;;^UTILITY(U,$J,358.3,31647,0)
+ ;;=M00.171^^126^1604^29
+ ;;^UTILITY(U,$J,358.3,31647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31173,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,31173,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,31173,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,31174,0)
- ;;=W18.2XXD^^135^1391^74
- ;;^UTILITY(U,$J,358.3,31174,1,0)
+ ;;^UTILITY(U,$J,358.3,31647,1,3,0)
+ ;;=3^Arthritis, Pneumococcal, rt ank & ft
+ ;;^UTILITY(U,$J,358.3,31647,1,4,0)
+ ;;=4^M00.171
+ ;;^UTILITY(U,$J,358.3,31647,2)
+ ;;=^5009640
+ ;;^UTILITY(U,$J,358.3,31648,0)
+ ;;=M00.072^^126^1604^41
+ ;;^UTILITY(U,$J,358.3,31648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31174,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31174,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,31174,2)
- ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,31648,1,3,0)
+ ;;=3^Arthritis, Staph, lft ank & ft
+ ;;^UTILITY(U,$J,358.3,31648,1,4,0)
+ ;;=4^M00.072
+ ;;^UTILITY(U,$J,358.3,31648,2)
+ ;;=^5009617
+ ;;^UTILITY(U,$J,358.3,31649,0)
+ ;;=M00.071^^126^1604^42
+ ;;^UTILITY(U,$J,358.3,31649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31649,1,3,0)
+ ;;=3^Arthritis, Staph, rt ank & ft

@@ -1,132 +1,128 @@
-IBDEI1IN ; ; 19-NOV-2015
+IBDEI1IN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25337,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25337,1,3,0)
- ;;=3^Pathological Fx,Unspec Site,Subsq Encntr for Fx w/ Sequela
- ;;^UTILITY(U,$J,358.3,25337,1,4,0)
- ;;=4^M84.40XS
- ;;^UTILITY(U,$J,358.3,25337,2)
- ;;=^5013799
- ;;^UTILITY(U,$J,358.3,25338,0)
- ;;=M85.80^^124^1244^3
- ;;^UTILITY(U,$J,358.3,25338,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25338,1,3,0)
- ;;=3^Bone Density/Structure Disorders,Unspec Site
- ;;^UTILITY(U,$J,358.3,25338,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,25338,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,25339,0)
- ;;=G40.909^^124^1245^5
- ;;^UTILITY(U,$J,358.3,25339,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25339,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,25339,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,25339,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,25340,0)
- ;;=G40.919^^124^1245^4
- ;;^UTILITY(U,$J,358.3,25340,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25340,1,3,0)
- ;;=3^Epilepsy,Intractable w/o Status Epilepticus
- ;;^UTILITY(U,$J,358.3,25340,1,4,0)
- ;;=4^G40.919
- ;;^UTILITY(U,$J,358.3,25340,2)
- ;;=^5003867
- ;;^UTILITY(U,$J,358.3,25341,0)
- ;;=G62.9^^124^1245^8
- ;;^UTILITY(U,$J,358.3,25341,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25341,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,25341,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,25341,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,25342,0)
- ;;=G60.9^^124^1245^6
- ;;^UTILITY(U,$J,358.3,25342,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25342,1,3,0)
- ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,25342,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,25342,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,25343,0)
- ;;=I63.50^^124^1245^1
- ;;^UTILITY(U,$J,358.3,25343,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25343,1,3,0)
- ;;=3^Cerebral Infarction d/t Occlusion/Stenosis of Cerebral Artery
- ;;^UTILITY(U,$J,358.3,25343,1,4,0)
- ;;=4^I63.50
- ;;^UTILITY(U,$J,358.3,25343,2)
- ;;=^5007343
- ;;^UTILITY(U,$J,358.3,25344,0)
- ;;=G45.9^^124^1245^12
- ;;^UTILITY(U,$J,358.3,25344,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25344,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,25344,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,25344,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,25345,0)
- ;;=R55.^^124^1245^11
- ;;^UTILITY(U,$J,358.3,25345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25345,1,3,0)
- ;;=3^Syncope and Collapse
- ;;^UTILITY(U,$J,358.3,25345,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,25345,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,25346,0)
- ;;=R56.00^^124^1245^10
- ;;^UTILITY(U,$J,358.3,25346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25346,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,25346,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,25346,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,25347,0)
- ;;=R56.1^^124^1245^9
- ;;^UTILITY(U,$J,358.3,25347,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25347,1,3,0)
- ;;=3^Post Traumatic Seizures
- ;;^UTILITY(U,$J,358.3,25347,1,4,0)
- ;;=4^R56.1
- ;;^UTILITY(U,$J,358.3,25347,2)
- ;;=^5019523
- ;;^UTILITY(U,$J,358.3,25348,0)
- ;;=R56.9^^124^1245^2
- ;;^UTILITY(U,$J,358.3,25348,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25348,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,25348,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,25348,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,25349,0)
- ;;=R42.^^124^1245^3
- ;;^UTILITY(U,$J,358.3,25349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25349,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,25349,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,25349,2)
- ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,25719,1,2,0)
+ ;;=2^96402
+ ;;^UTILITY(U,$J,358.3,25719,1,3,0)
+ ;;=3^Injec,IM,anti-neplastic hormonal anti-neoplastic drug
+ ;;^UTILITY(U,$J,358.3,25720,0)
+ ;;=96102^^96^1187^25^^^^1
+ ;;^UTILITY(U,$J,358.3,25720,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25720,1,2,0)
+ ;;=2^96102
+ ;;^UTILITY(U,$J,358.3,25720,1,3,0)
+ ;;=3^Psych Test by Tech,per hr
+ ;;^UTILITY(U,$J,358.3,25721,0)
+ ;;=96103^^96^1187^26^^^^1
+ ;;^UTILITY(U,$J,358.3,25721,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25721,1,2,0)
+ ;;=2^96103
+ ;;^UTILITY(U,$J,358.3,25721,1,3,0)
+ ;;=3^Psych Test by computer
+ ;;^UTILITY(U,$J,358.3,25722,0)
+ ;;=96120^^96^1187^19^^^^1
+ ;;^UTILITY(U,$J,358.3,25722,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25722,1,2,0)
+ ;;=2^96120
+ ;;^UTILITY(U,$J,358.3,25722,1,3,0)
+ ;;=3^Neuropsych Tst Admin w/Computer
+ ;;^UTILITY(U,$J,358.3,25723,0)
+ ;;=96125^^96^1187^36^^^^1
+ ;;^UTILITY(U,$J,358.3,25723,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25723,1,2,0)
+ ;;=2^96125
+ ;;^UTILITY(U,$J,358.3,25723,1,3,0)
+ ;;=3^Standardized Cognitive Performance Tst,per hr
+ ;;^UTILITY(U,$J,358.3,25724,0)
+ ;;=96372^^96^1187^42^^^^1
+ ;;^UTILITY(U,$J,358.3,25724,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25724,1,2,0)
+ ;;=2^96372
+ ;;^UTILITY(U,$J,358.3,25724,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,SC/IM
+ ;;^UTILITY(U,$J,358.3,25725,0)
+ ;;=Q3014^^96^1187^41^^^^1
+ ;;^UTILITY(U,$J,358.3,25725,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25725,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,25725,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,25726,0)
+ ;;=90887^^96^1187^6^^^^1
+ ;;^UTILITY(U,$J,358.3,25726,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25726,1,2,0)
+ ;;=2^90887
+ ;;^UTILITY(U,$J,358.3,25726,1,3,0)
+ ;;=3^Consultation w/Family
+ ;;^UTILITY(U,$J,358.3,25727,0)
+ ;;=90889^^96^1187^24^^^^1
+ ;;^UTILITY(U,$J,358.3,25727,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25727,1,2,0)
+ ;;=2^90889
+ ;;^UTILITY(U,$J,358.3,25727,1,3,0)
+ ;;=3^Preparation of Report
+ ;;^UTILITY(U,$J,358.3,25728,0)
+ ;;=96118^^96^1187^20^^^^1
+ ;;^UTILITY(U,$J,358.3,25728,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25728,1,2,0)
+ ;;=2^96118
+ ;;^UTILITY(U,$J,358.3,25728,1,3,0)
+ ;;=3^Neuropsych Tst by Psychologist/Phys,per hr
+ ;;^UTILITY(U,$J,358.3,25729,0)
+ ;;=G0177^^96^1187^43^^^^1
+ ;;^UTILITY(U,$J,358.3,25729,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25729,1,2,0)
+ ;;=2^G0177
+ ;;^UTILITY(U,$J,358.3,25729,1,3,0)
+ ;;=3^Train & Ed for Disabiling MH Problem,45+ min
+ ;;^UTILITY(U,$J,358.3,25730,0)
+ ;;=J1630^^96^1187^15^^^^1
+ ;;^UTILITY(U,$J,358.3,25730,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25730,1,2,0)
+ ;;=2^J1630
+ ;;^UTILITY(U,$J,358.3,25730,1,3,0)
+ ;;=3^Haloperidol,Up to 5mg
+ ;;^UTILITY(U,$J,358.3,25731,0)
+ ;;=J2794^^96^1187^31^^^^1
+ ;;^UTILITY(U,$J,358.3,25731,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25731,1,2,0)
+ ;;=2^J2794
+ ;;^UTILITY(U,$J,358.3,25731,1,3,0)
+ ;;=3^Risperidone,Long Acting per 0.5mg
+ ;;^UTILITY(U,$J,358.3,25732,0)
+ ;;=99090^^96^1187^30^^^^1
+ ;;^UTILITY(U,$J,358.3,25732,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25732,1,2,0)
+ ;;=2^99090
+ ;;^UTILITY(U,$J,358.3,25732,1,3,0)
+ ;;=3^Record Review (Labs,Remote Data)
+ ;;^UTILITY(U,$J,358.3,25733,0)
+ ;;=96101^^96^1187^27^^^^1
+ ;;^UTILITY(U,$J,358.3,25733,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25733,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,25733,1,3,0)
+ ;;=3^Psych Testing by Psych/Phys per hr
+ ;;^UTILITY(U,$J,358.3,25734,0)
+ ;;=96127^^96^1187^1^^^^1
+ ;;^UTILITY(U,$J,358.3,25734,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,25734,1,2,0)
+ ;;=2^96127
+ ;;^UTILITY(U,$J,358.3,25734,1,3,0)
+ ;;=3^Brief Emot/Behav Assmt w/ Score & Docum

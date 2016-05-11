@@ -1,5 +1,5 @@
 PSOREJP0 ;BIRM/MFR - Third Party Rejects Processing Screen ;04/28/05
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,289,385,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,289,385,421,427**;DEC 1997;Build 21
  ;
  N PSOREJST,PSORJSRT,PSORJASC,PSOSTFLT,PSODRFLT,PSOPTFLT,PSORXFLT,PSOINFLT,PSOINGRP,PSOTRITG
  N INSLN,HIGHLN,LASTLN,PSOEKEY,PSOCVATG
@@ -138,7 +138,7 @@ SETTMP(RX,REJ,FIELD) ; - Sets ^TMP global that will be displayed in the body sec
  S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5),SORTA=1
  I '$$DIV(RX,FILL) Q
  K REJLST D GET^PSOREJU2(RX,FILL,.REJLST,,1) I '$D(REJLST) Q
- I $$FILTER(,REJLST(REJ,"INSURANCE NAME")) Q
+ I $$FILTER(,REJLST(REJ,"INSURANCE POINTER")) Q
  S CODE=$G(REJLST(REJ,"CODE"))
  S PSOTRIC="",PSOTRIC=$$TRIC^PSOREJP1(RX,FILL,PSOTRIC)
  Q:$G(PSOTRIC)=1&('$G(PSOTRITG))&(CODE'="79")&(CODE'="88")  ;show/hide non-DUR/RTS TRICARE
@@ -231,12 +231,11 @@ PTNAME(RX) ; - Returns header displayable - Patient Name (Last 4 SSN)
  Q PTNAME
  ;
 FILTER(RX,INS) ; - Filter entries based on user's selection
- N FILTER,NAME
+ N FILTER
  S FILTER=1
  I $G(PSOPTFLT)'="ALL",$D(RX),'$D(PSOPTFLT($$GET1^DIQ(52,RX,2,"I"))) Q FILTER
  I $G(PSODRFLT)'="ALL",$D(RX),'$D(PSODRFLT($$GET1^DIQ(52,RX,6,"I"))) Q FILTER
- I $G(PSOINFLT)'="ALL",$D(INS) D  Q FILTER
- . S NAME="" F  S NAME=$O(PSOINFLT(NAME)) Q:NAME=""  I $$UP^XLFSTR(INS)[$$UP^XLFSTR(NAME) S FILTER=0 Q
+ I $G(PSOINFLT)'="ALL",$D(INS),'$D(PSOINFLT(+INS)) Q FILTER
  Q 0
  ;
 FLTSTS(RX,REJ) ; - Filter for the Reject Status  
@@ -262,3 +261,80 @@ ENDT() ; Returns the upper limit for the date range
  I '$E(ENDT,6,7) Q (ENDT+100)
  I $P(ENDT,"^",2) Q (ENDT+0.0000001)
  Q (ENDT+.25)
+ ;
+PRTEXCL ;
+ ; Protocol to Print to Excel
+ ;
+ ; Use full screen
+ D FULL^VALM1
+ ;
+ ; Prompt to see if the user wants to print to Excel
+ N DIR,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ S DIR(0)="Y"
+ S DIR("A")="Do you want to capture report data for an Excel document",DIR("B")="NO"
+ D ^DIR
+ I Y'=1 G PEXIT
+ ;
+ ; Display Warning Message
+ W !!?5,"Before continuing, please set up your terminal to capture the"
+ W !?5,"detail report data. On some terminals, this can be done by"
+ W !?5,"clicking on the 'Tools' menu above, then click on 'Capture"
+ W !?5,"Incoming Data' to save to Desktop"
+ W !!?5,"Note: To avoid undesired wrapping of the data saved to the"
+ W !?10,"file, please enter '0;256;999' at the 'DEVICE:' prompt."
+ ;
+ ; Prompt for device
+ N %ZIS,ZTSK,ZTRTN,ZTIO,ZTDESC,ZTSAVE,POP,OK
+ S OK=0
+ F  D  I POP!OK Q
+ . S %ZIS="QM"
+ . D ^%ZIS
+ . I POP Q
+ . I '$D(IO("Q")) S OK=1 Q
+ . I $D(IO("Q")) D
+ .. K IO("Q")
+ .. D HOME^%ZIS
+ .. W !,"Sorry, the output for this action cannot be queued.  Please select a device that"
+ .. W !,"does not requiring queuing."
+ I POP G PEXIT
+ ;
+ ; If not queued, run the process directly
+ D RUN
+ ;
+PEXIT ;
+ ; Reset before going back to ListMan
+ S VALMBCK="R"
+ Q
+ ;
+ ; Run the Report
+RUN ;
+ N SORTA,INS,SORT,RX,REJ,FILL,PTNAME,DRNAME,RXNUM,REJLST,CODE,REASON,MSG
+ U IO
+ ; Write Header
+ W !,"Section/Insurance^RX#^Patient(ID)^Drug^Reason^Payer Message"
+ ;
+ ; Loop through temp array and output
+ S SORTA="" F  S SORTA=$O(^TMP("PSOREJSR",$J,SORTA)) Q:'SORTA  D
+ . S INS="" F  S INS=$O(^TMP("PSOREJSR",$J,SORTA,INS)) Q:INS=""  D
+ .. S SORT="" F  S SORT=$O(^TMP("PSOREJSR",$J,SORTA,INS,SORT)) Q:SORT=""  D
+ ... W !,$S(INS'="<NULL>":INS,1:"Refill Too Soon/DUR Rejects")_U
+ ... S RX=$P(^TMP("PSOREJSR",$J,SORTA,INS,SORT),"^",1),REJ=$P(^TMP("PSOREJSR",$J,SORTA,INS,SORT),"^",2)
+ ... S FILL=+$$GET1^DIQ(52.25,REJ_","_RX,5)
+ ... S PTNAME=$$PTNAME(RX)
+ ... S DRNAME=$$GET1^DIQ(52,RX,6)
+ ... S RXNUM=$$GET1^DIQ(52,RX,.01)
+ ... K REJLST D GET^PSOREJU2(RX,FILL,.REJLST,,1)
+ ... S CODE=$G(REJLST(REJ,"CODE"))
+ ... S REASON=$S(CODE=88:"DUR:"_$G(REJLST(REJ,"REASON")),CODE=79:"79 :REFILL TOO SOON",1:CODE_" :"_$$EXP^PSOREJP1(CODE))
+ ... S MSG=$G(REJLST(REJ,"PAYER MESSAGE"))
+ ... W RXNUM_U_PTNAME_U_DRNAME_U_REASON_U_MSG
+ ;
+ ; Cleanup
+ I $E($G(IOST),1,2)'="C-" W !,@IOF
+ I $E($G(IOST),1,2)="C-" D
+ . N DIR,DTOUT,DUOUT,DIROUT,DIRUT
+ . S DIR(0)="E"
+ . D ^DIR
+ I $D(ZTQUEUED) S ZTREQ="@" Q
+ D ^%ZISC
+ Q

@@ -1,124 +1,136 @@
-IBDEI1M2 ; ; 19-NOV-2015
+IBDEI1M2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26957,0)
- ;;=I70.341^^132^1309^49
- ;;^UTILITY(U,$J,358.3,26957,1,0)
+ ;;^UTILITY(U,$J,358.3,27331,1,3,0)
+ ;;=3^Electrolyte & Fluid Balance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,27331,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,27331,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,27332,0)
+ ;;=E26.81^^106^1349^5
+ ;;^UTILITY(U,$J,358.3,27332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26957,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,26957,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,26957,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,26958,0)
- ;;=I70.342^^132^1309^46
- ;;^UTILITY(U,$J,358.3,26958,1,0)
+ ;;^UTILITY(U,$J,358.3,27332,1,3,0)
+ ;;=3^Bartter's Syndrome
+ ;;^UTILITY(U,$J,358.3,27332,1,4,0)
+ ;;=4^E26.81
+ ;;^UTILITY(U,$J,358.3,27332,2)
+ ;;=^329906
+ ;;^UTILITY(U,$J,358.3,27333,0)
+ ;;=E23.2^^106^1349^7
+ ;;^UTILITY(U,$J,358.3,27333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26958,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,26958,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,26958,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,26959,0)
- ;;=I70.343^^132^1309^45
- ;;^UTILITY(U,$J,358.3,26959,1,0)
+ ;;^UTILITY(U,$J,358.3,27333,1,3,0)
+ ;;=3^Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,27333,1,4,0)
+ ;;=4^E23.2
+ ;;^UTILITY(U,$J,358.3,27333,2)
+ ;;=^33572
+ ;;^UTILITY(U,$J,358.3,27334,0)
+ ;;=E83.41^^106^1349^15
+ ;;^UTILITY(U,$J,358.3,27334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26959,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,26959,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,26959,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,26960,0)
- ;;=I70.344^^132^1309^47
- ;;^UTILITY(U,$J,358.3,26960,1,0)
+ ;;^UTILITY(U,$J,358.3,27334,1,3,0)
+ ;;=3^Hypermagnesemia
+ ;;^UTILITY(U,$J,358.3,27334,1,4,0)
+ ;;=4^E83.41
+ ;;^UTILITY(U,$J,358.3,27334,2)
+ ;;=^5003002
+ ;;^UTILITY(U,$J,358.3,27335,0)
+ ;;=E21.3^^106^1349^17
+ ;;^UTILITY(U,$J,358.3,27335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26960,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,26960,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,26960,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,26961,0)
- ;;=I70.345^^132^1309^48
- ;;^UTILITY(U,$J,358.3,26961,1,0)
+ ;;^UTILITY(U,$J,358.3,27335,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,27335,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,27335,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,27336,0)
+ ;;=E83.42^^106^1349^21
+ ;;^UTILITY(U,$J,358.3,27336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26961,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,26961,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,26961,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,26962,0)
- ;;=I70.431^^132^1309^40
- ;;^UTILITY(U,$J,358.3,26962,1,0)
+ ;;^UTILITY(U,$J,358.3,27336,1,3,0)
+ ;;=3^Hypomagnesemia
+ ;;^UTILITY(U,$J,358.3,27336,1,4,0)
+ ;;=4^E83.42
+ ;;^UTILITY(U,$J,358.3,27336,2)
+ ;;=^5003003
+ ;;^UTILITY(U,$J,358.3,27337,0)
+ ;;=N25.1^^106^1349^25
+ ;;^UTILITY(U,$J,358.3,27337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26962,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,26962,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,26962,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,26963,0)
- ;;=I70.432^^132^1309^41
- ;;^UTILITY(U,$J,358.3,26963,1,0)
+ ;;^UTILITY(U,$J,358.3,27337,1,3,0)
+ ;;=3^Nephrogenic Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,27337,1,4,0)
+ ;;=4^N25.1
+ ;;^UTILITY(U,$J,358.3,27337,2)
+ ;;=^5015616
+ ;;^UTILITY(U,$J,358.3,27338,0)
+ ;;=E27.49^^106^1349^2
+ ;;^UTILITY(U,$J,358.3,27338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26963,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,26963,1,4,0)
- ;;=4^I70.432
- ;;^UTILITY(U,$J,358.3,26963,2)
- ;;=^5007665
- ;;^UTILITY(U,$J,358.3,26964,0)
- ;;=I70.433^^132^1309^42
- ;;^UTILITY(U,$J,358.3,26964,1,0)
+ ;;^UTILITY(U,$J,358.3,27338,1,3,0)
+ ;;=3^Adrenocortical Insufficiency,Other
+ ;;^UTILITY(U,$J,358.3,27338,1,4,0)
+ ;;=4^E27.49
+ ;;^UTILITY(U,$J,358.3,27338,2)
+ ;;=^5002743
+ ;;^UTILITY(U,$J,358.3,27339,0)
+ ;;=E72.09^^106^1349^4
+ ;;^UTILITY(U,$J,358.3,27339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26964,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,26964,1,4,0)
- ;;=4^I70.433
- ;;^UTILITY(U,$J,358.3,26964,2)
- ;;=^5007666
- ;;^UTILITY(U,$J,358.3,26965,0)
- ;;=I70.434^^132^1309^43
- ;;^UTILITY(U,$J,358.3,26965,1,0)
+ ;;^UTILITY(U,$J,358.3,27339,1,3,0)
+ ;;=3^Amino-Acid Transport Disorders,Other
+ ;;^UTILITY(U,$J,358.3,27339,1,4,0)
+ ;;=4^E72.09
+ ;;^UTILITY(U,$J,358.3,27339,2)
+ ;;=^5002895
+ ;;^UTILITY(U,$J,358.3,27340,0)
+ ;;=N25.89^^106^1349^23
+ ;;^UTILITY(U,$J,358.3,27340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26965,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,26965,1,4,0)
- ;;=4^I70.434
- ;;^UTILITY(U,$J,358.3,26965,2)
- ;;=^5007667
- ;;^UTILITY(U,$J,358.3,26966,0)
- ;;=I70.435^^132^1309^44
- ;;^UTILITY(U,$J,358.3,26966,1,0)
+ ;;^UTILITY(U,$J,358.3,27340,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorders,Other
+ ;;^UTILITY(U,$J,358.3,27340,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,27340,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,27341,0)
+ ;;=E26.89^^106^1349^12
+ ;;^UTILITY(U,$J,358.3,27341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26966,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,26966,1,4,0)
- ;;=4^I70.435
- ;;^UTILITY(U,$J,358.3,26966,2)
- ;;=^5007668
- ;;^UTILITY(U,$J,358.3,26967,0)
- ;;=I70.441^^132^1309^35
- ;;^UTILITY(U,$J,358.3,26967,1,0)
+ ;;^UTILITY(U,$J,358.3,27341,1,3,0)
+ ;;=3^Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,27341,1,4,0)
+ ;;=4^E26.89
+ ;;^UTILITY(U,$J,358.3,27341,2)
+ ;;=^5002737
+ ;;^UTILITY(U,$J,358.3,27342,0)
+ ;;=N25.81^^106^1349^29
+ ;;^UTILITY(U,$J,358.3,27342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26967,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,26967,1,4,0)
- ;;=4^I70.441
- ;;^UTILITY(U,$J,358.3,26967,2)
- ;;=^5007671
- ;;^UTILITY(U,$J,358.3,26968,0)
- ;;=I70.442^^132^1309^36
- ;;^UTILITY(U,$J,358.3,26968,1,0)
+ ;;^UTILITY(U,$J,358.3,27342,1,3,0)
+ ;;=3^Secondary Hyperparathyroidism of Renal Origin
+ ;;^UTILITY(U,$J,358.3,27342,1,4,0)
+ ;;=4^N25.81
+ ;;^UTILITY(U,$J,358.3,27342,2)
+ ;;=^5015617
+ ;;^UTILITY(U,$J,358.3,27343,0)
+ ;;=E22.2^^106^1349^28
+ ;;^UTILITY(U,$J,358.3,27343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26968,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,26968,1,4,0)
- ;;=4^I70.442
- ;;^UTILITY(U,$J,358.3,26968,2)
- ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,27343,1,3,0)
+ ;;=3^SIADH
+ ;;^UTILITY(U,$J,358.3,27343,1,4,0)
+ ;;=4^E22.2
+ ;;^UTILITY(U,$J,358.3,27343,2)
+ ;;=^5002718
+ ;;^UTILITY(U,$J,358.3,27344,0)
+ ;;=E87.79^^106^1349^10
+ ;;^UTILITY(U,$J,358.3,27344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27344,1,3,0)
+ ;;=3^Fluid Overload,Other

@@ -1,142 +1,120 @@
-IBDEI1PE ; ; 19-NOV-2015
+IBDEI1PE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28509,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,28509,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,28510,0)
- ;;=R63.1^^132^1332^138
- ;;^UTILITY(U,$J,358.3,28510,1,0)
+ ;;^UTILITY(U,$J,358.3,28949,0)
+ ;;=O30.042^^115^1454^66
+ ;;^UTILITY(U,$J,358.3,28949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28510,1,3,0)
- ;;=3^Polydipsia
- ;;^UTILITY(U,$J,358.3,28510,1,4,0)
- ;;=4^R63.1
- ;;^UTILITY(U,$J,358.3,28510,2)
- ;;=^186699
- ;;^UTILITY(U,$J,358.3,28511,0)
- ;;=R63.2^^132^1332^139
- ;;^UTILITY(U,$J,358.3,28511,1,0)
+ ;;^UTILITY(U,$J,358.3,28949,1,3,0)
+ ;;=3^Twin pregnancy, dichorionic/diamniotic, second trimester
+ ;;^UTILITY(U,$J,358.3,28949,1,4,0)
+ ;;=4^O30.042
+ ;;^UTILITY(U,$J,358.3,28949,2)
+ ;;=^5016445
+ ;;^UTILITY(U,$J,358.3,28950,0)
+ ;;=O30.043^^115^1454^67
+ ;;^UTILITY(U,$J,358.3,28950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28511,1,3,0)
- ;;=3^Polyphagia
- ;;^UTILITY(U,$J,358.3,28511,1,4,0)
- ;;=4^R63.2
- ;;^UTILITY(U,$J,358.3,28511,2)
- ;;=^5019540
- ;;^UTILITY(U,$J,358.3,28512,0)
- ;;=R63.3^^132^1332^72
- ;;^UTILITY(U,$J,358.3,28512,1,0)
+ ;;^UTILITY(U,$J,358.3,28950,1,3,0)
+ ;;=3^Twin pregnancy, dichorionic/diamniotic, third trimester
+ ;;^UTILITY(U,$J,358.3,28950,1,4,0)
+ ;;=4^O30.043
+ ;;^UTILITY(U,$J,358.3,28950,2)
+ ;;=^5016446
+ ;;^UTILITY(U,$J,358.3,28951,0)
+ ;;=O30.091^^115^1454^74
+ ;;^UTILITY(U,$J,358.3,28951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28512,1,3,0)
- ;;=3^Feeding Difficulties
- ;;^UTILITY(U,$J,358.3,28512,1,4,0)
- ;;=4^R63.3
- ;;^UTILITY(U,$J,358.3,28512,2)
- ;;=^5019541
- ;;^UTILITY(U,$J,358.3,28513,0)
- ;;=R63.4^^132^1332^29
- ;;^UTILITY(U,$J,358.3,28513,1,0)
+ ;;^UTILITY(U,$J,358.3,28951,1,3,0)
+ ;;=3^Twin pregnancy, unable to dtrm num plcnta & amnio sacs, first tri
+ ;;^UTILITY(U,$J,358.3,28951,1,4,0)
+ ;;=4^O30.091
+ ;;^UTILITY(U,$J,358.3,28951,2)
+ ;;=^5016448
+ ;;^UTILITY(U,$J,358.3,28952,0)
+ ;;=O30.092^^115^1454^75
+ ;;^UTILITY(U,$J,358.3,28952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28513,1,3,0)
- ;;=3^Abnormal Weight Loss
- ;;^UTILITY(U,$J,358.3,28513,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,28513,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,28514,0)
- ;;=R63.5^^132^1332^28
- ;;^UTILITY(U,$J,358.3,28514,1,0)
+ ;;^UTILITY(U,$J,358.3,28952,1,3,0)
+ ;;=3^Twin pregnancy, unable to dtrm num plcnta & amnio sacs, 2nd tri
+ ;;^UTILITY(U,$J,358.3,28952,1,4,0)
+ ;;=4^O30.092
+ ;;^UTILITY(U,$J,358.3,28952,2)
+ ;;=^5016449
+ ;;^UTILITY(U,$J,358.3,28953,0)
+ ;;=O30.093^^115^1454^76
+ ;;^UTILITY(U,$J,358.3,28953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28514,1,3,0)
- ;;=3^Abnormal Weight Gain
- ;;^UTILITY(U,$J,358.3,28514,1,4,0)
- ;;=4^R63.5
- ;;^UTILITY(U,$J,358.3,28514,2)
- ;;=^5019543
- ;;^UTILITY(U,$J,358.3,28515,0)
- ;;=R64.^^132^1332^46
- ;;^UTILITY(U,$J,358.3,28515,1,0)
+ ;;^UTILITY(U,$J,358.3,28953,1,3,0)
+ ;;=3^Twin pregnancy, unable to dtrm num plcnta & amnio sacs, third tri
+ ;;^UTILITY(U,$J,358.3,28953,1,4,0)
+ ;;=4^O30.093
+ ;;^UTILITY(U,$J,358.3,28953,2)
+ ;;=^5016450
+ ;;^UTILITY(U,$J,358.3,28954,0)
+ ;;=O30.101^^115^1454^62
+ ;;^UTILITY(U,$J,358.3,28954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28515,1,3,0)
- ;;=3^Cachexia
- ;;^UTILITY(U,$J,358.3,28515,1,4,0)
- ;;=4^R64.
- ;;^UTILITY(U,$J,358.3,28515,2)
- ;;=^17920
- ;;^UTILITY(U,$J,358.3,28516,0)
- ;;=R68.3^^132^1332^51
- ;;^UTILITY(U,$J,358.3,28516,1,0)
+ ;;^UTILITY(U,$J,358.3,28954,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, first trimester
+ ;;^UTILITY(U,$J,358.3,28954,1,4,0)
+ ;;=4^O30.101
+ ;;^UTILITY(U,$J,358.3,28954,2)
+ ;;=^5016452
+ ;;^UTILITY(U,$J,358.3,28955,0)
+ ;;=O30.102^^115^1454^63
+ ;;^UTILITY(U,$J,358.3,28955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28516,1,3,0)
- ;;=3^Clubbing of Fingers
- ;;^UTILITY(U,$J,358.3,28516,1,4,0)
- ;;=4^R68.3
- ;;^UTILITY(U,$J,358.3,28516,2)
- ;;=^5019553
- ;;^UTILITY(U,$J,358.3,28517,0)
- ;;=R73.01^^132^1332^89
- ;;^UTILITY(U,$J,358.3,28517,1,0)
+ ;;^UTILITY(U,$J,358.3,28955,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, second trimester
+ ;;^UTILITY(U,$J,358.3,28955,1,4,0)
+ ;;=4^O30.102
+ ;;^UTILITY(U,$J,358.3,28955,2)
+ ;;=^5016453
+ ;;^UTILITY(U,$J,358.3,28956,0)
+ ;;=O30.103^^115^1454^64
+ ;;^UTILITY(U,$J,358.3,28956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28517,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,28517,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,28517,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,28518,0)
- ;;=R73.02^^132^1332^90
- ;;^UTILITY(U,$J,358.3,28518,1,0)
+ ;;^UTILITY(U,$J,358.3,28956,1,3,0)
+ ;;=3^Triplet preg, unsp num plcnta & amnio sacs, third trimester
+ ;;^UTILITY(U,$J,358.3,28956,1,4,0)
+ ;;=4^O30.103
+ ;;^UTILITY(U,$J,358.3,28956,2)
+ ;;=^5016454
+ ;;^UTILITY(U,$J,358.3,28957,0)
+ ;;=O30.111^^115^1454^56
+ ;;^UTILITY(U,$J,358.3,28957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28518,1,3,0)
- ;;=3^Impaired Glucose Tolerance (oral)
- ;;^UTILITY(U,$J,358.3,28518,1,4,0)
- ;;=4^R73.02
- ;;^UTILITY(U,$J,358.3,28518,2)
- ;;=^5019562
- ;;^UTILITY(U,$J,358.3,28519,0)
- ;;=R73.09^^132^1332^15
- ;;^UTILITY(U,$J,358.3,28519,1,0)
+ ;;^UTILITY(U,$J,358.3,28957,1,3,0)
+ ;;=3^Triplet preg w two or more monochorionic fetuses, first tri
+ ;;^UTILITY(U,$J,358.3,28957,1,4,0)
+ ;;=4^O30.111
+ ;;^UTILITY(U,$J,358.3,28957,2)
+ ;;=^5016455
+ ;;^UTILITY(U,$J,358.3,28958,0)
+ ;;=O30.112^^115^1454^57
+ ;;^UTILITY(U,$J,358.3,28958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28519,1,3,0)
- ;;=3^Abnormal Glucose NEC
- ;;^UTILITY(U,$J,358.3,28519,1,4,0)
- ;;=4^R73.09
- ;;^UTILITY(U,$J,358.3,28519,2)
- ;;=^5019563
- ;;^UTILITY(U,$J,358.3,28520,0)
- ;;=R73.9^^132^1332^84
- ;;^UTILITY(U,$J,358.3,28520,1,0)
+ ;;^UTILITY(U,$J,358.3,28958,1,3,0)
+ ;;=3^Triplet preg w two or more monochorionic fetuses, second tri
+ ;;^UTILITY(U,$J,358.3,28958,1,4,0)
+ ;;=4^O30.112
+ ;;^UTILITY(U,$J,358.3,28958,2)
+ ;;=^5016456
+ ;;^UTILITY(U,$J,358.3,28959,0)
+ ;;=O30.113^^115^1454^58
+ ;;^UTILITY(U,$J,358.3,28959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28520,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,28520,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,28520,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,28521,0)
- ;;=R76.11^^132^1332^142
- ;;^UTILITY(U,$J,358.3,28521,1,0)
+ ;;^UTILITY(U,$J,358.3,28959,1,3,0)
+ ;;=3^Triplet preg w two or more monochorionic fetuses, third tri
+ ;;^UTILITY(U,$J,358.3,28959,1,4,0)
+ ;;=4^O30.113
+ ;;^UTILITY(U,$J,358.3,28959,2)
+ ;;=^5016457
+ ;;^UTILITY(U,$J,358.3,28960,0)
+ ;;=O30.121^^115^1454^53
+ ;;^UTILITY(U,$J,358.3,28960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28521,1,3,0)
- ;;=3^Positive PPD
- ;;^UTILITY(U,$J,358.3,28521,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,28521,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,28522,0)
- ;;=R79.1^^132^1332^3
- ;;^UTILITY(U,$J,358.3,28522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28522,1,3,0)
- ;;=3^Abnormal Coagulation Profile
- ;;^UTILITY(U,$J,358.3,28522,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,28522,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,28523,0)
- ;;=R82.5^^132^1332^69
- ;;^UTILITY(U,$J,358.3,28523,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28960,1,3,0)
+ ;;=3^Triplet preg w two or more monoamnio fetuses, first tri

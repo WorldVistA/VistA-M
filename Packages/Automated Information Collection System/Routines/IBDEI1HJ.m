@@ -1,140 +1,128 @@
-IBDEI1HJ ; ; 19-NOV-2015
+IBDEI1HJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24839,1,4,0)
- ;;=4^R04.9
- ;;^UTILITY(U,$J,358.3,24839,2)
- ;;=^5019178
- ;;^UTILITY(U,$J,358.3,24840,0)
- ;;=R07.9^^124^1236^16
- ;;^UTILITY(U,$J,358.3,24840,1,0)
+ ;;^UTILITY(U,$J,358.3,25209,0)
+ ;;=G31.1^^95^1143^36
+ ;;^UTILITY(U,$J,358.3,25209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24840,1,3,0)
- ;;=3^Chest Pain,Unspec
- ;;^UTILITY(U,$J,358.3,24840,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,24840,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,24841,0)
- ;;=R07.2^^124^1236^54
- ;;^UTILITY(U,$J,358.3,24841,1,0)
+ ;;^UTILITY(U,$J,358.3,25209,1,3,0)
+ ;;=3^Senile Degeneration of the Brain NOS
+ ;;^UTILITY(U,$J,358.3,25209,1,4,0)
+ ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,25209,2)
+ ;;=^5003809
+ ;;^UTILITY(U,$J,358.3,25210,0)
+ ;;=G94.^^95^1143^7
+ ;;^UTILITY(U,$J,358.3,25210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24841,1,3,0)
- ;;=3^Precordial Pain
- ;;^UTILITY(U,$J,358.3,24841,1,4,0)
- ;;=4^R07.2
- ;;^UTILITY(U,$J,358.3,24841,2)
- ;;=^5019197
- ;;^UTILITY(U,$J,358.3,24842,0)
- ;;=R07.1^^124^1236^15
- ;;^UTILITY(U,$J,358.3,24842,1,0)
+ ;;^UTILITY(U,$J,358.3,25210,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,25210,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,25210,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,25211,0)
+ ;;=G31.83^^95^1143^16
+ ;;^UTILITY(U,$J,358.3,25211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24842,1,3,0)
- ;;=3^Chest Pain on Breathing
- ;;^UTILITY(U,$J,358.3,24842,1,4,0)
- ;;=4^R07.1
- ;;^UTILITY(U,$J,358.3,24842,2)
- ;;=^5019196
- ;;^UTILITY(U,$J,358.3,24843,0)
- ;;=R07.81^^124^1236^52
- ;;^UTILITY(U,$J,358.3,24843,1,0)
+ ;;^UTILITY(U,$J,358.3,25211,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,25211,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,25211,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,25212,0)
+ ;;=G31.89^^95^1143^11
+ ;;^UTILITY(U,$J,358.3,25212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24843,1,3,0)
- ;;=3^Pleurodynia
- ;;^UTILITY(U,$J,358.3,24843,1,4,0)
- ;;=4^R07.81
- ;;^UTILITY(U,$J,358.3,24843,2)
- ;;=^5019198
- ;;^UTILITY(U,$J,358.3,24844,0)
- ;;=R07.82^^124^1236^32
- ;;^UTILITY(U,$J,358.3,24844,1,0)
+ ;;^UTILITY(U,$J,358.3,25212,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,25212,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,25212,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,25213,0)
+ ;;=G31.9^^95^1143^12
+ ;;^UTILITY(U,$J,358.3,25213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24844,1,3,0)
- ;;=3^Intercostal Pain
- ;;^UTILITY(U,$J,358.3,24844,1,4,0)
- ;;=4^R07.82
- ;;^UTILITY(U,$J,358.3,24844,2)
- ;;=^5019199
- ;;^UTILITY(U,$J,358.3,24845,0)
- ;;=R22.2^^124^1236^67
- ;;^UTILITY(U,$J,358.3,24845,1,0)
+ ;;^UTILITY(U,$J,358.3,25213,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,25213,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,25213,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,25214,0)
+ ;;=G23.8^^95^1143^10
+ ;;^UTILITY(U,$J,358.3,25214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24845,1,3,0)
- ;;=3^Trunk Swelling/Mass/Lump,Localized
- ;;^UTILITY(U,$J,358.3,24845,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,24845,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,24846,0)
- ;;=R10.11^^124^1236^61
- ;;^UTILITY(U,$J,358.3,24846,1,0)
+ ;;^UTILITY(U,$J,358.3,25214,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,25214,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,25214,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,25215,0)
+ ;;=G31.09^^95^1143^22
+ ;;^UTILITY(U,$J,358.3,25215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24846,1,3,0)
- ;;=3^Right Upper Quadrant Pain
- ;;^UTILITY(U,$J,358.3,24846,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,24846,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,24847,0)
- ;;=R10.12^^124^1236^40
- ;;^UTILITY(U,$J,358.3,24847,1,0)
+ ;;^UTILITY(U,$J,358.3,25215,1,3,0)
+ ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,25215,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,25215,2)
+ ;;=^329916^F02.81
+ ;;^UTILITY(U,$J,358.3,25216,0)
+ ;;=G30.0^^95^1143^3
+ ;;^UTILITY(U,$J,358.3,25216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24847,1,3,0)
- ;;=3^Left Upper Quadrant Pain
- ;;^UTILITY(U,$J,358.3,24847,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,24847,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,24848,0)
- ;;=R10.31^^124^1236^60
- ;;^UTILITY(U,$J,358.3,24848,1,0)
+ ;;^UTILITY(U,$J,358.3,25216,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,25216,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,25216,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,25217,0)
+ ;;=G30.1^^95^1143^4
+ ;;^UTILITY(U,$J,358.3,25217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24848,1,3,0)
- ;;=3^Right Lower Quadrant Pain
- ;;^UTILITY(U,$J,358.3,24848,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,24848,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,24849,0)
- ;;=R10.32^^124^1236^39
- ;;^UTILITY(U,$J,358.3,24849,1,0)
+ ;;^UTILITY(U,$J,358.3,25217,1,3,0)
+ ;;=3^Alzheimer's Disease with Late Onset
+ ;;^UTILITY(U,$J,358.3,25217,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,25217,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,25218,0)
+ ;;=B20.^^95^1143^18
+ ;;^UTILITY(U,$J,358.3,25218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24849,1,3,0)
- ;;=3^Left Lower Quadrant Pain
- ;;^UTILITY(U,$J,358.3,24849,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,24849,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,24850,0)
- ;;=R10.33^^124^1236^51
- ;;^UTILITY(U,$J,358.3,24850,1,0)
+ ;;^UTILITY(U,$J,358.3,25218,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,25218,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,25218,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,25219,0)
+ ;;=B20.^^95^1143^19
+ ;;^UTILITY(U,$J,358.3,25219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24850,1,3,0)
- ;;=3^Periumbilical Pain
- ;;^UTILITY(U,$J,358.3,24850,1,4,0)
- ;;=4^R10.33
- ;;^UTILITY(U,$J,358.3,24850,2)
- ;;=^5019213
- ;;^UTILITY(U,$J,358.3,24851,0)
- ;;=R10.13^^124^1236^24
- ;;^UTILITY(U,$J,358.3,24851,1,0)
+ ;;^UTILITY(U,$J,358.3,25219,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,25219,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,25219,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,25220,0)
+ ;;=G10.^^95^1143^20
+ ;;^UTILITY(U,$J,358.3,25220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24851,1,3,0)
- ;;=3^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,24851,1,4,0)
- ;;=4^R10.13
- ;;^UTILITY(U,$J,358.3,24851,2)
- ;;=^5019208
- ;;^UTILITY(U,$J,358.3,24852,0)
- ;;=R10.84^^124^1236^1
- ;;^UTILITY(U,$J,358.3,24852,1,0)
+ ;;^UTILITY(U,$J,358.3,25220,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,25220,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,25220,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,25221,0)
+ ;;=G10.^^95^1143^21
+ ;;^UTILITY(U,$J,358.3,25221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24852,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,24852,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,24852,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,24853,0)
- ;;=R10.10^^124^1236^68

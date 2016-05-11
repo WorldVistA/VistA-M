@@ -1,124 +1,124 @@
-IBDEI1KB ; ; 19-NOV-2015
+IBDEI1KB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26120,1,3,0)
- ;;=3^Streptococcus in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26120,1,4,0)
- ;;=4^B95.5
- ;;^UTILITY(U,$J,358.3,26120,2)
- ;;=^5000840
- ;;^UTILITY(U,$J,358.3,26121,0)
- ;;=B95.0^^127^1272^95
- ;;^UTILITY(U,$J,358.3,26121,1,0)
+ ;;^UTILITY(U,$J,358.3,26507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26121,1,3,0)
- ;;=3^Streptococcus,Group A,in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26121,1,4,0)
- ;;=4^B95.0
- ;;^UTILITY(U,$J,358.3,26121,2)
- ;;=^5000835
- ;;^UTILITY(U,$J,358.3,26122,0)
- ;;=B95.1^^127^1272^96
- ;;^UTILITY(U,$J,358.3,26122,1,0)
+ ;;^UTILITY(U,$J,358.3,26507,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,26507,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,26507,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,26508,0)
+ ;;=T74.31XA^^100^1265^9
+ ;;^UTILITY(U,$J,358.3,26508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26122,1,3,0)
- ;;=3^Streptococcus,Group B,in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26122,1,4,0)
- ;;=4^B95.1
- ;;^UTILITY(U,$J,358.3,26122,2)
- ;;=^5000836
- ;;^UTILITY(U,$J,358.3,26123,0)
- ;;=B95.4^^127^1272^94
- ;;^UTILITY(U,$J,358.3,26123,1,0)
+ ;;^UTILITY(U,$J,358.3,26508,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26508,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,26508,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,26509,0)
+ ;;=T74.31XD^^100^1265^10
+ ;;^UTILITY(U,$J,358.3,26509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26123,1,3,0)
- ;;=3^Streptococcus in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,26123,1,4,0)
- ;;=4^B95.4
- ;;^UTILITY(U,$J,358.3,26123,2)
- ;;=^5000839
- ;;^UTILITY(U,$J,358.3,26124,0)
- ;;=B95.2^^127^1272^48
- ;;^UTILITY(U,$J,358.3,26124,1,0)
+ ;;^UTILITY(U,$J,358.3,26509,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26509,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,26509,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,26510,0)
+ ;;=T76.31XA^^100^1265^11
+ ;;^UTILITY(U,$J,358.3,26510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26124,1,3,0)
- ;;=3^Enterococcus in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26124,1,4,0)
- ;;=4^B95.2
- ;;^UTILITY(U,$J,358.3,26124,2)
- ;;=^5000837
- ;;^UTILITY(U,$J,358.3,26125,0)
- ;;=B95.8^^127^1272^92
- ;;^UTILITY(U,$J,358.3,26125,1,0)
+ ;;^UTILITY(U,$J,358.3,26510,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,26510,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,26510,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,26511,0)
+ ;;=T76.31XD^^100^1265^12
+ ;;^UTILITY(U,$J,358.3,26511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26125,1,3,0)
- ;;=3^Staphylococcus,Unspec,in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26125,1,4,0)
- ;;=4^B95.8
- ;;^UTILITY(U,$J,358.3,26125,2)
- ;;=^5000844
- ;;^UTILITY(U,$J,358.3,26126,0)
- ;;=B95.61^^127^1272^77
- ;;^UTILITY(U,$J,358.3,26126,1,0)
+ ;;^UTILITY(U,$J,358.3,26511,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26511,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,26511,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,26512,0)
+ ;;=Z91.411^^100^1265^30
+ ;;^UTILITY(U,$J,358.3,26512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26126,1,3,0)
- ;;=3^Methicillin Suscept Staph Infct in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26126,1,4,0)
- ;;=4^B95.61
- ;;^UTILITY(U,$J,358.3,26126,2)
- ;;=^5000841
- ;;^UTILITY(U,$J,358.3,26127,0)
- ;;=B95.62^^127^1272^76
- ;;^UTILITY(U,$J,358.3,26127,1,0)
+ ;;^UTILITY(U,$J,358.3,26512,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26512,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,26512,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,26513,0)
+ ;;=Z69.021^^100^1265^17
+ ;;^UTILITY(U,$J,358.3,26513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26127,1,3,0)
- ;;=3^Methicillin Resist Staph Infct in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26127,1,4,0)
- ;;=4^B95.62
- ;;^UTILITY(U,$J,358.3,26127,2)
- ;;=^5000842
- ;;^UTILITY(U,$J,358.3,26128,0)
- ;;=B95.7^^127^1272^91
- ;;^UTILITY(U,$J,358.3,26128,1,0)
+ ;;^UTILITY(U,$J,358.3,26513,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,26513,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,26513,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,26514,0)
+ ;;=Z69.021^^100^1265^18
+ ;;^UTILITY(U,$J,358.3,26514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26128,1,3,0)
- ;;=3^Staphylococcus in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26128,1,4,0)
- ;;=4^B95.7
- ;;^UTILITY(U,$J,358.3,26128,2)
- ;;=^5000843
- ;;^UTILITY(U,$J,358.3,26129,0)
- ;;=B96.1^^127^1272^70
- ;;^UTILITY(U,$J,358.3,26129,1,0)
+ ;;^UTILITY(U,$J,358.3,26514,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,26514,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,26514,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,26515,0)
+ ;;=Z69.021^^100^1265^19
+ ;;^UTILITY(U,$J,358.3,26515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26129,1,3,0)
- ;;=3^Klebsiella Pneumoniae in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26129,1,4,0)
- ;;=4^B96.1
- ;;^UTILITY(U,$J,358.3,26129,2)
- ;;=^5000846
- ;;^UTILITY(U,$J,358.3,26130,0)
- ;;=B96.20^^127^1272^49
- ;;^UTILITY(U,$J,358.3,26130,1,0)
+ ;;^UTILITY(U,$J,358.3,26515,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26515,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,26515,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,26516,0)
+ ;;=Z69.021^^100^1265^20
+ ;;^UTILITY(U,$J,358.3,26516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26130,1,3,0)
- ;;=3^Escherichia Coli in Diseases Classified Elsewhere,Unspec
- ;;^UTILITY(U,$J,358.3,26130,1,4,0)
- ;;=4^B96.20
- ;;^UTILITY(U,$J,358.3,26130,2)
- ;;=^5000847
- ;;^UTILITY(U,$J,358.3,26131,0)
- ;;=B96.29^^127^1272^50
- ;;^UTILITY(U,$J,358.3,26131,1,0)
+ ;;^UTILITY(U,$J,358.3,26516,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,26516,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,26516,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,26517,0)
+ ;;=Z69.011^^100^1265^22
+ ;;^UTILITY(U,$J,358.3,26517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26131,1,3,0)
- ;;=3^Escherichia Coli in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,26131,1,4,0)
- ;;=4^B96.29
- ;;^UTILITY(U,$J,358.3,26131,2)
- ;;=^5000851
- ;;^UTILITY(U,$J,358.3,26132,0)
- ;;=B20.^^127^1272^58
- ;;^UTILITY(U,$J,358.3,26132,1,0)
+ ;;^UTILITY(U,$J,358.3,26517,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,26517,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,26517,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,26518,0)
+ ;;=Z69.011^^100^1265^23
+ ;;^UTILITY(U,$J,358.3,26518,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26518,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,26518,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,26518,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,26519,0)
+ ;;=Z69.011^^100^1265^24

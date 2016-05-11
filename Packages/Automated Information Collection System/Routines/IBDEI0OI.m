@@ -1,134 +1,134 @@
-IBDEI0OI ; ; 19-NOV-2015
+IBDEI0OI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11212,1,0)
+ ;;^UTILITY(U,$J,358.3,11448,1,4,0)
+ ;;=4^M84.60XA
+ ;;^UTILITY(U,$J,358.3,11448,2)
+ ;;=^5014214
+ ;;^UTILITY(U,$J,358.3,11449,0)
+ ;;=M84.60XD^^47^533^45
+ ;;^UTILITY(U,$J,358.3,11449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11212,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,11212,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,11212,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,11213,0)
- ;;=M05.752^^68^681^127
- ;;^UTILITY(U,$J,358.3,11213,1,0)
+ ;;^UTILITY(U,$J,358.3,11449,1,3,0)
+ ;;=3^Fx in Oth Disease,Unspec Site,Rountine Healing
+ ;;^UTILITY(U,$J,358.3,11449,1,4,0)
+ ;;=4^M84.60XD
+ ;;^UTILITY(U,$J,358.3,11449,2)
+ ;;=^5014215
+ ;;^UTILITY(U,$J,358.3,11450,0)
+ ;;=M84.60XS^^47^533^46
+ ;;^UTILITY(U,$J,358.3,11450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11213,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,11213,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,11213,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,11214,0)
- ;;=M05.761^^68^681^135
- ;;^UTILITY(U,$J,358.3,11214,1,0)
+ ;;^UTILITY(U,$J,358.3,11450,1,3,0)
+ ;;=3^Fx in Oth Disease,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,11450,1,4,0)
+ ;;=4^M84.60XS
+ ;;^UTILITY(U,$J,358.3,11450,2)
+ ;;=^5014219
+ ;;^UTILITY(U,$J,358.3,11451,0)
+ ;;=M84.60XG^^47^533^41
+ ;;^UTILITY(U,$J,358.3,11451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11214,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,11214,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,11214,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,11215,0)
- ;;=M05.762^^68^681^128
- ;;^UTILITY(U,$J,358.3,11215,1,0)
+ ;;^UTILITY(U,$J,358.3,11451,1,3,0)
+ ;;=3^Fx in Oth Disease,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,11451,1,4,0)
+ ;;=4^M84.60XG
+ ;;^UTILITY(U,$J,358.3,11451,2)
+ ;;=^5014216
+ ;;^UTILITY(U,$J,358.3,11452,0)
+ ;;=M84.60XK^^47^533^44
+ ;;^UTILITY(U,$J,358.3,11452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11215,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,11215,1,4,0)
- ;;=4^M05.762
- ;;^UTILITY(U,$J,358.3,11215,2)
- ;;=^5010017
- ;;^UTILITY(U,$J,358.3,11216,0)
- ;;=M05.771^^68^681^132
- ;;^UTILITY(U,$J,358.3,11216,1,0)
+ ;;^UTILITY(U,$J,358.3,11452,1,3,0)
+ ;;=3^Fx in Oth Disease,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,11452,1,4,0)
+ ;;=4^M84.60XK
+ ;;^UTILITY(U,$J,358.3,11452,2)
+ ;;=^5014217
+ ;;^UTILITY(U,$J,358.3,11453,0)
+ ;;=M84.60XP^^47^533^43
+ ;;^UTILITY(U,$J,358.3,11453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11216,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Ankle
- ;;^UTILITY(U,$J,358.3,11216,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,11216,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,11217,0)
- ;;=M05.772^^68^681^125
- ;;^UTILITY(U,$J,358.3,11217,1,0)
+ ;;^UTILITY(U,$J,358.3,11453,1,3,0)
+ ;;=3^Fx in Oth Disease,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,11453,1,4,0)
+ ;;=4^M84.60XP
+ ;;^UTILITY(U,$J,358.3,11453,2)
+ ;;=^5014218
+ ;;^UTILITY(U,$J,358.3,11454,0)
+ ;;=M84.40XA^^47^533^56
+ ;;^UTILITY(U,$J,358.3,11454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11217,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Ankle
- ;;^UTILITY(U,$J,358.3,11217,1,4,0)
- ;;=4^M05.772
- ;;^UTILITY(U,$J,358.3,11217,2)
- ;;=^5010020
- ;;^UTILITY(U,$J,358.3,11218,0)
- ;;=M05.79^^68^681^131
- ;;^UTILITY(U,$J,358.3,11218,1,0)
+ ;;^UTILITY(U,$J,358.3,11454,1,3,0)
+ ;;=3^Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11454,1,4,0)
+ ;;=4^M84.40XA
+ ;;^UTILITY(U,$J,358.3,11454,2)
+ ;;=^5013794
+ ;;^UTILITY(U,$J,358.3,11455,0)
+ ;;=M84.40XD^^47^533^59
+ ;;^UTILITY(U,$J,358.3,11455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11218,1,3,0)
- ;;=3^Rheumatoid Arthritis of Multiple Sites
- ;;^UTILITY(U,$J,358.3,11218,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,11218,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,11219,0)
- ;;=M06.00^^68^681^138
- ;;^UTILITY(U,$J,358.3,11219,1,0)
+ ;;^UTILITY(U,$J,358.3,11455,1,3,0)
+ ;;=3^Fx,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,11455,1,4,0)
+ ;;=4^M84.40XD
+ ;;^UTILITY(U,$J,358.3,11455,2)
+ ;;=^5013795
+ ;;^UTILITY(U,$J,358.3,11456,0)
+ ;;=M84.40XS^^47^533^60
+ ;;^UTILITY(U,$J,358.3,11456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11219,1,3,0)
- ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
- ;;^UTILITY(U,$J,358.3,11219,1,4,0)
- ;;=4^M06.00
- ;;^UTILITY(U,$J,358.3,11219,2)
- ;;=^5010047
- ;;^UTILITY(U,$J,358.3,11220,0)
- ;;=M06.30^^68^681^141
- ;;^UTILITY(U,$J,358.3,11220,1,0)
+ ;;^UTILITY(U,$J,358.3,11456,1,3,0)
+ ;;=3^Fx,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,11456,1,4,0)
+ ;;=4^M84.40XS
+ ;;^UTILITY(U,$J,358.3,11456,2)
+ ;;=^5013799
+ ;;^UTILITY(U,$J,358.3,11457,0)
+ ;;=M84.40XG^^47^533^55
+ ;;^UTILITY(U,$J,358.3,11457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11220,1,3,0)
- ;;=3^Rheumatoid Nodule,Unspec Site
- ;;^UTILITY(U,$J,358.3,11220,1,4,0)
- ;;=4^M06.30
- ;;^UTILITY(U,$J,358.3,11220,2)
- ;;=^5010096
- ;;^UTILITY(U,$J,358.3,11221,0)
- ;;=M06.4^^68^681^48
- ;;^UTILITY(U,$J,358.3,11221,1,0)
+ ;;^UTILITY(U,$J,358.3,11457,1,3,0)
+ ;;=3^Fx,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,11457,1,4,0)
+ ;;=4^M84.40XG
+ ;;^UTILITY(U,$J,358.3,11457,2)
+ ;;=^5013796
+ ;;^UTILITY(U,$J,358.3,11458,0)
+ ;;=M84.40XK^^47^533^58
+ ;;^UTILITY(U,$J,358.3,11458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11221,1,3,0)
- ;;=3^Inflammatory Polyarthropathy
- ;;^UTILITY(U,$J,358.3,11221,1,4,0)
- ;;=4^M06.4
- ;;^UTILITY(U,$J,358.3,11221,2)
- ;;=^5010120
- ;;^UTILITY(U,$J,358.3,11222,0)
- ;;=M06.39^^68^681^140
- ;;^UTILITY(U,$J,358.3,11222,1,0)
+ ;;^UTILITY(U,$J,358.3,11458,1,3,0)
+ ;;=3^Fx,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,11458,1,4,0)
+ ;;=4^M84.40XK
+ ;;^UTILITY(U,$J,358.3,11458,2)
+ ;;=^5013797
+ ;;^UTILITY(U,$J,358.3,11459,0)
+ ;;=M84.40XP^^47^533^57
+ ;;^UTILITY(U,$J,358.3,11459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11222,1,3,0)
- ;;=3^Rheumatoid Nodule,Mult Sites
- ;;^UTILITY(U,$J,358.3,11222,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,11222,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,11223,0)
- ;;=M15.0^^68^681^104
- ;;^UTILITY(U,$J,358.3,11223,1,0)
+ ;;^UTILITY(U,$J,358.3,11459,1,3,0)
+ ;;=3^Fx,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,11459,1,4,0)
+ ;;=4^M84.40XP
+ ;;^UTILITY(U,$J,358.3,11459,2)
+ ;;=^5013798
+ ;;^UTILITY(U,$J,358.3,11460,0)
+ ;;=M84.30XA^^47^533^50
+ ;;^UTILITY(U,$J,358.3,11460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11223,1,3,0)
- ;;=3^Primary Generalized Osteoarthritis
- ;;^UTILITY(U,$J,358.3,11223,1,4,0)
- ;;=4^M15.0
- ;;^UTILITY(U,$J,358.3,11223,2)
- ;;=^5010762
- ;;^UTILITY(U,$J,358.3,11224,0)
- ;;=M06.9^^68^681^139
- ;;^UTILITY(U,$J,358.3,11224,1,0)
+ ;;^UTILITY(U,$J,358.3,11460,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11460,1,4,0)
+ ;;=4^M84.30XA
+ ;;^UTILITY(U,$J,358.3,11460,2)
+ ;;=^5013566
+ ;;^UTILITY(U,$J,358.3,11461,0)
+ ;;=M84.30XD^^47^533^53
+ ;;^UTILITY(U,$J,358.3,11461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11224,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,11224,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,11224,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,11225,0)
- ;;=M16.0^^68^681^107
+ ;;^UTILITY(U,$J,358.3,11461,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Routine Healing

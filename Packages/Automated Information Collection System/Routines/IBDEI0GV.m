@@ -1,140 +1,122 @@
-IBDEI0GV ; ; 19-NOV-2015
+IBDEI0GV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7531,1,4,0)
- ;;=4^N25.1
- ;;^UTILITY(U,$J,358.3,7531,2)
- ;;=^5015616
- ;;^UTILITY(U,$J,358.3,7532,0)
- ;;=E27.49^^52^504^2
- ;;^UTILITY(U,$J,358.3,7532,1,0)
+ ;;^UTILITY(U,$J,358.3,7799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7532,1,3,0)
- ;;=3^Adrenocortical Insufficiency,Other
- ;;^UTILITY(U,$J,358.3,7532,1,4,0)
- ;;=4^E27.49
- ;;^UTILITY(U,$J,358.3,7532,2)
- ;;=^5002743
- ;;^UTILITY(U,$J,358.3,7533,0)
- ;;=E72.09^^52^504^4
- ;;^UTILITY(U,$J,358.3,7533,1,0)
+ ;;^UTILITY(U,$J,358.3,7799,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7799,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,7799,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,7800,0)
+ ;;=W18.12XD^^30^415^62
+ ;;^UTILITY(U,$J,358.3,7800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7533,1,3,0)
- ;;=3^Amino-Acid Transport Disorders,Other
- ;;^UTILITY(U,$J,358.3,7533,1,4,0)
- ;;=4^E72.09
- ;;^UTILITY(U,$J,358.3,7533,2)
- ;;=^5002895
- ;;^UTILITY(U,$J,358.3,7534,0)
- ;;=N25.89^^52^504^22
- ;;^UTILITY(U,$J,358.3,7534,1,0)
+ ;;^UTILITY(U,$J,358.3,7800,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7800,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,7800,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,7801,0)
+ ;;=W18.2XXA^^30^415^73
+ ;;^UTILITY(U,$J,358.3,7801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7534,1,3,0)
- ;;=3^Impaired Renal Tubular Function Disorders,Other
- ;;^UTILITY(U,$J,358.3,7534,1,4,0)
- ;;=4^N25.89
- ;;^UTILITY(U,$J,358.3,7534,2)
- ;;=^5015618
- ;;^UTILITY(U,$J,358.3,7535,0)
- ;;=E26.89^^52^504^11
- ;;^UTILITY(U,$J,358.3,7535,1,0)
+ ;;^UTILITY(U,$J,358.3,7801,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7801,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,7801,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,7802,0)
+ ;;=W18.2XXD^^30^415^74
+ ;;^UTILITY(U,$J,358.3,7802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7535,1,3,0)
- ;;=3^Hyperaldosteronism,Other
- ;;^UTILITY(U,$J,358.3,7535,1,4,0)
- ;;=4^E26.89
- ;;^UTILITY(U,$J,358.3,7535,2)
- ;;=^5002737
- ;;^UTILITY(U,$J,358.3,7536,0)
- ;;=N25.81^^52^504^27
- ;;^UTILITY(U,$J,358.3,7536,1,0)
+ ;;^UTILITY(U,$J,358.3,7802,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7802,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,7802,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,7803,0)
+ ;;=W18.40XA^^30^415^105
+ ;;^UTILITY(U,$J,358.3,7803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7536,1,3,0)
- ;;=3^Secondary Hyperparathyroidism of Renal Origin
- ;;^UTILITY(U,$J,358.3,7536,1,4,0)
- ;;=4^N25.81
- ;;^UTILITY(U,$J,358.3,7536,2)
- ;;=^5015617
- ;;^UTILITY(U,$J,358.3,7537,0)
- ;;=E22.2^^52^504^26
- ;;^UTILITY(U,$J,358.3,7537,1,0)
+ ;;^UTILITY(U,$J,358.3,7803,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7803,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,7803,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,7804,0)
+ ;;=W18.40XD^^30^415^106
+ ;;^UTILITY(U,$J,358.3,7804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7537,1,3,0)
- ;;=3^SIADH
- ;;^UTILITY(U,$J,358.3,7537,1,4,0)
- ;;=4^E22.2
- ;;^UTILITY(U,$J,358.3,7537,2)
- ;;=^5002718
- ;;^UTILITY(U,$J,358.3,7538,0)
- ;;=D63.1^^52^505^1
- ;;^UTILITY(U,$J,358.3,7538,1,0)
+ ;;^UTILITY(U,$J,358.3,7804,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7804,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,7804,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,7805,0)
+ ;;=W18.41XA^^30^415^107
+ ;;^UTILITY(U,$J,358.3,7805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7538,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,7538,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,7538,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,7539,0)
- ;;=I12.0^^52^505^9
- ;;^UTILITY(U,$J,358.3,7539,1,0)
+ ;;^UTILITY(U,$J,358.3,7805,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7805,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,7805,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,7806,0)
+ ;;=W18.41XD^^30^415^108
+ ;;^UTILITY(U,$J,358.3,7806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7539,1,3,0)
- ;;=3^HTN w/ CKD w/ Stage 5 CKD/ESRD
- ;;^UTILITY(U,$J,358.3,7539,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,7539,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,7540,0)
- ;;=I95.1^^52^505^10
- ;;^UTILITY(U,$J,358.3,7540,1,0)
+ ;;^UTILITY(U,$J,358.3,7806,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7806,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,7806,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,7807,0)
+ ;;=W18.42XA^^30^415^109
+ ;;^UTILITY(U,$J,358.3,7807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7540,1,3,0)
- ;;=3^Hypotension,Orthostatic
- ;;^UTILITY(U,$J,358.3,7540,1,4,0)
- ;;=4^I95.1
- ;;^UTILITY(U,$J,358.3,7540,2)
- ;;=^60741
- ;;^UTILITY(U,$J,358.3,7541,0)
- ;;=I95.89^^52^505^11
- ;;^UTILITY(U,$J,358.3,7541,1,0)
+ ;;^UTILITY(U,$J,358.3,7807,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7807,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,7807,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,7808,0)
+ ;;=W18.42XD^^30^415^110
+ ;;^UTILITY(U,$J,358.3,7808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7541,1,3,0)
- ;;=3^Hypotension,Other
- ;;^UTILITY(U,$J,358.3,7541,1,4,0)
- ;;=4^I95.89
- ;;^UTILITY(U,$J,358.3,7541,2)
- ;;=^5008079
- ;;^UTILITY(U,$J,358.3,7542,0)
- ;;=N17.9^^52^505^12
- ;;^UTILITY(U,$J,358.3,7542,1,0)
+ ;;^UTILITY(U,$J,358.3,7808,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7808,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,7808,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,7809,0)
+ ;;=W18.43XA^^30^415^103
+ ;;^UTILITY(U,$J,358.3,7809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7542,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,7542,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,7542,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,7543,0)
- ;;=N18.5^^52^505^3
- ;;^UTILITY(U,$J,358.3,7543,1,0)
+ ;;^UTILITY(U,$J,358.3,7809,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7809,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,7809,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,7810,0)
+ ;;=W18.43XD^^30^415^104
+ ;;^UTILITY(U,$J,358.3,7810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7543,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,7543,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,7543,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,7544,0)
- ;;=N18.9^^52^505^4
- ;;^UTILITY(U,$J,358.3,7544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7544,1,3,0)
- ;;=3^Chronic Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,7544,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,7544,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,7545,0)
- ;;=N39.0^^52^505^14
+ ;;^UTILITY(U,$J,358.3,7810,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7810,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,7810,2)
+ ;;=^5059828

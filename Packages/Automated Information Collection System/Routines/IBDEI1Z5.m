@@ -1,126 +1,138 @@
-IBDEI1Z5 ; ; 19-NOV-2015
+IBDEI1Z5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33061,0)
- ;;=F10.24^^146^1607^9
- ;;^UTILITY(U,$J,358.3,33061,1,0)
+ ;;^UTILITY(U,$J,358.3,33504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33061,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,33061,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,33061,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,33062,0)
- ;;=F10.29^^146^1607^11
- ;;^UTILITY(U,$J,358.3,33062,1,0)
+ ;;^UTILITY(U,$J,358.3,33504,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,33504,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,33504,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,33505,0)
+ ;;=J33.9^^131^1671^19
+ ;;^UTILITY(U,$J,358.3,33505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33062,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33062,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,33062,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,33063,0)
- ;;=F15.10^^146^1608^4
- ;;^UTILITY(U,$J,358.3,33063,1,0)
+ ;;^UTILITY(U,$J,358.3,33505,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,33505,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,33505,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,33506,0)
+ ;;=J32.0^^131^1671^15
+ ;;^UTILITY(U,$J,358.3,33506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33063,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33063,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,33063,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,33064,0)
- ;;=F15.14^^146^1608^2
- ;;^UTILITY(U,$J,358.3,33064,1,0)
+ ;;^UTILITY(U,$J,358.3,33506,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,33506,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,33506,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,33507,0)
+ ;;=J32.1^^131^1671^14
+ ;;^UTILITY(U,$J,358.3,33507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33064,1,3,0)
- ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33064,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,33064,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,33065,0)
- ;;=F15.182^^146^1608^3
- ;;^UTILITY(U,$J,358.3,33065,1,0)
+ ;;^UTILITY(U,$J,358.3,33507,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,33507,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,33507,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,33508,0)
+ ;;=J32.9^^131^1671^16
+ ;;^UTILITY(U,$J,358.3,33508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33065,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33065,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,33065,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,33066,0)
- ;;=F15.20^^146^1608^5
- ;;^UTILITY(U,$J,358.3,33066,1,0)
+ ;;^UTILITY(U,$J,358.3,33508,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33508,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,33508,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,33509,0)
+ ;;=J30.9^^131^1671^11
+ ;;^UTILITY(U,$J,358.3,33509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33066,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33066,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,33066,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,33067,0)
- ;;=F15.21^^146^1608^6
- ;;^UTILITY(U,$J,358.3,33067,1,0)
+ ;;^UTILITY(U,$J,358.3,33509,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33509,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,33509,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,33510,0)
+ ;;=J30.0^^131^1671^24
+ ;;^UTILITY(U,$J,358.3,33510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33067,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,33067,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,33067,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,33068,0)
- ;;=F15.23^^146^1608^1
- ;;^UTILITY(U,$J,358.3,33068,1,0)
+ ;;^UTILITY(U,$J,358.3,33510,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,33510,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,33510,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,33511,0)
+ ;;=K05.00^^131^1671^2
+ ;;^UTILITY(U,$J,358.3,33511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33068,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,33068,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,33068,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,33069,0)
- ;;=F12.10^^146^1609^1
- ;;^UTILITY(U,$J,358.3,33069,1,0)
+ ;;^UTILITY(U,$J,358.3,33511,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,33511,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,33511,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,33512,0)
+ ;;=R04.0^^131^1671^17
+ ;;^UTILITY(U,$J,358.3,33512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33069,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33069,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,33069,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,33070,0)
- ;;=F12.180^^146^1609^2
- ;;^UTILITY(U,$J,358.3,33070,1,0)
+ ;;^UTILITY(U,$J,358.3,33512,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,33512,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,33512,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,33513,0)
+ ;;=R09.82^^131^1671^21
+ ;;^UTILITY(U,$J,358.3,33513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33070,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
- ;;^UTILITY(U,$J,358.3,33070,1,4,0)
- ;;=4^F12.180
- ;;^UTILITY(U,$J,358.3,33070,2)
- ;;=^5003163
- ;;^UTILITY(U,$J,358.3,33071,0)
- ;;=F12.188^^146^1609^3
- ;;^UTILITY(U,$J,358.3,33071,1,0)
+ ;;^UTILITY(U,$J,358.3,33513,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,33513,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,33513,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,33514,0)
+ ;;=K12.30^^131^1671^20
+ ;;^UTILITY(U,$J,358.3,33514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33071,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33071,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,33071,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,33072,0)
- ;;=F12.20^^146^1609^4
- ;;^UTILITY(U,$J,358.3,33072,1,0)
+ ;;^UTILITY(U,$J,358.3,33514,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,33514,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,33514,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,33515,0)
+ ;;=J30.1^^131^1671^10
+ ;;^UTILITY(U,$J,358.3,33515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33072,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33072,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,33072,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,33073,0)
- ;;=F12.21^^146^1609^5
+ ;;^UTILITY(U,$J,358.3,33515,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,33515,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,33515,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,33516,0)
+ ;;=R09.81^^131^1671^18
+ ;;^UTILITY(U,$J,358.3,33516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33516,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,33516,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,33516,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,33517,0)
+ ;;=I69.928^^131^1671^22
+ ;;^UTILITY(U,$J,358.3,33517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33517,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease

@@ -1,132 +1,124 @@
-IBDEI1SV ; ; 19-NOV-2015
+IBDEI1SV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30133,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,30133,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,30134,0)
- ;;=Z77.122^^135^1373^68
- ;;^UTILITY(U,$J,358.3,30134,1,0)
+ ;;^UTILITY(U,$J,358.3,30590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30134,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,30134,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,30134,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,30135,0)
- ;;=Z77.118^^135^1373^19
- ;;^UTILITY(U,$J,358.3,30135,1,0)
+ ;;^UTILITY(U,$J,358.3,30590,1,3,0)
+ ;;=3^Digital Nerve Injury,Left Index Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30590,1,4,0)
+ ;;=4^S64.491A
+ ;;^UTILITY(U,$J,358.3,30590,2)
+ ;;=^5035802
+ ;;^UTILITY(U,$J,358.3,30591,0)
+ ;;=S64.492A^^121^1521^14
+ ;;^UTILITY(U,$J,358.3,30591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30135,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,30135,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,30135,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,30136,0)
- ;;=Z77.9^^135^1373^54
- ;;^UTILITY(U,$J,358.3,30136,1,0)
+ ;;^UTILITY(U,$J,358.3,30591,1,3,0)
+ ;;=3^Digital Nerve Injury,Right Middle Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30591,1,4,0)
+ ;;=4^S64.492A
+ ;;^UTILITY(U,$J,358.3,30591,2)
+ ;;=^5035805
+ ;;^UTILITY(U,$J,358.3,30592,0)
+ ;;=S64.493A^^121^1521^9
+ ;;^UTILITY(U,$J,358.3,30592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30136,1,3,0)
- ;;=3^Health Hazard Contact/Exposure
- ;;^UTILITY(U,$J,358.3,30136,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,30136,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,30137,0)
- ;;=Z77.22^^135^1373^18
- ;;^UTILITY(U,$J,358.3,30137,1,0)
+ ;;^UTILITY(U,$J,358.3,30592,1,3,0)
+ ;;=3^Digital Nerve Injury,Left Middle Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30592,1,4,0)
+ ;;=4^S64.493A
+ ;;^UTILITY(U,$J,358.3,30592,2)
+ ;;=^5035808
+ ;;^UTILITY(U,$J,358.3,30593,0)
+ ;;=S64.494A^^121^1521^15
+ ;;^UTILITY(U,$J,358.3,30593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30137,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,30137,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,30137,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,30138,0)
- ;;=Z80.0^^135^1373^35
- ;;^UTILITY(U,$J,358.3,30138,1,0)
+ ;;^UTILITY(U,$J,358.3,30593,1,3,0)
+ ;;=3^Digital Nerve Injury,Right Ring Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30593,1,4,0)
+ ;;=4^S64.494A
+ ;;^UTILITY(U,$J,358.3,30593,2)
+ ;;=^5035811
+ ;;^UTILITY(U,$J,358.3,30594,0)
+ ;;=S64.495A^^121^1521^10
+ ;;^UTILITY(U,$J,358.3,30594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30138,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,30138,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,30138,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,30139,0)
- ;;=Z80.1^^135^1373^41
- ;;^UTILITY(U,$J,358.3,30139,1,0)
+ ;;^UTILITY(U,$J,358.3,30594,1,3,0)
+ ;;=3^Digital Nerve Injury,Left Ring Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30594,1,4,0)
+ ;;=4^S64.495A
+ ;;^UTILITY(U,$J,358.3,30594,2)
+ ;;=^5035814
+ ;;^UTILITY(U,$J,358.3,30595,0)
+ ;;=S64.496A^^121^1521^13
+ ;;^UTILITY(U,$J,358.3,30595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30139,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,30139,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,30139,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,30140,0)
- ;;=Z80.3^^135^1373^34
- ;;^UTILITY(U,$J,358.3,30140,1,0)
+ ;;^UTILITY(U,$J,358.3,30595,1,3,0)
+ ;;=3^Digital Nerve Injury,Right Little Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30595,1,4,0)
+ ;;=4^S64.496A
+ ;;^UTILITY(U,$J,358.3,30595,2)
+ ;;=^5035817
+ ;;^UTILITY(U,$J,358.3,30596,0)
+ ;;=S64.497A^^121^1521^8
+ ;;^UTILITY(U,$J,358.3,30596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30140,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,30140,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,30140,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,30141,0)
- ;;=Z80.41^^135^1373^38
- ;;^UTILITY(U,$J,358.3,30141,1,0)
+ ;;^UTILITY(U,$J,358.3,30596,1,3,0)
+ ;;=3^Digital Nerve Injury,Left Little Finger,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30596,1,4,0)
+ ;;=4^S64.497A
+ ;;^UTILITY(U,$J,358.3,30596,2)
+ ;;=^5035820
+ ;;^UTILITY(U,$J,358.3,30597,0)
+ ;;=S44.91XA^^121^1521^34
+ ;;^UTILITY(U,$J,358.3,30597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30141,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,30141,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,30141,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,30142,0)
- ;;=Z80.42^^135^1373^39
- ;;^UTILITY(U,$J,358.3,30142,1,0)
+ ;;^UTILITY(U,$J,358.3,30597,1,3,0)
+ ;;=3^Nerve Injury Unspec,Right Shldr/Upper Arm,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30597,1,4,0)
+ ;;=4^S44.91XA
+ ;;^UTILITY(U,$J,358.3,30597,2)
+ ;;=^5134801
+ ;;^UTILITY(U,$J,358.3,30598,0)
+ ;;=S44.92XA^^121^1521^33
+ ;;^UTILITY(U,$J,358.3,30598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30142,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,30142,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,30142,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,30143,0)
- ;;=Z80.43^^135^1373^40
- ;;^UTILITY(U,$J,358.3,30143,1,0)
+ ;;^UTILITY(U,$J,358.3,30598,1,3,0)
+ ;;=3^Nerve Injury Unspec,Left Shldr/Upper Arm, Init Encnt
+ ;;^UTILITY(U,$J,358.3,30598,1,4,0)
+ ;;=4^S44.92XA
+ ;;^UTILITY(U,$J,358.3,30598,2)
+ ;;=^5134802
+ ;;^UTILITY(U,$J,358.3,30599,0)
+ ;;=S94.8X1A^^121^1521^38
+ ;;^UTILITY(U,$J,358.3,30599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30143,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,30143,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,30143,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,30144,0)
- ;;=Z80.6^^135^1373^32
- ;;^UTILITY(U,$J,358.3,30144,1,0)
+ ;;^UTILITY(U,$J,358.3,30599,1,3,0)
+ ;;=3^Nerve Injury,Right Ankle & Foot,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30599,1,4,0)
+ ;;=4^S94.8X1A
+ ;;^UTILITY(U,$J,358.3,30599,2)
+ ;;=^5045930
+ ;;^UTILITY(U,$J,358.3,30600,0)
+ ;;=S94.8X2A^^121^1521^35
+ ;;^UTILITY(U,$J,358.3,30600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30144,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,30144,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,30144,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,30145,0)
- ;;=Z80.8^^135^1373^37
- ;;^UTILITY(U,$J,358.3,30145,1,0)
+ ;;^UTILITY(U,$J,358.3,30600,1,3,0)
+ ;;=3^Nerve Injury,Left Ankle & Foot,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30600,1,4,0)
+ ;;=4^S94.8X2A
+ ;;^UTILITY(U,$J,358.3,30600,2)
+ ;;=^5045933
+ ;;^UTILITY(U,$J,358.3,30601,0)
+ ;;=S74.91XA^^121^1521^39
+ ;;^UTILITY(U,$J,358.3,30601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30145,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,30145,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,30145,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,30146,0)
- ;;=Z81.8^^135^1373^42
- ;;^UTILITY(U,$J,358.3,30146,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30601,1,3,0)
+ ;;=3^Nerve Injury,Right Hip & Thigh,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30601,1,4,0)
+ ;;=4^S74.91XA
+ ;;^UTILITY(U,$J,358.3,30601,2)
+ ;;=^5136509
+ ;;^UTILITY(U,$J,358.3,30602,0)
+ ;;=S74.92XA^^121^1521^36

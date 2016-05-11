@@ -1,134 +1,132 @@
-IBDEI194 ; ; 19-NOV-2015
+IBDEI194 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20926,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,20927,0)
- ;;=F21.^^99^1000^12
- ;;^UTILITY(U,$J,358.3,20927,1,0)
+ ;;^UTILITY(U,$J,358.3,21265,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,21265,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,21266,0)
+ ;;=W13.1XXD^^84^948^32
+ ;;^UTILITY(U,$J,358.3,21266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20927,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,20927,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,20927,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,20928,0)
- ;;=F60.5^^99^1000^7
- ;;^UTILITY(U,$J,358.3,20928,1,0)
+ ;;^UTILITY(U,$J,358.3,21266,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21266,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,21266,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,21267,0)
+ ;;=W13.2XXA^^84^948^69
+ ;;^UTILITY(U,$J,358.3,21267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20928,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,20928,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,20928,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,20929,0)
- ;;=F60.4^^99^1000^5
- ;;^UTILITY(U,$J,358.3,20929,1,0)
+ ;;^UTILITY(U,$J,358.3,21267,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21267,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,21267,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,21268,0)
+ ;;=W13.2XXD^^84^948^70
+ ;;^UTILITY(U,$J,358.3,21268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20929,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,20929,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,20929,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,20930,0)
- ;;=F60.7^^99^1000^4
- ;;^UTILITY(U,$J,358.3,20930,1,0)
+ ;;^UTILITY(U,$J,358.3,21268,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21268,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,21268,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,21269,0)
+ ;;=W13.3XXA^^84^948^83
+ ;;^UTILITY(U,$J,358.3,21269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20930,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,20930,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,20930,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,20931,0)
- ;;=F60.2^^99^1000^1
- ;;^UTILITY(U,$J,358.3,20931,1,0)
+ ;;^UTILITY(U,$J,358.3,21269,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21269,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,21269,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,21270,0)
+ ;;=W13.3XXD^^84^948^84
+ ;;^UTILITY(U,$J,358.3,21270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20931,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,20931,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,20931,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,20932,0)
- ;;=F60.81^^99^1000^6
- ;;^UTILITY(U,$J,358.3,20932,1,0)
+ ;;^UTILITY(U,$J,358.3,21270,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21270,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,21270,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,21271,0)
+ ;;=W13.4XXA^^84^948^71
+ ;;^UTILITY(U,$J,358.3,21271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20932,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,20932,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,20932,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,20933,0)
- ;;=F60.6^^99^1000^2
- ;;^UTILITY(U,$J,358.3,20933,1,0)
+ ;;^UTILITY(U,$J,358.3,21271,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21271,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,21271,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,21272,0)
+ ;;=W13.4XXD^^84^948^72
+ ;;^UTILITY(U,$J,358.3,21272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20933,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,20933,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,20933,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,20934,0)
- ;;=F60.3^^99^1000^3
- ;;^UTILITY(U,$J,358.3,20934,1,0)
+ ;;^UTILITY(U,$J,358.3,21272,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21272,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,21272,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,21273,0)
+ ;;=W13.8XXA^^84^948^35
+ ;;^UTILITY(U,$J,358.3,21273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20934,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,20934,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,20934,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,20935,0)
- ;;=F60.89^^99^1000^9
- ;;^UTILITY(U,$J,358.3,20935,1,0)
+ ;;^UTILITY(U,$J,358.3,21273,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21273,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,21273,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,21274,0)
+ ;;=W13.8XXD^^84^948^36
+ ;;^UTILITY(U,$J,358.3,21274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20935,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,20935,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,20935,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,20936,0)
- ;;=F60.9^^99^1000^10
- ;;^UTILITY(U,$J,358.3,20936,1,0)
+ ;;^UTILITY(U,$J,358.3,21274,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21274,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,21274,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,21275,0)
+ ;;=W13.9XXA^^84^948^33
+ ;;^UTILITY(U,$J,358.3,21275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20936,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,20936,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,20936,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,20937,0)
- ;;=Z65.4^^99^1001^4
- ;;^UTILITY(U,$J,358.3,20937,1,0)
+ ;;^UTILITY(U,$J,358.3,21275,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21275,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,21275,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,21276,0)
+ ;;=W13.9XXD^^84^948^34
+ ;;^UTILITY(U,$J,358.3,21276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20937,1,3,0)
- ;;=3^Victim of Crime,Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,20937,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,20937,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,20938,0)
- ;;=Z65.0^^99^1001^1
- ;;^UTILITY(U,$J,358.3,20938,1,0)
+ ;;^UTILITY(U,$J,358.3,21276,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21276,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,21276,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,21277,0)
+ ;;=W14.XXXA^^84^948^65
+ ;;^UTILITY(U,$J,358.3,21277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20938,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,20938,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,20938,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,20939,0)
- ;;=Z65.2^^99^1001^3
- ;;^UTILITY(U,$J,358.3,20939,1,0)
+ ;;^UTILITY(U,$J,358.3,21277,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21277,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,21277,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,21278,0)
+ ;;=W14.XXXD^^84^948^66
+ ;;^UTILITY(U,$J,358.3,21278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20939,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,20939,1,4,0)
- ;;=4^Z65.2

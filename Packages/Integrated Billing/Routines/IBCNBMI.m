@@ -1,6 +1,6 @@
-IBCNBMI ;ALB/ARH - Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
- ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438,452,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNBMI ;ALB/ARH/AWC - Ins Buffer: move buffer data to insurance files ;09 Mar 2005  11:42 AM
+ ;;2.0;INTEGRATED BILLING;**82,184,246,251,299,345,361,371,413,416,438,452,497,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA,TYPE,RESULT) ;  move buffer insurance company data (file 355.33) to existing Insurance Company (file 36)
  ;
@@ -15,7 +15,8 @@ GRP(IBBUFDA,IBGRPDA,TYPE,RESULT) ;  move buffer insurance group/plan data (file 
  D STUFF("GRP",IBGRPDA,.RESULT)
  Q
  ;
-POLICY(IBBUFDA,IBPOLDA,TYPE,RESULT) ;  move buffer insurance policy data (file 355.33) to existing Patient Policy (file 2.312)
+POLICY(IBBUFDA,IBPOLDA,TYPE,RESULT) ; called from routine PROCESS^IBCNBAR
+ ; move buffer insurance policy data (file 355.33) to existing Patient Policy (file 2.312)
  ;
  N DFN S DFN=+$G(^IBA(355.33,+$G(IBBUFDA),60)) Q:'DFN
  ;
@@ -23,6 +24,10 @@ POLICY(IBBUFDA,IBPOLDA,TYPE,RESULT) ;  move buffer insurance policy data (file 3
  D SET("POL",IBBUFDA,IBPOLDA,TYPE,.RESULT)
  D STUFF("POL",IBPOLDA,.RESULT)
  D POLOTH(IBBUFDA,IBPOLDA,.RESULT)
+ Q
+ ;
+SUB(IBBUFDA,IBPOLDA,IBRIEN,IBSEL,IBTYPE,IBRESULT,DFN,IBFNAM,IBVAL,IBHOLD,IBXHOLD) ;  move patient data(file #2) <or> income person data(408.13) to existing Patient Policy (file 2.312)
+ D SUB^IBCNBCD6(IBBUFDA,IBPOLDA,IBRIEN,IBSEL,IBTYPE,.IBRESULT,DFN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD)
  Q
  ;
 SET(SET,IBBUFDA,IBEXTDA,TYPE,RESULT) ; move buffer data to insurance files
@@ -145,7 +150,7 @@ GRPA ; auto set fields
  ;;1.06^DUZ^                          ; Last edited By
  ;
 POLDR ;
- ;;2.312^60.02;60.03;90.03;60.05;60.06;91.01;60.08:62.08^8;3;7.02;6;16;7.01;3.01;3.05:3.1;3.13;3.14;4.01;4.02;4.05;4.06;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
+ ;;2.312^60.02;60.03;90.03;60.05;60.06;91.01;60.08:62.09^8;3;7.02;6;16;7.01;3.01;3.05:3.1;3.11;3.13;3.14;4.01;4.02;4.05;4.06;.2;3.12;2.1;2.015;2.11;2.12;2.01:2.08;5.01
 POLFLD ; corresponding fields:  Buffer File (355.33) and Insurance Patient Policy file (2.312)
  ;;60.02^8^Effective Date^            ; Effective Date
  ;;60.03^3^Expiration Date^           ; Expiration Date
@@ -180,6 +185,7 @@ POLFLD ; corresponding fields:  Buffer File (355.33) and Insurance Patient Polic
  ;;62.04^3.08^Subscr City^            ; Subscriber City
  ;;62.05^3.09^Subscr State^           ; Subscriber State
  ;;62.06^3.1^Subscr Zip^              ; Subscriber Zip Code
+ ;;62.09^3.11^Subscr Phone^           ; Subscriber Phone Number  IB*2.0*528
  ;;62.07^3.13^Subscr Country^         ; Subscriber Country Code
  ;;62.08^3.14^Subscr Cntry Div^       ; Subscriber Country Subdivision Code
  ;
@@ -188,7 +194,6 @@ POLA ; auto set fields
  ;;1.04^DUZ^                          ; Verified By        (default is person that accepts entry)
  ;;1.05^NOW^                          ; Date Last Edited
  ;;1.06^DUZ^                          ; Last Edited By
- ;
  ;
 POLOTH(IBBUFDA,IBPOLDA,RESULT) ; other special cases that can not be transferred using the generic code above, usually because of dependencies
  N IBERR,IB0 S IB0=$G(^IBA(355.33,+IBBUFDA,0))

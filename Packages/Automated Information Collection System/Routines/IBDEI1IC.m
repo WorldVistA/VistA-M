@@ -1,134 +1,128 @@
-IBDEI1IC ; ; 19-NOV-2015
+IBDEI1IC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25193,1,4,0)
- ;;=4^J98.11
- ;;^UTILITY(U,$J,358.3,25193,2)
- ;;=^5008360
- ;;^UTILITY(U,$J,358.3,25194,0)
- ;;=J96.00^^124^1241^26
- ;;^UTILITY(U,$J,358.3,25194,1,0)
+ ;;^UTILITY(U,$J,358.3,25575,0)
+ ;;=F17.211^^95^1172^3
+ ;;^UTILITY(U,$J,358.3,25575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25194,1,3,0)
- ;;=3^Respiratory Failure,Acute
- ;;^UTILITY(U,$J,358.3,25194,1,4,0)
- ;;=4^J96.00
- ;;^UTILITY(U,$J,358.3,25194,2)
- ;;=^5008347
- ;;^UTILITY(U,$J,358.3,25195,0)
- ;;=R06.02^^124^1241^29
- ;;^UTILITY(U,$J,358.3,25195,1,0)
+ ;;^UTILITY(U,$J,358.3,25575,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,25575,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,25575,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,25576,0)
+ ;;=F17.220^^95^1172^2
+ ;;^UTILITY(U,$J,358.3,25576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25195,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,25195,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,25195,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,25196,0)
- ;;=R06.82^^124^1241^30
- ;;^UTILITY(U,$J,358.3,25196,1,0)
+ ;;^UTILITY(U,$J,358.3,25576,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25576,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,25576,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,25577,0)
+ ;;=F17.221^^95^1172^1
+ ;;^UTILITY(U,$J,358.3,25577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25196,1,3,0)
- ;;=3^Tachypnea NEC
- ;;^UTILITY(U,$J,358.3,25196,1,4,0)
- ;;=4^R06.82
- ;;^UTILITY(U,$J,358.3,25196,2)
- ;;=^5019191
- ;;^UTILITY(U,$J,358.3,25197,0)
- ;;=R06.00^^124^1241^16
- ;;^UTILITY(U,$J,358.3,25197,1,0)
+ ;;^UTILITY(U,$J,358.3,25577,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,25577,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,25577,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,25578,0)
+ ;;=F17.290^^95^1172^5
+ ;;^UTILITY(U,$J,358.3,25578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25197,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,25197,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,25197,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,25198,0)
- ;;=R06.09^^124^1241^15
- ;;^UTILITY(U,$J,358.3,25198,1,0)
+ ;;^UTILITY(U,$J,358.3,25578,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,25578,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,25578,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,25579,0)
+ ;;=F17.291^^95^1172^6
+ ;;^UTILITY(U,$J,358.3,25579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25198,1,3,0)
- ;;=3^Dyspnea NEC
- ;;^UTILITY(U,$J,358.3,25198,1,4,0)
- ;;=4^R06.09
- ;;^UTILITY(U,$J,358.3,25198,2)
- ;;=^5019182
- ;;^UTILITY(U,$J,358.3,25199,0)
- ;;=R04.89^^124^1241^27
- ;;^UTILITY(U,$J,358.3,25199,1,0)
+ ;;^UTILITY(U,$J,358.3,25579,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,25579,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,25579,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,25580,0)
+ ;;=F17.208^^95^1172^7
+ ;;^UTILITY(U,$J,358.3,25580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25199,1,3,0)
- ;;=3^Respiratory Passage Hemorrhage
- ;;^UTILITY(U,$J,358.3,25199,1,4,0)
- ;;=4^R04.89
- ;;^UTILITY(U,$J,358.3,25199,2)
- ;;=^5019177
- ;;^UTILITY(U,$J,358.3,25200,0)
- ;;=J96.02^^124^1241^1
- ;;^UTILITY(U,$J,358.3,25200,1,0)
+ ;;^UTILITY(U,$J,358.3,25580,1,3,0)
+ ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25580,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,25580,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,25581,0)
+ ;;=F17.209^^95^1172^8
+ ;;^UTILITY(U,$J,358.3,25581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25200,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,25200,1,4,0)
- ;;=4^J96.02
- ;;^UTILITY(U,$J,358.3,25200,2)
- ;;=^5008349
- ;;^UTILITY(U,$J,358.3,25201,0)
- ;;=J96.01^^124^1241^2
- ;;^UTILITY(U,$J,358.3,25201,1,0)
+ ;;^UTILITY(U,$J,358.3,25581,1,3,0)
+ ;;=3^Nicotine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25581,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,25581,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,25582,0)
+ ;;=F14.10^^95^1173^1
+ ;;^UTILITY(U,$J,358.3,25582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25201,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,25201,1,4,0)
- ;;=4^J96.01
- ;;^UTILITY(U,$J,358.3,25201,2)
- ;;=^5008348
- ;;^UTILITY(U,$J,358.3,25202,0)
- ;;=J96.20^^124^1241^5
- ;;^UTILITY(U,$J,358.3,25202,1,0)
+ ;;^UTILITY(U,$J,358.3,25582,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,25582,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,25582,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,25583,0)
+ ;;=F14.14^^95^1173^5
+ ;;^UTILITY(U,$J,358.3,25583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25202,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,25202,1,4,0)
- ;;=4^J96.20
- ;;^UTILITY(U,$J,358.3,25202,2)
- ;;=^5008353
- ;;^UTILITY(U,$J,358.3,25203,0)
- ;;=J96.21^^124^1241^3
- ;;^UTILITY(U,$J,358.3,25203,1,0)
+ ;;^UTILITY(U,$J,358.3,25583,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25583,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,25583,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,25584,0)
+ ;;=F14.182^^95^1173^6
+ ;;^UTILITY(U,$J,358.3,25584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25203,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,25203,1,4,0)
- ;;=4^J96.21
- ;;^UTILITY(U,$J,358.3,25203,2)
- ;;=^5008354
- ;;^UTILITY(U,$J,358.3,25204,0)
- ;;=J96.22^^124^1241^4
- ;;^UTILITY(U,$J,358.3,25204,1,0)
+ ;;^UTILITY(U,$J,358.3,25584,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25584,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,25584,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,25585,0)
+ ;;=F14.20^^95^1173^3
+ ;;^UTILITY(U,$J,358.3,25585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25204,1,3,0)
- ;;=3^Acute and Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,25204,1,4,0)
- ;;=4^J96.22
- ;;^UTILITY(U,$J,358.3,25204,2)
- ;;=^5008355
- ;;^UTILITY(U,$J,358.3,25205,0)
- ;;=J96.10^^124^1241^14
- ;;^UTILITY(U,$J,358.3,25205,1,0)
+ ;;^UTILITY(U,$J,358.3,25585,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,25585,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,25585,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,25586,0)
+ ;;=F14.21^^95^1173^2
+ ;;^UTILITY(U,$J,358.3,25586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25205,1,3,0)
- ;;=3^Chronic Respiratory Failure,Unspec
- ;;^UTILITY(U,$J,358.3,25205,1,4,0)
- ;;=4^J96.10
- ;;^UTILITY(U,$J,358.3,25205,2)
- ;;=^5008350
- ;;^UTILITY(U,$J,358.3,25206,0)
- ;;=J96.11^^124^1241^13
- ;;^UTILITY(U,$J,358.3,25206,1,0)
+ ;;^UTILITY(U,$J,358.3,25586,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,25586,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,25586,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,25587,0)
+ ;;=F14.23^^95^1173^4
+ ;;^UTILITY(U,$J,358.3,25587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25206,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypoxia

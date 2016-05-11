@@ -1,128 +1,128 @@
-IBDEI2HR ; ; 19-NOV-2015
+IBDEI2HR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41813,1,3,0)
- ;;=3^29440
- ;;^UTILITY(U,$J,358.3,41814,0)
- ;;=29445^^191^2125^3^^^^1
- ;;^UTILITY(U,$J,358.3,41814,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41814,1,2,0)
- ;;=2^Application Of Rigid Total Contact Leg Cast
- ;;^UTILITY(U,$J,358.3,41814,1,3,0)
- ;;=3^29445
- ;;^UTILITY(U,$J,358.3,41815,0)
- ;;=29515^^191^2125^6^^^^1
- ;;^UTILITY(U,$J,358.3,41815,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41815,1,2,0)
- ;;=2^Application Of Short Leg Splint (Calf To Foot)
- ;;^UTILITY(U,$J,358.3,41815,1,3,0)
- ;;=3^29515
- ;;^UTILITY(U,$J,358.3,41816,0)
- ;;=29540^^191^2125^9^^^^1
- ;;^UTILITY(U,$J,358.3,41816,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41816,1,2,0)
- ;;=2^Strapping;Ankle/Foot
- ;;^UTILITY(U,$J,358.3,41816,1,3,0)
- ;;=3^29540
- ;;^UTILITY(U,$J,358.3,41817,0)
- ;;=29530^^191^2125^10^^^^1
- ;;^UTILITY(U,$J,358.3,41817,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41817,1,2,0)
- ;;=2^Strapping;Knee
- ;;^UTILITY(U,$J,358.3,41817,1,3,0)
- ;;=3^29530
- ;;^UTILITY(U,$J,358.3,41818,0)
- ;;=29550^^191^2125^11^^^^1
- ;;^UTILITY(U,$J,358.3,41818,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41818,1,2,0)
- ;;=2^Strapping;Toes
- ;;^UTILITY(U,$J,358.3,41818,1,3,0)
- ;;=3^29550
- ;;^UTILITY(U,$J,358.3,41819,0)
- ;;=29580^^191^2125^12^^^^1
- ;;^UTILITY(U,$J,358.3,41819,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41819,1,2,0)
- ;;=2^Strapping;Unna Boot
- ;;^UTILITY(U,$J,358.3,41819,1,3,0)
- ;;=3^29580
- ;;^UTILITY(U,$J,358.3,41820,0)
- ;;=29581^^191^2125^7^^^^1
- ;;^UTILITY(U,$J,358.3,41820,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41820,1,2,0)
- ;;=2^Multilay Venous Wound Comp System
- ;;^UTILITY(U,$J,358.3,41820,1,3,0)
- ;;=3^29581
- ;;^UTILITY(U,$J,358.3,41821,0)
- ;;=29582^^191^2125^8^^^^1
- ;;^UTILITY(U,$J,358.3,41821,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41821,1,2,0)
- ;;=2^Multilay Wnd Comp Syst Thigh,Incl Ft
- ;;^UTILITY(U,$J,358.3,41821,1,3,0)
- ;;=3^29582
- ;;^UTILITY(U,$J,358.3,41822,0)
- ;;=29700^^191^2126^1^^^^1
- ;;^UTILITY(U,$J,358.3,41822,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41822,1,2,0)
- ;;=2^Removal or bivalving; gauntlet, boot or body cast
- ;;^UTILITY(U,$J,358.3,41822,1,3,0)
- ;;=3^29700
- ;;^UTILITY(U,$J,358.3,41823,0)
- ;;=29730^^191^2126^3^^^^1
- ;;^UTILITY(U,$J,358.3,41823,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41823,1,2,0)
- ;;=2^Windowing of cast
- ;;^UTILITY(U,$J,358.3,41823,1,3,0)
- ;;=3^29730
- ;;^UTILITY(U,$J,358.3,41824,0)
- ;;=29740^^191^2126^2^^^^1
- ;;^UTILITY(U,$J,358.3,41824,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41824,1,2,0)
- ;;=2^Wedging of Cast
- ;;^UTILITY(U,$J,358.3,41824,1,3,0)
- ;;=3^29740
- ;;^UTILITY(U,$J,358.3,41825,0)
- ;;=L9900^^191^2127^3^^^^1
- ;;^UTILITY(U,$J,358.3,41825,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41825,1,2,0)
- ;;=2^Orthotic & prosthetic supply, accessory, &/or service component of another HCPCS L code
- ;;^UTILITY(U,$J,358.3,41825,1,3,0)
- ;;=3^L9900
- ;;^UTILITY(U,$J,358.3,41826,0)
- ;;=97762^^191^2127^1^^^^1
- ;;^UTILITY(U,$J,358.3,41826,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41826,1,2,0)
- ;;=2^Dispensing Shoes and Orthosis
- ;;^UTILITY(U,$J,358.3,41826,1,3,0)
- ;;=3^97762
- ;;^UTILITY(U,$J,358.3,41827,0)
- ;;=L4205^^191^2127^2^^^^1
- ;;^UTILITY(U,$J,358.3,41827,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41827,1,2,0)
- ;;=2^Ortho Device Repair,Ea 15min
- ;;^UTILITY(U,$J,358.3,41827,1,3,0)
- ;;=3^L4205
- ;;^UTILITY(U,$J,358.3,41828,0)
- ;;=A9150^^191^2128^20^^^^1
- ;;^UTILITY(U,$J,358.3,41828,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41828,1,2,0)
- ;;=2^Nonprescription drug
- ;;^UTILITY(U,$J,358.3,41828,1,3,0)
- ;;=3^A9150
- ;;^UTILITY(U,$J,358.3,41829,0)
- ;;=L3332^^191^2128^18^^^^1
+ ;;^UTILITY(U,$J,358.3,42249,0)
+ ;;=S83.402A^^159^2017^4
+ ;;^UTILITY(U,$J,358.3,42249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42249,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,42249,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,42249,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,42250,0)
+ ;;=S93.402A^^159^2017^2
+ ;;^UTILITY(U,$J,358.3,42250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42250,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,42250,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,42250,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,42251,0)
+ ;;=S93.401A^^159^2017^13
+ ;;^UTILITY(U,$J,358.3,42251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42251,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,42251,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,42251,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,42252,0)
+ ;;=S56.511A^^159^2017^39
+ ;;^UTILITY(U,$J,358.3,42252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42252,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,42252,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,42252,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,42253,0)
+ ;;=S56.512A^^159^2017^19
+ ;;^UTILITY(U,$J,358.3,42253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42253,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,42253,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,42253,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,42254,0)
+ ;;=S13.8XXA^^159^2017^10
+ ;;^UTILITY(U,$J,358.3,42254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42254,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42254,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,42254,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,42255,0)
+ ;;=S16.1XXA^^159^2017^37
+ ;;^UTILITY(U,$J,358.3,42255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42255,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42255,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,42255,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,42256,0)
+ ;;=S33.5XXA^^159^2017^8
+ ;;^UTILITY(U,$J,358.3,42256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42256,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42256,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,42256,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,42257,0)
+ ;;=F10.20^^159^2018^4
+ ;;^UTILITY(U,$J,358.3,42257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42257,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,42257,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,42257,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,42258,0)
+ ;;=F11.29^^159^2018^46
+ ;;^UTILITY(U,$J,358.3,42258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42258,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,42258,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,42258,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,42259,0)
+ ;;=F11.288^^159^2018^45
+ ;;^UTILITY(U,$J,358.3,42259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42259,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,42259,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,42259,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,42260,0)
+ ;;=F11.282^^159^2018^44
+ ;;^UTILITY(U,$J,358.3,42260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42260,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,42260,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,42260,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,42261,0)
+ ;;=F11.281^^159^2018^43
+ ;;^UTILITY(U,$J,358.3,42261,1,0)
+ ;;=^358.31IA^4^2

@@ -1,138 +1,134 @@
-IBDEI11L ; ; 19-NOV-2015
+IBDEI11L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17353,1,4,0)
- ;;=4^Z71.52
- ;;^UTILITY(U,$J,358.3,17353,2)
- ;;=^5063249
- ;;^UTILITY(U,$J,358.3,17354,0)
- ;;=Z71.7^^88^861^33
- ;;^UTILITY(U,$J,358.3,17354,1,0)
+ ;;^UTILITY(U,$J,358.3,17695,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,17695,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,17695,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,17696,0)
+ ;;=B27.00^^76^858^81
+ ;;^UTILITY(U,$J,358.3,17696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17354,1,3,0)
- ;;=3^Counseling,HIV
- ;;^UTILITY(U,$J,358.3,17354,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,17354,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,17355,0)
- ;;=Z71.6^^88^861^35
- ;;^UTILITY(U,$J,358.3,17355,1,0)
+ ;;^UTILITY(U,$J,358.3,17696,1,3,0)
+ ;;=3^Epstein-Barr virus infection
+ ;;^UTILITY(U,$J,358.3,17696,1,4,0)
+ ;;=4^B27.00
+ ;;^UTILITY(U,$J,358.3,17696,2)
+ ;;=^5000566
+ ;;^UTILITY(U,$J,358.3,17697,0)
+ ;;=R50.9^^76^858^86
+ ;;^UTILITY(U,$J,358.3,17697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17355,1,3,0)
- ;;=3^Counseling,Tobacco Abuse
- ;;^UTILITY(U,$J,358.3,17355,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,17355,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,17356,0)
- ;;=Z71.41^^88^861^28
- ;;^UTILITY(U,$J,358.3,17356,1,0)
+ ;;^UTILITY(U,$J,358.3,17697,1,3,0)
+ ;;=3^Fever, unspecified
+ ;;^UTILITY(U,$J,358.3,17697,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,17697,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,17698,0)
+ ;;=M79.7^^76^858^87
+ ;;^UTILITY(U,$J,358.3,17698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17356,1,3,0)
- ;;=3^Counseling,Alcohol Abuse
- ;;^UTILITY(U,$J,358.3,17356,1,4,0)
- ;;=4^Z71.41
- ;;^UTILITY(U,$J,358.3,17356,2)
- ;;=^5063246
- ;;^UTILITY(U,$J,358.3,17357,0)
- ;;=Z71.51^^88^861^30
- ;;^UTILITY(U,$J,358.3,17357,1,0)
+ ;;^UTILITY(U,$J,358.3,17698,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,17698,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,17698,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,17699,0)
+ ;;=L97.519^^76^858^93
+ ;;^UTILITY(U,$J,358.3,17699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17357,1,3,0)
- ;;=3^Counseling,Drug Abuser
- ;;^UTILITY(U,$J,358.3,17357,1,4,0)
- ;;=4^Z71.51
- ;;^UTILITY(U,$J,358.3,17357,2)
- ;;=^5063248
- ;;^UTILITY(U,$J,358.3,17358,0)
- ;;=Z71.3^^88^861^29
- ;;^UTILITY(U,$J,358.3,17358,1,0)
+ ;;^UTILITY(U,$J,358.3,17699,1,3,0)
+ ;;=3^Foot ulcer,non-pressure,chr,oth prt right foot,unsp severity
+ ;;^UTILITY(U,$J,358.3,17699,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,17699,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,17700,0)
+ ;;=L97.529^^76^858^92
+ ;;^UTILITY(U,$J,358.3,17700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17358,1,3,0)
- ;;=3^Counseling,Dietary
- ;;^UTILITY(U,$J,358.3,17358,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,17358,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,17359,0)
- ;;=Z71.81^^88^861^34
- ;;^UTILITY(U,$J,358.3,17359,1,0)
+ ;;^UTILITY(U,$J,358.3,17700,1,3,0)
+ ;;=3^Foot ulcer,non-pressure,chr,oth prt left foot,unsp severity
+ ;;^UTILITY(U,$J,358.3,17700,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,17700,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,17701,0)
+ ;;=L97.419^^76^858^91
+ ;;^UTILITY(U,$J,358.3,17701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17359,1,3,0)
- ;;=3^Counseling,Spiritual/Religious
- ;;^UTILITY(U,$J,358.3,17359,1,4,0)
- ;;=4^Z71.81
- ;;^UTILITY(U,$J,358.3,17359,2)
- ;;=^5063252
- ;;^UTILITY(U,$J,358.3,17360,0)
- ;;=Z71.9^^88^861^36
- ;;^UTILITY(U,$J,358.3,17360,1,0)
+ ;;^UTILITY(U,$J,358.3,17701,1,3,0)
+ ;;=3^Foot ulcer,non-pressure,chr right heel/midfoot,unsp severity
+ ;;^UTILITY(U,$J,358.3,17701,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,17701,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,17702,0)
+ ;;=L97.429^^76^858^90
+ ;;^UTILITY(U,$J,358.3,17702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17360,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,17360,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,17360,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,17361,0)
- ;;=F05.^^88^861^37
- ;;^UTILITY(U,$J,358.3,17361,1,0)
+ ;;^UTILITY(U,$J,358.3,17702,1,3,0)
+ ;;=3^Foot ulcer,non-pressure,chr left heel/midfoot,unsp severity
+ ;;^UTILITY(U,$J,358.3,17702,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,17702,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,17703,0)
+ ;;=E11.621^^76^858^89
+ ;;^UTILITY(U,$J,358.3,17703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17361,1,3,0)
- ;;=3^Delirium d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,17361,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,17361,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,17362,0)
- ;;=Z97.2^^88^861^38
- ;;^UTILITY(U,$J,358.3,17362,1,0)
+ ;;^UTILITY(U,$J,358.3,17703,1,3,0)
+ ;;=3^Foot ulcer, diabetic, type II
+ ;;^UTILITY(U,$J,358.3,17703,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,17703,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,17704,0)
+ ;;=E10.621^^76^858^88
+ ;;^UTILITY(U,$J,358.3,17704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17362,1,3,0)
- ;;=3^Dental Prosthetic Device
- ;;^UTILITY(U,$J,358.3,17362,1,4,0)
- ;;=4^Z97.2
- ;;^UTILITY(U,$J,358.3,17362,2)
- ;;=^5063728
- ;;^UTILITY(U,$J,358.3,17363,0)
- ;;=Z99.89^^88^861^39
- ;;^UTILITY(U,$J,358.3,17363,1,0)
+ ;;^UTILITY(U,$J,358.3,17704,1,3,0)
+ ;;=3^Foot ulcer, diabetic, type I
+ ;;^UTILITY(U,$J,358.3,17704,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,17704,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,17705,0)
+ ;;=K29.70^^76^858^94
+ ;;^UTILITY(U,$J,358.3,17705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17363,1,3,0)
- ;;=3^Dependence on Enabling Machines/Devices
- ;;^UTILITY(U,$J,358.3,17363,1,4,0)
- ;;=4^Z99.89
- ;;^UTILITY(U,$J,358.3,17363,2)
- ;;=^5063761
- ;;^UTILITY(U,$J,358.3,17364,0)
- ;;=Z66.^^88^861^40
- ;;^UTILITY(U,$J,358.3,17364,1,0)
+ ;;^UTILITY(U,$J,358.3,17705,1,3,0)
+ ;;=3^Gastritis w/o bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,17705,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,17705,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,17706,0)
+ ;;=K52.9^^76^858^95
+ ;;^UTILITY(U,$J,358.3,17706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17364,1,3,0)
- ;;=3^Do Not Resuscitate
- ;;^UTILITY(U,$J,358.3,17364,1,4,0)
- ;;=4^Z66.
- ;;^UTILITY(U,$J,358.3,17364,2)
- ;;=^5063187
- ;;^UTILITY(U,$J,358.3,17365,0)
- ;;=Z79.2^^88^861^41
- ;;^UTILITY(U,$J,358.3,17365,1,0)
+ ;;^UTILITY(U,$J,358.3,17706,1,3,0)
+ ;;=3^Gastroenteritis and colitis, unspecified
+ ;;^UTILITY(U,$J,358.3,17706,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,17706,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,17707,0)
+ ;;=A60.00^^76^858^97
+ ;;^UTILITY(U,$J,358.3,17707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17365,1,3,0)
- ;;=3^Drug Therapy,Antibiotics,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17365,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,17365,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,17366,0)
- ;;=Z79.01^^88^861^42
- ;;^UTILITY(U,$J,358.3,17366,1,0)
+ ;;^UTILITY(U,$J,358.3,17707,1,3,0)
+ ;;=3^General Herpes, unsp
+ ;;^UTILITY(U,$J,358.3,17707,1,4,0)
+ ;;=4^A60.00
+ ;;^UTILITY(U,$J,358.3,17707,2)
+ ;;=^5000352
+ ;;^UTILITY(U,$J,358.3,17708,0)
+ ;;=A07.1^^76^858^98
+ ;;^UTILITY(U,$J,358.3,17708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17366,1,3,0)
- ;;=3^Drug Therapy,Anticoagulants,Long Term Current Use
- ;;^UTILITY(U,$J,358.3,17366,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,17366,2)
- ;;=^5063330

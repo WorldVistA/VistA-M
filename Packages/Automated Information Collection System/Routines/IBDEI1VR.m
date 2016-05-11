@@ -1,124 +1,136 @@
-IBDEI1VR ; ; 19-NOV-2015
+IBDEI1VR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31491,1,0)
+ ;;^UTILITY(U,$J,358.3,31937,1,3,0)
+ ;;=3^Epidermal cyst
+ ;;^UTILITY(U,$J,358.3,31937,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,31937,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,31938,0)
+ ;;=L20.84^^126^1608^1
+ ;;^UTILITY(U,$J,358.3,31938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31491,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,31491,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,31491,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,31492,0)
- ;;=F31.74^^138^1427^8
- ;;^UTILITY(U,$J,358.3,31492,1,0)
+ ;;^UTILITY(U,$J,358.3,31938,1,3,0)
+ ;;=3^Eczema, intrinsic (allergic)
+ ;;^UTILITY(U,$J,358.3,31938,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,31938,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,31939,0)
+ ;;=M25.471^^126^1608^7
+ ;;^UTILITY(U,$J,358.3,31939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31492,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,31492,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,31492,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,31493,0)
- ;;=F31.30^^138^1427^9
- ;;^UTILITY(U,$J,358.3,31493,1,0)
+ ;;^UTILITY(U,$J,358.3,31939,1,3,0)
+ ;;=3^Effusion, right ankle
+ ;;^UTILITY(U,$J,358.3,31939,1,4,0)
+ ;;=4^M25.471
+ ;;^UTILITY(U,$J,358.3,31939,2)
+ ;;=^5011594
+ ;;^UTILITY(U,$J,358.3,31940,0)
+ ;;=M25.472^^126^1608^5
+ ;;^UTILITY(U,$J,358.3,31940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31493,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,31493,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,31493,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,31494,0)
- ;;=F31.31^^138^1427^10
- ;;^UTILITY(U,$J,358.3,31494,1,0)
+ ;;^UTILITY(U,$J,358.3,31940,1,3,0)
+ ;;=3^Effusion, left ankle
+ ;;^UTILITY(U,$J,358.3,31940,1,4,0)
+ ;;=4^M25.472
+ ;;^UTILITY(U,$J,358.3,31940,2)
+ ;;=^5011595
+ ;;^UTILITY(U,$J,358.3,31941,0)
+ ;;=M25.474^^126^1608^8
+ ;;^UTILITY(U,$J,358.3,31941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31494,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,31494,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,31494,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,31495,0)
- ;;=F31.32^^138^1427^11
- ;;^UTILITY(U,$J,358.3,31495,1,0)
+ ;;^UTILITY(U,$J,358.3,31941,1,3,0)
+ ;;=3^Effusion, right foot
+ ;;^UTILITY(U,$J,358.3,31941,1,4,0)
+ ;;=4^M25.474
+ ;;^UTILITY(U,$J,358.3,31941,2)
+ ;;=^5011597
+ ;;^UTILITY(U,$J,358.3,31942,0)
+ ;;=M25.475^^126^1608^6
+ ;;^UTILITY(U,$J,358.3,31942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31495,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,31495,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,31495,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,31496,0)
- ;;=F31.4^^138^1427^12
- ;;^UTILITY(U,$J,358.3,31496,1,0)
+ ;;^UTILITY(U,$J,358.3,31942,1,3,0)
+ ;;=3^Effusion, left foot
+ ;;^UTILITY(U,$J,358.3,31942,1,4,0)
+ ;;=4^M25.475
+ ;;^UTILITY(U,$J,358.3,31942,2)
+ ;;=^5011598
+ ;;^UTILITY(U,$J,358.3,31943,0)
+ ;;=I82.401^^126^1608^10
+ ;;^UTILITY(U,$J,358.3,31943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31496,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
- ;;^UTILITY(U,$J,358.3,31496,1,4,0)
- ;;=4^F31.4
- ;;^UTILITY(U,$J,358.3,31496,2)
- ;;=^5003503
- ;;^UTILITY(U,$J,358.3,31497,0)
- ;;=F31.5^^138^1427^13
- ;;^UTILITY(U,$J,358.3,31497,1,0)
+ ;;^UTILITY(U,$J,358.3,31943,1,3,0)
+ ;;=3^Embolism/Thrombos Rt Lower Extrem Deep Veins,Acute
+ ;;^UTILITY(U,$J,358.3,31943,1,4,0)
+ ;;=4^I82.401
+ ;;^UTILITY(U,$J,358.3,31943,2)
+ ;;=^5007854
+ ;;^UTILITY(U,$J,358.3,31944,0)
+ ;;=I82.402^^126^1608^9
+ ;;^UTILITY(U,$J,358.3,31944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31497,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,31497,1,4,0)
- ;;=4^F31.5
- ;;^UTILITY(U,$J,358.3,31497,2)
- ;;=^5003504
- ;;^UTILITY(U,$J,358.3,31498,0)
- ;;=F31.75^^138^1427^14
- ;;^UTILITY(U,$J,358.3,31498,1,0)
+ ;;^UTILITY(U,$J,358.3,31944,1,3,0)
+ ;;=3^Embolism/Thrombos Lft Lower Extrem Deep Veins,Acute
+ ;;^UTILITY(U,$J,358.3,31944,1,4,0)
+ ;;=4^I82.402
+ ;;^UTILITY(U,$J,358.3,31944,2)
+ ;;=^5007855
+ ;;^UTILITY(U,$J,358.3,31945,0)
+ ;;=R60.9^^126^1608^4
+ ;;^UTILITY(U,$J,358.3,31945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31498,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Partial Remission
- ;;^UTILITY(U,$J,358.3,31498,1,4,0)
- ;;=4^F31.75
- ;;^UTILITY(U,$J,358.3,31498,2)
- ;;=^5003515
- ;;^UTILITY(U,$J,358.3,31499,0)
- ;;=F31.76^^138^1427^15
- ;;^UTILITY(U,$J,358.3,31499,1,0)
+ ;;^UTILITY(U,$J,358.3,31945,1,3,0)
+ ;;=3^Edema, unspec
+ ;;^UTILITY(U,$J,358.3,31945,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,31945,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,31946,0)
+ ;;=R60.1^^126^1608^2
+ ;;^UTILITY(U,$J,358.3,31946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31499,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,In Full Remission
- ;;^UTILITY(U,$J,358.3,31499,1,4,0)
- ;;=4^F31.76
- ;;^UTILITY(U,$J,358.3,31499,2)
- ;;=^5003516
- ;;^UTILITY(U,$J,358.3,31500,0)
- ;;=F31.9^^138^1427^16
- ;;^UTILITY(U,$J,358.3,31500,1,0)
+ ;;^UTILITY(U,$J,358.3,31946,1,3,0)
+ ;;=3^Edema, generalized
+ ;;^UTILITY(U,$J,358.3,31946,1,4,0)
+ ;;=4^R60.1
+ ;;^UTILITY(U,$J,358.3,31946,2)
+ ;;=^5019533
+ ;;^UTILITY(U,$J,358.3,31947,0)
+ ;;=R60.0^^126^1608^3
+ ;;^UTILITY(U,$J,358.3,31947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31500,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Unspec
- ;;^UTILITY(U,$J,358.3,31500,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,31500,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,31501,0)
- ;;=F31.81^^138^1427^17
- ;;^UTILITY(U,$J,358.3,31501,1,0)
+ ;;^UTILITY(U,$J,358.3,31947,1,3,0)
+ ;;=3^Edema, localized
+ ;;^UTILITY(U,$J,358.3,31947,1,4,0)
+ ;;=4^R60.0
+ ;;^UTILITY(U,$J,358.3,31947,2)
+ ;;=^5019532
+ ;;^UTILITY(U,$J,358.3,31948,0)
+ ;;=M79.7^^126^1609^160
+ ;;^UTILITY(U,$J,358.3,31948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31501,1,3,0)
- ;;=3^Bipolar II Disorder
- ;;^UTILITY(U,$J,358.3,31501,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,31501,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,31502,0)
- ;;=F34.0^^138^1427^18
- ;;^UTILITY(U,$J,358.3,31502,1,0)
+ ;;^UTILITY(U,$J,358.3,31948,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,31948,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,31948,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,31949,0)
+ ;;=M80.061A^^126^1609^385
+ ;;^UTILITY(U,$J,358.3,31949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31502,1,3,0)
- ;;=3^Cyclothymic Disorder
- ;;^UTILITY(U,$J,358.3,31502,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,31502,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,31503,0)
- ;;=F10.232^^138^1428^2
+ ;;^UTILITY(U,$J,358.3,31949,1,3,0)
+ ;;=3^Path fx age-rel osteo, rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,31949,1,4,0)
+ ;;=4^M80.061A
+ ;;^UTILITY(U,$J,358.3,31949,2)
+ ;;=^5013459
+ ;;^UTILITY(U,$J,358.3,31950,0)
+ ;;=M80.062A^^126^1609^383
+ ;;^UTILITY(U,$J,358.3,31950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31950,1,3,0)
+ ;;=3^Path fx age-rel osteo, lft lwr leg, init

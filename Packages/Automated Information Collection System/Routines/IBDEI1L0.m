@@ -1,136 +1,120 @@
-IBDEI1L0 ; ; 19-NOV-2015
+IBDEI1L0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26455,1,3,0)
- ;;=3^glc,Absolute,Left Eye
- ;;^UTILITY(U,$J,358.3,26455,1,4,0)
- ;;=4^H44.512
- ;;^UTILITY(U,$J,358.3,26455,2)
- ;;=^5006022
- ;;^UTILITY(U,$J,358.3,26456,0)
- ;;=H44.513^^130^1290^22
- ;;^UTILITY(U,$J,358.3,26456,1,0)
+ ;;^UTILITY(U,$J,358.3,26825,1,3,0)
+ ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26825,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,26825,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,26826,0)
+ ;;=F10.29^^100^1291^37
+ ;;^UTILITY(U,$J,358.3,26826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26456,1,3,0)
- ;;=3^glc,Absolute,Bilateral
- ;;^UTILITY(U,$J,358.3,26456,1,4,0)
- ;;=4^H44.513
- ;;^UTILITY(U,$J,358.3,26456,2)
- ;;=^5006023
- ;;^UTILITY(U,$J,358.3,26457,0)
- ;;=H05.20^^130^1290^11
- ;;^UTILITY(U,$J,358.3,26457,1,0)
+ ;;^UTILITY(U,$J,358.3,26826,1,3,0)
+ ;;=3^Alcohol-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26826,1,4,0)
+ ;;=4^F10.29
+ ;;^UTILITY(U,$J,358.3,26826,2)
+ ;;=^5003100
+ ;;^UTILITY(U,$J,358.3,26827,0)
+ ;;=F10.180^^100^1291^1
+ ;;^UTILITY(U,$J,358.3,26827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26457,1,3,0)
- ;;=3^Exophthalmos,Unspec
- ;;^UTILITY(U,$J,358.3,26457,1,4,0)
- ;;=4^H05.20
- ;;^UTILITY(U,$J,358.3,26457,2)
- ;;=^5004585
- ;;^UTILITY(U,$J,358.3,26458,0)
- ;;=H05.401^^130^1290^10
- ;;^UTILITY(U,$J,358.3,26458,1,0)
+ ;;^UTILITY(U,$J,358.3,26827,1,3,0)
+ ;;=3^Alcohol Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26827,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,26827,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,26828,0)
+ ;;=F10.280^^100^1291^2
+ ;;^UTILITY(U,$J,358.3,26828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26458,1,3,0)
- ;;=3^Enophthalmos,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26458,1,4,0)
- ;;=4^H05.401
- ;;^UTILITY(U,$J,358.3,26458,2)
- ;;=^5004631
- ;;^UTILITY(U,$J,358.3,26459,0)
- ;;=H05.402^^130^1290^9
- ;;^UTILITY(U,$J,358.3,26459,1,0)
+ ;;^UTILITY(U,$J,358.3,26828,1,3,0)
+ ;;=3^Alcohol Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26828,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,26828,2)
+ ;;=^5003096
+ ;;^UTILITY(U,$J,358.3,26829,0)
+ ;;=F10.980^^100^1291^3
+ ;;^UTILITY(U,$J,358.3,26829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26459,1,3,0)
- ;;=3^Enophthalmos,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26459,1,4,0)
- ;;=4^H05.402
- ;;^UTILITY(U,$J,358.3,26459,2)
- ;;=^5004632
- ;;^UTILITY(U,$J,358.3,26460,0)
- ;;=H05.403^^130^1290^8
- ;;^UTILITY(U,$J,358.3,26460,1,0)
+ ;;^UTILITY(U,$J,358.3,26829,1,3,0)
+ ;;=3^Alcohol Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26829,1,4,0)
+ ;;=4^F10.980
+ ;;^UTILITY(U,$J,358.3,26829,2)
+ ;;=^5003110
+ ;;^UTILITY(U,$J,358.3,26830,0)
+ ;;=F10.94^^100^1291^4
+ ;;^UTILITY(U,$J,358.3,26830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26460,1,3,0)
- ;;=3^Enophthalmos,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,26460,1,4,0)
- ;;=4^H05.403
- ;;^UTILITY(U,$J,358.3,26460,2)
- ;;=^5004633
- ;;^UTILITY(U,$J,358.3,26461,0)
- ;;=H57.01^^130^1290^4
- ;;^UTILITY(U,$J,358.3,26461,1,0)
+ ;;^UTILITY(U,$J,358.3,26830,1,3,0)
+ ;;=3^Alcohol Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26830,1,4,0)
+ ;;=4^F10.94
+ ;;^UTILITY(U,$J,358.3,26830,2)
+ ;;=^5003104
+ ;;^UTILITY(U,$J,358.3,26831,0)
+ ;;=F10.26^^100^1291^7
+ ;;^UTILITY(U,$J,358.3,26831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26461,1,3,0)
- ;;=3^Argyll Robertson Pupil,Atypical
- ;;^UTILITY(U,$J,358.3,26461,1,4,0)
- ;;=4^H57.01
- ;;^UTILITY(U,$J,358.3,26461,2)
- ;;=^269319
- ;;^UTILITY(U,$J,358.3,26462,0)
- ;;=H40.053^^130^1290^14
- ;;^UTILITY(U,$J,358.3,26462,1,0)
+ ;;^UTILITY(U,$J,358.3,26831,1,3,0)
+ ;;=3^Alcohol Induced Neurocog Disorder,Amnestic Cofabul Type w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26831,1,4,0)
+ ;;=4^F10.26
+ ;;^UTILITY(U,$J,358.3,26831,2)
+ ;;=^5003094
+ ;;^UTILITY(U,$J,358.3,26832,0)
+ ;;=F10.96^^100^1291^8
+ ;;^UTILITY(U,$J,358.3,26832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26462,1,3,0)
- ;;=3^Ocular HTN,Bilateral
- ;;^UTILITY(U,$J,358.3,26462,1,4,0)
- ;;=4^H40.053
- ;;^UTILITY(U,$J,358.3,26462,2)
- ;;=^5005742
- ;;^UTILITY(U,$J,358.3,26463,0)
- ;;=H40.10X4^^130^1290^43
- ;;^UTILITY(U,$J,358.3,26463,1,0)
+ ;;^UTILITY(U,$J,358.3,26832,1,3,0)
+ ;;=3^Alcohol Induced Neurocog Disorder,Amnestic Cofabul Type w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26832,1,4,0)
+ ;;=4^F10.96
+ ;;^UTILITY(U,$J,358.3,26832,2)
+ ;;=^5003108
+ ;;^UTILITY(U,$J,358.3,26833,0)
+ ;;=F10.27^^100^1291^9
+ ;;^UTILITY(U,$J,358.3,26833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26463,1,3,0)
- ;;=3^glc,Open-Angle Unspec,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26463,1,4,0)
- ;;=4^H40.10X4
- ;;^UTILITY(U,$J,358.3,26463,2)
- ;;=^5005752
- ;;^UTILITY(U,$J,358.3,26464,0)
- ;;=H40.11X1^^130^1290^49
- ;;^UTILITY(U,$J,358.3,26464,1,0)
+ ;;^UTILITY(U,$J,358.3,26833,1,3,0)
+ ;;=3^Alcohol Induced Neurocog Disorder,Nonamnestic Confabul Type,w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26833,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,26833,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,26834,0)
+ ;;=F10.97^^100^1291^10
+ ;;^UTILITY(U,$J,358.3,26834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26464,1,3,0)
- ;;=3^glc,POAG,Mild Stage
- ;;^UTILITY(U,$J,358.3,26464,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,26464,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,26465,0)
- ;;=H40.11X2^^130^1290^50
- ;;^UTILITY(U,$J,358.3,26465,1,0)
+ ;;^UTILITY(U,$J,358.3,26834,1,3,0)
+ ;;=3^Alcohol Induced Neurocog Disorder,Nonamnestic Confabul Type w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26834,1,4,0)
+ ;;=4^F10.97
+ ;;^UTILITY(U,$J,358.3,26834,2)
+ ;;=^5003109
+ ;;^UTILITY(U,$J,358.3,26835,0)
+ ;;=F10.288^^100^1291^5
+ ;;^UTILITY(U,$J,358.3,26835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26465,1,3,0)
- ;;=3^glc,POAG,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26465,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,26465,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,26466,0)
- ;;=H40.11X3^^130^1290^51
- ;;^UTILITY(U,$J,358.3,26466,1,0)
+ ;;^UTILITY(U,$J,358.3,26835,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26835,1,4,0)
+ ;;=4^F10.288
+ ;;^UTILITY(U,$J,358.3,26835,2)
+ ;;=^5003099
+ ;;^UTILITY(U,$J,358.3,26836,0)
+ ;;=F10.988^^100^1291^6
+ ;;^UTILITY(U,$J,358.3,26836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26466,1,3,0)
- ;;=3^glc,POAG,Severe Stage
- ;;^UTILITY(U,$J,358.3,26466,1,4,0)
- ;;=4^H40.11X3
- ;;^UTILITY(U,$J,358.3,26466,2)
- ;;=^5005756
- ;;^UTILITY(U,$J,358.3,26467,0)
- ;;=H40.11X4^^130^1290^48
- ;;^UTILITY(U,$J,358.3,26467,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26467,1,3,0)
- ;;=3^glc,POAG,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26467,1,4,0)
- ;;=4^H40.11X4
- ;;^UTILITY(U,$J,358.3,26467,2)
- ;;=^5005757
- ;;^UTILITY(U,$J,358.3,26468,0)
- ;;=H40.11X0^^130^1290^52
- ;;^UTILITY(U,$J,358.3,26468,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26468,1,3,0)
- ;;=3^glc,POAG,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,26836,1,3,0)
+ ;;=3^Alcohol Induced Mild Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26836,1,4,0)
+ ;;=4^F10.988
+ ;;^UTILITY(U,$J,358.3,26836,2)
+ ;;=^5003113

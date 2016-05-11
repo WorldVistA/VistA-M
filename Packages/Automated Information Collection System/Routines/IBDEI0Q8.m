@@ -1,124 +1,136 @@
-IBDEI0Q8 ; ; 19-NOV-2015
+IBDEI0Q8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12010,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,12010,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,12011,0)
- ;;=Y37.200D^^68^694^92
- ;;^UTILITY(U,$J,358.3,12011,1,0)
+ ;;^UTILITY(U,$J,358.3,12291,1,3,0)
+ ;;=3^Helicobacter Pylori
+ ;;^UTILITY(U,$J,358.3,12292,0)
+ ;;=93312^^49^557^3^^^^1
+ ;;^UTILITY(U,$J,358.3,12292,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12292,1,2,0)
+ ;;=2^93312
+ ;;^UTILITY(U,$J,358.3,12292,1,3,0)
+ ;;=3^TEE,Placement/Image/Interp/Rpt
+ ;;^UTILITY(U,$J,358.3,12293,0)
+ ;;=93313^^49^557^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12293,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12293,1,2,0)
+ ;;=2^93313
+ ;;^UTILITY(U,$J,358.3,12293,1,3,0)
+ ;;=3^TEE,Placement Only
+ ;;^UTILITY(U,$J,358.3,12294,0)
+ ;;=93314^^49^557^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12294,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12294,1,2,0)
+ ;;=2^93314
+ ;;^UTILITY(U,$J,358.3,12294,1,3,0)
+ ;;=3^TEE,Image/Interp/Rpt
+ ;;^UTILITY(U,$J,358.3,12295,0)
+ ;;=B37.81^^50^558^6
+ ;;^UTILITY(U,$J,358.3,12295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12011,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,12011,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,12011,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,12012,0)
- ;;=X00.1XXA^^68^694^13
- ;;^UTILITY(U,$J,358.3,12012,1,0)
+ ;;^UTILITY(U,$J,358.3,12295,1,3,0)
+ ;;=3^Candidal esophagitis
+ ;;^UTILITY(U,$J,358.3,12295,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,12295,2)
+ ;;=^5000620
+ ;;^UTILITY(U,$J,358.3,12296,0)
+ ;;=C15.9^^50^558^23
+ ;;^UTILITY(U,$J,358.3,12296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12012,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,12012,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,12012,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,12013,0)
- ;;=X00.1XXD^^68^694^14
- ;;^UTILITY(U,$J,358.3,12013,1,0)
+ ;;^UTILITY(U,$J,358.3,12296,1,3,0)
+ ;;=3^Malignant neoplasm of esophagus, unspecified
+ ;;^UTILITY(U,$J,358.3,12296,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,12296,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,12297,0)
+ ;;=I85.01^^50^558^11
+ ;;^UTILITY(U,$J,358.3,12297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12013,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,12013,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,12013,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,12014,0)
- ;;=Y36.820S^^68^694^21
- ;;^UTILITY(U,$J,358.3,12014,1,0)
+ ;;^UTILITY(U,$J,358.3,12297,1,3,0)
+ ;;=3^Esophageal varices w/ bleeding
+ ;;^UTILITY(U,$J,358.3,12297,1,4,0)
+ ;;=4^I85.01
+ ;;^UTILITY(U,$J,358.3,12297,2)
+ ;;=^269835
+ ;;^UTILITY(U,$J,358.3,12298,0)
+ ;;=I85.00^^50^558^12
+ ;;^UTILITY(U,$J,358.3,12298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12014,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12014,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,12014,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,12015,0)
- ;;=Y36.810S^^68^694^24
- ;;^UTILITY(U,$J,358.3,12015,1,0)
+ ;;^UTILITY(U,$J,358.3,12298,1,3,0)
+ ;;=3^Esophageal varices w/o bleeding
+ ;;^UTILITY(U,$J,358.3,12298,1,4,0)
+ ;;=4^I85.00
+ ;;^UTILITY(U,$J,358.3,12298,2)
+ ;;=^5008023
+ ;;^UTILITY(U,$J,358.3,12299,0)
+ ;;=K22.0^^50^558^1
+ ;;^UTILITY(U,$J,358.3,12299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12015,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12015,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,12015,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,12016,0)
- ;;=Y36.6X0S^^68^694^114
- ;;^UTILITY(U,$J,358.3,12016,1,0)
+ ;;^UTILITY(U,$J,358.3,12299,1,3,0)
+ ;;=3^Achalasia of cardia
+ ;;^UTILITY(U,$J,358.3,12299,1,4,0)
+ ;;=4^K22.0
+ ;;^UTILITY(U,$J,358.3,12299,2)
+ ;;=^5008506
+ ;;^UTILITY(U,$J,358.3,12300,0)
+ ;;=K20.9^^50^558^15
+ ;;^UTILITY(U,$J,358.3,12300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12016,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12016,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,12016,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,12017,0)
- ;;=Y36.410S^^68^694^122
- ;;^UTILITY(U,$J,358.3,12017,1,0)
+ ;;^UTILITY(U,$J,358.3,12300,1,3,0)
+ ;;=3^Esophagitis, unspecified
+ ;;^UTILITY(U,$J,358.3,12300,1,4,0)
+ ;;=4^K20.9
+ ;;^UTILITY(U,$J,358.3,12300,2)
+ ;;=^295809
+ ;;^UTILITY(U,$J,358.3,12301,0)
+ ;;=K21.0^^50^558^21
+ ;;^UTILITY(U,$J,358.3,12301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12017,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12017,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,12017,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,12018,0)
- ;;=Y36.200S^^68^694^119
- ;;^UTILITY(U,$J,358.3,12018,1,0)
+ ;;^UTILITY(U,$J,358.3,12301,1,3,0)
+ ;;=3^Gastro-esophageal reflux disease w/ esophagitis
+ ;;^UTILITY(U,$J,358.3,12301,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,12301,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,12302,0)
+ ;;=K20.0^^50^558^9
+ ;;^UTILITY(U,$J,358.3,12302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12018,1,3,0)
- ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12018,1,4,0)
- ;;=4^Y36.200S
- ;;^UTILITY(U,$J,358.3,12018,2)
- ;;=^5061609
- ;;^UTILITY(U,$J,358.3,12019,0)
- ;;=Y36.300S^^68^694^120
- ;;^UTILITY(U,$J,358.3,12019,1,0)
+ ;;^UTILITY(U,$J,358.3,12302,1,3,0)
+ ;;=3^Eosinophilic esophagitis
+ ;;^UTILITY(U,$J,358.3,12302,1,4,0)
+ ;;=4^K20.0
+ ;;^UTILITY(U,$J,358.3,12302,2)
+ ;;=^336605
+ ;;^UTILITY(U,$J,358.3,12303,0)
+ ;;=K22.10^^50^558^24
+ ;;^UTILITY(U,$J,358.3,12303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12019,1,3,0)
- ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,12019,1,4,0)
- ;;=4^Y36.300S
- ;;^UTILITY(U,$J,358.3,12019,2)
- ;;=^5061663
- ;;^UTILITY(U,$J,358.3,12020,0)
- ;;=Y36.230A^^68^694^116
- ;;^UTILITY(U,$J,358.3,12020,1,0)
+ ;;^UTILITY(U,$J,358.3,12303,1,3,0)
+ ;;=3^Ulcer of esophagus w/o bleeding
+ ;;^UTILITY(U,$J,358.3,12303,1,4,0)
+ ;;=4^K22.10
+ ;;^UTILITY(U,$J,358.3,12303,2)
+ ;;=^329929
+ ;;^UTILITY(U,$J,358.3,12304,0)
+ ;;=K22.2^^50^558^10
+ ;;^UTILITY(U,$J,358.3,12304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12020,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
- ;;^UTILITY(U,$J,358.3,12020,1,4,0)
- ;;=4^Y36.230A
- ;;^UTILITY(U,$J,358.3,12020,2)
- ;;=^5061625
- ;;^UTILITY(U,$J,358.3,12021,0)
- ;;=Y36.230D^^68^694^117
- ;;^UTILITY(U,$J,358.3,12021,1,0)
+ ;;^UTILITY(U,$J,358.3,12304,1,3,0)
+ ;;=3^Esophageal obstruction
+ ;;^UTILITY(U,$J,358.3,12304,1,4,0)
+ ;;=4^K22.2
+ ;;^UTILITY(U,$J,358.3,12304,2)
+ ;;=^5008507
+ ;;^UTILITY(U,$J,358.3,12305,0)
+ ;;=K22.5^^50^558^8
+ ;;^UTILITY(U,$J,358.3,12305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12021,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
- ;;^UTILITY(U,$J,358.3,12021,1,4,0)
- ;;=4^Y36.230D
- ;;^UTILITY(U,$J,358.3,12021,2)
- ;;=^5061626
- ;;^UTILITY(U,$J,358.3,12022,0)
- ;;=Y36.230S^^68^694^118
- ;;^UTILITY(U,$J,358.3,12022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12022,1,3,0)
- ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,12305,1,3,0)
+ ;;=3^Diverticulum of esophagus, acquired

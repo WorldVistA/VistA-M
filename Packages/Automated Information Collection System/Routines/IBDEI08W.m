@@ -1,140 +1,138 @@
-IBDEI08W ; ; 19-NOV-2015
+IBDEI08W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3615,0)
- ;;=Z90.5^^28^257^1
- ;;^UTILITY(U,$J,358.3,3615,1,0)
+ ;;^UTILITY(U,$J,358.3,3877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3615,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,3615,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,3615,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,3616,0)
- ;;=N20.2^^28^257^2
- ;;^UTILITY(U,$J,358.3,3616,1,0)
+ ;;^UTILITY(U,$J,358.3,3877,1,3,0)
+ ;;=3^F/U Exam After Treatment Encounter
+ ;;^UTILITY(U,$J,358.3,3877,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,3877,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,3878,0)
+ ;;=Z00.01^^18^224^60
+ ;;^UTILITY(U,$J,358.3,3878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3616,1,3,0)
- ;;=3^Calculus of Kidney w/ Calculus of Ureter
- ;;^UTILITY(U,$J,358.3,3616,1,4,0)
- ;;=4^N20.2
- ;;^UTILITY(U,$J,358.3,3616,2)
- ;;=^5015609
- ;;^UTILITY(U,$J,358.3,3617,0)
- ;;=N21.9^^28^257^3
- ;;^UTILITY(U,$J,358.3,3617,1,0)
+ ;;^UTILITY(U,$J,358.3,3878,1,3,0)
+ ;;=3^General Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,3878,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,3878,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,3879,0)
+ ;;=Z00.00^^18^224^61
+ ;;^UTILITY(U,$J,358.3,3879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3617,1,3,0)
- ;;=3^Calculus of Lower Urinary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,3617,1,4,0)
- ;;=4^N21.9
- ;;^UTILITY(U,$J,358.3,3617,2)
- ;;=^5015613
- ;;^UTILITY(U,$J,358.3,3618,0)
- ;;=N20.9^^28^257^4
- ;;^UTILITY(U,$J,358.3,3618,1,0)
+ ;;^UTILITY(U,$J,358.3,3879,1,3,0)
+ ;;=3^General Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,3879,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,3879,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,3880,0)
+ ;;=Z23.^^18^224^69
+ ;;^UTILITY(U,$J,358.3,3880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3618,1,3,0)
- ;;=3^Calculus,Urinary,Unspec
- ;;^UTILITY(U,$J,358.3,3618,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,3618,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,3619,0)
- ;;=N28.9^^28^257^6
- ;;^UTILITY(U,$J,358.3,3619,1,0)
+ ;;^UTILITY(U,$J,358.3,3880,1,3,0)
+ ;;=3^Immunization Encounter
+ ;;^UTILITY(U,$J,358.3,3880,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,3880,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,3881,0)
+ ;;=Z03.89^^18^224^81
+ ;;^UTILITY(U,$J,358.3,3881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3619,1,3,0)
- ;;=3^Kidney & Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3619,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,3619,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,3620,0)
- ;;=I12.9^^28^257^7
- ;;^UTILITY(U,$J,358.3,3620,1,0)
+ ;;^UTILITY(U,$J,358.3,3881,1,3,0)
+ ;;=3^Observation for Suspected Diseases/Ruled Out Conditions
+ ;;^UTILITY(U,$J,358.3,3881,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,3881,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,3882,0)
+ ;;=Z04.9^^18^224^82
+ ;;^UTILITY(U,$J,358.3,3882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3620,1,3,0)
- ;;=3^Kidney Disease,Chr,Hypertensive w/ Stage 1-4 or UNSPEC
- ;;^UTILITY(U,$J,358.3,3620,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,3620,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,3621,0)
- ;;=N18.1^^28^257^8
- ;;^UTILITY(U,$J,358.3,3621,1,0)
+ ;;^UTILITY(U,$J,358.3,3882,1,3,0)
+ ;;=3^Observation/Exam,Unspec Reason
+ ;;^UTILITY(U,$J,358.3,3882,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,3882,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,3883,0)
+ ;;=Z51.5^^18^224^94
+ ;;^UTILITY(U,$J,358.3,3883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3621,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 1
- ;;^UTILITY(U,$J,358.3,3621,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,3621,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,3622,0)
- ;;=N18.2^^28^257^9
- ;;^UTILITY(U,$J,358.3,3622,1,0)
+ ;;^UTILITY(U,$J,358.3,3883,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,3883,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,3883,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,3884,0)
+ ;;=Z12.9^^18^224^162
+ ;;^UTILITY(U,$J,358.3,3884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3622,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 2
- ;;^UTILITY(U,$J,358.3,3622,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,3622,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,3623,0)
- ;;=N18.3^^28^257^10
- ;;^UTILITY(U,$J,358.3,3623,1,0)
+ ;;^UTILITY(U,$J,358.3,3884,1,3,0)
+ ;;=3^Screening for Malig Neop,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3884,1,4,0)
+ ;;=4^Z12.9
+ ;;^UTILITY(U,$J,358.3,3884,2)
+ ;;=^5062698
+ ;;^UTILITY(U,$J,358.3,3885,0)
+ ;;=Z13.9^^18^224^163
+ ;;^UTILITY(U,$J,358.3,3885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3623,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 3
- ;;^UTILITY(U,$J,358.3,3623,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,3623,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,3624,0)
- ;;=N18.4^^28^257^11
- ;;^UTILITY(U,$J,358.3,3624,1,0)
+ ;;^UTILITY(U,$J,358.3,3885,1,3,0)
+ ;;=3^Screening,Unspec
+ ;;^UTILITY(U,$J,358.3,3885,1,4,0)
+ ;;=4^Z13.9
+ ;;^UTILITY(U,$J,358.3,3885,2)
+ ;;=^5062721
+ ;;^UTILITY(U,$J,358.3,3886,0)
+ ;;=Z48.89^^18^224^164
+ ;;^UTILITY(U,$J,358.3,3886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3624,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 4
- ;;^UTILITY(U,$J,358.3,3624,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,3624,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,3625,0)
- ;;=N18.5^^28^257^12
- ;;^UTILITY(U,$J,358.3,3625,1,0)
+ ;;^UTILITY(U,$J,358.3,3886,1,3,0)
+ ;;=3^Surgical Aftercare Encounter,Other Spec
+ ;;^UTILITY(U,$J,358.3,3886,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,3886,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,3887,0)
+ ;;=Z51.81^^18^224^167
+ ;;^UTILITY(U,$J,358.3,3887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3625,1,3,0)
- ;;=3^Kidney Disease,Chr,Stage 5
- ;;^UTILITY(U,$J,358.3,3625,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,3625,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,3626,0)
- ;;=N18.9^^28^257^13
- ;;^UTILITY(U,$J,358.3,3626,1,0)
+ ;;^UTILITY(U,$J,358.3,3887,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,3887,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,3887,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,3888,0)
+ ;;=Z77.9^^18^224^55
+ ;;^UTILITY(U,$J,358.3,3888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3626,1,3,0)
- ;;=3^Kidney Disease,Chr,Unspec
- ;;^UTILITY(U,$J,358.3,3626,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,3626,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,3627,0)
- ;;=N18.6^^28^257^5
- ;;^UTILITY(U,$J,358.3,3627,1,0)
+ ;;^UTILITY(U,$J,358.3,3888,1,3,0)
+ ;;=3^Exposures/Contact with Hazardous Substances
+ ;;^UTILITY(U,$J,358.3,3888,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,3888,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,3889,0)
+ ;;=R50.9^^18^224^57
+ ;;^UTILITY(U,$J,358.3,3889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3627,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,3627,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,3627,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,3628,0)
- ;;=N17.9^^28^257^14
- ;;^UTILITY(U,$J,358.3,3628,1,0)
+ ;;^UTILITY(U,$J,358.3,3889,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,3889,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,3889,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,3890,0)
+ ;;=Z96.9^^18^224^58
+ ;;^UTILITY(U,$J,358.3,3890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3628,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,3890,1,3,0)
+ ;;=3^Functional Implant,Unspec

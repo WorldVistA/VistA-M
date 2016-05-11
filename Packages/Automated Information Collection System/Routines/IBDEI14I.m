@@ -1,134 +1,134 @@
-IBDEI14I ; ; 19-NOV-2015
+IBDEI14I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18760,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,18761,0)
- ;;=N20.9^^94^912^102
- ;;^UTILITY(U,$J,358.3,18761,1,0)
+ ;;^UTILITY(U,$J,358.3,19104,1,3,0)
+ ;;=3^Paresis of Accommodation OS
+ ;;^UTILITY(U,$J,358.3,19104,1,4,0)
+ ;;=4^H52.522
+ ;;^UTILITY(U,$J,358.3,19104,2)
+ ;;=^5006283
+ ;;^UTILITY(U,$J,358.3,19105,0)
+ ;;=H52.523^^82^905^39
+ ;;^UTILITY(U,$J,358.3,19105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18761,1,3,0)
- ;;=3^Urinary Calculus,Unspec
- ;;^UTILITY(U,$J,358.3,18761,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,18761,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,18762,0)
- ;;=R51.^^94^913^2
- ;;^UTILITY(U,$J,358.3,18762,1,0)
+ ;;^UTILITY(U,$J,358.3,19105,1,3,0)
+ ;;=3^Paresis of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,19105,1,4,0)
+ ;;=4^H52.523
+ ;;^UTILITY(U,$J,358.3,19105,2)
+ ;;=^5006284
+ ;;^UTILITY(U,$J,358.3,19106,0)
+ ;;=Z87.820^^82^905^40
+ ;;^UTILITY(U,$J,358.3,19106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18762,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,18762,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,18762,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,18763,0)
- ;;=G44.1^^94^913^9
- ;;^UTILITY(U,$J,358.3,18763,1,0)
+ ;;^UTILITY(U,$J,358.3,19106,1,3,0)
+ ;;=3^Personal Hx of Traumatic Brain Injury
+ ;;^UTILITY(U,$J,358.3,19106,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,19106,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,19107,0)
+ ;;=H55.81^^82^905^43
+ ;;^UTILITY(U,$J,358.3,19107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18763,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,18763,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,18763,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,18764,0)
- ;;=G43.909^^94^913^5
- ;;^UTILITY(U,$J,358.3,18764,1,0)
+ ;;^UTILITY(U,$J,358.3,19107,1,3,0)
+ ;;=3^Saccadic Eye Movements
+ ;;^UTILITY(U,$J,358.3,19107,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,19107,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,19108,0)
+ ;;=H53.423^^82^905^49
+ ;;^UTILITY(U,$J,358.3,19108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18764,1,3,0)
- ;;=3^Migraine,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,18764,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,18764,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,18765,0)
- ;;=G44.009^^94^913^1
- ;;^UTILITY(U,$J,358.3,18765,1,0)
+ ;;^UTILITY(U,$J,358.3,19108,1,3,0)
+ ;;=3^Scotoma of Blind Spot Area,Bilateral
+ ;;^UTILITY(U,$J,358.3,19108,1,4,0)
+ ;;=4^H53.423
+ ;;^UTILITY(U,$J,358.3,19108,2)
+ ;;=^5006331
+ ;;^UTILITY(U,$J,358.3,19109,0)
+ ;;=H53.421^^82^905^47
+ ;;^UTILITY(U,$J,358.3,19109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18765,1,3,0)
- ;;=3^Cluster Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,18765,1,4,0)
- ;;=4^G44.009
- ;;^UTILITY(U,$J,358.3,18765,2)
- ;;=^5003921
- ;;^UTILITY(U,$J,358.3,18766,0)
- ;;=G44.40^^94^913^4
- ;;^UTILITY(U,$J,358.3,18766,1,0)
+ ;;^UTILITY(U,$J,358.3,19109,1,3,0)
+ ;;=3^Scotoma of Blind Spot Area OD
+ ;;^UTILITY(U,$J,358.3,19109,1,4,0)
+ ;;=4^H53.421
+ ;;^UTILITY(U,$J,358.3,19109,2)
+ ;;=^5006329
+ ;;^UTILITY(U,$J,358.3,19110,0)
+ ;;=H53.422^^82^905^48
+ ;;^UTILITY(U,$J,358.3,19110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18766,1,3,0)
- ;;=3^Medication Overuse Headache,Not Intractable
- ;;^UTILITY(U,$J,358.3,18766,1,4,0)
- ;;=4^G44.40
- ;;^UTILITY(U,$J,358.3,18766,2)
- ;;=^5003947
- ;;^UTILITY(U,$J,358.3,18767,0)
- ;;=G44.89^^94^913^3
- ;;^UTILITY(U,$J,358.3,18767,1,0)
+ ;;^UTILITY(U,$J,358.3,19110,1,3,0)
+ ;;=3^Scotoma of Blind Spot Area OS
+ ;;^UTILITY(U,$J,358.3,19110,1,4,0)
+ ;;=4^H53.422
+ ;;^UTILITY(U,$J,358.3,19110,2)
+ ;;=^5006330
+ ;;^UTILITY(U,$J,358.3,19111,0)
+ ;;=H53.413^^82^905^46
+ ;;^UTILITY(U,$J,358.3,19111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18767,1,3,0)
- ;;=3^Headache Syndrome NEC
- ;;^UTILITY(U,$J,358.3,18767,1,4,0)
- ;;=4^G44.89
- ;;^UTILITY(U,$J,358.3,18767,2)
- ;;=^5003954
- ;;^UTILITY(U,$J,358.3,18768,0)
- ;;=G44.84^^94^913^7
- ;;^UTILITY(U,$J,358.3,18768,1,0)
+ ;;^UTILITY(U,$J,358.3,19111,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Bilateral
+ ;;^UTILITY(U,$J,358.3,19111,1,4,0)
+ ;;=4^H53.413
+ ;;^UTILITY(U,$J,358.3,19111,2)
+ ;;=^5006327
+ ;;^UTILITY(U,$J,358.3,19112,0)
+ ;;=H53.412^^82^905^45
+ ;;^UTILITY(U,$J,358.3,19112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18768,1,3,0)
- ;;=3^Primary Exertional Headache
- ;;^UTILITY(U,$J,358.3,18768,1,4,0)
- ;;=4^G44.84
- ;;^UTILITY(U,$J,358.3,18768,2)
- ;;=^336563
- ;;^UTILITY(U,$J,358.3,18769,0)
- ;;=G44.301^^94^913^6
- ;;^UTILITY(U,$J,358.3,18769,1,0)
+ ;;^UTILITY(U,$J,358.3,19112,1,3,0)
+ ;;=3^Scotoma Involving Central Area OS
+ ;;^UTILITY(U,$J,358.3,19112,1,4,0)
+ ;;=4^H53.412
+ ;;^UTILITY(U,$J,358.3,19112,2)
+ ;;=^5006326
+ ;;^UTILITY(U,$J,358.3,19113,0)
+ ;;=H53.411^^82^905^44
+ ;;^UTILITY(U,$J,358.3,19113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18769,1,3,0)
- ;;=3^Post-Traumatic Headache,Unspec,Intractable
- ;;^UTILITY(U,$J,358.3,18769,1,4,0)
- ;;=4^G44.301
- ;;^UTILITY(U,$J,358.3,18769,2)
- ;;=^5003941
- ;;^UTILITY(U,$J,358.3,18770,0)
- ;;=G44.209^^94^913^8
- ;;^UTILITY(U,$J,358.3,18770,1,0)
+ ;;^UTILITY(U,$J,358.3,19113,1,3,0)
+ ;;=3^Scotoma Involving Central Area OD
+ ;;^UTILITY(U,$J,358.3,19113,1,4,0)
+ ;;=4^H53.411
+ ;;^UTILITY(U,$J,358.3,19113,2)
+ ;;=^5006325
+ ;;^UTILITY(U,$J,358.3,19114,0)
+ ;;=H53.33^^82^905^50
+ ;;^UTILITY(U,$J,358.3,19114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18770,1,3,0)
- ;;=3^Tension-Type Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,18770,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,18770,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,18771,0)
- ;;=I50.32^^94^914^5
- ;;^UTILITY(U,$J,358.3,18771,1,0)
+ ;;^UTILITY(U,$J,358.3,19114,1,3,0)
+ ;;=3^Simultaneous Visual Perception w/o Fusion
+ ;;^UTILITY(U,$J,358.3,19114,1,4,0)
+ ;;=4^H53.33
+ ;;^UTILITY(U,$J,358.3,19114,2)
+ ;;=^268841
+ ;;^UTILITY(U,$J,358.3,19115,0)
+ ;;=H52.531^^82^905^51
+ ;;^UTILITY(U,$J,358.3,19115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18771,1,3,0)
- ;;=3^Diastolic Heart Failure,Chronic
- ;;^UTILITY(U,$J,358.3,18771,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,18771,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,18772,0)
- ;;=I50.33^^94^914^4
- ;;^UTILITY(U,$J,358.3,18772,1,0)
+ ;;^UTILITY(U,$J,358.3,19115,1,3,0)
+ ;;=3^Spasm of Accommodation OD
+ ;;^UTILITY(U,$J,358.3,19115,1,4,0)
+ ;;=4^H52.531
+ ;;^UTILITY(U,$J,358.3,19115,2)
+ ;;=^5006286
+ ;;^UTILITY(U,$J,358.3,19116,0)
+ ;;=H52.532^^82^905^52
+ ;;^UTILITY(U,$J,358.3,19116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18772,1,3,0)
- ;;=3^Diastolic Heart Failure,Acute on Chronic
- ;;^UTILITY(U,$J,358.3,18772,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,18772,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,18773,0)
- ;;=I50.40^^94^914^9
- ;;^UTILITY(U,$J,358.3,18773,1,0)
+ ;;^UTILITY(U,$J,358.3,19116,1,3,0)
+ ;;=3^Spasm of Accommodation OS
+ ;;^UTILITY(U,$J,358.3,19116,1,4,0)
+ ;;=4^H52.532
+ ;;^UTILITY(U,$J,358.3,19116,2)
+ ;;=^5006287
+ ;;^UTILITY(U,$J,358.3,19117,0)
+ ;;=H52.533^^82^905^53
+ ;;^UTILITY(U,$J,358.3,19117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18773,1,3,0)
- ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
- ;;^UTILITY(U,$J,358.3,18773,1,4,0)
- ;;=4^I50.40

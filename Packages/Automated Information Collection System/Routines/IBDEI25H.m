@@ -1,126 +1,128 @@
-IBDEI25H ; ; 19-NOV-2015
+IBDEI25H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36065,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,36065,1,4,0)
- ;;=4^O41.1431
- ;;^UTILITY(U,$J,358.3,36065,2)
- ;;=^5017308
- ;;^UTILITY(U,$J,358.3,36066,0)
- ;;=O41.1432^^166^1828^71
- ;;^UTILITY(U,$J,358.3,36066,1,0)
+ ;;^UTILITY(U,$J,358.3,36481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36066,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,36066,1,4,0)
- ;;=4^O41.1432
- ;;^UTILITY(U,$J,358.3,36066,2)
- ;;=^5017309
- ;;^UTILITY(U,$J,358.3,36067,0)
- ;;=O41.1433^^166^1828^72
- ;;^UTILITY(U,$J,358.3,36067,1,0)
+ ;;^UTILITY(U,$J,358.3,36481,1,3,0)
+ ;;=3^Chr Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36481,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,36481,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,36482,0)
+ ;;=N28.9^^137^1764^17
+ ;;^UTILITY(U,$J,358.3,36482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36067,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,36067,1,4,0)
- ;;=4^O41.1433
- ;;^UTILITY(U,$J,358.3,36067,2)
- ;;=^5017310
- ;;^UTILITY(U,$J,358.3,36068,0)
- ;;=O41.1434^^166^1828^73
- ;;^UTILITY(U,$J,358.3,36068,1,0)
+ ;;^UTILITY(U,$J,358.3,36482,1,3,0)
+ ;;=3^Kidney/Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36482,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,36482,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,36483,0)
+ ;;=N40.0^^137^1764^4
+ ;;^UTILITY(U,$J,358.3,36483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36068,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,36068,1,4,0)
- ;;=4^O41.1434
- ;;^UTILITY(U,$J,358.3,36068,2)
- ;;=^5017311
- ;;^UTILITY(U,$J,358.3,36069,0)
- ;;=O41.1435^^166^1828^74
- ;;^UTILITY(U,$J,358.3,36069,1,0)
+ ;;^UTILITY(U,$J,358.3,36483,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,36483,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,36483,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,36484,0)
+ ;;=N07.6^^137^1764^5
+ ;;^UTILITY(U,$J,358.3,36484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36069,1,3,0)
- ;;=3^Placentitis, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,36069,1,4,0)
- ;;=4^O41.1435
- ;;^UTILITY(U,$J,358.3,36069,2)
- ;;=^5017312
- ;;^UTILITY(U,$J,358.3,36070,0)
- ;;=O09.41^^166^1828^91
- ;;^UTILITY(U,$J,358.3,36070,1,0)
+ ;;^UTILITY(U,$J,358.3,36484,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Dense Deposit Disease NEC
+ ;;^UTILITY(U,$J,358.3,36484,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,36484,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,36485,0)
+ ;;=N07.7^^137^1764^6
+ ;;^UTILITY(U,$J,358.3,36485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36070,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, first trimester
- ;;^UTILITY(U,$J,358.3,36070,1,4,0)
- ;;=4^O09.41
- ;;^UTILITY(U,$J,358.3,36070,2)
- ;;=^5016069
- ;;^UTILITY(U,$J,358.3,36071,0)
- ;;=O09.42^^166^1828^92
- ;;^UTILITY(U,$J,358.3,36071,1,0)
+ ;;^UTILITY(U,$J,358.3,36485,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Diffuse Crescentic Glomerular NEC
+ ;;^UTILITY(U,$J,358.3,36485,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,36485,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,36486,0)
+ ;;=N07.1^^137^1764^7
+ ;;^UTILITY(U,$J,358.3,36486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36071,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, second trimester
- ;;^UTILITY(U,$J,358.3,36071,1,4,0)
- ;;=4^O09.42
- ;;^UTILITY(U,$J,358.3,36071,2)
- ;;=^5016070
- ;;^UTILITY(U,$J,358.3,36072,0)
- ;;=O09.43^^166^1828^93
- ;;^UTILITY(U,$J,358.3,36072,1,0)
+ ;;^UTILITY(U,$J,358.3,36486,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Focal/Segmental Glomerular Lesions NEC
+ ;;^UTILITY(U,$J,358.3,36486,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,36486,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,36487,0)
+ ;;=N07.0^^137^1764^8
+ ;;^UTILITY(U,$J,358.3,36487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36072,1,3,0)
- ;;=3^Suprvsn of pregnancy w grand multiparity, third trimester
- ;;^UTILITY(U,$J,358.3,36072,1,4,0)
- ;;=4^O09.43
- ;;^UTILITY(U,$J,358.3,36072,2)
- ;;=^5016071
- ;;^UTILITY(U,$J,358.3,36073,0)
- ;;=O09.511^^166^1828^88
- ;;^UTILITY(U,$J,358.3,36073,1,0)
+ ;;^UTILITY(U,$J,358.3,36487,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Minor Glomerular Abnormality NEC
+ ;;^UTILITY(U,$J,358.3,36487,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,36487,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,36488,0)
+ ;;=N07.8^^137^1764^9
+ ;;^UTILITY(U,$J,358.3,36488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36073,1,3,0)
- ;;=3^Supervision of elderly primigravida, first trimester
- ;;^UTILITY(U,$J,358.3,36073,1,4,0)
- ;;=4^O09.511
- ;;^UTILITY(U,$J,358.3,36073,2)
- ;;=^5016072
- ;;^UTILITY(U,$J,358.3,36074,0)
- ;;=O09.512^^166^1828^89
- ;;^UTILITY(U,$J,358.3,36074,1,0)
+ ;;^UTILITY(U,$J,358.3,36488,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Morphologic Lesions NEC
+ ;;^UTILITY(U,$J,358.3,36488,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,36488,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,36489,0)
+ ;;=N41.9^^137^1764^10
+ ;;^UTILITY(U,$J,358.3,36489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36074,1,3,0)
- ;;=3^Supervision of elderly primigravida, second trimester
- ;;^UTILITY(U,$J,358.3,36074,1,4,0)
- ;;=4^O09.512
- ;;^UTILITY(U,$J,358.3,36074,2)
- ;;=^5016073
- ;;^UTILITY(U,$J,358.3,36075,0)
- ;;=O09.513^^166^1828^90
- ;;^UTILITY(U,$J,358.3,36075,1,0)
+ ;;^UTILITY(U,$J,358.3,36489,1,3,0)
+ ;;=3^Inflammatory Prostate Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36489,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,36489,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,36490,0)
+ ;;=N06.6^^137^1764^11
+ ;;^UTILITY(U,$J,358.3,36490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36075,1,3,0)
- ;;=3^Supervision of elderly primigravida, third trimester
- ;;^UTILITY(U,$J,358.3,36075,1,4,0)
- ;;=4^O09.513
- ;;^UTILITY(U,$J,358.3,36075,2)
- ;;=^5016074
- ;;^UTILITY(U,$J,358.3,36076,0)
- ;;=O09.521^^166^1828^85
- ;;^UTILITY(U,$J,358.3,36076,1,0)
+ ;;^UTILITY(U,$J,358.3,36490,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Dense Deposit Disease
+ ;;^UTILITY(U,$J,358.3,36490,1,4,0)
+ ;;=4^N06.6
+ ;;^UTILITY(U,$J,358.3,36490,2)
+ ;;=^5015555
+ ;;^UTILITY(U,$J,358.3,36491,0)
+ ;;=N06.7^^137^1764^12
+ ;;^UTILITY(U,$J,358.3,36491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36076,1,3,0)
- ;;=3^Supervision of elderly multigravida, first trimester
- ;;^UTILITY(U,$J,358.3,36076,1,4,0)
- ;;=4^O09.521
- ;;^UTILITY(U,$J,358.3,36076,2)
- ;;=^5016076
- ;;^UTILITY(U,$J,358.3,36077,0)
- ;;=O09.522^^166^1828^86
- ;;^UTILITY(U,$J,358.3,36077,1,0)
+ ;;^UTILITY(U,$J,358.3,36491,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Diffuse Crescentic Glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,36491,1,4,0)
+ ;;=4^N06.7
+ ;;^UTILITY(U,$J,358.3,36491,2)
+ ;;=^5015556
+ ;;^UTILITY(U,$J,358.3,36492,0)
+ ;;=N06.1^^137^1764^13
+ ;;^UTILITY(U,$J,358.3,36492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36077,1,3,0)
- ;;=3^Supervision of elderly multigravida, second trimester
+ ;;^UTILITY(U,$J,358.3,36492,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Focal/Segmental Glomerular Lesions
+ ;;^UTILITY(U,$J,358.3,36492,1,4,0)
+ ;;=4^N06.1
+ ;;^UTILITY(U,$J,358.3,36492,2)
+ ;;=^5015550
+ ;;^UTILITY(U,$J,358.3,36493,0)
+ ;;=N06.0^^137^1764^14
+ ;;^UTILITY(U,$J,358.3,36493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36493,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Minor Glomerular Abnormality

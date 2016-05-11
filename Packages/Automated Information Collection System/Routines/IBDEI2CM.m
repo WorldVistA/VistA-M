@@ -1,132 +1,134 @@
-IBDEI2CM ; ; 19-NOV-2015
+IBDEI2CM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39442,2)
- ;;=^5011633
- ;;^UTILITY(U,$J,358.3,39443,0)
- ;;=M25.661^^183^2023^41
- ;;^UTILITY(U,$J,358.3,39443,1,0)
+ ;;^UTILITY(U,$J,358.3,39819,1,3,0)
+ ;;=3^Malig Neop of Left Choroid
+ ;;^UTILITY(U,$J,358.3,39819,1,4,0)
+ ;;=4^C69.32
+ ;;^UTILITY(U,$J,358.3,39819,2)
+ ;;=^5001277
+ ;;^UTILITY(U,$J,358.3,39820,0)
+ ;;=D31.31^^153^1930^5
+ ;;^UTILITY(U,$J,358.3,39820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39443,1,3,0)
- ;;=3^Stiffness of right knee NEC
- ;;^UTILITY(U,$J,358.3,39443,1,4,0)
- ;;=4^M25.661
- ;;^UTILITY(U,$J,358.3,39443,2)
- ;;=^5011636
- ;;^UTILITY(U,$J,358.3,39444,0)
- ;;=M25.611^^183^2023^42
- ;;^UTILITY(U,$J,358.3,39444,1,0)
+ ;;^UTILITY(U,$J,358.3,39820,1,3,0)
+ ;;=3^Benign Neop of Right Choroid
+ ;;^UTILITY(U,$J,358.3,39820,1,4,0)
+ ;;=4^D31.31
+ ;;^UTILITY(U,$J,358.3,39820,2)
+ ;;=^5002121
+ ;;^UTILITY(U,$J,358.3,39821,0)
+ ;;=D31.32^^153^1930^4
+ ;;^UTILITY(U,$J,358.3,39821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39444,1,3,0)
- ;;=3^Stiffness of right shoulder NEC
- ;;^UTILITY(U,$J,358.3,39444,1,4,0)
- ;;=4^M25.611
- ;;^UTILITY(U,$J,358.3,39444,2)
- ;;=^5011621
- ;;^UTILITY(U,$J,358.3,39445,0)
- ;;=M25.631^^183^2023^43
- ;;^UTILITY(U,$J,358.3,39445,1,0)
+ ;;^UTILITY(U,$J,358.3,39821,1,3,0)
+ ;;=3^Benign Neop of Left Choroid
+ ;;^UTILITY(U,$J,358.3,39821,1,4,0)
+ ;;=4^D31.32
+ ;;^UTILITY(U,$J,358.3,39821,2)
+ ;;=^5002122
+ ;;^UTILITY(U,$J,358.3,39822,0)
+ ;;=H35.81^^153^1930^78
+ ;;^UTILITY(U,$J,358.3,39822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39445,1,3,0)
- ;;=3^Stiffness of right wrist NEC
- ;;^UTILITY(U,$J,358.3,39445,1,4,0)
- ;;=4^M25.631
- ;;^UTILITY(U,$J,358.3,39445,2)
- ;;=^5011627
- ;;^UTILITY(U,$J,358.3,39446,0)
- ;;=M12.572^^183^2023^44
- ;;^UTILITY(U,$J,358.3,39446,1,0)
+ ;;^UTILITY(U,$J,358.3,39822,1,3,0)
+ ;;=3^Retinal Edema
+ ;;^UTILITY(U,$J,358.3,39822,1,4,0)
+ ;;=4^H35.81
+ ;;^UTILITY(U,$J,358.3,39822,2)
+ ;;=^5005715
+ ;;^UTILITY(U,$J,358.3,39823,0)
+ ;;=H44.21^^153^1930^35
+ ;;^UTILITY(U,$J,358.3,39823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39446,1,3,0)
- ;;=3^Traumatic arthropathy, left ankle and foot
- ;;^UTILITY(U,$J,358.3,39446,1,4,0)
- ;;=4^M12.572
- ;;^UTILITY(U,$J,358.3,39446,2)
- ;;=^5010638
- ;;^UTILITY(U,$J,358.3,39447,0)
- ;;=M12.522^^183^2023^45
- ;;^UTILITY(U,$J,358.3,39447,1,0)
+ ;;^UTILITY(U,$J,358.3,39823,1,3,0)
+ ;;=3^Degenerative Myopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,39823,1,4,0)
+ ;;=4^H44.21
+ ;;^UTILITY(U,$J,358.3,39823,2)
+ ;;=^5005987
+ ;;^UTILITY(U,$J,358.3,39824,0)
+ ;;=H44.22^^153^1930^34
+ ;;^UTILITY(U,$J,358.3,39824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39447,1,3,0)
- ;;=3^Traumatic arthropathy, left elbow
- ;;^UTILITY(U,$J,358.3,39447,1,4,0)
- ;;=4^M12.522
- ;;^UTILITY(U,$J,358.3,39447,2)
- ;;=^5010623
- ;;^UTILITY(U,$J,358.3,39448,0)
- ;;=M12.542^^183^2023^46
- ;;^UTILITY(U,$J,358.3,39448,1,0)
+ ;;^UTILITY(U,$J,358.3,39824,1,3,0)
+ ;;=3^Degenerative Myopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,39824,1,4,0)
+ ;;=4^H44.22
+ ;;^UTILITY(U,$J,358.3,39824,2)
+ ;;=^5005988
+ ;;^UTILITY(U,$J,358.3,39825,0)
+ ;;=H33.001^^153^1930^74
+ ;;^UTILITY(U,$J,358.3,39825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39448,1,3,0)
- ;;=3^Traumatic arthropathy, left hand
- ;;^UTILITY(U,$J,358.3,39448,1,4,0)
- ;;=4^M12.542
- ;;^UTILITY(U,$J,358.3,39448,2)
- ;;=^5010629
- ;;^UTILITY(U,$J,358.3,39449,0)
- ;;=M12.552^^183^2023^47
- ;;^UTILITY(U,$J,358.3,39449,1,0)
+ ;;^UTILITY(U,$J,358.3,39825,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
+ ;;^UTILITY(U,$J,358.3,39825,1,4,0)
+ ;;=4^H33.001
+ ;;^UTILITY(U,$J,358.3,39825,2)
+ ;;=^5005490
+ ;;^UTILITY(U,$J,358.3,39826,0)
+ ;;=H33.002^^153^1930^73
+ ;;^UTILITY(U,$J,358.3,39826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39449,1,3,0)
- ;;=3^Traumatic arthropathy, left hip
- ;;^UTILITY(U,$J,358.3,39449,1,4,0)
- ;;=4^M12.552
- ;;^UTILITY(U,$J,358.3,39449,2)
- ;;=^5010632
- ;;^UTILITY(U,$J,358.3,39450,0)
- ;;=M12.562^^183^2023^48
- ;;^UTILITY(U,$J,358.3,39450,1,0)
+ ;;^UTILITY(U,$J,358.3,39826,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
+ ;;^UTILITY(U,$J,358.3,39826,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,39826,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,39827,0)
+ ;;=H33.011^^153^1930^76
+ ;;^UTILITY(U,$J,358.3,39827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39450,1,3,0)
- ;;=3^Traumatic arthropathy, left knee
- ;;^UTILITY(U,$J,358.3,39450,1,4,0)
- ;;=4^M12.562
- ;;^UTILITY(U,$J,358.3,39450,2)
- ;;=^5010635
- ;;^UTILITY(U,$J,358.3,39451,0)
- ;;=M12.512^^183^2023^49
- ;;^UTILITY(U,$J,358.3,39451,1,0)
+ ;;^UTILITY(U,$J,358.3,39827,1,3,0)
+ ;;=3^Retinal Detachment w/ Single Break,Right Eye
+ ;;^UTILITY(U,$J,358.3,39827,1,4,0)
+ ;;=4^H33.011
+ ;;^UTILITY(U,$J,358.3,39827,2)
+ ;;=^5005493
+ ;;^UTILITY(U,$J,358.3,39828,0)
+ ;;=H33.012^^153^1930^75
+ ;;^UTILITY(U,$J,358.3,39828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39451,1,3,0)
- ;;=3^Traumatic arthropathy, left shoulder
- ;;^UTILITY(U,$J,358.3,39451,1,4,0)
- ;;=4^M12.512
- ;;^UTILITY(U,$J,358.3,39451,2)
- ;;=^5010620
- ;;^UTILITY(U,$J,358.3,39452,0)
- ;;=M12.532^^183^2023^50
- ;;^UTILITY(U,$J,358.3,39452,1,0)
+ ;;^UTILITY(U,$J,358.3,39828,1,3,0)
+ ;;=3^Retinal Detachment w/ Single Break,Left Eye
+ ;;^UTILITY(U,$J,358.3,39828,1,4,0)
+ ;;=4^H33.012
+ ;;^UTILITY(U,$J,358.3,39828,2)
+ ;;=^5005494
+ ;;^UTILITY(U,$J,358.3,39829,0)
+ ;;=H33.051^^153^1930^102
+ ;;^UTILITY(U,$J,358.3,39829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39452,1,3,0)
- ;;=3^Traumatic arthropathy, left wrist
- ;;^UTILITY(U,$J,358.3,39452,1,4,0)
- ;;=4^M12.532
- ;;^UTILITY(U,$J,358.3,39452,2)
- ;;=^5010626
- ;;^UTILITY(U,$J,358.3,39453,0)
- ;;=M12.571^^183^2023^51
- ;;^UTILITY(U,$J,358.3,39453,1,0)
+ ;;^UTILITY(U,$J,358.3,39829,1,3,0)
+ ;;=3^Total Retinal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,39829,1,4,0)
+ ;;=4^H33.051
+ ;;^UTILITY(U,$J,358.3,39829,2)
+ ;;=^5005509
+ ;;^UTILITY(U,$J,358.3,39830,0)
+ ;;=H33.052^^153^1930^101
+ ;;^UTILITY(U,$J,358.3,39830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39453,1,3,0)
- ;;=3^Traumatic arthropathy, right ankle and foot
- ;;^UTILITY(U,$J,358.3,39453,1,4,0)
- ;;=4^M12.571
- ;;^UTILITY(U,$J,358.3,39453,2)
- ;;=^5010637
- ;;^UTILITY(U,$J,358.3,39454,0)
- ;;=M12.521^^183^2023^52
- ;;^UTILITY(U,$J,358.3,39454,1,0)
+ ;;^UTILITY(U,$J,358.3,39830,1,3,0)
+ ;;=3^Total Retinal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,39830,1,4,0)
+ ;;=4^H33.052
+ ;;^UTILITY(U,$J,358.3,39830,2)
+ ;;=^5005510
+ ;;^UTILITY(U,$J,358.3,39831,0)
+ ;;=H33.8^^153^1930^77
+ ;;^UTILITY(U,$J,358.3,39831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39454,1,3,0)
- ;;=3^Traumatic arthropathy, right elbow
- ;;^UTILITY(U,$J,358.3,39454,1,4,0)
- ;;=4^M12.521
- ;;^UTILITY(U,$J,358.3,39454,2)
- ;;=^5010622
- ;;^UTILITY(U,$J,358.3,39455,0)
- ;;=M12.541^^183^2023^53
- ;;^UTILITY(U,$J,358.3,39455,1,0)
+ ;;^UTILITY(U,$J,358.3,39831,1,3,0)
+ ;;=3^Retinal Detachments NEC
+ ;;^UTILITY(U,$J,358.3,39831,1,4,0)
+ ;;=4^H33.8
+ ;;^UTILITY(U,$J,358.3,39831,2)
+ ;;=^5005551
+ ;;^UTILITY(U,$J,358.3,39832,0)
+ ;;=H33.101^^153^1930^93
+ ;;^UTILITY(U,$J,358.3,39832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39455,1,3,0)
- ;;=3^Traumatic arthropathy, right hand

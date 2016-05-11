@@ -1,136 +1,136 @@
-IBDEI0ZB ; ; 19-NOV-2015
+IBDEI0ZB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16267,1,4,0)
- ;;=4^N61.
- ;;^UTILITY(U,$J,358.3,16267,2)
- ;;=^5015789
- ;;^UTILITY(U,$J,358.3,16268,0)
- ;;=N63.^^88^845^14
- ;;^UTILITY(U,$J,358.3,16268,1,0)
+ ;;^UTILITY(U,$J,358.3,16596,0)
+ ;;=Z51.5^^67^767^1
+ ;;^UTILITY(U,$J,358.3,16596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16268,1,3,0)
- ;;=3^Breast Lump,Unspec
- ;;^UTILITY(U,$J,358.3,16268,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,16268,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,16269,0)
- ;;=L13.9^^88^845^17
- ;;^UTILITY(U,$J,358.3,16269,1,0)
+ ;;^UTILITY(U,$J,358.3,16596,1,3,0)
+ ;;=3^Hospice/Palliative Care
+ ;;^UTILITY(U,$J,358.3,16596,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,16596,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,16597,0)
+ ;;=B20.^^67^768^2
+ ;;^UTILITY(U,$J,358.3,16597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16269,1,3,0)
- ;;=3^Bullous Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,16269,1,4,0)
- ;;=4^L13.9
- ;;^UTILITY(U,$J,358.3,16269,2)
- ;;=^5009105
- ;;^UTILITY(U,$J,358.3,16270,0)
- ;;=L02.93^^88^845^18
- ;;^UTILITY(U,$J,358.3,16270,1,0)
+ ;;^UTILITY(U,$J,358.3,16597,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,16597,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,16597,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,16598,0)
+ ;;=R65.10^^67^768^3
+ ;;^UTILITY(U,$J,358.3,16598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16270,1,3,0)
- ;;=3^Carbuncle,Unspec
- ;;^UTILITY(U,$J,358.3,16270,1,4,0)
- ;;=4^L02.93
- ;;^UTILITY(U,$J,358.3,16270,2)
- ;;=^5009018
- ;;^UTILITY(U,$J,358.3,16271,0)
- ;;=L03.90^^88^845^19
- ;;^UTILITY(U,$J,358.3,16271,1,0)
+ ;;^UTILITY(U,$J,358.3,16598,1,3,0)
+ ;;=3^SIRS w/o Acute Organ Dysfunction
+ ;;^UTILITY(U,$J,358.3,16598,1,4,0)
+ ;;=4^R65.10
+ ;;^UTILITY(U,$J,358.3,16598,2)
+ ;;=^5019545
+ ;;^UTILITY(U,$J,358.3,16599,0)
+ ;;=R64.^^67^768^1
+ ;;^UTILITY(U,$J,358.3,16599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16271,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,16271,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,16271,2)
- ;;=^5009067
- ;;^UTILITY(U,$J,358.3,16272,0)
- ;;=L94.9^^88^845^20
- ;;^UTILITY(U,$J,358.3,16272,1,0)
+ ;;^UTILITY(U,$J,358.3,16599,1,3,0)
+ ;;=3^Cachexia
+ ;;^UTILITY(U,$J,358.3,16599,1,4,0)
+ ;;=4^R64.
+ ;;^UTILITY(U,$J,358.3,16599,2)
+ ;;=^17920
+ ;;^UTILITY(U,$J,358.3,16600,0)
+ ;;=A41.9^^67^768^4
+ ;;^UTILITY(U,$J,358.3,16600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16272,1,3,0)
- ;;=3^Connective Tissue Disorder,Localized,Unspec
- ;;^UTILITY(U,$J,358.3,16272,1,4,0)
- ;;=4^L94.9
- ;;^UTILITY(U,$J,358.3,16272,2)
- ;;=^5009475
- ;;^UTILITY(U,$J,358.3,16273,0)
- ;;=L84.^^88^845^21
- ;;^UTILITY(U,$J,358.3,16273,1,0)
+ ;;^UTILITY(U,$J,358.3,16600,1,3,0)
+ ;;=3^Sepsis,Unspec Organism (Septicemia)
+ ;;^UTILITY(U,$J,358.3,16600,1,4,0)
+ ;;=4^A41.9
+ ;;^UTILITY(U,$J,358.3,16600,2)
+ ;;=^5000214
+ ;;^UTILITY(U,$J,358.3,16601,0)
+ ;;=F02.81^^67^769^11
+ ;;^UTILITY(U,$J,358.3,16601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16273,1,3,0)
- ;;=3^Corns & Callosities
- ;;^UTILITY(U,$J,358.3,16273,1,4,0)
- ;;=4^L84.
- ;;^UTILITY(U,$J,358.3,16273,2)
- ;;=^271920
- ;;^UTILITY(U,$J,358.3,16274,0)
- ;;=L27.0^^88^845^23
- ;;^UTILITY(U,$J,358.3,16274,1,0)
+ ;;^UTILITY(U,$J,358.3,16601,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16601,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,16601,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,16602,0)
+ ;;=F02.80^^67^769^12
+ ;;^UTILITY(U,$J,358.3,16602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16274,1,3,0)
- ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,General
- ;;^UTILITY(U,$J,358.3,16274,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,16274,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,16275,0)
- ;;=L27.1^^88^845^24
- ;;^UTILITY(U,$J,358.3,16275,1,0)
+ ;;^UTILITY(U,$J,358.3,16602,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16602,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,16602,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,16603,0)
+ ;;=F03.91^^67^769^13
+ ;;^UTILITY(U,$J,358.3,16603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16275,1,3,0)
- ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,Local
- ;;^UTILITY(U,$J,358.3,16275,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,16275,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,16276,0)
- ;;=L27.2^^88^845^25
- ;;^UTILITY(U,$J,358.3,16276,1,0)
+ ;;^UTILITY(U,$J,358.3,16603,1,3,0)
+ ;;=3^Dementia w/ Behav Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,16603,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,16603,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,16604,0)
+ ;;=G31.83^^67^769^14
+ ;;^UTILITY(U,$J,358.3,16604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16276,1,3,0)
- ;;=3^Dermatitis d/t Ingested Food
- ;;^UTILITY(U,$J,358.3,16276,1,4,0)
- ;;=4^L27.2
- ;;^UTILITY(U,$J,358.3,16276,2)
- ;;=^5009146
- ;;^UTILITY(U,$J,358.3,16277,0)
- ;;=L58.0^^88^845^26
- ;;^UTILITY(U,$J,358.3,16277,1,0)
+ ;;^UTILITY(U,$J,358.3,16604,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,16604,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,16604,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,16605,0)
+ ;;=F03.90^^67^769^15
+ ;;^UTILITY(U,$J,358.3,16605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16277,1,3,0)
- ;;=3^Dermatitis d/t Radiation,Acute
- ;;^UTILITY(U,$J,358.3,16277,1,4,0)
- ;;=4^L58.0
- ;;^UTILITY(U,$J,358.3,16277,2)
- ;;=^5009228
- ;;^UTILITY(U,$J,358.3,16278,0)
- ;;=L58.1^^88^845^27
- ;;^UTILITY(U,$J,358.3,16278,1,0)
+ ;;^UTILITY(U,$J,358.3,16605,1,3,0)
+ ;;=3^Dementia w/o Behav Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,16605,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,16605,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,16606,0)
+ ;;=F01.51^^67^769^30
+ ;;^UTILITY(U,$J,358.3,16606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16278,1,3,0)
- ;;=3^Dermatitis d/t Radiation,Chronic
- ;;^UTILITY(U,$J,358.3,16278,1,4,0)
- ;;=4^L58.1
- ;;^UTILITY(U,$J,358.3,16278,2)
- ;;=^5009229
- ;;^UTILITY(U,$J,358.3,16279,0)
- ;;=L58.9^^88^845^22
- ;;^UTILITY(U,$J,358.3,16279,1,0)
+ ;;^UTILITY(U,$J,358.3,16606,1,3,0)
+ ;;=3^Vascular Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16606,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,16606,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,16607,0)
+ ;;=F01.50^^67^769^31
+ ;;^UTILITY(U,$J,358.3,16607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16279,1,3,0)
- ;;=3^Dermatitis d/t  Radiation,Unspec
- ;;^UTILITY(U,$J,358.3,16279,1,4,0)
- ;;=4^L58.9
- ;;^UTILITY(U,$J,358.3,16279,2)
- ;;=^5009230
- ;;^UTILITY(U,$J,358.3,16280,0)
- ;;=L27.9^^88^845^28
- ;;^UTILITY(U,$J,358.3,16280,1,0)
+ ;;^UTILITY(U,$J,358.3,16607,1,3,0)
+ ;;=3^Vascular Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16607,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,16607,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,16608,0)
+ ;;=A81.9^^67^769^6
+ ;;^UTILITY(U,$J,358.3,16608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16280,1,3,0)
- ;;=3^Dermatitis d/t Unspec Subs Taken Internally
- ;;^UTILITY(U,$J,358.3,16280,1,4,0)
- ;;=4^L27.9
+ ;;^UTILITY(U,$J,358.3,16608,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,16608,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,16608,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,16609,0)
+ ;;=A81.09^^67^769^8

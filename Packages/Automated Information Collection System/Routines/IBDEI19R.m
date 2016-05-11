@@ -1,126 +1,136 @@
-IBDEI19R ; ; 19-NOV-2015
+IBDEI19R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21219,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff l nondom side
- ;;^UTILITY(U,$J,358.3,21219,1,4,0)
- ;;=4^I69.244
- ;;^UTILITY(U,$J,358.3,21219,2)
- ;;=^5007471
- ;;^UTILITY(U,$J,358.3,21220,0)
- ;;=G35.^^101^1027^78
- ;;^UTILITY(U,$J,358.3,21220,1,0)
+ ;;^UTILITY(U,$J,358.3,21588,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,21588,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,21588,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,21589,0)
+ ;;=F17.299^^87^965^40
+ ;;^UTILITY(U,$J,358.3,21589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21220,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,21220,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,21220,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,21221,0)
- ;;=G20.^^101^1027^79
- ;;^UTILITY(U,$J,358.3,21221,1,0)
+ ;;^UTILITY(U,$J,358.3,21589,1,3,0)
+ ;;=3^Nicotine Dependence,E-Cigarettes
+ ;;^UTILITY(U,$J,358.3,21589,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,21589,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,21590,0)
+ ;;=Z51.81^^87^966^17
+ ;;^UTILITY(U,$J,358.3,21590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21221,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,21221,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,21221,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,21222,0)
- ;;=G21.4^^101^1027^80
- ;;^UTILITY(U,$J,358.3,21222,1,0)
+ ;;^UTILITY(U,$J,358.3,21590,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,21590,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,21590,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,21591,0)
+ ;;=Z02.79^^87^966^11
+ ;;^UTILITY(U,$J,358.3,21591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21222,1,3,0)
- ;;=3^Vascular parkinsonism
- ;;^UTILITY(U,$J,358.3,21222,1,4,0)
- ;;=4^G21.4
- ;;^UTILITY(U,$J,358.3,21222,2)
- ;;=^5003776
- ;;^UTILITY(U,$J,358.3,21223,0)
- ;;=I69.051^^101^1027^48
- ;;^UTILITY(U,$J,358.3,21223,1,0)
+ ;;^UTILITY(U,$J,358.3,21591,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,21591,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,21591,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,21592,0)
+ ;;=Z76.0^^87^966^12
+ ;;^UTILITY(U,$J,358.3,21592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21223,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff right dominant side
- ;;^UTILITY(U,$J,358.3,21223,1,4,0)
- ;;=4^I69.051
- ;;^UTILITY(U,$J,358.3,21223,2)
- ;;=^5007409
- ;;^UTILITY(U,$J,358.3,21224,0)
- ;;=I69.052^^101^1027^46
- ;;^UTILITY(U,$J,358.3,21224,1,0)
+ ;;^UTILITY(U,$J,358.3,21592,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,21592,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,21592,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,21593,0)
+ ;;=Z04.9^^87^966^3
+ ;;^UTILITY(U,$J,358.3,21593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21224,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff left dominant side
- ;;^UTILITY(U,$J,358.3,21224,1,4,0)
- ;;=4^I69.052
- ;;^UTILITY(U,$J,358.3,21224,2)
- ;;=^5007410
- ;;^UTILITY(U,$J,358.3,21225,0)
- ;;=I69.053^^101^1027^49
- ;;^UTILITY(U,$J,358.3,21225,1,0)
+ ;;^UTILITY(U,$J,358.3,21593,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,21593,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,21593,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,21594,0)
+ ;;=Z02.2^^87^966^4
+ ;;^UTILITY(U,$J,358.3,21594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21225,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff right nondom side
- ;;^UTILITY(U,$J,358.3,21225,1,4,0)
- ;;=4^I69.053
- ;;^UTILITY(U,$J,358.3,21225,2)
- ;;=^5007411
- ;;^UTILITY(U,$J,358.3,21226,0)
- ;;=I69.054^^101^1027^47
- ;;^UTILITY(U,$J,358.3,21226,1,0)
+ ;;^UTILITY(U,$J,358.3,21594,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,21594,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,21594,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,21595,0)
+ ;;=Z02.4^^87^966^5
+ ;;^UTILITY(U,$J,358.3,21595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21226,1,3,0)
- ;;=3^Hemiplga fol ntrm subarach hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,21226,1,4,0)
- ;;=4^I69.054
- ;;^UTILITY(U,$J,358.3,21226,2)
- ;;=^5007412
- ;;^UTILITY(U,$J,358.3,21227,0)
- ;;=I50.41^^101^1028^1
- ;;^UTILITY(U,$J,358.3,21227,1,0)
+ ;;^UTILITY(U,$J,358.3,21595,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,21595,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,21595,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,21596,0)
+ ;;=Z00.5^^87^966^7
+ ;;^UTILITY(U,$J,358.3,21596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21227,1,3,0)
- ;;=3^Acute combined systolic and diastolic (congestive) hrt fail
- ;;^UTILITY(U,$J,358.3,21227,1,4,0)
- ;;=4^I50.41
- ;;^UTILITY(U,$J,358.3,21227,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,21228,0)
- ;;=I50.31^^101^1028^2
- ;;^UTILITY(U,$J,358.3,21228,1,0)
+ ;;^UTILITY(U,$J,358.3,21596,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,21596,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,21596,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,21597,0)
+ ;;=Z02.3^^87^966^6
+ ;;^UTILITY(U,$J,358.3,21597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21228,1,3,0)
- ;;=3^Acute diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,21228,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,21228,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,21229,0)
- ;;=I50.43^^101^1028^3
- ;;^UTILITY(U,$J,358.3,21229,1,0)
+ ;;^UTILITY(U,$J,358.3,21597,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,21597,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,21597,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,21598,0)
+ ;;=Z02.89^^87^966^1
+ ;;^UTILITY(U,$J,358.3,21598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21229,1,3,0)
- ;;=3^Acute on chronic combined systolic and diastolic hrt fail
- ;;^UTILITY(U,$J,358.3,21229,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,21229,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,21230,0)
- ;;=I50.33^^101^1028^4
- ;;^UTILITY(U,$J,358.3,21230,1,0)
+ ;;^UTILITY(U,$J,358.3,21598,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,21598,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,21598,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,21599,0)
+ ;;=Z00.8^^87^966^8
+ ;;^UTILITY(U,$J,358.3,21599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21230,1,3,0)
- ;;=3^Acute on chronic diastolic (congestive) heart failure
- ;;^UTILITY(U,$J,358.3,21230,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,21230,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,21231,0)
- ;;=I50.23^^101^1028^5
- ;;^UTILITY(U,$J,358.3,21231,1,0)
+ ;;^UTILITY(U,$J,358.3,21599,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,21599,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,21599,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,21600,0)
+ ;;=Z02.1^^87^966^14
+ ;;^UTILITY(U,$J,358.3,21600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21231,1,3,0)
- ;;=3^Acute on chronic systolic (congestive) heart failure
+ ;;^UTILITY(U,$J,358.3,21600,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,21600,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,21600,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,21601,0)
+ ;;=Z01.810^^87^966^2
+ ;;^UTILITY(U,$J,358.3,21601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21601,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam

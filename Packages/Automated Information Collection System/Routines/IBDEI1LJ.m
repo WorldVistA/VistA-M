@@ -1,134 +1,132 @@
-IBDEI1LJ ; ; 19-NOV-2015
+IBDEI1LJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26701,1,4,0)
- ;;=4^H55.89
- ;;^UTILITY(U,$J,358.3,26701,2)
- ;;=^5006374
- ;;^UTILITY(U,$J,358.3,26702,0)
- ;;=H53.451^^130^1296^27
- ;;^UTILITY(U,$J,358.3,26702,1,0)
+ ;;^UTILITY(U,$J,358.3,27059,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,27059,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,27060,0)
+ ;;=F95.8^^100^1309^17
+ ;;^UTILITY(U,$J,358.3,27060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26702,1,3,0)
- ;;=3^Localized Visual Field Defect OD NEC
- ;;^UTILITY(U,$J,358.3,26702,1,4,0)
- ;;=4^H53.451
- ;;^UTILITY(U,$J,358.3,26702,2)
- ;;=^5006337
- ;;^UTILITY(U,$J,358.3,26703,0)
- ;;=H53.452^^130^1296^28
- ;;^UTILITY(U,$J,358.3,26703,1,0)
+ ;;^UTILITY(U,$J,358.3,27060,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,27060,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,27060,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,27061,0)
+ ;;=F95.9^^100^1309^18
+ ;;^UTILITY(U,$J,358.3,27061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26703,1,3,0)
- ;;=3^Localized Visual Field Defect OS NEC
- ;;^UTILITY(U,$J,358.3,26703,1,4,0)
- ;;=4^H53.452
- ;;^UTILITY(U,$J,358.3,26703,2)
- ;;=^5006338
- ;;^UTILITY(U,$J,358.3,26704,0)
- ;;=H53.453^^130^1296^26
- ;;^UTILITY(U,$J,358.3,26704,1,0)
+ ;;^UTILITY(U,$J,358.3,27061,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27061,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,27061,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,27062,0)
+ ;;=F95.2^^100^1309^19
+ ;;^UTILITY(U,$J,358.3,27062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26704,1,3,0)
- ;;=3^Localized Visual Field Defect Bilateral NEC
- ;;^UTILITY(U,$J,358.3,26704,1,4,0)
- ;;=4^H53.453
- ;;^UTILITY(U,$J,358.3,26704,2)
- ;;=^5006339
- ;;^UTILITY(U,$J,358.3,26705,0)
- ;;=H53.69^^130^1296^32
- ;;^UTILITY(U,$J,358.3,26705,1,0)
+ ;;^UTILITY(U,$J,358.3,27062,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,27062,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,27062,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,27063,0)
+ ;;=F15.929^^100^1310^7
+ ;;^UTILITY(U,$J,358.3,27063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26705,1,3,0)
- ;;=3^Night Blindness NEC
- ;;^UTILITY(U,$J,358.3,26705,1,4,0)
- ;;=4^H53.69
- ;;^UTILITY(U,$J,358.3,26705,2)
- ;;=^87726
- ;;^UTILITY(U,$J,358.3,26706,0)
- ;;=H53.19^^130^1296^63
- ;;^UTILITY(U,$J,358.3,26706,1,0)
+ ;;^UTILITY(U,$J,358.3,27063,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,27063,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,27063,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,27064,0)
+ ;;=F15.93^^100^1310^8
+ ;;^UTILITY(U,$J,358.3,27064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26706,1,3,0)
- ;;=3^Subjective Visual Disturbances NEC
- ;;^UTILITY(U,$J,358.3,26706,1,4,0)
- ;;=4^H53.19
- ;;^UTILITY(U,$J,358.3,26706,2)
- ;;=^5006321
- ;;^UTILITY(U,$J,358.3,26707,0)
- ;;=H52.521^^130^1296^37
- ;;^UTILITY(U,$J,358.3,26707,1,0)
+ ;;^UTILITY(U,$J,358.3,27064,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,27064,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,27064,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,27065,0)
+ ;;=F15.180^^100^1310^1
+ ;;^UTILITY(U,$J,358.3,27065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26707,1,3,0)
- ;;=3^Paresis of Accommodation OD
- ;;^UTILITY(U,$J,358.3,26707,1,4,0)
- ;;=4^H52.521
- ;;^UTILITY(U,$J,358.3,26707,2)
- ;;=^5006282
- ;;^UTILITY(U,$J,358.3,26708,0)
- ;;=H52.522^^130^1296^38
- ;;^UTILITY(U,$J,358.3,26708,1,0)
+ ;;^UTILITY(U,$J,358.3,27065,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,27065,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,27065,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,27066,0)
+ ;;=F15.280^^100^1310^2
+ ;;^UTILITY(U,$J,358.3,27066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26708,1,3,0)
- ;;=3^Paresis of Accommodation OS
- ;;^UTILITY(U,$J,358.3,26708,1,4,0)
- ;;=4^H52.522
- ;;^UTILITY(U,$J,358.3,26708,2)
- ;;=^5006283
- ;;^UTILITY(U,$J,358.3,26709,0)
- ;;=H52.523^^130^1296^39
- ;;^UTILITY(U,$J,358.3,26709,1,0)
+ ;;^UTILITY(U,$J,358.3,27066,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,27066,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,27066,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,27067,0)
+ ;;=F15.980^^100^1310^3
+ ;;^UTILITY(U,$J,358.3,27067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26709,1,3,0)
- ;;=3^Paresis of Accommodation,Bilateral
- ;;^UTILITY(U,$J,358.3,26709,1,4,0)
- ;;=4^H52.523
- ;;^UTILITY(U,$J,358.3,26709,2)
- ;;=^5006284
- ;;^UTILITY(U,$J,358.3,26710,0)
- ;;=Z87.820^^130^1296^40
- ;;^UTILITY(U,$J,358.3,26710,1,0)
+ ;;^UTILITY(U,$J,358.3,27067,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,27067,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,27067,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,27068,0)
+ ;;=F15.182^^100^1310^4
+ ;;^UTILITY(U,$J,358.3,27068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26710,1,3,0)
- ;;=3^Personal Hx of Traumatic Brain Injury
- ;;^UTILITY(U,$J,358.3,26710,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,26710,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,26711,0)
- ;;=H55.81^^130^1296^43
- ;;^UTILITY(U,$J,358.3,26711,1,0)
+ ;;^UTILITY(U,$J,358.3,27068,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,27068,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,27068,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,27069,0)
+ ;;=F15.282^^100^1310^5
+ ;;^UTILITY(U,$J,358.3,27069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26711,1,3,0)
- ;;=3^Saccadic Eye Movements
- ;;^UTILITY(U,$J,358.3,26711,1,4,0)
- ;;=4^H55.81
- ;;^UTILITY(U,$J,358.3,26711,2)
- ;;=^5006373
- ;;^UTILITY(U,$J,358.3,26712,0)
- ;;=H53.423^^130^1296^49
- ;;^UTILITY(U,$J,358.3,26712,1,0)
+ ;;^UTILITY(U,$J,358.3,27069,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,27069,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,27069,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,27070,0)
+ ;;=F15.982^^100^1310^6
+ ;;^UTILITY(U,$J,358.3,27070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26712,1,3,0)
- ;;=3^Scotoma of Blind Spot Area,Bilateral
- ;;^UTILITY(U,$J,358.3,26712,1,4,0)
- ;;=4^H53.423
- ;;^UTILITY(U,$J,358.3,26712,2)
- ;;=^5006331
- ;;^UTILITY(U,$J,358.3,26713,0)
- ;;=H53.421^^130^1296^47
- ;;^UTILITY(U,$J,358.3,26713,1,0)
+ ;;^UTILITY(U,$J,358.3,27070,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,27070,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,27070,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,27071,0)
+ ;;=F15.99^^100^1310^9
+ ;;^UTILITY(U,$J,358.3,27071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26713,1,3,0)
- ;;=3^Scotoma of Blind Spot Area OD
- ;;^UTILITY(U,$J,358.3,26713,1,4,0)
- ;;=4^H53.421
- ;;^UTILITY(U,$J,358.3,26713,2)
- ;;=^5006329
- ;;^UTILITY(U,$J,358.3,26714,0)
- ;;=H53.422^^130^1296^48
- ;;^UTILITY(U,$J,358.3,26714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26714,1,3,0)
- ;;=3^Scotoma of Blind Spot Area OS
+ ;;^UTILITY(U,$J,358.3,27071,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27071,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,27071,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,27072,0)
+ ;;=98960^^101^1311^13^^^^1
+ ;;^UTILITY(U,$J,358.3,27072,1,0)
+ ;;=^358.31IA^2^2

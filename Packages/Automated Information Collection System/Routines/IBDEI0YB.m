@@ -1,134 +1,140 @@
-IBDEI0YB ; ; 19-NOV-2015
+IBDEI0YB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15808,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,15808,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,15809,0)
- ;;=N43.3^^85^826^22
- ;;^UTILITY(U,$J,358.3,15809,1,0)
+ ;;^UTILITY(U,$J,358.3,16111,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,16112,0)
+ ;;=C34.92^^61^722^1
+ ;;^UTILITY(U,$J,358.3,16112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15809,1,3,0)
- ;;=3^Hydrocele,Unspec
- ;;^UTILITY(U,$J,358.3,15809,1,4,0)
- ;;=4^N43.3
- ;;^UTILITY(U,$J,358.3,15809,2)
- ;;=^5015700
- ;;^UTILITY(U,$J,358.3,15810,0)
- ;;=N47.1^^85^826^31
- ;;^UTILITY(U,$J,358.3,15810,1,0)
+ ;;^UTILITY(U,$J,358.3,16112,1,3,0)
+ ;;=3^Malig Neop Bronchus/Lung,Left,Unspec Part
+ ;;^UTILITY(U,$J,358.3,16112,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,16112,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,16113,0)
+ ;;=C76.0^^61^722^3
+ ;;^UTILITY(U,$J,358.3,16113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15810,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,15810,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,15810,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,15811,0)
- ;;=N47.2^^85^826^30
- ;;^UTILITY(U,$J,358.3,15811,1,0)
+ ;;^UTILITY(U,$J,358.3,16113,1,3,0)
+ ;;=3^Malig Neop Head/Face/Neck
+ ;;^UTILITY(U,$J,358.3,16113,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,16113,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,16114,0)
+ ;;=C06.9^^61^722^6
+ ;;^UTILITY(U,$J,358.3,16114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15811,1,3,0)
- ;;=3^Paraphimosis
- ;;^UTILITY(U,$J,358.3,15811,1,4,0)
- ;;=4^N47.2
- ;;^UTILITY(U,$J,358.3,15811,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,15812,0)
- ;;=N52.9^^85^826^16
- ;;^UTILITY(U,$J,358.3,15812,1,0)
+ ;;^UTILITY(U,$J,358.3,16114,1,3,0)
+ ;;=3^Malig Neop Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,16114,1,4,0)
+ ;;=4^C06.9
+ ;;^UTILITY(U,$J,358.3,16114,2)
+ ;;=^5000901
+ ;;^UTILITY(U,$J,358.3,16115,0)
+ ;;=C11.9^^61^722^7
+ ;;^UTILITY(U,$J,358.3,16115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15812,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,15812,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,15812,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,15813,0)
- ;;=N52.8^^85^826^11
- ;;^UTILITY(U,$J,358.3,15813,1,0)
+ ;;^UTILITY(U,$J,358.3,16115,1,3,0)
+ ;;=3^Malig Neop Nasopharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16115,1,4,0)
+ ;;=4^C11.9
+ ;;^UTILITY(U,$J,358.3,16115,2)
+ ;;=^5000911
+ ;;^UTILITY(U,$J,358.3,16116,0)
+ ;;=C10.9^^61^722^8
+ ;;^UTILITY(U,$J,358.3,16116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15813,1,3,0)
- ;;=3^Erectile Dysfunction NEC
- ;;^UTILITY(U,$J,358.3,15813,1,4,0)
- ;;=4^N52.8
- ;;^UTILITY(U,$J,358.3,15813,2)
- ;;=^5015762
- ;;^UTILITY(U,$J,358.3,15814,0)
- ;;=N52.39^^85^826^15
- ;;^UTILITY(U,$J,358.3,15814,1,0)
+ ;;^UTILITY(U,$J,358.3,16116,1,3,0)
+ ;;=3^Malig Neop Oropharynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16116,1,4,0)
+ ;;=4^C10.9
+ ;;^UTILITY(U,$J,358.3,16116,2)
+ ;;=^5000909
+ ;;^UTILITY(U,$J,358.3,16117,0)
+ ;;=C38.4^^61^722^9
+ ;;^UTILITY(U,$J,358.3,16117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15814,1,3,0)
- ;;=3^Erectile Dysfunction,Post-Surgical NEC
- ;;^UTILITY(U,$J,358.3,15814,1,4,0)
- ;;=4^N52.39
- ;;^UTILITY(U,$J,358.3,15814,2)
- ;;=^5015761
- ;;^UTILITY(U,$J,358.3,15815,0)
- ;;=N52.34^^85^826^9
- ;;^UTILITY(U,$J,358.3,15815,1,0)
+ ;;^UTILITY(U,$J,358.3,16117,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,16117,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,16117,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,16118,0)
+ ;;=C45.0^^61^722^15
+ ;;^UTILITY(U,$J,358.3,16118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15815,1,3,0)
- ;;=3^Erectile Dysfunction Following Simple Prostatectomy
- ;;^UTILITY(U,$J,358.3,15815,1,4,0)
- ;;=4^N52.34
- ;;^UTILITY(U,$J,358.3,15815,2)
- ;;=^5015760
- ;;^UTILITY(U,$J,358.3,15816,0)
- ;;=N52.33^^85^826^10
- ;;^UTILITY(U,$J,358.3,15816,1,0)
+ ;;^UTILITY(U,$J,358.3,16118,1,3,0)
+ ;;=3^Mesothelioma of Pleura
+ ;;^UTILITY(U,$J,358.3,16118,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,16118,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,16119,0)
+ ;;=C73.^^61^722^11
+ ;;^UTILITY(U,$J,358.3,16119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15816,1,3,0)
- ;;=3^Erectile Dysfunction Following Urethral Surgery
- ;;^UTILITY(U,$J,358.3,15816,1,4,0)
- ;;=4^N52.33
- ;;^UTILITY(U,$J,358.3,15816,2)
- ;;=^5015759
- ;;^UTILITY(U,$J,358.3,15817,0)
- ;;=N52.32^^85^826^7
- ;;^UTILITY(U,$J,358.3,15817,1,0)
+ ;;^UTILITY(U,$J,358.3,16119,1,3,0)
+ ;;=3^Malig Neop Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,16119,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,16119,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,16120,0)
+ ;;=C02.9^^61^722^13
+ ;;^UTILITY(U,$J,358.3,16120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15817,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Cystectomy
- ;;^UTILITY(U,$J,358.3,15817,1,4,0)
- ;;=4^N52.32
- ;;^UTILITY(U,$J,358.3,15817,2)
- ;;=^5015758
- ;;^UTILITY(U,$J,358.3,15818,0)
- ;;=N52.31^^85^826^8
- ;;^UTILITY(U,$J,358.3,15818,1,0)
+ ;;^UTILITY(U,$J,358.3,16120,1,3,0)
+ ;;=3^Malig Neop Tongue,Unspec
+ ;;^UTILITY(U,$J,358.3,16120,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,16120,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,16121,0)
+ ;;=C33.^^61^722^14
+ ;;^UTILITY(U,$J,358.3,16121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15818,1,3,0)
- ;;=3^Erectile Dysfunction Following Radical Prostatectomy
- ;;^UTILITY(U,$J,358.3,15818,1,4,0)
- ;;=4^N52.31
- ;;^UTILITY(U,$J,358.3,15818,2)
- ;;=^5015757
- ;;^UTILITY(U,$J,358.3,15819,0)
- ;;=N52.2^^85^826^14
- ;;^UTILITY(U,$J,358.3,15819,1,0)
+ ;;^UTILITY(U,$J,358.3,16121,1,3,0)
+ ;;=3^Malig Neop Trachea
+ ;;^UTILITY(U,$J,358.3,16121,1,4,0)
+ ;;=4^C33.
+ ;;^UTILITY(U,$J,358.3,16121,2)
+ ;;=^267135
+ ;;^UTILITY(U,$J,358.3,16122,0)
+ ;;=D70.9^^61^723^3
+ ;;^UTILITY(U,$J,358.3,16122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15819,1,3,0)
- ;;=3^Erectile Dysfunction,Drug-Induced
- ;;^UTILITY(U,$J,358.3,15819,1,4,0)
- ;;=4^N52.2
- ;;^UTILITY(U,$J,358.3,15819,2)
- ;;=^5015756
- ;;^UTILITY(U,$J,358.3,15820,0)
- ;;=N52.02^^85^826^13
- ;;^UTILITY(U,$J,358.3,15820,1,0)
+ ;;^UTILITY(U,$J,358.3,16122,1,3,0)
+ ;;=3^Neutropenia,Unspec
+ ;;^UTILITY(U,$J,358.3,16122,1,4,0)
+ ;;=4^D70.9
+ ;;^UTILITY(U,$J,358.3,16122,2)
+ ;;=^334186
+ ;;^UTILITY(U,$J,358.3,16123,0)
+ ;;=D57.1^^61^723^4
+ ;;^UTILITY(U,$J,358.3,16123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15820,1,3,0)
- ;;=3^Erectile Dysfunction,Corporo-Venous Occlusive
- ;;^UTILITY(U,$J,358.3,15820,1,4,0)
- ;;=4^N52.02
- ;;^UTILITY(U,$J,358.3,15820,2)
- ;;=^5015753
- ;;^UTILITY(U,$J,358.3,15821,0)
- ;;=N52.03^^85^826^12
- ;;^UTILITY(U,$J,358.3,15821,1,0)
+ ;;^UTILITY(U,$J,358.3,16123,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,16123,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,16123,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,16124,0)
+ ;;=D57.00^^61^723^1
+ ;;^UTILITY(U,$J,358.3,16124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15821,1,3,0)
- ;;=3^Erectile Dysfunction,Artrl Insuff/Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,16124,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,16124,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,16124,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,16125,0)
+ ;;=D73.1^^61^723^2
+ ;;^UTILITY(U,$J,358.3,16125,1,0)
+ ;;=^358.31IA^4^2

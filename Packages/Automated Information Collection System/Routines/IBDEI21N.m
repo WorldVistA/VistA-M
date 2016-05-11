@@ -1,132 +1,134 @@
-IBDEI21N ; ; 19-NOV-2015
+IBDEI21N ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34263,0)
- ;;=G45.9^^157^1740^15
- ;;^UTILITY(U,$J,358.3,34263,1,0)
+ ;;^UTILITY(U,$J,358.3,34670,1,4,0)
+ ;;=4^K08.8
+ ;;^UTILITY(U,$J,358.3,34670,2)
+ ;;=^5008467
+ ;;^UTILITY(U,$J,358.3,34671,0)
+ ;;=N39.3^^131^1692^152
+ ;;^UTILITY(U,$J,358.3,34671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34263,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks,Unspec
- ;;^UTILITY(U,$J,358.3,34263,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,34263,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,34264,0)
- ;;=G46.0^^157^1740^7
- ;;^UTILITY(U,$J,358.3,34264,1,0)
+ ;;^UTILITY(U,$J,358.3,34671,1,3,0)
+ ;;=3^Stress Incontinence (Female/Male)
+ ;;^UTILITY(U,$J,358.3,34671,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,34671,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,34672,0)
+ ;;=R26.2^^131^1692^58
+ ;;^UTILITY(U,$J,358.3,34672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34264,1,3,0)
- ;;=3^Middle Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,34264,1,4,0)
- ;;=4^G46.0
- ;;^UTILITY(U,$J,358.3,34264,2)
- ;;=^5003960
- ;;^UTILITY(U,$J,358.3,34265,0)
- ;;=G46.1^^157^1740^2
- ;;^UTILITY(U,$J,358.3,34265,1,0)
+ ;;^UTILITY(U,$J,358.3,34672,1,3,0)
+ ;;=3^Difficulty in Walking NEC
+ ;;^UTILITY(U,$J,358.3,34672,1,4,0)
+ ;;=4^R26.2
+ ;;^UTILITY(U,$J,358.3,34672,2)
+ ;;=^5019306
+ ;;^UTILITY(U,$J,358.3,34673,0)
+ ;;=M54.6^^131^1692^154
+ ;;^UTILITY(U,$J,358.3,34673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34265,1,3,0)
- ;;=3^Anterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,34265,1,4,0)
- ;;=4^G46.1
- ;;^UTILITY(U,$J,358.3,34265,2)
- ;;=^5003961
- ;;^UTILITY(U,$J,358.3,34266,0)
- ;;=G46.2^^157^1740^11
- ;;^UTILITY(U,$J,358.3,34266,1,0)
+ ;;^UTILITY(U,$J,358.3,34673,1,3,0)
+ ;;=3^Thoracic Spine Pain
+ ;;^UTILITY(U,$J,358.3,34673,1,4,0)
+ ;;=4^M54.6
+ ;;^UTILITY(U,$J,358.3,34673,2)
+ ;;=^272507
+ ;;^UTILITY(U,$J,358.3,34674,0)
+ ;;=E66.8^^131^1692^125
+ ;;^UTILITY(U,$J,358.3,34674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34266,1,3,0)
- ;;=3^Posterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,34266,1,4,0)
- ;;=4^G46.2
- ;;^UTILITY(U,$J,358.3,34266,2)
- ;;=^5003962
- ;;^UTILITY(U,$J,358.3,34267,0)
- ;;=G46.3^^157^1740^3
- ;;^UTILITY(U,$J,358.3,34267,1,0)
+ ;;^UTILITY(U,$J,358.3,34674,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,34674,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,34674,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,34675,0)
+ ;;=E66.9^^131^1692^126
+ ;;^UTILITY(U,$J,358.3,34675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34267,1,3,0)
- ;;=3^Brain Stem Stroke Syndrome
- ;;^UTILITY(U,$J,358.3,34267,1,4,0)
- ;;=4^G46.3
- ;;^UTILITY(U,$J,358.3,34267,2)
- ;;=^5003963
- ;;^UTILITY(U,$J,358.3,34268,0)
- ;;=G46.7^^157^1740^6
- ;;^UTILITY(U,$J,358.3,34268,1,0)
+ ;;^UTILITY(U,$J,358.3,34675,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,34675,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,34675,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,34676,0)
+ ;;=F18.120^^131^1692^94
+ ;;^UTILITY(U,$J,358.3,34676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34268,1,3,0)
- ;;=3^Lacunar Syndromes,Other
- ;;^UTILITY(U,$J,358.3,34268,1,4,0)
- ;;=4^G46.7
- ;;^UTILITY(U,$J,358.3,34268,2)
- ;;=^5003967
- ;;^UTILITY(U,$J,358.3,34269,0)
- ;;=G46.8^^157^1740^17
- ;;^UTILITY(U,$J,358.3,34269,1,0)
+ ;;^UTILITY(U,$J,358.3,34676,1,3,0)
+ ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,34676,1,4,0)
+ ;;=4^F18.120
+ ;;^UTILITY(U,$J,358.3,34676,2)
+ ;;=^5003381
+ ;;^UTILITY(U,$J,358.3,34677,0)
+ ;;=G44.1^^131^1692^157
+ ;;^UTILITY(U,$J,358.3,34677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34269,1,3,0)
- ;;=3^Vascular Syndromes of Brain in CVD,Other
- ;;^UTILITY(U,$J,358.3,34269,1,4,0)
- ;;=4^G46.8
- ;;^UTILITY(U,$J,358.3,34269,2)
- ;;=^5003968
- ;;^UTILITY(U,$J,358.3,34270,0)
- ;;=Z86.73^^157^1740^10
- ;;^UTILITY(U,$J,358.3,34270,1,0)
+ ;;^UTILITY(U,$J,358.3,34677,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,34677,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,34677,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,34678,0)
+ ;;=G93.3^^131^1692^144
+ ;;^UTILITY(U,$J,358.3,34678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34270,1,3,0)
- ;;=3^Personal Hx of TIA/Cerebral Inf w/o Resid Deficits
- ;;^UTILITY(U,$J,358.3,34270,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,34270,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,34271,0)
- ;;=G46.4^^157^1740^5
- ;;^UTILITY(U,$J,358.3,34271,1,0)
+ ;;^UTILITY(U,$J,358.3,34678,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,34678,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,34678,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,34679,0)
+ ;;=K08.101^^131^1692^52
+ ;;^UTILITY(U,$J,358.3,34679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34271,1,3,0)
- ;;=3^Cerebellar Stroke Syndrome
- ;;^UTILITY(U,$J,358.3,34271,1,4,0)
- ;;=4^G46.4
- ;;^UTILITY(U,$J,358.3,34271,2)
- ;;=^5003964
- ;;^UTILITY(U,$J,358.3,34272,0)
- ;;=I65.23^^157^1740^8
- ;;^UTILITY(U,$J,358.3,34272,1,0)
+ ;;^UTILITY(U,$J,358.3,34679,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,34679,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,34679,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,34680,0)
+ ;;=K08.102^^131^1692^53
+ ;;^UTILITY(U,$J,358.3,34680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34272,1,3,0)
- ;;=3^Occlusion & Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,34272,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,34272,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,34273,0)
- ;;=I65.29^^157^1740^9
- ;;^UTILITY(U,$J,358.3,34273,1,0)
+ ;;^UTILITY(U,$J,358.3,34680,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,34680,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,34680,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,34681,0)
+ ;;=K08.103^^131^1692^54
+ ;;^UTILITY(U,$J,358.3,34681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34273,1,3,0)
- ;;=3^Occlusion & Stenosis of Unspec Carotid Artery
- ;;^UTILITY(U,$J,358.3,34273,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,34273,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,34274,0)
- ;;=G46.5^^157^1740^12
- ;;^UTILITY(U,$J,358.3,34274,1,0)
+ ;;^UTILITY(U,$J,358.3,34681,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,34681,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,34681,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,34682,0)
+ ;;=K08.104^^131^1692^55
+ ;;^UTILITY(U,$J,358.3,34682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34274,1,3,0)
- ;;=3^Pure Motor Lacunar Syndrome
- ;;^UTILITY(U,$J,358.3,34274,1,4,0)
- ;;=4^G46.5
- ;;^UTILITY(U,$J,358.3,34274,2)
- ;;=^5003965
- ;;^UTILITY(U,$J,358.3,34275,0)
- ;;=G46.6^^157^1740^13
- ;;^UTILITY(U,$J,358.3,34275,1,0)
+ ;;^UTILITY(U,$J,358.3,34682,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,34682,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,34682,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,34683,0)
+ ;;=K08.109^^131^1692^56
+ ;;^UTILITY(U,$J,358.3,34683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34275,1,3,0)
- ;;=3^Pure Sensory Lacunar Syndrome
- ;;^UTILITY(U,$J,358.3,34275,1,4,0)
- ;;=4^G46.6
+ ;;^UTILITY(U,$J,358.3,34683,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec

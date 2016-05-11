@@ -1,136 +1,132 @@
-IBDEI13G ; ; 19-NOV-2015
+IBDEI13G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18266,0)
- ;;=L03.322^^94^905^14
- ;;^UTILITY(U,$J,358.3,18266,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,0)
+ ;;=M00.9^^79^880^88
+ ;;^UTILITY(U,$J,358.3,18594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18266,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,18266,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,18266,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,18267,0)
- ;;=L03.323^^94^905^15
- ;;^UTILITY(U,$J,358.3,18267,1,0)
+ ;;^UTILITY(U,$J,358.3,18594,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,18594,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,18594,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,18595,0)
+ ;;=M86.10^^79^880^7
+ ;;^UTILITY(U,$J,358.3,18595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18267,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,18267,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,18267,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,18268,0)
- ;;=L03.324^^94^905^17
- ;;^UTILITY(U,$J,358.3,18268,1,0)
+ ;;^UTILITY(U,$J,358.3,18595,1,3,0)
+ ;;=3^Acute Osteomyelitis,Unspec Site,NEC
+ ;;^UTILITY(U,$J,358.3,18595,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,18595,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,18596,0)
+ ;;=M86.20^^79^880^97
+ ;;^UTILITY(U,$J,358.3,18596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18268,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,18268,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,18268,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,18269,0)
- ;;=L03.325^^94^905^23
- ;;^UTILITY(U,$J,358.3,18269,1,0)
+ ;;^UTILITY(U,$J,358.3,18596,1,3,0)
+ ;;=3^Subacute Osteomyelitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,18596,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,18596,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,18597,0)
+ ;;=M86.60^^79^880^33
+ ;;^UTILITY(U,$J,358.3,18597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18269,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,18269,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,18269,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,18270,0)
- ;;=L03.326^^94^905^29
- ;;^UTILITY(U,$J,358.3,18270,1,0)
+ ;;^UTILITY(U,$J,358.3,18597,1,3,0)
+ ;;=3^Chronic Osteomyelitis,Unspec Site,NEC
+ ;;^UTILITY(U,$J,358.3,18597,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,18597,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,18598,0)
+ ;;=R50.9^^79^880^52
+ ;;^UTILITY(U,$J,358.3,18598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18270,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,18270,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,18270,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,18271,0)
- ;;=L03.329^^94^905^28
- ;;^UTILITY(U,$J,358.3,18271,1,0)
+ ;;^UTILITY(U,$J,358.3,18598,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,18598,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,18598,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,18599,0)
+ ;;=N70.91^^79^880^90
+ ;;^UTILITY(U,$J,358.3,18599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18271,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,18271,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,18271,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,18272,0)
- ;;=L08.9^^94^905^167
- ;;^UTILITY(U,$J,358.3,18272,1,0)
+ ;;^UTILITY(U,$J,358.3,18599,1,3,0)
+ ;;=3^Salpingitis,Unspec
+ ;;^UTILITY(U,$J,358.3,18599,1,4,0)
+ ;;=4^N70.91
+ ;;^UTILITY(U,$J,358.3,18599,2)
+ ;;=^5015806
+ ;;^UTILITY(U,$J,358.3,18600,0)
+ ;;=N70.93^^79^880^89
+ ;;^UTILITY(U,$J,358.3,18600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18272,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,18272,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,18272,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,18273,0)
- ;;=L11.0^^94^905^9
- ;;^UTILITY(U,$J,358.3,18273,1,0)
+ ;;^UTILITY(U,$J,358.3,18600,1,3,0)
+ ;;=3^Salpingitis & Oophoritis,Unspec
+ ;;^UTILITY(U,$J,358.3,18600,1,4,0)
+ ;;=4^N70.93
+ ;;^UTILITY(U,$J,358.3,18600,2)
+ ;;=^5015808
+ ;;^UTILITY(U,$J,358.3,18601,0)
+ ;;=C77.0^^79^881^8
+ ;;^UTILITY(U,$J,358.3,18601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18273,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,18273,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,18273,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,18274,0)
- ;;=L20.0^^94^905^90
- ;;^UTILITY(U,$J,358.3,18274,1,0)
+ ;;^UTILITY(U,$J,358.3,18601,1,3,0)
+ ;;=3^Secondary Malig Neop of Head/Face/Neck Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18601,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,18601,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,18602,0)
+ ;;=C77.1^^79^881^12
+ ;;^UTILITY(U,$J,358.3,18602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18274,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,18274,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,18274,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,18275,0)
- ;;=L20.81^^94^905^87
- ;;^UTILITY(U,$J,358.3,18275,1,0)
+ ;;^UTILITY(U,$J,358.3,18602,1,3,0)
+ ;;=3^Secondary Malig Neop of Intrathoracic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18602,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,18602,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,18603,0)
+ ;;=C77.2^^79^881^10
+ ;;^UTILITY(U,$J,358.3,18603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18275,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,18275,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,18275,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,18276,0)
- ;;=L20.82^^94^905^150
- ;;^UTILITY(U,$J,358.3,18276,1,0)
+ ;;^UTILITY(U,$J,358.3,18603,1,3,0)
+ ;;=3^Secondary Malig Neop of Intra-Abdominal Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18603,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,18603,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,18604,0)
+ ;;=C77.3^^79^881^1
+ ;;^UTILITY(U,$J,358.3,18604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18276,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,18276,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,18276,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,18277,0)
- ;;=L20.84^^94^905^162
- ;;^UTILITY(U,$J,358.3,18277,1,0)
+ ;;^UTILITY(U,$J,358.3,18604,1,3,0)
+ ;;=3^Secondary Malig Neop of Axilla/Upper Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18604,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,18604,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,18605,0)
+ ;;=C77.4^^79^881^9
+ ;;^UTILITY(U,$J,358.3,18605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18277,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,18277,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,18277,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,18278,0)
- ;;=L20.89^^94^905^85
- ;;^UTILITY(U,$J,358.3,18278,1,0)
+ ;;^UTILITY(U,$J,358.3,18605,1,3,0)
+ ;;=3^Secondary Malig Neop of Inguinal/Lower Limb Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18605,1,4,0)
+ ;;=4^C77.4
+ ;;^UTILITY(U,$J,358.3,18605,2)
+ ;;=^5001331
+ ;;^UTILITY(U,$J,358.3,18606,0)
+ ;;=C77.5^^79^881^11
+ ;;^UTILITY(U,$J,358.3,18606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18278,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,18278,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,18278,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,18279,0)
- ;;=L20.9^^94^905^86
+ ;;^UTILITY(U,$J,358.3,18606,1,3,0)
+ ;;=3^Secondary Malig Neop of Intrapelvic Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18606,1,4,0)
+ ;;=4^C77.5

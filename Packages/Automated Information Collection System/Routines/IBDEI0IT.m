@@ -1,138 +1,138 @@
-IBDEI0IT ; ; 19-NOV-2015
+IBDEI0IT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8454,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,8454,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,8455,0)
- ;;=Z85.828^^55^538^109
- ;;^UTILITY(U,$J,358.3,8455,1,0)
+ ;;^UTILITY(U,$J,358.3,8744,2)
+ ;;=^5004684
+ ;;^UTILITY(U,$J,358.3,8745,0)
+ ;;=H10.412^^41^468^78
+ ;;^UTILITY(U,$J,358.3,8745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8455,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of skin NEC
- ;;^UTILITY(U,$J,358.3,8455,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,8455,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,8456,0)
- ;;=Z79.01^^55^538^45
- ;;^UTILITY(U,$J,358.3,8456,1,0)
+ ;;^UTILITY(U,$J,358.3,8745,1,3,0)
+ ;;=3^Giant Papillary Conjunctivitis,Left Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,8745,1,4,0)
+ ;;=4^H10.412
+ ;;^UTILITY(U,$J,358.3,8745,2)
+ ;;=^5004685
+ ;;^UTILITY(U,$J,358.3,8746,0)
+ ;;=H10.45^^41^468^1
+ ;;^UTILITY(U,$J,358.3,8746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8456,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
- ;;^UTILITY(U,$J,358.3,8456,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,8456,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,8457,0)
- ;;=Z95.1^^55^539^1
- ;;^UTILITY(U,$J,358.3,8457,1,0)
+ ;;^UTILITY(U,$J,358.3,8746,1,3,0)
+ ;;=3^Allergic Conjunctivitis,Chronic NEC
+ ;;^UTILITY(U,$J,358.3,8746,1,4,0)
+ ;;=4^H10.45
+ ;;^UTILITY(U,$J,358.3,8746,2)
+ ;;=^87396
+ ;;^UTILITY(U,$J,358.3,8747,0)
+ ;;=H10.501^^41^468^21
+ ;;^UTILITY(U,$J,358.3,8747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8457,1,3,0)
- ;;=3^Presence of aortocoronary bypass graft
- ;;^UTILITY(U,$J,358.3,8457,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,8457,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,8458,0)
- ;;=Z95.2^^55^539^3
- ;;^UTILITY(U,$J,358.3,8458,1,0)
+ ;;^UTILITY(U,$J,358.3,8747,1,3,0)
+ ;;=3^Blepharoconjunctivitis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8747,1,4,0)
+ ;;=4^H10.501
+ ;;^UTILITY(U,$J,358.3,8747,2)
+ ;;=^5004697
+ ;;^UTILITY(U,$J,358.3,8748,0)
+ ;;=H10.502^^41^468^20
+ ;;^UTILITY(U,$J,358.3,8748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8458,1,3,0)
- ;;=3^Presence of prosthetic heart valve
- ;;^UTILITY(U,$J,358.3,8458,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,8458,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,8459,0)
- ;;=Z95.3^^55^539^4
- ;;^UTILITY(U,$J,358.3,8459,1,0)
+ ;;^UTILITY(U,$J,358.3,8748,1,3,0)
+ ;;=3^Blepharoconjunctivitis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8748,1,4,0)
+ ;;=4^H10.502
+ ;;^UTILITY(U,$J,358.3,8748,2)
+ ;;=^5004698
+ ;;^UTILITY(U,$J,358.3,8749,0)
+ ;;=H11.011^^41^468^4
+ ;;^UTILITY(U,$J,358.3,8749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8459,1,3,0)
- ;;=3^Presence of xenogenic heart valve
- ;;^UTILITY(U,$J,358.3,8459,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,8459,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,8460,0)
- ;;=Z95.0^^55^539^2
- ;;^UTILITY(U,$J,358.3,8460,1,0)
+ ;;^UTILITY(U,$J,358.3,8749,1,3,0)
+ ;;=3^Amyloid Pterygium,Right Eye
+ ;;^UTILITY(U,$J,358.3,8749,1,4,0)
+ ;;=4^H11.011
+ ;;^UTILITY(U,$J,358.3,8749,2)
+ ;;=^5004720
+ ;;^UTILITY(U,$J,358.3,8750,0)
+ ;;=H11.012^^41^468^3
+ ;;^UTILITY(U,$J,358.3,8750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8460,1,3,0)
- ;;=3^Presence of cardiac pacemaker
- ;;^UTILITY(U,$J,358.3,8460,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,8460,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,8461,0)
- ;;=A15.0^^55^540^103
- ;;^UTILITY(U,$J,358.3,8461,1,0)
+ ;;^UTILITY(U,$J,358.3,8750,1,3,0)
+ ;;=3^Amyloid Pterygium,Left Eye
+ ;;^UTILITY(U,$J,358.3,8750,1,4,0)
+ ;;=4^H11.012
+ ;;^UTILITY(U,$J,358.3,8750,2)
+ ;;=^5004721
+ ;;^UTILITY(U,$J,358.3,8751,0)
+ ;;=H11.002^^41^468^140
+ ;;^UTILITY(U,$J,358.3,8751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8461,1,3,0)
- ;;=3^Tuberculosis of lung
- ;;^UTILITY(U,$J,358.3,8461,1,4,0)
- ;;=4^A15.0
- ;;^UTILITY(U,$J,358.3,8461,2)
- ;;=^5000062
- ;;^UTILITY(U,$J,358.3,8462,0)
- ;;=A31.0^^55^540^92
- ;;^UTILITY(U,$J,358.3,8462,1,0)
+ ;;^UTILITY(U,$J,358.3,8751,1,3,0)
+ ;;=3^Pterygium,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8751,1,4,0)
+ ;;=4^H11.002
+ ;;^UTILITY(U,$J,358.3,8751,2)
+ ;;=^5004718
+ ;;^UTILITY(U,$J,358.3,8752,0)
+ ;;=H11.001^^41^468^141
+ ;;^UTILITY(U,$J,358.3,8752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8462,1,3,0)
- ;;=3^Pulmonary mycobacterial infection
- ;;^UTILITY(U,$J,358.3,8462,1,4,0)
- ;;=4^A31.0
- ;;^UTILITY(U,$J,358.3,8462,2)
- ;;=^5000149
- ;;^UTILITY(U,$J,358.3,8463,0)
- ;;=B20.^^55^540^72
- ;;^UTILITY(U,$J,358.3,8463,1,0)
+ ;;^UTILITY(U,$J,358.3,8752,1,3,0)
+ ;;=3^Pterygium,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8752,1,4,0)
+ ;;=4^H11.001
+ ;;^UTILITY(U,$J,358.3,8752,2)
+ ;;=^5004717
+ ;;^UTILITY(U,$J,358.3,8753,0)
+ ;;=H11.151^^41^468^132
+ ;;^UTILITY(U,$J,358.3,8753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8463,1,3,0)
- ;;=3^Human immunodeficiency virus [HIV] disease
- ;;^UTILITY(U,$J,358.3,8463,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,8463,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,8464,0)
- ;;=B02.9^^55^540^110
- ;;^UTILITY(U,$J,358.3,8464,1,0)
+ ;;^UTILITY(U,$J,358.3,8753,1,3,0)
+ ;;=3^Pinguecula,Right Eye
+ ;;^UTILITY(U,$J,358.3,8753,1,4,0)
+ ;;=4^H11.151
+ ;;^UTILITY(U,$J,358.3,8753,2)
+ ;;=^5004761
+ ;;^UTILITY(U,$J,358.3,8754,0)
+ ;;=H11.152^^41^468^131
+ ;;^UTILITY(U,$J,358.3,8754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8464,1,3,0)
- ;;=3^Zoster without complications
- ;;^UTILITY(U,$J,358.3,8464,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,8464,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,8465,0)
- ;;=A60.9^^55^540^26
- ;;^UTILITY(U,$J,358.3,8465,1,0)
+ ;;^UTILITY(U,$J,358.3,8754,1,3,0)
+ ;;=3^Pinguecula,Left Eye
+ ;;^UTILITY(U,$J,358.3,8754,1,4,0)
+ ;;=4^H11.152
+ ;;^UTILITY(U,$J,358.3,8754,2)
+ ;;=^5004762
+ ;;^UTILITY(U,$J,358.3,8755,0)
+ ;;=H11.121^^41^468^34
+ ;;^UTILITY(U,$J,358.3,8755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8465,1,3,0)
- ;;=3^Anogenital herpesviral infection, unspecified
- ;;^UTILITY(U,$J,358.3,8465,1,4,0)
- ;;=4^A60.9
- ;;^UTILITY(U,$J,358.3,8465,2)
- ;;=^5000359
- ;;^UTILITY(U,$J,358.3,8466,0)
- ;;=A60.04^^55^540^71
- ;;^UTILITY(U,$J,358.3,8466,1,0)
+ ;;^UTILITY(U,$J,358.3,8755,1,3,0)
+ ;;=3^Conjunctival Concretions,Right Eye
+ ;;^UTILITY(U,$J,358.3,8755,1,4,0)
+ ;;=4^H11.121
+ ;;^UTILITY(U,$J,358.3,8755,2)
+ ;;=^5004749
+ ;;^UTILITY(U,$J,358.3,8756,0)
+ ;;=H11.122^^41^468^33
+ ;;^UTILITY(U,$J,358.3,8756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8466,1,3,0)
- ;;=3^Herpesviral vulvovaginitis
- ;;^UTILITY(U,$J,358.3,8466,1,4,0)
- ;;=4^A60.04
- ;;^UTILITY(U,$J,358.3,8466,2)
- ;;=^5000356
- ;;^UTILITY(U,$J,358.3,8467,0)
- ;;=A60.01^^55^540^70
- ;;^UTILITY(U,$J,358.3,8467,1,0)
+ ;;^UTILITY(U,$J,358.3,8756,1,3,0)
+ ;;=3^Conjunctival Concretions,Left Eye
+ ;;^UTILITY(U,$J,358.3,8756,1,4,0)
+ ;;=4^H11.122
+ ;;^UTILITY(U,$J,358.3,8756,2)
+ ;;=^5004750
+ ;;^UTILITY(U,$J,358.3,8757,0)
+ ;;=H11.231^^41^468^156
+ ;;^UTILITY(U,$J,358.3,8757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8467,1,3,0)
- ;;=3^Herpesviral infection of penis
- ;;^UTILITY(U,$J,358.3,8467,1,4,0)
- ;;=4^A60.01
- ;;^UTILITY(U,$J,358.3,8467,2)
- ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,8757,1,3,0)
+ ;;=3^Symblepharon,Right Eye
+ ;;^UTILITY(U,$J,358.3,8757,1,4,0)
+ ;;=4^H11.231
+ ;;^UTILITY(U,$J,358.3,8757,2)
+ ;;=^5004773
+ ;;^UTILITY(U,$J,358.3,8758,0)
+ ;;=H11.232^^41^468^155

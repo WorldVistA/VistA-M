@@ -1,7 +1,12 @@
-TIUSRVA ; SLC/JER,AJB - API's for Authorization ; 4/2/09 12:34pm
- ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239**;Jun 20, 1997;Build 4
+TIUSRVA ; SLC/JER,AJB - API's for Authorization ;07/30/14  09:46 [12/4/14 4:01pm]
+ ;;1.0;TEXT INTEGRATION UTILITIES;**19,28,47,80,100,116,152,160,178,175,157,236,234,239,268**;Jun 20, 1997;Build 60
  ;
- ;External reference to File ^AUPNVSIT supported by DBIA 3580
+ ;   DBIA  2056  $$GET1^DIQ
+ ;   DBIA 10141  PATCH^XPDUTL
+ ;   DBIA  2052  FIELD^DID
+ ;
+ ; External reference to File ^AUPNVSIT supported by IA 3580
+ ; $$ISA^USRLM supported by IA 1544
 REQCOS(TIUY,TIUTYP,TIUDA,TIUSER,TIUDT) ; Evaluate cosignature requirement
  ; Initialize return value
  N TIUDPRM
@@ -34,6 +39,8 @@ NEEDCS(TIUDA) ; Does user need a cosigner?
  S TIUD0=$G(^TIU(8925,TIUDA,0)),TIUD12=$G(^(12))
  S SIGNER=$P(TIUD12,U,4),COSIGNER=$P(TIUD12,U,8),XTRASGNR=0
  I (DUZ'=SIGNER),(DUZ'=COSIGNER) S XTRASGNR=+$O(^TIU(8925.7,"AE",+TIUDA,+DUZ,0))
+ ;VMP/DJH *268 no cosigner needed if surrogate for additional signer
+ I '+XTRASGNR S XTRASGNR=$$ASURG^TIUADSIG(TIUDA)
  I +XTRASGNR S TIUY=0
  E  I +$$REQCOSIG^TIULP(+TIUD0,TIUDA,DUZ),(+$P(TIUD12,U,8)'>0) S TIUY=1
  Q +$G(TIUY)
@@ -41,7 +48,7 @@ USRINACT(TIUY,TIUDA) ; Is user inactive?
  S TIUY=+$$GET1^DIQ(200,TIUDA_",",7,"I")
  Q
 AUTHSIGN(TIUY,TIUDA,TIUUSR) ; Has Author signed?
- ; if TIUY = 
+ ; if TIUY =
  ; 0 = Author has NOT signed & TIUUSR = Expected Cosigner
  ; 1 = Author HAS signed or TIUUSR '= Expected Cosigner
  ;
@@ -117,4 +124,19 @@ CANATTCH(TIUY,TIUDA) ; Can this document be attached as an ID Child
  Q
 CANRCV(TIUY,TIUDA) ; Can this document receive an ID Child?
  S TIUY=$$CANDO^TIULP(TIUDA,"ATTACH ID ENTRY")
+ Q
+WORKCHRT(TIUY,TIUDA) ; RPC: Can user print Work or Chart copy of document
+ ; TIUDA=IEN of docmt
+ ;Returns TIUY:
+ ;TIUY = 0^message Can't print at all (fails bus rules)
+ ;TIUY = 1 Can print work copy only
+ ;TIUY = 2 Can print work or chart copy (Param=1 or user is MAS)
+ N CANPRNT,TIUDTYP,TIUDPRM
+ S CANPRNT=$$CANDO^TIULP(TIUDA,"PRINT RECORD")
+ I 'CANPRNT S TIUY=CANPRNT Q
+ S TIUDTYP=+$G(^TIU(8925,TIUDA,0))
+ D DOCPRM^TIULC1(TIUDTYP,.TIUDPRM,TIUDA)
+ I +$P(TIUDPRM(0),U,9) S TIUY=2 Q
+ I +$$ISA^USRLM(DUZ,"MEDICAL INFORMATION SECTION") S TIUY=2 Q
+ S TIUY=1
  Q

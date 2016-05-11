@@ -1,136 +1,144 @@
-IBDEI0FO ; ; 19-NOV-2015
+IBDEI0FO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6922,0)
- ;;=C44.520^^46^455^1
- ;;^UTILITY(U,$J,358.3,6922,1,0)
+ ;;^UTILITY(U,$J,358.3,7233,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,7233,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,7234,0)
+ ;;=Z02.79^^30^405^11
+ ;;^UTILITY(U,$J,358.3,7234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6922,1,3,0)
- ;;=3^SCC Anal Skin
- ;;^UTILITY(U,$J,358.3,6922,1,4,0)
- ;;=4^C44.520
- ;;^UTILITY(U,$J,358.3,6922,2)
- ;;=^5001057
- ;;^UTILITY(U,$J,358.3,6923,0)
- ;;=C44.521^^46^455^2
- ;;^UTILITY(U,$J,358.3,6923,1,0)
+ ;;^UTILITY(U,$J,358.3,7234,1,3,0)
+ ;;=3^Medical Certificate Encounter
+ ;;^UTILITY(U,$J,358.3,7234,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,7234,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,7235,0)
+ ;;=Z71.3^^30^405^7
+ ;;^UTILITY(U,$J,358.3,7235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6923,1,3,0)
- ;;=3^SCC Skin Breast
- ;;^UTILITY(U,$J,358.3,6923,1,4,0)
- ;;=4^C44.521
- ;;^UTILITY(U,$J,358.3,6923,2)
- ;;=^5001058
- ;;^UTILITY(U,$J,358.3,6924,0)
- ;;=C44.529^^46^455^9
- ;;^UTILITY(U,$J,358.3,6924,1,0)
+ ;;^UTILITY(U,$J,358.3,7235,1,3,0)
+ ;;=3^Dietary Counseling
+ ;;^UTILITY(U,$J,358.3,7235,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,7235,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,7236,0)
+ ;;=Z71.7^^30^405^10
+ ;;^UTILITY(U,$J,358.3,7236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6924,1,3,0)
- ;;=3^SCC Skin Oth Part of Trunk
- ;;^UTILITY(U,$J,358.3,6924,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,6924,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,6925,0)
- ;;=C44.622^^46^455^15
- ;;^UTILITY(U,$J,358.3,6925,1,0)
+ ;;^UTILITY(U,$J,358.3,7236,1,3,0)
+ ;;=3^HIV Counseling
+ ;;^UTILITY(U,$J,358.3,7236,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,7236,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,7237,0)
+ ;;=Z71.6^^30^405^15
+ ;;^UTILITY(U,$J,358.3,7237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6925,1,3,0)
- ;;=3^SCC Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,6925,1,4,0)
- ;;=4^C44.622
- ;;^UTILITY(U,$J,358.3,6925,2)
- ;;=^5001070
- ;;^UTILITY(U,$J,358.3,6926,0)
- ;;=C44.629^^46^455^6
- ;;^UTILITY(U,$J,358.3,6926,1,0)
+ ;;^UTILITY(U,$J,358.3,7237,1,3,0)
+ ;;=3^Tobacco Abuse Counseling
+ ;;^UTILITY(U,$J,358.3,7237,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,7237,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,7238,0)
+ ;;=D86.0^^30^406^51
+ ;;^UTILITY(U,$J,358.3,7238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6926,1,3,0)
- ;;=3^SCC Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,6926,1,4,0)
- ;;=4^C44.629
- ;;^UTILITY(U,$J,358.3,6926,2)
- ;;=^5001071
- ;;^UTILITY(U,$J,358.3,6927,0)
- ;;=C44.722^^46^455^14
- ;;^UTILITY(U,$J,358.3,6927,1,0)
+ ;;^UTILITY(U,$J,358.3,7238,1,3,0)
+ ;;=3^Sarcoidosis of Lung
+ ;;^UTILITY(U,$J,358.3,7238,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,7238,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,7239,0)
+ ;;=D86.1^^30^406^53
+ ;;^UTILITY(U,$J,358.3,7239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6927,1,3,0)
- ;;=3^SCC Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,6927,1,4,0)
- ;;=4^C44.722
- ;;^UTILITY(U,$J,358.3,6927,2)
- ;;=^5001082
- ;;^UTILITY(U,$J,358.3,6928,0)
- ;;=C44.729^^46^455^5
- ;;^UTILITY(U,$J,358.3,6928,1,0)
+ ;;^UTILITY(U,$J,358.3,7239,1,3,0)
+ ;;=3^Sarcoidosis of Lymph nodes
+ ;;^UTILITY(U,$J,358.3,7239,1,4,0)
+ ;;=4^D86.1
+ ;;^UTILITY(U,$J,358.3,7239,2)
+ ;;=^5002443
+ ;;^UTILITY(U,$J,358.3,7240,0)
+ ;;=D86.2^^30^406^52
+ ;;^UTILITY(U,$J,358.3,7240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6928,1,3,0)
- ;;=3^SCC Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,6928,1,4,0)
- ;;=4^C44.729
- ;;^UTILITY(U,$J,358.3,6928,2)
- ;;=^5001083
- ;;^UTILITY(U,$J,358.3,6929,0)
- ;;=C44.82^^46^455^10
- ;;^UTILITY(U,$J,358.3,6929,1,0)
+ ;;^UTILITY(U,$J,358.3,7240,1,3,0)
+ ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,7240,1,4,0)
+ ;;=4^D86.2
+ ;;^UTILITY(U,$J,358.3,7240,2)
+ ;;=^5002444
+ ;;^UTILITY(U,$J,358.3,7241,0)
+ ;;=D86.89^^30^406^54
+ ;;^UTILITY(U,$J,358.3,7241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6929,1,3,0)
- ;;=3^SCC Skin Overlapping Sites
- ;;^UTILITY(U,$J,358.3,6929,1,4,0)
- ;;=4^C44.82
- ;;^UTILITY(U,$J,358.3,6929,2)
- ;;=^5001089
- ;;^UTILITY(U,$J,358.3,6930,0)
- ;;=L57.8^^46^455^22
- ;;^UTILITY(U,$J,358.3,6930,1,0)
+ ;;^UTILITY(U,$J,358.3,7241,1,3,0)
+ ;;=3^Sarcoidosis of Other Sites
+ ;;^UTILITY(U,$J,358.3,7241,1,4,0)
+ ;;=4^D86.89
+ ;;^UTILITY(U,$J,358.3,7241,2)
+ ;;=^5002453
+ ;;^UTILITY(U,$J,358.3,7242,0)
+ ;;=D86.9^^30^406^57
+ ;;^UTILITY(U,$J,358.3,7242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6930,1,3,0)
- ;;=3^Skin Changes d/t Chr Exposure to Nonionizing Radiation
- ;;^UTILITY(U,$J,358.3,6930,1,4,0)
- ;;=4^L57.8
- ;;^UTILITY(U,$J,358.3,6930,2)
- ;;=^5009226
- ;;^UTILITY(U,$J,358.3,6931,0)
- ;;=L27.0^^46^455^23
- ;;^UTILITY(U,$J,358.3,6931,1,0)
+ ;;^UTILITY(U,$J,358.3,7242,1,3,0)
+ ;;=3^Sarcoidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,7242,1,4,0)
+ ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,7242,2)
+ ;;=^5002454
+ ;;^UTILITY(U,$J,358.3,7243,0)
+ ;;=D86.86^^30^406^45
+ ;;^UTILITY(U,$J,358.3,7243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6931,1,3,0)
- ;;=3^Skin Eruption,Generalized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,6931,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,6931,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,6932,0)
- ;;=L27.1^^46^455^24
- ;;^UTILITY(U,$J,358.3,6932,1,0)
+ ;;^UTILITY(U,$J,358.3,7243,1,3,0)
+ ;;=3^Sarcoid Arthropathy
+ ;;^UTILITY(U,$J,358.3,7243,1,4,0)
+ ;;=4^D86.86
+ ;;^UTILITY(U,$J,358.3,7243,2)
+ ;;=^5002451
+ ;;^UTILITY(U,$J,358.3,7244,0)
+ ;;=D86.87^^30^406^49
+ ;;^UTILITY(U,$J,358.3,7244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6932,1,3,0)
- ;;=3^Skin Eruption,Localized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,6932,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,6932,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,6933,0)
- ;;=L51.1^^46^455^29
- ;;^UTILITY(U,$J,358.3,6933,1,0)
+ ;;^UTILITY(U,$J,358.3,7244,1,3,0)
+ ;;=3^Sarcoid Myositis
+ ;;^UTILITY(U,$J,358.3,7244,1,4,0)
+ ;;=4^D86.87
+ ;;^UTILITY(U,$J,358.3,7244,2)
+ ;;=^5002452
+ ;;^UTILITY(U,$J,358.3,7245,0)
+ ;;=D86.3^^30^406^55
+ ;;^UTILITY(U,$J,358.3,7245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6933,1,3,0)
- ;;=3^Stevens-Johnson Syndrome
- ;;^UTILITY(U,$J,358.3,6933,1,4,0)
- ;;=4^L51.1
- ;;^UTILITY(U,$J,358.3,6933,2)
- ;;=^336636
- ;;^UTILITY(U,$J,358.3,6934,0)
- ;;=L51.3^^46^455^30
- ;;^UTILITY(U,$J,358.3,6934,1,0)
+ ;;^UTILITY(U,$J,358.3,7245,1,3,0)
+ ;;=3^Sarcoidosis of Skin
+ ;;^UTILITY(U,$J,358.3,7245,1,4,0)
+ ;;=4^D86.3
+ ;;^UTILITY(U,$J,358.3,7245,2)
+ ;;=^5002445
+ ;;^UTILITY(U,$J,358.3,7246,0)
+ ;;=D86.81^^30^406^47
+ ;;^UTILITY(U,$J,358.3,7246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6934,1,3,0)
- ;;=3^Stevens-Johnson Syndrome-Toxic Epdrml Necrolysis Overlap Syndrome
- ;;^UTILITY(U,$J,358.3,6934,1,4,0)
- ;;=4^L51.3
- ;;^UTILITY(U,$J,358.3,6934,2)
- ;;=^336637
- ;;^UTILITY(U,$J,358.3,6935,0)
- ;;=Z12.83^^46^455^19
+ ;;^UTILITY(U,$J,358.3,7246,1,3,0)
+ ;;=3^Sarcoid Meningitis
+ ;;^UTILITY(U,$J,358.3,7246,1,4,0)
+ ;;=4^D86.81
+ ;;^UTILITY(U,$J,358.3,7246,2)
+ ;;=^5002446
+ ;;^UTILITY(U,$J,358.3,7247,0)
+ ;;=D86.82^^30^406^56
+ ;;^UTILITY(U,$J,358.3,7247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7247,1,3,0)
+ ;;=3^Sarcoidosis,Multiple Cranial Nerve Palsies

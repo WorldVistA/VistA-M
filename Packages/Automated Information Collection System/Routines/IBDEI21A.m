@@ -1,126 +1,136 @@
-IBDEI21A ; ; 19-NOV-2015
+IBDEI21A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34076,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,34076,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,34077,0)
- ;;=N07.3^^154^1722^26
- ;;^UTILITY(U,$J,358.3,34077,1,0)
+ ;;^UTILITY(U,$J,358.3,34500,0)
+ ;;=M85.822^^131^1686^86
+ ;;^UTILITY(U,$J,358.3,34500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34077,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,34077,1,4,0)
- ;;=4^N07.3
- ;;^UTILITY(U,$J,358.3,34077,2)
- ;;=^5015562
- ;;^UTILITY(U,$J,358.3,34078,0)
- ;;=N07.4^^154^1722^23
- ;;^UTILITY(U,$J,358.3,34078,1,0)
+ ;;^UTILITY(U,$J,358.3,34500,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,34500,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,34500,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,34501,0)
+ ;;=M85.89^^131^1686^87
+ ;;^UTILITY(U,$J,358.3,34501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34078,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,34078,1,4,0)
- ;;=4^N07.4
- ;;^UTILITY(U,$J,358.3,34078,2)
- ;;=^5015563
- ;;^UTILITY(U,$J,358.3,34079,0)
- ;;=N07.5^^154^1722^27
- ;;^UTILITY(U,$J,358.3,34079,1,0)
+ ;;^UTILITY(U,$J,358.3,34501,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,34501,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,34501,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,34502,0)
+ ;;=M85.88^^131^1686^88
+ ;;^UTILITY(U,$J,358.3,34502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34079,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
- ;;^UTILITY(U,$J,358.3,34079,1,4,0)
- ;;=4^N07.5
- ;;^UTILITY(U,$J,358.3,34079,2)
- ;;=^5015564
- ;;^UTILITY(U,$J,358.3,34080,0)
- ;;=N07.6^^154^1722^22
- ;;^UTILITY(U,$J,358.3,34080,1,0)
+ ;;^UTILITY(U,$J,358.3,34502,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,34502,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,34502,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,34503,0)
+ ;;=M85.871^^131^1686^89
+ ;;^UTILITY(U,$J,358.3,34503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34080,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,34080,1,4,0)
- ;;=4^N07.6
- ;;^UTILITY(U,$J,358.3,34080,2)
- ;;=^5015565
- ;;^UTILITY(U,$J,358.3,34081,0)
- ;;=N07.7^^154^1722^28
- ;;^UTILITY(U,$J,358.3,34081,1,0)
+ ;;^UTILITY(U,$J,358.3,34503,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,34503,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,34503,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,34504,0)
+ ;;=M85.831^^131^1686^90
+ ;;^UTILITY(U,$J,358.3,34504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34081,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
- ;;^UTILITY(U,$J,358.3,34081,1,4,0)
- ;;=4^N07.7
- ;;^UTILITY(U,$J,358.3,34081,2)
- ;;=^5015566
- ;;^UTILITY(U,$J,358.3,34082,0)
- ;;=N07.8^^154^1722^31
- ;;^UTILITY(U,$J,358.3,34082,1,0)
+ ;;^UTILITY(U,$J,358.3,34504,1,3,0)
+ ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,34504,1,4,0)
+ ;;=4^M85.831
+ ;;^UTILITY(U,$J,358.3,34504,2)
+ ;;=^5014480
+ ;;^UTILITY(U,$J,358.3,34505,0)
+ ;;=M85.841^^131^1686^91
+ ;;^UTILITY(U,$J,358.3,34505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34082,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
- ;;^UTILITY(U,$J,358.3,34082,1,4,0)
- ;;=4^N07.8
- ;;^UTILITY(U,$J,358.3,34082,2)
- ;;=^5015567
- ;;^UTILITY(U,$J,358.3,34083,0)
- ;;=N07.9^^154^1722^32
- ;;^UTILITY(U,$J,358.3,34083,1,0)
+ ;;^UTILITY(U,$J,358.3,34505,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,34505,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,34505,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,34506,0)
+ ;;=M85.861^^131^1686^92
+ ;;^UTILITY(U,$J,358.3,34506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34083,1,3,0)
- ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
- ;;^UTILITY(U,$J,358.3,34083,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,34083,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,34084,0)
- ;;=N08.^^154^1722^21
- ;;^UTILITY(U,$J,358.3,34084,1,0)
+ ;;^UTILITY(U,$J,358.3,34506,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,34506,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,34506,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,34507,0)
+ ;;=M85.811^^131^1686^93
+ ;;^UTILITY(U,$J,358.3,34507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34084,1,3,0)
- ;;=3^Glomerular disorders in diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,34084,1,4,0)
- ;;=4^N08.
- ;;^UTILITY(U,$J,358.3,34084,2)
- ;;=^5015569
- ;;^UTILITY(U,$J,358.3,34085,0)
- ;;=C90.00^^154^1723^9
- ;;^UTILITY(U,$J,358.3,34085,1,0)
+ ;;^UTILITY(U,$J,358.3,34507,1,3,0)
+ ;;=3^Osteopenia,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,34507,1,4,0)
+ ;;=4^M85.811
+ ;;^UTILITY(U,$J,358.3,34507,2)
+ ;;=^5014474
+ ;;^UTILITY(U,$J,358.3,34508,0)
+ ;;=M85.851^^131^1686^94
+ ;;^UTILITY(U,$J,358.3,34508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34085,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,34085,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,34085,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,34086,0)
- ;;=C90.01^^154^1723^8
- ;;^UTILITY(U,$J,358.3,34086,1,0)
+ ;;^UTILITY(U,$J,358.3,34508,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,34508,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,34508,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,34509,0)
+ ;;=M85.821^^131^1686^95
+ ;;^UTILITY(U,$J,358.3,34509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34086,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,34086,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,34086,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,34087,0)
- ;;=C90.02^^154^1723^7
- ;;^UTILITY(U,$J,358.3,34087,1,0)
+ ;;^UTILITY(U,$J,358.3,34509,1,3,0)
+ ;;=3^Osteopenia,Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,34509,1,4,0)
+ ;;=4^M85.821
+ ;;^UTILITY(U,$J,358.3,34509,2)
+ ;;=^5014477
+ ;;^UTILITY(U,$J,358.3,34510,0)
+ ;;=M85.80^^131^1686^96
+ ;;^UTILITY(U,$J,358.3,34510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34087,1,3,0)
- ;;=3^Multiple myeloma in relapse
- ;;^UTILITY(U,$J,358.3,34087,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,34087,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,34088,0)
- ;;=E11.29^^154^1723^19
- ;;^UTILITY(U,$J,358.3,34088,1,0)
+ ;;^UTILITY(U,$J,358.3,34510,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,34510,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,34510,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,34511,0)
+ ;;=B02.0^^131^1687^46
+ ;;^UTILITY(U,$J,358.3,34511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34088,1,3,0)
- ;;=3^Type 2 DM w/ Oth Diabetic Kidney Complications
- ;;^UTILITY(U,$J,358.3,34088,1,4,0)
- ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,34511,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,34511,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,34511,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,34512,0)
+ ;;=B02.29^^131^1687^36
+ ;;^UTILITY(U,$J,358.3,34512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34512,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,34512,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,34512,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,34513,0)
+ ;;=F03.90^^131^1687^10

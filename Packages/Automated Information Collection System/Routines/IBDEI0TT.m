@@ -1,134 +1,132 @@
-IBDEI0TT ; ; 19-NOV-2015
+IBDEI0TT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13712,2)
- ;;=^5005943
- ;;^UTILITY(U,$J,358.3,13713,0)
- ;;=H43.23^^80^763^28
- ;;^UTILITY(U,$J,358.3,13713,1,0)
+ ;;^UTILITY(U,$J,358.3,13978,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,13979,0)
+ ;;=M87.111^^53^599^74
+ ;;^UTILITY(U,$J,358.3,13979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13713,1,3,0)
- ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
- ;;^UTILITY(U,$J,358.3,13713,1,4,0)
- ;;=4^H43.23
- ;;^UTILITY(U,$J,358.3,13713,2)
- ;;=^5005944
- ;;^UTILITY(U,$J,358.3,13714,0)
- ;;=H43.11^^80^763^117
- ;;^UTILITY(U,$J,358.3,13714,1,0)
+ ;;^UTILITY(U,$J,358.3,13979,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,13979,1,4,0)
+ ;;=4^M87.111
+ ;;^UTILITY(U,$J,358.3,13979,2)
+ ;;=^5014701
+ ;;^UTILITY(U,$J,358.3,13980,0)
+ ;;=M87.112^^53^599^71
+ ;;^UTILITY(U,$J,358.3,13980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13714,1,3,0)
- ;;=3^Vitreous Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,13714,1,4,0)
- ;;=4^H43.11
- ;;^UTILITY(U,$J,358.3,13714,2)
- ;;=^5005938
- ;;^UTILITY(U,$J,358.3,13715,0)
- ;;=H43.12^^80^763^116
- ;;^UTILITY(U,$J,358.3,13715,1,0)
+ ;;^UTILITY(U,$J,358.3,13980,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,13980,1,4,0)
+ ;;=4^M87.112
+ ;;^UTILITY(U,$J,358.3,13980,2)
+ ;;=^5014702
+ ;;^UTILITY(U,$J,358.3,13981,0)
+ ;;=M87.150^^53^599^72
+ ;;^UTILITY(U,$J,358.3,13981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13715,1,3,0)
- ;;=3^Vitreous Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,13715,1,4,0)
- ;;=4^H43.12
- ;;^UTILITY(U,$J,358.3,13715,2)
- ;;=^5005939
- ;;^UTILITY(U,$J,358.3,13716,0)
- ;;=H43.391^^80^763^120
- ;;^UTILITY(U,$J,358.3,13716,1,0)
+ ;;^UTILITY(U,$J,358.3,13981,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;^UTILITY(U,$J,358.3,13981,1,4,0)
+ ;;=4^M87.150
+ ;;^UTILITY(U,$J,358.3,13981,2)
+ ;;=^5014722
+ ;;^UTILITY(U,$J,358.3,13982,0)
+ ;;=M87.151^^53^599^73
+ ;;^UTILITY(U,$J,358.3,13982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13716,1,3,0)
- ;;=3^Vitreous Opacities,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,13716,1,4,0)
- ;;=4^H43.391
- ;;^UTILITY(U,$J,358.3,13716,2)
- ;;=^5005949
- ;;^UTILITY(U,$J,358.3,13717,0)
- ;;=H43.392^^80^763^119
- ;;^UTILITY(U,$J,358.3,13717,1,0)
+ ;;^UTILITY(U,$J,358.3,13982,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;^UTILITY(U,$J,358.3,13982,1,4,0)
+ ;;=4^M87.151
+ ;;^UTILITY(U,$J,358.3,13982,2)
+ ;;=^5014723
+ ;;^UTILITY(U,$J,358.3,13983,0)
+ ;;=M87.152^^53^599^70
+ ;;^UTILITY(U,$J,358.3,13983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13717,1,3,0)
- ;;=3^Vitreous Opacities,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,13717,1,4,0)
- ;;=4^H43.392
- ;;^UTILITY(U,$J,358.3,13717,2)
- ;;=^5005950
- ;;^UTILITY(U,$J,358.3,13718,0)
- ;;=H43.393^^80^763^118
- ;;^UTILITY(U,$J,358.3,13718,1,0)
+ ;;^UTILITY(U,$J,358.3,13983,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;^UTILITY(U,$J,358.3,13983,1,4,0)
+ ;;=4^M87.152
+ ;;^UTILITY(U,$J,358.3,13983,2)
+ ;;=^5014724
+ ;;^UTILITY(U,$J,358.3,13984,0)
+ ;;=M87.180^^53^599^69
+ ;;^UTILITY(U,$J,358.3,13984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13718,1,3,0)
- ;;=3^Vitreous Opacities,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,13718,1,4,0)
- ;;=4^H43.393
- ;;^UTILITY(U,$J,358.3,13718,2)
- ;;=^5005951
- ;;^UTILITY(U,$J,358.3,13719,0)
- ;;=H43.01^^80^763^123
- ;;^UTILITY(U,$J,358.3,13719,1,0)
+ ;;^UTILITY(U,$J,358.3,13984,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;^UTILITY(U,$J,358.3,13984,1,4,0)
+ ;;=4^M87.180
+ ;;^UTILITY(U,$J,358.3,13984,2)
+ ;;=^5014741
+ ;;^UTILITY(U,$J,358.3,13985,0)
+ ;;=M87.311^^53^599^168
+ ;;^UTILITY(U,$J,358.3,13985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13719,1,3,0)
- ;;=3^Vitreous Prolapse,Right Eye
- ;;^UTILITY(U,$J,358.3,13719,1,4,0)
- ;;=4^H43.01
- ;;^UTILITY(U,$J,358.3,13719,2)
- ;;=^5005934
- ;;^UTILITY(U,$J,358.3,13720,0)
- ;;=H43.02^^80^763^122
- ;;^UTILITY(U,$J,358.3,13720,1,0)
+ ;;^UTILITY(U,$J,358.3,13985,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,13985,1,4,0)
+ ;;=4^M87.311
+ ;;^UTILITY(U,$J,358.3,13985,2)
+ ;;=^5014788
+ ;;^UTILITY(U,$J,358.3,13986,0)
+ ;;=M87.312^^53^599^165
+ ;;^UTILITY(U,$J,358.3,13986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13720,1,3,0)
- ;;=3^Vitreous Prolapse,Left Eye
- ;;^UTILITY(U,$J,358.3,13720,1,4,0)
- ;;=4^H43.02
- ;;^UTILITY(U,$J,358.3,13720,2)
- ;;=^5005935
- ;;^UTILITY(U,$J,358.3,13721,0)
- ;;=H43.03^^80^763^121
- ;;^UTILITY(U,$J,358.3,13721,1,0)
+ ;;^UTILITY(U,$J,358.3,13986,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,13986,1,4,0)
+ ;;=4^M87.312
+ ;;^UTILITY(U,$J,358.3,13986,2)
+ ;;=^5014789
+ ;;^UTILITY(U,$J,358.3,13987,0)
+ ;;=M87.350^^53^599^166
+ ;;^UTILITY(U,$J,358.3,13987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13721,1,3,0)
- ;;=3^Vitreous Prolapse,Bilateral
- ;;^UTILITY(U,$J,358.3,13721,1,4,0)
- ;;=4^H43.03
- ;;^UTILITY(U,$J,358.3,13721,2)
- ;;=^5005936
- ;;^UTILITY(U,$J,358.3,13722,0)
- ;;=H43.821^^80^763^115
- ;;^UTILITY(U,$J,358.3,13722,1,0)
+ ;;^UTILITY(U,$J,358.3,13987,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,13987,1,4,0)
+ ;;=4^M87.350
+ ;;^UTILITY(U,$J,358.3,13987,2)
+ ;;=^5014809
+ ;;^UTILITY(U,$J,358.3,13988,0)
+ ;;=M87.351^^53^599^167
+ ;;^UTILITY(U,$J,358.3,13988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13722,1,3,0)
- ;;=3^Vitreomacular Adhesion,Right Eye
- ;;^UTILITY(U,$J,358.3,13722,1,4,0)
- ;;=4^H43.821
- ;;^UTILITY(U,$J,358.3,13722,2)
- ;;=^5005957
- ;;^UTILITY(U,$J,358.3,13723,0)
- ;;=H43.822^^80^763^114
- ;;^UTILITY(U,$J,358.3,13723,1,0)
+ ;;^UTILITY(U,$J,358.3,13988,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,13988,1,4,0)
+ ;;=4^M87.351
+ ;;^UTILITY(U,$J,358.3,13988,2)
+ ;;=^5014810
+ ;;^UTILITY(U,$J,358.3,13989,0)
+ ;;=M87.352^^53^599^164
+ ;;^UTILITY(U,$J,358.3,13989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13723,1,3,0)
- ;;=3^Vitreomacular Adhesion,Left Eye
- ;;^UTILITY(U,$J,358.3,13723,1,4,0)
- ;;=4^H43.822
- ;;^UTILITY(U,$J,358.3,13723,2)
- ;;=^5005958
- ;;^UTILITY(U,$J,358.3,13724,0)
- ;;=H43.823^^80^763^113
- ;;^UTILITY(U,$J,358.3,13724,1,0)
+ ;;^UTILITY(U,$J,358.3,13989,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,13989,1,4,0)
+ ;;=4^M87.352
+ ;;^UTILITY(U,$J,358.3,13989,2)
+ ;;=^5014811
+ ;;^UTILITY(U,$J,358.3,13990,0)
+ ;;=M87.811^^53^599^79
+ ;;^UTILITY(U,$J,358.3,13990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13724,1,3,0)
- ;;=3^Vitreomacular Adhesion,Bilateral
- ;;^UTILITY(U,$J,358.3,13724,1,4,0)
- ;;=4^H43.823
- ;;^UTILITY(U,$J,358.3,13724,2)
- ;;=^5005959
- ;;^UTILITY(U,$J,358.3,13725,0)
- ;;=H35.31^^80^763^63
- ;;^UTILITY(U,$J,358.3,13725,1,0)
+ ;;^UTILITY(U,$J,358.3,13990,1,3,0)
+ ;;=3^Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,13990,1,4,0)
+ ;;=4^M87.811
+ ;;^UTILITY(U,$J,358.3,13990,2)
+ ;;=^5014831
+ ;;^UTILITY(U,$J,358.3,13991,0)
+ ;;=M87.812^^53^599^76
+ ;;^UTILITY(U,$J,358.3,13991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13725,1,3,0)
- ;;=3^Nonexudative Age-Related Macular Degeneration
- ;;^UTILITY(U,$J,358.3,13725,1,4,0)
- ;;=4^H35.31
+ ;;^UTILITY(U,$J,358.3,13991,1,3,0)
+ ;;=3^Osteonecrosis,Left Shoulder

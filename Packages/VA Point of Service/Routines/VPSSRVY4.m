@@ -1,0 +1,157 @@
+VPSSRVY4 ;WOIFO/KC - VPS CLINICAL SURVEY QUESTIONNAIRE;11/06/2015 11:23
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**14**;Nov 6, 2015;Build 26
+ ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ; External Reference DBIA#
+ ; ------------------------
+ ; IA #10103 - supported use of XLFDT function 
+ ;
+ QUIT
+ ;
+ADDSRVY(VPSDFN,TID,TRNDT) ;add survey (questionnaire level)
+ N FIL S FIL=853.81
+ N IENS S IENS(1)=TRNDT
+ N SUBS S SUBS="+1,"_TID_","_VPSDFN_","
+ N FDA,FDAERR
+ N FLD S FLD=0
+ ;
+ ; -- fill in FDA with the survey data
+ S FDA(853.81,SUBS,.01)=TRNDT
+ ;
+ ; -- store the survey data
+ D UPDATE^DIE("","FDA","IENS","FDAERR")
+ QUIT $$ERROR(.FDAERR)
+ ;
+ADDRES(VPSDFN,TID,TRNDT,MSURVEY,MODFLG) ;add questionnaire response
+ N FIL S FIL=853.811
+ N SUBS
+ I MODFLG=0 S SUBS="+1,"_TRNDT_","_TID_","_VPSDFN_","
+ E  S SUBS="1,"_TRNDT_","_TID_","_VPSDFN_","
+ N FDA,FDAERR
+ N SEQ,FLD S SEQ=0
+ ;
+ F  S SEQ=$O(MSURVEY(SEQ)) Q:'SEQ  I ",1,9,10,11,"'[(","_SEQ_",") D  QUIT:$D(FDAERR)
+ . S FDA(FIL,SUBS,SEQ)=MSURVEY(SEQ)
+ I $D(FDA) D UPDATE^DIE("E","FDA",,"FDAERR")
+ ;
+ QUIT $$ERROR(.FDAERR)
+ ;
+ADDAPPT(VPSDFN,TID,TRNDT,MSURVEY,MODFLG) ;add survey (questionnaire level)
+ N FIL S FIL=853.8111
+ N SUBS
+ I MODFLG=0 S SUBS="+1,1,"_TRNDT_","_TID_","_VPSDFN_","
+ E  S SUBS="1,1,"_TRNDT_","_TID_","_VPSDFN_","
+ N FDA,FDAERR
+ N FLD S FLD=0
+ N SEQ S SEQ=0
+ ;
+ ; -- fill in FDA with the survey data
+ F  S SEQ=$O(MSURVEY(SEQ)) Q:'SEQ  D  QUIT:$D(FDAERR)
+ . K FDA S FLD=0
+ . F  S FLD=$O(MSURVEY(SEQ,FLD)) QUIT:'FLD  S FDA(FIL,SUBS,FLD)=MSURVEY(SEQ,FLD)
+ . D UPDATE^DIE("E","FDA",,"FDAERR")
+ ; ;
+ ; -- store the survey data
+ QUIT $$ERROR(.FDAERR)
+ ;
+ADDCALC(VPSDFN,TID,TRNDT,MSURVEY,MODFLG) ;add additional calcualted information
+ N FIL S FIL=853.8112
+ N SUBS
+ I MODFLG=0 S SUBS="+1,1,"_TRNDT_","_TID_","_VPSDFN_","
+ E  S SUBS="1,1,"_TRNDT_","_TID_","_VPSDFN_","
+ N FDA,FDAERR
+ N FLD S FLD=0
+ N SEQ S SEQ=0
+ ;
+ ; -- fill in FDA with the survey data
+ F  S SEQ=$O(MSURVEY(SEQ)) Q:'SEQ  D  QUIT:$D(FDAERR)
+ . K FDA S FLD=0
+ . F  S FLD=$O(MSURVEY(SEQ,FLD)) QUIT:'FLD  S FDA(FIL,SUBS,FLD)=MSURVEY(SEQ,FLD)
+ . D UPDATE^DIE("E","FDA",,"FDAERR")
+ ; ;
+ ; -- store the survey data
+ QUIT $$ERROR(.FDAERR)
+ ;
+ADDQUEST(VPSDFN,TID,TRNDT,MSURVEY,ANSSUR,WPFLD,MODFLG) ;add question
+ N FIL S FIL=853.8113
+ N SUBS,SUBWP
+ N ER
+ ;N FDA,FDAERR
+ N WPERR,I
+ ; -- fill in FDA with the survey data
+ S SEQ=0
+ F  S SEQ=$O(MSURVEY(SEQ)) Q:'SEQ  D  QUIT:($D(FDAERR)!$D(WPERR)!($G(ER)))
+ . I MODFLG=0 S SUBS="+1,1,"_TRNDT_","_TID_","_VPSDFN_","
+ . E  S SUBS=SEQ_",1,"_TRNDT_","_TID_","_VPSDFN_","
+ . K FDA S FLD=0
+ . F  S FLD=$O(MSURVEY(SEQ,FLD)) QUIT:'FLD  D
+ .. I '$D(WPFLD(FIL,FLD)) S FDA(FIL,SUBS,FLD)=MSURVEY(SEQ,FLD)
+ .. I $D(WPFLD(FIL,FLD)) D
+ ... N I
+ ... S I=0
+ ... K ^TMP("CSQ ARRAY",$J)
+ ... F  S I=$O(MSURVEY(SEQ,FLD,I)) Q:'I  S ^TMP("CSQ ARRAY",$J,I,0)=MSURVEY(SEQ,FLD,I)
+ . D UPDATE^DIE("E","FDA",,"FDAERR")
+ . S SUBWP=SEQ_",1,"_TRNDT_","_TID_","_VPSDFN_","
+ . K WPERR
+ . D WP^DIE(FIL,SUBWP,2,"","^TMP(""CSQ ARRAY"",$J)","WPERR")
+ . I $D(ANSSUR(SEQ)) D
+ .. I MODFLG=2 D  ;K ^VPS(853.8,VPSDFN,1,TID,1,TRNDT,1,1,3,SEQ,3)
+ ... N DIK,DA
+ ... S DIK="^VPS(853.8,VPSDFN,1,TID,1,TRNDT,1,1,3,SEQ,3,"
+ ... S DA(1)=SEQ,DA(2)=1,DA(3)=TRNDT,DA(4)=TID,DA(5)=VPSDFN
+ ... S DA=" "
+ ... F  S DA=$O(^VPS(853.8,VPSDFN,1,TID,1,TRNDT,1,1,3,SEQ,3,DA),-1) Q:'DA  D ^DIK
+ .. N SQN
+ .. S SQN=""
+ .. F  S SQN=$O(ANSSUR(SEQ,SQN)) Q:SQN=""!($G(ER)]"")  S ER=$$ADDANS(VPSDFN,TID,TRNDT,.ANSSUR,.WPFLD,SEQ,SQN,SUBWP,MODFLG)
+ I '$D(FDAERR),$D(WPERR) G QWPER
+ ;
+ Q:$G(ER)]"" ER
+ QUIT $$ERROR(.FDAERR)
+ ;
+QWPER ;
+ QUIT $$ERROR(.WPERR)
+ ;
+ADDANS(VPSDFN,TID,TRNDT,MSURVEY,WPFLD,SEQ,SQN,SUBS,MODFLG) ;add ANSWER
+ N FIL S FIL=853.81133
+ N FDA,FDAERR
+ N SUBWP,WPERR
+ ; -- fill in FDA with the survey data
+ ;
+ S SUBS="+1,"_SUBS
+ ;I MODFLG<2 S SUBS="+1,"_SUBS
+ ;E  S SUBS=$O(^VPS(853.8,VPSDFN,1,TID,1,TRNDT,1,1,3,SEQ,3," "),-1)_","_SUBS
+ K FDA S FLD=0
+ F  S FLD=$O(MSURVEY(SEQ,SQN,FLD)) QUIT:'FLD!($D(FDAERR))  D
+ . I '$D(WPFLD(FIL,FLD)) D
+ .. I FLD=.03,(MSURVEY(SEQ,SQN,FLD)=3!(MSURVEY(SEQ,SQN,FLD)["O")),$G(MSURVEY(SEQ,SQN,.04))="" S FDAERR("DIERR",1,"TEXT",1)="RESPONDENT NAME is required when RESPONDENT is other" Q
+ .. I '$D(WPFLD(FIL,FLD)) S FDA(FIL,SUBS,FLD)=MSURVEY(SEQ,SQN,FLD)
+ . I $D(WPFLD(FIL,FLD)) D
+ .. N I
+ .. S I=0
+ .. K ^TMP("CSQ ARRAY",$J)
+ .. F  S I=$O(MSURVEY(SEQ,SQN,FLD,I)) Q:'I  S ^TMP("CSQ ARRAY",$J,I,0)=MSURVEY(SEQ,SQN,FLD,I)
+ . Q:$D(FDAERR)
+ G:$D(FDAERR) AAEX
+ N IEN
+ D UPDATE^DIE("E","FDA","IEN","FDAERR")
+ I '$D(FDAERR) D
+ . I $G(IEN(1))="" S IEN(1)=1
+ . I MODFLG<2 S SUBWP=IEN(1)_","_SEQ_",1,"_TRNDT_","_TID_","_VPSDFN_","
+ . E  S SUBWP=$O(^VPS(853.8,VPSDFN,1,TID,1,TRNDT,1,1,3,SEQ,3," "),-1)_","_SEQ_",1,"_TRNDT_","_TID_","_VPSDFN_","
+ . K WPERR
+ . D WP^DIE(FIL,SUBWP,6,"","^TMP(""CSQ ARRAY"",$J)","WPERR")
+ ;
+ I '$D(FDAERR),$D(WPERR) G QWPER
+ ;
+AAEX ;
+ QUIT $$ERROR(.FDAERR)
+ ;
+ERROR(FDAERR) ;return error text
+ QUIT:'$D(FDAERR) ""
+ N ERRNUM S ERRNUM=0
+ S ERRNUM=$O(FDAERR("DIERR",ERRNUM))
+ N ERRTXT S ERRTXT=""
+ S:ERRNUM ERRTXT=FDAERR("DIERR",ERRNUM,"TEXT",1)
+ QUIT ERRTXT

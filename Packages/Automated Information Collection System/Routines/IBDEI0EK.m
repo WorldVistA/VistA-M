@@ -1,134 +1,136 @@
-IBDEI0EK ; ; 19-NOV-2015
+IBDEI0EK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6356,1,0)
+ ;;^UTILITY(U,$J,358.3,6701,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,6702,0)
+ ;;=Z57.8^^30^397^72
+ ;;^UTILITY(U,$J,358.3,6702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6356,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,6356,1,4,0)
- ;;=4^S91.331A
- ;;^UTILITY(U,$J,358.3,6356,2)
- ;;=^5044332
- ;;^UTILITY(U,$J,358.3,6357,0)
- ;;=S71.031A^^40^388^46
- ;;^UTILITY(U,$J,358.3,6357,1,0)
+ ;;^UTILITY(U,$J,358.3,6702,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,6702,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,6702,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,6703,0)
+ ;;=Z77.21^^30^397^53
+ ;;^UTILITY(U,$J,358.3,6703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6357,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,6357,1,4,0)
- ;;=4^S71.031A
- ;;^UTILITY(U,$J,358.3,6357,2)
- ;;=^5036987
- ;;^UTILITY(U,$J,358.3,6358,0)
- ;;=S81.031A^^40^388^49
- ;;^UTILITY(U,$J,358.3,6358,1,0)
+ ;;^UTILITY(U,$J,358.3,6703,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6703,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,6703,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,6704,0)
+ ;;=Z91.81^^30^397^57
+ ;;^UTILITY(U,$J,358.3,6704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6358,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,6358,1,4,0)
- ;;=4^S81.031A
- ;;^UTILITY(U,$J,358.3,6358,2)
- ;;=^5040044
- ;;^UTILITY(U,$J,358.3,6359,0)
- ;;=S81.831A^^40^388^54
- ;;^UTILITY(U,$J,358.3,6359,1,0)
+ ;;^UTILITY(U,$J,358.3,6704,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,6704,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,6704,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,6705,0)
+ ;;=Z91.89^^30^397^118
+ ;;^UTILITY(U,$J,358.3,6705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6359,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,6359,1,4,0)
- ;;=4^S81.831A
- ;;^UTILITY(U,$J,358.3,6359,2)
- ;;=^5040083
- ;;^UTILITY(U,$J,358.3,6360,0)
- ;;=S71.131A^^40^388^60
- ;;^UTILITY(U,$J,358.3,6360,1,0)
+ ;;^UTILITY(U,$J,358.3,6705,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,6705,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,6705,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,6706,0)
+ ;;=Z92.89^^30^397^106
+ ;;^UTILITY(U,$J,358.3,6706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6360,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,6360,1,4,0)
- ;;=4^S71.131A
- ;;^UTILITY(U,$J,358.3,6360,2)
- ;;=^5037026
- ;;^UTILITY(U,$J,358.3,6361,0)
- ;;=Z01.83^^40^389^1
- ;;^UTILITY(U,$J,358.3,6361,1,0)
+ ;;^UTILITY(U,$J,358.3,6706,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,6706,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,6706,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,6707,0)
+ ;;=Z77.110^^30^397^9
+ ;;^UTILITY(U,$J,358.3,6707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6361,1,3,0)
- ;;=3^Encounter for Blood Typing
- ;;^UTILITY(U,$J,358.3,6361,1,4,0)
- ;;=4^Z01.83
- ;;^UTILITY(U,$J,358.3,6361,2)
- ;;=^5062630
- ;;^UTILITY(U,$J,358.3,6362,0)
- ;;=Z01.810^^40^389^2
- ;;^UTILITY(U,$J,358.3,6362,1,0)
+ ;;^UTILITY(U,$J,358.3,6707,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6707,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,6707,2)
+ ;;=^5063314
+ ;;^UTILITY(U,$J,358.3,6708,0)
+ ;;=Z77.112^^30^397^142
+ ;;^UTILITY(U,$J,358.3,6708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6362,1,3,0)
- ;;=3^Encounter for Preproc Cardiovascular Exam
- ;;^UTILITY(U,$J,358.3,6362,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,6362,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,6363,0)
- ;;=Z01.812^^40^389^4
- ;;^UTILITY(U,$J,358.3,6363,1,0)
+ ;;^UTILITY(U,$J,358.3,6708,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6708,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,6708,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,6709,0)
+ ;;=Z77.111^^30^397^148
+ ;;^UTILITY(U,$J,358.3,6709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6363,1,3,0)
- ;;=3^Encounter for Preproc Laboratory Exam
- ;;^UTILITY(U,$J,358.3,6363,1,4,0)
- ;;=4^Z01.812
- ;;^UTILITY(U,$J,358.3,6363,2)
- ;;=^5062627
- ;;^UTILITY(U,$J,358.3,6364,0)
- ;;=Z01.818^^40^389^3
- ;;^UTILITY(U,$J,358.3,6364,1,0)
+ ;;^UTILITY(U,$J,358.3,6709,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6709,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,6709,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,6710,0)
+ ;;=Z77.128^^30^397^119
+ ;;^UTILITY(U,$J,358.3,6710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6364,1,3,0)
- ;;=3^Encounter for Preproc Exam,Unspec
- ;;^UTILITY(U,$J,358.3,6364,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,6364,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,6365,0)
- ;;=Z01.811^^40^389^5
- ;;^UTILITY(U,$J,358.3,6365,1,0)
+ ;;^UTILITY(U,$J,358.3,6710,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6710,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,6710,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,6711,0)
+ ;;=Z77.123^^30^397^140
+ ;;^UTILITY(U,$J,358.3,6711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6365,1,3,0)
- ;;=3^Encounter for Preproc Respiratory Exam
- ;;^UTILITY(U,$J,358.3,6365,1,4,0)
- ;;=4^Z01.811
- ;;^UTILITY(U,$J,358.3,6365,2)
- ;;=^5062626
- ;;^UTILITY(U,$J,358.3,6366,0)
- ;;=99201^^41^390^1
- ;;^UTILITY(U,$J,358.3,6366,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6366,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,6366,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,6367,0)
- ;;=99202^^41^390^2
- ;;^UTILITY(U,$J,358.3,6367,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6367,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,6367,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,6368,0)
- ;;=99203^^41^390^3
- ;;^UTILITY(U,$J,358.3,6368,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6368,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,6368,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,6369,0)
- ;;=99204^^41^390^4
- ;;^UTILITY(U,$J,358.3,6369,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6369,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,6369,1,2,0)
- ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,6711,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6711,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,6711,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,6712,0)
+ ;;=Z77.122^^30^397^68
+ ;;^UTILITY(U,$J,358.3,6712,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6712,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6712,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,6712,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,6713,0)
+ ;;=Z77.118^^30^397^19
+ ;;^UTILITY(U,$J,358.3,6713,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6713,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6713,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,6713,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,6714,0)
+ ;;=Z77.9^^30^397^54
+ ;;^UTILITY(U,$J,358.3,6714,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6714,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6714,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,6714,2)
+ ;;=^5063326

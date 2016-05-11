@@ -1,126 +1,122 @@
-IBDEI1WA ; ; 19-NOV-2015
+IBDEI1WA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31734,1,0)
+ ;;^UTILITY(U,$J,358.3,32171,2)
+ ;;=^5045071
+ ;;^UTILITY(U,$J,358.3,32172,0)
+ ;;=S92.311K^^126^1609^62
+ ;;^UTILITY(U,$J,358.3,32172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31734,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,31734,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,31734,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,31735,0)
- ;;=F10.232^^138^1451^6
- ;;^UTILITY(U,$J,358.3,31735,1,0)
+ ;;^UTILITY(U,$J,358.3,32172,1,3,0)
+ ;;=3^Disp fx of 1st metrsl bone, rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32172,1,4,0)
+ ;;=4^S92.311K
+ ;;^UTILITY(U,$J,358.3,32172,2)
+ ;;=^5045064
+ ;;^UTILITY(U,$J,358.3,32173,0)
+ ;;=S92.302K^^126^1609^206
+ ;;^UTILITY(U,$J,358.3,32173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31735,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,31735,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,31735,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,31736,0)
- ;;=F10.239^^138^1451^7
- ;;^UTILITY(U,$J,358.3,31736,1,0)
+ ;;^UTILITY(U,$J,358.3,32173,1,3,0)
+ ;;=3^Fx of metrsl bone(s), lft ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,32173,1,4,0)
+ ;;=4^S92.302K
+ ;;^UTILITY(U,$J,358.3,32173,2)
+ ;;=^5045057
+ ;;^UTILITY(U,$J,358.3,32174,0)
+ ;;=S92.301K^^126^1609^207
+ ;;^UTILITY(U,$J,358.3,32174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31736,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,31736,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,31736,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,31737,0)
- ;;=F10.24^^138^1451^9
- ;;^UTILITY(U,$J,358.3,31737,1,0)
+ ;;^UTILITY(U,$J,358.3,32174,1,3,0)
+ ;;=3^Fx of metrsl bone(s), rt ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,32174,1,4,0)
+ ;;=4^S92.301K
+ ;;^UTILITY(U,$J,358.3,32174,2)
+ ;;=^5045050
+ ;;^UTILITY(U,$J,358.3,32175,0)
+ ;;=S92.255K^^126^1609^336
+ ;;^UTILITY(U,$J,358.3,32175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31737,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,31737,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,31737,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,31738,0)
- ;;=F10.29^^138^1451^11
- ;;^UTILITY(U,$J,358.3,31738,1,0)
+ ;;^UTILITY(U,$J,358.3,32175,1,3,0)
+ ;;=3^Nondisp fx of navclr lft ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32175,1,4,0)
+ ;;=4^S92.255K
+ ;;^UTILITY(U,$J,358.3,32175,2)
+ ;;=^5045036
+ ;;^UTILITY(U,$J,358.3,32176,0)
+ ;;=S92.254K^^126^1609^337
+ ;;^UTILITY(U,$J,358.3,32176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31738,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31738,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,31738,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,31739,0)
- ;;=F15.10^^138^1452^4
- ;;^UTILITY(U,$J,358.3,31739,1,0)
+ ;;^UTILITY(U,$J,358.3,32176,1,3,0)
+ ;;=3^Nondisp fx of navclr rt ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32176,1,4,0)
+ ;;=4^S92.254K
+ ;;^UTILITY(U,$J,358.3,32176,2)
+ ;;=^5045029
+ ;;^UTILITY(U,$J,358.3,32177,0)
+ ;;=S92.144K^^126^1609^248
+ ;;^UTILITY(U,$J,358.3,32177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31739,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,31739,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,31739,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,31740,0)
- ;;=F15.14^^138^1452^2
- ;;^UTILITY(U,$J,358.3,31740,1,0)
+ ;;^UTILITY(U,$J,358.3,32177,1,3,0)
+ ;;=3^Nondisp dome fx of rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32177,1,4,0)
+ ;;=4^S92.144K
+ ;;^UTILITY(U,$J,358.3,32177,2)
+ ;;=^5044756
+ ;;^UTILITY(U,$J,358.3,32178,0)
+ ;;=S92.524K^^126^1609^333
+ ;;^UTILITY(U,$J,358.3,32178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31740,1,3,0)
- ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31740,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,31740,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,31741,0)
- ;;=F15.182^^138^1452^3
- ;;^UTILITY(U,$J,358.3,31741,1,0)
+ ;;^UTILITY(U,$J,358.3,32178,1,3,0)
+ ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32178,1,4,0)
+ ;;=4^S92.524K
+ ;;^UTILITY(U,$J,358.3,32178,2)
+ ;;=^5045498
+ ;;^UTILITY(U,$J,358.3,32179,0)
+ ;;=S92.145K^^126^1609^246
+ ;;^UTILITY(U,$J,358.3,32179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31741,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,31741,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,31741,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,31742,0)
- ;;=F15.20^^138^1452^5
- ;;^UTILITY(U,$J,358.3,31742,1,0)
+ ;;^UTILITY(U,$J,358.3,32179,1,3,0)
+ ;;=3^Nondisp dome fx of lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32179,1,4,0)
+ ;;=4^S92.145K
+ ;;^UTILITY(U,$J,358.3,32179,2)
+ ;;=^5044763
+ ;;^UTILITY(U,$J,358.3,32180,0)
+ ;;=S92.522K^^126^1609^107
+ ;;^UTILITY(U,$J,358.3,32180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31742,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,31742,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,31742,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,31743,0)
- ;;=F15.21^^138^1452^6
- ;;^UTILITY(U,$J,358.3,31743,1,0)
+ ;;^UTILITY(U,$J,358.3,32180,1,3,0)
+ ;;=3^Disp fx of med phalanx of lft lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32180,1,4,0)
+ ;;=4^S92.522K
+ ;;^UTILITY(U,$J,358.3,32180,2)
+ ;;=^5045484
+ ;;^UTILITY(U,$J,358.3,32181,0)
+ ;;=S92.521K^^126^1609^109
+ ;;^UTILITY(U,$J,358.3,32181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31743,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,31743,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,31743,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,31744,0)
- ;;=F15.23^^138^1452^1
- ;;^UTILITY(U,$J,358.3,31744,1,0)
+ ;;^UTILITY(U,$J,358.3,32181,1,3,0)
+ ;;=3^Disp fx of med phalanx of rt lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32181,1,4,0)
+ ;;=4^S92.521K
+ ;;^UTILITY(U,$J,358.3,32181,2)
+ ;;=^5045477
+ ;;^UTILITY(U,$J,358.3,32182,0)
+ ;;=S92.515K^^126^1609^346
+ ;;^UTILITY(U,$J,358.3,32182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31744,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,31744,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,31744,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,31745,0)
- ;;=F12.10^^138^1453^1
- ;;^UTILITY(U,$J,358.3,31745,1,0)
+ ;;^UTILITY(U,$J,358.3,32182,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of lft lsr toe, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32182,1,4,0)
+ ;;=4^S92.515K
+ ;;^UTILITY(U,$J,358.3,32182,2)
+ ;;=^5045463
+ ;;^UTILITY(U,$J,358.3,32183,0)
+ ;;=S92.514K^^126^1609^350
+ ;;^UTILITY(U,$J,358.3,32183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31745,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,31745,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,31745,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,31746,0)
- ;;=F12.180^^138^1453^2
- ;;^UTILITY(U,$J,358.3,31746,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32183,1,3,0)
+ ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), subs w/ nonunion

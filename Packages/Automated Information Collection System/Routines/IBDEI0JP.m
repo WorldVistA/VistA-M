@@ -1,138 +1,140 @@
-IBDEI0JP ; ; 19-NOV-2015
+IBDEI0JP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8877,0)
- ;;=Z87.01^^55^550^27
- ;;^UTILITY(U,$J,358.3,8877,1,0)
+ ;;^UTILITY(U,$J,358.3,9154,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,9154,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,9155,0)
+ ;;=H34.832^^41^474^64
+ ;;^UTILITY(U,$J,358.3,9155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8877,1,3,0)
- ;;=3^Personal history of pneumonia (recurrent)
- ;;^UTILITY(U,$J,358.3,8877,1,4,0)
- ;;=4^Z87.01
- ;;^UTILITY(U,$J,358.3,8877,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,8878,0)
- ;;=Z86.010^^55^550^3
- ;;^UTILITY(U,$J,358.3,8878,1,0)
+ ;;^UTILITY(U,$J,358.3,9155,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,9155,1,4,0)
+ ;;=4^H34.832
+ ;;^UTILITY(U,$J,358.3,9155,2)
+ ;;=^5005577
+ ;;^UTILITY(U,$J,358.3,9156,0)
+ ;;=H34.831^^41^474^65
+ ;;^UTILITY(U,$J,358.3,9156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8878,1,3,0)
- ;;=3^Personal history of colonic polyps
- ;;^UTILITY(U,$J,358.3,8878,1,4,0)
- ;;=4^Z86.010
- ;;^UTILITY(U,$J,358.3,8878,2)
- ;;=^5063456
- ;;^UTILITY(U,$J,358.3,8879,0)
- ;;=Z87.440^^55^550^28
- ;;^UTILITY(U,$J,358.3,8879,1,0)
+ ;;^UTILITY(U,$J,358.3,9156,1,3,0)
+ ;;=3^Tributary Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,9156,1,4,0)
+ ;;=4^H34.831
+ ;;^UTILITY(U,$J,358.3,9156,2)
+ ;;=^5005576
+ ;;^UTILITY(U,$J,358.3,9157,0)
+ ;;=H53.143^^41^474^75
+ ;;^UTILITY(U,$J,358.3,9157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8879,1,3,0)
- ;;=3^Personal history of urinary (tract) infections
- ;;^UTILITY(U,$J,358.3,8879,1,4,0)
- ;;=4^Z87.440
- ;;^UTILITY(U,$J,358.3,8879,2)
- ;;=^5063495
- ;;^UTILITY(U,$J,358.3,8880,0)
- ;;=Z87.441^^55^550^26
- ;;^UTILITY(U,$J,358.3,8880,1,0)
+ ;;^UTILITY(U,$J,358.3,9157,1,3,0)
+ ;;=3^Visual Discomfort,Bilateral
+ ;;^UTILITY(U,$J,358.3,9157,1,4,0)
+ ;;=4^H53.143
+ ;;^UTILITY(U,$J,358.3,9157,2)
+ ;;=^5006319
+ ;;^UTILITY(U,$J,358.3,9158,0)
+ ;;=H53.142^^41^474^76
+ ;;^UTILITY(U,$J,358.3,9158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8880,1,3,0)
- ;;=3^Personal history of nephrotic syndrome
- ;;^UTILITY(U,$J,358.3,8880,1,4,0)
- ;;=4^Z87.441
- ;;^UTILITY(U,$J,358.3,8880,2)
- ;;=^5063496
- ;;^UTILITY(U,$J,358.3,8881,0)
- ;;=Z91.81^^55^550^1
- ;;^UTILITY(U,$J,358.3,8881,1,0)
+ ;;^UTILITY(U,$J,358.3,9158,1,3,0)
+ ;;=3^Visual Discomfort,Left Eye
+ ;;^UTILITY(U,$J,358.3,9158,1,4,0)
+ ;;=4^H53.142
+ ;;^UTILITY(U,$J,358.3,9158,2)
+ ;;=^5006318
+ ;;^UTILITY(U,$J,358.3,9159,0)
+ ;;=H53.141^^41^474^77
+ ;;^UTILITY(U,$J,358.3,9159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8881,1,3,0)
- ;;=3^History of falling
- ;;^UTILITY(U,$J,358.3,8881,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,8881,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,8882,0)
- ;;=R09.1^^55^551^6
- ;;^UTILITY(U,$J,358.3,8882,1,0)
+ ;;^UTILITY(U,$J,358.3,9159,1,3,0)
+ ;;=3^Visual Discomfort,Right Eye
+ ;;^UTILITY(U,$J,358.3,9159,1,4,0)
+ ;;=4^H53.141
+ ;;^UTILITY(U,$J,358.3,9159,2)
+ ;;=^5006317
+ ;;^UTILITY(U,$J,358.3,9160,0)
+ ;;=C72.31^^41^475^31
+ ;;^UTILITY(U,$J,358.3,9160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8882,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,8882,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,8882,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,8883,0)
- ;;=J91.0^^55^551^3
- ;;^UTILITY(U,$J,358.3,8883,1,0)
+ ;;^UTILITY(U,$J,358.3,9160,1,3,0)
+ ;;=3^Malig Neop of Right Optic Nerve
+ ;;^UTILITY(U,$J,358.3,9160,1,4,0)
+ ;;=4^C72.31
+ ;;^UTILITY(U,$J,358.3,9160,2)
+ ;;=^5001303
+ ;;^UTILITY(U,$J,358.3,9161,0)
+ ;;=C72.32^^41^475^30
+ ;;^UTILITY(U,$J,358.3,9161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8883,1,3,0)
- ;;=3^Malignant pleural effusion
- ;;^UTILITY(U,$J,358.3,8883,1,4,0)
- ;;=4^J91.0
- ;;^UTILITY(U,$J,358.3,8883,2)
- ;;=^336603
- ;;^UTILITY(U,$J,358.3,8884,0)
- ;;=J90.^^55^551^5
- ;;^UTILITY(U,$J,358.3,8884,1,0)
+ ;;^UTILITY(U,$J,358.3,9161,1,3,0)
+ ;;=3^Malig Neop of Left Optic Nerve
+ ;;^UTILITY(U,$J,358.3,9161,1,4,0)
+ ;;=4^C72.32
+ ;;^UTILITY(U,$J,358.3,9161,2)
+ ;;=^5001304
+ ;;^UTILITY(U,$J,358.3,9162,0)
+ ;;=D33.3^^41^475^5
+ ;;^UTILITY(U,$J,358.3,9162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8884,1,3,0)
- ;;=3^Pleural effusion, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,8884,1,4,0)
- ;;=4^J90.
- ;;^UTILITY(U,$J,358.3,8884,2)
- ;;=^5008310
- ;;^UTILITY(U,$J,358.3,8885,0)
- ;;=J91.8^^55^551^4
- ;;^UTILITY(U,$J,358.3,8885,1,0)
+ ;;^UTILITY(U,$J,358.3,9162,1,3,0)
+ ;;=3^Benigh Neop of Cranial Nerves
+ ;;^UTILITY(U,$J,358.3,9162,1,4,0)
+ ;;=4^D33.3
+ ;;^UTILITY(U,$J,358.3,9162,2)
+ ;;=^13298
+ ;;^UTILITY(U,$J,358.3,9163,0)
+ ;;=G24.5^^41^475^8
+ ;;^UTILITY(U,$J,358.3,9163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8885,1,3,0)
- ;;=3^Pleural effusion in other conditions classified elsewhere
- ;;^UTILITY(U,$J,358.3,8885,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,8885,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,8886,0)
- ;;=J93.0^^55^551^10
- ;;^UTILITY(U,$J,358.3,8886,1,0)
+ ;;^UTILITY(U,$J,358.3,9163,1,3,0)
+ ;;=3^Blepharospasm
+ ;;^UTILITY(U,$J,358.3,9163,1,4,0)
+ ;;=4^G24.5
+ ;;^UTILITY(U,$J,358.3,9163,2)
+ ;;=^15293
+ ;;^UTILITY(U,$J,358.3,9164,0)
+ ;;=G43.909^^41^475^32
+ ;;^UTILITY(U,$J,358.3,9164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8886,1,3,0)
- ;;=3^Spontaneous tension pneumothorax
- ;;^UTILITY(U,$J,358.3,8886,1,4,0)
- ;;=4^J93.0
- ;;^UTILITY(U,$J,358.3,8886,2)
- ;;=^269987
- ;;^UTILITY(U,$J,358.3,8887,0)
- ;;=J93.11^^55^551^8
- ;;^UTILITY(U,$J,358.3,8887,1,0)
+ ;;^UTILITY(U,$J,358.3,9164,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,9164,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,9164,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,9165,0)
+ ;;=G93.2^^41^475^6
+ ;;^UTILITY(U,$J,358.3,9165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8887,1,3,0)
- ;;=3^Primary spontaneous pneumothorax
- ;;^UTILITY(U,$J,358.3,8887,1,4,0)
- ;;=4^J93.11
- ;;^UTILITY(U,$J,358.3,8887,2)
- ;;=^340529
- ;;^UTILITY(U,$J,358.3,8888,0)
- ;;=J93.12^^55^551^9
- ;;^UTILITY(U,$J,358.3,8888,1,0)
+ ;;^UTILITY(U,$J,358.3,9165,1,3,0)
+ ;;=3^Benign Intracranial Hypertension
+ ;;^UTILITY(U,$J,358.3,9165,1,4,0)
+ ;;=4^G93.2
+ ;;^UTILITY(U,$J,358.3,9165,2)
+ ;;=^5004180
+ ;;^UTILITY(U,$J,358.3,9166,0)
+ ;;=G50.9^^41^475^55
+ ;;^UTILITY(U,$J,358.3,9166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8888,1,3,0)
- ;;=3^Secondary spontaneous pneumothorax
- ;;^UTILITY(U,$J,358.3,8888,1,4,0)
- ;;=4^J93.12
- ;;^UTILITY(U,$J,358.3,8888,2)
- ;;=^340530
- ;;^UTILITY(U,$J,358.3,8889,0)
- ;;=J93.81^^55^551^2
- ;;^UTILITY(U,$J,358.3,8889,1,0)
+ ;;^UTILITY(U,$J,358.3,9166,1,3,0)
+ ;;=3^Trigeminal Nerve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,9166,1,4,0)
+ ;;=4^G50.9
+ ;;^UTILITY(U,$J,358.3,9166,2)
+ ;;=^5003993
+ ;;^UTILITY(U,$J,358.3,9167,0)
+ ;;=G51.0^^41^475^4
+ ;;^UTILITY(U,$J,358.3,9167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8889,1,3,0)
- ;;=3^Chronic pneumothorax
- ;;^UTILITY(U,$J,358.3,8889,1,4,0)
- ;;=4^J93.81
- ;;^UTILITY(U,$J,358.3,8889,2)
- ;;=^340531
- ;;^UTILITY(U,$J,358.3,8890,0)
- ;;=J93.82^^55^551^1
- ;;^UTILITY(U,$J,358.3,8890,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9167,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,9167,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,9167,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,9168,0)
+ ;;=G51.3^^41^475^10

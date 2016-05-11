@@ -1,134 +1,128 @@
-IBDEI0BT ; ; 19-NOV-2015
+IBDEI0BT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5075,1,2,0)
- ;;=2^Natalizumab Inj 1mg
- ;;^UTILITY(U,$J,358.3,5075,1,4,0)
- ;;=4^J2323
- ;;^UTILITY(U,$J,358.3,5076,0)
- ;;=J9310^^39^348^19^^^^1
- ;;^UTILITY(U,$J,358.3,5076,1,0)
+ ;;^UTILITY(U,$J,358.3,5343,2)
+ ;;=^5015561
+ ;;^UTILITY(U,$J,358.3,5344,0)
+ ;;=N07.3^^27^344^25
+ ;;^UTILITY(U,$J,358.3,5344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5076,1,2,0)
- ;;=2^Rituximab Inj 100mg
- ;;^UTILITY(U,$J,358.3,5076,1,4,0)
- ;;=4^J9310
- ;;^UTILITY(U,$J,358.3,5077,0)
- ;;=J1094^^39^348^5^^^^1
- ;;^UTILITY(U,$J,358.3,5077,1,0)
+ ;;^UTILITY(U,$J,358.3,5344,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5344,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,5344,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,5345,0)
+ ;;=N07.3^^27^344^26
+ ;;^UTILITY(U,$J,358.3,5345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5077,1,2,0)
- ;;=2^Dexamethasone Acetate 1mg
- ;;^UTILITY(U,$J,358.3,5077,1,4,0)
- ;;=4^J1094
- ;;^UTILITY(U,$J,358.3,5078,0)
- ;;=J0256^^39^348^1^^^^1
- ;;^UTILITY(U,$J,358.3,5078,1,0)
+ ;;^UTILITY(U,$J,358.3,5345,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5345,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,5345,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,5346,0)
+ ;;=N07.4^^27^344^23
+ ;;^UTILITY(U,$J,358.3,5346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5078,1,2,0)
- ;;=2^Alpha 1 Proteinase Inhib 10mg
- ;;^UTILITY(U,$J,358.3,5078,1,4,0)
- ;;=4^J0256
- ;;^UTILITY(U,$J,358.3,5079,0)
- ;;=J3370^^39^348^20^^^^1
- ;;^UTILITY(U,$J,358.3,5079,1,0)
+ ;;^UTILITY(U,$J,358.3,5346,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5346,1,4,0)
+ ;;=4^N07.4
+ ;;^UTILITY(U,$J,358.3,5346,2)
+ ;;=^5015563
+ ;;^UTILITY(U,$J,358.3,5347,0)
+ ;;=N07.5^^27^344^27
+ ;;^UTILITY(U,$J,358.3,5347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5079,1,2,0)
- ;;=2^Vancomycin HCL Inj 500mg
- ;;^UTILITY(U,$J,358.3,5079,1,4,0)
- ;;=4^J3370
- ;;^UTILITY(U,$J,358.3,5080,0)
- ;;=J3475^^39^348^15^^^^1
- ;;^UTILITY(U,$J,358.3,5080,1,0)
+ ;;^UTILITY(U,$J,358.3,5347,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5347,1,4,0)
+ ;;=4^N07.5
+ ;;^UTILITY(U,$J,358.3,5347,2)
+ ;;=^5015564
+ ;;^UTILITY(U,$J,358.3,5348,0)
+ ;;=N07.6^^27^344^22
+ ;;^UTILITY(U,$J,358.3,5348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5080,1,2,0)
- ;;=2^Magnesium Sulfate Inj 500mg
- ;;^UTILITY(U,$J,358.3,5080,1,4,0)
- ;;=4^J3475
- ;;^UTILITY(U,$J,358.3,5081,0)
- ;;=J3480^^39^348^18^^^^1
- ;;^UTILITY(U,$J,358.3,5081,1,0)
+ ;;^UTILITY(U,$J,358.3,5348,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5348,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,5348,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,5349,0)
+ ;;=N07.7^^27^344^28
+ ;;^UTILITY(U,$J,358.3,5349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5081,1,2,0)
- ;;=2^Potassium Chloride Inj 2mEq
- ;;^UTILITY(U,$J,358.3,5081,1,4,0)
- ;;=4^J3480
- ;;^UTILITY(U,$J,358.3,5082,0)
- ;;=J9070^^39^348^2^^^^1
- ;;^UTILITY(U,$J,358.3,5082,1,0)
+ ;;^UTILITY(U,$J,358.3,5349,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5349,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,5349,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,5350,0)
+ ;;=N07.8^^27^344^31
+ ;;^UTILITY(U,$J,358.3,5350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5082,1,2,0)
- ;;=2^Cyclophosphamide Inj 100mg
- ;;^UTILITY(U,$J,358.3,5082,1,4,0)
- ;;=4^J9070
- ;;^UTILITY(U,$J,358.3,5083,0)
- ;;=J8530^^39^348^3^^^^1
- ;;^UTILITY(U,$J,358.3,5083,1,0)
+ ;;^UTILITY(U,$J,358.3,5350,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
+ ;;^UTILITY(U,$J,358.3,5350,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,5350,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,5351,0)
+ ;;=N07.9^^27^344^32
+ ;;^UTILITY(U,$J,358.3,5351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5083,1,2,0)
- ;;=2^Cyclophosphamide Oral 25mg
- ;;^UTILITY(U,$J,358.3,5083,1,4,0)
- ;;=4^J8530
- ;;^UTILITY(U,$J,358.3,5084,0)
- ;;=J1020^^39^348^16^^^^1
- ;;^UTILITY(U,$J,358.3,5084,1,0)
+ ;;^UTILITY(U,$J,358.3,5351,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
+ ;;^UTILITY(U,$J,358.3,5351,1,4,0)
+ ;;=4^N07.9
+ ;;^UTILITY(U,$J,358.3,5351,2)
+ ;;=^5015568
+ ;;^UTILITY(U,$J,358.3,5352,0)
+ ;;=N08.^^27^344^21
+ ;;^UTILITY(U,$J,358.3,5352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5084,1,2,0)
- ;;=2^Methylprednisolone Inj 20mg
- ;;^UTILITY(U,$J,358.3,5084,1,4,0)
- ;;=4^J1020
- ;;^UTILITY(U,$J,358.3,5085,0)
- ;;=J1745^^39^348^12^^^^1
- ;;^UTILITY(U,$J,358.3,5085,1,0)
+ ;;^UTILITY(U,$J,358.3,5352,1,3,0)
+ ;;=3^Glomerular disorders in diseases classified elsewhere
+ ;;^UTILITY(U,$J,358.3,5352,1,4,0)
+ ;;=4^N08.
+ ;;^UTILITY(U,$J,358.3,5352,2)
+ ;;=^5015569
+ ;;^UTILITY(U,$J,358.3,5353,0)
+ ;;=C90.00^^27^345^9
+ ;;^UTILITY(U,$J,358.3,5353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5085,1,2,0)
- ;;=2^Infliximab Inj 10mg
- ;;^UTILITY(U,$J,358.3,5085,1,4,0)
- ;;=4^J1745
- ;;^UTILITY(U,$J,358.3,5086,0)
- ;;=J1200^^39^348^6^^^^1
- ;;^UTILITY(U,$J,358.3,5086,1,0)
+ ;;^UTILITY(U,$J,358.3,5353,1,3,0)
+ ;;=3^Multiple myeloma not having achieved remission
+ ;;^UTILITY(U,$J,358.3,5353,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,5353,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,5354,0)
+ ;;=C90.01^^27^345^8
+ ;;^UTILITY(U,$J,358.3,5354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5086,1,2,0)
- ;;=2^Diphenhydramine HCL Inj 50mg
- ;;^UTILITY(U,$J,358.3,5086,1,4,0)
- ;;=4^J1200
- ;;^UTILITY(U,$J,358.3,5087,0)
- ;;=J1569^^39^348^9^^^^1
- ;;^UTILITY(U,$J,358.3,5087,1,0)
+ ;;^UTILITY(U,$J,358.3,5354,1,3,0)
+ ;;=3^Multiple myeloma in remission
+ ;;^UTILITY(U,$J,358.3,5354,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,5354,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,5355,0)
+ ;;=C90.02^^27^345^7
+ ;;^UTILITY(U,$J,358.3,5355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5087,1,2,0)
- ;;=2^Gammagard Liquid Inj 500mg
- ;;^UTILITY(U,$J,358.3,5087,1,4,0)
- ;;=4^J1569
- ;;^UTILITY(U,$J,358.3,5088,0)
- ;;=J2916^^39^348^7^^^^1
- ;;^UTILITY(U,$J,358.3,5088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5088,1,2,0)
- ;;=2^Ferric Gluconate Complex Inj 12.5mg
- ;;^UTILITY(U,$J,358.3,5088,1,4,0)
- ;;=4^J2916
- ;;^UTILITY(U,$J,358.3,5089,0)
- ;;=J1566^^39^348^11^^^^1
- ;;^UTILITY(U,$J,358.3,5089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5089,1,2,0)
- ;;=2^Immune Globulin Powder 500mg
- ;;^UTILITY(U,$J,358.3,5089,1,4,0)
- ;;=4^J1566
- ;;^UTILITY(U,$J,358.3,5090,0)
- ;;=J0897^^39^348^4^^^^1
- ;;^UTILITY(U,$J,358.3,5090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5090,1,2,0)
- ;;=2^Denosumab Inj 1mg
- ;;^UTILITY(U,$J,358.3,5090,1,4,0)
- ;;=4^J0897
- ;;^UTILITY(U,$J,358.3,5091,0)
- ;;=J1572^^39^348^8^^^^1
- ;;^UTILITY(U,$J,358.3,5091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5091,1,2,0)
- ;;=2^Flebogamma IV 500mg
+ ;;^UTILITY(U,$J,358.3,5355,1,3,0)
+ ;;=3^Multiple myeloma in relapse
+ ;;^UTILITY(U,$J,358.3,5355,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,5355,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,5356,0)
+ ;;=E11.29^^27^345^20

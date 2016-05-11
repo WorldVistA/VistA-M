@@ -1,138 +1,136 @@
-IBDEI0JR ; ; 19-NOV-2015
+IBDEI0JR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8903,1,3,0)
- ;;=3^Saddle embolus of pulmonary artery w/o acute cor pulmonale
- ;;^UTILITY(U,$J,358.3,8903,1,4,0)
- ;;=4^I26.92
- ;;^UTILITY(U,$J,358.3,8903,2)
- ;;=^5007149
- ;;^UTILITY(U,$J,358.3,8904,0)
- ;;=I26.99^^55^553^4
- ;;^UTILITY(U,$J,358.3,8904,1,0)
+ ;;^UTILITY(U,$J,358.3,9181,1,4,0)
+ ;;=4^H47.332
+ ;;^UTILITY(U,$J,358.3,9181,2)
+ ;;=^5006146
+ ;;^UTILITY(U,$J,358.3,9182,0)
+ ;;=H47.333^^41^475^41
+ ;;^UTILITY(U,$J,358.3,9182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8904,1,3,0)
- ;;=3^Pulmonary embolism without acute cor pulmonale NEC
- ;;^UTILITY(U,$J,358.3,8904,1,4,0)
- ;;=4^I26.99
- ;;^UTILITY(U,$J,358.3,8904,2)
- ;;=^5007150
- ;;^UTILITY(U,$J,358.3,8905,0)
- ;;=I27.0^^55^553^3
- ;;^UTILITY(U,$J,358.3,8905,1,0)
+ ;;^UTILITY(U,$J,358.3,9182,1,3,0)
+ ;;=3^Pseudopapilledema of Optic Disc,Bilateral
+ ;;^UTILITY(U,$J,358.3,9182,1,4,0)
+ ;;=4^H47.333
+ ;;^UTILITY(U,$J,358.3,9182,2)
+ ;;=^5006147
+ ;;^UTILITY(U,$J,358.3,9183,0)
+ ;;=H46.9^^41^475^36
+ ;;^UTILITY(U,$J,358.3,9183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8905,1,3,0)
- ;;=3^Primary pulmonary hypertension
- ;;^UTILITY(U,$J,358.3,8905,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,8905,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,8906,0)
- ;;=I27.2^^55^553^8
- ;;^UTILITY(U,$J,358.3,8906,1,0)
+ ;;^UTILITY(U,$J,358.3,9183,1,3,0)
+ ;;=3^Optic Neuritis,Unspec
+ ;;^UTILITY(U,$J,358.3,9183,1,4,0)
+ ;;=4^H46.9
+ ;;^UTILITY(U,$J,358.3,9183,2)
+ ;;=^5006104
+ ;;^UTILITY(U,$J,358.3,9184,0)
+ ;;=H47.011^^41^475^28
+ ;;^UTILITY(U,$J,358.3,9184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8906,1,3,0)
- ;;=3^Secondary pulmonary hypertension NEC
- ;;^UTILITY(U,$J,358.3,8906,1,4,0)
- ;;=4^I27.2
- ;;^UTILITY(U,$J,358.3,8906,2)
- ;;=^5007151
- ;;^UTILITY(U,$J,358.3,8907,0)
- ;;=I27.89^^55^553^6
- ;;^UTILITY(U,$J,358.3,8907,1,0)
+ ;;^UTILITY(U,$J,358.3,9184,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9184,1,4,0)
+ ;;=4^H47.011
+ ;;^UTILITY(U,$J,358.3,9184,2)
+ ;;=^5006105
+ ;;^UTILITY(U,$J,358.3,9185,0)
+ ;;=H47.012^^41^475^27
+ ;;^UTILITY(U,$J,358.3,9185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8907,1,3,0)
- ;;=3^Pulmonary heart diseases NEC
- ;;^UTILITY(U,$J,358.3,8907,1,4,0)
- ;;=4^I27.89
- ;;^UTILITY(U,$J,358.3,8907,2)
- ;;=^5007153
- ;;^UTILITY(U,$J,358.3,8908,0)
- ;;=I27.9^^55^553^5
- ;;^UTILITY(U,$J,358.3,8908,1,0)
+ ;;^UTILITY(U,$J,358.3,9185,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9185,1,4,0)
+ ;;=4^H47.012
+ ;;^UTILITY(U,$J,358.3,9185,2)
+ ;;=^5006106
+ ;;^UTILITY(U,$J,358.3,9186,0)
+ ;;=H49.881^^41^475^40
+ ;;^UTILITY(U,$J,358.3,9186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8908,1,3,0)
- ;;=3^Pulmonary heart disease, unspecified
- ;;^UTILITY(U,$J,358.3,8908,1,4,0)
- ;;=4^I27.9
- ;;^UTILITY(U,$J,358.3,8908,2)
- ;;=^5007154
- ;;^UTILITY(U,$J,358.3,8909,0)
- ;;=I27.81^^55^553^1
- ;;^UTILITY(U,$J,358.3,8909,1,0)
+ ;;^UTILITY(U,$J,358.3,9186,1,3,0)
+ ;;=3^Paralytic Strabismus,Right Eye
+ ;;^UTILITY(U,$J,358.3,9186,1,4,0)
+ ;;=4^H49.881
+ ;;^UTILITY(U,$J,358.3,9186,2)
+ ;;=^5006203
+ ;;^UTILITY(U,$J,358.3,9187,0)
+ ;;=H49.882^^41^475^39
+ ;;^UTILITY(U,$J,358.3,9187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8909,1,3,0)
- ;;=3^Cor pulmonale (chronic)
- ;;^UTILITY(U,$J,358.3,8909,1,4,0)
- ;;=4^I27.81
- ;;^UTILITY(U,$J,358.3,8909,2)
- ;;=^5007152
- ;;^UTILITY(U,$J,358.3,8910,0)
- ;;=R04.2^^55^553^2
- ;;^UTILITY(U,$J,358.3,8910,1,0)
+ ;;^UTILITY(U,$J,358.3,9187,1,3,0)
+ ;;=3^Paralytic Strabismus,Left Eye
+ ;;^UTILITY(U,$J,358.3,9187,1,4,0)
+ ;;=4^H49.882
+ ;;^UTILITY(U,$J,358.3,9187,2)
+ ;;=^5006204
+ ;;^UTILITY(U,$J,358.3,9188,0)
+ ;;=H49.01^^41^475^50
+ ;;^UTILITY(U,$J,358.3,9188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8910,1,3,0)
- ;;=3^Hemoptysis
- ;;^UTILITY(U,$J,358.3,8910,1,4,0)
- ;;=4^R04.2
- ;;^UTILITY(U,$J,358.3,8910,2)
- ;;=^5019175
- ;;^UTILITY(U,$J,358.3,8911,0)
- ;;=J41.0^^55^554^16
- ;;^UTILITY(U,$J,358.3,8911,1,0)
+ ;;^UTILITY(U,$J,358.3,9188,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9188,1,4,0)
+ ;;=4^H49.01
+ ;;^UTILITY(U,$J,358.3,9188,2)
+ ;;=^5006180
+ ;;^UTILITY(U,$J,358.3,9189,0)
+ ;;=H49.02^^41^475^49
+ ;;^UTILITY(U,$J,358.3,9189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8911,1,3,0)
- ;;=3^Simple chronic bronchitis
- ;;^UTILITY(U,$J,358.3,8911,1,4,0)
- ;;=4^J41.0
- ;;^UTILITY(U,$J,358.3,8911,2)
- ;;=^269946
- ;;^UTILITY(U,$J,358.3,8912,0)
- ;;=J70.5^^55^554^14
- ;;^UTILITY(U,$J,358.3,8912,1,0)
+ ;;^UTILITY(U,$J,358.3,9189,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9189,1,4,0)
+ ;;=4^H49.02
+ ;;^UTILITY(U,$J,358.3,9189,2)
+ ;;=^5006181
+ ;;^UTILITY(U,$J,358.3,9190,0)
+ ;;=H49.11^^41^475^21
+ ;;^UTILITY(U,$J,358.3,9190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8912,1,3,0)
- ;;=3^Respiratory conditions due to smoke inhalation
- ;;^UTILITY(U,$J,358.3,8912,1,4,0)
- ;;=4^J70.5
- ;;^UTILITY(U,$J,358.3,8912,2)
- ;;=^5008293
- ;;^UTILITY(U,$J,358.3,8913,0)
- ;;=J98.11^^55^554^6
- ;;^UTILITY(U,$J,358.3,8913,1,0)
+ ;;^UTILITY(U,$J,358.3,9190,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9190,1,4,0)
+ ;;=4^H49.11
+ ;;^UTILITY(U,$J,358.3,9190,2)
+ ;;=^5006184
+ ;;^UTILITY(U,$J,358.3,9191,0)
+ ;;=H49.12^^41^475^20
+ ;;^UTILITY(U,$J,358.3,9191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8913,1,3,0)
- ;;=3^Atelectasis
- ;;^UTILITY(U,$J,358.3,8913,1,4,0)
- ;;=4^J98.11
- ;;^UTILITY(U,$J,358.3,8913,2)
- ;;=^5008360
- ;;^UTILITY(U,$J,358.3,8914,0)
- ;;=J80.^^55^554^4
- ;;^UTILITY(U,$J,358.3,8914,1,0)
+ ;;^UTILITY(U,$J,358.3,9191,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9191,1,4,0)
+ ;;=4^H49.12
+ ;;^UTILITY(U,$J,358.3,9191,2)
+ ;;=^5006185
+ ;;^UTILITY(U,$J,358.3,9192,0)
+ ;;=H49.21^^41^475^46
+ ;;^UTILITY(U,$J,358.3,9192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8914,1,3,0)
- ;;=3^Acute respiratory distress syndrome
- ;;^UTILITY(U,$J,358.3,8914,1,4,0)
- ;;=4^J80.
- ;;^UTILITY(U,$J,358.3,8914,2)
- ;;=^5008294
- ;;^UTILITY(U,$J,358.3,8915,0)
- ;;=J98.01^^55^554^3
- ;;^UTILITY(U,$J,358.3,8915,1,0)
+ ;;^UTILITY(U,$J,358.3,9192,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9192,1,4,0)
+ ;;=4^H49.21
+ ;;^UTILITY(U,$J,358.3,9192,2)
+ ;;=^5006188
+ ;;^UTILITY(U,$J,358.3,9193,0)
+ ;;=H49.22^^41^475^45
+ ;;^UTILITY(U,$J,358.3,9193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8915,1,3,0)
- ;;=3^Acute bronchospasm
- ;;^UTILITY(U,$J,358.3,8915,1,4,0)
- ;;=4^J98.01
- ;;^UTILITY(U,$J,358.3,8915,2)
- ;;=^334092
- ;;^UTILITY(U,$J,358.3,8916,0)
- ;;=R06.02^^55^554^15
- ;;^UTILITY(U,$J,358.3,8916,1,0)
+ ;;^UTILITY(U,$J,358.3,9193,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9193,1,4,0)
+ ;;=4^H49.22
+ ;;^UTILITY(U,$J,358.3,9193,2)
+ ;;=^5006189
+ ;;^UTILITY(U,$J,358.3,9194,0)
+ ;;=H50.89^^41^475^47
+ ;;^UTILITY(U,$J,358.3,9194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8916,1,3,0)
- ;;=3^Shortness of breath
- ;;^UTILITY(U,$J,358.3,8916,1,4,0)
- ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,9194,1,3,0)
+ ;;=3^Strabismus NEC
+ ;;^UTILITY(U,$J,358.3,9194,1,4,0)
+ ;;=4^H50.89

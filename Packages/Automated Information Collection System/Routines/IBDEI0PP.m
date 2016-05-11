@@ -1,138 +1,130 @@
-IBDEI0PP ; ; 19-NOV-2015
+IBDEI0PP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11771,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
- ;;^UTILITY(U,$J,358.3,11771,1,4,0)
- ;;=4^N60.19
- ;;^UTILITY(U,$J,358.3,11771,2)
- ;;=^5015775
- ;;^UTILITY(U,$J,358.3,11772,0)
- ;;=N64.4^^68^691^34
- ;;^UTILITY(U,$J,358.3,11772,1,0)
+ ;;^UTILITY(U,$J,358.3,12015,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,12015,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,12016,0)
+ ;;=Z63.5^^47^538^155
+ ;;^UTILITY(U,$J,358.3,12016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11772,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,11772,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,11772,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,11773,0)
- ;;=N63.^^68^691^33
- ;;^UTILITY(U,$J,358.3,11773,1,0)
+ ;;^UTILITY(U,$J,358.3,12016,1,3,0)
+ ;;=3^Problems Related to Separation/Divorce
+ ;;^UTILITY(U,$J,358.3,12016,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,12016,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,12017,0)
+ ;;=Z55.9^^47^538^132
+ ;;^UTILITY(U,$J,358.3,12017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11773,1,3,0)
- ;;=3^Lump in Breast,Unspec
- ;;^UTILITY(U,$J,358.3,11773,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,11773,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,11774,0)
- ;;=N64.51^^68^691^28
- ;;^UTILITY(U,$J,358.3,11774,1,0)
+ ;;^UTILITY(U,$J,358.3,12017,1,3,0)
+ ;;=3^Problems Related to Education/Literacy,Unspec
+ ;;^UTILITY(U,$J,358.3,12017,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,12017,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,12018,0)
+ ;;=Z56.9^^47^538^133
+ ;;^UTILITY(U,$J,358.3,12018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11774,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,11774,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,11774,2)
- ;;=^5015795
- ;;^UTILITY(U,$J,358.3,11775,0)
- ;;=N64.59^^68^691^57
- ;;^UTILITY(U,$J,358.3,11775,1,0)
+ ;;^UTILITY(U,$J,358.3,12018,1,3,0)
+ ;;=3^Problems Related to Employment,Unspec
+ ;;^UTILITY(U,$J,358.3,12018,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,12018,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,12019,0)
+ ;;=Z65.5^^47^538^130
+ ;;^UTILITY(U,$J,358.3,12019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11775,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,11775,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,11775,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,11776,0)
- ;;=N64.52^^68^691^37
- ;;^UTILITY(U,$J,358.3,11776,1,0)
+ ;;^UTILITY(U,$J,358.3,12019,1,3,0)
+ ;;=3^Problems Related to Disaster/War/Other Hostilities
+ ;;^UTILITY(U,$J,358.3,12019,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,12019,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,12020,0)
+ ;;=Z59.5^^47^538^134
+ ;;^UTILITY(U,$J,358.3,12020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11776,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,11776,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,11776,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,11777,0)
- ;;=N64.53^^68^691^54
- ;;^UTILITY(U,$J,358.3,11777,1,0)
+ ;;^UTILITY(U,$J,358.3,12020,1,3,0)
+ ;;=3^Problems Related to Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,12020,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,12020,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,12021,0)
+ ;;=Z59.0^^47^538^136
+ ;;^UTILITY(U,$J,358.3,12021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11777,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,11777,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,11777,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,11778,0)
- ;;=N75.1^^68^691^5
- ;;^UTILITY(U,$J,358.3,11778,1,0)
+ ;;^UTILITY(U,$J,358.3,12021,1,3,0)
+ ;;=3^Problems Related to Homelessness
+ ;;^UTILITY(U,$J,358.3,12021,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,12021,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,12022,0)
+ ;;=Z59.9^^47^538^137
+ ;;^UTILITY(U,$J,358.3,12022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11778,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,11778,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,11778,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,11779,0)
- ;;=N80.9^^68^691^18
- ;;^UTILITY(U,$J,358.3,11779,1,0)
+ ;;^UTILITY(U,$J,358.3,12022,1,3,0)
+ ;;=3^Problems Related to Housing/Economic Circumstances
+ ;;^UTILITY(U,$J,358.3,12022,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,12022,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,12023,0)
+ ;;=Z59.1^^47^538^138
+ ;;^UTILITY(U,$J,358.3,12023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11779,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,11779,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,11779,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,11780,0)
- ;;=N81.4^^68^691^61
- ;;^UTILITY(U,$J,358.3,11780,1,0)
+ ;;^UTILITY(U,$J,358.3,12023,1,3,0)
+ ;;=3^Problems Related to Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,12023,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,12023,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,12024,0)
+ ;;=Z59.7^^47^538^139
+ ;;^UTILITY(U,$J,358.3,12024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11780,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,11780,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,11780,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,11781,0)
- ;;=N83.20^^68^691^42
- ;;^UTILITY(U,$J,358.3,11781,1,0)
+ ;;^UTILITY(U,$J,358.3,12024,1,3,0)
+ ;;=3^Problems Related to Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,12024,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,12024,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,12025,0)
+ ;;=Z59.4^^47^538^140
+ ;;^UTILITY(U,$J,358.3,12025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11781,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,11781,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,11781,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,11782,0)
- ;;=N83.29^^68^691^41
- ;;^UTILITY(U,$J,358.3,11782,1,0)
+ ;;^UTILITY(U,$J,358.3,12025,1,3,0)
+ ;;=3^Problems Related to Lack of Food/Drinking Water
+ ;;^UTILITY(U,$J,358.3,12025,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,12025,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,12026,0)
+ ;;=Z73.9^^47^538^141
+ ;;^UTILITY(U,$J,358.3,12026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11782,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,11782,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,11782,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,11783,0)
- ;;=N84.8^^68^691^47
- ;;^UTILITY(U,$J,358.3,11783,1,0)
+ ;;^UTILITY(U,$J,358.3,12026,1,3,0)
+ ;;=3^Problems Related to Life Management Difficulty
+ ;;^UTILITY(U,$J,358.3,12026,1,4,0)
+ ;;=4^Z73.9
+ ;;^UTILITY(U,$J,358.3,12026,2)
+ ;;=^5063281
+ ;;^UTILITY(U,$J,358.3,12027,0)
+ ;;=Z72.9^^47^538^142
+ ;;^UTILITY(U,$J,358.3,12027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11783,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,11783,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,11783,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,11784,0)
- ;;=N84.0^^68^691^45
- ;;^UTILITY(U,$J,358.3,11784,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11784,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,11784,1,4,0)
- ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,12027,1,3,0)
+ ;;=3^Problems Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,12027,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,12027,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,12028,0)
+ ;;=Z73.6^^47^538^124

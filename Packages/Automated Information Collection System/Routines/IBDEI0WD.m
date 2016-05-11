@@ -1,128 +1,136 @@
-IBDEI0WD ; ; 19-NOV-2015
+IBDEI0WD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14914,1,4,0)
- ;;=4^K50.819
- ;;^UTILITY(U,$J,358.3,14914,2)
- ;;=^5008644
- ;;^UTILITY(U,$J,358.3,14915,0)
- ;;=K50.912^^85^802^17
- ;;^UTILITY(U,$J,358.3,14915,1,0)
+ ;;^UTILITY(U,$J,358.3,15181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14915,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,14915,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,14915,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,14916,0)
- ;;=K50.918^^85^802^18
- ;;^UTILITY(U,$J,358.3,14916,1,0)
+ ;;^UTILITY(U,$J,358.3,15181,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,15181,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,15181,2)
+ ;;=^5062958
+ ;;^UTILITY(U,$J,358.3,15182,0)
+ ;;=Z43.1^^56^646^8
+ ;;^UTILITY(U,$J,358.3,15182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14916,1,3,0)
- ;;=3^Crohn's Disease w/ Oth Complications,Unspec
- ;;^UTILITY(U,$J,358.3,14916,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,14916,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,14917,0)
- ;;=K50.919^^85^802^20
- ;;^UTILITY(U,$J,358.3,14917,1,0)
+ ;;^UTILITY(U,$J,358.3,15182,1,3,0)
+ ;;=3^Attention to Gastrostomy
+ ;;^UTILITY(U,$J,358.3,15182,1,4,0)
+ ;;=4^Z43.1
+ ;;^UTILITY(U,$J,358.3,15182,2)
+ ;;=^5062959
+ ;;^UTILITY(U,$J,358.3,15183,0)
+ ;;=Z43.2^^56^646^9
+ ;;^UTILITY(U,$J,358.3,15183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14917,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,14917,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,14917,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,14918,0)
- ;;=K50.911^^85^802^19
- ;;^UTILITY(U,$J,358.3,14918,1,0)
+ ;;^UTILITY(U,$J,358.3,15183,1,3,0)
+ ;;=3^Attention to Ileostomy
+ ;;^UTILITY(U,$J,358.3,15183,1,4,0)
+ ;;=4^Z43.2
+ ;;^UTILITY(U,$J,358.3,15183,2)
+ ;;=^5062960
+ ;;^UTILITY(U,$J,358.3,15184,0)
+ ;;=Z43.3^^56^646^6
+ ;;^UTILITY(U,$J,358.3,15184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14918,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,14918,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,14918,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,14919,0)
- ;;=K50.90^^85^802^21
- ;;^UTILITY(U,$J,358.3,14919,1,0)
+ ;;^UTILITY(U,$J,358.3,15184,1,3,0)
+ ;;=3^Attention to Colostomy
+ ;;^UTILITY(U,$J,358.3,15184,1,4,0)
+ ;;=4^Z43.3
+ ;;^UTILITY(U,$J,358.3,15184,2)
+ ;;=^5062961
+ ;;^UTILITY(U,$J,358.3,15185,0)
+ ;;=Z43.4^^56^646^4
+ ;;^UTILITY(U,$J,358.3,15185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14919,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,14919,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,14919,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,14920,0)
- ;;=K50.913^^85^802^16
- ;;^UTILITY(U,$J,358.3,14920,1,0)
+ ;;^UTILITY(U,$J,358.3,15185,1,3,0)
+ ;;=3^Attention to Artif Opening of Digestive Tract NEC
+ ;;^UTILITY(U,$J,358.3,15185,1,4,0)
+ ;;=4^Z43.4
+ ;;^UTILITY(U,$J,358.3,15185,2)
+ ;;=^5062962
+ ;;^UTILITY(U,$J,358.3,15186,0)
+ ;;=Z43.5^^56^646^7
+ ;;^UTILITY(U,$J,358.3,15186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14920,1,3,0)
- ;;=3^Crohn's Disease w/ Fistual,Unspec
- ;;^UTILITY(U,$J,358.3,14920,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,14920,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,14921,0)
- ;;=K50.914^^85^802^15
- ;;^UTILITY(U,$J,358.3,14921,1,0)
+ ;;^UTILITY(U,$J,358.3,15186,1,3,0)
+ ;;=3^Attention to Cystostomy
+ ;;^UTILITY(U,$J,358.3,15186,1,4,0)
+ ;;=4^Z43.5
+ ;;^UTILITY(U,$J,358.3,15186,2)
+ ;;=^5062963
+ ;;^UTILITY(U,$J,358.3,15187,0)
+ ;;=Z43.6^^56^646^5
+ ;;^UTILITY(U,$J,358.3,15187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14921,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,14921,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,14921,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,14922,0)
- ;;=K50.114^^85^802^1
- ;;^UTILITY(U,$J,358.3,14922,1,0)
+ ;;^UTILITY(U,$J,358.3,15187,1,3,0)
+ ;;=3^Attention to Artif Opening of Urinary Tract NEC
+ ;;^UTILITY(U,$J,358.3,15187,1,4,0)
+ ;;=4^Z43.6
+ ;;^UTILITY(U,$J,358.3,15187,2)
+ ;;=^5062964
+ ;;^UTILITY(U,$J,358.3,15188,0)
+ ;;=Z48.00^^56^646^12
+ ;;^UTILITY(U,$J,358.3,15188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14922,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,14922,1,4,0)
- ;;=4^K50.114
- ;;^UTILITY(U,$J,358.3,14922,2)
- ;;=^5008635
- ;;^UTILITY(U,$J,358.3,14923,0)
- ;;=K50.814^^85^802^14
- ;;^UTILITY(U,$J,358.3,14923,1,0)
+ ;;^UTILITY(U,$J,358.3,15188,1,3,0)
+ ;;=3^Change or Removal of Nonsurg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,15188,1,4,0)
+ ;;=4^Z48.00
+ ;;^UTILITY(U,$J,358.3,15188,2)
+ ;;=^5063033
+ ;;^UTILITY(U,$J,358.3,15189,0)
+ ;;=Z48.01^^56^646^13
+ ;;^UTILITY(U,$J,358.3,15189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14923,1,3,0)
- ;;=3^Crohn's Disease of Small/Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,14923,1,4,0)
- ;;=4^K50.814
- ;;^UTILITY(U,$J,358.3,14923,2)
- ;;=^5008642
- ;;^UTILITY(U,$J,358.3,14924,0)
- ;;=K50.111^^85^802^2
- ;;^UTILITY(U,$J,358.3,14924,1,0)
+ ;;^UTILITY(U,$J,358.3,15189,1,3,0)
+ ;;=3^Change or Removal of Surg Wound Dressing
+ ;;^UTILITY(U,$J,358.3,15189,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,15189,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,15190,0)
+ ;;=Z48.02^^56^646^23
+ ;;^UTILITY(U,$J,358.3,15190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14924,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Rectal Bleeding
- ;;^UTILITY(U,$J,358.3,14924,1,4,0)
- ;;=4^K50.111
- ;;^UTILITY(U,$J,358.3,14924,2)
- ;;=^5008632
- ;;^UTILITY(U,$J,358.3,14925,0)
- ;;=K50.119^^85^802^3
- ;;^UTILITY(U,$J,358.3,14925,1,0)
+ ;;^UTILITY(U,$J,358.3,15190,1,3,0)
+ ;;=3^Suture Removal
+ ;;^UTILITY(U,$J,358.3,15190,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,15190,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,15191,0)
+ ;;=Z48.03^^56^646^11
+ ;;^UTILITY(U,$J,358.3,15191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14925,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,14925,1,4,0)
- ;;=4^K50.119
- ;;^UTILITY(U,$J,358.3,14925,2)
- ;;=^5008637
- ;;^UTILITY(U,$J,358.3,14926,0)
- ;;=K57.20^^85^803^3
- ;;^UTILITY(U,$J,358.3,14926,1,0)
+ ;;^UTILITY(U,$J,358.3,15191,1,3,0)
+ ;;=3^Change or Removal of Drains
+ ;;^UTILITY(U,$J,358.3,15191,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,15191,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,15192,0)
+ ;;=Z48.89^^56^646^22
+ ;;^UTILITY(U,$J,358.3,15192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14926,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14926,1,4,0)
- ;;=4^K57.20
- ;;^UTILITY(U,$J,358.3,14926,2)
- ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,15192,1,3,0)
+ ;;=3^Surgical Aftercare NEC
+ ;;^UTILITY(U,$J,358.3,15192,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,15192,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,15193,0)
+ ;;=Z45.2^^56^646^1
+ ;;^UTILITY(U,$J,358.3,15193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15193,1,3,0)
+ ;;=3^Adjustment/Management of VAD
+ ;;^UTILITY(U,$J,358.3,15193,1,4,0)
+ ;;=4^Z45.2
+ ;;^UTILITY(U,$J,358.3,15193,2)
+ ;;=^5062999
+ ;;^UTILITY(U,$J,358.3,15194,0)
+ ;;=Z46.82^^56^646^17
+ ;;^UTILITY(U,$J,358.3,15194,1,0)
+ ;;=^358.31IA^4^2

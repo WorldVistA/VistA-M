@@ -1,130 +1,132 @@
-IBDEI2CA ; ; 19-NOV-2015
+IBDEI2CA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39292,0)
- ;;=H90.8^^183^2017^7
- ;;^UTILITY(U,$J,358.3,39292,1,0)
+ ;;^UTILITY(U,$J,358.3,39666,1,4,0)
+ ;;=4^H02.114
+ ;;^UTILITY(U,$J,358.3,39666,2)
+ ;;=^5004310
+ ;;^UTILITY(U,$J,358.3,39667,0)
+ ;;=H02.112^^153^1928^19
+ ;;^UTILITY(U,$J,358.3,39667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39292,1,3,0)
- ;;=3^Mix cndct/snrl hear loss,Unspec
- ;;^UTILITY(U,$J,358.3,39292,1,4,0)
- ;;=4^H90.8
- ;;^UTILITY(U,$J,358.3,39292,2)
- ;;=^5006927
- ;;^UTILITY(U,$J,358.3,39293,0)
- ;;=H90.3^^183^2017^8
- ;;^UTILITY(U,$J,358.3,39293,1,0)
+ ;;^UTILITY(U,$J,358.3,39667,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39667,1,4,0)
+ ;;=4^H02.112
+ ;;^UTILITY(U,$J,358.3,39667,2)
+ ;;=^5004308
+ ;;^UTILITY(U,$J,358.3,39668,0)
+ ;;=H02.111^^153^1928^20
+ ;;^UTILITY(U,$J,358.3,39668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39293,1,3,0)
- ;;=3^Snsrnrl hear loss, bilateral
- ;;^UTILITY(U,$J,358.3,39293,1,4,0)
- ;;=4^H90.3
- ;;^UTILITY(U,$J,358.3,39293,2)
- ;;=^335328
- ;;^UTILITY(U,$J,358.3,39294,0)
- ;;=H90.42^^183^2017^9
- ;;^UTILITY(U,$J,358.3,39294,1,0)
+ ;;^UTILITY(U,$J,358.3,39668,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39668,1,4,0)
+ ;;=4^H02.111
+ ;;^UTILITY(U,$J,358.3,39668,2)
+ ;;=^5004307
+ ;;^UTILITY(U,$J,358.3,39669,0)
+ ;;=H02.015^^153^1928^21
+ ;;^UTILITY(U,$J,358.3,39669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39294,1,3,0)
- ;;=3^Snsrnrl hear loss, left ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,39294,1,4,0)
- ;;=4^H90.42
- ;;^UTILITY(U,$J,358.3,39294,2)
- ;;=^5006922
- ;;^UTILITY(U,$J,358.3,39295,0)
- ;;=H90.41^^183^2017^10
- ;;^UTILITY(U,$J,358.3,39295,1,0)
+ ;;^UTILITY(U,$J,358.3,39669,1,3,0)
+ ;;=3^Cicatricial Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39669,1,4,0)
+ ;;=4^H02.015
+ ;;^UTILITY(U,$J,358.3,39669,2)
+ ;;=^5133397
+ ;;^UTILITY(U,$J,358.3,39670,0)
+ ;;=H02.014^^153^1928^22
+ ;;^UTILITY(U,$J,358.3,39670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39295,1,3,0)
- ;;=3^Snsrnrl hear loss, right ear, w unrestr hear cntra side
- ;;^UTILITY(U,$J,358.3,39295,1,4,0)
- ;;=4^H90.41
- ;;^UTILITY(U,$J,358.3,39295,2)
- ;;=^5006921
- ;;^UTILITY(U,$J,358.3,39296,0)
- ;;=H93.13^^183^2017^11
- ;;^UTILITY(U,$J,358.3,39296,1,0)
+ ;;^UTILITY(U,$J,358.3,39670,1,3,0)
+ ;;=3^Cicatricial Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39670,1,4,0)
+ ;;=4^H02.014
+ ;;^UTILITY(U,$J,358.3,39670,2)
+ ;;=^5004281
+ ;;^UTILITY(U,$J,358.3,39671,0)
+ ;;=H02.012^^153^1928^23
+ ;;^UTILITY(U,$J,358.3,39671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39296,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,39296,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,39296,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,39297,0)
- ;;=H93.12^^183^2017^12
- ;;^UTILITY(U,$J,358.3,39297,1,0)
+ ;;^UTILITY(U,$J,358.3,39671,1,3,0)
+ ;;=3^Cicatricial Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39671,1,4,0)
+ ;;=4^H02.012
+ ;;^UTILITY(U,$J,358.3,39671,2)
+ ;;=^5004279
+ ;;^UTILITY(U,$J,358.3,39672,0)
+ ;;=H02.011^^153^1928^24
+ ;;^UTILITY(U,$J,358.3,39672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39297,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,39297,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,39297,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,39298,0)
- ;;=H93.11^^183^2017^13
- ;;^UTILITY(U,$J,358.3,39298,1,0)
+ ;;^UTILITY(U,$J,358.3,39672,1,3,0)
+ ;;=3^Cicatricial Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39672,1,4,0)
+ ;;=4^H02.011
+ ;;^UTILITY(U,$J,358.3,39672,2)
+ ;;=^5004278
+ ;;^UTILITY(U,$J,358.3,39673,0)
+ ;;=S00.12XA^^153^1928^25
+ ;;^UTILITY(U,$J,358.3,39673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39298,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,39298,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,39298,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,39299,0)
- ;;=M48.12^^183^2018^1
- ;;^UTILITY(U,$J,358.3,39299,1,0)
+ ;;^UTILITY(U,$J,358.3,39673,1,3,0)
+ ;;=3^Contusion Left Eyelid/Pericocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39673,1,4,0)
+ ;;=4^S00.12XA
+ ;;^UTILITY(U,$J,358.3,39673,2)
+ ;;=^5019781
+ ;;^UTILITY(U,$J,358.3,39674,0)
+ ;;=S00.11XA^^153^1928^26
+ ;;^UTILITY(U,$J,358.3,39674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39299,1,3,0)
- ;;=3^Ankylosing hyperostosis, cervical region
- ;;^UTILITY(U,$J,358.3,39299,1,4,0)
- ;;=4^M48.12
- ;;^UTILITY(U,$J,358.3,39299,2)
- ;;=^5012098
- ;;^UTILITY(U,$J,358.3,39300,0)
- ;;=M48.16^^183^2018^3
- ;;^UTILITY(U,$J,358.3,39300,1,0)
+ ;;^UTILITY(U,$J,358.3,39674,1,3,0)
+ ;;=3^Contusion Right Eyelid/Pericocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39674,1,4,0)
+ ;;=4^S00.11XA
+ ;;^UTILITY(U,$J,358.3,39674,2)
+ ;;=^5019778
+ ;;^UTILITY(U,$J,358.3,39675,0)
+ ;;=H02.825^^153^1928^27
+ ;;^UTILITY(U,$J,358.3,39675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39300,1,3,0)
- ;;=3^Ankylosing hyperostosis, lumbar region
- ;;^UTILITY(U,$J,358.3,39300,1,4,0)
- ;;=4^M48.16
- ;;^UTILITY(U,$J,358.3,39300,2)
- ;;=^5012102
- ;;^UTILITY(U,$J,358.3,39301,0)
- ;;=M48.17^^183^2018^4
- ;;^UTILITY(U,$J,358.3,39301,1,0)
+ ;;^UTILITY(U,$J,358.3,39675,1,3,0)
+ ;;=3^Cysts Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39675,1,4,0)
+ ;;=4^H02.825
+ ;;^UTILITY(U,$J,358.3,39675,2)
+ ;;=^5133441
+ ;;^UTILITY(U,$J,358.3,39676,0)
+ ;;=H02.824^^153^1928^28
+ ;;^UTILITY(U,$J,358.3,39676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39301,1,3,0)
- ;;=3^Ankylosing hyperostosis, lumbosacral region
- ;;^UTILITY(U,$J,358.3,39301,1,4,0)
- ;;=4^M48.17
- ;;^UTILITY(U,$J,358.3,39301,2)
- ;;=^5012103
- ;;^UTILITY(U,$J,358.3,39302,0)
- ;;=M48.19^^183^2018^5
- ;;^UTILITY(U,$J,358.3,39302,1,0)
+ ;;^UTILITY(U,$J,358.3,39676,1,3,0)
+ ;;=3^Cysts Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39676,1,4,0)
+ ;;=4^H02.824
+ ;;^UTILITY(U,$J,358.3,39676,2)
+ ;;=^5004416
+ ;;^UTILITY(U,$J,358.3,39677,0)
+ ;;=H02.822^^153^1928^29
+ ;;^UTILITY(U,$J,358.3,39677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39302,1,3,0)
- ;;=3^Ankylosing hyperostosis, multiple sites in spine
- ;;^UTILITY(U,$J,358.3,39302,1,4,0)
- ;;=4^M48.19
- ;;^UTILITY(U,$J,358.3,39302,2)
- ;;=^5012105
- ;;^UTILITY(U,$J,358.3,39303,0)
- ;;=M48.11^^183^2018^6
- ;;^UTILITY(U,$J,358.3,39303,1,0)
+ ;;^UTILITY(U,$J,358.3,39677,1,3,0)
+ ;;=3^Cysts Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39677,1,4,0)
+ ;;=4^H02.822
+ ;;^UTILITY(U,$J,358.3,39677,2)
+ ;;=^5004414
+ ;;^UTILITY(U,$J,358.3,39678,0)
+ ;;=H02.821^^153^1928^30
+ ;;^UTILITY(U,$J,358.3,39678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39303,1,3,0)
- ;;=3^Ankylosing hyperostosis, occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,39303,1,4,0)
- ;;=4^M48.11
- ;;^UTILITY(U,$J,358.3,39303,2)
- ;;=^5012097
- ;;^UTILITY(U,$J,358.3,39304,0)
- ;;=M48.18^^183^2018^7
- ;;^UTILITY(U,$J,358.3,39304,1,0)
+ ;;^UTILITY(U,$J,358.3,39678,1,3,0)
+ ;;=3^Cysts Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39678,1,4,0)
+ ;;=4^H02.821
+ ;;^UTILITY(U,$J,358.3,39678,2)
+ ;;=^5004413
+ ;;^UTILITY(U,$J,358.3,39679,0)
+ ;;=H02.835^^153^1928^31
+ ;;^UTILITY(U,$J,358.3,39679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39304,1,3,0)
- ;;=3^Ankylosing hyperostosis, sacral and sacrococcygeal region

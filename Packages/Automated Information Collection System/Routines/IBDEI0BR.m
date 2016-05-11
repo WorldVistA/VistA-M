@@ -1,132 +1,126 @@
-IBDEI0BR ; ; 19-NOV-2015
+IBDEI0BR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5043,1,0)
+ ;;^UTILITY(U,$J,358.3,5319,1,3,0)
+ ;;=3^Nephrotic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,5319,1,4,0)
+ ;;=4^N04.8
+ ;;^UTILITY(U,$J,358.3,5319,2)
+ ;;=^5015539
+ ;;^UTILITY(U,$J,358.3,5320,0)
+ ;;=N04.9^^27^344^62
+ ;;^UTILITY(U,$J,358.3,5320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5043,1,2,0)
- ;;=2^Repair Intermediate 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5043,1,4,0)
- ;;=4^12041
- ;;^UTILITY(U,$J,358.3,5044,0)
- ;;=12042^^39^343^2^^^^1
- ;;^UTILITY(U,$J,358.3,5044,1,0)
+ ;;^UTILITY(U,$J,358.3,5320,1,3,0)
+ ;;=3^Nephrotic syndrome w/ unspecified morphologic changes
+ ;;^UTILITY(U,$J,358.3,5320,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,5320,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,5321,0)
+ ;;=N05.0^^27^344^50
+ ;;^UTILITY(U,$J,358.3,5321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5044,1,2,0)
- ;;=2^Repair Intermediate 2.6-7.5 cm
- ;;^UTILITY(U,$J,358.3,5044,1,4,0)
- ;;=4^12042
- ;;^UTILITY(U,$J,358.3,5045,0)
- ;;=12044^^39^343^3^^^^1
- ;;^UTILITY(U,$J,358.3,5045,1,0)
+ ;;^UTILITY(U,$J,358.3,5321,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,5321,1,4,0)
+ ;;=4^N05.0
+ ;;^UTILITY(U,$J,358.3,5321,2)
+ ;;=^5015541
+ ;;^UTILITY(U,$J,358.3,5322,0)
+ ;;=N05.1^^27^344^49
+ ;;^UTILITY(U,$J,358.3,5322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5045,1,2,0)
- ;;=2^Repair Intermediate 7.6-12.5 cm
- ;;^UTILITY(U,$J,358.3,5045,1,4,0)
- ;;=4^12044
- ;;^UTILITY(U,$J,358.3,5046,0)
- ;;=12046^^39^343^5^^^^1
- ;;^UTILITY(U,$J,358.3,5046,1,0)
+ ;;^UTILITY(U,$J,358.3,5322,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5322,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,5322,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,5323,0)
+ ;;=N05.2^^27^344^46
+ ;;^UTILITY(U,$J,358.3,5323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5046,1,2,0)
- ;;=2^Repair Intermediate 20.1-30.0 cm
- ;;^UTILITY(U,$J,358.3,5046,1,4,0)
- ;;=4^12046
- ;;^UTILITY(U,$J,358.3,5047,0)
- ;;=12047^^39^343^6^^^^1
- ;;^UTILITY(U,$J,358.3,5047,1,0)
+ ;;^UTILITY(U,$J,358.3,5323,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,5323,1,4,0)
+ ;;=4^N05.2
+ ;;^UTILITY(U,$J,358.3,5323,2)
+ ;;=^5015543
+ ;;^UTILITY(U,$J,358.3,5324,0)
+ ;;=N05.3^^27^344^47
+ ;;^UTILITY(U,$J,358.3,5324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5047,1,2,0)
- ;;=2^Repair Intermediate > 30 cm
- ;;^UTILITY(U,$J,358.3,5047,1,4,0)
- ;;=4^12047
- ;;^UTILITY(U,$J,358.3,5048,0)
- ;;=12045^^39^343^4^^^^1
- ;;^UTILITY(U,$J,358.3,5048,1,0)
+ ;;^UTILITY(U,$J,358.3,5324,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5324,1,4,0)
+ ;;=4^N05.3
+ ;;^UTILITY(U,$J,358.3,5324,2)
+ ;;=^5015544
+ ;;^UTILITY(U,$J,358.3,5325,0)
+ ;;=N05.4^^27^344^45
+ ;;^UTILITY(U,$J,358.3,5325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5048,1,2,0)
- ;;=2^Repair Intermediate 12.6-20.0 cm
- ;;^UTILITY(U,$J,358.3,5048,1,4,0)
- ;;=4^12045
- ;;^UTILITY(U,$J,358.3,5049,0)
- ;;=12020^^39^344^1^^^^1
- ;;^UTILITY(U,$J,358.3,5049,1,0)
+ ;;^UTILITY(U,$J,358.3,5325,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5325,1,4,0)
+ ;;=4^N05.4
+ ;;^UTILITY(U,$J,358.3,5325,2)
+ ;;=^5015545
+ ;;^UTILITY(U,$J,358.3,5326,0)
+ ;;=N05.5^^27^344^48
+ ;;^UTILITY(U,$J,358.3,5326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5049,1,2,0)
- ;;=2^Rx wound dehisc,simple close
- ;;^UTILITY(U,$J,358.3,5049,1,4,0)
- ;;=4^12020
- ;;^UTILITY(U,$J,358.3,5050,0)
- ;;=12021^^39^344^2^^^^1
- ;;^UTILITY(U,$J,358.3,5050,1,0)
+ ;;^UTILITY(U,$J,358.3,5326,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5326,1,4,0)
+ ;;=4^N05.5
+ ;;^UTILITY(U,$J,358.3,5326,2)
+ ;;=^5015546
+ ;;^UTILITY(U,$J,358.3,5327,0)
+ ;;=N05.6^^27^344^43
+ ;;^UTILITY(U,$J,358.3,5327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5050,1,2,0)
- ;;=2^Rx wound dehisc,w/ packing
- ;;^UTILITY(U,$J,358.3,5050,1,4,0)
- ;;=4^12021
- ;;^UTILITY(U,$J,358.3,5051,0)
- ;;=36415^^39^345^10^^^^1
- ;;^UTILITY(U,$J,358.3,5051,1,0)
+ ;;^UTILITY(U,$J,358.3,5327,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5327,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,5327,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,5328,0)
+ ;;=N05.7^^27^344^44
+ ;;^UTILITY(U,$J,358.3,5328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5051,1,2,0)
- ;;=2^Routine Venipuncture
- ;;^UTILITY(U,$J,358.3,5051,1,4,0)
- ;;=4^36415
- ;;^UTILITY(U,$J,358.3,5052,0)
- ;;=36416^^39^345^1^^^^1
- ;;^UTILITY(U,$J,358.3,5052,1,0)
+ ;;^UTILITY(U,$J,358.3,5328,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5328,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,5328,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,5329,0)
+ ;;=N05.8^^27^344^51
+ ;;^UTILITY(U,$J,358.3,5329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5052,1,2,0)
- ;;=2^Capillary Blood Draw
- ;;^UTILITY(U,$J,358.3,5052,1,4,0)
- ;;=4^36416
- ;;^UTILITY(U,$J,358.3,5053,0)
- ;;=51702^^39^345^6^^^^1
- ;;^UTILITY(U,$J,358.3,5053,1,0)
+ ;;^UTILITY(U,$J,358.3,5329,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,5329,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,5329,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,5330,0)
+ ;;=N05.9^^27^344^52
+ ;;^UTILITY(U,$J,358.3,5330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5053,1,2,0)
- ;;=2^Insert Temp Indwelling Bladder Cath
- ;;^UTILITY(U,$J,358.3,5053,1,4,0)
- ;;=4^51702
- ;;^UTILITY(U,$J,358.3,5054,0)
- ;;=93005^^39^345^4^^^^1
- ;;^UTILITY(U,$J,358.3,5054,1,0)
+ ;;^UTILITY(U,$J,358.3,5330,1,3,0)
+ ;;=3^Nephritic syndrome unspec w/ unspec morphologic changes
+ ;;^UTILITY(U,$J,358.3,5330,1,4,0)
+ ;;=4^N05.9
+ ;;^UTILITY(U,$J,358.3,5330,2)
+ ;;=^5134086
+ ;;^UTILITY(U,$J,358.3,5331,0)
+ ;;=N06.0^^27^344^40
+ ;;^UTILITY(U,$J,358.3,5331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5054,1,2,0)
- ;;=2^EKG,Tracing Only
- ;;^UTILITY(U,$J,358.3,5054,1,4,0)
- ;;=4^93005
- ;;^UTILITY(U,$J,358.3,5055,0)
- ;;=97535^^39^345^11^^^^1
- ;;^UTILITY(U,$J,358.3,5055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5055,1,2,0)
- ;;=2^Self Care Mngment Training
- ;;^UTILITY(U,$J,358.3,5055,1,4,0)
- ;;=4^97535
- ;;^UTILITY(U,$J,358.3,5056,0)
- ;;=98960^^39^345^12^^^^1
- ;;^UTILITY(U,$J,358.3,5056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5056,1,2,0)
- ;;=2^Self-Mgmt Ed/Train 1 Pt,Ea 30min
- ;;^UTILITY(U,$J,358.3,5056,1,4,0)
- ;;=4^98960
- ;;^UTILITY(U,$J,358.3,5057,0)
- ;;=36593^^39^345^2^^^^1
- ;;^UTILITY(U,$J,358.3,5057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5057,1,2,0)
- ;;=2^Declot Vascular Device
- ;;^UTILITY(U,$J,358.3,5057,1,4,0)
- ;;=4^36593
- ;;^UTILITY(U,$J,358.3,5058,0)
- ;;=96523^^39^345^8^^^^1
- ;;^UTILITY(U,$J,358.3,5058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5058,1,2,0)
- ;;=2^Irrig Drug Delivery Device
- ;;^UTILITY(U,$J,358.3,5058,1,4,0)
- ;;=4^96523
- ;;^UTILITY(U,$J,358.3,5059,0)
- ;;=36569^^39^345^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5331,1,3,0)
+ ;;=3^Isolated proteinuria w/ minor glomerular abnormality

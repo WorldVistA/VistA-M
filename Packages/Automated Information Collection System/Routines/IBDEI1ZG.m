@@ -1,122 +1,122 @@
-IBDEI1ZG ; ; 19-NOV-2015
+IBDEI1ZG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33207,1,2,0)
- ;;=2^H0030
- ;;^UTILITY(U,$J,358.3,33207,1,3,0)
- ;;=3^Addictions Hotline Services
- ;;^UTILITY(U,$J,358.3,33208,0)
- ;;=90791^^147^1628^1^^^^1
- ;;^UTILITY(U,$J,358.3,33208,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33208,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,33208,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,33209,0)
- ;;=99354^^147^1629^1^^^^1
- ;;^UTILITY(U,$J,358.3,33209,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33209,1,2,0)
- ;;=2^99354
- ;;^UTILITY(U,$J,358.3,33209,1,3,0)
- ;;=3^Prolonged Svcs,Outpt,1st Hr
- ;;^UTILITY(U,$J,358.3,33210,0)
- ;;=99355^^147^1629^2^^^^1
- ;;^UTILITY(U,$J,358.3,33210,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33210,1,2,0)
- ;;=2^99355
- ;;^UTILITY(U,$J,358.3,33210,1,3,0)
- ;;=3^Prolonged Svcs,Outpt,Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,33211,0)
- ;;=99356^^147^1629^3^^^^1
- ;;^UTILITY(U,$J,358.3,33211,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33211,1,2,0)
- ;;=2^99356
- ;;^UTILITY(U,$J,358.3,33211,1,3,0)
- ;;=3^Prolonged Svcs,Inpt,1st Hr
- ;;^UTILITY(U,$J,358.3,33212,0)
- ;;=99357^^147^1629^4^^^^1
- ;;^UTILITY(U,$J,358.3,33212,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33212,1,2,0)
- ;;=2^99357
- ;;^UTILITY(U,$J,358.3,33212,1,3,0)
- ;;=3^Prolonged Svcs,Inpt,Ea Addl 30Min
- ;;^UTILITY(U,$J,358.3,33213,0)
- ;;=99406^^147^1630^2^^^^1
- ;;^UTILITY(U,$J,358.3,33213,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33213,1,2,0)
- ;;=2^99406
- ;;^UTILITY(U,$J,358.3,33213,1,3,0)
- ;;=3^Tob Use & Smoking Cess Counsel,3-10mins
- ;;^UTILITY(U,$J,358.3,33214,0)
- ;;=99407^^147^1630^3^^^^1
- ;;^UTILITY(U,$J,358.3,33214,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33214,1,2,0)
- ;;=2^99407
- ;;^UTILITY(U,$J,358.3,33214,1,3,0)
- ;;=3^Tob Use & Smoking Cess Counsel > 10mins
- ;;^UTILITY(U,$J,358.3,33215,0)
- ;;=G0436^^147^1630^4^^^^1
- ;;^UTILITY(U,$J,358.3,33215,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33215,1,2,0)
- ;;=2^G0436
- ;;^UTILITY(U,$J,358.3,33215,1,3,0)
- ;;=3^Tob & Smoking Cess Counsel,Asymp Pt,3-10mins
- ;;^UTILITY(U,$J,358.3,33216,0)
- ;;=G0437^^147^1630^5^^^^1
- ;;^UTILITY(U,$J,358.3,33216,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33216,1,2,0)
- ;;=2^G0437
- ;;^UTILITY(U,$J,358.3,33216,1,3,0)
- ;;=3^Tob & Smoking Cess Counsel,Asymp Pt > 10min
- ;;^UTILITY(U,$J,358.3,33217,0)
- ;;=S9453^^147^1630^1^^^^1
- ;;^UTILITY(U,$J,358.3,33217,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,33217,1,2,0)
- ;;=2^S9453
- ;;^UTILITY(U,$J,358.3,33217,1,3,0)
- ;;=3^Smoking Cessation Class
- ;;^UTILITY(U,$J,358.3,33218,0)
- ;;=T74.11XA^^148^1631^8
- ;;^UTILITY(U,$J,358.3,33218,1,0)
+ ;;^UTILITY(U,$J,358.3,33646,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,33647,0)
+ ;;=K57.30^^131^1675^42
+ ;;^UTILITY(U,$J,358.3,33647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33218,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,33218,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,33218,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,33219,0)
- ;;=T74.11XD^^148^1631^9
- ;;^UTILITY(U,$J,358.3,33219,1,0)
+ ;;^UTILITY(U,$J,358.3,33647,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33647,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,33647,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,33648,0)
+ ;;=K57.50^^131^1675^43
+ ;;^UTILITY(U,$J,358.3,33648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33219,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,33219,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,33219,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,33220,0)
- ;;=T76.11XA^^148^1631^10
- ;;^UTILITY(U,$J,358.3,33220,1,0)
+ ;;^UTILITY(U,$J,358.3,33648,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33648,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,33648,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,33649,0)
+ ;;=K57.90^^131^1675^41
+ ;;^UTILITY(U,$J,358.3,33649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33220,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,33220,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,33220,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,33221,0)
- ;;=T76.11XD^^148^1631^11
- ;;^UTILITY(U,$J,358.3,33221,1,0)
+ ;;^UTILITY(U,$J,358.3,33649,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33649,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,33649,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,33650,0)
+ ;;=K57.20^^131^1675^37
+ ;;^UTILITY(U,$J,358.3,33650,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33650,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/ Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33650,1,4,0)
+ ;;=4^K57.20
+ ;;^UTILITY(U,$J,358.3,33650,2)
+ ;;=^5008721
+ ;;^UTILITY(U,$J,358.3,33651,0)
+ ;;=K57.92^^131^1675^36
+ ;;^UTILITY(U,$J,358.3,33651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33651,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33651,1,4,0)
+ ;;=4^K57.92
+ ;;^UTILITY(U,$J,358.3,33651,2)
+ ;;=^5008737
+ ;;^UTILITY(U,$J,358.3,33652,0)
+ ;;=K57.80^^131^1675^35
+ ;;^UTILITY(U,$J,358.3,33652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33652,1,3,0)
+ ;;=3^Diverticulitis of Intestine,Unspec w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33652,1,4,0)
+ ;;=4^K57.80
+ ;;^UTILITY(U,$J,358.3,33652,2)
+ ;;=^5008733
+ ;;^UTILITY(U,$J,358.3,33653,0)
+ ;;=K57.52^^131^1675^40
+ ;;^UTILITY(U,$J,358.3,33653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33653,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33653,1,4,0)
+ ;;=4^K57.52
+ ;;^UTILITY(U,$J,358.3,33653,2)
+ ;;=^5008731
+ ;;^UTILITY(U,$J,358.3,33654,0)
+ ;;=K57.40^^131^1675^39
+ ;;^UTILITY(U,$J,358.3,33654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33654,1,3,0)
+ ;;=3^Diverticulitis of Sm & Lg Intestine w/ Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33654,1,4,0)
+ ;;=4^K57.40
+ ;;^UTILITY(U,$J,358.3,33654,2)
+ ;;=^5008727
+ ;;^UTILITY(U,$J,358.3,33655,0)
+ ;;=K57.32^^131^1675^38
+ ;;^UTILITY(U,$J,358.3,33655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33655,1,3,0)
+ ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,33655,1,4,0)
+ ;;=4^K57.32
+ ;;^UTILITY(U,$J,358.3,33655,2)
+ ;;=^5008725
+ ;;^UTILITY(U,$J,358.3,33656,0)
+ ;;=K59.00^^131^1675^20
+ ;;^UTILITY(U,$J,358.3,33656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33656,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,33656,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,33656,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,33657,0)
+ ;;=K58.9^^131^1675^70
+ ;;^UTILITY(U,$J,358.3,33657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33657,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,33657,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,33657,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,33658,0)
+ ;;=K58.0^^131^1675^69
+ ;;^UTILITY(U,$J,358.3,33658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33658,1,3,0)
+ ;;=3^Irritable Bowel Syndrome w/ Diarrhea

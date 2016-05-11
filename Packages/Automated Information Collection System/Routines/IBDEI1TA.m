@@ -1,134 +1,126 @@
-IBDEI1TA ; ; 19-NOV-2015
+IBDEI1TA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30328,1,0)
+ ;;^UTILITY(U,$J,358.3,30778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30328,1,3,0)
- ;;=3^Fever,Postvaccination
- ;;^UTILITY(U,$J,358.3,30328,1,4,0)
- ;;=4^R50.83
- ;;^UTILITY(U,$J,358.3,30328,2)
- ;;=^5019510
- ;;^UTILITY(U,$J,358.3,30329,0)
- ;;=R50.84^^135^1374^25
- ;;^UTILITY(U,$J,358.3,30329,1,0)
+ ;;^UTILITY(U,$J,358.3,30778,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,30778,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,30778,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,30779,0)
+ ;;=G31.09^^123^1533^22
+ ;;^UTILITY(U,$J,358.3,30779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30329,1,3,0)
- ;;=3^Fever,Posttransfusion
- ;;^UTILITY(U,$J,358.3,30329,1,4,0)
- ;;=4^R50.84
- ;;^UTILITY(U,$J,358.3,30329,2)
- ;;=^5019511
- ;;^UTILITY(U,$J,358.3,30330,0)
- ;;=B02.23^^135^1374^70
- ;;^UTILITY(U,$J,358.3,30330,1,0)
+ ;;^UTILITY(U,$J,358.3,30779,1,3,0)
+ ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,30779,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,30779,2)
+ ;;=^329916^F02.81
+ ;;^UTILITY(U,$J,358.3,30780,0)
+ ;;=G30.0^^123^1533^3
+ ;;^UTILITY(U,$J,358.3,30780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30330,1,3,0)
- ;;=3^Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,30330,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,30330,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,30331,0)
- ;;=B02.22^^135^1374^71
- ;;^UTILITY(U,$J,358.3,30331,1,0)
+ ;;^UTILITY(U,$J,358.3,30780,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,30780,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,30780,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,30781,0)
+ ;;=G30.1^^123^1533^4
+ ;;^UTILITY(U,$J,358.3,30781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30331,1,3,0)
- ;;=3^Postherpetic Trigeminal Neuralgia
- ;;^UTILITY(U,$J,358.3,30331,1,4,0)
- ;;=4^B02.22
- ;;^UTILITY(U,$J,358.3,30331,2)
- ;;=^266546
- ;;^UTILITY(U,$J,358.3,30332,0)
- ;;=J03.91^^135^1374^80
- ;;^UTILITY(U,$J,358.3,30332,1,0)
+ ;;^UTILITY(U,$J,358.3,30781,1,3,0)
+ ;;=3^Alzheimer's Disease with Late Onset
+ ;;^UTILITY(U,$J,358.3,30781,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,30781,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,30782,0)
+ ;;=B20.^^123^1533^18
+ ;;^UTILITY(U,$J,358.3,30782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30332,1,3,0)
- ;;=3^Tonsillitis,Acute Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,30332,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,30332,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,30333,0)
- ;;=K70.0^^135^1375^3
- ;;^UTILITY(U,$J,358.3,30333,1,0)
+ ;;^UTILITY(U,$J,358.3,30782,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,30782,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,30782,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,30783,0)
+ ;;=B20.^^123^1533^19
+ ;;^UTILITY(U,$J,358.3,30783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30333,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,30333,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,30333,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,30334,0)
- ;;=K70.11^^135^1375^7
- ;;^UTILITY(U,$J,358.3,30334,1,0)
+ ;;^UTILITY(U,$J,358.3,30783,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,30783,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,30783,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,30784,0)
+ ;;=G10.^^123^1533^20
+ ;;^UTILITY(U,$J,358.3,30784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30334,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,30334,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,30334,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,30335,0)
- ;;=K70.10^^135^1375^8
- ;;^UTILITY(U,$J,358.3,30335,1,0)
+ ;;^UTILITY(U,$J,358.3,30784,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,30784,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,30784,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,30785,0)
+ ;;=G10.^^123^1533^21
+ ;;^UTILITY(U,$J,358.3,30785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30335,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,30335,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,30335,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,30336,0)
- ;;=K70.2^^135^1375^4
- ;;^UTILITY(U,$J,358.3,30336,1,0)
+ ;;^UTILITY(U,$J,358.3,30785,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,30785,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,30785,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,30786,0)
+ ;;=G90.3^^123^1533^25
+ ;;^UTILITY(U,$J,358.3,30786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30336,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,30336,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,30336,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,30337,0)
- ;;=K70.30^^135^1375^2
- ;;^UTILITY(U,$J,358.3,30337,1,0)
+ ;;^UTILITY(U,$J,358.3,30786,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,30786,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,30786,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,30787,0)
+ ;;=G91.2^^123^1533^26
+ ;;^UTILITY(U,$J,358.3,30787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30337,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,30337,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,30337,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,30338,0)
- ;;=K70.31^^135^1375^1
- ;;^UTILITY(U,$J,358.3,30338,1,0)
+ ;;^UTILITY(U,$J,358.3,30787,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,30787,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,30787,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,30788,0)
+ ;;=G91.2^^123^1533^27
+ ;;^UTILITY(U,$J,358.3,30788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30338,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,30338,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,30338,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,30339,0)
- ;;=K70.9^^135^1375^9
- ;;^UTILITY(U,$J,358.3,30339,1,0)
+ ;;^UTILITY(U,$J,358.3,30788,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavorial Disturbances
+ ;;^UTILITY(U,$J,358.3,30788,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,30788,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,30789,0)
+ ;;=G30.8^^123^1533^2
+ ;;^UTILITY(U,$J,358.3,30789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30339,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,30339,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,30339,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,30340,0)
- ;;=K70.40^^135^1375^6
- ;;^UTILITY(U,$J,358.3,30340,1,0)
+ ;;^UTILITY(U,$J,358.3,30789,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,30789,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,30789,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,30790,0)
+ ;;=A81.89^^123^1533^6
+ ;;^UTILITY(U,$J,358.3,30790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30340,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,30340,1,4,0)
- ;;=4^K70.40
- ;;^UTILITY(U,$J,358.3,30340,2)
- ;;=^5008790
- ;;^UTILITY(U,$J,358.3,30341,0)
- ;;=K70.41^^135^1375^5

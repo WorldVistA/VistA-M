@@ -1,134 +1,130 @@
-IBDEI12R ; ; 19-NOV-2015
+IBDEI12R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17927,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,17927,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,17928,0)
- ;;=K52.2^^91^888^3
- ;;^UTILITY(U,$J,358.3,17928,1,0)
+ ;;^UTILITY(U,$J,358.3,18267,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,18268,0)
+ ;;=E11.51^^79^874^67
+ ;;^UTILITY(U,$J,358.3,18268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17928,1,3,0)
- ;;=3^Allergic and dietetic gastroenteritis and colitis
- ;;^UTILITY(U,$J,358.3,17928,1,4,0)
- ;;=4^K52.2
- ;;^UTILITY(U,$J,358.3,17928,2)
- ;;=^5008701
- ;;^UTILITY(U,$J,358.3,17929,0)
- ;;=K52.89^^91^888^33
- ;;^UTILITY(U,$J,358.3,17929,1,0)
+ ;;^UTILITY(U,$J,358.3,18268,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,18268,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,18268,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,18269,0)
+ ;;=E11.621^^79^874^68
+ ;;^UTILITY(U,$J,358.3,18269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17929,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis
- ;;^UTILITY(U,$J,358.3,17929,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,17929,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,17930,0)
- ;;=R19.4^^91^888^7
- ;;^UTILITY(U,$J,358.3,17930,1,0)
+ ;;^UTILITY(U,$J,358.3,18269,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,18269,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,18269,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,18270,0)
+ ;;=E11.65^^79^874^69
+ ;;^UTILITY(U,$J,358.3,18270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17930,1,3,0)
- ;;=3^Change in bowel habit
- ;;^UTILITY(U,$J,358.3,17930,1,4,0)
- ;;=4^R19.4
- ;;^UTILITY(U,$J,358.3,17930,2)
- ;;=^5019273
- ;;^UTILITY(U,$J,358.3,17931,0)
- ;;=R19.8^^91^888^36
- ;;^UTILITY(U,$J,358.3,17931,1,0)
+ ;;^UTILITY(U,$J,358.3,18270,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,18270,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,18270,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,18271,0)
+ ;;=E11.649^^79^874^70
+ ;;^UTILITY(U,$J,358.3,18271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17931,1,3,0)
- ;;=3^Symptoms and signs involving the dgstv sys and abdomen NEC
- ;;^UTILITY(U,$J,358.3,17931,1,4,0)
- ;;=4^R19.8
- ;;^UTILITY(U,$J,358.3,17931,2)
- ;;=^5019277
- ;;^UTILITY(U,$J,358.3,17932,0)
- ;;=R10.11^^91^888^35
- ;;^UTILITY(U,$J,358.3,17932,1,0)
+ ;;^UTILITY(U,$J,358.3,18271,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,18271,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,18271,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,18272,0)
+ ;;=E11.618^^79^874^64
+ ;;^UTILITY(U,$J,358.3,18272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17932,1,3,0)
- ;;=3^Right upper quadrant pain
- ;;^UTILITY(U,$J,358.3,17932,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,17932,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,17933,0)
- ;;=R10.12^^91^888^29
- ;;^UTILITY(U,$J,358.3,17933,1,0)
+ ;;^UTILITY(U,$J,358.3,18272,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Arthropathy
+ ;;^UTILITY(U,$J,358.3,18272,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,18272,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,18273,0)
+ ;;=E11.638^^79^874^71
+ ;;^UTILITY(U,$J,358.3,18273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17933,1,3,0)
- ;;=3^Left upper quadrant pain
- ;;^UTILITY(U,$J,358.3,17933,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,17933,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,17934,0)
- ;;=R10.31^^91^888^34
- ;;^UTILITY(U,$J,358.3,17934,1,0)
+ ;;^UTILITY(U,$J,358.3,18273,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Oral Complications
+ ;;^UTILITY(U,$J,358.3,18273,1,4,0)
+ ;;=4^E11.638
+ ;;^UTILITY(U,$J,358.3,18273,2)
+ ;;=^5002660
+ ;;^UTILITY(U,$J,358.3,18274,0)
+ ;;=E11.628^^79^874^73
+ ;;^UTILITY(U,$J,358.3,18274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17934,1,3,0)
- ;;=3^Right lower quadrant pain
- ;;^UTILITY(U,$J,358.3,17934,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,17934,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,17935,0)
- ;;=R10.32^^91^888^28
- ;;^UTILITY(U,$J,358.3,17935,1,0)
+ ;;^UTILITY(U,$J,358.3,18274,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Complications
+ ;;^UTILITY(U,$J,358.3,18274,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,18274,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,18275,0)
+ ;;=E11.622^^79^874^74
+ ;;^UTILITY(U,$J,358.3,18275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17935,1,3,0)
- ;;=3^Left lower quadrant pain
- ;;^UTILITY(U,$J,358.3,17935,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,17935,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,17936,0)
- ;;=R10.84^^91^888^23
- ;;^UTILITY(U,$J,358.3,17936,1,0)
+ ;;^UTILITY(U,$J,358.3,18275,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,18275,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,18275,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,18276,0)
+ ;;=E11.69^^79^874^63
+ ;;^UTILITY(U,$J,358.3,18276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17936,1,3,0)
- ;;=3^Generalized abdominal pain
- ;;^UTILITY(U,$J,358.3,17936,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,17936,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,17937,0)
- ;;=R16.0^^91^888^27
- ;;^UTILITY(U,$J,358.3,17937,1,0)
+ ;;^UTILITY(U,$J,358.3,18276,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Complications NEC
+ ;;^UTILITY(U,$J,358.3,18276,1,4,0)
+ ;;=4^E11.69
+ ;;^UTILITY(U,$J,358.3,18276,2)
+ ;;=^5002664
+ ;;^UTILITY(U,$J,358.3,18277,0)
+ ;;=E11.630^^79^874^72
+ ;;^UTILITY(U,$J,358.3,18277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17937,1,3,0)
- ;;=3^Hepatomegaly, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,17937,1,4,0)
- ;;=4^R16.0
- ;;^UTILITY(U,$J,358.3,17937,2)
- ;;=^5019248
- ;;^UTILITY(U,$J,358.3,17938,0)
- ;;=R16.2^^91^888^26
- ;;^UTILITY(U,$J,358.3,17938,1,0)
+ ;;^UTILITY(U,$J,358.3,18277,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,18277,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,18277,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,18278,0)
+ ;;=I83.223^^79^874^147
+ ;;^UTILITY(U,$J,358.3,18278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17938,1,3,0)
- ;;=3^Hepatomegaly with splenomegaly, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,17938,1,4,0)
- ;;=4^R16.2
- ;;^UTILITY(U,$J,358.3,17938,2)
- ;;=^5019250
- ;;^UTILITY(U,$J,358.3,17939,0)
- ;;=R18.8^^91^888^6
- ;;^UTILITY(U,$J,358.3,17939,1,0)
+ ;;^UTILITY(U,$J,358.3,18278,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Ankle Ulcer/Inflammation
+ ;;^UTILITY(U,$J,358.3,18278,1,4,0)
+ ;;=4^I83.223
+ ;;^UTILITY(U,$J,358.3,18278,2)
+ ;;=^5008006
+ ;;^UTILITY(U,$J,358.3,18279,0)
+ ;;=I83.222^^79^874^148
+ ;;^UTILITY(U,$J,358.3,18279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17939,1,3,0)
- ;;=3^Ascites NEC
- ;;^UTILITY(U,$J,358.3,17939,1,4,0)
- ;;=4^R18.8
- ;;^UTILITY(U,$J,358.3,17939,2)
- ;;=^5019253
- ;;^UTILITY(U,$J,358.3,17940,0)
- ;;=R79.89^^91^888^2
- ;;^UTILITY(U,$J,358.3,17940,1,0)
+ ;;^UTILITY(U,$J,358.3,18279,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Calf Ulcer/Inflammation
+ ;;^UTILITY(U,$J,358.3,18279,1,4,0)
+ ;;=4^I83.222
+ ;;^UTILITY(U,$J,358.3,18279,2)
+ ;;=^5008005
+ ;;^UTILITY(U,$J,358.3,18280,0)
+ ;;=I83.224^^79^874^149
+ ;;^UTILITY(U,$J,358.3,18280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17940,1,3,0)
- ;;=3^Abnormal Findings of Blood Chemistry

@@ -1,130 +1,126 @@
-IBDEI2BK ; ; 19-NOV-2015
+IBDEI2BK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38949,1,3,0)
- ;;=3^Tension-type headache, unspecified, not intractable
- ;;^UTILITY(U,$J,358.3,38949,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,38949,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,38950,0)
- ;;=R32.^^180^1989^40
- ;;^UTILITY(U,$J,358.3,38950,1,0)
+ ;;^UTILITY(U,$J,358.3,39340,2)
+ ;;=^5005908
+ ;;^UTILITY(U,$J,358.3,39341,0)
+ ;;=H40.61X3^^153^1921^42
+ ;;^UTILITY(U,$J,358.3,39341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38950,1,3,0)
- ;;=3^Urinary incontinence,unspec
- ;;^UTILITY(U,$J,358.3,38950,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,38950,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,38951,0)
- ;;=R53.1^^180^1989^41
- ;;^UTILITY(U,$J,358.3,38951,1,0)
+ ;;^UTILITY(U,$J,358.3,39341,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39341,1,4,0)
+ ;;=4^H40.61X3
+ ;;^UTILITY(U,$J,358.3,39341,2)
+ ;;=^5133509
+ ;;^UTILITY(U,$J,358.3,39342,0)
+ ;;=H40.61X4^^153^1921^39
+ ;;^UTILITY(U,$J,358.3,39342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38951,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,38951,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,38951,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,38952,0)
- ;;=Z47.1^^180^1990^1
- ;;^UTILITY(U,$J,358.3,38952,1,0)
+ ;;^UTILITY(U,$J,358.3,39342,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39342,1,4,0)
+ ;;=4^H40.61X4
+ ;;^UTILITY(U,$J,358.3,39342,2)
+ ;;=^5005909
+ ;;^UTILITY(U,$J,358.3,39343,0)
+ ;;=H40.62X1^^153^1921^35
+ ;;^UTILITY(U,$J,358.3,39343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38952,1,3,0)
- ;;=3^Aftercare following joint replacement surgery
- ;;^UTILITY(U,$J,358.3,38952,1,4,0)
- ;;=4^Z47.1
- ;;^UTILITY(U,$J,358.3,38952,2)
- ;;=^5063025
- ;;^UTILITY(U,$J,358.3,38953,0)
- ;;=Z96.662^^180^1990^2
- ;;^UTILITY(U,$J,358.3,38953,1,0)
+ ;;^UTILITY(U,$J,358.3,39343,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39343,1,4,0)
+ ;;=4^H40.62X1
+ ;;^UTILITY(U,$J,358.3,39343,2)
+ ;;=^5005911
+ ;;^UTILITY(U,$J,358.3,39344,0)
+ ;;=H40.62X0^^153^1921^38
+ ;;^UTILITY(U,$J,358.3,39344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38953,1,3,0)
- ;;=3^Presence of left artificial ankle joint
- ;;^UTILITY(U,$J,358.3,38953,1,4,0)
- ;;=4^Z96.662
- ;;^UTILITY(U,$J,358.3,38953,2)
- ;;=^5063710
- ;;^UTILITY(U,$J,358.3,38954,0)
- ;;=Z96.622^^180^1990^3
- ;;^UTILITY(U,$J,358.3,38954,1,0)
+ ;;^UTILITY(U,$J,358.3,39344,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,39344,1,4,0)
+ ;;=4^H40.62X0
+ ;;^UTILITY(U,$J,358.3,39344,2)
+ ;;=^5005910
+ ;;^UTILITY(U,$J,358.3,39345,0)
+ ;;=H40.62X2^^153^1921^36
+ ;;^UTILITY(U,$J,358.3,39345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38954,1,3,0)
- ;;=3^Presence of left artificial elbow joint
- ;;^UTILITY(U,$J,358.3,38954,1,4,0)
- ;;=4^Z96.622
- ;;^UTILITY(U,$J,358.3,38954,2)
- ;;=^5063696
- ;;^UTILITY(U,$J,358.3,38955,0)
- ;;=Z96.642^^180^1990^4
- ;;^UTILITY(U,$J,358.3,38955,1,0)
+ ;;^UTILITY(U,$J,358.3,39345,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39345,1,4,0)
+ ;;=4^H40.62X2
+ ;;^UTILITY(U,$J,358.3,39345,2)
+ ;;=^5005912
+ ;;^UTILITY(U,$J,358.3,39346,0)
+ ;;=H40.62X3^^153^1921^37
+ ;;^UTILITY(U,$J,358.3,39346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38955,1,3,0)
- ;;=3^Presence of left artificial hip joint
- ;;^UTILITY(U,$J,358.3,38955,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,38955,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,38956,0)
- ;;=Z96.652^^180^1990^5
- ;;^UTILITY(U,$J,358.3,38956,1,0)
+ ;;^UTILITY(U,$J,358.3,39346,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39346,1,4,0)
+ ;;=4^H40.62X3
+ ;;^UTILITY(U,$J,358.3,39346,2)
+ ;;=^5133510
+ ;;^UTILITY(U,$J,358.3,39347,0)
+ ;;=H40.62X4^^153^1921^34
+ ;;^UTILITY(U,$J,358.3,39347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38956,1,3,0)
- ;;=3^Presence of left artificial knee joint
- ;;^UTILITY(U,$J,358.3,38956,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,38956,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,38957,0)
- ;;=Z96.612^^180^1990^6
- ;;^UTILITY(U,$J,358.3,38957,1,0)
+ ;;^UTILITY(U,$J,358.3,39347,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39347,1,4,0)
+ ;;=4^H40.62X4
+ ;;^UTILITY(U,$J,358.3,39347,2)
+ ;;=^5005913
+ ;;^UTILITY(U,$J,358.3,39348,0)
+ ;;=H40.63X0^^153^1921^33
+ ;;^UTILITY(U,$J,358.3,39348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38957,1,3,0)
- ;;=3^Presence of left artificial shoulder joint
- ;;^UTILITY(U,$J,358.3,38957,1,4,0)
- ;;=4^Z96.612
- ;;^UTILITY(U,$J,358.3,38957,2)
- ;;=^5063693
- ;;^UTILITY(U,$J,358.3,38958,0)
- ;;=Z96.632^^180^1990^7
- ;;^UTILITY(U,$J,358.3,38958,1,0)
+ ;;^UTILITY(U,$J,358.3,39348,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,39348,1,4,0)
+ ;;=4^H40.63X0
+ ;;^UTILITY(U,$J,358.3,39348,2)
+ ;;=^5005914
+ ;;^UTILITY(U,$J,358.3,39349,0)
+ ;;=H40.63X1^^153^1921^30
+ ;;^UTILITY(U,$J,358.3,39349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38958,1,3,0)
- ;;=3^Presence of left artificial wrist joint
- ;;^UTILITY(U,$J,358.3,38958,1,4,0)
- ;;=4^Z96.632
- ;;^UTILITY(U,$J,358.3,38958,2)
- ;;=^5063699
- ;;^UTILITY(U,$J,358.3,38959,0)
- ;;=Z96.60^^180^1990^14
- ;;^UTILITY(U,$J,358.3,38959,1,0)
+ ;;^UTILITY(U,$J,358.3,39349,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39349,1,4,0)
+ ;;=4^H40.63X1
+ ;;^UTILITY(U,$J,358.3,39349,2)
+ ;;=^5005915
+ ;;^UTILITY(U,$J,358.3,39350,0)
+ ;;=H40.63X2^^153^1921^31
+ ;;^UTILITY(U,$J,358.3,39350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38959,1,3,0)
- ;;=3^Presence of unspecified orthopedic joint implant
- ;;^UTILITY(U,$J,358.3,38959,1,4,0)
- ;;=4^Z96.60
- ;;^UTILITY(U,$J,358.3,38959,2)
- ;;=^5063691
- ;;^UTILITY(U,$J,358.3,38960,0)
- ;;=Z96.661^^180^1990^8
- ;;^UTILITY(U,$J,358.3,38960,1,0)
+ ;;^UTILITY(U,$J,358.3,39350,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39350,1,4,0)
+ ;;=4^H40.63X2
+ ;;^UTILITY(U,$J,358.3,39350,2)
+ ;;=^5005916
+ ;;^UTILITY(U,$J,358.3,39351,0)
+ ;;=H40.63X3^^153^1921^32
+ ;;^UTILITY(U,$J,358.3,39351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38960,1,3,0)
- ;;=3^Presence of right artificial ankle joint
- ;;^UTILITY(U,$J,358.3,38960,1,4,0)
- ;;=4^Z96.661
- ;;^UTILITY(U,$J,358.3,38960,2)
- ;;=^5063709
- ;;^UTILITY(U,$J,358.3,38961,0)
- ;;=Z96.621^^180^1990^9
- ;;^UTILITY(U,$J,358.3,38961,1,0)
+ ;;^UTILITY(U,$J,358.3,39351,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39351,1,4,0)
+ ;;=4^H40.63X3
+ ;;^UTILITY(U,$J,358.3,39351,2)
+ ;;=^5005917
+ ;;^UTILITY(U,$J,358.3,39352,0)
+ ;;=H40.63X4^^153^1921^29
+ ;;^UTILITY(U,$J,358.3,39352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38961,1,3,0)
- ;;=3^Presence of right artificial elbow joint
- ;;^UTILITY(U,$J,358.3,38961,1,4,0)
- ;;=4^Z96.621
- ;;^UTILITY(U,$J,358.3,38961,2)
- ;;=^5063695
+ ;;^UTILITY(U,$J,358.3,39352,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39352,1,4,0)
+ ;;=4^H40.63X4
+ ;;^UTILITY(U,$J,358.3,39352,2)
+ ;;=^5005918

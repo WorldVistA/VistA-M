@@ -1,136 +1,132 @@
-IBDEI144 ; ; 19-NOV-2015
+IBDEI144 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18577,1,4,0)
- ;;=4^B96.81
- ;;^UTILITY(U,$J,358.3,18577,2)
- ;;=^5000857
- ;;^UTILITY(U,$J,358.3,18578,0)
- ;;=B15.9^^94^911^58
- ;;^UTILITY(U,$J,358.3,18578,1,0)
+ ;;^UTILITY(U,$J,358.3,18921,2)
+ ;;=^5133396
+ ;;^UTILITY(U,$J,358.3,18922,0)
+ ;;=H02.051^^82^901^42
+ ;;^UTILITY(U,$J,358.3,18922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18578,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18578,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,18578,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,18579,0)
- ;;=B16.9^^94^911^59
- ;;^UTILITY(U,$J,358.3,18579,1,0)
+ ;;^UTILITY(U,$J,358.3,18922,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,18922,1,4,0)
+ ;;=4^H02.051
+ ;;^UTILITY(U,$J,358.3,18922,2)
+ ;;=^5004298
+ ;;^UTILITY(U,$J,358.3,18923,0)
+ ;;=H02.052^^82^901^41
+ ;;^UTILITY(U,$J,358.3,18923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18579,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18579,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,18579,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,18580,0)
- ;;=B19.10^^94^911^61
- ;;^UTILITY(U,$J,358.3,18580,1,0)
+ ;;^UTILITY(U,$J,358.3,18923,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,18923,1,4,0)
+ ;;=4^H02.052
+ ;;^UTILITY(U,$J,358.3,18923,2)
+ ;;=^5004299
+ ;;^UTILITY(U,$J,358.3,18924,0)
+ ;;=H02.054^^82^901^40
+ ;;^UTILITY(U,$J,358.3,18924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18580,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,18580,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,18580,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,18581,0)
- ;;=B18.1^^94^911^60
- ;;^UTILITY(U,$J,358.3,18581,1,0)
+ ;;^UTILITY(U,$J,358.3,18924,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,18924,1,4,0)
+ ;;=4^H02.054
+ ;;^UTILITY(U,$J,358.3,18924,2)
+ ;;=^5004301
+ ;;^UTILITY(U,$J,358.3,18925,0)
+ ;;=H02.055^^82^901^39
+ ;;^UTILITY(U,$J,358.3,18925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18581,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,18581,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,18581,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,18582,0)
- ;;=B17.10^^94^911^62
- ;;^UTILITY(U,$J,358.3,18582,1,0)
+ ;;^UTILITY(U,$J,358.3,18925,1,3,0)
+ ;;=3^Trichiasis w/o Entropian,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,18925,1,4,0)
+ ;;=4^H02.055
+ ;;^UTILITY(U,$J,358.3,18925,2)
+ ;;=^5133405
+ ;;^UTILITY(U,$J,358.3,18926,0)
+ ;;=H02.101^^82^901^20
+ ;;^UTILITY(U,$J,358.3,18926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18582,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,18582,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,18582,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,18583,0)
- ;;=B18.2^^94^911^63
- ;;^UTILITY(U,$J,358.3,18583,1,0)
+ ;;^UTILITY(U,$J,358.3,18926,1,3,0)
+ ;;=3^Ectropion,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18926,1,4,0)
+ ;;=4^H02.101
+ ;;^UTILITY(U,$J,358.3,18926,2)
+ ;;=^5004303
+ ;;^UTILITY(U,$J,358.3,18927,0)
+ ;;=H02.102^^82^901^19
+ ;;^UTILITY(U,$J,358.3,18927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18583,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,18583,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,18583,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,18584,0)
- ;;=B18.8^^94^911^65
- ;;^UTILITY(U,$J,358.3,18584,1,0)
+ ;;^UTILITY(U,$J,358.3,18927,1,3,0)
+ ;;=3^Ectropion,Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18927,1,4,0)
+ ;;=4^H02.102
+ ;;^UTILITY(U,$J,358.3,18927,2)
+ ;;=^5133407
+ ;;^UTILITY(U,$J,358.3,18928,0)
+ ;;=H02.104^^82^901^18
+ ;;^UTILITY(U,$J,358.3,18928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18584,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,18584,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,18584,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,18585,0)
- ;;=B17.8^^94^911^66
- ;;^UTILITY(U,$J,358.3,18585,1,0)
+ ;;^UTILITY(U,$J,358.3,18928,1,3,0)
+ ;;=3^Ectropion,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18928,1,4,0)
+ ;;=4^H02.104
+ ;;^UTILITY(U,$J,358.3,18928,2)
+ ;;=^5004305
+ ;;^UTILITY(U,$J,358.3,18929,0)
+ ;;=H02.105^^82^901^17
+ ;;^UTILITY(U,$J,358.3,18929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18585,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,18585,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,18585,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,18586,0)
- ;;=B18.9^^94^911^64
- ;;^UTILITY(U,$J,358.3,18586,1,0)
+ ;;^UTILITY(U,$J,358.3,18929,1,3,0)
+ ;;=3^Ectropion,Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18929,1,4,0)
+ ;;=4^H02.105
+ ;;^UTILITY(U,$J,358.3,18929,2)
+ ;;=^5133409
+ ;;^UTILITY(U,$J,358.3,18930,0)
+ ;;=H02.401^^82^901^38
+ ;;^UTILITY(U,$J,358.3,18930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18586,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,18586,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,18586,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,18587,0)
- ;;=B37.81^^94^911^18
- ;;^UTILITY(U,$J,358.3,18587,1,0)
+ ;;^UTILITY(U,$J,358.3,18930,1,3,0)
+ ;;=3^Ptosis,Right Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18930,1,4,0)
+ ;;=4^H02.401
+ ;;^UTILITY(U,$J,358.3,18930,2)
+ ;;=^5004353
+ ;;^UTILITY(U,$J,358.3,18931,0)
+ ;;=H02.402^^82^901^37
+ ;;^UTILITY(U,$J,358.3,18931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18587,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,18587,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,18587,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,18588,0)
- ;;=D12.0^^94^911^12
- ;;^UTILITY(U,$J,358.3,18588,1,0)
+ ;;^UTILITY(U,$J,358.3,18931,1,3,0)
+ ;;=3^Ptosis,Left Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,18931,1,4,0)
+ ;;=4^H02.402
+ ;;^UTILITY(U,$J,358.3,18931,2)
+ ;;=^5004354
+ ;;^UTILITY(U,$J,358.3,18932,0)
+ ;;=H02.403^^82^901^36
+ ;;^UTILITY(U,$J,358.3,18932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18588,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,18588,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,18588,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,18589,0)
- ;;=D12.6^^94^911^13
- ;;^UTILITY(U,$J,358.3,18589,1,0)
+ ;;^UTILITY(U,$J,358.3,18932,1,3,0)
+ ;;=3^Ptosis,Bilateral Eyelids,Unspec
+ ;;^UTILITY(U,$J,358.3,18932,1,4,0)
+ ;;=4^H02.403
+ ;;^UTILITY(U,$J,358.3,18932,2)
+ ;;=^5004355
+ ;;^UTILITY(U,$J,358.3,18933,0)
+ ;;=H02.31^^82^901^8
+ ;;^UTILITY(U,$J,358.3,18933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18589,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,18589,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,18589,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,18590,0)
- ;;=D12.1^^94^911^10
- ;;^UTILITY(U,$J,358.3,18590,1,0)
+ ;;^UTILITY(U,$J,358.3,18933,1,3,0)
+ ;;=3^Blepharochalasis,Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,18933,1,4,0)
+ ;;=4^H02.31
+ ;;^UTILITY(U,$J,358.3,18933,2)
+ ;;=^5004348
+ ;;^UTILITY(U,$J,358.3,18934,0)
+ ;;=H02.32^^82^901^7
+ ;;^UTILITY(U,$J,358.3,18934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18590,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,18590,1,4,0)
- ;;=4^D12.1
+ ;;^UTILITY(U,$J,358.3,18934,1,3,0)
+ ;;=3^Blepharochalasis,Right Lower Eyelid

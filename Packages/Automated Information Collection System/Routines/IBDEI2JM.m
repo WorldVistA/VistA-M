@@ -1,132 +1,130 @@
-IBDEI2JM ; ; 19-NOV-2015
+IBDEI2JM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42651,1,4,0)
- ;;=4^T84.611A
- ;;^UTILITY(U,$J,358.3,42651,2)
- ;;=^5055406
- ;;^UTILITY(U,$J,358.3,42652,0)
- ;;=T84.610A^^192^2140^11
- ;;^UTILITY(U,$J,358.3,42652,1,0)
+ ;;^UTILITY(U,$J,358.3,43139,0)
+ ;;=M86.672^^164^2060^76
+ ;;^UTILITY(U,$J,358.3,43139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42652,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt humerus, init
- ;;^UTILITY(U,$J,358.3,42652,1,4,0)
- ;;=4^T84.610A
- ;;^UTILITY(U,$J,358.3,42652,2)
- ;;=^5055403
- ;;^UTILITY(U,$J,358.3,42653,0)
- ;;=T84.623A^^192^2140^6
- ;;^UTILITY(U,$J,358.3,42653,1,0)
+ ;;^UTILITY(U,$J,358.3,43139,1,3,0)
+ ;;=3^Chr Osteomyelitis Lt Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,43139,1,4,0)
+ ;;=4^M86.672
+ ;;^UTILITY(U,$J,358.3,43139,2)
+ ;;=^5014642
+ ;;^UTILITY(U,$J,358.3,43140,0)
+ ;;=S71.021A^^164^2060^114
+ ;;^UTILITY(U,$J,358.3,43140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42653,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft tib, init
- ;;^UTILITY(U,$J,358.3,42653,1,4,0)
- ;;=4^T84.623A
- ;;^UTILITY(U,$J,358.3,42653,2)
- ;;=^5055433
- ;;^UTILITY(U,$J,358.3,42654,0)
- ;;=T84.615A^^192^2140^7
- ;;^UTILITY(U,$J,358.3,42654,1,0)
+ ;;^UTILITY(U,$J,358.3,43140,1,3,0)
+ ;;=3^Laceration w/ FB Rt Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43140,1,4,0)
+ ;;=4^S71.021A
+ ;;^UTILITY(U,$J,358.3,43140,2)
+ ;;=^5036984
+ ;;^UTILITY(U,$J,358.3,43141,0)
+ ;;=S71.022A^^164^2060^110
+ ;;^UTILITY(U,$J,358.3,43141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42654,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft ulna, init
- ;;^UTILITY(U,$J,358.3,42654,1,4,0)
- ;;=4^T84.615A
- ;;^UTILITY(U,$J,358.3,42654,2)
- ;;=^5055418
- ;;^UTILITY(U,$J,358.3,42655,0)
- ;;=T84.614A^^192^2140^2
- ;;^UTILITY(U,$J,358.3,42655,1,0)
+ ;;^UTILITY(U,$J,358.3,43141,1,3,0)
+ ;;=3^Laceration w/ FB Lt Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43141,1,4,0)
+ ;;=4^S71.022A
+ ;;^UTILITY(U,$J,358.3,43141,2)
+ ;;=^5136178
+ ;;^UTILITY(U,$J,358.3,43142,0)
+ ;;=S71.121A^^164^2060^116
+ ;;^UTILITY(U,$J,358.3,43142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42655,1,3,0)
- ;;=3^Infect/inflm react d/t init fix rt ulna, init
- ;;^UTILITY(U,$J,358.3,42655,1,4,0)
- ;;=4^T84.614A
- ;;^UTILITY(U,$J,358.3,42655,2)
- ;;=^5055415
- ;;^UTILITY(U,$J,358.3,42656,0)
- ;;=T84.613A^^192^2140^5
- ;;^UTILITY(U,$J,358.3,42656,1,0)
+ ;;^UTILITY(U,$J,358.3,43142,1,3,0)
+ ;;=3^Laceration w/ FB Rt Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43142,1,4,0)
+ ;;=4^S71.121A
+ ;;^UTILITY(U,$J,358.3,43142,2)
+ ;;=^5037023
+ ;;^UTILITY(U,$J,358.3,43143,0)
+ ;;=S71.122A^^164^2060^112
+ ;;^UTILITY(U,$J,358.3,43143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42656,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft radius, init
- ;;^UTILITY(U,$J,358.3,42656,1,4,0)
- ;;=4^T84.613A
- ;;^UTILITY(U,$J,358.3,42656,2)
- ;;=^5055412
- ;;^UTILITY(U,$J,358.3,42657,0)
- ;;=L08.9^^192^2140^1
- ;;^UTILITY(U,$J,358.3,42657,1,0)
+ ;;^UTILITY(U,$J,358.3,43143,1,3,0)
+ ;;=3^Laceration w/ FB Lt Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43143,1,4,0)
+ ;;=4^S71.122A
+ ;;^UTILITY(U,$J,358.3,43143,2)
+ ;;=^5136193
+ ;;^UTILITY(U,$J,358.3,43144,0)
+ ;;=S91.321A^^164^2060^113
+ ;;^UTILITY(U,$J,358.3,43144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42657,1,3,0)
- ;;=3^Infect Skin/Subcut Tissue,Localized,Unspec
- ;;^UTILITY(U,$J,358.3,42657,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,42657,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,42658,0)
- ;;=M25.374^^192^2140^22
- ;;^UTILITY(U,$J,358.3,42658,1,0)
+ ;;^UTILITY(U,$J,358.3,43144,1,3,0)
+ ;;=3^Laceration w/ FB Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43144,1,4,0)
+ ;;=4^S91.321A
+ ;;^UTILITY(U,$J,358.3,43144,2)
+ ;;=^5044329
+ ;;^UTILITY(U,$J,358.3,43145,0)
+ ;;=S91.322A^^164^2060^109
+ ;;^UTILITY(U,$J,358.3,43145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42658,1,3,0)
- ;;=3^Instability, rt ft, oth
- ;;^UTILITY(U,$J,358.3,42658,1,4,0)
- ;;=4^M25.374
- ;;^UTILITY(U,$J,358.3,42658,2)
- ;;=^5011572
- ;;^UTILITY(U,$J,358.3,42659,0)
- ;;=M25.375^^192^2140^21
- ;;^UTILITY(U,$J,358.3,42659,1,0)
+ ;;^UTILITY(U,$J,358.3,43145,1,3,0)
+ ;;=3^Laceration w/ FB Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43145,1,4,0)
+ ;;=4^S91.322A
+ ;;^UTILITY(U,$J,358.3,43145,2)
+ ;;=^5137527
+ ;;^UTILITY(U,$J,358.3,43146,0)
+ ;;=S81.821A^^164^2060^115
+ ;;^UTILITY(U,$J,358.3,43146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42659,1,3,0)
- ;;=3^Instability, lft ft, oth
- ;;^UTILITY(U,$J,358.3,42659,1,4,0)
- ;;=4^M25.375
- ;;^UTILITY(U,$J,358.3,42659,2)
- ;;=^5011573
- ;;^UTILITY(U,$J,358.3,42660,0)
- ;;=L60.0^^192^2140^14
- ;;^UTILITY(U,$J,358.3,42660,1,0)
+ ;;^UTILITY(U,$J,358.3,43146,1,3,0)
+ ;;=3^Laceration w/ FB Rt Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43146,1,4,0)
+ ;;=4^S81.821A
+ ;;^UTILITY(U,$J,358.3,43146,2)
+ ;;=^5040080
+ ;;^UTILITY(U,$J,358.3,43147,0)
+ ;;=S81.822A^^164^2060^111
+ ;;^UTILITY(U,$J,358.3,43147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42660,1,3,0)
- ;;=3^Ingrowing nail
- ;;^UTILITY(U,$J,358.3,42660,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,42660,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,42661,0)
- ;;=S90.931A^^192^2140^19
- ;;^UTILITY(U,$J,358.3,42661,1,0)
+ ;;^UTILITY(U,$J,358.3,43147,1,3,0)
+ ;;=3^Laceration w/ FB Lt Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43147,1,4,0)
+ ;;=4^S81.822A
+ ;;^UTILITY(U,$J,358.3,43147,2)
+ ;;=^5136691
+ ;;^UTILITY(U,$J,358.3,43148,0)
+ ;;=I71.8^^164^2060^40
+ ;;^UTILITY(U,$J,358.3,43148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42661,1,3,0)
- ;;=3^Injury,Rt Grt Toe,Sprfcl,Init Encntr
- ;;^UTILITY(U,$J,358.3,42661,1,4,0)
- ;;=4^S90.931A
- ;;^UTILITY(U,$J,358.3,42661,2)
- ;;=^5044117
- ;;^UTILITY(U,$J,358.3,42662,0)
- ;;=S90.922A^^192^2140^15
- ;;^UTILITY(U,$J,358.3,42662,1,0)
+ ;;^UTILITY(U,$J,358.3,43148,1,3,0)
+ ;;=3^Aneurysm of Unspec Aortic Site w/ Rupture
+ ;;^UTILITY(U,$J,358.3,43148,1,4,0)
+ ;;=4^I71.8
+ ;;^UTILITY(U,$J,358.3,43148,2)
+ ;;=^9279
+ ;;^UTILITY(U,$J,358.3,43149,0)
+ ;;=I71.9^^164^2060^41
+ ;;^UTILITY(U,$J,358.3,43149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42662,1,3,0)
- ;;=3^Injury,Lft Foot,Sprfcl,Init Encntr
- ;;^UTILITY(U,$J,358.3,42662,1,4,0)
- ;;=4^S90.922A
- ;;^UTILITY(U,$J,358.3,42662,2)
- ;;=^5044114
- ;;^UTILITY(U,$J,358.3,42663,0)
- ;;=S90.932A^^192^2140^16
- ;;^UTILITY(U,$J,358.3,42663,1,0)
+ ;;^UTILITY(U,$J,358.3,43149,1,3,0)
+ ;;=3^Aneurysm of Unspec Aortic Site w/o Rupture
+ ;;^UTILITY(U,$J,358.3,43149,1,4,0)
+ ;;=4^I71.9
+ ;;^UTILITY(U,$J,358.3,43149,2)
+ ;;=^5007792
+ ;;^UTILITY(U,$J,358.3,43150,0)
+ ;;=I72.1^^164^2060^42
+ ;;^UTILITY(U,$J,358.3,43150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42663,1,3,0)
- ;;=3^Injury,Lft Grt Toe,Sprfcl,Init Encntr
- ;;^UTILITY(U,$J,358.3,42663,1,4,0)
- ;;=4^S90.932A
- ;;^UTILITY(U,$J,358.3,42663,2)
- ;;=^5044120
- ;;^UTILITY(U,$J,358.3,42664,0)
- ;;=S90.934A^^192^2140^20
- ;;^UTILITY(U,$J,358.3,42664,1,0)
+ ;;^UTILITY(U,$J,358.3,43150,1,3,0)
+ ;;=3^Aneurysm of Upper Extremity Artery
+ ;;^UTILITY(U,$J,358.3,43150,1,4,0)
+ ;;=4^I72.1
+ ;;^UTILITY(U,$J,358.3,43150,2)
+ ;;=^269771
+ ;;^UTILITY(U,$J,358.3,43151,0)
+ ;;=I72.8^^164^2060^38
+ ;;^UTILITY(U,$J,358.3,43151,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43151,1,3,0)
+ ;;=3^Aneurysm of Oth Specified Arteries

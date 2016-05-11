@@ -1,138 +1,130 @@
-IBDEI12P ; ; 19-NOV-2015
+IBDEI12P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17900,1,3,0)
- ;;=3^Gastrostomy hemorrhage
- ;;^UTILITY(U,$J,358.3,17900,1,4,0)
- ;;=4^K94.21
- ;;^UTILITY(U,$J,358.3,17900,2)
- ;;=^5008929
- ;;^UTILITY(U,$J,358.3,17901,0)
- ;;=K30.^^91^886^13
- ;;^UTILITY(U,$J,358.3,17901,1,0)
+ ;;^UTILITY(U,$J,358.3,18242,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,18242,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,18243,0)
+ ;;=I80.212^^79^874^136
+ ;;^UTILITY(U,$J,358.3,18243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17901,1,3,0)
- ;;=3^Functional dyspepsia
- ;;^UTILITY(U,$J,358.3,17901,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,17901,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,17902,0)
- ;;=K31.5^^91^886^24
- ;;^UTILITY(U,$J,358.3,17902,1,0)
+ ;;^UTILITY(U,$J,358.3,18243,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Left Iliac Vein
+ ;;^UTILITY(U,$J,358.3,18243,1,4,0)
+ ;;=4^I80.212
+ ;;^UTILITY(U,$J,358.3,18243,2)
+ ;;=^5007832
+ ;;^UTILITY(U,$J,358.3,18244,0)
+ ;;=I80.11^^79^874^138
+ ;;^UTILITY(U,$J,358.3,18244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17902,1,3,0)
- ;;=3^Obstruction of duodenum
- ;;^UTILITY(U,$J,358.3,17902,1,4,0)
- ;;=4^K31.5
- ;;^UTILITY(U,$J,358.3,17902,2)
- ;;=^5008564
- ;;^UTILITY(U,$J,358.3,17903,0)
- ;;=K31.819^^91^886^4
- ;;^UTILITY(U,$J,358.3,17903,1,0)
+ ;;^UTILITY(U,$J,358.3,18244,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Right Femoral Vein
+ ;;^UTILITY(U,$J,358.3,18244,1,4,0)
+ ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,18244,2)
+ ;;=^5007825
+ ;;^UTILITY(U,$J,358.3,18245,0)
+ ;;=I80.211^^79^874^139
+ ;;^UTILITY(U,$J,358.3,18245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17903,1,3,0)
- ;;=3^Angiodysplasia of stomach and duodenum without bleeding
- ;;^UTILITY(U,$J,358.3,17903,1,4,0)
- ;;=4^K31.819
- ;;^UTILITY(U,$J,358.3,17903,2)
- ;;=^5008568
- ;;^UTILITY(U,$J,358.3,17904,0)
- ;;=K31.811^^91^886^5
- ;;^UTILITY(U,$J,358.3,17904,1,0)
+ ;;^UTILITY(U,$J,358.3,18245,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Right Iliac Vein
+ ;;^UTILITY(U,$J,358.3,18245,1,4,0)
+ ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.3,18245,2)
+ ;;=^5007831
+ ;;^UTILITY(U,$J,358.3,18246,0)
+ ;;=I80.203^^79^874^134
+ ;;^UTILITY(U,$J,358.3,18246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17904,1,3,0)
- ;;=3^Angiodysplasia of stomach and duodenum with bleeding
- ;;^UTILITY(U,$J,358.3,17904,1,4,0)
- ;;=4^K31.811
- ;;^UTILITY(U,$J,358.3,17904,2)
- ;;=^5008567
- ;;^UTILITY(U,$J,358.3,17905,0)
- ;;=K91.1^^91^887^3
- ;;^UTILITY(U,$J,358.3,17905,1,0)
+ ;;^UTILITY(U,$J,358.3,18246,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Bilateral Lower Extrem Deep Vessels
+ ;;^UTILITY(U,$J,358.3,18246,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,18246,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,18247,0)
+ ;;=I80.202^^79^874^137
+ ;;^UTILITY(U,$J,358.3,18247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17905,1,3,0)
- ;;=3^Postgastric surgery syndromes
- ;;^UTILITY(U,$J,358.3,17905,1,4,0)
- ;;=4^K91.1
- ;;^UTILITY(U,$J,358.3,17905,2)
- ;;=^5008900
- ;;^UTILITY(U,$J,358.3,17906,0)
- ;;=Z93.1^^91^887^2
- ;;^UTILITY(U,$J,358.3,17906,1,0)
+ ;;^UTILITY(U,$J,358.3,18247,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Left Lower Extrem Deep Vessels
+ ;;^UTILITY(U,$J,358.3,18247,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,18247,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,18248,0)
+ ;;=I80.201^^79^874^140
+ ;;^UTILITY(U,$J,358.3,18248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17906,1,3,0)
- ;;=3^Gastrostomy status
- ;;^UTILITY(U,$J,358.3,17906,1,4,0)
- ;;=4^Z93.1
- ;;^UTILITY(U,$J,358.3,17906,2)
- ;;=^5063643
- ;;^UTILITY(U,$J,358.3,17907,0)
- ;;=Z43.1^^91^887^1
- ;;^UTILITY(U,$J,358.3,17907,1,0)
+ ;;^UTILITY(U,$J,358.3,18248,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis of Right Lower Extrem Deep Vessels
+ ;;^UTILITY(U,$J,358.3,18248,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,18248,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,18249,0)
+ ;;=I73.00^^79^874^141
+ ;;^UTILITY(U,$J,358.3,18249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17907,1,3,0)
- ;;=3^Attention to Gastrostomy
- ;;^UTILITY(U,$J,358.3,17907,1,4,0)
- ;;=4^Z43.1
- ;;^UTILITY(U,$J,358.3,17907,2)
- ;;=^5062959
- ;;^UTILITY(U,$J,358.3,17908,0)
- ;;=D64.9^^91^888^4
- ;;^UTILITY(U,$J,358.3,17908,1,0)
+ ;;^UTILITY(U,$J,358.3,18249,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,18249,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,18249,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,18250,0)
+ ;;=I77.1^^79^874^143
+ ;;^UTILITY(U,$J,358.3,18250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17908,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,17908,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,17908,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,17909,0)
- ;;=K92.0^^91^888^25
- ;;^UTILITY(U,$J,358.3,17909,1,0)
+ ;;^UTILITY(U,$J,358.3,18250,1,3,0)
+ ;;=3^Stricture of Artery
+ ;;^UTILITY(U,$J,358.3,18250,1,4,0)
+ ;;=4^I77.1
+ ;;^UTILITY(U,$J,358.3,18250,2)
+ ;;=^114763
+ ;;^UTILITY(U,$J,358.3,18251,0)
+ ;;=I71.2^^79^874^144
+ ;;^UTILITY(U,$J,358.3,18251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17909,1,3,0)
- ;;=3^Hematemesis
- ;;^UTILITY(U,$J,358.3,17909,1,4,0)
- ;;=4^K92.0
- ;;^UTILITY(U,$J,358.3,17909,2)
- ;;=^5008913
- ;;^UTILITY(U,$J,358.3,17910,0)
- ;;=K92.1^^91^888^30
- ;;^UTILITY(U,$J,358.3,17910,1,0)
+ ;;^UTILITY(U,$J,358.3,18251,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,18251,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,18251,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,18252,0)
+ ;;=I71.5^^79^874^145
+ ;;^UTILITY(U,$J,358.3,18252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17910,1,3,0)
- ;;=3^Melena
- ;;^UTILITY(U,$J,358.3,17910,1,4,0)
- ;;=4^K92.1
- ;;^UTILITY(U,$J,358.3,17910,2)
- ;;=^5008914
- ;;^UTILITY(U,$J,358.3,17911,0)
- ;;=K92.2^^91^888^22
- ;;^UTILITY(U,$J,358.3,17911,1,0)
+ ;;^UTILITY(U,$J,358.3,18252,1,3,0)
+ ;;=3^Thoracoabdominal Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,18252,1,4,0)
+ ;;=4^I71.5
+ ;;^UTILITY(U,$J,358.3,18252,2)
+ ;;=^5007790
+ ;;^UTILITY(U,$J,358.3,18253,0)
+ ;;=I71.6^^79^874^146
+ ;;^UTILITY(U,$J,358.3,18253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17911,1,3,0)
- ;;=3^Gastrointestinal hemorrhage, unspecified
- ;;^UTILITY(U,$J,358.3,17911,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,17911,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,17912,0)
- ;;=R11.2^^91^888^32
- ;;^UTILITY(U,$J,358.3,17912,1,0)
+ ;;^UTILITY(U,$J,358.3,18253,1,3,0)
+ ;;=3^Thoracoabdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,18253,1,4,0)
+ ;;=4^I71.6
+ ;;^UTILITY(U,$J,358.3,18253,2)
+ ;;=^5007791
+ ;;^UTILITY(U,$J,358.3,18254,0)
+ ;;=E10.620^^79^874^52
+ ;;^UTILITY(U,$J,358.3,18254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17912,1,3,0)
- ;;=3^Nausea with vomiting, unspecified
- ;;^UTILITY(U,$J,358.3,17912,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,17912,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,17913,0)
- ;;=R11.0^^91^888^31
- ;;^UTILITY(U,$J,358.3,17913,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17913,1,3,0)
- ;;=3^Nausea
- ;;^UTILITY(U,$J,358.3,17913,1,4,0)
- ;;=4^R11.0
+ ;;^UTILITY(U,$J,358.3,18254,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic Dermatitis
+ ;;^UTILITY(U,$J,358.3,18254,1,4,0)
+ ;;=4^E10.620
+ ;;^UTILITY(U,$J,358.3,18254,2)
+ ;;=^5002615
+ ;;^UTILITY(U,$J,358.3,18255,0)
+ ;;=E10.40^^79^874^53

@@ -1,132 +1,138 @@
-IBDEI0MY ; ; 19-NOV-2015
+IBDEI0MY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10483,0)
- ;;=K25.7^^68^670^50
- ;;^UTILITY(U,$J,358.3,10483,1,0)
+ ;;^UTILITY(U,$J,358.3,10706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10483,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,10483,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,10483,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,10484,0)
- ;;=K26.9^^68^670^44
- ;;^UTILITY(U,$J,358.3,10484,1,0)
+ ;;^UTILITY(U,$J,358.3,10706,1,3,0)
+ ;;=3^Artificial Opening,Colostomy Status
+ ;;^UTILITY(U,$J,358.3,10706,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,10706,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,10707,0)
+ ;;=Z93.4^^47^520^5
+ ;;^UTILITY(U,$J,358.3,10707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10484,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,10484,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,10484,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,10485,0)
- ;;=K27.9^^68^670^72
- ;;^UTILITY(U,$J,358.3,10485,1,0)
+ ;;^UTILITY(U,$J,358.3,10707,1,3,0)
+ ;;=3^Artificial Opening,GI Tract
+ ;;^UTILITY(U,$J,358.3,10707,1,4,0)
+ ;;=4^Z93.4
+ ;;^UTILITY(U,$J,358.3,10707,2)
+ ;;=^5063646
+ ;;^UTILITY(U,$J,358.3,10708,0)
+ ;;=Z93.1^^47^520^6
+ ;;^UTILITY(U,$J,358.3,10708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10485,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,10485,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,10485,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,10486,0)
- ;;=K29.70^^68^670^51
- ;;^UTILITY(U,$J,358.3,10486,1,0)
+ ;;^UTILITY(U,$J,358.3,10708,1,3,0)
+ ;;=3^Artificial Opening,Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,10708,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,10708,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,10709,0)
+ ;;=Z93.2^^47^520^7
+ ;;^UTILITY(U,$J,358.3,10709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10486,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,10486,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,10486,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,10487,0)
- ;;=K29.90^^68^670^52
- ;;^UTILITY(U,$J,358.3,10487,1,0)
+ ;;^UTILITY(U,$J,358.3,10709,1,3,0)
+ ;;=3^Artificial Opening,Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,10709,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,10709,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,10710,0)
+ ;;=K83.9^^47^520^8
+ ;;^UTILITY(U,$J,358.3,10710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10487,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,10487,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,10487,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,10488,0)
- ;;=K30.^^68^670^45
- ;;^UTILITY(U,$J,358.3,10488,1,0)
+ ;;^UTILITY(U,$J,358.3,10710,1,3,0)
+ ;;=3^Biliary Tract Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10710,1,4,0)
+ ;;=4^K83.9
+ ;;^UTILITY(U,$J,358.3,10710,2)
+ ;;=^5008881
+ ;;^UTILITY(U,$J,358.3,10711,0)
+ ;;=R14.2^^47^520^9
+ ;;^UTILITY(U,$J,358.3,10711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10488,1,3,0)
- ;;=3^Dyspepsia,Functional
- ;;^UTILITY(U,$J,358.3,10488,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,10488,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,10489,0)
- ;;=K31.89^^68^670^34
- ;;^UTILITY(U,$J,358.3,10489,1,0)
+ ;;^UTILITY(U,$J,358.3,10711,1,3,0)
+ ;;=3^Burping-Belching
+ ;;^UTILITY(U,$J,358.3,10711,1,4,0)
+ ;;=4^R14.2
+ ;;^UTILITY(U,$J,358.3,10711,2)
+ ;;=^5019242
+ ;;^UTILITY(U,$J,358.3,10712,0)
+ ;;=K90.0^^47^520^10
+ ;;^UTILITY(U,$J,358.3,10712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10489,1,3,0)
- ;;=3^Diseases of Stomach & Duodenum,Other
- ;;^UTILITY(U,$J,358.3,10489,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,10489,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,10490,0)
- ;;=K31.9^^68^670^33
- ;;^UTILITY(U,$J,358.3,10490,1,0)
+ ;;^UTILITY(U,$J,358.3,10712,1,3,0)
+ ;;=3^Celiac Disease
+ ;;^UTILITY(U,$J,358.3,10712,1,4,0)
+ ;;=4^K90.0
+ ;;^UTILITY(U,$J,358.3,10712,2)
+ ;;=^20828
+ ;;^UTILITY(U,$J,358.3,10713,0)
+ ;;=K51.00^^47^520^12
+ ;;^UTILITY(U,$J,358.3,10713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10490,1,3,0)
- ;;=3^Disease of Stomach & Duodenum,Unspec
- ;;^UTILITY(U,$J,358.3,10490,1,4,0)
- ;;=4^K31.9
- ;;^UTILITY(U,$J,358.3,10490,2)
- ;;=^5008570
- ;;^UTILITY(U,$J,358.3,10491,0)
- ;;=K40.90^^68^670^68
- ;;^UTILITY(U,$J,358.3,10491,1,0)
+ ;;^UTILITY(U,$J,358.3,10713,1,3,0)
+ ;;=3^Colitis,Ulcerative
+ ;;^UTILITY(U,$J,358.3,10713,1,4,0)
+ ;;=4^K51.00
+ ;;^UTILITY(U,$J,358.3,10713,2)
+ ;;=^5008652
+ ;;^UTILITY(U,$J,358.3,10714,0)
+ ;;=K94.00^^47^520^13
+ ;;^UTILITY(U,$J,358.3,10714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10491,1,3,0)
- ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,10491,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,10491,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,10492,0)
- ;;=K40.20^^68^670^67
- ;;^UTILITY(U,$J,358.3,10492,1,0)
+ ;;^UTILITY(U,$J,358.3,10714,1,3,0)
+ ;;=3^Complication of Colostomy,Unspec
+ ;;^UTILITY(U,$J,358.3,10714,1,4,0)
+ ;;=4^K94.00
+ ;;^UTILITY(U,$J,358.3,10714,2)
+ ;;=^5008918
+ ;;^UTILITY(U,$J,358.3,10715,0)
+ ;;=K94.10^^47^520^14
+ ;;^UTILITY(U,$J,358.3,10715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10492,1,3,0)
- ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,10492,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,10492,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,10493,0)
- ;;=K44.9^^68^670^31
- ;;^UTILITY(U,$J,358.3,10493,1,0)
+ ;;^UTILITY(U,$J,358.3,10715,1,3,0)
+ ;;=3^Complication of Enterostomy,Unspec
+ ;;^UTILITY(U,$J,358.3,10715,1,4,0)
+ ;;=4^K94.10
+ ;;^UTILITY(U,$J,358.3,10715,2)
+ ;;=^5008923
+ ;;^UTILITY(U,$J,358.3,10716,0)
+ ;;=K94.30^^47^520^15
+ ;;^UTILITY(U,$J,358.3,10716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10493,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,10493,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,10493,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,10494,0)
- ;;=K46.9^^68^670^1
- ;;^UTILITY(U,$J,358.3,10494,1,0)
+ ;;^UTILITY(U,$J,358.3,10716,1,3,0)
+ ;;=3^Complication of Esophagostomy,Unspec
+ ;;^UTILITY(U,$J,358.3,10716,1,4,0)
+ ;;=4^K94.30
+ ;;^UTILITY(U,$J,358.3,10716,2)
+ ;;=^5008933
+ ;;^UTILITY(U,$J,358.3,10717,0)
+ ;;=K94.20^^47^520^16
+ ;;^UTILITY(U,$J,358.3,10717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10494,1,3,0)
- ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,10494,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,10494,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,10495,0)
- ;;=K50.90^^68^670^29
- ;;^UTILITY(U,$J,358.3,10495,1,0)
+ ;;^UTILITY(U,$J,358.3,10717,1,3,0)
+ ;;=3^Complication of Gastrostomy,Unspec
+ ;;^UTILITY(U,$J,358.3,10717,1,4,0)
+ ;;=4^K94.20
+ ;;^UTILITY(U,$J,358.3,10717,2)
+ ;;=^5008928
+ ;;^UTILITY(U,$J,358.3,10718,0)
+ ;;=K59.00^^47^520^17
+ ;;^UTILITY(U,$J,358.3,10718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10495,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,10495,1,4,0)
- ;;=4^K50.90
+ ;;^UTILITY(U,$J,358.3,10718,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,10718,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,10718,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,10719,0)
+ ;;=K50.00^^47^520^18
+ ;;^UTILITY(U,$J,358.3,10719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10719,1,3,0)
+ ;;=3^Crohn's Disease,Small Intestine w/o Complications

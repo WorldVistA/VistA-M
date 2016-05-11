@@ -1,132 +1,130 @@
-IBDEI058 ; ; 19-NOV-2015
+IBDEI058 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1776,1,2,0)
- ;;=2^33215
- ;;^UTILITY(U,$J,358.3,1776,1,3,0)
- ;;=3^Reposition Transvenous PM/ICD Lead
- ;;^UTILITY(U,$J,358.3,1777,0)
- ;;=33221^^17^169^29^^^^1
- ;;^UTILITY(U,$J,358.3,1777,1,0)
+ ;;^UTILITY(U,$J,358.3,2059,0)
+ ;;=93462^^12^166^14^^^^1
+ ;;^UTILITY(U,$J,358.3,2059,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1777,1,2,0)
- ;;=2^33221
- ;;^UTILITY(U,$J,358.3,1777,1,3,0)
- ;;=3^New Pacemaker Attached to Old Leads
- ;;^UTILITY(U,$J,358.3,1778,0)
- ;;=33225^^17^169^3^^^^1
- ;;^UTILITY(U,$J,358.3,1778,1,0)
+ ;;^UTILITY(U,$J,358.3,2059,1,2,0)
+ ;;=2^93462
+ ;;^UTILITY(U,$J,358.3,2059,1,3,0)
+ ;;=3^Lt Hrt Cath Trnsptl Puncture
+ ;;^UTILITY(U,$J,358.3,2060,0)
+ ;;=93561^^12^166^7^^^^1
+ ;;^UTILITY(U,$J,358.3,2060,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1778,1,2,0)
- ;;=2^33225
- ;;^UTILITY(U,$J,358.3,1778,1,3,0)
- ;;=3^CS Lead Implt at time of New Implt/Upgd
- ;;^UTILITY(U,$J,358.3,1779,0)
- ;;=33284^^17^169^27^^^^1
- ;;^UTILITY(U,$J,358.3,1779,1,0)
+ ;;^UTILITY(U,$J,358.3,2060,1,2,0)
+ ;;=2^93561
+ ;;^UTILITY(U,$J,358.3,2060,1,3,0)
+ ;;=3^Indicator Dilution Study-Arterial/Ven
+ ;;^UTILITY(U,$J,358.3,2061,0)
+ ;;=93562^^12^166^22^^^^1
+ ;;^UTILITY(U,$J,358.3,2061,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1779,1,2,0)
- ;;=2^33284
- ;;^UTILITY(U,$J,358.3,1779,1,3,0)
- ;;=3^Monitor Explant
- ;;^UTILITY(U,$J,358.3,1780,0)
- ;;=33282^^17^169^28^^^^1
- ;;^UTILITY(U,$J,358.3,1780,1,0)
+ ;;^UTILITY(U,$J,358.3,2061,1,2,0)
+ ;;=2^93562
+ ;;^UTILITY(U,$J,358.3,2061,1,3,0)
+ ;;=3^Subsq Measure of Cardiac Output
+ ;;^UTILITY(U,$J,358.3,2062,0)
+ ;;=93463^^12^166^15^^^^1
+ ;;^UTILITY(U,$J,358.3,2062,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1780,1,2,0)
- ;;=2^33282
- ;;^UTILITY(U,$J,358.3,1780,1,3,0)
- ;;=3^Monitor Implant
- ;;^UTILITY(U,$J,358.3,1781,0)
- ;;=33226^^17^169^4^^^^1
- ;;^UTILITY(U,$J,358.3,1781,1,0)
+ ;;^UTILITY(U,$J,358.3,2062,1,2,0)
+ ;;=2^93463
+ ;;^UTILITY(U,$J,358.3,2062,1,3,0)
+ ;;=3^Pharm agent admin, when performed
+ ;;^UTILITY(U,$J,358.3,2063,0)
+ ;;=93505^^12^166^6^^^^1
+ ;;^UTILITY(U,$J,358.3,2063,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1781,1,2,0)
- ;;=2^33226
- ;;^UTILITY(U,$J,358.3,1781,1,3,0)
- ;;=3^CS Lead Revision
- ;;^UTILITY(U,$J,358.3,1782,0)
- ;;=92961^^17^169^6^^^^1
- ;;^UTILITY(U,$J,358.3,1782,1,0)
+ ;;^UTILITY(U,$J,358.3,2063,1,2,0)
+ ;;=2^93505
+ ;;^UTILITY(U,$J,358.3,2063,1,3,0)
+ ;;=3^Endomyocardial Biopsy
+ ;;^UTILITY(U,$J,358.3,2064,0)
+ ;;=93464^^12^166^16^^^^1
+ ;;^UTILITY(U,$J,358.3,2064,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1782,1,2,0)
- ;;=2^92961
- ;;^UTILITY(U,$J,358.3,1782,1,3,0)
- ;;=3^Cardioversion,Internal
- ;;^UTILITY(U,$J,358.3,1783,0)
- ;;=93260^^17^169^41^^^^1
- ;;^UTILITY(U,$J,358.3,1783,1,0)
+ ;;^UTILITY(U,$J,358.3,2064,1,2,0)
+ ;;=2^93464
+ ;;^UTILITY(U,$J,358.3,2064,1,3,0)
+ ;;=3^Phys Exercise Tst w/Hemodynamic Meas
+ ;;^UTILITY(U,$J,358.3,2065,0)
+ ;;=93564^^12^166^8^^^^1
+ ;;^UTILITY(U,$J,358.3,2065,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1783,1,2,0)
- ;;=2^93260
- ;;^UTILITY(U,$J,358.3,1783,1,3,0)
- ;;=3^Prgrmg Dev Eval Impltbl Sys
- ;;^UTILITY(U,$J,358.3,1784,0)
- ;;=93261^^17^169^26^^^^1
- ;;^UTILITY(U,$J,358.3,1784,1,0)
+ ;;^UTILITY(U,$J,358.3,2065,1,2,0)
+ ;;=2^93564
+ ;;^UTILITY(U,$J,358.3,2065,1,3,0)
+ ;;=3^Inject Hrt Cong Cath Art/Grft
+ ;;^UTILITY(U,$J,358.3,2066,0)
+ ;;=93568^^12^166^9^^^^1
+ ;;^UTILITY(U,$J,358.3,2066,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1784,1,2,0)
- ;;=2^93261
- ;;^UTILITY(U,$J,358.3,1784,1,3,0)
- ;;=3^Interrogate Subq Defib
- ;;^UTILITY(U,$J,358.3,1785,0)
- ;;=93298^^17^169^14^^^^1
- ;;^UTILITY(U,$J,358.3,1785,1,0)
+ ;;^UTILITY(U,$J,358.3,2066,1,2,0)
+ ;;=2^93568
+ ;;^UTILITY(U,$J,358.3,2066,1,3,0)
+ ;;=3^Inject Pulm Art Hrt Cath
+ ;;^UTILITY(U,$J,358.3,2067,0)
+ ;;=93566^^12^166^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2067,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1785,1,2,0)
- ;;=2^93298
- ;;^UTILITY(U,$J,358.3,1785,1,3,0)
- ;;=3^ILR Device Interrogat Remote
- ;;^UTILITY(U,$J,358.3,1786,0)
- ;;=93724^^17^169^1^^^^1
- ;;^UTILITY(U,$J,358.3,1786,1,0)
+ ;;^UTILITY(U,$J,358.3,2067,1,2,0)
+ ;;=2^93566
+ ;;^UTILITY(U,$J,358.3,2067,1,3,0)
+ ;;=3^Inject R Ventr/Atrial Angio
+ ;;^UTILITY(U,$J,358.3,2068,0)
+ ;;=93567^^12^166^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2068,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1786,1,2,0)
- ;;=2^93724
- ;;^UTILITY(U,$J,358.3,1786,1,3,0)
- ;;=3^ANALYZE PACEMAKER SYSTEM
- ;;^UTILITY(U,$J,358.3,1787,0)
- ;;=33967^^17^169^17^^^^1
- ;;^UTILITY(U,$J,358.3,1787,1,0)
+ ;;^UTILITY(U,$J,358.3,2068,1,2,0)
+ ;;=2^93567
+ ;;^UTILITY(U,$J,358.3,2068,1,3,0)
+ ;;=3^Inject Suprvlv Aortography
+ ;;^UTILITY(U,$J,358.3,2069,0)
+ ;;=93532^^12^166^17^^^^1
+ ;;^UTILITY(U,$J,358.3,2069,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1787,1,2,0)
- ;;=2^33967
- ;;^UTILITY(U,$J,358.3,1787,1,3,0)
- ;;=3^Insert IA Percut Device
- ;;^UTILITY(U,$J,358.3,1788,0)
- ;;=33236^^17^169^46^^^^1
- ;;^UTILITY(U,$J,358.3,1788,1,0)
+ ;;^UTILITY(U,$J,358.3,2069,1,2,0)
+ ;;=2^93532
+ ;;^UTILITY(U,$J,358.3,2069,1,3,0)
+ ;;=3^R&L HC for Congenital Card Anomalies
+ ;;^UTILITY(U,$J,358.3,2070,0)
+ ;;=93580^^12^166^24^^^^1
+ ;;^UTILITY(U,$J,358.3,2070,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1788,1,2,0)
- ;;=2^33236
- ;;^UTILITY(U,$J,358.3,1788,1,3,0)
- ;;=3^Remove Epi Electrode/Thoracotomy
- ;;^UTILITY(U,$J,358.3,1789,0)
- ;;=33237^^17^169^45^^^^1
- ;;^UTILITY(U,$J,358.3,1789,1,0)
+ ;;^UTILITY(U,$J,358.3,2070,1,2,0)
+ ;;=2^93580
+ ;;^UTILITY(U,$J,358.3,2070,1,3,0)
+ ;;=3^Transcath Closure of ASD
+ ;;^UTILITY(U,$J,358.3,2071,0)
+ ;;=36100^^12^167^11^^^^1
+ ;;^UTILITY(U,$J,358.3,2071,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1789,1,2,0)
- ;;=2^33237
- ;;^UTILITY(U,$J,358.3,1789,1,3,0)
- ;;=3^Remove Electrode/Thoracotomy Dual
- ;;^UTILITY(U,$J,358.3,1790,0)
- ;;=33249^^17^169^47^^^^1
- ;;^UTILITY(U,$J,358.3,1790,1,0)
+ ;;^UTILITY(U,$J,358.3,2071,1,2,0)
+ ;;=2^36100
+ ;;^UTILITY(U,$J,358.3,2071,1,3,0)
+ ;;=3^Intro Needle Or Cath Carotid Or Vert. Artery
+ ;;^UTILITY(U,$J,358.3,2072,0)
+ ;;=36120^^12^167^10^^^^1
+ ;;^UTILITY(U,$J,358.3,2072,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1790,1,2,0)
- ;;=2^33249
- ;;^UTILITY(U,$J,358.3,1790,1,3,0)
- ;;=3^Remove ICD Leads/Thoracotomy
- ;;^UTILITY(U,$J,358.3,1791,0)
- ;;=92992^^17^170^1^^^^1
- ;;^UTILITY(U,$J,358.3,1791,1,0)
+ ;;^UTILITY(U,$J,358.3,2072,1,2,0)
+ ;;=2^36120
+ ;;^UTILITY(U,$J,358.3,2072,1,3,0)
+ ;;=3^Intro Needle Or Cath Brachial Artery
+ ;;^UTILITY(U,$J,358.3,2073,0)
+ ;;=36140^^12^167^12^^^^1
+ ;;^UTILITY(U,$J,358.3,2073,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1791,1,2,0)
- ;;=2^92992
- ;;^UTILITY(U,$J,358.3,1791,1,3,0)
- ;;=3^Atrial Septectomy Trans Balloon (Inc Cath)
- ;;^UTILITY(U,$J,358.3,1792,0)
- ;;=92993^^17^170^21^^^^1
- ;;^UTILITY(U,$J,358.3,1792,1,0)
+ ;;^UTILITY(U,$J,358.3,2073,1,2,0)
+ ;;=2^36140
+ ;;^UTILITY(U,$J,358.3,2073,1,3,0)
+ ;;=3^Intro Needle Or Cath Ext Artery
+ ;;^UTILITY(U,$J,358.3,2074,0)
+ ;;=36215^^12^167^40^^^^1
+ ;;^UTILITY(U,$J,358.3,2074,1,0)
  ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,2074,1,2,0)
+ ;;=2^36215

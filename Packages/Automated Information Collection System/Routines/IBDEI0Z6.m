@@ -1,134 +1,136 @@
-IBDEI0Z6 ; ; 19-NOV-2015
+IBDEI0Z6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16201,1,0)
+ ;;^UTILITY(U,$J,358.3,16529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16201,1,3,0)
- ;;=3^Hernia,Umbilical w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16201,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,16201,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,16202,0)
- ;;=K41.30^^88^843^57
- ;;^UTILITY(U,$J,358.3,16202,1,0)
+ ;;^UTILITY(U,$J,358.3,16529,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16529,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,16529,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,16530,0)
+ ;;=I42.7^^67^760^3
+ ;;^UTILITY(U,$J,358.3,16530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16202,1,3,0)
- ;;=3^Hernia,Unil Femoral w/ Obstruction w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16202,1,4,0)
- ;;=4^K41.30
- ;;^UTILITY(U,$J,358.3,16202,2)
- ;;=^5008599
- ;;^UTILITY(U,$J,358.3,16203,0)
- ;;=K41.90^^88^843^58
- ;;^UTILITY(U,$J,358.3,16203,1,0)
+ ;;^UTILITY(U,$J,358.3,16530,1,3,0)
+ ;;=3^Cardiomyopathy d/t Drug/External Agent
+ ;;^UTILITY(U,$J,358.3,16530,1,4,0)
+ ;;=4^I42.7
+ ;;^UTILITY(U,$J,358.3,16530,2)
+ ;;=^5007198
+ ;;^UTILITY(U,$J,358.3,16531,0)
+ ;;=I21.3^^67^760^14
+ ;;^UTILITY(U,$J,358.3,16531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16203,1,3,0)
- ;;=3^Hernia,Unil Femoral w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16203,1,4,0)
- ;;=4^K41.90
- ;;^UTILITY(U,$J,358.3,16203,2)
- ;;=^5008603
- ;;^UTILITY(U,$J,358.3,16204,0)
- ;;=K40.30^^88^843^59
- ;;^UTILITY(U,$J,358.3,16204,1,0)
+ ;;^UTILITY(U,$J,358.3,16531,1,3,0)
+ ;;=3^STEMI,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16531,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,16531,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,16532,0)
+ ;;=I25.5^^67^760^8
+ ;;^UTILITY(U,$J,358.3,16532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16204,1,3,0)
- ;;=3^Hernia,Unil Inguinal w/ Obstruction w/o Gangrene
- ;;^UTILITY(U,$J,358.3,16204,1,4,0)
- ;;=4^K40.30
- ;;^UTILITY(U,$J,358.3,16204,2)
- ;;=^5008587
- ;;^UTILITY(U,$J,358.3,16205,0)
- ;;=K40.90^^88^843^60
- ;;^UTILITY(U,$J,358.3,16205,1,0)
+ ;;^UTILITY(U,$J,358.3,16532,1,3,0)
+ ;;=3^Ischemic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,16532,1,4,0)
+ ;;=4^I25.5
+ ;;^UTILITY(U,$J,358.3,16532,2)
+ ;;=^5007115
+ ;;^UTILITY(U,$J,358.3,16533,0)
+ ;;=I25.9^^67^760^6
+ ;;^UTILITY(U,$J,358.3,16533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16205,1,3,0)
- ;;=3^Hernia,Unil Inguinal w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16205,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,16205,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,16206,0)
- ;;=K43.9^^88^843^61
- ;;^UTILITY(U,$J,358.3,16206,1,0)
+ ;;^UTILITY(U,$J,358.3,16533,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16533,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,16533,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,16534,0)
+ ;;=I25.10^^67^760^2
+ ;;^UTILITY(U,$J,358.3,16534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16206,1,3,0)
- ;;=3^Hernia,Ventral w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,16206,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,16206,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,16207,0)
- ;;=K59.9^^88^843^65
- ;;^UTILITY(U,$J,358.3,16207,1,0)
+ ;;^UTILITY(U,$J,358.3,16534,1,3,0)
+ ;;=3^Athscl Hrt Dis Ntv Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,16534,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,16534,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,16535,0)
+ ;;=D64.9^^67^760^1
+ ;;^UTILITY(U,$J,358.3,16535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16207,1,3,0)
- ;;=3^Intestinal Disorder,Functional,Unspec
- ;;^UTILITY(U,$J,358.3,16207,1,4,0)
- ;;=4^K59.9
- ;;^UTILITY(U,$J,358.3,16207,2)
- ;;=^5008744
- ;;^UTILITY(U,$J,358.3,16208,0)
- ;;=K63.9^^88^843^64
- ;;^UTILITY(U,$J,358.3,16208,1,0)
+ ;;^UTILITY(U,$J,358.3,16535,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16535,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,16535,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,16536,0)
+ ;;=I42.9^^67^760^4
+ ;;^UTILITY(U,$J,358.3,16536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16208,1,3,0)
- ;;=3^Intestinal Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16208,1,4,0)
- ;;=4^K63.9
- ;;^UTILITY(U,$J,358.3,16208,2)
- ;;=^5008768
- ;;^UTILITY(U,$J,358.3,16209,0)
- ;;=K58.0^^88^843^62
- ;;^UTILITY(U,$J,358.3,16209,1,0)
+ ;;^UTILITY(U,$J,358.3,16536,1,3,0)
+ ;;=3^Cardiomyopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,16536,1,4,0)
+ ;;=4^I42.9
+ ;;^UTILITY(U,$J,358.3,16536,2)
+ ;;=^5007200
+ ;;^UTILITY(U,$J,358.3,16537,0)
+ ;;=I67.9^^67^760^5
+ ;;^UTILITY(U,$J,358.3,16537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16209,1,3,0)
- ;;=3^IBS w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,16209,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,16209,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,16210,0)
- ;;=K58.9^^88^843^63
- ;;^UTILITY(U,$J,358.3,16210,1,0)
+ ;;^UTILITY(U,$J,358.3,16537,1,3,0)
+ ;;=3^Cerebrovascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16537,1,4,0)
+ ;;=4^I67.9
+ ;;^UTILITY(U,$J,358.3,16537,2)
+ ;;=^5007389
+ ;;^UTILITY(U,$J,358.3,16538,0)
+ ;;=F04.^^67^761^2
+ ;;^UTILITY(U,$J,358.3,16538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16210,1,3,0)
- ;;=3^IBS w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,16210,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,16210,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,16211,0)
- ;;=K90.9^^88^843^66
- ;;^UTILITY(U,$J,358.3,16211,1,0)
+ ;;^UTILITY(U,$J,358.3,16538,1,3,0)
+ ;;=3^Amnestic Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,16538,1,4,0)
+ ;;=4^F04.
+ ;;^UTILITY(U,$J,358.3,16538,2)
+ ;;=^5003051
+ ;;^UTILITY(U,$J,358.3,16539,0)
+ ;;=F05.^^67^761^3
+ ;;^UTILITY(U,$J,358.3,16539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16211,1,3,0)
- ;;=3^Malabsorption,Intestinal,Unspec
- ;;^UTILITY(U,$J,358.3,16211,1,4,0)
- ;;=4^K90.9
- ;;^UTILITY(U,$J,358.3,16211,2)
- ;;=^5008899
- ;;^UTILITY(U,$J,358.3,16212,0)
- ;;=K86.9^^88^843^67
- ;;^UTILITY(U,$J,358.3,16212,1,0)
+ ;;^UTILITY(U,$J,358.3,16539,1,3,0)
+ ;;=3^Delirium d/t Phsyiological Condition
+ ;;^UTILITY(U,$J,358.3,16539,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,16539,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,16540,0)
+ ;;=F06.8^^67^761^6
+ ;;^UTILITY(U,$J,358.3,16540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16212,1,3,0)
- ;;=3^Pancreas Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16212,1,4,0)
- ;;=4^K86.9
- ;;^UTILITY(U,$J,358.3,16212,2)
- ;;=^5008892
- ;;^UTILITY(U,$J,358.3,16213,0)
- ;;=K85.9^^88^843^68
- ;;^UTILITY(U,$J,358.3,16213,1,0)
+ ;;^UTILITY(U,$J,358.3,16540,1,3,0)
+ ;;=3^Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,16540,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,16540,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,16541,0)
+ ;;=F32.9^^67^761^5
+ ;;^UTILITY(U,$J,358.3,16541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16213,1,3,0)
- ;;=3^Pancreatitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,16213,1,4,0)
- ;;=4^K85.9
- ;;^UTILITY(U,$J,358.3,16213,2)
- ;;=^5008887
- ;;^UTILITY(U,$J,358.3,16214,0)
- ;;=Z87.11^^88^843^69
+ ;;^UTILITY(U,$J,358.3,16541,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,16541,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,16541,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,16542,0)
+ ;;=R41.82^^67^761^1
+ ;;^UTILITY(U,$J,358.3,16542,1,0)
+ ;;=^358.31IA^4^2

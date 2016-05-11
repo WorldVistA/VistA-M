@@ -1,138 +1,130 @@
-IBDEI18F ; ; 19-NOV-2015
+IBDEI18F ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20597,1,0)
+ ;;^UTILITY(U,$J,358.3,20951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20597,1,3,0)
- ;;=3^Suture Removal
- ;;^UTILITY(U,$J,358.3,20597,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,20597,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,20598,0)
- ;;=Z48.03^^97^969^11
- ;;^UTILITY(U,$J,358.3,20598,1,0)
+ ;;^UTILITY(U,$J,358.3,20951,1,3,0)
+ ;;=3^Abnormal Urine Microbiological Findings
+ ;;^UTILITY(U,$J,358.3,20951,1,4,0)
+ ;;=4^R82.7
+ ;;^UTILITY(U,$J,358.3,20951,2)
+ ;;=^5019607
+ ;;^UTILITY(U,$J,358.3,20952,0)
+ ;;=R82.8^^84^941^23
+ ;;^UTILITY(U,$J,358.3,20952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20598,1,3,0)
- ;;=3^Change or Removal of Drains
- ;;^UTILITY(U,$J,358.3,20598,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,20598,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,20599,0)
- ;;=Z48.89^^97^969^22
- ;;^UTILITY(U,$J,358.3,20599,1,0)
+ ;;^UTILITY(U,$J,358.3,20952,1,3,0)
+ ;;=3^Abnormal Urine Cytology/Histology Findings
+ ;;^UTILITY(U,$J,358.3,20952,1,4,0)
+ ;;=4^R82.8
+ ;;^UTILITY(U,$J,358.3,20952,2)
+ ;;=^5019608
+ ;;^UTILITY(U,$J,358.3,20953,0)
+ ;;=R82.90^^84^941^25
+ ;;^UTILITY(U,$J,358.3,20953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20599,1,3,0)
- ;;=3^Surgical Aftercare NEC
- ;;^UTILITY(U,$J,358.3,20599,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,20599,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,20600,0)
- ;;=Z45.2^^97^969^1
- ;;^UTILITY(U,$J,358.3,20600,1,0)
+ ;;^UTILITY(U,$J,358.3,20953,1,3,0)
+ ;;=3^Abnormal Urine Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,20953,1,4,0)
+ ;;=4^R82.90
+ ;;^UTILITY(U,$J,358.3,20953,2)
+ ;;=^5019609
+ ;;^UTILITY(U,$J,358.3,20954,0)
+ ;;=R82.91^^84^941^49
+ ;;^UTILITY(U,$J,358.3,20954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20600,1,3,0)
- ;;=3^Adjustment/Management of VAD
- ;;^UTILITY(U,$J,358.3,20600,1,4,0)
- ;;=4^Z45.2
- ;;^UTILITY(U,$J,358.3,20600,2)
- ;;=^5062999
- ;;^UTILITY(U,$J,358.3,20601,0)
- ;;=Z46.82^^97^969^17
- ;;^UTILITY(U,$J,358.3,20601,1,0)
+ ;;^UTILITY(U,$J,358.3,20954,1,3,0)
+ ;;=3^Chromoabnormalities of Urine NEC
+ ;;^UTILITY(U,$J,358.3,20954,1,4,0)
+ ;;=4^R82.91
+ ;;^UTILITY(U,$J,358.3,20954,2)
+ ;;=^5019610
+ ;;^UTILITY(U,$J,358.3,20955,0)
+ ;;=R82.99^^84^941^24
+ ;;^UTILITY(U,$J,358.3,20955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20601,1,3,0)
- ;;=3^Fitting/Adjustment of Non-Vascular Catheter
- ;;^UTILITY(U,$J,358.3,20601,1,4,0)
- ;;=4^Z46.82
- ;;^UTILITY(U,$J,358.3,20601,2)
- ;;=^5063022
- ;;^UTILITY(U,$J,358.3,20602,0)
- ;;=Z51.11^^97^969^3
- ;;^UTILITY(U,$J,358.3,20602,1,0)
+ ;;^UTILITY(U,$J,358.3,20955,1,3,0)
+ ;;=3^Abnormal Urine Findings NEC
+ ;;^UTILITY(U,$J,358.3,20955,1,4,0)
+ ;;=4^R82.99
+ ;;^UTILITY(U,$J,358.3,20955,2)
+ ;;=^5019611
+ ;;^UTILITY(U,$J,358.3,20956,0)
+ ;;=R89.9^^84^941^19
+ ;;^UTILITY(U,$J,358.3,20956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20602,1,3,0)
- ;;=3^Antineoplastic Chemotherapy
- ;;^UTILITY(U,$J,358.3,20602,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,20602,2)
- ;;=^5063061
- ;;^UTILITY(U,$J,358.3,20603,0)
- ;;=Z71.9^^97^969^14
- ;;^UTILITY(U,$J,358.3,20603,1,0)
+ ;;^UTILITY(U,$J,358.3,20956,1,3,0)
+ ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
+ ;;^UTILITY(U,$J,358.3,20956,1,4,0)
+ ;;=4^R89.9
+ ;;^UTILITY(U,$J,358.3,20956,2)
+ ;;=^5019702
+ ;;^UTILITY(U,$J,358.3,20957,0)
+ ;;=R90.0^^84^941^98
+ ;;^UTILITY(U,$J,358.3,20957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20603,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,20603,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,20603,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,20604,0)
- ;;=Z76.0^^97^969^19
- ;;^UTILITY(U,$J,358.3,20604,1,0)
+ ;;^UTILITY(U,$J,358.3,20957,1,3,0)
+ ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
+ ;;^UTILITY(U,$J,358.3,20957,1,4,0)
+ ;;=4^R90.0
+ ;;^UTILITY(U,$J,358.3,20957,2)
+ ;;=^5019703
+ ;;^UTILITY(U,$J,358.3,20958,0)
+ ;;=R90.89^^84^941^13
+ ;;^UTILITY(U,$J,358.3,20958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20604,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,20604,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,20604,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,20605,0)
- ;;=Z02.9^^97^969^2
- ;;^UTILITY(U,$J,358.3,20605,1,0)
+ ;;^UTILITY(U,$J,358.3,20958,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,20958,1,4,0)
+ ;;=4^R90.89
+ ;;^UTILITY(U,$J,358.3,20958,2)
+ ;;=^5019706
+ ;;^UTILITY(U,$J,358.3,20959,0)
+ ;;=R91.8^^84^941^18
+ ;;^UTILITY(U,$J,358.3,20959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20605,1,3,0)
- ;;=3^Administrative Exam,Unspec
- ;;^UTILITY(U,$J,358.3,20605,1,4,0)
- ;;=4^Z02.9
- ;;^UTILITY(U,$J,358.3,20605,2)
- ;;=^5062646
- ;;^UTILITY(U,$J,358.3,20606,0)
- ;;=Z59.0^^97^969^18
- ;;^UTILITY(U,$J,358.3,20606,1,0)
+ ;;^UTILITY(U,$J,358.3,20959,1,3,0)
+ ;;=3^Abnormal Nonspecific Lung Field Finding NEC
+ ;;^UTILITY(U,$J,358.3,20959,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,20959,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,20960,0)
+ ;;=R92.0^^84^941^117
+ ;;^UTILITY(U,$J,358.3,20960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20606,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,20606,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,20606,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,20607,0)
- ;;=Z71.0^^97^969^20
- ;;^UTILITY(U,$J,358.3,20607,1,0)
+ ;;^UTILITY(U,$J,358.3,20960,1,3,0)
+ ;;=3^Mammographic Microcalcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,20960,1,4,0)
+ ;;=4^R92.0
+ ;;^UTILITY(U,$J,358.3,20960,2)
+ ;;=^5019709
+ ;;^UTILITY(U,$J,358.3,20961,0)
+ ;;=R92.1^^84^941^116
+ ;;^UTILITY(U,$J,358.3,20961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20607,1,3,0)
- ;;=3^Persons Consulting on Behalf of Another Person
- ;;^UTILITY(U,$J,358.3,20607,1,4,0)
- ;;=4^Z71.0
- ;;^UTILITY(U,$J,358.3,20607,2)
- ;;=^5063242
- ;;^UTILITY(U,$J,358.3,20608,0)
- ;;=Z01.818^^97^969^21
- ;;^UTILITY(U,$J,358.3,20608,1,0)
+ ;;^UTILITY(U,$J,358.3,20961,1,3,0)
+ ;;=3^Mammographic Calcification on Dx Image of Breast
+ ;;^UTILITY(U,$J,358.3,20961,1,4,0)
+ ;;=4^R92.1
+ ;;^UTILITY(U,$J,358.3,20961,2)
+ ;;=^5019710
+ ;;^UTILITY(U,$J,358.3,20962,0)
+ ;;=R92.2^^84^941^91
+ ;;^UTILITY(U,$J,358.3,20962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20608,1,3,0)
- ;;=3^Preprocedural Exam NEC
- ;;^UTILITY(U,$J,358.3,20608,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,20608,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,20609,0)
- ;;=Z04.9^^97^969^15
- ;;^UTILITY(U,$J,358.3,20609,1,0)
+ ;;^UTILITY(U,$J,358.3,20962,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,20962,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,20962,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,20963,0)
+ ;;=R93.0^^84^941^10
+ ;;^UTILITY(U,$J,358.3,20963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20609,1,3,0)
- ;;=3^Exam/Observation for Unspec Reason
- ;;^UTILITY(U,$J,358.3,20609,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,20609,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,20610,0)
- ;;=Z49.01^^97^969^16
- ;;^UTILITY(U,$J,358.3,20610,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20610,1,3,0)
- ;;=3^Fitting/Adjustment of Extracorpeal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,20963,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
+ ;;^UTILITY(U,$J,358.3,20963,1,4,0)
+ ;;=4^R93.0

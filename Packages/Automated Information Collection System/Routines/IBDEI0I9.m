@@ -1,138 +1,142 @@
-IBDEI0I9 ; ; 19-NOV-2015
+IBDEI0I9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8191,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,8191,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,8192,0)
- ;;=K57.30^^55^536^38
- ;;^UTILITY(U,$J,358.3,8192,1,0)
+ ;;^UTILITY(U,$J,358.3,8472,1,3,0)
+ ;;=3^Hypertrophy of salivary gland
+ ;;^UTILITY(U,$J,358.3,8472,1,4,0)
+ ;;=4^K11.1
+ ;;^UTILITY(U,$J,358.3,8472,2)
+ ;;=^60462
+ ;;^UTILITY(U,$J,358.3,8473,0)
+ ;;=K11.20^^39^458^13
+ ;;^UTILITY(U,$J,358.3,8473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8192,1,3,0)
- ;;=3^Dvrtclos of lg int w/o perforation or abscess w/o bleeding
- ;;^UTILITY(U,$J,358.3,8192,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,8192,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,8193,0)
- ;;=K57.32^^55^536^39
- ;;^UTILITY(U,$J,358.3,8193,1,0)
+ ;;^UTILITY(U,$J,358.3,8473,1,3,0)
+ ;;=3^Sialoadenitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8473,1,4,0)
+ ;;=4^K11.20
+ ;;^UTILITY(U,$J,358.3,8473,2)
+ ;;=^5008473
+ ;;^UTILITY(U,$J,358.3,8474,0)
+ ;;=K11.5^^39^458^14
+ ;;^UTILITY(U,$J,358.3,8474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8193,1,3,0)
- ;;=3^Dvtrcli of lg int w/o perforation or abscess w/o bleeding
- ;;^UTILITY(U,$J,358.3,8193,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,8193,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,8194,0)
- ;;=K59.00^^55^536^31
- ;;^UTILITY(U,$J,358.3,8194,1,0)
+ ;;^UTILITY(U,$J,358.3,8474,1,3,0)
+ ;;=3^Sialolithiasis
+ ;;^UTILITY(U,$J,358.3,8474,1,4,0)
+ ;;=4^K11.5
+ ;;^UTILITY(U,$J,358.3,8474,2)
+ ;;=^5008478
+ ;;^UTILITY(U,$J,358.3,8475,0)
+ ;;=K11.6^^39^458^11
+ ;;^UTILITY(U,$J,358.3,8475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8194,1,3,0)
- ;;=3^Constipation, unspecified
- ;;^UTILITY(U,$J,358.3,8194,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,8194,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,8195,0)
- ;;=K58.9^^55^536^66
- ;;^UTILITY(U,$J,358.3,8195,1,0)
+ ;;^UTILITY(U,$J,358.3,8475,1,3,0)
+ ;;=3^Mucocele of salivary gland
+ ;;^UTILITY(U,$J,358.3,8475,1,4,0)
+ ;;=4^K11.6
+ ;;^UTILITY(U,$J,358.3,8475,2)
+ ;;=^5008479
+ ;;^UTILITY(U,$J,358.3,8476,0)
+ ;;=K11.7^^39^458^1
+ ;;^UTILITY(U,$J,358.3,8476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8195,1,3,0)
- ;;=3^Irritable bowel syndrome without diarrhea
- ;;^UTILITY(U,$J,358.3,8195,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,8195,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,8196,0)
- ;;=K59.1^^55^536^50
- ;;^UTILITY(U,$J,358.3,8196,1,0)
+ ;;^UTILITY(U,$J,358.3,8476,1,3,0)
+ ;;=3^Disturbances of salivary secretion
+ ;;^UTILITY(U,$J,358.3,8476,1,4,0)
+ ;;=4^K11.7
+ ;;^UTILITY(U,$J,358.3,8476,2)
+ ;;=^5008480
+ ;;^UTILITY(U,$J,358.3,8477,0)
+ ;;=K11.8^^39^458^12
+ ;;^UTILITY(U,$J,358.3,8477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8196,1,3,0)
- ;;=3^Functional diarrhea
- ;;^UTILITY(U,$J,358.3,8196,1,4,0)
- ;;=4^K59.1
- ;;^UTILITY(U,$J,358.3,8196,2)
- ;;=^270281
- ;;^UTILITY(U,$J,358.3,8197,0)
- ;;=K61.1^^55^536^87
- ;;^UTILITY(U,$J,358.3,8197,1,0)
+ ;;^UTILITY(U,$J,358.3,8477,1,3,0)
+ ;;=3^Salivary Gland Diseases NEC
+ ;;^UTILITY(U,$J,358.3,8477,1,4,0)
+ ;;=4^K11.8
+ ;;^UTILITY(U,$J,358.3,8477,2)
+ ;;=^5008481
+ ;;^UTILITY(U,$J,358.3,8478,0)
+ ;;=K13.21^^39^458^10
+ ;;^UTILITY(U,$J,358.3,8478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8197,1,3,0)
- ;;=3^Rectal abscess
- ;;^UTILITY(U,$J,358.3,8197,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,8197,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,8198,0)
- ;;=K61.0^^55^536^10
- ;;^UTILITY(U,$J,358.3,8198,1,0)
+ ;;^UTILITY(U,$J,358.3,8478,1,3,0)
+ ;;=3^Leukoplakia of oral mucosa, including tongue
+ ;;^UTILITY(U,$J,358.3,8478,1,4,0)
+ ;;=4^K13.21
+ ;;^UTILITY(U,$J,358.3,8478,2)
+ ;;=^270054
+ ;;^UTILITY(U,$J,358.3,8479,0)
+ ;;=K14.0^^39^458^7
+ ;;^UTILITY(U,$J,358.3,8479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8198,1,3,0)
- ;;=3^Anal abscess
- ;;^UTILITY(U,$J,358.3,8198,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,8198,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,8199,0)
- ;;=K61.3^^55^536^67
- ;;^UTILITY(U,$J,358.3,8199,1,0)
+ ;;^UTILITY(U,$J,358.3,8479,1,3,0)
+ ;;=3^Glossitis
+ ;;^UTILITY(U,$J,358.3,8479,1,4,0)
+ ;;=4^K14.0
+ ;;^UTILITY(U,$J,358.3,8479,2)
+ ;;=^51478
+ ;;^UTILITY(U,$J,358.3,8480,0)
+ ;;=K14.1^^39^458^6
+ ;;^UTILITY(U,$J,358.3,8480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8199,1,3,0)
- ;;=3^Ischiorectal abscess
- ;;^UTILITY(U,$J,358.3,8199,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,8199,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,8200,0)
- ;;=K62.5^^55^536^59
- ;;^UTILITY(U,$J,358.3,8200,1,0)
+ ;;^UTILITY(U,$J,358.3,8480,1,3,0)
+ ;;=3^Geographic tongue
+ ;;^UTILITY(U,$J,358.3,8480,1,4,0)
+ ;;=4^K14.1
+ ;;^UTILITY(U,$J,358.3,8480,2)
+ ;;=^5008498
+ ;;^UTILITY(U,$J,358.3,8481,0)
+ ;;=K14.3^^39^458^9
+ ;;^UTILITY(U,$J,358.3,8481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8200,1,3,0)
- ;;=3^Hemorrhage of anus and rectum
- ;;^UTILITY(U,$J,358.3,8200,1,4,0)
- ;;=4^K62.5
- ;;^UTILITY(U,$J,358.3,8200,2)
- ;;=^5008755
- ;;^UTILITY(U,$J,358.3,8201,0)
- ;;=K70.0^^55^536^7
- ;;^UTILITY(U,$J,358.3,8201,1,0)
+ ;;^UTILITY(U,$J,358.3,8481,1,3,0)
+ ;;=3^Hypertrophy of tongue papillae
+ ;;^UTILITY(U,$J,358.3,8481,1,4,0)
+ ;;=4^K14.3
+ ;;^UTILITY(U,$J,358.3,8481,2)
+ ;;=^5008499
+ ;;^UTILITY(U,$J,358.3,8482,0)
+ ;;=K14.8^^39^458^16
+ ;;^UTILITY(U,$J,358.3,8482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8201,1,3,0)
- ;;=3^Alcoholic fatty liver
- ;;^UTILITY(U,$J,358.3,8201,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,8201,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,8202,0)
- ;;=K70.10^^55^536^8
- ;;^UTILITY(U,$J,358.3,8202,1,0)
+ ;;^UTILITY(U,$J,358.3,8482,1,3,0)
+ ;;=3^Tongue Diseases NEC
+ ;;^UTILITY(U,$J,358.3,8482,1,4,0)
+ ;;=4^K14.8
+ ;;^UTILITY(U,$J,358.3,8482,2)
+ ;;=^5008502
+ ;;^UTILITY(U,$J,358.3,8483,0)
+ ;;=R13.10^^39^458^5
+ ;;^UTILITY(U,$J,358.3,8483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8202,1,3,0)
- ;;=3^Alcoholic hepatitis without ascites
- ;;^UTILITY(U,$J,358.3,8202,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,8202,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,8203,0)
- ;;=K70.30^^55^536^6
- ;;^UTILITY(U,$J,358.3,8203,1,0)
+ ;;^UTILITY(U,$J,358.3,8483,1,3,0)
+ ;;=3^Dysphagia, unspecified
+ ;;^UTILITY(U,$J,358.3,8483,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,8483,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,8484,0)
+ ;;=R13.12^^39^458^2
+ ;;^UTILITY(U,$J,358.3,8484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8203,1,3,0)
- ;;=3^Alcoholic cirrhosis of liver without ascites
- ;;^UTILITY(U,$J,358.3,8203,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,8203,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,8204,0)
- ;;=K70.9^^55^536^9
- ;;^UTILITY(U,$J,358.3,8204,1,0)
+ ;;^UTILITY(U,$J,358.3,8484,1,3,0)
+ ;;=3^Dysphagia, oropharyngeal phase
+ ;;^UTILITY(U,$J,358.3,8484,1,4,0)
+ ;;=4^R13.12
+ ;;^UTILITY(U,$J,358.3,8484,2)
+ ;;=^335277
+ ;;^UTILITY(U,$J,358.3,8485,0)
+ ;;=R13.13^^39^458^3
+ ;;^UTILITY(U,$J,358.3,8485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8204,1,3,0)
- ;;=3^Alcoholic liver disease, unspecified
- ;;^UTILITY(U,$J,358.3,8204,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,8204,2)
- ;;=^5008792
+ ;;^UTILITY(U,$J,358.3,8485,1,3,0)
+ ;;=3^Dysphagia, pharyngeal phase
+ ;;^UTILITY(U,$J,358.3,8485,1,4,0)
+ ;;=4^R13.13
+ ;;^UTILITY(U,$J,358.3,8485,2)
+ ;;=^335278
+ ;;^UTILITY(U,$J,358.3,8486,0)
+ ;;=R13.14^^39^458^4

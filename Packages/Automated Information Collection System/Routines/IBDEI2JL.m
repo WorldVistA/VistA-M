@@ -1,128 +1,132 @@
-IBDEI2JL ; ; 19-NOV-2015
+IBDEI2JL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42639,1,0)
+ ;;^UTILITY(U,$J,358.3,43126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42639,1,3,0)
- ;;=3^Hallux varus (acquired), right foot
- ;;^UTILITY(U,$J,358.3,42639,1,4,0)
- ;;=4^M20.31
- ;;^UTILITY(U,$J,358.3,42639,2)
- ;;=^5011048
- ;;^UTILITY(U,$J,358.3,42640,0)
- ;;=M20.32^^192^2139^5
- ;;^UTILITY(U,$J,358.3,42640,1,0)
+ ;;^UTILITY(U,$J,358.3,43126,1,3,0)
+ ;;=3^Cellulitis Lt Lower Limb
+ ;;^UTILITY(U,$J,358.3,43126,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,43126,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,43127,0)
+ ;;=L97.119^^164^2060^127
+ ;;^UTILITY(U,$J,358.3,43127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42640,1,3,0)
- ;;=3^Hallux varus (acquired), left foot
- ;;^UTILITY(U,$J,358.3,42640,1,4,0)
- ;;=4^M20.32
- ;;^UTILITY(U,$J,358.3,42640,2)
- ;;=^5011049
- ;;^UTILITY(U,$J,358.3,42641,0)
- ;;=M20.22^^192^2139^1
- ;;^UTILITY(U,$J,358.3,42641,1,0)
+ ;;^UTILITY(U,$J,358.3,43127,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Thigh
+ ;;^UTILITY(U,$J,358.3,43127,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,43127,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,43128,0)
+ ;;=L97.129^^164^2060^123
+ ;;^UTILITY(U,$J,358.3,43128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42641,1,3,0)
- ;;=3^Hallux rigidus, left foot
- ;;^UTILITY(U,$J,358.3,42641,1,4,0)
- ;;=4^M20.22
- ;;^UTILITY(U,$J,358.3,42641,2)
- ;;=^5011046
- ;;^UTILITY(U,$J,358.3,42642,0)
- ;;=M20.21^^192^2139^2
- ;;^UTILITY(U,$J,358.3,42642,1,0)
+ ;;^UTILITY(U,$J,358.3,43128,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Thigh
+ ;;^UTILITY(U,$J,358.3,43128,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,43128,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,43129,0)
+ ;;=L97.219^^164^2060^124
+ ;;^UTILITY(U,$J,358.3,43129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42642,1,3,0)
- ;;=3^Hallux rigidus, right foot
- ;;^UTILITY(U,$J,358.3,42642,1,4,0)
- ;;=4^M20.21
- ;;^UTILITY(U,$J,358.3,42642,2)
- ;;=^5011045
- ;;^UTILITY(U,$J,358.3,42643,0)
- ;;=M20.42^^192^2139^7
- ;;^UTILITY(U,$J,358.3,42643,1,0)
+ ;;^UTILITY(U,$J,358.3,43129,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Calf
+ ;;^UTILITY(U,$J,358.3,43129,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,43129,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,43130,0)
+ ;;=L97.229^^164^2060^120
+ ;;^UTILITY(U,$J,358.3,43130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42643,1,3,0)
- ;;=3^Hammer toe(s) (acquired), left foot, oth
- ;;^UTILITY(U,$J,358.3,42643,1,4,0)
- ;;=4^M20.42
- ;;^UTILITY(U,$J,358.3,42643,2)
- ;;=^5011052
- ;;^UTILITY(U,$J,358.3,42644,0)
- ;;=M20.41^^192^2139^8
- ;;^UTILITY(U,$J,358.3,42644,1,0)
+ ;;^UTILITY(U,$J,358.3,43130,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Calf
+ ;;^UTILITY(U,$J,358.3,43130,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,43130,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,43131,0)
+ ;;=L97.419^^164^2060^125
+ ;;^UTILITY(U,$J,358.3,43131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42644,1,3,0)
- ;;=3^Hammer toe(s) (acquired), right foot, oth
- ;;^UTILITY(U,$J,358.3,42644,1,4,0)
- ;;=4^M20.41
- ;;^UTILITY(U,$J,358.3,42644,2)
- ;;=^5011051
- ;;^UTILITY(U,$J,358.3,42645,0)
- ;;=T84.7XXA^^192^2140^13
- ;;^UTILITY(U,$J,358.3,42645,1,0)
+ ;;^UTILITY(U,$J,358.3,43131,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,43131,1,4,0)
+ ;;=4^L97.419
+ ;;^UTILITY(U,$J,358.3,43131,2)
+ ;;=^5009534
+ ;;^UTILITY(U,$J,358.3,43132,0)
+ ;;=L97.429^^164^2060^121
+ ;;^UTILITY(U,$J,358.3,43132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42645,1,3,0)
- ;;=3^Infect/inflm react d/t int orth pros dev/graft, init
- ;;^UTILITY(U,$J,358.3,42645,1,4,0)
- ;;=4^T84.7XXA
- ;;^UTILITY(U,$J,358.3,42645,2)
- ;;=^5055451
- ;;^UTILITY(U,$J,358.3,42646,0)
- ;;=T84.69XA^^192^2140^8
- ;;^UTILITY(U,$J,358.3,42646,1,0)
+ ;;^UTILITY(U,$J,358.3,43132,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,43132,1,4,0)
+ ;;=4^L97.429
+ ;;^UTILITY(U,$J,358.3,43132,2)
+ ;;=^5009539
+ ;;^UTILITY(U,$J,358.3,43133,0)
+ ;;=L97.519^^164^2060^126
+ ;;^UTILITY(U,$J,358.3,43133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42646,1,3,0)
- ;;=3^Infect/inflm react d/t int fix of oth site, init
- ;;^UTILITY(U,$J,358.3,42646,1,4,0)
- ;;=4^T84.69XA
- ;;^UTILITY(U,$J,358.3,42646,2)
- ;;=^5055448
- ;;^UTILITY(U,$J,358.3,42647,0)
- ;;=T84.63XA^^192^2140^9
- ;;^UTILITY(U,$J,358.3,42647,1,0)
+ ;;^UTILITY(U,$J,358.3,43133,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Rt Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,43133,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,43133,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,43134,0)
+ ;;=L97.529^^164^2060^122
+ ;;^UTILITY(U,$J,358.3,43134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42647,1,3,0)
- ;;=3^Infect/inflm react d/t int fix of spine, init
- ;;^UTILITY(U,$J,358.3,42647,1,4,0)
- ;;=4^T84.63XA
- ;;^UTILITY(U,$J,358.3,42647,2)
- ;;=^5055445
- ;;^UTILITY(U,$J,358.3,42648,0)
- ;;=T84.625A^^192^2140^3
- ;;^UTILITY(U,$J,358.3,42648,1,0)
+ ;;^UTILITY(U,$J,358.3,43134,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Lt Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,43134,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,43134,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,43135,0)
+ ;;=L98.419^^164^2060^119
+ ;;^UTILITY(U,$J,358.3,43135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42648,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft fib, init
- ;;^UTILITY(U,$J,358.3,42648,1,4,0)
- ;;=4^T84.625A
- ;;^UTILITY(U,$J,358.3,42648,2)
- ;;=^5055439
- ;;^UTILITY(U,$J,358.3,42649,0)
- ;;=T84.624A^^192^2140^10
- ;;^UTILITY(U,$J,358.3,42649,1,0)
+ ;;^UTILITY(U,$J,358.3,43135,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Buttock
+ ;;^UTILITY(U,$J,358.3,43135,1,4,0)
+ ;;=4^L98.419
+ ;;^UTILITY(U,$J,358.3,43135,2)
+ ;;=^5009581
+ ;;^UTILITY(U,$J,358.3,43136,0)
+ ;;=L98.429^^164^2060^118
+ ;;^UTILITY(U,$J,358.3,43136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42649,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt fib, init
- ;;^UTILITY(U,$J,358.3,42649,1,4,0)
- ;;=4^T84.624A
- ;;^UTILITY(U,$J,358.3,42649,2)
- ;;=^5055436
- ;;^UTILITY(U,$J,358.3,42650,0)
- ;;=T84.612A^^192^2140^12
- ;;^UTILITY(U,$J,358.3,42650,1,0)
+ ;;^UTILITY(U,$J,358.3,43136,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Back
+ ;;^UTILITY(U,$J,358.3,43136,1,4,0)
+ ;;=4^L98.429
+ ;;^UTILITY(U,$J,358.3,43136,2)
+ ;;=^5009586
+ ;;^UTILITY(U,$J,358.3,43137,0)
+ ;;=M79.89^^164^2060^142
+ ;;^UTILITY(U,$J,358.3,43137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42650,1,3,0)
- ;;=3^Infect/inflm react d/t int fix rt radius, init
- ;;^UTILITY(U,$J,358.3,42650,1,4,0)
- ;;=4^T84.612A
- ;;^UTILITY(U,$J,358.3,42650,2)
- ;;=^5055409
- ;;^UTILITY(U,$J,358.3,42651,0)
- ;;=T84.611A^^192^2140^4
- ;;^UTILITY(U,$J,358.3,42651,1,0)
+ ;;^UTILITY(U,$J,358.3,43137,1,3,0)
+ ;;=3^Soft Tissue Disorders
+ ;;^UTILITY(U,$J,358.3,43137,1,4,0)
+ ;;=4^M79.89
+ ;;^UTILITY(U,$J,358.3,43137,2)
+ ;;=^5013357
+ ;;^UTILITY(U,$J,358.3,43138,0)
+ ;;=M86.671^^164^2060^77
+ ;;^UTILITY(U,$J,358.3,43138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42651,1,3,0)
- ;;=3^Infect/inflm react d/t int fix lft humerus, init
+ ;;^UTILITY(U,$J,358.3,43138,1,3,0)
+ ;;=3^Chr Osteomyelitis Rt Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,43138,1,4,0)
+ ;;=4^M86.671
+ ;;^UTILITY(U,$J,358.3,43138,2)
+ ;;=^5014641

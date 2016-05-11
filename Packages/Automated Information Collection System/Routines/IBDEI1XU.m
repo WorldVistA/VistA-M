@@ -1,134 +1,138 @@
-IBDEI1XU ; ; 19-NOV-2015
+IBDEI1XU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32446,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,32446,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,32447,0)
- ;;=F06.0^^143^1530^6
- ;;^UTILITY(U,$J,358.3,32447,1,0)
+ ;;^UTILITY(U,$J,358.3,32873,2)
+ ;;=^5063659
+ ;;^UTILITY(U,$J,358.3,32874,0)
+ ;;=Z94.6^^128^1640^2
+ ;;^UTILITY(U,$J,358.3,32874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32447,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32447,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,32447,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,32448,0)
- ;;=F06.4^^143^1530^1
- ;;^UTILITY(U,$J,358.3,32448,1,0)
+ ;;^UTILITY(U,$J,358.3,32874,1,3,0)
+ ;;=3^Bone Transplant Status
+ ;;^UTILITY(U,$J,358.3,32874,1,4,0)
+ ;;=4^Z94.6
+ ;;^UTILITY(U,$J,358.3,32874,2)
+ ;;=^5063660
+ ;;^UTILITY(U,$J,358.3,32875,0)
+ ;;=Z94.7^^128^1640^3
+ ;;^UTILITY(U,$J,358.3,32875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32448,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32448,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,32448,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,32449,0)
- ;;=F06.1^^143^1530^2
- ;;^UTILITY(U,$J,358.3,32449,1,0)
+ ;;^UTILITY(U,$J,358.3,32875,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,32875,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,32875,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,32876,0)
+ ;;=Z94.2^^128^1640^8
+ ;;^UTILITY(U,$J,358.3,32876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32449,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,32449,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,32449,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,32450,0)
- ;;=R41.9^^143^1530^3
- ;;^UTILITY(U,$J,358.3,32450,1,0)
+ ;;^UTILITY(U,$J,358.3,32876,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,32876,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,32876,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,32877,0)
+ ;;=Z94.4^^128^1640^7
+ ;;^UTILITY(U,$J,358.3,32877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32450,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32450,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,32450,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,32451,0)
- ;;=F29.^^143^1530^7
- ;;^UTILITY(U,$J,358.3,32451,1,0)
+ ;;^UTILITY(U,$J,358.3,32877,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,32877,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,32877,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,32878,0)
+ ;;=Z94.81^^128^1640^1
+ ;;^UTILITY(U,$J,358.3,32878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32451,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32451,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,32451,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,32452,0)
- ;;=F07.0^^143^1530^4
- ;;^UTILITY(U,$J,358.3,32452,1,0)
+ ;;^UTILITY(U,$J,358.3,32878,1,3,0)
+ ;;=3^Bone Marrow Transplant Status
+ ;;^UTILITY(U,$J,358.3,32878,1,4,0)
+ ;;=4^Z94.81
+ ;;^UTILITY(U,$J,358.3,32878,2)
+ ;;=^5063662
+ ;;^UTILITY(U,$J,358.3,32879,0)
+ ;;=Z94.84^^128^1640^11
+ ;;^UTILITY(U,$J,358.3,32879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32452,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32452,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,32452,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,32453,0)
- ;;=Z91.49^^143^1531^9
- ;;^UTILITY(U,$J,358.3,32453,1,0)
+ ;;^UTILITY(U,$J,358.3,32879,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,32879,1,4,0)
+ ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,32879,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,32880,0)
+ ;;=Z94.83^^128^1640^9
+ ;;^UTILITY(U,$J,358.3,32880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32453,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,32453,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,32453,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,32454,0)
- ;;=Z91.5^^143^1531^10
- ;;^UTILITY(U,$J,358.3,32454,1,0)
+ ;;^UTILITY(U,$J,358.3,32880,1,3,0)
+ ;;=3^Pancreas Transplant Status
+ ;;^UTILITY(U,$J,358.3,32880,1,4,0)
+ ;;=4^Z94.83
+ ;;^UTILITY(U,$J,358.3,32880,2)
+ ;;=^5063664
+ ;;^UTILITY(U,$J,358.3,32881,0)
+ ;;=Z94.82^^128^1640^5
+ ;;^UTILITY(U,$J,358.3,32881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32454,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,32454,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,32454,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,32455,0)
- ;;=Z91.82^^143^1531^8
- ;;^UTILITY(U,$J,358.3,32455,1,0)
+ ;;^UTILITY(U,$J,358.3,32881,1,3,0)
+ ;;=3^Intestine Transplant Status
+ ;;^UTILITY(U,$J,358.3,32881,1,4,0)
+ ;;=4^Z94.82
+ ;;^UTILITY(U,$J,358.3,32881,2)
+ ;;=^5063663
+ ;;^UTILITY(U,$J,358.3,32882,0)
+ ;;=Z94.9^^128^1640^12
+ ;;^UTILITY(U,$J,358.3,32882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32455,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,32455,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,32455,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,32456,0)
- ;;=Z91.89^^143^1531^11
- ;;^UTILITY(U,$J,358.3,32456,1,0)
+ ;;^UTILITY(U,$J,358.3,32882,1,3,0)
+ ;;=3^Transplanted Organ & Tissue Status,Unspec
+ ;;^UTILITY(U,$J,358.3,32882,1,4,0)
+ ;;=4^Z94.9
+ ;;^UTILITY(U,$J,358.3,32882,2)
+ ;;=^5063667
+ ;;^UTILITY(U,$J,358.3,32883,0)
+ ;;=Z23.^^128^1641^1
+ ;;^UTILITY(U,$J,358.3,32883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32456,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,32456,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,32456,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,32457,0)
- ;;=Z72.9^^143^1531^12
- ;;^UTILITY(U,$J,358.3,32457,1,0)
+ ;;^UTILITY(U,$J,358.3,32883,1,3,0)
+ ;;=3^Immunization Encounter
+ ;;^UTILITY(U,$J,358.3,32883,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,32883,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,32884,0)
+ ;;=Z28.3^^128^1641^2
+ ;;^UTILITY(U,$J,358.3,32884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32457,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,32457,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,32457,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,32458,0)
- ;;=Z72.811^^143^1531^1
- ;;^UTILITY(U,$J,358.3,32458,1,0)
+ ;;^UTILITY(U,$J,358.3,32884,1,3,0)
+ ;;=3^Underimmunization Status
+ ;;^UTILITY(U,$J,358.3,32884,1,4,0)
+ ;;=4^Z28.3
+ ;;^UTILITY(U,$J,358.3,32884,2)
+ ;;=^5062805
+ ;;^UTILITY(U,$J,358.3,32885,0)
+ ;;=E66.9^^128^1642^5
+ ;;^UTILITY(U,$J,358.3,32885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32458,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,32458,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,32458,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,32459,0)
- ;;=Z91.19^^143^1531^5
- ;;^UTILITY(U,$J,358.3,32459,1,0)
+ ;;^UTILITY(U,$J,358.3,32885,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,32885,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,32885,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,32886,0)
+ ;;=M81.0^^128^1642^6
+ ;;^UTILITY(U,$J,358.3,32886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32459,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,32886,1,3,0)
+ ;;=3^Osteoporosis,Age-Related,w/o Current Fracture
+ ;;^UTILITY(U,$J,358.3,32886,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,32886,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,32887,0)
+ ;;=R87.619^^128^1642^1

@@ -1,128 +1,136 @@
-IBDEI1YO ; ; 19-NOV-2015
+IBDEI1YO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32843,0)
- ;;=F02.81^^146^1585^14
- ;;^UTILITY(U,$J,358.3,32843,1,0)
+ ;;^UTILITY(U,$J,358.3,33288,0)
+ ;;=L03.329^^131^1669^28
+ ;;^UTILITY(U,$J,358.3,33288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32843,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,32843,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,32843,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,32844,0)
- ;;=F06.8^^146^1585^24
- ;;^UTILITY(U,$J,358.3,32844,1,0)
+ ;;^UTILITY(U,$J,358.3,33288,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,33288,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,33288,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,33289,0)
+ ;;=L08.9^^131^1669^167
+ ;;^UTILITY(U,$J,358.3,33289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32844,1,3,0)
- ;;=3^Mental Disorder d/t Another Medical Condition NEC
- ;;^UTILITY(U,$J,358.3,32844,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,32844,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,32845,0)
- ;;=G30.9^^146^1585^5
- ;;^UTILITY(U,$J,358.3,32845,1,0)
+ ;;^UTILITY(U,$J,358.3,33289,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,33289,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,33289,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,33290,0)
+ ;;=L11.0^^131^1669^9
+ ;;^UTILITY(U,$J,358.3,33290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32845,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32845,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,32845,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,32846,0)
- ;;=G31.9^^146^1585^23
- ;;^UTILITY(U,$J,358.3,32846,1,0)
+ ;;^UTILITY(U,$J,358.3,33290,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis
+ ;;^UTILITY(U,$J,358.3,33290,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,33290,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,33291,0)
+ ;;=L20.0^^131^1669^90
+ ;;^UTILITY(U,$J,358.3,33291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32846,1,3,0)
- ;;=3^Major Neurocognitive Disorder d/t Alzheimer's Disease,Possible
- ;;^UTILITY(U,$J,358.3,32846,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,32846,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,32847,0)
- ;;=G31.01^^146^1585^30
- ;;^UTILITY(U,$J,358.3,32847,1,0)
+ ;;^UTILITY(U,$J,358.3,33291,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,33291,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,33291,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,33292,0)
+ ;;=L20.81^^131^1669^87
+ ;;^UTILITY(U,$J,358.3,33292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32847,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,32847,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,32847,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,32848,0)
- ;;=G31.1^^146^1585^36
- ;;^UTILITY(U,$J,358.3,32848,1,0)
+ ;;^UTILITY(U,$J,358.3,33292,1,3,0)
+ ;;=3^Atopic Neurodermatitis
+ ;;^UTILITY(U,$J,358.3,33292,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,33292,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,33293,0)
+ ;;=L20.82^^131^1669^150
+ ;;^UTILITY(U,$J,358.3,33293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32848,1,3,0)
- ;;=3^Senile Degeneration of the Brain NOS
- ;;^UTILITY(U,$J,358.3,32848,1,4,0)
- ;;=4^G31.1
- ;;^UTILITY(U,$J,358.3,32848,2)
- ;;=^5003809
- ;;^UTILITY(U,$J,358.3,32849,0)
- ;;=G94.^^146^1585^7
- ;;^UTILITY(U,$J,358.3,32849,1,0)
+ ;;^UTILITY(U,$J,358.3,33293,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,33293,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,33293,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,33294,0)
+ ;;=L20.84^^131^1669^162
+ ;;^UTILITY(U,$J,358.3,33294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32849,1,3,0)
- ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
- ;;^UTILITY(U,$J,358.3,32849,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,32849,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,32850,0)
- ;;=G31.83^^146^1585^16
- ;;^UTILITY(U,$J,358.3,32850,1,0)
+ ;;^UTILITY(U,$J,358.3,33294,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,33294,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,33294,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,33295,0)
+ ;;=L20.89^^131^1669^85
+ ;;^UTILITY(U,$J,358.3,33295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32850,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,32850,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,32850,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,32851,0)
- ;;=G31.89^^146^1585^11
- ;;^UTILITY(U,$J,358.3,32851,1,0)
+ ;;^UTILITY(U,$J,358.3,33295,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,33295,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,33295,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,33296,0)
+ ;;=L20.9^^131^1669^86
+ ;;^UTILITY(U,$J,358.3,33296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32851,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System NEC
- ;;^UTILITY(U,$J,358.3,32851,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,32851,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,32852,0)
- ;;=G31.9^^146^1585^12
- ;;^UTILITY(U,$J,358.3,32852,1,0)
+ ;;^UTILITY(U,$J,358.3,33296,1,3,0)
+ ;;=3^Atopic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33296,1,4,0)
+ ;;=4^L20.9
+ ;;^UTILITY(U,$J,358.3,33296,2)
+ ;;=^5009113
+ ;;^UTILITY(U,$J,358.3,33297,0)
+ ;;=L21.8^^131^1669^262
+ ;;^UTILITY(U,$J,358.3,33297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32852,1,3,0)
- ;;=3^Degenerative Diseases of Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,32852,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,32852,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,32853,0)
- ;;=G23.8^^146^1585^10
- ;;^UTILITY(U,$J,358.3,32853,1,0)
+ ;;^UTILITY(U,$J,358.3,33297,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,33297,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,33297,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,33298,0)
+ ;;=L21.9^^131^1669^263
+ ;;^UTILITY(U,$J,358.3,33298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32853,1,3,0)
- ;;=3^Degenerative Diseases of Basal Ganglia NEC
- ;;^UTILITY(U,$J,358.3,32853,1,4,0)
- ;;=4^G23.8
- ;;^UTILITY(U,$J,358.3,32853,2)
- ;;=^5003782
- ;;^UTILITY(U,$J,358.3,32854,0)
- ;;=G31.09^^146^1585^22
- ;;^UTILITY(U,$J,358.3,32854,1,0)
+ ;;^UTILITY(U,$J,358.3,33298,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33298,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,33298,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,33299,0)
+ ;;=L23.7^^131^1669^30
+ ;;^UTILITY(U,$J,358.3,33299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32854,1,3,0)
- ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,32854,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,32854,2)
- ;;=^329916^F02.81
- ;;^UTILITY(U,$J,358.3,32855,0)
- ;;=G30.0^^146^1585^3
- ;;^UTILITY(U,$J,358.3,32855,1,0)
+ ;;^UTILITY(U,$J,358.3,33299,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,33299,1,4,0)
+ ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,33299,2)
+ ;;=^5009122
+ ;;^UTILITY(U,$J,358.3,33300,0)
+ ;;=L23.9^^131^1669^31
+ ;;^UTILITY(U,$J,358.3,33300,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33300,1,3,0)
+ ;;=3^Allergic Contact Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,33300,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,33300,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,33301,0)
+ ;;=L24.9^^131^1669^163

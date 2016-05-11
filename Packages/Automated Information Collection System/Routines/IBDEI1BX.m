@@ -1,124 +1,134 @@
-IBDEI1BX ; ; 19-NOV-2015
+IBDEI1BX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22161,1,4,0)
- ;;=4^S82.154S
- ;;^UTILITY(U,$J,358.3,22161,2)
- ;;=^5041030
- ;;^UTILITY(U,$J,358.3,22162,0)
- ;;=S82.235S^^101^1038^56
- ;;^UTILITY(U,$J,358.3,22162,1,0)
+ ;;^UTILITY(U,$J,358.3,22596,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,22596,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,22597,0)
+ ;;=Z87.820^^87^982^111
+ ;;^UTILITY(U,$J,358.3,22597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22162,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22162,1,4,0)
- ;;=4^S82.235S
- ;;^UTILITY(U,$J,358.3,22162,2)
- ;;=^5041314
- ;;^UTILITY(U,$J,358.3,22163,0)
- ;;=S82.234S^^101^1038^58
- ;;^UTILITY(U,$J,358.3,22163,1,0)
+ ;;^UTILITY(U,$J,358.3,22597,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,22597,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,22597,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,22598,0)
+ ;;=Z89.511^^87^982^8
+ ;;^UTILITY(U,$J,358.3,22598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22163,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right tibia, sequela  
- ;;^UTILITY(U,$J,358.3,22163,1,4,0)
- ;;=4^S82.234S
- ;;^UTILITY(U,$J,358.3,22163,2)
- ;;=^5041298
- ;;^UTILITY(U,$J,358.3,22164,0)
- ;;=S82.875S^^101^1038^59
- ;;^UTILITY(U,$J,358.3,22164,1,0)
+ ;;^UTILITY(U,$J,358.3,22598,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,22598,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,22598,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,22599,0)
+ ;;=Z91.82^^87^982^101
+ ;;^UTILITY(U,$J,358.3,22599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22164,1,3,0)
- ;;=3^Nondisp fx of pilon of left tibia, sequela        
- ;;^UTILITY(U,$J,358.3,22164,1,4,0)
- ;;=4^S82.875S
- ;;^UTILITY(U,$J,358.3,22164,2)
- ;;=^5042846
- ;;^UTILITY(U,$J,358.3,22165,0)
- ;;=S82.874S^^101^1038^60
- ;;^UTILITY(U,$J,358.3,22165,1,0)
+ ;;^UTILITY(U,$J,358.3,22599,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,22599,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,22599,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,22600,0)
+ ;;=Z91.5^^87^982^108
+ ;;^UTILITY(U,$J,358.3,22600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22165,1,3,0)
- ;;=3^Nondisp fx of pilon of right tibia, sequela       
- ;;^UTILITY(U,$J,358.3,22165,1,4,0)
- ;;=4^S82.874S
- ;;^UTILITY(U,$J,358.3,22165,2)
- ;;=^5042830
- ;;^UTILITY(U,$J,358.3,22166,0)
- ;;=S82.265S^^101^1038^64
- ;;^UTILITY(U,$J,358.3,22166,1,0)
+ ;;^UTILITY(U,$J,358.3,22600,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,22600,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,22600,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,22601,0)
+ ;;=Z89.512^^87^982^5
+ ;;^UTILITY(U,$J,358.3,22601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22166,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,22166,1,4,0)
- ;;=4^S82.265S
- ;;^UTILITY(U,$J,358.3,22166,2)
- ;;=^5041602
- ;;^UTILITY(U,$J,358.3,22167,0)
- ;;=S82.264S^^101^1038^65
- ;;^UTILITY(U,$J,358.3,22167,1,0)
+ ;;^UTILITY(U,$J,358.3,22601,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,22601,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,22601,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,22602,0)
+ ;;=Z89.611^^87^982^7
+ ;;^UTILITY(U,$J,358.3,22602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22167,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,22167,1,4,0)
- ;;=4^S82.264S
- ;;^UTILITY(U,$J,358.3,22167,2)
- ;;=^5041586
- ;;^UTILITY(U,$J,358.3,22168,0)
- ;;=S82.244S^^101^1038^70
- ;;^UTILITY(U,$J,358.3,22168,1,0)
+ ;;^UTILITY(U,$J,358.3,22602,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,22602,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,22602,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,22603,0)
+ ;;=Z89.612^^87^982^4
+ ;;^UTILITY(U,$J,358.3,22603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22168,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of right tibia, sequela  
- ;;^UTILITY(U,$J,358.3,22168,1,4,0)
- ;;=4^S82.244S
- ;;^UTILITY(U,$J,358.3,22168,2)
- ;;=^5041394
- ;;^UTILITY(U,$J,358.3,22169,0)
- ;;=S82.245S^^101^1038^68
- ;;^UTILITY(U,$J,358.3,22169,1,0)
+ ;;^UTILITY(U,$J,358.3,22603,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,22603,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,22603,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,22604,0)
+ ;;=Z90.710^^87^982^1
+ ;;^UTILITY(U,$J,358.3,22604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22169,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of left tibia, sequela   
- ;;^UTILITY(U,$J,358.3,22169,1,4,0)
- ;;=4^S82.245S
- ;;^UTILITY(U,$J,358.3,22169,2)
- ;;=^5041410
- ;;^UTILITY(U,$J,358.3,22170,0)
- ;;=S82.225S^^101^1038^71
- ;;^UTILITY(U,$J,358.3,22170,1,0)
+ ;;^UTILITY(U,$J,358.3,22604,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,22604,1,4,0)
+ ;;=4^Z90.710
+ ;;^UTILITY(U,$J,358.3,22604,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,22605,0)
+ ;;=Z91.030^^87^982^13
+ ;;^UTILITY(U,$J,358.3,22605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22170,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left tibia, sequela  
- ;;^UTILITY(U,$J,358.3,22170,1,4,0)
- ;;=4^S82.225S
- ;;^UTILITY(U,$J,358.3,22170,2)
- ;;=^5041218
- ;;^UTILITY(U,$J,358.3,22171,0)
- ;;=S82.224S^^101^1038^73
- ;;^UTILITY(U,$J,358.3,22171,1,0)
+ ;;^UTILITY(U,$J,358.3,22605,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,22605,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,22605,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,22606,0)
+ ;;=Z91.038^^87^982^59
+ ;;^UTILITY(U,$J,358.3,22606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22171,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right tibia, sequela  
- ;;^UTILITY(U,$J,358.3,22171,1,4,0)
- ;;=4^S82.224S
- ;;^UTILITY(U,$J,358.3,22171,2)
- ;;=^5041202
- ;;^UTILITY(U,$J,358.3,22172,0)
- ;;=M84.462S^^101^1038^76
- ;;^UTILITY(U,$J,358.3,22172,1,0)
+ ;;^UTILITY(U,$J,358.3,22606,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,22606,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,22606,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,22607,0)
+ ;;=Z91.041^^87^982^139
+ ;;^UTILITY(U,$J,358.3,22607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22172,1,3,0)
- ;;=3^Pathological fracture, left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22172,1,4,0)
- ;;=4^M84.462S
- ;;^UTILITY(U,$J,358.3,22172,2)
- ;;=^5013943
- ;;^UTILITY(U,$J,358.3,22173,0)
- ;;=M84.461S^^101^1038^78
- ;;^UTILITY(U,$J,358.3,22173,1,0)
+ ;;^UTILITY(U,$J,358.3,22607,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,22607,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,22607,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,22608,0)
+ ;;=Z91.130^^87^982^146
+ ;;^UTILITY(U,$J,358.3,22608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22173,1,3,0)
- ;;=3^Pathological fracture, right tibia, sequela
+ ;;^UTILITY(U,$J,358.3,22608,1,3,0)
+ ;;=3^Underdose of Med Regiment d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,22608,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,22608,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,22609,0)
+ ;;=Z91.138^^87^982^147
+ ;;^UTILITY(U,$J,358.3,22609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22609,1,3,0)
+ ;;=3^Underdose of Med Regiment for Other Reason

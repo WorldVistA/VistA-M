@@ -1,138 +1,142 @@
-IBDEI0IJ ; ; 19-NOV-2015
+IBDEI0IJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8325,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,8325,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,8326,0)
- ;;=C11.9^^55^538^68
- ;;^UTILITY(U,$J,358.3,8326,1,0)
+ ;;^UTILITY(U,$J,358.3,8604,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,8604,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,8605,0)
+ ;;=H81.11^^39^462^12
+ ;;^UTILITY(U,$J,358.3,8605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8326,1,3,0)
- ;;=3^Malignant neoplasm of nasopharynx, unspecified
- ;;^UTILITY(U,$J,358.3,8326,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,8326,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,8327,0)
- ;;=C15.9^^55^538^58
- ;;^UTILITY(U,$J,358.3,8327,1,0)
+ ;;^UTILITY(U,$J,358.3,8605,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, right ear
+ ;;^UTILITY(U,$J,358.3,8605,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,8605,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,8606,0)
+ ;;=H81.12^^39^462^11
+ ;;^UTILITY(U,$J,358.3,8606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8327,1,3,0)
- ;;=3^Malignant neoplasm of esophagus, unspecified
- ;;^UTILITY(U,$J,358.3,8327,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,8327,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,8328,0)
- ;;=C16.9^^55^538^78
- ;;^UTILITY(U,$J,358.3,8328,1,0)
+ ;;^UTILITY(U,$J,358.3,8606,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, left ear
+ ;;^UTILITY(U,$J,358.3,8606,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,8606,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,8607,0)
+ ;;=H92.03^^39^462^45
+ ;;^UTILITY(U,$J,358.3,8607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8328,1,3,0)
- ;;=3^Malignant neoplasm of stomach, unspecified
- ;;^UTILITY(U,$J,358.3,8328,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,8328,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,8329,0)
- ;;=C17.9^^55^538^77
- ;;^UTILITY(U,$J,358.3,8329,1,0)
+ ;;^UTILITY(U,$J,358.3,8607,1,3,0)
+ ;;=3^Otalgia, bilateral
+ ;;^UTILITY(U,$J,358.3,8607,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,8607,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,8608,0)
+ ;;=R42.^^39^462^22
+ ;;^UTILITY(U,$J,358.3,8608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8329,1,3,0)
- ;;=3^Malignant neoplasm of small intestine, unspecified
- ;;^UTILITY(U,$J,358.3,8329,1,4,0)
- ;;=4^C17.9
- ;;^UTILITY(U,$J,358.3,8329,2)
- ;;=^5000926
- ;;^UTILITY(U,$J,358.3,8330,0)
- ;;=C18.9^^55^538^54
- ;;^UTILITY(U,$J,358.3,8330,1,0)
+ ;;^UTILITY(U,$J,358.3,8608,1,3,0)
+ ;;=3^Dizziness and giddiness
+ ;;^UTILITY(U,$J,358.3,8608,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,8608,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,8609,0)
+ ;;=H91.91^^39^462^28
+ ;;^UTILITY(U,$J,358.3,8609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8330,1,3,0)
- ;;=3^Malignant neoplasm of colon, unspecified
- ;;^UTILITY(U,$J,358.3,8330,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,8330,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,8331,0)
- ;;=C20.^^55^538^73
- ;;^UTILITY(U,$J,358.3,8331,1,0)
+ ;;^UTILITY(U,$J,358.3,8609,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,8609,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,8609,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,8610,0)
+ ;;=H91.92^^39^462^27
+ ;;^UTILITY(U,$J,358.3,8610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8331,1,3,0)
- ;;=3^Malignant neoplasm of rectum
- ;;^UTILITY(U,$J,358.3,8331,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,8331,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,8332,0)
- ;;=C21.0^^55^538^51
- ;;^UTILITY(U,$J,358.3,8332,1,0)
+ ;;^UTILITY(U,$J,358.3,8610,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,8610,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,8610,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,8611,0)
+ ;;=H91.93^^39^462^26
+ ;;^UTILITY(U,$J,358.3,8611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8332,1,3,0)
- ;;=3^Malignant neoplasm of anus, unspecified
- ;;^UTILITY(U,$J,358.3,8332,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,8332,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,8333,0)
- ;;=C22.8^^55^538^66
- ;;^UTILITY(U,$J,358.3,8333,1,0)
+ ;;^UTILITY(U,$J,358.3,8611,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,8611,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,8611,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,8612,0)
+ ;;=H93.11^^39^462^61
+ ;;^UTILITY(U,$J,358.3,8612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8333,1,3,0)
- ;;=3^Malignant neoplasm of liver, primary, unspecified as to type
- ;;^UTILITY(U,$J,358.3,8333,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,8333,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,8334,0)
- ;;=C22.7^^55^538^22
- ;;^UTILITY(U,$J,358.3,8334,1,0)
+ ;;^UTILITY(U,$J,358.3,8612,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,8612,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,8612,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,8613,0)
+ ;;=H93.12^^39^462^60
+ ;;^UTILITY(U,$J,358.3,8613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8334,1,3,0)
- ;;=3^Carcinomas of Liver NEC
- ;;^UTILITY(U,$J,358.3,8334,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,8334,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,8335,0)
- ;;=C22.2^^55^538^37
- ;;^UTILITY(U,$J,358.3,8335,1,0)
+ ;;^UTILITY(U,$J,358.3,8613,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,8613,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,8613,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,8614,0)
+ ;;=H93.13^^39^462^59
+ ;;^UTILITY(U,$J,358.3,8614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8335,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,8335,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,8335,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,8336,0)
- ;;=C22.0^^55^538^44
- ;;^UTILITY(U,$J,358.3,8336,1,0)
+ ;;^UTILITY(U,$J,358.3,8614,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,8614,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,8614,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,8615,0)
+ ;;=L04.9^^39^463^1
+ ;;^UTILITY(U,$J,358.3,8615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8336,1,3,0)
- ;;=3^Liver cell carcinoma
- ;;^UTILITY(U,$J,358.3,8336,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,8336,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,8337,0)
- ;;=C22.4^^55^538^113
- ;;^UTILITY(U,$J,358.3,8337,1,0)
+ ;;^UTILITY(U,$J,358.3,8615,1,3,0)
+ ;;=3^Acute lymphadenitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8615,1,4,0)
+ ;;=4^L04.9
+ ;;^UTILITY(U,$J,358.3,8615,2)
+ ;;=^5009074
+ ;;^UTILITY(U,$J,358.3,8616,0)
+ ;;=G47.33^^39^463^8
+ ;;^UTILITY(U,$J,358.3,8616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8337,1,3,0)
- ;;=3^Sarcomas of liver NEC
- ;;^UTILITY(U,$J,358.3,8337,1,4,0)
- ;;=4^C22.4
- ;;^UTILITY(U,$J,358.3,8337,2)
- ;;=^5000937
- ;;^UTILITY(U,$J,358.3,8338,0)
- ;;=C22.3^^55^538^15
- ;;^UTILITY(U,$J,358.3,8338,1,0)
+ ;;^UTILITY(U,$J,358.3,8616,1,3,0)
+ ;;=3^Obstructive sleep apnea (adult) (pediatric)
+ ;;^UTILITY(U,$J,358.3,8616,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,8616,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,8617,0)
+ ;;=R51.^^39^463^6
+ ;;^UTILITY(U,$J,358.3,8617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8338,1,3,0)
- ;;=3^Angiosarcoma of liver
- ;;^UTILITY(U,$J,358.3,8338,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,8338,2)
- ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,8617,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,8617,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,8617,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,8618,0)
+ ;;=R59.9^^39^463^5
+ ;;^UTILITY(U,$J,358.3,8618,1,0)
+ ;;=^358.31IA^4^2

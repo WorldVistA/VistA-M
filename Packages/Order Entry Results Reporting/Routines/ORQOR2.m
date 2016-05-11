@@ -1,7 +1,7 @@
-ORQOR2 ; slc/CLA - Extrinsic functions which return order information ;6/14/96  10:15 [ 04/02/97  1:35 PM ]
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,92,122,144,190,251**;Dec 17, 1997
+ORQOR2 ; slc/CLA - Extrinsic functions which return order information ;04/17/14  18:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,92,122,144,190,251,350**;Dec 17, 1997;Build 77
 STATUS(ORN) ;extrinsic function returns the current status of an order in
- ;the format: status ien^external text 
+ ;the format: status ien^external text
  ;DBIA #3458 supported api for outpt pharmacy
  Q:'$L($G(ORN)) ""
  Q:'$L($G(^OR(100,ORN,3))) ""
@@ -83,7 +83,7 @@ DGRX(ORNUM)        ;ext. funct. determines if order is pharmacy order
  N DG,DGNAME,RXDG
  S DG=$$DG(ORNUM)
  S DGNAME=$P($G(^ORD(100.98,+DG,0)),U) Q:'$L(DGNAME) ""
- F RXDG="PHARMACY","INPATIENT MEDICATIONS","OUTPATIENT MEDICATIONS","UNIT DOSE MEDICATIONS","IV MEDICATIONS","NON-VA MEDICATIONS","CLINIC ORDERS","" Q:(DGNAME=RXDG)
+ F RXDG="PHARMACY","INPATIENT MEDICATIONS","OUTPATIENT MEDICATIONS","UNIT DOSE MEDICATIONS","IV MEDICATIONS","NON-VA MEDICATIONS","CLINIC ORDERS","CLINIC INFUSIONS","CLINIC MEDICATIONS","" Q:(DGNAME=RXDG)
  Q RXDG
 PT(ORNUM) ;ext. funct. gets Patient dfn from ORDER File (#100)
  Q:'$L($G(ORNUM)) ""

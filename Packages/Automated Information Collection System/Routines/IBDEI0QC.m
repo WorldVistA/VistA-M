@@ -1,138 +1,126 @@
-IBDEI0QC ; ; 19-NOV-2015
+IBDEI0QC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12061,0)
- ;;=Z79.891^^68^696^8
- ;;^UTILITY(U,$J,358.3,12061,1,0)
+ ;;^UTILITY(U,$J,358.3,12344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12061,1,3,0)
- ;;=3^Opiate Analgesic
- ;;^UTILITY(U,$J,358.3,12061,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,12061,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,12062,0)
- ;;=Z79.51^^68^696^9
- ;;^UTILITY(U,$J,358.3,12062,1,0)
+ ;;^UTILITY(U,$J,358.3,12344,1,3,0)
+ ;;=3^Crohn's disease, unspecified, with rectal bleeding
+ ;;^UTILITY(U,$J,358.3,12344,1,4,0)
+ ;;=4^K50.911
+ ;;^UTILITY(U,$J,358.3,12344,2)
+ ;;=^5008646
+ ;;^UTILITY(U,$J,358.3,12345,0)
+ ;;=K51.20^^50^559^56
+ ;;^UTILITY(U,$J,358.3,12345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12062,1,3,0)
- ;;=3^Steroids-Inhaled
- ;;^UTILITY(U,$J,358.3,12062,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,12062,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,12063,0)
- ;;=Z79.52^^68^696^10
- ;;^UTILITY(U,$J,358.3,12063,1,0)
+ ;;^UTILITY(U,$J,358.3,12345,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis without complications
+ ;;^UTILITY(U,$J,358.3,12345,1,4,0)
+ ;;=4^K51.20
+ ;;^UTILITY(U,$J,358.3,12345,2)
+ ;;=^5008659
+ ;;^UTILITY(U,$J,358.3,12346,0)
+ ;;=K51.211^^50^559^54
+ ;;^UTILITY(U,$J,358.3,12346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12063,1,3,0)
- ;;=3^Steroids-Systemic
- ;;^UTILITY(U,$J,358.3,12063,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,12063,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,12064,0)
- ;;=Z79.899^^68^696^6
- ;;^UTILITY(U,$J,358.3,12064,1,0)
+ ;;^UTILITY(U,$J,358.3,12346,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with rectal bleeding
+ ;;^UTILITY(U,$J,358.3,12346,1,4,0)
+ ;;=4^K51.211
+ ;;^UTILITY(U,$J,358.3,12346,2)
+ ;;=^5008660
+ ;;^UTILITY(U,$J,358.3,12347,0)
+ ;;=K51.212^^50^559^52
+ ;;^UTILITY(U,$J,358.3,12347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12064,1,3,0)
- ;;=3^Long Term Current Drug Therapy NEC
- ;;^UTILITY(U,$J,358.3,12064,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,12064,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,12065,0)
- ;;=99211^^69^697^1
- ;;^UTILITY(U,$J,358.3,12065,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12065,1,1,0)
- ;;=1^Nursing Visit Only (no MD seen)
- ;;^UTILITY(U,$J,358.3,12065,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,12066,0)
- ;;=99212^^69^697^2
- ;;^UTILITY(U,$J,358.3,12066,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12066,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,12066,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,12067,0)
- ;;=99213^^69^697^3
- ;;^UTILITY(U,$J,358.3,12067,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12067,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,12067,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,12068,0)
- ;;=99214^^69^697^4
- ;;^UTILITY(U,$J,358.3,12068,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12068,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,12068,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,12069,0)
- ;;=99455^^69^698^1
- ;;^UTILITY(U,$J,358.3,12069,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12069,1,1,0)
- ;;=1^Work/Disability Exam-Previously Treated
- ;;^UTILITY(U,$J,358.3,12069,1,2,0)
- ;;=2^99455
- ;;^UTILITY(U,$J,358.3,12070,0)
- ;;=99456^^69^698^2
- ;;^UTILITY(U,$J,358.3,12070,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12070,1,1,0)
- ;;=1^Work/Disability Exam-Not Prev Treated
- ;;^UTILITY(U,$J,358.3,12070,1,2,0)
- ;;=2^99456
- ;;^UTILITY(U,$J,358.3,12071,0)
- ;;=99201^^69^699^1
- ;;^UTILITY(U,$J,358.3,12071,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12071,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,12071,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,12072,0)
- ;;=99202^^69^699^2
- ;;^UTILITY(U,$J,358.3,12072,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12072,1,1,0)
- ;;=1^Exp Problem Focused
- ;;^UTILITY(U,$J,358.3,12072,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,12073,0)
- ;;=99203^^69^699^3
- ;;^UTILITY(U,$J,358.3,12073,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12073,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,12073,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,12074,0)
- ;;=99204^^69^699^4
- ;;^UTILITY(U,$J,358.3,12074,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12074,1,1,0)
- ;;=1^Comp/Mod MDM
- ;;^UTILITY(U,$J,358.3,12074,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,12075,0)
- ;;=99205^^69^699^5
- ;;^UTILITY(U,$J,358.3,12075,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,12075,1,1,0)
- ;;=1^Comp/High MDM
- ;;^UTILITY(U,$J,358.3,12075,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,12076,0)
- ;;=90471^^70^700^1^^^^1
- ;;^UTILITY(U,$J,358.3,12076,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12076,1,2,0)
- ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,12347,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with intestinal obstruction
+ ;;^UTILITY(U,$J,358.3,12347,1,4,0)
+ ;;=4^K51.212
+ ;;^UTILITY(U,$J,358.3,12347,2)
+ ;;=^5008661
+ ;;^UTILITY(U,$J,358.3,12348,0)
+ ;;=K51.213^^50^559^51
+ ;;^UTILITY(U,$J,358.3,12348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12348,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with fistula
+ ;;^UTILITY(U,$J,358.3,12348,1,4,0)
+ ;;=4^K51.213
+ ;;^UTILITY(U,$J,358.3,12348,2)
+ ;;=^5008662
+ ;;^UTILITY(U,$J,358.3,12349,0)
+ ;;=K51.214^^50^559^50
+ ;;^UTILITY(U,$J,358.3,12349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12349,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with abscess
+ ;;^UTILITY(U,$J,358.3,12349,1,4,0)
+ ;;=4^K51.214
+ ;;^UTILITY(U,$J,358.3,12349,2)
+ ;;=^5008663
+ ;;^UTILITY(U,$J,358.3,12350,0)
+ ;;=K51.218^^50^559^53
+ ;;^UTILITY(U,$J,358.3,12350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12350,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with other complication
+ ;;^UTILITY(U,$J,358.3,12350,1,4,0)
+ ;;=4^K51.218
+ ;;^UTILITY(U,$J,358.3,12350,2)
+ ;;=^5008664
+ ;;^UTILITY(U,$J,358.3,12351,0)
+ ;;=K51.219^^50^559^55
+ ;;^UTILITY(U,$J,358.3,12351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12351,1,3,0)
+ ;;=3^Ulcerative (chronic) proctitis with unsp complications
+ ;;^UTILITY(U,$J,358.3,12351,1,4,0)
+ ;;=4^K51.219
+ ;;^UTILITY(U,$J,358.3,12351,2)
+ ;;=^5008665
+ ;;^UTILITY(U,$J,358.3,12352,0)
+ ;;=K51.90^^50^559^63
+ ;;^UTILITY(U,$J,358.3,12352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12352,1,3,0)
+ ;;=3^Ulcerative colitis, unspecified, without complications
+ ;;^UTILITY(U,$J,358.3,12352,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,12352,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,12353,0)
+ ;;=K51.919^^50^559^57
+ ;;^UTILITY(U,$J,358.3,12353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12353,1,3,0)
+ ;;=3^Ulcerative colitis, unsp with unspecified complications
+ ;;^UTILITY(U,$J,358.3,12353,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,12353,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,12354,0)
+ ;;=K51.918^^50^559^61
+ ;;^UTILITY(U,$J,358.3,12354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12354,1,3,0)
+ ;;=3^Ulcerative colitis, unspecified with other complication
+ ;;^UTILITY(U,$J,358.3,12354,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,12354,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,12355,0)
+ ;;=K51.914^^50^559^58
+ ;;^UTILITY(U,$J,358.3,12355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12355,1,3,0)
+ ;;=3^Ulcerative colitis, unspecified with abscess
+ ;;^UTILITY(U,$J,358.3,12355,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,12355,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,12356,0)
+ ;;=K51.913^^50^559^59
+ ;;^UTILITY(U,$J,358.3,12356,1,0)
+ ;;=^358.31IA^4^2

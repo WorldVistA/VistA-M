@@ -1,122 +1,126 @@
-IBDEI1QA ; ; 19-NOV-2015
+IBDEI1QA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28909,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,28909,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,28910,0)
- ;;=Y36.810D^^132^1339^23
- ;;^UTILITY(U,$J,358.3,28910,1,0)
+ ;;^UTILITY(U,$J,358.3,29328,0)
+ ;;=O86.81^^115^1457^4
+ ;;^UTILITY(U,$J,358.3,29328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28910,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28910,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,28910,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,28911,0)
- ;;=Y36.820A^^132^1339^19
- ;;^UTILITY(U,$J,358.3,28911,1,0)
+ ;;^UTILITY(U,$J,358.3,29328,1,3,0)
+ ;;=3^Puerperal septic thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,29328,1,4,0)
+ ;;=4^O86.81
+ ;;^UTILITY(U,$J,358.3,29328,2)
+ ;;=^5017764
+ ;;^UTILITY(U,$J,358.3,29329,0)
+ ;;=O22.01^^115^1458^16
+ ;;^UTILITY(U,$J,358.3,29329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28911,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,28911,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,28911,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,28912,0)
- ;;=Y36.820D^^132^1339^20
- ;;^UTILITY(U,$J,358.3,28912,1,0)
+ ;;^UTILITY(U,$J,358.3,29329,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29329,1,4,0)
+ ;;=4^O22.01
+ ;;^UTILITY(U,$J,358.3,29329,2)
+ ;;=^5016188
+ ;;^UTILITY(U,$J,358.3,29330,0)
+ ;;=O22.02^^115^1458^17
+ ;;^UTILITY(U,$J,358.3,29330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28912,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28912,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,28912,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,28913,0)
- ;;=Y37.200A^^132^1339^91
- ;;^UTILITY(U,$J,358.3,28913,1,0)
+ ;;^UTILITY(U,$J,358.3,29330,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29330,1,4,0)
+ ;;=4^O22.02
+ ;;^UTILITY(U,$J,358.3,29330,2)
+ ;;=^5016189
+ ;;^UTILITY(U,$J,358.3,29331,0)
+ ;;=O22.03^^115^1458^18
+ ;;^UTILITY(U,$J,358.3,29331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28913,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,28913,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,28913,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,28914,0)
- ;;=Y37.200D^^132^1339^92
- ;;^UTILITY(U,$J,358.3,28914,1,0)
+ ;;^UTILITY(U,$J,358.3,29331,1,3,0)
+ ;;=3^Varicose veins of low extrm in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29331,1,4,0)
+ ;;=4^O22.03
+ ;;^UTILITY(U,$J,358.3,29331,2)
+ ;;=^5016190
+ ;;^UTILITY(U,$J,358.3,29332,0)
+ ;;=O87.4^^115^1458^19
+ ;;^UTILITY(U,$J,358.3,29332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28914,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28914,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,28914,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,28915,0)
- ;;=X00.1XXA^^132^1339^13
- ;;^UTILITY(U,$J,358.3,28915,1,0)
+ ;;^UTILITY(U,$J,358.3,29332,1,3,0)
+ ;;=3^Varicose veins of lower extremity in the puerperium
+ ;;^UTILITY(U,$J,358.3,29332,1,4,0)
+ ;;=4^O87.4
+ ;;^UTILITY(U,$J,358.3,29332,2)
+ ;;=^5017770
+ ;;^UTILITY(U,$J,358.3,29333,0)
+ ;;=O22.11^^115^1458^9
+ ;;^UTILITY(U,$J,358.3,29333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28915,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,28915,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,28915,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,28916,0)
- ;;=X00.1XXD^^132^1339^14
- ;;^UTILITY(U,$J,358.3,28916,1,0)
+ ;;^UTILITY(U,$J,358.3,29333,1,3,0)
+ ;;=3^Genital varices in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29333,1,4,0)
+ ;;=4^O22.11
+ ;;^UTILITY(U,$J,358.3,29333,2)
+ ;;=^5016192
+ ;;^UTILITY(U,$J,358.3,29334,0)
+ ;;=O22.12^^115^1458^10
+ ;;^UTILITY(U,$J,358.3,29334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28916,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28916,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,28916,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,28917,0)
- ;;=Y36.820S^^132^1339^21
- ;;^UTILITY(U,$J,358.3,28917,1,0)
+ ;;^UTILITY(U,$J,358.3,29334,1,3,0)
+ ;;=3^Genital varices in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29334,1,4,0)
+ ;;=4^O22.12
+ ;;^UTILITY(U,$J,358.3,29334,2)
+ ;;=^5016193
+ ;;^UTILITY(U,$J,358.3,29335,0)
+ ;;=O22.13^^115^1458^11
+ ;;^UTILITY(U,$J,358.3,29335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28917,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,28917,1,4,0)
- ;;=4^Y36.820S
- ;;^UTILITY(U,$J,358.3,28917,2)
- ;;=^5061795
- ;;^UTILITY(U,$J,358.3,28918,0)
- ;;=Y36.810S^^132^1339^24
- ;;^UTILITY(U,$J,358.3,28918,1,0)
+ ;;^UTILITY(U,$J,358.3,29335,1,3,0)
+ ;;=3^Genital varices in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29335,1,4,0)
+ ;;=4^O22.13
+ ;;^UTILITY(U,$J,358.3,29335,2)
+ ;;=^5016194
+ ;;^UTILITY(U,$J,358.3,29336,0)
+ ;;=O22.21^^115^1458^12
+ ;;^UTILITY(U,$J,358.3,29336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28918,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,28918,1,4,0)
- ;;=4^Y36.810S
- ;;^UTILITY(U,$J,358.3,28918,2)
- ;;=^5061789
- ;;^UTILITY(U,$J,358.3,28919,0)
- ;;=Y36.6X0S^^132^1339^114
- ;;^UTILITY(U,$J,358.3,28919,1,0)
+ ;;^UTILITY(U,$J,358.3,29336,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,29336,1,4,0)
+ ;;=4^O22.21
+ ;;^UTILITY(U,$J,358.3,29336,2)
+ ;;=^5016196
+ ;;^UTILITY(U,$J,358.3,29337,0)
+ ;;=O22.22^^115^1458^13
+ ;;^UTILITY(U,$J,358.3,29337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28919,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,28919,1,4,0)
- ;;=4^Y36.6X0S
- ;;^UTILITY(U,$J,358.3,28919,2)
- ;;=^5061777
- ;;^UTILITY(U,$J,358.3,28920,0)
- ;;=Y36.410S^^132^1339^122
- ;;^UTILITY(U,$J,358.3,28920,1,0)
+ ;;^UTILITY(U,$J,358.3,29337,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,29337,1,4,0)
+ ;;=4^O22.22
+ ;;^UTILITY(U,$J,358.3,29337,2)
+ ;;=^5016197
+ ;;^UTILITY(U,$J,358.3,29338,0)
+ ;;=O22.23^^115^1458^14
+ ;;^UTILITY(U,$J,358.3,29338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28920,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
- ;;^UTILITY(U,$J,358.3,28920,1,4,0)
- ;;=4^Y36.410S
- ;;^UTILITY(U,$J,358.3,28920,2)
- ;;=^5061693
- ;;^UTILITY(U,$J,358.3,28921,0)
- ;;=Y36.200S^^132^1339^119
- ;;^UTILITY(U,$J,358.3,28921,1,0)
+ ;;^UTILITY(U,$J,358.3,29338,1,3,0)
+ ;;=3^Superficial thrombophlebitis in pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,29338,1,4,0)
+ ;;=4^O22.23
+ ;;^UTILITY(U,$J,358.3,29338,2)
+ ;;=^5016198
+ ;;^UTILITY(U,$J,358.3,29339,0)
+ ;;=O87.0^^115^1458^15
+ ;;^UTILITY(U,$J,358.3,29339,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29339,1,3,0)
+ ;;=3^Superficial thrombophlebitis in the puerperium
+ ;;^UTILITY(U,$J,358.3,29339,1,4,0)
+ ;;=4^O87.0
+ ;;^UTILITY(U,$J,358.3,29339,2)
+ ;;=^5017766
+ ;;^UTILITY(U,$J,358.3,29340,0)
+ ;;=O22.31^^115^1458^5

@@ -1,130 +1,132 @@
-IBDEI05Y ; ; 19-NOV-2015
+IBDEI05Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2186,1,4,0)
- ;;=4^T82.120A
- ;;^UTILITY(U,$J,358.3,2186,2)
- ;;=^5054692
- ;;^UTILITY(U,$J,358.3,2187,0)
- ;;=T82.121A^^19^190^18
- ;;^UTILITY(U,$J,358.3,2187,1,0)
+ ;;^UTILITY(U,$J,358.3,2448,1,3,0)
+ ;;=3^Cervicocranial syndrome
+ ;;^UTILITY(U,$J,358.3,2448,1,4,0)
+ ;;=4^M53.0
+ ;;^UTILITY(U,$J,358.3,2448,2)
+ ;;=^21952
+ ;;^UTILITY(U,$J,358.3,2449,0)
+ ;;=M50.90^^15^188^5
+ ;;^UTILITY(U,$J,358.3,2449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2187,1,3,0)
- ;;=3^Displacement of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,2187,1,4,0)
- ;;=4^T82.121A
- ;;^UTILITY(U,$J,358.3,2187,2)
- ;;=^5054695
- ;;^UTILITY(U,$J,358.3,2188,0)
- ;;=T82.190A^^19^190^26
- ;;^UTILITY(U,$J,358.3,2188,1,0)
+ ;;^UTILITY(U,$J,358.3,2449,1,3,0)
+ ;;=3^Cervical disc disorder, unsp, unspecified cervical region
+ ;;^UTILITY(U,$J,358.3,2449,1,4,0)
+ ;;=4^M50.90
+ ;;^UTILITY(U,$J,358.3,2449,2)
+ ;;=^5012235
+ ;;^UTILITY(U,$J,358.3,2450,0)
+ ;;=M50.00^^15^188^4
+ ;;^UTILITY(U,$J,358.3,2450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2188,1,3,0)
- ;;=3^Mech Compl of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,2188,1,4,0)
- ;;=4^T82.190A
- ;;^UTILITY(U,$J,358.3,2188,2)
- ;;=^5054704
- ;;^UTILITY(U,$J,358.3,2189,0)
- ;;=T82.191A^^19^190^27
- ;;^UTILITY(U,$J,358.3,2189,1,0)
+ ;;^UTILITY(U,$J,358.3,2450,1,3,0)
+ ;;=3^Cervical disc disorder with myelopathy, unsp cervical region
+ ;;^UTILITY(U,$J,358.3,2450,1,4,0)
+ ;;=4^M50.00
+ ;;^UTILITY(U,$J,358.3,2450,2)
+ ;;=^5012215
+ ;;^UTILITY(U,$J,358.3,2451,0)
+ ;;=M54.12^^15^188^10
+ ;;^UTILITY(U,$J,358.3,2451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2189,1,3,0)
- ;;=3^Mech Compl of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,2189,1,4,0)
- ;;=4^T82.191A
- ;;^UTILITY(U,$J,358.3,2189,2)
- ;;=^5054707
- ;;^UTILITY(U,$J,358.3,2190,0)
- ;;=Z95.0^^19^190^35
- ;;^UTILITY(U,$J,358.3,2190,1,0)
+ ;;^UTILITY(U,$J,358.3,2451,1,3,0)
+ ;;=3^Radiculopathy, cervical region
+ ;;^UTILITY(U,$J,358.3,2451,1,4,0)
+ ;;=4^M54.12
+ ;;^UTILITY(U,$J,358.3,2451,2)
+ ;;=^5012297
+ ;;^UTILITY(U,$J,358.3,2452,0)
+ ;;=M99.01^^15^188^11
+ ;;^UTILITY(U,$J,358.3,2452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2190,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,2190,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,2190,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,2191,0)
- ;;=Z95.810^^19^190^34
- ;;^UTILITY(U,$J,358.3,2191,1,0)
+ ;;^UTILITY(U,$J,358.3,2452,1,3,0)
+ ;;=3^Segmental and somatic dysfunction of cervical region
+ ;;^UTILITY(U,$J,358.3,2452,1,4,0)
+ ;;=4^M99.01
+ ;;^UTILITY(U,$J,358.3,2452,2)
+ ;;=^5015401
+ ;;^UTILITY(U,$J,358.3,2453,0)
+ ;;=M48.02^^15^188^12
+ ;;^UTILITY(U,$J,358.3,2453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2191,1,3,0)
- ;;=3^Presence of Automatic Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,2191,1,4,0)
- ;;=4^Z95.810
- ;;^UTILITY(U,$J,358.3,2191,2)
- ;;=^5063674
- ;;^UTILITY(U,$J,358.3,2192,0)
- ;;=Z45.010^^19^190^15
- ;;^UTILITY(U,$J,358.3,2192,1,0)
+ ;;^UTILITY(U,$J,358.3,2453,1,3,0)
+ ;;=3^Spinal stenosis, cervical region
+ ;;^UTILITY(U,$J,358.3,2453,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,2453,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,2454,0)
+ ;;=M47.812^^15^188^14
+ ;;^UTILITY(U,$J,358.3,2454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2192,1,3,0)
- ;;=3^Check/Test Cardiac Pacemaker Pulse Generator
- ;;^UTILITY(U,$J,358.3,2192,1,4,0)
- ;;=4^Z45.010
- ;;^UTILITY(U,$J,358.3,2192,2)
- ;;=^5062994
- ;;^UTILITY(U,$J,358.3,2193,0)
- ;;=Z45.018^^19^190^6
- ;;^UTILITY(U,$J,358.3,2193,1,0)
+ ;;^UTILITY(U,$J,358.3,2454,1,3,0)
+ ;;=3^Spondylosis w/o myelopathy or radiculopathy, cervical region
+ ;;^UTILITY(U,$J,358.3,2454,1,4,0)
+ ;;=4^M47.812
+ ;;^UTILITY(U,$J,358.3,2454,2)
+ ;;=^5012069
+ ;;^UTILITY(U,$J,358.3,2455,0)
+ ;;=S13.9XXA^^15^188^15
+ ;;^UTILITY(U,$J,358.3,2455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2193,1,3,0)
- ;;=3^Adjust/Manage Cardiac Pacemaker Parts
- ;;^UTILITY(U,$J,358.3,2193,1,4,0)
- ;;=4^Z45.018
- ;;^UTILITY(U,$J,358.3,2193,2)
- ;;=^5062995
- ;;^UTILITY(U,$J,358.3,2194,0)
- ;;=Z45.02^^19^190^5
- ;;^UTILITY(U,$J,358.3,2194,1,0)
+ ;;^UTILITY(U,$J,358.3,2455,1,3,0)
+ ;;=3^Sprain of joints/ligaments of unsp parts of neck, init
+ ;;^UTILITY(U,$J,358.3,2455,1,4,0)
+ ;;=4^S13.9XXA
+ ;;^UTILITY(U,$J,358.3,2455,2)
+ ;;=^5022037
+ ;;^UTILITY(U,$J,358.3,2456,0)
+ ;;=M43.12^^15^188^13
+ ;;^UTILITY(U,$J,358.3,2456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2194,1,3,0)
- ;;=3^Adjust/Manage Automatic Implantable Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,2194,1,4,0)
- ;;=4^Z45.02
- ;;^UTILITY(U,$J,358.3,2194,2)
- ;;=^5062996
- ;;^UTILITY(U,$J,358.3,2195,0)
- ;;=I25.110^^19^191^15
- ;;^UTILITY(U,$J,358.3,2195,1,0)
+ ;;^UTILITY(U,$J,358.3,2456,1,3,0)
+ ;;=3^Spondylolisthesis,Cervical Region
+ ;;^UTILITY(U,$J,358.3,2456,1,4,0)
+ ;;=4^M43.12
+ ;;^UTILITY(U,$J,358.3,2456,2)
+ ;;=^5011923
+ ;;^UTILITY(U,$J,358.3,2457,0)
+ ;;=M50.22^^15^188^6
+ ;;^UTILITY(U,$J,358.3,2457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2195,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Cor Art w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2195,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,2195,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,2196,0)
- ;;=I25.700^^19^191^34
- ;;^UTILITY(U,$J,358.3,2196,1,0)
+ ;;^UTILITY(U,$J,358.3,2457,1,3,0)
+ ;;=3^Cervical disc displacement, mid-cervical region
+ ;;^UTILITY(U,$J,358.3,2457,1,4,0)
+ ;;=4^M50.22
+ ;;^UTILITY(U,$J,358.3,2457,2)
+ ;;=^5012225
+ ;;^UTILITY(U,$J,358.3,2458,0)
+ ;;=M99.88^^15^189^1
+ ;;^UTILITY(U,$J,358.3,2458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2196,1,3,0)
- ;;=3^Athscl of CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2196,1,4,0)
- ;;=4^I25.700
- ;;^UTILITY(U,$J,358.3,2196,2)
- ;;=^5007117
- ;;^UTILITY(U,$J,358.3,2197,0)
- ;;=I25.710^^19^191^10
- ;;^UTILITY(U,$J,358.3,2197,1,0)
+ ;;^UTILITY(U,$J,358.3,2458,1,3,0)
+ ;;=3^Biomechanical lesions of rib cage
+ ;;^UTILITY(U,$J,358.3,2458,1,4,0)
+ ;;=4^M99.88
+ ;;^UTILITY(U,$J,358.3,2458,2)
+ ;;=^5015488
+ ;;^UTILITY(U,$J,358.3,2459,0)
+ ;;=M99.82^^15^189^2
+ ;;^UTILITY(U,$J,358.3,2459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2197,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2197,1,4,0)
- ;;=4^I25.710
- ;;^UTILITY(U,$J,358.3,2197,2)
- ;;=^5007121
- ;;^UTILITY(U,$J,358.3,2198,0)
- ;;=I25.720^^19^191^6
- ;;^UTILITY(U,$J,358.3,2198,1,0)
+ ;;^UTILITY(U,$J,358.3,2459,1,3,0)
+ ;;=3^Biomechanical lesions of thoracic region
+ ;;^UTILITY(U,$J,358.3,2459,1,4,0)
+ ;;=4^M99.82
+ ;;^UTILITY(U,$J,358.3,2459,2)
+ ;;=^5015482
+ ;;^UTILITY(U,$J,358.3,2460,0)
+ ;;=M51.24^^15^189^5
+ ;;^UTILITY(U,$J,358.3,2460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2198,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2198,1,4,0)
- ;;=4^I25.720
- ;;^UTILITY(U,$J,358.3,2198,2)
- ;;=^5007125
- ;;^UTILITY(U,$J,358.3,2199,0)
- ;;=I25.730^^19^191^24
+ ;;^UTILITY(U,$J,358.3,2460,1,3,0)
+ ;;=3^Intervertebral disc displacement, thoracic region
+ ;;^UTILITY(U,$J,358.3,2460,1,4,0)
+ ;;=4^M51.24
+ ;;^UTILITY(U,$J,358.3,2460,2)
+ ;;=^5012247
+ ;;^UTILITY(U,$J,358.3,2461,0)
+ ;;=M51.34^^15^189^3

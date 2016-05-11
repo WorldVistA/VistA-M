@@ -1,130 +1,134 @@
-IBDEI25M ; ; 19-NOV-2015
+IBDEI25M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36126,1,0)
+ ;;^UTILITY(U,$J,358.3,36545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36126,1,3,0)
- ;;=3^Retracted nipple associated with lactation
- ;;^UTILITY(U,$J,358.3,36126,1,4,0)
- ;;=4^O92.03
- ;;^UTILITY(U,$J,358.3,36126,2)
- ;;=^5017845
- ;;^UTILITY(U,$J,358.3,36127,0)
- ;;=O92.111^^166^1833^7
- ;;^UTILITY(U,$J,358.3,36127,1,0)
+ ;;^UTILITY(U,$J,358.3,36545,1,3,0)
+ ;;=3^AC Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36545,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,36545,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,36546,0)
+ ;;=B40.0^^137^1767^31
+ ;;^UTILITY(U,$J,358.3,36546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36127,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,36127,1,4,0)
- ;;=4^O92.111
- ;;^UTILITY(U,$J,358.3,36127,2)
- ;;=^5017846
- ;;^UTILITY(U,$J,358.3,36128,0)
- ;;=O92.112^^166^1833^8
- ;;^UTILITY(U,$J,358.3,36128,1,0)
+ ;;^UTILITY(U,$J,358.3,36546,1,3,0)
+ ;;=3^AC Pulmonary Blastomycosis
+ ;;^UTILITY(U,$J,358.3,36546,1,4,0)
+ ;;=4^B40.0
+ ;;^UTILITY(U,$J,358.3,36546,2)
+ ;;=^5000639
+ ;;^UTILITY(U,$J,358.3,36547,0)
+ ;;=H60.553^^137^1767^32
+ ;;^UTILITY(U,$J,358.3,36547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36128,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,36128,1,4,0)
- ;;=4^O92.112
- ;;^UTILITY(U,$J,358.3,36128,2)
- ;;=^5017847
- ;;^UTILITY(U,$J,358.3,36129,0)
- ;;=O92.113^^166^1833^9
- ;;^UTILITY(U,$J,358.3,36129,1,0)
+ ;;^UTILITY(U,$J,358.3,36547,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,36547,1,4,0)
+ ;;=4^H60.553
+ ;;^UTILITY(U,$J,358.3,36547,2)
+ ;;=^5006488
+ ;;^UTILITY(U,$J,358.3,36548,0)
+ ;;=H60.552^^137^1767^33
+ ;;^UTILITY(U,$J,358.3,36548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36129,1,3,0)
- ;;=3^Cracked nipple associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,36129,1,4,0)
- ;;=4^O92.113
- ;;^UTILITY(U,$J,358.3,36129,2)
- ;;=^5017848
- ;;^UTILITY(U,$J,358.3,36130,0)
- ;;=O92.13^^166^1833^6
- ;;^UTILITY(U,$J,358.3,36130,1,0)
+ ;;^UTILITY(U,$J,358.3,36548,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,36548,1,4,0)
+ ;;=4^H60.552
+ ;;^UTILITY(U,$J,358.3,36548,2)
+ ;;=^5006487
+ ;;^UTILITY(U,$J,358.3,36549,0)
+ ;;=H60.551^^137^1767^34
+ ;;^UTILITY(U,$J,358.3,36549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36130,1,3,0)
- ;;=3^Cracked nipple associated with lactation
- ;;^UTILITY(U,$J,358.3,36130,1,4,0)
- ;;=4^O92.13
- ;;^UTILITY(U,$J,358.3,36130,2)
- ;;=^5017851
- ;;^UTILITY(U,$J,358.3,36131,0)
- ;;=O92.79^^166^1833^15
- ;;^UTILITY(U,$J,358.3,36131,1,0)
+ ;;^UTILITY(U,$J,358.3,36549,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,36549,1,4,0)
+ ;;=4^H60.551
+ ;;^UTILITY(U,$J,358.3,36549,2)
+ ;;=^5006486
+ ;;^UTILITY(U,$J,358.3,36550,0)
+ ;;=J01.91^^137^1767^35
+ ;;^UTILITY(U,$J,358.3,36550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36131,1,3,0)
- ;;=3^Lactation disorders NEC 
- ;;^UTILITY(U,$J,358.3,36131,1,4,0)
- ;;=4^O92.79
- ;;^UTILITY(U,$J,358.3,36131,2)
- ;;=^271861
- ;;^UTILITY(U,$J,358.3,36132,0)
- ;;=O92.3^^166^1833^5
- ;;^UTILITY(U,$J,358.3,36132,1,0)
+ ;;^UTILITY(U,$J,358.3,36550,1,3,0)
+ ;;=3^AC Recurrent Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36550,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,36550,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,36551,0)
+ ;;=J03.81^^137^1767^36
+ ;;^UTILITY(U,$J,358.3,36551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36132,1,3,0)
- ;;=3^Agalactia
- ;;^UTILITY(U,$J,358.3,36132,1,4,0)
- ;;=4^O92.3
- ;;^UTILITY(U,$J,358.3,36132,2)
- ;;=^5017854
- ;;^UTILITY(U,$J,358.3,36133,0)
- ;;=O92.5^^166^1833^24
- ;;^UTILITY(U,$J,358.3,36133,1,0)
+ ;;^UTILITY(U,$J,358.3,36551,1,3,0)
+ ;;=3^AC Recurrent Tonsillitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,36551,1,4,0)
+ ;;=4^J03.81
+ ;;^UTILITY(U,$J,358.3,36551,2)
+ ;;=^5008134
+ ;;^UTILITY(U,$J,358.3,36552,0)
+ ;;=J03.91^^137^1767^37
+ ;;^UTILITY(U,$J,358.3,36552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36133,1,3,0)
- ;;=3^Suppressed lactation
- ;;^UTILITY(U,$J,358.3,36133,1,4,0)
- ;;=4^O92.5
- ;;^UTILITY(U,$J,358.3,36133,2)
- ;;=^5017855
- ;;^UTILITY(U,$J,358.3,36134,0)
- ;;=O92.6^^166^1833^10
- ;;^UTILITY(U,$J,358.3,36134,1,0)
+ ;;^UTILITY(U,$J,358.3,36552,1,3,0)
+ ;;=3^AC Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36552,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,36552,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,36553,0)
+ ;;=J01.90^^137^1767^38
+ ;;^UTILITY(U,$J,358.3,36553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36134,1,3,0)
- ;;=3^Galactorrhea
- ;;^UTILITY(U,$J,358.3,36134,1,4,0)
- ;;=4^O92.6
- ;;^UTILITY(U,$J,358.3,36134,2)
- ;;=^48842
- ;;^UTILITY(U,$J,358.3,36135,0)
- ;;=Z34.01^^166^1834^17
- ;;^UTILITY(U,$J,358.3,36135,1,0)
+ ;;^UTILITY(U,$J,358.3,36553,1,3,0)
+ ;;=3^AC Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36553,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,36553,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,36554,0)
+ ;;=J03.80^^137^1767^39
+ ;;^UTILITY(U,$J,358.3,36554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36135,1,3,0)
- ;;=3^Suprvsn of normal first preg, first trimester
- ;;^UTILITY(U,$J,358.3,36135,1,4,0)
- ;;=4^Z34.01
- ;;^UTILITY(U,$J,358.3,36135,2)
- ;;=^5062856
- ;;^UTILITY(U,$J,358.3,36136,0)
- ;;=Z34.02^^166^1834^18
- ;;^UTILITY(U,$J,358.3,36136,1,0)
+ ;;^UTILITY(U,$J,358.3,36554,1,3,0)
+ ;;=3^AC Tonsillitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,36554,1,4,0)
+ ;;=4^J03.80
+ ;;^UTILITY(U,$J,358.3,36554,2)
+ ;;=^5008133
+ ;;^UTILITY(U,$J,358.3,36555,0)
+ ;;=J03.90^^137^1767^40
+ ;;^UTILITY(U,$J,358.3,36555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36136,1,3,0)
- ;;=3^Suprvsn of normal first preg, second trimester
- ;;^UTILITY(U,$J,358.3,36136,1,4,0)
- ;;=4^Z34.02
- ;;^UTILITY(U,$J,358.3,36136,2)
- ;;=^5062857
- ;;^UTILITY(U,$J,358.3,36137,0)
- ;;=Z34.03^^166^1834^19
- ;;^UTILITY(U,$J,358.3,36137,1,0)
+ ;;^UTILITY(U,$J,358.3,36555,1,3,0)
+ ;;=3^AC Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36555,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,36555,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,36556,0)
+ ;;=B44.81^^137^1767^43
+ ;;^UTILITY(U,$J,358.3,36556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36137,1,3,0)
- ;;=3^Suprvsn of normal first preg, third trimester
- ;;^UTILITY(U,$J,358.3,36137,1,4,0)
- ;;=4^Z34.03
- ;;^UTILITY(U,$J,358.3,36137,2)
- ;;=^5062858
- ;;^UTILITY(U,$J,358.3,36138,0)
- ;;=Z34.81^^166^1834^20
- ;;^UTILITY(U,$J,358.3,36138,1,0)
+ ;;^UTILITY(U,$J,358.3,36556,1,3,0)
+ ;;=3^Allergic Bronchopulmonary Aspergillosis
+ ;;^UTILITY(U,$J,358.3,36556,1,4,0)
+ ;;=4^B44.81
+ ;;^UTILITY(U,$J,358.3,36556,2)
+ ;;=^10945
+ ;;^UTILITY(U,$J,358.3,36557,0)
+ ;;=B44.9^^137^1767^45
+ ;;^UTILITY(U,$J,358.3,36557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36138,1,3,0)
- ;;=3^Suprvsn of normal pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,36138,1,4,0)
- ;;=4^Z34.81
+ ;;^UTILITY(U,$J,358.3,36557,1,3,0)
+ ;;=3^Aspergillosis,Unspec
+ ;;^UTILITY(U,$J,358.3,36557,1,4,0)
+ ;;=4^B44.9
+ ;;^UTILITY(U,$J,358.3,36557,2)
+ ;;=^5000668
+ ;;^UTILITY(U,$J,358.3,36558,0)
+ ;;=B40.9^^137^1767^47

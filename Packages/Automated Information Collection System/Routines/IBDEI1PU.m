@@ -1,132 +1,122 @@
-IBDEI1PU ; ; 19-NOV-2015
+IBDEI1PU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28711,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,28711,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,28712,0)
- ;;=N93.8^^132^1336^2
- ;;^UTILITY(U,$J,358.3,28712,1,0)
+ ;;^UTILITY(U,$J,358.3,29136,1,4,0)
+ ;;=4^O36.1913
+ ;;^UTILITY(U,$J,358.3,29136,2)
+ ;;=^5016922
+ ;;^UTILITY(U,$J,358.3,29137,0)
+ ;;=O36.1914^^115^1455^150
+ ;;^UTILITY(U,$J,358.3,29137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28712,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,28712,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,28712,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,28713,0)
- ;;=N93.9^^132^1336^3
- ;;^UTILITY(U,$J,358.3,28713,1,0)
+ ;;^UTILITY(U,$J,358.3,29137,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29137,1,4,0)
+ ;;=4^O36.1914
+ ;;^UTILITY(U,$J,358.3,29137,2)
+ ;;=^5016923
+ ;;^UTILITY(U,$J,358.3,29138,0)
+ ;;=O36.1915^^115^1455^151
+ ;;^UTILITY(U,$J,358.3,29138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28713,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,28713,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,28713,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,28714,0)
- ;;=N92.4^^132^1336^19
- ;;^UTILITY(U,$J,358.3,28714,1,0)
+ ;;^UTILITY(U,$J,358.3,29138,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29138,1,4,0)
+ ;;=4^O36.1915
+ ;;^UTILITY(U,$J,358.3,29138,2)
+ ;;=^5016924
+ ;;^UTILITY(U,$J,358.3,29139,0)
+ ;;=O36.1920^^115^1455^152
+ ;;^UTILITY(U,$J,358.3,29139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28714,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,28714,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,28714,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,28715,0)
- ;;=N95.0^^132^1336^48
- ;;^UTILITY(U,$J,358.3,28715,1,0)
+ ;;^UTILITY(U,$J,358.3,29139,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29139,1,4,0)
+ ;;=4^O36.1920
+ ;;^UTILITY(U,$J,358.3,29139,2)
+ ;;=^5016925
+ ;;^UTILITY(U,$J,358.3,29140,0)
+ ;;=O36.1921^^115^1455^153
+ ;;^UTILITY(U,$J,358.3,29140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28715,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,28715,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,28715,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,28716,0)
- ;;=N95.1^^132^1336^35
- ;;^UTILITY(U,$J,358.3,28716,1,0)
+ ;;^UTILITY(U,$J,358.3,29140,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29140,1,4,0)
+ ;;=4^O36.1921
+ ;;^UTILITY(U,$J,358.3,29140,2)
+ ;;=^5016926
+ ;;^UTILITY(U,$J,358.3,29141,0)
+ ;;=O36.1922^^115^1455^154
+ ;;^UTILITY(U,$J,358.3,29141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28716,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,28716,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,28716,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,28717,0)
- ;;=N97.0^^132^1336^21
- ;;^UTILITY(U,$J,358.3,28717,1,0)
+ ;;^UTILITY(U,$J,358.3,29141,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29141,1,4,0)
+ ;;=4^O36.1922
+ ;;^UTILITY(U,$J,358.3,29141,2)
+ ;;=^5016927
+ ;;^UTILITY(U,$J,358.3,29142,0)
+ ;;=O36.1923^^115^1455^155
+ ;;^UTILITY(U,$J,358.3,29142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28717,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,28717,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,28717,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,28718,0)
- ;;=N97.9^^132^1336^22
- ;;^UTILITY(U,$J,358.3,28718,1,0)
+ ;;^UTILITY(U,$J,358.3,29142,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29142,1,4,0)
+ ;;=4^O36.1923
+ ;;^UTILITY(U,$J,358.3,29142,2)
+ ;;=^5016928
+ ;;^UTILITY(U,$J,358.3,29143,0)
+ ;;=O36.1924^^115^1455^156
+ ;;^UTILITY(U,$J,358.3,29143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28718,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,28718,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,28718,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,28719,0)
- ;;=L29.2^^132^1336^52
- ;;^UTILITY(U,$J,358.3,28719,1,0)
+ ;;^UTILITY(U,$J,358.3,29143,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29143,1,4,0)
+ ;;=4^O36.1924
+ ;;^UTILITY(U,$J,358.3,29143,2)
+ ;;=^5016929
+ ;;^UTILITY(U,$J,358.3,29144,0)
+ ;;=O36.1925^^115^1455^157
+ ;;^UTILITY(U,$J,358.3,29144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28719,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,28719,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,28719,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,28720,0)
- ;;=R92.8^^132^1336^4
- ;;^UTILITY(U,$J,358.3,28720,1,0)
+ ;;^UTILITY(U,$J,358.3,29144,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, second trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29144,1,4,0)
+ ;;=4^O36.1925
+ ;;^UTILITY(U,$J,358.3,29144,2)
+ ;;=^5016930
+ ;;^UTILITY(U,$J,358.3,29145,0)
+ ;;=O36.1930^^115^1455^158
+ ;;^UTILITY(U,$J,358.3,29145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28720,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,28720,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,28720,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,28721,0)
- ;;=R87.619^^132^1336^1
- ;;^UTILITY(U,$J,358.3,28721,1,0)
+ ;;^UTILITY(U,$J,358.3,29145,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, third trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29145,1,4,0)
+ ;;=4^O36.1930
+ ;;^UTILITY(U,$J,358.3,29145,2)
+ ;;=^5016931
+ ;;^UTILITY(U,$J,358.3,29146,0)
+ ;;=O36.1931^^115^1455^159
+ ;;^UTILITY(U,$J,358.3,29146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28721,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,28721,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,28721,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,28722,0)
- ;;=Z79.890^^132^1336^26
- ;;^UTILITY(U,$J,358.3,28722,1,0)
+ ;;^UTILITY(U,$J,358.3,29146,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, third trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29146,1,4,0)
+ ;;=4^O36.1931
+ ;;^UTILITY(U,$J,358.3,29146,2)
+ ;;=^5016932
+ ;;^UTILITY(U,$J,358.3,29147,0)
+ ;;=O36.1932^^115^1455^160
+ ;;^UTILITY(U,$J,358.3,29147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28722,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,28722,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,28722,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,28723,0)
- ;;=Z33.1^^132^1336^50
- ;;^UTILITY(U,$J,358.3,28723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28723,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,28723,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,28723,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,28724,0)
- ;;=Z39.2^^132^1336^49
- ;;^UTILITY(U,$J,358.3,28724,1,0)
+ ;;^UTILITY(U,$J,358.3,29147,1,3,0)
+ ;;=3^Maternal care for oth isoimmun, third trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29147,1,4,0)
+ ;;=4^O36.1932
+ ;;^UTILITY(U,$J,358.3,29147,2)
+ ;;=^5016933
+ ;;^UTILITY(U,$J,358.3,29148,0)
+ ;;=O36.1933^^115^1455^161
+ ;;^UTILITY(U,$J,358.3,29148,1,0)
  ;;=^358.31IA^4^2

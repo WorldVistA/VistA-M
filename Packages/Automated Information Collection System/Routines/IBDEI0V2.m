@@ -1,138 +1,124 @@
-IBDEI0V2 ; ; 19-NOV-2015
+IBDEI0V2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14292,2)
- ;;=^5006317
- ;;^UTILITY(U,$J,358.3,14293,0)
- ;;=C72.31^^82^776^31
- ;;^UTILITY(U,$J,358.3,14293,1,0)
+ ;;^UTILITY(U,$J,358.3,14566,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,14566,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,14566,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,14567,0)
+ ;;=R40.2211^^53^611^17
+ ;;^UTILITY(U,$J,358.3,14567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14293,1,3,0)
- ;;=3^Malig Neop of Right Optic Nerve
- ;;^UTILITY(U,$J,358.3,14293,1,4,0)
- ;;=4^C72.31
- ;;^UTILITY(U,$J,358.3,14293,2)
- ;;=^5001303
- ;;^UTILITY(U,$J,358.3,14294,0)
- ;;=C72.32^^82^776^30
- ;;^UTILITY(U,$J,358.3,14294,1,0)
+ ;;^UTILITY(U,$J,358.3,14567,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,14567,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,14567,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,14568,0)
+ ;;=R40.2210^^53^611^16
+ ;;^UTILITY(U,$J,358.3,14568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14294,1,3,0)
- ;;=3^Malig Neop of Left Optic Nerve
- ;;^UTILITY(U,$J,358.3,14294,1,4,0)
- ;;=4^C72.32
- ;;^UTILITY(U,$J,358.3,14294,2)
- ;;=^5001304
- ;;^UTILITY(U,$J,358.3,14295,0)
- ;;=D33.3^^82^776^5
- ;;^UTILITY(U,$J,358.3,14295,1,0)
+ ;;^UTILITY(U,$J,358.3,14568,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,14568,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,14568,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,14569,0)
+ ;;=R40.2224^^53^611^18
+ ;;^UTILITY(U,$J,358.3,14569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14295,1,3,0)
- ;;=3^Benigh Neop of Cranial Nerves
- ;;^UTILITY(U,$J,358.3,14295,1,4,0)
- ;;=4^D33.3
- ;;^UTILITY(U,$J,358.3,14295,2)
- ;;=^13298
- ;;^UTILITY(U,$J,358.3,14296,0)
- ;;=G24.5^^82^776^8
- ;;^UTILITY(U,$J,358.3,14296,1,0)
+ ;;^UTILITY(U,$J,358.3,14569,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,14569,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,14569,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,14570,0)
+ ;;=R40.2223^^53^611^19
+ ;;^UTILITY(U,$J,358.3,14570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14296,1,3,0)
- ;;=3^Blepharospasm
- ;;^UTILITY(U,$J,358.3,14296,1,4,0)
- ;;=4^G24.5
- ;;^UTILITY(U,$J,358.3,14296,2)
- ;;=^15293
- ;;^UTILITY(U,$J,358.3,14297,0)
- ;;=G43.909^^82^776^32
- ;;^UTILITY(U,$J,358.3,14297,1,0)
+ ;;^UTILITY(U,$J,358.3,14570,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,14570,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,14570,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,14571,0)
+ ;;=R40.2222^^53^611^20
+ ;;^UTILITY(U,$J,358.3,14571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14297,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,14297,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,14297,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,14298,0)
- ;;=G93.2^^82^776^6
- ;;^UTILITY(U,$J,358.3,14298,1,0)
+ ;;^UTILITY(U,$J,358.3,14571,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,14571,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,14571,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,14572,0)
+ ;;=R40.2221^^53^611^21
+ ;;^UTILITY(U,$J,358.3,14572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14298,1,3,0)
- ;;=3^Benign Intracranial Hypertension
- ;;^UTILITY(U,$J,358.3,14298,1,4,0)
- ;;=4^G93.2
- ;;^UTILITY(U,$J,358.3,14298,2)
- ;;=^5004180
- ;;^UTILITY(U,$J,358.3,14299,0)
- ;;=G50.9^^82^776^55
- ;;^UTILITY(U,$J,358.3,14299,1,0)
+ ;;^UTILITY(U,$J,358.3,14572,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,14572,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,14572,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,14573,0)
+ ;;=R40.2220^^53^611^22
+ ;;^UTILITY(U,$J,358.3,14573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14299,1,3,0)
- ;;=3^Trigeminal Nerve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14299,1,4,0)
- ;;=4^G50.9
- ;;^UTILITY(U,$J,358.3,14299,2)
- ;;=^5003993
- ;;^UTILITY(U,$J,358.3,14300,0)
- ;;=G51.0^^82^776^4
- ;;^UTILITY(U,$J,358.3,14300,1,0)
+ ;;^UTILITY(U,$J,358.3,14573,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,14573,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,14573,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,14574,0)
+ ;;=R40.2214^^53^611^23
+ ;;^UTILITY(U,$J,358.3,14574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14300,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,14300,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,14300,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,14301,0)
- ;;=G51.3^^82^776^10
- ;;^UTILITY(U,$J,358.3,14301,1,0)
+ ;;^UTILITY(U,$J,358.3,14574,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,14574,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,14574,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,14575,0)
+ ;;=R40.2213^^53^611^25
+ ;;^UTILITY(U,$J,358.3,14575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14301,1,3,0)
- ;;=3^Clonic Hemifacial Spasm
- ;;^UTILITY(U,$J,358.3,14301,1,4,0)
- ;;=4^G51.3
- ;;^UTILITY(U,$J,358.3,14301,2)
- ;;=^5003995
- ;;^UTILITY(U,$J,358.3,14302,0)
- ;;=G51.4^^82^776^16
- ;;^UTILITY(U,$J,358.3,14302,1,0)
+ ;;^UTILITY(U,$J,358.3,14575,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,14575,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,14575,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,14576,0)
+ ;;=R40.2212^^53^611^24
+ ;;^UTILITY(U,$J,358.3,14576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14302,1,3,0)
- ;;=3^Facial Myokymia
- ;;^UTILITY(U,$J,358.3,14302,1,4,0)
- ;;=4^G51.4
- ;;^UTILITY(U,$J,358.3,14302,2)
- ;;=^5003996
- ;;^UTILITY(U,$J,358.3,14303,0)
- ;;=G51.8^^82^776^17
- ;;^UTILITY(U,$J,358.3,14303,1,0)
+ ;;^UTILITY(U,$J,358.3,14576,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,14576,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,14576,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,14577,0)
+ ;;=R40.2344^^53^611^6
+ ;;^UTILITY(U,$J,358.3,14577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14303,1,3,0)
- ;;=3^Facial Nerve Disorders NEC
- ;;^UTILITY(U,$J,358.3,14303,1,4,0)
- ;;=4^G51.8
- ;;^UTILITY(U,$J,358.3,14303,2)
- ;;=^5003997
- ;;^UTILITY(U,$J,358.3,14304,0)
- ;;=H34.01^^82^776^53
- ;;^UTILITY(U,$J,358.3,14304,1,0)
+ ;;^UTILITY(U,$J,358.3,14577,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,14577,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,14577,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,14578,0)
+ ;;=R40.2343^^53^611^7
+ ;;^UTILITY(U,$J,358.3,14578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14304,1,3,0)
- ;;=3^Transient Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,14304,1,4,0)
- ;;=4^H34.01
- ;;^UTILITY(U,$J,358.3,14304,2)
- ;;=^5005553
- ;;^UTILITY(U,$J,358.3,14305,0)
- ;;=H34.02^^82^776^52
- ;;^UTILITY(U,$J,358.3,14305,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14305,1,3,0)
- ;;=3^Transient Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,14305,1,4,0)
- ;;=4^H34.02
- ;;^UTILITY(U,$J,358.3,14305,2)
- ;;=^5005554
- ;;^UTILITY(U,$J,358.3,14306,0)
- ;;=G45.3^^82^776^3

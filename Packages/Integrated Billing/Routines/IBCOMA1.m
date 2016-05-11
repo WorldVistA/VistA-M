@@ -1,11 +1,11 @@
-IBCOMA1 ;ALB/CMS - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE (CON'T) ; 08-03-98
- ;;2.0;INTEGRATED BILLING;**103,516**;21-MAR-94;Build 123
+IBCOMA1 ;ALB/CMS - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE (CON'T) ;08-03-98
+ ;;2.0;INTEGRATED BILLING;**103,516,528**;21-MAR-94;Build 163
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 BEG ; Entry to run Active Policies w/no Effective Date Report
  ; Input variables:
  ; IBAIB - Required.    How to sort
- ;         1= Patient Name Range      2= Termianl Digit Range
+ ;         1= Patient Name Range      2= Terminal Digit Range
  ;
  ; IBSIN - Required.   Include Active Policies with
  ;         1= Verification Date  2= No Verification Date 3= Both
@@ -14,9 +14,13 @@ BEG ; Entry to run Active Policies w/no Effective Date Report
  ; IBRL  - Required.  Name or Terminal Digit Range Go to value
  ; IBBDT - Optional.  Begining Verification Date Range
  ; IBEDT - Optional.  Ending Verification Date Range
+ ; IBOUT - Required.  Output format
+ ;         "R"= report format        "E"= Excel format
  ;
  N DFN,IBC,IBC0,IBCDA,IBCDA0,IBCDA1,IBC11,IBC13,IBGP,IBI,IBPAGE,IBTMP
  N IBQUIT,IBTD,IBX,VA,VADM,VAERR,X,Y
+ ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  K ^TMP("IBCOMA",$J) S IBPAGE=0,IBQUIT=0
  S IBC=0 F  S IBC=$O(^DPT("AB",IBC)) Q:'IBC  D
  .S IBC0=$G(^DIC(36,IBC,0))
@@ -36,6 +40,10 @@ BEG ; Entry to run Active Policies w/no Effective Date Report
  ..;
  ..;  I Terminal Digit out of range quit
  ..I IBAIB=2 S IBTD=$$TERMDG^IBCONS2(DFN) S:IBTD="" IBTD="000000000" I (+IBTD>IBRL)!(IBRF>+IBTD) Q
+ ..;
+ ..; Fix subscript error if terminal digit is null
+ ..I IBAIB=2,IBTD="" S IBTD=" "
+ ..;
  ..S IBCDA=0 F  S IBCDA=$O(^DPT("AB",IBC,DFN,IBCDA)) Q:'IBCDA  D
  ...;IB*2.0*516/TAZ - Retrieve data from HIPAA compliant fields.
  ...;S IBCDA0=$G(^DPT(DFN,.312,IBCDA,0))  ;516 - baa
@@ -79,15 +87,16 @@ BEG ; Entry to run Active Policies w/no Effective Date Report
  ...S ^TMP("IBCOMA",$J,IBI,$S(IBAIB=2:+IBTD,1:VADM(1)),DFN,IBC,IBCDA)=IBTMP(3)
  ...;
  ;
- I '$D(^TMP("IBCOMA",$J)) D HD W !!,"** NO RECORDS FOUND **" G QUEQ
- D WRT
+ I '$D(^TMP("IBCOMA",$J)) D HD W !!,"** NO RECORDS FOUND **" D ASK^IBCOMC2 G QUEQ
+ D HD:IBOUT="E",WRT
  ;
 QUEQ ; Exit clean-UP
- W ! D ^%ZISC K IBTMP,IBAIB,IBRF,IBRL,IBSIN,IBSTR,VA,VAERR,VADM,VAPA,^TMP("IBCOMA",$J)
+ W ! D ^%ZISC K IBTMP,IBAIB,IBOUT,IBRF,IBRL,IBSIN,IBSTR,VA,VAERR,VADM,VAPA,^TMP("IBCOMA",$J)
  Q
  ;
 HD ;Write Heading
  S IBPAGE=IBPAGE+1
+ I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Verified?^Patient Name^SSN^Age^Phone^Date of Death^Insurance Name^Reimb VA?^Phone^Plan^Sub ID^Whose^Verification Date" Q
  W @IOF,"Active Policies with no Effective Date Report    ",$$FMTE^XLFDT($$NOW^XLFDT,"Z")," Page: ",IBPAGE
  W !,?5,"Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_"  Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
  W !,?5,"  Include: "_$S(IBSIN=1:"Verification Date Range: "_$$FMTE^XLFDT(IBBDT,"Z")_" to "_$$FMTE^XLFDT(IBEDT,"Z"),IBSIN=2:"No Verification Date Entered",1:"with or without Verification Date")
@@ -98,27 +107,36 @@ HD ;Write Heading
 WRT ;Write data lines
  N IBA,IBCDA,IBDA,IBDFN,IBINS,IBNA,IBPOL,IBPT,X,Y S IBQUIT=0
  S IBA=0 F  S IBA=$O(^TMP("IBCOMA",$J,IBA)) Q:('IBA)!(IBQUIT=1)  D
- . I IBPAGE D ASK^IBCOMC2 I IBQUIT=1 Q
- . D HD W !,$S(IBA=1:"Verified",1:"Non-Verified")
+ . I IBPAGE,(IBOUT="R") D ASK^IBCOMC2 I IBQUIT=1 Q
+ . I IBOUT="R" D HD W !,$S(IBA=1:"Verified",1:"Non-Verified")
  . S IBNA="" F  S IBNA=$O(^TMP("IBCOMA",$J,IBA,IBNA)) Q:(IBNA="")!(IBQUIT=1)  D
  . . S IBDFN=0 F  S IBDFN=$O(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN)) Q:('IBDFN)!(IBQUIT=1)  D
  . . . S IBPT=$G(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN))
  . . . ;
- . . . I ($Y+7)>IOSL D  I IBQUIT=1 Q
+ . . . I ($Y+7)>IOSL,(IBOUT="R") D  I IBQUIT=1 Q
  . . . . D ASK^IBCOMC2 I IBQUIT=1 Q
  . . . . D HD
  . . . . Q
  . . . ;
- . . . W !!,$E($P(IBPT,U,1),1,30),?32,$E($P(IBPT,U,2),1,12),?44,$J($P(IBPT,U,3),3),?50,$E($P(IBPT,U,4),1,20),?70,$P(IBPT,U,5)
+ . . . ; Excel Output
+ . . . I IBOUT="E" W !,$S(IBA=1:"Verified",1:"Non-Verified")_U_IBPT
+ . . . ; Report Output
+ . . . I IBOUT="R" W !!,$E($P(IBPT,U,1),1,30),?32,$E($P(IBPT,U,2),1,12),?44,$J($P(IBPT,U,3),3),?50,$E($P(IBPT,U,4),1,20),?70,$P(IBPT,U,5)
  . . . ;
  . . . S IBDA=0 F  S IBDA=$O(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN,IBDA)) Q:('IBDA)!(IBQUIT=1)  D
  . . . . S IBINS=$G(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN,IBDA))
- . . . . W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),?50,$E($P(IBINS,U,3),1,20) ; ?70,$E($P(IBINS,U,4),1,10)
+ . . . . ; Excel Output
+ . . . . I IBOUT="E" W U_$P(IBINS,U,1,3)
+ . . . . ; Report Output
+ . . . . I IBOUT="R" W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),?50,$E($P(IBINS,U,3),1,20) ; ?70,$E($P(IBINS,U,4),1,10)
  . . . . ;
  . . . . S IBCDA=0 F  S IBCDA=$O(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN,IBDA,IBCDA)) Q:('IBCDA)!(IBQUIT=1)   D
  . . . . . S IBPOL=$G(^TMP("IBCOMA",$J,IBA,IBNA,IBDFN,IBDA,IBCDA))
  . . . . . ; MRD;IB*2.0*516 - Print Sub ID on its own line.
  . . . . . ;W !?5,$E($P(IBPOL,U,1),1,20),?26,"Sub ID: ",$E($P(IBPOL,U,2),1,20),?55,"Whose: ",$P(IBPOL,U,3)
+ . . . . . ; Excel Output
+ . . . . . I IBOUT="E" W U_$S($P(IBPOL,U,1)["Plan: ":$P($P(IBPOL,U,1),"Plan: ",2,99),1:$P(IBPOL,U,1))_U_$P(IBPOL,U,2,4) Q
+ . . . . . ; Report Output
  . . . . . W !?3,$E($P(IBPOL,U,1),1,49),?55,"Whose: ",$P(IBPOL,U,3)
  . . . . . I IBA=1 W ?64,"Verif:",$P(IBPOL,U,4)
  . . . . . W !?3,"Sub ID: ",$E($P(IBPOL,U,2),1,66)
@@ -127,5 +145,5 @@ WRT ;Write data lines
  . . . Q
  . . Q
  . Q
+ I 'IBQUIT D ASK^IBCOMC2
  Q
- ;IBCOMA1

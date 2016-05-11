@@ -1,130 +1,120 @@
-IBDEI0VA ; ; 19-NOV-2015
+IBDEI0VA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14396,1,4,0)
- ;;=4^H00.025
- ;;^UTILITY(U,$J,358.3,14396,2)
- ;;=^5133374
- ;;^UTILITY(U,$J,358.3,14397,0)
- ;;=H00.024^^82^777^58
- ;;^UTILITY(U,$J,358.3,14397,1,0)
+ ;;^UTILITY(U,$J,358.3,14665,0)
+ ;;=W18.12XA^^53^612^61
+ ;;^UTILITY(U,$J,358.3,14665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14397,1,3,0)
- ;;=3^Hordeolum Internum Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14397,1,4,0)
- ;;=4^H00.024
- ;;^UTILITY(U,$J,358.3,14397,2)
- ;;=^5004226
- ;;^UTILITY(U,$J,358.3,14398,0)
- ;;=H00.022^^82^777^59
- ;;^UTILITY(U,$J,358.3,14398,1,0)
+ ;;^UTILITY(U,$J,358.3,14665,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14665,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,14665,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,14666,0)
+ ;;=W18.12XD^^53^612^62
+ ;;^UTILITY(U,$J,358.3,14666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14398,1,3,0)
- ;;=3^Hordeolum Internum Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14398,1,4,0)
- ;;=4^H00.022
- ;;^UTILITY(U,$J,358.3,14398,2)
- ;;=^5004224
- ;;^UTILITY(U,$J,358.3,14399,0)
- ;;=H00.021^^82^777^60
- ;;^UTILITY(U,$J,358.3,14399,1,0)
+ ;;^UTILITY(U,$J,358.3,14666,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14666,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,14666,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,14667,0)
+ ;;=W18.2XXA^^53^612^73
+ ;;^UTILITY(U,$J,358.3,14667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14399,1,3,0)
- ;;=3^Hordeolum Internum Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14399,1,4,0)
- ;;=4^H00.021
- ;;^UTILITY(U,$J,358.3,14399,2)
- ;;=^5004223
- ;;^UTILITY(U,$J,358.3,14400,0)
- ;;=S01.122A^^82^777^61
- ;;^UTILITY(U,$J,358.3,14400,1,0)
+ ;;^UTILITY(U,$J,358.3,14667,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14667,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,14667,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,14668,0)
+ ;;=W18.2XXD^^53^612^74
+ ;;^UTILITY(U,$J,358.3,14668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14400,1,3,0)
- ;;=3^Laceration w/ FB Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14400,1,4,0)
- ;;=4^S01.122A
- ;;^UTILITY(U,$J,358.3,14400,2)
- ;;=^5134190
- ;;^UTILITY(U,$J,358.3,14401,0)
- ;;=S01.121A^^82^777^62
- ;;^UTILITY(U,$J,358.3,14401,1,0)
+ ;;^UTILITY(U,$J,358.3,14668,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14668,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,14668,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,14669,0)
+ ;;=W18.40XA^^53^612^105
+ ;;^UTILITY(U,$J,358.3,14669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14401,1,3,0)
- ;;=3^Laceration w/ FB Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14401,1,4,0)
- ;;=4^S01.121A
- ;;^UTILITY(U,$J,358.3,14401,2)
- ;;=^5020066
- ;;^UTILITY(U,$J,358.3,14402,0)
- ;;=S01.112A^^82^777^63
- ;;^UTILITY(U,$J,358.3,14402,1,0)
+ ;;^UTILITY(U,$J,358.3,14669,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14669,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,14669,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,14670,0)
+ ;;=W18.40XD^^53^612^106
+ ;;^UTILITY(U,$J,358.3,14670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14402,1,3,0)
- ;;=3^Laceration w/o FB Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14402,1,4,0)
- ;;=4^S01.112A
- ;;^UTILITY(U,$J,358.3,14402,2)
- ;;=^5020060
- ;;^UTILITY(U,$J,358.3,14403,0)
- ;;=S01.111A^^82^777^64
- ;;^UTILITY(U,$J,358.3,14403,1,0)
+ ;;^UTILITY(U,$J,358.3,14670,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14670,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,14670,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,14671,0)
+ ;;=W18.41XA^^53^612^107
+ ;;^UTILITY(U,$J,358.3,14671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14403,1,3,0)
- ;;=3^Laceration w/o FB Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,14403,1,4,0)
- ;;=4^S01.111A
- ;;^UTILITY(U,$J,358.3,14403,2)
- ;;=^5020057
- ;;^UTILITY(U,$J,358.3,14404,0)
- ;;=C44.109^^82^777^65
- ;;^UTILITY(U,$J,358.3,14404,1,0)
+ ;;^UTILITY(U,$J,358.3,14671,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14671,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,14671,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,14672,0)
+ ;;=W18.41XD^^53^612^108
+ ;;^UTILITY(U,$J,358.3,14672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14404,1,3,0)
- ;;=3^Malig Neop Skin Left Eyelid
- ;;^UTILITY(U,$J,358.3,14404,1,4,0)
- ;;=4^C44.109
- ;;^UTILITY(U,$J,358.3,14404,2)
- ;;=^5001018
- ;;^UTILITY(U,$J,358.3,14405,0)
- ;;=C44.102^^82^777^67
- ;;^UTILITY(U,$J,358.3,14405,1,0)
+ ;;^UTILITY(U,$J,358.3,14672,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14672,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,14672,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,14673,0)
+ ;;=W18.42XA^^53^612^109
+ ;;^UTILITY(U,$J,358.3,14673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14405,1,3,0)
- ;;=3^Malig Neop Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,14405,1,4,0)
- ;;=4^C44.102
- ;;^UTILITY(U,$J,358.3,14405,2)
- ;;=^5001017
- ;;^UTILITY(U,$J,358.3,14406,0)
- ;;=H02.125^^82^777^69
- ;;^UTILITY(U,$J,358.3,14406,1,0)
+ ;;^UTILITY(U,$J,358.3,14673,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14673,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,14673,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,14674,0)
+ ;;=W18.42XD^^53^612^110
+ ;;^UTILITY(U,$J,358.3,14674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14406,1,3,0)
- ;;=3^Mechanical Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,14406,1,4,0)
- ;;=4^H02.125
- ;;^UTILITY(U,$J,358.3,14406,2)
- ;;=^5133412
- ;;^UTILITY(U,$J,358.3,14407,0)
- ;;=H02.124^^82^777^70
- ;;^UTILITY(U,$J,358.3,14407,1,0)
+ ;;^UTILITY(U,$J,358.3,14674,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14674,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,14674,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,14675,0)
+ ;;=W18.43XA^^53^612^103
+ ;;^UTILITY(U,$J,358.3,14675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14407,1,3,0)
- ;;=3^Mechanical Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14407,1,4,0)
- ;;=4^H02.124
- ;;^UTILITY(U,$J,358.3,14407,2)
- ;;=^5004315
- ;;^UTILITY(U,$J,358.3,14408,0)
- ;;=H02.121^^82^777^72
- ;;^UTILITY(U,$J,358.3,14408,1,0)
+ ;;^UTILITY(U,$J,358.3,14675,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14675,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,14675,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,14676,0)
+ ;;=W18.43XD^^53^612^104
+ ;;^UTILITY(U,$J,358.3,14676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14408,1,3,0)
- ;;=3^Mechanical Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,14408,1,4,0)
- ;;=4^H02.121
- ;;^UTILITY(U,$J,358.3,14408,2)
- ;;=^5004312
- ;;^UTILITY(U,$J,358.3,14409,0)
- ;;=H02.122^^82^777^71
+ ;;^UTILITY(U,$J,358.3,14676,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr

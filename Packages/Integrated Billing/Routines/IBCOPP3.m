@@ -1,18 +1,20 @@
-IBCOPP3 ;ALB/NLR - LIST INS. PLANS BY CO. (PRINT) ; 04-OCT-94
- ;;2.0;INTEGRATED BILLING;**28,516**;21-MAR-94;Build 123
+IBCOPP3 ;ALB/NLR - LIST INS. PLANS BY CO. (PRINT) ;04-OCT-94
+ ;;2.0;INTEGRATED BILLING;**28,516,528**;21-MAR-94;Build 163
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Print the report.
- ;  Required Input:  Global print array ^TMP($J,"PR"
+ ;  Required Input:  Global print array ^TMP($J,"IBPR"
  ;                   local variable IBAPA
- ; 
+ ;
+ N %
+ I IBAO="E" D EXCEL Q
  S (IBI,IBQUIT,IBPAG)=0
  D NOW^%DTC S IBHDT=$$DAT2^IBOUTL($E(%,1,12))
- F  S IBI=$O(^TMP($J,"PR",IBI)) Q:'IBI  S IBC=$G(^(IBI)) D COMP D  Q:IBQUIT
- .S IBP=0 F  S IBP=$O(^TMP($J,"PR",IBI,IBP)) Q:'IBP  S IBPD=$G(^(IBP)) D  Q:IBQUIT
+ F  S IBI=$O(^TMP($J,"IBPR",IBI)) Q:'IBI  S IBC=$G(^(IBI)) D COMP D  Q:IBQUIT
+ .S IBP=0 F  S IBP=$O(^TMP($J,"IBPR",IBI,IBP)) Q:'IBP  S IBPD=$G(^(IBP)) D  Q:IBQUIT
  ..I $Y>(IOSL-$S(IBAPA:9,1:5)) D PAUSE Q:IBQUIT  D COMP
  ..D PLAN
- ..I IBAPA S IBS="" F  S IBS=$O(^TMP($J,"PR",IBI,IBP,IBS)) Q:IBS=""  S IBSD=$G(^(IBS)) D SUBS Q:IBQUIT
+ ..I IBAPA S IBS="" F  S IBS=$O(^TMP($J,"IBPR",IBI,IBP,IBS)) Q:IBS=""  S IBSD=$G(^(IBS)) D SUBS Q:IBQUIT
  .Q:IBQUIT
  .;
  .; - print company totals
@@ -63,6 +65,22 @@ SUBS ; Print subscriber information.
  ;
 PAUSE ; Pause for screen output.
  Q:$E(IOST,1,2)'["C-"
- F IBJJ=$Y:1:(IOSL-7) W !
+ ;F IBJJ=$Y:1:(IOSL-7) W !   ; IB*2.0*528 - CJS - Fix scrolling problem
  S DIR(0)="E" D ^DIR K DIR I $D(DIRUT)!($D(DUOUT)) S IBQUIT=1 K DIRUT,DTOUT,DUOUT
  Q
+ ;
+EXCEL ; Output in excell format
+ N HDR
+ S IBQUIT=0
+ S HDR="INS.CO.^ADDRESS^CITY,STATE ZIP^PHONE^PRECERT PHONE^ACTIVE^PLAN TOTAL^SUBS TOTAL^PLANS SELECTED^TOT SUBS"
+ S HDR=HDR_"^GROUP NUMBER^GROUP NAME^GRP?^ACTIVE^AN. BEN^BEN USED^NO. SUBS"
+ I IBAPA S HDR=HDR_"^SUBSCRIBER NAME/ID^DOB^EMPLOYER^SUBSCR ID^WHOSE INS^EFF DATE^EXP DATE^BEN USED?"
+ W !,HDR
+ S IBI=0
+ F  S IBI=$O(^TMP($J,"IBPR",IBI)) Q:'IBI  S IBC=$G(^(IBI)) D  Q:IBQUIT
+ .S IBP=0 F  S IBP=$O(^TMP($J,"IBPR",IBI,IBP)) Q:'IBP  S IBPD=$G(^(IBP)) D
+ ..I 'IBAPA W !,IBC_U_IBPD
+ ..I IBAPA S IBS="" F  S IBS=$O(^TMP($J,"IBPR",IBI,IBP,IBS)) Q:IBS=""  S IBSD=$G(^(IBS)) D
+ ...W !,IBC_U_IBPD_U_IBSD
+ Q
+ ;

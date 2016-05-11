@@ -1,136 +1,122 @@
-IBDEI1YV ; ; 19-NOV-2015
+IBDEI1YV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32931,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,32932,0)
- ;;=G21.19^^146^1592^3
- ;;^UTILITY(U,$J,358.3,32932,1,0)
+ ;;^UTILITY(U,$J,358.3,33381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32932,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,32932,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,32932,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,32933,0)
- ;;=G21.11^^146^1592^5
- ;;^UTILITY(U,$J,358.3,32933,1,0)
+ ;;^UTILITY(U,$J,358.3,33381,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,33381,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,33381,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,33382,0)
+ ;;=L97.111^^131^1669^226
+ ;;^UTILITY(U,$J,358.3,33382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32933,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,32933,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,32933,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,32934,0)
- ;;=G24.02^^146^1592^1
- ;;^UTILITY(U,$J,358.3,32934,1,0)
+ ;;^UTILITY(U,$J,358.3,33382,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,33382,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,33382,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,33383,0)
+ ;;=L97.112^^131^1669^227
+ ;;^UTILITY(U,$J,358.3,33383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32934,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,32934,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,32934,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,32935,0)
- ;;=G24.01^^146^1592^7
- ;;^UTILITY(U,$J,358.3,32935,1,0)
+ ;;^UTILITY(U,$J,358.3,33383,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,33383,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,33383,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,33384,0)
+ ;;=L97.113^^131^1669^228
+ ;;^UTILITY(U,$J,358.3,33384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32935,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,32935,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,32935,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,32936,0)
- ;;=G24.09^^146^1592^8
- ;;^UTILITY(U,$J,358.3,32936,1,0)
+ ;;^UTILITY(U,$J,358.3,33384,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,33384,1,4,0)
+ ;;=4^L97.113
+ ;;^UTILITY(U,$J,358.3,33384,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,33385,0)
+ ;;=L97.114^^131^1669^229
+ ;;^UTILITY(U,$J,358.3,33385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32936,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,32936,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,32936,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,32937,0)
- ;;=G25.1^^146^1592^4
- ;;^UTILITY(U,$J,358.3,32937,1,0)
+ ;;^UTILITY(U,$J,358.3,33385,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,33385,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,33385,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,33386,0)
+ ;;=L97.119^^131^1669^230
+ ;;^UTILITY(U,$J,358.3,33386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32937,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,32937,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,32937,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,32938,0)
- ;;=G25.71^^146^1592^6
- ;;^UTILITY(U,$J,358.3,32938,1,0)
+ ;;^UTILITY(U,$J,358.3,33386,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,33386,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,33386,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,33387,0)
+ ;;=L97.121^^131^1669^196
+ ;;^UTILITY(U,$J,358.3,33387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32938,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,32938,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,32938,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,32939,0)
- ;;=G25.79^^146^1592^2
- ;;^UTILITY(U,$J,358.3,32939,1,0)
+ ;;^UTILITY(U,$J,358.3,33387,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,33387,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,33387,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,33388,0)
+ ;;=L97.122^^131^1669^197
+ ;;^UTILITY(U,$J,358.3,33388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32939,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,32939,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,32939,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,32940,0)
- ;;=F42.^^146^1593^6
- ;;^UTILITY(U,$J,358.3,32940,1,0)
+ ;;^UTILITY(U,$J,358.3,33388,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,33388,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,33388,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,33389,0)
+ ;;=L97.123^^131^1669^198
+ ;;^UTILITY(U,$J,358.3,33389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32940,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder
- ;;^UTILITY(U,$J,358.3,32940,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,32940,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,32941,0)
- ;;=F45.22^^146^1593^1
- ;;^UTILITY(U,$J,358.3,32941,1,0)
+ ;;^UTILITY(U,$J,358.3,33389,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,33389,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,33389,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,33390,0)
+ ;;=L97.124^^131^1669^199
+ ;;^UTILITY(U,$J,358.3,33390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32941,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,32941,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,32941,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,32942,0)
- ;;=F63.3^^146^1593^7
- ;;^UTILITY(U,$J,358.3,32942,1,0)
+ ;;^UTILITY(U,$J,358.3,33390,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,33390,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,33390,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,33391,0)
+ ;;=L97.129^^131^1669^200
+ ;;^UTILITY(U,$J,358.3,33391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32942,1,3,0)
- ;;=3^Trichotillomania
- ;;^UTILITY(U,$J,358.3,32942,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,32942,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,32943,0)
- ;;=L98.1^^146^1593^2
- ;;^UTILITY(U,$J,358.3,32943,1,0)
+ ;;^UTILITY(U,$J,358.3,33391,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,33391,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,33391,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,33392,0)
+ ;;=L97.211^^131^1669^206
+ ;;^UTILITY(U,$J,358.3,33392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32943,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,32943,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,32943,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,32944,0)
- ;;=F63.0^^146^1593^4
- ;;^UTILITY(U,$J,358.3,32944,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32944,1,3,0)
- ;;=3^Gambling Disorder
- ;;^UTILITY(U,$J,358.3,32944,1,4,0)
- ;;=4^F63.0
- ;;^UTILITY(U,$J,358.3,32944,2)
- ;;=^5003640
+ ;;^UTILITY(U,$J,358.3,33392,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,33392,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,33392,2)
+ ;;=^5009500

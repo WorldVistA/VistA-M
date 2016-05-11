@@ -1,122 +1,132 @@
-IBDEI2FZ ; ; 19-NOV-2015
+IBDEI2FZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40993,0)
- ;;=S92.504K^^189^2086^359
- ;;^UTILITY(U,$J,358.3,40993,1,0)
+ ;;^UTILITY(U,$J,358.3,41418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40993,1,3,0)
- ;;=3^Nondisp fx rt lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40993,1,4,0)
- ;;=4^S92.504K
- ;;^UTILITY(U,$J,358.3,40993,2)
- ;;=^5045421
- ;;^UTILITY(U,$J,358.3,40994,0)
- ;;=S92.502K^^189^2086^39
- ;;^UTILITY(U,$J,358.3,40994,1,0)
+ ;;^UTILITY(U,$J,358.3,41418,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,41418,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,41418,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,41419,0)
+ ;;=Z85.47^^159^2005^100
+ ;;^UTILITY(U,$J,358.3,41419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40994,1,3,0)
- ;;=3^Disp fx lft lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40994,1,4,0)
- ;;=4^S92.502K
- ;;^UTILITY(U,$J,358.3,40994,2)
- ;;=^5045414
- ;;^UTILITY(U,$J,358.3,40995,0)
- ;;=S92.501K^^189^2086^133
- ;;^UTILITY(U,$J,358.3,40995,1,0)
+ ;;^UTILITY(U,$J,358.3,41419,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,41419,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,41419,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,41420,0)
+ ;;=Z85.51^^159^2005^84
+ ;;^UTILITY(U,$J,358.3,41420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40995,1,3,0)
- ;;=3^Disp fx rt lsr toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40995,1,4,0)
- ;;=4^S92.501K
- ;;^UTILITY(U,$J,358.3,40995,2)
- ;;=^5045407
- ;;^UTILITY(U,$J,358.3,40996,0)
- ;;=S92.492K^^189^2086^196
- ;;^UTILITY(U,$J,358.3,40996,1,0)
+ ;;^UTILITY(U,$J,358.3,41420,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,41420,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,41420,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,41421,0)
+ ;;=Z85.528^^159^2005^89
+ ;;^UTILITY(U,$J,358.3,41421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40996,1,3,0)
- ;;=3^Fx of lft grt toe, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,40996,1,4,0)
- ;;=4^S92.492K
- ;;^UTILITY(U,$J,358.3,40996,2)
- ;;=^5045393
- ;;^UTILITY(U,$J,358.3,40997,0)
- ;;=S92.491K^^189^2086^213
- ;;^UTILITY(U,$J,358.3,40997,1,0)
+ ;;^UTILITY(U,$J,358.3,41421,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,41421,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,41421,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,41422,0)
+ ;;=Z85.6^^159^2005^80
+ ;;^UTILITY(U,$J,358.3,41422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40997,1,3,0)
- ;;=3^Fx of rt grt toe, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,40997,1,4,0)
- ;;=4^S92.491K
- ;;^UTILITY(U,$J,358.3,40997,2)
- ;;=^5045386
- ;;^UTILITY(U,$J,358.3,40998,0)
- ;;=S92.425K^^189^2086^312
- ;;^UTILITY(U,$J,358.3,40998,1,0)
+ ;;^UTILITY(U,$J,358.3,41422,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,41422,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,41422,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,41423,0)
+ ;;=Z85.72^^159^2005^104
+ ;;^UTILITY(U,$J,358.3,41423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40998,1,3,0)
- ;;=3^Nondisp fx of dist phalanx lft 1st grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40998,1,4,0)
- ;;=4^S92.425K
- ;;^UTILITY(U,$J,358.3,40998,2)
- ;;=^5045372
- ;;^UTILITY(U,$J,358.3,40999,0)
- ;;=S92.424K^^189^2086^317
- ;;^UTILITY(U,$J,358.3,40999,1,0)
+ ;;^UTILITY(U,$J,358.3,41423,1,3,0)
+ ;;=3^Personal Hx of Non-Hodgkin Lymphomas
+ ;;^UTILITY(U,$J,358.3,41423,1,4,0)
+ ;;=4^Z85.72
+ ;;^UTILITY(U,$J,358.3,41423,2)
+ ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,41424,0)
+ ;;=Z85.79^^159^2005^94
+ ;;^UTILITY(U,$J,358.3,41424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40999,1,3,0)
- ;;=3^Nondisp fx of dist phalanx rt 1st grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40999,1,4,0)
- ;;=4^S92.424K
- ;;^UTILITY(U,$J,358.3,40999,2)
- ;;=^5045365
- ;;^UTILITY(U,$J,358.3,41000,0)
- ;;=S92.422K^^189^2086^88
- ;;^UTILITY(U,$J,358.3,41000,1,0)
+ ;;^UTILITY(U,$J,358.3,41424,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
+ ;;^UTILITY(U,$J,358.3,41424,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,41424,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,41425,0)
+ ;;=Z85.820^^159^2005^83
+ ;;^UTILITY(U,$J,358.3,41425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41000,1,3,0)
- ;;=3^Disp fx of dist phalanx lft grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41000,1,4,0)
- ;;=4^S92.422K
- ;;^UTILITY(U,$J,358.3,41000,2)
- ;;=^5045351
- ;;^UTILITY(U,$J,358.3,41001,0)
- ;;=S92.421K^^189^2086^94
- ;;^UTILITY(U,$J,358.3,41001,1,0)
+ ;;^UTILITY(U,$J,358.3,41425,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,41425,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,41425,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,41426,0)
+ ;;=Z85.828^^159^2005^98
+ ;;^UTILITY(U,$J,358.3,41426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41001,1,3,0)
- ;;=3^Disp fx of dist phalanx rt grt toe, subs 2/ nonunion
- ;;^UTILITY(U,$J,358.3,41001,1,4,0)
- ;;=4^S92.421K
- ;;^UTILITY(U,$J,358.3,41001,2)
- ;;=^5045344
- ;;^UTILITY(U,$J,358.3,41002,0)
- ;;=S92.415K^^189^2086^343
- ;;^UTILITY(U,$J,358.3,41002,1,0)
+ ;;^UTILITY(U,$J,358.3,41426,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,41426,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,41426,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,41427,0)
+ ;;=Z85.71^^159^2005^78
+ ;;^UTILITY(U,$J,358.3,41427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41002,1,3,0)
- ;;=3^Nondisp fx of prox phalanx lft grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41002,1,4,0)
- ;;=4^S92.415K
- ;;^UTILITY(U,$J,358.3,41002,2)
- ;;=^5045330
- ;;^UTILITY(U,$J,358.3,41003,0)
- ;;=S92.414K^^189^2086^351
- ;;^UTILITY(U,$J,358.3,41003,1,0)
+ ;;^UTILITY(U,$J,358.3,41427,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,41427,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,41427,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,41428,0)
+ ;;=Z65.8^^159^2005^138
+ ;;^UTILITY(U,$J,358.3,41428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41003,1,3,0)
- ;;=3^Nondisp fx of prox phalanx rt grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41003,1,4,0)
- ;;=4^S92.414K
- ;;^UTILITY(U,$J,358.3,41003,2)
- ;;=^5045323
- ;;^UTILITY(U,$J,358.3,41004,0)
- ;;=S92.412K^^189^2086^118
- ;;^UTILITY(U,$J,358.3,41004,1,0)
+ ;;^UTILITY(U,$J,358.3,41428,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,41428,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,41428,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,41429,0)
+ ;;=Z86.11^^159^2005^115
+ ;;^UTILITY(U,$J,358.3,41429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41004,1,3,0)
- ;;=3^Disp fx of prox phalanx lft grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41004,1,4,0)
- ;;=4^S92.412K
+ ;;^UTILITY(U,$J,358.3,41429,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,41429,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,41429,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,41430,0)
+ ;;=Z86.13^^159^2005^82
+ ;;^UTILITY(U,$J,358.3,41430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41430,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,41430,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,41430,2)
+ ;;=^5063463

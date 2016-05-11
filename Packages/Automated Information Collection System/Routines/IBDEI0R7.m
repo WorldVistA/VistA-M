@@ -1,136 +1,134 @@
-IBDEI0R7 ; ; 19-NOV-2015
+IBDEI0R7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12463,0)
- ;;=E11.8^^74^722^31
- ;;^UTILITY(U,$J,358.3,12463,1,0)
+ ;;^UTILITY(U,$J,358.3,12758,1,4,0)
+ ;;=4^I70.641
+ ;;^UTILITY(U,$J,358.3,12758,2)
+ ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,12759,0)
+ ;;=I70.642^^53^582^66
+ ;;^UTILITY(U,$J,358.3,12759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12463,1,3,0)
- ;;=3^Diabetes Type 2 w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,12463,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,12463,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,12464,0)
- ;;=N18.6^^74^722^34
- ;;^UTILITY(U,$J,358.3,12464,1,0)
+ ;;^UTILITY(U,$J,358.3,12759,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,12759,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,12759,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,12760,0)
+ ;;=I70.643^^53^582^67
+ ;;^UTILITY(U,$J,358.3,12760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12464,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,12464,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,12464,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,12465,0)
- ;;=N18.9^^74^722^17
- ;;^UTILITY(U,$J,358.3,12465,1,0)
+ ;;^UTILITY(U,$J,358.3,12760,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,12760,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,12760,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,12761,0)
+ ;;=I70.644^^53^582^68
+ ;;^UTILITY(U,$J,358.3,12761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12465,1,3,0)
- ;;=3^Chr Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,12465,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,12465,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,12466,0)
- ;;=E11.36^^74^722^26
- ;;^UTILITY(U,$J,358.3,12466,1,0)
+ ;;^UTILITY(U,$J,358.3,12761,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,12761,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,12761,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,12762,0)
+ ;;=I70.645^^53^582^69
+ ;;^UTILITY(U,$J,358.3,12762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12466,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,12466,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,12466,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,12467,0)
- ;;=E11.40^^74^722^27
- ;;^UTILITY(U,$J,358.3,12467,1,0)
+ ;;^UTILITY(U,$J,358.3,12762,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,12762,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,12762,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,12763,0)
+ ;;=K12.0^^53^582^258
+ ;;^UTILITY(U,$J,358.3,12763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12467,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Neurpathy,Unspec
- ;;^UTILITY(U,$J,358.3,12467,1,4,0)
- ;;=4^E11.40
- ;;^UTILITY(U,$J,358.3,12467,2)
- ;;=^5002644
- ;;^UTILITY(U,$J,358.3,12468,0)
- ;;=E11.51^^74^722^28
- ;;^UTILITY(U,$J,358.3,12468,1,0)
+ ;;^UTILITY(U,$J,358.3,12763,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,12763,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,12763,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,12764,0)
+ ;;=K12.1^^53^582^271
+ ;;^UTILITY(U,$J,358.3,12764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12468,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Peripheral Angiopath w/o Gangrene
- ;;^UTILITY(U,$J,358.3,12468,1,4,0)
- ;;=4^E11.51
- ;;^UTILITY(U,$J,358.3,12468,2)
- ;;=^5002650
- ;;^UTILITY(U,$J,358.3,12469,0)
- ;;=E29.1^^74^722^77
- ;;^UTILITY(U,$J,358.3,12469,1,0)
+ ;;^UTILITY(U,$J,358.3,12764,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,12764,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,12764,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,12765,0)
+ ;;=K12.2^^53^582^94
+ ;;^UTILITY(U,$J,358.3,12765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12469,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,12469,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,12469,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,12470,0)
- ;;=E04.1^^74^722^78
- ;;^UTILITY(U,$J,358.3,12470,1,0)
+ ;;^UTILITY(U,$J,358.3,12765,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,12765,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,12765,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,12766,0)
+ ;;=L02.01^^53^582^120
+ ;;^UTILITY(U,$J,358.3,12766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12470,1,3,0)
- ;;=3^Thyroid Nodule,Single,Nontoxic
- ;;^UTILITY(U,$J,358.3,12470,1,4,0)
- ;;=4^E04.1
- ;;^UTILITY(U,$J,358.3,12470,2)
- ;;=^5002478
- ;;^UTILITY(U,$J,358.3,12471,0)
- ;;=E03.9^^74^722^51
- ;;^UTILITY(U,$J,358.3,12471,1,0)
+ ;;^UTILITY(U,$J,358.3,12766,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,12766,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,12766,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,12767,0)
+ ;;=L02.11^^53^582^125
+ ;;^UTILITY(U,$J,358.3,12767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12471,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,12471,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,12471,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,12472,0)
- ;;=M81.0^^74^722^75
- ;;^UTILITY(U,$J,358.3,12472,1,0)
+ ;;^UTILITY(U,$J,358.3,12767,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,12767,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,12767,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,12768,0)
+ ;;=L02.211^^53^582^117
+ ;;^UTILITY(U,$J,358.3,12768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12472,1,3,0)
- ;;=3^Osteoporosis,Age-Related w/o Current Path Fracture
- ;;^UTILITY(U,$J,358.3,12472,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,12472,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,12473,0)
- ;;=E05.90^^74^722^47
- ;;^UTILITY(U,$J,358.3,12473,1,0)
+ ;;^UTILITY(U,$J,358.3,12768,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,12768,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,12768,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,12769,0)
+ ;;=L02.212^^53^582^118
+ ;;^UTILITY(U,$J,358.3,12769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12473,1,3,0)
- ;;=3^Hyperthyroidism w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,12473,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,12473,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,12474,0)
- ;;=C73.^^74^722^52
- ;;^UTILITY(U,$J,358.3,12474,1,0)
+ ;;^UTILITY(U,$J,358.3,12769,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,12769,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,12769,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,12770,0)
+ ;;=L02.213^^53^582^119
+ ;;^UTILITY(U,$J,358.3,12770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12474,1,3,0)
- ;;=3^Malig Neop Thyroid Gland
- ;;^UTILITY(U,$J,358.3,12474,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,12474,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,12475,0)
- ;;=E04.2^^74^722^37
- ;;^UTILITY(U,$J,358.3,12475,1,0)
+ ;;^UTILITY(U,$J,358.3,12770,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,12770,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,12770,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,12771,0)
+ ;;=L02.214^^53^582^121
+ ;;^UTILITY(U,$J,358.3,12771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12475,1,3,0)
- ;;=3^Goiter,Multinodular,Nontoxic
- ;;^UTILITY(U,$J,358.3,12475,1,4,0)
- ;;=4^E04.2
- ;;^UTILITY(U,$J,358.3,12475,2)
- ;;=^267790
- ;;^UTILITY(U,$J,358.3,12476,0)
- ;;=E78.4^^74^722^42
+ ;;^UTILITY(U,$J,358.3,12771,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin

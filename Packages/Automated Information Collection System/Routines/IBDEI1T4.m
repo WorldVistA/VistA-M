@@ -1,138 +1,130 @@
-IBDEI1T4 ; ; 19-NOV-2015
+IBDEI1T4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30250,0)
- ;;=A69.20^^135^1374^50
- ;;^UTILITY(U,$J,358.3,30250,1,0)
+ ;;^UTILITY(U,$J,358.3,30703,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,30704,0)
+ ;;=Z69.021^^123^1529^18
+ ;;^UTILITY(U,$J,358.3,30704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30250,1,3,0)
- ;;=3^Lyme Disease,Unspec
- ;;^UTILITY(U,$J,358.3,30250,1,4,0)
- ;;=4^A69.20
- ;;^UTILITY(U,$J,358.3,30250,2)
- ;;=^5000375
- ;;^UTILITY(U,$J,358.3,30251,0)
- ;;=A69.22^^135^1374^52
- ;;^UTILITY(U,$J,358.3,30251,1,0)
+ ;;^UTILITY(U,$J,358.3,30704,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,30704,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,30704,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,30705,0)
+ ;;=Z69.021^^123^1529^19
+ ;;^UTILITY(U,$J,358.3,30705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30251,1,3,0)
- ;;=3^Neurologic Disorders d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,30251,1,4,0)
- ;;=4^A69.22
- ;;^UTILITY(U,$J,358.3,30251,2)
- ;;=^5000377
- ;;^UTILITY(U,$J,358.3,30252,0)
- ;;=A69.21^^135^1374^51
- ;;^UTILITY(U,$J,358.3,30252,1,0)
+ ;;^UTILITY(U,$J,358.3,30705,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,30705,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,30705,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,30706,0)
+ ;;=Z69.021^^123^1529^20
+ ;;^UTILITY(U,$J,358.3,30706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30252,1,3,0)
- ;;=3^Meningitis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,30252,1,4,0)
- ;;=4^A69.21
- ;;^UTILITY(U,$J,358.3,30252,2)
- ;;=^5000376
- ;;^UTILITY(U,$J,358.3,30253,0)
- ;;=A69.29^^135^1374^18
- ;;^UTILITY(U,$J,358.3,30253,1,0)
+ ;;^UTILITY(U,$J,358.3,30706,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,30706,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,30706,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,30707,0)
+ ;;=Z69.011^^123^1529^22
+ ;;^UTILITY(U,$J,358.3,30707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30253,1,3,0)
- ;;=3^Conditions d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,30253,1,4,0)
- ;;=4^A69.29
- ;;^UTILITY(U,$J,358.3,30253,2)
- ;;=^5000379
- ;;^UTILITY(U,$J,358.3,30254,0)
- ;;=A69.23^^135^1374^5
- ;;^UTILITY(U,$J,358.3,30254,1,0)
+ ;;^UTILITY(U,$J,358.3,30707,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,30707,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,30707,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,30708,0)
+ ;;=Z69.011^^123^1529^23
+ ;;^UTILITY(U,$J,358.3,30708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30254,1,3,0)
- ;;=3^Arthritis d/t Lyme Disease
- ;;^UTILITY(U,$J,358.3,30254,1,4,0)
- ;;=4^A69.23
- ;;^UTILITY(U,$J,358.3,30254,2)
- ;;=^5000378
- ;;^UTILITY(U,$J,358.3,30255,0)
- ;;=A51.0^^135^1374^29
- ;;^UTILITY(U,$J,358.3,30255,1,0)
+ ;;^UTILITY(U,$J,358.3,30708,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,30708,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,30708,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,30709,0)
+ ;;=Z69.011^^123^1529^24
+ ;;^UTILITY(U,$J,358.3,30709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30255,1,3,0)
- ;;=3^Genital Syphilis,Primary
- ;;^UTILITY(U,$J,358.3,30255,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,30255,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,30256,0)
- ;;=A52.3^^135^1374^54
- ;;^UTILITY(U,$J,358.3,30256,1,0)
+ ;;^UTILITY(U,$J,358.3,30709,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,30709,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,30709,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,30710,0)
+ ;;=Z69.011^^123^1529^25
+ ;;^UTILITY(U,$J,358.3,30710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30256,1,3,0)
- ;;=3^Neurosyphilis,Unspec
- ;;^UTILITY(U,$J,358.3,30256,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,30256,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,30257,0)
- ;;=A52.10^^135^1374^53
- ;;^UTILITY(U,$J,358.3,30257,1,0)
+ ;;^UTILITY(U,$J,358.3,30710,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,30710,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,30710,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,30711,0)
+ ;;=F06.4^^123^1530^6
+ ;;^UTILITY(U,$J,358.3,30711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30257,1,3,0)
- ;;=3^Neurosyphilis Symptomatic,Unspec
- ;;^UTILITY(U,$J,358.3,30257,1,4,0)
- ;;=4^A52.10
- ;;^UTILITY(U,$J,358.3,30257,2)
- ;;=^5000291
- ;;^UTILITY(U,$J,358.3,30258,0)
- ;;=A52.9^^135^1374^49
- ;;^UTILITY(U,$J,358.3,30258,1,0)
+ ;;^UTILITY(U,$J,358.3,30711,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,30711,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,30711,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,30712,0)
+ ;;=F41.0^^123^1530^15
+ ;;^UTILITY(U,$J,358.3,30712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30258,1,3,0)
- ;;=3^Late Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,30258,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,30258,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,30259,0)
- ;;=A53.9^^135^1374^79
- ;;^UTILITY(U,$J,358.3,30259,1,0)
+ ;;^UTILITY(U,$J,358.3,30712,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,30712,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,30712,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,30713,0)
+ ;;=F41.1^^123^1530^13
+ ;;^UTILITY(U,$J,358.3,30713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30259,1,3,0)
- ;;=3^Syphilis,Unspec
- ;;^UTILITY(U,$J,358.3,30259,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,30259,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,30260,0)
- ;;=B37.3^^135^1374^17
- ;;^UTILITY(U,$J,358.3,30260,1,0)
+ ;;^UTILITY(U,$J,358.3,30713,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,30713,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,30713,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,30714,0)
+ ;;=F41.9^^123^1530^5
+ ;;^UTILITY(U,$J,358.3,30714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30260,1,3,0)
- ;;=3^Candidiasis Vulva/Vagina
- ;;^UTILITY(U,$J,358.3,30260,1,4,0)
- ;;=4^B37.3
- ;;^UTILITY(U,$J,358.3,30260,2)
- ;;=^5000615
- ;;^UTILITY(U,$J,358.3,30261,0)
- ;;=B58.9^^135^1374^82
- ;;^UTILITY(U,$J,358.3,30261,1,0)
+ ;;^UTILITY(U,$J,358.3,30714,1,3,0)
+ ;;=3^Anxiety Disorder NOS
+ ;;^UTILITY(U,$J,358.3,30714,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,30714,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,30715,0)
+ ;;=F40.02^^123^1530^2
+ ;;^UTILITY(U,$J,358.3,30715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30261,1,3,0)
- ;;=3^Toxoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,30261,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,30261,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,30262,0)
- ;;=A59.01^^135^1374^83
- ;;^UTILITY(U,$J,358.3,30262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30262,1,3,0)
- ;;=3^Trichomonal Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,30262,1,4,0)
- ;;=4^A59.01
- ;;^UTILITY(U,$J,358.3,30262,2)
- ;;=^121763
- ;;^UTILITY(U,$J,358.3,30263,0)
- ;;=B59.^^135^1374^66
- ;;^UTILITY(U,$J,358.3,30263,1,0)
+ ;;^UTILITY(U,$J,358.3,30715,1,3,0)
+ ;;=3^Agoraphobia
+ ;;^UTILITY(U,$J,358.3,30715,1,4,0)
+ ;;=4^F40.02
+ ;;^UTILITY(U,$J,358.3,30715,2)
+ ;;=^5003543
+ ;;^UTILITY(U,$J,358.3,30716,0)
+ ;;=F40.10^^123^1530^19
+ ;;^UTILITY(U,$J,358.3,30716,1,0)
  ;;=^358.31IA^4^2

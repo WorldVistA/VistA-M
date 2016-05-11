@@ -1,6 +1,6 @@
 PRSAENT1 ;HISC/MGD-Entitlement String ;10/19/04
- ;;4.0;PAID;**96,130,135,138,141**;Sep 21, 1995;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.0;PAID;**96,130,135,138,141,143**;Sep 21, 1995;Build 11
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -53,11 +53,11 @@ HYBRID(IEN) ;
  . ;. S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . ;I "^7404^7408^5406^4742^5415^5309^5402^5703^4801^5306^1046^1001^"[$E(OCODE,1,4) D  ;PRS*4*138
  . ;. S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
- . I "^0101^0180^0185^0601^0620^0621^0630^0631^0633^0635^0636^"[$E(OCODE,1,4) D  ;PRS*4*130 and PRS*4*138
+ . I "^0101^0180^0185^0601^0620^0621^0622^0630^0631^0633^0635^0636^"[$E(OCODE,1,4) D  ;PRS*4*130 and PRS*4*138 and PRS*4*143
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . I "^0640^0644^0647^0648^0649^0660^0661^0665^0667^"[$E(OCODE,1,4) D
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
- . I "^0669^0672^0675^0679^0681^0682^0685^"[$E(OCODE,1,4) D  ;PRS*4*135
+ . I "^0669^0672^0675^0679^0681^0682^0685^1601^"[$E(OCODE,1,4) D  ;PRS*4*135 and PRS*4*143
  . . S $E(OCODE,6)=$TR($E(OCODE,6),"ABCDEFGHIJKLMNOPQR","123456789123456789")
  . ;
  . ; Check individual OCC codes
@@ -94,10 +94,14 @@ HYBRID(IEN) ;
  . . I "^67^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*141
  . I $E(OCODE,1,4)="0601" D       ; Blind Rehab Specialist
  . . I "^68^69^71^72^73^74^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*141
+ . I $E(OCODE,1,4)="0601" D       ; Medical Physicist
+ . . I "^75^76^78^79^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
  . I $E(OCODE,1,4)="0620" D       ; Vocational/Practical Nurse
  . . I "^01^02^03^04^05^06^12^13^14^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0621" D       ; Nursing Assistant
- . . I "^02^05^08^14^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
+ . . I "^02^05^08^14^15^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130 and PRS*4*143
+ . I $E(OCODE,1,4)="0622" D       ; Medical Supply Tech
+ . . I "^04^05^06^07^08^09^11^12^13^14^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
  . I $E(OCODE,1,4)="0630" D       ; Dietitian
  . . I "^09^10^18^20^59^61^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
  . I $E(OCODE,1,4)="0631" D       ; Occupational Therapist
@@ -112,6 +116,7 @@ HYBRID(IEN) ;
  . . I "^75^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0644" D       ; Medical Technologist
  . . I "^02^03^05^10^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
+ . . I "^04^07^08^09^11^12^13^14^15^16^17^18^19^21^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
  . I $E(OCODE,1,4)="0647" D       ; Diagnostic Radiologic
  . . I "^11^12^13^14^15^16^17^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . . I "^19^21^22^23^24^25^26^27^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*130
@@ -141,9 +146,11 @@ HYBRID(IEN) ;
  . I $E(OCODE,1,4)="0681" D       ; Dental Assistant
  . . I "^03^05^06^07^09^42^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
  . I $E(OCODE,1,4)="0682" D       ; Dental Hygienist
- . . I "^02^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
+ . . I "^02^04^05^06^07^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
  . I $E(OCODE,1,4)="0858" D       ; Biomedical Engineer
  . . I "^02^03^04^"[(U_$E(OCODE,5,6)_U) S HYBRID=1
+ . I $E(OCODE,1,4)="1601" D       ; Biomedical equipment support specialist
+ . . I "^02^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*143
  . ;I $E(OCODE,1,4)="3566" D       ; Housekeeping Aid
  . ;. I "^10^30^40^60^"[(U_$E(OCODE,5,6)_U) S HYBRID=1 ;PRS*4*138
  . ;I $E(OCODE,1,4)="4805" D       ; Medical Equipment

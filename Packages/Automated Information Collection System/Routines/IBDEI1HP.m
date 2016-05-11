@@ -1,126 +1,138 @@
-IBDEI1HP ; ; 19-NOV-2015
+IBDEI1HP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24919,2)
- ;;=^5054740
- ;;^UTILITY(U,$J,358.3,24920,0)
- ;;=T82.311A^^124^1239^7
- ;;^UTILITY(U,$J,358.3,24920,1,0)
+ ;;^UTILITY(U,$J,358.3,25286,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,25286,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,25287,0)
+ ;;=Z59.0^^95^1149^3
+ ;;^UTILITY(U,$J,358.3,25287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24920,1,3,0)
- ;;=3^Breakdown of Carotid Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24920,1,4,0)
- ;;=4^T82.311A
- ;;^UTILITY(U,$J,358.3,24920,2)
- ;;=^5054743
- ;;^UTILITY(U,$J,358.3,24921,0)
- ;;=T82.312A^^124^1239^8
- ;;^UTILITY(U,$J,358.3,24921,1,0)
+ ;;^UTILITY(U,$J,358.3,25287,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,25287,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,25287,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,25288,0)
+ ;;=Z59.1^^95^1149^5
+ ;;^UTILITY(U,$J,358.3,25288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24921,1,3,0)
- ;;=3^Breakdown of Femoral Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24921,1,4,0)
- ;;=4^T82.312A
- ;;^UTILITY(U,$J,358.3,24921,2)
- ;;=^5054746
- ;;^UTILITY(U,$J,358.3,24922,0)
- ;;=T82.318A^^124^1239^17
- ;;^UTILITY(U,$J,358.3,24922,1,0)
+ ;;^UTILITY(U,$J,358.3,25288,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,25288,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,25288,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,25289,0)
+ ;;=Z59.3^^95^1149^9
+ ;;^UTILITY(U,$J,358.3,25289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24922,1,3,0)
- ;;=3^Breakdown of Vascular Grafts,Init Encntr
- ;;^UTILITY(U,$J,358.3,24922,1,4,0)
- ;;=4^T82.318A
- ;;^UTILITY(U,$J,358.3,24922,2)
- ;;=^5054749
- ;;^UTILITY(U,$J,358.3,24923,0)
- ;;=T82.319A^^124^1239^18
- ;;^UTILITY(U,$J,358.3,24923,1,0)
+ ;;^UTILITY(U,$J,358.3,25289,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,25289,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,25289,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,25290,0)
+ ;;=Z59.4^^95^1149^7
+ ;;^UTILITY(U,$J,358.3,25290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24923,1,3,0)
- ;;=3^Breakdown of Vascular Grafts,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,24923,1,4,0)
- ;;=4^T82.319A
- ;;^UTILITY(U,$J,358.3,24923,2)
- ;;=^5054752
- ;;^UTILITY(U,$J,358.3,24924,0)
- ;;=T82.320A^^124^1239^32
- ;;^UTILITY(U,$J,358.3,24924,1,0)
+ ;;^UTILITY(U,$J,358.3,25290,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,25290,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,25290,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,25291,0)
+ ;;=Z59.5^^95^1149^2
+ ;;^UTILITY(U,$J,358.3,25291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24924,1,3,0)
- ;;=3^Displacement of Aortic Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24924,1,4,0)
- ;;=4^T82.320A
- ;;^UTILITY(U,$J,358.3,24924,2)
- ;;=^5054755
- ;;^UTILITY(U,$J,358.3,24925,0)
- ;;=T82.321A^^124^1239^37
- ;;^UTILITY(U,$J,358.3,24925,1,0)
+ ;;^UTILITY(U,$J,358.3,25291,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,25291,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,25291,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,25292,0)
+ ;;=Z59.6^^95^1149^8
+ ;;^UTILITY(U,$J,358.3,25292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24925,1,3,0)
- ;;=3^Displacement of Carotid Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24925,1,4,0)
- ;;=4^T82.321A
- ;;^UTILITY(U,$J,358.3,24925,2)
- ;;=^5054758
- ;;^UTILITY(U,$J,358.3,24926,0)
- ;;=T82.322A^^124^1239^38
- ;;^UTILITY(U,$J,358.3,24926,1,0)
+ ;;^UTILITY(U,$J,358.3,25292,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,25292,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,25292,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,25293,0)
+ ;;=Z59.7^^95^1149^6
+ ;;^UTILITY(U,$J,358.3,25293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24926,1,3,0)
- ;;=3^Displacement of Femoral Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24926,1,4,0)
- ;;=4^T82.322A
- ;;^UTILITY(U,$J,358.3,24926,2)
- ;;=^5054761
- ;;^UTILITY(U,$J,358.3,24927,0)
- ;;=T82.329A^^124^1239^47
- ;;^UTILITY(U,$J,358.3,24927,1,0)
+ ;;^UTILITY(U,$J,358.3,25293,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,25293,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,25293,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,25294,0)
+ ;;=Z59.9^^95^1149^4
+ ;;^UTILITY(U,$J,358.3,25294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24927,1,3,0)
- ;;=3^Displacement of Vascular Grafts,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,24927,1,4,0)
- ;;=4^T82.329A
- ;;^UTILITY(U,$J,358.3,24927,2)
- ;;=^5054767
- ;;^UTILITY(U,$J,358.3,24928,0)
- ;;=T82.330A^^124^1239^126
- ;;^UTILITY(U,$J,358.3,24928,1,0)
+ ;;^UTILITY(U,$J,358.3,25294,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,25294,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,25294,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,25295,0)
+ ;;=G21.19^^95^1150^11
+ ;;^UTILITY(U,$J,358.3,25295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24928,1,3,0)
- ;;=3^Leakage of Aortic Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24928,1,4,0)
- ;;=4^T82.330A
- ;;^UTILITY(U,$J,358.3,24928,2)
- ;;=^5054770
- ;;^UTILITY(U,$J,358.3,24929,0)
- ;;=T82.331A^^124^1239^129
- ;;^UTILITY(U,$J,358.3,24929,1,0)
+ ;;^UTILITY(U,$J,358.3,25295,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism NEC
+ ;;^UTILITY(U,$J,358.3,25295,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,25295,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,25296,0)
+ ;;=G21.11^^95^1150^14
+ ;;^UTILITY(U,$J,358.3,25296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24929,1,3,0)
- ;;=3^Leakage of Carotid Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24929,1,4,0)
- ;;=4^T82.331A
- ;;^UTILITY(U,$J,358.3,24929,2)
- ;;=^5054773
- ;;^UTILITY(U,$J,358.3,24930,0)
- ;;=T82.332A^^124^1239^130
- ;;^UTILITY(U,$J,358.3,24930,1,0)
+ ;;^UTILITY(U,$J,358.3,25296,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,25296,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,25296,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,25297,0)
+ ;;=G24.02^^95^1150^8
+ ;;^UTILITY(U,$J,358.3,25297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24930,1,3,0)
- ;;=3^Leakage of Femoral Arterial Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24930,1,4,0)
- ;;=4^T82.332A
- ;;^UTILITY(U,$J,358.3,24930,2)
- ;;=^5054776
- ;;^UTILITY(U,$J,358.3,24931,0)
- ;;=T82.339A^^124^1239^135
- ;;^UTILITY(U,$J,358.3,24931,1,0)
+ ;;^UTILITY(U,$J,358.3,25297,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,25297,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,25297,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,25298,0)
+ ;;=G24.01^^95^1150^16
+ ;;^UTILITY(U,$J,358.3,25298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24931,1,3,0)
- ;;=3^Leakage of Vascular Graft,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,24931,1,4,0)
- ;;=4^T82.339A
- ;;^UTILITY(U,$J,358.3,24931,2)
- ;;=^5054782
+ ;;^UTILITY(U,$J,358.3,25298,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,25298,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,25298,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,25299,0)
+ ;;=G24.09^^95^1150^17
+ ;;^UTILITY(U,$J,358.3,25299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25299,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,25299,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,25299,2)
+ ;;=^5003786

@@ -1,132 +1,132 @@
-IBDEI1SW ; ; 19-NOV-2015
+IBDEI1SW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30146,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,30146,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,30146,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,30147,0)
- ;;=Z82.3^^135^1373^49
- ;;^UTILITY(U,$J,358.3,30147,1,0)
+ ;;^UTILITY(U,$J,358.3,30602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30147,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,30147,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,30147,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,30148,0)
- ;;=Z82.49^^135^1373^31
- ;;^UTILITY(U,$J,358.3,30148,1,0)
+ ;;^UTILITY(U,$J,358.3,30602,1,3,0)
+ ;;=3^Nerve Injury,Left Hip & Thigh,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30602,1,4,0)
+ ;;=4^S74.92XA
+ ;;^UTILITY(U,$J,358.3,30602,2)
+ ;;=^5136510
+ ;;^UTILITY(U,$J,358.3,30603,0)
+ ;;=S84.91XA^^121^1521^40
+ ;;^UTILITY(U,$J,358.3,30603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30148,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,30148,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,30148,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,30149,0)
- ;;=Z82.5^^135^1373^22
- ;;^UTILITY(U,$J,358.3,30149,1,0)
+ ;;^UTILITY(U,$J,358.3,30603,1,3,0)
+ ;;=3^Nerve Injury,Right Lower Leg,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30603,1,4,0)
+ ;;=4^S84.91XA
+ ;;^UTILITY(U,$J,358.3,30603,2)
+ ;;=^5137076
+ ;;^UTILITY(U,$J,358.3,30604,0)
+ ;;=S84.92XA^^121^1521^37
+ ;;^UTILITY(U,$J,358.3,30604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30149,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,30149,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,30149,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,30150,0)
- ;;=Z82.61^^135^1373^21
- ;;^UTILITY(U,$J,358.3,30150,1,0)
+ ;;^UTILITY(U,$J,358.3,30604,1,3,0)
+ ;;=3^Nerve Injury,Left Lower Leg,Init Encnt
+ ;;^UTILITY(U,$J,358.3,30604,1,4,0)
+ ;;=4^S84.92XA
+ ;;^UTILITY(U,$J,358.3,30604,2)
+ ;;=^5137077
+ ;;^UTILITY(U,$J,358.3,30605,0)
+ ;;=E11.40^^121^1522^4
+ ;;^UTILITY(U,$J,358.3,30605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30150,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,30150,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,30150,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,30151,0)
- ;;=Z82.69^^135^1373^44
- ;;^UTILITY(U,$J,358.3,30151,1,0)
+ ;;^UTILITY(U,$J,358.3,30605,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,30605,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,30605,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,30606,0)
+ ;;=E11.41^^121^1522^3
+ ;;^UTILITY(U,$J,358.3,30606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30151,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
- ;;^UTILITY(U,$J,358.3,30151,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,30151,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,30152,0)
- ;;=Z83.3^^135^1373^28
- ;;^UTILITY(U,$J,358.3,30152,1,0)
+ ;;^UTILITY(U,$J,358.3,30606,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,30606,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,30606,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,30607,0)
+ ;;=E11.42^^121^1522^5
+ ;;^UTILITY(U,$J,358.3,30607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30152,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,30152,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,30152,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,30153,0)
- ;;=Z83.2^^135^1373^24
- ;;^UTILITY(U,$J,358.3,30153,1,0)
+ ;;^UTILITY(U,$J,358.3,30607,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,30607,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,30607,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,30608,0)
+ ;;=E11.43^^121^1522^2
+ ;;^UTILITY(U,$J,358.3,30608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30153,1,3,0)
- ;;=3^Family Hx of Blood/Immune Mechanism Diseases
- ;;^UTILITY(U,$J,358.3,30153,1,4,0)
- ;;=4^Z83.2
- ;;^UTILITY(U,$J,358.3,30153,2)
- ;;=^5063378
- ;;^UTILITY(U,$J,358.3,30154,0)
- ;;=Z82.71^^135^1373^47
- ;;^UTILITY(U,$J,358.3,30154,1,0)
+ ;;^UTILITY(U,$J,358.3,30608,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,30608,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,30608,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,30609,0)
+ ;;=E11.44^^121^1522^1
+ ;;^UTILITY(U,$J,358.3,30609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30154,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,30154,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,30154,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,30155,0)
- ;;=Z82.1^^135^1373^23
- ;;^UTILITY(U,$J,358.3,30155,1,0)
+ ;;^UTILITY(U,$J,358.3,30609,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Amyotrophy
+ ;;^UTILITY(U,$J,358.3,30609,1,4,0)
+ ;;=4^E11.44
+ ;;^UTILITY(U,$J,358.3,30609,2)
+ ;;=^5002648
+ ;;^UTILITY(U,$J,358.3,30610,0)
+ ;;=E11.49^^121^1522^6
+ ;;^UTILITY(U,$J,358.3,30610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30155,1,3,0)
- ;;=3^Family Hx of Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,30155,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,30155,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,30156,0)
- ;;=Z82.2^^135^1373^27
- ;;^UTILITY(U,$J,358.3,30156,1,0)
+ ;;^UTILITY(U,$J,358.3,30610,1,3,0)
+ ;;=3^DM Type 2 w/ Oth Diabetic Neurological Complications
+ ;;^UTILITY(U,$J,358.3,30610,1,4,0)
+ ;;=4^E11.49
+ ;;^UTILITY(U,$J,358.3,30610,2)
+ ;;=e860^5002649
+ ;;^UTILITY(U,$J,358.3,30611,0)
+ ;;=E86.0^^121^1522^7
+ ;;^UTILITY(U,$J,358.3,30611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30156,1,3,0)
- ;;=3^Family Hx of Deafness/Hearing Loss
- ;;^UTILITY(U,$J,358.3,30156,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,30156,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,30157,0)
- ;;=Z84.0^^135^1373^48
- ;;^UTILITY(U,$J,358.3,30157,1,0)
+ ;;^UTILITY(U,$J,358.3,30611,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,30611,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,30611,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,30612,0)
+ ;;=F32.9^^121^1522^10
+ ;;^UTILITY(U,$J,358.3,30612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30157,1,3,0)
- ;;=3^Family Hx of Skin Diseases
- ;;^UTILITY(U,$J,358.3,30157,1,4,0)
- ;;=4^Z84.0
- ;;^UTILITY(U,$J,358.3,30157,2)
- ;;=^5063388
- ;;^UTILITY(U,$J,358.3,30158,0)
- ;;=Z82.79^^135^1373^26
- ;;^UTILITY(U,$J,358.3,30158,1,0)
+ ;;^UTILITY(U,$J,358.3,30612,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,30612,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,30612,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,30613,0)
+ ;;=G54.6^^121^1522^12
+ ;;^UTILITY(U,$J,358.3,30613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30158,1,3,0)
- ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
- ;;^UTILITY(U,$J,358.3,30158,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,30158,2)
- ;;=^5063374
- ;;^UTILITY(U,$J,358.3,30159,0)
- ;;=Z84.89^^135^1373^46
+ ;;^UTILITY(U,$J,358.3,30613,1,3,0)
+ ;;=3^Phantom Limb Syndrome w/ Pain
+ ;;^UTILITY(U,$J,358.3,30613,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,30613,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,30614,0)
+ ;;=G54.7^^121^1522^13
+ ;;^UTILITY(U,$J,358.3,30614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30614,1,3,0)
+ ;;=3^Phantom Limb Syndrome w/o Pain
+ ;;^UTILITY(U,$J,358.3,30614,1,4,0)
+ ;;=4^G54.7
+ ;;^UTILITY(U,$J,358.3,30614,2)
+ ;;=^5004014

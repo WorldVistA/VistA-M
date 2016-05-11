@@ -1,128 +1,132 @@
-IBDEI22L ; ; 19-NOV-2015
+IBDEI22L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34710,1,0)
+ ;;^UTILITY(U,$J,358.3,35103,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,35104,0)
+ ;;=W13.3XXD^^131^1699^84
+ ;;^UTILITY(U,$J,358.3,35104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34710,1,3,0)
- ;;=3^Lesion of ulnar nerve, left upper limb
- ;;^UTILITY(U,$J,358.3,34710,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,34710,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,34711,0)
- ;;=G56.31^^160^1766^16
- ;;^UTILITY(U,$J,358.3,34711,1,0)
+ ;;^UTILITY(U,$J,358.3,35104,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35104,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,35104,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,35105,0)
+ ;;=W13.4XXA^^131^1699^71
+ ;;^UTILITY(U,$J,358.3,35105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34711,1,3,0)
- ;;=3^Lesion of radial nerve, right upper limb
- ;;^UTILITY(U,$J,358.3,34711,1,4,0)
- ;;=4^G56.31
- ;;^UTILITY(U,$J,358.3,34711,2)
- ;;=^5004027
- ;;^UTILITY(U,$J,358.3,34712,0)
- ;;=G56.32^^160^1766^15
- ;;^UTILITY(U,$J,358.3,34712,1,0)
+ ;;^UTILITY(U,$J,358.3,35105,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35105,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,35105,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,35106,0)
+ ;;=W13.4XXD^^131^1699^72
+ ;;^UTILITY(U,$J,358.3,35106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34712,1,3,0)
- ;;=3^Lesion of radial nerve, left upper limb
- ;;^UTILITY(U,$J,358.3,34712,1,4,0)
- ;;=4^G56.32
- ;;^UTILITY(U,$J,358.3,34712,2)
- ;;=^5004028
- ;;^UTILITY(U,$J,358.3,34713,0)
- ;;=G56.81^^160^1766^27
- ;;^UTILITY(U,$J,358.3,34713,1,0)
+ ;;^UTILITY(U,$J,358.3,35106,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35106,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,35106,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,35107,0)
+ ;;=W13.8XXA^^131^1699^35
+ ;;^UTILITY(U,$J,358.3,35107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34713,1,3,0)
- ;;=3^Mononeuropathies of right upper limb NEC
- ;;^UTILITY(U,$J,358.3,34713,1,4,0)
- ;;=4^G56.81
- ;;^UTILITY(U,$J,358.3,34713,2)
- ;;=^5004033
- ;;^UTILITY(U,$J,358.3,34714,0)
- ;;=G56.82^^160^1766^25
- ;;^UTILITY(U,$J,358.3,34714,1,0)
+ ;;^UTILITY(U,$J,358.3,35107,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35107,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,35107,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,35108,0)
+ ;;=W13.8XXD^^131^1699^36
+ ;;^UTILITY(U,$J,358.3,35108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34714,1,3,0)
- ;;=3^Mononeuropathies of left upper limb NEC
- ;;^UTILITY(U,$J,358.3,34714,1,4,0)
- ;;=4^G56.82
- ;;^UTILITY(U,$J,358.3,34714,2)
- ;;=^5004034
- ;;^UTILITY(U,$J,358.3,34715,0)
- ;;=G57.01^^160^1766^18
- ;;^UTILITY(U,$J,358.3,34715,1,0)
+ ;;^UTILITY(U,$J,358.3,35108,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35108,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,35108,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,35109,0)
+ ;;=W13.9XXA^^131^1699^33
+ ;;^UTILITY(U,$J,358.3,35109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34715,1,3,0)
- ;;=3^Lesion of sciatic nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,34715,1,4,0)
- ;;=4^G57.01
- ;;^UTILITY(U,$J,358.3,34715,2)
- ;;=^5004039
- ;;^UTILITY(U,$J,358.3,34716,0)
- ;;=G57.02^^160^1766^17
- ;;^UTILITY(U,$J,358.3,34716,1,0)
+ ;;^UTILITY(U,$J,358.3,35109,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35109,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,35109,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,35110,0)
+ ;;=W13.9XXD^^131^1699^34
+ ;;^UTILITY(U,$J,358.3,35110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34716,1,3,0)
- ;;=3^Lesion of sciatic nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,34716,1,4,0)
- ;;=4^G57.02
- ;;^UTILITY(U,$J,358.3,34716,2)
- ;;=^5004040
- ;;^UTILITY(U,$J,358.3,34717,0)
- ;;=G57.11^^160^1766^23
- ;;^UTILITY(U,$J,358.3,34717,1,0)
+ ;;^UTILITY(U,$J,358.3,35110,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35110,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,35110,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,35111,0)
+ ;;=W14.XXXA^^131^1699^65
+ ;;^UTILITY(U,$J,358.3,35111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34717,1,3,0)
- ;;=3^Meralgia paresthetica, right lower limb
- ;;^UTILITY(U,$J,358.3,34717,1,4,0)
- ;;=4^G57.11
- ;;^UTILITY(U,$J,358.3,34717,2)
- ;;=^5004042
- ;;^UTILITY(U,$J,358.3,34718,0)
- ;;=G57.12^^160^1766^22
- ;;^UTILITY(U,$J,358.3,34718,1,0)
+ ;;^UTILITY(U,$J,358.3,35111,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35111,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,35111,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,35112,0)
+ ;;=W14.XXXD^^131^1699^66
+ ;;^UTILITY(U,$J,358.3,35112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34718,1,3,0)
- ;;=3^Meralgia paresthetica, left lower limb
- ;;^UTILITY(U,$J,358.3,34718,1,4,0)
- ;;=4^G57.12
- ;;^UTILITY(U,$J,358.3,34718,2)
- ;;=^5004043
- ;;^UTILITY(U,$J,358.3,34719,0)
- ;;=G57.21^^160^1766^8
- ;;^UTILITY(U,$J,358.3,34719,1,0)
+ ;;^UTILITY(U,$J,358.3,35112,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35112,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,35112,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,35113,0)
+ ;;=W17.2XXA^^131^1699^77
+ ;;^UTILITY(U,$J,358.3,35113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34719,1,3,0)
- ;;=3^Lesion of femoral nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,34719,1,4,0)
- ;;=4^G57.21
- ;;^UTILITY(U,$J,358.3,34719,2)
- ;;=^5004045
- ;;^UTILITY(U,$J,358.3,34720,0)
- ;;=G57.22^^160^1766^7
- ;;^UTILITY(U,$J,358.3,34720,1,0)
+ ;;^UTILITY(U,$J,358.3,35113,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35113,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,35113,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,35114,0)
+ ;;=W17.2XXD^^131^1699^78
+ ;;^UTILITY(U,$J,358.3,35114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34720,1,3,0)
- ;;=3^Lesion of femoral nerve, left lower limb
- ;;^UTILITY(U,$J,358.3,34720,1,4,0)
- ;;=4^G57.22
- ;;^UTILITY(U,$J,358.3,34720,2)
- ;;=^5004046
- ;;^UTILITY(U,$J,358.3,34721,0)
- ;;=G57.31^^160^1766^10
- ;;^UTILITY(U,$J,358.3,34721,1,0)
+ ;;^UTILITY(U,$J,358.3,35114,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,35114,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,35114,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,35115,0)
+ ;;=W17.3XXA^^131^1699^75
+ ;;^UTILITY(U,$J,358.3,35115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34721,1,3,0)
- ;;=3^Lesion of lateral popliteal nerve, right lower limb
- ;;^UTILITY(U,$J,358.3,34721,1,4,0)
- ;;=4^G57.31
- ;;^UTILITY(U,$J,358.3,34721,2)
- ;;=^5004048
- ;;^UTILITY(U,$J,358.3,34722,0)
- ;;=G57.32^^160^1766^9
- ;;^UTILITY(U,$J,358.3,34722,1,0)
+ ;;^UTILITY(U,$J,358.3,35115,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35115,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,35115,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,35116,0)
+ ;;=W17.3XXD^^131^1699^76
+ ;;^UTILITY(U,$J,358.3,35116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34722,1,3,0)
- ;;=3^Lesion of lateral popliteal nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,35116,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr

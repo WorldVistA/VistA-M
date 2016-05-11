@@ -1,132 +1,136 @@
-IBDEI1ID ; ; 19-NOV-2015
+IBDEI1ID ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25206,1,4,0)
- ;;=4^J96.11
- ;;^UTILITY(U,$J,358.3,25206,2)
- ;;=^5008351
- ;;^UTILITY(U,$J,358.3,25207,0)
- ;;=J96.12^^124^1241^12
- ;;^UTILITY(U,$J,358.3,25207,1,0)
+ ;;^UTILITY(U,$J,358.3,25587,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,25587,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,25587,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,25588,0)
+ ;;=F43.0^^95^1174^1
+ ;;^UTILITY(U,$J,358.3,25588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25207,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,25207,1,4,0)
- ;;=4^J96.12
- ;;^UTILITY(U,$J,358.3,25207,2)
- ;;=^5008352
- ;;^UTILITY(U,$J,358.3,25208,0)
- ;;=J95.821^^124^1241^23
- ;;^UTILITY(U,$J,358.3,25208,1,0)
+ ;;^UTILITY(U,$J,358.3,25588,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,25588,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,25588,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,25589,0)
+ ;;=F43.21^^95^1174^3
+ ;;^UTILITY(U,$J,358.3,25589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25208,1,3,0)
- ;;=3^Postprocedural Respiratory Failure,Acute
- ;;^UTILITY(U,$J,358.3,25208,1,4,0)
- ;;=4^J95.821
- ;;^UTILITY(U,$J,358.3,25208,2)
- ;;=^5008338
- ;;^UTILITY(U,$J,358.3,25209,0)
- ;;=J95.822^^124^1241^24
- ;;^UTILITY(U,$J,358.3,25209,1,0)
+ ;;^UTILITY(U,$J,358.3,25589,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,25589,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,25589,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,25590,0)
+ ;;=F43.22^^95^1174^2
+ ;;^UTILITY(U,$J,358.3,25590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25209,1,3,0)
- ;;=3^Postprocedural Respiratory Failure,Acute and Chronic
- ;;^UTILITY(U,$J,358.3,25209,1,4,0)
- ;;=4^J95.822
- ;;^UTILITY(U,$J,358.3,25209,2)
- ;;=^5008339
- ;;^UTILITY(U,$J,358.3,25210,0)
- ;;=K20.9^^124^1242^10
- ;;^UTILITY(U,$J,358.3,25210,1,0)
+ ;;^UTILITY(U,$J,358.3,25590,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,25590,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,25590,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,25591,0)
+ ;;=F43.23^^95^1174^5
+ ;;^UTILITY(U,$J,358.3,25591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25210,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,25210,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,25210,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,25211,0)
- ;;=K25.9^^124^1242^13
- ;;^UTILITY(U,$J,358.3,25211,1,0)
+ ;;^UTILITY(U,$J,358.3,25591,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,25591,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,25591,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,25592,0)
+ ;;=F43.24^^95^1174^4
+ ;;^UTILITY(U,$J,358.3,25592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25211,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,25211,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,25211,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,25212,0)
- ;;=K27.9^^124^1242^28
- ;;^UTILITY(U,$J,358.3,25212,1,0)
+ ;;^UTILITY(U,$J,358.3,25592,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,25592,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,25592,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,25593,0)
+ ;;=F43.25^^95^1174^6
+ ;;^UTILITY(U,$J,358.3,25593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25212,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,25212,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,25212,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,25213,0)
- ;;=K29.70^^124^1242^14
- ;;^UTILITY(U,$J,358.3,25213,1,0)
+ ;;^UTILITY(U,$J,358.3,25593,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,25593,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,25593,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,25594,0)
+ ;;=F43.8^^95^1174^15
+ ;;^UTILITY(U,$J,358.3,25594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25213,1,3,0)
- ;;=3^Gastritis w/o Bleeding
- ;;^UTILITY(U,$J,358.3,25213,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,25213,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,25214,0)
- ;;=K50.90^^124^1242^5
- ;;^UTILITY(U,$J,358.3,25214,1,0)
+ ;;^UTILITY(U,$J,358.3,25594,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder NEC
+ ;;^UTILITY(U,$J,358.3,25594,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,25594,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,25595,0)
+ ;;=F43.20^^95^1174^7
+ ;;^UTILITY(U,$J,358.3,25595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25214,1,3,0)
- ;;=3^Crohn's Disease w/o Complications
- ;;^UTILITY(U,$J,358.3,25214,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,25214,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,25215,0)
- ;;=K52.89^^124^1242^25
- ;;^UTILITY(U,$J,358.3,25215,1,0)
+ ;;^UTILITY(U,$J,358.3,25595,1,3,0)
+ ;;=3^Adjustment Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25595,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,25595,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,25596,0)
+ ;;=F43.9^^95^1174^16
+ ;;^UTILITY(U,$J,358.3,25596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25215,1,3,0)
- ;;=3^Noninfective Gastroenteritis NEC & Colitis
- ;;^UTILITY(U,$J,358.3,25215,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,25215,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,25216,0)
- ;;=K52.9^^124^1242^24
- ;;^UTILITY(U,$J,358.3,25216,1,0)
+ ;;^UTILITY(U,$J,358.3,25596,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25596,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,25596,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,25597,0)
+ ;;=F43.11^^95^1174^9
+ ;;^UTILITY(U,$J,358.3,25597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25216,1,3,0)
- ;;=3^Noninfective Gastroenteritis & Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,25216,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,25216,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,25217,0)
- ;;=K57.30^^124^1242^8
- ;;^UTILITY(U,$J,358.3,25217,1,0)
+ ;;^UTILITY(U,$J,358.3,25597,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,25597,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,25597,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,25598,0)
+ ;;=F43.12^^95^1174^10
+ ;;^UTILITY(U,$J,358.3,25598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25217,1,3,0)
- ;;=3^Diverticulosis Lg Intestine w/o Abscess or Bleeding
- ;;^UTILITY(U,$J,358.3,25217,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,25217,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,25218,0)
- ;;=K57.32^^124^1242^6
- ;;^UTILITY(U,$J,358.3,25218,1,0)
+ ;;^UTILITY(U,$J,358.3,25598,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,25598,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,25598,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,25599,0)
+ ;;=F43.10^^95^1174^11
+ ;;^UTILITY(U,$J,358.3,25599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25218,1,3,0)
- ;;=3^Diverticulitis Lg Intestine w/o Abscess or Bleeding
- ;;^UTILITY(U,$J,358.3,25218,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,25218,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,25219,0)
- ;;=K57.31^^124^1242^9
- ;;^UTILITY(U,$J,358.3,25219,1,0)
+ ;;^UTILITY(U,$J,358.3,25599,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,25599,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,25599,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,25600,0)
+ ;;=F43.8^^95^1174^12
+ ;;^UTILITY(U,$J,358.3,25600,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25600,1,3,0)
+ ;;=3^Reaction to Severe Stress,Other

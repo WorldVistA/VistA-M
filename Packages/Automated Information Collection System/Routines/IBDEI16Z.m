@@ -1,136 +1,134 @@
-IBDEI16Z ; ; 19-NOV-2015
+IBDEI16Z ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19919,1,0)
+ ;;^UTILITY(U,$J,358.3,20266,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,20266,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,20267,0)
+ ;;=Z87.310^^84^930^105
+ ;;^UTILITY(U,$J,358.3,20267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19919,1,3,0)
- ;;=3^Oligomenorrhea,Secondary
- ;;^UTILITY(U,$J,358.3,19919,1,4,0)
- ;;=4^N91.4
- ;;^UTILITY(U,$J,358.3,19919,2)
- ;;=^5015906
- ;;^UTILITY(U,$J,358.3,19920,0)
- ;;=N91.5^^94^932^40
- ;;^UTILITY(U,$J,358.3,19920,1,0)
+ ;;^UTILITY(U,$J,358.3,20267,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,20267,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,20267,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,20268,0)
+ ;;=Z87.442^^84^930^116
+ ;;^UTILITY(U,$J,358.3,20268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19920,1,3,0)
- ;;=3^Oligomenorrhea,Unspec
- ;;^UTILITY(U,$J,358.3,19920,1,4,0)
- ;;=4^N91.5
- ;;^UTILITY(U,$J,358.3,19920,2)
- ;;=^5015907
- ;;^UTILITY(U,$J,358.3,19921,0)
- ;;=N92.0^^94^932^20
- ;;^UTILITY(U,$J,358.3,19921,1,0)
+ ;;^UTILITY(U,$J,358.3,20268,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,20268,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,20268,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,20269,0)
+ ;;=Z87.81^^84^930^114
+ ;;^UTILITY(U,$J,358.3,20269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19921,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,19921,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,19921,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,19922,0)
- ;;=N92.6^^94^932^30
- ;;^UTILITY(U,$J,358.3,19922,1,0)
+ ;;^UTILITY(U,$J,358.3,20269,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,20269,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,20269,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,20270,0)
+ ;;=Z87.890^^84^930^109
+ ;;^UTILITY(U,$J,358.3,20270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19922,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,19922,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,19922,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,19923,0)
- ;;=N92.5^^94^932^29
- ;;^UTILITY(U,$J,358.3,19923,1,0)
+ ;;^UTILITY(U,$J,358.3,20270,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,20270,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,20270,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,20271,0)
+ ;;=Z87.892^^84^930^74
+ ;;^UTILITY(U,$J,358.3,20271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19923,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,19923,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,19923,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,19924,0)
- ;;=N92.3^^94^932^43
- ;;^UTILITY(U,$J,358.3,19924,1,0)
+ ;;^UTILITY(U,$J,358.3,20271,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,20271,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,20271,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,20272,0)
+ ;;=Z87.39^^84^930^102
+ ;;^UTILITY(U,$J,358.3,20272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19924,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,19924,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,19924,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,19925,0)
- ;;=N89.7^^94^932^24
- ;;^UTILITY(U,$J,358.3,19925,1,0)
+ ;;^UTILITY(U,$J,358.3,20272,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,20272,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,20272,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,20273,0)
+ ;;=Z87.820^^84^930^111
+ ;;^UTILITY(U,$J,358.3,20273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19925,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,19925,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,19925,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,19926,0)
- ;;=N93.8^^94^932^2
- ;;^UTILITY(U,$J,358.3,19926,1,0)
+ ;;^UTILITY(U,$J,358.3,20273,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,20273,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,20273,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,20274,0)
+ ;;=Z89.511^^84^930^8
+ ;;^UTILITY(U,$J,358.3,20274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19926,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,19926,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,19926,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,19927,0)
- ;;=N93.9^^94^932^3
- ;;^UTILITY(U,$J,358.3,19927,1,0)
+ ;;^UTILITY(U,$J,358.3,20274,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,20274,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,20274,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,20275,0)
+ ;;=Z91.82^^84^930^101
+ ;;^UTILITY(U,$J,358.3,20275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19927,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,19927,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,19927,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,19928,0)
- ;;=N92.4^^94^932^19
- ;;^UTILITY(U,$J,358.3,19928,1,0)
+ ;;^UTILITY(U,$J,358.3,20275,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,20275,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,20275,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,20276,0)
+ ;;=Z91.5^^84^930^108
+ ;;^UTILITY(U,$J,358.3,20276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19928,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,19928,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,19928,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,19929,0)
- ;;=N95.0^^94^932^48
- ;;^UTILITY(U,$J,358.3,19929,1,0)
+ ;;^UTILITY(U,$J,358.3,20276,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,20276,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,20276,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,20277,0)
+ ;;=Z89.512^^84^930^5
+ ;;^UTILITY(U,$J,358.3,20277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19929,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,19929,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,19929,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,19930,0)
- ;;=N95.1^^94^932^35
- ;;^UTILITY(U,$J,358.3,19930,1,0)
+ ;;^UTILITY(U,$J,358.3,20277,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,20277,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,20277,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,20278,0)
+ ;;=Z89.611^^84^930^7
+ ;;^UTILITY(U,$J,358.3,20278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19930,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,19930,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,19930,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,19931,0)
- ;;=N97.0^^94^932^21
- ;;^UTILITY(U,$J,358.3,19931,1,0)
+ ;;^UTILITY(U,$J,358.3,20278,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,20278,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,20278,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,20279,0)
+ ;;=Z89.612^^84^930^4
+ ;;^UTILITY(U,$J,358.3,20279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19931,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,19931,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,19931,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,19932,0)
- ;;=N97.9^^94^932^22
- ;;^UTILITY(U,$J,358.3,19932,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20279,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee

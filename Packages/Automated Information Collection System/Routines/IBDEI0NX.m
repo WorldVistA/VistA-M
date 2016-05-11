@@ -1,132 +1,136 @@
-IBDEI0NX ; ; 19-NOV-2015
+IBDEI0NX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10937,1,0)
+ ;;^UTILITY(U,$J,358.3,11172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10937,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,10937,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,10937,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,10938,0)
- ;;=Z82.3^^68^676^49
- ;;^UTILITY(U,$J,358.3,10938,1,0)
+ ;;^UTILITY(U,$J,358.3,11172,1,3,0)
+ ;;=3^Blepharitis Right Eye,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,11172,1,4,0)
+ ;;=4^H01.003
+ ;;^UTILITY(U,$J,358.3,11172,2)
+ ;;=^5004240
+ ;;^UTILITY(U,$J,358.3,11173,0)
+ ;;=H54.0^^47^528^8
+ ;;^UTILITY(U,$J,358.3,11173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10938,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,10938,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,10938,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,10939,0)
- ;;=Z82.49^^68^676^31
- ;;^UTILITY(U,$J,358.3,10939,1,0)
+ ;;^UTILITY(U,$J,358.3,11173,1,3,0)
+ ;;=3^Blindness,Both Eyes
+ ;;^UTILITY(U,$J,358.3,11173,1,4,0)
+ ;;=4^H54.0
+ ;;^UTILITY(U,$J,358.3,11173,2)
+ ;;=^5006357
+ ;;^UTILITY(U,$J,358.3,11174,0)
+ ;;=H54.12^^47^528^4
+ ;;^UTILITY(U,$J,358.3,11174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10939,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,10939,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,10939,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,10940,0)
- ;;=Z82.5^^68^676^22
- ;;^UTILITY(U,$J,358.3,10940,1,0)
+ ;;^UTILITY(U,$J,358.3,11174,1,3,0)
+ ;;=3^Blindness Left Eye,Low Vision Rt Eye
+ ;;^UTILITY(U,$J,358.3,11174,1,4,0)
+ ;;=4^H54.12
+ ;;^UTILITY(U,$J,358.3,11174,2)
+ ;;=^5006360
+ ;;^UTILITY(U,$J,358.3,11175,0)
+ ;;=H54.42^^47^528^5
+ ;;^UTILITY(U,$J,358.3,11175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10940,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,10940,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,10940,2)
- ;;=^5063370
- ;;^UTILITY(U,$J,358.3,10941,0)
- ;;=Z82.61^^68^676^21
- ;;^UTILITY(U,$J,358.3,10941,1,0)
+ ;;^UTILITY(U,$J,358.3,11175,1,3,0)
+ ;;=3^Blindness Left Eye,Normal Vision Rt Eye
+ ;;^UTILITY(U,$J,358.3,11175,1,4,0)
+ ;;=4^H54.42
+ ;;^UTILITY(U,$J,358.3,11175,2)
+ ;;=^5133518
+ ;;^UTILITY(U,$J,358.3,11176,0)
+ ;;=H54.8^^47^528^9
+ ;;^UTILITY(U,$J,358.3,11176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10941,1,3,0)
- ;;=3^Family Hx of Arthritis
- ;;^UTILITY(U,$J,358.3,10941,1,4,0)
- ;;=4^Z82.61
- ;;^UTILITY(U,$J,358.3,10941,2)
- ;;=^5063371
- ;;^UTILITY(U,$J,358.3,10942,0)
- ;;=Z82.69^^68^676^44
- ;;^UTILITY(U,$J,358.3,10942,1,0)
+ ;;^UTILITY(U,$J,358.3,11176,1,3,0)
+ ;;=3^Blindness,Legal Defined in USA
+ ;;^UTILITY(U,$J,358.3,11176,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,11176,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,11177,0)
+ ;;=H53.60^^47^528^10
+ ;;^UTILITY(U,$J,358.3,11177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10942,1,3,0)
- ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
- ;;^UTILITY(U,$J,358.3,10942,1,4,0)
- ;;=4^Z82.69
- ;;^UTILITY(U,$J,358.3,10942,2)
- ;;=^5063373
- ;;^UTILITY(U,$J,358.3,10943,0)
- ;;=Z83.3^^68^676^28
- ;;^UTILITY(U,$J,358.3,10943,1,0)
+ ;;^UTILITY(U,$J,358.3,11177,1,3,0)
+ ;;=3^Blindness,Night,Unspec
+ ;;^UTILITY(U,$J,358.3,11177,1,4,0)
+ ;;=4^H53.60
+ ;;^UTILITY(U,$J,358.3,11177,2)
+ ;;=^5006353
+ ;;^UTILITY(U,$J,358.3,11178,0)
+ ;;=H54.11^^47^528^6
+ ;;^UTILITY(U,$J,358.3,11178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10943,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,10943,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,10943,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,10944,0)
- ;;=Z83.2^^68^676^24
- ;;^UTILITY(U,$J,358.3,10944,1,0)
+ ;;^UTILITY(U,$J,358.3,11178,1,3,0)
+ ;;=3^Blindness Right Eye,Low Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,11178,1,4,0)
+ ;;=4^H54.11
+ ;;^UTILITY(U,$J,358.3,11178,2)
+ ;;=^5006359
+ ;;^UTILITY(U,$J,358.3,11179,0)
+ ;;=H54.41^^47^528^7
+ ;;^UTILITY(U,$J,358.3,11179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10944,1,3,0)
- ;;=3^Family Hx of Blood/Immune Mechanism Diseases
- ;;^UTILITY(U,$J,358.3,10944,1,4,0)
- ;;=4^Z83.2
- ;;^UTILITY(U,$J,358.3,10944,2)
- ;;=^5063378
- ;;^UTILITY(U,$J,358.3,10945,0)
- ;;=Z82.71^^68^676^47
- ;;^UTILITY(U,$J,358.3,10945,1,0)
+ ;;^UTILITY(U,$J,358.3,11179,1,3,0)
+ ;;=3^Blindness Right Eye,Normal Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,11179,1,4,0)
+ ;;=4^H54.41
+ ;;^UTILITY(U,$J,358.3,11179,2)
+ ;;=^5006363
+ ;;^UTILITY(U,$J,358.3,11180,0)
+ ;;=H26.9^^47^528^14
+ ;;^UTILITY(U,$J,358.3,11180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10945,1,3,0)
- ;;=3^Family Hx of Polycystic Kidney
- ;;^UTILITY(U,$J,358.3,10945,1,4,0)
- ;;=4^Z82.71
- ;;^UTILITY(U,$J,358.3,10945,2)
- ;;=^321531
- ;;^UTILITY(U,$J,358.3,10946,0)
- ;;=Z82.1^^68^676^23
- ;;^UTILITY(U,$J,358.3,10946,1,0)
+ ;;^UTILITY(U,$J,358.3,11180,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,11180,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,11180,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,11181,0)
+ ;;=H25.9^^47^528^13
+ ;;^UTILITY(U,$J,358.3,11181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10946,1,3,0)
- ;;=3^Family Hx of Blindness/Visual Loss
- ;;^UTILITY(U,$J,358.3,10946,1,4,0)
- ;;=4^Z82.1
- ;;^UTILITY(U,$J,358.3,10946,2)
- ;;=^5063365
- ;;^UTILITY(U,$J,358.3,10947,0)
- ;;=Z82.2^^68^676^27
- ;;^UTILITY(U,$J,358.3,10947,1,0)
+ ;;^UTILITY(U,$J,358.3,11181,1,3,0)
+ ;;=3^Cataract,Age-Related,Unspec
+ ;;^UTILITY(U,$J,358.3,11181,1,4,0)
+ ;;=4^H25.9
+ ;;^UTILITY(U,$J,358.3,11181,2)
+ ;;=^5005296
+ ;;^UTILITY(U,$J,358.3,11182,0)
+ ;;=Z98.41^^47^528^12
+ ;;^UTILITY(U,$J,358.3,11182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10947,1,3,0)
- ;;=3^Family Hx of Deafness/Hearing Loss
- ;;^UTILITY(U,$J,358.3,10947,1,4,0)
- ;;=4^Z82.2
- ;;^UTILITY(U,$J,358.3,10947,2)
- ;;=^5063366
- ;;^UTILITY(U,$J,358.3,10948,0)
- ;;=Z84.0^^68^676^48
- ;;^UTILITY(U,$J,358.3,10948,1,0)
+ ;;^UTILITY(U,$J,358.3,11182,1,3,0)
+ ;;=3^Cataract Extraction,Postprocedure,Right Eye
+ ;;^UTILITY(U,$J,358.3,11182,1,4,0)
+ ;;=4^Z98.41
+ ;;^UTILITY(U,$J,358.3,11182,2)
+ ;;=^5063737
+ ;;^UTILITY(U,$J,358.3,11183,0)
+ ;;=Z98.42^^47^528^11
+ ;;^UTILITY(U,$J,358.3,11183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10948,1,3,0)
- ;;=3^Family Hx of Skin Diseases
- ;;^UTILITY(U,$J,358.3,10948,1,4,0)
- ;;=4^Z84.0
- ;;^UTILITY(U,$J,358.3,10948,2)
- ;;=^5063388
- ;;^UTILITY(U,$J,358.3,10949,0)
- ;;=Z82.79^^68^676^26
- ;;^UTILITY(U,$J,358.3,10949,1,0)
+ ;;^UTILITY(U,$J,358.3,11183,1,3,0)
+ ;;=3^Cataract Extraction,Postprocedure,Left Eye
+ ;;^UTILITY(U,$J,358.3,11183,1,4,0)
+ ;;=4^Z98.42
+ ;;^UTILITY(U,$J,358.3,11183,2)
+ ;;=^5063738
+ ;;^UTILITY(U,$J,358.3,11184,0)
+ ;;=H53.50^^47^528^15
+ ;;^UTILITY(U,$J,358.3,11184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10949,1,3,0)
- ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
- ;;^UTILITY(U,$J,358.3,10949,1,4,0)
- ;;=4^Z82.79
- ;;^UTILITY(U,$J,358.3,10949,2)
- ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,11184,1,3,0)
+ ;;=3^Color Vision Deficiencies,Unspec
+ ;;^UTILITY(U,$J,358.3,11184,1,4,0)
+ ;;=4^H53.50
+ ;;^UTILITY(U,$J,358.3,11184,2)
+ ;;=^5006348
+ ;;^UTILITY(U,$J,358.3,11185,0)
+ ;;=H10.9^^47^528^16
+ ;;^UTILITY(U,$J,358.3,11185,1,0)
+ ;;=^358.31IA^4^2

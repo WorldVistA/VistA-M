@@ -1,5 +1,5 @@
 PSOBPSSP ;BIRM/LE - ePharmacy Site Parameters Definition ;04/28/08
- ;;7.0;OUTPATIENT PHARMACY;**289,385,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**289,385,421,427**;DEC 1997;Build 21
  ;
  ; Patch 421 replaced all logic in this module as the original 
  ; screen has been replaced by a List Manager screen.
@@ -26,7 +26,7 @@ EN ; - Prompt for ePharmacy Site Parameters
  I '$G(PSOSITE) L -^PS(52.86,"LOCK") Q
  ;
  ; Informational Messages
- D TRCMSG,RRRMSG W !
+ D TRCMSG^PSOBPSSL,RRRMSG^PSOBPSSL W !
  ;
  D EN^VALM("PSO EPHARM SITE PARAMS")
  L -^PS(52.86,"LOCK")       ; option level unlock
@@ -270,13 +270,21 @@ EDITGEN(RETURN) ; Action for EG Edit General Parameters
  ; RETURN - Null if normal exit, "^" if timeout or "^" entered
  ;
  ; Variables used by DIE
- N DIE,DA,DIC,DUOUT,DTOUT
+ N DIE,DA,DIC,DUOUT,DTOUT,DEF
  ;
  ; Set Full Screen mode
  D FULL^VALM1
  ;
  ; Get worklist days & update the record
  S DIE="^PS(52.86,",DA=PSOBPSDV,DR="4" D ^DIE
+ ; CHECK FOR TIMEOUT OR ^
+ I $G(DTOUT)!$D(Y) S RETURN="^"
+ ;
+ ; Update EPHARMACY RESPONSE PAUSE
+ K DTOUT,DUOUT
+ S DEF=$$GET1^DIQ(52.86,PSOBPSDV_",",6,"I")
+ I DEF="" S DEF=2
+ S DIE="^PS(52.86,",DA=PSOBPSDV,DR="6//"_DEF D ^DIE
  ; CHECK FOR TIMEOUT OR ^
  I $G(DTOUT)!$D(Y) S RETURN="^"
  ;
@@ -302,7 +310,7 @@ EDITTRC(RETURN)  ; Action for ET Edit Transfer Reject Code
  S QT=0,PASS1=1
  ;
  ; Informational message
- D TRCMSG
+ D TRCMSG^PSOBPSSL
  ;
  ; Loop through Reject Code edits
  F  Q:QT  D
@@ -417,7 +425,7 @@ EDITRRRC(RETURN)  ; Action for ER Edit Reject Resolution Required Code
  S QT=0,PASS1=1
  ;
  ; Informational message
- D RRRMSG
+ D RRRMSG^PSOBPSSL
  ;
  ; Loop through Reject Code edits
  F  Q:QT  D
@@ -567,19 +575,4 @@ RBUILD ; rebuild the list and then exit with a refresh
  D BLDLIST(PSOBPSDV)
  ;
  S VALMBCK="R"
- Q
-TRCMSG ; Transfer Reject Informational Message
- W !!,"All transfer rejects will automatically be placed on the Third Party Payer"
- W !,"Rejects - Worklist if the reject code is defined in the site parameter file"
- W !,"and the AUTO SEND parameter is set to yes. The OPECC must manually transfer"
- W !,"the reject if the reject code is defined in the site parameter file"
- W !,"and the AUTO SEND parameter is set to no. (To be used when Pharmacy can"
- W !,"possibly correct a locally filled Rx.)"
- Q
- ;
-RRRMSG ; Reject Resolution Required Informational Message
- W !!,"All Reject Resolution Required reject codes will automatically be placed"
- W !,"on the Third Party Payer Rejects - Worklist. This parameter applies to"
- W !,"rejects for original unreleased fills only. Prescriptions will not be filled"
- W !,"until the rejects identified by the Reject Resolution parameter are resolved."
  Q

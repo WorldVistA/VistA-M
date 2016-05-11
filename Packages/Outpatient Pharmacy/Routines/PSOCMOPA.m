@@ -1,5 +1,5 @@
 PSOCMOPA ;BIR/HTW-Utility for Hold/Can ;[ 12/30/96  10:28 AM ]
- ;;7.0;OUTPATIENT PHARMACY;**61,76**;DEC 1997
+ ;;7.0;OUTPATIENT PHARMACY;**61,76,443**;DEC 1997;Build 2
  ;External Referrence to file # 550.2 granted by DBIA 2231
  ;Required input:  DA - internal entry # -  ^PSRX
  ;Returns:
@@ -45,6 +45,7 @@ EN ;  Called from PSORXDL,HLD+4^PSOHLD, PSOCAN
  ; if in suspense and "loading" no delete
  Q:'$G(DA)  D PSOCMOPA
  I $G(CMOP("S"))="L" D MSG K CMOP Q
+ I $G(PSOFROM)="HOLD",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG K DIR S DIR(0)="E",DIR("A")="Press Return to Continue" D ^DIR K DIR ;*443
  I $G(PSOFROM)="DELETE",($G(CMOP(CMOP("L")))=0!($G(CMOP(CMOP("L")))=2)) D MSG
  K CMOP
  Q

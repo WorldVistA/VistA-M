@@ -1,140 +1,126 @@
-IBDEI0GN ; ; 19-NOV-2015
+IBDEI0GN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7424,1,2,0)
- ;;=2^90935
- ;;^UTILITY(U,$J,358.3,7424,1,3,0)
- ;;=3^HEMODIALYSIS SINGLE EVAL
- ;;^UTILITY(U,$J,358.3,7425,0)
- ;;=90937^^51^497^2^^^^1
- ;;^UTILITY(U,$J,358.3,7425,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7425,1,2,0)
- ;;=2^90937
- ;;^UTILITY(U,$J,358.3,7425,1,3,0)
- ;;=3^HEMODIALYSIS REPEATED EVAL
- ;;^UTILITY(U,$J,358.3,7426,0)
- ;;=Z49.31^^52^498^1
- ;;^UTILITY(U,$J,358.3,7426,1,0)
+ ;;^UTILITY(U,$J,358.3,7698,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7698,1,4,0)
+ ;;=4^R40.2123
+ ;;^UTILITY(U,$J,358.3,7698,2)
+ ;;=^5019363
+ ;;^UTILITY(U,$J,358.3,7699,0)
+ ;;=R40.2122^^30^414^32
+ ;;^UTILITY(U,$J,358.3,7699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7426,1,3,0)
- ;;=3^Adequacy Testing for Hemodialysis
- ;;^UTILITY(U,$J,358.3,7426,1,4,0)
- ;;=4^Z49.31
- ;;^UTILITY(U,$J,358.3,7426,2)
- ;;=^5063058
- ;;^UTILITY(U,$J,358.3,7427,0)
- ;;=N18.6^^52^498^3
- ;;^UTILITY(U,$J,358.3,7427,1,0)
+ ;;^UTILITY(U,$J,358.3,7699,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;^UTILITY(U,$J,358.3,7699,1,4,0)
+ ;;=4^R40.2122
+ ;;^UTILITY(U,$J,358.3,7699,2)
+ ;;=^5019362
+ ;;^UTILITY(U,$J,358.3,7700,0)
+ ;;=R40.2124^^30^414^31
+ ;;^UTILITY(U,$J,358.3,7700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7427,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,7427,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,7427,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,7428,0)
- ;;=Z99.2^^52^498^2
- ;;^UTILITY(U,$J,358.3,7428,1,0)
+ ;;^UTILITY(U,$J,358.3,7700,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7700,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,7700,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,7701,0)
+ ;;=R40.2211^^30^414^17
+ ;;^UTILITY(U,$J,358.3,7701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7428,1,3,0)
- ;;=3^Dependence on Renal Dialysis
- ;;^UTILITY(U,$J,358.3,7428,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,7428,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,7429,0)
- ;;=Z91.15^^52^498^4
- ;;^UTILITY(U,$J,358.3,7429,1,0)
+ ;;^UTILITY(U,$J,358.3,7701,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,7701,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,7701,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,7702,0)
+ ;;=R40.2210^^30^414^16
+ ;;^UTILITY(U,$J,358.3,7702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7429,1,3,0)
- ;;=3^Patient's Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,7429,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,7429,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,7430,0)
- ;;=Z49.32^^52^499^1
- ;;^UTILITY(U,$J,358.3,7430,1,0)
+ ;;^UTILITY(U,$J,358.3,7702,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7702,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,7702,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,7703,0)
+ ;;=R40.2224^^30^414^18
+ ;;^UTILITY(U,$J,358.3,7703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7430,1,3,0)
- ;;=3^Adequacy Testing for Peritoneal Dialysis
- ;;^UTILITY(U,$J,358.3,7430,1,4,0)
- ;;=4^Z49.32
- ;;^UTILITY(U,$J,358.3,7430,2)
- ;;=^5063059
- ;;^UTILITY(U,$J,358.3,7431,0)
- ;;=N18.6^^52^499^2
- ;;^UTILITY(U,$J,358.3,7431,1,0)
+ ;;^UTILITY(U,$J,358.3,7703,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7703,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,7703,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,7704,0)
+ ;;=R40.2223^^30^414^19
+ ;;^UTILITY(U,$J,358.3,7704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7431,1,3,0)
- ;;=3^ESRD
- ;;^UTILITY(U,$J,358.3,7431,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,7431,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,7432,0)
- ;;=I25.10^^52^500^3
- ;;^UTILITY(U,$J,358.3,7432,1,0)
+ ;;^UTILITY(U,$J,358.3,7704,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7704,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,7704,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,7705,0)
+ ;;=R40.2222^^30^414^20
+ ;;^UTILITY(U,$J,358.3,7705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7432,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,7432,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,7432,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,7433,0)
- ;;=I42.8^^52^500^7
- ;;^UTILITY(U,$J,358.3,7433,1,0)
+ ;;^UTILITY(U,$J,358.3,7705,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,7705,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,7705,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,7706,0)
+ ;;=R40.2221^^30^414^21
+ ;;^UTILITY(U,$J,358.3,7706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7433,1,3,0)
- ;;=3^Cardiomyopathy,Other
- ;;^UTILITY(U,$J,358.3,7433,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,7433,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,7434,0)
- ;;=I48.91^^52^500^4
- ;;^UTILITY(U,$J,358.3,7434,1,0)
+ ;;^UTILITY(U,$J,358.3,7706,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,7706,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,7706,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,7707,0)
+ ;;=R40.2220^^30^414^22
+ ;;^UTILITY(U,$J,358.3,7707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7434,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,7434,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,7434,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,7435,0)
- ;;=I49.8^^52^500^6
- ;;^UTILITY(U,$J,358.3,7435,1,0)
+ ;;^UTILITY(U,$J,358.3,7707,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,7707,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,7707,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,7708,0)
+ ;;=R40.2214^^30^414^23
+ ;;^UTILITY(U,$J,358.3,7708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7435,1,3,0)
- ;;=3^Cardiac Arrhythmias,Other Spec
- ;;^UTILITY(U,$J,358.3,7435,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,7435,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,7436,0)
- ;;=R00.1^^52^500^5
- ;;^UTILITY(U,$J,358.3,7436,1,0)
+ ;;^UTILITY(U,$J,358.3,7708,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,7708,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,7708,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,7709,0)
+ ;;=R40.2213^^30^414^25
+ ;;^UTILITY(U,$J,358.3,7709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7436,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,7436,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,7436,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,7437,0)
- ;;=I50.9^^52^500^13
- ;;^UTILITY(U,$J,358.3,7437,1,0)
+ ;;^UTILITY(U,$J,358.3,7709,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,7709,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,7709,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,7710,0)
+ ;;=R40.2212^^30^414^24
+ ;;^UTILITY(U,$J,358.3,7710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7437,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,7437,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,7437,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,7438,0)
- ;;=I95.1^^52^500^14
- ;;^UTILITY(U,$J,358.3,7438,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7710,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept

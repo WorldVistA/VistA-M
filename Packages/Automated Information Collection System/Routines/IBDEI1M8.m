@@ -1,134 +1,132 @@
-IBDEI1M8 ; ; 19-NOV-2015
+IBDEI1M8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27032,0)
- ;;=L03.113^^132^1309^112
- ;;^UTILITY(U,$J,358.3,27032,1,0)
+ ;;^UTILITY(U,$J,358.3,27411,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,27411,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,27411,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,27412,0)
+ ;;=L97.509^^106^1354^4
+ ;;^UTILITY(U,$J,358.3,27412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27032,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,27032,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,27032,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,27033,0)
- ;;=L03.114^^132^1309^105
- ;;^UTILITY(U,$J,358.3,27033,1,0)
+ ;;^UTILITY(U,$J,358.3,27412,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,27412,1,4,0)
+ ;;=4^L97.509
+ ;;^UTILITY(U,$J,358.3,27412,2)
+ ;;=^5009544
+ ;;^UTILITY(U,$J,358.3,27413,0)
+ ;;=M86.10^^106^1354^5
+ ;;^UTILITY(U,$J,358.3,27413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27033,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,27033,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,27033,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,27034,0)
- ;;=L03.115^^132^1309^109
- ;;^UTILITY(U,$J,358.3,27034,1,0)
+ ;;^UTILITY(U,$J,358.3,27413,1,3,0)
+ ;;=3^Osteomylitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,27413,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,27413,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,27414,0)
+ ;;=E85.9^^106^1355^1
+ ;;^UTILITY(U,$J,358.3,27414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27034,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,27034,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,27034,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,27035,0)
- ;;=L03.116^^132^1309^102
- ;;^UTILITY(U,$J,358.3,27035,1,0)
+ ;;^UTILITY(U,$J,358.3,27414,1,3,0)
+ ;;=3^Amyloidosis,Unspec
+ ;;^UTILITY(U,$J,358.3,27414,1,4,0)
+ ;;=4^E85.9
+ ;;^UTILITY(U,$J,358.3,27414,2)
+ ;;=^334185
+ ;;^UTILITY(U,$J,358.3,27415,0)
+ ;;=N00.9^^106^1355^3
+ ;;^UTILITY(U,$J,358.3,27415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27035,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,27035,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,27035,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,27036,0)
- ;;=L03.123^^132^1309^27
- ;;^UTILITY(U,$J,358.3,27036,1,0)
+ ;;^UTILITY(U,$J,358.3,27415,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Acute
+ ;;^UTILITY(U,$J,358.3,27415,1,4,0)
+ ;;=4^N00.9
+ ;;^UTILITY(U,$J,358.3,27415,2)
+ ;;=^5015500
+ ;;^UTILITY(U,$J,358.3,27416,0)
+ ;;=N08.^^106^1355^2
+ ;;^UTILITY(U,$J,358.3,27416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27036,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,27036,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,27036,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,27037,0)
- ;;=L03.124^^132^1309^21
- ;;^UTILITY(U,$J,358.3,27037,1,0)
+ ;;^UTILITY(U,$J,358.3,27416,1,3,0)
+ ;;=3^Glomerular Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,27416,1,4,0)
+ ;;=4^N08.
+ ;;^UTILITY(U,$J,358.3,27416,2)
+ ;;=^5015569
+ ;;^UTILITY(U,$J,358.3,27417,0)
+ ;;=N03.9^^106^1355^4
+ ;;^UTILITY(U,$J,358.3,27417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27037,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,27037,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,27037,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,27038,0)
- ;;=L03.125^^132^1309^25
- ;;^UTILITY(U,$J,358.3,27038,1,0)
+ ;;^UTILITY(U,$J,358.3,27417,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Chronic
+ ;;^UTILITY(U,$J,358.3,27417,1,4,0)
+ ;;=4^N03.9
+ ;;^UTILITY(U,$J,358.3,27417,2)
+ ;;=^5015530
+ ;;^UTILITY(U,$J,358.3,27418,0)
+ ;;=N05.8^^106^1356^1
+ ;;^UTILITY(U,$J,358.3,27418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27038,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,27038,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,27038,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,27039,0)
- ;;=L03.126^^132^1309^19
- ;;^UTILITY(U,$J,358.3,27039,1,0)
+ ;;^UTILITY(U,$J,358.3,27418,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
+ ;;^UTILITY(U,$J,358.3,27418,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,27418,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,27419,0)
+ ;;=M30.0^^106^1357^2
+ ;;^UTILITY(U,$J,358.3,27419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27039,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,27039,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,27039,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,27040,0)
- ;;=L03.211^^132^1309^99
- ;;^UTILITY(U,$J,358.3,27040,1,0)
+ ;;^UTILITY(U,$J,358.3,27419,1,3,0)
+ ;;=3^Polyarteritis Nodosa
+ ;;^UTILITY(U,$J,358.3,27419,1,4,0)
+ ;;=4^M30.0
+ ;;^UTILITY(U,$J,358.3,27419,2)
+ ;;=^5011738
+ ;;^UTILITY(U,$J,358.3,27420,0)
+ ;;=N04.9^^106^1357^1
+ ;;^UTILITY(U,$J,358.3,27420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27040,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,27040,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,27040,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,27041,0)
- ;;=L03.212^^132^1309^16
- ;;^UTILITY(U,$J,358.3,27041,1,0)
+ ;;^UTILITY(U,$J,358.3,27420,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,27420,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,27420,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,27421,0)
+ ;;=N13.30^^106^1358^2
+ ;;^UTILITY(U,$J,358.3,27421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27041,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,27041,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,27041,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,27042,0)
- ;;=L03.221^^132^1309^106
- ;;^UTILITY(U,$J,358.3,27042,1,0)
+ ;;^UTILITY(U,$J,358.3,27421,1,3,0)
+ ;;=3^Hydronephrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,27421,1,4,0)
+ ;;=4^N13.30
+ ;;^UTILITY(U,$J,358.3,27421,2)
+ ;;=^5015578
+ ;;^UTILITY(U,$J,358.3,27422,0)
+ ;;=N13.9^^106^1358^12
+ ;;^UTILITY(U,$J,358.3,27422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27042,1,3,0)
- ;;=3^Cellulitis of Neck
- ;;^UTILITY(U,$J,358.3,27042,1,4,0)
- ;;=4^L03.221
- ;;^UTILITY(U,$J,358.3,27042,2)
- ;;=^5009045
- ;;^UTILITY(U,$J,358.3,27043,0)
- ;;=L03.222^^132^1309^22
- ;;^UTILITY(U,$J,358.3,27043,1,0)
+ ;;^UTILITY(U,$J,358.3,27422,1,3,0)
+ ;;=3^Uropathy,Obstructive & Reflux,Unspec
+ ;;^UTILITY(U,$J,358.3,27422,1,4,0)
+ ;;=4^N13.9
+ ;;^UTILITY(U,$J,358.3,27422,2)
+ ;;=^5015589
+ ;;^UTILITY(U,$J,358.3,27423,0)
+ ;;=N40.1^^106^1358^1
+ ;;^UTILITY(U,$J,358.3,27423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27043,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,27043,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,27043,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,27044,0)
- ;;=L03.311^^132^1309^95
- ;;^UTILITY(U,$J,358.3,27044,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27044,1,3,0)
- ;;=3^Cellulitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,27044,1,4,0)
- ;;=4^L03.311
- ;;^UTILITY(U,$J,358.3,27044,2)
- ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,27423,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,27423,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,27423,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,27424,0)
+ ;;=R39.14^^106^1358^3

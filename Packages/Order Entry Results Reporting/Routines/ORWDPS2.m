@@ -1,7 +1,15 @@
-ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog;05/09/2007
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243**;Dec 17, 1997;Build 242
+ORWDPS2 ; SLC/KCM/JLI - Pharmacy Calls for Windows Dialog;05/09/2007 ;01/04/16  09:23
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,116,125,131,132,148,141,195,215,258,243,424**;Dec 17, 1997;Build 8
  ;
 OISLCT(LST,OI,PSTYPE,ORVP,NEEDPI,PKIACTIV) ; return for defaults for pharmacy orderable item
+ I $D(NEEDPI),(NEEDPI="Y"),$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")) D  ;check if bug for Supply, Clin Med/IV for NEEDPI
+ .N ORQOIEN S ORQOIEN=$O(^ORD(101.41,"B","OR GTX ORDERABLE ITEM",0))
+ .N ORQOI S ORQOI=$O(^ORD(101.41,$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")),6,"D",ORQOIEN,0)) Q:'ORQOI
+ .N ORQOOI S ORQOOI=$G(^ORD(101.41,$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")),6,ORQOI,1)) Q:'ORQOOI
+ .I +OI=+ORQOOI D  ;make sure QO orderable is the same as the orderable here
+ ..N ORQOPIDA S ORQOPIDA=$O(^ORD(101.41,"B","OR GTX PATIENT INSTRUCTIONS",0))
+ ..I '$D(^ORD(101.41,$G(^TMP($J,"ORWDX LOADRSP","QO SAVE")),6,"D",ORQOPIDA)) S NEEDPI="N"
+ K ^TMP($J,"ORWDX LOADRSP","QO SAVE")
  N ILST,ORDOSE,ORWPSOI,ORWDOSES,X1,X2
  K ^TMP("PSJINS",$J),^TMP("PSJMR",$J),^TMP("PSJNOUN",$J),^TMP("PSJSCH",$J),^TMP("PSSDIN",$J)
  S ILST=0
@@ -81,6 +89,7 @@ BLDDOSE(X) ; build dose info where X is ORDOSE node
  ; No TotalDose,           use LocalDose
  ; TotalDose & Strength,   use LocalDose+Conjunction+Strength+Units
  ; TotalDose, No Strength, use LocalDose+Conjunction+DispenseName
+ N Y
  S DD=+$P(X,U,6),DRUG=ORDOSE("DD",DD),DDNM=$P(DRUG,U),ID=$P(X,U,1,6)
  S LDOSE=$P(X,U,5),TEXT=LDOSE,STREN=$P(DRUG,U,5)_$P(DRUG,U,6)
  S $P(ID,U,7)=$P(DRUG,U,5) S $P(ID,U,8)=$P(DRUG,U,6) ; add strength
@@ -193,7 +202,7 @@ CHKPI(VAL,ODIFN) ; return pre-existing patient instruct
  Q
 CHKGRP(VAL,ORIFN) ;
  ;Inpatient Med Order Group or Clin Meds Group: return 1
- ;If order belong to Outpatient Med Order Grpoup: return 2 
+ ;If order belong to Outpatient Med Order Grpoup: return 2
  ;Otherwise, return 0
  S VAL=0
  I '$L(ORIFN) Q

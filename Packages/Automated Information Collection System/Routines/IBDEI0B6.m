@@ -1,142 +1,138 @@
-IBDEI0B6 ; ; 19-NOV-2015
+IBDEI0B6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4741,2)
- ;;=^5002787
- ;;^UTILITY(U,$J,358.3,4742,0)
- ;;=K56.60^^37^316^13
- ;;^UTILITY(U,$J,358.3,4742,1,0)
+ ;;^UTILITY(U,$J,358.3,5040,1,3,0)
+ ;;=3^Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,5040,1,4,0)
+ ;;=4^R00.0
+ ;;^UTILITY(U,$J,358.3,5040,2)
+ ;;=^5019163
+ ;;^UTILITY(U,$J,358.3,5041,0)
+ ;;=R07.9^^27^326^8
+ ;;^UTILITY(U,$J,358.3,5041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4742,1,3,0)
- ;;=3^Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,4742,1,4,0)
- ;;=4^K56.60
- ;;^UTILITY(U,$J,358.3,4742,2)
- ;;=^270263
- ;;^UTILITY(U,$J,358.3,4743,0)
- ;;=D12.0^^37^316^2
- ;;^UTILITY(U,$J,358.3,4743,1,0)
+ ;;^UTILITY(U,$J,358.3,5041,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,5041,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,5041,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,5042,0)
+ ;;=I20.0^^27^326^19
+ ;;^UTILITY(U,$J,358.3,5042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4743,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,4743,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,4743,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,4744,0)
- ;;=D12.1^^37^316^1
- ;;^UTILITY(U,$J,358.3,4744,1,0)
+ ;;^UTILITY(U,$J,358.3,5042,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,5042,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,5042,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,5043,0)
+ ;;=I20.9^^27^326^1
+ ;;^UTILITY(U,$J,358.3,5043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4744,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,4744,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,4744,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,4745,0)
- ;;=D12.6^^37^316^3
- ;;^UTILITY(U,$J,358.3,4745,1,0)
+ ;;^UTILITY(U,$J,358.3,5043,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,5043,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,5043,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,5044,0)
+ ;;=I31.9^^27^326^16
+ ;;^UTILITY(U,$J,358.3,5044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4745,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,4745,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,4745,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,4746,0)
- ;;=C20.^^37^316^18
- ;;^UTILITY(U,$J,358.3,4746,1,0)
+ ;;^UTILITY(U,$J,358.3,5044,1,3,0)
+ ;;=3^Pericardium Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,5044,1,4,0)
+ ;;=4^I31.9
+ ;;^UTILITY(U,$J,358.3,5044,2)
+ ;;=^5007165
+ ;;^UTILITY(U,$J,358.3,5045,0)
+ ;;=I49.9^^27^326^2
+ ;;^UTILITY(U,$J,358.3,5045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4746,1,3,0)
- ;;=3^Malig Neop of Rectum
- ;;^UTILITY(U,$J,358.3,4746,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,4746,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,4747,0)
- ;;=C18.7^^37^316^19
- ;;^UTILITY(U,$J,358.3,4747,1,0)
+ ;;^UTILITY(U,$J,358.3,5045,1,3,0)
+ ;;=3^Arrhythmia,Cardiac,Unspec
+ ;;^UTILITY(U,$J,358.3,5045,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,5045,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,5046,0)
+ ;;=I13.0^^27^326^9
+ ;;^UTILITY(U,$J,358.3,5046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4747,1,3,0)
- ;;=3^Malig Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,4747,1,4,0)
- ;;=4^C18.7
- ;;^UTILITY(U,$J,358.3,4747,2)
- ;;=^267082
- ;;^UTILITY(U,$J,358.3,4748,0)
- ;;=C18.9^^37^316^16
- ;;^UTILITY(U,$J,358.3,4748,1,0)
+ ;;^UTILITY(U,$J,358.3,5046,1,3,0)
+ ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD,Stage 1-4
+ ;;^UTILITY(U,$J,358.3,5046,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,5046,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,5047,0)
+ ;;=I13.2^^27^326^10
+ ;;^UTILITY(U,$J,358.3,5047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4748,1,3,0)
- ;;=3^Malig Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,4748,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,4748,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,4749,0)
- ;;=C19.^^37^316^17
- ;;^UTILITY(U,$J,358.3,4749,1,0)
+ ;;^UTILITY(U,$J,358.3,5047,1,3,0)
+ ;;=3^HTN Hrt Disease w/ Hrt Failure and CKD, Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,5047,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,5047,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,5048,0)
+ ;;=I13.10^^27^326^11
+ ;;^UTILITY(U,$J,358.3,5048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4749,1,3,0)
- ;;=3^Malig Neop of Rectosigmoid Junction
- ;;^UTILITY(U,$J,358.3,4749,1,4,0)
- ;;=4^C19.
- ;;^UTILITY(U,$J,358.3,4749,2)
- ;;=^267089
- ;;^UTILITY(U,$J,358.3,4750,0)
- ;;=C18.2^^37^316^14
- ;;^UTILITY(U,$J,358.3,4750,1,0)
+ ;;^UTILITY(U,$J,358.3,5048,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD, Stage 1-4
+ ;;^UTILITY(U,$J,358.3,5048,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,5048,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,5049,0)
+ ;;=I13.11^^27^326^12
+ ;;^UTILITY(U,$J,358.3,5049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4750,1,3,0)
- ;;=3^Malig Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,4750,1,4,0)
- ;;=4^C18.2
- ;;^UTILITY(U,$J,358.3,4750,2)
- ;;=^267085
- ;;^UTILITY(U,$J,358.3,4751,0)
- ;;=C18.0^^37^316^15
- ;;^UTILITY(U,$J,358.3,4751,1,0)
+ ;;^UTILITY(U,$J,358.3,5049,1,3,0)
+ ;;=3^HTN Hrt Disease w/o Hrt Failure and CKD,Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,5049,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,5049,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,5050,0)
+ ;;=I50.1^^27^326^15
+ ;;^UTILITY(U,$J,358.3,5050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4751,1,3,0)
- ;;=3^Malig Neop of Cecum
- ;;^UTILITY(U,$J,358.3,4751,1,4,0)
- ;;=4^C18.0
- ;;^UTILITY(U,$J,358.3,4751,2)
- ;;=^267083
- ;;^UTILITY(U,$J,358.3,4752,0)
- ;;=K81.0^^37^316^4
- ;;^UTILITY(U,$J,358.3,4752,1,0)
+ ;;^UTILITY(U,$J,358.3,5050,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,5050,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,5050,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,5051,0)
+ ;;=E21.3^^27^327^17
+ ;;^UTILITY(U,$J,358.3,5051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4752,1,3,0)
- ;;=3^Cholecystitis,Acute
- ;;^UTILITY(U,$J,358.3,4752,1,4,0)
- ;;=4^K81.0
- ;;^UTILITY(U,$J,358.3,4752,2)
- ;;=^259097
- ;;^UTILITY(U,$J,358.3,4753,0)
- ;;=E11.9^^37^317^13
- ;;^UTILITY(U,$J,358.3,4753,1,0)
+ ;;^UTILITY(U,$J,358.3,5051,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,5051,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,5051,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,5052,0)
+ ;;=E78.5^^27^327^16
+ ;;^UTILITY(U,$J,358.3,5052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4753,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,4753,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,4753,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,4754,0)
- ;;=E11.69^^37^317^8
- ;;^UTILITY(U,$J,358.3,4754,1,0)
+ ;;^UTILITY(U,$J,358.3,5052,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,5052,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,5052,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,5053,0)
+ ;;=M10.30^^27^327^11
+ ;;^UTILITY(U,$J,358.3,5053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4754,1,3,0)
- ;;=3^Diabetes Type 2 w/ Oth Spec Complication
- ;;^UTILITY(U,$J,358.3,4754,1,4,0)
- ;;=4^E11.69
- ;;^UTILITY(U,$J,358.3,4754,2)
- ;;=^5002664
- ;;^UTILITY(U,$J,358.3,4755,0)
- ;;=E11.65^^37^317^5
- ;;^UTILITY(U,$J,358.3,4755,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4755,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,5053,1,3,0)
+ ;;=3^Gout d/t Renal Impairment,Unspec Site
+ ;;^UTILITY(U,$J,358.3,5053,1,4,0)
+ ;;=4^M10.30

@@ -1,138 +1,134 @@
-IBDEI0B7 ; ; 19-NOV-2015
+IBDEI0B7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4755,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,4755,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,4756,0)
- ;;=E11.618^^37^317^2
- ;;^UTILITY(U,$J,358.3,4756,1,0)
+ ;;^UTILITY(U,$J,358.3,5053,2)
+ ;;=^5010356
+ ;;^UTILITY(U,$J,358.3,5054,0)
+ ;;=E66.9^^27^327^33
+ ;;^UTILITY(U,$J,358.3,5054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4756,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Arthropathy
- ;;^UTILITY(U,$J,358.3,4756,1,4,0)
- ;;=4^E11.618
- ;;^UTILITY(U,$J,358.3,4756,2)
- ;;=^5002654
- ;;^UTILITY(U,$J,358.3,4757,0)
- ;;=E11.620^^37^317^3
- ;;^UTILITY(U,$J,358.3,4757,1,0)
+ ;;^UTILITY(U,$J,358.3,5054,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,5054,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,5054,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,5055,0)
+ ;;=E66.01^^27^327^32
+ ;;^UTILITY(U,$J,358.3,5055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4757,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Dermatitis
- ;;^UTILITY(U,$J,358.3,4757,1,4,0)
- ;;=4^E11.620
- ;;^UTILITY(U,$J,358.3,4757,2)
- ;;=^5002655
- ;;^UTILITY(U,$J,358.3,4758,0)
- ;;=E11.621^^37^317^4
- ;;^UTILITY(U,$J,358.3,4758,1,0)
+ ;;^UTILITY(U,$J,358.3,5055,1,3,0)
+ ;;=3^Obesity,Morbid,d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,5055,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,5055,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,5056,0)
+ ;;=D50.9^^27^327^2
+ ;;^UTILITY(U,$J,358.3,5056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4758,1,3,0)
- ;;=3^Diabetes Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,4758,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,4758,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,4759,0)
- ;;=E11.622^^37^317^11
- ;;^UTILITY(U,$J,358.3,4759,1,0)
+ ;;^UTILITY(U,$J,358.3,5056,1,3,0)
+ ;;=3^Anemia,Iron Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,5056,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,5056,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,5057,0)
+ ;;=D63.1^^27^327^1
+ ;;^UTILITY(U,$J,358.3,5057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4759,1,3,0)
- ;;=3^Diabetes Type 2 w/ Skin Ulcer
- ;;^UTILITY(U,$J,358.3,4759,1,4,0)
- ;;=4^E11.622
- ;;^UTILITY(U,$J,358.3,4759,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,4760,0)
- ;;=E11.628^^37^317^10
- ;;^UTILITY(U,$J,358.3,4760,1,0)
+ ;;^UTILITY(U,$J,358.3,5057,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,5057,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,5057,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,5058,0)
+ ;;=G60.9^^27^327^31
+ ;;^UTILITY(U,$J,358.3,5058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4760,1,3,0)
- ;;=3^Diabetes Type 2 w/ Skin Complications
- ;;^UTILITY(U,$J,358.3,4760,1,4,0)
- ;;=4^E11.628
- ;;^UTILITY(U,$J,358.3,4760,2)
- ;;=^5002658
- ;;^UTILITY(U,$J,358.3,4761,0)
- ;;=E11.630^^37^317^9
- ;;^UTILITY(U,$J,358.3,4761,1,0)
+ ;;^UTILITY(U,$J,358.3,5058,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,5058,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,5058,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,5059,0)
+ ;;=I73.9^^27^327^34
+ ;;^UTILITY(U,$J,358.3,5059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4761,1,3,0)
- ;;=3^Diabetes Type 2 w/ Periodontal Disease
- ;;^UTILITY(U,$J,358.3,4761,1,4,0)
- ;;=4^E11.630
- ;;^UTILITY(U,$J,358.3,4761,2)
- ;;=^5002659
- ;;^UTILITY(U,$J,358.3,4762,0)
- ;;=E11.638^^37^317^7
- ;;^UTILITY(U,$J,358.3,4762,1,0)
+ ;;^UTILITY(U,$J,358.3,5059,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,5059,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,5059,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,5060,0)
+ ;;=N04.9^^27^327^30
+ ;;^UTILITY(U,$J,358.3,5060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4762,1,3,0)
- ;;=3^Diabetes Type 2 w/ Oral Complications
- ;;^UTILITY(U,$J,358.3,4762,1,4,0)
- ;;=4^E11.638
- ;;^UTILITY(U,$J,358.3,4762,2)
- ;;=^5002660
- ;;^UTILITY(U,$J,358.3,4763,0)
- ;;=E11.649^^37^317^6
- ;;^UTILITY(U,$J,358.3,4763,1,0)
+ ;;^UTILITY(U,$J,358.3,5060,1,3,0)
+ ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
+ ;;^UTILITY(U,$J,358.3,5060,1,4,0)
+ ;;=4^N04.9
+ ;;^UTILITY(U,$J,358.3,5060,2)
+ ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,5061,0)
+ ;;=N25.0^^27^327^35
+ ;;^UTILITY(U,$J,358.3,5061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4763,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,4763,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,4763,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,4764,0)
- ;;=E11.69^^37^317^12
- ;;^UTILITY(U,$J,358.3,4764,1,0)
+ ;;^UTILITY(U,$J,358.3,5061,1,3,0)
+ ;;=3^Renal Osteodystrophy
+ ;;^UTILITY(U,$J,358.3,5061,1,4,0)
+ ;;=4^N25.0
+ ;;^UTILITY(U,$J,358.3,5061,2)
+ ;;=^104747
+ ;;^UTILITY(U,$J,358.3,5062,0)
+ ;;=T80.211A^^27^327^3
+ ;;^UTILITY(U,$J,358.3,5062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4764,1,3,0)
- ;;=3^Diabetes Type 2 w/ Spec Complications
- ;;^UTILITY(U,$J,358.3,4764,1,4,0)
- ;;=4^E11.69
- ;;^UTILITY(U,$J,358.3,4764,2)
- ;;=^5002664
- ;;^UTILITY(U,$J,358.3,4765,0)
- ;;=K85.9^^37^317^16
- ;;^UTILITY(U,$J,358.3,4765,1,0)
+ ;;^UTILITY(U,$J,358.3,5062,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5062,1,4,0)
+ ;;=4^T80.211A
+ ;;^UTILITY(U,$J,358.3,5062,2)
+ ;;=^5054350
+ ;;^UTILITY(U,$J,358.3,5063,0)
+ ;;=T80.211D^^27^327^4
+ ;;^UTILITY(U,$J,358.3,5063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4765,1,3,0)
- ;;=3^Pancreatitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,4765,1,4,0)
- ;;=4^K85.9
- ;;^UTILITY(U,$J,358.3,4765,2)
- ;;=^5008887
- ;;^UTILITY(U,$J,358.3,4766,0)
- ;;=R07.82^^37^317^15
- ;;^UTILITY(U,$J,358.3,4766,1,0)
+ ;;^UTILITY(U,$J,358.3,5063,1,3,0)
+ ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,5063,1,4,0)
+ ;;=4^T80.211D
+ ;;^UTILITY(U,$J,358.3,5063,2)
+ ;;=^5054351
+ ;;^UTILITY(U,$J,358.3,5064,0)
+ ;;=E83.59^^27^327^5
+ ;;^UTILITY(U,$J,358.3,5064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4766,1,3,0)
- ;;=3^Intercostal Pain
- ;;^UTILITY(U,$J,358.3,4766,1,4,0)
- ;;=4^R07.82
- ;;^UTILITY(U,$J,358.3,4766,2)
- ;;=^5019199
- ;;^UTILITY(U,$J,358.3,4767,0)
- ;;=R07.89^^37^317^1
- ;;^UTILITY(U,$J,358.3,4767,1,0)
+ ;;^UTILITY(U,$J,358.3,5064,1,3,0)
+ ;;=3^Calciphylaxis
+ ;;^UTILITY(U,$J,358.3,5064,1,4,0)
+ ;;=4^E83.59
+ ;;^UTILITY(U,$J,358.3,5064,2)
+ ;;=^5003006
+ ;;^UTILITY(U,$J,358.3,5065,0)
+ ;;=T85.621A^^27^327^8
+ ;;^UTILITY(U,$J,358.3,5065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4767,1,3,0)
- ;;=3^Chest Pain,Other
- ;;^UTILITY(U,$J,358.3,4767,1,4,0)
- ;;=4^R07.89
- ;;^UTILITY(U,$J,358.3,4767,2)
- ;;=^5019200
- ;;^UTILITY(U,$J,358.3,4768,0)
- ;;=I95.9^^37^317^14
- ;;^UTILITY(U,$J,358.3,4768,1,0)
+ ;;^UTILITY(U,$J,358.3,5065,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,5065,1,4,0)
+ ;;=4^T85.621A
+ ;;^UTILITY(U,$J,358.3,5065,2)
+ ;;=^5055625
+ ;;^UTILITY(U,$J,358.3,5066,0)
+ ;;=T85.621D^^27^327^9
+ ;;^UTILITY(U,$J,358.3,5066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4768,1,3,0)
- ;;=3^Hypotension,Unspec
- ;;^UTILITY(U,$J,358.3,4768,1,4,0)
- ;;=4^I95.9
- ;;^UTILITY(U,$J,358.3,4768,2)
- ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,5066,1,3,0)
+ ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,5066,1,4,0)
+ ;;=4^T85.621D

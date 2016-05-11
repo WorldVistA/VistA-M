@@ -1,5 +1,5 @@
-PSOORAL2 ;BHAM-ISC/SAB -build listman activity logs con't ;04/28/95
- ;;7.0;OUTPATIENT PHARMACY;**258,260,386**;DEC 1997;Build 4
+PSOORAL2 ;BHAM-ISC/SAB - build listman activity logs con't ;04/28/95
+ ;;7.0;OUTPATIENT PHARMACY;**258,260,386,427**;DEC 1997;Build 21
 RF ;refill log
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" ",IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Refill Log:"
  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="#  Log Date   Refill Date  Qty               Routing  Lot #       Pharmacist",IEN=IEN+1,$P(^TMP("PSOAL",$J,IEN,0),"=",79)="="
@@ -13,7 +13,9 @@ RF ;refill log
  .S PSDIV=$S($D(^PS(59,+$P(P1,"^",9),0)):$P(^(0),"^",6),1:"Unknown"),IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Division: "_PSDIV_$E("        ",$L(PSDIV)+1,8)_"  "
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_"Dispensed: "_$S($P(P1,"^",19):$E($P(P1,"^",19),4,5)_"/"_$E($P(P1,"^",19),6,7)_"/"_$E($P(P1,"^",19),2,3),1:"")_"  "
  .S RTS=$S($P(P1,"^",16):" Returned to Stock: "_$E($P(P1,"^",16),4,5)_"/"_$E($P(P1,"^",16),6,7)_"/"_$E($P(P1,"^",16),2,3),1:" Released: "_$S($$RXRLDT^PSOBPSUT(DA,N):$$FMTE^XLFDT($$RXRLDT^PSOBPSUT(DA,N)\1,2),1:""))
- .I $$STATUS^PSOBPSUT(DA,N)'="",$$RXRLDT^PSOBPSUT(DA,N) S RTS=RTS_"  NDC: "_$$GETNDC^PSONDCUT(DA,N)
+ .;
+ .; Always display the NDC# - PSO*7*427
+ .S RTS=RTS_"  NDC: "_$$GETNDC^PSONDCUT(DA,N)
  .S ^TMP("PSOAL",$J,IEN,0)=^TMP("PSOAL",$J,IEN,0)_RTS S:$P(P1,"^",3)]"" IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="   Remarks: "_$P(P1,"^",3)
  K RTS Q
 PAR ;partial log

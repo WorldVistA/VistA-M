@@ -1,132 +1,132 @@
-IBDEI1KV ; ; 19-NOV-2015
+IBDEI1KV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26392,0)
- ;;=E13.339^^130^1289^24
- ;;^UTILITY(U,$J,358.3,26392,1,0)
+ ;;^UTILITY(U,$J,358.3,26762,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,26762,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,26762,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,26763,0)
+ ;;=Z65.5^^100^1286^2
+ ;;^UTILITY(U,$J,358.3,26763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26392,1,3,0)
- ;;=3^DM Unspec w/ MOD NPDR w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,26392,1,4,0)
- ;;=4^E13.339
- ;;^UTILITY(U,$J,358.3,26392,2)
- ;;=^5002678
- ;;^UTILITY(U,$J,358.3,26393,0)
- ;;=E13.331^^130^1289^23
- ;;^UTILITY(U,$J,358.3,26393,1,0)
+ ;;^UTILITY(U,$J,358.3,26763,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,26763,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,26763,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,26764,0)
+ ;;=Z62.820^^100^1287^4
+ ;;^UTILITY(U,$J,358.3,26764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26393,1,3,0)
- ;;=3^DM Unspec w/ MOD NPDR w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,26393,1,4,0)
- ;;=4^E13.331
- ;;^UTILITY(U,$J,358.3,26393,2)
- ;;=^5002677
- ;;^UTILITY(U,$J,358.3,26394,0)
- ;;=E13.329^^130^1289^22
- ;;^UTILITY(U,$J,358.3,26394,1,0)
+ ;;^UTILITY(U,$J,358.3,26764,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,26764,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,26764,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,26765,0)
+ ;;=Z62.891^^100^1287^6
+ ;;^UTILITY(U,$J,358.3,26765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26394,1,3,0)
- ;;=3^DM Unspec w/ MILD NPDR w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,26394,1,4,0)
- ;;=4^E13.329
- ;;^UTILITY(U,$J,358.3,26394,2)
- ;;=^5002676
- ;;^UTILITY(U,$J,358.3,26395,0)
- ;;=E13.321^^130^1289^21
- ;;^UTILITY(U,$J,358.3,26395,1,0)
+ ;;^UTILITY(U,$J,358.3,26765,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,26765,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,26765,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,26766,0)
+ ;;=Z62.898^^100^1287^1
+ ;;^UTILITY(U,$J,358.3,26766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26395,1,3,0)
- ;;=3^DM Unspec w/ MILD NPDR w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,26395,1,4,0)
- ;;=4^E13.321
- ;;^UTILITY(U,$J,358.3,26395,2)
- ;;=^5002675
- ;;^UTILITY(U,$J,358.3,26396,0)
- ;;=E13.319^^130^1289^30
- ;;^UTILITY(U,$J,358.3,26396,1,0)
+ ;;^UTILITY(U,$J,358.3,26766,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,26766,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,26766,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,26767,0)
+ ;;=Z63.0^^100^1287^5
+ ;;^UTILITY(U,$J,358.3,26767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26396,1,3,0)
- ;;=3^DM Unspec w/ Unspec DR w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,26396,1,4,0)
- ;;=4^E13.319
- ;;^UTILITY(U,$J,358.3,26396,2)
- ;;=^5002674
- ;;^UTILITY(U,$J,358.3,26397,0)
- ;;=E13.311^^130^1289^29
- ;;^UTILITY(U,$J,358.3,26397,1,0)
+ ;;^UTILITY(U,$J,358.3,26767,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,26767,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,26767,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,26768,0)
+ ;;=Z63.5^^100^1287^2
+ ;;^UTILITY(U,$J,358.3,26768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26397,1,3,0)
- ;;=3^DM Unspec w/ Unspec DR w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,26397,1,4,0)
- ;;=4^E13.311
- ;;^UTILITY(U,$J,358.3,26397,2)
- ;;=^5002673
- ;;^UTILITY(U,$J,358.3,26398,0)
- ;;=H40.001^^130^1290^20
- ;;^UTILITY(U,$J,358.3,26398,1,0)
+ ;;^UTILITY(U,$J,358.3,26768,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,26768,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,26768,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,26769,0)
+ ;;=Z63.8^^100^1287^3
+ ;;^UTILITY(U,$J,358.3,26769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26398,1,3,0)
- ;;=3^PREGLAUCOMA,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26398,1,4,0)
- ;;=4^H40.001
- ;;^UTILITY(U,$J,358.3,26398,2)
- ;;=^5005720
- ;;^UTILITY(U,$J,358.3,26399,0)
- ;;=H40.002^^130^1290^19
- ;;^UTILITY(U,$J,358.3,26399,1,0)
+ ;;^UTILITY(U,$J,358.3,26769,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,26769,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,26769,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,26770,0)
+ ;;=Z63.4^^100^1287^7
+ ;;^UTILITY(U,$J,358.3,26770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26399,1,3,0)
- ;;=3^PREGLAUCOMA,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26399,1,4,0)
- ;;=4^H40.002
- ;;^UTILITY(U,$J,358.3,26399,2)
- ;;=^5005721
- ;;^UTILITY(U,$J,358.3,26400,0)
- ;;=H40.003^^130^1290^18
- ;;^UTILITY(U,$J,358.3,26400,1,0)
+ ;;^UTILITY(U,$J,358.3,26770,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,26770,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,26770,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,26771,0)
+ ;;=F20.9^^100^1288^5
+ ;;^UTILITY(U,$J,358.3,26771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26400,1,3,0)
- ;;=3^PREGLAUCOMA,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,26400,1,4,0)
- ;;=4^H40.003
- ;;^UTILITY(U,$J,358.3,26400,2)
- ;;=^5005722
- ;;^UTILITY(U,$J,358.3,26401,0)
- ;;=H40.031^^130^1290^3
- ;;^UTILITY(U,$J,358.3,26401,1,0)
+ ;;^UTILITY(U,$J,358.3,26771,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,26771,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,26771,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,26772,0)
+ ;;=F20.81^^100^1288^8
+ ;;^UTILITY(U,$J,358.3,26772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26401,1,3,0)
- ;;=3^Anatomical Narrow Angle,Right Eye
- ;;^UTILITY(U,$J,358.3,26401,1,4,0)
- ;;=4^H40.031
- ;;^UTILITY(U,$J,358.3,26401,2)
- ;;=^5005732
- ;;^UTILITY(U,$J,358.3,26402,0)
- ;;=H40.032^^130^1290^2
- ;;^UTILITY(U,$J,358.3,26402,1,0)
+ ;;^UTILITY(U,$J,358.3,26772,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,26772,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,26772,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,26773,0)
+ ;;=F22.^^100^1288^2
+ ;;^UTILITY(U,$J,358.3,26773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26402,1,3,0)
- ;;=3^Anatomical Narrow Angle,Left Eye
- ;;^UTILITY(U,$J,358.3,26402,1,4,0)
- ;;=4^H40.032
- ;;^UTILITY(U,$J,358.3,26402,2)
- ;;=^5005733
- ;;^UTILITY(U,$J,358.3,26403,0)
- ;;=H40.033^^130^1290^1
- ;;^UTILITY(U,$J,358.3,26403,1,0)
+ ;;^UTILITY(U,$J,358.3,26773,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,26773,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,26773,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,26774,0)
+ ;;=F23.^^100^1288^1
+ ;;^UTILITY(U,$J,358.3,26774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26403,1,3,0)
- ;;=3^Anatomical Narrow Angle,Bilateral
- ;;^UTILITY(U,$J,358.3,26403,1,4,0)
- ;;=4^H40.033
- ;;^UTILITY(U,$J,358.3,26403,2)
- ;;=^5005734
- ;;^UTILITY(U,$J,358.3,26404,0)
- ;;=H40.051^^130^1290^16
- ;;^UTILITY(U,$J,358.3,26404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26404,1,3,0)
- ;;=3^Ocular HTN,Right Eye
- ;;^UTILITY(U,$J,358.3,26404,1,4,0)
- ;;=4^H40.051
+ ;;^UTILITY(U,$J,358.3,26774,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,26774,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,26774,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,26775,0)
+ ;;=F25.0^^100^1288^3

@@ -1,136 +1,134 @@
-IBDEI1TM ; ; 19-NOV-2015
+IBDEI1TM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30481,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,30482,0)
- ;;=M62.40^^135^1378^35
- ;;^UTILITY(U,$J,358.3,30482,1,0)
+ ;;^UTILITY(U,$J,358.3,30933,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,30933,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,30934,0)
+ ;;=F60.1^^123^1548^11
+ ;;^UTILITY(U,$J,358.3,30934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30482,1,3,0)
- ;;=3^Contracture of Muscle,Unspec
- ;;^UTILITY(U,$J,358.3,30482,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,30482,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,30483,0)
- ;;=M62.831^^135^1378^60
- ;;^UTILITY(U,$J,358.3,30483,1,0)
+ ;;^UTILITY(U,$J,358.3,30934,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30934,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,30934,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,30935,0)
+ ;;=F21.^^123^1548^12
+ ;;^UTILITY(U,$J,358.3,30935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30483,1,3,0)
- ;;=3^Muscle Spasm of Calf
- ;;^UTILITY(U,$J,358.3,30483,1,4,0)
- ;;=4^M62.831
- ;;^UTILITY(U,$J,358.3,30483,2)
- ;;=^5012681
- ;;^UTILITY(U,$J,358.3,30484,0)
- ;;=M62.838^^135^1378^58
- ;;^UTILITY(U,$J,358.3,30484,1,0)
+ ;;^UTILITY(U,$J,358.3,30935,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30935,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,30935,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,30936,0)
+ ;;=F60.5^^123^1548^7
+ ;;^UTILITY(U,$J,358.3,30936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30484,1,3,0)
- ;;=3^Muscle Spasm NEC
- ;;^UTILITY(U,$J,358.3,30484,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,30484,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,30485,0)
- ;;=M70.21^^135^1378^64
- ;;^UTILITY(U,$J,358.3,30485,1,0)
+ ;;^UTILITY(U,$J,358.3,30936,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30936,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,30936,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,30937,0)
+ ;;=F60.4^^123^1548^5
+ ;;^UTILITY(U,$J,358.3,30937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30485,1,3,0)
- ;;=3^Olecranon Bursitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,30485,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,30485,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,30486,0)
- ;;=M70.22^^135^1378^63
- ;;^UTILITY(U,$J,358.3,30486,1,0)
+ ;;^UTILITY(U,$J,358.3,30937,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30937,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,30937,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,30938,0)
+ ;;=F60.7^^123^1548^4
+ ;;^UTILITY(U,$J,358.3,30938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30486,1,3,0)
- ;;=3^Olecranon Bursitis,Left Elbow
- ;;^UTILITY(U,$J,358.3,30486,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,30486,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,30487,0)
- ;;=M71.161^^135^1378^47
- ;;^UTILITY(U,$J,358.3,30487,1,0)
+ ;;^UTILITY(U,$J,358.3,30938,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30938,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,30938,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,30939,0)
+ ;;=F60.2^^123^1548^1
+ ;;^UTILITY(U,$J,358.3,30939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30487,1,3,0)
- ;;=3^Infective Bursitis,Right Knee
- ;;^UTILITY(U,$J,358.3,30487,1,4,0)
- ;;=4^M71.161
- ;;^UTILITY(U,$J,358.3,30487,2)
- ;;=^5013139
- ;;^UTILITY(U,$J,358.3,30488,0)
- ;;=M71.162^^135^1378^46
- ;;^UTILITY(U,$J,358.3,30488,1,0)
+ ;;^UTILITY(U,$J,358.3,30939,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30939,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,30939,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,30940,0)
+ ;;=F60.81^^123^1548^6
+ ;;^UTILITY(U,$J,358.3,30940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30488,1,3,0)
- ;;=3^Infective Bursitis,Left Knee
- ;;^UTILITY(U,$J,358.3,30488,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,30488,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,30489,0)
- ;;=M72.0^^135^1378^100
- ;;^UTILITY(U,$J,358.3,30489,1,0)
+ ;;^UTILITY(U,$J,358.3,30940,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30940,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,30940,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,30941,0)
+ ;;=F60.6^^123^1548^2
+ ;;^UTILITY(U,$J,358.3,30941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30489,1,3,0)
- ;;=3^Palmar Fascial Fibromatosis
- ;;^UTILITY(U,$J,358.3,30489,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,30489,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,30490,0)
- ;;=M75.111^^135^1378^144
- ;;^UTILITY(U,$J,358.3,30490,1,0)
+ ;;^UTILITY(U,$J,358.3,30941,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30941,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,30941,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,30942,0)
+ ;;=F60.3^^123^1548^3
+ ;;^UTILITY(U,$J,358.3,30942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30490,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Right Shoulder
- ;;^UTILITY(U,$J,358.3,30490,1,4,0)
- ;;=4^M75.111
- ;;^UTILITY(U,$J,358.3,30490,2)
- ;;=^5013245
- ;;^UTILITY(U,$J,358.3,30491,0)
- ;;=M75.112^^135^1378^143
- ;;^UTILITY(U,$J,358.3,30491,1,0)
+ ;;^UTILITY(U,$J,358.3,30942,1,3,0)
+ ;;=3^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,30942,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,30942,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,30943,0)
+ ;;=F60.89^^123^1548^9
+ ;;^UTILITY(U,$J,358.3,30943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30491,1,3,0)
- ;;=3^Rotator Cuff Syndrome,Left Shoulder
- ;;^UTILITY(U,$J,358.3,30491,1,4,0)
- ;;=4^M75.112
- ;;^UTILITY(U,$J,358.3,30491,2)
- ;;=^5013246
- ;;^UTILITY(U,$J,358.3,30492,0)
- ;;=M75.51^^135^1378^10
- ;;^UTILITY(U,$J,358.3,30492,1,0)
+ ;;^UTILITY(U,$J,358.3,30943,1,3,0)
+ ;;=3^Personality Disorder NEC
+ ;;^UTILITY(U,$J,358.3,30943,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,30943,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,30944,0)
+ ;;=F60.9^^123^1548^10
+ ;;^UTILITY(U,$J,358.3,30944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30492,1,3,0)
- ;;=3^Bursitis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,30492,1,4,0)
- ;;=4^M75.51
- ;;^UTILITY(U,$J,358.3,30492,2)
- ;;=^5133690
- ;;^UTILITY(U,$J,358.3,30493,0)
- ;;=M75.52^^135^1378^9
- ;;^UTILITY(U,$J,358.3,30493,1,0)
+ ;;^UTILITY(U,$J,358.3,30944,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,30944,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,30944,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,30945,0)
+ ;;=Z65.4^^123^1549^4
+ ;;^UTILITY(U,$J,358.3,30945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30493,1,3,0)
- ;;=3^Bursitis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,30493,1,4,0)
- ;;=4^M75.52
- ;;^UTILITY(U,$J,358.3,30493,2)
- ;;=^5133691
- ;;^UTILITY(U,$J,358.3,30494,0)
- ;;=M77.11^^135^1378^54
- ;;^UTILITY(U,$J,358.3,30494,1,0)
+ ;;^UTILITY(U,$J,358.3,30945,1,3,0)
+ ;;=3^Victim of Crime,Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,30945,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,30945,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,30946,0)
+ ;;=Z65.0^^123^1549^1
+ ;;^UTILITY(U,$J,358.3,30946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30494,1,3,0)
- ;;=3^Lateral Epicondylitis,Right Elbow
- ;;^UTILITY(U,$J,358.3,30494,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,30494,2)
- ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,30946,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment

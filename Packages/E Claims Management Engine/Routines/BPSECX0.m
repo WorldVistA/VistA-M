@@ -1,6 +1,6 @@
 BPSECX0 ;BHAM ISC/FCS/DRS/VA/DLF - Retrieve Claim submission record ;05/17/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; This routine is used to pull data from BPS Claims and its multiples
  ; GETBPS2 - BPS Claims level
@@ -22,7 +22,8 @@ GETBPS2(CLAIMIEN,BPS) ; called from BPSECA1 > BPSOSQG > BPSOSQ2
  N D0,DA,DIC,DIQ,DIQ2,DR
  ;
  S DIC=9002313.02,DR="101:899;980:997"  ; all fields from 101-899 and 990-997, skip 901-908 (used for BPS overhead)
- S DR=DR_";1022;1043;1045" ;Get alphanumeric NCPDP fields 1022, 1043 and 1045 - BPS*1*15
+ S DR=DR_";1022;1043;1045" ;Get alphanumeric NCPDP fields 1022 (A22), 1043 (A23) and 1045 (A45)- BPS*1*15
+ S DR=DR_";2008;2009;2038" ;Get alphanumeric NCPDP fields 2008 (B08), 2009 (B09) and 2038 (B38) - BPS*1*19
  S DA=CLAIMIEN,DIQ="BPS",DIQ(0)="I"  ; "I" for internal format
  D EN^DIQ1
  Q
@@ -39,8 +40,12 @@ GETBPS3(CLAIMIEN,TRXIEN,BPS) ;called from BPSECA1
  ;
  N D0,DA,DIC,DIQ,DIQ2,DR
  ;
+ ; There are other alphanumeric fields that could be added but since they are for segments that are not
+ ;  supported by E1, B1, B3 transactions and/or not segments not used by VA.  These can be added later, if
+ ;  needed for those segments.
  S DIC=9002313.02,DR="400",DR(9002313.0201)="113:996"  ; all TRANSACTION fields
  S DR(9002313.0201)=DR(9002313.0201)_";1023:1032" ;Get alphanumeric NCPDP fields 1023 through 1032 - BPS*1*15
+ S DR(9002313.0201)=DR(9002313.0201)_";2026:2028;2040:2042" ;Get alphanumeric NCPDP fields 2026-2028 and 2040-2042 - BPS*1*19
  S DA=CLAIMIEN,DA(9002313.0201)=TRXIEN  ; IEN and sub-file IEN
  S DIQ="BPS",DIQ(0)="I"  ; "I" for internal format
  D EN^DIQ1

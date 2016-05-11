@@ -1,5 +1,5 @@
-SCRPW77 ;BP-CIOFO/KEITH,ESW - Clinic Appointment Availability Extract (cont.) ; 5/28/03 4:49pm
- ;;5.3;Scheduling;**223,241,291**;AUG 13, 1993
+SCRPW77 ;BP-CIOFO/KEITH,ESW - Clinic Appointment Availability Extract (cont.) ;1/5/16 12:25pm
+ ;;5.3;Scheduling;**223,241,291,645**;AUG 13, 1993;Build 7
  ;
 ACCRUE ;Accrue counts and averages to division and division/credit pair totals
  F  S SDCL=$O(^TMP("SDXNAVA",$J,SDCL)) Q:'SDCL  D
@@ -175,15 +175,19 @@ FOOT(SDTX) ;Report footer for retrospective report
  .S SDTX(1,8)=SDLINE Q
  I $G(SDREPORT(2)) D
  .S SDTX(2,1)=SDLINE
- .S SDTX(2,2)="NOTE:  The date range categories ('0-1', '2-7', '8-30', etc.) are based on the difference between the 'desired date' defined for the"
+ .; SD*5.3*645 - replaced 'desired date' with 'CID/Preferred Date' when presented to the user
+ .;S SDTX(2,2)="NOTE:  The date range categories ('0-1', '2-7', '8-30', etc.) are based on the difference between the 'desired date' defined for the"
+ .S SDTX(2,2)="NOTE:  The date range categories ('0-1', '2-7', '8-3, etc.) are based on the difference between the 'CID/Preferred Date' defined for the"
  .S SDTX(2,3)="appointment and the date the appointment was performed.  'Wait Time' reflects the average of this difference for all appointments in"
  .S SDTX(2,4)="each category.  'Follow up' status is determined by encounter activity to the same DSS ID credit pair as the appointment clinic"
  .S SDTX(2,5)="within the previous 24 months."
  .S SDTX(2,6)=SDLINE Q
  I $G(SDREPORT(3)) D
  .S SDTX(3,1)=SDLINE
- .S SDTX(3,2)="NOTE:  The date range categories ('0-1', '2-7', '8-30', etc.) are based on the difference between the 'desired date' defined for the"
- .S SDTX(3,3)="appointment and the date the appointment was performed.  'Wait Time1' reflects the average difference between the 'desired date' and"
+ .;SD*5.3*645 - replaced 'desired date' with 'CID/Preferred date' when presented to the user
+ .;S SDTX(3,2)="NOTE:  The date range categories ('0-1', '2-7', '8-30', etc.) are based on the difference between the 'desired date' defined for the"
+ .S SDTX(3,2)="NOTE:  The date range categories ('0-1', '2-7', '8-30, etc.) are based on the difference between the 'CID/Preferred Date' defined for the"
+ .S SDTX(3,3)="appointment and the date the appointment was performed.  'Wait Time1' reflects the average difference between the 'CID/Preferred Date' and"
  .S SDTX(3,4)="the date the appointment was performed.  'Wait Time2' reflects the average difference between the transaction date (the date the"
  .S SDTX(3,5)="appointment was entered by the Scheduling package user) and the date the appointment was performed.  'Non-follow up' status is"
  .S SDTX(3,6)="determined by the absence of encounter activity to the same DSS ID credit pair as the appointment clinic in the previous 24 months."
@@ -192,7 +196,7 @@ FOOT(SDTX) ;Report footer for retrospective report
  .S SDTX(4,1)=SDLINE
  .S SDTX(4,2)="NOTE:  'Next Ava. Ind.' Values--'0' = not indicated by the user or calculation to be a 'next available' appointment, '1' = defined"
  .S SDTX(4,3)="by the user as a 'next available' appointment, '2' = indicated by calculation to be a 'next available' appointment, '3' = indicated"
- .S SDTX(4,4)="by the user and by calculation to be a 'next available' appointment.  'Wait Time1' = the difference between the 'date desired' and"
+ .S SDTX(4,4)="by the user and by calculation to be a 'next available' appointment.  'Wait Time1' = the difference between the 'CID/Preferred Date' and"
  .S SDTX(4,5)="the date of the appointment.  'Wait Time2' = the difference between the 'date scheduled' and the date of the appointment."
  .S SDTX(4,6)=SDLINE Q
  I $G(SDREPORT(5)) D FOOT^SCRPW78(.SDTX,SDLINE) Q

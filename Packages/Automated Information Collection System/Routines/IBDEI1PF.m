@@ -1,128 +1,122 @@
-IBDEI1PF ; ; 19-NOV-2015
+IBDEI1PF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28523,1,3,0)
- ;;=3^Elevated Urine Levels of Drug/Meds/Biol Subst
- ;;^UTILITY(U,$J,358.3,28523,1,4,0)
- ;;=4^R82.5
- ;;^UTILITY(U,$J,358.3,28523,2)
- ;;=^5019605
- ;;^UTILITY(U,$J,358.3,28524,0)
- ;;=R82.6^^132^1332^26
- ;;^UTILITY(U,$J,358.3,28524,1,0)
+ ;;^UTILITY(U,$J,358.3,28960,1,4,0)
+ ;;=4^O30.121
+ ;;^UTILITY(U,$J,358.3,28960,2)
+ ;;=^5016459
+ ;;^UTILITY(U,$J,358.3,28961,0)
+ ;;=O30.122^^115^1454^54
+ ;;^UTILITY(U,$J,358.3,28961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28524,1,3,0)
- ;;=3^Abnormal Urine Levels of Subst of Nonmed Source
- ;;^UTILITY(U,$J,358.3,28524,1,4,0)
- ;;=4^R82.6
- ;;^UTILITY(U,$J,358.3,28524,2)
- ;;=^5019606
- ;;^UTILITY(U,$J,358.3,28525,0)
- ;;=R82.7^^132^1332^27
- ;;^UTILITY(U,$J,358.3,28525,1,0)
+ ;;^UTILITY(U,$J,358.3,28961,1,3,0)
+ ;;=3^Triplet preg w two or more monoamnio fetuses, second tri
+ ;;^UTILITY(U,$J,358.3,28961,1,4,0)
+ ;;=4^O30.122
+ ;;^UTILITY(U,$J,358.3,28961,2)
+ ;;=^5016460
+ ;;^UTILITY(U,$J,358.3,28962,0)
+ ;;=O30.123^^115^1454^55
+ ;;^UTILITY(U,$J,358.3,28962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28525,1,3,0)
- ;;=3^Abnormal Urine Microbiological Findings
- ;;^UTILITY(U,$J,358.3,28525,1,4,0)
- ;;=4^R82.7
- ;;^UTILITY(U,$J,358.3,28525,2)
- ;;=^5019607
- ;;^UTILITY(U,$J,358.3,28526,0)
- ;;=R82.8^^132^1332^23
- ;;^UTILITY(U,$J,358.3,28526,1,0)
+ ;;^UTILITY(U,$J,358.3,28962,1,3,0)
+ ;;=3^Triplet preg w two or more monoamnio fetuses, third tri
+ ;;^UTILITY(U,$J,358.3,28962,1,4,0)
+ ;;=4^O30.123
+ ;;^UTILITY(U,$J,358.3,28962,2)
+ ;;=^5016461
+ ;;^UTILITY(U,$J,358.3,28963,0)
+ ;;=O30.191^^115^1454^59
+ ;;^UTILITY(U,$J,358.3,28963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28526,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings
- ;;^UTILITY(U,$J,358.3,28526,1,4,0)
- ;;=4^R82.8
- ;;^UTILITY(U,$J,358.3,28526,2)
- ;;=^5019608
- ;;^UTILITY(U,$J,358.3,28527,0)
- ;;=R82.90^^132^1332^25
- ;;^UTILITY(U,$J,358.3,28527,1,0)
+ ;;^UTILITY(U,$J,358.3,28963,1,3,0)
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, first tri
+ ;;^UTILITY(U,$J,358.3,28963,1,4,0)
+ ;;=4^O30.191
+ ;;^UTILITY(U,$J,358.3,28963,2)
+ ;;=^5016463
+ ;;^UTILITY(U,$J,358.3,28964,0)
+ ;;=O30.192^^115^1454^60
+ ;;^UTILITY(U,$J,358.3,28964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28527,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,28527,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,28527,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,28528,0)
- ;;=R82.91^^132^1332^49
- ;;^UTILITY(U,$J,358.3,28528,1,0)
+ ;;^UTILITY(U,$J,358.3,28964,1,3,0)
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, second tri
+ ;;^UTILITY(U,$J,358.3,28964,1,4,0)
+ ;;=4^O30.192
+ ;;^UTILITY(U,$J,358.3,28964,2)
+ ;;=^5016464
+ ;;^UTILITY(U,$J,358.3,28965,0)
+ ;;=O30.193^^115^1454^61
+ ;;^UTILITY(U,$J,358.3,28965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28528,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,28528,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,28528,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,28529,0)
- ;;=R82.99^^132^1332^24
- ;;^UTILITY(U,$J,358.3,28529,1,0)
+ ;;^UTILITY(U,$J,358.3,28965,1,3,0)
+ ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, third tri
+ ;;^UTILITY(U,$J,358.3,28965,1,4,0)
+ ;;=4^O30.193
+ ;;^UTILITY(U,$J,358.3,28965,2)
+ ;;=^5016465
+ ;;^UTILITY(U,$J,358.3,28966,0)
+ ;;=O30.201^^115^1454^50
+ ;;^UTILITY(U,$J,358.3,28966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28529,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,28529,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,28529,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,28530,0)
- ;;=R89.9^^132^1332^19
- ;;^UTILITY(U,$J,358.3,28530,1,0)
+ ;;^UTILITY(U,$J,358.3,28966,1,3,0)
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, first trimester
+ ;;^UTILITY(U,$J,358.3,28966,1,4,0)
+ ;;=4^O30.201
+ ;;^UTILITY(U,$J,358.3,28966,2)
+ ;;=^5016467
+ ;;^UTILITY(U,$J,358.3,28967,0)
+ ;;=O30.202^^115^1454^51
+ ;;^UTILITY(U,$J,358.3,28967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28530,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,28530,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,28530,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,28531,0)
- ;;=R90.0^^132^1332^98
- ;;^UTILITY(U,$J,358.3,28531,1,0)
+ ;;^UTILITY(U,$J,358.3,28967,1,3,0)
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, second trimester
+ ;;^UTILITY(U,$J,358.3,28967,1,4,0)
+ ;;=4^O30.202
+ ;;^UTILITY(U,$J,358.3,28967,2)
+ ;;=^5016468
+ ;;^UTILITY(U,$J,358.3,28968,0)
+ ;;=O30.203^^115^1454^52
+ ;;^UTILITY(U,$J,358.3,28968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28531,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,28531,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,28531,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,28532,0)
- ;;=R90.89^^132^1332^13
- ;;^UTILITY(U,$J,358.3,28532,1,0)
+ ;;^UTILITY(U,$J,358.3,28968,1,3,0)
+ ;;=3^Quad preg, unsp num plcnta & amnio sacs, third trimester
+ ;;^UTILITY(U,$J,358.3,28968,1,4,0)
+ ;;=4^O30.203
+ ;;^UTILITY(U,$J,358.3,28968,2)
+ ;;=^5016469
+ ;;^UTILITY(U,$J,358.3,28969,0)
+ ;;=O30.211^^115^1454^44
+ ;;^UTILITY(U,$J,358.3,28969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28532,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,28532,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,28532,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,28533,0)
- ;;=R91.8^^132^1332^18
- ;;^UTILITY(U,$J,358.3,28533,1,0)
+ ;;^UTILITY(U,$J,358.3,28969,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, first tri
+ ;;^UTILITY(U,$J,358.3,28969,1,4,0)
+ ;;=4^O30.211
+ ;;^UTILITY(U,$J,358.3,28969,2)
+ ;;=^5016470
+ ;;^UTILITY(U,$J,358.3,28970,0)
+ ;;=O30.212^^115^1454^45
+ ;;^UTILITY(U,$J,358.3,28970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28533,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,28533,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,28533,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,28534,0)
- ;;=R92.0^^132^1332^117
- ;;^UTILITY(U,$J,358.3,28534,1,0)
+ ;;^UTILITY(U,$J,358.3,28970,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, second tri
+ ;;^UTILITY(U,$J,358.3,28970,1,4,0)
+ ;;=4^O30.212
+ ;;^UTILITY(U,$J,358.3,28970,2)
+ ;;=^5016471
+ ;;^UTILITY(U,$J,358.3,28971,0)
+ ;;=O30.213^^115^1454^46
+ ;;^UTILITY(U,$J,358.3,28971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28534,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,28534,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,28534,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,28535,0)
- ;;=R92.1^^132^1332^116
- ;;^UTILITY(U,$J,358.3,28535,1,0)
+ ;;^UTILITY(U,$J,358.3,28971,1,3,0)
+ ;;=3^Quad preg w two or more monochorionic fetuses, third tri
+ ;;^UTILITY(U,$J,358.3,28971,1,4,0)
+ ;;=4^O30.213
+ ;;^UTILITY(U,$J,358.3,28971,2)
+ ;;=^5016472
+ ;;^UTILITY(U,$J,358.3,28972,0)
+ ;;=O30.221^^115^1454^41
+ ;;^UTILITY(U,$J,358.3,28972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28535,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,28535,1,4,0)
- ;;=4^R92.1

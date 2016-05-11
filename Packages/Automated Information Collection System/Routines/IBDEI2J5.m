@@ -1,124 +1,140 @@
-IBDEI2J5 ; ; 19-NOV-2015
+IBDEI2J5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42446,1,4,0)
- ;;=4^S92.411K
- ;;^UTILITY(U,$J,358.3,42446,2)
- ;;=^5045302
- ;;^UTILITY(U,$J,358.3,42447,0)
- ;;=S92.405K^^192^2137^265
- ;;^UTILITY(U,$J,358.3,42447,1,0)
+ ;;^UTILITY(U,$J,358.3,42914,0)
+ ;;=N40.0^^162^2050^8
+ ;;^UTILITY(U,$J,358.3,42914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42447,1,3,0)
- ;;=3^Nondisp fx lft grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42447,1,4,0)
- ;;=4^S92.405K
- ;;^UTILITY(U,$J,358.3,42447,2)
- ;;=^5045295
- ;;^UTILITY(U,$J,358.3,42448,0)
- ;;=S92.912K^^192^2137^203
- ;;^UTILITY(U,$J,358.3,42448,1,0)
+ ;;^UTILITY(U,$J,358.3,42914,1,3,0)
+ ;;=3^Enlarged prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,42914,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,42914,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,42915,0)
+ ;;=N41.0^^162^2050^2
+ ;;^UTILITY(U,$J,358.3,42915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42448,1,3,0)
- ;;=3^Fx of lft toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42448,1,4,0)
- ;;=4^S92.912K
- ;;^UTILITY(U,$J,358.3,42448,2)
- ;;=^5045603
- ;;^UTILITY(U,$J,358.3,42449,0)
- ;;=S92.911K^^192^2137^220
- ;;^UTILITY(U,$J,358.3,42449,1,0)
+ ;;^UTILITY(U,$J,358.3,42915,1,3,0)
+ ;;=3^Acute prostatitis
+ ;;^UTILITY(U,$J,358.3,42915,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,42915,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,42916,0)
+ ;;=N41.1^^162^2050^5
+ ;;^UTILITY(U,$J,358.3,42916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42449,1,3,0)
- ;;=3^Fx of rt toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42449,1,4,0)
- ;;=4^S92.911K
- ;;^UTILITY(U,$J,358.3,42449,2)
- ;;=^5045596
- ;;^UTILITY(U,$J,358.3,42450,0)
- ;;=S92.902K^^192^2137^194
- ;;^UTILITY(U,$J,358.3,42450,1,0)
+ ;;^UTILITY(U,$J,358.3,42916,1,3,0)
+ ;;=3^Chronic prostatitis
+ ;;^UTILITY(U,$J,358.3,42916,1,4,0)
+ ;;=4^N41.1
+ ;;^UTILITY(U,$J,358.3,42916,2)
+ ;;=^186931
+ ;;^UTILITY(U,$J,358.3,42917,0)
+ ;;=N41.2^^162^2050^1
+ ;;^UTILITY(U,$J,358.3,42917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42450,1,3,0)
- ;;=3^Fx of lft ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42450,1,4,0)
- ;;=4^S92.902K
- ;;^UTILITY(U,$J,358.3,42450,2)
- ;;=^5045589
- ;;^UTILITY(U,$J,358.3,42451,0)
- ;;=S92.901K^^192^2137^210
- ;;^UTILITY(U,$J,358.3,42451,1,0)
+ ;;^UTILITY(U,$J,358.3,42917,1,3,0)
+ ;;=3^Abscess of prostate
+ ;;^UTILITY(U,$J,358.3,42917,1,4,0)
+ ;;=4^N41.2
+ ;;^UTILITY(U,$J,358.3,42917,2)
+ ;;=^270416
+ ;;^UTILITY(U,$J,358.3,42918,0)
+ ;;=N40.1^^162^2050^7
+ ;;^UTILITY(U,$J,358.3,42918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42451,1,3,0)
- ;;=3^Fx of rt ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42451,1,4,0)
- ;;=4^S92.901K
- ;;^UTILITY(U,$J,358.3,42451,2)
- ;;=^5045582
- ;;^UTILITY(U,$J,358.3,42452,0)
- ;;=S92.592K^^192^2137^198
- ;;^UTILITY(U,$J,358.3,42452,1,0)
+ ;;^UTILITY(U,$J,358.3,42918,1,3,0)
+ ;;=3^Enlarged prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,42918,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,42918,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,42919,0)
+ ;;=N40.2^^162^2050^10
+ ;;^UTILITY(U,$J,358.3,42919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42452,1,3,0)
- ;;=3^Fx of lft lsr toe(s), subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42452,1,4,0)
- ;;=4^S92.592K
- ;;^UTILITY(U,$J,358.3,42452,2)
- ;;=^5045568
- ;;^UTILITY(U,$J,358.3,42453,0)
- ;;=S92.591K^^192^2137^215
- ;;^UTILITY(U,$J,358.3,42453,1,0)
+ ;;^UTILITY(U,$J,358.3,42919,1,3,0)
+ ;;=3^Nodular prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,42919,1,4,0)
+ ;;=4^N40.2
+ ;;^UTILITY(U,$J,358.3,42919,2)
+ ;;=^5015691
+ ;;^UTILITY(U,$J,358.3,42920,0)
+ ;;=N40.3^^162^2050^9
+ ;;^UTILITY(U,$J,358.3,42920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42453,1,3,0)
- ;;=3^Fx of rt lsr toe(s), subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42453,1,4,0)
- ;;=4^S92.591K
- ;;^UTILITY(U,$J,358.3,42453,2)
- ;;=^5045561
- ;;^UTILITY(U,$J,358.3,42454,0)
- ;;=S92.035K^^192^2137^229
- ;;^UTILITY(U,$J,358.3,42454,1,0)
+ ;;^UTILITY(U,$J,358.3,42920,1,3,0)
+ ;;=3^Nodular prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,42920,1,4,0)
+ ;;=4^N40.3
+ ;;^UTILITY(U,$J,358.3,42920,2)
+ ;;=^5015692
+ ;;^UTILITY(U,$J,358.3,42921,0)
+ ;;=N40.1^^162^2050^3
+ ;;^UTILITY(U,$J,358.3,42921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42454,1,3,0)
- ;;=3^Nondisp avuls fx tubersity lft calc, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42454,1,4,0)
- ;;=4^S92.035K
- ;;^UTILITY(U,$J,358.3,42454,2)
- ;;=^5044483
- ;;^UTILITY(U,$J,358.3,42455,0)
- ;;=S92.034K^^192^2137^228
- ;;^UTILITY(U,$J,358.3,42455,1,0)
+ ;;^UTILITY(U,$J,358.3,42921,1,3,0)
+ ;;=3^BPH w/ LUTS
+ ;;^UTILITY(U,$J,358.3,42921,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,42921,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,42922,0)
+ ;;=R97.2^^162^2050^6
+ ;;^UTILITY(U,$J,358.3,42922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42455,1,3,0)
- ;;=3^Nondisp avuls fx tuberosity rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42455,1,4,0)
- ;;=4^S92.034K
- ;;^UTILITY(U,$J,358.3,42455,2)
- ;;=^5044476
- ;;^UTILITY(U,$J,358.3,42456,0)
- ;;=S92.032K^^192^2137^6
- ;;^UTILITY(U,$J,358.3,42456,1,0)
+ ;;^UTILITY(U,$J,358.3,42922,1,3,0)
+ ;;=3^Elevasted PSA
+ ;;^UTILITY(U,$J,358.3,42922,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,42922,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,42923,0)
+ ;;=Z12.5^^162^2050^11
+ ;;^UTILITY(U,$J,358.3,42923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42456,1,3,0)
- ;;=3^Disp avuls fx tubersotiy lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42456,1,4,0)
- ;;=4^S92.032K
- ;;^UTILITY(U,$J,358.3,42456,2)
- ;;=^5044462
- ;;^UTILITY(U,$J,358.3,42457,0)
- ;;=S92.031K^^192^2137^5
- ;;^UTILITY(U,$J,358.3,42457,1,0)
+ ;;^UTILITY(U,$J,358.3,42923,1,3,0)
+ ;;=3^Screen for Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,42923,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,42923,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,42924,0)
+ ;;=D29.21^^162^2051^2
+ ;;^UTILITY(U,$J,358.3,42924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42457,1,3,0)
- ;;=3^Disp avuls fx tuberosity rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42457,1,4,0)
- ;;=4^S92.031K
- ;;^UTILITY(U,$J,358.3,42457,2)
- ;;=^5044455
- ;;^UTILITY(U,$J,358.3,42458,0)
- ;;=S92.025K^^192^2137^253
- ;;^UTILITY(U,$J,358.3,42458,1,0)
+ ;;^UTILITY(U,$J,358.3,42924,1,3,0)
+ ;;=3^Benign neoplasm of right testis
+ ;;^UTILITY(U,$J,358.3,42924,1,4,0)
+ ;;=4^D29.21
+ ;;^UTILITY(U,$J,358.3,42924,2)
+ ;;=^5002093
+ ;;^UTILITY(U,$J,358.3,42925,0)
+ ;;=D29.22^^162^2051^1
+ ;;^UTILITY(U,$J,358.3,42925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42458,1,3,0)
- ;;=3^Nondisp fx ant pro lft calcaneus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,42925,1,3,0)
+ ;;=3^Benign neoplasm of left testis
+ ;;^UTILITY(U,$J,358.3,42925,1,4,0)
+ ;;=4^D29.22
+ ;;^UTILITY(U,$J,358.3,42925,2)
+ ;;=^5002094
+ ;;^UTILITY(U,$J,358.3,42926,0)
+ ;;=E29.1^^162^2051^15
+ ;;^UTILITY(U,$J,358.3,42926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42926,1,3,0)
+ ;;=3^Testicular hypofunction
+ ;;^UTILITY(U,$J,358.3,42926,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,42926,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,42927,0)
+ ;;=N43.3^^162^2051^9
+ ;;^UTILITY(U,$J,358.3,42927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42927,1,3,0)
+ ;;=3^Hydrocele, unspec

@@ -1,124 +1,140 @@
-IBDEI0QU ; ; 19-NOV-2015
+IBDEI0QU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12292,1,4,0)
- ;;=4^S86.892A
- ;;^UTILITY(U,$J,358.3,12292,2)
- ;;=^5137174
- ;;^UTILITY(U,$J,358.3,12293,0)
- ;;=S43.51XA^^71^708^221
- ;;^UTILITY(U,$J,358.3,12293,1,0)
+ ;;^UTILITY(U,$J,358.3,12591,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,12591,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,12592,0)
+ ;;=D64.9^^53^577^3
+ ;;^UTILITY(U,$J,358.3,12592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12293,1,3,0)
- ;;=3^Sprain of right acromioclavicular joint, initial encounter
- ;;^UTILITY(U,$J,358.3,12293,1,4,0)
- ;;=4^S43.51XA
- ;;^UTILITY(U,$J,358.3,12293,2)
- ;;=^5027903
- ;;^UTILITY(U,$J,358.3,12294,0)
- ;;=S43.52XA^^71^708^202
- ;;^UTILITY(U,$J,358.3,12294,1,0)
+ ;;^UTILITY(U,$J,358.3,12592,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,12592,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,12592,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,12593,0)
+ ;;=F17.200^^53^577^41
+ ;;^UTILITY(U,$J,358.3,12593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12294,1,3,0)
- ;;=3^Sprain of left acromioclavicular joint, initial encounter
- ;;^UTILITY(U,$J,358.3,12294,1,4,0)
- ;;=4^S43.52XA
- ;;^UTILITY(U,$J,358.3,12294,2)
- ;;=^5027906
- ;;^UTILITY(U,$J,358.3,12295,0)
- ;;=S93.401A^^71^708^240
- ;;^UTILITY(U,$J,358.3,12295,1,0)
+ ;;^UTILITY(U,$J,358.3,12593,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,12593,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,12593,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,12594,0)
+ ;;=F17.229^^53^577^38
+ ;;^UTILITY(U,$J,358.3,12594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12295,1,3,0)
- ;;=3^Sprain of unspecified ligament of right ankle, init encntr
- ;;^UTILITY(U,$J,358.3,12295,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,12295,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,12296,0)
- ;;=S93.402A^^71^708^239
- ;;^UTILITY(U,$J,358.3,12296,1,0)
+ ;;^UTILITY(U,$J,358.3,12594,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco
+ ;;^UTILITY(U,$J,358.3,12594,1,4,0)
+ ;;=4^F17.229
+ ;;^UTILITY(U,$J,358.3,12594,2)
+ ;;=^5003374
+ ;;^UTILITY(U,$J,358.3,12595,0)
+ ;;=F19.10^^53^577^53
+ ;;^UTILITY(U,$J,358.3,12595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12296,1,3,0)
- ;;=3^Sprain of unspecified ligament of left ankle, init encntr
- ;;^UTILITY(U,$J,358.3,12296,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,12296,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,12297,0)
- ;;=S53.401A^^71^708^222
- ;;^UTILITY(U,$J,358.3,12297,1,0)
+ ;;^UTILITY(U,$J,358.3,12595,1,3,0)
+ ;;=3^Substance Abuse,Unspec
+ ;;^UTILITY(U,$J,358.3,12595,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,12595,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,12596,0)
+ ;;=F15.10^^53^577^52
+ ;;^UTILITY(U,$J,358.3,12596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12297,1,3,0)
- ;;=3^Sprain of right elbow unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12297,1,4,0)
- ;;=4^S53.401A
- ;;^UTILITY(U,$J,358.3,12297,2)
- ;;=^5031361
- ;;^UTILITY(U,$J,358.3,12298,0)
- ;;=S53.402A^^71^708^203
- ;;^UTILITY(U,$J,358.3,12298,1,0)
+ ;;^UTILITY(U,$J,358.3,12596,1,3,0)
+ ;;=3^Stimulant Abuse,Unspec
+ ;;^UTILITY(U,$J,358.3,12596,1,4,0)
+ ;;=4^F15.10
+ ;;^UTILITY(U,$J,358.3,12596,2)
+ ;;=^5003282
+ ;;^UTILITY(U,$J,358.3,12597,0)
+ ;;=F43.21^^53^577^2
+ ;;^UTILITY(U,$J,358.3,12597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12298,1,3,0)
- ;;=3^Sprain of left elbow unspec, initial encounter
- ;;^UTILITY(U,$J,358.3,12298,1,4,0)
- ;;=4^S53.402A
- ;;^UTILITY(U,$J,358.3,12298,2)
- ;;=^5031364
- ;;^UTILITY(U,$J,358.3,12299,0)
- ;;=S63.610A^^71^708^225
- ;;^UTILITY(U,$J,358.3,12299,1,0)
+ ;;^UTILITY(U,$J,358.3,12597,1,3,0)
+ ;;=3^Adjustment d/o w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,12597,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,12597,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,12598,0)
+ ;;=G43.909^^53^577^37
+ ;;^UTILITY(U,$J,358.3,12598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12299,1,3,0)
- ;;=3^Sprain of right index finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,12299,1,4,0)
- ;;=4^S63.610A
- ;;^UTILITY(U,$J,358.3,12299,2)
- ;;=^5035622
- ;;^UTILITY(U,$J,358.3,12300,0)
- ;;=S63.611A^^71^708^206
- ;;^UTILITY(U,$J,358.3,12300,1,0)
+ ;;^UTILITY(U,$J,358.3,12598,1,3,0)
+ ;;=3^Migraine,Unspec
+ ;;^UTILITY(U,$J,358.3,12598,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,12598,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,12599,0)
+ ;;=H91.90^^53^577^25
+ ;;^UTILITY(U,$J,358.3,12599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12300,1,3,0)
- ;;=3^Sprain of left index finger unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,12300,1,4,0)
- ;;=4^S63.611A
- ;;^UTILITY(U,$J,358.3,12300,2)
- ;;=^5035625
- ;;^UTILITY(U,$J,358.3,12301,0)
- ;;=S63.612A^^71^708^228
- ;;^UTILITY(U,$J,358.3,12301,1,0)
+ ;;^UTILITY(U,$J,358.3,12599,1,3,0)
+ ;;=3^Hearing Loss,Unspecified Ear
+ ;;^UTILITY(U,$J,358.3,12599,1,4,0)
+ ;;=4^H91.90
+ ;;^UTILITY(U,$J,358.3,12599,2)
+ ;;=^5006943
+ ;;^UTILITY(U,$J,358.3,12600,0)
+ ;;=H91.91^^53^577^24
+ ;;^UTILITY(U,$J,358.3,12600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12301,1,3,0)
- ;;=3^Sprain of right middle finger unspec, initial enco
- ;;^UTILITY(U,$J,358.3,12301,1,4,0)
- ;;=4^S63.612A
- ;;^UTILITY(U,$J,358.3,12301,2)
- ;;=^5035628
- ;;^UTILITY(U,$J,358.3,12302,0)
- ;;=S63.613A^^71^708^209
- ;;^UTILITY(U,$J,358.3,12302,1,0)
+ ;;^UTILITY(U,$J,358.3,12600,1,3,0)
+ ;;=3^Hearing Loss,Right Ear
+ ;;^UTILITY(U,$J,358.3,12600,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,12600,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,12601,0)
+ ;;=H91.92^^53^577^23
+ ;;^UTILITY(U,$J,358.3,12601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12302,1,3,0)
- ;;=3^Sprain of left middle finger unspec, initial encou
- ;;^UTILITY(U,$J,358.3,12302,1,4,0)
- ;;=4^S63.613A
- ;;^UTILITY(U,$J,358.3,12302,2)
- ;;=^5035631
- ;;^UTILITY(U,$J,358.3,12303,0)
- ;;=S63.614A^^71^708^229
- ;;^UTILITY(U,$J,358.3,12303,1,0)
+ ;;^UTILITY(U,$J,358.3,12601,1,3,0)
+ ;;=3^Hearing Loss,Left Ear
+ ;;^UTILITY(U,$J,358.3,12601,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,12601,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,12602,0)
+ ;;=H91.93^^53^577^22
+ ;;^UTILITY(U,$J,358.3,12602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12303,1,3,0)
- ;;=3^Sprain of right ring finger unspec, initial encoun
- ;;^UTILITY(U,$J,358.3,12303,1,4,0)
- ;;=4^S63.614A
- ;;^UTILITY(U,$J,358.3,12303,2)
- ;;=^5035634
- ;;^UTILITY(U,$J,358.3,12304,0)
- ;;=S63.615A^^71^708^210
- ;;^UTILITY(U,$J,358.3,12304,1,0)
+ ;;^UTILITY(U,$J,358.3,12602,1,3,0)
+ ;;=3^Hearing Loss,Bilateral
+ ;;^UTILITY(U,$J,358.3,12602,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,12602,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,12603,0)
+ ;;=I10.^^53^577^29
+ ;;^UTILITY(U,$J,358.3,12603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12304,1,3,0)
- ;;=3^Sprain of left ring finger unspec, initial encount
+ ;;^UTILITY(U,$J,358.3,12603,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,12603,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,12603,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,12604,0)
+ ;;=I50.9^^53^577^14
+ ;;^UTILITY(U,$J,358.3,12604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12604,1,3,0)
+ ;;=3^Congestive Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,12604,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,12604,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,12605,0)
+ ;;=I67.89^^53^577^13

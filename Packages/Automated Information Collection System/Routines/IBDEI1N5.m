@@ -1,130 +1,128 @@
-IBDEI1N5 ; ; 19-NOV-2015
+IBDEI1N5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27456,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,27456,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,27457,0)
- ;;=I12.9^^132^1316^55
- ;;^UTILITY(U,$J,358.3,27457,1,0)
+ ;;^UTILITY(U,$J,358.3,27852,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,27852,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,27853,0)
+ ;;=G10.^^109^1388^25
+ ;;^UTILITY(U,$J,358.3,27853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27457,1,3,0)
- ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
- ;;^UTILITY(U,$J,358.3,27457,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,27457,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,27458,0)
- ;;=N04.9^^132^1316^69
- ;;^UTILITY(U,$J,358.3,27458,1,0)
+ ;;^UTILITY(U,$J,358.3,27853,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,27853,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,27853,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,27854,0)
+ ;;=G90.3^^109^1388^27
+ ;;^UTILITY(U,$J,358.3,27854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27458,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,27458,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,27458,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,27459,0)
- ;;=N02.9^^132^1316^50
- ;;^UTILITY(U,$J,358.3,27459,1,0)
+ ;;^UTILITY(U,$J,358.3,27854,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,27854,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,27854,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,27855,0)
+ ;;=G91.2^^109^1388^28
+ ;;^UTILITY(U,$J,358.3,27855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27459,1,3,0)
- ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
- ;;^UTILITY(U,$J,358.3,27459,1,4,0)
- ;;=4^N02.9
- ;;^UTILITY(U,$J,358.3,27459,2)
- ;;=^5015520
- ;;^UTILITY(U,$J,358.3,27460,0)
- ;;=N06.9^^132^1316^86
- ;;^UTILITY(U,$J,358.3,27460,1,0)
+ ;;^UTILITY(U,$J,358.3,27855,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,27855,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,27855,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,27856,0)
+ ;;=G91.2^^109^1388^29
+ ;;^UTILITY(U,$J,358.3,27856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27460,1,3,0)
- ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
- ;;^UTILITY(U,$J,358.3,27460,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,27460,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,27461,0)
- ;;=N05.9^^132^1316^66
- ;;^UTILITY(U,$J,358.3,27461,1,0)
+ ;;^UTILITY(U,$J,358.3,27856,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,27856,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,27856,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,27857,0)
+ ;;=G30.8^^109^1388^2
+ ;;^UTILITY(U,$J,358.3,27857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27461,1,3,0)
- ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,27461,1,4,0)
- ;;=4^N05.9
- ;;^UTILITY(U,$J,358.3,27461,2)
- ;;=^5134086
- ;;^UTILITY(U,$J,358.3,27462,0)
- ;;=N07.9^^132^1316^68
- ;;^UTILITY(U,$J,358.3,27462,1,0)
+ ;;^UTILITY(U,$J,358.3,27857,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,27857,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,27857,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,27858,0)
+ ;;=G31.09^^109^1388^19
+ ;;^UTILITY(U,$J,358.3,27858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27462,1,3,0)
- ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
- ;;^UTILITY(U,$J,358.3,27462,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,27462,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,27463,0)
- ;;=N15.9^^132^1316^92
- ;;^UTILITY(U,$J,358.3,27463,1,0)
+ ;;^UTILITY(U,$J,358.3,27858,1,3,0)
+ ;;=3^Frontotemporal Dementia NEC
+ ;;^UTILITY(U,$J,358.3,27858,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,27858,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,27859,0)
+ ;;=G20.^^109^1388^30
+ ;;^UTILITY(U,$J,358.3,27859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27463,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,27463,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,27463,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,27464,0)
- ;;=N17.9^^132^1316^61
- ;;^UTILITY(U,$J,358.3,27464,1,0)
+ ;;^UTILITY(U,$J,358.3,27859,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,27859,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,27859,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,27860,0)
+ ;;=G20.^^109^1388^31
+ ;;^UTILITY(U,$J,358.3,27860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27464,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,27464,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,27464,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,27465,0)
- ;;=N19.^^132^1316^62
- ;;^UTILITY(U,$J,358.3,27465,1,0)
+ ;;^UTILITY(U,$J,358.3,27860,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,27860,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,27860,2)
+ ;;=^5003770^F02.80
+ ;;^UTILITY(U,$J,358.3,27861,0)
+ ;;=G23.1^^109^1388^34
+ ;;^UTILITY(U,$J,358.3,27861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27465,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,27465,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,27465,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,27466,0)
- ;;=N11.0^^132^1316^90
- ;;^UTILITY(U,$J,358.3,27466,1,0)
+ ;;^UTILITY(U,$J,358.3,27861,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia
+ ;;^UTILITY(U,$J,358.3,27861,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,27861,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,27862,0)
+ ;;=E53.8^^109^1389^6
+ ;;^UTILITY(U,$J,358.3,27862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27466,1,3,0)
- ;;=3^Pyelonephritis,Chronic Nonobstructive Reflux-Associated
- ;;^UTILITY(U,$J,358.3,27466,1,4,0)
- ;;=4^N11.0
- ;;^UTILITY(U,$J,358.3,27466,2)
- ;;=^5015571
- ;;^UTILITY(U,$J,358.3,27467,0)
- ;;=N10.^^132^1316^67
- ;;^UTILITY(U,$J,358.3,27467,1,0)
+ ;;^UTILITY(U,$J,358.3,27862,1,3,0)
+ ;;=3^Deficiency of Vitamin B Group,Other Spec
+ ;;^UTILITY(U,$J,358.3,27862,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,27862,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,27863,0)
+ ;;=F44.4^^109^1389^4
+ ;;^UTILITY(U,$J,358.3,27863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27467,1,3,0)
- ;;=3^Nephritis Acute Tubulo-Interstitial
- ;;^UTILITY(U,$J,358.3,27467,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,27467,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,27468,0)
- ;;=N20.2^^132^1316^8
- ;;^UTILITY(U,$J,358.3,27468,1,0)
+ ;;^UTILITY(U,$J,358.3,27863,1,3,0)
+ ;;=3^Conversion Disorder w/ Motor Symptom/Deficit
+ ;;^UTILITY(U,$J,358.3,27863,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,27863,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,27864,0)
+ ;;=F44.6^^109^1389^5
+ ;;^UTILITY(U,$J,358.3,27864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27468,1,3,0)
- ;;=3^Calculus Kidney w/ Calculus Ureter
- ;;^UTILITY(U,$J,358.3,27468,1,4,0)
- ;;=4^N20.2
- ;;^UTILITY(U,$J,358.3,27468,2)
- ;;=^5015609
- ;;^UTILITY(U,$J,358.3,27469,0)
- ;;=N20.0^^132^1316^7
+ ;;^UTILITY(U,$J,358.3,27864,1,3,0)
+ ;;=3^Conversion Disorder w/ Sensory Symptom/Deficit
+ ;;^UTILITY(U,$J,358.3,27864,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,27864,2)
+ ;;=^5003581

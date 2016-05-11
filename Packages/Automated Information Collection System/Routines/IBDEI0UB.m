@@ -1,134 +1,132 @@
-IBDEI0UB ; ; 19-NOV-2015
+IBDEI0UB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13954,1,0)
+ ;;^UTILITY(U,$J,358.3,14216,1,3,0)
+ ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14216,1,4,0)
+ ;;=4^F18.120
+ ;;^UTILITY(U,$J,358.3,14216,2)
+ ;;=^5003381
+ ;;^UTILITY(U,$J,358.3,14217,0)
+ ;;=G44.1^^53^605^157
+ ;;^UTILITY(U,$J,358.3,14217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13954,1,3,0)
- ;;=3^Exposure Keratoconjunctivitis,Bilateral
- ;;^UTILITY(U,$J,358.3,13954,1,4,0)
- ;;=4^H16.213
- ;;^UTILITY(U,$J,358.3,13954,2)
- ;;=^5004922
- ;;^UTILITY(U,$J,358.3,13955,0)
- ;;=H16.123^^82^769^73
- ;;^UTILITY(U,$J,358.3,13955,1,0)
+ ;;^UTILITY(U,$J,358.3,14217,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,14217,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,14217,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,14218,0)
+ ;;=G93.3^^53^605^144
+ ;;^UTILITY(U,$J,358.3,14218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13955,1,3,0)
- ;;=3^Filamentary Keratitis,Bilateral
- ;;^UTILITY(U,$J,358.3,13955,1,4,0)
- ;;=4^H16.123
- ;;^UTILITY(U,$J,358.3,13955,2)
- ;;=^5004907
- ;;^UTILITY(U,$J,358.3,13956,0)
- ;;=H10.413^^82^769^77
- ;;^UTILITY(U,$J,358.3,13956,1,0)
+ ;;^UTILITY(U,$J,358.3,14218,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,14218,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,14218,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,14219,0)
+ ;;=K08.101^^53^605^52
+ ;;^UTILITY(U,$J,358.3,14219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13956,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Bilateral,Chronic
- ;;^UTILITY(U,$J,358.3,13956,1,4,0)
- ;;=4^H10.413
- ;;^UTILITY(U,$J,358.3,13956,2)
- ;;=^5004686
- ;;^UTILITY(U,$J,358.3,13957,0)
- ;;=H21.03^^82^769^83
- ;;^UTILITY(U,$J,358.3,13957,1,0)
+ ;;^UTILITY(U,$J,358.3,14219,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,14219,1,4,0)
+ ;;=4^K08.101
+ ;;^UTILITY(U,$J,358.3,14219,2)
+ ;;=^5008406
+ ;;^UTILITY(U,$J,358.3,14220,0)
+ ;;=K08.102^^53^605^53
+ ;;^UTILITY(U,$J,358.3,14220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13957,1,3,0)
- ;;=3^Hyphema,Bilateral
- ;;^UTILITY(U,$J,358.3,13957,1,4,0)
- ;;=4^H21.03
- ;;^UTILITY(U,$J,358.3,13957,2)
- ;;=^5005174
- ;;^UTILITY(U,$J,358.3,13958,0)
- ;;=H20.053^^82^769^86
- ;;^UTILITY(U,$J,358.3,13958,1,0)
+ ;;^UTILITY(U,$J,358.3,14220,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,14220,1,4,0)
+ ;;=4^K08.102
+ ;;^UTILITY(U,$J,358.3,14220,2)
+ ;;=^5008407
+ ;;^UTILITY(U,$J,358.3,14221,0)
+ ;;=K08.103^^53^605^54
+ ;;^UTILITY(U,$J,358.3,14221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13958,1,3,0)
- ;;=3^Hypopyon,Bilateral
- ;;^UTILITY(U,$J,358.3,13958,1,4,0)
- ;;=4^H20.053
- ;;^UTILITY(U,$J,358.3,13958,2)
- ;;=^5005152
- ;;^UTILITY(U,$J,358.3,13959,0)
- ;;=H21.263^^82^769^92
- ;;^UTILITY(U,$J,358.3,13959,1,0)
+ ;;^UTILITY(U,$J,358.3,14221,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,14221,1,4,0)
+ ;;=4^K08.103
+ ;;^UTILITY(U,$J,358.3,14221,2)
+ ;;=^5008408
+ ;;^UTILITY(U,$J,358.3,14222,0)
+ ;;=K08.104^^53^605^55
+ ;;^UTILITY(U,$J,358.3,14222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13959,1,3,0)
- ;;=3^Iris Atrophy,Bilateral
- ;;^UTILITY(U,$J,358.3,13959,1,4,0)
- ;;=4^H21.263
- ;;^UTILITY(U,$J,358.3,13959,2)
- ;;=^5005201
- ;;^UTILITY(U,$J,358.3,13960,0)
- ;;=H16.293^^82^769^98
- ;;^UTILITY(U,$J,358.3,13960,1,0)
+ ;;^UTILITY(U,$J,358.3,14222,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,14222,1,4,0)
+ ;;=4^K08.104
+ ;;^UTILITY(U,$J,358.3,14222,2)
+ ;;=^5008409
+ ;;^UTILITY(U,$J,358.3,14223,0)
+ ;;=K08.109^^53^605^56
+ ;;^UTILITY(U,$J,358.3,14223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13960,1,3,0)
- ;;=3^Keratoconjunctivitis,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,13960,1,4,0)
- ;;=4^H16.293
- ;;^UTILITY(U,$J,358.3,13960,2)
- ;;=^5004945
- ;;^UTILITY(U,$J,358.3,13961,0)
- ;;=H16.203^^82^769^99
- ;;^UTILITY(U,$J,358.3,13961,1,0)
+ ;;^UTILITY(U,$J,358.3,14223,1,3,0)
+ ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,14223,1,4,0)
+ ;;=4^K08.109
+ ;;^UTILITY(U,$J,358.3,14223,2)
+ ;;=^5008410
+ ;;^UTILITY(U,$J,358.3,14224,0)
+ ;;=K08.401^^53^605^133
+ ;;^UTILITY(U,$J,358.3,14224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13961,1,3,0)
- ;;=3^Keratoconjunctivitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,13961,1,4,0)
- ;;=4^H16.203
- ;;^UTILITY(U,$J,358.3,13961,2)
- ;;=^5004919
- ;;^UTILITY(U,$J,358.3,13962,0)
- ;;=H18.603^^82^769^104
- ;;^UTILITY(U,$J,358.3,13962,1,0)
+ ;;^UTILITY(U,$J,358.3,14224,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class I
+ ;;^UTILITY(U,$J,358.3,14224,1,4,0)
+ ;;=4^K08.401
+ ;;^UTILITY(U,$J,358.3,14224,2)
+ ;;=^5008432
+ ;;^UTILITY(U,$J,358.3,14225,0)
+ ;;=K08.402^^53^605^134
+ ;;^UTILITY(U,$J,358.3,14225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13962,1,3,0)
- ;;=3^Keratoconus,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,13962,1,4,0)
- ;;=4^H18.603
- ;;^UTILITY(U,$J,358.3,13962,2)
- ;;=^5005091
- ;;^UTILITY(U,$J,358.3,13963,0)
- ;;=H16.043^^82^769^115
- ;;^UTILITY(U,$J,358.3,13963,1,0)
+ ;;^UTILITY(U,$J,358.3,14225,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class II
+ ;;^UTILITY(U,$J,358.3,14225,1,4,0)
+ ;;=4^K08.402
+ ;;^UTILITY(U,$J,358.3,14225,2)
+ ;;=^5008433
+ ;;^UTILITY(U,$J,358.3,14226,0)
+ ;;=K08.403^^53^605^135
+ ;;^UTILITY(U,$J,358.3,14226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13963,1,3,0)
- ;;=3^Marginal Corneal Ulcer,Bilateral
- ;;^UTILITY(U,$J,358.3,13963,1,4,0)
- ;;=4^H16.043
- ;;^UTILITY(U,$J,358.3,13963,2)
- ;;=^5004884
- ;;^UTILITY(U,$J,358.3,13964,0)
- ;;=H16.423^^82^769^121
- ;;^UTILITY(U,$J,358.3,13964,1,0)
+ ;;^UTILITY(U,$J,358.3,14226,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class III
+ ;;^UTILITY(U,$J,358.3,14226,1,4,0)
+ ;;=4^K08.403
+ ;;^UTILITY(U,$J,358.3,14226,2)
+ ;;=^5008434
+ ;;^UTILITY(U,$J,358.3,14227,0)
+ ;;=K08.404^^53^605^136
+ ;;^UTILITY(U,$J,358.3,14227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13964,1,3,0)
- ;;=3^Pannus Corneal,Bilateral
- ;;^UTILITY(U,$J,358.3,13964,1,4,0)
- ;;=4^H16.423
- ;;^UTILITY(U,$J,358.3,13964,2)
- ;;=^5004974
- ;;^UTILITY(U,$J,358.3,13965,0)
- ;;=H17.823^^82^769^127
- ;;^UTILITY(U,$J,358.3,13965,1,0)
+ ;;^UTILITY(U,$J,358.3,14227,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class IV
+ ;;^UTILITY(U,$J,358.3,14227,1,4,0)
+ ;;=4^K08.404
+ ;;^UTILITY(U,$J,358.3,14227,2)
+ ;;=^5008435
+ ;;^UTILITY(U,$J,358.3,14228,0)
+ ;;=K08.409^^53^605^137
+ ;;^UTILITY(U,$J,358.3,14228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13965,1,3,0)
- ;;=3^Peripheral Opacity of Cornea,Bilateral
- ;;^UTILITY(U,$J,358.3,13965,1,4,0)
- ;;=4^H17.823
- ;;^UTILITY(U,$J,358.3,13965,2)
- ;;=^5005000
- ;;^UTILITY(U,$J,358.3,13966,0)
- ;;=H11.153^^82^769^130
- ;;^UTILITY(U,$J,358.3,13966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13966,1,3,0)
- ;;=3^Pinguecula,Bilateral
- ;;^UTILITY(U,$J,358.3,13966,1,4,0)
- ;;=4^H11.153
- ;;^UTILITY(U,$J,358.3,13966,2)
- ;;=^5004763
- ;;^UTILITY(U,$J,358.3,13967,0)
- ;;=H18.053^^82^769^133
+ ;;^UTILITY(U,$J,358.3,14228,1,3,0)
+ ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
+ ;;^UTILITY(U,$J,358.3,14228,1,4,0)
+ ;;=4^K08.409
+ ;;^UTILITY(U,$J,358.3,14228,2)
+ ;;=^5008436
+ ;;^UTILITY(U,$J,358.3,14229,0)
+ ;;=N39.42^^53^605^93

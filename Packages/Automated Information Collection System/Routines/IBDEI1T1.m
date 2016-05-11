@@ -1,134 +1,132 @@
-IBDEI1T1 ; ; 19-NOV-2015
+IBDEI1T1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30211,0)
- ;;=Z97.14^^135^1373^131
- ;;^UTILITY(U,$J,358.3,30211,1,0)
+ ;;^UTILITY(U,$J,358.3,30667,0)
+ ;;=J96.01^^121^1527^7
+ ;;^UTILITY(U,$J,358.3,30667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30211,1,3,0)
- ;;=3^Presence of Left Artificial Leg
- ;;^UTILITY(U,$J,358.3,30211,1,4,0)
- ;;=4^Z97.14
- ;;^UTILITY(U,$J,358.3,30211,2)
- ;;=^5063725
- ;;^UTILITY(U,$J,358.3,30212,0)
- ;;=Z97.15^^135^1373^123
- ;;^UTILITY(U,$J,358.3,30212,1,0)
+ ;;^UTILITY(U,$J,358.3,30667,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,30667,1,4,0)
+ ;;=4^J96.01
+ ;;^UTILITY(U,$J,358.3,30667,2)
+ ;;=^5008348
+ ;;^UTILITY(U,$J,358.3,30668,0)
+ ;;=J96.02^^121^1527^6
+ ;;^UTILITY(U,$J,358.3,30668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30212,1,3,0)
- ;;=3^Presence of Bilateral Artificial Arms
- ;;^UTILITY(U,$J,358.3,30212,1,4,0)
- ;;=4^Z97.15
- ;;^UTILITY(U,$J,358.3,30212,2)
- ;;=^5063726
- ;;^UTILITY(U,$J,358.3,30213,0)
- ;;=Z97.16^^135^1373^124
- ;;^UTILITY(U,$J,358.3,30213,1,0)
+ ;;^UTILITY(U,$J,358.3,30668,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,30668,1,4,0)
+ ;;=4^J96.02
+ ;;^UTILITY(U,$J,358.3,30668,2)
+ ;;=^5008349
+ ;;^UTILITY(U,$J,358.3,30669,0)
+ ;;=J96.10^^121^1527^11
+ ;;^UTILITY(U,$J,358.3,30669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30213,1,3,0)
- ;;=3^Presence of Bilateral Artificial Legs
- ;;^UTILITY(U,$J,358.3,30213,1,4,0)
- ;;=4^Z97.16
- ;;^UTILITY(U,$J,358.3,30213,2)
- ;;=^5063727
- ;;^UTILITY(U,$J,358.3,30214,0)
- ;;=Z98.61^^135^1373^17
- ;;^UTILITY(U,$J,358.3,30214,1,0)
+ ;;^UTILITY(U,$J,358.3,30669,1,3,0)
+ ;;=3^Chronic Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,30669,1,4,0)
+ ;;=4^J96.10
+ ;;^UTILITY(U,$J,358.3,30669,2)
+ ;;=^5008350
+ ;;^UTILITY(U,$J,358.3,30670,0)
+ ;;=J96.11^^121^1527^10
+ ;;^UTILITY(U,$J,358.3,30670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30214,1,3,0)
- ;;=3^Coronary Angioplasty Status
- ;;^UTILITY(U,$J,358.3,30214,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,30214,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,30215,0)
- ;;=Z98.62^^135^1373^73
- ;;^UTILITY(U,$J,358.3,30215,1,0)
+ ;;^UTILITY(U,$J,358.3,30670,1,3,0)
+ ;;=3^Chronic Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,30670,1,4,0)
+ ;;=4^J96.11
+ ;;^UTILITY(U,$J,358.3,30670,2)
+ ;;=^5008351
+ ;;^UTILITY(U,$J,358.3,30671,0)
+ ;;=J96.12^^121^1527^9
+ ;;^UTILITY(U,$J,358.3,30671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30215,1,3,0)
- ;;=3^Peripheral Vascular Angioplasty Status
- ;;^UTILITY(U,$J,358.3,30215,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,30215,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,30216,0)
- ;;=Z98.84^^135^1373^12
- ;;^UTILITY(U,$J,358.3,30216,1,0)
+ ;;^UTILITY(U,$J,358.3,30671,1,3,0)
+ ;;=3^Chronic Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,30671,1,4,0)
+ ;;=4^J96.12
+ ;;^UTILITY(U,$J,358.3,30671,2)
+ ;;=^5008352
+ ;;^UTILITY(U,$J,358.3,30672,0)
+ ;;=J96.20^^121^1527^4
+ ;;^UTILITY(U,$J,358.3,30672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30216,1,3,0)
- ;;=3^Bariatric Surgery Status
- ;;^UTILITY(U,$J,358.3,30216,1,4,0)
- ;;=4^Z98.84
- ;;^UTILITY(U,$J,358.3,30216,2)
- ;;=^5063749
- ;;^UTILITY(U,$J,358.3,30217,0)
- ;;=Z99.2^^135^1373^141
- ;;^UTILITY(U,$J,358.3,30217,1,0)
+ ;;^UTILITY(U,$J,358.3,30672,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,30672,1,4,0)
+ ;;=4^J96.20
+ ;;^UTILITY(U,$J,358.3,30672,2)
+ ;;=^5008353
+ ;;^UTILITY(U,$J,358.3,30673,0)
+ ;;=J96.21^^121^1527^2
+ ;;^UTILITY(U,$J,358.3,30673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30217,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,30217,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,30217,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,30218,0)
- ;;=Z99.81^^135^1373^144
- ;;^UTILITY(U,$J,358.3,30218,1,0)
+ ;;^UTILITY(U,$J,358.3,30673,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,30673,1,4,0)
+ ;;=4^J96.21
+ ;;^UTILITY(U,$J,358.3,30673,2)
+ ;;=^5008354
+ ;;^UTILITY(U,$J,358.3,30674,0)
+ ;;=J96.22^^121^1527^3
+ ;;^UTILITY(U,$J,358.3,30674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30218,1,3,0)
- ;;=3^Supplemental Oxygen Dependence
- ;;^UTILITY(U,$J,358.3,30218,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,30218,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,30219,0)
- ;;=Z90.79^^135^1373^2
- ;;^UTILITY(U,$J,358.3,30219,1,0)
+ ;;^UTILITY(U,$J,358.3,30674,1,3,0)
+ ;;=3^Acute & Chronic Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,30674,1,4,0)
+ ;;=4^J96.22
+ ;;^UTILITY(U,$J,358.3,30674,2)
+ ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,30675,0)
+ ;;=R79.81^^121^1527^1
+ ;;^UTILITY(U,$J,358.3,30675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30219,1,3,0)
- ;;=3^Acquired Absence of Genital Organs NEC
- ;;^UTILITY(U,$J,358.3,30219,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,30219,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,30220,0)
- ;;=Z90.5^^135^1373^3
- ;;^UTILITY(U,$J,358.3,30220,1,0)
+ ;;^UTILITY(U,$J,358.3,30675,1,3,0)
+ ;;=3^Abnormal Blood-Gas Level
+ ;;^UTILITY(U,$J,358.3,30675,1,4,0)
+ ;;=4^R79.81
+ ;;^UTILITY(U,$J,358.3,30675,2)
+ ;;=^5019592
+ ;;^UTILITY(U,$J,358.3,30676,0)
+ ;;=R09.2^^121^1527^14
+ ;;^UTILITY(U,$J,358.3,30676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30220,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,30220,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,30220,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,30221,0)
- ;;=Z90.2^^135^1373^6
- ;;^UTILITY(U,$J,358.3,30221,1,0)
+ ;;^UTILITY(U,$J,358.3,30676,1,3,0)
+ ;;=3^Respiratory Arrest
+ ;;^UTILITY(U,$J,358.3,30676,1,4,0)
+ ;;=4^R09.2
+ ;;^UTILITY(U,$J,358.3,30676,2)
+ ;;=^276886
+ ;;^UTILITY(U,$J,358.3,30677,0)
+ ;;=Z87.09^^121^1527^13
+ ;;^UTILITY(U,$J,358.3,30677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30221,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,30221,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,30221,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,30222,0)
- ;;=Z98.1^^135^1373^10
- ;;^UTILITY(U,$J,358.3,30222,1,0)
+ ;;^UTILITY(U,$J,358.3,30677,1,3,0)
+ ;;=3^Personal Hx of Respiratory System Diseases
+ ;;^UTILITY(U,$J,358.3,30677,1,4,0)
+ ;;=4^Z87.09
+ ;;^UTILITY(U,$J,358.3,30677,2)
+ ;;=^5063481
+ ;;^UTILITY(U,$J,358.3,30678,0)
+ ;;=Z87.01^^121^1527^12
+ ;;^UTILITY(U,$J,358.3,30678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30222,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,30222,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,30222,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,30223,0)
- ;;=Z94.7^^135^1373^16
- ;;^UTILITY(U,$J,358.3,30223,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30223,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,30223,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,30223,2)
- ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,30678,1,3,0)
+ ;;=3^Personal Hx of Recurrent Pneumonia
+ ;;^UTILITY(U,$J,358.3,30678,1,4,0)
+ ;;=4^Z87.01
+ ;;^UTILITY(U,$J,358.3,30678,2)
+ ;;=^5063480
+ ;;^UTILITY(U,$J,358.3,30679,0)
+ ;;=H0038^^122^1528^1^^^^1
+ ;;^UTILITY(U,$J,358.3,30679,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,30679,1,2,0)
+ ;;=2^H0038
+ ;;^UTILITY(U,$J,358.3,30679,1,3,0)
+ ;;=3^Self-Help/Peer Svc,Ea 15 Min

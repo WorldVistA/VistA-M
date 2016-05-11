@@ -1,138 +1,132 @@
-IBDEI12J ; ; 19-NOV-2015
+IBDEI12J ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17823,1,0)
+ ;;^UTILITY(U,$J,358.3,18167,1,4,0)
+ ;;=4^K55.0
+ ;;^UTILITY(U,$J,358.3,18167,2)
+ ;;=^5008705
+ ;;^UTILITY(U,$J,358.3,18168,0)
+ ;;=I72.4^^79^874^6
+ ;;^UTILITY(U,$J,358.3,18168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17823,1,3,0)
- ;;=3^Hemorrhoids,Unspec
- ;;^UTILITY(U,$J,358.3,17823,1,4,0)
- ;;=4^K64.9
- ;;^UTILITY(U,$J,358.3,17823,2)
- ;;=^5008775
- ;;^UTILITY(U,$J,358.3,17824,0)
- ;;=B18.1^^91^883^10
- ;;^UTILITY(U,$J,358.3,17824,1,0)
+ ;;^UTILITY(U,$J,358.3,18168,1,3,0)
+ ;;=3^Aneurysm of Lower Extremity Artery
+ ;;^UTILITY(U,$J,358.3,18168,1,4,0)
+ ;;=4^I72.4
+ ;;^UTILITY(U,$J,358.3,18168,2)
+ ;;=^269777
+ ;;^UTILITY(U,$J,358.3,18169,0)
+ ;;=I72.0^^79^874^4
+ ;;^UTILITY(U,$J,358.3,18169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17824,1,3,0)
- ;;=3^Chronic viral hepatitis B without delta-agent
- ;;^UTILITY(U,$J,358.3,17824,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,17824,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,17825,0)
- ;;=B18.2^^91^883^11
- ;;^UTILITY(U,$J,358.3,17825,1,0)
+ ;;^UTILITY(U,$J,358.3,18169,1,3,0)
+ ;;=3^Aneurysm of Carotid Artery
+ ;;^UTILITY(U,$J,358.3,18169,1,4,0)
+ ;;=4^I72.0
+ ;;^UTILITY(U,$J,358.3,18169,2)
+ ;;=^5007793
+ ;;^UTILITY(U,$J,358.3,18170,0)
+ ;;=I72.3^^79^874^5
+ ;;^UTILITY(U,$J,358.3,18170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17825,1,3,0)
- ;;=3^Chronic viral hepatitis C
- ;;^UTILITY(U,$J,358.3,17825,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,17825,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,17826,0)
- ;;=K73.9^^91^883^9
- ;;^UTILITY(U,$J,358.3,17826,1,0)
+ ;;^UTILITY(U,$J,358.3,18170,1,3,0)
+ ;;=3^Aneurysm of Iliac Artery
+ ;;^UTILITY(U,$J,358.3,18170,1,4,0)
+ ;;=4^I72.3
+ ;;^UTILITY(U,$J,358.3,18170,2)
+ ;;=^269775
+ ;;^UTILITY(U,$J,358.3,18171,0)
+ ;;=I72.8^^79^874^3
+ ;;^UTILITY(U,$J,358.3,18171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17826,1,3,0)
- ;;=3^Chronic hepatitis, unspecified
- ;;^UTILITY(U,$J,358.3,17826,1,4,0)
- ;;=4^K73.9
- ;;^UTILITY(U,$J,358.3,17826,2)
- ;;=^5008815
- ;;^UTILITY(U,$J,358.3,17827,0)
- ;;=K76.0^^91^883^14
- ;;^UTILITY(U,$J,358.3,17827,1,0)
+ ;;^UTILITY(U,$J,358.3,18171,1,3,0)
+ ;;=3^Aneurysm of Arteries NEC
+ ;;^UTILITY(U,$J,358.3,18171,1,4,0)
+ ;;=4^I72.8
+ ;;^UTILITY(U,$J,358.3,18171,2)
+ ;;=^5007794
+ ;;^UTILITY(U,$J,358.3,18172,0)
+ ;;=I72.2^^79^874^7
+ ;;^UTILITY(U,$J,358.3,18172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17827,1,3,0)
- ;;=3^Fatty (change of) liver, not elsewhere classified
- ;;^UTILITY(U,$J,358.3,17827,1,4,0)
- ;;=4^K76.0
- ;;^UTILITY(U,$J,358.3,17827,2)
- ;;=^5008831
- ;;^UTILITY(U,$J,358.3,17828,0)
- ;;=K75.81^^91^883^19
- ;;^UTILITY(U,$J,358.3,17828,1,0)
+ ;;^UTILITY(U,$J,358.3,18172,1,3,0)
+ ;;=3^Aneurysm of Renal Artery
+ ;;^UTILITY(U,$J,358.3,18172,1,4,0)
+ ;;=4^I72.2
+ ;;^UTILITY(U,$J,358.3,18172,2)
+ ;;=^269773
+ ;;^UTILITY(U,$J,358.3,18173,0)
+ ;;=I83.93^^79^874^8
+ ;;^UTILITY(U,$J,358.3,18173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17828,1,3,0)
- ;;=3^Nonalcoholic steatohepatitis (NASH)
- ;;^UTILITY(U,$J,358.3,17828,1,4,0)
- ;;=4^K75.81
- ;;^UTILITY(U,$J,358.3,17828,2)
- ;;=^5008828
- ;;^UTILITY(U,$J,358.3,17829,0)
- ;;=K74.0^^91^883^15
- ;;^UTILITY(U,$J,358.3,17829,1,0)
+ ;;^UTILITY(U,$J,358.3,18173,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,18173,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,18173,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,18174,0)
+ ;;=I83.92^^79^874^9
+ ;;^UTILITY(U,$J,358.3,18174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17829,1,3,0)
- ;;=3^Hepatic fibrosis
- ;;^UTILITY(U,$J,358.3,17829,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,17829,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,17830,0)
- ;;=K74.60^^91^883^12
- ;;^UTILITY(U,$J,358.3,17830,1,0)
+ ;;^UTILITY(U,$J,358.3,18174,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,18174,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,18174,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,18175,0)
+ ;;=I83.91^^79^874^10
+ ;;^UTILITY(U,$J,358.3,18175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17830,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,17830,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,17830,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,17831,0)
- ;;=K74.69^^91^883^13
- ;;^UTILITY(U,$J,358.3,17831,1,0)
+ ;;^UTILITY(U,$J,358.3,18175,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,18175,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,18175,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,18176,0)
+ ;;=I70.263^^79^874^12
+ ;;^UTILITY(U,$J,358.3,18176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17831,1,3,0)
- ;;=3^Cirrhosis of liver NEC
- ;;^UTILITY(U,$J,358.3,17831,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,17831,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,17832,0)
- ;;=K75.0^^91^883^1
- ;;^UTILITY(U,$J,358.3,17832,1,0)
+ ;;^UTILITY(U,$J,358.3,18176,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,18176,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,18176,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,18177,0)
+ ;;=I70.262^^79^874^18
+ ;;^UTILITY(U,$J,358.3,18177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17832,1,3,0)
- ;;=3^Abscess of liver
- ;;^UTILITY(U,$J,358.3,17832,1,4,0)
- ;;=4^K75.0
- ;;^UTILITY(U,$J,358.3,17832,2)
- ;;=^5008824
- ;;^UTILITY(U,$J,358.3,17833,0)
- ;;=K70.0^^91^883^4
- ;;^UTILITY(U,$J,358.3,17833,1,0)
+ ;;^UTILITY(U,$J,358.3,18177,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,18177,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,18177,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,18178,0)
+ ;;=I70.261^^79^874^24
+ ;;^UTILITY(U,$J,358.3,18178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17833,1,3,0)
- ;;=3^Alcoholic fatty liver
- ;;^UTILITY(U,$J,358.3,17833,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,17833,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,17834,0)
- ;;=K70.10^^91^883^6
- ;;^UTILITY(U,$J,358.3,17834,1,0)
+ ;;^UTILITY(U,$J,358.3,18178,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,18178,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,18178,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,18179,0)
+ ;;=I70.213^^79^874^11
+ ;;^UTILITY(U,$J,358.3,18179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17834,1,3,0)
- ;;=3^Alcoholic hepatitis without ascites
- ;;^UTILITY(U,$J,358.3,17834,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,17834,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,17835,0)
- ;;=K70.11^^91^883^5
- ;;^UTILITY(U,$J,358.3,17835,1,0)
+ ;;^UTILITY(U,$J,358.3,18179,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilater Legs w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,18179,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,18179,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,18180,0)
+ ;;=I70.212^^79^874^20
+ ;;^UTILITY(U,$J,358.3,18180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17835,1,3,0)
- ;;=3^Alcoholic hepatitis with ascites
- ;;^UTILITY(U,$J,358.3,17835,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,17835,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,17836,0)
- ;;=K70.30^^91^883^3
- ;;^UTILITY(U,$J,358.3,17836,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17836,1,3,0)
- ;;=3^Alcoholic cirrhosis of liver without ascites

@@ -1,5 +1,7 @@
-PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;21 Aug 2014  4:44 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**201**;Aug 12, 1996;Build 41
+PXVUTIL ;BIR/ADM - VIMM UTILITY ROUTINE ;11/06/15  15:14
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**201,210**;Aug 12, 1996;Build 21
+ ;
+ ; Reference to UCUMCODE^LEXMUCUM supported by ICR #6225
  ;
 VIS ; display VIS name with identifiers
  N C,PXVNAME,PXVDATE,PXVSTAT,PXVLANG,X
@@ -32,3 +34,69 @@ RSETDA ; code needed for the routine AUPNSICD to have the correct value in
  N DA S DA=D0
  D ^AUPNSICD
  Q
+HRS ; called by AH new style x-ref in V IMMUNIZATION file
+ ; set number of hours between administration and reading of results
+ N PXVX,X1,X2,X3
+ S X1=$P($G(^AUPNVIMM(DA,14)),"^",3) ; DATE/TIME READ
+ S X2=$P($G(^AUPNVIMM(DA,12)),"^") ; EVENT DATE AND TIME
+ S X3=2 ; return difference in seconds
+ S PXVX=""
+ I $G(X1),$L(X1)>7,$G(X2),$L(X2)>7,$G(X2)'>$G(X1) S PXVX=$$FMDIFF^XLFDT(X1,X2,X3)\3600
+ S $P(^AUPNVIMM(DA,14),"^",6)=PXVX
+ Q
+ ;
+DOSAGE(PXIEN) ; Used to compute Dosage (9000010.11,1312.5)
+ ;Input:
+ ;   PXIEN = (Required) Pointer to #9000010.11
+ ;Returns:
+ ;   Concatenation of DOSE_" "_DOSE UNITS (e.g., ".5 mL")
+ N PXDOSE,PXUNITS
+ I $G(PXIEN)="" Q ""
+ S PXDOSE=$P($G(^AUPNVIMM(PXIEN,13)),U,12)
+ I PXDOSE="" Q ""
+ S PXDOSE=$FN(PXDOSE,",")
+ S PXUNITS=$P($G(^AUPNVIMM(PXIEN,13)),U,13)
+ I PXUNITS S PXUNITS=$P($$UCUMCODE^LEXMUCUM(PXUNITS),U)  ; ICR 6225
+ Q PXDOSE_$S(PXUNITS'="":" "_PXUNITS,1:"")
+ ;
+OFFER() ; called from screen on VIS OFFERED/GIVEN TO PATIENT field (#.01) in 
+ ; VIS OFFERED/GIVEN TO PATIENT multiple field (#2) in file #9000010.11
+ ; 
+ ; PXD is defined by immunization edit process in PCE and is the value of 
+ ; Y from the DIR call to select an immunization.
+ ;
+ N PXVIS,PXDA
+ S PXVIS=0
+ I $G(DA),$D(^AUTTIMM($P(^AUPNVIMM(DA,0),"^"),4,"B",Y)),'$D(^AUPNVIMM(DA,2,"B",Y)) S PXVIS=1
+ I '$G(DA),$G(PXD) S PXDA=+PXD I PXDA,$D(^AUTTIMM(PXDA,4,"B",Y)),'$D(^AUPNVIMM(PXDA,2,"B",Y)) S PXVIS=1
+ Q PXVIS
+ ;
+IMMSEL(PXVIMM,PXVISIT) ; Immunization screen for V Immunization file
+ ;
+ ; Input:
+ ;       PXVIMM: Immunization IEN (#9999999.14)
+ ;      PXVISIT: Visit IEN (#9000010)
+ ;
+ ; Return:
+ ;    0: Entry is not selectable
+ ;    1: Entry is selectable
+ ;
+ N PXVHIST,PXVSC,PXVISITDT
+ ;
+ I '$G(PXVIMM) Q 0
+ ;
+ S PXVISITDT=""
+ I $G(PXVISIT) S PXVISITDT=$P($G(^AUPNVSIT(PXVISIT,0)),U,1)
+ ;
+ S PXVHIST=0
+ S PXVSC=$P($G(^AUPNVSIT(+$G(PXVISIT),0)),U,7)
+ I $G(PXVSC)="E" S PXVHIST=1
+ ;
+ ; For non-historical, only allow active entries
+ I 'PXVHIST,'$$SCREEN^XTID(9999999.14,,PXVIMM_",",PXVISITDT) Q 1
+ ;
+ ; For historical, only allow SELECTABLE FOR HISTORIC entries
+ I PXVHIST,$P($G(^AUTTIMM(PXVIMM,6)),U,1)="Y" Q 1
+ ;
+ Q 0
+ ;

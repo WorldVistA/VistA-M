@@ -1,136 +1,124 @@
-IBDEI1I7 ; ; 19-NOV-2015
+IBDEI1I7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25128,1,4,0)
- ;;=4^I42.1
- ;;^UTILITY(U,$J,358.3,25128,2)
- ;;=^340520
- ;;^UTILITY(U,$J,358.3,25129,0)
- ;;=I42.5^^124^1240^37
- ;;^UTILITY(U,$J,358.3,25129,1,0)
+ ;;^UTILITY(U,$J,358.3,25514,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,25515,0)
+ ;;=F16.229^^95^1168^14
+ ;;^UTILITY(U,$J,358.3,25515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25129,1,3,0)
- ;;=3^Restrictive Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,25129,1,4,0)
- ;;=4^I42.5
- ;;^UTILITY(U,$J,358.3,25129,2)
- ;;=^5007196
- ;;^UTILITY(U,$J,358.3,25130,0)
- ;;=I42.8^^124^1240^15
- ;;^UTILITY(U,$J,358.3,25130,1,0)
+ ;;^UTILITY(U,$J,358.3,25515,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25515,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,25515,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,25516,0)
+ ;;=F16.929^^95^1168^15
+ ;;^UTILITY(U,$J,358.3,25516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25130,1,3,0)
- ;;=3^Cardiomyopathies NEC
- ;;^UTILITY(U,$J,358.3,25130,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,25130,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,25131,0)
- ;;=I49.5^^124^1240^48
- ;;^UTILITY(U,$J,358.3,25131,1,0)
+ ;;^UTILITY(U,$J,358.3,25516,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25516,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,25516,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,25517,0)
+ ;;=F16.180^^95^1168^1
+ ;;^UTILITY(U,$J,358.3,25517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25131,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,25131,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,25131,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,25132,0)
- ;;=I50.9^^124^1240^22
- ;;^UTILITY(U,$J,358.3,25132,1,0)
+ ;;^UTILITY(U,$J,358.3,25517,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25517,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,25517,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,25518,0)
+ ;;=F16.280^^95^1168^2
+ ;;^UTILITY(U,$J,358.3,25518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25132,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,25132,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,25132,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,25133,0)
- ;;=I51.7^^124^1240^14
- ;;^UTILITY(U,$J,358.3,25133,1,0)
+ ;;^UTILITY(U,$J,358.3,25518,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25518,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,25518,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,25519,0)
+ ;;=F16.980^^95^1168^3
+ ;;^UTILITY(U,$J,358.3,25519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25133,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,25133,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,25133,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,25134,0)
- ;;=I65.21^^124^1240^30
- ;;^UTILITY(U,$J,358.3,25134,1,0)
+ ;;^UTILITY(U,$J,358.3,25519,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25519,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,25519,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,25520,0)
+ ;;=F16.14^^95^1168^4
+ ;;^UTILITY(U,$J,358.3,25520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25134,1,3,0)
- ;;=3^Occlusion/Stenosis Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,25134,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,25134,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,25135,0)
- ;;=I65.22^^124^1240^29
- ;;^UTILITY(U,$J,358.3,25135,1,0)
+ ;;^UTILITY(U,$J,358.3,25520,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25520,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,25520,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,25521,0)
+ ;;=F16.24^^95^1168^5
+ ;;^UTILITY(U,$J,358.3,25521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25135,1,3,0)
- ;;=3^Occlusion/Stenosis Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,25135,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,25135,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,25136,0)
- ;;=I65.23^^124^1240^28
- ;;^UTILITY(U,$J,358.3,25136,1,0)
+ ;;^UTILITY(U,$J,358.3,25521,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25521,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,25521,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,25522,0)
+ ;;=F16.94^^95^1168^6
+ ;;^UTILITY(U,$J,358.3,25522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25136,1,3,0)
- ;;=3^Occlusion/Stenosis Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,25136,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,25136,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,25137,0)
- ;;=I71.2^^124^1240^55
- ;;^UTILITY(U,$J,358.3,25137,1,0)
+ ;;^UTILITY(U,$J,358.3,25522,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25522,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,25522,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,25523,0)
+ ;;=F16.159^^95^1168^7
+ ;;^UTILITY(U,$J,358.3,25523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25137,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,25137,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,25137,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,25138,0)
- ;;=I71.4^^124^1240^2
- ;;^UTILITY(U,$J,358.3,25138,1,0)
+ ;;^UTILITY(U,$J,358.3,25523,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25523,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,25523,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,25524,0)
+ ;;=F16.259^^95^1168^8
+ ;;^UTILITY(U,$J,358.3,25524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25138,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,25138,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,25138,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,25139,0)
- ;;=I73.9^^124^1240^31
- ;;^UTILITY(U,$J,358.3,25139,1,0)
+ ;;^UTILITY(U,$J,358.3,25524,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25524,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,25524,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,25525,0)
+ ;;=F16.959^^95^1168^9
+ ;;^UTILITY(U,$J,358.3,25525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25139,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,25139,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,25139,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,25140,0)
- ;;=I82.91^^124^1240^21
- ;;^UTILITY(U,$J,358.3,25140,1,0)
+ ;;^UTILITY(U,$J,358.3,25525,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25525,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,25525,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,25526,0)
+ ;;=F16.99^^95^1168^20
+ ;;^UTILITY(U,$J,358.3,25526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25140,1,3,0)
- ;;=3^Embolism/Thrombosis,Unspec Vein,Chronic
- ;;^UTILITY(U,$J,358.3,25140,1,4,0)
- ;;=4^I82.91
- ;;^UTILITY(U,$J,358.3,25140,2)
- ;;=^5007941
- ;;^UTILITY(U,$J,358.3,25141,0)
- ;;=I83.019^^124^1240^57
- ;;^UTILITY(U,$J,358.3,25141,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25141,1,3,0)
- ;;=3^Varicose Veins Right Lower Extremity w/ Ulcer
- ;;^UTILITY(U,$J,358.3,25141,1,4,0)
- ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,25526,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25526,1,4,0)
+ ;;=4^F16.99

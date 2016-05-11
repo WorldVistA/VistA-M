@@ -1,130 +1,130 @@
-IBDEI2FN ; ; 19-NOV-2015
+IBDEI2FN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40846,2)
- ;;=^5044647
- ;;^UTILITY(U,$J,358.3,40847,0)
- ;;=S92.115A^^189^2086^339
- ;;^UTILITY(U,$J,358.3,40847,1,0)
+ ;;^UTILITY(U,$J,358.3,41263,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,41264,0)
+ ;;=C82.39^^159^2004^70
+ ;;^UTILITY(U,$J,358.3,41264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40847,1,3,0)
- ;;=3^Nondisp fx of neck of lft talus, init
- ;;^UTILITY(U,$J,358.3,40847,1,4,0)
- ;;=4^S92.115A
- ;;^UTILITY(U,$J,358.3,40847,2)
- ;;=^5044633
- ;;^UTILITY(U,$J,358.3,40848,0)
- ;;=S92.114A^^189^2086^340
- ;;^UTILITY(U,$J,358.3,40848,1,0)
+ ;;^UTILITY(U,$J,358.3,41264,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,41264,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,41264,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,41265,0)
+ ;;=C82.30^^159^2004^71
+ ;;^UTILITY(U,$J,358.3,41265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40848,1,3,0)
- ;;=3^Nondisp fx of neck of rt talus, init
- ;;^UTILITY(U,$J,358.3,40848,1,4,0)
- ;;=4^S92.114A
- ;;^UTILITY(U,$J,358.3,40848,2)
- ;;=^5044626
- ;;^UTILITY(U,$J,358.3,40849,0)
- ;;=S92.112A^^189^2086^114
- ;;^UTILITY(U,$J,358.3,40849,1,0)
+ ;;^UTILITY(U,$J,358.3,41265,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41265,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,41265,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,41266,0)
+ ;;=C82.49^^159^2004^72
+ ;;^UTILITY(U,$J,358.3,41266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40849,1,3,0)
- ;;=3^Disp fx of neck of lft talus, init
- ;;^UTILITY(U,$J,358.3,40849,1,4,0)
- ;;=4^S92.112A
- ;;^UTILITY(U,$J,358.3,40849,2)
- ;;=^5044612
- ;;^UTILITY(U,$J,358.3,40850,0)
- ;;=S92.251A^^189^2086^113
- ;;^UTILITY(U,$J,358.3,40850,1,0)
+ ;;^UTILITY(U,$J,358.3,41266,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,41266,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,41266,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,41267,0)
+ ;;=C82.40^^159^2004^73
+ ;;^UTILITY(U,$J,358.3,41267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40850,1,3,0)
- ;;=3^Disp fx of navicular of rt ft, init
- ;;^UTILITY(U,$J,358.3,40850,1,4,0)
- ;;=4^S92.251A
- ;;^UTILITY(U,$J,358.3,40850,2)
- ;;=^5045004
- ;;^UTILITY(U,$J,358.3,40851,0)
- ;;=S92.252A^^189^2086^112
- ;;^UTILITY(U,$J,358.3,40851,1,0)
+ ;;^UTILITY(U,$J,358.3,41267,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41267,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,41267,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,41268,0)
+ ;;=C82.99^^159^2004^74
+ ;;^UTILITY(U,$J,358.3,41268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40851,1,3,0)
- ;;=3^Disp fx of navicular of lft ft, init
- ;;^UTILITY(U,$J,358.3,40851,1,4,0)
- ;;=4^S92.252A
- ;;^UTILITY(U,$J,358.3,40851,2)
- ;;=^5045011
- ;;^UTILITY(U,$J,358.3,40852,0)
- ;;=S92.254A^^189^2086^338
- ;;^UTILITY(U,$J,358.3,40852,1,0)
+ ;;^UTILITY(U,$J,358.3,41268,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,41268,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,41268,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,41269,0)
+ ;;=C82.90^^159^2004^75
+ ;;^UTILITY(U,$J,358.3,41269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40852,1,3,0)
- ;;=3^Nondisp fx of navicular of rt ft, init
- ;;^UTILITY(U,$J,358.3,40852,1,4,0)
- ;;=4^S92.254A
- ;;^UTILITY(U,$J,358.3,40852,2)
- ;;=^5045025
- ;;^UTILITY(U,$J,358.3,40853,0)
- ;;=S92.255A^^189^2086^321
- ;;^UTILITY(U,$J,358.3,40853,1,0)
+ ;;^UTILITY(U,$J,358.3,41269,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41269,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,41269,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,41270,0)
+ ;;=R59.1^^159^2004^60
+ ;;^UTILITY(U,$J,358.3,41270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40853,1,3,0)
- ;;=3^Nondisp fx of lft ft, init
- ;;^UTILITY(U,$J,358.3,40853,1,4,0)
- ;;=4^S92.255A
- ;;^UTILITY(U,$J,358.3,40853,2)
- ;;=^5045032
- ;;^UTILITY(U,$J,358.3,40854,0)
- ;;=S92.211A^^189^2086^86
- ;;^UTILITY(U,$J,358.3,40854,1,0)
+ ;;^UTILITY(U,$J,358.3,41270,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,41270,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,41270,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,41271,0)
+ ;;=C91.40^^159^2004^79
+ ;;^UTILITY(U,$J,358.3,41271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40854,1,3,0)
- ;;=3^Disp fx of cuboid bone of rt ft, init
- ;;^UTILITY(U,$J,358.3,40854,1,4,0)
- ;;=4^S92.211A
- ;;^UTILITY(U,$J,358.3,40854,2)
- ;;=^5044836
- ;;^UTILITY(U,$J,358.3,40855,0)
- ;;=S92.212A^^189^2086^85
- ;;^UTILITY(U,$J,358.3,40855,1,0)
+ ;;^UTILITY(U,$J,358.3,41271,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41271,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,41271,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,41272,0)
+ ;;=C91.42^^159^2004^77
+ ;;^UTILITY(U,$J,358.3,41272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40855,1,3,0)
- ;;=3^Disp fx of cuboid bone of lft ft, init
- ;;^UTILITY(U,$J,358.3,40855,1,4,0)
- ;;=4^S92.212A
- ;;^UTILITY(U,$J,358.3,40855,2)
- ;;=^5044843
- ;;^UTILITY(U,$J,358.3,40856,0)
- ;;=S92.214A^^189^2086^311
- ;;^UTILITY(U,$J,358.3,40856,1,0)
+ ;;^UTILITY(U,$J,358.3,41272,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,41272,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,41272,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,41273,0)
+ ;;=C91.41^^159^2004^78
+ ;;^UTILITY(U,$J,358.3,41273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40856,1,3,0)
- ;;=3^Nondisp fx of cuboid bone of rt ft, init
- ;;^UTILITY(U,$J,358.3,40856,1,4,0)
- ;;=4^S92.214A
- ;;^UTILITY(U,$J,358.3,40856,2)
- ;;=^5044857
- ;;^UTILITY(U,$J,358.3,40857,0)
- ;;=S92.215A^^189^2086^310
- ;;^UTILITY(U,$J,358.3,40857,1,0)
+ ;;^UTILITY(U,$J,358.3,41273,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,41273,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,41273,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,41274,0)
+ ;;=D57.01^^159^2004^80
+ ;;^UTILITY(U,$J,358.3,41274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40857,1,3,0)
- ;;=3^Nondisp fx of cuboid bone of lft ft, init
- ;;^UTILITY(U,$J,358.3,40857,1,4,0)
- ;;=4^S92.215A
- ;;^UTILITY(U,$J,358.3,40857,2)
- ;;=^5044864
- ;;^UTILITY(U,$J,358.3,40858,0)
- ;;=S92.244A^^189^2086^335
- ;;^UTILITY(U,$J,358.3,40858,1,0)
+ ;;^UTILITY(U,$J,358.3,41274,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,41274,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,41274,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,41275,0)
+ ;;=D57.00^^159^2004^81
+ ;;^UTILITY(U,$J,358.3,41275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40858,1,3,0)
- ;;=3^Nondisp fx of medial cuneiform of rt ft, init
- ;;^UTILITY(U,$J,358.3,40858,1,4,0)
- ;;=4^S92.244A
- ;;^UTILITY(U,$J,358.3,40858,2)
- ;;=^5044983
- ;;^UTILITY(U,$J,358.3,40859,0)
- ;;=S92.245A^^189^2086^334
- ;;^UTILITY(U,$J,358.3,40859,1,0)
+ ;;^UTILITY(U,$J,358.3,41275,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,41275,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,41275,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,41276,0)
+ ;;=D57.02^^159^2004^82
+ ;;^UTILITY(U,$J,358.3,41276,1,0)
  ;;=^358.31IA^4^2

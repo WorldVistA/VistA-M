@@ -1,6 +1,6 @@
 BPSOSCD ;BHAM ISC/FCS/DRS/DLF - Set BPS() "RX" nodes for current medication ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,2,5,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; reference to $$ACPHONE^IBNCPDPI supported by DBIA 4721
  ; reference to $$MADD^XUAF4 supported by DBIA 2171
@@ -64,10 +64,13 @@ MEDINFO(IEN59,IEN5902,MEDN) ;
  .S BPS("RX",MEDN,"Provider NPI")=$P(NPI,U)
  .;
  .S X=$$PRVADRS(IEN59,PROVIEN)  ; provide address info
- .S BPS("RX",MEDN,"Prescriber Street Address")=$P(X,U)  ; NCPDP field 365-2K
+ .S BPS("RX",MEDN,"Prescriber Street Address")=$P(X,U)_$S($P(X,U,5)]"":" ",1:"")_$P(X,U,5)  ; NCPDP field 365-2K
+ .S BPS("RX",MEDN,"Prescriber Street Address Line 1")=$P(X,U)  ; NCPDP field B27-7U
+ .S BPS("RX",MEDN,"Prescriber Street Address Line 2")=$P(X,U,5)  ; NCPDP field B28-8U
  .S BPS("RX",MEDN,"Prescriber City Address")=$P(X,U,2)  ; NCPDP field 366-2M
  .S BPS("RX",MEDN,"Prescriber State/Province Address")=$P(X,U,3)  ; NCPDP field 367-2N
  .S BPS("RX",MEDN,"Prescriber Zip/Postal Zone")=$TR($P(X,U,4)," -")  ; NCPDP field 368-2P
+ .S BPS("RX",MEDN,"Prescriber Country")=$$COUNTRY($P(X,U,3),$P(X,U,6))    ;NCPDP field B42-3C
  ;
  ; Stop if Eligibility as we do not need any of the claim data below
  I BPS("Transaction Code")="E1" Q
@@ -194,7 +197,7 @@ COB(IEN59,MEDN) ; process the COB fields and build the COB array
  ;  not implemented yet (except by certification)
  ;
  ; build array of COB secondary claim data from the BPS Transaction file - esg - 6/16/10
- N COBPIEN,APDIEN,REJIEN
+ N COBPIEN,APDIEN,REJIEN,DATA
  K BPS("RX",MEDN,"OTHER PAYER")
  ;
  ; Field 337-4C COB OTHER PAYMENTS COUNT (9002313.59,1204)  moved into [1] below
@@ -207,7 +210,8 @@ COB(IEN59,MEDN) ; process the COB fields and build the COB array
  . ;
  . ; retrieve data from other payer amount paid multiple
  . S APDIEN=0 F  S APDIEN=$O(^BPST(IEN59,14,COBPIEN,1,APDIEN)) Q:'APDIEN  D
- .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"P",APDIEN,0)=$G(^BPST(IEN59,14,COBPIEN,1,APDIEN,0))
+ .. S DATA=$G(^BPST(IEN59,14,COBPIEN,1,APDIEN,0))
+ .. S BPS("RX",MEDN,"OTHER PAYER",COBPIEN,"P",APDIEN,0)=$P(DATA,"^",1)_"^"_$$GET1^DIQ(9002313.2,$P(DATA,"^",2),.01)
  .. Q
  . ;
  . ; retrieve data from other payer reject multiple
@@ -220,7 +224,10 @@ PRVADRS(IEN59,PRVIEN) ; site address for a provider
  ; IEN59=BPS TRANSACTION (#9002313.59) ien
  ; PRVIEN=provider IEN in NEW PERSON file (#200)
  ;
- N BPSND,F,IPTR,J,OPSITE,PRVADDR,PRVNVA,RSLT,X
+ I '$G(IEN59) Q ""
+ I '$G(PRVIEN) Q ""
+ ;
+ N BPSND,F,IPTR,IEN,OPSITE,PRVADDR,PRVNVA,RSLT,AD2
  S RSLT=""
  ;
  S PRVNVA=+$$GET1^DIQ(200,PRVIEN_",",53.91,"I")  ; NON-VA PRESCRIBER
@@ -232,16 +239,40 @@ PRVADRS(IEN59,PRVIEN) ; site address for a provider
  .S BPSND="BPS59" K ^TMP($J,BPSND)
  .D PSS^PSO59(OPSITE,"",BPSND)
  .S IPTR=$P($G(^TMP($J,BPSND,OPSITE,101)),U)  ; INSTITUTION ptr
- .S:IPTR RSLT=$$MADD^XUAF4(IPTR)
+ .S:IPTR RSLT=$$MADD^XUAF4(IPTR)_U_$$GET1^DIQ(4,IPTR_",",4.02)_U_$$GET1^DIQ(4,IPTR_",",4.04,"I")
  .K ^TMP($J,BPSND)
  ;
- ; non-VA prescriber - address data found in file 200
+ ; Non-VA prescriber - address data found in file 200
  F F=.111,.112,.113,.114,.115,.116 S PRVADDR(F)=$$GET1^DIQ(200,PRVIEN_",",F)
- S PRVADDR(.115,"ABBR")="",X=PRVADDR(.115) ; state abbreviation
- S:X]"" J=$$GET1^DIQ(200,PRVIEN_",",.115,"I"),PRVADDR(.115,"ABBR")=$$GET1^DIQ(5,J_",",1)
- S X=PRVADDR(.111) F F=.112,.113 I PRVADDR(F)]"" S X=X_$S(X]"":" ",1:"")_PRVADDR(F)  ; street address
- S RSLT=X_U_PRVADDR(.114)_U_PRVADDR(.115,"ABBR")_U_PRVADDR(.116)
+ ; Get State info
+ S PRVADDR(.115,"ABBR")="",IEN=$$GET1^DIQ(200,PRVIEN_",",.115,"I"),PRVADDR(.115,"ABBR")=$$GET1^DIQ(5,+IEN_",",1)
+ ; Build Address Line 2
+ S AD2=PRVADDR(.112) I PRVADDR(.113)]"" S AD2=AD2_$S(AD2]"":" ",1:"")_PRVADDR(.113)
+ ; Build result string
+ S RSLT=PRVADDR(.111)_U_PRVADDR(.114)_U_PRVADDR(.115,"ABBR")_U_PRVADDR(.116)_U_AD2_U_IEN
  ;
 PRVADX ;
  Q RSLT
  ;
+COUNTRY(STATE,IEN) ;
+ ; Convert STATE abbreviation into a ISO-3166-1 country code
+ ; Input:
+ ;    STATE: State Abbreviation
+ ; Output: ISO-3166-1 Country Code
+ ;
+ I $G(STATE)="" Q ""
+ I '$G(IEN) Q ""
+ I ",BC,MB,NB,NF,NS,NT,ON,PE,QC,SK,YT,CANAD,NU,"[(","_STATE_",") Q "CA" ; Canada
+ I STATE="FG"!(STATE="EU")!(STATE="UN") Q ""  ; Foreign Country, Europe, Unknown
+ I STATE="AS" Q "AS"  ; American Samoa
+ I STATE="FM" Q "FM"  ; Federated States of Micronesia
+ I STATE="GU" Q "GU"  ; Guam
+ I STATE="MH" Q "MH"  ; Marshall Islands
+ I STATE="MP" Q "MP"  ; Northern Mariana Islands
+ I STATE="MX" Q "MX"  ; Mexico
+ I STATE="PH" Q "PH"  ; Philippines
+ I STATE="PR" Q "PR"  ; Puerto Rico
+ I STATE="PW" Q "PW"  ; Palau
+ I STATE="VI" Q "VI"  ; Virgin Islands
+ I $$GET1^DIQ(5,IEN_",",2.2,"I")=1 Q "US"
+ Q ""

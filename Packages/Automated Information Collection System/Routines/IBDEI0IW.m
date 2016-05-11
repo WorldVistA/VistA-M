@@ -1,138 +1,134 @@
-IBDEI0IW ; ; 19-NOV-2015
+IBDEI0IW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8494,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,8495,0)
- ;;=H60.13^^55^540^29
- ;;^UTILITY(U,$J,358.3,8495,1,0)
+ ;;^UTILITY(U,$J,358.3,8784,1,4,0)
+ ;;=4^T85.398A
+ ;;^UTILITY(U,$J,358.3,8784,2)
+ ;;=^5055559
+ ;;^UTILITY(U,$J,358.3,8785,0)
+ ;;=T86.840^^41^468^58
+ ;;^UTILITY(U,$J,358.3,8785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8495,1,3,0)
- ;;=3^Cellulitis of external ear, bilateral
- ;;^UTILITY(U,$J,358.3,8495,1,4,0)
- ;;=4^H60.13
- ;;^UTILITY(U,$J,358.3,8495,2)
- ;;=^5006442
- ;;^UTILITY(U,$J,358.3,8496,0)
- ;;=H60.311^^55^540^54
- ;;^UTILITY(U,$J,358.3,8496,1,0)
+ ;;^UTILITY(U,$J,358.3,8785,1,3,0)
+ ;;=3^Corneal Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,8785,1,4,0)
+ ;;=4^T86.840
+ ;;^UTILITY(U,$J,358.3,8785,2)
+ ;;=^5055744
+ ;;^UTILITY(U,$J,358.3,8786,0)
+ ;;=T86.841^^41^468^57
+ ;;^UTILITY(U,$J,358.3,8786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8496,1,3,0)
- ;;=3^Diffuse otitis externa, right ear
- ;;^UTILITY(U,$J,358.3,8496,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,8496,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,8497,0)
- ;;=H60.312^^55^540^53
- ;;^UTILITY(U,$J,358.3,8497,1,0)
+ ;;^UTILITY(U,$J,358.3,8786,1,3,0)
+ ;;=3^Corneal Transplant Failure
+ ;;^UTILITY(U,$J,358.3,8786,1,4,0)
+ ;;=4^T86.841
+ ;;^UTILITY(U,$J,358.3,8786,2)
+ ;;=^5055745
+ ;;^UTILITY(U,$J,358.3,8787,0)
+ ;;=T85.318A^^41^468^22
+ ;;^UTILITY(U,$J,358.3,8787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8497,1,3,0)
- ;;=3^Diffuse otitis externa, left ear
- ;;^UTILITY(U,$J,358.3,8497,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,8497,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,8498,0)
- ;;=H60.313^^55^540^52
- ;;^UTILITY(U,$J,358.3,8498,1,0)
+ ;;^UTILITY(U,$J,358.3,8787,1,3,0)
+ ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8787,1,4,0)
+ ;;=4^T85.318A
+ ;;^UTILITY(U,$J,358.3,8787,2)
+ ;;=^5055541
+ ;;^UTILITY(U,$J,358.3,8788,0)
+ ;;=T85.328A^^41^468^59
+ ;;^UTILITY(U,$J,358.3,8788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8498,1,3,0)
- ;;=3^Diffuse otitis externa, bilateral
- ;;^UTILITY(U,$J,358.3,8498,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,8498,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,8499,0)
- ;;=H60.321^^55^540^67
- ;;^UTILITY(U,$J,358.3,8499,1,0)
+ ;;^UTILITY(U,$J,358.3,8788,1,3,0)
+ ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8788,1,4,0)
+ ;;=4^T85.328A
+ ;;^UTILITY(U,$J,358.3,8788,2)
+ ;;=^5055550
+ ;;^UTILITY(U,$J,358.3,8789,0)
+ ;;=H11.013^^41^468^2
+ ;;^UTILITY(U,$J,358.3,8789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8499,1,3,0)
- ;;=3^Hemorrhagic otitis externa, right ear
- ;;^UTILITY(U,$J,358.3,8499,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,8499,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,8500,0)
- ;;=H60.322^^55^540^66
- ;;^UTILITY(U,$J,358.3,8500,1,0)
+ ;;^UTILITY(U,$J,358.3,8789,1,3,0)
+ ;;=3^Amyloid Pterygium,Bilateral
+ ;;^UTILITY(U,$J,358.3,8789,1,4,0)
+ ;;=4^H11.013
+ ;;^UTILITY(U,$J,358.3,8789,2)
+ ;;=^5004722
+ ;;^UTILITY(U,$J,358.3,8790,0)
+ ;;=H21.513^^41^468^6
+ ;;^UTILITY(U,$J,358.3,8790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8500,1,3,0)
- ;;=3^Hemorrhagic otitis externa, left ear
- ;;^UTILITY(U,$J,358.3,8500,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,8500,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,8501,0)
- ;;=H60.323^^55^540^65
- ;;^UTILITY(U,$J,358.3,8501,1,0)
+ ;;^UTILITY(U,$J,358.3,8790,1,3,0)
+ ;;=3^Anterior Synechiae,Bilateral
+ ;;^UTILITY(U,$J,358.3,8790,1,4,0)
+ ;;=4^H21.513
+ ;;^UTILITY(U,$J,358.3,8790,2)
+ ;;=^5005241
+ ;;^UTILITY(U,$J,358.3,8791,0)
+ ;;=H18.423^^41^468^12
+ ;;^UTILITY(U,$J,358.3,8791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8501,1,3,0)
- ;;=3^Hemorrhagic otitis externa, bilateral
- ;;^UTILITY(U,$J,358.3,8501,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,8501,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,8502,0)
- ;;=H66.91^^55^540^87
- ;;^UTILITY(U,$J,358.3,8502,1,0)
+ ;;^UTILITY(U,$J,358.3,8791,1,3,0)
+ ;;=3^Band Keratopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,8791,1,4,0)
+ ;;=4^H18.423
+ ;;^UTILITY(U,$J,358.3,8791,2)
+ ;;=^5005068
+ ;;^UTILITY(U,$J,358.3,8792,0)
+ ;;=H10.503^^41^468^19
+ ;;^UTILITY(U,$J,358.3,8792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8502,1,3,0)
- ;;=3^Otitis Media,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8502,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,8502,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,8503,0)
- ;;=H66.92^^55^540^86
- ;;^UTILITY(U,$J,358.3,8503,1,0)
+ ;;^UTILITY(U,$J,358.3,8792,1,3,0)
+ ;;=3^Blepharoconjunctivitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,8792,1,4,0)
+ ;;=4^H10.503
+ ;;^UTILITY(U,$J,358.3,8792,2)
+ ;;=^5004699
+ ;;^UTILITY(U,$J,358.3,8793,0)
+ ;;=H18.13^^41^468^23
+ ;;^UTILITY(U,$J,358.3,8793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8503,1,3,0)
- ;;=3^Otitis Media,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8503,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,8503,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,8504,0)
- ;;=H66.93^^55^540^85
- ;;^UTILITY(U,$J,358.3,8504,1,0)
+ ;;^UTILITY(U,$J,358.3,8793,1,3,0)
+ ;;=3^Bullous Keratopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,8793,1,4,0)
+ ;;=4^H18.13
+ ;;^UTILITY(U,$J,358.3,8793,2)
+ ;;=^5005034
+ ;;^UTILITY(U,$J,358.3,8794,0)
+ ;;=H17.13^^41^468^26
+ ;;^UTILITY(U,$J,358.3,8794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8504,1,3,0)
- ;;=3^Otitis Media,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,8504,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,8504,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,8505,0)
- ;;=H83.01^^55^540^77
- ;;^UTILITY(U,$J,358.3,8505,1,0)
+ ;;^UTILITY(U,$J,358.3,8794,1,3,0)
+ ;;=3^Central Corneal Opacity,Bilateral
+ ;;^UTILITY(U,$J,358.3,8794,1,4,0)
+ ;;=4^H17.13
+ ;;^UTILITY(U,$J,358.3,8794,2)
+ ;;=^5004993
+ ;;^UTILITY(U,$J,358.3,8795,0)
+ ;;=H16.013^^41^468^29
+ ;;^UTILITY(U,$J,358.3,8795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8505,1,3,0)
- ;;=3^Labyrinthitis, right ear
- ;;^UTILITY(U,$J,358.3,8505,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,8505,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,8506,0)
- ;;=H83.02^^55^540^76
- ;;^UTILITY(U,$J,358.3,8506,1,0)
+ ;;^UTILITY(U,$J,358.3,8795,1,3,0)
+ ;;=3^Central Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,8795,1,4,0)
+ ;;=4^H16.013
+ ;;^UTILITY(U,$J,358.3,8795,2)
+ ;;=^5004872
+ ;;^UTILITY(U,$J,358.3,8796,0)
+ ;;=H11.123^^41^468^32
+ ;;^UTILITY(U,$J,358.3,8796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8506,1,3,0)
- ;;=3^Labyrinthitis, left ear
- ;;^UTILITY(U,$J,358.3,8506,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,8506,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,8507,0)
- ;;=H83.03^^55^540^75
- ;;^UTILITY(U,$J,358.3,8507,1,0)
+ ;;^UTILITY(U,$J,358.3,8796,1,3,0)
+ ;;=3^Conjunctival Concretions,Bilateral
+ ;;^UTILITY(U,$J,358.3,8796,1,4,0)
+ ;;=4^H11.123
+ ;;^UTILITY(U,$J,358.3,8796,2)
+ ;;=^5004751
+ ;;^UTILITY(U,$J,358.3,8797,0)
+ ;;=H11.443^^41^468^35
+ ;;^UTILITY(U,$J,358.3,8797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8507,1,3,0)
- ;;=3^Labyrinthitis, bilateral
- ;;^UTILITY(U,$J,358.3,8507,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,8507,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,8508,0)
- ;;=I38.^^55^540^56
+ ;;^UTILITY(U,$J,358.3,8797,1,3,0)
+ ;;=3^Conjunctival Cysts,Bilateral

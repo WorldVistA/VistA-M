@@ -1,126 +1,128 @@
-IBDEI1JV ; ; 19-NOV-2015
+IBDEI1JV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25912,0)
- ;;=I83.215^^127^1266^156
- ;;^UTILITY(U,$J,358.3,25912,1,0)
+ ;;^UTILITY(U,$J,358.3,26291,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,26292,0)
+ ;;=F17.220^^98^1242^2
+ ;;^UTILITY(U,$J,358.3,26292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25912,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Foot Ulcer/Inflammation
- ;;^UTILITY(U,$J,358.3,25912,1,4,0)
- ;;=4^I83.215
- ;;^UTILITY(U,$J,358.3,25912,2)
- ;;=^5008001
- ;;^UTILITY(U,$J,358.3,25913,0)
- ;;=I83.218^^127^1266^157
- ;;^UTILITY(U,$J,358.3,25913,1,0)
+ ;;^UTILITY(U,$J,358.3,26292,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,26292,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,26292,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,26293,0)
+ ;;=F17.221^^98^1242^1
+ ;;^UTILITY(U,$J,358.3,26293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25913,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Ulcer/Inflammation
- ;;^UTILITY(U,$J,358.3,25913,1,4,0)
- ;;=4^I83.218
- ;;^UTILITY(U,$J,358.3,25913,2)
- ;;=^5008002
- ;;^UTILITY(U,$J,358.3,25914,0)
- ;;=I83.219^^127^1266^158
- ;;^UTILITY(U,$J,358.3,25914,1,0)
+ ;;^UTILITY(U,$J,358.3,26293,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,26293,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,26293,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,26294,0)
+ ;;=F17.290^^98^1242^5
+ ;;^UTILITY(U,$J,358.3,26294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25914,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Ulcer/Inflammation,Unspec Site
- ;;^UTILITY(U,$J,358.3,25914,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,25914,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,25915,0)
- ;;=I83.211^^127^1266^159
- ;;^UTILITY(U,$J,358.3,25915,1,0)
+ ;;^UTILITY(U,$J,358.3,26294,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,26294,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,26294,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,26295,0)
+ ;;=F17.291^^98^1242^6
+ ;;^UTILITY(U,$J,358.3,26295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25915,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Thigh Ulcer/Inflammation
- ;;^UTILITY(U,$J,358.3,25915,1,4,0)
- ;;=4^I83.211
- ;;^UTILITY(U,$J,358.3,25915,2)
- ;;=^5007997
- ;;^UTILITY(U,$J,358.3,25916,0)
- ;;=I83.11^^127^1266^160
- ;;^UTILITY(U,$J,358.3,25916,1,0)
+ ;;^UTILITY(U,$J,358.3,26295,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,26295,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,26295,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,26296,0)
+ ;;=F17.208^^98^1242^7
+ ;;^UTILITY(U,$J,358.3,26296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25916,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Inflammation
- ;;^UTILITY(U,$J,358.3,25916,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,25916,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,25917,0)
- ;;=I83.019^^127^1266^161
- ;;^UTILITY(U,$J,358.3,25917,1,0)
+ ;;^UTILITY(U,$J,358.3,26296,1,3,0)
+ ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26296,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,26296,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,26297,0)
+ ;;=F17.209^^98^1242^8
+ ;;^UTILITY(U,$J,358.3,26297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25917,1,3,0)
- ;;=3^Varicosse Veins of Right Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,25917,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,25917,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,25918,0)
- ;;=K55.9^^127^1266^163
- ;;^UTILITY(U,$J,358.3,25918,1,0)
+ ;;^UTILITY(U,$J,358.3,26297,1,3,0)
+ ;;=3^Nicotine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26297,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,26297,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,26298,0)
+ ;;=F14.10^^98^1243^1
+ ;;^UTILITY(U,$J,358.3,26298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25918,1,3,0)
- ;;=3^Vascular Intestinal Disorders,Unspec
- ;;^UTILITY(U,$J,358.3,25918,1,4,0)
- ;;=4^K55.9
- ;;^UTILITY(U,$J,358.3,25918,2)
- ;;=^5008710
- ;;^UTILITY(U,$J,358.3,25919,0)
- ;;=I87.2^^127^1266^164
- ;;^UTILITY(U,$J,358.3,25919,1,0)
+ ;;^UTILITY(U,$J,358.3,26298,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26298,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,26298,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,26299,0)
+ ;;=F14.14^^98^1243^5
+ ;;^UTILITY(U,$J,358.3,26299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25919,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,25919,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,25919,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,25920,0)
- ;;=E10.52^^127^1266^55
- ;;^UTILITY(U,$J,358.3,25920,1,0)
+ ;;^UTILITY(U,$J,358.3,26299,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26299,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,26299,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,26300,0)
+ ;;=F14.182^^98^1243^6
+ ;;^UTILITY(U,$J,358.3,26300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25920,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Pheripheral Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,25920,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,25920,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,25921,0)
- ;;=I65.23^^127^1266^128
- ;;^UTILITY(U,$J,358.3,25921,1,0)
+ ;;^UTILITY(U,$J,358.3,26300,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26300,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,26300,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,26301,0)
+ ;;=F14.20^^98^1243^3
+ ;;^UTILITY(U,$J,358.3,26301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25921,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,25921,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,25921,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,25922,0)
- ;;=R10.11^^127^1267^8
- ;;^UTILITY(U,$J,358.3,25922,1,0)
+ ;;^UTILITY(U,$J,358.3,26301,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26301,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,26301,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,26302,0)
+ ;;=F14.21^^98^1243^2
+ ;;^UTILITY(U,$J,358.3,26302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25922,1,3,0)
- ;;=3^Right Upper Quadrant Abdominal Pain
- ;;^UTILITY(U,$J,358.3,25922,1,4,0)
- ;;=4^R10.11
- ;;^UTILITY(U,$J,358.3,25922,2)
- ;;=^5019206
- ;;^UTILITY(U,$J,358.3,25923,0)
- ;;=R10.12^^127^1267^4
- ;;^UTILITY(U,$J,358.3,25923,1,0)
+ ;;^UTILITY(U,$J,358.3,26302,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,26302,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,26302,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,26303,0)
+ ;;=F14.23^^98^1243^4
+ ;;^UTILITY(U,$J,358.3,26303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25923,1,3,0)
- ;;=3^Left Upper Quadrant Abdominal Pain
- ;;^UTILITY(U,$J,358.3,25923,1,4,0)
- ;;=4^R10.12
- ;;^UTILITY(U,$J,358.3,25923,2)
- ;;=^5019207
- ;;^UTILITY(U,$J,358.3,25924,0)
- ;;=R10.31^^127^1267^7
+ ;;^UTILITY(U,$J,358.3,26303,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,26303,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,26303,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,26304,0)
+ ;;=F43.0^^98^1244^1

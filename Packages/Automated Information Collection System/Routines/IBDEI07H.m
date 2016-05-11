@@ -1,134 +1,140 @@
-IBDEI07H ; ; 19-NOV-2015
+IBDEI07H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2926,1,0)
+ ;;^UTILITY(U,$J,358.3,3190,1,4,0)
+ ;;=4^Z87.410
+ ;;^UTILITY(U,$J,358.3,3190,2)
+ ;;=^5063489
+ ;;^UTILITY(U,$J,358.3,3191,0)
+ ;;=N87.9^^18^216^17
+ ;;^UTILITY(U,$J,358.3,3191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2926,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,in Remission
- ;;^UTILITY(U,$J,358.3,2926,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,2926,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,2927,0)
- ;;=F17.290^^28^244^25
- ;;^UTILITY(U,$J,358.3,2927,1,0)
+ ;;^UTILITY(U,$J,358.3,3191,1,3,0)
+ ;;=3^Cervix Uteri,Dysplasia,Unspec
+ ;;^UTILITY(U,$J,358.3,3191,1,4,0)
+ ;;=4^N87.9
+ ;;^UTILITY(U,$J,358.3,3191,2)
+ ;;=^5015877
+ ;;^UTILITY(U,$J,358.3,3192,0)
+ ;;=N86.^^18^216^18
+ ;;^UTILITY(U,$J,358.3,3192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2927,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,2927,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,2927,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,2928,0)
- ;;=F17.299^^28^244^26
- ;;^UTILITY(U,$J,358.3,2928,1,0)
+ ;;^UTILITY(U,$J,358.3,3192,1,3,0)
+ ;;=3^Cervix Uteri,Erosion & Ectropion
+ ;;^UTILITY(U,$J,358.3,3192,1,4,0)
+ ;;=4^N86.
+ ;;^UTILITY(U,$J,358.3,3192,2)
+ ;;=^5015874
+ ;;^UTILITY(U,$J,358.3,3193,0)
+ ;;=N72.^^18^216^19
+ ;;^UTILITY(U,$J,358.3,3193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2928,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product w/ Unspec Disorders
- ;;^UTILITY(U,$J,358.3,2928,1,4,0)
- ;;=4^F17.299
- ;;^UTILITY(U,$J,358.3,2928,2)
- ;;=^5003379
- ;;^UTILITY(U,$J,358.3,2929,0)
- ;;=F17.293^^28^244^27
- ;;^UTILITY(U,$J,358.3,2929,1,0)
+ ;;^UTILITY(U,$J,358.3,3193,1,3,0)
+ ;;=3^Cervix Uteri,Inflammatory Disease
+ ;;^UTILITY(U,$J,358.3,3193,1,4,0)
+ ;;=4^N72.
+ ;;^UTILITY(U,$J,358.3,3193,2)
+ ;;=^5015812
+ ;;^UTILITY(U,$J,358.3,3194,0)
+ ;;=N88.9^^18^216^20
+ ;;^UTILITY(U,$J,358.3,3194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2929,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,2929,1,4,0)
- ;;=4^F17.293
- ;;^UTILITY(U,$J,358.3,2929,2)
- ;;=^5003377
- ;;^UTILITY(U,$J,358.3,2930,0)
- ;;=F17.201^^28^244^31
- ;;^UTILITY(U,$J,358.3,2930,1,0)
+ ;;^UTILITY(U,$J,358.3,3194,1,3,0)
+ ;;=3^Cervix Uteri,Noninflammatory Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3194,1,4,0)
+ ;;=4^N88.9
+ ;;^UTILITY(U,$J,358.3,3194,2)
+ ;;=^5015884
+ ;;^UTILITY(U,$J,358.3,3195,0)
+ ;;=N30.91^^18^216^21
+ ;;^UTILITY(U,$J,358.3,3195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2930,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,in Remission
- ;;^UTILITY(U,$J,358.3,2930,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,2930,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,2931,0)
- ;;=F17.200^^28^244^30
- ;;^UTILITY(U,$J,358.3,2931,1,0)
+ ;;^UTILITY(U,$J,358.3,3195,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,3195,1,4,0)
+ ;;=4^N30.91
+ ;;^UTILITY(U,$J,358.3,3195,2)
+ ;;=^5015643
+ ;;^UTILITY(U,$J,358.3,3196,0)
+ ;;=N30.90^^18^216^22
+ ;;^UTILITY(U,$J,358.3,3196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2931,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,2931,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,2931,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,2932,0)
- ;;=F17.209^^28^244^28
- ;;^UTILITY(U,$J,358.3,2932,1,0)
+ ;;^UTILITY(U,$J,358.3,3196,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,3196,1,4,0)
+ ;;=4^N30.90
+ ;;^UTILITY(U,$J,358.3,3196,2)
+ ;;=^5015642
+ ;;^UTILITY(U,$J,358.3,3197,0)
+ ;;=R30.0^^18^216^24
+ ;;^UTILITY(U,$J,358.3,3197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2932,1,3,0)
- ;;=3^Nicotine Dependence,Unspec w/ Unspec Disorders
- ;;^UTILITY(U,$J,358.3,2932,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,2932,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,2933,0)
- ;;=F17.203^^28^244^29
- ;;^UTILITY(U,$J,358.3,2933,1,0)
+ ;;^UTILITY(U,$J,358.3,3197,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,3197,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,3197,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,3198,0)
+ ;;=N80.9^^18^216^26
+ ;;^UTILITY(U,$J,358.3,3198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2933,1,3,0)
- ;;=3^Nicotine Dependence,Unspec w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,2933,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,2933,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,2934,0)
- ;;=F07.0^^28^244^35
- ;;^UTILITY(U,$J,358.3,2934,1,0)
+ ;;^UTILITY(U,$J,358.3,3198,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3198,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,3198,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,3199,0)
+ ;;=N45.1^^18^216^27
+ ;;^UTILITY(U,$J,358.3,3199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2934,1,3,0)
- ;;=3^Personality Changed d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,2934,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,2934,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,2935,0)
- ;;=F20.0^^28^244^38
- ;;^UTILITY(U,$J,358.3,2935,1,0)
+ ;;^UTILITY(U,$J,358.3,3199,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,3199,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,3199,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,3200,0)
+ ;;=N45.3^^18^216^29
+ ;;^UTILITY(U,$J,358.3,3200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2935,1,3,0)
- ;;=3^Schizophrenia,Paranoid
- ;;^UTILITY(U,$J,358.3,2935,1,4,0)
- ;;=4^F20.0
- ;;^UTILITY(U,$J,358.3,2935,2)
- ;;=^5003469
- ;;^UTILITY(U,$J,358.3,2936,0)
- ;;=R45.851^^28^244^40
- ;;^UTILITY(U,$J,358.3,2936,1,0)
+ ;;^UTILITY(U,$J,358.3,3200,1,3,0)
+ ;;=3^Epididymo-orchitis
+ ;;^UTILITY(U,$J,358.3,3200,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,3200,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,3201,0)
+ ;;=N52.9^^18^216^30
+ ;;^UTILITY(U,$J,358.3,3201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2936,1,3,0)
- ;;=3^Suicidal Ideations
- ;;^UTILITY(U,$J,358.3,2936,1,4,0)
- ;;=4^R45.851
- ;;^UTILITY(U,$J,358.3,2936,2)
- ;;=^5019474
- ;;^UTILITY(U,$J,358.3,2937,0)
- ;;=Z87.820^^28^244^34
- ;;^UTILITY(U,$J,358.3,2937,1,0)
+ ;;^UTILITY(U,$J,358.3,3201,1,3,0)
+ ;;=3^Erectile Dysfunction,Male,Unspec
+ ;;^UTILITY(U,$J,358.3,3201,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,3201,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,3202,0)
+ ;;=N83.9^^18^216^31
+ ;;^UTILITY(U,$J,358.3,3202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2937,1,3,0)
- ;;=3^Personal Hx of TBI
- ;;^UTILITY(U,$J,358.3,2937,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,2937,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,2938,0)
- ;;=R14.0^^28^245^1
- ;;^UTILITY(U,$J,358.3,2938,1,0)
+ ;;^UTILITY(U,$J,358.3,3202,1,3,0)
+ ;;=3^Fallopion & Broad Ligament Noninflammatory Disorder of Ovary,Unspec
+ ;;^UTILITY(U,$J,358.3,3202,1,4,0)
+ ;;=4^N83.9
+ ;;^UTILITY(U,$J,358.3,3202,2)
+ ;;=^5015865
+ ;;^UTILITY(U,$J,358.3,3203,0)
+ ;;=N82.9^^18^216^32
+ ;;^UTILITY(U,$J,358.3,3203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2938,1,3,0)
- ;;=3^Abdominal Distension
- ;;^UTILITY(U,$J,358.3,2938,1,4,0)
- ;;=4^R14.0
- ;;^UTILITY(U,$J,358.3,2938,2)
- ;;=^5019240
- ;;^UTILITY(U,$J,358.3,2939,0)
- ;;=Z90.81^^28^245^2
+ ;;^UTILITY(U,$J,358.3,3203,1,3,0)
+ ;;=3^Fistulae,Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,3203,1,4,0)
+ ;;=4^N82.9
+ ;;^UTILITY(U,$J,358.3,3203,2)
+ ;;=^5015853
+ ;;^UTILITY(U,$J,358.3,3204,0)
+ ;;=N49.9^^18^216^34

@@ -1,128 +1,128 @@
-IBDEI20O ; ; 19-NOV-2015
+IBDEI20O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33795,1,0)
+ ;;^UTILITY(U,$J,358.3,34216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33795,1,3,0)
- ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
- ;;^UTILITY(U,$J,358.3,33795,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,33795,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,33796,0)
- ;;=I73.9^^154^1705^34
- ;;^UTILITY(U,$J,358.3,33796,1,0)
+ ;;^UTILITY(U,$J,358.3,34216,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,34216,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,34216,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,34217,0)
+ ;;=J10.08^^131^1682^41
+ ;;^UTILITY(U,$J,358.3,34217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33796,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,33796,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,33796,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,33797,0)
- ;;=N04.9^^154^1705^30
- ;;^UTILITY(U,$J,358.3,33797,1,0)
+ ;;^UTILITY(U,$J,358.3,34217,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,34217,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,34217,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,34218,0)
+ ;;=J10.00^^131^1682^40
+ ;;^UTILITY(U,$J,358.3,34218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33797,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,33797,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,33797,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,33798,0)
- ;;=N25.0^^154^1705^35
- ;;^UTILITY(U,$J,358.3,33798,1,0)
+ ;;^UTILITY(U,$J,358.3,34218,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,34218,1,4,0)
+ ;;=4^J10.00
+ ;;^UTILITY(U,$J,358.3,34218,2)
+ ;;=^5008148
+ ;;^UTILITY(U,$J,358.3,34219,0)
+ ;;=J11.08^^131^1682^43
+ ;;^UTILITY(U,$J,358.3,34219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33798,1,3,0)
- ;;=3^Renal Osteodystrophy
- ;;^UTILITY(U,$J,358.3,33798,1,4,0)
- ;;=4^N25.0
- ;;^UTILITY(U,$J,358.3,33798,2)
- ;;=^104747
- ;;^UTILITY(U,$J,358.3,33799,0)
- ;;=T80.211A^^154^1705^3
- ;;^UTILITY(U,$J,358.3,33799,1,0)
+ ;;^UTILITY(U,$J,358.3,34219,1,3,0)
+ ;;=3^Influenza d/t Unident Flu Virus w/ Spec Pneumonia
+ ;;^UTILITY(U,$J,358.3,34219,1,4,0)
+ ;;=4^J11.08
+ ;;^UTILITY(U,$J,358.3,34219,2)
+ ;;=^5008157
+ ;;^UTILITY(U,$J,358.3,34220,0)
+ ;;=J10.1^^131^1682^42
+ ;;^UTILITY(U,$J,358.3,34220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33799,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,33799,1,4,0)
- ;;=4^T80.211A
- ;;^UTILITY(U,$J,358.3,33799,2)
- ;;=^5054350
- ;;^UTILITY(U,$J,358.3,33800,0)
- ;;=T80.211D^^154^1705^4
- ;;^UTILITY(U,$J,358.3,33800,1,0)
+ ;;^UTILITY(U,$J,358.3,34220,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,34220,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,34220,2)
+ ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,34221,0)
+ ;;=J10.01^^131^1682^39
+ ;;^UTILITY(U,$J,358.3,34221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33800,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33800,1,4,0)
- ;;=4^T80.211D
- ;;^UTILITY(U,$J,358.3,33800,2)
- ;;=^5054351
- ;;^UTILITY(U,$J,358.3,33801,0)
- ;;=E83.59^^154^1705^5
- ;;^UTILITY(U,$J,358.3,33801,1,0)
+ ;;^UTILITY(U,$J,358.3,34221,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Same Oth ID'd Flu Virus Pneumonia
+ ;;^UTILITY(U,$J,358.3,34221,1,4,0)
+ ;;=4^J10.01
+ ;;^UTILITY(U,$J,358.3,34221,2)
+ ;;=^5008149
+ ;;^UTILITY(U,$J,358.3,34222,0)
+ ;;=J11.1^^131^1682^44
+ ;;^UTILITY(U,$J,358.3,34222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33801,1,3,0)
- ;;=3^Calciphylaxis
- ;;^UTILITY(U,$J,358.3,33801,1,4,0)
- ;;=4^E83.59
- ;;^UTILITY(U,$J,358.3,33801,2)
- ;;=^5003006
- ;;^UTILITY(U,$J,358.3,33802,0)
- ;;=T85.621A^^154^1705^8
- ;;^UTILITY(U,$J,358.3,33802,1,0)
+ ;;^UTILITY(U,$J,358.3,34222,1,3,0)
+ ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
+ ;;^UTILITY(U,$J,358.3,34222,1,4,0)
+ ;;=4^J11.1
+ ;;^UTILITY(U,$J,358.3,34222,2)
+ ;;=^5008158
+ ;;^UTILITY(U,$J,358.3,34223,0)
+ ;;=N12.^^131^1682^85
+ ;;^UTILITY(U,$J,358.3,34223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33802,1,3,0)
- ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,33802,1,4,0)
- ;;=4^T85.621A
- ;;^UTILITY(U,$J,358.3,33802,2)
- ;;=^5055625
- ;;^UTILITY(U,$J,358.3,33803,0)
- ;;=T85.621D^^154^1705^9
- ;;^UTILITY(U,$J,358.3,33803,1,0)
+ ;;^UTILITY(U,$J,358.3,34223,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis
+ ;;^UTILITY(U,$J,358.3,34223,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,34223,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,34224,0)
+ ;;=N11.9^^131^1682^86
+ ;;^UTILITY(U,$J,358.3,34224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33803,1,3,0)
- ;;=3^Displacement of Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,33803,1,4,0)
- ;;=4^T85.621D
- ;;^UTILITY(U,$J,358.3,33803,2)
- ;;=^5055626
- ;;^UTILITY(U,$J,358.3,33804,0)
- ;;=K65.0^^154^1705^10
- ;;^UTILITY(U,$J,358.3,33804,1,0)
+ ;;^UTILITY(U,$J,358.3,34224,1,3,0)
+ ;;=3^Tubulo-Interstitial Nephritis,Chronic
+ ;;^UTILITY(U,$J,358.3,34224,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,34224,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,34225,0)
+ ;;=N13.6^^131^1682^73
+ ;;^UTILITY(U,$J,358.3,34225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33804,1,3,0)
- ;;=3^Generalized (acute) Peritonitis
- ;;^UTILITY(U,$J,358.3,33804,1,4,0)
- ;;=4^K65.0
- ;;^UTILITY(U,$J,358.3,33804,2)
- ;;=^332799
- ;;^UTILITY(U,$J,358.3,33805,0)
- ;;=G60.9^^154^1705^14
- ;;^UTILITY(U,$J,358.3,33805,1,0)
+ ;;^UTILITY(U,$J,358.3,34225,1,3,0)
+ ;;=3^Pyonephrosis
+ ;;^UTILITY(U,$J,358.3,34225,1,4,0)
+ ;;=4^N13.6
+ ;;^UTILITY(U,$J,358.3,34225,2)
+ ;;=^101552
+ ;;^UTILITY(U,$J,358.3,34226,0)
+ ;;=N30.91^^131^1682^19
+ ;;^UTILITY(U,$J,358.3,34226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33805,1,3,0)
- ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,33805,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,33805,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,33806,0)
- ;;=T82.838A^^154^1705^12
- ;;^UTILITY(U,$J,358.3,33806,1,0)
+ ;;^UTILITY(U,$J,358.3,34226,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,34226,1,4,0)
+ ;;=4^N30.91
+ ;;^UTILITY(U,$J,358.3,34226,2)
+ ;;=^5015643
+ ;;^UTILITY(U,$J,358.3,34227,0)
+ ;;=N30.90^^131^1682^20
+ ;;^UTILITY(U,$J,358.3,34227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33806,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,33806,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,33806,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,33807,0)
- ;;=T82.838D^^154^1705^13
- ;;^UTILITY(U,$J,358.3,33807,1,0)
+ ;;^UTILITY(U,$J,358.3,34227,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,34227,1,4,0)
+ ;;=4^N30.90
+ ;;^UTILITY(U,$J,358.3,34227,2)
+ ;;=^5015642
+ ;;^UTILITY(U,$J,358.3,34228,0)
+ ;;=N41.9^^131^1682^38
+ ;;^UTILITY(U,$J,358.3,34228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33807,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,34228,1,3,0)
+ ;;=3^Inflammatory Disease of Prostate,Unspec

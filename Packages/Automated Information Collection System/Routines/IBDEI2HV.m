@@ -1,130 +1,130 @@
-IBDEI2HV ; ; 19-NOV-2015
+IBDEI2HV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41874,1,3,0)
- ;;=3^28825
- ;;^UTILITY(U,$J,358.3,41875,0)
- ;;=15271^^191^2130^5^^^^1
- ;;^UTILITY(U,$J,358.3,41875,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41875,1,2,0)
- ;;=2^Skin Sub Graft Trnk/Arm/Leg,1st 25 sq cm
- ;;^UTILITY(U,$J,358.3,41875,1,3,0)
- ;;=3^15271
- ;;^UTILITY(U,$J,358.3,41876,0)
- ;;=15272^^191^2130^6^^^^1
- ;;^UTILITY(U,$J,358.3,41876,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41876,1,2,0)
- ;;=2^Skin Sub Graft Trnk/Arm/Leg,Ea Addl 25 sq cm
- ;;^UTILITY(U,$J,358.3,41876,1,3,0)
- ;;=3^15272
- ;;^UTILITY(U,$J,358.3,41877,0)
- ;;=15275^^191^2131^1^^^^1
- ;;^UTILITY(U,$J,358.3,41877,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41877,1,2,0)
- ;;=2^Skin Sub Graft FN/HF/G 1st 25 sq cm
- ;;^UTILITY(U,$J,358.3,41877,1,3,0)
- ;;=3^15275
- ;;^UTILITY(U,$J,358.3,41878,0)
- ;;=15276^^191^2131^2^^^^1
- ;;^UTILITY(U,$J,358.3,41878,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41878,1,2,0)
- ;;=2^Skin Sub Graft FN/HF/G Ea Addl 25 sq cm
- ;;^UTILITY(U,$J,358.3,41878,1,3,0)
- ;;=3^15276
- ;;^UTILITY(U,$J,358.3,41879,0)
- ;;=Q4106^^191^2131^3^^^^1
- ;;^UTILITY(U,$J,358.3,41879,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41879,1,2,0)
- ;;=2^Dermagraft per sq cm
- ;;^UTILITY(U,$J,358.3,41879,1,3,0)
- ;;=3^Q4106
- ;;^UTILITY(U,$J,358.3,41880,0)
- ;;=I70.201^^192^2132^63
- ;;^UTILITY(U,$J,358.3,41880,1,0)
+ ;;^UTILITY(U,$J,358.3,42298,0)
+ ;;=F11.10^^159^2018^34
+ ;;^UTILITY(U,$J,358.3,42298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41880,1,3,0)
- ;;=3^Athscl Native Arteries of Extr, rt leg, unsp
- ;;^UTILITY(U,$J,358.3,41880,1,4,0)
- ;;=4^I70.201
- ;;^UTILITY(U,$J,358.3,41880,2)
- ;;=^5007573
- ;;^UTILITY(U,$J,358.3,41881,0)
- ;;=I70.202^^192^2132^62
- ;;^UTILITY(U,$J,358.3,41881,1,0)
+ ;;^UTILITY(U,$J,358.3,42298,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,42298,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,42298,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,42299,0)
+ ;;=F11.129^^159^2018^33
+ ;;^UTILITY(U,$J,358.3,42299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41881,1,3,0)
- ;;=3^Athscl Native Arteries of Extr, lft leg, unsp
- ;;^UTILITY(U,$J,358.3,41881,1,4,0)
- ;;=4^I70.202
- ;;^UTILITY(U,$J,358.3,41881,2)
- ;;=^5007574
- ;;^UTILITY(U,$J,358.3,41882,0)
- ;;=I70.203^^192^2132^61
- ;;^UTILITY(U,$J,358.3,41882,1,0)
+ ;;^UTILITY(U,$J,358.3,42299,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,42299,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,42299,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,42300,0)
+ ;;=F10.21^^159^2018^3
+ ;;^UTILITY(U,$J,358.3,42300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41882,1,3,0)
- ;;=3^Athscl Native Arteries of Extr, biltrl legs, unsp
- ;;^UTILITY(U,$J,358.3,41882,1,4,0)
- ;;=4^I70.203
- ;;^UTILITY(U,$J,358.3,41882,2)
- ;;=^5007575
- ;;^UTILITY(U,$J,358.3,41883,0)
- ;;=I70.208^^192^2132^60
- ;;^UTILITY(U,$J,358.3,41883,1,0)
+ ;;^UTILITY(U,$J,358.3,42300,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,42300,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,42300,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,42301,0)
+ ;;=F12.10^^159^2018^5
+ ;;^UTILITY(U,$J,358.3,42301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41883,1,3,0)
- ;;=3^Athscl Native Arteries of Extr, Oth, Unsp
- ;;^UTILITY(U,$J,358.3,41883,1,4,0)
- ;;=4^I70.208
- ;;^UTILITY(U,$J,358.3,41883,2)
- ;;=^5007576
- ;;^UTILITY(U,$J,358.3,41884,0)
- ;;=L02.612^^192^2132^11
- ;;^UTILITY(U,$J,358.3,41884,1,0)
+ ;;^UTILITY(U,$J,358.3,42301,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,42301,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,42301,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,42302,0)
+ ;;=F12.20^^159^2018^7
+ ;;^UTILITY(U,$J,358.3,42302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41884,1,3,0)
- ;;=3^Abscess,Cutaneous Left Foot
- ;;^UTILITY(U,$J,358.3,41884,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,41884,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,41885,0)
- ;;=L02.611^^192^2132^12
- ;;^UTILITY(U,$J,358.3,41885,1,0)
+ ;;^UTILITY(U,$J,358.3,42302,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,42302,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,42302,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,42303,0)
+ ;;=F12.21^^159^2018^6
+ ;;^UTILITY(U,$J,358.3,42303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41885,1,3,0)
- ;;=3^Abscess,Cutaneous Right Foot
- ;;^UTILITY(U,$J,358.3,41885,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,41885,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,41886,0)
- ;;=L90.8^^192^2132^103
- ;;^UTILITY(U,$J,358.3,41886,1,0)
+ ;;^UTILITY(U,$J,358.3,42303,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,42303,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,42303,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,42304,0)
+ ;;=F12.90^^159^2018^8
+ ;;^UTILITY(U,$J,358.3,42304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41886,1,3,0)
- ;;=3^Atrophic Disorders of Skin, Oth
- ;;^UTILITY(U,$J,358.3,41886,1,4,0)
- ;;=4^L90.8
- ;;^UTILITY(U,$J,358.3,41886,2)
- ;;=^5009457
- ;;^UTILITY(U,$J,358.3,41887,0)
- ;;=L74.4^^192^2132^23
- ;;^UTILITY(U,$J,358.3,41887,1,0)
+ ;;^UTILITY(U,$J,358.3,42304,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,42304,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,42304,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,42305,0)
+ ;;=I83.019^^159^2019^3
+ ;;^UTILITY(U,$J,358.3,42305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41887,1,3,0)
- ;;=3^Anhidrosis
- ;;^UTILITY(U,$J,358.3,41887,1,4,0)
- ;;=4^L74.4
- ;;^UTILITY(U,$J,358.3,41887,2)
- ;;=^7648
- ;;^UTILITY(U,$J,358.3,41888,0)
- ;;=M00.272^^192^2132^43
- ;;^UTILITY(U,$J,358.3,41888,1,0)
+ ;;^UTILITY(U,$J,358.3,42305,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,42305,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,42305,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,42306,0)
+ ;;=I83.219^^159^2019^4
+ ;;^UTILITY(U,$J,358.3,42306,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42306,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,42306,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,42306,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,42307,0)
+ ;;=I83.029^^159^2019^1
+ ;;^UTILITY(U,$J,358.3,42307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42307,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,42307,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,42307,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,42308,0)
+ ;;=I83.229^^159^2019^2
+ ;;^UTILITY(U,$J,358.3,42308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42308,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,42308,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,42308,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,42309,0)
+ ;;=B00.81^^159^2020^25
+ ;;^UTILITY(U,$J,358.3,42309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42309,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,42309,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,42309,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,42310,0)
+ ;;=D25.9^^159^2020^31
+ ;;^UTILITY(U,$J,358.3,42310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42310,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec

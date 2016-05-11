@@ -1,122 +1,134 @@
-IBDEI2JE ; ; 19-NOV-2015
+IBDEI2JE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42553,1,3,0)
- ;;=3^Nondisp avuls fx (chip) rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42553,1,4,0)
- ;;=4^S92.154K
- ;;^UTILITY(U,$J,358.3,42553,2)
- ;;=^5044798
- ;;^UTILITY(U,$J,358.3,42554,0)
- ;;=S92.152K^^192^2137^3
- ;;^UTILITY(U,$J,358.3,42554,1,0)
+ ;;^UTILITY(U,$J,358.3,43036,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,43036,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,43037,0)
+ ;;=I70.263^^164^2060^48
+ ;;^UTILITY(U,$J,358.3,43037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42554,1,3,0)
- ;;=3^Disp avuls fx (chip) lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42554,1,4,0)
- ;;=4^S92.152K
- ;;^UTILITY(U,$J,358.3,42554,2)
- ;;=^5044784
- ;;^UTILITY(U,$J,358.3,42555,0)
- ;;=S92.151K^^192^2137^4
- ;;^UTILITY(U,$J,358.3,42555,1,0)
+ ;;^UTILITY(U,$J,358.3,43037,1,3,0)
+ ;;=3^Athscl of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,43037,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,43037,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,43038,0)
+ ;;=I71.2^^164^2060^144
+ ;;^UTILITY(U,$J,358.3,43038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42555,1,3,0)
- ;;=3^Disp avuls fx (chip) of rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42555,1,4,0)
- ;;=4^S92.151K
- ;;^UTILITY(U,$J,358.3,42555,2)
- ;;=^5044777
- ;;^UTILITY(U,$J,358.3,42556,0)
- ;;=S92.145K^^192^2137^244
- ;;^UTILITY(U,$J,358.3,42556,1,0)
+ ;;^UTILITY(U,$J,358.3,43038,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,43038,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,43038,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,43039,0)
+ ;;=I71.3^^164^2060^33
+ ;;^UTILITY(U,$J,358.3,43039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42556,1,3,0)
- ;;=3^Nondisp dome fx lft tauls, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42556,1,4,0)
- ;;=4^S92.145K
- ;;^UTILITY(U,$J,358.3,42556,2)
- ;;=^5044763
- ;;^UTILITY(U,$J,358.3,42557,0)
- ;;=S92.055K^^192^2137^249
- ;;^UTILITY(U,$J,358.3,42557,1,0)
+ ;;^UTILITY(U,$J,358.3,43039,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,43039,1,4,0)
+ ;;=4^I71.3
+ ;;^UTILITY(U,$J,358.3,43039,2)
+ ;;=^5007788
+ ;;^UTILITY(U,$J,358.3,43040,0)
+ ;;=I71.4^^164^2060^34
+ ;;^UTILITY(U,$J,358.3,43040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42557,1,3,0)
- ;;=3^Nondisp extrartic fx lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42557,1,4,0)
- ;;=4^S92.055K
- ;;^UTILITY(U,$J,358.3,42557,2)
- ;;=^5044539
- ;;^UTILITY(U,$J,358.3,42558,0)
- ;;=S92.054K^^192^2137^252
- ;;^UTILITY(U,$J,358.3,42558,1,0)
+ ;;^UTILITY(U,$J,358.3,43040,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,43040,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,43040,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,43041,0)
+ ;;=I71.5^^164^2060^145
+ ;;^UTILITY(U,$J,358.3,43041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42558,1,3,0)
- ;;=3^Nondisp extrartic fx rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42558,1,4,0)
- ;;=4^S92.054K
- ;;^UTILITY(U,$J,358.3,42558,2)
- ;;=^5044532
- ;;^UTILITY(U,$J,358.3,42559,0)
- ;;=S92.052K^^192^2137^24
- ;;^UTILITY(U,$J,358.3,42559,1,0)
+ ;;^UTILITY(U,$J,358.3,43041,1,3,0)
+ ;;=3^Thoracoabd Aortic Aneurysm w/ Rupture
+ ;;^UTILITY(U,$J,358.3,43041,1,4,0)
+ ;;=4^I71.5
+ ;;^UTILITY(U,$J,358.3,43041,2)
+ ;;=^5007790
+ ;;^UTILITY(U,$J,358.3,43042,0)
+ ;;=I71.6^^164^2060^146
+ ;;^UTILITY(U,$J,358.3,43042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42559,1,3,0)
- ;;=3^Disp extrartic fx lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42559,1,4,0)
- ;;=4^S92.052K
- ;;^UTILITY(U,$J,358.3,42559,2)
- ;;=^5044518
- ;;^UTILITY(U,$J,358.3,42560,0)
- ;;=S92.051K^^192^2137^27
- ;;^UTILITY(U,$J,358.3,42560,1,0)
+ ;;^UTILITY(U,$J,358.3,43042,1,3,0)
+ ;;=3^Thoracoabd Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,43042,1,4,0)
+ ;;=4^I71.6
+ ;;^UTILITY(U,$J,358.3,43042,2)
+ ;;=^5007791
+ ;;^UTILITY(U,$J,358.3,43043,0)
+ ;;=I72.2^^164^2060^39
+ ;;^UTILITY(U,$J,358.3,43043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42560,1,3,0)
- ;;=3^Disp extrartic fx rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42560,1,4,0)
- ;;=4^S92.051K
- ;;^UTILITY(U,$J,358.3,42560,2)
- ;;=^5044511
- ;;^UTILITY(U,$J,358.3,42561,0)
- ;;=S92.045K^^192^2137^360
- ;;^UTILITY(U,$J,358.3,42561,1,0)
+ ;;^UTILITY(U,$J,358.3,43043,1,3,0)
+ ;;=3^Aneurysm of Renal Artery
+ ;;^UTILITY(U,$J,358.3,43043,1,4,0)
+ ;;=4^I72.2
+ ;;^UTILITY(U,$J,358.3,43043,2)
+ ;;=^269773
+ ;;^UTILITY(U,$J,358.3,43044,0)
+ ;;=I72.3^^164^2060^36
+ ;;^UTILITY(U,$J,358.3,43044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42561,1,3,0)
- ;;=3^Nondisp fx tuberosity lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42561,1,4,0)
- ;;=4^S92.045K
- ;;^UTILITY(U,$J,358.3,42561,2)
- ;;=^5137564
- ;;^UTILITY(U,$J,358.3,42562,0)
- ;;=S92.044K^^192^2137^361
- ;;^UTILITY(U,$J,358.3,42562,1,0)
+ ;;^UTILITY(U,$J,358.3,43044,1,3,0)
+ ;;=3^Aneurysm of Iliac Artery
+ ;;^UTILITY(U,$J,358.3,43044,1,4,0)
+ ;;=4^I72.3
+ ;;^UTILITY(U,$J,358.3,43044,2)
+ ;;=^269775
+ ;;^UTILITY(U,$J,358.3,43045,0)
+ ;;=I72.4^^164^2060^37
+ ;;^UTILITY(U,$J,358.3,43045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42562,1,3,0)
- ;;=3^Nondisp fx tuberosity rt calcaneu, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42562,1,4,0)
- ;;=4^S92.044K
- ;;^UTILITY(U,$J,358.3,42562,2)
- ;;=^5044504
- ;;^UTILITY(U,$J,358.3,42563,0)
- ;;=S92.042K^^192^2137^134
- ;;^UTILITY(U,$J,358.3,42563,1,0)
+ ;;^UTILITY(U,$J,358.3,43045,1,3,0)
+ ;;=3^Aneurysm of Lower Extremity Artery
+ ;;^UTILITY(U,$J,358.3,43045,1,4,0)
+ ;;=4^I72.4
+ ;;^UTILITY(U,$J,358.3,43045,2)
+ ;;=^269777
+ ;;^UTILITY(U,$J,358.3,43046,0)
+ ;;=I72.0^^164^2060^35
+ ;;^UTILITY(U,$J,358.3,43046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42563,1,3,0)
- ;;=3^Disp fx tuberosity lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42563,1,4,0)
- ;;=4^S92.042K
- ;;^UTILITY(U,$J,358.3,42563,2)
- ;;=^5137550
- ;;^UTILITY(U,$J,358.3,42564,0)
- ;;=S92.041K^^192^2137^135
- ;;^UTILITY(U,$J,358.3,42564,1,0)
+ ;;^UTILITY(U,$J,358.3,43046,1,3,0)
+ ;;=3^Aneurysm of Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43046,1,4,0)
+ ;;=4^I72.0
+ ;;^UTILITY(U,$J,358.3,43046,2)
+ ;;=^5007793
+ ;;^UTILITY(U,$J,358.3,43047,0)
+ ;;=I73.00^^164^2060^141
+ ;;^UTILITY(U,$J,358.3,43047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42564,1,3,0)
- ;;=3^Disp fx tuberosity rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,42564,1,4,0)
- ;;=4^S92.041K
- ;;^UTILITY(U,$J,358.3,42564,2)
- ;;=^5044497
- ;;^UTILITY(U,$J,358.3,42565,0)
- ;;=M84.675K^^192^2137^404
+ ;;^UTILITY(U,$J,358.3,43047,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,43047,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,43047,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,43048,0)
+ ;;=I73.9^^164^2060^131
+ ;;^UTILITY(U,$J,358.3,43048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43048,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,43048,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,43048,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,43049,0)
+ ;;=I74.2^^164^2060^106
+ ;;^UTILITY(U,$J,358.3,43049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43049,1,3,0)
+ ;;=3^Embolism & Thrombosis UE Arteries

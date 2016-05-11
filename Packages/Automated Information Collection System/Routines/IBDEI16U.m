@@ -1,130 +1,132 @@
-IBDEI16U ; ; 19-NOV-2015
+IBDEI16U ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19853,1,4,0)
- ;;=4^F14.222
- ;;^UTILITY(U,$J,358.3,19853,2)
- ;;=^5003257
- ;;^UTILITY(U,$J,358.3,19854,0)
- ;;=F14.221^^94^930^16
- ;;^UTILITY(U,$J,358.3,19854,1,0)
+ ;;^UTILITY(U,$J,358.3,20202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19854,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,19854,1,4,0)
- ;;=4^F14.221
- ;;^UTILITY(U,$J,358.3,19854,2)
- ;;=^5003256
- ;;^UTILITY(U,$J,358.3,19855,0)
- ;;=F14.220^^94^930^18
- ;;^UTILITY(U,$J,358.3,19855,1,0)
+ ;;^UTILITY(U,$J,358.3,20202,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,20202,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,20202,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,20203,0)
+ ;;=Z85.528^^84^930^89
+ ;;^UTILITY(U,$J,358.3,20203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19855,1,3,0)
- ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19855,1,4,0)
- ;;=4^F14.220
- ;;^UTILITY(U,$J,358.3,19855,2)
- ;;=^5003255
- ;;^UTILITY(U,$J,358.3,19856,0)
- ;;=F14.20^^94^930^23
- ;;^UTILITY(U,$J,358.3,19856,1,0)
+ ;;^UTILITY(U,$J,358.3,20203,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,20203,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,20203,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,20204,0)
+ ;;=Z85.6^^84^930^80
+ ;;^UTILITY(U,$J,358.3,20204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19856,1,3,0)
- ;;=3^Cocaine Dependence,Uncompicated
- ;;^UTILITY(U,$J,358.3,19856,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,19856,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,19857,0)
- ;;=F10.120^^94^930^1
- ;;^UTILITY(U,$J,358.3,19857,1,0)
+ ;;^UTILITY(U,$J,358.3,20204,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,20204,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,20204,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,20205,0)
+ ;;=Z85.72^^84^930^104
+ ;;^UTILITY(U,$J,358.3,20205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19857,1,3,0)
- ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19857,1,4,0)
- ;;=4^F10.120
- ;;^UTILITY(U,$J,358.3,19857,2)
- ;;=^5003069
- ;;^UTILITY(U,$J,358.3,19858,0)
- ;;=F10.10^^94^930^2
- ;;^UTILITY(U,$J,358.3,19858,1,0)
+ ;;^UTILITY(U,$J,358.3,20205,1,3,0)
+ ;;=3^Personal Hx of Non-Hodgkin Lymphomas
+ ;;^UTILITY(U,$J,358.3,20205,1,4,0)
+ ;;=4^Z85.72
+ ;;^UTILITY(U,$J,358.3,20205,2)
+ ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,20206,0)
+ ;;=Z85.79^^84^930^94
+ ;;^UTILITY(U,$J,358.3,20206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19858,1,3,0)
- ;;=3^Alcohol Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19858,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,19858,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,19859,0)
- ;;=F17.201^^94^930^28
- ;;^UTILITY(U,$J,358.3,19859,1,0)
+ ;;^UTILITY(U,$J,358.3,20206,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
+ ;;^UTILITY(U,$J,358.3,20206,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,20206,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,20207,0)
+ ;;=Z85.820^^84^930^83
+ ;;^UTILITY(U,$J,358.3,20207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19859,1,3,0)
- ;;=3^Nicotine Dependence In Remission,Unspec
- ;;^UTILITY(U,$J,358.3,19859,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,19859,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,19860,0)
- ;;=F17.210^^94^930^27
- ;;^UTILITY(U,$J,358.3,19860,1,0)
+ ;;^UTILITY(U,$J,358.3,20207,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,20207,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,20207,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,20208,0)
+ ;;=Z85.828^^84^930^98
+ ;;^UTILITY(U,$J,358.3,20208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19860,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19860,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,19860,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,19861,0)
- ;;=F17.291^^94^930^29
- ;;^UTILITY(U,$J,358.3,19861,1,0)
+ ;;^UTILITY(U,$J,358.3,20208,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,20208,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,20208,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,20209,0)
+ ;;=Z85.71^^84^930^78
+ ;;^UTILITY(U,$J,358.3,20209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19861,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,19861,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,19861,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,19862,0)
- ;;=F17.290^^94^930^30
- ;;^UTILITY(U,$J,358.3,19862,1,0)
+ ;;^UTILITY(U,$J,358.3,20209,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,20209,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,20209,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,20210,0)
+ ;;=Z65.8^^84^930^138
+ ;;^UTILITY(U,$J,358.3,20210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19862,1,3,0)
- ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19862,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,19862,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,19863,0)
- ;;=F17.221^^94^930^24
- ;;^UTILITY(U,$J,358.3,19863,1,0)
+ ;;^UTILITY(U,$J,358.3,20210,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,20210,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,20210,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,20211,0)
+ ;;=Z86.11^^84^930^115
+ ;;^UTILITY(U,$J,358.3,20211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19863,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,19863,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,19863,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,19864,0)
- ;;=F17.220^^94^930^25
- ;;^UTILITY(U,$J,358.3,19864,1,0)
+ ;;^UTILITY(U,$J,358.3,20211,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,20211,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,20211,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,20212,0)
+ ;;=Z86.13^^84^930^82
+ ;;^UTILITY(U,$J,358.3,20212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19864,1,3,0)
- ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19864,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,19864,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,19865,0)
- ;;=F17.211^^94^930^26
- ;;^UTILITY(U,$J,358.3,19865,1,0)
+ ;;^UTILITY(U,$J,358.3,20212,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,20212,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,20212,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,20213,0)
+ ;;=Z86.73^^84^930^112
+ ;;^UTILITY(U,$J,358.3,20213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19865,1,3,0)
- ;;=3^Nicotine Dependence Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,19865,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,19865,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,19866,0)
- ;;=F17.200^^94^930^31
+ ;;^UTILITY(U,$J,358.3,20213,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,20213,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,20213,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,20214,0)
+ ;;=Z86.79^^84^930^75
+ ;;^UTILITY(U,$J,358.3,20214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20214,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,20214,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,20214,2)
+ ;;=^5063479

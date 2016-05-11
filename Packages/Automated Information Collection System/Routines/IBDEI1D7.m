@@ -1,132 +1,136 @@
-IBDEI1D7 ; ; 19-NOV-2015
+IBDEI1D7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22752,1,4,0)
- ;;=4^D57.819
- ;;^UTILITY(U,$J,358.3,22752,2)
- ;;=^5002320
- ;;^UTILITY(U,$J,358.3,22753,0)
- ;;=D57.3^^104^1061^7
- ;;^UTILITY(U,$J,358.3,22753,1,0)
+ ;;^UTILITY(U,$J,358.3,23199,0)
+ ;;=R19.8^^87^993^59
+ ;;^UTILITY(U,$J,358.3,23199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22753,1,3,0)
- ;;=3^Sickle-Cell Trait
- ;;^UTILITY(U,$J,358.3,22753,1,4,0)
- ;;=4^D57.3
- ;;^UTILITY(U,$J,358.3,22753,2)
- ;;=^5002313
- ;;^UTILITY(U,$J,358.3,22754,0)
- ;;=D57.20^^104^1061^8
- ;;^UTILITY(U,$J,358.3,22754,1,0)
+ ;;^UTILITY(U,$J,358.3,23199,1,3,0)
+ ;;=3^Digestive System/Abdomen Symptoms NEC
+ ;;^UTILITY(U,$J,358.3,23199,1,4,0)
+ ;;=4^R19.8
+ ;;^UTILITY(U,$J,358.3,23199,2)
+ ;;=^5019277
+ ;;^UTILITY(U,$J,358.3,23200,0)
+ ;;=R20.0^^87^993^35
+ ;;^UTILITY(U,$J,358.3,23200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22754,1,3,0)
- ;;=3^Sickle-Cell/Hb-C Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,22754,1,4,0)
- ;;=4^D57.20
- ;;^UTILITY(U,$J,358.3,22754,2)
- ;;=^330080
- ;;^UTILITY(U,$J,358.3,22755,0)
- ;;=D56.8^^104^1061^9
- ;;^UTILITY(U,$J,358.3,22755,1,0)
+ ;;^UTILITY(U,$J,358.3,23200,1,3,0)
+ ;;=3^Anesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,23200,1,4,0)
+ ;;=4^R20.0
+ ;;^UTILITY(U,$J,358.3,23200,2)
+ ;;=^5019278
+ ;;^UTILITY(U,$J,358.3,23201,0)
+ ;;=R20.1^^87^993^87
+ ;;^UTILITY(U,$J,358.3,23201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22755,1,3,0)
- ;;=3^Thalassemias
- ;;^UTILITY(U,$J,358.3,22755,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,22755,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,22756,0)
- ;;=D57.40^^104^1061^6
- ;;^UTILITY(U,$J,358.3,22756,1,0)
+ ;;^UTILITY(U,$J,358.3,23201,1,3,0)
+ ;;=3^Hypoesthesia of Skin
+ ;;^UTILITY(U,$J,358.3,23201,1,4,0)
+ ;;=4^R20.1
+ ;;^UTILITY(U,$J,358.3,23201,2)
+ ;;=^5019279
+ ;;^UTILITY(U,$J,358.3,23202,0)
+ ;;=R20.2^^87^993^131
+ ;;^UTILITY(U,$J,358.3,23202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22756,1,3,0)
- ;;=3^Sickle-Cell Thalassemia w/o Crisis
- ;;^UTILITY(U,$J,358.3,22756,1,4,0)
- ;;=4^D57.40
- ;;^UTILITY(U,$J,358.3,22756,2)
- ;;=^329908
- ;;^UTILITY(U,$J,358.3,22757,0)
- ;;=C91.01^^104^1062^20
- ;;^UTILITY(U,$J,358.3,22757,1,0)
+ ;;^UTILITY(U,$J,358.3,23202,1,3,0)
+ ;;=3^Paresthesia of Skin
+ ;;^UTILITY(U,$J,358.3,23202,1,4,0)
+ ;;=4^R20.2
+ ;;^UTILITY(U,$J,358.3,23202,2)
+ ;;=^5019280
+ ;;^UTILITY(U,$J,358.3,23203,0)
+ ;;=R20.3^^87^993^83
+ ;;^UTILITY(U,$J,358.3,23203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22757,1,3,0)
- ;;=3^Lymphoblastic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,22757,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,22757,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,22758,0)
- ;;=C91.00^^104^1062^21
- ;;^UTILITY(U,$J,358.3,22758,1,0)
+ ;;^UTILITY(U,$J,358.3,23203,1,3,0)
+ ;;=3^Hyperesthesia
+ ;;^UTILITY(U,$J,358.3,23203,1,4,0)
+ ;;=4^R20.3
+ ;;^UTILITY(U,$J,358.3,23203,2)
+ ;;=^60011
+ ;;^UTILITY(U,$J,358.3,23204,0)
+ ;;=R21.^^87^993^145
+ ;;^UTILITY(U,$J,358.3,23204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22758,1,3,0)
- ;;=3^Lymphoblastic Leukemia,Acute,Not in Remission
- ;;^UTILITY(U,$J,358.3,22758,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,22758,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,22759,0)
- ;;=C92.41^^104^1062^41
- ;;^UTILITY(U,$J,358.3,22759,1,0)
+ ;;^UTILITY(U,$J,358.3,23204,1,3,0)
+ ;;=3^Rash
+ ;;^UTILITY(U,$J,358.3,23204,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,23204,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,23205,0)
+ ;;=R22.0^^87^993^105
+ ;;^UTILITY(U,$J,358.3,23205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22759,1,3,0)
- ;;=3^Promyleocytic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,22759,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,22759,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,22760,0)
- ;;=C92.01^^104^1062^32
- ;;^UTILITY(U,$J,358.3,22760,1,0)
+ ;;^UTILITY(U,$J,358.3,23205,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Head
+ ;;^UTILITY(U,$J,358.3,23205,1,4,0)
+ ;;=4^R22.0
+ ;;^UTILITY(U,$J,358.3,23205,2)
+ ;;=^5019284
+ ;;^UTILITY(U,$J,358.3,23206,0)
+ ;;=R22.1^^87^993^108
+ ;;^UTILITY(U,$J,358.3,23206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22760,1,3,0)
- ;;=3^Myeloblastic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,22760,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,22760,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,22761,0)
- ;;=C92.51^^104^1062^35
- ;;^UTILITY(U,$J,358.3,22761,1,0)
+ ;;^UTILITY(U,$J,358.3,23206,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Neck
+ ;;^UTILITY(U,$J,358.3,23206,1,4,0)
+ ;;=4^R22.1
+ ;;^UTILITY(U,$J,358.3,23206,2)
+ ;;=^5019285
+ ;;^UTILITY(U,$J,358.3,23207,0)
+ ;;=R22.2^^87^993^111
+ ;;^UTILITY(U,$J,358.3,23207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22761,1,3,0)
- ;;=3^Myelomonocytic Leukemia,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,22761,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,22761,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,22762,0)
- ;;=C91.11^^104^1062^24
- ;;^UTILITY(U,$J,358.3,22762,1,0)
+ ;;^UTILITY(U,$J,358.3,23207,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,23207,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,23207,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,23208,0)
+ ;;=R22.31^^87^993^110
+ ;;^UTILITY(U,$J,358.3,23208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22762,1,3,0)
- ;;=3^Lymphocytic B-Cell Type Leukemia,Chr,In Remission
- ;;^UTILITY(U,$J,358.3,22762,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,22762,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,22763,0)
- ;;=C91.10^^104^1062^25
- ;;^UTILITY(U,$J,358.3,22763,1,0)
+ ;;^UTILITY(U,$J,358.3,23208,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,23208,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,23208,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,23209,0)
+ ;;=R22.32^^87^993^107
+ ;;^UTILITY(U,$J,358.3,23209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22763,1,3,0)
- ;;=3^Lymphocytic B-Cell Type Leukemia,Chr,Not in Remission
- ;;^UTILITY(U,$J,358.3,22763,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,22763,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,22764,0)
- ;;=C92.11^^104^1062^33
- ;;^UTILITY(U,$J,358.3,22764,1,0)
+ ;;^UTILITY(U,$J,358.3,23209,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,23209,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,23209,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,23210,0)
+ ;;=R22.33^^87^993^103
+ ;;^UTILITY(U,$J,358.3,23210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22764,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,In Remission
- ;;^UTILITY(U,$J,358.3,22764,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,22764,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,22765,0)
- ;;=C92.10^^104^1062^34
- ;;^UTILITY(U,$J,358.3,22765,1,0)
+ ;;^UTILITY(U,$J,358.3,23210,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,23210,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,23210,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,23211,0)
+ ;;=R22.42^^87^993^106
+ ;;^UTILITY(U,$J,358.3,23211,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23211,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,23211,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,23211,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,23212,0)
+ ;;=R22.41^^87^993^109

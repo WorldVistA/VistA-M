@@ -1,120 +1,144 @@
-IBDEI24N ; ; 19-NOV-2015
+IBDEI24N ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35710,1,0)
+ ;;^UTILITY(U,$J,358.3,36072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35710,1,3,0)
- ;;=3^Triplet preg, unsp num plcnta & amnio sacs, second trimester
- ;;^UTILITY(U,$J,358.3,35710,1,4,0)
- ;;=4^O30.102
- ;;^UTILITY(U,$J,358.3,35710,2)
- ;;=^5016453
- ;;^UTILITY(U,$J,358.3,35711,0)
- ;;=O30.103^^166^1826^64
- ;;^UTILITY(U,$J,358.3,35711,1,0)
+ ;;^UTILITY(U,$J,358.3,36072,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,36072,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,36072,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,36073,0)
+ ;;=R05.^^134^1742^23
+ ;;^UTILITY(U,$J,358.3,36073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35711,1,3,0)
- ;;=3^Triplet preg, unsp num plcnta & amnio sacs, third trimester
- ;;^UTILITY(U,$J,358.3,35711,1,4,0)
- ;;=4^O30.103
- ;;^UTILITY(U,$J,358.3,35711,2)
- ;;=^5016454
- ;;^UTILITY(U,$J,358.3,35712,0)
- ;;=O30.111^^166^1826^56
- ;;^UTILITY(U,$J,358.3,35712,1,0)
+ ;;^UTILITY(U,$J,358.3,36073,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,36073,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,36073,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,36074,0)
+ ;;=R19.7^^134^1742^24
+ ;;^UTILITY(U,$J,358.3,36074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35712,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, first tri
- ;;^UTILITY(U,$J,358.3,35712,1,4,0)
- ;;=4^O30.111
- ;;^UTILITY(U,$J,358.3,35712,2)
- ;;=^5016455
- ;;^UTILITY(U,$J,358.3,35713,0)
- ;;=O30.112^^166^1826^57
- ;;^UTILITY(U,$J,358.3,35713,1,0)
+ ;;^UTILITY(U,$J,358.3,36074,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,36074,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,36074,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,36075,0)
+ ;;=M89.9^^134^1742^9
+ ;;^UTILITY(U,$J,358.3,36075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35713,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, second tri
- ;;^UTILITY(U,$J,358.3,35713,1,4,0)
- ;;=4^O30.112
- ;;^UTILITY(U,$J,358.3,35713,2)
- ;;=^5016456
- ;;^UTILITY(U,$J,358.3,35714,0)
- ;;=O30.113^^166^1826^58
- ;;^UTILITY(U,$J,358.3,35714,1,0)
+ ;;^UTILITY(U,$J,358.3,36075,1,3,0)
+ ;;=3^Bone Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36075,1,4,0)
+ ;;=4^M89.9
+ ;;^UTILITY(U,$J,358.3,36075,2)
+ ;;=^5015119
+ ;;^UTILITY(U,$J,358.3,36076,0)
+ ;;=M94.9^^134^1742^11
+ ;;^UTILITY(U,$J,358.3,36076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35714,1,3,0)
- ;;=3^Triplet preg w two or more monochorionic fetuses, third tri
- ;;^UTILITY(U,$J,358.3,35714,1,4,0)
- ;;=4^O30.113
- ;;^UTILITY(U,$J,358.3,35714,2)
- ;;=^5016457
- ;;^UTILITY(U,$J,358.3,35715,0)
- ;;=O30.121^^166^1826^53
- ;;^UTILITY(U,$J,358.3,35715,1,0)
+ ;;^UTILITY(U,$J,358.3,36076,1,3,0)
+ ;;=3^Cartilage Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,36076,1,4,0)
+ ;;=4^M94.9
+ ;;^UTILITY(U,$J,358.3,36076,2)
+ ;;=^5015366
+ ;;^UTILITY(U,$J,358.3,36077,0)
+ ;;=R42.^^134^1742^25
+ ;;^UTILITY(U,$J,358.3,36077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35715,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, first tri
- ;;^UTILITY(U,$J,358.3,35715,1,4,0)
- ;;=4^O30.121
- ;;^UTILITY(U,$J,358.3,35715,2)
- ;;=^5016459
- ;;^UTILITY(U,$J,358.3,35716,0)
- ;;=O30.122^^166^1826^54
- ;;^UTILITY(U,$J,358.3,35716,1,0)
+ ;;^UTILITY(U,$J,358.3,36077,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,36077,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,36077,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,36078,0)
+ ;;=R50.2^^134^1742^26
+ ;;^UTILITY(U,$J,358.3,36078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35716,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, second tri
- ;;^UTILITY(U,$J,358.3,35716,1,4,0)
- ;;=4^O30.122
- ;;^UTILITY(U,$J,358.3,35716,2)
- ;;=^5016460
- ;;^UTILITY(U,$J,358.3,35717,0)
- ;;=O30.123^^166^1826^55
- ;;^UTILITY(U,$J,358.3,35717,1,0)
+ ;;^UTILITY(U,$J,358.3,36078,1,3,0)
+ ;;=3^Drug-Induced Fever
+ ;;^UTILITY(U,$J,358.3,36078,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,36078,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,36079,0)
+ ;;=E66.1^^134^1742^27
+ ;;^UTILITY(U,$J,358.3,36079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35717,1,3,0)
- ;;=3^Triplet preg w two or more monoamnio fetuses, third tri
- ;;^UTILITY(U,$J,358.3,35717,1,4,0)
- ;;=4^O30.123
- ;;^UTILITY(U,$J,358.3,35717,2)
- ;;=^5016461
- ;;^UTILITY(U,$J,358.3,35718,0)
- ;;=O30.191^^166^1826^59
- ;;^UTILITY(U,$J,358.3,35718,1,0)
+ ;;^UTILITY(U,$J,358.3,36079,1,3,0)
+ ;;=3^Drug-Induced Obesity
+ ;;^UTILITY(U,$J,358.3,36079,1,4,0)
+ ;;=4^E66.1
+ ;;^UTILITY(U,$J,358.3,36079,2)
+ ;;=^5002828
+ ;;^UTILITY(U,$J,358.3,36080,0)
+ ;;=R06.00^^134^1742^29
+ ;;^UTILITY(U,$J,358.3,36080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35718,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, first tri
- ;;^UTILITY(U,$J,358.3,35718,1,4,0)
- ;;=4^O30.191
- ;;^UTILITY(U,$J,358.3,35718,2)
- ;;=^5016463
- ;;^UTILITY(U,$J,358.3,35719,0)
- ;;=O30.192^^166^1826^60
- ;;^UTILITY(U,$J,358.3,35719,1,0)
+ ;;^UTILITY(U,$J,358.3,36080,1,3,0)
+ ;;=3^Dyspnea,Unspec
+ ;;^UTILITY(U,$J,358.3,36080,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,36080,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,36081,0)
+ ;;=R30.0^^134^1742^30
+ ;;^UTILITY(U,$J,358.3,36081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35719,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, second tri
- ;;^UTILITY(U,$J,358.3,35719,1,4,0)
- ;;=4^O30.192
- ;;^UTILITY(U,$J,358.3,35719,2)
- ;;=^5016464
- ;;^UTILITY(U,$J,358.3,35720,0)
- ;;=O30.193^^166^1826^61
- ;;^UTILITY(U,$J,358.3,35720,1,0)
+ ;;^UTILITY(U,$J,358.3,36081,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,36081,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,36081,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,36082,0)
+ ;;=R60.9^^134^1742^33
+ ;;^UTILITY(U,$J,358.3,36082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35720,1,3,0)
- ;;=3^Triplet preg, unable to dtrm num plcnta & amnio sacs, third tri
- ;;^UTILITY(U,$J,358.3,35720,1,4,0)
- ;;=4^O30.193
- ;;^UTILITY(U,$J,358.3,35720,2)
- ;;=^5016465
- ;;^UTILITY(U,$J,358.3,35721,0)
- ;;=O30.201^^166^1826^50
- ;;^UTILITY(U,$J,358.3,35721,1,0)
+ ;;^UTILITY(U,$J,358.3,36082,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,36082,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,36082,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,36083,0)
+ ;;=R50.9^^134^1742^35
+ ;;^UTILITY(U,$J,358.3,36083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35721,1,3,0)
- ;;=3^Quad preg, unsp num plcnta & amnio sacs, first trimester
- ;;^UTILITY(U,$J,358.3,35721,1,4,0)
- ;;=4^O30.201
+ ;;^UTILITY(U,$J,358.3,36083,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,36083,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,36083,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,36084,0)
+ ;;=R35.0^^134^1742^49
+ ;;^UTILITY(U,$J,358.3,36084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36084,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,36084,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,36084,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,36085,0)
+ ;;=K30.^^134^1742^36
+ ;;^UTILITY(U,$J,358.3,36085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36085,1,3,0)
+ ;;=3^Functional Dyspepsia
+ ;;^UTILITY(U,$J,358.3,36085,1,4,0)
+ ;;=4^K30.
+ ;;^UTILITY(U,$J,358.3,36085,2)
+ ;;=^5008558
+ ;;^UTILITY(U,$J,358.3,36086,0)
+ ;;=R60.1^^134^1742^31

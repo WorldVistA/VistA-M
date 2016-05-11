@@ -1,5 +1,5 @@
-ORDV06B ; slc/dcm - OE/RR Report Extracts ;7/14/14  16:34
- ;;3.0;ORDER ENTRY RESULTS REPORTING;**312**;Dec 17, 1997;Build 31
+ORDV06B ; slc/dcm - OE/RR Report Extracts ;12/02/15  05:38
+ ;;3.0;ORDER ENTRY RESULTS REPORTING;**312,350,424**;Dec 17, 1997;Build 8
  ;Pharmacy Extracts for VistaWeb and ALL Medication Report
 RXALL(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT) ;All Patient Meds
  ;Call to PSOORRL
@@ -28,28 +28,36 @@ IN ;Setup and call to Pharmacy API
  S (ORBEG,OREND,ORCTX)=""
  S ORVIEW=1
  S ORBEG=$S($G(ORDBEG):ORDBEG,1:$$DT^ORWPS("T-50000")),OREND=$S(ORDEND<DT:ORDEND,1:$$DT^ORWPS("T+3000"))
- D OCL^PSOORRL(DFN,ORBEG,OREND,ORVIEW)
- N ITMP,FIELDS,INSTRUCT,COMMENTS,REASON,NVSDT,TYPE,ILST,J,SORTDT
+ D OCL^PSOORRL(DFN,$$DT^ORWPS("T-50000"),$$DT^ORWPS("T+3000"),ORVIEW)
+ N ITMP,FIELDS,INSTRUCT,COMMENTS,REASON,NVSDT,TYPE,ILST,J,SORTDT,STOPDT
  S ILST=0,ITMP=""
  F  S ITMP=$O(^TMP("PS",$J,ITMP)) Q:'ITMP  D
  . K INSTRUCT,COMMENTS,REASON,ORIFN
  . K ^TMP("ORACT",$J,"COMMENTS")
  . S COMMENTS="^TMP(""ORACT"",$J,""COMMENTS"")"
- . S (INSTRUCT,@COMMENTS)="",FIELDS=^TMP("PS",$J,ITMP,0)
+ . S (INSTRUCT,@COMMENTS,STOPDT)="",FIELDS=^TMP("PS",$J,ITMP,0)
+ . S $P(FIELDS,"^",17)=$P($G(^TMP("PS",$J,ITMP,"P",0)),"^",2) ;Provider
  . S SORTDT=$S($L($P(FIELDS,"^",10)):$P(FIELDS,"^",10),1:$P(FIELDS,"^",15)) ;Date Priority: 1)Last Fill Date, 2)Issue/Start Date, 3)Order Date
  . I 'SORTDT D  ;If pharmacy API doesn't screen out data within selected date range, check CPRS OrderDate and screen out as appropriate
  .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
  .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
- .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11),SORTDT=$P(^OR(100,ORIFN,0),"^",7)
+ .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S SORTDT=$P(^OR(100,ORIFN,0),"^",7),STOPDT=$P(^(0),"^",9)
  .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
- . ;Next line excludes any data where (ExpirationDate, LastFill Date, StartDate or OrderDate) is outside of selected date range.
- . I SORTDT<ORBEG!(SORTDT>OREND),($P(FIELDS,"^",4)<ORBEG!($P(FIELDS,"^",4)>OREND)),($P(FIELDS,"^",10)<ORBEG!($P(FIELDS,"^",10)>OREND)),($P(FIELDS,"^",15)<ORBEG!($P(FIELDS,"^",15)>OREND)) Q
  . S TYPE=$S($P($P(FIELDS,U),";",2)="O":"OP",1:"UD")
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S TYPE="CP"
  . N LOC,LOCEX S (LOC,LOCEX)=""
  . I TYPE="CP" S LOC=$G(^TMP("PS",$J,ITMP,"CLINIC",0))
- . S:LOC LOCEX=$P($G(^SC(+LOC,0)),U)_":"_+LOC ;IMO NEW
- . I TYPE="OP",$P(FIELDS,";")["N" S TYPE="NV"          ;non-VA med
+ . S:LOC LOCEX=$P($G(^SC(+LOC,0)),U)_":"_+LOC ;IMO
+ . I TYPE="OP",$P(FIELDS,";")["N" S TYPE="NV" ;non-VA med
+ . ;Next line excludes any data where (ExpirationDate, LastFill Date, StartDate or OrderDate) is outside of selected date range for everything except non-VAmeds.
+ . I TYPE'="NV",SORTDT<ORBEG!(SORTDT>OREND),($P(FIELDS,"^",4)<ORBEG!($P(FIELDS,"^",4)>OREND)),($P(FIELDS,"^",10)<ORBEG!($P(FIELDS,"^",10)>OREND)),($P(FIELDS,"^",15)<ORBEG!($P(FIELDS,"^",15)>OREND)) Q
+ . I $P(FIELDS,"^",9)["DISCONTINUED",(TYPE="OP"!(TYPE="NV")) D
+ .. K ^TMP("ORXPS",$J) M ^TMP("ORXPS",$J)=^TMP("PS",$J)
+ .. D OEL^PSOORRL(DFN,$P(FIELDS,"^")) ;This API uses same ^TMP("PS" global
+ .. S ORIFN=+$P(^TMP("PS",$J,0),"^",11) I ORIFN S STOPDT=$P(^OR(100,ORIFN,0),"^",9)
+ .. M ^TMP("PS",$J)=^TMP("ORXPS",$J) K ^TMP("ORXPS",$J)
+ .. I TYPE="NV",'$L($P(FIELDS,"^",4)) S $P(FIELDS,"^",4)=STOPDT
+ .. I TYPE="OP" S $P(FIELDS,"^",4)=STOPDT
  . I $O(^TMP("PS",$J,ITMP,"A",0))>0 S TYPE="IV"
  . I $O(^TMP("PS",$J,ITMP,"B",0))>0 S TYPE="IV"
  . I (TYPE="UD")!(TYPE="CP") D UDINST^ORWPS(.INSTRUCT,ITMP)
@@ -59,7 +67,7 @@ IN ;Setup and call to Pharmacy API
  . I (TYPE="UD")!(TYPE="IV")!(TYPE="NV")!(TYPE="CP") D SETMULT^ORWPS(COMMENTS,ITMP,"SIO")
  . M COMMENTS=@COMMENTS
  . I $D(COMMENTS(1)) S COMMENTS(1)="\"_COMMENTS(1)
- . S:TYPE="NV" $P(FIELDS,U,4)=$G(NVSDT)
+ . I '$L($P(FIELDS,U,15)) S:TYPE="NV" $P(FIELDS,U,15)=$P($G(NVSDT),".") ;Set Start Date for non-VA Med (from file 100, which currently doesn't get set)
  . I LOC S ^TMP("ORPS",$J,$$NXT)="~CP:"_LOCEX_U_FIELDS
  . E  S ^TMP("ORPS",$J,$$NXT)="~"_TYPE_U_FIELDS
  . S J=0 F  S J=$O(INSTRUCT(J)) Q:'J  S ^TMP("ORPS",$J,$$NXT)=INSTRUCT(J)
@@ -99,11 +107,12 @@ GETMED ;
  ... S ^TMP("ORDATA",$J,ORIPSS,"WP",6)="6^"_$$DATE^ORDVU($P(ORX0,U,16)) ;Start Date
  ... S ^TMP("ORDATA",$J,ORIPSS,"WP",7)="7^"_$$DATE^ORDVU($P(ORX0,U,5)) ;Stop Date
  ... S ^TMP("ORDATA",$J,ORIPSS,"WP",8)="8^"_$$DATE^ORDVU($P(ORX0,U,11)) ;Last Fill Date
- ... S ^TMP("ORDATA",$J,ORIPSS,"WP",11)="11^[+]" ;flag for detail
+ ... S ^TMP("ORDATA",$J,ORIPSS,"WP",9)="9^"_$P(ORX0,U,18) ;Provider
+ ... S ^TMP("ORDATA",$J,ORIPSS,"WP",12)="12^[+]" ;flag for detail
  ... S X=$P(ORX0,"^",2) D DETAIL^ORWPS(.RT,DFN,X)
- ... S J=0 F  S J=$O(^TMP("ORXPND",$J,J)) Q:'J  S X=^(J,0),^TMP("ORDATA",$J,ORIPSS,"WP",10,J)="10^"_X ;Details from Order
+ ... S J=0 F  S J=$O(^TMP("ORXPND",$J,J)) Q:'J  S X=^(J,0),^TMP("ORDATA",$J,ORIPSS,"WP",11,J)="11^"_X ;Details from Order
  ... K ^TMP("ORXPND",$J)
- ... S ORT=0 F  S ORT=$O(^TMP("ORT",$J,ORII,ORKK,ORIPS,ORT)) Q:'ORT  S X=^(ORT),^TMP("ORDATA",$J,ORIPSS,"WP",9,ORT)="9^"_X ;Instructions
+ ... S ORT=0 F  S ORT=$O(^TMP("ORT",$J,ORII,ORKK,ORIPS,ORT)) Q:'ORT  S X=^(ORT),^TMP("ORDATA",$J,ORIPSS,"WP",10,ORT)="10^"_X ;Instructions
  K ^TMP("ORPS",$J),^TMP("ORXPND",$J),^TMP("ORT",$J)
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q

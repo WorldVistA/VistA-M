@@ -1,136 +1,126 @@
-IBDEI0L9 ; ; 19-NOV-2015
+IBDEI0L9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9638,1,2,0)
- ;;=2^J1940
- ;;^UTILITY(U,$J,358.3,9638,1,3,0)
- ;;=3^Lasix per 20mg
- ;;^UTILITY(U,$J,358.3,9639,0)
- ;;=J0515^^66^629^10^^^^1
- ;;^UTILITY(U,$J,358.3,9639,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9639,1,2,0)
- ;;=2^J0515
- ;;^UTILITY(U,$J,358.3,9639,1,3,0)
- ;;=3^Benzotropine per 1mg
- ;;^UTILITY(U,$J,358.3,9640,0)
- ;;=J1630^^66^629^21^^^^1
- ;;^UTILITY(U,$J,358.3,9640,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9640,1,2,0)
- ;;=2^J1630
- ;;^UTILITY(U,$J,358.3,9640,1,3,0)
- ;;=3^Haldol up to 5mg
- ;;^UTILITY(U,$J,358.3,9641,0)
- ;;=J1720^^66^629^24^^^^1
- ;;^UTILITY(U,$J,358.3,9641,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9641,1,2,0)
- ;;=2^J1720
- ;;^UTILITY(U,$J,358.3,9641,1,3,0)
- ;;=3^Hydrocortisone Sodium Succinate per 100mg
- ;;^UTILITY(U,$J,358.3,9642,0)
- ;;=J0780^^66^629^14^^^^1
- ;;^UTILITY(U,$J,358.3,9642,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9642,1,2,0)
- ;;=2^J0780
- ;;^UTILITY(U,$J,358.3,9642,1,3,0)
- ;;=3^Compazine 10mg
- ;;^UTILITY(U,$J,358.3,9643,0)
- ;;=J2930^^66^629^44^^^^1
- ;;^UTILITY(U,$J,358.3,9643,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9643,1,2,0)
- ;;=2^J2930
- ;;^UTILITY(U,$J,358.3,9643,1,3,0)
- ;;=3^Solu-Medrol 125mg
- ;;^UTILITY(U,$J,358.3,9644,0)
- ;;=J3030^^66^629^26^^^^1
- ;;^UTILITY(U,$J,358.3,9644,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9644,1,2,0)
- ;;=2^J3030
- ;;^UTILITY(U,$J,358.3,9644,1,3,0)
- ;;=3^Imitrex 6mg
- ;;^UTILITY(U,$J,358.3,9645,0)
- ;;=J2550^^66^629^42^^^^1
- ;;^UTILITY(U,$J,358.3,9645,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9645,1,2,0)
- ;;=2^J2550
- ;;^UTILITY(U,$J,358.3,9645,1,3,0)
- ;;=3^Phenergan up to 50mg
- ;;^UTILITY(U,$J,358.3,9646,0)
- ;;=J0461^^66^629^8^^^^1
- ;;^UTILITY(U,$J,358.3,9646,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9646,1,2,0)
- ;;=2^J0461
- ;;^UTILITY(U,$J,358.3,9646,1,3,0)
- ;;=3^Atropine Sulfate 0.01mg
- ;;^UTILITY(U,$J,358.3,9647,0)
- ;;=J2060^^66^629^7^^^^1
- ;;^UTILITY(U,$J,358.3,9647,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9647,1,2,0)
- ;;=2^J2060
- ;;^UTILITY(U,$J,358.3,9647,1,3,0)
- ;;=3^Ativan/Lorazepam 2mg
- ;;^UTILITY(U,$J,358.3,9648,0)
- ;;=J7042^^66^629^1^^^^1
- ;;^UTILITY(U,$J,358.3,9648,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9648,1,2,0)
- ;;=2^J7042
- ;;^UTILITY(U,$J,358.3,9648,1,3,0)
- ;;=3^5% Dextrose/NS (500ml=1Unit)
- ;;^UTILITY(U,$J,358.3,9649,0)
- ;;=J7060^^66^629^2^^^^1
- ;;^UTILITY(U,$J,358.3,9649,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9649,1,2,0)
- ;;=2^J7060
- ;;^UTILITY(U,$J,358.3,9649,1,3,0)
- ;;=3^5% Dextrose/Water (500ml=1Unit)
- ;;^UTILITY(U,$J,358.3,9650,0)
- ;;=J0171^^66^629^4^^^^1
- ;;^UTILITY(U,$J,358.3,9650,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9650,1,2,0)
- ;;=2^J0171
- ;;^UTILITY(U,$J,358.3,9650,1,3,0)
- ;;=3^Adrenalin,Epinephrine 0.1 mg
- ;;^UTILITY(U,$J,358.3,9651,0)
- ;;=J0282^^66^629^6^^^^1
- ;;^UTILITY(U,$J,358.3,9651,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9651,1,2,0)
- ;;=2^J0282
- ;;^UTILITY(U,$J,358.3,9651,1,3,0)
- ;;=3^Amiodarone HCL 30mg
- ;;^UTILITY(U,$J,358.3,9652,0)
- ;;=J0456^^66^629^9^^^^1
- ;;^UTILITY(U,$J,358.3,9652,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9652,1,2,0)
- ;;=2^J0456
- ;;^UTILITY(U,$J,358.3,9652,1,3,0)
- ;;=3^Azithromycine (Zithromax) 500mg
- ;;^UTILITY(U,$J,358.3,9653,0)
- ;;=J0690^^66^629^11^^^^1
- ;;^UTILITY(U,$J,358.3,9653,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9653,1,2,0)
- ;;=2^J0690
- ;;^UTILITY(U,$J,358.3,9653,1,3,0)
- ;;=3^Cefazoline Sodium (Ancef) 500mg
- ;;^UTILITY(U,$J,358.3,9654,0)
- ;;=J0744^^66^629^12^^^^1
- ;;^UTILITY(U,$J,358.3,9654,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9654,1,2,0)
- ;;=2^J0744
- ;;^UTILITY(U,$J,358.3,9654,1,3,0)
- ;;=3^Ciprofloxacin IV Infusion 200mg
+ ;;^UTILITY(U,$J,358.3,9919,1,4,0)
+ ;;=4^H40.20X4
+ ;;^UTILITY(U,$J,358.3,9919,2)
+ ;;=^5005817
+ ;;^UTILITY(U,$J,358.3,9920,0)
+ ;;=H40.2211^^44^496^23
+ ;;^UTILITY(U,$J,358.3,9920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9920,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9920,1,4,0)
+ ;;=4^H40.2211
+ ;;^UTILITY(U,$J,358.3,9920,2)
+ ;;=^5005823
+ ;;^UTILITY(U,$J,358.3,9921,0)
+ ;;=H40.2212^^44^496^24
+ ;;^UTILITY(U,$J,358.3,9921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9921,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9921,1,4,0)
+ ;;=4^H40.2212
+ ;;^UTILITY(U,$J,358.3,9921,2)
+ ;;=^5005824
+ ;;^UTILITY(U,$J,358.3,9922,0)
+ ;;=H40.2213^^44^496^25
+ ;;^UTILITY(U,$J,358.3,9922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9922,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9922,1,4,0)
+ ;;=4^H40.2213
+ ;;^UTILITY(U,$J,358.3,9922,2)
+ ;;=^5005825
+ ;;^UTILITY(U,$J,358.3,9923,0)
+ ;;=H40.2214^^44^496^22
+ ;;^UTILITY(U,$J,358.3,9923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9923,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9923,1,4,0)
+ ;;=4^H40.2214
+ ;;^UTILITY(U,$J,358.3,9923,2)
+ ;;=^5005826
+ ;;^UTILITY(U,$J,358.3,9924,0)
+ ;;=H40.2221^^44^496^19
+ ;;^UTILITY(U,$J,358.3,9924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9924,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9924,1,4,0)
+ ;;=4^H40.2221
+ ;;^UTILITY(U,$J,358.3,9924,2)
+ ;;=^5005828
+ ;;^UTILITY(U,$J,358.3,9925,0)
+ ;;=H40.2222^^44^496^20
+ ;;^UTILITY(U,$J,358.3,9925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9925,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9925,1,4,0)
+ ;;=4^H40.2222
+ ;;^UTILITY(U,$J,358.3,9925,2)
+ ;;=^5005829
+ ;;^UTILITY(U,$J,358.3,9926,0)
+ ;;=H40.2223^^44^496^21
+ ;;^UTILITY(U,$J,358.3,9926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9926,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9926,1,4,0)
+ ;;=4^H40.2223
+ ;;^UTILITY(U,$J,358.3,9926,2)
+ ;;=^5133501
+ ;;^UTILITY(U,$J,358.3,9927,0)
+ ;;=H40.2224^^44^496^18
+ ;;^UTILITY(U,$J,358.3,9927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9927,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9927,1,4,0)
+ ;;=4^H40.2224
+ ;;^UTILITY(U,$J,358.3,9927,2)
+ ;;=^5005830
+ ;;^UTILITY(U,$J,358.3,9928,0)
+ ;;=H40.2231^^44^496^15
+ ;;^UTILITY(U,$J,358.3,9928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9928,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9928,1,4,0)
+ ;;=4^H40.2231
+ ;;^UTILITY(U,$J,358.3,9928,2)
+ ;;=^5005832
+ ;;^UTILITY(U,$J,358.3,9929,0)
+ ;;=H40.2232^^44^496^16
+ ;;^UTILITY(U,$J,358.3,9929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9929,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9929,1,4,0)
+ ;;=4^H40.2232
+ ;;^UTILITY(U,$J,358.3,9929,2)
+ ;;=^5005833
+ ;;^UTILITY(U,$J,358.3,9930,0)
+ ;;=H40.2233^^44^496^17
+ ;;^UTILITY(U,$J,358.3,9930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9930,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9930,1,4,0)
+ ;;=4^H40.2233
+ ;;^UTILITY(U,$J,358.3,9930,2)
+ ;;=^5005834
+ ;;^UTILITY(U,$J,358.3,9931,0)
+ ;;=H40.2234^^44^496^14
+ ;;^UTILITY(U,$J,358.3,9931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9931,1,3,0)
+ ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9931,1,4,0)
+ ;;=4^H40.2234

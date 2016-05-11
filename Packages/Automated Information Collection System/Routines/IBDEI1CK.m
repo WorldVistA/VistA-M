@@ -1,124 +1,138 @@
-IBDEI1CK ; ; 19-NOV-2015
+IBDEI1CK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22435,1,4,0)
- ;;=4^S52.612S
- ;;^UTILITY(U,$J,358.3,22435,2)
- ;;=^5031066
- ;;^UTILITY(U,$J,358.3,22436,0)
- ;;=S52.032S^^101^1040^14
- ;;^UTILITY(U,$J,358.3,22436,1,0)
+ ;;^UTILITY(U,$J,358.3,22895,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,22895,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,22895,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,22896,0)
+ ;;=M51.37^^87^987^49
+ ;;^UTILITY(U,$J,358.3,22896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22436,1,3,0)
- ;;=3^Disp fx of comminuted shaft of radius, left arm, sequela 
- ;;^UTILITY(U,$J,358.3,22436,1,4,0)
- ;;=4^S52.032S
- ;;^UTILITY(U,$J,358.3,22436,2)
- ;;=^5135105
- ;;^UTILITY(U,$J,358.3,22437,0)
- ;;=S52.031S^^101^1040^38
- ;;^UTILITY(U,$J,358.3,22437,1,0)
+ ;;^UTILITY(U,$J,358.3,22896,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,22896,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,22896,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,22897,0)
+ ;;=M54.14^^87^987^140
+ ;;^UTILITY(U,$J,358.3,22897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22437,1,3,0)
- ;;=3^Disp fx of olecran pro w intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22437,1,4,0)
- ;;=4^S52.031S
- ;;^UTILITY(U,$J,358.3,22437,2)
- ;;=^5028856
- ;;^UTILITY(U,$J,358.3,22438,0)
- ;;=S52.022S^^101^1040^39
- ;;^UTILITY(U,$J,358.3,22438,1,0)
+ ;;^UTILITY(U,$J,358.3,22897,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,22897,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,22897,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,22898,0)
+ ;;=M54.17^^87^987^139
+ ;;^UTILITY(U,$J,358.3,22898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22438,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22438,1,4,0)
- ;;=4^S52.022S
- ;;^UTILITY(U,$J,358.3,22438,2)
- ;;=^5028784
- ;;^UTILITY(U,$J,358.3,22439,0)
- ;;=S52.021S^^101^1040^40
- ;;^UTILITY(U,$J,358.3,22439,1,0)
+ ;;^UTILITY(U,$J,358.3,22898,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,22898,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,22898,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,22899,0)
+ ;;=M54.2^^87^987^14
+ ;;^UTILITY(U,$J,358.3,22899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22439,1,3,0)
- ;;=3^Disp fx of olecran pro w/o intartic extn right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22439,1,4,0)
- ;;=4^S52.021S
- ;;^UTILITY(U,$J,358.3,22439,2)
- ;;=^5028768
- ;;^UTILITY(U,$J,358.3,22440,0)
- ;;=S52.611S^^101^1040^46
- ;;^UTILITY(U,$J,358.3,22440,1,0)
+ ;;^UTILITY(U,$J,358.3,22899,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,22899,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,22899,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,22900,0)
+ ;;=M54.31^^87^987^163
+ ;;^UTILITY(U,$J,358.3,22900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22440,1,3,0)
- ;;=3^Disp fx of right ulna styloid process, sequela 
- ;;^UTILITY(U,$J,358.3,22440,1,4,0)
- ;;=4^S52.611S
- ;;^UTILITY(U,$J,358.3,22440,2)
- ;;=^5031050
- ;;^UTILITY(U,$J,358.3,22441,0)
- ;;=S52.232S^^101^1040^35
- ;;^UTILITY(U,$J,358.3,22441,1,0)
+ ;;^UTILITY(U,$J,358.3,22900,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,22900,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,22900,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,22901,0)
+ ;;=M54.32^^87^987^162
+ ;;^UTILITY(U,$J,358.3,22901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22441,1,3,0)
- ;;=3^Disp fx of oblique shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22441,1,4,0)
- ;;=4^S52.232S
- ;;^UTILITY(U,$J,358.3,22441,2)
- ;;=^5029442
- ;;^UTILITY(U,$J,358.3,22442,0)
- ;;=S52.231S^^101^1040^37
- ;;^UTILITY(U,$J,358.3,22442,1,0)
+ ;;^UTILITY(U,$J,358.3,22901,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,22901,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,22901,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,22902,0)
+ ;;=M54.5^^87^987^57
+ ;;^UTILITY(U,$J,358.3,22902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22442,1,3,0)
- ;;=3^Disp fx of oblique shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22442,1,4,0)
- ;;=4^S52.231S
- ;;^UTILITY(U,$J,358.3,22442,2)
- ;;=^5029426
- ;;^UTILITY(U,$J,358.3,22443,0)
- ;;=S52.262S^^101^1040^49
- ;;^UTILITY(U,$J,358.3,22443,1,0)
+ ;;^UTILITY(U,$J,358.3,22902,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,22902,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,22902,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,22903,0)
+ ;;=M60.9^^87^987^62
+ ;;^UTILITY(U,$J,358.3,22903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22443,1,3,0)
- ;;=3^Disp fx of segmental shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,22443,1,4,0)
- ;;=4^S52.262S
- ;;^UTILITY(U,$J,358.3,22443,2)
- ;;=^5029730
- ;;^UTILITY(U,$J,358.3,22444,0)
- ;;=S52.261S^^101^1040^50
- ;;^UTILITY(U,$J,358.3,22444,1,0)
+ ;;^UTILITY(U,$J,358.3,22903,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,22903,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,22903,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,22904,0)
+ ;;=M62.40^^87^987^35
+ ;;^UTILITY(U,$J,358.3,22904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22444,1,3,0)
- ;;=3^Disp fx of segmental shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,22444,1,4,0)
- ;;=4^S52.261S
- ;;^UTILITY(U,$J,358.3,22444,2)
- ;;=^5029714
- ;;^UTILITY(U,$J,358.3,22445,0)
- ;;=S52.242S^^101^1040^53
- ;;^UTILITY(U,$J,358.3,22445,1,0)
+ ;;^UTILITY(U,$J,358.3,22904,1,3,0)
+ ;;=3^Contracture of Muscle,Unspec
+ ;;^UTILITY(U,$J,358.3,22904,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,22904,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,22905,0)
+ ;;=M62.831^^87^987^60
+ ;;^UTILITY(U,$J,358.3,22905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22445,1,3,0)
- ;;=3^Disp fx of spiral shaft of ulna, left arm, sequela    
- ;;^UTILITY(U,$J,358.3,22445,1,4,0)
- ;;=4^S52.242S
- ;;^UTILITY(U,$J,358.3,22445,2)
- ;;=^5029538
- ;;^UTILITY(U,$J,358.3,22446,0)
- ;;=S52.241S^^101^1040^54
- ;;^UTILITY(U,$J,358.3,22446,1,0)
+ ;;^UTILITY(U,$J,358.3,22905,1,3,0)
+ ;;=3^Muscle Spasm of Calf
+ ;;^UTILITY(U,$J,358.3,22905,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,22905,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,22906,0)
+ ;;=M62.838^^87^987^58
+ ;;^UTILITY(U,$J,358.3,22906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22446,1,3,0)
- ;;=3^Disp fx of spiral shaft of ulna, right arm, sequela   
- ;;^UTILITY(U,$J,358.3,22446,1,4,0)
- ;;=4^S52.241S
- ;;^UTILITY(U,$J,358.3,22446,2)
- ;;=^5029522
- ;;^UTILITY(U,$J,358.3,22447,0)
- ;;=S52.222S^^101^1040^56
- ;;^UTILITY(U,$J,358.3,22447,1,0)
+ ;;^UTILITY(U,$J,358.3,22906,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,22906,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,22906,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,22907,0)
+ ;;=M70.21^^87^987^64
+ ;;^UTILITY(U,$J,358.3,22907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22447,1,3,0)
- ;;=3^Disp fx of transverse shaft of left ulna, sequela
+ ;;^UTILITY(U,$J,358.3,22907,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,22907,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,22907,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,22908,0)
+ ;;=M70.22^^87^987^63
+ ;;^UTILITY(U,$J,358.3,22908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22908,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,22908,1,4,0)
+ ;;=4^M70.22

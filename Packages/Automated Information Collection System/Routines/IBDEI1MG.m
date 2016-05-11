@@ -1,130 +1,124 @@
-IBDEI1MG ; ; 19-NOV-2015
+IBDEI1MG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27139,0)
- ;;=L89.302^^132^1309^238
- ;;^UTILITY(U,$J,358.3,27139,1,0)
+ ;;^UTILITY(U,$J,358.3,27513,1,4,0)
+ ;;=4^N03.6
+ ;;^UTILITY(U,$J,358.3,27513,2)
+ ;;=^5015527
+ ;;^UTILITY(U,$J,358.3,27514,0)
+ ;;=N03.7^^106^1363^12
+ ;;^UTILITY(U,$J,358.3,27514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27139,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 2
- ;;^UTILITY(U,$J,358.3,27139,1,4,0)
- ;;=4^L89.302
- ;;^UTILITY(U,$J,358.3,27139,2)
- ;;=^5009391
- ;;^UTILITY(U,$J,358.3,27140,0)
- ;;=L89.303^^132^1309^239
- ;;^UTILITY(U,$J,358.3,27140,1,0)
+ ;;^UTILITY(U,$J,358.3,27514,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,27514,1,4,0)
+ ;;=4^N03.7
+ ;;^UTILITY(U,$J,358.3,27514,2)
+ ;;=^5015528
+ ;;^UTILITY(U,$J,358.3,27515,0)
+ ;;=N03.8^^106^1363^19
+ ;;^UTILITY(U,$J,358.3,27515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27140,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 3
- ;;^UTILITY(U,$J,358.3,27140,1,4,0)
- ;;=4^L89.303
- ;;^UTILITY(U,$J,358.3,27140,2)
- ;;=^5009392
- ;;^UTILITY(U,$J,358.3,27141,0)
- ;;=L89.304^^132^1309^240
- ;;^UTILITY(U,$J,358.3,27141,1,0)
+ ;;^UTILITY(U,$J,358.3,27515,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,27515,1,4,0)
+ ;;=4^N03.8
+ ;;^UTILITY(U,$J,358.3,27515,2)
+ ;;=^5015529
+ ;;^UTILITY(U,$J,358.3,27516,0)
+ ;;=N03.9^^106^1363^20
+ ;;^UTILITY(U,$J,358.3,27516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27141,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage 4
- ;;^UTILITY(U,$J,358.3,27141,1,4,0)
- ;;=4^L89.304
- ;;^UTILITY(U,$J,358.3,27141,2)
- ;;=^5009393
- ;;^UTILITY(U,$J,358.3,27142,0)
- ;;=L89.309^^132^1309^241
- ;;^UTILITY(U,$J,358.3,27142,1,0)
+ ;;^UTILITY(U,$J,358.3,27516,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,27516,1,4,0)
+ ;;=4^N03.9
+ ;;^UTILITY(U,$J,358.3,27516,2)
+ ;;=^5015530
+ ;;^UTILITY(U,$J,358.3,27517,0)
+ ;;=N04.0^^106^1363^60
+ ;;^UTILITY(U,$J,358.3,27517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27142,1,3,0)
- ;;=3^Pressure Ulcer of Buttock,Stage Unspec
- ;;^UTILITY(U,$J,358.3,27142,1,4,0)
- ;;=4^L89.309
- ;;^UTILITY(U,$J,358.3,27142,2)
- ;;=^5133672
- ;;^UTILITY(U,$J,358.3,27143,0)
- ;;=L89.90^^132^1309^247
- ;;^UTILITY(U,$J,358.3,27143,1,0)
+ ;;^UTILITY(U,$J,358.3,27517,1,3,0)
+ ;;=3^Nephrotic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,27517,1,4,0)
+ ;;=4^N04.0
+ ;;^UTILITY(U,$J,358.3,27517,2)
+ ;;=^5015531
+ ;;^UTILITY(U,$J,358.3,27518,0)
+ ;;=N04.1^^106^1363^59
+ ;;^UTILITY(U,$J,358.3,27518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27143,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
- ;;^UTILITY(U,$J,358.3,27143,1,4,0)
- ;;=4^L89.90
- ;;^UTILITY(U,$J,358.3,27143,2)
- ;;=^5133666
- ;;^UTILITY(U,$J,358.3,27144,0)
- ;;=L89.91^^132^1309^243
- ;;^UTILITY(U,$J,358.3,27144,1,0)
+ ;;^UTILITY(U,$J,358.3,27518,1,3,0)
+ ;;=3^Nephrotic syndrome w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,27518,1,4,0)
+ ;;=4^N04.1
+ ;;^UTILITY(U,$J,358.3,27518,2)
+ ;;=^5015532
+ ;;^UTILITY(U,$J,358.3,27519,0)
+ ;;=N04.2^^106^1363^56
+ ;;^UTILITY(U,$J,358.3,27519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27144,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 1
- ;;^UTILITY(U,$J,358.3,27144,1,4,0)
- ;;=4^L89.91
- ;;^UTILITY(U,$J,358.3,27144,2)
- ;;=^5133664
- ;;^UTILITY(U,$J,358.3,27145,0)
- ;;=L89.92^^132^1309^244
- ;;^UTILITY(U,$J,358.3,27145,1,0)
+ ;;^UTILITY(U,$J,358.3,27519,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse membranous glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,27519,1,4,0)
+ ;;=4^N04.2
+ ;;^UTILITY(U,$J,358.3,27519,2)
+ ;;=^5015533
+ ;;^UTILITY(U,$J,358.3,27520,0)
+ ;;=N04.3^^106^1363^57
+ ;;^UTILITY(U,$J,358.3,27520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27145,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 2
- ;;^UTILITY(U,$J,358.3,27145,1,4,0)
- ;;=4^L89.92
- ;;^UTILITY(U,$J,358.3,27145,2)
- ;;=^5133667
- ;;^UTILITY(U,$J,358.3,27146,0)
- ;;=L89.93^^132^1309^245
- ;;^UTILITY(U,$J,358.3,27146,1,0)
+ ;;^UTILITY(U,$J,358.3,27520,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,27520,1,4,0)
+ ;;=4^N04.3
+ ;;^UTILITY(U,$J,358.3,27520,2)
+ ;;=^5015534
+ ;;^UTILITY(U,$J,358.3,27521,0)
+ ;;=N04.4^^106^1363^55
+ ;;^UTILITY(U,$J,358.3,27521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27146,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 3
- ;;^UTILITY(U,$J,358.3,27146,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,27146,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,27147,0)
- ;;=L89.94^^132^1309^246
- ;;^UTILITY(U,$J,358.3,27147,1,0)
+ ;;^UTILITY(U,$J,358.3,27521,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,27521,1,4,0)
+ ;;=4^N04.4
+ ;;^UTILITY(U,$J,358.3,27521,2)
+ ;;=^5015535
+ ;;^UTILITY(U,$J,358.3,27522,0)
+ ;;=N04.5^^106^1363^58
+ ;;^UTILITY(U,$J,358.3,27522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27147,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 4
- ;;^UTILITY(U,$J,358.3,27147,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,27147,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,27148,0)
- ;;=L89.95^^132^1309^248
- ;;^UTILITY(U,$J,358.3,27148,1,0)
+ ;;^UTILITY(U,$J,358.3,27522,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangiocapillary glomrlneph
+ ;;^UTILITY(U,$J,358.3,27522,1,4,0)
+ ;;=4^N04.5
+ ;;^UTILITY(U,$J,358.3,27522,2)
+ ;;=^5015536
+ ;;^UTILITY(U,$J,358.3,27523,0)
+ ;;=N04.6^^106^1363^53
+ ;;^UTILITY(U,$J,358.3,27523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27148,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unstageable
- ;;^UTILITY(U,$J,358.3,27148,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,27148,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,27149,0)
- ;;=L92.0^^132^1309^156
- ;;^UTILITY(U,$J,358.3,27149,1,0)
+ ;;^UTILITY(U,$J,358.3,27523,1,3,0)
+ ;;=3^Nephrotic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,27523,1,4,0)
+ ;;=4^N04.6
+ ;;^UTILITY(U,$J,358.3,27523,2)
+ ;;=^5015537
+ ;;^UTILITY(U,$J,358.3,27524,0)
+ ;;=N04.7^^106^1363^54
+ ;;^UTILITY(U,$J,358.3,27524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27149,1,3,0)
- ;;=3^Granuloma Annulare
- ;;^UTILITY(U,$J,358.3,27149,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,27149,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,27150,0)
- ;;=L95.1^^132^1309^143
- ;;^UTILITY(U,$J,358.3,27150,1,0)
+ ;;^UTILITY(U,$J,358.3,27524,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse crescentic glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,27524,1,4,0)
+ ;;=4^N04.7
+ ;;^UTILITY(U,$J,358.3,27524,2)
+ ;;=^5015538
+ ;;^UTILITY(U,$J,358.3,27525,0)
+ ;;=N04.8^^106^1363^61
+ ;;^UTILITY(U,$J,358.3,27525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27150,1,3,0)
- ;;=3^Erythema Elevatum Diutinum
- ;;^UTILITY(U,$J,358.3,27150,1,4,0)
- ;;=4^L95.1
- ;;^UTILITY(U,$J,358.3,27150,2)
- ;;=^5009477
- ;;^UTILITY(U,$J,358.3,27151,0)
- ;;=L97.111^^132^1309^226
- ;;^UTILITY(U,$J,358.3,27151,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27151,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,27525,1,3,0)
+ ;;=3^Nephrotic syndrome w/ other morphologic changes

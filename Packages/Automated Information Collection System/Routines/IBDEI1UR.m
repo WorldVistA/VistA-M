@@ -1,136 +1,112 @@
-IBDEI1UR ; ; 19-NOV-2015
+IBDEI1UR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31013,0)
- ;;=N92.0^^135^1388^20
- ;;^UTILITY(U,$J,358.3,31013,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31013,1,3,0)
- ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
- ;;^UTILITY(U,$J,358.3,31013,1,4,0)
- ;;=4^N92.0
- ;;^UTILITY(U,$J,358.3,31013,2)
- ;;=^5015908
- ;;^UTILITY(U,$J,358.3,31014,0)
- ;;=N92.6^^135^1388^30
- ;;^UTILITY(U,$J,358.3,31014,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31014,1,3,0)
- ;;=3^Irregular Menstruation,Unspec
- ;;^UTILITY(U,$J,358.3,31014,1,4,0)
- ;;=4^N92.6
- ;;^UTILITY(U,$J,358.3,31014,2)
- ;;=^5015913
- ;;^UTILITY(U,$J,358.3,31015,0)
- ;;=N92.5^^135^1388^29
- ;;^UTILITY(U,$J,358.3,31015,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31015,1,3,0)
- ;;=3^Irregular Menstruation,Other Spec
- ;;^UTILITY(U,$J,358.3,31015,1,4,0)
- ;;=4^N92.5
- ;;^UTILITY(U,$J,358.3,31015,2)
- ;;=^5015912
- ;;^UTILITY(U,$J,358.3,31016,0)
- ;;=N92.3^^135^1388^43
- ;;^UTILITY(U,$J,358.3,31016,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31016,1,3,0)
- ;;=3^Ovulation Bleeding
- ;;^UTILITY(U,$J,358.3,31016,1,4,0)
- ;;=4^N92.3
- ;;^UTILITY(U,$J,358.3,31016,2)
- ;;=^270570
- ;;^UTILITY(U,$J,358.3,31017,0)
- ;;=N89.7^^135^1388^24
- ;;^UTILITY(U,$J,358.3,31017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31017,1,3,0)
- ;;=3^Hematocolpos
- ;;^UTILITY(U,$J,358.3,31017,1,4,0)
- ;;=4^N89.7
- ;;^UTILITY(U,$J,358.3,31017,2)
- ;;=^5015889
- ;;^UTILITY(U,$J,358.3,31018,0)
- ;;=N93.8^^135^1388^2
- ;;^UTILITY(U,$J,358.3,31018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31018,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
- ;;^UTILITY(U,$J,358.3,31018,1,4,0)
- ;;=4^N93.8
- ;;^UTILITY(U,$J,358.3,31018,2)
- ;;=^5015915
- ;;^UTILITY(U,$J,358.3,31019,0)
- ;;=N93.9^^135^1388^3
- ;;^UTILITY(U,$J,358.3,31019,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31019,1,3,0)
- ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,31019,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,31019,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,31020,0)
- ;;=N92.4^^135^1388^19
- ;;^UTILITY(U,$J,358.3,31020,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31020,1,3,0)
- ;;=3^Excessive Bleeding in Premenopausal Period
- ;;^UTILITY(U,$J,358.3,31020,1,4,0)
- ;;=4^N92.4
- ;;^UTILITY(U,$J,358.3,31020,2)
- ;;=^5015911
- ;;^UTILITY(U,$J,358.3,31021,0)
- ;;=N95.0^^135^1388^48
- ;;^UTILITY(U,$J,358.3,31021,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31021,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,31021,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,31021,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,31022,0)
- ;;=N95.1^^135^1388^35
- ;;^UTILITY(U,$J,358.3,31022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31022,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,31022,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,31022,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,31023,0)
- ;;=N97.0^^135^1388^21
- ;;^UTILITY(U,$J,358.3,31023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31023,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,31023,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,31023,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,31024,0)
- ;;=N97.9^^135^1388^22
- ;;^UTILITY(U,$J,358.3,31024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31024,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,31024,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,31024,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,31025,0)
- ;;=L29.2^^135^1388^52
- ;;^UTILITY(U,$J,358.3,31025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31025,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,31025,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,31025,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,31026,0)
- ;;=R92.8^^135^1388^4
+ ;;^UTILITY(U,$J,358.3,31468,1,2,0)
+ ;;=2^Excision of neuroma; digital nerve, one or both, same digit
+ ;;^UTILITY(U,$J,358.3,31468,1,3,0)
+ ;;=3^64776
+ ;;^UTILITY(U,$J,358.3,31469,0)
+ ;;=64778^^125^1593^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31469,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31469,1,2,0)
+ ;;=2^Excision of neuroma; digital nerve, each additional digit (list separately in addition to code for primary procedure)
+ ;;^UTILITY(U,$J,358.3,31469,1,3,0)
+ ;;=3^64778
+ ;;^UTILITY(U,$J,358.3,31470,0)
+ ;;=64782^^125^1593^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31470,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31470,1,2,0)
+ ;;=2^Excision of neuroma; hand or foot, except digital nerve
+ ;;^UTILITY(U,$J,358.3,31470,1,3,0)
+ ;;=3^64782
+ ;;^UTILITY(U,$J,358.3,31471,0)
+ ;;=64783^^125^1593^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31471,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31471,1,2,0)
+ ;;=2^Excision of neuroma; hand or foot, each additional nerve, except same digit
+ ;;^UTILITY(U,$J,358.3,31471,1,3,0)
+ ;;=3^64783
+ ;;^UTILITY(U,$J,358.3,31472,0)
+ ;;=29999^^125^1594^19^^^^1
+ ;;^UTILITY(U,$J,358.3,31472,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31472,1,2,0)
+ ;;=2^Unlisted procedure, arthroscopy
+ ;;^UTILITY(U,$J,358.3,31472,1,3,0)
+ ;;=3^29999
+ ;;^UTILITY(U,$J,358.3,31473,0)
+ ;;=29893^^125^1594^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31473,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31473,1,2,0)
+ ;;=2^Endoscopic plantar fasciotomy
+ ;;^UTILITY(U,$J,358.3,31473,1,3,0)
+ ;;=3^29893
+ ;;^UTILITY(U,$J,358.3,31474,0)
+ ;;=29894^^125^1594^3^^^^1
+ ;;^UTILITY(U,$J,358.3,31474,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31474,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; w/removalof loose body or foreign body
+ ;;^UTILITY(U,$J,358.3,31474,1,3,0)
+ ;;=3^29894
+ ;;^UTILITY(U,$J,358.3,31475,0)
+ ;;=29897^^125^1594^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31475,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31475,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; debridement, limited
+ ;;^UTILITY(U,$J,358.3,31475,1,3,0)
+ ;;=3^29897
+ ;;^UTILITY(U,$J,358.3,31476,0)
+ ;;=29898^^125^1594^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31476,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31476,1,2,0)
+ ;;=2^Arthroscopy, ankle, surgical; debridement, extensive
+ ;;^UTILITY(U,$J,358.3,31476,1,3,0)
+ ;;=3^29898
+ ;;^UTILITY(U,$J,358.3,31477,0)
+ ;;=20220^^125^1594^8^^^^1
+ ;;^UTILITY(U,$J,358.3,31477,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31477,1,2,0)
+ ;;=2^Biopsy, bone, trocar, or needle; superficial
+ ;;^UTILITY(U,$J,358.3,31477,1,3,0)
+ ;;=3^20220
+ ;;^UTILITY(U,$J,358.3,31478,0)
+ ;;=20650^^125^1594^14^^^^1
+ ;;^UTILITY(U,$J,358.3,31478,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31478,1,2,0)
+ ;;=2^Insertion of wire or pin with application of skeletal traction, including removal
+ ;;^UTILITY(U,$J,358.3,31478,1,3,0)
+ ;;=3^20650
+ ;;^UTILITY(U,$J,358.3,31479,0)
+ ;;=64726^^125^1594^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31479,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31479,1,2,0)
+ ;;=2^Decompression; plantar digital nerve
+ ;;^UTILITY(U,$J,358.3,31479,1,3,0)
+ ;;=3^64726
+ ;;^UTILITY(U,$J,358.3,31480,0)
+ ;;=64999^^125^1594^20^^^^1
+ ;;^UTILITY(U,$J,358.3,31480,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31480,1,2,0)
+ ;;=2^Unlisted procedure, nervous system
+ ;;^UTILITY(U,$J,358.3,31480,1,3,0)
+ ;;=3^64999
+ ;;^UTILITY(U,$J,358.3,31481,0)
+ ;;=93922^^125^1594^18^^^^1
+ ;;^UTILITY(U,$J,358.3,31481,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31481,1,2,0)
+ ;;=2^Non-invasive physiologic studies of upper or lower extremity arteries, single level, bilateral
+ ;;^UTILITY(U,$J,358.3,31481,1,3,0)
+ ;;=3^93922

@@ -1,126 +1,132 @@
-IBDEI0T0 ; ; 19-NOV-2015
+IBDEI0T0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13340,0)
- ;;=E11.321^^80^759^66
- ;;^UTILITY(U,$J,358.3,13340,1,0)
+ ;;^UTILITY(U,$J,358.3,13602,0)
+ ;;=Z77.112^^53^594^142
+ ;;^UTILITY(U,$J,358.3,13602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13340,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,13340,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,13340,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,13341,0)
- ;;=E11.329^^80^759^67
- ;;^UTILITY(U,$J,358.3,13341,1,0)
+ ;;^UTILITY(U,$J,358.3,13602,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13602,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,13602,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,13603,0)
+ ;;=Z77.111^^53^594^148
+ ;;^UTILITY(U,$J,358.3,13603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13341,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,13341,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,13341,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,13342,0)
- ;;=E11.331^^80^759^68
- ;;^UTILITY(U,$J,358.3,13342,1,0)
+ ;;^UTILITY(U,$J,358.3,13603,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13603,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,13603,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,13604,0)
+ ;;=Z77.128^^53^594^119
+ ;;^UTILITY(U,$J,358.3,13604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13342,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,13342,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,13342,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,13343,0)
- ;;=E11.339^^80^759^69
- ;;^UTILITY(U,$J,358.3,13343,1,0)
+ ;;^UTILITY(U,$J,358.3,13604,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13604,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,13604,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,13605,0)
+ ;;=Z77.123^^53^594^140
+ ;;^UTILITY(U,$J,358.3,13605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13343,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,13343,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,13343,2)
- ;;=^5002637
- ;;^UTILITY(U,$J,358.3,13344,0)
- ;;=E11.351^^80^759^70
- ;;^UTILITY(U,$J,358.3,13344,1,0)
+ ;;^UTILITY(U,$J,358.3,13605,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13605,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,13605,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,13606,0)
+ ;;=Z77.122^^53^594^68
+ ;;^UTILITY(U,$J,358.3,13606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13344,1,3,0)
- ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,13344,1,4,0)
- ;;=4^E11.351
- ;;^UTILITY(U,$J,358.3,13344,2)
- ;;=^5002640
- ;;^UTILITY(U,$J,358.3,13345,0)
- ;;=E11.359^^80^759^71
- ;;^UTILITY(U,$J,358.3,13345,1,0)
+ ;;^UTILITY(U,$J,358.3,13606,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13606,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,13606,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,13607,0)
+ ;;=Z77.118^^53^594^19
+ ;;^UTILITY(U,$J,358.3,13607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13345,1,3,0)
- ;;=3^Type 2 DM w/ Prolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,13345,1,4,0)
- ;;=4^E11.359
- ;;^UTILITY(U,$J,358.3,13345,2)
- ;;=^5002641
- ;;^UTILITY(U,$J,358.3,13346,0)
- ;;=E11.341^^80^759^72
- ;;^UTILITY(U,$J,358.3,13346,1,0)
+ ;;^UTILITY(U,$J,358.3,13607,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13607,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,13607,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,13608,0)
+ ;;=Z77.9^^53^594^54
+ ;;^UTILITY(U,$J,358.3,13608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13346,1,3,0)
- ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,13346,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,13346,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,13347,0)
- ;;=E11.349^^80^759^73
- ;;^UTILITY(U,$J,358.3,13347,1,0)
+ ;;^UTILITY(U,$J,358.3,13608,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,13608,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,13608,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,13609,0)
+ ;;=Z77.22^^53^594^18
+ ;;^UTILITY(U,$J,358.3,13609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13347,1,3,0)
- ;;=3^Type 2 DM w/ Severe Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,13347,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,13347,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,13348,0)
- ;;=E11.9^^80^759^74
- ;;^UTILITY(U,$J,358.3,13348,1,0)
+ ;;^UTILITY(U,$J,358.3,13609,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,13609,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,13609,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,13610,0)
+ ;;=Z80.0^^53^594^35
+ ;;^UTILITY(U,$J,358.3,13610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13348,1,3,0)
- ;;=3^Type 2 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,13348,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,13348,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,13349,0)
- ;;=H35.363^^80^759^18
- ;;^UTILITY(U,$J,358.3,13349,1,0)
+ ;;^UTILITY(U,$J,358.3,13610,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,13610,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,13610,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,13611,0)
+ ;;=Z80.1^^53^594^41
+ ;;^UTILITY(U,$J,358.3,13611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13349,1,3,0)
- ;;=3^Drusen of Macular,Bilateral
- ;;^UTILITY(U,$J,358.3,13349,1,4,0)
- ;;=4^H35.363
- ;;^UTILITY(U,$J,358.3,13349,2)
- ;;=^5005660
- ;;^UTILITY(U,$J,358.3,13350,0)
- ;;=H35.362^^80^759^19
- ;;^UTILITY(U,$J,358.3,13350,1,0)
+ ;;^UTILITY(U,$J,358.3,13611,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,13611,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,13611,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,13612,0)
+ ;;=Z80.3^^53^594^34
+ ;;^UTILITY(U,$J,358.3,13612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13350,1,3,0)
- ;;=3^Drusen of Macular,Left Eye
- ;;^UTILITY(U,$J,358.3,13350,1,4,0)
- ;;=4^H35.362
- ;;^UTILITY(U,$J,358.3,13350,2)
- ;;=^5005659
- ;;^UTILITY(U,$J,358.3,13351,0)
- ;;=H35.361^^80^759^20
- ;;^UTILITY(U,$J,358.3,13351,1,0)
+ ;;^UTILITY(U,$J,358.3,13612,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,13612,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,13612,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,13613,0)
+ ;;=Z80.41^^53^594^38
+ ;;^UTILITY(U,$J,358.3,13613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13351,1,3,0)
- ;;=3^Drusen of Macular,Right Eye
- ;;^UTILITY(U,$J,358.3,13351,1,4,0)
- ;;=4^H35.361
- ;;^UTILITY(U,$J,358.3,13351,2)
- ;;=^5005658
- ;;^UTILITY(U,$J,358.3,13352,0)
- ;;=H04.123^^80^759^21
+ ;;^UTILITY(U,$J,358.3,13613,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,13613,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,13613,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,13614,0)
+ ;;=Z80.42^^53^594^39
+ ;;^UTILITY(U,$J,358.3,13614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13614,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,13614,1,4,0)
+ ;;=4^Z80.42

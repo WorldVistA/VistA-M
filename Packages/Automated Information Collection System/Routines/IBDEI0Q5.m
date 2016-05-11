@@ -1,132 +1,128 @@
-IBDEI0Q5 ; ; 19-NOV-2015
+IBDEI0Q5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11973,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,11973,2)
- ;;=^5059828
- ;;^UTILITY(U,$J,358.3,11974,0)
- ;;=W18.49XA^^68^694^111
- ;;^UTILITY(U,$J,358.3,11974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11974,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,11974,1,4,0)
- ;;=4^W18.49XA
- ;;^UTILITY(U,$J,358.3,11974,2)
- ;;=^5059830
- ;;^UTILITY(U,$J,358.3,11975,0)
- ;;=W18.49XD^^68^694^112
- ;;^UTILITY(U,$J,358.3,11975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11975,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11975,1,4,0)
- ;;=4^W18.49XD
- ;;^UTILITY(U,$J,358.3,11975,2)
- ;;=^5059831
- ;;^UTILITY(U,$J,358.3,11976,0)
- ;;=W19.XXXA^^68^694^89
- ;;^UTILITY(U,$J,358.3,11976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11976,1,3,0)
- ;;=3^Fall,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,11976,1,4,0)
- ;;=4^W19.XXXA
- ;;^UTILITY(U,$J,358.3,11976,2)
- ;;=^5059833
- ;;^UTILITY(U,$J,358.3,11977,0)
- ;;=W19.XXXD^^68^694^90
- ;;^UTILITY(U,$J,358.3,11977,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11977,1,3,0)
- ;;=3^Fall,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11977,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,11977,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,11978,0)
- ;;=W54.0XXA^^68^694^11
- ;;^UTILITY(U,$J,358.3,11978,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11978,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
- ;;^UTILITY(U,$J,358.3,11978,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,11978,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,11979,0)
- ;;=W54.0XXD^^68^694^12
- ;;^UTILITY(U,$J,358.3,11979,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11979,1,3,0)
- ;;=3^Bitten by Dog,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11979,1,4,0)
- ;;=4^W54.0XXD
- ;;^UTILITY(U,$J,358.3,11979,2)
- ;;=^5060257
- ;;^UTILITY(U,$J,358.3,11980,0)
- ;;=W55.01XA^^68^694^9
- ;;^UTILITY(U,$J,358.3,11980,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11980,1,3,0)
- ;;=3^Bitten by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,11980,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,11980,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,11981,0)
- ;;=W55.01XD^^68^694^10
- ;;^UTILITY(U,$J,358.3,11981,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11981,1,3,0)
- ;;=3^Bitten by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11981,1,4,0)
- ;;=4^W55.01XD
- ;;^UTILITY(U,$J,358.3,11981,2)
- ;;=^5060266
- ;;^UTILITY(U,$J,358.3,11982,0)
- ;;=W55.03XA^^68^694^101
- ;;^UTILITY(U,$J,358.3,11982,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11982,1,3,0)
- ;;=3^Scratched by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,11982,1,4,0)
- ;;=4^W55.03XA
- ;;^UTILITY(U,$J,358.3,11982,2)
- ;;=^5060268
- ;;^UTILITY(U,$J,358.3,11983,0)
- ;;=W55.03XD^^68^694^102
- ;;^UTILITY(U,$J,358.3,11983,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11983,1,3,0)
- ;;=3^Scratched by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11983,1,4,0)
- ;;=4^W55.03XD
- ;;^UTILITY(U,$J,358.3,11983,2)
- ;;=^5060269
- ;;^UTILITY(U,$J,358.3,11984,0)
- ;;=X00.8XXA^^68^694^17
- ;;^UTILITY(U,$J,358.3,11984,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11984,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,11984,1,4,0)
- ;;=4^X00.8XXA
- ;;^UTILITY(U,$J,358.3,11984,2)
- ;;=^5060679
- ;;^UTILITY(U,$J,358.3,11985,0)
- ;;=X00.8XXD^^68^694^18
- ;;^UTILITY(U,$J,358.3,11985,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11985,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11985,1,4,0)
- ;;=4^X00.8XXD
- ;;^UTILITY(U,$J,358.3,11985,2)
- ;;=^5060680
- ;;^UTILITY(U,$J,358.3,11986,0)
- ;;=X32.XXXA^^68^694^15
- ;;^UTILITY(U,$J,358.3,11986,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12244,1,2,0)
+ ;;=2^43246
+ ;;^UTILITY(U,$J,358.3,12244,1,3,0)
+ ;;=3^Perc G-Tube Placement w/EGD
+ ;;^UTILITY(U,$J,358.3,12245,0)
+ ;;=43754^^49^551^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12245,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12245,1,2,0)
+ ;;=2^43754
+ ;;^UTILITY(U,$J,358.3,12245,1,3,0)
+ ;;=3^Dx Gast Intub w/ Asp Single Spec
+ ;;^UTILITY(U,$J,358.3,12246,0)
+ ;;=43755^^49^551^7^^^^1
+ ;;^UTILITY(U,$J,358.3,12246,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12246,1,2,0)
+ ;;=2^43755
+ ;;^UTILITY(U,$J,358.3,12246,1,3,0)
+ ;;=3^Gastric Secretory Study,Single/Double
+ ;;^UTILITY(U,$J,358.3,12247,0)
+ ;;=47000^^49^552^18^^^^1
+ ;;^UTILITY(U,$J,358.3,12247,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12247,1,2,0)
+ ;;=2^47000
+ ;;^UTILITY(U,$J,358.3,12247,1,3,0)
+ ;;=3^Liver Bx,Percutaneous
+ ;;^UTILITY(U,$J,358.3,12248,0)
+ ;;=43453^^49^552^7^^^^1
+ ;;^UTILITY(U,$J,358.3,12248,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12248,1,2,0)
+ ;;=2^43453
+ ;;^UTILITY(U,$J,358.3,12248,1,3,0)
+ ;;=3^Esophageal Dil/Wire-No Scope
+ ;;^UTILITY(U,$J,358.3,12249,0)
+ ;;=43450^^49^552^19^^^^1
+ ;;^UTILITY(U,$J,358.3,12249,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12249,1,2,0)
+ ;;=2^43450
+ ;;^UTILITY(U,$J,358.3,12249,1,3,0)
+ ;;=3^Maloney Esophageal Dil
+ ;;^UTILITY(U,$J,358.3,12250,0)
+ ;;=43460^^49^552^8^^^^1
+ ;;^UTILITY(U,$J,358.3,12250,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12250,1,2,0)
+ ;;=2^43460
+ ;;^UTILITY(U,$J,358.3,12250,1,3,0)
+ ;;=3^Esophagogastric tamponade
+ ;;^UTILITY(U,$J,358.3,12251,0)
+ ;;=46930^^49^552^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12251,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12251,1,2,0)
+ ;;=2^46930
+ ;;^UTILITY(U,$J,358.3,12251,1,3,0)
+ ;;=3^Dest Internal Hemorrhoids
+ ;;^UTILITY(U,$J,358.3,12252,0)
+ ;;=46999^^49^552^21^^^^1
+ ;;^UTILITY(U,$J,358.3,12252,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12252,1,2,0)
+ ;;=2^46999
+ ;;^UTILITY(U,$J,358.3,12252,1,3,0)
+ ;;=3^Unlisted Anus Procedure
+ ;;^UTILITY(U,$J,358.3,12253,0)
+ ;;=49082^^49^552^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12253,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12253,1,2,0)
+ ;;=2^49082
+ ;;^UTILITY(U,$J,358.3,12253,1,3,0)
+ ;;=3^Abd Paracentesis w/o Imag Guide
+ ;;^UTILITY(U,$J,358.3,12254,0)
+ ;;=49083^^49^552^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12254,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12254,1,2,0)
+ ;;=2^49083
+ ;;^UTILITY(U,$J,358.3,12254,1,3,0)
+ ;;=3^Abd Paracentesis w/Imag Guide
+ ;;^UTILITY(U,$J,358.3,12255,0)
+ ;;=91111^^49^552^11^^^^1
+ ;;^UTILITY(U,$J,358.3,12255,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12255,1,2,0)
+ ;;=2^91111
+ ;;^UTILITY(U,$J,358.3,12255,1,3,0)
+ ;;=3^GI Tract Capsule Endoscopy (esoph-ileum)
+ ;;^UTILITY(U,$J,358.3,12256,0)
+ ;;=43214^^49^552^9^^^^1
+ ;;^UTILITY(U,$J,358.3,12256,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12256,1,2,0)
+ ;;=2^43214
+ ;;^UTILITY(U,$J,358.3,12256,1,3,0)
+ ;;=3^Esophagoscopy w/ Balloon Dilation > 30mm
+ ;;^UTILITY(U,$J,358.3,12257,0)
+ ;;=91110^^49^552^6^^^^1
+ ;;^UTILITY(U,$J,358.3,12257,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12257,1,2,0)
+ ;;=2^91110
+ ;;^UTILITY(U,$J,358.3,12257,1,3,0)
+ ;;=3^Esophageal Capsule Endoscopy
+ ;;^UTILITY(U,$J,358.3,12258,0)
+ ;;=91112^^49^552^12^^^^1
+ ;;^UTILITY(U,$J,358.3,12258,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12258,1,2,0)
+ ;;=2^91112
+ ;;^UTILITY(U,$J,358.3,12258,1,3,0)
+ ;;=3^GI Tract Capsule Endoscopy (stomach-colon)
+ ;;^UTILITY(U,$J,358.3,12259,0)
+ ;;=90911^^49^552^4^^^^1
+ ;;^UTILITY(U,$J,358.3,12259,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12259,1,2,0)
+ ;;=2^90911
+ ;;^UTILITY(U,$J,358.3,12259,1,3,0)
+ ;;=3^Biofeedback Peri/Uro/Rectal

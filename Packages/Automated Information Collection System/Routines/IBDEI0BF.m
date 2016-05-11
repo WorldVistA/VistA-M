@@ -1,132 +1,144 @@
-IBDEI0BF ; ; 19-NOV-2015
+IBDEI0BF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4862,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,4863,0)
- ;;=R73.9^^37^322^10
- ;;^UTILITY(U,$J,358.3,4863,1,0)
+ ;;^UTILITY(U,$J,358.3,5160,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,5160,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,5161,0)
+ ;;=R31.0^^27^332^6
+ ;;^UTILITY(U,$J,358.3,5161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4863,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,4863,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,4863,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,4864,0)
- ;;=K56.0^^37^322^14
- ;;^UTILITY(U,$J,358.3,4864,1,0)
+ ;;^UTILITY(U,$J,358.3,5161,1,3,0)
+ ;;=3^Gross Hematuria
+ ;;^UTILITY(U,$J,358.3,5161,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,5161,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,5162,0)
+ ;;=R31.9^^27^332^7
+ ;;^UTILITY(U,$J,358.3,5162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4864,1,3,0)
- ;;=3^Paralytic Ileus
- ;;^UTILITY(U,$J,358.3,4864,1,4,0)
- ;;=4^K56.0
- ;;^UTILITY(U,$J,358.3,4864,2)
- ;;=^89879
- ;;^UTILITY(U,$J,358.3,4865,0)
- ;;=I97.710^^37^323^17
- ;;^UTILITY(U,$J,358.3,4865,1,0)
+ ;;^UTILITY(U,$J,358.3,5162,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,5162,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,5162,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,5163,0)
+ ;;=R80.0^^27^332^9
+ ;;^UTILITY(U,$J,358.3,5163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4865,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,4865,1,4,0)
- ;;=4^I97.710
- ;;^UTILITY(U,$J,358.3,4865,2)
- ;;=^5008103
- ;;^UTILITY(U,$J,358.3,4866,0)
- ;;=I97.790^^37^323^18
- ;;^UTILITY(U,$J,358.3,4866,1,0)
+ ;;^UTILITY(U,$J,358.3,5163,1,3,0)
+ ;;=3^Isolated Proteinuria
+ ;;^UTILITY(U,$J,358.3,5163,1,4,0)
+ ;;=4^R80.0
+ ;;^UTILITY(U,$J,358.3,5163,2)
+ ;;=^5019595
+ ;;^UTILITY(U,$J,358.3,5164,0)
+ ;;=R39.14^^27^332^8
+ ;;^UTILITY(U,$J,358.3,5164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4866,1,3,0)
- ;;=3^Intraoperative Cardiac Function Disturbance During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,4866,1,4,0)
- ;;=4^I97.790
- ;;^UTILITY(U,$J,358.3,4866,2)
- ;;=^5008105
- ;;^UTILITY(U,$J,358.3,4867,0)
- ;;=I97.88^^37^323^19
- ;;^UTILITY(U,$J,358.3,4867,1,0)
+ ;;^UTILITY(U,$J,358.3,5164,1,3,0)
+ ;;=3^Incomplete Bladder Emptying
+ ;;^UTILITY(U,$J,358.3,5164,1,4,0)
+ ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,5164,2)
+ ;;=^5019344
+ ;;^UTILITY(U,$J,358.3,5165,0)
+ ;;=R31.2^^27^332^10
+ ;;^UTILITY(U,$J,358.3,5165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4867,1,3,0)
- ;;=3^Intraoperative Complications of the Circ System
- ;;^UTILITY(U,$J,358.3,4867,1,4,0)
- ;;=4^I97.88
- ;;^UTILITY(U,$J,358.3,4867,2)
- ;;=^5008111
- ;;^UTILITY(U,$J,358.3,4868,0)
- ;;=I97.89^^37^323^24
- ;;^UTILITY(U,$J,358.3,4868,1,0)
+ ;;^UTILITY(U,$J,358.3,5165,1,3,0)
+ ;;=3^Microscopic Hematuria,Other
+ ;;^UTILITY(U,$J,358.3,5165,1,4,0)
+ ;;=4^R31.2
+ ;;^UTILITY(U,$J,358.3,5165,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,5166,0)
+ ;;=R35.1^^27^332^11
+ ;;^UTILITY(U,$J,358.3,5166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4868,1,3,0)
- ;;=3^Postprocedure Complication/Disorder of the Circ System
- ;;^UTILITY(U,$J,358.3,4868,1,4,0)
- ;;=4^I97.89
- ;;^UTILITY(U,$J,358.3,4868,2)
- ;;=^5008112
- ;;^UTILITY(U,$J,358.3,4869,0)
- ;;=T82.817A^^37^323^10
- ;;^UTILITY(U,$J,358.3,4869,1,0)
+ ;;^UTILITY(U,$J,358.3,5166,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,5166,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,5166,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,5167,0)
+ ;;=R80.1^^27^332^13
+ ;;^UTILITY(U,$J,358.3,5167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4869,1,3,0)
- ;;=3^Embolism of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4869,1,4,0)
- ;;=4^T82.817A
- ;;^UTILITY(U,$J,358.3,4869,2)
- ;;=^5054914
- ;;^UTILITY(U,$J,358.3,4870,0)
- ;;=T82.827A^^37^323^12
- ;;^UTILITY(U,$J,358.3,4870,1,0)
+ ;;^UTILITY(U,$J,358.3,5167,1,3,0)
+ ;;=3^Persistent Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,5167,1,4,0)
+ ;;=4^R80.1
+ ;;^UTILITY(U,$J,358.3,5167,2)
+ ;;=^5019596
+ ;;^UTILITY(U,$J,358.3,5168,0)
+ ;;=R35.8^^27^332^14
+ ;;^UTILITY(U,$J,358.3,5168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4870,1,3,0)
- ;;=3^Fibrosis of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4870,1,4,0)
- ;;=4^T82.827A
- ;;^UTILITY(U,$J,358.3,4870,2)
- ;;=^5054920
- ;;^UTILITY(U,$J,358.3,4871,0)
- ;;=T82.837A^^37^323^14
- ;;^UTILITY(U,$J,358.3,4871,1,0)
+ ;;^UTILITY(U,$J,358.3,5168,1,3,0)
+ ;;=3^Polyuria,Other
+ ;;^UTILITY(U,$J,358.3,5168,1,4,0)
+ ;;=4^R35.8
+ ;;^UTILITY(U,$J,358.3,5168,2)
+ ;;=^5019336
+ ;;^UTILITY(U,$J,358.3,5169,0)
+ ;;=R80.2^^27^332^12
+ ;;^UTILITY(U,$J,358.3,5169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4871,1,3,0)
- ;;=3^Hemorrhage of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4871,1,4,0)
- ;;=4^T82.837A
- ;;^UTILITY(U,$J,358.3,4871,2)
- ;;=^5054926
- ;;^UTILITY(U,$J,358.3,4872,0)
- ;;=T82.847A^^37^323^20
- ;;^UTILITY(U,$J,358.3,4872,1,0)
+ ;;^UTILITY(U,$J,358.3,5169,1,3,0)
+ ;;=3^Orthostatic Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,5169,1,4,0)
+ ;;=4^R80.2
+ ;;^UTILITY(U,$J,358.3,5169,2)
+ ;;=^5019597
+ ;;^UTILITY(U,$J,358.3,5170,0)
+ ;;=R80.8^^27^332^15
+ ;;^UTILITY(U,$J,358.3,5170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4872,1,3,0)
- ;;=3^Pain from Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4872,1,4,0)
- ;;=4^T82.847A
- ;;^UTILITY(U,$J,358.3,4872,2)
- ;;=^5054932
- ;;^UTILITY(U,$J,358.3,4873,0)
- ;;=T82.857A^^37^323^25
- ;;^UTILITY(U,$J,358.3,4873,1,0)
+ ;;^UTILITY(U,$J,358.3,5170,1,3,0)
+ ;;=3^Proteinuria,Other
+ ;;^UTILITY(U,$J,358.3,5170,1,4,0)
+ ;;=4^R80.8
+ ;;^UTILITY(U,$J,358.3,5170,2)
+ ;;=^5019598
+ ;;^UTILITY(U,$J,358.3,5171,0)
+ ;;=R39.16^^27^332^17
+ ;;^UTILITY(U,$J,358.3,5171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4873,1,3,0)
- ;;=3^Stenosis of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4873,1,4,0)
- ;;=4^T82.857A
- ;;^UTILITY(U,$J,358.3,4873,2)
- ;;=^5054938
- ;;^UTILITY(U,$J,358.3,4874,0)
- ;;=T82.867A^^37^323^27
- ;;^UTILITY(U,$J,358.3,4874,1,0)
+ ;;^UTILITY(U,$J,358.3,5171,1,3,0)
+ ;;=3^Straining on Urination
+ ;;^UTILITY(U,$J,358.3,5171,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,5171,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,5172,0)
+ ;;=R35.0^^27^332^19
+ ;;^UTILITY(U,$J,358.3,5172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4874,1,3,0)
- ;;=3^Thrombosis of Cardiac Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4874,1,4,0)
- ;;=4^T82.867A
- ;;^UTILITY(U,$J,358.3,4874,2)
- ;;=^5054944
- ;;^UTILITY(U,$J,358.3,4875,0)
- ;;=T82.897A^^37^323^9
- ;;^UTILITY(U,$J,358.3,4875,1,0)
+ ;;^UTILITY(U,$J,358.3,5172,1,3,0)
+ ;;=3^Urinary Frequency
+ ;;^UTILITY(U,$J,358.3,5172,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,5172,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,5173,0)
+ ;;=R39.11^^27^332^20
+ ;;^UTILITY(U,$J,358.3,5173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4875,1,3,0)
- ;;=3^Complications of Cardiac Prosth Dev/Graft,Init
+ ;;^UTILITY(U,$J,358.3,5173,1,3,0)
+ ;;=3^Urinary Hesitancy
+ ;;^UTILITY(U,$J,358.3,5173,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,5173,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,5174,0)
+ ;;=N39.41^^27^332^23
+ ;;^UTILITY(U,$J,358.3,5174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5174,1,3,0)
+ ;;=3^Urinary Urge Incontinence

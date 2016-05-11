@@ -1,126 +1,142 @@
-IBDEI18S ; ; 19-NOV-2015
+IBDEI18S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20771,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,20771,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,20772,0)
- ;;=A81.2^^99^985^33
- ;;^UTILITY(U,$J,358.3,20772,1,0)
+ ;;^UTILITY(U,$J,358.3,21113,2)
+ ;;=^270517
+ ;;^UTILITY(U,$J,358.3,21114,0)
+ ;;=N84.9^^84^945^46
+ ;;^UTILITY(U,$J,358.3,21114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20772,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,20772,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,20772,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,20773,0)
- ;;=F01.50^^99^985^31
- ;;^UTILITY(U,$J,358.3,20773,1,0)
+ ;;^UTILITY(U,$J,358.3,21114,1,3,0)
+ ;;=3^Polyp of Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,21114,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,21114,2)
+ ;;=^5015869
+ ;;^UTILITY(U,$J,358.3,21115,0)
+ ;;=N84.1^^84^945^44
+ ;;^UTILITY(U,$J,358.3,21115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20773,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,20773,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,20773,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,20774,0)
- ;;=F01.51^^99^985^32
- ;;^UTILITY(U,$J,358.3,20774,1,0)
+ ;;^UTILITY(U,$J,358.3,21115,1,3,0)
+ ;;=3^Polyp of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,21115,1,4,0)
+ ;;=4^N84.1
+ ;;^UTILITY(U,$J,358.3,21115,2)
+ ;;=^5015866
+ ;;^UTILITY(U,$J,358.3,21116,0)
+ ;;=N89.1^^84^945^63
+ ;;^UTILITY(U,$J,358.3,21116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20774,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,20774,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,20774,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,20775,0)
- ;;=F10.27^^99^985^1
- ;;^UTILITY(U,$J,358.3,20775,1,0)
+ ;;^UTILITY(U,$J,358.3,21116,1,3,0)
+ ;;=3^Vaginal Dysplasia,Moderate
+ ;;^UTILITY(U,$J,358.3,21116,1,4,0)
+ ;;=4^N89.1
+ ;;^UTILITY(U,$J,358.3,21116,2)
+ ;;=^5015886
+ ;;^UTILITY(U,$J,358.3,21117,0)
+ ;;=N89.0^^84^945^62
+ ;;^UTILITY(U,$J,358.3,21117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20775,1,3,0)
- ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
- ;;^UTILITY(U,$J,358.3,20775,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,20775,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,20776,0)
- ;;=F19.97^^99^985^37
- ;;^UTILITY(U,$J,358.3,20776,1,0)
+ ;;^UTILITY(U,$J,358.3,21117,1,3,0)
+ ;;=3^Vaginal Dysplasia,Mild
+ ;;^UTILITY(U,$J,358.3,21117,1,4,0)
+ ;;=4^N89.0
+ ;;^UTILITY(U,$J,358.3,21117,2)
+ ;;=^5015885
+ ;;^UTILITY(U,$J,358.3,21118,0)
+ ;;=N89.3^^84^945^64
+ ;;^UTILITY(U,$J,358.3,21118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20776,1,3,0)
- ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
- ;;^UTILITY(U,$J,358.3,20776,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,20776,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,20777,0)
- ;;=F02.80^^99^985^13
- ;;^UTILITY(U,$J,358.3,20777,1,0)
+ ;;^UTILITY(U,$J,358.3,21118,1,3,0)
+ ;;=3^Vaginal Dysplasia,Unspec
+ ;;^UTILITY(U,$J,358.3,21118,1,4,0)
+ ;;=4^N89.3
+ ;;^UTILITY(U,$J,358.3,21118,2)
+ ;;=^5015887
+ ;;^UTILITY(U,$J,358.3,21119,0)
+ ;;=N90.4^^84^945^32
+ ;;^UTILITY(U,$J,358.3,21119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20777,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
- ;;^UTILITY(U,$J,358.3,20777,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,20777,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,20778,0)
- ;;=F02.81^^99^985^14
- ;;^UTILITY(U,$J,358.3,20778,1,0)
+ ;;^UTILITY(U,$J,358.3,21119,1,3,0)
+ ;;=3^Leukoplakia of Vulva
+ ;;^UTILITY(U,$J,358.3,21119,1,4,0)
+ ;;=4^N90.4
+ ;;^UTILITY(U,$J,358.3,21119,2)
+ ;;=^5015894
+ ;;^UTILITY(U,$J,358.3,21120,0)
+ ;;=N94.1^^84^945^17
+ ;;^UTILITY(U,$J,358.3,21120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20778,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,20778,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,20778,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,20779,0)
- ;;=F06.8^^99^985^24
- ;;^UTILITY(U,$J,358.3,20779,1,0)
+ ;;^UTILITY(U,$J,358.3,21120,1,3,0)
+ ;;=3^Dyspareunia
+ ;;^UTILITY(U,$J,358.3,21120,1,4,0)
+ ;;=4^N94.1
+ ;;^UTILITY(U,$J,358.3,21120,2)
+ ;;=^5015917
+ ;;^UTILITY(U,$J,358.3,21121,0)
+ ;;=N94.2^^84^945^65
+ ;;^UTILITY(U,$J,358.3,21121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20779,1,3,0)
- ;;=3^Mental Disorder d/t Another Medical Condition NEC
- ;;^UTILITY(U,$J,358.3,20779,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,20779,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,20780,0)
- ;;=G30.9^^99^985^5
- ;;^UTILITY(U,$J,358.3,20780,1,0)
+ ;;^UTILITY(U,$J,358.3,21121,1,3,0)
+ ;;=3^Vaginismus
+ ;;^UTILITY(U,$J,358.3,21121,1,4,0)
+ ;;=4^N94.2
+ ;;^UTILITY(U,$J,358.3,21121,2)
+ ;;=^5015918
+ ;;^UTILITY(U,$J,358.3,21122,0)
+ ;;=N94.0^^84^945^36
+ ;;^UTILITY(U,$J,358.3,21122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20780,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,20780,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,20780,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,20781,0)
- ;;=G31.9^^99^985^23
- ;;^UTILITY(U,$J,358.3,20781,1,0)
+ ;;^UTILITY(U,$J,358.3,21122,1,3,0)
+ ;;=3^Mittelschmerz
+ ;;^UTILITY(U,$J,358.3,21122,1,4,0)
+ ;;=4^N94.0
+ ;;^UTILITY(U,$J,358.3,21122,2)
+ ;;=^265259
+ ;;^UTILITY(U,$J,358.3,21123,0)
+ ;;=N94.6^^84^945^16
+ ;;^UTILITY(U,$J,358.3,21123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20781,1,3,0)
- ;;=3^Major Neurocognitive Disorder d/t Alzheimer's Disease,Possible
- ;;^UTILITY(U,$J,358.3,20781,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,20781,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,20782,0)
- ;;=G31.01^^99^985^30
- ;;^UTILITY(U,$J,358.3,20782,1,0)
+ ;;^UTILITY(U,$J,358.3,21123,1,3,0)
+ ;;=3^Dysmenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,21123,1,4,0)
+ ;;=4^N94.6
+ ;;^UTILITY(U,$J,358.3,21123,2)
+ ;;=^5015922
+ ;;^UTILITY(U,$J,358.3,21124,0)
+ ;;=N94.5^^84^945^15
+ ;;^UTILITY(U,$J,358.3,21124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20782,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,20782,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,20782,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,20783,0)
- ;;=G31.1^^99^985^36
- ;;^UTILITY(U,$J,358.3,20783,1,0)
+ ;;^UTILITY(U,$J,358.3,21124,1,3,0)
+ ;;=3^Dysmenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,21124,1,4,0)
+ ;;=4^N94.5
+ ;;^UTILITY(U,$J,358.3,21124,2)
+ ;;=^5015921
+ ;;^UTILITY(U,$J,358.3,21125,0)
+ ;;=N94.4^^84^945^14
+ ;;^UTILITY(U,$J,358.3,21125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20783,1,3,0)
- ;;=3^Senile Degeneration of the Brain NOS
- ;;^UTILITY(U,$J,358.3,20783,1,4,0)
- ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,21125,1,3,0)
+ ;;=3^Dysmenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,21125,1,4,0)
+ ;;=4^N94.4
+ ;;^UTILITY(U,$J,358.3,21125,2)
+ ;;=^5015920
+ ;;^UTILITY(U,$J,358.3,21126,0)
+ ;;=N94.3^^84^945^51
+ ;;^UTILITY(U,$J,358.3,21126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21126,1,3,0)
+ ;;=3^Premenstrual Tension Syndrome
+ ;;^UTILITY(U,$J,358.3,21126,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,21126,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,21127,0)
+ ;;=N91.0^^84^945^6
+ ;;^UTILITY(U,$J,358.3,21127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21127,1,3,0)
+ ;;=3^Amenorrhea,Primary

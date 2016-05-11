@@ -1,126 +1,132 @@
-IBDEI1XN ; ; 19-NOV-2015
+IBDEI1XN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32356,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,32356,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,32357,0)
- ;;=B20.^^143^1521^19
- ;;^UTILITY(U,$J,358.3,32357,1,0)
+ ;;^UTILITY(U,$J,358.3,32782,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,32783,0)
+ ;;=Z85.828^^128^1636^53
+ ;;^UTILITY(U,$J,358.3,32783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32357,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32357,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,32357,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,32358,0)
- ;;=G10.^^143^1521^20
- ;;^UTILITY(U,$J,358.3,32358,1,0)
+ ;;^UTILITY(U,$J,358.3,32783,1,3,0)
+ ;;=3^Personal Hx of Malig Neop Skin
+ ;;^UTILITY(U,$J,358.3,32783,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,32783,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,32784,0)
+ ;;=Z65.8^^128^1636^58
+ ;;^UTILITY(U,$J,358.3,32784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32358,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32358,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,32358,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,32359,0)
- ;;=G10.^^143^1521^21
- ;;^UTILITY(U,$J,358.3,32359,1,0)
+ ;;^UTILITY(U,$J,358.3,32784,1,3,0)
+ ;;=3^Personal Hx of Psychosocial Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,32784,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,32784,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,32785,0)
+ ;;=Z86.718^^128^1636^61
+ ;;^UTILITY(U,$J,358.3,32785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32359,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32359,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,32359,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,32360,0)
- ;;=G90.3^^143^1521^25
- ;;^UTILITY(U,$J,358.3,32360,1,0)
+ ;;^UTILITY(U,$J,358.3,32785,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis & Embolism
+ ;;^UTILITY(U,$J,358.3,32785,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,32785,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,32786,0)
+ ;;=Z86.73^^128^1636^60
+ ;;^UTILITY(U,$J,358.3,32786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32360,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,32360,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,32360,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,32361,0)
- ;;=G91.2^^143^1521^26
- ;;^UTILITY(U,$J,358.3,32361,1,0)
+ ;;^UTILITY(U,$J,358.3,32786,1,3,0)
+ ;;=3^Personal Hx of TIA
+ ;;^UTILITY(U,$J,358.3,32786,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,32786,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,32787,0)
+ ;;=Z86.79^^128^1636^43
+ ;;^UTILITY(U,$J,358.3,32787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32361,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32361,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,32361,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,32362,0)
- ;;=G91.2^^143^1521^27
- ;;^UTILITY(U,$J,358.3,32362,1,0)
+ ;;^UTILITY(U,$J,358.3,32787,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,32787,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,32787,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,32788,0)
+ ;;=Z87.11^^128^1636^57
+ ;;^UTILITY(U,$J,358.3,32788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32362,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavorial Disturbances
- ;;^UTILITY(U,$J,358.3,32362,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,32362,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,32363,0)
- ;;=G30.8^^143^1521^2
- ;;^UTILITY(U,$J,358.3,32363,1,0)
+ ;;^UTILITY(U,$J,358.3,32788,1,3,0)
+ ;;=3^Personal Hx of Peptic Ulcer Disease
+ ;;^UTILITY(U,$J,358.3,32788,1,4,0)
+ ;;=4^Z87.11
+ ;;^UTILITY(U,$J,358.3,32788,2)
+ ;;=^5063482
+ ;;^UTILITY(U,$J,358.3,32789,0)
+ ;;=Z86.010^^128^1636^44
+ ;;^UTILITY(U,$J,358.3,32789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32363,1,3,0)
- ;;=3^Alzheimer's Disease NEC
- ;;^UTILITY(U,$J,358.3,32363,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,32363,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,32364,0)
- ;;=A81.89^^143^1521^6
- ;;^UTILITY(U,$J,358.3,32364,1,0)
+ ;;^UTILITY(U,$J,358.3,32789,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,32789,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,32789,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,32790,0)
+ ;;=Z87.39^^128^1636^54
+ ;;^UTILITY(U,$J,358.3,32790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32364,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,32364,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,32364,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,32365,0)
- ;;=F19.97^^143^1521^35
- ;;^UTILITY(U,$J,358.3,32365,1,0)
+ ;;^UTILITY(U,$J,358.3,32790,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal System Diseases
+ ;;^UTILITY(U,$J,358.3,32790,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,32790,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,32791,0)
+ ;;=Z92.3^^128^1636^48
+ ;;^UTILITY(U,$J,358.3,32791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32365,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,32365,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,32365,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,32366,0)
- ;;=G20.^^143^1521^28
- ;;^UTILITY(U,$J,358.3,32366,1,0)
+ ;;^UTILITY(U,$J,358.3,32791,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,32791,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,32791,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,32792,0)
+ ;;=Z87.820^^128^1636^59
+ ;;^UTILITY(U,$J,358.3,32792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32366,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32366,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,32366,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,32367,0)
- ;;=G20.^^143^1521^29
- ;;^UTILITY(U,$J,358.3,32367,1,0)
+ ;;^UTILITY(U,$J,358.3,32792,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,32792,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,32792,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,32793,0)
+ ;;=Z87.891^^128^1636^55
+ ;;^UTILITY(U,$J,358.3,32793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32367,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,32367,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,32367,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,32368,0)
- ;;=G23.1^^143^1521^34
- ;;^UTILITY(U,$J,358.3,32368,1,0)
+ ;;^UTILITY(U,$J,358.3,32793,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,32793,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,32793,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,32794,0)
+ ;;=Z77.090^^128^1636^45
+ ;;^UTILITY(U,$J,358.3,32794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32368,1,3,0)
- ;;=3^Progressive Supranuclear Palsy
- ;;^UTILITY(U,$J,358.3,32368,1,4,0)
- ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,32794,1,3,0)
+ ;;=3^Personal Hx of Contact With & Exposure to Asbestos
+ ;;^UTILITY(U,$J,358.3,32794,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,32794,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,32795,0)
+ ;;=Z57.8^^128^1636^56
+ ;;^UTILITY(U,$J,358.3,32795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32795,1,3,0)
+ ;;=3^Personal Hx of Occupational Exposure to Other Risk Factors

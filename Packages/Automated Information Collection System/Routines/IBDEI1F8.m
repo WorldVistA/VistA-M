@@ -1,130 +1,138 @@
-IBDEI1F8 ; ; 19-NOV-2015
+IBDEI1F8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23724,1,0)
+ ;;^UTILITY(U,$J,358.3,24160,0)
+ ;;=F65.1^^90^1053^9
+ ;;^UTILITY(U,$J,358.3,24160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23724,1,3,0)
- ;;=3^Prblms related to prim support grp, unspec
- ;;^UTILITY(U,$J,358.3,23724,1,4,0)
- ;;=4^Z63.9
- ;;^UTILITY(U,$J,358.3,23724,2)
- ;;=^5063175
- ;;^UTILITY(U,$J,358.3,23725,0)
- ;;=Z65.8^^113^1147^35
- ;;^UTILITY(U,$J,358.3,23725,1,0)
+ ;;^UTILITY(U,$J,358.3,24160,1,3,0)
+ ;;=3^Transvestic Disorder
+ ;;^UTILITY(U,$J,358.3,24160,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,24160,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,24161,0)
+ ;;=F65.89^^90^1053^4
+ ;;^UTILITY(U,$J,358.3,24161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23725,1,3,0)
- ;;=3^Prblms related to psychosocial circumst, oth
- ;;^UTILITY(U,$J,358.3,23725,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,23725,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,23726,0)
- ;;=Z65.9^^113^1147^36
- ;;^UTILITY(U,$J,358.3,23726,1,0)
+ ;;^UTILITY(U,$J,358.3,24161,1,3,0)
+ ;;=3^Paraphilic Disorder NEC
+ ;;^UTILITY(U,$J,358.3,24161,1,4,0)
+ ;;=4^F65.89
+ ;;^UTILITY(U,$J,358.3,24161,2)
+ ;;=^5003660
+ ;;^UTILITY(U,$J,358.3,24162,0)
+ ;;=F65.9^^90^1053^5
+ ;;^UTILITY(U,$J,358.3,24162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23726,1,3,0)
- ;;=3^Prblms related to unspec psychosocial circumst
- ;;^UTILITY(U,$J,358.3,23726,1,4,0)
- ;;=4^Z65.9
- ;;^UTILITY(U,$J,358.3,23726,2)
- ;;=^5063186
- ;;^UTILITY(U,$J,358.3,23727,0)
- ;;=Z72.0^^113^1147^45
- ;;^UTILITY(U,$J,358.3,23727,1,0)
+ ;;^UTILITY(U,$J,358.3,24162,1,3,0)
+ ;;=3^Paraphilic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24162,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,24162,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,24163,0)
+ ;;=F60.0^^90^1054^8
+ ;;^UTILITY(U,$J,358.3,24163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23727,1,3,0)
- ;;=3^Tobacco use, NOS
- ;;^UTILITY(U,$J,358.3,23727,1,4,0)
- ;;=4^Z72.0
- ;;^UTILITY(U,$J,358.3,23727,2)
- ;;=^5063255
- ;;^UTILITY(U,$J,358.3,23728,0)
- ;;=Z73.5^^113^1147^43
- ;;^UTILITY(U,$J,358.3,23728,1,0)
+ ;;^UTILITY(U,$J,358.3,24163,1,3,0)
+ ;;=3^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24163,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,24163,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,24164,0)
+ ;;=F60.1^^90^1054^11
+ ;;^UTILITY(U,$J,358.3,24164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23728,1,3,0)
- ;;=3^Social role conflict, NEC
- ;;^UTILITY(U,$J,358.3,23728,1,4,0)
- ;;=4^Z73.5
- ;;^UTILITY(U,$J,358.3,23728,2)
- ;;=^5063273
- ;;^UTILITY(U,$J,358.3,23729,0)
- ;;=Z91.130^^113^1147^41
- ;;^UTILITY(U,$J,358.3,23729,1,0)
+ ;;^UTILITY(U,$J,358.3,24164,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24164,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,24164,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,24165,0)
+ ;;=F21.^^90^1054^12
+ ;;^UTILITY(U,$J,358.3,24165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23729,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen d/t age-rel dblity
- ;;^UTILITY(U,$J,358.3,23729,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,23729,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,23730,0)
- ;;=Z91.138^^113^1147^42
- ;;^UTILITY(U,$J,358.3,23730,1,0)
+ ;;^UTILITY(U,$J,358.3,24165,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24165,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,24165,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,24166,0)
+ ;;=F60.5^^90^1054^7
+ ;;^UTILITY(U,$J,358.3,24166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23730,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen for oth reason
- ;;^UTILITY(U,$J,358.3,23730,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,23730,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,23731,0)
- ;;=Z95.3^^113^1147^37
- ;;^UTILITY(U,$J,358.3,23731,1,0)
+ ;;^UTILITY(U,$J,358.3,24166,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24166,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,24166,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,24167,0)
+ ;;=F60.4^^90^1054^5
+ ;;^UTILITY(U,$J,358.3,24167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23731,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,23731,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,23731,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,23732,0)
- ;;=Z63.31^^113^1147^1
- ;;^UTILITY(U,$J,358.3,23732,1,0)
+ ;;^UTILITY(U,$J,358.3,24167,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24167,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,24167,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,24168,0)
+ ;;=F60.7^^90^1054^4
+ ;;^UTILITY(U,$J,358.3,24168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23732,1,3,0)
- ;;=3^Absence of family member d/t military deployment
- ;;^UTILITY(U,$J,358.3,23732,1,4,0)
- ;;=4^Z63.31
- ;;^UTILITY(U,$J,358.3,23732,2)
- ;;=^5063166
- ;;^UTILITY(U,$J,358.3,23733,0)
- ;;=Z71.3^^113^1147^6
- ;;^UTILITY(U,$J,358.3,23733,1,0)
+ ;;^UTILITY(U,$J,358.3,24168,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24168,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,24168,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,24169,0)
+ ;;=F60.2^^90^1054^1
+ ;;^UTILITY(U,$J,358.3,24169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23733,1,3,0)
- ;;=3^Counseling,Dietary
- ;;^UTILITY(U,$J,358.3,23733,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,23733,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,23734,0)
- ;;=Z71.6^^113^1147^7
- ;;^UTILITY(U,$J,358.3,23734,1,0)
+ ;;^UTILITY(U,$J,358.3,24169,1,3,0)
+ ;;=3^Antisocial Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24169,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,24169,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,24170,0)
+ ;;=F60.81^^90^1054^6
+ ;;^UTILITY(U,$J,358.3,24170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23734,1,3,0)
- ;;=3^Counseling,Tobacco Abuse
- ;;^UTILITY(U,$J,358.3,23734,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,23734,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,23735,0)
- ;;=Z69.011^^113^1147^12
- ;;^UTILITY(U,$J,358.3,23735,1,0)
+ ;;^UTILITY(U,$J,358.3,24170,1,3,0)
+ ;;=3^Narcissistic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24170,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,24170,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,24171,0)
+ ;;=F60.6^^90^1054^2
+ ;;^UTILITY(U,$J,358.3,24171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23735,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of prntl child abuse
- ;;^UTILITY(U,$J,358.3,23735,1,4,0)
- ;;=4^Z69.011
- ;;^UTILITY(U,$J,358.3,23735,2)
- ;;=^5063229
- ;;^UTILITY(U,$J,358.3,23736,0)
- ;;=Z91.120^^113^1147^38
- ;;^UTILITY(U,$J,358.3,23736,1,0)
+ ;;^UTILITY(U,$J,358.3,24171,1,3,0)
+ ;;=3^Avoidant Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24171,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,24171,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,24172,0)
+ ;;=F60.3^^90^1054^3
+ ;;^UTILITY(U,$J,358.3,24172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23736,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t financial hardship
- ;;^UTILITY(U,$J,358.3,23736,1,4,0)
- ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,24172,1,3,0)
+ ;;=3^Borderline Personality Disorder
+ ;;^UTILITY(U,$J,358.3,24172,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,24172,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,24173,0)
+ ;;=F60.89^^90^1054^9
+ ;;^UTILITY(U,$J,358.3,24173,1,0)
+ ;;=^358.31IA^4^2

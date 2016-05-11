@@ -1,124 +1,136 @@
-IBDEI0EJ ; ; 19-NOV-2015
+IBDEI0EJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6344,1,0)
+ ;;^UTILITY(U,$J,358.3,6688,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,6688,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,6689,0)
+ ;;=Z85.71^^30^397^78
+ ;;^UTILITY(U,$J,358.3,6689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6344,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6344,1,4,0)
- ;;=4^S61.332A
- ;;^UTILITY(U,$J,358.3,6344,2)
- ;;=^5032942
- ;;^UTILITY(U,$J,358.3,6345,0)
- ;;=S61.232A^^40^388^56
- ;;^UTILITY(U,$J,358.3,6345,1,0)
+ ;;^UTILITY(U,$J,358.3,6689,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,6689,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,6689,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,6690,0)
+ ;;=Z65.8^^30^397^138
+ ;;^UTILITY(U,$J,358.3,6690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6345,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6345,1,4,0)
- ;;=4^S61.232A
- ;;^UTILITY(U,$J,358.3,6345,2)
- ;;=^5032822
- ;;^UTILITY(U,$J,358.3,6346,0)
- ;;=S61.334A^^40^388^57
- ;;^UTILITY(U,$J,358.3,6346,1,0)
+ ;;^UTILITY(U,$J,358.3,6690,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,6690,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,6690,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,6691,0)
+ ;;=Z86.11^^30^397^115
+ ;;^UTILITY(U,$J,358.3,6691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6346,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6346,1,4,0)
- ;;=4^S61.334A
- ;;^UTILITY(U,$J,358.3,6346,2)
- ;;=^5032948
- ;;^UTILITY(U,$J,358.3,6347,0)
- ;;=S61.234A^^40^388^58
- ;;^UTILITY(U,$J,358.3,6347,1,0)
+ ;;^UTILITY(U,$J,358.3,6691,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,6691,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,6691,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,6692,0)
+ ;;=Z86.13^^30^397^82
+ ;;^UTILITY(U,$J,358.3,6692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6347,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6347,1,4,0)
- ;;=4^S61.234A
- ;;^UTILITY(U,$J,358.3,6347,2)
- ;;=^5032828
- ;;^UTILITY(U,$J,358.3,6348,0)
- ;;=S61.131A^^40^388^62
- ;;^UTILITY(U,$J,358.3,6348,1,0)
+ ;;^UTILITY(U,$J,358.3,6692,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,6692,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,6692,2)
+ ;;=^5063463
+ ;;^UTILITY(U,$J,358.3,6693,0)
+ ;;=Z86.73^^30^397^112
+ ;;^UTILITY(U,$J,358.3,6693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6348,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,6348,1,4,0)
- ;;=4^S61.131A
- ;;^UTILITY(U,$J,358.3,6348,2)
- ;;=^5032732
- ;;^UTILITY(U,$J,358.3,6349,0)
- ;;=S91.032A^^40^388^5
- ;;^UTILITY(U,$J,358.3,6349,1,0)
+ ;;^UTILITY(U,$J,358.3,6693,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,6693,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,6693,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,6694,0)
+ ;;=Z86.79^^30^397^75
+ ;;^UTILITY(U,$J,358.3,6694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6349,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,6349,1,4,0)
- ;;=4^S91.032A
- ;;^UTILITY(U,$J,358.3,6349,2)
- ;;=^5044150
- ;;^UTILITY(U,$J,358.3,6350,0)
- ;;=S91.332A^^40^388^10
- ;;^UTILITY(U,$J,358.3,6350,1,0)
+ ;;^UTILITY(U,$J,358.3,6694,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,6694,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,6694,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,6695,0)
+ ;;=Z91.040^^30^397^64
+ ;;^UTILITY(U,$J,358.3,6695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6350,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,6350,1,4,0)
- ;;=4^S91.332A
- ;;^UTILITY(U,$J,358.3,6350,2)
- ;;=^5044335
- ;;^UTILITY(U,$J,358.3,6351,0)
- ;;=S71.032A^^40^388^14
- ;;^UTILITY(U,$J,358.3,6351,1,0)
+ ;;^UTILITY(U,$J,358.3,6695,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,6695,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,6695,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,6696,0)
+ ;;=Z98.89^^30^397^120
+ ;;^UTILITY(U,$J,358.3,6696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6351,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,6351,1,4,0)
- ;;=4^S71.032A
- ;;^UTILITY(U,$J,358.3,6351,2)
- ;;=^5036990
- ;;^UTILITY(U,$J,358.3,6352,0)
- ;;=S81.032A^^40^388^17
- ;;^UTILITY(U,$J,358.3,6352,1,0)
+ ;;^UTILITY(U,$J,358.3,6696,1,3,0)
+ ;;=3^Postprocedural States/Hx of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,6696,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,6696,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,6697,0)
+ ;;=Z92.3^^30^397^79
+ ;;^UTILITY(U,$J,358.3,6697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6352,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,6352,1,4,0)
- ;;=4^S81.032A
- ;;^UTILITY(U,$J,358.3,6352,2)
- ;;=^5040047
- ;;^UTILITY(U,$J,358.3,6353,0)
- ;;=S81.832A^^40^388^22
- ;;^UTILITY(U,$J,358.3,6353,1,0)
+ ;;^UTILITY(U,$J,358.3,6697,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,6697,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,6697,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,6698,0)
+ ;;=Z91.120^^30^397^60
+ ;;^UTILITY(U,$J,358.3,6698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6353,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,6353,1,4,0)
- ;;=4^S81.832A
- ;;^UTILITY(U,$J,358.3,6353,2)
- ;;=^5040086
- ;;^UTILITY(U,$J,358.3,6354,0)
- ;;=S71.132A^^40^388^28
- ;;^UTILITY(U,$J,358.3,6354,1,0)
+ ;;^UTILITY(U,$J,358.3,6698,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,6698,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,6698,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,6699,0)
+ ;;=Z91.11^^30^397^69
+ ;;^UTILITY(U,$J,358.3,6699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6354,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,6354,1,4,0)
- ;;=4^S71.132A
- ;;^UTILITY(U,$J,358.3,6354,2)
- ;;=^5037029
- ;;^UTILITY(U,$J,358.3,6355,0)
- ;;=S91.031A^^40^388^37
- ;;^UTILITY(U,$J,358.3,6355,1,0)
+ ;;^UTILITY(U,$J,358.3,6699,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,6699,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,6699,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,6700,0)
+ ;;=Z87.891^^30^397^103
+ ;;^UTILITY(U,$J,358.3,6700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6355,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,6355,1,4,0)
- ;;=4^S91.031A
- ;;^UTILITY(U,$J,358.3,6355,2)
- ;;=^5044147
- ;;^UTILITY(U,$J,358.3,6356,0)
- ;;=S91.331A^^40^388^42
+ ;;^UTILITY(U,$J,358.3,6700,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,6700,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,6700,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,6701,0)
+ ;;=Z77.090^^30^397^11
+ ;;^UTILITY(U,$J,358.3,6701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6701,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6701,1,4,0)
+ ;;=4^Z77.090

@@ -1,130 +1,136 @@
-IBDEI1TJ ; ; 19-NOV-2015
+IBDEI1TJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30444,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,30444,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,30444,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,30445,0)
- ;;=M19.031^^135^1378^119
- ;;^UTILITY(U,$J,358.3,30445,1,0)
+ ;;^UTILITY(U,$J,358.3,30893,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,30894,0)
+ ;;=Z91.89^^123^1543^14
+ ;;^UTILITY(U,$J,358.3,30894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30445,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,30445,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,30445,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,30446,0)
- ;;=M19.032^^135^1378^113
- ;;^UTILITY(U,$J,358.3,30446,1,0)
+ ;;^UTILITY(U,$J,358.3,30894,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,30894,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,30894,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,30895,0)
+ ;;=Z72.9^^123^1543^15
+ ;;^UTILITY(U,$J,358.3,30895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30446,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,30446,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,30446,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,30447,0)
- ;;=M19.041^^135^1378^114
- ;;^UTILITY(U,$J,358.3,30447,1,0)
+ ;;^UTILITY(U,$J,358.3,30895,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,30895,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,30895,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,30896,0)
+ ;;=Z72.811^^123^1543^1
+ ;;^UTILITY(U,$J,358.3,30896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30447,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,30447,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,30447,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,30448,0)
- ;;=M19.042^^135^1378^108
- ;;^UTILITY(U,$J,358.3,30448,1,0)
+ ;;^UTILITY(U,$J,358.3,30896,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,30896,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,30896,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,30897,0)
+ ;;=Z91.19^^123^1543^5
+ ;;^UTILITY(U,$J,358.3,30897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30448,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,30448,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,30448,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,30449,0)
- ;;=M19.90^^135^1378^68
- ;;^UTILITY(U,$J,358.3,30449,1,0)
+ ;;^UTILITY(U,$J,358.3,30897,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,30897,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,30897,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,30898,0)
+ ;;=E66.9^^123^1543^6
+ ;;^UTILITY(U,$J,358.3,30898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30449,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,30449,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,30449,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,30450,0)
- ;;=M25.40^^135^1378^37
- ;;^UTILITY(U,$J,358.3,30450,1,0)
+ ;;^UTILITY(U,$J,358.3,30898,1,3,0)
+ ;;=3^Obesity
+ ;;^UTILITY(U,$J,358.3,30898,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,30898,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,30899,0)
+ ;;=Z76.5^^123^1543^3
+ ;;^UTILITY(U,$J,358.3,30899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30450,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,30450,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,30450,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,30451,0)
- ;;=M45.0^^135^1378^6
- ;;^UTILITY(U,$J,358.3,30451,1,0)
+ ;;^UTILITY(U,$J,358.3,30899,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,30899,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,30899,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,30900,0)
+ ;;=R41.83^^123^1543^2
+ ;;^UTILITY(U,$J,358.3,30900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30451,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,30451,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,30451,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,30452,0)
- ;;=M45.2^^135^1378^3
- ;;^UTILITY(U,$J,358.3,30452,1,0)
+ ;;^UTILITY(U,$J,358.3,30900,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,30900,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,30900,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,30901,0)
+ ;;=Z56.82^^123^1543^4
+ ;;^UTILITY(U,$J,358.3,30901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30452,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,30452,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,30452,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,30453,0)
- ;;=M45.4^^135^1378^7
- ;;^UTILITY(U,$J,358.3,30453,1,0)
+ ;;^UTILITY(U,$J,358.3,30901,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,30901,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,30901,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,30902,0)
+ ;;=E66.3^^123^1543^7
+ ;;^UTILITY(U,$J,358.3,30902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30453,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,30453,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,30453,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,30454,0)
- ;;=M45.7^^135^1378^4
- ;;^UTILITY(U,$J,358.3,30454,1,0)
+ ;;^UTILITY(U,$J,358.3,30902,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,30902,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,30902,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,30903,0)
+ ;;=Z62.811^^123^1543^10
+ ;;^UTILITY(U,$J,358.3,30903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30454,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,30454,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,30454,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,30455,0)
- ;;=M45.8^^135^1378^5
- ;;^UTILITY(U,$J,358.3,30455,1,0)
+ ;;^UTILITY(U,$J,358.3,30903,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,30903,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,30903,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,30904,0)
+ ;;=Z62.812^^123^1543^8
+ ;;^UTILITY(U,$J,358.3,30904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30455,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,30455,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,30455,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,30456,0)
- ;;=M47.22^^135^1378^155
- ;;^UTILITY(U,$J,358.3,30456,1,0)
+ ;;^UTILITY(U,$J,358.3,30904,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,30904,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,30904,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,30905,0)
+ ;;=Z62.810^^123^1543^9
+ ;;^UTILITY(U,$J,358.3,30905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30456,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,30456,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,30456,2)
- ;;=^5012061
+ ;;^UTILITY(U,$J,358.3,30905,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,30905,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,30905,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,30906,0)
+ ;;=Z91.83^^123^1543^16
+ ;;^UTILITY(U,$J,358.3,30906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30906,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,30906,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,30906,2)
+ ;;=^5063627

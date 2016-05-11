@@ -1,11 +1,12 @@
-IBCOMC1 ;ALB/CMS-IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T);10-09-98
- ;;2.0;INTEGRATED BILLING;**103,183**;21-MAR-94
+IBCOMC1 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T);10-09-98
+ ;;2.0;INTEGRATED BILLING;**103,183,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BEG ; Entry to run Identify Patients with/without Insurance Report
  ; Input variables must exist:
  ; IBAIB  - Required.    How to sort
- ;          1= Patient Name Range      2= Termianl Digit Range
+ ;          1= Patient Name Range      2= Terminal Digit Range
  ; IBRF   - Required.  Name or Terminal Digit Range Start value
  ; IBRL   - Required.  Name or Terminal Digit Range Go to value
  ; IBAGEF - Optional.  Age start value or null
@@ -18,9 +19,13 @@ BEG ; Entry to run Identify Patients with/without Insurance Report
  ;          If IBSIN=2 then the $O(IBSIN(1-6))=selected companies
  ; IBSINF - Optional.   Ins. Co. start Range or null
  ; IBSINL - Optional.   Ins. Co. end Range or null
+ ; IBOUT  - Required.  Output format
+ ;          "R"= report format         "E"= Excel format
  ;
  N DFN,IBC,IBC0,IBDLT,IBGP,IBI,IBINS,IBINSV,IBPAGE,IBQUIT
  N IBTMP,IBTD,IBX,IBXX,SDCNT,VA,VADM,VAERR,VAPA,X,Y
+ ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  K ^TMP("IBCOMC",$J) S IBPAGE=0,IBQUIT=0,IBINSV=""
  ;
  ;  Date Last Treated entered get DFN's
@@ -31,6 +36,10 @@ BEG ; Entry to run Identify Patients with/without Insurance Report
  .K IBINS S (IBTD,IBINSV,IBINS)=""
  .;  I Terminal Digit out of range quit
  .I IBAIB=2 S IBTD=$$TERMDG^IBCONS2(DFN) I (+IBTD>IBRL)!(IBRF>+IBTD) Q
+ .;
+ .; Fix subscript error if terminal digit is null
+ .I IBAIB=2,IBTD="" S IBTD=" "
+ .;
  .K VA,VADM,VAERR,VAPA
  .D DEM^VADPT,ADD^VADPT
  .;
@@ -56,11 +65,11 @@ BEG ; Entry to run Identify Patients with/without Insurance Report
  ..I IBSIN=1,$P(IBC0,U,1)]IBSINF,IBSINL]$P(IBC0,U,1) D SET Q
  ..I IBSIN=2 F IBXX=1:1:6 I $G(IBSIN(IBXX)),+IBC=+IBSIN(IBXX) D SET
  .;
- I '$O(^TMP("IBCOMC",$J,0)) D HD^IBCOMC2 W !!,"** NO RECORDS FOUND **" G QUEQ
+ I '$O(^TMP("IBCOMC",$J,0)) D HD^IBCOMC2 W !!,"** NO RECORDS FOUND **" D ASK^IBCOMC2 G QUEQ
  D HD^IBCOMC2,WRT^IBCOMC2
  ;
 QUEQ ; Exit clean-UP
- W ! D ^%ZISC K IBTMP,IBAIB,IBRF,IBRL,IBSIN,IBAGEF,IBAGEL,IBBDT,IBEDT,IBSINF,IBSINL,VA,VAERR,VADM,VAPA,^TMP("IBCOMC",$J)
+ W ! D ^%ZISC K IBTMP,IBAIB,IBRF,IBRL,IBSIN,IBAGEF,IBAGEL,IBBDT,IBEDT,IBOUT,IBSINF,IBSINL,VA,VAERR,VADM,VAPA,^TMP("IBCOMC",$J)
  Q
  ;
 SET ;   set data line for global
@@ -97,4 +106,3 @@ DLT ;  Get DFN's for Date Last Treated Range
  .S IBDA=0 F  S IBDA=$O(^DGPM("ATT3",IBX,IBDA)) Q:'IBDA  D
  ..S ^TMP("IBCOMC",$J,"DLT",+$P($G(^DGPM(IBDA,0)),U,3),"OUT")=IBX
 DLTQ Q
- ;IBCOMC1

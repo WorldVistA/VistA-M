@@ -1,120 +1,126 @@
-IBDEI29J ; ; 19-NOV-2015
+IBDEI29J ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38010,1,3,0)
- ;;=3^Respiratory Arrest
- ;;^UTILITY(U,$J,358.3,38010,1,4,0)
- ;;=4^R09.2
- ;;^UTILITY(U,$J,358.3,38010,2)
- ;;=^276886
- ;;^UTILITY(U,$J,358.3,38011,0)
- ;;=Z87.09^^175^1912^13
- ;;^UTILITY(U,$J,358.3,38011,1,0)
+ ;;^UTILITY(U,$J,358.3,38377,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,38377,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,38378,0)
+ ;;=F17.210^^145^1861^4
+ ;;^UTILITY(U,$J,358.3,38378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38011,1,3,0)
- ;;=3^Personal Hx of Respiratory System Diseases
- ;;^UTILITY(U,$J,358.3,38011,1,4,0)
- ;;=4^Z87.09
- ;;^UTILITY(U,$J,358.3,38011,2)
- ;;=^5063481
- ;;^UTILITY(U,$J,358.3,38012,0)
- ;;=Z87.01^^175^1912^12
- ;;^UTILITY(U,$J,358.3,38012,1,0)
+ ;;^UTILITY(U,$J,358.3,38378,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,38378,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,38378,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,38379,0)
+ ;;=F17.211^^145^1861^3
+ ;;^UTILITY(U,$J,358.3,38379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38012,1,3,0)
- ;;=3^Personal Hx of Recurrent Pneumonia
- ;;^UTILITY(U,$J,358.3,38012,1,4,0)
- ;;=4^Z87.01
- ;;^UTILITY(U,$J,358.3,38012,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,38013,0)
- ;;=H0038^^176^1913^1^^^^1
- ;;^UTILITY(U,$J,358.3,38013,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,38013,1,2,0)
- ;;=2^H0038
- ;;^UTILITY(U,$J,358.3,38013,1,3,0)
- ;;=3^Self-Help/Peer Svc,Ea 15 Min
- ;;^UTILITY(U,$J,358.3,38014,0)
- ;;=T74.11XA^^177^1914^8
- ;;^UTILITY(U,$J,358.3,38014,1,0)
+ ;;^UTILITY(U,$J,358.3,38379,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,38379,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,38379,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,38380,0)
+ ;;=F17.220^^145^1861^2
+ ;;^UTILITY(U,$J,358.3,38380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38014,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,38014,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,38014,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,38015,0)
- ;;=T74.11XD^^177^1914^9
- ;;^UTILITY(U,$J,358.3,38015,1,0)
+ ;;^UTILITY(U,$J,358.3,38380,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,38380,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,38380,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,38381,0)
+ ;;=F17.221^^145^1861^1
+ ;;^UTILITY(U,$J,358.3,38381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38015,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,38015,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,38015,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,38016,0)
- ;;=T76.11XA^^177^1914^10
- ;;^UTILITY(U,$J,358.3,38016,1,0)
+ ;;^UTILITY(U,$J,358.3,38381,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,38381,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,38381,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,38382,0)
+ ;;=F17.290^^145^1861^5
+ ;;^UTILITY(U,$J,358.3,38382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38016,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,38016,1,4,0)
- ;;=4^T76.11XA
- ;;^UTILITY(U,$J,358.3,38016,2)
- ;;=^5054221
- ;;^UTILITY(U,$J,358.3,38017,0)
- ;;=T76.11XD^^177^1914^11
- ;;^UTILITY(U,$J,358.3,38017,1,0)
+ ;;^UTILITY(U,$J,358.3,38382,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,38382,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,38382,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,38383,0)
+ ;;=F17.291^^145^1861^6
+ ;;^UTILITY(U,$J,358.3,38383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38017,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,38017,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,38017,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,38018,0)
- ;;=Z69.11^^177^1914^4
- ;;^UTILITY(U,$J,358.3,38018,1,0)
+ ;;^UTILITY(U,$J,358.3,38383,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,38383,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,38383,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,38384,0)
+ ;;=F17.208^^145^1861^7
+ ;;^UTILITY(U,$J,358.3,38384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38018,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
- ;;^UTILITY(U,$J,358.3,38018,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,38018,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,38019,0)
- ;;=Z91.410^^177^1914^5
- ;;^UTILITY(U,$J,358.3,38019,1,0)
+ ;;^UTILITY(U,$J,358.3,38384,1,3,0)
+ ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38384,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,38384,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,38385,0)
+ ;;=F17.209^^145^1861^8
+ ;;^UTILITY(U,$J,358.3,38385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38019,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,38019,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,38019,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,38020,0)
- ;;=Z69.12^^177^1914^2
- ;;^UTILITY(U,$J,358.3,38020,1,0)
+ ;;^UTILITY(U,$J,358.3,38385,1,3,0)
+ ;;=3^Nicotine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38385,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,38385,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,38386,0)
+ ;;=F14.10^^145^1862^1
+ ;;^UTILITY(U,$J,358.3,38386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38020,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,38020,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,38020,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,38021,0)
- ;;=T74.21XA^^177^1914^12
- ;;^UTILITY(U,$J,358.3,38021,1,0)
+ ;;^UTILITY(U,$J,358.3,38386,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,38386,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,38386,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,38387,0)
+ ;;=F14.14^^145^1862^5
+ ;;^UTILITY(U,$J,358.3,38387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38021,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,38021,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,38021,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,38022,0)
- ;;=T74.21XD^^177^1914^13
+ ;;^UTILITY(U,$J,358.3,38387,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38387,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,38387,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,38388,0)
+ ;;=F14.182^^145^1862^6
+ ;;^UTILITY(U,$J,358.3,38388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38388,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38388,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,38388,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,38389,0)
+ ;;=F14.20^^145^1862^3
+ ;;^UTILITY(U,$J,358.3,38389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38389,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,38389,1,4,0)
+ ;;=4^F14.20

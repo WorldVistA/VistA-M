@@ -1,124 +1,124 @@
-IBDEI29C ; ; 19-NOV-2015
+IBDEI29C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37920,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,37920,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,37921,0)
- ;;=S64.31XA^^175^1906^16
- ;;^UTILITY(U,$J,358.3,37921,1,0)
+ ;;^UTILITY(U,$J,358.3,38293,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,38293,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,38294,0)
+ ;;=F12.288^^145^1856^19
+ ;;^UTILITY(U,$J,358.3,38294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37921,1,3,0)
- ;;=3^Digital Nerve Injury,Right Thumb,Init Encnt
- ;;^UTILITY(U,$J,358.3,37921,1,4,0)
- ;;=4^S64.31XA
- ;;^UTILITY(U,$J,358.3,37921,2)
- ;;=^5035790
- ;;^UTILITY(U,$J,358.3,37922,0)
- ;;=S64.32XA^^175^1906^11
- ;;^UTILITY(U,$J,358.3,37922,1,0)
+ ;;^UTILITY(U,$J,358.3,38294,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,38294,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,38294,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,38295,0)
+ ;;=F12.280^^145^1856^21
+ ;;^UTILITY(U,$J,358.3,38295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37922,1,3,0)
- ;;=3^Digital Nerve Injury,Left Thumb,Init Encnt
- ;;^UTILITY(U,$J,358.3,37922,1,4,0)
- ;;=4^S64.32XA
- ;;^UTILITY(U,$J,358.3,37922,2)
- ;;=^5035793
- ;;^UTILITY(U,$J,358.3,37923,0)
- ;;=S64.490A^^175^1906^12
- ;;^UTILITY(U,$J,358.3,37923,1,0)
+ ;;^UTILITY(U,$J,358.3,38295,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38295,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,38295,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,38296,0)
+ ;;=F12.121^^145^1856^6
+ ;;^UTILITY(U,$J,358.3,38296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37923,1,3,0)
- ;;=3^Digital Nerve Injury,Right Index Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37923,1,4,0)
- ;;=4^S64.490A
- ;;^UTILITY(U,$J,358.3,37923,2)
- ;;=^5035799
- ;;^UTILITY(U,$J,358.3,37924,0)
- ;;=S64.491A^^175^1906^7
- ;;^UTILITY(U,$J,358.3,37924,1,0)
+ ;;^UTILITY(U,$J,358.3,38296,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38296,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,38296,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,38297,0)
+ ;;=F12.221^^145^1856^7
+ ;;^UTILITY(U,$J,358.3,38297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37924,1,3,0)
- ;;=3^Digital Nerve Injury,Left Index Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37924,1,4,0)
- ;;=4^S64.491A
- ;;^UTILITY(U,$J,358.3,37924,2)
- ;;=^5035802
- ;;^UTILITY(U,$J,358.3,37925,0)
- ;;=S64.492A^^175^1906^14
- ;;^UTILITY(U,$J,358.3,37925,1,0)
+ ;;^UTILITY(U,$J,358.3,38297,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38297,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,38297,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,38298,0)
+ ;;=F12.921^^145^1856^8
+ ;;^UTILITY(U,$J,358.3,38298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37925,1,3,0)
- ;;=3^Digital Nerve Injury,Right Middle Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37925,1,4,0)
- ;;=4^S64.492A
- ;;^UTILITY(U,$J,358.3,37925,2)
- ;;=^5035805
- ;;^UTILITY(U,$J,358.3,37926,0)
- ;;=S64.493A^^175^1906^9
- ;;^UTILITY(U,$J,358.3,37926,1,0)
+ ;;^UTILITY(U,$J,358.3,38298,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38298,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,38298,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,38299,0)
+ ;;=F12.229^^145^1856^12
+ ;;^UTILITY(U,$J,358.3,38299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37926,1,3,0)
- ;;=3^Digital Nerve Injury,Left Middle Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37926,1,4,0)
- ;;=4^S64.493A
- ;;^UTILITY(U,$J,358.3,37926,2)
- ;;=^5035808
- ;;^UTILITY(U,$J,358.3,37927,0)
- ;;=S64.494A^^175^1906^15
- ;;^UTILITY(U,$J,358.3,37927,1,0)
+ ;;^UTILITY(U,$J,358.3,38299,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38299,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,38299,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,38300,0)
+ ;;=F12.122^^145^1856^9
+ ;;^UTILITY(U,$J,358.3,38300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37927,1,3,0)
- ;;=3^Digital Nerve Injury,Right Ring Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37927,1,4,0)
- ;;=4^S64.494A
- ;;^UTILITY(U,$J,358.3,37927,2)
- ;;=^5035811
- ;;^UTILITY(U,$J,358.3,37928,0)
- ;;=S64.495A^^175^1906^10
- ;;^UTILITY(U,$J,358.3,37928,1,0)
+ ;;^UTILITY(U,$J,358.3,38300,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38300,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,38300,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,38301,0)
+ ;;=F12.222^^145^1856^10
+ ;;^UTILITY(U,$J,358.3,38301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37928,1,3,0)
- ;;=3^Digital Nerve Injury,Left Ring Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37928,1,4,0)
- ;;=4^S64.495A
- ;;^UTILITY(U,$J,358.3,37928,2)
- ;;=^5035814
- ;;^UTILITY(U,$J,358.3,37929,0)
- ;;=S64.496A^^175^1906^13
- ;;^UTILITY(U,$J,358.3,37929,1,0)
+ ;;^UTILITY(U,$J,358.3,38301,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38301,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,38301,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,38302,0)
+ ;;=F12.129^^145^1856^14
+ ;;^UTILITY(U,$J,358.3,38302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37929,1,3,0)
- ;;=3^Digital Nerve Injury,Right Little Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37929,1,4,0)
- ;;=4^S64.496A
- ;;^UTILITY(U,$J,358.3,37929,2)
- ;;=^5035817
- ;;^UTILITY(U,$J,358.3,37930,0)
- ;;=S64.497A^^175^1906^8
- ;;^UTILITY(U,$J,358.3,37930,1,0)
+ ;;^UTILITY(U,$J,358.3,38302,1,3,0)
+ ;;=3^Cannabis Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,38302,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,38302,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,38303,0)
+ ;;=F12.922^^145^1856^11
+ ;;^UTILITY(U,$J,358.3,38303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37930,1,3,0)
- ;;=3^Digital Nerve Injury,Left Little Finger,Init Encnt
- ;;^UTILITY(U,$J,358.3,37930,1,4,0)
- ;;=4^S64.497A
- ;;^UTILITY(U,$J,358.3,37930,2)
- ;;=^5035820
- ;;^UTILITY(U,$J,358.3,37931,0)
- ;;=S44.91XA^^175^1906^34
- ;;^UTILITY(U,$J,358.3,37931,1,0)
+ ;;^UTILITY(U,$J,358.3,38303,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38303,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,38303,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,38304,0)
+ ;;=F12.980^^145^1856^1
+ ;;^UTILITY(U,$J,358.3,38304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37931,1,3,0)
- ;;=3^Nerve Injury Unspec,Right Shldr/Upper Arm,Init Encnt
- ;;^UTILITY(U,$J,358.3,37931,1,4,0)
- ;;=4^S44.91XA
- ;;^UTILITY(U,$J,358.3,37931,2)
- ;;=^5134801
- ;;^UTILITY(U,$J,358.3,37932,0)
- ;;=S44.92XA^^175^1906^33
- ;;^UTILITY(U,$J,358.3,37932,1,0)
+ ;;^UTILITY(U,$J,358.3,38304,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38304,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,38304,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,38305,0)
+ ;;=F12.159^^145^1856^2
+ ;;^UTILITY(U,$J,358.3,38305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37932,1,3,0)
- ;;=3^Nerve Injury Unspec,Left Shldr/Upper Arm, Init Encnt
+ ;;^UTILITY(U,$J,358.3,38305,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder

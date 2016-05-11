@@ -1,128 +1,132 @@
-IBDEI24D ; ; 19-NOV-2015
+IBDEI24D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35588,2)
- ;;=^5016519
- ;;^UTILITY(U,$J,358.3,35589,0)
- ;;=O31.02X4^^166^1824^48
- ;;^UTILITY(U,$J,358.3,35589,1,0)
+ ;;^UTILITY(U,$J,358.3,35944,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,35944,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,35945,0)
+ ;;=F17.221^^134^1737^5
+ ;;^UTILITY(U,$J,358.3,35945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35589,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,35589,1,4,0)
- ;;=4^O31.02X4
- ;;^UTILITY(U,$J,358.3,35589,2)
- ;;=^5016520
- ;;^UTILITY(U,$J,358.3,35590,0)
- ;;=O31.02X5^^166^1824^49
- ;;^UTILITY(U,$J,358.3,35590,1,0)
+ ;;^UTILITY(U,$J,358.3,35945,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,35945,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,35945,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,35946,0)
+ ;;=F17.220^^134^1737^6
+ ;;^UTILITY(U,$J,358.3,35946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35590,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,35590,1,4,0)
- ;;=4^O31.02X5
- ;;^UTILITY(U,$J,358.3,35590,2)
- ;;=^5016521
- ;;^UTILITY(U,$J,358.3,35591,0)
- ;;=O31.01X0^^166^1824^44
- ;;^UTILITY(U,$J,358.3,35591,1,0)
+ ;;^UTILITY(U,$J,358.3,35946,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35946,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,35946,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,35947,0)
+ ;;=F17.211^^134^1737^7
+ ;;^UTILITY(U,$J,358.3,35947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35591,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,35591,1,4,0)
- ;;=4^O31.01X0
- ;;^UTILITY(U,$J,358.3,35591,2)
- ;;=^5016509
- ;;^UTILITY(U,$J,358.3,35592,0)
- ;;=O31.01X1^^166^1824^39
- ;;^UTILITY(U,$J,358.3,35592,1,0)
+ ;;^UTILITY(U,$J,358.3,35947,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,35947,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,35947,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,35948,0)
+ ;;=F17.210^^134^1737^8
+ ;;^UTILITY(U,$J,358.3,35948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35592,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,35592,1,4,0)
- ;;=4^O31.01X1
- ;;^UTILITY(U,$J,358.3,35592,2)
- ;;=^5016510
- ;;^UTILITY(U,$J,358.3,35593,0)
- ;;=O31.01X2^^166^1824^40
- ;;^UTILITY(U,$J,358.3,35593,1,0)
+ ;;^UTILITY(U,$J,358.3,35948,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35948,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,35948,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,35949,0)
+ ;;=F17.291^^134^1737^9
+ ;;^UTILITY(U,$J,358.3,35949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35593,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,35593,1,4,0)
- ;;=4^O31.01X2
- ;;^UTILITY(U,$J,358.3,35593,2)
- ;;=^5016511
- ;;^UTILITY(U,$J,358.3,35594,0)
- ;;=O31.01X3^^166^1824^41
- ;;^UTILITY(U,$J,358.3,35594,1,0)
+ ;;^UTILITY(U,$J,358.3,35949,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,35949,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,35949,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,35950,0)
+ ;;=F17.290^^134^1737^10
+ ;;^UTILITY(U,$J,358.3,35950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35594,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,35594,1,4,0)
- ;;=4^O31.01X3
- ;;^UTILITY(U,$J,358.3,35594,2)
- ;;=^5016512
- ;;^UTILITY(U,$J,358.3,35595,0)
- ;;=O31.01X4^^166^1824^42
- ;;^UTILITY(U,$J,358.3,35595,1,0)
+ ;;^UTILITY(U,$J,358.3,35950,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35950,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,35950,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,35951,0)
+ ;;=F17.201^^134^1737^11
+ ;;^UTILITY(U,$J,358.3,35951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35595,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,35595,1,4,0)
- ;;=4^O31.01X4
- ;;^UTILITY(U,$J,358.3,35595,2)
- ;;=^5016513
- ;;^UTILITY(U,$J,358.3,35596,0)
- ;;=O31.01X5^^166^1824^43
- ;;^UTILITY(U,$J,358.3,35596,1,0)
+ ;;^UTILITY(U,$J,358.3,35951,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,In Remission
+ ;;^UTILITY(U,$J,358.3,35951,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,35951,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,35952,0)
+ ;;=F17.200^^134^1737^12
+ ;;^UTILITY(U,$J,358.3,35952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35596,1,3,0)
- ;;=3^Papyraceous fetus, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,35596,1,4,0)
- ;;=4^O31.01X5
- ;;^UTILITY(U,$J,358.3,35596,2)
- ;;=^5016514
- ;;^UTILITY(U,$J,358.3,35597,0)
- ;;=O12.01^^166^1824^26
- ;;^UTILITY(U,$J,358.3,35597,1,0)
+ ;;^UTILITY(U,$J,358.3,35952,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35952,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,35952,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,35953,0)
+ ;;=F19.20^^134^1737^16
+ ;;^UTILITY(U,$J,358.3,35953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35597,1,3,0)
- ;;=3^Gestational edema, first trimester
- ;;^UTILITY(U,$J,358.3,35597,1,4,0)
- ;;=4^O12.01
- ;;^UTILITY(U,$J,358.3,35597,2)
- ;;=^5016147
- ;;^UTILITY(U,$J,358.3,35598,0)
- ;;=O12.02^^166^1824^27
- ;;^UTILITY(U,$J,358.3,35598,1,0)
+ ;;^UTILITY(U,$J,358.3,35953,1,3,0)
+ ;;=3^Psycoactive Substance Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35953,1,4,0)
+ ;;=4^F19.20
+ ;;^UTILITY(U,$J,358.3,35953,2)
+ ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,35954,0)
+ ;;=F43.11^^134^1737^13
+ ;;^UTILITY(U,$J,358.3,35954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35598,1,3,0)
- ;;=3^Gestational edema, second trimester
- ;;^UTILITY(U,$J,358.3,35598,1,4,0)
- ;;=4^O12.02
- ;;^UTILITY(U,$J,358.3,35598,2)
- ;;=^5016148
- ;;^UTILITY(U,$J,358.3,35599,0)
- ;;=O12.03^^166^1824^28
- ;;^UTILITY(U,$J,358.3,35599,1,0)
+ ;;^UTILITY(U,$J,358.3,35954,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,35954,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,35954,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,35955,0)
+ ;;=F43.12^^134^1737^14
+ ;;^UTILITY(U,$J,358.3,35955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35599,1,3,0)
- ;;=3^Gestational edema, third trimester
- ;;^UTILITY(U,$J,358.3,35599,1,4,0)
- ;;=4^O12.03
- ;;^UTILITY(U,$J,358.3,35599,2)
- ;;=^5016149
- ;;^UTILITY(U,$J,358.3,35600,0)
- ;;=O12.21^^166^1824^23
- ;;^UTILITY(U,$J,358.3,35600,1,0)
+ ;;^UTILITY(U,$J,358.3,35955,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,35955,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,35955,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,35956,0)
+ ;;=F43.10^^134^1737^15
+ ;;^UTILITY(U,$J,358.3,35956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35600,1,3,0)
- ;;=3^Gestational edema with proteinuria, first trimester
- ;;^UTILITY(U,$J,358.3,35600,1,4,0)
- ;;=4^O12.21
- ;;^UTILITY(U,$J,358.3,35600,2)
- ;;=^5016155
- ;;^UTILITY(U,$J,358.3,35601,0)
- ;;=O12.22^^166^1824^24
+ ;;^UTILITY(U,$J,358.3,35956,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,35956,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,35956,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,35957,0)
+ ;;=Z87.891^^134^1737^3
+ ;;^UTILITY(U,$J,358.3,35957,1,0)
+ ;;=^358.31IA^4^2

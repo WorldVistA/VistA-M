@@ -1,140 +1,130 @@
-IBDEI16H ; ; 19-NOV-2015
+IBDEI16H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19687,1,4,0)
- ;;=4^R26.9
- ;;^UTILITY(U,$J,358.3,19687,2)
- ;;=^5019309
- ;;^UTILITY(U,$J,358.3,19688,0)
- ;;=R27.0^^94^928^42
- ;;^UTILITY(U,$J,358.3,19688,1,0)
+ ;;^UTILITY(U,$J,358.3,20034,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,20035,0)
+ ;;=D75.9^^84^929^55
+ ;;^UTILITY(U,$J,358.3,20035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19688,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,19688,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,19688,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,19689,0)
- ;;=R27.8^^94^928^100
- ;;^UTILITY(U,$J,358.3,19689,1,0)
+ ;;^UTILITY(U,$J,358.3,20035,1,3,0)
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,20035,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,20035,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,20036,0)
+ ;;=D59.0^^84^929^58
+ ;;^UTILITY(U,$J,358.3,20036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19689,1,3,0)
- ;;=3^Lack of Coordination NEC
- ;;^UTILITY(U,$J,358.3,19689,1,4,0)
- ;;=4^R27.8
- ;;^UTILITY(U,$J,358.3,19689,2)
- ;;=^5019311
- ;;^UTILITY(U,$J,358.3,19690,0)
- ;;=R27.9^^94^928^101
- ;;^UTILITY(U,$J,358.3,19690,1,0)
+ ;;^UTILITY(U,$J,358.3,20036,1,3,0)
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,20036,1,4,0)
+ ;;=4^D59.0
+ ;;^UTILITY(U,$J,358.3,20036,2)
+ ;;=^5002323
+ ;;^UTILITY(U,$J,358.3,20037,0)
+ ;;=D59.2^^84^929^59
+ ;;^UTILITY(U,$J,358.3,20037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19690,1,3,0)
- ;;=3^Lack of Coordination,Unspec
- ;;^UTILITY(U,$J,358.3,19690,1,4,0)
- ;;=4^R27.9
- ;;^UTILITY(U,$J,358.3,19690,2)
- ;;=^5019312
- ;;^UTILITY(U,$J,358.3,19691,0)
- ;;=R29.0^^94^928^153
- ;;^UTILITY(U,$J,358.3,19691,1,0)
+ ;;^UTILITY(U,$J,358.3,20037,1,3,0)
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,20037,1,4,0)
+ ;;=4^D59.2
+ ;;^UTILITY(U,$J,358.3,20037,2)
+ ;;=^5002325
+ ;;^UTILITY(U,$J,358.3,20038,0)
+ ;;=R59.9^^84^929^62
+ ;;^UTILITY(U,$J,358.3,20038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19691,1,3,0)
- ;;=3^Tetany
- ;;^UTILITY(U,$J,358.3,19691,1,4,0)
- ;;=4^R29.0
- ;;^UTILITY(U,$J,358.3,19691,2)
- ;;=^118032
- ;;^UTILITY(U,$J,358.3,19692,0)
- ;;=R29.1^^94^928^118
- ;;^UTILITY(U,$J,358.3,19692,1,0)
+ ;;^UTILITY(U,$J,358.3,20038,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,20038,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,20038,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,20039,0)
+ ;;=D47.3^^84^929^63
+ ;;^UTILITY(U,$J,358.3,20039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19692,1,3,0)
- ;;=3^Meningismus
- ;;^UTILITY(U,$J,358.3,19692,1,4,0)
- ;;=4^R29.1
- ;;^UTILITY(U,$J,358.3,19692,2)
- ;;=^5019313
- ;;^UTILITY(U,$J,358.3,19693,0)
- ;;=R29.5^^94^928^155
- ;;^UTILITY(U,$J,358.3,19693,1,0)
+ ;;^UTILITY(U,$J,358.3,20039,1,3,0)
+ ;;=3^Essential Thrombocythemia
+ ;;^UTILITY(U,$J,358.3,20039,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,20039,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,20040,0)
+ ;;=C82.09^^84^929^64
+ ;;^UTILITY(U,$J,358.3,20040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19693,1,3,0)
- ;;=3^Transient Paralysis
- ;;^UTILITY(U,$J,358.3,19693,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,19693,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,19694,0)
- ;;=R34.^^94^928^39
- ;;^UTILITY(U,$J,358.3,19694,1,0)
+ ;;^UTILITY(U,$J,358.3,20040,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20040,1,4,0)
+ ;;=4^C82.09
+ ;;^UTILITY(U,$J,358.3,20040,2)
+ ;;=^5001470
+ ;;^UTILITY(U,$J,358.3,20041,0)
+ ;;=C82.00^^84^929^65
+ ;;^UTILITY(U,$J,358.3,20041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19694,1,3,0)
- ;;=3^Anuria and Oliguria
- ;;^UTILITY(U,$J,358.3,19694,1,4,0)
- ;;=4^R34.
- ;;^UTILITY(U,$J,358.3,19694,2)
- ;;=^5019333
- ;;^UTILITY(U,$J,358.3,19695,0)
- ;;=R35.8^^94^928^140
- ;;^UTILITY(U,$J,358.3,19695,1,0)
+ ;;^UTILITY(U,$J,358.3,20041,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20041,1,4,0)
+ ;;=4^C82.00
+ ;;^UTILITY(U,$J,358.3,20041,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,20042,0)
+ ;;=C82.19^^84^929^66
+ ;;^UTILITY(U,$J,358.3,20042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19695,1,3,0)
- ;;=3^Polyuria NEC
- ;;^UTILITY(U,$J,358.3,19695,1,4,0)
- ;;=4^R35.8
- ;;^UTILITY(U,$J,358.3,19695,2)
- ;;=^5019336
- ;;^UTILITY(U,$J,358.3,19696,0)
- ;;=R39.12^^94^928^141
- ;;^UTILITY(U,$J,358.3,19696,1,0)
+ ;;^UTILITY(U,$J,358.3,20042,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20042,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,20042,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,20043,0)
+ ;;=C82.10^^84^929^67
+ ;;^UTILITY(U,$J,358.3,20043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19696,1,3,0)
- ;;=3^Poor Urinary Stream
- ;;^UTILITY(U,$J,358.3,19696,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,19696,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,19697,0)
- ;;=R39.14^^94^928^73
- ;;^UTILITY(U,$J,358.3,19697,1,0)
+ ;;^UTILITY(U,$J,358.3,20043,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20043,1,4,0)
+ ;;=4^C82.10
+ ;;^UTILITY(U,$J,358.3,20043,2)
+ ;;=^5001471
+ ;;^UTILITY(U,$J,358.3,20044,0)
+ ;;=C82.29^^84^929^68
+ ;;^UTILITY(U,$J,358.3,20044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19697,1,3,0)
- ;;=3^Feeling of Incomplete Bladder Emptying
- ;;^UTILITY(U,$J,358.3,19697,1,4,0)
- ;;=4^R39.14
- ;;^UTILITY(U,$J,358.3,19697,2)
- ;;=^5019344
- ;;^UTILITY(U,$J,358.3,19698,0)
- ;;=R41.4^^94^928^122
- ;;^UTILITY(U,$J,358.3,19698,1,0)
+ ;;^UTILITY(U,$J,358.3,20044,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20044,1,4,0)
+ ;;=4^C82.29
+ ;;^UTILITY(U,$J,358.3,20044,2)
+ ;;=^5001490
+ ;;^UTILITY(U,$J,358.3,20045,0)
+ ;;=C82.20^^84^929^69
+ ;;^UTILITY(U,$J,358.3,20045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19698,1,3,0)
- ;;=3^Neurologic Neglect Syndrome
- ;;^UTILITY(U,$J,358.3,19698,1,4,0)
- ;;=4^R41.4
- ;;^UTILITY(U,$J,358.3,19698,2)
- ;;=^303316
- ;;^UTILITY(U,$J,358.3,19699,0)
- ;;=R41.81^^94^928^32
- ;;^UTILITY(U,$J,358.3,19699,1,0)
+ ;;^UTILITY(U,$J,358.3,20045,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20045,1,4,0)
+ ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,20045,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,20046,0)
+ ;;=C82.39^^84^929^70
+ ;;^UTILITY(U,$J,358.3,20046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19699,1,3,0)
- ;;=3^Age-Related Cognitive Decline
- ;;^UTILITY(U,$J,358.3,19699,1,4,0)
- ;;=4^R41.81
- ;;^UTILITY(U,$J,358.3,19699,2)
- ;;=^5019440
- ;;^UTILITY(U,$J,358.3,19700,0)
- ;;=R41.0^^94^928^61
- ;;^UTILITY(U,$J,358.3,19700,1,0)
+ ;;^UTILITY(U,$J,358.3,20046,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20046,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,20046,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,20047,0)
+ ;;=C82.30^^84^929^71
+ ;;^UTILITY(U,$J,358.3,20047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19700,1,3,0)
- ;;=3^Disorientation/Confusion/Delrium,Unspec
- ;;^UTILITY(U,$J,358.3,19700,1,4,0)
- ;;=4^R41.0
- ;;^UTILITY(U,$J,358.3,19700,2)
- ;;=^5019436
- ;;^UTILITY(U,$J,358.3,19701,0)
- ;;=R41.82^^94^928^34

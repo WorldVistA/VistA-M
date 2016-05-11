@@ -1,136 +1,136 @@
-IBDEI23H ; ; 19-NOV-2015
+IBDEI23H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35154,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,35154,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,35154,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,35155,0)
- ;;=I49.9^^163^1791^8
- ;;^UTILITY(U,$J,358.3,35155,1,0)
+ ;;^UTILITY(U,$J,358.3,35530,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,35531,0)
+ ;;=I21.4^^134^1722^57
+ ;;^UTILITY(U,$J,358.3,35531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35155,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,35155,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,35155,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,35156,0)
- ;;=I50.9^^163^1791^12
- ;;^UTILITY(U,$J,358.3,35156,1,0)
+ ;;^UTILITY(U,$J,358.3,35531,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,35531,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,35531,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,35532,0)
+ ;;=I42.8^^134^1722^46
+ ;;^UTILITY(U,$J,358.3,35532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35156,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,35156,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,35156,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,35157,0)
- ;;=I73.9^^163^1791^19
- ;;^UTILITY(U,$J,358.3,35157,1,0)
+ ;;^UTILITY(U,$J,358.3,35532,1,3,0)
+ ;;=3^Cardiomypathies NEC
+ ;;^UTILITY(U,$J,358.3,35532,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,35532,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,35533,0)
+ ;;=I20.8^^134^1722^7
+ ;;^UTILITY(U,$J,358.3,35533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35157,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,35157,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,35157,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,35158,0)
- ;;=I87.2^^163^1791^26
- ;;^UTILITY(U,$J,358.3,35158,1,0)
+ ;;^UTILITY(U,$J,358.3,35533,1,3,0)
+ ;;=3^Angina Pectoris NEC
+ ;;^UTILITY(U,$J,358.3,35533,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,35533,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,35534,0)
+ ;;=I42.2^^134^1722^56
+ ;;^UTILITY(U,$J,358.3,35534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35158,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,35158,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,35158,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,35159,0)
- ;;=R03.0^^163^1791^11
- ;;^UTILITY(U,$J,358.3,35159,1,0)
+ ;;^UTILITY(U,$J,358.3,35534,1,3,0)
+ ;;=3^Hypertrophic Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,35534,1,4,0)
+ ;;=4^I42.2
+ ;;^UTILITY(U,$J,358.3,35534,2)
+ ;;=^340521
+ ;;^UTILITY(U,$J,358.3,35535,0)
+ ;;=I35.8^^134^1722^59
+ ;;^UTILITY(U,$J,358.3,35535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35159,1,3,0)
- ;;=3^Elevated B/P Reading w/o HTN Dx
- ;;^UTILITY(U,$J,358.3,35159,1,4,0)
- ;;=4^R03.0
- ;;^UTILITY(U,$J,358.3,35159,2)
- ;;=^5019171
- ;;^UTILITY(U,$J,358.3,35160,0)
- ;;=I25.110^^163^1791^3
- ;;^UTILITY(U,$J,358.3,35160,1,0)
+ ;;^UTILITY(U,$J,358.3,35535,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,35535,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,35535,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,35536,0)
+ ;;=I42.5^^134^1722^65
+ ;;^UTILITY(U,$J,358.3,35536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35160,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unstable Angina
- ;;^UTILITY(U,$J,358.3,35160,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,35160,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,35161,0)
- ;;=I25.119^^163^1791^4
- ;;^UTILITY(U,$J,358.3,35161,1,0)
+ ;;^UTILITY(U,$J,358.3,35536,1,3,0)
+ ;;=3^Restrictive Cardiomyopathy NEC
+ ;;^UTILITY(U,$J,358.3,35536,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,35536,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,35537,0)
+ ;;=I05.8^^134^1722^69
+ ;;^UTILITY(U,$J,358.3,35537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35161,1,3,0)
- ;;=3^Athscl Hrt Disease,Native Coronary Artery w/ Unspec Angina
- ;;^UTILITY(U,$J,358.3,35161,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,35161,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,35162,0)
- ;;=I48.0^^163^1791^20
- ;;^UTILITY(U,$J,358.3,35162,1,0)
+ ;;^UTILITY(U,$J,358.3,35537,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,35537,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,35537,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,35538,0)
+ ;;=I08.8^^134^1722^70
+ ;;^UTILITY(U,$J,358.3,35538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35162,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,35162,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,35162,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,35163,0)
- ;;=I48.1^^163^1791^21
- ;;^UTILITY(U,$J,358.3,35163,1,0)
+ ;;^UTILITY(U,$J,358.3,35538,1,3,0)
+ ;;=3^Rheumatic Multiple Valve Diseases NEC
+ ;;^UTILITY(U,$J,358.3,35538,1,4,0)
+ ;;=4^I08.8
+ ;;^UTILITY(U,$J,358.3,35538,2)
+ ;;=^5007056
+ ;;^UTILITY(U,$J,358.3,35539,0)
+ ;;=I47.9^^134^1722^63
+ ;;^UTILITY(U,$J,358.3,35539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35163,1,3,0)
- ;;=3^Persistent Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,35163,1,4,0)
- ;;=4^I48.1
- ;;^UTILITY(U,$J,358.3,35163,2)
- ;;=^5007225
- ;;^UTILITY(U,$J,358.3,35164,0)
- ;;=I48.2^^163^1791^9
- ;;^UTILITY(U,$J,358.3,35164,1,0)
+ ;;^UTILITY(U,$J,358.3,35539,1,3,0)
+ ;;=3^Paroxysmal Tachycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,35539,1,4,0)
+ ;;=4^I47.9
+ ;;^UTILITY(U,$J,358.3,35539,2)
+ ;;=^5007224
+ ;;^UTILITY(U,$J,358.3,35540,0)
+ ;;=I05.1^^134^1722^66
+ ;;^UTILITY(U,$J,358.3,35540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35164,1,3,0)
- ;;=3^Chronic Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,35164,1,4,0)
- ;;=4^I48.2
- ;;^UTILITY(U,$J,358.3,35164,2)
- ;;=^5007226
- ;;^UTILITY(U,$J,358.3,35165,0)
- ;;=I48.92^^163^1791^6
- ;;^UTILITY(U,$J,358.3,35165,1,0)
+ ;;^UTILITY(U,$J,358.3,35540,1,3,0)
+ ;;=3^Rheumatic Mitral Insufficiency
+ ;;^UTILITY(U,$J,358.3,35540,1,4,0)
+ ;;=4^I05.1
+ ;;^UTILITY(U,$J,358.3,35540,2)
+ ;;=^269568
+ ;;^UTILITY(U,$J,358.3,35541,0)
+ ;;=I05.0^^134^1722^67
+ ;;^UTILITY(U,$J,358.3,35541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35165,1,3,0)
- ;;=3^Atrial Flutter,Unspec
- ;;^UTILITY(U,$J,358.3,35165,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,35165,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,35166,0)
- ;;=I48.3^^163^1791^24
- ;;^UTILITY(U,$J,358.3,35166,1,0)
+ ;;^UTILITY(U,$J,358.3,35541,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,35541,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,35541,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,35542,0)
+ ;;=I05.9^^134^1722^68
+ ;;^UTILITY(U,$J,358.3,35542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35166,1,3,0)
- ;;=3^Typical Atrial Flutter
- ;;^UTILITY(U,$J,358.3,35166,1,4,0)
- ;;=4^I48.3
- ;;^UTILITY(U,$J,358.3,35166,2)
- ;;=^5007227
- ;;^UTILITY(U,$J,358.3,35167,0)
- ;;=I48.4^^163^1791^7
- ;;^UTILITY(U,$J,358.3,35167,1,0)
+ ;;^UTILITY(U,$J,358.3,35542,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,35542,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,35542,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,35543,0)
+ ;;=I21.3^^134^1722^71
+ ;;^UTILITY(U,$J,358.3,35543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35167,1,3,0)
- ;;=3^Atypical Atrial Flutter
+ ;;^UTILITY(U,$J,358.3,35543,1,3,0)
+ ;;=3^STEMI Myocardial Infarction,Unspec Site
+ ;;^UTILITY(U,$J,358.3,35543,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,35543,2)
+ ;;=^5007087

@@ -1,126 +1,128 @@
-IBDEI2F4 ; ; 19-NOV-2015
+IBDEI2F4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40607,1,4,0)
- ;;=4^T25.531A
- ;;^UTILITY(U,$J,358.3,40607,2)
- ;;=^5048664
- ;;^UTILITY(U,$J,358.3,40608,0)
- ;;=T25.532A^^189^2083^50
- ;;^UTILITY(U,$J,358.3,40608,1,0)
+ ;;^UTILITY(U,$J,358.3,41018,1,3,0)
+ ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,41018,1,4,0)
+ ;;=4^K50.919
+ ;;^UTILITY(U,$J,358.3,41018,2)
+ ;;=^5008651
+ ;;^UTILITY(U,$J,358.3,41019,0)
+ ;;=K50.914^^159^1999^23
+ ;;^UTILITY(U,$J,358.3,41019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40608,1,3,0)
- ;;=3^Corrosion of lft toe(s), first degree, init enc
- ;;^UTILITY(U,$J,358.3,40608,1,4,0)
- ;;=4^T25.532A
- ;;^UTILITY(U,$J,358.3,40608,2)
- ;;=^5048667
- ;;^UTILITY(U,$J,358.3,40609,0)
- ;;=T25.521A^^189^2083^57
- ;;^UTILITY(U,$J,358.3,40609,1,0)
+ ;;^UTILITY(U,$J,358.3,41019,1,3,0)
+ ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,41019,1,4,0)
+ ;;=4^K50.914
+ ;;^UTILITY(U,$J,358.3,41019,2)
+ ;;=^5008649
+ ;;^UTILITY(U,$J,358.3,41020,0)
+ ;;=K50.913^^159^1999^24
+ ;;^UTILITY(U,$J,358.3,41020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40609,1,3,0)
- ;;=3^Corrosion of rt ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40609,1,4,0)
- ;;=4^T25.521A
- ;;^UTILITY(U,$J,358.3,40609,2)
- ;;=^5048655
- ;;^UTILITY(U,$J,358.3,40610,0)
- ;;=T25.522A^^189^2083^42
- ;;^UTILITY(U,$J,358.3,40610,1,0)
+ ;;^UTILITY(U,$J,358.3,41020,1,3,0)
+ ;;=3^Crohn's Disease w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,41020,1,4,0)
+ ;;=4^K50.913
+ ;;^UTILITY(U,$J,358.3,41020,2)
+ ;;=^5008648
+ ;;^UTILITY(U,$J,358.3,41021,0)
+ ;;=K50.918^^159^1999^26
+ ;;^UTILITY(U,$J,358.3,41021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40610,1,3,0)
- ;;=3^Corrosion of lft ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40610,1,4,0)
- ;;=4^T25.522A
- ;;^UTILITY(U,$J,358.3,40610,2)
- ;;=^5048658
- ;;^UTILITY(U,$J,358.3,40611,0)
- ;;=T25.511A^^189^2083^55
- ;;^UTILITY(U,$J,358.3,40611,1,0)
+ ;;^UTILITY(U,$J,358.3,41021,1,3,0)
+ ;;=3^Crohn's Disease w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,41021,1,4,0)
+ ;;=4^K50.918
+ ;;^UTILITY(U,$J,358.3,41021,2)
+ ;;=^5008650
+ ;;^UTILITY(U,$J,358.3,41022,0)
+ ;;=K51.90^^159^1999^80
+ ;;^UTILITY(U,$J,358.3,41022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40611,1,3,0)
- ;;=3^Corrosion of rt ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40611,1,4,0)
- ;;=4^T25.511A
- ;;^UTILITY(U,$J,358.3,40611,2)
- ;;=^5048646
- ;;^UTILITY(U,$J,358.3,40612,0)
- ;;=T25.512A^^189^2083^40
- ;;^UTILITY(U,$J,358.3,40612,1,0)
+ ;;^UTILITY(U,$J,358.3,41022,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,41022,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,41022,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,41023,0)
+ ;;=K51.919^^159^1999^79
+ ;;^UTILITY(U,$J,358.3,41023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40612,1,3,0)
- ;;=3^Corrosion of lft ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40612,1,4,0)
- ;;=4^T25.512A
- ;;^UTILITY(U,$J,358.3,40612,2)
- ;;=^5048649
- ;;^UTILITY(U,$J,358.3,40613,0)
- ;;=T24.531A^^189^2083^61
- ;;^UTILITY(U,$J,358.3,40613,1,0)
+ ;;^UTILITY(U,$J,358.3,41023,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,41023,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,41023,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,41024,0)
+ ;;=K51.918^^159^1999^77
+ ;;^UTILITY(U,$J,358.3,41024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40613,1,3,0)
- ;;=3^Corrosion of rt lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40613,1,4,0)
- ;;=4^T24.531A
- ;;^UTILITY(U,$J,358.3,40613,2)
- ;;=^5048388
- ;;^UTILITY(U,$J,358.3,40614,0)
- ;;=T24.532A^^189^2083^46
- ;;^UTILITY(U,$J,358.3,40614,1,0)
+ ;;^UTILITY(U,$J,358.3,41024,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,41024,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,41024,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,41025,0)
+ ;;=K51.914^^159^1999^74
+ ;;^UTILITY(U,$J,358.3,41025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40614,1,3,0)
- ;;=3^Corrosion of lft lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,40614,1,4,0)
- ;;=4^T24.532A
- ;;^UTILITY(U,$J,358.3,40614,2)
- ;;=^5048391
- ;;^UTILITY(U,$J,358.3,40615,0)
- ;;=T25.631A^^189^2083^66
- ;;^UTILITY(U,$J,358.3,40615,1,0)
+ ;;^UTILITY(U,$J,358.3,41025,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,41025,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,41025,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,41026,0)
+ ;;=K51.913^^159^1999^75
+ ;;^UTILITY(U,$J,358.3,41026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40615,1,3,0)
- ;;=3^Corrosion of rt toe(s), second degree, init enc
- ;;^UTILITY(U,$J,358.3,40615,1,4,0)
- ;;=4^T25.631A
- ;;^UTILITY(U,$J,358.3,40615,2)
- ;;=^5048700
- ;;^UTILITY(U,$J,358.3,40616,0)
- ;;=T25.632A^^189^2083^51
- ;;^UTILITY(U,$J,358.3,40616,1,0)
+ ;;^UTILITY(U,$J,358.3,41026,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,41026,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,41026,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,41027,0)
+ ;;=K51.912^^159^1999^76
+ ;;^UTILITY(U,$J,358.3,41027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40616,1,3,0)
- ;;=3^Corrosion of lft toe(s), second degree, init enc
- ;;^UTILITY(U,$J,358.3,40616,1,4,0)
- ;;=4^T25.632A
- ;;^UTILITY(U,$J,358.3,40616,2)
- ;;=^5048703
- ;;^UTILITY(U,$J,358.3,40617,0)
- ;;=T25.621A^^189^2083^58
- ;;^UTILITY(U,$J,358.3,40617,1,0)
+ ;;^UTILITY(U,$J,358.3,41027,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,41027,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,41027,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,41028,0)
+ ;;=K51.911^^159^1999^78
+ ;;^UTILITY(U,$J,358.3,41028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40617,1,3,0)
- ;;=3^Corrosion of rt ft, second degree, init enc
- ;;^UTILITY(U,$J,358.3,40617,1,4,0)
- ;;=4^T25.621A
- ;;^UTILITY(U,$J,358.3,40617,2)
- ;;=^5048691
- ;;^UTILITY(U,$J,358.3,40618,0)
- ;;=T25.622A^^189^2083^43
- ;;^UTILITY(U,$J,358.3,40618,1,0)
+ ;;^UTILITY(U,$J,358.3,41028,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,41028,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,41028,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,41029,0)
+ ;;=K52.89^^159^1999^54
+ ;;^UTILITY(U,$J,358.3,41029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40618,1,3,0)
- ;;=3^Corrosion of lft ft, second degree, init enc
- ;;^UTILITY(U,$J,358.3,40618,1,4,0)
- ;;=4^T25.622A
- ;;^UTILITY(U,$J,358.3,40618,2)
- ;;=^5048694
- ;;^UTILITY(U,$J,358.3,40619,0)
- ;;=T25.611A^^189^2083^56
- ;;^UTILITY(U,$J,358.3,40619,1,0)
+ ;;^UTILITY(U,$J,358.3,41029,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,41029,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,41029,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,41030,0)
+ ;;=K52.9^^159^1999^53
+ ;;^UTILITY(U,$J,358.3,41030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40619,1,3,0)
- ;;=3^Corrosion of rt ankl, second degree, init enc
- ;;^UTILITY(U,$J,358.3,40619,1,4,0)
- ;;=4^T25.611A
+ ;;^UTILITY(U,$J,358.3,41030,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,41030,1,4,0)
+ ;;=4^K52.9

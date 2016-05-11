@@ -1,134 +1,132 @@
-IBDEI153 ; ; 19-NOV-2015
+IBDEI153 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19032,1,0)
+ ;;^UTILITY(U,$J,358.3,19385,0)
+ ;;=I70.642^^84^918^66
+ ;;^UTILITY(U,$J,358.3,19385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19032,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,19032,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,19032,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,19033,0)
- ;;=Z77.21^^94^917^53
- ;;^UTILITY(U,$J,358.3,19033,1,0)
+ ;;^UTILITY(U,$J,358.3,19385,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,19385,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,19385,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,19386,0)
+ ;;=I70.643^^84^918^67
+ ;;^UTILITY(U,$J,358.3,19386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19033,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19033,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,19033,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,19034,0)
- ;;=Z91.81^^94^917^57
- ;;^UTILITY(U,$J,358.3,19034,1,0)
+ ;;^UTILITY(U,$J,358.3,19386,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,19386,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,19386,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,19387,0)
+ ;;=I70.644^^84^918^68
+ ;;^UTILITY(U,$J,358.3,19387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19034,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,19034,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,19034,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,19035,0)
- ;;=Z91.89^^94^917^118
- ;;^UTILITY(U,$J,358.3,19035,1,0)
+ ;;^UTILITY(U,$J,358.3,19387,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,19387,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,19387,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,19388,0)
+ ;;=I70.645^^84^918^69
+ ;;^UTILITY(U,$J,358.3,19388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19035,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,19035,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,19035,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,19036,0)
- ;;=Z92.89^^94^917^106
- ;;^UTILITY(U,$J,358.3,19036,1,0)
+ ;;^UTILITY(U,$J,358.3,19388,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,19388,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,19388,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,19389,0)
+ ;;=K12.0^^84^918^258
+ ;;^UTILITY(U,$J,358.3,19389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19036,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,19036,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,19036,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,19037,0)
- ;;=Z77.110^^94^917^9
- ;;^UTILITY(U,$J,358.3,19037,1,0)
+ ;;^UTILITY(U,$J,358.3,19389,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,19389,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,19389,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,19390,0)
+ ;;=K12.1^^84^918^271
+ ;;^UTILITY(U,$J,358.3,19390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19037,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19037,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,19037,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,19038,0)
- ;;=Z77.112^^94^917^142
- ;;^UTILITY(U,$J,358.3,19038,1,0)
+ ;;^UTILITY(U,$J,358.3,19390,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,19390,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,19390,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,19391,0)
+ ;;=K12.2^^84^918^94
+ ;;^UTILITY(U,$J,358.3,19391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19038,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19038,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,19038,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,19039,0)
- ;;=Z77.111^^94^917^148
- ;;^UTILITY(U,$J,358.3,19039,1,0)
+ ;;^UTILITY(U,$J,358.3,19391,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,19391,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,19391,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,19392,0)
+ ;;=L02.01^^84^918^120
+ ;;^UTILITY(U,$J,358.3,19392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19039,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19039,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,19039,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,19040,0)
- ;;=Z77.128^^94^917^119
- ;;^UTILITY(U,$J,358.3,19040,1,0)
+ ;;^UTILITY(U,$J,358.3,19392,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,19392,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,19392,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,19393,0)
+ ;;=L02.11^^84^918^125
+ ;;^UTILITY(U,$J,358.3,19393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19040,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19040,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,19040,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,19041,0)
- ;;=Z77.123^^94^917^140
- ;;^UTILITY(U,$J,358.3,19041,1,0)
+ ;;^UTILITY(U,$J,358.3,19393,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,19393,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,19393,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,19394,0)
+ ;;=L02.211^^84^918^117
+ ;;^UTILITY(U,$J,358.3,19394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19041,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19041,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,19041,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,19042,0)
- ;;=Z77.122^^94^917^68
- ;;^UTILITY(U,$J,358.3,19042,1,0)
+ ;;^UTILITY(U,$J,358.3,19394,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,19394,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,19394,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,19395,0)
+ ;;=L02.212^^84^918^118
+ ;;^UTILITY(U,$J,358.3,19395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19042,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19042,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,19042,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,19043,0)
- ;;=Z77.118^^94^917^19
- ;;^UTILITY(U,$J,358.3,19043,1,0)
+ ;;^UTILITY(U,$J,358.3,19395,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,19395,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,19395,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,19396,0)
+ ;;=L02.213^^84^918^119
+ ;;^UTILITY(U,$J,358.3,19396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19043,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19043,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,19043,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,19044,0)
- ;;=Z77.9^^94^917^54
- ;;^UTILITY(U,$J,358.3,19044,1,0)
+ ;;^UTILITY(U,$J,358.3,19396,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,19396,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,19396,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,19397,0)
+ ;;=L02.214^^84^918^121
+ ;;^UTILITY(U,$J,358.3,19397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19044,1,3,0)
- ;;=3^Health Hazard Contact/Exposure
- ;;^UTILITY(U,$J,358.3,19044,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,19044,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,19045,0)
- ;;=Z77.22^^94^917^18
+ ;;^UTILITY(U,$J,358.3,19397,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,19397,1,4,0)
+ ;;=4^L02.214

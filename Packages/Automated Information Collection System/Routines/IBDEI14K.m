@@ -1,134 +1,136 @@
-IBDEI14K ; ; 19-NOV-2015
+IBDEI14K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18787,0)
- ;;=I34.9^^94^915^12
- ;;^UTILITY(U,$J,358.3,18787,1,0)
+ ;;^UTILITY(U,$J,358.3,19130,1,4,0)
+ ;;=4^H54.11
+ ;;^UTILITY(U,$J,358.3,19130,2)
+ ;;=^5006359
+ ;;^UTILITY(U,$J,358.3,19131,0)
+ ;;=H54.12^^82^906^5
+ ;;^UTILITY(U,$J,358.3,19131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18787,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,18787,1,4,0)
- ;;=4^I34.9
- ;;^UTILITY(U,$J,358.3,18787,2)
- ;;=^5007173
- ;;^UTILITY(U,$J,358.3,18788,0)
- ;;=I34.2^^94^915^7
- ;;^UTILITY(U,$J,358.3,18788,1,0)
+ ;;^UTILITY(U,$J,358.3,19131,1,3,0)
+ ;;=3^Blind OS,Low Vision OD
+ ;;^UTILITY(U,$J,358.3,19131,1,4,0)
+ ;;=4^H54.12
+ ;;^UTILITY(U,$J,358.3,19131,2)
+ ;;=^5006360
+ ;;^UTILITY(U,$J,358.3,19132,0)
+ ;;=H54.2^^82^906^9
+ ;;^UTILITY(U,$J,358.3,19132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18788,1,3,0)
- ;;=3^Nonrhematic Mitral Valve Stenosis
- ;;^UTILITY(U,$J,358.3,18788,1,4,0)
- ;;=4^I34.2
- ;;^UTILITY(U,$J,358.3,18788,2)
- ;;=^5007171
- ;;^UTILITY(U,$J,358.3,18789,0)
- ;;=I35.0^^94^915^10
- ;;^UTILITY(U,$J,358.3,18789,1,0)
+ ;;^UTILITY(U,$J,358.3,19132,1,3,0)
+ ;;=3^Low Vision Both Eyes (20/70-20/400)
+ ;;^UTILITY(U,$J,358.3,19132,1,4,0)
+ ;;=4^H54.2
+ ;;^UTILITY(U,$J,358.3,19132,2)
+ ;;=^5006361
+ ;;^UTILITY(U,$J,358.3,19133,0)
+ ;;=H54.3^^82^906^12
+ ;;^UTILITY(U,$J,358.3,19133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18789,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,18789,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,18789,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,18790,0)
- ;;=I35.1^^94^915^9
- ;;^UTILITY(U,$J,358.3,18790,1,0)
+ ;;^UTILITY(U,$J,358.3,19133,1,3,0)
+ ;;=3^Unqualified Visual Loss Both Eyes
+ ;;^UTILITY(U,$J,358.3,19133,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,19133,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,19134,0)
+ ;;=H54.41^^82^906^2
+ ;;^UTILITY(U,$J,358.3,19134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18790,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,18790,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,18790,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,18791,0)
- ;;=I35.2^^94^915^11
- ;;^UTILITY(U,$J,358.3,18791,1,0)
+ ;;^UTILITY(U,$J,358.3,19134,1,3,0)
+ ;;=3^Blind OD (<20/400),Normal OS (>20/70)
+ ;;^UTILITY(U,$J,358.3,19134,1,4,0)
+ ;;=4^H54.41
+ ;;^UTILITY(U,$J,358.3,19134,2)
+ ;;=^5006363
+ ;;^UTILITY(U,$J,358.3,19135,0)
+ ;;=H54.42^^82^906^3
+ ;;^UTILITY(U,$J,358.3,19135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18791,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,18791,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,18791,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,18792,0)
- ;;=I35.9^^94^915^8
- ;;^UTILITY(U,$J,358.3,18792,1,0)
+ ;;^UTILITY(U,$J,358.3,19135,1,3,0)
+ ;;=3^Blind OS,Normal Vision OD
+ ;;^UTILITY(U,$J,358.3,19135,1,4,0)
+ ;;=4^H54.42
+ ;;^UTILITY(U,$J,358.3,19135,2)
+ ;;=^5133518
+ ;;^UTILITY(U,$J,358.3,19136,0)
+ ;;=H54.51^^82^906^7
+ ;;^UTILITY(U,$J,358.3,19136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18792,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,18792,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,18792,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,18793,0)
- ;;=I38.^^94^915^4
- ;;^UTILITY(U,$J,358.3,18793,1,0)
+ ;;^UTILITY(U,$J,358.3,19136,1,3,0)
+ ;;=3^Low Vision OD (20/70-20/400),Normal OS (>20/70)
+ ;;^UTILITY(U,$J,358.3,19136,1,4,0)
+ ;;=4^H54.51
+ ;;^UTILITY(U,$J,358.3,19136,2)
+ ;;=^5006365
+ ;;^UTILITY(U,$J,358.3,19137,0)
+ ;;=H54.52^^82^906^8
+ ;;^UTILITY(U,$J,358.3,19137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18793,1,3,0)
- ;;=3^Endocarditis,Valve Unspec
- ;;^UTILITY(U,$J,358.3,18793,1,4,0)
- ;;=4^I38.
- ;;^UTILITY(U,$J,358.3,18793,2)
- ;;=^40327
- ;;^UTILITY(U,$J,358.3,18794,0)
- ;;=I05.0^^94^915^18
- ;;^UTILITY(U,$J,358.3,18794,1,0)
+ ;;^UTILITY(U,$J,358.3,19137,1,3,0)
+ ;;=3^Low Vision OS,Normal OD
+ ;;^UTILITY(U,$J,358.3,19137,1,4,0)
+ ;;=4^H54.52
+ ;;^UTILITY(U,$J,358.3,19137,2)
+ ;;=^5133519
+ ;;^UTILITY(U,$J,358.3,19138,0)
+ ;;=H54.61^^82^906^10
+ ;;^UTILITY(U,$J,358.3,19138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18794,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,18794,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,18794,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,18795,0)
- ;;=I05.8^^94^915^19
- ;;^UTILITY(U,$J,358.3,18795,1,0)
+ ;;^UTILITY(U,$J,358.3,19138,1,3,0)
+ ;;=3^Unqualified Visual Loss OD,Normal OS
+ ;;^UTILITY(U,$J,358.3,19138,1,4,0)
+ ;;=4^H54.61
+ ;;^UTILITY(U,$J,358.3,19138,2)
+ ;;=^5006367
+ ;;^UTILITY(U,$J,358.3,19139,0)
+ ;;=H54.62^^82^906^11
+ ;;^UTILITY(U,$J,358.3,19139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18795,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease NEC
- ;;^UTILITY(U,$J,358.3,18795,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,18795,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,18796,0)
- ;;=I05.9^^94^915^20
- ;;^UTILITY(U,$J,358.3,18796,1,0)
+ ;;^UTILITY(U,$J,358.3,19139,1,3,0)
+ ;;=3^Unqualified Visual Loss OS,Normal OD
+ ;;^UTILITY(U,$J,358.3,19139,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,19139,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,19140,0)
+ ;;=H54.7^^82^906^13
+ ;;^UTILITY(U,$J,358.3,19140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18796,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18796,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,18796,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,18797,0)
- ;;=I07.1^^94^915^21
- ;;^UTILITY(U,$J,358.3,18797,1,0)
+ ;;^UTILITY(U,$J,358.3,19140,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,19140,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,19140,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,19141,0)
+ ;;=H54.8^^82^906^1
+ ;;^UTILITY(U,$J,358.3,19141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18797,1,3,0)
- ;;=3^Rheumatic Tricuspid Insufficiency
- ;;^UTILITY(U,$J,358.3,18797,1,4,0)
- ;;=4^I07.1
- ;;^UTILITY(U,$J,358.3,18797,2)
- ;;=^5007048
- ;;^UTILITY(U,$J,358.3,18798,0)
- ;;=I07.9^^94^915^22
- ;;^UTILITY(U,$J,358.3,18798,1,0)
+ ;;^UTILITY(U,$J,358.3,19141,1,3,0)
+ ;;=3^Legal Blind,USA Definition
+ ;;^UTILITY(U,$J,358.3,19141,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,19141,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,19142,0)
+ ;;=H47.611^^82^906^14
+ ;;^UTILITY(U,$J,358.3,19142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18798,1,3,0)
- ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18798,1,4,0)
- ;;=4^I07.9
- ;;^UTILITY(U,$J,358.3,18798,2)
- ;;=^5007051
- ;;^UTILITY(U,$J,358.3,18799,0)
- ;;=I08.0^^94^915^16
- ;;^UTILITY(U,$J,358.3,18799,1,0)
+ ;;^UTILITY(U,$J,358.3,19142,1,3,0)
+ ;;=3^Cortical Blindness,Right Side of Brain
+ ;;^UTILITY(U,$J,358.3,19142,1,4,0)
+ ;;=4^H47.611
+ ;;^UTILITY(U,$J,358.3,19142,2)
+ ;;=^5006166
+ ;;^UTILITY(U,$J,358.3,19143,0)
+ ;;=H47.612^^82^906^15
+ ;;^UTILITY(U,$J,358.3,19143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18799,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
- ;;^UTILITY(U,$J,358.3,18799,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,18799,2)
- ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,19143,1,3,0)
+ ;;=3^Cortical Blindness,Left Side of Brain
+ ;;^UTILITY(U,$J,358.3,19143,1,4,0)
+ ;;=4^H47.612

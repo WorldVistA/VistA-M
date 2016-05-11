@@ -1,9 +1,16 @@
-ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ; 11/30/2012  10:11
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311**;Dec 17, 1997;Build 30
+ORCDPS1 ;SLC/MKB-Pharmacy dialog utilities ;11/12/14  15:03
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,117,141,149,195,215,243,280,337,311,350**;Dec 17, 1997;Build 77
  ;
  ; DBIA 2418   START^PSSJORDF   ^TMP("PSJMR",$J)
  ; DBIA 3166   EN^PSSDIN        ^TMP("PSSDIN",$J)
- ; 
+ ; DBIA 2534   SC^PSOCP
+ ; DBIA 3237   ^PSOSIG
+ ; DBIA 3278   ^PSOSIGDS
+ ; DBIA 3423   ^PSSGS0
+ ; DBIA 3233   ^PSSORUTL
+ ; DBIA 3239   ^PSSUTIL1
+ ; DBIA 3373   ^PSSUTLA1
+ ;
 EN(TYPE) ; -- entry action for Meds dialogs
  S ORINPT=$$INPT^ORCD,ORCAT=$G(TYPE)
  I 'ORINPT,ORCAT="I" D IMOLOC^ORIMO(.ORINPT,+ORL,+ORVP) S:ORINPT<0 ORINPT=0 ;allow inpt meds at this location?
@@ -155,7 +162,7 @@ DEFCONJ ; -- Set default conjuction for previous instance [P-S Action]
  ;
 ENCONJ ; -- Get allowable values, if req'd for INST
  N P S P=$$PTR("INSTRUCTIONS")
- S REQD=$S($O(ORDIALOG(P,INST)):1,1:0)
+ S:$G(ORTYPE)'="Z" REQD=$S($O(ORDIALOG(P,INST)):1,1:0) ;DJE/VM *350 quick orders should not require this field
  S ORDIALOG(PROMPT,"A")="And/then"_$S(ORCAT="O":"/except: ",1:": ")
  S $P(ORDIALOG(PROMPT,0),U,2)="A:AND;T:THEN;"_$S(ORCAT="O":"X:EXCEPT;",1:"")
  Q

@@ -1,130 +1,134 @@
-IBDEI173 ; ; 19-NOV-2015
+IBDEI173 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19970,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,19971,0)
- ;;=R40.2120^^94^934^34
- ;;^UTILITY(U,$J,358.3,19971,1,0)
+ ;;^UTILITY(U,$J,358.3,20318,2)
+ ;;=^5063590
+ ;;^UTILITY(U,$J,358.3,20319,0)
+ ;;=Z90.2^^84^930^6
+ ;;^UTILITY(U,$J,358.3,20319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19971,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,19971,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,19971,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,19972,0)
- ;;=R40.2114^^94^934^26
- ;;^UTILITY(U,$J,358.3,19972,1,0)
+ ;;^UTILITY(U,$J,358.3,20319,1,3,0)
+ ;;=3^Acquired Absence of Lung (part of)
+ ;;^UTILITY(U,$J,358.3,20319,1,4,0)
+ ;;=4^Z90.2
+ ;;^UTILITY(U,$J,358.3,20319,2)
+ ;;=^5063585
+ ;;^UTILITY(U,$J,358.3,20320,0)
+ ;;=Z98.1^^84^930^10
+ ;;^UTILITY(U,$J,358.3,20320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19972,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,19972,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,19972,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,19973,0)
- ;;=R40.2113^^94^934^30
- ;;^UTILITY(U,$J,358.3,19973,1,0)
+ ;;^UTILITY(U,$J,358.3,20320,1,3,0)
+ ;;=3^Arthrodesis Status
+ ;;^UTILITY(U,$J,358.3,20320,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,20320,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,20321,0)
+ ;;=Z94.7^^84^930^16
+ ;;^UTILITY(U,$J,358.3,20321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19973,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,19973,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,19973,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,19974,0)
- ;;=R40.2112^^94^934^27
- ;;^UTILITY(U,$J,358.3,19974,1,0)
+ ;;^UTILITY(U,$J,358.3,20321,1,3,0)
+ ;;=3^Corneal Transplant Status
+ ;;^UTILITY(U,$J,358.3,20321,1,4,0)
+ ;;=4^Z94.7
+ ;;^UTILITY(U,$J,358.3,20321,2)
+ ;;=^5063661
+ ;;^UTILITY(U,$J,358.3,20322,0)
+ ;;=Z83.511^^84^930^30
+ ;;^UTILITY(U,$J,358.3,20322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19974,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,19974,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,19974,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,19975,0)
- ;;=R40.2111^^94^934^28
- ;;^UTILITY(U,$J,358.3,19975,1,0)
+ ;;^UTILITY(U,$J,358.3,20322,1,3,0)
+ ;;=3^Family Hx of Glaucoma
+ ;;^UTILITY(U,$J,358.3,20322,1,4,0)
+ ;;=4^Z83.511
+ ;;^UTILITY(U,$J,358.3,20322,2)
+ ;;=^5063382
+ ;;^UTILITY(U,$J,358.3,20323,0)
+ ;;=Z80.52^^84^930^33
+ ;;^UTILITY(U,$J,358.3,20323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19975,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,19975,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,19975,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,19976,0)
- ;;=R40.2110^^94^934^29
- ;;^UTILITY(U,$J,358.3,19976,1,0)
+ ;;^UTILITY(U,$J,358.3,20323,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Baldder
+ ;;^UTILITY(U,$J,358.3,20323,1,4,0)
+ ;;=4^Z80.52
+ ;;^UTILITY(U,$J,358.3,20323,2)
+ ;;=^5063352
+ ;;^UTILITY(U,$J,358.3,20324,0)
+ ;;=Z80.51^^84^930^36
+ ;;^UTILITY(U,$J,358.3,20324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19976,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,19976,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,19976,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,19977,0)
- ;;=R40.20^^94^934^36
- ;;^UTILITY(U,$J,358.3,19977,1,0)
+ ;;^UTILITY(U,$J,358.3,20324,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,20324,1,4,0)
+ ;;=4^Z80.51
+ ;;^UTILITY(U,$J,358.3,20324,2)
+ ;;=^321159
+ ;;^UTILITY(U,$J,358.3,20325,0)
+ ;;=Z83.41^^84^930^43
+ ;;^UTILITY(U,$J,358.3,20325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19977,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,19977,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,19977,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,19978,0)
- ;;=R40.2123^^94^934^35
- ;;^UTILITY(U,$J,358.3,19978,1,0)
+ ;;^UTILITY(U,$J,358.3,20325,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,20325,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,20325,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,20326,0)
+ ;;=Z81.8^^84^930^50
+ ;;^UTILITY(U,$J,358.3,20326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19978,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,19978,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,19978,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,19979,0)
- ;;=R40.2122^^94^934^32
- ;;^UTILITY(U,$J,358.3,19979,1,0)
+ ;;^UTILITY(U,$J,358.3,20326,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,20326,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,20326,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,20327,0)
+ ;;=Z81.4^^84^930^51
+ ;;^UTILITY(U,$J,358.3,20327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19979,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,19979,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,19979,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,19980,0)
- ;;=R40.2124^^94^934^31
- ;;^UTILITY(U,$J,358.3,19980,1,0)
+ ;;^UTILITY(U,$J,358.3,20327,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,20327,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,20327,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,20328,0)
+ ;;=Z98.0^^84^930^62
+ ;;^UTILITY(U,$J,358.3,20328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19980,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,19980,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,19980,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,19981,0)
- ;;=R40.2211^^94^934^17
- ;;^UTILITY(U,$J,358.3,19981,1,0)
+ ;;^UTILITY(U,$J,358.3,20328,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,20328,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,20328,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,20329,0)
+ ;;=Z91.128^^84^930^61
+ ;;^UTILITY(U,$J,358.3,20329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19981,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,19981,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,19981,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,19982,0)
- ;;=R40.2210^^94^934^16
- ;;^UTILITY(U,$J,358.3,19982,1,0)
+ ;;^UTILITY(U,$J,358.3,20329,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,20329,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,20329,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,20330,0)
+ ;;=Z77.120^^84^930^67
+ ;;^UTILITY(U,$J,358.3,20330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19982,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,19982,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,19982,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,19983,0)
- ;;=R40.2224^^94^934^18
- ;;^UTILITY(U,$J,358.3,19983,1,0)
+ ;;^UTILITY(U,$J,358.3,20330,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20330,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,20330,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,20331,0)
+ ;;=Z86.74^^84^930^110
+ ;;^UTILITY(U,$J,358.3,20331,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20331,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,20331,1,4,0)
+ ;;=4^Z86.74

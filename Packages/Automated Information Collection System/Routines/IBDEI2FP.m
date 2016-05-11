@@ -1,126 +1,134 @@
-IBDEI2FP ; ; 19-NOV-2015
+IBDEI2FP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40871,1,4,0)
- ;;=4^S92.352A
- ;;^UTILITY(U,$J,358.3,40871,2)
- ;;=^5045235
- ;;^UTILITY(U,$J,358.3,40872,0)
- ;;=S92.351A^^189^2086^76
- ;;^UTILITY(U,$J,358.3,40872,1,0)
+ ;;^UTILITY(U,$J,358.3,41289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40872,1,3,0)
- ;;=3^Disp fx of 5th metatarsal bone, rt ft
- ;;^UTILITY(U,$J,358.3,40872,1,4,0)
- ;;=4^S92.351A
- ;;^UTILITY(U,$J,358.3,40872,2)
- ;;=^5045228
- ;;^UTILITY(U,$J,358.3,40873,0)
- ;;=S92.345A^^189^2086^296
- ;;^UTILITY(U,$J,358.3,40873,1,0)
+ ;;^UTILITY(U,$J,358.3,41289,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,41289,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,41289,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,41290,0)
+ ;;=D05.02^^159^2004^98
+ ;;^UTILITY(U,$J,358.3,41290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40873,1,3,0)
- ;;=3^Nondisp fx of 4th metatarsal bone, lft ft
- ;;^UTILITY(U,$J,358.3,40873,1,4,0)
- ;;=4^S92.345A
- ;;^UTILITY(U,$J,358.3,40873,2)
- ;;=^5045214
- ;;^UTILITY(U,$J,358.3,40874,0)
- ;;=S92.325A^^189^2086^288
- ;;^UTILITY(U,$J,358.3,40874,1,0)
+ ;;^UTILITY(U,$J,358.3,41290,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,41290,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,41290,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,41291,0)
+ ;;=D05.01^^159^2004^99
+ ;;^UTILITY(U,$J,358.3,41291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40874,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,40874,1,4,0)
- ;;=4^S92.325A
- ;;^UTILITY(U,$J,358.3,40874,2)
- ;;=^5045130
- ;;^UTILITY(U,$J,358.3,40875,0)
- ;;=S92.324A^^189^2086^289
- ;;^UTILITY(U,$J,358.3,40875,1,0)
+ ;;^UTILITY(U,$J,358.3,41291,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,41291,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,41291,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,41292,0)
+ ;;=D05.00^^159^2004^100
+ ;;^UTILITY(U,$J,358.3,41292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40875,1,3,0)
- ;;=3^Nondisp fx of 2nd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,40875,1,4,0)
- ;;=4^S92.324A
- ;;^UTILITY(U,$J,358.3,40875,2)
- ;;=^5045123
- ;;^UTILITY(U,$J,358.3,40876,0)
- ;;=S92.322A^^189^2086^63
- ;;^UTILITY(U,$J,358.3,40876,1,0)
+ ;;^UTILITY(U,$J,358.3,41292,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,41292,1,4,0)
+ ;;=4^D05.00
+ ;;^UTILITY(U,$J,358.3,41292,2)
+ ;;=^5001926
+ ;;^UTILITY(U,$J,358.3,41293,0)
+ ;;=R59.0^^159^2004^61
+ ;;^UTILITY(U,$J,358.3,41293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40876,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,40876,1,4,0)
- ;;=4^S92.322A
- ;;^UTILITY(U,$J,358.3,40876,2)
- ;;=^5045109
- ;;^UTILITY(U,$J,358.3,40877,0)
- ;;=S92.321A^^189^2086^64
- ;;^UTILITY(U,$J,358.3,40877,1,0)
+ ;;^UTILITY(U,$J,358.3,41293,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,41293,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,41293,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,41294,0)
+ ;;=C83.59^^159^2004^101
+ ;;^UTILITY(U,$J,358.3,41294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40877,1,3,0)
- ;;=3^Disp fx of 2nd metatarsal bone, rt ft
- ;;^UTILITY(U,$J,358.3,40877,1,4,0)
- ;;=4^S92.321A
- ;;^UTILITY(U,$J,358.3,40877,2)
- ;;=^5045102
- ;;^UTILITY(U,$J,358.3,40878,0)
- ;;=S92.315A^^189^2086^284
- ;;^UTILITY(U,$J,358.3,40878,1,0)
+ ;;^UTILITY(U,$J,358.3,41294,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,41294,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,41294,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,41295,0)
+ ;;=C83.50^^159^2004^102
+ ;;^UTILITY(U,$J,358.3,41295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40878,1,3,0)
- ;;=3^Nondisp fx of 1st metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,40878,1,4,0)
- ;;=4^S92.315A
- ;;^UTILITY(U,$J,358.3,40878,2)
- ;;=^5045088
- ;;^UTILITY(U,$J,358.3,40879,0)
- ;;=S92.312A^^189^2086^59
- ;;^UTILITY(U,$J,358.3,40879,1,0)
+ ;;^UTILITY(U,$J,358.3,41295,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41295,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,41295,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,41296,0)
+ ;;=C43.9^^159^2004^104
+ ;;^UTILITY(U,$J,358.3,41296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40879,1,3,0)
- ;;=3^Disp fx of 1st metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,40879,1,4,0)
- ;;=4^S92.312A
- ;;^UTILITY(U,$J,358.3,40879,2)
- ;;=^5045067
- ;;^UTILITY(U,$J,358.3,40880,0)
- ;;=S92.311A^^189^2086^60
- ;;^UTILITY(U,$J,358.3,40880,1,0)
+ ;;^UTILITY(U,$J,358.3,41296,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41296,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,41296,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,41297,0)
+ ;;=C31.9^^159^2004^105
+ ;;^UTILITY(U,$J,358.3,41297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40880,1,3,0)
- ;;=3^Disp fx of 1st metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,40880,1,4,0)
- ;;=4^S92.311A
- ;;^UTILITY(U,$J,358.3,40880,2)
- ;;=^5045060
- ;;^UTILITY(U,$J,358.3,40881,0)
- ;;=S92.332A^^189^2086^67
- ;;^UTILITY(U,$J,358.3,40881,1,0)
+ ;;^UTILITY(U,$J,358.3,41297,1,3,0)
+ ;;=3^Malig Neop Accessory Sinus,Unspec
+ ;;^UTILITY(U,$J,358.3,41297,1,4,0)
+ ;;=4^C31.9
+ ;;^UTILITY(U,$J,358.3,41297,2)
+ ;;=^5000953
+ ;;^UTILITY(U,$J,358.3,41298,0)
+ ;;=C24.1^^159^2004^107
+ ;;^UTILITY(U,$J,358.3,41298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40881,1,3,0)
- ;;=3^Disp fx of 3rd metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,40881,1,4,0)
- ;;=4^S92.332A
- ;;^UTILITY(U,$J,358.3,40881,2)
- ;;=^5045151
- ;;^UTILITY(U,$J,358.3,40882,0)
- ;;=S92.331A^^189^2086^68
- ;;^UTILITY(U,$J,358.3,40882,1,0)
+ ;;^UTILITY(U,$J,358.3,41298,1,3,0)
+ ;;=3^Malig Neop Ampulla of Vater
+ ;;^UTILITY(U,$J,358.3,41298,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,41298,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,41299,0)
+ ;;=C21.0^^159^2004^108
+ ;;^UTILITY(U,$J,358.3,41299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40882,1,3,0)
- ;;=3^Disp fx of 3rd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,40882,1,4,0)
- ;;=4^S92.331A
- ;;^UTILITY(U,$J,358.3,40882,2)
- ;;=^5045144
- ;;^UTILITY(U,$J,358.3,40883,0)
- ;;=S92.334A^^189^2086^293
- ;;^UTILITY(U,$J,358.3,40883,1,0)
+ ;;^UTILITY(U,$J,358.3,41299,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,41299,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,41299,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,41300,0)
+ ;;=C67.9^^159^2004^111
+ ;;^UTILITY(U,$J,358.3,41300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40883,1,3,0)
- ;;=3^Nondisp fx of 3rd metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,40883,1,4,0)
- ;;=4^S92.334A
+ ;;^UTILITY(U,$J,358.3,41300,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,41300,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,41300,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,41301,0)
+ ;;=C71.9^^159^2004^115
+ ;;^UTILITY(U,$J,358.3,41301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41301,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,41301,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,41301,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,41302,0)
+ ;;=C18.9^^159^2004^117

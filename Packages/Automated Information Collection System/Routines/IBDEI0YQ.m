@@ -1,116 +1,138 @@
-IBDEI0YQ ; ; 19-NOV-2015
+IBDEI0YQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15990,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15990,1,4,0)
- ;;=4^S61.330A
- ;;^UTILITY(U,$J,358.3,15990,2)
- ;;=^5032936
- ;;^UTILITY(U,$J,358.3,15991,0)
- ;;=S61.230A^^85^830^48
- ;;^UTILITY(U,$J,358.3,15991,1,0)
+ ;;^UTILITY(U,$J,358.3,16311,1,2,0)
+ ;;=2^99310
+ ;;^UTILITY(U,$J,358.3,16312,0)
+ ;;=99315^^63^738^1
+ ;;^UTILITY(U,$J,358.3,16312,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16312,1,1,0)
+ ;;=1^NH DISCHARGE DAY MGMT,30 MIN OR LESS
+ ;;^UTILITY(U,$J,358.3,16312,1,2,0)
+ ;;=2^99315
+ ;;^UTILITY(U,$J,358.3,16313,0)
+ ;;=99316^^63^738^2
+ ;;^UTILITY(U,$J,358.3,16313,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16313,1,1,0)
+ ;;=1^NH DISCHARGE DAY MGMT > 30MIN
+ ;;^UTILITY(U,$J,358.3,16313,1,2,0)
+ ;;=2^99316
+ ;;^UTILITY(U,$J,358.3,16314,0)
+ ;;=C34.91^^64^739^12
+ ;;^UTILITY(U,$J,358.3,16314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15991,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15991,1,4,0)
- ;;=4^S61.230A
- ;;^UTILITY(U,$J,358.3,15991,2)
- ;;=^5032816
- ;;^UTILITY(U,$J,358.3,15992,0)
- ;;=S91.234A^^85^830^50
- ;;^UTILITY(U,$J,358.3,15992,1,0)
+ ;;^UTILITY(U,$J,358.3,16314,1,3,0)
+ ;;=3^Malig Neop Bronchus/Lung,Right
+ ;;^UTILITY(U,$J,358.3,16314,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,16314,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,16315,0)
+ ;;=C34.92^^64^739^11
+ ;;^UTILITY(U,$J,358.3,16315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15992,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15992,1,4,0)
- ;;=4^S91.234A
- ;;^UTILITY(U,$J,358.3,15992,2)
- ;;=^5044296
- ;;^UTILITY(U,$J,358.3,15993,0)
- ;;=S91.134A^^85^830^51
- ;;^UTILITY(U,$J,358.3,15993,1,0)
+ ;;^UTILITY(U,$J,358.3,16315,1,3,0)
+ ;;=3^Malig Neop Bronchus/Lung,Left
+ ;;^UTILITY(U,$J,358.3,16315,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,16315,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,16316,0)
+ ;;=C18.9^^64^739^13
+ ;;^UTILITY(U,$J,358.3,16316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15993,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15993,1,4,0)
- ;;=4^S91.134A
- ;;^UTILITY(U,$J,358.3,15993,2)
- ;;=^5044222
- ;;^UTILITY(U,$J,358.3,15994,0)
- ;;=S61.336A^^85^830^52
- ;;^UTILITY(U,$J,358.3,15994,1,0)
+ ;;^UTILITY(U,$J,358.3,16316,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,16316,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,16316,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,16317,0)
+ ;;=C22.0^^64^739^3
+ ;;^UTILITY(U,$J,358.3,16317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15994,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15994,1,4,0)
- ;;=4^S61.336A
- ;;^UTILITY(U,$J,358.3,15994,2)
- ;;=^5032954
- ;;^UTILITY(U,$J,358.3,15995,0)
- ;;=S61.236A^^85^830^53
- ;;^UTILITY(U,$J,358.3,15995,1,0)
+ ;;^UTILITY(U,$J,358.3,16317,1,3,0)
+ ;;=3^Liver Cell Carcinoma
+ ;;^UTILITY(U,$J,358.3,16317,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,16317,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,16318,0)
+ ;;=C22.2^^64^739^1
+ ;;^UTILITY(U,$J,358.3,16318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15995,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15995,1,4,0)
- ;;=4^S61.236A
- ;;^UTILITY(U,$J,358.3,15995,2)
- ;;=^5032834
- ;;^UTILITY(U,$J,358.3,15996,0)
- ;;=S61.332A^^85^830^55
- ;;^UTILITY(U,$J,358.3,15996,1,0)
+ ;;^UTILITY(U,$J,358.3,16318,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,16318,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,16318,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,16319,0)
+ ;;=C22.7^^64^739^2
+ ;;^UTILITY(U,$J,358.3,16319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15996,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15996,1,4,0)
- ;;=4^S61.332A
- ;;^UTILITY(U,$J,358.3,15996,2)
- ;;=^5032942
- ;;^UTILITY(U,$J,358.3,15997,0)
- ;;=S61.232A^^85^830^56
- ;;^UTILITY(U,$J,358.3,15997,1,0)
+ ;;^UTILITY(U,$J,358.3,16319,1,3,0)
+ ;;=3^Liver Carcinoma,Other
+ ;;^UTILITY(U,$J,358.3,16319,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,16319,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,16320,0)
+ ;;=C22.8^^64^739^19
+ ;;^UTILITY(U,$J,358.3,16320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15997,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15997,1,4,0)
- ;;=4^S61.232A
- ;;^UTILITY(U,$J,358.3,15997,2)
- ;;=^5032822
- ;;^UTILITY(U,$J,358.3,15998,0)
- ;;=S61.334A^^85^830^57
- ;;^UTILITY(U,$J,358.3,15998,1,0)
+ ;;^UTILITY(U,$J,358.3,16320,1,3,0)
+ ;;=3^Malig Neop Liver,Primary,Unspec Type
+ ;;^UTILITY(U,$J,358.3,16320,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,16320,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,16321,0)
+ ;;=C25.9^^64^739^21
+ ;;^UTILITY(U,$J,358.3,16321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15998,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15998,1,4,0)
- ;;=4^S61.334A
- ;;^UTILITY(U,$J,358.3,15998,2)
- ;;=^5032948
- ;;^UTILITY(U,$J,358.3,15999,0)
- ;;=S61.234A^^85^830^58
- ;;^UTILITY(U,$J,358.3,15999,1,0)
+ ;;^UTILITY(U,$J,358.3,16321,1,3,0)
+ ;;=3^Malig Neop Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,16321,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,16321,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,16322,0)
+ ;;=C15.9^^64^739^14
+ ;;^UTILITY(U,$J,358.3,16322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15999,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15999,1,4,0)
- ;;=4^S61.234A
- ;;^UTILITY(U,$J,358.3,15999,2)
- ;;=^5032828
- ;;^UTILITY(U,$J,358.3,16000,0)
- ;;=S61.131A^^85^830^62
- ;;^UTILITY(U,$J,358.3,16000,1,0)
+ ;;^UTILITY(U,$J,358.3,16322,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,16322,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,16322,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,16323,0)
+ ;;=C67.9^^64^739^7
+ ;;^UTILITY(U,$J,358.3,16323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16000,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,16000,1,4,0)
- ;;=4^S61.131A
- ;;^UTILITY(U,$J,358.3,16000,2)
- ;;=^5032732
- ;;^UTILITY(U,$J,358.3,16001,0)
- ;;=S91.032A^^85^830^5
- ;;^UTILITY(U,$J,358.3,16001,1,0)
+ ;;^UTILITY(U,$J,358.3,16323,1,3,0)
+ ;;=3^Malig Neop Bladder,Unspec
+ ;;^UTILITY(U,$J,358.3,16323,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,16323,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,16324,0)
+ ;;=C76.0^^64^739^15
+ ;;^UTILITY(U,$J,358.3,16324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16001,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,16324,1,3,0)
+ ;;=3^Malig Neop Head,Face & Neck
+ ;;^UTILITY(U,$J,358.3,16324,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,16324,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,16325,0)
+ ;;=C64.1^^64^739^17
+ ;;^UTILITY(U,$J,358.3,16325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16325,1,3,0)
+ ;;=3^Malig Neop Kidney,Right

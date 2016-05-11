@@ -1,130 +1,140 @@
-IBDEI0JD ; ; 19-NOV-2015
+IBDEI0JD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8720,1,3,0)
- ;;=3^Chondromalacia, unspecified site
- ;;^UTILITY(U,$J,358.3,8720,1,4,0)
- ;;=4^M94.20
- ;;^UTILITY(U,$J,358.3,8720,2)
- ;;=^5015329
- ;;^UTILITY(U,$J,358.3,8721,0)
- ;;=R70.0^^55^544^26
- ;;^UTILITY(U,$J,358.3,8721,1,0)
+ ;;^UTILITY(U,$J,358.3,9001,0)
+ ;;=H26.32^^41^471^12
+ ;;^UTILITY(U,$J,358.3,9001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8721,1,3,0)
- ;;=3^Elevated erythrocyte sedimentation rate
- ;;^UTILITY(U,$J,358.3,8721,1,4,0)
- ;;=4^R70.0
- ;;^UTILITY(U,$J,358.3,8721,2)
- ;;=^5019559
- ;;^UTILITY(U,$J,358.3,8722,0)
- ;;=S12.9XXA^^55^544^31
- ;;^UTILITY(U,$J,358.3,8722,1,0)
+ ;;^UTILITY(U,$J,358.3,9001,1,3,0)
+ ;;=3^Cataract,Drug-Induced,Left Eye
+ ;;^UTILITY(U,$J,358.3,9001,1,4,0)
+ ;;=4^H26.32
+ ;;^UTILITY(U,$J,358.3,9001,2)
+ ;;=^5005351
+ ;;^UTILITY(U,$J,358.3,9002,0)
+ ;;=H26.33^^41^471^11
+ ;;^UTILITY(U,$J,358.3,9002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8722,1,3,0)
- ;;=3^Fx of Neck,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8722,1,4,0)
- ;;=4^S12.9XXA
- ;;^UTILITY(U,$J,358.3,8722,2)
- ;;=^5021962
- ;;^UTILITY(U,$J,358.3,8723,0)
- ;;=S22.009A^^55^544^33
- ;;^UTILITY(U,$J,358.3,8723,1,0)
+ ;;^UTILITY(U,$J,358.3,9002,1,3,0)
+ ;;=3^Cataract,Drug-Induced,Bilateral
+ ;;^UTILITY(U,$J,358.3,9002,1,4,0)
+ ;;=4^H26.33
+ ;;^UTILITY(U,$J,358.3,9002,2)
+ ;;=^5005352
+ ;;^UTILITY(U,$J,358.3,9003,0)
+ ;;=H26.491^^41^471^19
+ ;;^UTILITY(U,$J,358.3,9003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8723,1,3,0)
- ;;=3^Fx of Thoracic Vertebra,Unspec,Init for Closed Fx
- ;;^UTILITY(U,$J,358.3,8723,1,4,0)
- ;;=4^S22.009A
- ;;^UTILITY(U,$J,358.3,8723,2)
- ;;=^5022829
- ;;^UTILITY(U,$J,358.3,8724,0)
- ;;=S32.009A^^55^544^30
- ;;^UTILITY(U,$J,358.3,8724,1,0)
+ ;;^UTILITY(U,$J,358.3,9003,1,3,0)
+ ;;=3^Cataract,Secondary,Right Eye
+ ;;^UTILITY(U,$J,358.3,9003,1,4,0)
+ ;;=4^H26.491
+ ;;^UTILITY(U,$J,358.3,9003,2)
+ ;;=^5005358
+ ;;^UTILITY(U,$J,358.3,9004,0)
+ ;;=H26.492^^41^471^18
+ ;;^UTILITY(U,$J,358.3,9004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8724,1,3,0)
- ;;=3^Fx of Lumbar Vertebra,Unspec,Init for Closed Fx
- ;;^UTILITY(U,$J,358.3,8724,1,4,0)
- ;;=4^S32.009A
- ;;^UTILITY(U,$J,358.3,8724,2)
- ;;=^5024365
- ;;^UTILITY(U,$J,358.3,8725,0)
- ;;=S32.10XA^^55^544^32
- ;;^UTILITY(U,$J,358.3,8725,1,0)
+ ;;^UTILITY(U,$J,358.3,9004,1,3,0)
+ ;;=3^Cataract,Secondary,Left Eye
+ ;;^UTILITY(U,$J,358.3,9004,1,4,0)
+ ;;=4^H26.492
+ ;;^UTILITY(U,$J,358.3,9004,2)
+ ;;=^5005359
+ ;;^UTILITY(U,$J,358.3,9005,0)
+ ;;=H26.493^^41^471^17
+ ;;^UTILITY(U,$J,358.3,9005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8725,1,3,0)
- ;;=3^Fx of Sacrum,Init for Closed Fx
- ;;^UTILITY(U,$J,358.3,8725,1,4,0)
- ;;=4^S32.10XA
- ;;^UTILITY(U,$J,358.3,8725,2)
- ;;=^5024521
- ;;^UTILITY(U,$J,358.3,8726,0)
- ;;=S32.2XXA^^55^544^29
- ;;^UTILITY(U,$J,358.3,8726,1,0)
+ ;;^UTILITY(U,$J,358.3,9005,1,3,0)
+ ;;=3^Cataract,Secondary,Bilateral
+ ;;^UTILITY(U,$J,358.3,9005,1,4,0)
+ ;;=4^H26.493
+ ;;^UTILITY(U,$J,358.3,9005,2)
+ ;;=^5005360
+ ;;^UTILITY(U,$J,358.3,9006,0)
+ ;;=H26.9^^41^471^23
+ ;;^UTILITY(U,$J,358.3,9006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8726,1,3,0)
- ;;=3^Fx of Coccyx,Init for Closed Fx
- ;;^UTILITY(U,$J,358.3,8726,1,4,0)
- ;;=4^S32.2XXA
- ;;^UTILITY(U,$J,358.3,8726,2)
- ;;=^5024629
- ;;^UTILITY(U,$J,358.3,8727,0)
- ;;=S83.201A^^55^544^11
- ;;^UTILITY(U,$J,358.3,8727,1,0)
+ ;;^UTILITY(U,$J,358.3,9006,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,9006,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,9006,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,9007,0)
+ ;;=H27.01^^41^471^3
+ ;;^UTILITY(U,$J,358.3,9007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8727,1,3,0)
- ;;=3^Bucket-hndl tear of unsp mensc, current injury, l knee, init
- ;;^UTILITY(U,$J,358.3,8727,1,4,0)
- ;;=4^S83.201A
- ;;^UTILITY(U,$J,358.3,8727,2)
- ;;=^5043028
- ;;^UTILITY(U,$J,358.3,8728,0)
- ;;=S43.421A^^55^544^106
- ;;^UTILITY(U,$J,358.3,8728,1,0)
+ ;;^UTILITY(U,$J,358.3,9007,1,3,0)
+ ;;=3^Aphakia,Right Eye
+ ;;^UTILITY(U,$J,358.3,9007,1,4,0)
+ ;;=4^H27.01
+ ;;^UTILITY(U,$J,358.3,9007,2)
+ ;;=^5005365
+ ;;^UTILITY(U,$J,358.3,9008,0)
+ ;;=H27.02^^41^471^2
+ ;;^UTILITY(U,$J,358.3,9008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8728,1,3,0)
- ;;=3^Sprain of right rotator cuff capsule, initial encounter
- ;;^UTILITY(U,$J,358.3,8728,1,4,0)
- ;;=4^S43.421A
- ;;^UTILITY(U,$J,358.3,8728,2)
- ;;=^5027879
- ;;^UTILITY(U,$J,358.3,8729,0)
- ;;=S43.422A^^55^544^102
- ;;^UTILITY(U,$J,358.3,8729,1,0)
+ ;;^UTILITY(U,$J,358.3,9008,1,3,0)
+ ;;=3^Aphakia,Left Eye
+ ;;^UTILITY(U,$J,358.3,9008,1,4,0)
+ ;;=4^H27.02
+ ;;^UTILITY(U,$J,358.3,9008,2)
+ ;;=^5005366
+ ;;^UTILITY(U,$J,358.3,9009,0)
+ ;;=H27.03^^41^471^1
+ ;;^UTILITY(U,$J,358.3,9009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8729,1,3,0)
- ;;=3^Sprain of left rotator cuff capsule, initial encounter
- ;;^UTILITY(U,$J,358.3,8729,1,4,0)
- ;;=4^S43.422A
- ;;^UTILITY(U,$J,358.3,8729,2)
- ;;=^5027882
- ;;^UTILITY(U,$J,358.3,8730,0)
- ;;=S63.501A^^55^544^101
- ;;^UTILITY(U,$J,358.3,8730,1,0)
+ ;;^UTILITY(U,$J,358.3,9009,1,3,0)
+ ;;=3^Aphakia,Bilateral
+ ;;^UTILITY(U,$J,358.3,9009,1,4,0)
+ ;;=4^H27.03
+ ;;^UTILITY(U,$J,358.3,9009,2)
+ ;;=^5005367
+ ;;^UTILITY(U,$J,358.3,9010,0)
+ ;;=Q12.0^^41^471^7
+ ;;^UTILITY(U,$J,358.3,9010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8730,1,3,0)
- ;;=3^Sprain of Right Wrist,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8730,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,8730,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,8731,0)
- ;;=S63.502A^^55^544^100
- ;;^UTILITY(U,$J,358.3,8731,1,0)
+ ;;^UTILITY(U,$J,358.3,9010,1,3,0)
+ ;;=3^Cataract,Congenital
+ ;;^UTILITY(U,$J,358.3,9010,1,4,0)
+ ;;=4^Q12.0
+ ;;^UTILITY(U,$J,358.3,9010,2)
+ ;;=^27422
+ ;;^UTILITY(U,$J,358.3,9011,0)
+ ;;=T85.29XA^^41^471^25
+ ;;^UTILITY(U,$J,358.3,9011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8731,1,3,0)
- ;;=3^Sprain of Left Wrist,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,8731,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,8731,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,8732,0)
- ;;=S93.401A^^55^544^108
- ;;^UTILITY(U,$J,358.3,8732,1,0)
+ ;;^UTILITY(U,$J,358.3,9011,1,3,0)
+ ;;=3^Mech Compl of Intraocular Lens,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9011,1,4,0)
+ ;;=4^T85.29XA
+ ;;^UTILITY(U,$J,358.3,9011,2)
+ ;;=^5055532
+ ;;^UTILITY(U,$J,358.3,9012,0)
+ ;;=T85.22XA^^41^471^24
+ ;;^UTILITY(U,$J,358.3,9012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8732,1,3,0)
- ;;=3^Sprain of unspecified ligament of right ankle, init encntr
- ;;^UTILITY(U,$J,358.3,8732,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,8732,2)
- ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,9012,1,3,0)
+ ;;=3^Displacement of Intraocular Lens,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9012,1,4,0)
+ ;;=4^T85.22XA
+ ;;^UTILITY(U,$J,358.3,9012,2)
+ ;;=^5055529
+ ;;^UTILITY(U,$J,358.3,9013,0)
+ ;;=Z96.1^^41^471^29
+ ;;^UTILITY(U,$J,358.3,9013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9013,1,3,0)
+ ;;=3^Pseudophakia,Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,9013,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,9013,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,9014,0)
+ ;;=H25.11^^41^471^6
+ ;;^UTILITY(U,$J,358.3,9014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9014,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Right Eye

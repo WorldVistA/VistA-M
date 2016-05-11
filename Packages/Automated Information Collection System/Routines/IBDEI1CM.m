@@ -1,122 +1,130 @@
-IBDEI1CM ; ; 19-NOV-2015
+IBDEI1CM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22459,1,4,0)
- ;;=4^S52.034S
- ;;^UTILITY(U,$J,358.3,22459,2)
- ;;=^5028869
- ;;^UTILITY(U,$J,358.3,22460,0)
- ;;=S52.025S^^101^1040^103
- ;;^UTILITY(U,$J,358.3,22460,1,0)
+ ;;^UTILITY(U,$J,358.3,22922,0)
+ ;;=M84.48XA^^87^987^118
+ ;;^UTILITY(U,$J,358.3,22922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22460,1,3,0)
- ;;=3^Nondisp fx of olecran pro w/o intartic extn left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22460,1,4,0)
- ;;=4^S52.025S
- ;;^UTILITY(U,$J,358.3,22460,2)
- ;;=^5028832
- ;;^UTILITY(U,$J,358.3,22461,0)
- ;;=S52.024S^^101^1040^104
- ;;^UTILITY(U,$J,358.3,22461,1,0)
+ ;;^UTILITY(U,$J,358.3,22922,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22922,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,22922,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,22923,0)
+ ;;=M84.48XD^^87^987^119
+ ;;^UTILITY(U,$J,358.3,22923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22461,1,3,0)
- ;;=3^Nondisp fx of olecran pro w/o intartic extn right ulnana, sequela
- ;;^UTILITY(U,$J,358.3,22461,1,4,0)
- ;;=4^S52.024S
- ;;^UTILITY(U,$J,358.3,22461,2)
- ;;=^5028816
- ;;^UTILITY(U,$J,358.3,22462,0)
- ;;=S52.614S^^101^1040^110
- ;;^UTILITY(U,$J,358.3,22462,1,0)
+ ;;^UTILITY(U,$J,358.3,22923,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22923,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,22923,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,22924,0)
+ ;;=M87.011^^87^987^45
+ ;;^UTILITY(U,$J,358.3,22924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22462,1,3,0)
- ;;=3^Nondisp fx of right ulna styloid process, sequela
- ;;^UTILITY(U,$J,358.3,22462,1,4,0)
- ;;=4^S52.614S
- ;;^UTILITY(U,$J,358.3,22462,2)
- ;;=^5031098
- ;;^UTILITY(U,$J,358.3,22463,0)
- ;;=S52.235S^^101^1040^98
- ;;^UTILITY(U,$J,358.3,22463,1,0)
+ ;;^UTILITY(U,$J,358.3,22924,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,22924,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,22924,2)
+ ;;=^5014658
+ ;;^UTILITY(U,$J,358.3,22925,0)
+ ;;=M87.012^^87^987^42
+ ;;^UTILITY(U,$J,358.3,22925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22463,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22463,1,4,0)
- ;;=4^S52.235S
- ;;^UTILITY(U,$J,358.3,22463,2)
- ;;=^5029490
- ;;^UTILITY(U,$J,358.3,22464,0)
- ;;=S52.234S^^101^1040^100
- ;;^UTILITY(U,$J,358.3,22464,1,0)
+ ;;^UTILITY(U,$J,358.3,22925,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,22925,1,4,0)
+ ;;=4^M87.012
+ ;;^UTILITY(U,$J,358.3,22925,2)
+ ;;=^5014659
+ ;;^UTILITY(U,$J,358.3,22926,0)
+ ;;=M87.050^^87^987^43
+ ;;^UTILITY(U,$J,358.3,22926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22464,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22464,1,4,0)
- ;;=4^S52.234S
- ;;^UTILITY(U,$J,358.3,22464,2)
- ;;=^5029474
- ;;^UTILITY(U,$J,358.3,22465,0)
- ;;=S52.265S^^101^1040^113
- ;;^UTILITY(U,$J,358.3,22465,1,0)
+ ;;^UTILITY(U,$J,358.3,22926,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;^UTILITY(U,$J,358.3,22926,1,4,0)
+ ;;=4^M87.050
+ ;;^UTILITY(U,$J,358.3,22926,2)
+ ;;=^5014679
+ ;;^UTILITY(U,$J,358.3,22927,0)
+ ;;=M87.051^^87^987^44
+ ;;^UTILITY(U,$J,358.3,22927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22465,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,22465,1,4,0)
- ;;=4^S52.265S
- ;;^UTILITY(U,$J,358.3,22465,2)
- ;;=^5029778
- ;;^UTILITY(U,$J,358.3,22466,0)
- ;;=S52.264S^^101^1040^114
- ;;^UTILITY(U,$J,358.3,22466,1,0)
+ ;;^UTILITY(U,$J,358.3,22927,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;^UTILITY(U,$J,358.3,22927,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,22927,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,22928,0)
+ ;;=M87.052^^87^987^41
+ ;;^UTILITY(U,$J,358.3,22928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22466,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,22466,1,4,0)
- ;;=4^S52.264S
- ;;^UTILITY(U,$J,358.3,22466,2)
- ;;=^5029762
- ;;^UTILITY(U,$J,358.3,22467,0)
- ;;=S52.245S^^101^1040^117
- ;;^UTILITY(U,$J,358.3,22467,1,0)
+ ;;^UTILITY(U,$J,358.3,22928,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;^UTILITY(U,$J,358.3,22928,1,4,0)
+ ;;=4^M87.052
+ ;;^UTILITY(U,$J,358.3,22928,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,22929,0)
+ ;;=M87.111^^87^987^74
+ ;;^UTILITY(U,$J,358.3,22929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22467,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of ulna, left arm, sequela
- ;;^UTILITY(U,$J,358.3,22467,1,4,0)
- ;;=4^S52.245S
- ;;^UTILITY(U,$J,358.3,22467,2)
- ;;=^5029586
- ;;^UTILITY(U,$J,358.3,22468,0)
- ;;=S52.244S^^101^1040^118
- ;;^UTILITY(U,$J,358.3,22468,1,0)
+ ;;^UTILITY(U,$J,358.3,22929,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,22929,1,4,0)
+ ;;=4^M87.111
+ ;;^UTILITY(U,$J,358.3,22929,2)
+ ;;=^5014701
+ ;;^UTILITY(U,$J,358.3,22930,0)
+ ;;=M87.112^^87^987^71
+ ;;^UTILITY(U,$J,358.3,22930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22468,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of ulna, right arm, sequela
- ;;^UTILITY(U,$J,358.3,22468,1,4,0)
- ;;=4^S52.244S
- ;;^UTILITY(U,$J,358.3,22468,2)
- ;;=^5029570
- ;;^UTILITY(U,$J,358.3,22469,0)
- ;;=S52.225S^^101^1040^120
- ;;^UTILITY(U,$J,358.3,22469,1,0)
+ ;;^UTILITY(U,$J,358.3,22930,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,22930,1,4,0)
+ ;;=4^M87.112
+ ;;^UTILITY(U,$J,358.3,22930,2)
+ ;;=^5014702
+ ;;^UTILITY(U,$J,358.3,22931,0)
+ ;;=M87.150^^87^987^72
+ ;;^UTILITY(U,$J,358.3,22931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22469,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22469,1,4,0)
- ;;=4^S52.225S
- ;;^UTILITY(U,$J,358.3,22469,2)
- ;;=^5029394
- ;;^UTILITY(U,$J,358.3,22470,0)
- ;;=S52.224S^^101^1040^122
- ;;^UTILITY(U,$J,358.3,22470,1,0)
+ ;;^UTILITY(U,$J,358.3,22931,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;^UTILITY(U,$J,358.3,22931,1,4,0)
+ ;;=4^M87.150
+ ;;^UTILITY(U,$J,358.3,22931,2)
+ ;;=^5014722
+ ;;^UTILITY(U,$J,358.3,22932,0)
+ ;;=M87.151^^87^987^73
+ ;;^UTILITY(U,$J,358.3,22932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22470,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22470,1,4,0)
- ;;=4^S52.224S
- ;;^UTILITY(U,$J,358.3,22470,2)
- ;;=^5029378
- ;;^UTILITY(U,$J,358.3,22471,0)
- ;;=M84.432S^^101^1040^130
- ;;^UTILITY(U,$J,358.3,22471,1,0)
+ ;;^UTILITY(U,$J,358.3,22932,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;^UTILITY(U,$J,358.3,22932,1,4,0)
+ ;;=4^M87.151
+ ;;^UTILITY(U,$J,358.3,22932,2)
+ ;;=^5014723
+ ;;^UTILITY(U,$J,358.3,22933,0)
+ ;;=M87.152^^87^987^70
+ ;;^UTILITY(U,$J,358.3,22933,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22933,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;^UTILITY(U,$J,358.3,22933,1,4,0)
+ ;;=4^M87.152
+ ;;^UTILITY(U,$J,358.3,22933,2)
+ ;;=^5014724
+ ;;^UTILITY(U,$J,358.3,22934,0)
+ ;;=M87.180^^87^987^69
+ ;;^UTILITY(U,$J,358.3,22934,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22934,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Jaw

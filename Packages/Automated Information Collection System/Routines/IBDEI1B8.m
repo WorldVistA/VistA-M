@@ -1,122 +1,134 @@
-IBDEI1B8 ; ; 19-NOV-2015
+IBDEI1B8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21865,1,0)
+ ;;^UTILITY(U,$J,358.3,22274,0)
+ ;;=G43.909^^87^978^5
+ ;;^UTILITY(U,$J,358.3,22274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21865,1,3,0)
- ;;=3^Nondisp fx of neck of 1st MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21865,1,4,0)
- ;;=4^S62.255S
- ;;^UTILITY(U,$J,358.3,21865,2)
- ;;=^5033744
- ;;^UTILITY(U,$J,358.3,21866,0)
- ;;=S62.254S^^101^1035^88
- ;;^UTILITY(U,$J,358.3,21866,1,0)
+ ;;^UTILITY(U,$J,358.3,22274,1,3,0)
+ ;;=3^Migraine,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,22274,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,22274,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,22275,0)
+ ;;=G44.009^^87^978^1
+ ;;^UTILITY(U,$J,358.3,22275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21866,1,3,0)
- ;;=3^Nondisp fx of neck of 1st MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21866,1,4,0)
- ;;=4^S62.254S
- ;;^UTILITY(U,$J,358.3,21866,2)
- ;;=^5033737
- ;;^UTILITY(U,$J,358.3,21867,0)
- ;;=S62.365S^^101^1035^93
- ;;^UTILITY(U,$J,358.3,21867,1,0)
+ ;;^UTILITY(U,$J,358.3,22275,1,3,0)
+ ;;=3^Cluster Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,22275,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,22275,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,22276,0)
+ ;;=G44.40^^87^978^4
+ ;;^UTILITY(U,$J,358.3,22276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21867,1,3,0)
- ;;=3^Nondisp fx of neck of 4th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21867,1,4,0)
- ;;=4^S62.365S
- ;;^UTILITY(U,$J,358.3,21867,2)
- ;;=^5034220
- ;;^UTILITY(U,$J,358.3,21868,0)
- ;;=S62.364S^^101^1035^94
- ;;^UTILITY(U,$J,358.3,21868,1,0)
+ ;;^UTILITY(U,$J,358.3,22276,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,22276,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,22276,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,22277,0)
+ ;;=G44.89^^87^978^3
+ ;;^UTILITY(U,$J,358.3,22277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21868,1,3,0)
- ;;=3^Nondisp fx of neck of 4th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21868,1,4,0)
- ;;=4^S62.364S
- ;;^UTILITY(U,$J,358.3,21868,2)
- ;;=^5034213
- ;;^UTILITY(U,$J,358.3,21869,0)
- ;;=S62.361S^^101^1035^89
- ;;^UTILITY(U,$J,358.3,21869,1,0)
+ ;;^UTILITY(U,$J,358.3,22277,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,22277,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,22277,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,22278,0)
+ ;;=G44.84^^87^978^7
+ ;;^UTILITY(U,$J,358.3,22278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21869,1,3,0)
- ;;=3^Nondisp fx of neck of 2nd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21869,1,4,0)
- ;;=4^S62.361S
- ;;^UTILITY(U,$J,358.3,21869,2)
- ;;=^5034192
- ;;^UTILITY(U,$J,358.3,21870,0)
- ;;=S62.360S^^101^1035^90
- ;;^UTILITY(U,$J,358.3,21870,1,0)
+ ;;^UTILITY(U,$J,358.3,22278,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,22278,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,22278,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,22279,0)
+ ;;=G44.301^^87^978^6
+ ;;^UTILITY(U,$J,358.3,22279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21870,1,3,0)
- ;;=3^Nondisp fx of neck of 2nd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21870,1,4,0)
- ;;=4^S62.360S
- ;;^UTILITY(U,$J,358.3,21870,2)
- ;;=^5034185
- ;;^UTILITY(U,$J,358.3,21871,0)
- ;;=S62.363S^^101^1035^91
- ;;^UTILITY(U,$J,358.3,21871,1,0)
+ ;;^UTILITY(U,$J,358.3,22279,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,22279,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,22279,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,22280,0)
+ ;;=G44.209^^87^978^8
+ ;;^UTILITY(U,$J,358.3,22280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21871,1,3,0)
- ;;=3^Nondisp fx of neck of 3rd MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21871,1,4,0)
- ;;=4^S62.363S
- ;;^UTILITY(U,$J,358.3,21871,2)
- ;;=^5034206
- ;;^UTILITY(U,$J,358.3,21872,0)
- ;;=S62.362S^^101^1035^92
- ;;^UTILITY(U,$J,358.3,21872,1,0)
+ ;;^UTILITY(U,$J,358.3,22280,1,3,0)
+ ;;=3^Tension-Type Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,22280,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,22280,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,22281,0)
+ ;;=I50.32^^87^979^5
+ ;;^UTILITY(U,$J,358.3,22281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21872,1,3,0)
- ;;=3^Nondisp fx of neck of 3rd MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21872,1,4,0)
- ;;=4^S62.362S
- ;;^UTILITY(U,$J,358.3,21872,2)
- ;;=^5034199
- ;;^UTILITY(U,$J,358.3,21873,0)
- ;;=S62.357S^^101^1035^115
- ;;^UTILITY(U,$J,358.3,21873,1,0)
+ ;;^UTILITY(U,$J,358.3,22281,1,3,0)
+ ;;=3^Diastolic Heart Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,22281,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,22281,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,22282,0)
+ ;;=I50.33^^87^979^4
+ ;;^UTILITY(U,$J,358.3,22282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21873,1,3,0)
- ;;=3^Nondisp fx of shaft of 5th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21873,1,4,0)
- ;;=4^S62.357S
- ;;^UTILITY(U,$J,358.3,21873,2)
- ;;=^5034164
- ;;^UTILITY(U,$J,358.3,21874,0)
- ;;=S62.356S^^101^1035^116
- ;;^UTILITY(U,$J,358.3,21874,1,0)
+ ;;^UTILITY(U,$J,358.3,22282,1,3,0)
+ ;;=3^Diastolic Heart Failure,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,22282,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,22282,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,22283,0)
+ ;;=I50.40^^87^979^9
+ ;;^UTILITY(U,$J,358.3,22283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21874,1,3,0)
- ;;=3^Nondisp fx of shaft of 5th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21874,1,4,0)
- ;;=4^S62.356S
- ;;^UTILITY(U,$J,358.3,21874,2)
- ;;=^5034157
- ;;^UTILITY(U,$J,358.3,21875,0)
- ;;=S62.245S^^101^1035^107
- ;;^UTILITY(U,$J,358.3,21875,1,0)
+ ;;^UTILITY(U,$J,358.3,22283,1,3,0)
+ ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
+ ;;^UTILITY(U,$J,358.3,22283,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,22283,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,22284,0)
+ ;;=I51.7^^87^979^2
+ ;;^UTILITY(U,$J,358.3,22284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21875,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21875,1,4,0)
- ;;=4^S62.245S
- ;;^UTILITY(U,$J,358.3,21875,2)
- ;;=^5033702
- ;;^UTILITY(U,$J,358.3,21876,0)
- ;;=S62.244S^^101^1035^108
- ;;^UTILITY(U,$J,358.3,21876,1,0)
+ ;;^UTILITY(U,$J,358.3,22284,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,22284,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,22284,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,22285,0)
+ ;;=I42.6^^87^979^1
+ ;;^UTILITY(U,$J,358.3,22285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21876,1,3,0)
- ;;=3^Nondisp fx of shaft of 1st MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21876,1,4,0)
- ;;=4^S62.244S
- ;;^UTILITY(U,$J,358.3,21876,2)
- ;;=^5033695
+ ;;^UTILITY(U,$J,358.3,22285,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,22285,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,22285,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,22286,0)
+ ;;=I50.1^^87^979^8
+ ;;^UTILITY(U,$J,358.3,22286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22286,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,22286,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,22286,2)
+ ;;=^5007238

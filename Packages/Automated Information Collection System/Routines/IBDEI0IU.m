@@ -1,138 +1,138 @@
-IBDEI0IU ; ; 19-NOV-2015
+IBDEI0IU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8468,0)
- ;;=B00.81^^55^540^69
- ;;^UTILITY(U,$J,358.3,8468,1,0)
+ ;;^UTILITY(U,$J,358.3,8758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8468,1,3,0)
- ;;=3^Herpesviral hepatitis
- ;;^UTILITY(U,$J,358.3,8468,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,8468,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,8469,0)
- ;;=B15.9^^55^540^68
- ;;^UTILITY(U,$J,358.3,8469,1,0)
+ ;;^UTILITY(U,$J,358.3,8758,1,3,0)
+ ;;=3^Symblepharon,Left Eye
+ ;;^UTILITY(U,$J,358.3,8758,1,4,0)
+ ;;=4^H11.232
+ ;;^UTILITY(U,$J,358.3,8758,2)
+ ;;=^5004774
+ ;;^UTILITY(U,$J,358.3,8759,0)
+ ;;=H11.31^^41^468^40
+ ;;^UTILITY(U,$J,358.3,8759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8469,1,3,0)
- ;;=3^Hepatitis A without hepatic coma
- ;;^UTILITY(U,$J,358.3,8469,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,8469,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,8470,0)
- ;;=B16.9^^55^540^5
- ;;^UTILITY(U,$J,358.3,8470,1,0)
+ ;;^UTILITY(U,$J,358.3,8759,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,8759,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,8759,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,8760,0)
+ ;;=H11.32^^41^468^39
+ ;;^UTILITY(U,$J,358.3,8760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8470,1,3,0)
- ;;=3^Acute hepatitis B w/o delta-agent and without hepatic coma
- ;;^UTILITY(U,$J,358.3,8470,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,8470,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,8471,0)
- ;;=B19.10^^55^540^108
- ;;^UTILITY(U,$J,358.3,8471,1,0)
+ ;;^UTILITY(U,$J,358.3,8760,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,8760,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,8760,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,8761,0)
+ ;;=H11.441^^41^468^37
+ ;;^UTILITY(U,$J,358.3,8761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8471,1,3,0)
- ;;=3^Viral hepatitis B without hepatic coma,unspec
- ;;^UTILITY(U,$J,358.3,8471,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,8471,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,8472,0)
- ;;=B18.1^^55^540^47
- ;;^UTILITY(U,$J,358.3,8472,1,0)
+ ;;^UTILITY(U,$J,358.3,8761,1,3,0)
+ ;;=3^Conjunctival Cysts,Right Eye
+ ;;^UTILITY(U,$J,358.3,8761,1,4,0)
+ ;;=4^H11.441
+ ;;^UTILITY(U,$J,358.3,8761,2)
+ ;;=^5004797
+ ;;^UTILITY(U,$J,358.3,8762,0)
+ ;;=H11.442^^41^468^36
+ ;;^UTILITY(U,$J,358.3,8762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8472,1,3,0)
- ;;=3^Chronic viral hepatitis B without delta-agent
- ;;^UTILITY(U,$J,358.3,8472,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,8472,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,8473,0)
- ;;=B17.10^^55^540^6
- ;;^UTILITY(U,$J,358.3,8473,1,0)
+ ;;^UTILITY(U,$J,358.3,8762,1,3,0)
+ ;;=3^Conjunctival Cysts,Left Eye
+ ;;^UTILITY(U,$J,358.3,8762,1,4,0)
+ ;;=4^H11.442
+ ;;^UTILITY(U,$J,358.3,8762,2)
+ ;;=^5004798
+ ;;^UTILITY(U,$J,358.3,8763,0)
+ ;;=H02.201^^41^468^110
+ ;;^UTILITY(U,$J,358.3,8763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8473,1,3,0)
- ;;=3^Acute hepatitis C without hepatic coma
- ;;^UTILITY(U,$J,358.3,8473,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,8473,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,8474,0)
- ;;=B18.2^^55^540^48
- ;;^UTILITY(U,$J,358.3,8474,1,0)
+ ;;^UTILITY(U,$J,358.3,8763,1,3,0)
+ ;;=3^Lagophthalmos,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,8763,1,4,0)
+ ;;=4^H02.201
+ ;;^UTILITY(U,$J,358.3,8763,2)
+ ;;=^5004327
+ ;;^UTILITY(U,$J,358.3,8764,0)
+ ;;=H02.202^^41^468^109
+ ;;^UTILITY(U,$J,358.3,8764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8474,1,3,0)
- ;;=3^Chronic viral hepatitis C
- ;;^UTILITY(U,$J,358.3,8474,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,8474,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,8475,0)
- ;;=B18.9^^55^540^49
- ;;^UTILITY(U,$J,358.3,8475,1,0)
+ ;;^UTILITY(U,$J,358.3,8764,1,3,0)
+ ;;=3^Lagophthalmos,Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,8764,1,4,0)
+ ;;=4^H02.202
+ ;;^UTILITY(U,$J,358.3,8764,2)
+ ;;=^5004328
+ ;;^UTILITY(U,$J,358.3,8765,0)
+ ;;=H02.204^^41^468^108
+ ;;^UTILITY(U,$J,358.3,8765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8475,1,3,0)
- ;;=3^Chronic viral hepatitis, unspecified
- ;;^UTILITY(U,$J,358.3,8475,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,8475,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,8476,0)
- ;;=A69.20^^55^540^79
- ;;^UTILITY(U,$J,358.3,8476,1,0)
+ ;;^UTILITY(U,$J,358.3,8765,1,3,0)
+ ;;=3^Lagophthalmos,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,8765,1,4,0)
+ ;;=4^H02.204
+ ;;^UTILITY(U,$J,358.3,8765,2)
+ ;;=^5004330
+ ;;^UTILITY(U,$J,358.3,8766,0)
+ ;;=H02.205^^41^468^107
+ ;;^UTILITY(U,$J,358.3,8766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8476,1,3,0)
- ;;=3^Lyme disease, unspecified
- ;;^UTILITY(U,$J,358.3,8476,1,4,0)
- ;;=4^A69.20
- ;;^UTILITY(U,$J,358.3,8476,2)
- ;;=^5000375
- ;;^UTILITY(U,$J,358.3,8477,0)
- ;;=A51.0^^55^540^91
- ;;^UTILITY(U,$J,358.3,8477,1,0)
+ ;;^UTILITY(U,$J,358.3,8766,1,3,0)
+ ;;=3^Lagophthalmos,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,8766,1,4,0)
+ ;;=4^H02.205
+ ;;^UTILITY(U,$J,358.3,8766,2)
+ ;;=^5133418
+ ;;^UTILITY(U,$J,358.3,8767,0)
+ ;;=H15.101^^41^468^64
+ ;;^UTILITY(U,$J,358.3,8767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8477,1,3,0)
- ;;=3^Primary genital syphilis
- ;;^UTILITY(U,$J,358.3,8477,1,4,0)
- ;;=4^A51.0
- ;;^UTILITY(U,$J,358.3,8477,2)
- ;;=^5000272
- ;;^UTILITY(U,$J,358.3,8478,0)
- ;;=A52.3^^55^540^80
- ;;^UTILITY(U,$J,358.3,8478,1,0)
+ ;;^UTILITY(U,$J,358.3,8767,1,3,0)
+ ;;=3^Episcleritis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8767,1,4,0)
+ ;;=4^H15.101
+ ;;^UTILITY(U,$J,358.3,8767,2)
+ ;;=^5004835
+ ;;^UTILITY(U,$J,358.3,8768,0)
+ ;;=H15.102^^41^468^63
+ ;;^UTILITY(U,$J,358.3,8768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8478,1,3,0)
- ;;=3^Neurosyphilis, unspecified
- ;;^UTILITY(U,$J,358.3,8478,1,4,0)
- ;;=4^A52.3
- ;;^UTILITY(U,$J,358.3,8478,2)
- ;;=^5000298
- ;;^UTILITY(U,$J,358.3,8479,0)
- ;;=A52.9^^55^540^78
- ;;^UTILITY(U,$J,358.3,8479,1,0)
+ ;;^UTILITY(U,$J,358.3,8768,1,3,0)
+ ;;=3^Episcleritis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8768,1,4,0)
+ ;;=4^H15.102
+ ;;^UTILITY(U,$J,358.3,8768,2)
+ ;;=^5004836
+ ;;^UTILITY(U,$J,358.3,8769,0)
+ ;;=H15.001^^41^468^152
+ ;;^UTILITY(U,$J,358.3,8769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8479,1,3,0)
- ;;=3^Late syphilis, unspecified
- ;;^UTILITY(U,$J,358.3,8479,1,4,0)
- ;;=4^A52.9
- ;;^UTILITY(U,$J,358.3,8479,2)
- ;;=^5000308
- ;;^UTILITY(U,$J,358.3,8480,0)
- ;;=A53.9^^55^540^98
- ;;^UTILITY(U,$J,358.3,8480,1,0)
+ ;;^UTILITY(U,$J,358.3,8769,1,3,0)
+ ;;=3^Scleritis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8769,1,4,0)
+ ;;=4^H15.001
+ ;;^UTILITY(U,$J,358.3,8769,2)
+ ;;=^5004810
+ ;;^UTILITY(U,$J,358.3,8770,0)
+ ;;=H15.002^^41^468^151
+ ;;^UTILITY(U,$J,358.3,8770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8480,1,3,0)
- ;;=3^Syphilis, unspecified
- ;;^UTILITY(U,$J,358.3,8480,1,4,0)
- ;;=4^A53.9
- ;;^UTILITY(U,$J,358.3,8480,2)
- ;;=^5000310
- ;;^UTILITY(U,$J,358.3,8481,0)
- ;;=A54.00^^55^540^64
- ;;^UTILITY(U,$J,358.3,8481,1,0)
+ ;;^UTILITY(U,$J,358.3,8770,1,3,0)
+ ;;=3^Scleritis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8770,1,4,0)
+ ;;=4^H15.002
+ ;;^UTILITY(U,$J,358.3,8770,2)
+ ;;=^5004811
+ ;;^UTILITY(U,$J,358.3,8771,0)
+ ;;=H57.00^^41^468^5
+ ;;^UTILITY(U,$J,358.3,8771,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8771,1,3,0)
+ ;;=3^Anomaly of Pupillary Function,Unspec

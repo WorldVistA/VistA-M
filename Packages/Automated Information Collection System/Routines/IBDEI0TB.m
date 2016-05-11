@@ -1,128 +1,132 @@
-IBDEI0TB ; ; 19-NOV-2015
+IBDEI0TB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13482,2)
- ;;=^5004421
- ;;^UTILITY(U,$J,358.3,13483,0)
- ;;=H02.832^^80^761^33
- ;;^UTILITY(U,$J,358.3,13483,1,0)
+ ;;^UTILITY(U,$J,358.3,13745,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,13746,0)
+ ;;=J20.4^^53^595^13
+ ;;^UTILITY(U,$J,358.3,13746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13483,1,3,0)
- ;;=3^Dermatochalasis Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,13483,1,4,0)
- ;;=4^H02.832
- ;;^UTILITY(U,$J,358.3,13483,2)
- ;;=^5004419
- ;;^UTILITY(U,$J,358.3,13484,0)
- ;;=H02.831^^80^761^34
- ;;^UTILITY(U,$J,358.3,13484,1,0)
+ ;;^UTILITY(U,$J,358.3,13746,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,13746,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,13746,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,13747,0)
+ ;;=J20.3^^53^595^8
+ ;;^UTILITY(U,$J,358.3,13747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13484,1,3,0)
- ;;=3^Dermatochalasis Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,13484,1,4,0)
- ;;=4^H02.831
- ;;^UTILITY(U,$J,358.3,13484,2)
- ;;=^5004418
- ;;^UTILITY(U,$J,358.3,13485,0)
- ;;=Z44.22^^80^761^49
- ;;^UTILITY(U,$J,358.3,13485,1,0)
+ ;;^UTILITY(U,$J,358.3,13747,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,13747,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,13747,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,13748,0)
+ ;;=J20.9^^53^595^7
+ ;;^UTILITY(U,$J,358.3,13748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13485,1,3,0)
- ;;=3^Fitting/Adjustment of Left Artificial Eye
- ;;^UTILITY(U,$J,358.3,13485,1,4,0)
- ;;=4^Z44.22
- ;;^UTILITY(U,$J,358.3,13485,2)
- ;;=^5062988
- ;;^UTILITY(U,$J,358.3,13486,0)
- ;;=Z44.21^^80^761^50
- ;;^UTILITY(U,$J,358.3,13486,1,0)
+ ;;^UTILITY(U,$J,358.3,13748,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,13748,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,13748,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,13749,0)
+ ;;=J20.8^^53^595^12
+ ;;^UTILITY(U,$J,358.3,13749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13486,1,3,0)
- ;;=3^Fitting/Adjustment of Right Artificial Eye
- ;;^UTILITY(U,$J,358.3,13486,1,4,0)
- ;;=4^Z44.21
- ;;^UTILITY(U,$J,358.3,13486,2)
- ;;=^5062987
- ;;^UTILITY(U,$J,358.3,13487,0)
- ;;=H04.212^^80^761^43
- ;;^UTILITY(U,$J,358.3,13487,1,0)
+ ;;^UTILITY(U,$J,358.3,13749,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,13749,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,13749,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,13750,0)
+ ;;=J20.5^^53^595^14
+ ;;^UTILITY(U,$J,358.3,13750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13487,1,3,0)
- ;;=3^Epiphora d/t Excess Lacrimation,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13487,1,4,0)
- ;;=4^H04.212
- ;;^UTILITY(U,$J,358.3,13487,2)
- ;;=^5004488
- ;;^UTILITY(U,$J,358.3,13488,0)
- ;;=H04.211^^80^761^44
- ;;^UTILITY(U,$J,358.3,13488,1,0)
+ ;;^UTILITY(U,$J,358.3,13750,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,13750,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,13750,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,13751,0)
+ ;;=J20.7^^53^595^9
+ ;;^UTILITY(U,$J,358.3,13751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13488,1,3,0)
- ;;=3^Epiphora d/t Excess Lacrimation,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13488,1,4,0)
- ;;=4^H04.211
- ;;^UTILITY(U,$J,358.3,13488,2)
- ;;=^5004487
- ;;^UTILITY(U,$J,358.3,13489,0)
- ;;=H04.222^^80^761^45
- ;;^UTILITY(U,$J,358.3,13489,1,0)
+ ;;^UTILITY(U,$J,358.3,13751,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,13751,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,13751,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,13752,0)
+ ;;=J20.6^^53^595^15
+ ;;^UTILITY(U,$J,358.3,13752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13489,1,3,0)
- ;;=3^Epiphora d/t Insufficient Drainage,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13489,1,4,0)
- ;;=4^H04.222
- ;;^UTILITY(U,$J,358.3,13489,2)
- ;;=^5004492
- ;;^UTILITY(U,$J,358.3,13490,0)
- ;;=H04.221^^80^761^46
- ;;^UTILITY(U,$J,358.3,13490,1,0)
+ ;;^UTILITY(U,$J,358.3,13752,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,13752,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,13752,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,13753,0)
+ ;;=J18.9^^53^595^67
+ ;;^UTILITY(U,$J,358.3,13753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13490,1,3,0)
- ;;=3^Epiphora d/t Insufficient Drainage,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,13490,1,4,0)
- ;;=4^H04.221
- ;;^UTILITY(U,$J,358.3,13490,2)
- ;;=^5004491
- ;;^UTILITY(U,$J,358.3,13491,0)
- ;;=H04.522^^80^761^47
- ;;^UTILITY(U,$J,358.3,13491,1,0)
+ ;;^UTILITY(U,$J,358.3,13753,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,13753,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,13753,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,13754,0)
+ ;;=J18.8^^53^595^68
+ ;;^UTILITY(U,$J,358.3,13754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13491,1,3,0)
- ;;=3^Eversion Left Lacrimal Punctum
- ;;^UTILITY(U,$J,358.3,13491,1,4,0)
- ;;=4^H04.522
- ;;^UTILITY(U,$J,358.3,13491,2)
- ;;=^5004527
- ;;^UTILITY(U,$J,358.3,13492,0)
- ;;=H04.521^^80^761^48
- ;;^UTILITY(U,$J,358.3,13492,1,0)
+ ;;^UTILITY(U,$J,358.3,13754,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,13754,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,13754,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,13755,0)
+ ;;=J11.00^^53^595^28
+ ;;^UTILITY(U,$J,358.3,13755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13492,1,3,0)
- ;;=3^Eversion Right Lacrimal Punctum
- ;;^UTILITY(U,$J,358.3,13492,1,4,0)
- ;;=4^H04.521
- ;;^UTILITY(U,$J,358.3,13492,2)
- ;;=^5004526
- ;;^UTILITY(U,$J,358.3,13493,0)
- ;;=S02.42XA^^80^761^51
- ;;^UTILITY(U,$J,358.3,13493,1,0)
+ ;;^UTILITY(U,$J,358.3,13755,1,3,0)
+ ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,13755,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,13755,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,13756,0)
+ ;;=J12.9^^53^595^69
+ ;;^UTILITY(U,$J,358.3,13756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13493,1,3,0)
- ;;=3^Fx of Alveolus of Maxilla,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,13493,1,4,0)
- ;;=4^S02.42XA
- ;;^UTILITY(U,$J,358.3,13493,2)
- ;;=^5020354
- ;;^UTILITY(U,$J,358.3,13494,0)
- ;;=S02.8XXA^^80^761^52
- ;;^UTILITY(U,$J,358.3,13494,1,0)
+ ;;^UTILITY(U,$J,358.3,13756,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,13756,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,13756,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,13757,0)
+ ;;=J10.08^^53^595^41
+ ;;^UTILITY(U,$J,358.3,13757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13494,1,3,0)
- ;;=3^Fx of Skull/Facial Bones,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,13494,1,4,0)
- ;;=4^S02.8XXA
- ;;^UTILITY(U,$J,358.3,13494,2)
- ;;=^5020426
- ;;^UTILITY(U,$J,358.3,13495,0)
- ;;=H00.015^^80^761^53
+ ;;^UTILITY(U,$J,358.3,13757,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,13757,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,13757,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,13758,0)
+ ;;=J10.00^^53^595^40
+ ;;^UTILITY(U,$J,358.3,13758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13758,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia

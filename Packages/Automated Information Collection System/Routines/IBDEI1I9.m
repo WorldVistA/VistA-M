@@ -1,130 +1,126 @@
-IBDEI1I9 ; ; 19-NOV-2015
+IBDEI1I9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25154,1,3,0)
- ;;=3^Dilated Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,25154,1,4,0)
- ;;=4^I42.0
- ;;^UTILITY(U,$J,358.3,25154,2)
- ;;=^5007194
- ;;^UTILITY(U,$J,358.3,25155,0)
- ;;=I50.21^^124^1240^5
- ;;^UTILITY(U,$J,358.3,25155,1,0)
+ ;;^UTILITY(U,$J,358.3,25539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25155,1,3,0)
- ;;=3^Acute Systolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25155,1,4,0)
- ;;=4^I50.21
- ;;^UTILITY(U,$J,358.3,25155,2)
- ;;=^5007240
- ;;^UTILITY(U,$J,358.3,25156,0)
- ;;=I50.22^^124^1240^19
- ;;^UTILITY(U,$J,358.3,25156,1,0)
+ ;;^UTILITY(U,$J,358.3,25539,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25539,1,4,0)
+ ;;=4^F11.988
+ ;;^UTILITY(U,$J,358.3,25539,2)
+ ;;=^5003154
+ ;;^UTILITY(U,$J,358.3,25540,0)
+ ;;=F11.921^^95^1169^6
+ ;;^UTILITY(U,$J,358.3,25540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25156,1,3,0)
- ;;=3^Chronic Systolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25156,1,4,0)
- ;;=4^I50.22
- ;;^UTILITY(U,$J,358.3,25156,2)
- ;;=^5007241
- ;;^UTILITY(U,$J,358.3,25157,0)
- ;;=I50.23^^124^1240^8
- ;;^UTILITY(U,$J,358.3,25157,1,0)
+ ;;^UTILITY(U,$J,358.3,25540,1,3,0)
+ ;;=3^Opioid Induced Delirium
+ ;;^UTILITY(U,$J,358.3,25540,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,25540,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,25541,0)
+ ;;=F11.94^^95^1169^7
+ ;;^UTILITY(U,$J,358.3,25541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25157,1,3,0)
- ;;=3^Acute on Chronic Systolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25157,1,4,0)
- ;;=4^I50.23
- ;;^UTILITY(U,$J,358.3,25157,2)
- ;;=^5007242
- ;;^UTILITY(U,$J,358.3,25158,0)
- ;;=I50.31^^124^1240^4
- ;;^UTILITY(U,$J,358.3,25158,1,0)
+ ;;^UTILITY(U,$J,358.3,25541,1,3,0)
+ ;;=3^Opioid Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25541,1,4,0)
+ ;;=4^F11.94
+ ;;^UTILITY(U,$J,358.3,25541,2)
+ ;;=^5003148
+ ;;^UTILITY(U,$J,358.3,25542,0)
+ ;;=F11.181^^95^1169^8
+ ;;^UTILITY(U,$J,358.3,25542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25158,1,3,0)
- ;;=3^Acute Diastolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25158,1,4,0)
- ;;=4^I50.31
- ;;^UTILITY(U,$J,358.3,25158,2)
- ;;=^5007244
- ;;^UTILITY(U,$J,358.3,25159,0)
- ;;=I50.32^^124^1240^18
- ;;^UTILITY(U,$J,358.3,25159,1,0)
+ ;;^UTILITY(U,$J,358.3,25542,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25542,1,4,0)
+ ;;=4^F11.181
+ ;;^UTILITY(U,$J,358.3,25542,2)
+ ;;=^5003123
+ ;;^UTILITY(U,$J,358.3,25543,0)
+ ;;=F11.281^^95^1169^9
+ ;;^UTILITY(U,$J,358.3,25543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25159,1,3,0)
- ;;=3^Chronic Diastolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25159,1,4,0)
- ;;=4^I50.32
- ;;^UTILITY(U,$J,358.3,25159,2)
- ;;=^5007245
- ;;^UTILITY(U,$J,358.3,25160,0)
- ;;=I50.33^^124^1240^7
- ;;^UTILITY(U,$J,358.3,25160,1,0)
+ ;;^UTILITY(U,$J,358.3,25543,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25543,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,25543,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,25544,0)
+ ;;=F11.981^^95^1169^10
+ ;;^UTILITY(U,$J,358.3,25544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25160,1,3,0)
- ;;=3^Acute on Chronic Diastolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25160,1,4,0)
- ;;=4^I50.33
- ;;^UTILITY(U,$J,358.3,25160,2)
- ;;=^5007246
- ;;^UTILITY(U,$J,358.3,25161,0)
- ;;=I50.41^^124^1240^3
- ;;^UTILITY(U,$J,358.3,25161,1,0)
+ ;;^UTILITY(U,$J,358.3,25544,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25544,1,4,0)
+ ;;=4^F11.981
+ ;;^UTILITY(U,$J,358.3,25544,2)
+ ;;=^5003152
+ ;;^UTILITY(U,$J,358.3,25545,0)
+ ;;=F11.282^^95^1169^11
+ ;;^UTILITY(U,$J,358.3,25545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25161,1,3,0)
- ;;=3^Acute Combined Systolic & Diastolic Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25161,1,4,0)
- ;;=4^I50.41
- ;;^UTILITY(U,$J,358.3,25161,2)
- ;;=^5007248
- ;;^UTILITY(U,$J,358.3,25162,0)
- ;;=I50.42^^124^1240^17
- ;;^UTILITY(U,$J,358.3,25162,1,0)
+ ;;^UTILITY(U,$J,358.3,25545,1,3,0)
+ ;;=3^Opioid Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25545,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,25545,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,25546,0)
+ ;;=F11.982^^95^1169^12
+ ;;^UTILITY(U,$J,358.3,25546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25162,1,3,0)
- ;;=3^Chronic Combined Systolic & Diastolic Heart Failure
- ;;^UTILITY(U,$J,358.3,25162,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,25162,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,25163,0)
- ;;=I50.43^^124^1240^6
- ;;^UTILITY(U,$J,358.3,25163,1,0)
+ ;;^UTILITY(U,$J,358.3,25546,1,3,0)
+ ;;=3^Opioid Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25546,1,4,0)
+ ;;=4^F11.982
+ ;;^UTILITY(U,$J,358.3,25546,2)
+ ;;=^5003153
+ ;;^UTILITY(U,$J,358.3,25547,0)
+ ;;=F11.121^^95^1169^13
+ ;;^UTILITY(U,$J,358.3,25547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25163,1,3,0)
- ;;=3^Acute on Chronic Combined Systolic & Diastolic Heart Failure
- ;;^UTILITY(U,$J,358.3,25163,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,25163,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,25164,0)
- ;;=I21.3^^124^1240^47
- ;;^UTILITY(U,$J,358.3,25164,1,0)
+ ;;^UTILITY(U,$J,358.3,25547,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25547,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,25547,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,25548,0)
+ ;;=F11.221^^95^1169^14
+ ;;^UTILITY(U,$J,358.3,25548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25164,1,3,0)
- ;;=3^STEMI,Unspec Site,Initial
- ;;^UTILITY(U,$J,358.3,25164,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,25164,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,25165,0)
- ;;=I21.4^^124^1240^23
- ;;^UTILITY(U,$J,358.3,25165,1,0)
+ ;;^UTILITY(U,$J,358.3,25548,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25548,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,25548,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,25549,0)
+ ;;=F11.921^^95^1169^15
+ ;;^UTILITY(U,$J,358.3,25549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25165,1,3,0)
- ;;=3^NSTEMI,Initial
- ;;^UTILITY(U,$J,358.3,25165,1,4,0)
- ;;=4^I21.4
- ;;^UTILITY(U,$J,358.3,25165,2)
- ;;=^5007088
- ;;^UTILITY(U,$J,358.3,25166,0)
- ;;=I21.01^^124^1240^42
- ;;^UTILITY(U,$J,358.3,25166,1,0)
+ ;;^UTILITY(U,$J,358.3,25549,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25549,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,25549,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,25550,0)
+ ;;=F11.229^^95^1169^20
+ ;;^UTILITY(U,$J,358.3,25550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25166,1,3,0)
- ;;=3^STEMI,Lt Main Coronary Artery,Initial
- ;;^UTILITY(U,$J,358.3,25166,1,4,0)
- ;;=4^I21.01
- ;;^UTILITY(U,$J,358.3,25166,2)
- ;;=^5007080
+ ;;^UTILITY(U,$J,358.3,25550,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25550,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,25550,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,25551,0)
+ ;;=F11.929^^95^1169^21
+ ;;^UTILITY(U,$J,358.3,25551,1,0)
+ ;;=^358.31IA^4^2

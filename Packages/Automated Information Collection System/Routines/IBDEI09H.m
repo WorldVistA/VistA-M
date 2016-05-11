@@ -1,134 +1,126 @@
-IBDEI09H ; ; 19-NOV-2015
+IBDEI09H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3893,1,3,0)
- ;;=3^Neuropathy,Alcoholic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,3893,1,4,0)
- ;;=4^G62.1
- ;;^UTILITY(U,$J,358.3,3893,2)
- ;;=^5004076
- ;;^UTILITY(U,$J,358.3,3894,0)
- ;;=G51.0^^28^259^88
- ;;^UTILITY(U,$J,358.3,3894,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3894,1,3,0)
- ;;=3^Neuropathy,Bell's Palsy
- ;;^UTILITY(U,$J,358.3,3894,1,4,0)
- ;;=4^G51.0
- ;;^UTILITY(U,$J,358.3,3894,2)
- ;;=^13238
- ;;^UTILITY(U,$J,358.3,3895,0)
- ;;=G56.01^^28^259^90
- ;;^UTILITY(U,$J,358.3,3895,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3895,1,3,0)
- ;;=3^Neuropathy,Carpal Tunnel Syndrome,Rt Upper Limb
- ;;^UTILITY(U,$J,358.3,3895,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,3895,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,3896,0)
- ;;=G56.02^^28^259^89
- ;;^UTILITY(U,$J,358.3,3896,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3896,1,3,0)
- ;;=3^Neuropathy,Carpal Tunnel Syndrome,Lt Upper Limb
- ;;^UTILITY(U,$J,358.3,3896,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,3896,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,3897,0)
- ;;=G52.9^^28^259^91
- ;;^UTILITY(U,$J,358.3,3897,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3897,1,3,0)
- ;;=3^Neuropathy,Cranial Nerve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3897,1,4,0)
- ;;=4^G52.9
- ;;^UTILITY(U,$J,358.3,3897,2)
- ;;=^5004005
- ;;^UTILITY(U,$J,358.3,3898,0)
- ;;=G51.9^^28^259^95
- ;;^UTILITY(U,$J,358.3,3898,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3898,1,3,0)
- ;;=3^Neuropathy,Facial Nerve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3898,1,4,0)
- ;;=4^G51.9
- ;;^UTILITY(U,$J,358.3,3898,2)
- ;;=^5003998
- ;;^UTILITY(U,$J,358.3,3899,0)
- ;;=G62.0^^28^259^93
- ;;^UTILITY(U,$J,358.3,3899,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3899,1,3,0)
- ;;=3^Neuropathy,Drug-Induced Polyneuropathy
- ;;^UTILITY(U,$J,358.3,3899,1,4,0)
- ;;=4^G62.0
- ;;^UTILITY(U,$J,358.3,3899,2)
- ;;=^5004075
- ;;^UTILITY(U,$J,358.3,3900,0)
- ;;=G61.0^^28^259^96
- ;;^UTILITY(U,$J,358.3,3900,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3900,1,3,0)
- ;;=3^Neuropathy,Guillain-Barre Syndrome
- ;;^UTILITY(U,$J,358.3,3900,1,4,0)
- ;;=4^G61.0
- ;;^UTILITY(U,$J,358.3,3900,2)
- ;;=^53405
- ;;^UTILITY(U,$J,358.3,3901,0)
- ;;=G60.9^^28^259^97
- ;;^UTILITY(U,$J,358.3,3901,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3901,1,3,0)
- ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
- ;;^UTILITY(U,$J,358.3,3901,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,3901,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,3902,0)
- ;;=G61.9^^28^259^98
- ;;^UTILITY(U,$J,358.3,3902,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3902,1,3,0)
- ;;=3^Neuropathy,Inflammatory Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,3902,1,4,0)
- ;;=4^G61.9
- ;;^UTILITY(U,$J,358.3,3902,2)
- ;;=^5004074
- ;;^UTILITY(U,$J,358.3,3903,0)
- ;;=G58.9^^28^259^100
- ;;^UTILITY(U,$J,358.3,3903,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3903,1,3,0)
- ;;=3^Neuropathy,Mononeuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,3903,1,4,0)
- ;;=4^G58.9
- ;;^UTILITY(U,$J,358.3,3903,2)
- ;;=^5004065
- ;;^UTILITY(U,$J,358.3,3904,0)
- ;;=G54.9^^28^259^102
- ;;^UTILITY(U,$J,358.3,3904,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3904,1,3,0)
- ;;=3^Neuropathy,Nerve Root/Plexus Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3904,1,4,0)
- ;;=4^G54.9
- ;;^UTILITY(U,$J,358.3,3904,2)
- ;;=^5004015
- ;;^UTILITY(U,$J,358.3,3905,0)
- ;;=G54.6^^28^259^103
- ;;^UTILITY(U,$J,358.3,3905,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3905,1,3,0)
- ;;=3^Neuropathy,Phantom Limb Syndrome w/ Pain
- ;;^UTILITY(U,$J,358.3,3905,1,4,0)
- ;;=4^G54.6
- ;;^UTILITY(U,$J,358.3,3905,2)
- ;;=^5004013
- ;;^UTILITY(U,$J,358.3,3906,0)
- ;;=G54.7^^28^259^104
- ;;^UTILITY(U,$J,358.3,3906,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4171,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4171,1,2,0)
+ ;;=2^11643
+ ;;^UTILITY(U,$J,358.3,4171,1,3,0)
+ ;;=3^Exc Mal Lesion Face/Mucous,2.1-3.0cm
+ ;;^UTILITY(U,$J,358.3,4172,0)
+ ;;=11644^^20^248^5^^^^1
+ ;;^UTILITY(U,$J,358.3,4172,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4172,1,2,0)
+ ;;=2^11644
+ ;;^UTILITY(U,$J,358.3,4172,1,3,0)
+ ;;=3^Exc Mal Lesion Face/Mucous,3.1-4.0cm
+ ;;^UTILITY(U,$J,358.3,4173,0)
+ ;;=11646^^20^248^6^^^^1
+ ;;^UTILITY(U,$J,358.3,4173,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4173,1,2,0)
+ ;;=2^11646
+ ;;^UTILITY(U,$J,358.3,4173,1,3,0)
+ ;;=3^Exc Mal lesion Face/Mucous > 4.0cm
+ ;;^UTILITY(U,$J,358.3,4174,0)
+ ;;=11305^^20^249^1^^^^1
+ ;;^UTILITY(U,$J,358.3,4174,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4174,1,2,0)
+ ;;=2^11305
+ ;;^UTILITY(U,$J,358.3,4174,1,3,0)
+ ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.5cm or less
+ ;;^UTILITY(U,$J,358.3,4175,0)
+ ;;=11306^^20^249^2^^^^1
+ ;;^UTILITY(U,$J,358.3,4175,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4175,1,2,0)
+ ;;=2^11306
+ ;;^UTILITY(U,$J,358.3,4175,1,3,0)
+ ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,4176,0)
+ ;;=11307^^20^249^3^^^^1
+ ;;^UTILITY(U,$J,358.3,4176,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4176,1,2,0)
+ ;;=2^11307
+ ;;^UTILITY(U,$J,358.3,4176,1,3,0)
+ ;;=3^Shaving Epiderm Scalp/Nk/Trunk: 1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,4177,0)
+ ;;=11308^^20^249^4^^^^1
+ ;;^UTILITY(U,$J,358.3,4177,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4177,1,2,0)
+ ;;=2^11308
+ ;;^UTILITY(U,$J,358.3,4177,1,3,0)
+ ;;=3^Shaving Epiderm Scalp/Nk/Trunk > 2.0cm
+ ;;^UTILITY(U,$J,358.3,4178,0)
+ ;;=11310^^20^250^1^^^^1
+ ;;^UTILITY(U,$J,358.3,4178,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4178,1,2,0)
+ ;;=2^11310
+ ;;^UTILITY(U,$J,358.3,4178,1,3,0)
+ ;;=3^Shaving Epiderm Face/Mucous:0.5cm or less
+ ;;^UTILITY(U,$J,358.3,4179,0)
+ ;;=11311^^20^250^2^^^^1
+ ;;^UTILITY(U,$J,358.3,4179,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4179,1,2,0)
+ ;;=2^11311
+ ;;^UTILITY(U,$J,358.3,4179,1,3,0)
+ ;;=3^Shaving Epiderm Face/Mucous: 0.6-1.0cm
+ ;;^UTILITY(U,$J,358.3,4180,0)
+ ;;=11312^^20^250^3^^^^1
+ ;;^UTILITY(U,$J,358.3,4180,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4180,1,2,0)
+ ;;=2^11312
+ ;;^UTILITY(U,$J,358.3,4180,1,3,0)
+ ;;=3^Shaving Epiderm Face/Mucous: 1.1-2.0cm
+ ;;^UTILITY(U,$J,358.3,4181,0)
+ ;;=11313^^20^250^4^^^^1
+ ;;^UTILITY(U,$J,358.3,4181,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4181,1,2,0)
+ ;;=2^11313
+ ;;^UTILITY(U,$J,358.3,4181,1,3,0)
+ ;;=3^Shaving Epiderm Face/Mucous > 2.0cm
+ ;;^UTILITY(U,$J,358.3,4182,0)
+ ;;=12011^^20^251^1^^^^1
+ ;;^UTILITY(U,$J,358.3,4182,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4182,1,2,0)
+ ;;=2^12011
+ ;;^UTILITY(U,$J,358.3,4182,1,3,0)
+ ;;=3^Simple repair Face/Mucous; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,4183,0)
+ ;;=12013^^20^251^2^^^^1
+ ;;^UTILITY(U,$J,358.3,4183,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4183,1,2,0)
+ ;;=2^12013
+ ;;^UTILITY(U,$J,358.3,4183,1,3,0)
+ ;;=3^Simple repair Face/Mucous; 2.6 cm to 5.0 cm
+ ;;^UTILITY(U,$J,358.3,4184,0)
+ ;;=12014^^20^251^3^^^^1
+ ;;^UTILITY(U,$J,358.3,4184,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4184,1,2,0)
+ ;;=2^12014
+ ;;^UTILITY(U,$J,358.3,4184,1,3,0)
+ ;;=3^Simple repair Face/Mucous; 5.1 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,4185,0)
+ ;;=12015^^20^251^4^^^^1
+ ;;^UTILITY(U,$J,358.3,4185,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,4185,1,2,0)
+ ;;=2^12015
+ ;;^UTILITY(U,$J,358.3,4185,1,3,0)
+ ;;=3^Simple repair Face/Mucous; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,4186,0)
+ ;;=12016^^20^251^5^^^^1
+ ;;^UTILITY(U,$J,358.3,4186,1,0)
+ ;;=^358.31IA^3^2

@@ -1,142 +1,138 @@
-IBDEI03L ; ; 19-NOV-2015
+IBDEI03L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,967,1,0)
+ ;;^UTILITY(U,$J,358.3,1251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,967,1,3,0)
- ;;=3^Bursitis NEC,Unspec Site
- ;;^UTILITY(U,$J,358.3,967,1,4,0)
- ;;=4^M71.50
- ;;^UTILITY(U,$J,358.3,967,2)
- ;;=^5013190
- ;;^UTILITY(U,$J,358.3,968,0)
- ;;=D75.89^^12^120^4
- ;;^UTILITY(U,$J,358.3,968,1,0)
+ ;;^UTILITY(U,$J,358.3,1251,1,3,0)
+ ;;=3^Right Ear Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,1251,1,4,0)
+ ;;=4^H93.91
+ ;;^UTILITY(U,$J,358.3,1251,2)
+ ;;=^5006996
+ ;;^UTILITY(U,$J,358.3,1252,0)
+ ;;=H81.313^^8^128^1
+ ;;^UTILITY(U,$J,358.3,1252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,968,1,3,0)
- ;;=3^Blood & Blood-Forming Organ Diseases,Oth Spec
- ;;^UTILITY(U,$J,358.3,968,1,4,0)
- ;;=4^D75.89
- ;;^UTILITY(U,$J,358.3,968,2)
- ;;=^5002392
- ;;^UTILITY(U,$J,358.3,969,0)
- ;;=K63.5^^12^121^16
- ;;^UTILITY(U,$J,358.3,969,1,0)
+ ;;^UTILITY(U,$J,358.3,1252,1,3,0)
+ ;;=3^Aural vertigo, bilateral
+ ;;^UTILITY(U,$J,358.3,1252,1,4,0)
+ ;;=4^H81.313
+ ;;^UTILITY(U,$J,358.3,1252,2)
+ ;;=^5006874
+ ;;^UTILITY(U,$J,358.3,1253,0)
+ ;;=H81.312^^8^128^2
+ ;;^UTILITY(U,$J,358.3,1253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,969,1,3,0)
- ;;=3^Colon Polyp
- ;;^UTILITY(U,$J,358.3,969,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,969,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,970,0)
- ;;=G56.01^^12^121^7
- ;;^UTILITY(U,$J,358.3,970,1,0)
+ ;;^UTILITY(U,$J,358.3,1253,1,3,0)
+ ;;=3^Aural vertigo, left ear
+ ;;^UTILITY(U,$J,358.3,1253,1,4,0)
+ ;;=4^H81.312
+ ;;^UTILITY(U,$J,358.3,1253,2)
+ ;;=^5006873
+ ;;^UTILITY(U,$J,358.3,1254,0)
+ ;;=H81.311^^8^128^3
+ ;;^UTILITY(U,$J,358.3,1254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,970,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,970,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,970,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,971,0)
- ;;=G56.02^^12^121^6
- ;;^UTILITY(U,$J,358.3,971,1,0)
+ ;;^UTILITY(U,$J,358.3,1254,1,3,0)
+ ;;=3^Aural vertigo, right ear
+ ;;^UTILITY(U,$J,358.3,1254,1,4,0)
+ ;;=4^H81.311
+ ;;^UTILITY(U,$J,358.3,1254,2)
+ ;;=^5006872
+ ;;^UTILITY(U,$J,358.3,1255,0)
+ ;;=H81.13^^8^128^4
+ ;;^UTILITY(U,$J,358.3,1255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,971,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,971,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,971,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,972,0)
- ;;=H26.9^^12^121^8
- ;;^UTILITY(U,$J,358.3,972,1,0)
+ ;;^UTILITY(U,$J,358.3,1255,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, bilateral
+ ;;^UTILITY(U,$J,358.3,1255,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,1255,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,1256,0)
+ ;;=H81.12^^8^128^5
+ ;;^UTILITY(U,$J,358.3,1256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,972,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,972,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,972,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,973,0)
- ;;=I42.8^^12^121^5
- ;;^UTILITY(U,$J,358.3,973,1,0)
+ ;;^UTILITY(U,$J,358.3,1256,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, left ear
+ ;;^UTILITY(U,$J,358.3,1256,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,1256,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,1257,0)
+ ;;=H81.11^^8^128^6
+ ;;^UTILITY(U,$J,358.3,1257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,973,1,3,0)
- ;;=3^Cardiomyopathies,Other
- ;;^UTILITY(U,$J,358.3,973,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,973,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,974,0)
- ;;=I50.9^^12^121^1
- ;;^UTILITY(U,$J,358.3,974,1,0)
+ ;;^UTILITY(U,$J,358.3,1257,1,3,0)
+ ;;=3^Benign paroxysmal vertigo, right ear
+ ;;^UTILITY(U,$J,358.3,1257,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,1257,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,1258,0)
+ ;;=R42.^^8^128^11
+ ;;^UTILITY(U,$J,358.3,1258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,974,1,3,0)
- ;;=3^CHF
- ;;^UTILITY(U,$J,358.3,974,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,974,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,975,0)
- ;;=I69.91^^12^121^15
- ;;^UTILITY(U,$J,358.3,975,1,0)
+ ;;^UTILITY(U,$J,358.3,1258,1,3,0)
+ ;;=3^Dizziness and giddiness
+ ;;^UTILITY(U,$J,358.3,1258,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,1258,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,1259,0)
+ ;;=H81.03^^8^128^12
+ ;;^UTILITY(U,$J,358.3,1259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,975,1,3,0)
- ;;=3^Cognitive Deficits Following Unspec Cerebrovascular Disease
- ;;^UTILITY(U,$J,358.3,975,1,4,0)
- ;;=4^I69.91
- ;;^UTILITY(U,$J,358.3,975,2)
- ;;=^5007552
- ;;^UTILITY(U,$J,358.3,976,0)
- ;;=J44.9^^12^121^2
- ;;^UTILITY(U,$J,358.3,976,1,0)
+ ;;^UTILITY(U,$J,358.3,1259,1,3,0)
+ ;;=3^Meniere's disease, bilateral
+ ;;^UTILITY(U,$J,358.3,1259,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,1259,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,1260,0)
+ ;;=H81.02^^8^128^13
+ ;;^UTILITY(U,$J,358.3,1260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,976,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,976,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,976,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,977,0)
- ;;=K59.09^^12^121^17
- ;;^UTILITY(U,$J,358.3,977,1,0)
+ ;;^UTILITY(U,$J,358.3,1260,1,3,0)
+ ;;=3^Meniere's disease, left ear
+ ;;^UTILITY(U,$J,358.3,1260,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,1260,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,1261,0)
+ ;;=H81.01^^8^128^14
+ ;;^UTILITY(U,$J,358.3,1261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,977,1,3,0)
- ;;=3^Constipation,Other
- ;;^UTILITY(U,$J,358.3,977,1,4,0)
- ;;=4^K59.09
- ;;^UTILITY(U,$J,358.3,977,2)
- ;;=^323540
- ;;^UTILITY(U,$J,358.3,978,0)
- ;;=K74.60^^12^121^14
- ;;^UTILITY(U,$J,358.3,978,1,0)
+ ;;^UTILITY(U,$J,358.3,1261,1,3,0)
+ ;;=3^Meniere's disease, right ear
+ ;;^UTILITY(U,$J,358.3,1261,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,1261,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,1262,0)
+ ;;=H81.393^^8^128^15
+ ;;^UTILITY(U,$J,358.3,1262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,978,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,978,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,978,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,979,0)
- ;;=K80.20^^12^121^3
- ;;^UTILITY(U,$J,358.3,979,1,0)
+ ;;^UTILITY(U,$J,358.3,1262,1,3,0)
+ ;;=3^Peripheral vertigo, bilateral NEC
+ ;;^UTILITY(U,$J,358.3,1262,1,4,0)
+ ;;=4^H81.393
+ ;;^UTILITY(U,$J,358.3,1262,2)
+ ;;=^5006878
+ ;;^UTILITY(U,$J,358.3,1263,0)
+ ;;=H81.392^^8^128^16
+ ;;^UTILITY(U,$J,358.3,1263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,979,1,3,0)
- ;;=3^Calculus of Gallbladder w/o Cholecystitis w/o Obstruction
- ;;^UTILITY(U,$J,358.3,979,1,4,0)
- ;;=4^K80.20
- ;;^UTILITY(U,$J,358.3,979,2)
- ;;=^5008846
- ;;^UTILITY(U,$J,358.3,980,0)
- ;;=L03.90^^12^121^11
- ;;^UTILITY(U,$J,358.3,980,1,0)
+ ;;^UTILITY(U,$J,358.3,1263,1,3,0)
+ ;;=3^Peripheral vertigo, left ear NEC
+ ;;^UTILITY(U,$J,358.3,1263,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,1263,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,1264,0)
+ ;;=H81.391^^8^128^17
+ ;;^UTILITY(U,$J,358.3,1264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,980,1,3,0)
- ;;=3^Cellulitis,Unspec
- ;;^UTILITY(U,$J,358.3,980,1,4,0)
- ;;=4^L03.90
- ;;^UTILITY(U,$J,358.3,980,2)
- ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,1264,1,3,0)
+ ;;=3^Peripheral vertigo, right ear NEC

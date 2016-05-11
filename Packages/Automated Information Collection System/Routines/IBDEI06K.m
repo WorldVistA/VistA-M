@@ -1,136 +1,142 @@
-IBDEI06K ; ; 19-NOV-2015
+IBDEI06K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2471,0)
- ;;=I87.2^^19^203^96
- ;;^UTILITY(U,$J,358.3,2471,1,0)
+ ;;^UTILITY(U,$J,358.3,2744,1,3,0)
+ ;;=3^Eosinophilia
+ ;;^UTILITY(U,$J,358.3,2744,1,4,0)
+ ;;=4^D72.1
+ ;;^UTILITY(U,$J,358.3,2744,2)
+ ;;=^41173
+ ;;^UTILITY(U,$J,358.3,2745,0)
+ ;;=R73.09^^18^207^31
+ ;;^UTILITY(U,$J,358.3,2745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2471,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,2471,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,2471,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,2472,0)
- ;;=I82.0^^19^203^51
- ;;^UTILITY(U,$J,358.3,2472,1,0)
+ ;;^UTILITY(U,$J,358.3,2745,1,3,0)
+ ;;=3^Glucose,Abnormal (HgbA1c)
+ ;;^UTILITY(U,$J,358.3,2745,1,4,0)
+ ;;=4^R73.09
+ ;;^UTILITY(U,$J,358.3,2745,2)
+ ;;=^5019563
+ ;;^UTILITY(U,$J,358.3,2746,0)
+ ;;=R58.^^18^207^32
+ ;;^UTILITY(U,$J,358.3,2746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2472,1,3,0)
- ;;=3^Budd-Chiari Syndrome
- ;;^UTILITY(U,$J,358.3,2472,1,4,0)
- ;;=4^I82.0
- ;;^UTILITY(U,$J,358.3,2472,2)
- ;;=^5007846
- ;;^UTILITY(U,$J,358.3,2473,0)
- ;;=I82.1^^19^203^92
- ;;^UTILITY(U,$J,358.3,2473,1,0)
+ ;;^UTILITY(U,$J,358.3,2746,1,3,0)
+ ;;=3^Hemorrhage NEC
+ ;;^UTILITY(U,$J,358.3,2746,1,4,0)
+ ;;=4^R58.
+ ;;^UTILITY(U,$J,358.3,2746,2)
+ ;;=^5019528
+ ;;^UTILITY(U,$J,358.3,2747,0)
+ ;;=E88.09^^18^207^33
+ ;;^UTILITY(U,$J,358.3,2747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2473,1,3,0)
- ;;=3^Thrombophlebitis Migrans
- ;;^UTILITY(U,$J,358.3,2473,1,4,0)
- ;;=4^I82.1
- ;;^UTILITY(U,$J,358.3,2473,2)
- ;;=^5007847
- ;;^UTILITY(U,$J,358.3,2474,0)
- ;;=I82.3^^19^203^69
- ;;^UTILITY(U,$J,358.3,2474,1,0)
+ ;;^UTILITY(U,$J,358.3,2747,1,3,0)
+ ;;=3^Hypoalbuminemia NEC
+ ;;^UTILITY(U,$J,358.3,2747,1,4,0)
+ ;;=4^E88.09
+ ;;^UTILITY(U,$J,358.3,2747,2)
+ ;;=^5003027
+ ;;^UTILITY(U,$J,358.3,2748,0)
+ ;;=D70.9^^18^207^34
+ ;;^UTILITY(U,$J,358.3,2748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2474,1,3,0)
- ;;=3^Embolism/Thrombosis of Renal Vein
- ;;^UTILITY(U,$J,358.3,2474,1,4,0)
- ;;=4^I82.3
- ;;^UTILITY(U,$J,358.3,2474,2)
- ;;=^269818
- ;;^UTILITY(U,$J,358.3,2475,0)
- ;;=I87.1^^19^203^95
- ;;^UTILITY(U,$J,358.3,2475,1,0)
+ ;;^UTILITY(U,$J,358.3,2748,1,3,0)
+ ;;=3^Neutropenia,Unspec
+ ;;^UTILITY(U,$J,358.3,2748,1,4,0)
+ ;;=4^D70.9
+ ;;^UTILITY(U,$J,358.3,2748,2)
+ ;;=^334186
+ ;;^UTILITY(U,$J,358.3,2749,0)
+ ;;=D72.819^^18^207^35
+ ;;^UTILITY(U,$J,358.3,2749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2475,1,3,0)
- ;;=3^Vein Compression
- ;;^UTILITY(U,$J,358.3,2475,1,4,0)
- ;;=4^I87.1
- ;;^UTILITY(U,$J,358.3,2475,2)
- ;;=^269850
- ;;^UTILITY(U,$J,358.3,2476,0)
- ;;=T82.818A^^19^203^65
- ;;^UTILITY(U,$J,358.3,2476,1,0)
+ ;;^UTILITY(U,$J,358.3,2749,1,3,0)
+ ;;=3^White Blood Cell Count,Decreased,Unspec
+ ;;^UTILITY(U,$J,358.3,2749,1,4,0)
+ ;;=4^D72.819
+ ;;^UTILITY(U,$J,358.3,2749,2)
+ ;;=^5002376
+ ;;^UTILITY(U,$J,358.3,2750,0)
+ ;;=D72.829^^18^207^36
+ ;;^UTILITY(U,$J,358.3,2750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2476,1,3,0)
- ;;=3^Embolism of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2476,1,4,0)
- ;;=4^T82.818A
- ;;^UTILITY(U,$J,358.3,2476,2)
- ;;=^5054917
- ;;^UTILITY(U,$J,358.3,2477,0)
- ;;=T82.828A^^19^203^74
- ;;^UTILITY(U,$J,358.3,2477,1,0)
+ ;;^UTILITY(U,$J,358.3,2750,1,3,0)
+ ;;=3^White Blood Cell Count,Elevated,Unspec
+ ;;^UTILITY(U,$J,358.3,2750,1,4,0)
+ ;;=4^D72.829
+ ;;^UTILITY(U,$J,358.3,2750,2)
+ ;;=^5002379
+ ;;^UTILITY(U,$J,358.3,2751,0)
+ ;;=D72.9^^18^207^37
+ ;;^UTILITY(U,$J,358.3,2751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2477,1,3,0)
- ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2477,1,4,0)
- ;;=4^T82.828A
- ;;^UTILITY(U,$J,358.3,2477,2)
- ;;=^5054923
- ;;^UTILITY(U,$J,358.3,2478,0)
- ;;=T82.868A^^19^203^93
- ;;^UTILITY(U,$J,358.3,2478,1,0)
+ ;;^UTILITY(U,$J,358.3,2751,1,3,0)
+ ;;=3^White Blood Cells Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2751,1,4,0)
+ ;;=4^D72.9
+ ;;^UTILITY(U,$J,358.3,2751,2)
+ ;;=^5002381
+ ;;^UTILITY(U,$J,358.3,2752,0)
+ ;;=L02.91^^18^208^1
+ ;;^UTILITY(U,$J,358.3,2752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2478,1,3,0)
- ;;=3^Thrombosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2478,1,4,0)
- ;;=4^T82.868A
- ;;^UTILITY(U,$J,358.3,2478,2)
- ;;=^5054947
- ;;^UTILITY(U,$J,358.3,2479,0)
- ;;=I08.0^^19^204^5
- ;;^UTILITY(U,$J,358.3,2479,1,0)
+ ;;^UTILITY(U,$J,358.3,2752,1,3,0)
+ ;;=3^Abcess,Cutaneous,Unspec
+ ;;^UTILITY(U,$J,358.3,2752,1,4,0)
+ ;;=4^L02.91
+ ;;^UTILITY(U,$J,358.3,2752,2)
+ ;;=^5009016
+ ;;^UTILITY(U,$J,358.3,2753,0)
+ ;;=L11.9^^18^208^2
+ ;;^UTILITY(U,$J,358.3,2753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2479,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral and Aortic Valves
- ;;^UTILITY(U,$J,358.3,2479,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,2479,2)
- ;;=^5007052
- ;;^UTILITY(U,$J,358.3,2480,0)
- ;;=I05.0^^19^204^8
- ;;^UTILITY(U,$J,358.3,2480,1,0)
+ ;;^UTILITY(U,$J,358.3,2753,1,3,0)
+ ;;=3^Acantholytic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2753,1,4,0)
+ ;;=4^L11.9
+ ;;^UTILITY(U,$J,358.3,2753,2)
+ ;;=^5009094
+ ;;^UTILITY(U,$J,358.3,2754,0)
+ ;;=L83.^^18^208^3
+ ;;^UTILITY(U,$J,358.3,2754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2480,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,2480,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,2480,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,2481,0)
- ;;=I05.1^^19^204^7
- ;;^UTILITY(U,$J,358.3,2481,1,0)
+ ;;^UTILITY(U,$J,358.3,2754,1,3,0)
+ ;;=3^Acanthosis Nigricans
+ ;;^UTILITY(U,$J,358.3,2754,1,4,0)
+ ;;=4^L83.
+ ;;^UTILITY(U,$J,358.3,2754,2)
+ ;;=^1451
+ ;;^UTILITY(U,$J,358.3,2755,0)
+ ;;=L70.9^^18^208^4
+ ;;^UTILITY(U,$J,358.3,2755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2481,1,3,0)
- ;;=3^Rheumatic Mitral Insufficiency
- ;;^UTILITY(U,$J,358.3,2481,1,4,0)
- ;;=4^I05.1
- ;;^UTILITY(U,$J,358.3,2481,2)
- ;;=^269568
- ;;^UTILITY(U,$J,358.3,2482,0)
- ;;=I05.2^^19^204^9
- ;;^UTILITY(U,$J,358.3,2482,1,0)
+ ;;^UTILITY(U,$J,358.3,2755,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,2755,1,4,0)
+ ;;=4^L70.9
+ ;;^UTILITY(U,$J,358.3,2755,2)
+ ;;=^5009273
+ ;;^UTILITY(U,$J,358.3,2756,0)
+ ;;=L57.0^^18^208^5
+ ;;^UTILITY(U,$J,358.3,2756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2482,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,2482,1,4,0)
- ;;=4^I05.2
- ;;^UTILITY(U,$J,358.3,2482,2)
- ;;=^5007042
- ;;^UTILITY(U,$J,358.3,2483,0)
- ;;=I05.8^^19^204^10
- ;;^UTILITY(U,$J,358.3,2483,1,0)
+ ;;^UTILITY(U,$J,358.3,2756,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,2756,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,2756,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,2757,0)
+ ;;=N65.0^^18^208^16
+ ;;^UTILITY(U,$J,358.3,2757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2483,1,3,0)
- ;;=3^Rheumatic Mitral Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,2483,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,2483,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,2484,0)
- ;;=I06.0^^19^204^2
+ ;;^UTILITY(U,$J,358.3,2757,1,3,0)
+ ;;=3^Breast,Reconstructed Deformity
+ ;;^UTILITY(U,$J,358.3,2757,1,4,0)
+ ;;=4^N65.0
+ ;;^UTILITY(U,$J,358.3,2757,2)
+ ;;=^5015800
+ ;;^UTILITY(U,$J,358.3,2758,0)
+ ;;=N64.9^^18^208^9

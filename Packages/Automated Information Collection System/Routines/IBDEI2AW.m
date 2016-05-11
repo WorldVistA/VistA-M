@@ -1,124 +1,138 @@
-IBDEI2AW ; ; 19-NOV-2015
+IBDEI2AW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38646,1,3,0)
- ;;=3^Spinal enthesopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,38646,1,4,0)
- ;;=4^M46.04
- ;;^UTILITY(U,$J,358.3,38646,2)
- ;;=^5011974
- ;;^UTILITY(U,$J,358.3,38647,0)
- ;;=M48.9^^180^1980^46
- ;;^UTILITY(U,$J,358.3,38647,1,0)
+ ;;^UTILITY(U,$J,358.3,39032,0)
+ ;;=C44.219^^151^1912^5
+ ;;^UTILITY(U,$J,358.3,39032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38647,1,3,0)
- ;;=3^Spondylopathy, unspecified
- ;;^UTILITY(U,$J,358.3,38647,1,4,0)
- ;;=4^M48.9
- ;;^UTILITY(U,$J,358.3,38647,2)
- ;;=^5012204
- ;;^UTILITY(U,$J,358.3,38648,0)
- ;;=M47.812^^180^1980^47
- ;;^UTILITY(U,$J,358.3,38648,1,0)
+ ;;^UTILITY(U,$J,358.3,39032,1,3,0)
+ ;;=3^BCC Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,39032,1,4,0)
+ ;;=4^C44.219
+ ;;^UTILITY(U,$J,358.3,39032,2)
+ ;;=^5001033
+ ;;^UTILITY(U,$J,358.3,39033,0)
+ ;;=C44.310^^151^1912^4
+ ;;^UTILITY(U,$J,358.3,39033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38648,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, cervical region
- ;;^UTILITY(U,$J,358.3,38648,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,38648,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,38649,0)
- ;;=M47.816^^180^1980^48
- ;;^UTILITY(U,$J,358.3,38649,1,0)
+ ;;^UTILITY(U,$J,358.3,39033,1,3,0)
+ ;;=3^BCC Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,39033,1,4,0)
+ ;;=4^C44.310
+ ;;^UTILITY(U,$J,358.3,39033,2)
+ ;;=^5001043
+ ;;^UTILITY(U,$J,358.3,39034,0)
+ ;;=C44.311^^151^1912^9
+ ;;^UTILITY(U,$J,358.3,39034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38649,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,38649,1,4,0)
- ;;=4^M47.816
- ;;^UTILITY(U,$J,358.3,38649,2)
- ;;=^5012073
- ;;^UTILITY(U,$J,358.3,38650,0)
- ;;=M47.817^^180^1980^49
- ;;^UTILITY(U,$J,358.3,38650,1,0)
+ ;;^UTILITY(U,$J,358.3,39034,1,3,0)
+ ;;=3^BCC Skin Nose
+ ;;^UTILITY(U,$J,358.3,39034,1,4,0)
+ ;;=4^C44.311
+ ;;^UTILITY(U,$J,358.3,39034,2)
+ ;;=^5001044
+ ;;^UTILITY(U,$J,358.3,39035,0)
+ ;;=C44.41^^151^1912^14
+ ;;^UTILITY(U,$J,358.3,39035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38650,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, lumbosacr region
- ;;^UTILITY(U,$J,358.3,38650,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,38650,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,38651,0)
- ;;=M47.811^^180^1980^50
- ;;^UTILITY(U,$J,358.3,38651,1,0)
+ ;;^UTILITY(U,$J,358.3,39035,1,3,0)
+ ;;=3^BCC Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,39035,1,4,0)
+ ;;=4^C44.41
+ ;;^UTILITY(U,$J,358.3,39035,2)
+ ;;=^340476
+ ;;^UTILITY(U,$J,358.3,39036,0)
+ ;;=C44.510^^151^1912^2
+ ;;^UTILITY(U,$J,358.3,39036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38651,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, occipt-atlan-ax rgn
- ;;^UTILITY(U,$J,358.3,38651,1,4,0)
- ;;=4^M47.811
- ;;^UTILITY(U,$J,358.3,38651,2)
- ;;=^5012068
- ;;^UTILITY(U,$J,358.3,38652,0)
- ;;=M47.818^^180^1980^51
- ;;^UTILITY(U,$J,358.3,38652,1,0)
+ ;;^UTILITY(U,$J,358.3,39036,1,3,0)
+ ;;=3^BCC Skin Anal Skin
+ ;;^UTILITY(U,$J,358.3,39036,1,4,0)
+ ;;=4^C44.510
+ ;;^UTILITY(U,$J,358.3,39036,2)
+ ;;=^5001054
+ ;;^UTILITY(U,$J,358.3,39037,0)
+ ;;=C44.511^^151^1912^3
+ ;;^UTILITY(U,$J,358.3,39037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38652,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, sacr/sacrocygl rgn
- ;;^UTILITY(U,$J,358.3,38652,1,4,0)
- ;;=4^M47.818
- ;;^UTILITY(U,$J,358.3,38652,2)
- ;;=^5012075
- ;;^UTILITY(U,$J,358.3,38653,0)
- ;;=M47.814^^180^1980^52
- ;;^UTILITY(U,$J,358.3,38653,1,0)
+ ;;^UTILITY(U,$J,358.3,39037,1,3,0)
+ ;;=3^BCC Skin Breast
+ ;;^UTILITY(U,$J,358.3,39037,1,4,0)
+ ;;=4^C44.511
+ ;;^UTILITY(U,$J,358.3,39037,2)
+ ;;=^5001055
+ ;;^UTILITY(U,$J,358.3,39038,0)
+ ;;=C44.519^^151^1912^15
+ ;;^UTILITY(U,$J,358.3,39038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38653,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,38653,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,38653,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,38654,0)
- ;;=M47.815^^180^1980^53
- ;;^UTILITY(U,$J,358.3,38654,1,0)
+ ;;^UTILITY(U,$J,358.3,39038,1,3,0)
+ ;;=3^BCC Skin Trunk 
+ ;;^UTILITY(U,$J,358.3,39038,1,4,0)
+ ;;=4^C44.519
+ ;;^UTILITY(U,$J,358.3,39038,2)
+ ;;=^5001056
+ ;;^UTILITY(U,$J,358.3,39039,0)
+ ;;=C44.619^^151^1912^8
+ ;;^UTILITY(U,$J,358.3,39039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38654,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, thoracolum region
- ;;^UTILITY(U,$J,358.3,38654,1,4,0)
- ;;=4^M47.815
- ;;^UTILITY(U,$J,358.3,38654,2)
- ;;=^5012072
- ;;^UTILITY(U,$J,358.3,38655,0)
- ;;=M47.813^^180^1980^54
- ;;^UTILITY(U,$J,358.3,38655,1,0)
+ ;;^UTILITY(U,$J,358.3,39039,1,3,0)
+ ;;=3^BCC Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,39039,1,4,0)
+ ;;=4^C44.619
+ ;;^UTILITY(U,$J,358.3,39039,2)
+ ;;=^5001068
+ ;;^UTILITY(U,$J,358.3,39040,0)
+ ;;=C44.712^^151^1912^13
+ ;;^UTILITY(U,$J,358.3,39040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38655,1,3,0)
- ;;=3^Spondyls w/o myelopathy or radiculopathy, cervicothor region
- ;;^UTILITY(U,$J,358.3,38655,1,4,0)
- ;;=4^M47.813
- ;;^UTILITY(U,$J,358.3,38655,2)
- ;;=^5012070
- ;;^UTILITY(U,$J,358.3,38656,0)
- ;;=M48.32^^180^1980^55
- ;;^UTILITY(U,$J,358.3,38656,1,0)
+ ;;^UTILITY(U,$J,358.3,39040,1,3,0)
+ ;;=3^BCC Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,39040,1,4,0)
+ ;;=4^C44.712
+ ;;^UTILITY(U,$J,358.3,39040,2)
+ ;;=^5001079
+ ;;^UTILITY(U,$J,358.3,39041,0)
+ ;;=C44.719^^151^1912^7
+ ;;^UTILITY(U,$J,358.3,39041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38656,1,3,0)
- ;;=3^Traumatic spondylopathy, cervical region
- ;;^UTILITY(U,$J,358.3,38656,1,4,0)
- ;;=4^M48.32
- ;;^UTILITY(U,$J,358.3,38656,2)
- ;;=^5012116
- ;;^UTILITY(U,$J,358.3,38657,0)
- ;;=M48.36^^180^1980^57
- ;;^UTILITY(U,$J,358.3,38657,1,0)
+ ;;^UTILITY(U,$J,358.3,39041,1,3,0)
+ ;;=3^BCC Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,39041,1,4,0)
+ ;;=4^C44.719
+ ;;^UTILITY(U,$J,358.3,39041,2)
+ ;;=^5001080
+ ;;^UTILITY(U,$J,358.3,39042,0)
+ ;;=C44.619^^151^1912^1
+ ;;^UTILITY(U,$J,358.3,39042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38657,1,3,0)
- ;;=3^Traumatic spondylopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,38657,1,4,0)
- ;;=4^M48.36
- ;;^UTILITY(U,$J,358.3,38657,2)
- ;;=^5012120
- ;;^UTILITY(U,$J,358.3,38658,0)
- ;;=M48.37^^180^1980^58
- ;;^UTILITY(U,$J,358.3,38658,1,0)
+ ;;^UTILITY(U,$J,358.3,39042,1,3,0)
+ ;;=3^BCC Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,39042,1,4,0)
+ ;;=4^C44.619
+ ;;^UTILITY(U,$J,358.3,39042,2)
+ ;;=^5001068
+ ;;^UTILITY(U,$J,358.3,39043,0)
+ ;;=C44.81^^151^1912^10
+ ;;^UTILITY(U,$J,358.3,39043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39043,1,3,0)
+ ;;=3^BCC Skin Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,39043,1,4,0)
+ ;;=4^C44.81
+ ;;^UTILITY(U,$J,358.3,39043,2)
+ ;;=^5001088
+ ;;^UTILITY(U,$J,358.3,39044,0)
+ ;;=L13.9^^151^1912^34
+ ;;^UTILITY(U,$J,358.3,39044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39044,1,3,0)
+ ;;=3^Bullous Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,39044,1,4,0)
+ ;;=4^L13.9
+ ;;^UTILITY(U,$J,358.3,39044,2)
+ ;;=^5009105
+ ;;^UTILITY(U,$J,358.3,39045,0)
+ ;;=M35.2^^151^1912^18
+ ;;^UTILITY(U,$J,358.3,39045,1,0)
  ;;=^358.31IA^4^2

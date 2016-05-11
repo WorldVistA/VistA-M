@@ -1,132 +1,136 @@
-IBDEI0TD ; ; 19-NOV-2015
+IBDEI0TD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13507,1,4,0)
- ;;=4^C44.109
- ;;^UTILITY(U,$J,358.3,13507,2)
- ;;=^5001018
- ;;^UTILITY(U,$J,358.3,13508,0)
- ;;=C44.102^^80^761^67
- ;;^UTILITY(U,$J,358.3,13508,1,0)
+ ;;^UTILITY(U,$J,358.3,13771,1,4,0)
+ ;;=4^N70.92
+ ;;^UTILITY(U,$J,358.3,13771,2)
+ ;;=^5015807
+ ;;^UTILITY(U,$J,358.3,13772,0)
+ ;;=N73.9^^53^595^37
+ ;;^UTILITY(U,$J,358.3,13772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13508,1,3,0)
- ;;=3^Malig Neop Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,13508,1,4,0)
- ;;=4^C44.102
- ;;^UTILITY(U,$J,358.3,13508,2)
- ;;=^5001017
- ;;^UTILITY(U,$J,358.3,13509,0)
- ;;=H02.125^^80^761^69
- ;;^UTILITY(U,$J,358.3,13509,1,0)
+ ;;^UTILITY(U,$J,358.3,13772,1,3,0)
+ ;;=3^Inflammatory Disease Female Pelvic,Unspec
+ ;;^UTILITY(U,$J,358.3,13772,1,4,0)
+ ;;=4^N73.9
+ ;;^UTILITY(U,$J,358.3,13772,2)
+ ;;=^5015820
+ ;;^UTILITY(U,$J,358.3,13773,0)
+ ;;=A56.11^^53^595^36
+ ;;^UTILITY(U,$J,358.3,13773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13509,1,3,0)
- ;;=3^Mechanical Ectropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,13509,1,4,0)
- ;;=4^H02.125
- ;;^UTILITY(U,$J,358.3,13509,2)
- ;;=^5133412
- ;;^UTILITY(U,$J,358.3,13510,0)
- ;;=H02.124^^80^761^70
- ;;^UTILITY(U,$J,358.3,13510,1,0)
+ ;;^UTILITY(U,$J,358.3,13773,1,3,0)
+ ;;=3^Inflammatory Disease Chlamydial Female Pelvic
+ ;;^UTILITY(U,$J,358.3,13773,1,4,0)
+ ;;=4^A56.11
+ ;;^UTILITY(U,$J,358.3,13773,2)
+ ;;=^5000342
+ ;;^UTILITY(U,$J,358.3,13774,0)
+ ;;=N73.5^^53^595^64
+ ;;^UTILITY(U,$J,358.3,13774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13510,1,3,0)
- ;;=3^Mechanical Ectropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,13510,1,4,0)
- ;;=4^H02.124
- ;;^UTILITY(U,$J,358.3,13510,2)
- ;;=^5004315
- ;;^UTILITY(U,$J,358.3,13511,0)
- ;;=H02.121^^80^761^72
- ;;^UTILITY(U,$J,358.3,13511,1,0)
+ ;;^UTILITY(U,$J,358.3,13774,1,3,0)
+ ;;=3^Peritonitis Female Pelvic,Unspec
+ ;;^UTILITY(U,$J,358.3,13774,1,4,0)
+ ;;=4^N73.5
+ ;;^UTILITY(U,$J,358.3,13774,2)
+ ;;=^5015817
+ ;;^UTILITY(U,$J,358.3,13775,0)
+ ;;=N72.^^53^595^35
+ ;;^UTILITY(U,$J,358.3,13775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13511,1,3,0)
- ;;=3^Mechanical Ectropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,13511,1,4,0)
- ;;=4^H02.121
- ;;^UTILITY(U,$J,358.3,13511,2)
- ;;=^5004312
- ;;^UTILITY(U,$J,358.3,13512,0)
- ;;=H02.122^^80^761^71
- ;;^UTILITY(U,$J,358.3,13512,1,0)
+ ;;^UTILITY(U,$J,358.3,13775,1,3,0)
+ ;;=3^Inflammatory Disease Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,13775,1,4,0)
+ ;;=4^N72.
+ ;;^UTILITY(U,$J,358.3,13775,2)
+ ;;=^5015812
+ ;;^UTILITY(U,$J,358.3,13776,0)
+ ;;=N76.3^^53^595^92
+ ;;^UTILITY(U,$J,358.3,13776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13512,1,3,0)
- ;;=3^Mechanical Ectropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,13512,1,4,0)
- ;;=4^H02.122
- ;;^UTILITY(U,$J,358.3,13512,2)
- ;;=^5004313
- ;;^UTILITY(U,$J,358.3,13513,0)
- ;;=H02.025^^80^761^73
- ;;^UTILITY(U,$J,358.3,13513,1,0)
+ ;;^UTILITY(U,$J,358.3,13776,1,3,0)
+ ;;=3^Vulvitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,13776,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,13776,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,13777,0)
+ ;;=N76.1^^53^595^88
+ ;;^UTILITY(U,$J,358.3,13777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13513,1,3,0)
- ;;=3^Mechanical Entropion Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,13513,1,4,0)
- ;;=4^H02.025
- ;;^UTILITY(U,$J,358.3,13513,2)
- ;;=^5133399
- ;;^UTILITY(U,$J,358.3,13514,0)
- ;;=H02.024^^80^761^74
- ;;^UTILITY(U,$J,358.3,13514,1,0)
+ ;;^UTILITY(U,$J,358.3,13777,1,3,0)
+ ;;=3^Vaginitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,13777,1,4,0)
+ ;;=4^N76.1
+ ;;^UTILITY(U,$J,358.3,13777,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,13778,0)
+ ;;=N76.2^^53^595^91
+ ;;^UTILITY(U,$J,358.3,13778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13514,1,3,0)
- ;;=3^Mechanical Entropion Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,13514,1,4,0)
- ;;=4^H02.024
- ;;^UTILITY(U,$J,358.3,13514,2)
- ;;=^5004286
- ;;^UTILITY(U,$J,358.3,13515,0)
- ;;=H02.022^^80^761^75
- ;;^UTILITY(U,$J,358.3,13515,1,0)
+ ;;^UTILITY(U,$J,358.3,13778,1,3,0)
+ ;;=3^Vulvitis,Acute
+ ;;^UTILITY(U,$J,358.3,13778,1,4,0)
+ ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,13778,2)
+ ;;=^5015828
+ ;;^UTILITY(U,$J,358.3,13779,0)
+ ;;=N76.0^^53^595^87
+ ;;^UTILITY(U,$J,358.3,13779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13515,1,3,0)
- ;;=3^Mechanical Entropion Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,13515,1,4,0)
- ;;=4^H02.022
- ;;^UTILITY(U,$J,358.3,13515,2)
- ;;=^5004284
- ;;^UTILITY(U,$J,358.3,13516,0)
- ;;=H02.021^^80^761^76
- ;;^UTILITY(U,$J,358.3,13516,1,0)
+ ;;^UTILITY(U,$J,358.3,13779,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,13779,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,13779,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,13780,0)
+ ;;=M00.20^^53^595^3
+ ;;^UTILITY(U,$J,358.3,13780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13516,1,3,0)
- ;;=3^Mechanical Entropion Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,13516,1,4,0)
- ;;=4^H02.021
- ;;^UTILITY(U,$J,358.3,13516,2)
- ;;=^5004283
- ;;^UTILITY(U,$J,358.3,13517,0)
- ;;=S01.152A^^80^761^77
- ;;^UTILITY(U,$J,358.3,13517,1,0)
+ ;;^UTILITY(U,$J,358.3,13780,1,3,0)
+ ;;=3^Arthritis Streptococcal,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,13780,1,4,0)
+ ;;=4^M00.20
+ ;;^UTILITY(U,$J,358.3,13780,2)
+ ;;=^5009645
+ ;;^UTILITY(U,$J,358.3,13781,0)
+ ;;=M00.80^^53^595^4
+ ;;^UTILITY(U,$J,358.3,13781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13517,1,3,0)
- ;;=3^Open Bite Left Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,13517,1,4,0)
- ;;=4^S01.152A
- ;;^UTILITY(U,$J,358.3,13517,2)
- ;;=^5020084
- ;;^UTILITY(U,$J,358.3,13518,0)
- ;;=S01.151A^^80^761^78
- ;;^UTILITY(U,$J,358.3,13518,1,0)
+ ;;^UTILITY(U,$J,358.3,13781,1,3,0)
+ ;;=3^Arthritis d/t Bacteria,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,13781,1,4,0)
+ ;;=4^M00.80
+ ;;^UTILITY(U,$J,358.3,13781,2)
+ ;;=^5009669
+ ;;^UTILITY(U,$J,358.3,13782,0)
+ ;;=M00.9^^53^595^72
+ ;;^UTILITY(U,$J,358.3,13782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13518,1,3,0)
- ;;=3^Open Bite Right Eyelid/Periocular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,13518,1,4,0)
- ;;=4^S01.151A
- ;;^UTILITY(U,$J,358.3,13518,2)
- ;;=^5020081
- ;;^UTILITY(U,$J,358.3,13519,0)
- ;;=C44.199^^80^761^66
- ;;^UTILITY(U,$J,358.3,13519,1,0)
+ ;;^UTILITY(U,$J,358.3,13782,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,13782,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,13782,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,13783,0)
+ ;;=M00.00^^53^595^78
+ ;;^UTILITY(U,$J,358.3,13783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13519,1,3,0)
- ;;=3^Malig Neop Skin Left Eyelid NEC
- ;;^UTILITY(U,$J,358.3,13519,1,4,0)
- ;;=4^C44.199
- ;;^UTILITY(U,$J,358.3,13519,2)
- ;;=^5001027
- ;;^UTILITY(U,$J,358.3,13520,0)
- ;;=C44.192^^80^761^68
- ;;^UTILITY(U,$J,358.3,13520,1,0)
+ ;;^UTILITY(U,$J,358.3,13783,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,13783,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,13783,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,13784,0)
+ ;;=M00.10^^53^595^65
+ ;;^UTILITY(U,$J,358.3,13784,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13784,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,13784,1,4,0)
+ ;;=4^M00.10

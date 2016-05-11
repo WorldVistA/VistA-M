@@ -1,128 +1,140 @@
-IBDEI24C ; ; 19-NOV-2015
+IBDEI24C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35576,1,3,0)
- ;;=3^Late vomiting of pregnancy
- ;;^UTILITY(U,$J,358.3,35576,1,4,0)
- ;;=4^O21.2
- ;;^UTILITY(U,$J,358.3,35576,2)
- ;;=^270873
- ;;^UTILITY(U,$J,358.3,35577,0)
- ;;=O48.0^^166^1823^1
- ;;^UTILITY(U,$J,358.3,35577,1,0)
+ ;;^UTILITY(U,$J,358.3,35931,0)
+ ;;=J94.1^^134^1736^1
+ ;;^UTILITY(U,$J,358.3,35931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35577,1,3,0)
- ;;=3^Post-term pregnancy
- ;;^UTILITY(U,$J,358.3,35577,1,4,0)
- ;;=4^O48.0
- ;;^UTILITY(U,$J,358.3,35577,2)
- ;;=^5017495
- ;;^UTILITY(U,$J,358.3,35578,0)
- ;;=O48.1^^166^1823^2
- ;;^UTILITY(U,$J,358.3,35578,1,0)
+ ;;^UTILITY(U,$J,358.3,35931,1,3,0)
+ ;;=3^Fibrothorax
+ ;;^UTILITY(U,$J,358.3,35931,1,4,0)
+ ;;=4^J94.1
+ ;;^UTILITY(U,$J,358.3,35931,2)
+ ;;=^5008317
+ ;;^UTILITY(U,$J,358.3,35932,0)
+ ;;=C45.0^^134^1736^2
+ ;;^UTILITY(U,$J,358.3,35932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35578,1,3,0)
- ;;=3^Prolonged pregnancy
- ;;^UTILITY(U,$J,358.3,35578,1,4,0)
- ;;=4^O48.1
- ;;^UTILITY(U,$J,358.3,35578,2)
- ;;=^5017496
- ;;^UTILITY(U,$J,358.3,35579,0)
- ;;=O31.03X0^^166^1824^56
- ;;^UTILITY(U,$J,358.3,35579,1,0)
+ ;;^UTILITY(U,$J,358.3,35932,1,3,0)
+ ;;=3^Pleura Mesothelioma
+ ;;^UTILITY(U,$J,358.3,35932,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,35932,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,35933,0)
+ ;;=J94.8^^134^1736^4
+ ;;^UTILITY(U,$J,358.3,35933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35579,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,35579,1,4,0)
- ;;=4^O31.03X0
- ;;^UTILITY(U,$J,358.3,35579,2)
- ;;=^5016523
- ;;^UTILITY(U,$J,358.3,35580,0)
- ;;=O31.03X1^^166^1824^51
- ;;^UTILITY(U,$J,358.3,35580,1,0)
+ ;;^UTILITY(U,$J,358.3,35933,1,3,0)
+ ;;=3^Pleural Conditions NEC
+ ;;^UTILITY(U,$J,358.3,35933,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,35933,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,35934,0)
+ ;;=J94.9^^134^1736^3
+ ;;^UTILITY(U,$J,358.3,35934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35580,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,35580,1,4,0)
- ;;=4^O31.03X1
- ;;^UTILITY(U,$J,358.3,35580,2)
- ;;=^5016524
- ;;^UTILITY(U,$J,358.3,35581,0)
- ;;=O31.03X2^^166^1824^52
- ;;^UTILITY(U,$J,358.3,35581,1,0)
+ ;;^UTILITY(U,$J,358.3,35934,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,35934,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,35934,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,35935,0)
+ ;;=J91.8^^134^1736^6
+ ;;^UTILITY(U,$J,358.3,35935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35581,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,35581,1,4,0)
- ;;=4^O31.03X2
- ;;^UTILITY(U,$J,358.3,35581,2)
- ;;=^5016525
- ;;^UTILITY(U,$J,358.3,35582,0)
- ;;=O31.03X3^^166^1824^53
- ;;^UTILITY(U,$J,358.3,35582,1,0)
+ ;;^UTILITY(U,$J,358.3,35935,1,3,0)
+ ;;=3^Pleural Effusion in Conditions Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,35935,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,35935,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,35936,0)
+ ;;=J90.^^134^1736^5
+ ;;^UTILITY(U,$J,358.3,35936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35582,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,35582,1,4,0)
- ;;=4^O31.03X3
- ;;^UTILITY(U,$J,358.3,35582,2)
- ;;=^5016526
- ;;^UTILITY(U,$J,358.3,35583,0)
- ;;=O31.03X4^^166^1824^54
- ;;^UTILITY(U,$J,358.3,35583,1,0)
+ ;;^UTILITY(U,$J,358.3,35936,1,3,0)
+ ;;=3^Pleural Effusion NEC
+ ;;^UTILITY(U,$J,358.3,35936,1,4,0)
+ ;;=4^J90.
+ ;;^UTILITY(U,$J,358.3,35936,2)
+ ;;=^5008310
+ ;;^UTILITY(U,$J,358.3,35937,0)
+ ;;=J92.0^^134^1736^7
+ ;;^UTILITY(U,$J,358.3,35937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35583,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,35583,1,4,0)
- ;;=4^O31.03X4
- ;;^UTILITY(U,$J,358.3,35583,2)
- ;;=^5016527
- ;;^UTILITY(U,$J,358.3,35584,0)
- ;;=O31.03X5^^166^1824^55
- ;;^UTILITY(U,$J,358.3,35584,1,0)
+ ;;^UTILITY(U,$J,358.3,35937,1,3,0)
+ ;;=3^Pleural Plaque w/ Presence of Asbestos
+ ;;^UTILITY(U,$J,358.3,35937,1,4,0)
+ ;;=4^J92.0
+ ;;^UTILITY(U,$J,358.3,35937,2)
+ ;;=^5008312
+ ;;^UTILITY(U,$J,358.3,35938,0)
+ ;;=J92.9^^134^1736^8
+ ;;^UTILITY(U,$J,358.3,35938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35584,1,3,0)
- ;;=3^Papyraceous fetus, third trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,35584,1,4,0)
- ;;=4^O31.03X5
- ;;^UTILITY(U,$J,358.3,35584,2)
- ;;=^5016528
- ;;^UTILITY(U,$J,358.3,35585,0)
- ;;=O31.02X0^^166^1824^50
- ;;^UTILITY(U,$J,358.3,35585,1,0)
+ ;;^UTILITY(U,$J,358.3,35938,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,35938,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,35938,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,35939,0)
+ ;;=R09.1^^134^1736^9
+ ;;^UTILITY(U,$J,358.3,35939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35585,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,35585,1,4,0)
- ;;=4^O31.02X0
- ;;^UTILITY(U,$J,358.3,35585,2)
- ;;=^5016516
- ;;^UTILITY(U,$J,358.3,35586,0)
- ;;=O31.02X1^^166^1824^45
- ;;^UTILITY(U,$J,358.3,35586,1,0)
+ ;;^UTILITY(U,$J,358.3,35939,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,35939,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,35939,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,35940,0)
+ ;;=J86.0^^134^1736^10
+ ;;^UTILITY(U,$J,358.3,35940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35586,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,35586,1,4,0)
- ;;=4^O31.02X1
- ;;^UTILITY(U,$J,358.3,35586,2)
- ;;=^5016517
- ;;^UTILITY(U,$J,358.3,35587,0)
- ;;=O31.02X2^^166^1824^46
- ;;^UTILITY(U,$J,358.3,35587,1,0)
+ ;;^UTILITY(U,$J,358.3,35940,1,3,0)
+ ;;=3^Pyothorax w/ Fistula
+ ;;^UTILITY(U,$J,358.3,35940,1,4,0)
+ ;;=4^J86.0
+ ;;^UTILITY(U,$J,358.3,35940,2)
+ ;;=^5008308
+ ;;^UTILITY(U,$J,358.3,35941,0)
+ ;;=J86.9^^134^1736^11
+ ;;^UTILITY(U,$J,358.3,35941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35587,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,35587,1,4,0)
- ;;=4^O31.02X2
- ;;^UTILITY(U,$J,358.3,35587,2)
- ;;=^5016518
- ;;^UTILITY(U,$J,358.3,35588,0)
- ;;=O31.02X3^^166^1824^47
- ;;^UTILITY(U,$J,358.3,35588,1,0)
+ ;;^UTILITY(U,$J,358.3,35941,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,35941,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,35941,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,35942,0)
+ ;;=F41.9^^134^1737^2
+ ;;^UTILITY(U,$J,358.3,35942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35588,1,3,0)
- ;;=3^Papyraceous fetus, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,35588,1,4,0)
- ;;=4^O31.02X3
+ ;;^UTILITY(U,$J,358.3,35942,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,35942,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,35942,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,35943,0)
+ ;;=F10.20^^134^1737^1
+ ;;^UTILITY(U,$J,358.3,35943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35943,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35943,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,35943,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,35944,0)
+ ;;=F32.9^^134^1737^4
+ ;;^UTILITY(U,$J,358.3,35944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35944,1,3,0)
+ ;;=3^Major Depressive Disorder,Single Episoide,Unspec

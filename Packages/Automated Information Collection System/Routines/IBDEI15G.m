@@ -1,136 +1,122 @@
-IBDEI15G ; ; 19-NOV-2015
+IBDEI15G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19201,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,19201,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,19202,0)
- ;;=N30.91^^94^918^19
- ;;^UTILITY(U,$J,358.3,19202,1,0)
+ ;;^UTILITY(U,$J,358.3,19557,0)
+ ;;=L97.129^^84^918^200
+ ;;^UTILITY(U,$J,358.3,19557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19202,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,19202,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,19202,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,19203,0)
- ;;=N30.90^^94^918^20
- ;;^UTILITY(U,$J,358.3,19203,1,0)
+ ;;^UTILITY(U,$J,358.3,19557,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19557,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,19557,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,19558,0)
+ ;;=L97.211^^84^918^206
+ ;;^UTILITY(U,$J,358.3,19558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19203,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,19203,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,19203,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,19204,0)
- ;;=N41.9^^94^918^38
- ;;^UTILITY(U,$J,358.3,19204,1,0)
+ ;;^UTILITY(U,$J,358.3,19558,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19558,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,19558,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,19559,0)
+ ;;=L97.212^^84^918^207
+ ;;^UTILITY(U,$J,358.3,19559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19204,1,3,0)
- ;;=3^Inflammatory Disease of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,19204,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,19204,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,19205,0)
- ;;=N70.91^^94^918^75
- ;;^UTILITY(U,$J,358.3,19205,1,0)
+ ;;^UTILITY(U,$J,358.3,19559,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19559,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,19559,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,19560,0)
+ ;;=L97.213^^84^918^208
+ ;;^UTILITY(U,$J,358.3,19560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19205,1,3,0)
- ;;=3^Salpingitis,Unspec
- ;;^UTILITY(U,$J,358.3,19205,1,4,0)
- ;;=4^N70.91
- ;;^UTILITY(U,$J,358.3,19205,2)
- ;;=^5015806
- ;;^UTILITY(U,$J,358.3,19206,0)
- ;;=N70.93^^94^918^74
- ;;^UTILITY(U,$J,358.3,19206,1,0)
+ ;;^UTILITY(U,$J,358.3,19560,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19560,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,19560,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,19561,0)
+ ;;=L97.214^^84^918^209
+ ;;^UTILITY(U,$J,358.3,19561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19206,1,3,0)
- ;;=3^Salpingitis & Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,19206,1,4,0)
- ;;=4^N70.93
- ;;^UTILITY(U,$J,358.3,19206,2)
- ;;=^5015808
- ;;^UTILITY(U,$J,358.3,19207,0)
- ;;=N70.92^^94^918^55
- ;;^UTILITY(U,$J,358.3,19207,1,0)
+ ;;^UTILITY(U,$J,358.3,19561,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19561,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,19561,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,19562,0)
+ ;;=L97.219^^84^918^210
+ ;;^UTILITY(U,$J,358.3,19562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19207,1,3,0)
- ;;=3^Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,19207,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,19207,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,19208,0)
- ;;=N73.9^^94^918^37
- ;;^UTILITY(U,$J,358.3,19208,1,0)
+ ;;^UTILITY(U,$J,358.3,19562,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19562,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,19562,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,19563,0)
+ ;;=L97.221^^84^918^176
+ ;;^UTILITY(U,$J,358.3,19563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19208,1,3,0)
- ;;=3^Inflammatory Disease Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,19208,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,19208,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,19209,0)
- ;;=A56.11^^94^918^36
- ;;^UTILITY(U,$J,358.3,19209,1,0)
+ ;;^UTILITY(U,$J,358.3,19563,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19563,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,19563,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,19564,0)
+ ;;=L97.222^^84^918^177
+ ;;^UTILITY(U,$J,358.3,19564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19209,1,3,0)
- ;;=3^Inflammatory Disease Chlamydial Female Pelvic
- ;;^UTILITY(U,$J,358.3,19209,1,4,0)
- ;;=4^A56.11
- ;;^UTILITY(U,$J,358.3,19209,2)
- ;;=^5000342
- ;;^UTILITY(U,$J,358.3,19210,0)
- ;;=N73.5^^94^918^64
- ;;^UTILITY(U,$J,358.3,19210,1,0)
+ ;;^UTILITY(U,$J,358.3,19564,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19564,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,19564,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,19565,0)
+ ;;=L97.223^^84^918^178
+ ;;^UTILITY(U,$J,358.3,19565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19210,1,3,0)
- ;;=3^Peritonitis Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,19210,1,4,0)
- ;;=4^N73.5
- ;;^UTILITY(U,$J,358.3,19210,2)
- ;;=^5015817
- ;;^UTILITY(U,$J,358.3,19211,0)
- ;;=N72.^^94^918^35
- ;;^UTILITY(U,$J,358.3,19211,1,0)
+ ;;^UTILITY(U,$J,358.3,19565,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19565,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,19565,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,19566,0)
+ ;;=L97.224^^84^918^179
+ ;;^UTILITY(U,$J,358.3,19566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19211,1,3,0)
- ;;=3^Inflammatory Disease Cervix Uteri
- ;;^UTILITY(U,$J,358.3,19211,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,19211,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,19212,0)
- ;;=N76.3^^94^918^92
- ;;^UTILITY(U,$J,358.3,19212,1,0)
+ ;;^UTILITY(U,$J,358.3,19566,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19566,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,19566,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,19567,0)
+ ;;=L97.229^^84^918^180
+ ;;^UTILITY(U,$J,358.3,19567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19212,1,3,0)
- ;;=3^Vulvitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,19212,1,4,0)
- ;;=4^N76.3
- ;;^UTILITY(U,$J,358.3,19212,2)
- ;;=^5015829
- ;;^UTILITY(U,$J,358.3,19213,0)
- ;;=N76.1^^94^918^88
- ;;^UTILITY(U,$J,358.3,19213,1,0)
+ ;;^UTILITY(U,$J,358.3,19567,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19567,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,19567,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,19568,0)
+ ;;=L97.311^^84^918^201
+ ;;^UTILITY(U,$J,358.3,19568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19213,1,3,0)
- ;;=3^Vaginitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,19213,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,19213,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,19214,0)
- ;;=N76.2^^94^918^91
- ;;^UTILITY(U,$J,358.3,19214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19214,1,3,0)
- ;;=3^Vulvitis,Acute
- ;;^UTILITY(U,$J,358.3,19214,1,4,0)
- ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,19568,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19568,1,4,0)
+ ;;=4^L97.311

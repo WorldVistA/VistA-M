@@ -1,132 +1,136 @@
-IBDEI0NH ; ; 19-NOV-2015
+IBDEI0NH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10730,1,4,0)
- ;;=4^C82.60
- ;;^UTILITY(U,$J,358.3,10730,2)
- ;;=^5001521
- ;;^UTILITY(U,$J,358.3,10731,0)
- ;;=D56.2^^68^675^52
- ;;^UTILITY(U,$J,358.3,10731,1,0)
+ ;;^UTILITY(U,$J,358.3,10960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10731,1,3,0)
- ;;=3^Delta-Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,10731,1,4,0)
- ;;=4^D56.2
- ;;^UTILITY(U,$J,358.3,10731,2)
- ;;=^340496
- ;;^UTILITY(U,$J,358.3,10732,0)
- ;;=D75.9^^68^675^53
- ;;^UTILITY(U,$J,358.3,10732,1,0)
+ ;;^UTILITY(U,$J,358.3,10960,1,3,0)
+ ;;=3^Aneurysm of Heart
+ ;;^UTILITY(U,$J,358.3,10960,1,4,0)
+ ;;=4^I25.3
+ ;;^UTILITY(U,$J,358.3,10960,2)
+ ;;=^5007112
+ ;;^UTILITY(U,$J,358.3,10961,0)
+ ;;=I72.9^^47^524^6
+ ;;^UTILITY(U,$J,358.3,10961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10732,1,3,0)
- ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
- ;;^UTILITY(U,$J,358.3,10732,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,10732,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,10733,0)
- ;;=D59.0^^68^675^56
- ;;^UTILITY(U,$J,358.3,10733,1,0)
+ ;;^UTILITY(U,$J,358.3,10961,1,3,0)
+ ;;=3^Aneurysm,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10961,1,4,0)
+ ;;=4^I72.9
+ ;;^UTILITY(U,$J,358.3,10961,2)
+ ;;=^5007795
+ ;;^UTILITY(U,$J,358.3,10962,0)
+ ;;=I71.4^^47^524^1
+ ;;^UTILITY(U,$J,358.3,10962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10733,1,3,0)
- ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,10733,1,4,0)
- ;;=4^D59.0
- ;;^UTILITY(U,$J,358.3,10733,2)
- ;;=^5002323
- ;;^UTILITY(U,$J,358.3,10734,0)
- ;;=D59.2^^68^675^57
- ;;^UTILITY(U,$J,358.3,10734,1,0)
+ ;;^UTILITY(U,$J,358.3,10962,1,3,0)
+ ;;=3^AAA w/o Rupture
+ ;;^UTILITY(U,$J,358.3,10962,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,10962,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,10963,0)
+ ;;=I71.9^^47^524^3
+ ;;^UTILITY(U,$J,358.3,10963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10734,1,3,0)
- ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
- ;;^UTILITY(U,$J,358.3,10734,1,4,0)
- ;;=4^D59.2
- ;;^UTILITY(U,$J,358.3,10734,2)
- ;;=^5002325
- ;;^UTILITY(U,$J,358.3,10735,0)
- ;;=R59.9^^68^675^60
- ;;^UTILITY(U,$J,358.3,10735,1,0)
+ ;;^UTILITY(U,$J,358.3,10963,1,3,0)
+ ;;=3^Aneurysm,Aortic w/o Rupture,Unspec Site
+ ;;^UTILITY(U,$J,358.3,10963,1,4,0)
+ ;;=4^I71.9
+ ;;^UTILITY(U,$J,358.3,10963,2)
+ ;;=^5007792
+ ;;^UTILITY(U,$J,358.3,10964,0)
+ ;;=I71.2^^47^524^4
+ ;;^UTILITY(U,$J,358.3,10964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10735,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Unspec
- ;;^UTILITY(U,$J,358.3,10735,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,10735,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,10736,0)
- ;;=D47.3^^68^675^61
- ;;^UTILITY(U,$J,358.3,10736,1,0)
+ ;;^UTILITY(U,$J,358.3,10964,1,3,0)
+ ;;=3^Aneurysm,Thoracic Aortic w/o Rupture
+ ;;^UTILITY(U,$J,358.3,10964,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,10964,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,10965,0)
+ ;;=I71.6^^47^524^5
+ ;;^UTILITY(U,$J,358.3,10965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10736,1,3,0)
- ;;=3^Essential Thrombocythemia
- ;;^UTILITY(U,$J,358.3,10736,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,10736,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,10737,0)
- ;;=C82.09^^68^675^62
- ;;^UTILITY(U,$J,358.3,10737,1,0)
+ ;;^UTILITY(U,$J,358.3,10965,1,3,0)
+ ;;=3^Aneurysm,Thoracoabdominal Aortic w/o Rupture
+ ;;^UTILITY(U,$J,358.3,10965,1,4,0)
+ ;;=4^I71.6
+ ;;^UTILITY(U,$J,358.3,10965,2)
+ ;;=^5007791
+ ;;^UTILITY(U,$J,358.3,10966,0)
+ ;;=I20.1^^47^524^7
+ ;;^UTILITY(U,$J,358.3,10966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10737,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10737,1,4,0)
- ;;=4^C82.09
- ;;^UTILITY(U,$J,358.3,10737,2)
- ;;=^5001470
- ;;^UTILITY(U,$J,358.3,10738,0)
- ;;=C82.00^^68^675^63
- ;;^UTILITY(U,$J,358.3,10738,1,0)
+ ;;^UTILITY(U,$J,358.3,10966,1,3,0)
+ ;;=3^Angina Pectoris w/ Spasm
+ ;;^UTILITY(U,$J,358.3,10966,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,10966,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,10967,0)
+ ;;=I20.9^^47^524^8
+ ;;^UTILITY(U,$J,358.3,10967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10738,1,3,0)
- ;;=3^Follicular Lymphoma Grade I,Unspec Site
- ;;^UTILITY(U,$J,358.3,10738,1,4,0)
- ;;=4^C82.00
- ;;^UTILITY(U,$J,358.3,10738,2)
- ;;=^5001461
- ;;^UTILITY(U,$J,358.3,10739,0)
- ;;=C82.19^^68^675^64
- ;;^UTILITY(U,$J,358.3,10739,1,0)
+ ;;^UTILITY(U,$J,358.3,10967,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,10967,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,10967,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,10968,0)
+ ;;=I35.1^^47^524^11
+ ;;^UTILITY(U,$J,358.3,10968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10739,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10739,1,4,0)
- ;;=4^C82.19
- ;;^UTILITY(U,$J,358.3,10739,2)
- ;;=^5001480
- ;;^UTILITY(U,$J,358.3,10740,0)
- ;;=C82.10^^68^675^65
- ;;^UTILITY(U,$J,358.3,10740,1,0)
+ ;;^UTILITY(U,$J,358.3,10968,1,3,0)
+ ;;=3^Aortic Valve Insufficiency,Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,10968,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,10968,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,10969,0)
+ ;;=I35.2^^47^524^12
+ ;;^UTILITY(U,$J,358.3,10969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10740,1,3,0)
- ;;=3^Follicular Lymphoma Grade II,Unspec Site
- ;;^UTILITY(U,$J,358.3,10740,1,4,0)
- ;;=4^C82.10
- ;;^UTILITY(U,$J,358.3,10740,2)
- ;;=^5001471
- ;;^UTILITY(U,$J,358.3,10741,0)
- ;;=C82.29^^68^675^66
- ;;^UTILITY(U,$J,358.3,10741,1,0)
+ ;;^UTILITY(U,$J,358.3,10969,1,3,0)
+ ;;=3^Aortic Valve Stenosis w/ Insufficiency,Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,10969,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,10969,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,10970,0)
+ ;;=I35.0^^47^524^13
+ ;;^UTILITY(U,$J,358.3,10970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10741,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10741,1,4,0)
- ;;=4^C82.29
- ;;^UTILITY(U,$J,358.3,10741,2)
- ;;=^5001490
- ;;^UTILITY(U,$J,358.3,10742,0)
- ;;=C82.20^^68^675^67
- ;;^UTILITY(U,$J,358.3,10742,1,0)
+ ;;^UTILITY(U,$J,358.3,10970,1,3,0)
+ ;;=3^Aortic Valve Stenosis,Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,10970,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,10970,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,10971,0)
+ ;;=I35.9^^47^524^10
+ ;;^UTILITY(U,$J,358.3,10971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10742,1,3,0)
- ;;=3^Follicular Lymphoma Grade III,Unspec Site
- ;;^UTILITY(U,$J,358.3,10742,1,4,0)
- ;;=4^C82.20
- ;;^UTILITY(U,$J,358.3,10742,2)
- ;;=^5001481
- ;;^UTILITY(U,$J,358.3,10743,0)
- ;;=C82.39^^68^675^68
- ;;^UTILITY(U,$J,358.3,10743,1,0)
+ ;;^UTILITY(U,$J,358.3,10971,1,3,0)
+ ;;=3^Aortic Valve Disorder,Nonrheumatic,Unspec
+ ;;^UTILITY(U,$J,358.3,10971,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,10971,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,10972,0)
+ ;;=I35.8^^47^524^9
+ ;;^UTILITY(U,$J,358.3,10972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10972,1,3,0)
+ ;;=3^Aortic Valve Disorder,Nonrheumatic,Other
+ ;;^UTILITY(U,$J,358.3,10972,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,10972,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,10973,0)
+ ;;=I77.6^^47^524^14
+ ;;^UTILITY(U,$J,358.3,10973,1,0)
  ;;=^358.31IA^4^2

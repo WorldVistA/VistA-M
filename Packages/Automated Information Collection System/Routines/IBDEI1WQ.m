@@ -1,124 +1,132 @@
-IBDEI1WQ ; ; 19-NOV-2015
+IBDEI1WQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31939,0)
- ;;=A81.00^^141^1478^9
- ;;^UTILITY(U,$J,358.3,31939,1,0)
+ ;;^UTILITY(U,$J,358.3,32361,1,4,0)
+ ;;=4^M84.477K
+ ;;^UTILITY(U,$J,358.3,32361,2)
+ ;;=^5014001
+ ;;^UTILITY(U,$J,358.3,32362,0)
+ ;;=M21.372^^126^1609^166
+ ;;^UTILITY(U,$J,358.3,32362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31939,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,31939,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,31939,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,31940,0)
- ;;=A81.01^^141^1478^38
- ;;^UTILITY(U,$J,358.3,31940,1,0)
+ ;;^UTILITY(U,$J,358.3,32362,1,3,0)
+ ;;=3^Foot Drop,Left Foot
+ ;;^UTILITY(U,$J,358.3,32362,1,4,0)
+ ;;=4^M21.372
+ ;;^UTILITY(U,$J,358.3,32362,2)
+ ;;=^5011111
+ ;;^UTILITY(U,$J,358.3,32363,0)
+ ;;=M25.272^^126^1609^162
+ ;;^UTILITY(U,$J,358.3,32363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31940,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,31940,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,31940,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,31941,0)
- ;;=A81.09^^141^1478^8
- ;;^UTILITY(U,$J,358.3,31941,1,0)
+ ;;^UTILITY(U,$J,358.3,32363,1,3,0)
+ ;;=3^Flail Joint,Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,32363,1,4,0)
+ ;;=4^M25.272
+ ;;^UTILITY(U,$J,358.3,32363,2)
+ ;;=^5011547
+ ;;^UTILITY(U,$J,358.3,32364,0)
+ ;;=M25.271^^126^1609^163
+ ;;^UTILITY(U,$J,358.3,32364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31941,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,31941,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,31941,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,31942,0)
- ;;=A81.2^^141^1478^33
- ;;^UTILITY(U,$J,358.3,31942,1,0)
+ ;;^UTILITY(U,$J,358.3,32364,1,3,0)
+ ;;=3^Flail Joint,Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,32364,1,4,0)
+ ;;=4^M25.271
+ ;;^UTILITY(U,$J,358.3,32364,2)
+ ;;=^5011546
+ ;;^UTILITY(U,$J,358.3,32365,0)
+ ;;=M21.42^^126^1609^164
+ ;;^UTILITY(U,$J,358.3,32365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31942,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,31942,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,31942,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,31943,0)
- ;;=F01.50^^141^1478^31
- ;;^UTILITY(U,$J,358.3,31943,1,0)
+ ;;^UTILITY(U,$J,358.3,32365,1,3,0)
+ ;;=3^Flat Foot,Left Foot
+ ;;^UTILITY(U,$J,358.3,32365,1,4,0)
+ ;;=4^M21.42
+ ;;^UTILITY(U,$J,358.3,32365,2)
+ ;;=^5011115
+ ;;^UTILITY(U,$J,358.3,32366,0)
+ ;;=M21.41^^126^1609^165
+ ;;^UTILITY(U,$J,358.3,32366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31943,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,31943,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,31943,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,31944,0)
- ;;=F01.51^^141^1478^32
- ;;^UTILITY(U,$J,358.3,31944,1,0)
+ ;;^UTILITY(U,$J,358.3,32366,1,3,0)
+ ;;=3^Flat Foot,Right Foot
+ ;;^UTILITY(U,$J,358.3,32366,1,4,0)
+ ;;=4^M21.41
+ ;;^UTILITY(U,$J,358.3,32366,2)
+ ;;=^5011114
+ ;;^UTILITY(U,$J,358.3,32367,0)
+ ;;=S92.341K^^126^1609^74
+ ;;^UTILITY(U,$J,358.3,32367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31944,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,31944,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,31944,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,31945,0)
- ;;=F10.27^^141^1478^1
- ;;^UTILITY(U,$J,358.3,31945,1,0)
+ ;;^UTILITY(U,$J,358.3,32367,1,3,0)
+ ;;=3^Disp fx of 4th metsl bone, r ft, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32367,1,4,0)
+ ;;=4^S92.341K
+ ;;^UTILITY(U,$J,358.3,32367,2)
+ ;;=^5045190
+ ;;^UTILITY(U,$J,358.3,32368,0)
+ ;;=S92.001A^^126^1609^209
+ ;;^UTILITY(U,$J,358.3,32368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31945,1,3,0)
- ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
- ;;^UTILITY(U,$J,358.3,31945,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,31945,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,31946,0)
- ;;=F19.97^^141^1478^37
- ;;^UTILITY(U,$J,358.3,31946,1,0)
+ ;;^UTILITY(U,$J,358.3,32368,1,3,0)
+ ;;=3^Fx of rt calcaneus,init w/ nonunion,unspec
+ ;;^UTILITY(U,$J,358.3,32368,1,4,0)
+ ;;=4^S92.001A
+ ;;^UTILITY(U,$J,358.3,32368,2)
+ ;;=^5044353
+ ;;^UTILITY(U,$J,358.3,32369,0)
+ ;;=S92.314A^^126^1609^287
+ ;;^UTILITY(U,$J,358.3,32369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31946,1,3,0)
- ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
- ;;^UTILITY(U,$J,358.3,31946,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,31946,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,31947,0)
- ;;=F02.80^^141^1478^13
- ;;^UTILITY(U,$J,358.3,31947,1,0)
+ ;;^UTILITY(U,$J,358.3,32369,1,3,0)
+ ;;=3^Nondisp fx of 1st metrsl bone,rt ft,init w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32369,1,4,0)
+ ;;=4^S92.314A
+ ;;^UTILITY(U,$J,358.3,32369,2)
+ ;;=^5045081
+ ;;^UTILITY(U,$J,358.3,32370,0)
+ ;;=M84.572K^^126^1609^393
+ ;;^UTILITY(U,$J,358.3,32370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31947,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
- ;;^UTILITY(U,$J,358.3,31947,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,31947,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,31948,0)
- ;;=F02.81^^141^1478^14
- ;;^UTILITY(U,$J,358.3,31948,1,0)
+ ;;^UTILITY(U,$J,358.3,32370,1,3,0)
+ ;;=3^Path fx in neoplst disease,lft ankl,subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32370,1,4,0)
+ ;;=4^M84.572K
+ ;;^UTILITY(U,$J,358.3,32370,2)
+ ;;=^5014181
+ ;;^UTILITY(U,$J,358.3,32371,0)
+ ;;=M84.68XA^^126^1609^394
+ ;;^UTILITY(U,$J,358.3,32371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31948,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,31948,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,31948,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,31949,0)
- ;;=F06.8^^141^1478^24
- ;;^UTILITY(U,$J,358.3,31949,1,0)
+ ;;^UTILITY(U,$J,358.3,32371,1,3,0)
+ ;;=3^Path fx initial w/ nonunion,oth disease,oth site
+ ;;^UTILITY(U,$J,358.3,32371,1,4,0)
+ ;;=4^M84.68XA
+ ;;^UTILITY(U,$J,358.3,32371,2)
+ ;;=^5134051
+ ;;^UTILITY(U,$J,358.3,32372,0)
+ ;;=M10.071^^126^1610^14
+ ;;^UTILITY(U,$J,358.3,32372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31949,1,3,0)
- ;;=3^Mental Disorder d/t Another Medical Condition NEC
- ;;^UTILITY(U,$J,358.3,31949,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,31949,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,31950,0)
- ;;=G30.9^^141^1478^5
- ;;^UTILITY(U,$J,358.3,31950,1,0)
+ ;;^UTILITY(U,$J,358.3,32372,1,3,0)
+ ;;=3^Gout,Idiopathic Rt Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,32372,1,4,0)
+ ;;=4^M10.071
+ ;;^UTILITY(U,$J,358.3,32372,2)
+ ;;=^5010303
+ ;;^UTILITY(U,$J,358.3,32373,0)
+ ;;=M10.072^^126^1610^13
+ ;;^UTILITY(U,$J,358.3,32373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31950,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,31950,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,31950,2)
- ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,32373,1,3,0)
+ ;;=3^Gout,Idiopathic Lft Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,32373,1,4,0)
+ ;;=4^M10.072
+ ;;^UTILITY(U,$J,358.3,32373,2)
+ ;;=^5010304
+ ;;^UTILITY(U,$J,358.3,32374,0)
+ ;;=M10.272^^126^1610^10
+ ;;^UTILITY(U,$J,358.3,32374,1,0)
+ ;;=^358.31IA^4^2

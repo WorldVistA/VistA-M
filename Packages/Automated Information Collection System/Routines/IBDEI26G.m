@@ -1,136 +1,132 @@
-IBDEI26G ; ; 19-NOV-2015
+IBDEI26G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36559,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36559,1,1,0)
- ;;=1^Comprehensive
- ;;^UTILITY(U,$J,358.3,36559,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,36560,0)
- ;;=99241^^168^1849^1
- ;;^UTILITY(U,$J,358.3,36560,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36560,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,36560,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,36561,0)
- ;;=99242^^168^1849^2
- ;;^UTILITY(U,$J,358.3,36561,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36561,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,36561,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,36562,0)
- ;;=99243^^168^1849^3
- ;;^UTILITY(U,$J,358.3,36562,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36562,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,36562,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,36563,0)
- ;;=99244^^168^1849^4
- ;;^UTILITY(U,$J,358.3,36563,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36563,1,1,0)
- ;;=1^Comprehensive, Moderate
- ;;^UTILITY(U,$J,358.3,36563,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,36564,0)
- ;;=99245^^168^1849^5
- ;;^UTILITY(U,$J,358.3,36564,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,36564,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,36564,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,36565,0)
- ;;=D50.9^^169^1850^30
- ;;^UTILITY(U,$J,358.3,36565,1,0)
+ ;;^UTILITY(U,$J,358.3,36932,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,36933,0)
+ ;;=J45.909^^137^1778^5
+ ;;^UTILITY(U,$J,358.3,36933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36565,1,3,0)
- ;;=3^Iron deficiency anemia, unspecified
- ;;^UTILITY(U,$J,358.3,36565,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,36565,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,36566,0)
- ;;=D51.0^^169^1850^40
- ;;^UTILITY(U,$J,358.3,36566,1,0)
+ ;;^UTILITY(U,$J,358.3,36933,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,36933,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,36933,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,36934,0)
+ ;;=J42.^^137^1778^13
+ ;;^UTILITY(U,$J,358.3,36934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36566,1,3,0)
- ;;=3^Vitamin B12 defic anemia due to intrinsic factor deficiency
- ;;^UTILITY(U,$J,358.3,36566,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,36566,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,36567,0)
- ;;=D53.8^^169^1850^34
- ;;^UTILITY(U,$J,358.3,36567,1,0)
+ ;;^UTILITY(U,$J,358.3,36934,1,3,0)
+ ;;=3^Chr Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36934,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,36934,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,36935,0)
+ ;;=I95.1^^137^1779^1
+ ;;^UTILITY(U,$J,358.3,36935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36567,1,3,0)
- ;;=3^Nutritional Anemias NEC
- ;;^UTILITY(U,$J,358.3,36567,1,4,0)
- ;;=4^D53.8
- ;;^UTILITY(U,$J,358.3,36567,2)
- ;;=^5002297
- ;;^UTILITY(U,$J,358.3,36568,0)
- ;;=D52.0^^169^1850^16
- ;;^UTILITY(U,$J,358.3,36568,1,0)
+ ;;^UTILITY(U,$J,358.3,36935,1,3,0)
+ ;;=3^Orthostatic Hypotension
+ ;;^UTILITY(U,$J,358.3,36935,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,36935,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,36936,0)
+ ;;=I73.9^^137^1779^2
+ ;;^UTILITY(U,$J,358.3,36936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36568,1,3,0)
- ;;=3^Dietary folate deficiency anemia
- ;;^UTILITY(U,$J,358.3,36568,1,4,0)
- ;;=4^D52.0
- ;;^UTILITY(U,$J,358.3,36568,2)
- ;;=^5002290
- ;;^UTILITY(U,$J,358.3,36569,0)
- ;;=D52.1^^169^1850^18
- ;;^UTILITY(U,$J,358.3,36569,1,0)
+ ;;^UTILITY(U,$J,358.3,36936,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,36936,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,36936,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,36937,0)
+ ;;=I80.13^^137^1779^3
+ ;;^UTILITY(U,$J,358.3,36937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36569,1,3,0)
- ;;=3^Drug-induced folate deficiency anemia
- ;;^UTILITY(U,$J,358.3,36569,1,4,0)
- ;;=4^D52.1
- ;;^UTILITY(U,$J,358.3,36569,2)
- ;;=^5002291
- ;;^UTILITY(U,$J,358.3,36570,0)
- ;;=D52.8^^169^1850^22
- ;;^UTILITY(U,$J,358.3,36570,1,0)
+ ;;^UTILITY(U,$J,358.3,36937,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Femoral Vein
+ ;;^UTILITY(U,$J,358.3,36937,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,36937,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,36938,0)
+ ;;=I80.213^^137^1779^4
+ ;;^UTILITY(U,$J,358.3,36938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36570,1,3,0)
- ;;=3^Folate deficiency anemias NEC
- ;;^UTILITY(U,$J,358.3,36570,1,4,0)
- ;;=4^D52.8
- ;;^UTILITY(U,$J,358.3,36570,2)
- ;;=^5002292
- ;;^UTILITY(U,$J,358.3,36571,0)
- ;;=D52.9^^169^1850^21
- ;;^UTILITY(U,$J,358.3,36571,1,0)
+ ;;^UTILITY(U,$J,358.3,36938,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Iliac Vein
+ ;;^UTILITY(U,$J,358.3,36938,1,4,0)
+ ;;=4^I80.213
+ ;;^UTILITY(U,$J,358.3,36938,2)
+ ;;=^5007833
+ ;;^UTILITY(U,$J,358.3,36939,0)
+ ;;=I80.223^^137^1779^7
+ ;;^UTILITY(U,$J,358.3,36939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36571,1,3,0)
- ;;=3^Folate deficiency anemia, unspecified
- ;;^UTILITY(U,$J,358.3,36571,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,36571,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,36572,0)
- ;;=D53.1^^169^1850^31
- ;;^UTILITY(U,$J,358.3,36572,1,0)
+ ;;^UTILITY(U,$J,358.3,36939,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,36939,1,4,0)
+ ;;=4^I80.223
+ ;;^UTILITY(U,$J,358.3,36939,2)
+ ;;=^5007837
+ ;;^UTILITY(U,$J,358.3,36940,0)
+ ;;=I80.233^^137^1779^8
+ ;;^UTILITY(U,$J,358.3,36940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36572,1,3,0)
- ;;=3^Megaloblastic Anemias NEC
- ;;^UTILITY(U,$J,358.3,36572,1,4,0)
- ;;=4^D53.1
- ;;^UTILITY(U,$J,358.3,36572,2)
- ;;=^5002295
- ;;^UTILITY(U,$J,358.3,36573,0)
- ;;=D53.0^^169^1850^38
- ;;^UTILITY(U,$J,358.3,36573,1,0)
+ ;;^UTILITY(U,$J,358.3,36940,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Tibial Vein
+ ;;^UTILITY(U,$J,358.3,36940,1,4,0)
+ ;;=4^I80.233
+ ;;^UTILITY(U,$J,358.3,36940,2)
+ ;;=^5007841
+ ;;^UTILITY(U,$J,358.3,36941,0)
+ ;;=I80.12^^137^1779^9
+ ;;^UTILITY(U,$J,358.3,36941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36573,1,3,0)
- ;;=3^Protein deficiency anemia
+ ;;^UTILITY(U,$J,358.3,36941,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Femoral Vein
+ ;;^UTILITY(U,$J,358.3,36941,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,36941,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,36942,0)
+ ;;=I80.212^^137^1779^10
+ ;;^UTILITY(U,$J,358.3,36942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36942,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Iliac Vein
+ ;;^UTILITY(U,$J,358.3,36942,1,4,0)
+ ;;=4^I80.212
+ ;;^UTILITY(U,$J,358.3,36942,2)
+ ;;=^5007832
+ ;;^UTILITY(U,$J,358.3,36943,0)
+ ;;=I80.222^^137^1779^13
+ ;;^UTILITY(U,$J,358.3,36943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36943,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,36943,1,4,0)
+ ;;=4^I80.222
+ ;;^UTILITY(U,$J,358.3,36943,2)
+ ;;=^5007836
+ ;;^UTILITY(U,$J,358.3,36944,0)
+ ;;=I80.232^^137^1779^14
+ ;;^UTILITY(U,$J,358.3,36944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36944,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Tibial Vein
+ ;;^UTILITY(U,$J,358.3,36944,1,4,0)
+ ;;=4^I80.232
+ ;;^UTILITY(U,$J,358.3,36944,2)
+ ;;=^5007840
+ ;;^UTILITY(U,$J,358.3,36945,0)
+ ;;=I80.293^^137^1779^5
+ ;;^UTILITY(U,$J,358.3,36945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36945,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Deep Vessels

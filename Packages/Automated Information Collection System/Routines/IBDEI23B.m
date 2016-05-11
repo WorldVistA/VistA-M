@@ -1,134 +1,132 @@
-IBDEI23B ; ; 19-NOV-2015
+IBDEI23B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35073,1,4,0)
- ;;=4^L97.219
- ;;^UTILITY(U,$J,358.3,35073,2)
- ;;=^5009504
- ;;^UTILITY(U,$J,358.3,35074,0)
- ;;=L97.229^^163^1789^35
- ;;^UTILITY(U,$J,358.3,35074,1,0)
+ ;;^UTILITY(U,$J,358.3,35455,1,4,0)
+ ;;=4^D19.0
+ ;;^UTILITY(U,$J,358.3,35455,2)
+ ;;=^5002023
+ ;;^UTILITY(U,$J,358.3,35456,0)
+ ;;=D14.31^^134^1721^4
+ ;;^UTILITY(U,$J,358.3,35456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35074,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Calf
- ;;^UTILITY(U,$J,358.3,35074,1,4,0)
- ;;=4^L97.229
- ;;^UTILITY(U,$J,358.3,35074,2)
- ;;=^5009509
- ;;^UTILITY(U,$J,358.3,35075,0)
- ;;=L97.319^^163^1789^40
- ;;^UTILITY(U,$J,358.3,35075,1,0)
+ ;;^UTILITY(U,$J,358.3,35456,1,3,0)
+ ;;=3^Benign Neop Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35456,1,4,0)
+ ;;=4^D14.31
+ ;;^UTILITY(U,$J,358.3,35456,2)
+ ;;=^5001983
+ ;;^UTILITY(U,$J,358.3,35457,0)
+ ;;=D02.22^^134^1721^5
+ ;;^UTILITY(U,$J,358.3,35457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35075,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Ankle
- ;;^UTILITY(U,$J,358.3,35075,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,35075,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,35076,0)
- ;;=L97.329^^163^1789^34
- ;;^UTILITY(U,$J,358.3,35076,1,0)
+ ;;^UTILITY(U,$J,358.3,35457,1,3,0)
+ ;;=3^Carcinoma in Situ Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35457,1,4,0)
+ ;;=4^D02.22
+ ;;^UTILITY(U,$J,358.3,35457,2)
+ ;;=^5001885
+ ;;^UTILITY(U,$J,358.3,35458,0)
+ ;;=D02.21^^134^1721^6
+ ;;^UTILITY(U,$J,358.3,35458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35076,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Ankle
- ;;^UTILITY(U,$J,358.3,35076,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,35076,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,35077,0)
- ;;=L97.419^^163^1789^43
- ;;^UTILITY(U,$J,358.3,35077,1,0)
+ ;;^UTILITY(U,$J,358.3,35458,1,3,0)
+ ;;=3^Carcinoma in Situ Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35458,1,4,0)
+ ;;=4^D02.21
+ ;;^UTILITY(U,$J,358.3,35458,2)
+ ;;=^5001884
+ ;;^UTILITY(U,$J,358.3,35459,0)
+ ;;=R22.2^^134^1721^7
+ ;;^UTILITY(U,$J,358.3,35459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35077,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Heel & Midfoot
- ;;^UTILITY(U,$J,358.3,35077,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,35077,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,35078,0)
- ;;=L97.429^^163^1789^37
- ;;^UTILITY(U,$J,358.3,35078,1,0)
+ ;;^UTILITY(U,$J,358.3,35459,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,35459,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,35459,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,35460,0)
+ ;;=C7A.090^^134^1721^8
+ ;;^UTILITY(U,$J,358.3,35460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35078,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Heel & Midfoot
- ;;^UTILITY(U,$J,358.3,35078,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,35078,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,35079,0)
- ;;=L97.519^^163^1789^42
- ;;^UTILITY(U,$J,358.3,35079,1,0)
+ ;;^UTILITY(U,$J,358.3,35460,1,3,0)
+ ;;=3^Malig Carcinoid Tumor Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35460,1,4,0)
+ ;;=4^C7A.090
+ ;;^UTILITY(U,$J,358.3,35460,2)
+ ;;=^5001371
+ ;;^UTILITY(U,$J,358.3,35461,0)
+ ;;=C34.02^^134^1721^11
+ ;;^UTILITY(U,$J,358.3,35461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35079,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Right Foot,Other Part
- ;;^UTILITY(U,$J,358.3,35079,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,35079,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,35080,0)
- ;;=L97.529^^163^1789^36
- ;;^UTILITY(U,$J,358.3,35080,1,0)
+ ;;^UTILITY(U,$J,358.3,35461,1,3,0)
+ ;;=3^Malig Neop Left Main Bronchus
+ ;;^UTILITY(U,$J,358.3,35461,1,4,0)
+ ;;=4^C34.02
+ ;;^UTILITY(U,$J,358.3,35461,2)
+ ;;=^5000959
+ ;;^UTILITY(U,$J,358.3,35462,0)
+ ;;=C34.32^^134^1721^10
+ ;;^UTILITY(U,$J,358.3,35462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35080,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Left Foot,Other Part
- ;;^UTILITY(U,$J,358.3,35080,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,35080,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,35081,0)
- ;;=L02.01^^163^1789^6
- ;;^UTILITY(U,$J,358.3,35081,1,0)
+ ;;^UTILITY(U,$J,358.3,35462,1,3,0)
+ ;;=3^Malig Neop Left Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35462,1,4,0)
+ ;;=4^C34.32
+ ;;^UTILITY(U,$J,358.3,35462,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,35463,0)
+ ;;=C34.31^^134^1721^19
+ ;;^UTILITY(U,$J,358.3,35463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35081,1,3,0)
- ;;=3^Abscess of Neck
- ;;^UTILITY(U,$J,358.3,35081,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,35081,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,35082,0)
- ;;=L02.12^^163^1789^28
- ;;^UTILITY(U,$J,358.3,35082,1,0)
+ ;;^UTILITY(U,$J,358.3,35463,1,3,0)
+ ;;=3^Malig Neop Right Lower Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35463,1,4,0)
+ ;;=4^C34.31
+ ;;^UTILITY(U,$J,358.3,35463,2)
+ ;;=^5133321
+ ;;^UTILITY(U,$J,358.3,35464,0)
+ ;;=C39.9^^134^1721^13
+ ;;^UTILITY(U,$J,358.3,35464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35082,1,3,0)
- ;;=3^Furuncle of Neck
- ;;^UTILITY(U,$J,358.3,35082,1,4,0)
- ;;=4^L02.12
- ;;^UTILITY(U,$J,358.3,35082,2)
- ;;=^5008948
- ;;^UTILITY(U,$J,358.3,35083,0)
- ;;=L02.13^^163^1789^11
- ;;^UTILITY(U,$J,358.3,35083,1,0)
+ ;;^UTILITY(U,$J,358.3,35464,1,3,0)
+ ;;=3^Malig Neop Lower Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,35464,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,35464,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,35465,0)
+ ;;=C34.2^^134^1721^14
+ ;;^UTILITY(U,$J,358.3,35465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35083,1,3,0)
- ;;=3^Carbuncle of Neck
- ;;^UTILITY(U,$J,358.3,35083,1,4,0)
- ;;=4^L02.13
- ;;^UTILITY(U,$J,358.3,35083,2)
- ;;=^5008949
- ;;^UTILITY(U,$J,358.3,35084,0)
- ;;=L02.211^^163^1789^1
- ;;^UTILITY(U,$J,358.3,35084,1,0)
+ ;;^UTILITY(U,$J,358.3,35465,1,3,0)
+ ;;=3^Malig Neop Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35465,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,35465,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,35466,0)
+ ;;=C34.82^^134^1721^15
+ ;;^UTILITY(U,$J,358.3,35466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35084,1,3,0)
- ;;=3^Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,35084,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,35084,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,35085,0)
- ;;=L02.212^^163^1789^2
- ;;^UTILITY(U,$J,358.3,35085,1,0)
+ ;;^UTILITY(U,$J,358.3,35466,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35466,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,35466,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,35467,0)
+ ;;=C34.81^^134^1721^16
+ ;;^UTILITY(U,$J,358.3,35467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35085,1,3,0)
- ;;=3^Abscess of Back (except Buttock)
- ;;^UTILITY(U,$J,358.3,35085,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,35085,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,35086,0)
- ;;=L02.213^^163^1789^4
- ;;^UTILITY(U,$J,358.3,35086,1,0)
+ ;;^UTILITY(U,$J,358.3,35467,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,35467,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,35467,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,35468,0)
+ ;;=C38.4^^134^1721^17
+ ;;^UTILITY(U,$J,358.3,35468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35086,1,3,0)
- ;;=3^Abscess of Chest Wall

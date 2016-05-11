@@ -1,126 +1,134 @@
-IBDEI2AX ; ; 19-NOV-2015
+IBDEI2AX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38658,1,3,0)
- ;;=3^Traumatic spondylopathy, lumbosacral region
- ;;^UTILITY(U,$J,358.3,38658,1,4,0)
- ;;=4^M48.37
- ;;^UTILITY(U,$J,358.3,38658,2)
- ;;=^5012121
- ;;^UTILITY(U,$J,358.3,38659,0)
- ;;=M48.31^^180^1980^59
- ;;^UTILITY(U,$J,358.3,38659,1,0)
+ ;;^UTILITY(U,$J,358.3,39045,1,3,0)
+ ;;=3^Behcet's Disease
+ ;;^UTILITY(U,$J,358.3,39045,1,4,0)
+ ;;=4^M35.2
+ ;;^UTILITY(U,$J,358.3,39045,2)
+ ;;=^263705
+ ;;^UTILITY(U,$J,358.3,39046,0)
+ ;;=D23.0^^151^1912^26
+ ;;^UTILITY(U,$J,358.3,39046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38659,1,3,0)
- ;;=3^Traumatic spondylopathy, occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,38659,1,4,0)
- ;;=4^M48.31
- ;;^UTILITY(U,$J,358.3,38659,2)
- ;;=^5012115
- ;;^UTILITY(U,$J,358.3,38660,0)
- ;;=M48.38^^180^1980^60
- ;;^UTILITY(U,$J,358.3,38660,1,0)
+ ;;^UTILITY(U,$J,358.3,39046,1,3,0)
+ ;;=3^Benign Neop Skin Lip
+ ;;^UTILITY(U,$J,358.3,39046,1,4,0)
+ ;;=4^D23.0
+ ;;^UTILITY(U,$J,358.3,39046,2)
+ ;;=^5002059
+ ;;^UTILITY(U,$J,358.3,39047,0)
+ ;;=D23.11^^151^1912^28
+ ;;^UTILITY(U,$J,358.3,39047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38660,1,3,0)
- ;;=3^Traumatic spondylopathy, sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,38660,1,4,0)
- ;;=4^M48.38
- ;;^UTILITY(U,$J,358.3,38660,2)
- ;;=^5012122
- ;;^UTILITY(U,$J,358.3,38661,0)
- ;;=M48.35^^180^1980^62
- ;;^UTILITY(U,$J,358.3,38661,1,0)
+ ;;^UTILITY(U,$J,358.3,39047,1,3,0)
+ ;;=3^Benign Neop Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,39047,1,4,0)
+ ;;=4^D23.11
+ ;;^UTILITY(U,$J,358.3,39047,2)
+ ;;=^5002061
+ ;;^UTILITY(U,$J,358.3,39048,0)
+ ;;=D23.12^^151^1912^23
+ ;;^UTILITY(U,$J,358.3,39048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38661,1,3,0)
- ;;=3^Traumatic spondylopathy, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,38661,1,4,0)
- ;;=4^M48.35
- ;;^UTILITY(U,$J,358.3,38661,2)
- ;;=^5012119
- ;;^UTILITY(U,$J,358.3,38662,0)
- ;;=M48.33^^180^1980^56
- ;;^UTILITY(U,$J,358.3,38662,1,0)
+ ;;^UTILITY(U,$J,358.3,39048,1,3,0)
+ ;;=3^Benign Neop Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,39048,1,4,0)
+ ;;=4^D23.12
+ ;;^UTILITY(U,$J,358.3,39048,2)
+ ;;=^5002062
+ ;;^UTILITY(U,$J,358.3,39049,0)
+ ;;=D23.21^^151^1912^27
+ ;;^UTILITY(U,$J,358.3,39049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38662,1,3,0)
- ;;=3^Traumatic spondylopathy, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,38662,1,4,0)
- ;;=4^M48.33
- ;;^UTILITY(U,$J,358.3,38662,2)
- ;;=^5012117
- ;;^UTILITY(U,$J,358.3,38663,0)
- ;;=M48.34^^180^1980^61
- ;;^UTILITY(U,$J,358.3,38663,1,0)
+ ;;^UTILITY(U,$J,358.3,39049,1,3,0)
+ ;;=3^Benign Neop Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,39049,1,4,0)
+ ;;=4^D23.21
+ ;;^UTILITY(U,$J,358.3,39049,2)
+ ;;=^5002064
+ ;;^UTILITY(U,$J,358.3,39050,0)
+ ;;=D23.22^^151^1912^22
+ ;;^UTILITY(U,$J,358.3,39050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38663,1,3,0)
- ;;=3^Traumatic spondylopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,38663,1,4,0)
- ;;=4^M48.34
- ;;^UTILITY(U,$J,358.3,38663,2)
- ;;=^5012118
- ;;^UTILITY(U,$J,358.3,38664,0)
- ;;=R47.01^^180^1981^1
- ;;^UTILITY(U,$J,358.3,38664,1,0)
+ ;;^UTILITY(U,$J,358.3,39050,1,3,0)
+ ;;=3^Benign Neop Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,39050,1,4,0)
+ ;;=4^D23.22
+ ;;^UTILITY(U,$J,358.3,39050,2)
+ ;;=^5002065
+ ;;^UTILITY(U,$J,358.3,39051,0)
+ ;;=D23.30^^151^1912^21
+ ;;^UTILITY(U,$J,358.3,39051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38664,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,38664,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,38664,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,38665,0)
- ;;=I69.920^^180^1981^2
- ;;^UTILITY(U,$J,358.3,38665,1,0)
+ ;;^UTILITY(U,$J,358.3,39051,1,3,0)
+ ;;=3^Benign Neop Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,39051,1,4,0)
+ ;;=4^D23.30
+ ;;^UTILITY(U,$J,358.3,39051,2)
+ ;;=^5002066
+ ;;^UTILITY(U,$J,358.3,39052,0)
+ ;;=D23.39^^151^1912^20
+ ;;^UTILITY(U,$J,358.3,39052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38665,1,3,0)
- ;;=3^Aphasia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,38665,1,4,0)
- ;;=4^I69.920
- ;;^UTILITY(U,$J,358.3,38665,2)
- ;;=^5007553
- ;;^UTILITY(U,$J,358.3,38666,0)
- ;;=I69.91^^180^1981^3
- ;;^UTILITY(U,$J,358.3,38666,1,0)
+ ;;^UTILITY(U,$J,358.3,39052,1,3,0)
+ ;;=3^Benign Neop Skin Face NEC
+ ;;^UTILITY(U,$J,358.3,39052,1,4,0)
+ ;;=4^D23.39
+ ;;^UTILITY(U,$J,358.3,39052,2)
+ ;;=^5002067
+ ;;^UTILITY(U,$J,358.3,39053,0)
+ ;;=D23.5^^151^1912^32
+ ;;^UTILITY(U,$J,358.3,39053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38666,1,3,0)
- ;;=3^Cognitive deficits following unsp cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,38666,1,4,0)
- ;;=4^I69.91
- ;;^UTILITY(U,$J,358.3,38666,2)
- ;;=^5007552
- ;;^UTILITY(U,$J,358.3,38667,0)
- ;;=I69.991^^180^1981^5
- ;;^UTILITY(U,$J,358.3,38667,1,0)
+ ;;^UTILITY(U,$J,358.3,39053,1,3,0)
+ ;;=3^Benign Neop Skin Trunk
+ ;;^UTILITY(U,$J,358.3,39053,1,4,0)
+ ;;=4^D23.5
+ ;;^UTILITY(U,$J,358.3,39053,2)
+ ;;=^5002069
+ ;;^UTILITY(U,$J,358.3,39054,0)
+ ;;=D23.62^^151^1912^25
+ ;;^UTILITY(U,$J,358.3,39054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38667,1,3,0)
- ;;=3^Dysphagia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,38667,1,4,0)
- ;;=4^I69.991
- ;;^UTILITY(U,$J,358.3,38667,2)
- ;;=^5007569
- ;;^UTILITY(U,$J,358.3,38668,0)
- ;;=G11.1^^180^1981^6
- ;;^UTILITY(U,$J,358.3,38668,1,0)
+ ;;^UTILITY(U,$J,358.3,39054,1,3,0)
+ ;;=3^Benign Neop Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,39054,1,4,0)
+ ;;=4^D23.62
+ ;;^UTILITY(U,$J,358.3,39054,2)
+ ;;=^5002072
+ ;;^UTILITY(U,$J,358.3,39055,0)
+ ;;=D23.61^^151^1912^30
+ ;;^UTILITY(U,$J,358.3,39055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38668,1,3,0)
- ;;=3^Early-onset cerebellar ataxia
- ;;^UTILITY(U,$J,358.3,38668,1,4,0)
- ;;=4^G11.1
- ;;^UTILITY(U,$J,358.3,38668,2)
- ;;=^5003753
- ;;^UTILITY(U,$J,358.3,38669,0)
- ;;=I69.952^^180^1981^11
- ;;^UTILITY(U,$J,358.3,38669,1,0)
+ ;;^UTILITY(U,$J,358.3,39055,1,3,0)
+ ;;=3^Benign Neop Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,39055,1,4,0)
+ ;;=4^D23.61
+ ;;^UTILITY(U,$J,358.3,39055,2)
+ ;;=^5002071
+ ;;^UTILITY(U,$J,358.3,39056,0)
+ ;;=D23.71^^151^1912^29
+ ;;^UTILITY(U,$J,358.3,39056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38669,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff left dominant side
- ;;^UTILITY(U,$J,358.3,38669,1,4,0)
- ;;=4^I69.952
- ;;^UTILITY(U,$J,358.3,38669,2)
- ;;=^5133586
- ;;^UTILITY(U,$J,358.3,38670,0)
- ;;=I69.954^^180^1981^12
- ;;^UTILITY(U,$J,358.3,38670,1,0)
+ ;;^UTILITY(U,$J,358.3,39056,1,3,0)
+ ;;=3^Benign Neop Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,39056,1,4,0)
+ ;;=4^D23.71
+ ;;^UTILITY(U,$J,358.3,39056,2)
+ ;;=^5002074
+ ;;^UTILITY(U,$J,358.3,39057,0)
+ ;;=D23.72^^151^1912^24
+ ;;^UTILITY(U,$J,358.3,39057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38670,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff left nondom side
+ ;;^UTILITY(U,$J,358.3,39057,1,3,0)
+ ;;=3^Benign Neop Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,39057,1,4,0)
+ ;;=4^D23.72
+ ;;^UTILITY(U,$J,358.3,39057,2)
+ ;;=^5002075
+ ;;^UTILITY(U,$J,358.3,39058,0)
+ ;;=L60.4^^151^1912^17
+ ;;^UTILITY(U,$J,358.3,39058,1,0)
+ ;;=^358.31IA^4^2

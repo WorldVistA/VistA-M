@@ -1,132 +1,138 @@
-IBDEI085 ; ; 19-NOV-2015
+IBDEI085 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3252,0)
- ;;=Z98.62^^28^249^58
- ;;^UTILITY(U,$J,358.3,3252,1,0)
+ ;;^UTILITY(U,$J,358.3,3513,0)
+ ;;=G12.21^^18^220^4
+ ;;^UTILITY(U,$J,358.3,3513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3252,1,3,0)
- ;;=3^Postprocedural State,Peripheral Vascular Angioplasty
- ;;^UTILITY(U,$J,358.3,3252,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,3252,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,3253,0)
- ;;=Z95.810^^28^249^59
- ;;^UTILITY(U,$J,358.3,3253,1,0)
+ ;;^UTILITY(U,$J,358.3,3513,1,3,0)
+ ;;=3^Amyotrophic Lateral Sclerosis
+ ;;^UTILITY(U,$J,358.3,3513,1,4,0)
+ ;;=4^G12.21
+ ;;^UTILITY(U,$J,358.3,3513,2)
+ ;;=^6639
+ ;;^UTILITY(U,$J,358.3,3514,0)
+ ;;=R47.01^^18^220^5
+ ;;^UTILITY(U,$J,358.3,3514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3253,1,3,0)
- ;;=3^Presence of Automatic Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,3253,1,4,0)
- ;;=4^Z95.810
- ;;^UTILITY(U,$J,358.3,3253,2)
- ;;=^5063674
- ;;^UTILITY(U,$J,358.3,3254,0)
- ;;=Z95.5^^28^249^62
- ;;^UTILITY(U,$J,358.3,3254,1,0)
+ ;;^UTILITY(U,$J,358.3,3514,1,3,0)
+ ;;=3^Aphasia
+ ;;^UTILITY(U,$J,358.3,3514,1,4,0)
+ ;;=4^R47.01
+ ;;^UTILITY(U,$J,358.3,3514,2)
+ ;;=^5019488
+ ;;^UTILITY(U,$J,358.3,3515,0)
+ ;;=G11.9^^18^220^6
+ ;;^UTILITY(U,$J,358.3,3515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3254,1,3,0)
- ;;=3^Presence of Coronary Angioplasty Implant & Graft
- ;;^UTILITY(U,$J,358.3,3254,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,3254,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,3255,0)
- ;;=Z95.811^^28^249^64
- ;;^UTILITY(U,$J,358.3,3255,1,0)
+ ;;^UTILITY(U,$J,358.3,3515,1,3,0)
+ ;;=3^Ataxia,Hereditary,Unspec
+ ;;^UTILITY(U,$J,358.3,3515,1,4,0)
+ ;;=4^G11.9
+ ;;^UTILITY(U,$J,358.3,3515,2)
+ ;;=^5003758
+ ;;^UTILITY(U,$J,358.3,3516,0)
+ ;;=G90.4^^18^220^7
+ ;;^UTILITY(U,$J,358.3,3516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3255,1,3,0)
- ;;=3^Presence of Heart Assist Device
- ;;^UTILITY(U,$J,358.3,3255,1,4,0)
- ;;=4^Z95.811
- ;;^UTILITY(U,$J,358.3,3255,2)
- ;;=^5063675
- ;;^UTILITY(U,$J,358.3,3256,0)
- ;;=Z95.812^^28^249^63
- ;;^UTILITY(U,$J,358.3,3256,1,0)
+ ;;^UTILITY(U,$J,358.3,3516,1,3,0)
+ ;;=3^Autonomic Dysreflexia
+ ;;^UTILITY(U,$J,358.3,3516,1,4,0)
+ ;;=4^G90.4
+ ;;^UTILITY(U,$J,358.3,3516,2)
+ ;;=^321175
+ ;;^UTILITY(U,$J,358.3,3517,0)
+ ;;=G90.9^^18^220^8
+ ;;^UTILITY(U,$J,358.3,3517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3256,1,3,0)
- ;;=3^Presence of Fully Implantable Artificial Heart
- ;;^UTILITY(U,$J,358.3,3256,1,4,0)
- ;;=4^Z95.812
- ;;^UTILITY(U,$J,358.3,3256,2)
- ;;=^5063676
- ;;^UTILITY(U,$J,358.3,3257,0)
- ;;=Z95.818^^28^249^60
- ;;^UTILITY(U,$J,358.3,3257,1,0)
+ ;;^UTILITY(U,$J,358.3,3517,1,3,0)
+ ;;=3^Autonomic Nervous System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3517,1,4,0)
+ ;;=4^G90.9
+ ;;^UTILITY(U,$J,358.3,3517,2)
+ ;;=^5004173
+ ;;^UTILITY(U,$J,358.3,3518,0)
+ ;;=G93.9^^18^220^9
+ ;;^UTILITY(U,$J,358.3,3518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3257,1,3,0)
- ;;=3^Presence of Cardiac Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,3257,1,4,0)
- ;;=4^Z95.818
- ;;^UTILITY(U,$J,358.3,3257,2)
- ;;=^5063677
- ;;^UTILITY(U,$J,358.3,3258,0)
- ;;=Z95.820^^28^249^65
- ;;^UTILITY(U,$J,358.3,3258,1,0)
+ ;;^UTILITY(U,$J,358.3,3518,1,3,0)
+ ;;=3^Brain Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3518,1,4,0)
+ ;;=4^G93.9
+ ;;^UTILITY(U,$J,358.3,3518,2)
+ ;;=^5004186
+ ;;^UTILITY(U,$J,358.3,3519,0)
+ ;;=G45.1^^18^220^10
+ ;;^UTILITY(U,$J,358.3,3519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3258,1,3,0)
- ;;=3^Presence of Peripheral Vasc Angioplasty w/ Implants & Grafts
- ;;^UTILITY(U,$J,358.3,3258,1,4,0)
- ;;=4^Z95.820
- ;;^UTILITY(U,$J,358.3,3258,2)
- ;;=^5063678
- ;;^UTILITY(U,$J,358.3,3259,0)
- ;;=Z95.828^^28^249^67
- ;;^UTILITY(U,$J,358.3,3259,1,0)
+ ;;^UTILITY(U,$J,358.3,3519,1,3,0)
+ ;;=3^Carotid Artery Syndrome
+ ;;^UTILITY(U,$J,358.3,3519,1,4,0)
+ ;;=4^G45.1
+ ;;^UTILITY(U,$J,358.3,3519,2)
+ ;;=^5003956
+ ;;^UTILITY(U,$J,358.3,3520,0)
+ ;;=G90.01^^18^220^11
+ ;;^UTILITY(U,$J,358.3,3520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3259,1,3,0)
- ;;=3^Presence of Vascular Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,3259,1,4,0)
- ;;=4^Z95.828
- ;;^UTILITY(U,$J,358.3,3259,2)
- ;;=^5063679
- ;;^UTILITY(U,$J,358.3,3260,0)
- ;;=Z95.2^^28^249^66
- ;;^UTILITY(U,$J,358.3,3260,1,0)
+ ;;^UTILITY(U,$J,358.3,3520,1,3,0)
+ ;;=3^Carotid Sinus Syncope
+ ;;^UTILITY(U,$J,358.3,3520,1,4,0)
+ ;;=4^G90.01
+ ;;^UTILITY(U,$J,358.3,3520,2)
+ ;;=^5004160
+ ;;^UTILITY(U,$J,358.3,3521,0)
+ ;;=G37.9^^18^220^12
+ ;;^UTILITY(U,$J,358.3,3521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3260,1,3,0)
- ;;=3^Presence of Prostetic Heart Valve
- ;;^UTILITY(U,$J,358.3,3260,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,3260,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,3261,0)
- ;;=Z95.3^^28^249^68
- ;;^UTILITY(U,$J,358.3,3261,1,0)
+ ;;^UTILITY(U,$J,358.3,3521,1,3,0)
+ ;;=3^Central Nervous System Demyelinating Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3521,1,4,0)
+ ;;=4^G37.9
+ ;;^UTILITY(U,$J,358.3,3521,2)
+ ;;=^5003828
+ ;;^UTILITY(U,$J,358.3,3522,0)
+ ;;=G96.9^^18^220^13
+ ;;^UTILITY(U,$J,358.3,3522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3261,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,3261,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,3261,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,3262,0)
- ;;=I27.9^^28^249^69
- ;;^UTILITY(U,$J,358.3,3262,1,0)
+ ;;^UTILITY(U,$J,358.3,3522,1,3,0)
+ ;;=3^Central Nervous System Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3522,1,4,0)
+ ;;=4^G96.9
+ ;;^UTILITY(U,$J,358.3,3522,2)
+ ;;=^5004200
+ ;;^UTILITY(U,$J,358.3,3523,0)
+ ;;=I63.50^^18^220^14
+ ;;^UTILITY(U,$J,358.3,3523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3262,1,3,0)
- ;;=3^Pulmonary Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,3262,1,4,0)
- ;;=4^I27.9
- ;;^UTILITY(U,$J,358.3,3262,2)
- ;;=^5007154
- ;;^UTILITY(U,$J,358.3,3263,0)
- ;;=I27.0^^28^249^70
- ;;^UTILITY(U,$J,358.3,3263,1,0)
+ ;;^UTILITY(U,$J,358.3,3523,1,3,0)
+ ;;=3^Cereb infrc due to unsp occls or stenos of unsp cereb artery
+ ;;^UTILITY(U,$J,358.3,3523,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,3523,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,3524,0)
+ ;;=I67.89^^18^220^36
+ ;;^UTILITY(U,$J,358.3,3524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3263,1,3,0)
- ;;=3^Pulmonary Hypertension,Primary
- ;;^UTILITY(U,$J,358.3,3263,1,4,0)
- ;;=4^I27.0
- ;;^UTILITY(U,$J,358.3,3263,2)
- ;;=^265310
- ;;^UTILITY(U,$J,358.3,3264,0)
- ;;=I73.00^^28^249^71
- ;;^UTILITY(U,$J,358.3,3264,1,0)
+ ;;^UTILITY(U,$J,358.3,3524,1,3,0)
+ ;;=3^Cerebrovascular Disease,Other
+ ;;^UTILITY(U,$J,358.3,3524,1,4,0)
+ ;;=4^I67.89
+ ;;^UTILITY(U,$J,358.3,3524,2)
+ ;;=^5007388
+ ;;^UTILITY(U,$J,358.3,3525,0)
+ ;;=I69.920^^18^220^15
+ ;;^UTILITY(U,$J,358.3,3525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3264,1,3,0)
- ;;=3^Raynaud's Syndrome w/o Gangrene
- ;;^UTILITY(U,$J,358.3,3264,1,4,0)
- ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,3525,1,3,0)
+ ;;=3^Cerebrovascular Disease,Aphasia,Unspec
+ ;;^UTILITY(U,$J,358.3,3525,1,4,0)
+ ;;=4^I69.920
+ ;;^UTILITY(U,$J,358.3,3525,2)
+ ;;=^5007553
+ ;;^UTILITY(U,$J,358.3,3526,0)
+ ;;=I69.990^^18^220^16
+ ;;^UTILITY(U,$J,358.3,3526,1,0)
+ ;;=^358.31IA^4^2

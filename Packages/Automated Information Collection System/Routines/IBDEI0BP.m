@@ -1,132 +1,128 @@
-IBDEI0BP ; ; 19-NOV-2015
+IBDEI0BP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5011,1,2,0)
- ;;=2^Trunk/Arm/Leg 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5011,1,4,0)
- ;;=4^11602
- ;;^UTILITY(U,$J,358.3,5012,0)
- ;;=11603^^39^338^4^^^^1
- ;;^UTILITY(U,$J,358.3,5012,1,0)
+ ;;^UTILITY(U,$J,358.3,5294,1,4,0)
+ ;;=4^N02.3
+ ;;^UTILITY(U,$J,358.3,5294,2)
+ ;;=^5015514
+ ;;^UTILITY(U,$J,358.3,5295,0)
+ ;;=N02.4^^27^344^73
+ ;;^UTILITY(U,$J,358.3,5295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5012,1,2,0)
- ;;=2^Trunk/Arm/Leg 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5012,1,4,0)
- ;;=4^11603
- ;;^UTILITY(U,$J,358.3,5013,0)
- ;;=11604^^39^338^5^^^^1
- ;;^UTILITY(U,$J,358.3,5013,1,0)
+ ;;^UTILITY(U,$J,358.3,5295,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5295,1,4,0)
+ ;;=4^N02.4
+ ;;^UTILITY(U,$J,358.3,5295,2)
+ ;;=^5015515
+ ;;^UTILITY(U,$J,358.3,5296,0)
+ ;;=N02.5^^27^344^78
+ ;;^UTILITY(U,$J,358.3,5296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5013,1,2,0)
- ;;=2^Trunk/Arm/Leg 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5013,1,4,0)
- ;;=4^11604
- ;;^UTILITY(U,$J,358.3,5014,0)
- ;;=11606^^39^338^6^^^^1
- ;;^UTILITY(U,$J,358.3,5014,1,0)
+ ;;^UTILITY(U,$J,358.3,5296,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5296,1,4,0)
+ ;;=4^N02.5
+ ;;^UTILITY(U,$J,358.3,5296,2)
+ ;;=^5015516
+ ;;^UTILITY(U,$J,358.3,5297,0)
+ ;;=N02.6^^27^344^75
+ ;;^UTILITY(U,$J,358.3,5297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5014,1,2,0)
- ;;=2^Trunk/Arm/Leg > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5014,1,4,0)
- ;;=4^11606
- ;;^UTILITY(U,$J,358.3,5015,0)
- ;;=12001^^39^339^1^^^^1
- ;;^UTILITY(U,$J,358.3,5015,1,0)
+ ;;^UTILITY(U,$J,358.3,5297,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5297,1,4,0)
+ ;;=4^N02.6
+ ;;^UTILITY(U,$J,358.3,5297,2)
+ ;;=^5015517
+ ;;^UTILITY(U,$J,358.3,5298,0)
+ ;;=N02.7^^27^344^76
+ ;;^UTILITY(U,$J,358.3,5298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5015,1,2,0)
- ;;=2^Repair, Simple < 2.5cm or less
- ;;^UTILITY(U,$J,358.3,5015,1,4,0)
- ;;=4^12001
- ;;^UTILITY(U,$J,358.3,5016,0)
- ;;=12002^^39^339^2^^^^1
- ;;^UTILITY(U,$J,358.3,5016,1,0)
+ ;;^UTILITY(U,$J,358.3,5298,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5298,1,4,0)
+ ;;=4^N02.7
+ ;;^UTILITY(U,$J,358.3,5298,2)
+ ;;=^5015518
+ ;;^UTILITY(U,$J,358.3,5299,0)
+ ;;=N02.8^^27^344^81
+ ;;^UTILITY(U,$J,358.3,5299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5016,1,2,0)
- ;;=2^Repair, Simple, 2.6-7.5cm
- ;;^UTILITY(U,$J,358.3,5016,1,4,0)
- ;;=4^12002
- ;;^UTILITY(U,$J,358.3,5017,0)
- ;;=12004^^39^339^3^^^^1
- ;;^UTILITY(U,$J,358.3,5017,1,0)
+ ;;^UTILITY(U,$J,358.3,5299,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,5299,1,4,0)
+ ;;=4^N02.8
+ ;;^UTILITY(U,$J,358.3,5299,2)
+ ;;=^5015519
+ ;;^UTILITY(U,$J,358.3,5300,0)
+ ;;=N02.9^^27^344^82
+ ;;^UTILITY(U,$J,358.3,5300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5017,1,2,0)
- ;;=2^Repair, Simple, 7.6-12.5cm
- ;;^UTILITY(U,$J,358.3,5017,1,4,0)
- ;;=4^12004
- ;;^UTILITY(U,$J,358.3,5018,0)
- ;;=12005^^39^339^4^^^^1
- ;;^UTILITY(U,$J,358.3,5018,1,0)
+ ;;^UTILITY(U,$J,358.3,5300,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,5300,1,4,0)
+ ;;=4^N02.9
+ ;;^UTILITY(U,$J,358.3,5300,2)
+ ;;=^5015520
+ ;;^UTILITY(U,$J,358.3,5301,0)
+ ;;=N03.0^^27^344^18
+ ;;^UTILITY(U,$J,358.3,5301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5018,1,2,0)
- ;;=2^Repair, Simple, 12.6-20.0cm
- ;;^UTILITY(U,$J,358.3,5018,1,4,0)
- ;;=4^12005
- ;;^UTILITY(U,$J,358.3,5019,0)
- ;;=12006^^39^339^5^^^^1
- ;;^UTILITY(U,$J,358.3,5019,1,0)
+ ;;^UTILITY(U,$J,358.3,5301,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,5301,1,4,0)
+ ;;=4^N03.0
+ ;;^UTILITY(U,$J,358.3,5301,2)
+ ;;=^5015521
+ ;;^UTILITY(U,$J,358.3,5302,0)
+ ;;=N03.1^^27^344^17
+ ;;^UTILITY(U,$J,358.3,5302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5019,1,2,0)
- ;;=2^Repair, Simple, 20.1-30.0cm
- ;;^UTILITY(U,$J,358.3,5019,1,4,0)
- ;;=4^12006
- ;;^UTILITY(U,$J,358.3,5020,0)
- ;;=12007^^39^339^6^^^^1
- ;;^UTILITY(U,$J,358.3,5020,1,0)
+ ;;^UTILITY(U,$J,358.3,5302,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5302,1,4,0)
+ ;;=4^N03.1
+ ;;^UTILITY(U,$J,358.3,5302,2)
+ ;;=^5015522
+ ;;^UTILITY(U,$J,358.3,5303,0)
+ ;;=N03.2^^27^344^14
+ ;;^UTILITY(U,$J,358.3,5303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5020,1,2,0)
- ;;=2^Repair, Simple, >30cm
- ;;^UTILITY(U,$J,358.3,5020,1,4,0)
- ;;=4^12007
- ;;^UTILITY(U,$J,358.3,5021,0)
- ;;=12011^^39^340^1^^^^1
- ;;^UTILITY(U,$J,358.3,5021,1,0)
+ ;;^UTILITY(U,$J,358.3,5303,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,5303,1,4,0)
+ ;;=4^N03.2
+ ;;^UTILITY(U,$J,358.3,5303,2)
+ ;;=^5015523
+ ;;^UTILITY(U,$J,358.3,5304,0)
+ ;;=N03.3^^27^344^15
+ ;;^UTILITY(U,$J,358.3,5304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5021,1,2,0)
- ;;=2^Repair Simple 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5021,1,4,0)
- ;;=4^12011
- ;;^UTILITY(U,$J,358.3,5022,0)
- ;;=12013^^39^340^2^^^^1
- ;;^UTILITY(U,$J,358.3,5022,1,0)
+ ;;^UTILITY(U,$J,358.3,5304,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5304,1,4,0)
+ ;;=4^N03.3
+ ;;^UTILITY(U,$J,358.3,5304,2)
+ ;;=^5015524
+ ;;^UTILITY(U,$J,358.3,5305,0)
+ ;;=N03.4^^27^344^13
+ ;;^UTILITY(U,$J,358.3,5305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5022,1,2,0)
- ;;=2^Repair Simple 2.6-5.0 cm
- ;;^UTILITY(U,$J,358.3,5022,1,4,0)
- ;;=4^12013
- ;;^UTILITY(U,$J,358.3,5023,0)
- ;;=12014^^39^340^3^^^^1
- ;;^UTILITY(U,$J,358.3,5023,1,0)
+ ;;^UTILITY(U,$J,358.3,5305,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5305,1,4,0)
+ ;;=4^N03.4
+ ;;^UTILITY(U,$J,358.3,5305,2)
+ ;;=^5015525
+ ;;^UTILITY(U,$J,358.3,5306,0)
+ ;;=N03.5^^27^344^16
+ ;;^UTILITY(U,$J,358.3,5306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5023,1,2,0)
- ;;=2^Repair Simple 5.1-7.5 cm
- ;;^UTILITY(U,$J,358.3,5023,1,4,0)
- ;;=4^12014
- ;;^UTILITY(U,$J,358.3,5024,0)
- ;;=12015^^39^340^4^^^^1
- ;;^UTILITY(U,$J,358.3,5024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5024,1,2,0)
- ;;=2^Repair Simple 7.6-12.5 cm
- ;;^UTILITY(U,$J,358.3,5024,1,4,0)
- ;;=4^12015
- ;;^UTILITY(U,$J,358.3,5025,0)
- ;;=12016^^39^340^5^^^^1
- ;;^UTILITY(U,$J,358.3,5025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5025,1,2,0)
- ;;=2^Repair Simple 12.6-20.0 cm
- ;;^UTILITY(U,$J,358.3,5025,1,4,0)
- ;;=4^12016
- ;;^UTILITY(U,$J,358.3,5026,0)
- ;;=12017^^39^340^6^^^^1
- ;;^UTILITY(U,$J,358.3,5026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5026,1,2,0)
- ;;=2^Repair Simple 20.1-30.0 cm
- ;;^UTILITY(U,$J,358.3,5026,1,4,0)
- ;;=4^12017
- ;;^UTILITY(U,$J,358.3,5027,0)
- ;;=12018^^39^340^7^^^^1
- ;;^UTILITY(U,$J,358.3,5027,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5306,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5306,1,4,0)
+ ;;=4^N03.5
+ ;;^UTILITY(U,$J,358.3,5306,2)
+ ;;=^5015526

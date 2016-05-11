@@ -1,130 +1,132 @@
-IBDEI17O ; ; 19-NOV-2015
+IBDEI17O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20241,2)
- ;;=^5009352
- ;;^UTILITY(U,$J,358.3,20242,0)
- ;;=L89.111^^97^956^97
- ;;^UTILITY(U,$J,358.3,20242,1,0)
+ ;;^UTILITY(U,$J,358.3,20592,0)
+ ;;=M77.11^^84^935^54
+ ;;^UTILITY(U,$J,358.3,20592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20242,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,20242,1,4,0)
- ;;=4^L89.111
- ;;^UTILITY(U,$J,358.3,20242,2)
- ;;=^5009353
- ;;^UTILITY(U,$J,358.3,20243,0)
- ;;=L89.112^^97^956^98
- ;;^UTILITY(U,$J,358.3,20243,1,0)
+ ;;^UTILITY(U,$J,358.3,20592,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,20592,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,20592,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,20593,0)
+ ;;=M77.12^^84^935^53
+ ;;^UTILITY(U,$J,358.3,20593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20243,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,20243,1,4,0)
- ;;=4^L89.112
- ;;^UTILITY(U,$J,358.3,20243,2)
- ;;=^5009354
- ;;^UTILITY(U,$J,358.3,20244,0)
- ;;=L89.113^^97^956^99
- ;;^UTILITY(U,$J,358.3,20244,1,0)
+ ;;^UTILITY(U,$J,358.3,20593,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,20593,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,20593,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,20594,0)
+ ;;=M79.1^^84^935^61
+ ;;^UTILITY(U,$J,358.3,20594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20244,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,20244,1,4,0)
- ;;=4^L89.113
- ;;^UTILITY(U,$J,358.3,20244,2)
- ;;=^5009355
- ;;^UTILITY(U,$J,358.3,20245,0)
- ;;=L89.114^^97^956^100
- ;;^UTILITY(U,$J,358.3,20245,1,0)
+ ;;^UTILITY(U,$J,358.3,20594,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,20594,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,20594,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,20595,0)
+ ;;=M79.7^^84^935^39
+ ;;^UTILITY(U,$J,358.3,20595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20245,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,20245,1,4,0)
- ;;=4^L89.114
- ;;^UTILITY(U,$J,358.3,20245,2)
- ;;=^5009356
- ;;^UTILITY(U,$J,358.3,20246,0)
- ;;=L89.119^^97^956^101
- ;;^UTILITY(U,$J,358.3,20246,1,0)
+ ;;^UTILITY(U,$J,358.3,20595,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,20595,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,20595,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,20596,0)
+ ;;=M80.08XA^^84^935^1
+ ;;^UTILITY(U,$J,358.3,20596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20246,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,20246,1,4,0)
- ;;=4^L89.119
- ;;^UTILITY(U,$J,358.3,20246,2)
- ;;=^5009357
- ;;^UTILITY(U,$J,358.3,20247,0)
- ;;=L89.120^^97^956^54
- ;;^UTILITY(U,$J,358.3,20247,1,0)
+ ;;^UTILITY(U,$J,358.3,20596,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20596,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,20596,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,20597,0)
+ ;;=M80.08XD^^84^935^2
+ ;;^UTILITY(U,$J,358.3,20597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20247,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,20247,1,4,0)
- ;;=4^L89.120
- ;;^UTILITY(U,$J,358.3,20247,2)
- ;;=^5009358
- ;;^UTILITY(U,$J,358.3,20248,0)
- ;;=L89.121^^97^956^49
- ;;^UTILITY(U,$J,358.3,20248,1,0)
+ ;;^UTILITY(U,$J,358.3,20597,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20597,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,20597,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,20598,0)
+ ;;=M84.48XA^^84^935^118
+ ;;^UTILITY(U,$J,358.3,20598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20248,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,20248,1,4,0)
- ;;=4^L89.121
- ;;^UTILITY(U,$J,358.3,20248,2)
- ;;=^5009359
- ;;^UTILITY(U,$J,358.3,20249,0)
- ;;=L89.122^^97^956^50
- ;;^UTILITY(U,$J,358.3,20249,1,0)
+ ;;^UTILITY(U,$J,358.3,20598,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,20598,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,20598,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,20599,0)
+ ;;=M84.48XD^^84^935^119
+ ;;^UTILITY(U,$J,358.3,20599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20249,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,20249,1,4,0)
- ;;=4^L89.122
- ;;^UTILITY(U,$J,358.3,20249,2)
- ;;=^5009360
- ;;^UTILITY(U,$J,358.3,20250,0)
- ;;=L89.123^^97^956^51
- ;;^UTILITY(U,$J,358.3,20250,1,0)
+ ;;^UTILITY(U,$J,358.3,20599,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,20599,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,20599,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,20600,0)
+ ;;=M87.011^^84^935^45
+ ;;^UTILITY(U,$J,358.3,20600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20250,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,20250,1,4,0)
- ;;=4^L89.123
- ;;^UTILITY(U,$J,358.3,20250,2)
- ;;=^5009361
- ;;^UTILITY(U,$J,358.3,20251,0)
- ;;=L89.124^^97^956^52
- ;;^UTILITY(U,$J,358.3,20251,1,0)
+ ;;^UTILITY(U,$J,358.3,20600,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,20600,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,20600,2)
+ ;;=^5014658
+ ;;^UTILITY(U,$J,358.3,20601,0)
+ ;;=M87.012^^84^935^42
+ ;;^UTILITY(U,$J,358.3,20601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20251,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,20251,1,4,0)
- ;;=4^L89.124
- ;;^UTILITY(U,$J,358.3,20251,2)
- ;;=^5009362
- ;;^UTILITY(U,$J,358.3,20252,0)
- ;;=L89.129^^97^956^53
- ;;^UTILITY(U,$J,358.3,20252,1,0)
+ ;;^UTILITY(U,$J,358.3,20601,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,20601,1,4,0)
+ ;;=4^M87.012
+ ;;^UTILITY(U,$J,358.3,20601,2)
+ ;;=^5014659
+ ;;^UTILITY(U,$J,358.3,20602,0)
+ ;;=M87.050^^84^935^43
+ ;;^UTILITY(U,$J,358.3,20602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20252,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,20252,1,4,0)
- ;;=4^L89.129
- ;;^UTILITY(U,$J,358.3,20252,2)
- ;;=^5133652
- ;;^UTILITY(U,$J,358.3,20253,0)
- ;;=L89.130^^97^956^96
- ;;^UTILITY(U,$J,358.3,20253,1,0)
+ ;;^UTILITY(U,$J,358.3,20602,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;^UTILITY(U,$J,358.3,20602,1,4,0)
+ ;;=4^M87.050
+ ;;^UTILITY(U,$J,358.3,20602,2)
+ ;;=^5014679
+ ;;^UTILITY(U,$J,358.3,20603,0)
+ ;;=M87.051^^84^935^44
+ ;;^UTILITY(U,$J,358.3,20603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20253,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,20253,1,4,0)
- ;;=4^L89.130
- ;;^UTILITY(U,$J,358.3,20253,2)
- ;;=^5009363
- ;;^UTILITY(U,$J,358.3,20254,0)
- ;;=L89.131^^97^956^91
- ;;^UTILITY(U,$J,358.3,20254,1,0)
+ ;;^UTILITY(U,$J,358.3,20603,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;^UTILITY(U,$J,358.3,20603,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,20603,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,20604,0)
+ ;;=M87.052^^84^935^41
+ ;;^UTILITY(U,$J,358.3,20604,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20604,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;^UTILITY(U,$J,358.3,20604,1,4,0)
+ ;;=4^M87.052

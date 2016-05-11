@@ -1,7 +1,11 @@
-ORCMEDT0 ;SLC/MKB-Dialog Utilities ;08/06/2007
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243,296,386**;Dec 17, 1997;Build 4
+ORCMEDT0 ;SLC/MKB-Dialog Utilities ;09/16/15  06:50
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**46,60,190,215,243,296,389**;Dec 17, 1997;Build 17
 DIALOG(TYPE) ; -- Get Dialog file entry
  N X,Y,Z,D,DIC,DIE,DIK,DA,DR,DLAYGO,ORPKG,ORDLG,ORIT,OROI,I,IDX
+ ;389/WAT - Sites have deleted entries in 101.41 w/o also removing pointers ergo reusing IENs can result in other file entries pointing back to
+ ;incorrect order dialog entries. Adding a check if 3rd piece is not highest available IEN, then reset accordingly
+ N ORD03,ORD03TMP S ORD03=$P(^ORD(101.41,0),U,3) S ORD03TMP=$$CHKDA(ORD03)
+ I ORD03TMP'=ORD03 S $P(^ORD(101.41,0),U,3)=ORD03TMP
  S ORPKG="ORDER ENTRY/RESULTS REPORTING",DIC="^ORD(101.41,",DIC(0)="AEQLZ"
  S DIC("S")="I $P(^(0),U,4)="""_TYPE_"""",DLAYGO=101.41
  S DIC("A")="Select "_$S(TYPE="Q":"QUICK ORDER",TYPE="O":"ORDER SET",TYPE="A":"ACTION",1:"ORDER DIALOG")_" NAME: "
@@ -47,12 +51,12 @@ DEL(DA) ; -- delete bad entry in Order Dialog file
  Q
  ;
 SAVE ; -- Save ORDG, responses in ORDIALOG to dialog ORQDLG
- N PROMPT,CNT,ITM,TYPE,INST,ICNT,VALUE,INP,UD K ^ORD(101.41,ORQDLG,6)
+ N PROMPT,CNT,ITM,TYPE,INST,VALUE,INP,UD K ^ORD(101.41,ORQDLG,6)
  S (PROMPT,CNT)=0 F  S PROMPT=$O(ORDIALOG(PROMPT)) Q:PROMPT'>0  D
  . S ITM=ORDIALOG(PROMPT),TYPE=$E(ORDIALOG(PROMPT,0))
- . S INST=0,ICNT=0 F  S INST=$O(ORDIALOG(PROMPT,INST)) Q:INST'>0  D
- . . S VALUE=$G(ORDIALOG(PROMPT,INST)),CNT=CNT+1,ICNT=ICNT+1
- . . S ^ORD(101.41,ORQDLG,6,CNT,0)=+ITM_U_PROMPT_U_ICNT ;p.386 changed 3rd piece from INST to ICNT (This reorders instances if one was deleted) 
+ . S INST=0 F  S INST=$O(ORDIALOG(PROMPT,INST)) Q:INST'>0  D
+ . . S VALUE=$G(ORDIALOG(PROMPT,INST)),CNT=CNT+1
+ . . S ^ORD(101.41,ORQDLG,6,CNT,0)=+ITM_U_PROMPT_U_INST
  . . S:TYPE'="W" ^ORD(101.41,ORQDLG,6,CNT,1)=VALUE
  . . M:TYPE="W" ^ORD(101.41,ORQDLG,6,CNT,2)=@VALUE
  . . S ^ORD(101.41,ORQDLG,6,"D",PROMPT,CNT)=""
@@ -73,3 +77,16 @@ IT1 D ^DIC I Y'>0 S Y=$S($D(DUOUT)!$D(DTOUT):"^",1:"") Q Y
  . W $C(7),!!,"If an item is already included on this menu, it may not be added!"
  . W !,ORERR S I=0 F  S I=$O(ORERR(I)) Q:I'>0  W !?18," =>"_ORERR(I)
  Q +Y
+ ;
+CHKDA(ORIFN) ; return numerically largest IEN in use
+ N ORFLG,ORNEW
+ S ORFLG=0
+ ;ORIFN - 3rd piece 0 node
+ ;ORFLG - Set to 1 when the largest IEN is found
+ ;ORNEW - next higher IEN
+ Q:$G(ORIFN)=""
+ S ORNEW=ORIFN
+ F  S ORNEW=$O(^ORD(101.41,ORNEW))  D  Q:ORFLG=1
+ . I +$O(^ORD(101.41,ORNEW))'>0 S ORFLG=1 Q
+ I +$G(ORNEW)>ORIFN Q ORNEW
+ Q ORIFN

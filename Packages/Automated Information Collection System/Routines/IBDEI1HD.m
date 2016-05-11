@@ -1,126 +1,124 @@
-IBDEI1HD ; ; 19-NOV-2015
+IBDEI1HD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24754,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,24754,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,24755,0)
- ;;=E55.9^^121^1222^98
- ;;^UTILITY(U,$J,358.3,24755,1,0)
+ ;;^UTILITY(U,$J,358.3,25134,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,25134,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,25135,0)
+ ;;=T74.31XD^^95^1139^10
+ ;;^UTILITY(U,$J,358.3,25135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24755,1,3,0)
- ;;=3^Vitamin D Deficiency
- ;;^UTILITY(U,$J,358.3,24755,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,24755,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,24756,0)
- ;;=R63.4^^121^1222^99
- ;;^UTILITY(U,$J,358.3,24756,1,0)
+ ;;^UTILITY(U,$J,358.3,25135,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,25135,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,25135,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,25136,0)
+ ;;=T76.31XA^^95^1139^11
+ ;;^UTILITY(U,$J,358.3,25136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24756,1,3,0)
- ;;=3^Weight Loss
- ;;^UTILITY(U,$J,358.3,24756,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,24756,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,24757,0)
- ;;=T80.219A^^121^1223^6
- ;;^UTILITY(U,$J,358.3,24757,1,0)
+ ;;^UTILITY(U,$J,358.3,25136,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,25136,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,25136,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,25137,0)
+ ;;=T76.31XD^^95^1139^12
+ ;;^UTILITY(U,$J,358.3,25137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24757,1,3,0)
- ;;=3^Infection d/t Central Venous Cath,Init Encntr
- ;;^UTILITY(U,$J,358.3,24757,1,4,0)
- ;;=4^T80.219A
- ;;^UTILITY(U,$J,358.3,24757,2)
- ;;=^5054359
- ;;^UTILITY(U,$J,358.3,24758,0)
- ;;=T80.211A^^121^1223^1
- ;;^UTILITY(U,$J,358.3,24758,1,0)
+ ;;^UTILITY(U,$J,358.3,25137,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,25137,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,25137,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,25138,0)
+ ;;=Z91.411^^95^1139^30
+ ;;^UTILITY(U,$J,358.3,25138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24758,1,3,0)
- ;;=3^Bloodstream Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,24758,1,4,0)
- ;;=4^T80.211A
- ;;^UTILITY(U,$J,358.3,24758,2)
- ;;=^5054350
- ;;^UTILITY(U,$J,358.3,24759,0)
- ;;=T80.212A^^121^1223^14
- ;;^UTILITY(U,$J,358.3,24759,1,0)
+ ;;^UTILITY(U,$J,358.3,25138,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25138,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,25138,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,25139,0)
+ ;;=Z69.021^^95^1139^17
+ ;;^UTILITY(U,$J,358.3,25139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24759,1,3,0)
- ;;=3^Local Infection d/t Central Venous Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,24759,1,4,0)
- ;;=4^T80.212A
- ;;^UTILITY(U,$J,358.3,24759,2)
- ;;=^5054353
- ;;^UTILITY(U,$J,358.3,24760,0)
- ;;=T80.22XA^^121^1223^3
- ;;^UTILITY(U,$J,358.3,24760,1,0)
+ ;;^UTILITY(U,$J,358.3,25139,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25139,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25139,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25140,0)
+ ;;=Z69.021^^95^1139^18
+ ;;^UTILITY(U,$J,358.3,25140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24760,1,3,0)
- ;;=3^Infection Following Transfusion/Infusion/Injec Blood Products,Init Encntr
- ;;^UTILITY(U,$J,358.3,24760,1,4,0)
- ;;=4^T80.22XA
- ;;^UTILITY(U,$J,358.3,24760,2)
- ;;=^5054362
- ;;^UTILITY(U,$J,358.3,24761,0)
- ;;=T80.29XA^^121^1223^2
- ;;^UTILITY(U,$J,358.3,24761,1,0)
+ ;;^UTILITY(U,$J,358.3,25140,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,25140,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25140,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25141,0)
+ ;;=Z69.021^^95^1139^19
+ ;;^UTILITY(U,$J,358.3,25141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24761,1,3,0)
- ;;=3^Infection Following Infusion/Transfusion/Therapeutic Injection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24761,1,4,0)
- ;;=4^T80.29XA
- ;;^UTILITY(U,$J,358.3,24761,2)
- ;;=^5054365
- ;;^UTILITY(U,$J,358.3,24762,0)
- ;;=T81.4XXA^^121^1223^4
- ;;^UTILITY(U,$J,358.3,24762,1,0)
+ ;;^UTILITY(U,$J,358.3,25141,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25141,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25141,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25142,0)
+ ;;=Z69.021^^95^1139^20
+ ;;^UTILITY(U,$J,358.3,25142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24762,1,3,0)
- ;;=3^Infection Following a Procedure NEC,Init  Encntr
- ;;^UTILITY(U,$J,358.3,24762,1,4,0)
- ;;=4^T81.4XXA
- ;;^UTILITY(U,$J,358.3,24762,2)
- ;;=^5054479
- ;;^UTILITY(U,$J,358.3,24763,0)
- ;;=T83.51XA^^121^1223^8
- ;;^UTILITY(U,$J,358.3,24763,1,0)
+ ;;^UTILITY(U,$J,358.3,25142,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25142,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25142,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25143,0)
+ ;;=Z69.011^^95^1139^22
+ ;;^UTILITY(U,$J,358.3,25143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24763,1,3,0)
- ;;=3^Infection d/t Indwelling Urinary Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,24763,1,4,0)
- ;;=4^T83.51XA
- ;;^UTILITY(U,$J,358.3,24763,2)
- ;;=^5055058
- ;;^UTILITY(U,$J,358.3,24764,0)
- ;;=T85.79XA^^121^1223^7
- ;;^UTILITY(U,$J,358.3,24764,1,0)
+ ;;^UTILITY(U,$J,358.3,25143,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25143,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25143,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25144,0)
+ ;;=Z69.011^^95^1139^23
+ ;;^UTILITY(U,$J,358.3,25144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24764,1,3,0)
- ;;=3^Infection d/t Implantable Device Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24764,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,24764,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,24765,0)
- ;;=T82.6XXA^^121^1223^5
- ;;^UTILITY(U,$J,358.3,24765,1,0)
+ ;;^UTILITY(U,$J,358.3,25144,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,25144,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25144,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25145,0)
+ ;;=Z69.011^^95^1139^24
+ ;;^UTILITY(U,$J,358.3,25145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24765,1,3,0)
- ;;=3^Infection d/t Cardiac Valve Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,24765,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,24765,2)
- ;;=^5054908
- ;;^UTILITY(U,$J,358.3,24766,0)
- ;;=T84.52XA^^121^1223^9
- ;;^UTILITY(U,$J,358.3,24766,1,0)
+ ;;^UTILITY(U,$J,358.3,25145,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25145,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25145,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25146,0)
+ ;;=Z69.011^^95^1139^25
+ ;;^UTILITY(U,$J,358.3,25146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24766,1,3,0)
- ;;=3^Infection d/t Left Hip Prosthesis,Init Encntr
- ;;^UTILITY(U,$J,358.3,24766,1,4,0)
- ;;=4^T84.52XA
+ ;;^UTILITY(U,$J,358.3,25146,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse

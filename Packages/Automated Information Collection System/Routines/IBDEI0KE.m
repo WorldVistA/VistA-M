@@ -1,140 +1,136 @@
-IBDEI0KE ; ; 19-NOV-2015
+IBDEI0KE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9215,1,0)
+ ;;^UTILITY(U,$J,358.3,9482,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,9482,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,9483,0)
+ ;;=H43.02^^41^478^124
+ ;;^UTILITY(U,$J,358.3,9483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9215,1,3,0)
- ;;=3^Migrain Not Intractable w/o Status Magrainosus,Other
- ;;^UTILITY(U,$J,358.3,9215,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,9215,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,9216,0)
- ;;=G43.909^^58^576^3
- ;;^UTILITY(U,$J,358.3,9216,1,0)
+ ;;^UTILITY(U,$J,358.3,9483,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,9483,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,9483,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,9484,0)
+ ;;=H43.03^^41^478^123
+ ;;^UTILITY(U,$J,358.3,9484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9216,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,9216,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,9216,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,9217,0)
- ;;=G44.209^^58^576^8
- ;;^UTILITY(U,$J,358.3,9217,1,0)
+ ;;^UTILITY(U,$J,358.3,9484,1,3,0)
+ ;;=3^Vitreous Prolapse,Bilateral
+ ;;^UTILITY(U,$J,358.3,9484,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,9484,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,9485,0)
+ ;;=H43.821^^41^478^114
+ ;;^UTILITY(U,$J,358.3,9485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9217,1,3,0)
- ;;=3^Tension-Type Headache Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,9217,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,9217,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,9218,0)
- ;;=R51.^^58^576^1
- ;;^UTILITY(U,$J,358.3,9218,1,0)
+ ;;^UTILITY(U,$J,358.3,9485,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,9485,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,9485,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,9486,0)
+ ;;=H43.822^^41^478^113
+ ;;^UTILITY(U,$J,358.3,9486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9218,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,9218,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,9218,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,9219,0)
- ;;=G20.^^58^577^7
- ;;^UTILITY(U,$J,358.3,9219,1,0)
+ ;;^UTILITY(U,$J,358.3,9486,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,9486,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,9486,2)
+ ;;=^5005958
+ ;;^UTILITY(U,$J,358.3,9487,0)
+ ;;=H43.823^^41^478^112
+ ;;^UTILITY(U,$J,358.3,9487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9219,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,9219,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,9219,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,9220,0)
- ;;=G21.8^^58^577^9
- ;;^UTILITY(U,$J,358.3,9220,1,0)
+ ;;^UTILITY(U,$J,358.3,9487,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Bilateral
+ ;;^UTILITY(U,$J,358.3,9487,1,4,0)
+ ;;=4^H43.823
+ ;;^UTILITY(U,$J,358.3,9487,2)
+ ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,9488,0)
+ ;;=H35.353^^41^478^31
+ ;;^UTILITY(U,$J,358.3,9488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9220,1,3,0)
- ;;=3^Secondary Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,9220,1,4,0)
- ;;=4^G21.8
- ;;^UTILITY(U,$J,358.3,9220,2)
- ;;=^5003777
- ;;^UTILITY(U,$J,358.3,9221,0)
- ;;=G25.0^^58^577^4
- ;;^UTILITY(U,$J,358.3,9221,1,0)
+ ;;^UTILITY(U,$J,358.3,9488,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,9488,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,9488,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,9489,0)
+ ;;=H35.352^^41^478^32
+ ;;^UTILITY(U,$J,358.3,9489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9221,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,9221,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,9221,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,9222,0)
- ;;=G25.1^^58^577^3
- ;;^UTILITY(U,$J,358.3,9222,1,0)
+ ;;^UTILITY(U,$J,358.3,9489,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,9489,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,9489,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,9490,0)
+ ;;=H31.402^^41^478^24
+ ;;^UTILITY(U,$J,358.3,9490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9222,1,3,0)
- ;;=3^Drug-Induced Tremor
- ;;^UTILITY(U,$J,358.3,9222,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,9222,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,9223,0)
- ;;=G25.2^^58^577^12
- ;;^UTILITY(U,$J,358.3,9223,1,0)
+ ;;^UTILITY(U,$J,358.3,9490,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9490,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,9490,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,9491,0)
+ ;;=H31.401^^41^478^25
+ ;;^UTILITY(U,$J,358.3,9491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9223,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,9223,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,9223,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,9224,0)
- ;;=G25.3^^58^577^6
- ;;^UTILITY(U,$J,358.3,9224,1,0)
+ ;;^UTILITY(U,$J,358.3,9491,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9491,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,9491,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,9492,0)
+ ;;=H35.351^^41^478^33
+ ;;^UTILITY(U,$J,358.3,9492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9224,1,3,0)
- ;;=3^Myoclonus
- ;;^UTILITY(U,$J,358.3,9224,1,4,0)
- ;;=4^G25.3
- ;;^UTILITY(U,$J,358.3,9224,2)
- ;;=^80620
- ;;^UTILITY(U,$J,358.3,9225,0)
- ;;=G25.69^^58^577^11
- ;;^UTILITY(U,$J,358.3,9225,1,0)
+ ;;^UTILITY(U,$J,358.3,9492,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,9492,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,9492,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,9493,0)
+ ;;=H35.32^^41^478^39
+ ;;^UTILITY(U,$J,358.3,9493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9225,1,3,0)
- ;;=3^Tics,Organic Origin,Other
- ;;^UTILITY(U,$J,358.3,9225,1,4,0)
- ;;=4^G25.69
- ;;^UTILITY(U,$J,358.3,9225,2)
- ;;=^5003797
- ;;^UTILITY(U,$J,358.3,9226,0)
- ;;=G25.61^^58^577^2
- ;;^UTILITY(U,$J,358.3,9226,1,0)
+ ;;^UTILITY(U,$J,358.3,9493,1,3,0)
+ ;;=3^Exudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,9493,1,4,0)
+ ;;=4^H35.32
+ ;;^UTILITY(U,$J,358.3,9493,2)
+ ;;=^5005648
+ ;;^UTILITY(U,$J,358.3,9494,0)
+ ;;=H35.023^^41^478^40
+ ;;^UTILITY(U,$J,358.3,9494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9226,1,3,0)
- ;;=3^Drug-Induced Tics
- ;;^UTILITY(U,$J,358.3,9226,1,4,0)
- ;;=4^G25.61
- ;;^UTILITY(U,$J,358.3,9226,2)
- ;;=^5003796
- ;;^UTILITY(U,$J,358.3,9227,0)
- ;;=G25.9^^58^577^5
- ;;^UTILITY(U,$J,358.3,9227,1,0)
+ ;;^UTILITY(U,$J,358.3,9494,1,3,0)
+ ;;=3^Exudative Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,9494,1,4,0)
+ ;;=4^H35.023
+ ;;^UTILITY(U,$J,358.3,9494,2)
+ ;;=^5005588
+ ;;^UTILITY(U,$J,358.3,9495,0)
+ ;;=H35.022^^41^478^41
+ ;;^UTILITY(U,$J,358.3,9495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9227,1,3,0)
- ;;=3^Extrapyramidal & Movement Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,9227,1,4,0)
- ;;=4^G25.9
- ;;^UTILITY(U,$J,358.3,9227,2)
- ;;=^5003803
- ;;^UTILITY(U,$J,358.3,9228,0)
- ;;=G25.82^^58^577^10
- ;;^UTILITY(U,$J,358.3,9228,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9228,1,3,0)
- ;;=3^Stiff-Man Syndrome
- ;;^UTILITY(U,$J,358.3,9228,1,4,0)
- ;;=4^G25.82
+ ;;^UTILITY(U,$J,358.3,9495,1,3,0)
+ ;;=3^Exudative Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9495,1,4,0)
+ ;;=4^H35.022

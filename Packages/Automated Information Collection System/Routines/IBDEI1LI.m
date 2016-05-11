@@ -1,136 +1,134 @@
-IBDEI1LI ; ; 19-NOV-2015
+IBDEI1LI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26688,1,3,0)
- ;;=3^Esotropia,Unspec
- ;;^UTILITY(U,$J,358.3,26688,1,4,0)
- ;;=4^H50.00
- ;;^UTILITY(U,$J,358.3,26688,2)
- ;;=^5006208
- ;;^UTILITY(U,$J,358.3,26689,0)
- ;;=H53.001^^130^1296^6
- ;;^UTILITY(U,$J,358.3,26689,1,0)
+ ;;^UTILITY(U,$J,358.3,27046,1,4,0)
+ ;;=4^F82.
+ ;;^UTILITY(U,$J,358.3,27046,2)
+ ;;=^5003683
+ ;;^UTILITY(U,$J,358.3,27047,0)
+ ;;=F98.5^^100^1309^4
+ ;;^UTILITY(U,$J,358.3,27047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26689,1,3,0)
- ;;=3^Amblyopia,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26689,1,4,0)
- ;;=4^H53.001
- ;;^UTILITY(U,$J,358.3,26689,2)
- ;;=^5006292
- ;;^UTILITY(U,$J,358.3,26690,0)
- ;;=H53.002^^130^1296^5
- ;;^UTILITY(U,$J,358.3,26690,1,0)
+ ;;^UTILITY(U,$J,358.3,27047,1,3,0)
+ ;;=3^Fluency Disorder,Adult-Onset
+ ;;^UTILITY(U,$J,358.3,27047,1,4,0)
+ ;;=4^F98.5
+ ;;^UTILITY(U,$J,358.3,27047,2)
+ ;;=^5003717
+ ;;^UTILITY(U,$J,358.3,27048,0)
+ ;;=F88.^^100^1309^5
+ ;;^UTILITY(U,$J,358.3,27048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26690,1,3,0)
- ;;=3^Amblyopia,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26690,1,4,0)
- ;;=4^H53.002
- ;;^UTILITY(U,$J,358.3,26690,2)
- ;;=^5006293
- ;;^UTILITY(U,$J,358.3,26691,0)
- ;;=H53.003^^130^1296^4
- ;;^UTILITY(U,$J,358.3,26691,1,0)
+ ;;^UTILITY(U,$J,358.3,27048,1,3,0)
+ ;;=3^Global Developmental Delay
+ ;;^UTILITY(U,$J,358.3,27048,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,27048,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,27049,0)
+ ;;=F80.2^^100^1309^6
+ ;;^UTILITY(U,$J,358.3,27049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26691,1,3,0)
- ;;=3^Amblyopia,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,26691,1,4,0)
- ;;=4^H53.003
- ;;^UTILITY(U,$J,358.3,26691,2)
- ;;=^5006294
- ;;^UTILITY(U,$J,358.3,26692,0)
- ;;=H50.9^^130^1296^62
- ;;^UTILITY(U,$J,358.3,26692,1,0)
+ ;;^UTILITY(U,$J,358.3,27049,1,3,0)
+ ;;=3^Language Disorder
+ ;;^UTILITY(U,$J,358.3,27049,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,27049,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,27050,0)
+ ;;=F81.2^^100^1309^7
+ ;;^UTILITY(U,$J,358.3,27050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26692,1,3,0)
- ;;=3^Strabismus,Unspec
- ;;^UTILITY(U,$J,358.3,26692,1,4,0)
- ;;=4^H50.9
- ;;^UTILITY(U,$J,358.3,26692,2)
- ;;=^5006249
- ;;^UTILITY(U,$J,358.3,26693,0)
- ;;=H53.31^^130^1296^1
- ;;^UTILITY(U,$J,358.3,26693,1,0)
+ ;;^UTILITY(U,$J,358.3,27050,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,27050,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,27050,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,27051,0)
+ ;;=F81.0^^100^1309^8
+ ;;^UTILITY(U,$J,358.3,27051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26693,1,3,0)
- ;;=3^Abnormal Retinal Correspondence
- ;;^UTILITY(U,$J,358.3,26693,1,4,0)
- ;;=4^H53.31
- ;;^UTILITY(U,$J,358.3,26693,2)
- ;;=^268844
- ;;^UTILITY(U,$J,358.3,26694,0)
- ;;=H53.62^^130^1296^2
- ;;^UTILITY(U,$J,358.3,26694,1,0)
+ ;;^UTILITY(U,$J,358.3,27051,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,27051,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,27051,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,27052,0)
+ ;;=F81.81^^100^1309^9
+ ;;^UTILITY(U,$J,358.3,27052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26694,1,3,0)
- ;;=3^Acquired Night Blindness
- ;;^UTILITY(U,$J,358.3,26694,1,4,0)
- ;;=4^H53.62
- ;;^UTILITY(U,$J,358.3,26694,2)
- ;;=^265401
- ;;^UTILITY(U,$J,358.3,26695,0)
- ;;=H53.63^^130^1296^12
- ;;^UTILITY(U,$J,358.3,26695,1,0)
+ ;;^UTILITY(U,$J,358.3,27052,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Writing
+ ;;^UTILITY(U,$J,358.3,27052,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,27052,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,27053,0)
+ ;;=F88.^^100^1309^10
+ ;;^UTILITY(U,$J,358.3,27053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26695,1,3,0)
- ;;=3^Congenital Night Blindness
- ;;^UTILITY(U,$J,358.3,26695,1,4,0)
- ;;=4^H53.63
- ;;^UTILITY(U,$J,358.3,26695,2)
- ;;=^265396
- ;;^UTILITY(U,$J,358.3,26696,0)
- ;;=H51.12^^130^1296^16
- ;;^UTILITY(U,$J,358.3,26696,1,0)
+ ;;^UTILITY(U,$J,358.3,27053,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,27053,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,27053,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,27054,0)
+ ;;=F89.^^100^1309^11
+ ;;^UTILITY(U,$J,358.3,27054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26696,1,3,0)
- ;;=3^Convergence Excess
- ;;^UTILITY(U,$J,358.3,26696,1,4,0)
- ;;=4^H51.12
- ;;^UTILITY(U,$J,358.3,26696,2)
- ;;=^5006252
- ;;^UTILITY(U,$J,358.3,26697,0)
- ;;=H51.11^^130^1296^17
- ;;^UTILITY(U,$J,358.3,26697,1,0)
+ ;;^UTILITY(U,$J,358.3,27054,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27054,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,27054,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,27055,0)
+ ;;=F95.1^^100^1309^12
+ ;;^UTILITY(U,$J,358.3,27055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26697,1,3,0)
- ;;=3^Convergence Insufficiency
- ;;^UTILITY(U,$J,358.3,26697,1,4,0)
- ;;=4^H51.11
- ;;^UTILITY(U,$J,358.3,26697,2)
- ;;=^5006251
- ;;^UTILITY(U,$J,358.3,26698,0)
- ;;=H53.483^^130^1296^13
- ;;^UTILITY(U,$J,358.3,26698,1,0)
+ ;;^UTILITY(U,$J,358.3,27055,1,3,0)
+ ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
+ ;;^UTILITY(U,$J,358.3,27055,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,27055,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,27056,0)
+ ;;=F95.0^^100^1309^13
+ ;;^UTILITY(U,$J,358.3,27056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26698,1,3,0)
- ;;=3^Contraction of Visual Field,Bilateral,Generalized
- ;;^UTILITY(U,$J,358.3,26698,1,4,0)
- ;;=4^H53.483
- ;;^UTILITY(U,$J,358.3,26698,2)
- ;;=^5006346
- ;;^UTILITY(U,$J,358.3,26699,0)
- ;;=H53.481^^130^1296^14
- ;;^UTILITY(U,$J,358.3,26699,1,0)
+ ;;^UTILITY(U,$J,358.3,27056,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,27056,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,27056,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,27057,0)
+ ;;=F80.89^^100^1309^14
+ ;;^UTILITY(U,$J,358.3,27057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26699,1,3,0)
- ;;=3^Contraction of Visual Field,OD,Generalized
- ;;^UTILITY(U,$J,358.3,26699,1,4,0)
- ;;=4^H53.481
- ;;^UTILITY(U,$J,358.3,26699,2)
- ;;=^5006344
- ;;^UTILITY(U,$J,358.3,26700,0)
- ;;=H53.482^^130^1296^15
- ;;^UTILITY(U,$J,358.3,26700,1,0)
+ ;;^UTILITY(U,$J,358.3,27057,1,3,0)
+ ;;=3^Social Pragmatic Communication Disorder
+ ;;^UTILITY(U,$J,358.3,27057,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,27057,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,27058,0)
+ ;;=F80.0^^100^1309^15
+ ;;^UTILITY(U,$J,358.3,27058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26700,1,3,0)
- ;;=3^Contraction of Visual Field,OS,Generalized
- ;;^UTILITY(U,$J,358.3,26700,1,4,0)
- ;;=4^H53.482
- ;;^UTILITY(U,$J,358.3,26700,2)
- ;;=^5006345
- ;;^UTILITY(U,$J,358.3,26701,0)
- ;;=H55.89^^130^1296^25
- ;;^UTILITY(U,$J,358.3,26701,1,0)
+ ;;^UTILITY(U,$J,358.3,27058,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,27058,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,27058,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,27059,0)
+ ;;=F98.4^^100^1309^16
+ ;;^UTILITY(U,$J,358.3,27059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26701,1,3,0)
- ;;=3^Irregular Eye Movement NEC
+ ;;^UTILITY(U,$J,358.3,27059,1,3,0)
+ ;;=3^Stereotypic Movement Disorder

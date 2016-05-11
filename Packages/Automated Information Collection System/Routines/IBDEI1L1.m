@@ -1,130 +1,122 @@
-IBDEI1L1 ; ; 19-NOV-2015
+IBDEI1L1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26468,1,4,0)
- ;;=4^H40.11X0
- ;;^UTILITY(U,$J,358.3,26468,2)
- ;;=^5005753
- ;;^UTILITY(U,$J,358.3,26469,0)
- ;;=H25.9^^130^1291^2
- ;;^UTILITY(U,$J,358.3,26469,1,0)
+ ;;^UTILITY(U,$J,358.3,26837,0)
+ ;;=F10.159^^100^1291^11
+ ;;^UTILITY(U,$J,358.3,26837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26469,1,3,0)
- ;;=3^Age-Related Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,26469,1,4,0)
- ;;=4^H25.9
- ;;^UTILITY(U,$J,358.3,26469,2)
- ;;=^5005296
- ;;^UTILITY(U,$J,358.3,26470,0)
- ;;=H25.89^^130^1291^1
- ;;^UTILITY(U,$J,358.3,26470,1,0)
+ ;;^UTILITY(U,$J,358.3,26837,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26837,1,4,0)
+ ;;=4^F10.159
+ ;;^UTILITY(U,$J,358.3,26837,2)
+ ;;=^5003075
+ ;;^UTILITY(U,$J,358.3,26838,0)
+ ;;=F10.259^^100^1291^12
+ ;;^UTILITY(U,$J,358.3,26838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26470,1,3,0)
- ;;=3^Age-Related Cataract NEC
- ;;^UTILITY(U,$J,358.3,26470,1,4,0)
- ;;=4^H25.89
- ;;^UTILITY(U,$J,358.3,26470,2)
- ;;=^5005295
- ;;^UTILITY(U,$J,358.3,26471,0)
- ;;=H25.091^^130^1291^5
- ;;^UTILITY(U,$J,358.3,26471,1,0)
+ ;;^UTILITY(U,$J,358.3,26838,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26838,1,4,0)
+ ;;=4^F10.259
+ ;;^UTILITY(U,$J,358.3,26838,2)
+ ;;=^5003093
+ ;;^UTILITY(U,$J,358.3,26839,0)
+ ;;=F10.959^^100^1291^13
+ ;;^UTILITY(U,$J,358.3,26839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26471,1,3,0)
- ;;=3^Age-Related Incipient Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,26471,1,4,0)
- ;;=4^H25.091
- ;;^UTILITY(U,$J,358.3,26471,2)
- ;;=^5005279
- ;;^UTILITY(U,$J,358.3,26472,0)
- ;;=H25.092^^130^1291^4
- ;;^UTILITY(U,$J,358.3,26472,1,0)
+ ;;^UTILITY(U,$J,358.3,26839,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26839,1,4,0)
+ ;;=4^F10.959
+ ;;^UTILITY(U,$J,358.3,26839,2)
+ ;;=^5003107
+ ;;^UTILITY(U,$J,358.3,26840,0)
+ ;;=F10.181^^100^1291^14
+ ;;^UTILITY(U,$J,358.3,26840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26472,1,3,0)
- ;;=3^Age-Related Incipient Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,26472,1,4,0)
- ;;=4^H25.092
- ;;^UTILITY(U,$J,358.3,26472,2)
- ;;=^5005280
- ;;^UTILITY(U,$J,358.3,26473,0)
- ;;=H25.093^^130^1291^3
- ;;^UTILITY(U,$J,358.3,26473,1,0)
+ ;;^UTILITY(U,$J,358.3,26840,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26840,1,4,0)
+ ;;=4^F10.181
+ ;;^UTILITY(U,$J,358.3,26840,2)
+ ;;=^5003077
+ ;;^UTILITY(U,$J,358.3,26841,0)
+ ;;=F10.282^^100^1291^18
+ ;;^UTILITY(U,$J,358.3,26841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26473,1,3,0)
- ;;=3^Age-Related Incipient Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,26473,1,4,0)
- ;;=4^H25.093
- ;;^UTILITY(U,$J,358.3,26473,2)
- ;;=^5005281
- ;;^UTILITY(U,$J,358.3,26474,0)
- ;;=H25.041^^130^1291^15
- ;;^UTILITY(U,$J,358.3,26474,1,0)
+ ;;^UTILITY(U,$J,358.3,26841,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26841,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,26841,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,26842,0)
+ ;;=F10.982^^100^1291^19
+ ;;^UTILITY(U,$J,358.3,26842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26474,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,26474,1,4,0)
- ;;=4^H25.041
- ;;^UTILITY(U,$J,358.3,26474,2)
- ;;=^5005275
- ;;^UTILITY(U,$J,358.3,26475,0)
- ;;=H25.042^^130^1291^16
- ;;^UTILITY(U,$J,358.3,26475,1,0)
+ ;;^UTILITY(U,$J,358.3,26842,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26842,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,26842,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,26843,0)
+ ;;=F10.281^^100^1291^15
+ ;;^UTILITY(U,$J,358.3,26843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26475,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,26475,1,4,0)
- ;;=4^H25.042
- ;;^UTILITY(U,$J,358.3,26475,2)
- ;;=^5005276
- ;;^UTILITY(U,$J,358.3,26476,0)
- ;;=H25.043^^130^1291^17
- ;;^UTILITY(U,$J,358.3,26476,1,0)
+ ;;^UTILITY(U,$J,358.3,26843,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26843,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,26843,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,26844,0)
+ ;;=F10.981^^100^1291^16
+ ;;^UTILITY(U,$J,358.3,26844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26476,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,26476,1,4,0)
- ;;=4^H25.043
- ;;^UTILITY(U,$J,358.3,26476,2)
- ;;=^5005277
- ;;^UTILITY(U,$J,358.3,26477,0)
- ;;=H25.011^^130^1291^11
- ;;^UTILITY(U,$J,358.3,26477,1,0)
+ ;;^UTILITY(U,$J,358.3,26844,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26844,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,26844,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,26845,0)
+ ;;=F10.182^^100^1291^17
+ ;;^UTILITY(U,$J,358.3,26845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26477,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,26477,1,4,0)
- ;;=4^H25.011
- ;;^UTILITY(U,$J,358.3,26477,2)
- ;;=^5005267
- ;;^UTILITY(U,$J,358.3,26478,0)
- ;;=H25.012^^130^1291^10
- ;;^UTILITY(U,$J,358.3,26478,1,0)
+ ;;^UTILITY(U,$J,358.3,26845,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26845,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,26845,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,26846,0)
+ ;;=F10.121^^100^1291^20
+ ;;^UTILITY(U,$J,358.3,26846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26478,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,26478,1,4,0)
- ;;=4^H25.012
- ;;^UTILITY(U,$J,358.3,26478,2)
- ;;=^5005268
- ;;^UTILITY(U,$J,358.3,26479,0)
- ;;=H25.013^^130^1291^9
- ;;^UTILITY(U,$J,358.3,26479,1,0)
+ ;;^UTILITY(U,$J,358.3,26846,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26846,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,26846,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,26847,0)
+ ;;=F10.221^^100^1291^21
+ ;;^UTILITY(U,$J,358.3,26847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26479,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,26479,1,4,0)
- ;;=4^H25.013
- ;;^UTILITY(U,$J,358.3,26479,2)
- ;;=^5005269
- ;;^UTILITY(U,$J,358.3,26480,0)
- ;;=H25.13^^130^1291^6
- ;;^UTILITY(U,$J,358.3,26480,1,0)
+ ;;^UTILITY(U,$J,358.3,26847,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26847,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,26847,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,26848,0)
+ ;;=F10.921^^100^1291^22
+ ;;^UTILITY(U,$J,358.3,26848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26480,1,3,0)
- ;;=3^Age-Related Nuclear Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,26480,1,4,0)
- ;;=4^H25.13
- ;;^UTILITY(U,$J,358.3,26480,2)
- ;;=^5005286
- ;;^UTILITY(U,$J,358.3,26481,0)
- ;;=H25.12^^130^1291^7
+ ;;^UTILITY(U,$J,358.3,26848,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26848,1,4,0)
+ ;;=4^F10.921

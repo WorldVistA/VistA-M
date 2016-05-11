@@ -1,136 +1,134 @@
-IBDEI0SU ; ; 19-NOV-2015
+IBDEI0SU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13265,2)
- ;;=^5005285
- ;;^UTILITY(U,$J,358.3,13266,0)
- ;;=H25.13^^80^756^4
- ;;^UTILITY(U,$J,358.3,13266,1,0)
+ ;;^UTILITY(U,$J,358.3,13524,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,13524,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,13525,0)
+ ;;=C79.51^^53^593^113
+ ;;^UTILITY(U,$J,358.3,13525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13266,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Bilateral
- ;;^UTILITY(U,$J,358.3,13266,1,4,0)
- ;;=4^H25.13
- ;;^UTILITY(U,$J,358.3,13266,2)
- ;;=^5005286
- ;;^UTILITY(U,$J,358.3,13267,0)
- ;;=H54.0^^80^757^1
- ;;^UTILITY(U,$J,358.3,13267,1,0)
+ ;;^UTILITY(U,$J,358.3,13525,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,13525,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,13525,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,13526,0)
+ ;;=C79.52^^53^593^112
+ ;;^UTILITY(U,$J,358.3,13526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13267,1,3,0)
- ;;=3^Blindness,Both Eyes
- ;;^UTILITY(U,$J,358.3,13267,1,4,0)
- ;;=4^H54.0
- ;;^UTILITY(U,$J,358.3,13267,2)
- ;;=^5006357
- ;;^UTILITY(U,$J,358.3,13268,0)
- ;;=H54.12^^80^757^2
- ;;^UTILITY(U,$J,358.3,13268,1,0)
+ ;;^UTILITY(U,$J,358.3,13526,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,13526,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,13526,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,13527,0)
+ ;;=C79.31^^53^593^114
+ ;;^UTILITY(U,$J,358.3,13527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13268,1,3,0)
- ;;=3^Blindness-Left Eye/Low Vision-Right Eye
- ;;^UTILITY(U,$J,358.3,13268,1,4,0)
- ;;=4^H54.12
- ;;^UTILITY(U,$J,358.3,13268,2)
- ;;=^5006360
- ;;^UTILITY(U,$J,358.3,13269,0)
- ;;=H54.11^^80^757^4
- ;;^UTILITY(U,$J,358.3,13269,1,0)
+ ;;^UTILITY(U,$J,358.3,13527,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,13527,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,13527,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,13528,0)
+ ;;=C79.72^^53^593^129
+ ;;^UTILITY(U,$J,358.3,13528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13269,1,3,0)
- ;;=3^Blindness-Right Eye/Low Vision-Left Eye
- ;;^UTILITY(U,$J,358.3,13269,1,4,0)
- ;;=4^H54.11
- ;;^UTILITY(U,$J,358.3,13269,2)
- ;;=^5006359
- ;;^UTILITY(U,$J,358.3,13270,0)
- ;;=H54.2^^80^757^7
- ;;^UTILITY(U,$J,358.3,13270,1,0)
+ ;;^UTILITY(U,$J,358.3,13528,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,13528,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,13528,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,13529,0)
+ ;;=C78.02^^53^593^133
+ ;;^UTILITY(U,$J,358.3,13529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13270,1,3,0)
- ;;=3^Low Vision,Both Eyes
- ;;^UTILITY(U,$J,358.3,13270,1,4,0)
- ;;=4^H54.2
- ;;^UTILITY(U,$J,358.3,13270,2)
- ;;=^5006361
- ;;^UTILITY(U,$J,358.3,13271,0)
- ;;=H54.3^^80^757^8
- ;;^UTILITY(U,$J,358.3,13271,1,0)
+ ;;^UTILITY(U,$J,358.3,13529,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,13529,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,13529,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,13530,0)
+ ;;=C78.7^^53^593^138
+ ;;^UTILITY(U,$J,358.3,13530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13271,1,3,0)
- ;;=3^Unqualified Visual Loss,Both Eyes
- ;;^UTILITY(U,$J,358.3,13271,1,4,0)
- ;;=4^H54.3
- ;;^UTILITY(U,$J,358.3,13271,2)
- ;;=^268886
- ;;^UTILITY(U,$J,358.3,13272,0)
- ;;=H54.41^^80^757^5
- ;;^UTILITY(U,$J,358.3,13272,1,0)
+ ;;^UTILITY(U,$J,358.3,13530,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,13530,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,13530,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,13531,0)
+ ;;=C79.71^^53^593^151
+ ;;^UTILITY(U,$J,358.3,13531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13272,1,3,0)
- ;;=3^Blindness-Right Eye/Normal Vision-Left Eye
- ;;^UTILITY(U,$J,358.3,13272,1,4,0)
- ;;=4^H54.41
- ;;^UTILITY(U,$J,358.3,13272,2)
- ;;=^5006363
- ;;^UTILITY(U,$J,358.3,13273,0)
- ;;=H54.42^^80^757^3
- ;;^UTILITY(U,$J,358.3,13273,1,0)
+ ;;^UTILITY(U,$J,358.3,13531,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,13531,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,13531,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,13532,0)
+ ;;=C78.01^^53^593^155
+ ;;^UTILITY(U,$J,358.3,13532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13273,1,3,0)
- ;;=3^Blindness-Left Eye/Normal Vision-Right Eye
- ;;^UTILITY(U,$J,358.3,13273,1,4,0)
- ;;=4^H54.42
- ;;^UTILITY(U,$J,358.3,13273,2)
- ;;=^5133518
- ;;^UTILITY(U,$J,358.3,13274,0)
- ;;=H54.7^^80^757^9
- ;;^UTILITY(U,$J,358.3,13274,1,0)
+ ;;^UTILITY(U,$J,358.3,13532,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,13532,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,13532,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,13533,0)
+ ;;=C79.70^^53^593^106
+ ;;^UTILITY(U,$J,358.3,13533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13274,1,3,0)
- ;;=3^Visual Loss,Unspec
- ;;^UTILITY(U,$J,358.3,13274,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,13274,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,13275,0)
- ;;=H54.8^^80^757^6
- ;;^UTILITY(U,$J,358.3,13275,1,0)
+ ;;^UTILITY(U,$J,358.3,13533,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,13533,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,13533,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,13534,0)
+ ;;=C78.00^^53^593^139
+ ;;^UTILITY(U,$J,358.3,13534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13275,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,13275,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,13275,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,13276,0)
- ;;=E11.9^^80^758^26
- ;;^UTILITY(U,$J,358.3,13276,1,0)
+ ;;^UTILITY(U,$J,358.3,13534,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,13534,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,13534,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,13535,0)
+ ;;=D57.1^^53^593^182
+ ;;^UTILITY(U,$J,358.3,13535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13276,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,13276,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,13276,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,13277,0)
- ;;=E11.39^^80^758^15
- ;;^UTILITY(U,$J,358.3,13277,1,0)
+ ;;^UTILITY(U,$J,358.3,13535,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,13535,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,13535,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,13536,0)
+ ;;=D75.1^^53^593^180
+ ;;^UTILITY(U,$J,358.3,13536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13277,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
- ;;^UTILITY(U,$J,358.3,13277,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,13277,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,13278,0)
- ;;=E11.36^^80^758^14
- ;;^UTILITY(U,$J,358.3,13278,1,0)
+ ;;^UTILITY(U,$J,358.3,13536,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,13536,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,13536,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,13537,0)
+ ;;=C90.30^^53^593^183
+ ;;^UTILITY(U,$J,358.3,13537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13278,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,13278,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,13278,2)
- ;;=^5002642
+ ;;^UTILITY(U,$J,358.3,13537,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission

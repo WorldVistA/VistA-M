@@ -1,5 +1,5 @@
-ORDD100A ;slc/dcm-DD entries for file 100 ;06/18/2004
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**24,138,157**;Dec 17, 1997
+ORDD100A ;SLC/DCM - DD ENTRIES FOR FILE 100 ;11/03/2014  13:28
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**24,138,157,350**;Dec 17, 1997;Build 77
 ACT1(ORIFN,ORDA,ORADT,ORVP,ORDG) ; -- set "ACT" x-ref
  Q:'$G(ORIFN)  Q:'$G(ORDA)  N OR0
  S OR0=$G(^OR(100,ORIFN,0)) S:'$G(ORADT) ORADT=$P($G(^(8,ORDA,0)),U)
@@ -33,10 +33,13 @@ ES ; -- set "AE" x-ref
  . D SOR^ORPXRM(.X,.DAES)
  Q
 EK ; -- kill "AE" x-ref
+ N ORX
+ S ORX=$G(X)
  N DAEK,OI,ORSTOP,X
  S ORO=$G(^OR(100,DA,0))
  S ORSTOP=$P(ORO,U,9)
  I ORSTOP K ^OR(100,"AE",ORSTOP,DA)
+ I ORX K ^OR(100,"AE",ORX,DA)
  ;If there is no start date try to get the release date.
  S X(3)=$P(ORO,U,8)
  I X(3)="" S X(3)=$$RDATE^ORPXRM(DA)

@@ -1,112 +1,138 @@
-IBDEI2HM ; ; 19-NOV-2015
+IBDEI2HM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41749,0)
- ;;=28456^^191^2123^64^^^^1
- ;;^UTILITY(U,$J,358.3,41749,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41749,1,2,0)
- ;;=2^Perc Fixation Tarsal Fx
- ;;^UTILITY(U,$J,358.3,41749,1,3,0)
- ;;=3^28456
- ;;^UTILITY(U,$J,358.3,41750,0)
- ;;=28465^^191^2123^56^^^^1
- ;;^UTILITY(U,$J,358.3,41750,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41750,1,2,0)
- ;;=2^Open/Closed TX of tarsal FX,w/ internal fixation
- ;;^UTILITY(U,$J,358.3,41750,1,3,0)
- ;;=3^28465
- ;;^UTILITY(U,$J,358.3,41751,0)
- ;;=28470^^191^2123^14^^^^1
- ;;^UTILITY(U,$J,358.3,41751,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41751,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; without manipulation, eachnt of me
- ;;^UTILITY(U,$J,358.3,41751,1,3,0)
- ;;=3^28470
- ;;^UTILITY(U,$J,358.3,41752,0)
- ;;=28475^^191^2123^13^^^^1
- ;;^UTILITY(U,$J,358.3,41752,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41752,1,2,0)
- ;;=2^Closed TX of metatarsal fracture; with manipulation, each
- ;;^UTILITY(U,$J,358.3,41752,1,3,0)
- ;;=3^28475
- ;;^UTILITY(U,$J,358.3,41753,0)
- ;;=28476^^191^2123^59^^^^1
- ;;^UTILITY(U,$J,358.3,41753,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41753,1,2,0)
- ;;=2^Perc Fixation Metatarsal Fx
- ;;^UTILITY(U,$J,358.3,41753,1,3,0)
- ;;=3^28476
- ;;^UTILITY(U,$J,358.3,41754,0)
- ;;=28485^^191^2123^53^^^^1
- ;;^UTILITY(U,$J,358.3,41754,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41754,1,2,0)
- ;;=2^Open/Closed TX of Metatarsal FX,w/internal fixation
- ;;^UTILITY(U,$J,358.3,41754,1,3,0)
- ;;=3^28485
- ;;^UTILITY(U,$J,358.3,41755,0)
- ;;=28490^^191^2123^7^^^^1
- ;;^UTILITY(U,$J,358.3,41755,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41755,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; without manipulation
- ;;^UTILITY(U,$J,358.3,41755,1,3,0)
- ;;=3^28490
- ;;^UTILITY(U,$J,358.3,41756,0)
- ;;=28495^^191^2123^8^^^^1
- ;;^UTILITY(U,$J,358.3,41756,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41756,1,2,0)
- ;;=2^Closed TX of fracture great toe, phalanx or phalanges; with manipulation
- ;;^UTILITY(U,$J,358.3,41756,1,3,0)
- ;;=3^28495
- ;;^UTILITY(U,$J,358.3,41757,0)
- ;;=28496^^191^2123^57^^^^1
- ;;^UTILITY(U,$J,358.3,41757,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41757,1,2,0)
- ;;=2^Perc Fixation Great Toe Fx
- ;;^UTILITY(U,$J,358.3,41757,1,3,0)
- ;;=3^28496
- ;;^UTILITY(U,$J,358.3,41758,0)
- ;;=28505^^191^2123^37^^^^1
- ;;^UTILITY(U,$J,358.3,41758,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41758,1,2,0)
- ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
- ;;^UTILITY(U,$J,358.3,41758,1,3,0)
- ;;=3^28505
- ;;^UTILITY(U,$J,358.3,41759,0)
- ;;=28510^^191^2123^9^^^^1
- ;;^UTILITY(U,$J,358.3,41759,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41759,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
- ;;^UTILITY(U,$J,358.3,41759,1,3,0)
- ;;=3^28510
- ;;^UTILITY(U,$J,358.3,41760,0)
- ;;=28515^^191^2123^10^^^^1
- ;;^UTILITY(U,$J,358.3,41760,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41760,1,2,0)
- ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; with manipulation, each
- ;;^UTILITY(U,$J,358.3,41760,1,3,0)
- ;;=3^28515
- ;;^UTILITY(U,$J,358.3,41761,0)
- ;;=28525^^191^2123^38^^^^1
- ;;^UTILITY(U,$J,358.3,41761,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41761,1,2,0)
- ;;=2^Open TX of fracture, phalanx or phalanges, other than great toe, with or without internal or external fixation, each
- ;;^UTILITY(U,$J,358.3,41761,1,3,0)
- ;;=3^28525
- ;;^UTILITY(U,$J,358.3,41762,0)
- ;;=28530^^191^2123^15^^^^1
- ;;^UTILITY(U,$J,358.3,41762,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,42187,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,42187,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,42188,0)
+ ;;=R94.5^^159^2016^17
+ ;;^UTILITY(U,$J,358.3,42188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42188,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,42188,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,42188,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,42189,0)
+ ;;=R94.6^^159^2016^21
+ ;;^UTILITY(U,$J,358.3,42189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42189,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,42189,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,42189,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,42190,0)
+ ;;=R94.7^^159^2016^5
+ ;;^UTILITY(U,$J,358.3,42190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42190,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,42190,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,42190,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,42191,0)
+ ;;=R94.31^^159^2016^4
+ ;;^UTILITY(U,$J,358.3,42191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42191,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,42191,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,42191,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,42192,0)
+ ;;=R97.0^^159^2016^67
+ ;;^UTILITY(U,$J,358.3,42192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42192,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,42192,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,42192,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,42193,0)
+ ;;=R97.1^^159^2016^66
+ ;;^UTILITY(U,$J,358.3,42193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42193,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,42193,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,42193,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,42194,0)
+ ;;=R97.2^^159^2016^68
+ ;;^UTILITY(U,$J,358.3,42194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42194,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,42194,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,42194,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,42195,0)
+ ;;=R97.8^^159^2016^22
+ ;;^UTILITY(U,$J,358.3,42195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42195,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,42195,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,42195,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,42196,0)
+ ;;=R93.8^^159^2016^12
+ ;;^UTILITY(U,$J,358.3,42196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42196,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Body Structures
+ ;;^UTILITY(U,$J,358.3,42196,1,4,0)
+ ;;=4^R93.8
+ ;;^UTILITY(U,$J,358.3,42196,2)
+ ;;=^5019721
+ ;;^UTILITY(U,$J,358.3,42197,0)
+ ;;=R93.1^^159^2016^14
+ ;;^UTILITY(U,$J,358.3,42197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42197,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,42197,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,42197,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,42198,0)
+ ;;=R68.83^^159^2016^48
+ ;;^UTILITY(U,$J,358.3,42198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42198,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,42198,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,42198,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,42199,0)
+ ;;=R68.2^^159^2016^62
+ ;;^UTILITY(U,$J,358.3,42199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42199,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,42199,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,42199,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,42200,0)
+ ;;=R09.02^^159^2016^88
+ ;;^UTILITY(U,$J,358.3,42200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42200,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,42200,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,42200,2)
+ ;;=^332831

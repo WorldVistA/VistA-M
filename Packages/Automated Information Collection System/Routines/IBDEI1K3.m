@@ -1,130 +1,136 @@
-IBDEI1K3 ; ; 19-NOV-2015
+IBDEI1K3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26017,1,3,0)
- ;;=3^Flatulence
- ;;^UTILITY(U,$J,358.3,26017,1,4,0)
- ;;=4^R14.3
- ;;^UTILITY(U,$J,358.3,26017,2)
- ;;=^5019243
- ;;^UTILITY(U,$J,358.3,26018,0)
- ;;=R19.2^^127^1270^82
- ;;^UTILITY(U,$J,358.3,26018,1,0)
+ ;;^UTILITY(U,$J,358.3,26394,0)
+ ;;=F81.81^^98^1253^9
+ ;;^UTILITY(U,$J,358.3,26394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26018,1,3,0)
- ;;=3^Visible Peristalsis
- ;;^UTILITY(U,$J,358.3,26018,1,4,0)
- ;;=4^R19.2
- ;;^UTILITY(U,$J,358.3,26018,2)
- ;;=^5019265
- ;;^UTILITY(U,$J,358.3,26019,0)
- ;;=R19.12^^127^1270^50
- ;;^UTILITY(U,$J,358.3,26019,1,0)
+ ;;^UTILITY(U,$J,358.3,26394,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Writing
+ ;;^UTILITY(U,$J,358.3,26394,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,26394,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,26395,0)
+ ;;=F88.^^98^1253^10
+ ;;^UTILITY(U,$J,358.3,26395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26019,1,3,0)
- ;;=3^Hyperactive Bowel Sounds
- ;;^UTILITY(U,$J,358.3,26019,1,4,0)
- ;;=4^R19.12
- ;;^UTILITY(U,$J,358.3,26019,2)
- ;;=^5019263
- ;;^UTILITY(U,$J,358.3,26020,0)
- ;;=R19.15^^127^1270^8
- ;;^UTILITY(U,$J,358.3,26020,1,0)
+ ;;^UTILITY(U,$J,358.3,26395,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,26395,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,26395,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,26396,0)
+ ;;=F89.^^98^1253^11
+ ;;^UTILITY(U,$J,358.3,26396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26020,1,3,0)
- ;;=3^Bowel Sound Abnormality NEC
- ;;^UTILITY(U,$J,358.3,26020,1,4,0)
- ;;=4^R19.15
- ;;^UTILITY(U,$J,358.3,26020,2)
- ;;=^5019264
- ;;^UTILITY(U,$J,358.3,26021,0)
- ;;=R15.9^^127^1270^43
- ;;^UTILITY(U,$J,358.3,26021,1,0)
+ ;;^UTILITY(U,$J,358.3,26396,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26396,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,26396,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,26397,0)
+ ;;=F95.1^^98^1253^12
+ ;;^UTILITY(U,$J,358.3,26397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26021,1,3,0)
- ;;=3^Full Incontinence of Feces
- ;;^UTILITY(U,$J,358.3,26021,1,4,0)
- ;;=4^R15.9
- ;;^UTILITY(U,$J,358.3,26021,2)
- ;;=^5019247
- ;;^UTILITY(U,$J,358.3,26022,0)
- ;;=R19.7^^127^1270^23
- ;;^UTILITY(U,$J,358.3,26022,1,0)
+ ;;^UTILITY(U,$J,358.3,26397,1,3,0)
+ ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
+ ;;^UTILITY(U,$J,358.3,26397,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,26397,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,26398,0)
+ ;;=F95.0^^98^1253^13
+ ;;^UTILITY(U,$J,358.3,26398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26022,1,3,0)
- ;;=3^Diarrhea,Unspec
- ;;^UTILITY(U,$J,358.3,26022,1,4,0)
- ;;=4^R19.7
- ;;^UTILITY(U,$J,358.3,26022,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,26023,0)
- ;;=T33.522A^^127^1270^34
- ;;^UTILITY(U,$J,358.3,26023,1,0)
+ ;;^UTILITY(U,$J,358.3,26398,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,26398,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,26398,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,26399,0)
+ ;;=F80.89^^98^1253^14
+ ;;^UTILITY(U,$J,358.3,26399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26023,1,3,0)
- ;;=3^Frostbite of Left Hand,Superficial,Init Encntr
- ;;^UTILITY(U,$J,358.3,26023,1,4,0)
- ;;=4^T33.522A
- ;;^UTILITY(U,$J,358.3,26023,2)
- ;;=^5049079
- ;;^UTILITY(U,$J,358.3,26024,0)
- ;;=T33.521A^^127^1270^36
- ;;^UTILITY(U,$J,358.3,26024,1,0)
+ ;;^UTILITY(U,$J,358.3,26399,1,3,0)
+ ;;=3^Social Pragmatic Communication Disorder
+ ;;^UTILITY(U,$J,358.3,26399,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,26399,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,26400,0)
+ ;;=F80.0^^98^1253^15
+ ;;^UTILITY(U,$J,358.3,26400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26024,1,3,0)
- ;;=3^Frostbite of Right Hand,Superficial,Init Encntr
- ;;^UTILITY(U,$J,358.3,26024,1,4,0)
- ;;=4^T33.521A
- ;;^UTILITY(U,$J,358.3,26024,2)
- ;;=^5049076
- ;;^UTILITY(U,$J,358.3,26025,0)
- ;;=T34.521A^^127^1270^40
- ;;^UTILITY(U,$J,358.3,26025,1,0)
+ ;;^UTILITY(U,$J,358.3,26400,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,26400,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,26400,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,26401,0)
+ ;;=F98.4^^98^1253^16
+ ;;^UTILITY(U,$J,358.3,26401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26025,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,26025,1,4,0)
- ;;=4^T34.521A
- ;;^UTILITY(U,$J,358.3,26025,2)
- ;;=^5049187
- ;;^UTILITY(U,$J,358.3,26026,0)
- ;;=T34.522A^^127^1270^38
- ;;^UTILITY(U,$J,358.3,26026,1,0)
+ ;;^UTILITY(U,$J,358.3,26401,1,3,0)
+ ;;=3^Stereotypic Movement Disorder
+ ;;^UTILITY(U,$J,358.3,26401,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,26401,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,26402,0)
+ ;;=F95.8^^98^1253^17
+ ;;^UTILITY(U,$J,358.3,26402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26026,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,26026,1,4,0)
- ;;=4^T34.522A
- ;;^UTILITY(U,$J,358.3,26026,2)
- ;;=^5049190
- ;;^UTILITY(U,$J,358.3,26027,0)
- ;;=T33.821A^^127^1270^35
- ;;^UTILITY(U,$J,358.3,26027,1,0)
+ ;;^UTILITY(U,$J,358.3,26402,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,26402,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,26402,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,26403,0)
+ ;;=F95.9^^98^1253^18
+ ;;^UTILITY(U,$J,358.3,26403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26027,1,3,0)
- ;;=3^Frostbite of Right Foot,Superficial,Init Encntr
- ;;^UTILITY(U,$J,358.3,26027,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,26027,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,26028,0)
- ;;=T33.822A^^127^1270^33
- ;;^UTILITY(U,$J,358.3,26028,1,0)
+ ;;^UTILITY(U,$J,358.3,26403,1,3,0)
+ ;;=3^Tic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26403,1,4,0)
+ ;;=4^F95.9
+ ;;^UTILITY(U,$J,358.3,26403,2)
+ ;;=^5003710
+ ;;^UTILITY(U,$J,358.3,26404,0)
+ ;;=F95.2^^98^1253^19
+ ;;^UTILITY(U,$J,358.3,26404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26028,1,3,0)
- ;;=3^Frostbite of Left Foot,Superficial,Init Encntr
- ;;^UTILITY(U,$J,358.3,26028,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,26028,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,26029,0)
- ;;=T34.821A^^127^1270^39
- ;;^UTILITY(U,$J,358.3,26029,1,0)
+ ;;^UTILITY(U,$J,358.3,26404,1,3,0)
+ ;;=3^Tourette's Disorder
+ ;;^UTILITY(U,$J,358.3,26404,1,4,0)
+ ;;=4^F95.2
+ ;;^UTILITY(U,$J,358.3,26404,2)
+ ;;=^331942
+ ;;^UTILITY(U,$J,358.3,26405,0)
+ ;;=F15.929^^98^1254^7
+ ;;^UTILITY(U,$J,358.3,26405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26029,1,3,0)
- ;;=3^Frostbite w/ Tissue Necrosis of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,26029,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,26029,2)
- ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,26405,1,3,0)
+ ;;=3^Caffeine Intoxication
+ ;;^UTILITY(U,$J,358.3,26405,1,4,0)
+ ;;=4^F15.929
+ ;;^UTILITY(U,$J,358.3,26405,2)
+ ;;=^5003314
+ ;;^UTILITY(U,$J,358.3,26406,0)
+ ;;=F15.93^^98^1254^8
+ ;;^UTILITY(U,$J,358.3,26406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26406,1,3,0)
+ ;;=3^Caffeine Withdrawal
+ ;;^UTILITY(U,$J,358.3,26406,1,4,0)
+ ;;=4^F15.93
+ ;;^UTILITY(U,$J,358.3,26406,2)
+ ;;=^5003315
+ ;;^UTILITY(U,$J,358.3,26407,0)
+ ;;=F15.180^^98^1254^1

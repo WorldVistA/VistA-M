@@ -1,128 +1,140 @@
-IBDEI0CX ; ; 19-NOV-2015
+IBDEI0CX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5609,1,4,0)
- ;;=4^S61.212A
- ;;^UTILITY(U,$J,358.3,5609,2)
- ;;=^5032777
- ;;^UTILITY(U,$J,358.3,5610,0)
- ;;=S61.314A^^40^371^59
- ;;^UTILITY(U,$J,358.3,5610,1,0)
+ ;;^UTILITY(U,$J,358.3,5923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5610,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5610,1,4,0)
- ;;=4^S61.314A
- ;;^UTILITY(U,$J,358.3,5610,2)
- ;;=^5032918
- ;;^UTILITY(U,$J,358.3,5611,0)
- ;;=S61.214A^^40^371^60
- ;;^UTILITY(U,$J,358.3,5611,1,0)
+ ;;^UTILITY(U,$J,358.3,5923,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,5923,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,5923,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,5924,0)
+ ;;=L03.326^^30^385^29
+ ;;^UTILITY(U,$J,358.3,5924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5611,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5611,1,4,0)
- ;;=4^S61.214A
- ;;^UTILITY(U,$J,358.3,5611,2)
- ;;=^5032783
- ;;^UTILITY(U,$J,358.3,5612,0)
- ;;=S41.011A^^40^371^61
- ;;^UTILITY(U,$J,358.3,5612,1,0)
+ ;;^UTILITY(U,$J,358.3,5924,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,5924,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,5924,2)
+ ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,5925,0)
+ ;;=L03.329^^30^385^28
+ ;;^UTILITY(U,$J,358.3,5925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5612,1,3,0)
- ;;=3^Laceration w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,5612,1,4,0)
- ;;=4^S41.011A
- ;;^UTILITY(U,$J,358.3,5612,2)
- ;;=^5026297
- ;;^UTILITY(U,$J,358.3,5613,0)
- ;;=S61.111A^^40^371^63
- ;;^UTILITY(U,$J,358.3,5613,1,0)
+ ;;^UTILITY(U,$J,358.3,5925,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,5925,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,5925,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,5926,0)
+ ;;=L08.9^^30^385^167
+ ;;^UTILITY(U,$J,358.3,5926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5613,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5613,1,4,0)
- ;;=4^S61.111A
- ;;^UTILITY(U,$J,358.3,5613,2)
- ;;=^5032726
- ;;^UTILITY(U,$J,358.3,5614,0)
- ;;=S61.011A^^40^371^64
- ;;^UTILITY(U,$J,358.3,5614,1,0)
+ ;;^UTILITY(U,$J,358.3,5926,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,5926,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,5926,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,5927,0)
+ ;;=L11.0^^30^385^9
+ ;;^UTILITY(U,$J,358.3,5927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5614,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,5614,1,4,0)
- ;;=4^S61.011A
- ;;^UTILITY(U,$J,358.3,5614,2)
- ;;=^5032690
- ;;^UTILITY(U,$J,358.3,5615,0)
- ;;=S61.511A^^40^371^65
- ;;^UTILITY(U,$J,358.3,5615,1,0)
+ ;;^UTILITY(U,$J,358.3,5927,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis
+ ;;^UTILITY(U,$J,358.3,5927,1,4,0)
+ ;;=4^L11.0
+ ;;^UTILITY(U,$J,358.3,5927,2)
+ ;;=^5009091
+ ;;^UTILITY(U,$J,358.3,5928,0)
+ ;;=L20.0^^30^385^90
+ ;;^UTILITY(U,$J,358.3,5928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5615,1,3,0)
- ;;=3^Laceration w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,5615,1,4,0)
- ;;=4^S61.511A
- ;;^UTILITY(U,$J,358.3,5615,2)
- ;;=^5033026
- ;;^UTILITY(U,$J,358.3,5616,0)
- ;;=S01.01XA^^40^371^66
- ;;^UTILITY(U,$J,358.3,5616,1,0)
+ ;;^UTILITY(U,$J,358.3,5928,1,3,0)
+ ;;=3^Besnier's Prurigo
+ ;;^UTILITY(U,$J,358.3,5928,1,4,0)
+ ;;=4^L20.0
+ ;;^UTILITY(U,$J,358.3,5928,2)
+ ;;=^5009107
+ ;;^UTILITY(U,$J,358.3,5929,0)
+ ;;=L20.81^^30^385^87
+ ;;^UTILITY(U,$J,358.3,5929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5616,1,3,0)
- ;;=3^Laceration w/o FB of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,5616,1,4,0)
- ;;=4^S01.01XA
- ;;^UTILITY(U,$J,358.3,5616,2)
- ;;=^5020036
- ;;^UTILITY(U,$J,358.3,5617,0)
- ;;=S01.91XA^^40^371^4
- ;;^UTILITY(U,$J,358.3,5617,1,0)
+ ;;^UTILITY(U,$J,358.3,5929,1,3,0)
+ ;;=3^Atopic Neurodermatitis
+ ;;^UTILITY(U,$J,358.3,5929,1,4,0)
+ ;;=4^L20.81
+ ;;^UTILITY(U,$J,358.3,5929,2)
+ ;;=^5009108
+ ;;^UTILITY(U,$J,358.3,5930,0)
+ ;;=L20.82^^30^385^150
+ ;;^UTILITY(U,$J,358.3,5930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5617,1,3,0)
- ;;=3^Laceration w/o FB of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,5617,1,4,0)
- ;;=4^S01.91XA
- ;;^UTILITY(U,$J,358.3,5617,2)
- ;;=^5020243
- ;;^UTILITY(U,$J,358.3,5618,0)
- ;;=S11.91XA^^40^371^35
- ;;^UTILITY(U,$J,358.3,5618,1,0)
+ ;;^UTILITY(U,$J,358.3,5930,1,3,0)
+ ;;=3^Flexural Eczema
+ ;;^UTILITY(U,$J,358.3,5930,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,5930,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,5931,0)
+ ;;=L20.84^^30^385^162
+ ;;^UTILITY(U,$J,358.3,5931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5618,1,3,0)
- ;;=3^Laceration w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,5618,1,4,0)
- ;;=4^S11.91XA
- ;;^UTILITY(U,$J,358.3,5618,2)
- ;;=^5021530
- ;;^UTILITY(U,$J,358.3,5619,0)
- ;;=S91.012A^^40^371^7
- ;;^UTILITY(U,$J,358.3,5619,1,0)
+ ;;^UTILITY(U,$J,358.3,5931,1,3,0)
+ ;;=3^Intrinsic Eczema
+ ;;^UTILITY(U,$J,358.3,5931,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,5931,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,5932,0)
+ ;;=L20.89^^30^385^85
+ ;;^UTILITY(U,$J,358.3,5932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5619,1,3,0)
- ;;=3^Laceration w/o FB of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,5619,1,4,0)
- ;;=4^S91.012A
- ;;^UTILITY(U,$J,358.3,5619,2)
- ;;=^5044138
- ;;^UTILITY(U,$J,358.3,5620,0)
- ;;=S91.312A^^40^371^12
- ;;^UTILITY(U,$J,358.3,5620,1,0)
+ ;;^UTILITY(U,$J,358.3,5932,1,3,0)
+ ;;=3^Atopic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,5932,1,4,0)
+ ;;=4^L20.89
+ ;;^UTILITY(U,$J,358.3,5932,2)
+ ;;=^5009112
+ ;;^UTILITY(U,$J,358.3,5933,0)
+ ;;=L20.9^^30^385^86
+ ;;^UTILITY(U,$J,358.3,5933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5620,1,3,0)
- ;;=3^Laceration w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,5620,1,4,0)
- ;;=4^S91.312A
- ;;^UTILITY(U,$J,358.3,5620,2)
- ;;=^5044323
- ;;^UTILITY(U,$J,358.3,5621,0)
- ;;=S71.012A^^40^371^16
- ;;^UTILITY(U,$J,358.3,5621,1,0)
+ ;;^UTILITY(U,$J,358.3,5933,1,3,0)
+ ;;=3^Atopic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,5933,1,4,0)
+ ;;=4^L20.9
+ ;;^UTILITY(U,$J,358.3,5933,2)
+ ;;=^5009113
+ ;;^UTILITY(U,$J,358.3,5934,0)
+ ;;=L21.8^^30^385^262
+ ;;^UTILITY(U,$J,358.3,5934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5621,1,3,0)
- ;;=3^Laceration w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,5621,1,4,0)
- ;;=4^S71.012A
- ;;^UTILITY(U,$J,358.3,5621,2)
- ;;=^5036978
+ ;;^UTILITY(U,$J,358.3,5934,1,3,0)
+ ;;=3^Seborrheic Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,5934,1,4,0)
+ ;;=4^L21.8
+ ;;^UTILITY(U,$J,358.3,5934,2)
+ ;;=^303310
+ ;;^UTILITY(U,$J,358.3,5935,0)
+ ;;=L21.9^^30^385^263
+ ;;^UTILITY(U,$J,358.3,5935,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5935,1,3,0)
+ ;;=3^Seborrheic Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,5935,1,4,0)
+ ;;=4^L21.9
+ ;;^UTILITY(U,$J,358.3,5935,2)
+ ;;=^188703
+ ;;^UTILITY(U,$J,358.3,5936,0)
+ ;;=L23.7^^30^385^30
+ ;;^UTILITY(U,$J,358.3,5936,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5936,1,3,0)
+ ;;=3^Allergic Contact Dermatitis d/t Plants
+ ;;^UTILITY(U,$J,358.3,5936,1,4,0)
+ ;;=4^L23.7

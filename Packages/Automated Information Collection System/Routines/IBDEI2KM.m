@@ -1,124 +1,136 @@
-IBDEI2KM ; ; 19-NOV-2015
+IBDEI2KM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43119,1,3,0)
- ;;=3^Traum subrac hem w LOC of 6 hours to 24 hours, subs
- ;;^UTILITY(U,$J,358.3,43119,1,4,0)
- ;;=4^S06.6X4D
- ;;^UTILITY(U,$J,358.3,43119,2)
- ;;=^5021099
- ;;^UTILITY(U,$J,358.3,43120,0)
- ;;=S06.6X5D^^195^2167^55
- ;;^UTILITY(U,$J,358.3,43120,1,0)
+ ;;^UTILITY(U,$J,358.3,43619,2)
+ ;;=^5133322
+ ;;^UTILITY(U,$J,358.3,43620,0)
+ ;;=C34.81^^167^2084^9
+ ;;^UTILITY(U,$J,358.3,43620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43120,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, subs
- ;;^UTILITY(U,$J,358.3,43120,1,4,0)
- ;;=4^S06.6X5D
- ;;^UTILITY(U,$J,358.3,43120,2)
- ;;=^5021102
- ;;^UTILITY(U,$J,358.3,43121,0)
- ;;=S06.6X6D^^195^2167^57
- ;;^UTILITY(U,$J,358.3,43121,1,0)
+ ;;^UTILITY(U,$J,358.3,43620,1,3,0)
+ ;;=3^Malig Neop,Overlapping,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43620,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,43620,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,43621,0)
+ ;;=C34.82^^167^2084^8
+ ;;^UTILITY(U,$J,358.3,43621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43121,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, subs
- ;;^UTILITY(U,$J,358.3,43121,1,4,0)
- ;;=4^S06.6X6D
- ;;^UTILITY(U,$J,358.3,43121,2)
- ;;=^5021105
- ;;^UTILITY(U,$J,358.3,43122,0)
- ;;=S06.6X7D^^195^2167^68
- ;;^UTILITY(U,$J,358.3,43122,1,0)
+ ;;^UTILITY(U,$J,358.3,43621,1,3,0)
+ ;;=3^Malig Neop,Overlapping,Lt Bronch/Lung
+ ;;^UTILITY(U,$J,358.3,43621,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,43621,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,43622,0)
+ ;;=C34.91^^167^2084^11
+ ;;^UTILITY(U,$J,358.3,43622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43122,1,3,0)
- ;;=3^Traum subrac hem w LOC w death d/t brain inj bf consc, subs
- ;;^UTILITY(U,$J,358.3,43122,1,4,0)
- ;;=4^S06.6X7D
- ;;^UTILITY(U,$J,358.3,43122,2)
- ;;=^5021108
- ;;^UTILITY(U,$J,358.3,43123,0)
- ;;=S06.6X8D^^195^2167^70
- ;;^UTILITY(U,$J,358.3,43123,1,0)
+ ;;^UTILITY(U,$J,358.3,43622,1,3,0)
+ ;;=3^Malig Neop,Unspec Part,Rt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43622,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,43622,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,43623,0)
+ ;;=C34.92^^167^2084^10
+ ;;^UTILITY(U,$J,358.3,43623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43123,1,3,0)
- ;;=3^Traum subrac hem w LOC w death d/t oth cause bf consc, subs
- ;;^UTILITY(U,$J,358.3,43123,1,4,0)
- ;;=4^S06.6X8D
- ;;^UTILITY(U,$J,358.3,43123,2)
- ;;=^5021111
- ;;^UTILITY(U,$J,358.3,43124,0)
- ;;=S06.6X8D^^195^2167^71
- ;;^UTILITY(U,$J,358.3,43124,1,0)
+ ;;^UTILITY(U,$J,358.3,43623,1,3,0)
+ ;;=3^Malig Neop,Unspec Part,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43623,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,43623,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,43624,0)
+ ;;=J20.9^^167^2084^3
+ ;;^UTILITY(U,$J,358.3,43624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43124,1,3,0)
- ;;=3^Traum subrac hem w LOC w death d/t oth cause bf consc, subs
- ;;^UTILITY(U,$J,358.3,43124,1,4,0)
- ;;=4^S06.6X8D
- ;;^UTILITY(U,$J,358.3,43124,2)
- ;;=^5021111
- ;;^UTILITY(U,$J,358.3,43125,0)
- ;;=S06.6X9D^^195^2167^66
- ;;^UTILITY(U,$J,358.3,43125,1,0)
+ ;;^UTILITY(U,$J,358.3,43624,1,3,0)
+ ;;=3^Bronchitis,Acute
+ ;;^UTILITY(U,$J,358.3,43624,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,43624,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,43625,0)
+ ;;=J42.^^167^2084^4
+ ;;^UTILITY(U,$J,358.3,43625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43125,1,3,0)
- ;;=3^Traum subrac hem w LOC of unsp duration, subs
- ;;^UTILITY(U,$J,358.3,43125,1,4,0)
- ;;=4^S06.6X9D
- ;;^UTILITY(U,$J,358.3,43125,2)
- ;;=^5021114
- ;;^UTILITY(U,$J,358.3,43126,0)
- ;;=S06.6X0S^^195^2167^74
- ;;^UTILITY(U,$J,358.3,43126,1,0)
+ ;;^UTILITY(U,$J,358.3,43625,1,3,0)
+ ;;=3^Bronchitis,Chronic
+ ;;^UTILITY(U,$J,358.3,43625,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,43625,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,43626,0)
+ ;;=J45.909^^167^2084^2
+ ;;^UTILITY(U,$J,358.3,43626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43126,1,3,0)
- ;;=3^Traum subrac hem w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,43126,1,4,0)
- ;;=4^S06.6X0S
- ;;^UTILITY(U,$J,358.3,43126,2)
- ;;=^5021088
- ;;^UTILITY(U,$J,358.3,43127,0)
- ;;=S06.6X1S^^195^2167^61
- ;;^UTILITY(U,$J,358.3,43127,1,0)
+ ;;^UTILITY(U,$J,358.3,43626,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,43626,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,43626,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,43627,0)
+ ;;=J45.902^^167^2084^1
+ ;;^UTILITY(U,$J,358.3,43627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43127,1,3,0)
- ;;=3^Traum subrac hem w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,43127,1,4,0)
- ;;=4^S06.6X1S
- ;;^UTILITY(U,$J,358.3,43127,2)
- ;;=^5021091
- ;;^UTILITY(U,$J,358.3,43128,0)
- ;;=S06.6X2S^^195^2167^62
- ;;^UTILITY(U,$J,358.3,43128,1,0)
+ ;;^UTILITY(U,$J,358.3,43627,1,3,0)
+ ;;=3^Asthma,Unspec, w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,43627,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,43627,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,43628,0)
+ ;;=J61.^^167^2084^15
+ ;;^UTILITY(U,$J,358.3,43628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43128,1,3,0)
- ;;=3^Traum subrac hem w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,43128,1,4,0)
- ;;=4^S06.6X2S
- ;;^UTILITY(U,$J,358.3,43128,2)
- ;;=^5021094
- ;;^UTILITY(U,$J,358.3,43129,0)
- ;;=S06.6X3S^^195^2167^60
- ;;^UTILITY(U,$J,358.3,43129,1,0)
+ ;;^UTILITY(U,$J,358.3,43628,1,3,0)
+ ;;=3^Pneumoconiosis d/t Asbest & Oth Min Fibers
+ ;;^UTILITY(U,$J,358.3,43628,1,4,0)
+ ;;=4^J61.
+ ;;^UTILITY(U,$J,358.3,43628,2)
+ ;;=^5008262
+ ;;^UTILITY(U,$J,358.3,43629,0)
+ ;;=R09.1^^167^2084^14
+ ;;^UTILITY(U,$J,358.3,43629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43129,1,3,0)
- ;;=3^Traum subrac hem w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,43129,1,4,0)
- ;;=4^S06.6X3S
- ;;^UTILITY(U,$J,358.3,43129,2)
- ;;=^5021097
- ;;^UTILITY(U,$J,358.3,43130,0)
- ;;=S06.6X4S^^195^2167^65
- ;;^UTILITY(U,$J,358.3,43130,1,0)
+ ;;^UTILITY(U,$J,358.3,43629,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,43629,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,43629,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,43630,0)
+ ;;=J84.10^^167^2084^16
+ ;;^UTILITY(U,$J,358.3,43630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43130,1,3,0)
- ;;=3^Traum subrac hem w LOC of 6 hours to 24 hours, sequela
- ;;^UTILITY(U,$J,358.3,43130,1,4,0)
- ;;=4^S06.6X4S
- ;;^UTILITY(U,$J,358.3,43130,2)
- ;;=^5021100
- ;;^UTILITY(U,$J,358.3,43131,0)
- ;;=S06.6X5S^^195^2167^56
- ;;^UTILITY(U,$J,358.3,43131,1,0)
+ ;;^UTILITY(U,$J,358.3,43630,1,3,0)
+ ;;=3^Pulmonary Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,43630,1,4,0)
+ ;;=4^J84.10
+ ;;^UTILITY(U,$J,358.3,43630,2)
+ ;;=^5008300
+ ;;^UTILITY(U,$J,358.3,43631,0)
+ ;;=R91.1^^167^2084^17
+ ;;^UTILITY(U,$J,358.3,43631,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43631,1,3,0)
+ ;;=3^Pulmonay Nodule,Solitary
+ ;;^UTILITY(U,$J,358.3,43631,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,43631,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,43632,0)
+ ;;=B49.^^167^2085^52
+ ;;^UTILITY(U,$J,358.3,43632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43632,1,3,0)
+ ;;=3^Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,43632,1,4,0)
+ ;;=4^B49.
+ ;;^UTILITY(U,$J,358.3,43632,2)
+ ;;=^5000690

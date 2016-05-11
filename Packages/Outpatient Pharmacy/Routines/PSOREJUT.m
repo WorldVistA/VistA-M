@@ -1,5 +1,5 @@
 PSOREJUT ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities ;06/07/05
- ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**148,247,260,287,289,290,358,359,385,403,421,427**;DEC 1997;Build 21
  ;Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;Reference to $$ADDCOMM^BPSBUTL supported by IA 4719
  ;
@@ -16,6 +16,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  ;                   "DUR TEXT" - Payer's DUR description
  ;                   "DUR ADD MSG TEXT" - Payer's DUR additional message text description
  ;                   "INSURANCE NAME" - Patient's Insurance Company Name
+ ;                   "INSURANCE POINTER" - Patient's Insurance Company IEN
  ;                   "GROUP NAME" - Patient's Insurance Group Name
  ;                   "GROUP NUMBER" - Patient's Insurance Group Number
  ;                   "CARDHOLDER ID" - Patient's Insurance Cardholder ID
@@ -59,6 +60,7 @@ SAVE(RX,RFL,REJ,REOPEN) ; - Saves DUR Information in the file 52
  .S DIC("DR")=DIC("DR")_";30///"_REJ("RRR FLAG")
  .S DIC("DR")=DIC("DR")_";31///"_REJ("RRR THRESHOLD AMT")
  .S DIC("DR")=DIC("DR")_";32///"_REJ("RRR GROSS AMT DUE")
+ S DIC("DR")=DIC("DR")_";33///"_REJ("INSURANCE POINTER")
  F  L +^PSRX(RX):5 Q:$T  H 15
  K DD,DO D FILE^DICN K DD,DO S REJ("REJECT IEN")=+Y
  S REJ("OVERRIDE MSG")=$G(DATA("OVERRIDE MSG"))
@@ -234,6 +236,7 @@ SYNC2 ;
  . . S DATA("PAYER MESSAGE")=$$CLEAN^PSOREJU1(DATA("PAYER MESSAGE"))
  . . S DATA("CODE")=CODE,DATA("REASON")=$$CLEAN^PSOREJU1($G(REJ(IDX,"REASON")))
  . . S DATA("PHARMACIST")=$G(USR),DATA("INSURANCE NAME")=$$CLEAN^PSOREJU1($G(REJ(IDX,"INSURANCE NAME")))
+ . . S DATA("INSURANCE POINTER")=$$CLEAN^PSOREJU1($G(REJ(IDX,"INSURANCE POINTER")))
  . . S DATA("GROUP NAME")=$$CLEAN^PSOREJU1($G(REJ(IDX,"GROUP NAME"))),DATA("GROUP NUMBER")=$$CLEAN^PSOREJU1($G(REJ(IDX,"GROUP NUMBER")))
  . . S DATA("CARDHOLDER ID")=$$CLEAN^PSOREJU1($G(REJ(IDX,"CARDHOLDER ID"))),DATA("PLAN CONTACT")=$$CLEAN^PSOREJU1($G(REJ(IDX,"PLAN CONTACT")))
  . . S DATA("PREVIOUS FILL")=$$CLEAN^PSOREJU1($$DAT^PSOREJU1($G(REJ(IDX,"PREVIOUS FILL DATE"))))

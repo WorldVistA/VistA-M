@@ -1,120 +1,136 @@
-IBDEI1BD ; ; 19-NOV-2015
+IBDEI1BD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21924,0)
- ;;=S62.655S^^101^1035^82
- ;;^UTILITY(U,$J,358.3,21924,1,0)
+ ;;^UTILITY(U,$J,358.3,22338,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,22338,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,22339,0)
+ ;;=D63.8^^87^981^22
+ ;;^UTILITY(U,$J,358.3,22339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21924,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21924,1,4,0)
- ;;=4^S62.655S
- ;;^UTILITY(U,$J,358.3,21924,2)
- ;;=^5034773
- ;;^UTILITY(U,$J,358.3,21925,0)
- ;;=S62.650S^^101^1035^83
- ;;^UTILITY(U,$J,358.3,21925,1,0)
+ ;;^UTILITY(U,$J,358.3,22339,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,22339,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,22339,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,22340,0)
+ ;;=C22.3^^87^981^26
+ ;;^UTILITY(U,$J,358.3,22340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21925,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right index finger, sequela
- ;;^UTILITY(U,$J,358.3,21925,1,4,0)
- ;;=4^S62.650S
- ;;^UTILITY(U,$J,358.3,21925,2)
- ;;=^5034738
- ;;^UTILITY(U,$J,358.3,21926,0)
- ;;=S62.656S^^101^1035^84
- ;;^UTILITY(U,$J,358.3,21926,1,0)
+ ;;^UTILITY(U,$J,358.3,22340,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,22340,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,22340,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,22341,0)
+ ;;=D61.9^^87^981^27
+ ;;^UTILITY(U,$J,358.3,22341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21926,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right little finger, sequela
- ;;^UTILITY(U,$J,358.3,21926,1,4,0)
- ;;=4^S62.656S
- ;;^UTILITY(U,$J,358.3,21926,2)
- ;;=^5034780
- ;;^UTILITY(U,$J,358.3,21927,0)
- ;;=S62.652S^^101^1035^85
- ;;^UTILITY(U,$J,358.3,21927,1,0)
+ ;;^UTILITY(U,$J,358.3,22341,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,22341,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,22341,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,22342,0)
+ ;;=D56.1^^87^981^29
+ ;;^UTILITY(U,$J,358.3,22342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21927,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right middle finger, sequela
- ;;^UTILITY(U,$J,358.3,21927,1,4,0)
- ;;=4^S62.652S
- ;;^UTILITY(U,$J,358.3,21927,2)
- ;;=^5034752
- ;;^UTILITY(U,$J,358.3,21928,0)
- ;;=S62.654S^^101^1035^86
- ;;^UTILITY(U,$J,358.3,21928,1,0)
+ ;;^UTILITY(U,$J,358.3,22342,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,22342,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,22342,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,22343,0)
+ ;;=C83.79^^87^981^31
+ ;;^UTILITY(U,$J,358.3,22343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21928,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21928,1,4,0)
- ;;=4^S62.654S
- ;;^UTILITY(U,$J,358.3,21928,2)
- ;;=^5034766
- ;;^UTILITY(U,$J,358.3,21929,0)
- ;;=S62.641S^^101^1035^99
- ;;^UTILITY(U,$J,358.3,21929,1,0)
+ ;;^UTILITY(U,$J,358.3,22343,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,22343,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,22343,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,22344,0)
+ ;;=C83.70^^87^981^32
+ ;;^UTILITY(U,$J,358.3,22344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21929,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left index finger, sequela
- ;;^UTILITY(U,$J,358.3,21929,1,4,0)
- ;;=4^S62.641S
- ;;^UTILITY(U,$J,358.3,21929,2)
- ;;=^5034675
- ;;^UTILITY(U,$J,358.3,21930,0)
- ;;=S62.647S^^101^1035^97
- ;;^UTILITY(U,$J,358.3,21930,1,0)
+ ;;^UTILITY(U,$J,358.3,22344,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22344,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,22344,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,22345,0)
+ ;;=D09.0^^87^981^39
+ ;;^UTILITY(U,$J,358.3,22345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21930,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l little finger, sequela
- ;;^UTILITY(U,$J,358.3,21930,1,4,0)
- ;;=4^S62.647S
- ;;^UTILITY(U,$J,358.3,21930,2)
- ;;=^5034717
- ;;^UTILITY(U,$J,358.3,21931,0)
- ;;=S62.643S^^101^1035^98
- ;;^UTILITY(U,$J,358.3,21931,1,0)
+ ;;^UTILITY(U,$J,358.3,22345,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,22345,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,22345,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,22346,0)
+ ;;=D06.9^^87^981^40
+ ;;^UTILITY(U,$J,358.3,22346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21931,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of l mid finger, sequela
- ;;^UTILITY(U,$J,358.3,21931,1,4,0)
- ;;=4^S62.643S
- ;;^UTILITY(U,$J,358.3,21931,2)
- ;;=^5034689
- ;;^UTILITY(U,$J,358.3,21932,0)
- ;;=S62.645S^^101^1035^100
- ;;^UTILITY(U,$J,358.3,21932,1,0)
+ ;;^UTILITY(U,$J,358.3,22346,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix
+ ;;^UTILITY(U,$J,358.3,22346,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,22346,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,22347,0)
+ ;;=D06.0^^87^981^42
+ ;;^UTILITY(U,$J,358.3,22347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21932,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21932,1,4,0)
- ;;=4^S62.645S
- ;;^UTILITY(U,$J,358.3,21932,2)
- ;;=^5034703
- ;;^UTILITY(U,$J,358.3,21933,0)
- ;;=S62.640S^^101^1035^102
- ;;^UTILITY(U,$J,358.3,21933,1,0)
+ ;;^UTILITY(U,$J,358.3,22347,1,3,0)
+ ;;=3^Carcinoma in Situ of Endocervix
+ ;;^UTILITY(U,$J,358.3,22347,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,22347,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,22348,0)
+ ;;=D06.1^^87^981^43
+ ;;^UTILITY(U,$J,358.3,22348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21933,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r idx fngr, sequela
- ;;^UTILITY(U,$J,358.3,21933,1,4,0)
- ;;=4^S62.640S
- ;;^UTILITY(U,$J,358.3,21933,2)
- ;;=^5034668
- ;;^UTILITY(U,$J,358.3,21934,0)
- ;;=S62.646S^^101^1035^103
- ;;^UTILITY(U,$J,358.3,21934,1,0)
+ ;;^UTILITY(U,$J,358.3,22348,1,3,0)
+ ;;=3^Carcinoma in Situ of Exocervix
+ ;;^UTILITY(U,$J,358.3,22348,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,22348,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,22349,0)
+ ;;=D06.7^^87^981^41
+ ;;^UTILITY(U,$J,358.3,22349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21934,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r little finger, sequela
- ;;^UTILITY(U,$J,358.3,21934,1,4,0)
- ;;=4^S62.646S
- ;;^UTILITY(U,$J,358.3,21934,2)
- ;;=^5034710
- ;;^UTILITY(U,$J,358.3,21935,0)
- ;;=S62.642S^^101^1035^104
- ;;^UTILITY(U,$J,358.3,21935,1,0)
+ ;;^UTILITY(U,$J,358.3,22349,1,3,0)
+ ;;=3^Carcinoma in Situ of Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,22349,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,22349,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,22350,0)
+ ;;=D04.9^^87^981^44
+ ;;^UTILITY(U,$J,358.3,22350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21935,1,3,0)
- ;;=3^Nondisp fx of proximal phalanx of r mid finger, sequela
+ ;;^UTILITY(U,$J,358.3,22350,1,3,0)
+ ;;=3^Carcinoma in Situ of Skin
+ ;;^UTILITY(U,$J,358.3,22350,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,22350,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,22351,0)
+ ;;=C91.11^^87^981^47
+ ;;^UTILITY(U,$J,358.3,22351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22351,1,3,0)
+ ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
+ ;;^UTILITY(U,$J,358.3,22351,1,4,0)
+ ;;=4^C91.11

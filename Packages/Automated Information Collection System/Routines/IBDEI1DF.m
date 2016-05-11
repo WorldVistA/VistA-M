@@ -1,132 +1,130 @@
-IBDEI1DF ; ; 19-NOV-2015
+IBDEI1DF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22854,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,22855,0)
- ;;=Z85.840^^104^1066^12
- ;;^UTILITY(U,$J,358.3,22855,1,0)
+ ;;^UTILITY(U,$J,358.3,23306,0)
+ ;;=R09.02^^87^993^88
+ ;;^UTILITY(U,$J,358.3,23306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22855,1,3,0)
- ;;=3^Personal Hx Malig Neop Eye
- ;;^UTILITY(U,$J,358.3,22855,1,4,0)
- ;;=4^Z85.840
- ;;^UTILITY(U,$J,358.3,22855,2)
- ;;=^5063446
- ;;^UTILITY(U,$J,358.3,22856,0)
- ;;=Z85.028^^104^1066^28
- ;;^UTILITY(U,$J,358.3,22856,1,0)
+ ;;^UTILITY(U,$J,358.3,23306,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,23306,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,23306,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,23307,0)
+ ;;=R39.81^^87^993^92
+ ;;^UTILITY(U,$J,358.3,23307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22856,1,3,0)
- ;;=3^Personal Hx Malig Neop Stomach
- ;;^UTILITY(U,$J,358.3,22856,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,22856,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,22857,0)
- ;;=Z85.09^^104^1066^9
- ;;^UTILITY(U,$J,358.3,22857,1,0)
+ ;;^UTILITY(U,$J,358.3,23307,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,23307,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,23307,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,23308,0)
+ ;;=R29.6^^87^993^146
+ ;;^UTILITY(U,$J,358.3,23308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22857,1,3,0)
- ;;=3^Personal Hx Malig Neop Digestive Organs
- ;;^UTILITY(U,$J,358.3,22857,1,4,0)
- ;;=4^Z85.09
- ;;^UTILITY(U,$J,358.3,22857,2)
- ;;=^5063406
- ;;^UTILITY(U,$J,358.3,22858,0)
- ;;=Z85.528^^104^1066^14
- ;;^UTILITY(U,$J,358.3,22858,1,0)
+ ;;^UTILITY(U,$J,358.3,23308,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,23308,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,23308,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,23309,0)
+ ;;=R44.1^^87^993^160
+ ;;^UTILITY(U,$J,358.3,23309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22858,1,3,0)
- ;;=3^Personal Hx Malig Neop Kidney
- ;;^UTILITY(U,$J,358.3,22858,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,22858,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,22859,0)
- ;;=Z85.05^^104^1066^17
- ;;^UTILITY(U,$J,358.3,22859,1,0)
+ ;;^UTILITY(U,$J,358.3,23309,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,23309,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,23309,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,23310,0)
+ ;;=S43.51XA^^87^994^12
+ ;;^UTILITY(U,$J,358.3,23310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22859,1,3,0)
- ;;=3^Personal Hx Malig Neop Liver
- ;;^UTILITY(U,$J,358.3,22859,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,22859,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,22860,0)
- ;;=Z85.43^^104^1066^21
- ;;^UTILITY(U,$J,358.3,22860,1,0)
+ ;;^UTILITY(U,$J,358.3,23310,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,23310,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,23310,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,23311,0)
+ ;;=S43.52XA^^87^994^1
+ ;;^UTILITY(U,$J,358.3,23311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22860,1,3,0)
- ;;=3^Personal Hx Malig Neop Ovary
- ;;^UTILITY(U,$J,358.3,22860,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,22860,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,22861,0)
- ;;=Z85.850^^104^1066^30
- ;;^UTILITY(U,$J,358.3,22861,1,0)
+ ;;^UTILITY(U,$J,358.3,23311,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,23311,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,23311,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,23312,0)
+ ;;=S43.421A^^87^994^17
+ ;;^UTILITY(U,$J,358.3,23312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22861,1,3,0)
- ;;=3^Personal Hx Malig Neop Thyroid
- ;;^UTILITY(U,$J,358.3,22861,1,4,0)
- ;;=4^Z85.850
- ;;^UTILITY(U,$J,358.3,22861,2)
- ;;=^5063449
- ;;^UTILITY(U,$J,358.3,22862,0)
- ;;=Z85.810^^104^1066^31
- ;;^UTILITY(U,$J,358.3,22862,1,0)
+ ;;^UTILITY(U,$J,358.3,23312,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,23312,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,23312,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,23313,0)
+ ;;=S43.422A^^87^994^6
+ ;;^UTILITY(U,$J,358.3,23313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22862,1,3,0)
- ;;=3^Personal Hx Malig Neop Tongue
- ;;^UTILITY(U,$J,358.3,22862,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,22862,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,22863,0)
- ;;=Z85.118^^104^1066^7
- ;;^UTILITY(U,$J,358.3,22863,1,0)
+ ;;^UTILITY(U,$J,358.3,23313,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,23313,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,23313,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,23314,0)
+ ;;=S53.401A^^87^994^14
+ ;;^UTILITY(U,$J,358.3,23314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22863,1,3,0)
- ;;=3^Personal Hx Malig Neop Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,22863,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,22863,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,22864,0)
- ;;=Z85.41^^104^1066^8
- ;;^UTILITY(U,$J,358.3,22864,1,0)
+ ;;^UTILITY(U,$J,358.3,23314,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,23314,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,23314,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,23315,0)
+ ;;=S53.402A^^87^994^3
+ ;;^UTILITY(U,$J,358.3,23315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22864,1,3,0)
- ;;=3^Personal Hx Malig Neop Cervix Uteri
- ;;^UTILITY(U,$J,358.3,22864,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,22864,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,22865,0)
- ;;=Z85.858^^104^1066^10
- ;;^UTILITY(U,$J,358.3,22865,1,0)
+ ;;^UTILITY(U,$J,358.3,23315,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,23315,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,23315,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,23316,0)
+ ;;=S56.011A^^87^994^55
+ ;;^UTILITY(U,$J,358.3,23316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22865,1,3,0)
- ;;=3^Personal Hx Malig Neop Endocrine Glands
- ;;^UTILITY(U,$J,358.3,22865,1,4,0)
- ;;=4^Z85.858
- ;;^UTILITY(U,$J,358.3,22865,2)
- ;;=^5063450
- ;;^UTILITY(U,$J,358.3,22866,0)
- ;;=Z85.01^^104^1066^11
- ;;^UTILITY(U,$J,358.3,22866,1,0)
+ ;;^UTILITY(U,$J,358.3,23316,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23316,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,23316,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,23317,0)
+ ;;=S56.012A^^87^994^36
+ ;;^UTILITY(U,$J,358.3,23317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22866,1,3,0)
- ;;=3^Personal Hx Malig Neop Esophagus
- ;;^UTILITY(U,$J,358.3,22866,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,22866,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,22867,0)
- ;;=Z85.44^^104^1066^13
- ;;^UTILITY(U,$J,358.3,22867,1,0)
+ ;;^UTILITY(U,$J,358.3,23317,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23317,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,23317,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,23318,0)
+ ;;=S56.111A^^87^994^43
+ ;;^UTILITY(U,$J,358.3,23318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22867,1,3,0)
- ;;=3^Personal Hx Malig Neop Female Genital Organs
+ ;;^UTILITY(U,$J,358.3,23318,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon

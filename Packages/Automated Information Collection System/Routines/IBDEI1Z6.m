@@ -1,128 +1,130 @@
-IBDEI1Z6 ; ; 19-NOV-2015
+IBDEI1Z6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33073,1,0)
+ ;;^UTILITY(U,$J,358.3,33517,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,33517,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,33518,0)
+ ;;=I69.328^^131^1671^23
+ ;;^UTILITY(U,$J,358.3,33518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33073,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33073,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,33073,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,33074,0)
- ;;=F12.288^^146^1609^6
- ;;^UTILITY(U,$J,358.3,33074,1,0)
+ ;;^UTILITY(U,$J,358.3,33518,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,33518,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,33518,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,33519,0)
+ ;;=E04.0^^131^1672^39
+ ;;^UTILITY(U,$J,358.3,33519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33074,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,33074,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,33074,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,33075,0)
- ;;=F12.280^^146^1609^7
- ;;^UTILITY(U,$J,358.3,33075,1,0)
+ ;;^UTILITY(U,$J,358.3,33519,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,33519,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,33519,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,33520,0)
+ ;;=E04.1^^131^1672^41
+ ;;^UTILITY(U,$J,358.3,33520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33075,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,33075,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,33075,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,33076,0)
- ;;=F16.10^^146^1610^1
- ;;^UTILITY(U,$J,358.3,33076,1,0)
+ ;;^UTILITY(U,$J,358.3,33520,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,33520,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,33520,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,33521,0)
+ ;;=E04.2^^131^1672^40
+ ;;^UTILITY(U,$J,358.3,33521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33076,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33076,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,33076,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,33077,0)
- ;;=F16.20^^146^1610^2
- ;;^UTILITY(U,$J,358.3,33077,1,0)
+ ;;^UTILITY(U,$J,358.3,33521,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,33521,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,33521,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,33522,0)
+ ;;=E01.1^^131^1672^36
+ ;;^UTILITY(U,$J,358.3,33522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33077,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33077,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,33077,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,33078,0)
- ;;=F16.21^^146^1610^3
- ;;^UTILITY(U,$J,358.3,33078,1,0)
+ ;;^UTILITY(U,$J,358.3,33522,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,33522,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,33522,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,33523,0)
+ ;;=E05.00^^131^1672^56
+ ;;^UTILITY(U,$J,358.3,33523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33078,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33078,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,33078,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,33079,0)
- ;;=F11.10^^146^1611^4
- ;;^UTILITY(U,$J,358.3,33079,1,0)
+ ;;^UTILITY(U,$J,358.3,33523,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,33523,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,33523,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,33524,0)
+ ;;=E05.01^^131^1672^55
+ ;;^UTILITY(U,$J,358.3,33524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33079,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33079,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,33079,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,33080,0)
- ;;=F11.129^^146^1611^3
- ;;^UTILITY(U,$J,358.3,33080,1,0)
+ ;;^UTILITY(U,$J,358.3,33524,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,33524,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,33524,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,33525,0)
+ ;;=E05.90^^131^1672^58
+ ;;^UTILITY(U,$J,358.3,33525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33080,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33080,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,33080,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,33081,0)
- ;;=F11.14^^146^1611^8
- ;;^UTILITY(U,$J,358.3,33081,1,0)
+ ;;^UTILITY(U,$J,358.3,33525,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,33525,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,33525,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,33526,0)
+ ;;=E05.91^^131^1672^57
+ ;;^UTILITY(U,$J,358.3,33526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33081,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33081,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,33081,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,33082,0)
- ;;=F11.182^^146^1611^10
- ;;^UTILITY(U,$J,358.3,33082,1,0)
+ ;;^UTILITY(U,$J,358.3,33526,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,33526,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,33526,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,33527,0)
+ ;;=E89.0^^131^1672^50
+ ;;^UTILITY(U,$J,358.3,33527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33082,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33082,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,33082,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,33083,0)
- ;;=F11.20^^146^1611^5
- ;;^UTILITY(U,$J,358.3,33083,1,0)
+ ;;^UTILITY(U,$J,358.3,33527,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,33527,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,33527,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,33528,0)
+ ;;=E03.2^^131^1672^32
+ ;;^UTILITY(U,$J,358.3,33528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33083,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33083,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,33083,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,33084,0)
- ;;=F11.21^^146^1611^6
- ;;^UTILITY(U,$J,358.3,33084,1,0)
+ ;;^UTILITY(U,$J,358.3,33528,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,33528,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,33528,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,33529,0)
+ ;;=E03.9^^131^1672^33
+ ;;^UTILITY(U,$J,358.3,33529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33084,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33084,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,33084,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,33085,0)
- ;;=F11.23^^146^1611^7
- ;;^UTILITY(U,$J,358.3,33085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33085,1,3,0)
- ;;=3^Opioid Withdrawal
+ ;;^UTILITY(U,$J,358.3,33529,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,33529,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,33529,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,33530,0)
+ ;;=E06.0^^131^1672^53

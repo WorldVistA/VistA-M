@@ -1,128 +1,132 @@
-IBDEI2CF ; ; 19-NOV-2015
+IBDEI2CF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39354,1,4,0)
- ;;=4^M48.36
- ;;^UTILITY(U,$J,358.3,39354,2)
- ;;=^5012120
- ;;^UTILITY(U,$J,358.3,39355,0)
- ;;=M48.37^^183^2018^58
- ;;^UTILITY(U,$J,358.3,39355,1,0)
+ ;;^UTILITY(U,$J,358.3,39728,2)
+ ;;=^5004317
+ ;;^UTILITY(U,$J,358.3,39729,0)
+ ;;=H02.035^^153^1928^91
+ ;;^UTILITY(U,$J,358.3,39729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39355,1,3,0)
- ;;=3^Traumatic spondylopathy, lumbosacral region
- ;;^UTILITY(U,$J,358.3,39355,1,4,0)
- ;;=4^M48.37
- ;;^UTILITY(U,$J,358.3,39355,2)
- ;;=^5012121
- ;;^UTILITY(U,$J,358.3,39356,0)
- ;;=M48.31^^183^2018^59
- ;;^UTILITY(U,$J,358.3,39356,1,0)
+ ;;^UTILITY(U,$J,358.3,39729,1,3,0)
+ ;;=3^Senile Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39729,1,4,0)
+ ;;=4^H02.035
+ ;;^UTILITY(U,$J,358.3,39729,2)
+ ;;=^5133401
+ ;;^UTILITY(U,$J,358.3,39730,0)
+ ;;=H02.034^^153^1928^92
+ ;;^UTILITY(U,$J,358.3,39730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39356,1,3,0)
- ;;=3^Traumatic spondylopathy, occipito-atlanto-axial region
- ;;^UTILITY(U,$J,358.3,39356,1,4,0)
- ;;=4^M48.31
- ;;^UTILITY(U,$J,358.3,39356,2)
- ;;=^5012115
- ;;^UTILITY(U,$J,358.3,39357,0)
- ;;=M48.38^^183^2018^60
- ;;^UTILITY(U,$J,358.3,39357,1,0)
+ ;;^UTILITY(U,$J,358.3,39730,1,3,0)
+ ;;=3^Senile Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39730,1,4,0)
+ ;;=4^H02.034
+ ;;^UTILITY(U,$J,358.3,39730,2)
+ ;;=^5004291
+ ;;^UTILITY(U,$J,358.3,39731,0)
+ ;;=H02.032^^153^1928^93
+ ;;^UTILITY(U,$J,358.3,39731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39357,1,3,0)
- ;;=3^Traumatic spondylopathy, sacral and sacrococcygeal region
- ;;^UTILITY(U,$J,358.3,39357,1,4,0)
- ;;=4^M48.38
- ;;^UTILITY(U,$J,358.3,39357,2)
- ;;=^5012122
- ;;^UTILITY(U,$J,358.3,39358,0)
- ;;=M48.35^^183^2018^62
- ;;^UTILITY(U,$J,358.3,39358,1,0)
+ ;;^UTILITY(U,$J,358.3,39731,1,3,0)
+ ;;=3^Senile Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39731,1,4,0)
+ ;;=4^H02.032
+ ;;^UTILITY(U,$J,358.3,39731,2)
+ ;;=^5004289
+ ;;^UTILITY(U,$J,358.3,39732,0)
+ ;;=H02.031^^153^1928^94
+ ;;^UTILITY(U,$J,358.3,39732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39358,1,3,0)
- ;;=3^Traumatic spondylopathy, thoracolumbar region
- ;;^UTILITY(U,$J,358.3,39358,1,4,0)
- ;;=4^M48.35
- ;;^UTILITY(U,$J,358.3,39358,2)
- ;;=^5012119
- ;;^UTILITY(U,$J,358.3,39359,0)
- ;;=M48.33^^183^2018^56
- ;;^UTILITY(U,$J,358.3,39359,1,0)
+ ;;^UTILITY(U,$J,358.3,39732,1,3,0)
+ ;;=3^Senile Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39732,1,4,0)
+ ;;=4^H02.031
+ ;;^UTILITY(U,$J,358.3,39732,2)
+ ;;=^5004288
+ ;;^UTILITY(U,$J,358.3,39733,0)
+ ;;=H02.145^^153^1928^95
+ ;;^UTILITY(U,$J,358.3,39733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39359,1,3,0)
- ;;=3^Traumatic spondylopathy, cervicothoracic region
- ;;^UTILITY(U,$J,358.3,39359,1,4,0)
- ;;=4^M48.33
- ;;^UTILITY(U,$J,358.3,39359,2)
- ;;=^5012117
- ;;^UTILITY(U,$J,358.3,39360,0)
- ;;=M48.34^^183^2018^61
- ;;^UTILITY(U,$J,358.3,39360,1,0)
+ ;;^UTILITY(U,$J,358.3,39733,1,3,0)
+ ;;=3^Spastic Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39733,1,4,0)
+ ;;=4^H02.145
+ ;;^UTILITY(U,$J,358.3,39733,2)
+ ;;=^5133416
+ ;;^UTILITY(U,$J,358.3,39734,0)
+ ;;=H02.144^^153^1928^96
+ ;;^UTILITY(U,$J,358.3,39734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39360,1,3,0)
- ;;=3^Traumatic spondylopathy, thoracic region
- ;;^UTILITY(U,$J,358.3,39360,1,4,0)
- ;;=4^M48.34
- ;;^UTILITY(U,$J,358.3,39360,2)
- ;;=^5012118
- ;;^UTILITY(U,$J,358.3,39361,0)
- ;;=R47.01^^183^2019^1
- ;;^UTILITY(U,$J,358.3,39361,1,0)
+ ;;^UTILITY(U,$J,358.3,39734,1,3,0)
+ ;;=3^Spastic Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39734,1,4,0)
+ ;;=4^H02.144
+ ;;^UTILITY(U,$J,358.3,39734,2)
+ ;;=^5004325
+ ;;^UTILITY(U,$J,358.3,39735,0)
+ ;;=H02.142^^153^1928^97
+ ;;^UTILITY(U,$J,358.3,39735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39361,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,39361,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,39361,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,39362,0)
- ;;=I69.920^^183^2019^2
- ;;^UTILITY(U,$J,358.3,39362,1,0)
+ ;;^UTILITY(U,$J,358.3,39735,1,3,0)
+ ;;=3^Spastic Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39735,1,4,0)
+ ;;=4^H02.142
+ ;;^UTILITY(U,$J,358.3,39735,2)
+ ;;=^5004323
+ ;;^UTILITY(U,$J,358.3,39736,0)
+ ;;=H02.141^^153^1928^98
+ ;;^UTILITY(U,$J,358.3,39736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39362,1,3,0)
- ;;=3^Aphasia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,39362,1,4,0)
- ;;=4^I69.920
- ;;^UTILITY(U,$J,358.3,39362,2)
- ;;=^5007553
- ;;^UTILITY(U,$J,358.3,39363,0)
- ;;=I69.91^^183^2019^3
- ;;^UTILITY(U,$J,358.3,39363,1,0)
+ ;;^UTILITY(U,$J,358.3,39736,1,3,0)
+ ;;=3^Spastic Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39736,1,4,0)
+ ;;=4^H02.141
+ ;;^UTILITY(U,$J,358.3,39736,2)
+ ;;=^5004322
+ ;;^UTILITY(U,$J,358.3,39737,0)
+ ;;=H02.045^^153^1928^99
+ ;;^UTILITY(U,$J,358.3,39737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39363,1,3,0)
- ;;=3^Cognitive deficits following unsp cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,39363,1,4,0)
- ;;=4^I69.91
- ;;^UTILITY(U,$J,358.3,39363,2)
- ;;=^5007552
- ;;^UTILITY(U,$J,358.3,39364,0)
- ;;=I69.991^^183^2019^5
- ;;^UTILITY(U,$J,358.3,39364,1,0)
+ ;;^UTILITY(U,$J,358.3,39737,1,3,0)
+ ;;=3^Spastic Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39737,1,4,0)
+ ;;=4^H02.045
+ ;;^UTILITY(U,$J,358.3,39737,2)
+ ;;=^5133403
+ ;;^UTILITY(U,$J,358.3,39738,0)
+ ;;=H02.044^^153^1928^100
+ ;;^UTILITY(U,$J,358.3,39738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39364,1,3,0)
- ;;=3^Dysphagia following unspecified cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,39364,1,4,0)
- ;;=4^I69.991
- ;;^UTILITY(U,$J,358.3,39364,2)
- ;;=^5007569
- ;;^UTILITY(U,$J,358.3,39365,0)
- ;;=G11.1^^183^2019^6
- ;;^UTILITY(U,$J,358.3,39365,1,0)
+ ;;^UTILITY(U,$J,358.3,39738,1,3,0)
+ ;;=3^Spastic Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39738,1,4,0)
+ ;;=4^H02.044
+ ;;^UTILITY(U,$J,358.3,39738,2)
+ ;;=^5004296
+ ;;^UTILITY(U,$J,358.3,39739,0)
+ ;;=H02.042^^153^1928^101
+ ;;^UTILITY(U,$J,358.3,39739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39365,1,3,0)
- ;;=3^Early-onset cerebellar ataxia
- ;;^UTILITY(U,$J,358.3,39365,1,4,0)
- ;;=4^G11.1
- ;;^UTILITY(U,$J,358.3,39365,2)
- ;;=^5003753
- ;;^UTILITY(U,$J,358.3,39366,0)
- ;;=I69.952^^183^2019^11
- ;;^UTILITY(U,$J,358.3,39366,1,0)
+ ;;^UTILITY(U,$J,358.3,39739,1,3,0)
+ ;;=3^Spastic Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,39739,1,4,0)
+ ;;=4^H02.042
+ ;;^UTILITY(U,$J,358.3,39739,2)
+ ;;=^5004294
+ ;;^UTILITY(U,$J,358.3,39740,0)
+ ;;=H02.041^^153^1928^102
+ ;;^UTILITY(U,$J,358.3,39740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39366,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff left dominant side
- ;;^UTILITY(U,$J,358.3,39366,1,4,0)
- ;;=4^I69.952
- ;;^UTILITY(U,$J,358.3,39366,2)
- ;;=^5133586
+ ;;^UTILITY(U,$J,358.3,39740,1,3,0)
+ ;;=3^Spastic Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,39740,1,4,0)
+ ;;=4^H02.041
+ ;;^UTILITY(U,$J,358.3,39740,2)
+ ;;=^5004293
+ ;;^UTILITY(U,$J,358.3,39741,0)
+ ;;=C44.129^^153^1928^85
+ ;;^UTILITY(U,$J,358.3,39741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39741,1,3,0)
+ ;;=3^SCC Skin Left Eyelid

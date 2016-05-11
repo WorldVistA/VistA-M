@@ -1,6 +1,6 @@
-IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;Jun 06, 2014@19:13:12
- ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511**;21-MAR-94;Build 106
- ;Per VA Directive 6402, this routine should not be modified.
+IBNCPDPU ;OAK/ELZ - UTILITIES FOR NCPDP ;5/22/08  15:24
+ ;;2.0;INTEGRATED BILLING;**223,276,347,383,405,384,437,435,452,511,534**;21-MAR-94;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Reference to ECMEACT^PSOBPSU1 supported by IA# 4702
  ;Reference to $$EN^BPSNCPDP supported by IA# 4415
@@ -336,5 +336,22 @@ ECMEMTCH(IBECME,IBDAT,IBPNAME,IBERR) ; Attempt ECME# look up with either 7 digit
  .. S IBFOUND=1
  I 'BILLDA S IBERR=$S(IBMATCH:"Patient's name does not match",1:"Matching bill not found") ; not matched
  Q +BILLDA
+ ;
+ACDUTY(DFN) ;
+ ; Check active duty status for the patient
+ ; Input:
+ ;   DFN: Patient (#2) IEN
+ ; Output:
+ ;   0: Does not have an Active Duty Status
+ ;   1: Has an active Duty Status
+ ; 
+ I '$G(DFN) Q 0
+ ; Check if Patient TYPE is ACTIVE DUTY
+ N VAEL
+ D ELIG^VADPT
+ I $P($G(VAEL(6)),"^",2)'="ACTIVE DUTY" Q 0
+ ; If the PERIOD OF SERVICE has '-ACTIVE DUTY', quit with true
+ I $F($P($G(VAEL(2)),"^",2),"-ACTIVE DUTY") Q 1
+ Q 0
  ;
  ;IBNCPDPU

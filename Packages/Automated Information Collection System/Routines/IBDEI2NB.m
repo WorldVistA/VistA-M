@@ -1,132 +1,46 @@
-IBDEI2NB ; ; 19-NOV-2015
+IBDEI2NB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.94)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44401,0)
- ;;=D05.10^^200^2228^91
- ;;^UTILITY(U,$J,358.3,44401,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44401,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,44401,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,44401,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,44402,0)
- ;;=D50.0^^200^2228^92
- ;;^UTILITY(U,$J,358.3,44402,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44402,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,44402,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,44402,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,44403,0)
- ;;=D50.9^^200^2228^93
- ;;^UTILITY(U,$J,358.3,44403,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44403,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,44403,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,44403,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,44404,0)
- ;;=C46.9^^200^2228^94
- ;;^UTILITY(U,$J,358.3,44404,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44404,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,44404,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,44404,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,44405,0)
- ;;=C22.0^^200^2228^95
- ;;^UTILITY(U,$J,358.3,44405,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44405,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,44405,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,44405,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,44406,0)
- ;;=D05.02^^200^2228^96
- ;;^UTILITY(U,$J,358.3,44406,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44406,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,44406,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,44406,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,44407,0)
- ;;=D05.01^^200^2228^97
- ;;^UTILITY(U,$J,358.3,44407,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44407,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,44407,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,44407,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,44408,0)
- ;;=D05.00^^200^2228^98
- ;;^UTILITY(U,$J,358.3,44408,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44408,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,44408,1,4,0)
- ;;=4^D05.00
- ;;^UTILITY(U,$J,358.3,44408,2)
- ;;=^5001926
- ;;^UTILITY(U,$J,358.3,44409,0)
- ;;=R59.0^^200^2228^59
- ;;^UTILITY(U,$J,358.3,44409,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44409,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Localized
- ;;^UTILITY(U,$J,358.3,44409,1,4,0)
- ;;=4^R59.0
- ;;^UTILITY(U,$J,358.3,44409,2)
- ;;=^5019529
- ;;^UTILITY(U,$J,358.3,44410,0)
- ;;=C83.59^^200^2228^99
- ;;^UTILITY(U,$J,358.3,44410,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44410,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,44410,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,44410,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,44411,0)
- ;;=C83.50^^200^2228^100
- ;;^UTILITY(U,$J,358.3,44411,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44411,1,3,0)
- ;;=3^Lymphoblastic Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,44411,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,44411,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,44412,0)
- ;;=C43.9^^200^2228^102
- ;;^UTILITY(U,$J,358.3,44412,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44412,1,3,0)
- ;;=3^Malig Melanoma of Skin,Unspec Site
- ;;^UTILITY(U,$J,358.3,44412,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,44412,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,44413,0)
- ;;=C31.9^^200^2228^103
- ;;^UTILITY(U,$J,358.3,44413,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44413,1,3,0)
- ;;=3^Malig Neop Accessory Sinus,Unspec
- ;;^UTILITY(U,$J,358.3,44413,1,4,0)
- ;;=4^C31.9
+ ;;^DIC(358.94,0,"GL")
+ ;;=^IBE(358.94,
+ ;;^DIC("B","IMP/EXP HAND PRINT FIELD",358.94)
+ ;;=
+ ;;^DIC(358.94,"%D",0)
+ ;;=^^1^1^2950927^^
+ ;;^DIC(358.94,"%D",1,0)
+ ;;=Used by the Import/Export utility as a workspace.
+ ;;^DD(358.94,0)
+ ;;=FIELD^^.1^8
+ ;;^DD(358.94,0,"DT")
+ ;;=2950728
+ ;;^DD(358.94,0,"IX","B",358.94,.01)
+ ;;=
+ ;;^DD(358.94,0,"IX","C",358.94,.08)
+ ;;=
+ ;;^DD(358.94,0,"NM","IMP/EXP HAND PRINT FIELD")
+ ;;=
+ ;;^DD(358.94,0,"VRPK")
+ ;;=AUTOMATED INFO COLLECTION SYS
+ ;;^DD(358.94,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.94,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.94,.01,1,1,0)
+ ;;=358.94^B
+ ;;^DD(358.94,.01,1,1,1)
+ ;;=S ^IBE(358.94,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.94,.01,1,1,2)
+ ;;=K ^IBE(358.94,"B",$E(X,1,30),DA)
+ ;;^DD(358.94,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.94,.01,21,0)
+ ;;=^^3^3^2950725^
+ ;;^DD(358.94,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.94,.01,21,2,0)
+ ;;= 
+ ;;^DD(358.94,.01,21,3,0)
+ ;;=The name of the field. 
+ ;;^DD(358.94,.01,"DT")
+ ;;=2930518

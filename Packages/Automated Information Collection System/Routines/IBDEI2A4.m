@@ -1,130 +1,130 @@
-IBDEI2A4 ; ; 19-NOV-2015
+IBDEI2A4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38276,1,0)
+ ;;^UTILITY(U,$J,358.3,38660,1,4,0)
+ ;;=4^Y36.270S
+ ;;^UTILITY(U,$J,358.3,38660,2)
+ ;;=^5061651
+ ;;^UTILITY(U,$J,358.3,38661,0)
+ ;;=Y36.290S^^148^1891^10
+ ;;^UTILITY(U,$J,358.3,38661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38276,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,38276,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,38276,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,38277,0)
- ;;=G47.09^^177^1939^11
- ;;^UTILITY(U,$J,358.3,38277,1,0)
+ ;;^UTILITY(U,$J,358.3,38661,1,3,0)
+ ;;=3^War op involving oth explosn and fragments, milt, sequela
+ ;;^UTILITY(U,$J,358.3,38661,1,4,0)
+ ;;=4^Y36.290S
+ ;;^UTILITY(U,$J,358.3,38661,2)
+ ;;=^5061657
+ ;;^UTILITY(U,$J,358.3,38662,0)
+ ;;=Y36.321S^^148^1891^7
+ ;;^UTILITY(U,$J,358.3,38662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38277,1,3,0)
- ;;=3^Insomnia Disorder NEC
- ;;^UTILITY(U,$J,358.3,38277,1,4,0)
- ;;=4^G47.09
- ;;^UTILITY(U,$J,358.3,38277,2)
- ;;=^5003970
- ;;^UTILITY(U,$J,358.3,38278,0)
- ;;=G47.00^^177^1939^10
- ;;^UTILITY(U,$J,358.3,38278,1,0)
+ ;;^UTILITY(U,$J,358.3,38662,1,3,0)
+ ;;=3^War op involving incendiary bullet, civilian, sequela
+ ;;^UTILITY(U,$J,358.3,38662,1,4,0)
+ ;;=4^Y36.321S
+ ;;^UTILITY(U,$J,358.3,38662,2)
+ ;;=^5061678
+ ;;^UTILITY(U,$J,358.3,38663,0)
+ ;;=Y36.411S^^148^1891^11
+ ;;^UTILITY(U,$J,358.3,38663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38278,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,38278,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,38278,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,38279,0)
- ;;=G47.10^^177^1939^9
- ;;^UTILITY(U,$J,358.3,38279,1,0)
+ ;;^UTILITY(U,$J,358.3,38663,1,3,0)
+ ;;=3^War op involving rubber bullets, civilian, sequela
+ ;;^UTILITY(U,$J,358.3,38663,1,4,0)
+ ;;=4^Y36.411S
+ ;;^UTILITY(U,$J,358.3,38663,2)
+ ;;=^5061696
+ ;;^UTILITY(U,$J,358.3,38664,0)
+ ;;=Y36.491S^^148^1891^8
+ ;;^UTILITY(U,$J,358.3,38664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38279,1,3,0)
- ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,38279,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,38279,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,38280,0)
- ;;=G47.419^^177^1939^12
- ;;^UTILITY(U,$J,358.3,38280,1,0)
+ ;;^UTILITY(U,$J,358.3,38664,1,3,0)
+ ;;=3^War op involving oth conventl warfare, civilian, sequela
+ ;;^UTILITY(U,$J,358.3,38664,1,4,0)
+ ;;=4^Y36.491S
+ ;;^UTILITY(U,$J,358.3,38664,2)
+ ;;=^5061738
+ ;;^UTILITY(U,$J,358.3,38665,0)
+ ;;=Y36.511S^^148^1891^14
+ ;;^UTILITY(U,$J,358.3,38665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38280,1,3,0)
- ;;=3^Narcolepsy
- ;;^UTILITY(U,$J,358.3,38280,1,4,0)
- ;;=4^G47.419
- ;;^UTILITY(U,$J,358.3,38280,2)
- ;;=^5003982
- ;;^UTILITY(U,$J,358.3,38281,0)
- ;;=G47.33^^177^1939^16
- ;;^UTILITY(U,$J,358.3,38281,1,0)
+ ;;^UTILITY(U,$J,358.3,38665,1,3,0)
+ ;;=3^War op w direct blast effect of nuclear weapon, civ, sequela
+ ;;^UTILITY(U,$J,358.3,38665,1,4,0)
+ ;;=4^Y36.511S
+ ;;^UTILITY(U,$J,358.3,38665,2)
+ ;;=^5061750
+ ;;^UTILITY(U,$J,358.3,38666,0)
+ ;;=Y36.6X1S^^148^1891^1
+ ;;^UTILITY(U,$J,358.3,38666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38281,1,3,0)
- ;;=3^Obstructive Sleep Apnea Hypopnea
- ;;^UTILITY(U,$J,358.3,38281,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,38281,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,38282,0)
- ;;=G47.31^^177^1939^1
- ;;^UTILITY(U,$J,358.3,38282,1,0)
+ ;;^UTILITY(U,$J,358.3,38666,1,3,0)
+ ;;=3^War op involving biolg weapons, civilian, sequela
+ ;;^UTILITY(U,$J,358.3,38666,1,4,0)
+ ;;=4^Y36.6X1S
+ ;;^UTILITY(U,$J,358.3,38666,2)
+ ;;=^5061780
+ ;;^UTILITY(U,$J,358.3,38667,0)
+ ;;=Y36.7X0S^^148^1891^13
+ ;;^UTILITY(U,$J,358.3,38667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38282,1,3,0)
- ;;=3^Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,38282,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,38282,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,38283,0)
- ;;=G47.21^^177^1939^3
- ;;^UTILITY(U,$J,358.3,38283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38283,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,38283,1,4,0)
- ;;=4^G47.21
- ;;^UTILITY(U,$J,358.3,38283,2)
- ;;=^332769
- ;;^UTILITY(U,$J,358.3,38284,0)
- ;;=G47.22^^177^1939^2
- ;;^UTILITY(U,$J,358.3,38284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38284,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
- ;;^UTILITY(U,$J,358.3,38284,1,4,0)
- ;;=4^G47.22
- ;;^UTILITY(U,$J,358.3,38284,2)
- ;;=^332770
- ;;^UTILITY(U,$J,358.3,38285,0)
- ;;=G47.23^^177^1939^4
- ;;^UTILITY(U,$J,358.3,38285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38285,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,38285,1,4,0)
- ;;=4^G47.23
- ;;^UTILITY(U,$J,358.3,38285,2)
- ;;=^5003975
- ;;^UTILITY(U,$J,358.3,38286,0)
- ;;=G47.24^^177^1939^5
- ;;^UTILITY(U,$J,358.3,38286,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38286,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
- ;;^UTILITY(U,$J,358.3,38286,1,4,0)
- ;;=4^G47.24
- ;;^UTILITY(U,$J,358.3,38286,2)
- ;;=^5003976
- ;;^UTILITY(U,$J,358.3,38287,0)
- ;;=G47.26^^177^1939^6
- ;;^UTILITY(U,$J,358.3,38287,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38287,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
- ;;^UTILITY(U,$J,358.3,38287,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,38287,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,38288,0)
- ;;=G47.20^^177^1939^7
- ;;^UTILITY(U,$J,358.3,38288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38288,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
- ;;^UTILITY(U,$J,358.3,38288,1,4,0)
- ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,38667,1,3,0)
+ ;;=3^War op w chem weapons and oth unconvtl warfare, milt, sqla
+ ;;^UTILITY(U,$J,358.3,38667,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,38667,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,38668,0)
+ ;;=99201^^149^1892^1
+ ;;^UTILITY(U,$J,358.3,38668,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38668,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,38668,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,38669,0)
+ ;;=99202^^149^1892^2
+ ;;^UTILITY(U,$J,358.3,38669,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38669,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,38669,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,38670,0)
+ ;;=99203^^149^1892^3
+ ;;^UTILITY(U,$J,358.3,38670,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38670,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,38670,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,38671,0)
+ ;;=99204^^149^1892^4
+ ;;^UTILITY(U,$J,358.3,38671,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38671,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,38671,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,38672,0)
+ ;;=99205^^149^1892^5
+ ;;^UTILITY(U,$J,358.3,38672,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38672,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,38672,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,38673,0)
+ ;;=99211^^149^1893^1
+ ;;^UTILITY(U,$J,358.3,38673,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,38673,1,1,0)
+ ;;=1^Brief (no MD seen)
+ ;;^UTILITY(U,$J,358.3,38673,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,38674,0)
+ ;;=99212^^149^1893^2
+ ;;^UTILITY(U,$J,358.3,38674,1,0)
+ ;;=^358.31IA^2^2

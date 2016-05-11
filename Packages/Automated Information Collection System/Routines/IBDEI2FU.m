@@ -1,126 +1,130 @@
-IBDEI2FU ; ; 19-NOV-2015
+IBDEI2FU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40933,0)
- ;;=S90.454A^^189^2086^173
- ;;^UTILITY(U,$J,358.3,40933,1,0)
+ ;;^UTILITY(U,$J,358.3,41354,1,4,0)
+ ;;=4^D75.89
+ ;;^UTILITY(U,$J,358.3,41354,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,41355,0)
+ ;;=D47.Z9^^159^2004^173
+ ;;^UTILITY(U,$J,358.3,41355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40933,1,3,0)
- ;;=3^Foreign body, rt lsr toe(s),Superficial,init
- ;;^UTILITY(U,$J,358.3,40933,1,4,0)
- ;;=4^S90.454A
- ;;^UTILITY(U,$J,358.3,40933,2)
- ;;=^5043952
- ;;^UTILITY(U,$J,358.3,40934,0)
- ;;=S80.852A^^189^2086^170
- ;;^UTILITY(U,$J,358.3,40934,1,0)
+ ;;^UTILITY(U,$J,358.3,41355,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
+ ;;^UTILITY(U,$J,358.3,41355,1,4,0)
+ ;;=4^D47.Z9
+ ;;^UTILITY(U,$J,358.3,41355,2)
+ ;;=^5002262
+ ;;^UTILITY(U,$J,358.3,41356,0)
+ ;;=D05.82^^159^2004^34
+ ;;^UTILITY(U,$J,358.3,41356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40934,1,3,0)
- ;;=3^Foreign body, lft lwr leg, Superficial,init
- ;;^UTILITY(U,$J,358.3,40934,1,4,0)
- ;;=4^S80.852A
- ;;^UTILITY(U,$J,358.3,40934,2)
- ;;=^5039990
- ;;^UTILITY(U,$J,358.3,40935,0)
- ;;=S90.452A^^189^2086^168
- ;;^UTILITY(U,$J,358.3,40935,1,0)
+ ;;^UTILITY(U,$J,358.3,41356,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
+ ;;^UTILITY(U,$J,358.3,41356,1,4,0)
+ ;;=4^D05.82
+ ;;^UTILITY(U,$J,358.3,41356,2)
+ ;;=^5001934
+ ;;^UTILITY(U,$J,358.3,41357,0)
+ ;;=D05.81^^159^2004^36
+ ;;^UTILITY(U,$J,358.3,41357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40935,1,3,0)
- ;;=3^Foreign body, lft grt toe, Superficial,init
- ;;^UTILITY(U,$J,358.3,40935,1,4,0)
- ;;=4^S90.452A
- ;;^UTILITY(U,$J,358.3,40935,2)
- ;;=^5043946
- ;;^UTILITY(U,$J,358.3,40936,0)
- ;;=S90.455A^^189^2086^169
- ;;^UTILITY(U,$J,358.3,40936,1,0)
+ ;;^UTILITY(U,$J,358.3,41357,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,41357,1,4,0)
+ ;;=4^D05.81
+ ;;^UTILITY(U,$J,358.3,41357,2)
+ ;;=^5001933
+ ;;^UTILITY(U,$J,358.3,41358,0)
+ ;;=D05.80^^159^2004^38
+ ;;^UTILITY(U,$J,358.3,41358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40936,1,3,0)
- ;;=3^Foreign body, lft lsr toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,40936,1,4,0)
- ;;=4^S90.455A
- ;;^UTILITY(U,$J,358.3,40936,2)
- ;;=^5043955
- ;;^UTILITY(U,$J,358.3,40937,0)
- ;;=S90.851A^^189^2086^171
- ;;^UTILITY(U,$J,358.3,40937,1,0)
+ ;;^UTILITY(U,$J,358.3,41358,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,41358,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,41358,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,41359,0)
+ ;;=D56.8^^159^2004^186
+ ;;^UTILITY(U,$J,358.3,41359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40937,1,3,0)
- ;;=3^Foreign body, rt ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,40937,1,4,0)
- ;;=4^S90.851A
- ;;^UTILITY(U,$J,358.3,40937,2)
- ;;=^5044078
- ;;^UTILITY(U,$J,358.3,40938,0)
- ;;=S90.852A^^189^2086^167
- ;;^UTILITY(U,$J,358.3,40938,1,0)
+ ;;^UTILITY(U,$J,358.3,41359,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,41359,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,41359,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,41360,0)
+ ;;=C82.89^^159^2004^76
+ ;;^UTILITY(U,$J,358.3,41360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40938,1,3,0)
- ;;=3^Foreign body, lft ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,40938,1,4,0)
- ;;=4^S90.852A
- ;;^UTILITY(U,$J,358.3,40938,2)
- ;;=^5044081
- ;;^UTILITY(U,$J,358.3,40939,0)
- ;;=T34.821A^^189^2086^188
- ;;^UTILITY(U,$J,358.3,40939,1,0)
+ ;;^UTILITY(U,$J,358.3,41360,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,41360,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,41360,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,41361,0)
+ ;;=D51.8^^159^2004^193
+ ;;^UTILITY(U,$J,358.3,41361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40939,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt ft, init
- ;;^UTILITY(U,$J,358.3,40939,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,40939,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,40940,0)
- ;;=T34.822A^^189^2086^183
- ;;^UTILITY(U,$J,358.3,40940,1,0)
+ ;;^UTILITY(U,$J,358.3,41361,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,41361,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,41361,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,41362,0)
+ ;;=I80.9^^159^2004^178
+ ;;^UTILITY(U,$J,358.3,41362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40940,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft ft, init
- ;;^UTILITY(U,$J,358.3,40940,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,40940,2)
- ;;=^5049235
- ;;^UTILITY(U,$J,358.3,40941,0)
- ;;=T34.831A^^189^2086^190
- ;;^UTILITY(U,$J,358.3,40941,1,0)
+ ;;^UTILITY(U,$J,358.3,41362,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41362,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,41362,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,41363,0)
+ ;;=D45.^^159^2004^179
+ ;;^UTILITY(U,$J,358.3,41363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40941,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt toe(s), init
- ;;^UTILITY(U,$J,358.3,40941,1,4,0)
- ;;=4^T34.831A
- ;;^UTILITY(U,$J,358.3,40941,2)
- ;;=^5049241
- ;;^UTILITY(U,$J,358.3,40942,0)
- ;;=T34.832A^^189^2086^185
- ;;^UTILITY(U,$J,358.3,40942,1,0)
+ ;;^UTILITY(U,$J,358.3,41363,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,41363,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,41363,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,41364,0)
+ ;;=C77.3^^159^2004^109
+ ;;^UTILITY(U,$J,358.3,41364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40942,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft toe(s), init
- ;;^UTILITY(U,$J,358.3,40942,1,4,0)
- ;;=4^T34.832A
- ;;^UTILITY(U,$J,358.3,40942,2)
- ;;=^5049244
- ;;^UTILITY(U,$J,358.3,40943,0)
- ;;=T33.811A^^189^2086^178
- ;;^UTILITY(U,$J,358.3,40943,1,0)
+ ;;^UTILITY(U,$J,358.3,41364,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,41364,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,41364,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,41365,0)
+ ;;=C77.2^^159^2004^125
+ ;;^UTILITY(U,$J,358.3,41365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40943,1,3,0)
- ;;=3^Frostbite of rt ankl, Superficial,init
- ;;^UTILITY(U,$J,358.3,40943,1,4,0)
- ;;=4^T33.811A
- ;;^UTILITY(U,$J,358.3,40943,2)
- ;;=^5049112
- ;;^UTILITY(U,$J,358.3,40944,0)
- ;;=T33.812A^^189^2086^175
- ;;^UTILITY(U,$J,358.3,40944,1,0)
+ ;;^UTILITY(U,$J,358.3,41365,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,41365,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,41365,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,41366,0)
+ ;;=C77.1^^159^2004^126
+ ;;^UTILITY(U,$J,358.3,41366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40944,1,3,0)
- ;;=3^Frostbite of lft ankl,Superficial, init
- ;;^UTILITY(U,$J,358.3,40944,1,4,0)
- ;;=4^T33.812A
- ;;^UTILITY(U,$J,358.3,40944,2)
- ;;=^5049115
- ;;^UTILITY(U,$J,358.3,40945,0)
- ;;=T33.821A^^189^2086^179
+ ;;^UTILITY(U,$J,358.3,41366,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,41366,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,41366,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,41367,0)
+ ;;=C77.0^^159^2004^142

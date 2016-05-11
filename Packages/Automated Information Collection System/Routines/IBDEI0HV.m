@@ -1,136 +1,140 @@
-IBDEI0HV ; ; 19-NOV-2015
+IBDEI0HV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8005,0)
- ;;=E10.51^^55^532^3
- ;;^UTILITY(U,$J,358.3,8005,1,0)
+ ;;^UTILITY(U,$J,358.3,8263,1,3,0)
+ ;;=3^Encounter for immunization
+ ;;^UTILITY(U,$J,358.3,8263,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,8263,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,8264,0)
+ ;;=Y93.A1^^33^436^1
+ ;;^UTILITY(U,$J,358.3,8264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8005,1,3,0)
- ;;=3^Type 1 diab w diabetic peripheral angiopath w/o gangrene
- ;;^UTILITY(U,$J,358.3,8005,1,4,0)
- ;;=4^E10.51
- ;;^UTILITY(U,$J,358.3,8005,2)
- ;;=^5002610
- ;;^UTILITY(U,$J,358.3,8006,0)
- ;;=E10.52^^55^532^4
- ;;^UTILITY(U,$J,358.3,8006,1,0)
+ ;;^UTILITY(U,$J,358.3,8264,1,3,0)
+ ;;=3^Activity Exercise Machines Primarily Cardiovascular Conditioning
+ ;;^UTILITY(U,$J,358.3,8264,1,4,0)
+ ;;=4^Y93.A1
+ ;;^UTILITY(U,$J,358.3,8264,2)
+ ;;=^5062545
+ ;;^UTILITY(U,$J,358.3,8265,0)
+ ;;=Z71.89^^33^437^1
+ ;;^UTILITY(U,$J,358.3,8265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8006,1,3,0)
- ;;=3^Type 1 diab w diabetic peripheral angiopathy w gangrene
- ;;^UTILITY(U,$J,358.3,8006,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,8006,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,8007,0)
- ;;=E11.649^^55^532^18
- ;;^UTILITY(U,$J,358.3,8007,1,0)
+ ;;^UTILITY(U,$J,358.3,8265,1,3,0)
+ ;;=3^Counseling,Oth Specified
+ ;;^UTILITY(U,$J,358.3,8265,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,8265,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,8266,0)
+ ;;=Y93.B1^^33^438^1
+ ;;^UTILITY(U,$J,358.3,8266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8007,1,3,0)
- ;;=3^Type 2 diab w hypoglycemia without coma
- ;;^UTILITY(U,$J,358.3,8007,1,4,0)
- ;;=4^E11.649
- ;;^UTILITY(U,$J,358.3,8007,2)
- ;;=^5002662
- ;;^UTILITY(U,$J,358.3,8008,0)
- ;;=E11.641^^55^532^17
- ;;^UTILITY(U,$J,358.3,8008,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8008,1,3,0)
- ;;=3^Type 2 diab w hypoglycemia with coma
- ;;^UTILITY(U,$J,358.3,8008,1,4,0)
- ;;=4^E11.641
- ;;^UTILITY(U,$J,358.3,8008,2)
- ;;=^5002661
- ;;^UTILITY(U,$J,358.3,8009,0)
- ;;=E11.9^^55^533^2
- ;;^UTILITY(U,$J,358.3,8009,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8009,1,3,0)
- ;;=3^Type 2 diabetes mellitus without complications
- ;;^UTILITY(U,$J,358.3,8009,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,8009,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,8010,0)
- ;;=E10.9^^55^533^1
- ;;^UTILITY(U,$J,358.3,8010,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8010,1,3,0)
- ;;=3^Type 1 diabetes mellitus without complications
- ;;^UTILITY(U,$J,358.3,8010,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,8010,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,8011,0)
- ;;=J02.0^^55^534^115
- ;;^UTILITY(U,$J,358.3,8011,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8011,1,3,0)
- ;;=3^Streptococcal pharyngitis
- ;;^UTILITY(U,$J,358.3,8011,1,4,0)
- ;;=4^J02.0
- ;;^UTILITY(U,$J,358.3,8011,2)
- ;;=^114607
- ;;^UTILITY(U,$J,358.3,8012,0)
- ;;=J03.00^^55^534^13
- ;;^UTILITY(U,$J,358.3,8012,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8012,1,3,0)
- ;;=3^Acute streptococcal tonsillitis, unspecified
- ;;^UTILITY(U,$J,358.3,8012,1,4,0)
- ;;=4^J03.00
- ;;^UTILITY(U,$J,358.3,8012,2)
- ;;=^5008131
- ;;^UTILITY(U,$J,358.3,8013,0)
- ;;=B37.0^^55^534^33
- ;;^UTILITY(U,$J,358.3,8013,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8013,1,3,0)
- ;;=3^Candidal stomatitis
- ;;^UTILITY(U,$J,358.3,8013,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,8013,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,8014,0)
- ;;=B37.83^^55^534^32
- ;;^UTILITY(U,$J,358.3,8014,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8014,1,3,0)
- ;;=3^Candidal cheilitis
- ;;^UTILITY(U,$J,358.3,8014,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,8014,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,8015,0)
- ;;=D14.1^^55^534^23
- ;;^UTILITY(U,$J,358.3,8015,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8015,1,3,0)
- ;;=3^Benign neoplasm of larynx
- ;;^UTILITY(U,$J,358.3,8015,1,4,0)
- ;;=4^D14.1
- ;;^UTILITY(U,$J,358.3,8015,2)
- ;;=^267598
- ;;^UTILITY(U,$J,358.3,8016,0)
- ;;=D14.2^^55^534^24
- ;;^UTILITY(U,$J,358.3,8016,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8016,1,3,0)
- ;;=3^Benign neoplasm of trachea
- ;;^UTILITY(U,$J,358.3,8016,1,4,0)
- ;;=4^D14.2
- ;;^UTILITY(U,$J,358.3,8016,2)
- ;;=^267599
- ;;^UTILITY(U,$J,358.3,8017,0)
- ;;=H40.9^^55^534^74
- ;;^UTILITY(U,$J,358.3,8017,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8017,1,3,0)
- ;;=3^Glaucoma,Unspec
- ;;^UTILITY(U,$J,358.3,8017,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,8017,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,8018,0)
- ;;=H26.9^^55^534^34
+ ;;^UTILITY(U,$J,358.3,8266,1,3,0)
+ ;;=3^Activity Exercise Machines Primarily Muscle Conditioning
+ ;;^UTILITY(U,$J,358.3,8266,1,4,0)
+ ;;=4^Y93.B1
+ ;;^UTILITY(U,$J,358.3,8266,2)
+ ;;=^5062552
+ ;;^UTILITY(U,$J,358.3,8267,0)
+ ;;=99201^^34^439^1
+ ;;^UTILITY(U,$J,358.3,8267,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8267,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,8267,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,8268,0)
+ ;;=99202^^34^439^2
+ ;;^UTILITY(U,$J,358.3,8268,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8268,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,8268,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,8269,0)
+ ;;=99203^^34^439^3
+ ;;^UTILITY(U,$J,358.3,8269,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8269,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,8269,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,8270,0)
+ ;;=99204^^34^439^4
+ ;;^UTILITY(U,$J,358.3,8270,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8270,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,8270,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,8271,0)
+ ;;=99205^^34^439^5
+ ;;^UTILITY(U,$J,358.3,8271,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8271,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,8271,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,8272,0)
+ ;;=99212^^34^440^1
+ ;;^UTILITY(U,$J,358.3,8272,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8272,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,8272,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,8273,0)
+ ;;=99213^^34^440^2
+ ;;^UTILITY(U,$J,358.3,8273,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8273,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,8273,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,8274,0)
+ ;;=99214^^34^440^3
+ ;;^UTILITY(U,$J,358.3,8274,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8274,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,8274,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,8275,0)
+ ;;=99215^^34^440^4
+ ;;^UTILITY(U,$J,358.3,8275,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8275,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,8275,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,8276,0)
+ ;;=99024^^34^440^5
+ ;;^UTILITY(U,$J,358.3,8276,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8276,1,1,0)
+ ;;=1^Post Op visit in Global
+ ;;^UTILITY(U,$J,358.3,8276,1,2,0)
+ ;;=2^99024
+ ;;^UTILITY(U,$J,358.3,8277,0)
+ ;;=99241^^34^441^1
+ ;;^UTILITY(U,$J,358.3,8277,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8277,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,8277,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,8278,0)
+ ;;=99242^^34^441^2
+ ;;^UTILITY(U,$J,358.3,8278,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8278,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,8278,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,8279,0)
+ ;;=99243^^34^441^3
+ ;;^UTILITY(U,$J,358.3,8279,1,0)
+ ;;=^358.31IA^2^2

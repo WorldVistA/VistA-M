@@ -1,5 +1,5 @@
-ORQ11 ;slc/dcm-Get patient orders in context ;3/31/04  09:57
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322**;Dec 17, 1997;Build 15
+ORQ11 ;SLC/DCM - Get patient orders in context ;07/27/12  14:34
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,27,48,72,78,99,94,148,141,177,186,190,195,215,243,295,322,350**;Dec 17, 1997;Build 77
 LOOP ; -- main loop through "ACT" x-ref
  I $G(XREF)="AW" D AW Q
  I $G(FLG)=27 D EXPD^ORQ12 Q
@@ -20,7 +20,7 @@ AW ; -- loop through "AW" x-ref
  . S IFN=0 F  S IFN=$O(^OR(100,"AW",PAT,TO,TM,IFN)) Q:'IFN  I ('$D(^TMP("ORGOTIT",$J,IFN))!MULT) D
  .. S ^TMP("ORSORT",$J,9999999-TM,TO,IFN)=""
  S TM=0 F  S TM=$O(^TMP("ORSORT",$J,TM)) Q:'TM  S TO=0 F  S TO=$O(^TMP("ORSORT",$J,TM,TO)) Q:'TO  D
- . S IFN=0 F  S IFN=$O(^TMP("ORSORT",$J,TM,TO,IFN)) Q:'IFN  I $D(^OR(100,IFN,0)),$D(^(3)) S X0=^(0),X3=^(3) D 
+ . S IFN=0 F  S IFN=$O(^TMP("ORSORT",$J,TM,TO,IFN)) Q:'IFN  I $D(^OR(100,IFN,0)),$D(^(3)) S X0=^(0),X3=^(3) D
  .. S ACTOR=0 F  S ACTOR=$O(^OR(100,"ACT",PAT,9999999-$P(X0,U,7),TO,IFN,ACTOR)) Q:ACTOR<1  I '$D(^TMP("ORGOTIT",$J,IFN,ACTOR)),$D(^OR(100,IFN,8,ACTOR,0)),$P(^(0),U,15)'=13 S X8=^(0),X7=$G(^(7)) D LP1
  S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
  I +$$GET^XPAR("SYS","OR ORDER SUMMARY CONTEXT",1,"I")=2 S SDATE=9999999-SDATE,EDATE=9999999-EDATE D AWIN
@@ -44,7 +44,7 @@ ALL1 ; 1 -- secondary pass for All, Recent Orders, Unsigned
  ;
 CUR ; 2 -- Active/Current
  N X,X0,X1,X2,X3,X8,%H,YD,%,TM,IFN,ACTOR,NORX,OIEN,OACT
- I $G(GROUP)=$O(^ORD(100.98,"B","ALL SERVICES",0)),$G(ORWARD),$G(DGPMT)'=1 S NORX=$O(^ORD(100.98,"B","O RX",0)) ;K:X ORGRP(X) ; 177 screen out Outpt Meds if inpt
+ I $G(GROUP)=$O(^ORD(100.98,"B","ALL SERVICES",0)),$G(ORWARD),$G(DGPMT)'=1 S NORX=U_$O(^ORD(100.98,"B","O RX",0))_U_$O(^ORD(100.98,"B","NON-VA MEDICATIONS",0))_U
  S X2=+$$GET^XPAR("SYS","ORPF ACTIVE ORDERS CONTEXT HRS",1,"I"),X=$H,X=+X*24+($P(X,",",2)/3600),X1=X-X2,X3=X1#24,X1=X1\24,X2=$J(X3*3600,0,0),%H=X1_","_X2 D YMD^%DTC S YD=+(X_%)
  S TM=SDATE F  S TM=$O(^OR(100,"AC",PAT,TM)) Q:TM<1!(TM>EDATE)  S IFN=0 F  S IFN=$O(^OR(100,"AC",PAT,TM,IFN)) Q:IFN<1  I $D(^OR(100,IFN,0)),$D(^(3)) S X0=^(0),X3=^(3) D
  . Q:'$D(ORGRP($P(X0,U,11)))  S ACTOR=0
@@ -54,7 +54,7 @@ CUR ; 2 -- Active/Current
  .. I $P(X8,U,15)="",ACTOR'=$P(X3,U,7) K ^OR(100,"AC",PAT,TM,IFN,ACTOR) Q
  .. ;AGP waiting for approval change to remove duplicate orders for DC reason
  .. ;I ACTOR>0,$P($G(^OR(100,IFN,8,ACTOR,0)),U,2)="DC" S OIEN=IFN,OACT=ACTOR
- .. ;I OIEN=IFN,OACT>ACTOR K ^OR(100,"AC",PAT,TM,IFN,ACTOR) Q 
+ .. ;I OIEN=IFN,OACT>ACTOR K ^OR(100,"AC",PAT,TM,IFN,ACTOR) Q
  .. D LP1
  S ^TMP("ORR",$J,ORLIST,"TOT")=ORLST
  Q
@@ -66,7 +66,7 @@ CUR1 ; 2 -- secondary pass for Active/Current
  I $P(X8,U,4)=2,$P(X8,U,15)=11 G CURX ;incl all unsig/unrel actions
  I '$D(YD),"^1^2^7^12^13^14^"[(U_STS_U) K ^OR(100,"AC",PAT,TM,IFN) Q
  I $D(YD),"^1^2^7^12^13^14^"[(U_STS_U),STOP<YD K ^OR(100,"AC",PAT,TM,IFN) Q
- I $G(NORX),NORX=$P(X0,U,11) Q  ;skip Rx for inpatients
+ I $G(NORX)[(U_$P(X0,U,11)_U) Q  ;skip Rx for inpatients
 CURX D GET^ORQ12(IFN,ORLIST,DETAIL,ACTOR)
  Q
  ;

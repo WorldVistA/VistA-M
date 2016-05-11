@@ -1,130 +1,134 @@
-IBDEI0IM ; ; 19-NOV-2015
+IBDEI0IM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8364,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,8364,2)
- ;;=^5001252
- ;;^UTILITY(U,$J,358.3,8365,0)
- ;;=C71.9^^55^538^53
- ;;^UTILITY(U,$J,358.3,8365,1,0)
+ ;;^UTILITY(U,$J,358.3,8649,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8649,1,2,0)
+ ;;=2^Serial Tonometry
+ ;;^UTILITY(U,$J,358.3,8649,1,3,0)
+ ;;=3^92100
+ ;;^UTILITY(U,$J,358.3,8650,0)
+ ;;=76519^^40^467^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8650,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8650,1,2,0)
+ ;;=2^A-Scan,One Eye w/ Ocu Lens Power Calc
+ ;;^UTILITY(U,$J,358.3,8650,1,3,0)
+ ;;=3^76519
+ ;;^UTILITY(U,$J,358.3,8651,0)
+ ;;=76512^^40^467^3^^^^1
+ ;;^UTILITY(U,$J,358.3,8651,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8651,1,2,0)
+ ;;=2^B-Scan one eye
+ ;;^UTILITY(U,$J,358.3,8651,1,3,0)
+ ;;=3^76512
+ ;;^UTILITY(U,$J,358.3,8652,0)
+ ;;=92226^^40^467^8^^^^1
+ ;;^UTILITY(U,$J,358.3,8652,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8652,1,2,0)
+ ;;=2^Ext Ophthalmoscopy, Subseq
+ ;;^UTILITY(U,$J,358.3,8652,1,3,0)
+ ;;=3^92226
+ ;;^UTILITY(U,$J,358.3,8653,0)
+ ;;=92060^^40^467^20^^^^1
+ ;;^UTILITY(U,$J,358.3,8653,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8653,1,2,0)
+ ;;=2^Sensorimotor Exam
+ ;;^UTILITY(U,$J,358.3,8653,1,3,0)
+ ;;=3^92060
+ ;;^UTILITY(U,$J,358.3,8654,0)
+ ;;=92240^^40^467^15^^^^1
+ ;;^UTILITY(U,$J,358.3,8654,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8654,1,2,0)
+ ;;=2^ICG Angiography
+ ;;^UTILITY(U,$J,358.3,8654,1,3,0)
+ ;;=3^92240
+ ;;^UTILITY(U,$J,358.3,8655,0)
+ ;;=92065^^40^467^16^^^^1
+ ;;^UTILITY(U,$J,358.3,8655,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8655,1,2,0)
+ ;;=2^Orthoptic/Pleoptic Training
+ ;;^UTILITY(U,$J,358.3,8655,1,3,0)
+ ;;=3^92065
+ ;;^UTILITY(U,$J,358.3,8656,0)
+ ;;=G0118^^40^467^13^^^^1
+ ;;^UTILITY(U,$J,358.3,8656,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8656,1,2,0)
+ ;;=2^Glaucoma Screen by Tech
+ ;;^UTILITY(U,$J,358.3,8656,1,3,0)
+ ;;=3^G0118
+ ;;^UTILITY(U,$J,358.3,8657,0)
+ ;;=S9150^^40^467^7^^^^1
+ ;;^UTILITY(U,$J,358.3,8657,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8657,1,2,0)
+ ;;=2^Evaluation by ocularist
+ ;;^UTILITY(U,$J,358.3,8657,1,3,0)
+ ;;=3^S9150
+ ;;^UTILITY(U,$J,358.3,8658,0)
+ ;;=76514^^40^467^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8658,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8658,1,2,0)
+ ;;=2^Corneal Pachymetry
+ ;;^UTILITY(U,$J,358.3,8658,1,3,0)
+ ;;=3^76514
+ ;;^UTILITY(U,$J,358.3,8659,0)
+ ;;=87809^^40^467^2^^^^1
+ ;;^UTILITY(U,$J,358.3,8659,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8659,1,2,0)
+ ;;=2^Adenovirus Assay w/ Optic
+ ;;^UTILITY(U,$J,358.3,8659,1,3,0)
+ ;;=3^87809
+ ;;^UTILITY(U,$J,358.3,8660,0)
+ ;;=76513^^40^467^4^^^^1
+ ;;^UTILITY(U,$J,358.3,8660,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8660,1,2,0)
+ ;;=2^B-Scan,Ant Segmnt,Water Immersion
+ ;;^UTILITY(U,$J,358.3,8660,1,3,0)
+ ;;=3^76513
+ ;;^UTILITY(U,$J,358.3,8661,0)
+ ;;=92132^^40^467^17^^^^1
+ ;;^UTILITY(U,$J,358.3,8661,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8661,1,2,0)
+ ;;=2^Scan Comp Dx Imag,Ant Segmt w/ Int & Rpt
+ ;;^UTILITY(U,$J,358.3,8661,1,3,0)
+ ;;=3^92132
+ ;;^UTILITY(U,$J,358.3,8662,0)
+ ;;=92133^^40^467^18^^^^1
+ ;;^UTILITY(U,$J,358.3,8662,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8662,1,2,0)
+ ;;=2^Scan Comp Dx Imag,Pstr w/ Int & Rpt,Optic Nrv
+ ;;^UTILITY(U,$J,358.3,8662,1,3,0)
+ ;;=3^92133
+ ;;^UTILITY(U,$J,358.3,8663,0)
+ ;;=92134^^40^467^19^^^^1
+ ;;^UTILITY(U,$J,358.3,8663,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8663,1,2,0)
+ ;;=2^Scan Comp Dx Imag,Pstr w/ Int & Rpt,Retina
+ ;;^UTILITY(U,$J,358.3,8663,1,3,0)
+ ;;=3^92134
+ ;;^UTILITY(U,$J,358.3,8664,0)
+ ;;=B02.33^^41^468^164
+ ;;^UTILITY(U,$J,358.3,8664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8365,1,3,0)
- ;;=3^Malignant neoplasm of brain, unspecified
- ;;^UTILITY(U,$J,358.3,8365,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,8365,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,8366,0)
- ;;=C73.^^55^538^79
- ;;^UTILITY(U,$J,358.3,8366,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8366,1,3,0)
- ;;=3^Malignant neoplasm of thyroid gland
- ;;^UTILITY(U,$J,358.3,8366,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,8366,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,8367,0)
- ;;=C76.0^^55^538^61
- ;;^UTILITY(U,$J,358.3,8367,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8367,1,3,0)
- ;;=3^Malignant neoplasm of head, face and neck
- ;;^UTILITY(U,$J,358.3,8367,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,8367,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,8368,0)
- ;;=C77.0^^55^538^115
- ;;^UTILITY(U,$J,358.3,8368,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8368,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of nodes of head, face and neck
- ;;^UTILITY(U,$J,358.3,8368,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,8368,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,8369,0)
- ;;=C77.1^^55^538^117
- ;;^UTILITY(U,$J,358.3,8369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8369,1,3,0)
- ;;=3^Secondary and unsp malignant neoplasm of intrathorac nodes
- ;;^UTILITY(U,$J,358.3,8369,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,8369,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,8370,0)
- ;;=C77.2^^55^538^118
- ;;^UTILITY(U,$J,358.3,8370,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8370,1,3,0)
- ;;=3^Secondary and unsp malignant neoplasm of intra-abd nodes
- ;;^UTILITY(U,$J,358.3,8370,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,8370,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,8371,0)
- ;;=C77.3^^55^538^114
- ;;^UTILITY(U,$J,358.3,8371,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8371,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of axilla and upper limb nodes
- ;;^UTILITY(U,$J,358.3,8371,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,8371,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,8372,0)
- ;;=C77.8^^55^538^116
- ;;^UTILITY(U,$J,358.3,8372,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8372,1,3,0)
- ;;=3^Secondary and unsp malig neoplasm of nodes of multiple regions
- ;;^UTILITY(U,$J,358.3,8372,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,8372,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,8373,0)
- ;;=C78.01^^55^538^126
- ;;^UTILITY(U,$J,358.3,8373,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8373,1,3,0)
- ;;=3^Secondary malignant neoplasm of right lung
- ;;^UTILITY(U,$J,358.3,8373,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,8373,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,8374,0)
- ;;=C78.02^^55^538^123
- ;;^UTILITY(U,$J,358.3,8374,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8374,1,3,0)
- ;;=3^Secondary malignant neoplasm of left lung
- ;;^UTILITY(U,$J,358.3,8374,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,8374,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,8375,0)
- ;;=C78.7^^55^538^124
- ;;^UTILITY(U,$J,358.3,8375,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8375,1,3,0)
- ;;=3^Secondary malignant neoplasm of liver/intrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,8375,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,8375,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,8376,0)
- ;;=C79.31^^55^538^121
- ;;^UTILITY(U,$J,358.3,8376,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8376,1,3,0)
- ;;=3^Secondary malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,8376,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,8376,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,8377,0)
- ;;=C79.51^^55^538^119
+ ;;^UTILITY(U,$J,358.3,8664,1,3,0)
+ ;;=3^Zoster Keratitis
+ ;;^UTILITY(U,$J,358.3,8664,1,4,0)
+ ;;=4^B02.33
+ ;;^UTILITY(U,$J,358.3,8664,2)
+ ;;=^5000496
+ ;;^UTILITY(U,$J,358.3,8665,0)
+ ;;=B02.32^^41^468^163

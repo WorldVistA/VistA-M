@@ -1,128 +1,138 @@
-IBDEI15S ; ; 19-NOV-2015
+IBDEI15S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19358,1,0)
+ ;;^UTILITY(U,$J,358.3,19708,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,19708,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,19708,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,19709,0)
+ ;;=E11.9^^84^921^21
+ ;;^UTILITY(U,$J,358.3,19709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19358,1,3,0)
- ;;=3^Effusion,Unspec
- ;;^UTILITY(U,$J,358.3,19358,1,4,0)
- ;;=4^M25.40
- ;;^UTILITY(U,$J,358.3,19358,2)
- ;;=^5011575
- ;;^UTILITY(U,$J,358.3,19359,0)
- ;;=M45.0^^94^922^6
- ;;^UTILITY(U,$J,358.3,19359,1,0)
+ ;;^UTILITY(U,$J,358.3,19709,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,19709,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,19709,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,19710,0)
+ ;;=E13.9^^84^921^22
+ ;;^UTILITY(U,$J,358.3,19710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19359,1,3,0)
- ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
- ;;^UTILITY(U,$J,358.3,19359,1,4,0)
- ;;=4^M45.0
- ;;^UTILITY(U,$J,358.3,19359,2)
- ;;=^5011960
- ;;^UTILITY(U,$J,358.3,19360,0)
- ;;=M45.2^^94^922^3
- ;;^UTILITY(U,$J,358.3,19360,1,0)
+ ;;^UTILITY(U,$J,358.3,19710,1,3,0)
+ ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
+ ;;^UTILITY(U,$J,358.3,19710,1,4,0)
+ ;;=4^E13.9
+ ;;^UTILITY(U,$J,358.3,19710,2)
+ ;;=^5002704
+ ;;^UTILITY(U,$J,358.3,19711,0)
+ ;;=E16.2^^84^921^29
+ ;;^UTILITY(U,$J,358.3,19711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19360,1,3,0)
- ;;=3^Ankylosing Spondylitis of Cervical Region
- ;;^UTILITY(U,$J,358.3,19360,1,4,0)
- ;;=4^M45.2
- ;;^UTILITY(U,$J,358.3,19360,2)
- ;;=^5011962
- ;;^UTILITY(U,$J,358.3,19361,0)
- ;;=M45.4^^94^922^7
- ;;^UTILITY(U,$J,358.3,19361,1,0)
+ ;;^UTILITY(U,$J,358.3,19711,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,19711,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,19711,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,19712,0)
+ ;;=E20.0^^84^921^34
+ ;;^UTILITY(U,$J,358.3,19712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19361,1,3,0)
- ;;=3^Ankylosing Spondylitis of Thoracic Region
- ;;^UTILITY(U,$J,358.3,19361,1,4,0)
- ;;=4^M45.4
- ;;^UTILITY(U,$J,358.3,19361,2)
- ;;=^5011964
- ;;^UTILITY(U,$J,358.3,19362,0)
- ;;=M45.7^^94^922^4
- ;;^UTILITY(U,$J,358.3,19362,1,0)
+ ;;^UTILITY(U,$J,358.3,19712,1,3,0)
+ ;;=3^Idiopathic Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,19712,1,4,0)
+ ;;=4^E20.0
+ ;;^UTILITY(U,$J,358.3,19712,2)
+ ;;=^5002712
+ ;;^UTILITY(U,$J,358.3,19713,0)
+ ;;=E20.9^^84^921^30
+ ;;^UTILITY(U,$J,358.3,19713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19362,1,3,0)
- ;;=3^Ankylosing Spondylitis of Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,19362,1,4,0)
- ;;=4^M45.7
- ;;^UTILITY(U,$J,358.3,19362,2)
- ;;=^5011967
- ;;^UTILITY(U,$J,358.3,19363,0)
- ;;=M45.8^^94^922^5
- ;;^UTILITY(U,$J,358.3,19363,1,0)
+ ;;^UTILITY(U,$J,358.3,19713,1,3,0)
+ ;;=3^Hypoparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,19713,1,4,0)
+ ;;=4^E20.9
+ ;;^UTILITY(U,$J,358.3,19713,2)
+ ;;=^5002714
+ ;;^UTILITY(U,$J,358.3,19714,0)
+ ;;=E23.0^^84^921^31
+ ;;^UTILITY(U,$J,358.3,19714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19363,1,3,0)
- ;;=3^Ankylosing Spondylitis of Sacral/Sacrococcygeal Region
- ;;^UTILITY(U,$J,358.3,19363,1,4,0)
- ;;=4^M45.8
- ;;^UTILITY(U,$J,358.3,19363,2)
- ;;=^5011968
- ;;^UTILITY(U,$J,358.3,19364,0)
- ;;=M47.22^^94^922^155
- ;;^UTILITY(U,$J,358.3,19364,1,0)
+ ;;^UTILITY(U,$J,358.3,19714,1,3,0)
+ ;;=3^Hypopituitarism
+ ;;^UTILITY(U,$J,358.3,19714,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,19714,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,19715,0)
+ ;;=E27.1^^84^921^51
+ ;;^UTILITY(U,$J,358.3,19715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19364,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Cervical Region NEC
- ;;^UTILITY(U,$J,358.3,19364,1,4,0)
- ;;=4^M47.22
- ;;^UTILITY(U,$J,358.3,19364,2)
- ;;=^5012061
- ;;^UTILITY(U,$J,358.3,19365,0)
- ;;=M47.24^^94^922^157
- ;;^UTILITY(U,$J,358.3,19365,1,0)
+ ;;^UTILITY(U,$J,358.3,19715,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,19715,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,19715,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,19716,0)
+ ;;=E27.2^^84^921^1
+ ;;^UTILITY(U,$J,358.3,19716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19365,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Thoracic Region NEC
- ;;^UTILITY(U,$J,358.3,19365,1,4,0)
- ;;=4^M47.24
- ;;^UTILITY(U,$J,358.3,19365,2)
- ;;=^5012063
- ;;^UTILITY(U,$J,358.3,19366,0)
- ;;=M47.27^^94^922^156
- ;;^UTILITY(U,$J,358.3,19366,1,0)
+ ;;^UTILITY(U,$J,358.3,19716,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,19716,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,19716,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,19717,0)
+ ;;=E27.3^^84^921^23
+ ;;^UTILITY(U,$J,358.3,19717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19366,1,3,0)
- ;;=3^Sponylosis w/ Radiculopathy,Lumbosacral Region NEC
- ;;^UTILITY(U,$J,358.3,19366,1,4,0)
- ;;=4^M47.27
- ;;^UTILITY(U,$J,358.3,19366,2)
- ;;=^5012066
- ;;^UTILITY(U,$J,358.3,19367,0)
- ;;=M47.812^^94^922^152
- ;;^UTILITY(U,$J,358.3,19367,1,0)
+ ;;^UTILITY(U,$J,358.3,19717,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,19717,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,19717,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,19718,0)
+ ;;=E29.1^^84^921^52
+ ;;^UTILITY(U,$J,358.3,19718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19367,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,19367,1,4,0)
- ;;=4^M47.812
- ;;^UTILITY(U,$J,358.3,19367,2)
- ;;=^5012069
- ;;^UTILITY(U,$J,358.3,19368,0)
- ;;=M47.814^^94^922^153
- ;;^UTILITY(U,$J,358.3,19368,1,0)
+ ;;^UTILITY(U,$J,358.3,19718,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,19718,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,19718,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,19719,0)
+ ;;=E55.9^^84^921^59
+ ;;^UTILITY(U,$J,358.3,19719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19368,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,19368,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,19368,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,19369,0)
- ;;=M47.817^^94^922^154
- ;;^UTILITY(U,$J,358.3,19369,1,0)
+ ;;^UTILITY(U,$J,358.3,19719,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,19719,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,19719,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,19720,0)
+ ;;=E66.01^^84^921^38
+ ;;^UTILITY(U,$J,358.3,19720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19369,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,19369,1,4,0)
- ;;=4^M47.817
- ;;^UTILITY(U,$J,358.3,19369,2)
- ;;=^5012074
- ;;^UTILITY(U,$J,358.3,19370,0)
- ;;=M48.50XA^^94^922^21
- ;;^UTILITY(U,$J,358.3,19370,1,0)
+ ;;^UTILITY(U,$J,358.3,19720,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,19720,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,19720,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,19721,0)
+ ;;=E66.8^^84^921^42
+ ;;^UTILITY(U,$J,358.3,19721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19370,1,3,0)
- ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19721,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,19721,1,4,0)
+ ;;=4^E66.8

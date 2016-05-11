@@ -1,128 +1,130 @@
-IBDEI1NU ; ; 19-NOV-2015
+IBDEI1NU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27779,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,27780,0)
- ;;=C24.9^^132^1320^108
- ;;^UTILITY(U,$J,358.3,27780,1,0)
+ ;;^UTILITY(U,$J,358.3,28211,0)
+ ;;=L89.124^^112^1416^52
+ ;;^UTILITY(U,$J,358.3,28211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27780,1,3,0)
- ;;=3^Malig Neop Biliary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,27780,1,4,0)
- ;;=4^C24.9
- ;;^UTILITY(U,$J,358.3,27780,2)
- ;;=^5000942
- ;;^UTILITY(U,$J,358.3,27781,0)
- ;;=C50.922^^132^1320^132
- ;;^UTILITY(U,$J,358.3,27781,1,0)
+ ;;^UTILITY(U,$J,358.3,28211,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,28211,1,4,0)
+ ;;=4^L89.124
+ ;;^UTILITY(U,$J,358.3,28211,2)
+ ;;=^5009362
+ ;;^UTILITY(U,$J,358.3,28212,0)
+ ;;=L89.129^^112^1416^53
+ ;;^UTILITY(U,$J,358.3,28212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27781,1,3,0)
- ;;=3^Malig Neop Left Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,27781,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,27781,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,27782,0)
- ;;=C34.91^^132^1320^150
- ;;^UTILITY(U,$J,358.3,27782,1,0)
+ ;;^UTILITY(U,$J,358.3,28212,1,3,0)
+ ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28212,1,4,0)
+ ;;=4^L89.129
+ ;;^UTILITY(U,$J,358.3,28212,2)
+ ;;=^5133652
+ ;;^UTILITY(U,$J,358.3,28213,0)
+ ;;=L89.130^^112^1416^96
+ ;;^UTILITY(U,$J,358.3,28213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27782,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,27782,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,27782,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,27783,0)
- ;;=C50.921^^132^1320^154
- ;;^UTILITY(U,$J,358.3,27783,1,0)
+ ;;^UTILITY(U,$J,358.3,28213,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,28213,1,4,0)
+ ;;=4^L89.130
+ ;;^UTILITY(U,$J,358.3,28213,2)
+ ;;=^5009363
+ ;;^UTILITY(U,$J,358.3,28214,0)
+ ;;=L89.131^^112^1416^91
+ ;;^UTILITY(U,$J,358.3,28214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27783,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,27783,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,27783,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,27784,0)
- ;;=C90.02^^132^1320^163
- ;;^UTILITY(U,$J,358.3,27784,1,0)
+ ;;^UTILITY(U,$J,358.3,28214,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,28214,1,4,0)
+ ;;=4^L89.131
+ ;;^UTILITY(U,$J,358.3,28214,2)
+ ;;=^5009364
+ ;;^UTILITY(U,$J,358.3,28215,0)
+ ;;=L89.132^^112^1416^92
+ ;;^UTILITY(U,$J,358.3,28215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27784,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,27784,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,27784,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,27785,0)
- ;;=Z85.818^^132^1321^92
- ;;^UTILITY(U,$J,358.3,27785,1,0)
+ ;;^UTILITY(U,$J,358.3,28215,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,28215,1,4,0)
+ ;;=4^L89.132
+ ;;^UTILITY(U,$J,358.3,28215,2)
+ ;;=^5009365
+ ;;^UTILITY(U,$J,358.3,28216,0)
+ ;;=L89.133^^112^1416^93
+ ;;^UTILITY(U,$J,358.3,28216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27785,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,27785,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,27785,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,27786,0)
- ;;=Z85.819^^132^1321^93
- ;;^UTILITY(U,$J,358.3,27786,1,0)
+ ;;^UTILITY(U,$J,358.3,28216,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,28216,1,4,0)
+ ;;=4^L89.133
+ ;;^UTILITY(U,$J,358.3,28216,2)
+ ;;=^5009366
+ ;;^UTILITY(U,$J,358.3,28217,0)
+ ;;=L89.134^^112^1416^94
+ ;;^UTILITY(U,$J,358.3,28217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27786,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,27786,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,27786,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,27787,0)
- ;;=Z85.01^^132^1321^88
- ;;^UTILITY(U,$J,358.3,27787,1,0)
+ ;;^UTILITY(U,$J,358.3,28217,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage 4
+ ;;^UTILITY(U,$J,358.3,28217,1,4,0)
+ ;;=4^L89.134
+ ;;^UTILITY(U,$J,358.3,28217,2)
+ ;;=^5009367
+ ;;^UTILITY(U,$J,358.3,28218,0)
+ ;;=L89.139^^112^1416^95
+ ;;^UTILITY(U,$J,358.3,28218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27787,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,27787,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,27787,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,27788,0)
- ;;=Z85.028^^132^1321^99
- ;;^UTILITY(U,$J,358.3,27788,1,0)
+ ;;^UTILITY(U,$J,358.3,28218,1,3,0)
+ ;;=3^Pressure Ulcer Right Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28218,1,4,0)
+ ;;=4^L89.139
+ ;;^UTILITY(U,$J,358.3,28218,2)
+ ;;=^5133653
+ ;;^UTILITY(U,$J,358.3,28219,0)
+ ;;=L89.140^^112^1416^48
+ ;;^UTILITY(U,$J,358.3,28219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27788,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,27788,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,27788,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,27789,0)
- ;;=Z85.038^^132^1321^90
- ;;^UTILITY(U,$J,358.3,27789,1,0)
+ ;;^UTILITY(U,$J,358.3,28219,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Unstageable
+ ;;^UTILITY(U,$J,358.3,28219,1,4,0)
+ ;;=4^L89.140
+ ;;^UTILITY(U,$J,358.3,28219,2)
+ ;;=^5133655
+ ;;^UTILITY(U,$J,358.3,28220,0)
+ ;;=L89.141^^112^1416^43
+ ;;^UTILITY(U,$J,358.3,28220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27789,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,27789,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,27789,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,27790,0)
- ;;=Z85.048^^132^1321^97
- ;;^UTILITY(U,$J,358.3,27790,1,0)
+ ;;^UTILITY(U,$J,358.3,28220,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 1
+ ;;^UTILITY(U,$J,358.3,28220,1,4,0)
+ ;;=4^L89.141
+ ;;^UTILITY(U,$J,358.3,28220,2)
+ ;;=^5133656
+ ;;^UTILITY(U,$J,358.3,28221,0)
+ ;;=L89.142^^112^1416^44
+ ;;^UTILITY(U,$J,358.3,28221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27790,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,27790,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,27790,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,27791,0)
- ;;=Z85.118^^132^1321^86
- ;;^UTILITY(U,$J,358.3,27791,1,0)
+ ;;^UTILITY(U,$J,358.3,28221,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,28221,1,4,0)
+ ;;=4^L89.142
+ ;;^UTILITY(U,$J,358.3,28221,2)
+ ;;=^5133657
+ ;;^UTILITY(U,$J,358.3,28222,0)
+ ;;=L89.143^^112^1416^45
+ ;;^UTILITY(U,$J,358.3,28222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27791,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,27791,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,27791,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,27792,0)
- ;;=Z85.21^^132^1321^91
+ ;;^UTILITY(U,$J,358.3,28222,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 3
+ ;;^UTILITY(U,$J,358.3,28222,1,4,0)
+ ;;=4^L89.143
+ ;;^UTILITY(U,$J,358.3,28222,2)
+ ;;=^5133658
+ ;;^UTILITY(U,$J,358.3,28223,0)
+ ;;=L89.144^^112^1416^46
+ ;;^UTILITY(U,$J,358.3,28223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28223,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage 4

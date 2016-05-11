@@ -1,140 +1,128 @@
-IBDEI0DO ; ; 19-NOV-2015
+IBDEI0DO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5959,0)
- ;;=J20.3^^40^381^2
- ;;^UTILITY(U,$J,358.3,5959,1,0)
+ ;;^UTILITY(U,$J,358.3,6279,0)
+ ;;=K51.90^^30^391^83
+ ;;^UTILITY(U,$J,358.3,6279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5959,1,3,0)
- ;;=3^Acute Bronchitis d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,5959,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,5959,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,5960,0)
- ;;=J20.1^^40^381^3
- ;;^UTILITY(U,$J,358.3,5960,1,0)
+ ;;^UTILITY(U,$J,358.3,6279,1,3,0)
+ ;;=3^Ulcerative Colitis w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,6279,1,4,0)
+ ;;=4^K51.90
+ ;;^UTILITY(U,$J,358.3,6279,2)
+ ;;=^5008694
+ ;;^UTILITY(U,$J,358.3,6280,0)
+ ;;=K51.919^^30^391^82
+ ;;^UTILITY(U,$J,358.3,6280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5960,1,3,0)
- ;;=3^Acute Bronchitis d/t Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,5960,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,5960,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,5961,0)
- ;;=J20.0^^40^381^4
- ;;^UTILITY(U,$J,358.3,5961,1,0)
+ ;;^UTILITY(U,$J,358.3,6280,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Unspec Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,6280,1,4,0)
+ ;;=4^K51.919
+ ;;^UTILITY(U,$J,358.3,6280,2)
+ ;;=^5008700
+ ;;^UTILITY(U,$J,358.3,6281,0)
+ ;;=K51.918^^30^391^80
+ ;;^UTILITY(U,$J,358.3,6281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5961,1,3,0)
- ;;=3^Acute Bronchitis d/t Mycoplasma Pneumoniae
- ;;^UTILITY(U,$J,358.3,5961,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,5961,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,5962,0)
- ;;=J42.^^40^381^16
- ;;^UTILITY(U,$J,358.3,5962,1,0)
+ ;;^UTILITY(U,$J,358.3,6281,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Oth Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,6281,1,4,0)
+ ;;=4^K51.918
+ ;;^UTILITY(U,$J,358.3,6281,2)
+ ;;=^5008699
+ ;;^UTILITY(U,$J,358.3,6282,0)
+ ;;=K51.914^^30^391^77
+ ;;^UTILITY(U,$J,358.3,6282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5962,1,3,0)
- ;;=3^Chronic Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,5962,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,5962,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,5963,0)
- ;;=J45.998^^40^381^11
- ;;^UTILITY(U,$J,358.3,5963,1,0)
+ ;;^UTILITY(U,$J,358.3,6282,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,6282,1,4,0)
+ ;;=4^K51.914
+ ;;^UTILITY(U,$J,358.3,6282,2)
+ ;;=^5008698
+ ;;^UTILITY(U,$J,358.3,6283,0)
+ ;;=K51.913^^30^391^78
+ ;;^UTILITY(U,$J,358.3,6283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5963,1,3,0)
- ;;=3^Asthma NEC
- ;;^UTILITY(U,$J,358.3,5963,1,4,0)
- ;;=4^J45.998
- ;;^UTILITY(U,$J,358.3,5963,2)
- ;;=^5008257
- ;;^UTILITY(U,$J,358.3,5964,0)
- ;;=J45.909^^40^381^13
- ;;^UTILITY(U,$J,358.3,5964,1,0)
+ ;;^UTILITY(U,$J,358.3,6283,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Fistula,Unspec
+ ;;^UTILITY(U,$J,358.3,6283,1,4,0)
+ ;;=4^K51.913
+ ;;^UTILITY(U,$J,358.3,6283,2)
+ ;;=^5008697
+ ;;^UTILITY(U,$J,358.3,6284,0)
+ ;;=K51.912^^30^391^79
+ ;;^UTILITY(U,$J,358.3,6284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5964,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,5964,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,5964,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,5965,0)
- ;;=J45.902^^40^381^12
- ;;^UTILITY(U,$J,358.3,5965,1,0)
+ ;;^UTILITY(U,$J,358.3,6284,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Intestinal Obstruction,Unspec
+ ;;^UTILITY(U,$J,358.3,6284,1,4,0)
+ ;;=4^K51.912
+ ;;^UTILITY(U,$J,358.3,6284,2)
+ ;;=^5008696
+ ;;^UTILITY(U,$J,358.3,6285,0)
+ ;;=K51.911^^30^391^81
+ ;;^UTILITY(U,$J,358.3,6285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5965,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,5965,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,5965,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,5966,0)
- ;;=J44.9^^40^381^15
- ;;^UTILITY(U,$J,358.3,5966,1,0)
+ ;;^UTILITY(U,$J,358.3,6285,1,3,0)
+ ;;=3^Ulcerative Colitis w/ Rectal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,6285,1,4,0)
+ ;;=4^K51.911
+ ;;^UTILITY(U,$J,358.3,6285,2)
+ ;;=^5008695
+ ;;^UTILITY(U,$J,358.3,6286,0)
+ ;;=K52.89^^30^391^55
+ ;;^UTILITY(U,$J,358.3,6286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5966,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,5966,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,5966,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,5967,0)
- ;;=J61.^^40^381^24
- ;;^UTILITY(U,$J,358.3,5967,1,0)
+ ;;^UTILITY(U,$J,358.3,6286,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Oth Spec Noninfective
+ ;;^UTILITY(U,$J,358.3,6286,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,6286,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,6287,0)
+ ;;=K52.9^^30^391^54
+ ;;^UTILITY(U,$J,358.3,6287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5967,1,3,0)
- ;;=3^Pneumoconiosis d/t Asbestos/Oth Mineral Fibers
- ;;^UTILITY(U,$J,358.3,5967,1,4,0)
- ;;=4^J61.
- ;;^UTILITY(U,$J,358.3,5967,2)
- ;;=^5008262
- ;;^UTILITY(U,$J,358.3,5968,0)
- ;;=R09.1^^40^381^23
- ;;^UTILITY(U,$J,358.3,5968,1,0)
+ ;;^UTILITY(U,$J,358.3,6287,1,3,0)
+ ;;=3^Gastroenteritis & Colitis,Noninfective Unspec
+ ;;^UTILITY(U,$J,358.3,6287,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,6287,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,6288,0)
+ ;;=K57.30^^30^391^42
+ ;;^UTILITY(U,$J,358.3,6288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5968,1,3,0)
- ;;=3^Pleurisy
- ;;^UTILITY(U,$J,358.3,5968,1,4,0)
- ;;=4^R09.1
- ;;^UTILITY(U,$J,358.3,5968,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,5969,0)
- ;;=J84.17^^40^381^19
- ;;^UTILITY(U,$J,358.3,5969,1,0)
+ ;;^UTILITY(U,$J,358.3,6288,1,3,0)
+ ;;=3^Diverticulosis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,6288,1,4,0)
+ ;;=4^K57.30
+ ;;^UTILITY(U,$J,358.3,6288,2)
+ ;;=^5008723
+ ;;^UTILITY(U,$J,358.3,6289,0)
+ ;;=K57.50^^30^391^43
+ ;;^UTILITY(U,$J,358.3,6289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5969,1,3,0)
- ;;=3^Interstitial Pulmonary Disease w/ Fibrosis NEC
- ;;^UTILITY(U,$J,358.3,5969,1,4,0)
- ;;=4^J84.17
- ;;^UTILITY(U,$J,358.3,5969,2)
- ;;=^5008301
- ;;^UTILITY(U,$J,358.3,5970,0)
- ;;=J98.4^^40^381^20
- ;;^UTILITY(U,$J,358.3,5970,1,0)
+ ;;^UTILITY(U,$J,358.3,6289,1,3,0)
+ ;;=3^Diverticulosis of Sm & Lg Intestine w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,6289,1,4,0)
+ ;;=4^K57.50
+ ;;^UTILITY(U,$J,358.3,6289,2)
+ ;;=^5008729
+ ;;^UTILITY(U,$J,358.3,6290,0)
+ ;;=K57.90^^30^391^41
+ ;;^UTILITY(U,$J,358.3,6290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5970,1,3,0)
- ;;=3^Lung Disorders NEC
- ;;^UTILITY(U,$J,358.3,5970,1,4,0)
- ;;=4^J98.4
- ;;^UTILITY(U,$J,358.3,5970,2)
- ;;=^5008362
- ;;^UTILITY(U,$J,358.3,5971,0)
- ;;=G47.30^^40^381^26
- ;;^UTILITY(U,$J,358.3,5971,1,0)
+ ;;^UTILITY(U,$J,358.3,6290,1,3,0)
+ ;;=3^Diverticulosis of Intestine,Unspec w/o Performation/Abscess w/o Bleeding
+ ;;^UTILITY(U,$J,358.3,6290,1,4,0)
+ ;;=4^K57.90
+ ;;^UTILITY(U,$J,358.3,6290,2)
+ ;;=^5008735
+ ;;^UTILITY(U,$J,358.3,6291,0)
+ ;;=K57.20^^30^391^37
+ ;;^UTILITY(U,$J,358.3,6291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5971,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,5971,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,5971,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,5972,0)
- ;;=R06.02^^40^381^25
- ;;^UTILITY(U,$J,358.3,5972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5972,1,3,0)
- ;;=3^Shortness of Breath

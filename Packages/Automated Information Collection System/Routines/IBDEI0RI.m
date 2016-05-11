@@ -1,128 +1,132 @@
-IBDEI0RI ; ; 19-NOV-2015
+IBDEI0RI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12622,1,0)
+ ;;^UTILITY(U,$J,358.3,12905,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,12906,0)
+ ;;=L87.0^^53^582^165
+ ;;^UTILITY(U,$J,358.3,12906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12622,1,3,0)
- ;;=3^Dysphagia, pharyngeal phase
- ;;^UTILITY(U,$J,358.3,12622,1,4,0)
- ;;=4^R13.13
- ;;^UTILITY(U,$J,358.3,12622,2)
- ;;=^335278
- ;;^UTILITY(U,$J,358.3,12623,0)
- ;;=R13.14^^77^733^4
- ;;^UTILITY(U,$J,358.3,12623,1,0)
+ ;;^UTILITY(U,$J,358.3,12906,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,12906,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,12906,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,12907,0)
+ ;;=L87.2^^53^582^141
+ ;;^UTILITY(U,$J,358.3,12907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12623,1,3,0)
- ;;=3^Dysphagia, pharyngoesophageal phase
- ;;^UTILITY(U,$J,358.3,12623,1,4,0)
- ;;=4^R13.14
- ;;^UTILITY(U,$J,358.3,12623,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,12624,0)
- ;;=S02.2XXA^^77^734^2
- ;;^UTILITY(U,$J,358.3,12624,1,0)
+ ;;^UTILITY(U,$J,358.3,12907,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,12907,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,12907,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,12908,0)
+ ;;=L89.300^^53^582^242
+ ;;^UTILITY(U,$J,358.3,12908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12624,1,3,0)
- ;;=3^Fracture of nasal bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,12624,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,12624,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,12625,0)
- ;;=S02.609A^^77^734^1
- ;;^UTILITY(U,$J,358.3,12625,1,0)
+ ;;^UTILITY(U,$J,358.3,12908,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,12908,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,12908,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,12909,0)
+ ;;=L89.301^^53^582^237
+ ;;^UTILITY(U,$J,358.3,12909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12625,1,3,0)
- ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,12625,1,4,0)
- ;;=4^S02.609A
- ;;^UTILITY(U,$J,358.3,12625,2)
- ;;=^5020372
- ;;^UTILITY(U,$J,358.3,12626,0)
- ;;=S02.92XA^^77^734^4
- ;;^UTILITY(U,$J,358.3,12626,1,0)
+ ;;^UTILITY(U,$J,358.3,12909,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,12909,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,12909,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,12910,0)
+ ;;=L89.302^^53^582^238
+ ;;^UTILITY(U,$J,358.3,12910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12626,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,12626,1,4,0)
- ;;=4^S02.92XA
- ;;^UTILITY(U,$J,358.3,12626,2)
- ;;=^5020438
- ;;^UTILITY(U,$J,358.3,12627,0)
- ;;=S02.3XXA^^77^734^3
- ;;^UTILITY(U,$J,358.3,12627,1,0)
+ ;;^UTILITY(U,$J,358.3,12910,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,12910,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,12910,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,12911,0)
+ ;;=L89.303^^53^582^239
+ ;;^UTILITY(U,$J,358.3,12911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12627,1,3,0)
- ;;=3^Fracture of orbital floor, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,12627,1,4,0)
- ;;=4^S02.3XXA
- ;;^UTILITY(U,$J,358.3,12627,2)
- ;;=^5020312
- ;;^UTILITY(U,$J,358.3,12628,0)
- ;;=S02.92XB^^77^734^5
- ;;^UTILITY(U,$J,358.3,12628,1,0)
+ ;;^UTILITY(U,$J,358.3,12911,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,12911,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,12911,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,12912,0)
+ ;;=L89.304^^53^582^240
+ ;;^UTILITY(U,$J,358.3,12912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12628,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,12628,1,4,0)
- ;;=4^S02.92XB
- ;;^UTILITY(U,$J,358.3,12628,2)
- ;;=^5020439
- ;;^UTILITY(U,$J,358.3,12629,0)
- ;;=C00.2^^77^735^13
- ;;^UTILITY(U,$J,358.3,12629,1,0)
+ ;;^UTILITY(U,$J,358.3,12912,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,12912,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,12912,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,12913,0)
+ ;;=L89.309^^53^582^241
+ ;;^UTILITY(U,$J,358.3,12913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12629,1,3,0)
- ;;=3^Malignant neoplasm of external lip, unspecified
- ;;^UTILITY(U,$J,358.3,12629,1,4,0)
- ;;=4^C00.2
- ;;^UTILITY(U,$J,358.3,12629,2)
- ;;=^5000884
- ;;^UTILITY(U,$J,358.3,12630,0)
- ;;=C02.9^^77^735^30
- ;;^UTILITY(U,$J,358.3,12630,1,0)
+ ;;^UTILITY(U,$J,358.3,12913,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,12913,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,12913,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,12914,0)
+ ;;=L89.90^^53^582^247
+ ;;^UTILITY(U,$J,358.3,12914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12630,1,3,0)
- ;;=3^Malignant neoplasm of tongue, unspecified
- ;;^UTILITY(U,$J,358.3,12630,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,12630,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,12631,0)
- ;;=C07.^^77^735^24
- ;;^UTILITY(U,$J,358.3,12631,1,0)
+ ;;^UTILITY(U,$J,358.3,12914,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,12914,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,12914,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,12915,0)
+ ;;=L89.91^^53^582^243
+ ;;^UTILITY(U,$J,358.3,12915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12631,1,3,0)
- ;;=3^Malignant neoplasm of parotid gland
- ;;^UTILITY(U,$J,358.3,12631,1,4,0)
- ;;=4^C07.
- ;;^UTILITY(U,$J,358.3,12631,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,12632,0)
- ;;=C08.0^^77^735^27
- ;;^UTILITY(U,$J,358.3,12632,1,0)
+ ;;^UTILITY(U,$J,358.3,12915,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,12915,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,12915,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,12916,0)
+ ;;=L89.92^^53^582^244
+ ;;^UTILITY(U,$J,358.3,12916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12632,1,3,0)
- ;;=3^Malignant neoplasm of submandibular gland
- ;;^UTILITY(U,$J,358.3,12632,1,4,0)
- ;;=4^C08.0
- ;;^UTILITY(U,$J,358.3,12632,2)
- ;;=^267006
- ;;^UTILITY(U,$J,358.3,12633,0)
- ;;=C03.9^^77^735^16
- ;;^UTILITY(U,$J,358.3,12633,1,0)
+ ;;^UTILITY(U,$J,358.3,12916,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,12916,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,12916,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,12917,0)
+ ;;=L89.93^^53^582^245
+ ;;^UTILITY(U,$J,358.3,12917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12633,1,3,0)
- ;;=3^Malignant neoplasm of gum, unspecified
- ;;^UTILITY(U,$J,358.3,12633,1,4,0)
- ;;=4^C03.9
- ;;^UTILITY(U,$J,358.3,12633,2)
- ;;=^5000892
- ;;^UTILITY(U,$J,358.3,12634,0)
- ;;=C04.9^^77^735^14
- ;;^UTILITY(U,$J,358.3,12634,1,0)
+ ;;^UTILITY(U,$J,358.3,12917,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,12917,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,12917,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,12918,0)
+ ;;=L89.94^^53^582^246
+ ;;^UTILITY(U,$J,358.3,12918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12634,1,3,0)
- ;;=3^Malignant neoplasm of floor of mouth, unspecified
+ ;;^UTILITY(U,$J,358.3,12918,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4

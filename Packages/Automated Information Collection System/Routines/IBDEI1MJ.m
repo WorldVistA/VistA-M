@@ -1,120 +1,126 @@
-IBDEI1MJ ; ; 19-NOV-2015
+IBDEI1MJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27175,1,0)
+ ;;^UTILITY(U,$J,358.3,27549,1,4,0)
+ ;;=4^N07.2
+ ;;^UTILITY(U,$J,358.3,27549,2)
+ ;;=^5015561
+ ;;^UTILITY(U,$J,358.3,27550,0)
+ ;;=N07.3^^106^1363^25
+ ;;^UTILITY(U,$J,358.3,27550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27175,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,27175,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,27175,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,27176,0)
- ;;=L97.321^^132^1309^171
- ;;^UTILITY(U,$J,358.3,27176,1,0)
+ ;;^UTILITY(U,$J,358.3,27550,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,27550,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,27550,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,27551,0)
+ ;;=N07.3^^106^1363^26
+ ;;^UTILITY(U,$J,358.3,27551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27176,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,27176,1,4,0)
- ;;=4^L97.321
- ;;^UTILITY(U,$J,358.3,27176,2)
- ;;=^5009520
- ;;^UTILITY(U,$J,358.3,27177,0)
- ;;=L97.322^^132^1309^172
- ;;^UTILITY(U,$J,358.3,27177,1,0)
+ ;;^UTILITY(U,$J,358.3,27551,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,27551,1,4,0)
+ ;;=4^N07.3
+ ;;^UTILITY(U,$J,358.3,27551,2)
+ ;;=^5015562
+ ;;^UTILITY(U,$J,358.3,27552,0)
+ ;;=N07.4^^106^1363^23
+ ;;^UTILITY(U,$J,358.3,27552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27177,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,27177,1,4,0)
- ;;=4^L97.322
- ;;^UTILITY(U,$J,358.3,27177,2)
- ;;=^5009521
- ;;^UTILITY(U,$J,358.3,27178,0)
- ;;=L97.323^^132^1309^173
- ;;^UTILITY(U,$J,358.3,27178,1,0)
+ ;;^UTILITY(U,$J,358.3,27552,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,27552,1,4,0)
+ ;;=4^N07.4
+ ;;^UTILITY(U,$J,358.3,27552,2)
+ ;;=^5015563
+ ;;^UTILITY(U,$J,358.3,27553,0)
+ ;;=N07.5^^106^1363^27
+ ;;^UTILITY(U,$J,358.3,27553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27178,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,27178,1,4,0)
- ;;=4^L97.323
- ;;^UTILITY(U,$J,358.3,27178,2)
- ;;=^5009522
- ;;^UTILITY(U,$J,358.3,27179,0)
- ;;=L97.324^^132^1309^174
- ;;^UTILITY(U,$J,358.3,27179,1,0)
+ ;;^UTILITY(U,$J,358.3,27553,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,27553,1,4,0)
+ ;;=4^N07.5
+ ;;^UTILITY(U,$J,358.3,27553,2)
+ ;;=^5015564
+ ;;^UTILITY(U,$J,358.3,27554,0)
+ ;;=N07.6^^106^1363^22
+ ;;^UTILITY(U,$J,358.3,27554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27179,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,27179,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,27179,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,27180,0)
- ;;=L97.329^^132^1309^175
- ;;^UTILITY(U,$J,358.3,27180,1,0)
+ ;;^UTILITY(U,$J,358.3,27554,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,27554,1,4,0)
+ ;;=4^N07.6
+ ;;^UTILITY(U,$J,358.3,27554,2)
+ ;;=^5015565
+ ;;^UTILITY(U,$J,358.3,27555,0)
+ ;;=N07.7^^106^1363^28
+ ;;^UTILITY(U,$J,358.3,27555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27180,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,27180,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,27180,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,27181,0)
- ;;=L97.411^^132^1309^216
- ;;^UTILITY(U,$J,358.3,27181,1,0)
+ ;;^UTILITY(U,$J,358.3,27555,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,27555,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,27555,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,27556,0)
+ ;;=N07.8^^106^1363^31
+ ;;^UTILITY(U,$J,358.3,27556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27181,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,27181,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,27181,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,27182,0)
- ;;=L97.412^^132^1309^217
- ;;^UTILITY(U,$J,358.3,27182,1,0)
+ ;;^UTILITY(U,$J,358.3,27556,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ oth morphologic lesions
+ ;;^UTILITY(U,$J,358.3,27556,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,27556,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,27557,0)
+ ;;=N07.9^^106^1363^32
+ ;;^UTILITY(U,$J,358.3,27557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27182,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,27182,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,27182,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,27183,0)
- ;;=L97.413^^132^1309^218
- ;;^UTILITY(U,$J,358.3,27183,1,0)
+ ;;^UTILITY(U,$J,358.3,27557,1,3,0)
+ ;;=3^Hereditary nephropathy, NEC w/ unsp morphologic lesions
+ ;;^UTILITY(U,$J,358.3,27557,1,4,0)
+ ;;=4^N07.9
+ ;;^UTILITY(U,$J,358.3,27557,2)
+ ;;=^5015568
+ ;;^UTILITY(U,$J,358.3,27558,0)
+ ;;=N08.^^106^1363^21
+ ;;^UTILITY(U,$J,358.3,27558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27183,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,27183,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,27183,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,27184,0)
- ;;=L97.414^^132^1309^219
- ;;^UTILITY(U,$J,358.3,27184,1,0)
+ ;;^UTILITY(U,$J,358.3,27558,1,3,0)
+ ;;=3^Glomerular disorders in diseases classified elsewhere
+ ;;^UTILITY(U,$J,358.3,27558,1,4,0)
+ ;;=4^N08.
+ ;;^UTILITY(U,$J,358.3,27558,2)
+ ;;=^5015569
+ ;;^UTILITY(U,$J,358.3,27559,0)
+ ;;=C90.00^^106^1364^9
+ ;;^UTILITY(U,$J,358.3,27559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27184,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,27184,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,27184,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,27185,0)
- ;;=L97.419^^132^1309^220
- ;;^UTILITY(U,$J,358.3,27185,1,0)
+ ;;^UTILITY(U,$J,358.3,27559,1,3,0)
+ ;;=3^Multiple myeloma not having achieved remission
+ ;;^UTILITY(U,$J,358.3,27559,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,27559,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,27560,0)
+ ;;=C90.01^^106^1364^8
+ ;;^UTILITY(U,$J,358.3,27560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27185,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,27185,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,27185,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,27186,0)
- ;;=L97.421^^132^1309^186
- ;;^UTILITY(U,$J,358.3,27186,1,0)
+ ;;^UTILITY(U,$J,358.3,27560,1,3,0)
+ ;;=3^Multiple myeloma in remission
+ ;;^UTILITY(U,$J,358.3,27560,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,27560,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,27561,0)
+ ;;=C90.02^^106^1364^7
+ ;;^UTILITY(U,$J,358.3,27561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27186,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,27186,1,4,0)
- ;;=4^L97.421
+ ;;^UTILITY(U,$J,358.3,27561,1,3,0)
+ ;;=3^Multiple myeloma in relapse
+ ;;^UTILITY(U,$J,358.3,27561,1,4,0)
+ ;;=4^C90.02

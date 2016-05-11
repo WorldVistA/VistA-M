@@ -1,6 +1,8 @@
 BPSRPT3 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14**;JUN 2004;Build 2
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,11,14,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;Reference to IB NCPCP NON-BILLABLE STATUS REASONS (#366.17) supported by ICR 6136
  ;
  Q
  ;
@@ -265,3 +267,177 @@ SELOPCL(DFLT) N DIC,DIR,DIRUT,DUOUT,X,Y
  S Y=$S(Y="C":1,Y="O":2,1:0)
  Q Y
  ;
+SELELIG1() ;
+ ; Select multiple Eligibilities
+ ; 
+ ; Input Variable -> none
+ ; Return Value   -> 0: All, 1: Selected Eligibilities; '^' = Exit
+ ;                                       
+ ; Output Variable -> BPELIG1 = 1 - One or More Pharmacies Selected
+ ;                            = 0 - User Entered 'ALL'
+ ;                            = "^" - User quit
+ ;                            
+ ; If BPELIG1 = 1 then the BPELIG1 array will be defined where:
+ ;    BPELIG1("C")="CHAMPVA"
+ ;    BPELIG1("T")="TRICARE"
+ ;    BPELIG1("V")="VETERAN"
+ ;
+ ;
+ ;Reset BPELIG1 array
+ K BPELIG1
+ N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y,P
+ ;
+ ;First see if they want to enter individual eligibilities or ALL
+ S DIR(0)="S^E:ELIGIBILITY;A:ALL"
+ S DIR("A")="Select Certain (E)ligibilities or (A)LL"
+ S DIR("B")="ALL"
+ S DIR("L",1)="Select one of the following:"
+ S DIR("L",2)=""
+ S DIR("L",3)="     E         ELIGIBILITY"
+ S DIR("L",4)="     A         ALL"
+ D ^DIR K DIR
+ ;
+ ;Check for "^" or timeout
+ I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ ;
+ ; Set BPELIG1 and quit unless user wants to select individual eligibilities
+ S BPELIG1=$S(Y="A":0,Y="^":"^",1:1)
+ I BPELIG1'=1 Q BPELIG1
+ ;
+ ;Allow user to select multiple eligibilities
+ F  D  Q:Y="^"!(Y="")
+ .;
+ .;Prompt for entry
+ .K DIR
+ .S DIR(0)="SO^C:CHAMPVA;T:TRICARE;V:VETERAN"
+ .S DIR("A")="Select Eligibility"
+ .D ^DIR
+ .I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
+ .;
+ .;Check for blank entry, quit if no previous selections
+ .I $G(Y)="" S Y=$S($D(BPELIG1)>9:"",1:"^") Q
+ .;
+ .; Add entry to array or handle duplicate entries
+ .I '$D(BPELIG1(Y)) S BPELIG1(Y)=Y(0),BPELIG1("B",Y(0),Y)=""
+ .E  D  I Y="^" Q
+ ..;Already in the array, so ask whether to delete
+ ..N P
+ ..S P=Y_"^"_Y(0)  ;Save Original Value
+ ..S DIR(0)="S^Y:YES;N:NO",DIR("A")="Delete "_$P(P,U,2)_" from your list?"
+ ..S DIR("B")="NO"
+ ..D ^DIR
+ ..I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
+ ..I Y="Y" K BPELIG1($P(P,U,1)),BPELIG1("B",$P(P,U,2),$P(P,U,1))
+ ..S Y=P  ;Restore Original Value
+ ..K P
+ .;
+ .;Display a list of selected eligibilities
+ .I $D(BPELIG1)>9 D
+ ..N X
+ ..W !,?2,"Selected:"
+ ..S X="" F  S X=$O(BPELIG1("B",X)) Q:X=""  W !,?10,X
+ ..K X
+ .Q
+ ;
+ ; Reset BPELIG1 array if user exited
+ I Y="^" K BPELIG1 S BPELIG1="^" Q "^"
+ ;
+ ; Deleted 'x-ref' as we don't need to return that
+ K BPELIG1("B")
+ ; 
+ Q 1
+ ;
+SELALRC() ; 
+ ; Display Most (R)ecent or (A)ll
+ ;
+ ; Return Value ->   A: All
+ ;                   R: Most Recent
+ ;                   ^: Exit
+ ;
+ N DIR,X,Y,DIRUT,DTOUT,DUOUT,DIROUT
+ ;
+ S DIR(0)="S^R:Most Recent;A:ALL"
+ S DIR("A")="Select Most (R)ecent or (A)ll"
+ S DIR("B")="MOST RECENT"
+ S DIR("L",1)="Select one of the following:"
+ S DIR("L",2)=""
+ S DIR("L",3)="     R         Most Recent Transaction Only"
+ S DIR("L",4)="     A         ALL Transactions (will list the Rx/Fill each time resubmitted)"
+ D ^DIR K DIR
+ ;
+ ;Check for "^" or timeout, 
+ I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ Q Y
+ ;
+SELNBSTS() ; 
+ ; Select the Non-Billable Status Reason
+ ; 
+ ; Input Variable -> None
+ ; Return Value   -> 0: All, 1: Selected Non-Billable Status; '^' = Exit
+ ;                                       
+ ; Output Variable -> BPNBSTS = 1 - One or More Non-Billable Statuses Selected
+ ;                            = 0 - User Entered 'ALL'
+ ;                            = "" - User quit
+ ;                            
+ ; If BPNBSTS = 1 then the BPNBSTS array will be defined where:
+ ;    BPNBSTS(Non-Billable Status IEN)=Non-Billable Status Reason
+ ;
+ ;Reset BPNBSTS array
+ K BPNBSTS
+ N DIR,DTOUT,DUOUT,DIRUT,DIROUT,X,Y,P,DIC
+ ;
+ ;First see if they want to enter individual eligibilities or ALL
+ S DIR(0)="S^S:NON-BILLABLE STATUS;A:ALL"
+ S DIR("A")="Select Certain Non-Billable (S)tatus or (A)ll"
+ S DIR("B")="ALL"
+ S DIR("L",1)="Select one of the following:"
+ S DIR("L",2)=""
+ S DIR("L",3)="     S         NON-BILLABLE STATUS"
+ S DIR("L",4)="     A         ALL"
+ D ^DIR K DIR
+ ;
+ ;Check for "^" or timeout, otherwise define BPNBSTS
+ I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^"
+ S BPNBSTS=$S(Y="A":0,Y="^":"^",1:1)
+ I BPNBSTS'=1 Q BPNBSTS
+ ;
+ ;Allow user to select multiple non-billable statuses
+ F  D  Q:Y="^"!(Y="")
+ .;Prompt for entry - ICR 6136
+ .K X
+ .S DIC(0)="QEAM",DIC=366.17,DIC("A")="Select Non-Billable Reason: "
+ .W ! D ^DIC
+ .I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
+ .;
+ .;Check for blank entry, quit if no previous selections
+ .I $G(Y)=-1 S Y=$S($D(BPNBSTS)>9:"",1:"^") Q
+ .;
+ .; Add entry to array or handle duplicate entries
+ .I '$D(BPNBSTS($P(Y,U,1))) S BPNBSTS($P(Y,U,1))=$P(Y,U,2),BPNBSTS("B",$P(Y,U,2),$P(Y,U,1))=""
+ .E  D  I Y="^" Q
+ ..;Already in the array, so ask whether to delete
+ ..N P
+ ..S P=Y  ;Save Original Value
+ ..S DIR(0)="S^Y:YES;N:NO",DIR("A")="Delete "_$P(P,U,2)_" from your list?"
+ ..S DIR("B")="NO"
+ ..D ^DIR
+ ..I ($G(DUOUT)=1)!($G(DTOUT)=1) S Y="^" Q
+ ..I Y="Y" K BPNBSTS($P(P,U,1)),BPNBSTS("B",$P(P,U,2),$P(P,U,1))
+ ..S Y=P  ;Restore Original Value
+ ..K P
+ .;
+ .;Display a list of selected values
+ .I $D(BPNBSTS)>9 D
+ ..N X
+ ..W !,?2,"Selected:"
+ ..S X="" F  S X=$O(BPNBSTS("B",X)) Q:X=""  W !,?10,X
+ ..K X
+ .Q
+ ;
+ ; Reset BPNBSTS array if user exited
+ I Y="^" K BPNBSTS S BPNBSTS="^" Q "^"
+ ;
+ ; Deleted 'x-ref' as we don't need to return that
+ K BPNBSTS("B")
+ ; 
+ Q 1

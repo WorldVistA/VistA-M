@@ -1,5 +1,5 @@
 SROAPIMS ;BIR/ADM - PIMS Information Retrieval ;01/24/07
- ;;3.0;Surgery;**38,46,47,57,71,81,86,100,125,134,160,175,182,184**;24 Jun 93;Build 35
+ ;;3.0;Surgery;**38,46,47,57,71,81,86,100,125,134,160,175,182,184,185**;24 Jun 93;Build 2
  ;
  ; Reference to ^MCAR(690,"AC" supported by DBIA #80
  ; Reference to ^DGPM("APTT1" supported by DBIA #565
@@ -80,7 +80,7 @@ ADM1 ; get information related to admission
  ; determine if admission was for observation
  ; quit if no specialty defined for admission
  S SRX=$P($G(VAIP(13,6)),"^") I SRX="" S SRSOUT=1 Q
- D SPEC S Y="18,23,24,36,41,65,94" I Y[SRSP D  Q:SRSOUT
+ D SPEC S Y="18,23,24,36,41,65,94" I Y[SRSP D  Q:$G(SRSOUT)
  .S SRVADPT(14)=SRSP,SRVADPT(12)=$E($P(VAIP(13,1),"^"),1,12),SRVADPT(13)=$E($P(VAIP(17,1),"^"),1,12)
  .S I=1 F J=12:1:14 S $P(^SRF(SRTN,208.1),"^",I)=SRVADPT(J),I=I+1
  .; look for admission following discharge from observation

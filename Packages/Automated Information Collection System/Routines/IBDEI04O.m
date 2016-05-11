@@ -1,124 +1,128 @@
-IBDEI04O ; ; 19-NOV-2015
+IBDEI04O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1502,2)
- ;;=^5049350
- ;;^UTILITY(U,$J,358.3,1503,0)
- ;;=T36.5X2S^^14^156^27
- ;;^UTILITY(U,$J,358.3,1503,1,0)
+ ;;^UTILITY(U,$J,358.3,1762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1503,1,3,0)
- ;;=3^Poisoning by aminoglycosides, intentional self-harm, sequela
- ;;^UTILITY(U,$J,358.3,1503,1,4,0)
- ;;=4^T36.5X2S
- ;;^UTILITY(U,$J,358.3,1503,2)
- ;;=^5049351
- ;;^UTILITY(U,$J,358.3,1504,0)
- ;;=T36.5X4A^^14^156^28
- ;;^UTILITY(U,$J,358.3,1504,1,0)
+ ;;^UTILITY(U,$J,358.3,1762,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulceration
+ ;;^UTILITY(U,$J,358.3,1762,1,4,0)
+ ;;=4^I70.241
+ ;;^UTILITY(U,$J,358.3,1762,2)
+ ;;=^5007595
+ ;;^UTILITY(U,$J,358.3,1763,0)
+ ;;=I70.249^^11^156^35
+ ;;^UTILITY(U,$J,358.3,1763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1504,1,3,0)
- ;;=3^Poisoning by aminoglycosides, undetermined, init encntr
- ;;^UTILITY(U,$J,358.3,1504,1,4,0)
- ;;=4^T36.5X4A
- ;;^UTILITY(U,$J,358.3,1504,2)
- ;;=^5049355
- ;;^UTILITY(U,$J,358.3,1505,0)
- ;;=T36.5X4D^^14^156^29
- ;;^UTILITY(U,$J,358.3,1505,1,0)
+ ;;^UTILITY(U,$J,358.3,1763,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,1763,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,1763,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,1764,0)
+ ;;=I70.262^^11^156^31
+ ;;^UTILITY(U,$J,358.3,1764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1505,1,3,0)
- ;;=3^Poisoning by aminoglycosides, undetermined, subs encntr
- ;;^UTILITY(U,$J,358.3,1505,1,4,0)
- ;;=4^T36.5X4D
- ;;^UTILITY(U,$J,358.3,1505,2)
- ;;=^5049356
- ;;^UTILITY(U,$J,358.3,1506,0)
- ;;=T36.5X4S^^14^156^30
- ;;^UTILITY(U,$J,358.3,1506,1,0)
+ ;;^UTILITY(U,$J,358.3,1764,1,3,0)
+ ;;=3^Athscl Native Arteries of Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1764,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,1764,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,1765,0)
+ ;;=I70.261^^11^156^41
+ ;;^UTILITY(U,$J,358.3,1765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1506,1,3,0)
- ;;=3^Poisoning by aminoglycosides, undetermined, sequela
- ;;^UTILITY(U,$J,358.3,1506,1,4,0)
- ;;=4^T36.5X4S
- ;;^UTILITY(U,$J,358.3,1506,2)
- ;;=^5049357
- ;;^UTILITY(U,$J,358.3,1507,0)
- ;;=T45.1X1A^^14^156^31
- ;;^UTILITY(U,$J,358.3,1507,1,0)
+ ;;^UTILITY(U,$J,358.3,1765,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1765,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,1765,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,1766,0)
+ ;;=I70.263^^11^156^30
+ ;;^UTILITY(U,$J,358.3,1766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1507,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, acc, init
- ;;^UTILITY(U,$J,358.3,1507,1,4,0)
- ;;=4^T45.1X1A
- ;;^UTILITY(U,$J,358.3,1507,2)
- ;;=^5051014
- ;;^UTILITY(U,$J,358.3,1508,0)
- ;;=T45.1X1D^^14^156^32
- ;;^UTILITY(U,$J,358.3,1508,1,0)
+ ;;^UTILITY(U,$J,358.3,1766,1,3,0)
+ ;;=3^Athscl Native Arteries of Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,1766,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,1766,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,1767,0)
+ ;;=I70.301^^11^156^50
+ ;;^UTILITY(U,$J,358.3,1767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1508,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, acc, subs
- ;;^UTILITY(U,$J,358.3,1508,1,4,0)
- ;;=4^T45.1X1D
- ;;^UTILITY(U,$J,358.3,1508,2)
- ;;=^5051015
- ;;^UTILITY(U,$J,358.3,1509,0)
- ;;=T45.1X1S^^14^156^33
- ;;^UTILITY(U,$J,358.3,1509,1,0)
+ ;;^UTILITY(U,$J,358.3,1767,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Right Leg
+ ;;^UTILITY(U,$J,358.3,1767,1,4,0)
+ ;;=4^I70.301
+ ;;^UTILITY(U,$J,358.3,1767,2)
+ ;;=^5007611
+ ;;^UTILITY(U,$J,358.3,1768,0)
+ ;;=I70.302^^11^156^49
+ ;;^UTILITY(U,$J,358.3,1768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1509,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, acc, sequela
- ;;^UTILITY(U,$J,358.3,1509,1,4,0)
- ;;=4^T45.1X1S
- ;;^UTILITY(U,$J,358.3,1509,2)
- ;;=^5051016
- ;;^UTILITY(U,$J,358.3,1510,0)
- ;;=T45.1X3A^^14^156^34
- ;;^UTILITY(U,$J,358.3,1510,1,0)
+ ;;^UTILITY(U,$J,358.3,1768,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Left Leg
+ ;;^UTILITY(U,$J,358.3,1768,1,4,0)
+ ;;=4^I70.302
+ ;;^UTILITY(U,$J,358.3,1768,2)
+ ;;=^5007612
+ ;;^UTILITY(U,$J,358.3,1769,0)
+ ;;=I70.303^^11^156^48
+ ;;^UTILITY(U,$J,358.3,1769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1510,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, assault, init
- ;;^UTILITY(U,$J,358.3,1510,1,4,0)
- ;;=4^T45.1X3A
- ;;^UTILITY(U,$J,358.3,1510,2)
- ;;=^5051020
- ;;^UTILITY(U,$J,358.3,1511,0)
- ;;=T45.1X3D^^14^156^35
- ;;^UTILITY(U,$J,358.3,1511,1,0)
+ ;;^UTILITY(U,$J,358.3,1769,1,3,0)
+ ;;=3^Athscl Unspec Type Bypass of Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,1769,1,4,0)
+ ;;=4^I70.303
+ ;;^UTILITY(U,$J,358.3,1769,2)
+ ;;=^5007613
+ ;;^UTILITY(U,$J,358.3,1770,0)
+ ;;=I70.411^^11^156^24
+ ;;^UTILITY(U,$J,358.3,1770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1511,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, assault, subs
- ;;^UTILITY(U,$J,358.3,1511,1,4,0)
- ;;=4^T45.1X3D
- ;;^UTILITY(U,$J,358.3,1511,2)
- ;;=^5051021
- ;;^UTILITY(U,$J,358.3,1512,0)
- ;;=T45.1X3S^^14^156^36
- ;;^UTILITY(U,$J,358.3,1512,1,0)
+ ;;^UTILITY(U,$J,358.3,1770,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1770,1,4,0)
+ ;;=4^I70.411
+ ;;^UTILITY(U,$J,358.3,1770,2)
+ ;;=^5007654
+ ;;^UTILITY(U,$J,358.3,1771,0)
+ ;;=I70.412^^11^156^20
+ ;;^UTILITY(U,$J,358.3,1771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1512,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, assault, sequela
- ;;^UTILITY(U,$J,358.3,1512,1,4,0)
- ;;=4^T45.1X3S
- ;;^UTILITY(U,$J,358.3,1512,2)
- ;;=^5051022
- ;;^UTILITY(U,$J,358.3,1513,0)
- ;;=T45.1X2A^^14^156^37
- ;;^UTILITY(U,$J,358.3,1513,1,0)
+ ;;^UTILITY(U,$J,358.3,1771,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1771,1,4,0)
+ ;;=4^I70.412
+ ;;^UTILITY(U,$J,358.3,1771,2)
+ ;;=^5007655
+ ;;^UTILITY(U,$J,358.3,1772,0)
+ ;;=I70.413^^11^156^17
+ ;;^UTILITY(U,$J,358.3,1772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1513,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, self-harm, init
- ;;^UTILITY(U,$J,358.3,1513,1,4,0)
- ;;=4^T45.1X2A
- ;;^UTILITY(U,$J,358.3,1513,2)
- ;;=^5051017
- ;;^UTILITY(U,$J,358.3,1514,0)
- ;;=T45.1X2D^^14^156^38
- ;;^UTILITY(U,$J,358.3,1514,1,0)
+ ;;^UTILITY(U,$J,358.3,1772,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Bilateral Legs w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,1772,1,4,0)
+ ;;=4^I70.413
+ ;;^UTILITY(U,$J,358.3,1772,2)
+ ;;=^5007656
+ ;;^UTILITY(U,$J,358.3,1773,0)
+ ;;=I70.421^^11^156^25
+ ;;^UTILITY(U,$J,358.3,1773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1514,1,3,0)
- ;;=3^Poisoning by antineopl and immunosup drugs, self-harm, subs
- ;;^UTILITY(U,$J,358.3,1514,1,4,0)
- ;;=4^T45.1X2D
+ ;;^UTILITY(U,$J,358.3,1773,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Right Leg w/ Rest Pain
+ ;;^UTILITY(U,$J,358.3,1773,1,4,0)
+ ;;=4^I70.421
+ ;;^UTILITY(U,$J,358.3,1773,2)
+ ;;=^5007659
+ ;;^UTILITY(U,$J,358.3,1774,0)
+ ;;=I70.422^^11^156^21
+ ;;^UTILITY(U,$J,358.3,1774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1774,1,3,0)
+ ;;=3^Athscl Autologous Vein Bypass of Left Leg w/ Rest Pain

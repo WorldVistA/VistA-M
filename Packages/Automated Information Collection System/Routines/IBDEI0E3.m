@@ -1,142 +1,130 @@
-IBDEI0E3 ; ; 19-NOV-2015
+IBDEI0E3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6146,1,3,0)
- ;;=3^Neuromuscular Dysfunction of Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,6146,1,4,0)
- ;;=4^N31.9
- ;;^UTILITY(U,$J,358.3,6146,2)
- ;;=^5015648
- ;;^UTILITY(U,$J,358.3,6147,0)
- ;;=N31.0^^40^384^36
- ;;^UTILITY(U,$J,358.3,6147,1,0)
+ ;;^UTILITY(U,$J,358.3,6479,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,6479,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,6479,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,6480,0)
+ ;;=C91.00^^30^396^5
+ ;;^UTILITY(U,$J,358.3,6480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6147,1,3,0)
- ;;=3^Uninhibited Neuropathic Bladder NEC
- ;;^UTILITY(U,$J,358.3,6147,1,4,0)
- ;;=4^N31.0
- ;;^UTILITY(U,$J,358.3,6147,2)
- ;;=^5015644
- ;;^UTILITY(U,$J,358.3,6148,0)
- ;;=N35.9^^40^384^37
- ;;^UTILITY(U,$J,358.3,6148,1,0)
+ ;;^UTILITY(U,$J,358.3,6480,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6480,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,6480,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,6481,0)
+ ;;=C91.01^^30^396^4
+ ;;^UTILITY(U,$J,358.3,6481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6148,1,3,0)
- ;;=3^Urethral Stricture,Unspec
- ;;^UTILITY(U,$J,358.3,6148,1,4,0)
- ;;=4^N35.9
- ;;^UTILITY(U,$J,358.3,6148,2)
- ;;=^5015671
- ;;^UTILITY(U,$J,358.3,6149,0)
- ;;=N39.0^^40^384^35
- ;;^UTILITY(U,$J,358.3,6149,1,0)
+ ;;^UTILITY(U,$J,358.3,6481,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,6481,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,6481,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,6482,0)
+ ;;=C92.01^^30^396^7
+ ;;^UTILITY(U,$J,358.3,6482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6149,1,3,0)
- ;;=3^UTI,Unspec Site
- ;;^UTILITY(U,$J,358.3,6149,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,6149,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,6150,0)
- ;;=R31.9^^40^384^21
- ;;^UTILITY(U,$J,358.3,6150,1,0)
+ ;;^UTILITY(U,$J,358.3,6482,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,6482,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,6482,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,6483,0)
+ ;;=C92.00^^30^396^8
+ ;;^UTILITY(U,$J,358.3,6483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6150,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,6150,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,6150,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,6151,0)
- ;;=R31.0^^40^384^20
- ;;^UTILITY(U,$J,358.3,6151,1,0)
+ ;;^UTILITY(U,$J,358.3,6483,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6483,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,6483,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,6484,0)
+ ;;=C92.61^^30^396^9
+ ;;^UTILITY(U,$J,358.3,6484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6151,1,3,0)
- ;;=3^Gross Hematuria
- ;;^UTILITY(U,$J,358.3,6151,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,6151,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,6152,0)
- ;;=R31.1^^40^384^1
- ;;^UTILITY(U,$J,358.3,6152,1,0)
+ ;;^UTILITY(U,$J,358.3,6484,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,6484,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,6484,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,6485,0)
+ ;;=C92.60^^30^396^10
+ ;;^UTILITY(U,$J,358.3,6485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6152,1,3,0)
- ;;=3^Benign Essential Microscopic Hematuria
- ;;^UTILITY(U,$J,358.3,6152,1,4,0)
- ;;=4^R31.1
- ;;^UTILITY(U,$J,358.3,6152,2)
- ;;=^5019326
- ;;^UTILITY(U,$J,358.3,6153,0)
- ;;=R31.2^^40^384^28
- ;;^UTILITY(U,$J,358.3,6153,1,0)
+ ;;^UTILITY(U,$J,358.3,6485,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6485,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,6485,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,6486,0)
+ ;;=C92.A1^^30^396^11
+ ;;^UTILITY(U,$J,358.3,6486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6153,1,3,0)
- ;;=3^Microscopic Hematuria NEC
- ;;^UTILITY(U,$J,358.3,6153,1,4,0)
- ;;=4^R31.2
- ;;^UTILITY(U,$J,358.3,6153,2)
- ;;=^5019327
- ;;^UTILITY(U,$J,358.3,6154,0)
- ;;=N40.0^^40^384^6
- ;;^UTILITY(U,$J,358.3,6154,1,0)
+ ;;^UTILITY(U,$J,358.3,6486,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,6486,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,6486,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,6487,0)
+ ;;=C92.A0^^30^396^12
+ ;;^UTILITY(U,$J,358.3,6487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6154,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,6154,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,6154,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,6155,0)
- ;;=N42.89^^40^384^32
- ;;^UTILITY(U,$J,358.3,6155,1,0)
+ ;;^UTILITY(U,$J,358.3,6487,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6487,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,6487,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,6488,0)
+ ;;=C92.51^^30^396^13
+ ;;^UTILITY(U,$J,358.3,6488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6155,1,3,0)
- ;;=3^Prostate Disorders NEC
- ;;^UTILITY(U,$J,358.3,6155,1,4,0)
- ;;=4^N42.89
- ;;^UTILITY(U,$J,358.3,6155,2)
- ;;=^270425
- ;;^UTILITY(U,$J,358.3,6156,0)
- ;;=N41.9^^40^384^23
- ;;^UTILITY(U,$J,358.3,6156,1,0)
+ ;;^UTILITY(U,$J,358.3,6488,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,6488,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,6488,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,6489,0)
+ ;;=C92.50^^30^396^14
+ ;;^UTILITY(U,$J,358.3,6489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6156,1,3,0)
- ;;=3^Inflammatory Disease of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,6156,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,6156,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,6157,0)
- ;;=N43.3^^40^384^22
- ;;^UTILITY(U,$J,358.3,6157,1,0)
+ ;;^UTILITY(U,$J,358.3,6489,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6489,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,6489,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,6490,0)
+ ;;=C94.40^^30^396^17
+ ;;^UTILITY(U,$J,358.3,6490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6157,1,3,0)
- ;;=3^Hydrocele,Unspec
- ;;^UTILITY(U,$J,358.3,6157,1,4,0)
- ;;=4^N43.3
- ;;^UTILITY(U,$J,358.3,6157,2)
- ;;=^5015700
- ;;^UTILITY(U,$J,358.3,6158,0)
- ;;=N47.1^^40^384^31
- ;;^UTILITY(U,$J,358.3,6158,1,0)
+ ;;^UTILITY(U,$J,358.3,6490,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6490,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,6490,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,6491,0)
+ ;;=C94.42^^30^396^15
+ ;;^UTILITY(U,$J,358.3,6491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6158,1,3,0)
- ;;=3^Phimosis
- ;;^UTILITY(U,$J,358.3,6158,1,4,0)
- ;;=4^N47.1
- ;;^UTILITY(U,$J,358.3,6158,2)
- ;;=^93340
- ;;^UTILITY(U,$J,358.3,6159,0)
- ;;=N47.2^^40^384^30
- ;;^UTILITY(U,$J,358.3,6159,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6159,1,3,0)
- ;;=3^Paraphimosis
- ;;^UTILITY(U,$J,358.3,6159,1,4,0)
- ;;=4^N47.2
- ;;^UTILITY(U,$J,358.3,6159,2)
- ;;=^90023
- ;;^UTILITY(U,$J,358.3,6160,0)
- ;;=N52.9^^40^384^16
+ ;;^UTILITY(U,$J,358.3,6491,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,6491,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,6491,2)
+ ;;=^5001845

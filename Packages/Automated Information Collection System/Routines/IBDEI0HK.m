@@ -1,140 +1,128 @@
-IBDEI0HK ; ; 19-NOV-2015
+IBDEI0HK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7864,0)
- ;;=L20.81^^55^531^8
- ;;^UTILITY(U,$J,358.3,7864,1,0)
+ ;;^UTILITY(U,$J,358.3,8124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7864,1,3,0)
- ;;=3^Atopic neurodermatitis
- ;;^UTILITY(U,$J,358.3,7864,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,7864,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,7865,0)
- ;;=L20.0^^55^531^9
- ;;^UTILITY(U,$J,358.3,7865,1,0)
+ ;;^UTILITY(U,$J,358.3,8124,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left foot, init encntr
+ ;;^UTILITY(U,$J,358.3,8124,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,8124,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,8125,0)
+ ;;=S51.831A^^33^431^186
+ ;;^UTILITY(U,$J,358.3,8125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7865,1,3,0)
- ;;=3^Besnier's prurigo
- ;;^UTILITY(U,$J,358.3,7865,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,7865,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,7866,0)
- ;;=L20.82^^55^531^41
- ;;^UTILITY(U,$J,358.3,7866,1,0)
+ ;;^UTILITY(U,$J,358.3,8125,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right forearm, init
+ ;;^UTILITY(U,$J,358.3,8125,1,4,0)
+ ;;=4^S51.831A
+ ;;^UTILITY(U,$J,358.3,8125,2)
+ ;;=^5028677
+ ;;^UTILITY(U,$J,358.3,8126,0)
+ ;;=S51.832A^^33^431^176
+ ;;^UTILITY(U,$J,358.3,8126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7866,1,3,0)
- ;;=3^Flexural eczema
- ;;^UTILITY(U,$J,358.3,7866,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,7866,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,7867,0)
- ;;=L20.84^^55^531^52
- ;;^UTILITY(U,$J,358.3,7867,1,0)
+ ;;^UTILITY(U,$J,358.3,8126,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left forearm, init encntr
+ ;;^UTILITY(U,$J,358.3,8126,1,4,0)
+ ;;=4^S51.832A
+ ;;^UTILITY(U,$J,358.3,8126,2)
+ ;;=^5028680
+ ;;^UTILITY(U,$J,358.3,8127,0)
+ ;;=S61.431A^^33^431^187
+ ;;^UTILITY(U,$J,358.3,8127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7867,1,3,0)
- ;;=3^Intrinsic (allergic) eczema
- ;;^UTILITY(U,$J,358.3,7867,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,7867,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,7868,0)
- ;;=L20.89^^55^531^7
- ;;^UTILITY(U,$J,358.3,7868,1,0)
+ ;;^UTILITY(U,$J,358.3,8127,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8127,1,4,0)
+ ;;=4^S61.431A
+ ;;^UTILITY(U,$J,358.3,8127,2)
+ ;;=^5032999
+ ;;^UTILITY(U,$J,358.3,8128,0)
+ ;;=S61.432A^^33^431^177
+ ;;^UTILITY(U,$J,358.3,8128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7868,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,7868,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,7868,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,7869,0)
- ;;=L25.5^^55^531^27
- ;;^UTILITY(U,$J,358.3,7869,1,0)
+ ;;^UTILITY(U,$J,358.3,8128,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left hand, init encntr
+ ;;^UTILITY(U,$J,358.3,8128,1,4,0)
+ ;;=4^S61.432A
+ ;;^UTILITY(U,$J,358.3,8128,2)
+ ;;=^5033002
+ ;;^UTILITY(U,$J,358.3,8129,0)
+ ;;=S81.831A^^33^431^190
+ ;;^UTILITY(U,$J,358.3,8129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7869,1,3,0)
- ;;=3^Contact Dermatitis d/t Plants,Unspec
- ;;^UTILITY(U,$J,358.3,7869,1,4,0)
- ;;=4^L25.5
- ;;^UTILITY(U,$J,358.3,7869,2)
- ;;=^5009142
- ;;^UTILITY(U,$J,358.3,7870,0)
- ;;=L56.0^^55^531^33
- ;;^UTILITY(U,$J,358.3,7870,1,0)
+ ;;^UTILITY(U,$J,358.3,8129,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right lower leg, init
+ ;;^UTILITY(U,$J,358.3,8129,1,4,0)
+ ;;=4^S81.831A
+ ;;^UTILITY(U,$J,358.3,8129,2)
+ ;;=^5040083
+ ;;^UTILITY(U,$J,358.3,8130,0)
+ ;;=S81.832A^^33^431^180
+ ;;^UTILITY(U,$J,358.3,8130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7870,1,3,0)
- ;;=3^Drug phototoxic response
- ;;^UTILITY(U,$J,358.3,7870,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,7870,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,7871,0)
- ;;=L56.1^^55^531^32
- ;;^UTILITY(U,$J,358.3,7871,1,0)
+ ;;^UTILITY(U,$J,358.3,8130,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left lower leg, init encntr
+ ;;^UTILITY(U,$J,358.3,8130,1,4,0)
+ ;;=4^S81.832A
+ ;;^UTILITY(U,$J,358.3,8130,2)
+ ;;=^5040086
+ ;;^UTILITY(U,$J,358.3,8131,0)
+ ;;=S01.03XA^^33^431^195
+ ;;^UTILITY(U,$J,358.3,8131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7871,1,3,0)
- ;;=3^Drug photoallergic response
- ;;^UTILITY(U,$J,358.3,7871,1,4,0)
- ;;=4^L56.1
- ;;^UTILITY(U,$J,358.3,7871,2)
- ;;=^5009215
- ;;^UTILITY(U,$J,358.3,7872,0)
- ;;=L56.2^^55^531^120
- ;;^UTILITY(U,$J,358.3,7872,1,0)
+ ;;^UTILITY(U,$J,358.3,8131,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of scalp, init encntr
+ ;;^UTILITY(U,$J,358.3,8131,1,4,0)
+ ;;=4^S01.03XA
+ ;;^UTILITY(U,$J,358.3,8131,2)
+ ;;=^5020042
+ ;;^UTILITY(U,$J,358.3,8132,0)
+ ;;=S61.031A^^33^431^193
+ ;;^UTILITY(U,$J,358.3,8132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7872,1,3,0)
- ;;=3^Photocontact dermatitis [berloque dermatitis]
- ;;^UTILITY(U,$J,358.3,7872,1,4,0)
- ;;=4^L56.2
- ;;^UTILITY(U,$J,358.3,7872,2)
- ;;=^5009216
- ;;^UTILITY(U,$J,358.3,7873,0)
- ;;=L25.9^^55^531^28
- ;;^UTILITY(U,$J,358.3,7873,1,0)
+ ;;^UTILITY(U,$J,358.3,8132,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8132,1,4,0)
+ ;;=4^S61.031A
+ ;;^UTILITY(U,$J,358.3,8132,2)
+ ;;=^5032702
+ ;;^UTILITY(U,$J,358.3,8133,0)
+ ;;=S61.032A^^33^431^183
+ ;;^UTILITY(U,$J,358.3,8133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7873,1,3,0)
- ;;=3^Contact Dermatitis,Unspec Cause
- ;;^UTILITY(U,$J,358.3,7873,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,7873,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,7874,0)
- ;;=L27.0^^55^531^45
- ;;^UTILITY(U,$J,358.3,7874,1,0)
+ ;;^UTILITY(U,$J,358.3,8133,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left thumb w/o damage to nail, init
+ ;;^UTILITY(U,$J,358.3,8133,1,4,0)
+ ;;=4^S61.032A
+ ;;^UTILITY(U,$J,358.3,8133,2)
+ ;;=^5032705
+ ;;^UTILITY(U,$J,358.3,8134,0)
+ ;;=S61.531A^^33^431^194
+ ;;^UTILITY(U,$J,358.3,8134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7874,1,3,0)
- ;;=3^Gen skin eruption d/t drugs/meds taken internally
- ;;^UTILITY(U,$J,358.3,7874,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,7874,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,7875,0)
- ;;=L27.1^^55^531^53
- ;;^UTILITY(U,$J,358.3,7875,1,0)
+ ;;^UTILITY(U,$J,358.3,8134,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of right wrist, init encntr
+ ;;^UTILITY(U,$J,358.3,8134,1,4,0)
+ ;;=4^S61.531A
+ ;;^UTILITY(U,$J,358.3,8134,2)
+ ;;=^5033038
+ ;;^UTILITY(U,$J,358.3,8135,0)
+ ;;=S61.532A^^33^431^184
+ ;;^UTILITY(U,$J,358.3,8135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7875,1,3,0)
- ;;=3^Loc skin eruption d/t drugs/meds taken internally
- ;;^UTILITY(U,$J,358.3,7875,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,7875,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,7876,0)
- ;;=L71.8^^55^531^136
- ;;^UTILITY(U,$J,358.3,7876,1,0)
+ ;;^UTILITY(U,$J,358.3,8135,1,3,0)
+ ;;=3^Pnctr wnd w/o fb of left wrist, init encntr
+ ;;^UTILITY(U,$J,358.3,8135,1,4,0)
+ ;;=4^S61.532A
+ ;;^UTILITY(U,$J,358.3,8135,2)
+ ;;=^5033041
+ ;;^UTILITY(U,$J,358.3,8136,0)
+ ;;=S86.891A^^33^431^138
+ ;;^UTILITY(U,$J,358.3,8136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7876,1,3,0)
- ;;=3^Rosacea NEC
- ;;^UTILITY(U,$J,358.3,7876,1,4,0)
- ;;=4^L71.8
- ;;^UTILITY(U,$J,358.3,7876,2)
- ;;=^5009275
- ;;^UTILITY(U,$J,358.3,7877,0)
- ;;=L71.0^^55^531^119
- ;;^UTILITY(U,$J,358.3,7877,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7877,1,3,0)
- ;;=3^Perioral dermatitis
+ ;;^UTILITY(U,$J,358.3,8136,1,3,0)
+ ;;=3^Musc/Tend Right Lower Leg Level Inj,Init Encntr

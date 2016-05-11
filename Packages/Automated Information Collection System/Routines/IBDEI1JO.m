@@ -1,130 +1,122 @@
-IBDEI1JO ; ; 19-NOV-2015
+IBDEI1JO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25825,1,4,0)
- ;;=4^L03.112
- ;;^UTILITY(U,$J,358.3,25825,2)
- ;;=^5009032
- ;;^UTILITY(U,$J,358.3,25826,0)
- ;;=L03.116^^127^1266^36
- ;;^UTILITY(U,$J,358.3,25826,1,0)
+ ;;^UTILITY(U,$J,358.3,26208,0)
+ ;;=F12.121^^98^1237^6
+ ;;^UTILITY(U,$J,358.3,26208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25826,1,3,0)
- ;;=3^Cellulitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,25826,1,4,0)
- ;;=4^L03.116
- ;;^UTILITY(U,$J,358.3,25826,2)
- ;;=^5133645
- ;;^UTILITY(U,$J,358.3,25827,0)
- ;;=L03.114^^127^1266^37
- ;;^UTILITY(U,$J,358.3,25827,1,0)
+ ;;^UTILITY(U,$J,358.3,26208,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26208,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,26208,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,26209,0)
+ ;;=F12.221^^98^1237^7
+ ;;^UTILITY(U,$J,358.3,26209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25827,1,3,0)
- ;;=3^Cellulitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,25827,1,4,0)
- ;;=4^L03.114
- ;;^UTILITY(U,$J,358.3,25827,2)
- ;;=^5009034
- ;;^UTILITY(U,$J,358.3,25828,0)
- ;;=L03.111^^127^1266^38
- ;;^UTILITY(U,$J,358.3,25828,1,0)
+ ;;^UTILITY(U,$J,358.3,26209,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26209,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,26209,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,26210,0)
+ ;;=F12.921^^98^1237^8
+ ;;^UTILITY(U,$J,358.3,26210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25828,1,3,0)
- ;;=3^Cellulitis of Right Axilla
- ;;^UTILITY(U,$J,358.3,25828,1,4,0)
- ;;=4^L03.111
- ;;^UTILITY(U,$J,358.3,25828,2)
- ;;=^5009031
- ;;^UTILITY(U,$J,358.3,25829,0)
- ;;=L03.115^^127^1266^39
- ;;^UTILITY(U,$J,358.3,25829,1,0)
+ ;;^UTILITY(U,$J,358.3,26210,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26210,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,26210,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,26211,0)
+ ;;=F12.229^^98^1237^12
+ ;;^UTILITY(U,$J,358.3,26211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25829,1,3,0)
- ;;=3^Cellulitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,25829,1,4,0)
- ;;=4^L03.115
- ;;^UTILITY(U,$J,358.3,25829,2)
- ;;=^5009035
- ;;^UTILITY(U,$J,358.3,25830,0)
- ;;=L03.113^^127^1266^40
- ;;^UTILITY(U,$J,358.3,25830,1,0)
+ ;;^UTILITY(U,$J,358.3,26211,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26211,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,26211,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,26212,0)
+ ;;=F12.122^^98^1237^9
+ ;;^UTILITY(U,$J,358.3,26212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25830,1,3,0)
- ;;=3^Cellulitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,25830,1,4,0)
- ;;=4^L03.113
- ;;^UTILITY(U,$J,358.3,25830,2)
- ;;=^5009033
- ;;^UTILITY(U,$J,358.3,25831,0)
- ;;=I63.131^^127^1266^43
- ;;^UTILITY(U,$J,358.3,25831,1,0)
+ ;;^UTILITY(U,$J,358.3,26212,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26212,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,26212,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,26213,0)
+ ;;=F12.222^^98^1237^10
+ ;;^UTILITY(U,$J,358.3,26213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25831,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,25831,1,4,0)
- ;;=4^I63.131
- ;;^UTILITY(U,$J,358.3,25831,2)
- ;;=^5007308
- ;;^UTILITY(U,$J,358.3,25832,0)
- ;;=I63.132^^127^1266^41
- ;;^UTILITY(U,$J,358.3,25832,1,0)
+ ;;^UTILITY(U,$J,358.3,26213,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26213,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,26213,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,26214,0)
+ ;;=F12.129^^98^1237^14
+ ;;^UTILITY(U,$J,358.3,26214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25832,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Carotid Artery Embolism
- ;;^UTILITY(U,$J,358.3,25832,1,4,0)
- ;;=4^I63.132
- ;;^UTILITY(U,$J,358.3,25832,2)
- ;;=^5007309
- ;;^UTILITY(U,$J,358.3,25833,0)
- ;;=I63.231^^127^1266^44
- ;;^UTILITY(U,$J,358.3,25833,1,0)
+ ;;^UTILITY(U,$J,358.3,26214,1,3,0)
+ ;;=3^Cannabis Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,26214,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,26214,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,26215,0)
+ ;;=F12.922^^98^1237^11
+ ;;^UTILITY(U,$J,358.3,26215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25833,1,3,0)
- ;;=3^Cerebral Infarction d/t Right Carotid Artery Occlusion/Stenosis
- ;;^UTILITY(U,$J,358.3,25833,1,4,0)
- ;;=4^I63.231
- ;;^UTILITY(U,$J,358.3,25833,2)
- ;;=^5007316
- ;;^UTILITY(U,$J,358.3,25834,0)
- ;;=I63.232^^127^1266^42
- ;;^UTILITY(U,$J,358.3,25834,1,0)
+ ;;^UTILITY(U,$J,358.3,26215,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26215,1,4,0)
+ ;;=4^F12.922
+ ;;^UTILITY(U,$J,358.3,26215,2)
+ ;;=^5003181
+ ;;^UTILITY(U,$J,358.3,26216,0)
+ ;;=F12.980^^98^1237^1
+ ;;^UTILITY(U,$J,358.3,26216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25834,1,3,0)
- ;;=3^Cerebral Infarction d/t Left Carotid Artery Occlusion/Stenosis
- ;;^UTILITY(U,$J,358.3,25834,1,4,0)
- ;;=4^I63.232
- ;;^UTILITY(U,$J,358.3,25834,2)
- ;;=^5007317
- ;;^UTILITY(U,$J,358.3,25835,0)
- ;;=N18.9^^127^1266^46
- ;;^UTILITY(U,$J,358.3,25835,1,0)
+ ;;^UTILITY(U,$J,358.3,26216,1,3,0)
+ ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26216,1,4,0)
+ ;;=4^F12.980
+ ;;^UTILITY(U,$J,358.3,26216,2)
+ ;;=^5003186
+ ;;^UTILITY(U,$J,358.3,26217,0)
+ ;;=F12.159^^98^1237^2
+ ;;^UTILITY(U,$J,358.3,26217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25835,1,3,0)
- ;;=3^Chronic Kidney Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25835,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,25835,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,25836,0)
- ;;=K55.1^^127^1266^49
- ;;^UTILITY(U,$J,358.3,25836,1,0)
+ ;;^UTILITY(U,$J,358.3,26217,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26217,1,4,0)
+ ;;=4^F12.159
+ ;;^UTILITY(U,$J,358.3,26217,2)
+ ;;=^5003162
+ ;;^UTILITY(U,$J,358.3,26218,0)
+ ;;=F12.259^^98^1237^3
+ ;;^UTILITY(U,$J,358.3,26218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25836,1,3,0)
- ;;=3^Chronic Vascular Intestinal Disorders
- ;;^UTILITY(U,$J,358.3,25836,1,4,0)
- ;;=4^K55.1
- ;;^UTILITY(U,$J,358.3,25836,2)
- ;;=^5008706
- ;;^UTILITY(U,$J,358.3,25837,0)
- ;;=I74.3^^127^1266^96
- ;;^UTILITY(U,$J,358.3,25837,1,0)
+ ;;^UTILITY(U,$J,358.3,26218,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26218,1,4,0)
+ ;;=4^F12.259
+ ;;^UTILITY(U,$J,358.3,26218,2)
+ ;;=^5003174
+ ;;^UTILITY(U,$J,358.3,26219,0)
+ ;;=F12.959^^98^1237^4
+ ;;^UTILITY(U,$J,358.3,26219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25837,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,25837,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,25837,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,25838,0)
- ;;=I74.2^^127^1266^108
+ ;;^UTILITY(U,$J,358.3,26219,1,3,0)
+ ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26219,1,4,0)
+ ;;=4^F12.959

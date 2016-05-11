@@ -1,138 +1,134 @@
-IBDEI0EL ; ; 19-NOV-2015
+IBDEI0EL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6370,0)
- ;;=99205^^41^390^5
- ;;^UTILITY(U,$J,358.3,6370,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6370,1,1,0)
- ;;=1^Comprehensive, High
- ;;^UTILITY(U,$J,358.3,6370,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,6371,0)
- ;;=99211^^41^391^1
- ;;^UTILITY(U,$J,358.3,6371,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6371,1,1,0)
- ;;=1^Brief (no MD seen)
- ;;^UTILITY(U,$J,358.3,6371,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,6372,0)
- ;;=99212^^41^391^2
- ;;^UTILITY(U,$J,358.3,6372,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6372,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,6372,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,6373,0)
- ;;=99213^^41^391^3
- ;;^UTILITY(U,$J,358.3,6373,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6373,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,6373,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,6374,0)
- ;;=99214^^41^391^4
- ;;^UTILITY(U,$J,358.3,6374,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6374,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,6374,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,6375,0)
- ;;=99215^^41^391^5
- ;;^UTILITY(U,$J,358.3,6375,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6375,1,1,0)
- ;;=1^Comprehensive
- ;;^UTILITY(U,$J,358.3,6375,1,2,0)
- ;;=2^99215
- ;;^UTILITY(U,$J,358.3,6376,0)
- ;;=99241^^41^392^1
- ;;^UTILITY(U,$J,358.3,6376,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6376,1,1,0)
- ;;=1^Problem Focus
- ;;^UTILITY(U,$J,358.3,6376,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,6377,0)
- ;;=99242^^41^392^2
- ;;^UTILITY(U,$J,358.3,6377,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6377,1,1,0)
- ;;=1^Expanded Problem Focus
- ;;^UTILITY(U,$J,358.3,6377,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,6378,0)
- ;;=99243^^41^392^3
- ;;^UTILITY(U,$J,358.3,6378,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6378,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,6378,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,6379,0)
- ;;=99244^^41^392^4
- ;;^UTILITY(U,$J,358.3,6379,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6379,1,1,0)
- ;;=1^Comprehensive,Moderate
- ;;^UTILITY(U,$J,358.3,6379,1,2,0)
- ;;=2^99244
- ;;^UTILITY(U,$J,358.3,6380,0)
- ;;=99245^^41^392^5
- ;;^UTILITY(U,$J,358.3,6380,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,6380,1,1,0)
- ;;=1^Comprehensive,High
- ;;^UTILITY(U,$J,358.3,6380,1,2,0)
- ;;=2^99245
- ;;^UTILITY(U,$J,358.3,6381,0)
- ;;=96020^^42^393^1^^^^1
- ;;^UTILITY(U,$J,358.3,6381,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6381,1,2,0)
- ;;=2^NEUROFUNCTIONAL TST DURING BRAIN MAPPING
- ;;^UTILITY(U,$J,358.3,6381,1,3,0)
- ;;=3^96020
- ;;^UTILITY(U,$J,358.3,6382,0)
- ;;=96116^^42^394^4^^^^1
- ;;^UTILITY(U,$J,358.3,6382,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6382,1,2,0)
- ;;=2^NEUROBEHAVIORAL STATUS EXAM BY PSYCH/PHYS
- ;;^UTILITY(U,$J,358.3,6382,1,3,0)
- ;;=3^96116
- ;;^UTILITY(U,$J,358.3,6383,0)
- ;;=96118^^42^394^7^^^^1
- ;;^UTILITY(U,$J,358.3,6383,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6383,1,2,0)
- ;;=2^NEUROPSYCH TST BY PSYCH/PHYS
- ;;^UTILITY(U,$J,358.3,6383,1,3,0)
- ;;=3^96118
- ;;^UTILITY(U,$J,358.3,6384,0)
- ;;=96119^^42^394^5^^^^1
- ;;^UTILITY(U,$J,358.3,6384,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6384,1,2,0)
- ;;=2^NEUROPSYCH TESTING BY TECH
- ;;^UTILITY(U,$J,358.3,6384,1,3,0)
- ;;=3^96119
- ;;^UTILITY(U,$J,358.3,6385,0)
- ;;=96120^^42^394^6^^^^1
- ;;^UTILITY(U,$J,358.3,6385,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6385,1,2,0)
- ;;=2^NEUROPSYCH TST ADMIN INT & RPT
- ;;^UTILITY(U,$J,358.3,6385,1,3,0)
- ;;=3^96120
- ;;^UTILITY(U,$J,358.3,6386,0)
- ;;=96125^^42^394^3^^^^1
- ;;^UTILITY(U,$J,358.3,6386,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6386,1,2,0)
- ;;=2^COGNITIVE PERF TEST BY HCP
+ ;;^UTILITY(U,$J,358.3,6715,0)
+ ;;=Z77.22^^30^397^18
+ ;;^UTILITY(U,$J,358.3,6715,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6715,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,6715,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,6715,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,6716,0)
+ ;;=Z80.0^^30^397^35
+ ;;^UTILITY(U,$J,358.3,6716,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6716,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,6716,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,6716,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,6717,0)
+ ;;=Z80.1^^30^397^41
+ ;;^UTILITY(U,$J,358.3,6717,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6717,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,6717,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,6717,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,6718,0)
+ ;;=Z80.3^^30^397^34
+ ;;^UTILITY(U,$J,358.3,6718,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6718,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,6718,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,6718,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,6719,0)
+ ;;=Z80.41^^30^397^38
+ ;;^UTILITY(U,$J,358.3,6719,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6719,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,6719,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,6719,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,6720,0)
+ ;;=Z80.42^^30^397^39
+ ;;^UTILITY(U,$J,358.3,6720,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6720,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,6720,1,4,0)
+ ;;=4^Z80.42
+ ;;^UTILITY(U,$J,358.3,6720,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,6721,0)
+ ;;=Z80.43^^30^397^40
+ ;;^UTILITY(U,$J,358.3,6721,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6721,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,6721,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,6721,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,6722,0)
+ ;;=Z80.6^^30^397^32
+ ;;^UTILITY(U,$J,358.3,6722,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6722,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,6722,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,6722,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,6723,0)
+ ;;=Z80.8^^30^397^37
+ ;;^UTILITY(U,$J,358.3,6723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6723,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,6723,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,6723,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,6724,0)
+ ;;=Z81.8^^30^397^42
+ ;;^UTILITY(U,$J,358.3,6724,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6724,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,6724,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,6724,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,6725,0)
+ ;;=Z82.3^^30^397^49
+ ;;^UTILITY(U,$J,358.3,6725,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6725,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,6725,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,6725,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,6726,0)
+ ;;=Z82.49^^30^397^31
+ ;;^UTILITY(U,$J,358.3,6726,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6726,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,6726,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,6726,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,6727,0)
+ ;;=Z82.5^^30^397^22
+ ;;^UTILITY(U,$J,358.3,6727,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6727,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,6727,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,6727,2)
+ ;;=^5063370

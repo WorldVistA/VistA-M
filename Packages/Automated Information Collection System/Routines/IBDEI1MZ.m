@@ -1,134 +1,132 @@
-IBDEI1MZ ; ; 19-NOV-2015
+IBDEI1MZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27380,1,0)
+ ;;^UTILITY(U,$J,358.3,27774,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,27775,0)
+ ;;=G44.209^^109^1385^22
+ ;;^UTILITY(U,$J,358.3,27775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27380,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,27380,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,27380,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,27381,0)
- ;;=D12.4^^132^1315^14
- ;;^UTILITY(U,$J,358.3,27381,1,0)
+ ;;^UTILITY(U,$J,358.3,27775,1,3,0)
+ ;;=3^Tension-Type Headache Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27775,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,27775,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,27776,0)
+ ;;=R51.^^109^1385^5
+ ;;^UTILITY(U,$J,358.3,27776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27381,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,27381,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,27381,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,27382,0)
- ;;=D73.2^^132^1315^19
- ;;^UTILITY(U,$J,358.3,27382,1,0)
+ ;;^UTILITY(U,$J,358.3,27776,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,27776,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,27776,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,27777,0)
+ ;;=G43.011^^109^1385^16
+ ;;^UTILITY(U,$J,358.3,27777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27382,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,27382,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,27382,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,27383,0)
- ;;=I85.00^^132^1315^46
- ;;^UTILITY(U,$J,358.3,27383,1,0)
+ ;;^UTILITY(U,$J,358.3,27777,1,3,0)
+ ;;=3^Migraine w/o Aura Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,27777,1,4,0)
+ ;;=4^G43.011
+ ;;^UTILITY(U,$J,358.3,27777,2)
+ ;;=^5003878
+ ;;^UTILITY(U,$J,358.3,27778,0)
+ ;;=G43.111^^109^1385^12
+ ;;^UTILITY(U,$J,358.3,27778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27383,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,27383,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,27383,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,27384,0)
- ;;=K20.9^^132^1315^47
- ;;^UTILITY(U,$J,358.3,27384,1,0)
+ ;;^UTILITY(U,$J,358.3,27778,1,3,0)
+ ;;=3^Migraine w/ Aura Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,27778,1,4,0)
+ ;;=4^G43.111
+ ;;^UTILITY(U,$J,358.3,27778,2)
+ ;;=^5003882
+ ;;^UTILITY(U,$J,358.3,27779,0)
+ ;;=G43.911^^109^1385^7
+ ;;^UTILITY(U,$J,358.3,27779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27384,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,27384,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,27384,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,27385,0)
- ;;=K21.9^^132^1315^55
- ;;^UTILITY(U,$J,358.3,27385,1,0)
+ ;;^UTILITY(U,$J,358.3,27779,1,3,0)
+ ;;=3^Migraine Intractable w/ Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,27779,1,4,0)
+ ;;=4^G43.911
+ ;;^UTILITY(U,$J,358.3,27779,2)
+ ;;=^5003910
+ ;;^UTILITY(U,$J,358.3,27780,0)
+ ;;=G43.919^^109^1385^8
+ ;;^UTILITY(U,$J,358.3,27780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27385,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,27385,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,27385,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,27386,0)
- ;;=K25.7^^132^1315^50
- ;;^UTILITY(U,$J,358.3,27386,1,0)
+ ;;^UTILITY(U,$J,358.3,27780,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,27780,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,27780,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,27781,0)
+ ;;=G44.001^^109^1385^1
+ ;;^UTILITY(U,$J,358.3,27781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27386,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,27386,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,27386,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,27387,0)
- ;;=K26.9^^132^1315^44
- ;;^UTILITY(U,$J,358.3,27387,1,0)
+ ;;^UTILITY(U,$J,358.3,27781,1,3,0)
+ ;;=3^Cluster Headache Syndrome Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27781,1,4,0)
+ ;;=4^G44.001
+ ;;^UTILITY(U,$J,358.3,27781,2)
+ ;;=^5003920
+ ;;^UTILITY(U,$J,358.3,27782,0)
+ ;;=G44.009^^109^1385^2
+ ;;^UTILITY(U,$J,358.3,27782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27387,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,27387,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,27387,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,27388,0)
- ;;=K27.9^^132^1315^72
- ;;^UTILITY(U,$J,358.3,27388,1,0)
+ ;;^UTILITY(U,$J,358.3,27782,1,3,0)
+ ;;=3^Cluster Headache Syndrome Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27782,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,27782,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,27783,0)
+ ;;=G44.301^^109^1385^19
+ ;;^UTILITY(U,$J,358.3,27783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27388,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,27388,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,27388,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,27389,0)
- ;;=K29.70^^132^1315^51
- ;;^UTILITY(U,$J,358.3,27389,1,0)
+ ;;^UTILITY(U,$J,358.3,27783,1,3,0)
+ ;;=3^Post-Traumatic Headache Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27783,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,27783,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,27784,0)
+ ;;=G44.41^^109^1385^3
+ ;;^UTILITY(U,$J,358.3,27784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27389,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,27389,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,27389,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,27390,0)
- ;;=K29.90^^132^1315^52
- ;;^UTILITY(U,$J,358.3,27390,1,0)
+ ;;^UTILITY(U,$J,358.3,27784,1,3,0)
+ ;;=3^Drug-Induced Headache Intractable NEC
+ ;;^UTILITY(U,$J,358.3,27784,1,4,0)
+ ;;=4^G44.41
+ ;;^UTILITY(U,$J,358.3,27784,2)
+ ;;=^5003948
+ ;;^UTILITY(U,$J,358.3,27785,0)
+ ;;=G44.51^^109^1385^6
+ ;;^UTILITY(U,$J,358.3,27785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27390,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,27390,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,27390,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,27391,0)
- ;;=K30.^^132^1315^45
- ;;^UTILITY(U,$J,358.3,27391,1,0)
+ ;;^UTILITY(U,$J,358.3,27785,1,3,0)
+ ;;=3^Hemicrania Continua
+ ;;^UTILITY(U,$J,358.3,27785,1,4,0)
+ ;;=4^G44.51
+ ;;^UTILITY(U,$J,358.3,27785,2)
+ ;;=^5003949
+ ;;^UTILITY(U,$J,358.3,27786,0)
+ ;;=G50.0^^109^1385^23
+ ;;^UTILITY(U,$J,358.3,27786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27391,1,3,0)
- ;;=3^Dyspepsia,Functional
- ;;^UTILITY(U,$J,358.3,27391,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,27391,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,27392,0)
- ;;=K31.89^^132^1315^34
- ;;^UTILITY(U,$J,358.3,27392,1,0)
+ ;;^UTILITY(U,$J,358.3,27786,1,3,0)
+ ;;=3^Trigeminal Neuralgia
+ ;;^UTILITY(U,$J,358.3,27786,1,4,0)
+ ;;=4^G50.0
+ ;;^UTILITY(U,$J,358.3,27786,2)
+ ;;=^121978
+ ;;^UTILITY(U,$J,358.3,27787,0)
+ ;;=G44.40^^109^1385^4
+ ;;^UTILITY(U,$J,358.3,27787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27392,1,3,0)
- ;;=3^Diseases of Stomach & Duodenum,Other
- ;;^UTILITY(U,$J,358.3,27392,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,27392,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,27393,0)
- ;;=K31.9^^132^1315^33
+ ;;^UTILITY(U,$J,358.3,27787,1,3,0)
+ ;;=3^Drug-Induced Headache Not Intractable NEC

@@ -1,126 +1,138 @@
-IBDEI0EF ; ; 19-NOV-2015
+IBDEI0EF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6296,2)
- ;;=^5021542
- ;;^UTILITY(U,$J,358.3,6297,0)
- ;;=S01.03XA^^40^388^64
- ;;^UTILITY(U,$J,358.3,6297,1,0)
+ ;;^UTILITY(U,$J,358.3,6636,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,6636,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,6637,0)
+ ;;=C79.31^^30^396^112
+ ;;^UTILITY(U,$J,358.3,6637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6297,1,3,0)
- ;;=3^Puncture Wound w/o FB of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,6297,1,4,0)
- ;;=4^S01.03XA
- ;;^UTILITY(U,$J,358.3,6297,2)
- ;;=^5020042
- ;;^UTILITY(U,$J,358.3,6298,0)
- ;;=S01.331A^^40^388^40
- ;;^UTILITY(U,$J,358.3,6298,1,0)
+ ;;^UTILITY(U,$J,358.3,6637,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,6637,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,6637,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,6638,0)
+ ;;=C79.72^^30^396^127
+ ;;^UTILITY(U,$J,358.3,6638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6298,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,6298,1,4,0)
- ;;=4^S01.331A
- ;;^UTILITY(U,$J,358.3,6298,2)
- ;;=^5020126
- ;;^UTILITY(U,$J,358.3,6299,0)
- ;;=S01.332A^^40^388^8
- ;;^UTILITY(U,$J,358.3,6299,1,0)
+ ;;^UTILITY(U,$J,358.3,6638,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,6638,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,6638,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,6639,0)
+ ;;=C78.02^^30^396^131
+ ;;^UTILITY(U,$J,358.3,6639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6299,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,6299,1,4,0)
- ;;=4^S01.332A
- ;;^UTILITY(U,$J,358.3,6299,2)
- ;;=^5020129
- ;;^UTILITY(U,$J,358.3,6300,0)
- ;;=S01.23XA^^40^388^34
- ;;^UTILITY(U,$J,358.3,6300,1,0)
+ ;;^UTILITY(U,$J,358.3,6639,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,6639,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,6639,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,6640,0)
+ ;;=C78.7^^30^396^136
+ ;;^UTILITY(U,$J,358.3,6640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6300,1,3,0)
- ;;=3^Puncture Wound w/o FB of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,6300,1,4,0)
- ;;=4^S01.23XA
- ;;^UTILITY(U,$J,358.3,6300,2)
- ;;=^5020099
- ;;^UTILITY(U,$J,358.3,6301,0)
- ;;=S01.432A^^40^388^7
- ;;^UTILITY(U,$J,358.3,6301,1,0)
+ ;;^UTILITY(U,$J,358.3,6640,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,6640,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,6640,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,6641,0)
+ ;;=C79.71^^30^396^149
+ ;;^UTILITY(U,$J,358.3,6641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6301,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,6301,1,4,0)
- ;;=4^S01.432A
- ;;^UTILITY(U,$J,358.3,6301,2)
- ;;=^5020168
- ;;^UTILITY(U,$J,358.3,6302,0)
- ;;=S01.431A^^40^388^39
- ;;^UTILITY(U,$J,358.3,6302,1,0)
+ ;;^UTILITY(U,$J,358.3,6641,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,6641,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,6641,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,6642,0)
+ ;;=C78.01^^30^396^153
+ ;;^UTILITY(U,$J,358.3,6642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6302,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,6302,1,4,0)
- ;;=4^S01.431A
- ;;^UTILITY(U,$J,358.3,6302,2)
- ;;=^5020165
- ;;^UTILITY(U,$J,358.3,6303,0)
- ;;=S01.83XA^^40^388^1
- ;;^UTILITY(U,$J,358.3,6303,1,0)
+ ;;^UTILITY(U,$J,358.3,6642,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,6642,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,6642,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,6643,0)
+ ;;=C79.70^^30^396^104
+ ;;^UTILITY(U,$J,358.3,6643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6303,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6303,1,4,0)
- ;;=4^S01.83XA
- ;;^UTILITY(U,$J,358.3,6303,2)
- ;;=^5020231
- ;;^UTILITY(U,$J,358.3,6304,0)
- ;;=S01.93XA^^40^388^2
- ;;^UTILITY(U,$J,358.3,6304,1,0)
+ ;;^UTILITY(U,$J,358.3,6643,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,6643,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,6643,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,6644,0)
+ ;;=C78.00^^30^396^137
+ ;;^UTILITY(U,$J,358.3,6644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6304,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6304,1,4,0)
- ;;=4^S01.93XA
- ;;^UTILITY(U,$J,358.3,6304,2)
- ;;=^5020246
- ;;^UTILITY(U,$J,358.3,6305,0)
- ;;=S11.83XA^^40^388^32
- ;;^UTILITY(U,$J,358.3,6305,1,0)
+ ;;^UTILITY(U,$J,358.3,6644,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,6644,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,6644,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,6645,0)
+ ;;=D57.1^^30^396^178
+ ;;^UTILITY(U,$J,358.3,6645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6305,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6305,1,4,0)
- ;;=4^S11.83XA
- ;;^UTILITY(U,$J,358.3,6305,2)
- ;;=^5021515
- ;;^UTILITY(U,$J,358.3,6306,0)
- ;;=S11.93XA^^40^388^33
- ;;^UTILITY(U,$J,358.3,6306,1,0)
+ ;;^UTILITY(U,$J,358.3,6645,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,6645,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,6645,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,6646,0)
+ ;;=D75.1^^30^396^176
+ ;;^UTILITY(U,$J,358.3,6646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6306,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,6306,1,4,0)
- ;;=4^S11.93XA
- ;;^UTILITY(U,$J,358.3,6306,2)
- ;;=^5021536
- ;;^UTILITY(U,$J,358.3,6307,0)
- ;;=S31.813A^^40^388^38
- ;;^UTILITY(U,$J,358.3,6307,1,0)
+ ;;^UTILITY(U,$J,358.3,6646,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,6646,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,6646,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,6647,0)
+ ;;=C90.30^^30^396^179
+ ;;^UTILITY(U,$J,358.3,6647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6307,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,6307,1,4,0)
- ;;=4^S31.813A
- ;;^UTILITY(U,$J,358.3,6307,2)
- ;;=^5024302
- ;;^UTILITY(U,$J,358.3,6308,0)
- ;;=S31.133A^^40^388^35
- ;;^UTILITY(U,$J,358.3,6308,1,0)
+ ;;^UTILITY(U,$J,358.3,6647,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,6647,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,6647,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,6648,0)
+ ;;=D56.3^^30^396^180
+ ;;^UTILITY(U,$J,358.3,6648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6308,1,3,0)
- ;;=3^Puncture Wound w/o FB of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,6308,1,4,0)
- ;;=4^S31.133A
- ;;^UTILITY(U,$J,358.3,6308,2)
- ;;=^5024080
+ ;;^UTILITY(U,$J,358.3,6648,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,6648,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,6648,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,6649,0)
+ ;;=D56.9^^30^396^181
+ ;;^UTILITY(U,$J,358.3,6649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6649,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,6649,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,6649,2)
+ ;;=^340606

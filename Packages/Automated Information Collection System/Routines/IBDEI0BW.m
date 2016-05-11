@@ -1,138 +1,134 @@
-IBDEI0BW ; ; 19-NOV-2015
+IBDEI0BW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5120,1,0)
+ ;;^UTILITY(U,$J,358.3,5383,1,3,0)
+ ;;=3^Adequacy Testing for Hemodialysis
+ ;;^UTILITY(U,$J,358.3,5383,1,4,0)
+ ;;=4^Z49.31
+ ;;^UTILITY(U,$J,358.3,5383,2)
+ ;;=^5063058
+ ;;^UTILITY(U,$J,358.3,5384,0)
+ ;;=Z49.32^^27^348^2
+ ;;^UTILITY(U,$J,358.3,5384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5120,1,3,0)
- ;;=3^Aftercare Following Digestive System Surgery
- ;;^UTILITY(U,$J,358.3,5120,1,4,0)
- ;;=4^Z48.815
- ;;^UTILITY(U,$J,358.3,5120,2)
- ;;=^5063052
- ;;^UTILITY(U,$J,358.3,5121,0)
- ;;=Z48.816^^40^353^3
- ;;^UTILITY(U,$J,358.3,5121,1,0)
+ ;;^UTILITY(U,$J,358.3,5384,1,3,0)
+ ;;=3^Adequacy Testing for Peritoneal Dialysis
+ ;;^UTILITY(U,$J,358.3,5384,1,4,0)
+ ;;=4^Z49.32
+ ;;^UTILITY(U,$J,358.3,5384,2)
+ ;;=^5063059
+ ;;^UTILITY(U,$J,358.3,5385,0)
+ ;;=Z49.01^^27^348^4
+ ;;^UTILITY(U,$J,358.3,5385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5121,1,3,0)
- ;;=3^Aftercare Following GU System Surgery
- ;;^UTILITY(U,$J,358.3,5121,1,4,0)
- ;;=4^Z48.816
- ;;^UTILITY(U,$J,358.3,5121,2)
- ;;=^5063053
- ;;^UTILITY(U,$J,358.3,5122,0)
- ;;=Z48.817^^40^353^8
- ;;^UTILITY(U,$J,358.3,5122,1,0)
+ ;;^UTILITY(U,$J,358.3,5385,1,3,0)
+ ;;=3^Fit/Adjustment of Extracorporeal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,5385,1,4,0)
+ ;;=4^Z49.01
+ ;;^UTILITY(U,$J,358.3,5385,2)
+ ;;=^5063056
+ ;;^UTILITY(U,$J,358.3,5386,0)
+ ;;=Z49.02^^27^348^5
+ ;;^UTILITY(U,$J,358.3,5386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5122,1,3,0)
- ;;=3^Aftercare Following Skin Surgery
- ;;^UTILITY(U,$J,358.3,5122,1,4,0)
- ;;=4^Z48.817
- ;;^UTILITY(U,$J,358.3,5122,2)
- ;;=^5063054
- ;;^UTILITY(U,$J,358.3,5123,0)
- ;;=Z48.89^^40^353^9
- ;;^UTILITY(U,$J,358.3,5123,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5123,1,3,0)
- ;;=3^Aftercare Following Surgery NEC
- ;;^UTILITY(U,$J,358.3,5123,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,5123,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,5124,0)
- ;;=Z09.^^40^353^11
- ;;^UTILITY(U,$J,358.3,5124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5124,1,3,0)
- ;;=3^Aftercare Following Treatment for Condition Oth Than Malig Neop
- ;;^UTILITY(U,$J,358.3,5124,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,5124,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,5125,0)
- ;;=Z48.1^^40^353^14
- ;;^UTILITY(U,$J,358.3,5125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5125,1,3,0)
- ;;=3^Planned Postproc Wound Closure
- ;;^UTILITY(U,$J,358.3,5125,1,4,0)
- ;;=4^Z48.1
- ;;^UTILITY(U,$J,358.3,5125,2)
- ;;=^5063037
- ;;^UTILITY(U,$J,358.3,5126,0)
- ;;=Z48.03^^40^353^15
- ;;^UTILITY(U,$J,358.3,5126,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5126,1,3,0)
- ;;=3^Removal of Drains
- ;;^UTILITY(U,$J,358.3,5126,1,4,0)
- ;;=4^Z48.03
- ;;^UTILITY(U,$J,358.3,5126,2)
- ;;=^5063036
- ;;^UTILITY(U,$J,358.3,5127,0)
- ;;=D23.0^^40^354^11
- ;;^UTILITY(U,$J,358.3,5127,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5127,1,3,0)
- ;;=3^Benign Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,5127,1,4,0)
- ;;=4^D23.0
- ;;^UTILITY(U,$J,358.3,5127,2)
- ;;=^5002059
- ;;^UTILITY(U,$J,358.3,5128,0)
- ;;=D22.0^^40^354^20
- ;;^UTILITY(U,$J,358.3,5128,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5128,1,3,0)
- ;;=3^Melanocytic Nevi of Lip
- ;;^UTILITY(U,$J,358.3,5128,1,4,0)
- ;;=4^D22.0
- ;;^UTILITY(U,$J,358.3,5128,2)
- ;;=^5002041
- ;;^UTILITY(U,$J,358.3,5129,0)
- ;;=D22.12^^40^354^17
- ;;^UTILITY(U,$J,358.3,5129,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5129,1,3,0)
- ;;=3^Melanocytic Nevi of Left Eyelid
- ;;^UTILITY(U,$J,358.3,5129,1,4,0)
- ;;=4^D22.12
- ;;^UTILITY(U,$J,358.3,5129,2)
- ;;=^5002044
- ;;^UTILITY(U,$J,358.3,5130,0)
- ;;=D23.11^^40^354^7
- ;;^UTILITY(U,$J,358.3,5130,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5130,1,3,0)
- ;;=3^Benign Neop of Right Eyelid
- ;;^UTILITY(U,$J,358.3,5130,1,4,0)
- ;;=4^D23.11
- ;;^UTILITY(U,$J,358.3,5130,2)
- ;;=^5002061
- ;;^UTILITY(U,$J,358.3,5131,0)
- ;;=D23.12^^40^354^3
- ;;^UTILITY(U,$J,358.3,5131,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5131,1,3,0)
- ;;=3^Benign Neop of Left Eyelid
- ;;^UTILITY(U,$J,358.3,5131,1,4,0)
- ;;=4^D23.12
- ;;^UTILITY(U,$J,358.3,5131,2)
- ;;=^5002062
- ;;^UTILITY(U,$J,358.3,5132,0)
- ;;=D22.11^^40^354^22
- ;;^UTILITY(U,$J,358.3,5132,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5132,1,3,0)
- ;;=3^Melanocytic Nevi of Right Eyelid
- ;;^UTILITY(U,$J,358.3,5132,1,4,0)
- ;;=4^D22.11
- ;;^UTILITY(U,$J,358.3,5132,2)
- ;;=^5002043
- ;;^UTILITY(U,$J,358.3,5133,0)
- ;;=D23.21^^40^354^6
- ;;^UTILITY(U,$J,358.3,5133,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5133,1,3,0)
- ;;=3^Benign Neop of Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,5386,1,3,0)
+ ;;=3^Fit/Adjustment of Peritoneal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,5386,1,4,0)
+ ;;=4^Z49.02
+ ;;^UTILITY(U,$J,358.3,5386,2)
+ ;;=^5063057
+ ;;^UTILITY(U,$J,358.3,5387,0)
+ ;;=90471^^28^349^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5387,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5387,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,5387,1,3,0)
+ ;;=3^Immunization Administration (use w/ Vacs below)
+ ;;^UTILITY(U,$J,358.3,5388,0)
+ ;;=90472^^28^349^1.5^^^^1
+ ;;^UTILITY(U,$J,358.3,5388,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5388,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,5388,1,3,0)
+ ;;=3^2 or more Immunization Administration (use w/ Vacs below)
+ ;;^UTILITY(U,$J,358.3,5389,0)
+ ;;=90632^^28^349^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5389,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5389,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,5389,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,5390,0)
+ ;;=90746^^28^349^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5390,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5390,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,5390,1,3,0)
+ ;;=3^Hepatitis B Vaccine
+ ;;^UTILITY(U,$J,358.3,5391,0)
+ ;;=90636^^28^349^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5391,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5391,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,5391,1,3,0)
+ ;;=3^Hepatitis A&B Vaccine
+ ;;^UTILITY(U,$J,358.3,5392,0)
+ ;;=90707^^28^349^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5392,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5392,1,2,0)
+ ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,5392,1,3,0)
+ ;;=3^MMR Vaccine
+ ;;^UTILITY(U,$J,358.3,5393,0)
+ ;;=90658^^28^349^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5393,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5393,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,5393,1,3,0)
+ ;;=3^Flu Vaccine IM (Flulaval)
+ ;;^UTILITY(U,$J,358.3,5394,0)
+ ;;=90732^^28^349^10^^^^1
+ ;;^UTILITY(U,$J,358.3,5394,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5394,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,5394,1,3,0)
+ ;;=3^Pneumococcal
+ ;;^UTILITY(U,$J,358.3,5395,0)
+ ;;=90714^^28^349^11^^^^1
+ ;;^UTILITY(U,$J,358.3,5395,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5395,1,2,0)
+ ;;=2^90714
+ ;;^UTILITY(U,$J,358.3,5395,1,3,0)
+ ;;=3^TD VACCINE
+ ;;^UTILITY(U,$J,358.3,5396,0)
+ ;;=90715^^28^349^12^^^^1
+ ;;^UTILITY(U,$J,358.3,5396,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5396,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,5396,1,3,0)
+ ;;=3^TDAP VACCINE
+ ;;^UTILITY(U,$J,358.3,5397,0)
+ ;;=90656^^28^349^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5397,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5397,1,2,0)
+ ;;=2^90656
+ ;;^UTILITY(U,$J,358.3,5397,1,3,0)
+ ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
+ ;;^UTILITY(U,$J,358.3,5398,0)
+ ;;=90662^^28^349^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5398,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5398,1,2,0)
+ ;;=2^90662

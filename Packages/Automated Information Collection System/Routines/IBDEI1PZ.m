@@ -1,124 +1,122 @@
-IBDEI1PZ ; ; 19-NOV-2015
+IBDEI1PZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28774,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,28774,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,28775,0)
- ;;=R40.2213^^132^1338^25
- ;;^UTILITY(U,$J,358.3,28775,1,0)
+ ;;^UTILITY(U,$J,358.3,29194,2)
+ ;;=^5017019
+ ;;^UTILITY(U,$J,358.3,29195,0)
+ ;;=O36.5935^^115^1455^181
+ ;;^UTILITY(U,$J,358.3,29195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28775,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,28775,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,28775,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,28776,0)
- ;;=R40.2212^^132^1338^24
- ;;^UTILITY(U,$J,358.3,28776,1,0)
+ ;;^UTILITY(U,$J,358.3,29195,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29195,1,4,0)
+ ;;=4^O36.5935
+ ;;^UTILITY(U,$J,358.3,29195,2)
+ ;;=^5017020
+ ;;^UTILITY(U,$J,358.3,29196,0)
+ ;;=O36.61X0^^115^1455^92
+ ;;^UTILITY(U,$J,358.3,29196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28776,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,28776,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,28776,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,28777,0)
- ;;=R40.2344^^132^1338^6
- ;;^UTILITY(U,$J,358.3,28777,1,0)
+ ;;^UTILITY(U,$J,358.3,29196,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first trimester, unsp
+ ;;^UTILITY(U,$J,358.3,29196,1,4,0)
+ ;;=4^O36.61X0
+ ;;^UTILITY(U,$J,358.3,29196,2)
+ ;;=^5017033
+ ;;^UTILITY(U,$J,358.3,29197,0)
+ ;;=O36.61X1^^115^1455^93
+ ;;^UTILITY(U,$J,358.3,29197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28777,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,28777,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,28777,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,28778,0)
- ;;=R40.2343^^132^1338^7
- ;;^UTILITY(U,$J,358.3,28778,1,0)
+ ;;^UTILITY(U,$J,358.3,29197,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29197,1,4,0)
+ ;;=4^O36.61X1
+ ;;^UTILITY(U,$J,358.3,29197,2)
+ ;;=^5017034
+ ;;^UTILITY(U,$J,358.3,29198,0)
+ ;;=O36.61X2^^115^1455^94
+ ;;^UTILITY(U,$J,358.3,29198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28778,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,28778,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,28778,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,28779,0)
- ;;=R40.2342^^132^1338^8
- ;;^UTILITY(U,$J,358.3,28779,1,0)
+ ;;^UTILITY(U,$J,358.3,29198,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29198,1,4,0)
+ ;;=4^O36.61X2
+ ;;^UTILITY(U,$J,358.3,29198,2)
+ ;;=^5017035
+ ;;^UTILITY(U,$J,358.3,29199,0)
+ ;;=O36.61X3^^115^1455^95
+ ;;^UTILITY(U,$J,358.3,29199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28779,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,28779,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,28779,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,28780,0)
- ;;=R40.2341^^132^1338^9
- ;;^UTILITY(U,$J,358.3,28780,1,0)
+ ;;^UTILITY(U,$J,358.3,29199,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29199,1,4,0)
+ ;;=4^O36.61X3
+ ;;^UTILITY(U,$J,358.3,29199,2)
+ ;;=^5017036
+ ;;^UTILITY(U,$J,358.3,29200,0)
+ ;;=O36.61X4^^115^1455^96
+ ;;^UTILITY(U,$J,358.3,29200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28780,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,28780,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,28780,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,28781,0)
- ;;=R40.2340^^132^1338^10
- ;;^UTILITY(U,$J,358.3,28781,1,0)
+ ;;^UTILITY(U,$J,358.3,29200,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 4
+ ;;^UTILITY(U,$J,358.3,29200,1,4,0)
+ ;;=4^O36.61X4
+ ;;^UTILITY(U,$J,358.3,29200,2)
+ ;;=^5017037
+ ;;^UTILITY(U,$J,358.3,29201,0)
+ ;;=O36.61X5^^115^1455^97
+ ;;^UTILITY(U,$J,358.3,29201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28781,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,28781,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,28781,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,28782,0)
- ;;=R40.2324^^132^1338^1
- ;;^UTILITY(U,$J,358.3,28782,1,0)
+ ;;^UTILITY(U,$J,358.3,29201,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, first tri, fetus 5
+ ;;^UTILITY(U,$J,358.3,29201,1,4,0)
+ ;;=4^O36.61X5
+ ;;^UTILITY(U,$J,358.3,29201,2)
+ ;;=^5017038
+ ;;^UTILITY(U,$J,358.3,29202,0)
+ ;;=O36.62X0^^115^1455^98
+ ;;^UTILITY(U,$J,358.3,29202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28782,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,28782,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,28782,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,28783,0)
- ;;=R40.2323^^132^1338^4
- ;;^UTILITY(U,$J,358.3,28783,1,0)
+ ;;^UTILITY(U,$J,358.3,29202,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, unsp
+ ;;^UTILITY(U,$J,358.3,29202,1,4,0)
+ ;;=4^O36.62X0
+ ;;^UTILITY(U,$J,358.3,29202,2)
+ ;;=^5017040
+ ;;^UTILITY(U,$J,358.3,29203,0)
+ ;;=O36.62X1^^115^1455^99
+ ;;^UTILITY(U,$J,358.3,29203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28783,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,28783,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,28783,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,28784,0)
- ;;=R40.2322^^132^1338^2
- ;;^UTILITY(U,$J,358.3,28784,1,0)
+ ;;^UTILITY(U,$J,358.3,29203,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 1
+ ;;^UTILITY(U,$J,358.3,29203,1,4,0)
+ ;;=4^O36.62X1
+ ;;^UTILITY(U,$J,358.3,29203,2)
+ ;;=^5017041
+ ;;^UTILITY(U,$J,358.3,29204,0)
+ ;;=O36.62X2^^115^1455^100
+ ;;^UTILITY(U,$J,358.3,29204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28784,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,28784,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,28784,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,28785,0)
- ;;=R40.2321^^132^1338^5
- ;;^UTILITY(U,$J,358.3,28785,1,0)
+ ;;^UTILITY(U,$J,358.3,29204,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 2
+ ;;^UTILITY(U,$J,358.3,29204,1,4,0)
+ ;;=4^O36.62X2
+ ;;^UTILITY(U,$J,358.3,29204,2)
+ ;;=^5017042
+ ;;^UTILITY(U,$J,358.3,29205,0)
+ ;;=O36.62X3^^115^1455^101
+ ;;^UTILITY(U,$J,358.3,29205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28785,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,28785,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,28785,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,28786,0)
- ;;=R40.2320^^132^1338^3
- ;;^UTILITY(U,$J,358.3,28786,1,0)
+ ;;^UTILITY(U,$J,358.3,29205,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 3
+ ;;^UTILITY(U,$J,358.3,29205,1,4,0)
+ ;;=4^O36.62X3
+ ;;^UTILITY(U,$J,358.3,29205,2)
+ ;;=^5017043
+ ;;^UTILITY(U,$J,358.3,29206,0)
+ ;;=O36.62X4^^115^1455^102
+ ;;^UTILITY(U,$J,358.3,29206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28786,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,29206,1,3,0)
+ ;;=3^Maternal care for excess fetal growth, second tri, fetus 4

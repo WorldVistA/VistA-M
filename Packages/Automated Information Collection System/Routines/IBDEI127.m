@@ -1,130 +1,124 @@
-IBDEI127 ; ; 19-NOV-2015
+IBDEI127 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17654,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17654,1,2,0)
- ;;=2^45346
- ;;^UTILITY(U,$J,358.3,17654,1,3,0)
- ;;=3^Flex Sig w/Ablation of Tumor
- ;;^UTILITY(U,$J,358.3,17655,0)
- ;;=45378^^90^872^12^^^^1
- ;;^UTILITY(U,$J,358.3,17655,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17655,1,2,0)
- ;;=2^45378
- ;;^UTILITY(U,$J,358.3,17655,1,3,0)
- ;;=3^Colonoscopy, Diagnostic
- ;;^UTILITY(U,$J,358.3,17656,0)
- ;;=45380^^90^872^3^^^^1
- ;;^UTILITY(U,$J,358.3,17656,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17656,1,2,0)
- ;;=2^45380
- ;;^UTILITY(U,$J,358.3,17656,1,3,0)
- ;;=3^Colonoscopy w/Biopsy
- ;;^UTILITY(U,$J,358.3,17657,0)
- ;;=45384^^90^872^10^^^^1
- ;;^UTILITY(U,$J,358.3,17657,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17657,1,2,0)
- ;;=2^45384
- ;;^UTILITY(U,$J,358.3,17657,1,3,0)
- ;;=3^Colonoscopy w/Tumor Removal by hot forceps
- ;;^UTILITY(U,$J,358.3,17658,0)
- ;;=45385^^90^872^11^^^^1
- ;;^UTILITY(U,$J,358.3,17658,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17658,1,2,0)
- ;;=2^45385
- ;;^UTILITY(U,$J,358.3,17658,1,3,0)
- ;;=3^Colonoscopy w/Tumor removal by snare
- ;;^UTILITY(U,$J,358.3,17659,0)
- ;;=45379^^90^872^6^^^^1
- ;;^UTILITY(U,$J,358.3,17659,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17659,1,2,0)
- ;;=2^45379
- ;;^UTILITY(U,$J,358.3,17659,1,3,0)
- ;;=3^Colonoscopy w/FB Removal
- ;;^UTILITY(U,$J,358.3,17660,0)
- ;;=45382^^90^872^4^^^^1
- ;;^UTILITY(U,$J,358.3,17660,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17660,1,2,0)
- ;;=2^45382
- ;;^UTILITY(U,$J,358.3,17660,1,3,0)
- ;;=3^Colonoscopy w/Control hemorrhage
- ;;^UTILITY(U,$J,358.3,17661,0)
- ;;=45386^^90^872^1^^^^1
- ;;^UTILITY(U,$J,358.3,17661,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17661,1,2,0)
- ;;=2^45386
- ;;^UTILITY(U,$J,358.3,17661,1,3,0)
- ;;=3^Colonoscopy w/Balloon Dilation Stricture
- ;;^UTILITY(U,$J,358.3,17662,0)
- ;;=45391^^90^872^5^^^^1
- ;;^UTILITY(U,$J,358.3,17662,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17662,1,2,0)
- ;;=2^45391
- ;;^UTILITY(U,$J,358.3,17662,1,3,0)
- ;;=3^Colonoscopy w/EUS
- ;;^UTILITY(U,$J,358.3,17663,0)
- ;;=45392^^90^872^7^^^^1
- ;;^UTILITY(U,$J,358.3,17663,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17663,1,2,0)
- ;;=2^45392
- ;;^UTILITY(U,$J,358.3,17663,1,3,0)
- ;;=3^Colonoscopy w/Intramural FNA/Bx
- ;;^UTILITY(U,$J,358.3,17664,0)
- ;;=45381^^90^872^13^^^^1
- ;;^UTILITY(U,$J,358.3,17664,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17664,1,2,0)
- ;;=2^45381
- ;;^UTILITY(U,$J,358.3,17664,1,3,0)
- ;;=3^Colonoscopy,Submucosal Inj
- ;;^UTILITY(U,$J,358.3,17665,0)
- ;;=45389^^90^872^9^^^^1
- ;;^UTILITY(U,$J,358.3,17665,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17665,1,2,0)
- ;;=2^45389
- ;;^UTILITY(U,$J,358.3,17665,1,3,0)
- ;;=3^Colonoscopy w/Stent Placement
- ;;^UTILITY(U,$J,358.3,17666,0)
- ;;=45390^^90^872^8^^^^1
- ;;^UTILITY(U,$J,358.3,17666,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17666,1,2,0)
- ;;=2^45390
- ;;^UTILITY(U,$J,358.3,17666,1,3,0)
- ;;=3^Colonoscopy w/Resection
- ;;^UTILITY(U,$J,358.3,17667,0)
- ;;=45398^^90^872^2^^^^1
- ;;^UTILITY(U,$J,358.3,17667,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17667,1,2,0)
- ;;=2^45398
- ;;^UTILITY(U,$J,358.3,17667,1,3,0)
- ;;=3^Colonoscopy w/Band Ligation(s)
- ;;^UTILITY(U,$J,358.3,17668,0)
- ;;=45399^^90^872^14^^^^1
- ;;^UTILITY(U,$J,358.3,17668,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17668,1,2,0)
- ;;=2^45399
- ;;^UTILITY(U,$J,358.3,17668,1,3,0)
- ;;=3^Unlisted Colon Procedure
- ;;^UTILITY(U,$J,358.3,17669,0)
- ;;=43260^^90^873^11^^^^1
- ;;^UTILITY(U,$J,358.3,17669,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,17669,1,2,0)
- ;;=2^43260
- ;;^UTILITY(U,$J,358.3,17669,1,3,0)
- ;;=3^ERCP, Diagnostic
+ ;;^UTILITY(U,$J,358.3,17993,1,4,0)
+ ;;=4^T80.212A
+ ;;^UTILITY(U,$J,358.3,17993,2)
+ ;;=^5054353
+ ;;^UTILITY(U,$J,358.3,17994,0)
+ ;;=T80.22XA^^76^860^3
+ ;;^UTILITY(U,$J,358.3,17994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17994,1,3,0)
+ ;;=3^Infection Following Transfusion/Infusion/Injec Blood Products,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17994,1,4,0)
+ ;;=4^T80.22XA
+ ;;^UTILITY(U,$J,358.3,17994,2)
+ ;;=^5054362
+ ;;^UTILITY(U,$J,358.3,17995,0)
+ ;;=T80.29XA^^76^860^2
+ ;;^UTILITY(U,$J,358.3,17995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17995,1,3,0)
+ ;;=3^Infection Following Infusion/Transfusion/Therapeutic Injection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17995,1,4,0)
+ ;;=4^T80.29XA
+ ;;^UTILITY(U,$J,358.3,17995,2)
+ ;;=^5054365
+ ;;^UTILITY(U,$J,358.3,17996,0)
+ ;;=T81.4XXA^^76^860^4
+ ;;^UTILITY(U,$J,358.3,17996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17996,1,3,0)
+ ;;=3^Infection Following a Procedure NEC,Init  Encntr
+ ;;^UTILITY(U,$J,358.3,17996,1,4,0)
+ ;;=4^T81.4XXA
+ ;;^UTILITY(U,$J,358.3,17996,2)
+ ;;=^5054479
+ ;;^UTILITY(U,$J,358.3,17997,0)
+ ;;=T83.51XA^^76^860^8
+ ;;^UTILITY(U,$J,358.3,17997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17997,1,3,0)
+ ;;=3^Infection d/t Indwelling Urinary Catheter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17997,1,4,0)
+ ;;=4^T83.51XA
+ ;;^UTILITY(U,$J,358.3,17997,2)
+ ;;=^5055058
+ ;;^UTILITY(U,$J,358.3,17998,0)
+ ;;=T85.79XA^^76^860^7
+ ;;^UTILITY(U,$J,358.3,17998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17998,1,3,0)
+ ;;=3^Infection d/t Implantable Device Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17998,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,17998,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,17999,0)
+ ;;=T82.6XXA^^76^860^5
+ ;;^UTILITY(U,$J,358.3,17999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17999,1,3,0)
+ ;;=3^Infection d/t Cardiac Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17999,1,4,0)
+ ;;=4^T82.6XXA
+ ;;^UTILITY(U,$J,358.3,17999,2)
+ ;;=^5054908
+ ;;^UTILITY(U,$J,358.3,18000,0)
+ ;;=T84.52XA^^76^860^9
+ ;;^UTILITY(U,$J,358.3,18000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18000,1,3,0)
+ ;;=3^Infection d/t Left Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,18000,1,4,0)
+ ;;=4^T84.52XA
+ ;;^UTILITY(U,$J,358.3,18000,2)
+ ;;=^5055388
+ ;;^UTILITY(U,$J,358.3,18001,0)
+ ;;=T84.54XA^^76^860^10
+ ;;^UTILITY(U,$J,358.3,18001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18001,1,3,0)
+ ;;=3^Infection d/t Left Knee Prosthesis,Init Encntrreaction due to internal left knee prosth, init
+ ;;^UTILITY(U,$J,358.3,18001,1,4,0)
+ ;;=4^T84.54XA
+ ;;^UTILITY(U,$J,358.3,18001,2)
+ ;;=^5055394
+ ;;^UTILITY(U,$J,358.3,18002,0)
+ ;;=T84.51XA^^76^860^11
+ ;;^UTILITY(U,$J,358.3,18002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18002,1,3,0)
+ ;;=3^Infection d/t Right Hip Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,18002,1,4,0)
+ ;;=4^T84.51XA
+ ;;^UTILITY(U,$J,358.3,18002,2)
+ ;;=^5055385
+ ;;^UTILITY(U,$J,358.3,18003,0)
+ ;;=T84.53XA^^76^860^12
+ ;;^UTILITY(U,$J,358.3,18003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18003,1,3,0)
+ ;;=3^Infection d/t Right Knee Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,18003,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,18003,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,18004,0)
+ ;;=T84.59XA^^76^860^13
+ ;;^UTILITY(U,$J,358.3,18004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18004,1,3,0)
+ ;;=3^Infection d/t Shoulder Joint Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,18004,1,4,0)
+ ;;=4^T84.59XA
+ ;;^UTILITY(U,$J,358.3,18004,2)
+ ;;=^5055397
+ ;;^UTILITY(U,$J,358.3,18005,0)
+ ;;=47000^^77^861^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18005,1,2,0)
+ ;;=2^Percutaneous Liver Biopsy

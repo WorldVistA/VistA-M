@@ -1,130 +1,140 @@
-IBDEI04H ; ; 19-NOV-2015
+IBDEI04H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1413,0)
- ;;=H61.21^^14^151^22
- ;;^UTILITY(U,$J,358.3,1413,1,0)
+ ;;^UTILITY(U,$J,358.3,1670,2)
+ ;;=^5004173
+ ;;^UTILITY(U,$J,358.3,1671,0)
+ ;;=R56.00^^11^147^23
+ ;;^UTILITY(U,$J,358.3,1671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1413,1,3,0)
- ;;=3^Impacted cerumen, right ear
- ;;^UTILITY(U,$J,358.3,1413,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,1413,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,1414,0)
- ;;=H72.813^^14^151^26
- ;;^UTILITY(U,$J,358.3,1414,1,0)
+ ;;^UTILITY(U,$J,358.3,1671,1,3,0)
+ ;;=3^Simple Febrile Convulsions
+ ;;^UTILITY(U,$J,358.3,1671,1,4,0)
+ ;;=4^R56.00
+ ;;^UTILITY(U,$J,358.3,1671,2)
+ ;;=^5019522
+ ;;^UTILITY(U,$J,358.3,1672,0)
+ ;;=R56.9^^11^147^9
+ ;;^UTILITY(U,$J,358.3,1672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1414,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1414,1,4,0)
- ;;=4^H72.813
- ;;^UTILITY(U,$J,358.3,1414,2)
- ;;=^5006756
- ;;^UTILITY(U,$J,358.3,1415,0)
- ;;=H72.812^^14^151^27
- ;;^UTILITY(U,$J,358.3,1415,1,0)
+ ;;^UTILITY(U,$J,358.3,1672,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,1672,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,1672,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,1673,0)
+ ;;=R42.^^11^147^10
+ ;;^UTILITY(U,$J,358.3,1673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1415,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1415,1,4,0)
- ;;=4^H72.812
- ;;^UTILITY(U,$J,358.3,1415,2)
- ;;=^5006755
- ;;^UTILITY(U,$J,358.3,1416,0)
- ;;=H72.811^^14^151^28
- ;;^UTILITY(U,$J,358.3,1416,1,0)
+ ;;^UTILITY(U,$J,358.3,1673,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,1673,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,1673,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,1674,0)
+ ;;=R50.81^^11^147^12
+ ;;^UTILITY(U,$J,358.3,1674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1416,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1416,1,4,0)
- ;;=4^H72.811
- ;;^UTILITY(U,$J,358.3,1416,2)
- ;;=^5006754
- ;;^UTILITY(U,$J,358.3,1417,0)
- ;;=H72.2X3^^14^151^23
- ;;^UTILITY(U,$J,358.3,1417,1,0)
+ ;;^UTILITY(U,$J,358.3,1674,1,3,0)
+ ;;=3^Fever in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,1674,1,4,0)
+ ;;=4^R50.81
+ ;;^UTILITY(U,$J,358.3,1674,2)
+ ;;=^5019508
+ ;;^UTILITY(U,$J,358.3,1675,0)
+ ;;=R50.82^^11^147^20
+ ;;^UTILITY(U,$J,358.3,1675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1417,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, bilateral NEC
- ;;^UTILITY(U,$J,358.3,1417,1,4,0)
- ;;=4^H72.2X3
- ;;^UTILITY(U,$J,358.3,1417,2)
- ;;=^5006752
- ;;^UTILITY(U,$J,358.3,1418,0)
- ;;=H72.2X2^^14^151^24
- ;;^UTILITY(U,$J,358.3,1418,1,0)
+ ;;^UTILITY(U,$J,358.3,1675,1,3,0)
+ ;;=3^Postprocedural Fever
+ ;;^UTILITY(U,$J,358.3,1675,1,4,0)
+ ;;=4^R50.82
+ ;;^UTILITY(U,$J,358.3,1675,2)
+ ;;=^5019509
+ ;;^UTILITY(U,$J,358.3,1676,0)
+ ;;=Z13.6^^11^147^21
+ ;;^UTILITY(U,$J,358.3,1676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1418,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, left ear NEC
- ;;^UTILITY(U,$J,358.3,1418,1,4,0)
- ;;=4^H72.2X2
- ;;^UTILITY(U,$J,358.3,1418,2)
- ;;=^5006751
- ;;^UTILITY(U,$J,358.3,1419,0)
- ;;=H72.2X1^^14^151^25
- ;;^UTILITY(U,$J,358.3,1419,1,0)
+ ;;^UTILITY(U,$J,358.3,1676,1,3,0)
+ ;;=3^Screening for Cardiovascular Disorders
+ ;;^UTILITY(U,$J,358.3,1676,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,1676,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,1677,0)
+ ;;=I25.2^^11^148^3
+ ;;^UTILITY(U,$J,358.3,1677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1419,1,3,0)
- ;;=3^Marginal perforations of tympanic membrane, right ear NEC
- ;;^UTILITY(U,$J,358.3,1419,1,4,0)
- ;;=4^H72.2X1
- ;;^UTILITY(U,$J,358.3,1419,2)
- ;;=^5006750
- ;;^UTILITY(U,$J,358.3,1420,0)
- ;;=H69.83^^14^151^14
- ;;^UTILITY(U,$J,358.3,1420,1,0)
+ ;;^UTILITY(U,$J,358.3,1677,1,3,0)
+ ;;=3^Old MI
+ ;;^UTILITY(U,$J,358.3,1677,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,1677,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,1678,0)
+ ;;=Z95.2^^11^148^6
+ ;;^UTILITY(U,$J,358.3,1678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1420,1,3,0)
- ;;=3^Eustachian Tube Disorders,Bilateral NEC
- ;;^UTILITY(U,$J,358.3,1420,1,4,0)
- ;;=4^H69.83
- ;;^UTILITY(U,$J,358.3,1420,2)
- ;;=^5006680
- ;;^UTILITY(U,$J,358.3,1421,0)
- ;;=H69.82^^14^151^16
- ;;^UTILITY(U,$J,358.3,1421,1,0)
+ ;;^UTILITY(U,$J,358.3,1678,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,1678,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,1678,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,1679,0)
+ ;;=Z95.1^^11^148^4
+ ;;^UTILITY(U,$J,358.3,1679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1421,1,3,0)
- ;;=3^Eustachian Tube Disorders,Left Ear NEC
- ;;^UTILITY(U,$J,358.3,1421,1,4,0)
- ;;=4^H69.82
- ;;^UTILITY(U,$J,358.3,1421,2)
- ;;=^5006679
- ;;^UTILITY(U,$J,358.3,1422,0)
- ;;=H69.81^^14^151^18
- ;;^UTILITY(U,$J,358.3,1422,1,0)
+ ;;^UTILITY(U,$J,358.3,1679,1,3,0)
+ ;;=3^Presence of Aortocoronary Bypass Graft
+ ;;^UTILITY(U,$J,358.3,1679,1,4,0)
+ ;;=4^Z95.1
+ ;;^UTILITY(U,$J,358.3,1679,2)
+ ;;=^5063669
+ ;;^UTILITY(U,$J,358.3,1680,0)
+ ;;=Z98.61^^11^148^1
+ ;;^UTILITY(U,$J,358.3,1680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1422,1,3,0)
- ;;=3^Eustachian Tube Disorders,Right Ear NEC
- ;;^UTILITY(U,$J,358.3,1422,1,4,0)
- ;;=4^H69.81
- ;;^UTILITY(U,$J,358.3,1422,2)
- ;;=^5006678
- ;;^UTILITY(U,$J,358.3,1423,0)
- ;;=H69.03^^14^151^29
- ;;^UTILITY(U,$J,358.3,1423,1,0)
+ ;;^UTILITY(U,$J,358.3,1680,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,1680,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,1680,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,1681,0)
+ ;;=Z95.2^^11^148^7
+ ;;^UTILITY(U,$J,358.3,1681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1423,1,3,0)
- ;;=3^Patulous Eustachian tube, bilateral
- ;;^UTILITY(U,$J,358.3,1423,1,4,0)
- ;;=4^H69.03
- ;;^UTILITY(U,$J,358.3,1423,2)
- ;;=^5006676
- ;;^UTILITY(U,$J,358.3,1424,0)
- ;;=H69.02^^14^151^30
- ;;^UTILITY(U,$J,358.3,1424,1,0)
+ ;;^UTILITY(U,$J,358.3,1681,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,1681,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,1681,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,1682,0)
+ ;;=Z95.3^^11^148^8
+ ;;^UTILITY(U,$J,358.3,1682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1424,1,3,0)
- ;;=3^Patulous Eustachian tube, left ear
- ;;^UTILITY(U,$J,358.3,1424,1,4,0)
- ;;=4^H69.02
- ;;^UTILITY(U,$J,358.3,1424,2)
- ;;=^5006675
- ;;^UTILITY(U,$J,358.3,1425,0)
- ;;=H69.01^^14^151^31
- ;;^UTILITY(U,$J,358.3,1425,1,0)
+ ;;^UTILITY(U,$J,358.3,1682,1,3,0)
+ ;;=3^Presence of Xenogenic Heart Valve
+ ;;^UTILITY(U,$J,358.3,1682,1,4,0)
+ ;;=4^Z95.3
+ ;;^UTILITY(U,$J,358.3,1682,2)
+ ;;=^5063671
+ ;;^UTILITY(U,$J,358.3,1683,0)
+ ;;=Z95.4^^11^148^5
+ ;;^UTILITY(U,$J,358.3,1683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1425,1,3,0)
- ;;=3^Patulous Eustachian tube, right ear
+ ;;^UTILITY(U,$J,358.3,1683,1,3,0)
+ ;;=3^Presence of Heart Valve Replacement NEC
+ ;;^UTILITY(U,$J,358.3,1683,1,4,0)
+ ;;=4^Z95.4
+ ;;^UTILITY(U,$J,358.3,1683,2)
+ ;;=^5063672
+ ;;^UTILITY(U,$J,358.3,1684,0)
+ ;;=Z79.01^^11^148^2
+ ;;^UTILITY(U,$J,358.3,1684,1,0)
+ ;;=^358.31IA^4^2

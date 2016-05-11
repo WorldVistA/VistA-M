@@ -1,128 +1,140 @@
-IBDEI0YW ; ; 19-NOV-2015
+IBDEI0YW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16072,1,3,0)
- ;;=3^Dementia,Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,16072,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,16072,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,16073,0)
- ;;=G31.9^^88^841^28
- ;;^UTILITY(U,$J,358.3,16073,1,0)
+ ;;^UTILITY(U,$J,358.3,16392,1,3,0)
+ ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
+ ;;^UTILITY(U,$J,358.3,16392,1,4,0)
+ ;;=4^K70.31
+ ;;^UTILITY(U,$J,358.3,16392,2)
+ ;;=^5008789
+ ;;^UTILITY(U,$J,358.3,16393,0)
+ ;;=N18.4^^64^745^5
+ ;;^UTILITY(U,$J,358.3,16393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16073,1,3,0)
- ;;=3^Dementia,Degenerative Disease Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,16073,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,16073,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,16074,0)
- ;;=G10.^^88^841^45
- ;;^UTILITY(U,$J,358.3,16074,1,0)
+ ;;^UTILITY(U,$J,358.3,16393,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,16393,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,16393,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,16394,0)
+ ;;=N19.^^64^745^9
+ ;;^UTILITY(U,$J,358.3,16394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16074,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,16074,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,16074,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,16075,0)
- ;;=G94.^^88^841^24
- ;;^UTILITY(U,$J,358.3,16075,1,0)
+ ;;^UTILITY(U,$J,358.3,16394,1,3,0)
+ ;;=3^Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,16394,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,16394,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,16395,0)
+ ;;=N18.5^^64^745^6
+ ;;^UTILITY(U,$J,358.3,16395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16075,1,3,0)
- ;;=3^Dementia,Brain Disorder in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,16075,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,16075,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,16076,0)
- ;;=G31.09^^88^841^29
- ;;^UTILITY(U,$J,358.3,16076,1,0)
+ ;;^UTILITY(U,$J,358.3,16395,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,16395,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,16395,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,16396,0)
+ ;;=N18.6^^64^745^8
+ ;;^UTILITY(U,$J,358.3,16396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16076,1,3,0)
- ;;=3^Dementia,Frontotemporal,Other
- ;;^UTILITY(U,$J,358.3,16076,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,16076,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,16077,0)
- ;;=G23.8^^88^841^23
- ;;^UTILITY(U,$J,358.3,16077,1,0)
+ ;;^UTILITY(U,$J,358.3,16396,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,16396,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,16396,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,16397,0)
+ ;;=N18.3^^64^745^4
+ ;;^UTILITY(U,$J,358.3,16397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16077,1,3,0)
- ;;=3^Dementia,Basal Ganglia Degenerative Diseases
- ;;^UTILITY(U,$J,358.3,16077,1,4,0)
- ;;=4^G23.8
- ;;^UTILITY(U,$J,358.3,16077,2)
- ;;=^5003782
- ;;^UTILITY(U,$J,358.3,16078,0)
- ;;=G31.89^^88^841^31
- ;;^UTILITY(U,$J,358.3,16078,1,0)
+ ;;^UTILITY(U,$J,358.3,16397,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 3
+ ;;^UTILITY(U,$J,358.3,16397,1,4,0)
+ ;;=4^N18.3
+ ;;^UTILITY(U,$J,358.3,16397,2)
+ ;;=^5015604
+ ;;^UTILITY(U,$J,358.3,16398,0)
+ ;;=N17.9^^64^745^1
+ ;;^UTILITY(U,$J,358.3,16398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16078,1,3,0)
- ;;=3^Dementia,Nervous System Degenerative Diseases
- ;;^UTILITY(U,$J,358.3,16078,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,16078,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,16079,0)
- ;;=F06.8^^88^841^30
- ;;^UTILITY(U,$J,358.3,16079,1,0)
+ ;;^UTILITY(U,$J,358.3,16398,1,3,0)
+ ;;=3^Acute Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,16398,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,16398,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,16399,0)
+ ;;=N18.1^^64^745^2
+ ;;^UTILITY(U,$J,358.3,16399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16079,1,3,0)
- ;;=3^Dementia,Mental Disorders d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,16079,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,16079,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,16080,0)
- ;;=F10.27^^88^841^32
- ;;^UTILITY(U,$J,358.3,16080,1,0)
+ ;;^UTILITY(U,$J,358.3,16399,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,16399,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,16399,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,16400,0)
+ ;;=N18.2^^64^745^3
+ ;;^UTILITY(U,$J,358.3,16400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16080,1,3,0)
- ;;=3^Dementia,Persisting,Alcohol-Induced
- ;;^UTILITY(U,$J,358.3,16080,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,16080,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,16081,0)
- ;;=F19.97^^88^841^33
- ;;^UTILITY(U,$J,358.3,16081,1,0)
+ ;;^UTILITY(U,$J,358.3,16400,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,16400,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,16400,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,16401,0)
+ ;;=N18.9^^64^745^7
+ ;;^UTILITY(U,$J,358.3,16401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16081,1,3,0)
- ;;=3^Dementia,Persisting,Psychoactive Subst Use
- ;;^UTILITY(U,$J,358.3,16081,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,16081,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,16082,0)
- ;;=G31.01^^88^841^34
- ;;^UTILITY(U,$J,358.3,16082,1,0)
+ ;;^UTILITY(U,$J,358.3,16401,1,3,0)
+ ;;=3^Chronic Kidney Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16401,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,16401,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,16402,0)
+ ;;=J44.9^^64^746^7
+ ;;^UTILITY(U,$J,358.3,16402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16082,1,3,0)
- ;;=3^Dementia,Pick's Disease
- ;;^UTILITY(U,$J,358.3,16082,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,16082,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,16083,0)
- ;;=A81.2^^88^841^35
- ;;^UTILITY(U,$J,358.3,16083,1,0)
+ ;;^UTILITY(U,$J,358.3,16402,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,16402,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,16402,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,16403,0)
+ ;;=J96.00^^64^746^1
+ ;;^UTILITY(U,$J,358.3,16403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16083,1,3,0)
- ;;=3^Dementia,Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,16083,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,16083,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,16084,0)
- ;;=G31.1^^88^841^36
- ;;^UTILITY(U,$J,358.3,16084,1,0)
+ ;;^UTILITY(U,$J,358.3,16403,1,3,0)
+ ;;=3^Acute Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,16403,1,4,0)
+ ;;=4^J96.00
+ ;;^UTILITY(U,$J,358.3,16403,2)
+ ;;=^5008347
+ ;;^UTILITY(U,$J,358.3,16404,0)
+ ;;=J96.90^^64^746^16
+ ;;^UTILITY(U,$J,358.3,16404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16084,1,3,0)
- ;;=3^Dementia,Senile Degeneration of Brain NEC
- ;;^UTILITY(U,$J,358.3,16084,1,4,0)
- ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,16404,1,3,0)
+ ;;=3^Respiratory Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,16404,1,4,0)
+ ;;=4^J96.90
+ ;;^UTILITY(U,$J,358.3,16404,2)
+ ;;=^5008356
+ ;;^UTILITY(U,$J,358.3,16405,0)
+ ;;=J43.9^^64^746^11
+ ;;^UTILITY(U,$J,358.3,16405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16405,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,16405,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,16405,2)
+ ;;=^5008238

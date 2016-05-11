@@ -1,130 +1,134 @@
-IBDEI285 ; ; 19-NOV-2015
+IBDEI285 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37365,0)
- ;;=S50.11XS^^172^1881^5
- ;;^UTILITY(U,$J,358.3,37365,1,0)
+ ;;^UTILITY(U,$J,358.3,37724,1,3,0)
+ ;;=3^Shoulder lesions, lft shldr, oth
+ ;;^UTILITY(U,$J,358.3,37724,1,4,0)
+ ;;=4^M75.82
+ ;;^UTILITY(U,$J,358.3,37724,2)
+ ;;=^5013262
+ ;;^UTILITY(U,$J,358.3,37725,0)
+ ;;=M77.11^^140^1798^6
+ ;;^UTILITY(U,$J,358.3,37725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37365,1,3,0)
- ;;=3^Contusion of right forearm, sequela
- ;;^UTILITY(U,$J,358.3,37365,1,4,0)
- ;;=4^S50.11XS
- ;;^UTILITY(U,$J,358.3,37365,2)
- ;;=^5028496
- ;;^UTILITY(U,$J,358.3,37366,0)
- ;;=S50.12XD^^172^1881^3
- ;;^UTILITY(U,$J,358.3,37366,1,0)
+ ;;^UTILITY(U,$J,358.3,37725,1,3,0)
+ ;;=3^Lateral epicondylitis, rt elbow
+ ;;^UTILITY(U,$J,358.3,37725,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,37725,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,37726,0)
+ ;;=M77.12^^140^1798^5
+ ;;^UTILITY(U,$J,358.3,37726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37366,1,3,0)
- ;;=3^Contusion of left forearm, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37366,1,4,0)
- ;;=4^S50.12XD
- ;;^UTILITY(U,$J,358.3,37366,2)
- ;;=^5028498
- ;;^UTILITY(U,$J,358.3,37367,0)
- ;;=S50.12XS^^172^1881^2
- ;;^UTILITY(U,$J,358.3,37367,1,0)
+ ;;^UTILITY(U,$J,358.3,37726,1,3,0)
+ ;;=3^Lateral epicondylitis, lft elbow
+ ;;^UTILITY(U,$J,358.3,37726,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,37726,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,37727,0)
+ ;;=M65.311^^140^1798^19
+ ;;^UTILITY(U,$J,358.3,37727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37367,1,3,0)
- ;;=3^Contusion of left forearm, sequela
- ;;^UTILITY(U,$J,358.3,37367,1,4,0)
- ;;=4^S50.12XS
- ;;^UTILITY(U,$J,358.3,37367,2)
- ;;=^5028499
- ;;^UTILITY(U,$J,358.3,37368,0)
- ;;=M19.131^^172^1881^8
- ;;^UTILITY(U,$J,358.3,37368,1,0)
+ ;;^UTILITY(U,$J,358.3,37727,1,3,0)
+ ;;=3^Trigger finger, rt thumb
+ ;;^UTILITY(U,$J,358.3,37727,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,37727,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,37728,0)
+ ;;=M65.312^^140^1798^14
+ ;;^UTILITY(U,$J,358.3,37728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37368,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, right wrist
- ;;^UTILITY(U,$J,358.3,37368,1,4,0)
- ;;=4^M19.131
- ;;^UTILITY(U,$J,358.3,37368,2)
- ;;=^5010829
- ;;^UTILITY(U,$J,358.3,37369,0)
- ;;=M19.132^^172^1881^7
- ;;^UTILITY(U,$J,358.3,37369,1,0)
+ ;;^UTILITY(U,$J,358.3,37728,1,3,0)
+ ;;=3^Trigger finger, lft thumb
+ ;;^UTILITY(U,$J,358.3,37728,1,4,0)
+ ;;=4^M65.312
+ ;;^UTILITY(U,$J,358.3,37728,2)
+ ;;=^5012778
+ ;;^UTILITY(U,$J,358.3,37729,0)
+ ;;=M65.321^^140^1798^15
+ ;;^UTILITY(U,$J,358.3,37729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37369,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, left wrist
- ;;^UTILITY(U,$J,358.3,37369,1,4,0)
- ;;=4^M19.132
- ;;^UTILITY(U,$J,358.3,37369,2)
- ;;=^5010830
- ;;^UTILITY(U,$J,358.3,37370,0)
- ;;=M19.231^^172^1881^12
- ;;^UTILITY(U,$J,358.3,37370,1,0)
+ ;;^UTILITY(U,$J,358.3,37729,1,3,0)
+ ;;=3^Trigger finger, rt index finger
+ ;;^UTILITY(U,$J,358.3,37729,1,4,0)
+ ;;=4^M65.321
+ ;;^UTILITY(U,$J,358.3,37729,2)
+ ;;=^5012780
+ ;;^UTILITY(U,$J,358.3,37730,0)
+ ;;=M65.322^^140^1798^10
+ ;;^UTILITY(U,$J,358.3,37730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37370,1,3,0)
- ;;=3^Secondary osteoarthritis, right wrist
- ;;^UTILITY(U,$J,358.3,37370,1,4,0)
- ;;=4^M19.231
- ;;^UTILITY(U,$J,358.3,37370,2)
- ;;=^5010844
- ;;^UTILITY(U,$J,358.3,37371,0)
- ;;=M19.232^^172^1881^11
- ;;^UTILITY(U,$J,358.3,37371,1,0)
+ ;;^UTILITY(U,$J,358.3,37730,1,3,0)
+ ;;=3^Trigger finger, lft index finger
+ ;;^UTILITY(U,$J,358.3,37730,1,4,0)
+ ;;=4^M65.322
+ ;;^UTILITY(U,$J,358.3,37730,2)
+ ;;=^5012781
+ ;;^UTILITY(U,$J,358.3,37731,0)
+ ;;=M65.331^^140^1798^17
+ ;;^UTILITY(U,$J,358.3,37731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37371,1,3,0)
- ;;=3^Secondary osteoarthritis, left wrist
- ;;^UTILITY(U,$J,358.3,37371,1,4,0)
- ;;=4^M19.232
- ;;^UTILITY(U,$J,358.3,37371,2)
- ;;=^5010845
- ;;^UTILITY(U,$J,358.3,37372,0)
- ;;=M00.842^^172^1882^1
- ;;^UTILITY(U,$J,358.3,37372,1,0)
+ ;;^UTILITY(U,$J,358.3,37731,1,3,0)
+ ;;=3^Trigger finger, rt middle finger
+ ;;^UTILITY(U,$J,358.3,37731,1,4,0)
+ ;;=4^M65.331
+ ;;^UTILITY(U,$J,358.3,37731,2)
+ ;;=^5012783
+ ;;^UTILITY(U,$J,358.3,37732,0)
+ ;;=M65.332^^140^1798^12
+ ;;^UTILITY(U,$J,358.3,37732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37372,1,3,0)
- ;;=3^Arthritis d/t other bacteria, left hand
- ;;^UTILITY(U,$J,358.3,37372,1,4,0)
- ;;=4^M00.842
- ;;^UTILITY(U,$J,358.3,37372,2)
- ;;=^5009680
- ;;^UTILITY(U,$J,358.3,37373,0)
- ;;=M00.841^^172^1882^2
- ;;^UTILITY(U,$J,358.3,37373,1,0)
+ ;;^UTILITY(U,$J,358.3,37732,1,3,0)
+ ;;=3^Trigger finger, lft middle finger
+ ;;^UTILITY(U,$J,358.3,37732,1,4,0)
+ ;;=4^M65.332
+ ;;^UTILITY(U,$J,358.3,37732,2)
+ ;;=^5012784
+ ;;^UTILITY(U,$J,358.3,37733,0)
+ ;;=M65.341^^140^1798^18
+ ;;^UTILITY(U,$J,358.3,37733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37373,1,3,0)
- ;;=3^Arthritis d/t other bacteria, right hand
- ;;^UTILITY(U,$J,358.3,37373,1,4,0)
- ;;=4^M00.841
- ;;^UTILITY(U,$J,358.3,37373,2)
- ;;=^5009679
- ;;^UTILITY(U,$J,358.3,37374,0)
- ;;=M24.542^^172^1882^3
- ;;^UTILITY(U,$J,358.3,37374,1,0)
+ ;;^UTILITY(U,$J,358.3,37733,1,3,0)
+ ;;=3^Trigger finger, rt ring finger
+ ;;^UTILITY(U,$J,358.3,37733,1,4,0)
+ ;;=4^M65.341
+ ;;^UTILITY(U,$J,358.3,37733,2)
+ ;;=^5012786
+ ;;^UTILITY(U,$J,358.3,37734,0)
+ ;;=M65.342^^140^1798^13
+ ;;^UTILITY(U,$J,358.3,37734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37374,1,3,0)
- ;;=3^Contracture, left hand
- ;;^UTILITY(U,$J,358.3,37374,1,4,0)
- ;;=4^M24.542
- ;;^UTILITY(U,$J,358.3,37374,2)
- ;;=^5011412
- ;;^UTILITY(U,$J,358.3,37375,0)
- ;;=M24.541^^172^1882^4
- ;;^UTILITY(U,$J,358.3,37375,1,0)
+ ;;^UTILITY(U,$J,358.3,37734,1,3,0)
+ ;;=3^Trigger finger, lft ring finger
+ ;;^UTILITY(U,$J,358.3,37734,1,4,0)
+ ;;=4^M65.342
+ ;;^UTILITY(U,$J,358.3,37734,2)
+ ;;=^5012787
+ ;;^UTILITY(U,$J,358.3,37735,0)
+ ;;=M65.351^^140^1798^16
+ ;;^UTILITY(U,$J,358.3,37735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37375,1,3,0)
- ;;=3^Contracture, right hand
- ;;^UTILITY(U,$J,358.3,37375,1,4,0)
- ;;=4^M24.541
- ;;^UTILITY(U,$J,358.3,37375,2)
- ;;=^5011411
- ;;^UTILITY(U,$J,358.3,37376,0)
- ;;=S60.222A^^172^1882^5
- ;;^UTILITY(U,$J,358.3,37376,1,0)
+ ;;^UTILITY(U,$J,358.3,37735,1,3,0)
+ ;;=3^Trigger finger, rt little finger
+ ;;^UTILITY(U,$J,358.3,37735,1,4,0)
+ ;;=4^M65.351
+ ;;^UTILITY(U,$J,358.3,37735,2)
+ ;;=^5012789
+ ;;^UTILITY(U,$J,358.3,37736,0)
+ ;;=M65.352^^140^1798^11
+ ;;^UTILITY(U,$J,358.3,37736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37376,1,3,0)
- ;;=3^Contusion of left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,37376,1,4,0)
- ;;=4^S60.222A
- ;;^UTILITY(U,$J,358.3,37376,2)
- ;;=^5032279
- ;;^UTILITY(U,$J,358.3,37377,0)
- ;;=S60.221A^^172^1882^7
- ;;^UTILITY(U,$J,358.3,37377,1,0)
+ ;;^UTILITY(U,$J,358.3,37736,1,3,0)
+ ;;=3^Trigger finger, lft little finger
+ ;;^UTILITY(U,$J,358.3,37736,1,4,0)
+ ;;=4^M65.352
+ ;;^UTILITY(U,$J,358.3,37736,2)
+ ;;=^5012790
+ ;;^UTILITY(U,$J,358.3,37737,0)
+ ;;=I77.6^^140^1799^3
+ ;;^UTILITY(U,$J,358.3,37737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37377,1,3,0)
- ;;=3^Contusion of right hand, initial encounter

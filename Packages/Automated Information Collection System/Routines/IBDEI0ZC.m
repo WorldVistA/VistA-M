@@ -1,140 +1,132 @@
-IBDEI0ZC ; ; 19-NOV-2015
+IBDEI0ZC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16280,2)
- ;;=^271914
- ;;^UTILITY(U,$J,358.3,16281,0)
- ;;=L20.9^^88^845^30
- ;;^UTILITY(U,$J,358.3,16281,1,0)
+ ;;^UTILITY(U,$J,358.3,16609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16281,1,3,0)
- ;;=3^Dermatitis,Atopic,Unspec
- ;;^UTILITY(U,$J,358.3,16281,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,16281,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,16282,0)
- ;;=L23.9^^88^845^29
- ;;^UTILITY(U,$J,358.3,16282,1,0)
+ ;;^UTILITY(U,$J,358.3,16609,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,16609,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,16609,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,16610,0)
+ ;;=A81.00^^67^769^9
+ ;;^UTILITY(U,$J,358.3,16610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16282,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,16282,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,16282,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,16283,0)
- ;;=L24.9^^88^845^31
- ;;^UTILITY(U,$J,358.3,16283,1,0)
+ ;;^UTILITY(U,$J,358.3,16610,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16610,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,16610,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,16611,0)
+ ;;=A81.01^^67^769^10
+ ;;^UTILITY(U,$J,358.3,16611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16283,1,3,0)
- ;;=3^Dermatitis,Irritant Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,16283,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,16283,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,16284,0)
- ;;=L25.9^^88^845^34
- ;;^UTILITY(U,$J,358.3,16284,1,0)
+ ;;^UTILITY(U,$J,358.3,16611,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,16611,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,16611,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,16612,0)
+ ;;=A81.89^^67^769^7
+ ;;^UTILITY(U,$J,358.3,16612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16284,1,3,0)
- ;;=3^Dermatitis,Unspec Contact,Unspec Cause
- ;;^UTILITY(U,$J,358.3,16284,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,16284,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,16285,0)
- ;;=L21.9^^88^845^32
- ;;^UTILITY(U,$J,358.3,16285,1,0)
+ ;;^UTILITY(U,$J,358.3,16612,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,16612,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,16612,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,16613,0)
+ ;;=A81.2^^67^769^27
+ ;;^UTILITY(U,$J,358.3,16613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16285,1,3,0)
- ;;=3^Dermatitis,Seborrheic,Unspec
- ;;^UTILITY(U,$J,358.3,16285,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,16285,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,16286,0)
- ;;=L30.9^^88^845^33
- ;;^UTILITY(U,$J,358.3,16286,1,0)
+ ;;^UTILITY(U,$J,358.3,16613,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,16613,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,16613,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,16614,0)
+ ;;=B20.^^67^769^17
+ ;;^UTILITY(U,$J,358.3,16614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16286,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,16286,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,16286,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,16287,0)
- ;;=R60.1^^88^845^35
- ;;^UTILITY(U,$J,358.3,16287,1,0)
+ ;;^UTILITY(U,$J,358.3,16614,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16614,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,16614,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,16615,0)
+ ;;=B20.^^67^769^18
+ ;;^UTILITY(U,$J,358.3,16615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16287,1,3,0)
- ;;=3^Edema,Generalized
- ;;^UTILITY(U,$J,358.3,16287,1,4,0)
- ;;=4^R60.1
- ;;^UTILITY(U,$J,358.3,16287,2)
- ;;=^5019533
- ;;^UTILITY(U,$J,358.3,16288,0)
- ;;=R60.0^^88^845^36
- ;;^UTILITY(U,$J,358.3,16288,1,0)
+ ;;^UTILITY(U,$J,358.3,16615,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16615,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,16615,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,16616,0)
+ ;;=F10.27^^67^769^1
+ ;;^UTILITY(U,$J,358.3,16616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16288,1,3,0)
- ;;=3^Edema,Localized
- ;;^UTILITY(U,$J,358.3,16288,1,4,0)
- ;;=4^R60.0
- ;;^UTILITY(U,$J,358.3,16288,2)
- ;;=^5019532
- ;;^UTILITY(U,$J,358.3,16289,0)
- ;;=R60.9^^88^845^37
- ;;^UTILITY(U,$J,358.3,16289,1,0)
+ ;;^UTILITY(U,$J,358.3,16616,1,3,0)
+ ;;=3^Alc Dep w/ Alc-Induced Persist Dementia
+ ;;^UTILITY(U,$J,358.3,16616,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,16616,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,16617,0)
+ ;;=F19.97^^67^769^29
+ ;;^UTILITY(U,$J,358.3,16617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16289,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,16289,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,16289,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,16290,0)
- ;;=L85.9^^88^845^38
- ;;^UTILITY(U,$J,358.3,16290,1,0)
+ ;;^UTILITY(U,$J,358.3,16617,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,16617,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,16617,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,16618,0)
+ ;;=G30.0^^67^769^2
+ ;;^UTILITY(U,$J,358.3,16618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16290,1,3,0)
- ;;=3^Epidermal Thickening,Unspec
- ;;^UTILITY(U,$J,358.3,16290,1,4,0)
- ;;=4^L85.9
- ;;^UTILITY(U,$J,358.3,16290,2)
- ;;=^5009325
- ;;^UTILITY(U,$J,358.3,16291,0)
- ;;=L51.9^^88^845^39
- ;;^UTILITY(U,$J,358.3,16291,1,0)
+ ;;^UTILITY(U,$J,358.3,16618,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,16618,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,16618,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,16619,0)
+ ;;=G30.1^^67^769^3
+ ;;^UTILITY(U,$J,358.3,16619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16291,1,3,0)
- ;;=3^Erythema Multiforme,Unspec
- ;;^UTILITY(U,$J,358.3,16291,1,4,0)
- ;;=4^L51.9
- ;;^UTILITY(U,$J,358.3,16291,2)
- ;;=^336759
- ;;^UTILITY(U,$J,358.3,16292,0)
- ;;=L52.^^88^845^40
- ;;^UTILITY(U,$J,358.3,16292,1,0)
+ ;;^UTILITY(U,$J,358.3,16619,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,16619,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,16619,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,16620,0)
+ ;;=G30.9^^67^769^4
+ ;;^UTILITY(U,$J,358.3,16620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16292,1,3,0)
- ;;=3^Erythema Nodosum
- ;;^UTILITY(U,$J,358.3,16292,1,4,0)
- ;;=4^L52.
- ;;^UTILITY(U,$J,358.3,16292,2)
- ;;=^42065
- ;;^UTILITY(U,$J,358.3,16293,0)
- ;;=L72.9^^88^845^41
- ;;^UTILITY(U,$J,358.3,16293,1,0)
+ ;;^UTILITY(U,$J,358.3,16620,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16620,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,16620,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,16621,0)
+ ;;=G10.^^67^769^19
+ ;;^UTILITY(U,$J,358.3,16621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16293,1,3,0)
- ;;=3^Follicular Cyst,Skin & SQ Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,16293,1,4,0)
- ;;=4^L72.9
- ;;^UTILITY(U,$J,358.3,16293,2)
- ;;=^5009283
- ;;^UTILITY(U,$J,358.3,16294,0)
- ;;=L02.92^^88^845^42
- ;;^UTILITY(U,$J,358.3,16294,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16621,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,16621,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,16621,2)
+ ;;=^5003751^F02.81

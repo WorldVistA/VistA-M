@@ -1,124 +1,140 @@
-IBDEI2AN ; ; 19-NOV-2015
+IBDEI2AN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38533,1,4,0)
- ;;=4^S88.919S
- ;;^UTILITY(U,$J,358.3,38533,2)
- ;;=^5137219
- ;;^UTILITY(U,$J,358.3,38534,0)
- ;;=S48.919S^^180^1976^3
- ;;^UTILITY(U,$J,358.3,38534,1,0)
+ ;;^UTILITY(U,$J,358.3,38912,1,3,0)
+ ;;=3^Perifolliculitis Capitis Abscedens
+ ;;^UTILITY(U,$J,358.3,38912,1,4,0)
+ ;;=4^L66.3
+ ;;^UTILITY(U,$J,358.3,38912,2)
+ ;;=^5009255
+ ;;^UTILITY(U,$J,358.3,38913,0)
+ ;;=L71.9^^151^1905^7
+ ;;^UTILITY(U,$J,358.3,38913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38534,1,3,0)
- ;;=3^Complete traumatic amp of unsp shldr/up arm, level unsp, sequela
- ;;^UTILITY(U,$J,358.3,38534,1,4,0)
- ;;=4^S48.919S
- ;;^UTILITY(U,$J,358.3,38534,2)
- ;;=^5028331
- ;;^UTILITY(U,$J,358.3,38535,0)
- ;;=S14.2XXS^^180^1976^6
- ;;^UTILITY(U,$J,358.3,38535,1,0)
+ ;;^UTILITY(U,$J,358.3,38913,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,38913,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,38913,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,38914,0)
+ ;;=L71.1^^151^1905^6
+ ;;^UTILITY(U,$J,358.3,38914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38535,1,3,0)
- ;;=3^Injury of nerve root of cervical spine, sequela
- ;;^UTILITY(U,$J,358.3,38535,1,4,0)
- ;;=4^S14.2XXS
- ;;^UTILITY(U,$J,358.3,38535,2)
- ;;=^5022204
- ;;^UTILITY(U,$J,358.3,38536,0)
- ;;=S34.21XS^^180^1976^7
- ;;^UTILITY(U,$J,358.3,38536,1,0)
+ ;;^UTILITY(U,$J,358.3,38914,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,38914,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,38914,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,38915,0)
+ ;;=I73.00^^151^1905^2
+ ;;^UTILITY(U,$J,358.3,38915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38536,1,3,0)
- ;;=3^Injury of nerve root of lumbar spine, sequela
- ;;^UTILITY(U,$J,358.3,38536,1,4,0)
- ;;=4^S34.21XS
- ;;^UTILITY(U,$J,358.3,38536,2)
- ;;=^5025252
- ;;^UTILITY(U,$J,358.3,38537,0)
- ;;=S34.22XS^^180^1976^8
- ;;^UTILITY(U,$J,358.3,38537,1,0)
+ ;;^UTILITY(U,$J,358.3,38915,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,38915,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,38915,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,38916,0)
+ ;;=I73.01^^151^1905^1
+ ;;^UTILITY(U,$J,358.3,38916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38537,1,3,0)
- ;;=3^Injury of nerve root of sacral spine, sequela
- ;;^UTILITY(U,$J,358.3,38537,1,4,0)
- ;;=4^S34.22XS
- ;;^UTILITY(U,$J,358.3,38537,2)
- ;;=^5025255
- ;;^UTILITY(U,$J,358.3,38538,0)
- ;;=S24.2XXS^^180^1976^9
- ;;^UTILITY(U,$J,358.3,38538,1,0)
+ ;;^UTILITY(U,$J,358.3,38916,1,3,0)
+ ;;=3^Raynaud's Syndrome w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,38916,1,4,0)
+ ;;=4^I73.01
+ ;;^UTILITY(U,$J,358.3,38916,2)
+ ;;=^5007797
+ ;;^UTILITY(U,$J,358.3,38917,0)
+ ;;=Z48.01^^151^1905^4
+ ;;^UTILITY(U,$J,358.3,38917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38538,1,3,0)
- ;;=3^Injury of nerve root of thoracic spine, sequela
- ;;^UTILITY(U,$J,358.3,38538,1,4,0)
- ;;=4^S24.2XXS
- ;;^UTILITY(U,$J,358.3,38538,2)
- ;;=^5023347
- ;;^UTILITY(U,$J,358.3,38539,0)
- ;;=S04.9XXS^^180^1976^11
- ;;^UTILITY(U,$J,358.3,38539,1,0)
+ ;;^UTILITY(U,$J,358.3,38917,1,3,0)
+ ;;=3^Removal/Change Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,38917,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,38917,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,38918,0)
+ ;;=Z48.02^^151^1905^3
+ ;;^UTILITY(U,$J,358.3,38918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38539,1,3,0)
- ;;=3^Injury of unspec cranial nerve, sequela
- ;;^UTILITY(U,$J,358.3,38539,1,4,0)
- ;;=4^S04.9XXS
- ;;^UTILITY(U,$J,358.3,38539,2)
- ;;=^5020575
- ;;^UTILITY(U,$J,358.3,38540,0)
- ;;=S24.9XXS^^180^1976^12
- ;;^UTILITY(U,$J,358.3,38540,1,0)
+ ;;^UTILITY(U,$J,358.3,38918,1,3,0)
+ ;;=3^Removal of Sutures
+ ;;^UTILITY(U,$J,358.3,38918,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,38918,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,38919,0)
+ ;;=Z48.03^^151^1905^5
+ ;;^UTILITY(U,$J,358.3,38919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38540,1,3,0)
- ;;=3^Injury of unspec nerve of thorax, sequela
- ;;^UTILITY(U,$J,358.3,38540,1,4,0)
- ;;=4^S24.9XXS
- ;;^UTILITY(U,$J,358.3,38540,2)
- ;;=^5023359
- ;;^UTILITY(U,$J,358.3,38541,0)
- ;;=S34.9XXS^^180^1976^18
- ;;^UTILITY(U,$J,358.3,38541,1,0)
+ ;;^UTILITY(U,$J,358.3,38919,1,3,0)
+ ;;=3^Removal/Change of Drains
+ ;;^UTILITY(U,$J,358.3,38919,1,4,0)
+ ;;=4^Z48.03
+ ;;^UTILITY(U,$J,358.3,38919,2)
+ ;;=^5063036
+ ;;^UTILITY(U,$J,358.3,38920,0)
+ ;;=B86.^^151^1906^17
+ ;;^UTILITY(U,$J,358.3,38920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38541,1,3,0)
- ;;=3^Injury to unspec nerves at abd/low back/pelvis level, sequela
- ;;^UTILITY(U,$J,358.3,38541,1,4,0)
- ;;=4^S34.9XXS
- ;;^UTILITY(U,$J,358.3,38541,2)
- ;;=^5025273
- ;;^UTILITY(U,$J,358.3,38542,0)
- ;;=S14.9XXS^^180^1976^13
- ;;^UTILITY(U,$J,358.3,38542,1,0)
+ ;;^UTILITY(U,$J,358.3,38920,1,3,0)
+ ;;=3^Scabies
+ ;;^UTILITY(U,$J,358.3,38920,1,4,0)
+ ;;=4^B86.
+ ;;^UTILITY(U,$J,358.3,38920,2)
+ ;;=^108096
+ ;;^UTILITY(U,$J,358.3,38921,0)
+ ;;=L98.8^^151^1906^26
+ ;;^UTILITY(U,$J,358.3,38921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38542,1,3,0)
- ;;=3^Injury of unspec nerves of neck, sequela
- ;;^UTILITY(U,$J,358.3,38542,1,4,0)
- ;;=4^S14.9XXS
- ;;^UTILITY(U,$J,358.3,38542,2)
- ;;=^5022219
- ;;^UTILITY(U,$J,358.3,38543,0)
- ;;=S58.922S^^180^1976^20
- ;;^UTILITY(U,$J,358.3,38543,1,0)
+ ;;^UTILITY(U,$J,358.3,38921,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorders
+ ;;^UTILITY(U,$J,358.3,38921,1,4,0)
+ ;;=4^L98.8
+ ;;^UTILITY(U,$J,358.3,38921,2)
+ ;;=^5009594
+ ;;^UTILITY(U,$J,358.3,38922,0)
+ ;;=L55.0^^151^1906^31
+ ;;^UTILITY(U,$J,358.3,38922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38543,1,3,0)
- ;;=3^Partial traumatic amp of l forearm, level unsp, sequela
- ;;^UTILITY(U,$J,358.3,38543,1,4,0)
- ;;=4^S58.922S
- ;;^UTILITY(U,$J,358.3,38543,2)
- ;;=^5031957
- ;;^UTILITY(U,$J,358.3,38544,0)
- ;;=S14.109S^^180^1976^15
- ;;^UTILITY(U,$J,358.3,38544,1,0)
+ ;;^UTILITY(U,$J,358.3,38922,1,3,0)
+ ;;=3^Sunburn,First Degree
+ ;;^UTILITY(U,$J,358.3,38922,1,4,0)
+ ;;=4^L55.0
+ ;;^UTILITY(U,$J,358.3,38922,2)
+ ;;=^5009212
+ ;;^UTILITY(U,$J,358.3,38923,0)
+ ;;=L55.1^^151^1906^32
+ ;;^UTILITY(U,$J,358.3,38923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38544,1,3,0)
- ;;=3^Injury to unsp level of cervical spinal cord unspec, sequela
- ;;^UTILITY(U,$J,358.3,38544,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,38544,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,38545,0)
- ;;=S24.109S^^180^1976^17
- ;;^UTILITY(U,$J,358.3,38545,1,0)
+ ;;^UTILITY(U,$J,358.3,38923,1,3,0)
+ ;;=3^Sunburn,Second Degree
+ ;;^UTILITY(U,$J,358.3,38923,1,4,0)
+ ;;=4^L55.1
+ ;;^UTILITY(U,$J,358.3,38923,2)
+ ;;=^323553
+ ;;^UTILITY(U,$J,358.3,38924,0)
+ ;;=C44.02^^151^1906^7
+ ;;^UTILITY(U,$J,358.3,38924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38545,1,3,0)
- ;;=3^Injury to unsp level of thoracic spinal cord, sequela
+ ;;^UTILITY(U,$J,358.3,38924,1,3,0)
+ ;;=3^SCC Skin Lip
+ ;;^UTILITY(U,$J,358.3,38924,1,4,0)
+ ;;=4^C44.02
+ ;;^UTILITY(U,$J,358.3,38924,2)
+ ;;=^340465
+ ;;^UTILITY(U,$J,358.3,38925,0)
+ ;;=C44.122^^151^1906^13
+ ;;^UTILITY(U,$J,358.3,38925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38925,1,3,0)
+ ;;=3^SCC Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,38925,1,4,0)
+ ;;=4^C44.122
+ ;;^UTILITY(U,$J,358.3,38925,2)
+ ;;=^5001023

@@ -1,144 +1,134 @@
-IBDEI08C ; ; 19-NOV-2015
+IBDEI08C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3344,1,4,0)
- ;;=4^R63.3
- ;;^UTILITY(U,$J,358.3,3344,2)
- ;;=^5019541
- ;;^UTILITY(U,$J,358.3,3345,0)
- ;;=E87.8^^28^252^35
- ;;^UTILITY(U,$J,358.3,3345,1,0)
+ ;;^UTILITY(U,$J,358.3,3604,0)
+ ;;=G61.0^^18^220^96
+ ;;^UTILITY(U,$J,358.3,3604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3345,1,3,0)
- ;;=3^Fluid & Electrolyte Balance Disorder NEC
- ;;^UTILITY(U,$J,358.3,3345,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,3345,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,3346,0)
- ;;=E87.70^^28^252^36
- ;;^UTILITY(U,$J,358.3,3346,1,0)
+ ;;^UTILITY(U,$J,358.3,3604,1,3,0)
+ ;;=3^Neuropathy,Guillain-Barre Syndrome
+ ;;^UTILITY(U,$J,358.3,3604,1,4,0)
+ ;;=4^G61.0
+ ;;^UTILITY(U,$J,358.3,3604,2)
+ ;;=^53405
+ ;;^UTILITY(U,$J,358.3,3605,0)
+ ;;=G60.9^^18^220^97
+ ;;^UTILITY(U,$J,358.3,3605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3346,1,3,0)
- ;;=3^Fluid Overload,Unspec
- ;;^UTILITY(U,$J,358.3,3346,1,4,0)
- ;;=4^E87.70
- ;;^UTILITY(U,$J,358.3,3346,2)
- ;;=^5003023
- ;;^UTILITY(U,$J,358.3,3347,0)
- ;;=R73.01^^28^252^50
- ;;^UTILITY(U,$J,358.3,3347,1,0)
+ ;;^UTILITY(U,$J,358.3,3605,1,3,0)
+ ;;=3^Neuropathy,Hereditary/Idiopathic,Unspec
+ ;;^UTILITY(U,$J,358.3,3605,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,3605,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,3606,0)
+ ;;=G61.9^^18^220^98
+ ;;^UTILITY(U,$J,358.3,3606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3347,1,3,0)
- ;;=3^Impaired Fasting Glucose
- ;;^UTILITY(U,$J,358.3,3347,1,4,0)
- ;;=4^R73.01
- ;;^UTILITY(U,$J,358.3,3347,2)
- ;;=^5019561
- ;;^UTILITY(U,$J,358.3,3348,0)
- ;;=R73.02^^28^252^51
- ;;^UTILITY(U,$J,358.3,3348,1,0)
+ ;;^UTILITY(U,$J,358.3,3606,1,3,0)
+ ;;=3^Neuropathy,Inflammatory Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3606,1,4,0)
+ ;;=4^G61.9
+ ;;^UTILITY(U,$J,358.3,3606,2)
+ ;;=^5004074
+ ;;^UTILITY(U,$J,358.3,3607,0)
+ ;;=G58.9^^18^220^100
+ ;;^UTILITY(U,$J,358.3,3607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3348,1,3,0)
- ;;=3^Impaired Oral Glucose Tolerance
- ;;^UTILITY(U,$J,358.3,3348,1,4,0)
- ;;=4^R73.02
- ;;^UTILITY(U,$J,358.3,3348,2)
- ;;=^5019562
- ;;^UTILITY(U,$J,358.3,3349,0)
- ;;=E83.119^^28^252^37
- ;;^UTILITY(U,$J,358.3,3349,1,0)
+ ;;^UTILITY(U,$J,358.3,3607,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3607,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,3607,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,3608,0)
+ ;;=G54.9^^18^220^102
+ ;;^UTILITY(U,$J,358.3,3608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3349,1,3,0)
- ;;=3^Hemochromatosis,Unspec
- ;;^UTILITY(U,$J,358.3,3349,1,4,0)
- ;;=4^E83.119
- ;;^UTILITY(U,$J,358.3,3349,2)
- ;;=^5002995
- ;;^UTILITY(U,$J,358.3,3350,0)
- ;;=E83.52^^28^252^38
- ;;^UTILITY(U,$J,358.3,3350,1,0)
+ ;;^UTILITY(U,$J,358.3,3608,1,3,0)
+ ;;=3^Neuropathy,Nerve Root/Plexus Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3608,1,4,0)
+ ;;=4^G54.9
+ ;;^UTILITY(U,$J,358.3,3608,2)
+ ;;=^5004015
+ ;;^UTILITY(U,$J,358.3,3609,0)
+ ;;=G54.6^^18^220^103
+ ;;^UTILITY(U,$J,358.3,3609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3350,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,3350,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,3350,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,3351,0)
- ;;=E11.65^^28^252^22
- ;;^UTILITY(U,$J,358.3,3351,1,0)
+ ;;^UTILITY(U,$J,358.3,3609,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/ Pain
+ ;;^UTILITY(U,$J,358.3,3609,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,3609,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,3610,0)
+ ;;=G54.7^^18^220^104
+ ;;^UTILITY(U,$J,358.3,3610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3351,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,3351,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,3351,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,3352,0)
- ;;=R73.9^^28^252^39
- ;;^UTILITY(U,$J,358.3,3352,1,0)
+ ;;^UTILITY(U,$J,358.3,3610,1,3,0)
+ ;;=3^Neuropathy,Phantom Limb Syndrome w/o Pain
+ ;;^UTILITY(U,$J,358.3,3610,1,4,0)
+ ;;=4^G54.7
+ ;;^UTILITY(U,$J,358.3,3610,2)
+ ;;=^5004014
+ ;;^UTILITY(U,$J,358.3,3611,0)
+ ;;=G62.2^^18^220^105
+ ;;^UTILITY(U,$J,358.3,3611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3352,1,3,0)
- ;;=3^Hyperglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,3352,1,4,0)
- ;;=4^R73.9
- ;;^UTILITY(U,$J,358.3,3352,2)
- ;;=^5019564
- ;;^UTILITY(U,$J,358.3,3353,0)
- ;;=E87.5^^28^252^41
- ;;^UTILITY(U,$J,358.3,3353,1,0)
+ ;;^UTILITY(U,$J,358.3,3611,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy d/t Toxic Agents
+ ;;^UTILITY(U,$J,358.3,3611,1,4,0)
+ ;;=4^G62.2
+ ;;^UTILITY(U,$J,358.3,3611,2)
+ ;;=^268531
+ ;;^UTILITY(U,$J,358.3,3612,0)
+ ;;=G62.82^^18^220^94
+ ;;^UTILITY(U,$J,358.3,3612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3353,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,3353,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,3353,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,3354,0)
- ;;=E83.41^^28^252^42
- ;;^UTILITY(U,$J,358.3,3354,1,0)
+ ;;^UTILITY(U,$J,358.3,3612,1,3,0)
+ ;;=3^Neuropathy,Drug-Induced Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,3612,1,4,0)
+ ;;=4^G62.82
+ ;;^UTILITY(U,$J,358.3,3612,2)
+ ;;=^5004077
+ ;;^UTILITY(U,$J,358.3,3613,0)
+ ;;=G62.9^^18^220^106
+ ;;^UTILITY(U,$J,358.3,3613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3354,1,3,0)
- ;;=3^Hypermagnesemia
- ;;^UTILITY(U,$J,358.3,3354,1,4,0)
- ;;=4^E83.41
- ;;^UTILITY(U,$J,358.3,3354,2)
- ;;=^5003002
- ;;^UTILITY(U,$J,358.3,3355,0)
- ;;=E87.0^^28^252^43
- ;;^UTILITY(U,$J,358.3,3355,1,0)
+ ;;^UTILITY(U,$J,358.3,3613,1,3,0)
+ ;;=3^Neuropathy,Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3613,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,3613,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,3614,0)
+ ;;=G57.90^^18^220^99
+ ;;^UTILITY(U,$J,358.3,3614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3355,1,3,0)
- ;;=3^Hyperosmolality/Hypernatremia
- ;;^UTILITY(U,$J,358.3,3355,1,4,0)
- ;;=4^E87.0
- ;;^UTILITY(U,$J,358.3,3355,2)
- ;;=^5003018
- ;;^UTILITY(U,$J,358.3,3356,0)
- ;;=E83.51^^28^252^45
- ;;^UTILITY(U,$J,358.3,3356,1,0)
+ ;;^UTILITY(U,$J,358.3,3614,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,3614,1,4,0)
+ ;;=4^G57.90
+ ;;^UTILITY(U,$J,358.3,3614,2)
+ ;;=^5004061
+ ;;^UTILITY(U,$J,358.3,3615,0)
+ ;;=G56.90^^18^220^101
+ ;;^UTILITY(U,$J,358.3,3615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3356,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,3356,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,3356,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,3357,0)
- ;;=E58.^^28^252^3
- ;;^UTILITY(U,$J,358.3,3357,1,0)
+ ;;^UTILITY(U,$J,358.3,3615,1,3,0)
+ ;;=3^Neuropathy,Mononeuropathy,Upper Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,3615,1,4,0)
+ ;;=4^G56.90
+ ;;^UTILITY(U,$J,358.3,3615,2)
+ ;;=^5004035
+ ;;^UTILITY(U,$J,358.3,3616,0)
+ ;;=R29.5^^18^220^107
+ ;;^UTILITY(U,$J,358.3,3616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3357,1,3,0)
- ;;=3^Calcium Deficiency,Dietary
- ;;^UTILITY(U,$J,358.3,3357,1,4,0)
- ;;=4^E58.
- ;;^UTILITY(U,$J,358.3,3357,2)
- ;;=^5002804
- ;;^UTILITY(U,$J,358.3,3358,0)
- ;;=E11.641^^28^252^23
- ;;^UTILITY(U,$J,358.3,3358,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3358,1,3,0)
- ;;=3^Diabetes Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,3616,1,3,0)
+ ;;=3^Paralysis,Transient
+ ;;^UTILITY(U,$J,358.3,3616,1,4,0)
+ ;;=4^R29.5
+ ;;^UTILITY(U,$J,358.3,3616,2)
+ ;;=^5019316

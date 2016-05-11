@@ -1,126 +1,134 @@
-IBDEI0F6 ; ; 19-NOV-2015
+IBDEI0F6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6676,0)
- ;;=13132^^45^436^2^^^^1
- ;;^UTILITY(U,$J,358.3,6676,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6676,1,2,0)
- ;;=2^13132
- ;;^UTILITY(U,$J,358.3,6676,1,3,0)
- ;;=3^Complex Repair Nk/Hd/Ft;2.6 to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6677,0)
- ;;=13133^^45^436^3^^^^1
- ;;^UTILITY(U,$J,358.3,6677,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6677,1,2,0)
- ;;=2^13133
- ;;^UTILITY(U,$J,358.3,6677,1,3,0)
- ;;=3^Complex Repair Nk/Hd/Ft;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,6678,0)
- ;;=13100^^45^437^1^^^^1
- ;;^UTILITY(U,$J,358.3,6678,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6678,1,2,0)
- ;;=2^13100
- ;;^UTILITY(U,$J,358.3,6678,1,3,0)
- ;;=3^Complex Repair Trunk;1.1 to 2.5 cm
- ;;^UTILITY(U,$J,358.3,6679,0)
- ;;=13101^^45^437^2^^^^1
- ;;^UTILITY(U,$J,358.3,6679,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6679,1,2,0)
- ;;=2^13101
- ;;^UTILITY(U,$J,358.3,6679,1,3,0)
- ;;=3^Complex Repair Trunk;2.6 to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6680,0)
- ;;=13102^^45^437^3^^^^1
- ;;^UTILITY(U,$J,358.3,6680,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6680,1,2,0)
- ;;=2^13102
- ;;^UTILITY(U,$J,358.3,6680,1,3,0)
- ;;=3^Complex Repair Trunk;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,6681,0)
- ;;=14040^^45^438^1^^^^1
- ;;^UTILITY(U,$J,358.3,6681,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6681,1,2,0)
- ;;=2^14040
- ;;^UTILITY(U,$J,358.3,6681,1,3,0)
- ;;=3^Tissue Rearrangement,Face/Nk/Hd/Ft,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,6682,0)
- ;;=14041^^45^438^2^^^^1
- ;;^UTILITY(U,$J,358.3,6682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6682,1,2,0)
- ;;=2^14041
- ;;^UTILITY(U,$J,358.3,6682,1,3,0)
- ;;=3^Tissue Rearrangement,Face/Nk/Hd/Ft,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,6683,0)
- ;;=14020^^45^439^1^^^^1
- ;;^UTILITY(U,$J,358.3,6683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6683,1,2,0)
- ;;=2^14020
- ;;^UTILITY(U,$J,358.3,6683,1,3,0)
- ;;=3^Tissue Rearrangement,S/A/L,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,6684,0)
- ;;=14021^^45^439^2^^^^1
- ;;^UTILITY(U,$J,358.3,6684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6684,1,2,0)
- ;;=2^14021
- ;;^UTILITY(U,$J,358.3,6684,1,3,0)
- ;;=3^Tissue Rearrangement,S/A/L,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,6685,0)
- ;;=14000^^45^440^1^^^^1
- ;;^UTILITY(U,$J,358.3,6685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6685,1,2,0)
- ;;=2^14000
- ;;^UTILITY(U,$J,358.3,6685,1,3,0)
- ;;=3^Tissue Rearrangement,Trunk,Up to 10.0 sq cm
- ;;^UTILITY(U,$J,358.3,6686,0)
- ;;=14001^^45^440^2^^^^1
- ;;^UTILITY(U,$J,358.3,6686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6686,1,2,0)
- ;;=2^14001
- ;;^UTILITY(U,$J,358.3,6686,1,3,0)
- ;;=3^Tissue Rearrangement,Trunk,10.1 to 30.0 sq cm
- ;;^UTILITY(U,$J,358.3,6687,0)
- ;;=13120^^45^441^1^^^^1
- ;;^UTILITY(U,$J,358.3,6687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6687,1,2,0)
- ;;=2^13120
- ;;^UTILITY(U,$J,358.3,6687,1,3,0)
- ;;=3^Complex Repair Scalp;1.1 to 2.5 cm
- ;;^UTILITY(U,$J,358.3,6688,0)
- ;;=13121^^45^441^2^^^^1
- ;;^UTILITY(U,$J,358.3,6688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6688,1,2,0)
- ;;=2^13121
- ;;^UTILITY(U,$J,358.3,6688,1,3,0)
- ;;=3^Complex Repair Scalp;2.6 to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6689,0)
- ;;=13122^^45^441^3^^^^1
- ;;^UTILITY(U,$J,358.3,6689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6689,1,2,0)
- ;;=2^13122
- ;;^UTILITY(U,$J,358.3,6689,1,3,0)
- ;;=3^Complex Repair Scalp;Ea Addl 5 cm
- ;;^UTILITY(U,$J,358.3,6690,0)
- ;;=14060^^45^442^1^^^^1
- ;;^UTILITY(U,$J,358.3,6690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6690,1,2,0)
- ;;=2^14060
- ;;^UTILITY(U,$J,358.3,6690,1,3,0)
- ;;=3^Tissue Rearrangement Eyelid,10sq cm or less
- ;;^UTILITY(U,$J,358.3,6691,0)
- ;;=14061^^45^442^2^^^^1
+ ;;^UTILITY(U,$J,358.3,6995,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,6995,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,6996,0)
+ ;;=L40.52^^30^402^128
+ ;;^UTILITY(U,$J,358.3,6996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6996,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,6996,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,6996,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,6997,0)
+ ;;=L40.53^^30^402^129
+ ;;^UTILITY(U,$J,358.3,6997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6997,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,6997,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,6997,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,6998,0)
+ ;;=M32.9^^30^402^170
+ ;;^UTILITY(U,$J,358.3,6998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6998,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,6998,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,6998,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,6999,0)
+ ;;=M32.0^^30^402^166
+ ;;^UTILITY(U,$J,358.3,6999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6999,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,6999,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,6999,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,7000,0)
+ ;;=M32.13^^30^402^168
+ ;;^UTILITY(U,$J,358.3,7000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7000,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,7000,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,7000,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,7001,0)
+ ;;=M32.14^^30^402^167
+ ;;^UTILITY(U,$J,358.3,7001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7001,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,7001,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,7001,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,7002,0)
+ ;;=M32.12^^30^402^169
+ ;;^UTILITY(U,$J,358.3,7002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7002,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,7002,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,7002,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,7003,0)
+ ;;=M05.59^^30^402^150
+ ;;^UTILITY(U,$J,358.3,7003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7003,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,7003,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,7003,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,7004,0)
+ ;;=M05.711^^30^402^144
+ ;;^UTILITY(U,$J,358.3,7004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7004,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7004,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,7004,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,7005,0)
+ ;;=M05.712^^30^402^137
+ ;;^UTILITY(U,$J,358.3,7005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7005,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7005,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,7005,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,7006,0)
+ ;;=M05.731^^30^402^145
+ ;;^UTILITY(U,$J,358.3,7006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7006,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,7006,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,7006,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,7007,0)
+ ;;=M05.732^^30^402^138
+ ;;^UTILITY(U,$J,358.3,7007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7007,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,7007,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,7007,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,7008,0)
+ ;;=M05.741^^30^402^141
+ ;;^UTILITY(U,$J,358.3,7008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7008,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand

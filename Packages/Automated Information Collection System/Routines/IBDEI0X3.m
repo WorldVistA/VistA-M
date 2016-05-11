@@ -1,120 +1,138 @@
-IBDEI0X3 ; ; 19-NOV-2015
+IBDEI0X3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15255,1,4,0)
- ;;=4^S61.210A
- ;;^UTILITY(U,$J,358.3,15255,2)
- ;;=^5032771
- ;;^UTILITY(U,$J,358.3,15256,0)
- ;;=S91.214A^^85^813^52
- ;;^UTILITY(U,$J,358.3,15256,1,0)
+ ;;^UTILITY(U,$J,358.3,15525,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,15526,0)
+ ;;=Z76.5^^58^672^3
+ ;;^UTILITY(U,$J,358.3,15526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15256,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15256,1,4,0)
- ;;=4^S91.214A
- ;;^UTILITY(U,$J,358.3,15256,2)
- ;;=^5044279
- ;;^UTILITY(U,$J,358.3,15257,0)
- ;;=S91.114A^^85^813^53
- ;;^UTILITY(U,$J,358.3,15257,1,0)
+ ;;^UTILITY(U,$J,358.3,15526,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,15526,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,15526,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,15527,0)
+ ;;=R41.83^^58^672^2
+ ;;^UTILITY(U,$J,358.3,15527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15257,1,3,0)
- ;;=3^Laceration w/o FB of Right Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15257,1,4,0)
- ;;=4^S91.114A
- ;;^UTILITY(U,$J,358.3,15257,2)
- ;;=^5044192
- ;;^UTILITY(U,$J,358.3,15258,0)
- ;;=S61.316A^^85^813^54
- ;;^UTILITY(U,$J,358.3,15258,1,0)
+ ;;^UTILITY(U,$J,358.3,15527,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,15527,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,15527,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,15528,0)
+ ;;=Z56.82^^58^672^4
+ ;;^UTILITY(U,$J,358.3,15528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15258,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15258,1,4,0)
- ;;=4^S61.316A
- ;;^UTILITY(U,$J,358.3,15258,2)
- ;;=^5032924
- ;;^UTILITY(U,$J,358.3,15259,0)
- ;;=S61.216A^^85^813^55
- ;;^UTILITY(U,$J,358.3,15259,1,0)
+ ;;^UTILITY(U,$J,358.3,15528,1,3,0)
+ ;;=3^Military Deployment Status,Current
+ ;;^UTILITY(U,$J,358.3,15528,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,15528,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,15529,0)
+ ;;=E66.3^^58^672^7
+ ;;^UTILITY(U,$J,358.3,15529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15259,1,3,0)
- ;;=3^Laceration w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15259,1,4,0)
- ;;=4^S61.216A
- ;;^UTILITY(U,$J,358.3,15259,2)
- ;;=^5032789
- ;;^UTILITY(U,$J,358.3,15260,0)
- ;;=S61.312A^^85^813^57
- ;;^UTILITY(U,$J,358.3,15260,1,0)
+ ;;^UTILITY(U,$J,358.3,15529,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,15529,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,15529,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,15530,0)
+ ;;=Z62.811^^58^672^10
+ ;;^UTILITY(U,$J,358.3,15530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15260,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15260,1,4,0)
- ;;=4^S61.312A
- ;;^UTILITY(U,$J,358.3,15260,2)
- ;;=^5032912
- ;;^UTILITY(U,$J,358.3,15261,0)
- ;;=S61.212A^^85^813^58
- ;;^UTILITY(U,$J,358.3,15261,1,0)
+ ;;^UTILITY(U,$J,358.3,15530,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,15530,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,15530,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,15531,0)
+ ;;=Z62.812^^58^672^8
+ ;;^UTILITY(U,$J,358.3,15531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15261,1,3,0)
- ;;=3^Laceration w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15261,1,4,0)
- ;;=4^S61.212A
- ;;^UTILITY(U,$J,358.3,15261,2)
- ;;=^5032777
- ;;^UTILITY(U,$J,358.3,15262,0)
- ;;=S61.314A^^85^813^59
- ;;^UTILITY(U,$J,358.3,15262,1,0)
+ ;;^UTILITY(U,$J,358.3,15531,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,15531,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,15531,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,15532,0)
+ ;;=Z62.810^^58^672^9
+ ;;^UTILITY(U,$J,358.3,15532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15262,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15262,1,4,0)
- ;;=4^S61.314A
- ;;^UTILITY(U,$J,358.3,15262,2)
- ;;=^5032918
- ;;^UTILITY(U,$J,358.3,15263,0)
- ;;=S61.214A^^85^813^60
- ;;^UTILITY(U,$J,358.3,15263,1,0)
+ ;;^UTILITY(U,$J,358.3,15532,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,15532,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,15532,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,15533,0)
+ ;;=Z91.83^^58^672^16
+ ;;^UTILITY(U,$J,358.3,15533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15263,1,3,0)
- ;;=3^Laceration w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15263,1,4,0)
- ;;=4^S61.214A
- ;;^UTILITY(U,$J,358.3,15263,2)
- ;;=^5032783
- ;;^UTILITY(U,$J,358.3,15264,0)
- ;;=S41.011A^^85^813^61
- ;;^UTILITY(U,$J,358.3,15264,1,0)
+ ;;^UTILITY(U,$J,358.3,15533,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,15533,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,15533,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,15534,0)
+ ;;=F90.0^^58^673^3
+ ;;^UTILITY(U,$J,358.3,15534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15264,1,3,0)
- ;;=3^Laceration w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,15264,1,4,0)
- ;;=4^S41.011A
- ;;^UTILITY(U,$J,358.3,15264,2)
- ;;=^5026297
- ;;^UTILITY(U,$J,358.3,15265,0)
- ;;=S61.111A^^85^813^63
- ;;^UTILITY(U,$J,358.3,15265,1,0)
+ ;;^UTILITY(U,$J,358.3,15534,1,3,0)
+ ;;=3^ADHD,Inattentive Type
+ ;;^UTILITY(U,$J,358.3,15534,1,4,0)
+ ;;=4^F90.0
+ ;;^UTILITY(U,$J,358.3,15534,2)
+ ;;=^5003692
+ ;;^UTILITY(U,$J,358.3,15535,0)
+ ;;=F90.2^^58^673^1
+ ;;^UTILITY(U,$J,358.3,15535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15265,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15265,1,4,0)
- ;;=4^S61.111A
- ;;^UTILITY(U,$J,358.3,15265,2)
- ;;=^5032726
- ;;^UTILITY(U,$J,358.3,15266,0)
- ;;=S61.011A^^85^813^64
- ;;^UTILITY(U,$J,358.3,15266,1,0)
+ ;;^UTILITY(U,$J,358.3,15535,1,3,0)
+ ;;=3^ADHD,Combined Type
+ ;;^UTILITY(U,$J,358.3,15535,1,4,0)
+ ;;=4^F90.2
+ ;;^UTILITY(U,$J,358.3,15535,2)
+ ;;=^5003694
+ ;;^UTILITY(U,$J,358.3,15536,0)
+ ;;=F90.1^^58^673^2
+ ;;^UTILITY(U,$J,358.3,15536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15266,1,3,0)
- ;;=3^Laceration w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15266,1,4,0)
- ;;=4^S61.011A
- ;;^UTILITY(U,$J,358.3,15266,2)
- ;;=^5032690
- ;;^UTILITY(U,$J,358.3,15267,0)
- ;;=S61.511A^^85^813^65
+ ;;^UTILITY(U,$J,358.3,15536,1,3,0)
+ ;;=3^ADHD,Hyperactive/Impulsive Type
+ ;;^UTILITY(U,$J,358.3,15536,1,4,0)
+ ;;=4^F90.1
+ ;;^UTILITY(U,$J,358.3,15536,2)
+ ;;=^5003693
+ ;;^UTILITY(U,$J,358.3,15537,0)
+ ;;=F90.8^^58^673^4
+ ;;^UTILITY(U,$J,358.3,15537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15537,1,3,0)
+ ;;=3^ADHD,Other Specified
+ ;;^UTILITY(U,$J,358.3,15537,1,4,0)
+ ;;=4^F90.8
+ ;;^UTILITY(U,$J,358.3,15537,2)
+ ;;=^5003695
+ ;;^UTILITY(U,$J,358.3,15538,0)
+ ;;=F90.9^^58^673^5
+ ;;^UTILITY(U,$J,358.3,15538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15538,1,3,0)
+ ;;=3^ADHD,Unspec
+ ;;^UTILITY(U,$J,358.3,15538,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,15538,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,15539,0)
+ ;;=Z70.9^^58^674^4

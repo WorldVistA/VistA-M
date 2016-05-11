@@ -1,130 +1,134 @@
-IBDEI16V ; ; 19-NOV-2015
+IBDEI16V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19866,1,0)
+ ;;^UTILITY(U,$J,358.3,20215,0)
+ ;;=Z91.040^^84^930^64
+ ;;^UTILITY(U,$J,358.3,20215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19866,1,3,0)
- ;;=3^Nicotine Dependence,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19866,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,19866,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,19867,0)
- ;;=F11.120^^94^930^32
- ;;^UTILITY(U,$J,358.3,19867,1,0)
+ ;;^UTILITY(U,$J,358.3,20215,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,20215,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,20215,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,20216,0)
+ ;;=Z98.89^^84^930^120
+ ;;^UTILITY(U,$J,358.3,20216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19867,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19867,1,4,0)
- ;;=4^F11.120
- ;;^UTILITY(U,$J,358.3,19867,2)
- ;;=^5003115
- ;;^UTILITY(U,$J,358.3,19868,0)
- ;;=F11.10^^94^930^34
- ;;^UTILITY(U,$J,358.3,19868,1,0)
+ ;;^UTILITY(U,$J,358.3,20216,1,3,0)
+ ;;=3^Postprocedural States/Hx of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,20216,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,20216,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,20217,0)
+ ;;=Z92.3^^84^930^79
+ ;;^UTILITY(U,$J,358.3,20217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19868,1,3,0)
- ;;=3^Opioid Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19868,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,19868,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,19869,0)
- ;;=F11.129^^94^930^33
- ;;^UTILITY(U,$J,358.3,19869,1,0)
+ ;;^UTILITY(U,$J,358.3,20217,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,20217,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,20217,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,20218,0)
+ ;;=Z91.120^^84^930^60
+ ;;^UTILITY(U,$J,358.3,20218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19869,1,3,0)
- ;;=3^Opioid Abuse w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,19869,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,19869,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,19870,0)
- ;;=F10.21^^94^930^3
- ;;^UTILITY(U,$J,358.3,19870,1,0)
+ ;;^UTILITY(U,$J,358.3,20218,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,20218,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,20218,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,20219,0)
+ ;;=Z91.11^^84^930^69
+ ;;^UTILITY(U,$J,358.3,20219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19870,1,3,0)
- ;;=3^Alcohol Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,19870,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,19870,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,19871,0)
- ;;=F12.10^^94^930^5
- ;;^UTILITY(U,$J,358.3,19871,1,0)
+ ;;^UTILITY(U,$J,358.3,20219,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,20219,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,20219,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,20220,0)
+ ;;=Z87.891^^84^930^103
+ ;;^UTILITY(U,$J,358.3,20220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19871,1,3,0)
- ;;=3^Cannabis Abuse,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19871,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,19871,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,19872,0)
- ;;=F12.20^^94^930^7
- ;;^UTILITY(U,$J,358.3,19872,1,0)
+ ;;^UTILITY(U,$J,358.3,20220,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,20220,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,20220,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,20221,0)
+ ;;=Z77.090^^84^930^11
+ ;;^UTILITY(U,$J,358.3,20221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19872,1,3,0)
- ;;=3^Cannabis Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19872,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,19872,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,19873,0)
- ;;=F12.21^^94^930^6
- ;;^UTILITY(U,$J,358.3,19873,1,0)
+ ;;^UTILITY(U,$J,358.3,20221,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20221,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,20221,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,20222,0)
+ ;;=Z57.8^^84^930^72
+ ;;^UTILITY(U,$J,358.3,20222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19873,1,3,0)
- ;;=3^Cannabis Dependence,In Remission
- ;;^UTILITY(U,$J,358.3,19873,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,19873,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,19874,0)
- ;;=F12.90^^94^930^8
- ;;^UTILITY(U,$J,358.3,19874,1,0)
+ ;;^UTILITY(U,$J,358.3,20222,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,20222,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,20222,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,20223,0)
+ ;;=Z77.21^^84^930^53
+ ;;^UTILITY(U,$J,358.3,20223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19874,1,3,0)
- ;;=3^Cannabis Use,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19874,1,4,0)
- ;;=4^F12.90
- ;;^UTILITY(U,$J,358.3,19874,2)
- ;;=^5003178
- ;;^UTILITY(U,$J,358.3,19875,0)
- ;;=I83.019^^94^931^3
- ;;^UTILITY(U,$J,358.3,19875,1,0)
+ ;;^UTILITY(U,$J,358.3,20223,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20223,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,20223,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,20224,0)
+ ;;=Z91.81^^84^930^57
+ ;;^UTILITY(U,$J,358.3,20224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19875,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,19875,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,19875,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,19876,0)
- ;;=I83.219^^94^931^4
- ;;^UTILITY(U,$J,358.3,19876,1,0)
+ ;;^UTILITY(U,$J,358.3,20224,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,20224,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,20224,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,20225,0)
+ ;;=Z91.89^^84^930^118
+ ;;^UTILITY(U,$J,358.3,20225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19876,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,19876,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,19876,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,19877,0)
- ;;=I83.029^^94^931^1
- ;;^UTILITY(U,$J,358.3,19877,1,0)
+ ;;^UTILITY(U,$J,358.3,20225,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,20225,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,20225,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,20226,0)
+ ;;=Z92.89^^84^930^106
+ ;;^UTILITY(U,$J,358.3,20226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19877,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
- ;;^UTILITY(U,$J,358.3,19877,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,19877,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,19878,0)
- ;;=I83.229^^94^931^2
- ;;^UTILITY(U,$J,358.3,19878,1,0)
+ ;;^UTILITY(U,$J,358.3,20226,1,3,0)
+ ;;=3^Personal Hx of Other Medical Treatment
+ ;;^UTILITY(U,$J,358.3,20226,1,4,0)
+ ;;=4^Z92.89
+ ;;^UTILITY(U,$J,358.3,20226,2)
+ ;;=^5063641
+ ;;^UTILITY(U,$J,358.3,20227,0)
+ ;;=Z77.110^^84^930^9
+ ;;^UTILITY(U,$J,358.3,20227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19878,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
- ;;^UTILITY(U,$J,358.3,19878,1,4,0)
- ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,20227,1,3,0)
+ ;;=3^Air Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20227,1,4,0)
+ ;;=4^Z77.110
+ ;;^UTILITY(U,$J,358.3,20227,2)
+ ;;=^5063314

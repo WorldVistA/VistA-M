@@ -1,136 +1,140 @@
-IBDEI0FC ; ; 19-NOV-2015
+IBDEI0FC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6760,1,0)
+ ;;^UTILITY(U,$J,358.3,7073,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,7073,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,7073,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,7074,0)
+ ;;=M70.21^^30^402^64
+ ;;^UTILITY(U,$J,358.3,7074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6760,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 80-89% Body Surface
- ;;^UTILITY(U,$J,358.3,6760,1,4,0)
- ;;=4^L49.8
- ;;^UTILITY(U,$J,358.3,6760,2)
- ;;=^5009198
- ;;^UTILITY(U,$J,358.3,6761,0)
- ;;=L49.9^^46^447^25
- ;;^UTILITY(U,$J,358.3,6761,1,0)
+ ;;^UTILITY(U,$J,358.3,7074,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,7074,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,7074,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,7075,0)
+ ;;=M70.22^^30^402^63
+ ;;^UTILITY(U,$J,358.3,7075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6761,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
- ;;^UTILITY(U,$J,358.3,6761,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,6761,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,6762,0)
- ;;=Z65.5^^46^447^26
- ;;^UTILITY(U,$J,358.3,6762,1,0)
+ ;;^UTILITY(U,$J,358.3,7075,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,7075,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,7075,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,7076,0)
+ ;;=M71.161^^30^402^47
+ ;;^UTILITY(U,$J,358.3,7076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6762,1,3,0)
- ;;=3^Exposure to Disaster/War/Hostilities
- ;;^UTILITY(U,$J,358.3,6762,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,6762,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,6763,0)
- ;;=Z77.22^^46^447^27
- ;;^UTILITY(U,$J,358.3,6763,1,0)
+ ;;^UTILITY(U,$J,358.3,7076,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,7076,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,7076,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,7077,0)
+ ;;=M71.162^^30^402^46
+ ;;^UTILITY(U,$J,358.3,7077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6763,1,3,0)
- ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
- ;;^UTILITY(U,$J,358.3,6763,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,6763,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,6764,0)
- ;;=L30.9^^46^447^5
- ;;^UTILITY(U,$J,358.3,6764,1,0)
+ ;;^UTILITY(U,$J,358.3,7077,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,7077,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,7077,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,7078,0)
+ ;;=M72.0^^30^402^108
+ ;;^UTILITY(U,$J,358.3,7078,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6764,1,3,0)
- ;;=3^Eczema,Unspec
- ;;^UTILITY(U,$J,358.3,6764,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,6764,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,6765,0)
- ;;=L23.9^^46^447^2
- ;;^UTILITY(U,$J,358.3,6765,1,0)
+ ;;^UTILITY(U,$J,358.3,7078,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,7078,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,7078,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,7079,0)
+ ;;=M75.111^^30^402^152
+ ;;^UTILITY(U,$J,358.3,7079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6765,1,3,0)
- ;;=3^Eczema,Allergic Contact,Unspec
- ;;^UTILITY(U,$J,358.3,6765,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,6765,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,6766,0)
- ;;=L20.82^^46^447^3
- ;;^UTILITY(U,$J,358.3,6766,1,0)
+ ;;^UTILITY(U,$J,358.3,7079,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7079,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,7079,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,7080,0)
+ ;;=M75.112^^30^402^151
+ ;;^UTILITY(U,$J,358.3,7080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6766,1,3,0)
- ;;=3^Eczema,Flexural
- ;;^UTILITY(U,$J,358.3,6766,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,6766,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,6767,0)
- ;;=L20.84^^46^447^4
- ;;^UTILITY(U,$J,358.3,6767,1,0)
+ ;;^UTILITY(U,$J,358.3,7080,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7080,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,7080,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,7081,0)
+ ;;=M75.51^^30^402^10
+ ;;^UTILITY(U,$J,358.3,7081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6767,1,3,0)
- ;;=3^Eczema,Intrinsic
- ;;^UTILITY(U,$J,358.3,6767,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,6767,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,6768,0)
- ;;=L51.8^^46^447^10
- ;;^UTILITY(U,$J,358.3,6768,1,0)
+ ;;^UTILITY(U,$J,358.3,7081,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7081,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,7081,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,7082,0)
+ ;;=M75.52^^30^402^9
+ ;;^UTILITY(U,$J,358.3,7082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6768,1,3,0)
- ;;=3^Erythema Multiforme,Other
- ;;^UTILITY(U,$J,358.3,6768,1,4,0)
- ;;=4^L51.8
- ;;^UTILITY(U,$J,358.3,6768,2)
- ;;=^336639
- ;;^UTILITY(U,$J,358.3,6769,0)
- ;;=R23.4^^46^447^14
- ;;^UTILITY(U,$J,358.3,6769,1,0)
+ ;;^UTILITY(U,$J,358.3,7082,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7082,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,7082,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,7083,0)
+ ;;=M77.11^^30^402^54
+ ;;^UTILITY(U,$J,358.3,7083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6769,1,3,0)
- ;;=3^Eschar/Desquamination of Skin
- ;;^UTILITY(U,$J,358.3,6769,1,4,0)
- ;;=4^R23.4
- ;;^UTILITY(U,$J,358.3,6769,2)
- ;;=^5019296
- ;;^UTILITY(U,$J,358.3,6770,0)
- ;;=L49.9^^46^447^23
- ;;^UTILITY(U,$J,358.3,6770,1,0)
+ ;;^UTILITY(U,$J,358.3,7083,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,7083,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,7083,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,7084,0)
+ ;;=M77.12^^30^402^53
+ ;;^UTILITY(U,$J,358.3,7084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6770,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
- ;;^UTILITY(U,$J,358.3,6770,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,6770,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,6771,0)
- ;;=L74.9^^46^447^1
- ;;^UTILITY(U,$J,358.3,6771,1,0)
+ ;;^UTILITY(U,$J,358.3,7084,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,7084,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,7084,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,7085,0)
+ ;;=M79.1^^30^402^61
+ ;;^UTILITY(U,$J,358.3,7085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6771,1,3,0)
- ;;=3^Eccrine Sweat Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,6771,1,4,0)
- ;;=4^L74.9
- ;;^UTILITY(U,$J,358.3,6771,2)
- ;;=^5009296
- ;;^UTILITY(U,$J,358.3,6772,0)
- ;;=L92.3^^46^448^1
- ;;^UTILITY(U,$J,358.3,6772,1,0)
+ ;;^UTILITY(U,$J,358.3,7085,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,7085,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,7085,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,7086,0)
+ ;;=M79.7^^30^402^39
+ ;;^UTILITY(U,$J,358.3,7086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6772,1,3,0)
- ;;=3^FB Granuloma Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,6772,1,4,0)
- ;;=4^L92.3
- ;;^UTILITY(U,$J,358.3,6772,2)
- ;;=^5009464
- ;;^UTILITY(U,$J,358.3,6773,0)
- ;;=L66.2^^46^448^2
- ;;^UTILITY(U,$J,358.3,6773,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7086,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,7086,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,7086,2)
+ ;;=^46261

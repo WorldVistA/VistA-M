@@ -1,5 +1,6 @@
-IBJDI41 ;ALB/CPM - PATIENTS WITH UNIDENTIFIED INSURANCE (CONT'D) ; 17-DEC-96
- ;;2.0;INTEGRATED BILLING;**98,100,118**;21-MAR-94
+IBJDI41 ;ALB/CPM - PATIENTS WITH UNIDENTIFIED INSURANCE (CONT'D) ;17-DEC-96
+ ;;2.0;INTEGRATED BILLING;**98,100,118,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Entry point from IBJDI4.
  ;
@@ -55,6 +56,7 @@ PRT ; - Print the reports.
  S IBQ=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
  S IBDIV="" F  S IBDIV=$O(IB(IBDIV)) Q:IBDIV=""  D  Q:IBQ
  .I IBRPT="D" D DET
+ .I IBOUT="E" D EXCSUM,PAUSE Q
  .I 'IBQ D SUM,PAUSE
  ;
 ENQ Q
@@ -127,9 +129,11 @@ DET ; - Print the detailed report.
  I IBSEL'=0 F X=1:1 S IBX=$P(IBSEL,",",X) Q:IBX=""  D
  .I '$D(^TMP("IBJDI42",$J,IBDIV,IBX)) S IBPAG=0 D HDET W !!,"There were no ",$$TITLE^IBJDI4(IBX)," during this period."
  ;
+ I IBOUT="E" D EXCHDR
  S IBX="" F  S IBX=$O(^TMP("IBJDI42",$J,IBDIV,IBX)) Q:IBX=""  D  Q:IBQ
- .S IBPAG=0 D HDET Q:IBQ
+ .I IBOUT="R" S IBPAG=0 D HDET Q:IBQ
  .S IBX1="" F  S IBX1=$O(^TMP("IBJDI42",$J,IBDIV,IBX,IBX1)) Q:IBX1=""  S IBX2=^(IBX1) D  Q:IBQ
+ ..I IBOUT="E" D EXCOUT Q
  ..I $Y>(IOSL-3) D PAUSE Q:IBQ  D HDET Q:IBQ
  ..W $P(IBX1,"@@"),?27,$$SSN($P(IBX2,U)),?41,$E($P(IBX2,U,2),1,15),?58,$P(IBX2,U,3)
  ..S IBELIG=$P(IBX2,U,4) W ?80,$$ELIG(+IBELIG)
@@ -142,6 +146,15 @@ DET ; - Print the detailed report.
 DETQ I 'IBQ D PAUSE
  Q
  ;
+EXCOUT ; OUTPUT EXCEL FORMAT
+ W !,$P(IBX1,"@@")_U_$$SSN($P(IBX2,U))_U_$E($P(IBX2,U,2),1,15)_U_$P(IBX2,U,3)_U
+ S IBELIG=$P(IBX2,U,4) W $$ELIG(+IBELIG)_U
+ S IBINSC=$P(IBX2,U,5) W $$INSC(+IBINSC)_U_$P(IBX2,U,6)_U
+ I IBRMK,$P(IBX2,U,7)]"" W $P(IBX2,U,7)_U
+ F X=2:1 Q:'$P(IBELIG,";",X)&('$P(IBINSC,";",X))  D
+ .W $$ELIG($P(IBELIG,";",X))_U_$$INSC($P(IBINSC,";",X))
+ Q
+ ;
 HDET ; - Write the detail report header.
  W @IOF,*13 S IBPAG=$G(IBPAG)+1
  W !,$$TITLE^IBJDI4(IBX),$S(IBDIV'="ALL":" for "_IBDIV,1:""),?80,"Run Date: ",IBRUN,?123,"Page: ",IBPAG
@@ -150,6 +163,13 @@ HDET ; - Write the detail report header.
  W !,"Patient",?27,"SSN",?41,"Phone Number",?58,"Phone Number",?80,"Eligibility",?102,"Insurance",?125,"Death"
  W !,$$DASH(132),!!
  S IBQ=$$STOP^IBOUTL("Patients with Unidentified Insurance Report")
+ Q
+ ;
+EXCHDR ; Write the excel header.
+ W !,$$TITLE^IBJDI4(IBX),$S(IBDIV'="ALL":" for "_IBDIV,1:"")
+ W !,"Run Date: ",IBRUN
+ W !,"Patients treated in the period "_$$DAT1^IBOUTL(IBBDT)_" to "_$$DAT1^IBOUTL(IBEDT),"   NOTE: *=Had inpatient care, +=Billable insurance"
+ W !,"Patient"_U_"SSN"_U_"Home Phone Number"_U_"Work Phone Number"_U_"Eligibility"_U_"Insurance"_U_"Date of Death"
  Q
  ;
 SUM ; - Print the summary report.
@@ -187,6 +207,45 @@ SUM ; - Print the summary report.
  W !?7,"Number of Patients with Unknown Insurance:",?50,$J(IB(IBDIV,"UNK"),5)," (",IBPER(14),"%)"
  W !," No. of Patients w/Insurance Question Unanswered:",?50,$J(IB(IBDIV,"NULL"),5)," (",IBPER(15),"%)"
  W !?21,"Number of Deceased Patients:",?50,$J(IB(IBDIV,"DEC"),5)," (",IBPER(16),"%)"
+ W !!," *(% from patients treated-% from patients with insurance)"
+ W !,"**(% from patients treated-% from patients w/ins-% from patients w/billable ins)"
+ Q
+ ;
+EXCSUM ; - Print the summary report in excel format.
+ W @IOF,*13 S IBPAG=$G(IBPAG)+1
+ W !!,"PATIENT INSURANCE STATISTICS",!
+ I IBDIV'="ALL" W ?(61-$L(IBDIV))\2,"SUMMARY REPORT for ",IBDIV
+ E  W ?33,"SUMMARY REPORT"
+ W !!,"Patients treated from ",$$DAT1^IBOUTL(IBBDT)," - ",$$DAT1^IBOUTL(IBEDT)
+ W !!,"Run Date: ",IBRUN,!?20,$$DASH(40),!!
+ ;
+ S IBPER(1)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"YES")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(2)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"BILL")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(3)=$J($S('IB(IBDIV,"YES"):0,1:IB(IBDIV,"BILL")/IB(IBDIV,"YES")*100),0,2)
+ S IBPER(4)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"HMO")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(5)=$J($S('IB(IBDIV,"YES"):0,1:IB(IBDIV,"HMO")/IB(IBDIV,"YES")*100),0,2)
+ S IBPER(6)=$J($S('IB(IBDIV,"BILL"):0,1:IB(IBDIV,"HMO")/IB(IBDIV,"BILL")*100),0,2)
+ S IBPER(7)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"MEDC")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(8)=$J($S('IB(IBDIV,"YES"):0,1:IB(IBDIV,"MEDC")/IB(IBDIV,"YES")*100),0,2)
+ S IBPER(9)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"MEDG")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(10)=$J($S('IB(IBDIV,"YES"):0,1:IB(IBDIV,"MEDG")/IB(IBDIV,"YES")*100),0,2)
+ S IBPER(11)=$J($S('IB(IBDIV,"BILL"):0,1:IB(IBDIV,"MEDG")/IB(IBDIV,"BILL")*100),0,2)
+ S IBPER(12)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"IND")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(13)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"NO")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(14)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"UNK")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(15)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"NULL")/IB(IBDIV,"TOT")*100),0,2)
+ S IBPER(16)=$J($S('IB(IBDIV,"TOT"):0,1:IB(IBDIV,"DEC")/IB(IBDIV,"TOT")*100),0,2)
+ W "Number of Patients Treated:"_U_$J(IB(IBDIV,"TOT"),5)
+ W !,"Number of Patients Covered by Insurance:"_U_$J(IB(IBDIV,"YES"),5)," (",IBPER(1),"%)"
+ W !,"No. of Patients Covered by Billable Insurance:"_U_$J(IB(IBDIV,"BILL"),5)," (",IBPER(2),"%-",IBPER(3),"%)*"
+ W !,"Number of Patients Covered by an HMO:"_U_$J(IB(IBDIV,"HMO"),5)," (",IBPER(4),"%-",IBPER(5),"%-",IBPER(6),"%)**"
+ W !,"Number of Patients Covered by Medicare:"_U_$J(IB(IBDIV,"MEDC"),5)," (",IBPER(7),"%-",IBPER(8),"%)*"
+ W !,"Number of Patients Covered by Medigap:"_U_$J(IB(IBDIV,"MEDG"),5)," (",IBPER(9),"%-",IBPER(10),"%-",IBPER(11),"%)**"
+ W !,"No. of Patients Covered by an Indemnity Policy:"_U_$J(IB(IBDIV,"IND"),5)," (",IBPER(12),"%)"
+ W !,"Number of Patients Not Covered by Insurance:"_U_$J(IB(IBDIV,"NO"),5)," (",IBPER(13),"%)"
+ W !,"Number of Patients with Unknown Insurance:"_U_$J(IB(IBDIV,"UNK"),5)," (",IBPER(14),"%)"
+ W !,"No. of Patients w/Insurance Question Unanswered:"_U_$J(IB(IBDIV,"NULL"),5)," (",IBPER(15),"%)"
+ W !,"Number of Deceased Patients:"_U_$J(IB(IBDIV,"DEC"),5)," (",IBPER(16),"%)"
  W !!," *(% from patients treated-% from patients with insurance)"
  W !,"**(% from patients treated-% from patients w/ins-% from patients w/billable ins)"
  Q

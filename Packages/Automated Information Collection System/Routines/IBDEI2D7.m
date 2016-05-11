@@ -1,126 +1,124 @@
-IBDEI2D7 ; ; 19-NOV-2015
+IBDEI2D7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39707,1,0)
+ ;;^UTILITY(U,$J,358.3,40102,1,4,0)
+ ;;=4^C83.58
+ ;;^UTILITY(U,$J,358.3,40102,2)
+ ;;=^5001589
+ ;;^UTILITY(U,$J,358.3,40103,0)
+ ;;=C83.78^^156^1952^15
+ ;;^UTILITY(U,$J,358.3,40103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39707,1,3,0)
- ;;=3^Rheumatoid bursitis, right knee
- ;;^UTILITY(U,$J,358.3,39707,1,4,0)
- ;;=4^M06.261
- ;;^UTILITY(U,$J,358.3,39707,2)
- ;;=^5010088
- ;;^UTILITY(U,$J,358.3,39708,0)
- ;;=M06.211^^183^2029^47
- ;;^UTILITY(U,$J,358.3,39708,1,0)
+ ;;^UTILITY(U,$J,358.3,40103,1,3,0)
+ ;;=3^Burkitt lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,40103,1,4,0)
+ ;;=4^C83.78
+ ;;^UTILITY(U,$J,358.3,40103,2)
+ ;;=^5001599
+ ;;^UTILITY(U,$J,358.3,40104,0)
+ ;;=C83.18^^156^1952^35
+ ;;^UTILITY(U,$J,358.3,40104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39708,1,3,0)
- ;;=3^Rheumatoid bursitis, right shoulder
- ;;^UTILITY(U,$J,358.3,39708,1,4,0)
- ;;=4^M06.211
- ;;^UTILITY(U,$J,358.3,39708,2)
- ;;=^5010073
- ;;^UTILITY(U,$J,358.3,39709,0)
- ;;=M06.231^^183^2029^48
- ;;^UTILITY(U,$J,358.3,39709,1,0)
+ ;;^UTILITY(U,$J,358.3,40104,1,3,0)
+ ;;=3^Mantle cell lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,40104,1,4,0)
+ ;;=4^C83.18
+ ;;^UTILITY(U,$J,358.3,40104,2)
+ ;;=^5001569
+ ;;^UTILITY(U,$J,358.3,40105,0)
+ ;;=C83.38^^156^1952^23
+ ;;^UTILITY(U,$J,358.3,40105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39709,1,3,0)
- ;;=3^Rheumatoid bursitis, right wrist
- ;;^UTILITY(U,$J,358.3,39709,1,4,0)
- ;;=4^M06.231
- ;;^UTILITY(U,$J,358.3,39709,2)
- ;;=^5010079
- ;;^UTILITY(U,$J,358.3,39710,0)
- ;;=M06.28^^183^2029^49
- ;;^UTILITY(U,$J,358.3,39710,1,0)
+ ;;^UTILITY(U,$J,358.3,40105,1,3,0)
+ ;;=3^Diffuse large B-cell lymphoma, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,40105,1,4,0)
+ ;;=4^C83.38
+ ;;^UTILITY(U,$J,358.3,40105,2)
+ ;;=^5001579
+ ;;^UTILITY(U,$J,358.3,40106,0)
+ ;;=C84.68^^156^1952^12
+ ;;^UTILITY(U,$J,358.3,40106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39710,1,3,0)
- ;;=3^Rheumatoid bursitis, vertebrae
- ;;^UTILITY(U,$J,358.3,39710,1,4,0)
- ;;=4^M06.28
- ;;^UTILITY(U,$J,358.3,39710,2)
- ;;=^5010094
- ;;^UTILITY(U,$J,358.3,39711,0)
- ;;=M05.472^^183^2029^50
- ;;^UTILITY(U,$J,358.3,39711,1,0)
+ ;;^UTILITY(U,$J,358.3,40106,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-pos, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40106,1,4,0)
+ ;;=4^C84.68
+ ;;^UTILITY(U,$J,358.3,40106,2)
+ ;;=^5001659
+ ;;^UTILITY(U,$J,358.3,40107,0)
+ ;;=C84.78^^156^1952^11
+ ;;^UTILITY(U,$J,358.3,40107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39711,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left ank/ft
- ;;^UTILITY(U,$J,358.3,39711,1,4,0)
- ;;=4^M05.472
- ;;^UTILITY(U,$J,358.3,39711,2)
- ;;=^5009951
- ;;^UTILITY(U,$J,358.3,39712,0)
- ;;=M05.422^^183^2029^51
- ;;^UTILITY(U,$J,358.3,39712,1,0)
+ ;;^UTILITY(U,$J,358.3,40107,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-neg, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40107,1,4,0)
+ ;;=4^C84.78
+ ;;^UTILITY(U,$J,358.3,40107,2)
+ ;;=^5001669
+ ;;^UTILITY(U,$J,358.3,40108,0)
+ ;;=C81.08^^156^1952^43
+ ;;^UTILITY(U,$J,358.3,40108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39712,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left elbow
- ;;^UTILITY(U,$J,358.3,39712,1,4,0)
- ;;=4^M05.422
- ;;^UTILITY(U,$J,358.3,39712,2)
- ;;=^5009936
- ;;^UTILITY(U,$J,358.3,39713,0)
- ;;=M05.442^^183^2029^52
- ;;^UTILITY(U,$J,358.3,39713,1,0)
+ ;;^UTILITY(U,$J,358.3,40108,1,3,0)
+ ;;=3^Nodular lymphocyte predom Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40108,1,4,0)
+ ;;=4^C81.08
+ ;;^UTILITY(U,$J,358.3,40108,2)
+ ;;=^5001399
+ ;;^UTILITY(U,$J,358.3,40109,0)
+ ;;=C81.48^^156^1952^28
+ ;;^UTILITY(U,$J,358.3,40109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39713,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left hand
- ;;^UTILITY(U,$J,358.3,39713,1,4,0)
- ;;=4^M05.442
- ;;^UTILITY(U,$J,358.3,39713,2)
- ;;=^5009942
- ;;^UTILITY(U,$J,358.3,39714,0)
- ;;=M05.452^^183^2029^53
- ;;^UTILITY(U,$J,358.3,39714,1,0)
+ ;;^UTILITY(U,$J,358.3,40109,1,3,0)
+ ;;=3^Lymp-rich classical Hodgkin lymphoma, lymph nodes mult site
+ ;;^UTILITY(U,$J,358.3,40109,1,4,0)
+ ;;=4^C81.48
+ ;;^UTILITY(U,$J,358.3,40109,2)
+ ;;=^5001439
+ ;;^UTILITY(U,$J,358.3,40110,0)
+ ;;=C81.18^^156^1952^44
+ ;;^UTILITY(U,$J,358.3,40110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39714,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left hip
- ;;^UTILITY(U,$J,358.3,39714,1,4,0)
- ;;=4^M05.452
- ;;^UTILITY(U,$J,358.3,39714,2)
- ;;=^5009945
- ;;^UTILITY(U,$J,358.3,39715,0)
- ;;=M05.462^^183^2029^54
- ;;^UTILITY(U,$J,358.3,39715,1,0)
+ ;;^UTILITY(U,$J,358.3,40110,1,3,0)
+ ;;=3^Nodular sclerosis class Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40110,1,4,0)
+ ;;=4^C81.18
+ ;;^UTILITY(U,$J,358.3,40110,2)
+ ;;=^5001409
+ ;;^UTILITY(U,$J,358.3,40111,0)
+ ;;=C81.28^^156^1952^36
+ ;;^UTILITY(U,$J,358.3,40111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39715,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left knee
- ;;^UTILITY(U,$J,358.3,39715,1,4,0)
- ;;=4^M05.462
- ;;^UTILITY(U,$J,358.3,39715,2)
- ;;=^5009948
- ;;^UTILITY(U,$J,358.3,39716,0)
- ;;=M05.412^^183^2029^55
- ;;^UTILITY(U,$J,358.3,39716,1,0)
+ ;;^UTILITY(U,$J,358.3,40111,1,3,0)
+ ;;=3^Mixed cellular classical Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40111,1,4,0)
+ ;;=4^C81.28
+ ;;^UTILITY(U,$J,358.3,40111,2)
+ ;;=^5001419
+ ;;^UTILITY(U,$J,358.3,40112,0)
+ ;;=C81.38^^156^1952^30
+ ;;^UTILITY(U,$J,358.3,40112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39716,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left shoulder
- ;;^UTILITY(U,$J,358.3,39716,1,4,0)
- ;;=4^M05.412
- ;;^UTILITY(U,$J,358.3,39716,2)
- ;;=^5009933
- ;;^UTILITY(U,$J,358.3,39717,0)
- ;;=M05.432^^183^2029^56
- ;;^UTILITY(U,$J,358.3,39717,1,0)
+ ;;^UTILITY(U,$J,358.3,40112,1,3,0)
+ ;;=3^Lymphocy depleted class Hodgkin lymphoma, nodes mult site
+ ;;^UTILITY(U,$J,358.3,40112,1,4,0)
+ ;;=4^C81.38
+ ;;^UTILITY(U,$J,358.3,40112,2)
+ ;;=^5001429
+ ;;^UTILITY(U,$J,358.3,40113,0)
+ ;;=C82.98^^156^1952^26
+ ;;^UTILITY(U,$J,358.3,40113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39717,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of left wrist
- ;;^UTILITY(U,$J,358.3,39717,1,4,0)
- ;;=4^M05.432
- ;;^UTILITY(U,$J,358.3,39717,2)
- ;;=^5009939
- ;;^UTILITY(U,$J,358.3,39718,0)
- ;;=M05.49^^183^2029^57
- ;;^UTILITY(U,$J,358.3,39718,1,0)
+ ;;^UTILITY(U,$J,358.3,40113,1,3,0)
+ ;;=3^Follicular lymphoma, unsp, lymph nodes of multiple sites
+ ;;^UTILITY(U,$J,358.3,40113,1,4,0)
+ ;;=4^C82.98
+ ;;^UTILITY(U,$J,358.3,40113,2)
+ ;;=^5001549
+ ;;^UTILITY(U,$J,358.3,40114,0)
+ ;;=C84.08^^156^1952^42
+ ;;^UTILITY(U,$J,358.3,40114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39718,1,3,0)
- ;;=3^Rheumatoid myopathy w rheumatoid arthritis of multiple sites
- ;;^UTILITY(U,$J,358.3,39718,1,4,0)
- ;;=4^M05.49
- ;;^UTILITY(U,$J,358.3,39718,2)
- ;;=^5009953
- ;;^UTILITY(U,$J,358.3,39719,0)
- ;;=M05.471^^183^2029^58
- ;;^UTILITY(U,$J,358.3,39719,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40114,1,3,0)
+ ;;=3^Mycosis fungoides, lymph nodes of multiple sites

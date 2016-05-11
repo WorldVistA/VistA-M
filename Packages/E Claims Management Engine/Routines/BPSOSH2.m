@@ -1,36 +1,40 @@
 BPSOSH2 ;BHAM ISC/SD/lwj/DLF - Assemble formatted claim ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ; Changes for NCPDP 5.1
- ;    5.1 has 14 claim segments (header, patient, insurance, claim
- ;                                pharmacy provider, prescriber,
- ;                                COB, workers comp, DUR, Pricing,
- ;                                coupon, compound, prior auth,
- ;                                clinical)
- ;    5.1 requires field identifiers and separators on all fields
+ ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
+ ;                                Pharmacy Provider, Prescriber,
+ ;                                COB, Workers Comp, DUR, Pricing,
+ ;                                Coupon, Compound, Prior Auth,
+ ;                                Clinical)
+ ;
+ ;    D.0 added 3 new request segments (Additional Documentation,
+ ;                                       Facility, Narrative)
+ ;
+ ;    D.1 - D.9 introduces Alphanumeric NCPDP numbers and new
+ ;                              Purchase and Provider segments
+ ;
+ ;    E.0 - E.6 added 2 new request segments (Intermediary, Last
+ ;                                             Known 4RX)
+ ;
+ ;    5.1/D.0 requires field identifiers and separators on all fields
  ;        other than the header
- ;    5.1 segment separators are required prior to each segment
+ ;    5.1/D.0 segment separators are required prior to each segment
  ;        following the header
- ;    5.1  Group separators appear at the end of each
+ ;    5.1/D.0 group separators appear at the end of each
  ;        transaction (prescription)
- ;    5.1 we only want to send segments that have data - a new
+ ;    5.1/D.0 only want to send segments that have data - a new
  ;        segment record will hold the data until we are sure
  ;        we have something to send
  ;
- ; Changes for NCPDP D.0
- ;    D.0 added 3 new request segments (additional documentation,
- ;                                      facility, narrative)
- ;
- ;
- ;Put together ascii formatted record via NCPDP Record definition
- ;
+ ; Put together ASCII formatted record per the Payer Sheet Definition
  ; Input:  
- ;   NODES  = "100^110^120" or "130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280"
- ; passed by Ref:
- ;  .IEN = Internal Entry Number array
- ;  .BPS = Formatted Data Array with claim and transaction data
- ;  .REC      - Formatted Ascii record (result)
+ ;   NODES - "100^110^120" or "130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280^290^300"
+ ; Passed by Ref:
+ ;  .IEN - Internal Entry Number array
+ ;  .BPS - Formatted Data Array with claim and transaction data
+ ;  .REC - Formatted ASCII record (result)
+ ;
 XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  ;
  N DATAFND,FDATA,FLAG,FLDDATA,FLDID,FLDIEN,FLDNUM,INDEX,MDATA,NODE,ORDER,PMODE,RECMIEN,SEGREC
@@ -44,19 +48,19 @@ XLOOP(NODES,IEN,BPS,REC) ;EP - from BPSECA1
  F INDEX=1:1:$L(NODES,U) D
  . S NODE=$P(NODES,U,INDEX) Q:NODE=""
  . ;
- . ; VA does not support these nodes
- . Q:",260,250,240,230,220,210,200,170,140,"[NODE
+ . ; VA does not support these segments
+ . Q:",300,290,280,270,260,250,240,230,220,210,200,170,140,"[NODE
  . ;
  . ; Quit if the payer sheet does not have the node
  . Q:'$D(^BPSF(9002313.92,+IEN(9002313.92),NODE,0))
  . ;
  . ; Per NCPDP standard, reversals do not support segments listed below
- . I TYPE="B2",",280,270,260,250,240,230,220,210,200,170,150,140,"[NODE Q
+ . I TYPE="B2",",300,290,280,270,260,250,240,230,220,210,200,170,150,140,"[NODE Q
  . I TYPE="B2",VER=51,NODE=160 Q  ;COB segment not supported in a 51 reversal
  . I TYPE="B2",VER="D0",NODE=110 Q  ;Patient segment not supported in a D0 reversal
  . ;
  . ; Per NCPDP standard, eligibility does not support segments listed below
- . I TYPE="E1",",280,270,260,250,230,220,210,200,190,180,170,160,130,"[NODE Q
+ . I TYPE="E1",",290,280,270,260,250,230,220,210,200,190,180,170,160,130,"[NODE Q
  . ;
  . S DATAFND=0  ; indicates if data is on the segment for us to send
  . S SEGREC=""  ; segment's information
@@ -127,18 +131,19 @@ SEGID(ND) ; function, returns Segment ID
  ; Field 111 is the Segment Identifier - for each segment, other than
  ; the header, a unique value must be sent in this field
  ; to identify which segment is being sent.  This value is not stored
- ; in the claim - as it changes with each of the 13 segments. The
+ ; in the claim - as it changes with each of the 20 segments. The
  ; field does appear as part of the NCPDP Format, but is simply not stored.
- ;    01 = Patient   02 = Pharmacy Provider    03 = Prescriber
- ;    04 = Insurance 05 = COB/Other Payment    06 = Workers' Comp
- ;    07 = Claim     08 = DUR/PPS              09 = Coupon
- ;    10 = Compound  11 = Pricing              12 = Prior Auth
- ;    13 = Clinical  14 = Additional Doc       15 = Facility
- ;    16 = Narrative 17 = Purchaser            18 = Service Provider
+ ;    01 = Patient       02 = Pharmacy Provider    03 = Prescriber
+ ;    04 = Insurance     05 = COB/Other Payment    06 = Workers' Comp
+ ;    07 = Claim         08 = DUR/PPS              09 = Coupon
+ ;    10 = Compound      11 = Pricing              12 = Prior Auth
+ ;    13 = Clinical      14 = Additional Doc       15 = Facility
+ ;    16 = Narrative     17 = Purchaser            18 = Service Provider
+ ;    19 = Intermediary  37 = Last Known 4Rx
  ;
  N FLD
  ;
- S FLD=$S(ND=110:"01",ND=120:"04",ND=130:"07",ND=140:"02",ND=150:"03",ND=160:"05",ND=170:"06",ND=180:"08",ND=190:11,ND=200:"09",ND=210:10,ND=220:12,ND=230:13,ND=240:14,ND=250:15,ND=260:16,ND=270:17,ND=280:18,1:"00")
+ S FLD=$S(ND=110:"01",ND=120:"04",ND=130:"07",ND=140:"02",ND=150:"03",ND=160:"05",ND=170:"06",ND=180:"08",ND=190:11,ND=200:"09",ND=210:10,ND=220:12,ND=230:13,ND=240:14,ND=250:15,ND=260:16,ND=270:17,ND=280:18,ND=290:19,ND=300:37,1:"00")
  S FLD="AM"_$$NFF^BPSECFM(FLD,2)
  ;
  Q FLD

@@ -1,128 +1,134 @@
-IBDEI16Q ; ; 19-NOV-2015
+IBDEI16Q ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19804,1,0)
+ ;;^UTILITY(U,$J,358.3,20150,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,20150,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,20151,0)
+ ;;=C79.51^^84^929^113
+ ;;^UTILITY(U,$J,358.3,20151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19804,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,19804,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,19804,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,19805,0)
- ;;=S66.911A^^94^929^42
- ;;^UTILITY(U,$J,358.3,19805,1,0)
+ ;;^UTILITY(U,$J,358.3,20151,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,20151,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,20151,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,20152,0)
+ ;;=C79.52^^84^929^112
+ ;;^UTILITY(U,$J,358.3,20152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19805,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,19805,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,19805,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,19806,0)
- ;;=S63.501A^^94^929^18
- ;;^UTILITY(U,$J,358.3,19806,1,0)
+ ;;^UTILITY(U,$J,358.3,20152,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,20152,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,20152,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,20153,0)
+ ;;=C79.31^^84^929^114
+ ;;^UTILITY(U,$J,358.3,20153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19806,1,3,0)
- ;;=3^Sprain of Right Wrist
- ;;^UTILITY(U,$J,358.3,19806,1,4,0)
- ;;=4^S63.501A
- ;;^UTILITY(U,$J,358.3,19806,2)
- ;;=^5035583
- ;;^UTILITY(U,$J,358.3,19807,0)
- ;;=S63.502A^^94^929^7
- ;;^UTILITY(U,$J,358.3,19807,1,0)
+ ;;^UTILITY(U,$J,358.3,20153,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,20153,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,20153,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,20154,0)
+ ;;=C79.72^^84^929^129
+ ;;^UTILITY(U,$J,358.3,20154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19807,1,3,0)
- ;;=3^Sprain of Left Wrist
- ;;^UTILITY(U,$J,358.3,19807,1,4,0)
- ;;=4^S63.502A
- ;;^UTILITY(U,$J,358.3,19807,2)
- ;;=^5035586
- ;;^UTILITY(U,$J,358.3,19808,0)
- ;;=S83.8X1A^^94^929^16
- ;;^UTILITY(U,$J,358.3,19808,1,0)
+ ;;^UTILITY(U,$J,358.3,20154,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,20154,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,20154,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,20155,0)
+ ;;=C78.02^^84^929^133
+ ;;^UTILITY(U,$J,358.3,20155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19808,1,3,0)
- ;;=3^Sprain of Right Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,19808,1,4,0)
- ;;=4^S83.8X1A
- ;;^UTILITY(U,$J,358.3,19808,2)
- ;;=^5043160
- ;;^UTILITY(U,$J,358.3,19809,0)
- ;;=S83.8X2A^^94^929^5
- ;;^UTILITY(U,$J,358.3,19809,1,0)
+ ;;^UTILITY(U,$J,358.3,20155,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,20155,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,20155,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,20156,0)
+ ;;=C78.7^^84^929^138
+ ;;^UTILITY(U,$J,358.3,20156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19809,1,3,0)
- ;;=3^Sprain of Left Knee,Oth Spec Parts
- ;;^UTILITY(U,$J,358.3,19809,1,4,0)
- ;;=4^S83.8X2A
- ;;^UTILITY(U,$J,358.3,19809,2)
- ;;=^5043163
- ;;^UTILITY(U,$J,358.3,19810,0)
- ;;=S86.211A^^94^929^47
- ;;^UTILITY(U,$J,358.3,19810,1,0)
+ ;;^UTILITY(U,$J,358.3,20156,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,20156,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,20156,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,20157,0)
+ ;;=C79.71^^84^929^151
+ ;;^UTILITY(U,$J,358.3,20157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19810,1,3,0)
- ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,19810,1,4,0)
- ;;=4^S86.211A
- ;;^UTILITY(U,$J,358.3,19810,2)
- ;;=^5043484
- ;;^UTILITY(U,$J,358.3,19811,0)
- ;;=S86.212A^^94^929^27
- ;;^UTILITY(U,$J,358.3,19811,1,0)
+ ;;^UTILITY(U,$J,358.3,20157,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,20157,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,20157,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,20158,0)
+ ;;=C78.01^^84^929^155
+ ;;^UTILITY(U,$J,358.3,20158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19811,1,3,0)
- ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,19811,1,4,0)
- ;;=4^S86.212A
- ;;^UTILITY(U,$J,358.3,19811,2)
- ;;=^5043487
- ;;^UTILITY(U,$J,358.3,19812,0)
- ;;=S86.311A^^94^929^49
- ;;^UTILITY(U,$J,358.3,19812,1,0)
+ ;;^UTILITY(U,$J,358.3,20158,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,20158,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,20158,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,20159,0)
+ ;;=C79.70^^84^929^106
+ ;;^UTILITY(U,$J,358.3,20159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19812,1,3,0)
- ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,19812,1,4,0)
- ;;=4^S86.311A
- ;;^UTILITY(U,$J,358.3,19812,2)
- ;;=^5043511
- ;;^UTILITY(U,$J,358.3,19813,0)
- ;;=S86.312A^^94^929^29
- ;;^UTILITY(U,$J,358.3,19813,1,0)
+ ;;^UTILITY(U,$J,358.3,20159,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,20159,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,20159,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,20160,0)
+ ;;=C78.00^^84^929^139
+ ;;^UTILITY(U,$J,358.3,20160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19813,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,19813,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,19813,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,19814,0)
- ;;=S86.811A^^94^929^48
- ;;^UTILITY(U,$J,358.3,19814,1,0)
+ ;;^UTILITY(U,$J,358.3,20160,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,20160,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,20160,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,20161,0)
+ ;;=D57.1^^84^929^182
+ ;;^UTILITY(U,$J,358.3,20161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19814,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,19814,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,19814,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,19815,0)
- ;;=S86.812A^^94^929^28
- ;;^UTILITY(U,$J,358.3,19815,1,0)
+ ;;^UTILITY(U,$J,358.3,20161,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,20161,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,20161,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,20162,0)
+ ;;=D75.1^^84^929^180
+ ;;^UTILITY(U,$J,358.3,20162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19815,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,19815,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,19815,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,19816,0)
- ;;=S86.111A^^94^929^50
- ;;^UTILITY(U,$J,358.3,19816,1,0)
+ ;;^UTILITY(U,$J,358.3,20162,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,20162,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,20162,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,20163,0)
+ ;;=C90.30^^84^929^183
+ ;;^UTILITY(U,$J,358.3,20163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19816,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,20163,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission

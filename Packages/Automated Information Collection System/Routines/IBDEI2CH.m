@@ -1,130 +1,136 @@
-IBDEI2CH ; ; 19-NOV-2015
+IBDEI2CH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39379,0)
- ;;=G20.^^183^2019^28
- ;;^UTILITY(U,$J,358.3,39379,1,0)
+ ;;^UTILITY(U,$J,358.3,39754,1,3,0)
+ ;;=3^Entropion Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39754,1,4,0)
+ ;;=4^H02.005
+ ;;^UTILITY(U,$J,358.3,39754,2)
+ ;;=^5133396
+ ;;^UTILITY(U,$J,358.3,39755,0)
+ ;;=H02.004^^153^1928^38
+ ;;^UTILITY(U,$J,358.3,39755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39379,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,39379,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,39379,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,39380,0)
- ;;=R56.9^^183^2019^4
- ;;^UTILITY(U,$J,358.3,39380,1,0)
+ ;;^UTILITY(U,$J,358.3,39755,1,3,0)
+ ;;=3^Entropion Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39755,1,4,0)
+ ;;=4^H02.004
+ ;;^UTILITY(U,$J,358.3,39755,2)
+ ;;=^5004276
+ ;;^UTILITY(U,$J,358.3,39756,0)
+ ;;=H02.002^^153^1928^39
+ ;;^UTILITY(U,$J,358.3,39756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39380,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,39380,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,39380,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,39381,0)
- ;;=S06.9X5S^^183^2019^15
- ;;^UTILITY(U,$J,358.3,39381,1,0)
+ ;;^UTILITY(U,$J,358.3,39756,1,3,0)
+ ;;=3^Entropion Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39756,1,4,0)
+ ;;=4^H02.002
+ ;;^UTILITY(U,$J,358.3,39756,2)
+ ;;=^5133394
+ ;;^UTILITY(U,$J,358.3,39757,0)
+ ;;=H02.001^^153^1928^40
+ ;;^UTILITY(U,$J,358.3,39757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39381,1,3,0)
- ;;=3^Intcrn injury w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,39381,1,4,0)
- ;;=4^S06.9X5S
- ;;^UTILITY(U,$J,358.3,39381,2)
- ;;=^5021223
- ;;^UTILITY(U,$J,358.3,39382,0)
- ;;=S06.9X6S^^183^2019^16
- ;;^UTILITY(U,$J,358.3,39382,1,0)
+ ;;^UTILITY(U,$J,358.3,39757,1,3,0)
+ ;;=3^Entropion Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,39757,1,4,0)
+ ;;=4^H02.001
+ ;;^UTILITY(U,$J,358.3,39757,2)
+ ;;=^5004274
+ ;;^UTILITY(U,$J,358.3,39758,0)
+ ;;=H04.202^^153^1928^41
+ ;;^UTILITY(U,$J,358.3,39758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39382,1,3,0)
- ;;=3^Intcrn injury w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,39382,1,4,0)
- ;;=4^S06.9X6S
- ;;^UTILITY(U,$J,358.3,39382,2)
- ;;=^5021226
- ;;^UTILITY(U,$J,358.3,39383,0)
- ;;=S06.9X3S^^183^2019^17
- ;;^UTILITY(U,$J,358.3,39383,1,0)
+ ;;^UTILITY(U,$J,358.3,39758,1,3,0)
+ ;;=3^Epiphora Left Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,39758,1,4,0)
+ ;;=4^H04.202
+ ;;^UTILITY(U,$J,358.3,39758,2)
+ ;;=^5004485
+ ;;^UTILITY(U,$J,358.3,39759,0)
+ ;;=H04.201^^153^1928^42
+ ;;^UTILITY(U,$J,358.3,39759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39383,1,3,0)
- ;;=3^Intcrn injury w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,39383,1,4,0)
- ;;=4^S06.9X3S
- ;;^UTILITY(U,$J,358.3,39383,2)
- ;;=^5021217
- ;;^UTILITY(U,$J,358.3,39384,0)
- ;;=S06.9X1S^^183^2019^18
- ;;^UTILITY(U,$J,358.3,39384,1,0)
+ ;;^UTILITY(U,$J,358.3,39759,1,3,0)
+ ;;=3^Epiphora Right Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,39759,1,4,0)
+ ;;=4^H04.201
+ ;;^UTILITY(U,$J,358.3,39759,2)
+ ;;=^5004484
+ ;;^UTILITY(U,$J,358.3,39760,0)
+ ;;=H52.01^^153^1929^13
+ ;;^UTILITY(U,$J,358.3,39760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39384,1,3,0)
- ;;=3^Intcrn injury w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,39384,1,4,0)
- ;;=4^S06.9X1S
- ;;^UTILITY(U,$J,358.3,39384,2)
- ;;=^5021211
- ;;^UTILITY(U,$J,358.3,39385,0)
- ;;=S06.9X2S^^183^2019^19
- ;;^UTILITY(U,$J,358.3,39385,1,0)
+ ;;^UTILITY(U,$J,358.3,39760,1,3,0)
+ ;;=3^Hypermetropia,Right Eye
+ ;;^UTILITY(U,$J,358.3,39760,1,4,0)
+ ;;=4^H52.01
+ ;;^UTILITY(U,$J,358.3,39760,2)
+ ;;=^5006260
+ ;;^UTILITY(U,$J,358.3,39761,0)
+ ;;=H52.02^^153^1929^12
+ ;;^UTILITY(U,$J,358.3,39761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39385,1,3,0)
- ;;=3^Intcrn injury w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,39385,1,4,0)
- ;;=4^S06.9X2S
- ;;^UTILITY(U,$J,358.3,39385,2)
- ;;=^5021214
- ;;^UTILITY(U,$J,358.3,39386,0)
- ;;=S06.9X4S^^183^2019^20
- ;;^UTILITY(U,$J,358.3,39386,1,0)
+ ;;^UTILITY(U,$J,358.3,39761,1,3,0)
+ ;;=3^Hypermetropia,Left Eye
+ ;;^UTILITY(U,$J,358.3,39761,1,4,0)
+ ;;=4^H52.02
+ ;;^UTILITY(U,$J,358.3,39761,2)
+ ;;=^5006261
+ ;;^UTILITY(U,$J,358.3,39762,0)
+ ;;=H52.13^^153^1929^15
+ ;;^UTILITY(U,$J,358.3,39762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39386,1,3,0)
- ;;=3^Intcrn injury w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,39386,1,4,0)
- ;;=4^S06.9X4S
- ;;^UTILITY(U,$J,358.3,39386,2)
- ;;=^5021220
- ;;^UTILITY(U,$J,358.3,39387,0)
- ;;=S06.9X9S^^183^2019^21
- ;;^UTILITY(U,$J,358.3,39387,1,0)
+ ;;^UTILITY(U,$J,358.3,39762,1,3,0)
+ ;;=3^Myopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,39762,1,4,0)
+ ;;=4^H52.13
+ ;;^UTILITY(U,$J,358.3,39762,2)
+ ;;=^5006266
+ ;;^UTILITY(U,$J,358.3,39763,0)
+ ;;=H52.11^^153^1929^17
+ ;;^UTILITY(U,$J,358.3,39763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39387,1,3,0)
- ;;=3^Intcrn injury w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,39387,1,4,0)
- ;;=4^S06.9X9S
- ;;^UTILITY(U,$J,358.3,39387,2)
- ;;=^5021235
- ;;^UTILITY(U,$J,358.3,39388,0)
- ;;=S06.9X0S^^183^2019^22
- ;;^UTILITY(U,$J,358.3,39388,1,0)
+ ;;^UTILITY(U,$J,358.3,39763,1,3,0)
+ ;;=3^Myopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,39763,1,4,0)
+ ;;=4^H52.11
+ ;;^UTILITY(U,$J,358.3,39763,2)
+ ;;=^5006264
+ ;;^UTILITY(U,$J,358.3,39764,0)
+ ;;=H52.12^^153^1929^16
+ ;;^UTILITY(U,$J,358.3,39764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39388,1,3,0)
- ;;=3^Intcrn injury w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,39388,1,4,0)
- ;;=4^S06.9X0S
- ;;^UTILITY(U,$J,358.3,39388,2)
- ;;=^5021208
- ;;^UTILITY(U,$J,358.3,39389,0)
- ;;=I25.10^^183^2020^1
- ;;^UTILITY(U,$J,358.3,39389,1,0)
+ ;;^UTILITY(U,$J,358.3,39764,1,3,0)
+ ;;=3^Myopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,39764,1,4,0)
+ ;;=4^H52.12
+ ;;^UTILITY(U,$J,358.3,39764,2)
+ ;;=^5006265
+ ;;^UTILITY(U,$J,358.3,39765,0)
+ ;;=H52.201^^153^1929^4
+ ;;^UTILITY(U,$J,358.3,39765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39389,1,3,0)
- ;;=3^Athscl heart disease of native coronary artery w/o ang pctrs
- ;;^UTILITY(U,$J,358.3,39389,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,39389,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,39390,0)
- ;;=J44.1^^183^2020^3
- ;;^UTILITY(U,$J,358.3,39390,1,0)
+ ;;^UTILITY(U,$J,358.3,39765,1,3,0)
+ ;;=3^Astigmatism,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39765,1,4,0)
+ ;;=4^H52.201
+ ;;^UTILITY(U,$J,358.3,39765,2)
+ ;;=^5006267
+ ;;^UTILITY(U,$J,358.3,39766,0)
+ ;;=H52.202^^153^1929^3
+ ;;^UTILITY(U,$J,358.3,39766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39390,1,3,0)
- ;;=3^COPD w acute exacerbation
- ;;^UTILITY(U,$J,358.3,39390,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,39390,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,39391,0)
- ;;=J44.9^^183^2020^4
- ;;^UTILITY(U,$J,358.3,39391,1,0)
+ ;;^UTILITY(U,$J,358.3,39766,1,3,0)
+ ;;=3^Astigmatism,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39766,1,4,0)
+ ;;=4^H52.202
+ ;;^UTILITY(U,$J,358.3,39766,2)
+ ;;=^5006268
+ ;;^UTILITY(U,$J,358.3,39767,0)
+ ;;=H52.31^^153^1929^2
+ ;;^UTILITY(U,$J,358.3,39767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39391,1,3,0)
- ;;=3^COPD, unspecified
+ ;;^UTILITY(U,$J,358.3,39767,1,3,0)
+ ;;=3^Anisometropia

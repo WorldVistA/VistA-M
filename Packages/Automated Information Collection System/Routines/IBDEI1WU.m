@@ -1,132 +1,130 @@
-IBDEI1WU ; ; 19-NOV-2015
+IBDEI1WU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31987,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,31988,0)
- ;;=F33.0^^141^1479^10
- ;;^UTILITY(U,$J,358.3,31988,1,0)
+ ;;^UTILITY(U,$J,358.3,32413,0)
+ ;;=M25.375^^126^1612^21
+ ;;^UTILITY(U,$J,358.3,32413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31988,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Mild
- ;;^UTILITY(U,$J,358.3,31988,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,31988,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,31989,0)
- ;;=F33.1^^141^1479^11
- ;;^UTILITY(U,$J,358.3,31989,1,0)
+ ;;^UTILITY(U,$J,358.3,32413,1,3,0)
+ ;;=3^Instability, lft ft, oth
+ ;;^UTILITY(U,$J,358.3,32413,1,4,0)
+ ;;=4^M25.375
+ ;;^UTILITY(U,$J,358.3,32413,2)
+ ;;=^5011573
+ ;;^UTILITY(U,$J,358.3,32414,0)
+ ;;=L60.0^^126^1612^14
+ ;;^UTILITY(U,$J,358.3,32414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31989,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,31989,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,31989,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,31990,0)
- ;;=F33.2^^141^1479^12
- ;;^UTILITY(U,$J,358.3,31990,1,0)
+ ;;^UTILITY(U,$J,358.3,32414,1,3,0)
+ ;;=3^Ingrowing nail
+ ;;^UTILITY(U,$J,358.3,32414,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,32414,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,32415,0)
+ ;;=S90.931A^^126^1612^19
+ ;;^UTILITY(U,$J,358.3,32415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31990,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,31990,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,31990,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,31991,0)
- ;;=F33.3^^141^1479^7
- ;;^UTILITY(U,$J,358.3,31991,1,0)
+ ;;^UTILITY(U,$J,358.3,32415,1,3,0)
+ ;;=3^Injury,Rt Grt Toe,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32415,1,4,0)
+ ;;=4^S90.931A
+ ;;^UTILITY(U,$J,358.3,32415,2)
+ ;;=^5044117
+ ;;^UTILITY(U,$J,358.3,32416,0)
+ ;;=S90.922A^^126^1612^15
+ ;;^UTILITY(U,$J,358.3,32416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31991,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,31991,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,31991,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,31992,0)
- ;;=F33.41^^141^1479^8
- ;;^UTILITY(U,$J,358.3,31992,1,0)
+ ;;^UTILITY(U,$J,358.3,32416,1,3,0)
+ ;;=3^Injury,Lft Foot,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32416,1,4,0)
+ ;;=4^S90.922A
+ ;;^UTILITY(U,$J,358.3,32416,2)
+ ;;=^5044114
+ ;;^UTILITY(U,$J,358.3,32417,0)
+ ;;=S90.932A^^126^1612^16
+ ;;^UTILITY(U,$J,358.3,32417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31992,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,31992,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,31992,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,31993,0)
- ;;=F33.42^^141^1479^9
- ;;^UTILITY(U,$J,358.3,31993,1,0)
+ ;;^UTILITY(U,$J,358.3,32417,1,3,0)
+ ;;=3^Injury,Lft Grt Toe,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32417,1,4,0)
+ ;;=4^S90.932A
+ ;;^UTILITY(U,$J,358.3,32417,2)
+ ;;=^5044120
+ ;;^UTILITY(U,$J,358.3,32418,0)
+ ;;=S90.934A^^126^1612^20
+ ;;^UTILITY(U,$J,358.3,32418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31993,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,31993,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,31993,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,31994,0)
- ;;=F34.8^^141^1479^6
- ;;^UTILITY(U,$J,358.3,31994,1,0)
+ ;;^UTILITY(U,$J,358.3,32418,1,3,0)
+ ;;=3^Injury,Rt Lsr Toe(s),Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32418,1,4,0)
+ ;;=4^S90.934A
+ ;;^UTILITY(U,$J,358.3,32418,2)
+ ;;=^5044123
+ ;;^UTILITY(U,$J,358.3,32419,0)
+ ;;=S90.935A^^126^1612^17
+ ;;^UTILITY(U,$J,358.3,32419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31994,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,31994,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,31994,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,31995,0)
- ;;=F32.8^^141^1479^1
- ;;^UTILITY(U,$J,358.3,31995,1,0)
+ ;;^UTILITY(U,$J,358.3,32419,1,3,0)
+ ;;=3^Injury,Lft Lsr Toe(s),Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32419,1,4,0)
+ ;;=4^S90.935A
+ ;;^UTILITY(U,$J,358.3,32419,2)
+ ;;=^5044126
+ ;;^UTILITY(U,$J,358.3,32420,0)
+ ;;=S90.921A^^126^1612^18
+ ;;^UTILITY(U,$J,358.3,32420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31995,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,31995,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,31995,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,31996,0)
- ;;=F34.1^^141^1479^22
- ;;^UTILITY(U,$J,358.3,31996,1,0)
+ ;;^UTILITY(U,$J,358.3,32420,1,3,0)
+ ;;=3^Injury,Rt Foot,Sprfcl,Init Encntr
+ ;;^UTILITY(U,$J,358.3,32420,1,4,0)
+ ;;=4^S90.921A
+ ;;^UTILITY(U,$J,358.3,32420,2)
+ ;;=^5044111
+ ;;^UTILITY(U,$J,358.3,32421,0)
+ ;;=S91.012A^^126^1613^16
+ ;;^UTILITY(U,$J,358.3,32421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31996,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,31996,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,31996,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,31997,0)
- ;;=F32.9^^141^1479^5
- ;;^UTILITY(U,$J,358.3,31997,1,0)
+ ;;^UTILITY(U,$J,358.3,32421,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft ankl, init
+ ;;^UTILITY(U,$J,358.3,32421,1,4,0)
+ ;;=4^S91.012A
+ ;;^UTILITY(U,$J,358.3,32421,2)
+ ;;=^5044138
+ ;;^UTILITY(U,$J,358.3,32422,0)
+ ;;=S91.011A^^126^1613^23
+ ;;^UTILITY(U,$J,358.3,32422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31997,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31997,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,31997,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,31998,0)
- ;;=N94.3^^141^1479^23
- ;;^UTILITY(U,$J,358.3,31998,1,0)
+ ;;^UTILITY(U,$J,358.3,32422,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt ankl, init
+ ;;^UTILITY(U,$J,358.3,32422,1,4,0)
+ ;;=4^S91.011A
+ ;;^UTILITY(U,$J,358.3,32422,2)
+ ;;=^5044135
+ ;;^UTILITY(U,$J,358.3,32423,0)
+ ;;=S91.312A^^126^1613^17
+ ;;^UTILITY(U,$J,358.3,32423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31998,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,31998,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,31998,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,31999,0)
- ;;=G31.84^^141^1479^21
- ;;^UTILITY(U,$J,358.3,31999,1,0)
+ ;;^UTILITY(U,$J,358.3,32423,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft ft, init
+ ;;^UTILITY(U,$J,358.3,32423,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,32423,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,32424,0)
+ ;;=S91.115A^^126^1613^20
+ ;;^UTILITY(U,$J,358.3,32424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31999,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,31999,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,31999,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,32000,0)
- ;;=F44.81^^141^1480^5
- ;;^UTILITY(U,$J,358.3,32000,1,0)
+ ;;^UTILITY(U,$J,358.3,32424,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32424,1,4,0)
+ ;;=4^S91.115A
+ ;;^UTILITY(U,$J,358.3,32424,2)
+ ;;=^5044195
+ ;;^UTILITY(U,$J,358.3,32425,0)
+ ;;=S91.111A^^126^1613^26
+ ;;^UTILITY(U,$J,358.3,32425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32000,1,3,0)
- ;;=3^Dissociative Identity Disorder
+ ;;^UTILITY(U,$J,358.3,32425,1,3,0)
+ ;;=3^Lacrtn w/o foreign body rt grt toe w/o nail dmg, init

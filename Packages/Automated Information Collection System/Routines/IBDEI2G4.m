@@ -1,118 +1,132 @@
-IBDEI2G4 ; ; 19-NOV-2015
+IBDEI2G4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41051,1,4,0)
- ;;=4^S82.62XK
- ;;^UTILITY(U,$J,358.3,41051,2)
- ;;=^5042336
- ;;^UTILITY(U,$J,358.3,41052,0)
- ;;=S82.61XK^^189^2086^45
- ;;^UTILITY(U,$J,358.3,41052,1,0)
+ ;;^UTILITY(U,$J,358.3,41482,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,41482,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,41483,0)
+ ;;=Z86.711^^159^2005^107
+ ;;^UTILITY(U,$J,358.3,41483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41052,1,3,0)
- ;;=3^Disp fx ltrl mall rt fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41052,1,4,0)
- ;;=4^S82.61XK
- ;;^UTILITY(U,$J,358.3,41052,2)
- ;;=^5042320
- ;;^UTILITY(U,$J,358.3,41053,0)
- ;;=S82.855N^^189^2086^374
- ;;^UTILITY(U,$J,358.3,41053,1,0)
+ ;;^UTILITY(U,$J,358.3,41483,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,41483,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,41483,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,41484,0)
+ ;;=Z86.72^^159^2005^113
+ ;;^UTILITY(U,$J,358.3,41484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41053,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41053,1,4,0)
- ;;=4^S82.855N
- ;;^UTILITY(U,$J,358.3,41053,2)
- ;;=^5042650
- ;;^UTILITY(U,$J,358.3,41054,0)
- ;;=S82.854N^^189^2086^379
- ;;^UTILITY(U,$J,358.3,41054,1,0)
+ ;;^UTILITY(U,$J,358.3,41484,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,41484,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,41484,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,41485,0)
+ ;;=Z87.310^^159^2005^105
+ ;;^UTILITY(U,$J,358.3,41485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41054,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41054,1,4,0)
- ;;=4^S82.854N
- ;;^UTILITY(U,$J,358.3,41054,2)
- ;;=^5042634
- ;;^UTILITY(U,$J,358.3,41055,0)
- ;;=S82.855M^^189^2086^375
- ;;^UTILITY(U,$J,358.3,41055,1,0)
+ ;;^UTILITY(U,$J,358.3,41485,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,41485,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,41485,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,41486,0)
+ ;;=Z87.442^^159^2005^116
+ ;;^UTILITY(U,$J,358.3,41486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41055,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41055,1,4,0)
- ;;=4^S82.855M
- ;;^UTILITY(U,$J,358.3,41055,2)
- ;;=^5042649
- ;;^UTILITY(U,$J,358.3,41056,0)
- ;;=S82.854M^^189^2086^380
- ;;^UTILITY(U,$J,358.3,41056,1,0)
+ ;;^UTILITY(U,$J,358.3,41486,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,41486,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,41486,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,41487,0)
+ ;;=Z87.81^^159^2005^114
+ ;;^UTILITY(U,$J,358.3,41487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41056,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41056,1,4,0)
- ;;=4^S82.854M
- ;;^UTILITY(U,$J,358.3,41056,2)
- ;;=^5042633
- ;;^UTILITY(U,$J,358.3,41057,0)
- ;;=S82.855K^^189^2086^376
- ;;^UTILITY(U,$J,358.3,41057,1,0)
+ ;;^UTILITY(U,$J,358.3,41487,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,41487,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,41487,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,41488,0)
+ ;;=Z87.890^^159^2005^109
+ ;;^UTILITY(U,$J,358.3,41488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41057,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for clos w/ nonunion
- ;;^UTILITY(U,$J,358.3,41057,1,4,0)
- ;;=4^S82.855K
- ;;^UTILITY(U,$J,358.3,41057,2)
- ;;=^5042648
- ;;^UTILITY(U,$J,358.3,41058,0)
- ;;=S82.854K^^189^2086^381
- ;;^UTILITY(U,$J,358.3,41058,1,0)
+ ;;^UTILITY(U,$J,358.3,41488,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,41488,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,41488,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,41489,0)
+ ;;=Z87.892^^159^2005^74
+ ;;^UTILITY(U,$J,358.3,41489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41058,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for clos w/ nonunion
- ;;^UTILITY(U,$J,358.3,41058,1,4,0)
- ;;=4^S82.854K
- ;;^UTILITY(U,$J,358.3,41058,2)
- ;;=^5042632
- ;;^UTILITY(U,$J,358.3,41059,0)
- ;;=S82.851N^^189^2086^157
- ;;^UTILITY(U,$J,358.3,41059,1,0)
+ ;;^UTILITY(U,$J,358.3,41489,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,41489,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,41489,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,41490,0)
+ ;;=Z87.39^^159^2005^102
+ ;;^UTILITY(U,$J,358.3,41490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41059,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41059,1,4,0)
- ;;=4^S82.851N
- ;;^UTILITY(U,$J,358.3,41059,2)
- ;;=^5042586
- ;;^UTILITY(U,$J,358.3,41060,0)
- ;;=S82.852N^^189^2086^151
- ;;^UTILITY(U,$J,358.3,41060,1,0)
+ ;;^UTILITY(U,$J,358.3,41490,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease
+ ;;^UTILITY(U,$J,358.3,41490,1,4,0)
+ ;;=4^Z87.39
+ ;;^UTILITY(U,$J,358.3,41490,2)
+ ;;=^5063488
+ ;;^UTILITY(U,$J,358.3,41491,0)
+ ;;=Z87.820^^159^2005^111
+ ;;^UTILITY(U,$J,358.3,41491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41060,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41060,1,4,0)
- ;;=4^S82.852N
- ;;^UTILITY(U,$J,358.3,41060,2)
- ;;=^5042602
- ;;^UTILITY(U,$J,358.3,41061,0)
- ;;=S82.851M^^189^2086^158
- ;;^UTILITY(U,$J,358.3,41061,1,0)
+ ;;^UTILITY(U,$J,358.3,41491,1,3,0)
+ ;;=3^Personal Hx of TBI
+ ;;^UTILITY(U,$J,358.3,41491,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,41491,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,41492,0)
+ ;;=Z89.511^^159^2005^8
+ ;;^UTILITY(U,$J,358.3,41492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41061,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41061,1,4,0)
- ;;=4^S82.851M
- ;;^UTILITY(U,$J,358.3,41061,2)
- ;;=^5042585
- ;;^UTILITY(U,$J,358.3,41062,0)
- ;;=S82.852M^^189^2086^152
- ;;^UTILITY(U,$J,358.3,41062,1,0)
+ ;;^UTILITY(U,$J,358.3,41492,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,41492,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,41492,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,41493,0)
+ ;;=Z91.82^^159^2005^101
+ ;;^UTILITY(U,$J,358.3,41493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41062,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41062,1,4,0)
- ;;=4^S82.852M
- ;;^UTILITY(U,$J,358.3,41062,2)
- ;;=^5042601
+ ;;^UTILITY(U,$J,358.3,41493,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,41493,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,41493,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,41494,0)
+ ;;=Z91.5^^159^2005^108
+ ;;^UTILITY(U,$J,358.3,41494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41494,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,41494,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,41494,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,41495,0)
+ ;;=Z89.512^^159^2005^5
+ ;;^UTILITY(U,$J,358.3,41495,1,0)
+ ;;=^358.31IA^4^2

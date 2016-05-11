@@ -1,124 +1,140 @@
-IBDEI1AQ ; ; 19-NOV-2015
+IBDEI1AQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21648,1,0)
+ ;;^UTILITY(U,$J,358.3,22038,1,4,0)
+ ;;=4^E23.0
+ ;;^UTILITY(U,$J,358.3,22038,2)
+ ;;=^60685
+ ;;^UTILITY(U,$J,358.3,22039,0)
+ ;;=E27.1^^87^973^51
+ ;;^UTILITY(U,$J,358.3,22039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21648,1,3,0)
- ;;=3^Nondisp comminuted fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21648,1,4,0)
- ;;=4^S72.354S
- ;;^UTILITY(U,$J,358.3,21648,2)
- ;;=^5038495
- ;;^UTILITY(U,$J,358.3,21649,0)
- ;;=S72.355S^^101^1033^55
- ;;^UTILITY(U,$J,358.3,21649,1,0)
+ ;;^UTILITY(U,$J,358.3,22039,1,3,0)
+ ;;=3^Primary Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,22039,1,4,0)
+ ;;=4^E27.1
+ ;;^UTILITY(U,$J,358.3,22039,2)
+ ;;=^5002740
+ ;;^UTILITY(U,$J,358.3,22040,0)
+ ;;=E27.2^^87^973^1
+ ;;^UTILITY(U,$J,358.3,22040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21649,1,3,0)
- ;;=3^Nondisp comminuted fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21649,1,4,0)
- ;;=4^S72.355S
- ;;^UTILITY(U,$J,358.3,21649,2)
- ;;=^5038511
- ;;^UTILITY(U,$J,358.3,21650,0)
- ;;=S72.361S^^101^1033^34
- ;;^UTILITY(U,$J,358.3,21650,1,0)
+ ;;^UTILITY(U,$J,358.3,22040,1,3,0)
+ ;;=3^Addisonian Crisis
+ ;;^UTILITY(U,$J,358.3,22040,1,4,0)
+ ;;=4^E27.2
+ ;;^UTILITY(U,$J,358.3,22040,2)
+ ;;=^263725
+ ;;^UTILITY(U,$J,358.3,22041,0)
+ ;;=E27.3^^87^973^23
+ ;;^UTILITY(U,$J,358.3,22041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21650,1,3,0)
- ;;=3^Displaced segmental fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21650,1,4,0)
- ;;=4^S72.361S
- ;;^UTILITY(U,$J,358.3,21650,2)
- ;;=^5038543
- ;;^UTILITY(U,$J,358.3,21651,0)
- ;;=S72.362S^^101^1033^33
- ;;^UTILITY(U,$J,358.3,21651,1,0)
+ ;;^UTILITY(U,$J,358.3,22041,1,3,0)
+ ;;=3^Drug-induced Adrenocortical Insufficiency
+ ;;^UTILITY(U,$J,358.3,22041,1,4,0)
+ ;;=4^E27.3
+ ;;^UTILITY(U,$J,358.3,22041,2)
+ ;;=^5002741
+ ;;^UTILITY(U,$J,358.3,22042,0)
+ ;;=E29.1^^87^973^52
+ ;;^UTILITY(U,$J,358.3,22042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21651,1,3,0)
- ;;=3^Displaced segmental fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21651,1,4,0)
- ;;=4^S72.362S
- ;;^UTILITY(U,$J,358.3,21651,2)
- ;;=^5038559
- ;;^UTILITY(U,$J,358.3,21652,0)
- ;;=S72.364S^^101^1033^80
- ;;^UTILITY(U,$J,358.3,21652,1,0)
+ ;;^UTILITY(U,$J,358.3,22042,1,3,0)
+ ;;=3^Testicular Hypofunction
+ ;;^UTILITY(U,$J,358.3,22042,1,4,0)
+ ;;=4^E29.1
+ ;;^UTILITY(U,$J,358.3,22042,2)
+ ;;=^5002754
+ ;;^UTILITY(U,$J,358.3,22043,0)
+ ;;=E55.9^^87^973^59
+ ;;^UTILITY(U,$J,358.3,22043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21652,1,3,0)
- ;;=3^Nondisp segmental fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21652,1,4,0)
- ;;=4^S72.364S
- ;;^UTILITY(U,$J,358.3,21652,2)
- ;;=^5038591
- ;;^UTILITY(U,$J,358.3,21653,0)
- ;;=S72.365S^^101^1033^79
- ;;^UTILITY(U,$J,358.3,21653,1,0)
+ ;;^UTILITY(U,$J,358.3,22043,1,3,0)
+ ;;=3^Vitamin D Deficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,22043,1,4,0)
+ ;;=4^E55.9
+ ;;^UTILITY(U,$J,358.3,22043,2)
+ ;;=^5002799
+ ;;^UTILITY(U,$J,358.3,22044,0)
+ ;;=E66.01^^87^973^38
+ ;;^UTILITY(U,$J,358.3,22044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21653,1,3,0)
- ;;=3^Nondisp segmental fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21653,1,4,0)
- ;;=4^S72.365S
- ;;^UTILITY(U,$J,358.3,21653,2)
- ;;=^5038607
- ;;^UTILITY(U,$J,358.3,21654,0)
- ;;=S72.421S^^101^1033^18
- ;;^UTILITY(U,$J,358.3,21654,1,0)
+ ;;^UTILITY(U,$J,358.3,22044,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,22044,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,22044,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,22045,0)
+ ;;=E66.8^^87^973^42
+ ;;^UTILITY(U,$J,358.3,22045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21654,1,3,0)
- ;;=3^Displaced lateral condyle fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21654,1,4,0)
- ;;=4^S72.421S
- ;;^UTILITY(U,$J,358.3,21654,2)
- ;;=^5038771
- ;;^UTILITY(U,$J,358.3,21655,0)
- ;;=S72.422S^^101^1033^17
- ;;^UTILITY(U,$J,358.3,21655,1,0)
+ ;;^UTILITY(U,$J,358.3,22045,1,3,0)
+ ;;=3^Obesity NEC
+ ;;^UTILITY(U,$J,358.3,22045,1,4,0)
+ ;;=4^E66.8
+ ;;^UTILITY(U,$J,358.3,22045,2)
+ ;;=^5002831
+ ;;^UTILITY(U,$J,358.3,22046,0)
+ ;;=E66.9^^87^973^43
+ ;;^UTILITY(U,$J,358.3,22046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21655,1,3,0)
- ;;=3^Displaced lateral condyle fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21655,1,4,0)
- ;;=4^S72.422S
- ;;^UTILITY(U,$J,358.3,21655,2)
- ;;=^5038787
- ;;^UTILITY(U,$J,358.3,21656,0)
- ;;=S72.424S^^101^1033^64
- ;;^UTILITY(U,$J,358.3,21656,1,0)
+ ;;^UTILITY(U,$J,358.3,22046,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,22046,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,22046,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,22047,0)
+ ;;=E74.39^^87^973^35
+ ;;^UTILITY(U,$J,358.3,22047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21656,1,3,0)
- ;;=3^Nondisp lateral condyle fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21656,1,4,0)
- ;;=4^S72.424S
- ;;^UTILITY(U,$J,358.3,21656,2)
- ;;=^5038819
- ;;^UTILITY(U,$J,358.3,21657,0)
- ;;=S72.425S^^101^1033^63
- ;;^UTILITY(U,$J,358.3,21657,1,0)
+ ;;^UTILITY(U,$J,358.3,22047,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,22047,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,22047,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,22048,0)
+ ;;=E83.30^^87^973^46
+ ;;^UTILITY(U,$J,358.3,22048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21657,1,3,0)
- ;;=3^Nondisp lateral condyle fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21657,1,4,0)
- ;;=4^S72.425S
- ;;^UTILITY(U,$J,358.3,21657,2)
- ;;=^5038835
- ;;^UTILITY(U,$J,358.3,21658,0)
- ;;=S72.431S^^101^1033^26
- ;;^UTILITY(U,$J,358.3,21658,1,0)
+ ;;^UTILITY(U,$J,358.3,22048,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,22048,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,22048,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,22049,0)
+ ;;=E83.51^^87^973^28
+ ;;^UTILITY(U,$J,358.3,22049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21658,1,3,0)
- ;;=3^Displaced medial condyle fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21658,1,4,0)
- ;;=4^S72.431S
- ;;^UTILITY(U,$J,358.3,21658,2)
- ;;=^5038867
- ;;^UTILITY(U,$J,358.3,21659,0)
- ;;=S72.432S^^101^1033^25
- ;;^UTILITY(U,$J,358.3,21659,1,0)
+ ;;^UTILITY(U,$J,358.3,22049,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,22049,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,22049,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,22050,0)
+ ;;=E83.52^^87^973^26
+ ;;^UTILITY(U,$J,358.3,22050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21659,1,3,0)
- ;;=3^Displaced medial condyle fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21659,1,4,0)
- ;;=4^S72.432S
- ;;^UTILITY(U,$J,358.3,21659,2)
- ;;=^5038883
- ;;^UTILITY(U,$J,358.3,21660,0)
- ;;=S72.434S^^101^1033^72
+ ;;^UTILITY(U,$J,358.3,22050,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,22050,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,22050,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,22051,0)
+ ;;=E87.5^^87^973^27
+ ;;^UTILITY(U,$J,358.3,22051,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22051,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,22051,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,22051,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,22052,0)
+ ;;=E89.2^^87^973^48

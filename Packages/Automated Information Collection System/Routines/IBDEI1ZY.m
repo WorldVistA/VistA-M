@@ -1,136 +1,130 @@
-IBDEI1ZY ; ; 19-NOV-2015
+IBDEI1ZY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33436,0)
- ;;=F65.89^^148^1649^4
- ;;^UTILITY(U,$J,358.3,33436,1,0)
+ ;;^UTILITY(U,$J,358.3,33879,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,33880,0)
+ ;;=C82.39^^131^1680^70
+ ;;^UTILITY(U,$J,358.3,33880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33436,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,33436,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,33436,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,33437,0)
- ;;=F65.9^^148^1649^5
- ;;^UTILITY(U,$J,358.3,33437,1,0)
+ ;;^UTILITY(U,$J,358.3,33880,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,33880,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,33880,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,33881,0)
+ ;;=C82.30^^131^1680^71
+ ;;^UTILITY(U,$J,358.3,33881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33437,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33437,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,33437,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,33438,0)
- ;;=F60.0^^148^1650^8
- ;;^UTILITY(U,$J,358.3,33438,1,0)
+ ;;^UTILITY(U,$J,358.3,33881,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33881,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,33881,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,33882,0)
+ ;;=C82.49^^131^1680^72
+ ;;^UTILITY(U,$J,358.3,33882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33438,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,33438,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,33438,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,33439,0)
- ;;=F60.1^^148^1650^11
- ;;^UTILITY(U,$J,358.3,33439,1,0)
+ ;;^UTILITY(U,$J,358.3,33882,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,33882,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,33882,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,33883,0)
+ ;;=C82.40^^131^1680^73
+ ;;^UTILITY(U,$J,358.3,33883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33439,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,33439,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,33439,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,33440,0)
- ;;=F21.^^148^1650^12
- ;;^UTILITY(U,$J,358.3,33440,1,0)
+ ;;^UTILITY(U,$J,358.3,33883,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33883,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,33883,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,33884,0)
+ ;;=C82.99^^131^1680^74
+ ;;^UTILITY(U,$J,358.3,33884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33440,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,33440,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,33440,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,33441,0)
- ;;=F60.5^^148^1650^7
- ;;^UTILITY(U,$J,358.3,33441,1,0)
+ ;;^UTILITY(U,$J,358.3,33884,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,33884,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,33884,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,33885,0)
+ ;;=C82.90^^131^1680^75
+ ;;^UTILITY(U,$J,358.3,33885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33441,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,33441,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,33441,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,33442,0)
- ;;=F60.4^^148^1650^5
- ;;^UTILITY(U,$J,358.3,33442,1,0)
+ ;;^UTILITY(U,$J,358.3,33885,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33885,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,33885,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,33886,0)
+ ;;=R59.1^^131^1680^60
+ ;;^UTILITY(U,$J,358.3,33886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33442,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,33442,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,33442,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,33443,0)
- ;;=F60.7^^148^1650^4
- ;;^UTILITY(U,$J,358.3,33443,1,0)
+ ;;^UTILITY(U,$J,358.3,33886,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,33886,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,33886,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,33887,0)
+ ;;=C91.40^^131^1680^79
+ ;;^UTILITY(U,$J,358.3,33887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33443,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,33443,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,33443,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,33444,0)
- ;;=F60.2^^148^1650^1
- ;;^UTILITY(U,$J,358.3,33444,1,0)
+ ;;^UTILITY(U,$J,358.3,33887,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33887,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,33887,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,33888,0)
+ ;;=C91.42^^131^1680^77
+ ;;^UTILITY(U,$J,358.3,33888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33444,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,33444,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,33444,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,33445,0)
- ;;=F60.81^^148^1650^6
- ;;^UTILITY(U,$J,358.3,33445,1,0)
+ ;;^UTILITY(U,$J,358.3,33888,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,33888,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,33888,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,33889,0)
+ ;;=C91.41^^131^1680^78
+ ;;^UTILITY(U,$J,358.3,33889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33445,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,33445,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,33445,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,33446,0)
- ;;=F60.6^^148^1650^2
- ;;^UTILITY(U,$J,358.3,33446,1,0)
+ ;;^UTILITY(U,$J,358.3,33889,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,33889,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,33889,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,33890,0)
+ ;;=D57.01^^131^1680^80
+ ;;^UTILITY(U,$J,358.3,33890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33446,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,33446,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,33446,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,33447,0)
- ;;=F60.3^^148^1650^3
- ;;^UTILITY(U,$J,358.3,33447,1,0)
+ ;;^UTILITY(U,$J,358.3,33890,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,33890,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,33890,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,33891,0)
+ ;;=D57.00^^131^1680^81
+ ;;^UTILITY(U,$J,358.3,33891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33447,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,33447,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,33447,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,33448,0)
- ;;=F60.89^^148^1650^9
- ;;^UTILITY(U,$J,358.3,33448,1,0)
+ ;;^UTILITY(U,$J,358.3,33891,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,33891,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,33891,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,33892,0)
+ ;;=D57.02^^131^1680^82
+ ;;^UTILITY(U,$J,358.3,33892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33448,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,33448,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,33448,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,33449,0)
- ;;=F60.9^^148^1650^10

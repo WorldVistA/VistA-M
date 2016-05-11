@@ -1,132 +1,120 @@
-IBDEI1YW ; ; 19-NOV-2015
+IBDEI1YW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32945,0)
- ;;=F68.10^^146^1593^3
- ;;^UTILITY(U,$J,358.3,32945,1,0)
+ ;;^UTILITY(U,$J,358.3,33393,0)
+ ;;=L97.212^^131^1669^207
+ ;;^UTILITY(U,$J,358.3,33393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32945,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,32945,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,32945,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,32946,0)
- ;;=F63.9^^146^1593^5
- ;;^UTILITY(U,$J,358.3,32946,1,0)
+ ;;^UTILITY(U,$J,358.3,33393,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,33393,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,33393,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,33394,0)
+ ;;=L97.213^^131^1669^208
+ ;;^UTILITY(U,$J,358.3,33394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32946,1,3,0)
- ;;=3^Impulse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32946,1,4,0)
- ;;=4^F63.9
- ;;^UTILITY(U,$J,358.3,32946,2)
- ;;=^5003646
- ;;^UTILITY(U,$J,358.3,32947,0)
- ;;=F06.2^^146^1594^5
- ;;^UTILITY(U,$J,358.3,32947,1,0)
+ ;;^UTILITY(U,$J,358.3,33394,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,33394,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,33394,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,33395,0)
+ ;;=L97.214^^131^1669^209
+ ;;^UTILITY(U,$J,358.3,33395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32947,1,3,0)
- ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32947,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,32947,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,32948,0)
- ;;=F06.0^^146^1594^6
- ;;^UTILITY(U,$J,358.3,32948,1,0)
+ ;;^UTILITY(U,$J,358.3,33395,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,33395,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,33395,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,33396,0)
+ ;;=L97.219^^131^1669^210
+ ;;^UTILITY(U,$J,358.3,33396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32948,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32948,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,32948,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,32949,0)
- ;;=F06.4^^146^1594^1
- ;;^UTILITY(U,$J,358.3,32949,1,0)
+ ;;^UTILITY(U,$J,358.3,33396,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,33396,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,33396,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,33397,0)
+ ;;=L97.221^^131^1669^176
+ ;;^UTILITY(U,$J,358.3,33397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32949,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32949,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,32949,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,32950,0)
- ;;=F06.1^^146^1594^2
- ;;^UTILITY(U,$J,358.3,32950,1,0)
+ ;;^UTILITY(U,$J,358.3,33397,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,33397,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,33397,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,33398,0)
+ ;;=L97.222^^131^1669^177
+ ;;^UTILITY(U,$J,358.3,33398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32950,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,32950,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,32950,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,32951,0)
- ;;=R41.9^^146^1594^3
- ;;^UTILITY(U,$J,358.3,32951,1,0)
+ ;;^UTILITY(U,$J,358.3,33398,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,33398,1,4,0)
+ ;;=4^L97.222
+ ;;^UTILITY(U,$J,358.3,33398,2)
+ ;;=^5009506
+ ;;^UTILITY(U,$J,358.3,33399,0)
+ ;;=L97.223^^131^1669^178
+ ;;^UTILITY(U,$J,358.3,33399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32951,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32951,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,32951,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,32952,0)
- ;;=F29.^^146^1594^7
- ;;^UTILITY(U,$J,358.3,32952,1,0)
+ ;;^UTILITY(U,$J,358.3,33399,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,33399,1,4,0)
+ ;;=4^L97.223
+ ;;^UTILITY(U,$J,358.3,33399,2)
+ ;;=^5009507
+ ;;^UTILITY(U,$J,358.3,33400,0)
+ ;;=L97.224^^131^1669^179
+ ;;^UTILITY(U,$J,358.3,33400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32952,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32952,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,32952,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,32953,0)
- ;;=F07.0^^146^1594^4
- ;;^UTILITY(U,$J,358.3,32953,1,0)
+ ;;^UTILITY(U,$J,358.3,33400,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,33400,1,4,0)
+ ;;=4^L97.224
+ ;;^UTILITY(U,$J,358.3,33400,2)
+ ;;=^5009508
+ ;;^UTILITY(U,$J,358.3,33401,0)
+ ;;=L97.229^^131^1669^180
+ ;;^UTILITY(U,$J,358.3,33401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32953,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32953,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,32953,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,32954,0)
- ;;=Z91.49^^146^1595^9
- ;;^UTILITY(U,$J,358.3,32954,1,0)
+ ;;^UTILITY(U,$J,358.3,33401,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,33401,1,4,0)
+ ;;=4^L97.229
+ ;;^UTILITY(U,$J,358.3,33401,2)
+ ;;=^5009509
+ ;;^UTILITY(U,$J,358.3,33402,0)
+ ;;=L97.311^^131^1669^201
+ ;;^UTILITY(U,$J,358.3,33402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32954,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,32954,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,32954,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,32955,0)
- ;;=Z91.5^^146^1595^10
- ;;^UTILITY(U,$J,358.3,32955,1,0)
+ ;;^UTILITY(U,$J,358.3,33402,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,33402,1,4,0)
+ ;;=4^L97.311
+ ;;^UTILITY(U,$J,358.3,33402,2)
+ ;;=^5009515
+ ;;^UTILITY(U,$J,358.3,33403,0)
+ ;;=L97.312^^131^1669^202
+ ;;^UTILITY(U,$J,358.3,33403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32955,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,32955,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,32955,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,32956,0)
- ;;=Z91.82^^146^1595^8
- ;;^UTILITY(U,$J,358.3,32956,1,0)
+ ;;^UTILITY(U,$J,358.3,33403,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,33403,1,4,0)
+ ;;=4^L97.312
+ ;;^UTILITY(U,$J,358.3,33403,2)
+ ;;=^5009516
+ ;;^UTILITY(U,$J,358.3,33404,0)
+ ;;=L97.313^^131^1669^203
+ ;;^UTILITY(U,$J,358.3,33404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32956,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,32956,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,32956,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,32957,0)
- ;;=Z91.89^^146^1595^11
- ;;^UTILITY(U,$J,358.3,32957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32957,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,32957,1,4,0)
- ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,33404,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Ankle w/ Necrosis of Muscle

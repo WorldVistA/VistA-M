@@ -1,136 +1,142 @@
-IBDEI09O ; ; 19-NOV-2015
+IBDEI09O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3988,2)
- ;;=^5004013
- ;;^UTILITY(U,$J,358.3,3989,0)
- ;;=B02.23^^28^260^56
- ;;^UTILITY(U,$J,358.3,3989,1,0)
+ ;;^UTILITY(U,$J,358.3,4280,2)
+ ;;=^5009246
+ ;;^UTILITY(U,$J,358.3,4281,0)
+ ;;=L70.0^^21^271^3
+ ;;^UTILITY(U,$J,358.3,4281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3989,1,3,0)
- ;;=3^Pain,Postherpetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,3989,1,4,0)
- ;;=4^B02.23
- ;;^UTILITY(U,$J,358.3,3989,2)
- ;;=^266550
- ;;^UTILITY(U,$J,358.3,3990,0)
- ;;=I70.229^^28^260^58
- ;;^UTILITY(U,$J,358.3,3990,1,0)
+ ;;^UTILITY(U,$J,358.3,4281,1,3,0)
+ ;;=3^Acne Vulgaris
+ ;;^UTILITY(U,$J,358.3,4281,1,4,0)
+ ;;=4^L70.0
+ ;;^UTILITY(U,$J,358.3,4281,2)
+ ;;=^5009268
+ ;;^UTILITY(U,$J,358.3,4282,0)
+ ;;=L73.0^^21^271^2
+ ;;^UTILITY(U,$J,358.3,4282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3990,1,3,0)
- ;;=3^Pain,Rest,Athscl Native Arteries of Unspec Extremity
- ;;^UTILITY(U,$J,358.3,3990,1,4,0)
- ;;=4^I70.229
- ;;^UTILITY(U,$J,358.3,3990,2)
- ;;=^5007587
- ;;^UTILITY(U,$J,358.3,3991,0)
- ;;=I70.329^^28^260^57
- ;;^UTILITY(U,$J,358.3,3991,1,0)
+ ;;^UTILITY(U,$J,358.3,4282,1,3,0)
+ ;;=3^Acne Keloid
+ ;;^UTILITY(U,$J,358.3,4282,1,4,0)
+ ;;=4^L73.0
+ ;;^UTILITY(U,$J,358.3,4282,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,4283,0)
+ ;;=L63.0^^21^271^8
+ ;;^UTILITY(U,$J,358.3,4283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3991,1,3,0)
- ;;=3^Pain,Rest,Athscl Bypass Graft of the Extremity
- ;;^UTILITY(U,$J,358.3,3991,1,4,0)
- ;;=4^I70.329
- ;;^UTILITY(U,$J,358.3,3991,2)
- ;;=^5007625
- ;;^UTILITY(U,$J,358.3,3992,0)
- ;;=M25.512^^28^260^59
- ;;^UTILITY(U,$J,358.3,3992,1,0)
+ ;;^UTILITY(U,$J,358.3,4283,1,3,0)
+ ;;=3^Alopecia Totalis
+ ;;^UTILITY(U,$J,358.3,4283,1,4,0)
+ ;;=4^L63.0
+ ;;^UTILITY(U,$J,358.3,4283,2)
+ ;;=^5009242
+ ;;^UTILITY(U,$J,358.3,4284,0)
+ ;;=L63.1^^21^271^9
+ ;;^UTILITY(U,$J,358.3,4284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3992,1,3,0)
- ;;=3^Pain,Shoulder,Left
- ;;^UTILITY(U,$J,358.3,3992,1,4,0)
- ;;=4^M25.512
- ;;^UTILITY(U,$J,358.3,3992,2)
- ;;=^5011603
- ;;^UTILITY(U,$J,358.3,3993,0)
- ;;=M25.511^^28^260^60
- ;;^UTILITY(U,$J,358.3,3993,1,0)
+ ;;^UTILITY(U,$J,358.3,4284,1,3,0)
+ ;;=3^Alopecia Universalis
+ ;;^UTILITY(U,$J,358.3,4284,1,4,0)
+ ;;=4^L63.1
+ ;;^UTILITY(U,$J,358.3,4284,2)
+ ;;=^5009243
+ ;;^UTILITY(U,$J,358.3,4285,0)
+ ;;=L65.2^^21^271^7
+ ;;^UTILITY(U,$J,358.3,4285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3993,1,3,0)
- ;;=3^Pain,Shoulder,Right
- ;;^UTILITY(U,$J,358.3,3993,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,3993,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,3994,0)
- ;;=D57.419^^28^260^61
- ;;^UTILITY(U,$J,358.3,3994,1,0)
+ ;;^UTILITY(U,$J,358.3,4285,1,3,0)
+ ;;=3^Alopecia Mucinosa
+ ;;^UTILITY(U,$J,358.3,4285,1,4,0)
+ ;;=4^L65.2
+ ;;^UTILITY(U,$J,358.3,4285,2)
+ ;;=^5103
+ ;;^UTILITY(U,$J,358.3,4286,0)
+ ;;=L66.9^^21^271^6
+ ;;^UTILITY(U,$J,358.3,4286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3994,1,3,0)
- ;;=3^Pain,Sickle-Cell Thalassemia w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,3994,1,4,0)
- ;;=4^D57.419
- ;;^UTILITY(U,$J,358.3,3994,2)
- ;;=^5002316
- ;;^UTILITY(U,$J,358.3,3995,0)
- ;;=M54.2^^28^260^62
- ;;^UTILITY(U,$J,358.3,3995,1,0)
+ ;;^UTILITY(U,$J,358.3,4286,1,3,0)
+ ;;=3^Alopecia Cicatricial,Unspec
+ ;;^UTILITY(U,$J,358.3,4286,1,4,0)
+ ;;=4^L66.9
+ ;;^UTILITY(U,$J,358.3,4286,2)
+ ;;=^5009258
+ ;;^UTILITY(U,$J,358.3,4287,0)
+ ;;=A60.9^^21^271^11
+ ;;^UTILITY(U,$J,358.3,4287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3995,1,3,0)
- ;;=3^Pain,Spine,Cervicalgia
- ;;^UTILITY(U,$J,358.3,3995,1,4,0)
- ;;=4^M54.2
- ;;^UTILITY(U,$J,358.3,3995,2)
- ;;=^5012304
- ;;^UTILITY(U,$J,358.3,3996,0)
- ;;=M54.9^^28^260^63
- ;;^UTILITY(U,$J,358.3,3996,1,0)
+ ;;^UTILITY(U,$J,358.3,4287,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,4287,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,4287,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,4288,0)
+ ;;=L56.1^^21^272^28
+ ;;^UTILITY(U,$J,358.3,4288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3996,1,3,0)
- ;;=3^Pain,Spine,Dorsalgia,Unspec
- ;;^UTILITY(U,$J,358.3,3996,1,4,0)
- ;;=4^M54.9
- ;;^UTILITY(U,$J,358.3,3996,2)
- ;;=^5012314
- ;;^UTILITY(U,$J,358.3,3997,0)
- ;;=M54.5^^28^260^64
- ;;^UTILITY(U,$J,358.3,3997,1,0)
+ ;;^UTILITY(U,$J,358.3,4288,1,3,0)
+ ;;=3^Drug Photoallergic Response
+ ;;^UTILITY(U,$J,358.3,4288,1,4,0)
+ ;;=4^L56.1
+ ;;^UTILITY(U,$J,358.3,4288,2)
+ ;;=^5009215
+ ;;^UTILITY(U,$J,358.3,4289,0)
+ ;;=L56.0^^21^272^29
+ ;;^UTILITY(U,$J,358.3,4289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3997,1,3,0)
- ;;=3^Pain,Spine,Low Back
- ;;^UTILITY(U,$J,358.3,3997,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,3997,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,3998,0)
- ;;=M54.41^^28^260^66
- ;;^UTILITY(U,$J,358.3,3998,1,0)
+ ;;^UTILITY(U,$J,358.3,4289,1,3,0)
+ ;;=3^Drug Phototoxic Response
+ ;;^UTILITY(U,$J,358.3,4289,1,4,0)
+ ;;=4^L56.0
+ ;;^UTILITY(U,$J,358.3,4289,2)
+ ;;=^5009214
+ ;;^UTILITY(U,$J,358.3,4290,0)
+ ;;=L23.9^^21^272^6
+ ;;^UTILITY(U,$J,358.3,4290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3998,1,3,0)
- ;;=3^Pain,Spine,Lumbago w/ Sciatica,Right Side
- ;;^UTILITY(U,$J,358.3,3998,1,4,0)
- ;;=4^M54.41
- ;;^UTILITY(U,$J,358.3,3998,2)
- ;;=^5012309
- ;;^UTILITY(U,$J,358.3,3999,0)
- ;;=M54.42^^28^260^65
- ;;^UTILITY(U,$J,358.3,3999,1,0)
+ ;;^UTILITY(U,$J,358.3,4290,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,4290,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,4290,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,4291,0)
+ ;;=L30.9^^21^272^21
+ ;;^UTILITY(U,$J,358.3,4291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3999,1,3,0)
- ;;=3^Pain,Spine,Lumbago w/ Sciatica,Left Side
- ;;^UTILITY(U,$J,358.3,3999,1,4,0)
- ;;=4^M54.42
- ;;^UTILITY(U,$J,358.3,3999,2)
- ;;=^5012310
- ;;^UTILITY(U,$J,358.3,4000,0)
- ;;=M54.00^^28^260^67
- ;;^UTILITY(U,$J,358.3,4000,1,0)
+ ;;^UTILITY(U,$J,358.3,4291,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,4291,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,4291,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,4292,0)
+ ;;=L24.9^^21^272^16
+ ;;^UTILITY(U,$J,358.3,4292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4000,1,3,0)
- ;;=3^Pain,Spine,Neck/Back,Panniculitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,4000,1,4,0)
- ;;=4^M54.00
- ;;^UTILITY(U,$J,358.3,4000,2)
- ;;=^5012285
- ;;^UTILITY(U,$J,358.3,4001,0)
- ;;=M54.10^^28^260^68
- ;;^UTILITY(U,$J,358.3,4001,1,0)
+ ;;^UTILITY(U,$J,358.3,4292,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,4292,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,4292,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,4293,0)
+ ;;=L30.0^^21^272^17
+ ;;^UTILITY(U,$J,358.3,4293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4001,1,3,0)
- ;;=3^Pain,Spine,Radiculopathy,Unspec Site
- ;;^UTILITY(U,$J,358.3,4001,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,4001,2)
- ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,4293,1,3,0)
+ ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,4293,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,4293,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,4294,0)
+ ;;=L23.2^^21^272^4
+ ;;^UTILITY(U,$J,358.3,4294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4294,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Cosmetics

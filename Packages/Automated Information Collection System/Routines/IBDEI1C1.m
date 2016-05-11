@@ -1,122 +1,132 @@
-IBDEI1C1 ; ; 19-NOV-2015
+IBDEI1C1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22209,0)
- ;;=S82.454S^^101^1038^44
- ;;^UTILITY(U,$J,358.3,22209,1,0)
+ ;;^UTILITY(U,$J,358.3,22649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22209,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22209,1,4,0)
- ;;=4^S82.454S
- ;;^UTILITY(U,$J,358.3,22209,2)
- ;;=^5042065
- ;;^UTILITY(U,$J,358.3,22210,0)
- ;;=S82.65XS^^101^1038^47
- ;;^UTILITY(U,$J,358.3,22210,1,0)
+ ;;^UTILITY(U,$J,358.3,22649,1,3,0)
+ ;;=3^Family Hx of Mult Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,22649,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,22649,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,22650,0)
+ ;;=Z81.8^^87^982^50
+ ;;^UTILITY(U,$J,358.3,22650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22210,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22210,1,4,0)
- ;;=4^S82.65XS
- ;;^UTILITY(U,$J,358.3,22210,2)
- ;;=^5042390
- ;;^UTILITY(U,$J,358.3,22211,0)
- ;;=S82.64XS^^101^1038^48
- ;;^UTILITY(U,$J,358.3,22211,1,0)
+ ;;^UTILITY(U,$J,358.3,22650,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence,Psychoactive
+ ;;^UTILITY(U,$J,358.3,22650,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,22650,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,22651,0)
+ ;;=Z81.4^^87^982^51
+ ;;^UTILITY(U,$J,358.3,22651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22211,1,3,0)
- ;;=3^Nondisp fx of lateral malleolus of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22211,1,4,0)
- ;;=4^S82.64XS
- ;;^UTILITY(U,$J,358.3,22211,2)
- ;;=^5042374
- ;;^UTILITY(U,$J,358.3,22212,0)
- ;;=S82.435S^^101^1038^55
- ;;^UTILITY(U,$J,358.3,22212,1,0)
+ ;;^UTILITY(U,$J,358.3,22651,1,3,0)
+ ;;=3^Family Hx of Substance Abuse/Dependence NEC
+ ;;^UTILITY(U,$J,358.3,22651,1,4,0)
+ ;;=4^Z81.4
+ ;;^UTILITY(U,$J,358.3,22651,2)
+ ;;=^5063362
+ ;;^UTILITY(U,$J,358.3,22652,0)
+ ;;=Z98.0^^87^982^62
+ ;;^UTILITY(U,$J,358.3,22652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22212,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22212,1,4,0)
- ;;=4^S82.435S
- ;;^UTILITY(U,$J,358.3,22212,2)
- ;;=^5041889
- ;;^UTILITY(U,$J,358.3,22213,0)
- ;;=S82.434S^^101^1038^57
- ;;^UTILITY(U,$J,358.3,22213,1,0)
+ ;;^UTILITY(U,$J,358.3,22652,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,22652,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,22652,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,22653,0)
+ ;;=Z91.128^^87^982^61
+ ;;^UTILITY(U,$J,358.3,22653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22213,1,3,0)
- ;;=3^Nondisp fx of oblique shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22213,1,4,0)
- ;;=4^S82.434S
- ;;^UTILITY(U,$J,358.3,22213,2)
- ;;=^5041873
- ;;^UTILITY(U,$J,358.3,22214,0)
- ;;=S82.465S^^101^1038^63
- ;;^UTILITY(U,$J,358.3,22214,1,0)
+ ;;^UTILITY(U,$J,358.3,22653,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,22653,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,22653,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,22654,0)
+ ;;=Z77.120^^87^982^67
+ ;;^UTILITY(U,$J,358.3,22654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22214,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of left fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22214,1,4,0)
- ;;=4^S82.465S
- ;;^UTILITY(U,$J,358.3,22214,2)
- ;;=^5042177
- ;;^UTILITY(U,$J,358.3,22215,0)
- ;;=S82.464S^^101^1038^66
- ;;^UTILITY(U,$J,358.3,22215,1,0)
+ ;;^UTILITY(U,$J,358.3,22654,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,22654,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,22654,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,22655,0)
+ ;;=Z86.74^^87^982^110
+ ;;^UTILITY(U,$J,358.3,22655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22215,1,3,0)
- ;;=3^Nondisp fx of segmental shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22215,1,4,0)
- ;;=4^S82.464S
- ;;^UTILITY(U,$J,358.3,22215,2)
- ;;=^5042161
- ;;^UTILITY(U,$J,358.3,22216,0)
- ;;=S82.445S^^101^1038^67
- ;;^UTILITY(U,$J,358.3,22216,1,0)
+ ;;^UTILITY(U,$J,358.3,22655,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,22655,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,22655,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,22656,0)
+ ;;=Z86.718^^87^982^117
+ ;;^UTILITY(U,$J,358.3,22656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22216,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of left fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22216,1,4,0)
- ;;=4^S82.445S
- ;;^UTILITY(U,$J,358.3,22216,2)
- ;;=^5041985
- ;;^UTILITY(U,$J,358.3,22217,0)
- ;;=S82.444S^^101^1038^69
- ;;^UTILITY(U,$J,358.3,22217,1,0)
+ ;;^UTILITY(U,$J,358.3,22656,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,22656,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,22656,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,22657,0)
+ ;;=Z96.1^^87^982^127
+ ;;^UTILITY(U,$J,358.3,22657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22217,1,3,0)
- ;;=3^Nondisp fx of spiral shaft of right fibula, sequela 
- ;;^UTILITY(U,$J,358.3,22217,1,4,0)
- ;;=4^S82.444S
- ;;^UTILITY(U,$J,358.3,22217,2)
- ;;=^5041969
- ;;^UTILITY(U,$J,358.3,22218,0)
- ;;=S82.425S^^101^1038^72
- ;;^UTILITY(U,$J,358.3,22218,1,0)
+ ;;^UTILITY(U,$J,358.3,22657,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,22657,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,22657,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,22658,0)
+ ;;=Z96.612^^87^982^132
+ ;;^UTILITY(U,$J,358.3,22658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22218,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of left fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22218,1,4,0)
- ;;=4^S82.425S
- ;;^UTILITY(U,$J,358.3,22218,2)
- ;;=^5041793
- ;;^UTILITY(U,$J,358.3,22219,0)
- ;;=S82.424S^^101^1038^74
- ;;^UTILITY(U,$J,358.3,22219,1,0)
+ ;;^UTILITY(U,$J,358.3,22658,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,22658,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,22658,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,22659,0)
+ ;;=Z96.611^^87^982^137
+ ;;^UTILITY(U,$J,358.3,22659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22219,1,3,0)
- ;;=3^Nondisp fx of transverse shaft of right fibula, sequela  
- ;;^UTILITY(U,$J,358.3,22219,1,4,0)
- ;;=4^S82.424S
- ;;^UTILITY(U,$J,358.3,22219,2)
- ;;=^5041777
- ;;^UTILITY(U,$J,358.3,22220,0)
- ;;=M84.464S^^101^1038^75
- ;;^UTILITY(U,$J,358.3,22220,1,0)
+ ;;^UTILITY(U,$J,358.3,22659,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,22659,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,22659,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,22660,0)
+ ;;=Z93.0^^87^982^145
+ ;;^UTILITY(U,$J,358.3,22660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22220,1,3,0)
- ;;=3^Pathological fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22220,1,4,0)
- ;;=4^M84.464S
+ ;;^UTILITY(U,$J,358.3,22660,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,22660,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,22660,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,22661,0)
+ ;;=Z99.3^^87^982^149
+ ;;^UTILITY(U,$J,358.3,22661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22661,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,22661,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,22661,2)
+ ;;=^5063759

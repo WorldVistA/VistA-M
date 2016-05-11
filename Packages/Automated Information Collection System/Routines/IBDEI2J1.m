@@ -1,122 +1,138 @@
-IBDEI2J1 ; ; 19-NOV-2015
+IBDEI2J1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42399,1,3,0)
- ;;=3^Nondisp fx of 5th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42399,1,4,0)
- ;;=4^S92.355K
- ;;^UTILITY(U,$J,358.3,42399,2)
- ;;=^5045260
- ;;^UTILITY(U,$J,358.3,42400,0)
- ;;=S92.354K^^192^2137^303
- ;;^UTILITY(U,$J,358.3,42400,1,0)
+ ;;^UTILITY(U,$J,358.3,42863,0)
+ ;;=N47.8^^162^2048^17
+ ;;^UTILITY(U,$J,358.3,42863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42400,1,3,0)
- ;;=3^Nondisp fx of 5th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42400,1,4,0)
- ;;=4^S92.354K
- ;;^UTILITY(U,$J,358.3,42400,2)
- ;;=^5045253
- ;;^UTILITY(U,$J,358.3,42401,0)
- ;;=S92.352K^^192^2137^77
- ;;^UTILITY(U,$J,358.3,42401,1,0)
+ ;;^UTILITY(U,$J,358.3,42863,1,3,0)
+ ;;=3^Prepuce disorders,other
+ ;;^UTILITY(U,$J,358.3,42863,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,42863,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,42864,0)
+ ;;=N47.7^^162^2048^18
+ ;;^UTILITY(U,$J,358.3,42864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42401,1,3,0)
- ;;=3^Disp fx of 5th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42401,1,4,0)
- ;;=4^S92.352K
- ;;^UTILITY(U,$J,358.3,42401,2)
- ;;=^5045239
- ;;^UTILITY(U,$J,358.3,42402,0)
- ;;=S92.351K^^192^2137^78
- ;;^UTILITY(U,$J,358.3,42402,1,0)
+ ;;^UTILITY(U,$J,358.3,42864,1,3,0)
+ ;;=3^Prepuce inflammatory diseases,Other
+ ;;^UTILITY(U,$J,358.3,42864,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,42864,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,42865,0)
+ ;;=N48.1^^162^2048^2
+ ;;^UTILITY(U,$J,358.3,42865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42402,1,3,0)
- ;;=3^Disp fx of 5th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42402,1,4,0)
- ;;=4^S92.351K
- ;;^UTILITY(U,$J,358.3,42402,2)
- ;;=^5045232
- ;;^UTILITY(U,$J,358.3,42403,0)
- ;;=S92.345K^^192^2137^298
- ;;^UTILITY(U,$J,358.3,42403,1,0)
+ ;;^UTILITY(U,$J,358.3,42865,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,42865,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,42865,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,42866,0)
+ ;;=N47.6^^162^2048^3
+ ;;^UTILITY(U,$J,358.3,42866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42403,1,3,0)
- ;;=3^Nondisp fx of 4th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42403,1,4,0)
- ;;=4^S92.345K
- ;;^UTILITY(U,$J,358.3,42403,2)
- ;;=^5045218
- ;;^UTILITY(U,$J,358.3,42404,0)
- ;;=S92.344K^^192^2137^299
- ;;^UTILITY(U,$J,358.3,42404,1,0)
+ ;;^UTILITY(U,$J,358.3,42866,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,42866,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,42866,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,42867,0)
+ ;;=N48.30^^162^2048^21
+ ;;^UTILITY(U,$J,358.3,42867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42404,1,3,0)
- ;;=3^Nondisp fx of 4th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42404,1,4,0)
- ;;=4^S92.344K
- ;;^UTILITY(U,$J,358.3,42404,2)
- ;;=^5045211
- ;;^UTILITY(U,$J,358.3,42405,0)
- ;;=S92.342K^^192^2137^72
- ;;^UTILITY(U,$J,358.3,42405,1,0)
+ ;;^UTILITY(U,$J,358.3,42867,1,3,0)
+ ;;=3^Priapism, Unspec
+ ;;^UTILITY(U,$J,358.3,42867,1,4,0)
+ ;;=4^N48.30
+ ;;^UTILITY(U,$J,358.3,42867,2)
+ ;;=^5015733
+ ;;^UTILITY(U,$J,358.3,42868,0)
+ ;;=N48.32^^162^2048^19
+ ;;^UTILITY(U,$J,358.3,42868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42405,1,3,0)
- ;;=3^Disp fx of 4th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42405,1,4,0)
- ;;=4^S92.342K
- ;;^UTILITY(U,$J,358.3,42405,2)
- ;;=^5045197
- ;;^UTILITY(U,$J,358.3,42406,0)
- ;;=S92.341K^^192^2137^73
- ;;^UTILITY(U,$J,358.3,42406,1,0)
+ ;;^UTILITY(U,$J,358.3,42868,1,3,0)
+ ;;=3^Priapism d/t disease classified elsewhere
+ ;;^UTILITY(U,$J,358.3,42868,1,4,0)
+ ;;=4^N48.32
+ ;;^UTILITY(U,$J,358.3,42868,2)
+ ;;=^5015735
+ ;;^UTILITY(U,$J,358.3,42869,0)
+ ;;=N48.33^^162^2048^22
+ ;;^UTILITY(U,$J,358.3,42869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42406,1,3,0)
- ;;=3^Disp fx of 4th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42406,1,4,0)
- ;;=4^S92.341K
- ;;^UTILITY(U,$J,358.3,42406,2)
- ;;=^5045190
- ;;^UTILITY(U,$J,358.3,42407,0)
- ;;=S92.335K^^192^2137^294
- ;;^UTILITY(U,$J,358.3,42407,1,0)
+ ;;^UTILITY(U,$J,358.3,42869,1,3,0)
+ ;;=3^Priapism, drug-induced
+ ;;^UTILITY(U,$J,358.3,42869,1,4,0)
+ ;;=4^N48.33
+ ;;^UTILITY(U,$J,358.3,42869,2)
+ ;;=^5015736
+ ;;^UTILITY(U,$J,358.3,42870,0)
+ ;;=N48.39^^162^2048^20
+ ;;^UTILITY(U,$J,358.3,42870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42407,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42407,1,4,0)
- ;;=4^S92.335K
- ;;^UTILITY(U,$J,358.3,42407,2)
- ;;=^5045176
- ;;^UTILITY(U,$J,358.3,42408,0)
- ;;=S92.334K^^192^2137^295
- ;;^UTILITY(U,$J,358.3,42408,1,0)
+ ;;^UTILITY(U,$J,358.3,42870,1,3,0)
+ ;;=3^Priapism, Other
+ ;;^UTILITY(U,$J,358.3,42870,1,4,0)
+ ;;=4^N48.39
+ ;;^UTILITY(U,$J,358.3,42870,2)
+ ;;=^5015737
+ ;;^UTILITY(U,$J,358.3,42871,0)
+ ;;=N50.1^^162^2048^24
+ ;;^UTILITY(U,$J,358.3,42871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42408,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42408,1,4,0)
- ;;=4^S92.334K
- ;;^UTILITY(U,$J,358.3,42408,2)
- ;;=^5045169
- ;;^UTILITY(U,$J,358.3,42409,0)
- ;;=S92.332K^^192^2137^69
- ;;^UTILITY(U,$J,358.3,42409,1,0)
+ ;;^UTILITY(U,$J,358.3,42871,1,3,0)
+ ;;=3^Vascular disorders male genital organs
+ ;;^UTILITY(U,$J,358.3,42871,1,4,0)
+ ;;=4^N50.1
+ ;;^UTILITY(U,$J,358.3,42871,2)
+ ;;=^125508
+ ;;^UTILITY(U,$J,358.3,42872,0)
+ ;;=N52.9^^162^2048^8
+ ;;^UTILITY(U,$J,358.3,42872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42409,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42409,1,4,0)
- ;;=4^S92.332K
- ;;^UTILITY(U,$J,358.3,42409,2)
- ;;=^5045155
- ;;^UTILITY(U,$J,358.3,42410,0)
- ;;=S92.331K^^192^2137^70
- ;;^UTILITY(U,$J,358.3,42410,1,0)
+ ;;^UTILITY(U,$J,358.3,42872,1,3,0)
+ ;;=3^Male erectile dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,42872,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,42872,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,42873,0)
+ ;;=N52.39^^162^2048^16
+ ;;^UTILITY(U,$J,358.3,42873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42410,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42410,1,4,0)
- ;;=4^S92.331K
- ;;^UTILITY(U,$J,358.3,42410,2)
- ;;=^5045148
- ;;^UTILITY(U,$J,358.3,42411,0)
- ;;=S92.325K^^192^2137^290
+ ;;^UTILITY(U,$J,358.3,42873,1,3,0)
+ ;;=3^Post-surg erectile dysfunction,Other
+ ;;^UTILITY(U,$J,358.3,42873,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,42873,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,42874,0)
+ ;;=N53.9^^162^2048^10
+ ;;^UTILITY(U,$J,358.3,42874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42874,1,3,0)
+ ;;=3^Male sexual dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,42874,1,4,0)
+ ;;=4^N53.9
+ ;;^UTILITY(U,$J,358.3,42874,2)
+ ;;=^5015769
+ ;;^UTILITY(U,$J,358.3,42875,0)
+ ;;=N53.12^^162^2048^12
+ ;;^UTILITY(U,$J,358.3,42875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42875,1,3,0)
+ ;;=3^Painful ejaculation
+ ;;^UTILITY(U,$J,358.3,42875,1,4,0)
+ ;;=4^N53.12
+ ;;^UTILITY(U,$J,358.3,42875,2)
+ ;;=^5015765
+ ;;^UTILITY(U,$J,358.3,42876,0)
+ ;;=N53.8^^162^2048^9
+ ;;^UTILITY(U,$J,358.3,42876,1,0)
+ ;;=^358.31IA^4^2

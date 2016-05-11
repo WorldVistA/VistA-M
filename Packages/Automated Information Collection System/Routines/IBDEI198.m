@@ -1,130 +1,128 @@
-IBDEI198 ; ; 19-NOV-2015
+IBDEI198 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20978,1,4,0)
- ;;=4^G47.26
- ;;^UTILITY(U,$J,358.3,20978,2)
- ;;=^332774
- ;;^UTILITY(U,$J,358.3,20979,0)
- ;;=G47.20^^99^1006^7
- ;;^UTILITY(U,$J,358.3,20979,1,0)
+ ;;^UTILITY(U,$J,358.3,21315,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21315,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,21315,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,21316,0)
+ ;;=X32.XXXD^^84^948^16
+ ;;^UTILITY(U,$J,358.3,21316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20979,1,3,0)
- ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
- ;;^UTILITY(U,$J,358.3,20979,1,4,0)
- ;;=4^G47.20
- ;;^UTILITY(U,$J,358.3,20979,2)
- ;;=^5003974
- ;;^UTILITY(U,$J,358.3,20980,0)
- ;;=F51.3^^99^1006^14
- ;;^UTILITY(U,$J,358.3,20980,1,0)
+ ;;^UTILITY(U,$J,358.3,21316,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21316,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,21316,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,21317,0)
+ ;;=Y04.0XXA^^84^948^7
+ ;;^UTILITY(U,$J,358.3,21317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20980,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type
- ;;^UTILITY(U,$J,358.3,20980,1,4,0)
- ;;=4^F51.3
- ;;^UTILITY(U,$J,358.3,20980,2)
- ;;=^5003613
- ;;^UTILITY(U,$J,358.3,20981,0)
- ;;=F51.4^^99^1006^15
- ;;^UTILITY(U,$J,358.3,20981,1,0)
+ ;;^UTILITY(U,$J,358.3,21317,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21317,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,21317,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,21318,0)
+ ;;=Y04.0XXD^^84^948^8
+ ;;^UTILITY(U,$J,358.3,21318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20981,1,3,0)
- ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
- ;;^UTILITY(U,$J,358.3,20981,1,4,0)
- ;;=4^F51.4
- ;;^UTILITY(U,$J,358.3,20981,2)
- ;;=^5003614
- ;;^UTILITY(U,$J,358.3,20982,0)
- ;;=F51.5^^99^1006^13
- ;;^UTILITY(U,$J,358.3,20982,1,0)
+ ;;^UTILITY(U,$J,358.3,21318,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21318,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,21318,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,21319,0)
+ ;;=Y04.1XXA^^84^948^1
+ ;;^UTILITY(U,$J,358.3,21319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20982,1,3,0)
- ;;=3^Nightmare Disorder
- ;;^UTILITY(U,$J,358.3,20982,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,20982,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,20983,0)
- ;;=G47.52^^99^1006^17
- ;;^UTILITY(U,$J,358.3,20983,1,0)
+ ;;^UTILITY(U,$J,358.3,21319,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21319,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,21319,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,21320,0)
+ ;;=Y04.1XXD^^84^948^2
+ ;;^UTILITY(U,$J,358.3,21320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20983,1,3,0)
- ;;=3^Rapid Eye Movement Sleep Behavior Disorder
- ;;^UTILITY(U,$J,358.3,20983,1,4,0)
- ;;=4^G47.52
- ;;^UTILITY(U,$J,358.3,20983,2)
- ;;=^332778
- ;;^UTILITY(U,$J,358.3,20984,0)
- ;;=G25.81^^99^1006^18
- ;;^UTILITY(U,$J,358.3,20984,1,0)
+ ;;^UTILITY(U,$J,358.3,21320,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21320,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,21320,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,21321,0)
+ ;;=Y04.2XXA^^84^948^5
+ ;;^UTILITY(U,$J,358.3,21321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20984,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,20984,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,20984,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,20985,0)
- ;;=G47.19^^99^1006^8
- ;;^UTILITY(U,$J,358.3,20985,1,0)
+ ;;^UTILITY(U,$J,358.3,21321,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21321,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,21321,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,21322,0)
+ ;;=Y04.8XXA^^84^948^3
+ ;;^UTILITY(U,$J,358.3,21322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20985,1,3,0)
- ;;=3^Hypersomnolence Disorder NEC
- ;;^UTILITY(U,$J,358.3,20985,1,4,0)
- ;;=4^G47.19
- ;;^UTILITY(U,$J,358.3,20985,2)
- ;;=^5003973
- ;;^UTILITY(U,$J,358.3,20986,0)
- ;;=G47.8^^99^1006^19
- ;;^UTILITY(U,$J,358.3,20986,1,0)
+ ;;^UTILITY(U,$J,358.3,21322,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21322,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,21322,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,21323,0)
+ ;;=Y04.2XXD^^84^948^6
+ ;;^UTILITY(U,$J,358.3,21323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20986,1,3,0)
- ;;=3^Sleep-Wake Disorder NEC
- ;;^UTILITY(U,$J,358.3,20986,1,4,0)
- ;;=4^G47.8
- ;;^UTILITY(U,$J,358.3,20986,2)
- ;;=^5003989
- ;;^UTILITY(U,$J,358.3,20987,0)
- ;;=F10.10^^99^1007^1
- ;;^UTILITY(U,$J,358.3,20987,1,0)
+ ;;^UTILITY(U,$J,358.3,21323,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21323,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,21323,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,21324,0)
+ ;;=Y04.8XXD^^84^948^4
+ ;;^UTILITY(U,$J,358.3,21324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20987,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,20987,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,20987,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,20988,0)
- ;;=F10.14^^99^1007^8
- ;;^UTILITY(U,$J,358.3,20988,1,0)
+ ;;^UTILITY(U,$J,358.3,21324,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21324,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,21324,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,21325,0)
+ ;;=Y36.200A^^84^948^124
+ ;;^UTILITY(U,$J,358.3,21325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20988,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,20988,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,20988,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,20989,0)
- ;;=F10.182^^99^1007^10
- ;;^UTILITY(U,$J,358.3,20989,1,0)
+ ;;^UTILITY(U,$J,358.3,21325,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21325,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,21325,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,21326,0)
+ ;;=Y36.200D^^84^948^125
+ ;;^UTILITY(U,$J,358.3,21326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20989,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,20989,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,20989,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,20990,0)
- ;;=F10.20^^99^1007^2
- ;;^UTILITY(U,$J,358.3,20990,1,0)
+ ;;^UTILITY(U,$J,358.3,21326,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21326,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,21326,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,21327,0)
+ ;;=Y36.300A^^84^948^126
+ ;;^UTILITY(U,$J,358.3,21327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20990,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,20990,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,20990,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,20991,0)
- ;;=F10.21^^99^1007^3
+ ;;^UTILITY(U,$J,358.3,21327,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21327,1,4,0)
+ ;;=4^Y36.300A

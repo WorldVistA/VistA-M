@@ -1,130 +1,136 @@
-IBDEI0S8 ; ; 19-NOV-2015
+IBDEI0S8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12989,0)
- ;;=H10.022^^80^753^119
- ;;^UTILITY(U,$J,358.3,12989,1,0)
+ ;;^UTILITY(U,$J,358.3,13237,1,4,0)
+ ;;=4^N15.9
+ ;;^UTILITY(U,$J,358.3,13237,2)
+ ;;=^5015596
+ ;;^UTILITY(U,$J,358.3,13238,0)
+ ;;=N17.9^^53^589^61
+ ;;^UTILITY(U,$J,358.3,13238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12989,1,3,0)
- ;;=3^Mucopurulent Conjunctivitis,Left Eye NEC
- ;;^UTILITY(U,$J,358.3,12989,1,4,0)
- ;;=4^H10.022
- ;;^UTILITY(U,$J,358.3,12989,2)
- ;;=^5004661
- ;;^UTILITY(U,$J,358.3,12990,0)
- ;;=H10.11^^80^753^11
- ;;^UTILITY(U,$J,358.3,12990,1,0)
+ ;;^UTILITY(U,$J,358.3,13238,1,3,0)
+ ;;=3^Kidney Failure,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,13238,1,4,0)
+ ;;=4^N17.9
+ ;;^UTILITY(U,$J,358.3,13238,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,13239,0)
+ ;;=N19.^^53^589^62
+ ;;^UTILITY(U,$J,358.3,13239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12990,1,3,0)
- ;;=3^Atopic Conjuntivitis,Right Eye,Acute
- ;;^UTILITY(U,$J,358.3,12990,1,4,0)
- ;;=4^H10.11
- ;;^UTILITY(U,$J,358.3,12990,2)
- ;;=^5004665
- ;;^UTILITY(U,$J,358.3,12991,0)
- ;;=H10.12^^80^753^10
- ;;^UTILITY(U,$J,358.3,12991,1,0)
+ ;;^UTILITY(U,$J,358.3,13239,1,3,0)
+ ;;=3^Kidney Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,13239,1,4,0)
+ ;;=4^N19.
+ ;;^UTILITY(U,$J,358.3,13239,2)
+ ;;=^5015607
+ ;;^UTILITY(U,$J,358.3,13240,0)
+ ;;=N11.0^^53^589^90
+ ;;^UTILITY(U,$J,358.3,13240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12991,1,3,0)
- ;;=3^Atopic Conjuntivitis,Left Eye,Acute
- ;;^UTILITY(U,$J,358.3,12991,1,4,0)
- ;;=4^H10.12
- ;;^UTILITY(U,$J,358.3,12991,2)
- ;;=^5004666
- ;;^UTILITY(U,$J,358.3,12992,0)
- ;;=H10.13^^80^753^9
- ;;^UTILITY(U,$J,358.3,12992,1,0)
+ ;;^UTILITY(U,$J,358.3,13240,1,3,0)
+ ;;=3^Pyelonephritis,Chronic Nonobstructive Reflux-Associated
+ ;;^UTILITY(U,$J,358.3,13240,1,4,0)
+ ;;=4^N11.0
+ ;;^UTILITY(U,$J,358.3,13240,2)
+ ;;=^5015571
+ ;;^UTILITY(U,$J,358.3,13241,0)
+ ;;=N10.^^53^589^67
+ ;;^UTILITY(U,$J,358.3,13241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12992,1,3,0)
- ;;=3^Atopic Conjuntivitis,Bilateral,Acute
- ;;^UTILITY(U,$J,358.3,12992,1,4,0)
- ;;=4^H10.13
- ;;^UTILITY(U,$J,358.3,12992,2)
- ;;=^5004667
- ;;^UTILITY(U,$J,358.3,12993,0)
- ;;=H10.211^^80^753^159
- ;;^UTILITY(U,$J,358.3,12993,1,0)
+ ;;^UTILITY(U,$J,358.3,13241,1,3,0)
+ ;;=3^Nephritis Acute Tubulo-Interstitial
+ ;;^UTILITY(U,$J,358.3,13241,1,4,0)
+ ;;=4^N10.
+ ;;^UTILITY(U,$J,358.3,13241,2)
+ ;;=^5015570
+ ;;^UTILITY(U,$J,358.3,13242,0)
+ ;;=N20.2^^53^589^8
+ ;;^UTILITY(U,$J,358.3,13242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12993,1,3,0)
- ;;=3^Toxic Conjunctivitis,Right Eye,Acute
- ;;^UTILITY(U,$J,358.3,12993,1,4,0)
- ;;=4^H10.211
- ;;^UTILITY(U,$J,358.3,12993,2)
- ;;=^5004668
- ;;^UTILITY(U,$J,358.3,12994,0)
- ;;=H10.212^^80^753^158
- ;;^UTILITY(U,$J,358.3,12994,1,0)
+ ;;^UTILITY(U,$J,358.3,13242,1,3,0)
+ ;;=3^Calculus Kidney w/ Calculus Ureter
+ ;;^UTILITY(U,$J,358.3,13242,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,13242,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,13243,0)
+ ;;=N20.0^^53^589^7
+ ;;^UTILITY(U,$J,358.3,13243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12994,1,3,0)
- ;;=3^Toxic Conjunctivitis,Left Eye,Acute
- ;;^UTILITY(U,$J,358.3,12994,1,4,0)
- ;;=4^H10.212
- ;;^UTILITY(U,$J,358.3,12994,2)
- ;;=^5004669
- ;;^UTILITY(U,$J,358.3,12995,0)
- ;;=H10.401^^80^753^46
- ;;^UTILITY(U,$J,358.3,12995,1,0)
+ ;;^UTILITY(U,$J,358.3,13243,1,3,0)
+ ;;=3^Calculus Kidney
+ ;;^UTILITY(U,$J,358.3,13243,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,13243,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,13244,0)
+ ;;=N29.^^53^589^60
+ ;;^UTILITY(U,$J,358.3,13244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12995,1,3,0)
- ;;=3^Conjunctivitis,Right Eye,Chronic
- ;;^UTILITY(U,$J,358.3,12995,1,4,0)
- ;;=4^H10.401
- ;;^UTILITY(U,$J,358.3,12995,2)
- ;;=^5004681
- ;;^UTILITY(U,$J,358.3,12996,0)
- ;;=H10.402^^80^753^45
- ;;^UTILITY(U,$J,358.3,12996,1,0)
+ ;;^UTILITY(U,$J,358.3,13244,1,3,0)
+ ;;=3^Kidney & Ureter Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,13244,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,13244,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,13245,0)
+ ;;=N28.9^^53^589^59
+ ;;^UTILITY(U,$J,358.3,13245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12996,1,3,0)
- ;;=3^Conjunctivitis,Left Eye,Chronic
- ;;^UTILITY(U,$J,358.3,12996,1,4,0)
- ;;=4^H10.402
- ;;^UTILITY(U,$J,358.3,12996,2)
- ;;=^5004682
- ;;^UTILITY(U,$J,358.3,12997,0)
- ;;=H10.411^^80^753^79
- ;;^UTILITY(U,$J,358.3,12997,1,0)
+ ;;^UTILITY(U,$J,358.3,13245,1,3,0)
+ ;;=3^Kidney & Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13245,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,13245,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,13246,0)
+ ;;=N30.01^^53^589^20
+ ;;^UTILITY(U,$J,358.3,13246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12997,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Right Eye,Chronic
- ;;^UTILITY(U,$J,358.3,12997,1,4,0)
- ;;=4^H10.411
- ;;^UTILITY(U,$J,358.3,12997,2)
- ;;=^5004684
- ;;^UTILITY(U,$J,358.3,12998,0)
- ;;=H10.412^^80^753^78
- ;;^UTILITY(U,$J,358.3,12998,1,0)
+ ;;^UTILITY(U,$J,358.3,13246,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,13246,1,4,0)
+ ;;=4^N30.01
+ ;;^UTILITY(U,$J,358.3,13246,2)
+ ;;=^5015633
+ ;;^UTILITY(U,$J,358.3,13247,0)
+ ;;=N30.00^^53^589^22
+ ;;^UTILITY(U,$J,358.3,13247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12998,1,3,0)
- ;;=3^Giant Papillary Conjunctivitis,Left Eye,Chronic
- ;;^UTILITY(U,$J,358.3,12998,1,4,0)
- ;;=4^H10.412
- ;;^UTILITY(U,$J,358.3,12998,2)
- ;;=^5004685
- ;;^UTILITY(U,$J,358.3,12999,0)
- ;;=H10.45^^80^753^1
- ;;^UTILITY(U,$J,358.3,12999,1,0)
+ ;;^UTILITY(U,$J,358.3,13247,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,13247,1,4,0)
+ ;;=4^N30.00
+ ;;^UTILITY(U,$J,358.3,13247,2)
+ ;;=^5015632
+ ;;^UTILITY(U,$J,358.3,13248,0)
+ ;;=N30.41^^53^589^21
+ ;;^UTILITY(U,$J,358.3,13248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12999,1,3,0)
- ;;=3^Allergic Conjunctivitis,Chronic NEC
- ;;^UTILITY(U,$J,358.3,12999,1,4,0)
- ;;=4^H10.45
- ;;^UTILITY(U,$J,358.3,12999,2)
- ;;=^87396
- ;;^UTILITY(U,$J,358.3,13000,0)
- ;;=H10.501^^80^753^21
- ;;^UTILITY(U,$J,358.3,13000,1,0)
+ ;;^UTILITY(U,$J,358.3,13248,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,13248,1,4,0)
+ ;;=4^N30.41
+ ;;^UTILITY(U,$J,358.3,13248,2)
+ ;;=^5015640
+ ;;^UTILITY(U,$J,358.3,13249,0)
+ ;;=N30.40^^53^589^23
+ ;;^UTILITY(U,$J,358.3,13249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13000,1,3,0)
- ;;=3^Blepharoconjunctivitis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,13000,1,4,0)
- ;;=4^H10.501
- ;;^UTILITY(U,$J,358.3,13000,2)
- ;;=^5004697
- ;;^UTILITY(U,$J,358.3,13001,0)
- ;;=H10.502^^80^753^20
- ;;^UTILITY(U,$J,358.3,13001,1,0)
+ ;;^UTILITY(U,$J,358.3,13249,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,13249,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,13249,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,13250,0)
+ ;;=N32.0^^53^589^6
+ ;;^UTILITY(U,$J,358.3,13250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13001,1,3,0)
- ;;=3^Blepharoconjunctivitis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,13250,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,13250,1,4,0)
+ ;;=4^N32.0

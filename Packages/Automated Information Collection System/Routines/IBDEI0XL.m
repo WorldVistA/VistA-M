@@ -1,136 +1,120 @@
-IBDEI0XL ; ; 19-NOV-2015
+IBDEI0XL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15481,2)
- ;;=^5013325
- ;;^UTILITY(U,$J,358.3,15482,0)
- ;;=M79.602^^85^820^1
- ;;^UTILITY(U,$J,358.3,15482,1,0)
+ ;;^UTILITY(U,$J,358.3,15751,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC,In Remission
+ ;;^UTILITY(U,$J,358.3,15751,1,4,0)
+ ;;=4^F19.21
+ ;;^UTILITY(U,$J,358.3,15751,2)
+ ;;=^5003432
+ ;;^UTILITY(U,$J,358.3,15752,0)
+ ;;=F19.24^^58^689^4
+ ;;^UTILITY(U,$J,358.3,15752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15482,1,3,0)
- ;;=3^Left Arm Pain
- ;;^UTILITY(U,$J,358.3,15482,1,4,0)
- ;;=4^M79.602
- ;;^UTILITY(U,$J,358.3,15482,2)
- ;;=^5013326
- ;;^UTILITY(U,$J,358.3,15483,0)
- ;;=M79.604^^85^820^16
- ;;^UTILITY(U,$J,358.3,15483,1,0)
+ ;;^UTILITY(U,$J,358.3,15752,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,15752,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,15752,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,15753,0)
+ ;;=F13.10^^58^690^1
+ ;;^UTILITY(U,$J,358.3,15753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15483,1,3,0)
- ;;=3^Right Leg Pain
- ;;^UTILITY(U,$J,358.3,15483,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,15483,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,15484,0)
- ;;=L03.321^^85^821^1
- ;;^UTILITY(U,$J,358.3,15484,1,0)
+ ;;^UTILITY(U,$J,358.3,15753,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,15753,1,4,0)
+ ;;=4^F13.10
+ ;;^UTILITY(U,$J,358.3,15753,2)
+ ;;=^5003189
+ ;;^UTILITY(U,$J,358.3,15754,0)
+ ;;=F13.14^^58^690^7
+ ;;^UTILITY(U,$J,358.3,15754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15484,1,3,0)
- ;;=3^Acute Lymphangitis of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,15484,1,4,0)
- ;;=4^L03.321
- ;;^UTILITY(U,$J,358.3,15484,2)
- ;;=^5009055
- ;;^UTILITY(U,$J,358.3,15485,0)
- ;;=L03.322^^85^821^2
- ;;^UTILITY(U,$J,358.3,15485,1,0)
+ ;;^UTILITY(U,$J,358.3,15754,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
+ ;;^UTILITY(U,$J,358.3,15754,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,15754,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,15755,0)
+ ;;=F13.182^^58^690^8
+ ;;^UTILITY(U,$J,358.3,15755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15485,1,3,0)
- ;;=3^Acute Lymphangitis of Back
- ;;^UTILITY(U,$J,358.3,15485,1,4,0)
- ;;=4^L03.322
- ;;^UTILITY(U,$J,358.3,15485,2)
- ;;=^5009056
- ;;^UTILITY(U,$J,358.3,15486,0)
- ;;=L03.327^^85^821^3
- ;;^UTILITY(U,$J,358.3,15486,1,0)
+ ;;^UTILITY(U,$J,358.3,15755,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15755,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,15755,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,15756,0)
+ ;;=F13.20^^58^690^2
+ ;;^UTILITY(U,$J,358.3,15756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15486,1,3,0)
- ;;=3^Acute Lymphangitis of Buttock
- ;;^UTILITY(U,$J,358.3,15486,1,4,0)
- ;;=4^L03.327
- ;;^UTILITY(U,$J,358.3,15486,2)
- ;;=^5009061
- ;;^UTILITY(U,$J,358.3,15487,0)
- ;;=L03.323^^85^821^4
- ;;^UTILITY(U,$J,358.3,15487,1,0)
+ ;;^UTILITY(U,$J,358.3,15756,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,15756,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,15756,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,15757,0)
+ ;;=F13.21^^58^690^3
+ ;;^UTILITY(U,$J,358.3,15757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15487,1,3,0)
- ;;=3^Acute Lymphangitis of Chest Wall
- ;;^UTILITY(U,$J,358.3,15487,1,4,0)
- ;;=4^L03.323
- ;;^UTILITY(U,$J,358.3,15487,2)
- ;;=^5009057
- ;;^UTILITY(U,$J,358.3,15488,0)
- ;;=L03.212^^85^821^5
- ;;^UTILITY(U,$J,358.3,15488,1,0)
+ ;;^UTILITY(U,$J,358.3,15757,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,15757,1,4,0)
+ ;;=4^F13.21
+ ;;^UTILITY(U,$J,358.3,15757,2)
+ ;;=^331934
+ ;;^UTILITY(U,$J,358.3,15758,0)
+ ;;=F13.232^^58^690^4
+ ;;^UTILITY(U,$J,358.3,15758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15488,1,3,0)
- ;;=3^Acute Lymphangitis of Face
- ;;^UTILITY(U,$J,358.3,15488,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,15488,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,15489,0)
- ;;=L03.324^^85^821^6
- ;;^UTILITY(U,$J,358.3,15489,1,0)
+ ;;^UTILITY(U,$J,358.3,15758,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,15758,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,15758,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,15759,0)
+ ;;=F13.239^^58^690^5
+ ;;^UTILITY(U,$J,358.3,15759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15489,1,3,0)
- ;;=3^Acute Lymphangitis of Groin
- ;;^UTILITY(U,$J,358.3,15489,1,4,0)
- ;;=4^L03.324
- ;;^UTILITY(U,$J,358.3,15489,2)
- ;;=^5009058
- ;;^UTILITY(U,$J,358.3,15490,0)
- ;;=L03.891^^85^821^7
- ;;^UTILITY(U,$J,358.3,15490,1,0)
+ ;;^UTILITY(U,$J,358.3,15759,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,15759,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,15759,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,15760,0)
+ ;;=F13.24^^58^690^9
+ ;;^UTILITY(U,$J,358.3,15760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15490,1,3,0)
- ;;=3^Acute Lymphangitis of Head
- ;;^UTILITY(U,$J,358.3,15490,1,4,0)
- ;;=4^L03.891
- ;;^UTILITY(U,$J,358.3,15490,2)
- ;;=^5009065
- ;;^UTILITY(U,$J,358.3,15491,0)
- ;;=L03.122^^85^821^8
- ;;^UTILITY(U,$J,358.3,15491,1,0)
+ ;;^UTILITY(U,$J,358.3,15760,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
+ ;;^UTILITY(U,$J,358.3,15760,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,15760,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,15761,0)
+ ;;=F13.231^^58^690^6
+ ;;^UTILITY(U,$J,358.3,15761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15491,1,3,0)
- ;;=3^Acute Lymphangitis of Left Axilla
- ;;^UTILITY(U,$J,358.3,15491,1,4,0)
- ;;=4^L03.122
- ;;^UTILITY(U,$J,358.3,15491,2)
- ;;=^5009038
- ;;^UTILITY(U,$J,358.3,15492,0)
- ;;=L03.022^^85^821^9
- ;;^UTILITY(U,$J,358.3,15492,1,0)
+ ;;^UTILITY(U,$J,358.3,15761,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,15761,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,15761,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,15762,0)
+ ;;=F17.200^^58^691^9
+ ;;^UTILITY(U,$J,358.3,15762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15492,1,3,0)
- ;;=3^Acute Lymphangitis of Left Finger
- ;;^UTILITY(U,$J,358.3,15492,1,4,0)
- ;;=4^L03.022
- ;;^UTILITY(U,$J,358.3,15492,2)
- ;;=^5009023
- ;;^UTILITY(U,$J,358.3,15493,0)
- ;;=L03.126^^85^821^10
- ;;^UTILITY(U,$J,358.3,15493,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15493,1,3,0)
- ;;=3^Acute Lymphangitis of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,15493,1,4,0)
- ;;=4^L03.126
- ;;^UTILITY(U,$J,358.3,15493,2)
- ;;=^5133646
- ;;^UTILITY(U,$J,358.3,15494,0)
- ;;=L03.042^^85^821^11
- ;;^UTILITY(U,$J,358.3,15494,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15494,1,3,0)
- ;;=3^Acute Lymphangitis of Left Toe
- ;;^UTILITY(U,$J,358.3,15494,1,4,0)
- ;;=4^L03.042
- ;;^UTILITY(U,$J,358.3,15494,2)
- ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,15762,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,15762,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,15762,2)
+ ;;=^5003360

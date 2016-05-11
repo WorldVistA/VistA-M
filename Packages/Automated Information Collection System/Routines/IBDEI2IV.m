@@ -1,128 +1,136 @@
-IBDEI2IV ; ; 19-NOV-2015
+IBDEI2IV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42325,2)
- ;;=^5045172
- ;;^UTILITY(U,$J,358.3,42326,0)
- ;;=S92.344A^^192^2137^297
- ;;^UTILITY(U,$J,358.3,42326,1,0)
+ ;;^UTILITY(U,$J,358.3,42784,0)
+ ;;=D30.11^^162^2041^5
+ ;;^UTILITY(U,$J,358.3,42784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42326,1,3,0)
- ;;=3^Nondisp fx of 4th metatarsal bone, rt ft, init
- ;;^UTILITY(U,$J,358.3,42326,1,4,0)
- ;;=4^S92.344A
- ;;^UTILITY(U,$J,358.3,42326,2)
- ;;=^5045207
- ;;^UTILITY(U,$J,358.3,42327,0)
- ;;=S92.342A^^192^2137^71
- ;;^UTILITY(U,$J,358.3,42327,1,0)
+ ;;^UTILITY(U,$J,358.3,42784,1,3,0)
+ ;;=3^Benign neoplasm of right renal pelvis
+ ;;^UTILITY(U,$J,358.3,42784,1,4,0)
+ ;;=4^D30.11
+ ;;^UTILITY(U,$J,358.3,42784,2)
+ ;;=^5002104
+ ;;^UTILITY(U,$J,358.3,42785,0)
+ ;;=D30.12^^162^2041^2
+ ;;^UTILITY(U,$J,358.3,42785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42327,1,3,0)
- ;;=3^Disp fx of 4th metatarsal bone, lft ft,  init
- ;;^UTILITY(U,$J,358.3,42327,1,4,0)
- ;;=4^S92.342A
- ;;^UTILITY(U,$J,358.3,42327,2)
- ;;=^5045193
- ;;^UTILITY(U,$J,358.3,42328,0)
- ;;=S92.355A^^192^2137^300
- ;;^UTILITY(U,$J,358.3,42328,1,0)
+ ;;^UTILITY(U,$J,358.3,42785,1,3,0)
+ ;;=3^Benign neoplasm of left renal pelvis
+ ;;^UTILITY(U,$J,358.3,42785,1,4,0)
+ ;;=4^D30.12
+ ;;^UTILITY(U,$J,358.3,42785,2)
+ ;;=^5002105
+ ;;^UTILITY(U,$J,358.3,42786,0)
+ ;;=D30.21^^162^2041^6
+ ;;^UTILITY(U,$J,358.3,42786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42328,1,3,0)
- ;;=3^Nondisp fx of 5th metatarsal bone, lft ft, init
- ;;^UTILITY(U,$J,358.3,42328,1,4,0)
- ;;=4^S92.355A
- ;;^UTILITY(U,$J,358.3,42328,2)
- ;;=^5045256
- ;;^UTILITY(U,$J,358.3,42329,0)
- ;;=S92.301A^^192^2137^205
- ;;^UTILITY(U,$J,358.3,42329,1,0)
+ ;;^UTILITY(U,$J,358.3,42786,1,3,0)
+ ;;=3^Benign neoplasm of right ureter
+ ;;^UTILITY(U,$J,358.3,42786,1,4,0)
+ ;;=4^D30.21
+ ;;^UTILITY(U,$J,358.3,42786,2)
+ ;;=^5002107
+ ;;^UTILITY(U,$J,358.3,42787,0)
+ ;;=D30.22^^162^2041^3
+ ;;^UTILITY(U,$J,358.3,42787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42329,1,3,0)
- ;;=3^Fx of metatarsal bone(s), rt ft, unspec, init
- ;;^UTILITY(U,$J,358.3,42329,1,4,0)
- ;;=4^S92.301A
- ;;^UTILITY(U,$J,358.3,42329,2)
- ;;=^5045046
- ;;^UTILITY(U,$J,358.3,42330,0)
- ;;=S92.302A^^192^2137^204
- ;;^UTILITY(U,$J,358.3,42330,1,0)
+ ;;^UTILITY(U,$J,358.3,42787,1,3,0)
+ ;;=3^Benign neoplasm of left ureter
+ ;;^UTILITY(U,$J,358.3,42787,1,4,0)
+ ;;=4^D30.22
+ ;;^UTILITY(U,$J,358.3,42787,2)
+ ;;=^5002108
+ ;;^UTILITY(U,$J,358.3,42788,0)
+ ;;=N18.6^^162^2042^7
+ ;;^UTILITY(U,$J,358.3,42788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42330,1,3,0)
- ;;=3^Fx of metatarsal bone(s), lft ft, unspec, init
- ;;^UTILITY(U,$J,358.3,42330,1,4,0)
- ;;=4^S92.302A
- ;;^UTILITY(U,$J,358.3,42330,2)
- ;;=^5045053
- ;;^UTILITY(U,$J,358.3,42331,0)
- ;;=S92.202A^^192^2137^223
- ;;^UTILITY(U,$J,358.3,42331,1,0)
+ ;;^UTILITY(U,$J,358.3,42788,1,3,0)
+ ;;=3^End stage renal disease
+ ;;^UTILITY(U,$J,358.3,42788,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,42788,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,42789,0)
+ ;;=N18.9^^162^2042^4
+ ;;^UTILITY(U,$J,358.3,42789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42331,1,3,0)
- ;;=3^Fx of tarsal bone(s) of lft ft, unspec, init
- ;;^UTILITY(U,$J,358.3,42331,1,4,0)
- ;;=4^S92.202A
- ;;^UTILITY(U,$J,358.3,42331,2)
- ;;=^5044829
- ;;^UTILITY(U,$J,358.3,42332,0)
- ;;=S92.201A^^192^2137^224
- ;;^UTILITY(U,$J,358.3,42332,1,0)
+ ;;^UTILITY(U,$J,358.3,42789,1,3,0)
+ ;;=3^Chronic kidney disease Unspec
+ ;;^UTILITY(U,$J,358.3,42789,1,4,0)
+ ;;=4^N18.9
+ ;;^UTILITY(U,$J,358.3,42789,2)
+ ;;=^332812
+ ;;^UTILITY(U,$J,358.3,42790,0)
+ ;;=N13.30^^162^2042^10
+ ;;^UTILITY(U,$J,358.3,42790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42332,1,3,0)
- ;;=3^Fx of tarsal bone(s) of rt ft, unspec, init
- ;;^UTILITY(U,$J,358.3,42332,1,4,0)
- ;;=4^S92.201A
- ;;^UTILITY(U,$J,358.3,42332,2)
- ;;=^5044822
- ;;^UTILITY(U,$J,358.3,42333,0)
- ;;=S92.402A^^192^2137^97
- ;;^UTILITY(U,$J,358.3,42333,1,0)
+ ;;^UTILITY(U,$J,358.3,42790,1,3,0)
+ ;;=3^Hydronephrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,42790,1,4,0)
+ ;;=4^N13.30
+ ;;^UTILITY(U,$J,358.3,42790,2)
+ ;;=^5015578
+ ;;^UTILITY(U,$J,358.3,42791,0)
+ ;;=N13.2^^162^2042^8
+ ;;^UTILITY(U,$J,358.3,42791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42333,1,3,0)
- ;;=3^Disp fx of lft grt toe, unspec, init
- ;;^UTILITY(U,$J,358.3,42333,1,4,0)
- ;;=4^S92.402A
- ;;^UTILITY(U,$J,358.3,42333,2)
- ;;=^5045277
- ;;^UTILITY(U,$J,358.3,42334,0)
- ;;=S92.401A^^192^2137^126
- ;;^UTILITY(U,$J,358.3,42334,1,0)
+ ;;^UTILITY(U,$J,358.3,42791,1,3,0)
+ ;;=3^Hydronephrosis w/ Renal & Ureteral Calc Obstr
+ ;;^UTILITY(U,$J,358.3,42791,1,4,0)
+ ;;=4^N13.2
+ ;;^UTILITY(U,$J,358.3,42791,2)
+ ;;=^5015577
+ ;;^UTILITY(U,$J,358.3,42792,0)
+ ;;=N13.39^^162^2042^9
+ ;;^UTILITY(U,$J,358.3,42792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42334,1,3,0)
- ;;=3^Disp fx of rt grt toe, unspec, init
- ;;^UTILITY(U,$J,358.3,42334,1,4,0)
- ;;=4^S92.401A
- ;;^UTILITY(U,$J,358.3,42334,2)
- ;;=^5045270
- ;;^UTILITY(U,$J,358.3,42335,0)
- ;;=S92.405A^^192^2137^322
- ;;^UTILITY(U,$J,358.3,42335,1,0)
+ ;;^UTILITY(U,$J,358.3,42792,1,3,0)
+ ;;=3^Hydronephrosis,Other
+ ;;^UTILITY(U,$J,358.3,42792,1,4,0)
+ ;;=4^N13.39
+ ;;^UTILITY(U,$J,358.3,42792,2)
+ ;;=^5015579
+ ;;^UTILITY(U,$J,358.3,42793,0)
+ ;;=N20.0^^162^2042^1
+ ;;^UTILITY(U,$J,358.3,42793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42335,1,3,0)
- ;;=3^Nondisp fx of lft grt toe, unspec init
- ;;^UTILITY(U,$J,358.3,42335,1,4,0)
- ;;=4^S92.405A
- ;;^UTILITY(U,$J,358.3,42335,2)
- ;;=^5045291
- ;;^UTILITY(U,$J,358.3,42336,0)
- ;;=S92.404A^^192^2137^352
- ;;^UTILITY(U,$J,358.3,42336,1,0)
+ ;;^UTILITY(U,$J,358.3,42793,1,3,0)
+ ;;=3^Calculus of kidney
+ ;;^UTILITY(U,$J,358.3,42793,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,42793,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,42794,0)
+ ;;=N20.2^^162^2042^2
+ ;;^UTILITY(U,$J,358.3,42794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42336,1,3,0)
- ;;=3^Nondisp fx of rt grt toe, unspec, init
- ;;^UTILITY(U,$J,358.3,42336,1,4,0)
- ;;=4^S92.404A
- ;;^UTILITY(U,$J,358.3,42336,2)
- ;;=^5045284
- ;;^UTILITY(U,$J,358.3,42337,0)
- ;;=S92.422A^^192^2137^89
- ;;^UTILITY(U,$J,358.3,42337,1,0)
+ ;;^UTILITY(U,$J,358.3,42794,1,3,0)
+ ;;=3^Calculus of kidney w/ calculus of ureter
+ ;;^UTILITY(U,$J,358.3,42794,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,42794,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,42795,0)
+ ;;=N20.1^^162^2042^3
+ ;;^UTILITY(U,$J,358.3,42795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42337,1,3,0)
- ;;=3^Disp fx of dist phalanx of lft grt toe, init
- ;;^UTILITY(U,$J,358.3,42337,1,4,0)
- ;;=4^S92.422A
- ;;^UTILITY(U,$J,358.3,42337,2)
- ;;=^5045347
- ;;^UTILITY(U,$J,358.3,42338,0)
- ;;=S92.421A^^192^2137^91
+ ;;^UTILITY(U,$J,358.3,42795,1,3,0)
+ ;;=3^Calculus of ureter
+ ;;^UTILITY(U,$J,358.3,42795,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,42795,2)
+ ;;=^5015608
+ ;;^UTILITY(U,$J,358.3,42796,0)
+ ;;=N28.1^^162^2042^5
+ ;;^UTILITY(U,$J,358.3,42796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42796,1,3,0)
+ ;;=3^Cyst of kidney, acquired
+ ;;^UTILITY(U,$J,358.3,42796,1,4,0)
+ ;;=4^N28.1
+ ;;^UTILITY(U,$J,358.3,42796,2)
+ ;;=^270380
+ ;;^UTILITY(U,$J,358.3,42797,0)
+ ;;=R30.0^^162^2042^6

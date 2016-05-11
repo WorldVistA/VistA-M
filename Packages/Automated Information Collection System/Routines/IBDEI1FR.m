@@ -1,136 +1,128 @@
-IBDEI1FR ; ; 19-NOV-2015
+IBDEI1FR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23976,0)
- ;;=E66.01^^116^1174^8
- ;;^UTILITY(U,$J,358.3,23976,1,0)
+ ;;^UTILITY(U,$J,358.3,24395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23976,1,3,0)
- ;;=3^Obesity, morbid d/t excess calories
- ;;^UTILITY(U,$J,358.3,23976,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,23976,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,23977,0)
- ;;=E66.9^^116^1174^9
- ;;^UTILITY(U,$J,358.3,23977,1,0)
+ ;;^UTILITY(U,$J,358.3,24395,1,3,0)
+ ;;=3^Reaction to Severe Stress,Unspec
+ ;;^UTILITY(U,$J,358.3,24395,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,24395,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,24396,0)
+ ;;=F94.1^^90^1070^14
+ ;;^UTILITY(U,$J,358.3,24396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23977,1,3,0)
- ;;=3^Obesity, unspec
- ;;^UTILITY(U,$J,358.3,23977,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,23977,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,23978,0)
- ;;=M19.91^^116^1174^11
- ;;^UTILITY(U,$J,358.3,23978,1,0)
+ ;;^UTILITY(U,$J,358.3,24396,1,3,0)
+ ;;=3^Reactive Attachment Disorder
+ ;;^UTILITY(U,$J,358.3,24396,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,24396,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,24397,0)
+ ;;=F94.2^^90^1070^8
+ ;;^UTILITY(U,$J,358.3,24397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23978,1,3,0)
- ;;=3^Osteoarth, prim, unspec site
- ;;^UTILITY(U,$J,358.3,23978,1,4,0)
- ;;=4^M19.91
- ;;^UTILITY(U,$J,358.3,23978,2)
- ;;=^5010854
- ;;^UTILITY(U,$J,358.3,23979,0)
- ;;=J00.^^116^1174^1
- ;;^UTILITY(U,$J,358.3,23979,1,0)
+ ;;^UTILITY(U,$J,358.3,24397,1,3,0)
+ ;;=3^Disinhibited Social Engagement Disorder
+ ;;^UTILITY(U,$J,358.3,24397,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,24397,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,24398,0)
+ ;;=F18.10^^90^1071^21
+ ;;^UTILITY(U,$J,358.3,24398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23979,1,3,0)
- ;;=3^Nasopharyngitis,Acute
- ;;^UTILITY(U,$J,358.3,23979,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,23979,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,23980,0)
- ;;=M79.2^^116^1174^4
- ;;^UTILITY(U,$J,358.3,23980,1,0)
+ ;;^UTILITY(U,$J,358.3,24398,1,3,0)
+ ;;=3^Inhalant Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,24398,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,24398,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,24399,0)
+ ;;=F18.20^^90^1071^22
+ ;;^UTILITY(U,$J,358.3,24399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23980,1,3,0)
- ;;=3^Neuralgia & Neuritis,Unspec
- ;;^UTILITY(U,$J,358.3,23980,1,4,0)
- ;;=4^M79.2
- ;;^UTILITY(U,$J,358.3,23980,2)
- ;;=^5013322
- ;;^UTILITY(U,$J,358.3,23981,0)
- ;;=I25.2^^116^1174^10
- ;;^UTILITY(U,$J,358.3,23981,1,0)
+ ;;^UTILITY(U,$J,358.3,24399,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24399,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,24399,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,24400,0)
+ ;;=F18.21^^90^1071^23
+ ;;^UTILITY(U,$J,358.3,24400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23981,1,3,0)
- ;;=3^Old Myocardial Infarction
- ;;^UTILITY(U,$J,358.3,23981,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,23981,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,23982,0)
- ;;=L97.829^^116^1174^5
- ;;^UTILITY(U,$J,358.3,23982,1,0)
+ ;;^UTILITY(U,$J,358.3,24400,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,24400,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,24400,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,24401,0)
+ ;;=F18.14^^90^1071^24
+ ;;^UTILITY(U,$J,358.3,24401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23982,1,3,0)
- ;;=3^Non-Pressure Chronic Ulcer Left Lower Leg,Severity Unspec
- ;;^UTILITY(U,$J,358.3,23982,1,4,0)
- ;;=4^L97.829
- ;;^UTILITY(U,$J,358.3,23982,2)
- ;;=^5009569
- ;;^UTILITY(U,$J,358.3,23983,0)
- ;;=L97.819^^116^1174^6
- ;;^UTILITY(U,$J,358.3,23983,1,0)
+ ;;^UTILITY(U,$J,358.3,24401,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24401,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,24401,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,24402,0)
+ ;;=F18.24^^90^1071^25
+ ;;^UTILITY(U,$J,358.3,24402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23983,1,3,0)
- ;;=3^Non-Pressure Chronic Ulcer Right Lower Leg,Severity Unspec
- ;;^UTILITY(U,$J,358.3,23983,1,4,0)
- ;;=4^L97.819
- ;;^UTILITY(U,$J,358.3,23983,2)
- ;;=^5009564
- ;;^UTILITY(U,$J,358.3,23984,0)
- ;;=L98.499^^116^1174^7
- ;;^UTILITY(U,$J,358.3,23984,1,0)
+ ;;^UTILITY(U,$J,358.3,24402,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24402,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,24402,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,24403,0)
+ ;;=F18.121^^90^1071^14
+ ;;^UTILITY(U,$J,358.3,24403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23984,1,3,0)
- ;;=3^Non-Pressure Chronic Ulcer of Skin,Severity Unspec
- ;;^UTILITY(U,$J,358.3,23984,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,23984,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,23985,0)
- ;;=R11.0^^116^1174^3
- ;;^UTILITY(U,$J,358.3,23985,1,0)
+ ;;^UTILITY(U,$J,358.3,24403,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24403,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,24403,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,24404,0)
+ ;;=F18.221^^90^1071^15
+ ;;^UTILITY(U,$J,358.3,24404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23985,1,3,0)
- ;;=3^Nausea w/o Vomiting
- ;;^UTILITY(U,$J,358.3,23985,1,4,0)
- ;;=4^R11.0
- ;;^UTILITY(U,$J,358.3,23985,2)
- ;;=^5019231
- ;;^UTILITY(U,$J,358.3,23986,0)
- ;;=M19.90^^116^1174^12
- ;;^UTILITY(U,$J,358.3,23986,1,0)
+ ;;^UTILITY(U,$J,358.3,24404,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24404,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,24404,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,24405,0)
+ ;;=F18.921^^90^1071^16
+ ;;^UTILITY(U,$J,358.3,24405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23986,1,3,0)
- ;;=3^Osteoarthritis,Unspec
- ;;^UTILITY(U,$J,358.3,23986,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,23986,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,23987,0)
- ;;=E66.3^^116^1174^26
- ;;^UTILITY(U,$J,358.3,23987,1,0)
+ ;;^UTILITY(U,$J,358.3,24405,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24405,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,24405,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,24406,0)
+ ;;=F18.129^^90^1071^17
+ ;;^UTILITY(U,$J,358.3,24406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23987,1,3,0)
- ;;=3^Overweight
- ;;^UTILITY(U,$J,358.3,23987,1,4,0)
- ;;=4^E66.3
- ;;^UTILITY(U,$J,358.3,23987,2)
- ;;=^5002830
- ;;^UTILITY(U,$J,358.3,23988,0)
- ;;=K85.9^^116^1175^1
- ;;^UTILITY(U,$J,358.3,23988,1,0)
+ ;;^UTILITY(U,$J,358.3,24406,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24406,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,24406,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,24407,0)
+ ;;=F18.229^^90^1071^18
+ ;;^UTILITY(U,$J,358.3,24407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23988,1,3,0)
- ;;=3^Pancreatitis, acute, unspec
- ;;^UTILITY(U,$J,358.3,23988,1,4,0)
- ;;=4^K85.9
- ;;^UTILITY(U,$J,358.3,23988,2)
- ;;=^5008887
- ;;^UTILITY(U,$J,358.3,23989,0)
- ;;=G20.^^116^1175^2
+ ;;^UTILITY(U,$J,358.3,24407,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder

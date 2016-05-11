@@ -1,140 +1,136 @@
-IBDEI07W ; ; 19-NOV-2015
+IBDEI07W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3129,1,3,0)
- ;;=3^Pressure Ulcer,Stage 3,Unspec Site
- ;;^UTILITY(U,$J,358.3,3129,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,3129,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,3130,0)
- ;;=L89.94^^28^247^84
- ;;^UTILITY(U,$J,358.3,3130,1,0)
+ ;;^UTILITY(U,$J,358.3,3392,1,4,0)
+ ;;=4^M84.60XP
+ ;;^UTILITY(U,$J,358.3,3392,2)
+ ;;=^5014218
+ ;;^UTILITY(U,$J,358.3,3393,0)
+ ;;=M84.40XA^^18^219^56
+ ;;^UTILITY(U,$J,358.3,3393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3130,1,3,0)
- ;;=3^Pressure Ulcer,Stage 4,Unspec Site
- ;;^UTILITY(U,$J,358.3,3130,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,3130,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,3131,0)
- ;;=L89.90^^28^247^85
- ;;^UTILITY(U,$J,358.3,3131,1,0)
+ ;;^UTILITY(U,$J,358.3,3393,1,3,0)
+ ;;=3^Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3393,1,4,0)
+ ;;=4^M84.40XA
+ ;;^UTILITY(U,$J,358.3,3393,2)
+ ;;=^5013794
+ ;;^UTILITY(U,$J,358.3,3394,0)
+ ;;=M84.40XD^^18^219^59
+ ;;^UTILITY(U,$J,358.3,3394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3131,1,3,0)
- ;;=3^Pressure Ulcer,Stage Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,3131,1,4,0)
- ;;=4^L89.90
- ;;^UTILITY(U,$J,358.3,3131,2)
- ;;=^5133666
- ;;^UTILITY(U,$J,358.3,3132,0)
- ;;=L89.95^^28^247^86
- ;;^UTILITY(U,$J,358.3,3132,1,0)
+ ;;^UTILITY(U,$J,358.3,3394,1,3,0)
+ ;;=3^Fx,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,3394,1,4,0)
+ ;;=4^M84.40XD
+ ;;^UTILITY(U,$J,358.3,3394,2)
+ ;;=^5013795
+ ;;^UTILITY(U,$J,358.3,3395,0)
+ ;;=M84.40XS^^18^219^60
+ ;;^UTILITY(U,$J,358.3,3395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3132,1,3,0)
- ;;=3^Pressure Ulcer,Unstageable,Unspec Site
- ;;^UTILITY(U,$J,358.3,3132,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,3132,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,3133,0)
- ;;=L28.1^^28^247^87
- ;;^UTILITY(U,$J,358.3,3133,1,0)
+ ;;^UTILITY(U,$J,358.3,3395,1,3,0)
+ ;;=3^Fx,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,3395,1,4,0)
+ ;;=4^M84.40XS
+ ;;^UTILITY(U,$J,358.3,3395,2)
+ ;;=^5013799
+ ;;^UTILITY(U,$J,358.3,3396,0)
+ ;;=M84.40XG^^18^219^55
+ ;;^UTILITY(U,$J,358.3,3396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3133,1,3,0)
- ;;=3^Prurigo Nodularis
- ;;^UTILITY(U,$J,358.3,3133,1,4,0)
- ;;=4^L28.1
- ;;^UTILITY(U,$J,358.3,3133,2)
- ;;=^5009148
- ;;^UTILITY(U,$J,358.3,3134,0)
- ;;=L28.2^^28^247^88
- ;;^UTILITY(U,$J,358.3,3134,1,0)
+ ;;^UTILITY(U,$J,358.3,3396,1,3,0)
+ ;;=3^Fx,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,3396,1,4,0)
+ ;;=4^M84.40XG
+ ;;^UTILITY(U,$J,358.3,3396,2)
+ ;;=^5013796
+ ;;^UTILITY(U,$J,358.3,3397,0)
+ ;;=M84.40XK^^18^219^58
+ ;;^UTILITY(U,$J,358.3,3397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3134,1,3,0)
- ;;=3^Prurigo,Other
- ;;^UTILITY(U,$J,358.3,3134,1,4,0)
- ;;=4^L28.2
- ;;^UTILITY(U,$J,358.3,3134,2)
- ;;=^5009149
- ;;^UTILITY(U,$J,358.3,3135,0)
- ;;=L29.9^^28^247^89
- ;;^UTILITY(U,$J,358.3,3135,1,0)
+ ;;^UTILITY(U,$J,358.3,3397,1,3,0)
+ ;;=3^Fx,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,3397,1,4,0)
+ ;;=4^M84.40XK
+ ;;^UTILITY(U,$J,358.3,3397,2)
+ ;;=^5013797
+ ;;^UTILITY(U,$J,358.3,3398,0)
+ ;;=M84.40XP^^18^219^57
+ ;;^UTILITY(U,$J,358.3,3398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3135,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,3135,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,3135,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,3136,0)
- ;;=L73.1^^28^247^90
- ;;^UTILITY(U,$J,358.3,3136,1,0)
+ ;;^UTILITY(U,$J,358.3,3398,1,3,0)
+ ;;=3^Fx,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,3398,1,4,0)
+ ;;=4^M84.40XP
+ ;;^UTILITY(U,$J,358.3,3398,2)
+ ;;=^5013798
+ ;;^UTILITY(U,$J,358.3,3399,0)
+ ;;=M84.30XA^^18^219^50
+ ;;^UTILITY(U,$J,358.3,3399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3136,1,3,0)
- ;;=3^Pseudofolliculitis Barbae
- ;;^UTILITY(U,$J,358.3,3136,1,4,0)
- ;;=4^L73.1
- ;;^UTILITY(U,$J,358.3,3136,2)
- ;;=^5009284
- ;;^UTILITY(U,$J,358.3,3137,0)
- ;;=L40.9^^28^247^91
- ;;^UTILITY(U,$J,358.3,3137,1,0)
+ ;;^UTILITY(U,$J,358.3,3399,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3399,1,4,0)
+ ;;=4^M84.30XA
+ ;;^UTILITY(U,$J,358.3,3399,2)
+ ;;=^5013566
+ ;;^UTILITY(U,$J,358.3,3400,0)
+ ;;=M84.30XD^^18^219^53
+ ;;^UTILITY(U,$J,358.3,3400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3137,1,3,0)
- ;;=3^Psoriasis,Unspec
- ;;^UTILITY(U,$J,358.3,3137,1,4,0)
- ;;=4^L40.9
- ;;^UTILITY(U,$J,358.3,3137,2)
- ;;=^5009171
- ;;^UTILITY(U,$J,358.3,3138,0)
- ;;=R21.^^28^247^92
- ;;^UTILITY(U,$J,358.3,3138,1,0)
+ ;;^UTILITY(U,$J,358.3,3400,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Routine Healing
+ ;;^UTILITY(U,$J,358.3,3400,1,4,0)
+ ;;=4^M84.30XD
+ ;;^UTILITY(U,$J,358.3,3400,2)
+ ;;=^5013567
+ ;;^UTILITY(U,$J,358.3,3401,0)
+ ;;=M84.30XS^^18^219^54
+ ;;^UTILITY(U,$J,358.3,3401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3138,1,3,0)
- ;;=3^Rash/Other Nonspec Skin Eruption
- ;;^UTILITY(U,$J,358.3,3138,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,3138,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,3139,0)
- ;;=L71.9^^28^247^93
- ;;^UTILITY(U,$J,358.3,3139,1,0)
+ ;;^UTILITY(U,$J,358.3,3401,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,3401,1,4,0)
+ ;;=4^M84.30XS
+ ;;^UTILITY(U,$J,358.3,3401,2)
+ ;;=^5013571
+ ;;^UTILITY(U,$J,358.3,3402,0)
+ ;;=M84.30XG^^18^219^49
+ ;;^UTILITY(U,$J,358.3,3402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3139,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,3139,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,3139,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,3140,0)
- ;;=L82.0^^28^247^94
- ;;^UTILITY(U,$J,358.3,3140,1,0)
+ ;;^UTILITY(U,$J,358.3,3402,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,3402,1,4,0)
+ ;;=4^M84.30XG
+ ;;^UTILITY(U,$J,358.3,3402,2)
+ ;;=^5013568
+ ;;^UTILITY(U,$J,358.3,3403,0)
+ ;;=M84.30XK^^18^219^52
+ ;;^UTILITY(U,$J,358.3,3403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3140,1,3,0)
- ;;=3^Seborrheic Keratosis,Inflamed
- ;;^UTILITY(U,$J,358.3,3140,1,4,0)
- ;;=4^L82.0
- ;;^UTILITY(U,$J,358.3,3140,2)
- ;;=^303311
- ;;^UTILITY(U,$J,358.3,3141,0)
- ;;=L82.1^^28^247^95
- ;;^UTILITY(U,$J,358.3,3141,1,0)
+ ;;^UTILITY(U,$J,358.3,3403,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,3403,1,4,0)
+ ;;=4^M84.30XK
+ ;;^UTILITY(U,$J,358.3,3403,2)
+ ;;=^5013569
+ ;;^UTILITY(U,$J,358.3,3404,0)
+ ;;=M84.30XP^^18^219^51
+ ;;^UTILITY(U,$J,358.3,3404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3141,1,3,0)
- ;;=3^Seborrheic Keratosis,Other
- ;;^UTILITY(U,$J,358.3,3141,1,4,0)
- ;;=4^L82.1
- ;;^UTILITY(U,$J,358.3,3141,2)
- ;;=^303312
- ;;^UTILITY(U,$J,358.3,3142,0)
- ;;=L92.9^^28^247^43
- ;;^UTILITY(U,$J,358.3,3142,1,0)
+ ;;^UTILITY(U,$J,358.3,3404,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,3404,1,4,0)
+ ;;=4^M84.30XP
+ ;;^UTILITY(U,$J,358.3,3404,2)
+ ;;=^5013570
+ ;;^UTILITY(U,$J,358.3,3405,0)
+ ;;=M84.9^^18^219^47
+ ;;^UTILITY(U,$J,358.3,3405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3142,1,3,0)
- ;;=3^Granulomatous Disorder of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,3142,1,4,0)
- ;;=4^L92.9
- ;;^UTILITY(U,$J,358.3,3142,2)
- ;;=^5009466
+ ;;^UTILITY(U,$J,358.3,3405,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec
+ ;;^UTILITY(U,$J,358.3,3405,1,4,0)
+ ;;=4^M84.9

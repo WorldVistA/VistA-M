@@ -1,130 +1,68 @@
-IBDEI008 ; ; 19-NOV-2015
+IBDEI008 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.1)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358,68,2,6,0)
- ;;=6^1
- ;;^UTILITY(U,$J,358,69,0)
- ;;=NATIONAL POLYTRAUMA FY16-Q1^1^National Polytrauma November 2015^1^0^1^1^^133^80^4^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,69,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,69,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,69,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,69,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,69,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,69,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,69,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,70,0)
- ;;=NATL PREVENTIVE HEALTH FY16-Q1^1^National Preventive Health October 2015^1^0^1^1^^133^80^3^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,70,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,70,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,70,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,70,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,70,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,70,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,70,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,71,0)
- ;;=NATIONAL PRIMARY CARE FY16-Q1^1^National Primary Care Form October 2015^1^0^1^1^^133^80^29^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,71,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,71,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,71,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,71,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,71,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,71,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,71,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,72,0)
- ;;=NATIONAL PROSTHETICS FY16-Q1^1^National Prosthetics F-T-F Visits September 2015^1^0^1^1^^133^80^6^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,72,2,0)
- ;;=^358.02I^6^6
- ;;^UTILITY(U,$J,358,72,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,72,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,72,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,72,2,4,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,72,2,5,0)
- ;;=4^1
- ;;^UTILITY(U,$J,358,72,2,6,0)
- ;;=5^1
- ;;^UTILITY(U,$J,358,73,0)
- ;;=NATIONAL PULMONARY FY16-Q1^0^National Pulmonary November 2015^1^0^0^1^^133^80^12^1^^1^p^1
- ;;^UTILITY(U,$J,358,73,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,73,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,73,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,74,0)
- ;;=NATL RADIATION ONC FY16-Q1^2^NATIONAL RADIATION THERAPY November 2015^1^0^1^1^^133^80^14^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,74,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,74,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,74,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,74,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,75,0)
- ;;=NATL REC THERAPY GRP FY16-Q1^2^National Recreation Therapy Group October 2015^1^0^1^1^^133^80^2^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,75,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,75,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,75,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,75,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,76,0)
- ;;=NATL REC THERAPY IND FY16-Q1^2^National Recreation Therapy October 2015^1^0^1^1^^133^80^2^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,76,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,76,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,76,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,76,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,77,0)
- ;;=NATL REHAB-PT/OT/KT FY16-Q1^2^National Rehab PT/OT/KT October 2015^1^0^1^1^^133^80^20^1^^1^p^1^3
- ;;^UTILITY(U,$J,358,77,2,0)
- ;;=^358.02I^3^3
- ;;^UTILITY(U,$J,358,77,2,1,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,77,2,2,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,77,2,3,0)
- ;;=3^1
- ;;^UTILITY(U,$J,358,78,0)
- ;;=NATIONAL RESP THERAPY FY16-Q1^0^National Repiratory Therapy (PFT/Sleep/Oxygen) November 2015^1^0^1^1^^133^80^12^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,78,2,0)
- ;;=^358.02I^2^2
- ;;^UTILITY(U,$J,358,78,2,1,0)
- ;;=2^1
- ;;^UTILITY(U,$J,358,78,2,2,0)
- ;;=1^1
- ;;^UTILITY(U,$J,358,79,0)
- ;;=NATIONAL RHEUMATOLOGY FY16-Q1^1^National Rheumatology November 2015^1^0^1^1^^133^80^10^1^^1^p^1^2.1
- ;;^UTILITY(U,$J,358,79,2,0)
- ;;=^358.02I^3^3
+ ;;^DIC(358.1,0,"GL")
+ ;;=^IBE(358.1,
+ ;;^DIC("B","IMP/EXP ENCOUNTER FORM BLOCK",358.1)
+ ;;=
+ ;;^DIC(358.1,"%",0)
+ ;;=^1.005^^0
+ ;;^DIC(358.1,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.1,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.1,"%D",2,0)
+ ;;=This file is nearly identical to file #357.1. It is used by the
+ ;;^DIC(358.1,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.1,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.1,0)
+ ;;=FIELD^^1^12
+ ;;^DD(358.1,0,"DDA")
+ ;;=N
+ ;;^DD(358.1,0,"DT")
+ ;;=2930806
+ ;;^DD(358.1,0,"ID",.02)
+ ;;=W ""
+ ;;^DD(358.1,0,"IX","B",358.1,.01)
+ ;;=
+ ;;^DD(358.1,0,"IX","C",358.1,.02)
+ ;;=
+ ;;^DD(358.1,0,"IX","D",358.1,.14)
+ ;;=
+ ;;^DD(358.1,0,"NM","IMP/EXP ENCOUNTER FORM BLOCK")
+ ;;=
+ ;;^DD(358.1,0,"PT",358.2,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.5,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.7,.06)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.8,.02)
+ ;;=
+ ;;^DD(358.1,0,"PT",358.93,.08)
+ ;;=
+ ;;^DD(358.1,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.1,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.1,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.1,.01,1,1,0)
+ ;;=358.1^B
+ ;;^DD(358.1,.01,1,1,1)
+ ;;=S ^IBE(358.1,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.1,.01,1,1,2)
+ ;;=K ^IBE(358.1,"B",$E(X,1,30),DA)
+ ;;^DD(358.1,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.1,.01,21,0)
+ ;;=^^2^2^2930527^
+ ;;^DD(358.1,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.1,.01,21,2,0)
+ ;;=The name of the block.
+ ;;^DD(358.1,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Encounter Form Blocks can only be deleted through the Encounter Form Utilities!"

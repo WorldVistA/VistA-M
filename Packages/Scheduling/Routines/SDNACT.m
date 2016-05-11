@@ -1,5 +1,5 @@
-SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;9/16/10  17:38
- ;;5.3;Scheduling;**63,380,549,568,622**;Aug 13, 1993;Build 30
+SDNACT ;ALB/TMP - INACTIVATE A CLINIC ;JAN 15, 2016
+ ;;5.3;Scheduling;**63,380,549,568,622,627**;Aug 13, 1993;Build 249
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S SDAY="Sun^Mon^Tues^Wednes^Thurs^Fri^Satur",SDZQ=1
  D DT^DICRW S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
@@ -23,6 +23,7 @@ OVR F I=SDDATE-.0001:0 S I=$O(^SC(SC,"ST",I)) Q:'I!(I>SDX1)  K ^(I)
  F I=SDDATE-.0001:0 S I=$O(^SC(SC,"T",I)) Q:'I!(I>SDX1)  K ^(I)
  F I=SDDATE-.0001:0 S I=$O(^SC(SC,"OST",I)) Q:'I!(I>SDX1)  K ^(I)
  S DIE="^SC(",DA=SC,DR="2505///^S X=SDDATE" D ^DIE  ;SD*549 use FM API to update field so Audit Trail functions properly
+ D SDEC(SC,SDDATE)  ;alb/sat 627
  W !!,"Clinic will be inactivated effective " N SDDT S Y=SDDATE D DTS^SDUTL W Y S SDDT=Y D QUE G END ; SD*5.3*622 - call mail delivery
  ;
 CHECK W *7,!,"This clinic is to be inactivated as of " S SDX=+^("I"),Y=SDX D DTS^SDUTL W Y S SDX1=+$P(^("I"),"^",2),Y=SDX1 I Y D DTS^SDUTL W " and reactivated as of ",Y ;NAKED REFERENCE - ^SC(DFN,"I")
@@ -94,3 +95,18 @@ QUE ; leave job to TaskMan for dates in the future, otherwise deliver
  .. S ZTSAVE("*")=""
  .. D ^%ZTLOAD
  Q  ; SD*5.3*622 - end of changes
+ ;
+SDEC(SC,SDDATE) ;update INACTIVATED DATE/TIME in SDEC RESOURCE   ;alb/sat 627
+ N SDFDA,SDI,SDJ,SDRES
+ S SDRES=$$GETRES^SDECUTL(SC)
+ Q:SDRES=""
+ S SDFDA(409.831,SDRES_",",.021)=SDDATE
+ S SDFDA(409.831,SDRES_",",.022)=DUZ
+ D UPDATE^DIE("","SDFDA")
+ ;update SDEC RESOURCE GROUP file
+ S SDI="" F  S SDI=$O(^SDEC(409.832,"AB",SDRES,SDI)) Q:SDI=""  D
+ .S SDJ="" F  S SDJ=$O(^SDEC(409.832,"AB",SDRES,SDI,SDJ)) Q:SDJ=""  D
+ ..K SDFDA
+ ..S SDFDA(409.8321,SDJ_","_SDI_",",.01)="@"
+ ..D UPDATE^DIE("","SDFDA")
+ Q

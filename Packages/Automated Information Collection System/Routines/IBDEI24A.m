@@ -1,124 +1,134 @@
-IBDEI24A ; ; 19-NOV-2015
+IBDEI24A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35551,1,4,0)
- ;;=4^O11.2
- ;;^UTILITY(U,$J,358.3,35551,2)
- ;;=^5016143
- ;;^UTILITY(U,$J,358.3,35552,0)
- ;;=O11.3^^166^1821^32
- ;;^UTILITY(U,$J,358.3,35552,1,0)
+ ;;^UTILITY(U,$J,358.3,35904,1,4,0)
+ ;;=4^M05.541
+ ;;^UTILITY(U,$J,358.3,35904,2)
+ ;;=^5009964
+ ;;^UTILITY(U,$J,358.3,35905,0)
+ ;;=M05.551^^134^1731^85
+ ;;^UTILITY(U,$J,358.3,35905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35552,1,3,0)
- ;;=3^Pre-existing hypertension w pre-eclampsia, third trimester
- ;;^UTILITY(U,$J,358.3,35552,1,4,0)
- ;;=4^O11.3
- ;;^UTILITY(U,$J,358.3,35552,2)
- ;;=^5016144
- ;;^UTILITY(U,$J,358.3,35553,0)
- ;;=O10.13^^166^1821^33
- ;;^UTILITY(U,$J,358.3,35553,1,0)
+ ;;^UTILITY(U,$J,358.3,35905,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Hip
+ ;;^UTILITY(U,$J,358.3,35905,1,4,0)
+ ;;=4^M05.551
+ ;;^UTILITY(U,$J,358.3,35905,2)
+ ;;=^5009967
+ ;;^UTILITY(U,$J,358.3,35906,0)
+ ;;=M05.561^^134^1731^86
+ ;;^UTILITY(U,$J,358.3,35906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35553,1,3,0)
- ;;=3^Pre-existing hypertensive heart disease comp the puerperium
- ;;^UTILITY(U,$J,358.3,35553,1,4,0)
- ;;=4^O10.13
- ;;^UTILITY(U,$J,358.3,35553,2)
- ;;=^5016119
- ;;^UTILITY(U,$J,358.3,35554,0)
- ;;=O10.23^^166^1821^29
- ;;^UTILITY(U,$J,358.3,35554,1,0)
+ ;;^UTILITY(U,$J,358.3,35906,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Knee
+ ;;^UTILITY(U,$J,358.3,35906,1,4,0)
+ ;;=4^M05.561
+ ;;^UTILITY(U,$J,358.3,35906,2)
+ ;;=^5009970
+ ;;^UTILITY(U,$J,358.3,35907,0)
+ ;;=M05.511^^134^1731^87
+ ;;^UTILITY(U,$J,358.3,35907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35554,1,3,0)
- ;;=3^Pre-existing hyp chronic kidney disease comp the puerperium
- ;;^UTILITY(U,$J,358.3,35554,1,4,0)
- ;;=4^O10.23
- ;;^UTILITY(U,$J,358.3,35554,2)
- ;;=^5016125
- ;;^UTILITY(U,$J,358.3,35555,0)
- ;;=O10.33^^166^1821^23
- ;;^UTILITY(U,$J,358.3,35555,1,0)
+ ;;^UTILITY(U,$J,358.3,35907,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Shoulder
+ ;;^UTILITY(U,$J,358.3,35907,1,4,0)
+ ;;=4^M05.511
+ ;;^UTILITY(U,$J,358.3,35907,2)
+ ;;=^5009955
+ ;;^UTILITY(U,$J,358.3,35908,0)
+ ;;=M05.531^^134^1731^88
+ ;;^UTILITY(U,$J,358.3,35908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35555,1,3,0)
- ;;=3^Pre-exist hyp heart and chr kidney disease comp the puerp
- ;;^UTILITY(U,$J,358.3,35555,1,4,0)
- ;;=4^O10.33
- ;;^UTILITY(U,$J,358.3,35555,2)
- ;;=^5016131
- ;;^UTILITY(U,$J,358.3,35556,0)
- ;;=O13.1^^166^1821^4
- ;;^UTILITY(U,$J,358.3,35556,1,0)
+ ;;^UTILITY(U,$J,358.3,35908,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Right Wrist
+ ;;^UTILITY(U,$J,358.3,35908,1,4,0)
+ ;;=4^M05.531
+ ;;^UTILITY(U,$J,358.3,35908,2)
+ ;;=^5009961
+ ;;^UTILITY(U,$J,358.3,35909,0)
+ ;;=M05.50^^134^1731^89
+ ;;^UTILITY(U,$J,358.3,35909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35556,1,3,0)
- ;;=3^Gestational htn w/o significant proteinuria, first trimester
- ;;^UTILITY(U,$J,358.3,35556,1,4,0)
- ;;=4^O13.1
- ;;^UTILITY(U,$J,358.3,35556,2)
- ;;=^5016158
- ;;^UTILITY(U,$J,358.3,35557,0)
- ;;=O13.2^^166^1821^5
- ;;^UTILITY(U,$J,358.3,35557,1,0)
+ ;;^UTILITY(U,$J,358.3,35909,1,3,0)
+ ;;=3^Rheum Polyneuropathy w/ Rheum Arth Unspec Site
+ ;;^UTILITY(U,$J,358.3,35909,1,4,0)
+ ;;=4^M05.50
+ ;;^UTILITY(U,$J,358.3,35909,2)
+ ;;=^5009954
+ ;;^UTILITY(U,$J,358.3,35910,0)
+ ;;=G04.1^^134^1731^140
+ ;;^UTILITY(U,$J,358.3,35910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35557,1,3,0)
- ;;=3^Gestational htn w/o significant proteinuria, second trimester
- ;;^UTILITY(U,$J,358.3,35557,1,4,0)
- ;;=4^O13.2
- ;;^UTILITY(U,$J,358.3,35557,2)
- ;;=^5016159
- ;;^UTILITY(U,$J,358.3,35558,0)
- ;;=O13.3^^166^1821^6
- ;;^UTILITY(U,$J,358.3,35558,1,0)
+ ;;^UTILITY(U,$J,358.3,35910,1,3,0)
+ ;;=3^Tropical Spastic Paraplegia
+ ;;^UTILITY(U,$J,358.3,35910,1,4,0)
+ ;;=4^G04.1
+ ;;^UTILITY(U,$J,358.3,35910,2)
+ ;;=^5003733
+ ;;^UTILITY(U,$J,358.3,35911,0)
+ ;;=M19.90^^134^1731^17
+ ;;^UTILITY(U,$J,358.3,35911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35558,1,3,0)
- ;;=3^Gestational htn w/o significant proteinuria, third trimester
- ;;^UTILITY(U,$J,358.3,35558,1,4,0)
- ;;=4^O13.3
- ;;^UTILITY(U,$J,358.3,35558,2)
- ;;=^5016160
- ;;^UTILITY(U,$J,358.3,35559,0)
- ;;=O16.1^^166^1821^9
- ;;^UTILITY(U,$J,358.3,35559,1,0)
+ ;;^UTILITY(U,$J,358.3,35911,1,3,0)
+ ;;=3^Osteoarthritis Unspec Site
+ ;;^UTILITY(U,$J,358.3,35911,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,35911,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,35912,0)
+ ;;=Z48.02^^134^1732^1
+ ;;^UTILITY(U,$J,358.3,35912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35559,1,3,0)
- ;;=3^Maternal hypertension, first trimester NEC
- ;;^UTILITY(U,$J,358.3,35559,1,4,0)
- ;;=4^O16.1
- ;;^UTILITY(U,$J,358.3,35559,2)
- ;;=^5016180
- ;;^UTILITY(U,$J,358.3,35560,0)
- ;;=O16.2^^166^1821^10
- ;;^UTILITY(U,$J,358.3,35560,1,0)
+ ;;^UTILITY(U,$J,358.3,35912,1,3,0)
+ ;;=3^Suture Removal
+ ;;^UTILITY(U,$J,358.3,35912,1,4,0)
+ ;;=4^Z48.02
+ ;;^UTILITY(U,$J,358.3,35912,2)
+ ;;=^5063035
+ ;;^UTILITY(U,$J,358.3,35913,0)
+ ;;=J70.1^^134^1733^1
+ ;;^UTILITY(U,$J,358.3,35913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35560,1,3,0)
- ;;=3^Maternal hypertension, second trimester NEC
- ;;^UTILITY(U,$J,358.3,35560,1,4,0)
- ;;=4^O16.2
- ;;^UTILITY(U,$J,358.3,35560,2)
- ;;=^5016181
- ;;^UTILITY(U,$J,358.3,35561,0)
- ;;=O16.3^^166^1821^11
- ;;^UTILITY(U,$J,358.3,35561,1,0)
+ ;;^UTILITY(U,$J,358.3,35913,1,3,0)
+ ;;=3^Chr Pulmonary Manifestations d/t Radiation
+ ;;^UTILITY(U,$J,358.3,35913,1,4,0)
+ ;;=4^J70.1
+ ;;^UTILITY(U,$J,358.3,35913,2)
+ ;;=^269983
+ ;;^UTILITY(U,$J,358.3,35914,0)
+ ;;=J70.0^^134^1734^1
+ ;;^UTILITY(U,$J,358.3,35914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35561,1,3,0)
- ;;=3^Maternal hypertension, third trimester NEC
- ;;^UTILITY(U,$J,358.3,35561,1,4,0)
- ;;=4^O16.3
- ;;^UTILITY(U,$J,358.3,35561,2)
- ;;=^5016182
- ;;^UTILITY(U,$J,358.3,35562,0)
- ;;=O14.02^^166^1821^12
- ;;^UTILITY(U,$J,358.3,35562,1,0)
+ ;;^UTILITY(U,$J,358.3,35914,1,3,0)
+ ;;=3^Acute Pulmonary Manifestations d/t Radiation
+ ;;^UTILITY(U,$J,358.3,35914,1,4,0)
+ ;;=4^J70.0
+ ;;^UTILITY(U,$J,358.3,35914,2)
+ ;;=^269982
+ ;;^UTILITY(U,$J,358.3,35915,0)
+ ;;=J63.0^^134^1734^2
+ ;;^UTILITY(U,$J,358.3,35915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35562,1,3,0)
- ;;=3^Mild to moderate pre-eclampsia, second trimester
- ;;^UTILITY(U,$J,358.3,35562,1,4,0)
- ;;=4^O14.02
- ;;^UTILITY(U,$J,358.3,35562,2)
- ;;=^5016163
- ;;^UTILITY(U,$J,358.3,35563,0)
- ;;=O14.03^^166^1821^13
- ;;^UTILITY(U,$J,358.3,35563,1,0)
+ ;;^UTILITY(U,$J,358.3,35915,1,3,0)
+ ;;=3^Aluminosis of Lung
+ ;;^UTILITY(U,$J,358.3,35915,1,4,0)
+ ;;=4^J63.0
+ ;;^UTILITY(U,$J,358.3,35915,2)
+ ;;=^5008265
+ ;;^UTILITY(U,$J,358.3,35916,0)
+ ;;=J63.1^^134^1734^3
+ ;;^UTILITY(U,$J,358.3,35916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35563,1,3,0)
- ;;=3^Mild to moderate pre-eclampsia, third trimester
+ ;;^UTILITY(U,$J,358.3,35916,1,3,0)
+ ;;=3^Bauxite Fibrosis of Lung
+ ;;^UTILITY(U,$J,358.3,35916,1,4,0)
+ ;;=4^J63.1
+ ;;^UTILITY(U,$J,358.3,35916,2)
+ ;;=^5008266
+ ;;^UTILITY(U,$J,358.3,35917,0)
+ ;;=J63.2^^134^1734^4
+ ;;^UTILITY(U,$J,358.3,35917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35917,1,3,0)
+ ;;=3^Berylliosis

@@ -1,124 +1,136 @@
-IBDEI0EY ; ; 19-NOV-2015
+IBDEI0EY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6551,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg: 1.1-2.0cm
- ;;^UTILITY(U,$J,358.3,6552,0)
- ;;=11303^^45^414^4^^^^1
- ;;^UTILITY(U,$J,358.3,6552,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6552,1,2,0)
- ;;=2^11303
- ;;^UTILITY(U,$J,358.3,6552,1,3,0)
- ;;=3^Shaving Epidermm Arm/Leg > 2.0cm
- ;;^UTILITY(U,$J,358.3,6553,0)
- ;;=12001^^45^415^1^^^^1
- ;;^UTILITY(U,$J,358.3,6553,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6553,1,2,0)
- ;;=2^12001
- ;;^UTILITY(U,$J,358.3,6553,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,6554,0)
- ;;=12002^^45^415^2^^^^1
- ;;^UTILITY(U,$J,358.3,6554,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6554,1,2,0)
- ;;=2^12002
- ;;^UTILITY(U,$J,358.3,6554,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6555,0)
- ;;=12004^^45^415^3^^^^1
- ;;^UTILITY(U,$J,358.3,6555,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6555,1,2,0)
- ;;=2^12004
- ;;^UTILITY(U,$J,358.3,6555,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,6556,0)
- ;;=12005^^45^415^4^^^^1
- ;;^UTILITY(U,$J,358.3,6556,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6556,1,2,0)
- ;;=2^12005
- ;;^UTILITY(U,$J,358.3,6556,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,6557,0)
- ;;=12006^^45^415^5^^^^1
- ;;^UTILITY(U,$J,358.3,6557,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6557,1,2,0)
- ;;=2^12006
- ;;^UTILITY(U,$J,358.3,6557,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,6558,0)
- ;;=12007^^45^415^6^^^^1
- ;;^UTILITY(U,$J,358.3,6558,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6558,1,2,0)
- ;;=2^12007
- ;;^UTILITY(U,$J,358.3,6558,1,3,0)
- ;;=3^Simple repair Scalp/Nk/Trunk; over 30 cm
- ;;^UTILITY(U,$J,358.3,6559,0)
- ;;=12031^^45^416^1^^^^1
- ;;^UTILITY(U,$J,358.3,6559,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6559,1,2,0)
- ;;=2^12031
- ;;^UTILITY(U,$J,358.3,6559,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,6560,0)
- ;;=12032^^45^416^2^^^^1
- ;;^UTILITY(U,$J,358.3,6560,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6560,1,2,0)
- ;;=2^12032
- ;;^UTILITY(U,$J,358.3,6560,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6561,0)
- ;;=12034^^45^416^3^^^^1
- ;;^UTILITY(U,$J,358.3,6561,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6561,1,2,0)
- ;;=2^12034
- ;;^UTILITY(U,$J,358.3,6561,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,6562,0)
- ;;=12035^^45^416^4^^^^1
- ;;^UTILITY(U,$J,358.3,6562,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6562,1,2,0)
- ;;=2^12035
- ;;^UTILITY(U,$J,358.3,6562,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,6563,0)
- ;;=12036^^45^416^5^^^^1
- ;;^UTILITY(U,$J,358.3,6563,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6563,1,2,0)
- ;;=2^12036
- ;;^UTILITY(U,$J,358.3,6563,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,6564,0)
- ;;=12037^^45^416^6^^^^1
- ;;^UTILITY(U,$J,358.3,6564,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6564,1,2,0)
- ;;=2^12037
- ;;^UTILITY(U,$J,358.3,6564,1,3,0)
- ;;=3^Interm Repair Scalp/Trunk; over 30 cm
- ;;^UTILITY(U,$J,358.3,6565,0)
- ;;=17270^^45^417^1^^^^1
- ;;^UTILITY(U,$J,358.3,6565,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6565,1,2,0)
- ;;=2^17270
- ;;^UTILITY(U,$J,358.3,6565,1,3,0)
- ;;=3^Dest Mal Lesion Sclp/NK/Ft/Hd/Gen,0.5cm or <
- ;;^UTILITY(U,$J,358.3,6566,0)
- ;;=17271^^45^417^2^^^^1
- ;;^UTILITY(U,$J,358.3,6566,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6566,1,2,0)
- ;;=2^17271
+ ;;^UTILITY(U,$J,358.3,6888,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,6888,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,6888,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,6889,0)
+ ;;=M00.00^^30^398^82
+ ;;^UTILITY(U,$J,358.3,6889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6889,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,6889,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,6889,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,6890,0)
+ ;;=M00.10^^30^398^69
+ ;;^UTILITY(U,$J,358.3,6890,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6890,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,6890,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,6890,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,6891,0)
+ ;;=M86.20^^30^398^63
+ ;;^UTILITY(U,$J,358.3,6891,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6891,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6891,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,6891,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,6892,0)
+ ;;=M86.10^^30^398^59
+ ;;^UTILITY(U,$J,358.3,6892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6892,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6892,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,6892,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,6893,0)
+ ;;=M86.00^^30^398^58
+ ;;^UTILITY(U,$J,358.3,6893,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6893,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6893,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,6893,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,6894,0)
+ ;;=M86.50^^30^398^60
+ ;;^UTILITY(U,$J,358.3,6894,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6894,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6894,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,6894,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,6895,0)
+ ;;=M86.30^^30^398^61
+ ;;^UTILITY(U,$J,358.3,6895,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6895,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6895,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,6895,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,6896,0)
+ ;;=M86.8X9^^30^398^64
+ ;;^UTILITY(U,$J,358.3,6896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6896,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,6896,1,4,0)
+ ;;=4^M86.8X9
+ ;;^UTILITY(U,$J,358.3,6896,2)
+ ;;=^5014655
+ ;;^UTILITY(U,$J,358.3,6897,0)
+ ;;=M86.60^^30^398^62
+ ;;^UTILITY(U,$J,358.3,6897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6897,1,3,0)
+ ;;=3^Osteomyelitis,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6897,1,4,0)
+ ;;=4^M86.60
+ ;;^UTILITY(U,$J,358.3,6897,2)
+ ;;=^5014630
+ ;;^UTILITY(U,$J,358.3,6898,0)
+ ;;=M86.40^^30^398^57
+ ;;^UTILITY(U,$J,358.3,6898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6898,1,3,0)
+ ;;=3^Osteomyelitis w/ Draining Sinus,Chronic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,6898,1,4,0)
+ ;;=4^M86.40
+ ;;^UTILITY(U,$J,358.3,6898,2)
+ ;;=^5014583
+ ;;^UTILITY(U,$J,358.3,6899,0)
+ ;;=R50.2^^30^398^24
+ ;;^UTILITY(U,$J,358.3,6899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6899,1,3,0)
+ ;;=3^Fever,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,6899,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,6899,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,6900,0)
+ ;;=R50.9^^30^398^28
+ ;;^UTILITY(U,$J,358.3,6900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6900,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,6900,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,6900,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,6901,0)
+ ;;=R76.11^^30^398^1
+ ;;^UTILITY(U,$J,358.3,6901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6901,1,3,0)
+ ;;=3^Abnormal Reaction to TB Test w/o Active TB

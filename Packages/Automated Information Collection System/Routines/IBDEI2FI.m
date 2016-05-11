@@ -1,128 +1,136 @@
-IBDEI2FI ; ; 19-NOV-2015
+IBDEI2FI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40785,1,0)
+ ;;^UTILITY(U,$J,358.3,41200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40785,1,3,0)
- ;;=3^Nondisp fx of lat malleolus of rt fib, init
- ;;^UTILITY(U,$J,358.3,40785,1,4,0)
- ;;=4^S82.64XA
- ;;^UTILITY(U,$J,358.3,40785,2)
- ;;=^5042359
- ;;^UTILITY(U,$J,358.3,40786,0)
- ;;=S82.62XA^^189^2086^101
- ;;^UTILITY(U,$J,358.3,40786,1,0)
+ ;;^UTILITY(U,$J,358.3,41200,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,41200,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,41200,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,41201,0)
+ ;;=I07.1^^159^2003^21
+ ;;^UTILITY(U,$J,358.3,41201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40786,1,3,0)
- ;;=3^Disp fx of ltrl malleolus of lft fib, init
- ;;^UTILITY(U,$J,358.3,40786,1,4,0)
- ;;=4^S82.62XA
- ;;^UTILITY(U,$J,358.3,40786,2)
- ;;=^5042327
- ;;^UTILITY(U,$J,358.3,40787,0)
- ;;=S82.61XA^^189^2086^102
- ;;^UTILITY(U,$J,358.3,40787,1,0)
+ ;;^UTILITY(U,$J,358.3,41201,1,3,0)
+ ;;=3^Rheumatic Tricuspid Insufficiency
+ ;;^UTILITY(U,$J,358.3,41201,1,4,0)
+ ;;=4^I07.1
+ ;;^UTILITY(U,$J,358.3,41201,2)
+ ;;=^5007048
+ ;;^UTILITY(U,$J,358.3,41202,0)
+ ;;=I07.9^^159^2003^22
+ ;;^UTILITY(U,$J,358.3,41202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40787,1,3,0)
- ;;=3^Disp fx of ltrl malleolus of rt fib, init
- ;;^UTILITY(U,$J,358.3,40787,1,4,0)
- ;;=4^S82.61XA
- ;;^UTILITY(U,$J,358.3,40787,2)
- ;;=^5042311
- ;;^UTILITY(U,$J,358.3,40788,0)
- ;;=S82.65XA^^189^2086^327
- ;;^UTILITY(U,$J,358.3,40788,1,0)
+ ;;^UTILITY(U,$J,358.3,41202,1,3,0)
+ ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,41202,1,4,0)
+ ;;=4^I07.9
+ ;;^UTILITY(U,$J,358.3,41202,2)
+ ;;=^5007051
+ ;;^UTILITY(U,$J,358.3,41203,0)
+ ;;=I08.0^^159^2003^16
+ ;;^UTILITY(U,$J,358.3,41203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40788,1,3,0)
- ;;=3^Nondisp fx of ltrl malleolus of lft fib, init
- ;;^UTILITY(U,$J,358.3,40788,1,4,0)
- ;;=4^S82.65XA
- ;;^UTILITY(U,$J,358.3,40788,2)
- ;;=^5042375
- ;;^UTILITY(U,$J,358.3,40789,0)
- ;;=S82.841A^^189^2086^19
- ;;^UTILITY(U,$J,358.3,40789,1,0)
+ ;;^UTILITY(U,$J,358.3,41203,1,3,0)
+ ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
+ ;;^UTILITY(U,$J,358.3,41203,1,4,0)
+ ;;=4^I08.0
+ ;;^UTILITY(U,$J,358.3,41203,2)
+ ;;=^5007052
+ ;;^UTILITY(U,$J,358.3,41204,0)
+ ;;=I09.89^^159^2003^17
+ ;;^UTILITY(U,$J,358.3,41204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40789,1,3,0)
- ;;=3^Disp bimalleolar fx of rt lwr leg, int
- ;;^UTILITY(U,$J,358.3,40789,1,4,0)
- ;;=4^S82.841A
- ;;^UTILITY(U,$J,358.3,40789,2)
- ;;=^5042479
- ;;^UTILITY(U,$J,358.3,40790,0)
- ;;=S82.842A^^189^2086^18
- ;;^UTILITY(U,$J,358.3,40790,1,0)
+ ;;^UTILITY(U,$J,358.3,41204,1,3,0)
+ ;;=3^Rheumatic Heart Diseases NEC
+ ;;^UTILITY(U,$J,358.3,41204,1,4,0)
+ ;;=4^I09.89
+ ;;^UTILITY(U,$J,358.3,41204,2)
+ ;;=^5007060
+ ;;^UTILITY(U,$J,358.3,41205,0)
+ ;;=I47.1^^159^2003^24
+ ;;^UTILITY(U,$J,358.3,41205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40790,1,3,0)
- ;;=3^Disp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,40790,1,4,0)
- ;;=4^S82.842A
- ;;^UTILITY(U,$J,358.3,40790,2)
- ;;=^5042495
- ;;^UTILITY(U,$J,358.3,40791,0)
- ;;=S82.844A^^189^2086^243
- ;;^UTILITY(U,$J,358.3,40791,1,0)
+ ;;^UTILITY(U,$J,358.3,41205,1,3,0)
+ ;;=3^Supraventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,41205,1,4,0)
+ ;;=4^I47.1
+ ;;^UTILITY(U,$J,358.3,41205,2)
+ ;;=^5007223
+ ;;^UTILITY(U,$J,358.3,41206,0)
+ ;;=I48.0^^159^2003^15
+ ;;^UTILITY(U,$J,358.3,41206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40791,1,3,0)
- ;;=3^Nondisp bimalleolar fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,40791,1,4,0)
- ;;=4^S82.844A
- ;;^UTILITY(U,$J,358.3,40791,2)
- ;;=^5042527
- ;;^UTILITY(U,$J,358.3,40792,0)
- ;;=S82.845A^^189^2086^242
- ;;^UTILITY(U,$J,358.3,40792,1,0)
+ ;;^UTILITY(U,$J,358.3,41206,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,41206,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,41206,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,41207,0)
+ ;;=I49.5^^159^2003^23
+ ;;^UTILITY(U,$J,358.3,41207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40792,1,3,0)
- ;;=3^Nondisp bimalleolar fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,40792,1,4,0)
- ;;=4^S82.845A
- ;;^UTILITY(U,$J,358.3,40792,2)
- ;;=^5042543
- ;;^UTILITY(U,$J,358.3,40793,0)
- ;;=S82.854A^^189^2086^378
- ;;^UTILITY(U,$J,358.3,40793,1,0)
+ ;;^UTILITY(U,$J,358.3,41207,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,41207,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,41207,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,41208,0)
+ ;;=I49.8^^159^2003^3
+ ;;^UTILITY(U,$J,358.3,41208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40793,1,3,0)
- ;;=3^Nondisp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,40793,1,4,0)
- ;;=4^S82.854A
- ;;^UTILITY(U,$J,358.3,40793,2)
- ;;=^5042623
- ;;^UTILITY(U,$J,358.3,40794,0)
- ;;=S82.852A^^189^2086^153
- ;;^UTILITY(U,$J,358.3,40794,1,0)
+ ;;^UTILITY(U,$J,358.3,41208,1,3,0)
+ ;;=3^Cardiac Arrhythmias
+ ;;^UTILITY(U,$J,358.3,41208,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,41208,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,41209,0)
+ ;;=I49.9^^159^2003^2
+ ;;^UTILITY(U,$J,358.3,41209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40794,1,3,0)
- ;;=3^Disp trimall fx of lft lwr leg, init
- ;;^UTILITY(U,$J,358.3,40794,1,4,0)
- ;;=4^S82.852A
- ;;^UTILITY(U,$J,358.3,40794,2)
- ;;=^5042591
- ;;^UTILITY(U,$J,358.3,40795,0)
- ;;=S82.851A^^189^2086^154
- ;;^UTILITY(U,$J,358.3,40795,1,0)
+ ;;^UTILITY(U,$J,358.3,41209,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,41209,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,41209,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,41210,0)
+ ;;=R00.1^^159^2003^1
+ ;;^UTILITY(U,$J,358.3,41210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40795,1,3,0)
- ;;=3^Disp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,40795,1,4,0)
- ;;=4^S82.851A
- ;;^UTILITY(U,$J,358.3,40795,2)
- ;;=^5042575
- ;;^UTILITY(U,$J,358.3,40796,0)
- ;;=S82.851A^^189^2086^155
- ;;^UTILITY(U,$J,358.3,40796,1,0)
+ ;;^UTILITY(U,$J,358.3,41210,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,41210,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,41210,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,41211,0)
+ ;;=I34.1^^159^2003^14
+ ;;^UTILITY(U,$J,358.3,41211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40796,1,3,0)
- ;;=3^Disp trimall fx of rt lwr leg, init
- ;;^UTILITY(U,$J,358.3,40796,1,4,0)
- ;;=4^S82.851A
- ;;^UTILITY(U,$J,358.3,40796,2)
- ;;=^5042575
- ;;^UTILITY(U,$J,358.3,40797,0)
- ;;=S82.855A^^189^2086^377
- ;;^UTILITY(U,$J,358.3,40797,1,0)
+ ;;^UTILITY(U,$J,358.3,41211,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Prolapse
+ ;;^UTILITY(U,$J,358.3,41211,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,41211,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,41212,0)
+ ;;=D68.4^^159^2004^1
+ ;;^UTILITY(U,$J,358.3,41212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40797,1,3,0)
- ;;=3^Nondisp trimall fx of lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,41212,1,3,0)
+ ;;=3^Acquired Coagulation Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,41212,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,41212,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,41213,0)
+ ;;=D59.9^^159^2004^2
+ ;;^UTILITY(U,$J,358.3,41213,1,0)
+ ;;=^358.31IA^4^2

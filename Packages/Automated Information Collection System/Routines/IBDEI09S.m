@@ -1,142 +1,138 @@
-IBDEI09S ; ; 19-NOV-2015
+IBDEI09S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4043,1,0)
+ ;;^UTILITY(U,$J,358.3,4334,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
+ ;;^UTILITY(U,$J,358.3,4334,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,4334,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,4335,0)
+ ;;=Z65.5^^21^273^26
+ ;;^UTILITY(U,$J,358.3,4335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4043,1,3,0)
- ;;=3^Influenza w/ Other Manifestation
- ;;^UTILITY(U,$J,358.3,4043,1,4,0)
- ;;=4^J11.89
- ;;^UTILITY(U,$J,358.3,4043,2)
- ;;=^5008163
- ;;^UTILITY(U,$J,358.3,4044,0)
- ;;=J11.00^^28^261^30
- ;;^UTILITY(U,$J,358.3,4044,1,0)
+ ;;^UTILITY(U,$J,358.3,4335,1,3,0)
+ ;;=3^Exposure to Disaster/War/Hostilities
+ ;;^UTILITY(U,$J,358.3,4335,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,4335,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,4336,0)
+ ;;=Z77.22^^21^273^27
+ ;;^UTILITY(U,$J,358.3,4336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4044,1,3,0)
- ;;=3^Influenza w/ Pneumonia
- ;;^UTILITY(U,$J,358.3,4044,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,4044,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,4045,0)
- ;;=J04.0^^28^261^31
- ;;^UTILITY(U,$J,358.3,4045,1,0)
+ ;;^UTILITY(U,$J,358.3,4336,1,3,0)
+ ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
+ ;;^UTILITY(U,$J,358.3,4336,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,4336,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,4337,0)
+ ;;=L30.9^^21^273^5
+ ;;^UTILITY(U,$J,358.3,4337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4045,1,3,0)
- ;;=3^Laryngitis,Acute
- ;;^UTILITY(U,$J,358.3,4045,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,4045,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,4046,0)
- ;;=J37.0^^28^261^32
- ;;^UTILITY(U,$J,358.3,4046,1,0)
+ ;;^UTILITY(U,$J,358.3,4337,1,3,0)
+ ;;=3^Eczema,Unspec
+ ;;^UTILITY(U,$J,358.3,4337,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,4337,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,4338,0)
+ ;;=L23.9^^21^273^2
+ ;;^UTILITY(U,$J,358.3,4338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4046,1,3,0)
- ;;=3^Laryngitis,Chronic
- ;;^UTILITY(U,$J,358.3,4046,1,4,0)
- ;;=4^J37.0
- ;;^UTILITY(U,$J,358.3,4046,2)
- ;;=^269902
- ;;^UTILITY(U,$J,358.3,4047,0)
- ;;=R09.81^^28^261^33
- ;;^UTILITY(U,$J,358.3,4047,1,0)
+ ;;^UTILITY(U,$J,358.3,4338,1,3,0)
+ ;;=3^Eczema,Allergic Contact,Unspec
+ ;;^UTILITY(U,$J,358.3,4338,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,4338,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,4339,0)
+ ;;=L20.82^^21^273^3
+ ;;^UTILITY(U,$J,358.3,4339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4047,1,3,0)
- ;;=3^Nasal Congestion
- ;;^UTILITY(U,$J,358.3,4047,1,4,0)
- ;;=4^R09.81
- ;;^UTILITY(U,$J,358.3,4047,2)
- ;;=^5019203
- ;;^UTILITY(U,$J,358.3,4048,0)
- ;;=J34.2^^28^261^34
- ;;^UTILITY(U,$J,358.3,4048,1,0)
+ ;;^UTILITY(U,$J,358.3,4339,1,3,0)
+ ;;=3^Eczema,Flexural
+ ;;^UTILITY(U,$J,358.3,4339,1,4,0)
+ ;;=4^L20.82
+ ;;^UTILITY(U,$J,358.3,4339,2)
+ ;;=^5009109
+ ;;^UTILITY(U,$J,358.3,4340,0)
+ ;;=L20.84^^21^273^4
+ ;;^UTILITY(U,$J,358.3,4340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4048,1,3,0)
- ;;=3^Nasal Septum,Deviated
- ;;^UTILITY(U,$J,358.3,4048,1,4,0)
- ;;=4^J34.2
- ;;^UTILITY(U,$J,358.3,4048,2)
- ;;=^259087
- ;;^UTILITY(U,$J,358.3,4049,0)
- ;;=J34.3^^28^261^35
- ;;^UTILITY(U,$J,358.3,4049,1,0)
+ ;;^UTILITY(U,$J,358.3,4340,1,3,0)
+ ;;=3^Eczema,Intrinsic
+ ;;^UTILITY(U,$J,358.3,4340,1,4,0)
+ ;;=4^L20.84
+ ;;^UTILITY(U,$J,358.3,4340,2)
+ ;;=^5009111
+ ;;^UTILITY(U,$J,358.3,4341,0)
+ ;;=L51.8^^21^273^10
+ ;;^UTILITY(U,$J,358.3,4341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4049,1,3,0)
- ;;=3^Nasal Turbinates,Hypertrophy
- ;;^UTILITY(U,$J,358.3,4049,1,4,0)
- ;;=4^J34.3
- ;;^UTILITY(U,$J,358.3,4049,2)
- ;;=^269909
- ;;^UTILITY(U,$J,358.3,4050,0)
- ;;=J00.^^28^261^36
- ;;^UTILITY(U,$J,358.3,4050,1,0)
+ ;;^UTILITY(U,$J,358.3,4341,1,3,0)
+ ;;=3^Erythema Multiforme,Other
+ ;;^UTILITY(U,$J,358.3,4341,1,4,0)
+ ;;=4^L51.8
+ ;;^UTILITY(U,$J,358.3,4341,2)
+ ;;=^336639
+ ;;^UTILITY(U,$J,358.3,4342,0)
+ ;;=R23.4^^21^273^14
+ ;;^UTILITY(U,$J,358.3,4342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4050,1,3,0)
- ;;=3^Nasopharyngitis,Acute
- ;;^UTILITY(U,$J,358.3,4050,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,4050,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,4051,0)
- ;;=J31.1^^28^261^37
- ;;^UTILITY(U,$J,358.3,4051,1,0)
+ ;;^UTILITY(U,$J,358.3,4342,1,3,0)
+ ;;=3^Eschar/Desquamination of Skin
+ ;;^UTILITY(U,$J,358.3,4342,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,4342,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,4343,0)
+ ;;=L49.9^^21^273^23
+ ;;^UTILITY(U,$J,358.3,4343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4051,1,3,0)
- ;;=3^Nasopharyngitis,Chronic
- ;;^UTILITY(U,$J,358.3,4051,1,4,0)
- ;;=4^J31.1
- ;;^UTILITY(U,$J,358.3,4051,2)
- ;;=^269888
- ;;^UTILITY(U,$J,358.3,4052,0)
- ;;=J34.9^^28^261^38
- ;;^UTILITY(U,$J,358.3,4052,1,0)
+ ;;^UTILITY(U,$J,358.3,4343,1,3,0)
+ ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
+ ;;^UTILITY(U,$J,358.3,4343,1,4,0)
+ ;;=4^L49.9
+ ;;^UTILITY(U,$J,358.3,4343,2)
+ ;;=^5009199
+ ;;^UTILITY(U,$J,358.3,4344,0)
+ ;;=L74.9^^21^273^1
+ ;;^UTILITY(U,$J,358.3,4344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4052,1,3,0)
- ;;=3^Nose & Nasal Sinuse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4052,1,4,0)
- ;;=4^J34.9
- ;;^UTILITY(U,$J,358.3,4052,2)
- ;;=^5008212
- ;;^UTILITY(U,$J,358.3,4053,0)
- ;;=Z99.81^^28^261^39
- ;;^UTILITY(U,$J,358.3,4053,1,0)
+ ;;^UTILITY(U,$J,358.3,4344,1,3,0)
+ ;;=3^Eccrine Sweat Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,4344,1,4,0)
+ ;;=4^L74.9
+ ;;^UTILITY(U,$J,358.3,4344,2)
+ ;;=^5009296
+ ;;^UTILITY(U,$J,358.3,4345,0)
+ ;;=L92.3^^21^274^1
+ ;;^UTILITY(U,$J,358.3,4345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4053,1,3,0)
- ;;=3^Oxygen,Supplemental,Dependence
- ;;^UTILITY(U,$J,358.3,4053,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,4053,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,4054,0)
- ;;=J02.9^^28^261^41
- ;;^UTILITY(U,$J,358.3,4054,1,0)
+ ;;^UTILITY(U,$J,358.3,4345,1,3,0)
+ ;;=3^FB Granuloma Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,4345,1,4,0)
+ ;;=4^L92.3
+ ;;^UTILITY(U,$J,358.3,4345,2)
+ ;;=^5009464
+ ;;^UTILITY(U,$J,358.3,4346,0)
+ ;;=L66.2^^21^274^4
+ ;;^UTILITY(U,$J,358.3,4346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4054,1,3,0)
- ;;=3^Pharyngitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,4054,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,4054,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,4055,0)
- ;;=J31.2^^28^261^42
- ;;^UTILITY(U,$J,358.3,4055,1,0)
+ ;;^UTILITY(U,$J,358.3,4346,1,3,0)
+ ;;=3^Folliculitis Decalvans
+ ;;^UTILITY(U,$J,358.3,4346,1,4,0)
+ ;;=4^L66.2
+ ;;^UTILITY(U,$J,358.3,4346,2)
+ ;;=^5009254
+ ;;^UTILITY(U,$J,358.3,4347,0)
+ ;;=L73.9^^21^274^3
+ ;;^UTILITY(U,$J,358.3,4347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4055,1,3,0)
- ;;=3^Pharyngitis,Chronic
- ;;^UTILITY(U,$J,358.3,4055,1,4,0)
- ;;=4^J31.2
- ;;^UTILITY(U,$J,358.3,4055,2)
- ;;=^269886
- ;;^UTILITY(U,$J,358.3,4056,0)
- ;;=J94.9^^28^261^43
- ;;^UTILITY(U,$J,358.3,4056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4056,1,3,0)
- ;;=3^Pleural Condition,Unspec
- ;;^UTILITY(U,$J,358.3,4056,1,4,0)
- ;;=4^J94.9
- ;;^UTILITY(U,$J,358.3,4056,2)
- ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,4347,1,3,0)
+ ;;=3^Follicular Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,4347,1,4,0)
+ ;;=4^L73.9

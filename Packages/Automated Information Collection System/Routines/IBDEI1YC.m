@@ -1,126 +1,124 @@
-IBDEI1YC ; ; 19-NOV-2015
+IBDEI1YC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32679,1,3,0)
- ;;=3^Neuropsych Tst Admin w/Computer
- ;;^UTILITY(U,$J,358.3,32680,0)
- ;;=96125^^144^1559^21^^^^1
- ;;^UTILITY(U,$J,358.3,32680,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32680,1,2,0)
- ;;=2^96125
- ;;^UTILITY(U,$J,358.3,32680,1,3,0)
- ;;=3^Standardized Cognitive Performance Tst,per hr
- ;;^UTILITY(U,$J,358.3,32681,0)
- ;;=96372^^144^1559^26^^^^1
- ;;^UTILITY(U,$J,358.3,32681,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32681,1,2,0)
- ;;=2^96372
- ;;^UTILITY(U,$J,358.3,32681,1,3,0)
- ;;=3^Ther/Proph/Diag Inj,SC/IM
- ;;^UTILITY(U,$J,358.3,32682,0)
- ;;=Q3014^^144^1559^25^^^^1
- ;;^UTILITY(U,$J,358.3,32682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32682,1,2,0)
- ;;=2^Q3014
- ;;^UTILITY(U,$J,358.3,32682,1,3,0)
- ;;=3^Telehealth Facility Fee
- ;;^UTILITY(U,$J,358.3,32683,0)
- ;;=90887^^144^1559^4^^^^1
- ;;^UTILITY(U,$J,358.3,32683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32683,1,2,0)
- ;;=2^90887
- ;;^UTILITY(U,$J,358.3,32683,1,3,0)
- ;;=3^Consultation w/Family
- ;;^UTILITY(U,$J,358.3,32684,0)
- ;;=90889^^144^1559^14^^^^1
- ;;^UTILITY(U,$J,358.3,32684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32684,1,2,0)
- ;;=2^90889
- ;;^UTILITY(U,$J,358.3,32684,1,3,0)
- ;;=3^Preparation of Report
- ;;^UTILITY(U,$J,358.3,32685,0)
- ;;=96118^^144^1559^12^^^^1
- ;;^UTILITY(U,$J,358.3,32685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32685,1,2,0)
- ;;=2^96118
- ;;^UTILITY(U,$J,358.3,32685,1,3,0)
- ;;=3^Neuropsych Tst by Psychologist/Phys,per hr
- ;;^UTILITY(U,$J,358.3,32686,0)
- ;;=G0177^^144^1559^27^^^^1
- ;;^UTILITY(U,$J,358.3,32686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32686,1,2,0)
- ;;=2^G0177
- ;;^UTILITY(U,$J,358.3,32686,1,3,0)
- ;;=3^Train & Ed for Disabiling MH Problem,45+ min
- ;;^UTILITY(U,$J,358.3,32687,0)
- ;;=J1630^^144^1559^7^^^^1
- ;;^UTILITY(U,$J,358.3,32687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32687,1,2,0)
- ;;=2^J1630
- ;;^UTILITY(U,$J,358.3,32687,1,3,0)
- ;;=3^Haloperidol,Up to 5mg
- ;;^UTILITY(U,$J,358.3,32688,0)
- ;;=J2794^^144^1559^19^^^^1
- ;;^UTILITY(U,$J,358.3,32688,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32688,1,2,0)
- ;;=2^J2794
- ;;^UTILITY(U,$J,358.3,32688,1,3,0)
- ;;=3^Risperidone,Long Acting per 0.5mg
- ;;^UTILITY(U,$J,358.3,32689,0)
- ;;=99090^^144^1559^18^^^^1
- ;;^UTILITY(U,$J,358.3,32689,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32689,1,2,0)
- ;;=2^99090
- ;;^UTILITY(U,$J,358.3,32689,1,3,0)
- ;;=3^Record Review (Labs,Remote Data)
- ;;^UTILITY(U,$J,358.3,32690,0)
- ;;=96101^^144^1559^17^^^^1
- ;;^UTILITY(U,$J,358.3,32690,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32690,1,2,0)
- ;;=2^96101
- ;;^UTILITY(U,$J,358.3,32690,1,3,0)
- ;;=3^Psych Testing by Psych/Phys per hr
- ;;^UTILITY(U,$J,358.3,32691,0)
- ;;=96127^^144^1559^1^^^^1
- ;;^UTILITY(U,$J,358.3,32691,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32691,1,2,0)
- ;;=2^96127
- ;;^UTILITY(U,$J,358.3,32691,1,3,0)
- ;;=3^Brief Emot/Behav Assmt w/ Score & Docum
- ;;^UTILITY(U,$J,358.3,32692,0)
- ;;=J2680^^144^1559^5^^^^1
- ;;^UTILITY(U,$J,358.3,32692,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32692,1,2,0)
- ;;=2^J2680
- ;;^UTILITY(U,$J,358.3,32692,1,3,0)
- ;;=3^Fluphenazine Decanoate,up to 25mg
- ;;^UTILITY(U,$J,358.3,32693,0)
- ;;=90867^^144^1559^22^^^^1
- ;;^UTILITY(U,$J,358.3,32693,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32693,1,2,0)
- ;;=2^90867
- ;;^UTILITY(U,$J,358.3,32693,1,3,0)
- ;;=3^TMS Initial
- ;;^UTILITY(U,$J,358.3,32694,0)
- ;;=90868^^144^1559^24^^^^1
- ;;^UTILITY(U,$J,358.3,32694,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32694,1,2,0)
- ;;=2^90868
- ;;^UTILITY(U,$J,358.3,32694,1,3,0)
- ;;=3^TMS Subseq Delivery & Mgmt,per session
+ ;;^UTILITY(U,$J,358.3,33135,1,4,0)
+ ;;=4^I70.219
+ ;;^UTILITY(U,$J,358.3,33135,2)
+ ;;=^5007582
+ ;;^UTILITY(U,$J,358.3,33136,0)
+ ;;=I70.213^^131^1667^4
+ ;;^UTILITY(U,$J,358.3,33136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33136,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
+ ;;^UTILITY(U,$J,358.3,33136,1,4,0)
+ ;;=4^I70.213
+ ;;^UTILITY(U,$J,358.3,33136,2)
+ ;;=^5007580
+ ;;^UTILITY(U,$J,358.3,33137,0)
+ ;;=I70.212^^131^1667^5
+ ;;^UTILITY(U,$J,358.3,33137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33137,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
+ ;;^UTILITY(U,$J,358.3,33137,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,33137,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,33138,0)
+ ;;=I70.211^^131^1667^6
+ ;;^UTILITY(U,$J,358.3,33138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33138,1,3,0)
+ ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
+ ;;^UTILITY(U,$J,358.3,33138,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,33138,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,33139,0)
+ ;;=I70.25^^131^1667^2
+ ;;^UTILITY(U,$J,358.3,33139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33139,1,3,0)
+ ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
+ ;;^UTILITY(U,$J,358.3,33139,1,4,0)
+ ;;=4^I70.25
+ ;;^UTILITY(U,$J,358.3,33139,2)
+ ;;=^5007602
+ ;;^UTILITY(U,$J,358.3,33140,0)
+ ;;=I70.249^^131^1667^7
+ ;;^UTILITY(U,$J,358.3,33140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33140,1,3,0)
+ ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
+ ;;^UTILITY(U,$J,358.3,33140,1,4,0)
+ ;;=4^I70.249
+ ;;^UTILITY(U,$J,358.3,33140,2)
+ ;;=^5007601
+ ;;^UTILITY(U,$J,358.3,33141,0)
+ ;;=I70.239^^131^1667^8
+ ;;^UTILITY(U,$J,358.3,33141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33141,1,3,0)
+ ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
+ ;;^UTILITY(U,$J,358.3,33141,1,4,0)
+ ;;=4^I70.239
+ ;;^UTILITY(U,$J,358.3,33141,2)
+ ;;=^5007594
+ ;;^UTILITY(U,$J,358.3,33142,0)
+ ;;=I70.269^^131^1667^9
+ ;;^UTILITY(U,$J,358.3,33142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33142,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,33142,1,4,0)
+ ;;=4^I70.269
+ ;;^UTILITY(U,$J,358.3,33142,2)
+ ;;=^5007607
+ ;;^UTILITY(U,$J,358.3,33143,0)
+ ;;=I70.263^^131^1667^10
+ ;;^UTILITY(U,$J,358.3,33143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33143,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,33143,1,4,0)
+ ;;=4^I70.263
+ ;;^UTILITY(U,$J,358.3,33143,2)
+ ;;=^5007605
+ ;;^UTILITY(U,$J,358.3,33144,0)
+ ;;=I70.262^^131^1667^11
+ ;;^UTILITY(U,$J,358.3,33144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33144,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Left Leg
+ ;;^UTILITY(U,$J,358.3,33144,1,4,0)
+ ;;=4^I70.262
+ ;;^UTILITY(U,$J,358.3,33144,2)
+ ;;=^5007604
+ ;;^UTILITY(U,$J,358.3,33145,0)
+ ;;=I70.261^^131^1667^12
+ ;;^UTILITY(U,$J,358.3,33145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33145,1,3,0)
+ ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Right Leg
+ ;;^UTILITY(U,$J,358.3,33145,1,4,0)
+ ;;=4^I70.261
+ ;;^UTILITY(U,$J,358.3,33145,2)
+ ;;=^5007603
+ ;;^UTILITY(U,$J,358.3,33146,0)
+ ;;=I71.2^^131^1667^20
+ ;;^UTILITY(U,$J,358.3,33146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33146,1,3,0)
+ ;;=3^Thoracic Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,33146,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,33146,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,33147,0)
+ ;;=I71.4^^131^1667^1
+ ;;^UTILITY(U,$J,358.3,33147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33147,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture

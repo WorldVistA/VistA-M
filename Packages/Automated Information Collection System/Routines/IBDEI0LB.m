@@ -1,138 +1,126 @@
-IBDEI0LB ; ; 19-NOV-2015
+IBDEI0LB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9671,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9671,1,2,0)
- ;;=2^J1327
- ;;^UTILITY(U,$J,358.3,9671,1,3,0)
- ;;=3^Eptifibatide 5mg
- ;;^UTILITY(U,$J,358.3,9672,0)
- ;;=J1642^^66^629^23^^^^1
- ;;^UTILITY(U,$J,358.3,9672,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9672,1,2,0)
- ;;=2^J1642
- ;;^UTILITY(U,$J,358.3,9672,1,3,0)
- ;;=3^Heparin Sodium per 10U
- ;;^UTILITY(U,$J,358.3,9673,0)
- ;;=J1644^^66^629^22^^^^1
- ;;^UTILITY(U,$J,358.3,9673,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9673,1,2,0)
- ;;=2^J1644
- ;;^UTILITY(U,$J,358.3,9673,1,3,0)
- ;;=3^Heparin Sodium per 1000U
- ;;^UTILITY(U,$J,358.3,9674,0)
- ;;=J3410^^66^629^25^^^^1
- ;;^UTILITY(U,$J,358.3,9674,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9674,1,2,0)
- ;;=2^J3410
- ;;^UTILITY(U,$J,358.3,9674,1,3,0)
- ;;=3^Hydroxyzine HCL,up to 25mg
- ;;^UTILITY(U,$J,358.3,9675,0)
- ;;=J7120^^66^629^27^^^^1
- ;;^UTILITY(U,$J,358.3,9675,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9675,1,2,0)
- ;;=2^J7120
- ;;^UTILITY(U,$J,358.3,9675,1,3,0)
- ;;=3^Infusion,Ringers Lactate,up to 1000cc
- ;;^UTILITY(U,$J,358.3,9676,0)
- ;;=J1815^^66^629^28^^^^1
- ;;^UTILITY(U,$J,358.3,9676,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9676,1,2,0)
- ;;=2^J1815
- ;;^UTILITY(U,$J,358.3,9676,1,3,0)
- ;;=3^Insulin 5U
- ;;^UTILITY(U,$J,358.3,9677,0)
- ;;=J1956^^66^629^31^^^^1
- ;;^UTILITY(U,$J,358.3,9677,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9677,1,2,0)
- ;;=2^J1956
- ;;^UTILITY(U,$J,358.3,9677,1,3,0)
- ;;=3^Levofloxacin 250mg
- ;;^UTILITY(U,$J,358.3,9678,0)
- ;;=J1050^^66^629^33^^^^1
- ;;^UTILITY(U,$J,358.3,9678,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9678,1,2,0)
- ;;=2^J1050
- ;;^UTILITY(U,$J,358.3,9678,1,3,0)
- ;;=3^Medroxyprogesterone Acetate 1mg
- ;;^UTILITY(U,$J,358.3,9679,0)
- ;;=J2175^^66^629^34^^^^1
- ;;^UTILITY(U,$J,358.3,9679,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9679,1,2,0)
- ;;=2^J2175
- ;;^UTILITY(U,$J,358.3,9679,1,3,0)
- ;;=3^Meperdine HCL 100mg
- ;;^UTILITY(U,$J,358.3,9680,0)
- ;;=86485^^66^630^1^^^^1
- ;;^UTILITY(U,$J,358.3,9680,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9680,1,2,0)
- ;;=2^86485
- ;;^UTILITY(U,$J,358.3,9680,1,3,0)
- ;;=3^Candida
- ;;^UTILITY(U,$J,358.3,9681,0)
- ;;=86580^^66^630^5^^^^1
- ;;^UTILITY(U,$J,358.3,9681,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9681,1,2,0)
- ;;=2^86580
- ;;^UTILITY(U,$J,358.3,9681,1,3,0)
- ;;=3^TB
- ;;^UTILITY(U,$J,358.3,9682,0)
- ;;=95024^^66^630^3^^^^1
- ;;^UTILITY(U,$J,358.3,9682,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9682,1,2,0)
- ;;=2^95024
- ;;^UTILITY(U,$J,358.3,9682,1,3,0)
- ;;=3^Intradermals (each)
- ;;^UTILITY(U,$J,358.3,9683,0)
- ;;=86510^^66^630^2^^^^1
- ;;^UTILITY(U,$J,358.3,9683,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9683,1,2,0)
- ;;=2^86510
- ;;^UTILITY(U,$J,358.3,9683,1,3,0)
- ;;=3^Histoplasmosis
- ;;^UTILITY(U,$J,358.3,9684,0)
- ;;=86486^^66^630^4^^^^1
- ;;^UTILITY(U,$J,358.3,9684,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9684,1,2,0)
- ;;=2^86486
- ;;^UTILITY(U,$J,358.3,9684,1,3,0)
- ;;=3^Mumps
- ;;^UTILITY(U,$J,358.3,9685,0)
- ;;=94640^^66^631^2^^^^1
- ;;^UTILITY(U,$J,358.3,9685,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9685,1,2,0)
- ;;=2^94640
- ;;^UTILITY(U,$J,358.3,9685,1,3,0)
- ;;=3^Nebulizer Treatment
- ;;^UTILITY(U,$J,358.3,9686,0)
- ;;=82948^^66^631^1^^^^1
- ;;^UTILITY(U,$J,358.3,9686,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9686,1,2,0)
- ;;=2^82948
- ;;^UTILITY(U,$J,358.3,9686,1,3,0)
- ;;=3^Glucose finger stick
- ;;^UTILITY(U,$J,358.3,9687,0)
- ;;=81002^^66^631^3^^^^1
- ;;^UTILITY(U,$J,358.3,9687,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9687,1,2,0)
- ;;=2^81002
- ;;^UTILITY(U,$J,358.3,9687,1,3,0)
- ;;=3^UA Dipstick
+ ;;^UTILITY(U,$J,358.3,9944,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9944,1,4,0)
+ ;;=4^H40.63X1
+ ;;^UTILITY(U,$J,358.3,9944,2)
+ ;;=^5005915
+ ;;^UTILITY(U,$J,358.3,9945,0)
+ ;;=H40.63X2^^44^496^31
+ ;;^UTILITY(U,$J,358.3,9945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9945,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9945,1,4,0)
+ ;;=4^H40.63X2
+ ;;^UTILITY(U,$J,358.3,9945,2)
+ ;;=^5005916
+ ;;^UTILITY(U,$J,358.3,9946,0)
+ ;;=H40.63X3^^44^496^32
+ ;;^UTILITY(U,$J,358.3,9946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9946,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9946,1,4,0)
+ ;;=4^H40.63X3
+ ;;^UTILITY(U,$J,358.3,9946,2)
+ ;;=^5005917
+ ;;^UTILITY(U,$J,358.3,9947,0)
+ ;;=H40.63X4^^44^496^29
+ ;;^UTILITY(U,$J,358.3,9947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9947,1,3,0)
+ ;;=3^Drug-Induced Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9947,1,4,0)
+ ;;=4^H40.63X4
+ ;;^UTILITY(U,$J,358.3,9947,2)
+ ;;=^5005918
+ ;;^UTILITY(U,$J,358.3,9948,0)
+ ;;=H40.51X0^^44^496^54
+ ;;^UTILITY(U,$J,358.3,9948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9948,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9948,1,4,0)
+ ;;=4^H40.51X0
+ ;;^UTILITY(U,$J,358.3,9948,2)
+ ;;=^5005888
+ ;;^UTILITY(U,$J,358.3,9949,0)
+ ;;=H40.51X1^^44^496^55
+ ;;^UTILITY(U,$J,358.3,9949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9949,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9949,1,4,0)
+ ;;=4^H40.51X1
+ ;;^UTILITY(U,$J,358.3,9949,2)
+ ;;=^5005889
+ ;;^UTILITY(U,$J,358.3,9950,0)
+ ;;=H40.51X2^^44^496^56
+ ;;^UTILITY(U,$J,358.3,9950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9950,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9950,1,4,0)
+ ;;=4^H40.51X2
+ ;;^UTILITY(U,$J,358.3,9950,2)
+ ;;=^5005890
+ ;;^UTILITY(U,$J,358.3,9951,0)
+ ;;=H40.51X3^^44^496^57
+ ;;^UTILITY(U,$J,358.3,9951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9951,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9951,1,4,0)
+ ;;=4^H40.51X3
+ ;;^UTILITY(U,$J,358.3,9951,2)
+ ;;=^5133507
+ ;;^UTILITY(U,$J,358.3,9952,0)
+ ;;=H40.51X4^^44^496^58
+ ;;^UTILITY(U,$J,358.3,9952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9952,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9952,1,4,0)
+ ;;=4^H40.51X4
+ ;;^UTILITY(U,$J,358.3,9952,2)
+ ;;=^5005891
+ ;;^UTILITY(U,$J,358.3,9953,0)
+ ;;=H40.52X0^^44^496^49
+ ;;^UTILITY(U,$J,358.3,9953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9953,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9953,1,4,0)
+ ;;=4^H40.52X0
+ ;;^UTILITY(U,$J,358.3,9953,2)
+ ;;=^5005892
+ ;;^UTILITY(U,$J,358.3,9954,0)
+ ;;=H40.52X1^^44^496^50
+ ;;^UTILITY(U,$J,358.3,9954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9954,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9954,1,4,0)
+ ;;=4^H40.52X1
+ ;;^UTILITY(U,$J,358.3,9954,2)
+ ;;=^5005893
+ ;;^UTILITY(U,$J,358.3,9955,0)
+ ;;=H40.52X2^^44^496^51
+ ;;^UTILITY(U,$J,358.3,9955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9955,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9955,1,4,0)
+ ;;=4^H40.52X2
+ ;;^UTILITY(U,$J,358.3,9955,2)
+ ;;=^5005894
+ ;;^UTILITY(U,$J,358.3,9956,0)
+ ;;=H40.52X3^^44^496^52
+ ;;^UTILITY(U,$J,358.3,9956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9956,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Severe Stage

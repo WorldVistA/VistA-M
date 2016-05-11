@@ -1,132 +1,132 @@
-IBDEI0VL ; ; 19-NOV-2015
+IBDEI0VL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14538,1,0)
+ ;;^UTILITY(U,$J,358.3,14811,0)
+ ;;=99368^^55^630^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14811,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14811,1,1,0)
+ ;;=1^99368
+ ;;^UTILITY(U,$J,358.3,14811,1,2,0)
+ ;;=2^Team Conf w/o Pt by HC Pro,30+ Min
+ ;;^UTILITY(U,$J,358.3,14812,0)
+ ;;=99503^^55^631^5^^^^1
+ ;;^UTILITY(U,$J,358.3,14812,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14812,1,1,0)
+ ;;=1^99503
+ ;;^UTILITY(U,$J,358.3,14812,1,2,0)
+ ;;=2^Home Visit-Respiratory Tx Care
+ ;;^UTILITY(U,$J,358.3,14813,0)
+ ;;=99504^^55^631^4^^^^1
+ ;;^UTILITY(U,$J,358.3,14813,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14813,1,1,0)
+ ;;=1^99504
+ ;;^UTILITY(U,$J,358.3,14813,1,2,0)
+ ;;=2^Home Visit-Mech Ventilator Care
+ ;;^UTILITY(U,$J,358.3,14814,0)
+ ;;=99507^^55^631^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14814,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14814,1,1,0)
+ ;;=1^99507
+ ;;^UTILITY(U,$J,358.3,14814,1,2,0)
+ ;;=2^Home Visit-Cath Maintenance
+ ;;^UTILITY(U,$J,358.3,14815,0)
+ ;;=99511^^55^631^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14815,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14815,1,1,0)
+ ;;=1^99511
+ ;;^UTILITY(U,$J,358.3,14815,1,2,0)
+ ;;=2^Home Visit-Fecal/Enema Mgmt
+ ;;^UTILITY(U,$J,358.3,14816,0)
+ ;;=99505^^55^631^6^^^^1
+ ;;^UTILITY(U,$J,358.3,14816,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14816,1,1,0)
+ ;;=1^99505
+ ;;^UTILITY(U,$J,358.3,14816,1,2,0)
+ ;;=2^Home Visit-Stoma Care
+ ;;^UTILITY(U,$J,358.3,14817,0)
+ ;;=99512^^55^631^3^^^^1
+ ;;^UTILITY(U,$J,358.3,14817,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14817,1,1,0)
+ ;;=1^99512
+ ;;^UTILITY(U,$J,358.3,14817,1,2,0)
+ ;;=2^Home Visit-Hemodialysis
+ ;;^UTILITY(U,$J,358.3,14818,0)
+ ;;=99601^^55^632^1^^^^1
+ ;;^UTILITY(U,$J,358.3,14818,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14818,1,1,0)
+ ;;=1^99601
+ ;;^UTILITY(U,$J,358.3,14818,1,2,0)
+ ;;=2^Home Infsn,Up to 2 hrs
+ ;;^UTILITY(U,$J,358.3,14819,0)
+ ;;=99602^^55^632^2^^^^1
+ ;;^UTILITY(U,$J,358.3,14819,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,14819,1,1,0)
+ ;;=1^99602
+ ;;^UTILITY(U,$J,358.3,14819,1,2,0)
+ ;;=2^Home Infsn,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,14820,0)
+ ;;=L89.010^^56^633^78
+ ;;^UTILITY(U,$J,358.3,14820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14538,1,3,0)
- ;;=3^Hypertensive Retinopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,14538,1,4,0)
- ;;=4^H35.031
- ;;^UTILITY(U,$J,358.3,14538,2)
- ;;=^5005590
- ;;^UTILITY(U,$J,358.3,14539,0)
- ;;=H35.032^^82^779^51
- ;;^UTILITY(U,$J,358.3,14539,1,0)
+ ;;^UTILITY(U,$J,358.3,14820,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unstageable
+ ;;^UTILITY(U,$J,358.3,14820,1,4,0)
+ ;;=4^L89.010
+ ;;^UTILITY(U,$J,358.3,14820,2)
+ ;;=^5009337
+ ;;^UTILITY(U,$J,358.3,14821,0)
+ ;;=L89.011^^56^633^73
+ ;;^UTILITY(U,$J,358.3,14821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14539,1,3,0)
- ;;=3^Hypertensive Retinopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,14539,1,4,0)
- ;;=4^H35.032
- ;;^UTILITY(U,$J,358.3,14539,2)
- ;;=^5005591
- ;;^UTILITY(U,$J,358.3,14540,0)
- ;;=H35.071^^82^779^90
- ;;^UTILITY(U,$J,358.3,14540,1,0)
+ ;;^UTILITY(U,$J,358.3,14821,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 1
+ ;;^UTILITY(U,$J,358.3,14821,1,4,0)
+ ;;=4^L89.011
+ ;;^UTILITY(U,$J,358.3,14821,2)
+ ;;=^5009338
+ ;;^UTILITY(U,$J,358.3,14822,0)
+ ;;=L89.012^^56^633^74
+ ;;^UTILITY(U,$J,358.3,14822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14540,1,3,0)
- ;;=3^Retinal Telangiectasis,Right Eye
- ;;^UTILITY(U,$J,358.3,14540,1,4,0)
- ;;=4^H35.071
- ;;^UTILITY(U,$J,358.3,14540,2)
- ;;=^5005606
- ;;^UTILITY(U,$J,358.3,14541,0)
- ;;=H35.072^^82^779^89
- ;;^UTILITY(U,$J,358.3,14541,1,0)
+ ;;^UTILITY(U,$J,358.3,14822,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 2
+ ;;^UTILITY(U,$J,358.3,14822,1,4,0)
+ ;;=4^L89.012
+ ;;^UTILITY(U,$J,358.3,14822,2)
+ ;;=^5009339
+ ;;^UTILITY(U,$J,358.3,14823,0)
+ ;;=L89.013^^56^633^75
+ ;;^UTILITY(U,$J,358.3,14823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14541,1,3,0)
- ;;=3^Retinal Telangiectasis,Left Eye
- ;;^UTILITY(U,$J,358.3,14541,1,4,0)
- ;;=4^H35.072
- ;;^UTILITY(U,$J,358.3,14541,2)
- ;;=^5005607
- ;;^UTILITY(U,$J,358.3,14542,0)
- ;;=H35.051^^82^779^88
- ;;^UTILITY(U,$J,358.3,14542,1,0)
+ ;;^UTILITY(U,$J,358.3,14823,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 3
+ ;;^UTILITY(U,$J,358.3,14823,1,4,0)
+ ;;=4^L89.013
+ ;;^UTILITY(U,$J,358.3,14823,2)
+ ;;=^5009340
+ ;;^UTILITY(U,$J,358.3,14824,0)
+ ;;=L89.014^^56^633^76
+ ;;^UTILITY(U,$J,358.3,14824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14542,1,3,0)
- ;;=3^Retinal Neovascularization,Right Eye
- ;;^UTILITY(U,$J,358.3,14542,1,4,0)
- ;;=4^H35.051
- ;;^UTILITY(U,$J,358.3,14542,2)
- ;;=^5005598
- ;;^UTILITY(U,$J,358.3,14543,0)
- ;;=H35.052^^82^779^87
- ;;^UTILITY(U,$J,358.3,14543,1,0)
+ ;;^UTILITY(U,$J,358.3,14824,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Stage 4
+ ;;^UTILITY(U,$J,358.3,14824,1,4,0)
+ ;;=4^L89.014
+ ;;^UTILITY(U,$J,358.3,14824,2)
+ ;;=^5009341
+ ;;^UTILITY(U,$J,358.3,14825,0)
+ ;;=L89.019^^56^633^77
+ ;;^UTILITY(U,$J,358.3,14825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14543,1,3,0)
- ;;=3^Retinal Neovascularization,Left Eye
- ;;^UTILITY(U,$J,358.3,14543,1,4,0)
- ;;=4^H35.052
- ;;^UTILITY(U,$J,358.3,14543,2)
- ;;=^5005599
- ;;^UTILITY(U,$J,358.3,14544,0)
- ;;=H35.061^^82^779^92
- ;;^UTILITY(U,$J,358.3,14544,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14544,1,3,0)
- ;;=3^Retinal Vasculitis,Right Eye
- ;;^UTILITY(U,$J,358.3,14544,1,4,0)
- ;;=4^H35.061
- ;;^UTILITY(U,$J,358.3,14544,2)
- ;;=^5005602
- ;;^UTILITY(U,$J,358.3,14545,0)
- ;;=H35.062^^82^779^91
- ;;^UTILITY(U,$J,358.3,14545,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14545,1,3,0)
- ;;=3^Retinal Vasculitis,Left Eye
- ;;^UTILITY(U,$J,358.3,14545,1,4,0)
- ;;=4^H35.062
- ;;^UTILITY(U,$J,358.3,14545,2)
- ;;=^5005603
- ;;^UTILITY(U,$J,358.3,14546,0)
- ;;=H34.13^^82^779^6
- ;;^UTILITY(U,$J,358.3,14546,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14546,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Bilateral
- ;;^UTILITY(U,$J,358.3,14546,1,4,0)
- ;;=4^H34.13
- ;;^UTILITY(U,$J,358.3,14546,2)
- ;;=^5005559
- ;;^UTILITY(U,$J,358.3,14547,0)
- ;;=H34.11^^82^779^8
- ;;^UTILITY(U,$J,358.3,14547,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14547,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,14547,1,4,0)
- ;;=4^H34.11
- ;;^UTILITY(U,$J,358.3,14547,2)
- ;;=^5005557
- ;;^UTILITY(U,$J,358.3,14548,0)
- ;;=H34.12^^82^779^7
- ;;^UTILITY(U,$J,358.3,14548,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14548,1,3,0)
- ;;=3^Central Retinal Artery Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,14548,1,4,0)
- ;;=4^H34.12
- ;;^UTILITY(U,$J,358.3,14548,2)
- ;;=^5005558
- ;;^UTILITY(U,$J,358.3,14549,0)
- ;;=H34.231^^82^779^76
- ;;^UTILITY(U,$J,358.3,14549,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14549,1,3,0)
- ;;=3^Retinal Artery Branch Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,14549,1,4,0)
- ;;=4^H34.231
- ;;^UTILITY(U,$J,358.3,14549,2)
- ;;=^5005564
- ;;^UTILITY(U,$J,358.3,14550,0)
- ;;=H34.232^^82^779^75
- ;;^UTILITY(U,$J,358.3,14550,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14550,1,3,0)
- ;;=3^Retinal Artery Branch Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,14550,1,4,0)
- ;;=4^H34.232
- ;;^UTILITY(U,$J,358.3,14550,2)
- ;;=^5005565
+ ;;^UTILITY(U,$J,358.3,14825,1,3,0)
+ ;;=3^Pressure Ulcer Right Elbow,Unspec Stage

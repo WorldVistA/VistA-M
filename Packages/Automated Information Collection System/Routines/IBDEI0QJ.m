@@ -1,124 +1,132 @@
-IBDEI0QJ ; ; 19-NOV-2015
+IBDEI0QJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12159,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,12160,0)
- ;;=S91.352A^^71^708^140
- ;;^UTILITY(U,$J,358.3,12160,1,0)
+ ;;^UTILITY(U,$J,358.3,12433,1,4,0)
+ ;;=4^K90.0
+ ;;^UTILITY(U,$J,358.3,12433,2)
+ ;;=^20828
+ ;;^UTILITY(U,$J,358.3,12434,0)
+ ;;=B96.81^^50^563^22
+ ;;^UTILITY(U,$J,358.3,12434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12160,1,3,0)
- ;;=3^Open bite, left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,12160,1,4,0)
- ;;=4^S91.352A
- ;;^UTILITY(U,$J,358.3,12160,2)
- ;;=^5044347
- ;;^UTILITY(U,$J,358.3,12161,0)
- ;;=S61.451A^^71^708^151
- ;;^UTILITY(U,$J,358.3,12161,1,0)
+ ;;^UTILITY(U,$J,358.3,12434,1,3,0)
+ ;;=3^Helicobacter pylori as the cause of diseases classd elswhr
+ ;;^UTILITY(U,$J,358.3,12434,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,12434,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,12435,0)
+ ;;=C16.9^^50^563^23
+ ;;^UTILITY(U,$J,358.3,12435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12161,1,3,0)
- ;;=3^Open bite, right hand, initial encounter
- ;;^UTILITY(U,$J,358.3,12161,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,12161,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,12162,0)
- ;;=S61.452A^^71^708^143
- ;;^UTILITY(U,$J,358.3,12162,1,0)
+ ;;^UTILITY(U,$J,358.3,12435,1,3,0)
+ ;;=3^Malignant neoplasm of stomach, unspecified
+ ;;^UTILITY(U,$J,358.3,12435,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,12435,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,12436,0)
+ ;;=I86.4^^50^563^15
+ ;;^UTILITY(U,$J,358.3,12436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12162,1,3,0)
- ;;=3^Open bite, left hand, initial encounter
- ;;^UTILITY(U,$J,358.3,12162,1,4,0)
- ;;=4^S61.452A
- ;;^UTILITY(U,$J,358.3,12162,2)
- ;;=^5033014
- ;;^UTILITY(U,$J,358.3,12163,0)
- ;;=S81.851A^^71^708^153
- ;;^UTILITY(U,$J,358.3,12163,1,0)
+ ;;^UTILITY(U,$J,358.3,12436,1,3,0)
+ ;;=3^Gastric varices
+ ;;^UTILITY(U,$J,358.3,12436,1,4,0)
+ ;;=4^I86.4
+ ;;^UTILITY(U,$J,358.3,12436,2)
+ ;;=^49382
+ ;;^UTILITY(U,$J,358.3,12437,0)
+ ;;=K25.0^^50^563^2
+ ;;^UTILITY(U,$J,358.3,12437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12163,1,3,0)
- ;;=3^Open bite, right lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,12163,1,4,0)
- ;;=4^S81.851A
- ;;^UTILITY(U,$J,358.3,12163,2)
- ;;=^5040095
- ;;^UTILITY(U,$J,358.3,12164,0)
- ;;=S81.852A^^71^708^145
- ;;^UTILITY(U,$J,358.3,12164,1,0)
+ ;;^UTILITY(U,$J,358.3,12437,1,3,0)
+ ;;=3^Acute gastric ulcer with hemorrhage
+ ;;^UTILITY(U,$J,358.3,12437,1,4,0)
+ ;;=4^K25.0
+ ;;^UTILITY(U,$J,358.3,12437,2)
+ ;;=^270064
+ ;;^UTILITY(U,$J,358.3,12438,0)
+ ;;=K25.9^^50^563^14
+ ;;^UTILITY(U,$J,358.3,12438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12164,1,3,0)
- ;;=3^Open bite, left lower leg, initial encounter
- ;;^UTILITY(U,$J,358.3,12164,1,4,0)
- ;;=4^S81.852A
- ;;^UTILITY(U,$J,358.3,12164,2)
- ;;=^5040098
- ;;^UTILITY(U,$J,358.3,12165,0)
- ;;=S91.151A^^71^708^150
- ;;^UTILITY(U,$J,358.3,12165,1,0)
+ ;;^UTILITY(U,$J,358.3,12438,1,3,0)
+ ;;=3^Gastric ulcer, unsp as acute or chronic, w/o hemor or perf
+ ;;^UTILITY(U,$J,358.3,12438,1,4,0)
+ ;;=4^K25.9
+ ;;^UTILITY(U,$J,358.3,12438,2)
+ ;;=^5008522
+ ;;^UTILITY(U,$J,358.3,12439,0)
+ ;;=K26.0^^50^563^1
+ ;;^UTILITY(U,$J,358.3,12439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12165,1,3,0)
- ;;=3^Open bite, right great toe w/o damage to nail, init encntr
- ;;^UTILITY(U,$J,358.3,12165,1,4,0)
- ;;=4^S91.151A
- ;;^UTILITY(U,$J,358.3,12165,2)
- ;;=^5044243
- ;;^UTILITY(U,$J,358.3,12166,0)
- ;;=S91.152A^^71^708^142
- ;;^UTILITY(U,$J,358.3,12166,1,0)
+ ;;^UTILITY(U,$J,358.3,12439,1,3,0)
+ ;;=3^Acute duodenal ulcer with hemorrhage
+ ;;^UTILITY(U,$J,358.3,12439,1,4,0)
+ ;;=4^K26.0
+ ;;^UTILITY(U,$J,358.3,12439,2)
+ ;;=^270089
+ ;;^UTILITY(U,$J,358.3,12440,0)
+ ;;=K26.9^^50^563^12
+ ;;^UTILITY(U,$J,358.3,12440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12166,1,3,0)
- ;;=3^Open bite, left great toe w/o damage to nail, init encntr
- ;;^UTILITY(U,$J,358.3,12166,1,4,0)
- ;;=4^S91.152A
- ;;^UTILITY(U,$J,358.3,12166,2)
- ;;=^5044246
- ;;^UTILITY(U,$J,358.3,12167,0)
- ;;=S91.154A^^71^708^152
- ;;^UTILITY(U,$J,358.3,12167,1,0)
+ ;;^UTILITY(U,$J,358.3,12440,1,3,0)
+ ;;=3^Duodenal ulcer, unsp as acute or chronic, w/o hemor or perf
+ ;;^UTILITY(U,$J,358.3,12440,1,4,0)
+ ;;=4^K26.9
+ ;;^UTILITY(U,$J,358.3,12440,2)
+ ;;=^5008527
+ ;;^UTILITY(U,$J,358.3,12441,0)
+ ;;=K27.9^^50^563^25
+ ;;^UTILITY(U,$J,358.3,12441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12167,1,3,0)
- ;;=3^Open bite, right lesser toe(s) w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,12167,1,4,0)
- ;;=4^S91.154A
- ;;^UTILITY(U,$J,358.3,12167,2)
- ;;=^5044252
- ;;^UTILITY(U,$J,358.3,12168,0)
- ;;=S91.155A^^71^708^144
- ;;^UTILITY(U,$J,358.3,12168,1,0)
+ ;;^UTILITY(U,$J,358.3,12441,1,3,0)
+ ;;=3^Peptic ulc, site unsp, unsp as ac or chr, w/o hemor or perf
+ ;;^UTILITY(U,$J,358.3,12441,1,4,0)
+ ;;=4^K27.9
+ ;;^UTILITY(U,$J,358.3,12441,2)
+ ;;=^5008536
+ ;;^UTILITY(U,$J,358.3,12442,0)
+ ;;=K29.40^^50^563^7
+ ;;^UTILITY(U,$J,358.3,12442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12168,1,3,0)
- ;;=3^Open bite, left lesser toe(s) w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,12168,1,4,0)
- ;;=4^S91.155A
- ;;^UTILITY(U,$J,358.3,12168,2)
- ;;=^5044255
- ;;^UTILITY(U,$J,358.3,12169,0)
- ;;=S90.425A^^71^708^31
- ;;^UTILITY(U,$J,358.3,12169,1,0)
+ ;;^UTILITY(U,$J,358.3,12442,1,3,0)
+ ;;=3^Chronic atrophic gastritis without bleeding
+ ;;^UTILITY(U,$J,358.3,12442,1,4,0)
+ ;;=4^K29.40
+ ;;^UTILITY(U,$J,358.3,12442,2)
+ ;;=^5008548
+ ;;^UTILITY(U,$J,358.3,12443,0)
+ ;;=K29.50^^50^563^6
+ ;;^UTILITY(U,$J,358.3,12443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12169,1,3,0)
- ;;=3^Blister (nonthermal), left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,12169,1,4,0)
- ;;=4^S90.425A
- ;;^UTILITY(U,$J,358.3,12169,2)
- ;;=^5043919
- ;;^UTILITY(U,$J,358.3,12170,0)
- ;;=T23.121A^^71^708^35
- ;;^UTILITY(U,$J,358.3,12170,1,0)
+ ;;^UTILITY(U,$J,358.3,12443,1,3,0)
+ ;;=3^Chronic Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,12443,1,4,0)
+ ;;=4^K29.50
+ ;;^UTILITY(U,$J,358.3,12443,2)
+ ;;=^5008550
+ ;;^UTILITY(U,$J,358.3,12444,0)
+ ;;=K29.30^^50^563^8
+ ;;^UTILITY(U,$J,358.3,12444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12170,1,3,0)
- ;;=3^Burn first degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12170,1,4,0)
- ;;=4^T23.121A
- ;;^UTILITY(U,$J,358.3,12170,2)
- ;;=^5047671
- ;;^UTILITY(U,$J,358.3,12171,0)
- ;;=T23.122A^^71^708^34
- ;;^UTILITY(U,$J,358.3,12171,1,0)
+ ;;^UTILITY(U,$J,358.3,12444,1,3,0)
+ ;;=3^Chronic superficial gastritis without bleeding
+ ;;^UTILITY(U,$J,358.3,12444,1,4,0)
+ ;;=4^K29.30
+ ;;^UTILITY(U,$J,358.3,12444,2)
+ ;;=^5008546
+ ;;^UTILITY(U,$J,358.3,12445,0)
+ ;;=K29.20^^50^563^3
+ ;;^UTILITY(U,$J,358.3,12445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12171,1,3,0)
- ;;=3^Burn first degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12171,1,4,0)
- ;;=4^T23.122A
+ ;;^UTILITY(U,$J,358.3,12445,1,3,0)
+ ;;=3^Alcoholic gastritis without bleeding
+ ;;^UTILITY(U,$J,358.3,12445,1,4,0)
+ ;;=4^K29.20
+ ;;^UTILITY(U,$J,358.3,12445,2)
+ ;;=^5008544
+ ;;^UTILITY(U,$J,358.3,12446,0)
+ ;;=K29.90^^50^563^19
+ ;;^UTILITY(U,$J,358.3,12446,1,0)
+ ;;=^358.31IA^4^2

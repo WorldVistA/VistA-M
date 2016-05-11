@@ -1,122 +1,134 @@
-IBDEI25L ; ; 19-NOV-2015
+IBDEI25L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36114,1,3,0)
- ;;=3^Infection of nipple associated w the puerperium
- ;;^UTILITY(U,$J,358.3,36114,1,4,0)
- ;;=4^O91.02
- ;;^UTILITY(U,$J,358.3,36114,2)
- ;;=^5017826
- ;;^UTILITY(U,$J,358.3,36115,0)
- ;;=O91.111^^166^1833^2
- ;;^UTILITY(U,$J,358.3,36115,1,0)
+ ;;^UTILITY(U,$J,358.3,36532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36115,1,3,0)
- ;;=3^Abscess of breast associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,36115,1,4,0)
- ;;=4^O91.111
- ;;^UTILITY(U,$J,358.3,36115,2)
- ;;=^5017828
- ;;^UTILITY(U,$J,358.3,36116,0)
- ;;=O91.112^^166^1833^1
- ;;^UTILITY(U,$J,358.3,36116,1,0)
+ ;;^UTILITY(U,$J,358.3,36532,1,3,0)
+ ;;=3^AC Bronchitis d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,36532,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,36532,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,36533,0)
+ ;;=J20.2^^137^1767^15
+ ;;^UTILITY(U,$J,358.3,36533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36116,1,3,0)
- ;;=3^Abscess of breast associated w pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,36116,1,4,0)
- ;;=4^O91.112
- ;;^UTILITY(U,$J,358.3,36116,2)
- ;;=^5017829
- ;;^UTILITY(U,$J,358.3,36117,0)
- ;;=O91.113^^166^1833^3
- ;;^UTILITY(U,$J,358.3,36117,1,0)
+ ;;^UTILITY(U,$J,358.3,36533,1,3,0)
+ ;;=3^AC Bronchitis d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,36533,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,36533,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,36534,0)
+ ;;=J20.9^^137^1767^16
+ ;;^UTILITY(U,$J,358.3,36534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36117,1,3,0)
- ;;=3^Abscess of breast associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,36117,1,4,0)
- ;;=4^O91.113
- ;;^UTILITY(U,$J,358.3,36117,2)
- ;;=^5017830
- ;;^UTILITY(U,$J,358.3,36118,0)
- ;;=O91.12^^166^1833^4
- ;;^UTILITY(U,$J,358.3,36118,1,0)
+ ;;^UTILITY(U,$J,358.3,36534,1,3,0)
+ ;;=3^AC Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,36534,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,36534,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,36535,0)
+ ;;=H60.523^^137^1767^17
+ ;;^UTILITY(U,$J,358.3,36535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36118,1,3,0)
- ;;=3^Abscess of breast associated with the puerperium
- ;;^UTILITY(U,$J,358.3,36118,1,4,0)
- ;;=4^O91.12
- ;;^UTILITY(U,$J,358.3,36118,2)
- ;;=^5017832
- ;;^UTILITY(U,$J,358.3,36119,0)
- ;;=O91.211^^166^1833^17
- ;;^UTILITY(U,$J,358.3,36119,1,0)
+ ;;^UTILITY(U,$J,358.3,36535,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,36535,1,4,0)
+ ;;=4^H60.523
+ ;;^UTILITY(U,$J,358.3,36535,2)
+ ;;=^5006476
+ ;;^UTILITY(U,$J,358.3,36536,0)
+ ;;=H60.522^^137^1767^18
+ ;;^UTILITY(U,$J,358.3,36536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36119,1,3,0)
- ;;=3^Nonpurulent mastitis associated w pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,36119,1,4,0)
- ;;=4^O91.211
- ;;^UTILITY(U,$J,358.3,36119,2)
- ;;=^5017834
- ;;^UTILITY(U,$J,358.3,36120,0)
- ;;=O91.212^^166^1833^16
- ;;^UTILITY(U,$J,358.3,36120,1,0)
+ ;;^UTILITY(U,$J,358.3,36536,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,36536,1,4,0)
+ ;;=4^H60.522
+ ;;^UTILITY(U,$J,358.3,36536,2)
+ ;;=^5006475
+ ;;^UTILITY(U,$J,358.3,36537,0)
+ ;;=H60.521^^137^1767^19
+ ;;^UTILITY(U,$J,358.3,36537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36120,1,3,0)
- ;;=3^Nonpurulent mastitis assoc w pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,36120,1,4,0)
- ;;=4^O91.212
- ;;^UTILITY(U,$J,358.3,36120,2)
- ;;=^5017835
- ;;^UTILITY(U,$J,358.3,36121,0)
- ;;=O91.213^^166^1833^18
- ;;^UTILITY(U,$J,358.3,36121,1,0)
+ ;;^UTILITY(U,$J,358.3,36537,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,36537,1,4,0)
+ ;;=4^H60.521
+ ;;^UTILITY(U,$J,358.3,36537,2)
+ ;;=^5006474
+ ;;^UTILITY(U,$J,358.3,36538,0)
+ ;;=H60.543^^137^1767^20
+ ;;^UTILITY(U,$J,358.3,36538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36121,1,3,0)
- ;;=3^Nonpurulent mastitis associated w pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,36121,1,4,0)
- ;;=4^O91.213
- ;;^UTILITY(U,$J,358.3,36121,2)
- ;;=^5017836
- ;;^UTILITY(U,$J,358.3,36122,0)
- ;;=O91.22^^166^1833^19
- ;;^UTILITY(U,$J,358.3,36122,1,0)
+ ;;^UTILITY(U,$J,358.3,36538,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,36538,1,4,0)
+ ;;=4^H60.543
+ ;;^UTILITY(U,$J,358.3,36538,2)
+ ;;=^5006484
+ ;;^UTILITY(U,$J,358.3,36539,0)
+ ;;=H60.542^^137^1767^21
+ ;;^UTILITY(U,$J,358.3,36539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36122,1,3,0)
- ;;=3^Nonpurulent mastitis associated with the puerperium
- ;;^UTILITY(U,$J,358.3,36122,1,4,0)
- ;;=4^O91.22
- ;;^UTILITY(U,$J,358.3,36122,2)
- ;;=^5017838
- ;;^UTILITY(U,$J,358.3,36123,0)
- ;;=O92.011^^166^1833^21
- ;;^UTILITY(U,$J,358.3,36123,1,0)
+ ;;^UTILITY(U,$J,358.3,36539,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,36539,1,4,0)
+ ;;=4^H60.542
+ ;;^UTILITY(U,$J,358.3,36539,2)
+ ;;=^5006483
+ ;;^UTILITY(U,$J,358.3,36540,0)
+ ;;=H60.541^^137^1767^22
+ ;;^UTILITY(U,$J,358.3,36540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36123,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,36123,1,4,0)
- ;;=4^O92.011
- ;;^UTILITY(U,$J,358.3,36123,2)
- ;;=^5017840
- ;;^UTILITY(U,$J,358.3,36124,0)
- ;;=O92.012^^166^1833^22
- ;;^UTILITY(U,$J,358.3,36124,1,0)
+ ;;^UTILITY(U,$J,358.3,36540,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,36540,1,4,0)
+ ;;=4^H60.541
+ ;;^UTILITY(U,$J,358.3,36540,2)
+ ;;=^5006482
+ ;;^UTILITY(U,$J,358.3,36541,0)
+ ;;=J04.0^^137^1767^23
+ ;;^UTILITY(U,$J,358.3,36541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36124,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,36124,1,4,0)
- ;;=4^O92.012
- ;;^UTILITY(U,$J,358.3,36124,2)
- ;;=^5017841
- ;;^UTILITY(U,$J,358.3,36125,0)
- ;;=O92.013^^166^1833^23
- ;;^UTILITY(U,$J,358.3,36125,1,0)
+ ;;^UTILITY(U,$J,358.3,36541,1,3,0)
+ ;;=3^AC Laryngitis
+ ;;^UTILITY(U,$J,358.3,36541,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,36541,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,36542,0)
+ ;;=J04.2^^137^1767^24
+ ;;^UTILITY(U,$J,358.3,36542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36125,1,3,0)
- ;;=3^Retracted nipple associated with pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,36125,1,4,0)
- ;;=4^O92.013
- ;;^UTILITY(U,$J,358.3,36125,2)
- ;;=^5017842
- ;;^UTILITY(U,$J,358.3,36126,0)
- ;;=O92.03^^166^1833^20
+ ;;^UTILITY(U,$J,358.3,36542,1,3,0)
+ ;;=3^AC Laryngotracheitis
+ ;;^UTILITY(U,$J,358.3,36542,1,4,0)
+ ;;=4^J04.2
+ ;;^UTILITY(U,$J,358.3,36542,2)
+ ;;=^269868
+ ;;^UTILITY(U,$J,358.3,36543,0)
+ ;;=J00.^^137^1767^25
+ ;;^UTILITY(U,$J,358.3,36543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36543,1,3,0)
+ ;;=3^AC Nasopharyngitis
+ ;;^UTILITY(U,$J,358.3,36543,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,36543,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,36544,0)
+ ;;=J02.8^^137^1767^29
+ ;;^UTILITY(U,$J,358.3,36544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36544,1,3,0)
+ ;;=3^AC Pharyngitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,36544,1,4,0)
+ ;;=4^J02.8
+ ;;^UTILITY(U,$J,358.3,36544,2)
+ ;;=^5008129
+ ;;^UTILITY(U,$J,358.3,36545,0)
+ ;;=J02.9^^137^1767^30

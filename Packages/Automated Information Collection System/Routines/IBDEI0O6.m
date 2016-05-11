@@ -1,136 +1,136 @@
-IBDEI0O6 ; ; 19-NOV-2015
+IBDEI0O6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11055,1,0)
+ ;;^UTILITY(U,$J,358.3,11290,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,11290,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,11290,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,11291,0)
+ ;;=N95.0^^47^530^61
+ ;;^UTILITY(U,$J,358.3,11291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11055,1,3,0)
- ;;=3^Labyrinthitis,Unspec Ear
- ;;^UTILITY(U,$J,358.3,11055,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,11055,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,11056,0)
- ;;=H83.01^^68^677^47
- ;;^UTILITY(U,$J,358.3,11056,1,0)
+ ;;^UTILITY(U,$J,358.3,11291,1,3,0)
+ ;;=3^Postmenopausal Bleeding
+ ;;^UTILITY(U,$J,358.3,11291,1,4,0)
+ ;;=4^N95.0
+ ;;^UTILITY(U,$J,358.3,11291,2)
+ ;;=^97040
+ ;;^UTILITY(U,$J,358.3,11292,0)
+ ;;=R97.2^^47^530^25
+ ;;^UTILITY(U,$J,358.3,11292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11056,1,3,0)
- ;;=3^Labyrinthitis,Right Ear
- ;;^UTILITY(U,$J,358.3,11056,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,11056,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,11057,0)
- ;;=H83.03^^68^677^45
- ;;^UTILITY(U,$J,358.3,11057,1,0)
+ ;;^UTILITY(U,$J,358.3,11292,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,11292,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,11292,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,11293,0)
+ ;;=N42.9^^47^530^63
+ ;;^UTILITY(U,$J,358.3,11293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11057,1,3,0)
- ;;=3^Labyrinthitis,Bilateral
- ;;^UTILITY(U,$J,358.3,11057,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,11057,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,11058,0)
- ;;=H83.02^^68^677^46
- ;;^UTILITY(U,$J,358.3,11058,1,0)
+ ;;^UTILITY(U,$J,358.3,11293,1,3,0)
+ ;;=3^Prostate Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11293,1,4,0)
+ ;;=4^N42.9
+ ;;^UTILITY(U,$J,358.3,11293,2)
+ ;;=^5015698
+ ;;^UTILITY(U,$J,358.3,11294,0)
+ ;;=N40.1^^47^530^65
+ ;;^UTILITY(U,$J,358.3,11294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11058,1,3,0)
- ;;=3^Labyrinthitis,Left Ear
- ;;^UTILITY(U,$J,358.3,11058,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,11058,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,11059,0)
- ;;=J01.91^^68^677^76
- ;;^UTILITY(U,$J,358.3,11059,1,0)
+ ;;^UTILITY(U,$J,358.3,11294,1,3,0)
+ ;;=3^Prostate,Enlarged w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11294,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,11294,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,11295,0)
+ ;;=N40.0^^47^530^66
+ ;;^UTILITY(U,$J,358.3,11295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11059,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,11059,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,11059,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,11060,0)
- ;;=J03.90^^68^677^81
- ;;^UTILITY(U,$J,358.3,11060,1,0)
+ ;;^UTILITY(U,$J,358.3,11295,1,3,0)
+ ;;=3^Prostate,Enlarged w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11295,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,11295,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,11296,0)
+ ;;=N41.9^^47^530^64
+ ;;^UTILITY(U,$J,358.3,11296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11060,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,11060,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,11060,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,11061,0)
- ;;=J01.90^^68^677^77
- ;;^UTILITY(U,$J,358.3,11061,1,0)
+ ;;^UTILITY(U,$J,358.3,11296,1,3,0)
+ ;;=3^Prostate Inflammatory Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,11296,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,11296,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,11297,0)
+ ;;=C61.^^47^530^62
+ ;;^UTILITY(U,$J,358.3,11297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11061,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,11061,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,11061,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,11062,0)
- ;;=J20.1^^68^677^10
- ;;^UTILITY(U,$J,358.3,11062,1,0)
+ ;;^UTILITY(U,$J,358.3,11297,1,3,0)
+ ;;=3^Prostate Cancer
+ ;;^UTILITY(U,$J,358.3,11297,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,11297,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,11298,0)
+ ;;=N40.3^^47^530^67
+ ;;^UTILITY(U,$J,358.3,11298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11062,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,11062,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,11062,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,11063,0)
- ;;=J20.0^^68^677^11
- ;;^UTILITY(U,$J,358.3,11063,1,0)
+ ;;^UTILITY(U,$J,358.3,11298,1,3,0)
+ ;;=3^Prostate,Nodular w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11298,1,4,0)
+ ;;=4^N40.3
+ ;;^UTILITY(U,$J,358.3,11298,2)
+ ;;=^5015692
+ ;;^UTILITY(U,$J,358.3,11299,0)
+ ;;=N40.2^^47^530^68
+ ;;^UTILITY(U,$J,358.3,11299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11063,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,11063,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,11063,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,11064,0)
- ;;=J20.2^^68^677^6
- ;;^UTILITY(U,$J,358.3,11064,1,0)
+ ;;^UTILITY(U,$J,358.3,11299,1,3,0)
+ ;;=3^Prostate,Nodular w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,11299,1,4,0)
+ ;;=4^N40.2
+ ;;^UTILITY(U,$J,358.3,11299,2)
+ ;;=^5015691
+ ;;^UTILITY(U,$J,358.3,11300,0)
+ ;;=Z87.430^^47^530^56
+ ;;^UTILITY(U,$J,358.3,11300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11064,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,11064,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,11064,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,11065,0)
- ;;=J20.4^^68^677^13
- ;;^UTILITY(U,$J,358.3,11065,1,0)
+ ;;^UTILITY(U,$J,358.3,11300,1,3,0)
+ ;;=3^Personal Hx of Prostatic Dysplasia
+ ;;^UTILITY(U,$J,358.3,11300,1,4,0)
+ ;;=4^Z87.430
+ ;;^UTILITY(U,$J,358.3,11300,2)
+ ;;=^5063493
+ ;;^UTILITY(U,$J,358.3,11301,0)
+ ;;=N41.2^^47^530^1
+ ;;^UTILITY(U,$J,358.3,11301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11065,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,11065,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,11065,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,11066,0)
- ;;=J20.3^^68^677^8
- ;;^UTILITY(U,$J,358.3,11066,1,0)
+ ;;^UTILITY(U,$J,358.3,11301,1,3,0)
+ ;;=3^Abscess of Prostate
+ ;;^UTILITY(U,$J,358.3,11301,1,4,0)
+ ;;=4^N41.2
+ ;;^UTILITY(U,$J,358.3,11301,2)
+ ;;=^270416
+ ;;^UTILITY(U,$J,358.3,11302,0)
+ ;;=N41.0^^47^530^69
+ ;;^UTILITY(U,$J,358.3,11302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11066,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,11066,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,11066,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,11067,0)
- ;;=J20.9^^68^677^7
- ;;^UTILITY(U,$J,358.3,11067,1,0)
+ ;;^UTILITY(U,$J,358.3,11302,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,11302,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,11302,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,11303,0)
+ ;;=N41.1^^47^530^70
+ ;;^UTILITY(U,$J,358.3,11303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11067,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,11067,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,11067,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,11068,0)
- ;;=J20.8^^68^677^12
- ;;^UTILITY(U,$J,358.3,11068,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11303,1,3,0)
+ ;;=3^Prostatitis,Chronic

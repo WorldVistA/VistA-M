@@ -1,122 +1,120 @@
-IBDEI1WM ; ; 19-NOV-2015
+IBDEI1WM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31889,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,31889,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,31890,0)
- ;;=T76.01XA^^141^1474^18
- ;;^UTILITY(U,$J,358.3,31890,1,0)
+ ;;^UTILITY(U,$J,358.3,32314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31890,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
- ;;^UTILITY(U,$J,358.3,31890,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,31890,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,31891,0)
- ;;=T76.01XD^^141^1474^19
- ;;^UTILITY(U,$J,358.3,31891,1,0)
+ ;;^UTILITY(U,$J,358.3,32314,1,3,0)
+ ;;=3^Disp extrartic fx rt calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32314,1,4,0)
+ ;;=4^S92.051K
+ ;;^UTILITY(U,$J,358.3,32314,2)
+ ;;=^5044511
+ ;;^UTILITY(U,$J,358.3,32315,0)
+ ;;=S92.045K^^126^1609^360
+ ;;^UTILITY(U,$J,358.3,32315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31891,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,31891,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,31891,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,31892,0)
- ;;=Z91.412^^141^1474^7
- ;;^UTILITY(U,$J,358.3,31892,1,0)
+ ;;^UTILITY(U,$J,358.3,32315,1,3,0)
+ ;;=3^Nondisp fx tuberosity lft calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32315,1,4,0)
+ ;;=4^S92.045K
+ ;;^UTILITY(U,$J,358.3,32315,2)
+ ;;=^5137564
+ ;;^UTILITY(U,$J,358.3,32316,0)
+ ;;=S92.044K^^126^1609^361
+ ;;^UTILITY(U,$J,358.3,32316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31892,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,31892,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,31892,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,31893,0)
- ;;=T74.31XA^^141^1474^20
- ;;^UTILITY(U,$J,358.3,31893,1,0)
+ ;;^UTILITY(U,$J,358.3,32316,1,3,0)
+ ;;=3^Nondisp fx tuberosity rt calcaneu, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32316,1,4,0)
+ ;;=4^S92.044K
+ ;;^UTILITY(U,$J,358.3,32316,2)
+ ;;=^5044504
+ ;;^UTILITY(U,$J,358.3,32317,0)
+ ;;=S92.042K^^126^1609^134
+ ;;^UTILITY(U,$J,358.3,32317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31893,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
- ;;^UTILITY(U,$J,358.3,31893,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,31893,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,31894,0)
- ;;=T74.31XD^^141^1474^21
- ;;^UTILITY(U,$J,358.3,31894,1,0)
+ ;;^UTILITY(U,$J,358.3,32317,1,3,0)
+ ;;=3^Disp fx tuberosity lft calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32317,1,4,0)
+ ;;=4^S92.042K
+ ;;^UTILITY(U,$J,358.3,32317,2)
+ ;;=^5137550
+ ;;^UTILITY(U,$J,358.3,32318,0)
+ ;;=S92.041K^^126^1609^135
+ ;;^UTILITY(U,$J,358.3,32318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31894,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,31894,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,31894,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,31895,0)
- ;;=T76.31XA^^141^1474^22
- ;;^UTILITY(U,$J,358.3,31895,1,0)
+ ;;^UTILITY(U,$J,358.3,32318,1,3,0)
+ ;;=3^Disp fx tuberosity rt calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32318,1,4,0)
+ ;;=4^S92.041K
+ ;;^UTILITY(U,$J,358.3,32318,2)
+ ;;=^5044497
+ ;;^UTILITY(U,$J,358.3,32319,0)
+ ;;=M84.675K^^126^1609^404
+ ;;^UTILITY(U,$J,358.3,32319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31895,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
- ;;^UTILITY(U,$J,358.3,31895,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,31895,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,31896,0)
- ;;=T76.31XD^^141^1474^23
- ;;^UTILITY(U,$J,358.3,31896,1,0)
+ ;;^UTILITY(U,$J,358.3,32319,1,3,0)
+ ;;=3^Path fx lft ft, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,32319,1,4,0)
+ ;;=4^M84.675K
+ ;;^UTILITY(U,$J,358.3,32319,2)
+ ;;=^5134042
+ ;;^UTILITY(U,$J,358.3,32320,0)
+ ;;=M84.674K^^126^1609^417
+ ;;^UTILITY(U,$J,358.3,32320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31896,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,31896,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,31896,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,31897,0)
- ;;=Z91.411^^141^1474^6
- ;;^UTILITY(U,$J,358.3,31897,1,0)
+ ;;^UTILITY(U,$J,358.3,32320,1,3,0)
+ ;;=3^Path fx rt ft, subs w/ nonunion, oth disease
+ ;;^UTILITY(U,$J,358.3,32320,1,4,0)
+ ;;=4^M84.674K
+ ;;^UTILITY(U,$J,358.3,32320,2)
+ ;;=^5014301
+ ;;^UTILITY(U,$J,358.3,32321,0)
+ ;;=M84.68XK^^126^1609^420
+ ;;^UTILITY(U,$J,358.3,32321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31897,1,3,0)
- ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
- ;;^UTILITY(U,$J,358.3,31897,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,31897,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,31898,0)
- ;;=F06.4^^141^1475^6
- ;;^UTILITY(U,$J,358.3,31898,1,0)
+ ;;^UTILITY(U,$J,358.3,32321,1,3,0)
+ ;;=3^Path fx subs w/ nonunion, oth disease, oth site
+ ;;^UTILITY(U,$J,358.3,32321,1,4,0)
+ ;;=4^M84.68XK
+ ;;^UTILITY(U,$J,358.3,32321,2)
+ ;;=^5134054
+ ;;^UTILITY(U,$J,358.3,32322,0)
+ ;;=S82.65XN^^126^1609^268
+ ;;^UTILITY(U,$J,358.3,32322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31898,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,31898,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,31898,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,31899,0)
- ;;=F41.0^^141^1475^14
- ;;^UTILITY(U,$J,358.3,31899,1,0)
+ ;;^UTILITY(U,$J,358.3,32322,1,3,0)
+ ;;=3^Nondisp fx ltrl lmall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32322,1,4,0)
+ ;;=4^S82.65XN
+ ;;^UTILITY(U,$J,358.3,32322,2)
+ ;;=^5042386
+ ;;^UTILITY(U,$J,358.3,32323,0)
+ ;;=S82.65XM^^126^1609^269
+ ;;^UTILITY(U,$J,358.3,32323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31899,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,31899,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,31899,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,31900,0)
- ;;=F41.1^^141^1475^12
- ;;^UTILITY(U,$J,358.3,31900,1,0)
+ ;;^UTILITY(U,$J,358.3,32323,1,3,0)
+ ;;=3^Nondisp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32323,1,4,0)
+ ;;=4^S82.65XM
+ ;;^UTILITY(U,$J,358.3,32323,2)
+ ;;=^5042385
+ ;;^UTILITY(U,$J,358.3,32324,0)
+ ;;=S82.65XK^^126^1609^270
+ ;;^UTILITY(U,$J,358.3,32324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31900,1,3,0)
- ;;=3^Generalized Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,31900,1,4,0)
- ;;=4^F41.1
- ;;^UTILITY(U,$J,358.3,31900,2)
- ;;=^50059
- ;;^UTILITY(U,$J,358.3,31901,0)
- ;;=F41.9^^141^1475^5
- ;;^UTILITY(U,$J,358.3,31901,1,0)
+ ;;^UTILITY(U,$J,358.3,32324,1,3,0)
+ ;;=3^Nondisp fx ltrl mall lft fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32324,1,4,0)
+ ;;=4^S82.65XK
+ ;;^UTILITY(U,$J,358.3,32324,2)
+ ;;=^5042384
+ ;;^UTILITY(U,$J,358.3,32325,0)
+ ;;=S82.64XN^^126^1609^272
+ ;;^UTILITY(U,$J,358.3,32325,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32325,1,3,0)
+ ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32325,1,4,0)
+ ;;=4^S82.64XN

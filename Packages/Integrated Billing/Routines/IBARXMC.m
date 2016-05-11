@@ -1,6 +1,6 @@
 IBARXMC ;LL/ELZ-PHARMACY COPAY CAP FUNCTIONS ;26-APR-2001
- ;;2.0;INTEGRATED BILLING;**156,186,237**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**156,186,237,552**;21-MAR-94;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 NEW(IBQ,IBC,IBD,IBB,IBN) ; used to compute new bills amount above cap
  ; DFN is assumed
@@ -129,7 +129,8 @@ C5 . ; determine how much to bill (if any)
  . S IBBIL=$S(IBB>$P(IBA,"^",2):$P(IBA,"^",2),1:IBB)
  . I 'IBBIL S IBS1=9999999999 Q
  . S IBB=IBB-IBBIL
- . ;
+ . ;quit if IBBIL is less than zero IB*552 ticket 956230
+ . Q:IBBIL<0
  . D @($S(IBS=+IBZ:"BILL",1:"SEND")_"^IBARXMB($P(IBZ,""^""),IBBIL)")
  K ^TMP("IBD",$J)
  Q

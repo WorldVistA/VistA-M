@@ -1,138 +1,126 @@
-IBDEI1W7 ; ; 19-NOV-2015
+IBDEI1W7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31695,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,31695,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,31696,0)
- ;;=F22.^^138^1448^2
- ;;^UTILITY(U,$J,358.3,31696,1,0)
+ ;;^UTILITY(U,$J,358.3,32136,0)
+ ;;=T34.831A^^126^1609^190
+ ;;^UTILITY(U,$J,358.3,32136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31696,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,31696,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,31696,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,31697,0)
- ;;=F23.^^138^1448^1
- ;;^UTILITY(U,$J,358.3,31697,1,0)
+ ;;^UTILITY(U,$J,358.3,32136,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt toe(s), init
+ ;;^UTILITY(U,$J,358.3,32136,1,4,0)
+ ;;=4^T34.831A
+ ;;^UTILITY(U,$J,358.3,32136,2)
+ ;;=^5049241
+ ;;^UTILITY(U,$J,358.3,32137,0)
+ ;;=T34.832A^^126^1609^185
+ ;;^UTILITY(U,$J,358.3,32137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31697,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,31697,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,31697,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,31698,0)
- ;;=F25.0^^138^1448^3
- ;;^UTILITY(U,$J,358.3,31698,1,0)
+ ;;^UTILITY(U,$J,358.3,32137,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft toe(s), init
+ ;;^UTILITY(U,$J,358.3,32137,1,4,0)
+ ;;=4^T34.832A
+ ;;^UTILITY(U,$J,358.3,32137,2)
+ ;;=^5049244
+ ;;^UTILITY(U,$J,358.3,32138,0)
+ ;;=T33.811A^^126^1609^178
+ ;;^UTILITY(U,$J,358.3,32138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31698,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,31698,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,31698,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,31699,0)
- ;;=F25.1^^138^1448^4
- ;;^UTILITY(U,$J,358.3,31699,1,0)
+ ;;^UTILITY(U,$J,358.3,32138,1,3,0)
+ ;;=3^Frostbite of rt ankl, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32138,1,4,0)
+ ;;=4^T33.811A
+ ;;^UTILITY(U,$J,358.3,32138,2)
+ ;;=^5049112
+ ;;^UTILITY(U,$J,358.3,32139,0)
+ ;;=T33.812A^^126^1609^175
+ ;;^UTILITY(U,$J,358.3,32139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31699,1,3,0)
- ;;=3^Schizoaffective Disorder,Depressive Type
- ;;^UTILITY(U,$J,358.3,31699,1,4,0)
- ;;=4^F25.1
- ;;^UTILITY(U,$J,358.3,31699,2)
- ;;=^5003481
- ;;^UTILITY(U,$J,358.3,31700,0)
- ;;=F52.32^^138^1449^1
- ;;^UTILITY(U,$J,358.3,31700,1,0)
+ ;;^UTILITY(U,$J,358.3,32139,1,3,0)
+ ;;=3^Frostbite of lft ankl,Superficial, init
+ ;;^UTILITY(U,$J,358.3,32139,1,4,0)
+ ;;=4^T33.812A
+ ;;^UTILITY(U,$J,358.3,32139,2)
+ ;;=^5049115
+ ;;^UTILITY(U,$J,358.3,32140,0)
+ ;;=T33.821A^^126^1609^179
+ ;;^UTILITY(U,$J,358.3,32140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31700,1,3,0)
- ;;=3^Delayed Ejaculation
- ;;^UTILITY(U,$J,358.3,31700,1,4,0)
- ;;=4^F52.32
- ;;^UTILITY(U,$J,358.3,31700,2)
- ;;=^331927
- ;;^UTILITY(U,$J,358.3,31701,0)
- ;;=F52.21^^138^1449^2
- ;;^UTILITY(U,$J,358.3,31701,1,0)
+ ;;^UTILITY(U,$J,358.3,32140,1,3,0)
+ ;;=3^Frostbite of rt ft,Superficial, init
+ ;;^UTILITY(U,$J,358.3,32140,1,4,0)
+ ;;=4^T33.821A
+ ;;^UTILITY(U,$J,358.3,32140,2)
+ ;;=^5049121
+ ;;^UTILITY(U,$J,358.3,32141,0)
+ ;;=T33.822A^^126^1609^176
+ ;;^UTILITY(U,$J,358.3,32141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31701,1,3,0)
- ;;=3^Erectile Disorder
- ;;^UTILITY(U,$J,358.3,31701,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,31701,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,31702,0)
- ;;=F52.31^^138^1449^3
- ;;^UTILITY(U,$J,358.3,31702,1,0)
+ ;;^UTILITY(U,$J,358.3,32141,1,3,0)
+ ;;=3^Frostbite of lft ft, Superficial,init
+ ;;^UTILITY(U,$J,358.3,32141,1,4,0)
+ ;;=4^T33.822A
+ ;;^UTILITY(U,$J,358.3,32141,2)
+ ;;=^5049124
+ ;;^UTILITY(U,$J,358.3,32142,0)
+ ;;=T33.831A^^126^1609^180
+ ;;^UTILITY(U,$J,358.3,32142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31702,1,3,0)
- ;;=3^Female Orgasmic Disorder
- ;;^UTILITY(U,$J,358.3,31702,1,4,0)
- ;;=4^F52.31
- ;;^UTILITY(U,$J,358.3,31702,2)
- ;;=^331926
- ;;^UTILITY(U,$J,358.3,31703,0)
- ;;=F52.22^^138^1449^4
- ;;^UTILITY(U,$J,358.3,31703,1,0)
+ ;;^UTILITY(U,$J,358.3,32142,1,3,0)
+ ;;=3^Frostbite of rt toe(s), Superficial,init
+ ;;^UTILITY(U,$J,358.3,32142,1,4,0)
+ ;;=4^T33.831A
+ ;;^UTILITY(U,$J,358.3,32142,2)
+ ;;=^5049130
+ ;;^UTILITY(U,$J,358.3,32143,0)
+ ;;=T33.832A^^126^1609^177
+ ;;^UTILITY(U,$J,358.3,32143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31703,1,3,0)
- ;;=3^Female Sexual Interest/Arousal Disorder
- ;;^UTILITY(U,$J,358.3,31703,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,31703,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,31704,0)
- ;;=F52.6^^138^1449^5
- ;;^UTILITY(U,$J,358.3,31704,1,0)
+ ;;^UTILITY(U,$J,358.3,32143,1,3,0)
+ ;;=3^Frostbite of lft toe(s), Superficial,init
+ ;;^UTILITY(U,$J,358.3,32143,1,4,0)
+ ;;=4^T33.832A
+ ;;^UTILITY(U,$J,358.3,32143,2)
+ ;;=^5049133
+ ;;^UTILITY(U,$J,358.3,32144,0)
+ ;;=T34.811A^^126^1609^186
+ ;;^UTILITY(U,$J,358.3,32144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31704,1,3,0)
- ;;=3^Genito-Pelvic Pain/Penetration Disorder
- ;;^UTILITY(U,$J,358.3,31704,1,4,0)
- ;;=4^F52.6
- ;;^UTILITY(U,$J,358.3,31704,2)
- ;;=^5003623
- ;;^UTILITY(U,$J,358.3,31705,0)
- ;;=F52.0^^138^1449^6
- ;;^UTILITY(U,$J,358.3,31705,1,0)
+ ;;^UTILITY(U,$J,358.3,32144,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt ankl, init
+ ;;^UTILITY(U,$J,358.3,32144,1,4,0)
+ ;;=4^T34.811A
+ ;;^UTILITY(U,$J,358.3,32144,2)
+ ;;=^5049223
+ ;;^UTILITY(U,$J,358.3,32145,0)
+ ;;=T34.812A^^126^1609^181
+ ;;^UTILITY(U,$J,358.3,32145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31705,1,3,0)
- ;;=3^Male Hypoactive Sexual Desire Disorder
- ;;^UTILITY(U,$J,358.3,31705,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,31705,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,31706,0)
- ;;=F52.4^^138^1449^7
- ;;^UTILITY(U,$J,358.3,31706,1,0)
+ ;;^UTILITY(U,$J,358.3,32145,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft ankl, init
+ ;;^UTILITY(U,$J,358.3,32145,1,4,0)
+ ;;=4^T34.812A
+ ;;^UTILITY(U,$J,358.3,32145,2)
+ ;;=^5049226
+ ;;^UTILITY(U,$J,358.3,32146,0)
+ ;;=Z46.89^^126^1609^161
+ ;;^UTILITY(U,$J,358.3,32146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31706,1,3,0)
- ;;=3^Premature (Early) Ejaculation
- ;;^UTILITY(U,$J,358.3,31706,1,4,0)
- ;;=4^F52.4
- ;;^UTILITY(U,$J,358.3,31706,2)
- ;;=^331928
- ;;^UTILITY(U,$J,358.3,31707,0)
- ;;=F52.8^^138^1449^9
- ;;^UTILITY(U,$J,358.3,31707,1,0)
+ ;;^UTILITY(U,$J,358.3,32146,1,3,0)
+ ;;=3^Fitting and adjustment of device, other
+ ;;^UTILITY(U,$J,358.3,32146,1,4,0)
+ ;;=4^Z46.89
+ ;;^UTILITY(U,$J,358.3,32146,2)
+ ;;=^5063023
+ ;;^UTILITY(U,$J,358.3,32147,0)
+ ;;=S92.532K^^126^1609^90
+ ;;^UTILITY(U,$J,358.3,32147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31707,1,3,0)
- ;;=3^Sexual Dysfuntion NEC
- ;;^UTILITY(U,$J,358.3,31707,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,31707,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,31708,0)
- ;;=F52.9^^138^1449^8
- ;;^UTILITY(U,$J,358.3,31708,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31708,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,31708,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,31708,2)
- ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,32147,1,3,0)
+ ;;=3^Disp fx of dist phalanx of lft lsr toe(s), subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32147,1,4,0)
+ ;;=4^S92.532K
+ ;;^UTILITY(U,$J,358.3,32147,2)
+ ;;=^5045526
+ ;;^UTILITY(U,$J,358.3,32148,0)
+ ;;=S92.531K^^126^1609^93

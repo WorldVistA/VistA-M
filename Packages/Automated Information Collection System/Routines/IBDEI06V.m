@@ -1,138 +1,140 @@
-IBDEI06V ; ; 19-NOV-2015
+IBDEI06V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2631,1,3,0)
- ;;=3^Internal derangement of rt knee, unspec
- ;;^UTILITY(U,$J,358.3,2631,1,4,0)
- ;;=4^M23.91
- ;;^UTILITY(U,$J,358.3,2631,2)
- ;;=^5133806
- ;;^UTILITY(U,$J,358.3,2632,0)
- ;;=M23.92^^25^225^58
- ;;^UTILITY(U,$J,358.3,2632,1,0)
+ ;;^UTILITY(U,$J,358.3,2895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2632,1,3,0)
- ;;=3^Internal derangement of lft knee, unspec
- ;;^UTILITY(U,$J,358.3,2632,1,4,0)
- ;;=4^M23.92
- ;;^UTILITY(U,$J,358.3,2632,2)
- ;;=^5133807
- ;;^UTILITY(U,$J,358.3,2633,0)
- ;;=M24.811^^25^225^63
- ;;^UTILITY(U,$J,358.3,2633,1,0)
+ ;;^UTILITY(U,$J,358.3,2895,1,3,0)
+ ;;=3^Cancer,Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,2895,1,4,0)
+ ;;=4^C44.90
+ ;;^UTILITY(U,$J,358.3,2895,2)
+ ;;=^5001091
+ ;;^UTILITY(U,$J,358.3,2896,0)
+ ;;=C26.1^^18^209^26
+ ;;^UTILITY(U,$J,358.3,2896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2633,1,3,0)
- ;;=3^Joint derangements of rt shldr, oth, spec, NEC
- ;;^UTILITY(U,$J,358.3,2633,1,4,0)
- ;;=4^M24.811
- ;;^UTILITY(U,$J,358.3,2633,2)
- ;;=^5011453
- ;;^UTILITY(U,$J,358.3,2634,0)
- ;;=M24.812^^25^225^62
- ;;^UTILITY(U,$J,358.3,2634,1,0)
+ ;;^UTILITY(U,$J,358.3,2896,1,3,0)
+ ;;=3^Cancer,Spleen
+ ;;^UTILITY(U,$J,358.3,2896,1,4,0)
+ ;;=4^C26.1
+ ;;^UTILITY(U,$J,358.3,2896,2)
+ ;;=^267116
+ ;;^UTILITY(U,$J,358.3,2897,0)
+ ;;=C16.9^^18^209^27
+ ;;^UTILITY(U,$J,358.3,2897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2634,1,3,0)
- ;;=3^Joint derangements of lft shldr, oth, spec, NEC
- ;;^UTILITY(U,$J,358.3,2634,1,4,0)
- ;;=4^M24.812
- ;;^UTILITY(U,$J,358.3,2634,2)
- ;;=^5011454
- ;;^UTILITY(U,$J,358.3,2635,0)
- ;;=M25.311^^25^225^57
- ;;^UTILITY(U,$J,358.3,2635,1,0)
+ ;;^UTILITY(U,$J,358.3,2897,1,3,0)
+ ;;=3^Cancer,Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,2897,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,2897,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,2898,0)
+ ;;=C79.82^^18^209^30
+ ;;^UTILITY(U,$J,358.3,2898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2635,1,3,0)
- ;;=3^Instability, rt shldr
- ;;^UTILITY(U,$J,358.3,2635,1,4,0)
- ;;=4^M25.311
- ;;^UTILITY(U,$J,358.3,2635,2)
- ;;=^5011551
- ;;^UTILITY(U,$J,358.3,2636,0)
- ;;=M25.312^^25^225^54
- ;;^UTILITY(U,$J,358.3,2636,1,0)
+ ;;^UTILITY(U,$J,358.3,2898,1,3,0)
+ ;;=3^Secondary Malig Neop,Genital Organs
+ ;;^UTILITY(U,$J,358.3,2898,1,4,0)
+ ;;=4^C79.82
+ ;;^UTILITY(U,$J,358.3,2898,2)
+ ;;=^267339
+ ;;^UTILITY(U,$J,358.3,2899,0)
+ ;;=I25.3^^18^210^2
+ ;;^UTILITY(U,$J,358.3,2899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2636,1,3,0)
- ;;=3^Instability, lft shldr
- ;;^UTILITY(U,$J,358.3,2636,1,4,0)
- ;;=4^M25.312
- ;;^UTILITY(U,$J,358.3,2636,2)
- ;;=^5011552
- ;;^UTILITY(U,$J,358.3,2637,0)
- ;;=M25.211^^25^225^33
- ;;^UTILITY(U,$J,358.3,2637,1,0)
+ ;;^UTILITY(U,$J,358.3,2899,1,3,0)
+ ;;=3^Aneurysm of Heart
+ ;;^UTILITY(U,$J,358.3,2899,1,4,0)
+ ;;=4^I25.3
+ ;;^UTILITY(U,$J,358.3,2899,2)
+ ;;=^5007112
+ ;;^UTILITY(U,$J,358.3,2900,0)
+ ;;=I72.9^^18^210^6
+ ;;^UTILITY(U,$J,358.3,2900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2637,1,3,0)
- ;;=3^Flail joint, rt shldr
- ;;^UTILITY(U,$J,358.3,2637,1,4,0)
- ;;=4^M25.211
- ;;^UTILITY(U,$J,358.3,2637,2)
- ;;=^5011528
- ;;^UTILITY(U,$J,358.3,2638,0)
- ;;=M25.212^^25^225^31
- ;;^UTILITY(U,$J,358.3,2638,1,0)
+ ;;^UTILITY(U,$J,358.3,2900,1,3,0)
+ ;;=3^Aneurysm,Unspec Site
+ ;;^UTILITY(U,$J,358.3,2900,1,4,0)
+ ;;=4^I72.9
+ ;;^UTILITY(U,$J,358.3,2900,2)
+ ;;=^5007795
+ ;;^UTILITY(U,$J,358.3,2901,0)
+ ;;=I71.4^^18^210^1
+ ;;^UTILITY(U,$J,358.3,2901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2638,1,3,0)
- ;;=3^Flail joint, lft shldr
- ;;^UTILITY(U,$J,358.3,2638,1,4,0)
- ;;=4^M25.212
- ;;^UTILITY(U,$J,358.3,2638,2)
- ;;=^5011529
- ;;^UTILITY(U,$J,358.3,2639,0)
- ;;=M25.261^^25^225^32
- ;;^UTILITY(U,$J,358.3,2639,1,0)
+ ;;^UTILITY(U,$J,358.3,2901,1,3,0)
+ ;;=3^AAA w/o Rupture
+ ;;^UTILITY(U,$J,358.3,2901,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,2901,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,2902,0)
+ ;;=I71.9^^18^210^3
+ ;;^UTILITY(U,$J,358.3,2902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2639,1,3,0)
- ;;=3^Flail joint, rt knee
- ;;^UTILITY(U,$J,358.3,2639,1,4,0)
- ;;=4^M25.261
- ;;^UTILITY(U,$J,358.3,2639,2)
- ;;=^5011543
- ;;^UTILITY(U,$J,358.3,2640,0)
- ;;=M25.262^^25^225^30
- ;;^UTILITY(U,$J,358.3,2640,1,0)
+ ;;^UTILITY(U,$J,358.3,2902,1,3,0)
+ ;;=3^Aneurysm,Aortic w/o Rupture,Unspec Site
+ ;;^UTILITY(U,$J,358.3,2902,1,4,0)
+ ;;=4^I71.9
+ ;;^UTILITY(U,$J,358.3,2902,2)
+ ;;=^5007792
+ ;;^UTILITY(U,$J,358.3,2903,0)
+ ;;=I71.2^^18^210^4
+ ;;^UTILITY(U,$J,358.3,2903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2640,1,3,0)
- ;;=3^Flail joint, lft knee
- ;;^UTILITY(U,$J,358.3,2640,1,4,0)
- ;;=4^M25.262
- ;;^UTILITY(U,$J,358.3,2640,2)
- ;;=^5011544
- ;;^UTILITY(U,$J,358.3,2641,0)
- ;;=M25.361^^25^225^55
- ;;^UTILITY(U,$J,358.3,2641,1,0)
+ ;;^UTILITY(U,$J,358.3,2903,1,3,0)
+ ;;=3^Aneurysm,Thoracic Aortic w/o Rupture
+ ;;^UTILITY(U,$J,358.3,2903,1,4,0)
+ ;;=4^I71.2
+ ;;^UTILITY(U,$J,358.3,2903,2)
+ ;;=^5007787
+ ;;^UTILITY(U,$J,358.3,2904,0)
+ ;;=I71.6^^18^210^5
+ ;;^UTILITY(U,$J,358.3,2904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2641,1,3,0)
- ;;=3^Instability, rt knee
- ;;^UTILITY(U,$J,358.3,2641,1,4,0)
- ;;=4^M25.361
- ;;^UTILITY(U,$J,358.3,2641,2)
- ;;=^5011566
- ;;^UTILITY(U,$J,358.3,2642,0)
- ;;=M25.362^^25^225^52
- ;;^UTILITY(U,$J,358.3,2642,1,0)
+ ;;^UTILITY(U,$J,358.3,2904,1,3,0)
+ ;;=3^Aneurysm,Thoracoabdominal Aortic w/o Rupture
+ ;;^UTILITY(U,$J,358.3,2904,1,4,0)
+ ;;=4^I71.6
+ ;;^UTILITY(U,$J,358.3,2904,2)
+ ;;=^5007791
+ ;;^UTILITY(U,$J,358.3,2905,0)
+ ;;=I20.1^^18^210^7
+ ;;^UTILITY(U,$J,358.3,2905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2642,1,3,0)
- ;;=3^Instability, lft knee
- ;;^UTILITY(U,$J,358.3,2642,1,4,0)
- ;;=4^M25.362
- ;;^UTILITY(U,$J,358.3,2642,2)
- ;;=^5011567
- ;;^UTILITY(U,$J,358.3,2643,0)
- ;;=M23.51^^25^225^56
- ;;^UTILITY(U,$J,358.3,2643,1,0)
+ ;;^UTILITY(U,$J,358.3,2905,1,3,0)
+ ;;=3^Angina Pectoris w/ Spasm
+ ;;^UTILITY(U,$J,358.3,2905,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,2905,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,2906,0)
+ ;;=I20.9^^18^210^8
+ ;;^UTILITY(U,$J,358.3,2906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2643,1,3,0)
- ;;=3^Instability, rt knee, chronic
- ;;^UTILITY(U,$J,358.3,2643,1,4,0)
- ;;=4^M23.51
- ;;^UTILITY(U,$J,358.3,2643,2)
- ;;=^5011254
- ;;^UTILITY(U,$J,358.3,2644,0)
- ;;=M23.52^^25^225^53
- ;;^UTILITY(U,$J,358.3,2644,1,0)
+ ;;^UTILITY(U,$J,358.3,2906,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,2906,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,2906,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,2907,0)
+ ;;=I35.1^^18^210^11
+ ;;^UTILITY(U,$J,358.3,2907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2644,1,3,0)
- ;;=3^Instability, lft knee, chronic
- ;;^UTILITY(U,$J,358.3,2644,1,4,0)
- ;;=4^M23.52
+ ;;^UTILITY(U,$J,358.3,2907,1,3,0)
+ ;;=3^Aortic Valve Insufficiency,Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,2907,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,2907,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,2908,0)
+ ;;=I35.2^^18^210^12
+ ;;^UTILITY(U,$J,358.3,2908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2908,1,3,0)
+ ;;=3^Aortic Valve Stenosis w/ Insufficiency,Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,2908,1,4,0)
+ ;;=4^I35.2

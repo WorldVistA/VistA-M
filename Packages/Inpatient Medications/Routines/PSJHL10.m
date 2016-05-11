@@ -1,5 +1,5 @@
-PSJHL10  ;BIR/LDT,BSJ-VALIDATE INCOMING HL7 DATA/CREATE NEW ORDER ;30 MAY 07
- ;;5.0;INPATIENT MEDICATIONS;**58,78,91,109,110,195,257**;16 DEC 97;Build 105
+PSJHL10 ;BIR/LDT,BSJ-VALIDATE INCOMING HL7 DATA/CREATE NEW ORDER ;30 MAY 07
+ ;;5.0;INPATIENT MEDICATIONS;**58,78,91,109,110,195,257,307**;16 DEC 97;Build 18
  ;
  ; Reference to ^PSDRUG is supported by DBIA# 2192.
  ; Reference to ^PS(51.2 is supported by DBIA# 2178.
@@ -39,7 +39,7 @@ UDSET ;Set up UD variables
  D CHK("^^"_PSGMR_"^^^^"_PSGST,PSGPDRG_U_PSGDO,PSGSCH_U_PSGNESD_"^^"_PSGNEFD)
  I CHK D ERROR Q
  I PSGSCH'="STAT",PSGSCH'="NOW" S PSREASON="Invalid Schedule" S CHK=1 D ERROR Q
- I ORDCON'="V",ORDCON'="P" S PSREASON="Invalid Nature of Order" S CHK=1 D ERROR Q
+ I $D(^XUSEC("ORELSE",DUZ)),ORDCON'="V",ORDCON'="P" S PSREASON="Invalid Nature of Order" S CHK=1 D ERROR Q
  D:'$D(^PS(55,PSGP,0)) ENSET0^PSGNE3(PSGP) S $P(^PS(55,PSGP,5.1),U,2)=PSGPR,PSGOEPR=PSGPR
  S ND0=ND D ENGNA^PSGOETO
  I $D(^PS(51.2,+PSGMR,0)),$P(^(0),U,3)]"" S PSGMRN=$P(^(0),U,3)
@@ -61,10 +61,11 @@ UDSET ;Set up UD variables
  S (C,X)=0 F  S X=$O(^TMP("PSB",$J,700,X)) Q:'X  S D=$G(^(X,0)) I D S C=C+1,@(F_"1,"_C_",0)")=$P(D,U,1,2),@(F_"1,""B"","_+D_","_C_")")=""
  S:C @(F_"1,0)")=U_"55.07P^"_C_U_C
  I $D(PROCOM) D
- .;naked refs on the three lines below refer to the full ref to ^PS(55,PSGP,5,DA created by indrection using variable F
+ .;naked refs on the four lines below refer to the full ref to ^PS(55,PSGP,5,DA created by indrection using variable F
  .I '$D(@(F_"12,0)")) S ^(0)=U_55.0612_U_0_U_0
  .S JJ=0 F  S JJ=$O(PROCOM(JJ)) Q:'JJ  S $P(@(F_"12,0)"),"^",3,4)=JJ_"^"_JJ,@(F_"12,"_JJ_",0)")=PROCOM(JJ)
  S @(F_"6)")=$$ENPC^PSJHL11("U",180)
+ I $G(APPT)]"" S @(F_"8)")=LOC_"^"_APPT
  D CIMOU^PSJIMO1(PSGP,DA)
  D CRA^PSGOETO
  L -^PS(55,DFN,5,DA)
@@ -101,7 +102,8 @@ IVSET ;
  S (P(2),P(3),P("NINITDT"))=+$P(DATA0,"^",5),P("LOG")=LOGIN,P(4)=$P(DATA0,"^",3),P(5)=$S(P(4)="S":$P(DATA0,"^",4),1:""),P(6)=PROVIDER,P(8)=$G(INFRT),P(9)=$G(SCHEDULE),P(17)="E",P(21)=PSJORDER,P(22)=LOC
  S:P(4)="P" P(9)=$P(DATA0,"^",6)
  I P(4)="S",P(5)=1 S P(9)=$P(DATA0,"^",6)
- S P("MR")=$S(P(4)="P":$O(^PS(51.2,"B","IV PIGGYBACK",0)),1:$O(^PS(51.2,"B","INTRAVENOUS",0)))
+ S P("MR")=ROUTE
+ I P("MR")="" S P("MR")=$S(P(4)="P":$O(^PS(51.2,"B","IV PIGGYBACK",0)),1:$O(^PS(51.2,"B","INTRAVENOUS",0)))
  S (P("CLRK"),P("NINIT"))=CLERK,P("PD")=PSITEM,(P("IVRM"),P("SYRS"),P("CLIN"),P("FRES"),P("OPI"))="",P("RES")=ROC,P("PRY")=$E(PRIORITY,2),P("REM")=""
  I $$SCHREQ^PSJLIVFD(.P),P(15)'>0 N P15 S P15=$$INTERVAL^PSIVUTL(.P)
  D CHKIV I CHK D ERROR Q
@@ -113,7 +115,7 @@ IVSET ;
  S $P(ND(0),U,17)="E",ND(1)=P("REM"),ND(3)=P("OPI"),ND(.2)=$P($G(P("PD")),U)_U_$G(P("DO"))_U_+P("MR")_U_$G(P("PRY"))_U_$G(ORDCON) F X=0,1,3,.2,.3 S ^PS(55,DFN,"IV",+ON55,X)=ND(X)
  S $P(^PS(55,DFN,"IV",+ON55,2),U,1,4)=P("LOG")_U_P("IVRM")_U_U_P("SYRS"),$P(^(2),U,8,10)=P("RES")_U_$G(P("FRES"))_U_$S($G(VAIN(4)):+VAIN(4),1:"")
  S $P(^PS(55,DFN,"IV",+ON55,2),U,11)=+P("CLRK")
- I +$G(P("CLIN")) S $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=P("CLIN") D:$P(P("CLIN"),"^")'="" CIMOI^PSJIMO1(DFN,ON55)
+ I +$G(P(22)) S $P(^PS(55,DFN,"IV",+ON55,"DSS"),"^")=P(22)_"^"_$G(APPT) D:$P(P("CLIN"),"^")'="" CIMOI^PSJIMO1(DFN,ON55)
  S:+$G(P("NINIT")) ^PS(55,DFN,"IV",+ON55,4)=P("NINIT")_U_P("NINITDT")_"^^^^^^^^"_"1"
  S ^PS(55,"APIV",DFN,+ON55)=""
  I $D(PROCOM) D
@@ -145,7 +147,7 @@ CHKIV ;Validate IV data
  I P(9)="",P(4)="P" S CHK=1,PSREASON="Piggyback IV Type requires a schedule" Q
  I P(4)="S",P(5)=1,P(9)="" S CHK=1,PSREASON="Intermittent Syringe IV Type requires a schedule" Q
  I P(9)'="STAT",(P(9)'="NOW"),P(9)'="" S CHK=1,PSREASON="Invalid Schedule" Q
- I ORDCON'="V",ORDCON'="P" S CHK=1,PSREASON="Invalid Nature of Order" Q
+ I $D(^XUSEC("ORELSE",DUZ)),ORDCON'="V",ORDCON'="P" S CHK=1,PSREASON="Invalid Nature of Order" Q
  I +$G(^TMP("PSB",$J,800,0))=0,+$G(^TMP("PSB",$J,900,0))=0 S CHK=1,PSREASON="IV orders must have at least one additive or solution" Q
  I +$G(^TMP("PSB",$J,900,0))=0,P(4)'="P" S CHK=1,PSREASON="You must have at least one solution for this order." Q
  I +$G(^TMP("PSB",$J,800,0))'=+$G(^TMP("PSJNVO",$J,"AD",0)) S CHK=1,PSREASON="Number of additives in BCMA & CPRS do not match." Q

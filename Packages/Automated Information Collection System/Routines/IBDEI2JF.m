@@ -1,118 +1,132 @@
-IBDEI2JF ; ; 19-NOV-2015
+IBDEI2JF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42565,1,0)
+ ;;^UTILITY(U,$J,358.3,43049,1,4,0)
+ ;;=4^I74.2
+ ;;^UTILITY(U,$J,358.3,43049,2)
+ ;;=^5007801
+ ;;^UTILITY(U,$J,358.3,43050,0)
+ ;;=I74.3^^164^2060^105
+ ;;^UTILITY(U,$J,358.3,43050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42565,1,3,0)
- ;;=3^Path fx lft ft, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,42565,1,4,0)
- ;;=4^M84.675K
- ;;^UTILITY(U,$J,358.3,42565,2)
- ;;=^5134042
- ;;^UTILITY(U,$J,358.3,42566,0)
- ;;=M84.674K^^192^2137^417
- ;;^UTILITY(U,$J,358.3,42566,1,0)
+ ;;^UTILITY(U,$J,358.3,43050,1,3,0)
+ ;;=3^Embolism & Thrombosis LE Arteries
+ ;;^UTILITY(U,$J,358.3,43050,1,4,0)
+ ;;=4^I74.3
+ ;;^UTILITY(U,$J,358.3,43050,2)
+ ;;=^5007802
+ ;;^UTILITY(U,$J,358.3,43051,0)
+ ;;=I80.11^^164^2060^138
+ ;;^UTILITY(U,$J,358.3,43051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42566,1,3,0)
- ;;=3^Path fx rt ft, subs w/ nonunion, oth disease
- ;;^UTILITY(U,$J,358.3,42566,1,4,0)
- ;;=4^M84.674K
- ;;^UTILITY(U,$J,358.3,42566,2)
- ;;=^5014301
- ;;^UTILITY(U,$J,358.3,42567,0)
- ;;=M84.68XK^^192^2137^420
- ;;^UTILITY(U,$J,358.3,42567,1,0)
+ ;;^UTILITY(U,$J,358.3,43051,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43051,1,4,0)
+ ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,43051,2)
+ ;;=^5007825
+ ;;^UTILITY(U,$J,358.3,43052,0)
+ ;;=I80.211^^164^2060^139
+ ;;^UTILITY(U,$J,358.3,43052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42567,1,3,0)
- ;;=3^Path fx subs w/ nonunion, oth disease, oth site
- ;;^UTILITY(U,$J,358.3,42567,1,4,0)
- ;;=4^M84.68XK
- ;;^UTILITY(U,$J,358.3,42567,2)
- ;;=^5134054
- ;;^UTILITY(U,$J,358.3,42568,0)
- ;;=S82.65XN^^192^2137^268
- ;;^UTILITY(U,$J,358.3,42568,1,0)
+ ;;^UTILITY(U,$J,358.3,43052,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt Iliac Vein
+ ;;^UTILITY(U,$J,358.3,43052,1,4,0)
+ ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.3,43052,2)
+ ;;=^5007831
+ ;;^UTILITY(U,$J,358.3,43053,0)
+ ;;=I80.12^^164^2060^135
+ ;;^UTILITY(U,$J,358.3,43053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42568,1,3,0)
- ;;=3^Nondisp fx ltrl lmall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42568,1,4,0)
- ;;=4^S82.65XN
- ;;^UTILITY(U,$J,358.3,42568,2)
- ;;=^5042386
- ;;^UTILITY(U,$J,358.3,42569,0)
- ;;=S82.65XM^^192^2137^269
- ;;^UTILITY(U,$J,358.3,42569,1,0)
+ ;;^UTILITY(U,$J,358.3,43053,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43053,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,43053,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,43054,0)
+ ;;=I80.13^^164^2060^132
+ ;;^UTILITY(U,$J,358.3,43054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42569,1,3,0)
- ;;=3^Nondisp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42569,1,4,0)
- ;;=4^S82.65XM
- ;;^UTILITY(U,$J,358.3,42569,2)
- ;;=^5042385
- ;;^UTILITY(U,$J,358.3,42570,0)
- ;;=S82.65XK^^192^2137^270
- ;;^UTILITY(U,$J,358.3,42570,1,0)
+ ;;^UTILITY(U,$J,358.3,43054,1,3,0)
+ ;;=3^Phleb & Thrombphleb Bil Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43054,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,43054,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,43055,0)
+ ;;=I80.202^^164^2060^137
+ ;;^UTILITY(U,$J,358.3,43055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42570,1,3,0)
- ;;=3^Nondisp fx ltrl mall lft fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42570,1,4,0)
- ;;=4^S82.65XK
- ;;^UTILITY(U,$J,358.3,42570,2)
- ;;=^5042384
- ;;^UTILITY(U,$J,358.3,42571,0)
- ;;=S82.64XN^^192^2137^272
- ;;^UTILITY(U,$J,358.3,42571,1,0)
+ ;;^UTILITY(U,$J,358.3,43055,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43055,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,43055,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,43056,0)
+ ;;=I80.201^^164^2060^140
+ ;;^UTILITY(U,$J,358.3,43056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42571,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42571,1,4,0)
- ;;=4^S82.64XN
- ;;^UTILITY(U,$J,358.3,42571,2)
- ;;=^5042370
- ;;^UTILITY(U,$J,358.3,42572,0)
- ;;=S82.64XM^^192^2137^273
- ;;^UTILITY(U,$J,358.3,42572,1,0)
+ ;;^UTILITY(U,$J,358.3,43056,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43056,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,43056,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,43057,0)
+ ;;=I80.203^^164^2060^134
+ ;;^UTILITY(U,$J,358.3,43057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42572,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42572,1,4,0)
- ;;=4^S82.64XM
- ;;^UTILITY(U,$J,358.3,42572,2)
- ;;=^5042369
- ;;^UTILITY(U,$J,358.3,42573,0)
- ;;=S82.64XK^^192^2137^271
- ;;^UTILITY(U,$J,358.3,42573,1,0)
+ ;;^UTILITY(U,$J,358.3,43057,1,3,0)
+ ;;=3^Phleb & Thrombphleb Bil LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43057,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,43057,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,43058,0)
+ ;;=I80.212^^164^2060^136
+ ;;^UTILITY(U,$J,358.3,43058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42573,1,3,0)
- ;;=3^Nondisp fx ltrl mall rt fib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42573,1,4,0)
- ;;=4^S82.64XK
- ;;^UTILITY(U,$J,358.3,42573,2)
- ;;=^5042368
- ;;^UTILITY(U,$J,358.3,42574,0)
- ;;=S82.842N^^192^2137^13
- ;;^UTILITY(U,$J,358.3,42574,1,0)
+ ;;^UTILITY(U,$J,358.3,43058,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt Iliac Vein
+ ;;^UTILITY(U,$J,358.3,43058,1,4,0)
+ ;;=4^I80.212
+ ;;^UTILITY(U,$J,358.3,43058,2)
+ ;;=^5007832
+ ;;^UTILITY(U,$J,358.3,43059,0)
+ ;;=I80.213^^164^2060^133
+ ;;^UTILITY(U,$J,358.3,43059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42574,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42574,1,4,0)
- ;;=4^S82.842N
- ;;^UTILITY(U,$J,358.3,42574,2)
- ;;=^5042506
- ;;^UTILITY(U,$J,358.3,42575,0)
- ;;=S82.842M^^192^2137^14
- ;;^UTILITY(U,$J,358.3,42575,1,0)
+ ;;^UTILITY(U,$J,358.3,43059,1,3,0)
+ ;;=3^Phleb & Thrombphleb Bil Iliac Vein
+ ;;^UTILITY(U,$J,358.3,43059,1,4,0)
+ ;;=4^I80.213
+ ;;^UTILITY(U,$J,358.3,43059,2)
+ ;;=^5007833
+ ;;^UTILITY(U,$J,358.3,43060,0)
+ ;;=I82.411^^164^2060^22
+ ;;^UTILITY(U,$J,358.3,43060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42575,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42575,1,4,0)
- ;;=4^S82.842M
- ;;^UTILITY(U,$J,358.3,42575,2)
- ;;=^5042505
- ;;^UTILITY(U,$J,358.3,42576,0)
- ;;=S82.842K^^192^2137^12
- ;;^UTILITY(U,$J,358.3,42576,1,0)
+ ;;^UTILITY(U,$J,358.3,43060,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Fem Vein
+ ;;^UTILITY(U,$J,358.3,43060,1,4,0)
+ ;;=4^I82.411
+ ;;^UTILITY(U,$J,358.3,43060,2)
+ ;;=^5007857
+ ;;^UTILITY(U,$J,358.3,43061,0)
+ ;;=I82.412^^164^2060^12
+ ;;^UTILITY(U,$J,358.3,43061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42576,1,3,0)
- ;;=3^Disp bimal fx lft lwr leg, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,43061,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Fem Vein
+ ;;^UTILITY(U,$J,358.3,43061,1,4,0)
+ ;;=4^I82.412
+ ;;^UTILITY(U,$J,358.3,43061,2)
+ ;;=^5007858
+ ;;^UTILITY(U,$J,358.3,43062,0)
+ ;;=I82.413^^164^2060^2
+ ;;^UTILITY(U,$J,358.3,43062,1,0)
+ ;;=^358.31IA^4^2

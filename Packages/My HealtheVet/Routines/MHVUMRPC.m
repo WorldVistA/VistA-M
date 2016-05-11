@@ -1,5 +1,5 @@
 MHVUMRPC ;KUM/LB - myHealtheVet Management Utilities ; 6/18/2013
- ;;1.0;My HealtheVet;**11,22**;Mar 05, 2014;Build 19
+ ;;1.0;My HealtheVet;**11,22,24**;Mar 05, 2014;Build 24
  ;;Per VHA Directive 2004-038, this routine should not be modified
  ;
  Q
@@ -142,8 +142,8 @@ PATECLS(RESULTS,MHVSTRING) ; Get Patient eligibility and Classification data
  Q
 DIAGPL(RESULTS,MHVSTRING) ; Get Patient Diagnosis codes from Patient Probelm list
  ; MHVSTRING IS PATIENT ICN
- ; RESULTS = DIAGNOSIS CODE IEN^DIAGNOSIS CODE^DESCRIPTION
- N MHVPIEN,MHVPICN,MHVCNT,MHVDCOD
+ ; RESULTS = DIAGNOSIS CODE IEN^DIAGNOSIS CODE^SNOMED-CT DESCRIPTION~ICD-10 DESCRIPTION^ICD CODING SYSTEM 
+ N MHVPIEN,MHVPICN,MHVCNT,MHVDCOD,PRB,DCOD
  ; Get Patient IEN from Patient ICN
  S MHVPICN=+$P(MHVSTRING,"^",1)
  I $G(MHVPICN)'>0 S RESULTS(1)="0^No Patient ICN" Q
@@ -151,16 +151,23 @@ DIAGPL(RESULTS,MHVSTRING) ; Get Patient Diagnosis codes from Patient Probelm lis
  I $P($G(MHVPIEN),"^",1)=-1 S RESULTS(1)="0^Patient ICN not in Database" Q
  ;
  S $P(MHVSTRING,"^",1)=$G(MHVPIEN)
- K MHVROOT
- D LIST^GMPLUTL2(.MHVROOT,MHVPIEN,"A")
- I $G(MHVROOT(0))<1 S RESULTS(1)="0^No Diagnosis codes found in Patient Problem List" Q
+ K MHVROOTP
+ D LIST^GMPLUTL2(.MHVROOTP,MHVPIEN,"A")
+ I $G(MHVROOTP(0))<1 S RESULTS(1)="0^No Diagnosis codes found in Patient Problem List" Q
  S MHVCNT=0
  ;Fix for ICD 10 PRODUCTION ISSUE on date switch
  ;Item#2.Story 223914: SM WLC - ICD10 - SNOMED CT Problem List and Encounter Completion and Workload 
- F  S MHVCNT=MHVCNT+1 Q:MHVCNT>$G(MHVROOT(0))  D
- . S MHVDCOD=$P($P(MHVROOT(MHVCNT),"^",4),"/",1)
+ F  S MHVCNT=MHVCNT+1 Q:MHVCNT>$G(MHVROOTP(0))  D
+ . S MHVDCOD=$P($P(MHVROOTP(MHVCNT),"^",4),"/",1)
  . S MHVDIEN=$P($$CODEN^ICDCODE(MHVDCOD,80),"~",1)
- . S RESULTS(MHVCNT)=$G(MHVDIEN)_"^"_$G(MHVDCOD)_"^"_$P(MHVROOT(MHVCNT),"^",3)_"^"_$P(MHVROOT(MHVCNT),"^",13)
+ . ;Story 272695 Emergency Fix 
+ . ;- adding the ICD-10 Description as second " - " piece to Problem SNOMED-CT Description
+ . I $P(MHVROOTP(MHVCNT),"^",13)="10D",$L($G(MHVDCOD)) D
+ . . S DCOD="757.01^"_$G(MHVDCOD)
+ . . D DIAGSRCH(.PRB,.DCOD)
+ . . I $L($G(PRB(1))),($P(PRB(1),"^",2)'=0) S $P(MHVROOTP(MHVCNT),"^",3)=$P(MHVROOTP(MHVCNT),"^",3)_" - "_$P($G(PRB(1)),"^",3)
+ . .;- end of code for Story 272695 Emergency Fix 
+ . S RESULTS(MHVCNT)=$G(MHVDIEN)_"^"_$G(MHVDCOD)_"^"_$P(MHVROOTP(MHVCNT),"^",3)_"^"_$P(MHVROOTP(MHVCNT),"^",13)
  Q
 DIAGSRCH(RESULTS,MHVSTRING) ; Get Diagnosis codes and description from Search string
  ; MHVSTRING IS SEARCH STRING AND FILE TO SEARCH

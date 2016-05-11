@@ -1,138 +1,130 @@
-IBDEI1RN ; ; 19-NOV-2015
+IBDEI1RN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29565,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,29566,0)
- ;;=H81.13^^135^1362^8
- ;;^UTILITY(U,$J,358.3,29566,1,0)
+ ;;^UTILITY(U,$J,358.3,30019,0)
+ ;;=Z93.3^^118^1494^5
+ ;;^UTILITY(U,$J,358.3,30019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29566,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,29566,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,29566,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,29567,0)
- ;;=H81.10^^135^1362^11
- ;;^UTILITY(U,$J,358.3,29567,1,0)
+ ;;^UTILITY(U,$J,358.3,30019,1,3,0)
+ ;;=3^Colostomy status
+ ;;^UTILITY(U,$J,358.3,30019,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,30019,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,30020,0)
+ ;;=Z93.4^^118^1494^3
+ ;;^UTILITY(U,$J,358.3,30020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29567,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,29567,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,29567,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,29568,0)
- ;;=B37.84^^135^1362^12
- ;;^UTILITY(U,$J,358.3,29568,1,0)
+ ;;^UTILITY(U,$J,358.3,30020,1,3,0)
+ ;;=3^Artificial openings of gastrointestinal tract status NEC
+ ;;^UTILITY(U,$J,358.3,30020,1,4,0)
+ ;;=4^Z93.4
+ ;;^UTILITY(U,$J,358.3,30020,2)
+ ;;=^5063646
+ ;;^UTILITY(U,$J,358.3,30021,0)
+ ;;=Z93.50^^118^1494^6
+ ;;^UTILITY(U,$J,358.3,30021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29568,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,29568,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,29568,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,29569,0)
- ;;=H60.313^^135^1362^18
- ;;^UTILITY(U,$J,358.3,29569,1,0)
+ ;;^UTILITY(U,$J,358.3,30021,1,3,0)
+ ;;=3^Cystostomy Status,Unspec
+ ;;^UTILITY(U,$J,358.3,30021,1,4,0)
+ ;;=4^Z93.50
+ ;;^UTILITY(U,$J,358.3,30021,2)
+ ;;=^5063647
+ ;;^UTILITY(U,$J,358.3,30022,0)
+ ;;=Z93.6^^118^1494^4
+ ;;^UTILITY(U,$J,358.3,30022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29569,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,29569,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,29569,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,29570,0)
- ;;=B37.0^^135^1363^13
- ;;^UTILITY(U,$J,358.3,29570,1,0)
+ ;;^UTILITY(U,$J,358.3,30022,1,3,0)
+ ;;=3^Artificial openings of urinary tract status NEC
+ ;;^UTILITY(U,$J,358.3,30022,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,30022,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,30023,0)
+ ;;=Z93.8^^118^1494^1
+ ;;^UTILITY(U,$J,358.3,30023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29570,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,29570,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,29570,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,29571,0)
- ;;=B37.83^^135^1363^12
- ;;^UTILITY(U,$J,358.3,29571,1,0)
+ ;;^UTILITY(U,$J,358.3,30023,1,3,0)
+ ;;=3^Artificial opening status NEC
+ ;;^UTILITY(U,$J,358.3,30023,1,4,0)
+ ;;=4^Z93.8
+ ;;^UTILITY(U,$J,358.3,30023,2)
+ ;;=^5063652
+ ;;^UTILITY(U,$J,358.3,30024,0)
+ ;;=Z93.9^^118^1494^2
+ ;;^UTILITY(U,$J,358.3,30024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29571,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,29571,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,29571,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,29572,0)
- ;;=J00.^^135^1363^6
- ;;^UTILITY(U,$J,358.3,29572,1,0)
+ ;;^UTILITY(U,$J,358.3,30024,1,3,0)
+ ;;=3^Artificial opening status, unspecified
+ ;;^UTILITY(U,$J,358.3,30024,1,4,0)
+ ;;=4^Z93.9
+ ;;^UTILITY(U,$J,358.3,30024,2)
+ ;;=^5063653
+ ;;^UTILITY(U,$J,358.3,30025,0)
+ ;;=C50.912^^118^1495^13
+ ;;^UTILITY(U,$J,358.3,30025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29572,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,29572,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,29572,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,29573,0)
- ;;=J01.00^^135^1363^5
- ;;^UTILITY(U,$J,358.3,29573,1,0)
+ ;;^UTILITY(U,$J,358.3,30025,1,3,0)
+ ;;=3^Malignant neoplasm of left female breast,unsp site
+ ;;^UTILITY(U,$J,358.3,30025,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,30025,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,30026,0)
+ ;;=C50.911^^118^1495^16
+ ;;^UTILITY(U,$J,358.3,30026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29573,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,29573,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,29573,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,29574,0)
- ;;=J01.10^^135^1363^1
- ;;^UTILITY(U,$J,358.3,29574,1,0)
+ ;;^UTILITY(U,$J,358.3,30026,1,3,0)
+ ;;=3^Malignant neoplasm of right female breast,unsp site
+ ;;^UTILITY(U,$J,358.3,30026,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,30026,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,30027,0)
+ ;;=C55.^^118^1495^18
+ ;;^UTILITY(U,$J,358.3,30027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29574,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,29574,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,29574,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,29575,0)
- ;;=J02.9^^135^1363^7
- ;;^UTILITY(U,$J,358.3,29575,1,0)
+ ;;^UTILITY(U,$J,358.3,30027,1,3,0)
+ ;;=3^Malignant neoplasm of uterus, part unspecified
+ ;;^UTILITY(U,$J,358.3,30027,1,4,0)
+ ;;=4^C55.
+ ;;^UTILITY(U,$J,358.3,30027,2)
+ ;;=^5001211
+ ;;^UTILITY(U,$J,358.3,30028,0)
+ ;;=C53.9^^118^1495^11
+ ;;^UTILITY(U,$J,358.3,30028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29575,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,29575,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,29575,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,29576,0)
- ;;=J03.91^^135^1363^8
- ;;^UTILITY(U,$J,358.3,29576,1,0)
+ ;;^UTILITY(U,$J,358.3,30028,1,3,0)
+ ;;=3^Malignant neoplasm of cervix uteri, unspecified
+ ;;^UTILITY(U,$J,358.3,30028,1,4,0)
+ ;;=4^C53.9
+ ;;^UTILITY(U,$J,358.3,30028,2)
+ ;;=^5001204
+ ;;^UTILITY(U,$J,358.3,30029,0)
+ ;;=C56.1^^118^1495^17
+ ;;^UTILITY(U,$J,358.3,30029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29576,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,29576,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,29576,2)
- ;;=^5008136
- ;;^UTILITY(U,$J,358.3,29577,0)
- ;;=J04.0^^135^1363^3
- ;;^UTILITY(U,$J,358.3,29577,1,0)
+ ;;^UTILITY(U,$J,358.3,30029,1,3,0)
+ ;;=3^Malignant neoplasm of right ovary
+ ;;^UTILITY(U,$J,358.3,30029,1,4,0)
+ ;;=4^C56.1
+ ;;^UTILITY(U,$J,358.3,30029,2)
+ ;;=^5001212
+ ;;^UTILITY(U,$J,358.3,30030,0)
+ ;;=C56.2^^118^1495^14
+ ;;^UTILITY(U,$J,358.3,30030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29577,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,29577,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,29577,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,29578,0)
- ;;=J06.0^^135^1363^4
- ;;^UTILITY(U,$J,358.3,29578,1,0)
+ ;;^UTILITY(U,$J,358.3,30030,1,3,0)
+ ;;=3^Malignant neoplasm of left ovary
+ ;;^UTILITY(U,$J,358.3,30030,1,4,0)
+ ;;=4^C56.2
+ ;;^UTILITY(U,$J,358.3,30030,2)
+ ;;=^5001213
+ ;;^UTILITY(U,$J,358.3,30031,0)
+ ;;=C57.01^^118^1495^15
+ ;;^UTILITY(U,$J,358.3,30031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29578,1,3,0)
- ;;=3^Acute Laryngopharyngitis
- ;;^UTILITY(U,$J,358.3,29578,1,4,0)
- ;;=4^J06.0
- ;;^UTILITY(U,$J,358.3,29578,2)
- ;;=^269876
- ;;^UTILITY(U,$J,358.3,29579,0)
- ;;=J06.9^^135^1363^9
+ ;;^UTILITY(U,$J,358.3,30031,1,3,0)
+ ;;=3^Malignant neoplasm of right fallopian tube

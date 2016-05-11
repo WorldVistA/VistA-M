@@ -1,6 +1,6 @@
 IBCNSM4 ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ;21-OCT-92
- ;;2.0;INTEGRATED BILLING;**56,82,199,276**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**56,82,199,276,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;also used for IA #4694
  ;
@@ -24,14 +24,14 @@ INITQ Q
  ;
  ;
 PAT ; -- select patient you are working with
- N DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
+ N DIC,DPTNOFZY S DPTNOFZY=1  ;Suppress PATIENT file fuzzy lookups
  S DIC(0)="AEQMN",DIC="^DPT(" D ^DIC I +Y<1 S VALMQUIT="" Q
  S DFN=+Y
  Q
  ;
 HDR ; -- screen header for initial screen
  D PID^VADPT
- S VALMHDR(1)="Insurance Management for Patient: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")
+ S VALMHDR(1)="Insurance Management for Patient: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")_" "_$$FMTE^XLFDT($P($G(^DPT(DFN,0)),"^",3),5)  ; *528 - baa
  S VALMHDR(2)=" "
  I +$$BUFFER^IBCNBU1(DFN) S VALMHDR(2)="*** Patient has Insurance Buffer Records"
  Q

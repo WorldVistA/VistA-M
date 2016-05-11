@@ -1,136 +1,134 @@
-IBDEI1TP ; ; 19-NOV-2015
+IBDEI1TP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30520,1,3,0)
- ;;=3^Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,30520,1,4,0)
- ;;=4^M87.850
- ;;^UTILITY(U,$J,358.3,30520,2)
- ;;=^5014852
- ;;^UTILITY(U,$J,358.3,30521,0)
- ;;=M87.851^^135^1378^78
- ;;^UTILITY(U,$J,358.3,30521,1,0)
+ ;;^UTILITY(U,$J,358.3,30972,1,3,0)
+ ;;=3^Female Sexual Interest/Arousal Disorder
+ ;;^UTILITY(U,$J,358.3,30972,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,30972,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,30973,0)
+ ;;=F52.6^^123^1553^5
+ ;;^UTILITY(U,$J,358.3,30973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30521,1,3,0)
- ;;=3^Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,30521,1,4,0)
- ;;=4^M87.851
- ;;^UTILITY(U,$J,358.3,30521,2)
- ;;=^5014853
- ;;^UTILITY(U,$J,358.3,30522,0)
- ;;=M87.852^^135^1378^75
- ;;^UTILITY(U,$J,358.3,30522,1,0)
+ ;;^UTILITY(U,$J,358.3,30973,1,3,0)
+ ;;=3^Genito-Pelvic Pain/Penetration Disorder
+ ;;^UTILITY(U,$J,358.3,30973,1,4,0)
+ ;;=4^F52.6
+ ;;^UTILITY(U,$J,358.3,30973,2)
+ ;;=^5003623
+ ;;^UTILITY(U,$J,358.3,30974,0)
+ ;;=F52.0^^123^1553^6
+ ;;^UTILITY(U,$J,358.3,30974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30522,1,3,0)
- ;;=3^Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,30522,1,4,0)
- ;;=4^M87.852
- ;;^UTILITY(U,$J,358.3,30522,2)
- ;;=^5014854
- ;;^UTILITY(U,$J,358.3,30523,0)
- ;;=M88.0^^135^1378^66
- ;;^UTILITY(U,$J,358.3,30523,1,0)
+ ;;^UTILITY(U,$J,358.3,30974,1,3,0)
+ ;;=3^Male Hypoactive Sexual Desire Disorder
+ ;;^UTILITY(U,$J,358.3,30974,1,4,0)
+ ;;=4^F52.0
+ ;;^UTILITY(U,$J,358.3,30974,2)
+ ;;=^5003618
+ ;;^UTILITY(U,$J,358.3,30975,0)
+ ;;=F52.4^^123^1553^7
+ ;;^UTILITY(U,$J,358.3,30975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30523,1,3,0)
- ;;=3^Osteitis Deformans of Skull
- ;;^UTILITY(U,$J,358.3,30523,1,4,0)
- ;;=4^M88.0
- ;;^UTILITY(U,$J,358.3,30523,2)
- ;;=^5014874
- ;;^UTILITY(U,$J,358.3,30524,0)
- ;;=M88.1^^135^1378^67
- ;;^UTILITY(U,$J,358.3,30524,1,0)
+ ;;^UTILITY(U,$J,358.3,30975,1,3,0)
+ ;;=3^Premature (Early) Ejaculation
+ ;;^UTILITY(U,$J,358.3,30975,1,4,0)
+ ;;=4^F52.4
+ ;;^UTILITY(U,$J,358.3,30975,2)
+ ;;=^331928
+ ;;^UTILITY(U,$J,358.3,30976,0)
+ ;;=F52.8^^123^1553^9
+ ;;^UTILITY(U,$J,358.3,30976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30524,1,3,0)
- ;;=3^Osteitis Deformans of Vertebrae
- ;;^UTILITY(U,$J,358.3,30524,1,4,0)
- ;;=4^M88.1
- ;;^UTILITY(U,$J,358.3,30524,2)
- ;;=^5014875
- ;;^UTILITY(U,$J,358.3,30525,0)
- ;;=M88.89^^135^1378^65
- ;;^UTILITY(U,$J,358.3,30525,1,0)
+ ;;^UTILITY(U,$J,358.3,30976,1,3,0)
+ ;;=3^Sexual Dysfuntion NEC
+ ;;^UTILITY(U,$J,358.3,30976,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,30976,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,30977,0)
+ ;;=F52.9^^123^1553^8
+ ;;^UTILITY(U,$J,358.3,30977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30525,1,3,0)
- ;;=3^Osteitis Deformans of Mult Sites
- ;;^UTILITY(U,$J,358.3,30525,1,4,0)
- ;;=4^M88.89
- ;;^UTILITY(U,$J,358.3,30525,2)
- ;;=^5014898
- ;;^UTILITY(U,$J,358.3,30526,0)
- ;;=M94.0^^135^1378^15
- ;;^UTILITY(U,$J,358.3,30526,1,0)
+ ;;^UTILITY(U,$J,358.3,30977,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,30977,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,30977,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,30978,0)
+ ;;=G47.09^^123^1554^14
+ ;;^UTILITY(U,$J,358.3,30978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30526,1,3,0)
- ;;=3^Chondrocostal Junction Syndrome/Costochondritis
- ;;^UTILITY(U,$J,358.3,30526,1,4,0)
- ;;=4^M94.0
- ;;^UTILITY(U,$J,358.3,30526,2)
- ;;=^5015327
- ;;^UTILITY(U,$J,358.3,30527,0)
- ;;=M94.20^^135^1378^18
- ;;^UTILITY(U,$J,358.3,30527,1,0)
+ ;;^UTILITY(U,$J,358.3,30978,1,3,0)
+ ;;=3^Insomnia,Other
+ ;;^UTILITY(U,$J,358.3,30978,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,30978,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,30979,0)
+ ;;=G47.00^^123^1554^15
+ ;;^UTILITY(U,$J,358.3,30979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30527,1,3,0)
- ;;=3^Chondromalacia,Unspec Site
- ;;^UTILITY(U,$J,358.3,30527,1,4,0)
- ;;=4^M94.20
- ;;^UTILITY(U,$J,358.3,30527,2)
- ;;=^5015329
- ;;^UTILITY(U,$J,358.3,30528,0)
- ;;=M94.261^^135^1378^17
- ;;^UTILITY(U,$J,358.3,30528,1,0)
+ ;;^UTILITY(U,$J,358.3,30979,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,30979,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,30979,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,30980,0)
+ ;;=G47.10^^123^1554^12
+ ;;^UTILITY(U,$J,358.3,30980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30528,1,3,0)
- ;;=3^Chondromalacia,Right Knee
- ;;^UTILITY(U,$J,358.3,30528,1,4,0)
- ;;=4^M94.261
- ;;^UTILITY(U,$J,358.3,30528,2)
- ;;=^5015345
- ;;^UTILITY(U,$J,358.3,30529,0)
- ;;=M94.262^^135^1378^16
- ;;^UTILITY(U,$J,358.3,30529,1,0)
+ ;;^UTILITY(U,$J,358.3,30980,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,30980,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,30980,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,30981,0)
+ ;;=G47.419^^123^1554^17
+ ;;^UTILITY(U,$J,358.3,30981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30529,1,3,0)
- ;;=3^Chondromalacia,Left Knee
- ;;^UTILITY(U,$J,358.3,30529,1,4,0)
- ;;=4^M94.262
- ;;^UTILITY(U,$J,358.3,30529,2)
- ;;=^5015346
- ;;^UTILITY(U,$J,358.3,30530,0)
- ;;=R25.2^^135^1378^36
- ;;^UTILITY(U,$J,358.3,30530,1,0)
+ ;;^UTILITY(U,$J,358.3,30981,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,30981,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,30981,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,30982,0)
+ ;;=G47.33^^123^1554^21
+ ;;^UTILITY(U,$J,358.3,30982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30530,1,3,0)
- ;;=3^Cramp and Spasm
- ;;^UTILITY(U,$J,358.3,30530,1,4,0)
- ;;=4^R25.2
- ;;^UTILITY(U,$J,358.3,30530,2)
- ;;=^5019301
- ;;^UTILITY(U,$J,358.3,30531,0)
- ;;=R70.0^^135^1378^38
- ;;^UTILITY(U,$J,358.3,30531,1,0)
+ ;;^UTILITY(U,$J,358.3,30982,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,30982,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,30982,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,30983,0)
+ ;;=G47.31^^123^1554^1
+ ;;^UTILITY(U,$J,358.3,30983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30531,1,3,0)
- ;;=3^Elevated Erythrocyte Sedimentation Rate
- ;;^UTILITY(U,$J,358.3,30531,1,4,0)
- ;;=4^R70.0
- ;;^UTILITY(U,$J,358.3,30531,2)
- ;;=^5019559
- ;;^UTILITY(U,$J,358.3,30532,0)
- ;;=M25.511^^135^1378^98
- ;;^UTILITY(U,$J,358.3,30532,1,0)
+ ;;^UTILITY(U,$J,358.3,30983,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,30983,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,30983,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,30984,0)
+ ;;=G47.21^^123^1554^5
+ ;;^UTILITY(U,$J,358.3,30984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30532,1,3,0)
- ;;=3^Pain in Right Shoulder
- ;;^UTILITY(U,$J,358.3,30532,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,30532,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,30533,0)
- ;;=M25.512^^135^1378^88
- ;;^UTILITY(U,$J,358.3,30533,1,0)
+ ;;^UTILITY(U,$J,358.3,30984,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,30984,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,30984,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,30985,0)
+ ;;=G47.22^^123^1554^4
+ ;;^UTILITY(U,$J,358.3,30985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30533,1,3,0)
- ;;=3^Pain in Left Shoulder

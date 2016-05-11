@@ -1,128 +1,126 @@
-IBDEI27T ; ; 19-NOV-2015
+IBDEI27T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37216,2)
- ;;=^5042359
- ;;^UTILITY(U,$J,358.3,37217,0)
- ;;=S82.55XA^^172^1877^23
- ;;^UTILITY(U,$J,358.3,37217,1,0)
+ ;;^UTILITY(U,$J,358.3,37570,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt upper arm
+ ;;^UTILITY(U,$J,358.3,37570,1,4,0)
+ ;;=4^M90.821
+ ;;^UTILITY(U,$J,358.3,37570,2)
+ ;;=^5015172
+ ;;^UTILITY(U,$J,358.3,37571,0)
+ ;;=M90.822^^140^1793^56
+ ;;^UTILITY(U,$J,358.3,37571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37217,1,3,0)
- ;;=3^Nondisp fx of medial malleolus of left tibia, init
- ;;^UTILITY(U,$J,358.3,37217,1,4,0)
- ;;=4^S82.55XA
- ;;^UTILITY(U,$J,358.3,37217,2)
- ;;=^5042279
- ;;^UTILITY(U,$J,358.3,37218,0)
- ;;=S82.54XA^^172^1877^25
- ;;^UTILITY(U,$J,358.3,37218,1,0)
+ ;;^UTILITY(U,$J,358.3,37571,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft upper arm
+ ;;^UTILITY(U,$J,358.3,37571,1,4,0)
+ ;;=4^M90.822
+ ;;^UTILITY(U,$J,358.3,37571,2)
+ ;;=^5015173
+ ;;^UTILITY(U,$J,358.3,37572,0)
+ ;;=M90.831^^140^1793^60
+ ;;^UTILITY(U,$J,358.3,37572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37218,1,3,0)
- ;;=3^Nondisp fx of medial malleolus of right tibia, init
- ;;^UTILITY(U,$J,358.3,37218,1,4,0)
- ;;=4^S82.54XA
- ;;^UTILITY(U,$J,358.3,37218,2)
- ;;=^5042263
- ;;^UTILITY(U,$J,358.3,37219,0)
- ;;=L97.329^^172^1877^17
- ;;^UTILITY(U,$J,358.3,37219,1,0)
+ ;;^UTILITY(U,$J,358.3,37572,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt forearm
+ ;;^UTILITY(U,$J,358.3,37572,1,4,0)
+ ;;=4^M90.831
+ ;;^UTILITY(U,$J,358.3,37572,2)
+ ;;=^5015175
+ ;;^UTILITY(U,$J,358.3,37573,0)
+ ;;=M90.832^^140^1793^51
+ ;;^UTILITY(U,$J,358.3,37573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37219,1,3,0)
- ;;=3^Non-pressure chronic ulcer of left ankle with unsp severity
- ;;^UTILITY(U,$J,358.3,37219,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,37219,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,37220,0)
- ;;=L97.319^^172^1877^18
- ;;^UTILITY(U,$J,358.3,37220,1,0)
+ ;;^UTILITY(U,$J,358.3,37573,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft forearm
+ ;;^UTILITY(U,$J,358.3,37573,1,4,0)
+ ;;=4^M90.832
+ ;;^UTILITY(U,$J,358.3,37573,2)
+ ;;=^5015176
+ ;;^UTILITY(U,$J,358.3,37574,0)
+ ;;=M90.841^^140^1793^61
+ ;;^UTILITY(U,$J,358.3,37574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37220,1,3,0)
- ;;=3^Non-pressure chronic ulcer of right ankle with unsp severity
- ;;^UTILITY(U,$J,358.3,37220,1,4,0)
- ;;=4^L97.319
- ;;^UTILITY(U,$J,358.3,37220,2)
- ;;=^5009519
- ;;^UTILITY(U,$J,358.3,37221,0)
- ;;=M93.272^^172^1877^27
- ;;^UTILITY(U,$J,358.3,37221,1,0)
+ ;;^UTILITY(U,$J,358.3,37574,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt hand
+ ;;^UTILITY(U,$J,358.3,37574,1,4,0)
+ ;;=4^M90.841
+ ;;^UTILITY(U,$J,358.3,37574,2)
+ ;;=^5015178
+ ;;^UTILITY(U,$J,358.3,37575,0)
+ ;;=M90.842^^140^1793^52
+ ;;^UTILITY(U,$J,358.3,37575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37221,1,3,0)
- ;;=3^Osteochondritis dissecans, l ankle and joints of left foot
- ;;^UTILITY(U,$J,358.3,37221,1,4,0)
- ;;=4^M93.272
- ;;^UTILITY(U,$J,358.3,37221,2)
- ;;=^5015275
- ;;^UTILITY(U,$J,358.3,37222,0)
- ;;=M93.271^^172^1877^28
- ;;^UTILITY(U,$J,358.3,37222,1,0)
+ ;;^UTILITY(U,$J,358.3,37575,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft hand
+ ;;^UTILITY(U,$J,358.3,37575,1,4,0)
+ ;;=4^M90.842
+ ;;^UTILITY(U,$J,358.3,37575,2)
+ ;;=^5015179
+ ;;^UTILITY(U,$J,358.3,37576,0)
+ ;;=M90.851^^140^1793^64
+ ;;^UTILITY(U,$J,358.3,37576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37222,1,3,0)
- ;;=3^Osteochondritis dissecans, r ankle and joints of right foot
- ;;^UTILITY(U,$J,358.3,37222,1,4,0)
- ;;=4^M93.271
- ;;^UTILITY(U,$J,358.3,37222,2)
- ;;=^5015274
- ;;^UTILITY(U,$J,358.3,37223,0)
- ;;=M25.372^^172^1877^13
- ;;^UTILITY(U,$J,358.3,37223,1,0)
+ ;;^UTILITY(U,$J,358.3,37576,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt thigh
+ ;;^UTILITY(U,$J,358.3,37576,1,4,0)
+ ;;=4^M90.851
+ ;;^UTILITY(U,$J,358.3,37576,2)
+ ;;=^5015181
+ ;;^UTILITY(U,$J,358.3,37577,0)
+ ;;=M90.852^^140^1793^55
+ ;;^UTILITY(U,$J,358.3,37577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37223,1,3,0)
- ;;=3^Instability, left ankle NEC
- ;;^UTILITY(U,$J,358.3,37223,1,4,0)
- ;;=4^M25.372
- ;;^UTILITY(U,$J,358.3,37223,2)
- ;;=^5011570
- ;;^UTILITY(U,$J,358.3,37224,0)
- ;;=M25.371^^172^1877^14
- ;;^UTILITY(U,$J,358.3,37224,1,0)
+ ;;^UTILITY(U,$J,358.3,37577,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft thigh
+ ;;^UTILITY(U,$J,358.3,37577,1,4,0)
+ ;;=4^M90.852
+ ;;^UTILITY(U,$J,358.3,37577,2)
+ ;;=^5015182
+ ;;^UTILITY(U,$J,358.3,37578,0)
+ ;;=M90.861^^140^1793^62
+ ;;^UTILITY(U,$J,358.3,37578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37224,1,3,0)
- ;;=3^Instability, right ankle NEC
- ;;^UTILITY(U,$J,358.3,37224,1,4,0)
- ;;=4^M25.371
- ;;^UTILITY(U,$J,358.3,37224,2)
- ;;=^5011569
- ;;^UTILITY(U,$J,358.3,37225,0)
- ;;=M25.572^^172^1877^29
- ;;^UTILITY(U,$J,358.3,37225,1,0)
+ ;;^UTILITY(U,$J,358.3,37578,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt lower leg
+ ;;^UTILITY(U,$J,358.3,37578,1,4,0)
+ ;;=4^M90.861
+ ;;^UTILITY(U,$J,358.3,37578,2)
+ ;;=^5015184
+ ;;^UTILITY(U,$J,358.3,37579,0)
+ ;;=M90.862^^140^1793^53
+ ;;^UTILITY(U,$J,358.3,37579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37225,1,3,0)
- ;;=3^Pain in left ankle & joint of left foot
- ;;^UTILITY(U,$J,358.3,37225,1,4,0)
- ;;=4^M25.572
- ;;^UTILITY(U,$J,358.3,37225,2)
- ;;=^5011618
- ;;^UTILITY(U,$J,358.3,37226,0)
- ;;=M76.72^^172^1877^31
- ;;^UTILITY(U,$J,358.3,37226,1,0)
+ ;;^UTILITY(U,$J,358.3,37579,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft lower leg
+ ;;^UTILITY(U,$J,358.3,37579,1,4,0)
+ ;;=4^M90.862
+ ;;^UTILITY(U,$J,358.3,37579,2)
+ ;;=^5015185
+ ;;^UTILITY(U,$J,358.3,37580,0)
+ ;;=M90.871^^140^1793^59
+ ;;^UTILITY(U,$J,358.3,37580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37226,1,3,0)
- ;;=3^Peroneal tendinitis, left leg
- ;;^UTILITY(U,$J,358.3,37226,1,4,0)
- ;;=4^M76.72
- ;;^UTILITY(U,$J,358.3,37226,2)
- ;;=^5013289
- ;;^UTILITY(U,$J,358.3,37227,0)
- ;;=M76.71^^172^1877^32
- ;;^UTILITY(U,$J,358.3,37227,1,0)
+ ;;^UTILITY(U,$J,358.3,37580,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, rt ankle & foot
+ ;;^UTILITY(U,$J,358.3,37580,1,4,0)
+ ;;=4^M90.871
+ ;;^UTILITY(U,$J,358.3,37580,2)
+ ;;=^5015187
+ ;;^UTILITY(U,$J,358.3,37581,0)
+ ;;=M90.872^^140^1793^50
+ ;;^UTILITY(U,$J,358.3,37581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37227,1,3,0)
- ;;=3^Peroneal tendinitis, right leg
- ;;^UTILITY(U,$J,358.3,37227,1,4,0)
- ;;=4^M76.71
- ;;^UTILITY(U,$J,358.3,37227,2)
- ;;=^5013288
- ;;^UTILITY(U,$J,358.3,37228,0)
- ;;=M19.072^^172^1877^37
- ;;^UTILITY(U,$J,358.3,37228,1,0)
+ ;;^UTILITY(U,$J,358.3,37581,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, lft ankle & foot
+ ;;^UTILITY(U,$J,358.3,37581,1,4,0)
+ ;;=4^M90.872
+ ;;^UTILITY(U,$J,358.3,37581,2)
+ ;;=^5015188
+ ;;^UTILITY(U,$J,358.3,37582,0)
+ ;;=M90.88^^140^1793^58
+ ;;^UTILITY(U,$J,358.3,37582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37228,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,37228,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,37228,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,37229,0)
- ;;=M76.822^^172^1877^35
+ ;;^UTILITY(U,$J,358.3,37582,1,3,0)
+ ;;=3^Osteopathy in dis clsfd elswhr, oth site

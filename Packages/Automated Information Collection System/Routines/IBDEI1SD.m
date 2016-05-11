@@ -1,128 +1,128 @@
-IBDEI1SD ; ; 19-NOV-2015
+IBDEI1SD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29903,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,29904,0)
- ;;=C92.01^^135^1372^7
- ;;^UTILITY(U,$J,358.3,29904,1,0)
+ ;;^UTILITY(U,$J,358.3,30344,1,4,0)
+ ;;=4^C7A.010
+ ;;^UTILITY(U,$J,358.3,30344,2)
+ ;;=^5001359
+ ;;^UTILITY(U,$J,358.3,30345,0)
+ ;;=C7A.011^^118^1505^44
+ ;;^UTILITY(U,$J,358.3,30345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29904,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,29904,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,29904,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,29905,0)
- ;;=C92.00^^135^1372^8
- ;;^UTILITY(U,$J,358.3,29905,1,0)
+ ;;^UTILITY(U,$J,358.3,30345,1,3,0)
+ ;;=3^Malignant carcinoid tumor of the jejunum
+ ;;^UTILITY(U,$J,358.3,30345,1,4,0)
+ ;;=4^C7A.011
+ ;;^UTILITY(U,$J,358.3,30345,2)
+ ;;=^5001360
+ ;;^UTILITY(U,$J,358.3,30346,0)
+ ;;=C7A.012^^118^1505^43
+ ;;^UTILITY(U,$J,358.3,30346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29905,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,29905,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,29905,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,29906,0)
- ;;=C92.61^^135^1372^9
- ;;^UTILITY(U,$J,358.3,29906,1,0)
+ ;;^UTILITY(U,$J,358.3,30346,1,3,0)
+ ;;=3^Malignant carcinoid tumor of the ileum
+ ;;^UTILITY(U,$J,358.3,30346,1,4,0)
+ ;;=4^C7A.012
+ ;;^UTILITY(U,$J,358.3,30346,2)
+ ;;=^5001361
+ ;;^UTILITY(U,$J,358.3,30347,0)
+ ;;=C93.30^^118^1505^38
+ ;;^UTILITY(U,$J,358.3,30347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29906,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,29906,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,29906,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,29907,0)
- ;;=C92.60^^135^1372^10
- ;;^UTILITY(U,$J,358.3,29907,1,0)
+ ;;^UTILITY(U,$J,358.3,30347,1,3,0)
+ ;;=3^Juvenile myelomonocytic leukemia,no remission
+ ;;^UTILITY(U,$J,358.3,30347,1,4,0)
+ ;;=4^C93.30
+ ;;^UTILITY(U,$J,358.3,30347,2)
+ ;;=^5001825
+ ;;^UTILITY(U,$J,358.3,30348,0)
+ ;;=C93.31^^118^1505^37
+ ;;^UTILITY(U,$J,358.3,30348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29907,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,29907,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,29907,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,29908,0)
- ;;=C92.A1^^135^1372^11
- ;;^UTILITY(U,$J,358.3,29908,1,0)
+ ;;^UTILITY(U,$J,358.3,30348,1,3,0)
+ ;;=3^Juvenile myelomonocytic leukemia,in remission
+ ;;^UTILITY(U,$J,358.3,30348,1,4,0)
+ ;;=4^C93.31
+ ;;^UTILITY(U,$J,358.3,30348,2)
+ ;;=^5001826
+ ;;^UTILITY(U,$J,358.3,30349,0)
+ ;;=C93.32^^118^1505^36
+ ;;^UTILITY(U,$J,358.3,30349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29908,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,29908,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,29908,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,29909,0)
- ;;=C92.A0^^135^1372^12
- ;;^UTILITY(U,$J,358.3,29909,1,0)
+ ;;^UTILITY(U,$J,358.3,30349,1,3,0)
+ ;;=3^Juvenile myelomonocytic leukemia,in relapse
+ ;;^UTILITY(U,$J,358.3,30349,1,4,0)
+ ;;=4^C93.32
+ ;;^UTILITY(U,$J,358.3,30349,2)
+ ;;=^5001827
+ ;;^UTILITY(U,$J,358.3,30350,0)
+ ;;=D48.0^^118^1506^5
+ ;;^UTILITY(U,$J,358.3,30350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29909,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
- ;;^UTILITY(U,$J,358.3,29909,1,4,0)
- ;;=4^C92.A0
- ;;^UTILITY(U,$J,358.3,29909,2)
- ;;=^5001813
- ;;^UTILITY(U,$J,358.3,29910,0)
- ;;=C92.51^^135^1372^13
- ;;^UTILITY(U,$J,358.3,29910,1,0)
+ ;;^UTILITY(U,$J,358.3,30350,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of bone/artic cartl
+ ;;^UTILITY(U,$J,358.3,30350,1,4,0)
+ ;;=4^D48.0
+ ;;^UTILITY(U,$J,358.3,30350,2)
+ ;;=^81953
+ ;;^UTILITY(U,$J,358.3,30351,0)
+ ;;=D48.1^^118^1506^6
+ ;;^UTILITY(U,$J,358.3,30351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29910,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,29910,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,29910,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,29911,0)
- ;;=C92.50^^135^1372^14
- ;;^UTILITY(U,$J,358.3,29911,1,0)
+ ;;^UTILITY(U,$J,358.3,30351,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of connctv/soft tiss
+ ;;^UTILITY(U,$J,358.3,30351,1,4,0)
+ ;;=4^D48.1
+ ;;^UTILITY(U,$J,358.3,30351,2)
+ ;;=^267776
+ ;;^UTILITY(U,$J,358.3,30352,0)
+ ;;=D48.5^^118^1506^10
+ ;;^UTILITY(U,$J,358.3,30352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29911,1,3,0)
- ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,29911,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,29911,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,29912,0)
- ;;=C94.40^^135^1372^17
- ;;^UTILITY(U,$J,358.3,29912,1,0)
+ ;;^UTILITY(U,$J,358.3,30352,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of skin
+ ;;^UTILITY(U,$J,358.3,30352,1,4,0)
+ ;;=4^D48.5
+ ;;^UTILITY(U,$J,358.3,30352,2)
+ ;;=^267777
+ ;;^UTILITY(U,$J,358.3,30353,0)
+ ;;=D48.61^^118^1506^9
+ ;;^UTILITY(U,$J,358.3,30353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29912,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
- ;;^UTILITY(U,$J,358.3,29912,1,4,0)
- ;;=4^C94.40
- ;;^UTILITY(U,$J,358.3,29912,2)
- ;;=^5001843
- ;;^UTILITY(U,$J,358.3,29913,0)
- ;;=C94.42^^135^1372^15
- ;;^UTILITY(U,$J,358.3,29913,1,0)
+ ;;^UTILITY(U,$J,358.3,30353,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of right breast
+ ;;^UTILITY(U,$J,358.3,30353,1,4,0)
+ ;;=4^D48.61
+ ;;^UTILITY(U,$J,358.3,30353,2)
+ ;;=^5002267
+ ;;^UTILITY(U,$J,358.3,30354,0)
+ ;;=D48.62^^118^1506^7
+ ;;^UTILITY(U,$J,358.3,30354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29913,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
- ;;^UTILITY(U,$J,358.3,29913,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,29913,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,29914,0)
- ;;=C94.41^^135^1372^16
- ;;^UTILITY(U,$J,358.3,29914,1,0)
+ ;;^UTILITY(U,$J,358.3,30354,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of left breast
+ ;;^UTILITY(U,$J,358.3,30354,1,4,0)
+ ;;=4^D48.62
+ ;;^UTILITY(U,$J,358.3,30354,2)
+ ;;=^5002268
+ ;;^UTILITY(U,$J,358.3,30355,0)
+ ;;=D47.0^^118^1506^2
+ ;;^UTILITY(U,$J,358.3,30355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29914,1,3,0)
- ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
- ;;^UTILITY(U,$J,358.3,29914,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,29914,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,29915,0)
- ;;=D62.^^135^1372^18
- ;;^UTILITY(U,$J,358.3,29915,1,0)
+ ;;^UTILITY(U,$J,358.3,30355,1,3,0)
+ ;;=3^Histiocytic and mast cell tumors of uncertain behavior
+ ;;^UTILITY(U,$J,358.3,30355,1,4,0)
+ ;;=4^D47.0
+ ;;^UTILITY(U,$J,358.3,30355,2)
+ ;;=^5002255
+ ;;^UTILITY(U,$J,358.3,30356,0)
+ ;;=D46.0^^118^1506^18
+ ;;^UTILITY(U,$J,358.3,30356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29915,1,3,0)
- ;;=3^Acute Posthemorrhagic Anemia
- ;;^UTILITY(U,$J,358.3,29915,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,29915,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,29916,0)
- ;;=C92.41^^135^1372^19
+ ;;^UTILITY(U,$J,358.3,30356,1,3,0)
+ ;;=3^Refractory anemia without ring sideroblasts, so stated
+ ;;^UTILITY(U,$J,358.3,30356,1,4,0)
+ ;;=4^D46.0
+ ;;^UTILITY(U,$J,358.3,30356,2)
+ ;;=^5002245

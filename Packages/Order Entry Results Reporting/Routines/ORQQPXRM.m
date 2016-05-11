@@ -1,5 +1,5 @@
-ORQQPXRM ; SLC/PJH - Functions for reminder data ;03/21/12  08:15
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,173,187,190,215,243,306**;Dec 17, 1997;Build 43
+ORQQPXRM ; SLC/PJH - Functions for reminder data ;03/03/14  05:33
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,173,187,190,215,243,306,389**;Dec 17, 1997;Build 17
  ;
  ;ORQQPXRM DIALOG ACTIVE
 ACTIVE(ORY,ORLIST) D ACTIVE^PXRMRPCC(.ORY,.ORLIST) Q  ; DBIA 3080
@@ -143,5 +143,22 @@ GECF(RESULT,DFN,FIN) ;
  ;
 GECP(RESULT,DFN) ;
  S RESULT=$$STATUS^PXRMGECU(DFN)
+ Q
+ ;
+PTR80141(ORDLGPTR,ARRNAME) ;
+ ;;PARAMETER: ORDLGPTR => variable pointer to 101.41 (REQUIRED) e.g. 51;ORD(101.41,
+ ;;           ARRNAME => name subscript to use for TMP array (REQUIRED) e.g. "ORDLG PTRS"
+ ;;           Kill ^TMP($J,ARRNAME) before call and when finished processing returned data
+ ;;OUTPUT:    Array of reminder dialog elements and/or groups that have a Finding Item or Additional Finding Item that points to 101.41
+ ;;ARRAY FORMAT: ^TMP($J,ARRNAME,801.41,Reminder Dialog IEN)=.01 NAME from 801.41
+ Q:$G(ORDLGPTR)=""!($G(ORDLGPTR)'[";ORD(101.41,")!$G(ARRNAME)=""
+ N TYPE,RMDIEN,AFIND,INC,ORDLG S RMDIEN="",AFIND="",INC="1"
+ S ORDLG=$P(ORDLGPTR,";")
+ F TYPE="G","E" S RMDIEN="" D
+ .F  S RMDIEN=$O(^PXRMD(801.41,"TYPE",TYPE,RMDIEN)) Q:RMDIEN'>0  D  ;DBIA 5133
+ ..I $P($G(^PXRMD(801.41,RMDIEN,1)),U,5)=ORDLGPTR D
+ ...S ^TMP($J,ARRNAME,801.41,RMDIEN)=$P(^PXRMD(801.41,RMDIEN,0),U)
+ ..F  S AFIND=$O(^PXRMD(801.41,RMDIEN,3,"B",AFIND)) Q:AFIND=""  D
+ ...I AFIND=ORDLGPTR S ^TMP($J,ARRNAME,801.41,RMDIEN)=$P(^PXRMD(801.41,RMDIEN,0),U)
  Q
  ;

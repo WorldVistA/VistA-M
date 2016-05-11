@@ -1,140 +1,124 @@
-IBDEI0CQ ; ; 19-NOV-2015
+IBDEI0CQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5519,2)
- ;;=^5019276
- ;;^UTILITY(U,$J,358.3,5520,0)
- ;;=K43.2^^40^367^44
- ;;^UTILITY(U,$J,358.3,5520,1,0)
+ ;;^UTILITY(U,$J,358.3,5832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5520,1,3,0)
- ;;=3^Incisional Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,5520,1,4,0)
- ;;=4^K43.2
- ;;^UTILITY(U,$J,358.3,5520,2)
- ;;=^5008609
- ;;^UTILITY(U,$J,358.3,5521,0)
- ;;=K85.8^^40^367^1
- ;;^UTILITY(U,$J,358.3,5521,1,0)
+ ;;^UTILITY(U,$J,358.3,5832,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,5832,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,5832,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,5833,0)
+ ;;=I70.434^^30^385^43
+ ;;^UTILITY(U,$J,358.3,5833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5521,1,3,0)
- ;;=3^Acute Pancreatitis NEC
- ;;^UTILITY(U,$J,358.3,5521,1,4,0)
- ;;=4^K85.8
- ;;^UTILITY(U,$J,358.3,5521,2)
- ;;=^5008886
- ;;^UTILITY(U,$J,358.3,5522,0)
- ;;=K85.9^^40^367^2
- ;;^UTILITY(U,$J,358.3,5522,1,0)
+ ;;^UTILITY(U,$J,358.3,5833,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,5833,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,5833,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,5834,0)
+ ;;=I70.435^^30^385^44
+ ;;^UTILITY(U,$J,358.3,5834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5522,1,3,0)
- ;;=3^Acute Pancreatitis,Unspec
- ;;^UTILITY(U,$J,358.3,5522,1,4,0)
- ;;=4^K85.9
- ;;^UTILITY(U,$J,358.3,5522,2)
- ;;=^5008887
- ;;^UTILITY(U,$J,358.3,5523,0)
- ;;=B25.2^^40^367^23
- ;;^UTILITY(U,$J,358.3,5523,1,0)
+ ;;^UTILITY(U,$J,358.3,5834,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,5834,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,5834,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,5835,0)
+ ;;=I70.441^^30^385^35
+ ;;^UTILITY(U,$J,358.3,5835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5523,1,3,0)
- ;;=3^Cytomegaloviral Pancreatitis
- ;;^UTILITY(U,$J,358.3,5523,1,4,0)
- ;;=4^B25.2
- ;;^UTILITY(U,$J,358.3,5523,2)
- ;;=^5000558
- ;;^UTILITY(U,$J,358.3,5524,0)
- ;;=K85.3^^40^367^26
- ;;^UTILITY(U,$J,358.3,5524,1,0)
+ ;;^UTILITY(U,$J,358.3,5835,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,5835,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,5835,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,5836,0)
+ ;;=I70.442^^30^385^36
+ ;;^UTILITY(U,$J,358.3,5836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5524,1,3,0)
- ;;=3^Drug Induced Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,5524,1,4,0)
- ;;=4^K85.3
- ;;^UTILITY(U,$J,358.3,5524,2)
- ;;=^5008885
- ;;^UTILITY(U,$J,358.3,5525,0)
- ;;=K85.0^^40^367^42
- ;;^UTILITY(U,$J,358.3,5525,1,0)
+ ;;^UTILITY(U,$J,358.3,5836,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,5836,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,5836,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,5837,0)
+ ;;=I70.443^^30^385^37
+ ;;^UTILITY(U,$J,358.3,5837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5525,1,3,0)
- ;;=3^Idiopathic Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,5525,1,4,0)
- ;;=4^K85.0
- ;;^UTILITY(U,$J,358.3,5525,2)
- ;;=^5008882
- ;;^UTILITY(U,$J,358.3,5526,0)
- ;;=C21.0^^40^367^49
- ;;^UTILITY(U,$J,358.3,5526,1,0)
+ ;;^UTILITY(U,$J,358.3,5837,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,5837,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,5837,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,5838,0)
+ ;;=I70.444^^30^385^38
+ ;;^UTILITY(U,$J,358.3,5838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5526,1,3,0)
- ;;=3^Malig Neop of Anus,Unspec
- ;;^UTILITY(U,$J,358.3,5526,1,4,0)
- ;;=4^C21.0
- ;;^UTILITY(U,$J,358.3,5526,2)
- ;;=^5000930
- ;;^UTILITY(U,$J,358.3,5527,0)
- ;;=C15.8^^40^367^68
- ;;^UTILITY(U,$J,358.3,5527,1,0)
+ ;;^UTILITY(U,$J,358.3,5838,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,5838,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,5838,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,5839,0)
+ ;;=I70.445^^30^385^39
+ ;;^UTILITY(U,$J,358.3,5839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5527,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Esophagus
- ;;^UTILITY(U,$J,358.3,5527,1,4,0)
- ;;=4^C15.8
- ;;^UTILITY(U,$J,358.3,5527,2)
- ;;=^5000918
- ;;^UTILITY(U,$J,358.3,5528,0)
- ;;=C78.4^^40^367^92
- ;;^UTILITY(U,$J,358.3,5528,1,0)
+ ;;^UTILITY(U,$J,358.3,5839,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,5839,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,5839,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,5840,0)
+ ;;=I70.531^^30^385^60
+ ;;^UTILITY(U,$J,358.3,5840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5528,1,3,0)
- ;;=3^Secondary Malig Neop of Small Intestine
- ;;^UTILITY(U,$J,358.3,5528,1,4,0)
- ;;=4^C78.4
- ;;^UTILITY(U,$J,358.3,5528,2)
- ;;=^5001338
- ;;^UTILITY(U,$J,358.3,5529,0)
- ;;=C44.500^^40^368^12
- ;;^UTILITY(U,$J,358.3,5529,1,0)
+ ;;^UTILITY(U,$J,358.3,5840,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,5840,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,5840,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,5841,0)
+ ;;=I70.532^^30^385^61
+ ;;^UTILITY(U,$J,358.3,5841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5529,1,3,0)
- ;;=3^Malig Neop Anal Skin
- ;;^UTILITY(U,$J,358.3,5529,1,4,0)
- ;;=4^C44.500
- ;;^UTILITY(U,$J,358.3,5529,2)
- ;;=^5001051
- ;;^UTILITY(U,$J,358.3,5530,0)
- ;;=C44.509^^40^368^15
- ;;^UTILITY(U,$J,358.3,5530,1,0)
+ ;;^UTILITY(U,$J,358.3,5841,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,5841,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,5841,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,5842,0)
+ ;;=I70.533^^30^385^62
+ ;;^UTILITY(U,$J,358.3,5842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5530,1,3,0)
- ;;=3^Malig Neop of Skin of Trunk NEC
- ;;^UTILITY(U,$J,358.3,5530,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,5530,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,5531,0)
- ;;=D25.9^^40^368^11
- ;;^UTILITY(U,$J,358.3,5531,1,0)
+ ;;^UTILITY(U,$J,358.3,5842,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,5842,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,5842,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,5843,0)
+ ;;=I70.534^^30^385^63
+ ;;^UTILITY(U,$J,358.3,5843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5531,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,5531,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,5531,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,5532,0)
- ;;=N39.3^^40^368^20
- ;;^UTILITY(U,$J,358.3,5532,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5532,1,3,0)
- ;;=3^Stress Incontinence
- ;;^UTILITY(U,$J,358.3,5532,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,5532,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,5533,0)
- ;;=N76.0^^40^368^3
- ;;^UTILITY(U,$J,358.3,5533,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5843,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,5843,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,5843,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,5844,0)
+ ;;=I70.535^^30^385^64

@@ -1,138 +1,128 @@
-IBDEI1H1 ; ; 19-NOV-2015
+IBDEI1H1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24592,0)
- ;;=A74.9^^121^1221^40
- ;;^UTILITY(U,$J,358.3,24592,1,0)
+ ;;^UTILITY(U,$J,358.3,24981,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,24981,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,24981,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,24982,0)
+ ;;=F17.200^^93^1123^9
+ ;;^UTILITY(U,$J,358.3,24982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24592,1,3,0)
- ;;=3^Chlamydial
- ;;^UTILITY(U,$J,358.3,24592,1,4,0)
- ;;=4^A74.9
- ;;^UTILITY(U,$J,358.3,24592,2)
- ;;=^5000388
- ;;^UTILITY(U,$J,358.3,24593,0)
- ;;=A41.4^^121^1221^201
- ;;^UTILITY(U,$J,358.3,24593,1,0)
+ ;;^UTILITY(U,$J,358.3,24982,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24982,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,24982,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,24983,0)
+ ;;=F17.201^^93^1123^10
+ ;;^UTILITY(U,$J,358.3,24983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24593,1,3,0)
- ;;=3^Sepsis due to anaerobes
- ;;^UTILITY(U,$J,358.3,24593,1,4,0)
- ;;=4^A41.4
- ;;^UTILITY(U,$J,358.3,24593,2)
- ;;=^5000206
- ;;^UTILITY(U,$J,358.3,24594,0)
- ;;=B95.2^^121^1221^75
- ;;^UTILITY(U,$J,358.3,24594,1,0)
+ ;;^UTILITY(U,$J,358.3,24983,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,24983,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,24983,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,24984,0)
+ ;;=F17.203^^93^1123^11
+ ;;^UTILITY(U,$J,358.3,24984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24594,1,3,0)
- ;;=3^Enterococcus spp.(other)
- ;;^UTILITY(U,$J,358.3,24594,1,4,0)
- ;;=4^B95.2
- ;;^UTILITY(U,$J,358.3,24594,2)
- ;;=^5000837
- ;;^UTILITY(U,$J,358.3,24595,0)
- ;;=A04.4^^121^1221^80
- ;;^UTILITY(U,$J,358.3,24595,1,0)
+ ;;^UTILITY(U,$J,358.3,24984,1,3,0)
+ ;;=3^Nicotine Withdrawal
+ ;;^UTILITY(U,$J,358.3,24984,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,24984,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,24985,0)
+ ;;=F17.210^^93^1123^4
+ ;;^UTILITY(U,$J,358.3,24985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24595,1,3,0)
- ;;=3^Escherichia coli-intestinal
- ;;^UTILITY(U,$J,358.3,24595,1,4,0)
- ;;=4^A04.4
- ;;^UTILITY(U,$J,358.3,24595,2)
- ;;=^5000027
- ;;^UTILITY(U,$J,358.3,24596,0)
- ;;=B96.29^^121^1221^79
- ;;^UTILITY(U,$J,358.3,24596,1,0)
+ ;;^UTILITY(U,$J,358.3,24985,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24985,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,24985,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,24986,0)
+ ;;=F17.211^^93^1123^3
+ ;;^UTILITY(U,$J,358.3,24986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24596,1,3,0)
- ;;=3^Escherichia NEC
- ;;^UTILITY(U,$J,358.3,24596,1,4,0)
- ;;=4^B96.29
- ;;^UTILITY(U,$J,358.3,24596,2)
- ;;=^5000851
- ;;^UTILITY(U,$J,358.3,24597,0)
- ;;=A54.9^^121^1221^96
- ;;^UTILITY(U,$J,358.3,24597,1,0)
+ ;;^UTILITY(U,$J,358.3,24986,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,24986,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,24986,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,24987,0)
+ ;;=F17.220^^93^1123^2
+ ;;^UTILITY(U,$J,358.3,24987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24597,1,3,0)
- ;;=3^Gonorrhea
- ;;^UTILITY(U,$J,358.3,24597,1,4,0)
- ;;=4^A54.9
- ;;^UTILITY(U,$J,358.3,24597,2)
- ;;=^5000336
- ;;^UTILITY(U,$J,358.3,24598,0)
- ;;=Z16.30^^121^1221^124
- ;;^UTILITY(U,$J,358.3,24598,1,0)
+ ;;^UTILITY(U,$J,358.3,24987,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24987,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,24987,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,24988,0)
+ ;;=F17.221^^93^1123^1
+ ;;^UTILITY(U,$J,358.3,24988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24598,1,3,0)
- ;;=3^Infection with drug-resistant organism
- ;;^UTILITY(U,$J,358.3,24598,1,4,0)
- ;;=4^Z16.30
- ;;^UTILITY(U,$J,358.3,24598,2)
- ;;=^5062737
- ;;^UTILITY(U,$J,358.3,24599,0)
- ;;=B96.1^^121^1221^128
- ;;^UTILITY(U,$J,358.3,24599,1,0)
+ ;;^UTILITY(U,$J,358.3,24988,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,24988,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,24988,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,24989,0)
+ ;;=F17.290^^93^1123^5
+ ;;^UTILITY(U,$J,358.3,24989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24599,1,3,0)
- ;;=3^Klebsiella pneumoniae
- ;;^UTILITY(U,$J,358.3,24599,1,4,0)
- ;;=4^B96.1
- ;;^UTILITY(U,$J,358.3,24599,2)
- ;;=^5000846
- ;;^UTILITY(U,$J,358.3,24600,0)
- ;;=B96.4^^121^1221^193
- ;;^UTILITY(U,$J,358.3,24600,1,0)
+ ;;^UTILITY(U,$J,358.3,24989,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24989,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,24989,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,24990,0)
+ ;;=F17.291^^93^1123^6
+ ;;^UTILITY(U,$J,358.3,24990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24600,1,3,0)
- ;;=3^Proteus spp. (other)
- ;;^UTILITY(U,$J,358.3,24600,1,4,0)
- ;;=4^B96.4
- ;;^UTILITY(U,$J,358.3,24600,2)
- ;;=^5000853
- ;;^UTILITY(U,$J,358.3,24601,0)
- ;;=B96.5^^121^1221^194
- ;;^UTILITY(U,$J,358.3,24601,1,0)
+ ;;^UTILITY(U,$J,358.3,24990,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,24990,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,24990,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,24991,0)
+ ;;=F17.208^^93^1123^7
+ ;;^UTILITY(U,$J,358.3,24991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24601,1,3,0)
- ;;=3^Pseudomonas spp.(other)
- ;;^UTILITY(U,$J,358.3,24601,1,4,0)
- ;;=4^B96.5
- ;;^UTILITY(U,$J,358.3,24601,2)
- ;;=^5000854
- ;;^UTILITY(U,$J,358.3,24602,0)
- ;;=B95.8^^121^1221^213
- ;;^UTILITY(U,$J,358.3,24602,1,0)
+ ;;^UTILITY(U,$J,358.3,24991,1,3,0)
+ ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24991,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,24991,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,24992,0)
+ ;;=F17.209^^93^1123^8
+ ;;^UTILITY(U,$J,358.3,24992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24602,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-susceptible
- ;;^UTILITY(U,$J,358.3,24602,1,4,0)
- ;;=4^B95.8
- ;;^UTILITY(U,$J,358.3,24602,2)
- ;;=^5000844
- ;;^UTILITY(U,$J,358.3,24603,0)
- ;;=B95.61^^121^1221^212
- ;;^UTILITY(U,$J,358.3,24603,1,0)
+ ;;^UTILITY(U,$J,358.3,24992,1,3,0)
+ ;;=3^Nicotine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24992,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,24992,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,24993,0)
+ ;;=F14.10^^93^1124^1
+ ;;^UTILITY(U,$J,358.3,24993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24603,1,3,0)
- ;;=3^Staphylococcus aureus, methicillin-resistant
- ;;^UTILITY(U,$J,358.3,24603,1,4,0)
- ;;=4^B95.61
- ;;^UTILITY(U,$J,358.3,24603,2)
- ;;=^5000841
- ;;^UTILITY(U,$J,358.3,24604,0)
- ;;=B95.7^^121^1221^214
- ;;^UTILITY(U,$J,358.3,24604,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24604,1,3,0)
- ;;=3^Staphylococcus spp.(other)
- ;;^UTILITY(U,$J,358.3,24604,1,4,0)
- ;;=4^B95.7
- ;;^UTILITY(U,$J,358.3,24604,2)
- ;;=^5000843
- ;;^UTILITY(U,$J,358.3,24605,0)
- ;;=B95.0^^121^1221^217
- ;;^UTILITY(U,$J,358.3,24605,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24993,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,24993,1,4,0)
+ ;;=4^F14.10

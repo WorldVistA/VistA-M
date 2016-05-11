@@ -1,122 +1,132 @@
-IBDEI1BZ ; ; 19-NOV-2015
+IBDEI1BZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22185,1,3,0)
- ;;=3^Sltr-haris Type III physeal fx upper end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22185,1,4,0)
- ;;=4^S89.031S
- ;;^UTILITY(U,$J,358.3,22185,2)
- ;;=^5043684
- ;;^UTILITY(U,$J,358.3,22186,0)
- ;;=S89.142S^^101^1038^99
- ;;^UTILITY(U,$J,358.3,22186,1,0)
+ ;;^UTILITY(U,$J,358.3,22623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22186,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx lower end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22186,1,4,0)
- ;;=4^S89.142S
- ;;^UTILITY(U,$J,358.3,22186,2)
- ;;=^5137312
- ;;^UTILITY(U,$J,358.3,22187,0)
- ;;=S89.141S^^101^1038^100
- ;;^UTILITY(U,$J,358.3,22187,1,0)
+ ;;^UTILITY(U,$J,358.3,22623,1,3,0)
+ ;;=3^Presence of Right Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,22623,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,22623,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,22624,0)
+ ;;=Z96.642^^87^982^129
+ ;;^UTILITY(U,$J,358.3,22624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22187,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx lower end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22187,1,4,0)
- ;;=4^S89.141S
- ;;^UTILITY(U,$J,358.3,22187,2)
- ;;=^5043756
- ;;^UTILITY(U,$J,358.3,22188,0)
- ;;=S89.041S^^101^1038^101
- ;;^UTILITY(U,$J,358.3,22188,1,0)
+ ;;^UTILITY(U,$J,358.3,22624,1,3,0)
+ ;;=3^Presence of Left Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,22624,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,22624,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,22625,0)
+ ;;=Z96.643^^87^982^121
+ ;;^UTILITY(U,$J,358.3,22625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22188,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx upper end of r tibia, sequela
- ;;^UTILITY(U,$J,358.3,22188,1,4,0)
- ;;=4^S89.041S
- ;;^UTILITY(U,$J,358.3,22188,2)
- ;;=^5043702
- ;;^UTILITY(U,$J,358.3,22189,0)
- ;;=S89.042S^^101^1038^102
- ;;^UTILITY(U,$J,358.3,22189,1,0)
+ ;;^UTILITY(U,$J,358.3,22625,1,3,0)
+ ;;=3^Presence of Artificial Hip Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,22625,1,4,0)
+ ;;=4^Z96.643
+ ;;^UTILITY(U,$J,358.3,22625,2)
+ ;;=^5063703
+ ;;^UTILITY(U,$J,358.3,22626,0)
+ ;;=Z96.651^^87^982^135
+ ;;^UTILITY(U,$J,358.3,22626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22189,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx upper end of l tibia, sequela
- ;;^UTILITY(U,$J,358.3,22189,1,4,0)
- ;;=4^S89.042S
- ;;^UTILITY(U,$J,358.3,22189,2)
- ;;=^5043708
- ;;^UTILITY(U,$J,358.3,22190,0)
- ;;=M84.362S^^101^1038^104
- ;;^UTILITY(U,$J,358.3,22190,1,0)
+ ;;^UTILITY(U,$J,358.3,22626,1,3,0)
+ ;;=3^Presence of Right Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,22626,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,22626,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,22627,0)
+ ;;=Z96.652^^87^982^130
+ ;;^UTILITY(U,$J,358.3,22627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22190,1,3,0)
- ;;=3^Stress fracture, left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22190,1,4,0)
- ;;=4^M84.362S
- ;;^UTILITY(U,$J,358.3,22190,2)
- ;;=^5013715
- ;;^UTILITY(U,$J,358.3,22191,0)
- ;;=M84.361S^^101^1038^106
- ;;^UTILITY(U,$J,358.3,22191,1,0)
+ ;;^UTILITY(U,$J,358.3,22627,1,3,0)
+ ;;=3^Presence of Left Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,22627,1,4,0)
+ ;;=4^Z96.652
+ ;;^UTILITY(U,$J,358.3,22627,2)
+ ;;=^5063706
+ ;;^UTILITY(U,$J,358.3,22628,0)
+ ;;=Z96.653^^87^982^122
+ ;;^UTILITY(U,$J,358.3,22628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22191,1,3,0)
- ;;=3^Stress fracture, right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22191,1,4,0)
- ;;=4^M84.361S
- ;;^UTILITY(U,$J,358.3,22191,2)
- ;;=^5013709
- ;;^UTILITY(U,$J,358.3,22192,0)
- ;;=S82.311S^^101^1038^110
- ;;^UTILITY(U,$J,358.3,22192,1,0)
+ ;;^UTILITY(U,$J,358.3,22628,1,3,0)
+ ;;=3^Presence of Artificial Knee Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,22628,1,4,0)
+ ;;=4^Z96.653
+ ;;^UTILITY(U,$J,358.3,22628,2)
+ ;;=^5063707
+ ;;^UTILITY(U,$J,358.3,22629,0)
+ ;;=Z96.7^^87^982^125
+ ;;^UTILITY(U,$J,358.3,22629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22192,1,3,0)
- ;;=3^Torus fracture of lower end of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22192,1,4,0)
- ;;=4^S82.311S
- ;;^UTILITY(U,$J,358.3,22192,2)
- ;;=^5041671
- ;;^UTILITY(U,$J,358.3,22193,0)
- ;;=S82.162S^^101^1038^112
- ;;^UTILITY(U,$J,358.3,22193,1,0)
+ ;;^UTILITY(U,$J,358.3,22629,1,3,0)
+ ;;=3^Presence of Bone/Tendon Implants NEC
+ ;;^UTILITY(U,$J,358.3,22629,1,4,0)
+ ;;=4^Z96.7
+ ;;^UTILITY(U,$J,358.3,22629,2)
+ ;;=^5063716
+ ;;^UTILITY(U,$J,358.3,22630,0)
+ ;;=Z97.11^^87^982^133
+ ;;^UTILITY(U,$J,358.3,22630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22193,1,3,0)
- ;;=3^Torus fracture of upper end of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22193,1,4,0)
- ;;=4^S82.162S
- ;;^UTILITY(U,$J,358.3,22193,2)
- ;;=^5041074
- ;;^UTILITY(U,$J,358.3,22194,0)
- ;;=S82.312S^^101^1038^108
- ;;^UTILITY(U,$J,358.3,22194,1,0)
+ ;;^UTILITY(U,$J,358.3,22630,1,3,0)
+ ;;=3^Presence of Right Artificial Arm
+ ;;^UTILITY(U,$J,358.3,22630,1,4,0)
+ ;;=4^Z97.11
+ ;;^UTILITY(U,$J,358.3,22630,2)
+ ;;=^5063722
+ ;;^UTILITY(U,$J,358.3,22631,0)
+ ;;=Z97.12^^87^982^128
+ ;;^UTILITY(U,$J,358.3,22631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22194,1,3,0)
- ;;=3^Torus fracture of lower end of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22194,1,4,0)
- ;;=4^S82.312S
- ;;^UTILITY(U,$J,358.3,22194,2)
- ;;=^5136891
- ;;^UTILITY(U,$J,358.3,22195,0)
- ;;=S82.161S^^101^1038^114
- ;;^UTILITY(U,$J,358.3,22195,1,0)
+ ;;^UTILITY(U,$J,358.3,22631,1,3,0)
+ ;;=3^Presence of Left Artificial Arm
+ ;;^UTILITY(U,$J,358.3,22631,1,4,0)
+ ;;=4^Z97.12
+ ;;^UTILITY(U,$J,358.3,22631,2)
+ ;;=^5063723
+ ;;^UTILITY(U,$J,358.3,22632,0)
+ ;;=Z97.13^^87^982^136
+ ;;^UTILITY(U,$J,358.3,22632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22195,1,3,0)
- ;;=3^Torus fracture of upper end of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22195,1,4,0)
- ;;=4^S82.161S
- ;;^UTILITY(U,$J,358.3,22195,2)
- ;;=^5041068
- ;;^UTILITY(U,$J,358.3,22196,0)
- ;;=S82.452S^^101^1038^3
- ;;^UTILITY(U,$J,358.3,22196,1,0)
+ ;;^UTILITY(U,$J,358.3,22632,1,3,0)
+ ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,22632,1,4,0)
+ ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,22632,2)
+ ;;=^5063724
+ ;;^UTILITY(U,$J,358.3,22633,0)
+ ;;=Z97.14^^87^982^131
+ ;;^UTILITY(U,$J,358.3,22633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22196,1,3,0)
- ;;=3^Disp fx of comminuted shaft of left fibula, sequela   
- ;;^UTILITY(U,$J,358.3,22196,1,4,0)
- ;;=4^S82.452S
- ;;^UTILITY(U,$J,358.3,22196,2)
- ;;=^5042033
- ;;^UTILITY(U,$J,358.3,22197,0)
- ;;=S82.451S^^101^1038^5
+ ;;^UTILITY(U,$J,358.3,22633,1,3,0)
+ ;;=3^Presence of Left Artificial Leg
+ ;;^UTILITY(U,$J,358.3,22633,1,4,0)
+ ;;=4^Z97.14
+ ;;^UTILITY(U,$J,358.3,22633,2)
+ ;;=^5063725
+ ;;^UTILITY(U,$J,358.3,22634,0)
+ ;;=Z97.15^^87^982^123
+ ;;^UTILITY(U,$J,358.3,22634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22634,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Arms
+ ;;^UTILITY(U,$J,358.3,22634,1,4,0)
+ ;;=4^Z97.15
+ ;;^UTILITY(U,$J,358.3,22634,2)
+ ;;=^5063726
+ ;;^UTILITY(U,$J,358.3,22635,0)
+ ;;=Z97.16^^87^982^124
+ ;;^UTILITY(U,$J,358.3,22635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22635,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Legs
+ ;;^UTILITY(U,$J,358.3,22635,1,4,0)
+ ;;=4^Z97.16
+ ;;^UTILITY(U,$J,358.3,22635,2)
+ ;;=^5063727

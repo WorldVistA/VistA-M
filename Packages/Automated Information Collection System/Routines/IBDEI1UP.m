@@ -1,138 +1,106 @@
-IBDEI1UP ; ; 19-NOV-2015
+IBDEI1UP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30985,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,30986,0)
- ;;=N64.53^^135^1388^54
- ;;^UTILITY(U,$J,358.3,30986,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30986,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,30986,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,30986,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,30987,0)
- ;;=N75.1^^135^1388^5
- ;;^UTILITY(U,$J,358.3,30987,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30987,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,30987,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,30987,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,30988,0)
- ;;=N80.9^^135^1388^18
- ;;^UTILITY(U,$J,358.3,30988,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30988,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,30988,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,30988,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,30989,0)
- ;;=N81.4^^135^1388^61
- ;;^UTILITY(U,$J,358.3,30989,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30989,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,30989,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,30989,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,30990,0)
- ;;=N83.20^^135^1388^42
- ;;^UTILITY(U,$J,358.3,30990,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30990,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,30990,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,30990,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,30991,0)
- ;;=N83.29^^135^1388^41
- ;;^UTILITY(U,$J,358.3,30991,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30991,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,30991,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,30991,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,30992,0)
- ;;=N84.8^^135^1388^47
- ;;^UTILITY(U,$J,358.3,30992,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30992,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,30992,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,30992,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,30993,0)
- ;;=N84.0^^135^1388^45
- ;;^UTILITY(U,$J,358.3,30993,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30993,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,30993,1,4,0)
- ;;=4^N84.0
- ;;^UTILITY(U,$J,358.3,30993,2)
- ;;=^270517
- ;;^UTILITY(U,$J,358.3,30994,0)
- ;;=N84.9^^135^1388^46
- ;;^UTILITY(U,$J,358.3,30994,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30994,1,3,0)
- ;;=3^Polyp of Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,30994,1,4,0)
- ;;=4^N84.9
- ;;^UTILITY(U,$J,358.3,30994,2)
- ;;=^5015869
- ;;^UTILITY(U,$J,358.3,30995,0)
- ;;=N84.1^^135^1388^44
- ;;^UTILITY(U,$J,358.3,30995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30995,1,3,0)
- ;;=3^Polyp of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,30995,1,4,0)
- ;;=4^N84.1
- ;;^UTILITY(U,$J,358.3,30995,2)
- ;;=^5015866
- ;;^UTILITY(U,$J,358.3,30996,0)
- ;;=N89.1^^135^1388^63
- ;;^UTILITY(U,$J,358.3,30996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30996,1,3,0)
- ;;=3^Vaginal Dysplasia,Moderate
- ;;^UTILITY(U,$J,358.3,30996,1,4,0)
- ;;=4^N89.1
- ;;^UTILITY(U,$J,358.3,30996,2)
- ;;=^5015886
- ;;^UTILITY(U,$J,358.3,30997,0)
- ;;=N89.0^^135^1388^62
- ;;^UTILITY(U,$J,358.3,30997,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30997,1,3,0)
- ;;=3^Vaginal Dysplasia,Mild
- ;;^UTILITY(U,$J,358.3,30997,1,4,0)
- ;;=4^N89.0
- ;;^UTILITY(U,$J,358.3,30997,2)
- ;;=^5015885
- ;;^UTILITY(U,$J,358.3,30998,0)
- ;;=N89.3^^135^1388^64
- ;;^UTILITY(U,$J,358.3,30998,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30998,1,3,0)
- ;;=3^Vaginal Dysplasia,Unspec
- ;;^UTILITY(U,$J,358.3,30998,1,4,0)
- ;;=4^N89.3
- ;;^UTILITY(U,$J,358.3,30998,2)
- ;;=^5015887
- ;;^UTILITY(U,$J,358.3,30999,0)
- ;;=N90.4^^135^1388^32
+ ;;^UTILITY(U,$J,358.3,31442,0)
+ ;;=28054^^125^1593^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31442,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31442,1,2,0)
+ ;;=2^Arthrotomy with biopsy; interphalangeal joint
+ ;;^UTILITY(U,$J,358.3,31442,1,3,0)
+ ;;=3^28054
+ ;;^UTILITY(U,$J,358.3,31443,0)
+ ;;=28060^^125^1593^21^^^^1
+ ;;^UTILITY(U,$J,358.3,31443,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31443,1,2,0)
+ ;;=2^Fasciectomy, plantar fascia; partial 
+ ;;^UTILITY(U,$J,358.3,31443,1,3,0)
+ ;;=3^28060
+ ;;^UTILITY(U,$J,358.3,31444,0)
+ ;;=28062^^125^1593^22^^^^1
+ ;;^UTILITY(U,$J,358.3,31444,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31444,1,2,0)
+ ;;=2^Fasciectomy, plantar fascia; radical
+ ;;^UTILITY(U,$J,358.3,31444,1,3,0)
+ ;;=3^28062
+ ;;^UTILITY(U,$J,358.3,31445,0)
+ ;;=28080^^125^1593^20^^^^1
+ ;;^UTILITY(U,$J,358.3,31445,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31445,1,2,0)
+ ;;=2^Excision, interdigital (Morton) neuroma, single, each
+ ;;^UTILITY(U,$J,358.3,31445,1,3,0)
+ ;;=3^28080
+ ;;^UTILITY(U,$J,358.3,31446,0)
+ ;;=28090^^125^1593^6^^^^1
+ ;;^UTILITY(U,$J,358.3,31446,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31446,1,2,0)
+ ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; foot
+ ;;^UTILITY(U,$J,358.3,31446,1,3,0)
+ ;;=3^28090
+ ;;^UTILITY(U,$J,358.3,31447,0)
+ ;;=28092^^125^1593^7^^^^1
+ ;;^UTILITY(U,$J,358.3,31447,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31447,1,2,0)
+ ;;=2^Excision of lesion, tendon, tendon sheath, or capsule; toe(s), each
+ ;;^UTILITY(U,$J,358.3,31447,1,3,0)
+ ;;=3^28092
+ ;;^UTILITY(U,$J,358.3,31448,0)
+ ;;=28100^^125^1593^14^^^^1
+ ;;^UTILITY(U,$J,358.3,31448,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31448,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus
+ ;;^UTILITY(U,$J,358.3,31448,1,3,0)
+ ;;=3^28100
+ ;;^UTILITY(U,$J,358.3,31449,0)
+ ;;=28102^^125^1593^15^^^^1
+ ;;^UTILITY(U,$J,358.3,31449,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31449,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus; with iliac or other autograft (includes obtaining graft)
+ ;;^UTILITY(U,$J,358.3,31449,1,3,0)
+ ;;=3^28102
+ ;;^UTILITY(U,$J,358.3,31450,0)
+ ;;=28103^^125^1593^16^^^^1
+ ;;^UTILITY(U,$J,358.3,31450,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31450,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, talus or calcaneus; with allograft
+ ;;^UTILITY(U,$J,358.3,31450,1,3,0)
+ ;;=3^28103
+ ;;^UTILITY(U,$J,358.3,31451,0)
+ ;;=28104^^125^1593^17^^^^1
+ ;;^UTILITY(U,$J,358.3,31451,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31451,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, tarsal or metatarsal, except talus or calcaneus 
+ ;;^UTILITY(U,$J,358.3,31451,1,3,0)
+ ;;=3^28104
+ ;;^UTILITY(U,$J,358.3,31452,0)
+ ;;=28106^^125^1593^18^^^^1
+ ;;^UTILITY(U,$J,358.3,31452,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31452,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, tarsal or metatarsal, except talus or calcaneus; with iliac or other autograft
+ ;;^UTILITY(U,$J,358.3,31452,1,3,0)
+ ;;=3^28106
+ ;;^UTILITY(U,$J,358.3,31453,0)
+ ;;=28107^^125^1593^13^^^^1
+ ;;^UTILITY(U,$J,358.3,31453,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31453,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst of benign tumor, tarsal or metatarsal, except talus or calcaneus; with allograft
+ ;;^UTILITY(U,$J,358.3,31453,1,3,0)
+ ;;=3^28107
+ ;;^UTILITY(U,$J,358.3,31454,0)
+ ;;=28108^^125^1593^19^^^^1
+ ;;^UTILITY(U,$J,358.3,31454,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31454,1,2,0)
+ ;;=2^Excision or Curettage of bone cyst or benign tumor, phalanges of foot

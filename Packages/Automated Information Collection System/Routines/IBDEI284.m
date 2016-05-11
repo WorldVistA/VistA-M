@@ -1,128 +1,136 @@
-IBDEI284 ; ; 19-NOV-2015
+IBDEI284 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37352,1,4,0)
- ;;=4^G57.52
- ;;^UTILITY(U,$J,358.3,37352,2)
- ;;=^5004055
- ;;^UTILITY(U,$J,358.3,37353,0)
- ;;=G57.51^^172^1880^29
- ;;^UTILITY(U,$J,358.3,37353,1,0)
+ ;;^UTILITY(U,$J,358.3,37711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37353,1,3,0)
- ;;=3^Tarsal tunnel syndrome, right lower limb
- ;;^UTILITY(U,$J,358.3,37353,1,4,0)
- ;;=4^G57.51
- ;;^UTILITY(U,$J,358.3,37353,2)
- ;;=^5004054
- ;;^UTILITY(U,$J,358.3,37354,0)
- ;;=M12.572^^172^1880^30
- ;;^UTILITY(U,$J,358.3,37354,1,0)
+ ;;^UTILITY(U,$J,358.3,37711,1,3,0)
+ ;;=3^Radial styloid tenosynovitis [de Quervain]
+ ;;^UTILITY(U,$J,358.3,37711,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,37711,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,37712,0)
+ ;;=M71.50^^140^1797^13
+ ;;^UTILITY(U,$J,358.3,37712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37354,1,3,0)
- ;;=3^Traumatic arthropathy, left ankle and foot
- ;;^UTILITY(U,$J,358.3,37354,1,4,0)
- ;;=4^M12.572
- ;;^UTILITY(U,$J,358.3,37354,2)
- ;;=^5010638
- ;;^UTILITY(U,$J,358.3,37355,0)
- ;;=M12.571^^172^1880^31
- ;;^UTILITY(U,$J,358.3,37355,1,0)
+ ;;^UTILITY(U,$J,358.3,37712,1,3,0)
+ ;;=3^Bursitis, NEC, unspec site, oth
+ ;;^UTILITY(U,$J,358.3,37712,1,4,0)
+ ;;=4^M71.50
+ ;;^UTILITY(U,$J,358.3,37712,2)
+ ;;=^5013190
+ ;;^UTILITY(U,$J,358.3,37713,0)
+ ;;=M71.21^^140^1797^45
+ ;;^UTILITY(U,$J,358.3,37713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37355,1,3,0)
- ;;=3^Traumatic arthropathy, right ankle and foot
- ;;^UTILITY(U,$J,358.3,37355,1,4,0)
- ;;=4^M12.571
- ;;^UTILITY(U,$J,358.3,37355,2)
- ;;=^5010637
- ;;^UTILITY(U,$J,358.3,37356,0)
- ;;=M19.171^^172^1880^21
- ;;^UTILITY(U,$J,358.3,37356,1,0)
+ ;;^UTILITY(U,$J,358.3,37713,1,3,0)
+ ;;=3^Synvl cyst of popliteal space [Baker], rt knee
+ ;;^UTILITY(U,$J,358.3,37713,1,4,0)
+ ;;=4^M71.21
+ ;;^UTILITY(U,$J,358.3,37713,2)
+ ;;=^5013147
+ ;;^UTILITY(U,$J,358.3,37714,0)
+ ;;=M71.22^^140^1797^46
+ ;;^UTILITY(U,$J,358.3,37714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37356,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, right ankle & foot
- ;;^UTILITY(U,$J,358.3,37356,1,4,0)
- ;;=4^M19.171
- ;;^UTILITY(U,$J,358.3,37356,2)
- ;;=^5010835
- ;;^UTILITY(U,$J,358.3,37357,0)
- ;;=M19.172^^172^1880^20
- ;;^UTILITY(U,$J,358.3,37357,1,0)
+ ;;^UTILITY(U,$J,358.3,37714,1,3,0)
+ ;;=3^Synvl cyst of popliteal space [Baker], lft knee
+ ;;^UTILITY(U,$J,358.3,37714,1,4,0)
+ ;;=4^M71.22
+ ;;^UTILITY(U,$J,358.3,37714,2)
+ ;;=^5013148
+ ;;^UTILITY(U,$J,358.3,37715,0)
+ ;;=M72.2^^140^1797^34
+ ;;^UTILITY(U,$J,358.3,37715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37357,1,3,0)
- ;;=3^Post-traumatic osteoarthritis, left ankle & foot
- ;;^UTILITY(U,$J,358.3,37357,1,4,0)
- ;;=4^M19.172
- ;;^UTILITY(U,$J,358.3,37357,2)
- ;;=^5010836
- ;;^UTILITY(U,$J,358.3,37358,0)
- ;;=M19.271^^172^1880^25
- ;;^UTILITY(U,$J,358.3,37358,1,0)
+ ;;^UTILITY(U,$J,358.3,37715,1,3,0)
+ ;;=3^Plantar fascial fibromatosis
+ ;;^UTILITY(U,$J,358.3,37715,1,4,0)
+ ;;=4^M72.2
+ ;;^UTILITY(U,$J,358.3,37715,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,37716,0)
+ ;;=M79.0^^140^1797^40
+ ;;^UTILITY(U,$J,358.3,37716,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37358,1,3,0)
- ;;=3^Secondary osteoarthritis, right ankle & foot
- ;;^UTILITY(U,$J,358.3,37358,1,4,0)
- ;;=4^M19.271
- ;;^UTILITY(U,$J,358.3,37358,2)
- ;;=^5010850
- ;;^UTILITY(U,$J,358.3,37359,0)
- ;;=M19.272^^172^1880^24
- ;;^UTILITY(U,$J,358.3,37359,1,0)
+ ;;^UTILITY(U,$J,358.3,37716,1,3,0)
+ ;;=3^Rheumatism, unspec
+ ;;^UTILITY(U,$J,358.3,37716,1,4,0)
+ ;;=4^M79.0
+ ;;^UTILITY(U,$J,358.3,37716,2)
+ ;;=^5013320
+ ;;^UTILITY(U,$J,358.3,37717,0)
+ ;;=G60.9^^140^1797^21
+ ;;^UTILITY(U,$J,358.3,37717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37359,1,3,0)
- ;;=3^Secondary osteoarthritis, left ankle & foot
- ;;^UTILITY(U,$J,358.3,37359,1,4,0)
- ;;=4^M19.272
- ;;^UTILITY(U,$J,358.3,37359,2)
- ;;=^5010851
- ;;^UTILITY(U,$J,358.3,37360,0)
- ;;=M19.031^^172^1881^10
- ;;^UTILITY(U,$J,358.3,37360,1,0)
+ ;;^UTILITY(U,$J,358.3,37717,1,3,0)
+ ;;=3^Hereditary & idiopathic neurpthy, unspec
+ ;;^UTILITY(U,$J,358.3,37717,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,37717,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,37718,0)
+ ;;=I50.9^^140^1798^3
+ ;;^UTILITY(U,$J,358.3,37718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37360,1,3,0)
- ;;=3^Primary osteoarthritis, right wrist
- ;;^UTILITY(U,$J,358.3,37360,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,37360,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,37361,0)
- ;;=M19.032^^172^1881^9
- ;;^UTILITY(U,$J,358.3,37361,1,0)
+ ;;^UTILITY(U,$J,358.3,37718,1,3,0)
+ ;;=3^Heart failure, unspec
+ ;;^UTILITY(U,$J,358.3,37718,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,37718,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,37719,0)
+ ;;=R60.9^^140^1798^2
+ ;;^UTILITY(U,$J,358.3,37719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37361,1,3,0)
- ;;=3^Primary osteoarthritis, left wrist
- ;;^UTILITY(U,$J,358.3,37361,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,37361,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,37362,0)
- ;;=S50.11XA^^172^1881^4
- ;;^UTILITY(U,$J,358.3,37362,1,0)
+ ;;^UTILITY(U,$J,358.3,37719,1,3,0)
+ ;;=3^Edema, unspec
+ ;;^UTILITY(U,$J,358.3,37719,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,37719,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,37720,0)
+ ;;=I10.^^140^1798^4
+ ;;^UTILITY(U,$J,358.3,37720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37362,1,3,0)
- ;;=3^Contusion of right forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,37362,1,4,0)
- ;;=4^S50.11XA
- ;;^UTILITY(U,$J,358.3,37362,2)
- ;;=^5028494
- ;;^UTILITY(U,$J,358.3,37363,0)
- ;;=S50.12XA^^172^1881^1
- ;;^UTILITY(U,$J,358.3,37363,1,0)
+ ;;^UTILITY(U,$J,358.3,37720,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,37720,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,37720,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,37721,0)
+ ;;=I82.91^^140^1798^1
+ ;;^UTILITY(U,$J,358.3,37721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37363,1,3,0)
- ;;=3^Contusion of left forearm, initial encounter
- ;;^UTILITY(U,$J,358.3,37363,1,4,0)
- ;;=4^S50.12XA
- ;;^UTILITY(U,$J,358.3,37363,2)
- ;;=^5028497
- ;;^UTILITY(U,$J,358.3,37364,0)
- ;;=S50.11XD^^172^1881^6
- ;;^UTILITY(U,$J,358.3,37364,1,0)
+ ;;^UTILITY(U,$J,358.3,37721,1,3,0)
+ ;;=3^Chron embolism & thrombosis of unspec vein
+ ;;^UTILITY(U,$J,358.3,37721,1,4,0)
+ ;;=4^I82.91
+ ;;^UTILITY(U,$J,358.3,37721,2)
+ ;;=^5007941
+ ;;^UTILITY(U,$J,358.3,37722,0)
+ ;;=A69.20^^140^1798^7
+ ;;^UTILITY(U,$J,358.3,37722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37364,1,3,0)
- ;;=3^Contusion of right forearm, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37364,1,4,0)
- ;;=4^S50.11XD
- ;;^UTILITY(U,$J,358.3,37364,2)
- ;;=^5028495
+ ;;^UTILITY(U,$J,358.3,37722,1,3,0)
+ ;;=3^Lyme disease, unspec
+ ;;^UTILITY(U,$J,358.3,37722,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,37722,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,37723,0)
+ ;;=M75.81^^140^1798^9
+ ;;^UTILITY(U,$J,358.3,37723,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37723,1,3,0)
+ ;;=3^Shoulder lesions, rt shldr, oth
+ ;;^UTILITY(U,$J,358.3,37723,1,4,0)
+ ;;=4^M75.81
+ ;;^UTILITY(U,$J,358.3,37723,2)
+ ;;=^5013261
+ ;;^UTILITY(U,$J,358.3,37724,0)
+ ;;=M75.82^^140^1798^8
+ ;;^UTILITY(U,$J,358.3,37724,1,0)
+ ;;=^358.31IA^4^2

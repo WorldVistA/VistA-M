@@ -1,0 +1,79 @@
+SDEC35 ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
+ ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+ ;
+ Q
+ ;
+RESLETRS(SDECY,SDECLIST,SDLTR,SDNOS,SDCAN) ;Return recordset of RESOURCES and associated LETTERS
+ ;RESLETRS(SDECY,SDECLIST,SDLTR,SDNOS,SDCAN)  external parameter tag is in SDEC
+ ;   SDECLIST = (required) pipe | delimited list of SDEC RESOURCE iens
+ ;                         resource ID pointer to SDEC RESOURCE file
+ ;   SDLTR  = (optional) 1 will return the LETTER TEXT
+ ;                         0 will not return the LETTER TEXT (default)
+ ;   SDNOS  = (optional) 1 will return the NO SHOW LETTER text
+ ;                         0 will not return the NO SHOW LETTER text (default)
+ ;   SDCAN  = (optional) 1 will return the CLINIC CANCELLATION LETTER text
+ ;                         0 will not return the CLINIC CANCELLATION text (default)
+ ;RETURN:
+ ;  Successful Return:
+ ;   1. RESOURCEID
+ ;   2. RESOURCE_NAME
+ ;   3. LETTER_TEXT
+ ;   4. NO_SHOW_LETTER
+ ;   5. CLINIC_CANCELLATION_LETTER
+ ;
+ N BSDY
+ N SDECI,SDECIEN,SDECJ,SDEC,SDECLTR,SDECNOS,SDECCAN,SDECIEN1,SDECNAM
+ S SDECY="^TMP(""SDEC"","_$J_")"
+ K @SDECY
+ S SDECI=0
+ S ^TMP("SDEC",$J,SDECI)="I00010RESOURCEID^T00030RESOURCE_NAME^T00030LETTER_TEXT^T00030NO_SHOW_LETTER^T00030CLINIC_CANCELLATION_LETTER"_$C(30)
+ ;validate flags
+ S SDLTR=$G(SDLTR)
+ S SDNOS=$G(SDNOS)
+ S SDCAN=$G(SDCAN)
+ ;
+ ;If SDECLIST is a list of resource NAMES, look up each name and convert to IEN
+ F SDECJ=1:1:$L(SDECLIST,"|")-1 S SDEC=$P(SDECLIST,"|",SDECJ) D  S $P(SDECLIST,"|",SDECJ)=BSDY
+ . S BSDY=""
+ . I SDEC]"",$D(^SDEC(409.831,SDEC,0)) S BSDY=SDEC Q
+ . I SDEC]"",$D(^SDEC(409.831,"B",SDEC)) S BSDY=$O(^SDEC(409.831,"B",SDEC,0)) Q
+ . Q
+ ;
+ ;Get letter text from wp fields
+ S SDECIEN=0
+ F SDEC=1:1:$L(SDECLIST,"|") S SDECIEN=$P(SDECLIST,"|",SDEC) D
+ . Q:'$D(^SDEC(409.831,+SDECIEN))
+ . S SDECNAM=$P(^SDEC(409.831,SDECIEN,0),U)
+ . S SDECLTR=""
+ . I +SDLTR,$D(^SDEC(409.831,SDECIEN,1)) D
+ . . S SDECIEN1=0 F  S SDECIEN1=$O(^SDEC(409.831,SDECIEN,1,SDECIEN1)) Q:'+SDECIEN1  D
+ . . . S SDECLTR=SDECLTR_$G(^SDEC(409.831,SDECIEN,1,SDECIEN1,0))
+ . . . S SDECLTR=SDECLTR_$C(13)_$C(10)
+ . S SDECNOS=""
+ . I +SDNOS,$D(^SDEC(409.831,SDECIEN,12)) D
+ . . S SDECIEN1=0 F  S SDECIEN1=$O(^SDEC(409.831,SDECIEN,12,SDECIEN1)) Q:'+SDECIEN1  D
+ . . . S SDECNOS=SDECNOS_$G(^SDEC(409.831,SDECIEN,12,SDECIEN1,0))
+ . . . S SDECNOS=SDECNOS_$C(13)_$C(10)
+ . S SDECCAN=""
+ . I SDCAN,$D(^SDEC(409.831,SDECIEN,13)) D
+ . . S SDECIEN1=0 F  S SDECIEN1=$O(^SDEC(409.831,SDECIEN,13,SDECIEN1)) Q:'+SDECIEN1  D
+ . . . S SDECCAN=SDECCAN_$G(^SDEC(409.831,SDECIEN,13,SDECIEN1,0))
+ . . . S SDECCAN=SDECCAN_$C(13)_$C(10)
+ . S SDECI=SDECI+1
+ . S ^TMP("SDEC",$J,SDECI)=SDECIEN_U_SDECNAM_U_SDECLTR_U_SDECNOS_U_SDECCAN_$C(30)
+ ;
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)=$C(31)
+ Q
+ ;
+ERROR ;
+ D ERR("Error")
+ Q
+ ;
+ERR(ERRNO) ;Error processing
+ S:'$D(SDECI) SDECI=999
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)="^^^^"_$C(30)
+ S SDECI=SDECI+1
+ S ^TMP("SDEC",$J,SDECI)=$C(31)
+ Q

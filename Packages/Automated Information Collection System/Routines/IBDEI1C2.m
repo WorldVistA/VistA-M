@@ -1,122 +1,138 @@
-IBDEI1C2 ; ; 19-NOV-2015
+IBDEI1C2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22220,2)
- ;;=^5013955
- ;;^UTILITY(U,$J,358.3,22221,0)
- ;;=M84.463S^^101^1038^77
- ;;^UTILITY(U,$J,358.3,22221,1,0)
+ ;;^UTILITY(U,$J,358.3,22662,0)
+ ;;=A15.0^^87^983^84
+ ;;^UTILITY(U,$J,358.3,22662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22221,1,3,0)
- ;;=3^Pathological fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22221,1,4,0)
- ;;=4^M84.463S
- ;;^UTILITY(U,$J,358.3,22221,2)
- ;;=^5013949
- ;;^UTILITY(U,$J,358.3,22222,0)
- ;;=S89.312S^^101^1038^81
- ;;^UTILITY(U,$J,358.3,22222,1,0)
+ ;;^UTILITY(U,$J,358.3,22662,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,22662,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,22662,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,22663,0)
+ ;;=B20.^^87^983^31
+ ;;^UTILITY(U,$J,358.3,22663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22222,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,22222,1,4,0)
- ;;=4^S89.312S
- ;;^UTILITY(U,$J,358.3,22222,2)
- ;;=^5137372
- ;;^UTILITY(U,$J,358.3,22223,0)
- ;;=S89.311S^^101^1038^82
- ;;^UTILITY(U,$J,358.3,22223,1,0)
+ ;;^UTILITY(U,$J,358.3,22663,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,22663,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,22663,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,22664,0)
+ ;;=B02.9^^87^983^93
+ ;;^UTILITY(U,$J,358.3,22664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22223,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,22223,1,4,0)
- ;;=4^S89.311S
- ;;^UTILITY(U,$J,358.3,22223,2)
- ;;=^5043822
- ;;^UTILITY(U,$J,358.3,22224,0)
- ;;=S89.212S^^101^1038^85
- ;;^UTILITY(U,$J,358.3,22224,1,0)
+ ;;^UTILITY(U,$J,358.3,22664,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,22664,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,22664,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,22665,0)
+ ;;=A60.9^^87^983^2
+ ;;^UTILITY(U,$J,358.3,22665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22224,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,22224,1,4,0)
- ;;=4^S89.212S
- ;;^UTILITY(U,$J,358.3,22224,2)
- ;;=^5043780
- ;;^UTILITY(U,$J,358.3,22225,0)
- ;;=S89.211S^^101^1038^86
- ;;^UTILITY(U,$J,358.3,22225,1,0)
+ ;;^UTILITY(U,$J,358.3,22665,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,22665,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,22665,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,22666,0)
+ ;;=A60.04^^87^983^34
+ ;;^UTILITY(U,$J,358.3,22666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22225,1,3,0)
- ;;=3^Sltr-haris Type I physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,22225,1,4,0)
- ;;=4^S89.211S
- ;;^UTILITY(U,$J,358.3,22225,2)
- ;;=^5043774
- ;;^UTILITY(U,$J,358.3,22226,0)
- ;;=S89.322S^^101^1038^89
- ;;^UTILITY(U,$J,358.3,22226,1,0)
+ ;;^UTILITY(U,$J,358.3,22666,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,22666,1,4,0)
+ ;;=4^A60.04
+ ;;^UTILITY(U,$J,358.3,22666,2)
+ ;;=^5000356
+ ;;^UTILITY(U,$J,358.3,22667,0)
+ ;;=A60.01^^87^983^32
+ ;;^UTILITY(U,$J,358.3,22667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22226,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,22226,1,4,0)
- ;;=4^S89.322S
- ;;^UTILITY(U,$J,358.3,22226,2)
- ;;=^5137378
- ;;^UTILITY(U,$J,358.3,22227,0)
- ;;=S89.221S^^101^1038^93
- ;;^UTILITY(U,$J,358.3,22227,1,0)
+ ;;^UTILITY(U,$J,358.3,22667,1,3,0)
+ ;;=3^Herpesviral Infection of Penis
+ ;;^UTILITY(U,$J,358.3,22667,1,4,0)
+ ;;=4^A60.01
+ ;;^UTILITY(U,$J,358.3,22667,2)
+ ;;=^5000353
+ ;;^UTILITY(U,$J,358.3,22668,0)
+ ;;=B00.1^^87^983^33
+ ;;^UTILITY(U,$J,358.3,22668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22227,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,22227,1,4,0)
- ;;=4^S89.221S
- ;;^UTILITY(U,$J,358.3,22227,2)
- ;;=^5043792
- ;;^UTILITY(U,$J,358.3,22228,0)
- ;;=S89.321S^^101^1038^90
- ;;^UTILITY(U,$J,358.3,22228,1,0)
+ ;;^UTILITY(U,$J,358.3,22668,1,3,0)
+ ;;=3^Herpesviral Vesicular Dermatitis
+ ;;^UTILITY(U,$J,358.3,22668,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,22668,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,22669,0)
+ ;;=B97.89^^87^983^89
+ ;;^UTILITY(U,$J,358.3,22669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22228,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx lower end of r fibula, sequela
- ;;^UTILITY(U,$J,358.3,22228,1,4,0)
- ;;=4^S89.321S
- ;;^UTILITY(U,$J,358.3,22228,2)
- ;;=^5043834
- ;;^UTILITY(U,$J,358.3,22229,0)
- ;;=S89.222S^^101^1038^94
- ;;^UTILITY(U,$J,358.3,22229,1,0)
+ ;;^UTILITY(U,$J,358.3,22669,1,3,0)
+ ;;=3^Viral Agent Cause of Disease
+ ;;^UTILITY(U,$J,358.3,22669,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,22669,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,22670,0)
+ ;;=B97.10^^87^983^21
+ ;;^UTILITY(U,$J,358.3,22670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22229,1,3,0)
- ;;=3^Sltr-haris Type II physeal fx upper end of l fibula, sequela
- ;;^UTILITY(U,$J,358.3,22229,1,4,0)
- ;;=4^S89.222S
- ;;^UTILITY(U,$J,358.3,22229,2)
- ;;=^5043798
- ;;^UTILITY(U,$J,358.3,22230,0)
- ;;=M84.364S^^101^1038^103
- ;;^UTILITY(U,$J,358.3,22230,1,0)
+ ;;^UTILITY(U,$J,358.3,22670,1,3,0)
+ ;;=3^Enterovirus Cause of Disease
+ ;;^UTILITY(U,$J,358.3,22670,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,22670,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,22671,0)
+ ;;=B34.9^^87^983^90
+ ;;^UTILITY(U,$J,358.3,22671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22230,1,3,0)
- ;;=3^Stress fracture, left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22230,1,4,0)
- ;;=4^M84.364S
- ;;^UTILITY(U,$J,358.3,22230,2)
- ;;=^5013727
- ;;^UTILITY(U,$J,358.3,22231,0)
- ;;=M84.363S^^101^1038^105
- ;;^UTILITY(U,$J,358.3,22231,1,0)
+ ;;^UTILITY(U,$J,358.3,22671,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,22671,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,22671,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,22672,0)
+ ;;=A69.20^^87^983^50
+ ;;^UTILITY(U,$J,358.3,22672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22231,1,3,0)
- ;;=3^Stress fracture, right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22231,1,4,0)
- ;;=4^M84.363S
- ;;^UTILITY(U,$J,358.3,22231,2)
- ;;=^5013721
- ;;^UTILITY(U,$J,358.3,22232,0)
- ;;=S82.822S^^101^1038^107
- ;;^UTILITY(U,$J,358.3,22232,1,0)
+ ;;^UTILITY(U,$J,358.3,22672,1,3,0)
+ ;;=3^Lyme Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,22672,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,22672,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,22673,0)
+ ;;=A69.22^^87^983^52
+ ;;^UTILITY(U,$J,358.3,22673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22232,1,3,0)
- ;;=3^Torus fracture of lower end of left fibula, sequela
+ ;;^UTILITY(U,$J,358.3,22673,1,3,0)
+ ;;=3^Neurologic Disorders d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,22673,1,4,0)
+ ;;=4^A69.22
+ ;;^UTILITY(U,$J,358.3,22673,2)
+ ;;=^5000377
+ ;;^UTILITY(U,$J,358.3,22674,0)
+ ;;=A69.21^^87^983^51
+ ;;^UTILITY(U,$J,358.3,22674,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22674,1,3,0)
+ ;;=3^Meningitis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,22674,1,4,0)
+ ;;=4^A69.21
+ ;;^UTILITY(U,$J,358.3,22674,2)
+ ;;=^5000376
+ ;;^UTILITY(U,$J,358.3,22675,0)
+ ;;=A69.29^^87^983^18
+ ;;^UTILITY(U,$J,358.3,22675,1,0)
+ ;;=^358.31IA^4^2

@@ -1,138 +1,132 @@
-IBDEI16X ; ; 19-NOV-2015
+IBDEI16X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19892,0)
- ;;=N64.59^^94^932^57
- ;;^UTILITY(U,$J,358.3,19892,1,0)
+ ;;^UTILITY(U,$J,358.3,20240,2)
+ ;;=^5063349
+ ;;^UTILITY(U,$J,358.3,20241,0)
+ ;;=Z80.43^^84^930^40
+ ;;^UTILITY(U,$J,358.3,20241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19892,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,19892,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,19892,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,19893,0)
- ;;=N64.52^^94^932^37
- ;;^UTILITY(U,$J,358.3,19893,1,0)
+ ;;^UTILITY(U,$J,358.3,20241,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,20241,1,4,0)
+ ;;=4^Z80.43
+ ;;^UTILITY(U,$J,358.3,20241,2)
+ ;;=^5063350
+ ;;^UTILITY(U,$J,358.3,20242,0)
+ ;;=Z80.6^^84^930^32
+ ;;^UTILITY(U,$J,358.3,20242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19893,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,19893,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,19893,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,19894,0)
- ;;=N64.53^^94^932^54
- ;;^UTILITY(U,$J,358.3,19894,1,0)
+ ;;^UTILITY(U,$J,358.3,20242,1,3,0)
+ ;;=3^Family Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,20242,1,4,0)
+ ;;=4^Z80.6
+ ;;^UTILITY(U,$J,358.3,20242,2)
+ ;;=^5063354
+ ;;^UTILITY(U,$J,358.3,20243,0)
+ ;;=Z80.8^^84^930^37
+ ;;^UTILITY(U,$J,358.3,20243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19894,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,19894,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,19894,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,19895,0)
- ;;=N75.1^^94^932^5
- ;;^UTILITY(U,$J,358.3,19895,1,0)
+ ;;^UTILITY(U,$J,358.3,20243,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Organs/Systems
+ ;;^UTILITY(U,$J,358.3,20243,1,4,0)
+ ;;=4^Z80.8
+ ;;^UTILITY(U,$J,358.3,20243,2)
+ ;;=^5063356
+ ;;^UTILITY(U,$J,358.3,20244,0)
+ ;;=Z81.8^^84^930^42
+ ;;^UTILITY(U,$J,358.3,20244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19895,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,19895,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,19895,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,19896,0)
- ;;=N80.9^^94^932^18
- ;;^UTILITY(U,$J,358.3,19896,1,0)
+ ;;^UTILITY(U,$J,358.3,20244,1,3,0)
+ ;;=3^Family Hx of Mental/Behavioral Disorders
+ ;;^UTILITY(U,$J,358.3,20244,1,4,0)
+ ;;=4^Z81.8
+ ;;^UTILITY(U,$J,358.3,20244,2)
+ ;;=^5063363
+ ;;^UTILITY(U,$J,358.3,20245,0)
+ ;;=Z82.3^^84^930^49
+ ;;^UTILITY(U,$J,358.3,20245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19896,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,19896,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,19896,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,19897,0)
- ;;=N81.4^^94^932^61
- ;;^UTILITY(U,$J,358.3,19897,1,0)
+ ;;^UTILITY(U,$J,358.3,20245,1,3,0)
+ ;;=3^Family Hx of Stroke
+ ;;^UTILITY(U,$J,358.3,20245,1,4,0)
+ ;;=4^Z82.3
+ ;;^UTILITY(U,$J,358.3,20245,2)
+ ;;=^5063367
+ ;;^UTILITY(U,$J,358.3,20246,0)
+ ;;=Z82.49^^84^930^31
+ ;;^UTILITY(U,$J,358.3,20246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19897,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,19897,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,19897,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,19898,0)
- ;;=N83.20^^94^932^42
- ;;^UTILITY(U,$J,358.3,19898,1,0)
+ ;;^UTILITY(U,$J,358.3,20246,1,3,0)
+ ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
+ ;;^UTILITY(U,$J,358.3,20246,1,4,0)
+ ;;=4^Z82.49
+ ;;^UTILITY(U,$J,358.3,20246,2)
+ ;;=^5063369
+ ;;^UTILITY(U,$J,358.3,20247,0)
+ ;;=Z82.5^^84^930^22
+ ;;^UTILITY(U,$J,358.3,20247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19898,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,19898,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,19898,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,19899,0)
- ;;=N83.29^^94^932^41
- ;;^UTILITY(U,$J,358.3,19899,1,0)
+ ;;^UTILITY(U,$J,358.3,20247,1,3,0)
+ ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
+ ;;^UTILITY(U,$J,358.3,20247,1,4,0)
+ ;;=4^Z82.5
+ ;;^UTILITY(U,$J,358.3,20247,2)
+ ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,20248,0)
+ ;;=Z82.61^^84^930^21
+ ;;^UTILITY(U,$J,358.3,20248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19899,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,19899,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,19899,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,19900,0)
- ;;=N84.8^^94^932^47
- ;;^UTILITY(U,$J,358.3,19900,1,0)
+ ;;^UTILITY(U,$J,358.3,20248,1,3,0)
+ ;;=3^Family Hx of Arthritis
+ ;;^UTILITY(U,$J,358.3,20248,1,4,0)
+ ;;=4^Z82.61
+ ;;^UTILITY(U,$J,358.3,20248,2)
+ ;;=^5063371
+ ;;^UTILITY(U,$J,358.3,20249,0)
+ ;;=Z82.69^^84^930^44
+ ;;^UTILITY(U,$J,358.3,20249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19900,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,19900,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,19900,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,19901,0)
- ;;=N84.0^^94^932^45
- ;;^UTILITY(U,$J,358.3,19901,1,0)
+ ;;^UTILITY(U,$J,358.3,20249,1,3,0)
+ ;;=3^Family Hx of Musculoskeletal System/Connective Tissue
+ ;;^UTILITY(U,$J,358.3,20249,1,4,0)
+ ;;=4^Z82.69
+ ;;^UTILITY(U,$J,358.3,20249,2)
+ ;;=^5063373
+ ;;^UTILITY(U,$J,358.3,20250,0)
+ ;;=Z83.3^^84^930^28
+ ;;^UTILITY(U,$J,358.3,20250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19901,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,19901,1,4,0)
- ;;=4^N84.0
- ;;^UTILITY(U,$J,358.3,19901,2)
- ;;=^270517
- ;;^UTILITY(U,$J,358.3,19902,0)
- ;;=N84.9^^94^932^46
- ;;^UTILITY(U,$J,358.3,19902,1,0)
+ ;;^UTILITY(U,$J,358.3,20250,1,3,0)
+ ;;=3^Family Hx of Diabetes Mellitus
+ ;;^UTILITY(U,$J,358.3,20250,1,4,0)
+ ;;=4^Z83.3
+ ;;^UTILITY(U,$J,358.3,20250,2)
+ ;;=^5063379
+ ;;^UTILITY(U,$J,358.3,20251,0)
+ ;;=Z83.2^^84^930^24
+ ;;^UTILITY(U,$J,358.3,20251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19902,1,3,0)
- ;;=3^Polyp of Female Genital Tract,Unspec
- ;;^UTILITY(U,$J,358.3,19902,1,4,0)
- ;;=4^N84.9
- ;;^UTILITY(U,$J,358.3,19902,2)
- ;;=^5015869
- ;;^UTILITY(U,$J,358.3,19903,0)
- ;;=N84.1^^94^932^44
- ;;^UTILITY(U,$J,358.3,19903,1,0)
+ ;;^UTILITY(U,$J,358.3,20251,1,3,0)
+ ;;=3^Family Hx of Blood/Immune Mechanism Diseases
+ ;;^UTILITY(U,$J,358.3,20251,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,20251,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,20252,0)
+ ;;=Z82.71^^84^930^47
+ ;;^UTILITY(U,$J,358.3,20252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19903,1,3,0)
- ;;=3^Polyp of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,19903,1,4,0)
- ;;=4^N84.1
- ;;^UTILITY(U,$J,358.3,19903,2)
- ;;=^5015866
- ;;^UTILITY(U,$J,358.3,19904,0)
- ;;=N89.1^^94^932^63
- ;;^UTILITY(U,$J,358.3,19904,1,0)
+ ;;^UTILITY(U,$J,358.3,20252,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,20252,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,20252,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,20253,0)
+ ;;=Z82.1^^84^930^23
+ ;;^UTILITY(U,$J,358.3,20253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19904,1,3,0)
- ;;=3^Vaginal Dysplasia,Moderate
- ;;^UTILITY(U,$J,358.3,19904,1,4,0)
- ;;=4^N89.1
- ;;^UTILITY(U,$J,358.3,19904,2)
- ;;=^5015886
- ;;^UTILITY(U,$J,358.3,19905,0)
- ;;=N89.0^^94^932^62
- ;;^UTILITY(U,$J,358.3,19905,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20253,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss

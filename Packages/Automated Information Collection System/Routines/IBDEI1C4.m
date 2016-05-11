@@ -1,122 +1,134 @@
-IBDEI1C4 ; ; 19-NOV-2015
+IBDEI1C4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22244,1,4,0)
- ;;=4^S32.052S
- ;;^UTILITY(U,$J,358.3,22244,2)
- ;;=^5024508
- ;;^UTILITY(U,$J,358.3,22245,0)
- ;;=S12.02XS^^101^1039^62
- ;;^UTILITY(U,$J,358.3,22245,1,0)
+ ;;^UTILITY(U,$J,358.3,22689,0)
+ ;;=H83.02^^87^983^46
+ ;;^UTILITY(U,$J,358.3,22689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22245,1,3,0)
- ;;=3^Unstable burst fracture of first cervical vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22245,1,4,0)
- ;;=4^S12.02XS
- ;;^UTILITY(U,$J,358.3,22245,2)
- ;;=^5021568
- ;;^UTILITY(U,$J,358.3,22246,0)
- ;;=S32.012S^^101^1039^63
- ;;^UTILITY(U,$J,358.3,22246,1,0)
+ ;;^UTILITY(U,$J,358.3,22689,1,3,0)
+ ;;=3^Labyrinthitis,Left Ear
+ ;;^UTILITY(U,$J,358.3,22689,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,22689,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,22690,0)
+ ;;=J01.91^^87^983^76
+ ;;^UTILITY(U,$J,358.3,22690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22246,1,3,0)
- ;;=3^Unstable burst fracture of first lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22246,1,4,0)
- ;;=4^S32.012S
- ;;^UTILITY(U,$J,358.3,22246,2)
- ;;=^5024388
- ;;^UTILITY(U,$J,358.3,22247,0)
- ;;=S22.012S^^101^1039^64
- ;;^UTILITY(U,$J,358.3,22247,1,0)
+ ;;^UTILITY(U,$J,358.3,22690,1,3,0)
+ ;;=3^Sinusitis,Acute Recurrent Unspec
+ ;;^UTILITY(U,$J,358.3,22690,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,22690,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,22691,0)
+ ;;=J03.90^^87^983^81
+ ;;^UTILITY(U,$J,358.3,22691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22247,1,3,0)
- ;;=3^Unstable burst fracture of first thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22247,1,4,0)
- ;;=4^S22.012S
- ;;^UTILITY(U,$J,358.3,22247,2)
- ;;=^5022852
- ;;^UTILITY(U,$J,358.3,22248,0)
- ;;=S32.042S^^101^1039^65
- ;;^UTILITY(U,$J,358.3,22248,1,0)
+ ;;^UTILITY(U,$J,358.3,22691,1,3,0)
+ ;;=3^Tonsillitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,22691,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,22691,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,22692,0)
+ ;;=J01.90^^87^983^77
+ ;;^UTILITY(U,$J,358.3,22692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22248,1,3,0)
- ;;=3^Unstable burst fracture of fourth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22248,1,4,0)
- ;;=4^S32.042S
- ;;^UTILITY(U,$J,358.3,22248,2)
- ;;=^5024478
- ;;^UTILITY(U,$J,358.3,22249,0)
- ;;=S22.042S^^101^1039^66
- ;;^UTILITY(U,$J,358.3,22249,1,0)
+ ;;^UTILITY(U,$J,358.3,22692,1,3,0)
+ ;;=3^Sinusitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,22692,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,22692,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,22693,0)
+ ;;=J20.1^^87^983^10
+ ;;^UTILITY(U,$J,358.3,22693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22249,1,3,0)
- ;;=3^Unstable burst fracture of fourth thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22249,1,4,0)
- ;;=4^S22.042S
- ;;^UTILITY(U,$J,358.3,22249,2)
- ;;=^5022942
- ;;^UTILITY(U,$J,358.3,22250,0)
- ;;=S32.022S^^101^1039^67
- ;;^UTILITY(U,$J,358.3,22250,1,0)
+ ;;^UTILITY(U,$J,358.3,22693,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
+ ;;^UTILITY(U,$J,358.3,22693,1,4,0)
+ ;;=4^J20.1
+ ;;^UTILITY(U,$J,358.3,22693,2)
+ ;;=^5008187
+ ;;^UTILITY(U,$J,358.3,22694,0)
+ ;;=J20.0^^87^983^11
+ ;;^UTILITY(U,$J,358.3,22694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22250,1,3,0)
- ;;=3^Unstable burst fracture of second lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22250,1,4,0)
- ;;=4^S32.022S
- ;;^UTILITY(U,$J,358.3,22250,2)
- ;;=^5024418
- ;;^UTILITY(U,$J,358.3,22251,0)
- ;;=S22.022S^^101^1039^68
- ;;^UTILITY(U,$J,358.3,22251,1,0)
+ ;;^UTILITY(U,$J,358.3,22694,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
+ ;;^UTILITY(U,$J,358.3,22694,1,4,0)
+ ;;=4^J20.0
+ ;;^UTILITY(U,$J,358.3,22694,2)
+ ;;=^5008186
+ ;;^UTILITY(U,$J,358.3,22695,0)
+ ;;=J20.2^^87^983^6
+ ;;^UTILITY(U,$J,358.3,22695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22251,1,3,0)
- ;;=3^Unstable burst fracture of second thoracic vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22251,1,4,0)
- ;;=4^S22.022S
- ;;^UTILITY(U,$J,358.3,22251,2)
- ;;=^5022882
- ;;^UTILITY(U,$J,358.3,22252,0)
- ;;=S22.082S^^101^1039^57
- ;;^UTILITY(U,$J,358.3,22252,1,0)
+ ;;^UTILITY(U,$J,358.3,22695,1,3,0)
+ ;;=3^Bonchitis,Acute d/t Streptococcus
+ ;;^UTILITY(U,$J,358.3,22695,1,4,0)
+ ;;=4^J20.2
+ ;;^UTILITY(U,$J,358.3,22695,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,22696,0)
+ ;;=J20.4^^87^983^13
+ ;;^UTILITY(U,$J,358.3,22696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22252,1,3,0)
- ;;=3^Unstable burst fracture of T11-T12 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22252,1,4,0)
- ;;=4^S22.082S
- ;;^UTILITY(U,$J,358.3,22252,2)
- ;;=^5023062
- ;;^UTILITY(U,$J,358.3,22253,0)
- ;;=S22.052S^^101^1039^58
- ;;^UTILITY(U,$J,358.3,22253,1,0)
+ ;;^UTILITY(U,$J,358.3,22696,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,22696,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,22696,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,22697,0)
+ ;;=J20.3^^87^983^8
+ ;;^UTILITY(U,$J,358.3,22697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22253,1,3,0)
- ;;=3^Unstable burst fracture of T5-T6 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22253,1,4,0)
- ;;=4^S22.052S
- ;;^UTILITY(U,$J,358.3,22253,2)
- ;;=^5022972
- ;;^UTILITY(U,$J,358.3,22254,0)
- ;;=S22.062S^^101^1039^59
- ;;^UTILITY(U,$J,358.3,22254,1,0)
+ ;;^UTILITY(U,$J,358.3,22697,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,22697,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,22697,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,22698,0)
+ ;;=J20.9^^87^983^7
+ ;;^UTILITY(U,$J,358.3,22698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22254,1,3,0)
- ;;=3^Unstable burst fracture of T7-T8 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22254,1,4,0)
- ;;=4^S22.062S
- ;;^UTILITY(U,$J,358.3,22254,2)
- ;;=^5023002
- ;;^UTILITY(U,$J,358.3,22255,0)
- ;;=S22.072S^^101^1039^60
- ;;^UTILITY(U,$J,358.3,22255,1,0)
+ ;;^UTILITY(U,$J,358.3,22698,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,22698,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,22698,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,22699,0)
+ ;;=J20.8^^87^983^12
+ ;;^UTILITY(U,$J,358.3,22699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22255,1,3,0)
- ;;=3^Unstable burst fracture of T9-T10 vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22255,1,4,0)
- ;;=4^S22.072S
- ;;^UTILITY(U,$J,358.3,22255,2)
- ;;=^5023032
- ;;^UTILITY(U,$J,358.3,22256,0)
- ;;=S32.032S^^101^1039^69
- ;;^UTILITY(U,$J,358.3,22256,1,0)
+ ;;^UTILITY(U,$J,358.3,22699,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,22699,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,22699,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,22700,0)
+ ;;=J20.5^^87^983^14
+ ;;^UTILITY(U,$J,358.3,22700,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22700,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,22700,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,22700,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,22701,0)
+ ;;=J20.7^^87^983^9
+ ;;^UTILITY(U,$J,358.3,22701,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22701,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,22701,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,22701,2)
+ ;;=^5008193

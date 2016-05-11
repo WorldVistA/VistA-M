@@ -1,134 +1,138 @@
-IBDEI15O ; ; 19-NOV-2015
+IBDEI15O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19306,2)
- ;;=^5019302
- ;;^UTILITY(U,$J,358.3,19307,0)
- ;;=M02.30^^94^922^124
- ;;^UTILITY(U,$J,358.3,19307,1,0)
+ ;;^UTILITY(U,$J,358.3,19655,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,19655,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,19656,0)
+ ;;=H81.11^^84^919^10
+ ;;^UTILITY(U,$J,358.3,19656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19307,1,3,0)
- ;;=3^Reiter's Disease,Unspec Site
- ;;^UTILITY(U,$J,358.3,19307,1,4,0)
- ;;=4^M02.30
- ;;^UTILITY(U,$J,358.3,19307,2)
- ;;=^5009790
- ;;^UTILITY(U,$J,358.3,19308,0)
- ;;=M10.9^^94^922^40
- ;;^UTILITY(U,$J,358.3,19308,1,0)
+ ;;^UTILITY(U,$J,358.3,19656,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,19656,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,19656,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,19657,0)
+ ;;=H81.13^^84^919^8
+ ;;^UTILITY(U,$J,358.3,19657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19308,1,3,0)
- ;;=3^Gout,Unspec
- ;;^UTILITY(U,$J,358.3,19308,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,19308,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,19309,0)
- ;;=G90.59^^94^922^34
- ;;^UTILITY(U,$J,358.3,19309,1,0)
+ ;;^UTILITY(U,$J,358.3,19657,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,19657,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,19657,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,19658,0)
+ ;;=H81.10^^84^919^11
+ ;;^UTILITY(U,$J,358.3,19658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19309,1,3,0)
- ;;=3^Complex Regional Pain Syndrome I,Unspec
- ;;^UTILITY(U,$J,358.3,19309,1,4,0)
- ;;=4^G90.59
- ;;^UTILITY(U,$J,358.3,19309,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,19310,0)
- ;;=G56.01^^94^922^12
- ;;^UTILITY(U,$J,358.3,19310,1,0)
+ ;;^UTILITY(U,$J,358.3,19658,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,19658,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,19658,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,19659,0)
+ ;;=B37.84^^84^919^12
+ ;;^UTILITY(U,$J,358.3,19659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19310,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,19310,1,4,0)
- ;;=4^G56.01
- ;;^UTILITY(U,$J,358.3,19310,2)
- ;;=^5004018
- ;;^UTILITY(U,$J,358.3,19311,0)
- ;;=G56.02^^94^922^11
- ;;^UTILITY(U,$J,358.3,19311,1,0)
+ ;;^UTILITY(U,$J,358.3,19659,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,19659,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,19659,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,19660,0)
+ ;;=H60.313^^84^919^18
+ ;;^UTILITY(U,$J,358.3,19660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19311,1,3,0)
- ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,19311,1,4,0)
- ;;=4^G56.02
- ;;^UTILITY(U,$J,358.3,19311,2)
- ;;=^5004019
- ;;^UTILITY(U,$J,358.3,19312,0)
- ;;=G56.21^^94^922^56
- ;;^UTILITY(U,$J,358.3,19312,1,0)
+ ;;^UTILITY(U,$J,358.3,19660,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,19660,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,19660,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,19661,0)
+ ;;=B37.0^^84^920^13
+ ;;^UTILITY(U,$J,358.3,19661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19312,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,19312,1,4,0)
- ;;=4^G56.21
- ;;^UTILITY(U,$J,358.3,19312,2)
- ;;=^5004024
- ;;^UTILITY(U,$J,358.3,19313,0)
- ;;=G56.22^^94^922^55
- ;;^UTILITY(U,$J,358.3,19313,1,0)
+ ;;^UTILITY(U,$J,358.3,19661,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,19661,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,19661,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,19662,0)
+ ;;=B37.83^^84^920^12
+ ;;^UTILITY(U,$J,358.3,19662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19313,1,3,0)
- ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,19313,1,4,0)
- ;;=4^G56.22
- ;;^UTILITY(U,$J,358.3,19313,2)
- ;;=^5004025
- ;;^UTILITY(U,$J,358.3,19314,0)
- ;;=M26.60^^94^922^163
- ;;^UTILITY(U,$J,358.3,19314,1,0)
+ ;;^UTILITY(U,$J,358.3,19662,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,19662,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,19662,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,19663,0)
+ ;;=J00.^^84^920^6
+ ;;^UTILITY(U,$J,358.3,19663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19314,1,3,0)
- ;;=3^Temporomandibular Joint Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,19314,1,4,0)
- ;;=4^M26.60
- ;;^UTILITY(U,$J,358.3,19314,2)
- ;;=^5011714
- ;;^UTILITY(U,$J,358.3,19315,0)
- ;;=L40.52^^94^922^120
- ;;^UTILITY(U,$J,358.3,19315,1,0)
+ ;;^UTILITY(U,$J,358.3,19663,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,19663,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,19663,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,19664,0)
+ ;;=J01.00^^84^920^5
+ ;;^UTILITY(U,$J,358.3,19664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19315,1,3,0)
- ;;=3^Psoriatic Arthritis Mutilans
- ;;^UTILITY(U,$J,358.3,19315,1,4,0)
- ;;=4^L40.52
- ;;^UTILITY(U,$J,358.3,19315,2)
- ;;=^5009167
- ;;^UTILITY(U,$J,358.3,19316,0)
- ;;=L40.53^^94^922^121
- ;;^UTILITY(U,$J,358.3,19316,1,0)
+ ;;^UTILITY(U,$J,358.3,19664,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19664,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,19664,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,19665,0)
+ ;;=J01.10^^84^920^1
+ ;;^UTILITY(U,$J,358.3,19665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19316,1,3,0)
- ;;=3^Psoriatic Spondylitis
- ;;^UTILITY(U,$J,358.3,19316,1,4,0)
- ;;=4^L40.53
- ;;^UTILITY(U,$J,358.3,19316,2)
- ;;=^5009168
- ;;^UTILITY(U,$J,358.3,19317,0)
- ;;=M32.9^^94^922^162
- ;;^UTILITY(U,$J,358.3,19317,1,0)
+ ;;^UTILITY(U,$J,358.3,19665,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19665,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,19665,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,19666,0)
+ ;;=J02.9^^84^920^7
+ ;;^UTILITY(U,$J,358.3,19666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19317,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Unspec
- ;;^UTILITY(U,$J,358.3,19317,1,4,0)
- ;;=4^M32.9
- ;;^UTILITY(U,$J,358.3,19317,2)
- ;;=^5011761
- ;;^UTILITY(U,$J,358.3,19318,0)
- ;;=M32.0^^94^922^158
- ;;^UTILITY(U,$J,358.3,19318,1,0)
+ ;;^UTILITY(U,$J,358.3,19666,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19666,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,19666,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,19667,0)
+ ;;=J03.91^^84^920^8
+ ;;^UTILITY(U,$J,358.3,19667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19318,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Drug-Induced
- ;;^UTILITY(U,$J,358.3,19318,1,4,0)
- ;;=4^M32.0
- ;;^UTILITY(U,$J,358.3,19318,2)
- ;;=^5011752
- ;;^UTILITY(U,$J,358.3,19319,0)
- ;;=M32.13^^94^922^160
- ;;^UTILITY(U,$J,358.3,19319,1,0)
+ ;;^UTILITY(U,$J,358.3,19667,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19667,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,19667,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,19668,0)
+ ;;=J04.0^^84^920^3
+ ;;^UTILITY(U,$J,358.3,19668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19319,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Lung Involvement
- ;;^UTILITY(U,$J,358.3,19319,1,4,0)
- ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,19668,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,19668,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,19668,2)
+ ;;=^5008137

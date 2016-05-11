@@ -1,136 +1,132 @@
-IBDEI1LB ; ; 19-NOV-2015
+IBDEI1LB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26597,1,4,0)
- ;;=4^H21.543
- ;;^UTILITY(U,$J,358.3,26597,2)
- ;;=^5005253
- ;;^UTILITY(U,$J,358.3,26598,0)
- ;;=H21.542^^130^1294^17
- ;;^UTILITY(U,$J,358.3,26598,1,0)
+ ;;^UTILITY(U,$J,358.3,26957,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,26957,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,26958,0)
+ ;;=F14.182^^100^1299^6
+ ;;^UTILITY(U,$J,358.3,26958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26598,1,3,0)
- ;;=3^Posterior Synechiae,Left Eye
- ;;^UTILITY(U,$J,358.3,26598,1,4,0)
- ;;=4^H21.542
- ;;^UTILITY(U,$J,358.3,26598,2)
- ;;=^5005252
- ;;^UTILITY(U,$J,358.3,26599,0)
- ;;=H21.513^^130^1294^3
- ;;^UTILITY(U,$J,358.3,26599,1,0)
+ ;;^UTILITY(U,$J,358.3,26958,1,3,0)
+ ;;=3^Cocaine-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26958,1,4,0)
+ ;;=4^F14.182
+ ;;^UTILITY(U,$J,358.3,26958,2)
+ ;;=^5003250
+ ;;^UTILITY(U,$J,358.3,26959,0)
+ ;;=F14.20^^100^1299^3
+ ;;^UTILITY(U,$J,358.3,26959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26599,1,3,0)
- ;;=3^Anterior Synechiae,Bilateral
- ;;^UTILITY(U,$J,358.3,26599,1,4,0)
- ;;=4^H21.513
- ;;^UTILITY(U,$J,358.3,26599,2)
- ;;=^5005241
- ;;^UTILITY(U,$J,358.3,26600,0)
- ;;=H21.511^^130^1294^5
- ;;^UTILITY(U,$J,358.3,26600,1,0)
+ ;;^UTILITY(U,$J,358.3,26959,1,3,0)
+ ;;=3^Cocaine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26959,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,26959,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,26960,0)
+ ;;=F14.21^^100^1299^2
+ ;;^UTILITY(U,$J,358.3,26960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26600,1,3,0)
- ;;=3^Anterior Synechiae,Right Eye
- ;;^UTILITY(U,$J,358.3,26600,1,4,0)
- ;;=4^H21.511
- ;;^UTILITY(U,$J,358.3,26600,2)
- ;;=^5005239
- ;;^UTILITY(U,$J,358.3,26601,0)
- ;;=H21.512^^130^1294^4
- ;;^UTILITY(U,$J,358.3,26601,1,0)
+ ;;^UTILITY(U,$J,358.3,26960,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,26960,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,26960,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,26961,0)
+ ;;=F14.23^^100^1299^4
+ ;;^UTILITY(U,$J,358.3,26961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26601,1,3,0)
- ;;=3^Anterior Synechiae,Left Eye
- ;;^UTILITY(U,$J,358.3,26601,1,4,0)
- ;;=4^H21.512
- ;;^UTILITY(U,$J,358.3,26601,2)
- ;;=^5005240
- ;;^UTILITY(U,$J,358.3,26602,0)
- ;;=H21.81^^130^1294^10
- ;;^UTILITY(U,$J,358.3,26602,1,0)
+ ;;^UTILITY(U,$J,358.3,26961,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,26961,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,26961,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,26962,0)
+ ;;=F43.0^^100^1300^1
+ ;;^UTILITY(U,$J,358.3,26962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26602,1,3,0)
- ;;=3^Floppy Iris Syndrome
- ;;^UTILITY(U,$J,358.3,26602,1,4,0)
- ;;=4^H21.81
- ;;^UTILITY(U,$J,358.3,26602,2)
- ;;=^5005263
- ;;^UTILITY(U,$J,358.3,26603,0)
- ;;=H21.89^^130^1294^15
- ;;^UTILITY(U,$J,358.3,26603,1,0)
+ ;;^UTILITY(U,$J,358.3,26962,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,26962,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,26962,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,26963,0)
+ ;;=F43.21^^100^1300^3
+ ;;^UTILITY(U,$J,358.3,26963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26603,1,3,0)
- ;;=3^Iris/Ciliary Body Disorders NEC
- ;;^UTILITY(U,$J,358.3,26603,1,4,0)
- ;;=4^H21.89
- ;;^UTILITY(U,$J,358.3,26603,2)
- ;;=^5005265
- ;;^UTILITY(U,$J,358.3,26604,0)
- ;;=H57.00^^130^1294^2
- ;;^UTILITY(U,$J,358.3,26604,1,0)
+ ;;^UTILITY(U,$J,358.3,26963,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,26963,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,26963,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,26964,0)
+ ;;=F43.22^^100^1300^2
+ ;;^UTILITY(U,$J,358.3,26964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26604,1,3,0)
- ;;=3^Anomaly of Pupillary Function,Unspec
- ;;^UTILITY(U,$J,358.3,26604,1,4,0)
- ;;=4^H57.00
- ;;^UTILITY(U,$J,358.3,26604,2)
- ;;=^5006375
- ;;^UTILITY(U,$J,358.3,26605,0)
- ;;=H57.9^^130^1294^9
- ;;^UTILITY(U,$J,358.3,26605,1,0)
+ ;;^UTILITY(U,$J,358.3,26964,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,26964,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,26964,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,26965,0)
+ ;;=F43.23^^100^1300^5
+ ;;^UTILITY(U,$J,358.3,26965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26605,1,3,0)
- ;;=3^Eye/Adnexa Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26605,1,4,0)
- ;;=4^H57.9
- ;;^UTILITY(U,$J,358.3,26605,2)
- ;;=^269333
- ;;^UTILITY(U,$J,358.3,26606,0)
- ;;=H57.02^^130^1294^1
- ;;^UTILITY(U,$J,358.3,26606,1,0)
+ ;;^UTILITY(U,$J,358.3,26965,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,26965,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,26965,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,26966,0)
+ ;;=F43.24^^100^1300^4
+ ;;^UTILITY(U,$J,358.3,26966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26606,1,3,0)
- ;;=3^Anisocoria
- ;;^UTILITY(U,$J,358.3,26606,1,4,0)
- ;;=4^H57.02
- ;;^UTILITY(U,$J,358.3,26606,2)
- ;;=^7834
- ;;^UTILITY(U,$J,358.3,26607,0)
- ;;=B39.9^^130^1295^20
- ;;^UTILITY(U,$J,358.3,26607,1,0)
+ ;;^UTILITY(U,$J,358.3,26966,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,26966,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,26966,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,26967,0)
+ ;;=F43.25^^100^1300^6
+ ;;^UTILITY(U,$J,358.3,26967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26607,1,3,0)
- ;;=3^Histoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,26607,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,26607,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,26608,0)
- ;;=H32.^^130^1295^10
- ;;^UTILITY(U,$J,358.3,26608,1,0)
+ ;;^UTILITY(U,$J,358.3,26967,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,26967,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,26967,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,26968,0)
+ ;;=F43.8^^100^1300^15
+ ;;^UTILITY(U,$J,358.3,26968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26608,1,3,0)
- ;;=3^Chorioretinal Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,26608,1,4,0)
- ;;=4^H32.
- ;;^UTILITY(U,$J,358.3,26608,2)
- ;;=^5005489
- ;;^UTILITY(U,$J,358.3,26609,0)
- ;;=H33.101^^130^1295^47
- ;;^UTILITY(U,$J,358.3,26609,1,0)
+ ;;^UTILITY(U,$J,358.3,26968,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26968,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,26968,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,26969,0)
+ ;;=F43.20^^100^1300^7
+ ;;^UTILITY(U,$J,358.3,26969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26609,1,3,0)
- ;;=3^Retinoschisis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26609,1,4,0)
- ;;=4^H33.101
- ;;^UTILITY(U,$J,358.3,26609,2)
- ;;=^5005513
- ;;^UTILITY(U,$J,358.3,26610,0)
- ;;=H33.102^^130^1295^46
- ;;^UTILITY(U,$J,358.3,26610,1,0)
+ ;;^UTILITY(U,$J,358.3,26969,1,3,0)
+ ;;=3^Adjustment Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26969,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,26969,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,26970,0)
+ ;;=F43.9^^100^1300^16
+ ;;^UTILITY(U,$J,358.3,26970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26610,1,3,0)
- ;;=3^Retinoschisis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26610,1,4,0)
- ;;=4^H33.102

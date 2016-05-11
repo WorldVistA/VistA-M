@@ -1,116 +1,134 @@
-IBDEI29K ; ; 19-NOV-2015
+IBDEI29K ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38022,1,0)
+ ;;^UTILITY(U,$J,358.3,38389,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,38390,0)
+ ;;=F14.21^^145^1862^2
+ ;;^UTILITY(U,$J,358.3,38390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38022,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,38022,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,38022,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,38023,0)
- ;;=T76.21XA^^177^1914^14
- ;;^UTILITY(U,$J,358.3,38023,1,0)
+ ;;^UTILITY(U,$J,358.3,38390,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mod-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,38390,1,4,0)
+ ;;=4^F14.21
+ ;;^UTILITY(U,$J,358.3,38390,2)
+ ;;=^5003254
+ ;;^UTILITY(U,$J,358.3,38391,0)
+ ;;=F14.23^^145^1862^4
+ ;;^UTILITY(U,$J,358.3,38391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38023,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,38023,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,38023,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,38024,0)
- ;;=T76.21XD^^177^1914^15
- ;;^UTILITY(U,$J,358.3,38024,1,0)
+ ;;^UTILITY(U,$J,358.3,38391,1,3,0)
+ ;;=3^Cocaine Withdrawal
+ ;;^UTILITY(U,$J,358.3,38391,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,38391,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,38392,0)
+ ;;=F43.0^^145^1863^1
+ ;;^UTILITY(U,$J,358.3,38392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38024,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
- ;;^UTILITY(U,$J,358.3,38024,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,38024,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,38025,0)
- ;;=Z69.81^^177^1914^3
- ;;^UTILITY(U,$J,358.3,38025,1,0)
+ ;;^UTILITY(U,$J,358.3,38392,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,38392,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,38392,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,38393,0)
+ ;;=F43.21^^145^1863^3
+ ;;^UTILITY(U,$J,358.3,38393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38025,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,38025,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,38025,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,38026,0)
- ;;=Z69.82^^177^1914^1
- ;;^UTILITY(U,$J,358.3,38026,1,0)
+ ;;^UTILITY(U,$J,358.3,38393,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,38393,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,38393,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,38394,0)
+ ;;=F43.22^^145^1863^2
+ ;;^UTILITY(U,$J,358.3,38394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38026,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,38026,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,38026,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,38027,0)
- ;;=T74.01XA^^177^1914^16
- ;;^UTILITY(U,$J,358.3,38027,1,0)
+ ;;^UTILITY(U,$J,358.3,38394,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,38394,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,38394,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,38395,0)
+ ;;=F43.23^^145^1863^5
+ ;;^UTILITY(U,$J,358.3,38395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38027,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter
- ;;^UTILITY(U,$J,358.3,38027,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,38027,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,38028,0)
- ;;=T74.01XD^^177^1914^17
- ;;^UTILITY(U,$J,358.3,38028,1,0)
+ ;;^UTILITY(U,$J,358.3,38395,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,38395,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,38395,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,38396,0)
+ ;;=F43.24^^145^1863^4
+ ;;^UTILITY(U,$J,358.3,38396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38028,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,38028,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,38028,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,38029,0)
- ;;=T76.01XA^^177^1914^18
- ;;^UTILITY(U,$J,358.3,38029,1,0)
+ ;;^UTILITY(U,$J,358.3,38396,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,38396,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,38396,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,38397,0)
+ ;;=F43.25^^145^1863^6
+ ;;^UTILITY(U,$J,358.3,38397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38029,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
- ;;^UTILITY(U,$J,358.3,38029,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,38029,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,38030,0)
- ;;=T76.01XD^^177^1914^19
- ;;^UTILITY(U,$J,358.3,38030,1,0)
+ ;;^UTILITY(U,$J,358.3,38397,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,38397,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,38397,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,38398,0)
+ ;;=F43.8^^145^1863^15
+ ;;^UTILITY(U,$J,358.3,38398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38030,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,38030,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,38030,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,38031,0)
- ;;=Z91.412^^177^1914^7
- ;;^UTILITY(U,$J,358.3,38031,1,0)
+ ;;^UTILITY(U,$J,358.3,38398,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder NEC
+ ;;^UTILITY(U,$J,358.3,38398,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,38398,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,38399,0)
+ ;;=F43.20^^145^1863^7
+ ;;^UTILITY(U,$J,358.3,38399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38031,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,38031,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,38031,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,38032,0)
- ;;=T74.31XA^^177^1914^20
- ;;^UTILITY(U,$J,358.3,38032,1,0)
+ ;;^UTILITY(U,$J,358.3,38399,1,3,0)
+ ;;=3^Adjustment Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38399,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,38399,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,38400,0)
+ ;;=F43.9^^145^1863^16
+ ;;^UTILITY(U,$J,358.3,38400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38032,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
- ;;^UTILITY(U,$J,358.3,38032,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,38032,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,38033,0)
- ;;=T74.31XD^^177^1914^21
- ;;^UTILITY(U,$J,358.3,38033,1,0)
+ ;;^UTILITY(U,$J,358.3,38400,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38400,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,38400,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,38401,0)
+ ;;=F43.11^^145^1863^9
+ ;;^UTILITY(U,$J,358.3,38401,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38401,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,38401,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,38401,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,38402,0)
+ ;;=F43.12^^145^1863^10
+ ;;^UTILITY(U,$J,358.3,38402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38402,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,38402,1,4,0)
+ ;;=4^F43.12

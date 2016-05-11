@@ -1,138 +1,126 @@
-IBDEI1S0 ; ; 19-NOV-2015
+IBDEI1S0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29733,1,3,0)
- ;;=3^Abscess,Intrasphincteric
- ;;^UTILITY(U,$J,358.3,29733,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,29733,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,29734,0)
- ;;=K61.0^^135^1367^2
- ;;^UTILITY(U,$J,358.3,29734,1,0)
+ ;;^UTILITY(U,$J,358.3,30184,1,3,0)
+ ;;=3^Follicular lymphoma grade I, unspecified site
+ ;;^UTILITY(U,$J,358.3,30184,1,4,0)
+ ;;=4^C82.00
+ ;;^UTILITY(U,$J,358.3,30184,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,30185,0)
+ ;;=C82.90^^118^1502^36
+ ;;^UTILITY(U,$J,358.3,30185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29734,1,3,0)
- ;;=3^Abscess,Anal
- ;;^UTILITY(U,$J,358.3,29734,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,29734,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,29735,0)
- ;;=K61.1^^135^1367^6
- ;;^UTILITY(U,$J,358.3,29735,1,0)
+ ;;^UTILITY(U,$J,358.3,30185,1,3,0)
+ ;;=3^Follicular lymphoma, unspecified, unspecified site
+ ;;^UTILITY(U,$J,358.3,30185,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,30185,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,30186,0)
+ ;;=C82.99^^118^1502^35
+ ;;^UTILITY(U,$J,358.3,30186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29735,1,3,0)
- ;;=3^Abscess,Rectal
- ;;^UTILITY(U,$J,358.3,29735,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,29735,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,29736,0)
- ;;=K61.2^^135^1367^3
- ;;^UTILITY(U,$J,358.3,29736,1,0)
+ ;;^UTILITY(U,$J,358.3,30186,1,3,0)
+ ;;=3^Follicular lymphoma, unsp, extranodal and solid organ sites
+ ;;^UTILITY(U,$J,358.3,30186,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,30186,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,30187,0)
+ ;;=C84.00^^118^1502^60
+ ;;^UTILITY(U,$J,358.3,30187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29736,1,3,0)
- ;;=3^Abscess,Anorectal
- ;;^UTILITY(U,$J,358.3,29736,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,29736,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,29737,0)
- ;;=K61.3^^135^1367^5
- ;;^UTILITY(U,$J,358.3,29737,1,0)
+ ;;^UTILITY(U,$J,358.3,30187,1,3,0)
+ ;;=3^Mycosis fungoides, unspecified site
+ ;;^UTILITY(U,$J,358.3,30187,1,4,0)
+ ;;=4^C84.00
+ ;;^UTILITY(U,$J,358.3,30187,2)
+ ;;=^5001621
+ ;;^UTILITY(U,$J,358.3,30188,0)
+ ;;=C84.09^^118^1502^59
+ ;;^UTILITY(U,$J,358.3,30188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29737,1,3,0)
- ;;=3^Abscess,Ischiorectal
- ;;^UTILITY(U,$J,358.3,29737,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,29737,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,29738,0)
- ;;=K50.014^^135^1367^22
- ;;^UTILITY(U,$J,358.3,29738,1,0)
+ ;;^UTILITY(U,$J,358.3,30188,1,3,0)
+ ;;=3^Mycosis fungoides, extranodal and solid organ sites
+ ;;^UTILITY(U,$J,358.3,30188,1,4,0)
+ ;;=4^C84.09
+ ;;^UTILITY(U,$J,358.3,30188,2)
+ ;;=^5001630
+ ;;^UTILITY(U,$J,358.3,30189,0)
+ ;;=C84.60^^118^1502^8
+ ;;^UTILITY(U,$J,358.3,30189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29738,1,3,0)
- ;;=3^Crohn's Disease of Small Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,29738,1,4,0)
- ;;=4^K50.014
- ;;^UTILITY(U,$J,358.3,29738,2)
- ;;=^5008628
- ;;^UTILITY(U,$J,358.3,29739,0)
- ;;=K50.114^^135^1367^21
- ;;^UTILITY(U,$J,358.3,29739,1,0)
+ ;;^UTILITY(U,$J,358.3,30189,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-positive, unsp site
+ ;;^UTILITY(U,$J,358.3,30189,1,4,0)
+ ;;=4^C84.60
+ ;;^UTILITY(U,$J,358.3,30189,2)
+ ;;=^5001651
+ ;;^UTILITY(U,$J,358.3,30190,0)
+ ;;=C84.69^^118^1502^10
+ ;;^UTILITY(U,$J,358.3,30190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29739,1,3,0)
- ;;=3^Crohn's Disease of Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,29739,1,4,0)
- ;;=4^K50.114
- ;;^UTILITY(U,$J,358.3,29739,2)
- ;;=^5008635
- ;;^UTILITY(U,$J,358.3,29740,0)
- ;;=D12.6^^135^1367^7
- ;;^UTILITY(U,$J,358.3,29740,1,0)
+ ;;^UTILITY(U,$J,358.3,30190,1,3,0)
+ ;;=3^Anaplstc lg cell lymph, ALK-pos, extrnod and solid org sites
+ ;;^UTILITY(U,$J,358.3,30190,1,4,0)
+ ;;=4^C84.69
+ ;;^UTILITY(U,$J,358.3,30190,2)
+ ;;=^5001660
+ ;;^UTILITY(U,$J,358.3,30191,0)
+ ;;=C84.70^^118^1502^7
+ ;;^UTILITY(U,$J,358.3,30191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29740,1,3,0)
- ;;=3^Adenomatous Polyp of Colon
- ;;^UTILITY(U,$J,358.3,29740,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,29740,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,29741,0)
- ;;=K64.9^^135^1367^57
- ;;^UTILITY(U,$J,358.3,29741,1,0)
+ ;;^UTILITY(U,$J,358.3,30191,1,3,0)
+ ;;=3^Anaplastic large cell lymphoma, ALK-negative, unsp site
+ ;;^UTILITY(U,$J,358.3,30191,1,4,0)
+ ;;=4^C84.70
+ ;;^UTILITY(U,$J,358.3,30191,2)
+ ;;=^5001661
+ ;;^UTILITY(U,$J,358.3,30192,0)
+ ;;=C84.79^^118^1502^9
+ ;;^UTILITY(U,$J,358.3,30192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29741,1,3,0)
- ;;=3^Hemorrhoids w/o Complication
- ;;^UTILITY(U,$J,358.3,29741,1,4,0)
- ;;=4^K64.9
- ;;^UTILITY(U,$J,358.3,29741,2)
- ;;=^5008775
- ;;^UTILITY(U,$J,358.3,29742,0)
- ;;=K50.814^^135^1367^30
- ;;^UTILITY(U,$J,358.3,29742,1,0)
+ ;;^UTILITY(U,$J,358.3,30192,1,3,0)
+ ;;=3^Anaplstc lg cell lymph, ALK-neg, extrnod and solid org sites
+ ;;^UTILITY(U,$J,358.3,30192,1,4,0)
+ ;;=4^C84.79
+ ;;^UTILITY(U,$J,358.3,30192,2)
+ ;;=^5001670
+ ;;^UTILITY(U,$J,358.3,30193,0)
+ ;;=C91.40^^118^1502^37
+ ;;^UTILITY(U,$J,358.3,30193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29742,1,3,0)
- ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
- ;;^UTILITY(U,$J,358.3,29742,1,4,0)
- ;;=4^K50.814
- ;;^UTILITY(U,$J,358.3,29742,2)
- ;;=^5008642
- ;;^UTILITY(U,$J,358.3,29743,0)
- ;;=D12.9^^135^1367^9
- ;;^UTILITY(U,$J,358.3,29743,1,0)
+ ;;^UTILITY(U,$J,358.3,30193,1,3,0)
+ ;;=3^Hairy cell leukemia not having achieved remission
+ ;;^UTILITY(U,$J,358.3,30193,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,30193,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,30194,0)
+ ;;=C91.41^^118^1502^39
+ ;;^UTILITY(U,$J,358.3,30194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29743,1,3,0)
- ;;=3^Benign Neop of Anus
- ;;^UTILITY(U,$J,358.3,29743,1,4,0)
- ;;=4^D12.9
- ;;^UTILITY(U,$J,358.3,29743,2)
- ;;=^5001972
- ;;^UTILITY(U,$J,358.3,29744,0)
- ;;=D12.8^^135^1367^15
- ;;^UTILITY(U,$J,358.3,29744,1,0)
+ ;;^UTILITY(U,$J,358.3,30194,1,3,0)
+ ;;=3^Hairy cell leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,30194,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,30194,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,30195,0)
+ ;;=C91.42^^118^1502^38
+ ;;^UTILITY(U,$J,358.3,30195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29744,1,3,0)
- ;;=3^Benign Neop of Rectum
- ;;^UTILITY(U,$J,358.3,29744,1,4,0)
- ;;=4^D12.8
- ;;^UTILITY(U,$J,358.3,29744,2)
- ;;=^5001971
- ;;^UTILITY(U,$J,358.3,29745,0)
- ;;=K92.2^^135^1367^49
- ;;^UTILITY(U,$J,358.3,29745,1,0)
+ ;;^UTILITY(U,$J,358.3,30195,1,3,0)
+ ;;=3^Hairy cell leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,30195,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,30195,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,30196,0)
+ ;;=C96.4^^118^1502^71
+ ;;^UTILITY(U,$J,358.3,30196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29745,1,3,0)
- ;;=3^GI Bleed,Unspec
- ;;^UTILITY(U,$J,358.3,29745,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,29745,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,29746,0)
- ;;=K62.5^^135^1367^8
- ;;^UTILITY(U,$J,358.3,29746,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29746,1,3,0)
- ;;=3^BRBPR
- ;;^UTILITY(U,$J,358.3,29746,1,4,0)
- ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,30196,1,3,0)
+ ;;=3^Sarcoma of dendritic cells (accessory cells)

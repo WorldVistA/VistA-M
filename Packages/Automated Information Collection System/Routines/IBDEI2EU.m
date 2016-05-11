@@ -1,130 +1,138 @@
-IBDEI2EU ; ; 19-NOV-2015
+IBDEI2EU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40484,1,0)
+ ;;^UTILITY(U,$J,358.3,40888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40484,1,3,0)
- ;;=3^Absence, acquired of lft ft
- ;;^UTILITY(U,$J,358.3,40484,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,40484,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,40485,0)
- ;;=Z89.442^^189^2081^13
- ;;^UTILITY(U,$J,358.3,40485,1,0)
+ ;;^UTILITY(U,$J,358.3,40888,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,40888,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,40888,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,40889,0)
+ ;;=J33.9^^159^1995^19
+ ;;^UTILITY(U,$J,358.3,40889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40485,1,3,0)
- ;;=3^Absence, acquired of lft ank
- ;;^UTILITY(U,$J,358.3,40485,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,40485,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,40486,0)
- ;;=Z89.441^^189^2081^18
- ;;^UTILITY(U,$J,358.3,40486,1,0)
+ ;;^UTILITY(U,$J,358.3,40889,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,40889,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,40889,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,40890,0)
+ ;;=J32.0^^159^1995^15
+ ;;^UTILITY(U,$J,358.3,40890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40486,1,3,0)
- ;;=3^Absence, acquired of rt ank
- ;;^UTILITY(U,$J,358.3,40486,1,4,0)
- ;;=4^Z89.441
- ;;^UTILITY(U,$J,358.3,40486,2)
- ;;=^5063563
- ;;^UTILITY(U,$J,358.3,40487,0)
- ;;=I70.211^^189^2081^98
- ;;^UTILITY(U,$J,358.3,40487,1,0)
+ ;;^UTILITY(U,$J,358.3,40890,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,40890,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,40890,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,40891,0)
+ ;;=J32.1^^159^1995^14
+ ;;^UTILITY(U,$J,358.3,40891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40487,1,3,0)
- ;;=3^Athscl nat artries of extrm w/ intrmt claud, rt leg
- ;;^UTILITY(U,$J,358.3,40487,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,40487,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,40488,0)
- ;;=I70.213^^189^2081^99
- ;;^UTILITY(U,$J,358.3,40488,1,0)
+ ;;^UTILITY(U,$J,358.3,40891,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,40891,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,40891,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,40892,0)
+ ;;=J32.9^^159^1995^16
+ ;;^UTILITY(U,$J,358.3,40892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40488,1,3,0)
- ;;=3^Athscl nat artries of extrm w/ intrmt claud, bi legs
- ;;^UTILITY(U,$J,358.3,40488,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,40488,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,40489,0)
- ;;=I70.212^^189^2081^100
- ;;^UTILITY(U,$J,358.3,40489,1,0)
+ ;;^UTILITY(U,$J,358.3,40892,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,40892,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,40892,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,40893,0)
+ ;;=J30.9^^159^1995^11
+ ;;^UTILITY(U,$J,358.3,40893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40489,1,3,0)
- ;;=3^Athscl nat artries of extrm w/ intrmt claud, lft leg
- ;;^UTILITY(U,$J,358.3,40489,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,40489,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,40490,0)
- ;;=I70.218^^189^2081^101
- ;;^UTILITY(U,$J,358.3,40490,1,0)
+ ;;^UTILITY(U,$J,358.3,40893,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,40893,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,40893,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,40894,0)
+ ;;=J30.0^^159^1995^24
+ ;;^UTILITY(U,$J,358.3,40894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40490,1,3,0)
- ;;=3^Athscl nat artries of extrm w/ intrmt claud, oth extrm
- ;;^UTILITY(U,$J,358.3,40490,1,4,0)
- ;;=4^I70.218
- ;;^UTILITY(U,$J,358.3,40490,2)
- ;;=^5007581
- ;;^UTILITY(U,$J,358.3,40491,0)
- ;;=I70.219^^189^2081^102
- ;;^UTILITY(U,$J,358.3,40491,1,0)
+ ;;^UTILITY(U,$J,358.3,40894,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,40894,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,40894,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,40895,0)
+ ;;=K05.00^^159^1995^2
+ ;;^UTILITY(U,$J,358.3,40895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40491,1,3,0)
- ;;=3^Athscl nat artries of extrm w/ intrmt claud, unsp extrm
- ;;^UTILITY(U,$J,358.3,40491,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,40491,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,40492,0)
- ;;=Q84.3^^189^2081^24
- ;;^UTILITY(U,$J,358.3,40492,1,0)
+ ;;^UTILITY(U,$J,358.3,40895,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,40895,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,40895,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,40896,0)
+ ;;=R04.0^^159^1995^17
+ ;;^UTILITY(U,$J,358.3,40896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40492,1,3,0)
- ;;=3^Anonychia
- ;;^UTILITY(U,$J,358.3,40492,1,4,0)
- ;;=4^Q84.3
- ;;^UTILITY(U,$J,358.3,40492,2)
- ;;=^5019063
- ;;^UTILITY(U,$J,358.3,40493,0)
- ;;=Z47.82^^189^2081^21
- ;;^UTILITY(U,$J,358.3,40493,1,0)
+ ;;^UTILITY(U,$J,358.3,40896,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,40896,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,40896,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,40897,0)
+ ;;=R09.82^^159^1995^21
+ ;;^UTILITY(U,$J,358.3,40897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40493,1,3,0)
- ;;=3^Aftercare Following Scoliosis Surgery
- ;;^UTILITY(U,$J,358.3,40493,1,4,0)
- ;;=4^Z47.82
- ;;^UTILITY(U,$J,358.3,40493,2)
- ;;=^5063031
- ;;^UTILITY(U,$J,358.3,40494,0)
- ;;=Z47.81^^189^2081^22
- ;;^UTILITY(U,$J,358.3,40494,1,0)
+ ;;^UTILITY(U,$J,358.3,40897,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,40897,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,40897,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,40898,0)
+ ;;=K12.30^^159^1995^20
+ ;;^UTILITY(U,$J,358.3,40898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40494,1,3,0)
- ;;=3^Aftercare Following Surgical Amputation
- ;;^UTILITY(U,$J,358.3,40494,1,4,0)
- ;;=4^Z47.81
- ;;^UTILITY(U,$J,358.3,40494,2)
- ;;=^5063030
- ;;^UTILITY(U,$J,358.3,40495,0)
- ;;=L75.8^^189^2081^25
- ;;^UTILITY(U,$J,358.3,40495,1,0)
+ ;;^UTILITY(U,$J,358.3,40898,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,40898,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,40898,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,40899,0)
+ ;;=J30.1^^159^1995^10
+ ;;^UTILITY(U,$J,358.3,40899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40495,1,3,0)
- ;;=3^Apocrine Sweat Disorders NEC
- ;;^UTILITY(U,$J,358.3,40495,1,4,0)
- ;;=4^L75.8
- ;;^UTILITY(U,$J,358.3,40495,2)
- ;;=^5009300
- ;;^UTILITY(U,$J,358.3,40496,0)
- ;;=I70.443^^189^2081^48
- ;;^UTILITY(U,$J,358.3,40496,1,0)
+ ;;^UTILITY(U,$J,358.3,40899,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,40899,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,40899,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,40900,0)
+ ;;=R09.81^^159^1995^18
+ ;;^UTILITY(U,$J,358.3,40900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40496,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,40496,1,4,0)
- ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,40900,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,40900,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,40900,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,40901,0)
+ ;;=I69.928^^159^1995^22
+ ;;^UTILITY(U,$J,358.3,40901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40901,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease

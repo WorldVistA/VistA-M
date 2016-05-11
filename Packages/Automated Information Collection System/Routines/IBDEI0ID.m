@@ -1,136 +1,142 @@
-IBDEI0ID ; ; 19-NOV-2015
+IBDEI0ID ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8244,2)
- ;;=^5019224
- ;;^UTILITY(U,$J,358.3,8245,0)
- ;;=R10.816^^55^536^41
- ;;^UTILITY(U,$J,358.3,8245,1,0)
+ ;;^UTILITY(U,$J,358.3,8525,1,3,0)
+ ;;=3^Benign neoplasm of parotid gland
+ ;;^UTILITY(U,$J,358.3,8525,1,4,0)
+ ;;=4^D11.0
+ ;;^UTILITY(U,$J,358.3,8525,2)
+ ;;=^5001960
+ ;;^UTILITY(U,$J,358.3,8526,0)
+ ;;=D11.7^^39^460^8
+ ;;^UTILITY(U,$J,358.3,8526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8245,1,3,0)
- ;;=3^Epigastric abdominal tenderness
- ;;^UTILITY(U,$J,358.3,8245,1,4,0)
- ;;=4^R10.816
- ;;^UTILITY(U,$J,358.3,8245,2)
- ;;=^5019218
- ;;^UTILITY(U,$J,358.3,8246,0)
- ;;=R10.826^^55^536^43
- ;;^UTILITY(U,$J,358.3,8246,1,0)
+ ;;^UTILITY(U,$J,358.3,8526,1,3,0)
+ ;;=3^Benign neoplasm of other major salivary glands
+ ;;^UTILITY(U,$J,358.3,8526,1,4,0)
+ ;;=4^D11.7
+ ;;^UTILITY(U,$J,358.3,8526,2)
+ ;;=^5001961
+ ;;^UTILITY(U,$J,358.3,8527,0)
+ ;;=D33.3^^39^460^6
+ ;;^UTILITY(U,$J,358.3,8527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8246,1,3,0)
- ;;=3^Epigastric rebound abdominal tenderness
- ;;^UTILITY(U,$J,358.3,8246,1,4,0)
- ;;=4^R10.826
- ;;^UTILITY(U,$J,358.3,8246,2)
- ;;=^5019225
- ;;^UTILITY(U,$J,358.3,8247,0)
- ;;=R74.8^^55^536^2
- ;;^UTILITY(U,$J,358.3,8247,1,0)
+ ;;^UTILITY(U,$J,358.3,8527,1,3,0)
+ ;;=3^Benign neoplasm of cranial nerves/Vestibular Schwannoma
+ ;;^UTILITY(U,$J,358.3,8527,1,4,0)
+ ;;=4^D33.3
+ ;;^UTILITY(U,$J,358.3,8527,2)
+ ;;=^13298
+ ;;^UTILITY(U,$J,358.3,8528,0)
+ ;;=D34.^^39^460^10
+ ;;^UTILITY(U,$J,358.3,8528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8247,1,3,0)
- ;;=3^Abnormal levels of other serum enzymes
- ;;^UTILITY(U,$J,358.3,8247,1,4,0)
- ;;=4^R74.8
- ;;^UTILITY(U,$J,358.3,8247,2)
- ;;=^5019566
- ;;^UTILITY(U,$J,358.3,8248,0)
- ;;=R79.89^^55^536^1
- ;;^UTILITY(U,$J,358.3,8248,1,0)
+ ;;^UTILITY(U,$J,358.3,8528,1,3,0)
+ ;;=3^Benign neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,8528,1,4,0)
+ ;;=4^D34.
+ ;;^UTILITY(U,$J,358.3,8528,2)
+ ;;=^5002141
+ ;;^UTILITY(U,$J,358.3,8529,0)
+ ;;=J34.2^^39^461^11
+ ;;^UTILITY(U,$J,358.3,8529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8248,1,3,0)
- ;;=3^Abnormal Findings of Blood Chemistry NEC
- ;;^UTILITY(U,$J,358.3,8248,1,4,0)
- ;;=4^R79.89
- ;;^UTILITY(U,$J,358.3,8248,2)
- ;;=^5019593
- ;;^UTILITY(U,$J,358.3,8249,0)
- ;;=R19.5^^55^536^49
- ;;^UTILITY(U,$J,358.3,8249,1,0)
+ ;;^UTILITY(U,$J,358.3,8529,1,3,0)
+ ;;=3^Deviated nasal septum
+ ;;^UTILITY(U,$J,358.3,8529,1,4,0)
+ ;;=4^J34.2
+ ;;^UTILITY(U,$J,358.3,8529,2)
+ ;;=^259087
+ ;;^UTILITY(U,$J,358.3,8530,0)
+ ;;=J33.0^^39^461^20
+ ;;^UTILITY(U,$J,358.3,8530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8249,1,3,0)
- ;;=3^Fecal Abnormalites NEC
- ;;^UTILITY(U,$J,358.3,8249,1,4,0)
- ;;=4^R19.5
- ;;^UTILITY(U,$J,358.3,8249,2)
- ;;=^5019274
- ;;^UTILITY(U,$J,358.3,8250,0)
- ;;=Z87.11^^55^536^83
- ;;^UTILITY(U,$J,358.3,8250,1,0)
+ ;;^UTILITY(U,$J,358.3,8530,1,3,0)
+ ;;=3^Polyp of nasal cavity
+ ;;^UTILITY(U,$J,358.3,8530,1,4,0)
+ ;;=4^J33.0
+ ;;^UTILITY(U,$J,358.3,8530,2)
+ ;;=^269880
+ ;;^UTILITY(U,$J,358.3,8531,0)
+ ;;=J33.8^^39^461^21
+ ;;^UTILITY(U,$J,358.3,8531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8250,1,3,0)
- ;;=3^Personal history of peptic ulcer disease
- ;;^UTILITY(U,$J,358.3,8250,1,4,0)
- ;;=4^Z87.11
- ;;^UTILITY(U,$J,358.3,8250,2)
- ;;=^5063482
- ;;^UTILITY(U,$J,358.3,8251,0)
- ;;=Z86.010^^55^536^82
- ;;^UTILITY(U,$J,358.3,8251,1,0)
+ ;;^UTILITY(U,$J,358.3,8531,1,3,0)
+ ;;=3^Polyp of sinus NEC
+ ;;^UTILITY(U,$J,358.3,8531,1,4,0)
+ ;;=4^J33.8
+ ;;^UTILITY(U,$J,358.3,8531,2)
+ ;;=^269884
+ ;;^UTILITY(U,$J,358.3,8532,0)
+ ;;=J31.0^^39^461^8
+ ;;^UTILITY(U,$J,358.3,8532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8251,1,3,0)
- ;;=3^Personal history of colonic polyps
- ;;^UTILITY(U,$J,358.3,8251,1,4,0)
- ;;=4^Z86.010
- ;;^UTILITY(U,$J,358.3,8251,2)
- ;;=^5063456
- ;;^UTILITY(U,$J,358.3,8252,0)
- ;;=Z83.71^^55^536^46
- ;;^UTILITY(U,$J,358.3,8252,1,0)
+ ;;^UTILITY(U,$J,358.3,8532,1,3,0)
+ ;;=3^Chronic rhinitis
+ ;;^UTILITY(U,$J,358.3,8532,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,8532,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,8533,0)
+ ;;=J31.2^^39^461^7
+ ;;^UTILITY(U,$J,358.3,8533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8252,1,3,0)
- ;;=3^Family history of colonic polyps
- ;;^UTILITY(U,$J,358.3,8252,1,4,0)
- ;;=4^Z83.71
- ;;^UTILITY(U,$J,358.3,8252,2)
- ;;=^5063386
- ;;^UTILITY(U,$J,358.3,8253,0)
- ;;=Z83.79^^55^536^47
- ;;^UTILITY(U,$J,358.3,8253,1,0)
+ ;;^UTILITY(U,$J,358.3,8533,1,3,0)
+ ;;=3^Chronic pharyngitis
+ ;;^UTILITY(U,$J,358.3,8533,1,4,0)
+ ;;=4^J31.2
+ ;;^UTILITY(U,$J,358.3,8533,2)
+ ;;=^269886
+ ;;^UTILITY(U,$J,358.3,8534,0)
+ ;;=J31.1^^39^461^5
+ ;;^UTILITY(U,$J,358.3,8534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8253,1,3,0)
- ;;=3^Family history of other diseases of the digestive system
- ;;^UTILITY(U,$J,358.3,8253,1,4,0)
- ;;=4^Z83.79
- ;;^UTILITY(U,$J,358.3,8253,2)
- ;;=^5063387
- ;;^UTILITY(U,$J,358.3,8254,0)
- ;;=A54.00^^55^537^21
- ;;^UTILITY(U,$J,358.3,8254,1,0)
+ ;;^UTILITY(U,$J,358.3,8534,1,3,0)
+ ;;=3^Chronic nasopharyngitis
+ ;;^UTILITY(U,$J,358.3,8534,1,4,0)
+ ;;=4^J31.1
+ ;;^UTILITY(U,$J,358.3,8534,2)
+ ;;=^269888
+ ;;^UTILITY(U,$J,358.3,8535,0)
+ ;;=J32.9^^39^461^9
+ ;;^UTILITY(U,$J,358.3,8535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8254,1,3,0)
- ;;=3^Gonococcal infection of lower genitourinary tract, unsp
- ;;^UTILITY(U,$J,358.3,8254,1,4,0)
- ;;=4^A54.00
- ;;^UTILITY(U,$J,358.3,8254,2)
- ;;=^5000311
- ;;^UTILITY(U,$J,358.3,8255,0)
- ;;=B37.42^^55^537^10
- ;;^UTILITY(U,$J,358.3,8255,1,0)
+ ;;^UTILITY(U,$J,358.3,8535,1,3,0)
+ ;;=3^Chronic sinusitis, unspecified
+ ;;^UTILITY(U,$J,358.3,8535,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,8535,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,8536,0)
+ ;;=J32.4^^39^461^6
+ ;;^UTILITY(U,$J,358.3,8536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8255,1,3,0)
- ;;=3^Candidal balanitis
- ;;^UTILITY(U,$J,358.3,8255,1,4,0)
- ;;=4^B37.42
- ;;^UTILITY(U,$J,358.3,8255,2)
- ;;=^5000617
- ;;^UTILITY(U,$J,358.3,8256,0)
- ;;=A59.03^^55^537^60
- ;;^UTILITY(U,$J,358.3,8256,1,0)
+ ;;^UTILITY(U,$J,358.3,8536,1,3,0)
+ ;;=3^Chronic pansinusitis
+ ;;^UTILITY(U,$J,358.3,8536,1,4,0)
+ ;;=4^J32.4
+ ;;^UTILITY(U,$J,358.3,8536,2)
+ ;;=^5008206
+ ;;^UTILITY(U,$J,358.3,8537,0)
+ ;;=J35.01^^39^461^10
+ ;;^UTILITY(U,$J,358.3,8537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8256,1,3,0)
- ;;=3^Trichomonal cystitis and urethritis
- ;;^UTILITY(U,$J,358.3,8256,1,4,0)
- ;;=4^A59.03
- ;;^UTILITY(U,$J,358.3,8256,2)
- ;;=^5000349
- ;;^UTILITY(U,$J,358.3,8257,0)
- ;;=C61.^^55^537^41
- ;;^UTILITY(U,$J,358.3,8257,1,0)
+ ;;^UTILITY(U,$J,358.3,8537,1,3,0)
+ ;;=3^Chronic tonsillitis
+ ;;^UTILITY(U,$J,358.3,8537,1,4,0)
+ ;;=4^J35.01
+ ;;^UTILITY(U,$J,358.3,8537,2)
+ ;;=^259089
+ ;;^UTILITY(U,$J,358.3,8538,0)
+ ;;=J36.^^39^461^19
+ ;;^UTILITY(U,$J,358.3,8538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8257,1,3,0)
- ;;=3^Malignant neoplasm of prostate
- ;;^UTILITY(U,$J,358.3,8257,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,8257,2)
- ;;=^267239
+ ;;^UTILITY(U,$J,358.3,8538,1,3,0)
+ ;;=3^Peritonsillar abscess
+ ;;^UTILITY(U,$J,358.3,8538,1,4,0)
+ ;;=4^J36.
+ ;;^UTILITY(U,$J,358.3,8538,2)
+ ;;=^92333
+ ;;^UTILITY(U,$J,358.3,8539,0)
+ ;;=J37.0^^39^461^4

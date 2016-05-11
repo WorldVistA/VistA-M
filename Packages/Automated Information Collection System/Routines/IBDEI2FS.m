@@ -1,126 +1,134 @@
-IBDEI2FS ; ; 19-NOV-2015
+IBDEI2FS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40908,1,3,0)
- ;;=3^Nondisp fx of med phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40908,1,4,0)
- ;;=4^S92.525A
- ;;^UTILITY(U,$J,358.3,40908,2)
- ;;=^5045501
- ;;^UTILITY(U,$J,358.3,40909,0)
- ;;=S92.531A^^189^2086^92
- ;;^UTILITY(U,$J,358.3,40909,1,0)
+ ;;^UTILITY(U,$J,358.3,41328,1,4,0)
+ ;;=4^C64.9
+ ;;^UTILITY(U,$J,358.3,41328,2)
+ ;;=^5001250
+ ;;^UTILITY(U,$J,358.3,41329,0)
+ ;;=C34.92^^159^2004^130
+ ;;^UTILITY(U,$J,358.3,41329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40909,1,3,0)
- ;;=3^Disp fx of dist phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40909,1,4,0)
- ;;=4^S92.531A
- ;;^UTILITY(U,$J,358.3,40909,2)
- ;;=^5045515
- ;;^UTILITY(U,$J,358.3,40910,0)
- ;;=S92.524A^^189^2086^332
- ;;^UTILITY(U,$J,358.3,40910,1,0)
+ ;;^UTILITY(U,$J,358.3,41329,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,41329,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,41329,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,41330,0)
+ ;;=C34.90^^159^2004^116
+ ;;^UTILITY(U,$J,358.3,41330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40910,1,3,0)
- ;;=3^Nondisp fx of med phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40910,1,4,0)
- ;;=4^S92.524A
- ;;^UTILITY(U,$J,358.3,40910,2)
- ;;=^5045494
- ;;^UTILITY(U,$J,358.3,40911,0)
- ;;=S92.522A^^189^2086^106
- ;;^UTILITY(U,$J,358.3,40911,1,0)
+ ;;^UTILITY(U,$J,358.3,41330,1,3,0)
+ ;;=3^Malig Neop Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,41330,1,4,0)
+ ;;=4^C34.90
+ ;;^UTILITY(U,$J,358.3,41330,2)
+ ;;=^5000966
+ ;;^UTILITY(U,$J,358.3,41331,0)
+ ;;=C65.9^^159^2004^150
+ ;;^UTILITY(U,$J,358.3,41331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40911,1,3,0)
- ;;=3^Disp fx of med phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40911,1,4,0)
- ;;=4^S92.522A
- ;;^UTILITY(U,$J,358.3,40911,2)
- ;;=^5045480
- ;;^UTILITY(U,$J,358.3,40912,0)
- ;;=S92.521A^^189^2086^108
- ;;^UTILITY(U,$J,358.3,40912,1,0)
+ ;;^UTILITY(U,$J,358.3,41331,1,3,0)
+ ;;=3^Malig Neop Renal Pelvis,Unspec
+ ;;^UTILITY(U,$J,358.3,41331,1,4,0)
+ ;;=4^C65.9
+ ;;^UTILITY(U,$J,358.3,41331,2)
+ ;;=^5001253
+ ;;^UTILITY(U,$J,358.3,41332,0)
+ ;;=C50.912^^159^2004^131
+ ;;^UTILITY(U,$J,358.3,41332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40912,1,3,0)
- ;;=3^Disp fx of med phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40912,1,4,0)
- ;;=4^S92.521A
- ;;^UTILITY(U,$J,358.3,40912,2)
- ;;=^5045473
- ;;^UTILITY(U,$J,358.3,40913,0)
- ;;=S92.515A^^189^2086^345
- ;;^UTILITY(U,$J,358.3,40913,1,0)
+ ;;^UTILITY(U,$J,358.3,41332,1,3,0)
+ ;;=3^Malig Neop Left Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41332,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,41332,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,41333,0)
+ ;;=C50.911^^159^2004^153
+ ;;^UTILITY(U,$J,358.3,41333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40913,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40913,1,4,0)
- ;;=4^S92.515A
- ;;^UTILITY(U,$J,358.3,40913,2)
- ;;=^5045459
- ;;^UTILITY(U,$J,358.3,40914,0)
- ;;=S92.514A^^189^2086^349
- ;;^UTILITY(U,$J,358.3,40914,1,0)
+ ;;^UTILITY(U,$J,358.3,41333,1,3,0)
+ ;;=3^Malig Neop Right Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41333,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,41333,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,41334,0)
+ ;;=C50.919^^159^2004^123
+ ;;^UTILITY(U,$J,358.3,41334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40914,1,3,0)
- ;;=3^Nondisp fx of prox phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40914,1,4,0)
- ;;=4^S92.514A
- ;;^UTILITY(U,$J,358.3,40914,2)
- ;;=^5045452
- ;;^UTILITY(U,$J,358.3,40915,0)
- ;;=S92.512A^^189^2086^120
- ;;^UTILITY(U,$J,358.3,40915,1,0)
+ ;;^UTILITY(U,$J,358.3,41334,1,3,0)
+ ;;=3^Malig Neop Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41334,1,4,0)
+ ;;=4^C50.919
+ ;;^UTILITY(U,$J,358.3,41334,2)
+ ;;=^5001197
+ ;;^UTILITY(U,$J,358.3,41335,0)
+ ;;=C62.90^^159^2004^161
+ ;;^UTILITY(U,$J,358.3,41335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40915,1,3,0)
- ;;=3^Disp fx of prox phalanx of lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40915,1,4,0)
- ;;=4^S92.512A
- ;;^UTILITY(U,$J,358.3,40915,2)
- ;;=^5045438
- ;;^UTILITY(U,$J,358.3,40916,0)
- ;;=S92.511A^^189^2086^123
- ;;^UTILITY(U,$J,358.3,40916,1,0)
+ ;;^UTILITY(U,$J,358.3,41335,1,3,0)
+ ;;=3^Malig Neop Testis,Unspec
+ ;;^UTILITY(U,$J,358.3,41335,1,4,0)
+ ;;=4^C62.90
+ ;;^UTILITY(U,$J,358.3,41335,2)
+ ;;=^5001236
+ ;;^UTILITY(U,$J,358.3,41336,0)
+ ;;=D03.9^^159^2004^165
+ ;;^UTILITY(U,$J,358.3,41336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40916,1,3,0)
- ;;=3^Disp fx of prox phalanx of rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,40916,1,4,0)
- ;;=4^S92.511A
- ;;^UTILITY(U,$J,358.3,40916,2)
- ;;=^5045431
- ;;^UTILITY(U,$J,358.3,40917,0)
- ;;=S92.491A^^189^2086^212
- ;;^UTILITY(U,$J,358.3,40917,1,0)
+ ;;^UTILITY(U,$J,358.3,41336,1,3,0)
+ ;;=3^Melanoma in Situ,Unspec
+ ;;^UTILITY(U,$J,358.3,41336,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,41336,2)
+ ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,41337,0)
+ ;;=C45.0^^159^2004^166
+ ;;^UTILITY(U,$J,358.3,41337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40917,1,3,0)
- ;;=3^Fx of rt grt toe, oth, init
- ;;^UTILITY(U,$J,358.3,40917,1,4,0)
- ;;=4^S92.491A
- ;;^UTILITY(U,$J,358.3,40917,2)
- ;;=^5045382
- ;;^UTILITY(U,$J,358.3,40918,0)
- ;;=S92.425A^^189^2086^313
- ;;^UTILITY(U,$J,358.3,40918,1,0)
+ ;;^UTILITY(U,$J,358.3,41337,1,3,0)
+ ;;=3^Mesothelioma of Pleura
+ ;;^UTILITY(U,$J,358.3,41337,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,41337,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,41338,0)
+ ;;=C90.01^^159^2004^168
+ ;;^UTILITY(U,$J,358.3,41338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40918,1,3,0)
- ;;=3^Nondisp fx of dist phalanx of lft grt toe, init
- ;;^UTILITY(U,$J,358.3,40918,1,4,0)
- ;;=4^S92.425A
- ;;^UTILITY(U,$J,358.3,40918,2)
- ;;=^5045368
- ;;^UTILITY(U,$J,358.3,40919,0)
- ;;=S92.424A^^189^2086^315
- ;;^UTILITY(U,$J,358.3,40919,1,0)
+ ;;^UTILITY(U,$J,358.3,41338,1,3,0)
+ ;;=3^Multiple Myeloma,In Remission
+ ;;^UTILITY(U,$J,358.3,41338,1,4,0)
+ ;;=4^C90.01
+ ;;^UTILITY(U,$J,358.3,41338,2)
+ ;;=^267515
+ ;;^UTILITY(U,$J,358.3,41339,0)
+ ;;=C90.00^^159^2004^169
+ ;;^UTILITY(U,$J,358.3,41339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40919,1,3,0)
- ;;=3^Nondisp fx of dist phalanx of rt grt toe, init
- ;;^UTILITY(U,$J,358.3,40919,1,4,0)
- ;;=4^S92.424A
- ;;^UTILITY(U,$J,358.3,40919,2)
- ;;=^5045361
- ;;^UTILITY(U,$J,358.3,40920,0)
- ;;=S92.505A^^189^2086^323
- ;;^UTILITY(U,$J,358.3,40920,1,0)
+ ;;^UTILITY(U,$J,358.3,41339,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41339,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,41339,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,41340,0)
+ ;;=C94.6^^159^2004^170
+ ;;^UTILITY(U,$J,358.3,41340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40920,1,3,0)
- ;;=3^Nondisp fx of lft lsr toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,41340,1,3,0)
+ ;;=3^Myelodysplastic Disease NEC
+ ;;^UTILITY(U,$J,358.3,41340,1,4,0)
+ ;;=4^C94.6
+ ;;^UTILITY(U,$J,358.3,41340,2)
+ ;;=^5001846
+ ;;^UTILITY(U,$J,358.3,41341,0)
+ ;;=D61.82^^159^2004^171
+ ;;^UTILITY(U,$J,358.3,41341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41341,1,3,0)
+ ;;=3^Myelophthisis

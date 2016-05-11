@@ -1,5 +1,5 @@
 VPSRPC1  ;BPOIFO/EL,WOIFO/BT - Patient Demographic and Clinic RPC;08/14/14 09:28
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**1,2,4**;Aug 8, 2014;Build 27
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**1,2,4,14**;Aug 8, 2014;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -11,6 +11,7 @@ VPSRPC1  ;BPOIFO/EL,WOIFO/BT - Patient Demographic and Clinic RPC;08/14/14 09:28
  ; #2701  - MPIF001 call          (Supported)
  ; #10104 - XLFSTR call           (Supported)
  ; #5888  - RPCVIC^DPTLK          (Controlled Sub)
+ ; #10061 - VADPT call            (Supported)
  QUIT
  ;
 GETCLN(VPSARR,CLNAM) ; RPC: VPS GET CLINIC - CLINIC NAME ENTRY
@@ -71,7 +72,11 @@ GETDATA2(VPSARR,VPSNUM,VPSTYP) ; RPC: VPS GET2 PATIENT DEMOGRAPHIC
  ;   VPSTYP  - Parameter TYPE - SSN or DFN OR ICN OR VIC/CAC (REQUIRED)
  ;
  ; Return all categories
- N CATEGORY,ICAT F ICAT=1:1:6 S CATEGORY(ICAT)=ICAT
+ N CATEGORY,ICAT ;F ICAT=1:1:6 S CATEGORY(ICAT)=ICAT
+ N ANS
+ D DT^DILF("E","T-60",.ANS)
+ S CATEGORY(1)=1_";"_ANS_":"
+ S CATEGORY(2)=6
  D GETDATA3(.VPSARR,$G(VPSNUM),$G(VPSTYP),.CATEGORY) ; RPC: VPS GET2 PATIENT DEMOGRAPHIC
  QUIT
  ;
@@ -97,7 +102,14 @@ GETDATA3(VPSARR,VPSNUM,VPSTYP,VPSCAT) ; RPC: VPS ENHANCED GET PATIENT DEMOGRAPHI
  ;                 3 - Consults
  ;                 4 - Radiology (With Date Range option)
  ;                 5 - Problem
- ;                 6 - Patient demographics
+ ;                 6 - Patient Characteristics
+ ;                   - Patient Current Inpatient Status
+ ;                   - Patient Ward Location
+ ;                   - Patient Bed Assignment
+ ;                   - Facility Directory Preference
+ ;                 7 - Patient Additional patient demographic data
+ ;                 8 - Patient Clinical (Health Factor)
+ ;
  ;
  K VPSARR
  S VPSARR(1)=$$VALIDATE($G(VPSTYP),$G(VPSNUM))
@@ -110,12 +122,18 @@ GETDATA3(VPSARR,VPSNUM,VPSTYP,VPSCAT) ; RPC: VPS ENHANCED GET PATIENT DEMOGRAPHI
  F  S SEQ=$O(VPSCAT(SEQ)) QUIT:'SEQ  D
  . S CAT=$P(VPSCAT(SEQ),";")
  . S DTRANGE=$P(VPSCAT(SEQ),";",2)
+ . I CAT=1,$P(DTRANGE,":")="" D
+ .. N ANS
+ .. D DT^DILF("E","T-60",.ANS)
+ .. S DTRANGE=ANS_":"_$P(DTRANGE,":",2)
  . I CAT=1 D GETAPPT^VPSRPC11(.VPSARR,DFN,DTRANGE) ;Appointments
  . I CAT=2 D GETLAB^VPSRPC12(.VPSARR,DFN,DTRANGE) ;Lab Orders
- . I CAT=3 D GETCNSLT^VPSRPC13(.VPSARR,DFN) ;Consult
+ . I CAT=3 D GETCNSLT^VPSRPC13(.VPSARR,DFN,DTRANGE) ;Consult
  . I CAT=4 D GETRAD^VPSRPC14(.VPSARR,DFN,DTRANGE) ;Radiology
  . I CAT=5 D GETPRBLM^VPSRPC15(.VPSARR,DFN) ;Problem
  . I CAT=6 D GETDEM^VPSRPC16(.VPSARR,DFN) ;Demographics
+ . I CAT=7 D GETADEM^VPSRPC15(.VPSARR,DFN) ; Additional demographic data
+ . I CAT=8 D GETHF^VPSRPC15(.VPSARR,DFN) ; Patient Health Factor
  QUIT
  ;
 VALIDATE(VPSTYP,VPSNUM) ;validate patient-id type and patient id value

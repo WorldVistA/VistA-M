@@ -1,136 +1,140 @@
-IBDEI0DJ ; ; 19-NOV-2015
+IBDEI0DJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5894,1,0)
+ ;;^UTILITY(U,$J,358.3,6213,0)
+ ;;=E10.621^^30^388^7
+ ;;^UTILITY(U,$J,358.3,6213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5894,1,3,0)
- ;;=3^Cutaneous Abscess of Head
- ;;^UTILITY(U,$J,358.3,5894,1,4,0)
- ;;=4^L02.811
- ;;^UTILITY(U,$J,358.3,5894,2)
- ;;=^5009010
- ;;^UTILITY(U,$J,358.3,5895,0)
- ;;=L02.412^^40^379^64
- ;;^UTILITY(U,$J,358.3,5895,1,0)
+ ;;^UTILITY(U,$J,358.3,6213,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6213,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,6213,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,6214,0)
+ ;;=E10.622^^30^388^11
+ ;;^UTILITY(U,$J,358.3,6214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5895,1,3,0)
- ;;=3^Cutaneous Abscess of Left Axilla
- ;;^UTILITY(U,$J,358.3,5895,1,4,0)
- ;;=4^L02.412
- ;;^UTILITY(U,$J,358.3,5895,2)
- ;;=^5008975
- ;;^UTILITY(U,$J,358.3,5896,0)
- ;;=L02.612^^40^379^65
- ;;^UTILITY(U,$J,358.3,5896,1,0)
+ ;;^UTILITY(U,$J,358.3,6214,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,6214,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,6214,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,6215,0)
+ ;;=E10.65^^30^388^10
+ ;;^UTILITY(U,$J,358.3,6215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5896,1,3,0)
- ;;=3^Cutaneous Abscess of Left Foot
- ;;^UTILITY(U,$J,358.3,5896,1,4,0)
- ;;=4^L02.612
- ;;^UTILITY(U,$J,358.3,5896,2)
- ;;=^5009002
- ;;^UTILITY(U,$J,358.3,5897,0)
- ;;=L02.512^^40^379^66
- ;;^UTILITY(U,$J,358.3,5897,1,0)
+ ;;^UTILITY(U,$J,358.3,6215,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycermia
+ ;;^UTILITY(U,$J,358.3,6215,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,6215,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,6216,0)
+ ;;=E10.39^^30^388^9
+ ;;^UTILITY(U,$J,358.3,6216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5897,1,3,0)
- ;;=3^Cutaneous Abscess of Left Hand
- ;;^UTILITY(U,$J,358.3,5897,1,4,0)
- ;;=4^L02.512
- ;;^UTILITY(U,$J,358.3,5897,2)
- ;;=^5008993
- ;;^UTILITY(U,$J,358.3,5898,0)
- ;;=L02.416^^40^379^67
- ;;^UTILITY(U,$J,358.3,5898,1,0)
+ ;;^UTILITY(U,$J,358.3,6216,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
+ ;;^UTILITY(U,$J,358.3,6216,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,6216,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,6217,0)
+ ;;=E66.3^^30^388^45
+ ;;^UTILITY(U,$J,358.3,6217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5898,1,3,0)
- ;;=3^Cutaneous Abscess of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,5898,1,4,0)
- ;;=4^L02.416
- ;;^UTILITY(U,$J,358.3,5898,2)
- ;;=^5133642
- ;;^UTILITY(U,$J,358.3,5899,0)
- ;;=L02.414^^40^379^68
- ;;^UTILITY(U,$J,358.3,5899,1,0)
+ ;;^UTILITY(U,$J,358.3,6217,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,6217,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,6217,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,6218,0)
+ ;;=E89.1^^30^388^49
+ ;;^UTILITY(U,$J,358.3,6218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5899,1,3,0)
- ;;=3^Cutaneous Abscess of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,5899,1,4,0)
- ;;=4^L02.414
- ;;^UTILITY(U,$J,358.3,5899,2)
- ;;=^5008977
- ;;^UTILITY(U,$J,358.3,5900,0)
- ;;=L02.11^^40^379^69
- ;;^UTILITY(U,$J,358.3,5900,1,0)
+ ;;^UTILITY(U,$J,358.3,6218,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,6218,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,6218,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,6219,0)
+ ;;=H40.9^^30^389^9
+ ;;^UTILITY(U,$J,358.3,6219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5900,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,5900,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,5900,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,5901,0)
- ;;=L02.818^^40^379^70
- ;;^UTILITY(U,$J,358.3,5901,1,0)
+ ;;^UTILITY(U,$J,358.3,6219,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,6219,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,6219,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,6220,0)
+ ;;=H26.9^^30^389^5
+ ;;^UTILITY(U,$J,358.3,6220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5901,1,3,0)
- ;;=3^Cutaneous Abscess of Other Sites
- ;;^UTILITY(U,$J,358.3,5901,1,4,0)
- ;;=4^L02.818
- ;;^UTILITY(U,$J,358.3,5901,2)
- ;;=^5009011
- ;;^UTILITY(U,$J,358.3,5902,0)
- ;;=L02.215^^40^379^71
- ;;^UTILITY(U,$J,358.3,5902,1,0)
+ ;;^UTILITY(U,$J,358.3,6220,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,6220,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,6220,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,6221,0)
+ ;;=H10.9^^30^389^8
+ ;;^UTILITY(U,$J,358.3,6221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5902,1,3,0)
- ;;=3^Cutaneous Abscess of Perineum
- ;;^UTILITY(U,$J,358.3,5902,1,4,0)
- ;;=4^L02.215
- ;;^UTILITY(U,$J,358.3,5902,2)
- ;;=^5008954
- ;;^UTILITY(U,$J,358.3,5903,0)
- ;;=L02.411^^40^379^72
- ;;^UTILITY(U,$J,358.3,5903,1,0)
+ ;;^UTILITY(U,$J,358.3,6221,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6221,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,6221,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,6222,0)
+ ;;=H11.32^^30^389^6
+ ;;^UTILITY(U,$J,358.3,6222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5903,1,3,0)
- ;;=3^Cutaneous Abscess of Right Axilla
- ;;^UTILITY(U,$J,358.3,5903,1,4,0)
- ;;=4^L02.411
- ;;^UTILITY(U,$J,358.3,5903,2)
- ;;=^5008974
- ;;^UTILITY(U,$J,358.3,5904,0)
- ;;=L02.611^^40^379^73
- ;;^UTILITY(U,$J,358.3,5904,1,0)
+ ;;^UTILITY(U,$J,358.3,6222,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,6222,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,6222,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,6223,0)
+ ;;=H11.31^^30^389^7
+ ;;^UTILITY(U,$J,358.3,6223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5904,1,3,0)
- ;;=3^Cutaneous Abscess of Right Foot
- ;;^UTILITY(U,$J,358.3,5904,1,4,0)
- ;;=4^L02.611
- ;;^UTILITY(U,$J,358.3,5904,2)
- ;;=^5009001
- ;;^UTILITY(U,$J,358.3,5905,0)
- ;;=L02.511^^40^379^74
- ;;^UTILITY(U,$J,358.3,5905,1,0)
+ ;;^UTILITY(U,$J,358.3,6223,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,6223,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,6223,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,6224,0)
+ ;;=H01.002^^30^389^3
+ ;;^UTILITY(U,$J,358.3,6224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5905,1,3,0)
- ;;=3^Cutaneous Abscess of Right Hand
- ;;^UTILITY(U,$J,358.3,5905,1,4,0)
- ;;=4^L02.511
- ;;^UTILITY(U,$J,358.3,5905,2)
- ;;=^5008992
- ;;^UTILITY(U,$J,358.3,5906,0)
- ;;=L02.415^^40^379^75
- ;;^UTILITY(U,$J,358.3,5906,1,0)
+ ;;^UTILITY(U,$J,358.3,6224,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,6224,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,6224,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,6225,0)
+ ;;=H01.004^^30^389^2
+ ;;^UTILITY(U,$J,358.3,6225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5906,1,3,0)
- ;;=3^Cutaneous Abscess of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,5906,1,4,0)
- ;;=4^L02.415
- ;;^UTILITY(U,$J,358.3,5906,2)
- ;;=^5008978
- ;;^UTILITY(U,$J,358.3,5907,0)
- ;;=L02.413^^40^379^76
- ;;^UTILITY(U,$J,358.3,5907,1,0)
+ ;;^UTILITY(U,$J,358.3,6225,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,6225,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,6225,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,6226,0)
+ ;;=H01.005^^30^389^1
+ ;;^UTILITY(U,$J,358.3,6226,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6226,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid

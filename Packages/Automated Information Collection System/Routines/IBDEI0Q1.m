@@ -1,132 +1,130 @@
-IBDEI0Q1 ; ; 19-NOV-2015
+IBDEI0Q1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11923,2)
- ;;=^5059554
- ;;^UTILITY(U,$J,358.3,11924,0)
- ;;=W05.2XXA^^68^694^47
- ;;^UTILITY(U,$J,358.3,11924,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11924,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,11924,1,4,0)
- ;;=4^W05.2XXA
- ;;^UTILITY(U,$J,358.3,11924,2)
- ;;=^5059556
- ;;^UTILITY(U,$J,358.3,11925,0)
- ;;=W05.2XXD^^68^694^48
- ;;^UTILITY(U,$J,358.3,11925,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11925,1,3,0)
- ;;=3^Fall from Non-Moving Motorized Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11925,1,4,0)
- ;;=4^W05.2XXD
- ;;^UTILITY(U,$J,358.3,11925,2)
- ;;=^5059557
- ;;^UTILITY(U,$J,358.3,11926,0)
- ;;=W06.XXXA^^68^694^29
- ;;^UTILITY(U,$J,358.3,11926,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11926,1,3,0)
- ;;=3^Fall from Bed,Init Encntr
- ;;^UTILITY(U,$J,358.3,11926,1,4,0)
- ;;=4^W06.XXXA
- ;;^UTILITY(U,$J,358.3,11926,2)
- ;;=^5059559
- ;;^UTILITY(U,$J,358.3,11927,0)
- ;;=W06.XXXD^^68^694^30
- ;;^UTILITY(U,$J,358.3,11927,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11927,1,3,0)
- ;;=3^Fall from Bed,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11927,1,4,0)
- ;;=4^W06.XXXD
- ;;^UTILITY(U,$J,358.3,11927,2)
- ;;=^5059560
- ;;^UTILITY(U,$J,358.3,11928,0)
- ;;=W07.XXXA^^68^694^37
- ;;^UTILITY(U,$J,358.3,11928,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11928,1,3,0)
- ;;=3^Fall from Chair,Init Encntr
- ;;^UTILITY(U,$J,358.3,11928,1,4,0)
- ;;=4^W07.XXXA
- ;;^UTILITY(U,$J,358.3,11928,2)
- ;;=^5059562
- ;;^UTILITY(U,$J,358.3,11929,0)
- ;;=W07.XXXD^^68^694^38
- ;;^UTILITY(U,$J,358.3,11929,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11929,1,3,0)
- ;;=3^Fall from Chair,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11929,1,4,0)
- ;;=4^W07.XXXD
- ;;^UTILITY(U,$J,358.3,11929,2)
- ;;=^5059563
- ;;^UTILITY(U,$J,358.3,11930,0)
- ;;=W10.1XXA^^68^694^81
- ;;^UTILITY(U,$J,358.3,11930,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11930,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Init Encntr
- ;;^UTILITY(U,$J,358.3,11930,1,4,0)
- ;;=4^W10.1XXA
- ;;^UTILITY(U,$J,358.3,11930,2)
- ;;=^5059583
- ;;^UTILITY(U,$J,358.3,11931,0)
- ;;=W10.1XXD^^68^694^82
- ;;^UTILITY(U,$J,358.3,11931,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11931,1,3,0)
- ;;=3^Fall on Sidewalk Curb,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11931,1,4,0)
- ;;=4^W10.1XXD
- ;;^UTILITY(U,$J,358.3,11931,2)
- ;;=^5059584
- ;;^UTILITY(U,$J,358.3,11932,0)
- ;;=W11.XXXA^^68^694^41
- ;;^UTILITY(U,$J,358.3,11932,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11932,1,3,0)
- ;;=3^Fall from Ladder,Init Encntr
- ;;^UTILITY(U,$J,358.3,11932,1,4,0)
- ;;=4^W11.XXXA
- ;;^UTILITY(U,$J,358.3,11932,2)
- ;;=^5059595
- ;;^UTILITY(U,$J,358.3,11933,0)
- ;;=W11.XXXD^^68^694^42
- ;;^UTILITY(U,$J,358.3,11933,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11933,1,3,0)
- ;;=3^Fall from Ladder,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11933,1,4,0)
- ;;=4^W11.XXXD
- ;;^UTILITY(U,$J,358.3,11933,2)
- ;;=^5059596
- ;;^UTILITY(U,$J,358.3,11934,0)
- ;;=W13.0XXA^^68^694^67
- ;;^UTILITY(U,$J,358.3,11934,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11934,1,3,0)
- ;;=3^Fall from/through Balcony,Init Encntr
- ;;^UTILITY(U,$J,358.3,11934,1,4,0)
- ;;=4^W13.0XXA
- ;;^UTILITY(U,$J,358.3,11934,2)
- ;;=^5059601
- ;;^UTILITY(U,$J,358.3,11935,0)
- ;;=W13.0XXD^^68^694^68
- ;;^UTILITY(U,$J,358.3,11935,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11935,1,3,0)
- ;;=3^Fall from/through Balcony,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11935,1,4,0)
- ;;=4^W13.0XXD
- ;;^UTILITY(U,$J,358.3,11935,2)
- ;;=^5059602
- ;;^UTILITY(U,$J,358.3,11936,0)
- ;;=W13.1XXA^^68^694^31
- ;;^UTILITY(U,$J,358.3,11936,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11936,1,3,0)
- ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,12181,1,3,0)
+ ;;=3^Anoscopy, Diagnositc
+ ;;^UTILITY(U,$J,358.3,12182,0)
+ ;;=46606^^49^548^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12182,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12182,1,2,0)
+ ;;=2^46606
+ ;;^UTILITY(U,$J,358.3,12182,1,3,0)
+ ;;=3^Anoscopy w/Biopsy
+ ;;^UTILITY(U,$J,358.3,12183,0)
+ ;;=45330^^49^548^12^^^^1
+ ;;^UTILITY(U,$J,358.3,12183,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12183,1,2,0)
+ ;;=2^45330
+ ;;^UTILITY(U,$J,358.3,12183,1,3,0)
+ ;;=3^Flex Sig Diagnostic
+ ;;^UTILITY(U,$J,358.3,12184,0)
+ ;;=45331^^49^548^14^^^^1
+ ;;^UTILITY(U,$J,358.3,12184,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12184,1,2,0)
+ ;;=2^45331
+ ;;^UTILITY(U,$J,358.3,12184,1,3,0)
+ ;;=3^Flex Sig w/Biopsy
+ ;;^UTILITY(U,$J,358.3,12185,0)
+ ;;=45333^^49^548^19^^^^1
+ ;;^UTILITY(U,$J,358.3,12185,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12185,1,2,0)
+ ;;=2^45333
+ ;;^UTILITY(U,$J,358.3,12185,1,3,0)
+ ;;=3^Flex Sig w/Tumor Removal by Hot Forceps
+ ;;^UTILITY(U,$J,358.3,12186,0)
+ ;;=45332^^49^548^17^^^^1
+ ;;^UTILITY(U,$J,358.3,12186,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12186,1,2,0)
+ ;;=2^45332
+ ;;^UTILITY(U,$J,358.3,12186,1,3,0)
+ ;;=3^Flex Sig w/FB Removal
+ ;;^UTILITY(U,$J,358.3,12187,0)
+ ;;=45334^^49^548^15^^^^1
+ ;;^UTILITY(U,$J,358.3,12187,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12187,1,2,0)
+ ;;=2^45334
+ ;;^UTILITY(U,$J,358.3,12187,1,3,0)
+ ;;=3^Flex Sig w/Control of Hemorrhage
+ ;;^UTILITY(U,$J,358.3,12188,0)
+ ;;=45300^^49^548^31^^^^1
+ ;;^UTILITY(U,$J,358.3,12188,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12188,1,2,0)
+ ;;=2^45300
+ ;;^UTILITY(U,$J,358.3,12188,1,3,0)
+ ;;=3^Rigid Sigmoidoscopy
+ ;;^UTILITY(U,$J,358.3,12189,0)
+ ;;=45303^^49^548^25^^^^1
+ ;;^UTILITY(U,$J,358.3,12189,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12189,1,2,0)
+ ;;=2^45303
+ ;;^UTILITY(U,$J,358.3,12189,1,3,0)
+ ;;=3^Rigid Proctosig w/Dilation
+ ;;^UTILITY(U,$J,358.3,12190,0)
+ ;;=45305^^49^548^22^^^^1
+ ;;^UTILITY(U,$J,358.3,12190,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12190,1,2,0)
+ ;;=2^45305
+ ;;^UTILITY(U,$J,358.3,12190,1,3,0)
+ ;;=3^Rigid Proctosig w/Biopsy(s)
+ ;;^UTILITY(U,$J,358.3,12191,0)
+ ;;=45307^^49^548^26^^^^1
+ ;;^UTILITY(U,$J,358.3,12191,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12191,1,2,0)
+ ;;=2^45307
+ ;;^UTILITY(U,$J,358.3,12191,1,3,0)
+ ;;=3^Rigid Proctosig w/Removal FB
+ ;;^UTILITY(U,$J,358.3,12192,0)
+ ;;=45308^^49^548^28^^^^1
+ ;;^UTILITY(U,$J,358.3,12192,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12192,1,2,0)
+ ;;=2^45308
+ ;;^UTILITY(U,$J,358.3,12192,1,3,0)
+ ;;=3^Rigid Proctosig w/Tumor Rem-Hot Forceps
+ ;;^UTILITY(U,$J,358.3,12193,0)
+ ;;=45309^^49^548^30^^^^1
+ ;;^UTILITY(U,$J,358.3,12193,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12193,1,2,0)
+ ;;=2^45309
+ ;;^UTILITY(U,$J,358.3,12193,1,3,0)
+ ;;=3^Rigid Proctosig w/Tumor Rem-Snare
+ ;;^UTILITY(U,$J,358.3,12194,0)
+ ;;=45315^^49^548^29^^^^1
+ ;;^UTILITY(U,$J,358.3,12194,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12194,1,2,0)
+ ;;=2^45315
+ ;;^UTILITY(U,$J,358.3,12194,1,3,0)
+ ;;=3^Rigid Proctosig w/Tumor Rem-Ht FRCP/Snar
+ ;;^UTILITY(U,$J,358.3,12195,0)
+ ;;=45317^^49^548^23^^^^1
+ ;;^UTILITY(U,$J,358.3,12195,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12195,1,2,0)
+ ;;=2^45317
+ ;;^UTILITY(U,$J,358.3,12195,1,3,0)
+ ;;=3^Rigid Proctosig w/Control of Bleed
+ ;;^UTILITY(U,$J,358.3,12196,0)
+ ;;=45320^^49^548^21^^^^1
+ ;;^UTILITY(U,$J,358.3,12196,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12196,1,2,0)
+ ;;=2^45320
+ ;;^UTILITY(U,$J,358.3,12196,1,3,0)
+ ;;=3^Rigid Proctosig w/Ablation Tumor
+ ;;^UTILITY(U,$J,358.3,12197,0)
+ ;;=45321^^49^548^24^^^^1
+ ;;^UTILITY(U,$J,358.3,12197,1,0)
+ ;;=^358.31IA^3^2

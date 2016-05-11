@@ -1,9 +1,9 @@
 DGPFAA3 ;ALB/RPM - PRF ASSIGNMENT API'S CONTINUED ; 3/28/03
- ;;5.3;Registration;**425,650**;Aug 13, 1993;Build 3
+ ;;5.3;Registration;**425,650,911**;Aug 13, 1993;Build 2
  ;
  Q  ;no direct entry
  ;
-NOTIFYDT(DGFLG,DGRDT) ;calculate the notificaton date
+NOTIFYDT(DGFLG,DGRDT) ;calculate the notification date
  ;
  ;  Input:
  ;    DGFLG - (required) pointer to PRF LOCAL FLAG (#26.11) file or 
@@ -23,7 +23,7 @@ NOTIFYDT(DGFLG,DGRDT) ;calculate the notificaton date
  . ;Retrieve the flag data array
  . Q:'$$GETFLAG^DGPFUT1(DGFLG,.DGFLGA)
  . ;
- . ;must have a review frequency
+ . ;must have a review frequency 
  . Q:(+$G(DGFLGA("REVFREQ"))=0)
  . ;
  . ;determine notification date
@@ -104,7 +104,7 @@ STOHL7(DGPFA,DGPFAH,DGEROOT) ;store a valid assignment from HL7 message
  ;            dialog is returned in ^TMP("DIERR",$J) global.
  ;
  ;  Output:
- ;   Function Value - Returns 1 on sucess, 0 on failure
+ ;   Function Value - Returns 1 on success, 0 on failure
  ;        DGEROOT() - error output array from BLD^DIALOG
  ;
  N DGDFN
@@ -197,10 +197,12 @@ HL7EDTOK(DGDFN,DGFLG,DGORIG,DGACT,DGEROOT) ;Is site allowed to edit assignment?
  . I '$$GETASGN^DGPFAA(DGIEN,.DGPFA) D  Q
  . . D BLD^DIALOG(261102,,,DGEROOT,"F")
  . ;
+ . ;Patch 911, removing sending facility check, this does not allow 
+ . ;sites to process msgs from integrated sites-BG
  . ;SENDING FACILITY be the OWNER or parent of the OWNER
- . S DGOWNER=+$G(DGPFA("OWNER"))
- . I DGORIG'=DGOWNER,DGORIG'=+$$PARENT^DGPFUT1(DGOWNER) D  Q
- . . D BLD^DIALOG(261116,,,DGEROOT,"F")
+ . ;S DGOWNER=+$G(DGPFA("OWNER"))
+ . ;I DGORIG'=DGOWNER,DGORIG'=+$$PARENT^DGPFUT1(DGOWNER) D  Q
+ . ;. D BLD^DIALOG(261116,,,DGEROOT,"F")
  . ;
  . ;quit if flag STATUS is INACTIVE
  . I $$GETFLAG^DGPFUT1($P($G(DGPFA("FLAG")),U),.DGFARRY)

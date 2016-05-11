@@ -1,134 +1,132 @@
-IBDEI18W ; ; 19-NOV-2015
+IBDEI18W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20820,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,20821,0)
- ;;=F33.3^^99^986^7
- ;;^UTILITY(U,$J,358.3,20821,1,0)
+ ;;^UTILITY(U,$J,358.3,21166,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,21167,0)
+ ;;=S91.104A^^84^946^22
+ ;;^UTILITY(U,$J,358.3,21167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20821,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,20821,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,20821,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,20822,0)
- ;;=F33.41^^99^986^8
- ;;^UTILITY(U,$J,358.3,20822,1,0)
+ ;;^UTILITY(U,$J,358.3,21167,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,21167,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,21167,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,21168,0)
+ ;;=S81.802A^^84^946^13
+ ;;^UTILITY(U,$J,358.3,21168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20822,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,20822,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,20822,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,20823,0)
- ;;=F33.42^^99^986^9
- ;;^UTILITY(U,$J,358.3,20823,1,0)
+ ;;^UTILITY(U,$J,358.3,21168,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,21168,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,21168,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,21169,0)
+ ;;=S41.102A^^84^946^15
+ ;;^UTILITY(U,$J,358.3,21169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20823,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,20823,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,20823,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,20824,0)
- ;;=F34.8^^99^986^6
- ;;^UTILITY(U,$J,358.3,20824,1,0)
+ ;;^UTILITY(U,$J,358.3,21169,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,21169,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,21169,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,21170,0)
+ ;;=S91.001A^^84^946^16
+ ;;^UTILITY(U,$J,358.3,21170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20824,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,20824,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,20824,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,20825,0)
- ;;=F32.8^^99^986^1
- ;;^UTILITY(U,$J,358.3,20825,1,0)
+ ;;^UTILITY(U,$J,358.3,21170,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,21170,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,21170,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,21171,0)
+ ;;=S91.301A^^84^946^17
+ ;;^UTILITY(U,$J,358.3,21171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20825,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,20825,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,20825,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,20826,0)
- ;;=F34.1^^99^986^22
- ;;^UTILITY(U,$J,358.3,20826,1,0)
+ ;;^UTILITY(U,$J,358.3,21171,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,21171,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,21171,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,21172,0)
+ ;;=S51.801A^^84^946^18
+ ;;^UTILITY(U,$J,358.3,21172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20826,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,20826,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,20826,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,20827,0)
- ;;=F32.9^^99^986^5
- ;;^UTILITY(U,$J,358.3,20827,1,0)
+ ;;^UTILITY(U,$J,358.3,21172,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,21172,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,21172,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,21173,0)
+ ;;=S91.101A^^84^946^19
+ ;;^UTILITY(U,$J,358.3,21173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20827,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,20827,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,20827,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,20828,0)
- ;;=N94.3^^99^986^23
- ;;^UTILITY(U,$J,358.3,20828,1,0)
+ ;;^UTILITY(U,$J,358.3,21173,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,21173,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,21173,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,21174,0)
+ ;;=S61.401A^^84^946^20
+ ;;^UTILITY(U,$J,358.3,21174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20828,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,20828,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,20828,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,20829,0)
- ;;=G31.84^^99^986^21
- ;;^UTILITY(U,$J,358.3,20829,1,0)
+ ;;^UTILITY(U,$J,358.3,21174,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,21174,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,21174,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,21175,0)
+ ;;=S71.001A^^84^946^21
+ ;;^UTILITY(U,$J,358.3,21175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20829,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,20829,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,20829,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,20830,0)
- ;;=F44.81^^99^987^5
- ;;^UTILITY(U,$J,358.3,20830,1,0)
+ ;;^UTILITY(U,$J,358.3,21175,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,21175,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,21175,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,21176,0)
+ ;;=S91.105A^^84^946^12
+ ;;^UTILITY(U,$J,358.3,21176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20830,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,20830,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,20830,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,20831,0)
- ;;=F44.9^^99^987^4
- ;;^UTILITY(U,$J,358.3,20831,1,0)
+ ;;^UTILITY(U,$J,358.3,21176,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,21176,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,21176,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,21177,0)
+ ;;=S81.801A^^84^946^23
+ ;;^UTILITY(U,$J,358.3,21177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20831,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,20831,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,20831,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,20832,0)
- ;;=F44.0^^99^987^2
- ;;^UTILITY(U,$J,358.3,20832,1,0)
+ ;;^UTILITY(U,$J,358.3,21177,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,21177,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,21177,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,21178,0)
+ ;;=S71.102A^^84^946^14
+ ;;^UTILITY(U,$J,358.3,21178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20832,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,20832,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,20832,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,20833,0)
- ;;=F48.1^^99^987^1
- ;;^UTILITY(U,$J,358.3,20833,1,0)
+ ;;^UTILITY(U,$J,358.3,21178,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,21178,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,21178,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,21179,0)
+ ;;=S71.101A^^84^946^24
+ ;;^UTILITY(U,$J,358.3,21179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20833,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,20833,1,4,0)
- ;;=4^F48.1
+ ;;^UTILITY(U,$J,358.3,21179,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec

@@ -1,132 +1,128 @@
-IBDEI2D9 ; ; 19-NOV-2015
+IBDEI2D9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39731,1,4,0)
- ;;=4^M06.312
- ;;^UTILITY(U,$J,358.3,39731,2)
- ;;=^5010098
- ;;^UTILITY(U,$J,358.3,39732,0)
- ;;=M06.332^^183^2029^71
- ;;^UTILITY(U,$J,358.3,39732,1,0)
+ ;;^UTILITY(U,$J,358.3,40127,1,3,0)
+ ;;=3^Extramedullary plasmacytoma in relapse
+ ;;^UTILITY(U,$J,358.3,40127,1,4,0)
+ ;;=4^C90.22
+ ;;^UTILITY(U,$J,358.3,40127,2)
+ ;;=^5001758
+ ;;^UTILITY(U,$J,358.3,40128,0)
+ ;;=C90.32^^156^1952^49
+ ;;^UTILITY(U,$J,358.3,40128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39732,1,3,0)
- ;;=3^Rheumatoid nodule, left wrist
- ;;^UTILITY(U,$J,358.3,39732,1,4,0)
- ;;=4^M06.332
- ;;^UTILITY(U,$J,358.3,39732,2)
- ;;=^5010104
- ;;^UTILITY(U,$J,358.3,39733,0)
- ;;=M06.39^^183^2029^72
- ;;^UTILITY(U,$J,358.3,39733,1,0)
+ ;;^UTILITY(U,$J,358.3,40128,1,3,0)
+ ;;=3^Solitary plasmacytoma in relapse
+ ;;^UTILITY(U,$J,358.3,40128,1,4,0)
+ ;;=4^C90.32
+ ;;^UTILITY(U,$J,358.3,40128,2)
+ ;;=^5001761
+ ;;^UTILITY(U,$J,358.3,40129,0)
+ ;;=C91.01^^156^1952^2
+ ;;^UTILITY(U,$J,358.3,40129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39733,1,3,0)
- ;;=3^Rheumatoid nodule, multiple sites
- ;;^UTILITY(U,$J,358.3,39733,1,4,0)
- ;;=4^M06.39
- ;;^UTILITY(U,$J,358.3,39733,2)
- ;;=^5010119
- ;;^UTILITY(U,$J,358.3,39734,0)
- ;;=M06.371^^183^2029^73
- ;;^UTILITY(U,$J,358.3,39734,1,0)
+ ;;^UTILITY(U,$J,358.3,40129,1,3,0)
+ ;;=3^Acute lymphoblastic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,40129,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,40129,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,40130,0)
+ ;;=C91.02^^156^1952^1
+ ;;^UTILITY(U,$J,358.3,40130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39734,1,3,0)
- ;;=3^Rheumatoid nodule, right ankle and foot
- ;;^UTILITY(U,$J,358.3,39734,1,4,0)
- ;;=4^M06.371
- ;;^UTILITY(U,$J,358.3,39734,2)
- ;;=^5010115
- ;;^UTILITY(U,$J,358.3,39735,0)
- ;;=M06.321^^183^2029^74
- ;;^UTILITY(U,$J,358.3,39735,1,0)
+ ;;^UTILITY(U,$J,358.3,40130,1,3,0)
+ ;;=3^Acute lymphoblastic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,40130,1,4,0)
+ ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,40130,2)
+ ;;=^5001764
+ ;;^UTILITY(U,$J,358.3,40131,0)
+ ;;=C91.11^^156^1952^16
+ ;;^UTILITY(U,$J,358.3,40131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39735,1,3,0)
- ;;=3^Rheumatoid nodule, right elbow
- ;;^UTILITY(U,$J,358.3,39735,1,4,0)
- ;;=4^M06.321
- ;;^UTILITY(U,$J,358.3,39735,2)
- ;;=^5010100
- ;;^UTILITY(U,$J,358.3,39736,0)
- ;;=M06.341^^183^2029^75
- ;;^UTILITY(U,$J,358.3,39736,1,0)
+ ;;^UTILITY(U,$J,358.3,40131,1,3,0)
+ ;;=3^Chronic lymphocytic leukemia of B-cell type in remission
+ ;;^UTILITY(U,$J,358.3,40131,1,4,0)
+ ;;=4^C91.11
+ ;;^UTILITY(U,$J,358.3,40131,2)
+ ;;=^5001766
+ ;;^UTILITY(U,$J,358.3,40132,0)
+ ;;=C91.12^^156^1952^17
+ ;;^UTILITY(U,$J,358.3,40132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39736,1,3,0)
- ;;=3^Rheumatoid nodule, right hand
- ;;^UTILITY(U,$J,358.3,39736,1,4,0)
- ;;=4^M06.341
- ;;^UTILITY(U,$J,358.3,39736,2)
- ;;=^5010106
- ;;^UTILITY(U,$J,358.3,39737,0)
- ;;=M06.351^^183^2029^76
- ;;^UTILITY(U,$J,358.3,39737,1,0)
+ ;;^UTILITY(U,$J,358.3,40132,1,3,0)
+ ;;=3^Chronic lymphocytic leukemia of B-cell type in relapse
+ ;;^UTILITY(U,$J,358.3,40132,1,4,0)
+ ;;=4^C91.12
+ ;;^UTILITY(U,$J,358.3,40132,2)
+ ;;=^5001767
+ ;;^UTILITY(U,$J,358.3,40133,0)
+ ;;=C91.Z1^^156^1952^32
+ ;;^UTILITY(U,$J,358.3,40133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39737,1,3,0)
- ;;=3^Rheumatoid nodule, right hip
- ;;^UTILITY(U,$J,358.3,39737,1,4,0)
- ;;=4^M06.351
- ;;^UTILITY(U,$J,358.3,39737,2)
- ;;=^5010109
- ;;^UTILITY(U,$J,358.3,39738,0)
- ;;=M06.361^^183^2029^77
- ;;^UTILITY(U,$J,358.3,39738,1,0)
+ ;;^UTILITY(U,$J,358.3,40133,1,3,0)
+ ;;=3^Lymphoid leukemia, in remission NEC
+ ;;^UTILITY(U,$J,358.3,40133,1,4,0)
+ ;;=4^C91.Z1
+ ;;^UTILITY(U,$J,358.3,40133,2)
+ ;;=^5001787
+ ;;^UTILITY(U,$J,358.3,40134,0)
+ ;;=C91.Z2^^156^1952^31
+ ;;^UTILITY(U,$J,358.3,40134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39738,1,3,0)
- ;;=3^Rheumatoid nodule, right knee
- ;;^UTILITY(U,$J,358.3,39738,1,4,0)
- ;;=4^M06.361
- ;;^UTILITY(U,$J,358.3,39738,2)
- ;;=^5010112
- ;;^UTILITY(U,$J,358.3,39739,0)
- ;;=M06.311^^183^2029^78
- ;;^UTILITY(U,$J,358.3,39739,1,0)
+ ;;^UTILITY(U,$J,358.3,40134,1,3,0)
+ ;;=3^Lymphoid leukemia, in relapse NEC
+ ;;^UTILITY(U,$J,358.3,40134,1,4,0)
+ ;;=4^C91.Z2
+ ;;^UTILITY(U,$J,358.3,40134,2)
+ ;;=^5001788
+ ;;^UTILITY(U,$J,358.3,40135,0)
+ ;;=C92.01^^156^1952^6
+ ;;^UTILITY(U,$J,358.3,40135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39739,1,3,0)
- ;;=3^Rheumatoid nodule, right shoulder
- ;;^UTILITY(U,$J,358.3,39739,1,4,0)
- ;;=4^M06.311
- ;;^UTILITY(U,$J,358.3,39739,2)
- ;;=^5010097
- ;;^UTILITY(U,$J,358.3,39740,0)
- ;;=M06.331^^183^2029^79
- ;;^UTILITY(U,$J,358.3,39740,1,0)
+ ;;^UTILITY(U,$J,358.3,40135,1,3,0)
+ ;;=3^Acute myeloblastic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,40135,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,40135,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,40136,0)
+ ;;=C92.41^^156^1952^10
+ ;;^UTILITY(U,$J,358.3,40136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39740,1,3,0)
- ;;=3^Rheumatoid nodule, right wrist
- ;;^UTILITY(U,$J,358.3,39740,1,4,0)
- ;;=4^M06.331
- ;;^UTILITY(U,$J,358.3,39740,2)
- ;;=^5010103
- ;;^UTILITY(U,$J,358.3,39741,0)
- ;;=M06.38^^183^2029^80
- ;;^UTILITY(U,$J,358.3,39741,1,0)
+ ;;^UTILITY(U,$J,358.3,40136,1,3,0)
+ ;;=3^Acute promyelocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,40136,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,40136,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,40137,0)
+ ;;=C92.51^^156^1952^8
+ ;;^UTILITY(U,$J,358.3,40137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39741,1,3,0)
- ;;=3^Rheumatoid nodule, vertebrae
- ;;^UTILITY(U,$J,358.3,39741,1,4,0)
- ;;=4^M06.38
- ;;^UTILITY(U,$J,358.3,39741,2)
- ;;=^5010118
- ;;^UTILITY(U,$J,358.3,39742,0)
- ;;=M05.572^^183^2029^81
- ;;^UTILITY(U,$J,358.3,39742,1,0)
+ ;;^UTILITY(U,$J,358.3,40137,1,3,0)
+ ;;=3^Acute myelomonocytic leukemia, in remission
+ ;;^UTILITY(U,$J,358.3,40137,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,40137,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,40138,0)
+ ;;=C92.02^^156^1952^5
+ ;;^UTILITY(U,$J,358.3,40138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39742,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left ank/ft
- ;;^UTILITY(U,$J,358.3,39742,1,4,0)
- ;;=4^M05.572
- ;;^UTILITY(U,$J,358.3,39742,2)
- ;;=^5009974
- ;;^UTILITY(U,$J,358.3,39743,0)
- ;;=M05.522^^183^2029^82
- ;;^UTILITY(U,$J,358.3,39743,1,0)
+ ;;^UTILITY(U,$J,358.3,40138,1,3,0)
+ ;;=3^Acute myeloblastic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,40138,1,4,0)
+ ;;=4^C92.02
+ ;;^UTILITY(U,$J,358.3,40138,2)
+ ;;=^5001791
+ ;;^UTILITY(U,$J,358.3,40139,0)
+ ;;=C92.42^^156^1952^9
+ ;;^UTILITY(U,$J,358.3,40139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39743,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of left elbow
- ;;^UTILITY(U,$J,358.3,39743,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,39743,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,39744,0)
- ;;=M05.542^^183^2029^83
- ;;^UTILITY(U,$J,358.3,39744,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40139,1,3,0)
+ ;;=3^Acute promyelocytic leukemia, in relapse
+ ;;^UTILITY(U,$J,358.3,40139,1,4,0)
+ ;;=4^C92.42

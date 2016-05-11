@@ -1,132 +1,122 @@
-IBDEI151 ; ; 19-NOV-2015
+IBDEI151 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19006,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,19006,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,19006,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,19007,0)
- ;;=Z85.3^^94^917^85
- ;;^UTILITY(U,$J,358.3,19007,1,0)
+ ;;^UTILITY(U,$J,358.3,19361,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,19361,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,19361,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,19362,0)
+ ;;=I70.434^^84^918^43
+ ;;^UTILITY(U,$J,358.3,19362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19007,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,19007,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,19007,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,19008,0)
- ;;=Z85.41^^94^917^87
- ;;^UTILITY(U,$J,358.3,19008,1,0)
+ ;;^UTILITY(U,$J,358.3,19362,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,19362,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,19362,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,19363,0)
+ ;;=I70.435^^84^918^44
+ ;;^UTILITY(U,$J,358.3,19363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19008,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,19008,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,19008,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,19009,0)
- ;;=Z85.43^^94^917^95
- ;;^UTILITY(U,$J,358.3,19009,1,0)
+ ;;^UTILITY(U,$J,358.3,19363,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,19363,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,19363,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,19364,0)
+ ;;=I70.441^^84^918^35
+ ;;^UTILITY(U,$J,358.3,19364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19009,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,19009,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,19009,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,19010,0)
- ;;=Z85.46^^94^917^96
- ;;^UTILITY(U,$J,358.3,19010,1,0)
+ ;;^UTILITY(U,$J,358.3,19364,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,19364,1,4,0)
+ ;;=4^I70.441
+ ;;^UTILITY(U,$J,358.3,19364,2)
+ ;;=^5007671
+ ;;^UTILITY(U,$J,358.3,19365,0)
+ ;;=I70.442^^84^918^36
+ ;;^UTILITY(U,$J,358.3,19365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19010,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,19010,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,19010,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,19011,0)
- ;;=Z85.47^^94^917^100
- ;;^UTILITY(U,$J,358.3,19011,1,0)
+ ;;^UTILITY(U,$J,358.3,19365,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,19365,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,19365,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,19366,0)
+ ;;=I70.443^^84^918^37
+ ;;^UTILITY(U,$J,358.3,19366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19011,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,19011,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,19011,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,19012,0)
- ;;=Z85.51^^94^917^84
- ;;^UTILITY(U,$J,358.3,19012,1,0)
+ ;;^UTILITY(U,$J,358.3,19366,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,19366,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,19366,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,19367,0)
+ ;;=I70.444^^84^918^38
+ ;;^UTILITY(U,$J,358.3,19367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19012,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,19012,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,19012,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,19013,0)
- ;;=Z85.528^^94^917^89
- ;;^UTILITY(U,$J,358.3,19013,1,0)
+ ;;^UTILITY(U,$J,358.3,19367,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,19367,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,19367,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,19368,0)
+ ;;=I70.445^^84^918^39
+ ;;^UTILITY(U,$J,358.3,19368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19013,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,19013,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,19013,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,19014,0)
- ;;=Z85.6^^94^917^80
- ;;^UTILITY(U,$J,358.3,19014,1,0)
+ ;;^UTILITY(U,$J,358.3,19368,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,19368,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,19368,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,19369,0)
+ ;;=I70.531^^84^918^60
+ ;;^UTILITY(U,$J,358.3,19369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19014,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,19014,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,19014,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,19015,0)
- ;;=Z85.72^^94^917^104
- ;;^UTILITY(U,$J,358.3,19015,1,0)
+ ;;^UTILITY(U,$J,358.3,19369,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,19369,1,4,0)
+ ;;=4^I70.531
+ ;;^UTILITY(U,$J,358.3,19369,2)
+ ;;=^5007702
+ ;;^UTILITY(U,$J,358.3,19370,0)
+ ;;=I70.532^^84^918^61
+ ;;^UTILITY(U,$J,358.3,19370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19015,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,19015,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,19015,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,19016,0)
- ;;=Z85.79^^94^917^94
- ;;^UTILITY(U,$J,358.3,19016,1,0)
+ ;;^UTILITY(U,$J,358.3,19370,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,19370,1,4,0)
+ ;;=4^I70.532
+ ;;^UTILITY(U,$J,358.3,19370,2)
+ ;;=^5007703
+ ;;^UTILITY(U,$J,358.3,19371,0)
+ ;;=I70.533^^84^918^62
+ ;;^UTILITY(U,$J,358.3,19371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19016,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,19016,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,19016,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,19017,0)
- ;;=Z85.820^^94^917^83
- ;;^UTILITY(U,$J,358.3,19017,1,0)
+ ;;^UTILITY(U,$J,358.3,19371,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,19371,1,4,0)
+ ;;=4^I70.533
+ ;;^UTILITY(U,$J,358.3,19371,2)
+ ;;=^5007704
+ ;;^UTILITY(U,$J,358.3,19372,0)
+ ;;=I70.534^^84^918^63
+ ;;^UTILITY(U,$J,358.3,19372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19017,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,19017,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,19017,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,19018,0)
- ;;=Z85.828^^94^917^98
- ;;^UTILITY(U,$J,358.3,19018,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19018,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,19018,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,19018,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,19019,0)
- ;;=Z85.71^^94^917^78
+ ;;^UTILITY(U,$J,358.3,19372,1,3,0)
+ ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,19372,1,4,0)
+ ;;=4^I70.534
+ ;;^UTILITY(U,$J,358.3,19372,2)
+ ;;=^5007705
+ ;;^UTILITY(U,$J,358.3,19373,0)
+ ;;=I70.535^^84^918^64

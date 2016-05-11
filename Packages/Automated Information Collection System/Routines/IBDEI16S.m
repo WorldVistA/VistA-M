@@ -1,126 +1,134 @@
-IBDEI16S ; ; 19-NOV-2015
+IBDEI16S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19829,1,0)
+ ;;^UTILITY(U,$J,358.3,20176,1,4,0)
+ ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,20176,2)
+ ;;=^5001764
+ ;;^UTILITY(U,$J,358.3,20177,0)
+ ;;=C92.02^^84^929^6
+ ;;^UTILITY(U,$J,358.3,20177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19829,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,19829,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,19829,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,19830,0)
- ;;=F11.282^^94^930^44
- ;;^UTILITY(U,$J,358.3,19830,1,0)
+ ;;^UTILITY(U,$J,358.3,20177,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,20177,1,4,0)
+ ;;=4^C92.02
+ ;;^UTILITY(U,$J,358.3,20177,2)
+ ;;=^5001791
+ ;;^UTILITY(U,$J,358.3,20178,0)
+ ;;=D09.3^^84^929^45
+ ;;^UTILITY(U,$J,358.3,20178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19830,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,19830,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,19830,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,19831,0)
- ;;=F11.281^^94^930^43
- ;;^UTILITY(U,$J,358.3,19831,1,0)
+ ;;^UTILITY(U,$J,358.3,20178,1,3,0)
+ ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
+ ;;^UTILITY(U,$J,358.3,20178,1,4,0)
+ ;;=4^D09.3
+ ;;^UTILITY(U,$J,358.3,20178,2)
+ ;;=^5001955
+ ;;^UTILITY(U,$J,358.3,20179,0)
+ ;;=C22.0^^84^929^86
+ ;;^UTILITY(U,$J,358.3,20179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19831,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,19831,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,19831,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,19832,0)
- ;;=F11.259^^94^930^42
- ;;^UTILITY(U,$J,358.3,19832,1,0)
+ ;;^UTILITY(U,$J,358.3,20179,1,3,0)
+ ;;=3^Hepatocellular Carcinoma
+ ;;^UTILITY(U,$J,358.3,20179,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,20179,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,20180,0)
+ ;;=C24.9^^84^929^110
+ ;;^UTILITY(U,$J,358.3,20180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19832,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,19832,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,19832,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,19833,0)
- ;;=F11.251^^94^930^35
- ;;^UTILITY(U,$J,358.3,19833,1,0)
+ ;;^UTILITY(U,$J,358.3,20180,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,20180,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,20180,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,20181,0)
+ ;;=C50.922^^84^929^134
+ ;;^UTILITY(U,$J,358.3,20181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19833,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,19833,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,19833,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,19834,0)
- ;;=F11.250^^94^930^36
- ;;^UTILITY(U,$J,358.3,19834,1,0)
+ ;;^UTILITY(U,$J,358.3,20181,1,3,0)
+ ;;=3^Malig Neop Left Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20181,1,4,0)
+ ;;=4^C50.922
+ ;;^UTILITY(U,$J,358.3,20181,2)
+ ;;=^5133340
+ ;;^UTILITY(U,$J,358.3,20182,0)
+ ;;=C34.91^^84^929^152
+ ;;^UTILITY(U,$J,358.3,20182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19834,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,19834,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,19834,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,19835,0)
- ;;=F11.24^^94^930^41
- ;;^UTILITY(U,$J,358.3,19835,1,0)
+ ;;^UTILITY(U,$J,358.3,20182,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,20182,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,20182,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,20183,0)
+ ;;=C50.921^^84^929^156
+ ;;^UTILITY(U,$J,358.3,20183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19835,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,19835,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,19835,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,19836,0)
- ;;=F11.23^^94^930^47
- ;;^UTILITY(U,$J,358.3,19836,1,0)
+ ;;^UTILITY(U,$J,358.3,20183,1,3,0)
+ ;;=3^Malig Neop Right Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20183,1,4,0)
+ ;;=4^C50.921
+ ;;^UTILITY(U,$J,358.3,20183,2)
+ ;;=^5001198
+ ;;^UTILITY(U,$J,358.3,20184,0)
+ ;;=C90.02^^84^929^167
+ ;;^UTILITY(U,$J,358.3,20184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19836,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,19836,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,19836,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,19837,0)
- ;;=F11.20^^94^930^48
- ;;^UTILITY(U,$J,358.3,19837,1,0)
+ ;;^UTILITY(U,$J,358.3,20184,1,3,0)
+ ;;=3^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,20184,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,20184,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,20185,0)
+ ;;=D51.9^^84^929^25
+ ;;^UTILITY(U,$J,358.3,20185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19837,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19837,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,19837,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,19838,0)
- ;;=F11.229^^94^930^40
- ;;^UTILITY(U,$J,358.3,19838,1,0)
+ ;;^UTILITY(U,$J,358.3,20185,1,3,0)
+ ;;=3^Anemia in Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,20185,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,20185,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,20186,0)
+ ;;=C79.51^^84^929^30
+ ;;^UTILITY(U,$J,358.3,20186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19838,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,19838,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,19838,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,19839,0)
- ;;=F11.222^^94^930^38
- ;;^UTILITY(U,$J,358.3,19839,1,0)
+ ;;^UTILITY(U,$J,358.3,20186,1,3,0)
+ ;;=3^Bone Mets
+ ;;^UTILITY(U,$J,358.3,20186,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,20186,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,20187,0)
+ ;;=C80.1^^84^929^163
+ ;;^UTILITY(U,$J,358.3,20187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19839,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,19839,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,19839,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,19840,0)
- ;;=F11.221^^94^930^37
- ;;^UTILITY(U,$J,358.3,19840,1,0)
+ ;;^UTILITY(U,$J,358.3,20187,1,3,0)
+ ;;=3^Malig Neop,Primary,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20187,1,4,0)
+ ;;=4^C80.1
+ ;;^UTILITY(U,$J,358.3,20187,2)
+ ;;=^5001389
+ ;;^UTILITY(U,$J,358.3,20188,0)
+ ;;=C80.0^^84^929^164
+ ;;^UTILITY(U,$J,358.3,20188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19840,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,19840,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,19840,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,19841,0)
- ;;=F11.220^^94^930^39
- ;;^UTILITY(U,$J,358.3,19841,1,0)
+ ;;^UTILITY(U,$J,358.3,20188,1,3,0)
+ ;;=3^Malig Neop,Unspec Primary or Secondary
+ ;;^UTILITY(U,$J,358.3,20188,1,4,0)
+ ;;=4^C80.0
+ ;;^UTILITY(U,$J,358.3,20188,2)
+ ;;=^5001388
+ ;;^UTILITY(U,$J,358.3,20189,0)
+ ;;=Z85.818^^84^930^92
+ ;;^UTILITY(U,$J,358.3,20189,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20189,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx

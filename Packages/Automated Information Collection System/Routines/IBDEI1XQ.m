@@ -1,136 +1,132 @@
-IBDEI1XQ ; ; 19-NOV-2015
+IBDEI1XQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32393,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,32393,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,32394,0)
- ;;=F44.81^^143^1523^5
- ;;^UTILITY(U,$J,358.3,32394,1,0)
+ ;;^UTILITY(U,$J,358.3,32821,1,4,0)
+ ;;=4^Z80.7
+ ;;^UTILITY(U,$J,358.3,32821,2)
+ ;;=^5063355
+ ;;^UTILITY(U,$J,358.3,32822,0)
+ ;;=Z80.9^^128^1636^33
+ ;;^UTILITY(U,$J,358.3,32822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32394,1,3,0)
- ;;=3^Dissociative Identity Disorder
- ;;^UTILITY(U,$J,358.3,32394,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,32394,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,32395,0)
- ;;=F44.9^^143^1523^4
- ;;^UTILITY(U,$J,358.3,32395,1,0)
+ ;;^UTILITY(U,$J,358.3,32822,1,3,0)
+ ;;=3^Family Hx of Malig Neop,Unspec
+ ;;^UTILITY(U,$J,358.3,32822,1,4,0)
+ ;;=4^Z80.9
+ ;;^UTILITY(U,$J,358.3,32822,2)
+ ;;=^5063357
+ ;;^UTILITY(U,$J,358.3,32823,0)
+ ;;=Z82.0^^128^1636^11
+ ;;^UTILITY(U,$J,358.3,32823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32395,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32395,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,32395,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,32396,0)
- ;;=F44.0^^143^1523^2
- ;;^UTILITY(U,$J,358.3,32396,1,0)
+ ;;^UTILITY(U,$J,358.3,32823,1,3,0)
+ ;;=3^Family Hx of Epilepsy
+ ;;^UTILITY(U,$J,358.3,32823,1,4,0)
+ ;;=4^Z82.0
+ ;;^UTILITY(U,$J,358.3,32823,2)
+ ;;=^5063364
+ ;;^UTILITY(U,$J,358.3,32824,0)
+ ;;=Z82.41^^128^1636^42
+ ;;^UTILITY(U,$J,358.3,32824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32396,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,32396,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,32396,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,32397,0)
- ;;=F48.1^^143^1523^1
- ;;^UTILITY(U,$J,358.3,32397,1,0)
+ ;;^UTILITY(U,$J,358.3,32824,1,3,0)
+ ;;=3^Family Hx of Sudden Cardiac Death
+ ;;^UTILITY(U,$J,358.3,32824,1,4,0)
+ ;;=4^Z82.41
+ ;;^UTILITY(U,$J,358.3,32824,2)
+ ;;=^5063368
+ ;;^UTILITY(U,$J,358.3,32825,0)
+ ;;=Z83.6^^128^1636^39
+ ;;^UTILITY(U,$J,358.3,32825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32397,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,32397,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,32397,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,32398,0)
- ;;=F44.89^^143^1523^3
- ;;^UTILITY(U,$J,358.3,32398,1,0)
+ ;;^UTILITY(U,$J,358.3,32825,1,3,0)
+ ;;=3^Family Hx of Respiratory System Diseases
+ ;;^UTILITY(U,$J,358.3,32825,1,4,0)
+ ;;=4^Z83.6
+ ;;^UTILITY(U,$J,358.3,32825,2)
+ ;;=^5063385
+ ;;^UTILITY(U,$J,358.3,32826,0)
+ ;;=Z82.62^^128^1636^37
+ ;;^UTILITY(U,$J,358.3,32826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32398,1,3,0)
- ;;=3^Dissociative Disorder NEC
- ;;^UTILITY(U,$J,358.3,32398,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,32398,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,32399,0)
- ;;=F50.02^^143^1524^1
- ;;^UTILITY(U,$J,358.3,32399,1,0)
+ ;;^UTILITY(U,$J,358.3,32826,1,3,0)
+ ;;=3^Family Hx of Osteoporosis
+ ;;^UTILITY(U,$J,358.3,32826,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,32826,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,32827,0)
+ ;;=Z83.41^^128^1636^35
+ ;;^UTILITY(U,$J,358.3,32827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32399,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,32399,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,32399,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,32400,0)
- ;;=F50.01^^143^1524^2
- ;;^UTILITY(U,$J,358.3,32400,1,0)
+ ;;^UTILITY(U,$J,358.3,32827,1,3,0)
+ ;;=3^Family Hx of Multiple Endocrine Neoplasia Syndrome
+ ;;^UTILITY(U,$J,358.3,32827,1,4,0)
+ ;;=4^Z83.41
+ ;;^UTILITY(U,$J,358.3,32827,2)
+ ;;=^5063380
+ ;;^UTILITY(U,$J,358.3,32828,0)
+ ;;=Z83.49^^128^1636^10
+ ;;^UTILITY(U,$J,358.3,32828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32400,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,32400,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,32400,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,32401,0)
- ;;=F50.9^^143^1524^7
- ;;^UTILITY(U,$J,358.3,32401,1,0)
+ ;;^UTILITY(U,$J,358.3,32828,1,3,0)
+ ;;=3^Family Hx of Endo,Nutritional & Metabolic Diseases
+ ;;^UTILITY(U,$J,358.3,32828,1,4,0)
+ ;;=4^Z83.49
+ ;;^UTILITY(U,$J,358.3,32828,2)
+ ;;=^5063381
+ ;;^UTILITY(U,$J,358.3,32829,0)
+ ;;=Z81.0^^128^1636^17
+ ;;^UTILITY(U,$J,358.3,32829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32401,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32401,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,32401,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,32402,0)
- ;;=F50.8^^143^1524^6
- ;;^UTILITY(U,$J,358.3,32402,1,0)
+ ;;^UTILITY(U,$J,358.3,32829,1,3,0)
+ ;;=3^Family Hx of Intellectual Disabilities
+ ;;^UTILITY(U,$J,358.3,32829,1,4,0)
+ ;;=4^Z81.0
+ ;;^UTILITY(U,$J,358.3,32829,2)
+ ;;=^5063358
+ ;;^UTILITY(U,$J,358.3,32830,0)
+ ;;=Z84.1^^128^1636^19
+ ;;^UTILITY(U,$J,358.3,32830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32402,1,3,0)
- ;;=3^Feeding/Eating Disorder NEC
- ;;^UTILITY(U,$J,358.3,32402,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32402,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32403,0)
- ;;=F50.8^^143^1524^3
- ;;^UTILITY(U,$J,358.3,32403,1,0)
+ ;;^UTILITY(U,$J,358.3,32830,1,3,0)
+ ;;=3^Family Hx of Kidney & Ureter Disorders
+ ;;^UTILITY(U,$J,358.3,32830,1,4,0)
+ ;;=4^Z84.1
+ ;;^UTILITY(U,$J,358.3,32830,2)
+ ;;=^5063389
+ ;;^UTILITY(U,$J,358.3,32831,0)
+ ;;=Z84.2^^128^1636^14
+ ;;^UTILITY(U,$J,358.3,32831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32403,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,32403,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32403,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32404,0)
- ;;=F50.8^^143^1524^4
- ;;^UTILITY(U,$J,358.3,32404,1,0)
+ ;;^UTILITY(U,$J,358.3,32831,1,3,0)
+ ;;=3^Family Hx of Genitourinary System Diseases
+ ;;^UTILITY(U,$J,358.3,32831,1,4,0)
+ ;;=4^Z84.2
+ ;;^UTILITY(U,$J,358.3,32831,2)
+ ;;=^5063390
+ ;;^UTILITY(U,$J,358.3,32832,0)
+ ;;=Z83.1^^128^1636^16
+ ;;^UTILITY(U,$J,358.3,32832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32404,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,32404,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32404,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32405,0)
- ;;=F50.2^^143^1524^5
- ;;^UTILITY(U,$J,358.3,32405,1,0)
+ ;;^UTILITY(U,$J,358.3,32832,1,3,0)
+ ;;=3^Family Hx of Infectious & Parasitic Diseases
+ ;;^UTILITY(U,$J,358.3,32832,1,4,0)
+ ;;=4^Z83.1
+ ;;^UTILITY(U,$J,358.3,32832,2)
+ ;;=^5063377
+ ;;^UTILITY(U,$J,358.3,32833,0)
+ ;;=Z84.81^^128^1636^13
+ ;;^UTILITY(U,$J,358.3,32833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32405,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,32405,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,32405,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,32406,0)
- ;;=Z55.9^^143^1525^1
- ;;^UTILITY(U,$J,358.3,32406,1,0)
+ ;;^UTILITY(U,$J,358.3,32833,1,3,0)
+ ;;=3^Family Hx of Genetic Disease Carrier
+ ;;^UTILITY(U,$J,358.3,32833,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,32833,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,32834,0)
+ ;;=Z83.511^^128^1636^15
+ ;;^UTILITY(U,$J,358.3,32834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32406,1,3,0)
- ;;=3^Acedemic/Educational Problem
- ;;^UTILITY(U,$J,358.3,32406,1,4,0)
- ;;=4^Z55.9

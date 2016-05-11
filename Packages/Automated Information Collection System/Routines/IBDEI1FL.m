@@ -1,136 +1,126 @@
-IBDEI1FL ; ; 19-NOV-2015
+IBDEI1FL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23897,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,23897,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,23898,0)
- ;;=E03.9^^116^1170^33
- ;;^UTILITY(U,$J,358.3,23898,1,0)
+ ;;^UTILITY(U,$J,358.3,24321,1,3,0)
+ ;;=3^Opioid Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,24321,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,24321,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,24322,0)
+ ;;=F11.129^^90^1065^19
+ ;;^UTILITY(U,$J,358.3,24322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23898,1,3,0)
- ;;=3^Hypothyroidism, unspec
- ;;^UTILITY(U,$J,358.3,23898,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,23898,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,23899,0)
- ;;=E16.2^^116^1170^30
- ;;^UTILITY(U,$J,358.3,23899,1,0)
+ ;;^UTILITY(U,$J,358.3,24322,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24322,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,24322,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,24323,0)
+ ;;=F11.14^^90^1065^27
+ ;;^UTILITY(U,$J,358.3,24323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23899,1,3,0)
- ;;=3^Hypoglycemia, unspec
- ;;^UTILITY(U,$J,358.3,23899,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,23899,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,23900,0)
- ;;=E78.0^^116^1170^23
- ;;^UTILITY(U,$J,358.3,23900,1,0)
+ ;;^UTILITY(U,$J,358.3,24323,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24323,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,24323,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,24324,0)
+ ;;=F11.182^^90^1065^29
+ ;;^UTILITY(U,$J,358.3,24324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23900,1,3,0)
- ;;=3^Hypercholesterolemia,Pure
- ;;^UTILITY(U,$J,358.3,23900,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,23900,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,23901,0)
- ;;=E78.0^^116^1170^28
- ;;^UTILITY(U,$J,358.3,23901,1,0)
+ ;;^UTILITY(U,$J,358.3,24324,1,3,0)
+ ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24324,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,24324,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,24325,0)
+ ;;=F11.20^^90^1065^24
+ ;;^UTILITY(U,$J,358.3,24325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23901,1,3,0)
- ;;=3^Hypertriglyceridemia
- ;;^UTILITY(U,$J,358.3,23901,1,4,0)
- ;;=4^E78.0
- ;;^UTILITY(U,$J,358.3,23901,2)
- ;;=^5002966
- ;;^UTILITY(U,$J,358.3,23902,0)
- ;;=E78.5^^116^1170^25
- ;;^UTILITY(U,$J,358.3,23902,1,0)
+ ;;^UTILITY(U,$J,358.3,24325,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24325,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,24325,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,24326,0)
+ ;;=F11.21^^90^1065^25
+ ;;^UTILITY(U,$J,358.3,24326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23902,1,3,0)
- ;;=3^Hyperlipidemia, unspec
- ;;^UTILITY(U,$J,358.3,23902,1,4,0)
- ;;=4^E78.5
- ;;^UTILITY(U,$J,358.3,23902,2)
- ;;=^5002969
- ;;^UTILITY(U,$J,358.3,23903,0)
- ;;=E87.1^^116^1170^29
- ;;^UTILITY(U,$J,358.3,23903,1,0)
+ ;;^UTILITY(U,$J,358.3,24326,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,24326,1,4,0)
+ ;;=4^F11.21
+ ;;^UTILITY(U,$J,358.3,24326,2)
+ ;;=^5003128
+ ;;^UTILITY(U,$J,358.3,24327,0)
+ ;;=F11.23^^90^1065^26
+ ;;^UTILITY(U,$J,358.3,24327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23903,1,3,0)
- ;;=3^Hypo-osmolality and hyponatremia
- ;;^UTILITY(U,$J,358.3,23903,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,23903,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,23904,0)
- ;;=E87.5^^116^1170^24
- ;;^UTILITY(U,$J,358.3,23904,1,0)
+ ;;^UTILITY(U,$J,358.3,24327,1,3,0)
+ ;;=3^Opioid Withdrawal
+ ;;^UTILITY(U,$J,358.3,24327,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,24327,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,24328,0)
+ ;;=F11.24^^90^1065^28
+ ;;^UTILITY(U,$J,358.3,24328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23904,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,23904,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,23904,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,23905,0)
- ;;=E87.6^^116^1170^31
- ;;^UTILITY(U,$J,358.3,23905,1,0)
+ ;;^UTILITY(U,$J,358.3,24328,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24328,1,4,0)
+ ;;=4^F11.24
+ ;;^UTILITY(U,$J,358.3,24328,2)
+ ;;=^5003134
+ ;;^UTILITY(U,$J,358.3,24329,0)
+ ;;=F11.29^^90^1065^2
+ ;;^UTILITY(U,$J,358.3,24329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23905,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,23905,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,23905,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,23906,0)
- ;;=G81.91^^116^1170^11
- ;;^UTILITY(U,$J,358.3,23906,1,0)
+ ;;^UTILITY(U,$J,358.3,24329,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,24329,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,24329,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,24330,0)
+ ;;=F11.220^^90^1065^1
+ ;;^UTILITY(U,$J,358.3,24330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23906,1,3,0)
- ;;=3^Hemiplegia affecting rt dominant side, unspec
- ;;^UTILITY(U,$J,358.3,23906,1,4,0)
- ;;=4^G81.91
- ;;^UTILITY(U,$J,358.3,23906,2)
- ;;=^5004121
- ;;^UTILITY(U,$J,358.3,23907,0)
- ;;=G81.92^^116^1170^9
- ;;^UTILITY(U,$J,358.3,23907,1,0)
+ ;;^UTILITY(U,$J,358.3,24330,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24330,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,24330,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,24331,0)
+ ;;=F11.188^^90^1065^3
+ ;;^UTILITY(U,$J,358.3,24331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23907,1,3,0)
- ;;=3^Hemiplegia affecting lft dominant side, unspec
- ;;^UTILITY(U,$J,358.3,23907,1,4,0)
- ;;=4^G81.92
- ;;^UTILITY(U,$J,358.3,23907,2)
- ;;=^5004122
- ;;^UTILITY(U,$J,358.3,23908,0)
- ;;=G81.93^^116^1170^12
- ;;^UTILITY(U,$J,358.3,23908,1,0)
+ ;;^UTILITY(U,$J,358.3,24331,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24331,1,4,0)
+ ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,24331,2)
+ ;;=^5003125
+ ;;^UTILITY(U,$J,358.3,24332,0)
+ ;;=F11.288^^90^1065^4
+ ;;^UTILITY(U,$J,358.3,24332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23908,1,3,0)
- ;;=3^Hemiplegia affecting rt nondom side, unspec
- ;;^UTILITY(U,$J,358.3,23908,1,4,0)
- ;;=4^G81.93
- ;;^UTILITY(U,$J,358.3,23908,2)
- ;;=^5004123
- ;;^UTILITY(U,$J,358.3,23909,0)
- ;;=G81.94^^116^1170^10
- ;;^UTILITY(U,$J,358.3,23909,1,0)
+ ;;^UTILITY(U,$J,358.3,24332,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24332,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,24332,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,24333,0)
+ ;;=F11.988^^90^1065^5
+ ;;^UTILITY(U,$J,358.3,24333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23909,1,3,0)
- ;;=3^Hemiplegia affecting lft nondom side, unspec
- ;;^UTILITY(U,$J,358.3,23909,1,4,0)
- ;;=4^G81.94
- ;;^UTILITY(U,$J,358.3,23909,2)
- ;;=^5004124
- ;;^UTILITY(U,$J,358.3,23910,0)
- ;;=H91.90^^116^1170^7
- ;;^UTILITY(U,$J,358.3,23910,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23910,1,3,0)
- ;;=3^Hearing loss, unspec ear, unspec
- ;;^UTILITY(U,$J,358.3,23910,1,4,0)
- ;;=4^H91.90
+ ;;^UTILITY(U,$J,358.3,24333,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder

@@ -1,134 +1,132 @@
-IBDEI1RV ; ; 19-NOV-2015
+IBDEI1RV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29670,1,3,0)
- ;;=3^Hepatitis A,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,29670,1,4,0)
- ;;=4^B15.9
- ;;^UTILITY(U,$J,358.3,29670,2)
- ;;=^5000536
- ;;^UTILITY(U,$J,358.3,29671,0)
- ;;=B16.9^^135^1367^59
- ;;^UTILITY(U,$J,358.3,29671,1,0)
+ ;;^UTILITY(U,$J,358.3,30122,0)
+ ;;=C34.91^^118^1500^21
+ ;;^UTILITY(U,$J,358.3,30122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29671,1,3,0)
- ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,29671,1,4,0)
- ;;=4^B16.9
- ;;^UTILITY(U,$J,358.3,29671,2)
- ;;=^5000540
- ;;^UTILITY(U,$J,358.3,29672,0)
- ;;=B19.10^^135^1367^61
- ;;^UTILITY(U,$J,358.3,29672,1,0)
+ ;;^UTILITY(U,$J,358.3,30122,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
+ ;;^UTILITY(U,$J,358.3,30122,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,30122,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,30123,0)
+ ;;=C34.92^^118^1500^20
+ ;;^UTILITY(U,$J,358.3,30123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29672,1,3,0)
- ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
- ;;^UTILITY(U,$J,358.3,29672,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,29672,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,29673,0)
- ;;=B18.1^^135^1367^60
- ;;^UTILITY(U,$J,358.3,29673,1,0)
+ ;;^UTILITY(U,$J,358.3,30123,1,3,0)
+ ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
+ ;;^UTILITY(U,$J,358.3,30123,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,30123,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,30124,0)
+ ;;=C38.4^^118^1500^14
+ ;;^UTILITY(U,$J,358.3,30124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29673,1,3,0)
- ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
- ;;^UTILITY(U,$J,358.3,29673,1,4,0)
- ;;=4^B18.1
- ;;^UTILITY(U,$J,358.3,29673,2)
- ;;=^5000547
- ;;^UTILITY(U,$J,358.3,29674,0)
- ;;=B17.10^^135^1367^62
- ;;^UTILITY(U,$J,358.3,29674,1,0)
+ ;;^UTILITY(U,$J,358.3,30124,1,3,0)
+ ;;=3^Malignant neoplasm of pleura
+ ;;^UTILITY(U,$J,358.3,30124,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,30124,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,30125,0)
+ ;;=C45.0^^118^1500^22
+ ;;^UTILITY(U,$J,358.3,30125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29674,1,3,0)
- ;;=3^Hepatitis C,Acute w/o Hepatic Coma
- ;;^UTILITY(U,$J,358.3,29674,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,29674,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,29675,0)
- ;;=B18.2^^135^1367^63
- ;;^UTILITY(U,$J,358.3,29675,1,0)
+ ;;^UTILITY(U,$J,358.3,30125,1,3,0)
+ ;;=3^Mesothelioma of pleura
+ ;;^UTILITY(U,$J,358.3,30125,1,4,0)
+ ;;=4^C45.0
+ ;;^UTILITY(U,$J,358.3,30125,2)
+ ;;=^5001095
+ ;;^UTILITY(U,$J,358.3,30126,0)
+ ;;=C73.^^118^1500^16
+ ;;^UTILITY(U,$J,358.3,30126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29675,1,3,0)
- ;;=3^Hepatitis C,Chronic Viral
- ;;^UTILITY(U,$J,358.3,29675,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,29675,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,29676,0)
- ;;=B18.8^^135^1367^65
- ;;^UTILITY(U,$J,358.3,29676,1,0)
+ ;;^UTILITY(U,$J,358.3,30126,1,3,0)
+ ;;=3^Malignant neoplasm of thyroid gland
+ ;;^UTILITY(U,$J,358.3,30126,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,30126,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,30127,0)
+ ;;=C76.0^^118^1500^4
+ ;;^UTILITY(U,$J,358.3,30127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29676,1,3,0)
- ;;=3^Hepatitis,Oth Chronic Viral
- ;;^UTILITY(U,$J,358.3,29676,1,4,0)
- ;;=4^B18.8
- ;;^UTILITY(U,$J,358.3,29676,2)
- ;;=^5000549
- ;;^UTILITY(U,$J,358.3,29677,0)
- ;;=B17.8^^135^1367^66
- ;;^UTILITY(U,$J,358.3,29677,1,0)
+ ;;^UTILITY(U,$J,358.3,30127,1,3,0)
+ ;;=3^Malignant neoplasm of head, face and neck
+ ;;^UTILITY(U,$J,358.3,30127,1,4,0)
+ ;;=4^C76.0
+ ;;^UTILITY(U,$J,358.3,30127,2)
+ ;;=^5001324
+ ;;^UTILITY(U,$J,358.3,30128,0)
+ ;;=C05.9^^118^1500^11
+ ;;^UTILITY(U,$J,358.3,30128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29677,1,3,0)
- ;;=3^Hepatitis,Oth Spec Acute Viral
- ;;^UTILITY(U,$J,358.3,29677,1,4,0)
- ;;=4^B17.8
- ;;^UTILITY(U,$J,358.3,29677,2)
- ;;=^5000544
- ;;^UTILITY(U,$J,358.3,29678,0)
- ;;=B18.9^^135^1367^64
- ;;^UTILITY(U,$J,358.3,29678,1,0)
+ ;;^UTILITY(U,$J,358.3,30128,1,3,0)
+ ;;=3^Malignant neoplasm of palate,unspec
+ ;;^UTILITY(U,$J,358.3,30128,1,4,0)
+ ;;=4^C05.9
+ ;;^UTILITY(U,$J,358.3,30128,2)
+ ;;=^5000898
+ ;;^UTILITY(U,$J,358.3,30129,0)
+ ;;=C07.^^118^1500^12
+ ;;^UTILITY(U,$J,358.3,30129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29678,1,3,0)
- ;;=3^Hepatitis,Chronic Viral Unspec
- ;;^UTILITY(U,$J,358.3,29678,1,4,0)
- ;;=4^B18.9
- ;;^UTILITY(U,$J,358.3,29678,2)
- ;;=^5000550
- ;;^UTILITY(U,$J,358.3,29679,0)
- ;;=B37.81^^135^1367^18
- ;;^UTILITY(U,$J,358.3,29679,1,0)
+ ;;^UTILITY(U,$J,358.3,30129,1,3,0)
+ ;;=3^Malignant neoplasm of parotid gland
+ ;;^UTILITY(U,$J,358.3,30129,1,4,0)
+ ;;=4^C07.
+ ;;^UTILITY(U,$J,358.3,30129,2)
+ ;;=^267005
+ ;;^UTILITY(U,$J,358.3,30130,0)
+ ;;=C08.9^^118^1500^7
+ ;;^UTILITY(U,$J,358.3,30130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29679,1,3,0)
- ;;=3^Candidal Esophagitis
- ;;^UTILITY(U,$J,358.3,29679,1,4,0)
- ;;=4^B37.81
- ;;^UTILITY(U,$J,358.3,29679,2)
- ;;=^5000620
- ;;^UTILITY(U,$J,358.3,29680,0)
- ;;=D12.0^^135^1367^12
- ;;^UTILITY(U,$J,358.3,29680,1,0)
+ ;;^UTILITY(U,$J,358.3,30130,1,3,0)
+ ;;=3^Malignant neoplasm of major salivary gland,unspec
+ ;;^UTILITY(U,$J,358.3,30130,1,4,0)
+ ;;=4^C08.9
+ ;;^UTILITY(U,$J,358.3,30130,2)
+ ;;=^5000902
+ ;;^UTILITY(U,$J,358.3,30131,0)
+ ;;=C09.9^^118^1500^18
+ ;;^UTILITY(U,$J,358.3,30131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29680,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,29680,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,29680,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,29681,0)
- ;;=D12.6^^135^1367^13
- ;;^UTILITY(U,$J,358.3,29681,1,0)
+ ;;^UTILITY(U,$J,358.3,30131,1,3,0)
+ ;;=3^Malignant neoplasm of tonsil,unspec
+ ;;^UTILITY(U,$J,358.3,30131,1,4,0)
+ ;;=4^C09.9
+ ;;^UTILITY(U,$J,358.3,30131,2)
+ ;;=^5000905
+ ;;^UTILITY(U,$J,358.3,30132,0)
+ ;;=C12.^^118^1500^15
+ ;;^UTILITY(U,$J,358.3,30132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29681,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,29681,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,29681,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,29682,0)
- ;;=D12.1^^135^1367^10
- ;;^UTILITY(U,$J,358.3,29682,1,0)
+ ;;^UTILITY(U,$J,358.3,30132,1,3,0)
+ ;;=3^Malignant neoplasm of pyriform sinus
+ ;;^UTILITY(U,$J,358.3,30132,1,4,0)
+ ;;=4^C12.
+ ;;^UTILITY(U,$J,358.3,30132,2)
+ ;;=^267046
+ ;;^UTILITY(U,$J,358.3,30133,0)
+ ;;=C13.9^^118^1500^5
+ ;;^UTILITY(U,$J,358.3,30133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29682,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,29682,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,29682,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,29683,0)
- ;;=K63.5^^135^1367^73
- ;;^UTILITY(U,$J,358.3,29683,1,0)
+ ;;^UTILITY(U,$J,358.3,30133,1,3,0)
+ ;;=3^Malignant neoplasm of hypopharynx,unspec
+ ;;^UTILITY(U,$J,358.3,30133,1,4,0)
+ ;;=4^C13.9
+ ;;^UTILITY(U,$J,358.3,30133,2)
+ ;;=^5000915
+ ;;^UTILITY(U,$J,358.3,30134,0)
+ ;;=C14.0^^118^1500^13
+ ;;^UTILITY(U,$J,358.3,30134,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30134,1,3,0)
+ ;;=3^Malignant neoplasm of pharynx,unspec
+ ;;^UTILITY(U,$J,358.3,30134,1,4,0)
+ ;;=4^C14.0

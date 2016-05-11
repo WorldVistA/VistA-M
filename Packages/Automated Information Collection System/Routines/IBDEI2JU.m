@@ -1,132 +1,138 @@
-IBDEI2JU ; ; 19-NOV-2015
+IBDEI2JU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42752,1,4,0)
- ;;=4^M92.61
- ;;^UTILITY(U,$J,358.3,42752,2)
- ;;=^5015236
- ;;^UTILITY(U,$J,358.3,42753,0)
- ;;=Z47.89^^192^2144^16
- ;;^UTILITY(U,$J,358.3,42753,1,0)
+ ;;^UTILITY(U,$J,358.3,43243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42753,1,3,0)
- ;;=3^Orthopedic aftercare, oth
- ;;^UTILITY(U,$J,358.3,42753,1,4,0)
- ;;=4^Z47.89
- ;;^UTILITY(U,$J,358.3,42753,2)
- ;;=^5063032
- ;;^UTILITY(U,$J,358.3,42754,0)
- ;;=M19.072^^192^2144^18
- ;;^UTILITY(U,$J,358.3,42754,1,0)
+ ;;^UTILITY(U,$J,358.3,43243,1,3,0)
+ ;;=3^Iron Deficiency Anemia d/t Blood Loss
+ ;;^UTILITY(U,$J,358.3,43243,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,43243,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,43244,0)
+ ;;=D62.^^164^2067^6
+ ;;^UTILITY(U,$J,358.3,43244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42754,1,3,0)
- ;;=3^Osteoarthritis,Left Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,42754,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,42754,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,42755,0)
- ;;=M19.071^^192^2144^19
- ;;^UTILITY(U,$J,358.3,42755,1,0)
+ ;;^UTILITY(U,$J,358.3,43244,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,43244,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,43244,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,43245,0)
+ ;;=D64.9^^164^2067^8
+ ;;^UTILITY(U,$J,358.3,43245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42755,1,3,0)
- ;;=3^Osteoarthritis,Right Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,42755,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,42755,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,42756,0)
- ;;=M19.90^^192^2144^20
- ;;^UTILITY(U,$J,358.3,42756,1,0)
+ ;;^UTILITY(U,$J,358.3,43245,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,43245,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,43245,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,43246,0)
+ ;;=F03.90^^164^2067^17
+ ;;^UTILITY(U,$J,358.3,43246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42756,1,3,0)
- ;;=3^Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,42756,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,42756,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,42757,0)
- ;;=M96.0^^192^2145^14
- ;;^UTILITY(U,$J,358.3,42757,1,0)
+ ;;^UTILITY(U,$J,358.3,43246,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,43246,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,43246,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,43247,0)
+ ;;=G30.9^^164^2067^7
+ ;;^UTILITY(U,$J,358.3,43247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42757,1,3,0)
- ;;=3^Pseudarthrosis after fusion or arthrodesis
- ;;^UTILITY(U,$J,358.3,42757,1,4,0)
- ;;=4^M96.0
- ;;^UTILITY(U,$J,358.3,42757,2)
- ;;=^5015373
- ;;^UTILITY(U,$J,358.3,42758,0)
- ;;=R20.2^^192^2145^1
- ;;^UTILITY(U,$J,358.3,42758,1,0)
+ ;;^UTILITY(U,$J,358.3,43247,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,43247,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,43247,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,43248,0)
+ ;;=I10.^^164^2067^43
+ ;;^UTILITY(U,$J,358.3,43248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42758,1,3,0)
- ;;=3^Paresthesia of skin
- ;;^UTILITY(U,$J,358.3,42758,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,42758,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,42759,0)
- ;;=I87.003^^192^2145^12
- ;;^UTILITY(U,$J,358.3,42759,1,0)
+ ;;^UTILITY(U,$J,358.3,43248,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,43248,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,43248,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,43249,0)
+ ;;=G45.9^^164^2067^66
+ ;;^UTILITY(U,$J,358.3,43249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42759,1,3,0)
- ;;=3^Postthrom syndr w/o compl of bilat lwr extrem
- ;;^UTILITY(U,$J,358.3,42759,1,4,0)
- ;;=4^I87.003
- ;;^UTILITY(U,$J,358.3,42759,2)
- ;;=^5008029
- ;;^UTILITY(U,$J,358.3,42760,0)
- ;;=I87.001^^192^2145^11
- ;;^UTILITY(U,$J,358.3,42760,1,0)
+ ;;^UTILITY(U,$J,358.3,43249,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,43249,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,43249,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,43250,0)
+ ;;=K85.9^^164^2067^5
+ ;;^UTILITY(U,$J,358.3,43250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42760,1,3,0)
- ;;=3^Postrhomb syndr w/o compl of rt lwr extrem
- ;;^UTILITY(U,$J,358.3,42760,1,4,0)
- ;;=4^I87.001
- ;;^UTILITY(U,$J,358.3,42760,2)
- ;;=^5008027
- ;;^UTILITY(U,$J,358.3,42761,0)
- ;;=I80.01^^192^2145^8
- ;;^UTILITY(U,$J,358.3,42761,1,0)
+ ;;^UTILITY(U,$J,358.3,43250,1,3,0)
+ ;;=3^Acute Pancreatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,43250,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,43250,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,43251,0)
+ ;;=N18.4^^164^2067^14
+ ;;^UTILITY(U,$J,358.3,43251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42761,1,3,0)
- ;;=3^Phlebitis & Thromboph,Right Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,42761,1,4,0)
- ;;=4^I80.01
- ;;^UTILITY(U,$J,358.3,42761,2)
- ;;=^5007821
- ;;^UTILITY(U,$J,358.3,42762,0)
- ;;=I80.02^^192^2145^6
- ;;^UTILITY(U,$J,358.3,42762,1,0)
+ ;;^UTILITY(U,$J,358.3,43251,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,43251,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,43251,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,43252,0)
+ ;;=R40.3^^164^2067^57
+ ;;^UTILITY(U,$J,358.3,43252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42762,1,3,0)
- ;;=3^Phlebitis & Thromboph,Left Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,42762,1,4,0)
- ;;=4^I80.02
- ;;^UTILITY(U,$J,358.3,42762,2)
- ;;=^5007822
- ;;^UTILITY(U,$J,358.3,42763,0)
- ;;=I80.03^^192^2145^4
- ;;^UTILITY(U,$J,358.3,42763,1,0)
+ ;;^UTILITY(U,$J,358.3,43252,1,3,0)
+ ;;=3^Persistent Vegetative State
+ ;;^UTILITY(U,$J,358.3,43252,1,4,0)
+ ;;=4^R40.3
+ ;;^UTILITY(U,$J,358.3,43252,2)
+ ;;=^5019434
+ ;;^UTILITY(U,$J,358.3,43253,0)
+ ;;=R44.3^^164^2067^38
+ ;;^UTILITY(U,$J,358.3,43253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42763,1,3,0)
- ;;=3^Phlebitis & Thromboph,Bilateral Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,42763,1,4,0)
- ;;=4^I80.03
- ;;^UTILITY(U,$J,358.3,42763,2)
- ;;=^5007823
- ;;^UTILITY(U,$J,358.3,42764,0)
- ;;=I80.11^^192^2145^7
- ;;^UTILITY(U,$J,358.3,42764,1,0)
+ ;;^UTILITY(U,$J,358.3,43253,1,3,0)
+ ;;=3^Hallucinations,Unspec
+ ;;^UTILITY(U,$J,358.3,43253,1,4,0)
+ ;;=4^R44.3
+ ;;^UTILITY(U,$J,358.3,43253,2)
+ ;;=^5019458
+ ;;^UTILITY(U,$J,358.3,43254,0)
+ ;;=R55.^^164^2067^64
+ ;;^UTILITY(U,$J,358.3,43254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42764,1,3,0)
- ;;=3^Phlebitis & Thromboph,Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,42764,1,4,0)
- ;;=4^I80.11
- ;;^UTILITY(U,$J,358.3,42764,2)
- ;;=^5007825
- ;;^UTILITY(U,$J,358.3,42765,0)
- ;;=I80.12^^192^2145^5
- ;;^UTILITY(U,$J,358.3,42765,1,0)
+ ;;^UTILITY(U,$J,358.3,43254,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,43254,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,43254,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,43255,0)
+ ;;=R56.9^^164^2067^15
+ ;;^UTILITY(U,$J,358.3,43255,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43255,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,43255,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,43255,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,43256,0)
+ ;;=R42.^^164^2067^21
+ ;;^UTILITY(U,$J,358.3,43256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43256,1,3,0)
+ ;;=3^Dizziness & Giddiness

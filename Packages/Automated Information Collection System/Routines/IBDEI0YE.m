@@ -1,124 +1,130 @@
-IBDEI0YE ; ; 19-NOV-2015
+IBDEI0YE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15846,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extrem
- ;;^UTILITY(U,$J,358.3,15846,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,15846,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,15847,0)
- ;;=I83.92^^85^827^2
- ;;^UTILITY(U,$J,358.3,15847,1,0)
+ ;;^UTILITY(U,$J,358.3,16150,1,4,0)
+ ;;=4^C81.29
+ ;;^UTILITY(U,$J,358.3,16150,2)
+ ;;=^5001420
+ ;;^UTILITY(U,$J,358.3,16151,0)
+ ;;=C81.10^^61^724^18
+ ;;^UTILITY(U,$J,358.3,16151,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15847,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Left Lower Extrem
- ;;^UTILITY(U,$J,358.3,15847,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,15847,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,15848,0)
- ;;=G97.32^^85^828^35
- ;;^UTILITY(U,$J,358.3,15848,1,0)
+ ;;^UTILITY(U,$J,358.3,16151,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Nodular Sclerosis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16151,1,4,0)
+ ;;=4^C81.10
+ ;;^UTILITY(U,$J,358.3,16151,2)
+ ;;=^5001401
+ ;;^UTILITY(U,$J,358.3,16152,0)
+ ;;=C81.19^^61^724^17
+ ;;^UTILITY(U,$J,358.3,16152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15848,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Nervous System Organ/Sturcture
- ;;^UTILITY(U,$J,358.3,15848,1,4,0)
- ;;=4^G97.32
- ;;^UTILITY(U,$J,358.3,15848,2)
- ;;=^5004205
- ;;^UTILITY(U,$J,358.3,15849,0)
- ;;=D78.02^^85^828^38
- ;;^UTILITY(U,$J,358.3,15849,1,0)
+ ;;^UTILITY(U,$J,358.3,16152,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Nodular Sclerosis,Extrnod & Solid Org Sites
+ ;;^UTILITY(U,$J,358.3,16152,1,4,0)
+ ;;=4^C81.19
+ ;;^UTILITY(U,$J,358.3,16152,2)
+ ;;=^5001410
+ ;;^UTILITY(U,$J,358.3,16153,0)
+ ;;=C81.99^^61^724^8
+ ;;^UTILITY(U,$J,358.3,16153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15849,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Spleen
- ;;^UTILITY(U,$J,358.3,15849,1,4,0)
- ;;=4^D78.02
- ;;^UTILITY(U,$J,358.3,15849,2)
- ;;=^5002398
- ;;^UTILITY(U,$J,358.3,15850,0)
- ;;=E36.01^^85^828^29
- ;;^UTILITY(U,$J,358.3,15850,1,0)
+ ;;^UTILITY(U,$J,358.3,16153,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extrnod & Solid Org Sites,Unspec
+ ;;^UTILITY(U,$J,358.3,16153,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,16153,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,16154,0)
+ ;;=C82.90^^61^724^6
+ ;;^UTILITY(U,$J,358.3,16154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15850,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System Organ/Structure
- ;;^UTILITY(U,$J,358.3,15850,1,4,0)
- ;;=4^E36.01
- ;;^UTILITY(U,$J,358.3,15850,2)
- ;;=^5002779
- ;;^UTILITY(U,$J,358.3,15851,0)
- ;;=I97.711^^85^828^12
- ;;^UTILITY(U,$J,358.3,15851,1,0)
+ ;;^UTILITY(U,$J,358.3,16154,1,3,0)
+ ;;=3^Follicular Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16154,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,16154,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,16155,0)
+ ;;=C82.99^^61^724^5
+ ;;^UTILITY(U,$J,358.3,16155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15851,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Surgery
- ;;^UTILITY(U,$J,358.3,15851,1,4,0)
- ;;=4^I97.711
- ;;^UTILITY(U,$J,358.3,15851,2)
- ;;=^5008104
- ;;^UTILITY(U,$J,358.3,15852,0)
- ;;=I97.791^^85^828^13
- ;;^UTILITY(U,$J,358.3,15852,1,0)
+ ;;^UTILITY(U,$J,358.3,16155,1,3,0)
+ ;;=3^Follicular Lymphoma,Extrnod & Solid Org Sites
+ ;;^UTILITY(U,$J,358.3,16155,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,16155,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,16156,0)
+ ;;=C83.70^^61^724^2
+ ;;^UTILITY(U,$J,358.3,16156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15852,1,3,0)
- ;;=3^Intraoperative Cardiac Functional Disturbance During Surgery
- ;;^UTILITY(U,$J,358.3,15852,1,4,0)
- ;;=4^I97.791
- ;;^UTILITY(U,$J,358.3,15852,2)
- ;;=^5008106
- ;;^UTILITY(U,$J,358.3,15853,0)
- ;;=I97.411^^85^828^25
- ;;^UTILITY(U,$J,358.3,15853,1,0)
+ ;;^UTILITY(U,$J,358.3,16156,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16156,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,16156,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,16157,0)
+ ;;=C83.79^^61^724^1
+ ;;^UTILITY(U,$J,358.3,16157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15853,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Bypass
- ;;^UTILITY(U,$J,358.3,15853,1,4,0)
- ;;=4^I97.411
- ;;^UTILITY(U,$J,358.3,15853,2)
- ;;=^5008094
- ;;^UTILITY(U,$J,358.3,15854,0)
- ;;=I97.410^^85^828^26
- ;;^UTILITY(U,$J,358.3,15854,1,0)
+ ;;^UTILITY(U,$J,358.3,16157,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extrnod & Solid Org Sites
+ ;;^UTILITY(U,$J,358.3,16157,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,16157,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,16158,0)
+ ;;=C96.9^^61^724^27
+ ;;^UTILITY(U,$J,358.3,16158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15854,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Cath
- ;;^UTILITY(U,$J,358.3,15854,1,4,0)
- ;;=4^I97.410
- ;;^UTILITY(U,$J,358.3,15854,2)
- ;;=^5008093
- ;;^UTILITY(U,$J,358.3,15855,0)
- ;;=I97.42^^85^828^27
- ;;^UTILITY(U,$J,358.3,15855,1,0)
+ ;;^UTILITY(U,$J,358.3,16158,1,3,0)
+ ;;=3^Malig Neop Lymphoid/Hematopoietic/Related Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,16158,1,4,0)
+ ;;=4^C96.9
+ ;;^UTILITY(U,$J,358.3,16158,2)
+ ;;=^5001864
+ ;;^UTILITY(U,$J,358.3,16159,0)
+ ;;=C96.4^^61^724^3
+ ;;^UTILITY(U,$J,358.3,16159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15855,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System
- ;;^UTILITY(U,$J,358.3,15855,1,4,0)
- ;;=4^I97.42
- ;;^UTILITY(U,$J,358.3,15855,2)
- ;;=^5008096
- ;;^UTILITY(U,$J,358.3,15856,0)
- ;;=K91.62^^85^828^28
- ;;^UTILITY(U,$J,358.3,15856,1,0)
+ ;;^UTILITY(U,$J,358.3,16159,1,3,0)
+ ;;=3^Dendritic Cells Sarcoma
+ ;;^UTILITY(U,$J,358.3,16159,1,4,0)
+ ;;=4^C96.4
+ ;;^UTILITY(U,$J,358.3,16159,2)
+ ;;=^5001861
+ ;;^UTILITY(U,$J,358.3,16160,0)
+ ;;=C83.50^^61^724^23
+ ;;^UTILITY(U,$J,358.3,16160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15856,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Digestive System
- ;;^UTILITY(U,$J,358.3,15856,1,4,0)
- ;;=4^K91.62
- ;;^UTILITY(U,$J,358.3,15856,2)
- ;;=^5008904
- ;;^UTILITY(U,$J,358.3,15857,0)
- ;;=H95.22^^85^828^30
- ;;^UTILITY(U,$J,358.3,15857,1,0)
+ ;;^UTILITY(U,$J,358.3,16160,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16160,1,4,0)
+ ;;=4^C83.50
+ ;;^UTILITY(U,$J,358.3,16160,2)
+ ;;=^5001581
+ ;;^UTILITY(U,$J,358.3,16161,0)
+ ;;=C83.59^^61^724^22
+ ;;^UTILITY(U,$J,358.3,16161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15857,1,3,0)
- ;;=3^Intraoperative Hemorrhage/Hematoma of Ear/Mastoid
- ;;^UTILITY(U,$J,358.3,15857,1,4,0)
- ;;=4^H95.22
- ;;^UTILITY(U,$J,358.3,15857,2)
- ;;=^5007027
- ;;^UTILITY(U,$J,358.3,15858,0)
- ;;=E36.02^^85^828^31
- ;;^UTILITY(U,$J,358.3,15858,1,0)
+ ;;^UTILITY(U,$J,358.3,16161,1,3,0)
+ ;;=3^Lymphoblastic Lymphoma,Extrnod & Solid Org Sites
+ ;;^UTILITY(U,$J,358.3,16161,1,4,0)
+ ;;=4^C83.59
+ ;;^UTILITY(U,$J,358.3,16161,2)
+ ;;=^5001590
+ ;;^UTILITY(U,$J,358.3,16162,0)
+ ;;=C94.40^^61^724^40
+ ;;^UTILITY(U,$J,358.3,16162,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16162,1,3,0)
+ ;;=3^Panmyelosis w/ Myelofibrosis,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16162,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,16162,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,16163,0)
+ ;;=C94.41^^61^724^38

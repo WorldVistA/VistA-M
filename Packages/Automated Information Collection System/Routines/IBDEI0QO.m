@@ -1,126 +1,136 @@
-IBDEI0QO ; ; 19-NOV-2015
+IBDEI0QO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12220,1,3,0)
- ;;=3^Fx of left humerus shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,12220,1,4,0)
- ;;=4^S42.302A
- ;;^UTILITY(U,$J,358.3,12220,2)
- ;;=^5027038
- ;;^UTILITY(U,$J,358.3,12221,0)
- ;;=S92.301A^^71^708^91
- ;;^UTILITY(U,$J,358.3,12221,1,0)
+ ;;^UTILITY(U,$J,358.3,12499,0)
+ ;;=R19.5^^50^565^18
+ ;;^UTILITY(U,$J,358.3,12499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12221,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), right foot, init
- ;;^UTILITY(U,$J,358.3,12221,1,4,0)
- ;;=4^S92.301A
- ;;^UTILITY(U,$J,358.3,12221,2)
- ;;=^5045046
- ;;^UTILITY(U,$J,358.3,12222,0)
- ;;=S92.302A^^71^708^90
- ;;^UTILITY(U,$J,358.3,12222,1,0)
+ ;;^UTILITY(U,$J,358.3,12499,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,12499,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,12499,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,12500,0)
+ ;;=R07.9^^50^565^8
+ ;;^UTILITY(U,$J,358.3,12500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12222,1,3,0)
- ;;=3^Fx of unsp metatarsal bone(s), left foot, init
- ;;^UTILITY(U,$J,358.3,12222,1,4,0)
- ;;=4^S92.302A
- ;;^UTILITY(U,$J,358.3,12222,2)
- ;;=^5045053
- ;;^UTILITY(U,$J,358.3,12223,0)
- ;;=S82.001A^^71^708^83
- ;;^UTILITY(U,$J,358.3,12223,1,0)
+ ;;^UTILITY(U,$J,358.3,12500,1,3,0)
+ ;;=3^Chest pain, unspecified
+ ;;^UTILITY(U,$J,358.3,12500,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,12500,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,12501,0)
+ ;;=R12.^^50^565^24
+ ;;^UTILITY(U,$J,358.3,12501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12223,1,3,0)
- ;;=3^Fx of right patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,12223,1,4,0)
- ;;=4^S82.001A
- ;;^UTILITY(U,$J,358.3,12223,2)
- ;;=^5040104
- ;;^UTILITY(U,$J,358.3,12224,0)
- ;;=S82.002A^^71^708^70
- ;;^UTILITY(U,$J,358.3,12224,1,0)
+ ;;^UTILITY(U,$J,358.3,12501,1,3,0)
+ ;;=3^Heartburn
+ ;;^UTILITY(U,$J,358.3,12501,1,4,0)
+ ;;=4^R12.
+ ;;^UTILITY(U,$J,358.3,12501,2)
+ ;;=^5019238
+ ;;^UTILITY(U,$J,358.3,12502,0)
+ ;;=R13.0^^50^565^5
+ ;;^UTILITY(U,$J,358.3,12502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12224,1,3,0)
- ;;=3^Fx of left patella unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,12224,1,4,0)
- ;;=4^S82.002A
- ;;^UTILITY(U,$J,358.3,12224,2)
- ;;=^5040120
- ;;^UTILITY(U,$J,358.3,12225,0)
- ;;=S52.91XA^^71^708^80
- ;;^UTILITY(U,$J,358.3,12225,1,0)
+ ;;^UTILITY(U,$J,358.3,12502,1,3,0)
+ ;;=3^Aphagia
+ ;;^UTILITY(U,$J,358.3,12502,1,4,0)
+ ;;=4^R13.0
+ ;;^UTILITY(U,$J,358.3,12502,2)
+ ;;=^5019239
+ ;;^UTILITY(U,$J,358.3,12503,0)
+ ;;=R10.13^^50^565^16
+ ;;^UTILITY(U,$J,358.3,12503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12225,1,3,0)
- ;;=3^Fx of right forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,12225,1,4,0)
- ;;=4^S52.91XA
- ;;^UTILITY(U,$J,358.3,12225,2)
- ;;=^5031158
- ;;^UTILITY(U,$J,358.3,12226,0)
- ;;=S52.92XA^^71^708^67
- ;;^UTILITY(U,$J,358.3,12226,1,0)
+ ;;^UTILITY(U,$J,358.3,12503,1,3,0)
+ ;;=3^Epigastric pain
+ ;;^UTILITY(U,$J,358.3,12503,1,4,0)
+ ;;=4^R10.13
+ ;;^UTILITY(U,$J,358.3,12503,2)
+ ;;=^5019208
+ ;;^UTILITY(U,$J,358.3,12504,0)
+ ;;=R93.3^^50^566^1
+ ;;^UTILITY(U,$J,358.3,12504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12226,1,3,0)
- ;;=3^Fx of left forearm unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,12226,1,4,0)
- ;;=4^S52.92XA
- ;;^UTILITY(U,$J,358.3,12226,2)
- ;;=^5031174
- ;;^UTILITY(U,$J,358.3,12227,0)
- ;;=S22.31XA^^71^708^76
- ;;^UTILITY(U,$J,358.3,12227,1,0)
+ ;;^UTILITY(U,$J,358.3,12504,1,3,0)
+ ;;=3^Abnormal findings on dx imaging of prt digestive tract
+ ;;^UTILITY(U,$J,358.3,12504,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,12504,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,12505,0)
+ ;;=Z85.038^^50^566^6
+ ;;^UTILITY(U,$J,358.3,12505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12227,1,3,0)
- ;;=3^Fx of one rib, right side, init for clos fx
- ;;^UTILITY(U,$J,358.3,12227,1,4,0)
- ;;=4^S22.31XA
- ;;^UTILITY(U,$J,358.3,12227,2)
- ;;=^5023105
- ;;^UTILITY(U,$J,358.3,12228,0)
- ;;=S22.32XA^^71^708^75
- ;;^UTILITY(U,$J,358.3,12228,1,0)
+ ;;^UTILITY(U,$J,358.3,12505,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Large Intestine
+ ;;^UTILITY(U,$J,358.3,12505,1,4,0)
+ ;;=4^Z85.038
+ ;;^UTILITY(U,$J,358.3,12505,2)
+ ;;=^5063399
+ ;;^UTILITY(U,$J,358.3,12506,0)
+ ;;=Z86.010^^50^566^5
+ ;;^UTILITY(U,$J,358.3,12506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12228,1,3,0)
- ;;=3^Fx of one rib, left side, init for clos fx
- ;;^UTILITY(U,$J,358.3,12228,1,4,0)
- ;;=4^S22.32XA
- ;;^UTILITY(U,$J,358.3,12228,2)
- ;;=^5023111
- ;;^UTILITY(U,$J,358.3,12229,0)
- ;;=S42.91XA^^71^708^84
- ;;^UTILITY(U,$J,358.3,12229,1,0)
+ ;;^UTILITY(U,$J,358.3,12506,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,12506,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,12506,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,12507,0)
+ ;;=Z80.0^^50^566^4
+ ;;^UTILITY(U,$J,358.3,12507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12229,1,3,0)
- ;;=3^Fx of right shoulder girdle, part unsp, init
- ;;^UTILITY(U,$J,358.3,12229,1,4,0)
- ;;=4^S42.91XA
- ;;^UTILITY(U,$J,358.3,12229,2)
- ;;=^5027643
- ;;^UTILITY(U,$J,358.3,12230,0)
- ;;=S42.92XA^^71^708^71
- ;;^UTILITY(U,$J,358.3,12230,1,0)
+ ;;^UTILITY(U,$J,358.3,12507,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,12507,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,12507,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,12508,0)
+ ;;=Z09.^^50^566^2
+ ;;^UTILITY(U,$J,358.3,12508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12230,1,3,0)
- ;;=3^Fx of left shoulder girdle, part unsp, init
- ;;^UTILITY(U,$J,358.3,12230,1,4,0)
- ;;=4^S42.92XA
- ;;^UTILITY(U,$J,358.3,12230,2)
- ;;=^5027650
- ;;^UTILITY(U,$J,358.3,12231,0)
- ;;=S42.101A^^71^708^95
- ;;^UTILITY(U,$J,358.3,12231,1,0)
+ ;;^UTILITY(U,$J,358.3,12508,1,3,0)
+ ;;=3^F/U exam aft trtmt for cond oth than malig neoplm
+ ;;^UTILITY(U,$J,358.3,12508,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,12508,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,12509,0)
+ ;;=Z08.^^50^566^3
+ ;;^UTILITY(U,$J,358.3,12509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12231,1,3,0)
- ;;=3^Fx of unsp part of scapula, right shoulder, init
- ;;^UTILITY(U,$J,358.3,12231,1,4,0)
- ;;=4^S42.101A
- ;;^UTILITY(U,$J,358.3,12231,2)
- ;;=^5026530
- ;;^UTILITY(U,$J,358.3,12232,0)
- ;;=S42.102A^^71^708^94
- ;;^UTILITY(U,$J,358.3,12232,1,0)
+ ;;^UTILITY(U,$J,358.3,12509,1,3,0)
+ ;;=3^F/U exam after trtmt for malignant neoplasm
+ ;;^UTILITY(U,$J,358.3,12509,1,4,0)
+ ;;=4^Z08.
+ ;;^UTILITY(U,$J,358.3,12509,2)
+ ;;=^5062667
+ ;;^UTILITY(U,$J,358.3,12510,0)
+ ;;=Z12.11^^50^566^7
+ ;;^UTILITY(U,$J,358.3,12510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12232,1,3,0)
- ;;=3^Fx of unsp part of scapula, left shoulder, init
+ ;;^UTILITY(U,$J,358.3,12510,1,3,0)
+ ;;=3^Screening for malignant neoplasm of colon
+ ;;^UTILITY(U,$J,358.3,12510,1,4,0)
+ ;;=4^Z12.11
+ ;;^UTILITY(U,$J,358.3,12510,2)
+ ;;=^5062681
+ ;;^UTILITY(U,$J,358.3,12511,0)
+ ;;=99341^^51^567^1
+ ;;^UTILITY(U,$J,358.3,12511,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,12511,1,1,0)
+ ;;=1^PROBLEM FOCUSED VISIT
+ ;;^UTILITY(U,$J,358.3,12511,1,2,0)
+ ;;=2^99341
+ ;;^UTILITY(U,$J,358.3,12512,0)
+ ;;=99342^^51^567^2
+ ;;^UTILITY(U,$J,358.3,12512,1,0)
+ ;;=^358.31IA^2^2

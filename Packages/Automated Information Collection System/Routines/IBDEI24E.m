@@ -1,124 +1,138 @@
-IBDEI24E ; ; 19-NOV-2015
+IBDEI24E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35601,1,0)
+ ;;^UTILITY(U,$J,358.3,35957,1,3,0)
+ ;;=3^Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,35957,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,35957,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,35958,0)
+ ;;=L40.2^^134^1738^1
+ ;;^UTILITY(U,$J,358.3,35958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35601,1,3,0)
- ;;=3^Gestational edema with proteinuria, second trimester
- ;;^UTILITY(U,$J,358.3,35601,1,4,0)
- ;;=4^O12.22
- ;;^UTILITY(U,$J,358.3,35601,2)
- ;;=^5016156
- ;;^UTILITY(U,$J,358.3,35602,0)
- ;;=O12.23^^166^1824^25
- ;;^UTILITY(U,$J,358.3,35602,1,0)
+ ;;^UTILITY(U,$J,358.3,35958,1,3,0)
+ ;;=3^Acrodermatitis Continua
+ ;;^UTILITY(U,$J,358.3,35958,1,4,0)
+ ;;=4^L40.2
+ ;;^UTILITY(U,$J,358.3,35958,2)
+ ;;=^5009162
+ ;;^UTILITY(U,$J,358.3,35959,0)
+ ;;=L03.91^^134^1738^2
+ ;;^UTILITY(U,$J,358.3,35959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35602,1,3,0)
- ;;=3^Gestational edema with proteinuria, third trimester
- ;;^UTILITY(U,$J,358.3,35602,1,4,0)
- ;;=4^O12.23
- ;;^UTILITY(U,$J,358.3,35602,2)
- ;;=^5016157
- ;;^UTILITY(U,$J,358.3,35603,0)
- ;;=O26.01^^166^1824^20
- ;;^UTILITY(U,$J,358.3,35603,1,0)
+ ;;^UTILITY(U,$J,358.3,35959,1,3,0)
+ ;;=3^Acute Lymphangitis,Unspec
+ ;;^UTILITY(U,$J,358.3,35959,1,4,0)
+ ;;=4^L03.91
+ ;;^UTILITY(U,$J,358.3,35959,2)
+ ;;=^5009068
+ ;;^UTILITY(U,$J,358.3,35960,0)
+ ;;=L23.9^^134^1738^3
+ ;;^UTILITY(U,$J,358.3,35960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35603,1,3,0)
- ;;=3^Excessive weight gain in pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35603,1,4,0)
- ;;=4^O26.01
- ;;^UTILITY(U,$J,358.3,35603,2)
- ;;=^5016298
- ;;^UTILITY(U,$J,358.3,35604,0)
- ;;=O26.02^^166^1824^21
- ;;^UTILITY(U,$J,358.3,35604,1,0)
+ ;;^UTILITY(U,$J,358.3,35960,1,3,0)
+ ;;=3^Allergic Contact Dermatitis
+ ;;^UTILITY(U,$J,358.3,35960,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,35960,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,35961,0)
+ ;;=L03.90^^134^1738^4
+ ;;^UTILITY(U,$J,358.3,35961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35604,1,3,0)
- ;;=3^Excessive weight gain in pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35604,1,4,0)
- ;;=4^O26.02
- ;;^UTILITY(U,$J,358.3,35604,2)
- ;;=^5016299
- ;;^UTILITY(U,$J,358.3,35605,0)
- ;;=O26.03^^166^1824^22
- ;;^UTILITY(U,$J,358.3,35605,1,0)
+ ;;^UTILITY(U,$J,358.3,35961,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,35961,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,35961,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,35962,0)
+ ;;=L02.91^^134^1738^7
+ ;;^UTILITY(U,$J,358.3,35962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35605,1,3,0)
- ;;=3^Excessive weight gain in pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35605,1,4,0)
- ;;=4^O26.03
- ;;^UTILITY(U,$J,358.3,35605,2)
- ;;=^5016300
- ;;^UTILITY(U,$J,358.3,35606,0)
- ;;=O26.831^^166^1824^72
- ;;^UTILITY(U,$J,358.3,35606,1,0)
+ ;;^UTILITY(U,$J,358.3,35962,1,3,0)
+ ;;=3^Cutaneous Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,35962,1,4,0)
+ ;;=4^L02.91
+ ;;^UTILITY(U,$J,358.3,35962,2)
+ ;;=^5009016
+ ;;^UTILITY(U,$J,358.3,35963,0)
+ ;;=L30.2^^134^1738^8
+ ;;^UTILITY(U,$J,358.3,35963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35606,1,3,0)
- ;;=3^Pregnancy related renal disease, first trimester
- ;;^UTILITY(U,$J,358.3,35606,1,4,0)
- ;;=4^O26.831
- ;;^UTILITY(U,$J,358.3,35606,2)
- ;;=^5016341
- ;;^UTILITY(U,$J,358.3,35607,0)
- ;;=O26.832^^166^1824^73
- ;;^UTILITY(U,$J,358.3,35607,1,0)
+ ;;^UTILITY(U,$J,358.3,35963,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,35963,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,35963,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,35964,0)
+ ;;=L30.9^^134^1738^10
+ ;;^UTILITY(U,$J,358.3,35964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35607,1,3,0)
- ;;=3^Pregnancy related renal disease, second trimester
- ;;^UTILITY(U,$J,358.3,35607,1,4,0)
- ;;=4^O26.832
- ;;^UTILITY(U,$J,358.3,35607,2)
- ;;=^5016342
- ;;^UTILITY(U,$J,358.3,35608,0)
- ;;=O26.833^^166^1824^74
- ;;^UTILITY(U,$J,358.3,35608,1,0)
+ ;;^UTILITY(U,$J,358.3,35964,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,35964,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,35964,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,35965,0)
+ ;;=Z48.01^^134^1738^5
+ ;;^UTILITY(U,$J,358.3,35965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35608,1,3,0)
- ;;=3^Pregnancy related renal disease, third trimester
- ;;^UTILITY(U,$J,358.3,35608,1,4,0)
- ;;=4^O26.833
- ;;^UTILITY(U,$J,358.3,35608,2)
- ;;=^5016343
- ;;^UTILITY(U,$J,358.3,35609,0)
- ;;=O26.21^^166^1824^66
- ;;^UTILITY(U,$J,358.3,35609,1,0)
+ ;;^UTILITY(U,$J,358.3,35965,1,3,0)
+ ;;=3^Change/Removal of Surgical Wound Dressing
+ ;;^UTILITY(U,$J,358.3,35965,1,4,0)
+ ;;=4^Z48.01
+ ;;^UTILITY(U,$J,358.3,35965,2)
+ ;;=^5063034
+ ;;^UTILITY(U,$J,358.3,35966,0)
+ ;;=L98.3^^134^1738^11
+ ;;^UTILITY(U,$J,358.3,35966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35609,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, first trimester
- ;;^UTILITY(U,$J,358.3,35609,1,4,0)
- ;;=4^O26.21
- ;;^UTILITY(U,$J,358.3,35609,2)
- ;;=^5016306
- ;;^UTILITY(U,$J,358.3,35610,0)
- ;;=O26.22^^166^1824^67
- ;;^UTILITY(U,$J,358.3,35610,1,0)
+ ;;^UTILITY(U,$J,358.3,35966,1,3,0)
+ ;;=3^Eosinophilic Cellulitis
+ ;;^UTILITY(U,$J,358.3,35966,1,4,0)
+ ;;=4^L98.3
+ ;;^UTILITY(U,$J,358.3,35966,2)
+ ;;=^5009576
+ ;;^UTILITY(U,$J,358.3,35967,0)
+ ;;=L40.1^^134^1738^18
+ ;;^UTILITY(U,$J,358.3,35967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35610,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, second trimester
- ;;^UTILITY(U,$J,358.3,35610,1,4,0)
- ;;=4^O26.22
- ;;^UTILITY(U,$J,358.3,35610,2)
- ;;=^5016307
- ;;^UTILITY(U,$J,358.3,35611,0)
- ;;=O26.23^^166^1824^68
- ;;^UTILITY(U,$J,358.3,35611,1,0)
+ ;;^UTILITY(U,$J,358.3,35967,1,3,0)
+ ;;=3^Pustular Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,35967,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,35967,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,35968,0)
+ ;;=L40.4^^134^1738^12
+ ;;^UTILITY(U,$J,358.3,35968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35611,1,3,0)
- ;;=3^Preg care for patient w recurrent preg loss, third trimester
- ;;^UTILITY(U,$J,358.3,35611,1,4,0)
- ;;=4^O26.23
- ;;^UTILITY(U,$J,358.3,35611,2)
- ;;=^5016308
- ;;^UTILITY(U,$J,358.3,35612,0)
- ;;=O26.821^^166^1824^69
- ;;^UTILITY(U,$J,358.3,35612,1,0)
+ ;;^UTILITY(U,$J,358.3,35968,1,3,0)
+ ;;=3^Guttate Psoriasis
+ ;;^UTILITY(U,$J,358.3,35968,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,35968,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,35969,0)
+ ;;=L24.9^^134^1738^13
+ ;;^UTILITY(U,$J,358.3,35969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35612,1,3,0)
- ;;=3^Pregnancy related peripheral neuritis, first trimester
- ;;^UTILITY(U,$J,358.3,35612,1,4,0)
- ;;=4^O26.821
- ;;^UTILITY(U,$J,358.3,35612,2)
- ;;=^5016337
- ;;^UTILITY(U,$J,358.3,35613,0)
- ;;=O26.822^^166^1824^70
+ ;;^UTILITY(U,$J,358.3,35969,1,3,0)
+ ;;=3^Irritant Contact Dermatitis
+ ;;^UTILITY(U,$J,358.3,35969,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,35969,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,35970,0)
+ ;;=L30.0^^134^1738^14
+ ;;^UTILITY(U,$J,358.3,35970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35970,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,35970,1,4,0)
+ ;;=4^L30.0

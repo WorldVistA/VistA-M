@@ -1,134 +1,126 @@
-IBDEI0UO ; ; 19-NOV-2015
+IBDEI0UO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14115,1,3,0)
- ;;=3^Cytomegaloviral Disease,Unspec
- ;;^UTILITY(U,$J,358.3,14115,1,4,0)
- ;;=4^B25.9
- ;;^UTILITY(U,$J,358.3,14115,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,14116,0)
- ;;=H32.^^82^771^6
- ;;^UTILITY(U,$J,358.3,14116,1,0)
+ ;;^UTILITY(U,$J,358.3,14387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14116,1,3,0)
- ;;=3^Chorioretinal Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,14116,1,4,0)
- ;;=4^H32.
- ;;^UTILITY(U,$J,358.3,14116,2)
- ;;=^5005489
- ;;^UTILITY(U,$J,358.3,14117,0)
- ;;=B39.9^^82^771^11
- ;;^UTILITY(U,$J,358.3,14117,1,0)
+ ;;^UTILITY(U,$J,358.3,14387,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14387,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,14387,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,14388,0)
+ ;;=S56.415A^^53^606^54
+ ;;^UTILITY(U,$J,358.3,14388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14117,1,3,0)
- ;;=3^Histoplasmosis,Unspec
- ;;^UTILITY(U,$J,358.3,14117,1,4,0)
- ;;=4^B39.9
- ;;^UTILITY(U,$J,358.3,14117,2)
- ;;=^5000638
- ;;^UTILITY(U,$J,358.3,14118,0)
- ;;=B83.0^^82^771^25
- ;;^UTILITY(U,$J,358.3,14118,1,0)
+ ;;^UTILITY(U,$J,358.3,14388,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14388,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,14388,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,14389,0)
+ ;;=S56.416A^^53^606^34
+ ;;^UTILITY(U,$J,358.3,14389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14118,1,3,0)
- ;;=3^Visceral Larva Migrans
- ;;^UTILITY(U,$J,358.3,14118,1,4,0)
- ;;=4^B83.0
- ;;^UTILITY(U,$J,358.3,14118,2)
- ;;=^5000799
- ;;^UTILITY(U,$J,358.3,14119,0)
- ;;=B58.01^^82^771^24
- ;;^UTILITY(U,$J,358.3,14119,1,0)
+ ;;^UTILITY(U,$J,358.3,14389,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,14389,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,14389,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,14390,0)
+ ;;=S66.912A^^53^606^22
+ ;;^UTILITY(U,$J,358.3,14390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14119,1,3,0)
- ;;=3^Toxoplasma Chorioretinitis
- ;;^UTILITY(U,$J,358.3,14119,1,4,0)
- ;;=4^B58.01
- ;;^UTILITY(U,$J,358.3,14119,2)
- ;;=^5000724
- ;;^UTILITY(U,$J,358.3,14120,0)
- ;;=H44.001^^82^771^22
- ;;^UTILITY(U,$J,358.3,14120,1,0)
+ ;;^UTILITY(U,$J,358.3,14390,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,14390,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,14390,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,14391,0)
+ ;;=S66.911A^^53^606^42
+ ;;^UTILITY(U,$J,358.3,14391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14120,1,3,0)
- ;;=3^Purulent Endophthalmitis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14120,1,4,0)
- ;;=4^H44.001
- ;;^UTILITY(U,$J,358.3,14120,2)
- ;;=^5005963
- ;;^UTILITY(U,$J,358.3,14121,0)
- ;;=H44.002^^82^771^21
- ;;^UTILITY(U,$J,358.3,14121,1,0)
+ ;;^UTILITY(U,$J,358.3,14391,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,14391,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,14391,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,14392,0)
+ ;;=S63.501A^^53^606^18
+ ;;^UTILITY(U,$J,358.3,14392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14121,1,3,0)
- ;;=3^Purulent Endophthalmitis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14121,1,4,0)
- ;;=4^H44.002
- ;;^UTILITY(U,$J,358.3,14121,2)
- ;;=^5005964
- ;;^UTILITY(U,$J,358.3,14122,0)
- ;;=H44.003^^82^771^20
- ;;^UTILITY(U,$J,358.3,14122,1,0)
+ ;;^UTILITY(U,$J,358.3,14392,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,14392,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,14392,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,14393,0)
+ ;;=S63.502A^^53^606^7
+ ;;^UTILITY(U,$J,358.3,14393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14122,1,3,0)
- ;;=3^Purulent Endophthalmitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,14122,1,4,0)
- ;;=4^H44.003
- ;;^UTILITY(U,$J,358.3,14122,2)
- ;;=^5005965
- ;;^UTILITY(U,$J,358.3,14123,0)
- ;;=H16.061^^82^771^19
- ;;^UTILITY(U,$J,358.3,14123,1,0)
+ ;;^UTILITY(U,$J,358.3,14393,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,14393,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,14393,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,14394,0)
+ ;;=S83.8X1A^^53^606^16
+ ;;^UTILITY(U,$J,358.3,14394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14123,1,3,0)
- ;;=3^Mycotic Corneal Ulcer,Right Eye
- ;;^UTILITY(U,$J,358.3,14123,1,4,0)
- ;;=4^H16.061
- ;;^UTILITY(U,$J,358.3,14123,2)
- ;;=^5004890
- ;;^UTILITY(U,$J,358.3,14124,0)
- ;;=H16.062^^82^771^18
- ;;^UTILITY(U,$J,358.3,14124,1,0)
+ ;;^UTILITY(U,$J,358.3,14394,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,14394,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,14394,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,14395,0)
+ ;;=S83.8X2A^^53^606^5
+ ;;^UTILITY(U,$J,358.3,14395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14124,1,3,0)
- ;;=3^Mycotic Corneal Ulcer,Left Eye
- ;;^UTILITY(U,$J,358.3,14124,1,4,0)
- ;;=4^H16.062
- ;;^UTILITY(U,$J,358.3,14124,2)
- ;;=^5004891
- ;;^UTILITY(U,$J,358.3,14125,0)
- ;;=H16.063^^82^771^17
- ;;^UTILITY(U,$J,358.3,14125,1,0)
+ ;;^UTILITY(U,$J,358.3,14395,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,14395,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,14395,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,14396,0)
+ ;;=S86.211A^^53^606^47
+ ;;^UTILITY(U,$J,358.3,14396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14125,1,3,0)
- ;;=3^Mycotic Corneal Ulcer,Bilateral
- ;;^UTILITY(U,$J,358.3,14125,1,4,0)
- ;;=4^H16.063
- ;;^UTILITY(U,$J,358.3,14125,2)
- ;;=^5004892
- ;;^UTILITY(U,$J,358.3,14126,0)
- ;;=H16.301^^82^771^15
- ;;^UTILITY(U,$J,358.3,14126,1,0)
+ ;;^UTILITY(U,$J,358.3,14396,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14396,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,14396,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,14397,0)
+ ;;=S86.212A^^53^606^27
+ ;;^UTILITY(U,$J,358.3,14397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14126,1,3,0)
- ;;=3^Interstitial Keratitis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14126,1,4,0)
- ;;=4^H16.301
- ;;^UTILITY(U,$J,358.3,14126,2)
- ;;=^5004946
- ;;^UTILITY(U,$J,358.3,14127,0)
- ;;=H16.302^^82^771^14
- ;;^UTILITY(U,$J,358.3,14127,1,0)
+ ;;^UTILITY(U,$J,358.3,14397,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14397,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,14397,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,14398,0)
+ ;;=S86.311A^^53^606^49
+ ;;^UTILITY(U,$J,358.3,14398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14127,1,3,0)
- ;;=3^Interstitial Keratitis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,14127,1,4,0)
- ;;=4^H16.302
- ;;^UTILITY(U,$J,358.3,14127,2)
- ;;=^5004947
- ;;^UTILITY(U,$J,358.3,14128,0)
- ;;=H16.303^^82^771^13
- ;;^UTILITY(U,$J,358.3,14128,1,0)
+ ;;^UTILITY(U,$J,358.3,14398,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14398,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,14398,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,14399,0)
+ ;;=S86.312A^^53^606^29
+ ;;^UTILITY(U,$J,358.3,14399,1,0)
  ;;=^358.31IA^4^2

@@ -1,128 +1,134 @@
-IBDEI0OJ ; ; 19-NOV-2015
+IBDEI0OJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11225,1,0)
+ ;;^UTILITY(U,$J,358.3,11461,1,4,0)
+ ;;=4^M84.30XD
+ ;;^UTILITY(U,$J,358.3,11461,2)
+ ;;=^5013567
+ ;;^UTILITY(U,$J,358.3,11462,0)
+ ;;=M84.30XS^^47^533^54
+ ;;^UTILITY(U,$J,358.3,11462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11225,1,3,0)
- ;;=3^Primary Osteoarthritis of Hip,Bilateral
- ;;^UTILITY(U,$J,358.3,11225,1,4,0)
- ;;=4^M16.0
- ;;^UTILITY(U,$J,358.3,11225,2)
- ;;=^5010769
- ;;^UTILITY(U,$J,358.3,11226,0)
- ;;=M16.11^^68^681^116
- ;;^UTILITY(U,$J,358.3,11226,1,0)
+ ;;^UTILITY(U,$J,358.3,11462,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Sequela
+ ;;^UTILITY(U,$J,358.3,11462,1,4,0)
+ ;;=4^M84.30XS
+ ;;^UTILITY(U,$J,358.3,11462,2)
+ ;;=^5013571
+ ;;^UTILITY(U,$J,358.3,11463,0)
+ ;;=M84.30XG^^47^533^49
+ ;;^UTILITY(U,$J,358.3,11463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11226,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,11226,1,4,0)
- ;;=4^M16.11
- ;;^UTILITY(U,$J,358.3,11226,2)
- ;;=^5010771
- ;;^UTILITY(U,$J,358.3,11227,0)
- ;;=M16.12^^68^681^110
- ;;^UTILITY(U,$J,358.3,11227,1,0)
+ ;;^UTILITY(U,$J,358.3,11463,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Delayed Healing
+ ;;^UTILITY(U,$J,358.3,11463,1,4,0)
+ ;;=4^M84.30XG
+ ;;^UTILITY(U,$J,358.3,11463,2)
+ ;;=^5013568
+ ;;^UTILITY(U,$J,358.3,11464,0)
+ ;;=M84.30XK^^47^533^52
+ ;;^UTILITY(U,$J,358.3,11464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11227,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,11227,1,4,0)
- ;;=4^M16.12
- ;;^UTILITY(U,$J,358.3,11227,2)
- ;;=^5010772
- ;;^UTILITY(U,$J,358.3,11228,0)
- ;;=M17.0^^68^681^106
- ;;^UTILITY(U,$J,358.3,11228,1,0)
+ ;;^UTILITY(U,$J,358.3,11464,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Nonunion
+ ;;^UTILITY(U,$J,358.3,11464,1,4,0)
+ ;;=4^M84.30XK
+ ;;^UTILITY(U,$J,358.3,11464,2)
+ ;;=^5013569
+ ;;^UTILITY(U,$J,358.3,11465,0)
+ ;;=M84.30XP^^47^533^51
+ ;;^UTILITY(U,$J,358.3,11465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11228,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral Knees
- ;;^UTILITY(U,$J,358.3,11228,1,4,0)
- ;;=4^M17.0
- ;;^UTILITY(U,$J,358.3,11228,2)
- ;;=^5010784
- ;;^UTILITY(U,$J,358.3,11229,0)
- ;;=M17.11^^68^681^117
- ;;^UTILITY(U,$J,358.3,11229,1,0)
+ ;;^UTILITY(U,$J,358.3,11465,1,3,0)
+ ;;=3^Fx,Stress,Unspec Site,Malunion
+ ;;^UTILITY(U,$J,358.3,11465,1,4,0)
+ ;;=4^M84.30XP
+ ;;^UTILITY(U,$J,358.3,11465,2)
+ ;;=^5013570
+ ;;^UTILITY(U,$J,358.3,11466,0)
+ ;;=M84.9^^47^533^47
+ ;;^UTILITY(U,$J,358.3,11466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11229,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,11229,1,4,0)
- ;;=4^M17.11
- ;;^UTILITY(U,$J,358.3,11229,2)
- ;;=^5010786
- ;;^UTILITY(U,$J,358.3,11230,0)
- ;;=M17.12^^68^681^111
- ;;^UTILITY(U,$J,358.3,11230,1,0)
+ ;;^UTILITY(U,$J,358.3,11466,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec
+ ;;^UTILITY(U,$J,358.3,11466,1,4,0)
+ ;;=4^M84.9
+ ;;^UTILITY(U,$J,358.3,11466,2)
+ ;;=^5014330
+ ;;^UTILITY(U,$J,358.3,11467,0)
+ ;;=M84.80^^47^533^48
+ ;;^UTILITY(U,$J,358.3,11467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11230,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Knee
- ;;^UTILITY(U,$J,358.3,11230,1,4,0)
- ;;=4^M17.12
- ;;^UTILITY(U,$J,358.3,11230,2)
- ;;=^5010787
- ;;^UTILITY(U,$J,358.3,11231,0)
- ;;=M18.0^^68^681^105
- ;;^UTILITY(U,$J,358.3,11231,1,0)
+ ;;^UTILITY(U,$J,358.3,11467,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11467,1,4,0)
+ ;;=4^M84.80
+ ;;^UTILITY(U,$J,358.3,11467,2)
+ ;;=^5014304
+ ;;^UTILITY(U,$J,358.3,11468,0)
+ ;;=M10.00^^47^533^67
+ ;;^UTILITY(U,$J,358.3,11468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11231,1,3,0)
- ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
- ;;^UTILITY(U,$J,358.3,11231,1,4,0)
- ;;=4^M18.0
- ;;^UTILITY(U,$J,358.3,11231,2)
- ;;=^5010795
- ;;^UTILITY(U,$J,358.3,11232,0)
- ;;=M18.11^^68^681^115
- ;;^UTILITY(U,$J,358.3,11232,1,0)
+ ;;^UTILITY(U,$J,358.3,11468,1,3,0)
+ ;;=3^Gout,Idiopathic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11468,1,4,0)
+ ;;=4^M10.00
+ ;;^UTILITY(U,$J,358.3,11468,2)
+ ;;=^5010284
+ ;;^UTILITY(U,$J,358.3,11469,0)
+ ;;=M10.9^^47^533^68
+ ;;^UTILITY(U,$J,358.3,11469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11232,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,11232,1,4,0)
- ;;=4^M18.11
- ;;^UTILITY(U,$J,358.3,11232,2)
- ;;=^5010797
- ;;^UTILITY(U,$J,358.3,11233,0)
- ;;=M18.12^^68^681^109
- ;;^UTILITY(U,$J,358.3,11233,1,0)
+ ;;^UTILITY(U,$J,358.3,11469,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,11469,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,11469,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,11470,0)
+ ;;=M1A.00X1^^47^533^61
+ ;;^UTILITY(U,$J,358.3,11470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11233,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
- ;;^UTILITY(U,$J,358.3,11233,1,4,0)
- ;;=4^M18.12
- ;;^UTILITY(U,$J,358.3,11233,2)
- ;;=^5010798
- ;;^UTILITY(U,$J,358.3,11234,0)
- ;;=M19.011^^68^681^118
- ;;^UTILITY(U,$J,358.3,11234,1,0)
+ ;;^UTILITY(U,$J,358.3,11470,1,3,0)
+ ;;=3^Gout,Chr Idiopathic w/ Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11470,1,4,0)
+ ;;=4^M1A.00X1
+ ;;^UTILITY(U,$J,358.3,11470,2)
+ ;;=^5010858
+ ;;^UTILITY(U,$J,358.3,11471,0)
+ ;;=M1A.00X0^^47^533^62
+ ;;^UTILITY(U,$J,358.3,11471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11234,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,11234,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,11234,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,11235,0)
- ;;=M19.012^^68^681^112
- ;;^UTILITY(U,$J,358.3,11235,1,0)
+ ;;^UTILITY(U,$J,358.3,11471,1,3,0)
+ ;;=3^Gout,Chr Idiopathic w/o Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11471,1,4,0)
+ ;;=4^M1A.00X0
+ ;;^UTILITY(U,$J,358.3,11471,2)
+ ;;=^5010857
+ ;;^UTILITY(U,$J,358.3,11472,0)
+ ;;=M1A.40X1^^47^533^63
+ ;;^UTILITY(U,$J,358.3,11472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11235,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,11235,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,11235,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,11236,0)
- ;;=M19.031^^68^681^119
- ;;^UTILITY(U,$J,358.3,11236,1,0)
+ ;;^UTILITY(U,$J,358.3,11472,1,3,0)
+ ;;=3^Gout,Chr Secondary w/ Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11472,1,4,0)
+ ;;=4^M1A.40X1
+ ;;^UTILITY(U,$J,358.3,11472,2)
+ ;;=^5010994
+ ;;^UTILITY(U,$J,358.3,11473,0)
+ ;;=M1A.40X0^^47^533^64
+ ;;^UTILITY(U,$J,358.3,11473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11236,1,3,0)
- ;;=3^Primary Osteoarthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,11236,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,11236,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,11237,0)
- ;;=M19.032^^68^681^113
- ;;^UTILITY(U,$J,358.3,11237,1,0)
+ ;;^UTILITY(U,$J,358.3,11473,1,3,0)
+ ;;=3^Gout,Chr Secondary w/o Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11473,1,4,0)
+ ;;=4^M1A.40X0
+ ;;^UTILITY(U,$J,358.3,11473,2)
+ ;;=^5010993
+ ;;^UTILITY(U,$J,358.3,11474,0)
+ ;;=M1A.9XX1^^47^533^65
+ ;;^UTILITY(U,$J,358.3,11474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11237,1,3,0)
- ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,11474,1,3,0)
+ ;;=3^Gout,Chr w/ Tophus,Unspec

@@ -1,132 +1,130 @@
-IBDEI0W4 ; ; 19-NOV-2015
+IBDEI0W4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14800,1,4,0)
- ;;=4^D22.9
- ;;^UTILITY(U,$J,358.3,14800,2)
- ;;=^5002058
- ;;^UTILITY(U,$J,358.3,14801,0)
- ;;=D23.72^^85^796^4
- ;;^UTILITY(U,$J,358.3,14801,1,0)
+ ;;^UTILITY(U,$J,358.3,15062,0)
+ ;;=D51.3^^56^638^31
+ ;;^UTILITY(U,$J,358.3,15062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14801,1,3,0)
- ;;=3^Benign Neop of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,14801,1,4,0)
- ;;=4^D23.72
- ;;^UTILITY(U,$J,358.3,14801,2)
- ;;=^5002075
- ;;^UTILITY(U,$J,358.3,14802,0)
- ;;=D23.71^^85^796^8
- ;;^UTILITY(U,$J,358.3,14802,1,0)
+ ;;^UTILITY(U,$J,358.3,15062,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Dietary
+ ;;^UTILITY(U,$J,358.3,15062,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,15062,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,15063,0)
+ ;;=D51.0^^56^638^28
+ ;;^UTILITY(U,$J,358.3,15063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14802,1,3,0)
- ;;=3^Benign Neop of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,14802,1,4,0)
- ;;=4^D23.71
- ;;^UTILITY(U,$J,358.3,14802,2)
- ;;=^5002074
- ;;^UTILITY(U,$J,358.3,14803,0)
- ;;=D23.9^^85^796^12
- ;;^UTILITY(U,$J,358.3,14803,1,0)
+ ;;^UTILITY(U,$J,358.3,15063,1,3,0)
+ ;;=3^Pernicious Anemia
+ ;;^UTILITY(U,$J,358.3,15063,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,15063,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,15064,0)
+ ;;=D50.0^^56^638^3
+ ;;^UTILITY(U,$J,358.3,15064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14803,1,3,0)
- ;;=3^Benign Neop of Skin,Unspec
- ;;^UTILITY(U,$J,358.3,14803,1,4,0)
- ;;=4^D23.9
- ;;^UTILITY(U,$J,358.3,14803,2)
- ;;=^5002076
- ;;^UTILITY(U,$J,358.3,14804,0)
- ;;=D22.21^^85^796^21
- ;;^UTILITY(U,$J,358.3,14804,1,0)
+ ;;^UTILITY(U,$J,358.3,15064,1,3,0)
+ ;;=3^Anemia d/t Blood Loss (Chronic)
+ ;;^UTILITY(U,$J,358.3,15064,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,15064,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,15065,0)
+ ;;=E11.21^^56^638^18
+ ;;^UTILITY(U,$J,358.3,15065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14804,1,3,0)
- ;;=3^Melanocytic Nevi of Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,14804,1,4,0)
- ;;=4^D22.21
- ;;^UTILITY(U,$J,358.3,14804,2)
- ;;=^5002046
- ;;^UTILITY(U,$J,358.3,14805,0)
- ;;=C44.501^^85^797^23
- ;;^UTILITY(U,$J,358.3,14805,1,0)
+ ;;^UTILITY(U,$J,358.3,15065,1,3,0)
+ ;;=3^DM Type 2 w/ Nephropathy
+ ;;^UTILITY(U,$J,358.3,15065,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,15065,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,15066,0)
+ ;;=E11.22^^56^638^8
+ ;;^UTILITY(U,$J,358.3,15066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14805,1,3,0)
- ;;=3^Malig Neop of Skin of Breast
- ;;^UTILITY(U,$J,358.3,14805,1,4,0)
- ;;=4^C44.501
- ;;^UTILITY(U,$J,358.3,14805,2)
- ;;=^5001052
- ;;^UTILITY(U,$J,358.3,14806,0)
- ;;=C50.011^^85^797^19
- ;;^UTILITY(U,$J,358.3,14806,1,0)
+ ;;^UTILITY(U,$J,358.3,15066,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,15066,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,15066,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,15067,0)
+ ;;=E11.29^^56^638^19
+ ;;^UTILITY(U,$J,358.3,15067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14806,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Right Breast
- ;;^UTILITY(U,$J,358.3,14806,1,4,0)
- ;;=4^C50.011
- ;;^UTILITY(U,$J,358.3,14806,2)
- ;;=^5001159
- ;;^UTILITY(U,$J,358.3,14807,0)
- ;;=C50.012^^85^797^18
- ;;^UTILITY(U,$J,358.3,14807,1,0)
+ ;;^UTILITY(U,$J,358.3,15067,1,3,0)
+ ;;=3^DM Type 2 w/ Other Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,15067,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,15067,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,15068,0)
+ ;;=E11.311^^56^638^20
+ ;;^UTILITY(U,$J,358.3,15068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14807,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Left Breast
- ;;^UTILITY(U,$J,358.3,14807,1,4,0)
- ;;=4^C50.012
- ;;^UTILITY(U,$J,358.3,14807,2)
- ;;=^5001160
- ;;^UTILITY(U,$J,358.3,14808,0)
- ;;=C50.111^^85^797^12
- ;;^UTILITY(U,$J,358.3,14808,1,0)
+ ;;^UTILITY(U,$J,358.3,15068,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/ Macular edema
+ ;;^UTILITY(U,$J,358.3,15068,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,15068,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,15069,0)
+ ;;=E11.319^^56^638^21
+ ;;^UTILITY(U,$J,358.3,15069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14808,1,3,0)
- ;;=3^Malig Neop of Central Portion of Right Breast
- ;;^UTILITY(U,$J,358.3,14808,1,4,0)
- ;;=4^C50.111
- ;;^UTILITY(U,$J,358.3,14808,2)
- ;;=^5001165
- ;;^UTILITY(U,$J,358.3,14809,0)
- ;;=C50.112^^85^797^11
- ;;^UTILITY(U,$J,358.3,14809,1,0)
+ ;;^UTILITY(U,$J,358.3,15069,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,15069,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,15069,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,15070,0)
+ ;;=E11.40^^56^638^10
+ ;;^UTILITY(U,$J,358.3,15070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14809,1,3,0)
- ;;=3^Malig Neop of Central Portion of Left Breast
- ;;^UTILITY(U,$J,358.3,14809,1,4,0)
- ;;=4^C50.112
- ;;^UTILITY(U,$J,358.3,14809,2)
- ;;=^5001166
- ;;^UTILITY(U,$J,358.3,14810,0)
- ;;=C50.211^^85^797^25
- ;;^UTILITY(U,$J,358.3,14810,1,0)
+ ;;^UTILITY(U,$J,358.3,15070,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,15070,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,15070,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,15071,0)
+ ;;=E11.41^^56^638^9
+ ;;^UTILITY(U,$J,358.3,15071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14810,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,14810,1,4,0)
- ;;=4^C50.211
- ;;^UTILITY(U,$J,358.3,14810,2)
- ;;=^5001171
- ;;^UTILITY(U,$J,358.3,14811,0)
- ;;=C50.212^^85^797^24
- ;;^UTILITY(U,$J,358.3,14811,1,0)
+ ;;^UTILITY(U,$J,358.3,15071,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,15071,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,15071,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,15072,0)
+ ;;=E11.42^^56^638^13
+ ;;^UTILITY(U,$J,358.3,15072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14811,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,14811,1,4,0)
- ;;=4^C50.212
- ;;^UTILITY(U,$J,358.3,14811,2)
- ;;=^5001172
- ;;^UTILITY(U,$J,358.3,14812,0)
- ;;=C50.311^^85^797^15
- ;;^UTILITY(U,$J,358.3,14812,1,0)
+ ;;^UTILITY(U,$J,358.3,15072,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,15072,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,15072,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,15073,0)
+ ;;=E11.43^^56^638^7
+ ;;^UTILITY(U,$J,358.3,15073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14812,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,14812,1,4,0)
- ;;=4^C50.311
- ;;^UTILITY(U,$J,358.3,14812,2)
- ;;=^5001177
- ;;^UTILITY(U,$J,358.3,14813,0)
- ;;=C50.312^^85^797^14
- ;;^UTILITY(U,$J,358.3,14813,1,0)
+ ;;^UTILITY(U,$J,358.3,15073,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,15073,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,15073,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,15074,0)
+ ;;=E11.51^^56^638^11
+ ;;^UTILITY(U,$J,358.3,15074,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15074,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene

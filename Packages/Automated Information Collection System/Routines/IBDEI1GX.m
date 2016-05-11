@@ -1,132 +1,126 @@
-IBDEI1GX ; ; 19-NOV-2015
+IBDEI1GX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24538,1,4,0)
- ;;=4^J13.
- ;;^UTILITY(U,$J,358.3,24538,2)
- ;;=^5008170
- ;;^UTILITY(U,$J,358.3,24539,0)
- ;;=J15.7^^121^1221^179
- ;;^UTILITY(U,$J,358.3,24539,1,0)
+ ;;^UTILITY(U,$J,358.3,24933,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,24933,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,24934,0)
+ ;;=F16.159^^93^1119^7
+ ;;^UTILITY(U,$J,358.3,24934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24539,1,3,0)
- ;;=3^Pneumonia, Mycoplasma
- ;;^UTILITY(U,$J,358.3,24539,1,4,0)
- ;;=4^J15.7
- ;;^UTILITY(U,$J,358.3,24539,2)
- ;;=^5008177
- ;;^UTILITY(U,$J,358.3,24540,0)
- ;;=J16.0^^121^1221^178
- ;;^UTILITY(U,$J,358.3,24540,1,0)
+ ;;^UTILITY(U,$J,358.3,24934,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24934,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,24934,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,24935,0)
+ ;;=F16.259^^93^1119^8
+ ;;^UTILITY(U,$J,358.3,24935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24540,1,3,0)
- ;;=3^Pneumonia, Chlamydia/Chlamydophila
- ;;^UTILITY(U,$J,358.3,24540,1,4,0)
- ;;=4^J16.0
- ;;^UTILITY(U,$J,358.3,24540,2)
- ;;=^5008179
- ;;^UTILITY(U,$J,358.3,24541,0)
- ;;=R76.11^^121^1221^184
- ;;^UTILITY(U,$J,358.3,24541,1,0)
+ ;;^UTILITY(U,$J,358.3,24935,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24935,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,24935,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,24936,0)
+ ;;=F16.959^^93^1119^9
+ ;;^UTILITY(U,$J,358.3,24936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24541,1,3,0)
- ;;=3^Positive PPD/Tuberculin skin test
- ;;^UTILITY(U,$J,358.3,24541,1,4,0)
- ;;=4^R76.11
- ;;^UTILITY(U,$J,358.3,24541,2)
- ;;=^5019570
- ;;^UTILITY(U,$J,358.3,24542,0)
- ;;=R76.12^^121^1221^183
- ;;^UTILITY(U,$J,358.3,24542,1,0)
+ ;;^UTILITY(U,$J,358.3,24936,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24936,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,24936,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,24937,0)
+ ;;=F16.99^^93^1119^20
+ ;;^UTILITY(U,$J,358.3,24937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24542,1,3,0)
- ;;=3^Positive IGRA test for tuberculosis
- ;;^UTILITY(U,$J,358.3,24542,1,4,0)
- ;;=4^R76.12
- ;;^UTILITY(U,$J,358.3,24542,2)
- ;;=^5019571
- ;;^UTILITY(U,$J,358.3,24543,0)
- ;;=R76.8^^121^1221^185
- ;;^UTILITY(U,$J,358.3,24543,1,0)
+ ;;^UTILITY(U,$J,358.3,24937,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24937,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,24937,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,24938,0)
+ ;;=F11.10^^93^1120^23
+ ;;^UTILITY(U,$J,358.3,24938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24543,1,3,0)
- ;;=3^Positive RPR
- ;;^UTILITY(U,$J,358.3,24543,1,4,0)
- ;;=4^R76.8
- ;;^UTILITY(U,$J,358.3,24543,2)
- ;;=^5019572
- ;;^UTILITY(U,$J,358.3,24544,0)
- ;;=N41.9^^121^1221^186
- ;;^UTILITY(U,$J,358.3,24544,1,0)
+ ;;^UTILITY(U,$J,358.3,24938,1,3,0)
+ ;;=3^Opioid Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,24938,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,24938,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,24939,0)
+ ;;=F11.129^^93^1120^19
+ ;;^UTILITY(U,$J,358.3,24939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24544,1,3,0)
- ;;=3^Prostatitis
- ;;^UTILITY(U,$J,358.3,24544,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,24544,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,24545,0)
- ;;=T84.52XA^^121^1221^188
- ;;^UTILITY(U,$J,358.3,24545,1,0)
+ ;;^UTILITY(U,$J,358.3,24939,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24939,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,24939,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,24940,0)
+ ;;=F11.14^^93^1120^27
+ ;;^UTILITY(U,$J,358.3,24940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24545,1,3,0)
- ;;=3^Prosthetic Left Hip Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24545,1,4,0)
- ;;=4^T84.52XA
- ;;^UTILITY(U,$J,358.3,24545,2)
- ;;=^5055388
- ;;^UTILITY(U,$J,358.3,24546,0)
- ;;=T84.51XA^^121^1221^190
- ;;^UTILITY(U,$J,358.3,24546,1,0)
+ ;;^UTILITY(U,$J,358.3,24940,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24940,1,4,0)
+ ;;=4^F11.14
+ ;;^UTILITY(U,$J,358.3,24940,2)
+ ;;=^5003119
+ ;;^UTILITY(U,$J,358.3,24941,0)
+ ;;=F11.182^^93^1120^29
+ ;;^UTILITY(U,$J,358.3,24941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24546,1,3,0)
- ;;=3^Prosthetic Right Hip Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24546,1,4,0)
- ;;=4^T84.51XA
- ;;^UTILITY(U,$J,358.3,24546,2)
- ;;=^5055385
- ;;^UTILITY(U,$J,358.3,24547,0)
- ;;=T84.54XA^^121^1221^189
- ;;^UTILITY(U,$J,358.3,24547,1,0)
+ ;;^UTILITY(U,$J,358.3,24941,1,3,0)
+ ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24941,1,4,0)
+ ;;=4^F11.182
+ ;;^UTILITY(U,$J,358.3,24941,2)
+ ;;=^5003124
+ ;;^UTILITY(U,$J,358.3,24942,0)
+ ;;=F11.20^^93^1120^24
+ ;;^UTILITY(U,$J,358.3,24942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24547,1,3,0)
- ;;=3^Prosthetic Left Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24547,1,4,0)
- ;;=4^T84.54XA
- ;;^UTILITY(U,$J,358.3,24547,2)
- ;;=^5055394
- ;;^UTILITY(U,$J,358.3,24548,0)
- ;;=T84.53XA^^121^1221^191
- ;;^UTILITY(U,$J,358.3,24548,1,0)
+ ;;^UTILITY(U,$J,358.3,24942,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24942,1,4,0)
+ ;;=4^F11.20
+ ;;^UTILITY(U,$J,358.3,24942,2)
+ ;;=^5003127
+ ;;^UTILITY(U,$J,358.3,24943,0)
+ ;;=F11.21^^93^1120^25
+ ;;^UTILITY(U,$J,358.3,24943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24548,1,3,0)
- ;;=3^Prosthetic Right Knee Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24548,1,4,0)
- ;;=4^T84.53XA
- ;;^UTILITY(U,$J,358.3,24548,2)
- ;;=^5055391
- ;;^UTILITY(U,$J,358.3,24549,0)
- ;;=T84.59XA^^121^1221^192
- ;;^UTILITY(U,$J,358.3,24549,1,0)
+ ;;^UTILITY(U,$J,358.3,24943,1,3,0)
+ ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,24943,1,4,0)
+ ;;=4^F11.21
+ ;;^UTILITY(U,$J,358.3,24943,2)
+ ;;=^5003128
+ ;;^UTILITY(U,$J,358.3,24944,0)
+ ;;=F11.23^^93^1120^26
+ ;;^UTILITY(U,$J,358.3,24944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24549,1,3,0)
- ;;=3^Prosthetic Shoulder Joint Infection,Init Encntr
- ;;^UTILITY(U,$J,358.3,24549,1,4,0)
- ;;=4^T84.59XA
- ;;^UTILITY(U,$J,358.3,24549,2)
- ;;=^5055397
- ;;^UTILITY(U,$J,358.3,24550,0)
- ;;=T82.6XXA^^121^1221^187
- ;;^UTILITY(U,$J,358.3,24550,1,0)
+ ;;^UTILITY(U,$J,358.3,24944,1,3,0)
+ ;;=3^Opioid Withdrawal
+ ;;^UTILITY(U,$J,358.3,24944,1,4,0)
+ ;;=4^F11.23
+ ;;^UTILITY(U,$J,358.3,24944,2)
+ ;;=^5003133
+ ;;^UTILITY(U,$J,358.3,24945,0)
+ ;;=F11.24^^93^1120^28
+ ;;^UTILITY(U,$J,358.3,24945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24550,1,3,0)
- ;;=3^Prosthetic Heart Valve Infection, initial encounter
- ;;^UTILITY(U,$J,358.3,24550,1,4,0)
- ;;=4^T82.6XXA
- ;;^UTILITY(U,$J,358.3,24550,2)
- ;;=^5054908
- ;;^UTILITY(U,$J,358.3,24551,0)
- ;;=N12.^^121^1221^195
- ;;^UTILITY(U,$J,358.3,24551,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24945,1,3,0)
+ ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24945,1,4,0)
+ ;;=4^F11.24

@@ -1,130 +1,134 @@
-IBDEI12F ; ; 19-NOV-2015
+IBDEI12F ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17773,0)
- ;;=D12.7^^91^882^14
- ;;^UTILITY(U,$J,358.3,17773,1,0)
+ ;;^UTILITY(U,$J,358.3,18113,1,2,0)
+ ;;=2^Basic Radiation Dosimetry Calculation
+ ;;^UTILITY(U,$J,358.3,18113,1,4,0)
+ ;;=4^77300
+ ;;^UTILITY(U,$J,358.3,18114,0)
+ ;;=77790^^77^870^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17773,1,3,0)
- ;;=3^Benign neoplasm of rectosigmoid junction
- ;;^UTILITY(U,$J,358.3,17773,1,4,0)
- ;;=4^D12.7
- ;;^UTILITY(U,$J,358.3,17773,2)
- ;;=^5001970
- ;;^UTILITY(U,$J,358.3,17774,0)
- ;;=D12.8^^91^882^15
- ;;^UTILITY(U,$J,358.3,17774,1,0)
+ ;;^UTILITY(U,$J,358.3,18114,1,2,0)
+ ;;=2^Handling/Loading of Radiation Source
+ ;;^UTILITY(U,$J,358.3,18114,1,4,0)
+ ;;=4^77790
+ ;;^UTILITY(U,$J,358.3,18115,0)
+ ;;=77263^^77^870^10^^^^1
+ ;;^UTILITY(U,$J,358.3,18115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17774,1,3,0)
- ;;=3^Benign neoplasm of rectum
- ;;^UTILITY(U,$J,358.3,17774,1,4,0)
- ;;=4^D12.8
- ;;^UTILITY(U,$J,358.3,17774,2)
- ;;=^5001971
- ;;^UTILITY(U,$J,358.3,17775,0)
- ;;=D12.9^^91^882^8
- ;;^UTILITY(U,$J,358.3,17775,1,0)
+ ;;^UTILITY(U,$J,358.3,18115,1,2,0)
+ ;;=2^Therapeutic Radiology Tx Planning;Complex
+ ;;^UTILITY(U,$J,358.3,18115,1,4,0)
+ ;;=4^77263
+ ;;^UTILITY(U,$J,358.3,18116,0)
+ ;;=77470^^77^870^9^^^^1
+ ;;^UTILITY(U,$J,358.3,18116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17775,1,3,0)
- ;;=3^Benign neoplasm of anus and anal canal
- ;;^UTILITY(U,$J,358.3,17775,1,4,0)
- ;;=4^D12.9
- ;;^UTILITY(U,$J,358.3,17775,2)
- ;;=^5001972
- ;;^UTILITY(U,$J,358.3,17776,0)
- ;;=E83.110^^91^882^38
- ;;^UTILITY(U,$J,358.3,17776,1,0)
+ ;;^UTILITY(U,$J,358.3,18116,1,2,0)
+ ;;=2^Special Treatment Procedure
+ ;;^UTILITY(U,$J,358.3,18116,1,4,0)
+ ;;=4^77470
+ ;;^UTILITY(U,$J,358.3,18117,0)
+ ;;=77370^^77^870^6^^^^1
+ ;;^UTILITY(U,$J,358.3,18117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17776,1,3,0)
- ;;=3^Hereditary hemochromatosis
- ;;^UTILITY(U,$J,358.3,17776,1,4,0)
- ;;=4^E83.110
- ;;^UTILITY(U,$J,358.3,17776,2)
- ;;=^339602
- ;;^UTILITY(U,$J,358.3,17777,0)
- ;;=E83.111^^91^882^35
- ;;^UTILITY(U,$J,358.3,17777,1,0)
+ ;;^UTILITY(U,$J,358.3,18117,1,2,0)
+ ;;=2^Medical Radiation Physics Consult
+ ;;^UTILITY(U,$J,358.3,18117,1,4,0)
+ ;;=4^77370
+ ;;^UTILITY(U,$J,358.3,18118,0)
+ ;;=76000^^77^870^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17777,1,3,0)
- ;;=3^Hemochromatosis due to repeated red blood cell transfusions
- ;;^UTILITY(U,$J,358.3,17777,1,4,0)
- ;;=4^E83.111
- ;;^UTILITY(U,$J,358.3,17777,2)
- ;;=^5002994
- ;;^UTILITY(U,$J,358.3,17778,0)
- ;;=E83.10^^91^882^26
- ;;^UTILITY(U,$J,358.3,17778,1,0)
+ ;;^UTILITY(U,$J,358.3,18118,1,2,0)
+ ;;=2^Fluoroscope,1st hr
+ ;;^UTILITY(U,$J,358.3,18118,1,4,0)
+ ;;=4^76000
+ ;;^UTILITY(U,$J,358.3,18119,0)
+ ;;=76001^^77^870^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17778,1,3,0)
- ;;=3^Disorder of iron metabolism, unspecified
- ;;^UTILITY(U,$J,358.3,17778,1,4,0)
- ;;=4^E83.10
- ;;^UTILITY(U,$J,358.3,17778,2)
- ;;=^5002993
- ;;^UTILITY(U,$J,358.3,17779,0)
- ;;=D64.9^^91^882^5
- ;;^UTILITY(U,$J,358.3,17779,1,0)
+ ;;^UTILITY(U,$J,358.3,18119,1,2,0)
+ ;;=2^Fluoroscope > 1 hr
+ ;;^UTILITY(U,$J,358.3,18119,1,4,0)
+ ;;=4^76001
+ ;;^UTILITY(U,$J,358.3,18120,0)
+ ;;=Q3001^^77^870^7^^^^1
+ ;;^UTILITY(U,$J,358.3,18120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17779,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,17779,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,17779,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,17780,0)
- ;;=K50.919^^91^882^24
- ;;^UTILITY(U,$J,358.3,17780,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17780,1,3,0)
- ;;=3^Crohn's disease, unspecified, with unspecified complications
- ;;^UTILITY(U,$J,358.3,17780,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,17780,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,17781,0)
- ;;=K50.918^^91^882^22
- ;;^UTILITY(U,$J,358.3,17781,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17781,1,3,0)
- ;;=3^Crohn's disease, unspecified, with other complication
- ;;^UTILITY(U,$J,358.3,17781,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,17781,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,17782,0)
- ;;=K50.914^^91^882^19
- ;;^UTILITY(U,$J,358.3,17782,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17782,1,3,0)
- ;;=3^Crohn's disease, unspecified, with abscess
- ;;^UTILITY(U,$J,358.3,17782,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,17782,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,17783,0)
- ;;=K50.913^^91^882^20
- ;;^UTILITY(U,$J,358.3,17783,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17783,1,3,0)
- ;;=3^Crohn's disease, unspecified, with fistula
- ;;^UTILITY(U,$J,358.3,17783,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,17783,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,17784,0)
- ;;=K50.912^^91^882^21
- ;;^UTILITY(U,$J,358.3,17784,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17784,1,3,0)
- ;;=3^Crohn's disease, unspecified, with intestinal obstruction
- ;;^UTILITY(U,$J,358.3,17784,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,17784,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,17785,0)
- ;;=K50.90^^91^882^25
- ;;^UTILITY(U,$J,358.3,17785,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17785,1,3,0)
- ;;=3^Crohn's disease, unspecified, without complications
+ ;;^UTILITY(U,$J,358.3,18120,1,2,0)
+ ;;=2^Radioelements for Brachytherapy
+ ;;^UTILITY(U,$J,358.3,18120,1,4,0)
+ ;;=4^Q3001
+ ;;^UTILITY(U,$J,358.3,18121,0)
+ ;;=99202^^78^871^1
+ ;;^UTILITY(U,$J,358.3,18121,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18121,1,1,0)
+ ;;=1^Exp Problem Focused
+ ;;^UTILITY(U,$J,358.3,18121,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,18122,0)
+ ;;=99203^^78^871^2
+ ;;^UTILITY(U,$J,358.3,18122,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18122,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,18122,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,18123,0)
+ ;;=99204^^78^871^3
+ ;;^UTILITY(U,$J,358.3,18123,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18123,1,1,0)
+ ;;=1^Comprehensive,Mod MDM
+ ;;^UTILITY(U,$J,358.3,18123,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,18124,0)
+ ;;=99205^^78^871^5
+ ;;^UTILITY(U,$J,358.3,18124,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18124,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,18124,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,18125,0)
+ ;;=99212^^78^872^1
+ ;;^UTILITY(U,$J,358.3,18125,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18125,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,18125,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,18126,0)
+ ;;=99213^^78^872^2
+ ;;^UTILITY(U,$J,358.3,18126,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18126,1,1,0)
+ ;;=1^Exp Problem Focused
+ ;;^UTILITY(U,$J,358.3,18126,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,18127,0)
+ ;;=99214^^78^872^3
+ ;;^UTILITY(U,$J,358.3,18127,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18127,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,18127,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,18128,0)
+ ;;=99215^^78^872^4
+ ;;^UTILITY(U,$J,358.3,18128,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18128,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,18128,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,18129,0)
+ ;;=99242^^78^873^1
+ ;;^UTILITY(U,$J,358.3,18129,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18129,1,1,0)
+ ;;=1^Exp Problem Focused

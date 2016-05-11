@@ -1,128 +1,48 @@
-IBDEI2N5 ; ; 19-NOV-2015
+IBDEI2N5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44325,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44325,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,44325,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,44325,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,44326,0)
- ;;=R00.1^^200^2227^1
- ;;^UTILITY(U,$J,358.3,44326,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44326,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,44326,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,44326,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,44327,0)
- ;;=I34.1^^200^2227^14
- ;;^UTILITY(U,$J,358.3,44327,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44327,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,44327,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,44327,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,44328,0)
- ;;=D68.4^^200^2228^1
- ;;^UTILITY(U,$J,358.3,44328,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44328,1,3,0)
- ;;=3^Acquired Coagulation Factor Deficiency
- ;;^UTILITY(U,$J,358.3,44328,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,44328,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,44329,0)
- ;;=D59.9^^200^2228^2
- ;;^UTILITY(U,$J,358.3,44329,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44329,1,3,0)
- ;;=3^Acquired Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,44329,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,44329,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,44330,0)
- ;;=C91.00^^200^2228^5
- ;;^UTILITY(U,$J,358.3,44330,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44330,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,44330,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,44330,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,44331,0)
- ;;=C91.01^^200^2228^4
- ;;^UTILITY(U,$J,358.3,44331,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44331,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,44331,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,44331,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,44332,0)
- ;;=C92.01^^200^2228^7
- ;;^UTILITY(U,$J,358.3,44332,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44332,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,44332,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,44332,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,44333,0)
- ;;=C92.00^^200^2228^8
- ;;^UTILITY(U,$J,358.3,44333,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44333,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,44333,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,44333,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,44334,0)
- ;;=C92.61^^200^2228^9
- ;;^UTILITY(U,$J,358.3,44334,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44334,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
- ;;^UTILITY(U,$J,358.3,44334,1,4,0)
- ;;=4^C92.61
- ;;^UTILITY(U,$J,358.3,44334,2)
- ;;=^5001808
- ;;^UTILITY(U,$J,358.3,44335,0)
- ;;=C92.60^^200^2228^10
- ;;^UTILITY(U,$J,358.3,44335,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44335,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
- ;;^UTILITY(U,$J,358.3,44335,1,4,0)
- ;;=4^C92.60
- ;;^UTILITY(U,$J,358.3,44335,2)
- ;;=^5001807
- ;;^UTILITY(U,$J,358.3,44336,0)
- ;;=C92.A1^^200^2228^11
- ;;^UTILITY(U,$J,358.3,44336,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44336,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
- ;;^UTILITY(U,$J,358.3,44336,1,4,0)
- ;;=4^C92.A1
- ;;^UTILITY(U,$J,358.3,44336,2)
- ;;=^5001814
- ;;^UTILITY(U,$J,358.3,44337,0)
- ;;=C92.A0^^200^2228^12
- ;;^UTILITY(U,$J,358.3,44337,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44337,1,3,0)
- ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

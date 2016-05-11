@@ -1,126 +1,136 @@
-IBDEI2B1 ; ; 19-NOV-2015
+IBDEI2B1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38708,1,4,0)
- ;;=4^R41.3
- ;;^UTILITY(U,$J,358.3,38708,2)
- ;;=^5019439
- ;;^UTILITY(U,$J,358.3,38709,0)
- ;;=F81.89^^180^1983^2
- ;;^UTILITY(U,$J,358.3,38709,1,0)
+ ;;^UTILITY(U,$J,358.3,39099,2)
+ ;;=^5000495
+ ;;^UTILITY(U,$J,358.3,39100,0)
+ ;;=B00.52^^153^1920^82
+ ;;^UTILITY(U,$J,358.3,39100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38709,1,3,0)
- ;;=3^Developmental disorders of scholastic skills NEC
- ;;^UTILITY(U,$J,358.3,38709,1,4,0)
- ;;=4^F81.89
- ;;^UTILITY(U,$J,358.3,38709,2)
- ;;=^5003681
- ;;^UTILITY(U,$J,358.3,38710,0)
- ;;=F07.81^^180^1983^4
- ;;^UTILITY(U,$J,358.3,38710,1,0)
+ ;;^UTILITY(U,$J,358.3,39100,1,3,0)
+ ;;=3^Herpesviral Keratitis
+ ;;^UTILITY(U,$J,358.3,39100,1,4,0)
+ ;;=4^B00.52
+ ;;^UTILITY(U,$J,358.3,39100,2)
+ ;;=^5000474
+ ;;^UTILITY(U,$J,358.3,39101,0)
+ ;;=B00.51^^153^1920^81
+ ;;^UTILITY(U,$J,358.3,39101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38710,1,3,0)
- ;;=3^Postconcussional syndrome
- ;;^UTILITY(U,$J,358.3,38710,1,4,0)
- ;;=4^F07.81
- ;;^UTILITY(U,$J,358.3,38710,2)
- ;;=^5003064
- ;;^UTILITY(U,$J,358.3,38711,0)
- ;;=R41.2^^180^1983^5
- ;;^UTILITY(U,$J,358.3,38711,1,0)
+ ;;^UTILITY(U,$J,358.3,39101,1,3,0)
+ ;;=3^Herpesviral Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,39101,1,4,0)
+ ;;=4^B00.51
+ ;;^UTILITY(U,$J,358.3,39101,2)
+ ;;=^5000473
+ ;;^UTILITY(U,$J,358.3,39102,0)
+ ;;=B30.8^^153^1920^47
+ ;;^UTILITY(U,$J,358.3,39102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38711,1,3,0)
- ;;=3^Retrograde amnesia
- ;;^UTILITY(U,$J,358.3,38711,1,4,0)
- ;;=4^R41.2
- ;;^UTILITY(U,$J,358.3,38711,2)
- ;;=^5019438
- ;;^UTILITY(U,$J,358.3,38712,0)
- ;;=T84.81XA^^180^1984^2
- ;;^UTILITY(U,$J,358.3,38712,1,0)
+ ;;^UTILITY(U,$J,358.3,39102,1,3,0)
+ ;;=3^Conjunctivitis,Viral NEC
+ ;;^UTILITY(U,$J,358.3,39102,1,4,0)
+ ;;=4^B30.8
+ ;;^UTILITY(U,$J,358.3,39102,2)
+ ;;=^88239
+ ;;^UTILITY(U,$J,358.3,39103,0)
+ ;;=C69.41^^153^1920^113
+ ;;^UTILITY(U,$J,358.3,39103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38712,1,3,0)
- ;;=3^Embolism d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38712,1,4,0)
- ;;=4^T84.81XA
- ;;^UTILITY(U,$J,358.3,38712,2)
- ;;=^5055454
- ;;^UTILITY(U,$J,358.3,38713,0)
- ;;=T84.82XA^^180^1984^3
- ;;^UTILITY(U,$J,358.3,38713,1,0)
+ ;;^UTILITY(U,$J,358.3,39103,1,3,0)
+ ;;=3^Malig Neop of Right Ciliary Body
+ ;;^UTILITY(U,$J,358.3,39103,1,4,0)
+ ;;=4^C69.41
+ ;;^UTILITY(U,$J,358.3,39103,2)
+ ;;=^5001279
+ ;;^UTILITY(U,$J,358.3,39104,0)
+ ;;=C69.42^^153^1920^111
+ ;;^UTILITY(U,$J,358.3,39104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38713,1,3,0)
- ;;=3^Fibrosis d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38713,1,4,0)
- ;;=4^T84.82XA
- ;;^UTILITY(U,$J,358.3,38713,2)
- ;;=^5055457
- ;;^UTILITY(U,$J,358.3,38714,0)
- ;;=T84.83XA^^180^1984^4
- ;;^UTILITY(U,$J,358.3,38714,1,0)
+ ;;^UTILITY(U,$J,358.3,39104,1,3,0)
+ ;;=3^Malig Neop of Left Ciliary Body
+ ;;^UTILITY(U,$J,358.3,39104,1,4,0)
+ ;;=4^C69.42
+ ;;^UTILITY(U,$J,358.3,39104,2)
+ ;;=^5001280
+ ;;^UTILITY(U,$J,358.3,39105,0)
+ ;;=C69.01^^153^1920^114
+ ;;^UTILITY(U,$J,358.3,39105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38714,1,3,0)
- ;;=3^Hemorrhage d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38714,1,4,0)
- ;;=4^T84.83XA
- ;;^UTILITY(U,$J,358.3,38714,2)
- ;;=^5055460
- ;;^UTILITY(U,$J,358.3,38715,0)
- ;;=T84.84XA^^180^1984^5
- ;;^UTILITY(U,$J,358.3,38715,1,0)
+ ;;^UTILITY(U,$J,358.3,39105,1,3,0)
+ ;;=3^Malig Neop of Right Conjunctiva
+ ;;^UTILITY(U,$J,358.3,39105,1,4,0)
+ ;;=4^C69.01
+ ;;^UTILITY(U,$J,358.3,39105,2)
+ ;;=^5001267
+ ;;^UTILITY(U,$J,358.3,39106,0)
+ ;;=C69.02^^153^1920^112
+ ;;^UTILITY(U,$J,358.3,39106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38715,1,3,0)
- ;;=3^Pain d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38715,1,4,0)
- ;;=4^T84.84XA
- ;;^UTILITY(U,$J,358.3,38715,2)
- ;;=^5055463
- ;;^UTILITY(U,$J,358.3,38716,0)
- ;;=T84.85XA^^180^1984^6
- ;;^UTILITY(U,$J,358.3,38716,1,0)
+ ;;^UTILITY(U,$J,358.3,39106,1,3,0)
+ ;;=3^Malig Neop of Left Conjunctiva
+ ;;^UTILITY(U,$J,358.3,39106,1,4,0)
+ ;;=4^C69.02
+ ;;^UTILITY(U,$J,358.3,39106,2)
+ ;;=^5001268
+ ;;^UTILITY(U,$J,358.3,39107,0)
+ ;;=D31.41^^153^1920^17
+ ;;^UTILITY(U,$J,358.3,39107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38716,1,3,0)
- ;;=3^Stenosis d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38716,1,4,0)
- ;;=4^T84.85XA
- ;;^UTILITY(U,$J,358.3,38716,2)
- ;;=^5055466
- ;;^UTILITY(U,$J,358.3,38717,0)
- ;;=T84.86XA^^180^1984^7
- ;;^UTILITY(U,$J,358.3,38717,1,0)
+ ;;^UTILITY(U,$J,358.3,39107,1,3,0)
+ ;;=3^Benign Neop of Right Ciliary Body
+ ;;^UTILITY(U,$J,358.3,39107,1,4,0)
+ ;;=4^D31.41
+ ;;^UTILITY(U,$J,358.3,39107,2)
+ ;;=^5002124
+ ;;^UTILITY(U,$J,358.3,39108,0)
+ ;;=D31.42^^153^1920^15
+ ;;^UTILITY(U,$J,358.3,39108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38717,1,3,0)
- ;;=3^Thrombosis d/t internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,38717,1,4,0)
- ;;=4^T84.86XA
- ;;^UTILITY(U,$J,358.3,38717,2)
- ;;=^5055469
- ;;^UTILITY(U,$J,358.3,38718,0)
- ;;=T88.9XXS^^180^1984^1
- ;;^UTILITY(U,$J,358.3,38718,1,0)
+ ;;^UTILITY(U,$J,358.3,39108,1,3,0)
+ ;;=3^Benign Neop of Left Ciliary Body
+ ;;^UTILITY(U,$J,358.3,39108,1,4,0)
+ ;;=4^D31.42
+ ;;^UTILITY(U,$J,358.3,39108,2)
+ ;;=^5002125
+ ;;^UTILITY(U,$J,358.3,39109,0)
+ ;;=D31.01^^153^1920^18
+ ;;^UTILITY(U,$J,358.3,39109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38718,1,3,0)
- ;;=3^Complication of surgical and medical care, unsp, sequela
- ;;^UTILITY(U,$J,358.3,38718,1,4,0)
- ;;=4^T88.9XXS
- ;;^UTILITY(U,$J,358.3,38718,2)
- ;;=^5055819
- ;;^UTILITY(U,$J,358.3,38719,0)
- ;;=M86.672^^180^1985^2
- ;;^UTILITY(U,$J,358.3,38719,1,0)
+ ;;^UTILITY(U,$J,358.3,39109,1,3,0)
+ ;;=3^Benign Neop of Right Conjunctiva
+ ;;^UTILITY(U,$J,358.3,39109,1,4,0)
+ ;;=4^D31.01
+ ;;^UTILITY(U,$J,358.3,39109,2)
+ ;;=^5002112
+ ;;^UTILITY(U,$J,358.3,39110,0)
+ ;;=D31.02^^153^1920^16
+ ;;^UTILITY(U,$J,358.3,39110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38719,1,3,0)
- ;;=3^Chronic osteomyelitis, left ankle and foot NEC
- ;;^UTILITY(U,$J,358.3,38719,1,4,0)
- ;;=4^M86.672
- ;;^UTILITY(U,$J,358.3,38719,2)
- ;;=^5014642
- ;;^UTILITY(U,$J,358.3,38720,0)
- ;;=M86.642^^180^1985^3
- ;;^UTILITY(U,$J,358.3,38720,1,0)
+ ;;^UTILITY(U,$J,358.3,39110,1,3,0)
+ ;;=3^Benign Neop of Left Conjunctiva
+ ;;^UTILITY(U,$J,358.3,39110,1,4,0)
+ ;;=4^D31.02
+ ;;^UTILITY(U,$J,358.3,39110,2)
+ ;;=^5002113
+ ;;^UTILITY(U,$J,358.3,39111,0)
+ ;;=H20.00^^153^1920^91
+ ;;^UTILITY(U,$J,358.3,39111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38720,1,3,0)
- ;;=3^Chronic osteomyelitis, left hand NEC
- ;;^UTILITY(U,$J,358.3,38720,1,4,0)
- ;;=4^M86.642
+ ;;^UTILITY(U,$J,358.3,39111,1,3,0)
+ ;;=3^Iridocyclitis,Acute/Subacute,Unspec
+ ;;^UTILITY(U,$J,358.3,39111,1,4,0)
+ ;;=4^H20.00
+ ;;^UTILITY(U,$J,358.3,39111,2)
+ ;;=^5005133
+ ;;^UTILITY(U,$J,358.3,39112,0)
+ ;;=H20.051^^153^1920^88
+ ;;^UTILITY(U,$J,358.3,39112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39112,1,3,0)
+ ;;=3^Hypopyon,Right Eye
+ ;;^UTILITY(U,$J,358.3,39112,1,4,0)
+ ;;=4^H20.051
+ ;;^UTILITY(U,$J,358.3,39112,2)
+ ;;=^5005150

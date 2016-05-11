@@ -1,130 +1,132 @@
-IBDEI0M0 ; ; 19-NOV-2015
+IBDEI0M0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10044,0)
- ;;=E08.621^^68^664^134
- ;;^UTILITY(U,$J,358.3,10044,1,0)
+ ;;^UTILITY(U,$J,358.3,10261,1,4,0)
+ ;;=4^H02.114
+ ;;^UTILITY(U,$J,358.3,10261,2)
+ ;;=^5004310
+ ;;^UTILITY(U,$J,358.3,10262,0)
+ ;;=H02.112^^44^503^19
+ ;;^UTILITY(U,$J,358.3,10262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10044,1,3,0)
- ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,10044,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,10044,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,10045,0)
- ;;=E09.621^^68^664^133
- ;;^UTILITY(U,$J,358.3,10045,1,0)
+ ;;^UTILITY(U,$J,358.3,10262,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10262,1,4,0)
+ ;;=4^H02.112
+ ;;^UTILITY(U,$J,358.3,10262,2)
+ ;;=^5004308
+ ;;^UTILITY(U,$J,358.3,10263,0)
+ ;;=H02.111^^44^503^20
+ ;;^UTILITY(U,$J,358.3,10263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10045,1,3,0)
- ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,10045,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,10045,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,10046,0)
- ;;=H05.011^^68^664^110
- ;;^UTILITY(U,$J,358.3,10046,1,0)
+ ;;^UTILITY(U,$J,358.3,10263,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10263,1,4,0)
+ ;;=4^H02.111
+ ;;^UTILITY(U,$J,358.3,10263,2)
+ ;;=^5004307
+ ;;^UTILITY(U,$J,358.3,10264,0)
+ ;;=H02.015^^44^503^21
+ ;;^UTILITY(U,$J,358.3,10264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10046,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,10046,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,10046,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,10047,0)
- ;;=H05.012^^68^664^103
- ;;^UTILITY(U,$J,358.3,10047,1,0)
+ ;;^UTILITY(U,$J,358.3,10264,1,3,0)
+ ;;=3^Cicatricial Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10264,1,4,0)
+ ;;=4^H02.015
+ ;;^UTILITY(U,$J,358.3,10264,2)
+ ;;=^5133397
+ ;;^UTILITY(U,$J,358.3,10265,0)
+ ;;=H02.014^^44^503^22
+ ;;^UTILITY(U,$J,358.3,10265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10047,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,10047,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,10047,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,10048,0)
- ;;=H05.013^^68^664^97
- ;;^UTILITY(U,$J,358.3,10048,1,0)
+ ;;^UTILITY(U,$J,358.3,10265,1,3,0)
+ ;;=3^Cicatricial Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10265,1,4,0)
+ ;;=4^H02.014
+ ;;^UTILITY(U,$J,358.3,10265,2)
+ ;;=^5004281
+ ;;^UTILITY(U,$J,358.3,10266,0)
+ ;;=H02.012^^44^503^23
+ ;;^UTILITY(U,$J,358.3,10266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10048,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,10048,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,10048,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,10049,0)
- ;;=I70.331^^68^664^50
- ;;^UTILITY(U,$J,358.3,10049,1,0)
+ ;;^UTILITY(U,$J,358.3,10266,1,3,0)
+ ;;=3^Cicatricial Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10266,1,4,0)
+ ;;=4^H02.012
+ ;;^UTILITY(U,$J,358.3,10266,2)
+ ;;=^5004279
+ ;;^UTILITY(U,$J,358.3,10267,0)
+ ;;=H02.011^^44^503^24
+ ;;^UTILITY(U,$J,358.3,10267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10049,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,10049,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,10049,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,10050,0)
- ;;=I70.332^^68^664^51
- ;;^UTILITY(U,$J,358.3,10050,1,0)
+ ;;^UTILITY(U,$J,358.3,10267,1,3,0)
+ ;;=3^Cicatricial Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10267,1,4,0)
+ ;;=4^H02.011
+ ;;^UTILITY(U,$J,358.3,10267,2)
+ ;;=^5004278
+ ;;^UTILITY(U,$J,358.3,10268,0)
+ ;;=S00.12XA^^44^503^25
+ ;;^UTILITY(U,$J,358.3,10268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10050,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,10050,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,10050,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,10051,0)
- ;;=I70.333^^68^664^52
- ;;^UTILITY(U,$J,358.3,10051,1,0)
+ ;;^UTILITY(U,$J,358.3,10268,1,3,0)
+ ;;=3^Contusion Left Eyelid/Pericocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10268,1,4,0)
+ ;;=4^S00.12XA
+ ;;^UTILITY(U,$J,358.3,10268,2)
+ ;;=^5019781
+ ;;^UTILITY(U,$J,358.3,10269,0)
+ ;;=S00.11XA^^44^503^26
+ ;;^UTILITY(U,$J,358.3,10269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10051,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,10051,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,10051,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,10052,0)
- ;;=I70.334^^68^664^53
- ;;^UTILITY(U,$J,358.3,10052,1,0)
+ ;;^UTILITY(U,$J,358.3,10269,1,3,0)
+ ;;=3^Contusion Right Eyelid/Pericocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,10269,1,4,0)
+ ;;=4^S00.11XA
+ ;;^UTILITY(U,$J,358.3,10269,2)
+ ;;=^5019778
+ ;;^UTILITY(U,$J,358.3,10270,0)
+ ;;=H02.825^^44^503^27
+ ;;^UTILITY(U,$J,358.3,10270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10052,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,10052,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,10052,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,10053,0)
- ;;=I70.335^^68^664^54
- ;;^UTILITY(U,$J,358.3,10053,1,0)
+ ;;^UTILITY(U,$J,358.3,10270,1,3,0)
+ ;;=3^Cysts Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10270,1,4,0)
+ ;;=4^H02.825
+ ;;^UTILITY(U,$J,358.3,10270,2)
+ ;;=^5133441
+ ;;^UTILITY(U,$J,358.3,10271,0)
+ ;;=H02.824^^44^503^28
+ ;;^UTILITY(U,$J,358.3,10271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10053,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,10053,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,10053,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,10054,0)
- ;;=I70.341^^68^664^49
- ;;^UTILITY(U,$J,358.3,10054,1,0)
+ ;;^UTILITY(U,$J,358.3,10271,1,3,0)
+ ;;=3^Cysts Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10271,1,4,0)
+ ;;=4^H02.824
+ ;;^UTILITY(U,$J,358.3,10271,2)
+ ;;=^5004416
+ ;;^UTILITY(U,$J,358.3,10272,0)
+ ;;=H02.822^^44^503^29
+ ;;^UTILITY(U,$J,358.3,10272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10054,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,10054,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,10054,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,10055,0)
- ;;=I70.342^^68^664^46
- ;;^UTILITY(U,$J,358.3,10055,1,0)
+ ;;^UTILITY(U,$J,358.3,10272,1,3,0)
+ ;;=3^Cysts Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10272,1,4,0)
+ ;;=4^H02.822
+ ;;^UTILITY(U,$J,358.3,10272,2)
+ ;;=^5004414
+ ;;^UTILITY(U,$J,358.3,10273,0)
+ ;;=H02.821^^44^503^30
+ ;;^UTILITY(U,$J,358.3,10273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10055,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,10055,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,10055,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,10056,0)
- ;;=I70.343^^68^664^45
- ;;^UTILITY(U,$J,358.3,10056,1,0)
+ ;;^UTILITY(U,$J,358.3,10273,1,3,0)
+ ;;=3^Cysts Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10273,1,4,0)
+ ;;=4^H02.821
+ ;;^UTILITY(U,$J,358.3,10273,2)
+ ;;=^5004413
+ ;;^UTILITY(U,$J,358.3,10274,0)
+ ;;=H02.835^^44^503^31
+ ;;^UTILITY(U,$J,358.3,10274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10056,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle

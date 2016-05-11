@@ -1,124 +1,128 @@
-IBDEI1AT ; ; 19-NOV-2015
+IBDEI1AT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21683,1,4,0)
- ;;=4^S79.132S
- ;;^UTILITY(U,$J,358.3,21683,2)
- ;;=^5039839
- ;;^UTILITY(U,$J,358.3,21684,0)
- ;;=S79.141S^^101^1033^104
- ;;^UTILITY(U,$J,358.3,21684,1,0)
+ ;;^UTILITY(U,$J,358.3,22078,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,22078,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,22079,0)
+ ;;=H57.11^^87^974^12
+ ;;^UTILITY(U,$J,358.3,22079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21684,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx lower end of r femur, sequela
- ;;^UTILITY(U,$J,358.3,21684,1,4,0)
- ;;=4^S79.141S
- ;;^UTILITY(U,$J,358.3,21684,2)
- ;;=^5039851
- ;;^UTILITY(U,$J,358.3,21685,0)
- ;;=S79.142S^^101^1033^105
- ;;^UTILITY(U,$J,358.3,21685,1,0)
+ ;;^UTILITY(U,$J,358.3,22079,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,22079,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,22079,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,22080,0)
+ ;;=S05.02XA^^87^975^3
+ ;;^UTILITY(U,$J,358.3,22080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21685,1,3,0)
- ;;=3^Sltr-haris Type IV physeal fx lower end of l femur, sequela
- ;;^UTILITY(U,$J,358.3,21685,1,4,0)
- ;;=4^S79.142S
- ;;^UTILITY(U,$J,358.3,21685,2)
- ;;=^5039857
- ;;^UTILITY(U,$J,358.3,21686,0)
- ;;=S82.011S^^101^1033^32
- ;;^UTILITY(U,$J,358.3,21686,1,0)
+ ;;^UTILITY(U,$J,358.3,22080,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
+ ;;^UTILITY(U,$J,358.3,22080,1,4,0)
+ ;;=4^S05.02XA
+ ;;^UTILITY(U,$J,358.3,22080,2)
+ ;;=^5020582
+ ;;^UTILITY(U,$J,358.3,22081,0)
+ ;;=S05.01XA^^87^975^4
+ ;;^UTILITY(U,$J,358.3,22081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21686,1,3,0)
- ;;=3^Displaced osteochondral fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,21686,1,4,0)
- ;;=4^S82.011S
- ;;^UTILITY(U,$J,358.3,21686,2)
- ;;=^5040156
- ;;^UTILITY(U,$J,358.3,21687,0)
- ;;=S82.012S^^101^1033^31
- ;;^UTILITY(U,$J,358.3,21687,1,0)
+ ;;^UTILITY(U,$J,358.3,22081,1,3,0)
+ ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
+ ;;^UTILITY(U,$J,358.3,22081,1,4,0)
+ ;;=4^S05.01XA
+ ;;^UTILITY(U,$J,358.3,22081,2)
+ ;;=^5020579
+ ;;^UTILITY(U,$J,358.3,22082,0)
+ ;;=T15.02XA^^87^975^1
+ ;;^UTILITY(U,$J,358.3,22082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21687,1,3,0)
- ;;=3^Displaced osteochondral fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,21687,1,4,0)
- ;;=4^S82.012S
- ;;^UTILITY(U,$J,358.3,21687,2)
- ;;=^5040172
- ;;^UTILITY(U,$J,358.3,21688,0)
- ;;=S82.014S^^101^1033^78
- ;;^UTILITY(U,$J,358.3,21688,1,0)
+ ;;^UTILITY(U,$J,358.3,22082,1,3,0)
+ ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22082,1,4,0)
+ ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,22082,2)
+ ;;=^5046387
+ ;;^UTILITY(U,$J,358.3,22083,0)
+ ;;=T15.01XA^^87^975^2
+ ;;^UTILITY(U,$J,358.3,22083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21688,1,3,0)
- ;;=3^Nondisp osteochondral fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,21688,1,4,0)
- ;;=4^S82.014S
- ;;^UTILITY(U,$J,358.3,21688,2)
- ;;=^5040204
- ;;^UTILITY(U,$J,358.3,21689,0)
- ;;=S82.015S^^101^1033^77
- ;;^UTILITY(U,$J,358.3,21689,1,0)
+ ;;^UTILITY(U,$J,358.3,22083,1,3,0)
+ ;;=3^Foreign Body in Cornea,Right Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22083,1,4,0)
+ ;;=4^T15.01XA
+ ;;^UTILITY(U,$J,358.3,22083,2)
+ ;;=^5046384
+ ;;^UTILITY(U,$J,358.3,22084,0)
+ ;;=S00.252A^^87^975^5
+ ;;^UTILITY(U,$J,358.3,22084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21689,1,3,0)
- ;;=3^Nondisp osteochondral fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,21689,1,4,0)
- ;;=4^S82.015S
- ;;^UTILITY(U,$J,358.3,21689,2)
- ;;=^5040220
- ;;^UTILITY(U,$J,358.3,21690,0)
- ;;=S82.021S^^101^1033^22
- ;;^UTILITY(U,$J,358.3,21690,1,0)
+ ;;^UTILITY(U,$J,358.3,22084,1,3,0)
+ ;;=3^Superficial FB of Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22084,1,4,0)
+ ;;=4^S00.252A
+ ;;^UTILITY(U,$J,358.3,22084,2)
+ ;;=^5019820
+ ;;^UTILITY(U,$J,358.3,22085,0)
+ ;;=S00.251A^^87^975^6
+ ;;^UTILITY(U,$J,358.3,22085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21690,1,3,0)
- ;;=3^Displaced longitudinal fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,21690,1,4,0)
- ;;=4^S82.021S
- ;;^UTILITY(U,$J,358.3,21690,2)
- ;;=^5040252
- ;;^UTILITY(U,$J,358.3,21691,0)
- ;;=S82.022S^^101^1033^21
- ;;^UTILITY(U,$J,358.3,21691,1,0)
+ ;;^UTILITY(U,$J,358.3,22085,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22085,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,22085,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,22086,0)
+ ;;=B96.81^^87^976^56
+ ;;^UTILITY(U,$J,358.3,22086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21691,1,3,0)
- ;;=3^Displaced longitudinal fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,21691,1,4,0)
- ;;=4^S82.022S
- ;;^UTILITY(U,$J,358.3,21691,2)
- ;;=^5040268
- ;;^UTILITY(U,$J,358.3,21692,0)
- ;;=S82.024S^^101^1033^68
- ;;^UTILITY(U,$J,358.3,21692,1,0)
+ ;;^UTILITY(U,$J,358.3,22086,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,22086,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,22086,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,22087,0)
+ ;;=B15.9^^87^976^58
+ ;;^UTILITY(U,$J,358.3,22087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21692,1,3,0)
- ;;=3^Nondisp longitudinal fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,21692,1,4,0)
- ;;=4^S82.024S
- ;;^UTILITY(U,$J,358.3,21692,2)
- ;;=^5040300
- ;;^UTILITY(U,$J,358.3,21693,0)
- ;;=S82.025S^^101^1033^67
- ;;^UTILITY(U,$J,358.3,21693,1,0)
+ ;;^UTILITY(U,$J,358.3,22087,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,22087,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,22087,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,22088,0)
+ ;;=B16.9^^87^976^59
+ ;;^UTILITY(U,$J,358.3,22088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21693,1,3,0)
- ;;=3^Nondisp longitudinal fx of left patella, sequela
- ;;^UTILITY(U,$J,358.3,21693,1,4,0)
- ;;=4^S82.025S
- ;;^UTILITY(U,$J,358.3,21693,2)
- ;;=^5040316
- ;;^UTILITY(U,$J,358.3,21694,0)
- ;;=S82.031S^^101^1033^44
- ;;^UTILITY(U,$J,358.3,21694,1,0)
+ ;;^UTILITY(U,$J,358.3,22088,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,22088,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,22088,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,22089,0)
+ ;;=B19.10^^87^976^61
+ ;;^UTILITY(U,$J,358.3,22089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21694,1,3,0)
- ;;=3^Displaced transverse fx of right patella, sequela
- ;;^UTILITY(U,$J,358.3,21694,1,4,0)
- ;;=4^S82.031S
- ;;^UTILITY(U,$J,358.3,21694,2)
- ;;=^5040348
- ;;^UTILITY(U,$J,358.3,21695,0)
- ;;=S82.032S^^101^1033^43
- ;;^UTILITY(U,$J,358.3,21695,1,0)
+ ;;^UTILITY(U,$J,358.3,22089,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,22089,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,22089,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,22090,0)
+ ;;=B18.1^^87^976^60
+ ;;^UTILITY(U,$J,358.3,22090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21695,1,3,0)
- ;;=3^Displaced transverse fx of left patella, sequela
+ ;;^UTILITY(U,$J,358.3,22090,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,22090,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,22090,2)
+ ;;=^5000547

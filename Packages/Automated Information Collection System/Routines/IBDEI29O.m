@@ -1,128 +1,134 @@
-IBDEI29O ; ; 19-NOV-2015
+IBDEI29O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38070,1,4,0)
- ;;=4^F34.0
- ;;^UTILITY(U,$J,358.3,38070,2)
- ;;=^5003538
- ;;^UTILITY(U,$J,358.3,38071,0)
- ;;=F10.232^^177^1917^2
- ;;^UTILITY(U,$J,358.3,38071,1,0)
+ ;;^UTILITY(U,$J,358.3,38439,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,38440,0)
+ ;;=F45.22^^145^1867^1
+ ;;^UTILITY(U,$J,358.3,38440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38071,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,38071,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,38071,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,38072,0)
- ;;=F10.231^^177^1917^3
- ;;^UTILITY(U,$J,358.3,38072,1,0)
+ ;;^UTILITY(U,$J,358.3,38440,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,38440,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,38440,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,38441,0)
+ ;;=F45.20^^145^1867^7
+ ;;^UTILITY(U,$J,358.3,38441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38072,1,3,0)
- ;;=3^Alcohol Withdrawal Delirium w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,38072,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,38072,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,38073,0)
- ;;=F10.121^^177^1917^6
- ;;^UTILITY(U,$J,358.3,38073,1,0)
+ ;;^UTILITY(U,$J,358.3,38441,1,3,0)
+ ;;=3^Hypochondiacal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38441,1,4,0)
+ ;;=4^F45.20
+ ;;^UTILITY(U,$J,358.3,38441,2)
+ ;;=^5003586
+ ;;^UTILITY(U,$J,358.3,38442,0)
+ ;;=F45.21^^145^1867^9
+ ;;^UTILITY(U,$J,358.3,38442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38073,1,3,0)
- ;;=3^Mild Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,38073,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,38073,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,38074,0)
- ;;=F10.221^^177^1917^7
- ;;^UTILITY(U,$J,358.3,38074,1,0)
+ ;;^UTILITY(U,$J,358.3,38442,1,3,0)
+ ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,38442,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,38442,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,38443,0)
+ ;;=F45.29^^145^1867^8
+ ;;^UTILITY(U,$J,358.3,38443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38074,1,3,0)
- ;;=3^Moderate/Severe Alcohol Use Disorder w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,38074,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,38074,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,38075,0)
- ;;=F10.921^^177^1917^1
- ;;^UTILITY(U,$J,358.3,38075,1,0)
+ ;;^UTILITY(U,$J,358.3,38443,1,3,0)
+ ;;=3^Hypochondriacal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,38443,1,4,0)
+ ;;=4^F45.29
+ ;;^UTILITY(U,$J,358.3,38443,2)
+ ;;=^5003589
+ ;;^UTILITY(U,$J,358.3,38444,0)
+ ;;=F45.8^^145^1867^15
+ ;;^UTILITY(U,$J,358.3,38444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38075,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,38075,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,38075,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,38076,0)
- ;;=F05.^^177^1917^4
- ;;^UTILITY(U,$J,358.3,38076,1,0)
+ ;;^UTILITY(U,$J,358.3,38444,1,3,0)
+ ;;=3^Somatoform Disorders NEC
+ ;;^UTILITY(U,$J,358.3,38444,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,38444,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,38445,0)
+ ;;=F45.41^^145^1867^10
+ ;;^UTILITY(U,$J,358.3,38445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38076,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,38076,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,38076,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,38077,0)
- ;;=F05.^^177^1917^5
- ;;^UTILITY(U,$J,358.3,38077,1,0)
+ ;;^UTILITY(U,$J,358.3,38445,1,3,0)
+ ;;=3^Pain Disorder Exclusively Related to Psychological Factors
+ ;;^UTILITY(U,$J,358.3,38445,1,4,0)
+ ;;=4^F45.41
+ ;;^UTILITY(U,$J,358.3,38445,2)
+ ;;=^5003590
+ ;;^UTILITY(U,$J,358.3,38446,0)
+ ;;=F45.42^^145^1867^11
+ ;;^UTILITY(U,$J,358.3,38446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38077,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,38077,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,38077,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,38078,0)
- ;;=A81.00^^177^1918^9
- ;;^UTILITY(U,$J,358.3,38078,1,0)
+ ;;^UTILITY(U,$J,358.3,38446,1,3,0)
+ ;;=3^Pain Disorder w/ Related Psychological Factors
+ ;;^UTILITY(U,$J,358.3,38446,1,4,0)
+ ;;=4^F45.42
+ ;;^UTILITY(U,$J,358.3,38446,2)
+ ;;=^5003591
+ ;;^UTILITY(U,$J,358.3,38447,0)
+ ;;=F45.0^^145^1867^13
+ ;;^UTILITY(U,$J,358.3,38447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38078,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,38078,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,38078,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,38079,0)
- ;;=A81.01^^177^1918^38
- ;;^UTILITY(U,$J,358.3,38079,1,0)
+ ;;^UTILITY(U,$J,358.3,38447,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,38447,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,38447,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,38448,0)
+ ;;=F45.9^^145^1867^14
+ ;;^UTILITY(U,$J,358.3,38448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38079,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,38079,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,38079,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,38080,0)
- ;;=A81.09^^177^1918^8
- ;;^UTILITY(U,$J,358.3,38080,1,0)
+ ;;^UTILITY(U,$J,358.3,38448,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38448,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,38448,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,38449,0)
+ ;;=F45.1^^145^1867^16
+ ;;^UTILITY(U,$J,358.3,38449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38080,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,38080,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,38080,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,38081,0)
- ;;=A81.2^^177^1918^33
- ;;^UTILITY(U,$J,358.3,38081,1,0)
+ ;;^UTILITY(U,$J,358.3,38449,1,3,0)
+ ;;=3^Undifferntiated Somatoform Disorder
+ ;;^UTILITY(U,$J,358.3,38449,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,38449,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,38450,0)
+ ;;=F44.4^^145^1867^2
+ ;;^UTILITY(U,$J,358.3,38450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38081,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,38081,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,38081,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,38082,0)
- ;;=F01.50^^177^1918^31
- ;;^UTILITY(U,$J,358.3,38082,1,0)
+ ;;^UTILITY(U,$J,358.3,38450,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement
+ ;;^UTILITY(U,$J,358.3,38450,1,4,0)
+ ;;=4^F44.4
+ ;;^UTILITY(U,$J,358.3,38450,2)
+ ;;=^5003579
+ ;;^UTILITY(U,$J,358.3,38451,0)
+ ;;=F44.6^^145^1867^3
+ ;;^UTILITY(U,$J,358.3,38451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38082,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,38082,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,38082,2)
- ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,38451,1,3,0)
+ ;;=3^Conversion Disorder w/ Anesthesia or Sensory Loss
+ ;;^UTILITY(U,$J,358.3,38451,1,4,0)
+ ;;=4^F44.6
+ ;;^UTILITY(U,$J,358.3,38451,2)
+ ;;=^5003581
+ ;;^UTILITY(U,$J,358.3,38452,0)
+ ;;=F44.5^^145^1867^4
+ ;;^UTILITY(U,$J,358.3,38452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38452,1,3,0)
+ ;;=3^Conversion Disorder w/ Attacks or Seizures
+ ;;^UTILITY(U,$J,358.3,38452,1,4,0)
+ ;;=4^F44.5

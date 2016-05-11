@@ -1,134 +1,132 @@
-IBDEI12L ; ; 19-NOV-2015
+IBDEI12L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17849,1,4,0)
- ;;=4^K85.0
- ;;^UTILITY(U,$J,358.3,17849,2)
- ;;=^5008882
- ;;^UTILITY(U,$J,358.3,17850,0)
- ;;=B25.2^^91^884^8
- ;;^UTILITY(U,$J,358.3,17850,1,0)
+ ;;^UTILITY(U,$J,358.3,18192,1,4,0)
+ ;;=4^I70.233
+ ;;^UTILITY(U,$J,358.3,18192,2)
+ ;;=^5007590
+ ;;^UTILITY(U,$J,358.3,18193,0)
+ ;;=I70.232^^79^874^28
+ ;;^UTILITY(U,$J,358.3,18193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17850,1,3,0)
- ;;=3^Cytomegaloviral pancreatitis
- ;;^UTILITY(U,$J,358.3,17850,1,4,0)
- ;;=4^B25.2
- ;;^UTILITY(U,$J,358.3,17850,2)
- ;;=^5000558
- ;;^UTILITY(U,$J,358.3,17851,0)
- ;;=K86.0^^91^884^4
- ;;^UTILITY(U,$J,358.3,17851,1,0)
+ ;;^UTILITY(U,$J,358.3,18193,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,18193,1,4,0)
+ ;;=4^I70.232
+ ;;^UTILITY(U,$J,358.3,18193,2)
+ ;;=^5007589
+ ;;^UTILITY(U,$J,358.3,18194,0)
+ ;;=I70.235^^79^874^29
+ ;;^UTILITY(U,$J,358.3,18194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17851,1,3,0)
- ;;=3^Alcohol-induced chronic pancreatitis
- ;;^UTILITY(U,$J,358.3,17851,1,4,0)
- ;;=4^K86.0
- ;;^UTILITY(U,$J,358.3,17851,2)
- ;;=^5008888
- ;;^UTILITY(U,$J,358.3,17852,0)
- ;;=K86.1^^91^884^6
- ;;^UTILITY(U,$J,358.3,17852,1,0)
+ ;;^UTILITY(U,$J,358.3,18194,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,18194,1,4,0)
+ ;;=4^I70.235
+ ;;^UTILITY(U,$J,358.3,18194,2)
+ ;;=^5007592
+ ;;^UTILITY(U,$J,358.3,18195,0)
+ ;;=I70.238^^79^874^30
+ ;;^UTILITY(U,$J,358.3,18195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17852,1,3,0)
- ;;=3^Chronic pancreatitis NEC
- ;;^UTILITY(U,$J,358.3,17852,1,4,0)
- ;;=4^K86.1
- ;;^UTILITY(U,$J,358.3,17852,2)
- ;;=^5008889
- ;;^UTILITY(U,$J,358.3,17853,0)
- ;;=K86.2^^91^884^7
- ;;^UTILITY(U,$J,358.3,17853,1,0)
+ ;;^UTILITY(U,$J,358.3,18195,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,18195,1,4,0)
+ ;;=4^I70.238
+ ;;^UTILITY(U,$J,358.3,18195,2)
+ ;;=^5007593
+ ;;^UTILITY(U,$J,358.3,18196,0)
+ ;;=I70.231^^79^874^31
+ ;;^UTILITY(U,$J,358.3,18196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17853,1,3,0)
- ;;=3^Cyst of pancreas
- ;;^UTILITY(U,$J,358.3,17853,1,4,0)
- ;;=4^K86.2
- ;;^UTILITY(U,$J,358.3,17853,2)
- ;;=^5008890
- ;;^UTILITY(U,$J,358.3,17854,0)
- ;;=K86.3^^91^884^19
- ;;^UTILITY(U,$J,358.3,17854,1,0)
+ ;;^UTILITY(U,$J,358.3,18196,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,18196,1,4,0)
+ ;;=4^I70.231
+ ;;^UTILITY(U,$J,358.3,18196,2)
+ ;;=^5007588
+ ;;^UTILITY(U,$J,358.3,18197,0)
+ ;;=I70.234^^79^874^32
+ ;;^UTILITY(U,$J,358.3,18197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17854,1,3,0)
- ;;=3^Pseudocyst of pancreas
- ;;^UTILITY(U,$J,358.3,17854,1,4,0)
- ;;=4^K86.3
- ;;^UTILITY(U,$J,358.3,17854,2)
- ;;=^5008891
- ;;^UTILITY(U,$J,358.3,17855,0)
- ;;=C25.9^^91^884^16
- ;;^UTILITY(U,$J,358.3,17855,1,0)
+ ;;^UTILITY(U,$J,358.3,18197,1,3,0)
+ ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,18197,1,4,0)
+ ;;=4^I70.234
+ ;;^UTILITY(U,$J,358.3,18197,2)
+ ;;=^5007591
+ ;;^UTILITY(U,$J,358.3,18198,0)
+ ;;=G56.42^^79^874^33
+ ;;^UTILITY(U,$J,358.3,18198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17855,1,3,0)
- ;;=3^Malignant neoplasm of pancreas,unspec
- ;;^UTILITY(U,$J,358.3,17855,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,17855,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,17856,0)
- ;;=C25.0^^91^884^13
- ;;^UTILITY(U,$J,358.3,17856,1,0)
+ ;;^UTILITY(U,$J,358.3,18198,1,3,0)
+ ;;=3^Causalgia of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,18198,1,4,0)
+ ;;=4^G56.42
+ ;;^UTILITY(U,$J,358.3,18198,2)
+ ;;=^5004031
+ ;;^UTILITY(U,$J,358.3,18199,0)
+ ;;=G56.41^^79^874^34
+ ;;^UTILITY(U,$J,358.3,18199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17856,1,3,0)
- ;;=3^Malignant neoplasm of head of pancreas
- ;;^UTILITY(U,$J,358.3,17856,1,4,0)
- ;;=4^C25.0
- ;;^UTILITY(U,$J,358.3,17856,2)
- ;;=^267104
- ;;^UTILITY(U,$J,358.3,17857,0)
- ;;=C25.1^^91^884^11
- ;;^UTILITY(U,$J,358.3,17857,1,0)
+ ;;^UTILITY(U,$J,358.3,18199,1,3,0)
+ ;;=3^Causalgia of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,18199,1,4,0)
+ ;;=4^G56.41
+ ;;^UTILITY(U,$J,358.3,18199,2)
+ ;;=^5004030
+ ;;^UTILITY(U,$J,358.3,18200,0)
+ ;;=L03.112^^79^874^35
+ ;;^UTILITY(U,$J,358.3,18200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17857,1,3,0)
- ;;=3^Malignant neoplasm of body of pancreas
- ;;^UTILITY(U,$J,358.3,17857,1,4,0)
- ;;=4^C25.1
- ;;^UTILITY(U,$J,358.3,17857,2)
- ;;=^267105
- ;;^UTILITY(U,$J,358.3,17858,0)
- ;;=C25.2^^91^884^18
- ;;^UTILITY(U,$J,358.3,17858,1,0)
+ ;;^UTILITY(U,$J,358.3,18200,1,3,0)
+ ;;=3^Cellulitis of Left Axilla
+ ;;^UTILITY(U,$J,358.3,18200,1,4,0)
+ ;;=4^L03.112
+ ;;^UTILITY(U,$J,358.3,18200,2)
+ ;;=^5009032
+ ;;^UTILITY(U,$J,358.3,18201,0)
+ ;;=L03.116^^79^874^36
+ ;;^UTILITY(U,$J,358.3,18201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17858,1,3,0)
- ;;=3^Malignant neoplasm of tail of pancreas
- ;;^UTILITY(U,$J,358.3,17858,1,4,0)
- ;;=4^C25.2
- ;;^UTILITY(U,$J,358.3,17858,2)
- ;;=^267106
- ;;^UTILITY(U,$J,358.3,17859,0)
- ;;=C25.3^^91^884^17
- ;;^UTILITY(U,$J,358.3,17859,1,0)
+ ;;^UTILITY(U,$J,358.3,18201,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,18201,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,18201,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,18202,0)
+ ;;=L03.114^^79^874^37
+ ;;^UTILITY(U,$J,358.3,18202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17859,1,3,0)
- ;;=3^Malignant neoplasm of pancreatic duct
- ;;^UTILITY(U,$J,358.3,17859,1,4,0)
- ;;=4^C25.3
- ;;^UTILITY(U,$J,358.3,17859,2)
- ;;=^267107
- ;;^UTILITY(U,$J,358.3,17860,0)
- ;;=C25.4^^91^884^12
- ;;^UTILITY(U,$J,358.3,17860,1,0)
+ ;;^UTILITY(U,$J,358.3,18202,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,18202,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,18202,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,18203,0)
+ ;;=L03.111^^79^874^38
+ ;;^UTILITY(U,$J,358.3,18203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17860,1,3,0)
- ;;=3^Malignant neoplasm of endocrine pancreas
- ;;^UTILITY(U,$J,358.3,17860,1,4,0)
- ;;=4^C25.4
- ;;^UTILITY(U,$J,358.3,17860,2)
- ;;=^5000943
- ;;^UTILITY(U,$J,358.3,17861,0)
- ;;=C25.7^^91^884^14
- ;;^UTILITY(U,$J,358.3,17861,1,0)
+ ;;^UTILITY(U,$J,358.3,18203,1,3,0)
+ ;;=3^Cellulitis of Right Axilla
+ ;;^UTILITY(U,$J,358.3,18203,1,4,0)
+ ;;=4^L03.111
+ ;;^UTILITY(U,$J,358.3,18203,2)
+ ;;=^5009031
+ ;;^UTILITY(U,$J,358.3,18204,0)
+ ;;=L03.115^^79^874^39
+ ;;^UTILITY(U,$J,358.3,18204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17861,1,3,0)
- ;;=3^Malignant neoplasm of other parts of pancreas
- ;;^UTILITY(U,$J,358.3,17861,1,4,0)
- ;;=4^C25.7
- ;;^UTILITY(U,$J,358.3,17861,2)
- ;;=^5000944
- ;;^UTILITY(U,$J,358.3,17862,0)
- ;;=C25.8^^91^884^15
- ;;^UTILITY(U,$J,358.3,17862,1,0)
+ ;;^UTILITY(U,$J,358.3,18204,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,18204,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,18204,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,18205,0)
+ ;;=L03.113^^79^874^40
+ ;;^UTILITY(U,$J,358.3,18205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17862,1,3,0)
- ;;=3^Malignant neoplasm of overlapping sites of pancreas

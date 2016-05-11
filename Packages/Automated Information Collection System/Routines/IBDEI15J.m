@@ -1,136 +1,122 @@
-IBDEI15J ; ; 19-NOV-2015
+IBDEI15J ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19241,0)
- ;;=K70.0^^94^919^3
- ;;^UTILITY(U,$J,358.3,19241,1,0)
+ ;;^UTILITY(U,$J,358.3,19592,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19592,1,4,0)
+ ;;=4^L97.519
+ ;;^UTILITY(U,$J,358.3,19592,2)
+ ;;=^5009549
+ ;;^UTILITY(U,$J,358.3,19593,0)
+ ;;=L97.521^^84^918^181
+ ;;^UTILITY(U,$J,358.3,19593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19241,1,3,0)
- ;;=3^Alcoholic Fatty Liver
- ;;^UTILITY(U,$J,358.3,19241,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,19241,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,19242,0)
- ;;=K70.11^^94^919^7
- ;;^UTILITY(U,$J,358.3,19242,1,0)
+ ;;^UTILITY(U,$J,358.3,19593,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19593,1,4,0)
+ ;;=4^L97.521
+ ;;^UTILITY(U,$J,358.3,19593,2)
+ ;;=^5009550
+ ;;^UTILITY(U,$J,358.3,19594,0)
+ ;;=L97.522^^84^918^182
+ ;;^UTILITY(U,$J,358.3,19594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19242,1,3,0)
- ;;=3^Alcoholic Hepatitis w/ Ascites
- ;;^UTILITY(U,$J,358.3,19242,1,4,0)
- ;;=4^K70.11
- ;;^UTILITY(U,$J,358.3,19242,2)
- ;;=^5008786
- ;;^UTILITY(U,$J,358.3,19243,0)
- ;;=K70.10^^94^919^8
- ;;^UTILITY(U,$J,358.3,19243,1,0)
+ ;;^UTILITY(U,$J,358.3,19594,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19594,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,19594,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,19595,0)
+ ;;=L97.523^^84^918^183
+ ;;^UTILITY(U,$J,358.3,19595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19243,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,19243,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,19243,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,19244,0)
- ;;=K70.2^^94^919^4
- ;;^UTILITY(U,$J,358.3,19244,1,0)
+ ;;^UTILITY(U,$J,358.3,19595,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19595,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,19595,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,19596,0)
+ ;;=L97.524^^84^918^184
+ ;;^UTILITY(U,$J,358.3,19596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19244,1,3,0)
- ;;=3^Alcoholic Fibrosis & Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,19244,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,19244,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,19245,0)
- ;;=K70.30^^94^919^2
- ;;^UTILITY(U,$J,358.3,19245,1,0)
+ ;;^UTILITY(U,$J,358.3,19596,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19596,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,19596,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,19597,0)
+ ;;=L97.529^^84^918^185
+ ;;^UTILITY(U,$J,358.3,19597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19245,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/o Ascites
- ;;^UTILITY(U,$J,358.3,19245,1,4,0)
- ;;=4^K70.30
- ;;^UTILITY(U,$J,358.3,19245,2)
- ;;=^5008788
- ;;^UTILITY(U,$J,358.3,19246,0)
- ;;=K70.31^^94^919^1
- ;;^UTILITY(U,$J,358.3,19246,1,0)
+ ;;^UTILITY(U,$J,358.3,19597,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19597,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,19597,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,19598,0)
+ ;;=L97.911^^84^918^221
+ ;;^UTILITY(U,$J,358.3,19598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19246,1,3,0)
- ;;=3^Alcoholic Cirrhosis of Liver w/ Ascites
- ;;^UTILITY(U,$J,358.3,19246,1,4,0)
- ;;=4^K70.31
- ;;^UTILITY(U,$J,358.3,19246,2)
- ;;=^5008789
- ;;^UTILITY(U,$J,358.3,19247,0)
- ;;=K70.9^^94^919^9
- ;;^UTILITY(U,$J,358.3,19247,1,0)
+ ;;^UTILITY(U,$J,358.3,19598,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19598,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,19598,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,19599,0)
+ ;;=L97.912^^84^918^222
+ ;;^UTILITY(U,$J,358.3,19599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19247,1,3,0)
- ;;=3^Alcoholic Liver Disease,Unspec
- ;;^UTILITY(U,$J,358.3,19247,1,4,0)
- ;;=4^K70.9
- ;;^UTILITY(U,$J,358.3,19247,2)
- ;;=^5008792
- ;;^UTILITY(U,$J,358.3,19248,0)
- ;;=K70.40^^94^919^6
- ;;^UTILITY(U,$J,358.3,19248,1,0)
+ ;;^UTILITY(U,$J,358.3,19599,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,19599,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,19599,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,19600,0)
+ ;;=L97.913^^84^918^223
+ ;;^UTILITY(U,$J,358.3,19600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19248,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/o Coma
- ;;^UTILITY(U,$J,358.3,19248,1,4,0)
- ;;=4^K70.40
- ;;^UTILITY(U,$J,358.3,19248,2)
- ;;=^5008790
- ;;^UTILITY(U,$J,358.3,19249,0)
- ;;=K70.41^^94^919^5
- ;;^UTILITY(U,$J,358.3,19249,1,0)
+ ;;^UTILITY(U,$J,358.3,19600,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,19600,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,19600,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,19601,0)
+ ;;=L97.914^^84^918^224
+ ;;^UTILITY(U,$J,358.3,19601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19249,1,3,0)
- ;;=3^Alcoholic Hepatic Failure w/ Coma
- ;;^UTILITY(U,$J,358.3,19249,1,4,0)
- ;;=4^K70.41
- ;;^UTILITY(U,$J,358.3,19249,2)
- ;;=^5008791
- ;;^UTILITY(U,$J,358.3,19250,0)
- ;;=K73.0^^94^919^15
- ;;^UTILITY(U,$J,358.3,19250,1,0)
+ ;;^UTILITY(U,$J,358.3,19601,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,19601,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,19601,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,19602,0)
+ ;;=L97.919^^84^918^225
+ ;;^UTILITY(U,$J,358.3,19602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19250,1,3,0)
- ;;=3^Hepatitis, Chronic Persistent NEC
- ;;^UTILITY(U,$J,358.3,19250,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,19250,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,19251,0)
- ;;=K74.0^^94^919^14
- ;;^UTILITY(U,$J,358.3,19251,1,0)
+ ;;^UTILITY(U,$J,358.3,19602,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,19602,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,19602,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,19603,0)
+ ;;=L97.921^^84^918^191
+ ;;^UTILITY(U,$J,358.3,19603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19251,1,3,0)
- ;;=3^Hepatic Fibrosis
- ;;^UTILITY(U,$J,358.3,19251,1,4,0)
- ;;=4^K74.0
- ;;^UTILITY(U,$J,358.3,19251,2)
- ;;=^5008816
- ;;^UTILITY(U,$J,358.3,19252,0)
- ;;=K74.69^^94^919^10
- ;;^UTILITY(U,$J,358.3,19252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19252,1,3,0)
- ;;=3^Cirrhosis of Liver,Oth
- ;;^UTILITY(U,$J,358.3,19252,1,4,0)
- ;;=4^K74.69
- ;;^UTILITY(U,$J,358.3,19252,2)
- ;;=^5008823
- ;;^UTILITY(U,$J,358.3,19253,0)
- ;;=K74.60^^94^919^11
- ;;^UTILITY(U,$J,358.3,19253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19253,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
- ;;^UTILITY(U,$J,358.3,19253,1,4,0)
- ;;=4^K74.60
- ;;^UTILITY(U,$J,358.3,19253,2)
- ;;=^5008822
- ;;^UTILITY(U,$J,358.3,19254,0)
- ;;=K76.0^^94^919^12
+ ;;^UTILITY(U,$J,358.3,19603,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,19603,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,19603,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,19604,0)
+ ;;=L97.922^^84^918^192

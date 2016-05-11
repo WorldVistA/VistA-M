@@ -1,122 +1,124 @@
-IBDEI0XD ; ; 19-NOV-2015
+IBDEI0XD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15381,2)
- ;;=^5032750
- ;;^UTILITY(U,$J,358.3,15382,0)
- ;;=S61.204A^^85^817^56
- ;;^UTILITY(U,$J,358.3,15382,1,0)
+ ;;^UTILITY(U,$J,358.3,15654,0)
+ ;;=F10.159^^58^684^11
+ ;;^UTILITY(U,$J,358.3,15654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15382,1,3,0)
- ;;=3^Open Wound of Right Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15382,1,4,0)
- ;;=4^S61.204A
- ;;^UTILITY(U,$J,358.3,15382,2)
- ;;=^5032753
- ;;^UTILITY(U,$J,358.3,15383,0)
- ;;=S61.205A^^85^817^25
- ;;^UTILITY(U,$J,358.3,15383,1,0)
+ ;;^UTILITY(U,$J,358.3,15654,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15654,1,4,0)
+ ;;=4^F10.159
+ ;;^UTILITY(U,$J,358.3,15654,2)
+ ;;=^5003075
+ ;;^UTILITY(U,$J,358.3,15655,0)
+ ;;=F10.259^^58^684^12
+ ;;^UTILITY(U,$J,358.3,15655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15383,1,3,0)
- ;;=3^Open Wound of Left Ring Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15383,1,4,0)
- ;;=4^S61.205A
- ;;^UTILITY(U,$J,358.3,15383,2)
- ;;=^5032756
- ;;^UTILITY(U,$J,358.3,15384,0)
- ;;=S61.206A^^85^817^51
- ;;^UTILITY(U,$J,358.3,15384,1,0)
+ ;;^UTILITY(U,$J,358.3,15655,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15655,1,4,0)
+ ;;=4^F10.259
+ ;;^UTILITY(U,$J,358.3,15655,2)
+ ;;=^5003093
+ ;;^UTILITY(U,$J,358.3,15656,0)
+ ;;=F10.959^^58^684^13
+ ;;^UTILITY(U,$J,358.3,15656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15384,1,3,0)
- ;;=3^Open Wound of Right Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15384,1,4,0)
- ;;=4^S61.206A
- ;;^UTILITY(U,$J,358.3,15384,2)
- ;;=^5032759
- ;;^UTILITY(U,$J,358.3,15385,0)
- ;;=S61.207A^^85^817^20
- ;;^UTILITY(U,$J,358.3,15385,1,0)
+ ;;^UTILITY(U,$J,358.3,15656,1,3,0)
+ ;;=3^Alcohol Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15656,1,4,0)
+ ;;=4^F10.959
+ ;;^UTILITY(U,$J,358.3,15656,2)
+ ;;=^5003107
+ ;;^UTILITY(U,$J,358.3,15657,0)
+ ;;=F10.181^^58^684^14
+ ;;^UTILITY(U,$J,358.3,15657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15385,1,3,0)
- ;;=3^Open Wound of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15385,1,4,0)
- ;;=4^S61.207A
- ;;^UTILITY(U,$J,358.3,15385,2)
- ;;=^5032762
- ;;^UTILITY(U,$J,358.3,15386,0)
- ;;=S61.300A^^85^817^45
- ;;^UTILITY(U,$J,358.3,15386,1,0)
+ ;;^UTILITY(U,$J,358.3,15657,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15657,1,4,0)
+ ;;=4^F10.181
+ ;;^UTILITY(U,$J,358.3,15657,2)
+ ;;=^5003077
+ ;;^UTILITY(U,$J,358.3,15658,0)
+ ;;=F10.282^^58^684^18
+ ;;^UTILITY(U,$J,358.3,15658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15386,1,3,0)
- ;;=3^Open Wound of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15386,1,4,0)
- ;;=4^S61.300A
- ;;^UTILITY(U,$J,358.3,15386,2)
- ;;=^5032891
- ;;^UTILITY(U,$J,358.3,15387,0)
- ;;=S61.301A^^85^817^14
- ;;^UTILITY(U,$J,358.3,15387,1,0)
+ ;;^UTILITY(U,$J,358.3,15658,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15658,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,15658,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,15659,0)
+ ;;=F10.982^^58^684^19
+ ;;^UTILITY(U,$J,358.3,15659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15387,1,3,0)
- ;;=3^Open Wound of Left Index Finger w/ Damage to Nail,Init Encntr
- ;;^UTILITY(U,$J,358.3,15387,1,4,0)
- ;;=4^S61.301A
- ;;^UTILITY(U,$J,358.3,15387,2)
- ;;=^5135735
- ;;^UTILITY(U,$J,358.3,15388,0)
- ;;=S61.302A^^85^817^53
- ;;^UTILITY(U,$J,358.3,15388,1,0)
+ ;;^UTILITY(U,$J,358.3,15659,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15659,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,15659,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,15660,0)
+ ;;=F10.281^^58^684^15
+ ;;^UTILITY(U,$J,358.3,15660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15388,1,3,0)
- ;;=3^Open Wound of Right Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15388,1,4,0)
- ;;=4^S61.302A
- ;;^UTILITY(U,$J,358.3,15388,2)
- ;;=^5032894
- ;;^UTILITY(U,$J,358.3,15389,0)
- ;;=S61.303A^^85^817^22
- ;;^UTILITY(U,$J,358.3,15389,1,0)
+ ;;^UTILITY(U,$J,358.3,15660,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15660,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,15660,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,15661,0)
+ ;;=F10.981^^58^684^16
+ ;;^UTILITY(U,$J,358.3,15661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15389,1,3,0)
- ;;=3^Open Wound of Left Middle Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15389,1,4,0)
- ;;=4^S61.303A
- ;;^UTILITY(U,$J,358.3,15389,2)
- ;;=^5135738
- ;;^UTILITY(U,$J,358.3,15390,0)
- ;;=S61.304A^^85^817^55
- ;;^UTILITY(U,$J,358.3,15390,1,0)
+ ;;^UTILITY(U,$J,358.3,15661,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15661,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,15661,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,15662,0)
+ ;;=F10.182^^58^684^17
+ ;;^UTILITY(U,$J,358.3,15662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15390,1,3,0)
- ;;=3^Open Wound of Right Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15390,1,4,0)
- ;;=4^S61.304A
- ;;^UTILITY(U,$J,358.3,15390,2)
- ;;=^5032897
- ;;^UTILITY(U,$J,358.3,15391,0)
- ;;=S61.305A^^85^817^24
- ;;^UTILITY(U,$J,358.3,15391,1,0)
+ ;;^UTILITY(U,$J,358.3,15662,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15662,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,15662,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,15663,0)
+ ;;=F10.121^^58^684^20
+ ;;^UTILITY(U,$J,358.3,15663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15391,1,3,0)
- ;;=3^Open Wound of Left Ring Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15391,1,4,0)
- ;;=4^S61.305A
- ;;^UTILITY(U,$J,358.3,15391,2)
- ;;=^5135741
- ;;^UTILITY(U,$J,358.3,15392,0)
- ;;=S61.306A^^85^817^50
- ;;^UTILITY(U,$J,358.3,15392,1,0)
+ ;;^UTILITY(U,$J,358.3,15663,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15663,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,15663,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,15664,0)
+ ;;=F10.221^^58^684^21
+ ;;^UTILITY(U,$J,358.3,15664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15392,1,3,0)
- ;;=3^Open Wound of Right Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15392,1,4,0)
- ;;=4^S61.306A
- ;;^UTILITY(U,$J,358.3,15392,2)
- ;;=^5032900
- ;;^UTILITY(U,$J,358.3,15393,0)
- ;;=S61.307A^^85^817^19
- ;;^UTILITY(U,$J,358.3,15393,1,0)
+ ;;^UTILITY(U,$J,358.3,15664,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15664,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,15664,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,15665,0)
+ ;;=F10.921^^58^684^22
+ ;;^UTILITY(U,$J,358.3,15665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15393,1,3,0)
- ;;=3^Open Wound of Left Little Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15665,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15665,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,15665,2)
+ ;;=^5003102

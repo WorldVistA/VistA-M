@@ -1,130 +1,136 @@
-IBDEI0EO ; ; 19-NOV-2015
+IBDEI0EO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6412,1,4,0)
- ;;=4^F14.151
- ;;^UTILITY(U,$J,358.3,6412,2)
- ;;=^5003246
- ;;^UTILITY(U,$J,358.3,6413,0)
- ;;=F19.24^^43^397^20
- ;;^UTILITY(U,$J,358.3,6413,1,0)
+ ;;^UTILITY(U,$J,358.3,6754,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,6754,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,6754,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,6755,0)
+ ;;=Z91.82^^30^397^101
+ ;;^UTILITY(U,$J,358.3,6755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6413,1,3,0)
- ;;=3^Psychoactive Subs Dependence w/ Mood Disorder
- ;;^UTILITY(U,$J,358.3,6413,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,6413,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,6414,0)
- ;;=F11.24^^43^397^13
- ;;^UTILITY(U,$J,358.3,6414,1,0)
+ ;;^UTILITY(U,$J,358.3,6755,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,6755,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,6755,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,6756,0)
+ ;;=Z91.5^^30^397^108
+ ;;^UTILITY(U,$J,358.3,6756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6414,1,3,0)
- ;;=3^Opioid Dependence w/ Mood Disorder
- ;;^UTILITY(U,$J,358.3,6414,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,6414,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,6415,0)
- ;;=F19.96^^43^397^26
- ;;^UTILITY(U,$J,358.3,6415,1,0)
+ ;;^UTILITY(U,$J,358.3,6756,1,3,0)
+ ;;=3^Personal Hx of Self-Harm/Suicide Attempt
+ ;;^UTILITY(U,$J,358.3,6756,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,6756,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,6757,0)
+ ;;=Z89.512^^30^397^5
+ ;;^UTILITY(U,$J,358.3,6757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6415,1,3,0)
- ;;=3^Psychoactive Subs Use w/ Persisting Amnestic Disorder
- ;;^UTILITY(U,$J,358.3,6415,1,4,0)
- ;;=4^F19.96
- ;;^UTILITY(U,$J,358.3,6415,2)
- ;;=^5003464
- ;;^UTILITY(U,$J,358.3,6416,0)
- ;;=F13.26^^43^397^34
- ;;^UTILITY(U,$J,358.3,6416,1,0)
+ ;;^UTILITY(U,$J,358.3,6757,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,6757,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,6757,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,6758,0)
+ ;;=Z89.611^^30^397^7
+ ;;^UTILITY(U,$J,358.3,6758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6416,1,3,0)
- ;;=3^Sedatv/Hyp/Anxiolytc Dependence w/ Persisting Amnestic Disorder
- ;;^UTILITY(U,$J,358.3,6416,1,4,0)
- ;;=4^F13.26
- ;;^UTILITY(U,$J,358.3,6416,2)
- ;;=^5003214
- ;;^UTILITY(U,$J,358.3,6417,0)
- ;;=F19.16^^43^397^16
- ;;^UTILITY(U,$J,358.3,6417,1,0)
+ ;;^UTILITY(U,$J,358.3,6758,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,6758,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,6758,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,6759,0)
+ ;;=Z89.612^^30^397^4
+ ;;^UTILITY(U,$J,358.3,6759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6417,1,3,0)
- ;;=3^Psychoactive Subs Abuse w/ Persisting Amnestic Disorder
- ;;^UTILITY(U,$J,358.3,6417,1,4,0)
- ;;=4^F19.16
- ;;^UTILITY(U,$J,358.3,6417,2)
- ;;=^5003425
- ;;^UTILITY(U,$J,358.3,6418,0)
- ;;=F19.97^^43^397^27
- ;;^UTILITY(U,$J,358.3,6418,1,0)
+ ;;^UTILITY(U,$J,358.3,6759,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,6759,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,6759,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,6760,0)
+ ;;=Z90.710^^30^397^1
+ ;;^UTILITY(U,$J,358.3,6760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6418,1,3,0)
- ;;=3^Psychoactive Subs Use w/ Persisting Dementia
- ;;^UTILITY(U,$J,358.3,6418,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,6418,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,6419,0)
- ;;=F19.17^^43^397^17
- ;;^UTILITY(U,$J,358.3,6419,1,0)
+ ;;^UTILITY(U,$J,358.3,6760,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,6760,1,4,0)
+ ;;=4^Z90.710
+ ;;^UTILITY(U,$J,358.3,6760,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,6761,0)
+ ;;=Z91.030^^30^397^13
+ ;;^UTILITY(U,$J,358.3,6761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6419,1,3,0)
- ;;=3^Psychoactive Subs Abuse w/ Persisting Dementia
- ;;^UTILITY(U,$J,358.3,6419,1,4,0)
- ;;=4^F19.17
- ;;^UTILITY(U,$J,358.3,6419,2)
- ;;=^5003426
- ;;^UTILITY(U,$J,358.3,6420,0)
- ;;=F19.27^^43^397^21
- ;;^UTILITY(U,$J,358.3,6420,1,0)
+ ;;^UTILITY(U,$J,358.3,6761,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,6761,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,6761,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,6762,0)
+ ;;=Z91.038^^30^397^59
+ ;;^UTILITY(U,$J,358.3,6762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6420,1,3,0)
- ;;=3^Psychoactive Subs Dependence w/ Persisting Dementia
- ;;^UTILITY(U,$J,358.3,6420,1,4,0)
- ;;=4^F19.27
- ;;^UTILITY(U,$J,358.3,6420,2)
- ;;=^5003446
- ;;^UTILITY(U,$J,358.3,6421,0)
- ;;=F19.950^^43^397^28
- ;;^UTILITY(U,$J,358.3,6421,1,0)
+ ;;^UTILITY(U,$J,358.3,6762,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,6762,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,6762,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,6763,0)
+ ;;=Z91.041^^30^397^139
+ ;;^UTILITY(U,$J,358.3,6763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6421,1,3,0)
- ;;=3^Psychoactive Subs Use w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6421,1,4,0)
- ;;=4^F19.950
- ;;^UTILITY(U,$J,358.3,6421,2)
- ;;=^5003461
- ;;^UTILITY(U,$J,358.3,6422,0)
- ;;=F15.250^^43^397^44
- ;;^UTILITY(U,$J,358.3,6422,1,0)
+ ;;^UTILITY(U,$J,358.3,6763,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,6763,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,6763,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,6764,0)
+ ;;=Z91.130^^30^397^146
+ ;;^UTILITY(U,$J,358.3,6764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6422,1,3,0)
- ;;=3^Stimulant Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6422,1,4,0)
- ;;=4^F15.250
- ;;^UTILITY(U,$J,358.3,6422,2)
- ;;=^5003303
- ;;^UTILITY(U,$J,358.3,6423,0)
- ;;=F15.150^^43^397^40
- ;;^UTILITY(U,$J,358.3,6423,1,0)
+ ;;^UTILITY(U,$J,358.3,6764,1,3,0)
+ ;;=3^Underdose of Med Regiment d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,6764,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,6764,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,6765,0)
+ ;;=Z91.138^^30^397^147
+ ;;^UTILITY(U,$J,358.3,6765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6423,1,3,0)
- ;;=3^Stimulant Abuse w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6423,1,4,0)
- ;;=4^F15.150
- ;;^UTILITY(U,$J,358.3,6423,2)
- ;;=^5003288
- ;;^UTILITY(U,$J,358.3,6424,0)
- ;;=F13.250^^43^397^36
- ;;^UTILITY(U,$J,358.3,6424,1,0)
+ ;;^UTILITY(U,$J,358.3,6765,1,3,0)
+ ;;=3^Underdose of Med Regiment for Other Reason
+ ;;^UTILITY(U,$J,358.3,6765,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,6765,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,6766,0)
+ ;;=Z91.14^^30^397^71
+ ;;^UTILITY(U,$J,358.3,6766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6424,1,3,0)
- ;;=3^Sedatv/Hyp/Anxiolytc Dependence w/ Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,6424,1,4,0)
- ;;=4^F13.250
- ;;^UTILITY(U,$J,358.3,6424,2)
- ;;=^5003211
- ;;^UTILITY(U,$J,358.3,6425,0)
- ;;=F13.150^^43^397^30
+ ;;^UTILITY(U,$J,358.3,6766,1,3,0)
+ ;;=3^Noncompliance w/ Medication Regimen
+ ;;^UTILITY(U,$J,358.3,6766,1,4,0)
+ ;;=4^Z91.14
+ ;;^UTILITY(U,$J,358.3,6766,2)
+ ;;=^5063616
+ ;;^UTILITY(U,$J,358.3,6767,0)
+ ;;=Z91.19^^30^397^70
+ ;;^UTILITY(U,$J,358.3,6767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6767,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment & Regimen

@@ -1,130 +1,134 @@
-IBDEI16R ; ; 19-NOV-2015
+IBDEI16R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19816,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,19816,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,19817,0)
- ;;=S86.112A^^94^929^30
- ;;^UTILITY(U,$J,358.3,19817,1,0)
+ ;;^UTILITY(U,$J,358.3,20163,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,20163,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,20164,0)
+ ;;=D56.3^^84^929^184
+ ;;^UTILITY(U,$J,358.3,20164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19817,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,19817,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,19817,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,19818,0)
- ;;=S83.401A^^94^929^15
- ;;^UTILITY(U,$J,358.3,19818,1,0)
+ ;;^UTILITY(U,$J,358.3,20164,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,20164,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,20164,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,20165,0)
+ ;;=D56.9^^84^929^185
+ ;;^UTILITY(U,$J,358.3,20165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19818,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,19818,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,19818,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,19819,0)
- ;;=S83.402A^^94^929^4
- ;;^UTILITY(U,$J,358.3,19819,1,0)
+ ;;^UTILITY(U,$J,358.3,20165,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20165,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,20165,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,20166,0)
+ ;;=M31.1^^84^929^187
+ ;;^UTILITY(U,$J,358.3,20166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19819,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,19819,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,19819,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,19820,0)
- ;;=S93.402A^^94^929^2
- ;;^UTILITY(U,$J,358.3,19820,1,0)
+ ;;^UTILITY(U,$J,358.3,20166,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,20166,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,20166,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,20167,0)
+ ;;=D51.2^^84^929^188
+ ;;^UTILITY(U,$J,358.3,20167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19820,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,19820,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,19820,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,19821,0)
- ;;=S93.401A^^94^929^13
- ;;^UTILITY(U,$J,358.3,19821,1,0)
+ ;;^UTILITY(U,$J,358.3,20167,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,20167,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,20167,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,20168,0)
+ ;;=D05.92^^84^929^35
+ ;;^UTILITY(U,$J,358.3,20168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19821,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,19821,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,19821,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,19822,0)
- ;;=S56.511A^^94^929^39
- ;;^UTILITY(U,$J,358.3,19822,1,0)
+ ;;^UTILITY(U,$J,358.3,20168,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,20168,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,20168,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,20169,0)
+ ;;=D05.91^^84^929^37
+ ;;^UTILITY(U,$J,358.3,20169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19822,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,19822,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,19822,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,19823,0)
- ;;=S56.512A^^94^929^19
- ;;^UTILITY(U,$J,358.3,19823,1,0)
+ ;;^UTILITY(U,$J,358.3,20169,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,20169,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,20169,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,20170,0)
+ ;;=D05.90^^84^929^33
+ ;;^UTILITY(U,$J,358.3,20170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19823,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,19823,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,19823,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,19824,0)
- ;;=S13.8XXA^^94^929^10
- ;;^UTILITY(U,$J,358.3,19824,1,0)
+ ;;^UTILITY(U,$J,358.3,20170,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,20170,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,20170,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,20171,0)
+ ;;=D51.0^^84^929^189
+ ;;^UTILITY(U,$J,358.3,20171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19824,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,19824,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,19824,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,19825,0)
- ;;=S16.1XXA^^94^929^37
- ;;^UTILITY(U,$J,358.3,19825,1,0)
+ ;;^UTILITY(U,$J,358.3,20171,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,20171,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,20171,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,20172,0)
+ ;;=D51.1^^84^929^190
+ ;;^UTILITY(U,$J,358.3,20172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19825,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,19825,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,19825,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,19826,0)
- ;;=S33.5XXA^^94^929^8
- ;;^UTILITY(U,$J,358.3,19826,1,0)
+ ;;^UTILITY(U,$J,358.3,20172,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
+ ;;^UTILITY(U,$J,358.3,20172,1,4,0)
+ ;;=4^D51.1
+ ;;^UTILITY(U,$J,358.3,20172,2)
+ ;;=^5002285
+ ;;^UTILITY(U,$J,358.3,20173,0)
+ ;;=D51.9^^84^929^192
+ ;;^UTILITY(U,$J,358.3,20173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19826,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,19826,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,19826,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,19827,0)
- ;;=F10.20^^94^930^4
- ;;^UTILITY(U,$J,358.3,19827,1,0)
+ ;;^UTILITY(U,$J,358.3,20173,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,20173,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,20173,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,20174,0)
+ ;;=D68.0^^84^929^194
+ ;;^UTILITY(U,$J,358.3,20174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19827,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19827,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,19827,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,19828,0)
- ;;=F11.29^^94^930^46
- ;;^UTILITY(U,$J,358.3,19828,1,0)
+ ;;^UTILITY(U,$J,358.3,20174,1,3,0)
+ ;;=3^Von Willebrand's Disease
+ ;;^UTILITY(U,$J,358.3,20174,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,20174,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,20175,0)
+ ;;=C88.0^^84^929^195
+ ;;^UTILITY(U,$J,358.3,20175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19828,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,19828,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,19828,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,19829,0)
- ;;=F11.288^^94^930^45
+ ;;^UTILITY(U,$J,358.3,20175,1,3,0)
+ ;;=3^Waldenstrom Macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,20175,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,20175,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,20176,0)
+ ;;=C91.02^^84^929^3
+ ;;^UTILITY(U,$J,358.3,20176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20176,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Relapse

@@ -1,140 +1,134 @@
-IBDEI04E ; ; 19-NOV-2015
+IBDEI04E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1373,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,1373,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,1373,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,1374,0)
- ;;=H93.11^^14^148^36
- ;;^UTILITY(U,$J,358.3,1374,1,0)
+ ;;^UTILITY(U,$J,358.3,1631,0)
+ ;;=T86.31^^11^145^30
+ ;;^UTILITY(U,$J,358.3,1631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1374,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,1374,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,1374,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,1375,0)
- ;;=H93.92^^14^148^21
- ;;^UTILITY(U,$J,358.3,1375,1,0)
+ ;;^UTILITY(U,$J,358.3,1631,1,3,0)
+ ;;=3^Heart-Lung Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,1631,1,4,0)
+ ;;=4^T86.31
+ ;;^UTILITY(U,$J,358.3,1631,2)
+ ;;=^5055720
+ ;;^UTILITY(U,$J,358.3,1632,0)
+ ;;=T86.32^^11^145^28
+ ;;^UTILITY(U,$J,358.3,1632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1375,1,3,0)
- ;;=3^Left Ear Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1375,1,4,0)
- ;;=4^H93.92
- ;;^UTILITY(U,$J,358.3,1375,2)
- ;;=^5006997
- ;;^UTILITY(U,$J,358.3,1376,0)
- ;;=H93.91^^14^148^30
- ;;^UTILITY(U,$J,358.3,1376,1,0)
+ ;;^UTILITY(U,$J,358.3,1632,1,3,0)
+ ;;=3^Heart-Lung Transplant Failure
+ ;;^UTILITY(U,$J,358.3,1632,1,4,0)
+ ;;=4^T86.32
+ ;;^UTILITY(U,$J,358.3,1632,2)
+ ;;=^5055721
+ ;;^UTILITY(U,$J,358.3,1633,0)
+ ;;=T86.33^^11^145^29
+ ;;^UTILITY(U,$J,358.3,1633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1376,1,3,0)
- ;;=3^Right Ear Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1376,1,4,0)
- ;;=4^H93.91
- ;;^UTILITY(U,$J,358.3,1376,2)
- ;;=^5006996
- ;;^UTILITY(U,$J,358.3,1377,0)
- ;;=H81.313^^14^149^1
- ;;^UTILITY(U,$J,358.3,1377,1,0)
+ ;;^UTILITY(U,$J,358.3,1633,1,3,0)
+ ;;=3^Heart-Lung Transplant Infection
+ ;;^UTILITY(U,$J,358.3,1633,1,4,0)
+ ;;=4^T86.33
+ ;;^UTILITY(U,$J,358.3,1633,2)
+ ;;=^5055722
+ ;;^UTILITY(U,$J,358.3,1634,0)
+ ;;=T86.810^^11^145^35
+ ;;^UTILITY(U,$J,358.3,1634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1377,1,3,0)
- ;;=3^Aural vertigo, bilateral
- ;;^UTILITY(U,$J,358.3,1377,1,4,0)
- ;;=4^H81.313
- ;;^UTILITY(U,$J,358.3,1377,2)
- ;;=^5006874
- ;;^UTILITY(U,$J,358.3,1378,0)
- ;;=H81.312^^14^149^2
- ;;^UTILITY(U,$J,358.3,1378,1,0)
+ ;;^UTILITY(U,$J,358.3,1634,1,3,0)
+ ;;=3^Lung Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,1634,1,4,0)
+ ;;=4^T86.810
+ ;;^UTILITY(U,$J,358.3,1634,2)
+ ;;=^5055730
+ ;;^UTILITY(U,$J,358.3,1635,0)
+ ;;=T86.811^^11^145^34
+ ;;^UTILITY(U,$J,358.3,1635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1378,1,3,0)
- ;;=3^Aural vertigo, left ear
- ;;^UTILITY(U,$J,358.3,1378,1,4,0)
- ;;=4^H81.312
- ;;^UTILITY(U,$J,358.3,1378,2)
- ;;=^5006873
- ;;^UTILITY(U,$J,358.3,1379,0)
- ;;=H81.311^^14^149^3
- ;;^UTILITY(U,$J,358.3,1379,1,0)
+ ;;^UTILITY(U,$J,358.3,1635,1,3,0)
+ ;;=3^Lung Transplant Failure
+ ;;^UTILITY(U,$J,358.3,1635,1,4,0)
+ ;;=4^T86.811
+ ;;^UTILITY(U,$J,358.3,1635,2)
+ ;;=^5055731
+ ;;^UTILITY(U,$J,358.3,1636,0)
+ ;;=T86.819^^11^145^14
+ ;;^UTILITY(U,$J,358.3,1636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1379,1,3,0)
- ;;=3^Aural vertigo, right ear
- ;;^UTILITY(U,$J,358.3,1379,1,4,0)
- ;;=4^H81.311
- ;;^UTILITY(U,$J,358.3,1379,2)
- ;;=^5006872
- ;;^UTILITY(U,$J,358.3,1380,0)
- ;;=H81.13^^14^149^4
- ;;^UTILITY(U,$J,358.3,1380,1,0)
+ ;;^UTILITY(U,$J,358.3,1636,1,3,0)
+ ;;=3^Complication of Lung Transplant,Unspec
+ ;;^UTILITY(U,$J,358.3,1636,1,4,0)
+ ;;=4^T86.819
+ ;;^UTILITY(U,$J,358.3,1636,2)
+ ;;=^5137975
+ ;;^UTILITY(U,$J,358.3,1637,0)
+ ;;=T86.818^^11^145^13
+ ;;^UTILITY(U,$J,358.3,1637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1380,1,3,0)
- ;;=3^Benign paroxysmal vertigo, bilateral
- ;;^UTILITY(U,$J,358.3,1380,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,1380,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,1381,0)
- ;;=H81.12^^14^149^5
- ;;^UTILITY(U,$J,358.3,1381,1,0)
+ ;;^UTILITY(U,$J,358.3,1637,1,3,0)
+ ;;=3^Complication of Lung Transplant NEC
+ ;;^UTILITY(U,$J,358.3,1637,1,4,0)
+ ;;=4^T86.818
+ ;;^UTILITY(U,$J,358.3,1637,2)
+ ;;=^5055733
+ ;;^UTILITY(U,$J,358.3,1638,0)
+ ;;=Z94.1^^11^145^26
+ ;;^UTILITY(U,$J,358.3,1638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1381,1,3,0)
- ;;=3^Benign paroxysmal vertigo, left ear
- ;;^UTILITY(U,$J,358.3,1381,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,1381,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,1382,0)
- ;;=H81.11^^14^149^6
- ;;^UTILITY(U,$J,358.3,1382,1,0)
+ ;;^UTILITY(U,$J,358.3,1638,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,1638,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,1638,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,1639,0)
+ ;;=Z94.3^^11^145^27
+ ;;^UTILITY(U,$J,358.3,1639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1382,1,3,0)
- ;;=3^Benign paroxysmal vertigo, right ear
- ;;^UTILITY(U,$J,358.3,1382,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,1382,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,1383,0)
- ;;=R42.^^14^149^11
- ;;^UTILITY(U,$J,358.3,1383,1,0)
+ ;;^UTILITY(U,$J,358.3,1639,1,3,0)
+ ;;=3^Heart and Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,1639,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,1639,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,1640,0)
+ ;;=Z48.21^^11^145^1
+ ;;^UTILITY(U,$J,358.3,1640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1383,1,3,0)
- ;;=3^Dizziness and giddiness
- ;;^UTILITY(U,$J,358.3,1383,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,1383,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,1384,0)
- ;;=H81.03^^14^149^12
- ;;^UTILITY(U,$J,358.3,1384,1,0)
+ ;;^UTILITY(U,$J,358.3,1640,1,3,0)
+ ;;=3^Aftercare Following Heart Transplant
+ ;;^UTILITY(U,$J,358.3,1640,1,4,0)
+ ;;=4^Z48.21
+ ;;^UTILITY(U,$J,358.3,1640,2)
+ ;;=^5063038
+ ;;^UTILITY(U,$J,358.3,1641,0)
+ ;;=Z48.280^^11^145^2
+ ;;^UTILITY(U,$J,358.3,1641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1384,1,3,0)
- ;;=3^Meniere's disease, bilateral
- ;;^UTILITY(U,$J,358.3,1384,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,1384,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,1385,0)
- ;;=H81.02^^14^149^13
- ;;^UTILITY(U,$J,358.3,1385,1,0)
+ ;;^UTILITY(U,$J,358.3,1641,1,3,0)
+ ;;=3^Aftercare Following Heart-Lung Transplant
+ ;;^UTILITY(U,$J,358.3,1641,1,4,0)
+ ;;=4^Z48.280
+ ;;^UTILITY(U,$J,358.3,1641,2)
+ ;;=^5063042
+ ;;^UTILITY(U,$J,358.3,1642,0)
+ ;;=I25.10^^11^146^2
+ ;;^UTILITY(U,$J,358.3,1642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1385,1,3,0)
- ;;=3^Meniere's disease, left ear
- ;;^UTILITY(U,$J,358.3,1385,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,1385,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,1386,0)
- ;;=H81.01^^14^149^14
- ;;^UTILITY(U,$J,358.3,1386,1,0)
+ ;;^UTILITY(U,$J,358.3,1642,1,3,0)
+ ;;=3^Athscl Hrt Disease of Native Coronary Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,1642,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,1642,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,1643,0)
+ ;;=I25.110^^11^146^3
+ ;;^UTILITY(U,$J,358.3,1643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1386,1,3,0)
- ;;=3^Meniere's disease, right ear
- ;;^UTILITY(U,$J,358.3,1386,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,1386,2)
- ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,1643,1,3,0)
+ ;;=3^Athscl Hrt Disease of Native Coronary Artery w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,1643,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,1643,2)
+ ;;=^5007108

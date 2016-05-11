@@ -1,130 +1,136 @@
-IBDEI0NP ; ; 19-NOV-2015
+IBDEI0NP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10834,1,4,0)
- ;;=4^D47.Z9
- ;;^UTILITY(U,$J,358.3,10834,2)
- ;;=^5002262
- ;;^UTILITY(U,$J,358.3,10835,0)
- ;;=D05.82^^68^675^32
- ;;^UTILITY(U,$J,358.3,10835,1,0)
+ ;;^UTILITY(U,$J,358.3,11065,1,3,0)
+ ;;=3^Vertigo,Central Origin,Left Ear
+ ;;^UTILITY(U,$J,358.3,11065,1,4,0)
+ ;;=4^H81.42
+ ;;^UTILITY(U,$J,358.3,11065,2)
+ ;;=^5006881
+ ;;^UTILITY(U,$J,358.3,11066,0)
+ ;;=H81.43^^47^526^13
+ ;;^UTILITY(U,$J,358.3,11066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10835,1,3,0)
- ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
- ;;^UTILITY(U,$J,358.3,10835,1,4,0)
- ;;=4^D05.82
- ;;^UTILITY(U,$J,358.3,10835,2)
- ;;=^5001934
- ;;^UTILITY(U,$J,358.3,10836,0)
- ;;=D05.81^^68^675^34
- ;;^UTILITY(U,$J,358.3,10836,1,0)
+ ;;^UTILITY(U,$J,358.3,11066,1,3,0)
+ ;;=3^Vertigo,Central Origin,Bilateral
+ ;;^UTILITY(U,$J,358.3,11066,1,4,0)
+ ;;=4^H81.43
+ ;;^UTILITY(U,$J,358.3,11066,2)
+ ;;=^5006882
+ ;;^UTILITY(U,$J,358.3,11067,0)
+ ;;=H81.311^^47^526^9
+ ;;^UTILITY(U,$J,358.3,11067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10836,1,3,0)
- ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,10836,1,4,0)
- ;;=4^D05.81
- ;;^UTILITY(U,$J,358.3,10836,2)
- ;;=^5001933
- ;;^UTILITY(U,$J,358.3,10837,0)
- ;;=D05.80^^68^675^36
- ;;^UTILITY(U,$J,358.3,10837,1,0)
+ ;;^UTILITY(U,$J,358.3,11067,1,3,0)
+ ;;=3^Vertigo,Aural,Right Ear
+ ;;^UTILITY(U,$J,358.3,11067,1,4,0)
+ ;;=4^H81.311
+ ;;^UTILITY(U,$J,358.3,11067,2)
+ ;;=^5006872
+ ;;^UTILITY(U,$J,358.3,11068,0)
+ ;;=H81.312^^47^526^8
+ ;;^UTILITY(U,$J,358.3,11068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10837,1,3,0)
- ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
- ;;^UTILITY(U,$J,358.3,10837,1,4,0)
- ;;=4^D05.80
- ;;^UTILITY(U,$J,358.3,10837,2)
- ;;=^5001932
- ;;^UTILITY(U,$J,358.3,10838,0)
- ;;=D56.8^^68^675^182
- ;;^UTILITY(U,$J,358.3,10838,1,0)
+ ;;^UTILITY(U,$J,358.3,11068,1,3,0)
+ ;;=3^Vertigo,Aural,Left Ear
+ ;;^UTILITY(U,$J,358.3,11068,1,4,0)
+ ;;=4^H81.312
+ ;;^UTILITY(U,$J,358.3,11068,2)
+ ;;=^5006873
+ ;;^UTILITY(U,$J,358.3,11069,0)
+ ;;=H81.313^^47^526^7
+ ;;^UTILITY(U,$J,358.3,11069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10838,1,3,0)
- ;;=3^Thalassemias,Other
- ;;^UTILITY(U,$J,358.3,10838,1,4,0)
- ;;=4^D56.8
- ;;^UTILITY(U,$J,358.3,10838,2)
- ;;=^5002305
- ;;^UTILITY(U,$J,358.3,10839,0)
- ;;=C82.89^^68^675^74
- ;;^UTILITY(U,$J,358.3,10839,1,0)
+ ;;^UTILITY(U,$J,358.3,11069,1,3,0)
+ ;;=3^Vertigo,Aural,Bilateral
+ ;;^UTILITY(U,$J,358.3,11069,1,4,0)
+ ;;=4^H81.313
+ ;;^UTILITY(U,$J,358.3,11069,2)
+ ;;=^5006874
+ ;;^UTILITY(U,$J,358.3,11070,0)
+ ;;=H81.11^^47^526^12
+ ;;^UTILITY(U,$J,358.3,11070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10839,1,3,0)
- ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
- ;;^UTILITY(U,$J,358.3,10839,1,4,0)
- ;;=4^C82.89
- ;;^UTILITY(U,$J,358.3,10839,2)
- ;;=^5001540
- ;;^UTILITY(U,$J,358.3,10840,0)
- ;;=D51.8^^68^675^189
- ;;^UTILITY(U,$J,358.3,10840,1,0)
+ ;;^UTILITY(U,$J,358.3,11070,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Right Ear
+ ;;^UTILITY(U,$J,358.3,11070,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,11070,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,11071,0)
+ ;;=H81.12^^47^526^11
+ ;;^UTILITY(U,$J,358.3,11071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10840,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemias,Other
- ;;^UTILITY(U,$J,358.3,10840,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,10840,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,10841,0)
- ;;=I80.9^^68^675^174
- ;;^UTILITY(U,$J,358.3,10841,1,0)
+ ;;^UTILITY(U,$J,358.3,11071,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Left Ear
+ ;;^UTILITY(U,$J,358.3,11071,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,11071,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,11072,0)
+ ;;=H81.13^^47^526^10
+ ;;^UTILITY(U,$J,358.3,11072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10841,1,3,0)
- ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,10841,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,10841,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,10842,0)
- ;;=D45.^^68^675^175
- ;;^UTILITY(U,$J,358.3,10842,1,0)
+ ;;^UTILITY(U,$J,358.3,11072,1,3,0)
+ ;;=3^Vertigo,Benign Paroxysmal,Bilateral
+ ;;^UTILITY(U,$J,358.3,11072,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,11072,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,11073,0)
+ ;;=H81.391^^47^526^18
+ ;;^UTILITY(U,$J,358.3,11073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10842,1,3,0)
- ;;=3^Polycythemia Vera
- ;;^UTILITY(U,$J,358.3,10842,1,4,0)
- ;;=4^D45.
- ;;^UTILITY(U,$J,358.3,10842,2)
- ;;=^96105
- ;;^UTILITY(U,$J,358.3,10843,0)
- ;;=C77.3^^68^675^107
- ;;^UTILITY(U,$J,358.3,10843,1,0)
+ ;;^UTILITY(U,$J,358.3,11073,1,3,0)
+ ;;=3^Vertigo,Peripheral,Right Ear
+ ;;^UTILITY(U,$J,358.3,11073,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,11073,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,11074,0)
+ ;;=H81.392^^47^526^17
+ ;;^UTILITY(U,$J,358.3,11074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10843,1,3,0)
- ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,10843,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,10843,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,10844,0)
- ;;=C77.2^^68^675^123
- ;;^UTILITY(U,$J,358.3,10844,1,0)
+ ;;^UTILITY(U,$J,358.3,11074,1,3,0)
+ ;;=3^Vertigo,Peripheral,Left Ear
+ ;;^UTILITY(U,$J,358.3,11074,1,4,0)
+ ;;=4^H81.392
+ ;;^UTILITY(U,$J,358.3,11074,2)
+ ;;=^5006877
+ ;;^UTILITY(U,$J,358.3,11075,0)
+ ;;=H81.393^^47^526^16
+ ;;^UTILITY(U,$J,358.3,11075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10844,1,3,0)
- ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,10844,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,10844,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,10845,0)
- ;;=C77.1^^68^675^124
- ;;^UTILITY(U,$J,358.3,10845,1,0)
+ ;;^UTILITY(U,$J,358.3,11075,1,3,0)
+ ;;=3^Vertigo,Peripheral,Bilateral
+ ;;^UTILITY(U,$J,358.3,11075,1,4,0)
+ ;;=4^H81.393
+ ;;^UTILITY(U,$J,358.3,11075,2)
+ ;;=^5006878
+ ;;^UTILITY(U,$J,358.3,11076,0)
+ ;;=H81.91^^47^526^21
+ ;;^UTILITY(U,$J,358.3,11076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10845,1,3,0)
- ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,10845,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,10845,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,10846,0)
- ;;=C77.0^^68^675^140
- ;;^UTILITY(U,$J,358.3,10846,1,0)
+ ;;^UTILITY(U,$J,358.3,11076,1,3,0)
+ ;;=3^Vestibular Function Disorder,Right Ear
+ ;;^UTILITY(U,$J,358.3,11076,1,4,0)
+ ;;=4^H81.91
+ ;;^UTILITY(U,$J,358.3,11076,2)
+ ;;=^5133551
+ ;;^UTILITY(U,$J,358.3,11077,0)
+ ;;=H81.92^^47^526^20
+ ;;^UTILITY(U,$J,358.3,11077,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10846,1,3,0)
- ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
- ;;^UTILITY(U,$J,358.3,10846,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,10846,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,10847,0)
- ;;=C77.8^^68^675^141
+ ;;^UTILITY(U,$J,358.3,11077,1,3,0)
+ ;;=3^Vestibular Function Disorder,Left Ear
+ ;;^UTILITY(U,$J,358.3,11077,1,4,0)
+ ;;=4^H81.92
+ ;;^UTILITY(U,$J,358.3,11077,2)
+ ;;=^5133552
+ ;;^UTILITY(U,$J,358.3,11078,0)
+ ;;=H81.93^^47^526^19
+ ;;^UTILITY(U,$J,358.3,11078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11078,1,3,0)
+ ;;=3^Vestibular Function Disorder,Bilateral

@@ -1,132 +1,132 @@
-IBDEI1NW ; ; 19-NOV-2015
+IBDEI1NW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27804,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,27805,0)
- ;;=Z85.71^^132^1321^78
- ;;^UTILITY(U,$J,358.3,27805,1,0)
+ ;;^UTILITY(U,$J,358.3,28236,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28236,1,4,0)
+ ;;=4^L89.219
+ ;;^UTILITY(U,$J,358.3,28236,2)
+ ;;=^5133661
+ ;;^UTILITY(U,$J,358.3,28237,0)
+ ;;=L89.220^^112^1416^42
+ ;;^UTILITY(U,$J,358.3,28237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27805,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,27805,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,27805,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,27806,0)
- ;;=Z65.8^^132^1321^138
- ;;^UTILITY(U,$J,358.3,27806,1,0)
+ ;;^UTILITY(U,$J,358.3,28237,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,28237,1,4,0)
+ ;;=4^L89.220
+ ;;^UTILITY(U,$J,358.3,28237,2)
+ ;;=^5009384
+ ;;^UTILITY(U,$J,358.3,28238,0)
+ ;;=L89.221^^112^1416^37
+ ;;^UTILITY(U,$J,358.3,28238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27806,1,3,0)
- ;;=3^Psychosocial Circumstance Related Problems
- ;;^UTILITY(U,$J,358.3,27806,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,27806,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,27807,0)
- ;;=Z86.11^^132^1321^115
- ;;^UTILITY(U,$J,358.3,27807,1,0)
+ ;;^UTILITY(U,$J,358.3,28238,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,28238,1,4,0)
+ ;;=4^L89.221
+ ;;^UTILITY(U,$J,358.3,28238,2)
+ ;;=^5009385
+ ;;^UTILITY(U,$J,358.3,28239,0)
+ ;;=L89.222^^112^1416^38
+ ;;^UTILITY(U,$J,358.3,28239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27807,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,27807,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,27807,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,27808,0)
- ;;=Z86.13^^132^1321^82
- ;;^UTILITY(U,$J,358.3,27808,1,0)
+ ;;^UTILITY(U,$J,358.3,28239,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,28239,1,4,0)
+ ;;=4^L89.222
+ ;;^UTILITY(U,$J,358.3,28239,2)
+ ;;=^5009386
+ ;;^UTILITY(U,$J,358.3,28240,0)
+ ;;=L89.223^^112^1416^39
+ ;;^UTILITY(U,$J,358.3,28240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27808,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,27808,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,27808,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,27809,0)
- ;;=Z86.73^^132^1321^112
- ;;^UTILITY(U,$J,358.3,27809,1,0)
+ ;;^UTILITY(U,$J,358.3,28240,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,28240,1,4,0)
+ ;;=4^L89.223
+ ;;^UTILITY(U,$J,358.3,28240,2)
+ ;;=^5009387
+ ;;^UTILITY(U,$J,358.3,28241,0)
+ ;;=L89.224^^112^1416^40
+ ;;^UTILITY(U,$J,358.3,28241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27809,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,27809,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,27809,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,27810,0)
- ;;=Z86.79^^132^1321^75
- ;;^UTILITY(U,$J,358.3,27810,1,0)
+ ;;^UTILITY(U,$J,358.3,28241,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,28241,1,4,0)
+ ;;=4^L89.224
+ ;;^UTILITY(U,$J,358.3,28241,2)
+ ;;=^5009388
+ ;;^UTILITY(U,$J,358.3,28242,0)
+ ;;=L89.229^^112^1416^41
+ ;;^UTILITY(U,$J,358.3,28242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27810,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,27810,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,27810,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,27811,0)
- ;;=Z91.040^^132^1321^64
- ;;^UTILITY(U,$J,358.3,27811,1,0)
+ ;;^UTILITY(U,$J,358.3,28242,1,3,0)
+ ;;=3^Pressure Ulcer Left Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28242,1,4,0)
+ ;;=4^L89.229
+ ;;^UTILITY(U,$J,358.3,28242,2)
+ ;;=^5133662
+ ;;^UTILITY(U,$J,358.3,28243,0)
+ ;;=L89.310^^112^1416^72
+ ;;^UTILITY(U,$J,358.3,28243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27811,1,3,0)
- ;;=3^Latex Allergy Status
- ;;^UTILITY(U,$J,358.3,27811,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,27811,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,27812,0)
- ;;=Z98.89^^132^1321^120
- ;;^UTILITY(U,$J,358.3,27812,1,0)
+ ;;^UTILITY(U,$J,358.3,28243,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,28243,1,4,0)
+ ;;=4^L89.310
+ ;;^UTILITY(U,$J,358.3,28243,2)
+ ;;=^5009394
+ ;;^UTILITY(U,$J,358.3,28244,0)
+ ;;=L89.311^^112^1416^67
+ ;;^UTILITY(U,$J,358.3,28244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27812,1,3,0)
- ;;=3^Postprocedural States/Hx of Surgery NEC
- ;;^UTILITY(U,$J,358.3,27812,1,4,0)
- ;;=4^Z98.89
- ;;^UTILITY(U,$J,358.3,27812,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,27813,0)
- ;;=Z92.3^^132^1321^79
- ;;^UTILITY(U,$J,358.3,27813,1,0)
+ ;;^UTILITY(U,$J,358.3,28244,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,28244,1,4,0)
+ ;;=4^L89.311
+ ;;^UTILITY(U,$J,358.3,28244,2)
+ ;;=^5009395
+ ;;^UTILITY(U,$J,358.3,28245,0)
+ ;;=L89.312^^112^1416^68
+ ;;^UTILITY(U,$J,358.3,28245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27813,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,27813,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,27813,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,27814,0)
- ;;=Z91.120^^132^1321^60
- ;;^UTILITY(U,$J,358.3,27814,1,0)
+ ;;^UTILITY(U,$J,358.3,28245,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,28245,1,4,0)
+ ;;=4^L89.312
+ ;;^UTILITY(U,$J,358.3,28245,2)
+ ;;=^5009396
+ ;;^UTILITY(U,$J,358.3,28246,0)
+ ;;=L89.313^^112^1416^69
+ ;;^UTILITY(U,$J,358.3,28246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27814,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,27814,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,27814,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,27815,0)
- ;;=Z91.11^^132^1321^69
- ;;^UTILITY(U,$J,358.3,27815,1,0)
+ ;;^UTILITY(U,$J,358.3,28246,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,28246,1,4,0)
+ ;;=4^L89.313
+ ;;^UTILITY(U,$J,358.3,28246,2)
+ ;;=^5009397
+ ;;^UTILITY(U,$J,358.3,28247,0)
+ ;;=L89.314^^112^1416^70
+ ;;^UTILITY(U,$J,358.3,28247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27815,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,27815,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,27815,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,27816,0)
- ;;=Z87.891^^132^1321^103
- ;;^UTILITY(U,$J,358.3,27816,1,0)
+ ;;^UTILITY(U,$J,358.3,28247,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,28247,1,4,0)
+ ;;=4^L89.314
+ ;;^UTILITY(U,$J,358.3,28247,2)
+ ;;=^5009398
+ ;;^UTILITY(U,$J,358.3,28248,0)
+ ;;=L89.319^^112^1416^71
+ ;;^UTILITY(U,$J,358.3,28248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27816,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,27816,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,27816,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,27817,0)
- ;;=Z77.090^^132^1321^11
- ;;^UTILITY(U,$J,358.3,27817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27817,1,3,0)
- ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,28248,1,3,0)
+ ;;=3^Pressure Ulcer Right Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28248,1,4,0)
+ ;;=4^L89.319
+ ;;^UTILITY(U,$J,358.3,28248,2)
+ ;;=^5133670
+ ;;^UTILITY(U,$J,358.3,28249,0)
+ ;;=L89.320^^112^1416^24

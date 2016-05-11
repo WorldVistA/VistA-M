@@ -1,122 +1,122 @@
-IBDEI2BM ; ; 19-NOV-2015
+IBDEI2BM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38973,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,38974,0)
- ;;=M05.79^^180^1991^9
- ;;^UTILITY(U,$J,358.3,38974,1,0)
+ ;;^UTILITY(U,$J,358.3,39364,1,4,0)
+ ;;=4^H40.53X1
+ ;;^UTILITY(U,$J,358.3,39364,2)
+ ;;=^5005897
+ ;;^UTILITY(U,$J,358.3,39365,0)
+ ;;=H40.53X2^^153^1921^46
+ ;;^UTILITY(U,$J,358.3,39365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38974,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of mult site w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38974,1,4,0)
- ;;=4^M05.79
- ;;^UTILITY(U,$J,358.3,38974,2)
- ;;=^5010022
- ;;^UTILITY(U,$J,358.3,38975,0)
- ;;=M05.771^^180^1991^10
- ;;^UTILITY(U,$J,358.3,38975,1,0)
+ ;;^UTILITY(U,$J,358.3,39365,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39365,1,4,0)
+ ;;=4^H40.53X2
+ ;;^UTILITY(U,$J,358.3,39365,2)
+ ;;=^5005898
+ ;;^UTILITY(U,$J,358.3,39366,0)
+ ;;=H40.53X3^^153^1921^47
+ ;;^UTILITY(U,$J,358.3,39366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38975,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right ank/ft w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38975,1,4,0)
- ;;=4^M05.771
- ;;^UTILITY(U,$J,358.3,38975,2)
- ;;=^5010019
- ;;^UTILITY(U,$J,358.3,38976,0)
- ;;=M05.721^^180^1991^11
- ;;^UTILITY(U,$J,358.3,38976,1,0)
+ ;;^UTILITY(U,$J,358.3,39366,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39366,1,4,0)
+ ;;=4^H40.53X3
+ ;;^UTILITY(U,$J,358.3,39366,2)
+ ;;=^5005899
+ ;;^UTILITY(U,$J,358.3,39367,0)
+ ;;=H40.53X4^^153^1921^48
+ ;;^UTILITY(U,$J,358.3,39367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38976,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right elbowlbow w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38976,1,4,0)
- ;;=4^M05.721
- ;;^UTILITY(U,$J,358.3,38976,2)
- ;;=^5010004
- ;;^UTILITY(U,$J,358.3,38977,0)
- ;;=M05.741^^180^1991^12
- ;;^UTILITY(U,$J,358.3,38977,1,0)
+ ;;^UTILITY(U,$J,358.3,39367,1,3,0)
+ ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39367,1,4,0)
+ ;;=4^H40.53X4
+ ;;^UTILITY(U,$J,358.3,39367,2)
+ ;;=^5005900
+ ;;^UTILITY(U,$J,358.3,39368,0)
+ ;;=H40.1411^^153^1921^8
+ ;;^UTILITY(U,$J,358.3,39368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38977,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hand w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38977,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,38977,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,38978,0)
- ;;=M05.751^^180^1991^13
- ;;^UTILITY(U,$J,358.3,38978,1,0)
+ ;;^UTILITY(U,$J,358.3,39368,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39368,1,4,0)
+ ;;=4^H40.1411
+ ;;^UTILITY(U,$J,358.3,39368,2)
+ ;;=^5138018
+ ;;^UTILITY(U,$J,358.3,39369,0)
+ ;;=H40.1412^^153^1921^9
+ ;;^UTILITY(U,$J,358.3,39369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38978,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right hip w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38978,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,38978,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,38979,0)
- ;;=M05.761^^180^1991^14
- ;;^UTILITY(U,$J,358.3,38979,1,0)
+ ;;^UTILITY(U,$J,358.3,39369,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39369,1,4,0)
+ ;;=4^H40.1412
+ ;;^UTILITY(U,$J,358.3,39369,2)
+ ;;=^5138019
+ ;;^UTILITY(U,$J,358.3,39370,0)
+ ;;=H40.1413^^153^1921^10
+ ;;^UTILITY(U,$J,358.3,39370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38979,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38979,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,38979,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,38980,0)
- ;;=M05.711^^180^1991^15
- ;;^UTILITY(U,$J,358.3,38980,1,0)
+ ;;^UTILITY(U,$J,358.3,39370,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39370,1,4,0)
+ ;;=4^H40.1413
+ ;;^UTILITY(U,$J,358.3,39370,2)
+ ;;=^5138020
+ ;;^UTILITY(U,$J,358.3,39371,0)
+ ;;=H40.1414^^153^1921^11
+ ;;^UTILITY(U,$J,358.3,39371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38980,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38980,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,38980,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,38981,0)
- ;;=M05.731^^180^1991^16
- ;;^UTILITY(U,$J,358.3,38981,1,0)
+ ;;^UTILITY(U,$J,358.3,39371,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39371,1,4,0)
+ ;;=4^H40.1414
+ ;;^UTILITY(U,$J,358.3,39371,2)
+ ;;=^5138021
+ ;;^UTILITY(U,$J,358.3,39372,0)
+ ;;=H40.1421^^153^1921^4
+ ;;^UTILITY(U,$J,358.3,39372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38981,1,3,0)
- ;;=3^Rheu arthritis w rheu factor of right wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,38981,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,38981,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,38982,0)
- ;;=M06.072^^180^1991^17
- ;;^UTILITY(U,$J,358.3,38982,1,0)
+ ;;^UTILITY(U,$J,358.3,39372,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39372,1,4,0)
+ ;;=4^H40.1421
+ ;;^UTILITY(U,$J,358.3,39372,2)
+ ;;=^5138023
+ ;;^UTILITY(U,$J,358.3,39373,0)
+ ;;=H40.1422^^153^1921^5
+ ;;^UTILITY(U,$J,358.3,39373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38982,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left ank/ft
- ;;^UTILITY(U,$J,358.3,38982,1,4,0)
- ;;=4^M06.072
- ;;^UTILITY(U,$J,358.3,38982,2)
- ;;=^5010067
- ;;^UTILITY(U,$J,358.3,38983,0)
- ;;=M06.022^^180^1991^18
- ;;^UTILITY(U,$J,358.3,38983,1,0)
+ ;;^UTILITY(U,$J,358.3,39373,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39373,1,4,0)
+ ;;=4^H40.1422
+ ;;^UTILITY(U,$J,358.3,39373,2)
+ ;;=^5138024
+ ;;^UTILITY(U,$J,358.3,39374,0)
+ ;;=H40.1423^^153^1921^6
+ ;;^UTILITY(U,$J,358.3,39374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38983,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left elbow
- ;;^UTILITY(U,$J,358.3,38983,1,4,0)
- ;;=4^M06.022
- ;;^UTILITY(U,$J,358.3,38983,2)
- ;;=^5010052
- ;;^UTILITY(U,$J,358.3,38984,0)
- ;;=M06.042^^180^1991^19
- ;;^UTILITY(U,$J,358.3,38984,1,0)
+ ;;^UTILITY(U,$J,358.3,39374,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39374,1,4,0)
+ ;;=4^H40.1423
+ ;;^UTILITY(U,$J,358.3,39374,2)
+ ;;=^5138025
+ ;;^UTILITY(U,$J,358.3,39375,0)
+ ;;=H40.1424^^153^1921^7
+ ;;^UTILITY(U,$J,358.3,39375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38984,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left hand
- ;;^UTILITY(U,$J,358.3,38984,1,4,0)
- ;;=4^M06.042
- ;;^UTILITY(U,$J,358.3,38984,2)
- ;;=^5010058
- ;;^UTILITY(U,$J,358.3,38985,0)
- ;;=M06.052^^180^1991^20
- ;;^UTILITY(U,$J,358.3,38985,1,0)
+ ;;^UTILITY(U,$J,358.3,39375,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,39375,1,4,0)
+ ;;=4^H40.1424
+ ;;^UTILITY(U,$J,358.3,39375,2)
+ ;;=^5138026
+ ;;^UTILITY(U,$J,358.3,39376,0)
+ ;;=H40.31X0^^153^1921^138
+ ;;^UTILITY(U,$J,358.3,39376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38985,1,3,0)
- ;;=3^Rheum arthritis w/o rheumatoid factor, left hip

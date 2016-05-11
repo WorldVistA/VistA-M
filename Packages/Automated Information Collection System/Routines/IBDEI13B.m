@@ -1,132 +1,136 @@
-IBDEI13B ; ; 19-NOV-2015
+IBDEI13B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18200,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,18200,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,18201,0)
- ;;=I70.641^^94^905^65
- ;;^UTILITY(U,$J,358.3,18201,1,0)
+ ;;^UTILITY(U,$J,358.3,18528,1,3,0)
+ ;;=3^Gonococcal Infection of Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,18528,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,18528,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,18529,0)
+ ;;=B35.1^^79^880^99
+ ;;^UTILITY(U,$J,358.3,18529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18201,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,18201,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,18201,2)
- ;;=^5007747
- ;;^UTILITY(U,$J,358.3,18202,0)
- ;;=I70.642^^94^905^66
- ;;^UTILITY(U,$J,358.3,18202,1,0)
+ ;;^UTILITY(U,$J,358.3,18529,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,18529,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,18529,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,18530,0)
+ ;;=B37.3^^79^880^15
+ ;;^UTILITY(U,$J,358.3,18530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18202,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,18202,1,4,0)
- ;;=4^I70.642
- ;;^UTILITY(U,$J,358.3,18202,2)
- ;;=^5007748
- ;;^UTILITY(U,$J,358.3,18203,0)
- ;;=I70.643^^94^905^67
- ;;^UTILITY(U,$J,358.3,18203,1,0)
+ ;;^UTILITY(U,$J,358.3,18530,1,3,0)
+ ;;=3^Candidiasis of Vulva/Vagina
+ ;;^UTILITY(U,$J,358.3,18530,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,18530,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,18531,0)
+ ;;=B58.9^^79^880^100
+ ;;^UTILITY(U,$J,358.3,18531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18203,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,18203,1,4,0)
- ;;=4^I70.643
- ;;^UTILITY(U,$J,358.3,18203,2)
- ;;=^5007749
- ;;^UTILITY(U,$J,358.3,18204,0)
- ;;=I70.644^^94^905^68
- ;;^UTILITY(U,$J,358.3,18204,1,0)
+ ;;^UTILITY(U,$J,358.3,18531,1,3,0)
+ ;;=3^Toxoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,18531,1,4,0)
+ ;;=4^B58.9
+ ;;^UTILITY(U,$J,358.3,18531,2)
+ ;;=^5000733
+ ;;^UTILITY(U,$J,358.3,18532,0)
+ ;;=A59.01^^79^880^102
+ ;;^UTILITY(U,$J,358.3,18532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18204,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,18204,1,4,0)
- ;;=4^I70.644
- ;;^UTILITY(U,$J,358.3,18204,2)
- ;;=^5007750
- ;;^UTILITY(U,$J,358.3,18205,0)
- ;;=I70.645^^94^905^69
- ;;^UTILITY(U,$J,358.3,18205,1,0)
+ ;;^UTILITY(U,$J,358.3,18532,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,18532,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,18532,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,18533,0)
+ ;;=A59.03^^79^880^101
+ ;;^UTILITY(U,$J,358.3,18533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18205,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,18205,1,4,0)
- ;;=4^I70.645
- ;;^UTILITY(U,$J,358.3,18205,2)
- ;;=^5007751
- ;;^UTILITY(U,$J,358.3,18206,0)
- ;;=K12.0^^94^905^258
- ;;^UTILITY(U,$J,358.3,18206,1,0)
+ ;;^UTILITY(U,$J,358.3,18533,1,3,0)
+ ;;=3^Trichomonal Cystitis/Urethriti
+ ;;^UTILITY(U,$J,358.3,18533,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,18533,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,18534,0)
+ ;;=B59.^^79^880^85
+ ;;^UTILITY(U,$J,358.3,18534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18206,1,3,0)
- ;;=3^Recurrent Oral Aphthae
- ;;^UTILITY(U,$J,358.3,18206,1,4,0)
- ;;=4^K12.0
- ;;^UTILITY(U,$J,358.3,18206,2)
- ;;=^5008483
- ;;^UTILITY(U,$J,358.3,18207,0)
- ;;=K12.1^^94^905^271
- ;;^UTILITY(U,$J,358.3,18207,1,0)
+ ;;^UTILITY(U,$J,358.3,18534,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,18534,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,18534,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,18535,0)
+ ;;=H10.9^^79^880^40
+ ;;^UTILITY(U,$J,358.3,18535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18207,1,3,0)
- ;;=3^Stomatitis NEC
- ;;^UTILITY(U,$J,358.3,18207,1,4,0)
- ;;=4^K12.1
- ;;^UTILITY(U,$J,358.3,18207,2)
- ;;=^5008484
- ;;^UTILITY(U,$J,358.3,18208,0)
- ;;=K12.2^^94^905^94
- ;;^UTILITY(U,$J,358.3,18208,1,0)
+ ;;^UTILITY(U,$J,358.3,18535,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,18535,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,18535,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,18536,0)
+ ;;=H05.011^^79^880^29
+ ;;^UTILITY(U,$J,358.3,18536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18208,1,3,0)
- ;;=3^Cellulitis & Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,18208,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,18208,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,18209,0)
- ;;=L02.01^^94^905^120
- ;;^UTILITY(U,$J,358.3,18209,1,0)
+ ;;^UTILITY(U,$J,358.3,18536,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,18536,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,18536,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,18537,0)
+ ;;=H05.012^^79^880^22
+ ;;^UTILITY(U,$J,358.3,18537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18209,1,3,0)
- ;;=3^Cutaneous Abscess of Face
- ;;^UTILITY(U,$J,358.3,18209,1,4,0)
- ;;=4^L02.01
- ;;^UTILITY(U,$J,358.3,18209,2)
- ;;=^5008944
- ;;^UTILITY(U,$J,358.3,18210,0)
- ;;=L02.11^^94^905^125
- ;;^UTILITY(U,$J,358.3,18210,1,0)
+ ;;^UTILITY(U,$J,358.3,18537,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,18537,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,18537,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,18538,0)
+ ;;=H05.013^^79^880^17
+ ;;^UTILITY(U,$J,358.3,18538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18210,1,3,0)
- ;;=3^Cutaneous Abscess of Neck
- ;;^UTILITY(U,$J,358.3,18210,1,4,0)
- ;;=4^L02.11
- ;;^UTILITY(U,$J,358.3,18210,2)
- ;;=^5008947
- ;;^UTILITY(U,$J,358.3,18211,0)
- ;;=L02.211^^94^905^117
- ;;^UTILITY(U,$J,358.3,18211,1,0)
+ ;;^UTILITY(U,$J,358.3,18538,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,18538,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,18538,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,18539,0)
+ ;;=H60.11^^79^880^26
+ ;;^UTILITY(U,$J,358.3,18539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18211,1,3,0)
- ;;=3^Cutaneous Abscess of Abdominal Wall
- ;;^UTILITY(U,$J,358.3,18211,1,4,0)
- ;;=4^L02.211
- ;;^UTILITY(U,$J,358.3,18211,2)
- ;;=^5008950
- ;;^UTILITY(U,$J,358.3,18212,0)
- ;;=L02.212^^94^905^118
- ;;^UTILITY(U,$J,358.3,18212,1,0)
+ ;;^UTILITY(U,$J,358.3,18539,1,3,0)
+ ;;=3^Cellulitis of Right External Ear
+ ;;^UTILITY(U,$J,358.3,18539,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,18539,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,18540,0)
+ ;;=H60.12^^79^880^19
+ ;;^UTILITY(U,$J,358.3,18540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18212,1,3,0)
- ;;=3^Cutaneous Abscess of Back
- ;;^UTILITY(U,$J,358.3,18212,1,4,0)
- ;;=4^L02.212
- ;;^UTILITY(U,$J,358.3,18212,2)
- ;;=^5008951
- ;;^UTILITY(U,$J,358.3,18213,0)
- ;;=L02.213^^94^905^119
- ;;^UTILITY(U,$J,358.3,18213,1,0)
+ ;;^UTILITY(U,$J,358.3,18540,1,3,0)
+ ;;=3^Cellulitis of Left External Ear
+ ;;^UTILITY(U,$J,358.3,18540,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,18540,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,18541,0)
+ ;;=H60.13^^79^880^16
+ ;;^UTILITY(U,$J,358.3,18541,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18541,1,3,0)
+ ;;=3^Cellulitis of Bilateral External Ear

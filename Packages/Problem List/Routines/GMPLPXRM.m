@@ -1,5 +1,5 @@
-GMPLPXRM ; SLC/PKR - Build Clinical Reminder Index for AUPNPROB. ;05/08/2014
- ;;2.0;Problem List;**27,43,44**;Aug 25, 1994;Build 92
+GMPLPXRM ; SLC/PKR - Build Clinical Reminder Index for AUPNPROB. ;10/22/2014
+ ;;2.0;Problem List;**27,43,44,47**;Aug 25, 1994;Build 58
  ;DBIA #4113 supports PXRMSXRM entry points.
  ;DBIA #4114 supports setting and killing ^PXRMINDX(9000011)
  ;DBIA #5747 covers references to ^ICDEX entry point.
@@ -122,6 +122,23 @@ KPROBMT(X,DA) ;Kill Index entry for Problem List Mapping Targets.
  Q
  ;
  ;===================================
+KPROBMTA(X,DA) ;Whenever any of the fields in the 803 node index are changed
+ ;kill the old index entry.
+ ;X(1)=DATE LAST MODIFIED, X(2)=STATUS, X(3)=PRIORITY, X(4)=CONDITION
+ N CODE,CODESYS,DAS,DFN,IND,PRIO,TEMP
+ S PRIO=X(3)
+ I PRIO="" S PRIO="U"
+ S DFN=$P(^AUPNPROB(DA,0),U,2)
+ S IND=0
+ F  S IND=+$O(^AUPNPROB(DA,803,IND)) Q:IND=0  D
+ . S TEMP=^AUPNPROB(DA,803,IND,0)
+ . S CODE=$P(TEMP,U,1),CODESYS=$P(TEMP,U,2)
+ . S DAS=DA_";"_803_";"_IND
+ . K ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,X(2),PRIO,DFN,X(1),DAS)
+ . K ^PXRMINDX(9000011,CODESYS,"PSPI",DFN,X(2),PRIO,CODE,X(1),DAS)
+ Q
+ ;
+ ;===================================
 KPROBSCT(X,DA) ;Delete Index entry for Problem List SNOMED CT.
  ;X(1)=SNOMED CT CONCEPT CODE, X(2)=DFN, X(3)=DATE LAST MODIFIED,
  ;X(4)=STATUS, X(5)=PRIORITY, X(6)=CONDITION
@@ -189,6 +206,26 @@ SPROBMT(X,DA) ;Set Index entry for Problem List Mapping Targets.
  S DAS=DA(1)_";"_803_";"_DA
  S ^PXRMINDX(9000011,X(2),"ISPP",X(1),STATUS,PRIO,DFN,DLM,DAS)=""
  S ^PXRMINDX(9000011,X(2),"PSPI",DFN,STATUS,PRIO,X(1),DLM,DAS)=""
+ Q
+ ;
+ ;===================================
+SPROBMTA(X,DA) ;Whenever any of the fields in the 803 node index are changed
+ ;set the index.
+ ;X(1)=DATE LAST MODIFIED, X(2)=STATUS, X(3)=PRIORITY, X(4)=CONDITION
+ N CODE,CODESYS,DAS,DFN,IND,PRIO,TEMP
+ S TEMP=^AUPNPROB(DA,1)
+ ;Don't index Hidden problems.
+ I X(4)="H" Q
+ S PRIO=X(3)
+ I PRIO="" S PRIO="U"
+ S DFN=$P(^AUPNPROB(DA,0),U,2)
+ S IND=0
+ F  S IND=+$O(^AUPNPROB(DA,803,IND)) Q:IND=0  D
+ . S TEMP=^AUPNPROB(DA,803,IND,0)
+ . S CODE=$P(TEMP,U,1),CODESYS=$P(TEMP,U,2)
+ . S DAS=DA_";"_803_";"_IND
+ . S ^PXRMINDX(9000011,CODESYS,"ISPP",CODE,X(2),PRIO,DFN,X(1),DAS)=""
+ . S ^PXRMINDX(9000011,CODESYS,"PSPI",DFN,X(2),PRIO,CODE,X(1),DAS)=""
  Q
  ;
  ;===================================

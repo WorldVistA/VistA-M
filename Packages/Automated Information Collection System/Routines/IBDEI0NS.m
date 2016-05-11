@@ -1,130 +1,138 @@
-IBDEI0NS ; ; 19-NOV-2015
+IBDEI0NS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10873,0)
- ;;=C91.02^^68^675^3
- ;;^UTILITY(U,$J,358.3,10873,1,0)
+ ;;^UTILITY(U,$J,358.3,11104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10873,1,3,0)
- ;;=3^Acute Lymphoblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,10873,1,4,0)
- ;;=4^C91.02
- ;;^UTILITY(U,$J,358.3,10873,2)
- ;;=^5001764
- ;;^UTILITY(U,$J,358.3,10874,0)
- ;;=C92.02^^68^675^6
- ;;^UTILITY(U,$J,358.3,10874,1,0)
+ ;;^UTILITY(U,$J,358.3,11104,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Reinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,11104,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,11104,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,11105,0)
+ ;;=Z72.4^^47^527^30
+ ;;^UTILITY(U,$J,358.3,11105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10874,1,3,0)
- ;;=3^Acute Myeloblastic Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,10874,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,10874,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,10875,0)
- ;;=D09.3^^68^675^43
- ;;^UTILITY(U,$J,358.3,10875,1,0)
+ ;;^UTILITY(U,$J,358.3,11105,1,3,0)
+ ;;=3^Diet & Eating Habits,Inappropriate
+ ;;^UTILITY(U,$J,358.3,11105,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,11105,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,11106,0)
+ ;;=R68.81^^47^527^31
+ ;;^UTILITY(U,$J,358.3,11106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10875,1,3,0)
- ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
- ;;^UTILITY(U,$J,358.3,10875,1,4,0)
- ;;=4^D09.3
- ;;^UTILITY(U,$J,358.3,10875,2)
- ;;=^5001955
- ;;^UTILITY(U,$J,358.3,10876,0)
- ;;=C22.0^^68^675^84
- ;;^UTILITY(U,$J,358.3,10876,1,0)
+ ;;^UTILITY(U,$J,358.3,11106,1,3,0)
+ ;;=3^Early Satiety
+ ;;^UTILITY(U,$J,358.3,11106,1,4,0)
+ ;;=4^R68.81
+ ;;^UTILITY(U,$J,358.3,11106,2)
+ ;;=^5019554
+ ;;^UTILITY(U,$J,358.3,11107,0)
+ ;;=E34.9^^47^527^32
+ ;;^UTILITY(U,$J,358.3,11107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10876,1,3,0)
- ;;=3^Hepatocellular Carcinoma
- ;;^UTILITY(U,$J,358.3,10876,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,10876,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,10877,0)
- ;;=C24.9^^68^675^108
- ;;^UTILITY(U,$J,358.3,10877,1,0)
+ ;;^UTILITY(U,$J,358.3,11107,1,3,0)
+ ;;=3^Endocrine Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11107,1,4,0)
+ ;;=4^E34.9
+ ;;^UTILITY(U,$J,358.3,11107,2)
+ ;;=^5002777
+ ;;^UTILITY(U,$J,358.3,11108,0)
+ ;;=R62.7^^47^527^33
+ ;;^UTILITY(U,$J,358.3,11108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10877,1,3,0)
- ;;=3^Malig Neop Biliary Tract,Unspec
- ;;^UTILITY(U,$J,358.3,10877,1,4,0)
- ;;=4^C24.9
- ;;^UTILITY(U,$J,358.3,10877,2)
- ;;=^5000942
- ;;^UTILITY(U,$J,358.3,10878,0)
- ;;=C50.922^^68^675^132
- ;;^UTILITY(U,$J,358.3,10878,1,0)
+ ;;^UTILITY(U,$J,358.3,11108,1,3,0)
+ ;;=3^Failure to Thrive,Adult
+ ;;^UTILITY(U,$J,358.3,11108,1,4,0)
+ ;;=4^R62.7
+ ;;^UTILITY(U,$J,358.3,11108,2)
+ ;;=^322019
+ ;;^UTILITY(U,$J,358.3,11109,0)
+ ;;=R63.3^^47^527^34
+ ;;^UTILITY(U,$J,358.3,11109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10878,1,3,0)
- ;;=3^Malig Neop Left Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,10878,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,10878,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,10879,0)
- ;;=C34.91^^68^675^150
- ;;^UTILITY(U,$J,358.3,10879,1,0)
+ ;;^UTILITY(U,$J,358.3,11109,1,3,0)
+ ;;=3^Feeding Difficulty
+ ;;^UTILITY(U,$J,358.3,11109,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,11109,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,11110,0)
+ ;;=E87.8^^47^527^35
+ ;;^UTILITY(U,$J,358.3,11110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10879,1,3,0)
- ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,10879,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,10879,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,10880,0)
- ;;=C50.921^^68^675^154
- ;;^UTILITY(U,$J,358.3,10880,1,0)
+ ;;^UTILITY(U,$J,358.3,11110,1,3,0)
+ ;;=3^Fluid & Electrolyte Balance Disorder NEC
+ ;;^UTILITY(U,$J,358.3,11110,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,11110,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,11111,0)
+ ;;=E87.70^^47^527^36
+ ;;^UTILITY(U,$J,358.3,11111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10880,1,3,0)
- ;;=3^Malig Neop Right Male Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,10880,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,10880,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,10881,0)
- ;;=C90.02^^68^675^163
- ;;^UTILITY(U,$J,358.3,10881,1,0)
+ ;;^UTILITY(U,$J,358.3,11111,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,11111,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,11111,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,11112,0)
+ ;;=R73.01^^47^527^50
+ ;;^UTILITY(U,$J,358.3,11112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10881,1,3,0)
- ;;=3^Multiple Myeloma,In Relapse
- ;;^UTILITY(U,$J,358.3,10881,1,4,0)
- ;;=4^C90.02
- ;;^UTILITY(U,$J,358.3,10881,2)
- ;;=^5001753
- ;;^UTILITY(U,$J,358.3,10882,0)
- ;;=Z85.818^^68^676^92
- ;;^UTILITY(U,$J,358.3,10882,1,0)
+ ;;^UTILITY(U,$J,358.3,11112,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,11112,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,11112,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,11113,0)
+ ;;=R73.02^^47^527^51
+ ;;^UTILITY(U,$J,358.3,11113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10882,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx
- ;;^UTILITY(U,$J,358.3,10882,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,10882,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,10883,0)
- ;;=Z85.819^^68^676^93
- ;;^UTILITY(U,$J,358.3,10883,1,0)
+ ;;^UTILITY(U,$J,358.3,11113,1,3,0)
+ ;;=3^Impaired Oral Glucose Tolerance
+ ;;^UTILITY(U,$J,358.3,11113,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,11113,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,11114,0)
+ ;;=E83.119^^47^527^37
+ ;;^UTILITY(U,$J,358.3,11114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10883,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,10883,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,10883,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,10884,0)
- ;;=Z85.01^^68^676^88
- ;;^UTILITY(U,$J,358.3,10884,1,0)
+ ;;^UTILITY(U,$J,358.3,11114,1,3,0)
+ ;;=3^Hemochromatosis,Unspec
+ ;;^UTILITY(U,$J,358.3,11114,1,4,0)
+ ;;=4^E83.119
+ ;;^UTILITY(U,$J,358.3,11114,2)
+ ;;=^5002995
+ ;;^UTILITY(U,$J,358.3,11115,0)
+ ;;=E83.52^^47^527^38
+ ;;^UTILITY(U,$J,358.3,11115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10884,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,10884,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,10884,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,10885,0)
- ;;=Z85.028^^68^676^99
- ;;^UTILITY(U,$J,358.3,10885,1,0)
+ ;;^UTILITY(U,$J,358.3,11115,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,11115,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,11115,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,11116,0)
+ ;;=E11.65^^47^527^22
+ ;;^UTILITY(U,$J,358.3,11116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10885,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
+ ;;^UTILITY(U,$J,358.3,11116,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,11116,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,11116,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,11117,0)
+ ;;=R73.9^^47^527^39
+ ;;^UTILITY(U,$J,358.3,11117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11117,1,3,0)
+ ;;=3^Hyperglycemia,Unspec

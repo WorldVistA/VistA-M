@@ -1,124 +1,134 @@
-IBDEI1AP ; ; 19-NOV-2015
+IBDEI1AP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21636,1,0)
+ ;;^UTILITY(U,$J,358.3,22025,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,22025,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,22026,0)
+ ;;=E11.39^^87^973^18
+ ;;^UTILITY(U,$J,358.3,22026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21636,1,3,0)
- ;;=3^Nondisp transverse fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21636,1,4,0)
- ;;=4^S72.324S
- ;;^UTILITY(U,$J,358.3,21636,2)
- ;;=^5038207
- ;;^UTILITY(U,$J,358.3,21637,0)
- ;;=S72.325S^^101^1033^92
- ;;^UTILITY(U,$J,358.3,21637,1,0)
+ ;;^UTILITY(U,$J,358.3,22026,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,22026,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,22026,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,22027,0)
+ ;;=E11.43^^87^973^15
+ ;;^UTILITY(U,$J,358.3,22027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21637,1,3,0)
- ;;=3^Nondisp transverse fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21637,1,4,0)
- ;;=4^S72.325S
- ;;^UTILITY(U,$J,358.3,21637,2)
- ;;=^5038223
- ;;^UTILITY(U,$J,358.3,21638,0)
- ;;=S72.331S^^101^1033^30
- ;;^UTILITY(U,$J,358.3,21638,1,0)
+ ;;^UTILITY(U,$J,358.3,22027,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
+ ;;^UTILITY(U,$J,358.3,22027,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,22027,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,22028,0)
+ ;;=E11.59^^87^973^13
+ ;;^UTILITY(U,$J,358.3,22028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21638,1,3,0)
- ;;=3^Displaced oblique fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21638,1,4,0)
- ;;=4^S72.331S
- ;;^UTILITY(U,$J,358.3,21638,2)
- ;;=^5038255
- ;;^UTILITY(U,$J,358.3,21639,0)
- ;;=S72.332S^^101^1033^29
- ;;^UTILITY(U,$J,358.3,21639,1,0)
+ ;;^UTILITY(U,$J,358.3,22028,1,3,0)
+ ;;=3^DM Type 2 w/ Circulatory Complications NEC
+ ;;^UTILITY(U,$J,358.3,22028,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,22028,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,22029,0)
+ ;;=E11.618^^87^973^14
+ ;;^UTILITY(U,$J,358.3,22029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21639,1,3,0)
- ;;=3^Displaced oblique fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21639,1,4,0)
- ;;=4^S72.332S
- ;;^UTILITY(U,$J,358.3,21639,2)
- ;;=^5038271
- ;;^UTILITY(U,$J,358.3,21640,0)
- ;;=S72.334S^^101^1033^76
- ;;^UTILITY(U,$J,358.3,21640,1,0)
+ ;;^UTILITY(U,$J,358.3,22029,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
+ ;;^UTILITY(U,$J,358.3,22029,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,22029,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,22030,0)
+ ;;=E11.621^^87^973^16
+ ;;^UTILITY(U,$J,358.3,22030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21640,1,3,0)
- ;;=3^Nondisp oblique fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21640,1,4,0)
- ;;=4^S72.334S
- ;;^UTILITY(U,$J,358.3,21640,2)
- ;;=^5038303
- ;;^UTILITY(U,$J,358.3,21641,0)
- ;;=S72.335S^^101^1033^75
- ;;^UTILITY(U,$J,358.3,21641,1,0)
+ ;;^UTILITY(U,$J,358.3,22030,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,22030,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,22030,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,22031,0)
+ ;;=E11.622^^87^973^20
+ ;;^UTILITY(U,$J,358.3,22031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21641,1,3,0)
- ;;=3^Nondisp oblique fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21641,1,4,0)
- ;;=4^S72.335S
- ;;^UTILITY(U,$J,358.3,21641,2)
- ;;=^5038319
- ;;^UTILITY(U,$J,358.3,21642,0)
- ;;=S72.341S^^101^1033^36
- ;;^UTILITY(U,$J,358.3,21642,1,0)
+ ;;^UTILITY(U,$J,358.3,22031,1,3,0)
+ ;;=3^DM Type 2 w/ Skin Ulcer NEC
+ ;;^UTILITY(U,$J,358.3,22031,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,22031,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,22032,0)
+ ;;=E11.65^^87^973^19
+ ;;^UTILITY(U,$J,358.3,22032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21642,1,3,0)
- ;;=3^Displaced spiral fx of shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21642,1,4,0)
- ;;=4^S72.341S
- ;;^UTILITY(U,$J,358.3,21642,2)
- ;;=^5038351
- ;;^UTILITY(U,$J,358.3,21643,0)
- ;;=S72.342S^^101^1033^35
- ;;^UTILITY(U,$J,358.3,21643,1,0)
+ ;;^UTILITY(U,$J,358.3,22032,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,22032,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,22032,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,22033,0)
+ ;;=E11.9^^87^973^21
+ ;;^UTILITY(U,$J,358.3,22033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21643,1,3,0)
- ;;=3^Displaced spiral fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21643,1,4,0)
- ;;=4^S72.342S
- ;;^UTILITY(U,$J,358.3,21643,2)
- ;;=^5038367
- ;;^UTILITY(U,$J,358.3,21644,0)
- ;;=S72.344S^^101^1033^83
- ;;^UTILITY(U,$J,358.3,21644,1,0)
+ ;;^UTILITY(U,$J,358.3,22033,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,22033,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,22033,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,22034,0)
+ ;;=E13.9^^87^973^22
+ ;;^UTILITY(U,$J,358.3,22034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21644,1,3,0)
- ;;=3^Nondisp spiral fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21644,1,4,0)
- ;;=4^S72.344S
- ;;^UTILITY(U,$J,358.3,21644,2)
- ;;=^5038399
- ;;^UTILITY(U,$J,358.3,21645,0)
- ;;=S72.345S^^101^1033^81
- ;;^UTILITY(U,$J,358.3,21645,1,0)
+ ;;^UTILITY(U,$J,358.3,22034,1,3,0)
+ ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
+ ;;^UTILITY(U,$J,358.3,22034,1,4,0)
+ ;;=4^E13.9
+ ;;^UTILITY(U,$J,358.3,22034,2)
+ ;;=^5002704
+ ;;^UTILITY(U,$J,358.3,22035,0)
+ ;;=E16.2^^87^973^29
+ ;;^UTILITY(U,$J,358.3,22035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21645,1,3,0)
- ;;=3^Nondisp spiral fx of shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21645,1,4,0)
- ;;=4^S72.345S
- ;;^UTILITY(U,$J,358.3,21645,2)
- ;;=^5038415
- ;;^UTILITY(U,$J,358.3,21646,0)
- ;;=S72.351S^^101^1033^10
- ;;^UTILITY(U,$J,358.3,21646,1,0)
+ ;;^UTILITY(U,$J,358.3,22035,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,22035,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,22035,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,22036,0)
+ ;;=E20.0^^87^973^34
+ ;;^UTILITY(U,$J,358.3,22036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21646,1,3,0)
- ;;=3^Displaced comminuted fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21646,1,4,0)
- ;;=4^S72.351S
- ;;^UTILITY(U,$J,358.3,21646,2)
- ;;=^5038447
- ;;^UTILITY(U,$J,358.3,21647,0)
- ;;=S72.352S^^101^1033^9
- ;;^UTILITY(U,$J,358.3,21647,1,0)
+ ;;^UTILITY(U,$J,358.3,22036,1,3,0)
+ ;;=3^Idiopathic Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,22036,1,4,0)
+ ;;=4^E20.0
+ ;;^UTILITY(U,$J,358.3,22036,2)
+ ;;=^5002712
+ ;;^UTILITY(U,$J,358.3,22037,0)
+ ;;=E20.9^^87^973^30
+ ;;^UTILITY(U,$J,358.3,22037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21647,1,3,0)
- ;;=3^Displaced comminuted fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21647,1,4,0)
- ;;=4^S72.352S
- ;;^UTILITY(U,$J,358.3,21647,2)
- ;;=^5038463
- ;;^UTILITY(U,$J,358.3,21648,0)
- ;;=S72.354S^^101^1033^56
+ ;;^UTILITY(U,$J,358.3,22037,1,3,0)
+ ;;=3^Hypoparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,22037,1,4,0)
+ ;;=4^E20.9
+ ;;^UTILITY(U,$J,358.3,22037,2)
+ ;;=^5002714
+ ;;^UTILITY(U,$J,358.3,22038,0)
+ ;;=E23.0^^87^973^31
+ ;;^UTILITY(U,$J,358.3,22038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22038,1,3,0)
+ ;;=3^Hypopituitarism

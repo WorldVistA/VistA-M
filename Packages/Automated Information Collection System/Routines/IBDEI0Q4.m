@@ -1,120 +1,130 @@
-IBDEI0Q4 ; ; 19-NOV-2015
+IBDEI0Q4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11962,0)
- ;;=W18.12XA^^68^694^61
- ;;^UTILITY(U,$J,358.3,11962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11962,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,11962,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,11962,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,11963,0)
- ;;=W18.12XD^^68^694^62
- ;;^UTILITY(U,$J,358.3,11963,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11963,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11963,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,11963,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,11964,0)
- ;;=W18.2XXA^^68^694^73
- ;;^UTILITY(U,$J,358.3,11964,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11964,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,11964,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,11964,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,11965,0)
- ;;=W18.2XXD^^68^694^74
- ;;^UTILITY(U,$J,358.3,11965,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11965,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11965,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,11965,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,11966,0)
- ;;=W18.40XA^^68^694^105
- ;;^UTILITY(U,$J,358.3,11966,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11966,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,11966,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,11966,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,11967,0)
- ;;=W18.40XD^^68^694^106
- ;;^UTILITY(U,$J,358.3,11967,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11967,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11967,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,11967,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,11968,0)
- ;;=W18.41XA^^68^694^107
- ;;^UTILITY(U,$J,358.3,11968,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11968,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,11968,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,11968,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,11969,0)
- ;;=W18.41XD^^68^694^108
- ;;^UTILITY(U,$J,358.3,11969,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11969,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11969,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,11969,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,11970,0)
- ;;=W18.42XA^^68^694^109
- ;;^UTILITY(U,$J,358.3,11970,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11970,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,11970,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,11970,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,11971,0)
- ;;=W18.42XD^^68^694^110
- ;;^UTILITY(U,$J,358.3,11971,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11971,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11971,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,11971,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,11972,0)
- ;;=W18.43XA^^68^694^103
- ;;^UTILITY(U,$J,358.3,11972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11972,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,11972,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,11972,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,11973,0)
- ;;=W18.43XD^^68^694^104
- ;;^UTILITY(U,$J,358.3,11973,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11973,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,12228,1,3,0)
+ ;;=3^ERCP w/Papillotomy/Sphincterotomy
+ ;;^UTILITY(U,$J,358.3,12229,0)
+ ;;=43261^^49^550^3^^^^1
+ ;;^UTILITY(U,$J,358.3,12229,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12229,1,2,0)
+ ;;=2^43261
+ ;;^UTILITY(U,$J,358.3,12229,1,3,0)
+ ;;=3^ERCP w/Biopsy,single or multi
+ ;;^UTILITY(U,$J,358.3,12230,0)
+ ;;=43263^^49^550^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12230,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12230,1,2,0)
+ ;;=2^43263
+ ;;^UTILITY(U,$J,358.3,12230,1,3,0)
+ ;;=3^ERCP w/Pressure measure Sphincter
+ ;;^UTILITY(U,$J,358.3,12231,0)
+ ;;=43265^^49^550^7^^^^1
+ ;;^UTILITY(U,$J,358.3,12231,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12231,1,2,0)
+ ;;=2^43265
+ ;;^UTILITY(U,$J,358.3,12231,1,3,0)
+ ;;=3^ERCP w/Retrograde Destruct/lithotripsy
+ ;;^UTILITY(U,$J,358.3,12232,0)
+ ;;=43273^^49^550^12^^^^1
+ ;;^UTILITY(U,$J,358.3,12232,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12232,1,2,0)
+ ;;=2^43273
+ ;;^UTILITY(U,$J,358.3,12232,1,3,0)
+ ;;=3^Endoscopic Cannula of Papilla
+ ;;^UTILITY(U,$J,358.3,12233,0)
+ ;;=43274^^49^550^9^^^^1
+ ;;^UTILITY(U,$J,358.3,12233,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12233,1,2,0)
+ ;;=2^43274
+ ;;^UTILITY(U,$J,358.3,12233,1,3,0)
+ ;;=3^ERCP w/Stent Placement
+ ;;^UTILITY(U,$J,358.3,12234,0)
+ ;;=43276^^49^550^8^^^^1
+ ;;^UTILITY(U,$J,358.3,12234,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12234,1,2,0)
+ ;;=2^43276
+ ;;^UTILITY(U,$J,358.3,12234,1,3,0)
+ ;;=3^ERCP w/Stent Change or Removal
+ ;;^UTILITY(U,$J,358.3,12235,0)
+ ;;=43277^^49^550^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12235,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12235,1,2,0)
+ ;;=2^43277
+ ;;^UTILITY(U,$J,358.3,12235,1,3,0)
+ ;;=3^ERCP w/Balloon Dilation
+ ;;^UTILITY(U,$J,358.3,12236,0)
+ ;;=43278^^49^550^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12236,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12236,1,2,0)
+ ;;=2^43278
+ ;;^UTILITY(U,$J,358.3,12236,1,3,0)
+ ;;=3^ERCP w/Ablation of Tumor/Polyp NEC
+ ;;^UTILITY(U,$J,358.3,12237,0)
+ ;;=43275^^49^550^6^^^^1
+ ;;^UTILITY(U,$J,358.3,12237,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12237,1,2,0)
+ ;;=2^43275
+ ;;^UTILITY(U,$J,358.3,12237,1,3,0)
+ ;;=3^ERCP w/Removal FB(s)/Stent(s) from Ducts
+ ;;^UTILITY(U,$J,358.3,12238,0)
+ ;;=17250^^49^551^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12238,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12238,1,2,0)
+ ;;=2^17250
+ ;;^UTILITY(U,$J,358.3,12238,1,3,0)
+ ;;=3^Chemical Cautery of Granulation Tissue
+ ;;^UTILITY(U,$J,358.3,12239,0)
+ ;;=43246^^49^551^3^^^^1
+ ;;^UTILITY(U,$J,358.3,12239,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12239,1,2,0)
+ ;;=2^43246
+ ;;^UTILITY(U,$J,358.3,12239,1,3,0)
+ ;;=3^EGD for PEG Placement
+ ;;^UTILITY(U,$J,358.3,12240,0)
+ ;;=44373^^49^551^6^^^^1
+ ;;^UTILITY(U,$J,358.3,12240,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12240,1,2,0)
+ ;;=2^44373
+ ;;^UTILITY(U,$J,358.3,12240,1,3,0)
+ ;;=3^GT-JT Conversion
+ ;;^UTILITY(U,$J,358.3,12241,0)
+ ;;=43760^^49^551^4^^^^1
+ ;;^UTILITY(U,$J,358.3,12241,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12241,1,2,0)
+ ;;=2^43760
+ ;;^UTILITY(U,$J,358.3,12241,1,3,0)
+ ;;=3^G-Tube change
+ ;;^UTILITY(U,$J,358.3,12242,0)
+ ;;=43761^^49^551^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12242,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12242,1,2,0)
+ ;;=2^43761
+ ;;^UTILITY(U,$J,358.3,12242,1,3,0)
+ ;;=3^G-Tube reposition
+ ;;^UTILITY(U,$J,358.3,12243,0)
+ ;;=43999^^49^551^9^^^^1
+ ;;^UTILITY(U,$J,358.3,12243,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12243,1,2,0)
+ ;;=2^43999
+ ;;^UTILITY(U,$J,358.3,12243,1,3,0)
+ ;;=3^Unlisted STtomach Procedure
+ ;;^UTILITY(U,$J,358.3,12244,0)
+ ;;=43246^^49^551^8^^^^1
+ ;;^UTILITY(U,$J,358.3,12244,1,0)
+ ;;=^358.31IA^3^2

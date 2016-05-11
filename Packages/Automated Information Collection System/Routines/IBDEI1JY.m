@@ -1,134 +1,124 @@
-IBDEI1JY ; ; 19-NOV-2015
+IBDEI1JY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25949,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,25949,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,25950,0)
- ;;=I83.91^^127^1269^4
- ;;^UTILITY(U,$J,358.3,25950,1,0)
+ ;;^UTILITY(U,$J,358.3,26329,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,26329,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,26330,0)
+ ;;=F18.929^^98^1245^19
+ ;;^UTILITY(U,$J,358.3,26330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25950,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Right Lower Extremity
- ;;^UTILITY(U,$J,358.3,25950,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,25950,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,25951,0)
- ;;=I83.92^^127^1269^3
- ;;^UTILITY(U,$J,358.3,25951,1,0)
+ ;;^UTILITY(U,$J,358.3,26330,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26330,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,26330,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,26331,0)
+ ;;=F18.180^^98^1245^1
+ ;;^UTILITY(U,$J,358.3,26331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25951,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Left Lower Extremity
- ;;^UTILITY(U,$J,358.3,25951,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,25951,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,25952,0)
- ;;=I83.93^^127^1269^2
- ;;^UTILITY(U,$J,358.3,25952,1,0)
+ ;;^UTILITY(U,$J,358.3,26331,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26331,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,26331,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,26332,0)
+ ;;=F18.280^^98^1245^2
+ ;;^UTILITY(U,$J,358.3,26332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25952,1,3,0)
- ;;=3^Asymptomatic Varicose Veins Bilateral Lower Extremities
- ;;^UTILITY(U,$J,358.3,25952,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,25952,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,25953,0)
- ;;=M79.604^^127^1269^18
- ;;^UTILITY(U,$J,358.3,25953,1,0)
+ ;;^UTILITY(U,$J,358.3,26332,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26332,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,26332,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,26333,0)
+ ;;=F18.980^^98^1245^3
+ ;;^UTILITY(U,$J,358.3,26333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25953,1,3,0)
- ;;=3^Right Limb Pain
- ;;^UTILITY(U,$J,358.3,25953,1,4,0)
- ;;=4^M79.604
- ;;^UTILITY(U,$J,358.3,25953,2)
- ;;=^5013328
- ;;^UTILITY(U,$J,358.3,25954,0)
- ;;=M79.605^^127^1269^12
- ;;^UTILITY(U,$J,358.3,25954,1,0)
+ ;;^UTILITY(U,$J,358.3,26333,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26333,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,26333,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,26334,0)
+ ;;=F18.94^^98^1245^4
+ ;;^UTILITY(U,$J,358.3,26334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25954,1,3,0)
- ;;=3^Left Limb Pain
- ;;^UTILITY(U,$J,358.3,25954,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,25954,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,25955,0)
- ;;=Z13.6^^127^1269^19
- ;;^UTILITY(U,$J,358.3,25955,1,0)
+ ;;^UTILITY(U,$J,358.3,26334,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26334,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,26334,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,26335,0)
+ ;;=F18.17^^98^1245^5
+ ;;^UTILITY(U,$J,358.3,26335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25955,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
- ;;^UTILITY(U,$J,358.3,25955,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,25955,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,25956,0)
- ;;=B48.8^^127^1270^62
- ;;^UTILITY(U,$J,358.3,25956,1,0)
+ ;;^UTILITY(U,$J,358.3,26335,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26335,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,26335,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,26336,0)
+ ;;=F18.27^^98^1245^6
+ ;;^UTILITY(U,$J,358.3,26336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25956,1,3,0)
- ;;=3^Mycoses NEC
- ;;^UTILITY(U,$J,358.3,25956,1,4,0)
- ;;=4^B48.8
- ;;^UTILITY(U,$J,358.3,25956,2)
- ;;=^5000689
- ;;^UTILITY(U,$J,358.3,25957,0)
- ;;=C49.9^^127^1270^60
- ;;^UTILITY(U,$J,358.3,25957,1,0)
+ ;;^UTILITY(U,$J,358.3,26336,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26336,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,26336,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,26337,0)
+ ;;=F18.97^^98^1245^7
+ ;;^UTILITY(U,$J,358.3,26337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25957,1,3,0)
- ;;=3^Malig Neop of Connective/Soft Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,25957,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,25957,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,25958,0)
- ;;=C85.80^^127^1270^66
- ;;^UTILITY(U,$J,358.3,25958,1,0)
+ ;;^UTILITY(U,$J,358.3,26337,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26337,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,26337,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,26338,0)
+ ;;=F18.188^^98^1245^8
+ ;;^UTILITY(U,$J,358.3,26338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25958,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma,Unspec Site NEC
- ;;^UTILITY(U,$J,358.3,25958,1,4,0)
- ;;=4^C85.80
- ;;^UTILITY(U,$J,358.3,25958,2)
- ;;=^5001721
- ;;^UTILITY(U,$J,358.3,25959,0)
- ;;=C85.89^^127^1270^65
- ;;^UTILITY(U,$J,358.3,25959,1,0)
+ ;;^UTILITY(U,$J,358.3,26338,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26338,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,26338,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,26339,0)
+ ;;=F18.288^^98^1245^9
+ ;;^UTILITY(U,$J,358.3,26339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25959,1,3,0)
- ;;=3^Non-Hodgkin Lymphoma of Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,25959,1,4,0)
- ;;=4^C85.89
- ;;^UTILITY(U,$J,358.3,25959,2)
- ;;=^5001730
- ;;^UTILITY(U,$J,358.3,25960,0)
- ;;=E11.9^^127^1270^22
- ;;^UTILITY(U,$J,358.3,25960,1,0)
+ ;;^UTILITY(U,$J,358.3,26339,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26339,1,4,0)
+ ;;=4^F18.288
+ ;;^UTILITY(U,$J,358.3,26339,2)
+ ;;=^5003403
+ ;;^UTILITY(U,$J,358.3,26340,0)
+ ;;=F18.988^^98^1245^10
+ ;;^UTILITY(U,$J,358.3,26340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25960,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,25960,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,25960,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,25961,0)
- ;;=E10.9^^127^1270^21
- ;;^UTILITY(U,$J,358.3,25961,1,0)
+ ;;^UTILITY(U,$J,358.3,26340,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26340,1,4,0)
+ ;;=4^F18.988
+ ;;^UTILITY(U,$J,358.3,26340,2)
+ ;;=^5003415
+ ;;^UTILITY(U,$J,358.3,26341,0)
+ ;;=F18.159^^98^1245^11
+ ;;^UTILITY(U,$J,358.3,26341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25961,1,3,0)
- ;;=3^Diabetes Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,25961,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,25961,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,25962,0)
- ;;=D50.0^^127^1270^57
- ;;^UTILITY(U,$J,358.3,25962,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25962,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,26341,1,3,0)
+ ;;=3^Inhalant Induced Psychotic Disorder w/ Mild Use Disorder

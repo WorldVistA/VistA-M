@@ -1,126 +1,124 @@
-IBDEI24G ; ; 19-NOV-2015
+IBDEI24G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35625,1,3,0)
- ;;=3^Syphilis complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35625,1,4,0)
- ;;=4^O98.113
- ;;^UTILITY(U,$J,358.3,35625,2)
- ;;=^5017865
- ;;^UTILITY(U,$J,358.3,35626,0)
- ;;=O98.13^^166^1824^83
- ;;^UTILITY(U,$J,358.3,35626,1,0)
+ ;;^UTILITY(U,$J,358.3,35984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35626,1,3,0)
- ;;=3^Syphilis complicating the puerperium
- ;;^UTILITY(U,$J,358.3,35626,1,4,0)
- ;;=4^O98.13
- ;;^UTILITY(U,$J,358.3,35626,2)
- ;;=^5017868
- ;;^UTILITY(U,$J,358.3,35627,0)
- ;;=O98.211^^166^1824^29
- ;;^UTILITY(U,$J,358.3,35627,1,0)
+ ;;^UTILITY(U,$J,358.3,35984,1,3,0)
+ ;;=3^Hereditary/Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35984,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,35984,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,35985,0)
+ ;;=G62.9^^134^1739^19
+ ;;^UTILITY(U,$J,358.3,35985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35627,1,3,0)
- ;;=3^Gonorrhea complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35627,1,4,0)
- ;;=4^O98.211
- ;;^UTILITY(U,$J,358.3,35627,2)
- ;;=^5017869
- ;;^UTILITY(U,$J,358.3,35628,0)
- ;;=O98.212^^166^1824^30
- ;;^UTILITY(U,$J,358.3,35628,1,0)
+ ;;^UTILITY(U,$J,358.3,35985,1,3,0)
+ ;;=3^Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,35985,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,35985,2)
+ ;;=^5004079
+ ;;^UTILITY(U,$J,358.3,35986,0)
+ ;;=I63.9^^134^1739^13
+ ;;^UTILITY(U,$J,358.3,35986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35628,1,3,0)
- ;;=3^Gonorrhea complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35628,1,4,0)
- ;;=4^O98.212
- ;;^UTILITY(U,$J,358.3,35628,2)
- ;;=^5017870
- ;;^UTILITY(U,$J,358.3,35629,0)
- ;;=O98.213^^166^1824^31
- ;;^UTILITY(U,$J,358.3,35629,1,0)
+ ;;^UTILITY(U,$J,358.3,35986,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec
+ ;;^UTILITY(U,$J,358.3,35986,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,35986,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,35987,0)
+ ;;=I63.50^^134^1739^7
+ ;;^UTILITY(U,$J,358.3,35987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35629,1,3,0)
- ;;=3^Gonorrhea complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35629,1,4,0)
- ;;=4^O98.213
- ;;^UTILITY(U,$J,358.3,35629,2)
- ;;=^5017871
- ;;^UTILITY(U,$J,358.3,35630,0)
- ;;=O98.23^^166^1824^32
- ;;^UTILITY(U,$J,358.3,35630,1,0)
+ ;;^UTILITY(U,$J,358.3,35987,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,35987,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,35987,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,35988,0)
+ ;;=I63.549^^134^1739^8
+ ;;^UTILITY(U,$J,358.3,35988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35630,1,3,0)
- ;;=3^Gonorrhea complicating the puerperium
- ;;^UTILITY(U,$J,358.3,35630,1,4,0)
- ;;=4^O98.23
- ;;^UTILITY(U,$J,358.3,35630,2)
- ;;=^5017874
- ;;^UTILITY(U,$J,358.3,35631,0)
- ;;=O98.011^^166^1824^84
- ;;^UTILITY(U,$J,358.3,35631,1,0)
+ ;;^UTILITY(U,$J,358.3,35988,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebellar Artery
+ ;;^UTILITY(U,$J,358.3,35988,1,4,0)
+ ;;=4^I63.549
+ ;;^UTILITY(U,$J,358.3,35988,2)
+ ;;=^5133571
+ ;;^UTILITY(U,$J,358.3,35989,0)
+ ;;=I63.8^^134^1739^2
+ ;;^UTILITY(U,$J,358.3,35989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35631,1,3,0)
- ;;=3^Tuberculosis complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35631,1,4,0)
- ;;=4^O98.011
- ;;^UTILITY(U,$J,358.3,35631,2)
- ;;=^5017857
- ;;^UTILITY(U,$J,358.3,35632,0)
- ;;=O98.012^^166^1824^85
- ;;^UTILITY(U,$J,358.3,35632,1,0)
+ ;;^UTILITY(U,$J,358.3,35989,1,3,0)
+ ;;=3^Cerebral Infarction NEC
+ ;;^UTILITY(U,$J,358.3,35989,1,4,0)
+ ;;=4^I63.8
+ ;;^UTILITY(U,$J,358.3,35989,2)
+ ;;=^5007354
+ ;;^UTILITY(U,$J,358.3,35990,0)
+ ;;=I63.512^^134^1739^5
+ ;;^UTILITY(U,$J,358.3,35990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35632,1,3,0)
- ;;=3^Tuberculosis complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35632,1,4,0)
- ;;=4^O98.012
- ;;^UTILITY(U,$J,358.3,35632,2)
- ;;=^5017858
- ;;^UTILITY(U,$J,358.3,35633,0)
- ;;=O98.013^^166^1824^86
- ;;^UTILITY(U,$J,358.3,35633,1,0)
+ ;;^UTILITY(U,$J,358.3,35990,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35990,1,4,0)
+ ;;=4^I63.512
+ ;;^UTILITY(U,$J,358.3,35990,2)
+ ;;=^5007345
+ ;;^UTILITY(U,$J,358.3,35991,0)
+ ;;=I63.522^^134^1739^3
+ ;;^UTILITY(U,$J,358.3,35991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35633,1,3,0)
- ;;=3^Tuberculosis complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35633,1,4,0)
- ;;=4^O98.013
- ;;^UTILITY(U,$J,358.3,35633,2)
- ;;=^5017859
- ;;^UTILITY(U,$J,358.3,35634,0)
- ;;=O98.03^^166^1824^87
- ;;^UTILITY(U,$J,358.3,35634,1,0)
+ ;;^UTILITY(U,$J,358.3,35991,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35991,1,4,0)
+ ;;=4^I63.522
+ ;;^UTILITY(U,$J,358.3,35991,2)
+ ;;=^5007347
+ ;;^UTILITY(U,$J,358.3,35992,0)
+ ;;=I63.532^^134^1739^6
+ ;;^UTILITY(U,$J,358.3,35992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35634,1,3,0)
- ;;=3^Tuberculosis complicating the puerperium
- ;;^UTILITY(U,$J,358.3,35634,1,4,0)
- ;;=4^O98.03
- ;;^UTILITY(U,$J,358.3,35634,2)
- ;;=^5017862
- ;;^UTILITY(U,$J,358.3,35635,0)
- ;;=O98.611^^166^1824^75
- ;;^UTILITY(U,$J,358.3,35635,1,0)
+ ;;^UTILITY(U,$J,358.3,35992,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Posterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35992,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,35992,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,35993,0)
+ ;;=I63.542^^134^1739^4
+ ;;^UTILITY(U,$J,358.3,35993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35635,1,3,0)
- ;;=3^Protozoal diseases complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35635,1,4,0)
- ;;=4^O98.611
- ;;^UTILITY(U,$J,358.3,35635,2)
- ;;=^5017893
- ;;^UTILITY(U,$J,358.3,35636,0)
- ;;=O98.612^^166^1824^76
- ;;^UTILITY(U,$J,358.3,35636,1,0)
+ ;;^UTILITY(U,$J,358.3,35993,1,3,0)
+ ;;=3^Cerebral Infarction d/t Left Cerebellar Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35993,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,35993,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,35994,0)
+ ;;=I63.511^^134^1739^11
+ ;;^UTILITY(U,$J,358.3,35994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35636,1,3,0)
- ;;=3^Protozoal diseases complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35636,1,4,0)
- ;;=4^O98.612
- ;;^UTILITY(U,$J,358.3,35636,2)
- ;;=^5017894
- ;;^UTILITY(U,$J,358.3,35637,0)
- ;;=O98.613^^166^1824^77
- ;;^UTILITY(U,$J,358.3,35637,1,0)
+ ;;^UTILITY(U,$J,358.3,35994,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Middle Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35994,1,4,0)
+ ;;=4^I63.511
+ ;;^UTILITY(U,$J,358.3,35994,2)
+ ;;=^5007344
+ ;;^UTILITY(U,$J,358.3,35995,0)
+ ;;=I63.521^^134^1739^9
+ ;;^UTILITY(U,$J,358.3,35995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35637,1,3,0)
- ;;=3^Protozoal diseases complicating pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,35995,1,3,0)
+ ;;=3^Cerebral Infarction d/t Right Anterior Cerebral Artery Occls/Stenosis
+ ;;^UTILITY(U,$J,358.3,35995,1,4,0)
+ ;;=4^I63.521
+ ;;^UTILITY(U,$J,358.3,35995,2)
+ ;;=^5007346
+ ;;^UTILITY(U,$J,358.3,35996,0)
+ ;;=I63.531^^134^1739^12

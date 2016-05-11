@@ -1,142 +1,140 @@
-IBDEI034 ; ; 19-NOV-2015
+IBDEI034 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,712,1,0)
+ ;;^UTILITY(U,$J,358.3,1007,1,3,0)
+ ;;=3^Ocular Pain,Bilateral
+ ;;^UTILITY(U,$J,358.3,1007,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,1007,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,1008,0)
+ ;;=H57.11^^6^108^15
+ ;;^UTILITY(U,$J,358.3,1008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,712,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,712,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,712,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,713,0)
- ;;=T78.3XXA^^9^88^43
- ;;^UTILITY(U,$J,358.3,713,1,0)
+ ;;^UTILITY(U,$J,358.3,1008,1,3,0)
+ ;;=3^Ocular Pain,Right Eye
+ ;;^UTILITY(U,$J,358.3,1008,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,1008,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,1009,0)
+ ;;=H57.12^^6^108^14
+ ;;^UTILITY(U,$J,358.3,1009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,713,1,3,0)
- ;;=3^Angioneurotic Edema,Initial
- ;;^UTILITY(U,$J,358.3,713,1,4,0)
- ;;=4^T78.3XXA
- ;;^UTILITY(U,$J,358.3,713,2)
- ;;=^5054281
- ;;^UTILITY(U,$J,358.3,714,0)
- ;;=T78.3XXS^^9^88^44
- ;;^UTILITY(U,$J,358.3,714,1,0)
+ ;;^UTILITY(U,$J,358.3,1009,1,3,0)
+ ;;=3^Ocular Pain,Left Eye
+ ;;^UTILITY(U,$J,358.3,1009,1,4,0)
+ ;;=4^H57.12
+ ;;^UTILITY(U,$J,358.3,1009,2)
+ ;;=^5006383
+ ;;^UTILITY(U,$J,358.3,1010,0)
+ ;;=H92.01^^6^108^21
+ ;;^UTILITY(U,$J,358.3,1010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,714,1,3,0)
- ;;=3^Angioneurotic Edema,Sequela
- ;;^UTILITY(U,$J,358.3,714,1,4,0)
- ;;=4^T78.3XXS
- ;;^UTILITY(U,$J,358.3,714,2)
- ;;=^5054283
- ;;^UTILITY(U,$J,358.3,715,0)
- ;;=T78.3XXD^^9^88^45
- ;;^UTILITY(U,$J,358.3,715,1,0)
+ ;;^UTILITY(U,$J,358.3,1010,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,1010,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,1010,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,1011,0)
+ ;;=H92.02^^6^108^20
+ ;;^UTILITY(U,$J,358.3,1011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,715,1,3,0)
- ;;=3^Angioneurotic Edema,Subsequent
- ;;^UTILITY(U,$J,358.3,715,1,4,0)
- ;;=4^T78.3XXD
- ;;^UTILITY(U,$J,358.3,715,2)
- ;;=^5054282
- ;;^UTILITY(U,$J,358.3,716,0)
- ;;=J45.901^^9^88^47
- ;;^UTILITY(U,$J,358.3,716,1,0)
+ ;;^UTILITY(U,$J,358.3,1011,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,1011,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,1011,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,1012,0)
+ ;;=H92.03^^6^108^19
+ ;;^UTILITY(U,$J,358.3,1012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,716,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,716,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,716,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,717,0)
- ;;=J45.902^^9^88^48
- ;;^UTILITY(U,$J,358.3,717,1,0)
+ ;;^UTILITY(U,$J,358.3,1012,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,1012,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,1012,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,1013,0)
+ ;;=J00.^^6^108^1
+ ;;^UTILITY(U,$J,358.3,1013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,717,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,717,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,717,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,718,0)
- ;;=J45.909^^9^88^46
- ;;^UTILITY(U,$J,358.3,718,1,0)
+ ;;^UTILITY(U,$J,358.3,1013,1,3,0)
+ ;;=3^Nasopharyngitis,Acute
+ ;;^UTILITY(U,$J,358.3,1013,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,1013,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,1014,0)
+ ;;=F17.200^^6^108^4
+ ;;^UTILITY(U,$J,358.3,1014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,718,1,3,0)
- ;;=3^Asthma Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,718,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,718,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,719,0)
- ;;=L20.89^^9^88^49
- ;;^UTILITY(U,$J,358.3,719,1,0)
+ ;;^UTILITY(U,$J,358.3,1014,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec
+ ;;^UTILITY(U,$J,358.3,1014,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,1014,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,1015,0)
+ ;;=L97.919^^6^108^7
+ ;;^UTILITY(U,$J,358.3,1015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,719,1,3,0)
- ;;=3^Atopic Dermatitis,Other
- ;;^UTILITY(U,$J,358.3,719,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,719,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,720,0)
- ;;=L20.81^^9^88^50
- ;;^UTILITY(U,$J,358.3,720,1,0)
+ ;;^UTILITY(U,$J,358.3,1015,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Part Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,1015,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,1015,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,1016,0)
+ ;;=L97.929^^6^108^6
+ ;;^UTILITY(U,$J,358.3,1016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,720,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,720,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,720,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,721,0)
- ;;=R44.0^^9^88^51
- ;;^UTILITY(U,$J,358.3,721,1,0)
+ ;;^UTILITY(U,$J,358.3,1016,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer Unspec Part Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,1016,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,1016,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,1017,0)
+ ;;=L98.499^^6^108^5
+ ;;^UTILITY(U,$J,358.3,1017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,721,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,721,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,721,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,722,0)
- ;;=H01.005^^9^88^54
- ;;^UTILITY(U,$J,358.3,722,1,0)
+ ;;^UTILITY(U,$J,358.3,1017,1,3,0)
+ ;;=3^Non-Pressure Chr Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,1017,1,4,0)
+ ;;=4^L98.499
+ ;;^UTILITY(U,$J,358.3,1017,2)
+ ;;=^5009591
+ ;;^UTILITY(U,$J,358.3,1018,0)
+ ;;=M15.8^^6^109^33
+ ;;^UTILITY(U,$J,358.3,1018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,722,1,3,0)
- ;;=3^Blepharitis Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,722,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,722,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,723,0)
- ;;=H01.004^^9^88^55
- ;;^UTILITY(U,$J,358.3,723,1,0)
+ ;;^UTILITY(U,$J,358.3,1018,1,3,0)
+ ;;=3^Polyosteoarthritis,Other
+ ;;^UTILITY(U,$J,358.3,1018,1,4,0)
+ ;;=4^M15.8
+ ;;^UTILITY(U,$J,358.3,1018,2)
+ ;;=^5010767
+ ;;^UTILITY(U,$J,358.3,1019,0)
+ ;;=F07.0^^6^109^22
+ ;;^UTILITY(U,$J,358.3,1019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,723,1,3,0)
- ;;=3^Blepharitis Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,723,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,723,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,724,0)
- ;;=H01.002^^9^88^56
- ;;^UTILITY(U,$J,358.3,724,1,0)
+ ;;^UTILITY(U,$J,358.3,1019,1,3,0)
+ ;;=3^Personality Change d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,1019,1,4,0)
+ ;;=4^F07.0
+ ;;^UTILITY(U,$J,358.3,1019,2)
+ ;;=^5003063
+ ;;^UTILITY(U,$J,358.3,1020,0)
+ ;;=G62.9^^6^109^32
+ ;;^UTILITY(U,$J,358.3,1020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,724,1,3,0)
- ;;=3^Blepharitis Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,724,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,724,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,725,0)
- ;;=H01.001^^9^88^57
- ;;^UTILITY(U,$J,358.3,725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,725,1,3,0)
- ;;=3^Blepharitis Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,725,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,725,2)
- ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,1020,1,3,0)
+ ;;=3^Polyneuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,1020,1,4,0)
+ ;;=4^G62.9
+ ;;^UTILITY(U,$J,358.3,1020,2)
+ ;;=^5004079

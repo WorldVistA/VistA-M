@@ -1,138 +1,130 @@
-IBDEI25S ; ; 19-NOV-2015
+IBDEI25S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36200,1,3,0)
- ;;=3^Acute salpingitis
- ;;^UTILITY(U,$J,358.3,36200,1,4,0)
- ;;=4^N70.01
- ;;^UTILITY(U,$J,358.3,36200,2)
- ;;=^5015802
- ;;^UTILITY(U,$J,358.3,36201,0)
- ;;=N70.02^^166^1835^11
- ;;^UTILITY(U,$J,358.3,36201,1,0)
+ ;;^UTILITY(U,$J,358.3,36623,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,36624,0)
+ ;;=M32.13^^137^1768^19
+ ;;^UTILITY(U,$J,358.3,36624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36201,1,3,0)
- ;;=3^Acute oophoritis
- ;;^UTILITY(U,$J,358.3,36201,1,4,0)
- ;;=4^N70.02
- ;;^UTILITY(U,$J,358.3,36201,2)
- ;;=^5015803
- ;;^UTILITY(U,$J,358.3,36202,0)
- ;;=N70.03^^166^1835^13
- ;;^UTILITY(U,$J,358.3,36202,1,0)
+ ;;^UTILITY(U,$J,358.3,36624,1,3,0)
+ ;;=3^Lung Involvement in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,36624,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,36624,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,36625,0)
+ ;;=J84.2^^137^1768^20
+ ;;^UTILITY(U,$J,358.3,36625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36202,1,3,0)
- ;;=3^Acute salpingitis and oophoritis
- ;;^UTILITY(U,$J,358.3,36202,1,4,0)
- ;;=4^N70.03
- ;;^UTILITY(U,$J,358.3,36202,2)
- ;;=^270465
- ;;^UTILITY(U,$J,358.3,36203,0)
- ;;=N70.11^^166^1835^30
- ;;^UTILITY(U,$J,358.3,36203,1,0)
+ ;;^UTILITY(U,$J,358.3,36625,1,3,0)
+ ;;=3^Lymphoid Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,36625,1,4,0)
+ ;;=4^J84.2
+ ;;^UTILITY(U,$J,358.3,36625,2)
+ ;;=^5008302
+ ;;^UTILITY(U,$J,358.3,36626,0)
+ ;;=D86.82^^137^1768^21
+ ;;^UTILITY(U,$J,358.3,36626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36203,1,3,0)
- ;;=3^Chronic salpingitis
- ;;^UTILITY(U,$J,358.3,36203,1,4,0)
- ;;=4^N70.11
- ;;^UTILITY(U,$J,358.3,36203,2)
- ;;=^5015804
- ;;^UTILITY(U,$J,358.3,36204,0)
- ;;=N70.12^^166^1835^29
- ;;^UTILITY(U,$J,358.3,36204,1,0)
+ ;;^UTILITY(U,$J,358.3,36626,1,3,0)
+ ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,36626,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,36626,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,36627,0)
+ ;;=M32.8^^137^1768^60
+ ;;^UTILITY(U,$J,358.3,36627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36204,1,3,0)
- ;;=3^Chronic oophoritis
- ;;^UTILITY(U,$J,358.3,36204,1,4,0)
- ;;=4^N70.12
- ;;^UTILITY(U,$J,358.3,36204,2)
- ;;=^5015805
- ;;^UTILITY(U,$J,358.3,36205,0)
- ;;=N70.13^^166^1835^31
- ;;^UTILITY(U,$J,358.3,36205,1,0)
+ ;;^UTILITY(U,$J,358.3,36627,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus NEC
+ ;;^UTILITY(U,$J,358.3,36627,1,4,0)
+ ;;=4^M32.8
+ ;;^UTILITY(U,$J,358.3,36627,2)
+ ;;=^5011760
+ ;;^UTILITY(U,$J,358.3,36628,0)
+ ;;=J84.17^^137^1768^18
+ ;;^UTILITY(U,$J,358.3,36628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36205,1,3,0)
- ;;=3^Chronic salpingitis and oophoritis
- ;;^UTILITY(U,$J,358.3,36205,1,4,0)
- ;;=4^N70.13
- ;;^UTILITY(U,$J,358.3,36205,2)
- ;;=^270466
- ;;^UTILITY(U,$J,358.3,36206,0)
- ;;=N73.9^^166^1835^53
- ;;^UTILITY(U,$J,358.3,36206,1,0)
+ ;;^UTILITY(U,$J,358.3,36628,1,3,0)
+ ;;=3^Interstitial Pulmonary Diseases w/ Fibrosis
+ ;;^UTILITY(U,$J,358.3,36628,1,4,0)
+ ;;=4^J84.17
+ ;;^UTILITY(U,$J,358.3,36628,2)
+ ;;=^5008301
+ ;;^UTILITY(U,$J,358.3,36629,0)
+ ;;=J68.8^^137^1768^25
+ ;;^UTILITY(U,$J,358.3,36629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36206,1,3,0)
- ;;=3^Female pelvic inflammatory disease, unspecified
- ;;^UTILITY(U,$J,358.3,36206,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,36206,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,36207,0)
- ;;=N72.^^166^1835^59
- ;;^UTILITY(U,$J,358.3,36207,1,0)
+ ;;^UTILITY(U,$J,358.3,36629,1,3,0)
+ ;;=3^Respiratory Condition d/t Chemicals/Gases/Fumes/Vapors
+ ;;^UTILITY(U,$J,358.3,36629,1,4,0)
+ ;;=4^J68.8
+ ;;^UTILITY(U,$J,358.3,36629,2)
+ ;;=^5008286
+ ;;^UTILITY(U,$J,358.3,36630,0)
+ ;;=J69.0^^137^1768^22
+ ;;^UTILITY(U,$J,358.3,36630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36207,1,3,0)
- ;;=3^Inflammatory disease of cervix uteri
- ;;^UTILITY(U,$J,358.3,36207,1,4,0)
- ;;=4^N72.
- ;;^UTILITY(U,$J,358.3,36207,2)
- ;;=^5015812
- ;;^UTILITY(U,$J,358.3,36208,0)
- ;;=N76.0^^166^1835^14
- ;;^UTILITY(U,$J,358.3,36208,1,0)
+ ;;^UTILITY(U,$J,358.3,36630,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Food/Vomit
+ ;;^UTILITY(U,$J,358.3,36630,1,4,0)
+ ;;=4^J69.0
+ ;;^UTILITY(U,$J,358.3,36630,2)
+ ;;=^5008288
+ ;;^UTILITY(U,$J,358.3,36631,0)
+ ;;=J69.1^^137^1768^23
+ ;;^UTILITY(U,$J,358.3,36631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36208,1,3,0)
- ;;=3^Acute vaginitis
- ;;^UTILITY(U,$J,358.3,36208,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,36208,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,36209,0)
- ;;=N76.1^^166^1835^95
- ;;^UTILITY(U,$J,358.3,36209,1,0)
+ ;;^UTILITY(U,$J,358.3,36631,1,3,0)
+ ;;=3^Pneumonitis d/t Inhalation of Oils/Essences
+ ;;^UTILITY(U,$J,358.3,36631,1,4,0)
+ ;;=4^J69.1
+ ;;^UTILITY(U,$J,358.3,36631,2)
+ ;;=^95664
+ ;;^UTILITY(U,$J,358.3,36632,0)
+ ;;=J84.115^^137^1768^24
+ ;;^UTILITY(U,$J,358.3,36632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36209,1,3,0)
- ;;=3^Subacute and chronic vaginitis
- ;;^UTILITY(U,$J,358.3,36209,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,36209,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,36210,0)
- ;;=N75.0^^166^1835^34
- ;;^UTILITY(U,$J,358.3,36210,1,0)
+ ;;^UTILITY(U,$J,358.3,36632,1,3,0)
+ ;;=3^Respiratory Bronchiolitis Interstitial Lung Disease
+ ;;^UTILITY(U,$J,358.3,36632,1,4,0)
+ ;;=4^J84.115
+ ;;^UTILITY(U,$J,358.3,36632,2)
+ ;;=^340537
+ ;;^UTILITY(U,$J,358.3,36633,0)
+ ;;=M05.172^^137^1768^26
+ ;;^UTILITY(U,$J,358.3,36633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36210,1,3,0)
- ;;=3^Cyst of Bartholin's gland
- ;;^UTILITY(U,$J,358.3,36210,1,4,0)
- ;;=4^N75.0
- ;;^UTILITY(U,$J,358.3,36210,2)
- ;;=^5015822
- ;;^UTILITY(U,$J,358.3,36211,0)
- ;;=N75.1^^166^1835^5
- ;;^UTILITY(U,$J,358.3,36211,1,0)
+ ;;^UTILITY(U,$J,358.3,36633,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36633,1,4,0)
+ ;;=4^M05.172
+ ;;^UTILITY(U,$J,358.3,36633,2)
+ ;;=^5009882
+ ;;^UTILITY(U,$J,358.3,36634,0)
+ ;;=M05.122^^137^1768^27
+ ;;^UTILITY(U,$J,358.3,36634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36211,1,3,0)
- ;;=3^Abscess of Bartholin's gland
- ;;^UTILITY(U,$J,358.3,36211,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,36211,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,36212,0)
- ;;=N76.4^^166^1835^6
- ;;^UTILITY(U,$J,358.3,36212,1,0)
+ ;;^UTILITY(U,$J,358.3,36634,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Elbow
+ ;;^UTILITY(U,$J,358.3,36634,1,4,0)
+ ;;=4^M05.122
+ ;;^UTILITY(U,$J,358.3,36634,2)
+ ;;=^5009867
+ ;;^UTILITY(U,$J,358.3,36635,0)
+ ;;=M05.142^^137^1768^28
+ ;;^UTILITY(U,$J,358.3,36635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36212,1,3,0)
- ;;=3^Abscess of vulva
- ;;^UTILITY(U,$J,358.3,36212,1,4,0)
- ;;=4^N76.4
- ;;^UTILITY(U,$J,358.3,36212,2)
- ;;=^5015830
- ;;^UTILITY(U,$J,358.3,36213,0)
- ;;=N80.0^^166^1835^46
- ;;^UTILITY(U,$J,358.3,36213,1,0)
+ ;;^UTILITY(U,$J,358.3,36635,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hand
+ ;;^UTILITY(U,$J,358.3,36635,1,4,0)
+ ;;=4^M05.142
+ ;;^UTILITY(U,$J,358.3,36635,2)
+ ;;=^5009873
+ ;;^UTILITY(U,$J,358.3,36636,0)
+ ;;=M05.152^^137^1768^29
+ ;;^UTILITY(U,$J,358.3,36636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36213,1,3,0)
- ;;=3^Endometriosis of uterus
- ;;^UTILITY(U,$J,358.3,36213,1,4,0)
- ;;=4^N80.0

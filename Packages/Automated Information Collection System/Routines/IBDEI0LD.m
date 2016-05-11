@@ -1,132 +1,130 @@
-IBDEI0LD ; ; 19-NOV-2015
+IBDEI0LD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9704,0)
- ;;=12013^^66^634^3^^^^1
- ;;^UTILITY(U,$J,358.3,9704,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9704,1,2,0)
- ;;=2^12013
- ;;^UTILITY(U,$J,358.3,9704,1,3,0)
- ;;=3^Simple repair; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,9705,0)
- ;;=12014^^66^634^5^^^^1
- ;;^UTILITY(U,$J,358.3,9705,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9705,1,2,0)
- ;;=2^12014
- ;;^UTILITY(U,$J,358.3,9705,1,3,0)
- ;;=3^Simple repair; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,9706,0)
- ;;=12015^^66^634^6^^^^1
- ;;^UTILITY(U,$J,358.3,9706,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9706,1,2,0)
- ;;=2^12015
- ;;^UTILITY(U,$J,358.3,9706,1,3,0)
- ;;=3^Simple repair; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,9707,0)
- ;;=12016^^66^634^1^^^^1
- ;;^UTILITY(U,$J,358.3,9707,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9707,1,2,0)
- ;;=2^12016
- ;;^UTILITY(U,$J,358.3,9707,1,3,0)
- ;;=3^Simple repair; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,9708,0)
- ;;=12017^^66^634^4^^^^1
- ;;^UTILITY(U,$J,358.3,9708,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9708,1,2,0)
- ;;=2^12017
- ;;^UTILITY(U,$J,358.3,9708,1,3,0)
- ;;=3^Simple repair; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,9709,0)
- ;;=12018^^66^634^7^^^^1
- ;;^UTILITY(U,$J,358.3,9709,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9709,1,2,0)
- ;;=2^12018
- ;;^UTILITY(U,$J,358.3,9709,1,3,0)
- ;;=3^Simple repair; over 30 cm
- ;;^UTILITY(U,$J,358.3,9710,0)
- ;;=12020^^66^634^8^^^^1
- ;;^UTILITY(U,$J,358.3,9710,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9710,1,2,0)
- ;;=2^12020
- ;;^UTILITY(U,$J,358.3,9710,1,3,0)
- ;;=3^TRXMT SUPERFICIAL WOUND DEHISCENCE;SIMPLE
- ;;^UTILITY(U,$J,358.3,9711,0)
- ;;=12021^^66^634^9^^^^1
- ;;^UTILITY(U,$J,358.3,9711,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9711,1,2,0)
- ;;=2^12021
- ;;^UTILITY(U,$J,358.3,9711,1,3,0)
- ;;=3^Trxmt Superficial Wound Dehiscence;Pcking
- ;;^UTILITY(U,$J,358.3,9712,0)
- ;;=99144^^66^635^1^^^^1
- ;;^UTILITY(U,$J,358.3,9712,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9712,1,2,0)
- ;;=2^99144
- ;;^UTILITY(U,$J,358.3,9712,1,3,0)
- ;;=3^MOD SEDATION,1ST 30MIN
- ;;^UTILITY(U,$J,358.3,9713,0)
- ;;=99145^^66^635^2^^^^1
- ;;^UTILITY(U,$J,358.3,9713,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9713,1,2,0)
- ;;=2^99145
- ;;^UTILITY(U,$J,358.3,9713,1,3,0)
- ;;=3^MOD SEDATION,EA ADDL 15MIN
- ;;^UTILITY(U,$J,358.3,9714,0)
- ;;=11000^^66^636^5^^^^1
- ;;^UTILITY(U,$J,358.3,9714,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9714,1,2,0)
- ;;=2^11000
- ;;^UTILITY(U,$J,358.3,9714,1,3,0)
- ;;=3^DEBRIDE SKIN UP TO 10%
- ;;^UTILITY(U,$J,358.3,9715,0)
- ;;=11042^^66^636^4^^^^1
- ;;^UTILITY(U,$J,358.3,9715,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9715,1,2,0)
- ;;=2^11042
- ;;^UTILITY(U,$J,358.3,9715,1,3,0)
- ;;=3^DEB SUBQ TISSUE 20 SQ CM/<
- ;;^UTILITY(U,$J,358.3,9716,0)
- ;;=11055^^66^636^18^^^^1
- ;;^UTILITY(U,$J,358.3,9716,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9716,1,2,0)
- ;;=2^11055
- ;;^UTILITY(U,$J,358.3,9716,1,3,0)
- ;;=3^TRIM CORN/CALLOUS,SINGLE
- ;;^UTILITY(U,$J,358.3,9717,0)
- ;;=11056^^66^636^16^^^^1
- ;;^UTILITY(U,$J,358.3,9717,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9717,1,2,0)
- ;;=2^11056
- ;;^UTILITY(U,$J,358.3,9717,1,3,0)
- ;;=3^TRIM CORN/CALLOUS,2-4 LESIONS
- ;;^UTILITY(U,$J,358.3,9718,0)
- ;;=11057^^66^636^17^^^^1
- ;;^UTILITY(U,$J,358.3,9718,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9718,1,2,0)
- ;;=2^11057
- ;;^UTILITY(U,$J,358.3,9718,1,3,0)
- ;;=3^TRIM CORN/CALLOUS,5 OR MORE
- ;;^UTILITY(U,$J,358.3,9719,0)
- ;;=11200^^66^636^12^^^^1
- ;;^UTILITY(U,$J,358.3,9719,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9719,1,2,0)
- ;;=2^11200
- ;;^UTILITY(U,$J,358.3,9719,1,3,0)
- ;;=3^REMOVAL OF SKIN TAGS UP TO 15
+ ;;^UTILITY(U,$J,358.3,9968,1,4,0)
+ ;;=4^H40.1422
+ ;;^UTILITY(U,$J,358.3,9968,2)
+ ;;=^5138024
+ ;;^UTILITY(U,$J,358.3,9969,0)
+ ;;=H40.1423^^44^496^6
+ ;;^UTILITY(U,$J,358.3,9969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9969,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9969,1,4,0)
+ ;;=4^H40.1423
+ ;;^UTILITY(U,$J,358.3,9969,2)
+ ;;=^5138025
+ ;;^UTILITY(U,$J,358.3,9970,0)
+ ;;=H40.1424^^44^496^7
+ ;;^UTILITY(U,$J,358.3,9970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9970,1,3,0)
+ ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9970,1,4,0)
+ ;;=4^H40.1424
+ ;;^UTILITY(U,$J,358.3,9970,2)
+ ;;=^5138026
+ ;;^UTILITY(U,$J,358.3,9971,0)
+ ;;=H40.31X0^^44^496^138
+ ;;^UTILITY(U,$J,358.3,9971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9971,1,3,0)
+ ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9971,1,4,0)
+ ;;=4^H40.31X0
+ ;;^UTILITY(U,$J,358.3,9971,2)
+ ;;=^5005852
+ ;;^UTILITY(U,$J,358.3,9972,0)
+ ;;=H40.31X1^^44^496^135
+ ;;^UTILITY(U,$J,358.3,9972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9972,1,3,0)
+ ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9972,1,4,0)
+ ;;=4^H40.31X1
+ ;;^UTILITY(U,$J,358.3,9972,2)
+ ;;=^5005853
+ ;;^UTILITY(U,$J,358.3,9973,0)
+ ;;=H40.31X2^^44^496^136
+ ;;^UTILITY(U,$J,358.3,9973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9973,1,3,0)
+ ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9973,1,4,0)
+ ;;=4^H40.31X2
+ ;;^UTILITY(U,$J,358.3,9973,2)
+ ;;=^5005854
+ ;;^UTILITY(U,$J,358.3,9974,0)
+ ;;=H40.31X3^^44^496^137
+ ;;^UTILITY(U,$J,358.3,9974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9974,1,3,0)
+ ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9974,1,4,0)
+ ;;=4^H40.31X3
+ ;;^UTILITY(U,$J,358.3,9974,2)
+ ;;=^5133503
+ ;;^UTILITY(U,$J,358.3,9975,0)
+ ;;=H40.31X4^^44^496^134
+ ;;^UTILITY(U,$J,358.3,9975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9975,1,3,0)
+ ;;=3^Traumatic Glaucoma,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9975,1,4,0)
+ ;;=4^H40.31X4
+ ;;^UTILITY(U,$J,358.3,9975,2)
+ ;;=^5005855
+ ;;^UTILITY(U,$J,358.3,9976,0)
+ ;;=H40.32X0^^44^496^133
+ ;;^UTILITY(U,$J,358.3,9976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9976,1,3,0)
+ ;;=3^Traumatic Glaucoma,Left Eye,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9976,1,4,0)
+ ;;=4^H40.32X0
+ ;;^UTILITY(U,$J,358.3,9976,2)
+ ;;=^5005856
+ ;;^UTILITY(U,$J,358.3,9977,0)
+ ;;=H40.32X1^^44^496^130
+ ;;^UTILITY(U,$J,358.3,9977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9977,1,3,0)
+ ;;=3^Traumatic Glaucoma,Left Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9977,1,4,0)
+ ;;=4^H40.32X1
+ ;;^UTILITY(U,$J,358.3,9977,2)
+ ;;=^5005857
+ ;;^UTILITY(U,$J,358.3,9978,0)
+ ;;=H40.32X2^^44^496^131
+ ;;^UTILITY(U,$J,358.3,9978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9978,1,3,0)
+ ;;=3^Traumatic Glaucoma,Left Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9978,1,4,0)
+ ;;=4^H40.32X2
+ ;;^UTILITY(U,$J,358.3,9978,2)
+ ;;=^5005858
+ ;;^UTILITY(U,$J,358.3,9979,0)
+ ;;=H40.32X3^^44^496^132
+ ;;^UTILITY(U,$J,358.3,9979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9979,1,3,0)
+ ;;=3^Traumatic Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9979,1,4,0)
+ ;;=4^H40.32X3
+ ;;^UTILITY(U,$J,358.3,9979,2)
+ ;;=^5133504
+ ;;^UTILITY(U,$J,358.3,9980,0)
+ ;;=H40.32X4^^44^496^129
+ ;;^UTILITY(U,$J,358.3,9980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9980,1,3,0)
+ ;;=3^Traumatic Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9980,1,4,0)
+ ;;=4^H40.32X4
+ ;;^UTILITY(U,$J,358.3,9980,2)
+ ;;=^5005859
+ ;;^UTILITY(U,$J,358.3,9981,0)
+ ;;=H40.33X0^^44^496^128

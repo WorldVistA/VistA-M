@@ -1,138 +1,134 @@
-IBDEI0K7 ; ; 19-NOV-2015
+IBDEI0K7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9115,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,9115,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,9116,0)
- ;;=I73.9^^55^560^5
- ;;^UTILITY(U,$J,358.3,9116,1,0)
+ ;;^UTILITY(U,$J,358.3,9392,0)
+ ;;=H33.002^^41^478^73
+ ;;^UTILITY(U,$J,358.3,9392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9116,1,3,0)
- ;;=3^Peripheral vascular disease, unspecified
- ;;^UTILITY(U,$J,358.3,9116,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,9116,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,9117,0)
- ;;=I80.9^^55^560^6
- ;;^UTILITY(U,$J,358.3,9117,1,0)
+ ;;^UTILITY(U,$J,358.3,9392,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
+ ;;^UTILITY(U,$J,358.3,9392,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,9392,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,9393,0)
+ ;;=H33.011^^41^478^76
+ ;;^UTILITY(U,$J,358.3,9393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9117,1,3,0)
- ;;=3^Phlebitis and thrombophlebitis of unspecified site
- ;;^UTILITY(U,$J,358.3,9117,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,9117,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,9118,0)
- ;;=I83.91^^55^560^3
- ;;^UTILITY(U,$J,358.3,9118,1,0)
+ ;;^UTILITY(U,$J,358.3,9393,1,3,0)
+ ;;=3^Retinal Detachment w/ Single Break,Right Eye
+ ;;^UTILITY(U,$J,358.3,9393,1,4,0)
+ ;;=4^H33.011
+ ;;^UTILITY(U,$J,358.3,9393,2)
+ ;;=^5005493
+ ;;^UTILITY(U,$J,358.3,9394,0)
+ ;;=H33.012^^41^478^75
+ ;;^UTILITY(U,$J,358.3,9394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9118,1,3,0)
- ;;=3^Asymptomatic varicose veins of right lower extremity
- ;;^UTILITY(U,$J,358.3,9118,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,9118,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,9119,0)
- ;;=I83.92^^55^560^2
- ;;^UTILITY(U,$J,358.3,9119,1,0)
+ ;;^UTILITY(U,$J,358.3,9394,1,3,0)
+ ;;=3^Retinal Detachment w/ Single Break,Left Eye
+ ;;^UTILITY(U,$J,358.3,9394,1,4,0)
+ ;;=4^H33.012
+ ;;^UTILITY(U,$J,358.3,9394,2)
+ ;;=^5005494
+ ;;^UTILITY(U,$J,358.3,9395,0)
+ ;;=H33.051^^41^478^102
+ ;;^UTILITY(U,$J,358.3,9395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9119,1,3,0)
- ;;=3^Asymptomatic varicose veins of left lower extremity
- ;;^UTILITY(U,$J,358.3,9119,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,9119,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,9120,0)
- ;;=I99.8^^55^560^4
- ;;^UTILITY(U,$J,358.3,9120,1,0)
+ ;;^UTILITY(U,$J,358.3,9395,1,3,0)
+ ;;=3^Total Retinal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,9395,1,4,0)
+ ;;=4^H33.051
+ ;;^UTILITY(U,$J,358.3,9395,2)
+ ;;=^5005509
+ ;;^UTILITY(U,$J,358.3,9396,0)
+ ;;=H33.052^^41^478^101
+ ;;^UTILITY(U,$J,358.3,9396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9120,1,3,0)
- ;;=3^Circulatory System Disorder NEC
- ;;^UTILITY(U,$J,358.3,9120,1,4,0)
- ;;=4^I99.8
- ;;^UTILITY(U,$J,358.3,9120,2)
- ;;=^5008113
- ;;^UTILITY(U,$J,358.3,9121,0)
- ;;=99201^^56^561^1
- ;;^UTILITY(U,$J,358.3,9121,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9121,1,1,0)
- ;;=1^Problem Focused
- ;;^UTILITY(U,$J,358.3,9121,1,2,0)
- ;;=2^99201
- ;;^UTILITY(U,$J,358.3,9122,0)
- ;;=99202^^56^561^2
- ;;^UTILITY(U,$J,358.3,9122,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9122,1,1,0)
- ;;=1^Expanded Problem Focused
- ;;^UTILITY(U,$J,358.3,9122,1,2,0)
- ;;=2^99202
- ;;^UTILITY(U,$J,358.3,9123,0)
- ;;=99203^^56^561^3
- ;;^UTILITY(U,$J,358.3,9123,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9123,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,9123,1,2,0)
- ;;=2^99203
- ;;^UTILITY(U,$J,358.3,9124,0)
- ;;=99204^^56^561^4
- ;;^UTILITY(U,$J,358.3,9124,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9124,1,1,0)
- ;;=1^Comprehensive-Moderate
- ;;^UTILITY(U,$J,358.3,9124,1,2,0)
- ;;=2^99204
- ;;^UTILITY(U,$J,358.3,9125,0)
- ;;=99205^^56^561^5
- ;;^UTILITY(U,$J,358.3,9125,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9125,1,1,0)
- ;;=1^Comprehensive-High Complex
- ;;^UTILITY(U,$J,358.3,9125,1,2,0)
- ;;=2^99205
- ;;^UTILITY(U,$J,358.3,9126,0)
- ;;=99211^^56^562^1
- ;;^UTILITY(U,$J,358.3,9126,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9126,1,1,0)
- ;;=1^RN/LPN Visit
- ;;^UTILITY(U,$J,358.3,9126,1,2,0)
- ;;=2^99211
- ;;^UTILITY(U,$J,358.3,9127,0)
- ;;=99212^^56^562^2
- ;;^UTILITY(U,$J,358.3,9127,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9127,1,1,0)
- ;;=1^Problem Focused 
- ;;^UTILITY(U,$J,358.3,9127,1,2,0)
- ;;=2^99212
- ;;^UTILITY(U,$J,358.3,9128,0)
- ;;=99213^^56^562^3
- ;;^UTILITY(U,$J,358.3,9128,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9128,1,1,0)
- ;;=1^Expanded Problem Focused 
- ;;^UTILITY(U,$J,358.3,9128,1,2,0)
- ;;=2^99213
- ;;^UTILITY(U,$J,358.3,9129,0)
- ;;=99214^^56^562^4
- ;;^UTILITY(U,$J,358.3,9129,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9129,1,1,0)
- ;;=1^Detailed
- ;;^UTILITY(U,$J,358.3,9129,1,2,0)
- ;;=2^99214
- ;;^UTILITY(U,$J,358.3,9130,0)
- ;;=99215^^56^562^5
- ;;^UTILITY(U,$J,358.3,9130,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,9130,1,1,0)
- ;;=1^Comprehensive 
- ;;^UTILITY(U,$J,358.3,9130,1,2,0)
- ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,9396,1,3,0)
+ ;;=3^Total Retinal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,9396,1,4,0)
+ ;;=4^H33.052
+ ;;^UTILITY(U,$J,358.3,9396,2)
+ ;;=^5005510
+ ;;^UTILITY(U,$J,358.3,9397,0)
+ ;;=H33.8^^41^478^77
+ ;;^UTILITY(U,$J,358.3,9397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9397,1,3,0)
+ ;;=3^Retinal Detachments NEC
+ ;;^UTILITY(U,$J,358.3,9397,1,4,0)
+ ;;=4^H33.8
+ ;;^UTILITY(U,$J,358.3,9397,2)
+ ;;=^5005551
+ ;;^UTILITY(U,$J,358.3,9398,0)
+ ;;=H33.101^^41^478^93
+ ;;^UTILITY(U,$J,358.3,9398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9398,1,3,0)
+ ;;=3^Retinoschisis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9398,1,4,0)
+ ;;=4^H33.101
+ ;;^UTILITY(U,$J,358.3,9398,2)
+ ;;=^5005513
+ ;;^UTILITY(U,$J,358.3,9399,0)
+ ;;=H33.102^^41^478^92
+ ;;^UTILITY(U,$J,358.3,9399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9399,1,3,0)
+ ;;=3^Retinoschisis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9399,1,4,0)
+ ;;=4^H33.102
+ ;;^UTILITY(U,$J,358.3,9399,2)
+ ;;=^5005514
+ ;;^UTILITY(U,$J,358.3,9400,0)
+ ;;=H33.321^^41^478^95
+ ;;^UTILITY(U,$J,358.3,9400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9400,1,3,0)
+ ;;=3^Round Hole,Right Eye
+ ;;^UTILITY(U,$J,358.3,9400,1,4,0)
+ ;;=4^H33.321
+ ;;^UTILITY(U,$J,358.3,9400,2)
+ ;;=^5005539
+ ;;^UTILITY(U,$J,358.3,9401,0)
+ ;;=H33.322^^41^478^94
+ ;;^UTILITY(U,$J,358.3,9401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9401,1,3,0)
+ ;;=3^Round Hole,Left Eye
+ ;;^UTILITY(U,$J,358.3,9401,1,4,0)
+ ;;=4^H33.322
+ ;;^UTILITY(U,$J,358.3,9401,2)
+ ;;=^5005540
+ ;;^UTILITY(U,$J,358.3,9402,0)
+ ;;=H33.311^^41^478^45
+ ;;^UTILITY(U,$J,358.3,9402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9402,1,3,0)
+ ;;=3^Horseshoe Tear of Retina w/o Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,9402,1,4,0)
+ ;;=4^H33.311
+ ;;^UTILITY(U,$J,358.3,9402,2)
+ ;;=^5005535
+ ;;^UTILITY(U,$J,358.3,9403,0)
+ ;;=H33.312^^41^478^46
+ ;;^UTILITY(U,$J,358.3,9403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9403,1,3,0)
+ ;;=3^Horseshoe Tear of Retina w/o Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,9403,1,4,0)
+ ;;=4^H33.312
+ ;;^UTILITY(U,$J,358.3,9403,2)
+ ;;=^5005536
+ ;;^UTILITY(U,$J,358.3,9404,0)
+ ;;=H35.033^^41^478^47
+ ;;^UTILITY(U,$J,358.3,9404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9404,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,9404,1,4,0)
+ ;;=4^H35.033
+ ;;^UTILITY(U,$J,358.3,9404,2)
+ ;;=^5005592

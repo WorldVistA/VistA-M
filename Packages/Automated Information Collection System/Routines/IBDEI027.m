@@ -1,144 +1,128 @@
-IBDEI027 ; ; 19-NOV-2015
+IBDEI027 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,256,1,4,0)
- ;;=4^F64.1
- ;;^UTILITY(U,$J,358.3,256,2)
- ;;=^5003647
- ;;^UTILITY(U,$J,358.3,257,0)
- ;;=F64.8^^3^32^1
- ;;^UTILITY(U,$J,358.3,257,1,0)
+ ;;^UTILITY(U,$J,358.3,537,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,537,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,537,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,538,0)
+ ;;=F11.221^^3^53^14
+ ;;^UTILITY(U,$J,358.3,538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,257,1,3,0)
- ;;=3^Gender Dysphoria NEC
- ;;^UTILITY(U,$J,358.3,257,1,4,0)
- ;;=4^F64.8
- ;;^UTILITY(U,$J,358.3,257,2)
- ;;=^5003649
- ;;^UTILITY(U,$J,358.3,258,0)
- ;;=F64.9^^3^32^3
- ;;^UTILITY(U,$J,358.3,258,1,0)
+ ;;^UTILITY(U,$J,358.3,538,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,538,1,4,0)
+ ;;=4^F11.221
+ ;;^UTILITY(U,$J,358.3,538,2)
+ ;;=^5003130
+ ;;^UTILITY(U,$J,358.3,539,0)
+ ;;=F11.921^^3^53^15
+ ;;^UTILITY(U,$J,358.3,539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,258,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,258,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,258,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,259,0)
- ;;=Z59.2^^3^33^1
- ;;^UTILITY(U,$J,358.3,259,1,0)
+ ;;^UTILITY(U,$J,358.3,539,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,539,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,539,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,540,0)
+ ;;=F11.229^^3^53^20
+ ;;^UTILITY(U,$J,358.3,540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,259,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,259,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,259,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,260,0)
- ;;=Z59.0^^3^33^3
- ;;^UTILITY(U,$J,358.3,260,1,0)
+ ;;^UTILITY(U,$J,358.3,540,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,540,1,4,0)
+ ;;=4^F11.229
+ ;;^UTILITY(U,$J,358.3,540,2)
+ ;;=^5003132
+ ;;^UTILITY(U,$J,358.3,541,0)
+ ;;=F11.929^^3^53^21
+ ;;^UTILITY(U,$J,358.3,541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,260,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,260,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,260,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,261,0)
- ;;=Z59.1^^3^33^5
- ;;^UTILITY(U,$J,358.3,261,1,0)
+ ;;^UTILITY(U,$J,358.3,541,1,3,0)
+ ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,541,1,4,0)
+ ;;=4^F11.929
+ ;;^UTILITY(U,$J,358.3,541,2)
+ ;;=^5003146
+ ;;^UTILITY(U,$J,358.3,542,0)
+ ;;=F11.122^^3^53^16
+ ;;^UTILITY(U,$J,358.3,542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,261,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,261,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,261,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,262,0)
- ;;=Z59.3^^3^33^9
- ;;^UTILITY(U,$J,358.3,262,1,0)
+ ;;^UTILITY(U,$J,358.3,542,1,3,0)
+ ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,542,1,4,0)
+ ;;=4^F11.122
+ ;;^UTILITY(U,$J,358.3,542,2)
+ ;;=^5003117
+ ;;^UTILITY(U,$J,358.3,543,0)
+ ;;=F11.222^^3^53^17
+ ;;^UTILITY(U,$J,358.3,543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,262,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,262,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,262,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,263,0)
- ;;=Z59.4^^3^33^7
- ;;^UTILITY(U,$J,358.3,263,1,0)
+ ;;^UTILITY(U,$J,358.3,543,1,3,0)
+ ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,543,1,4,0)
+ ;;=4^F11.222
+ ;;^UTILITY(U,$J,358.3,543,2)
+ ;;=^5003131
+ ;;^UTILITY(U,$J,358.3,544,0)
+ ;;=F11.922^^3^53^18
+ ;;^UTILITY(U,$J,358.3,544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,263,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,263,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,263,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,264,0)
- ;;=Z59.5^^3^33^2
- ;;^UTILITY(U,$J,358.3,264,1,0)
+ ;;^UTILITY(U,$J,358.3,544,1,3,0)
+ ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,544,1,4,0)
+ ;;=4^F11.922
+ ;;^UTILITY(U,$J,358.3,544,2)
+ ;;=^5003145
+ ;;^UTILITY(U,$J,358.3,545,0)
+ ;;=F11.99^^3^53^22
+ ;;^UTILITY(U,$J,358.3,545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,264,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,264,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,264,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,265,0)
- ;;=Z59.6^^3^33^8
- ;;^UTILITY(U,$J,358.3,265,1,0)
+ ;;^UTILITY(U,$J,358.3,545,1,3,0)
+ ;;=3^Opioid Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,545,1,4,0)
+ ;;=4^F11.99
+ ;;^UTILITY(U,$J,358.3,545,2)
+ ;;=^5133352
+ ;;^UTILITY(U,$J,358.3,546,0)
+ ;;=F19.10^^3^54^3
+ ;;^UTILITY(U,$J,358.3,546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,265,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,265,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,265,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,266,0)
- ;;=Z59.7^^3^33^6
- ;;^UTILITY(U,$J,358.3,266,1,0)
+ ;;^UTILITY(U,$J,358.3,546,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,546,1,4,0)
+ ;;=4^F19.10
+ ;;^UTILITY(U,$J,358.3,546,2)
+ ;;=^5003416
+ ;;^UTILITY(U,$J,358.3,547,0)
+ ;;=F19.14^^3^54^1
+ ;;^UTILITY(U,$J,358.3,547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,266,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,266,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,266,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,267,0)
- ;;=Z59.9^^3^33^4
- ;;^UTILITY(U,$J,358.3,267,1,0)
+ ;;^UTILITY(U,$J,358.3,547,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,547,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,547,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,548,0)
+ ;;=F19.182^^3^54^2
+ ;;^UTILITY(U,$J,358.3,548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,267,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,267,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,267,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,268,0)
- ;;=G21.19^^3^34^3
- ;;^UTILITY(U,$J,358.3,268,1,0)
+ ;;^UTILITY(U,$J,358.3,548,1,3,0)
+ ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,548,1,4,0)
+ ;;=4^F19.182
+ ;;^UTILITY(U,$J,358.3,548,2)
+ ;;=^5003429
+ ;;^UTILITY(U,$J,358.3,549,0)
+ ;;=F19.20^^3^54^6
+ ;;^UTILITY(U,$J,358.3,549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,268,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,268,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,268,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,269,0)
- ;;=G21.11^^3^34^5
- ;;^UTILITY(U,$J,358.3,269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,269,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,269,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,269,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,270,0)
- ;;=G24.02^^3^34^1
- ;;^UTILITY(U,$J,358.3,270,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,270,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,549,1,3,0)
+ ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,549,1,4,0)
+ ;;=4^F19.20

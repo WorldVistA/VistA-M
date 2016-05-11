@@ -1,134 +1,136 @@
-IBDEI0NN ; ; 19-NOV-2015
+IBDEI0NN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10808,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,10808,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,10809,0)
- ;;=C34.90^^68^675^114
- ;;^UTILITY(U,$J,358.3,10809,1,0)
+ ;;^UTILITY(U,$J,358.3,11039,0)
+ ;;=I83.899^^47^524^79
+ ;;^UTILITY(U,$J,358.3,11039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10809,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,10809,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,10809,2)
- ;;=^5000966
- ;;^UTILITY(U,$J,358.3,10810,0)
- ;;=C65.9^^68^675^148
- ;;^UTILITY(U,$J,358.3,10810,1,0)
+ ;;^UTILITY(U,$J,358.3,11039,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem w/ Other Complications
+ ;;^UTILITY(U,$J,358.3,11039,1,4,0)
+ ;;=4^I83.899
+ ;;^UTILITY(U,$J,358.3,11039,2)
+ ;;=^5008018
+ ;;^UTILITY(U,$J,358.3,11040,0)
+ ;;=I83.90^^47^524^80
+ ;;^UTILITY(U,$J,358.3,11040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10810,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,10810,1,4,0)
- ;;=4^C65.9
- ;;^UTILITY(U,$J,358.3,10810,2)
- ;;=^5001253
- ;;^UTILITY(U,$J,358.3,10811,0)
- ;;=C50.912^^68^675^129
- ;;^UTILITY(U,$J,358.3,10811,1,0)
+ ;;^UTILITY(U,$J,358.3,11040,1,3,0)
+ ;;=3^Varicose Veins Lower Extrem,Asymptomatic
+ ;;^UTILITY(U,$J,358.3,11040,1,4,0)
+ ;;=4^I83.90
+ ;;^UTILITY(U,$J,358.3,11040,2)
+ ;;=^5008019
+ ;;^UTILITY(U,$J,358.3,11041,0)
+ ;;=I87.2^^47^524^82
+ ;;^UTILITY(U,$J,358.3,11041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10811,1,3,0)
- ;;=3^Malig Neop Left Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,10811,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,10811,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,10812,0)
- ;;=C50.911^^68^675^151
- ;;^UTILITY(U,$J,358.3,10812,1,0)
+ ;;^UTILITY(U,$J,358.3,11041,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,11041,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,11041,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,11042,0)
+ ;;=H61.23^^47^525^1
+ ;;^UTILITY(U,$J,358.3,11042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10812,1,3,0)
- ;;=3^Malig Neop Right Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,10812,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,10812,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,10813,0)
- ;;=C50.919^^68^675^121
- ;;^UTILITY(U,$J,358.3,10813,1,0)
+ ;;^UTILITY(U,$J,358.3,11042,1,3,0)
+ ;;=3^Cerumen Impaction,Bilateral
+ ;;^UTILITY(U,$J,358.3,11042,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,11042,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,11043,0)
+ ;;=H61.22^^47^525^2
+ ;;^UTILITY(U,$J,358.3,11043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10813,1,3,0)
- ;;=3^Malig Neop Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,10813,1,4,0)
- ;;=4^C50.919
- ;;^UTILITY(U,$J,358.3,10813,2)
- ;;=^5001197
- ;;^UTILITY(U,$J,358.3,10814,0)
- ;;=C62.90^^68^675^159
- ;;^UTILITY(U,$J,358.3,10814,1,0)
+ ;;^UTILITY(U,$J,358.3,11043,1,3,0)
+ ;;=3^Cerumen Impaction,Left Ear
+ ;;^UTILITY(U,$J,358.3,11043,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,11043,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,11044,0)
+ ;;=H61.21^^47^525^3
+ ;;^UTILITY(U,$J,358.3,11044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10814,1,3,0)
- ;;=3^Malig Neop Testis,Unspec
- ;;^UTILITY(U,$J,358.3,10814,1,4,0)
- ;;=4^C62.90
- ;;^UTILITY(U,$J,358.3,10814,2)
- ;;=^5001236
- ;;^UTILITY(U,$J,358.3,10815,0)
- ;;=D03.9^^68^675^161
- ;;^UTILITY(U,$J,358.3,10815,1,0)
+ ;;^UTILITY(U,$J,358.3,11044,1,3,0)
+ ;;=3^Cerumen Impaction,Right Ear
+ ;;^UTILITY(U,$J,358.3,11044,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,11044,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,11045,0)
+ ;;=Z97.4^^47^525^10
+ ;;^UTILITY(U,$J,358.3,11045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10815,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,10815,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,10815,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,10816,0)
- ;;=C45.0^^68^675^162
- ;;^UTILITY(U,$J,358.3,10816,1,0)
+ ;;^UTILITY(U,$J,358.3,11045,1,3,0)
+ ;;=3^Hearing-aid,External
+ ;;^UTILITY(U,$J,358.3,11045,1,4,0)
+ ;;=4^Z97.4
+ ;;^UTILITY(U,$J,358.3,11045,2)
+ ;;=^5063730
+ ;;^UTILITY(U,$J,358.3,11046,0)
+ ;;=H90.2^^47^525^5
+ ;;^UTILITY(U,$J,358.3,11046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10816,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,10816,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,10816,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,10817,0)
- ;;=C90.01^^68^675^164
- ;;^UTILITY(U,$J,358.3,10817,1,0)
+ ;;^UTILITY(U,$J,358.3,11046,1,3,0)
+ ;;=3^Hearing Loss,Conductive,Unspec
+ ;;^UTILITY(U,$J,358.3,11046,1,4,0)
+ ;;=4^H90.2
+ ;;^UTILITY(U,$J,358.3,11046,2)
+ ;;=^5006920
+ ;;^UTILITY(U,$J,358.3,11047,0)
+ ;;=H90.8^^47^525^7
+ ;;^UTILITY(U,$J,358.3,11047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10817,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,10817,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,10817,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,10818,0)
- ;;=C90.00^^68^675^165
- ;;^UTILITY(U,$J,358.3,10818,1,0)
+ ;;^UTILITY(U,$J,358.3,11047,1,3,0)
+ ;;=3^Hearing Loss,Mixed Conductive & Sensorineural,Unspec
+ ;;^UTILITY(U,$J,358.3,11047,1,4,0)
+ ;;=4^H90.8
+ ;;^UTILITY(U,$J,358.3,11047,2)
+ ;;=^5006927
+ ;;^UTILITY(U,$J,358.3,11048,0)
+ ;;=H90.5^^47^525^9
+ ;;^UTILITY(U,$J,358.3,11048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10818,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,10818,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,10818,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,10819,0)
- ;;=C94.6^^68^675^166
- ;;^UTILITY(U,$J,358.3,10819,1,0)
+ ;;^UTILITY(U,$J,358.3,11048,1,3,0)
+ ;;=3^Hearing Loss,Sensorineural,Unspec
+ ;;^UTILITY(U,$J,358.3,11048,1,4,0)
+ ;;=4^H90.5
+ ;;^UTILITY(U,$J,358.3,11048,2)
+ ;;=^5006923
+ ;;^UTILITY(U,$J,358.3,11049,0)
+ ;;=H91.93^^47^525^4
+ ;;^UTILITY(U,$J,358.3,11049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10819,1,3,0)
- ;;=3^Myelodysplastic Disease NEC
- ;;^UTILITY(U,$J,358.3,10819,1,4,0)
- ;;=4^C94.6
- ;;^UTILITY(U,$J,358.3,10819,2)
- ;;=^5001846
- ;;^UTILITY(U,$J,358.3,10820,0)
- ;;=D61.82^^68^675^167
- ;;^UTILITY(U,$J,358.3,10820,1,0)
+ ;;^UTILITY(U,$J,358.3,11049,1,3,0)
+ ;;=3^Hearing Loss,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,11049,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,11049,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,11050,0)
+ ;;=H91.92^^47^525^6
+ ;;^UTILITY(U,$J,358.3,11050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10820,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,10820,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,10820,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,10821,0)
- ;;=D47.9^^68^675^168
- ;;^UTILITY(U,$J,358.3,10821,1,0)
+ ;;^UTILITY(U,$J,358.3,11050,1,3,0)
+ ;;=3^Hearing Loss,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11050,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,11050,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,11051,0)
+ ;;=H91.91^^47^525^8
+ ;;^UTILITY(U,$J,358.3,11051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10821,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,11051,1,3,0)
+ ;;=3^Hearing Loss,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,11051,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,11051,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,11052,0)
+ ;;=H60.93^^47^525^11

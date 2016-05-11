@@ -1,136 +1,132 @@
-IBDEI0I1 ; ; 19-NOV-2015
+IBDEI0I1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8085,0)
- ;;=J35.01^^55^534^50
- ;;^UTILITY(U,$J,358.3,8085,1,0)
+ ;;^UTILITY(U,$J,358.3,8347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8085,1,3,0)
- ;;=3^Chronic tonsillitis
- ;;^UTILITY(U,$J,358.3,8085,1,4,0)
- ;;=4^J35.01
- ;;^UTILITY(U,$J,358.3,8085,2)
- ;;=^259089
- ;;^UTILITY(U,$J,358.3,8086,0)
- ;;=J35.3^^55^534^82
- ;;^UTILITY(U,$J,358.3,8086,1,0)
+ ;;^UTILITY(U,$J,358.3,8347,1,3,0)
+ ;;=3^Graves Disease
+ ;;^UTILITY(U,$J,358.3,8347,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,8347,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,8348,0)
+ ;;=D44.0^^35^442^79
+ ;;^UTILITY(U,$J,358.3,8348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8086,1,3,0)
- ;;=3^Hypertrophy of tonsils with hypertrophy of adenoids
- ;;^UTILITY(U,$J,358.3,8086,1,4,0)
- ;;=4^J35.3
- ;;^UTILITY(U,$J,358.3,8086,2)
- ;;=^5008216
- ;;^UTILITY(U,$J,358.3,8087,0)
- ;;=J35.1^^55^534^81
- ;;^UTILITY(U,$J,358.3,8087,1,0)
+ ;;^UTILITY(U,$J,358.3,8348,1,3,0)
+ ;;=3^Neoplasm of Thyroid Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8348,1,4,0)
+ ;;=4^D44.0
+ ;;^UTILITY(U,$J,358.3,8348,2)
+ ;;=^5002235
+ ;;^UTILITY(U,$J,358.3,8349,0)
+ ;;=D44.11^^35^442^78
+ ;;^UTILITY(U,$J,358.3,8349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8087,1,3,0)
- ;;=3^Hypertrophy of tonsils
- ;;^UTILITY(U,$J,358.3,8087,1,4,0)
- ;;=4^J35.1
- ;;^UTILITY(U,$J,358.3,8087,2)
- ;;=^5008214
- ;;^UTILITY(U,$J,358.3,8088,0)
- ;;=J35.2^^55^534^80
- ;;^UTILITY(U,$J,358.3,8088,1,0)
+ ;;^UTILITY(U,$J,358.3,8349,1,3,0)
+ ;;=3^Neoplasm of Right Adrenal Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8349,1,4,0)
+ ;;=4^D44.11
+ ;;^UTILITY(U,$J,358.3,8349,2)
+ ;;=^5002237
+ ;;^UTILITY(U,$J,358.3,8350,0)
+ ;;=D44.12^^35^442^74
+ ;;^UTILITY(U,$J,358.3,8350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8088,1,3,0)
- ;;=3^Hypertrophy of adenoids
- ;;^UTILITY(U,$J,358.3,8088,1,4,0)
- ;;=4^J35.2
- ;;^UTILITY(U,$J,358.3,8088,2)
- ;;=^5008215
- ;;^UTILITY(U,$J,358.3,8089,0)
- ;;=J35.9^^55^534^40
- ;;^UTILITY(U,$J,358.3,8089,1,0)
+ ;;^UTILITY(U,$J,358.3,8350,1,3,0)
+ ;;=3^Neoplasm of Left Adrenal Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8350,1,4,0)
+ ;;=4^D44.12
+ ;;^UTILITY(U,$J,358.3,8350,2)
+ ;;=^5002238
+ ;;^UTILITY(U,$J,358.3,8351,0)
+ ;;=D44.2^^35^442^75
+ ;;^UTILITY(U,$J,358.3,8351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8089,1,3,0)
- ;;=3^Chronic disease of tonsils and adenoids, unspecified
- ;;^UTILITY(U,$J,358.3,8089,1,4,0)
- ;;=4^J35.9
- ;;^UTILITY(U,$J,358.3,8089,2)
- ;;=^5008218
- ;;^UTILITY(U,$J,358.3,8090,0)
- ;;=J36.^^55^534^110
- ;;^UTILITY(U,$J,358.3,8090,1,0)
+ ;;^UTILITY(U,$J,358.3,8351,1,3,0)
+ ;;=3^Neoplasm of Parathyroid Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8351,1,4,0)
+ ;;=4^D44.2
+ ;;^UTILITY(U,$J,358.3,8351,2)
+ ;;=^5002239
+ ;;^UTILITY(U,$J,358.3,8352,0)
+ ;;=D44.3^^35^442^77
+ ;;^UTILITY(U,$J,358.3,8352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8090,1,3,0)
- ;;=3^Peritonsillar abscess
- ;;^UTILITY(U,$J,358.3,8090,1,4,0)
- ;;=4^J36.
- ;;^UTILITY(U,$J,358.3,8090,2)
- ;;=^92333
- ;;^UTILITY(U,$J,358.3,8091,0)
- ;;=J37.0^^55^534^43
- ;;^UTILITY(U,$J,358.3,8091,1,0)
+ ;;^UTILITY(U,$J,358.3,8352,1,3,0)
+ ;;=3^Neoplasm of Pituitary Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8352,1,4,0)
+ ;;=4^D44.3
+ ;;^UTILITY(U,$J,358.3,8352,2)
+ ;;=^5002240
+ ;;^UTILITY(U,$J,358.3,8353,0)
+ ;;=D44.4^^35^442^73
+ ;;^UTILITY(U,$J,358.3,8353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8091,1,3,0)
- ;;=3^Chronic laryngitis
- ;;^UTILITY(U,$J,358.3,8091,1,4,0)
- ;;=4^J37.0
- ;;^UTILITY(U,$J,358.3,8091,2)
- ;;=^269902
- ;;^UTILITY(U,$J,358.3,8092,0)
- ;;=J30.81^^55^534^20
- ;;^UTILITY(U,$J,358.3,8092,1,0)
+ ;;^UTILITY(U,$J,358.3,8353,1,3,0)
+ ;;=3^Neoplasm of Craniopharyngeal Duct,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8353,1,4,0)
+ ;;=4^D44.4
+ ;;^UTILITY(U,$J,358.3,8353,2)
+ ;;=^5002241
+ ;;^UTILITY(U,$J,358.3,8354,0)
+ ;;=D44.5^^35^442^76
+ ;;^UTILITY(U,$J,358.3,8354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8092,1,3,0)
- ;;=3^Allergic rhinitis due to animal (cat) (dog) hair and dander
- ;;^UTILITY(U,$J,358.3,8092,1,4,0)
- ;;=4^J30.81
- ;;^UTILITY(U,$J,358.3,8092,2)
- ;;=^5008203
- ;;^UTILITY(U,$J,358.3,8093,0)
- ;;=J30.9^^55^534^21
- ;;^UTILITY(U,$J,358.3,8093,1,0)
+ ;;^UTILITY(U,$J,358.3,8354,1,3,0)
+ ;;=3^Neoplasm of Pineal Gland,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8354,1,4,0)
+ ;;=4^D44.5
+ ;;^UTILITY(U,$J,358.3,8354,2)
+ ;;=^81967
+ ;;^UTILITY(U,$J,358.3,8355,0)
+ ;;=D44.6^^35^442^72
+ ;;^UTILITY(U,$J,358.3,8355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8093,1,3,0)
- ;;=3^Allergic rhinitis, unspecified
- ;;^UTILITY(U,$J,358.3,8093,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,8093,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,8094,0)
- ;;=J34.81^^55^534^95
- ;;^UTILITY(U,$J,358.3,8094,1,0)
+ ;;^UTILITY(U,$J,358.3,8355,1,3,0)
+ ;;=3^Neoplasm of Carotid Body,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8355,1,4,0)
+ ;;=4^D44.6
+ ;;^UTILITY(U,$J,358.3,8355,2)
+ ;;=^5002242
+ ;;^UTILITY(U,$J,358.3,8356,0)
+ ;;=D44.7^^35^442^71
+ ;;^UTILITY(U,$J,358.3,8356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8094,1,3,0)
- ;;=3^Nasal mucositis (ulcerative)
- ;;^UTILITY(U,$J,358.3,8094,1,4,0)
- ;;=4^J34.81
- ;;^UTILITY(U,$J,358.3,8094,2)
- ;;=^334089
- ;;^UTILITY(U,$J,358.3,8095,0)
- ;;=J34.0^^55^534^1
- ;;^UTILITY(U,$J,358.3,8095,1,0)
+ ;;^UTILITY(U,$J,358.3,8356,1,3,0)
+ ;;=3^Neoplasm of Aortic Body/Oth Paraganglia,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,8356,1,4,0)
+ ;;=4^D44.7
+ ;;^UTILITY(U,$J,358.3,8356,2)
+ ;;=^5002243
+ ;;^UTILITY(U,$J,358.3,8357,0)
+ ;;=E01.8^^35^442^52
+ ;;^UTILITY(U,$J,358.3,8357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8095,1,3,0)
- ;;=3^Abscess, furuncle and carbuncle of nose
- ;;^UTILITY(U,$J,358.3,8095,1,4,0)
- ;;=4^J34.0
- ;;^UTILITY(U,$J,358.3,8095,2)
- ;;=^5008209
- ;;^UTILITY(U,$J,358.3,8096,0)
- ;;=J34.1^^55^534^56
- ;;^UTILITY(U,$J,358.3,8096,1,0)
+ ;;^UTILITY(U,$J,358.3,8357,1,3,0)
+ ;;=3^Hypothyroidism,Acquired Iodine-Deficiency
+ ;;^UTILITY(U,$J,358.3,8357,1,4,0)
+ ;;=4^E01.8
+ ;;^UTILITY(U,$J,358.3,8357,2)
+ ;;=^5002467
+ ;;^UTILITY(U,$J,358.3,8358,0)
+ ;;=E02.^^35^442^54
+ ;;^UTILITY(U,$J,358.3,8358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8096,1,3,0)
- ;;=3^Cyst and mucocele of nose and nasal sinus
- ;;^UTILITY(U,$J,358.3,8096,1,4,0)
- ;;=4^J34.1
- ;;^UTILITY(U,$J,358.3,8096,2)
- ;;=^5008210
- ;;^UTILITY(U,$J,358.3,8097,0)
- ;;=J38.00^^55^534^108
- ;;^UTILITY(U,$J,358.3,8097,1,0)
+ ;;^UTILITY(U,$J,358.3,8358,1,3,0)
+ ;;=3^Hypothyroidism,Subclinical Iodine-Deficiency
+ ;;^UTILITY(U,$J,358.3,8358,1,4,0)
+ ;;=4^E02.
+ ;;^UTILITY(U,$J,358.3,8358,2)
+ ;;=^5002468
+ ;;^UTILITY(U,$J,358.3,8359,0)
+ ;;=E21.1^^35^442^38
+ ;;^UTILITY(U,$J,358.3,8359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8097,1,3,0)
- ;;=3^Paralysis of vocal cords and larynx, unspecified
- ;;^UTILITY(U,$J,358.3,8097,1,4,0)
- ;;=4^J38.00
- ;;^UTILITY(U,$J,358.3,8097,2)
- ;;=^5008219
- ;;^UTILITY(U,$J,358.3,8098,0)
- ;;=J38.1^^55^534^111
+ ;;^UTILITY(U,$J,358.3,8359,1,3,0)
+ ;;=3^Heyperparathyroidism,Secondary to Non Renal
+ ;;^UTILITY(U,$J,358.3,8359,1,4,0)
+ ;;=4^E21.1
+ ;;^UTILITY(U,$J,358.3,8359,2)
+ ;;=^5002715

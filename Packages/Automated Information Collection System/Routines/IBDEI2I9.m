@@ -1,126 +1,132 @@
-IBDEI2I9 ; ; 19-NOV-2015
+IBDEI2I9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42049,1,4,0)
- ;;=4^T25.532A
- ;;^UTILITY(U,$J,358.3,42049,2)
- ;;=^5048667
- ;;^UTILITY(U,$J,358.3,42050,0)
- ;;=T25.521A^^192^2134^57
- ;;^UTILITY(U,$J,358.3,42050,1,0)
+ ;;^UTILITY(U,$J,358.3,42475,0)
+ ;;=W07.XXXA^^159^2023^37
+ ;;^UTILITY(U,$J,358.3,42475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42050,1,3,0)
- ;;=3^Corrosion of rt ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42050,1,4,0)
- ;;=4^T25.521A
- ;;^UTILITY(U,$J,358.3,42050,2)
- ;;=^5048655
- ;;^UTILITY(U,$J,358.3,42051,0)
- ;;=T25.522A^^192^2134^42
- ;;^UTILITY(U,$J,358.3,42051,1,0)
+ ;;^UTILITY(U,$J,358.3,42475,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42475,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,42475,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,42476,0)
+ ;;=W07.XXXD^^159^2023^38
+ ;;^UTILITY(U,$J,358.3,42476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42051,1,3,0)
- ;;=3^Corrosion of lft ft, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42051,1,4,0)
- ;;=4^T25.522A
- ;;^UTILITY(U,$J,358.3,42051,2)
- ;;=^5048658
- ;;^UTILITY(U,$J,358.3,42052,0)
- ;;=T25.511A^^192^2134^55
- ;;^UTILITY(U,$J,358.3,42052,1,0)
+ ;;^UTILITY(U,$J,358.3,42476,1,3,0)
+ ;;=3^Fall from Chair,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42476,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,42476,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,42477,0)
+ ;;=W10.1XXA^^159^2023^81
+ ;;^UTILITY(U,$J,358.3,42477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42052,1,3,0)
- ;;=3^Corrosion of rt ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42052,1,4,0)
- ;;=4^T25.511A
- ;;^UTILITY(U,$J,358.3,42052,2)
- ;;=^5048646
- ;;^UTILITY(U,$J,358.3,42053,0)
- ;;=T25.512A^^192^2134^40
- ;;^UTILITY(U,$J,358.3,42053,1,0)
+ ;;^UTILITY(U,$J,358.3,42477,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42477,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,42477,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,42478,0)
+ ;;=W10.1XXD^^159^2023^82
+ ;;^UTILITY(U,$J,358.3,42478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42053,1,3,0)
- ;;=3^Corrosion of lft ankl, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42053,1,4,0)
- ;;=4^T25.512A
- ;;^UTILITY(U,$J,358.3,42053,2)
- ;;=^5048649
- ;;^UTILITY(U,$J,358.3,42054,0)
- ;;=T24.531A^^192^2134^61
- ;;^UTILITY(U,$J,358.3,42054,1,0)
+ ;;^UTILITY(U,$J,358.3,42478,1,3,0)
+ ;;=3^Fall on Sidewalk Curb,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42478,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,42478,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,42479,0)
+ ;;=W11.XXXA^^159^2023^41
+ ;;^UTILITY(U,$J,358.3,42479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42054,1,3,0)
- ;;=3^Corrosion of rt lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42054,1,4,0)
- ;;=4^T24.531A
- ;;^UTILITY(U,$J,358.3,42054,2)
- ;;=^5048388
- ;;^UTILITY(U,$J,358.3,42055,0)
- ;;=T24.532A^^192^2134^46
- ;;^UTILITY(U,$J,358.3,42055,1,0)
+ ;;^UTILITY(U,$J,358.3,42479,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42479,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,42479,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,42480,0)
+ ;;=W11.XXXD^^159^2023^42
+ ;;^UTILITY(U,$J,358.3,42480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42055,1,3,0)
- ;;=3^Corrosion of lft lwr leg, first degree, init enc
- ;;^UTILITY(U,$J,358.3,42055,1,4,0)
- ;;=4^T24.532A
- ;;^UTILITY(U,$J,358.3,42055,2)
- ;;=^5048391
- ;;^UTILITY(U,$J,358.3,42056,0)
- ;;=T25.631A^^192^2134^66
- ;;^UTILITY(U,$J,358.3,42056,1,0)
+ ;;^UTILITY(U,$J,358.3,42480,1,3,0)
+ ;;=3^Fall from Ladder,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42480,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,42480,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,42481,0)
+ ;;=W13.0XXA^^159^2023^67
+ ;;^UTILITY(U,$J,358.3,42481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42056,1,3,0)
- ;;=3^Corrosion of rt toe(s), second degree, init enc
- ;;^UTILITY(U,$J,358.3,42056,1,4,0)
- ;;=4^T25.631A
- ;;^UTILITY(U,$J,358.3,42056,2)
- ;;=^5048700
- ;;^UTILITY(U,$J,358.3,42057,0)
- ;;=T25.632A^^192^2134^51
- ;;^UTILITY(U,$J,358.3,42057,1,0)
+ ;;^UTILITY(U,$J,358.3,42481,1,3,0)
+ ;;=3^Fall from/through Balcony,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42481,1,4,0)
+ ;;=4^W13.0XXA
+ ;;^UTILITY(U,$J,358.3,42481,2)
+ ;;=^5059601
+ ;;^UTILITY(U,$J,358.3,42482,0)
+ ;;=W13.0XXD^^159^2023^68
+ ;;^UTILITY(U,$J,358.3,42482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42057,1,3,0)
- ;;=3^Corrosion of lft toe(s), second degree, init enc
- ;;^UTILITY(U,$J,358.3,42057,1,4,0)
- ;;=4^T25.632A
- ;;^UTILITY(U,$J,358.3,42057,2)
- ;;=^5048703
- ;;^UTILITY(U,$J,358.3,42058,0)
- ;;=T25.621A^^192^2134^58
- ;;^UTILITY(U,$J,358.3,42058,1,0)
+ ;;^UTILITY(U,$J,358.3,42482,1,3,0)
+ ;;=3^Fall from/through Balcony,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42482,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,42482,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,42483,0)
+ ;;=W13.1XXA^^159^2023^31
+ ;;^UTILITY(U,$J,358.3,42483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42058,1,3,0)
- ;;=3^Corrosion of rt ft, second degree, init enc
- ;;^UTILITY(U,$J,358.3,42058,1,4,0)
- ;;=4^T25.621A
- ;;^UTILITY(U,$J,358.3,42058,2)
- ;;=^5048691
- ;;^UTILITY(U,$J,358.3,42059,0)
- ;;=T25.622A^^192^2134^43
- ;;^UTILITY(U,$J,358.3,42059,1,0)
+ ;;^UTILITY(U,$J,358.3,42483,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42483,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,42483,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,42484,0)
+ ;;=W13.1XXD^^159^2023^32
+ ;;^UTILITY(U,$J,358.3,42484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42059,1,3,0)
- ;;=3^Corrosion of lft ft, second degree, init enc
- ;;^UTILITY(U,$J,358.3,42059,1,4,0)
- ;;=4^T25.622A
- ;;^UTILITY(U,$J,358.3,42059,2)
- ;;=^5048694
- ;;^UTILITY(U,$J,358.3,42060,0)
- ;;=T25.611A^^192^2134^56
- ;;^UTILITY(U,$J,358.3,42060,1,0)
+ ;;^UTILITY(U,$J,358.3,42484,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42484,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,42484,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,42485,0)
+ ;;=W13.2XXA^^159^2023^69
+ ;;^UTILITY(U,$J,358.3,42485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42060,1,3,0)
- ;;=3^Corrosion of rt ankl, second degree, init enc
- ;;^UTILITY(U,$J,358.3,42060,1,4,0)
- ;;=4^T25.611A
- ;;^UTILITY(U,$J,358.3,42060,2)
- ;;=^5048682
- ;;^UTILITY(U,$J,358.3,42061,0)
- ;;=T25.612A^^192^2134^39
- ;;^UTILITY(U,$J,358.3,42061,1,0)
+ ;;^UTILITY(U,$J,358.3,42485,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42485,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,42485,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,42486,0)
+ ;;=W13.2XXD^^159^2023^70
+ ;;^UTILITY(U,$J,358.3,42486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42061,1,3,0)
- ;;=3^Corrosion of lft ank, second degree, init enc
- ;;^UTILITY(U,$J,358.3,42061,1,4,0)
- ;;=4^T25.612A
+ ;;^UTILITY(U,$J,358.3,42486,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42486,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,42486,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,42487,0)
+ ;;=W13.3XXA^^159^2023^83
+ ;;^UTILITY(U,$J,358.3,42487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42487,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42487,1,4,0)
+ ;;=4^W13.3XXA

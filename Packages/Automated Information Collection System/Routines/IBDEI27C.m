@@ -1,130 +1,134 @@
-IBDEI27C ; ; 19-NOV-2015
+IBDEI27C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36962,1,4,0)
- ;;=4^D49.4
- ;;^UTILITY(U,$J,358.3,36962,2)
- ;;=^5002274
- ;;^UTILITY(U,$J,358.3,36963,0)
- ;;=D49.5^^169^1864^10
- ;;^UTILITY(U,$J,358.3,36963,1,0)
+ ;;^UTILITY(U,$J,358.3,37350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36963,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of other genitourinary organs
- ;;^UTILITY(U,$J,358.3,36963,1,4,0)
- ;;=4^D49.5
- ;;^UTILITY(U,$J,358.3,36963,2)
- ;;=^5002275
- ;;^UTILITY(U,$J,358.3,36964,0)
- ;;=D49.6^^169^1864^6
- ;;^UTILITY(U,$J,358.3,36964,1,0)
+ ;;^UTILITY(U,$J,358.3,37350,1,3,0)
+ ;;=3^Polymyalgia rheumatica
+ ;;^UTILITY(U,$J,358.3,37350,1,4,0)
+ ;;=4^M35.3
+ ;;^UTILITY(U,$J,358.3,37350,2)
+ ;;=^96292
+ ;;^UTILITY(U,$J,358.3,37351,0)
+ ;;=M33.20^^140^1787^204
+ ;;^UTILITY(U,$J,358.3,37351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36964,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of brain
- ;;^UTILITY(U,$J,358.3,36964,1,4,0)
- ;;=4^D49.6
- ;;^UTILITY(U,$J,358.3,36964,2)
- ;;=^5002276
- ;;^UTILITY(U,$J,358.3,36965,0)
- ;;=D49.7^^169^1864^9
- ;;^UTILITY(U,$J,358.3,36965,1,0)
+ ;;^UTILITY(U,$J,358.3,37351,1,3,0)
+ ;;=3^Polymyositis, organ involvement unspec
+ ;;^UTILITY(U,$J,358.3,37351,1,4,0)
+ ;;=4^M33.20
+ ;;^UTILITY(U,$J,358.3,37351,2)
+ ;;=^5011770
+ ;;^UTILITY(U,$J,358.3,37352,0)
+ ;;=M34.0^^140^1787^207
+ ;;^UTILITY(U,$J,358.3,37352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36965,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of endo glands
- ;;^UTILITY(U,$J,358.3,36965,1,4,0)
- ;;=4^D49.7
- ;;^UTILITY(U,$J,358.3,36965,2)
- ;;=^5002277
- ;;^UTILITY(U,$J,358.3,36966,0)
- ;;=D49.81^^169^1864^13
- ;;^UTILITY(U,$J,358.3,36966,1,0)
+ ;;^UTILITY(U,$J,358.3,37352,1,3,0)
+ ;;=3^Progressive systemic sclerosis
+ ;;^UTILITY(U,$J,358.3,37352,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,37352,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,37353,0)
+ ;;=E20.1^^140^1787^208
+ ;;^UTILITY(U,$J,358.3,37353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36966,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of retina and choroid
- ;;^UTILITY(U,$J,358.3,36966,1,4,0)
- ;;=4^D49.81
- ;;^UTILITY(U,$J,358.3,36966,2)
- ;;=^5002278
- ;;^UTILITY(U,$J,358.3,36967,0)
- ;;=D49.89^^169^1864^11
- ;;^UTILITY(U,$J,358.3,36967,1,0)
+ ;;^UTILITY(U,$J,358.3,37353,1,3,0)
+ ;;=3^Pseudohypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,37353,1,4,0)
+ ;;=4^E20.1
+ ;;^UTILITY(U,$J,358.3,37353,2)
+ ;;=^100160
+ ;;^UTILITY(U,$J,358.3,37354,0)
+ ;;=L40.54^^140^1787^210
+ ;;^UTILITY(U,$J,358.3,37354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36967,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of other specified sites
- ;;^UTILITY(U,$J,358.3,36967,1,4,0)
- ;;=4^D49.89
- ;;^UTILITY(U,$J,358.3,36967,2)
- ;;=^5002279
- ;;^UTILITY(U,$J,358.3,36968,0)
- ;;=D49.9^^169^1864^14
- ;;^UTILITY(U,$J,358.3,36968,1,0)
+ ;;^UTILITY(U,$J,358.3,37354,1,3,0)
+ ;;=3^Psoriatic juvenile arthropathy
+ ;;^UTILITY(U,$J,358.3,37354,1,4,0)
+ ;;=4^L40.54
+ ;;^UTILITY(U,$J,358.3,37354,2)
+ ;;=^5009169
+ ;;^UTILITY(U,$J,358.3,37355,0)
+ ;;=I73.00^^140^1787^214
+ ;;^UTILITY(U,$J,358.3,37355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36968,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of unspecified site
- ;;^UTILITY(U,$J,358.3,36968,1,4,0)
- ;;=4^D49.9
- ;;^UTILITY(U,$J,358.3,36968,2)
- ;;=^5002280
- ;;^UTILITY(U,$J,358.3,36969,0)
- ;;=D68.51^^169^1864^1
- ;;^UTILITY(U,$J,358.3,36969,1,0)
+ ;;^UTILITY(U,$J,358.3,37355,1,3,0)
+ ;;=3^Raynaud's syndrome w/o gangrene
+ ;;^UTILITY(U,$J,358.3,37355,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,37355,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,37356,0)
+ ;;=N13.5^^140^1787^99
+ ;;^UTILITY(U,$J,358.3,37356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36969,1,3,0)
- ;;=3^Activated protein C resistance
- ;;^UTILITY(U,$J,358.3,36969,1,4,0)
- ;;=4^D68.51
- ;;^UTILITY(U,$J,358.3,36969,2)
- ;;=^5002358
- ;;^UTILITY(U,$J,358.3,36970,0)
- ;;=D68.52^^169^1864^16
- ;;^UTILITY(U,$J,358.3,36970,1,0)
+ ;;^UTILITY(U,$J,358.3,37356,1,3,0)
+ ;;=3^Crosng vessel & strict of ureter w/o hydronephr
+ ;;^UTILITY(U,$J,358.3,37356,1,4,0)
+ ;;=4^N13.5
+ ;;^UTILITY(U,$J,358.3,37356,2)
+ ;;=^5015580
+ ;;^UTILITY(U,$J,358.3,37357,0)
+ ;;=N13.6^^140^1787^211
+ ;;^UTILITY(U,$J,358.3,37357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36970,1,3,0)
- ;;=3^Prothrombin gene mutation
- ;;^UTILITY(U,$J,358.3,36970,1,4,0)
- ;;=4^D68.52
- ;;^UTILITY(U,$J,358.3,36970,2)
- ;;=^5002359
- ;;^UTILITY(U,$J,358.3,36971,0)
- ;;=D68.59^^169^1864^15
- ;;^UTILITY(U,$J,358.3,36971,1,0)
+ ;;^UTILITY(U,$J,358.3,37357,1,3,0)
+ ;;=3^Pyonephrosis
+ ;;^UTILITY(U,$J,358.3,37357,1,4,0)
+ ;;=4^N13.6
+ ;;^UTILITY(U,$J,358.3,37357,2)
+ ;;=^101552
+ ;;^UTILITY(U,$J,358.3,37358,0)
+ ;;=M06.9^^140^1787^215
+ ;;^UTILITY(U,$J,358.3,37358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36971,1,3,0)
- ;;=3^Primary Thrombophilia NEC
- ;;^UTILITY(U,$J,358.3,36971,1,4,0)
- ;;=4^D68.59
- ;;^UTILITY(U,$J,358.3,36971,2)
- ;;=^5002360
- ;;^UTILITY(U,$J,358.3,36972,0)
- ;;=D68.61^^169^1864^2
- ;;^UTILITY(U,$J,358.3,36972,1,0)
+ ;;^UTILITY(U,$J,358.3,37358,1,3,0)
+ ;;=3^Rheumatoid arthritis, unspec
+ ;;^UTILITY(U,$J,358.3,37358,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,37358,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,37359,0)
+ ;;=M35.01^^140^1787^226
+ ;;^UTILITY(U,$J,358.3,37359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36972,1,3,0)
- ;;=3^Antiphospholipid syndrome
- ;;^UTILITY(U,$J,358.3,36972,1,4,0)
- ;;=4^D68.61
- ;;^UTILITY(U,$J,358.3,36972,2)
- ;;=^185421
- ;;^UTILITY(U,$J,358.3,36973,0)
- ;;=D68.62^^169^1864^3
- ;;^UTILITY(U,$J,358.3,36973,1,0)
+ ;;^UTILITY(U,$J,358.3,37359,1,3,0)
+ ;;=3^Sicca syndrome w/ keratoconjunctivitis
+ ;;^UTILITY(U,$J,358.3,37359,1,4,0)
+ ;;=4^M35.01
+ ;;^UTILITY(U,$J,358.3,37359,2)
+ ;;=^5011787
+ ;;^UTILITY(U,$J,358.3,37360,0)
+ ;;=M35.00^^140^1787^227
+ ;;^UTILITY(U,$J,358.3,37360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36973,1,3,0)
- ;;=3^Lupus anticoagulant syndrome
- ;;^UTILITY(U,$J,358.3,36973,1,4,0)
- ;;=4^D68.62
- ;;^UTILITY(U,$J,358.3,36973,2)
- ;;=^5002361
- ;;^UTILITY(U,$J,358.3,36974,0)
- ;;=Z85.810^^169^1865^3
- ;;^UTILITY(U,$J,358.3,36974,1,0)
+ ;;^UTILITY(U,$J,358.3,37360,1,3,0)
+ ;;=3^Sicca syndrome, unspec
+ ;;^UTILITY(U,$J,358.3,37360,1,4,0)
+ ;;=4^M35.00
+ ;;^UTILITY(U,$J,358.3,37360,2)
+ ;;=^5011786
+ ;;^UTILITY(U,$J,358.3,37361,0)
+ ;;=M35.9^^140^1787^281
+ ;;^UTILITY(U,$J,358.3,37361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36974,1,3,0)
- ;;=3^Personal history of malignant neoplasm of tongue
- ;;^UTILITY(U,$J,358.3,36974,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,36974,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,36975,0)
- ;;=Z85.818^^169^1865^4
+ ;;^UTILITY(U,$J,358.3,37361,1,3,0)
+ ;;=3^Systemic invlmnt of conn tiss, unspec
+ ;;^UTILITY(U,$J,358.3,37361,1,4,0)
+ ;;=4^M35.9
+ ;;^UTILITY(U,$J,358.3,37361,2)
+ ;;=^5011797
+ ;;^UTILITY(U,$J,358.3,37362,0)
+ ;;=M32.10^^140^1787^283
+ ;;^UTILITY(U,$J,358.3,37362,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37362,1,3,0)
+ ;;=3^Systemic lupus erythem, organ/syst involv, unspec
+ ;;^UTILITY(U,$J,358.3,37362,1,4,0)
+ ;;=4^M32.10
+ ;;^UTILITY(U,$J,358.3,37362,2)
+ ;;=^5011753
+ ;;^UTILITY(U,$J,358.3,37363,0)
+ ;;=M34.9^^140^1787^284

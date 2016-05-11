@@ -1,136 +1,134 @@
-IBDEI0ZR ; ; 19-NOV-2015
+IBDEI0ZR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16481,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,16481,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,16482,0)
- ;;=I83.899^^88^847^79
- ;;^UTILITY(U,$J,358.3,16482,1,0)
+ ;;^UTILITY(U,$J,358.3,16812,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,16813,0)
+ ;;=E87.5^^70^792^25
+ ;;^UTILITY(U,$J,358.3,16813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16482,1,3,0)
- ;;=3^Varicose Veins Lower Extrem w/ Other Complications
- ;;^UTILITY(U,$J,358.3,16482,1,4,0)
- ;;=4^I83.899
- ;;^UTILITY(U,$J,358.3,16482,2)
- ;;=^5008018
- ;;^UTILITY(U,$J,358.3,16483,0)
- ;;=I83.90^^88^847^80
- ;;^UTILITY(U,$J,358.3,16483,1,0)
+ ;;^UTILITY(U,$J,358.3,16813,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,16813,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,16813,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,16814,0)
+ ;;=E87.6^^70^792^32
+ ;;^UTILITY(U,$J,358.3,16814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16483,1,3,0)
- ;;=3^Varicose Veins Lower Extrem,Asymptomatic
- ;;^UTILITY(U,$J,358.3,16483,1,4,0)
- ;;=4^I83.90
- ;;^UTILITY(U,$J,358.3,16483,2)
- ;;=^5008019
- ;;^UTILITY(U,$J,358.3,16484,0)
- ;;=I87.2^^88^847^82
- ;;^UTILITY(U,$J,358.3,16484,1,0)
+ ;;^UTILITY(U,$J,358.3,16814,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,16814,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,16814,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,16815,0)
+ ;;=G81.91^^70^792^11
+ ;;^UTILITY(U,$J,358.3,16815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16484,1,3,0)
- ;;=3^Venous Insufficiency
- ;;^UTILITY(U,$J,358.3,16484,1,4,0)
- ;;=4^I87.2
- ;;^UTILITY(U,$J,358.3,16484,2)
- ;;=^5008047
- ;;^UTILITY(U,$J,358.3,16485,0)
- ;;=H61.23^^88^848^1
- ;;^UTILITY(U,$J,358.3,16485,1,0)
+ ;;^UTILITY(U,$J,358.3,16815,1,3,0)
+ ;;=3^Hemiplegia affecting rt dominant side, unspec
+ ;;^UTILITY(U,$J,358.3,16815,1,4,0)
+ ;;=4^G81.91
+ ;;^UTILITY(U,$J,358.3,16815,2)
+ ;;=^5004121
+ ;;^UTILITY(U,$J,358.3,16816,0)
+ ;;=G81.92^^70^792^9
+ ;;^UTILITY(U,$J,358.3,16816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16485,1,3,0)
- ;;=3^Cerumen Impaction,Bilateral
- ;;^UTILITY(U,$J,358.3,16485,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,16485,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,16486,0)
- ;;=H61.22^^88^848^2
- ;;^UTILITY(U,$J,358.3,16486,1,0)
+ ;;^UTILITY(U,$J,358.3,16816,1,3,0)
+ ;;=3^Hemiplegia affecting lft dominant side, unspec
+ ;;^UTILITY(U,$J,358.3,16816,1,4,0)
+ ;;=4^G81.92
+ ;;^UTILITY(U,$J,358.3,16816,2)
+ ;;=^5004122
+ ;;^UTILITY(U,$J,358.3,16817,0)
+ ;;=G81.93^^70^792^12
+ ;;^UTILITY(U,$J,358.3,16817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16486,1,3,0)
- ;;=3^Cerumen Impaction,Left Ear
- ;;^UTILITY(U,$J,358.3,16486,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,16486,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,16487,0)
- ;;=H61.21^^88^848^3
- ;;^UTILITY(U,$J,358.3,16487,1,0)
+ ;;^UTILITY(U,$J,358.3,16817,1,3,0)
+ ;;=3^Hemiplegia affecting rt nondom side, unspec
+ ;;^UTILITY(U,$J,358.3,16817,1,4,0)
+ ;;=4^G81.93
+ ;;^UTILITY(U,$J,358.3,16817,2)
+ ;;=^5004123
+ ;;^UTILITY(U,$J,358.3,16818,0)
+ ;;=G81.94^^70^792^10
+ ;;^UTILITY(U,$J,358.3,16818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16487,1,3,0)
- ;;=3^Cerumen Impaction,Right Ear
- ;;^UTILITY(U,$J,358.3,16487,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,16487,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,16488,0)
- ;;=Z97.4^^88^848^10
- ;;^UTILITY(U,$J,358.3,16488,1,0)
+ ;;^UTILITY(U,$J,358.3,16818,1,3,0)
+ ;;=3^Hemiplegia affecting lft nondom side, unspec
+ ;;^UTILITY(U,$J,358.3,16818,1,4,0)
+ ;;=4^G81.94
+ ;;^UTILITY(U,$J,358.3,16818,2)
+ ;;=^5004124
+ ;;^UTILITY(U,$J,358.3,16819,0)
+ ;;=H91.90^^70^792^7
+ ;;^UTILITY(U,$J,358.3,16819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16488,1,3,0)
- ;;=3^Hearing-aid,External
- ;;^UTILITY(U,$J,358.3,16488,1,4,0)
- ;;=4^Z97.4
- ;;^UTILITY(U,$J,358.3,16488,2)
- ;;=^5063730
- ;;^UTILITY(U,$J,358.3,16489,0)
- ;;=H90.2^^88^848^5
- ;;^UTILITY(U,$J,358.3,16489,1,0)
+ ;;^UTILITY(U,$J,358.3,16819,1,3,0)
+ ;;=3^Hearing loss, unspec ear, unspec
+ ;;^UTILITY(U,$J,358.3,16819,1,4,0)
+ ;;=4^H91.90
+ ;;^UTILITY(U,$J,358.3,16819,2)
+ ;;=^5006943
+ ;;^UTILITY(U,$J,358.3,16820,0)
+ ;;=I10.^^70^792^27
+ ;;^UTILITY(U,$J,358.3,16820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16489,1,3,0)
- ;;=3^Hearing Loss,Conductive,Unspec
- ;;^UTILITY(U,$J,358.3,16489,1,4,0)
- ;;=4^H90.2
- ;;^UTILITY(U,$J,358.3,16489,2)
- ;;=^5006920
- ;;^UTILITY(U,$J,358.3,16490,0)
- ;;=H90.8^^88^848^7
- ;;^UTILITY(U,$J,358.3,16490,1,0)
+ ;;^UTILITY(U,$J,358.3,16820,1,3,0)
+ ;;=3^Hypertension, essential (primary)
+ ;;^UTILITY(U,$J,358.3,16820,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,16820,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,16821,0)
+ ;;=K64.8^^70^792^15
+ ;;^UTILITY(U,$J,358.3,16821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16490,1,3,0)
- ;;=3^Hearing Loss,Mixed Conductive & Sensorineural,Unspec
- ;;^UTILITY(U,$J,358.3,16490,1,4,0)
- ;;=4^H90.8
- ;;^UTILITY(U,$J,358.3,16490,2)
- ;;=^5006927
- ;;^UTILITY(U,$J,358.3,16491,0)
- ;;=H90.5^^88^848^9
- ;;^UTILITY(U,$J,358.3,16491,1,0)
+ ;;^UTILITY(U,$J,358.3,16821,1,3,0)
+ ;;=3^Hemorrhoids, oth
+ ;;^UTILITY(U,$J,358.3,16821,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,16821,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,16822,0)
+ ;;=K64.4^^70^792^14
+ ;;^UTILITY(U,$J,358.3,16822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16491,1,3,0)
- ;;=3^Hearing Loss,Sensorineural,Unspec
- ;;^UTILITY(U,$J,358.3,16491,1,4,0)
- ;;=4^H90.5
- ;;^UTILITY(U,$J,358.3,16491,2)
- ;;=^5006923
- ;;^UTILITY(U,$J,358.3,16492,0)
- ;;=H91.93^^88^848^4
- ;;^UTILITY(U,$J,358.3,16492,1,0)
+ ;;^UTILITY(U,$J,358.3,16822,1,3,0)
+ ;;=3^Hemorrhoidal Skin Tags,Residual
+ ;;^UTILITY(U,$J,358.3,16822,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,16822,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,16823,0)
+ ;;=I95.9^^70^792^33
+ ;;^UTILITY(U,$J,358.3,16823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16492,1,3,0)
- ;;=3^Hearing Loss,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,16492,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,16492,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,16493,0)
- ;;=H91.92^^88^848^6
- ;;^UTILITY(U,$J,358.3,16493,1,0)
+ ;;^UTILITY(U,$J,358.3,16823,1,3,0)
+ ;;=3^Hypotension, unspec
+ ;;^UTILITY(U,$J,358.3,16823,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,16823,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,16824,0)
+ ;;=K40.90^^70^792^37
+ ;;^UTILITY(U,$J,358.3,16824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16493,1,3,0)
- ;;=3^Hearing Loss,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,16493,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,16493,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,16494,0)
- ;;=H91.91^^88^848^8
- ;;^UTILITY(U,$J,358.3,16494,1,0)
+ ;;^UTILITY(U,$J,358.3,16824,1,3,0)
+ ;;=3^Uniltrl Ing hernia, w/o obst/ganr, not spcf as recur
+ ;;^UTILITY(U,$J,358.3,16824,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,16824,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,16825,0)
+ ;;=K40.20^^70^792^4
+ ;;^UTILITY(U,$J,358.3,16825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16494,1,3,0)
- ;;=3^Hearing Loss,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,16494,1,4,0)
- ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,16825,1,3,0)
+ ;;=3^Biltrl Ing hernia, w/o obst/ganr, not spcf as recur
+ ;;^UTILITY(U,$J,358.3,16825,1,4,0)
+ ;;=4^K40.20

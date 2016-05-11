@@ -1,130 +1,134 @@
-IBDEI07E ; ; 19-NOV-2015
+IBDEI07E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2887,0)
- ;;=A81.2^^28^243^53
- ;;^UTILITY(U,$J,358.3,2887,1,0)
+ ;;^UTILITY(U,$J,358.3,3151,1,3,0)
+ ;;=3^Fall,Escalator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3151,1,4,0)
+ ;;=4^W10.0XXA
+ ;;^UTILITY(U,$J,358.3,3151,2)
+ ;;=^5059580
+ ;;^UTILITY(U,$J,358.3,3152,0)
+ ;;=W10.2XXA^^18^215^20
+ ;;^UTILITY(U,$J,358.3,3152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2887,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,2887,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,2887,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,2888,0)
- ;;=B20.^^28^243^41
- ;;^UTILITY(U,$J,358.3,2888,1,0)
+ ;;^UTILITY(U,$J,358.3,3152,1,3,0)
+ ;;=3^Fall,Incline,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3152,1,4,0)
+ ;;=4^W10.2XXA
+ ;;^UTILITY(U,$J,358.3,3152,2)
+ ;;=^5059586
+ ;;^UTILITY(U,$J,358.3,3153,0)
+ ;;=W10.1XXA^^18^215^21
+ ;;^UTILITY(U,$J,358.3,3153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2888,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,2888,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,2888,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,2889,0)
- ;;=B20.^^28^243^42
- ;;^UTILITY(U,$J,358.3,2889,1,0)
+ ;;^UTILITY(U,$J,358.3,3153,1,3,0)
+ ;;=3^Fall,Sidewalk/Curb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3153,1,4,0)
+ ;;=4^W10.1XXA
+ ;;^UTILITY(U,$J,358.3,3153,2)
+ ;;=^5059583
+ ;;^UTILITY(U,$J,358.3,3154,0)
+ ;;=W06.XXXA^^18^215^7
+ ;;^UTILITY(U,$J,358.3,3154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2889,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2889,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,2889,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,2890,0)
- ;;=G10.^^28^243^44
- ;;^UTILITY(U,$J,358.3,2890,1,0)
+ ;;^UTILITY(U,$J,358.3,3154,1,3,0)
+ ;;=3^Fall from Bed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3154,1,4,0)
+ ;;=4^W06.XXXA
+ ;;^UTILITY(U,$J,358.3,3154,2)
+ ;;=^5059559
+ ;;^UTILITY(U,$J,358.3,3155,0)
+ ;;=W07.XXXA^^18^215^8
+ ;;^UTILITY(U,$J,358.3,3155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2890,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2890,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,2890,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,2891,0)
- ;;=G20.^^28^243^50
- ;;^UTILITY(U,$J,358.3,2891,1,0)
+ ;;^UTILITY(U,$J,358.3,3155,1,3,0)
+ ;;=3^Fall from Chair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3155,1,4,0)
+ ;;=4^W07.XXXA
+ ;;^UTILITY(U,$J,358.3,3155,2)
+ ;;=^5059562
+ ;;^UTILITY(U,$J,358.3,3156,0)
+ ;;=W05.2XXA^^18^215^11
+ ;;^UTILITY(U,$J,358.3,3156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2891,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2891,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,2891,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,2892,0)
- ;;=G20.^^28^243^51
- ;;^UTILITY(U,$J,358.3,2892,1,0)
+ ;;^UTILITY(U,$J,358.3,3156,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3156,1,4,0)
+ ;;=4^W05.2XXA
+ ;;^UTILITY(U,$J,358.3,3156,2)
+ ;;=^5059556
+ ;;^UTILITY(U,$J,358.3,3157,0)
+ ;;=W05.1XXA^^18^215^12
+ ;;^UTILITY(U,$J,358.3,3157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2892,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2892,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,2892,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,2893,0)
- ;;=G23.1^^28^243^54
- ;;^UTILITY(U,$J,358.3,2893,1,0)
+ ;;^UTILITY(U,$J,358.3,3157,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3157,1,4,0)
+ ;;=4^W05.1XXA
+ ;;^UTILITY(U,$J,358.3,3157,2)
+ ;;=^5059553
+ ;;^UTILITY(U,$J,358.3,3158,0)
+ ;;=W05.0XXA^^18^215^13
+ ;;^UTILITY(U,$J,358.3,3158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2893,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia
- ;;^UTILITY(U,$J,358.3,2893,1,4,0)
- ;;=4^G23.1
- ;;^UTILITY(U,$J,358.3,2893,2)
- ;;=^5003780
- ;;^UTILITY(U,$J,358.3,2894,0)
- ;;=G30.8^^28^243^1
- ;;^UTILITY(U,$J,358.3,2894,1,0)
+ ;;^UTILITY(U,$J,358.3,3158,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3158,1,4,0)
+ ;;=4^W05.0XXA
+ ;;^UTILITY(U,$J,358.3,3158,2)
+ ;;=^5059550
+ ;;^UTILITY(U,$J,358.3,3159,0)
+ ;;=W18.12XA^^18^215^15
+ ;;^UTILITY(U,$J,358.3,3159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2894,1,3,0)
- ;;=3^Alzheimer's Disease NEC
- ;;^UTILITY(U,$J,358.3,2894,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,2894,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,2895,0)
- ;;=G90.3^^28^243^47
- ;;^UTILITY(U,$J,358.3,2895,1,0)
+ ;;^UTILITY(U,$J,358.3,3159,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3159,1,4,0)
+ ;;=4^W18.12XA
+ ;;^UTILITY(U,$J,358.3,3159,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,3160,0)
+ ;;=W18.11XA^^18^215^16
+ ;;^UTILITY(U,$J,358.3,3160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2895,1,3,0)
- ;;=3^Multi-System Degeneration of the Autonomic Nervous System
- ;;^UTILITY(U,$J,358.3,2895,1,4,0)
- ;;=4^G90.3
- ;;^UTILITY(U,$J,358.3,2895,2)
- ;;=^5004162
- ;;^UTILITY(U,$J,358.3,2896,0)
- ;;=G91.2^^28^243^48
- ;;^UTILITY(U,$J,358.3,2896,1,0)
+ ;;^UTILITY(U,$J,358.3,3160,1,3,0)
+ ;;=3^Fall from Toilet,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3160,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,3160,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,3161,0)
+ ;;=W08.XXXA^^18^215^9
+ ;;^UTILITY(U,$J,358.3,3161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2896,1,3,0)
- ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2896,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,2896,2)
- ;;=^5004174^F02.81
- ;;^UTILITY(U,$J,358.3,2897,0)
- ;;=G91.2^^28^243^49
- ;;^UTILITY(U,$J,358.3,2897,1,0)
+ ;;^UTILITY(U,$J,358.3,3161,1,3,0)
+ ;;=3^Fall from Furniture,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3161,1,4,0)
+ ;;=4^W08.XXXA
+ ;;^UTILITY(U,$J,358.3,3161,2)
+ ;;=^5059565
+ ;;^UTILITY(U,$J,358.3,3162,0)
+ ;;=W18.2XXA^^18^215^17
+ ;;^UTILITY(U,$J,358.3,3162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2897,1,3,0)
- ;;=3^NPH w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2897,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,2897,2)
- ;;=^5004174^F02.80
- ;;^UTILITY(U,$J,358.3,2898,0)
- ;;=F43.21^^28^244^1
- ;;^UTILITY(U,$J,358.3,2898,1,0)
+ ;;^UTILITY(U,$J,358.3,3162,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3162,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,3162,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,3163,0)
+ ;;=W11.XXXA^^18^215^10
+ ;;^UTILITY(U,$J,358.3,3163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2898,1,3,0)
- ;;=3^Adjustment Disorder w/ Depressed Mood
- ;;^UTILITY(U,$J,358.3,2898,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,2898,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,2899,0)
- ;;=F43.23^^28^244^2
- ;;^UTILITY(U,$J,358.3,2899,1,0)
+ ;;^UTILITY(U,$J,358.3,3163,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3163,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,3163,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,3164,0)
+ ;;=W01.10XA^^18^215^2
+ ;;^UTILITY(U,$J,358.3,3164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2899,1,3,0)
- ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood

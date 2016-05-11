@@ -1,126 +1,130 @@
-IBDEI0YI ; ; 19-NOV-2015
+IBDEI0YI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15894,1,0)
+ ;;^UTILITY(U,$J,358.3,16202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15894,1,3,0)
- ;;=3^Open Bite of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,15894,1,4,0)
- ;;=4^S51.052A
- ;;^UTILITY(U,$J,358.3,15894,2)
- ;;=^5028653
- ;;^UTILITY(U,$J,358.3,15895,0)
- ;;=S91.352A^^85^829^10
- ;;^UTILITY(U,$J,358.3,15895,1,0)
+ ;;^UTILITY(U,$J,358.3,16202,1,3,0)
+ ;;=3^SCC of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16202,1,4,0)
+ ;;=4^C44.92
+ ;;^UTILITY(U,$J,358.3,16202,2)
+ ;;=^5001093
+ ;;^UTILITY(U,$J,358.3,16203,0)
+ ;;=C49.9^^61^726^13
+ ;;^UTILITY(U,$J,358.3,16203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15895,1,3,0)
- ;;=3^Open Bite of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,15895,1,4,0)
- ;;=4^S91.352A
- ;;^UTILITY(U,$J,358.3,15895,2)
- ;;=^5044347
- ;;^UTILITY(U,$J,358.3,15896,0)
- ;;=S91.252A^^85^829^11
- ;;^UTILITY(U,$J,358.3,15896,1,0)
+ ;;^UTILITY(U,$J,358.3,16203,1,3,0)
+ ;;=3^Malig Neop Connective & Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,16203,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,16203,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,16204,0)
+ ;;=C72.0^^61^726^17
+ ;;^UTILITY(U,$J,358.3,16204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15896,1,3,0)
- ;;=3^Open Bite of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15896,1,4,0)
- ;;=4^S91.252A
- ;;^UTILITY(U,$J,358.3,15896,2)
- ;;=^5137508
- ;;^UTILITY(U,$J,358.3,15897,0)
- ;;=S91.152A^^85^829^12
- ;;^UTILITY(U,$J,358.3,15897,1,0)
+ ;;^UTILITY(U,$J,358.3,16204,1,3,0)
+ ;;=3^Malig Neop Spinal Cord
+ ;;^UTILITY(U,$J,358.3,16204,1,4,0)
+ ;;=4^C72.0
+ ;;^UTILITY(U,$J,358.3,16204,2)
+ ;;=^267292
+ ;;^UTILITY(U,$J,358.3,16205,0)
+ ;;=C72.1^^61^726^12
+ ;;^UTILITY(U,$J,358.3,16205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15897,1,3,0)
- ;;=3^Open Bite of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15897,1,4,0)
- ;;=4^S91.152A
- ;;^UTILITY(U,$J,358.3,15897,2)
- ;;=^5044246
- ;;^UTILITY(U,$J,358.3,15898,0)
- ;;=S61.452A^^85^829^13
- ;;^UTILITY(U,$J,358.3,15898,1,0)
+ ;;^UTILITY(U,$J,358.3,16205,1,3,0)
+ ;;=3^Malig Neop Cauda Equina
+ ;;^UTILITY(U,$J,358.3,16205,1,4,0)
+ ;;=4^C72.1
+ ;;^UTILITY(U,$J,358.3,16205,2)
+ ;;=^5001298
+ ;;^UTILITY(U,$J,358.3,16206,0)
+ ;;=C92.40^^61^727^15
+ ;;^UTILITY(U,$J,358.3,16206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15898,1,3,0)
- ;;=3^Open Bite of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,15898,1,4,0)
- ;;=4^S61.452A
- ;;^UTILITY(U,$J,358.3,15898,2)
- ;;=^5033014
- ;;^UTILITY(U,$J,358.3,15899,0)
- ;;=S71.052A^^85^829^14
- ;;^UTILITY(U,$J,358.3,15899,1,0)
+ ;;^UTILITY(U,$J,358.3,16206,1,3,0)
+ ;;=3^Promyelocytic Leukemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16206,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,16206,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,16207,0)
+ ;;=C92.41^^61^727^14
+ ;;^UTILITY(U,$J,358.3,16207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15899,1,3,0)
- ;;=3^Open Bite of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,15899,1,4,0)
- ;;=4^S71.052A
- ;;^UTILITY(U,$J,358.3,15899,2)
- ;;=^5037002
- ;;^UTILITY(U,$J,358.3,15900,0)
- ;;=S61.351A^^85^829^16
- ;;^UTILITY(U,$J,358.3,15900,1,0)
+ ;;^UTILITY(U,$J,358.3,16207,1,3,0)
+ ;;=3^Promyelocytic Leukemia,Acute,In Remission
+ ;;^UTILITY(U,$J,358.3,16207,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,16207,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,16208,0)
+ ;;=C92.50^^61^727^11
+ ;;^UTILITY(U,$J,358.3,16208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15900,1,3,0)
- ;;=3^Open Bite of Left Index finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15900,1,4,0)
- ;;=4^S61.351A
- ;;^UTILITY(U,$J,358.3,15900,2)
- ;;=^5135828
- ;;^UTILITY(U,$J,358.3,15901,0)
- ;;=S61.251A^^85^829^15
- ;;^UTILITY(U,$J,358.3,15901,1,0)
+ ;;^UTILITY(U,$J,358.3,16208,1,3,0)
+ ;;=3^Myelomonocytic Leumkemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16208,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,16208,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,16209,0)
+ ;;=C92.51^^61^727^10
+ ;;^UTILITY(U,$J,358.3,16209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15901,1,3,0)
- ;;=3^Open Bite of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15901,1,4,0)
- ;;=4^S61.251A
- ;;^UTILITY(U,$J,358.3,15901,2)
- ;;=^5032864
- ;;^UTILITY(U,$J,358.3,15902,0)
- ;;=S81.052A^^85^829^17
- ;;^UTILITY(U,$J,358.3,15902,1,0)
+ ;;^UTILITY(U,$J,358.3,16209,1,3,0)
+ ;;=3^Myelomonocytic Leumkemia,Acute,In Remission
+ ;;^UTILITY(U,$J,358.3,16209,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,16209,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,16210,0)
+ ;;=C92.00^^61^727^4
+ ;;^UTILITY(U,$J,358.3,16210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15902,1,3,0)
- ;;=3^Open Bite of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,15902,1,4,0)
- ;;=4^S81.052A
- ;;^UTILITY(U,$J,358.3,15902,2)
- ;;=^5040059
- ;;^UTILITY(U,$J,358.3,15903,0)
- ;;=S91.255A^^85^829^18
- ;;^UTILITY(U,$J,358.3,15903,1,0)
+ ;;^UTILITY(U,$J,358.3,16210,1,3,0)
+ ;;=3^Myeloblastic Leukemia,Acute,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16210,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,16210,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,16211,0)
+ ;;=C92.01^^61^727^3
+ ;;^UTILITY(U,$J,358.3,16211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15903,1,3,0)
- ;;=3^Open Bite of Left Lesser Toe(s) w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15903,1,4,0)
- ;;=4^S91.255A
- ;;^UTILITY(U,$J,358.3,15903,2)
- ;;=^5137514
- ;;^UTILITY(U,$J,358.3,15904,0)
- ;;=S91.155A^^85^829^19
- ;;^UTILITY(U,$J,358.3,15904,1,0)
+ ;;^UTILITY(U,$J,358.3,16211,1,3,0)
+ ;;=3^Myeloblastic Leukemia,Acute,In Remission
+ ;;^UTILITY(U,$J,358.3,16211,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,16211,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,16212,0)
+ ;;=C92.10^^61^727^7
+ ;;^UTILITY(U,$J,358.3,16212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15904,1,3,0)
- ;;=3^Open Bite of Left Lesser Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15904,1,4,0)
- ;;=4^S91.155A
- ;;^UTILITY(U,$J,358.3,15904,2)
- ;;=^5044255
- ;;^UTILITY(U,$J,358.3,15905,0)
- ;;=S61.357A^^85^829^20
- ;;^UTILITY(U,$J,358.3,15905,1,0)
+ ;;^UTILITY(U,$J,358.3,16212,1,3,0)
+ ;;=3^Myeloid Leukemia BCR/ABL-Positive,Chr,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16212,1,4,0)
+ ;;=4^C92.10
+ ;;^UTILITY(U,$J,358.3,16212,2)
+ ;;=^5001792
+ ;;^UTILITY(U,$J,358.3,16213,0)
+ ;;=C92.11^^61^727^6
+ ;;^UTILITY(U,$J,358.3,16213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15905,1,3,0)
- ;;=3^Open Bite of Left Little Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15905,1,4,0)
- ;;=4^S61.357A
- ;;^UTILITY(U,$J,358.3,15905,2)
- ;;=^5135837
- ;;^UTILITY(U,$J,358.3,15906,0)
- ;;=S61.257A^^85^829^21
- ;;^UTILITY(U,$J,358.3,15906,1,0)
+ ;;^UTILITY(U,$J,358.3,16213,1,3,0)
+ ;;=3^Myeloid Leukemia BCR/ABL-Positive,Chr,In Remission
+ ;;^UTILITY(U,$J,358.3,16213,1,4,0)
+ ;;=4^C92.11
+ ;;^UTILITY(U,$J,358.3,16213,2)
+ ;;=^5001793
+ ;;^UTILITY(U,$J,358.3,16214,0)
+ ;;=C92.20^^61^727^9
+ ;;^UTILITY(U,$J,358.3,16214,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16214,1,3,0)
+ ;;=3^Myeloid Leukemia BCR/ABL-neg,Atyp Chr,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16214,1,4,0)
+ ;;=4^C92.20

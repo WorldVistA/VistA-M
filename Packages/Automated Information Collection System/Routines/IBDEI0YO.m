@@ -1,122 +1,132 @@
-IBDEI0YO ; ; 19-NOV-2015
+IBDEI0YO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15967,1,0)
+ ;;^UTILITY(U,$J,358.3,16280,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,16280,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,16281,0)
+ ;;=Z86.718^^61^729^25
+ ;;^UTILITY(U,$J,358.3,16281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15967,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,15967,1,4,0)
- ;;=4^S51.031A
- ;;^UTILITY(U,$J,358.3,15967,2)
- ;;=^5028638
- ;;^UTILITY(U,$J,358.3,15968,0)
- ;;=S51.032A^^85^830^9
- ;;^UTILITY(U,$J,358.3,15968,1,0)
+ ;;^UTILITY(U,$J,358.3,16281,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism NEC
+ ;;^UTILITY(U,$J,358.3,16281,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,16281,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,16282,0)
+ ;;=I26.99^^61^729^27
+ ;;^UTILITY(U,$J,358.3,16282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15968,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,15968,1,4,0)
- ;;=4^S51.032A
- ;;^UTILITY(U,$J,358.3,15968,2)
- ;;=^5028641
- ;;^UTILITY(U,$J,358.3,15969,0)
- ;;=S61.531A^^85^830^63
- ;;^UTILITY(U,$J,358.3,15969,1,0)
+ ;;^UTILITY(U,$J,358.3,16282,1,3,0)
+ ;;=3^Pulmonary Embolism NEC
+ ;;^UTILITY(U,$J,358.3,16282,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,16282,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,16283,0)
+ ;;=G45.9^^61^729^28
+ ;;^UTILITY(U,$J,358.3,16283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15969,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,15969,1,4,0)
- ;;=4^S61.531A
- ;;^UTILITY(U,$J,358.3,15969,2)
- ;;=^5033038
- ;;^UTILITY(U,$J,358.3,15970,0)
- ;;=S61.532A^^85^830^31
- ;;^UTILITY(U,$J,358.3,15970,1,0)
+ ;;^UTILITY(U,$J,358.3,16283,1,3,0)
+ ;;=3^TIA,Unspec
+ ;;^UTILITY(U,$J,358.3,16283,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,16283,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,16284,0)
+ ;;=I65.09^^61^729^21
+ ;;^UTILITY(U,$J,358.3,16284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15970,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,15970,1,4,0)
- ;;=4^S61.532A
- ;;^UTILITY(U,$J,358.3,15970,2)
- ;;=^5033041
- ;;^UTILITY(U,$J,358.3,15971,0)
- ;;=S61.432A^^85^830^13
- ;;^UTILITY(U,$J,358.3,15971,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15971,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,15971,1,4,0)
- ;;=4^S61.432A
- ;;^UTILITY(U,$J,358.3,15971,2)
- ;;=^5033002
- ;;^UTILITY(U,$J,358.3,15972,0)
- ;;=S61.431A^^85^830^45
- ;;^UTILITY(U,$J,358.3,15972,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15972,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,15972,1,4,0)
- ;;=4^S61.431A
- ;;^UTILITY(U,$J,358.3,15972,2)
- ;;=^5032999
- ;;^UTILITY(U,$J,358.3,15973,0)
- ;;=S61.031A^^85^830^61
- ;;^UTILITY(U,$J,358.3,15973,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15973,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15973,1,4,0)
- ;;=4^S61.031A
- ;;^UTILITY(U,$J,358.3,15973,2)
- ;;=^5032702
- ;;^UTILITY(U,$J,358.3,15974,0)
- ;;=S61.032A^^85^830^30
- ;;^UTILITY(U,$J,358.3,15974,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15974,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thumb w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15974,1,4,0)
- ;;=4^S61.032A
- ;;^UTILITY(U,$J,358.3,15974,2)
- ;;=^5032705
- ;;^UTILITY(U,$J,358.3,15975,0)
- ;;=S61.237A^^85^830^20
- ;;^UTILITY(U,$J,358.3,15975,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15975,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Little Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15975,1,4,0)
- ;;=4^S61.237A
- ;;^UTILITY(U,$J,358.3,15975,2)
- ;;=^5032837
- ;;^UTILITY(U,$J,358.3,15976,0)
- ;;=S91.232A^^85^830^11
- ;;^UTILITY(U,$J,358.3,15976,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15976,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15976,1,4,0)
- ;;=4^S91.232A
- ;;^UTILITY(U,$J,358.3,15976,2)
- ;;=^5044293
- ;;^UTILITY(U,$J,358.3,15977,0)
- ;;=S91.132A^^85^830^12
- ;;^UTILITY(U,$J,358.3,15977,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15977,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15977,1,4,0)
- ;;=4^S91.132A
- ;;^UTILITY(U,$J,358.3,15977,2)
- ;;=^5044216
- ;;^UTILITY(U,$J,358.3,15978,0)
- ;;=S61.331A^^85^830^15
- ;;^UTILITY(U,$J,358.3,15978,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15978,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15978,1,4,0)
- ;;=4^S61.331A
- ;;^UTILITY(U,$J,358.3,15978,2)
- ;;=^5032939
+ ;;^UTILITY(U,$J,358.3,16284,1,3,0)
+ ;;=3^Occlusion/Stenosis of Vertebral Artery,Unspec
+ ;;^UTILITY(U,$J,358.3,16284,1,4,0)
+ ;;=4^I65.09
+ ;;^UTILITY(U,$J,358.3,16284,2)
+ ;;=^5007359
+ ;;^UTILITY(U,$J,358.3,16285,0)
+ ;;=99377^^62^730^2^^^^1
+ ;;^UTILITY(U,$J,358.3,16285,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16285,1,1,0)
+ ;;=1^99377
+ ;;^UTILITY(U,$J,358.3,16285,1,2,0)
+ ;;=2^Hospice Care Supervision,15-29 min
+ ;;^UTILITY(U,$J,358.3,16286,0)
+ ;;=99378^^62^730^3^^^^1
+ ;;^UTILITY(U,$J,358.3,16286,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16286,1,1,0)
+ ;;=1^99378
+ ;;^UTILITY(U,$J,358.3,16286,1,2,0)
+ ;;=2^Hospice Care Supervision,30 min or more
+ ;;^UTILITY(U,$J,358.3,16287,0)
+ ;;=G0182^^62^730^1^^^^1
+ ;;^UTILITY(U,$J,358.3,16287,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16287,1,1,0)
+ ;;=1^G0182
+ ;;^UTILITY(U,$J,358.3,16287,1,2,0)
+ ;;=2^Hospice Care-Use with each encounter
+ ;;^UTILITY(U,$J,358.3,16288,0)
+ ;;=99356^^62^731^1^^^^1
+ ;;^UTILITY(U,$J,358.3,16288,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16288,1,1,0)
+ ;;=1^99356
+ ;;^UTILITY(U,$J,358.3,16288,1,2,0)
+ ;;=2^Prolonged Services F-T-F,1st Hr
+ ;;^UTILITY(U,$J,358.3,16289,0)
+ ;;=99357^^62^731^2^^^^1
+ ;;^UTILITY(U,$J,358.3,16289,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16289,1,1,0)
+ ;;=1^99357
+ ;;^UTILITY(U,$J,358.3,16289,1,2,0)
+ ;;=2^Prolonged Services F-T-F,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,16290,0)
+ ;;=99358^^62^731^3^^^^1
+ ;;^UTILITY(U,$J,358.3,16290,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16290,1,1,0)
+ ;;=1^99358
+ ;;^UTILITY(U,$J,358.3,16290,1,2,0)
+ ;;=2^Prolonged Services w/o Contact,1st Hr
+ ;;^UTILITY(U,$J,358.3,16291,0)
+ ;;=99359^^62^731^4^^^^1
+ ;;^UTILITY(U,$J,358.3,16291,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16291,1,1,0)
+ ;;=1^99359
+ ;;^UTILITY(U,$J,358.3,16291,1,2,0)
+ ;;=2^Prolonged Svc w/o Contact,Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,16292,0)
+ ;;=99251^^63^732^1
+ ;;^UTILITY(U,$J,358.3,16292,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16292,1,1,0)
+ ;;=1^PF HX/EXAM,SF MDM
+ ;;^UTILITY(U,$J,358.3,16292,1,2,0)
+ ;;=2^99251
+ ;;^UTILITY(U,$J,358.3,16293,0)
+ ;;=99252^^63^732^2
+ ;;^UTILITY(U,$J,358.3,16293,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16293,1,1,0)
+ ;;=1^EPF HX/EXAM,SF MDM
+ ;;^UTILITY(U,$J,358.3,16293,1,2,0)
+ ;;=2^99252
+ ;;^UTILITY(U,$J,358.3,16294,0)
+ ;;=99253^^63^732^3
+ ;;^UTILITY(U,$J,358.3,16294,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,16294,1,1,0)
+ ;;=1^DET HX/EXAM,LOW MDM
+ ;;^UTILITY(U,$J,358.3,16294,1,2,0)
+ ;;=2^99253
+ ;;^UTILITY(U,$J,358.3,16295,0)
+ ;;=99254^^63^732^4
+ ;;^UTILITY(U,$J,358.3,16295,1,0)
+ ;;=^358.31IA^2^2

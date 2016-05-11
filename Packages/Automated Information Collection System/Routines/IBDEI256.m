@@ -1,118 +1,138 @@
-IBDEI256 ; ; 19-NOV-2015
+IBDEI256 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35933,1,0)
+ ;;^UTILITY(U,$J,358.3,36340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35933,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, unsp
- ;;^UTILITY(U,$J,358.3,35933,1,4,0)
- ;;=4^O36.5910
- ;;^UTILITY(U,$J,358.3,35933,2)
- ;;=^5017003
- ;;^UTILITY(U,$J,358.3,35934,0)
- ;;=O36.5911^^166^1827^165
- ;;^UTILITY(U,$J,358.3,35934,1,0)
+ ;;^UTILITY(U,$J,358.3,36340,1,3,0)
+ ;;=3^Hypoventilation,Sleep Related
+ ;;^UTILITY(U,$J,358.3,36340,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,36340,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,36341,0)
+ ;;=G47.33^^137^1757^3
+ ;;^UTILITY(U,$J,358.3,36341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35934,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts1
- ;;^UTILITY(U,$J,358.3,35934,1,4,0)
- ;;=4^O36.5911
- ;;^UTILITY(U,$J,358.3,35934,2)
- ;;=^5017004
- ;;^UTILITY(U,$J,358.3,35935,0)
- ;;=O36.5912^^166^1827^166
- ;;^UTILITY(U,$J,358.3,35935,1,0)
+ ;;^UTILITY(U,$J,358.3,36341,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,36341,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,36341,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,36342,0)
+ ;;=Z43.0^^137^1758^3
+ ;;^UTILITY(U,$J,358.3,36342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35935,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts2
- ;;^UTILITY(U,$J,358.3,35935,1,4,0)
- ;;=4^O36.5912
- ;;^UTILITY(U,$J,358.3,35935,2)
- ;;=^5017005
- ;;^UTILITY(U,$J,358.3,35936,0)
- ;;=O36.5913^^166^1827^167
- ;;^UTILITY(U,$J,358.3,35936,1,0)
+ ;;^UTILITY(U,$J,358.3,36342,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,36342,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,36342,2)
+ ;;=^5062958
+ ;;^UTILITY(U,$J,358.3,36343,0)
+ ;;=Z71.3^^137^1758^5
+ ;;^UTILITY(U,$J,358.3,36343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35936,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts3
- ;;^UTILITY(U,$J,358.3,35936,1,4,0)
- ;;=4^O36.5913
- ;;^UTILITY(U,$J,358.3,35936,2)
- ;;=^5017006
- ;;^UTILITY(U,$J,358.3,35937,0)
- ;;=O36.5914^^166^1827^168
- ;;^UTILITY(U,$J,358.3,35937,1,0)
+ ;;^UTILITY(U,$J,358.3,36343,1,3,0)
+ ;;=3^Counseling & Surveillance,Dietary
+ ;;^UTILITY(U,$J,358.3,36343,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,36343,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,36344,0)
+ ;;=Z71.89^^137^1758^6
+ ;;^UTILITY(U,$J,358.3,36344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35937,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts4
- ;;^UTILITY(U,$J,358.3,35937,1,4,0)
- ;;=4^O36.5914
- ;;^UTILITY(U,$J,358.3,35937,2)
- ;;=^5017007
- ;;^UTILITY(U,$J,358.3,35938,0)
- ;;=O36.5915^^166^1827^169
- ;;^UTILITY(U,$J,358.3,35938,1,0)
+ ;;^UTILITY(U,$J,358.3,36344,1,3,0)
+ ;;=3^Counseling,Other Spec
+ ;;^UTILITY(U,$J,358.3,36344,1,4,0)
+ ;;=4^Z71.89
+ ;;^UTILITY(U,$J,358.3,36344,2)
+ ;;=^5063253
+ ;;^UTILITY(U,$J,358.3,36345,0)
+ ;;=Z02.3^^137^1758^10
+ ;;^UTILITY(U,$J,358.3,36345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35938,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts5
- ;;^UTILITY(U,$J,358.3,35938,1,4,0)
- ;;=4^O36.5915
- ;;^UTILITY(U,$J,358.3,35938,2)
- ;;=^5017008
- ;;^UTILITY(U,$J,358.3,35939,0)
- ;;=O36.5920^^166^1827^170
- ;;^UTILITY(U,$J,358.3,35939,1,0)
+ ;;^UTILITY(U,$J,358.3,36345,1,3,0)
+ ;;=3^Recruitment to Armed Forces Exam
+ ;;^UTILITY(U,$J,358.3,36345,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,36345,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,36346,0)
+ ;;=Z02.1^^137^1758^9
+ ;;^UTILITY(U,$J,358.3,36346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35939,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, unsp
- ;;^UTILITY(U,$J,358.3,35939,1,4,0)
- ;;=4^O36.5920
- ;;^UTILITY(U,$J,358.3,35939,2)
- ;;=^5017009
- ;;^UTILITY(U,$J,358.3,35940,0)
- ;;=O36.5921^^166^1827^171
- ;;^UTILITY(U,$J,358.3,35940,1,0)
+ ;;^UTILITY(U,$J,358.3,36346,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,36346,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,36346,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,36347,0)
+ ;;=Z02.89^^137^1758^2
+ ;;^UTILITY(U,$J,358.3,36347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35940,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts1
- ;;^UTILITY(U,$J,358.3,35940,1,4,0)
- ;;=4^O36.5921
- ;;^UTILITY(U,$J,358.3,35940,2)
- ;;=^5017010
- ;;^UTILITY(U,$J,358.3,35941,0)
- ;;=O36.5922^^166^1827^172
- ;;^UTILITY(U,$J,358.3,35941,1,0)
+ ;;^UTILITY(U,$J,358.3,36347,1,3,0)
+ ;;=3^Administrative Exam
+ ;;^UTILITY(U,$J,358.3,36347,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,36347,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,36348,0)
+ ;;=Z13.83^^137^1758^11
+ ;;^UTILITY(U,$J,358.3,36348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35941,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts2
- ;;^UTILITY(U,$J,358.3,35941,1,4,0)
- ;;=4^O36.5922
- ;;^UTILITY(U,$J,358.3,35941,2)
- ;;=^5017011
- ;;^UTILITY(U,$J,358.3,35942,0)
- ;;=O36.5923^^166^1827^173
- ;;^UTILITY(U,$J,358.3,35942,1,0)
+ ;;^UTILITY(U,$J,358.3,36348,1,3,0)
+ ;;=3^Respiratory Disorder Screen
+ ;;^UTILITY(U,$J,358.3,36348,1,4,0)
+ ;;=4^Z13.83
+ ;;^UTILITY(U,$J,358.3,36348,2)
+ ;;=^5062715
+ ;;^UTILITY(U,$J,358.3,36349,0)
+ ;;=J98.01^^137^1758^1
+ ;;^UTILITY(U,$J,358.3,36349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35942,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts3
- ;;^UTILITY(U,$J,358.3,35942,1,4,0)
- ;;=4^O36.5923
- ;;^UTILITY(U,$J,358.3,35942,2)
- ;;=^5017012
- ;;^UTILITY(U,$J,358.3,35943,0)
- ;;=O36.5924^^166^1827^174
- ;;^UTILITY(U,$J,358.3,35943,1,0)
+ ;;^UTILITY(U,$J,358.3,36349,1,3,0)
+ ;;=3^Acute Bronchospasm
+ ;;^UTILITY(U,$J,358.3,36349,1,4,0)
+ ;;=4^J98.01
+ ;;^UTILITY(U,$J,358.3,36349,2)
+ ;;=^334092
+ ;;^UTILITY(U,$J,358.3,36350,0)
+ ;;=G89.12^^137^1758^8
+ ;;^UTILITY(U,$J,358.3,36350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35943,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts4
- ;;^UTILITY(U,$J,358.3,35943,1,4,0)
- ;;=4^O36.5924
- ;;^UTILITY(U,$J,358.3,35943,2)
- ;;=^5017013
- ;;^UTILITY(U,$J,358.3,35944,0)
- ;;=O36.5925^^166^1827^175
- ;;^UTILITY(U,$J,358.3,35944,1,0)
+ ;;^UTILITY(U,$J,358.3,36350,1,3,0)
+ ;;=3^Post-Thoracotomy Pain
+ ;;^UTILITY(U,$J,358.3,36350,1,4,0)
+ ;;=4^G89.12
+ ;;^UTILITY(U,$J,358.3,36350,2)
+ ;;=^5004153
+ ;;^UTILITY(U,$J,358.3,36351,0)
+ ;;=J98.09^^137^1758^4
+ ;;^UTILITY(U,$J,358.3,36351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35944,1,3,0)
- ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,36351,1,3,0)
+ ;;=3^Bronchus Diseases NEC
+ ;;^UTILITY(U,$J,358.3,36351,1,4,0)
+ ;;=4^J98.09
+ ;;^UTILITY(U,$J,358.3,36351,2)
+ ;;=^5008359
+ ;;^UTILITY(U,$J,358.3,36352,0)
+ ;;=J39.8^^137^1758^12
+ ;;^UTILITY(U,$J,358.3,36352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36352,1,3,0)
+ ;;=3^Upper Respiratory Tract Diseases
+ ;;^UTILITY(U,$J,358.3,36352,1,4,0)
+ ;;=4^J39.8
+ ;;^UTILITY(U,$J,358.3,36352,2)
+ ;;=^5008231
+ ;;^UTILITY(U,$J,358.3,36353,0)
+ ;;=M31.30^^137^1758^13
+ ;;^UTILITY(U,$J,358.3,36353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36353,1,3,0)
+ ;;=3^Wegener's Granulomatosis w/o Renal Involvement

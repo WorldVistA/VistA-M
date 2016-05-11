@@ -1,122 +1,128 @@
-IBDEI1V7 ; ; 19-NOV-2015
+IBDEI1V7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31211,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,31211,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,31212,0)
- ;;=Y36.6X0D^^135^1391^115
- ;;^UTILITY(U,$J,358.3,31212,1,0)
+ ;;^UTILITY(U,$J,358.3,31687,1,3,0)
+ ;;=3^Anonychia
+ ;;^UTILITY(U,$J,358.3,31687,1,4,0)
+ ;;=4^Q84.3
+ ;;^UTILITY(U,$J,358.3,31687,2)
+ ;;=^5019063
+ ;;^UTILITY(U,$J,358.3,31688,0)
+ ;;=Z47.82^^126^1604^21
+ ;;^UTILITY(U,$J,358.3,31688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31212,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31212,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,31212,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,31213,0)
- ;;=Y36.7X0A^^135^1391^128
- ;;^UTILITY(U,$J,358.3,31213,1,0)
+ ;;^UTILITY(U,$J,358.3,31688,1,3,0)
+ ;;=3^Aftercare Following Scoliosis Surgery
+ ;;^UTILITY(U,$J,358.3,31688,1,4,0)
+ ;;=4^Z47.82
+ ;;^UTILITY(U,$J,358.3,31688,2)
+ ;;=^5063031
+ ;;^UTILITY(U,$J,358.3,31689,0)
+ ;;=Z47.81^^126^1604^22
+ ;;^UTILITY(U,$J,358.3,31689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31213,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,31213,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,31213,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,31214,0)
- ;;=Y36.7X0D^^135^1391^129
- ;;^UTILITY(U,$J,358.3,31214,1,0)
+ ;;^UTILITY(U,$J,358.3,31689,1,3,0)
+ ;;=3^Aftercare Following Surgical Amputation
+ ;;^UTILITY(U,$J,358.3,31689,1,4,0)
+ ;;=4^Z47.81
+ ;;^UTILITY(U,$J,358.3,31689,2)
+ ;;=^5063030
+ ;;^UTILITY(U,$J,358.3,31690,0)
+ ;;=L75.8^^126^1604^25
+ ;;^UTILITY(U,$J,358.3,31690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31214,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31214,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,31214,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,31215,0)
- ;;=Y36.810A^^135^1391^22
- ;;^UTILITY(U,$J,358.3,31215,1,0)
+ ;;^UTILITY(U,$J,358.3,31690,1,3,0)
+ ;;=3^Apocrine Sweat Disorders NEC
+ ;;^UTILITY(U,$J,358.3,31690,1,4,0)
+ ;;=4^L75.8
+ ;;^UTILITY(U,$J,358.3,31690,2)
+ ;;=^5009300
+ ;;^UTILITY(U,$J,358.3,31691,0)
+ ;;=I70.443^^126^1604^48
+ ;;^UTILITY(U,$J,358.3,31691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31215,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,31215,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,31215,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,31216,0)
- ;;=Y36.810D^^135^1391^23
- ;;^UTILITY(U,$J,358.3,31216,1,0)
+ ;;^UTILITY(U,$J,358.3,31691,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,31691,1,4,0)
+ ;;=4^I70.443
+ ;;^UTILITY(U,$J,358.3,31691,2)
+ ;;=^5007673
+ ;;^UTILITY(U,$J,358.3,31692,0)
+ ;;=I70.445^^126^1604^50
+ ;;^UTILITY(U,$J,358.3,31692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31216,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31216,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,31216,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,31217,0)
- ;;=Y36.820A^^135^1391^19
- ;;^UTILITY(U,$J,358.3,31217,1,0)
+ ;;^UTILITY(U,$J,358.3,31692,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,31692,1,4,0)
+ ;;=4^I70.445
+ ;;^UTILITY(U,$J,358.3,31692,2)
+ ;;=^5007675
+ ;;^UTILITY(U,$J,358.3,31693,0)
+ ;;=I70.442^^126^1604^49
+ ;;^UTILITY(U,$J,358.3,31693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31217,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,31217,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,31217,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,31218,0)
- ;;=Y36.820D^^135^1391^20
- ;;^UTILITY(U,$J,358.3,31218,1,0)
+ ;;^UTILITY(U,$J,358.3,31693,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,31693,1,4,0)
+ ;;=4^I70.442
+ ;;^UTILITY(U,$J,358.3,31693,2)
+ ;;=^5007672
+ ;;^UTILITY(U,$J,358.3,31694,0)
+ ;;=I70.444^^126^1604^51
+ ;;^UTILITY(U,$J,358.3,31694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31218,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31218,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,31218,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,31219,0)
- ;;=Y37.200A^^135^1391^91
- ;;^UTILITY(U,$J,358.3,31219,1,0)
+ ;;^UTILITY(U,$J,358.3,31694,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,31694,1,4,0)
+ ;;=4^I70.444
+ ;;^UTILITY(U,$J,358.3,31694,2)
+ ;;=^5007674
+ ;;^UTILITY(U,$J,358.3,31695,0)
+ ;;=I70.433^^126^1604^52
+ ;;^UTILITY(U,$J,358.3,31695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31219,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,31219,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,31219,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,31220,0)
- ;;=Y37.200D^^135^1391^92
- ;;^UTILITY(U,$J,358.3,31220,1,0)
+ ;;^UTILITY(U,$J,358.3,31695,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,31695,1,4,0)
+ ;;=4^I70.433
+ ;;^UTILITY(U,$J,358.3,31695,2)
+ ;;=^5007666
+ ;;^UTILITY(U,$J,358.3,31696,0)
+ ;;=I70.435^^126^1604^54
+ ;;^UTILITY(U,$J,358.3,31696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31220,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31220,1,4,0)
- ;;=4^Y37.200D
- ;;^UTILITY(U,$J,358.3,31220,2)
- ;;=^5137999
- ;;^UTILITY(U,$J,358.3,31221,0)
- ;;=X00.1XXA^^135^1391^13
- ;;^UTILITY(U,$J,358.3,31221,1,0)
+ ;;^UTILITY(U,$J,358.3,31696,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,31696,1,4,0)
+ ;;=4^I70.435
+ ;;^UTILITY(U,$J,358.3,31696,2)
+ ;;=^5007668
+ ;;^UTILITY(U,$J,358.3,31697,0)
+ ;;=I70.432^^126^1604^53
+ ;;^UTILITY(U,$J,358.3,31697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31221,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,31221,1,4,0)
- ;;=4^X00.1XXA
- ;;^UTILITY(U,$J,358.3,31221,2)
- ;;=^5060664
- ;;^UTILITY(U,$J,358.3,31222,0)
- ;;=X00.1XXD^^135^1391^14
- ;;^UTILITY(U,$J,358.3,31222,1,0)
+ ;;^UTILITY(U,$J,358.3,31697,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,31697,1,4,0)
+ ;;=4^I70.432
+ ;;^UTILITY(U,$J,358.3,31697,2)
+ ;;=^5007665
+ ;;^UTILITY(U,$J,358.3,31698,0)
+ ;;=I70.434^^126^1604^55
+ ;;^UTILITY(U,$J,358.3,31698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31222,1,3,0)
- ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31222,1,4,0)
- ;;=4^X00.1XXD
- ;;^UTILITY(U,$J,358.3,31222,2)
- ;;=^5060665
- ;;^UTILITY(U,$J,358.3,31223,0)
- ;;=Y36.820S^^135^1391^21
- ;;^UTILITY(U,$J,358.3,31223,1,0)
+ ;;^UTILITY(U,$J,358.3,31698,1,3,0)
+ ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,31698,1,4,0)
+ ;;=4^I70.434
+ ;;^UTILITY(U,$J,358.3,31698,2)
+ ;;=^5007667
+ ;;^UTILITY(U,$J,358.3,31699,0)
+ ;;=I70.343^^126^1604^56
+ ;;^UTILITY(U,$J,358.3,31699,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31699,1,3,0)
+ ;;=3^Athscl Bypass,Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,31699,1,4,0)
+ ;;=4^I70.343

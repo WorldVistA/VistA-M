@@ -1,136 +1,138 @@
-IBDEI0WZ ; ; 19-NOV-2015
+IBDEI0WZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15207,0)
- ;;=K64.1^^85^811^2
- ;;^UTILITY(U,$J,358.3,15207,1,0)
+ ;;^UTILITY(U,$J,358.3,15473,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,15473,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,15474,0)
+ ;;=F64.1^^58^667^2
+ ;;^UTILITY(U,$J,358.3,15474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15207,1,3,0)
- ;;=3^Second Degree Hemorrhoids
- ;;^UTILITY(U,$J,358.3,15207,1,4,0)
- ;;=4^K64.1
- ;;^UTILITY(U,$J,358.3,15207,2)
- ;;=^5008770
- ;;^UTILITY(U,$J,358.3,15208,0)
- ;;=K64.2^^85^811^3
- ;;^UTILITY(U,$J,358.3,15208,1,0)
+ ;;^UTILITY(U,$J,358.3,15474,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,15474,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,15474,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,15475,0)
+ ;;=F64.8^^58^667^1
+ ;;^UTILITY(U,$J,358.3,15475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15208,1,3,0)
- ;;=3^Third Degree Hemorrhoids
- ;;^UTILITY(U,$J,358.3,15208,1,4,0)
- ;;=4^K64.2
- ;;^UTILITY(U,$J,358.3,15208,2)
- ;;=^5008771
- ;;^UTILITY(U,$J,358.3,15209,0)
- ;;=K64.3^^85^811^4
- ;;^UTILITY(U,$J,358.3,15209,1,0)
+ ;;^UTILITY(U,$J,358.3,15475,1,3,0)
+ ;;=3^Gender Dysphoria NEC
+ ;;^UTILITY(U,$J,358.3,15475,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,15475,2)
+ ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,15476,0)
+ ;;=F64.9^^58^667^3
+ ;;^UTILITY(U,$J,358.3,15476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15209,1,3,0)
- ;;=3^Fourth Degree Hemorrhoids
- ;;^UTILITY(U,$J,358.3,15209,1,4,0)
- ;;=4^K64.3
- ;;^UTILITY(U,$J,358.3,15209,2)
- ;;=^5008772
- ;;^UTILITY(U,$J,358.3,15210,0)
- ;;=K64.4^^85^811^5
- ;;^UTILITY(U,$J,358.3,15210,1,0)
+ ;;^UTILITY(U,$J,358.3,15476,1,3,0)
+ ;;=3^Gender Dysphoria,Unspec
+ ;;^UTILITY(U,$J,358.3,15476,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,15476,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,15477,0)
+ ;;=Z59.2^^58^668^1
+ ;;^UTILITY(U,$J,358.3,15477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15210,1,3,0)
- ;;=3^Hemorrhoids,External
- ;;^UTILITY(U,$J,358.3,15210,1,4,0)
- ;;=4^K64.4
- ;;^UTILITY(U,$J,358.3,15210,2)
- ;;=^269834
- ;;^UTILITY(U,$J,358.3,15211,0)
- ;;=K64.5^^85^811^8
- ;;^UTILITY(U,$J,358.3,15211,1,0)
+ ;;^UTILITY(U,$J,358.3,15477,1,3,0)
+ ;;=3^Discord w/ Neighbors,Lodgers or Landlord
+ ;;^UTILITY(U,$J,358.3,15477,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,15477,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,15478,0)
+ ;;=Z59.0^^58^668^3
+ ;;^UTILITY(U,$J,358.3,15478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15211,1,3,0)
- ;;=3^Perianal venous thrombosis
- ;;^UTILITY(U,$J,358.3,15211,1,4,0)
- ;;=4^K64.5
- ;;^UTILITY(U,$J,358.3,15211,2)
- ;;=^5008773
- ;;^UTILITY(U,$J,358.3,15212,0)
- ;;=K61.0^^85^812^1
- ;;^UTILITY(U,$J,358.3,15212,1,0)
+ ;;^UTILITY(U,$J,358.3,15478,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,15478,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,15478,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,15479,0)
+ ;;=Z59.1^^58^668^5
+ ;;^UTILITY(U,$J,358.3,15479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15212,1,3,0)
- ;;=3^Anal Abscess
- ;;^UTILITY(U,$J,358.3,15212,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,15212,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,15213,0)
- ;;=K61.1^^85^812^5
- ;;^UTILITY(U,$J,358.3,15213,1,0)
+ ;;^UTILITY(U,$J,358.3,15479,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,15479,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,15479,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,15480,0)
+ ;;=Z59.3^^58^668^9
+ ;;^UTILITY(U,$J,358.3,15480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15213,1,3,0)
- ;;=3^Rectal Abscess
- ;;^UTILITY(U,$J,358.3,15213,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,15213,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,15214,0)
- ;;=K61.3^^85^812^4
- ;;^UTILITY(U,$J,358.3,15214,1,0)
+ ;;^UTILITY(U,$J,358.3,15480,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,15480,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,15480,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,15481,0)
+ ;;=Z59.4^^58^668^7
+ ;;^UTILITY(U,$J,358.3,15481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15214,1,3,0)
- ;;=3^Ischiorectal Abscess
- ;;^UTILITY(U,$J,358.3,15214,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,15214,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,15215,0)
- ;;=K61.4^^85^812^3
- ;;^UTILITY(U,$J,358.3,15215,1,0)
+ ;;^UTILITY(U,$J,358.3,15481,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,15481,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,15481,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,15482,0)
+ ;;=Z59.5^^58^668^2
+ ;;^UTILITY(U,$J,358.3,15482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15215,1,3,0)
- ;;=3^Intrasphincteric Abscess
- ;;^UTILITY(U,$J,358.3,15215,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,15215,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,15216,0)
- ;;=K61.2^^85^812^2
- ;;^UTILITY(U,$J,358.3,15216,1,0)
+ ;;^UTILITY(U,$J,358.3,15482,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,15482,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,15482,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,15483,0)
+ ;;=Z59.6^^58^668^8
+ ;;^UTILITY(U,$J,358.3,15483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15216,1,3,0)
- ;;=3^Anorectal Abscess
- ;;^UTILITY(U,$J,358.3,15216,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,15216,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,15217,0)
- ;;=S09.12XA^^85^813^2
- ;;^UTILITY(U,$J,358.3,15217,1,0)
+ ;;^UTILITY(U,$J,358.3,15483,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,15483,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,15483,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,15484,0)
+ ;;=Z59.7^^58^668^6
+ ;;^UTILITY(U,$J,358.3,15484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15217,1,3,0)
- ;;=3^Laceration of Muscle/Tendon of Head,Init Encntr
- ;;^UTILITY(U,$J,358.3,15217,1,4,0)
- ;;=4^S09.12XA
- ;;^UTILITY(U,$J,358.3,15217,2)
- ;;=^5021287
- ;;^UTILITY(U,$J,358.3,15218,0)
- ;;=S16.2XXA^^85^813^1
- ;;^UTILITY(U,$J,358.3,15218,1,0)
+ ;;^UTILITY(U,$J,358.3,15484,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,15484,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,15484,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,15485,0)
+ ;;=Z59.9^^58^668^4
+ ;;^UTILITY(U,$J,358.3,15485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15218,1,3,0)
- ;;=3^Laceration of Muscle/Fascia/Tendon at Neck Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,15218,1,4,0)
- ;;=4^S16.2XXA
- ;;^UTILITY(U,$J,358.3,15218,2)
- ;;=^5022361
- ;;^UTILITY(U,$J,358.3,15219,0)
- ;;=S31.114A^^85^813^5
- ;;^UTILITY(U,$J,358.3,15219,1,0)
+ ;;^UTILITY(U,$J,358.3,15485,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,15485,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,15485,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,15486,0)
+ ;;=G21.19^^58^669^11
+ ;;^UTILITY(U,$J,358.3,15486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15219,1,3,0)
- ;;=3^Laceration w/o FB of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15219,1,4,0)
- ;;=4^S31.114A
- ;;^UTILITY(U,$J,358.3,15219,2)
- ;;=^5134427
- ;;^UTILITY(U,$J,358.3,15220,0)
- ;;=S31.111A^^85^813^6
+ ;;^UTILITY(U,$J,358.3,15486,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism NEC
+ ;;^UTILITY(U,$J,358.3,15486,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,15486,2)
+ ;;=^5003773

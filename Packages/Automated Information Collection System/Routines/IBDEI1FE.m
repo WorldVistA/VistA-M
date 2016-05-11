@@ -1,130 +1,122 @@
-IBDEI1FE ; ; 19-NOV-2015
+IBDEI1FE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23805,1,3,0)
- ;;=3^Back strain, lower, unspec, init encntr
- ;;^UTILITY(U,$J,358.3,23805,1,4,0)
- ;;=4^S39.012A
- ;;^UTILITY(U,$J,358.3,23805,2)
- ;;=^5026102
- ;;^UTILITY(U,$J,358.3,23806,0)
- ;;=F31.10^^116^1162^1
- ;;^UTILITY(U,$J,358.3,23806,1,0)
+ ;;^UTILITY(U,$J,358.3,24237,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24237,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,24237,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,24238,0)
+ ;;=F10.182^^90^1061^36
+ ;;^UTILITY(U,$J,358.3,24238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23806,1,3,0)
- ;;=3^Bipolar disord, crnt episode manic w/o psych features, unspec
- ;;^UTILITY(U,$J,358.3,23806,1,4,0)
- ;;=4^F31.10
- ;;^UTILITY(U,$J,358.3,23806,2)
- ;;=^5003495
- ;;^UTILITY(U,$J,358.3,23807,0)
- ;;=F31.30^^116^1162^2
- ;;^UTILITY(U,$J,358.3,23807,1,0)
+ ;;^UTILITY(U,$J,358.3,24238,1,3,0)
+ ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24238,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,24238,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,24239,0)
+ ;;=F10.20^^90^1061^28
+ ;;^UTILITY(U,$J,358.3,24239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23807,1,3,0)
- ;;=3^Bipolar disord, crnt epsd depress, mild or mod severt, unspec
- ;;^UTILITY(U,$J,358.3,23807,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,23807,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,23808,0)
- ;;=F31.60^^116^1162^3
- ;;^UTILITY(U,$J,358.3,23808,1,0)
+ ;;^UTILITY(U,$J,358.3,24239,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24239,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,24239,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,24240,0)
+ ;;=F10.21^^90^1061^29
+ ;;^UTILITY(U,$J,358.3,24240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23808,1,3,0)
- ;;=3^Bipolar disorder, current episode mixed, unspec
- ;;^UTILITY(U,$J,358.3,23808,1,4,0)
- ;;=4^F31.60
- ;;^UTILITY(U,$J,358.3,23808,2)
- ;;=^5003505
- ;;^UTILITY(U,$J,358.3,23809,0)
- ;;=F31.9^^116^1162^4
- ;;^UTILITY(U,$J,358.3,23809,1,0)
+ ;;^UTILITY(U,$J,358.3,24240,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,24240,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,24240,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,24241,0)
+ ;;=F10.230^^90^1061^30
+ ;;^UTILITY(U,$J,358.3,24241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23809,1,3,0)
- ;;=3^Bipolar disorder, unspec
- ;;^UTILITY(U,$J,358.3,23809,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,23809,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,23810,0)
- ;;=C15.9^^116^1163^6
- ;;^UTILITY(U,$J,358.3,23810,1,0)
+ ;;^UTILITY(U,$J,358.3,24241,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,24241,1,4,0)
+ ;;=4^F10.230
+ ;;^UTILITY(U,$J,358.3,24241,2)
+ ;;=^5003086
+ ;;^UTILITY(U,$J,358.3,24242,0)
+ ;;=F10.231^^90^1061^31
+ ;;^UTILITY(U,$J,358.3,24242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23810,1,3,0)
- ;;=3^Malig Neop of esophagus, unspec
- ;;^UTILITY(U,$J,358.3,23810,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,23810,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,23811,0)
- ;;=C18.9^^116^1163^5
- ;;^UTILITY(U,$J,358.3,23811,1,0)
+ ;;^UTILITY(U,$J,358.3,24242,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,24242,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,24242,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,24243,0)
+ ;;=F10.232^^90^1061^32
+ ;;^UTILITY(U,$J,358.3,24243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23811,1,3,0)
- ;;=3^Malig Neop of colon, unspec
- ;;^UTILITY(U,$J,358.3,23811,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,23811,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,23812,0)
- ;;=C32.9^^116^1163^7
- ;;^UTILITY(U,$J,358.3,23812,1,0)
+ ;;^UTILITY(U,$J,358.3,24243,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,24243,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,24243,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,24244,0)
+ ;;=F10.239^^90^1061^33
+ ;;^UTILITY(U,$J,358.3,24244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23812,1,3,0)
- ;;=3^Malig Neop of larynx, unspec
- ;;^UTILITY(U,$J,358.3,23812,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,23812,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,23813,0)
- ;;=C34.91^^116^1163^13
- ;;^UTILITY(U,$J,358.3,23813,1,0)
+ ;;^UTILITY(U,$J,358.3,24244,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,24244,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,24244,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,24245,0)
+ ;;=F10.24^^90^1061^35
+ ;;^UTILITY(U,$J,358.3,24245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23813,1,3,0)
- ;;=3^Malig Neop of rt bronchus or lung, unsp part
- ;;^UTILITY(U,$J,358.3,23813,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,23813,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,23814,0)
- ;;=C34.92^^116^1163^9
- ;;^UTILITY(U,$J,358.3,23814,1,0)
+ ;;^UTILITY(U,$J,358.3,24245,1,3,0)
+ ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24245,1,4,0)
+ ;;=4^F10.24
+ ;;^UTILITY(U,$J,358.3,24245,2)
+ ;;=^5003090
+ ;;^UTILITY(U,$J,358.3,24246,0)
+ ;;=F10.29^^90^1061^37
+ ;;^UTILITY(U,$J,358.3,24246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23814,1,3,0)
- ;;=3^Malig Neop of lft bronchus or lung, unsp part
- ;;^UTILITY(U,$J,358.3,23814,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,23814,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,23815,0)
- ;;=C44.91^^116^1163^1
- ;;^UTILITY(U,$J,358.3,23815,1,0)
+ ;;^UTILITY(U,$J,358.3,24246,1,3,0)
+ ;;=3^Alcohol-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24246,1,4,0)
+ ;;=4^F10.29
+ ;;^UTILITY(U,$J,358.3,24246,2)
+ ;;=^5003100
+ ;;^UTILITY(U,$J,358.3,24247,0)
+ ;;=F10.180^^90^1061^1
+ ;;^UTILITY(U,$J,358.3,24247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23815,1,3,0)
- ;;=3^Basal cell carcinoma of skin, unspec
- ;;^UTILITY(U,$J,358.3,23815,1,4,0)
- ;;=4^C44.91
- ;;^UTILITY(U,$J,358.3,23815,2)
- ;;=^5001092
- ;;^UTILITY(U,$J,358.3,23816,0)
- ;;=C44.99^^116^1163^15
- ;;^UTILITY(U,$J,358.3,23816,1,0)
+ ;;^UTILITY(U,$J,358.3,24247,1,3,0)
+ ;;=3^Alcohol Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24247,1,4,0)
+ ;;=4^F10.180
+ ;;^UTILITY(U,$J,358.3,24247,2)
+ ;;=^5003076
+ ;;^UTILITY(U,$J,358.3,24248,0)
+ ;;=F10.280^^90^1061^2
+ ;;^UTILITY(U,$J,358.3,24248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23816,1,3,0)
- ;;=3^Malig Neop of skin, oth spec, unspec
- ;;^UTILITY(U,$J,358.3,23816,1,4,0)
- ;;=4^C44.99
- ;;^UTILITY(U,$J,358.3,23816,2)
- ;;=^5001094
- ;;^UTILITY(U,$J,358.3,23817,0)
- ;;=C50.912^^116^1163^8
- ;;^UTILITY(U,$J,358.3,23817,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23817,1,3,0)
- ;;=3^Malig Neop of lft breast, female, unspec site
- ;;^UTILITY(U,$J,358.3,23817,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,23817,2)
- ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,24248,1,3,0)
+ ;;=3^Alcohol Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24248,1,4,0)
+ ;;=4^F10.280
+ ;;^UTILITY(U,$J,358.3,24248,2)
+ ;;=^5003096
+ ;;^UTILITY(U,$J,358.3,24249,0)
+ ;;=F10.980^^90^1061^3

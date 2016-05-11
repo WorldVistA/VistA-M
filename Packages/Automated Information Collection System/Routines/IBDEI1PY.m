@@ -1,126 +1,118 @@
-IBDEI1PY ; ; 19-NOV-2015
+IBDEI1PY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28762,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,28762,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,28762,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,28763,0)
- ;;=R40.20^^132^1338^36
- ;;^UTILITY(U,$J,358.3,28763,1,0)
+ ;;^UTILITY(U,$J,358.3,29183,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 1st tri, fts5
+ ;;^UTILITY(U,$J,358.3,29183,1,4,0)
+ ;;=4^O36.5915
+ ;;^UTILITY(U,$J,358.3,29183,2)
+ ;;=^5017008
+ ;;^UTILITY(U,$J,358.3,29184,0)
+ ;;=O36.5920^^115^1455^170
+ ;;^UTILITY(U,$J,358.3,29184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28763,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,28763,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,28763,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,28764,0)
- ;;=R40.2123^^132^1338^35
- ;;^UTILITY(U,$J,358.3,28764,1,0)
+ ;;^UTILITY(U,$J,358.3,29184,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29184,1,4,0)
+ ;;=4^O36.5920
+ ;;^UTILITY(U,$J,358.3,29184,2)
+ ;;=^5017009
+ ;;^UTILITY(U,$J,358.3,29185,0)
+ ;;=O36.5921^^115^1455^171
+ ;;^UTILITY(U,$J,358.3,29185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28764,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,28764,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,28764,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,28765,0)
- ;;=R40.2122^^132^1338^32
- ;;^UTILITY(U,$J,358.3,28765,1,0)
+ ;;^UTILITY(U,$J,358.3,29185,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29185,1,4,0)
+ ;;=4^O36.5921
+ ;;^UTILITY(U,$J,358.3,29185,2)
+ ;;=^5017010
+ ;;^UTILITY(U,$J,358.3,29186,0)
+ ;;=O36.5922^^115^1455^172
+ ;;^UTILITY(U,$J,358.3,29186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28765,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,28765,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,28765,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,28766,0)
- ;;=R40.2124^^132^1338^31
- ;;^UTILITY(U,$J,358.3,28766,1,0)
+ ;;^UTILITY(U,$J,358.3,29186,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29186,1,4,0)
+ ;;=4^O36.5922
+ ;;^UTILITY(U,$J,358.3,29186,2)
+ ;;=^5017011
+ ;;^UTILITY(U,$J,358.3,29187,0)
+ ;;=O36.5923^^115^1455^173
+ ;;^UTILITY(U,$J,358.3,29187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28766,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
- ;;^UTILITY(U,$J,358.3,28766,1,4,0)
- ;;=4^R40.2124
- ;;^UTILITY(U,$J,358.3,28766,2)
- ;;=^5019364
- ;;^UTILITY(U,$J,358.3,28767,0)
- ;;=R40.2211^^132^1338^17
- ;;^UTILITY(U,$J,358.3,28767,1,0)
+ ;;^UTILITY(U,$J,358.3,29187,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29187,1,4,0)
+ ;;=4^O36.5923
+ ;;^UTILITY(U,$J,358.3,29187,2)
+ ;;=^5017012
+ ;;^UTILITY(U,$J,358.3,29188,0)
+ ;;=O36.5924^^115^1455^174
+ ;;^UTILITY(U,$J,358.3,29188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28767,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,in the Field
- ;;^UTILITY(U,$J,358.3,28767,1,4,0)
- ;;=4^R40.2211
- ;;^UTILITY(U,$J,358.3,28767,2)
- ;;=^5019376
- ;;^UTILITY(U,$J,358.3,28768,0)
- ;;=R40.2210^^132^1338^16
- ;;^UTILITY(U,$J,358.3,28768,1,0)
+ ;;^UTILITY(U,$J,358.3,29188,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29188,1,4,0)
+ ;;=4^O36.5924
+ ;;^UTILITY(U,$J,358.3,29188,2)
+ ;;=^5017013
+ ;;^UTILITY(U,$J,358.3,29189,0)
+ ;;=O36.5925^^115^1455^175
+ ;;^UTILITY(U,$J,358.3,29189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28768,1,3,0)
- ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,28768,1,4,0)
- ;;=4^R40.2210
- ;;^UTILITY(U,$J,358.3,28768,2)
- ;;=^5019375
- ;;^UTILITY(U,$J,358.3,28769,0)
- ;;=R40.2224^^132^1338^18
- ;;^UTILITY(U,$J,358.3,28769,1,0)
+ ;;^UTILITY(U,$J,358.3,29189,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 2nd tri, fts5
+ ;;^UTILITY(U,$J,358.3,29189,1,4,0)
+ ;;=4^O36.5925
+ ;;^UTILITY(U,$J,358.3,29189,2)
+ ;;=^5017014
+ ;;^UTILITY(U,$J,358.3,29190,0)
+ ;;=O36.5930^^115^1455^176
+ ;;^UTILITY(U,$J,358.3,29190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28769,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
- ;;^UTILITY(U,$J,358.3,28769,1,4,0)
- ;;=4^R40.2224
- ;;^UTILITY(U,$J,358.3,28769,2)
- ;;=^5019384
- ;;^UTILITY(U,$J,358.3,28770,0)
- ;;=R40.2223^^132^1338^19
- ;;^UTILITY(U,$J,358.3,28770,1,0)
+ ;;^UTILITY(U,$J,358.3,29190,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, unsp
+ ;;^UTILITY(U,$J,358.3,29190,1,4,0)
+ ;;=4^O36.5930
+ ;;^UTILITY(U,$J,358.3,29190,2)
+ ;;=^5017015
+ ;;^UTILITY(U,$J,358.3,29191,0)
+ ;;=O36.5931^^115^1455^177
+ ;;^UTILITY(U,$J,358.3,29191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28770,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,28770,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,28770,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,28771,0)
- ;;=R40.2222^^132^1338^20
- ;;^UTILITY(U,$J,358.3,28771,1,0)
+ ;;^UTILITY(U,$J,358.3,29191,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts1
+ ;;^UTILITY(U,$J,358.3,29191,1,4,0)
+ ;;=4^O36.5931
+ ;;^UTILITY(U,$J,358.3,29191,2)
+ ;;=^5017016
+ ;;^UTILITY(U,$J,358.3,29192,0)
+ ;;=O36.5932^^115^1455^178
+ ;;^UTILITY(U,$J,358.3,29192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28771,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,28771,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,28771,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,28772,0)
- ;;=R40.2221^^132^1338^21
- ;;^UTILITY(U,$J,358.3,28772,1,0)
+ ;;^UTILITY(U,$J,358.3,29192,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts2
+ ;;^UTILITY(U,$J,358.3,29192,1,4,0)
+ ;;=4^O36.5932
+ ;;^UTILITY(U,$J,358.3,29192,2)
+ ;;=^5017017
+ ;;^UTILITY(U,$J,358.3,29193,0)
+ ;;=O36.5933^^115^1455^179
+ ;;^UTILITY(U,$J,358.3,29193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28772,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,28772,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,28772,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,28773,0)
- ;;=R40.2220^^132^1338^22
- ;;^UTILITY(U,$J,358.3,28773,1,0)
+ ;;^UTILITY(U,$J,358.3,29193,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts3
+ ;;^UTILITY(U,$J,358.3,29193,1,4,0)
+ ;;=4^O36.5933
+ ;;^UTILITY(U,$J,358.3,29193,2)
+ ;;=^5017018
+ ;;^UTILITY(U,$J,358.3,29194,0)
+ ;;=O36.5934^^115^1455^180
+ ;;^UTILITY(U,$J,358.3,29194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28773,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,28773,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,28773,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,28774,0)
- ;;=R40.2214^^132^1338^23
- ;;^UTILITY(U,$J,358.3,28774,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28774,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,29194,1,3,0)
+ ;;=3^Maternal care for oth or susp poor fetl grth, 3rd tri, fts4
+ ;;^UTILITY(U,$J,358.3,29194,1,4,0)
+ ;;=4^O36.5934

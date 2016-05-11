@@ -1,132 +1,132 @@
-IBDEI1RP ; ; 19-NOV-2015
+IBDEI1RP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29592,1,4,0)
- ;;=4^E04.0
- ;;^UTILITY(U,$J,358.3,29592,2)
- ;;=^5002477
- ;;^UTILITY(U,$J,358.3,29593,0)
- ;;=E04.1^^135^1364^41
- ;;^UTILITY(U,$J,358.3,29593,1,0)
+ ;;^UTILITY(U,$J,358.3,30044,1,3,0)
+ ;;=3^Carcinoma in situ of other parts of cervix
+ ;;^UTILITY(U,$J,358.3,30044,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,30044,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,30045,0)
+ ;;=D66.^^118^1496^16
+ ;;^UTILITY(U,$J,358.3,30045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29593,1,3,0)
- ;;=3^Nontoxic Single Thyroid Nodule
- ;;^UTILITY(U,$J,358.3,29593,1,4,0)
- ;;=4^E04.1
- ;;^UTILITY(U,$J,358.3,29593,2)
- ;;=^5002478
- ;;^UTILITY(U,$J,358.3,29594,0)
- ;;=E04.2^^135^1364^40
- ;;^UTILITY(U,$J,358.3,29594,1,0)
+ ;;^UTILITY(U,$J,358.3,30045,1,3,0)
+ ;;=3^Hereditary factor VIII deficiency
+ ;;^UTILITY(U,$J,358.3,30045,1,4,0)
+ ;;=4^D66.
+ ;;^UTILITY(U,$J,358.3,30045,2)
+ ;;=^5002353
+ ;;^UTILITY(U,$J,358.3,30046,0)
+ ;;=D67.^^118^1496^15
+ ;;^UTILITY(U,$J,358.3,30046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29594,1,3,0)
- ;;=3^Nontoxic Multinodular Goiter
- ;;^UTILITY(U,$J,358.3,29594,1,4,0)
- ;;=4^E04.2
- ;;^UTILITY(U,$J,358.3,29594,2)
- ;;=^267790
- ;;^UTILITY(U,$J,358.3,29595,0)
- ;;=E01.1^^135^1364^36
- ;;^UTILITY(U,$J,358.3,29595,1,0)
+ ;;^UTILITY(U,$J,358.3,30046,1,3,0)
+ ;;=3^Hereditary factor IX deficiency
+ ;;^UTILITY(U,$J,358.3,30046,1,4,0)
+ ;;=4^D67.
+ ;;^UTILITY(U,$J,358.3,30046,2)
+ ;;=^5002354
+ ;;^UTILITY(U,$J,358.3,30047,0)
+ ;;=D68.1^^118^1496^17
+ ;;^UTILITY(U,$J,358.3,30047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29595,1,3,0)
- ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
- ;;^UTILITY(U,$J,358.3,29595,1,4,0)
- ;;=4^E01.1
- ;;^UTILITY(U,$J,358.3,29595,2)
- ;;=^5002465
- ;;^UTILITY(U,$J,358.3,29596,0)
- ;;=E05.00^^135^1364^56
- ;;^UTILITY(U,$J,358.3,29596,1,0)
+ ;;^UTILITY(U,$J,358.3,30047,1,3,0)
+ ;;=3^Hereditary factor XI deficiency
+ ;;^UTILITY(U,$J,358.3,30047,1,4,0)
+ ;;=4^D68.1
+ ;;^UTILITY(U,$J,358.3,30047,2)
+ ;;=^5002355
+ ;;^UTILITY(U,$J,358.3,30048,0)
+ ;;=D68.2^^118^1496^14
+ ;;^UTILITY(U,$J,358.3,30048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29596,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
- ;;^UTILITY(U,$J,358.3,29596,1,4,0)
- ;;=4^E05.00
- ;;^UTILITY(U,$J,358.3,29596,2)
- ;;=^5002481
- ;;^UTILITY(U,$J,358.3,29597,0)
- ;;=E05.01^^135^1364^55
- ;;^UTILITY(U,$J,358.3,29597,1,0)
+ ;;^UTILITY(U,$J,358.3,30048,1,3,0)
+ ;;=3^Hereditary deficiency of other clotting factors
+ ;;^UTILITY(U,$J,358.3,30048,1,4,0)
+ ;;=4^D68.2
+ ;;^UTILITY(U,$J,358.3,30048,2)
+ ;;=^5002356
+ ;;^UTILITY(U,$J,358.3,30049,0)
+ ;;=D68.0^^118^1496^26
+ ;;^UTILITY(U,$J,358.3,30049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29597,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,29597,1,4,0)
- ;;=4^E05.01
- ;;^UTILITY(U,$J,358.3,29597,2)
- ;;=^5002482
- ;;^UTILITY(U,$J,358.3,29598,0)
- ;;=E05.90^^135^1364^58
- ;;^UTILITY(U,$J,358.3,29598,1,0)
+ ;;^UTILITY(U,$J,358.3,30049,1,3,0)
+ ;;=3^Von Willebrand's disease
+ ;;^UTILITY(U,$J,358.3,30049,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,30049,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,30050,0)
+ ;;=D68.311^^118^1496^2
+ ;;^UTILITY(U,$J,358.3,30050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29598,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,29598,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,29598,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,29599,0)
- ;;=E05.91^^135^1364^57
- ;;^UTILITY(U,$J,358.3,29599,1,0)
+ ;;^UTILITY(U,$J,358.3,30050,1,3,0)
+ ;;=3^Acquired hemophilia
+ ;;^UTILITY(U,$J,358.3,30050,1,4,0)
+ ;;=4^D68.311
+ ;;^UTILITY(U,$J,358.3,30050,2)
+ ;;=^340502
+ ;;^UTILITY(U,$J,358.3,30051,0)
+ ;;=D68.312^^118^1496^4
+ ;;^UTILITY(U,$J,358.3,30051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29599,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,29599,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,29599,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,29600,0)
- ;;=E89.0^^135^1364^50
- ;;^UTILITY(U,$J,358.3,29600,1,0)
+ ;;^UTILITY(U,$J,358.3,30051,1,3,0)
+ ;;=3^Antiphospholipid antibody with hemorrhagic disorder
+ ;;^UTILITY(U,$J,358.3,30051,1,4,0)
+ ;;=4^D68.312
+ ;;^UTILITY(U,$J,358.3,30051,2)
+ ;;=^340503
+ ;;^UTILITY(U,$J,358.3,30052,0)
+ ;;=D68.318^^118^1496^13
+ ;;^UTILITY(U,$J,358.3,30052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29600,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,29600,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,29600,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,29601,0)
- ;;=E03.2^^135^1364^32
- ;;^UTILITY(U,$J,358.3,29601,1,0)
+ ;;^UTILITY(U,$J,358.3,30052,1,3,0)
+ ;;=3^Hemorrhagic disord d/t intrns circ anticoag,antib,inhib NEC
+ ;;^UTILITY(U,$J,358.3,30052,1,4,0)
+ ;;=4^D68.318
+ ;;^UTILITY(U,$J,358.3,30052,2)
+ ;;=^340504
+ ;;^UTILITY(U,$J,358.3,30053,0)
+ ;;=D65.^^118^1496^7
+ ;;^UTILITY(U,$J,358.3,30053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29601,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,29601,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,29601,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,29602,0)
- ;;=E03.9^^135^1364^33
- ;;^UTILITY(U,$J,358.3,29602,1,0)
+ ;;^UTILITY(U,$J,358.3,30053,1,3,0)
+ ;;=3^Disseminated intravascular coagulation
+ ;;^UTILITY(U,$J,358.3,30053,1,4,0)
+ ;;=4^D65.
+ ;;^UTILITY(U,$J,358.3,30053,2)
+ ;;=^5002352
+ ;;^UTILITY(U,$J,358.3,30054,0)
+ ;;=D68.32^^118^1496^12
+ ;;^UTILITY(U,$J,358.3,30054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29602,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,29602,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,29602,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,29603,0)
- ;;=E06.0^^135^1364^53
- ;;^UTILITY(U,$J,358.3,29603,1,0)
+ ;;^UTILITY(U,$J,358.3,30054,1,3,0)
+ ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
+ ;;^UTILITY(U,$J,358.3,30054,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,30054,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,30055,0)
+ ;;=D68.4^^118^1496^1
+ ;;^UTILITY(U,$J,358.3,30055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29603,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,29603,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,29603,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,29604,0)
- ;;=E06.1^^135^1364^54
- ;;^UTILITY(U,$J,358.3,29604,1,0)
+ ;;^UTILITY(U,$J,358.3,30055,1,3,0)
+ ;;=3^Acquired coagulation factor deficiency
+ ;;^UTILITY(U,$J,358.3,30055,1,4,0)
+ ;;=4^D68.4
+ ;;^UTILITY(U,$J,358.3,30055,2)
+ ;;=^2235
+ ;;^UTILITY(U,$J,358.3,30056,0)
+ ;;=D68.8^^118^1496^5
+ ;;^UTILITY(U,$J,358.3,30056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29604,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,29604,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,29604,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,29605,0)
- ;;=C73.^^135^1364^37
- ;;^UTILITY(U,$J,358.3,29605,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30056,1,3,0)
+ ;;=3^Coagulation Defects NEC
+ ;;^UTILITY(U,$J,358.3,30056,1,4,0)
+ ;;=4^D68.8
+ ;;^UTILITY(U,$J,358.3,30056,2)
+ ;;=^5002363
+ ;;^UTILITY(U,$J,358.3,30057,0)
+ ;;=D68.9^^118^1496^6

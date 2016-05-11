@@ -1,132 +1,132 @@
-IBDEI20X ; ; 19-NOV-2015
+IBDEI20X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33913,0)
- ;;=D51.8^^154^1711^2
- ;;^UTILITY(U,$J,358.3,33913,1,0)
+ ;;^UTILITY(U,$J,358.3,34333,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,34333,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,34334,0)
+ ;;=G56.01^^131^1686^12
+ ;;^UTILITY(U,$J,358.3,34334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33913,1,3,0)
- ;;=3^Anemia,Vitamin B12 Deficiency
- ;;^UTILITY(U,$J,358.3,33913,1,4,0)
- ;;=4^D51.8
- ;;^UTILITY(U,$J,358.3,33913,2)
- ;;=^5002288
- ;;^UTILITY(U,$J,358.3,33914,0)
- ;;=D52.9^^154^1711^1
- ;;^UTILITY(U,$J,358.3,33914,1,0)
+ ;;^UTILITY(U,$J,358.3,34334,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,34334,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,34334,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,34335,0)
+ ;;=G56.02^^131^1686^11
+ ;;^UTILITY(U,$J,358.3,34335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33914,1,3,0)
- ;;=3^Anemia,Folate Deficiency
- ;;^UTILITY(U,$J,358.3,33914,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,33914,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,33915,0)
- ;;=I10.^^154^1712^12
- ;;^UTILITY(U,$J,358.3,33915,1,0)
+ ;;^UTILITY(U,$J,358.3,34335,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,34335,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,34335,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,34336,0)
+ ;;=G56.21^^131^1686^56
+ ;;^UTILITY(U,$J,358.3,34336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33915,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,33915,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,33915,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,33916,0)
- ;;=I15.0^^154^1712^13
- ;;^UTILITY(U,$J,358.3,33916,1,0)
+ ;;^UTILITY(U,$J,358.3,34336,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,34336,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,34336,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,34337,0)
+ ;;=G56.22^^131^1686^55
+ ;;^UTILITY(U,$J,358.3,34337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33916,1,3,0)
- ;;=3^Hypertension,Renovascular
- ;;^UTILITY(U,$J,358.3,33916,1,4,0)
- ;;=4^I15.0
- ;;^UTILITY(U,$J,358.3,33916,2)
- ;;=^5007071
- ;;^UTILITY(U,$J,358.3,33917,0)
- ;;=I13.11^^154^1712^8
- ;;^UTILITY(U,$J,358.3,33917,1,0)
+ ;;^UTILITY(U,$J,358.3,34337,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,34337,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,34337,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,34338,0)
+ ;;=M26.60^^131^1686^180
+ ;;^UTILITY(U,$J,358.3,34338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33917,1,3,0)
- ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,33917,1,4,0)
- ;;=4^I13.11
- ;;^UTILITY(U,$J,358.3,33917,2)
- ;;=^5007069
- ;;^UTILITY(U,$J,358.3,33918,0)
- ;;=I13.2^^154^1712^7
- ;;^UTILITY(U,$J,358.3,33918,1,0)
+ ;;^UTILITY(U,$J,358.3,34338,1,3,0)
+ ;;=3^Temporomandibular Joint Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,34338,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,34338,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,34339,0)
+ ;;=L40.52^^131^1686^137
+ ;;^UTILITY(U,$J,358.3,34339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33918,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
- ;;^UTILITY(U,$J,358.3,33918,1,4,0)
- ;;=4^I13.2
- ;;^UTILITY(U,$J,358.3,33918,2)
- ;;=^5007070
- ;;^UTILITY(U,$J,358.3,33919,0)
- ;;=I70.1^^154^1712^3
- ;;^UTILITY(U,$J,358.3,33919,1,0)
+ ;;^UTILITY(U,$J,358.3,34339,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,34339,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,34339,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,34340,0)
+ ;;=L40.53^^131^1686^138
+ ;;^UTILITY(U,$J,358.3,34340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33919,1,3,0)
- ;;=3^Atherosclerosis of Renal Artery
- ;;^UTILITY(U,$J,358.3,33919,1,4,0)
- ;;=4^I70.1
- ;;^UTILITY(U,$J,358.3,33919,2)
- ;;=^269760
- ;;^UTILITY(U,$J,358.3,33920,0)
- ;;=I77.3^^154^1712^2
- ;;^UTILITY(U,$J,358.3,33920,1,0)
+ ;;^UTILITY(U,$J,358.3,34340,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,34340,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,34340,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,34341,0)
+ ;;=M32.9^^131^1686^179
+ ;;^UTILITY(U,$J,358.3,34341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33920,1,3,0)
- ;;=3^Arterial Fibromuscular Dysplasia
- ;;^UTILITY(U,$J,358.3,33920,1,4,0)
- ;;=4^I77.3
- ;;^UTILITY(U,$J,358.3,33920,2)
- ;;=^5007812
- ;;^UTILITY(U,$J,358.3,33921,0)
- ;;=E26.02^^154^1712^5
- ;;^UTILITY(U,$J,358.3,33921,1,0)
+ ;;^UTILITY(U,$J,358.3,34341,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,34341,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,34341,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,34342,0)
+ ;;=M32.0^^131^1686^175
+ ;;^UTILITY(U,$J,358.3,34342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33921,1,3,0)
- ;;=3^Glucocorticoid-Remediable Aldosteronism
- ;;^UTILITY(U,$J,358.3,33921,1,4,0)
- ;;=4^E26.02
- ;;^UTILITY(U,$J,358.3,33921,2)
- ;;=^329904
- ;;^UTILITY(U,$J,358.3,33922,0)
- ;;=I12.9^^154^1712^14
- ;;^UTILITY(U,$J,358.3,33922,1,0)
+ ;;^UTILITY(U,$J,358.3,34342,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,34342,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,34342,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,34343,0)
+ ;;=M32.13^^131^1686^177
+ ;;^UTILITY(U,$J,358.3,34343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33922,1,3,0)
- ;;=3^Hypertensive CKD Stage 1-4
- ;;^UTILITY(U,$J,358.3,33922,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,33922,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,33923,0)
- ;;=I12.0^^154^1712^15
- ;;^UTILITY(U,$J,358.3,33923,1,0)
+ ;;^UTILITY(U,$J,358.3,34343,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,34343,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,34343,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,34344,0)
+ ;;=M32.14^^131^1686^176
+ ;;^UTILITY(U,$J,358.3,34344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33923,1,3,0)
- ;;=3^Hypertensive CKD Stage 5 or ESRD
- ;;^UTILITY(U,$J,358.3,33923,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,33923,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,33924,0)
- ;;=I13.0^^154^1712^6
- ;;^UTILITY(U,$J,358.3,33924,1,0)
+ ;;^UTILITY(U,$J,358.3,34344,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,34344,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,34344,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,34345,0)
+ ;;=M32.12^^131^1686^178
+ ;;^UTILITY(U,$J,358.3,34345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33924,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,33924,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,33924,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,33925,0)
- ;;=I13.10^^154^1712^9
- ;;^UTILITY(U,$J,358.3,33925,1,0)
+ ;;^UTILITY(U,$J,358.3,34345,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,34345,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,34345,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,34346,0)
+ ;;=M05.59^^131^1686^159
+ ;;^UTILITY(U,$J,358.3,34346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33925,1,3,0)
- ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,33925,1,4,0)
- ;;=4^I13.10

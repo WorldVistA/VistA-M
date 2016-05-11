@@ -1,138 +1,132 @@
-IBDEI0M9 ; ; 19-NOV-2015
+IBDEI0M9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10159,0)
- ;;=L20.82^^68^664^150
- ;;^UTILITY(U,$J,358.3,10159,1,0)
+ ;;^UTILITY(U,$J,358.3,10376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10159,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,10159,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,10159,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,10160,0)
- ;;=L20.84^^68^664^162
- ;;^UTILITY(U,$J,358.3,10160,1,0)
+ ;;^UTILITY(U,$J,358.3,10376,1,3,0)
+ ;;=3^Night Blindness NEC
+ ;;^UTILITY(U,$J,358.3,10376,1,4,0)
+ ;;=4^H53.69
+ ;;^UTILITY(U,$J,358.3,10376,2)
+ ;;=^87726
+ ;;^UTILITY(U,$J,358.3,10377,0)
+ ;;=H52.521^^44^504^23
+ ;;^UTILITY(U,$J,358.3,10377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10160,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,10160,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,10160,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,10161,0)
- ;;=L20.89^^68^664^85
- ;;^UTILITY(U,$J,358.3,10161,1,0)
+ ;;^UTILITY(U,$J,358.3,10377,1,3,0)
+ ;;=3^Paresis of Accommodation,Right eye
+ ;;^UTILITY(U,$J,358.3,10377,1,4,0)
+ ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,10377,2)
+ ;;=^5006282
+ ;;^UTILITY(U,$J,358.3,10378,0)
+ ;;=H52.522^^44^504^22
+ ;;^UTILITY(U,$J,358.3,10378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10161,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,10161,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,10161,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,10162,0)
- ;;=L20.9^^68^664^86
- ;;^UTILITY(U,$J,358.3,10162,1,0)
+ ;;^UTILITY(U,$J,358.3,10378,1,3,0)
+ ;;=3^Paresis of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,10378,1,4,0)
+ ;;=4^H52.522
+ ;;^UTILITY(U,$J,358.3,10378,2)
+ ;;=^5006283
+ ;;^UTILITY(U,$J,358.3,10379,0)
+ ;;=H52.523^^44^504^21
+ ;;^UTILITY(U,$J,358.3,10379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10162,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,10162,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,10162,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,10163,0)
- ;;=L21.8^^68^664^262
- ;;^UTILITY(U,$J,358.3,10163,1,0)
+ ;;^UTILITY(U,$J,358.3,10379,1,3,0)
+ ;;=3^Paresis of Accommodation,Bilateral
+ ;;^UTILITY(U,$J,358.3,10379,1,4,0)
+ ;;=4^H52.523
+ ;;^UTILITY(U,$J,358.3,10379,2)
+ ;;=^5006284
+ ;;^UTILITY(U,$J,358.3,10380,0)
+ ;;=Z87.820^^44^504^24
+ ;;^UTILITY(U,$J,358.3,10380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10163,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,10163,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,10163,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,10164,0)
- ;;=L21.9^^68^664^263
- ;;^UTILITY(U,$J,358.3,10164,1,0)
+ ;;^UTILITY(U,$J,358.3,10380,1,3,0)
+ ;;=3^Personal Hx of Traumatic Brain Injury
+ ;;^UTILITY(U,$J,358.3,10380,1,4,0)
+ ;;=4^Z87.820
+ ;;^UTILITY(U,$J,358.3,10380,2)
+ ;;=^5063514
+ ;;^UTILITY(U,$J,358.3,10381,0)
+ ;;=H55.81^^44^504^27
+ ;;^UTILITY(U,$J,358.3,10381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10164,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,10164,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,10164,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,10165,0)
- ;;=L23.7^^68^664^30
- ;;^UTILITY(U,$J,358.3,10165,1,0)
+ ;;^UTILITY(U,$J,358.3,10381,1,3,0)
+ ;;=3^Saccadic Eye Movements
+ ;;^UTILITY(U,$J,358.3,10381,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,10381,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,10382,0)
+ ;;=H53.423^^44^504^28
+ ;;^UTILITY(U,$J,358.3,10382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10165,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,10165,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,10165,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,10166,0)
- ;;=L23.9^^68^664^31
- ;;^UTILITY(U,$J,358.3,10166,1,0)
+ ;;^UTILITY(U,$J,358.3,10382,1,3,0)
+ ;;=3^Scotoma Involving Blind Spot,Bilateral
+ ;;^UTILITY(U,$J,358.3,10382,1,4,0)
+ ;;=4^H53.423
+ ;;^UTILITY(U,$J,358.3,10382,2)
+ ;;=^5006331
+ ;;^UTILITY(U,$J,358.3,10383,0)
+ ;;=H53.421^^44^504^30
+ ;;^UTILITY(U,$J,358.3,10383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10166,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,10166,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,10166,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,10167,0)
- ;;=L24.9^^68^664^163
- ;;^UTILITY(U,$J,358.3,10167,1,0)
+ ;;^UTILITY(U,$J,358.3,10383,1,3,0)
+ ;;=3^Scotoma Involving Blind Spot,Right Eye
+ ;;^UTILITY(U,$J,358.3,10383,1,4,0)
+ ;;=4^H53.421
+ ;;^UTILITY(U,$J,358.3,10383,2)
+ ;;=^5006329
+ ;;^UTILITY(U,$J,358.3,10384,0)
+ ;;=H53.422^^44^504^29
+ ;;^UTILITY(U,$J,358.3,10384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10167,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,10167,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,10167,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,10168,0)
- ;;=L25.9^^68^664^115
- ;;^UTILITY(U,$J,358.3,10168,1,0)
+ ;;^UTILITY(U,$J,358.3,10384,1,3,0)
+ ;;=3^Scotoma Involving Blind Spot,Left Eye
+ ;;^UTILITY(U,$J,358.3,10384,1,4,0)
+ ;;=4^H53.422
+ ;;^UTILITY(U,$J,358.3,10384,2)
+ ;;=^5006330
+ ;;^UTILITY(U,$J,358.3,10385,0)
+ ;;=H53.413^^44^504^31
+ ;;^UTILITY(U,$J,358.3,10385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10168,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,10168,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,10168,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,10169,0)
- ;;=L26.^^68^664^148
- ;;^UTILITY(U,$J,358.3,10169,1,0)
+ ;;^UTILITY(U,$J,358.3,10385,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Bilateral
+ ;;^UTILITY(U,$J,358.3,10385,1,4,0)
+ ;;=4^H53.413
+ ;;^UTILITY(U,$J,358.3,10385,2)
+ ;;=^5006327
+ ;;^UTILITY(U,$J,358.3,10386,0)
+ ;;=H53.411^^44^504^33
+ ;;^UTILITY(U,$J,358.3,10386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10169,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,10169,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,10169,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,10170,0)
- ;;=L27.0^^68^664^265
- ;;^UTILITY(U,$J,358.3,10170,1,0)
+ ;;^UTILITY(U,$J,358.3,10386,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Right Eye
+ ;;^UTILITY(U,$J,358.3,10386,1,4,0)
+ ;;=4^H53.411
+ ;;^UTILITY(U,$J,358.3,10386,2)
+ ;;=^5006325
+ ;;^UTILITY(U,$J,358.3,10387,0)
+ ;;=H53.412^^44^504^32
+ ;;^UTILITY(U,$J,358.3,10387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10170,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
- ;;^UTILITY(U,$J,358.3,10170,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,10170,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,10171,0)
- ;;=L27.1^^68^664^266
- ;;^UTILITY(U,$J,358.3,10171,1,0)
+ ;;^UTILITY(U,$J,358.3,10387,1,3,0)
+ ;;=3^Scotoma Involving Central Area,Left Eye
+ ;;^UTILITY(U,$J,358.3,10387,1,4,0)
+ ;;=4^H53.412
+ ;;^UTILITY(U,$J,358.3,10387,2)
+ ;;=^5006326
+ ;;^UTILITY(U,$J,358.3,10388,0)
+ ;;=H53.33^^44^504^34
+ ;;^UTILITY(U,$J,358.3,10388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10171,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Localized
- ;;^UTILITY(U,$J,358.3,10171,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,10171,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,10172,0)
- ;;=L29.0^^68^664^250
- ;;^UTILITY(U,$J,358.3,10172,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10388,1,3,0)
+ ;;=3^Simultaneous Visual Perception w/o Fusion
+ ;;^UTILITY(U,$J,358.3,10388,1,4,0)
+ ;;=4^H53.33
+ ;;^UTILITY(U,$J,358.3,10388,2)
+ ;;=^268841

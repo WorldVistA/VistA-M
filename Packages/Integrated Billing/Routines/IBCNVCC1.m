@@ -1,0 +1,112 @@
+IBCNVCC1 ;ALB/BAA - CONSISTENCY OF PATIENT INSURANCE DATA ;25 Feb 2015
+ ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; If no inconsistencies put patient into SSVI Pivot file
+ ; 
+EN ;Process insurance if not any inconsistencies found
+ N INSPT,VARPTR,PIVOTNUM,PIVOTPTR,INSPTT,IBT1,STNCNT,STATIONF,FACILCNT,IBT2,INSTITUT,CODEF,DSTAT,DIEN
+ N NOWDATE,STATION,DEFINST,INS,ORIGINSP,DGRPVV,DGNCK,DGLST,DGLDT
+ ;
+EN1 S DGEDCN=+$G(DGEDCN),DGRPOUT=+$G(DGRPOUT),DGCON=1
+ I $G(DGCT) D PROCON(DFN,INSPTR) Q  ; process inconsistencies and quit.
+ ; SET SOURCE OF INFORMATION TO "INTERFACILITY INS UPDATE" HERE AS POSSIBLE TRANSFER TO ICB FOR OTHER FACILITY TREATING SITES 
+ ; AS WELL AS SOURCE OF INFORMATION DATE
+ S IBSOURCE=$O(^IBE(355.12,"C","INTERFACILITY INS UPDATE",0))
+ ;
+ ;GET PATIENT NAME
+ N IBC,IBZ,IBS,IBFT,Y,PATNM,%
+ S PATNM=$$GET1^DIQ(2,DFN_",",.01)
+ K IBT1
+ ;
+ ; FLAG PER TREATING FACILITY IN MULTIPLE IN INSURANCE TYPE MULTIPLE FOR TREATING FACILITIES SENT  IN PIN/HL7 PIVOT FILE
+ D TFL^IBARXMU(DFN,.IBT1) ;ARRAY IN FORMAT IBT1(1)=500^2960101^ptr to ADT/HL7 Event Reason file (if exists)
+ ;    Where the first piece is the IEN of the institution, the second
+ ;    piece is the current date on record for that institution and the
+ ;    third piece is the event reason (if it exists).
+ ;    ALSO SCREENS OUT OTHER SITES BESIDES TYPES ="^VAMC^M&ROC^RO-OC^"
+ ;
+ S STNCNT=0
+ S STATIONF=0
+ S FACILCNT=0
+ K IBT2
+ S SITE=$$SITE^VASITE
+ S DEFINST=$$GET1^DIQ(8989.3,1_",",217,"I")  ; DEFAULT INSTITUTION
+ S STATION=$$GET1^DIQ(4,DEFINST_",",99,"I")
+ F  S STNCNT=$O(IBT1(STNCNT)) Q:(STNCNT="")  D
+ .I STATION=+IBT1(STNCNT) Q  ;DO NOT COUNT OWN SITE
+ .S FACILCNT=FACILCNT+1
+ .S STATIONF=1
+ .S DIEN=0
+ .S DSTAT=$P($G(IBT1(STNCNT)),U)
+ .S DIEN=$O(^DIC(4,"D",DSTAT,DIEN))
+ .;S INSTITUT=$P($G(^DIC(4,DIEN,0)),U)
+ .S INSTITUT=$$GET1^DIQ(4,DIEN_",",.01,"I")
+ .;S CODEF=$P($G(^DIC(4,DIEN,3)),U)
+ .S CODEF=$$GET1^DIQ(4,DIEN_",",13)
+ .I CODEF'="" D
+ ..;S CODEF=$P($G(^DIC(4.1,CODEF,0)),U)
+ ..S CODEF=$$GET1^DIQ(4.1,CODEF_",",.01)
+ .S IBT2(STNCNT)=INSTITUT_U_CODEF
+ I STATIONF=1 D
+ .D FULL^VALM1
+ .K EXITPR
+ .S VARPTR=DFN_";DPT("
+ .;
+ .S PIVOTPTR=0
+ .S PIVOTPTR=$$FNDPVT^IBCNVPU0(DFN)
+ .D NOW^%DTC S NOWDATE=%
+ .;IBCN SSVI PIN/HL7 PIVOT TABLE file
+ .I 'PIVOTPTR S PIVOTNUM=+$$PIVNW^IBCNVPU0(DFN,.NOWDATE,5,VARPTR) Q:PIVOTNUM=-1
+ .I PIVOTPTR S PIVOTNUM=$$GET1^DIQ(366,PIVOTPTR_",",.02)
+ .;
+ .; Mark entry as requires transmission
+ .D XMITFLAG^IBCNVPU0(PIVOTPTR,PIVOTNUM)
+ Q
+ ;
+ ;
+DELINC(DFN) ; Delete patient from inconsistant data file
+ I '$D(^IBCN(366.1,DFN,0)) Q
+1 ; Delete entries in consistancy file
+ N DGEND1,DA,DIK
+ S DGEND1=16,DIK="^IBCN(366.1,",DA=DFN
+ L +^IBCN(366.1,0):5 G DELEX:'$T
+ D ^DIK
+DELEX L -^IBCN(366.1,0)
+ Q
+ ;
+PROCON(DFN,INSPTR) ; Process inconsistencies found 
+ I '$D(^IBCN(366.1,DFN)) D SETCON(DFN)
+ D CONUPDT(DFN,INSPTR)
+ Q
+ ;
+SETCON(DFN) ; creat entry for patient if doesn't already exist.
+ N I,X,DA,DIC,DIE,DR,DINUM,DLAYGO
+ ;
+ ; - lock the INCONSISTENCY file for editing
+ L +^IBCN(366.1,0):5 I '$T Q "-1^Error - Unable to lock Inconsistant Data file"
+ ;
+ ; - set up variables to create a new entry into the PIVOT file
+ S X=DFN,DINUM=DFN,DLAYGO=366.1,DIC="^IBCN(366.1,",DIC(0)="L"
+ ;
+ ; - create a new file entry into the PIVOT file
+ D FILE^DICN K DIC,DINUM,DLAYGO I +Y<1 D UNLK Q "-1^Error - Unable to create new Inconsistant Data file entry"
+ ;
+ Q
+ ;
+CONUPDT(DFN,INSPTR)  ; Update consistencies for each insurance
+ N NOW,RECDDAT,FILE
+ K FDA,FDAIEN,OROUT
+ D NOW^%DTC S RECDDAT=%
+ S FDAIEN(1)=DFN
+ S FILE=366.16
+ S FDA(FILE,"?+1,"_FDAIEN(1)_",",.01)=INSPTR
+ S FDA(FILE,"?+1,"_FDAIEN(1)_",",1)=DGER
+ S FDA(FILE,"?+1,"_FDAIEN(1)_",",2)=RECDDAT
+ D UPDATE^DIE("","FDA","OROUT")
+ K FDA,OROUT,FDA
+ Q
+ ;
+UNLK ; Unlock the PIVOT file
+ L -^IBCN(366.1,0)
+ Q

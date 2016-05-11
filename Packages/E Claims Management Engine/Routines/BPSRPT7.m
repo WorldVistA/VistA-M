@@ -1,6 +1,6 @@
 BPSRPT7 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,3,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -84,7 +84,7 @@ PGTOT6(GTOT) N DIFF,NP,X
  E  W ?116,$J(DIFF,15,2)
  Q
  ;
- ;Print Grand Totals - Reports 1,2,3,4,5,7,8
+ ;Print Grand Totals - Reports 1,2,3,4,5,7,8,9
  ;
 PGTOT(BPRTYPE,BPGBIL,BPGINS,BPGCOLL,BPGCNT,BPGELTM,BPRICE) ;
  I (BPRTYPE=1)!(BPRTYPE=4) D  Q
@@ -125,6 +125,54 @@ PGTOT(BPRTYPE,BPGBIL,BPGINS,BPGCOLL,BPGCNT,BPGELTM,BPRICE) ;
  .W !,?4,$J($P(BPRICE,U,3)/BPGCNT,10,2),?23,$J($P(BPRICE,U,4)/BPGCNT,10,2),?38,$J($P(BPRICE,U,5)/BPGCNT,10,2)
  .W ?56,$J($P(BPRICE,U,6)/BPGCNT,10,2),?81,$J($P(BPRICE,U,7)/BPGCNT,10,2),?96,$J($P(BPRICE,U,2)/BPGCNT,10,2),?111,$J($P(BPRICE,U)/BPGCNT,10,2)
  ;
+ I BPRTYPE=9 D  Q
+ .W !!,?84,"----------"
+ .W !,"GRAND TOTALS",?84,$J(BPGBIL,10,2)
+ .W !,"COUNT",?84,$J(BPGCNT,10)
+ .W:BPGCNT !,"MEAN",?84,$J(BPGBIL/BPGCNT,10,2)
+ Q
+ ;
+ ;Print Report Insurance Subtotals
+ ;
+ITOT(BPRTYPE,BPDIV,BPGRPLAN,BPTBIL,BPTINS,BPTCOLL,BPCNT,BPRICE) N BPNP
+ I (BPRTYPE=1)!(BPRTYPE=4) D  Q
+ .W !!,?83,"----------",?105,"----------",?122,"----------"
+ .W !,"SUBTOTALS for INS:",$E(BPGRPLAN,1,50),?83,$J(BPTBIL,10,2),?105,$J(BPTINS,10,2),?122,$J(BPTCOLL,10,2)
+ .W !,"COUNT",?83,$J(BPCNT,10),?105,$J(BPCNT,10),?122,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?83,$J(BPTBIL/BPCNT,10,2),?105,$J(BPTINS/BPCNT,10,2),?122,$J(BPTCOLL/BPCNT,10,2)
+ I BPRTYPE=3 D  Q
+ .W !!,?100,"----------",?122,"----------"
+ .W !,"SUBTOTALS for INS:",$E(BPGRPLAN,1,50),?100,$J(BPTBIL,10,2),?122,$J(BPTINS,10,2)
+ .W !,"COUNT",?100,$J(BPCNT,10),?122,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?100,$J(BPTBIL/BPCNT,10,2),?122,$J(BPTINS/BPCNT,10,2)
+ I BPRTYPE=2 D  Q
+ .W !!,?41,"----------"
+ .W !,"SUBTOTALS for INS:",$E(BPGRPLAN,1,22),?41,$J(BPTBIL,10,2)
+ .W !,"COUNT",?41,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?41,$J(BPTBIL/BPCNT,10,2)
+ I (BPRTYPE=7) D  Q
+ .W !!,"SUBTOTALS for INS:",$E(BPGRPLAN,1,50)
+ .N BPBILR
+ .S BPBILR="" F  S BPBILR=$O(BPCNT(BPBILR)) Q:BPBILR=""  D  Q:BPQ
+ ..S BPNP=$$CHKP^BPSRPT5(1) Q:BPQ
+ ..W !,?3,BPBILR,?65,$J($G(BPCNT(BPBILR)),5)
+ .Q:$G(BPQ)
+ .W !,?65,"-----"
+ .W !,"CLOSED CLAIMS SUBTOTAL",?65,$J(BPCNT,5)
+ I BPRTYPE=8 D  Q
+ .W !!,?78,"----------",?100,"----------",?122,"----------"
+ .W !,"SUBTOTALS for INS:",$E(BPGRPLAN,1,50),?78,$J(BPTBIL,10,2),?100,$J(BPTINS,10,2),?122,$J(BPTCOLL,10,2)
+ .W !,?4,$J($P(BPRICE,U,3),10,2),?23,$J($P(BPRICE,U,4),10,2),?38,$J($P(BPRICE,U,5),10,2),?56,$J($P(BPRICE,U,6),10,2),?81,$J($P(BPRICE,U,7),10,2),?96,$J($P(BPRICE,U,2),10,2),?111,$J($P(BPRICE,U),10,2)
+ .W !,"COUNT",?78,$J(BPCNT,10),?100,$J(BPCNT,10),?122,$J(BPCNT,10)
+ .W !,?4,$J(BPCNT,10),?23,$J(BPCNT,10),?38,$J(BPCNT,10),?56,$J(BPCNT,10),?81,$J(BPCNT,10),?96,$J(BPCNT,10),?111,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?78,$J(BPTBIL/BPCNT,10,2),?100,$J(BPTINS/BPCNT,10,2),?122,$J(BPTCOLL/BPCNT,10,2)
+ .W !,?4,$J($P(BPRICE,U,3)/BPCNT,10,2),?23,$J($P(BPRICE,U,4)/BPCNT,10,2),?38,$J($P(BPRICE,U,5)/BPCNT,10,2),?56,$J($P(BPRICE,U,6)/BPCNT,10,2),?81,$J($P(BPRICE,U,7)/BPCNT,10,2),?96,$J($P(BPRICE,U,2)/BPCNT,10,2),?111,$J($P(BPRICE,U)/BPCNT,10,2)
+ ;
+ I BPRTYPE=9 D  Q
+ .W !!,?84,"----------"
+ .W !,"SUBTOTALS for INS:",$E(BPGRPLAN,1,50),?84,$J(BPTBIL,10,2)
+ .W !,"COUNT",?84,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?84,$J(BPTBIL/BPCNT,10,2)
  Q
  ;
  ;Get Close Reason
@@ -203,6 +251,11 @@ TOTALS(BPRTYPE,BPDIV,BPTBIL,BPTINS,BPTCOLL,BPCNT,BPELTM,BPRICE) ;
  .W:BPCNT !,"MEAN",?78,$J(BPTBIL/BPCNT,10,2),?100,$J(BPTINS/BPCNT,10,2),?122,$J(BPTCOLL/BPCNT,10,2)
  .W !,?4,$J($P(BPRICE,U,3)/BPCNT,10,2),?23,$J($P(BPRICE,U,4)/BPCNT,10,2),?38,$J($P(BPRICE,U,5)/BPCNT,10,2),?56,$J($P(BPRICE,U,6)/BPCNT,10,2),?81,$J($P(BPRICE,U,7)/BPCNT,10,2),?96,$J($P(BPRICE,U,2)/BPCNT,10,2),?111,$J($P(BPRICE,U)/BPCNT,10,2)
  ;
+ I BPRTYPE=9 D  Q
+ .W !!,?84,"----------"
+ .W !,"SUBTOTALS for DIV:",$E($$BPDIV(BPDIV),1,52),?84,$J(BPTBIL,10,2)
+ .W !,"COUNT",?84,$J(BPCNT,10)
+ .W:BPCNT !,"MEAN",?84,$J(BPTBIL/BPCNT,10,2)
  Q
  ;
  ;Print Report Header
@@ -227,7 +280,7 @@ HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
  W ?89,"Print Date: "_$G(BPNOW)_"  Page:",$J(BPPAGE,3)
  W !,"DIVISION(S): ",$$GETDIVS^BPSRPT4(75,.BPPHARM)
  W ?89,"Fill Locations: "_$S(BPMWC="A":"C,M,W",1:BPMWC)
- W ?113,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",1:"RT,BB,P2")
+ I BPRTYPE'=9 W ?113,"Fill type: "_$S(BPRTBCK=2:"RT",BPRTBCK=3:"BB",BPRTBCK=4:"P2",1:"RT,BB,P2")
  W !,"Insurance: "_$S(BPINSINF=0:"ALL",1:$$BPINS(BPINSINF))
  I (",7,")[BPRTYPE W ?44,"Close Reason: ",$E($$GETCLR^BPSRPT6(BPCCRSN),1,26)
  I (",4,")[BPRTYPE W ?44,$J($S(BPAUTREV=0:"ALL",1:"AUTO"),4)," Reversals"
@@ -235,6 +288,9 @@ HDR(BPRTYPE,BPRPTNAM,BPPAGE) ;
  W ?87,"Drugs/Classes: "_$S(BPQSTDRG=2:$$DRGNAM^BPSRPT6(BPDRUG,30),BPQSTDRG=3:$E(BPDRGCL,1,30),1:"ALL")
  I (",2,")[BPRTYPE W !,"Reject Code: ",$E($$GETREJ^BPSRPT4(BPREJCD),1,28),?89,"Eligibility: ",$S(BPELIG="V":"VET",BPELIG="T":"TRI",BPELIG="C":"CVA",1:"ALL"),?111,"Open/Closed: ",$S(BPOPCL=1:"CLOSED",BPOPCL=2:"OPEN",1:"ALL")
  I (",1,4,7,")[BPRTYPE W !,"Eligibility: ",$S(BPELIG="V":"VET",BPELIG="T":"TRI",BPELIG="C":"CVA",1:"ALL")
+ I (",9,")[BPRTYPE D
+ . W !,"Eligibilities: ",$S(BPELIG1=0:"ALL",1:$$ELIG(.BPELIG1))
+ . W !,"NON-BILLABLE STATUS: "_$S(BPNBSTS=0:"ALL",1:$$NBSTS(.BPNBSTS))
  W !,$S(BPRTYPE=5:"PRESCRIPTIONS",BPRLNRL=2:"RELEASED PRESCRIPTIONS",BPRLNRL=3:"PRESCRIPTIONS (NOT RELEASED)",1:"ALL PRESCRIPTIONS")
  W " BY "_$S(BPRTYPE=7:"CLOSE",1:"TRANSACTION")_" DATE: "
  W "From "_$$DATTIM^BPSRPT1(BPBEGDT)_" through "_$$DATTIM^BPSRPT1($P(BPENDDT,"."))
@@ -271,3 +327,31 @@ BPINS(BPINSINF) ;
  . S RETV=BPINAME
  I $L(RETV)>68 S RETV=$E(RETV,1,68)_"..."
  Q RETV
+ ;
+ELIG(ELIG) ;
+ ; Display multiple eligibilities
+ ; Input:
+ ;   ELIG - Array of multiple eligibilities
+ ; Output
+ ;   Text of eligibilities
+ ;
+ I $D(ELIG)=0 Q ""
+ N N,LIST
+ S LIST=""
+ S N="" F  S N=$O(ELIG(N)) Q:N=""  D
+ . S LIST=LIST_$G(ELIG(N))_","
+ Q $E(LIST,1,$L(LIST)-1)
+ ;
+NBSTS(NBSTS) ;
+ ; Display multiple non-billable statuses
+ ; Input:
+ ;   NBSTS - Array of multiple non-billable statuses
+ ; Output
+ ;   Text of non-billable statuses
+ ;
+ I $D(NBSTS)=0 Q ""
+ N N,LIST
+ S LIST=""
+ S N="" F  S N=$O(NBSTS(N)) Q:N=""  D
+ . S LIST=LIST_$G(NBSTS(N))_","
+ Q $E(LIST,1,$L(LIST)-1)

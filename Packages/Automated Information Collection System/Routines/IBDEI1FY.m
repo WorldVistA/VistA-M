@@ -1,138 +1,128 @@
-IBDEI1FY ; ; 19-NOV-2015
+IBDEI1FY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24069,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,24069,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,24070,0)
- ;;=M48.04^^116^1179^11
- ;;^UTILITY(U,$J,358.3,24070,1,0)
+ ;;^UTILITY(U,$J,358.3,24485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24070,1,3,0)
- ;;=3^Spinal stenosis, thoracic region
- ;;^UTILITY(U,$J,358.3,24070,1,4,0)
- ;;=4^M48.04
- ;;^UTILITY(U,$J,358.3,24070,2)
- ;;=^5012091
- ;;^UTILITY(U,$J,358.3,24071,0)
- ;;=M48.00^^116^1179^10
- ;;^UTILITY(U,$J,358.3,24071,1,0)
+ ;;^UTILITY(U,$J,358.3,24485,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24485,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,24485,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,24486,0)
+ ;;=F15.280^^90^1080^2
+ ;;^UTILITY(U,$J,358.3,24486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24071,1,3,0)
- ;;=3^Spinal stenosis, site unspecified
- ;;^UTILITY(U,$J,358.3,24071,1,4,0)
- ;;=4^M48.00
- ;;^UTILITY(U,$J,358.3,24071,2)
- ;;=^5012087
- ;;^UTILITY(U,$J,358.3,24072,0)
- ;;=F20.2^^116^1180^3
- ;;^UTILITY(U,$J,358.3,24072,1,0)
+ ;;^UTILITY(U,$J,358.3,24486,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24486,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,24486,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,24487,0)
+ ;;=F15.980^^90^1080^3
+ ;;^UTILITY(U,$J,358.3,24487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24072,1,3,0)
- ;;=3^Schizophrenia, catatonic
- ;;^UTILITY(U,$J,358.3,24072,1,4,0)
- ;;=4^F20.2
- ;;^UTILITY(U,$J,358.3,24072,2)
- ;;=^5003471
- ;;^UTILITY(U,$J,358.3,24073,0)
- ;;=F20.1^^116^1180^4
- ;;^UTILITY(U,$J,358.3,24073,1,0)
+ ;;^UTILITY(U,$J,358.3,24487,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24487,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,24487,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,24488,0)
+ ;;=F15.182^^90^1080^4
+ ;;^UTILITY(U,$J,358.3,24488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24073,1,3,0)
- ;;=3^Schizophrenia, disorganized
- ;;^UTILITY(U,$J,358.3,24073,1,4,0)
- ;;=4^F20.1
- ;;^UTILITY(U,$J,358.3,24073,2)
- ;;=^5003470
- ;;^UTILITY(U,$J,358.3,24074,0)
- ;;=F20.0^^116^1180^5
- ;;^UTILITY(U,$J,358.3,24074,1,0)
+ ;;^UTILITY(U,$J,358.3,24488,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24488,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,24488,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,24489,0)
+ ;;=F15.282^^90^1080^5
+ ;;^UTILITY(U,$J,358.3,24489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24074,1,3,0)
- ;;=3^Schizophrenia, paranoid
- ;;^UTILITY(U,$J,358.3,24074,1,4,0)
- ;;=4^F20.0
- ;;^UTILITY(U,$J,358.3,24074,2)
- ;;=^5003469
- ;;^UTILITY(U,$J,358.3,24075,0)
- ;;=F20.5^^116^1180^6
- ;;^UTILITY(U,$J,358.3,24075,1,0)
+ ;;^UTILITY(U,$J,358.3,24489,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24489,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,24489,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,24490,0)
+ ;;=F15.982^^90^1080^6
+ ;;^UTILITY(U,$J,358.3,24490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24075,1,3,0)
- ;;=3^Schizophrenia, residual
- ;;^UTILITY(U,$J,358.3,24075,1,4,0)
- ;;=4^F20.5
- ;;^UTILITY(U,$J,358.3,24075,2)
- ;;=^5003473
- ;;^UTILITY(U,$J,358.3,24076,0)
- ;;=F25.9^^116^1180^1
- ;;^UTILITY(U,$J,358.3,24076,1,0)
+ ;;^UTILITY(U,$J,358.3,24490,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24490,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,24490,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,24491,0)
+ ;;=F15.99^^90^1080^9
+ ;;^UTILITY(U,$J,358.3,24491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24076,1,3,0)
- ;;=3^Schizoaffective disorder, unspec
- ;;^UTILITY(U,$J,358.3,24076,1,4,0)
- ;;=4^F25.9
- ;;^UTILITY(U,$J,358.3,24076,2)
- ;;=^331857
- ;;^UTILITY(U,$J,358.3,24077,0)
- ;;=F20.9^^116^1180^7
- ;;^UTILITY(U,$J,358.3,24077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24077,1,3,0)
- ;;=3^Schizophrenia, unspec
- ;;^UTILITY(U,$J,358.3,24077,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,24077,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,24078,0)
- ;;=F20.81^^116^1180^8
- ;;^UTILITY(U,$J,358.3,24078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24078,1,3,0)
- ;;=3^Schizophreniform disorder
- ;;^UTILITY(U,$J,358.3,24078,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,24078,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,24079,0)
- ;;=F60.1^^116^1180^2
- ;;^UTILITY(U,$J,358.3,24079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24079,1,3,0)
- ;;=3^Schizoid personality disorder
- ;;^UTILITY(U,$J,358.3,24079,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,24079,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,24080,0)
- ;;=Z11.1^^116^1181^3
- ;;^UTILITY(U,$J,358.3,24080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24080,1,3,0)
- ;;=3^Screening for Resp Tuberculosis
- ;;^UTILITY(U,$J,358.3,24080,1,4,0)
- ;;=4^Z11.1
- ;;^UTILITY(U,$J,358.3,24080,2)
- ;;=^5062670
- ;;^UTILITY(U,$J,358.3,24081,0)
- ;;=Z13.89^^116^1181^2
- ;;^UTILITY(U,$J,358.3,24081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24081,1,3,0)
- ;;=3^Screening for Other Disorders
- ;;^UTILITY(U,$J,358.3,24081,1,4,0)
- ;;=4^Z13.89
- ;;^UTILITY(U,$J,358.3,24081,2)
- ;;=^5062720
- ;;^UTILITY(U,$J,358.3,24082,0)
- ;;=Z12.9^^116^1181^1
- ;;^UTILITY(U,$J,358.3,24082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24082,1,3,0)
- ;;=3^Screening for Malig Neop,Site Unspec
- ;;^UTILITY(U,$J,358.3,24082,1,4,0)
- ;;=4^Z12.9
- ;;^UTILITY(U,$J,358.3,24082,2)
- ;;=^5062698
+ ;;^UTILITY(U,$J,358.3,24491,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24491,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,24491,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,24492,0)
+ ;;=99078^^91^1081^1^^^^1
+ ;;^UTILITY(U,$J,358.3,24492,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24492,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,24492,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,24493,0)
+ ;;=S9446^^91^1081^2^^^^1
+ ;;^UTILITY(U,$J,358.3,24493,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24493,1,2,0)
+ ;;=2^S9446
+ ;;^UTILITY(U,$J,358.3,24493,1,3,0)
+ ;;=3^Group Health Education/Counseling
+ ;;^UTILITY(U,$J,358.3,24494,0)
+ ;;=S9454^^91^1081^7^^^^1
+ ;;^UTILITY(U,$J,358.3,24494,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24494,1,2,0)
+ ;;=2^S9454
+ ;;^UTILITY(U,$J,358.3,24494,1,3,0)
+ ;;=3^Stress Management Class
+ ;;^UTILITY(U,$J,358.3,24495,0)
+ ;;=98961^^91^1081^5^^^^1
+ ;;^UTILITY(U,$J,358.3,24495,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24495,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,24495,1,3,0)
+ ;;=3^Self-Mgmt Educ 2-4 Pts,Ea 30min
+ ;;^UTILITY(U,$J,358.3,24496,0)
+ ;;=98962^^91^1081^6^^^^1
+ ;;^UTILITY(U,$J,358.3,24496,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24496,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,24496,1,3,0)
+ ;;=3^Self-Mgmt Educ 5-8 Pts,Ea 30min
+ ;;^UTILITY(U,$J,358.3,24497,0)
+ ;;=96153^^91^1081^3^^^^1
+ ;;^UTILITY(U,$J,358.3,24497,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24497,1,2,0)
+ ;;=2^96153
+ ;;^UTILITY(U,$J,358.3,24497,1,3,0)
+ ;;=3^Group Health/Behav Interv,Ea 15min
+ ;;^UTILITY(U,$J,358.3,24498,0)
+ ;;=H0046^^91^1081^4^^^^1
+ ;;^UTILITY(U,$J,358.3,24498,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,24498,1,2,0)
+ ;;=2^H0046
+ ;;^UTILITY(U,$J,358.3,24498,1,3,0)
+ ;;=3^PTSD Group

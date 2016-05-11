@@ -1,128 +1,128 @@
-IBDEI138 ; ; 19-NOV-2015
+IBDEI138 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18164,1,0)
+ ;;^UTILITY(U,$J,358.3,18489,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,18490,0)
+ ;;=D47.1^^79^879^76
+ ;;^UTILITY(U,$J,358.3,18490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18164,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,18164,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,18164,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,18165,0)
- ;;=H05.013^^94^905^97
- ;;^UTILITY(U,$J,358.3,18165,1,0)
+ ;;^UTILITY(U,$J,358.3,18490,1,3,0)
+ ;;=3^Chronic Myeloproliferative Disease
+ ;;^UTILITY(U,$J,358.3,18490,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,18490,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,18491,0)
+ ;;=D47.9^^79^879^77
+ ;;^UTILITY(U,$J,358.3,18491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18165,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,18165,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,18165,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,18166,0)
- ;;=I70.331^^94^905^50
- ;;^UTILITY(U,$J,358.3,18166,1,0)
+ ;;^UTILITY(U,$J,358.3,18491,1,3,0)
+ ;;=3^Neop of Uncertain Behavior of Lymphoid/Hematpoetc/Related Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,18491,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,18491,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,18492,0)
+ ;;=D47.Z9^^79^879^78
+ ;;^UTILITY(U,$J,358.3,18492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18166,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,18166,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,18166,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,18167,0)
- ;;=I70.332^^94^905^51
- ;;^UTILITY(U,$J,358.3,18167,1,0)
+ ;;^UTILITY(U,$J,358.3,18492,1,3,0)
+ ;;=3^Neop of Uncertain Behavior of Lymphoid/Hematpoetc/Related Tissue,NEC
+ ;;^UTILITY(U,$J,358.3,18492,1,4,0)
+ ;;=4^D47.Z9
+ ;;^UTILITY(U,$J,358.3,18492,2)
+ ;;=^5002262
+ ;;^UTILITY(U,$J,358.3,18493,0)
+ ;;=A15.0^^79^880^103
+ ;;^UTILITY(U,$J,358.3,18493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18167,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,18167,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,18167,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,18168,0)
- ;;=I70.333^^94^905^52
- ;;^UTILITY(U,$J,358.3,18168,1,0)
+ ;;^UTILITY(U,$J,358.3,18493,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,18493,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,18493,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,18494,0)
+ ;;=A31.0^^79^880^87
+ ;;^UTILITY(U,$J,358.3,18494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18168,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,18168,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,18168,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,18169,0)
- ;;=I70.334^^94^905^53
- ;;^UTILITY(U,$J,358.3,18169,1,0)
+ ;;^UTILITY(U,$J,358.3,18494,1,3,0)
+ ;;=3^Pulmonary Mycobacterial Infection
+ ;;^UTILITY(U,$J,358.3,18494,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,18494,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,18495,0)
+ ;;=B95.5^^79^880^93
+ ;;^UTILITY(U,$J,358.3,18495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18169,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,18169,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,18169,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,18170,0)
- ;;=I70.335^^94^905^54
- ;;^UTILITY(U,$J,358.3,18170,1,0)
+ ;;^UTILITY(U,$J,358.3,18495,1,3,0)
+ ;;=3^Streptococcus in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18495,1,4,0)
+ ;;=4^B95.5
+ ;;^UTILITY(U,$J,358.3,18495,2)
+ ;;=^5000840
+ ;;^UTILITY(U,$J,358.3,18496,0)
+ ;;=B95.0^^79^880^95
+ ;;^UTILITY(U,$J,358.3,18496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18170,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,18170,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,18170,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,18171,0)
- ;;=I70.341^^94^905^49
- ;;^UTILITY(U,$J,358.3,18171,1,0)
+ ;;^UTILITY(U,$J,358.3,18496,1,3,0)
+ ;;=3^Streptococcus,Group A,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18496,1,4,0)
+ ;;=4^B95.0
+ ;;^UTILITY(U,$J,358.3,18496,2)
+ ;;=^5000835
+ ;;^UTILITY(U,$J,358.3,18497,0)
+ ;;=B95.1^^79^880^96
+ ;;^UTILITY(U,$J,358.3,18497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18171,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,18171,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,18171,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,18172,0)
- ;;=I70.342^^94^905^46
- ;;^UTILITY(U,$J,358.3,18172,1,0)
+ ;;^UTILITY(U,$J,358.3,18497,1,3,0)
+ ;;=3^Streptococcus,Group B,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18497,1,4,0)
+ ;;=4^B95.1
+ ;;^UTILITY(U,$J,358.3,18497,2)
+ ;;=^5000836
+ ;;^UTILITY(U,$J,358.3,18498,0)
+ ;;=B95.4^^79^880^94
+ ;;^UTILITY(U,$J,358.3,18498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18172,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,18172,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,18172,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,18173,0)
- ;;=I70.343^^94^905^45
- ;;^UTILITY(U,$J,358.3,18173,1,0)
+ ;;^UTILITY(U,$J,358.3,18498,1,3,0)
+ ;;=3^Streptococcus in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,18498,1,4,0)
+ ;;=4^B95.4
+ ;;^UTILITY(U,$J,358.3,18498,2)
+ ;;=^5000839
+ ;;^UTILITY(U,$J,358.3,18499,0)
+ ;;=B95.2^^79^880^48
+ ;;^UTILITY(U,$J,358.3,18499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18173,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,18173,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,18173,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,18174,0)
- ;;=I70.344^^94^905^47
- ;;^UTILITY(U,$J,358.3,18174,1,0)
+ ;;^UTILITY(U,$J,358.3,18499,1,3,0)
+ ;;=3^Enterococcus in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18499,1,4,0)
+ ;;=4^B95.2
+ ;;^UTILITY(U,$J,358.3,18499,2)
+ ;;=^5000837
+ ;;^UTILITY(U,$J,358.3,18500,0)
+ ;;=B95.8^^79^880^92
+ ;;^UTILITY(U,$J,358.3,18500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18174,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,18174,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,18174,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,18175,0)
- ;;=I70.345^^94^905^48
- ;;^UTILITY(U,$J,358.3,18175,1,0)
+ ;;^UTILITY(U,$J,358.3,18500,1,3,0)
+ ;;=3^Staphylococcus,Unspec,in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18500,1,4,0)
+ ;;=4^B95.8
+ ;;^UTILITY(U,$J,358.3,18500,2)
+ ;;=^5000844
+ ;;^UTILITY(U,$J,358.3,18501,0)
+ ;;=B95.61^^79^880^77
+ ;;^UTILITY(U,$J,358.3,18501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18175,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,18175,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,18175,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,18176,0)
- ;;=I70.431^^94^905^40
- ;;^UTILITY(U,$J,358.3,18176,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18176,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,18501,1,3,0)
+ ;;=3^Methicillin Suscept Staph Infct in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,18501,1,4,0)
+ ;;=4^B95.61
+ ;;^UTILITY(U,$J,358.3,18501,2)
+ ;;=^5000841
+ ;;^UTILITY(U,$J,358.3,18502,0)
+ ;;=B95.62^^79^880^76

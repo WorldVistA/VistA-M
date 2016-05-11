@@ -1,6 +1,6 @@
-ORB3TIM2 ; slc/CLA - Routine to trigger time-related notifications ; 11/1/11 11:40am
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265,356**;Dec 17, 1997;Build 6
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ORB3TIM2 ;SLC/CLA - Routine to trigger time-related notifications ;04/28/2015  08:17
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**102,215,251,265,356,350**;Dec 17, 1997;Build 77
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EXPIR ;trigger expiring order notifs
  N EDT,EXDT,EXORN,ORBDNR,ORPT,ORBRSLT,RXORD,ORLASTDT,X,Y,%DT
@@ -73,7 +73,7 @@ EXPIR ;trigger expiring order notifs
  ...;
  ...I $L(PTLOC),PTLOC="OUTPT" D
  ....D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - OUTPT","`"_EXOI,.ORBERR)
- ....;*356 Add OUTPT PR 
+ ....;*356 Add OUTPT PR
  ....I 'ORBERR,'$G(ORBLST) D ENVAL^XPAR(.ORBLST,"ORB OI EXPIRING - OUTPT PR","`"_EXOI,.ORBERR)
  ....I 'ORBERR,$G(ORBLST)>0 D
  .....S OITXT=$P(^ORD(101.43,EXOI,0),U)
@@ -87,11 +87,11 @@ EXPIR ;trigger expiring order notifs
  ...N DFN S DFN=ORPT
  ...D ADM^VADPT2
  ...;
- ...I (RXORD="OUTPATIENT MEDICATIONS")!(+$G(VADMVT)<1&(RXORD'="CLINIC ORDERS")) D
+ ...I (RXORD="OUTPATIENT MEDICATIONS")!(+$G(VADMVT)<1&(RXORD'?1"CLINIC ".E)) D
  ....D EN^ORB3(72,ORPT,EXORN,"","",EXORN_"@")  ;trigger outpt notif
  ...;
  ...Q:RXORD="OUTPATIENT MEDICATIONS"  ;quit if an outpt med
- ...Q:+$G(VADMVT)<1&(RXORD'="CLINIC ORDERS")  ;quit if an outpt
+ ...Q:+$G(VADMVT)<1&(RXORD'?1"CLINIC ".E)  ;quit if an outpt
  ...;
  ...K VADMVT
  ...;
@@ -103,14 +103,14 @@ EXPIR ;trigger expiring order notifs
  ...Q:+$G(ONETIME)=1  ;quit if one time med
  ...;
  ...;check if this is an IMO order and what it is,send an M.E.-OUTPT alert
- ...I RXORD="CLINIC ORDERS" D  Q
+ ...I RXORD?1"CLINIC ".E D  Q
  ....N ORDLG,ORDG,ORDLGNM,FLAG,ORX
  ....S FLAG=0
  ....S ORDLG=$P($G(^OR(100,EXORN,0)),U,5) Q:$P(ORDLG,";",2)'="ORD(101.41,"
  ....S ORDLGNM=$P($G(^ORD(101.41,+ORDLG,0)),U)
  ....S ORDG=$P($G(^ORD(101.41,+ORDLG,0)),U,2)
  ....I ORDLGNM="PSJ OR PAT OE"!(ORDLGNM="PSJI OR PAT FLUID OE") S FLAG=1
- ....I 'FLAG F ORX="INPATIENT MEDICATIONS","IV MEDICATIONS","UNIT DOSE MEDICATIONS","CLINIC ORDERS" I $$UPPER^ORU(ORDG)=ORX D
+ ....I 'FLAG F ORX="INPATIENT MEDICATIONS","IV MEDICATIONS","UNIT DOSE MEDICATIONS","CLINIC ORDERS","CLINIC INFUSIONS","CLINIC MEDICATIONS" I $$UPPER^ORU(ORDG)=ORX D
  .....S FLAG=1
  .....I ORX="IV MEDICATIONS",(+$$IVRENEW(EXORN)=0) S FLAG=0
  .....I ORX="UNIT DOSE MEDICATIONS",(+$$UDRENEW(EXORN,EXDT)=0) S FLAG=0

@@ -1,5 +1,5 @@
 IBCNBLL ;ALB/ARH - Ins Buffer: LM main screen, list buffer entries ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519**;21-MAR-94;Build 56
+ ;;2.0;INTEGRATED BILLING;**82,149,153,183,184,271,345,416,438,435,506,519,528**;21-MAR-94;Build 163
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; DBIA# 642 for call to $$LST^DGMTU
@@ -27,6 +27,7 @@ HDR ;  header code for list manager display
  I VIEW=4 S VALM("TITLE")="Failure Buffer",VALMSG="!Unable/Send"  ;IB*2*506/taz changed
  I VIEW=5 S VALM("TITLE")="e-Pharmacy Buffer",VALMSG="*Verified"     ; IB*2*435
  I VIEW=6 S VALM("TITLE")="Complete Buffer",VALMSG=""     ; IB*2*506/taz added
+ I VIEW=7 S VALM("TITLE")="TRICARE/CHAMPVA",VALMSG=""   ;528/baa added
  Q
  ;
 INIT ;  initialization for list manager list
@@ -60,6 +61,7 @@ HELP ;  list manager help
  W !,"   H - HMS"
  W !,"   C - Contract Services"
  W !,"   X - e-Pharmacy"           ; IB*2*435
+ W !,"   F - Intrafacility Insurance Update" ; IB*2*528
  D PAUSE^VALM1 I 'Y Q
  ;
  I VIEW'=5 D     ; IB*2*435
@@ -76,7 +78,7 @@ HELP ;  list manager help
  .W !,"      - - eIV payer response indicates this is NOT an active policy."
  .W !,"      * - Previously an not active policy."
  .Q
- I $F(",3,6,",VIEW) D
+ I $F(",3,6,7,",VIEW) D   ;528/baa
  .W !,"      + - eIV payer response indicates this is an active policy."
  .W !,"      ? - Awaiting electronic reply from eIV Payer."
  .W !,"      $ - Escalated Active policy."
@@ -147,6 +149,7 @@ BLDLN(IBBUFDA,IBCNT,DFLG) ; build line to display on List screen for one Buffer 
  ; pull the symbol from the symbol function
  ;
  S IBY=$$SYMBOL(IBBUFDA)
+ I IBY="*" S IBY=" "  ;528/baa
  S IBY=IBY_$P($G(^DPT(+DFN,0)),U,1),IBLINE=$$SETSTR^VALM1(IBY,IBLINE,5,20)
  S IBLINE=$$SETSTR^VALM1(DFLG,IBLINE,25,1)
  S IBY=$G(VA("BID")),IBLINE=$$SETSTR^VALM1(IBY,IBLINE,27,4)
@@ -220,6 +223,7 @@ INCL(VIEW,MCFLAG,SYM,IB0) ;
  S INCL=0
  I 'IBKEYS,(SYM'="+") G INCLQ ; If users don't have the required keys, they can only see current Positive Entries
  I VIEW=6 S INCL=1 G INCLQ  ;Include Everything  (Complete view)
+ I VIEW=7,((INAME["TRICARE")!(INAME["CHAMPVA")) S INCL=1 G INCLQ  ; Tricare/Champva;528/baa
  I VIEW=5,$P(IB0,U,17) S INCL=1 G INCLQ  ;Only e-Pharmacy on e-Pharmacy view (IB*2*435)
  I $P(IB0,U,17) G INCLQ  ;Exclude e-Pharmacy (IB*2*435)
  I VIEW=3,MCFLAG S INCL=1 G INCLQ ;Only Medicare View
@@ -277,10 +281,10 @@ UPDLN(IBBUFDA,ACTION) ; *** called by any action that modifies a buffer entry, s
  ;
 SRCCNV(SRC) ; convert Source of Info acronym from field 355.12/.03 into 1 char code
  N CODSTR,I,SRCSTR,CODE
- S SRCSTR="INTVW^DMTCH^IVM^PreRg^eIV^HMS^MCR^ICB^CS^eRxEL"
- S CODSTR="I^D^V^P^E^H^M^R^C^X"
+ S SRCSTR="INTVW^DMTCH^IVM^PreRg^eIV^HMS^MCR^ICB^CS^eRxEL^IIU"
+ S CODSTR="I^D^V^P^E^H^M^R^C^X^F"
  S CODE=""
- I $G(SRC)'="" F I=1:1:10 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
+ I $G(SRC)'="" F I=1:1:11 S:SRC=$P(SRCSTR,U,I) CODE=$P(CODSTR,U,I) Q:CODE'=""
  Q CODE
  ;
 GETKEYS(DUZ) ; 

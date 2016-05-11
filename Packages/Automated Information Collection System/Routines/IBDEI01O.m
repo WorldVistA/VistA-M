@@ -1,64 +1,138 @@
-IBDEI01O ; ; 19-NOV-2015
+IBDEI01O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DIC(358.3,0,"GL")
- ;;=^IBE(358.3,
- ;;^DIC("B","IMP/EXP SELECTION",358.3)
- ;;=
- ;;^DIC(358.3,"%D",0)
- ;;=^^4^4^2940217^
- ;;^DIC(358.3,"%D",1,0)
- ;;= 
- ;;^DIC(358.3,"%D",2,0)
- ;;=This file is nearly identical to file #357.3. It is used by the
- ;;^DIC(358.3,"%D",3,0)
- ;;=Import/Export Utility as a temporary staging area for data from that file
- ;;^DIC(358.3,"%D",4,0)
- ;;=that is being imported or exported.
- ;;^DD(358.3,0)
- ;;=FIELD^^3^15
- ;;^DD(358.3,0,"DDA")
- ;;=N
- ;;^DD(358.3,0,"DT")
- ;;=2961031
- ;;^DD(358.3,0,"ID",.03)
- ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
- ;;^DD(358.3,0,"ID",.04)
- ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.4,+$P(^(0),U,4),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.4,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
- ;;^DD(358.3,0,"IX","APO",358.3,.03)
- ;;=
- ;;^DD(358.3,0,"IX","APO1",358.3,.04)
- ;;=
- ;;^DD(358.3,0,"IX","APO2",358.3,.05)
- ;;=
- ;;^DD(358.3,0,"IX","B",358.3,.01)
- ;;=
- ;;^DD(358.3,0,"IX","C",358.3,.03)
- ;;=
- ;;^DD(358.3,0,"IX","D",358.3,.04)
- ;;=
- ;;^DD(358.3,0,"NM","IMP/EXP SELECTION")
- ;;=
- ;;^DD(358.3,0,"VRPK")
- ;;=IBD
- ;;^DD(358.3,.01,0)
- ;;=SELECTION ID^RF^^0;1^K:$L(X)>30!($L(X)<3)!'(X'?1P.E) X
- ;;^DD(358.3,.01,1,0)
- ;;=^.1
- ;;^DD(358.3,.01,1,1,0)
- ;;=358.3^B
- ;;^DD(358.3,.01,1,1,1)
- ;;=S ^IBE(358.3,"B",$E(X,1,30),DA)=""
- ;;^DD(358.3,.01,1,1,2)
- ;;=K ^IBE(358.3,"B",$E(X,1,30),DA)
- ;;^DD(358.3,.01,3)
- ;;=Answer must be 3-30 characters in length.
- ;;^DD(358.3,.01,21,0)
- ;;=^^2^2^2930309^
- ;;^DD(358.3,.01,21,1,0)
- ;;= 
- ;;^DD(358.3,.01,21,2,0)
- ;;=The ID passed by the package.
- ;;^DD(358.3,.01,"DT")
- ;;=2921119
+ ;;^UTILITY(U,$J,358.3,286,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,286,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,287,0)
+ ;;=G24.02^^3^34^8
+ ;;^UTILITY(U,$J,358.3,287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,287,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,287,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,287,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,288,0)
+ ;;=G24.01^^3^34^16
+ ;;^UTILITY(U,$J,358.3,288,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,288,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,288,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,288,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,289,0)
+ ;;=G24.09^^3^34^17
+ ;;^UTILITY(U,$J,358.3,289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,289,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,289,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,289,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,290,0)
+ ;;=G25.1^^3^34^12
+ ;;^UTILITY(U,$J,358.3,290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,290,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,290,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,290,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,291,0)
+ ;;=G25.71^^3^34^15
+ ;;^UTILITY(U,$J,358.3,291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,291,1,3,0)
+ ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
+ ;;^UTILITY(U,$J,358.3,291,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,291,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,292,0)
+ ;;=G25.79^^3^34^10
+ ;;^UTILITY(U,$J,358.3,292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,292,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder NEC
+ ;;^UTILITY(U,$J,358.3,292,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,292,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,293,0)
+ ;;=T43.205A^^3^34^4
+ ;;^UTILITY(U,$J,358.3,293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,293,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,293,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,293,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,294,0)
+ ;;=T43.205D^^3^34^5
+ ;;^UTILITY(U,$J,358.3,294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,294,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,294,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,294,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,295,0)
+ ;;=T43.205S^^3^34^6
+ ;;^UTILITY(U,$J,358.3,295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,295,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,295,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,295,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,296,0)
+ ;;=G25.71^^3^34^7
+ ;;^UTILITY(U,$J,358.3,296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,296,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,296,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,296,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,297,0)
+ ;;=G24.02^^3^34^9
+ ;;^UTILITY(U,$J,358.3,297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,297,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,297,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,297,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,298,0)
+ ;;=G21.0^^3^34^13
+ ;;^UTILITY(U,$J,358.3,298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,298,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,298,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,298,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,299,0)
+ ;;=T50.905A^^3^34^1
+ ;;^UTILITY(U,$J,358.3,299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,299,1,3,0)
+ ;;=3^Adverse Effect of Unspec Medication,Init Encntr
+ ;;^UTILITY(U,$J,358.3,299,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,299,2)
+ ;;=^5052160

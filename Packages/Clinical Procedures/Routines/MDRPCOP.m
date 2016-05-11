@@ -1,5 +1,5 @@
 MDRPCOP ; HOIFO/DP - Object RPCs (TMDPatient) ;8/3/09  10:39
- ;;1.0;CLINICAL PROCEDURES;**4,6,11,20**;Apr 01, 2004;Build 9
+ ;;1.0;CLINICAL PROCEDURES;**4,6,11,20,42**;Apr 01, 2004;Build 12
  ; Integration Agreements:
  ; IA# 2054 [Supported] DILF call
  ; IA# 2056 [Supported] DIQ calls
@@ -32,6 +32,8 @@ ALLERGY ; [Procedure] Return Allergies
  Q
  ;
 CHKIN ; [Procedure] Check In Study
+ N MDCART,MDREZ S MDCART=0
+ I +$P(DATA,U,4),+$G(^MDS(702.09,+$P(DATA,U,4),"CS")) S MDCART=1
  F X=2:1:5 D
  .I $P(DATA,U,X)]"" S MDFDA(702,$P(DATA,U,1),$P("^.04^.05^.11^.07",U,X))=$P(DATA,U,X)
  S MDFDA(702,$P(DATA,U,1),.09)=4  ; Status = Checked-In
@@ -61,6 +63,11 @@ CHKIN ; [Procedure] Check In Study
  ..S MDFDA(702,+MDIENS_",",.09)=5
  ..D FILE^DIE("","MDFDA","MDERR")
  ; Patch 6 - Renal Check-In
+ I +MDCART>0 D
+ .S MDREZ=$$NEWTIUN^MDRPCOT(+MDIEN(1))
+ .I +MDREZ<0 D FILEMSG^MDRPCOT(+MDIEN(1),"TIU",2,MDREZ)
+ .S MDREZ=$$SUBMIT^MDRPCOT1(MDIEN(1))
+ .D FILEMSG^MDRPCOT(+MDIEN(1),"IMAGING",$S(+MDREZ>0:+MDREZ,1:2),MDREZ)
  I '$D(MDERR) S @RESULTS@(0)="1^OK" Q
  D ERROR^MDRPCU(RESULTS,.MDERR)
  Q

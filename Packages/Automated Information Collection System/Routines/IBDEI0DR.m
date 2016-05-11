@@ -1,128 +1,136 @@
-IBDEI0DR ; ; 19-NOV-2015
+IBDEI0DR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5998,2)
- ;;=^5007593
- ;;^UTILITY(U,$J,358.3,5999,0)
- ;;=I70.239^^40^383^28
- ;;^UTILITY(U,$J,358.3,5999,1,0)
+ ;;^UTILITY(U,$J,358.3,6318,0)
+ ;;=R10.30^^30^391^72
+ ;;^UTILITY(U,$J,358.3,6318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5999,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,5999,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,5999,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,6000,0)
- ;;=I70.241^^40^383^20
- ;;^UTILITY(U,$J,358.3,6000,1,0)
+ ;;^UTILITY(U,$J,358.3,6318,1,3,0)
+ ;;=3^Lower Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,6318,1,4,0)
+ ;;=4^R10.30
+ ;;^UTILITY(U,$J,358.3,6318,2)
+ ;;=^5019210
+ ;;^UTILITY(U,$J,358.3,6319,0)
+ ;;=R10.33^^30^391^75
+ ;;^UTILITY(U,$J,358.3,6319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6000,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,6000,1,4,0)
- ;;=4^I70.241
- ;;^UTILITY(U,$J,358.3,6000,2)
- ;;=^5007595
- ;;^UTILITY(U,$J,358.3,6001,0)
- ;;=I70.242^^40^383^16
- ;;^UTILITY(U,$J,358.3,6001,1,0)
+ ;;^UTILITY(U,$J,358.3,6319,1,3,0)
+ ;;=3^Periumbilical Pain
+ ;;^UTILITY(U,$J,358.3,6319,1,4,0)
+ ;;=4^R10.33
+ ;;^UTILITY(U,$J,358.3,6319,2)
+ ;;=^5019213
+ ;;^UTILITY(U,$J,358.3,6320,0)
+ ;;=R10.10^^30^391^84
+ ;;^UTILITY(U,$J,358.3,6320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6001,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,6001,1,4,0)
- ;;=4^I70.242
- ;;^UTILITY(U,$J,358.3,6001,2)
- ;;=^5007596
- ;;^UTILITY(U,$J,358.3,6002,0)
- ;;=I70.243^^40^383^15
- ;;^UTILITY(U,$J,358.3,6002,1,0)
+ ;;^UTILITY(U,$J,358.3,6320,1,3,0)
+ ;;=3^Upper Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,6320,1,4,0)
+ ;;=4^R10.10
+ ;;^UTILITY(U,$J,358.3,6320,2)
+ ;;=^5019205
+ ;;^UTILITY(U,$J,358.3,6321,0)
+ ;;=A54.00^^30^392^51
+ ;;^UTILITY(U,$J,358.3,6321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6002,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,6002,1,4,0)
- ;;=4^I70.243
- ;;^UTILITY(U,$J,358.3,6002,2)
- ;;=^5007597
- ;;^UTILITY(U,$J,358.3,6003,0)
- ;;=I70.244^^40^383^18
- ;;^UTILITY(U,$J,358.3,6003,1,0)
+ ;;^UTILITY(U,$J,358.3,6321,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,6321,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,6321,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,6322,0)
+ ;;=A54.09^^30^392^52
+ ;;^UTILITY(U,$J,358.3,6322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6003,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,6003,1,4,0)
- ;;=4^I70.244
- ;;^UTILITY(U,$J,358.3,6003,2)
- ;;=^5007598
- ;;^UTILITY(U,$J,358.3,6004,0)
- ;;=I70.245^^40^383^17
- ;;^UTILITY(U,$J,358.3,6004,1,0)
+ ;;^UTILITY(U,$J,358.3,6322,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,6322,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,6322,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,6323,0)
+ ;;=A54.02^^30^392^53
+ ;;^UTILITY(U,$J,358.3,6323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6004,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,6004,1,4,0)
- ;;=4^I70.245
- ;;^UTILITY(U,$J,358.3,6004,2)
- ;;=^5007599
- ;;^UTILITY(U,$J,358.3,6005,0)
- ;;=I70.248^^40^383^19
- ;;^UTILITY(U,$J,358.3,6005,1,0)
+ ;;^UTILITY(U,$J,358.3,6323,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,6323,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,6323,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,6324,0)
+ ;;=A54.1^^30^392^50
+ ;;^UTILITY(U,$J,358.3,6324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6005,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,6005,1,4,0)
- ;;=4^I70.248
- ;;^UTILITY(U,$J,358.3,6005,2)
- ;;=^5007600
- ;;^UTILITY(U,$J,358.3,6006,0)
- ;;=I70.249^^40^383^21
- ;;^UTILITY(U,$J,358.3,6006,1,0)
+ ;;^UTILITY(U,$J,358.3,6324,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,6324,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,6324,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,6325,0)
+ ;;=A54.01^^30^392^49
+ ;;^UTILITY(U,$J,358.3,6325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6006,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Ulcer,Unspec Site
- ;;^UTILITY(U,$J,358.3,6006,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,6006,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,6007,0)
- ;;=I70.331^^40^383^64
- ;;^UTILITY(U,$J,358.3,6007,1,0)
+ ;;^UTILITY(U,$J,358.3,6325,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,6325,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,6325,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,6326,0)
+ ;;=B37.49^^30^392^12
+ ;;^UTILITY(U,$J,358.3,6326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6007,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,6007,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,6007,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,6008,0)
- ;;=I70.332^^40^383^65
- ;;^UTILITY(U,$J,358.3,6008,1,0)
+ ;;^UTILITY(U,$J,358.3,6326,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,6326,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,6326,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,6327,0)
+ ;;=B37.41^^30^392^11
+ ;;^UTILITY(U,$J,358.3,6327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6008,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,6008,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,6008,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,6009,0)
- ;;=I70.333^^40^383^66
- ;;^UTILITY(U,$J,358.3,6009,1,0)
+ ;;^UTILITY(U,$J,358.3,6327,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,6327,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,6327,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,6328,0)
+ ;;=B37.42^^30^392^10
+ ;;^UTILITY(U,$J,358.3,6328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6009,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,6009,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,6009,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,6010,0)
- ;;=I70.334^^40^383^67
- ;;^UTILITY(U,$J,358.3,6010,1,0)
+ ;;^UTILITY(U,$J,358.3,6328,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,6328,1,4,0)
+ ;;=4^B37.42
+ ;;^UTILITY(U,$J,358.3,6328,2)
+ ;;=^5000617
+ ;;^UTILITY(U,$J,358.3,6329,0)
+ ;;=A59.03^^30^392^102
+ ;;^UTILITY(U,$J,358.3,6329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6010,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,6010,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,6010,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,6011,0)
- ;;=I70.335^^40^383^68
+ ;;^UTILITY(U,$J,358.3,6329,1,3,0)
+ ;;=3^Trichomonal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,6329,1,4,0)
+ ;;=4^A59.03
+ ;;^UTILITY(U,$J,358.3,6329,2)
+ ;;=^5000349
+ ;;^UTILITY(U,$J,358.3,6330,0)
+ ;;=E87.6^^30^392^61
+ ;;^UTILITY(U,$J,358.3,6330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6330,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,6330,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,6330,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,6331,0)
+ ;;=F52.0^^30^392^60

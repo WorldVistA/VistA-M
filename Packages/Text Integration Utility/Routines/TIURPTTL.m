@@ -1,5 +1,6 @@
 TIURPTTL ; SLC/JER - Review Documents by PATIENT & TITLE ;2/26/01
- ;;1.0;TEXT INTEGRATION UTILITIES;**100**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**100,286**;Jun 20, 1997;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified
  ; 12/5/00 split rtn w GATHER, PUTLIST, ADDELMNT to new rtn TIURPTT1
  ;
 MAKELIST(TIUCLASS) ; Get Search Criteria
@@ -40,7 +41,8 @@ ERLY S TIUEDFLT=$S(TIUCLASS=3:"T-2",TIUCLASS=244:"T-30",1:"T-7")
  I TIUEDT>TIULDT D SWAP^TIUR(.TIUEDT,.TIULDT)
  I $L(TIULDT,".")=1 D EXPRANGE^TIUR(.TIUEDT,.TIULDT)
  ; -- Reset late date to NOW on rebuild:
- S NOWFLAG=$S(TIULDT-$$NOW^XLFDT<.0001:1,1:0)
+ ; TIU*1.0*286 djh
+ S NOWFLAG=$$FMDIFF^XLFDT($$NOW^XLFDT,TIULDT,2)<60
  I '$G(TIURBLD) W !,"Searching for the documents."
  D BUILD(TIUCLASS,.STATUS,.TIUTYP,.SCREEN,TIUEDT,TIULDT,NOWFLAG)
  ; -- If changed view while attaching ID note, update video for note: --

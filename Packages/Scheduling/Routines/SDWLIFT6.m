@@ -1,5 +1,5 @@
-SDWLIFT6 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: DISPLAY ACCEPT DETAILS  ; Compiled March 23, 2005 12:38:06  ; Compiled January 25, 2007 16:34:01
- ;;5.3;Scheduling;**415,446**;AUG 13 1993;Build 77
+SDWLIFT6 ;IOFO BAY PINES/OG - INTER-FACILITY TRANSFER: DISPLAY ACCEPT DETAILS ;1/5/16 11:00am
+ ;;5.3;Scheduling;**415,446,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -75,7 +75,9 @@ GETINFO(SDWLOUT) ; The Coversheet function calls here too.
  S SDWLOUT(0)=SDWLOUT(0)+1,SDWLOUT(SDWLOUT(0),0)="Primary Eligibility: "_TMP(409.36,SDWLIFTN_",",.361)
  S SDWLOUT(0)=SDWLOUT(0)+1,SDWLOUT(SDWLOUT(0),0)="Wait List Type: "
  S SDWLOUT(SDWLOUT(0),0)=SDWLOUT(SDWLOUT(0),0)_TMP(409.36,SDWLIFTN_",",4)_" : "_TMP(409.36,SDWLIFTN_",",5)
- S SDWLOUT(0)=SDWLOUT(0)+1,SDWLOUT(SDWLOUT(0),0)="Desired Date of Appt: "
+ ; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user
+ ;S SDWLOUT(0)=SDWLOUT(0)+1,SDWLOUT(SDWLOUT(0),0)="Desired Date of Appt: "
+ S SDWLOUT(0)=SDWLOUT(0)+1,SDWLOUT(SDWLOUT(0),0)="CID/Preferred Date of Appt: "
  S SDWLOUT(SDWLOUT(0),0)=SDWLOUT(SDWLOUT(0),0)_TMP(409.36,SDWLIFTN_",",22)
  S SDWLOUT(SDWLOUT(0),0)=SDWLOUT(SDWLOUT(0),0)_"  Integration Control Number: "
  S SDWLOUT(SDWLOUT(0),0)=SDWLOUT(SDWLOUT(0),0)_TMP(409.36,SDWLIFTN_",",991.01)

@@ -1,134 +1,130 @@
-IBDEI0O1 ; ; 19-NOV-2015
+IBDEI0O1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10989,1,0)
+ ;;^UTILITY(U,$J,358.3,11224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10989,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,10989,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,10989,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,10990,0)
- ;;=Z96.21^^68^676^14
- ;;^UTILITY(U,$J,358.3,10990,1,0)
+ ;;^UTILITY(U,$J,358.3,11224,1,3,0)
+ ;;=3^Fall from Ladder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11224,1,4,0)
+ ;;=4^W11.XXXA
+ ;;^UTILITY(U,$J,358.3,11224,2)
+ ;;=^5059595
+ ;;^UTILITY(U,$J,358.3,11225,0)
+ ;;=W01.10XA^^47^529^2
+ ;;^UTILITY(U,$J,358.3,11225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10990,1,3,0)
- ;;=3^Cochlear Implant Status
- ;;^UTILITY(U,$J,358.3,10990,1,4,0)
- ;;=4^Z96.21
- ;;^UTILITY(U,$J,358.3,10990,2)
- ;;=^5063684
- ;;^UTILITY(U,$J,358.3,10991,0)
- ;;=Z96.41^^68^676^126
- ;;^UTILITY(U,$J,358.3,10991,1,0)
+ ;;^UTILITY(U,$J,358.3,11225,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11225,1,4,0)
+ ;;=4^W01.10XA
+ ;;^UTILITY(U,$J,358.3,11225,2)
+ ;;=^5059525
+ ;;^UTILITY(U,$J,358.3,11226,0)
+ ;;=W01.0XXA^^47^529^3
+ ;;^UTILITY(U,$J,358.3,11226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10991,1,3,0)
- ;;=3^Presence of Insulin Pump
- ;;^UTILITY(U,$J,358.3,10991,1,4,0)
- ;;=4^Z96.41
- ;;^UTILITY(U,$J,358.3,10991,2)
- ;;=^5063688
- ;;^UTILITY(U,$J,358.3,10992,0)
- ;;=Z96.641^^68^676^134
- ;;^UTILITY(U,$J,358.3,10992,1,0)
+ ;;^UTILITY(U,$J,358.3,11226,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11226,1,4,0)
+ ;;=4^W01.0XXA
+ ;;^UTILITY(U,$J,358.3,11226,2)
+ ;;=^5059522
+ ;;^UTILITY(U,$J,358.3,11227,0)
+ ;;=W18.30XA^^47^529^18
+ ;;^UTILITY(U,$J,358.3,11227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10992,1,3,0)
- ;;=3^Presence of Right Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,10992,1,4,0)
- ;;=4^Z96.641
- ;;^UTILITY(U,$J,358.3,10992,2)
- ;;=^5063701
- ;;^UTILITY(U,$J,358.3,10993,0)
- ;;=Z96.642^^68^676^129
- ;;^UTILITY(U,$J,358.3,10993,1,0)
+ ;;^UTILITY(U,$J,358.3,11227,1,3,0)
+ ;;=3^Fall on Same Level,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11227,1,4,0)
+ ;;=4^W18.30XA
+ ;;^UTILITY(U,$J,358.3,11227,2)
+ ;;=^5059809
+ ;;^UTILITY(U,$J,358.3,11228,0)
+ ;;=W04.XXXA^^47^529^4
+ ;;^UTILITY(U,$J,358.3,11228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10993,1,3,0)
- ;;=3^Presence of Left Artificial Hip Jt
- ;;^UTILITY(U,$J,358.3,10993,1,4,0)
- ;;=4^Z96.642
- ;;^UTILITY(U,$J,358.3,10993,2)
- ;;=^5063702
- ;;^UTILITY(U,$J,358.3,10994,0)
- ;;=Z96.643^^68^676^121
- ;;^UTILITY(U,$J,358.3,10994,1,0)
+ ;;^UTILITY(U,$J,358.3,11228,1,3,0)
+ ;;=3^Fall While Being Carried by Oth Persons,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11228,1,4,0)
+ ;;=4^W04.XXXA
+ ;;^UTILITY(U,$J,358.3,11228,2)
+ ;;=^5059547
+ ;;^UTILITY(U,$J,358.3,11229,0)
+ ;;=Z91.81^^47^529^23
+ ;;^UTILITY(U,$J,358.3,11229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10994,1,3,0)
- ;;=3^Presence of Artificial Hip Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,10994,1,4,0)
- ;;=4^Z96.643
- ;;^UTILITY(U,$J,358.3,10994,2)
- ;;=^5063703
- ;;^UTILITY(U,$J,358.3,10995,0)
- ;;=Z96.651^^68^676^135
- ;;^UTILITY(U,$J,358.3,10995,1,0)
+ ;;^UTILITY(U,$J,358.3,11229,1,3,0)
+ ;;=3^Hx of Falling
+ ;;^UTILITY(U,$J,358.3,11229,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,11229,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,11230,0)
+ ;;=W17.89XA^^47^529^14
+ ;;^UTILITY(U,$J,358.3,11230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10995,1,3,0)
- ;;=3^Presence of Right Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,10995,1,4,0)
- ;;=4^Z96.651
- ;;^UTILITY(U,$J,358.3,10995,2)
- ;;=^5063705
- ;;^UTILITY(U,$J,358.3,10996,0)
- ;;=Z96.652^^68^676^130
- ;;^UTILITY(U,$J,358.3,10996,1,0)
+ ;;^UTILITY(U,$J,358.3,11230,1,3,0)
+ ;;=3^Fall from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11230,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,11230,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,11231,0)
+ ;;=W03.XXXA^^47^529^1
+ ;;^UTILITY(U,$J,358.3,11231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10996,1,3,0)
- ;;=3^Presence of Left Artificial Knee Jt
- ;;^UTILITY(U,$J,358.3,10996,1,4,0)
- ;;=4^Z96.652
- ;;^UTILITY(U,$J,358.3,10996,2)
- ;;=^5063706
- ;;^UTILITY(U,$J,358.3,10997,0)
- ;;=Z96.653^^68^676^122
- ;;^UTILITY(U,$J,358.3,10997,1,0)
+ ;;^UTILITY(U,$J,358.3,11231,1,3,0)
+ ;;=3^Fall Same Level d/t Collision w/ Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11231,1,4,0)
+ ;;=4^W03.XXXA
+ ;;^UTILITY(U,$J,358.3,11231,2)
+ ;;=^5059544
+ ;;^UTILITY(U,$J,358.3,11232,0)
+ ;;=W18.09XA^^47^529^6
+ ;;^UTILITY(U,$J,358.3,11232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10997,1,3,0)
- ;;=3^Presence of Artificial Knee Jt,Bilateral
- ;;^UTILITY(U,$J,358.3,10997,1,4,0)
- ;;=4^Z96.653
- ;;^UTILITY(U,$J,358.3,10997,2)
- ;;=^5063707
- ;;^UTILITY(U,$J,358.3,10998,0)
- ;;=Z96.7^^68^676^125
- ;;^UTILITY(U,$J,358.3,10998,1,0)
+ ;;^UTILITY(U,$J,358.3,11232,1,3,0)
+ ;;=3^Fall d/t Striking Against Other Object,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11232,1,4,0)
+ ;;=4^W18.09XA
+ ;;^UTILITY(U,$J,358.3,11232,2)
+ ;;=^5059799
+ ;;^UTILITY(U,$J,358.3,11233,0)
+ ;;=W00.9XXA^^47^529^5
+ ;;^UTILITY(U,$J,358.3,11233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10998,1,3,0)
- ;;=3^Presence of Bone/Tendon Implants NEC
- ;;^UTILITY(U,$J,358.3,10998,1,4,0)
- ;;=4^Z96.7
- ;;^UTILITY(U,$J,358.3,10998,2)
- ;;=^5063716
- ;;^UTILITY(U,$J,358.3,10999,0)
- ;;=Z97.11^^68^676^133
- ;;^UTILITY(U,$J,358.3,10999,1,0)
+ ;;^UTILITY(U,$J,358.3,11233,1,3,0)
+ ;;=3^Fall d/t Snow/Ice,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11233,1,4,0)
+ ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,11233,2)
+ ;;=^5059519
+ ;;^UTILITY(U,$J,358.3,11234,0)
+ ;;=R29.6^^47^529^24
+ ;;^UTILITY(U,$J,358.3,11234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10999,1,3,0)
- ;;=3^Presence of Right Artificial Arm
- ;;^UTILITY(U,$J,358.3,10999,1,4,0)
- ;;=4^Z97.11
- ;;^UTILITY(U,$J,358.3,10999,2)
- ;;=^5063722
- ;;^UTILITY(U,$J,358.3,11000,0)
- ;;=Z97.12^^68^676^128
- ;;^UTILITY(U,$J,358.3,11000,1,0)
+ ;;^UTILITY(U,$J,358.3,11234,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,11234,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,11234,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,11235,0)
+ ;;=W18.40XA^^47^529^25
+ ;;^UTILITY(U,$J,358.3,11235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11000,1,3,0)
- ;;=3^Presence of Left Artificial Arm
- ;;^UTILITY(U,$J,358.3,11000,1,4,0)
- ;;=4^Z97.12
- ;;^UTILITY(U,$J,358.3,11000,2)
- ;;=^5063723
- ;;^UTILITY(U,$J,358.3,11001,0)
- ;;=Z97.13^^68^676^136
- ;;^UTILITY(U,$J,358.3,11001,1,0)
+ ;;^UTILITY(U,$J,358.3,11235,1,3,0)
+ ;;=3^Slip/Trip/Stumble w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,11235,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,11235,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,11236,0)
+ ;;=Z90.710^^47^530^2
+ ;;^UTILITY(U,$J,358.3,11236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11001,1,3,0)
- ;;=3^Presence of Right Artificial Leg
- ;;^UTILITY(U,$J,358.3,11001,1,4,0)
- ;;=4^Z97.13
- ;;^UTILITY(U,$J,358.3,11001,2)
- ;;=^5063724
- ;;^UTILITY(U,$J,358.3,11002,0)
- ;;=Z97.14^^68^676^131
+ ;;^UTILITY(U,$J,358.3,11236,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,11236,1,4,0)
+ ;;=4^Z90.710

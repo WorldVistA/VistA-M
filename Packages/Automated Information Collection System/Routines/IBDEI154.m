@@ -1,132 +1,136 @@
-IBDEI154 ; ; 19-NOV-2015
+IBDEI154 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19045,1,0)
+ ;;^UTILITY(U,$J,358.3,19397,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,19398,0)
+ ;;=L02.215^^84^918^126
+ ;;^UTILITY(U,$J,358.3,19398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19045,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,19045,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,19045,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,19046,0)
- ;;=Z80.0^^94^917^35
- ;;^UTILITY(U,$J,358.3,19046,1,0)
+ ;;^UTILITY(U,$J,358.3,19398,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,19398,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,19398,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,19399,0)
+ ;;=L02.216^^84^918^131
+ ;;^UTILITY(U,$J,358.3,19399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19046,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,19046,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,19046,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,19047,0)
- ;;=Z80.1^^94^917^41
- ;;^UTILITY(U,$J,358.3,19047,1,0)
+ ;;^UTILITY(U,$J,358.3,19399,1,3,0)
+ ;;=3^Cutaneous Abscess of Unbilicus
+ ;;^UTILITY(U,$J,358.3,19399,1,4,0)
+ ;;=4^L02.216
+ ;;^UTILITY(U,$J,358.3,19399,2)
+ ;;=^5008955
+ ;;^UTILITY(U,$J,358.3,19400,0)
+ ;;=L02.219^^84^918^130
+ ;;^UTILITY(U,$J,358.3,19400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19047,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,19047,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,19047,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,19048,0)
- ;;=Z80.3^^94^917^34
- ;;^UTILITY(U,$J,358.3,19048,1,0)
+ ;;^UTILITY(U,$J,358.3,19400,1,3,0)
+ ;;=3^Cutaneous Abscess of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,19400,1,4,0)
+ ;;=4^L02.219
+ ;;^UTILITY(U,$J,358.3,19400,2)
+ ;;=^5008956
+ ;;^UTILITY(U,$J,358.3,19401,0)
+ ;;=L02.32^^84^918^154
+ ;;^UTILITY(U,$J,358.3,19401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19048,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,19048,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,19048,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,19049,0)
- ;;=Z80.41^^94^917^38
- ;;^UTILITY(U,$J,358.3,19049,1,0)
+ ;;^UTILITY(U,$J,358.3,19401,1,3,0)
+ ;;=3^Furuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,19401,1,4,0)
+ ;;=4^L02.32
+ ;;^UTILITY(U,$J,358.3,19401,2)
+ ;;=^5008972
+ ;;^UTILITY(U,$J,358.3,19402,0)
+ ;;=L02.33^^84^918^92
+ ;;^UTILITY(U,$J,358.3,19402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19049,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,19049,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,19049,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,19050,0)
- ;;=Z80.42^^94^917^39
- ;;^UTILITY(U,$J,358.3,19050,1,0)
+ ;;^UTILITY(U,$J,358.3,19402,1,3,0)
+ ;;=3^Carbuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,19402,1,4,0)
+ ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,19402,2)
+ ;;=^5008973
+ ;;^UTILITY(U,$J,358.3,19403,0)
+ ;;=L02.415^^84^918^129
+ ;;^UTILITY(U,$J,358.3,19403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19050,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,19050,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,19050,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,19051,0)
- ;;=Z80.43^^94^917^40
- ;;^UTILITY(U,$J,358.3,19051,1,0)
+ ;;^UTILITY(U,$J,358.3,19403,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,19403,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,19403,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,19404,0)
+ ;;=L02.416^^84^918^124
+ ;;^UTILITY(U,$J,358.3,19404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19051,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,19051,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,19051,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,19052,0)
- ;;=Z80.6^^94^917^32
- ;;^UTILITY(U,$J,358.3,19052,1,0)
+ ;;^UTILITY(U,$J,358.3,19404,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,19404,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,19404,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,19405,0)
+ ;;=L02.511^^84^918^128
+ ;;^UTILITY(U,$J,358.3,19405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19052,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,19052,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,19052,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,19053,0)
- ;;=Z80.8^^94^917^37
- ;;^UTILITY(U,$J,358.3,19053,1,0)
+ ;;^UTILITY(U,$J,358.3,19405,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,19405,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,19405,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,19406,0)
+ ;;=L02.512^^84^918^123
+ ;;^UTILITY(U,$J,358.3,19406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19053,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,19053,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,19053,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,19054,0)
- ;;=Z81.8^^94^917^42
- ;;^UTILITY(U,$J,358.3,19054,1,0)
+ ;;^UTILITY(U,$J,358.3,19406,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,19406,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,19406,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,19407,0)
+ ;;=L02.611^^84^918^127
+ ;;^UTILITY(U,$J,358.3,19407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19054,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,19054,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,19054,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,19055,0)
- ;;=Z82.3^^94^917^49
- ;;^UTILITY(U,$J,358.3,19055,1,0)
+ ;;^UTILITY(U,$J,358.3,19407,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,19407,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,19407,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,19408,0)
+ ;;=L02.612^^84^918^122
+ ;;^UTILITY(U,$J,358.3,19408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19055,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,19055,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,19055,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,19056,0)
- ;;=Z82.49^^94^917^31
- ;;^UTILITY(U,$J,358.3,19056,1,0)
+ ;;^UTILITY(U,$J,358.3,19408,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,19408,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,19408,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,19409,0)
+ ;;=L02.92^^84^918^155
+ ;;^UTILITY(U,$J,358.3,19409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19056,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,19056,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,19056,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,19057,0)
- ;;=Z82.5^^94^917^22
- ;;^UTILITY(U,$J,358.3,19057,1,0)
+ ;;^UTILITY(U,$J,358.3,19409,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,19409,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,19409,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,19410,0)
+ ;;=L02.93^^84^918^93
+ ;;^UTILITY(U,$J,358.3,19410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19057,1,3,0)
- ;;=3^Family Hx of Asthma/Chronic Lower Respiratory Diseases
- ;;^UTILITY(U,$J,358.3,19057,1,4,0)
- ;;=4^Z82.5
- ;;^UTILITY(U,$J,358.3,19057,2)
- ;;=^5063370
+ ;;^UTILITY(U,$J,358.3,19410,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,19410,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,19410,2)
+ ;;=^5009018

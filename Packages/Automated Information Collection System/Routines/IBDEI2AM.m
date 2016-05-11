@@ -1,122 +1,132 @@
-IBDEI2AM ; ; 19-NOV-2015
+IBDEI2AM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38521,2)
- ;;=^5020723
- ;;^UTILITY(U,$J,358.3,38522,0)
- ;;=S06.1X0A^^180^1975^29
- ;;^UTILITY(U,$J,358.3,38522,1,0)
+ ;;^UTILITY(U,$J,358.3,38899,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,38899,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,38900,0)
+ ;;=L40.8^^151^1904^39
+ ;;^UTILITY(U,$J,358.3,38900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38522,1,3,0)
- ;;=3^Traumatic cerebral edema w/o LOC, init
- ;;^UTILITY(U,$J,358.3,38522,1,4,0)
- ;;=4^S06.1X0A
- ;;^UTILITY(U,$J,358.3,38522,2)
- ;;=^5020696
- ;;^UTILITY(U,$J,358.3,38523,0)
- ;;=S06.9X5A^^180^1975^9
- ;;^UTILITY(U,$J,358.3,38523,1,0)
+ ;;^UTILITY(U,$J,358.3,38900,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,38900,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,38900,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,38901,0)
+ ;;=L89.95^^151^1904^29
+ ;;^UTILITY(U,$J,358.3,38901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38523,1,3,0)
- ;;=3^Intcrn inj w LOC >24 hr w ret consc lev, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38523,1,4,0)
- ;;=4^S06.9X5A
- ;;^UTILITY(U,$J,358.3,38523,2)
- ;;=^5021221
- ;;^UTILITY(U,$J,358.3,38524,0)
- ;;=S06.9X6A^^180^1975^10
- ;;^UTILITY(U,$J,358.3,38524,1,0)
+ ;;^UTILITY(U,$J,358.3,38901,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Unstageable (Covered by Eschar)
+ ;;^UTILITY(U,$J,358.3,38901,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,38901,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,38902,0)
+ ;;=L89.92^^151^1904^25
+ ;;^UTILITY(U,$J,358.3,38902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38524,1,3,0)
- ;;=3^Intcrn inj w LOC >24 hr w/o ret consc w surv, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38524,1,4,0)
- ;;=4^S06.9X6A
- ;;^UTILITY(U,$J,358.3,38524,2)
- ;;=^5021224
- ;;^UTILITY(U,$J,358.3,38525,0)
- ;;=S06.9X3A^^180^1975^11
- ;;^UTILITY(U,$J,358.3,38525,1,0)
+ ;;^UTILITY(U,$J,358.3,38902,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,38902,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,38902,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,38903,0)
+ ;;=L89.93^^151^1904^26
+ ;;^UTILITY(U,$J,358.3,38903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38525,1,3,0)
- ;;=3^Intcrn inj w LOC of 1-5 hrs 59 min, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38525,1,4,0)
- ;;=4^S06.9X3A
- ;;^UTILITY(U,$J,358.3,38525,2)
- ;;=^5021215
- ;;^UTILITY(U,$J,358.3,38526,0)
- ;;=S06.9X1A^^180^1975^12
- ;;^UTILITY(U,$J,358.3,38526,1,0)
+ ;;^UTILITY(U,$J,358.3,38903,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,38903,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,38903,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,38904,0)
+ ;;=L89.94^^151^1904^27
+ ;;^UTILITY(U,$J,358.3,38904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38526,1,3,0)
- ;;=3^Intcrn inj w LOC of 30 minutes or less, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38526,1,4,0)
- ;;=4^S06.9X1A
- ;;^UTILITY(U,$J,358.3,38526,2)
- ;;=^5021209
- ;;^UTILITY(U,$J,358.3,38527,0)
- ;;=S06.9X2A^^180^1975^13
- ;;^UTILITY(U,$J,358.3,38527,1,0)
+ ;;^UTILITY(U,$J,358.3,38904,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,38904,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,38904,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,38905,0)
+ ;;=L89.90^^151^1904^28
+ ;;^UTILITY(U,$J,358.3,38905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38527,1,3,0)
- ;;=3^Intcrn inj w LOC of 31-59 min, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38527,1,4,0)
- ;;=4^S06.9X2A
- ;;^UTILITY(U,$J,358.3,38527,2)
- ;;=^5021212
- ;;^UTILITY(U,$J,358.3,38528,0)
- ;;=S06.9X4A^^180^1975^14
- ;;^UTILITY(U,$J,358.3,38528,1,0)
+ ;;^UTILITY(U,$J,358.3,38905,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,38905,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,38905,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,38906,0)
+ ;;=L89.91^^151^1904^24
+ ;;^UTILITY(U,$J,358.3,38906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38528,1,3,0)
- ;;=3^Intcrn inj w LOC of 6 hours to 24 hours, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38528,1,4,0)
- ;;=4^S06.9X4A
- ;;^UTILITY(U,$J,358.3,38528,2)
- ;;=^5021218
- ;;^UTILITY(U,$J,358.3,38529,0)
- ;;=S06.9X9A^^180^1975^15
- ;;^UTILITY(U,$J,358.3,38529,1,0)
+ ;;^UTILITY(U,$J,358.3,38906,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,38906,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,38906,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,38907,0)
+ ;;=L76.21^^151^1904^22
+ ;;^UTILITY(U,$J,358.3,38907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38529,1,3,0)
- ;;=3^Intcrn inj w LOC of unsp duration, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38529,1,4,0)
- ;;=4^S06.9X9A
- ;;^UTILITY(U,$J,358.3,38529,2)
- ;;=^5021233
- ;;^UTILITY(U,$J,358.3,38530,0)
- ;;=S06.9X0A^^180^1975^17
- ;;^UTILITY(U,$J,358.3,38530,1,0)
+ ;;^UTILITY(U,$J,358.3,38907,1,3,0)
+ ;;=3^Postprocedure Hemor/Hemtom of Skin/SQ Tissue Following Derm Procedure
+ ;;^UTILITY(U,$J,358.3,38907,1,4,0)
+ ;;=4^L76.21
+ ;;^UTILITY(U,$J,358.3,38907,2)
+ ;;=^5009306
+ ;;^UTILITY(U,$J,358.3,38908,0)
+ ;;=L76.22^^151^1904^23
+ ;;^UTILITY(U,$J,358.3,38908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38530,1,3,0)
- ;;=3^Intcrn inj w/o LOC, init encntr,Unspec
- ;;^UTILITY(U,$J,358.3,38530,1,4,0)
- ;;=4^S06.9X0A
- ;;^UTILITY(U,$J,358.3,38530,2)
- ;;=^5021206
- ;;^UTILITY(U,$J,358.3,38531,0)
- ;;=S78.019S^^180^1976^4
- ;;^UTILITY(U,$J,358.3,38531,1,0)
+ ;;^UTILITY(U,$J,358.3,38908,1,3,0)
+ ;;=3^Postprocedure Hemor/Hemtom of Skin/SQ Tissue Following Oth Procedure
+ ;;^UTILITY(U,$J,358.3,38908,1,4,0)
+ ;;=4^L76.22
+ ;;^UTILITY(U,$J,358.3,38908,2)
+ ;;=^5009307
+ ;;^UTILITY(U,$J,358.3,38909,0)
+ ;;=L41.9^^151^1904^3
+ ;;^UTILITY(U,$J,358.3,38909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38531,1,3,0)
- ;;=3^Complete traumatic amputation at unsp hip joint, sequela
- ;;^UTILITY(U,$J,358.3,38531,1,4,0)
- ;;=4^S78.019S
- ;;^UTILITY(U,$J,358.3,38531,2)
- ;;=^5039710
- ;;^UTILITY(U,$J,358.3,38532,0)
- ;;=S68.419S^^180^1976^1
- ;;^UTILITY(U,$J,358.3,38532,1,0)
+ ;;^UTILITY(U,$J,358.3,38909,1,3,0)
+ ;;=3^Parapsoriasis,Unspec
+ ;;^UTILITY(U,$J,358.3,38909,1,4,0)
+ ;;=4^L41.9
+ ;;^UTILITY(U,$J,358.3,38909,2)
+ ;;=^5009177
+ ;;^UTILITY(U,$J,358.3,38910,0)
+ ;;=L70.5^^151^1904^13
+ ;;^UTILITY(U,$J,358.3,38910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38532,1,3,0)
- ;;=3^Complete traumatic amp of unsp hand at wrist level, sequela
- ;;^UTILITY(U,$J,358.3,38532,1,4,0)
- ;;=4^S68.419S
- ;;^UTILITY(U,$J,358.3,38532,2)
- ;;=^5036707
- ;;^UTILITY(U,$J,358.3,38533,0)
- ;;=S88.919S^^180^1976^2
- ;;^UTILITY(U,$J,358.3,38533,1,0)
+ ;;^UTILITY(U,$J,358.3,38910,1,3,0)
+ ;;=3^Picker's Acne
+ ;;^UTILITY(U,$J,358.3,38910,1,4,0)
+ ;;=4^L70.5
+ ;;^UTILITY(U,$J,358.3,38910,2)
+ ;;=^5009272
+ ;;^UTILITY(U,$J,358.3,38911,0)
+ ;;=L81.9^^151^1904^14
+ ;;^UTILITY(U,$J,358.3,38911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38533,1,3,0)
- ;;=3^Complete traumatic amp of unsp low leg, level unsp, sequela
+ ;;^UTILITY(U,$J,358.3,38911,1,3,0)
+ ;;=3^Pigmentation Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38911,1,4,0)
+ ;;=4^L81.9
+ ;;^UTILITY(U,$J,358.3,38911,2)
+ ;;=^5009319
+ ;;^UTILITY(U,$J,358.3,38912,0)
+ ;;=L66.3^^151^1904^7
+ ;;^UTILITY(U,$J,358.3,38912,1,0)
+ ;;=^358.31IA^4^2

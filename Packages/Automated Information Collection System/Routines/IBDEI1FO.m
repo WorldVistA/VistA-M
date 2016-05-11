@@ -1,134 +1,124 @@
-IBDEI1FO ; ; 19-NOV-2015
+IBDEI1FO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23936,2)
- ;;=^5002928
- ;;^UTILITY(U,$J,358.3,23937,0)
- ;;=K75.9^^116^1171^4
- ;;^UTILITY(U,$J,358.3,23937,1,0)
+ ;;^UTILITY(U,$J,358.3,24357,1,4,0)
+ ;;=4^F13.14
+ ;;^UTILITY(U,$J,358.3,24357,2)
+ ;;=^5003193
+ ;;^UTILITY(U,$J,358.3,24358,0)
+ ;;=F13.182^^90^1067^8
+ ;;^UTILITY(U,$J,358.3,24358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23937,1,3,0)
- ;;=3^Inflammatory Liver Disease,Unspec  
- ;;^UTILITY(U,$J,358.3,23937,1,4,0)
- ;;=4^K75.9
- ;;^UTILITY(U,$J,358.3,23937,2)
- ;;=^5008830
- ;;^UTILITY(U,$J,358.3,23938,0)
- ;;=M51.9^^116^1171^11
- ;;^UTILITY(U,$J,358.3,23938,1,0)
+ ;;^UTILITY(U,$J,358.3,24358,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24358,1,4,0)
+ ;;=4^F13.182
+ ;;^UTILITY(U,$J,358.3,24358,2)
+ ;;=^5003199
+ ;;^UTILITY(U,$J,358.3,24359,0)
+ ;;=F13.20^^90^1067^2
+ ;;^UTILITY(U,$J,358.3,24359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23938,1,3,0)
- ;;=3^Intvrt Disc disorder Thoracic,Thoracolumn & Lumbosacral
- ;;^UTILITY(U,$J,358.3,23938,1,4,0)
- ;;=4^M51.9
- ;;^UTILITY(U,$J,358.3,23938,2)
- ;;=^5012263
- ;;^UTILITY(U,$J,358.3,23939,0)
- ;;=J10.00^^116^1171^6
- ;;^UTILITY(U,$J,358.3,23939,1,0)
+ ;;^UTILITY(U,$J,358.3,24359,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24359,1,4,0)
+ ;;=4^F13.20
+ ;;^UTILITY(U,$J,358.3,24359,2)
+ ;;=^5003202
+ ;;^UTILITY(U,$J,358.3,24360,0)
+ ;;=F13.21^^90^1067^3
+ ;;^UTILITY(U,$J,358.3,24360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23939,1,3,0)
- ;;=3^Influenza d/t oth ident influ virus w/ unsp type pneumonia
- ;;^UTILITY(U,$J,358.3,23939,1,4,0)
- ;;=4^J10.00
- ;;^UTILITY(U,$J,358.3,23939,2)
- ;;=^5008148
- ;;^UTILITY(U,$J,358.3,23940,0)
- ;;=J11.00^^116^1171^8
- ;;^UTILITY(U,$J,358.3,23940,1,0)
+ ;;^UTILITY(U,$J,358.3,24360,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,24360,1,4,0)
+ ;;=4^F13.21
+ ;;^UTILITY(U,$J,358.3,24360,2)
+ ;;=^331934
+ ;;^UTILITY(U,$J,358.3,24361,0)
+ ;;=F13.232^^90^1067^4
+ ;;^UTILITY(U,$J,358.3,24361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23940,1,3,0)
- ;;=3^Influenza d/t unident influ virus w/ unsp type pneumonia
- ;;^UTILITY(U,$J,358.3,23940,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,23940,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,23941,0)
- ;;=K58.0^^116^1171^12
- ;;^UTILITY(U,$J,358.3,23941,1,0)
+ ;;^UTILITY(U,$J,358.3,24361,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,24361,1,4,0)
+ ;;=4^F13.232
+ ;;^UTILITY(U,$J,358.3,24361,2)
+ ;;=^5003208
+ ;;^UTILITY(U,$J,358.3,24362,0)
+ ;;=F13.239^^90^1067^5
+ ;;^UTILITY(U,$J,358.3,24362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23941,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,23941,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,23941,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,23942,0)
- ;;=J04.0^^116^1172^1
- ;;^UTILITY(U,$J,358.3,23942,1,0)
+ ;;^UTILITY(U,$J,358.3,24362,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,24362,1,4,0)
+ ;;=4^F13.239
+ ;;^UTILITY(U,$J,358.3,24362,2)
+ ;;=^5003209
+ ;;^UTILITY(U,$J,358.3,24363,0)
+ ;;=F13.24^^90^1067^9
+ ;;^UTILITY(U,$J,358.3,24363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23942,1,3,0)
- ;;=3^Acute laryngitis
- ;;^UTILITY(U,$J,358.3,23942,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,23942,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,23943,0)
- ;;=J05.0^^116^1172^3
- ;;^UTILITY(U,$J,358.3,23943,1,0)
+ ;;^UTILITY(U,$J,358.3,24363,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
+ ;;^UTILITY(U,$J,358.3,24363,1,4,0)
+ ;;=4^F13.24
+ ;;^UTILITY(U,$J,358.3,24363,2)
+ ;;=^5003210
+ ;;^UTILITY(U,$J,358.3,24364,0)
+ ;;=F13.231^^90^1067^6
+ ;;^UTILITY(U,$J,358.3,24364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23943,1,3,0)
- ;;=3^Acute obstructive laryngitis [croup]
- ;;^UTILITY(U,$J,358.3,23943,1,4,0)
- ;;=4^J05.0
- ;;^UTILITY(U,$J,358.3,23943,2)
- ;;=^5008141
- ;;^UTILITY(U,$J,358.3,23944,0)
- ;;=D17.9^^116^1172^4
- ;;^UTILITY(U,$J,358.3,23944,1,0)
+ ;;^UTILITY(U,$J,358.3,24364,1,3,0)
+ ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,24364,1,4,0)
+ ;;=4^F13.231
+ ;;^UTILITY(U,$J,358.3,24364,2)
+ ;;=^5003207
+ ;;^UTILITY(U,$J,358.3,24365,0)
+ ;;=F17.200^^90^1068^9
+ ;;^UTILITY(U,$J,358.3,24365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23944,1,3,0)
- ;;=3^Benign lipomatous neoplasm, unspec
- ;;^UTILITY(U,$J,358.3,23944,1,4,0)
- ;;=4^D17.9
- ;;^UTILITY(U,$J,358.3,23944,2)
- ;;=^5002020
- ;;^UTILITY(U,$J,358.3,23945,0)
- ;;=N28.9^^116^1172^6
- ;;^UTILITY(U,$J,358.3,23945,1,0)
+ ;;^UTILITY(U,$J,358.3,24365,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,24365,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,24365,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,24366,0)
+ ;;=F17.201^^90^1068^10
+ ;;^UTILITY(U,$J,358.3,24366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23945,1,3,0)
- ;;=3^Kidney & Ureter Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23945,1,4,0)
- ;;=4^N28.9
- ;;^UTILITY(U,$J,358.3,23945,2)
- ;;=^5015630
- ;;^UTILITY(U,$J,358.3,23946,0)
- ;;=R22.2^^116^1172^7
- ;;^UTILITY(U,$J,358.3,23946,1,0)
+ ;;^UTILITY(U,$J,358.3,24366,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,24366,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,24366,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,24367,0)
+ ;;=F17.203^^90^1068^11
+ ;;^UTILITY(U,$J,358.3,24367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23946,1,3,0)
- ;;=3^Localized swelling, mass and lump, trunk
- ;;^UTILITY(U,$J,358.3,23946,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,23946,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,23947,0)
- ;;=L03.91^^116^1172^2
- ;;^UTILITY(U,$J,358.3,23947,1,0)
+ ;;^UTILITY(U,$J,358.3,24367,1,3,0)
+ ;;=3^Nicotine Withdrawal
+ ;;^UTILITY(U,$J,358.3,24367,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,24367,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,24368,0)
+ ;;=F17.210^^90^1068^4
+ ;;^UTILITY(U,$J,358.3,24368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23947,1,3,0)
- ;;=3^Acute lymphangitis, unspec
- ;;^UTILITY(U,$J,358.3,23947,1,4,0)
- ;;=4^L03.91
- ;;^UTILITY(U,$J,358.3,23947,2)
- ;;=^5009068
- ;;^UTILITY(U,$J,358.3,23948,0)
- ;;=R17.^^116^1172^5
- ;;^UTILITY(U,$J,358.3,23948,1,0)
+ ;;^UTILITY(U,$J,358.3,24368,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,24368,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,24368,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,24369,0)
+ ;;=F17.211^^90^1068^3
+ ;;^UTILITY(U,$J,358.3,24369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23948,1,3,0)
- ;;=3^Jaundice,Unspec
- ;;^UTILITY(U,$J,358.3,23948,1,4,0)
- ;;=4^R17.
- ;;^UTILITY(U,$J,358.3,23948,2)
- ;;=^5019251
- ;;^UTILITY(U,$J,358.3,23949,0)
- ;;=N20.0^^116^1172^8
- ;;^UTILITY(U,$J,358.3,23949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23949,1,3,0)
- ;;=3^Kidney Calculus
- ;;^UTILITY(U,$J,358.3,23949,1,4,0)
- ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,24369,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission

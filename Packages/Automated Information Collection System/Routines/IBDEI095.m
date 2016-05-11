@@ -1,142 +1,134 @@
-IBDEI095 ; ; 19-NOV-2015
+IBDEI095 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3735,1,0)
+ ;;^UTILITY(U,$J,358.3,3994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3735,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,3735,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,3735,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,3736,0)
- ;;=G72.1^^28^258^94
- ;;^UTILITY(U,$J,358.3,3736,1,0)
+ ;;^UTILITY(U,$J,358.3,3994,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Sequela
+ ;;^UTILITY(U,$J,358.3,3994,1,4,0)
+ ;;=4^W10.1XXS
+ ;;^UTILITY(U,$J,358.3,3994,2)
+ ;;=^5059585
+ ;;^UTILITY(U,$J,358.3,3995,0)
+ ;;=W06.XXXS^^18^225^7
+ ;;^UTILITY(U,$J,358.3,3995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3736,1,3,0)
- ;;=3^Myopathy,Alcoholic
- ;;^UTILITY(U,$J,358.3,3736,1,4,0)
- ;;=4^G72.1
- ;;^UTILITY(U,$J,358.3,3736,2)
- ;;=^5004096
- ;;^UTILITY(U,$J,358.3,3737,0)
- ;;=G72.81^^28^258^95
- ;;^UTILITY(U,$J,358.3,3737,1,0)
+ ;;^UTILITY(U,$J,358.3,3995,1,3,0)
+ ;;=3^Fall from Bed,Sequela
+ ;;^UTILITY(U,$J,358.3,3995,1,4,0)
+ ;;=4^W06.XXXS
+ ;;^UTILITY(U,$J,358.3,3995,2)
+ ;;=^5059561
+ ;;^UTILITY(U,$J,358.3,3996,0)
+ ;;=W07.XXXS^^18^225^8
+ ;;^UTILITY(U,$J,358.3,3996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3737,1,3,0)
- ;;=3^Myopathy,Critical Illness
- ;;^UTILITY(U,$J,358.3,3737,1,4,0)
- ;;=4^G72.81
- ;;^UTILITY(U,$J,358.3,3737,2)
- ;;=^328484
- ;;^UTILITY(U,$J,358.3,3738,0)
- ;;=G72.0^^28^258^96
- ;;^UTILITY(U,$J,358.3,3738,1,0)
+ ;;^UTILITY(U,$J,358.3,3996,1,3,0)
+ ;;=3^Fall from Chair,Sequela
+ ;;^UTILITY(U,$J,358.3,3996,1,4,0)
+ ;;=4^W07.XXXS
+ ;;^UTILITY(U,$J,358.3,3996,2)
+ ;;=^5059564
+ ;;^UTILITY(U,$J,358.3,3997,0)
+ ;;=W05.2XXS^^18^225^13
+ ;;^UTILITY(U,$J,358.3,3997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3738,1,3,0)
- ;;=3^Myopathy,Drug-Induced
- ;;^UTILITY(U,$J,358.3,3738,1,4,0)
- ;;=4^G72.0
- ;;^UTILITY(U,$J,358.3,3738,2)
- ;;=^5004095
- ;;^UTILITY(U,$J,358.3,3739,0)
- ;;=G72.41^^28^258^97
- ;;^UTILITY(U,$J,358.3,3739,1,0)
+ ;;^UTILITY(U,$J,358.3,3997,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,3997,1,4,0)
+ ;;=4^W05.2XXS
+ ;;^UTILITY(U,$J,358.3,3997,2)
+ ;;=^5059558
+ ;;^UTILITY(U,$J,358.3,3998,0)
+ ;;=W05.1XXS^^18^225^14
+ ;;^UTILITY(U,$J,358.3,3998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3739,1,3,0)
- ;;=3^Myopathy,Inclusion Body Myositis
- ;;^UTILITY(U,$J,358.3,3739,1,4,0)
- ;;=4^G72.41
- ;;^UTILITY(U,$J,358.3,3739,2)
- ;;=^5004098
- ;;^UTILITY(U,$J,358.3,3740,0)
- ;;=G72.49^^28^258^98
- ;;^UTILITY(U,$J,358.3,3740,1,0)
+ ;;^UTILITY(U,$J,358.3,3998,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,3998,1,4,0)
+ ;;=4^W05.1XXS
+ ;;^UTILITY(U,$J,358.3,3998,2)
+ ;;=^5059555
+ ;;^UTILITY(U,$J,358.3,3999,0)
+ ;;=W05.0XXS^^18^225^15
+ ;;^UTILITY(U,$J,358.3,3999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3740,1,3,0)
- ;;=3^Myopathy,Inflammatory/Immune NEC
- ;;^UTILITY(U,$J,358.3,3740,1,4,0)
- ;;=4^G72.49
- ;;^UTILITY(U,$J,358.3,3740,2)
- ;;=^5004099
- ;;^UTILITY(U,$J,358.3,3741,0)
- ;;=G72.2^^28^258^99
- ;;^UTILITY(U,$J,358.3,3741,1,0)
+ ;;^UTILITY(U,$J,358.3,3999,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Sequela
+ ;;^UTILITY(U,$J,358.3,3999,1,4,0)
+ ;;=4^W05.0XXS
+ ;;^UTILITY(U,$J,358.3,3999,2)
+ ;;=^5059552
+ ;;^UTILITY(U,$J,358.3,4000,0)
+ ;;=W18.12XS^^18^225^19
+ ;;^UTILITY(U,$J,358.3,4000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3741,1,3,0)
- ;;=3^Myopathy,Other Toxic Agents
- ;;^UTILITY(U,$J,358.3,3741,1,4,0)
- ;;=4^G72.2
- ;;^UTILITY(U,$J,358.3,3741,2)
- ;;=^5004097
- ;;^UTILITY(U,$J,358.3,3742,0)
- ;;=G72.3^^28^258^100
- ;;^UTILITY(U,$J,358.3,3742,1,0)
+ ;;^UTILITY(U,$J,358.3,4000,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,4000,1,4,0)
+ ;;=4^W18.12XS
+ ;;^UTILITY(U,$J,358.3,4000,2)
+ ;;=^5059805
+ ;;^UTILITY(U,$J,358.3,4001,0)
+ ;;=W18.11XS^^18^225^20
+ ;;^UTILITY(U,$J,358.3,4001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3742,1,3,0)
- ;;=3^Myopathy,Periodic Paralysis
- ;;^UTILITY(U,$J,358.3,3742,1,4,0)
- ;;=4^G72.3
- ;;^UTILITY(U,$J,358.3,3742,2)
- ;;=^335326
- ;;^UTILITY(U,$J,358.3,3743,0)
- ;;=G72.9^^28^258^101
- ;;^UTILITY(U,$J,358.3,3743,1,0)
+ ;;^UTILITY(U,$J,358.3,4001,1,3,0)
+ ;;=3^Fall from Toilet,Sequela
+ ;;^UTILITY(U,$J,358.3,4001,1,4,0)
+ ;;=4^W18.11XS
+ ;;^UTILITY(U,$J,358.3,4001,2)
+ ;;=^5059803
+ ;;^UTILITY(U,$J,358.3,4002,0)
+ ;;=W08.XXXS^^18^225^10
+ ;;^UTILITY(U,$J,358.3,4002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3743,1,3,0)
- ;;=3^Myopathy,Unspec
- ;;^UTILITY(U,$J,358.3,3743,1,4,0)
- ;;=4^G72.9
- ;;^UTILITY(U,$J,358.3,3743,2)
- ;;=^5004101
- ;;^UTILITY(U,$J,358.3,3744,0)
- ;;=M60.9^^28^258^102
- ;;^UTILITY(U,$J,358.3,3744,1,0)
+ ;;^UTILITY(U,$J,358.3,4002,1,3,0)
+ ;;=3^Fall from Furniture,Sequela
+ ;;^UTILITY(U,$J,358.3,4002,1,4,0)
+ ;;=4^W08.XXXS
+ ;;^UTILITY(U,$J,358.3,4002,2)
+ ;;=^5059567
+ ;;^UTILITY(U,$J,358.3,4003,0)
+ ;;=W18.2XXS^^18^225^21
+ ;;^UTILITY(U,$J,358.3,4003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3744,1,3,0)
- ;;=3^Myositis,Unspec
- ;;^UTILITY(U,$J,358.3,3744,1,4,0)
- ;;=4^M60.9
- ;;^UTILITY(U,$J,358.3,3744,2)
- ;;=^5012409
- ;;^UTILITY(U,$J,358.3,3745,0)
- ;;=M79.2^^28^258^103
- ;;^UTILITY(U,$J,358.3,3745,1,0)
+ ;;^UTILITY(U,$J,358.3,4003,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Sequela
+ ;;^UTILITY(U,$J,358.3,4003,1,4,0)
+ ;;=4^W18.2XXS
+ ;;^UTILITY(U,$J,358.3,4003,2)
+ ;;=^5059808
+ ;;^UTILITY(U,$J,358.3,4004,0)
+ ;;=W11.XXXS^^18^225^12
+ ;;^UTILITY(U,$J,358.3,4004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3745,1,3,0)
- ;;=3^Neuralgia & Neuritis,Unspec
- ;;^UTILITY(U,$J,358.3,3745,1,4,0)
- ;;=4^M79.2
- ;;^UTILITY(U,$J,358.3,3745,2)
- ;;=^5013322
- ;;^UTILITY(U,$J,358.3,3746,0)
- ;;=M54.81^^28^258^104
- ;;^UTILITY(U,$J,358.3,3746,1,0)
+ ;;^UTILITY(U,$J,358.3,4004,1,3,0)
+ ;;=3^Fall from Ladder,Sequela
+ ;;^UTILITY(U,$J,358.3,4004,1,4,0)
+ ;;=4^W11.XXXS
+ ;;^UTILITY(U,$J,358.3,4004,2)
+ ;;=^5059597
+ ;;^UTILITY(U,$J,358.3,4005,0)
+ ;;=W01.10XS^^18^225^2
+ ;;^UTILITY(U,$J,358.3,4005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3746,1,3,0)
- ;;=3^Neuralgia,Occipital
- ;;^UTILITY(U,$J,358.3,3746,1,4,0)
- ;;=4^M54.81
- ;;^UTILITY(U,$J,358.3,3746,2)
- ;;=^5012312
- ;;^UTILITY(U,$J,358.3,3747,0)
- ;;=M89.70^^28^258^106
- ;;^UTILITY(U,$J,358.3,3747,1,0)
+ ;;^UTILITY(U,$J,358.3,4005,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,4005,1,4,0)
+ ;;=4^W01.10XS
+ ;;^UTILITY(U,$J,358.3,4005,2)
+ ;;=^5059527
+ ;;^UTILITY(U,$J,358.3,4006,0)
+ ;;=W01.0XXS^^18^225^3
+ ;;^UTILITY(U,$J,358.3,4006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3747,1,3,0)
- ;;=3^Osseous Defect,Major,Unspec Site
- ;;^UTILITY(U,$J,358.3,3747,1,4,0)
- ;;=4^M89.70
- ;;^UTILITY(U,$J,358.3,3747,2)
- ;;=^5015085
- ;;^UTILITY(U,$J,358.3,3748,0)
- ;;=M79.81^^28^258^105
- ;;^UTILITY(U,$J,358.3,3748,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3748,1,3,0)
- ;;=3^Nontraumatic Hematoma,Soft Tissue
- ;;^UTILITY(U,$J,358.3,3748,1,4,0)
- ;;=4^M79.81
- ;;^UTILITY(U,$J,358.3,3748,2)
- ;;=^5013356
+ ;;^UTILITY(U,$J,358.3,4006,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,4006,1,4,0)
+ ;;=4^W01.0XXS
+ ;;^UTILITY(U,$J,358.3,4006,2)
+ ;;=^5059524
+ ;;^UTILITY(U,$J,358.3,4007,0)
+ ;;=W18.30XS^^18^225^22

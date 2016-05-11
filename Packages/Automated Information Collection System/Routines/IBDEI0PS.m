@@ -1,132 +1,132 @@
-IBDEI0PS ; ; 19-NOV-2015
+IBDEI0PS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11812,0)
- ;;=N95.0^^68^691^48
- ;;^UTILITY(U,$J,358.3,11812,1,0)
+ ;;^UTILITY(U,$J,358.3,12053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11812,1,3,0)
- ;;=3^Postmenopausal Bleeding
- ;;^UTILITY(U,$J,358.3,11812,1,4,0)
- ;;=4^N95.0
- ;;^UTILITY(U,$J,358.3,11812,2)
- ;;=^97040
- ;;^UTILITY(U,$J,358.3,11813,0)
- ;;=N95.1^^68^691^35
- ;;^UTILITY(U,$J,358.3,11813,1,0)
+ ;;^UTILITY(U,$J,358.3,12053,1,3,0)
+ ;;=3^Fall from Escalator,Sequela
+ ;;^UTILITY(U,$J,358.3,12053,1,4,0)
+ ;;=4^W10.0XXS
+ ;;^UTILITY(U,$J,358.3,12053,2)
+ ;;=^5059582
+ ;;^UTILITY(U,$J,358.3,12054,0)
+ ;;=W10.2XXS^^47^539^11
+ ;;^UTILITY(U,$J,358.3,12054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11813,1,3,0)
- ;;=3^Menopausal/Female Climacteric States
- ;;^UTILITY(U,$J,358.3,11813,1,4,0)
- ;;=4^N95.1
- ;;^UTILITY(U,$J,358.3,11813,2)
- ;;=^5015927
- ;;^UTILITY(U,$J,358.3,11814,0)
- ;;=N97.0^^68^691^21
- ;;^UTILITY(U,$J,358.3,11814,1,0)
+ ;;^UTILITY(U,$J,358.3,12054,1,3,0)
+ ;;=3^Fall from Incline,Sequela
+ ;;^UTILITY(U,$J,358.3,12054,1,4,0)
+ ;;=4^W10.2XXS
+ ;;^UTILITY(U,$J,358.3,12054,2)
+ ;;=^5059588
+ ;;^UTILITY(U,$J,358.3,12055,0)
+ ;;=W10.1XXS^^47^539^17
+ ;;^UTILITY(U,$J,358.3,12055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11814,1,3,0)
- ;;=3^Female Infertility Associated w/ Anovulation
- ;;^UTILITY(U,$J,358.3,11814,1,4,0)
- ;;=4^N97.0
- ;;^UTILITY(U,$J,358.3,11814,2)
- ;;=^5015931
- ;;^UTILITY(U,$J,358.3,11815,0)
- ;;=N97.9^^68^691^22
- ;;^UTILITY(U,$J,358.3,11815,1,0)
+ ;;^UTILITY(U,$J,358.3,12055,1,3,0)
+ ;;=3^Fall from Sidewalk/Curb,Sequela
+ ;;^UTILITY(U,$J,358.3,12055,1,4,0)
+ ;;=4^W10.1XXS
+ ;;^UTILITY(U,$J,358.3,12055,2)
+ ;;=^5059585
+ ;;^UTILITY(U,$J,358.3,12056,0)
+ ;;=W06.XXXS^^47^539^7
+ ;;^UTILITY(U,$J,358.3,12056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11815,1,3,0)
- ;;=3^Female Infertility,Unspec
- ;;^UTILITY(U,$J,358.3,11815,1,4,0)
- ;;=4^N97.9
- ;;^UTILITY(U,$J,358.3,11815,2)
- ;;=^5015935
- ;;^UTILITY(U,$J,358.3,11816,0)
- ;;=L29.2^^68^691^52
- ;;^UTILITY(U,$J,358.3,11816,1,0)
+ ;;^UTILITY(U,$J,358.3,12056,1,3,0)
+ ;;=3^Fall from Bed,Sequela
+ ;;^UTILITY(U,$J,358.3,12056,1,4,0)
+ ;;=4^W06.XXXS
+ ;;^UTILITY(U,$J,358.3,12056,2)
+ ;;=^5059561
+ ;;^UTILITY(U,$J,358.3,12057,0)
+ ;;=W07.XXXS^^47^539^8
+ ;;^UTILITY(U,$J,358.3,12057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11816,1,3,0)
- ;;=3^Pruritus Vulvae
- ;;^UTILITY(U,$J,358.3,11816,1,4,0)
- ;;=4^L29.2
- ;;^UTILITY(U,$J,358.3,11816,2)
- ;;=^100075
- ;;^UTILITY(U,$J,358.3,11817,0)
- ;;=R92.8^^68^691^4
- ;;^UTILITY(U,$J,358.3,11817,1,0)
+ ;;^UTILITY(U,$J,358.3,12057,1,3,0)
+ ;;=3^Fall from Chair,Sequela
+ ;;^UTILITY(U,$J,358.3,12057,1,4,0)
+ ;;=4^W07.XXXS
+ ;;^UTILITY(U,$J,358.3,12057,2)
+ ;;=^5059564
+ ;;^UTILITY(U,$J,358.3,12058,0)
+ ;;=W05.2XXS^^47^539^13
+ ;;^UTILITY(U,$J,358.3,12058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11817,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,11817,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,11817,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,11818,0)
- ;;=R87.619^^68^691^1
- ;;^UTILITY(U,$J,358.3,11818,1,0)
+ ;;^UTILITY(U,$J,358.3,12058,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,12058,1,4,0)
+ ;;=4^W05.2XXS
+ ;;^UTILITY(U,$J,358.3,12058,2)
+ ;;=^5059558
+ ;;^UTILITY(U,$J,358.3,12059,0)
+ ;;=W05.1XXS^^47^539^14
+ ;;^UTILITY(U,$J,358.3,12059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11818,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,11818,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,11818,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,11819,0)
- ;;=Z79.890^^68^691^26
- ;;^UTILITY(U,$J,358.3,11819,1,0)
+ ;;^UTILITY(U,$J,358.3,12059,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Sequela
+ ;;^UTILITY(U,$J,358.3,12059,1,4,0)
+ ;;=4^W05.1XXS
+ ;;^UTILITY(U,$J,358.3,12059,2)
+ ;;=^5059555
+ ;;^UTILITY(U,$J,358.3,12060,0)
+ ;;=W05.0XXS^^47^539^15
+ ;;^UTILITY(U,$J,358.3,12060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11819,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,11819,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,11819,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,11820,0)
- ;;=Z33.1^^68^691^50
- ;;^UTILITY(U,$J,358.3,11820,1,0)
+ ;;^UTILITY(U,$J,358.3,12060,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Sequela
+ ;;^UTILITY(U,$J,358.3,12060,1,4,0)
+ ;;=4^W05.0XXS
+ ;;^UTILITY(U,$J,358.3,12060,2)
+ ;;=^5059552
+ ;;^UTILITY(U,$J,358.3,12061,0)
+ ;;=W18.12XS^^47^539^19
+ ;;^UTILITY(U,$J,358.3,12061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11820,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,11820,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,11820,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,11821,0)
- ;;=Z39.2^^68^691^49
- ;;^UTILITY(U,$J,358.3,11821,1,0)
+ ;;^UTILITY(U,$J,358.3,12061,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Sequela
+ ;;^UTILITY(U,$J,358.3,12061,1,4,0)
+ ;;=4^W18.12XS
+ ;;^UTILITY(U,$J,358.3,12061,2)
+ ;;=^5059805
+ ;;^UTILITY(U,$J,358.3,12062,0)
+ ;;=W18.11XS^^47^539^20
+ ;;^UTILITY(U,$J,358.3,12062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11821,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,11821,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,11821,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,11822,0)
- ;;=Z30.09^^68^691^10
- ;;^UTILITY(U,$J,358.3,11822,1,0)
+ ;;^UTILITY(U,$J,358.3,12062,1,3,0)
+ ;;=3^Fall from Toilet,Sequela
+ ;;^UTILITY(U,$J,358.3,12062,1,4,0)
+ ;;=4^W18.11XS
+ ;;^UTILITY(U,$J,358.3,12062,2)
+ ;;=^5059803
+ ;;^UTILITY(U,$J,358.3,12063,0)
+ ;;=W08.XXXS^^47^539^10
+ ;;^UTILITY(U,$J,358.3,12063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11822,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,11822,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,11822,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,11823,0)
- ;;=Z30.9^^68^691^9
- ;;^UTILITY(U,$J,358.3,11823,1,0)
+ ;;^UTILITY(U,$J,358.3,12063,1,3,0)
+ ;;=3^Fall from Furniture,Sequela
+ ;;^UTILITY(U,$J,358.3,12063,1,4,0)
+ ;;=4^W08.XXXS
+ ;;^UTILITY(U,$J,358.3,12063,2)
+ ;;=^5059567
+ ;;^UTILITY(U,$J,358.3,12064,0)
+ ;;=W18.2XXS^^47^539^21
+ ;;^UTILITY(U,$J,358.3,12064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11823,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,11823,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,11823,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,11824,0)
- ;;=N64.3^^68^691^23
- ;;^UTILITY(U,$J,358.3,11824,1,0)
+ ;;^UTILITY(U,$J,358.3,12064,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Sequela
+ ;;^UTILITY(U,$J,358.3,12064,1,4,0)
+ ;;=4^W18.2XXS
+ ;;^UTILITY(U,$J,358.3,12064,2)
+ ;;=^5059808
+ ;;^UTILITY(U,$J,358.3,12065,0)
+ ;;=W11.XXXS^^47^539^12
+ ;;^UTILITY(U,$J,358.3,12065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11824,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,11824,1,4,0)
- ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,12065,1,3,0)
+ ;;=3^Fall from Ladder,Sequela
+ ;;^UTILITY(U,$J,358.3,12065,1,4,0)
+ ;;=4^W11.XXXS
+ ;;^UTILITY(U,$J,358.3,12065,2)
+ ;;=^5059597

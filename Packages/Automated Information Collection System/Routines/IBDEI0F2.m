@@ -1,126 +1,134 @@
-IBDEI0F2 ; ; 19-NOV-2015
+IBDEI0F2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6612,1,2,0)
- ;;=2^12015
- ;;^UTILITY(U,$J,358.3,6612,1,3,0)
- ;;=3^Simple repair Face/Mucous; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,6613,0)
- ;;=12016^^45^425^5^^^^1
- ;;^UTILITY(U,$J,358.3,6613,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6613,1,2,0)
- ;;=2^12016
- ;;^UTILITY(U,$J,358.3,6613,1,3,0)
- ;;=3^Simple repair Face/Mucous; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,6614,0)
- ;;=12017^^45^425^6^^^^1
- ;;^UTILITY(U,$J,358.3,6614,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6614,1,2,0)
- ;;=2^12017
- ;;^UTILITY(U,$J,358.3,6614,1,3,0)
- ;;=3^Simple repair Face/Mucous; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,6615,0)
- ;;=12018^^45^425^7^^^^1
- ;;^UTILITY(U,$J,358.3,6615,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6615,1,2,0)
- ;;=2^12018
- ;;^UTILITY(U,$J,358.3,6615,1,3,0)
- ;;=3^Simple repair Face/Mucous; over 30 cm
- ;;^UTILITY(U,$J,358.3,6616,0)
- ;;=12020^^45^425^8^^^^1
- ;;^UTILITY(U,$J,358.3,6616,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6616,1,2,0)
- ;;=2^12020
- ;;^UTILITY(U,$J,358.3,6616,1,3,0)
- ;;=3^TX, superficial wound dihiscence simple cl
- ;;^UTILITY(U,$J,358.3,6617,0)
- ;;=12021^^45^425^9^^^^1
- ;;^UTILITY(U,$J,358.3,6617,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6617,1,2,0)
- ;;=2^12021
- ;;^UTILITY(U,$J,358.3,6617,1,3,0)
- ;;=3^TX, superficial wound dihiscenc w/ packing
- ;;^UTILITY(U,$J,358.3,6618,0)
- ;;=12041^^45^426^1^^^^1
- ;;^UTILITY(U,$J,358.3,6618,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6618,1,2,0)
- ;;=2^12041
- ;;^UTILITY(U,$J,358.3,6618,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,6619,0)
- ;;=12042^^45^426^2^^^^1
- ;;^UTILITY(U,$J,358.3,6619,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6619,1,2,0)
- ;;=2^12042
- ;;^UTILITY(U,$J,358.3,6619,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 2.6 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6620,0)
- ;;=12044^^45^426^3^^^^1
- ;;^UTILITY(U,$J,358.3,6620,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6620,1,2,0)
- ;;=2^12044
- ;;^UTILITY(U,$J,358.3,6620,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 7.6 cm to 12.5 cm
- ;;^UTILITY(U,$J,358.3,6621,0)
- ;;=12045^^45^426^4^^^^1
- ;;^UTILITY(U,$J,358.3,6621,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6621,1,2,0)
- ;;=2^12045
- ;;^UTILITY(U,$J,358.3,6621,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 12.6 cm to 20 cm
- ;;^UTILITY(U,$J,358.3,6622,0)
- ;;=12046^^45^426^5^^^^1
- ;;^UTILITY(U,$J,358.3,6622,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6622,1,2,0)
- ;;=2^12046
- ;;^UTILITY(U,$J,358.3,6622,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; 20.1 cm to 30 cm
- ;;^UTILITY(U,$J,358.3,6623,0)
- ;;=12047^^45^426^6^^^^1
- ;;^UTILITY(U,$J,358.3,6623,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6623,1,2,0)
- ;;=2^12047
- ;;^UTILITY(U,$J,358.3,6623,1,3,0)
- ;;=3^Interm Repair Nk/Hd/Ft; over 30 cm
- ;;^UTILITY(U,$J,358.3,6624,0)
- ;;=12051^^45^427^1^^^^1
- ;;^UTILITY(U,$J,358.3,6624,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6624,1,2,0)
- ;;=2^12051
- ;;^UTILITY(U,$J,358.3,6624,1,3,0)
- ;;=3^Interm Repair Face; 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,6625,0)
- ;;=12052^^45^427^2^^^^1
- ;;^UTILITY(U,$J,358.3,6625,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6625,1,2,0)
- ;;=2^12052
- ;;^UTILITY(U,$J,358.3,6625,1,3,0)
- ;;=3^Interm Repair Face; 2.6 cm to 5.0 cm
- ;;^UTILITY(U,$J,358.3,6626,0)
- ;;=12053^^45^427^3^^^^1
- ;;^UTILITY(U,$J,358.3,6626,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6626,1,2,0)
- ;;=2^12053
- ;;^UTILITY(U,$J,358.3,6626,1,3,0)
- ;;=3^Interm Repair Face; 5.1 cm to 7.5 cm
- ;;^UTILITY(U,$J,358.3,6627,0)
- ;;=12054^^45^427^4^^^^1
- ;;^UTILITY(U,$J,358.3,6627,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,6627,1,2,0)
- ;;=2^12054
+ ;;^UTILITY(U,$J,358.3,6941,1,4,0)
+ ;;=4^K71.50
+ ;;^UTILITY(U,$J,358.3,6941,2)
+ ;;=^5008799
+ ;;^UTILITY(U,$J,358.3,6942,0)
+ ;;=K71.51^^30^399^26
+ ;;^UTILITY(U,$J,358.3,6942,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6942,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Chronic Active Hepatitis w/ Ascites
+ ;;^UTILITY(U,$J,358.3,6942,1,4,0)
+ ;;=4^K71.51
+ ;;^UTILITY(U,$J,358.3,6942,2)
+ ;;=^5008800
+ ;;^UTILITY(U,$J,358.3,6943,0)
+ ;;=K71.7^^30^399^29
+ ;;^UTILITY(U,$J,358.3,6943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6943,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Fibrosis & Cirrhosis of Liver
+ ;;^UTILITY(U,$J,358.3,6943,1,4,0)
+ ;;=4^K71.7
+ ;;^UTILITY(U,$J,358.3,6943,2)
+ ;;=^5008802
+ ;;^UTILITY(U,$J,358.3,6944,0)
+ ;;=K71.8^^30^399^33
+ ;;^UTILITY(U,$J,358.3,6944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6944,1,3,0)
+ ;;=3^Toxic Liver Disease w/ Oth Disorders of Liver
+ ;;^UTILITY(U,$J,358.3,6944,1,4,0)
+ ;;=4^K71.8
+ ;;^UTILITY(U,$J,358.3,6944,2)
+ ;;=^5008803
+ ;;^UTILITY(U,$J,358.3,6945,0)
+ ;;=K71.9^^30^399^34
+ ;;^UTILITY(U,$J,358.3,6945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6945,1,3,0)
+ ;;=3^Toxic Liver Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,6945,1,4,0)
+ ;;=4^K71.9
+ ;;^UTILITY(U,$J,358.3,6945,2)
+ ;;=^5008804
+ ;;^UTILITY(U,$J,358.3,6946,0)
+ ;;=K75.2^^30^399^20
+ ;;^UTILITY(U,$J,358.3,6946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6946,1,3,0)
+ ;;=3^Nonspecific Reactive Hepatitis
+ ;;^UTILITY(U,$J,358.3,6946,1,4,0)
+ ;;=4^K75.2
+ ;;^UTILITY(U,$J,358.3,6946,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,6947,0)
+ ;;=K75.3^^30^399^13
+ ;;^UTILITY(U,$J,358.3,6947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6947,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,6947,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,6947,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,6948,0)
+ ;;=K76.6^^30^399^22
+ ;;^UTILITY(U,$J,358.3,6948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6948,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,6948,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,6948,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,6949,0)
+ ;;=F20.3^^30^400^32
+ ;;^UTILITY(U,$J,358.3,6949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6949,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,6949,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,6949,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,6950,0)
+ ;;=F20.9^^30^400^27
+ ;;^UTILITY(U,$J,358.3,6950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6950,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,6950,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,6950,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,6951,0)
+ ;;=F31.9^^30^400^8
+ ;;^UTILITY(U,$J,358.3,6951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6951,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6951,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,6951,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,6952,0)
+ ;;=F31.72^^30^400^9
+ ;;^UTILITY(U,$J,358.3,6952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6952,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,6952,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,6952,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,6953,0)
+ ;;=F31.71^^30^400^7
+ ;;^UTILITY(U,$J,358.3,6953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6953,1,3,0)
+ ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,6953,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,6953,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,6954,0)
+ ;;=F31.70^^30^400^6
+ ;;^UTILITY(U,$J,358.3,6954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6954,1,3,0)
+ ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec

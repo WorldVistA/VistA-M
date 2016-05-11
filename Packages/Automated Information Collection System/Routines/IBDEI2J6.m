@@ -1,124 +1,142 @@
-IBDEI2J6 ; ; 19-NOV-2015
+IBDEI2J6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42458,1,4,0)
- ;;=4^S92.025K
- ;;^UTILITY(U,$J,358.3,42458,2)
- ;;=^5044441
- ;;^UTILITY(U,$J,358.3,42459,0)
- ;;=S92.024K^^192^2137^254
- ;;^UTILITY(U,$J,358.3,42459,1,0)
+ ;;^UTILITY(U,$J,358.3,42927,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,42927,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,42928,0)
+ ;;=N45.3^^162^2051^6
+ ;;^UTILITY(U,$J,358.3,42928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42459,1,3,0)
- ;;=3^Nondisp fx ant pro rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42459,1,4,0)
- ;;=4^S92.024K
- ;;^UTILITY(U,$J,358.3,42459,2)
- ;;=^5044434
- ;;^UTILITY(U,$J,358.3,42460,0)
- ;;=S92.022K^^192^2137^28
- ;;^UTILITY(U,$J,358.3,42460,1,0)
+ ;;^UTILITY(U,$J,358.3,42928,1,3,0)
+ ;;=3^Epididymo-orchitis
+ ;;^UTILITY(U,$J,358.3,42928,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,42928,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,42929,0)
+ ;;=N45.2^^162^2051^10
+ ;;^UTILITY(U,$J,358.3,42929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42460,1,3,0)
- ;;=3^Disp fx ant pro lft lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42460,1,4,0)
- ;;=4^S92.022K
- ;;^UTILITY(U,$J,358.3,42460,2)
- ;;=^5044420
- ;;^UTILITY(U,$J,358.3,42461,0)
- ;;=S92.021K^^192^2137^29
- ;;^UTILITY(U,$J,358.3,42461,1,0)
+ ;;^UTILITY(U,$J,358.3,42929,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,42929,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,42929,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,42930,0)
+ ;;=N45.1^^162^2051^5
+ ;;^UTILITY(U,$J,358.3,42930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42461,1,3,0)
- ;;=3^Disp fx ant pro rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42461,1,4,0)
- ;;=4^S92.021K
- ;;^UTILITY(U,$J,358.3,42461,2)
- ;;=^5044413
- ;;^UTILITY(U,$J,358.3,42462,0)
- ;;=S92.015K^^192^2137^255
- ;;^UTILITY(U,$J,358.3,42462,1,0)
+ ;;^UTILITY(U,$J,358.3,42930,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,42930,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,42930,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,42931,0)
+ ;;=N43.40^^162^2051^13
+ ;;^UTILITY(U,$J,358.3,42931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42462,1,3,0)
- ;;=3^Nondisp fx body lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42462,1,4,0)
- ;;=4^S92.015K
- ;;^UTILITY(U,$J,358.3,42462,2)
- ;;=^5044399
- ;;^UTILITY(U,$J,358.3,42463,0)
- ;;=S92.014K^^192^2137^257
- ;;^UTILITY(U,$J,358.3,42463,1,0)
+ ;;^UTILITY(U,$J,358.3,42931,1,3,0)
+ ;;=3^Spermatocele of epididymis, unspec
+ ;;^UTILITY(U,$J,358.3,42931,1,4,0)
+ ;;=4^N43.40
+ ;;^UTILITY(U,$J,358.3,42931,2)
+ ;;=^5015701
+ ;;^UTILITY(U,$J,358.3,42932,0)
+ ;;=R36.1^^162^2051^8
+ ;;^UTILITY(U,$J,358.3,42932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42463,1,3,0)
- ;;=3^Nondisp fx body rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42463,1,4,0)
- ;;=4^S92.014K
- ;;^UTILITY(U,$J,358.3,42463,2)
- ;;=^5044392
- ;;^UTILITY(U,$J,358.3,42464,0)
- ;;=S92.012K^^192^2137^30
- ;;^UTILITY(U,$J,358.3,42464,1,0)
+ ;;^UTILITY(U,$J,358.3,42932,1,3,0)
+ ;;=3^Hematospermia
+ ;;^UTILITY(U,$J,358.3,42932,1,4,0)
+ ;;=4^R36.1
+ ;;^UTILITY(U,$J,358.3,42932,2)
+ ;;=^323546
+ ;;^UTILITY(U,$J,358.3,42933,0)
+ ;;=N50.9^^162^2051^3
+ ;;^UTILITY(U,$J,358.3,42933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42464,1,3,0)
- ;;=3^Disp fx body lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42464,1,4,0)
- ;;=4^S92.012K
- ;;^UTILITY(U,$J,358.3,42464,2)
- ;;=^5044378
- ;;^UTILITY(U,$J,358.3,42465,0)
- ;;=S92.011K^^192^2137^32
- ;;^UTILITY(U,$J,358.3,42465,1,0)
+ ;;^UTILITY(U,$J,358.3,42933,1,3,0)
+ ;;=3^Disorder of male genital organs, unspec
+ ;;^UTILITY(U,$J,358.3,42933,1,4,0)
+ ;;=4^N50.9
+ ;;^UTILITY(U,$J,358.3,42933,2)
+ ;;=^5015751
+ ;;^UTILITY(U,$J,358.3,42934,0)
+ ;;=L72.9^^162^2051^7
+ ;;^UTILITY(U,$J,358.3,42934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42465,1,3,0)
- ;;=3^Disp fx body rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42465,1,4,0)
- ;;=4^S92.011K
- ;;^UTILITY(U,$J,358.3,42465,2)
- ;;=^5044371
- ;;^UTILITY(U,$J,358.3,42466,0)
- ;;=S82.872K^^192^2137^140
- ;;^UTILITY(U,$J,358.3,42466,1,0)
+ ;;^UTILITY(U,$J,358.3,42934,1,3,0)
+ ;;=3^Follicular cyst of skin & subcut tissue, unspec
+ ;;^UTILITY(U,$J,358.3,42934,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,42934,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,42935,0)
+ ;;=R60.9^^162^2051^4
+ ;;^UTILITY(U,$J,358.3,42935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42466,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for closed fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42466,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,42466,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,42467,0)
- ;;=S82.871K^^192^2137^149
- ;;^UTILITY(U,$J,358.3,42467,1,0)
+ ;;^UTILITY(U,$J,358.3,42935,1,3,0)
+ ;;=3^Edema, unspec
+ ;;^UTILITY(U,$J,358.3,42935,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,42935,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,42936,0)
+ ;;=I86.1^^162^2051^12
+ ;;^UTILITY(U,$J,358.3,42936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42467,1,3,0)
- ;;=3^Disp pilon fx rt tibia,subs for closed fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42467,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,42467,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,42468,0)
- ;;=S82.871N^^192^2137^146
- ;;^UTILITY(U,$J,358.3,42468,1,0)
+ ;;^UTILITY(U,$J,358.3,42936,1,3,0)
+ ;;=3^Scrotal varices
+ ;;^UTILITY(U,$J,358.3,42936,1,4,0)
+ ;;=4^I86.1
+ ;;^UTILITY(U,$J,358.3,42936,2)
+ ;;=^108731
+ ;;^UTILITY(U,$J,358.3,42937,0)
+ ;;=Z30.2^^162^2051^14
+ ;;^UTILITY(U,$J,358.3,42937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42468,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42468,1,4,0)
- ;;=4^S82.871N
- ;;^UTILITY(U,$J,358.3,42468,2)
- ;;=^5042778
- ;;^UTILITY(U,$J,358.3,42469,0)
- ;;=S82.872N^^192^2137^141
- ;;^UTILITY(U,$J,358.3,42469,1,0)
+ ;;^UTILITY(U,$J,358.3,42937,1,3,0)
+ ;;=3^Sterilization
+ ;;^UTILITY(U,$J,358.3,42937,1,4,0)
+ ;;=4^Z30.2
+ ;;^UTILITY(U,$J,358.3,42937,2)
+ ;;=^5062818
+ ;;^UTILITY(U,$J,358.3,42938,0)
+ ;;=N50.8^^162^2051^11
+ ;;^UTILITY(U,$J,358.3,42938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42469,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42469,1,4,0)
- ;;=4^S82.872N
- ;;^UTILITY(U,$J,358.3,42469,2)
- ;;=^5042794
- ;;^UTILITY(U,$J,358.3,42470,0)
- ;;=S82.871M^^192^2137^147
- ;;^UTILITY(U,$J,358.3,42470,1,0)
+ ;;^UTILITY(U,$J,358.3,42938,1,3,0)
+ ;;=3^Pain,Testicular
+ ;;^UTILITY(U,$J,358.3,42938,1,4,0)
+ ;;=4^N50.8
+ ;;^UTILITY(U,$J,358.3,42938,2)
+ ;;=^88009
+ ;;^UTILITY(U,$J,358.3,42939,0)
+ ;;=N34.1^^162^2052^3
+ ;;^UTILITY(U,$J,358.3,42939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42470,1,3,0)
- ;;=3^Disp pilon fx rt tib, subs for opn fx type I/2 w/ nonunion
+ ;;^UTILITY(U,$J,358.3,42939,1,3,0)
+ ;;=3^Nonspecific urethritis
+ ;;^UTILITY(U,$J,358.3,42939,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,42939,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,42940,0)
+ ;;=N34.3^^162^2052^6
+ ;;^UTILITY(U,$J,358.3,42940,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42940,1,3,0)
+ ;;=3^Urethral syndrome, unspec
+ ;;^UTILITY(U,$J,358.3,42940,1,4,0)
+ ;;=4^N34.3
+ ;;^UTILITY(U,$J,358.3,42940,2)
+ ;;=^5015656
+ ;;^UTILITY(U,$J,358.3,42941,0)
+ ;;=N35.9^^162^2052^5
+ ;;^UTILITY(U,$J,358.3,42941,1,0)
+ ;;=^358.31IA^4^2

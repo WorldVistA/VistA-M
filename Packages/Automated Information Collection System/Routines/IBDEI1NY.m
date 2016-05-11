@@ -1,132 +1,132 @@
-IBDEI1NY ; ; 19-NOV-2015
+IBDEI1NY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27830,1,4,0)
- ;;=4^Z77.9
- ;;^UTILITY(U,$J,358.3,27830,2)
- ;;=^5063326
- ;;^UTILITY(U,$J,358.3,27831,0)
- ;;=Z77.22^^132^1321^18
- ;;^UTILITY(U,$J,358.3,27831,1,0)
+ ;;^UTILITY(U,$J,358.3,28261,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,28261,1,4,0)
+ ;;=4^L89.510
+ ;;^UTILITY(U,$J,358.3,28261,2)
+ ;;=^5009415
+ ;;^UTILITY(U,$J,358.3,28262,0)
+ ;;=L89.511^^112^1416^61
+ ;;^UTILITY(U,$J,358.3,28262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27831,1,3,0)
- ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
- ;;^UTILITY(U,$J,358.3,27831,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,27831,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,27832,0)
- ;;=Z80.0^^132^1321^35
- ;;^UTILITY(U,$J,358.3,27832,1,0)
+ ;;^UTILITY(U,$J,358.3,28262,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,28262,1,4,0)
+ ;;=4^L89.511
+ ;;^UTILITY(U,$J,358.3,28262,2)
+ ;;=^5009416
+ ;;^UTILITY(U,$J,358.3,28263,0)
+ ;;=L89.512^^112^1416^62
+ ;;^UTILITY(U,$J,358.3,28263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27832,1,3,0)
- ;;=3^Family Hx of Malig Neop of Digestive Organs
- ;;^UTILITY(U,$J,358.3,27832,1,4,0)
- ;;=4^Z80.0
- ;;^UTILITY(U,$J,358.3,27832,2)
- ;;=^5063344
- ;;^UTILITY(U,$J,358.3,27833,0)
- ;;=Z80.1^^132^1321^41
- ;;^UTILITY(U,$J,358.3,27833,1,0)
+ ;;^UTILITY(U,$J,358.3,28263,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,28263,1,4,0)
+ ;;=4^L89.512
+ ;;^UTILITY(U,$J,358.3,28263,2)
+ ;;=^5009417
+ ;;^UTILITY(U,$J,358.3,28264,0)
+ ;;=L89.513^^112^1416^63
+ ;;^UTILITY(U,$J,358.3,28264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27833,1,3,0)
- ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
- ;;^UTILITY(U,$J,358.3,27833,1,4,0)
- ;;=4^Z80.1
- ;;^UTILITY(U,$J,358.3,27833,2)
- ;;=^5063345
- ;;^UTILITY(U,$J,358.3,27834,0)
- ;;=Z80.3^^132^1321^34
- ;;^UTILITY(U,$J,358.3,27834,1,0)
+ ;;^UTILITY(U,$J,358.3,28264,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,28264,1,4,0)
+ ;;=4^L89.513
+ ;;^UTILITY(U,$J,358.3,28264,2)
+ ;;=^5009418
+ ;;^UTILITY(U,$J,358.3,28265,0)
+ ;;=L89.514^^112^1416^64
+ ;;^UTILITY(U,$J,358.3,28265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27834,1,3,0)
- ;;=3^Family Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,27834,1,4,0)
- ;;=4^Z80.3
- ;;^UTILITY(U,$J,358.3,27834,2)
- ;;=^5063347
- ;;^UTILITY(U,$J,358.3,27835,0)
- ;;=Z80.41^^132^1321^38
- ;;^UTILITY(U,$J,358.3,27835,1,0)
+ ;;^UTILITY(U,$J,358.3,28265,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage 4
+ ;;^UTILITY(U,$J,358.3,28265,1,4,0)
+ ;;=4^L89.514
+ ;;^UTILITY(U,$J,358.3,28265,2)
+ ;;=^5009419
+ ;;^UTILITY(U,$J,358.3,28266,0)
+ ;;=L89.519^^112^1416^65
+ ;;^UTILITY(U,$J,358.3,28266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27835,1,3,0)
- ;;=3^Family Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,27835,1,4,0)
- ;;=4^Z80.41
- ;;^UTILITY(U,$J,358.3,27835,2)
- ;;=^5063348
- ;;^UTILITY(U,$J,358.3,27836,0)
- ;;=Z80.42^^132^1321^39
- ;;^UTILITY(U,$J,358.3,27836,1,0)
+ ;;^UTILITY(U,$J,358.3,28266,1,3,0)
+ ;;=3^Pressure Ulcer Right Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28266,1,4,0)
+ ;;=4^L89.519
+ ;;^UTILITY(U,$J,358.3,28266,2)
+ ;;=^5133673
+ ;;^UTILITY(U,$J,358.3,28267,0)
+ ;;=L89.520^^112^1416^18
+ ;;^UTILITY(U,$J,358.3,28267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27836,1,3,0)
- ;;=3^Family Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,27836,1,4,0)
- ;;=4^Z80.42
- ;;^UTILITY(U,$J,358.3,27836,2)
- ;;=^5063349
- ;;^UTILITY(U,$J,358.3,27837,0)
- ;;=Z80.43^^132^1321^40
- ;;^UTILITY(U,$J,358.3,27837,1,0)
+ ;;^UTILITY(U,$J,358.3,28267,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Unstageable
+ ;;^UTILITY(U,$J,358.3,28267,1,4,0)
+ ;;=4^L89.520
+ ;;^UTILITY(U,$J,358.3,28267,2)
+ ;;=^5009420
+ ;;^UTILITY(U,$J,358.3,28268,0)
+ ;;=L89.521^^112^1416^13
+ ;;^UTILITY(U,$J,358.3,28268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27837,1,3,0)
- ;;=3^Family Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,27837,1,4,0)
- ;;=4^Z80.43
- ;;^UTILITY(U,$J,358.3,27837,2)
- ;;=^5063350
- ;;^UTILITY(U,$J,358.3,27838,0)
- ;;=Z80.6^^132^1321^32
- ;;^UTILITY(U,$J,358.3,27838,1,0)
+ ;;^UTILITY(U,$J,358.3,28268,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 1
+ ;;^UTILITY(U,$J,358.3,28268,1,4,0)
+ ;;=4^L89.521
+ ;;^UTILITY(U,$J,358.3,28268,2)
+ ;;=^5009421
+ ;;^UTILITY(U,$J,358.3,28269,0)
+ ;;=L89.522^^112^1416^14
+ ;;^UTILITY(U,$J,358.3,28269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27838,1,3,0)
- ;;=3^Family Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,27838,1,4,0)
- ;;=4^Z80.6
- ;;^UTILITY(U,$J,358.3,27838,2)
- ;;=^5063354
- ;;^UTILITY(U,$J,358.3,27839,0)
- ;;=Z80.8^^132^1321^37
- ;;^UTILITY(U,$J,358.3,27839,1,0)
+ ;;^UTILITY(U,$J,358.3,28269,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 2
+ ;;^UTILITY(U,$J,358.3,28269,1,4,0)
+ ;;=4^L89.522
+ ;;^UTILITY(U,$J,358.3,28269,2)
+ ;;=^5009422
+ ;;^UTILITY(U,$J,358.3,28270,0)
+ ;;=L89.523^^112^1416^15
+ ;;^UTILITY(U,$J,358.3,28270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27839,1,3,0)
- ;;=3^Family Hx of Malig Neop of Organs/Systems
- ;;^UTILITY(U,$J,358.3,27839,1,4,0)
- ;;=4^Z80.8
- ;;^UTILITY(U,$J,358.3,27839,2)
- ;;=^5063356
- ;;^UTILITY(U,$J,358.3,27840,0)
- ;;=Z81.8^^132^1321^42
- ;;^UTILITY(U,$J,358.3,27840,1,0)
+ ;;^UTILITY(U,$J,358.3,28270,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 3
+ ;;^UTILITY(U,$J,358.3,28270,1,4,0)
+ ;;=4^L89.523
+ ;;^UTILITY(U,$J,358.3,28270,2)
+ ;;=^5009423
+ ;;^UTILITY(U,$J,358.3,28271,0)
+ ;;=L89.524^^112^1416^16
+ ;;^UTILITY(U,$J,358.3,28271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27840,1,3,0)
- ;;=3^Family Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,27840,1,4,0)
- ;;=4^Z81.8
- ;;^UTILITY(U,$J,358.3,27840,2)
- ;;=^5063363
- ;;^UTILITY(U,$J,358.3,27841,0)
- ;;=Z82.3^^132^1321^49
- ;;^UTILITY(U,$J,358.3,27841,1,0)
+ ;;^UTILITY(U,$J,358.3,28271,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage 4
+ ;;^UTILITY(U,$J,358.3,28271,1,4,0)
+ ;;=4^L89.524
+ ;;^UTILITY(U,$J,358.3,28271,2)
+ ;;=^5009424
+ ;;^UTILITY(U,$J,358.3,28272,0)
+ ;;=L89.529^^112^1416^17
+ ;;^UTILITY(U,$J,358.3,28272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27841,1,3,0)
- ;;=3^Family Hx of Stroke
- ;;^UTILITY(U,$J,358.3,27841,1,4,0)
- ;;=4^Z82.3
- ;;^UTILITY(U,$J,358.3,27841,2)
- ;;=^5063367
- ;;^UTILITY(U,$J,358.3,27842,0)
- ;;=Z82.49^^132^1321^31
- ;;^UTILITY(U,$J,358.3,27842,1,0)
+ ;;^UTILITY(U,$J,358.3,28272,1,3,0)
+ ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28272,1,4,0)
+ ;;=4^L89.529
+ ;;^UTILITY(U,$J,358.3,28272,2)
+ ;;=^5133674
+ ;;^UTILITY(U,$J,358.3,28273,0)
+ ;;=L89.610^^112^1416^84
+ ;;^UTILITY(U,$J,358.3,28273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27842,1,3,0)
- ;;=3^Family Hx of Ischemic Heart Disease/Circulatory System
- ;;^UTILITY(U,$J,358.3,27842,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,27842,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,27843,0)
- ;;=Z82.5^^132^1321^22
- ;;^UTILITY(U,$J,358.3,27843,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,28273,1,3,0)
+ ;;=3^Pressure Ulcer Right Heel,Unstageable
+ ;;^UTILITY(U,$J,358.3,28273,1,4,0)
+ ;;=4^L89.610
+ ;;^UTILITY(U,$J,358.3,28273,2)
+ ;;=^5009430
+ ;;^UTILITY(U,$J,358.3,28274,0)
+ ;;=L89.611^^112^1416^79

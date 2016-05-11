@@ -1,18 +1,21 @@
 BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11**;JUN 2004;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; Reference to COLLECT^IBNCPEV3 supported by ICR 6131
+ ;
  Q
  ;
  ; ECME Report Compile Routine - Looping/Filtering Routine
  ;
  ;  Input Variables:
- ;                 BPRTYPE - Type of Report (1-7)
+ ;               BPRTYPE - Type of Report (1-9)
  ;               BPGLTMP - Temporary storage global
  ;  BPPHARM/BPPHARM(ptr) - Set to 0 for all pharmacies, if set to 1 array
  ;                         of internal pointers of selected pharmacies
  ;              BPSUMDET - (1) Summary or (0) Detail format
  ;              BPINSINF - Set to 0 for all insurances or list of file 36 IENs
- ;                 BPMWC - 1-ALL,2-Mail,3-Window,4-CMOP Prescriptions
+ ;                 BPMWC - A-ALL,M-Mail,W-Window,C-CMOP Prescriptions
  ;               BPRTBCK - 1-ALL,2-RealTime,3-Backbill Claim Submission,4-PRO Option
  ;               BPRLNRL - 1-ALL,2-RELEASED,3-NOT RELEASED
  ;                BPDRUG - DRUG to report on (ptr to #50)
@@ -22,6 +25,9 @@ BPSRPT1 ;BHAM ISC/BEE - ECME REPORTS ;14-FEB-05
  ;               BPCCRSN - Set to 0 for all closed claim reasons or ptr to #356.8
  ;              BPAUTREV - 0-ALL,1-Auto Reversed
  ;               BPACREJ - 0-ALL,1-REJECTED,2-ACCEPTED
+ ;               BPNBSTS - Non-Billable Status
+ ;    BPELIG1/BPELIG1(x) - Array of multiple eligibilities
+ ;                BPALRC - A-All or R:Most recent
  ;              
 COLLECT(BPGLTMP) N BP02,BP57,BP59,BPENDDT1,BPLDT02,BPLDT57,X,Y,OK,BPIX
  ;
@@ -31,6 +37,10 @@ COLLECT(BPGLTMP) N BP02,BP57,BP59,BPENDDT1,BPLDT02,BPLDT57,X,Y,OK,BPIX
  S:'$G(BPENDDT) BPENDDT=9999999
  S BPENDDT=BPENDDT+0.9
  I $G(BPRTYPE)=""!($G(BPGLTMP)="")!($G(BPPHARM)="")!($G(BPSUMDET)="")!($G(BPINSINF)="")!($G(BPMWC)="")!($G(BPRTBCK)="") S OK=-1 G EXIT
+ ;
+ ; For the Non-Billable Status report, we need to loop through the IB NCPDP EVENT LOG instead 
+ ;   of BPS Claim/BPS Transaction data
+ I BPRTYPE=9 Q $$COLLECT^IBNCPEV3(BPBEGDT,BPENDDT,BPMWC,BPRLNRL,BPDRUG,BPDRGCL,BPALRC,.BPPHARM,.BPINSINF,.BPNBSTS,.BPELIG1,BPGLTMP)
  ;
  ;Loop through BPS CLAIMS
  ;

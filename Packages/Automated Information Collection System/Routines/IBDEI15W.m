@@ -1,130 +1,132 @@
-IBDEI15W ; ; 19-NOV-2015
+IBDEI15W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19409,1,3,0)
- ;;=3^Pathological Fx,Oth Site,Subs Encntr
- ;;^UTILITY(U,$J,358.3,19409,1,4,0)
- ;;=4^M84.48XD
- ;;^UTILITY(U,$J,358.3,19409,2)
- ;;=^5014017
- ;;^UTILITY(U,$J,358.3,19410,0)
- ;;=M87.011^^94^922^45
- ;;^UTILITY(U,$J,358.3,19410,1,0)
+ ;;^UTILITY(U,$J,358.3,19761,0)
+ ;;=S00.251A^^84^923^6
+ ;;^UTILITY(U,$J,358.3,19761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19410,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,19410,1,4,0)
- ;;=4^M87.011
- ;;^UTILITY(U,$J,358.3,19410,2)
- ;;=^5014658
- ;;^UTILITY(U,$J,358.3,19411,0)
- ;;=M87.012^^94^922^42
- ;;^UTILITY(U,$J,358.3,19411,1,0)
+ ;;^UTILITY(U,$J,358.3,19761,1,3,0)
+ ;;=3^Superficial FB of Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,19761,1,4,0)
+ ;;=4^S00.251A
+ ;;^UTILITY(U,$J,358.3,19761,2)
+ ;;=^5019817
+ ;;^UTILITY(U,$J,358.3,19762,0)
+ ;;=B96.81^^84^924^56
+ ;;^UTILITY(U,$J,358.3,19762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19411,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,19411,1,4,0)
- ;;=4^M87.012
- ;;^UTILITY(U,$J,358.3,19411,2)
- ;;=^5014659
- ;;^UTILITY(U,$J,358.3,19412,0)
- ;;=M87.050^^94^922^43
- ;;^UTILITY(U,$J,358.3,19412,1,0)
+ ;;^UTILITY(U,$J,358.3,19762,1,3,0)
+ ;;=3^H. Pylori as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19762,1,4,0)
+ ;;=4^B96.81
+ ;;^UTILITY(U,$J,358.3,19762,2)
+ ;;=^5000857
+ ;;^UTILITY(U,$J,358.3,19763,0)
+ ;;=B15.9^^84^924^58
+ ;;^UTILITY(U,$J,358.3,19763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19412,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Pelvis
- ;;^UTILITY(U,$J,358.3,19412,1,4,0)
- ;;=4^M87.050
- ;;^UTILITY(U,$J,358.3,19412,2)
- ;;=^5014679
- ;;^UTILITY(U,$J,358.3,19413,0)
- ;;=M87.051^^94^922^44
- ;;^UTILITY(U,$J,358.3,19413,1,0)
+ ;;^UTILITY(U,$J,358.3,19763,1,3,0)
+ ;;=3^Hepatitis A,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,19763,1,4,0)
+ ;;=4^B15.9
+ ;;^UTILITY(U,$J,358.3,19763,2)
+ ;;=^5000536
+ ;;^UTILITY(U,$J,358.3,19764,0)
+ ;;=B16.9^^84^924^59
+ ;;^UTILITY(U,$J,358.3,19764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19413,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Right Femur
- ;;^UTILITY(U,$J,358.3,19413,1,4,0)
- ;;=4^M87.051
- ;;^UTILITY(U,$J,358.3,19413,2)
- ;;=^5014680
- ;;^UTILITY(U,$J,358.3,19414,0)
- ;;=M87.052^^94^922^41
- ;;^UTILITY(U,$J,358.3,19414,1,0)
+ ;;^UTILITY(U,$J,358.3,19764,1,3,0)
+ ;;=3^Hepatitis B,Acute w/o Delta-Agent & w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,19764,1,4,0)
+ ;;=4^B16.9
+ ;;^UTILITY(U,$J,358.3,19764,2)
+ ;;=^5000540
+ ;;^UTILITY(U,$J,358.3,19765,0)
+ ;;=B19.10^^84^924^61
+ ;;^UTILITY(U,$J,358.3,19765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19414,1,3,0)
- ;;=3^Idiopathic Aseptic Necrosis of Left Femur
- ;;^UTILITY(U,$J,358.3,19414,1,4,0)
- ;;=4^M87.052
- ;;^UTILITY(U,$J,358.3,19414,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,19415,0)
- ;;=M87.111^^94^922^74
- ;;^UTILITY(U,$J,358.3,19415,1,0)
+ ;;^UTILITY(U,$J,358.3,19765,1,3,0)
+ ;;=3^Hepatitis B,Viral w/o Hepatic Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,19765,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,19765,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,19766,0)
+ ;;=B18.1^^84^924^60
+ ;;^UTILITY(U,$J,358.3,19766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19415,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
- ;;^UTILITY(U,$J,358.3,19415,1,4,0)
- ;;=4^M87.111
- ;;^UTILITY(U,$J,358.3,19415,2)
- ;;=^5014701
- ;;^UTILITY(U,$J,358.3,19416,0)
- ;;=M87.112^^94^922^71
- ;;^UTILITY(U,$J,358.3,19416,1,0)
+ ;;^UTILITY(U,$J,358.3,19766,1,3,0)
+ ;;=3^Hepatitis B,Chronic Viral w/o Delta-Agent
+ ;;^UTILITY(U,$J,358.3,19766,1,4,0)
+ ;;=4^B18.1
+ ;;^UTILITY(U,$J,358.3,19766,2)
+ ;;=^5000547
+ ;;^UTILITY(U,$J,358.3,19767,0)
+ ;;=B17.10^^84^924^62
+ ;;^UTILITY(U,$J,358.3,19767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19416,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
- ;;^UTILITY(U,$J,358.3,19416,1,4,0)
- ;;=4^M87.112
- ;;^UTILITY(U,$J,358.3,19416,2)
- ;;=^5014702
- ;;^UTILITY(U,$J,358.3,19417,0)
- ;;=M87.150^^94^922^72
- ;;^UTILITY(U,$J,358.3,19417,1,0)
+ ;;^UTILITY(U,$J,358.3,19767,1,3,0)
+ ;;=3^Hepatitis C,Acute w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,19767,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,19767,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,19768,0)
+ ;;=B18.2^^84^924^63
+ ;;^UTILITY(U,$J,358.3,19768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19417,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
- ;;^UTILITY(U,$J,358.3,19417,1,4,0)
- ;;=4^M87.150
- ;;^UTILITY(U,$J,358.3,19417,2)
- ;;=^5014722
- ;;^UTILITY(U,$J,358.3,19418,0)
- ;;=M87.151^^94^922^73
- ;;^UTILITY(U,$J,358.3,19418,1,0)
+ ;;^UTILITY(U,$J,358.3,19768,1,3,0)
+ ;;=3^Hepatitis C,Chronic Viral
+ ;;^UTILITY(U,$J,358.3,19768,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,19768,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,19769,0)
+ ;;=B18.8^^84^924^65
+ ;;^UTILITY(U,$J,358.3,19769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19418,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
- ;;^UTILITY(U,$J,358.3,19418,1,4,0)
- ;;=4^M87.151
- ;;^UTILITY(U,$J,358.3,19418,2)
- ;;=^5014723
- ;;^UTILITY(U,$J,358.3,19419,0)
- ;;=M87.152^^94^922^70
- ;;^UTILITY(U,$J,358.3,19419,1,0)
+ ;;^UTILITY(U,$J,358.3,19769,1,3,0)
+ ;;=3^Hepatitis,Oth Chronic Viral
+ ;;^UTILITY(U,$J,358.3,19769,1,4,0)
+ ;;=4^B18.8
+ ;;^UTILITY(U,$J,358.3,19769,2)
+ ;;=^5000549
+ ;;^UTILITY(U,$J,358.3,19770,0)
+ ;;=B17.8^^84^924^66
+ ;;^UTILITY(U,$J,358.3,19770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19419,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
- ;;^UTILITY(U,$J,358.3,19419,1,4,0)
- ;;=4^M87.152
- ;;^UTILITY(U,$J,358.3,19419,2)
- ;;=^5014724
- ;;^UTILITY(U,$J,358.3,19420,0)
- ;;=M87.180^^94^922^69
- ;;^UTILITY(U,$J,358.3,19420,1,0)
+ ;;^UTILITY(U,$J,358.3,19770,1,3,0)
+ ;;=3^Hepatitis,Oth Spec Acute Viral
+ ;;^UTILITY(U,$J,358.3,19770,1,4,0)
+ ;;=4^B17.8
+ ;;^UTILITY(U,$J,358.3,19770,2)
+ ;;=^5000544
+ ;;^UTILITY(U,$J,358.3,19771,0)
+ ;;=B18.9^^84^924^64
+ ;;^UTILITY(U,$J,358.3,19771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19420,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
- ;;^UTILITY(U,$J,358.3,19420,1,4,0)
- ;;=4^M87.180
- ;;^UTILITY(U,$J,358.3,19420,2)
- ;;=^5014741
- ;;^UTILITY(U,$J,358.3,19421,0)
- ;;=M87.311^^94^922^151
- ;;^UTILITY(U,$J,358.3,19421,1,0)
+ ;;^UTILITY(U,$J,358.3,19771,1,3,0)
+ ;;=3^Hepatitis,Chronic Viral Unspec
+ ;;^UTILITY(U,$J,358.3,19771,1,4,0)
+ ;;=4^B18.9
+ ;;^UTILITY(U,$J,358.3,19771,2)
+ ;;=^5000550
+ ;;^UTILITY(U,$J,358.3,19772,0)
+ ;;=B37.81^^84^924^18
+ ;;^UTILITY(U,$J,358.3,19772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19421,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,19421,1,4,0)
- ;;=4^M87.311
- ;;^UTILITY(U,$J,358.3,19421,2)
- ;;=^5014788
+ ;;^UTILITY(U,$J,358.3,19772,1,3,0)
+ ;;=3^Candidal Esophagitis
+ ;;^UTILITY(U,$J,358.3,19772,1,4,0)
+ ;;=4^B37.81
+ ;;^UTILITY(U,$J,358.3,19772,2)
+ ;;=^5000620
+ ;;^UTILITY(U,$J,358.3,19773,0)
+ ;;=D12.0^^84^924^12
+ ;;^UTILITY(U,$J,358.3,19773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19773,1,3,0)
+ ;;=3^Benign Neop of Cecum
+ ;;^UTILITY(U,$J,358.3,19773,1,4,0)
+ ;;=4^D12.0

@@ -1,124 +1,140 @@
-IBDEI217 ; ; 19-NOV-2015
+IBDEI217 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34041,0)
- ;;=N03.8^^154^1722^19
- ;;^UTILITY(U,$J,358.3,34041,1,0)
+ ;;^UTILITY(U,$J,358.3,34460,1,4,0)
+ ;;=4^M94.261
+ ;;^UTILITY(U,$J,358.3,34460,2)
+ ;;=^5015345
+ ;;^UTILITY(U,$J,358.3,34461,0)
+ ;;=M94.262^^131^1686^16
+ ;;^UTILITY(U,$J,358.3,34461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34041,1,3,0)
- ;;=3^Chr nephritic syndrome w/ other morphologic changes
- ;;^UTILITY(U,$J,358.3,34041,1,4,0)
- ;;=4^N03.8
- ;;^UTILITY(U,$J,358.3,34041,2)
- ;;=^5015529
- ;;^UTILITY(U,$J,358.3,34042,0)
- ;;=N03.9^^154^1722^20
- ;;^UTILITY(U,$J,358.3,34042,1,0)
+ ;;^UTILITY(U,$J,358.3,34461,1,3,0)
+ ;;=3^Chondromalacia,Left Knee
+ ;;^UTILITY(U,$J,358.3,34461,1,4,0)
+ ;;=4^M94.262
+ ;;^UTILITY(U,$J,358.3,34461,2)
+ ;;=^5015346
+ ;;^UTILITY(U,$J,358.3,34462,0)
+ ;;=R25.2^^131^1686^36
+ ;;^UTILITY(U,$J,358.3,34462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34042,1,3,0)
- ;;=3^Chr nephritic syndrome w/ unsp morphologic changes
- ;;^UTILITY(U,$J,358.3,34042,1,4,0)
- ;;=4^N03.9
- ;;^UTILITY(U,$J,358.3,34042,2)
- ;;=^5015530
- ;;^UTILITY(U,$J,358.3,34043,0)
- ;;=N04.0^^154^1722^60
- ;;^UTILITY(U,$J,358.3,34043,1,0)
+ ;;^UTILITY(U,$J,358.3,34462,1,3,0)
+ ;;=3^Cramp and Spasm
+ ;;^UTILITY(U,$J,358.3,34462,1,4,0)
+ ;;=4^R25.2
+ ;;^UTILITY(U,$J,358.3,34462,2)
+ ;;=^5019301
+ ;;^UTILITY(U,$J,358.3,34463,0)
+ ;;=R70.0^^131^1686^38
+ ;;^UTILITY(U,$J,358.3,34463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34043,1,3,0)
- ;;=3^Nephrotic syndrome w/ minor glomerular abnormality
- ;;^UTILITY(U,$J,358.3,34043,1,4,0)
- ;;=4^N04.0
- ;;^UTILITY(U,$J,358.3,34043,2)
- ;;=^5015531
- ;;^UTILITY(U,$J,358.3,34044,0)
- ;;=N04.1^^154^1722^59
- ;;^UTILITY(U,$J,358.3,34044,1,0)
+ ;;^UTILITY(U,$J,358.3,34463,1,3,0)
+ ;;=3^Elevated Erythrocyte Sedimentation Rate
+ ;;^UTILITY(U,$J,358.3,34463,1,4,0)
+ ;;=4^R70.0
+ ;;^UTILITY(U,$J,358.3,34463,2)
+ ;;=^5019559
+ ;;^UTILITY(U,$J,358.3,34464,0)
+ ;;=M25.511^^131^1686^115
+ ;;^UTILITY(U,$J,358.3,34464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34044,1,3,0)
- ;;=3^Nephrotic syndrome w/ focal & segmental glomerular lesions
- ;;^UTILITY(U,$J,358.3,34044,1,4,0)
- ;;=4^N04.1
- ;;^UTILITY(U,$J,358.3,34044,2)
- ;;=^5015532
- ;;^UTILITY(U,$J,358.3,34045,0)
- ;;=N04.2^^154^1722^56
- ;;^UTILITY(U,$J,358.3,34045,1,0)
+ ;;^UTILITY(U,$J,358.3,34464,1,3,0)
+ ;;=3^Pain in Right Shoulder
+ ;;^UTILITY(U,$J,358.3,34464,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,34464,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,34465,0)
+ ;;=M25.512^^131^1686^105
+ ;;^UTILITY(U,$J,358.3,34465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34045,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse membranous glomerulonephritis
- ;;^UTILITY(U,$J,358.3,34045,1,4,0)
- ;;=4^N04.2
- ;;^UTILITY(U,$J,358.3,34045,2)
- ;;=^5015533
- ;;^UTILITY(U,$J,358.3,34046,0)
- ;;=N04.3^^154^1722^57
- ;;^UTILITY(U,$J,358.3,34046,1,0)
+ ;;^UTILITY(U,$J,358.3,34465,1,3,0)
+ ;;=3^Pain in Left Shoulder
+ ;;^UTILITY(U,$J,358.3,34465,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,34465,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,34466,0)
+ ;;=M25.521^^131^1686^109
+ ;;^UTILITY(U,$J,358.3,34466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34046,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse mesangial prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,34046,1,4,0)
- ;;=4^N04.3
- ;;^UTILITY(U,$J,358.3,34046,2)
- ;;=^5015534
- ;;^UTILITY(U,$J,358.3,34047,0)
- ;;=N04.4^^154^1722^55
- ;;^UTILITY(U,$J,358.3,34047,1,0)
+ ;;^UTILITY(U,$J,358.3,34466,1,3,0)
+ ;;=3^Pain in Right Elbow
+ ;;^UTILITY(U,$J,358.3,34466,1,4,0)
+ ;;=4^M25.521
+ ;;^UTILITY(U,$J,358.3,34466,2)
+ ;;=^5011605
+ ;;^UTILITY(U,$J,358.3,34467,0)
+ ;;=M25.522^^131^1686^99
+ ;;^UTILITY(U,$J,358.3,34467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34047,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse endocaplry prolif glomrlneph
- ;;^UTILITY(U,$J,358.3,34047,1,4,0)
- ;;=4^N04.4
- ;;^UTILITY(U,$J,358.3,34047,2)
- ;;=^5015535
- ;;^UTILITY(U,$J,358.3,34048,0)
- ;;=N04.5^^154^1722^58
- ;;^UTILITY(U,$J,358.3,34048,1,0)
+ ;;^UTILITY(U,$J,358.3,34467,1,3,0)
+ ;;=3^Pain in Left Elbow
+ ;;^UTILITY(U,$J,358.3,34467,1,4,0)
+ ;;=4^M25.522
+ ;;^UTILITY(U,$J,358.3,34467,2)
+ ;;=^5011606
+ ;;^UTILITY(U,$J,358.3,34468,0)
+ ;;=M25.531^^131^1686^116
+ ;;^UTILITY(U,$J,358.3,34468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34048,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse mesangiocapillary glomrlneph
- ;;^UTILITY(U,$J,358.3,34048,1,4,0)
- ;;=4^N04.5
- ;;^UTILITY(U,$J,358.3,34048,2)
- ;;=^5015536
- ;;^UTILITY(U,$J,358.3,34049,0)
- ;;=N04.6^^154^1722^53
- ;;^UTILITY(U,$J,358.3,34049,1,0)
+ ;;^UTILITY(U,$J,358.3,34468,1,3,0)
+ ;;=3^Pain in Right Wrist
+ ;;^UTILITY(U,$J,358.3,34468,1,4,0)
+ ;;=4^M25.531
+ ;;^UTILITY(U,$J,358.3,34468,2)
+ ;;=^5011608
+ ;;^UTILITY(U,$J,358.3,34469,0)
+ ;;=M25.532^^131^1686^106
+ ;;^UTILITY(U,$J,358.3,34469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34049,1,3,0)
- ;;=3^Nephrotic syndrome w/ dense deposit disease
- ;;^UTILITY(U,$J,358.3,34049,1,4,0)
- ;;=4^N04.6
- ;;^UTILITY(U,$J,358.3,34049,2)
- ;;=^5015537
- ;;^UTILITY(U,$J,358.3,34050,0)
- ;;=N04.7^^154^1722^54
- ;;^UTILITY(U,$J,358.3,34050,1,0)
+ ;;^UTILITY(U,$J,358.3,34469,1,3,0)
+ ;;=3^Pain in Left Wrist
+ ;;^UTILITY(U,$J,358.3,34469,1,4,0)
+ ;;=4^M25.532
+ ;;^UTILITY(U,$J,358.3,34469,2)
+ ;;=^5011609
+ ;;^UTILITY(U,$J,358.3,34470,0)
+ ;;=M25.551^^131^1686^112
+ ;;^UTILITY(U,$J,358.3,34470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34050,1,3,0)
- ;;=3^Nephrotic syndrome w/ diffuse crescentic glomerulonephritis
- ;;^UTILITY(U,$J,358.3,34050,1,4,0)
- ;;=4^N04.7
- ;;^UTILITY(U,$J,358.3,34050,2)
- ;;=^5015538
- ;;^UTILITY(U,$J,358.3,34051,0)
- ;;=N04.8^^154^1722^61
- ;;^UTILITY(U,$J,358.3,34051,1,0)
+ ;;^UTILITY(U,$J,358.3,34470,1,3,0)
+ ;;=3^Pain in Right Hip
+ ;;^UTILITY(U,$J,358.3,34470,1,4,0)
+ ;;=4^M25.551
+ ;;^UTILITY(U,$J,358.3,34470,2)
+ ;;=^5011611
+ ;;^UTILITY(U,$J,358.3,34471,0)
+ ;;=M25.552^^131^1686^102
+ ;;^UTILITY(U,$J,358.3,34471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34051,1,3,0)
- ;;=3^Nephrotic syndrome w/ other morphologic changes
- ;;^UTILITY(U,$J,358.3,34051,1,4,0)
- ;;=4^N04.8
- ;;^UTILITY(U,$J,358.3,34051,2)
- ;;=^5015539
- ;;^UTILITY(U,$J,358.3,34052,0)
- ;;=N04.9^^154^1722^62
- ;;^UTILITY(U,$J,358.3,34052,1,0)
+ ;;^UTILITY(U,$J,358.3,34471,1,3,0)
+ ;;=3^Pain in Left Hip
+ ;;^UTILITY(U,$J,358.3,34471,1,4,0)
+ ;;=4^M25.552
+ ;;^UTILITY(U,$J,358.3,34471,2)
+ ;;=^5011612
+ ;;^UTILITY(U,$J,358.3,34472,0)
+ ;;=M25.561^^131^1686^113
+ ;;^UTILITY(U,$J,358.3,34472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34052,1,3,0)
- ;;=3^Nephrotic syndrome w/ unspecified morphologic changes
- ;;^UTILITY(U,$J,358.3,34052,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,34052,2)
- ;;=^5015540
+ ;;^UTILITY(U,$J,358.3,34472,1,3,0)
+ ;;=3^Pain in Right Knee
+ ;;^UTILITY(U,$J,358.3,34472,1,4,0)
+ ;;=4^M25.561
+ ;;^UTILITY(U,$J,358.3,34472,2)
+ ;;=^5011614
+ ;;^UTILITY(U,$J,358.3,34473,0)
+ ;;=M25.562^^131^1686^103
+ ;;^UTILITY(U,$J,358.3,34473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34473,1,3,0)
+ ;;=3^Pain in Left Knee
+ ;;^UTILITY(U,$J,358.3,34473,1,4,0)
+ ;;=4^M25.562
+ ;;^UTILITY(U,$J,358.3,34473,2)
+ ;;=^5011615
+ ;;^UTILITY(U,$J,358.3,34474,0)
+ ;;=M25.571^^131^1686^107

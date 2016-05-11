@@ -1,124 +1,134 @@
-IBDEI1AO ; ; 19-NOV-2015
+IBDEI1AO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21624,1,0)
+ ;;^UTILITY(U,$J,358.3,22012,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,22012,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,22013,0)
+ ;;=E05.00^^87^973^56
+ ;;^UTILITY(U,$J,358.3,22013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21624,1,3,0)
- ;;=3^Nondisp apophyseal fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21624,1,4,0)
- ;;=4^S72.134S
- ;;^UTILITY(U,$J,358.3,21624,2)
- ;;=^5037882
- ;;^UTILITY(U,$J,358.3,21625,0)
- ;;=S72.135S^^101^1033^47
- ;;^UTILITY(U,$J,358.3,21625,1,0)
+ ;;^UTILITY(U,$J,358.3,22013,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,22013,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,22013,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,22014,0)
+ ;;=E05.01^^87^973^55
+ ;;^UTILITY(U,$J,358.3,22014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21625,1,3,0)
- ;;=3^Nondisp apophyseal fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21625,1,4,0)
- ;;=4^S72.135S
- ;;^UTILITY(U,$J,358.3,21625,2)
- ;;=^5037898
- ;;^UTILITY(U,$J,358.3,21626,0)
- ;;=S72.141S^^101^1033^16
- ;;^UTILITY(U,$J,358.3,21626,1,0)
+ ;;^UTILITY(U,$J,358.3,22014,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,22014,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,22014,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,22015,0)
+ ;;=E05.90^^87^973^58
+ ;;^UTILITY(U,$J,358.3,22015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21626,1,3,0)
- ;;=3^Displaced intertrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21626,1,4,0)
- ;;=4^S72.141S
- ;;^UTILITY(U,$J,358.3,21626,2)
- ;;=^5037930
- ;;^UTILITY(U,$J,358.3,21627,0)
- ;;=S72.142S^^101^1033^15
- ;;^UTILITY(U,$J,358.3,21627,1,0)
+ ;;^UTILITY(U,$J,358.3,22015,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,22015,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,22015,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,22016,0)
+ ;;=E05.91^^87^973^57
+ ;;^UTILITY(U,$J,358.3,22016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21627,1,3,0)
- ;;=3^Displaced intertrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21627,1,4,0)
- ;;=4^S72.142S
- ;;^UTILITY(U,$J,358.3,21627,2)
- ;;=^5037946
- ;;^UTILITY(U,$J,358.3,21628,0)
- ;;=S72.144S^^101^1033^62
- ;;^UTILITY(U,$J,358.3,21628,1,0)
+ ;;^UTILITY(U,$J,358.3,22016,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,22016,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,22016,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,22017,0)
+ ;;=E89.0^^87^973^50
+ ;;^UTILITY(U,$J,358.3,22017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21628,1,3,0)
- ;;=3^Nondisp intertroch fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21628,1,4,0)
- ;;=4^S72.144S
- ;;^UTILITY(U,$J,358.3,21628,2)
- ;;=^5037978
- ;;^UTILITY(U,$J,358.3,21629,0)
- ;;=S72.145S^^101^1033^61
- ;;^UTILITY(U,$J,358.3,21629,1,0)
+ ;;^UTILITY(U,$J,358.3,22017,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,22017,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,22017,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,22018,0)
+ ;;=E03.2^^87^973^32
+ ;;^UTILITY(U,$J,358.3,22018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21629,1,3,0)
- ;;=3^Nondisp intertroch fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21629,1,4,0)
- ;;=4^S72.145S
- ;;^UTILITY(U,$J,358.3,21629,2)
- ;;=^5037994
- ;;^UTILITY(U,$J,358.3,21630,0)
- ;;=S72.21XS^^101^1033^38
- ;;^UTILITY(U,$J,358.3,21630,1,0)
+ ;;^UTILITY(U,$J,358.3,22018,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,22018,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,22018,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,22019,0)
+ ;;=E03.9^^87^973^33
+ ;;^UTILITY(U,$J,358.3,22019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21630,1,3,0)
- ;;=3^Displaced subtrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21630,1,4,0)
- ;;=4^S72.21XS
- ;;^UTILITY(U,$J,358.3,21630,2)
- ;;=^5038026
- ;;^UTILITY(U,$J,358.3,21631,0)
- ;;=S72.22XS^^101^1033^37
- ;;^UTILITY(U,$J,358.3,21631,1,0)
+ ;;^UTILITY(U,$J,358.3,22019,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,22019,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,22019,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,22020,0)
+ ;;=E06.0^^87^973^53
+ ;;^UTILITY(U,$J,358.3,22020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21631,1,3,0)
- ;;=3^Displaced subtrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21631,1,4,0)
- ;;=4^S72.22XS
- ;;^UTILITY(U,$J,358.3,21631,2)
- ;;=^5038042
- ;;^UTILITY(U,$J,358.3,21632,0)
- ;;=S72.24XS^^101^1033^85
- ;;^UTILITY(U,$J,358.3,21632,1,0)
+ ;;^UTILITY(U,$J,358.3,22020,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,22020,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,22020,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,22021,0)
+ ;;=E06.1^^87^973^54
+ ;;^UTILITY(U,$J,358.3,22021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21632,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21632,1,4,0)
- ;;=4^S72.24XS
- ;;^UTILITY(U,$J,358.3,21632,2)
- ;;=^5038074
- ;;^UTILITY(U,$J,358.3,21633,0)
- ;;=S72.25XS^^101^1033^84
- ;;^UTILITY(U,$J,358.3,21633,1,0)
+ ;;^UTILITY(U,$J,358.3,22021,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,22021,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,22021,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,22022,0)
+ ;;=C73.^^87^973^37
+ ;;^UTILITY(U,$J,358.3,22022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21633,1,3,0)
- ;;=3^Nondisp subtrochanteric fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21633,1,4,0)
- ;;=4^S72.25XS
- ;;^UTILITY(U,$J,358.3,21633,2)
- ;;=^5038090
- ;;^UTILITY(U,$J,358.3,21634,0)
- ;;=S72.321S^^101^1033^46
- ;;^UTILITY(U,$J,358.3,21634,1,0)
+ ;;^UTILITY(U,$J,358.3,22022,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,22022,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,22022,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,22023,0)
+ ;;=E10.21^^87^973^8
+ ;;^UTILITY(U,$J,358.3,22023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21634,1,3,0)
- ;;=3^Displaced transverse fx shaft of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21634,1,4,0)
- ;;=4^S72.321S
- ;;^UTILITY(U,$J,358.3,21634,2)
- ;;=^5038159
- ;;^UTILITY(U,$J,358.3,21635,0)
- ;;=S72.322S^^101^1033^45
- ;;^UTILITY(U,$J,358.3,21635,1,0)
+ ;;^UTILITY(U,$J,358.3,22023,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,22023,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,22023,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,22024,0)
+ ;;=E10.9^^87^973^12
+ ;;^UTILITY(U,$J,358.3,22024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21635,1,3,0)
- ;;=3^Displaced transverse fx shaft of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21635,1,4,0)
- ;;=4^S72.322S
- ;;^UTILITY(U,$J,358.3,21635,2)
- ;;=^5038175
- ;;^UTILITY(U,$J,358.3,21636,0)
- ;;=S72.324S^^101^1033^93
+ ;;^UTILITY(U,$J,358.3,22024,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,22024,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,22024,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,22025,0)
+ ;;=E11.21^^87^973^17
+ ;;^UTILITY(U,$J,358.3,22025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22025,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Nephropathy

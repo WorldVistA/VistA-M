@@ -1,5 +1,5 @@
-ORDV02 ; slc/dcm - OE/RR Report Extracts ;10/8/03  11:18
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,118,146,141,208,318**;Dec 17, 1997;Build 23
+ORDV02 ;SLC/DCM - OE/RR REPORT EXTRACTS ;03/17/2015  10:24
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**109,118,146,141,208,318,350**;Dec 17, 1997;Build 77
  ;LAB Components
 LO(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ; Lab Order Component
  ;External calls to ^GMTSLROE
@@ -19,14 +19,14 @@ LO(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ; Lab Order Component
  S ORSITE=$$SITE^VASITE,ORSITE=$P(ORSITE,"^",2)_";"_$P(ORSITE,"^",3)
  K ^TMP("ORDATA",$J)
  I '$L($T(GCPR^OMGCOAS1)) D
- . K ^TMP("LRO",$J)
+ . K ^TMP("LRO",$J),^TMP("ORTXT",$J)
  . D @GO
  S (CTR,D)=0
  F  S D=$O(^TMP("LRO",$J,D)) Q:'D  D
  . S SN=0
  . F  S SN=$O(^TMP("LRO",$J,D,SN)) Q:'SN  S ORX0=^(SN) I $L(ORX0) D
  .. S SITE=$S($L($G(^TMP("LRO",$J,D,SN,"facility"))):^("facility"),1:ORSITE)
- .. S ^TMP("ORDATA",$J,D,SN,"WP",1)="1^"_SITE ;Station ID ;DJE *318 add SN node for multiple labs per date
+ .. S ^TMP("ORDATA",$J,D,SN,"WP",1)="1^"_SITE ;Station ID
  .. S ^TMP("ORDATA",$J,D,SN,"WP",2)="2^"_$P(ORX0,U) ;collection date
  .. S ^TMP("ORDATA",$J,D,SN,"WP",3)="3^"_$P($P(ORX0,U,2),";",2) ;test name
  .. S ^TMP("ORDATA",$J,D,SN,"WP",4)="4^"_$P($P(ORX0,U,2),";") ;test ien
@@ -39,7 +39,7 @@ LO(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)      ; Lab Order Component
  .. S ^TMP("ORDATA",$J,D,SN,"WP",11)="11^"_$P(ORX0,U,8) ;accession number
  .. S ^TMP("ORDATA",$J,D,SN,"WP",12)="12^"_$P(ORX0,U,9) ;available date/time
  .. S ^TMP("ORDATA",$J,D,SN,"WP",13)="13^"_$P(ORX0,U,5) ;status
- K ^TMP("LRO",$J)
+ K ^TMP("LRO",$J),^TMP("ORTXT",$J),^TMP("ORSORT",$J),^TMP("ORXPND",$J)
  S ROOT=$NA(^TMP("ORDATA",$J))
  Q
 CH(ROOT,ORALPHA,OROMEGA,ORMAX,ORDBEG,ORDEND,OREXT)     ;Chemistry/Hematology

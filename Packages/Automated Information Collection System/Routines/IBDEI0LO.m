@@ -1,130 +1,130 @@
-IBDEI0LO ; ; 19-NOV-2015
+IBDEI0LO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9878,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9878,1,2,0)
- ;;=2^16025
- ;;^UTILITY(U,$J,358.3,9878,1,3,0)
- ;;=3^DRESS/DEBRID PART THICK,INIT/SUB MED (5-10%)
- ;;^UTILITY(U,$J,358.3,9879,0)
- ;;=16030^^66^651^4^^^^1
- ;;^UTILITY(U,$J,358.3,9879,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9879,1,2,0)
- ;;=2^16030
- ;;^UTILITY(U,$J,358.3,9879,1,3,0)
- ;;=3^DRESS/DEBRID PART THICK,INIT/SUB LG (>10%)
- ;;^UTILITY(U,$J,358.3,9880,0)
- ;;=17000^^66^652^1^^^^1
- ;;^UTILITY(U,$J,358.3,9880,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9880,1,2,0)
- ;;=2^17000
- ;;^UTILITY(U,$J,358.3,9880,1,3,0)
- ;;=3^DESTR BEN LES,ANY METH,1ST LESION
- ;;^UTILITY(U,$J,358.3,9881,0)
- ;;=17003^^66^652^2^^^^1
- ;;^UTILITY(U,$J,358.3,9881,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9881,1,2,0)
- ;;=2^17003
- ;;^UTILITY(U,$J,358.3,9881,1,3,0)
- ;;=3^DESTR BEN LES,ANY METH,ADDL LESIONS
- ;;^UTILITY(U,$J,358.3,9882,0)
- ;;=17004^^66^652^3^^^^1
- ;;^UTILITY(U,$J,358.3,9882,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9882,1,2,0)
- ;;=2^17004
- ;;^UTILITY(U,$J,358.3,9882,1,3,0)
- ;;=3^DESTR BEN LES,OVER 15 LESIONS
- ;;^UTILITY(U,$J,358.3,9883,0)
- ;;=90791^^66^653^5^^^^1
- ;;^UTILITY(U,$J,358.3,9883,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9883,1,2,0)
- ;;=2^90791
- ;;^UTILITY(U,$J,358.3,9883,1,3,0)
- ;;=3^Psychiatric Diagnostic Evaluation
- ;;^UTILITY(U,$J,358.3,9884,0)
- ;;=90792^^66^653^4^^^^1
- ;;^UTILITY(U,$J,358.3,9884,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9884,1,2,0)
- ;;=2^90792
- ;;^UTILITY(U,$J,358.3,9884,1,3,0)
- ;;=3^Psychiatric Diagnositic Eval w/ Med Eval
- ;;^UTILITY(U,$J,358.3,9885,0)
- ;;=90839^^66^653^6^^^^1
- ;;^UTILITY(U,$J,358.3,9885,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9885,1,2,0)
- ;;=2^90839
- ;;^UTILITY(U,$J,358.3,9885,1,3,0)
- ;;=3^Psychotherapy for Crisis;1st 60min
- ;;^UTILITY(U,$J,358.3,9886,0)
- ;;=90840^^66^653^7^^^^1
- ;;^UTILITY(U,$J,358.3,9886,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9886,1,2,0)
- ;;=2^90840
- ;;^UTILITY(U,$J,358.3,9886,1,3,0)
- ;;=3^Psychotherapy for Crisis;Ea Addl 30min
- ;;^UTILITY(U,$J,358.3,9887,0)
- ;;=90882^^66^653^1^^^^1
- ;;^UTILITY(U,$J,358.3,9887,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9887,1,2,0)
- ;;=2^90882
- ;;^UTILITY(U,$J,358.3,9887,1,3,0)
- ;;=3^Env Intvn w/ outside agencies for MH pt
- ;;^UTILITY(U,$J,358.3,9888,0)
- ;;=90847^^66^653^2^^^^1
- ;;^UTILITY(U,$J,358.3,9888,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9888,1,2,0)
- ;;=2^90847
- ;;^UTILITY(U,$J,358.3,9888,1,3,0)
- ;;=3^Family Psychotherapy w/ Patient
- ;;^UTILITY(U,$J,358.3,9889,0)
- ;;=90885^^66^653^3^^^^1
- ;;^UTILITY(U,$J,358.3,9889,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9889,1,2,0)
- ;;=2^90885
- ;;^UTILITY(U,$J,358.3,9889,1,3,0)
- ;;=3^Psych Eval of records for diagnostic purposes
- ;;^UTILITY(U,$J,358.3,9890,0)
- ;;=99291^^66^654^1^^^^1
- ;;^UTILITY(U,$J,358.3,9890,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9890,1,2,0)
- ;;=2^99291
- ;;^UTILITY(U,$J,358.3,9890,1,3,0)
- ;;=3^CRITICAL CARE,1ST HR
- ;;^UTILITY(U,$J,358.3,9891,0)
- ;;=99292^^66^654^2^^^^1
- ;;^UTILITY(U,$J,358.3,9891,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9891,1,2,0)
- ;;=2^99292
- ;;^UTILITY(U,$J,358.3,9891,1,3,0)
- ;;=3^CRITICAL CARE,EA ADDL 30 MIN
- ;;^UTILITY(U,$J,358.3,9892,0)
- ;;=99288^^66^654^3^^^^1
- ;;^UTILITY(U,$J,358.3,9892,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9892,1,2,0)
- ;;=2^99288
- ;;^UTILITY(U,$J,358.3,9892,1,3,0)
- ;;=3^DIRECT ADVANCED LIFE SUPPORT
- ;;^UTILITY(U,$J,358.3,9893,0)
- ;;=96402^^66^655^1^^^^1
- ;;^UTILITY(U,$J,358.3,9893,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9893,1,2,0)
- ;;=2^96402
- ;;^UTILITY(U,$J,358.3,9893,1,3,0)
- ;;=3^Chemo Admin SC/IM,Hormonal
+ ;;^UTILITY(U,$J,358.3,10105,2)
+ ;;=^5002673
+ ;;^UTILITY(U,$J,358.3,10106,0)
+ ;;=E09.339^^44^500^32
+ ;;^UTILITY(U,$J,358.3,10106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10106,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10106,1,4,0)
+ ;;=4^E09.339
+ ;;^UTILITY(U,$J,358.3,10106,2)
+ ;;=^5002557
+ ;;^UTILITY(U,$J,358.3,10107,0)
+ ;;=E09.349^^44^500^36
+ ;;^UTILITY(U,$J,358.3,10107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10107,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10107,1,4,0)
+ ;;=4^E09.349
+ ;;^UTILITY(U,$J,358.3,10107,2)
+ ;;=^5002559
+ ;;^UTILITY(U,$J,358.3,10108,0)
+ ;;=E13.319^^44^500^50
+ ;;^UTILITY(U,$J,358.3,10108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10108,1,3,0)
+ ;;=3^Diab w/ Unspec Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10108,1,4,0)
+ ;;=4^E13.319
+ ;;^UTILITY(U,$J,358.3,10108,2)
+ ;;=^5002674
+ ;;^UTILITY(U,$J,358.3,10109,0)
+ ;;=H52.4^^44^501^57
+ ;;^UTILITY(U,$J,358.3,10109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10109,1,3,0)
+ ;;=3^Presbyopia
+ ;;^UTILITY(U,$J,358.3,10109,1,4,0)
+ ;;=4^H52.4
+ ;;^UTILITY(U,$J,358.3,10109,2)
+ ;;=^98095
+ ;;^UTILITY(U,$J,358.3,10110,0)
+ ;;=H01.004^^44^501^6
+ ;;^UTILITY(U,$J,358.3,10110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10110,1,3,0)
+ ;;=3^Blepharitis,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10110,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,10110,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,10111,0)
+ ;;=H01.005^^44^501^5
+ ;;^UTILITY(U,$J,358.3,10111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10111,1,3,0)
+ ;;=3^Blepharitis,Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10111,1,4,0)
+ ;;=4^H01.005
+ ;;^UTILITY(U,$J,358.3,10111,2)
+ ;;=^5133380
+ ;;^UTILITY(U,$J,358.3,10112,0)
+ ;;=H02.105^^44^501^24
+ ;;^UTILITY(U,$J,358.3,10112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10112,1,3,0)
+ ;;=3^Ectropion,Left Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10112,1,4,0)
+ ;;=4^H02.105
+ ;;^UTILITY(U,$J,358.3,10112,2)
+ ;;=^5133409
+ ;;^UTILITY(U,$J,358.3,10113,0)
+ ;;=H02.104^^44^501^25
+ ;;^UTILITY(U,$J,358.3,10113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10113,1,3,0)
+ ;;=3^Ectropion,Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10113,1,4,0)
+ ;;=4^H02.104
+ ;;^UTILITY(U,$J,358.3,10113,2)
+ ;;=^5004305
+ ;;^UTILITY(U,$J,358.3,10114,0)
+ ;;=H02.101^^44^501^27
+ ;;^UTILITY(U,$J,358.3,10114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10114,1,3,0)
+ ;;=3^Ectropion,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10114,1,4,0)
+ ;;=4^H02.101
+ ;;^UTILITY(U,$J,358.3,10114,2)
+ ;;=^5004303
+ ;;^UTILITY(U,$J,358.3,10115,0)
+ ;;=H02.102^^44^501^26
+ ;;^UTILITY(U,$J,358.3,10115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10115,1,3,0)
+ ;;=3^Ectropion,Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,10115,1,4,0)
+ ;;=4^H02.102
+ ;;^UTILITY(U,$J,358.3,10115,2)
+ ;;=^5133407
+ ;;^UTILITY(U,$J,358.3,10116,0)
+ ;;=H04.121^^44^501^23
+ ;;^UTILITY(U,$J,358.3,10116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10116,1,3,0)
+ ;;=3^Dry Eye Syndrome,Right Lacrimal Gland
+ ;;^UTILITY(U,$J,358.3,10116,1,4,0)
+ ;;=4^H04.121
+ ;;^UTILITY(U,$J,358.3,10116,2)
+ ;;=^5004463
+ ;;^UTILITY(U,$J,358.3,10117,0)
+ ;;=H04.122^^44^501^22
+ ;;^UTILITY(U,$J,358.3,10117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10117,1,3,0)
+ ;;=3^Dry Eye Syndrome,Left Lacrimal Gland
+ ;;^UTILITY(U,$J,358.3,10117,1,4,0)
+ ;;=4^H04.122
+ ;;^UTILITY(U,$J,358.3,10117,2)
+ ;;=^5004464
+ ;;^UTILITY(U,$J,358.3,10118,0)
+ ;;=H43.811^^44^501^80
+ ;;^UTILITY(U,$J,358.3,10118,1,0)
+ ;;=^358.31IA^4^2

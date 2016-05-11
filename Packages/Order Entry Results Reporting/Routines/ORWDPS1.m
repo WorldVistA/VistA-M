@@ -1,5 +1,6 @@
-ORWDPS1 ; SLC/KCM/JLI/TC - Pharmacy Calls for Windows Dialog ;02/05/13  11:04
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306**;Dec 17, 1997;Build 43
+ORWDPS1 ; SLC/KCM/JLI/TC - Pharmacy Calls for Windows Dialog ;07/02/15  06:30
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**85,132,141,163,215,255,243,306,350**;Dec 17, 1997;Build 77
+ ;
  ;
 ODSLCT(LST,PSTYPE,DFN,LOC) ; return default lists for dialog
  ; PSTYPE: pharmacy type (U=unit dose, F=IV fluids, O=outpatient)
@@ -40,6 +41,7 @@ PRIOR ; from DLGSLCT, get list of allowed priorities
  N X,XREF
  S XREF=$S(PSTYPE="O":"S.PSO",1:"S.PSJ")
  S X="" F  S X=$O(^ORD(101.42,XREF,X)) Q:'$L(X)  D
+ . I XREF["PSO",X="DONE" Q
  . I XREF["PSJ",X'="ASAP",X'="ROUTINE",X'="STAT" Q
  . S ILST=ILST+1,LST(ILST)="i"_$O(^ORD(101.42,XREF,X,0))_U_X
  S ILST=ILST+1,LST(ILST)="d"_$O(^ORD(101.42,"B","ROUTINE",0))_U_"ROUTINE"
@@ -147,6 +149,7 @@ FAILDEA(FAIL,OI,ORNP,PSTYPE)    ; return 1 if DEA check fails for this provider
  I DETFLAG,DETPRO="" S FAIL=3 Q
  I DETFLAG,DETPRO>0 S Y=DETPRO X ^DD("DD") S FAIL="5^"_Y Q
  S DEAFLG=$P($$OIDEA^PSSOPKI(PSOI,PSTYPE),";",2) Q:DEAFLG'>0
+ I DEAFLG=1 S FAIL=6 Q
  S RT=$$SDEA^XUSER(,+$G(ORNP),DEAFLG) I RT=1 S FAIL=1
  I RT=2 S FAIL="2^"_$$UP^XLFSTR(DEAFLG)
  I RT?1"4".E S FAIL=RT
@@ -163,6 +166,7 @@ FDEA1(FAIL,OI,OITYPE,ORNP) ; only be called for an outpaitent and IV dialog
  I DETFLAG,DETPRO="" S FAIL=3 Q
  I DETFLAG,DETPRO>0 S Y=DETPRO X ^DD("DD") S FAIL="5^"_Y Q
  S DEAFLG=$P($$IVDEA^PSSUTIL1(PSOI,OITYPE),";",2) Q:DEAFLG'>0
+ I DEAFLG=1 S FAIL=6 Q Q
  S RT=$$SDEA^XUSER(,+$G(ORNP),DEAFLG) I RT=1 S FAIL=1
  I RT=2 S FAIL="2^"_$$UP^XLFSTR(DEAFLG)
  I RT?1"4".E S FAIL=RT

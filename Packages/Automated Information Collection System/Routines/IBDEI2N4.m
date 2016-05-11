@@ -1,136 +1,58 @@
-IBDEI2N4 ; ; 19-NOV-2015
+IBDEI2N4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.7)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44312,0)
- ;;=I35.9^^200^2227^8
- ;;^UTILITY(U,$J,358.3,44312,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44312,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,44312,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,44312,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,44313,0)
- ;;=I38.^^200^2227^4
- ;;^UTILITY(U,$J,358.3,44313,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44313,1,3,0)
- ;;=3^Endocarditis,Valve Unspec
- ;;^UTILITY(U,$J,358.3,44313,1,4,0)
- ;;=4^I38.
- ;;^UTILITY(U,$J,358.3,44313,2)
- ;;=^40327
- ;;^UTILITY(U,$J,358.3,44314,0)
- ;;=I05.0^^200^2227^18
- ;;^UTILITY(U,$J,358.3,44314,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44314,1,3,0)
- ;;=3^Rheumatic Mitral Stenosis
- ;;^UTILITY(U,$J,358.3,44314,1,4,0)
- ;;=4^I05.0
- ;;^UTILITY(U,$J,358.3,44314,2)
- ;;=^5007041
- ;;^UTILITY(U,$J,358.3,44315,0)
- ;;=I05.8^^200^2227^19
- ;;^UTILITY(U,$J,358.3,44315,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44315,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease NEC
- ;;^UTILITY(U,$J,358.3,44315,1,4,0)
- ;;=4^I05.8
- ;;^UTILITY(U,$J,358.3,44315,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,44316,0)
- ;;=I05.9^^200^2227^20
- ;;^UTILITY(U,$J,358.3,44316,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44316,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,44316,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,44316,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,44317,0)
- ;;=I07.1^^200^2227^21
- ;;^UTILITY(U,$J,358.3,44317,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44317,1,3,0)
- ;;=3^Rheumatic Tricuspid Insufficiency
- ;;^UTILITY(U,$J,358.3,44317,1,4,0)
- ;;=4^I07.1
- ;;^UTILITY(U,$J,358.3,44317,2)
- ;;=^5007048
- ;;^UTILITY(U,$J,358.3,44318,0)
- ;;=I07.9^^200^2227^22
- ;;^UTILITY(U,$J,358.3,44318,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44318,1,3,0)
- ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,44318,1,4,0)
- ;;=4^I07.9
- ;;^UTILITY(U,$J,358.3,44318,2)
- ;;=^5007051
- ;;^UTILITY(U,$J,358.3,44319,0)
- ;;=I08.0^^200^2227^16
- ;;^UTILITY(U,$J,358.3,44319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44319,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
- ;;^UTILITY(U,$J,358.3,44319,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,44319,2)
- ;;=^5007052
- ;;^UTILITY(U,$J,358.3,44320,0)
- ;;=I09.89^^200^2227^17
- ;;^UTILITY(U,$J,358.3,44320,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44320,1,3,0)
- ;;=3^Rheumatic Heart Diseases NEC
- ;;^UTILITY(U,$J,358.3,44320,1,4,0)
- ;;=4^I09.89
- ;;^UTILITY(U,$J,358.3,44320,2)
- ;;=^5007060
- ;;^UTILITY(U,$J,358.3,44321,0)
- ;;=I47.1^^200^2227^24
- ;;^UTILITY(U,$J,358.3,44321,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44321,1,3,0)
- ;;=3^Supraventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,44321,1,4,0)
- ;;=4^I47.1
- ;;^UTILITY(U,$J,358.3,44321,2)
- ;;=^5007223
- ;;^UTILITY(U,$J,358.3,44322,0)
- ;;=I48.0^^200^2227^15
- ;;^UTILITY(U,$J,358.3,44322,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44322,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,44322,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,44322,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,44323,0)
- ;;=I49.5^^200^2227^23
- ;;^UTILITY(U,$J,358.3,44323,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44323,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,44323,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,44323,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,44324,0)
- ;;=I49.8^^200^2227^3
- ;;^UTILITY(U,$J,358.3,44324,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44324,1,3,0)
- ;;=3^Cardiac Arrhythmias
- ;;^UTILITY(U,$J,358.3,44324,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,44324,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,44325,0)
- ;;=I49.9^^200^2227^2
+ ;;^DIC(358.7,0,"GL")
+ ;;=^IBE(358.7,
+ ;;^DIC("B","IMP/EXP FORM LINE",358.7)
+ ;;=
+ ;;^DIC(358.7,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.7,"%D",1,0)
+ ;;=This file is nearly identical to file #357.7. It is used by the
+ ;;^DIC(358.7,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.7,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.7,0)
+ ;;=FIELD^^.08^8
+ ;;^DD(358.7,0,"DDA")
+ ;;=N
+ ;;^DD(358.7,0,"DT")
+ ;;=2950717
+ ;;^DD(358.7,0,"ID",.02)
+ ;;=W " STARTING COL=",$P(^(0),U,2)+1
+ ;;^DD(358.7,0,"ID",.03)
+ ;;=W " STARTING ROW=",$P(^(0),U,3)+1
+ ;;^DD(358.7,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.7,0,"IX","B",358.7,.01)
+ ;;=
+ ;;^DD(358.7,0,"IX","C",358.7,.06)
+ ;;=
+ ;;^DD(358.7,0,"NM","IMP/EXP FORM LINE")
+ ;;=
+ ;;^DD(358.7,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.7,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.7,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.7,.01,1,1,0)
+ ;;=358.7^B
+ ;;^DD(358.7,.01,1,1,1)
+ ;;=S ^IBE(358.7,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.7,.01,1,1,2)
+ ;;=K ^IBE(358.7,"B",$E(X,1,30),DA)
+ ;;^DD(358.7,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.7,.01,21,0)
+ ;;=^^4^4^2930527^
+ ;;^DD(358.7,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.7,.01,21,2,0)
+ ;;=The name given to the line. Lines should be given names that will allow
+ ;;^DD(358.7,.01,21,3,0)
+ ;;=them to be identifies, such as V(1,1), meaning a vertical line starting at
+ ;;^DD(358.7,.01,21,4,0)
+ ;;=coordinates (1,1).

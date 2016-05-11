@@ -1,132 +1,142 @@
-IBDEI0I8 ; ; 19-NOV-2015
+IBDEI0I8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8178,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,8179,0)
- ;;=K29.70^^55^536^53
- ;;^UTILITY(U,$J,358.3,8179,1,0)
+ ;;^UTILITY(U,$J,358.3,8455,1,1,0)
+ ;;=1^BRIEF VISIT
+ ;;^UTILITY(U,$J,358.3,8455,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,8456,0)
+ ;;=99212^^38^454^2
+ ;;^UTILITY(U,$J,358.3,8456,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8456,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8456,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,8457,0)
+ ;;=99213^^38^454^3
+ ;;^UTILITY(U,$J,358.3,8457,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8457,1,1,0)
+ ;;=1^EXPANDED PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8457,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,8458,0)
+ ;;=99214^^38^454^4
+ ;;^UTILITY(U,$J,358.3,8458,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8458,1,1,0)
+ ;;=1^DETAILED
+ ;;^UTILITY(U,$J,358.3,8458,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,8459,0)
+ ;;=99215^^38^454^5
+ ;;^UTILITY(U,$J,358.3,8459,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8459,1,1,0)
+ ;;=1^COMPREHENSIVE
+ ;;^UTILITY(U,$J,358.3,8459,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,8460,0)
+ ;;=99241^^38^455^1
+ ;;^UTILITY(U,$J,358.3,8460,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8460,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8460,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,8461,0)
+ ;;=99242^^38^455^2
+ ;;^UTILITY(U,$J,358.3,8461,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8461,1,1,0)
+ ;;=1^EXPANDED PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8461,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,8462,0)
+ ;;=99243^^38^455^3
+ ;;^UTILITY(U,$J,358.3,8462,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8462,1,1,0)
+ ;;=1^DETAILED
+ ;;^UTILITY(U,$J,358.3,8462,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,8463,0)
+ ;;=99244^^38^455^4
+ ;;^UTILITY(U,$J,358.3,8463,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8463,1,1,0)
+ ;;=1^COMPREHENSIVE CONSULT
+ ;;^UTILITY(U,$J,358.3,8463,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,8464,0)
+ ;;=99245^^38^455^5
+ ;;^UTILITY(U,$J,358.3,8464,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8464,1,1,0)
+ ;;=1^HIGHLY COMPREHENSIVE CONSULT
+ ;;^UTILITY(U,$J,358.3,8464,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,8465,0)
+ ;;=99201^^38^456^1
+ ;;^UTILITY(U,$J,358.3,8465,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8465,1,1,0)
+ ;;=1^PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8465,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,8466,0)
+ ;;=99202^^38^456^2
+ ;;^UTILITY(U,$J,358.3,8466,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8466,1,1,0)
+ ;;=1^EXPANDED PROBLEM FOCUSED
+ ;;^UTILITY(U,$J,358.3,8466,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,8467,0)
+ ;;=99203^^38^456^3
+ ;;^UTILITY(U,$J,358.3,8467,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8467,1,1,0)
+ ;;=1^DETAILED
+ ;;^UTILITY(U,$J,358.3,8467,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,8468,0)
+ ;;=99204^^38^456^4
+ ;;^UTILITY(U,$J,358.3,8468,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8468,1,1,0)
+ ;;=1^COMPREHENSIVE VISIT
+ ;;^UTILITY(U,$J,358.3,8468,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,8469,0)
+ ;;=99205^^38^456^5
+ ;;^UTILITY(U,$J,358.3,8469,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8469,1,1,0)
+ ;;=1^HIGHLY COMPREHENSIVE VISIT
+ ;;^UTILITY(U,$J,358.3,8469,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,8470,0)
+ ;;=99024^^38^457^1
+ ;;^UTILITY(U,$J,358.3,8470,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8470,1,1,0)
+ ;;=1^Post-Op Follow-up Visit
+ ;;^UTILITY(U,$J,358.3,8470,1,2,0)
+ ;;=2^99024
+ ;;^UTILITY(U,$J,358.3,8471,0)
+ ;;=M26.60^^39^458^15
+ ;;^UTILITY(U,$J,358.3,8471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8179,1,3,0)
- ;;=3^Gastritis, unspecified, without bleeding
- ;;^UTILITY(U,$J,358.3,8179,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,8179,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,8180,0)
- ;;=K29.80^^55^536^37
- ;;^UTILITY(U,$J,358.3,8180,1,0)
+ ;;^UTILITY(U,$J,358.3,8471,1,3,0)
+ ;;=3^Temporomandibular joint disorder, unspecified
+ ;;^UTILITY(U,$J,358.3,8471,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,8471,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,8472,0)
+ ;;=K11.1^^39^458^8
+ ;;^UTILITY(U,$J,358.3,8472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8180,1,3,0)
- ;;=3^Duodenitis without bleeding
- ;;^UTILITY(U,$J,358.3,8180,1,4,0)
- ;;=4^K29.80
- ;;^UTILITY(U,$J,358.3,8180,2)
- ;;=^5008554
- ;;^UTILITY(U,$J,358.3,8181,0)
- ;;=K30.^^55^536^51
- ;;^UTILITY(U,$J,358.3,8181,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8181,1,3,0)
- ;;=3^Functional dyspepsia
- ;;^UTILITY(U,$J,358.3,8181,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,8181,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,8182,0)
- ;;=K31.9^^55^536^35
- ;;^UTILITY(U,$J,358.3,8182,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8182,1,3,0)
- ;;=3^Disease of stomach and duodenum, unspecified
- ;;^UTILITY(U,$J,358.3,8182,1,4,0)
- ;;=4^K31.9
- ;;^UTILITY(U,$J,358.3,8182,2)
- ;;=^5008570
- ;;^UTILITY(U,$J,358.3,8183,0)
- ;;=K40.90^^55^536^101
- ;;^UTILITY(U,$J,358.3,8183,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8183,1,3,0)
- ;;=3^Unil inguinal hernia, w/o obst or gangr, not spcf as recur
- ;;^UTILITY(U,$J,358.3,8183,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,8183,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,8184,0)
- ;;=K40.20^^55^536^15
- ;;^UTILITY(U,$J,358.3,8184,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8184,1,3,0)
- ;;=3^Bi inguinal hernia, w/o obst or gangrene, not spcf as recur
- ;;^UTILITY(U,$J,358.3,8184,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,8184,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,8185,0)
- ;;=K41.90^^55^536^100
- ;;^UTILITY(U,$J,358.3,8185,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8185,1,3,0)
- ;;=3^Unil femoral hernia, w/o obst or gangrene, not spcf as recur
- ;;^UTILITY(U,$J,358.3,8185,1,4,0)
- ;;=4^K41.90
- ;;^UTILITY(U,$J,358.3,8185,2)
- ;;=^5008603
- ;;^UTILITY(U,$J,358.3,8186,0)
- ;;=K42.9^^55^536^99
- ;;^UTILITY(U,$J,358.3,8186,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8186,1,3,0)
- ;;=3^Umbilical hernia without obstruction or gangrene
- ;;^UTILITY(U,$J,358.3,8186,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,8186,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,8187,0)
- ;;=K43.9^^55^536^102
- ;;^UTILITY(U,$J,358.3,8187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8187,1,3,0)
- ;;=3^Ventral hernia without obstruction or gangrene
- ;;^UTILITY(U,$J,358.3,8187,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,8187,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,8188,0)
- ;;=K44.9^^55^536^33
- ;;^UTILITY(U,$J,358.3,8188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8188,1,3,0)
- ;;=3^Diaphragmatic hernia without obstruction or gangrene
- ;;^UTILITY(U,$J,358.3,8188,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,8188,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,8189,0)
- ;;=K50.90^^55^536^32
- ;;^UTILITY(U,$J,358.3,8189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8189,1,3,0)
- ;;=3^Crohn's disease, unspecified, without complications
- ;;^UTILITY(U,$J,358.3,8189,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,8189,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,8190,0)
- ;;=K51.90^^55^536^98
- ;;^UTILITY(U,$J,358.3,8190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8190,1,3,0)
- ;;=3^Ulcerative colitis, unspecified, without complications
- ;;^UTILITY(U,$J,358.3,8190,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,8190,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,8191,0)
- ;;=K52.9^^55^536^77
- ;;^UTILITY(U,$J,358.3,8191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8191,1,3,0)
- ;;=3^Noninfective gastroenteritis and colitis, unspecified

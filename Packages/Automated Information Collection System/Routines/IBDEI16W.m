@@ -1,136 +1,132 @@
-IBDEI16W ; ; 19-NOV-2015
+IBDEI16W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19878,2)
- ;;=^5008010
- ;;^UTILITY(U,$J,358.3,19879,0)
- ;;=B00.81^^94^932^25
- ;;^UTILITY(U,$J,358.3,19879,1,0)
+ ;;^UTILITY(U,$J,358.3,20228,0)
+ ;;=Z77.112^^84^930^142
+ ;;^UTILITY(U,$J,358.3,20228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19879,1,3,0)
- ;;=3^Herpesviral Hepatitis
- ;;^UTILITY(U,$J,358.3,19879,1,4,0)
- ;;=4^B00.81
- ;;^UTILITY(U,$J,358.3,19879,2)
- ;;=^5000478
- ;;^UTILITY(U,$J,358.3,19880,0)
- ;;=D25.9^^94^932^31
- ;;^UTILITY(U,$J,358.3,19880,1,0)
+ ;;^UTILITY(U,$J,358.3,20228,1,3,0)
+ ;;=3^Soil Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20228,1,4,0)
+ ;;=4^Z77.112
+ ;;^UTILITY(U,$J,358.3,20228,2)
+ ;;=^5063316
+ ;;^UTILITY(U,$J,358.3,20229,0)
+ ;;=Z77.111^^84^930^148
+ ;;^UTILITY(U,$J,358.3,20229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19880,1,3,0)
- ;;=3^Leiomyoma of Uterus,Unspec
- ;;^UTILITY(U,$J,358.3,19880,1,4,0)
- ;;=4^D25.9
- ;;^UTILITY(U,$J,358.3,19880,2)
- ;;=^5002081
- ;;^UTILITY(U,$J,358.3,19881,0)
- ;;=F52.9^^94^932^55
- ;;^UTILITY(U,$J,358.3,19881,1,0)
+ ;;^UTILITY(U,$J,358.3,20229,1,3,0)
+ ;;=3^Water Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20229,1,4,0)
+ ;;=4^Z77.111
+ ;;^UTILITY(U,$J,358.3,20229,2)
+ ;;=^5063315
+ ;;^UTILITY(U,$J,358.3,20230,0)
+ ;;=Z77.128^^84^930^119
+ ;;^UTILITY(U,$J,358.3,20230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19881,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,19881,1,4,0)
- ;;=4^F52.9
- ;;^UTILITY(U,$J,358.3,19881,2)
- ;;=^5003625
- ;;^UTILITY(U,$J,358.3,19882,0)
- ;;=R37.^^94^932^56
- ;;^UTILITY(U,$J,358.3,19882,1,0)
+ ;;^UTILITY(U,$J,358.3,20230,1,3,0)
+ ;;=3^Physical Environment Hazards Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20230,1,4,0)
+ ;;=4^Z77.128
+ ;;^UTILITY(U,$J,358.3,20230,2)
+ ;;=^5063322
+ ;;^UTILITY(U,$J,358.3,20231,0)
+ ;;=Z77.123^^84^930^140
+ ;;^UTILITY(U,$J,358.3,20231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19882,1,3,0)
- ;;=3^Sexual Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,19882,1,4,0)
- ;;=4^R37.
- ;;^UTILITY(U,$J,358.3,19882,2)
- ;;=^5019339
- ;;^UTILITY(U,$J,358.3,19883,0)
- ;;=N60.01^^94^932^59
- ;;^UTILITY(U,$J,358.3,19883,1,0)
+ ;;^UTILITY(U,$J,358.3,20231,1,3,0)
+ ;;=3^Radon/Radiation Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20231,1,4,0)
+ ;;=4^Z77.123
+ ;;^UTILITY(U,$J,358.3,20231,2)
+ ;;=^5063321
+ ;;^UTILITY(U,$J,358.3,20232,0)
+ ;;=Z77.122^^84^930^68
+ ;;^UTILITY(U,$J,358.3,20232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19883,1,3,0)
- ;;=3^Solitary Cyst of Right Breast
- ;;^UTILITY(U,$J,358.3,19883,1,4,0)
- ;;=4^N60.01
- ;;^UTILITY(U,$J,358.3,19883,2)
- ;;=^5015770
- ;;^UTILITY(U,$J,358.3,19884,0)
- ;;=N60.02^^94^932^58
- ;;^UTILITY(U,$J,358.3,19884,1,0)
+ ;;^UTILITY(U,$J,358.3,20232,1,3,0)
+ ;;=3^Noise Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20232,1,4,0)
+ ;;=4^Z77.122
+ ;;^UTILITY(U,$J,358.3,20232,2)
+ ;;=^5063320
+ ;;^UTILITY(U,$J,358.3,20233,0)
+ ;;=Z77.118^^84^930^19
+ ;;^UTILITY(U,$J,358.3,20233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19884,1,3,0)
- ;;=3^Solitary Cyst of Left Breast
- ;;^UTILITY(U,$J,358.3,19884,1,4,0)
- ;;=4^N60.02
- ;;^UTILITY(U,$J,358.3,19884,2)
- ;;=^5015771
- ;;^UTILITY(U,$J,358.3,19885,0)
- ;;=N60.09^^94^932^60
- ;;^UTILITY(U,$J,358.3,19885,1,0)
+ ;;^UTILITY(U,$J,358.3,20233,1,3,0)
+ ;;=3^Environmental Pollution Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20233,1,4,0)
+ ;;=4^Z77.118
+ ;;^UTILITY(U,$J,358.3,20233,2)
+ ;;=^5063317
+ ;;^UTILITY(U,$J,358.3,20234,0)
+ ;;=Z77.9^^84^930^54
+ ;;^UTILITY(U,$J,358.3,20234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19885,1,3,0)
- ;;=3^Solitary Cyst of Unspec Breast
- ;;^UTILITY(U,$J,358.3,19885,1,4,0)
- ;;=4^N60.09
- ;;^UTILITY(U,$J,358.3,19885,2)
- ;;=^5015772
- ;;^UTILITY(U,$J,358.3,19886,0)
- ;;=N60.11^^94^932^12
- ;;^UTILITY(U,$J,358.3,19886,1,0)
+ ;;^UTILITY(U,$J,358.3,20234,1,3,0)
+ ;;=3^Health Hazard Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,20234,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,20234,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,20235,0)
+ ;;=Z77.22^^84^930^18
+ ;;^UTILITY(U,$J,358.3,20235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19886,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Right Breast
- ;;^UTILITY(U,$J,358.3,19886,1,4,0)
- ;;=4^N60.11
- ;;^UTILITY(U,$J,358.3,19886,2)
- ;;=^5015773
- ;;^UTILITY(U,$J,358.3,19887,0)
- ;;=N60.12^^94^932^11
- ;;^UTILITY(U,$J,358.3,19887,1,0)
+ ;;^UTILITY(U,$J,358.3,20235,1,3,0)
+ ;;=3^Environmental Exposure Tobacco Smoke/Second-Hand Smoke
+ ;;^UTILITY(U,$J,358.3,20235,1,4,0)
+ ;;=4^Z77.22
+ ;;^UTILITY(U,$J,358.3,20235,2)
+ ;;=^5063324
+ ;;^UTILITY(U,$J,358.3,20236,0)
+ ;;=Z80.0^^84^930^35
+ ;;^UTILITY(U,$J,358.3,20236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19887,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Left Breast
- ;;^UTILITY(U,$J,358.3,19887,1,4,0)
- ;;=4^N60.12
- ;;^UTILITY(U,$J,358.3,19887,2)
- ;;=^5015774
- ;;^UTILITY(U,$J,358.3,19888,0)
- ;;=N60.19^^94^932^13
- ;;^UTILITY(U,$J,358.3,19888,1,0)
+ ;;^UTILITY(U,$J,358.3,20236,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Digestive Organs
+ ;;^UTILITY(U,$J,358.3,20236,1,4,0)
+ ;;=4^Z80.0
+ ;;^UTILITY(U,$J,358.3,20236,2)
+ ;;=^5063344
+ ;;^UTILITY(U,$J,358.3,20237,0)
+ ;;=Z80.1^^84^930^41
+ ;;^UTILITY(U,$J,358.3,20237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19888,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
- ;;^UTILITY(U,$J,358.3,19888,1,4,0)
- ;;=4^N60.19
- ;;^UTILITY(U,$J,358.3,19888,2)
- ;;=^5015775
- ;;^UTILITY(U,$J,358.3,19889,0)
- ;;=N64.4^^94^932^34
- ;;^UTILITY(U,$J,358.3,19889,1,0)
+ ;;^UTILITY(U,$J,358.3,20237,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Trachea,Bronc & Lung
+ ;;^UTILITY(U,$J,358.3,20237,1,4,0)
+ ;;=4^Z80.1
+ ;;^UTILITY(U,$J,358.3,20237,2)
+ ;;=^5063345
+ ;;^UTILITY(U,$J,358.3,20238,0)
+ ;;=Z80.3^^84^930^34
+ ;;^UTILITY(U,$J,358.3,20238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19889,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,19889,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,19889,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,19890,0)
- ;;=N63.^^94^932^33
- ;;^UTILITY(U,$J,358.3,19890,1,0)
+ ;;^UTILITY(U,$J,358.3,20238,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,20238,1,4,0)
+ ;;=4^Z80.3
+ ;;^UTILITY(U,$J,358.3,20238,2)
+ ;;=^5063347
+ ;;^UTILITY(U,$J,358.3,20239,0)
+ ;;=Z80.41^^84^930^38
+ ;;^UTILITY(U,$J,358.3,20239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19890,1,3,0)
- ;;=3^Lump in Breast,Unspec
- ;;^UTILITY(U,$J,358.3,19890,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,19890,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,19891,0)
- ;;=N64.51^^94^932^28
- ;;^UTILITY(U,$J,358.3,19891,1,0)
+ ;;^UTILITY(U,$J,358.3,20239,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Ovary
+ ;;^UTILITY(U,$J,358.3,20239,1,4,0)
+ ;;=4^Z80.41
+ ;;^UTILITY(U,$J,358.3,20239,2)
+ ;;=^5063348
+ ;;^UTILITY(U,$J,358.3,20240,0)
+ ;;=Z80.42^^84^930^39
+ ;;^UTILITY(U,$J,358.3,20240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19891,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,19891,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,19891,2)
- ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,20240,1,3,0)
+ ;;=3^Family Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,20240,1,4,0)
+ ;;=4^Z80.42

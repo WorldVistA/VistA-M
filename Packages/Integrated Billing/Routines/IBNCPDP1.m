@@ -1,6 +1,6 @@
 IBNCPDP1 ;OAK/ELZ - IB BILLING DETERMINATION PROCESSING FOR NEW RX REQUESTS ;5/22/08
- ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494**;21-MAR-94;Build 11
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**223,276,339,363,383,405,384,411,434,437,435,455,452,473,494,534**;21-MAR-94;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to CL^SDCO21 supported by IA# 406
  ; Reference to IN5^VADPT supported by IA# 10061
@@ -21,7 +21,7 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  K IBD("SC/EI NO ANSW"),IBD("INS")
  ;
  N IBTRKR,IBARR,IBADT,IBRXN,IBFIL,IBTRKRN,IBRMARK,IBANY,IBX,IBT,IBINS,IBSAVE,IBPRDATA,IBDISPFEE,IBADMINFEE
- N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP
+ N IBFEE,IBBI,IBIT,IBPRICE,IBRS,IBRT,IBTRN,IBCHG,IBRES,IBNEEDS,IBELIG,IBDEA,IBPTYP,IBACDUTY
  ;
  ; eligibility verification request flag - esg 9/9/10 IB*2*435
  S IBELIG=($G(IBD("RX ACTION"))="ELIG")
@@ -62,20 +62,6 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ; already in claims tracking
  S IBTRKRN=+$O(^IBT(356,"ARXFL",IBRXN,IBFIL,0))
  ;
- ; -- Check for TRICARE Inpatient - esg 8/5/10 IB*2*434
- I $P(IBRT,U,3)="T",$$INP(DFN,IBRXN,IBFIL) D  G RXQ
- . S IBRMARK="TRICARE INPATIENT/DISCHARGE"            ; reason not billable
- . D CT                                               ; update/add claims tracking entry
- . S IBRES=0_U_IBRMARK                                ; not ECME billable
- . Q
- ;
- ; -- Check for CHAMPVA Inpatient - esg 4/28/11 IB*2*452
- I $P(IBRT,U,3)="C",$$INP(DFN,IBRXN,IBFIL) D  G RXQ
- . S IBRMARK="CHAMPVA INPATIENT/DISCHARGE"            ; reason not billable
- . D CT                                               ; update/add claims tracking entry
- . S IBRES=0_U_IBRMARK                                ; not ECME billable
- . Q
- ;
  ;for secondary billing - skip claim tracking functionality
  G:$G(IBD("RXCOB"))>1 GETINS
  ;
@@ -85,22 +71,26 @@ RX(DFN,IBD) ; pharmacy package call, passing in IBD by ref
  ; -- no pharmacy coverage, update ct if applicable, quit
  I '$$PTCOV^IBCNSU3(DFN,IBADT,"PHARMACY",.IBANY) S IBRMARK=$S($G(IBANY):"SERVICE NOT COVERED",1:"NOT INSURED") D:$P(IBTRKR,U,4)=2 CT S IBRES="0^"_IBRMARK,IBD("NO ECME INSURANCE")=1 G RXQ
  ;
+ ; Environmental Indicators Validation
+ ; Find out if the patient is Active Duty - IB*2*534
+ S IBACDUTY=$P(IBRT,U,3)="T"&$$ACDUTY^IBNCPDPU(DFN)
+ ; Retrieve indicators from file #52 and overwrite the indicators in IBD array
+ D GETINDIC^IBNCPUT2(+IBD("IEN"),.IBD)
+ ; Process patient exemptions if any and if not already resolved
+ S IBNEEDS=0 ;flag will be set to 1 if at least one of the questions wasn't answered
+ I $G(IBD("SC/EI OVR"))'=1,'IBACDUTY D
+ . D CL^SDCO21(DFN,IBADT,"",.IBARR)
+ . I $D(IBARR)>9 F IBX=2:1 S IBT=$P($T(EXEMPT+IBX),";;",2) Q:IBT=""  D:$D(IBARR(+IBT))
+ . . I $G(IBD($P(IBT,U,2)))=0 Q
+ . . I $G(IBD($P(IBT,U,2))) S IBRMARK=$P(IBT,U,3) Q
+ . . I '$G(IBSCRES(IBRXN,IBFIL)) S IBNEEDS=1 D
+ . . . S IBD("SC/EI NO ANSW")=$S($G(IBD("SC/EI NO ANSW"))="":$P(IBT,U,2),1:$G(IBD("SC/EI NO ANSW"))_","_$P(IBT,U,2))
+ I '$D(IBRMARK),IBNEEDS=1 S IBRMARK="NEEDS SC DETERMINATION"
+ I $D(IBRMARK) D CT S IBRES="0^"_IBRMARK G RXQ
+ ;
  ;  -- check for DEA SPECIAL HDLG
  S IBDEA=$$DEA^IBNCPDP($G(IBD("DEA")),.IBRMARK) I 'IBDEA S IBRES=IBDEA D CT G RXQ
  ;
- ;retrieve indicators from file #52 and overwrite the indicators in IBD array
- D GETINDIC^IBNCPUT2(+IBD("IEN"),.IBD)
- ; -- process patient exemptions if any (if not already resolved)
- I $G(IBD("SC/EI OVR"))'=1 D CL^SDCO21(DFN,IBADT,"",.IBARR)
- ; check out exemptions
- S IBNEEDS=0 ;flag will be set to 1 if at least one of the questions wasn't answered
- I $G(IBD("SC/EI OVR"))'=1 I $D(IBARR)>9 F IBX=2:1 S IBT=$P($T(EXEMPT+IBX),";;",2) Q:IBT=""  D:$D(IBARR(+IBT))
- . I $G(IBD($P(IBT,U,2)))=0 Q
- . I $G(IBD($P(IBT,U,2))) S IBRMARK=$P(IBT,U,3) Q
- . I '$G(IBSCRES(IBRXN,IBFIL)) S IBNEEDS=1 D
- . . S IBD("SC/EI NO ANSW")=$S($G(IBD("SC/EI NO ANSW"))="":$P(IBT,U,2),1:$G(IBD("SC/EI NO ANSW"))_","_$P(IBT,U,2))
- I '$D(IBRMARK),IBNEEDS=1 S IBRMARK="NEEDS SC DETERMINATION"
- I $D(IBRMARK) D CT S IBRES="0^"_IBRMARK G RXQ
  ; Clean-up the NEEDS SC DETERMINATION record if resolved
  ; And check if it is non-billable in CT
  I IBTRKRN D
@@ -315,30 +305,6 @@ SETINSUR(IBADT,IBRT,IBELIG,IBINS,IBD,IBRES) ; build insurance data array
  I '$D(IBD("INS",IBX)) S IBRES="0^No Insurance ECME billable",IBD("NO ECME INSURANCE")=1
 SETINX ;
  Q
- ;
-INP(DFN,IBRXN,IBFIL) ; Is this an inpatient, NON-BILLABLE Rx as of the Issue Date?    esg 8/5/10 - IB*2*434
- N INP,VAHOW,VAROOT,IBRXINP,VAIP,IBRXISUE,IBMW
- S INP=0
- ;
- S VAROOT="IBRXINP"
- S IBRXISUE=$$FILE^IBRXUTL(IBRXN,1)\1   ; Rx Issue Date (Field# 1)
- I 'IBRXISUE S IBRXISUE=DT
- S VAIP("D")=IBRXISUE        ; if pt was an inpatient at any time during this day
- D IN5^VADPT                 ; DBIA 10061 - inpatient episode API
- I '$G(IBRXINP(1)) G INPX    ; not an inpatient on this day
- ;
- ; check Rx issue date = discharge date. This is billable so get out (esg 9/13/10)
- I IBRXISUE=(+$G(IBRXINP(17,1))\1) G INPX
- ;
- ; if Rx/fill is MAIL, then this is billable so get out (esg 9/13/10)
- I IBFIL S IBMW=$$SUBFILE^IBRXUTL(IBRXN,IBFIL,52,2)    ; 52.1,2 MAIL/WINDOW field
- I 'IBFIL S IBMW=$$FILE^IBRXUTL(IBRXN,11)              ; 52,11 MAIL/WINDOW field
- I IBMW="M" G INPX
- ;
- ; inpatient and non-billable
- S INP=1
-INPX ;
- Q INP
  ;
 RXPCT(IBD,BWHERE) ; Penny drug cost calculation
  ; Input-IBD array, BWHERE

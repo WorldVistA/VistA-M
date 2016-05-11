@@ -1,132 +1,106 @@
-IBDEI1UU ; ; 19-NOV-2015
+IBDEI1UU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31051,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,31051,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,31052,0)
- ;;=S51.801A^^135^1389^18
- ;;^UTILITY(U,$J,358.3,31052,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31052,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,31052,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,31052,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,31053,0)
- ;;=S91.101A^^135^1389^19
- ;;^UTILITY(U,$J,358.3,31053,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31053,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,31053,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,31053,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,31054,0)
- ;;=S61.401A^^135^1389^20
- ;;^UTILITY(U,$J,358.3,31054,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31054,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,31054,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,31054,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,31055,0)
- ;;=S71.001A^^135^1389^21
- ;;^UTILITY(U,$J,358.3,31055,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31055,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,31055,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,31055,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,31056,0)
- ;;=S91.105A^^135^1389^12
- ;;^UTILITY(U,$J,358.3,31056,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31056,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,31056,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,31056,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,31057,0)
- ;;=S81.801A^^135^1389^23
- ;;^UTILITY(U,$J,358.3,31057,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31057,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,31057,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,31057,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,31058,0)
- ;;=S71.102A^^135^1389^14
- ;;^UTILITY(U,$J,358.3,31058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31058,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,31058,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,31058,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,31059,0)
- ;;=S71.101A^^135^1389^24
- ;;^UTILITY(U,$J,358.3,31059,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31059,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,31059,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,31059,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,31060,0)
- ;;=S41.101A^^135^1389^25
- ;;^UTILITY(U,$J,358.3,31060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31060,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,31060,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,31060,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,31061,0)
- ;;=E03.5^^135^1390^37
- ;;^UTILITY(U,$J,358.3,31061,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31061,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,31061,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,31061,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,31062,0)
- ;;=R40.2121^^135^1390^33
- ;;^UTILITY(U,$J,358.3,31062,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31062,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,31062,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,31062,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,31063,0)
- ;;=R40.2120^^135^1390^34
- ;;^UTILITY(U,$J,358.3,31063,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31063,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,31063,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,31063,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,31064,0)
- ;;=R40.2114^^135^1390^26
- ;;^UTILITY(U,$J,358.3,31064,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31511,0)
+ ;;=28496^^125^1595^57^^^^1
+ ;;^UTILITY(U,$J,358.3,31511,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31511,1,2,0)
+ ;;=2^Perc Fixation Great Toe Fx
+ ;;^UTILITY(U,$J,358.3,31511,1,3,0)
+ ;;=3^28496
+ ;;^UTILITY(U,$J,358.3,31512,0)
+ ;;=28505^^125^1595^37^^^^1
+ ;;^UTILITY(U,$J,358.3,31512,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31512,1,2,0)
+ ;;=2^Open TX of fracture great toe, phalanx or phalanges, with or without internal or external fixation
+ ;;^UTILITY(U,$J,358.3,31512,1,3,0)
+ ;;=3^28505
+ ;;^UTILITY(U,$J,358.3,31513,0)
+ ;;=28510^^125^1595^9^^^^1
+ ;;^UTILITY(U,$J,358.3,31513,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31513,1,2,0)
+ ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; without manipulation, each
+ ;;^UTILITY(U,$J,358.3,31513,1,3,0)
+ ;;=3^28510
+ ;;^UTILITY(U,$J,358.3,31514,0)
+ ;;=28515^^125^1595^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31514,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31514,1,2,0)
+ ;;=2^Closed TX of fracture, phalanx or phalanges, other than great toe; with manipulation, each
+ ;;^UTILITY(U,$J,358.3,31514,1,3,0)
+ ;;=3^28515
+ ;;^UTILITY(U,$J,358.3,31515,0)
+ ;;=28525^^125^1595^38^^^^1
+ ;;^UTILITY(U,$J,358.3,31515,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31515,1,2,0)
+ ;;=2^Open TX of fracture, phalanx or phalanges, other than great toe, with or without internal or external fixation, each
+ ;;^UTILITY(U,$J,358.3,31515,1,3,0)
+ ;;=3^28525
+ ;;^UTILITY(U,$J,358.3,31516,0)
+ ;;=28530^^125^1595^15^^^^1
+ ;;^UTILITY(U,$J,358.3,31516,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31516,1,2,0)
+ ;;=2^Closed TX of sesamiod fracture 
+ ;;^UTILITY(U,$J,358.3,31516,1,3,0)
+ ;;=3^28530
+ ;;^UTILITY(U,$J,358.3,31517,0)
+ ;;=28531^^125^1595^39^^^^1
+ ;;^UTILITY(U,$J,358.3,31517,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31517,1,2,0)
+ ;;=2^Open TX of sesamiod fracture, with or without internal fixation
+ ;;^UTILITY(U,$J,358.3,31517,1,3,0)
+ ;;=3^28531
+ ;;^UTILITY(U,$J,358.3,31518,0)
+ ;;=27760^^125^1595^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31518,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31518,1,2,0)
+ ;;=2^Closed TX of medial malleolus fracture; without manipulation 
+ ;;^UTILITY(U,$J,358.3,31518,1,3,0)
+ ;;=3^27760
+ ;;^UTILITY(U,$J,358.3,31519,0)
+ ;;=27762^^125^1595^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31519,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31519,1,2,0)
+ ;;=2^Closed TX of medial malleolus fracture; with manipulation, with or without skin or skeletal traction
+ ;;^UTILITY(U,$J,358.3,31519,1,3,0)
+ ;;=3^27762
+ ;;^UTILITY(U,$J,358.3,31520,0)
+ ;;=27766^^125^1595^55^^^^1
+ ;;^UTILITY(U,$J,358.3,31520,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31520,1,2,0)
+ ;;=2^Open/Closed TX of medial matteolus FX,w/ internal fixation
+ ;;^UTILITY(U,$J,358.3,31520,1,3,0)
+ ;;=3^27766
+ ;;^UTILITY(U,$J,358.3,31521,0)
+ ;;=27786^^125^1595^6^^^^1
+ ;;^UTILITY(U,$J,358.3,31521,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31521,1,2,0)
+ ;;=2^Closed TX of distal fibular fracture (lateral malleolus); without manipulation
+ ;;^UTILITY(U,$J,358.3,31521,1,3,0)
+ ;;=3^27786
+ ;;^UTILITY(U,$J,358.3,31522,0)
+ ;;=27788^^125^1595^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31522,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31522,1,2,0)
+ ;;=2^Closed TX of distal fibular (lateral malleolus); with manipulation
+ ;;^UTILITY(U,$J,358.3,31522,1,3,0)
+ ;;=3^27788
+ ;;^UTILITY(U,$J,358.3,31523,0)
+ ;;=27792^^125^1595^36^^^^1
+ ;;^UTILITY(U,$J,358.3,31523,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31523,1,2,0)
+ ;;=2^Open TX of distal fibular fracture (lateral malleolus), with or without internal or external fixation

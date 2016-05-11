@@ -1,130 +1,140 @@
-IBDEI0IO ; ; 19-NOV-2015
+IBDEI0IO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8389,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,8389,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,8390,0)
- ;;=C90.00^^55^538^88
- ;;^UTILITY(U,$J,358.3,8390,1,0)
+ ;;^UTILITY(U,$J,358.3,8678,1,4,0)
+ ;;=4^H20.051
+ ;;^UTILITY(U,$J,358.3,8678,2)
+ ;;=^5005150
+ ;;^UTILITY(U,$J,358.3,8679,0)
+ ;;=H20.052^^41^468^87
+ ;;^UTILITY(U,$J,358.3,8679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8390,1,3,0)
- ;;=3^Multiple myeloma not having achieved remission
- ;;^UTILITY(U,$J,358.3,8390,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,8390,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,8391,0)
- ;;=C90.01^^55^538^87
- ;;^UTILITY(U,$J,358.3,8391,1,0)
+ ;;^UTILITY(U,$J,358.3,8679,1,3,0)
+ ;;=3^Hypopyon,Left Eye
+ ;;^UTILITY(U,$J,358.3,8679,1,4,0)
+ ;;=4^H20.052
+ ;;^UTILITY(U,$J,358.3,8679,2)
+ ;;=^5005151
+ ;;^UTILITY(U,$J,358.3,8680,0)
+ ;;=H21.01^^41^468^85
+ ;;^UTILITY(U,$J,358.3,8680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8391,1,3,0)
- ;;=3^Multiple myeloma in remission
- ;;^UTILITY(U,$J,358.3,8391,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,8391,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,8392,0)
- ;;=C91.00^^55^538^3
- ;;^UTILITY(U,$J,358.3,8392,1,0)
+ ;;^UTILITY(U,$J,358.3,8680,1,3,0)
+ ;;=3^Hyphema,Right Eye
+ ;;^UTILITY(U,$J,358.3,8680,1,4,0)
+ ;;=4^H21.01
+ ;;^UTILITY(U,$J,358.3,8680,2)
+ ;;=^5005172
+ ;;^UTILITY(U,$J,358.3,8681,0)
+ ;;=H21.02^^41^468^84
+ ;;^UTILITY(U,$J,358.3,8681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8392,1,3,0)
- ;;=3^Acute lymphoblastic leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,8392,1,4,0)
- ;;=4^C91.00
- ;;^UTILITY(U,$J,358.3,8392,2)
- ;;=^5001762
- ;;^UTILITY(U,$J,358.3,8393,0)
- ;;=C91.01^^55^538^4
- ;;^UTILITY(U,$J,358.3,8393,1,0)
+ ;;^UTILITY(U,$J,358.3,8681,1,3,0)
+ ;;=3^Hyphema,Left Eye
+ ;;^UTILITY(U,$J,358.3,8681,1,4,0)
+ ;;=4^H21.02
+ ;;^UTILITY(U,$J,358.3,8681,2)
+ ;;=^5005173
+ ;;^UTILITY(U,$J,358.3,8682,0)
+ ;;=H21.261^^41^468^94
+ ;;^UTILITY(U,$J,358.3,8682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8393,1,3,0)
- ;;=3^Acute lymphoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,8393,1,4,0)
- ;;=4^C91.01
- ;;^UTILITY(U,$J,358.3,8393,2)
- ;;=^5001763
- ;;^UTILITY(U,$J,358.3,8394,0)
- ;;=C91.10^^55^538^23
- ;;^UTILITY(U,$J,358.3,8394,1,0)
+ ;;^UTILITY(U,$J,358.3,8682,1,3,0)
+ ;;=3^Iris Atrophy,Right Eye
+ ;;^UTILITY(U,$J,358.3,8682,1,4,0)
+ ;;=4^H21.261
+ ;;^UTILITY(U,$J,358.3,8682,2)
+ ;;=^5005199
+ ;;^UTILITY(U,$J,358.3,8683,0)
+ ;;=H21.262^^41^468^93
+ ;;^UTILITY(U,$J,358.3,8683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8394,1,3,0)
- ;;=3^Chronic lymphocytic leuk of B-cell type not achieve remis
- ;;^UTILITY(U,$J,358.3,8394,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,8394,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,8395,0)
- ;;=C91.11^^55^538^24
- ;;^UTILITY(U,$J,358.3,8395,1,0)
+ ;;^UTILITY(U,$J,358.3,8683,1,3,0)
+ ;;=3^Iris Atrophy,Left Eye
+ ;;^UTILITY(U,$J,358.3,8683,1,4,0)
+ ;;=4^H21.262
+ ;;^UTILITY(U,$J,358.3,8683,2)
+ ;;=^5005200
+ ;;^UTILITY(U,$J,358.3,8684,0)
+ ;;=H21.541^^41^468^138
+ ;;^UTILITY(U,$J,358.3,8684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8395,1,3,0)
- ;;=3^Chronic lymphocytic leukemia of B-cell type in remission
- ;;^UTILITY(U,$J,358.3,8395,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,8395,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,8396,0)
- ;;=C92.00^^55^538^6
- ;;^UTILITY(U,$J,358.3,8396,1,0)
+ ;;^UTILITY(U,$J,358.3,8684,1,3,0)
+ ;;=3^Posterior Synechiae,Right Eye
+ ;;^UTILITY(U,$J,358.3,8684,1,4,0)
+ ;;=4^H21.541
+ ;;^UTILITY(U,$J,358.3,8684,2)
+ ;;=^5005251
+ ;;^UTILITY(U,$J,358.3,8685,0)
+ ;;=H21.542^^41^468^137
+ ;;^UTILITY(U,$J,358.3,8685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8396,1,3,0)
- ;;=3^Acute myeloblastic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,8396,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,8396,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,8397,0)
- ;;=C92.01^^55^538^5
- ;;^UTILITY(U,$J,358.3,8397,1,0)
+ ;;^UTILITY(U,$J,358.3,8685,1,3,0)
+ ;;=3^Posterior Synechiae,Left Eye
+ ;;^UTILITY(U,$J,358.3,8685,1,4,0)
+ ;;=4^H21.542
+ ;;^UTILITY(U,$J,358.3,8685,2)
+ ;;=^5005252
+ ;;^UTILITY(U,$J,358.3,8686,0)
+ ;;=H21.511^^41^468^8
+ ;;^UTILITY(U,$J,358.3,8686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8397,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,8397,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,8397,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,8398,0)
- ;;=C92.10^^55^538^25
- ;;^UTILITY(U,$J,358.3,8398,1,0)
+ ;;^UTILITY(U,$J,358.3,8686,1,3,0)
+ ;;=3^Anterior Synechiae,Right Eye
+ ;;^UTILITY(U,$J,358.3,8686,1,4,0)
+ ;;=4^H21.511
+ ;;^UTILITY(U,$J,358.3,8686,2)
+ ;;=^5005239
+ ;;^UTILITY(U,$J,358.3,8687,0)
+ ;;=H21.512^^41^468^7
+ ;;^UTILITY(U,$J,358.3,8687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8398,1,3,0)
- ;;=3^Chronic myeloid leuk, BCR/ABL-positive, not achieve remis
- ;;^UTILITY(U,$J,358.3,8398,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,8398,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,8399,0)
- ;;=C92.11^^55^538^26
- ;;^UTILITY(U,$J,358.3,8399,1,0)
+ ;;^UTILITY(U,$J,358.3,8687,1,3,0)
+ ;;=3^Anterior Synechiae,Left Eye
+ ;;^UTILITY(U,$J,358.3,8687,1,4,0)
+ ;;=4^H21.512
+ ;;^UTILITY(U,$J,358.3,8687,2)
+ ;;=^5005240
+ ;;^UTILITY(U,$J,358.3,8688,0)
+ ;;=H21.551^^41^468^147
+ ;;^UTILITY(U,$J,358.3,8688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8399,1,3,0)
- ;;=3^Chronic myeloid leukemia, BCR/ABL-positive, in remission
- ;;^UTILITY(U,$J,358.3,8399,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,8399,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,8400,0)
- ;;=D04.9^^55^538^21
- ;;^UTILITY(U,$J,358.3,8400,1,0)
+ ;;^UTILITY(U,$J,358.3,8688,1,3,0)
+ ;;=3^Recession of Chamber Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,8688,1,4,0)
+ ;;=4^H21.551
+ ;;^UTILITY(U,$J,358.3,8688,2)
+ ;;=^5005255
+ ;;^UTILITY(U,$J,358.3,8689,0)
+ ;;=H21.552^^41^468^146
+ ;;^UTILITY(U,$J,358.3,8689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8400,1,3,0)
- ;;=3^Carcinoma in situ of skin, unspecified
- ;;^UTILITY(U,$J,358.3,8400,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,8400,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,8401,0)
- ;;=D06.9^^55^538^20
- ;;^UTILITY(U,$J,358.3,8401,1,0)
+ ;;^UTILITY(U,$J,358.3,8689,1,3,0)
+ ;;=3^Recession of Chamber Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,8689,1,4,0)
+ ;;=4^H21.552
+ ;;^UTILITY(U,$J,358.3,8689,2)
+ ;;=^5005256
+ ;;^UTILITY(U,$J,358.3,8690,0)
+ ;;=H21.81^^41^468^76
+ ;;^UTILITY(U,$J,358.3,8690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8401,1,3,0)
- ;;=3^Carcinoma in situ of cervix, unspecified
- ;;^UTILITY(U,$J,358.3,8401,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,8401,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,8402,0)
- ;;=D09.0^^55^538^19
+ ;;^UTILITY(U,$J,358.3,8690,1,3,0)
+ ;;=3^Floppy Iris Syndrome
+ ;;^UTILITY(U,$J,358.3,8690,1,4,0)
+ ;;=4^H21.81
+ ;;^UTILITY(U,$J,358.3,8690,2)
+ ;;=^5005263
+ ;;^UTILITY(U,$J,358.3,8691,0)
+ ;;=H16.042^^41^468^116
+ ;;^UTILITY(U,$J,358.3,8691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8691,1,3,0)
+ ;;=3^Marginal Corneal Ulcer,Left Eye
+ ;;^UTILITY(U,$J,358.3,8691,1,4,0)
+ ;;=4^H16.042
+ ;;^UTILITY(U,$J,358.3,8691,2)
+ ;;=^5004883
+ ;;^UTILITY(U,$J,358.3,8692,0)
+ ;;=H16.041^^41^468^117

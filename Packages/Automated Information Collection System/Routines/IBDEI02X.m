@@ -1,138 +1,144 @@
-IBDEI02X ; ; 19-NOV-2015
+IBDEI02X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,607,1,3,0)
- ;;=3^Hemiplegia Following CVD,Left Dominant Side
- ;;^UTILITY(U,$J,358.3,607,1,4,0)
- ;;=4^I69.952
- ;;^UTILITY(U,$J,358.3,607,2)
- ;;=^5133586
- ;;^UTILITY(U,$J,358.3,608,0)
- ;;=I69.953^^6^73^8
- ;;^UTILITY(U,$J,358.3,608,1,0)
+ ;;^UTILITY(U,$J,358.3,910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,608,1,3,0)
- ;;=3^Hemiplegia Following CVD,Right Nondomiant Side
- ;;^UTILITY(U,$J,358.3,608,1,4,0)
- ;;=4^I69.953
- ;;^UTILITY(U,$J,358.3,608,2)
- ;;=^5007562
- ;;^UTILITY(U,$J,358.3,609,0)
- ;;=I69.954^^6^73^6
- ;;^UTILITY(U,$J,358.3,609,1,0)
+ ;;^UTILITY(U,$J,358.3,910,1,3,0)
+ ;;=3^Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,910,1,4,0)
+ ;;=4^R60.9
+ ;;^UTILITY(U,$J,358.3,910,2)
+ ;;=^5019534
+ ;;^UTILITY(U,$J,358.3,911,0)
+ ;;=R04.0^^6^102^7
+ ;;^UTILITY(U,$J,358.3,911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,609,1,3,0)
- ;;=3^Hemiplegia Following CVD,Left Nondomiant Side
- ;;^UTILITY(U,$J,358.3,609,1,4,0)
- ;;=4^I69.954
- ;;^UTILITY(U,$J,358.3,609,2)
- ;;=^5133587
- ;;^UTILITY(U,$J,358.3,610,0)
- ;;=K21.9^^6^74^4
- ;;^UTILITY(U,$J,358.3,610,1,0)
+ ;;^UTILITY(U,$J,358.3,911,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,911,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,911,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,912,0)
+ ;;=G40.909^^6^102^6
+ ;;^UTILITY(U,$J,358.3,912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,610,1,3,0)
+ ;;^UTILITY(U,$J,358.3,912,1,3,0)
+ ;;=3^Epilepsy Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,912,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,912,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,913,0)
+ ;;=M77.9^^6^102^5
+ ;;^UTILITY(U,$J,358.3,913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,913,1,3,0)
+ ;;=3^Enthesopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,913,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,913,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,914,0)
+ ;;=M10.9^^6^103^8
+ ;;^UTILITY(U,$J,358.3,914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,914,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,914,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,914,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,915,0)
+ ;;=H40.9^^6^103^7
+ ;;^UTILITY(U,$J,358.3,915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,915,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,915,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,915,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,916,0)
+ ;;=K21.9^^6^103^1
+ ;;^UTILITY(U,$J,358.3,916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,916,1,3,0)
  ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,610,1,4,0)
+ ;;^UTILITY(U,$J,358.3,916,1,4,0)
  ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,610,2)
+ ;;^UTILITY(U,$J,358.3,916,2)
  ;;=^5008505
- ;;^UTILITY(U,$J,358.3,611,0)
- ;;=K21.0^^6^74^3
- ;;^UTILITY(U,$J,358.3,611,1,0)
+ ;;^UTILITY(U,$J,358.3,917,0)
+ ;;=K29.70^^6^103^4
+ ;;^UTILITY(U,$J,358.3,917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,611,1,3,0)
- ;;=3^GERD w/ Esophagitis
- ;;^UTILITY(U,$J,358.3,611,1,4,0)
- ;;=4^K21.0
- ;;^UTILITY(U,$J,358.3,611,2)
- ;;=^5008504
- ;;^UTILITY(U,$J,358.3,612,0)
- ;;=N40.0^^6^74^2
- ;;^UTILITY(U,$J,358.3,612,1,0)
+ ;;^UTILITY(U,$J,358.3,917,1,3,0)
+ ;;=3^Gastritis w/o Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,917,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,917,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,918,0)
+ ;;=K52.9^^6^103^5
+ ;;^UTILITY(U,$J,358.3,918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,612,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,612,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,612,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,613,0)
- ;;=B35.1^^6^74^5
- ;;^UTILITY(U,$J,358.3,613,1,0)
+ ;;^UTILITY(U,$J,358.3,918,1,3,0)
+ ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,918,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,918,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,919,0)
+ ;;=K82.9^^6^103^2
+ ;;^UTILITY(U,$J,358.3,919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,613,1,3,0)
- ;;=3^Tinea Unguium
- ;;^UTILITY(U,$J,358.3,613,1,4,0)
- ;;=4^B35.1
- ;;^UTILITY(U,$J,358.3,613,2)
- ;;=^119748
- ;;^UTILITY(U,$J,358.3,614,0)
- ;;=R54.^^6^74^1
- ;;^UTILITY(U,$J,358.3,614,1,0)
+ ;;^UTILITY(U,$J,358.3,919,1,3,0)
+ ;;=3^Gallbladder Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,919,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,919,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,920,0)
+ ;;=K92.2^^6^103^6
+ ;;^UTILITY(U,$J,358.3,920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,614,1,3,0)
- ;;=3^Age-related Physical Debility
- ;;^UTILITY(U,$J,358.3,614,1,4,0)
- ;;=4^R54.
- ;;^UTILITY(U,$J,358.3,614,2)
- ;;=^5019521
- ;;^UTILITY(U,$J,358.3,615,0)
- ;;=J44.9^^6^75^2
- ;;^UTILITY(U,$J,358.3,615,1,0)
+ ;;^UTILITY(U,$J,358.3,920,1,3,0)
+ ;;=3^Gastrointestinal Hemorrhage,Unspec
+ ;;^UTILITY(U,$J,358.3,920,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,920,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,921,0)
+ ;;=K25.9^^6^103^3
+ ;;^UTILITY(U,$J,358.3,921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,615,1,3,0)
- ;;=3^COPD,Unspec
- ;;^UTILITY(U,$J,358.3,615,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,615,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,616,0)
- ;;=J45.909^^6^75^1
- ;;^UTILITY(U,$J,358.3,616,1,0)
+ ;;^UTILITY(U,$J,358.3,921,1,3,0)
+ ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,921,1,4,0)
+ ;;=4^K25.9
+ ;;^UTILITY(U,$J,358.3,921,2)
+ ;;=^5008522
+ ;;^UTILITY(U,$J,358.3,922,0)
+ ;;=I69.959^^6^104^11
+ ;;^UTILITY(U,$J,358.3,922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,616,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,616,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,616,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,617,0)
- ;;=F02.81^^6^76^11
- ;;^UTILITY(U,$J,358.3,617,1,0)
+ ;;^UTILITY(U,$J,358.3,922,1,3,0)
+ ;;=3^Hemiplegia/Hemiparesis Following Unspec Cerebrovascular Disease
+ ;;^UTILITY(U,$J,358.3,922,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,922,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,923,0)
+ ;;=D89.2^^6^104^22
+ ;;^UTILITY(U,$J,358.3,923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,617,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,617,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,617,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,618,0)
- ;;=F02.80^^6^76^12
- ;;^UTILITY(U,$J,358.3,618,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,618,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,618,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,618,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,619,0)
- ;;=F03.91^^6^76^13
- ;;^UTILITY(U,$J,358.3,619,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,619,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,619,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,619,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,620,0)
- ;;=G31.83^^6^76^14
- ;;^UTILITY(U,$J,358.3,620,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,620,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,620,1,4,0)
- ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,923,1,3,0)
+ ;;=3^Hypergammaglobulinemia,Unspec
+ ;;^UTILITY(U,$J,358.3,923,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,923,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,924,0)
+ ;;=B19.10^^6^104^15

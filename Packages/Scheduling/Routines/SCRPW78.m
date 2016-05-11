@@ -1,5 +1,5 @@
-SCRPW78 ;BP-CIOFO/ESW - Clinic appointment availability extract ; 5/29/03 11:40am
- ;;5.3;Scheduling;**291**;AUG 13, 1993
+SCRPW78 ;BP-CIOFO/ESW - Clinic appointment availability extract ;1/5/16 12:24pm
+ ;;5.3;Scheduling;**291,645**;AUG 13, 1993;Build 7
  ;
  Q  ; Must not call this routine directly
  ;
@@ -53,8 +53,10 @@ FOOT(SDTX,SDLINE) ;
  .S SDTX(5,2)="NOTE: 'APPT TYPE' Values--'0' = user indicated 'Not next available' and calculation indicated 'Not next available' used"
  .S SDTX(5,3)="                          '1' = user indicated 'Next available' but calculation indicated next available appt not used"
  .S SDTX(5,4)="                          '2' = user indicated 'Not next available' but calculation indicated next available appointment used"
- .S SDTX(5,5)="                          '3' = user indicated 'Next available' and calculation indicated 'Next available' apppointment used"
- .S SDTX(5,6)="WAIT TIME: -------------- the difference between the 'DATE DESIRED' and 'APPT DATE/TIME'"
+ .S SDTX(5,5)="                          '3' = user indicated 'Next available' and calculation indicated 'Next available' appointment used"
+ .; SD*5.3*645 - replaced 'DATE DESIRED' with 'CID/PREFERRED DATE' when presented to the user
+ .;S SDTX(5,6)="WAIT TIME: -------------- the difference between the 'DATE DESIRED' and 'APPT DATE/TIME'"
+ .S SDTX(5,6)="WAIT TIME: -------------- the difference between the 'CID/PREFERRED DATE' and 'APPT DATE/TIME'"
  .S SDTX(5,7)="TIME TO APPT.: ----------- days from 'DATE SCHEDULED' to 'APPT DATE/TIME'"
  .S SDTX(5,8)="APPT STATUS: N - No-show,   CC - Canceled by Clinic,  NA - No Show & Auto Rebook,   CCA -Canceled by  Clinic & Auto Rebook,"
  .S SDTX(5,9)="             I - Inpatient, CP - Canceled by Patient, CPA - Canceled by Patient & Auto Rebook, NT - No Action Taken,"

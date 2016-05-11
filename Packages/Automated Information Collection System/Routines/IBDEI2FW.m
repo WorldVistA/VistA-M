@@ -1,122 +1,132 @@
-IBDEI2FW ; ; 19-NOV-2015
+IBDEI2FW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40957,1,3,0)
- ;;=3^Disp fx rt grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40957,1,4,0)
- ;;=4^S92.401K
- ;;^UTILITY(U,$J,358.3,40957,2)
- ;;=^5045274
- ;;^UTILITY(U,$J,358.3,40958,0)
- ;;=S92.355K^^189^2086^302
- ;;^UTILITY(U,$J,358.3,40958,1,0)
+ ;;^UTILITY(U,$J,358.3,41379,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,41380,0)
+ ;;=D75.1^^159^2004^180
+ ;;^UTILITY(U,$J,358.3,41380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40958,1,3,0)
- ;;=3^Nondisp fx of 5th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40958,1,4,0)
- ;;=4^S92.355K
- ;;^UTILITY(U,$J,358.3,40958,2)
- ;;=^5045260
- ;;^UTILITY(U,$J,358.3,40959,0)
- ;;=S92.354K^^189^2086^303
- ;;^UTILITY(U,$J,358.3,40959,1,0)
+ ;;^UTILITY(U,$J,358.3,41380,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,41380,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,41380,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,41381,0)
+ ;;=C90.30^^159^2004^183
+ ;;^UTILITY(U,$J,358.3,41381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40959,1,3,0)
- ;;=3^Nondisp fx of 5th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40959,1,4,0)
- ;;=4^S92.354K
- ;;^UTILITY(U,$J,358.3,40959,2)
- ;;=^5045253
- ;;^UTILITY(U,$J,358.3,40960,0)
- ;;=S92.352K^^189^2086^77
- ;;^UTILITY(U,$J,358.3,40960,1,0)
+ ;;^UTILITY(U,$J,358.3,41381,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41381,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,41381,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,41382,0)
+ ;;=D56.3^^159^2004^184
+ ;;^UTILITY(U,$J,358.3,41382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40960,1,3,0)
- ;;=3^Disp fx of 5th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40960,1,4,0)
- ;;=4^S92.352K
- ;;^UTILITY(U,$J,358.3,40960,2)
- ;;=^5045239
- ;;^UTILITY(U,$J,358.3,40961,0)
- ;;=S92.351K^^189^2086^78
- ;;^UTILITY(U,$J,358.3,40961,1,0)
+ ;;^UTILITY(U,$J,358.3,41382,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,41382,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,41382,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,41383,0)
+ ;;=D56.9^^159^2004^185
+ ;;^UTILITY(U,$J,358.3,41383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40961,1,3,0)
- ;;=3^Disp fx of 5th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40961,1,4,0)
- ;;=4^S92.351K
- ;;^UTILITY(U,$J,358.3,40961,2)
- ;;=^5045232
- ;;^UTILITY(U,$J,358.3,40962,0)
- ;;=S92.345K^^189^2086^298
- ;;^UTILITY(U,$J,358.3,40962,1,0)
+ ;;^UTILITY(U,$J,358.3,41383,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,41383,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,41383,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,41384,0)
+ ;;=M31.1^^159^2004^187
+ ;;^UTILITY(U,$J,358.3,41384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40962,1,3,0)
- ;;=3^Nondisp fx of 4th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40962,1,4,0)
- ;;=4^S92.345K
- ;;^UTILITY(U,$J,358.3,40962,2)
- ;;=^5045218
- ;;^UTILITY(U,$J,358.3,40963,0)
- ;;=S92.344K^^189^2086^299
- ;;^UTILITY(U,$J,358.3,40963,1,0)
+ ;;^UTILITY(U,$J,358.3,41384,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,41384,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,41384,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,41385,0)
+ ;;=D51.2^^159^2004^188
+ ;;^UTILITY(U,$J,358.3,41385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40963,1,3,0)
- ;;=3^Nondisp fx of 4th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40963,1,4,0)
- ;;=4^S92.344K
- ;;^UTILITY(U,$J,358.3,40963,2)
- ;;=^5045211
- ;;^UTILITY(U,$J,358.3,40964,0)
- ;;=S92.342K^^189^2086^72
- ;;^UTILITY(U,$J,358.3,40964,1,0)
+ ;;^UTILITY(U,$J,358.3,41385,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,41385,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,41385,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,41386,0)
+ ;;=D05.92^^159^2004^35
+ ;;^UTILITY(U,$J,358.3,41386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40964,1,3,0)
- ;;=3^Disp fx of 4th metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40964,1,4,0)
- ;;=4^S92.342K
- ;;^UTILITY(U,$J,358.3,40964,2)
- ;;=^5045197
- ;;^UTILITY(U,$J,358.3,40965,0)
- ;;=S92.341K^^189^2086^73
- ;;^UTILITY(U,$J,358.3,40965,1,0)
+ ;;^UTILITY(U,$J,358.3,41386,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,41386,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,41386,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,41387,0)
+ ;;=D05.91^^159^2004^37
+ ;;^UTILITY(U,$J,358.3,41387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40965,1,3,0)
- ;;=3^Disp fx of 4th metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40965,1,4,0)
- ;;=4^S92.341K
- ;;^UTILITY(U,$J,358.3,40965,2)
- ;;=^5045190
- ;;^UTILITY(U,$J,358.3,40966,0)
- ;;=S92.335K^^189^2086^294
- ;;^UTILITY(U,$J,358.3,40966,1,0)
+ ;;^UTILITY(U,$J,358.3,41387,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,41387,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,41387,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,41388,0)
+ ;;=D05.90^^159^2004^33
+ ;;^UTILITY(U,$J,358.3,41388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40966,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40966,1,4,0)
- ;;=4^S92.335K
- ;;^UTILITY(U,$J,358.3,40966,2)
- ;;=^5045176
- ;;^UTILITY(U,$J,358.3,40967,0)
- ;;=S92.334K^^189^2086^295
- ;;^UTILITY(U,$J,358.3,40967,1,0)
+ ;;^UTILITY(U,$J,358.3,41388,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,41388,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,41388,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,41389,0)
+ ;;=D51.0^^159^2004^189
+ ;;^UTILITY(U,$J,358.3,41389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40967,1,3,0)
- ;;=3^Nondisp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40967,1,4,0)
- ;;=4^S92.334K
- ;;^UTILITY(U,$J,358.3,40967,2)
- ;;=^5045169
- ;;^UTILITY(U,$J,358.3,40968,0)
- ;;=S92.332K^^189^2086^69
- ;;^UTILITY(U,$J,358.3,40968,1,0)
+ ;;^UTILITY(U,$J,358.3,41389,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,41389,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,41389,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,41390,0)
+ ;;=D51.1^^159^2004^190
+ ;;^UTILITY(U,$J,358.3,41390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40968,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40968,1,4,0)
- ;;=4^S92.332K
- ;;^UTILITY(U,$J,358.3,40968,2)
- ;;=^5045155
- ;;^UTILITY(U,$J,358.3,40969,0)
- ;;=S92.331K^^189^2086^70
+ ;;^UTILITY(U,$J,358.3,41390,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
+ ;;^UTILITY(U,$J,358.3,41390,1,4,0)
+ ;;=4^D51.1
+ ;;^UTILITY(U,$J,358.3,41390,2)
+ ;;=^5002285
+ ;;^UTILITY(U,$J,358.3,41391,0)
+ ;;=D51.9^^159^2004^192
+ ;;^UTILITY(U,$J,358.3,41391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41391,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,41391,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,41391,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,41392,0)
+ ;;=D68.0^^159^2004^194
+ ;;^UTILITY(U,$J,358.3,41392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41392,1,3,0)
+ ;;=3^Von Willebrand's Disease

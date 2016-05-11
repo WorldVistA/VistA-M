@@ -1,134 +1,134 @@
-IBDEI0T6 ; ; 19-NOV-2015
+IBDEI0T6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13417,1,4,0)
- ;;=4^H47.332
- ;;^UTILITY(U,$J,358.3,13417,2)
- ;;=^5006146
- ;;^UTILITY(U,$J,358.3,13418,0)
- ;;=H47.333^^80^760^41
- ;;^UTILITY(U,$J,358.3,13418,1,0)
+ ;;^UTILITY(U,$J,358.3,13679,2)
+ ;;=^5063716
+ ;;^UTILITY(U,$J,358.3,13680,0)
+ ;;=Z97.11^^53^594^133
+ ;;^UTILITY(U,$J,358.3,13680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13418,1,3,0)
- ;;=3^Pseudopapilledema of Optic Disc,Bilateral
- ;;^UTILITY(U,$J,358.3,13418,1,4,0)
- ;;=4^H47.333
- ;;^UTILITY(U,$J,358.3,13418,2)
- ;;=^5006147
- ;;^UTILITY(U,$J,358.3,13419,0)
- ;;=H46.9^^80^760^36
- ;;^UTILITY(U,$J,358.3,13419,1,0)
+ ;;^UTILITY(U,$J,358.3,13680,1,3,0)
+ ;;=3^Presence of Right Artificial Arm
+ ;;^UTILITY(U,$J,358.3,13680,1,4,0)
+ ;;=4^Z97.11
+ ;;^UTILITY(U,$J,358.3,13680,2)
+ ;;=^5063722
+ ;;^UTILITY(U,$J,358.3,13681,0)
+ ;;=Z97.12^^53^594^128
+ ;;^UTILITY(U,$J,358.3,13681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13419,1,3,0)
- ;;=3^Optic Neuritis,Unspec
- ;;^UTILITY(U,$J,358.3,13419,1,4,0)
- ;;=4^H46.9
- ;;^UTILITY(U,$J,358.3,13419,2)
- ;;=^5006104
- ;;^UTILITY(U,$J,358.3,13420,0)
- ;;=H47.011^^80^760^28
- ;;^UTILITY(U,$J,358.3,13420,1,0)
+ ;;^UTILITY(U,$J,358.3,13681,1,3,0)
+ ;;=3^Presence of Left Artificial Arm
+ ;;^UTILITY(U,$J,358.3,13681,1,4,0)
+ ;;=4^Z97.12
+ ;;^UTILITY(U,$J,358.3,13681,2)
+ ;;=^5063723
+ ;;^UTILITY(U,$J,358.3,13682,0)
+ ;;=Z97.13^^53^594^136
+ ;;^UTILITY(U,$J,358.3,13682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13420,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Right Eye
- ;;^UTILITY(U,$J,358.3,13420,1,4,0)
- ;;=4^H47.011
- ;;^UTILITY(U,$J,358.3,13420,2)
- ;;=^5006105
- ;;^UTILITY(U,$J,358.3,13421,0)
- ;;=H47.012^^80^760^27
- ;;^UTILITY(U,$J,358.3,13421,1,0)
+ ;;^UTILITY(U,$J,358.3,13682,1,3,0)
+ ;;=3^Presence of Right Artificial Leg
+ ;;^UTILITY(U,$J,358.3,13682,1,4,0)
+ ;;=4^Z97.13
+ ;;^UTILITY(U,$J,358.3,13682,2)
+ ;;=^5063724
+ ;;^UTILITY(U,$J,358.3,13683,0)
+ ;;=Z97.14^^53^594^131
+ ;;^UTILITY(U,$J,358.3,13683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13421,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Left Eye
- ;;^UTILITY(U,$J,358.3,13421,1,4,0)
- ;;=4^H47.012
- ;;^UTILITY(U,$J,358.3,13421,2)
- ;;=^5006106
- ;;^UTILITY(U,$J,358.3,13422,0)
- ;;=H49.881^^80^760^40
- ;;^UTILITY(U,$J,358.3,13422,1,0)
+ ;;^UTILITY(U,$J,358.3,13683,1,3,0)
+ ;;=3^Presence of Left Artificial Leg
+ ;;^UTILITY(U,$J,358.3,13683,1,4,0)
+ ;;=4^Z97.14
+ ;;^UTILITY(U,$J,358.3,13683,2)
+ ;;=^5063725
+ ;;^UTILITY(U,$J,358.3,13684,0)
+ ;;=Z97.15^^53^594^123
+ ;;^UTILITY(U,$J,358.3,13684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13422,1,3,0)
- ;;=3^Paralytic Strabismus,Right Eye
- ;;^UTILITY(U,$J,358.3,13422,1,4,0)
- ;;=4^H49.881
- ;;^UTILITY(U,$J,358.3,13422,2)
- ;;=^5006203
- ;;^UTILITY(U,$J,358.3,13423,0)
- ;;=H49.882^^80^760^39
- ;;^UTILITY(U,$J,358.3,13423,1,0)
+ ;;^UTILITY(U,$J,358.3,13684,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Arms
+ ;;^UTILITY(U,$J,358.3,13684,1,4,0)
+ ;;=4^Z97.15
+ ;;^UTILITY(U,$J,358.3,13684,2)
+ ;;=^5063726
+ ;;^UTILITY(U,$J,358.3,13685,0)
+ ;;=Z97.16^^53^594^124
+ ;;^UTILITY(U,$J,358.3,13685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13423,1,3,0)
- ;;=3^Paralytic Strabismus,Left Eye
- ;;^UTILITY(U,$J,358.3,13423,1,4,0)
- ;;=4^H49.882
- ;;^UTILITY(U,$J,358.3,13423,2)
- ;;=^5006204
- ;;^UTILITY(U,$J,358.3,13424,0)
- ;;=H49.01^^80^760^50
- ;;^UTILITY(U,$J,358.3,13424,1,0)
+ ;;^UTILITY(U,$J,358.3,13685,1,3,0)
+ ;;=3^Presence of Bilateral Artificial Legs
+ ;;^UTILITY(U,$J,358.3,13685,1,4,0)
+ ;;=4^Z97.16
+ ;;^UTILITY(U,$J,358.3,13685,2)
+ ;;=^5063727
+ ;;^UTILITY(U,$J,358.3,13686,0)
+ ;;=Z98.61^^53^594^17
+ ;;^UTILITY(U,$J,358.3,13686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13424,1,3,0)
- ;;=3^Third Oculomotor Nerve Palsy,Right Eye
- ;;^UTILITY(U,$J,358.3,13424,1,4,0)
- ;;=4^H49.01
- ;;^UTILITY(U,$J,358.3,13424,2)
- ;;=^5006180
- ;;^UTILITY(U,$J,358.3,13425,0)
- ;;=H49.02^^80^760^49
- ;;^UTILITY(U,$J,358.3,13425,1,0)
+ ;;^UTILITY(U,$J,358.3,13686,1,3,0)
+ ;;=3^Coronary Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,13686,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,13686,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,13687,0)
+ ;;=Z98.62^^53^594^73
+ ;;^UTILITY(U,$J,358.3,13687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13425,1,3,0)
- ;;=3^Third Oculomotor Nerve Palsy,Left Eye
- ;;^UTILITY(U,$J,358.3,13425,1,4,0)
- ;;=4^H49.02
- ;;^UTILITY(U,$J,358.3,13425,2)
- ;;=^5006181
- ;;^UTILITY(U,$J,358.3,13426,0)
- ;;=H49.11^^80^760^21
- ;;^UTILITY(U,$J,358.3,13426,1,0)
+ ;;^UTILITY(U,$J,358.3,13687,1,3,0)
+ ;;=3^Peripheral Vascular Angioplasty Status
+ ;;^UTILITY(U,$J,358.3,13687,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,13687,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,13688,0)
+ ;;=Z98.84^^53^594^12
+ ;;^UTILITY(U,$J,358.3,13688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13426,1,3,0)
- ;;=3^Fourth Trochlear Nerve Palsy,Right Eye
- ;;^UTILITY(U,$J,358.3,13426,1,4,0)
- ;;=4^H49.11
- ;;^UTILITY(U,$J,358.3,13426,2)
- ;;=^5006184
- ;;^UTILITY(U,$J,358.3,13427,0)
- ;;=H49.12^^80^760^20
- ;;^UTILITY(U,$J,358.3,13427,1,0)
+ ;;^UTILITY(U,$J,358.3,13688,1,3,0)
+ ;;=3^Bariatric Surgery Status
+ ;;^UTILITY(U,$J,358.3,13688,1,4,0)
+ ;;=4^Z98.84
+ ;;^UTILITY(U,$J,358.3,13688,2)
+ ;;=^5063749
+ ;;^UTILITY(U,$J,358.3,13689,0)
+ ;;=Z99.2^^53^594^141
+ ;;^UTILITY(U,$J,358.3,13689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13427,1,3,0)
- ;;=3^Fourth Trochlear Nerve Palsy,Left Eye
- ;;^UTILITY(U,$J,358.3,13427,1,4,0)
- ;;=4^H49.12
- ;;^UTILITY(U,$J,358.3,13427,2)
- ;;=^5006185
- ;;^UTILITY(U,$J,358.3,13428,0)
- ;;=H49.21^^80^760^46
- ;;^UTILITY(U,$J,358.3,13428,1,0)
+ ;;^UTILITY(U,$J,358.3,13689,1,3,0)
+ ;;=3^Renal Dialysis Dependence
+ ;;^UTILITY(U,$J,358.3,13689,1,4,0)
+ ;;=4^Z99.2
+ ;;^UTILITY(U,$J,358.3,13689,2)
+ ;;=^5063758
+ ;;^UTILITY(U,$J,358.3,13690,0)
+ ;;=Z99.81^^53^594^144
+ ;;^UTILITY(U,$J,358.3,13690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13428,1,3,0)
- ;;=3^Sixth Abducent Nerve Palsy,Right Eye
- ;;^UTILITY(U,$J,358.3,13428,1,4,0)
- ;;=4^H49.21
- ;;^UTILITY(U,$J,358.3,13428,2)
- ;;=^5006188
- ;;^UTILITY(U,$J,358.3,13429,0)
- ;;=H49.22^^80^760^45
- ;;^UTILITY(U,$J,358.3,13429,1,0)
+ ;;^UTILITY(U,$J,358.3,13690,1,3,0)
+ ;;=3^Supplemental Oxygen Dependence
+ ;;^UTILITY(U,$J,358.3,13690,1,4,0)
+ ;;=4^Z99.81
+ ;;^UTILITY(U,$J,358.3,13690,2)
+ ;;=^5063760
+ ;;^UTILITY(U,$J,358.3,13691,0)
+ ;;=Z90.79^^53^594^2
+ ;;^UTILITY(U,$J,358.3,13691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13429,1,3,0)
- ;;=3^Sixth Abducent Nerve Palsy,Left Eye
- ;;^UTILITY(U,$J,358.3,13429,1,4,0)
- ;;=4^H49.22
- ;;^UTILITY(U,$J,358.3,13429,2)
- ;;=^5006189
- ;;^UTILITY(U,$J,358.3,13430,0)
- ;;=H50.89^^80^760^47
- ;;^UTILITY(U,$J,358.3,13430,1,0)
+ ;;^UTILITY(U,$J,358.3,13691,1,3,0)
+ ;;=3^Acquired Absence of Genital Organs NEC
+ ;;^UTILITY(U,$J,358.3,13691,1,4,0)
+ ;;=4^Z90.79
+ ;;^UTILITY(U,$J,358.3,13691,2)
+ ;;=^5063596
+ ;;^UTILITY(U,$J,358.3,13692,0)
+ ;;=Z90.5^^53^594^3
+ ;;^UTILITY(U,$J,358.3,13692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13430,1,3,0)
- ;;=3^Strabismus NEC
+ ;;^UTILITY(U,$J,358.3,13692,1,3,0)
+ ;;=3^Acquired Absence of Kidney
+ ;;^UTILITY(U,$J,358.3,13692,1,4,0)
+ ;;=4^Z90.5

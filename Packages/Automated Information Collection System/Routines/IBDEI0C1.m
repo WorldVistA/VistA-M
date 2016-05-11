@@ -1,132 +1,130 @@
-IBDEI0C1 ; ; 19-NOV-2015
+IBDEI0C1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5186,1,3,0)
- ;;=3^Signs/Symptoms in Breast NEC
- ;;^UTILITY(U,$J,358.3,5186,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,5186,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,5187,0)
- ;;=N64.89^^40^355^3
- ;;^UTILITY(U,$J,358.3,5187,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5187,1,3,0)
- ;;=3^Breast Disorders NEC
- ;;^UTILITY(U,$J,358.3,5187,1,4,0)
- ;;=4^N64.89
- ;;^UTILITY(U,$J,358.3,5187,2)
- ;;=^336616
- ;;^UTILITY(U,$J,358.3,5188,0)
- ;;=Z12.39^^40^355^31
- ;;^UTILITY(U,$J,358.3,5188,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5188,1,3,0)
- ;;=3^Screening for Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,5188,1,4,0)
- ;;=4^Z12.39
- ;;^UTILITY(U,$J,358.3,5188,2)
- ;;=^5062686
- ;;^UTILITY(U,$J,358.3,5189,0)
- ;;=C50.021^^40^356^12
- ;;^UTILITY(U,$J,358.3,5189,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5189,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Right Breast
- ;;^UTILITY(U,$J,358.3,5189,1,4,0)
- ;;=4^C50.021
- ;;^UTILITY(U,$J,358.3,5189,2)
- ;;=^5001162
- ;;^UTILITY(U,$J,358.3,5190,0)
- ;;=C50.022^^40^356^11
- ;;^UTILITY(U,$J,358.3,5190,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5190,1,3,0)
- ;;=3^Malig Neop of Nipple/Areola,Left Breast
- ;;^UTILITY(U,$J,358.3,5190,1,4,0)
- ;;=4^C50.022
- ;;^UTILITY(U,$J,358.3,5190,2)
- ;;=^5001163
- ;;^UTILITY(U,$J,358.3,5191,0)
- ;;=C50.121^^40^356^5
- ;;^UTILITY(U,$J,358.3,5191,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5191,1,3,0)
- ;;=3^Malig Neop of Central Portion of Right Breast
- ;;^UTILITY(U,$J,358.3,5191,1,4,0)
- ;;=4^C50.121
- ;;^UTILITY(U,$J,358.3,5191,2)
- ;;=^5001168
- ;;^UTILITY(U,$J,358.3,5192,0)
- ;;=C50.122^^40^356^4
- ;;^UTILITY(U,$J,358.3,5192,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5192,1,3,0)
- ;;=3^Malig Neop of Central Portion of Left Breast
- ;;^UTILITY(U,$J,358.3,5192,1,4,0)
- ;;=4^C50.122
- ;;^UTILITY(U,$J,358.3,5192,2)
- ;;=^5001169
- ;;^UTILITY(U,$J,358.3,5193,0)
- ;;=C50.221^^40^356^17
- ;;^UTILITY(U,$J,358.3,5193,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5193,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5193,1,4,0)
- ;;=4^C50.221
- ;;^UTILITY(U,$J,358.3,5193,2)
- ;;=^5001174
- ;;^UTILITY(U,$J,358.3,5194,0)
- ;;=C50.222^^40^356^16
- ;;^UTILITY(U,$J,358.3,5194,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5194,1,3,0)
- ;;=3^Malig Neop of Upper-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5194,1,4,0)
- ;;=4^C50.222
- ;;^UTILITY(U,$J,358.3,5194,2)
- ;;=^5001175
- ;;^UTILITY(U,$J,358.3,5195,0)
- ;;=C50.321^^40^356^8
- ;;^UTILITY(U,$J,358.3,5195,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5195,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5195,1,4,0)
- ;;=4^C50.321
- ;;^UTILITY(U,$J,358.3,5195,2)
- ;;=^5001178
- ;;^UTILITY(U,$J,358.3,5196,0)
- ;;=C50.322^^40^356^7
- ;;^UTILITY(U,$J,358.3,5196,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5196,1,3,0)
- ;;=3^Malig Neop of Lower-Inner Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5196,1,4,0)
- ;;=4^C50.322
- ;;^UTILITY(U,$J,358.3,5196,2)
- ;;=^5133334
- ;;^UTILITY(U,$J,358.3,5197,0)
- ;;=C50.421^^40^356^19
- ;;^UTILITY(U,$J,358.3,5197,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5197,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Right Breast
- ;;^UTILITY(U,$J,358.3,5197,1,4,0)
- ;;=4^C50.421
- ;;^UTILITY(U,$J,358.3,5197,2)
- ;;=^5001180
- ;;^UTILITY(U,$J,358.3,5198,0)
- ;;=C50.422^^40^356^18
- ;;^UTILITY(U,$J,358.3,5198,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5198,1,3,0)
- ;;=3^Malig Neop of Upper-Outer Quadrant of Left Breast
- ;;^UTILITY(U,$J,358.3,5198,1,4,0)
- ;;=4^C50.422
- ;;^UTILITY(U,$J,358.3,5198,2)
- ;;=^5133336
- ;;^UTILITY(U,$J,358.3,5199,0)
- ;;=C50.521^^40^356^10
+ ;;^UTILITY(U,$J,358.3,5464,1,3,0)
+ ;;=3^Apply Lower Leg Splint
+ ;;^UTILITY(U,$J,358.3,5465,0)
+ ;;=12001^^28^354^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5465,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5465,1,2,0)
+ ;;=2^12001
+ ;;^UTILITY(U,$J,358.3,5465,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,5466,0)
+ ;;=12002^^28^354^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5466,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5466,1,2,0)
+ ;;=2^12002
+ ;;^UTILITY(U,$J,358.3,5466,1,3,0)
+ ;;=3^Simple repair; 2.6 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,5467,0)
+ ;;=12004^^28^354^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5467,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5467,1,2,0)
+ ;;=2^12004
+ ;;^UTILITY(U,$J,358.3,5467,1,3,0)
+ ;;=3^Simple repair; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,5468,0)
+ ;;=12005^^28^354^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5468,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5468,1,2,0)
+ ;;=2^12005
+ ;;^UTILITY(U,$J,358.3,5468,1,3,0)
+ ;;=3^Simple repair; 12.6 cm to 20 cm
+ ;;^UTILITY(U,$J,358.3,5469,0)
+ ;;=12006^^28^354^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5469,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5469,1,2,0)
+ ;;=2^12006
+ ;;^UTILITY(U,$J,358.3,5469,1,3,0)
+ ;;=3^Simple repair; 20.1 cm to 30 cm
+ ;;^UTILITY(U,$J,358.3,5470,0)
+ ;;=12007^^28^354^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5470,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5470,1,2,0)
+ ;;=2^12007
+ ;;^UTILITY(U,$J,358.3,5470,1,3,0)
+ ;;=3^Simple repair; over 30 cm
+ ;;^UTILITY(U,$J,358.3,5471,0)
+ ;;=12011^^28^355^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5471,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5471,1,2,0)
+ ;;=2^12011
+ ;;^UTILITY(U,$J,358.3,5471,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,5472,0)
+ ;;=12013^^28^355^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5472,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5472,1,2,0)
+ ;;=2^12013
+ ;;^UTILITY(U,$J,358.3,5472,1,3,0)
+ ;;=3^Simple repair; 2.6 cm to 5.0 cm
+ ;;^UTILITY(U,$J,358.3,5473,0)
+ ;;=12014^^28^355^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5473,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5473,1,2,0)
+ ;;=2^12014
+ ;;^UTILITY(U,$J,358.3,5473,1,3,0)
+ ;;=3^Simple repair; 5.1 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,5474,0)
+ ;;=12015^^28^355^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5474,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5474,1,2,0)
+ ;;=2^12015
+ ;;^UTILITY(U,$J,358.3,5474,1,3,0)
+ ;;=3^Simple repair; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,5475,0)
+ ;;=12016^^28^355^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5475,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5475,1,2,0)
+ ;;=2^12016
+ ;;^UTILITY(U,$J,358.3,5475,1,3,0)
+ ;;=3^Simple repair; 12.6 cm to 20 cm
+ ;;^UTILITY(U,$J,358.3,5476,0)
+ ;;=12017^^28^355^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5476,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5476,1,2,0)
+ ;;=2^12017
+ ;;^UTILITY(U,$J,358.3,5476,1,3,0)
+ ;;=3^Simple repair; 20.1 cm to 30 cm
+ ;;^UTILITY(U,$J,358.3,5477,0)
+ ;;=12018^^28^355^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5477,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5477,1,2,0)
+ ;;=2^12018
+ ;;^UTILITY(U,$J,358.3,5477,1,3,0)
+ ;;=3^Simple repair; over 30 cm
+ ;;^UTILITY(U,$J,358.3,5478,0)
+ ;;=12020^^28^355^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5478,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5478,1,2,0)
+ ;;=2^12020
+ ;;^UTILITY(U,$J,358.3,5478,1,3,0)
+ ;;=3^TRXMT SUPERFICIAL WOUND DEHISCENCE;SIMPLE
+ ;;^UTILITY(U,$J,358.3,5479,0)
+ ;;=12021^^28^355^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5479,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5479,1,2,0)
+ ;;=2^12021
+ ;;^UTILITY(U,$J,358.3,5479,1,3,0)
+ ;;=3^Trxmt Superficial Wound Dehiscence;Pcking
+ ;;^UTILITY(U,$J,358.3,5480,0)
+ ;;=99144^^28^356^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5480,1,0)
+ ;;=^358.31IA^3^2

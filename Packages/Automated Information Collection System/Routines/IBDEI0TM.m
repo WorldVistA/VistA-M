@@ -1,134 +1,132 @@
-IBDEI0TM ; ; 19-NOV-2015
+IBDEI0TM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13623,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,13624,0)
- ;;=H35.81^^80^763^82
- ;;^UTILITY(U,$J,358.3,13624,1,0)
+ ;;^UTILITY(U,$J,358.3,13889,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,13889,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,13889,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,13890,0)
+ ;;=M05.732^^53^599^147
+ ;;^UTILITY(U,$J,358.3,13890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13624,1,3,0)
- ;;=3^Retinal Edema
- ;;^UTILITY(U,$J,358.3,13624,1,4,0)
- ;;=4^H35.81
- ;;^UTILITY(U,$J,358.3,13624,2)
- ;;=^5005715
- ;;^UTILITY(U,$J,358.3,13625,0)
- ;;=H44.21^^80^763^38
- ;;^UTILITY(U,$J,358.3,13625,1,0)
+ ;;^UTILITY(U,$J,358.3,13890,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,13890,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,13890,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,13891,0)
+ ;;=M05.741^^53^599^150
+ ;;^UTILITY(U,$J,358.3,13891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13625,1,3,0)
- ;;=3^Degenerative Myopia,Right Eye
- ;;^UTILITY(U,$J,358.3,13625,1,4,0)
- ;;=4^H44.21
- ;;^UTILITY(U,$J,358.3,13625,2)
- ;;=^5005987
- ;;^UTILITY(U,$J,358.3,13626,0)
- ;;=H44.22^^80^763^37
- ;;^UTILITY(U,$J,358.3,13626,1,0)
+ ;;^UTILITY(U,$J,358.3,13891,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,13891,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,13891,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,13892,0)
+ ;;=M05.742^^53^599^143
+ ;;^UTILITY(U,$J,358.3,13892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13626,1,3,0)
- ;;=3^Degenerative Myopia,Left Eye
- ;;^UTILITY(U,$J,358.3,13626,1,4,0)
- ;;=4^H44.22
- ;;^UTILITY(U,$J,358.3,13626,2)
- ;;=^5005988
- ;;^UTILITY(U,$J,358.3,13627,0)
- ;;=H33.001^^80^763^78
- ;;^UTILITY(U,$J,358.3,13627,1,0)
+ ;;^UTILITY(U,$J,358.3,13892,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,13892,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,13892,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,13893,0)
+ ;;=M05.751^^53^599^151
+ ;;^UTILITY(U,$J,358.3,13893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13627,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Right Eye
- ;;^UTILITY(U,$J,358.3,13627,1,4,0)
- ;;=4^H33.001
- ;;^UTILITY(U,$J,358.3,13627,2)
- ;;=^5005490
- ;;^UTILITY(U,$J,358.3,13628,0)
- ;;=H33.002^^80^763^77
- ;;^UTILITY(U,$J,358.3,13628,1,0)
+ ;;^UTILITY(U,$J,358.3,13893,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,13893,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,13893,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,13894,0)
+ ;;=M05.752^^53^599^144
+ ;;^UTILITY(U,$J,358.3,13894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13628,1,3,0)
- ;;=3^Retinal Detachment w/ Retinal Break,Left Eye
- ;;^UTILITY(U,$J,358.3,13628,1,4,0)
- ;;=4^H33.002
- ;;^UTILITY(U,$J,358.3,13628,2)
- ;;=^5005491
- ;;^UTILITY(U,$J,358.3,13629,0)
- ;;=H33.011^^80^763^80
- ;;^UTILITY(U,$J,358.3,13629,1,0)
+ ;;^UTILITY(U,$J,358.3,13894,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,13894,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,13894,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,13895,0)
+ ;;=M05.761^^53^599^152
+ ;;^UTILITY(U,$J,358.3,13895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13629,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Right Eye
- ;;^UTILITY(U,$J,358.3,13629,1,4,0)
- ;;=4^H33.011
- ;;^UTILITY(U,$J,358.3,13629,2)
- ;;=^5005493
- ;;^UTILITY(U,$J,358.3,13630,0)
- ;;=H33.012^^80^763^79
- ;;^UTILITY(U,$J,358.3,13630,1,0)
+ ;;^UTILITY(U,$J,358.3,13895,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,13895,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,13895,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,13896,0)
+ ;;=M05.762^^53^599^145
+ ;;^UTILITY(U,$J,358.3,13896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13630,1,3,0)
- ;;=3^Retinal Detachment w/ Single Break,Left Eye
- ;;^UTILITY(U,$J,358.3,13630,1,4,0)
- ;;=4^H33.012
- ;;^UTILITY(U,$J,358.3,13630,2)
- ;;=^5005494
- ;;^UTILITY(U,$J,358.3,13631,0)
- ;;=H33.051^^80^763^106
- ;;^UTILITY(U,$J,358.3,13631,1,0)
+ ;;^UTILITY(U,$J,358.3,13896,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,13896,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,13896,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,13897,0)
+ ;;=M05.771^^53^599^149
+ ;;^UTILITY(U,$J,358.3,13897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13631,1,3,0)
- ;;=3^Total Retinal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,13631,1,4,0)
- ;;=4^H33.051
- ;;^UTILITY(U,$J,358.3,13631,2)
- ;;=^5005509
- ;;^UTILITY(U,$J,358.3,13632,0)
- ;;=H33.052^^80^763^105
- ;;^UTILITY(U,$J,358.3,13632,1,0)
+ ;;^UTILITY(U,$J,358.3,13897,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;^UTILITY(U,$J,358.3,13897,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,13897,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,13898,0)
+ ;;=M05.772^^53^599^142
+ ;;^UTILITY(U,$J,358.3,13898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13632,1,3,0)
- ;;=3^Total Retinal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,13632,1,4,0)
- ;;=4^H33.052
- ;;^UTILITY(U,$J,358.3,13632,2)
- ;;=^5005510
- ;;^UTILITY(U,$J,358.3,13633,0)
- ;;=H33.8^^80^763^81
- ;;^UTILITY(U,$J,358.3,13633,1,0)
+ ;;^UTILITY(U,$J,358.3,13898,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;^UTILITY(U,$J,358.3,13898,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,13898,2)
+ ;;=^5010020
+ ;;^UTILITY(U,$J,358.3,13899,0)
+ ;;=M05.79^^53^599^148
+ ;;^UTILITY(U,$J,358.3,13899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13633,1,3,0)
- ;;=3^Retinal Detachments NEC
- ;;^UTILITY(U,$J,358.3,13633,1,4,0)
- ;;=4^H33.8
- ;;^UTILITY(U,$J,358.3,13633,2)
- ;;=^5005551
- ;;^UTILITY(U,$J,358.3,13634,0)
- ;;=H33.101^^80^763^97
- ;;^UTILITY(U,$J,358.3,13634,1,0)
+ ;;^UTILITY(U,$J,358.3,13899,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Multiple Sites
+ ;;^UTILITY(U,$J,358.3,13899,1,4,0)
+ ;;=4^M05.79
+ ;;^UTILITY(U,$J,358.3,13899,2)
+ ;;=^5010022
+ ;;^UTILITY(U,$J,358.3,13900,0)
+ ;;=M06.00^^53^599^155
+ ;;^UTILITY(U,$J,358.3,13900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13634,1,3,0)
- ;;=3^Retinoschisis,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,13634,1,4,0)
- ;;=4^H33.101
- ;;^UTILITY(U,$J,358.3,13634,2)
- ;;=^5005513
- ;;^UTILITY(U,$J,358.3,13635,0)
- ;;=H33.102^^80^763^96
- ;;^UTILITY(U,$J,358.3,13635,1,0)
+ ;;^UTILITY(U,$J,358.3,13900,1,3,0)
+ ;;=3^Rheumatoid Arthritis w/o Rhematoid Factor,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13900,1,4,0)
+ ;;=4^M06.00
+ ;;^UTILITY(U,$J,358.3,13900,2)
+ ;;=^5010047
+ ;;^UTILITY(U,$J,358.3,13901,0)
+ ;;=M06.30^^53^599^158
+ ;;^UTILITY(U,$J,358.3,13901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13635,1,3,0)
- ;;=3^Retinoschisis,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,13635,1,4,0)
- ;;=4^H33.102
- ;;^UTILITY(U,$J,358.3,13635,2)
- ;;=^5005514
- ;;^UTILITY(U,$J,358.3,13636,0)
- ;;=H33.321^^80^763^99
- ;;^UTILITY(U,$J,358.3,13636,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13636,1,3,0)
- ;;=3^Round Hole,Right Eye
- ;;^UTILITY(U,$J,358.3,13636,1,4,0)
- ;;=4^H33.321
+ ;;^UTILITY(U,$J,358.3,13901,1,3,0)
+ ;;=3^Rheumatoid Nodule,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13901,1,4,0)
+ ;;=4^M06.30
+ ;;^UTILITY(U,$J,358.3,13901,2)
+ ;;=^5010096
+ ;;^UTILITY(U,$J,358.3,13902,0)
+ ;;=M06.4^^53^599^48

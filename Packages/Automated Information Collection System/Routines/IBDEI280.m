@@ -1,122 +1,136 @@
-IBDEI280 ; ; 19-NOV-2015
+IBDEI280 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37303,0)
- ;;=M61.052^^172^1879^9
- ;;^UTILITY(U,$J,358.3,37303,1,0)
+ ;;^UTILITY(U,$J,358.3,37658,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,37659,0)
+ ;;=M54.2^^140^1796^2
+ ;;^UTILITY(U,$J,358.3,37659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37303,1,3,0)
- ;;=3^Myositis ossificans traumatica, left thigh
- ;;^UTILITY(U,$J,358.3,37303,1,4,0)
- ;;=4^M61.052
- ;;^UTILITY(U,$J,358.3,37303,2)
- ;;=^5012424
- ;;^UTILITY(U,$J,358.3,37304,0)
- ;;=S72.354A^^172^1879^11
- ;;^UTILITY(U,$J,358.3,37304,1,0)
+ ;;^UTILITY(U,$J,358.3,37659,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,37659,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,37659,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,37660,0)
+ ;;=M48.00^^140^1796^17
+ ;;^UTILITY(U,$J,358.3,37660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37304,1,3,0)
- ;;=3^Nondisp commnt fx shaft of left femur, init encntr
- ;;^UTILITY(U,$J,358.3,37304,1,4,0)
- ;;=4^S72.354A
- ;;^UTILITY(U,$J,358.3,37304,2)
- ;;=^5038480
- ;;^UTILITY(U,$J,358.3,37305,0)
- ;;=M84.552A^^172^1879^15
- ;;^UTILITY(U,$J,358.3,37305,1,0)
+ ;;^UTILITY(U,$J,358.3,37660,1,3,0)
+ ;;=3^Spinal stenosis, site unspec
+ ;;^UTILITY(U,$J,358.3,37660,1,4,0)
+ ;;=4^M48.00
+ ;;^UTILITY(U,$J,358.3,37660,2)
+ ;;=^5012087
+ ;;^UTILITY(U,$J,358.3,37661,0)
+ ;;=M54.5^^140^1796^9
+ ;;^UTILITY(U,$J,358.3,37661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37305,1,3,0)
- ;;=3^Path fx in neopltc dis, left femur, init encntr
- ;;^UTILITY(U,$J,358.3,37305,1,4,0)
- ;;=4^M84.552A
- ;;^UTILITY(U,$J,358.3,37305,2)
- ;;=^5014124
- ;;^UTILITY(U,$J,358.3,37306,0)
- ;;=M84.551A^^172^1879^19
- ;;^UTILITY(U,$J,358.3,37306,1,0)
+ ;;^UTILITY(U,$J,358.3,37661,1,3,0)
+ ;;=3^Low back pain
+ ;;^UTILITY(U,$J,358.3,37661,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,37661,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,37662,0)
+ ;;=M54.31^^140^1796^16
+ ;;^UTILITY(U,$J,358.3,37662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37306,1,3,0)
- ;;=3^Path fx in oth disease, right femur, init encntr
- ;;^UTILITY(U,$J,358.3,37306,1,4,0)
- ;;=4^M84.551A
- ;;^UTILITY(U,$J,358.3,37306,2)
- ;;=^5014118
- ;;^UTILITY(U,$J,358.3,37307,0)
- ;;=M84.652A^^172^1879^21
- ;;^UTILITY(U,$J,358.3,37307,1,0)
+ ;;^UTILITY(U,$J,358.3,37662,1,3,0)
+ ;;=3^Sciatica, rt side
+ ;;^UTILITY(U,$J,358.3,37662,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,37662,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,37663,0)
+ ;;=M54.32^^140^1796^15
+ ;;^UTILITY(U,$J,358.3,37663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37307,1,3,0)
- ;;=3^Pathological fracture in oth disease, left femur, init
- ;;^UTILITY(U,$J,358.3,37307,1,4,0)
- ;;=4^M84.652A
- ;;^UTILITY(U,$J,358.3,37307,2)
- ;;=^5134003
- ;;^UTILITY(U,$J,358.3,37308,0)
- ;;=M61.051^^172^1879^10
- ;;^UTILITY(U,$J,358.3,37308,1,0)
+ ;;^UTILITY(U,$J,358.3,37663,1,3,0)
+ ;;=3^Sciatica, lft side
+ ;;^UTILITY(U,$J,358.3,37663,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,37663,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,37664,0)
+ ;;=M54.14^^140^1796^13
+ ;;^UTILITY(U,$J,358.3,37664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37308,1,3,0)
- ;;=3^Myositis ossificans traumatica, right thigh
- ;;^UTILITY(U,$J,358.3,37308,1,4,0)
- ;;=4^M61.051
- ;;^UTILITY(U,$J,358.3,37308,2)
- ;;=^5012423
- ;;^UTILITY(U,$J,358.3,37309,0)
- ;;=S72.355A^^172^1879^13
- ;;^UTILITY(U,$J,358.3,37309,1,0)
+ ;;^UTILITY(U,$J,358.3,37664,1,3,0)
+ ;;=3^Radiculopathy, thoracic region
+ ;;^UTILITY(U,$J,358.3,37664,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,37664,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,37665,0)
+ ;;=M54.15^^140^1796^14
+ ;;^UTILITY(U,$J,358.3,37665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37309,1,3,0)
- ;;=3^Nondisp commnt fx shaft of right femur, init encntr
- ;;^UTILITY(U,$J,358.3,37309,1,4,0)
- ;;=4^S72.355A
- ;;^UTILITY(U,$J,358.3,37309,2)
- ;;=^5038496
- ;;^UTILITY(U,$J,358.3,37310,0)
- ;;=M84.651A^^172^1879^22
- ;;^UTILITY(U,$J,358.3,37310,1,0)
+ ;;^UTILITY(U,$J,358.3,37665,1,3,0)
+ ;;=3^Radiculopathy, thoracolumbar region
+ ;;^UTILITY(U,$J,358.3,37665,1,4,0)
+ ;;=4^M54.15
+ ;;^UTILITY(U,$J,358.3,37665,2)
+ ;;=^5012300
+ ;;^UTILITY(U,$J,358.3,37666,0)
+ ;;=M54.16^^140^1796^11
+ ;;^UTILITY(U,$J,358.3,37666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37310,1,3,0)
- ;;=3^Pathological fracture in oth disease, right femur, init
- ;;^UTILITY(U,$J,358.3,37310,1,4,0)
- ;;=4^M84.651A
- ;;^UTILITY(U,$J,358.3,37310,2)
- ;;=^5014262
- ;;^UTILITY(U,$J,358.3,37311,0)
- ;;=M84.452A^^172^1879^23
- ;;^UTILITY(U,$J,358.3,37311,1,0)
+ ;;^UTILITY(U,$J,358.3,37666,1,3,0)
+ ;;=3^Radiculopathy, lumbar region
+ ;;^UTILITY(U,$J,358.3,37666,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,37666,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,37667,0)
+ ;;=M54.17^^140^1796^12
+ ;;^UTILITY(U,$J,358.3,37667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37311,1,3,0)
- ;;=3^Pathological fracture, left femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,37311,1,4,0)
- ;;=4^M84.452A
- ;;^UTILITY(U,$J,358.3,37311,2)
- ;;=^5013908
- ;;^UTILITY(U,$J,358.3,37312,0)
- ;;=M84.451A^^172^1879^25
- ;;^UTILITY(U,$J,358.3,37312,1,0)
+ ;;^UTILITY(U,$J,358.3,37667,1,3,0)
+ ;;=3^Radiculopathy, lumbosacral region
+ ;;^UTILITY(U,$J,358.3,37667,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,37667,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,37668,0)
+ ;;=M84.40XA^^140^1796^10
+ ;;^UTILITY(U,$J,358.3,37668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37312,1,3,0)
- ;;=3^Pathological fracture, right femur, init encntr for fracture
- ;;^UTILITY(U,$J,358.3,37312,1,4,0)
- ;;=4^M84.451A
- ;;^UTILITY(U,$J,358.3,37312,2)
- ;;=^5013902
- ;;^UTILITY(U,$J,358.3,37313,0)
- ;;=M84.352A^^172^1879^27
- ;;^UTILITY(U,$J,358.3,37313,1,0)
+ ;;^UTILITY(U,$J,358.3,37668,1,3,0)
+ ;;=3^Path fx, unspec site, init encntr for fx
+ ;;^UTILITY(U,$J,358.3,37668,1,4,0)
+ ;;=4^M84.40XA
+ ;;^UTILITY(U,$J,358.3,37668,2)
+ ;;=^5013794
+ ;;^UTILITY(U,$J,358.3,37669,0)
+ ;;=M94.0^^140^1796^3
+ ;;^UTILITY(U,$J,358.3,37669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37313,1,3,0)
- ;;=3^Stress fracture, left femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,37313,1,4,0)
- ;;=4^M84.352A
- ;;^UTILITY(U,$J,358.3,37313,2)
- ;;=^5013686
- ;;^UTILITY(U,$J,358.3,37314,0)
- ;;=M84.351A^^172^1879^29
- ;;^UTILITY(U,$J,358.3,37314,1,0)
+ ;;^UTILITY(U,$J,358.3,37669,1,3,0)
+ ;;=3^Chondrocostal junction syndrome [Tietze]
+ ;;^UTILITY(U,$J,358.3,37669,1,4,0)
+ ;;=4^M94.0
+ ;;^UTILITY(U,$J,358.3,37669,2)
+ ;;=^5015327
+ ;;^UTILITY(U,$J,358.3,37670,0)
+ ;;=G56.01^^140^1797^17
+ ;;^UTILITY(U,$J,358.3,37670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37314,1,3,0)
- ;;=3^Stress fracture, right femur, initial encounter for fracture
- ;;^UTILITY(U,$J,358.3,37314,1,4,0)
- ;;=4^M84.351A
+ ;;^UTILITY(U,$J,358.3,37670,1,3,0)
+ ;;=3^Carpal tunnel syndrome, rt upper limb
+ ;;^UTILITY(U,$J,358.3,37670,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,37670,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,37671,0)
+ ;;=G56.02^^140^1797^16
+ ;;^UTILITY(U,$J,358.3,37671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37671,1,3,0)
+ ;;=3^Carpal tunnel syndrome, lft upper limb
+ ;;^UTILITY(U,$J,358.3,37671,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,37671,2)
+ ;;=^5004019

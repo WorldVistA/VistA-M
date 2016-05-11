@@ -1,138 +1,136 @@
-IBDEI0HW ; ; 19-NOV-2015
+IBDEI0HW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8018,1,0)
+ ;;^UTILITY(U,$J,358.3,8279,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,8279,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,8280,0)
+ ;;=99244^^34^441^4
+ ;;^UTILITY(U,$J,358.3,8280,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8280,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,8280,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,8281,0)
+ ;;=99245^^34^441^5
+ ;;^UTILITY(U,$J,358.3,8281,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,8281,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,8281,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,8282,0)
+ ;;=E11.9^^35^442^30
+ ;;^UTILITY(U,$J,358.3,8282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8018,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,8018,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,8018,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,8019,0)
- ;;=H10.9^^55^534^55
- ;;^UTILITY(U,$J,358.3,8019,1,0)
+ ;;^UTILITY(U,$J,358.3,8282,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,8282,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,8282,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,8283,0)
+ ;;=E10.9^^35^442^19
+ ;;^UTILITY(U,$J,358.3,8283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8019,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,8019,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,8019,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,8020,0)
- ;;=H11.33^^55^534^52
- ;;^UTILITY(U,$J,358.3,8020,1,0)
+ ;;^UTILITY(U,$J,358.3,8283,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,8283,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,8283,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,8284,0)
+ ;;=E10.69^^35^442^18
+ ;;^UTILITY(U,$J,358.3,8284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8020,1,3,0)
- ;;=3^Conjunctival hemorrhage, bilateral
- ;;^UTILITY(U,$J,358.3,8020,1,4,0)
- ;;=4^H11.33
- ;;^UTILITY(U,$J,358.3,8020,2)
- ;;=^5004784
- ;;^UTILITY(U,$J,358.3,8021,0)
- ;;=H11.32^^55^534^53
- ;;^UTILITY(U,$J,358.3,8021,1,0)
+ ;;^UTILITY(U,$J,358.3,8284,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Other Spec Complication
+ ;;^UTILITY(U,$J,358.3,8284,1,4,0)
+ ;;=4^E10.69
+ ;;^UTILITY(U,$J,358.3,8284,2)
+ ;;=^5002624
+ ;;^UTILITY(U,$J,358.3,8285,0)
+ ;;=E11.65^^35^442^28
+ ;;^UTILITY(U,$J,358.3,8285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8021,1,3,0)
- ;;=3^Conjunctival hemorrhage, left eye
- ;;^UTILITY(U,$J,358.3,8021,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,8021,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,8022,0)
- ;;=H11.31^^55^534^54
- ;;^UTILITY(U,$J,358.3,8022,1,0)
+ ;;^UTILITY(U,$J,358.3,8285,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,8285,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,8285,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,8286,0)
+ ;;=E11.21^^35^442^21
+ ;;^UTILITY(U,$J,358.3,8286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8022,1,3,0)
- ;;=3^Conjunctival hemorrhage, right eye
- ;;^UTILITY(U,$J,358.3,8022,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,8022,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,8023,0)
- ;;=H01.002^^55^534^30
- ;;^UTILITY(U,$J,358.3,8023,1,0)
+ ;;^UTILITY(U,$J,358.3,8286,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,8286,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,8286,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,8287,0)
+ ;;=E11.22^^35^442^20
+ ;;^UTILITY(U,$J,358.3,8287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8023,1,3,0)
- ;;=3^Blepharitis Right Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,8023,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,8023,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,8024,0)
- ;;=H01.004^^55^534^29
- ;;^UTILITY(U,$J,358.3,8024,1,0)
+ ;;^UTILITY(U,$J,358.3,8287,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,8287,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,8287,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,8288,0)
+ ;;=E11.311^^35^442^22
+ ;;^UTILITY(U,$J,358.3,8288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8024,1,3,0)
- ;;=3^Blepharitis Left Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,8024,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,8024,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,8025,0)
- ;;=H01.005^^55^534^28
- ;;^UTILITY(U,$J,358.3,8025,1,0)
+ ;;^UTILITY(U,$J,358.3,8288,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,8288,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,8288,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,8289,0)
+ ;;=E11.319^^35^442^23
+ ;;^UTILITY(U,$J,358.3,8289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8025,1,3,0)
- ;;=3^Blepharitis Left Lower Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,8025,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,8025,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,8026,0)
- ;;=H01.001^^55^534^31
- ;;^UTILITY(U,$J,358.3,8026,1,0)
+ ;;^UTILITY(U,$J,358.3,8289,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,8289,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,8289,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,8290,0)
+ ;;=E11.621^^35^442^27
+ ;;^UTILITY(U,$J,358.3,8290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8026,1,3,0)
- ;;=3^Blepharitis Right Upper Eyelid,Unspec
- ;;^UTILITY(U,$J,358.3,8026,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,8026,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,8027,0)
- ;;=H05.011^^55^534^38
- ;;^UTILITY(U,$J,358.3,8027,1,0)
+ ;;^UTILITY(U,$J,358.3,8290,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,8290,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,8290,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,8291,0)
+ ;;=E11.8^^35^442^29
+ ;;^UTILITY(U,$J,358.3,8291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8027,1,3,0)
- ;;=3^Cellulitis of right orbit
- ;;^UTILITY(U,$J,358.3,8027,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,8027,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,8028,0)
- ;;=H05.012^^55^534^37
- ;;^UTILITY(U,$J,358.3,8028,1,0)
+ ;;^UTILITY(U,$J,358.3,8291,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,8291,1,4,0)
+ ;;=4^E11.8
+ ;;^UTILITY(U,$J,358.3,8291,2)
+ ;;=^5002665
+ ;;^UTILITY(U,$J,358.3,8292,0)
+ ;;=N18.6^^35^442^32
+ ;;^UTILITY(U,$J,358.3,8292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8028,1,3,0)
- ;;=3^Cellulitis of left orbit
- ;;^UTILITY(U,$J,358.3,8028,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,8028,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,8029,0)
- ;;=H05.013^^55^534^36
- ;;^UTILITY(U,$J,358.3,8029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8029,1,3,0)
- ;;=3^Cellulitis of bilateral orbits
- ;;^UTILITY(U,$J,358.3,8029,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,8029,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,8030,0)
- ;;=H55.09^^55^534^97
- ;;^UTILITY(U,$J,358.3,8030,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8030,1,3,0)
- ;;=3^Nystagmus NEC
- ;;^UTILITY(U,$J,358.3,8030,1,4,0)
- ;;=4^H55.09
- ;;^UTILITY(U,$J,358.3,8030,2)
- ;;=^87599
- ;;^UTILITY(U,$J,358.3,8031,0)
- ;;=H57.13^^55^534^98
- ;;^UTILITY(U,$J,358.3,8031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8031,1,3,0)
- ;;=3^Ocular pain, bilateral
+ ;;^UTILITY(U,$J,358.3,8292,1,3,0)
+ ;;=3^ESRD
+ ;;^UTILITY(U,$J,358.3,8292,1,4,0)
+ ;;=4^N18.6
+ ;;^UTILITY(U,$J,358.3,8292,2)
+ ;;=^303986
+ ;;^UTILITY(U,$J,358.3,8293,0)
+ ;;=N18.9^^35^442^15

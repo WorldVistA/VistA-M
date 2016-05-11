@@ -1,134 +1,130 @@
-IBDEI1Z1 ; ; 19-NOV-2015
+IBDEI1Z1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33010,1,0)
+ ;;^UTILITY(U,$J,358.3,33451,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,33451,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,33452,0)
+ ;;=I70.744^^131^1669^77
+ ;;^UTILITY(U,$J,358.3,33452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33010,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,33010,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,33010,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,33011,0)
- ;;=Z62.820^^146^1603^4
- ;;^UTILITY(U,$J,358.3,33011,1,0)
+ ;;^UTILITY(U,$J,358.3,33452,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,33452,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,33452,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,33453,0)
+ ;;=I70.745^^131^1669^78
+ ;;^UTILITY(U,$J,358.3,33453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33011,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,33011,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,33011,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,33012,0)
- ;;=Z62.891^^146^1603^6
- ;;^UTILITY(U,$J,358.3,33012,1,0)
+ ;;^UTILITY(U,$J,358.3,33453,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,33453,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,33453,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,33454,0)
+ ;;=I83.009^^131^1669^287
+ ;;^UTILITY(U,$J,358.3,33454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33012,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,33012,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,33012,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,33013,0)
- ;;=Z62.898^^146^1603^1
- ;;^UTILITY(U,$J,358.3,33013,1,0)
+ ;;^UTILITY(U,$J,358.3,33454,1,3,0)
+ ;;=3^Varicose Veins of Lower Extremity w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,33454,1,4,0)
+ ;;=4^I83.009
+ ;;^UTILITY(U,$J,358.3,33454,2)
+ ;;=^5007972
+ ;;^UTILITY(U,$J,358.3,33455,0)
+ ;;=H65.03^^131^1670^3
+ ;;^UTILITY(U,$J,358.3,33455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33013,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,33013,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,33013,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,33014,0)
- ;;=Z63.0^^146^1603^5
- ;;^UTILITY(U,$J,358.3,33014,1,0)
+ ;;^UTILITY(U,$J,358.3,33455,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,33455,1,4,0)
+ ;;=4^H65.03
+ ;;^UTILITY(U,$J,358.3,33455,2)
+ ;;=^5006572
+ ;;^UTILITY(U,$J,358.3,33456,0)
+ ;;=H65.01^^131^1670^5
+ ;;^UTILITY(U,$J,358.3,33456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33014,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,33014,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,33014,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,33015,0)
- ;;=Z63.5^^146^1603^2
- ;;^UTILITY(U,$J,358.3,33015,1,0)
+ ;;^UTILITY(U,$J,358.3,33456,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,33456,1,4,0)
+ ;;=4^H65.01
+ ;;^UTILITY(U,$J,358.3,33456,2)
+ ;;=^5006570
+ ;;^UTILITY(U,$J,358.3,33457,0)
+ ;;=H65.23^^131^1670^15
+ ;;^UTILITY(U,$J,358.3,33457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33015,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,33015,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,33015,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,33016,0)
- ;;=Z63.8^^146^1603^3
- ;;^UTILITY(U,$J,358.3,33016,1,0)
+ ;;^UTILITY(U,$J,358.3,33457,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Bilateral
+ ;;^UTILITY(U,$J,358.3,33457,1,4,0)
+ ;;=4^H65.23
+ ;;^UTILITY(U,$J,358.3,33457,2)
+ ;;=^5006596
+ ;;^UTILITY(U,$J,358.3,33458,0)
+ ;;=H65.22^^131^1670^16
+ ;;^UTILITY(U,$J,358.3,33458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33016,1,3,0)
- ;;=3^High Exporessed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,33016,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,33016,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,33017,0)
- ;;=Z63.4^^146^1603^7
- ;;^UTILITY(U,$J,358.3,33017,1,0)
+ ;;^UTILITY(U,$J,358.3,33458,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,33458,1,4,0)
+ ;;=4^H65.22
+ ;;^UTILITY(U,$J,358.3,33458,2)
+ ;;=^5006595
+ ;;^UTILITY(U,$J,358.3,33459,0)
+ ;;=H65.21^^131^1670^17
+ ;;^UTILITY(U,$J,358.3,33459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33017,1,3,0)
- ;;=3^Uncomplicated Bereavement
- ;;^UTILITY(U,$J,358.3,33017,1,4,0)
- ;;=4^Z63.4
- ;;^UTILITY(U,$J,358.3,33017,2)
- ;;=^5063168
- ;;^UTILITY(U,$J,358.3,33018,0)
- ;;=F20.9^^146^1604^5
- ;;^UTILITY(U,$J,358.3,33018,1,0)
+ ;;^UTILITY(U,$J,358.3,33459,1,3,0)
+ ;;=3^Chronic Serous Otitis Media,Right Ear
+ ;;^UTILITY(U,$J,358.3,33459,1,4,0)
+ ;;=4^H65.21
+ ;;^UTILITY(U,$J,358.3,33459,2)
+ ;;=^5006594
+ ;;^UTILITY(U,$J,358.3,33460,0)
+ ;;=H66.012^^131^1670^6
+ ;;^UTILITY(U,$J,358.3,33460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33018,1,3,0)
- ;;=3^Schizophrenia
- ;;^UTILITY(U,$J,358.3,33018,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,33018,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,33019,0)
- ;;=F20.81^^146^1604^6
- ;;^UTILITY(U,$J,358.3,33019,1,0)
+ ;;^UTILITY(U,$J,358.3,33460,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Left Ear
+ ;;^UTILITY(U,$J,358.3,33460,1,4,0)
+ ;;=4^H66.012
+ ;;^UTILITY(U,$J,358.3,33460,2)
+ ;;=^5133534
+ ;;^UTILITY(U,$J,358.3,33461,0)
+ ;;=H66.011^^131^1670^7
+ ;;^UTILITY(U,$J,358.3,33461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33019,1,3,0)
- ;;=3^Schizophreniform Disorder
- ;;^UTILITY(U,$J,358.3,33019,1,4,0)
- ;;=4^F20.81
- ;;^UTILITY(U,$J,358.3,33019,2)
- ;;=^5003474
- ;;^UTILITY(U,$J,358.3,33020,0)
- ;;=F22.^^146^1604^2
- ;;^UTILITY(U,$J,358.3,33020,1,0)
+ ;;^UTILITY(U,$J,358.3,33461,1,3,0)
+ ;;=3^Acute Suppr Otitis Media w/ Spon Rupt Ear Drum,Right Ear
+ ;;^UTILITY(U,$J,358.3,33461,1,4,0)
+ ;;=4^H66.011
+ ;;^UTILITY(U,$J,358.3,33461,2)
+ ;;=^5006621
+ ;;^UTILITY(U,$J,358.3,33462,0)
+ ;;=H66.91^^131^1670^36
+ ;;^UTILITY(U,$J,358.3,33462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33020,1,3,0)
- ;;=3^Delusional Disorder
- ;;^UTILITY(U,$J,358.3,33020,1,4,0)
- ;;=4^F22.
- ;;^UTILITY(U,$J,358.3,33020,2)
- ;;=^5003478
- ;;^UTILITY(U,$J,358.3,33021,0)
- ;;=F23.^^146^1604^1
- ;;^UTILITY(U,$J,358.3,33021,1,0)
+ ;;^UTILITY(U,$J,358.3,33462,1,3,0)
+ ;;=3^Otitis Media,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,33462,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,33462,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,33463,0)
+ ;;=H66.92^^131^1670^35
+ ;;^UTILITY(U,$J,358.3,33463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33021,1,3,0)
- ;;=3^Brief Psychotic Disorder
- ;;^UTILITY(U,$J,358.3,33021,1,4,0)
- ;;=4^F23.
- ;;^UTILITY(U,$J,358.3,33021,2)
- ;;=^5003479
- ;;^UTILITY(U,$J,358.3,33022,0)
- ;;=F25.0^^146^1604^3
- ;;^UTILITY(U,$J,358.3,33022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33022,1,3,0)
- ;;=3^Schizoaffective Disorder,Bipolar Type
- ;;^UTILITY(U,$J,358.3,33022,1,4,0)
- ;;=4^F25.0
- ;;^UTILITY(U,$J,358.3,33022,2)
- ;;=^5003480
- ;;^UTILITY(U,$J,358.3,33023,0)
- ;;=F25.1^^146^1604^4
+ ;;^UTILITY(U,$J,358.3,33463,1,3,0)
+ ;;=3^Otitis Media,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,33463,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,33463,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,33464,0)
+ ;;=H66.93^^131^1670^34

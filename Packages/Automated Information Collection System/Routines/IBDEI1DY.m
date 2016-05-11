@@ -1,138 +1,128 @@
-IBDEI1DY ; ; 19-NOV-2015
+IBDEI1DY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23114,1,0)
+ ;;^UTILITY(U,$J,358.3,23545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23114,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Right
- ;;^UTILITY(U,$J,358.3,23114,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,23114,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,23115,0)
- ;;=C34.92^^110^1097^11
- ;;^UTILITY(U,$J,358.3,23115,1,0)
+ ;;^UTILITY(U,$J,358.3,23545,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23545,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,23545,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,23546,0)
+ ;;=V00.812D^^87^1000^134
+ ;;^UTILITY(U,$J,358.3,23546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23115,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Left
- ;;^UTILITY(U,$J,358.3,23115,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,23115,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,23116,0)
- ;;=C18.9^^110^1097^13
- ;;^UTILITY(U,$J,358.3,23116,1,0)
+ ;;^UTILITY(U,$J,358.3,23546,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23546,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,23546,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,23547,0)
+ ;;=V00.818A^^87^1000^131
+ ;;^UTILITY(U,$J,358.3,23547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23116,1,3,0)
- ;;=3^Malig Neop Colon,Unspec
- ;;^UTILITY(U,$J,358.3,23116,1,4,0)
- ;;=4^C18.9
- ;;^UTILITY(U,$J,358.3,23116,2)
- ;;=^5000929
- ;;^UTILITY(U,$J,358.3,23117,0)
- ;;=C22.0^^110^1097^3
- ;;^UTILITY(U,$J,358.3,23117,1,0)
+ ;;^UTILITY(U,$J,358.3,23547,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23547,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,23547,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,23548,0)
+ ;;=V00.818D^^87^1000^132
+ ;;^UTILITY(U,$J,358.3,23548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23117,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,23117,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,23117,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,23118,0)
- ;;=C22.2^^110^1097^1
- ;;^UTILITY(U,$J,358.3,23118,1,0)
+ ;;^UTILITY(U,$J,358.3,23548,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23548,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,23548,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,23549,0)
+ ;;=V00.831A^^87^1000^43
+ ;;^UTILITY(U,$J,358.3,23549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23118,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,23118,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,23118,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,23119,0)
- ;;=C22.7^^110^1097^2
- ;;^UTILITY(U,$J,358.3,23119,1,0)
+ ;;^UTILITY(U,$J,358.3,23549,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23549,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,23549,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,23550,0)
+ ;;=V00.831D^^87^1000^44
+ ;;^UTILITY(U,$J,358.3,23550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23119,1,3,0)
- ;;=3^Liver Carcinoma,Other
- ;;^UTILITY(U,$J,358.3,23119,1,4,0)
- ;;=4^C22.7
- ;;^UTILITY(U,$J,358.3,23119,2)
- ;;=^5000938
- ;;^UTILITY(U,$J,358.3,23120,0)
- ;;=C22.8^^110^1097^19
- ;;^UTILITY(U,$J,358.3,23120,1,0)
+ ;;^UTILITY(U,$J,358.3,23550,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23550,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,23550,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,23551,0)
+ ;;=V00.832A^^87^1000^95
+ ;;^UTILITY(U,$J,358.3,23551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23120,1,3,0)
- ;;=3^Malig Neop Liver,Primary,Unspec Type
- ;;^UTILITY(U,$J,358.3,23120,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,23120,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,23121,0)
- ;;=C25.9^^110^1097^21
- ;;^UTILITY(U,$J,358.3,23121,1,0)
+ ;;^UTILITY(U,$J,358.3,23551,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23551,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,23551,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,23552,0)
+ ;;=V00.832D^^87^1000^96
+ ;;^UTILITY(U,$J,358.3,23552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23121,1,3,0)
- ;;=3^Malig Neop Pancreas,Unspec
- ;;^UTILITY(U,$J,358.3,23121,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,23121,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,23122,0)
- ;;=C15.9^^110^1097^14
- ;;^UTILITY(U,$J,358.3,23122,1,0)
+ ;;^UTILITY(U,$J,358.3,23552,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23552,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,23552,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,23553,0)
+ ;;=V00.838A^^87^1000^93
+ ;;^UTILITY(U,$J,358.3,23553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23122,1,3,0)
- ;;=3^Malig Neop Esophagus,Unspec
- ;;^UTILITY(U,$J,358.3,23122,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,23122,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,23123,0)
- ;;=C67.9^^110^1097^7
- ;;^UTILITY(U,$J,358.3,23123,1,0)
+ ;;^UTILITY(U,$J,358.3,23553,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23553,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,23553,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,23554,0)
+ ;;=V00.838D^^87^1000^94
+ ;;^UTILITY(U,$J,358.3,23554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23123,1,3,0)
- ;;=3^Malig Neop Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,23123,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,23123,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,23124,0)
- ;;=C76.0^^110^1097^15
- ;;^UTILITY(U,$J,358.3,23124,1,0)
+ ;;^UTILITY(U,$J,358.3,23554,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23554,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,23554,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,23555,0)
+ ;;=V00.891A^^87^1000^57
+ ;;^UTILITY(U,$J,358.3,23555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23124,1,3,0)
- ;;=3^Malig Neop Head,Face & Neck
- ;;^UTILITY(U,$J,358.3,23124,1,4,0)
- ;;=4^C76.0
- ;;^UTILITY(U,$J,358.3,23124,2)
- ;;=^5001324
- ;;^UTILITY(U,$J,358.3,23125,0)
- ;;=C64.1^^110^1097^17
- ;;^UTILITY(U,$J,358.3,23125,1,0)
+ ;;^UTILITY(U,$J,358.3,23555,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23555,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,23555,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,23556,0)
+ ;;=V00.891D^^87^1000^58
+ ;;^UTILITY(U,$J,358.3,23556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23125,1,3,0)
- ;;=3^Malig Neop Kidney,Right
- ;;^UTILITY(U,$J,358.3,23125,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,23125,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,23126,0)
- ;;=C64.2^^110^1097^16
- ;;^UTILITY(U,$J,358.3,23126,1,0)
+ ;;^UTILITY(U,$J,358.3,23556,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23556,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,23556,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,23557,0)
+ ;;=V00.892A^^87^1000^99
+ ;;^UTILITY(U,$J,358.3,23557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23126,1,3,0)
- ;;=3^Malig Neop Kidney,Left
- ;;^UTILITY(U,$J,358.3,23126,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,23126,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,23127,0)
- ;;=C71.9^^110^1097^8
- ;;^UTILITY(U,$J,358.3,23127,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23127,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,23557,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr

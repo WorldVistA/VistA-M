@@ -1,120 +1,132 @@
-IBDEI258 ; ; 19-NOV-2015
+IBDEI258 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35956,1,3,0)
- ;;=3^Maternal care for excess fetal growth, first tri, fetus 5
- ;;^UTILITY(U,$J,358.3,35956,1,4,0)
- ;;=4^O36.61X5
- ;;^UTILITY(U,$J,358.3,35956,2)
- ;;=^5017038
- ;;^UTILITY(U,$J,358.3,35957,0)
- ;;=O36.62X0^^166^1827^98
- ;;^UTILITY(U,$J,358.3,35957,1,0)
+ ;;^UTILITY(U,$J,358.3,36366,1,4,0)
+ ;;=4^C39.9
+ ;;^UTILITY(U,$J,358.3,36366,2)
+ ;;=^5000972
+ ;;^UTILITY(U,$J,358.3,36367,0)
+ ;;=C34.2^^137^1759^14
+ ;;^UTILITY(U,$J,358.3,36367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35957,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, unsp
- ;;^UTILITY(U,$J,358.3,35957,1,4,0)
- ;;=4^O36.62X0
- ;;^UTILITY(U,$J,358.3,35957,2)
- ;;=^5017040
- ;;^UTILITY(U,$J,358.3,35958,0)
- ;;=O36.62X1^^166^1827^99
- ;;^UTILITY(U,$J,358.3,35958,1,0)
+ ;;^UTILITY(U,$J,358.3,36367,1,3,0)
+ ;;=3^Malig Neop Middle Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36367,1,4,0)
+ ;;=4^C34.2
+ ;;^UTILITY(U,$J,358.3,36367,2)
+ ;;=^267137
+ ;;^UTILITY(U,$J,358.3,36368,0)
+ ;;=C34.82^^137^1759^15
+ ;;^UTILITY(U,$J,358.3,36368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35958,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35958,1,4,0)
- ;;=4^O36.62X1
- ;;^UTILITY(U,$J,358.3,35958,2)
- ;;=^5017041
- ;;^UTILITY(U,$J,358.3,35959,0)
- ;;=O36.62X2^^166^1827^100
- ;;^UTILITY(U,$J,358.3,35959,1,0)
+ ;;^UTILITY(U,$J,358.3,36368,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Left Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36368,1,4,0)
+ ;;=4^C34.82
+ ;;^UTILITY(U,$J,358.3,36368,2)
+ ;;=^5000965
+ ;;^UTILITY(U,$J,358.3,36369,0)
+ ;;=C34.81^^137^1759^16
+ ;;^UTILITY(U,$J,358.3,36369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35959,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35959,1,4,0)
- ;;=4^O36.62X2
- ;;^UTILITY(U,$J,358.3,35959,2)
- ;;=^5017042
- ;;^UTILITY(U,$J,358.3,35960,0)
- ;;=O36.62X3^^166^1827^101
- ;;^UTILITY(U,$J,358.3,35960,1,0)
+ ;;^UTILITY(U,$J,358.3,36369,1,3,0)
+ ;;=3^Malig Neop Ovrlp Sites Right Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36369,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,36369,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,36370,0)
+ ;;=C38.4^^137^1759^17
+ ;;^UTILITY(U,$J,358.3,36370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35960,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35960,1,4,0)
- ;;=4^O36.62X3
- ;;^UTILITY(U,$J,358.3,35960,2)
- ;;=^5017043
- ;;^UTILITY(U,$J,358.3,35961,0)
- ;;=O36.62X4^^166^1827^102
- ;;^UTILITY(U,$J,358.3,35961,1,0)
+ ;;^UTILITY(U,$J,358.3,36370,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,36370,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,36370,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,36371,0)
+ ;;=C34.01^^137^1759^20
+ ;;^UTILITY(U,$J,358.3,36371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35961,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 4
- ;;^UTILITY(U,$J,358.3,35961,1,4,0)
- ;;=4^O36.62X4
- ;;^UTILITY(U,$J,358.3,35961,2)
- ;;=^5017044
- ;;^UTILITY(U,$J,358.3,35962,0)
- ;;=O36.62X5^^166^1827^103
- ;;^UTILITY(U,$J,358.3,35962,1,0)
+ ;;^UTILITY(U,$J,358.3,36371,1,3,0)
+ ;;=3^Malig Neop Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,36371,1,4,0)
+ ;;=4^C34.01
+ ;;^UTILITY(U,$J,358.3,36371,2)
+ ;;=^5000958
+ ;;^UTILITY(U,$J,358.3,36372,0)
+ ;;=C34.92^^137^1759^9
+ ;;^UTILITY(U,$J,358.3,36372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35962,1,3,0)
- ;;=3^Maternal care for excess fetal growth, second tri, fetus 5
- ;;^UTILITY(U,$J,358.3,35962,1,4,0)
- ;;=4^O36.62X5
- ;;^UTILITY(U,$J,358.3,35962,2)
- ;;=^5017045
- ;;^UTILITY(U,$J,358.3,35963,0)
- ;;=O36.63X0^^166^1827^104
- ;;^UTILITY(U,$J,358.3,35963,1,0)
+ ;;^UTILITY(U,$J,358.3,36372,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,36372,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,36372,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,36373,0)
+ ;;=C34.91^^137^1759^18
+ ;;^UTILITY(U,$J,358.3,36373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35963,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third trimester, unsp
- ;;^UTILITY(U,$J,358.3,35963,1,4,0)
- ;;=4^O36.63X0
- ;;^UTILITY(U,$J,358.3,35963,2)
- ;;=^5017047
- ;;^UTILITY(U,$J,358.3,35964,0)
- ;;=O36.63X1^^166^1827^105
- ;;^UTILITY(U,$J,358.3,35964,1,0)
+ ;;^UTILITY(U,$J,358.3,36373,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,36373,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,36373,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,36374,0)
+ ;;=C34.12^^137^1759^12
+ ;;^UTILITY(U,$J,358.3,36374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35964,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 1
- ;;^UTILITY(U,$J,358.3,35964,1,4,0)
- ;;=4^O36.63X1
- ;;^UTILITY(U,$J,358.3,35964,2)
- ;;=^5017048
- ;;^UTILITY(U,$J,358.3,35965,0)
- ;;=O36.63X2^^166^1827^106
- ;;^UTILITY(U,$J,358.3,35965,1,0)
+ ;;^UTILITY(U,$J,358.3,36374,1,3,0)
+ ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36374,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,36374,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,36375,0)
+ ;;=C34.11^^137^1759^21
+ ;;^UTILITY(U,$J,358.3,36375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35965,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 2
- ;;^UTILITY(U,$J,358.3,35965,1,4,0)
- ;;=4^O36.63X2
- ;;^UTILITY(U,$J,358.3,35965,2)
- ;;=^5017049
- ;;^UTILITY(U,$J,358.3,35966,0)
- ;;=O36.63X3^^166^1827^107
- ;;^UTILITY(U,$J,358.3,35966,1,0)
+ ;;^UTILITY(U,$J,358.3,36375,1,3,0)
+ ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,36375,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,36375,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,36376,0)
+ ;;=C39.0^^137^1759^22
+ ;;^UTILITY(U,$J,358.3,36376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35966,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 3
- ;;^UTILITY(U,$J,358.3,35966,1,4,0)
- ;;=4^O36.63X3
- ;;^UTILITY(U,$J,358.3,35966,2)
- ;;=^5017050
- ;;^UTILITY(U,$J,358.3,35967,0)
- ;;=O36.63X4^^166^1827^108
- ;;^UTILITY(U,$J,358.3,35967,1,0)
+ ;;^UTILITY(U,$J,358.3,36376,1,3,0)
+ ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,36376,1,4,0)
+ ;;=4^C39.0
+ ;;^UTILITY(U,$J,358.3,36376,2)
+ ;;=^5000971
+ ;;^UTILITY(U,$J,358.3,36377,0)
+ ;;=C78.02^^137^1759^23
+ ;;^UTILITY(U,$J,358.3,36377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35967,1,3,0)
- ;;=3^Maternal care for excess fetal growth, third tri, fetus 4
- ;;^UTILITY(U,$J,358.3,35967,1,4,0)
- ;;=4^O36.63X4
- ;;^UTILITY(U,$J,358.3,35967,2)
- ;;=^5017051
+ ;;^UTILITY(U,$J,358.3,36377,1,3,0)
+ ;;=3^Secondary Malig Neop Left Lung
+ ;;^UTILITY(U,$J,358.3,36377,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,36377,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,36378,0)
+ ;;=C78.01^^137^1759^24
+ ;;^UTILITY(U,$J,358.3,36378,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36378,1,3,0)
+ ;;=3^Secondary Malig Neop Right Lung
+ ;;^UTILITY(U,$J,358.3,36378,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,36378,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,36379,0)
+ ;;=I50.41^^137^1760^1
+ ;;^UTILITY(U,$J,358.3,36379,1,0)
+ ;;=^358.31IA^4^2

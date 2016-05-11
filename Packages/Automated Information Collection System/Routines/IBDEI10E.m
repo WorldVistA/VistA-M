@@ -1,136 +1,130 @@
-IBDEI10E ; ; 19-NOV-2015
+IBDEI10E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16785,1,4,0)
- ;;=4^N71.9
- ;;^UTILITY(U,$J,358.3,16785,2)
- ;;=^5015811
- ;;^UTILITY(U,$J,358.3,16786,0)
- ;;=N76.89^^88^853^109
- ;;^UTILITY(U,$J,358.3,16786,1,0)
+ ;;^UTILITY(U,$J,358.3,17116,0)
+ ;;=Z69.011^^70^809^12
+ ;;^UTILITY(U,$J,358.3,17116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16786,1,3,0)
- ;;=3^Vagina/Vulva Inflammation,Other Spec
- ;;^UTILITY(U,$J,358.3,16786,1,4,0)
- ;;=4^N76.89
- ;;^UTILITY(U,$J,358.3,16786,2)
- ;;=^5015833
- ;;^UTILITY(U,$J,358.3,16787,0)
- ;;=N89.9^^88^853^108
- ;;^UTILITY(U,$J,358.3,16787,1,0)
+ ;;^UTILITY(U,$J,358.3,17116,1,3,0)
+ ;;=3^Encntr for mntl hlth serv for perp of prntl child abuse
+ ;;^UTILITY(U,$J,358.3,17116,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,17116,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,17117,0)
+ ;;=Z91.120^^70^809^38
+ ;;^UTILITY(U,$J,358.3,17117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16787,1,3,0)
- ;;=3^Vagina Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,16787,1,4,0)
- ;;=4^N89.9
- ;;^UTILITY(U,$J,358.3,16787,2)
- ;;=^5015890
- ;;^UTILITY(U,$J,358.3,16788,0)
- ;;=N76.0^^88^853^110
- ;;^UTILITY(U,$J,358.3,16788,1,0)
+ ;;^UTILITY(U,$J,358.3,17117,1,3,0)
+ ;;=3^Pt's intent underdose of meds d/t financial hardship
+ ;;^UTILITY(U,$J,358.3,17117,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,17117,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,17118,0)
+ ;;=Z91.128^^70^809^39
+ ;;^UTILITY(U,$J,358.3,17118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16788,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,16788,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,16788,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,16789,0)
- ;;=N76.1^^88^853^111
- ;;^UTILITY(U,$J,358.3,16789,1,0)
+ ;;^UTILITY(U,$J,358.3,17118,1,3,0)
+ ;;=3^Pt's intent underdose of meds d/t oth reasons
+ ;;^UTILITY(U,$J,358.3,17118,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,17118,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,17119,0)
+ ;;=Z63.71^^70^809^44
+ ;;^UTILITY(U,$J,358.3,17119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16789,1,3,0)
- ;;=3^Vaginitis,Subacute/Chronic
- ;;^UTILITY(U,$J,358.3,16789,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,16789,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,16790,0)
- ;;=N90.9^^88^853^112
- ;;^UTILITY(U,$J,358.3,16790,1,0)
+ ;;^UTILITY(U,$J,358.3,17119,1,3,0)
+ ;;=3^Stress on family d/t rtrn of family member from deployment
+ ;;^UTILITY(U,$J,358.3,17119,1,4,0)
+ ;;=4^Z63.71
+ ;;^UTILITY(U,$J,358.3,17119,2)
+ ;;=^5063171
+ ;;^UTILITY(U,$J,358.3,17120,0)
+ ;;=Z03.89^^70^810^1
+ ;;^UTILITY(U,$J,358.3,17120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16790,1,3,0)
- ;;=3^Vulva/Perineum Noninflammaotory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,16790,1,4,0)
- ;;=4^N90.9
- ;;^UTILITY(U,$J,358.3,16790,2)
- ;;=^5015901
- ;;^UTILITY(U,$J,358.3,16791,0)
- ;;=A49.9^^88^854^1
- ;;^UTILITY(U,$J,358.3,16791,1,0)
+ ;;^UTILITY(U,$J,358.3,17120,1,3,0)
+ ;;=3^Observation for Suspected Diseases & Condition Ruled Out
+ ;;^UTILITY(U,$J,358.3,17120,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,17120,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,17121,0)
+ ;;=E11.9^^70^811^11
+ ;;^UTILITY(U,$J,358.3,17121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16791,1,3,0)
- ;;=3^Infection,Bacterial,Unspec
- ;;^UTILITY(U,$J,358.3,16791,1,4,0)
- ;;=4^A49.9
- ;;^UTILITY(U,$J,358.3,16791,2)
- ;;=^5000241
- ;;^UTILITY(U,$J,358.3,16792,0)
- ;;=B37.9^^88^854^2
- ;;^UTILITY(U,$J,358.3,16792,1,0)
+ ;;^UTILITY(U,$J,358.3,17121,1,3,0)
+ ;;=3^Type 2 DM w/o Complications
+ ;;^UTILITY(U,$J,358.3,17121,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,17121,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,17122,0)
+ ;;=E11.65^^70^811^9
+ ;;^UTILITY(U,$J,358.3,17122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16792,1,3,0)
- ;;=3^Infection,Candidiasis,Unspec
- ;;^UTILITY(U,$J,358.3,16792,1,4,0)
- ;;=4^B37.9
- ;;^UTILITY(U,$J,358.3,16792,2)
- ;;=^5000624
- ;;^UTILITY(U,$J,358.3,16793,0)
- ;;=Z20.9^^88^854^3
- ;;^UTILITY(U,$J,358.3,16793,1,0)
+ ;;^UTILITY(U,$J,358.3,17122,1,3,0)
+ ;;=3^Type 2 DM w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,17122,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,17122,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,17123,0)
+ ;;=E10.9^^70^811^6
+ ;;^UTILITY(U,$J,358.3,17123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16793,1,3,0)
- ;;=3^Infection,Communicable Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16793,1,4,0)
- ;;=4^Z20.9
- ;;^UTILITY(U,$J,358.3,16793,2)
- ;;=^5062776
- ;;^UTILITY(U,$J,358.3,16794,0)
- ;;=B30.9^^88^854^4
- ;;^UTILITY(U,$J,358.3,16794,1,0)
+ ;;^UTILITY(U,$J,358.3,17123,1,3,0)
+ ;;=3^Type 1 DM w/o Complications
+ ;;^UTILITY(U,$J,358.3,17123,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,17123,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,17124,0)
+ ;;=E10.65^^70^811^4
+ ;;^UTILITY(U,$J,358.3,17124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16794,1,3,0)
- ;;=3^Infection,Conjunctivitis,Viral,Unspec
- ;;^UTILITY(U,$J,358.3,16794,1,4,0)
- ;;=4^B30.9
- ;;^UTILITY(U,$J,358.3,16794,2)
- ;;=^5000586
- ;;^UTILITY(U,$J,358.3,16795,0)
- ;;=B25.9^^88^854^5
- ;;^UTILITY(U,$J,358.3,16795,1,0)
+ ;;^UTILITY(U,$J,358.3,17124,1,3,0)
+ ;;=3^Type 1 DM w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,17124,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,17124,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,17125,0)
+ ;;=E11.42^^70^811^7
+ ;;^UTILITY(U,$J,358.3,17125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16795,1,3,0)
- ;;=3^Infection,Cytomegaloviral Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16795,1,4,0)
- ;;=4^B25.9
- ;;^UTILITY(U,$J,358.3,16795,2)
- ;;=^5000560
- ;;^UTILITY(U,$J,358.3,16796,0)
- ;;=B35.9^^88^854^6
- ;;^UTILITY(U,$J,358.3,16796,1,0)
+ ;;^UTILITY(U,$J,358.3,17125,1,3,0)
+ ;;=3^Type 2 DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,17125,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,17125,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,17126,0)
+ ;;=E10.42^^70^811^2
+ ;;^UTILITY(U,$J,358.3,17126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16796,1,3,0)
- ;;=3^Infection,Dermatophytosis,Unspec
- ;;^UTILITY(U,$J,358.3,16796,1,4,0)
- ;;=4^B35.9
- ;;^UTILITY(U,$J,358.3,16796,2)
- ;;=^5000607
- ;;^UTILITY(U,$J,358.3,16797,0)
- ;;=A49.2^^88^854^8
- ;;^UTILITY(U,$J,358.3,16797,1,0)
+ ;;^UTILITY(U,$J,358.3,17126,1,3,0)
+ ;;=3^Type 1 DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,17126,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,17126,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,17127,0)
+ ;;=E13.42^^70^811^1
+ ;;^UTILITY(U,$J,358.3,17127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16797,1,3,0)
- ;;=3^Infection,Hemophilus Influenzae
- ;;^UTILITY(U,$J,358.3,16797,1,4,0)
- ;;=4^A49.2
- ;;^UTILITY(U,$J,358.3,16797,2)
- ;;=^5000238
- ;;^UTILITY(U,$J,358.3,16798,0)
- ;;=B00.9^^88^854^9
- ;;^UTILITY(U,$J,358.3,16798,1,0)
+ ;;^UTILITY(U,$J,358.3,17127,1,3,0)
+ ;;=3^Secondary Type DM w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,17127,1,4,0)
+ ;;=4^E13.42
+ ;;^UTILITY(U,$J,358.3,17127,2)
+ ;;=^5002686
+ ;;^UTILITY(U,$J,358.3,17128,0)
+ ;;=E10.621^^70^811^3
+ ;;^UTILITY(U,$J,358.3,17128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16798,1,3,0)
- ;;=3^Infection,Herpesviral,Unspec
- ;;^UTILITY(U,$J,358.3,16798,1,4,0)
- ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,17128,1,3,0)
+ ;;=3^Type 1 DM w/ Foot Ulcer

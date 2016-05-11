@@ -1,122 +1,122 @@
-IBDEI1AD ; ; 19-NOV-2015
+IBDEI1AD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21492,2)
- ;;=^5020821
- ;;^UTILITY(U,$J,358.3,21493,0)
- ;;=S06.322S^^101^1032^17
- ;;^UTILITY(U,$J,358.3,21493,1,0)
+ ;;^UTILITY(U,$J,358.3,21874,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,21875,0)
+ ;;=L97.114^^87^970^229
+ ;;^UTILITY(U,$J,358.3,21875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21493,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21493,1,4,0)
- ;;=4^S06.322S
- ;;^UTILITY(U,$J,358.3,21493,2)
- ;;=^5020824
- ;;^UTILITY(U,$J,358.3,21494,0)
- ;;=S06.324S^^101^1032^18
- ;;^UTILITY(U,$J,358.3,21494,1,0)
+ ;;^UTILITY(U,$J,358.3,21875,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,21875,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,21875,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,21876,0)
+ ;;=L97.119^^87^970^230
+ ;;^UTILITY(U,$J,358.3,21876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21494,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,21494,1,4,0)
- ;;=4^S06.324S
- ;;^UTILITY(U,$J,358.3,21494,2)
- ;;=^5020830
- ;;^UTILITY(U,$J,358.3,21495,0)
- ;;=S06.329S^^101^1032^19
- ;;^UTILITY(U,$J,358.3,21495,1,0)
+ ;;^UTILITY(U,$J,358.3,21876,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,21876,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,21876,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,21877,0)
+ ;;=L97.121^^87^970^196
+ ;;^UTILITY(U,$J,358.3,21877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21495,1,3,0)
- ;;=3^Contus/lac left cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,21495,1,4,0)
- ;;=4^S06.329S
- ;;^UTILITY(U,$J,358.3,21495,2)
- ;;=^5020845
- ;;^UTILITY(U,$J,358.3,21496,0)
- ;;=S06.320S^^101^1032^20
- ;;^UTILITY(U,$J,358.3,21496,1,0)
+ ;;^UTILITY(U,$J,358.3,21877,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,21877,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,21877,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,21878,0)
+ ;;=L97.122^^87^970^197
+ ;;^UTILITY(U,$J,358.3,21878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21496,1,3,0)
- ;;=3^Contus/lac left cerebrum w/o LOC, sequela
- ;;^UTILITY(U,$J,358.3,21496,1,4,0)
- ;;=4^S06.320S
- ;;^UTILITY(U,$J,358.3,21496,2)
- ;;=^5020818
- ;;^UTILITY(U,$J,358.3,21497,0)
- ;;=S06.315S^^101^1032^21
- ;;^UTILITY(U,$J,358.3,21497,1,0)
+ ;;^UTILITY(U,$J,358.3,21878,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,21878,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,21878,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,21879,0)
+ ;;=L97.123^^87^970^198
+ ;;^UTILITY(U,$J,358.3,21879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21497,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,21497,1,4,0)
- ;;=4^S06.315S
- ;;^UTILITY(U,$J,358.3,21497,2)
- ;;=^5020803
- ;;^UTILITY(U,$J,358.3,21498,0)
- ;;=S06.316S^^101^1032^22
- ;;^UTILITY(U,$J,358.3,21498,1,0)
+ ;;^UTILITY(U,$J,358.3,21879,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,21879,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,21879,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,21880,0)
+ ;;=L97.124^^87^970^199
+ ;;^UTILITY(U,$J,358.3,21880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21498,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC >24 hr w/o ret consc w surv, sqla
- ;;^UTILITY(U,$J,358.3,21498,1,4,0)
- ;;=4^S06.316S
- ;;^UTILITY(U,$J,358.3,21498,2)
- ;;=^5020806
- ;;^UTILITY(U,$J,358.3,21499,0)
- ;;=S06.313S^^101^1032^23
- ;;^UTILITY(U,$J,358.3,21499,1,0)
+ ;;^UTILITY(U,$J,358.3,21880,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,21880,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,21880,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,21881,0)
+ ;;=L97.129^^87^970^200
+ ;;^UTILITY(U,$J,358.3,21881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21499,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 1-5 hrs 59 min, sequela
- ;;^UTILITY(U,$J,358.3,21499,1,4,0)
- ;;=4^S06.313S
- ;;^UTILITY(U,$J,358.3,21499,2)
- ;;=^5020797
- ;;^UTILITY(U,$J,358.3,21500,0)
- ;;=S06.311S^^101^1032^24
- ;;^UTILITY(U,$J,358.3,21500,1,0)
+ ;;^UTILITY(U,$J,358.3,21881,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,21881,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,21881,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,21882,0)
+ ;;=L97.211^^87^970^206
+ ;;^UTILITY(U,$J,358.3,21882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21500,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 30 minutes or less, sequela
- ;;^UTILITY(U,$J,358.3,21500,1,4,0)
- ;;=4^S06.311S
- ;;^UTILITY(U,$J,358.3,21500,2)
- ;;=^5020791
- ;;^UTILITY(U,$J,358.3,21501,0)
- ;;=S06.312S^^101^1032^25
- ;;^UTILITY(U,$J,358.3,21501,1,0)
+ ;;^UTILITY(U,$J,358.3,21882,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,21882,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,21882,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,21883,0)
+ ;;=L97.212^^87^970^207
+ ;;^UTILITY(U,$J,358.3,21883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21501,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 31-59 min, sequela
- ;;^UTILITY(U,$J,358.3,21501,1,4,0)
- ;;=4^S06.312S
- ;;^UTILITY(U,$J,358.3,21501,2)
- ;;=^5020794
- ;;^UTILITY(U,$J,358.3,21502,0)
- ;;=S06.314S^^101^1032^26
- ;;^UTILITY(U,$J,358.3,21502,1,0)
+ ;;^UTILITY(U,$J,358.3,21883,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,21883,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,21883,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,21884,0)
+ ;;=L97.213^^87^970^208
+ ;;^UTILITY(U,$J,358.3,21884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21502,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of 6-24 hrs, sequela
- ;;^UTILITY(U,$J,358.3,21502,1,4,0)
- ;;=4^S06.314S
- ;;^UTILITY(U,$J,358.3,21502,2)
- ;;=^5020800
- ;;^UTILITY(U,$J,358.3,21503,0)
- ;;=S06.319S^^101^1032^27
- ;;^UTILITY(U,$J,358.3,21503,1,0)
+ ;;^UTILITY(U,$J,358.3,21884,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,21884,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,21884,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,21885,0)
+ ;;=L97.214^^87^970^209
+ ;;^UTILITY(U,$J,358.3,21885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21503,1,3,0)
- ;;=3^Contus/lac right cerebrum w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,21503,1,4,0)
- ;;=4^S06.319S
- ;;^UTILITY(U,$J,358.3,21503,2)
- ;;=^5020815
- ;;^UTILITY(U,$J,358.3,21504,0)
- ;;=S06.310S^^101^1032^28
- ;;^UTILITY(U,$J,358.3,21504,1,0)
+ ;;^UTILITY(U,$J,358.3,21885,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,21885,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,21885,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,21886,0)
+ ;;=L97.219^^87^970^210
+ ;;^UTILITY(U,$J,358.3,21886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21504,1,3,0)
- ;;=3^Contus/lac right cerebrum w/o LOC, sequela
+ ;;^UTILITY(U,$J,358.3,21886,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity

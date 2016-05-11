@@ -1,122 +1,136 @@
-IBDEI2DX ; ; 19-NOV-2015
+IBDEI2DX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40072,0)
- ;;=S68.116A^^186^2076^72
- ;;^UTILITY(U,$J,358.3,40072,1,0)
+ ;;^UTILITY(U,$J,358.3,40467,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,40468,0)
+ ;;=R73.01^^159^1988^30
+ ;;^UTILITY(U,$J,358.3,40468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40072,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40072,1,4,0)
- ;;=4^S68.116A
- ;;^UTILITY(U,$J,358.3,40072,2)
- ;;=^5036657
- ;;^UTILITY(U,$J,358.3,40073,0)
- ;;=S68.112A^^186^2076^73
- ;;^UTILITY(U,$J,358.3,40073,1,0)
+ ;;^UTILITY(U,$J,358.3,40468,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,40468,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,40468,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,40469,0)
+ ;;=R74.8^^159^1988^1
+ ;;^UTILITY(U,$J,358.3,40469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40073,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40073,1,4,0)
- ;;=4^S68.112A
- ;;^UTILITY(U,$J,358.3,40073,2)
- ;;=^5036645
- ;;^UTILITY(U,$J,358.3,40074,0)
- ;;=S68.114A^^186^2076^74
- ;;^UTILITY(U,$J,358.3,40074,1,0)
+ ;;^UTILITY(U,$J,358.3,40469,1,3,0)
+ ;;=3^Abnormal Levels of Serum Enzymes
+ ;;^UTILITY(U,$J,358.3,40469,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,40469,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,40470,0)
+ ;;=R97.2^^159^1988^18
+ ;;^UTILITY(U,$J,358.3,40470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40074,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40074,1,4,0)
- ;;=4^S68.114A
- ;;^UTILITY(U,$J,358.3,40074,2)
- ;;=^5036651
- ;;^UTILITY(U,$J,358.3,40075,0)
- ;;=S68.011A^^186^2076^75
- ;;^UTILITY(U,$J,358.3,40075,1,0)
+ ;;^UTILITY(U,$J,358.3,40470,1,3,0)
+ ;;=3^Elevated Prostate Specific Antigen
+ ;;^UTILITY(U,$J,358.3,40470,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,40470,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,40471,0)
+ ;;=R03.0^^159^1988^17
+ ;;^UTILITY(U,$J,358.3,40471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40075,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40075,1,4,0)
- ;;=4^S68.011A
- ;;^UTILITY(U,$J,358.3,40075,2)
- ;;=^5036621
- ;;^UTILITY(U,$J,358.3,40076,0)
- ;;=S68.610A^^186^2076^78
- ;;^UTILITY(U,$J,358.3,40076,1,0)
+ ;;^UTILITY(U,$J,358.3,40471,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,40471,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,40471,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,40472,0)
+ ;;=Z91.19^^159^1988^42
+ ;;^UTILITY(U,$J,358.3,40472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40076,1,3,0)
- ;;=3^Amputation,Traumatic,Right Trnsphal Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40076,1,4,0)
- ;;=4^S68.610A
- ;;^UTILITY(U,$J,358.3,40076,2)
- ;;=^5036735
- ;;^UTILITY(U,$J,358.3,40077,0)
- ;;=S68.616A^^186^2076^79
- ;;^UTILITY(U,$J,358.3,40077,1,0)
+ ;;^UTILITY(U,$J,358.3,40472,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,40472,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,40472,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,40473,0)
+ ;;=E66.01^^159^1988^43
+ ;;^UTILITY(U,$J,358.3,40473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40077,1,3,0)
- ;;=3^Amputation,Traumatic,Right Trnsphal Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40077,1,4,0)
- ;;=4^S68.616A
- ;;^UTILITY(U,$J,358.3,40077,2)
- ;;=^5036753
- ;;^UTILITY(U,$J,358.3,40078,0)
- ;;=S68.612A^^186^2076^80
- ;;^UTILITY(U,$J,358.3,40078,1,0)
+ ;;^UTILITY(U,$J,358.3,40473,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,40473,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,40473,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,40474,0)
+ ;;=H93.19^^159^1988^54
+ ;;^UTILITY(U,$J,358.3,40474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40078,1,3,0)
- ;;=3^Amputation,Traumatic,Right Trnsphal Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40078,1,4,0)
- ;;=4^S68.612A
- ;;^UTILITY(U,$J,358.3,40078,2)
- ;;=^5036741
- ;;^UTILITY(U,$J,358.3,40079,0)
- ;;=S68.614A^^186^2076^81
- ;;^UTILITY(U,$J,358.3,40079,1,0)
+ ;;^UTILITY(U,$J,358.3,40474,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,40474,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,40474,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,40475,0)
+ ;;=G47.00^^159^1988^31
+ ;;^UTILITY(U,$J,358.3,40475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40079,1,3,0)
- ;;=3^Amputation,Traumatic,Right Trnsphal Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40079,1,4,0)
- ;;=4^S68.614A
- ;;^UTILITY(U,$J,358.3,40079,2)
- ;;=^5036747
- ;;^UTILITY(U,$J,358.3,40080,0)
- ;;=S68.511A^^186^2076^82
- ;;^UTILITY(U,$J,358.3,40080,1,0)
+ ;;^UTILITY(U,$J,358.3,40475,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,40475,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,40475,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,40476,0)
+ ;;=F43.10^^159^1988^47
+ ;;^UTILITY(U,$J,358.3,40476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40080,1,3,0)
- ;;=3^Amputation,Traumatic,Right Trnsphal Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40080,1,4,0)
- ;;=4^S68.511A
- ;;^UTILITY(U,$J,358.3,40080,2)
- ;;=^5036717
- ;;^UTILITY(U,$J,358.3,40081,0)
- ;;=Q83.0^^186^2076^126
- ;;^UTILITY(U,$J,358.3,40081,1,0)
+ ;;^UTILITY(U,$J,358.3,40476,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,40476,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,40476,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,40477,0)
+ ;;=F43.11^^159^1988^45
+ ;;^UTILITY(U,$J,358.3,40477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40081,1,3,0)
- ;;=3^Congenital Absence Breast w/ Absent Nipple
- ;;^UTILITY(U,$J,358.3,40081,1,4,0)
- ;;=4^Q83.0
- ;;^UTILITY(U,$J,358.3,40081,2)
- ;;=^5019054
- ;;^UTILITY(U,$J,358.3,40082,0)
- ;;=Q67.0^^186^2076^129
- ;;^UTILITY(U,$J,358.3,40082,1,0)
+ ;;^UTILITY(U,$J,358.3,40477,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,40477,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,40477,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,40478,0)
+ ;;=F43.12^^159^1988^46
+ ;;^UTILITY(U,$J,358.3,40478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40082,1,3,0)
- ;;=3^Congenital Facial Asymmetry
- ;;^UTILITY(U,$J,358.3,40082,1,4,0)
- ;;=4^Q67.0
- ;;^UTILITY(U,$J,358.3,40082,2)
- ;;=^5018876
- ;;^UTILITY(U,$J,358.3,40083,0)
- ;;=Q27.9^^186^2076^131
- ;;^UTILITY(U,$J,358.3,40083,1,0)
+ ;;^UTILITY(U,$J,358.3,40478,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,40478,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,40478,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,40479,0)
+ ;;=I25.119^^159^1988^5
+ ;;^UTILITY(U,$J,358.3,40479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40083,1,3,0)
- ;;=3^Congenital Malformation Peripheral Vascular System,Unspec
- ;;^UTILITY(U,$J,358.3,40083,1,4,0)
- ;;=4^Q27.9
+ ;;^UTILITY(U,$J,358.3,40479,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,40479,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,40479,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,40480,0)
+ ;;=I25.10^^159^1988^7
+ ;;^UTILITY(U,$J,358.3,40480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40480,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,40480,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,40480,2)
+ ;;=^5007107

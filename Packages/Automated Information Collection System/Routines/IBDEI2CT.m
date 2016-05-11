@@ -1,132 +1,132 @@
-IBDEI2CT ; ; 19-NOV-2015
+IBDEI2CT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39530,1,4,0)
- ;;=4^S02.402S
- ;;^UTILITY(U,$J,358.3,39530,2)
- ;;=^5020335
- ;;^UTILITY(U,$J,358.3,39531,0)
- ;;=F10.20^^183^2025^1
- ;;^UTILITY(U,$J,358.3,39531,1,0)
+ ;;^UTILITY(U,$J,358.3,39908,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,39908,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,39908,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,39909,0)
+ ;;=H43.22^^153^1930^29
+ ;;^UTILITY(U,$J,358.3,39909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39531,1,3,0)
- ;;=3^Alcohol dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,39531,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,39531,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,39532,0)
- ;;=F31.10^^183^2025^2
- ;;^UTILITY(U,$J,358.3,39532,1,0)
+ ;;^UTILITY(U,$J,358.3,39909,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,39909,1,4,0)
+ ;;=4^H43.22
+ ;;^UTILITY(U,$J,358.3,39909,2)
+ ;;=^5005943
+ ;;^UTILITY(U,$J,358.3,39910,0)
+ ;;=H43.23^^153^1930^28
+ ;;^UTILITY(U,$J,358.3,39910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39532,1,3,0)
- ;;=3^Bipolar disord, crnt episode manic w/o psych features, unsp
- ;;^UTILITY(U,$J,358.3,39532,1,4,0)
- ;;=4^F31.10
- ;;^UTILITY(U,$J,358.3,39532,2)
- ;;=^5003495
- ;;^UTILITY(U,$J,358.3,39533,0)
- ;;=F32.9^^183^2025^5
- ;;^UTILITY(U,$J,358.3,39533,1,0)
+ ;;^UTILITY(U,$J,358.3,39910,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,39910,1,4,0)
+ ;;=4^H43.23
+ ;;^UTILITY(U,$J,358.3,39910,2)
+ ;;=^5005944
+ ;;^UTILITY(U,$J,358.3,39911,0)
+ ;;=H43.11^^153^1930^119
+ ;;^UTILITY(U,$J,358.3,39911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39533,1,3,0)
- ;;=3^Major depressive disorder, single episode, unspecified
- ;;^UTILITY(U,$J,358.3,39533,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,39533,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,39534,0)
- ;;=F20.0^^183^2025^6
- ;;^UTILITY(U,$J,358.3,39534,1,0)
+ ;;^UTILITY(U,$J,358.3,39911,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,39911,1,4,0)
+ ;;=4^H43.11
+ ;;^UTILITY(U,$J,358.3,39911,2)
+ ;;=^5005938
+ ;;^UTILITY(U,$J,358.3,39912,0)
+ ;;=H43.12^^153^1930^118
+ ;;^UTILITY(U,$J,358.3,39912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39534,1,3,0)
- ;;=3^Paranoid schizophrenia
- ;;^UTILITY(U,$J,358.3,39534,1,4,0)
- ;;=4^F20.0
- ;;^UTILITY(U,$J,358.3,39534,2)
- ;;=^5003469
- ;;^UTILITY(U,$J,358.3,39535,0)
- ;;=F06.0^^183^2025^7
- ;;^UTILITY(U,$J,358.3,39535,1,0)
+ ;;^UTILITY(U,$J,358.3,39912,1,3,0)
+ ;;=3^Vitreous Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,39912,1,4,0)
+ ;;=4^H43.12
+ ;;^UTILITY(U,$J,358.3,39912,2)
+ ;;=^5005939
+ ;;^UTILITY(U,$J,358.3,39913,0)
+ ;;=H43.391^^153^1930^122
+ ;;^UTILITY(U,$J,358.3,39913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39535,1,3,0)
- ;;=3^Psychotic disorder w hallucin due to known physiol condition
- ;;^UTILITY(U,$J,358.3,39535,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,39535,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,39536,0)
- ;;=F20.9^^183^2025^8
- ;;^UTILITY(U,$J,358.3,39536,1,0)
+ ;;^UTILITY(U,$J,358.3,39913,1,3,0)
+ ;;=3^Vitreous Opacities,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,39913,1,4,0)
+ ;;=4^H43.391
+ ;;^UTILITY(U,$J,358.3,39913,2)
+ ;;=^5005949
+ ;;^UTILITY(U,$J,358.3,39914,0)
+ ;;=H43.392^^153^1930^121
+ ;;^UTILITY(U,$J,358.3,39914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39536,1,3,0)
- ;;=3^Schizophrenia, unspecified
- ;;^UTILITY(U,$J,358.3,39536,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,39536,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,39537,0)
- ;;=F03.91^^183^2025^3
- ;;^UTILITY(U,$J,358.3,39537,1,0)
+ ;;^UTILITY(U,$J,358.3,39914,1,3,0)
+ ;;=3^Vitreous Opacities,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,39914,1,4,0)
+ ;;=4^H43.392
+ ;;^UTILITY(U,$J,358.3,39914,2)
+ ;;=^5005950
+ ;;^UTILITY(U,$J,358.3,39915,0)
+ ;;=H43.393^^153^1930^120
+ ;;^UTILITY(U,$J,358.3,39915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39537,1,3,0)
- ;;=3^Dementia with behavioral disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,39537,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,39537,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,39538,0)
- ;;=F03.90^^183^2025^4
- ;;^UTILITY(U,$J,358.3,39538,1,0)
+ ;;^UTILITY(U,$J,358.3,39915,1,3,0)
+ ;;=3^Vitreous Opacities,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,39915,1,4,0)
+ ;;=4^H43.393
+ ;;^UTILITY(U,$J,358.3,39915,2)
+ ;;=^5005951
+ ;;^UTILITY(U,$J,358.3,39916,0)
+ ;;=H43.01^^153^1930^125
+ ;;^UTILITY(U,$J,358.3,39916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39538,1,3,0)
- ;;=3^Dementia without behavioral disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,39538,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,39538,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,39539,0)
- ;;=M76.62^^183^2026^1
- ;;^UTILITY(U,$J,358.3,39539,1,0)
+ ;;^UTILITY(U,$J,358.3,39916,1,3,0)
+ ;;=3^Vitreous Prolapse,Right Eye
+ ;;^UTILITY(U,$J,358.3,39916,1,4,0)
+ ;;=4^H43.01
+ ;;^UTILITY(U,$J,358.3,39916,2)
+ ;;=^5005934
+ ;;^UTILITY(U,$J,358.3,39917,0)
+ ;;=H43.02^^153^1930^124
+ ;;^UTILITY(U,$J,358.3,39917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39539,1,3,0)
- ;;=3^Achilles tendinitis, left leg
- ;;^UTILITY(U,$J,358.3,39539,1,4,0)
- ;;=4^M76.62
- ;;^UTILITY(U,$J,358.3,39539,2)
- ;;=^5013286
- ;;^UTILITY(U,$J,358.3,39540,0)
- ;;=M76.61^^183^2026^2
- ;;^UTILITY(U,$J,358.3,39540,1,0)
+ ;;^UTILITY(U,$J,358.3,39917,1,3,0)
+ ;;=3^Vitreous Prolapse,Left Eye
+ ;;^UTILITY(U,$J,358.3,39917,1,4,0)
+ ;;=4^H43.02
+ ;;^UTILITY(U,$J,358.3,39917,2)
+ ;;=^5005935
+ ;;^UTILITY(U,$J,358.3,39918,0)
+ ;;=H43.03^^153^1930^123
+ ;;^UTILITY(U,$J,358.3,39918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39540,1,3,0)
- ;;=3^Achilles tendinitis, right leg
- ;;^UTILITY(U,$J,358.3,39540,1,4,0)
- ;;=4^M76.61
- ;;^UTILITY(U,$J,358.3,39540,2)
- ;;=^5013285
- ;;^UTILITY(U,$J,358.3,39541,0)
- ;;=M75.02^^183^2026^3
- ;;^UTILITY(U,$J,358.3,39541,1,0)
+ ;;^UTILITY(U,$J,358.3,39918,1,3,0)
+ ;;=3^Vitreous Prolapse,Bilateral
+ ;;^UTILITY(U,$J,358.3,39918,1,4,0)
+ ;;=4^H43.03
+ ;;^UTILITY(U,$J,358.3,39918,2)
+ ;;=^5005936
+ ;;^UTILITY(U,$J,358.3,39919,0)
+ ;;=H43.821^^153^1930^114
+ ;;^UTILITY(U,$J,358.3,39919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39541,1,3,0)
- ;;=3^Adhesive capsulitis of left shoulder
- ;;^UTILITY(U,$J,358.3,39541,1,4,0)
- ;;=4^M75.02
- ;;^UTILITY(U,$J,358.3,39541,2)
- ;;=^5013240
- ;;^UTILITY(U,$J,358.3,39542,0)
- ;;=M75.01^^183^2026^4
- ;;^UTILITY(U,$J,358.3,39542,1,0)
+ ;;^UTILITY(U,$J,358.3,39919,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39919,1,4,0)
+ ;;=4^H43.821
+ ;;^UTILITY(U,$J,358.3,39919,2)
+ ;;=^5005957
+ ;;^UTILITY(U,$J,358.3,39920,0)
+ ;;=H43.822^^153^1930^113
+ ;;^UTILITY(U,$J,358.3,39920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39542,1,3,0)
- ;;=3^Adhesive capsulitis of right shoulder
- ;;^UTILITY(U,$J,358.3,39542,1,4,0)
- ;;=4^M75.01
- ;;^UTILITY(U,$J,358.3,39542,2)
- ;;=^5013239
- ;;^UTILITY(U,$J,358.3,39543,0)
- ;;=M75.22^^183^2026^5
- ;;^UTILITY(U,$J,358.3,39543,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39920,1,3,0)
+ ;;=3^Vitreomacular Adhesion,Left Eye
+ ;;^UTILITY(U,$J,358.3,39920,1,4,0)
+ ;;=4^H43.822
+ ;;^UTILITY(U,$J,358.3,39920,2)
+ ;;=^5005958
+ ;;^UTILITY(U,$J,358.3,39921,0)
+ ;;=H43.823^^153^1930^112

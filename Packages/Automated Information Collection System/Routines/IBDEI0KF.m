@@ -1,142 +1,136 @@
-IBDEI0KF ; ; 19-NOV-2015
+IBDEI0KF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9228,2)
- ;;=^185540
- ;;^UTILITY(U,$J,358.3,9229,0)
- ;;=G25.81^^58^577^8
- ;;^UTILITY(U,$J,358.3,9229,1,0)
+ ;;^UTILITY(U,$J,358.3,9495,2)
+ ;;=^5005587
+ ;;^UTILITY(U,$J,358.3,9496,0)
+ ;;=H35.021^^41^478^42
+ ;;^UTILITY(U,$J,358.3,9496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9229,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,9229,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,9229,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,9230,0)
- ;;=R27.0^^58^577^1
- ;;^UTILITY(U,$J,358.3,9230,1,0)
+ ;;^UTILITY(U,$J,358.3,9496,1,3,0)
+ ;;=3^Exudative Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9496,1,4,0)
+ ;;=4^H35.021
+ ;;^UTILITY(U,$J,358.3,9496,2)
+ ;;=^5005586
+ ;;^UTILITY(U,$J,358.3,9497,0)
+ ;;=H35.373^^41^478^67
+ ;;^UTILITY(U,$J,358.3,9497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9230,1,3,0)
- ;;=3^Ataxia,Unspec
- ;;^UTILITY(U,$J,358.3,9230,1,4,0)
- ;;=4^R27.0
- ;;^UTILITY(U,$J,358.3,9230,2)
- ;;=^5019310
- ;;^UTILITY(U,$J,358.3,9231,0)
- ;;=C71.9^^58^578^3
- ;;^UTILITY(U,$J,358.3,9231,1,0)
+ ;;^UTILITY(U,$J,358.3,9497,1,3,0)
+ ;;=3^Puckering of Macula,Bilateral
+ ;;^UTILITY(U,$J,358.3,9497,1,4,0)
+ ;;=4^H35.373
+ ;;^UTILITY(U,$J,358.3,9497,2)
+ ;;=^5005664
+ ;;^UTILITY(U,$J,358.3,9498,0)
+ ;;=H35.31^^41^478^60
+ ;;^UTILITY(U,$J,358.3,9498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9231,1,3,0)
- ;;=3^Malig Neop Brain,Unspec
- ;;^UTILITY(U,$J,358.3,9231,1,4,0)
- ;;=4^C71.9
- ;;^UTILITY(U,$J,358.3,9231,2)
- ;;=^5001297
- ;;^UTILITY(U,$J,358.3,9232,0)
- ;;=C72.0^^58^578^5
- ;;^UTILITY(U,$J,358.3,9232,1,0)
+ ;;^UTILITY(U,$J,358.3,9498,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,9498,1,4,0)
+ ;;=4^H35.31
+ ;;^UTILITY(U,$J,358.3,9498,2)
+ ;;=^5005647
+ ;;^UTILITY(U,$J,358.3,9499,0)
+ ;;=H31.422^^41^478^96
+ ;;^UTILITY(U,$J,358.3,9499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9232,1,3,0)
- ;;=3^Malig Neop Spinal Cord
- ;;^UTILITY(U,$J,358.3,9232,1,4,0)
- ;;=4^C72.0
- ;;^UTILITY(U,$J,358.3,9232,2)
- ;;=^267292
- ;;^UTILITY(U,$J,358.3,9233,0)
- ;;=C72.1^^58^578^4
- ;;^UTILITY(U,$J,358.3,9233,1,0)
+ ;;^UTILITY(U,$J,358.3,9499,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,9499,1,4,0)
+ ;;=4^H31.422
+ ;;^UTILITY(U,$J,358.3,9499,2)
+ ;;=^5005484
+ ;;^UTILITY(U,$J,358.3,9500,0)
+ ;;=H31.421^^41^478^97
+ ;;^UTILITY(U,$J,358.3,9500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9233,1,3,0)
- ;;=3^Malig Neop Cauda Equina
- ;;^UTILITY(U,$J,358.3,9233,1,4,0)
- ;;=4^C72.1
- ;;^UTILITY(U,$J,358.3,9233,2)
- ;;=^5001298
- ;;^UTILITY(U,$J,358.3,9234,0)
- ;;=C79.31^^58^578^6
- ;;^UTILITY(U,$J,358.3,9234,1,0)
+ ;;^UTILITY(U,$J,358.3,9500,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,9500,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,9500,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,9501,0)
+ ;;=B58.01^^41^478^105
+ ;;^UTILITY(U,$J,358.3,9501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9234,1,3,0)
- ;;=3^Secondary Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,9234,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,9234,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,9235,0)
- ;;=D32.0^^58^578^1
- ;;^UTILITY(U,$J,358.3,9235,1,0)
+ ;;^UTILITY(U,$J,358.3,9501,1,3,0)
+ ;;=3^Toxoplasma Chorioretinitis
+ ;;^UTILITY(U,$J,358.3,9501,1,4,0)
+ ;;=4^B58.01
+ ;;^UTILITY(U,$J,358.3,9501,2)
+ ;;=^5000724
+ ;;^UTILITY(U,$J,358.3,9502,0)
+ ;;=H34.812^^41^478^10
+ ;;^UTILITY(U,$J,358.3,9502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9235,1,3,0)
- ;;=3^Benign Neop Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,9235,1,4,0)
- ;;=4^D32.0
- ;;^UTILITY(U,$J,358.3,9235,2)
- ;;=^267681
- ;;^UTILITY(U,$J,358.3,9236,0)
- ;;=D33.4^^58^578^2
- ;;^UTILITY(U,$J,358.3,9236,1,0)
+ ;;^UTILITY(U,$J,358.3,9502,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,9502,1,4,0)
+ ;;=4^H34.812
+ ;;^UTILITY(U,$J,358.3,9502,2)
+ ;;=^5005569
+ ;;^UTILITY(U,$J,358.3,9503,0)
+ ;;=H34.823^^41^478^109
+ ;;^UTILITY(U,$J,358.3,9503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9236,1,3,0)
- ;;=3^Benign Neop Spinal Cord
- ;;^UTILITY(U,$J,358.3,9236,1,4,0)
- ;;=4^D33.4
- ;;^UTILITY(U,$J,358.3,9236,2)
- ;;=^267682
- ;;^UTILITY(U,$J,358.3,9237,0)
- ;;=F03.90^^58^579^3
- ;;^UTILITY(U,$J,358.3,9237,1,0)
+ ;;^UTILITY(U,$J,358.3,9503,1,3,0)
+ ;;=3^Venous Engorgement,Bilateral
+ ;;^UTILITY(U,$J,358.3,9503,1,4,0)
+ ;;=4^H34.823
+ ;;^UTILITY(U,$J,358.3,9503,2)
+ ;;=^5005574
+ ;;^UTILITY(U,$J,358.3,9504,0)
+ ;;=H34.822^^41^478^110
+ ;;^UTILITY(U,$J,358.3,9504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9237,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,9237,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,9237,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,9238,0)
- ;;=G30.9^^58^579^1
- ;;^UTILITY(U,$J,358.3,9238,1,0)
+ ;;^UTILITY(U,$J,358.3,9504,1,3,0)
+ ;;=3^Venous Engorgement,Left Eye
+ ;;^UTILITY(U,$J,358.3,9504,1,4,0)
+ ;;=4^H34.822
+ ;;^UTILITY(U,$J,358.3,9504,2)
+ ;;=^5005573
+ ;;^UTILITY(U,$J,358.3,9505,0)
+ ;;=H34.821^^41^478^111
+ ;;^UTILITY(U,$J,358.3,9505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9238,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,9238,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,9238,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,9239,0)
- ;;=R41.3^^58^579^2
- ;;^UTILITY(U,$J,358.3,9239,1,0)
+ ;;^UTILITY(U,$J,358.3,9505,1,3,0)
+ ;;=3^Venous Engorgement,Right Eye
+ ;;^UTILITY(U,$J,358.3,9505,1,4,0)
+ ;;=4^H34.821
+ ;;^UTILITY(U,$J,358.3,9505,2)
+ ;;=^5005572
+ ;;^UTILITY(U,$J,358.3,9506,0)
+ ;;=H43.813^^41^478^115
+ ;;^UTILITY(U,$J,358.3,9506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9239,1,3,0)
- ;;=3^Amnesia,Other
- ;;^UTILITY(U,$J,358.3,9239,1,4,0)
- ;;=4^R41.3
- ;;^UTILITY(U,$J,358.3,9239,2)
- ;;=^5019439
- ;;^UTILITY(U,$J,358.3,9240,0)
- ;;=G47.61^^58^580^3
- ;;^UTILITY(U,$J,358.3,9240,1,0)
+ ;;^UTILITY(U,$J,358.3,9506,1,3,0)
+ ;;=3^Vitreous Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,9506,1,4,0)
+ ;;=4^H43.813
+ ;;^UTILITY(U,$J,358.3,9506,2)
+ ;;=^5005955
+ ;;^UTILITY(U,$J,358.3,9507,0)
+ ;;=H43.812^^41^478^116
+ ;;^UTILITY(U,$J,358.3,9507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9240,1,3,0)
- ;;=3^Periodic Limb Movement Disorder
- ;;^UTILITY(U,$J,358.3,9240,1,4,0)
- ;;=4^G47.61
- ;;^UTILITY(U,$J,358.3,9240,2)
- ;;=^5003987
- ;;^UTILITY(U,$J,358.3,9241,0)
- ;;=G25.81^^58^580^4
- ;;^UTILITY(U,$J,358.3,9241,1,0)
+ ;;^UTILITY(U,$J,358.3,9507,1,3,0)
+ ;;=3^Vitreous Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,9507,1,4,0)
+ ;;=4^H43.812
+ ;;^UTILITY(U,$J,358.3,9507,2)
+ ;;=^5005954
+ ;;^UTILITY(U,$J,358.3,9508,0)
+ ;;=H43.811^^41^478^117
+ ;;^UTILITY(U,$J,358.3,9508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9241,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,9241,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,9241,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,9242,0)
- ;;=G47.419^^58^580^2
- ;;^UTILITY(U,$J,358.3,9242,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9242,1,3,0)
- ;;=3^Narcolepsy w/o Cataplexy
+ ;;^UTILITY(U,$J,358.3,9508,1,3,0)
+ ;;=3^Vitreous Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,9508,1,4,0)
+ ;;=4^H43.811
+ ;;^UTILITY(U,$J,358.3,9508,2)
+ ;;=^5005953

@@ -1,130 +1,132 @@
-IBDEI1DU ; ; 19-NOV-2015
+IBDEI1DU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23057,0)
- ;;=F03.90^^107^1087^15
- ;;^UTILITY(U,$J,358.3,23057,1,0)
+ ;;^UTILITY(U,$J,358.3,23495,1,4,0)
+ ;;=4^S91.301A
+ ;;^UTILITY(U,$J,358.3,23495,2)
+ ;;=^5044314
+ ;;^UTILITY(U,$J,358.3,23496,0)
+ ;;=S51.801A^^87^998^18
+ ;;^UTILITY(U,$J,358.3,23496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23057,1,3,0)
- ;;=3^Dementia w/o Behav Disturb,Unspec
- ;;^UTILITY(U,$J,358.3,23057,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,23057,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,23058,0)
- ;;=F01.51^^107^1087^30
- ;;^UTILITY(U,$J,358.3,23058,1,0)
+ ;;^UTILITY(U,$J,358.3,23496,1,3,0)
+ ;;=3^Open Wound,Right Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,23496,1,4,0)
+ ;;=4^S51.801A
+ ;;^UTILITY(U,$J,358.3,23496,2)
+ ;;=^5028659
+ ;;^UTILITY(U,$J,358.3,23497,0)
+ ;;=S91.101A^^87^998^19
+ ;;^UTILITY(U,$J,358.3,23497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23058,1,3,0)
- ;;=3^Vascular Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23058,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,23058,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,23059,0)
- ;;=F01.50^^107^1087^31
- ;;^UTILITY(U,$J,358.3,23059,1,0)
+ ;;^UTILITY(U,$J,358.3,23497,1,3,0)
+ ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,23497,1,4,0)
+ ;;=4^S91.101A
+ ;;^UTILITY(U,$J,358.3,23497,2)
+ ;;=^5044168
+ ;;^UTILITY(U,$J,358.3,23498,0)
+ ;;=S61.401A^^87^998^20
+ ;;^UTILITY(U,$J,358.3,23498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23059,1,3,0)
- ;;=3^Vascular Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23059,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,23059,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,23060,0)
- ;;=A81.9^^107^1087^6
- ;;^UTILITY(U,$J,358.3,23060,1,0)
+ ;;^UTILITY(U,$J,358.3,23498,1,3,0)
+ ;;=3^Open Wound,Right Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,23498,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,23498,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,23499,0)
+ ;;=S71.001A^^87^998^21
+ ;;^UTILITY(U,$J,358.3,23499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23060,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,23060,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,23060,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,23061,0)
- ;;=A81.09^^107^1087^8
- ;;^UTILITY(U,$J,358.3,23061,1,0)
+ ;;^UTILITY(U,$J,358.3,23499,1,3,0)
+ ;;=3^Open Wound,Right Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,23499,1,4,0)
+ ;;=4^S71.001A
+ ;;^UTILITY(U,$J,358.3,23499,2)
+ ;;=^5036969
+ ;;^UTILITY(U,$J,358.3,23500,0)
+ ;;=S91.105A^^87^998^12
+ ;;^UTILITY(U,$J,358.3,23500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23061,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,23061,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,23061,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,23062,0)
- ;;=A81.00^^107^1087^9
- ;;^UTILITY(U,$J,358.3,23062,1,0)
+ ;;^UTILITY(U,$J,358.3,23500,1,3,0)
+ ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,23500,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,23500,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,23501,0)
+ ;;=S81.801A^^87^998^23
+ ;;^UTILITY(U,$J,358.3,23501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23062,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,23062,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,23062,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,23063,0)
- ;;=A81.01^^107^1087^10
- ;;^UTILITY(U,$J,358.3,23063,1,0)
+ ;;^UTILITY(U,$J,358.3,23501,1,3,0)
+ ;;=3^Open Wound,Right Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,23501,1,4,0)
+ ;;=4^S81.801A
+ ;;^UTILITY(U,$J,358.3,23501,2)
+ ;;=^5040065
+ ;;^UTILITY(U,$J,358.3,23502,0)
+ ;;=S71.102A^^87^998^14
+ ;;^UTILITY(U,$J,358.3,23502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23063,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,23063,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,23063,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,23064,0)
- ;;=A81.89^^107^1087^7
- ;;^UTILITY(U,$J,358.3,23064,1,0)
+ ;;^UTILITY(U,$J,358.3,23502,1,3,0)
+ ;;=3^Open Wound,Left Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,23502,1,4,0)
+ ;;=4^S71.102A
+ ;;^UTILITY(U,$J,358.3,23502,2)
+ ;;=^5037011
+ ;;^UTILITY(U,$J,358.3,23503,0)
+ ;;=S71.101A^^87^998^24
+ ;;^UTILITY(U,$J,358.3,23503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23064,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,23064,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,23064,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,23065,0)
- ;;=A81.2^^107^1087^27
- ;;^UTILITY(U,$J,358.3,23065,1,0)
+ ;;^UTILITY(U,$J,358.3,23503,1,3,0)
+ ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,23503,1,4,0)
+ ;;=4^S71.101A
+ ;;^UTILITY(U,$J,358.3,23503,2)
+ ;;=^5037008
+ ;;^UTILITY(U,$J,358.3,23504,0)
+ ;;=S41.101A^^87^998^25
+ ;;^UTILITY(U,$J,358.3,23504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23065,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,23065,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,23065,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,23066,0)
- ;;=B20.^^107^1087^17
- ;;^UTILITY(U,$J,358.3,23066,1,0)
+ ;;^UTILITY(U,$J,358.3,23504,1,3,0)
+ ;;=3^Open Wound,Right Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,23504,1,4,0)
+ ;;=4^S41.101A
+ ;;^UTILITY(U,$J,358.3,23504,2)
+ ;;=^5026330
+ ;;^UTILITY(U,$J,358.3,23505,0)
+ ;;=E03.5^^87^999^37
+ ;;^UTILITY(U,$J,358.3,23505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23066,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23066,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23066,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,23067,0)
- ;;=B20.^^107^1087^18
- ;;^UTILITY(U,$J,358.3,23067,1,0)
+ ;;^UTILITY(U,$J,358.3,23505,1,3,0)
+ ;;=3^Myxedema Coma
+ ;;^UTILITY(U,$J,358.3,23505,1,4,0)
+ ;;=4^E03.5
+ ;;^UTILITY(U,$J,358.3,23505,2)
+ ;;=^5002474
+ ;;^UTILITY(U,$J,358.3,23506,0)
+ ;;=R40.2121^^87^999^33
+ ;;^UTILITY(U,$J,358.3,23506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23067,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23067,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23067,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,23068,0)
- ;;=F10.27^^107^1087^1
- ;;^UTILITY(U,$J,358.3,23068,1,0)
+ ;;^UTILITY(U,$J,358.3,23506,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
+ ;;^UTILITY(U,$J,358.3,23506,1,4,0)
+ ;;=4^R40.2121
+ ;;^UTILITY(U,$J,358.3,23506,2)
+ ;;=^5019361
+ ;;^UTILITY(U,$J,358.3,23507,0)
+ ;;=R40.2120^^87^999^34
+ ;;^UTILITY(U,$J,358.3,23507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23068,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,23068,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,23068,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,23069,0)
- ;;=F19.97^^107^1087^29
- ;;^UTILITY(U,$J,358.3,23069,1,0)
+ ;;^UTILITY(U,$J,358.3,23507,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23507,1,4,0)
+ ;;=4^R40.2120
+ ;;^UTILITY(U,$J,358.3,23507,2)
+ ;;=^5019360
+ ;;^UTILITY(U,$J,358.3,23508,0)
+ ;;=R40.2114^^87^999^26
+ ;;^UTILITY(U,$J,358.3,23508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23069,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC

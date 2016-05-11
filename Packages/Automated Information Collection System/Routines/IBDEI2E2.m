@@ -1,124 +1,132 @@
-IBDEI2E2 ; ; 19-NOV-2015
+IBDEI2E2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40135,1,0)
+ ;;^UTILITY(U,$J,358.3,40531,1,3,0)
+ ;;=3^Abdominal Aortic Aneurysm w/o Rupture
+ ;;^UTILITY(U,$J,358.3,40531,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,40531,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,40532,0)
+ ;;=I73.9^^159^1991^19
+ ;;^UTILITY(U,$J,358.3,40532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40135,1,3,0)
- ;;=3^Injury Digital Nerve Left Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40135,1,4,0)
- ;;=4^S64.493A
- ;;^UTILITY(U,$J,358.3,40135,2)
- ;;=^5035808
- ;;^UTILITY(U,$J,358.3,40136,0)
- ;;=S64.495A^^186^2076^231
- ;;^UTILITY(U,$J,358.3,40136,1,0)
+ ;;^UTILITY(U,$J,358.3,40532,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,40532,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,40532,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,40533,0)
+ ;;=I82.891^^159^1991^14
+ ;;^UTILITY(U,$J,358.3,40533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40136,1,3,0)
- ;;=3^Injury Digital Nerve Left Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40136,1,4,0)
- ;;=4^S64.495A
- ;;^UTILITY(U,$J,358.3,40136,2)
- ;;=^5035814
- ;;^UTILITY(U,$J,358.3,40137,0)
- ;;=S64.32XA^^186^2076^232
- ;;^UTILITY(U,$J,358.3,40137,1,0)
+ ;;^UTILITY(U,$J,358.3,40533,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,40533,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,40533,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,40534,0)
+ ;;=I82.890^^159^1991^13
+ ;;^UTILITY(U,$J,358.3,40534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40137,1,3,0)
- ;;=3^Injury Digital Nerve Left Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40137,1,4,0)
- ;;=4^S64.32XA
- ;;^UTILITY(U,$J,358.3,40137,2)
- ;;=^5035793
- ;;^UTILITY(U,$J,358.3,40138,0)
- ;;=S64.490A^^186^2076^233
- ;;^UTILITY(U,$J,358.3,40138,1,0)
+ ;;^UTILITY(U,$J,358.3,40534,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,40534,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,40534,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,40535,0)
+ ;;=E78.0^^159^1992^12
+ ;;^UTILITY(U,$J,358.3,40535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40138,1,3,0)
- ;;=3^Injury Digital Nerve Right Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40138,1,4,0)
- ;;=4^S64.490A
- ;;^UTILITY(U,$J,358.3,40138,2)
- ;;=^5035799
- ;;^UTILITY(U,$J,358.3,40139,0)
- ;;=S64.496A^^186^2076^234
- ;;^UTILITY(U,$J,358.3,40139,1,0)
+ ;;^UTILITY(U,$J,358.3,40535,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,40535,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,40535,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,40536,0)
+ ;;=E78.1^^159^1992^13
+ ;;^UTILITY(U,$J,358.3,40536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40139,1,3,0)
- ;;=3^Injury Digital Nerve Right Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40139,1,4,0)
- ;;=4^S64.496A
- ;;^UTILITY(U,$J,358.3,40139,2)
- ;;=^5035817
- ;;^UTILITY(U,$J,358.3,40140,0)
- ;;=S64.492A^^186^2076^235
- ;;^UTILITY(U,$J,358.3,40140,1,0)
+ ;;^UTILITY(U,$J,358.3,40536,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,40536,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,40536,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,40537,0)
+ ;;=E78.2^^159^1992^11
+ ;;^UTILITY(U,$J,358.3,40537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40140,1,3,0)
- ;;=3^Injury Digital Nerve Right Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40140,1,4,0)
- ;;=4^S64.492A
- ;;^UTILITY(U,$J,358.3,40140,2)
- ;;=^5035805
- ;;^UTILITY(U,$J,358.3,40141,0)
- ;;=S64.494A^^186^2076^236
- ;;^UTILITY(U,$J,358.3,40141,1,0)
+ ;;^UTILITY(U,$J,358.3,40537,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,40537,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,40537,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,40538,0)
+ ;;=I10.^^159^1992^3
+ ;;^UTILITY(U,$J,358.3,40538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40141,1,3,0)
- ;;=3^Injury Digital Nerve Right Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40141,1,4,0)
- ;;=4^S64.494A
- ;;^UTILITY(U,$J,358.3,40141,2)
- ;;=^5035811
- ;;^UTILITY(U,$J,358.3,40142,0)
- ;;=S64.31XA^^186^2076^237
- ;;^UTILITY(U,$J,358.3,40142,1,0)
+ ;;^UTILITY(U,$J,358.3,40538,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,40538,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,40538,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,40539,0)
+ ;;=I11.9^^159^1992^10
+ ;;^UTILITY(U,$J,358.3,40539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40142,1,3,0)
- ;;=3^Injury Digital Nerve Right Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40142,1,4,0)
- ;;=4^S64.31XA
- ;;^UTILITY(U,$J,358.3,40142,2)
- ;;=^5035790
- ;;^UTILITY(U,$J,358.3,40143,0)
- ;;=S54.12XA^^186^2076^239
- ;;^UTILITY(U,$J,358.3,40143,1,0)
+ ;;^UTILITY(U,$J,358.3,40539,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,40539,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,40539,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,40540,0)
+ ;;=I11.0^^159^1992^9
+ ;;^UTILITY(U,$J,358.3,40540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40143,1,3,0)
- ;;=3^Injury Median Nerve Left Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40143,1,4,0)
- ;;=4^S54.12XA
- ;;^UTILITY(U,$J,358.3,40143,2)
- ;;=^5031421
- ;;^UTILITY(U,$J,358.3,40144,0)
- ;;=S54.11XA^^186^2076^242
- ;;^UTILITY(U,$J,358.3,40144,1,0)
+ ;;^UTILITY(U,$J,358.3,40540,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,40540,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,40540,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,40541,0)
+ ;;=I12.0^^159^1992^8
+ ;;^UTILITY(U,$J,358.3,40541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40144,1,3,0)
- ;;=3^Injury Median Nerve Right Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40144,1,4,0)
- ;;=4^S54.11XA
- ;;^UTILITY(U,$J,358.3,40144,2)
- ;;=^5031418
- ;;^UTILITY(U,$J,358.3,40145,0)
- ;;=S44.12XA^^186^2076^240
- ;;^UTILITY(U,$J,358.3,40145,1,0)
+ ;;^UTILITY(U,$J,358.3,40541,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,40541,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,40541,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,40542,0)
+ ;;=I13.10^^159^1992^6
+ ;;^UTILITY(U,$J,358.3,40542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40145,1,3,0)
- ;;=3^Injury Median Nerve Left Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40145,1,4,0)
- ;;=4^S44.12XA
- ;;^UTILITY(U,$J,358.3,40145,2)
- ;;=^5027951
- ;;^UTILITY(U,$J,358.3,40146,0)
- ;;=S44.11XA^^186^2076^243
- ;;^UTILITY(U,$J,358.3,40146,1,0)
+ ;;^UTILITY(U,$J,358.3,40542,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,40542,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,40542,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,40543,0)
+ ;;=I13.0^^159^1992^4
+ ;;^UTILITY(U,$J,358.3,40543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40146,1,3,0)
- ;;=3^Injury Median Nerve Right Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40146,1,4,0)
- ;;=4^S44.11XA
- ;;^UTILITY(U,$J,358.3,40146,2)
- ;;=^5027948
- ;;^UTILITY(U,$J,358.3,40147,0)
- ;;=S64.12XA^^186^2076^241
+ ;;^UTILITY(U,$J,358.3,40543,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,40543,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,40543,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,40544,0)
+ ;;=I13.11^^159^1992^7

@@ -1,118 +1,126 @@
-IBDEI1I3 ; ; 19-NOV-2015
+IBDEI1I3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25081,2)
- ;;=^5008096
- ;;^UTILITY(U,$J,358.3,25082,0)
- ;;=J95.61^^124^1239^119
- ;;^UTILITY(U,$J,358.3,25082,1,0)
+ ;;^UTILITY(U,$J,358.3,25466,0)
+ ;;=F10.181^^95^1165^14
+ ;;^UTILITY(U,$J,358.3,25466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25082,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Resp Sys Complicating Resp Sys Procedure
- ;;^UTILITY(U,$J,358.3,25082,1,4,0)
- ;;=4^J95.61
- ;;^UTILITY(U,$J,358.3,25082,2)
- ;;=^5008332
- ;;^UTILITY(U,$J,358.3,25083,0)
- ;;=J95.62^^124^1239^120
- ;;^UTILITY(U,$J,358.3,25083,1,0)
+ ;;^UTILITY(U,$J,358.3,25466,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25466,1,4,0)
+ ;;=4^F10.181
+ ;;^UTILITY(U,$J,358.3,25466,2)
+ ;;=^5003077
+ ;;^UTILITY(U,$J,358.3,25467,0)
+ ;;=F10.282^^95^1165^18
+ ;;^UTILITY(U,$J,358.3,25467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25083,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Resp Sys Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,25083,1,4,0)
- ;;=4^J95.62
- ;;^UTILITY(U,$J,358.3,25083,2)
- ;;=^5008333
- ;;^UTILITY(U,$J,358.3,25084,0)
- ;;=K91.61^^124^1239^105
- ;;^UTILITY(U,$J,358.3,25084,1,0)
+ ;;^UTILITY(U,$J,358.3,25467,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25467,1,4,0)
+ ;;=4^F10.282
+ ;;^UTILITY(U,$J,358.3,25467,2)
+ ;;=^5003098
+ ;;^UTILITY(U,$J,358.3,25468,0)
+ ;;=F10.982^^95^1165^19
+ ;;^UTILITY(U,$J,358.3,25468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25084,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Digestive Sys Complicating Digestive Sys Procedure
- ;;^UTILITY(U,$J,358.3,25084,1,4,0)
- ;;=4^K91.61
- ;;^UTILITY(U,$J,358.3,25084,2)
- ;;=^5008903
- ;;^UTILITY(U,$J,358.3,25085,0)
- ;;=K91.62^^124^1239^106
- ;;^UTILITY(U,$J,358.3,25085,1,0)
+ ;;^UTILITY(U,$J,358.3,25468,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25468,1,4,0)
+ ;;=4^F10.982
+ ;;^UTILITY(U,$J,358.3,25468,2)
+ ;;=^5003112
+ ;;^UTILITY(U,$J,358.3,25469,0)
+ ;;=F10.281^^95^1165^15
+ ;;^UTILITY(U,$J,358.3,25469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25085,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Digestive Sys Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,25085,1,4,0)
- ;;=4^K91.62
- ;;^UTILITY(U,$J,358.3,25085,2)
- ;;=^5008904
- ;;^UTILITY(U,$J,358.3,25086,0)
- ;;=L76.01^^124^1239^123
- ;;^UTILITY(U,$J,358.3,25086,1,0)
+ ;;^UTILITY(U,$J,358.3,25469,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25469,1,4,0)
+ ;;=4^F10.281
+ ;;^UTILITY(U,$J,358.3,25469,2)
+ ;;=^5003097
+ ;;^UTILITY(U,$J,358.3,25470,0)
+ ;;=F10.981^^95^1165^16
+ ;;^UTILITY(U,$J,358.3,25470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25086,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Derm Procedure
- ;;^UTILITY(U,$J,358.3,25086,1,4,0)
- ;;=4^L76.01
- ;;^UTILITY(U,$J,358.3,25086,2)
- ;;=^5009302
- ;;^UTILITY(U,$J,358.3,25087,0)
- ;;=L76.02^^124^1239^124
- ;;^UTILITY(U,$J,358.3,25087,1,0)
+ ;;^UTILITY(U,$J,358.3,25470,1,3,0)
+ ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25470,1,4,0)
+ ;;=4^F10.981
+ ;;^UTILITY(U,$J,358.3,25470,2)
+ ;;=^5003111
+ ;;^UTILITY(U,$J,358.3,25471,0)
+ ;;=F10.182^^95^1165^17
+ ;;^UTILITY(U,$J,358.3,25471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25087,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of Skin Complicating Oth Procedure
- ;;^UTILITY(U,$J,358.3,25087,1,4,0)
- ;;=4^L76.02
- ;;^UTILITY(U,$J,358.3,25087,2)
- ;;=^5009303
- ;;^UTILITY(U,$J,358.3,25088,0)
- ;;=M96.810^^124^1239^115
- ;;^UTILITY(U,$J,358.3,25088,1,0)
+ ;;^UTILITY(U,$J,358.3,25471,1,3,0)
+ ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25471,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,25471,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,25472,0)
+ ;;=F10.121^^95^1165^20
+ ;;^UTILITY(U,$J,358.3,25472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25088,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication MS Sys Procedure
- ;;^UTILITY(U,$J,358.3,25088,1,4,0)
- ;;=4^M96.810
- ;;^UTILITY(U,$J,358.3,25088,2)
- ;;=^5015393
- ;;^UTILITY(U,$J,358.3,25089,0)
- ;;=M96.811^^124^1239^116
- ;;^UTILITY(U,$J,358.3,25089,1,0)
+ ;;^UTILITY(U,$J,358.3,25472,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25472,1,4,0)
+ ;;=4^F10.121
+ ;;^UTILITY(U,$J,358.3,25472,2)
+ ;;=^5003070
+ ;;^UTILITY(U,$J,358.3,25473,0)
+ ;;=F10.221^^95^1165^21
+ ;;^UTILITY(U,$J,358.3,25473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25089,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of MS Structure Complication Oth Procedure
- ;;^UTILITY(U,$J,358.3,25089,1,4,0)
- ;;=4^M96.811
- ;;^UTILITY(U,$J,358.3,25089,2)
- ;;=^5015394
- ;;^UTILITY(U,$J,358.3,25090,0)
- ;;=N99.61^^124^1239^111
- ;;^UTILITY(U,$J,358.3,25090,1,0)
+ ;;^UTILITY(U,$J,358.3,25473,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25473,1,4,0)
+ ;;=4^F10.221
+ ;;^UTILITY(U,$J,358.3,25473,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,25474,0)
+ ;;=F10.921^^95^1165^22
+ ;;^UTILITY(U,$J,358.3,25474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25090,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complicating a GU Sys Procedure
- ;;^UTILITY(U,$J,358.3,25090,1,4,0)
- ;;=4^N99.61
- ;;^UTILITY(U,$J,358.3,25090,2)
- ;;=^5015963
- ;;^UTILITY(U,$J,358.3,25091,0)
- ;;=N99.62^^124^1239^112
- ;;^UTILITY(U,$J,358.3,25091,1,0)
+ ;;^UTILITY(U,$J,358.3,25474,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25474,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,25474,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,25475,0)
+ ;;=F10.129^^95^1165^23
+ ;;^UTILITY(U,$J,358.3,25475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25091,1,3,0)
- ;;=3^Intraoperative Hemor/Hemtom of GU Sys Complication Oth Procedure
- ;;^UTILITY(U,$J,358.3,25091,1,4,0)
- ;;=4^N99.62
- ;;^UTILITY(U,$J,358.3,25091,2)
- ;;=^5015964
- ;;^UTILITY(U,$J,358.3,25092,0)
- ;;=G97.51^^124^1239^182
- ;;^UTILITY(U,$J,358.3,25092,1,0)
+ ;;^UTILITY(U,$J,358.3,25475,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25475,1,4,0)
+ ;;=4^F10.129
+ ;;^UTILITY(U,$J,358.3,25475,2)
+ ;;=^5003071
+ ;;^UTILITY(U,$J,358.3,25476,0)
+ ;;=F10.229^^95^1165^24
+ ;;^UTILITY(U,$J,358.3,25476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25092,1,3,0)
- ;;=3^Postprocedural Hemor/Hemtom of Nervous Sys Following a Nervous Sys Procedure
- ;;^UTILITY(U,$J,358.3,25092,1,4,0)
- ;;=4^G97.51
- ;;^UTILITY(U,$J,358.3,25092,2)
- ;;=^5004209
- ;;^UTILITY(U,$J,358.3,25093,0)
- ;;=G97.52^^124^1239^183
+ ;;^UTILITY(U,$J,358.3,25476,1,3,0)
+ ;;=3^Alcohol Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25476,1,4,0)
+ ;;=4^F10.229
+ ;;^UTILITY(U,$J,358.3,25476,2)
+ ;;=^5003085
+ ;;^UTILITY(U,$J,358.3,25477,0)
+ ;;=F10.929^^95^1165^25
+ ;;^UTILITY(U,$J,358.3,25477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25477,1,3,0)
+ ;;=3^Alcohol Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25477,1,4,0)
+ ;;=4^F10.929
+ ;;^UTILITY(U,$J,358.3,25477,2)
+ ;;=^5003103
+ ;;^UTILITY(U,$J,358.3,25478,0)
+ ;;=F10.99^^95^1165^26

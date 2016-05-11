@@ -1,138 +1,126 @@
-IBDEI0WL ; ; 19-NOV-2015
+IBDEI0WL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15017,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,15017,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,15018,0)
- ;;=F03.90^^85^808^26
- ;;^UTILITY(U,$J,358.3,15018,1,0)
+ ;;^UTILITY(U,$J,358.3,15295,0)
+ ;;=90785^^57^655^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15295,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15295,1,2,0)
+ ;;=2^90785
+ ;;^UTILITY(U,$J,358.3,15295,1,3,0)
+ ;;=3^Interactive Complexity
+ ;;^UTILITY(U,$J,358.3,15296,0)
+ ;;=H0001^^57^656^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15296,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15296,1,2,0)
+ ;;=2^H0001
+ ;;^UTILITY(U,$J,358.3,15296,1,3,0)
+ ;;=3^Addictions Assessment
+ ;;^UTILITY(U,$J,358.3,15297,0)
+ ;;=H0002^^57^656^10^^^^1
+ ;;^UTILITY(U,$J,358.3,15297,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15297,1,2,0)
+ ;;=2^H0002
+ ;;^UTILITY(U,$J,358.3,15297,1,3,0)
+ ;;=3^Screen for Addictions Admission Eligibility
+ ;;^UTILITY(U,$J,358.3,15298,0)
+ ;;=H0003^^57^656^6^^^^1
+ ;;^UTILITY(U,$J,358.3,15298,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15298,1,2,0)
+ ;;=2^H0003
+ ;;^UTILITY(U,$J,358.3,15298,1,3,0)
+ ;;=3^Alcohol/Drug Screen;lab analysis
+ ;;^UTILITY(U,$J,358.3,15299,0)
+ ;;=H0004^^57^656^7^^^^1
+ ;;^UTILITY(U,$J,358.3,15299,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15299,1,2,0)
+ ;;=2^H0004
+ ;;^UTILITY(U,$J,358.3,15299,1,3,0)
+ ;;=3^Individual Counseling & Therapy,per 15 min
+ ;;^UTILITY(U,$J,358.3,15300,0)
+ ;;=H0005^^57^656^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15300,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15300,1,2,0)
+ ;;=2^H0005
+ ;;^UTILITY(U,$J,358.3,15300,1,3,0)
+ ;;=3^Addictions Group Counseling by Clinician
+ ;;^UTILITY(U,$J,358.3,15301,0)
+ ;;=H0006^^57^656^5^^^^1
+ ;;^UTILITY(U,$J,358.3,15301,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15301,1,2,0)
+ ;;=2^H0006
+ ;;^UTILITY(U,$J,358.3,15301,1,3,0)
+ ;;=3^Alcohol/Drug Case Management
+ ;;^UTILITY(U,$J,358.3,15302,0)
+ ;;=H0020^^57^656^8^^^^1
+ ;;^UTILITY(U,$J,358.3,15302,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15302,1,2,0)
+ ;;=2^H0020
+ ;;^UTILITY(U,$J,358.3,15302,1,3,0)
+ ;;=3^Methadone Admin &/or Svc by Licensed Program
+ ;;^UTILITY(U,$J,358.3,15303,0)
+ ;;=H0025^^57^656^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15303,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15303,1,2,0)
+ ;;=2^H0025
+ ;;^UTILITY(U,$J,358.3,15303,1,3,0)
+ ;;=3^Addictions Health Prevention Ed Service
+ ;;^UTILITY(U,$J,358.3,15304,0)
+ ;;=H0030^^57^656^4^^^^1
+ ;;^UTILITY(U,$J,358.3,15304,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15304,1,2,0)
+ ;;=2^H0030
+ ;;^UTILITY(U,$J,358.3,15304,1,3,0)
+ ;;=3^Addictions Hotline Services
+ ;;^UTILITY(U,$J,358.3,15305,0)
+ ;;=H0046^^57^656^9^^^^1
+ ;;^UTILITY(U,$J,358.3,15305,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15305,1,2,0)
+ ;;=2^H0046
+ ;;^UTILITY(U,$J,358.3,15305,1,3,0)
+ ;;=3^PTSD Group
+ ;;^UTILITY(U,$J,358.3,15306,0)
+ ;;=90791^^57^657^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15306,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15306,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,15306,1,3,0)
+ ;;=3^Psychiatric Diagnostic Evaluation
+ ;;^UTILITY(U,$J,358.3,15307,0)
+ ;;=T74.11XA^^58^658^5
+ ;;^UTILITY(U,$J,358.3,15307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15018,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15018,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,15018,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,15019,0)
- ;;=F03.91^^85^808^25
- ;;^UTILITY(U,$J,358.3,15019,1,0)
+ ;;^UTILITY(U,$J,358.3,15307,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,15307,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,15307,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,15308,0)
+ ;;=T74.11XD^^58^658^6
+ ;;^UTILITY(U,$J,358.3,15308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15019,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15019,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,15019,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,15020,0)
- ;;=G30.0^^85^808^9
- ;;^UTILITY(U,$J,358.3,15020,1,0)
+ ;;^UTILITY(U,$J,358.3,15308,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,15308,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,15308,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,15309,0)
+ ;;=T76.11XA^^58^658^7
+ ;;^UTILITY(U,$J,358.3,15309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15020,1,3,0)
- ;;=3^Alzheimer's w/ Early Onset
- ;;^UTILITY(U,$J,358.3,15020,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,15020,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,15021,0)
- ;;=G30.1^^85^808^10
- ;;^UTILITY(U,$J,358.3,15021,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15021,1,3,0)
- ;;=3^Alzheimer's w/ Late Onset
- ;;^UTILITY(U,$J,358.3,15021,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,15021,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,15022,0)
- ;;=G30.8^^85^808^7
- ;;^UTILITY(U,$J,358.3,15022,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15022,1,3,0)
- ;;=3^Alzheimer's Disease NEC
- ;;^UTILITY(U,$J,358.3,15022,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,15022,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,15023,0)
- ;;=G30.9^^85^808^8
- ;;^UTILITY(U,$J,358.3,15023,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15023,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,15023,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,15023,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,15024,0)
- ;;=G45.9^^85^808^72
- ;;^UTILITY(U,$J,358.3,15024,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15024,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack (TIA),Unspec
- ;;^UTILITY(U,$J,358.3,15024,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,15024,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,15025,0)
- ;;=G47.00^^85^808^49
- ;;^UTILITY(U,$J,358.3,15025,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15025,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,15025,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,15025,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,15026,0)
- ;;=G47.30^^85^808^66
- ;;^UTILITY(U,$J,358.3,15026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15026,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,15026,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,15026,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,15027,0)
- ;;=G47.9^^85^808^67
- ;;^UTILITY(U,$J,358.3,15027,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15027,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15027,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,15027,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,15028,0)
- ;;=G93.3^^85^808^61
- ;;^UTILITY(U,$J,358.3,15028,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15028,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,15028,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,15028,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,15029,0)
- ;;=I73.01^^85^808^64
- ;;^UTILITY(U,$J,358.3,15029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15029,1,3,0)
- ;;=3^Raynaud's Syndrome w/ Gangrene
- ;;^UTILITY(U,$J,358.3,15029,1,4,0)
- ;;=4^I73.01
- ;;^UTILITY(U,$J,358.3,15029,2)
- ;;=^5007797
- ;;^UTILITY(U,$J,358.3,15030,0)
- ;;=I96.^^85^808^41
- ;;^UTILITY(U,$J,358.3,15030,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15030,1,3,0)
- ;;=3^Gangrene NEC
- ;;^UTILITY(U,$J,358.3,15030,1,4,0)
- ;;=4^I96.
- ;;^UTILITY(U,$J,358.3,15030,2)
- ;;=^5008081
+ ;;^UTILITY(U,$J,358.3,15309,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  

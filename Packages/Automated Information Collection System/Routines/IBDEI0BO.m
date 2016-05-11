@@ -1,124 +1,128 @@
-IBDEI0BO ; ; 19-NOV-2015
+IBDEI0BO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4996,1,2,0)
- ;;=2^Trunk/Arm/Leg > 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4996,1,4,0)
- ;;=4^11406
- ;;^UTILITY(U,$J,358.3,4997,0)
- ;;=11640^^39^336^1^^^^1
- ;;^UTILITY(U,$J,358.3,4997,1,0)
+ ;;^UTILITY(U,$J,358.3,5282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4997,1,2,0)
- ;;=2^Face/Ear/Nose 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,4997,1,4,0)
- ;;=4^11640
- ;;^UTILITY(U,$J,358.3,4998,0)
- ;;=11641^^39^336^1^^^^1
- ;;^UTILITY(U,$J,358.3,4998,1,0)
+ ;;^UTILITY(U,$J,358.3,5282,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5282,1,4,0)
+ ;;=4^N01.1
+ ;;^UTILITY(U,$J,358.3,5282,2)
+ ;;=^5015502
+ ;;^UTILITY(U,$J,358.3,5283,0)
+ ;;=N01.2^^27^344^67
+ ;;^UTILITY(U,$J,358.3,5283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4998,1,2,0)
- ;;=2^Face/Ear/Nose 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,4998,1,4,0)
- ;;=4^11641
- ;;^UTILITY(U,$J,358.3,4999,0)
- ;;=11642^^39^336^2^^^^1
- ;;^UTILITY(U,$J,358.3,4999,1,0)
+ ;;^UTILITY(U,$J,358.3,5283,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,5283,1,4,0)
+ ;;=4^N01.2
+ ;;^UTILITY(U,$J,358.3,5283,2)
+ ;;=^5015503
+ ;;^UTILITY(U,$J,358.3,5284,0)
+ ;;=N01.3^^27^344^65
+ ;;^UTILITY(U,$J,358.3,5284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4999,1,2,0)
- ;;=2^Face/Ear/Nose 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,4999,1,4,0)
- ;;=4^11642
- ;;^UTILITY(U,$J,358.3,5000,0)
- ;;=11643^^39^336^3^^^^1
- ;;^UTILITY(U,$J,358.3,5000,1,0)
+ ;;^UTILITY(U,$J,358.3,5284,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5284,1,4,0)
+ ;;=4^N01.3
+ ;;^UTILITY(U,$J,358.3,5284,2)
+ ;;=^5015504
+ ;;^UTILITY(U,$J,358.3,5285,0)
+ ;;=N01.4^^27^344^64
+ ;;^UTILITY(U,$J,358.3,5285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5000,1,2,0)
- ;;=2^Face/Ear/Nose 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5000,1,4,0)
- ;;=4^11643
- ;;^UTILITY(U,$J,358.3,5001,0)
- ;;=11644^^39^336^4^^^^1
- ;;^UTILITY(U,$J,358.3,5001,1,0)
+ ;;^UTILITY(U,$J,358.3,5285,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffus endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5285,1,4,0)
+ ;;=4^N01.4
+ ;;^UTILITY(U,$J,358.3,5285,2)
+ ;;=^5015505
+ ;;^UTILITY(U,$J,358.3,5286,0)
+ ;;=N01.5^^27^344^68
+ ;;^UTILITY(U,$J,358.3,5286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5001,1,2,0)
- ;;=2^Face/Ear/Nose 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5001,1,4,0)
- ;;=4^11644
- ;;^UTILITY(U,$J,358.3,5002,0)
- ;;=11646^^39^336^6^^^^1
- ;;^UTILITY(U,$J,358.3,5002,1,0)
+ ;;^UTILITY(U,$J,358.3,5286,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5286,1,4,0)
+ ;;=4^N01.5
+ ;;^UTILITY(U,$J,358.3,5286,2)
+ ;;=^5015506
+ ;;^UTILITY(U,$J,358.3,5287,0)
+ ;;=N01.6^^27^344^63
+ ;;^UTILITY(U,$J,358.3,5287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5002,1,2,0)
- ;;=2^Face/Ear/Nose > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5002,1,4,0)
- ;;=4^11646
- ;;^UTILITY(U,$J,358.3,5003,0)
- ;;=11620^^39^337^1^^^^1
- ;;^UTILITY(U,$J,358.3,5003,1,0)
+ ;;^UTILITY(U,$J,358.3,5287,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5287,1,4,0)
+ ;;=4^N01.6
+ ;;^UTILITY(U,$J,358.3,5287,2)
+ ;;=^5015507
+ ;;^UTILITY(U,$J,358.3,5288,0)
+ ;;=N01.7^^27^344^66
+ ;;^UTILITY(U,$J,358.3,5288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5003,1,2,0)
- ;;=2^Scalp/Neck/Head 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,5003,1,4,0)
- ;;=4^11620
- ;;^UTILITY(U,$J,358.3,5004,0)
- ;;=11621^^39^337^2^^^^1
- ;;^UTILITY(U,$J,358.3,5004,1,0)
+ ;;^UTILITY(U,$J,358.3,5288,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5288,1,4,0)
+ ;;=4^N01.7
+ ;;^UTILITY(U,$J,358.3,5288,2)
+ ;;=^5015508
+ ;;^UTILITY(U,$J,358.3,5289,0)
+ ;;=N01.8^^27^344^71
+ ;;^UTILITY(U,$J,358.3,5289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5004,1,2,0)
- ;;=2^Scalp/Neck/Head 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5004,1,4,0)
- ;;=4^11621
- ;;^UTILITY(U,$J,358.3,5005,0)
- ;;=11622^^39^337^3^^^^1
- ;;^UTILITY(U,$J,358.3,5005,1,0)
+ ;;^UTILITY(U,$J,358.3,5289,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ oth morphologic changes
+ ;;^UTILITY(U,$J,358.3,5289,1,4,0)
+ ;;=4^N01.8
+ ;;^UTILITY(U,$J,358.3,5289,2)
+ ;;=^5015509
+ ;;^UTILITY(U,$J,358.3,5290,0)
+ ;;=N01.9^^27^344^72
+ ;;^UTILITY(U,$J,358.3,5290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5005,1,2,0)
- ;;=2^Scalp/Neck/Head 1.1 - 2.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5005,1,4,0)
- ;;=4^11622
- ;;^UTILITY(U,$J,358.3,5006,0)
- ;;=11623^^39^337^4^^^^1
- ;;^UTILITY(U,$J,358.3,5006,1,0)
+ ;;^UTILITY(U,$J,358.3,5290,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,5290,1,4,0)
+ ;;=4^N01.9
+ ;;^UTILITY(U,$J,358.3,5290,2)
+ ;;=^5015510
+ ;;^UTILITY(U,$J,358.3,5291,0)
+ ;;=N02.0^^27^344^80
+ ;;^UTILITY(U,$J,358.3,5291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5006,1,2,0)
- ;;=2^Scalp/Neck/Head 2.1 - 3.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5006,1,4,0)
- ;;=4^11623
- ;;^UTILITY(U,$J,358.3,5007,0)
- ;;=11624^^39^337^5^^^^1
- ;;^UTILITY(U,$J,358.3,5007,1,0)
+ ;;^UTILITY(U,$J,358.3,5291,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ minor glomerular abnlt
+ ;;^UTILITY(U,$J,358.3,5291,1,4,0)
+ ;;=4^N02.0
+ ;;^UTILITY(U,$J,358.3,5291,2)
+ ;;=^5015511
+ ;;^UTILITY(U,$J,358.3,5292,0)
+ ;;=N02.1^^27^344^79
+ ;;^UTILITY(U,$J,358.3,5292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5007,1,2,0)
- ;;=2^Scalp/Neck/Head 3.1 - 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5007,1,4,0)
- ;;=4^11624
- ;;^UTILITY(U,$J,358.3,5008,0)
- ;;=11626^^39^337^6^^^^1
- ;;^UTILITY(U,$J,358.3,5008,1,0)
+ ;;^UTILITY(U,$J,358.3,5292,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ focal & seg glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5292,1,4,0)
+ ;;=4^N02.1
+ ;;^UTILITY(U,$J,358.3,5292,2)
+ ;;=^5015512
+ ;;^UTILITY(U,$J,358.3,5293,0)
+ ;;=N02.2^^27^344^77
+ ;;^UTILITY(U,$J,358.3,5293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5008,1,2,0)
- ;;=2^Scalp/Neck/Head > 4.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5008,1,4,0)
- ;;=4^11626
- ;;^UTILITY(U,$J,358.3,5009,0)
- ;;=11600^^39^338^1^^^^1
- ;;^UTILITY(U,$J,358.3,5009,1,0)
+ ;;^UTILITY(U,$J,358.3,5293,1,3,0)
+ ;;=3^Recurrent & perst hematur w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,5293,1,4,0)
+ ;;=4^N02.2
+ ;;^UTILITY(U,$J,358.3,5293,2)
+ ;;=^5015513
+ ;;^UTILITY(U,$J,358.3,5294,0)
+ ;;=N02.3^^27^344^74
+ ;;^UTILITY(U,$J,358.3,5294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5009,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.5 cm or less Malig Excision
- ;;^UTILITY(U,$J,358.3,5009,1,4,0)
- ;;=4^11600
- ;;^UTILITY(U,$J,358.3,5010,0)
- ;;=11601^^39^338^2^^^^1
- ;;^UTILITY(U,$J,358.3,5010,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5010,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.6 - 1.0 cm Malig Excision
- ;;^UTILITY(U,$J,358.3,5010,1,4,0)
- ;;=4^11601
- ;;^UTILITY(U,$J,358.3,5011,0)
- ;;=11602^^39^338^3^^^^1
- ;;^UTILITY(U,$J,358.3,5011,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5294,1,3,0)
+ ;;=3^Recur & perst hematur w/ diffus mesangial prolif glomrlneph

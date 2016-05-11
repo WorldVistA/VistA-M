@@ -1,134 +1,136 @@
-IBDEI1DO ; ; 19-NOV-2015
+IBDEI1DO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22977,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,22977,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,22978,0)
- ;;=I35.0^^107^1078^11
- ;;^UTILITY(U,$J,358.3,22978,1,0)
+ ;;^UTILITY(U,$J,358.3,23416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22978,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis
- ;;^UTILITY(U,$J,358.3,22978,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,22978,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,22979,0)
- ;;=I35.1^^107^1078^10
- ;;^UTILITY(U,$J,358.3,22979,1,0)
+ ;;^UTILITY(U,$J,358.3,23416,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,23416,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,23416,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,23417,0)
+ ;;=F52.9^^87^997^55
+ ;;^UTILITY(U,$J,358.3,23417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22979,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Insufficiency
- ;;^UTILITY(U,$J,358.3,22979,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,22979,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,22980,0)
- ;;=I35.2^^107^1078^12
- ;;^UTILITY(U,$J,358.3,22980,1,0)
+ ;;^UTILITY(U,$J,358.3,23417,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,23417,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,23417,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,23418,0)
+ ;;=R37.^^87^997^56
+ ;;^UTILITY(U,$J,358.3,23418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22980,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,22980,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,22980,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,22981,0)
- ;;=I35.9^^107^1078^9
- ;;^UTILITY(U,$J,358.3,22981,1,0)
+ ;;^UTILITY(U,$J,358.3,23418,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,23418,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,23418,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,23419,0)
+ ;;=N60.01^^87^997^59
+ ;;^UTILITY(U,$J,358.3,23419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22981,1,3,0)
- ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22981,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,22981,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,22982,0)
- ;;=I42.7^^107^1078^3
- ;;^UTILITY(U,$J,358.3,22982,1,0)
+ ;;^UTILITY(U,$J,358.3,23419,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,23419,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,23419,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,23420,0)
+ ;;=N60.02^^87^997^58
+ ;;^UTILITY(U,$J,358.3,23420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22982,1,3,0)
- ;;=3^Cardiomyopathy d/t Drug/External Agent
- ;;^UTILITY(U,$J,358.3,22982,1,4,0)
- ;;=4^I42.7
- ;;^UTILITY(U,$J,358.3,22982,2)
- ;;=^5007198
- ;;^UTILITY(U,$J,358.3,22983,0)
- ;;=I21.3^^107^1078^14
- ;;^UTILITY(U,$J,358.3,22983,1,0)
+ ;;^UTILITY(U,$J,358.3,23420,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,23420,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,23420,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,23421,0)
+ ;;=N60.09^^87^997^60
+ ;;^UTILITY(U,$J,358.3,23421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22983,1,3,0)
- ;;=3^STEMI,Unspec Site
- ;;^UTILITY(U,$J,358.3,22983,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,22983,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,22984,0)
- ;;=I25.5^^107^1078^8
- ;;^UTILITY(U,$J,358.3,22984,1,0)
+ ;;^UTILITY(U,$J,358.3,23421,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,23421,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,23421,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,23422,0)
+ ;;=N60.11^^87^997^12
+ ;;^UTILITY(U,$J,358.3,23422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22984,1,3,0)
- ;;=3^Ischemic Cardiomyopathy
- ;;^UTILITY(U,$J,358.3,22984,1,4,0)
- ;;=4^I25.5
- ;;^UTILITY(U,$J,358.3,22984,2)
- ;;=^5007115
- ;;^UTILITY(U,$J,358.3,22985,0)
- ;;=I25.9^^107^1078^6
- ;;^UTILITY(U,$J,358.3,22985,1,0)
+ ;;^UTILITY(U,$J,358.3,23422,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,23422,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,23422,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,23423,0)
+ ;;=N60.12^^87^997^11
+ ;;^UTILITY(U,$J,358.3,23423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22985,1,3,0)
- ;;=3^Chronic Ischemic Heart Disease,Unspec
- ;;^UTILITY(U,$J,358.3,22985,1,4,0)
- ;;=4^I25.9
- ;;^UTILITY(U,$J,358.3,22985,2)
- ;;=^5007144
- ;;^UTILITY(U,$J,358.3,22986,0)
- ;;=I25.10^^107^1078^2
- ;;^UTILITY(U,$J,358.3,22986,1,0)
+ ;;^UTILITY(U,$J,358.3,23423,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,23423,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,23423,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,23424,0)
+ ;;=N60.19^^87^997^13
+ ;;^UTILITY(U,$J,358.3,23424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22986,1,3,0)
- ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,22986,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,22986,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,22987,0)
- ;;=D64.9^^107^1078^1
- ;;^UTILITY(U,$J,358.3,22987,1,0)
+ ;;^UTILITY(U,$J,358.3,23424,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,23424,1,4,0)
+ ;;=4^N60.19
+ ;;^UTILITY(U,$J,358.3,23424,2)
+ ;;=^5015775
+ ;;^UTILITY(U,$J,358.3,23425,0)
+ ;;=N64.4^^87^997^34
+ ;;^UTILITY(U,$J,358.3,23425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22987,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,22987,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,22987,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,22988,0)
- ;;=I42.9^^107^1078^4
- ;;^UTILITY(U,$J,358.3,22988,1,0)
+ ;;^UTILITY(U,$J,358.3,23425,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,23425,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,23425,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,23426,0)
+ ;;=N63.^^87^997^33
+ ;;^UTILITY(U,$J,358.3,23426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22988,1,3,0)
- ;;=3^Cardiomyopathy,Unspec
- ;;^UTILITY(U,$J,358.3,22988,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,22988,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,22989,0)
- ;;=I67.9^^107^1078^5
- ;;^UTILITY(U,$J,358.3,22989,1,0)
+ ;;^UTILITY(U,$J,358.3,23426,1,3,0)
+ ;;=3^Lump in Breast,Unspec
+ ;;^UTILITY(U,$J,358.3,23426,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,23426,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,23427,0)
+ ;;=N64.51^^87^997^28
+ ;;^UTILITY(U,$J,358.3,23427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22989,1,3,0)
- ;;=3^Cerebrovascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,22989,1,4,0)
- ;;=4^I67.9
- ;;^UTILITY(U,$J,358.3,22989,2)
- ;;=^5007389
- ;;^UTILITY(U,$J,358.3,22990,0)
- ;;=F04.^^107^1079^2
- ;;^UTILITY(U,$J,358.3,22990,1,0)
+ ;;^UTILITY(U,$J,358.3,23427,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,23427,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,23427,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,23428,0)
+ ;;=N64.59^^87^997^57
+ ;;^UTILITY(U,$J,358.3,23428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22990,1,3,0)
- ;;=3^Amnestic Disorder d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,23428,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,23428,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,23428,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,23429,0)
+ ;;=N64.52^^87^997^37
+ ;;^UTILITY(U,$J,358.3,23429,1,0)
+ ;;=^358.31IA^4^2

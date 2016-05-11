@@ -1,126 +1,136 @@
-IBDEI1YN ; ; 19-NOV-2015
+IBDEI1YN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32830,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,32831,0)
- ;;=F10.921^^146^1584^1
- ;;^UTILITY(U,$J,358.3,32831,1,0)
+ ;;^UTILITY(U,$J,358.3,33274,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,33275,0)
+ ;;=L03.311^^131^1669^95
+ ;;^UTILITY(U,$J,358.3,33275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32831,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,32831,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,32831,2)
- ;;=^5003102
- ;;^UTILITY(U,$J,358.3,32832,0)
- ;;=F05.^^146^1584^4
- ;;^UTILITY(U,$J,358.3,32832,1,0)
+ ;;^UTILITY(U,$J,358.3,33275,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,33275,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,33275,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,33276,0)
+ ;;=L03.312^^131^1669^96
+ ;;^UTILITY(U,$J,358.3,33276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32832,1,3,0)
- ;;=3^Delirium d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32832,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,32832,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,32833,0)
- ;;=F05.^^146^1584^5
- ;;^UTILITY(U,$J,358.3,32833,1,0)
+ ;;^UTILITY(U,$J,358.3,33276,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,33276,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,33276,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,33277,0)
+ ;;=L03.313^^131^1669^98
+ ;;^UTILITY(U,$J,358.3,33277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32833,1,3,0)
- ;;=3^Delirium d/t Multiple Etiologies
- ;;^UTILITY(U,$J,358.3,32833,1,4,0)
- ;;=4^F05.
- ;;^UTILITY(U,$J,358.3,32833,2)
- ;;=^5003052
- ;;^UTILITY(U,$J,358.3,32834,0)
- ;;=A81.00^^146^1585^9
- ;;^UTILITY(U,$J,358.3,32834,1,0)
+ ;;^UTILITY(U,$J,358.3,33277,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,33277,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,33277,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,33278,0)
+ ;;=L03.314^^131^1669^100
+ ;;^UTILITY(U,$J,358.3,33278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32834,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,32834,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,32834,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,32835,0)
- ;;=A81.01^^146^1585^38
- ;;^UTILITY(U,$J,358.3,32835,1,0)
+ ;;^UTILITY(U,$J,358.3,33278,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,33278,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,33278,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,33279,0)
+ ;;=L03.315^^131^1669^107
+ ;;^UTILITY(U,$J,358.3,33279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32835,1,3,0)
- ;;=3^Variant Creutzfeldt-Jakob Disease
- ;;^UTILITY(U,$J,358.3,32835,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,32835,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,32836,0)
- ;;=A81.09^^146^1585^8
- ;;^UTILITY(U,$J,358.3,32836,1,0)
+ ;;^UTILITY(U,$J,358.3,33279,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,33279,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,33279,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,33280,0)
+ ;;=L03.316^^131^1669^114
+ ;;^UTILITY(U,$J,358.3,33280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32836,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,32836,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,32836,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,32837,0)
- ;;=A81.2^^146^1585^33
- ;;^UTILITY(U,$J,358.3,32837,1,0)
+ ;;^UTILITY(U,$J,358.3,33280,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,33280,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,33280,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,33281,0)
+ ;;=L03.319^^131^1669^113
+ ;;^UTILITY(U,$J,358.3,33281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32837,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,32837,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,32837,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,32838,0)
- ;;=F01.50^^146^1585^31
- ;;^UTILITY(U,$J,358.3,32838,1,0)
+ ;;^UTILITY(U,$J,358.3,33281,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,33281,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,33281,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,33282,0)
+ ;;=L03.321^^131^1669^13
+ ;;^UTILITY(U,$J,358.3,33282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32838,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,32838,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,32838,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,32839,0)
- ;;=F01.51^^146^1585^32
- ;;^UTILITY(U,$J,358.3,32839,1,0)
+ ;;^UTILITY(U,$J,358.3,33282,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,33282,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,33282,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,33283,0)
+ ;;=L03.322^^131^1669^14
+ ;;^UTILITY(U,$J,358.3,33283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32839,1,3,0)
- ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,32839,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,32839,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,32840,0)
- ;;=F10.27^^146^1585^1
- ;;^UTILITY(U,$J,358.3,32840,1,0)
+ ;;^UTILITY(U,$J,358.3,33283,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,33283,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,33283,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,33284,0)
+ ;;=L03.323^^131^1669^15
+ ;;^UTILITY(U,$J,358.3,33284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32840,1,3,0)
- ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
- ;;^UTILITY(U,$J,358.3,32840,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,32840,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,32841,0)
- ;;=F19.97^^146^1585^37
- ;;^UTILITY(U,$J,358.3,32841,1,0)
+ ;;^UTILITY(U,$J,358.3,33284,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,33284,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,33284,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,33285,0)
+ ;;=L03.324^^131^1669^17
+ ;;^UTILITY(U,$J,358.3,33285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32841,1,3,0)
- ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
- ;;^UTILITY(U,$J,358.3,32841,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,32841,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,32842,0)
- ;;=F02.80^^146^1585^13
- ;;^UTILITY(U,$J,358.3,32842,1,0)
+ ;;^UTILITY(U,$J,358.3,33285,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,33285,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,33285,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,33286,0)
+ ;;=L03.325^^131^1669^23
+ ;;^UTILITY(U,$J,358.3,33286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32842,1,3,0)
- ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
- ;;^UTILITY(U,$J,358.3,32842,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,32842,2)
- ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,33286,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,33286,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,33286,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,33287,0)
+ ;;=L03.326^^131^1669^29
+ ;;^UTILITY(U,$J,358.3,33287,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33287,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,33287,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,33287,2)
+ ;;=^5009060

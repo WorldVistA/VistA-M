@@ -1,128 +1,132 @@
-IBDEI2K5 ; ; 19-NOV-2015
+IBDEI2K5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42889,1,4,0)
- ;;=4^R26.81
- ;;^UTILITY(U,$J,358.3,42889,2)
- ;;=^5019307
- ;;^UTILITY(U,$J,358.3,42890,0)
- ;;=E53.8^^192^2150^24
- ;;^UTILITY(U,$J,358.3,42890,1,0)
+ ;;^UTILITY(U,$J,358.3,43400,1,3,0)
+ ;;=3^DM Type 2 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,43400,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,43400,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,43401,0)
+ ;;=E11.630^^167^2078^103
+ ;;^UTILITY(U,$J,358.3,43401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42890,1,3,0)
- ;;=3^Vitamin B Group Deficiency NEC
- ;;^UTILITY(U,$J,358.3,42890,1,4,0)
- ;;=4^E53.8
- ;;^UTILITY(U,$J,358.3,42890,2)
- ;;=^5002797
- ;;^UTILITY(U,$J,358.3,42891,0)
- ;;=M21.171^^192^2150^19
- ;;^UTILITY(U,$J,358.3,42891,1,0)
+ ;;^UTILITY(U,$J,358.3,43401,1,3,0)
+ ;;=3^DM Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,43401,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,43401,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,43402,0)
+ ;;=E11.641^^167^2078^101
+ ;;^UTILITY(U,$J,358.3,43402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42891,1,3,0)
- ;;=3^Varus deformity, rt ankl, NEC
- ;;^UTILITY(U,$J,358.3,42891,1,4,0)
- ;;=4^M21.171
- ;;^UTILITY(U,$J,358.3,42891,2)
- ;;=^5011082
- ;;^UTILITY(U,$J,358.3,42892,0)
- ;;=M21.172^^192^2150^18
- ;;^UTILITY(U,$J,358.3,42892,1,0)
+ ;;^UTILITY(U,$J,358.3,43402,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,43402,1,4,0)
+ ;;=4^E11.641
+ ;;^UTILITY(U,$J,358.3,43402,2)
+ ;;=^5002661
+ ;;^UTILITY(U,$J,358.3,43403,0)
+ ;;=E11.649^^167^2078^102
+ ;;^UTILITY(U,$J,358.3,43403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42892,1,3,0)
- ;;=3^Varus deformity, lft ankl, NEC
- ;;^UTILITY(U,$J,358.3,42892,1,4,0)
- ;;=4^M21.172
- ;;^UTILITY(U,$J,358.3,42892,2)
- ;;=^5011083
- ;;^UTILITY(U,$J,358.3,42893,0)
- ;;=Q66.3^^192^2150^17
- ;;^UTILITY(U,$J,358.3,42893,1,0)
+ ;;^UTILITY(U,$J,358.3,43403,1,3,0)
+ ;;=3^DM Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,43403,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,43403,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,43404,0)
+ ;;=E11.65^^167^2078^100
+ ;;^UTILITY(U,$J,358.3,43404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42893,1,3,0)
- ;;=3^Varus Deformity of Foot,Congenital
- ;;^UTILITY(U,$J,358.3,42893,1,4,0)
- ;;=4^Q66.3
- ;;^UTILITY(U,$J,358.3,42893,2)
- ;;=^5018864
- ;;^UTILITY(U,$J,358.3,42894,0)
- ;;=I83.12^^192^2150^1
- ;;^UTILITY(U,$J,358.3,42894,1,0)
+ ;;^UTILITY(U,$J,358.3,43404,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,43404,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,43404,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,43405,0)
+ ;;=G56.41^^167^2078^64
+ ;;^UTILITY(U,$J,358.3,43405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42894,1,3,0)
- ;;=3^Varicose veins lft lwr extrem w/ inflammation
- ;;^UTILITY(U,$J,358.3,42894,1,4,0)
- ;;=4^I83.12
- ;;^UTILITY(U,$J,358.3,42894,2)
- ;;=^5007989
- ;;^UTILITY(U,$J,358.3,42895,0)
- ;;=I83.11^^192^2150^9
- ;;^UTILITY(U,$J,358.3,42895,1,0)
+ ;;^UTILITY(U,$J,358.3,43405,1,3,0)
+ ;;=3^Causalgia Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,43405,1,4,0)
+ ;;=4^G56.41
+ ;;^UTILITY(U,$J,358.3,43405,2)
+ ;;=^5004030
+ ;;^UTILITY(U,$J,358.3,43406,0)
+ ;;=G56.42^^167^2078^63
+ ;;^UTILITY(U,$J,358.3,43406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42895,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ inflammation
- ;;^UTILITY(U,$J,358.3,42895,1,4,0)
- ;;=4^I83.11
- ;;^UTILITY(U,$J,358.3,42895,2)
- ;;=^5007988
- ;;^UTILITY(U,$J,358.3,42896,0)
- ;;=I83.212^^192^2150^12
- ;;^UTILITY(U,$J,358.3,42896,1,0)
+ ;;^UTILITY(U,$J,358.3,43406,1,3,0)
+ ;;=3^Causalgia Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,43406,1,4,0)
+ ;;=4^G56.42
+ ;;^UTILITY(U,$J,358.3,43406,2)
+ ;;=^5004031
+ ;;^UTILITY(U,$J,358.3,43407,0)
+ ;;=I65.21^^167^2078^130
+ ;;^UTILITY(U,$J,358.3,43407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42896,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc calf & inflammation
- ;;^UTILITY(U,$J,358.3,42896,1,4,0)
- ;;=4^I83.212
- ;;^UTILITY(U,$J,358.3,42896,2)
- ;;=^5007998
- ;;^UTILITY(U,$J,358.3,42897,0)
- ;;=I83.211^^192^2150^16
- ;;^UTILITY(U,$J,358.3,42897,1,0)
+ ;;^UTILITY(U,$J,358.3,43407,1,3,0)
+ ;;=3^Occlusion & Stenosis Rt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43407,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,43407,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,43408,0)
+ ;;=I65.22^^167^2078^129
+ ;;^UTILITY(U,$J,358.3,43408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42897,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc thigh & inflammation
- ;;^UTILITY(U,$J,358.3,42897,1,4,0)
- ;;=4^I83.211
- ;;^UTILITY(U,$J,358.3,42897,2)
- ;;=^5007997
- ;;^UTILITY(U,$J,358.3,42898,0)
- ;;=I83.213^^192^2150^11
- ;;^UTILITY(U,$J,358.3,42898,1,0)
+ ;;^UTILITY(U,$J,358.3,43408,1,3,0)
+ ;;=3^Occlusion & Stenosis Lt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43408,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,43408,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,43409,0)
+ ;;=I65.23^^167^2078^128
+ ;;^UTILITY(U,$J,358.3,43409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42898,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc ankl & inflammation
- ;;^UTILITY(U,$J,358.3,42898,1,4,0)
- ;;=4^I83.213
- ;;^UTILITY(U,$J,358.3,42898,2)
- ;;=^5007999
- ;;^UTILITY(U,$J,358.3,42899,0)
- ;;=I83.214^^192^2150^13
- ;;^UTILITY(U,$J,358.3,42899,1,0)
+ ;;^UTILITY(U,$J,358.3,43409,1,3,0)
+ ;;=3^Occlusion & Stenosis Bil Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,43409,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,43409,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,43410,0)
+ ;;=I63.131^^167^2078^71
+ ;;^UTILITY(U,$J,358.3,43410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42899,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc heel/midft & inflammation
- ;;^UTILITY(U,$J,358.3,42899,1,4,0)
- ;;=4^I83.214
- ;;^UTILITY(U,$J,358.3,42899,2)
- ;;=^5008000
- ;;^UTILITY(U,$J,358.3,42900,0)
- ;;=I83.219^^192^2150^10
- ;;^UTILITY(U,$J,358.3,42900,1,0)
+ ;;^UTILITY(U,$J,358.3,43410,1,3,0)
+ ;;=3^Cereb Infarc d/t Rt Carotid Artery Embolism
+ ;;^UTILITY(U,$J,358.3,43410,1,4,0)
+ ;;=4^I63.131
+ ;;^UTILITY(U,$J,358.3,43410,2)
+ ;;=^5007308
+ ;;^UTILITY(U,$J,358.3,43411,0)
+ ;;=I63.132^^167^2078^69
+ ;;^UTILITY(U,$J,358.3,43411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42900,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc & inflam, unsp site
- ;;^UTILITY(U,$J,358.3,42900,1,4,0)
- ;;=4^I83.219
- ;;^UTILITY(U,$J,358.3,42900,2)
- ;;=^5008003
- ;;^UTILITY(U,$J,358.3,42901,0)
- ;;=I83.218^^192^2150^14
- ;;^UTILITY(U,$J,358.3,42901,1,0)
+ ;;^UTILITY(U,$J,358.3,43411,1,3,0)
+ ;;=3^Cereb Infarc d/t Lt Carotid Artery Embolism
+ ;;^UTILITY(U,$J,358.3,43411,1,4,0)
+ ;;=4^I63.132
+ ;;^UTILITY(U,$J,358.3,43411,2)
+ ;;=^5007309
+ ;;^UTILITY(U,$J,358.3,43412,0)
+ ;;=I63.231^^167^2078^72
+ ;;^UTILITY(U,$J,358.3,43412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42901,1,3,0)
- ;;=3^Varicose veins rt lwr extrem w/ ulc lwr extrm & inflam, oth prt
- ;;^UTILITY(U,$J,358.3,42901,1,4,0)
- ;;=4^I83.218
- ;;^UTILITY(U,$J,358.3,42901,2)
- ;;=^5008002
+ ;;^UTILITY(U,$J,358.3,43412,1,3,0)
+ ;;=3^Cereb Infarc d/t Rt Carotid Artery Occl/Sten
+ ;;^UTILITY(U,$J,358.3,43412,1,4,0)
+ ;;=4^I63.231
+ ;;^UTILITY(U,$J,358.3,43412,2)
+ ;;=^5007316
+ ;;^UTILITY(U,$J,358.3,43413,0)
+ ;;=I63.232^^167^2078^70

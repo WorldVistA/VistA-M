@@ -1,118 +1,134 @@
-IBDEI1HX ; ; 19-NOV-2015
+IBDEI1HX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25013,0)
- ;;=T82.818A^^124^1239^55
- ;;^UTILITY(U,$J,358.3,25013,1,0)
+ ;;^UTILITY(U,$J,358.3,25391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25013,1,3,0)
- ;;=3^Embolism of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25013,1,4,0)
- ;;=4^T82.818A
- ;;^UTILITY(U,$J,358.3,25013,2)
- ;;=^5054917
- ;;^UTILITY(U,$J,358.3,25014,0)
- ;;=T82.828A^^124^1239^60
- ;;^UTILITY(U,$J,358.3,25014,1,0)
+ ;;^UTILITY(U,$J,358.3,25391,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,25391,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,25391,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,25392,0)
+ ;;=Z62.898^^95^1161^1
+ ;;^UTILITY(U,$J,358.3,25392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25014,1,3,0)
- ;;=3^Fibrosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25014,1,4,0)
- ;;=4^T82.828A
- ;;^UTILITY(U,$J,358.3,25014,2)
- ;;=^5054923
- ;;^UTILITY(U,$J,358.3,25015,0)
- ;;=T82.838A^^124^1239^65
- ;;^UTILITY(U,$J,358.3,25015,1,0)
+ ;;^UTILITY(U,$J,358.3,25392,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,25392,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,25392,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,25393,0)
+ ;;=Z63.0^^95^1161^5
+ ;;^UTILITY(U,$J,358.3,25393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25015,1,3,0)
- ;;=3^Hemorrhage of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25015,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,25015,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,25016,0)
- ;;=T82.848A^^124^1239^162
- ;;^UTILITY(U,$J,358.3,25016,1,0)
+ ;;^UTILITY(U,$J,358.3,25393,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,25393,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,25393,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,25394,0)
+ ;;=Z63.5^^95^1161^2
+ ;;^UTILITY(U,$J,358.3,25394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25016,1,3,0)
- ;;=3^Pain from Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25016,1,4,0)
- ;;=4^T82.848A
- ;;^UTILITY(U,$J,358.3,25016,2)
- ;;=^5054935
- ;;^UTILITY(U,$J,358.3,25017,0)
- ;;=T82.858A^^124^1239^208
- ;;^UTILITY(U,$J,358.3,25017,1,0)
+ ;;^UTILITY(U,$J,358.3,25394,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,25394,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,25394,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,25395,0)
+ ;;=Z63.8^^95^1161^3
+ ;;^UTILITY(U,$J,358.3,25395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25017,1,3,0)
- ;;=3^Stenosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25017,1,4,0)
- ;;=4^T82.858A
- ;;^UTILITY(U,$J,358.3,25017,2)
- ;;=^5054941
- ;;^UTILITY(U,$J,358.3,25018,0)
- ;;=T82.868A^^124^1239^214
- ;;^UTILITY(U,$J,358.3,25018,1,0)
+ ;;^UTILITY(U,$J,358.3,25395,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,25395,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,25395,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,25396,0)
+ ;;=Z63.4^^95^1161^7
+ ;;^UTILITY(U,$J,358.3,25396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25018,1,3,0)
- ;;=3^Thrombosis of Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25018,1,4,0)
- ;;=4^T82.868A
- ;;^UTILITY(U,$J,358.3,25018,2)
- ;;=^5054947
- ;;^UTILITY(U,$J,358.3,25019,0)
- ;;=T82.898A^^124^1239^23
- ;;^UTILITY(U,$J,358.3,25019,1,0)
+ ;;^UTILITY(U,$J,358.3,25396,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,25396,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,25396,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,25397,0)
+ ;;=F20.9^^95^1162^5
+ ;;^UTILITY(U,$J,358.3,25397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25019,1,3,0)
- ;;=3^Complication of Vascular Prosthetic Device/Implant/Graft Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,25019,1,4,0)
- ;;=4^T82.898A
- ;;^UTILITY(U,$J,358.3,25019,2)
- ;;=^5054953
- ;;^UTILITY(U,$J,358.3,25020,0)
- ;;=T85.81XA^^124^1239^50
- ;;^UTILITY(U,$J,358.3,25020,1,0)
+ ;;^UTILITY(U,$J,358.3,25397,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,25397,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,25397,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,25398,0)
+ ;;=F20.81^^95^1162^8
+ ;;^UTILITY(U,$J,358.3,25398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25020,1,3,0)
- ;;=3^Embolism d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,25020,1,4,0)
- ;;=4^T85.81XA
- ;;^UTILITY(U,$J,358.3,25020,2)
- ;;=^5055679
- ;;^UTILITY(U,$J,358.3,25021,0)
- ;;=T85.82XA^^124^1239^57
- ;;^UTILITY(U,$J,358.3,25021,1,0)
+ ;;^UTILITY(U,$J,358.3,25398,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,25398,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,25398,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,25399,0)
+ ;;=F22.^^95^1162^2
+ ;;^UTILITY(U,$J,358.3,25399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25021,1,3,0)
- ;;=3^Fibrosis d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,25021,1,4,0)
- ;;=4^T85.82XA
- ;;^UTILITY(U,$J,358.3,25021,2)
- ;;=^5055682
- ;;^UTILITY(U,$J,358.3,25022,0)
- ;;=T85.83XA^^124^1239^62
- ;;^UTILITY(U,$J,358.3,25022,1,0)
+ ;;^UTILITY(U,$J,358.3,25399,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,25399,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,25399,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,25400,0)
+ ;;=F23.^^95^1162^1
+ ;;^UTILITY(U,$J,358.3,25400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25022,1,3,0)
- ;;=3^Hemorrhage d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,25022,1,4,0)
- ;;=4^T85.83XA
- ;;^UTILITY(U,$J,358.3,25022,2)
- ;;=^5055685
- ;;^UTILITY(U,$J,358.3,25023,0)
- ;;=T85.84XA^^124^1239^159
- ;;^UTILITY(U,$J,358.3,25023,1,0)
+ ;;^UTILITY(U,$J,358.3,25400,1,3,0)
+ ;;=3^Brief Psychotic Disorder
+ ;;^UTILITY(U,$J,358.3,25400,1,4,0)
+ ;;=4^F23.
+ ;;^UTILITY(U,$J,358.3,25400,2)
+ ;;=^5003479
+ ;;^UTILITY(U,$J,358.3,25401,0)
+ ;;=F25.0^^95^1162^3
+ ;;^UTILITY(U,$J,358.3,25401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25023,1,3,0)
- ;;=3^Pain d/t Internal Prosth Device/Implant/Graft NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,25023,1,4,0)
- ;;=4^T85.84XA
- ;;^UTILITY(U,$J,358.3,25023,2)
- ;;=^5055688
- ;;^UTILITY(U,$J,358.3,25024,0)
- ;;=T85.85XA^^124^1239^206
- ;;^UTILITY(U,$J,358.3,25024,1,0)
+ ;;^UTILITY(U,$J,358.3,25401,1,3,0)
+ ;;=3^Schizoaffective Disorder,Bipolar Type
+ ;;^UTILITY(U,$J,358.3,25401,1,4,0)
+ ;;=4^F25.0
+ ;;^UTILITY(U,$J,358.3,25401,2)
+ ;;=^5003480
+ ;;^UTILITY(U,$J,358.3,25402,0)
+ ;;=F25.1^^95^1162^4
+ ;;^UTILITY(U,$J,358.3,25402,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25402,1,3,0)
+ ;;=3^Schizoaffective Disorder,Depressive Type
+ ;;^UTILITY(U,$J,358.3,25402,1,4,0)
+ ;;=4^F25.1
+ ;;^UTILITY(U,$J,358.3,25402,2)
+ ;;=^5003481
+ ;;^UTILITY(U,$J,358.3,25403,0)
+ ;;=F28.^^95^1162^7
+ ;;^UTILITY(U,$J,358.3,25403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25403,1,3,0)
+ ;;=3^Schizophrenia Spectrum & Psychotic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,25403,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,25403,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,25404,0)
+ ;;=F29.^^95^1162^6

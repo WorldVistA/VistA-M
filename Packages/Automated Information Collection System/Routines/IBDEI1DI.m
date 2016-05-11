@@ -1,136 +1,130 @@
-IBDEI1DI ; ; 19-NOV-2015
+IBDEI1DI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22893,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,22893,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,22894,0)
- ;;=I65.29^^104^1067^10
- ;;^UTILITY(U,$J,358.3,22894,1,0)
+ ;;^UTILITY(U,$J,358.3,23341,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,23341,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,23342,0)
+ ;;=S63.501A^^87^994^18
+ ;;^UTILITY(U,$J,358.3,23342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22894,1,3,0)
- ;;=3^Carotid Artery Occlusion/Stenosis,Unspec
- ;;^UTILITY(U,$J,358.3,22894,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,22894,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,22895,0)
- ;;=I23.0^^104^1067^11
- ;;^UTILITY(U,$J,358.3,22895,1,0)
+ ;;^UTILITY(U,$J,358.3,23342,1,3,0)
+ ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,23342,1,4,0)
+ ;;=4^S63.501A
+ ;;^UTILITY(U,$J,358.3,23342,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,23343,0)
+ ;;=S63.502A^^87^994^7
+ ;;^UTILITY(U,$J,358.3,23343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22895,1,3,0)
- ;;=3^Certain Sequelae of MI
- ;;^UTILITY(U,$J,358.3,22895,1,4,0)
- ;;=4^I23.0
- ;;^UTILITY(U,$J,358.3,22895,2)
- ;;=^5007094
- ;;^UTILITY(U,$J,358.3,22896,0)
- ;;=I82.509^^104^1067^12
- ;;^UTILITY(U,$J,358.3,22896,1,0)
+ ;;^UTILITY(U,$J,358.3,23343,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,23343,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,23343,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,23344,0)
+ ;;=S83.8X1A^^87^994^16
+ ;;^UTILITY(U,$J,358.3,23344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22896,1,3,0)
- ;;=3^Chr DVT/Embolism Lower Extremity,Unspec
- ;;^UTILITY(U,$J,358.3,22896,1,4,0)
- ;;=4^I82.509
- ;;^UTILITY(U,$J,358.3,22896,2)
- ;;=^5133628
- ;;^UTILITY(U,$J,358.3,22897,0)
- ;;=K70.0^^104^1067^13
- ;;^UTILITY(U,$J,358.3,22897,1,0)
+ ;;^UTILITY(U,$J,358.3,23344,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,23344,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,23344,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,23345,0)
+ ;;=S83.8X2A^^87^994^5
+ ;;^UTILITY(U,$J,358.3,23345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22897,1,3,0)
- ;;=3^Chronic Liver Disease
- ;;^UTILITY(U,$J,358.3,22897,1,4,0)
- ;;=4^K70.0
- ;;^UTILITY(U,$J,358.3,22897,2)
- ;;=^5008784
- ;;^UTILITY(U,$J,358.3,22898,0)
- ;;=E56.1^^104^1067^29
- ;;^UTILITY(U,$J,358.3,22898,1,0)
+ ;;^UTILITY(U,$J,358.3,23345,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,23345,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,23345,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,23346,0)
+ ;;=S86.211A^^87^994^47
+ ;;^UTILITY(U,$J,358.3,23346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22898,1,3,0)
- ;;=3^Vitamin K Deficiency
- ;;^UTILITY(U,$J,358.3,22898,1,4,0)
- ;;=4^E56.1
- ;;^UTILITY(U,$J,358.3,22898,2)
- ;;=^5002801
- ;;^UTILITY(U,$J,358.3,22899,0)
- ;;=Z96.649^^104^1067^14
- ;;^UTILITY(U,$J,358.3,22899,1,0)
+ ;;^UTILITY(U,$J,358.3,23346,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23346,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,23346,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,23347,0)
+ ;;=S86.212A^^87^994^27
+ ;;^UTILITY(U,$J,358.3,23347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22899,1,3,0)
- ;;=3^Hip Joint Replacement
- ;;^UTILITY(U,$J,358.3,22899,1,4,0)
- ;;=4^Z96.649
- ;;^UTILITY(U,$J,358.3,22899,2)
- ;;=^5063704
- ;;^UTILITY(U,$J,358.3,22900,0)
- ;;=Z96.659^^104^1067^15
- ;;^UTILITY(U,$J,358.3,22900,1,0)
+ ;;^UTILITY(U,$J,358.3,23347,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23347,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,23347,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,23348,0)
+ ;;=S86.311A^^87^994^49
+ ;;^UTILITY(U,$J,358.3,23348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22900,1,3,0)
- ;;=3^Knee Joint Replacement
- ;;^UTILITY(U,$J,358.3,22900,1,4,0)
- ;;=4^Z96.659
- ;;^UTILITY(U,$J,358.3,22900,2)
- ;;=^5063708
- ;;^UTILITY(U,$J,358.3,22901,0)
- ;;=I69.90^^104^1067^17
- ;;^UTILITY(U,$J,358.3,22901,1,0)
+ ;;^UTILITY(U,$J,358.3,23348,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23348,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,23348,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,23349,0)
+ ;;=S86.312A^^87^994^29
+ ;;^UTILITY(U,$J,358.3,23349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22901,1,3,0)
- ;;=3^Late Effects CVA
- ;;^UTILITY(U,$J,358.3,22901,1,4,0)
- ;;=4^I69.90
- ;;^UTILITY(U,$J,358.3,22901,2)
- ;;=^5007551
- ;;^UTILITY(U,$J,358.3,22902,0)
- ;;=I34.8^^104^1067^19
- ;;^UTILITY(U,$J,358.3,22902,1,0)
+ ;;^UTILITY(U,$J,358.3,23349,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23349,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,23349,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,23350,0)
+ ;;=S86.811A^^87^994^48
+ ;;^UTILITY(U,$J,358.3,23350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22902,1,3,0)
- ;;=3^Mitral Valve Disorders NEC
- ;;^UTILITY(U,$J,358.3,22902,1,4,0)
- ;;=4^I34.8
- ;;^UTILITY(U,$J,358.3,22902,2)
- ;;=^5007172
- ;;^UTILITY(U,$J,358.3,22903,0)
- ;;=I23.0^^104^1067^20
- ;;^UTILITY(U,$J,358.3,22903,1,0)
+ ;;^UTILITY(U,$J,358.3,23350,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,23350,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,23350,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,23351,0)
+ ;;=S86.812A^^87^994^28
+ ;;^UTILITY(U,$J,358.3,23351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22903,1,3,0)
- ;;=3^Mural Thrombus
- ;;^UTILITY(U,$J,358.3,22903,1,4,0)
- ;;=4^I23.0
- ;;^UTILITY(U,$J,358.3,22903,2)
- ;;=^5007094
- ;;^UTILITY(U,$J,358.3,22904,0)
- ;;=I73.9^^104^1067^22
- ;;^UTILITY(U,$J,358.3,22904,1,0)
+ ;;^UTILITY(U,$J,358.3,23351,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,23351,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,23351,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,23352,0)
+ ;;=S86.111A^^87^994^50
+ ;;^UTILITY(U,$J,358.3,23352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22904,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,22904,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,22904,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,22905,0)
- ;;=Z86.79^^104^1067^23
- ;;^UTILITY(U,$J,358.3,22905,1,0)
+ ;;^UTILITY(U,$J,358.3,23352,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23352,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,23352,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,23353,0)
+ ;;=S86.112A^^87^994^30
+ ;;^UTILITY(U,$J,358.3,23353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22905,1,3,0)
- ;;=3^Personal Hx of Circulatory System Disease NEC
- ;;^UTILITY(U,$J,358.3,22905,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,22905,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,22906,0)
- ;;=Z86.72^^104^1067^24
- ;;^UTILITY(U,$J,358.3,22906,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22906,1,3,0)
- ;;=3^Personal Hx of Thrombophlebitis
- ;;^UTILITY(U,$J,358.3,22906,1,4,0)
- ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,23353,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,23353,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,23353,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,23354,0)
+ ;;=S83.401A^^87^994^15

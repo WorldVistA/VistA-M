@@ -1,128 +1,132 @@
-IBDEI0CD ; ; 19-NOV-2015
+IBDEI0CD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5342,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5342,1,3,0)
- ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5342,1,4,0)
- ;;=4^I70.762
- ;;^UTILITY(U,$J,358.3,5342,2)
- ;;=^5133608
- ;;^UTILITY(U,$J,358.3,5343,0)
- ;;=I70.761^^40^365^6
- ;;^UTILITY(U,$J,358.3,5343,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5343,1,3,0)
- ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5343,1,4,0)
- ;;=4^I70.761
- ;;^UTILITY(U,$J,358.3,5343,2)
- ;;=^5007777
- ;;^UTILITY(U,$J,358.3,5344,0)
- ;;=I70.663^^40^365^10
- ;;^UTILITY(U,$J,358.3,5344,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5344,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5344,1,4,0)
- ;;=4^I70.663
- ;;^UTILITY(U,$J,358.3,5344,2)
- ;;=^5007757
- ;;^UTILITY(U,$J,358.3,5345,0)
- ;;=I70.662^^40^365^11
- ;;^UTILITY(U,$J,358.3,5345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5345,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5345,1,4,0)
- ;;=4^I70.662
- ;;^UTILITY(U,$J,358.3,5345,2)
- ;;=^5007756
- ;;^UTILITY(U,$J,358.3,5346,0)
- ;;=I70.661^^40^365^12
- ;;^UTILITY(U,$J,358.3,5346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5346,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5346,1,4,0)
- ;;=4^I70.661
- ;;^UTILITY(U,$J,358.3,5346,2)
- ;;=^5007755
- ;;^UTILITY(U,$J,358.3,5347,0)
- ;;=I70.561^^40^365^9
- ;;^UTILITY(U,$J,358.3,5347,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5347,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5347,1,4,0)
- ;;=4^I70.561
- ;;^UTILITY(U,$J,358.3,5347,2)
- ;;=^5007717
- ;;^UTILITY(U,$J,358.3,5348,0)
- ;;=I70.562^^40^365^8
- ;;^UTILITY(U,$J,358.3,5348,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5348,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5348,1,4,0)
- ;;=4^I70.562
- ;;^UTILITY(U,$J,358.3,5348,2)
- ;;=^5007718
- ;;^UTILITY(U,$J,358.3,5349,0)
- ;;=I70.563^^40^365^7
- ;;^UTILITY(U,$J,358.3,5349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5349,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5349,1,4,0)
- ;;=4^I70.563
- ;;^UTILITY(U,$J,358.3,5349,2)
- ;;=^5007719
- ;;^UTILITY(U,$J,358.3,5350,0)
- ;;=I70.462^^40^365^2
- ;;^UTILITY(U,$J,358.3,5350,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5350,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5350,1,4,0)
- ;;=4^I70.462
- ;;^UTILITY(U,$J,358.3,5350,2)
- ;;=^5007680
- ;;^UTILITY(U,$J,358.3,5351,0)
- ;;=I70.461^^40^365^3
- ;;^UTILITY(U,$J,358.3,5351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5351,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5351,1,4,0)
- ;;=4^I70.461
- ;;^UTILITY(U,$J,358.3,5351,2)
- ;;=^5007679
- ;;^UTILITY(U,$J,358.3,5352,0)
- ;;=I70.463^^40^365^1
- ;;^UTILITY(U,$J,358.3,5352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5352,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5352,1,4,0)
- ;;=4^I70.463
- ;;^UTILITY(U,$J,358.3,5352,2)
- ;;=^5007681
- ;;^UTILITY(U,$J,358.3,5353,0)
- ;;=I70.361^^40^365^15
- ;;^UTILITY(U,$J,358.3,5353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5353,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,5353,1,4,0)
- ;;=4^I70.361
- ;;^UTILITY(U,$J,358.3,5353,2)
- ;;=^5007641
- ;;^UTILITY(U,$J,358.3,5354,0)
- ;;=I70.362^^40^365^14
- ;;^UTILITY(U,$J,358.3,5354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5354,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,5654,1,2,0)
+ ;;=2^90839
+ ;;^UTILITY(U,$J,358.3,5654,1,3,0)
+ ;;=3^Psychotherapy for Crisis;1st 60min
+ ;;^UTILITY(U,$J,358.3,5655,0)
+ ;;=90840^^28^374^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5655,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5655,1,2,0)
+ ;;=2^90840
+ ;;^UTILITY(U,$J,358.3,5655,1,3,0)
+ ;;=3^Psychotherapy for Crisis;Ea Addl 30min
+ ;;^UTILITY(U,$J,358.3,5656,0)
+ ;;=90882^^28^374^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5656,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5656,1,2,0)
+ ;;=2^90882
+ ;;^UTILITY(U,$J,358.3,5656,1,3,0)
+ ;;=3^Env Intvn w/ outside agencies for MH pt
+ ;;^UTILITY(U,$J,358.3,5657,0)
+ ;;=90847^^28^374^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5657,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5657,1,2,0)
+ ;;=2^90847
+ ;;^UTILITY(U,$J,358.3,5657,1,3,0)
+ ;;=3^Family Psychotherapy w/ Patient
+ ;;^UTILITY(U,$J,358.3,5658,0)
+ ;;=90885^^28^374^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5658,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5658,1,2,0)
+ ;;=2^90885
+ ;;^UTILITY(U,$J,358.3,5658,1,3,0)
+ ;;=3^Psych Eval of records for diagnostic purposes
+ ;;^UTILITY(U,$J,358.3,5659,0)
+ ;;=99291^^28^375^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5659,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5659,1,2,0)
+ ;;=2^99291
+ ;;^UTILITY(U,$J,358.3,5659,1,3,0)
+ ;;=3^CRITICAL CARE,1ST HR
+ ;;^UTILITY(U,$J,358.3,5660,0)
+ ;;=99292^^28^375^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5660,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5660,1,2,0)
+ ;;=2^99292
+ ;;^UTILITY(U,$J,358.3,5660,1,3,0)
+ ;;=3^CRITICAL CARE,EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,5661,0)
+ ;;=99288^^28^375^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5661,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5661,1,2,0)
+ ;;=2^99288
+ ;;^UTILITY(U,$J,358.3,5661,1,3,0)
+ ;;=3^DIRECT ADVANCED LIFE SUPPORT
+ ;;^UTILITY(U,$J,358.3,5662,0)
+ ;;=96402^^28^376^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5662,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5662,1,2,0)
+ ;;=2^96402
+ ;;^UTILITY(U,$J,358.3,5662,1,3,0)
+ ;;=3^Chemo Admin SC/IM,Hormonal
+ ;;^UTILITY(U,$J,358.3,5663,0)
+ ;;=96401^^28^376^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5663,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5663,1,2,0)
+ ;;=2^96401
+ ;;^UTILITY(U,$J,358.3,5663,1,3,0)
+ ;;=3^Chemo Admin SC/IM,Non-Hormonal
+ ;;^UTILITY(U,$J,358.3,5664,0)
+ ;;=96360^^28^376^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5664,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5664,1,2,0)
+ ;;=2^96360
+ ;;^UTILITY(U,$J,358.3,5664,1,3,0)
+ ;;=3^Hydration,IV,1st Hr
+ ;;^UTILITY(U,$J,358.3,5665,0)
+ ;;=96361^^28^376^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5665,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5665,1,2,0)
+ ;;=2^96361
+ ;;^UTILITY(U,$J,358.3,5665,1,3,0)
+ ;;=3^Hydration,IV,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,5666,0)
+ ;;=96366^^28^376^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5666,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5666,1,2,0)
+ ;;=2^96366
+ ;;^UTILITY(U,$J,358.3,5666,1,3,0)
+ ;;=3^Infusion,IV,Ea Addl Hr
+ ;;^UTILITY(U,$J,358.3,5667,0)
+ ;;=96365^^28^376^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5667,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5667,1,2,0)
+ ;;=2^96365
+ ;;^UTILITY(U,$J,358.3,5667,1,3,0)
+ ;;=3^Infusion,IV,Up to 1 Hr
+ ;;^UTILITY(U,$J,358.3,5668,0)
+ ;;=96373^^28^376^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5668,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5668,1,2,0)
+ ;;=2^96373
+ ;;^UTILITY(U,$J,358.3,5668,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,IA
+ ;;^UTILITY(U,$J,358.3,5669,0)
+ ;;=96374^^28^376^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5669,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5669,1,2,0)
+ ;;=2^96374
+ ;;^UTILITY(U,$J,358.3,5669,1,3,0)
+ ;;=3^Ther/Proph/Diag Inj,IV Push
+ ;;^UTILITY(U,$J,358.3,5670,0)
+ ;;=96375^^28^376^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5670,1,0)
+ ;;=^358.31IA^3^2

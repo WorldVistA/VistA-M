@@ -1,136 +1,138 @@
-IBDEI0JK ; ; 19-NOV-2015
+IBDEI0JK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8811,1,4,0)
- ;;=4^J21.8
- ;;^UTILITY(U,$J,358.3,8811,2)
- ;;=^5008198
- ;;^UTILITY(U,$J,358.3,8812,0)
- ;;=J44.9^^55^546^11
- ;;^UTILITY(U,$J,358.3,8812,1,0)
+ ;;^UTILITY(U,$J,358.3,9089,0)
+ ;;=H43.811^^41^474^80
+ ;;^UTILITY(U,$J,358.3,9089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8812,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease, unspecified
- ;;^UTILITY(U,$J,358.3,8812,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,8812,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,8813,0)
- ;;=J44.1^^55^546^10
- ;;^UTILITY(U,$J,358.3,8813,1,0)
+ ;;^UTILITY(U,$J,358.3,9089,1,3,0)
+ ;;=3^Vitreous Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,9089,1,4,0)
+ ;;=4^H43.811
+ ;;^UTILITY(U,$J,358.3,9089,2)
+ ;;=^5005953
+ ;;^UTILITY(U,$J,358.3,9090,0)
+ ;;=H43.812^^41^474^79
+ ;;^UTILITY(U,$J,358.3,9090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8813,1,3,0)
- ;;=3^Chronic obstructive pulmonary disease w (acute) exacerbation
- ;;^UTILITY(U,$J,358.3,8813,1,4,0)
- ;;=4^J44.1
- ;;^UTILITY(U,$J,358.3,8813,2)
- ;;=^5008240
- ;;^UTILITY(U,$J,358.3,8814,0)
- ;;=J42.^^55^546^8
- ;;^UTILITY(U,$J,358.3,8814,1,0)
+ ;;^UTILITY(U,$J,358.3,9090,1,3,0)
+ ;;=3^Vitreous Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,9090,1,4,0)
+ ;;=4^H43.812
+ ;;^UTILITY(U,$J,358.3,9090,2)
+ ;;=^5005954
+ ;;^UTILITY(U,$J,358.3,9091,0)
+ ;;=H25.89^^41^474^9
+ ;;^UTILITY(U,$J,358.3,9091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8814,1,3,0)
- ;;=3^Chronic Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,8814,1,4,0)
- ;;=4^J42.
- ;;^UTILITY(U,$J,358.3,8814,2)
- ;;=^5008234
- ;;^UTILITY(U,$J,358.3,8815,0)
- ;;=J43.9^^55^546^13
- ;;^UTILITY(U,$J,358.3,8815,1,0)
+ ;;^UTILITY(U,$J,358.3,9091,1,3,0)
+ ;;=3^Cataract,Age-Related NEC
+ ;;^UTILITY(U,$J,358.3,9091,1,4,0)
+ ;;=4^H25.89
+ ;;^UTILITY(U,$J,358.3,9091,2)
+ ;;=^5005295
+ ;;^UTILITY(U,$J,358.3,9092,0)
+ ;;=H53.40^^41^474^78
+ ;;^UTILITY(U,$J,358.3,9092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8815,1,3,0)
- ;;=3^Emphysema, unspecified
- ;;^UTILITY(U,$J,358.3,8815,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,8815,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,8816,0)
- ;;=J44.0^^55^546^9
- ;;^UTILITY(U,$J,358.3,8816,1,0)
+ ;;^UTILITY(U,$J,358.3,9092,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,9092,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,9092,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,9093,0)
+ ;;=H01.001^^41^474^8
+ ;;^UTILITY(U,$J,358.3,9093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8816,1,3,0)
- ;;=3^Chronic obstructive pulmon disease w acute lower resp infct
- ;;^UTILITY(U,$J,358.3,8816,1,4,0)
- ;;=4^J44.0
- ;;^UTILITY(U,$J,358.3,8816,2)
- ;;=^5008239
- ;;^UTILITY(U,$J,358.3,8817,0)
- ;;=J45.990^^55^546^14
- ;;^UTILITY(U,$J,358.3,8817,1,0)
+ ;;^UTILITY(U,$J,358.3,9093,1,3,0)
+ ;;=3^Blepharitis,Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,9093,1,4,0)
+ ;;=4^H01.001
+ ;;^UTILITY(U,$J,358.3,9093,2)
+ ;;=^5004238
+ ;;^UTILITY(U,$J,358.3,9094,0)
+ ;;=H01.002^^41^474^7
+ ;;^UTILITY(U,$J,358.3,9094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8817,1,3,0)
- ;;=3^Exercise induced bronchospasm
- ;;^UTILITY(U,$J,358.3,8817,1,4,0)
- ;;=4^J45.990
- ;;^UTILITY(U,$J,358.3,8817,2)
- ;;=^329926
- ;;^UTILITY(U,$J,358.3,8818,0)
- ;;=J45.991^^55^546^12
- ;;^UTILITY(U,$J,358.3,8818,1,0)
+ ;;^UTILITY(U,$J,358.3,9094,1,3,0)
+ ;;=3^Blepharitis,Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,9094,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,9094,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,9095,0)
+ ;;=H25.13^^41^474^10
+ ;;^UTILITY(U,$J,358.3,9095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8818,1,3,0)
- ;;=3^Cough variant asthma
- ;;^UTILITY(U,$J,358.3,8818,1,4,0)
- ;;=4^J45.991
- ;;^UTILITY(U,$J,358.3,8818,2)
- ;;=^329927
- ;;^UTILITY(U,$J,358.3,8819,0)
- ;;=J45.909^^55^546^5
- ;;^UTILITY(U,$J,358.3,8819,1,0)
+ ;;^UTILITY(U,$J,358.3,9095,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Bilateral
+ ;;^UTILITY(U,$J,358.3,9095,1,4,0)
+ ;;=4^H25.13
+ ;;^UTILITY(U,$J,358.3,9095,2)
+ ;;=^5005286
+ ;;^UTILITY(U,$J,358.3,9096,0)
+ ;;=H25.12^^41^474^11
+ ;;^UTILITY(U,$J,358.3,9096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8819,1,3,0)
- ;;=3^Asthma,Uncomplicated
- ;;^UTILITY(U,$J,358.3,8819,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,8819,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,8820,0)
- ;;=J45.902^^55^546^4
- ;;^UTILITY(U,$J,358.3,8820,1,0)
+ ;;^UTILITY(U,$J,358.3,9096,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Left Eye
+ ;;^UTILITY(U,$J,358.3,9096,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,9096,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,9097,0)
+ ;;=H25.11^^41^474^12
+ ;;^UTILITY(U,$J,358.3,9097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8820,1,3,0)
- ;;=3^Asthma w/ Status Asthmaticus,Unspec
- ;;^UTILITY(U,$J,358.3,8820,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,8820,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,8821,0)
- ;;=J45.901^^55^546^3
- ;;^UTILITY(U,$J,358.3,8821,1,0)
+ ;;^UTILITY(U,$J,358.3,9097,1,3,0)
+ ;;=3^Cataract,Age-Related Nuclear,Right Eye
+ ;;^UTILITY(U,$J,358.3,9097,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,9097,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,9098,0)
+ ;;=G45.3^^41^474^1
+ ;;^UTILITY(U,$J,358.3,9098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8821,1,3,0)
- ;;=3^Asthma w/ Acute Exacerbation,Unspec
- ;;^UTILITY(U,$J,358.3,8821,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,8821,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,8822,0)
- ;;=J47.9^^55^546^7
- ;;^UTILITY(U,$J,358.3,8822,1,0)
+ ;;^UTILITY(U,$J,358.3,9098,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,9098,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,9098,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,9099,0)
+ ;;=D31.32^^41^474^16
+ ;;^UTILITY(U,$J,358.3,9099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8822,1,3,0)
- ;;=3^Bronchiectasis, uncomplicated
- ;;^UTILITY(U,$J,358.3,8822,1,4,0)
- ;;=4^J47.9
- ;;^UTILITY(U,$J,358.3,8822,2)
- ;;=^5008260
- ;;^UTILITY(U,$J,358.3,8823,0)
- ;;=J47.1^^55^546^6
- ;;^UTILITY(U,$J,358.3,8823,1,0)
+ ;;^UTILITY(U,$J,358.3,9099,1,3,0)
+ ;;=3^Choroidal Nevus,Left Eye
+ ;;^UTILITY(U,$J,358.3,9099,1,4,0)
+ ;;=4^D31.32
+ ;;^UTILITY(U,$J,358.3,9099,2)
+ ;;=^5002122
+ ;;^UTILITY(U,$J,358.3,9100,0)
+ ;;=D31.31^^41^474^17
+ ;;^UTILITY(U,$J,358.3,9100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8823,1,3,0)
- ;;=3^Bronchiectasis with (acute) exacerbation
- ;;^UTILITY(U,$J,358.3,8823,1,4,0)
- ;;=4^J47.1
- ;;^UTILITY(U,$J,358.3,8823,2)
- ;;=^5008259
- ;;^UTILITY(U,$J,358.3,8824,0)
- ;;=K11.20^^55^547^6
- ;;^UTILITY(U,$J,358.3,8824,1,0)
+ ;;^UTILITY(U,$J,358.3,9100,1,3,0)
+ ;;=3^Choroidal Nevus,Right Eye
+ ;;^UTILITY(U,$J,358.3,9100,1,4,0)
+ ;;=4^D31.31
+ ;;^UTILITY(U,$J,358.3,9100,2)
+ ;;=^5002121
+ ;;^UTILITY(U,$J,358.3,9101,0)
+ ;;=H34.813^^41^474^13
+ ;;^UTILITY(U,$J,358.3,9101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8824,1,3,0)
- ;;=3^Sialoadenitis, unspecified
- ;;^UTILITY(U,$J,358.3,8824,1,4,0)
- ;;=4^K11.20
+ ;;^UTILITY(U,$J,358.3,9101,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,9101,1,4,0)
+ ;;=4^H34.813
+ ;;^UTILITY(U,$J,358.3,9101,2)
+ ;;=^5005570
+ ;;^UTILITY(U,$J,358.3,9102,0)
+ ;;=H34.812^^41^474^14
+ ;;^UTILITY(U,$J,358.3,9102,1,0)
+ ;;=^358.31IA^4^2

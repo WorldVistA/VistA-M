@@ -1,122 +1,132 @@
-IBDEI0X0 ; ; 19-NOV-2015
+IBDEI0X0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15220,1,0)
+ ;;^UTILITY(U,$J,358.3,15487,0)
+ ;;=G21.11^^58^669^14
+ ;;^UTILITY(U,$J,358.3,15487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15220,1,3,0)
- ;;=3^Laceration w/o FB of LUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15220,1,4,0)
- ;;=4^S31.111A
- ;;^UTILITY(U,$J,358.3,15220,2)
- ;;=^5024044
- ;;^UTILITY(U,$J,358.3,15221,0)
- ;;=S31.113A^^85^813^37
- ;;^UTILITY(U,$J,358.3,15221,1,0)
+ ;;^UTILITY(U,$J,358.3,15487,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,15487,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,15487,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,15488,0)
+ ;;=G24.02^^58^669^8
+ ;;^UTILITY(U,$J,358.3,15488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15221,1,3,0)
- ;;=3^Laceration w/o FB of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15221,1,4,0)
- ;;=4^S31.113A
- ;;^UTILITY(U,$J,358.3,15221,2)
- ;;=^5024050
- ;;^UTILITY(U,$J,358.3,15222,0)
- ;;=S31.110A^^85^813^38
- ;;^UTILITY(U,$J,358.3,15222,1,0)
+ ;;^UTILITY(U,$J,358.3,15488,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,15488,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,15488,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,15489,0)
+ ;;=G24.01^^58^669^16
+ ;;^UTILITY(U,$J,358.3,15489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15222,1,3,0)
- ;;=3^Laceration w/o FB of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15222,1,4,0)
- ;;=4^S31.110A
- ;;^UTILITY(U,$J,358.3,15222,2)
- ;;=^5024041
- ;;^UTILITY(U,$J,358.3,15223,0)
- ;;=S31.821A^^85^813^8
- ;;^UTILITY(U,$J,358.3,15223,1,0)
+ ;;^UTILITY(U,$J,358.3,15489,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,15489,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,15489,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,15490,0)
+ ;;=G24.09^^58^669^17
+ ;;^UTILITY(U,$J,358.3,15490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15223,1,3,0)
- ;;=3^Laceration w/o FB of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,15223,1,4,0)
- ;;=4^S31.821A
- ;;^UTILITY(U,$J,358.3,15223,2)
- ;;=^5024311
- ;;^UTILITY(U,$J,358.3,15224,0)
- ;;=S01.412A^^85^813^9
- ;;^UTILITY(U,$J,358.3,15224,1,0)
+ ;;^UTILITY(U,$J,358.3,15490,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,15490,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,15490,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,15491,0)
+ ;;=G25.1^^58^669^12
+ ;;^UTILITY(U,$J,358.3,15491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15224,1,3,0)
- ;;=3^Laceration w/o FB of Left Cheek/TMJ Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,15224,1,4,0)
- ;;=4^S01.412A
- ;;^UTILITY(U,$J,358.3,15224,2)
- ;;=^5020156
- ;;^UTILITY(U,$J,358.3,15225,0)
- ;;=S01.312A^^85^813^10
- ;;^UTILITY(U,$J,358.3,15225,1,0)
+ ;;^UTILITY(U,$J,358.3,15491,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,15491,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,15491,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,15492,0)
+ ;;=G25.71^^58^669^15
+ ;;^UTILITY(U,$J,358.3,15492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15225,1,3,0)
- ;;=3^Laceration w/o FB of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,15225,1,4,0)
- ;;=4^S01.312A
- ;;^UTILITY(U,$J,358.3,15225,2)
- ;;=^5020117
- ;;^UTILITY(U,$J,358.3,15226,0)
- ;;=S51.012A^^85^813^11
- ;;^UTILITY(U,$J,358.3,15226,1,0)
+ ;;^UTILITY(U,$J,358.3,15492,1,3,0)
+ ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
+ ;;^UTILITY(U,$J,358.3,15492,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,15492,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,15493,0)
+ ;;=G25.79^^58^669^10
+ ;;^UTILITY(U,$J,358.3,15493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15226,1,3,0)
- ;;=3^Laceration w/o FB of Left Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,15226,1,4,0)
- ;;=4^S51.012A
- ;;^UTILITY(U,$J,358.3,15226,2)
- ;;=^5028629
- ;;^UTILITY(U,$J,358.3,15227,0)
- ;;=S91.212A^^85^813^13
- ;;^UTILITY(U,$J,358.3,15227,1,0)
+ ;;^UTILITY(U,$J,358.3,15493,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder NEC
+ ;;^UTILITY(U,$J,358.3,15493,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,15493,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,15494,0)
+ ;;=T43.205A^^58^669^4
+ ;;^UTILITY(U,$J,358.3,15494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15227,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15227,1,4,0)
- ;;=4^S91.212A
- ;;^UTILITY(U,$J,358.3,15227,2)
- ;;=^5044276
- ;;^UTILITY(U,$J,358.3,15228,0)
- ;;=S91.112A^^85^813^14
- ;;^UTILITY(U,$J,358.3,15228,1,0)
+ ;;^UTILITY(U,$J,358.3,15494,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15494,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,15494,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,15495,0)
+ ;;=T43.205D^^58^669^5
+ ;;^UTILITY(U,$J,358.3,15495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15228,1,3,0)
- ;;=3^Laceration w/o FB of Left Great Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15228,1,4,0)
- ;;=4^S91.112A
- ;;^UTILITY(U,$J,358.3,15228,2)
- ;;=^5044186
- ;;^UTILITY(U,$J,358.3,15229,0)
- ;;=S61.412A^^85^813^15
- ;;^UTILITY(U,$J,358.3,15229,1,0)
+ ;;^UTILITY(U,$J,358.3,15495,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,15495,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,15495,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,15496,0)
+ ;;=T43.205S^^58^669^6
+ ;;^UTILITY(U,$J,358.3,15496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15229,1,3,0)
- ;;=3^Laceration w/o FB of Left Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,15229,1,4,0)
- ;;=4^S61.412A
- ;;^UTILITY(U,$J,358.3,15229,2)
- ;;=^5032990
- ;;^UTILITY(U,$J,358.3,15230,0)
- ;;=S61.311A^^85^813^17
- ;;^UTILITY(U,$J,358.3,15230,1,0)
+ ;;^UTILITY(U,$J,358.3,15496,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,15496,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,15496,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,15497,0)
+ ;;=G25.71^^58^669^7
+ ;;^UTILITY(U,$J,358.3,15497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15230,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15230,1,4,0)
- ;;=4^S61.311A
- ;;^UTILITY(U,$J,358.3,15230,2)
- ;;=^5032909
- ;;^UTILITY(U,$J,358.3,15231,0)
- ;;=S61.211A^^85^813^18
- ;;^UTILITY(U,$J,358.3,15231,1,0)
+ ;;^UTILITY(U,$J,358.3,15497,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,15497,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,15497,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,15498,0)
+ ;;=G24.02^^58^669^9
+ ;;^UTILITY(U,$J,358.3,15498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15231,1,3,0)
- ;;=3^Laceration w/o FB of Left Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15231,1,4,0)
- ;;=4^S61.211A
- ;;^UTILITY(U,$J,358.3,15231,2)
- ;;=^5032774
+ ;;^UTILITY(U,$J,358.3,15498,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,15498,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,15498,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,15499,0)
+ ;;=G21.0^^58^669^13
+ ;;^UTILITY(U,$J,358.3,15499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15499,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,15499,1,4,0)
+ ;;=4^G21.0

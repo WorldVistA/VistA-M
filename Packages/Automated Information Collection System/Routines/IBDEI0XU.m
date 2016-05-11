@@ -1,136 +1,136 @@
-IBDEI0XU ; ; 19-NOV-2015
+IBDEI0XU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15597,1,4,0)
- ;;=4^D78.22
- ;;^UTILITY(U,$J,358.3,15597,2)
- ;;=^5002402
- ;;^UTILITY(U,$J,358.3,15598,0)
- ;;=K91.82^^85^822^22
- ;;^UTILITY(U,$J,358.3,15598,1,0)
+ ;;^UTILITY(U,$J,358.3,15865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15598,1,3,0)
- ;;=3^Postprocedural Hepatic Failure
- ;;^UTILITY(U,$J,358.3,15598,1,4,0)
- ;;=4^K91.82
- ;;^UTILITY(U,$J,358.3,15598,2)
- ;;=^5008908
- ;;^UTILITY(U,$J,358.3,15599,0)
- ;;=K91.83^^85^822^23
- ;;^UTILITY(U,$J,358.3,15599,1,0)
+ ;;^UTILITY(U,$J,358.3,15865,1,3,0)
+ ;;=3^Global Developmental Delay
+ ;;^UTILITY(U,$J,358.3,15865,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,15865,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,15866,0)
+ ;;=F80.2^^58^702^6
+ ;;^UTILITY(U,$J,358.3,15866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15599,1,3,0)
- ;;=3^Postprocedural Hepatorenal Syndrome
- ;;^UTILITY(U,$J,358.3,15599,1,4,0)
- ;;=4^K91.83
- ;;^UTILITY(U,$J,358.3,15599,2)
- ;;=^5008909
- ;;^UTILITY(U,$J,358.3,15600,0)
- ;;=K91.3^^85^822^24
- ;;^UTILITY(U,$J,358.3,15600,1,0)
+ ;;^UTILITY(U,$J,358.3,15866,1,3,0)
+ ;;=3^Language Disorder
+ ;;^UTILITY(U,$J,358.3,15866,1,4,0)
+ ;;=4^F80.2
+ ;;^UTILITY(U,$J,358.3,15866,2)
+ ;;=^331959
+ ;;^UTILITY(U,$J,358.3,15867,0)
+ ;;=F81.2^^58^702^7
+ ;;^UTILITY(U,$J,358.3,15867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15600,1,3,0)
- ;;=3^Postprocedural Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,15600,1,4,0)
- ;;=4^K91.3
- ;;^UTILITY(U,$J,358.3,15600,2)
- ;;=^5008902
- ;;^UTILITY(U,$J,358.3,15601,0)
- ;;=K68.11^^85^822^25
- ;;^UTILITY(U,$J,358.3,15601,1,0)
+ ;;^UTILITY(U,$J,358.3,15867,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Mathematics
+ ;;^UTILITY(U,$J,358.3,15867,1,4,0)
+ ;;=4^F81.2
+ ;;^UTILITY(U,$J,358.3,15867,2)
+ ;;=^331957
+ ;;^UTILITY(U,$J,358.3,15868,0)
+ ;;=F81.0^^58^702^8
+ ;;^UTILITY(U,$J,358.3,15868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15601,1,3,0)
- ;;=3^Postprocedural Retroperitoneal Abscess
- ;;^UTILITY(U,$J,358.3,15601,1,4,0)
- ;;=4^K68.11
- ;;^UTILITY(U,$J,358.3,15601,2)
- ;;=^5008782
- ;;^UTILITY(U,$J,358.3,15602,0)
- ;;=K91.850^^85^822^26
- ;;^UTILITY(U,$J,358.3,15602,1,0)
+ ;;^UTILITY(U,$J,358.3,15868,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Reading
+ ;;^UTILITY(U,$J,358.3,15868,1,4,0)
+ ;;=4^F81.0
+ ;;^UTILITY(U,$J,358.3,15868,2)
+ ;;=^5003679
+ ;;^UTILITY(U,$J,358.3,15869,0)
+ ;;=F81.81^^58^702^9
+ ;;^UTILITY(U,$J,358.3,15869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15602,1,3,0)
- ;;=3^Pouchitis
- ;;^UTILITY(U,$J,358.3,15602,1,4,0)
- ;;=4^K91.850
- ;;^UTILITY(U,$J,358.3,15602,2)
- ;;=^338261
- ;;^UTILITY(U,$J,358.3,15603,0)
- ;;=C34.91^^85^823^22
- ;;^UTILITY(U,$J,358.3,15603,1,0)
+ ;;^UTILITY(U,$J,358.3,15869,1,3,0)
+ ;;=3^Learning Disorder w/ Impairment in Writing
+ ;;^UTILITY(U,$J,358.3,15869,1,4,0)
+ ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,15869,2)
+ ;;=^5003680
+ ;;^UTILITY(U,$J,358.3,15870,0)
+ ;;=F88.^^58^702^10
+ ;;^UTILITY(U,$J,358.3,15870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15603,1,3,0)
- ;;=3^Malig Neop of Right Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,15603,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,15603,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,15604,0)
- ;;=C34.92^^85^823^21
- ;;^UTILITY(U,$J,358.3,15604,1,0)
+ ;;^UTILITY(U,$J,358.3,15870,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,15870,1,4,0)
+ ;;=4^F88.
+ ;;^UTILITY(U,$J,358.3,15870,2)
+ ;;=^5003690
+ ;;^UTILITY(U,$J,358.3,15871,0)
+ ;;=F89.^^58^702^11
+ ;;^UTILITY(U,$J,358.3,15871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15604,1,3,0)
- ;;=3^Malig Neop of Left Bronchus/Lung
- ;;^UTILITY(U,$J,358.3,15604,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,15604,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,15605,0)
- ;;=J20.9^^85^823^10
- ;;^UTILITY(U,$J,358.3,15605,1,0)
+ ;;^UTILITY(U,$J,358.3,15871,1,3,0)
+ ;;=3^Neurodevelopmental Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15871,1,4,0)
+ ;;=4^F89.
+ ;;^UTILITY(U,$J,358.3,15871,2)
+ ;;=^5003691
+ ;;^UTILITY(U,$J,358.3,15872,0)
+ ;;=F95.1^^58^702^12
+ ;;^UTILITY(U,$J,358.3,15872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15605,1,3,0)
- ;;=3^Acute Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,15605,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,15605,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,15606,0)
- ;;=J20.8^^85^823^5
- ;;^UTILITY(U,$J,358.3,15606,1,0)
+ ;;^UTILITY(U,$J,358.3,15872,1,3,0)
+ ;;=3^Persistent Chronic Motor/Vocal Tic Disorder
+ ;;^UTILITY(U,$J,358.3,15872,1,4,0)
+ ;;=4^F95.1
+ ;;^UTILITY(U,$J,358.3,15872,2)
+ ;;=^331941
+ ;;^UTILITY(U,$J,358.3,15873,0)
+ ;;=F95.0^^58^702^13
+ ;;^UTILITY(U,$J,358.3,15873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15606,1,3,0)
- ;;=3^Acute Bronchitis d/t Organisms NEC
- ;;^UTILITY(U,$J,358.3,15606,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,15606,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,15607,0)
- ;;=J20.5^^85^823^7
- ;;^UTILITY(U,$J,358.3,15607,1,0)
+ ;;^UTILITY(U,$J,358.3,15873,1,3,0)
+ ;;=3^Provisional Tic Disorder
+ ;;^UTILITY(U,$J,358.3,15873,1,4,0)
+ ;;=4^F95.0
+ ;;^UTILITY(U,$J,358.3,15873,2)
+ ;;=^331940
+ ;;^UTILITY(U,$J,358.3,15874,0)
+ ;;=F80.89^^58^702^14
+ ;;^UTILITY(U,$J,358.3,15874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15607,1,3,0)
- ;;=3^Acute Bronchitis d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,15607,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,15607,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,15608,0)
- ;;=J20.6^^85^823^8
- ;;^UTILITY(U,$J,358.3,15608,1,0)
+ ;;^UTILITY(U,$J,358.3,15874,1,3,0)
+ ;;=3^Social Pragmatic Communication Disorder
+ ;;^UTILITY(U,$J,358.3,15874,1,4,0)
+ ;;=4^F80.89
+ ;;^UTILITY(U,$J,358.3,15874,2)
+ ;;=^5003677
+ ;;^UTILITY(U,$J,358.3,15875,0)
+ ;;=F80.0^^58^702^15
+ ;;^UTILITY(U,$J,358.3,15875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15608,1,3,0)
- ;;=3^Acute Bronchitis d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,15608,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,15608,2)
- ;;=^5008192
- ;;^UTILITY(U,$J,358.3,15609,0)
- ;;=J20.2^^85^823^9
- ;;^UTILITY(U,$J,358.3,15609,1,0)
+ ;;^UTILITY(U,$J,358.3,15875,1,3,0)
+ ;;=3^Speech Sound Disorder
+ ;;^UTILITY(U,$J,358.3,15875,1,4,0)
+ ;;=4^F80.0
+ ;;^UTILITY(U,$J,358.3,15875,2)
+ ;;=^5003674
+ ;;^UTILITY(U,$J,358.3,15876,0)
+ ;;=F98.4^^58^702^16
+ ;;^UTILITY(U,$J,358.3,15876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15609,1,3,0)
- ;;=3^Acute Bronchitis d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,15609,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,15609,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,15610,0)
- ;;=J20.4^^85^823^6
- ;;^UTILITY(U,$J,358.3,15610,1,0)
+ ;;^UTILITY(U,$J,358.3,15876,1,3,0)
+ ;;=3^Stereotypic Movement Disorder
+ ;;^UTILITY(U,$J,358.3,15876,1,4,0)
+ ;;=4^F98.4
+ ;;^UTILITY(U,$J,358.3,15876,2)
+ ;;=^5003716
+ ;;^UTILITY(U,$J,358.3,15877,0)
+ ;;=F95.8^^58^702^17
+ ;;^UTILITY(U,$J,358.3,15877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15610,1,3,0)
- ;;=3^Acute Bronchitis d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,15610,1,4,0)
- ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,15877,1,3,0)
+ ;;=3^Tic Disorder,Oth Specified
+ ;;^UTILITY(U,$J,358.3,15877,1,4,0)
+ ;;=4^F95.8
+ ;;^UTILITY(U,$J,358.3,15877,2)
+ ;;=^5003709
+ ;;^UTILITY(U,$J,358.3,15878,0)
+ ;;=F95.9^^58^702^18
+ ;;^UTILITY(U,$J,358.3,15878,1,0)
+ ;;=^358.31IA^4^2

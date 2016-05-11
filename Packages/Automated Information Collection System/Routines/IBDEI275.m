@@ -1,124 +1,128 @@
-IBDEI275 ; ; 19-NOV-2015
+IBDEI275 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36876,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of right ear/external auric canal
- ;;^UTILITY(U,$J,358.3,36876,1,4,0)
- ;;=4^C44.222
- ;;^UTILITY(U,$J,358.3,36876,2)
- ;;=^5001035
- ;;^UTILITY(U,$J,358.3,36877,0)
- ;;=C44.229^^169^1861^34
- ;;^UTILITY(U,$J,358.3,36877,1,0)
+ ;;^UTILITY(U,$J,358.3,37260,1,3,0)
+ ;;=3^Disorders of tendon, lft wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,37260,1,4,0)
+ ;;=4^M67.834
+ ;;^UTILITY(U,$J,358.3,37260,2)
+ ;;=^5012997
+ ;;^UTILITY(U,$J,358.3,37261,0)
+ ;;=M67.841^^140^1787^115
+ ;;^UTILITY(U,$J,358.3,37261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36877,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of left ear/external auric canal
- ;;^UTILITY(U,$J,358.3,36877,1,4,0)
- ;;=4^C44.229
- ;;^UTILITY(U,$J,358.3,36877,2)
- ;;=^5001036
- ;;^UTILITY(U,$J,358.3,36878,0)
- ;;=C44.212^^169^1861^9
- ;;^UTILITY(U,$J,358.3,36878,1,0)
+ ;;^UTILITY(U,$J,358.3,37261,1,3,0)
+ ;;=3^Disorders of synovium, rt hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37261,1,4,0)
+ ;;=4^M67.841
+ ;;^UTILITY(U,$J,358.3,37261,2)
+ ;;=^5012999
+ ;;^UTILITY(U,$J,358.3,37262,0)
+ ;;=M67.842^^140^1787^108
+ ;;^UTILITY(U,$J,358.3,37262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36878,1,3,0)
- ;;=3^Basal cell carcinoma of skin of right ear/external auric canal
- ;;^UTILITY(U,$J,358.3,36878,1,4,0)
- ;;=4^C44.212
- ;;^UTILITY(U,$J,358.3,36878,2)
- ;;=^5001032
- ;;^UTILITY(U,$J,358.3,36879,0)
- ;;=C44.219^^169^1861^3
- ;;^UTILITY(U,$J,358.3,36879,1,0)
+ ;;^UTILITY(U,$J,358.3,37262,1,3,0)
+ ;;=3^Disorders of synovium, lft hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37262,1,4,0)
+ ;;=4^M67.842
+ ;;^UTILITY(U,$J,358.3,37262,2)
+ ;;=^5013000
+ ;;^UTILITY(U,$J,358.3,37263,0)
+ ;;=M67.843^^140^1787^129
+ ;;^UTILITY(U,$J,358.3,37263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36879,1,3,0)
- ;;=3^Basal cell carcinoma of skin of left ear/external auric canal
- ;;^UTILITY(U,$J,358.3,36879,1,4,0)
- ;;=4^C44.219
- ;;^UTILITY(U,$J,358.3,36879,2)
- ;;=^5001033
- ;;^UTILITY(U,$J,358.3,36880,0)
- ;;=C92.40^^169^1862^21
- ;;^UTILITY(U,$J,358.3,36880,1,0)
+ ;;^UTILITY(U,$J,358.3,37263,1,3,0)
+ ;;=3^Disorders of tendon, rt hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37263,1,4,0)
+ ;;=4^M67.843
+ ;;^UTILITY(U,$J,358.3,37263,2)
+ ;;=^5013001
+ ;;^UTILITY(U,$J,358.3,37264,0)
+ ;;=M67.844^^140^1787^122
+ ;;^UTILITY(U,$J,358.3,37264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36880,1,3,0)
- ;;=3^Acute promyelocytic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,36880,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,36880,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,36881,0)
- ;;=C92.50^^169^1862^18
- ;;^UTILITY(U,$J,358.3,36881,1,0)
+ ;;^UTILITY(U,$J,358.3,37264,1,3,0)
+ ;;=3^Disorders of tendon, lft hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37264,1,4,0)
+ ;;=4^M67.844
+ ;;^UTILITY(U,$J,358.3,37264,2)
+ ;;=^5013002
+ ;;^UTILITY(U,$J,358.3,37265,0)
+ ;;=M67.851^^140^1787^116
+ ;;^UTILITY(U,$J,358.3,37265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36881,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,36881,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,36881,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,36882,0)
- ;;=C92.00^^169^1862^15
- ;;^UTILITY(U,$J,358.3,36882,1,0)
+ ;;^UTILITY(U,$J,358.3,37265,1,3,0)
+ ;;=3^Disorders of synovium, rt hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37265,1,4,0)
+ ;;=4^M67.851
+ ;;^UTILITY(U,$J,358.3,37265,2)
+ ;;=^5013004
+ ;;^UTILITY(U,$J,358.3,37266,0)
+ ;;=M67.852^^140^1787^109
+ ;;^UTILITY(U,$J,358.3,37266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36882,1,3,0)
- ;;=3^Acute myeloblastic leukemia, not having achieved remission
- ;;^UTILITY(U,$J,358.3,36882,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,36882,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,36883,0)
- ;;=C92.51^^169^1862^17
- ;;^UTILITY(U,$J,358.3,36883,1,0)
+ ;;^UTILITY(U,$J,358.3,37266,1,3,0)
+ ;;=3^Disorders of synovium, lft hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37266,1,4,0)
+ ;;=4^M67.852
+ ;;^UTILITY(U,$J,358.3,37266,2)
+ ;;=^5013005
+ ;;^UTILITY(U,$J,358.3,37267,0)
+ ;;=M67.853^^140^1787^130
+ ;;^UTILITY(U,$J,358.3,37267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36883,1,3,0)
- ;;=3^Acute myelomonocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,36883,1,4,0)
- ;;=4^C92.51
- ;;^UTILITY(U,$J,358.3,36883,2)
- ;;=^5001805
- ;;^UTILITY(U,$J,358.3,36884,0)
- ;;=C92.41^^169^1862^20
- ;;^UTILITY(U,$J,358.3,36884,1,0)
+ ;;^UTILITY(U,$J,358.3,37267,1,3,0)
+ ;;=3^Disorders of tendon, rt hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37267,1,4,0)
+ ;;=4^M67.853
+ ;;^UTILITY(U,$J,358.3,37267,2)
+ ;;=^5013006
+ ;;^UTILITY(U,$J,358.3,37268,0)
+ ;;=M67.854^^140^1787^123
+ ;;^UTILITY(U,$J,358.3,37268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36884,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,36884,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,36884,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,36885,0)
- ;;=C92.01^^169^1862^14
- ;;^UTILITY(U,$J,358.3,36885,1,0)
+ ;;^UTILITY(U,$J,358.3,37268,1,3,0)
+ ;;=3^Disorders of tendon, lft hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37268,1,4,0)
+ ;;=4^M67.854
+ ;;^UTILITY(U,$J,358.3,37268,2)
+ ;;=^5013007
+ ;;^UTILITY(U,$J,358.3,37269,0)
+ ;;=M67.861^^140^1787^117
+ ;;^UTILITY(U,$J,358.3,37269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36885,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,36885,1,4,0)
- ;;=4^C92.01
- ;;^UTILITY(U,$J,358.3,36885,2)
- ;;=^5001790
- ;;^UTILITY(U,$J,358.3,36886,0)
- ;;=C92.02^^169^1862^13
- ;;^UTILITY(U,$J,358.3,36886,1,0)
+ ;;^UTILITY(U,$J,358.3,37269,1,3,0)
+ ;;=3^Disorders of synovium, rt knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,37269,1,4,0)
+ ;;=4^M67.861
+ ;;^UTILITY(U,$J,358.3,37269,2)
+ ;;=^5013009
+ ;;^UTILITY(U,$J,358.3,37270,0)
+ ;;=M67.862^^140^1787^110
+ ;;^UTILITY(U,$J,358.3,37270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36886,1,3,0)
- ;;=3^Acute myeloblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,36886,1,4,0)
- ;;=4^C92.02
- ;;^UTILITY(U,$J,358.3,36886,2)
- ;;=^5001791
- ;;^UTILITY(U,$J,358.3,36887,0)
- ;;=C92.42^^169^1862^19
- ;;^UTILITY(U,$J,358.3,36887,1,0)
+ ;;^UTILITY(U,$J,358.3,37270,1,3,0)
+ ;;=3^Disorders of synovium, lft knee
+ ;;^UTILITY(U,$J,358.3,37270,1,4,0)
+ ;;=4^M67.862
+ ;;^UTILITY(U,$J,358.3,37270,2)
+ ;;=^5013010
+ ;;^UTILITY(U,$J,358.3,37271,0)
+ ;;=M67.863^^140^1787^131
+ ;;^UTILITY(U,$J,358.3,37271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36887,1,3,0)
- ;;=3^Acute promyelocytic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,36887,1,4,0)
- ;;=4^C92.42
- ;;^UTILITY(U,$J,358.3,36887,2)
- ;;=^5001803
- ;;^UTILITY(U,$J,358.3,36888,0)
- ;;=C92.52^^169^1862^16
- ;;^UTILITY(U,$J,358.3,36888,1,0)
+ ;;^UTILITY(U,$J,358.3,37271,1,3,0)
+ ;;=3^Disorders of tendon, rt knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,37271,1,4,0)
+ ;;=4^M67.863
+ ;;^UTILITY(U,$J,358.3,37271,2)
+ ;;=^5013011
+ ;;^UTILITY(U,$J,358.3,37272,0)
+ ;;=M67.864^^140^1787^124
+ ;;^UTILITY(U,$J,358.3,37272,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37272,1,3,0)
+ ;;=3^Disorders of tendon, lft knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,37272,1,4,0)
+ ;;=4^M67.864

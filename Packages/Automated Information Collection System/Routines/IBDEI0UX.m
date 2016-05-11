@@ -1,130 +1,138 @@
-IBDEI0UX ; ; 19-NOV-2015
+IBDEI0UX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14228,1,4,0)
- ;;=4^H25.13
- ;;^UTILITY(U,$J,358.3,14228,2)
- ;;=^5005286
- ;;^UTILITY(U,$J,358.3,14229,0)
- ;;=H25.12^^82^775^11
- ;;^UTILITY(U,$J,358.3,14229,1,0)
+ ;;^UTILITY(U,$J,358.3,14501,1,4,0)
+ ;;=4^N91.0
+ ;;^UTILITY(U,$J,358.3,14501,2)
+ ;;=^5015902
+ ;;^UTILITY(U,$J,358.3,14502,0)
+ ;;=N91.1^^53^609^7
+ ;;^UTILITY(U,$J,358.3,14502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14229,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Left Eye
- ;;^UTILITY(U,$J,358.3,14229,1,4,0)
- ;;=4^H25.12
- ;;^UTILITY(U,$J,358.3,14229,2)
- ;;=^5005285
- ;;^UTILITY(U,$J,358.3,14230,0)
- ;;=H25.11^^82^775^12
- ;;^UTILITY(U,$J,358.3,14230,1,0)
+ ;;^UTILITY(U,$J,358.3,14502,1,3,0)
+ ;;=3^Amenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,14502,1,4,0)
+ ;;=4^N91.1
+ ;;^UTILITY(U,$J,358.3,14502,2)
+ ;;=^5015903
+ ;;^UTILITY(U,$J,358.3,14503,0)
+ ;;=N91.2^^53^609^8
+ ;;^UTILITY(U,$J,358.3,14503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14230,1,3,0)
- ;;=3^Cataract,Age-Related Nuclear,Right Eye
- ;;^UTILITY(U,$J,358.3,14230,1,4,0)
- ;;=4^H25.11
- ;;^UTILITY(U,$J,358.3,14230,2)
- ;;=^5005284
- ;;^UTILITY(U,$J,358.3,14231,0)
- ;;=G45.3^^82^775^1
- ;;^UTILITY(U,$J,358.3,14231,1,0)
+ ;;^UTILITY(U,$J,358.3,14503,1,3,0)
+ ;;=3^Amenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,14503,1,4,0)
+ ;;=4^N91.2
+ ;;^UTILITY(U,$J,358.3,14503,2)
+ ;;=^5015904
+ ;;^UTILITY(U,$J,358.3,14504,0)
+ ;;=N91.3^^53^609^38
+ ;;^UTILITY(U,$J,358.3,14504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14231,1,3,0)
- ;;=3^Amaurosis Fugax
- ;;^UTILITY(U,$J,358.3,14231,1,4,0)
- ;;=4^G45.3
- ;;^UTILITY(U,$J,358.3,14231,2)
- ;;=^304129
- ;;^UTILITY(U,$J,358.3,14232,0)
- ;;=D31.32^^82^775^16
- ;;^UTILITY(U,$J,358.3,14232,1,0)
+ ;;^UTILITY(U,$J,358.3,14504,1,3,0)
+ ;;=3^Oligomenorrhea,Primary
+ ;;^UTILITY(U,$J,358.3,14504,1,4,0)
+ ;;=4^N91.3
+ ;;^UTILITY(U,$J,358.3,14504,2)
+ ;;=^5015905
+ ;;^UTILITY(U,$J,358.3,14505,0)
+ ;;=N91.4^^53^609^39
+ ;;^UTILITY(U,$J,358.3,14505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14232,1,3,0)
- ;;=3^Choroidal Nevus,Left Eye
- ;;^UTILITY(U,$J,358.3,14232,1,4,0)
- ;;=4^D31.32
- ;;^UTILITY(U,$J,358.3,14232,2)
- ;;=^5002122
- ;;^UTILITY(U,$J,358.3,14233,0)
- ;;=D31.31^^82^775^17
- ;;^UTILITY(U,$J,358.3,14233,1,0)
+ ;;^UTILITY(U,$J,358.3,14505,1,3,0)
+ ;;=3^Oligomenorrhea,Secondary
+ ;;^UTILITY(U,$J,358.3,14505,1,4,0)
+ ;;=4^N91.4
+ ;;^UTILITY(U,$J,358.3,14505,2)
+ ;;=^5015906
+ ;;^UTILITY(U,$J,358.3,14506,0)
+ ;;=N91.5^^53^609^40
+ ;;^UTILITY(U,$J,358.3,14506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14233,1,3,0)
- ;;=3^Choroidal Nevus,Right Eye
- ;;^UTILITY(U,$J,358.3,14233,1,4,0)
- ;;=4^D31.31
- ;;^UTILITY(U,$J,358.3,14233,2)
- ;;=^5002121
- ;;^UTILITY(U,$J,358.3,14234,0)
- ;;=H34.813^^82^775^13
- ;;^UTILITY(U,$J,358.3,14234,1,0)
+ ;;^UTILITY(U,$J,358.3,14506,1,3,0)
+ ;;=3^Oligomenorrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,14506,1,4,0)
+ ;;=4^N91.5
+ ;;^UTILITY(U,$J,358.3,14506,2)
+ ;;=^5015907
+ ;;^UTILITY(U,$J,358.3,14507,0)
+ ;;=N92.0^^53^609^20
+ ;;^UTILITY(U,$J,358.3,14507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14234,1,3,0)
- ;;=3^Central Retinal Vein Occlusion,Bilateral
- ;;^UTILITY(U,$J,358.3,14234,1,4,0)
- ;;=4^H34.813
- ;;^UTILITY(U,$J,358.3,14234,2)
- ;;=^5005570
- ;;^UTILITY(U,$J,358.3,14235,0)
- ;;=H34.812^^82^775^14
- ;;^UTILITY(U,$J,358.3,14235,1,0)
+ ;;^UTILITY(U,$J,358.3,14507,1,3,0)
+ ;;=3^Excessive/Frequent Menstruation w/ Regular Cycle
+ ;;^UTILITY(U,$J,358.3,14507,1,4,0)
+ ;;=4^N92.0
+ ;;^UTILITY(U,$J,358.3,14507,2)
+ ;;=^5015908
+ ;;^UTILITY(U,$J,358.3,14508,0)
+ ;;=N92.6^^53^609^30
+ ;;^UTILITY(U,$J,358.3,14508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14235,1,3,0)
- ;;=3^Central Retinal Vein Occlusion,Left Eye
- ;;^UTILITY(U,$J,358.3,14235,1,4,0)
- ;;=4^H34.812
- ;;^UTILITY(U,$J,358.3,14235,2)
- ;;=^5005569
- ;;^UTILITY(U,$J,358.3,14236,0)
- ;;=H34.811^^82^775^15
- ;;^UTILITY(U,$J,358.3,14236,1,0)
+ ;;^UTILITY(U,$J,358.3,14508,1,3,0)
+ ;;=3^Irregular Menstruation,Unspec
+ ;;^UTILITY(U,$J,358.3,14508,1,4,0)
+ ;;=4^N92.6
+ ;;^UTILITY(U,$J,358.3,14508,2)
+ ;;=^5015913
+ ;;^UTILITY(U,$J,358.3,14509,0)
+ ;;=N92.5^^53^609^29
+ ;;^UTILITY(U,$J,358.3,14509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14236,1,3,0)
- ;;=3^Central Retinal Vein Occlusion,Right Eye
- ;;^UTILITY(U,$J,358.3,14236,1,4,0)
- ;;=4^H34.811
- ;;^UTILITY(U,$J,358.3,14236,2)
- ;;=^5005568
- ;;^UTILITY(U,$J,358.3,14237,0)
- ;;=E11.321^^82^775^66
- ;;^UTILITY(U,$J,358.3,14237,1,0)
+ ;;^UTILITY(U,$J,358.3,14509,1,3,0)
+ ;;=3^Irregular Menstruation,Other Spec
+ ;;^UTILITY(U,$J,358.3,14509,1,4,0)
+ ;;=4^N92.5
+ ;;^UTILITY(U,$J,358.3,14509,2)
+ ;;=^5015912
+ ;;^UTILITY(U,$J,358.3,14510,0)
+ ;;=N92.3^^53^609^43
+ ;;^UTILITY(U,$J,358.3,14510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14237,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14237,1,4,0)
- ;;=4^E11.321
- ;;^UTILITY(U,$J,358.3,14237,2)
- ;;=^5002634
- ;;^UTILITY(U,$J,358.3,14238,0)
- ;;=E11.329^^82^775^67
- ;;^UTILITY(U,$J,358.3,14238,1,0)
+ ;;^UTILITY(U,$J,358.3,14510,1,3,0)
+ ;;=3^Ovulation Bleeding
+ ;;^UTILITY(U,$J,358.3,14510,1,4,0)
+ ;;=4^N92.3
+ ;;^UTILITY(U,$J,358.3,14510,2)
+ ;;=^270570
+ ;;^UTILITY(U,$J,358.3,14511,0)
+ ;;=N89.7^^53^609^24
+ ;;^UTILITY(U,$J,358.3,14511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14238,1,3,0)
- ;;=3^Type 2 DM w/ Mild Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14238,1,4,0)
- ;;=4^E11.329
- ;;^UTILITY(U,$J,358.3,14238,2)
- ;;=^5002635
- ;;^UTILITY(U,$J,358.3,14239,0)
- ;;=E11.331^^82^775^68
- ;;^UTILITY(U,$J,358.3,14239,1,0)
+ ;;^UTILITY(U,$J,358.3,14511,1,3,0)
+ ;;=3^Hematocolpos
+ ;;^UTILITY(U,$J,358.3,14511,1,4,0)
+ ;;=4^N89.7
+ ;;^UTILITY(U,$J,358.3,14511,2)
+ ;;=^5015889
+ ;;^UTILITY(U,$J,358.3,14512,0)
+ ;;=N93.8^^53^609^2
+ ;;^UTILITY(U,$J,358.3,14512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14239,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14239,1,4,0)
- ;;=4^E11.331
- ;;^UTILITY(U,$J,358.3,14239,2)
- ;;=^5002636
- ;;^UTILITY(U,$J,358.3,14240,0)
- ;;=E11.339^^82^775^69
- ;;^UTILITY(U,$J,358.3,14240,1,0)
+ ;;^UTILITY(U,$J,358.3,14512,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Other Spec
+ ;;^UTILITY(U,$J,358.3,14512,1,4,0)
+ ;;=4^N93.8
+ ;;^UTILITY(U,$J,358.3,14512,2)
+ ;;=^5015915
+ ;;^UTILITY(U,$J,358.3,14513,0)
+ ;;=N93.9^^53^609^3
+ ;;^UTILITY(U,$J,358.3,14513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14240,1,3,0)
- ;;=3^Type 2 DM w/ Mod Nonprolif DM Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14240,1,4,0)
- ;;=4^E11.339
- ;;^UTILITY(U,$J,358.3,14240,2)
- ;;=^5002637
- ;;^UTILITY(U,$J,358.3,14241,0)
- ;;=E11.351^^82^775^70
+ ;;^UTILITY(U,$J,358.3,14513,1,3,0)
+ ;;=3^Abnormal Uterine/Vaginal Bleeding,Unspec
+ ;;^UTILITY(U,$J,358.3,14513,1,4,0)
+ ;;=4^N93.9
+ ;;^UTILITY(U,$J,358.3,14513,2)
+ ;;=^5015916
+ ;;^UTILITY(U,$J,358.3,14514,0)
+ ;;=N92.4^^53^609^19
+ ;;^UTILITY(U,$J,358.3,14514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14514,1,3,0)
+ ;;=3^Excessive Bleeding in Premenopausal Period
+ ;;^UTILITY(U,$J,358.3,14514,1,4,0)
+ ;;=4^N92.4
+ ;;^UTILITY(U,$J,358.3,14514,2)
+ ;;=^5015911

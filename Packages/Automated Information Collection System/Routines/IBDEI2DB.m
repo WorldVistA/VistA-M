@@ -1,132 +1,134 @@
-IBDEI2DB ; ; 19-NOV-2015
+IBDEI2DB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39756,1,0)
+ ;;^UTILITY(U,$J,358.3,40152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39756,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right shoulder
- ;;^UTILITY(U,$J,358.3,39756,1,4,0)
- ;;=4^M05.511
- ;;^UTILITY(U,$J,358.3,39756,2)
- ;;=^5009955
- ;;^UTILITY(U,$J,358.3,39757,0)
- ;;=M05.531^^183^2029^96
- ;;^UTILITY(U,$J,358.3,39757,1,0)
+ ;;^UTILITY(U,$J,358.3,40152,1,3,0)
+ ;;=3^Malignant neoplasm of descended right testis
+ ;;^UTILITY(U,$J,358.3,40152,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,40152,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,40153,0)
+ ;;=C62.12^^156^1953^1
+ ;;^UTILITY(U,$J,358.3,40153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39757,1,3,0)
- ;;=3^Rheumatoid polyneurop w rheumatoid arthritis of right wrist
- ;;^UTILITY(U,$J,358.3,39757,1,4,0)
- ;;=4^M05.531
- ;;^UTILITY(U,$J,358.3,39757,2)
- ;;=^5009961
- ;;^UTILITY(U,$J,358.3,39758,0)
- ;;=M06.9^^183^2029^33
- ;;^UTILITY(U,$J,358.3,39758,1,0)
+ ;;^UTILITY(U,$J,358.3,40153,1,3,0)
+ ;;=3^Malignant neoplasm of descended left testis
+ ;;^UTILITY(U,$J,358.3,40153,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,40153,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,40154,0)
+ ;;=M81.0^^156^1954^1
+ ;;^UTILITY(U,$J,358.3,40154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39758,1,3,0)
- ;;=3^Rheumatoid arthritis, unspecified
- ;;^UTILITY(U,$J,358.3,39758,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,39758,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,39759,0)
- ;;=F31.81^^183^2030^8
- ;;^UTILITY(U,$J,358.3,39759,1,0)
+ ;;^UTILITY(U,$J,358.3,40154,1,3,0)
+ ;;=3^Age-related osteoporosis w/o current pathological fracture
+ ;;^UTILITY(U,$J,358.3,40154,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,40154,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,40155,0)
+ ;;=E10.9^^156^1954^2
+ ;;^UTILITY(U,$J,358.3,40155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39759,1,3,0)
- ;;=3^Bipolar II disorder
- ;;^UTILITY(U,$J,358.3,39759,1,4,0)
- ;;=4^F31.81
- ;;^UTILITY(U,$J,358.3,39759,2)
- ;;=^5003519
- ;;^UTILITY(U,$J,358.3,39760,0)
- ;;=F41.9^^183^2030^7
- ;;^UTILITY(U,$J,358.3,39760,1,0)
+ ;;^UTILITY(U,$J,358.3,40155,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,40155,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,40155,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,40156,0)
+ ;;=E11.9^^156^1954^3
+ ;;^UTILITY(U,$J,358.3,40156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39760,1,3,0)
- ;;=3^Anxiety disorder, unspecified
- ;;^UTILITY(U,$J,358.3,39760,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,39760,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,39761,0)
- ;;=F34.1^^183^2030^10
- ;;^UTILITY(U,$J,358.3,39761,1,0)
+ ;;^UTILITY(U,$J,358.3,40156,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,40156,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,40156,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,40157,0)
+ ;;=R10.9^^156^1955^2
+ ;;^UTILITY(U,$J,358.3,40157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39761,1,3,0)
- ;;=3^Dysthymic disorder
- ;;^UTILITY(U,$J,358.3,39761,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,39761,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,39762,0)
- ;;=F60.4^^183^2030^11
- ;;^UTILITY(U,$J,358.3,39762,1,0)
+ ;;^UTILITY(U,$J,358.3,40157,1,3,0)
+ ;;=3^Abdominal Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,40157,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,40157,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,40158,0)
+ ;;=R10.11^^156^1955^42
+ ;;^UTILITY(U,$J,358.3,40158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39762,1,3,0)
- ;;=3^Histrionic personality disorder
- ;;^UTILITY(U,$J,358.3,39762,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,39762,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,39763,0)
- ;;=F60.7^^183^2030^9
- ;;^UTILITY(U,$J,358.3,39763,1,0)
+ ;;^UTILITY(U,$J,358.3,40158,1,3,0)
+ ;;=3^Right upper quadrant pain
+ ;;^UTILITY(U,$J,358.3,40158,1,4,0)
+ ;;=4^R10.11
+ ;;^UTILITY(U,$J,358.3,40158,2)
+ ;;=^5019206
+ ;;^UTILITY(U,$J,358.3,40159,0)
+ ;;=R10.31^^156^1955^41
+ ;;^UTILITY(U,$J,358.3,40159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39763,1,3,0)
- ;;=3^Dependent personality disorder
- ;;^UTILITY(U,$J,358.3,39763,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,39763,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,39764,0)
- ;;=F43.21^^183^2030^3
- ;;^UTILITY(U,$J,358.3,39764,1,0)
+ ;;^UTILITY(U,$J,358.3,40159,1,3,0)
+ ;;=3^Right lower quadrant pain
+ ;;^UTILITY(U,$J,358.3,40159,1,4,0)
+ ;;=4^R10.31
+ ;;^UTILITY(U,$J,358.3,40159,2)
+ ;;=^5019211
+ ;;^UTILITY(U,$J,358.3,40160,0)
+ ;;=R10.84^^156^1955^1
+ ;;^UTILITY(U,$J,358.3,40160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39764,1,3,0)
- ;;=3^Adjustment disorder with depressed mood
- ;;^UTILITY(U,$J,358.3,39764,1,4,0)
- ;;=4^F43.21
- ;;^UTILITY(U,$J,358.3,39764,2)
- ;;=^331948
- ;;^UTILITY(U,$J,358.3,39765,0)
- ;;=F93.0^^183^2030^17
- ;;^UTILITY(U,$J,358.3,39765,1,0)
+ ;;^UTILITY(U,$J,358.3,40160,1,3,0)
+ ;;=3^Abdominal Pain,Generalized
+ ;;^UTILITY(U,$J,358.3,40160,1,4,0)
+ ;;=4^R10.84
+ ;;^UTILITY(U,$J,358.3,40160,2)
+ ;;=^5019229
+ ;;^UTILITY(U,$J,358.3,40161,0)
+ ;;=R10.10^^156^1955^44
+ ;;^UTILITY(U,$J,358.3,40161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39765,1,3,0)
- ;;=3^Separation anxiety disorder of childhood
- ;;^UTILITY(U,$J,358.3,39765,1,4,0)
- ;;=4^F93.0
- ;;^UTILITY(U,$J,358.3,39765,2)
- ;;=^5003702
- ;;^UTILITY(U,$J,358.3,39766,0)
- ;;=F43.22^^183^2030^2
- ;;^UTILITY(U,$J,358.3,39766,1,0)
+ ;;^UTILITY(U,$J,358.3,40161,1,3,0)
+ ;;=3^Upper abdominal pain, unspecified
+ ;;^UTILITY(U,$J,358.3,40161,1,4,0)
+ ;;=4^R10.10
+ ;;^UTILITY(U,$J,358.3,40161,2)
+ ;;=^5019205
+ ;;^UTILITY(U,$J,358.3,40162,0)
+ ;;=R10.30^^156^1955^28
+ ;;^UTILITY(U,$J,358.3,40162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39766,1,3,0)
- ;;=3^Adjustment disorder with anxiety
- ;;^UTILITY(U,$J,358.3,39766,1,4,0)
- ;;=4^F43.22
- ;;^UTILITY(U,$J,358.3,39766,2)
- ;;=^331949
- ;;^UTILITY(U,$J,358.3,39767,0)
- ;;=F43.23^^183^2030^5
- ;;^UTILITY(U,$J,358.3,39767,1,0)
+ ;;^UTILITY(U,$J,358.3,40162,1,3,0)
+ ;;=3^Lower abdominal pain, unspecified
+ ;;^UTILITY(U,$J,358.3,40162,1,4,0)
+ ;;=4^R10.30
+ ;;^UTILITY(U,$J,358.3,40162,2)
+ ;;=^5019210
+ ;;^UTILITY(U,$J,358.3,40163,0)
+ ;;=R10.2^^156^1955^35
+ ;;^UTILITY(U,$J,358.3,40163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39767,1,3,0)
- ;;=3^Adjustment disorder with mixed anxiety and depressed mood
- ;;^UTILITY(U,$J,358.3,39767,1,4,0)
- ;;=4^F43.23
- ;;^UTILITY(U,$J,358.3,39767,2)
- ;;=^331950
- ;;^UTILITY(U,$J,358.3,39768,0)
- ;;=F43.24^^183^2030^4
- ;;^UTILITY(U,$J,358.3,39768,1,0)
+ ;;^UTILITY(U,$J,358.3,40163,1,3,0)
+ ;;=3^Pelvic and perineal pain
+ ;;^UTILITY(U,$J,358.3,40163,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,40163,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,40164,0)
+ ;;=R18.8^^156^1955^9
+ ;;^UTILITY(U,$J,358.3,40164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39768,1,3,0)
- ;;=3^Adjustment disorder with disturbance of conduct
- ;;^UTILITY(U,$J,358.3,39768,1,4,0)
- ;;=4^F43.24
- ;;^UTILITY(U,$J,358.3,39768,2)
- ;;=^331951
+ ;;^UTILITY(U,$J,358.3,40164,1,3,0)
+ ;;=3^Ascites NEC
+ ;;^UTILITY(U,$J,358.3,40164,1,4,0)
+ ;;=4^R18.8
+ ;;^UTILITY(U,$J,358.3,40164,2)
+ ;;=^5019253
+ ;;^UTILITY(U,$J,358.3,40165,0)
+ ;;=R19.7^^156^1955^16

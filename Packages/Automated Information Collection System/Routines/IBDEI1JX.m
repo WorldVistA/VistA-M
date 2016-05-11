@@ -1,128 +1,126 @@
-IBDEI1JX ; ; 19-NOV-2015
+IBDEI1JX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25937,1,0)
+ ;;^UTILITY(U,$J,358.3,26317,1,3,0)
+ ;;=3^Reaction to Severe Stress,Unspec
+ ;;^UTILITY(U,$J,358.3,26317,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,26317,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,26318,0)
+ ;;=F94.1^^98^1244^14
+ ;;^UTILITY(U,$J,358.3,26318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25937,1,3,0)
- ;;=3^Occlusion/Stenosis of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,25937,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,25937,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,25938,0)
- ;;=I65.23^^127^1269^13
- ;;^UTILITY(U,$J,358.3,25938,1,0)
+ ;;^UTILITY(U,$J,358.3,26318,1,3,0)
+ ;;=3^Reactive Attachment Disorder
+ ;;^UTILITY(U,$J,358.3,26318,1,4,0)
+ ;;=4^F94.1
+ ;;^UTILITY(U,$J,358.3,26318,2)
+ ;;=^5003705
+ ;;^UTILITY(U,$J,358.3,26319,0)
+ ;;=F94.2^^98^1244^8
+ ;;^UTILITY(U,$J,358.3,26319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25938,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,25938,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,25938,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,25939,0)
- ;;=I65.8^^127^1269^15
- ;;^UTILITY(U,$J,358.3,25939,1,0)
+ ;;^UTILITY(U,$J,358.3,26319,1,3,0)
+ ;;=3^Disinhibited Social Engagement Disorder
+ ;;^UTILITY(U,$J,358.3,26319,1,4,0)
+ ;;=4^F94.2
+ ;;^UTILITY(U,$J,358.3,26319,2)
+ ;;=^5003706
+ ;;^UTILITY(U,$J,358.3,26320,0)
+ ;;=F18.10^^98^1245^21
+ ;;^UTILITY(U,$J,358.3,26320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25939,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Arteries NEC
- ;;^UTILITY(U,$J,358.3,25939,1,4,0)
- ;;=4^I65.8
- ;;^UTILITY(U,$J,358.3,25939,2)
- ;;=^5007364
- ;;^UTILITY(U,$J,358.3,25940,0)
- ;;=I70.211^^127^1269^8
- ;;^UTILITY(U,$J,358.3,25940,1,0)
+ ;;^UTILITY(U,$J,358.3,26320,1,3,0)
+ ;;=3^Inhalant Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26320,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,26320,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,26321,0)
+ ;;=F18.20^^98^1245^22
+ ;;^UTILITY(U,$J,358.3,26321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25940,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,25940,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,25940,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,25941,0)
- ;;=I70.212^^127^1269^7
- ;;^UTILITY(U,$J,358.3,25941,1,0)
+ ;;^UTILITY(U,$J,358.3,26321,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26321,1,4,0)
+ ;;=4^F18.20
+ ;;^UTILITY(U,$J,358.3,26321,2)
+ ;;=^5003392
+ ;;^UTILITY(U,$J,358.3,26322,0)
+ ;;=F18.21^^98^1245^23
+ ;;^UTILITY(U,$J,358.3,26322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25941,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,25941,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,25941,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,25942,0)
- ;;=I70.213^^127^1269^6
- ;;^UTILITY(U,$J,358.3,25942,1,0)
+ ;;^UTILITY(U,$J,358.3,26322,1,3,0)
+ ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,26322,1,4,0)
+ ;;=4^F18.21
+ ;;^UTILITY(U,$J,358.3,26322,2)
+ ;;=^5003393
+ ;;^UTILITY(U,$J,358.3,26323,0)
+ ;;=F18.14^^98^1245^24
+ ;;^UTILITY(U,$J,358.3,26323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25942,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,25942,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,25942,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,25943,0)
- ;;=I71.2^^127^1269^20
- ;;^UTILITY(U,$J,358.3,25943,1,0)
+ ;;^UTILITY(U,$J,358.3,26323,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26323,1,4,0)
+ ;;=4^F18.14
+ ;;^UTILITY(U,$J,358.3,26323,2)
+ ;;=^5003384
+ ;;^UTILITY(U,$J,358.3,26324,0)
+ ;;=F18.24^^98^1245^25
+ ;;^UTILITY(U,$J,358.3,26324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25943,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,25943,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,25943,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,25944,0)
- ;;=I71.4^^127^1269^1
- ;;^UTILITY(U,$J,358.3,25944,1,0)
+ ;;^UTILITY(U,$J,358.3,26324,1,3,0)
+ ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26324,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,26324,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,26325,0)
+ ;;=F18.121^^98^1245^14
+ ;;^UTILITY(U,$J,358.3,26325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25944,1,3,0)
- ;;=3^AAA w/o Rupture
- ;;^UTILITY(U,$J,358.3,25944,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,25944,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,25945,0)
- ;;=I73.9^^127^1269^17
- ;;^UTILITY(U,$J,358.3,25945,1,0)
+ ;;^UTILITY(U,$J,358.3,26325,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26325,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,26325,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,26326,0)
+ ;;=F18.221^^98^1245^15
+ ;;^UTILITY(U,$J,358.3,26326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25945,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,25945,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,25945,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,25946,0)
- ;;=I74.2^^127^1269^11
- ;;^UTILITY(U,$J,358.3,25946,1,0)
+ ;;^UTILITY(U,$J,358.3,26326,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26326,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,26326,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,26327,0)
+ ;;=F18.921^^98^1245^16
+ ;;^UTILITY(U,$J,358.3,26327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25946,1,3,0)
- ;;=3^Embolism/Thrombosis of Upper Extremity Arteries
- ;;^UTILITY(U,$J,358.3,25946,1,4,0)
- ;;=4^I74.2
- ;;^UTILITY(U,$J,358.3,25946,2)
- ;;=^5007801
- ;;^UTILITY(U,$J,358.3,25947,0)
- ;;=I74.3^^127^1269^10
- ;;^UTILITY(U,$J,358.3,25947,1,0)
+ ;;^UTILITY(U,$J,358.3,26327,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26327,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,26327,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,26328,0)
+ ;;=F18.129^^98^1245^17
+ ;;^UTILITY(U,$J,358.3,26328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25947,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,25947,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,25947,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,25948,0)
- ;;=I83.019^^127^1269^22
- ;;^UTILITY(U,$J,358.3,25948,1,0)
+ ;;^UTILITY(U,$J,358.3,26328,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26328,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,26328,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,26329,0)
+ ;;=F18.229^^98^1245^18
+ ;;^UTILITY(U,$J,358.3,26329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25948,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer
- ;;^UTILITY(U,$J,358.3,25948,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,25948,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,25949,0)
- ;;=I83.029^^127^1269^21
- ;;^UTILITY(U,$J,358.3,25949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25949,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer
+ ;;^UTILITY(U,$J,358.3,26329,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder

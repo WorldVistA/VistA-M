@@ -1,128 +1,132 @@
-IBDEI13N ; ; 19-NOV-2015
+IBDEI13N ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18360,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 3
- ;;^UTILITY(U,$J,358.3,18360,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,18360,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,18361,0)
- ;;=L89.94^^94^905^246
- ;;^UTILITY(U,$J,358.3,18361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18361,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Stage 4
- ;;^UTILITY(U,$J,358.3,18361,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,18361,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,18362,0)
- ;;=L89.95^^94^905^248
- ;;^UTILITY(U,$J,358.3,18362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18362,1,3,0)
- ;;=3^Pressure Ulcer of Unspec Site,Unstageable
- ;;^UTILITY(U,$J,358.3,18362,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,18362,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,18363,0)
- ;;=L92.0^^94^905^156
- ;;^UTILITY(U,$J,358.3,18363,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18363,1,3,0)
- ;;=3^Granuloma Annulare
- ;;^UTILITY(U,$J,358.3,18363,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,18363,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,18364,0)
- ;;=L95.1^^94^905^143
- ;;^UTILITY(U,$J,358.3,18364,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18364,1,3,0)
- ;;=3^Erythema Elevatum Diutinum
- ;;^UTILITY(U,$J,358.3,18364,1,4,0)
- ;;=4^L95.1
- ;;^UTILITY(U,$J,358.3,18364,2)
- ;;=^5009477
- ;;^UTILITY(U,$J,358.3,18365,0)
- ;;=L97.111^^94^905^226
- ;;^UTILITY(U,$J,358.3,18365,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18365,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,18365,1,4,0)
- ;;=4^L97.111
- ;;^UTILITY(U,$J,358.3,18365,2)
- ;;=^5009485
- ;;^UTILITY(U,$J,358.3,18366,0)
- ;;=L97.112^^94^905^227
- ;;^UTILITY(U,$J,358.3,18366,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18366,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,18366,1,4,0)
- ;;=4^L97.112
- ;;^UTILITY(U,$J,358.3,18366,2)
- ;;=^5009486
- ;;^UTILITY(U,$J,358.3,18367,0)
- ;;=L97.113^^94^905^228
- ;;^UTILITY(U,$J,358.3,18367,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18367,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,18367,1,4,0)
- ;;=4^L97.113
- ;;^UTILITY(U,$J,358.3,18367,2)
- ;;=^5009487
- ;;^UTILITY(U,$J,358.3,18368,0)
- ;;=L97.114^^94^905^229
- ;;^UTILITY(U,$J,358.3,18368,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18368,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,18368,1,4,0)
- ;;=4^L97.114
- ;;^UTILITY(U,$J,358.3,18368,2)
- ;;=^5009488
- ;;^UTILITY(U,$J,358.3,18369,0)
- ;;=L97.119^^94^905^230
- ;;^UTILITY(U,$J,358.3,18369,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18369,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,18369,1,4,0)
- ;;=4^L97.119
- ;;^UTILITY(U,$J,358.3,18369,2)
- ;;=^5009489
- ;;^UTILITY(U,$J,358.3,18370,0)
- ;;=L97.121^^94^905^196
- ;;^UTILITY(U,$J,358.3,18370,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18370,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,18370,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,18370,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,18371,0)
- ;;=L97.122^^94^905^197
- ;;^UTILITY(U,$J,358.3,18371,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18371,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,18371,1,4,0)
- ;;=4^L97.122
- ;;^UTILITY(U,$J,358.3,18371,2)
- ;;=^5009491
- ;;^UTILITY(U,$J,358.3,18372,0)
- ;;=L97.123^^94^905^198
- ;;^UTILITY(U,$J,358.3,18372,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18372,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,18693,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18693,1,2,0)
+ ;;=2^68801
+ ;;^UTILITY(U,$J,358.3,18693,1,3,0)
+ ;;=3^Dilate Tear Duct Opening
+ ;;^UTILITY(U,$J,358.3,18694,0)
+ ;;=92225^^80^890^6^^^^1
+ ;;^UTILITY(U,$J,358.3,18694,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18694,1,2,0)
+ ;;=2^92225
+ ;;^UTILITY(U,$J,358.3,18694,1,3,0)
+ ;;=3^Exten Ophthalmoscopy, Int
+ ;;^UTILITY(U,$J,358.3,18695,0)
+ ;;=92226^^80^890^5^^^^1
+ ;;^UTILITY(U,$J,358.3,18695,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18695,1,2,0)
+ ;;=2^92226
+ ;;^UTILITY(U,$J,358.3,18695,1,3,0)
+ ;;=3^Exten Ophthalmoscopy, F/U
+ ;;^UTILITY(U,$J,358.3,18696,0)
+ ;;=92534^^80^890^11^^^^1
+ ;;^UTILITY(U,$J,358.3,18696,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18696,1,2,0)
+ ;;=2^92534
+ ;;^UTILITY(U,$J,358.3,18696,1,3,0)
+ ;;=3^Optokinetic Nystagmus Test
+ ;;^UTILITY(U,$J,358.3,18697,0)
+ ;;=65222^^80^890^13^^^^1
+ ;;^UTILITY(U,$J,358.3,18697,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18697,1,2,0)
+ ;;=2^65222
+ ;;^UTILITY(U,$J,358.3,18697,1,3,0)
+ ;;=3^Removal Corneal FB w/slit lamp
+ ;;^UTILITY(U,$J,358.3,18698,0)
+ ;;=65205^^80^890^14^^^^1
+ ;;^UTILITY(U,$J,358.3,18698,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18698,1,2,0)
+ ;;=2^65205
+ ;;^UTILITY(U,$J,358.3,18698,1,3,0)
+ ;;=3^Remove External FB
+ ;;^UTILITY(U,$J,358.3,18699,0)
+ ;;=76512^^80^890^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18699,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18699,1,2,0)
+ ;;=2^76512
+ ;;^UTILITY(U,$J,358.3,18699,1,3,0)
+ ;;=3^B-Scan
+ ;;^UTILITY(U,$J,358.3,18700,0)
+ ;;=92134^^80^890^10^^^^1
+ ;;^UTILITY(U,$J,358.3,18700,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18700,1,2,0)
+ ;;=2^92134
+ ;;^UTILITY(U,$J,358.3,18700,1,3,0)
+ ;;=3^Ophthalm Scanning,Retina
+ ;;^UTILITY(U,$J,358.3,18701,0)
+ ;;=92133^^80^890^9^^^^1
+ ;;^UTILITY(U,$J,358.3,18701,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18701,1,2,0)
+ ;;=2^92133
+ ;;^UTILITY(U,$J,358.3,18701,1,3,0)
+ ;;=3^Ophthalm Scanning,Optic Nerve
+ ;;^UTILITY(U,$J,358.3,18702,0)
+ ;;=92132^^80^890^8^^^^1
+ ;;^UTILITY(U,$J,358.3,18702,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18702,1,2,0)
+ ;;=2^92132
+ ;;^UTILITY(U,$J,358.3,18702,1,3,0)
+ ;;=3^Ophthalm Scanning,Anterior Segment
+ ;;^UTILITY(U,$J,358.3,18703,0)
+ ;;=76514^^80^890^12^^^^1
+ ;;^UTILITY(U,$J,358.3,18703,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18703,1,2,0)
+ ;;=2^76514
+ ;;^UTILITY(U,$J,358.3,18703,1,3,0)
+ ;;=3^Pachymetry
+ ;;^UTILITY(U,$J,358.3,18704,0)
+ ;;=92060^^80^890^15^^^^1
+ ;;^UTILITY(U,$J,358.3,18704,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18704,1,2,0)
+ ;;=2^92060
+ ;;^UTILITY(U,$J,358.3,18704,1,3,0)
+ ;;=3^Sensorymotor Work Up
+ ;;^UTILITY(U,$J,358.3,18705,0)
+ ;;=97535^^80^890^16^^^^1
+ ;;^UTILITY(U,$J,358.3,18705,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18705,1,2,0)
+ ;;=2^97535
+ ;;^UTILITY(U,$J,358.3,18705,1,3,0)
+ ;;=3^Training w/ Devices for ADLs
+ ;;^UTILITY(U,$J,358.3,18706,0)
+ ;;=99366^^80^891^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18706,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18706,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,18706,1,3,0)
+ ;;=3^Team Conf w/PT by HC PRO,+30 min
+ ;;^UTILITY(U,$J,358.3,18707,0)
+ ;;=99367^^80^891^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18707,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18707,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,18707,1,3,0)
+ ;;=3^Team Conf w/o PT by Phys,+30 min
+ ;;^UTILITY(U,$J,358.3,18708,0)
+ ;;=99368^^80^891^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18708,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,18708,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,18708,1,3,0)
+ ;;=3^Team Conf w/o PT by HC PRO,+30 min
+ ;;^UTILITY(U,$J,358.3,18709,0)
+ ;;=96150^^80^892^1^^^^1

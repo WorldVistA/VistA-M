@@ -1,138 +1,128 @@
-IBDEI13W ; ; 19-NOV-2015
+IBDEI13W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18471,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,18471,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,18472,0)
- ;;=H81.12^^94^906^9
- ;;^UTILITY(U,$J,358.3,18472,1,0)
+ ;;^UTILITY(U,$J,358.3,18818,1,3,0)
+ ;;=3^glc,Low-Tension,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,18818,1,4,0)
+ ;;=4^H40.1223
+ ;;^UTILITY(U,$J,358.3,18818,2)
+ ;;=^5133492
+ ;;^UTILITY(U,$J,358.3,18819,0)
+ ;;=H40.1224^^82^899^33
+ ;;^UTILITY(U,$J,358.3,18819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18472,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,18472,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,18472,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,18473,0)
- ;;=H81.11^^94^906^10
- ;;^UTILITY(U,$J,358.3,18473,1,0)
+ ;;^UTILITY(U,$J,358.3,18819,1,3,0)
+ ;;=3^glc,Low-Tension,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,18819,1,4,0)
+ ;;=4^H40.1224
+ ;;^UTILITY(U,$J,358.3,18819,2)
+ ;;=^5005766
+ ;;^UTILITY(U,$J,358.3,18820,0)
+ ;;=H40.1230^^82^899^32
+ ;;^UTILITY(U,$J,358.3,18820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18473,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,18473,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,18473,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,18474,0)
- ;;=H81.13^^94^906^8
- ;;^UTILITY(U,$J,358.3,18474,1,0)
+ ;;^UTILITY(U,$J,358.3,18820,1,3,0)
+ ;;=3^glc,Low-Tension,Bilateral,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,18820,1,4,0)
+ ;;=4^H40.1230
+ ;;^UTILITY(U,$J,358.3,18820,2)
+ ;;=^5005767
+ ;;^UTILITY(U,$J,358.3,18821,0)
+ ;;=H40.1231^^82^899^29
+ ;;^UTILITY(U,$J,358.3,18821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18474,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,18474,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,18474,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,18475,0)
- ;;=H81.10^^94^906^11
- ;;^UTILITY(U,$J,358.3,18475,1,0)
+ ;;^UTILITY(U,$J,358.3,18821,1,3,0)
+ ;;=3^glc,Low-Tension,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,18821,1,4,0)
+ ;;=4^H40.1231
+ ;;^UTILITY(U,$J,358.3,18821,2)
+ ;;=^5005768
+ ;;^UTILITY(U,$J,358.3,18822,0)
+ ;;=H40.1232^^82^899^30
+ ;;^UTILITY(U,$J,358.3,18822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18475,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,18475,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,18475,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,18476,0)
- ;;=B37.84^^94^906^12
- ;;^UTILITY(U,$J,358.3,18476,1,0)
+ ;;^UTILITY(U,$J,358.3,18822,1,3,0)
+ ;;=3^glc,Low-Tension,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,18822,1,4,0)
+ ;;=4^H40.1232
+ ;;^UTILITY(U,$J,358.3,18822,2)
+ ;;=^5005769
+ ;;^UTILITY(U,$J,358.3,18823,0)
+ ;;=H40.1233^^82^899^31
+ ;;^UTILITY(U,$J,358.3,18823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18476,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,18476,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,18476,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,18477,0)
- ;;=H60.313^^94^906^18
- ;;^UTILITY(U,$J,358.3,18477,1,0)
+ ;;^UTILITY(U,$J,358.3,18823,1,3,0)
+ ;;=3^glc,Low-Tension,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,18823,1,4,0)
+ ;;=4^H40.1233
+ ;;^UTILITY(U,$J,358.3,18823,2)
+ ;;=^5005770
+ ;;^UTILITY(U,$J,358.3,18824,0)
+ ;;=H40.1234^^82^899^28
+ ;;^UTILITY(U,$J,358.3,18824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18477,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,18477,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,18477,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,18478,0)
- ;;=B37.0^^94^907^13
- ;;^UTILITY(U,$J,358.3,18478,1,0)
+ ;;^UTILITY(U,$J,358.3,18824,1,3,0)
+ ;;=3^glc,Low-Tension,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,18824,1,4,0)
+ ;;=4^H40.1234
+ ;;^UTILITY(U,$J,358.3,18824,2)
+ ;;=^5005771
+ ;;^UTILITY(U,$J,358.3,18825,0)
+ ;;=H40.1310^^82^899^67
+ ;;^UTILITY(U,$J,358.3,18825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18478,1,3,0)
- ;;=3^Candidal Stomatitis
- ;;^UTILITY(U,$J,358.3,18478,1,4,0)
- ;;=4^B37.0
- ;;^UTILITY(U,$J,358.3,18478,2)
- ;;=^5000612
- ;;^UTILITY(U,$J,358.3,18479,0)
- ;;=B37.83^^94^907^12
- ;;^UTILITY(U,$J,358.3,18479,1,0)
+ ;;^UTILITY(U,$J,358.3,18825,1,3,0)
+ ;;=3^glc,Pigmentary,Right Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,18825,1,4,0)
+ ;;=4^H40.1310
+ ;;^UTILITY(U,$J,358.3,18825,2)
+ ;;=^5005775
+ ;;^UTILITY(U,$J,358.3,18826,0)
+ ;;=H40.1311^^82^899^64
+ ;;^UTILITY(U,$J,358.3,18826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18479,1,3,0)
- ;;=3^Candidal Cheilitis
- ;;^UTILITY(U,$J,358.3,18479,1,4,0)
- ;;=4^B37.83
- ;;^UTILITY(U,$J,358.3,18479,2)
- ;;=^5000622
- ;;^UTILITY(U,$J,358.3,18480,0)
- ;;=J00.^^94^907^6
- ;;^UTILITY(U,$J,358.3,18480,1,0)
+ ;;^UTILITY(U,$J,358.3,18826,1,3,0)
+ ;;=3^glc,Pigmentary,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,18826,1,4,0)
+ ;;=4^H40.1311
+ ;;^UTILITY(U,$J,358.3,18826,2)
+ ;;=^5005776
+ ;;^UTILITY(U,$J,358.3,18827,0)
+ ;;=H40.1312^^82^899^65
+ ;;^UTILITY(U,$J,358.3,18827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18480,1,3,0)
- ;;=3^Acute Nasopharyngitis 
- ;;^UTILITY(U,$J,358.3,18480,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,18480,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,18481,0)
- ;;=J01.00^^94^907^5
- ;;^UTILITY(U,$J,358.3,18481,1,0)
+ ;;^UTILITY(U,$J,358.3,18827,1,3,0)
+ ;;=3^glc,Pigmentary,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,18827,1,4,0)
+ ;;=4^H40.1312
+ ;;^UTILITY(U,$J,358.3,18827,2)
+ ;;=^5005777
+ ;;^UTILITY(U,$J,358.3,18828,0)
+ ;;=H40.1313^^82^899^66
+ ;;^UTILITY(U,$J,358.3,18828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18481,1,3,0)
- ;;=3^Acute Maxillary Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,18481,1,4,0)
- ;;=4^J01.00
- ;;^UTILITY(U,$J,358.3,18481,2)
- ;;=^5008116
- ;;^UTILITY(U,$J,358.3,18482,0)
- ;;=J01.10^^94^907^1
- ;;^UTILITY(U,$J,358.3,18482,1,0)
+ ;;^UTILITY(U,$J,358.3,18828,1,3,0)
+ ;;=3^glc,Pigmentary,Right Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,18828,1,4,0)
+ ;;=4^H40.1313
+ ;;^UTILITY(U,$J,358.3,18828,2)
+ ;;=^5005778
+ ;;^UTILITY(U,$J,358.3,18829,0)
+ ;;=H40.1314^^82^899^63
+ ;;^UTILITY(U,$J,358.3,18829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18482,1,3,0)
- ;;=3^Acute Frontal Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,18482,1,4,0)
- ;;=4^J01.10
- ;;^UTILITY(U,$J,358.3,18482,2)
- ;;=^5008118
- ;;^UTILITY(U,$J,358.3,18483,0)
- ;;=J02.9^^94^907^7
- ;;^UTILITY(U,$J,358.3,18483,1,0)
+ ;;^UTILITY(U,$J,358.3,18829,1,3,0)
+ ;;=3^glc,Pigmentary,Right Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,18829,1,4,0)
+ ;;=4^H40.1314
+ ;;^UTILITY(U,$J,358.3,18829,2)
+ ;;=^5005779
+ ;;^UTILITY(U,$J,358.3,18830,0)
+ ;;=H40.1320^^82^899^62
+ ;;^UTILITY(U,$J,358.3,18830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18483,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,18483,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,18483,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,18484,0)
- ;;=J03.91^^94^907^8
- ;;^UTILITY(U,$J,358.3,18484,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18484,1,3,0)
- ;;=3^Acute Recurrent Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,18484,1,4,0)
- ;;=4^J03.91
- ;;^UTILITY(U,$J,358.3,18484,2)
- ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,18830,1,3,0)
+ ;;=3^glc,Pigmentary,Left Eye,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,18830,1,4,0)
+ ;;=4^H40.1320

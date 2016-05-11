@@ -1,132 +1,132 @@
-IBDEI27X ; ; 19-NOV-2015
+IBDEI27X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37265,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,37266,0)
- ;;=M77.11^^172^1878^22
- ;;^UTILITY(U,$J,358.3,37266,1,0)
+ ;;^UTILITY(U,$J,358.3,37620,2)
+ ;;=^5009610
+ ;;^UTILITY(U,$J,358.3,37621,0)
+ ;;=M00.052^^140^1795^38
+ ;;^UTILITY(U,$J,358.3,37621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37266,1,3,0)
- ;;=3^Lateral epicondylitis, right elbow
- ;;^UTILITY(U,$J,358.3,37266,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,37266,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,37267,0)
- ;;=M24.022^^172^1878^25
- ;;^UTILITY(U,$J,358.3,37267,1,0)
+ ;;^UTILITY(U,$J,358.3,37621,1,3,0)
+ ;;=3^Staphylococcal arthritis, lft hip
+ ;;^UTILITY(U,$J,358.3,37621,1,4,0)
+ ;;=4^M00.052
+ ;;^UTILITY(U,$J,358.3,37621,2)
+ ;;=^5009611
+ ;;^UTILITY(U,$J,358.3,37622,0)
+ ;;=M00.151^^140^1795^27
+ ;;^UTILITY(U,$J,358.3,37622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37267,1,3,0)
- ;;=3^Loose body in left elbow
- ;;^UTILITY(U,$J,358.3,37267,1,4,0)
- ;;=4^M24.022
- ;;^UTILITY(U,$J,358.3,37267,2)
- ;;=^5011282
- ;;^UTILITY(U,$J,358.3,37268,0)
- ;;=M24.021^^172^1878^26
- ;;^UTILITY(U,$J,358.3,37268,1,0)
+ ;;^UTILITY(U,$J,358.3,37622,1,3,0)
+ ;;=3^Pneumococcal arthritis, rt hip
+ ;;^UTILITY(U,$J,358.3,37622,1,4,0)
+ ;;=4^M00.151
+ ;;^UTILITY(U,$J,358.3,37622,2)
+ ;;=^5009634
+ ;;^UTILITY(U,$J,358.3,37623,0)
+ ;;=M00.152^^140^1795^20
+ ;;^UTILITY(U,$J,358.3,37623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37268,1,3,0)
- ;;=3^Loose body in right elbow
- ;;^UTILITY(U,$J,358.3,37268,1,4,0)
- ;;=4^M24.021
- ;;^UTILITY(U,$J,358.3,37268,2)
- ;;=^5011281
- ;;^UTILITY(U,$J,358.3,37269,0)
- ;;=M77.02^^172^1878^27
- ;;^UTILITY(U,$J,358.3,37269,1,0)
+ ;;^UTILITY(U,$J,358.3,37623,1,3,0)
+ ;;=3^Pneumococcal arthritis, lft hip
+ ;;^UTILITY(U,$J,358.3,37623,1,4,0)
+ ;;=4^M00.152
+ ;;^UTILITY(U,$J,358.3,37623,2)
+ ;;=^5009635
+ ;;^UTILITY(U,$J,358.3,37624,0)
+ ;;=M00.251^^140^1795^60
+ ;;^UTILITY(U,$J,358.3,37624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37269,1,3,0)
- ;;=3^Medial epicondylitis, left elbow
- ;;^UTILITY(U,$J,358.3,37269,1,4,0)
- ;;=4^M77.02
- ;;^UTILITY(U,$J,358.3,37269,2)
- ;;=^5013302
- ;;^UTILITY(U,$J,358.3,37270,0)
- ;;=M77.01^^172^1878^28
- ;;^UTILITY(U,$J,358.3,37270,1,0)
+ ;;^UTILITY(U,$J,358.3,37624,1,3,0)
+ ;;=3^Streptococcal arthritis, rt hip, oth
+ ;;^UTILITY(U,$J,358.3,37624,1,4,0)
+ ;;=4^M00.251
+ ;;^UTILITY(U,$J,358.3,37624,2)
+ ;;=^5009658
+ ;;^UTILITY(U,$J,358.3,37625,0)
+ ;;=M00.252^^140^1795^54
+ ;;^UTILITY(U,$J,358.3,37625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37270,1,3,0)
- ;;=3^Medial epicondylitis, right elbow
- ;;^UTILITY(U,$J,358.3,37270,1,4,0)
- ;;=4^M77.01
- ;;^UTILITY(U,$J,358.3,37270,2)
- ;;=^5013301
- ;;^UTILITY(U,$J,358.3,37271,0)
- ;;=S52.125A^^172^1878^29
- ;;^UTILITY(U,$J,358.3,37271,1,0)
+ ;;^UTILITY(U,$J,358.3,37625,1,3,0)
+ ;;=3^Streptococcal arthritis, lft hip, oth
+ ;;^UTILITY(U,$J,358.3,37625,1,4,0)
+ ;;=4^M00.252
+ ;;^UTILITY(U,$J,358.3,37625,2)
+ ;;=^5009659
+ ;;^UTILITY(U,$J,358.3,37626,0)
+ ;;=M00.851^^140^1795^12
+ ;;^UTILITY(U,$J,358.3,37626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37271,1,3,0)
- ;;=3^Nondisp fx of head of left radius, init for clos fx
- ;;^UTILITY(U,$J,358.3,37271,1,4,0)
- ;;=4^S52.125A
- ;;^UTILITY(U,$J,358.3,37271,2)
- ;;=^5029111
- ;;^UTILITY(U,$J,358.3,37272,0)
- ;;=S52.124A^^172^1878^31
- ;;^UTILITY(U,$J,358.3,37272,1,0)
+ ;;^UTILITY(U,$J,358.3,37626,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, rt hip
+ ;;^UTILITY(U,$J,358.3,37626,1,4,0)
+ ;;=4^M00.851
+ ;;^UTILITY(U,$J,358.3,37626,2)
+ ;;=^5009682
+ ;;^UTILITY(U,$J,358.3,37627,0)
+ ;;=M00.852^^140^1795^6
+ ;;^UTILITY(U,$J,358.3,37627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37272,1,3,0)
- ;;=3^Nondisp fx of head of right radius, init for clos fx
- ;;^UTILITY(U,$J,358.3,37272,1,4,0)
- ;;=4^S52.124A
- ;;^UTILITY(U,$J,358.3,37272,2)
- ;;=^5029095
- ;;^UTILITY(U,$J,358.3,37273,0)
- ;;=M70.22^^172^1878^33
- ;;^UTILITY(U,$J,358.3,37273,1,0)
+ ;;^UTILITY(U,$J,358.3,37627,1,3,0)
+ ;;=3^Arthritis d/t other bacteria, lft hip
+ ;;^UTILITY(U,$J,358.3,37627,1,4,0)
+ ;;=4^M00.852
+ ;;^UTILITY(U,$J,358.3,37627,2)
+ ;;=^5009683
+ ;;^UTILITY(U,$J,358.3,37628,0)
+ ;;=M00.061^^140^1795^46
+ ;;^UTILITY(U,$J,358.3,37628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37273,1,3,0)
- ;;=3^Olecranon bursitis, left elbow
- ;;^UTILITY(U,$J,358.3,37273,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,37273,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,37274,0)
- ;;=M70.21^^172^1878^34
- ;;^UTILITY(U,$J,358.3,37274,1,0)
+ ;;^UTILITY(U,$J,358.3,37628,1,3,0)
+ ;;=3^Staphylococcal arthritis, rt knee
+ ;;^UTILITY(U,$J,358.3,37628,1,4,0)
+ ;;=4^M00.061
+ ;;^UTILITY(U,$J,358.3,37628,2)
+ ;;=^5009613
+ ;;^UTILITY(U,$J,358.3,37629,0)
+ ;;=M00.062^^140^1795^39
+ ;;^UTILITY(U,$J,358.3,37629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37274,1,3,0)
- ;;=3^Olecranon bursitis, right elbow
- ;;^UTILITY(U,$J,358.3,37274,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,37274,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,37275,0)
- ;;=M25.522^^172^1878^35
- ;;^UTILITY(U,$J,358.3,37275,1,0)
+ ;;^UTILITY(U,$J,358.3,37629,1,3,0)
+ ;;=3^Staphylococcal arthritis, lft knee
+ ;;^UTILITY(U,$J,358.3,37629,1,4,0)
+ ;;=4^M00.062
+ ;;^UTILITY(U,$J,358.3,37629,2)
+ ;;=^5009614
+ ;;^UTILITY(U,$J,358.3,37630,0)
+ ;;=M00.161^^140^1795^28
+ ;;^UTILITY(U,$J,358.3,37630,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37275,1,3,0)
- ;;=3^Pain in left elbow
- ;;^UTILITY(U,$J,358.3,37275,1,4,0)
- ;;=4^M25.522
- ;;^UTILITY(U,$J,358.3,37275,2)
- ;;=^5011606
- ;;^UTILITY(U,$J,358.3,37276,0)
- ;;=M25.521^^172^1878^36
- ;;^UTILITY(U,$J,358.3,37276,1,0)
+ ;;^UTILITY(U,$J,358.3,37630,1,3,0)
+ ;;=3^Pneumococcal arthritis, rt knee
+ ;;^UTILITY(U,$J,358.3,37630,1,4,0)
+ ;;=4^M00.161
+ ;;^UTILITY(U,$J,358.3,37630,2)
+ ;;=^5009637
+ ;;^UTILITY(U,$J,358.3,37631,0)
+ ;;=M00.162^^140^1795^21
+ ;;^UTILITY(U,$J,358.3,37631,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37276,1,3,0)
- ;;=3^Pain in right elbow
- ;;^UTILITY(U,$J,358.3,37276,1,4,0)
- ;;=4^M25.521
- ;;^UTILITY(U,$J,358.3,37276,2)
- ;;=^5011605
- ;;^UTILITY(U,$J,358.3,37277,0)
- ;;=M19.022^^172^1878^39
- ;;^UTILITY(U,$J,358.3,37277,1,0)
+ ;;^UTILITY(U,$J,358.3,37631,1,3,0)
+ ;;=3^Pneumococcal arthritis, lft knee
+ ;;^UTILITY(U,$J,358.3,37631,1,4,0)
+ ;;=4^M00.162
+ ;;^UTILITY(U,$J,358.3,37631,2)
+ ;;=^5009638
+ ;;^UTILITY(U,$J,358.3,37632,0)
+ ;;=M00.261^^140^1795^61
+ ;;^UTILITY(U,$J,358.3,37632,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37277,1,3,0)
- ;;=3^Primary osteoarthritis, left elbow
- ;;^UTILITY(U,$J,358.3,37277,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,37277,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,37278,0)
- ;;=M19.021^^172^1878^40
- ;;^UTILITY(U,$J,358.3,37278,1,0)
+ ;;^UTILITY(U,$J,358.3,37632,1,3,0)
+ ;;=3^Streptococcal arthritis, rt knee, oth
+ ;;^UTILITY(U,$J,358.3,37632,1,4,0)
+ ;;=4^M00.261
+ ;;^UTILITY(U,$J,358.3,37632,2)
+ ;;=^5009661
+ ;;^UTILITY(U,$J,358.3,37633,0)
+ ;;=M00.262^^140^1795^55
+ ;;^UTILITY(U,$J,358.3,37633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37278,1,3,0)
- ;;=3^Primary osteoarthritis, right elbow
+ ;;^UTILITY(U,$J,358.3,37633,1,3,0)
+ ;;=3^Streptococcal arthritis, lft knee, oth

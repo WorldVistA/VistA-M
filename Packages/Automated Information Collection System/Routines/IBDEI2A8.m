@@ -1,128 +1,132 @@
-IBDEI2A8 ; ; 19-NOV-2015
+IBDEI2A8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38325,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,38326,0)
- ;;=F11.182^^177^1944^10
- ;;^UTILITY(U,$J,358.3,38326,1,0)
+ ;;^UTILITY(U,$J,358.3,38716,2)
+ ;;=^5009116
+ ;;^UTILITY(U,$J,358.3,38717,0)
+ ;;=L23.81^^151^1897^3
+ ;;^UTILITY(U,$J,358.3,38717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38326,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38326,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,38326,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,38327,0)
- ;;=F11.20^^177^1944^5
- ;;^UTILITY(U,$J,358.3,38327,1,0)
+ ;;^UTILITY(U,$J,358.3,38717,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Animal Dander
+ ;;^UTILITY(U,$J,358.3,38717,1,4,0)
+ ;;=4^L23.81
+ ;;^UTILITY(U,$J,358.3,38717,2)
+ ;;=^5009123
+ ;;^UTILITY(U,$J,358.3,38718,0)
+ ;;=L23.0^^151^1897^5
+ ;;^UTILITY(U,$J,358.3,38718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38327,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38327,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,38327,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,38328,0)
- ;;=F11.21^^177^1944^6
- ;;^UTILITY(U,$J,358.3,38328,1,0)
+ ;;^UTILITY(U,$J,358.3,38718,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact d/t Metals
+ ;;^UTILITY(U,$J,358.3,38718,1,4,0)
+ ;;=4^L23.0
+ ;;^UTILITY(U,$J,358.3,38718,2)
+ ;;=^5009115
+ ;;^UTILITY(U,$J,358.3,38719,0)
+ ;;=B00.1^^151^1897^10
+ ;;^UTILITY(U,$J,358.3,38719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38328,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,38328,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,38328,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,38329,0)
- ;;=F11.23^^177^1944^7
- ;;^UTILITY(U,$J,358.3,38329,1,0)
+ ;;^UTILITY(U,$J,358.3,38719,1,3,0)
+ ;;=3^Dermatitis,Herpes Simplex
+ ;;^UTILITY(U,$J,358.3,38719,1,4,0)
+ ;;=4^B00.1
+ ;;^UTILITY(U,$J,358.3,38719,2)
+ ;;=^5000468
+ ;;^UTILITY(U,$J,358.3,38720,0)
+ ;;=L24.0^^151^1897^13
+ ;;^UTILITY(U,$J,358.3,38720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38329,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,38329,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,38329,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,38330,0)
- ;;=F11.24^^177^1944^9
- ;;^UTILITY(U,$J,358.3,38330,1,0)
+ ;;^UTILITY(U,$J,358.3,38720,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Detergents
+ ;;^UTILITY(U,$J,358.3,38720,1,4,0)
+ ;;=4^L24.0
+ ;;^UTILITY(U,$J,358.3,38720,2)
+ ;;=^5009126
+ ;;^UTILITY(U,$J,358.3,38721,0)
+ ;;=L24.81^^151^1897^14
+ ;;^UTILITY(U,$J,358.3,38721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38330,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38330,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,38330,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,38331,0)
- ;;=F11.29^^177^1944^2
- ;;^UTILITY(U,$J,358.3,38331,1,0)
+ ;;^UTILITY(U,$J,358.3,38721,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Metals
+ ;;^UTILITY(U,$J,358.3,38721,1,4,0)
+ ;;=4^L24.81
+ ;;^UTILITY(U,$J,358.3,38721,2)
+ ;;=^5009134
+ ;;^UTILITY(U,$J,358.3,38722,0)
+ ;;=L24.2^^151^1897^15
+ ;;^UTILITY(U,$J,358.3,38722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38331,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,38331,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,38331,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,38332,0)
- ;;=F11.220^^177^1944^1
- ;;^UTILITY(U,$J,358.3,38332,1,0)
+ ;;^UTILITY(U,$J,358.3,38722,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact d/t Solvents
+ ;;^UTILITY(U,$J,358.3,38722,1,4,0)
+ ;;=4^L24.2
+ ;;^UTILITY(U,$J,358.3,38722,2)
+ ;;=^5009128
+ ;;^UTILITY(U,$J,358.3,38723,0)
+ ;;=E08.620^^151^1897^22
+ ;;^UTILITY(U,$J,358.3,38723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38332,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38332,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,38332,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,38333,0)
- ;;=F19.10^^177^1945^3
- ;;^UTILITY(U,$J,358.3,38333,1,0)
+ ;;^UTILITY(U,$J,358.3,38723,1,3,0)
+ ;;=3^Diabetes d/t Underlying Condition w/ DM Dermatitis
+ ;;^UTILITY(U,$J,358.3,38723,1,4,0)
+ ;;=4^E08.620
+ ;;^UTILITY(U,$J,358.3,38723,2)
+ ;;=^5002533
+ ;;^UTILITY(U,$J,358.3,38724,0)
+ ;;=E08.621^^151^1897^24
+ ;;^UTILITY(U,$J,358.3,38724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38333,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38333,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,38333,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,38334,0)
- ;;=F19.14^^177^1945^1
- ;;^UTILITY(U,$J,358.3,38334,1,0)
+ ;;^UTILITY(U,$J,358.3,38724,1,3,0)
+ ;;=3^Diabetes d/t Underlying Conditions w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,38724,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,38724,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,38725,0)
+ ;;=T81.33XA^^151^1897^27
+ ;;^UTILITY(U,$J,358.3,38725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38334,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,38334,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,38334,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,38335,0)
- ;;=F19.182^^177^1945^2
- ;;^UTILITY(U,$J,358.3,38335,1,0)
+ ;;^UTILITY(U,$J,358.3,38725,1,3,0)
+ ;;=3^Disruption Traumatic Inj/Wound Repair,Init Encntr
+ ;;^UTILITY(U,$J,358.3,38725,1,4,0)
+ ;;=4^T81.33XA
+ ;;^UTILITY(U,$J,358.3,38725,2)
+ ;;=^5054476
+ ;;^UTILITY(U,$J,358.3,38726,0)
+ ;;=L60.3^^151^1897^30
+ ;;^UTILITY(U,$J,358.3,38726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38335,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,38335,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,38335,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,38336,0)
- ;;=F19.20^^177^1945^6
- ;;^UTILITY(U,$J,358.3,38336,1,0)
+ ;;^UTILITY(U,$J,358.3,38726,1,3,0)
+ ;;=3^Dystrophic Nails
+ ;;^UTILITY(U,$J,358.3,38726,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,38726,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,38727,0)
+ ;;=M71.30^^151^1897^25
+ ;;^UTILITY(U,$J,358.3,38727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38336,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,38336,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,38336,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,38337,0)
- ;;=F19.21^^177^1945^5
- ;;^UTILITY(U,$J,358.3,38337,1,0)
+ ;;^UTILITY(U,$J,358.3,38727,1,3,0)
+ ;;=3^Digital Mucous Cyst
+ ;;^UTILITY(U,$J,358.3,38727,1,4,0)
+ ;;=4^M71.30
+ ;;^UTILITY(U,$J,358.3,38727,2)
+ ;;=^5013149
+ ;;^UTILITY(U,$J,358.3,38728,0)
+ ;;=L30.4^^151^1898^9
+ ;;^UTILITY(U,$J,358.3,38728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38337,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,38337,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,38337,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,38338,0)
- ;;=F19.24^^177^1945^4
+ ;;^UTILITY(U,$J,358.3,38728,1,3,0)
+ ;;=3^Erythema Intertrigo
+ ;;^UTILITY(U,$J,358.3,38728,1,4,0)
+ ;;=4^L30.4
+ ;;^UTILITY(U,$J,358.3,38728,2)
+ ;;=^5009157
+ ;;^UTILITY(U,$J,358.3,38729,0)
+ ;;=R60.0^^151^1898^6
+ ;;^UTILITY(U,$J,358.3,38729,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38729,1,3,0)
+ ;;=3^Edema,Localized

@@ -1,5 +1,11 @@
-RAUTL4 ;HISC/CAH,FPT,GJC AISC/SAW-Utility Routine ;2/9/98  12:37
- ;;5.0;Radiology/Nuclear Medicine;;Mar 16, 1998
+RAUTL4 ;HISC/CAH,FPT,GJC AISC/SAW-Utility Routine ; 13 Jul 2015  5:10 PM
+ ;;5.0;Radiology/Nuclear Medicine;**123**;Mar 16, 1998;Build 7
+ ;
+ ; Supported IA #1252 reference to $$OUTPTPR^SDUTL3 & $$OUTPTAP^SDUTL3  5-P123
+ ; Supported IA #10035 reference to (^DPT(DFN,.1)  5-P123
+ ;
+ ; 5-P123 6/25/2015 MJT RA*5*123 NSR 20140515 add primary care provider if pt is outpatient
+ ;
 EN1 ;ENTRY POINT FOR INPUT TRANSFORM FOR FIELD 5, FILE 74
  S RAX=$G(^RARPT(DA,0))
  I X="R",$D(^RA(79.1,+$P(^RADPT(+$P(RAX,U,2),"DT",(9999999.9999-$P(RAX,U,3)),0),U,4),0)),$P(^(0),U,17)'["Y" K X W !,"This Imaging Location does not allow the use of 'RELEASED/NOT VERIFIED' status!" G EXIT
@@ -60,10 +66,16 @@ ORDEL ; Inform the 'Rad' user that the 'Order' field is null!
 EMAIL ; Sent the message off to the req. physician
  Q:'$D(DUZ)#2  ; DUZ not defined!
  Q:'($D(^TMP($J,"RA AUTOE"))\10)  ; no report data, abort
- N XMDUZ,XMSUB,XMTEXT,XMY S XMDUZ=.5
+ N DUZ,XMDUZ,XMSUB,XMTEXT,XMY S XMDUZ=.5
  S XMTEXT="^TMP($J,""RA AUTOE"","
  S XMSUB="Rad/Nuc Med Report ("_$P($G(^RARPT(RA74IEN,0)),"^")_")"
+ ;  ***  NSR 20140515  Start Mod  add primary care provider if pt is outpatient  5-P123  ***
+ ;  ***  Also sends to associate provider if one identified  ; 5-P123
+ S DFN=$P(RA74(0),U,2)
+ I '$D(^DPT(DFN,.1)) S RAPCP=$$OUTPTPR^SDUTL3(DFN) S:RAPCP'="" XMY($P(RAPCP,U,1))="" S RAAP=$$OUTPTAP^SDUTL3(DFN) S:RAAP'="" XMY($P(RAAP,U,1))=""  ; 5-P123
  S XMY(RARPHYS)="" D ^XMD K ^TMP($J,"RA AUTOE")
+ K RAAP,RAPCP    ; 5-P123
+ ;  ***  NSR 20140515  End Mod  add primary care provider if pt is outpatient  5-P123  ***
  Q
 ENV() ; Check the current environment the software is running under.
  ; If package is being installed DO NOT fire off message (0)

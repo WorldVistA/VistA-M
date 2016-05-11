@@ -1,134 +1,136 @@
-IBDEI1U7 ; ; 19-NOV-2015
+IBDEI1U7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30757,1,0)
+ ;;^UTILITY(U,$J,358.3,31191,1,4,0)
+ ;;=4^F18.959
+ ;;^UTILITY(U,$J,358.3,31191,2)
+ ;;=^5003412
+ ;;^UTILITY(U,$J,358.3,31192,0)
+ ;;=F18.99^^123^1565^20
+ ;;^UTILITY(U,$J,358.3,31192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30757,1,3,0)
- ;;=3^Hypoesthesia of Skin
- ;;^UTILITY(U,$J,358.3,30757,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,30757,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,30758,0)
- ;;=R20.2^^135^1384^131
- ;;^UTILITY(U,$J,358.3,30758,1,0)
+ ;;^UTILITY(U,$J,358.3,31192,1,3,0)
+ ;;=3^Inhalant Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,31192,1,4,0)
+ ;;=4^F18.99
+ ;;^UTILITY(U,$J,358.3,31192,2)
+ ;;=^5133360
+ ;;^UTILITY(U,$J,358.3,31193,0)
+ ;;=F70.^^123^1566^1
+ ;;^UTILITY(U,$J,358.3,31193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30758,1,3,0)
- ;;=3^Paresthesia of Skin
- ;;^UTILITY(U,$J,358.3,30758,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,30758,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,30759,0)
- ;;=R20.3^^135^1384^83
- ;;^UTILITY(U,$J,358.3,30759,1,0)
+ ;;^UTILITY(U,$J,358.3,31193,1,3,0)
+ ;;=3^Intellectual Disabilities,Mild
+ ;;^UTILITY(U,$J,358.3,31193,1,4,0)
+ ;;=4^F70.
+ ;;^UTILITY(U,$J,358.3,31193,2)
+ ;;=^5003668
+ ;;^UTILITY(U,$J,358.3,31194,0)
+ ;;=F71.^^123^1566^2
+ ;;^UTILITY(U,$J,358.3,31194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30759,1,3,0)
- ;;=3^Hyperesthesia
- ;;^UTILITY(U,$J,358.3,30759,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,30759,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,30760,0)
- ;;=R21.^^135^1384^145
- ;;^UTILITY(U,$J,358.3,30760,1,0)
+ ;;^UTILITY(U,$J,358.3,31194,1,3,0)
+ ;;=3^Intellectual Disabilities,Moderate
+ ;;^UTILITY(U,$J,358.3,31194,1,4,0)
+ ;;=4^F71.
+ ;;^UTILITY(U,$J,358.3,31194,2)
+ ;;=^5003669
+ ;;^UTILITY(U,$J,358.3,31195,0)
+ ;;=F72.^^123^1566^3
+ ;;^UTILITY(U,$J,358.3,31195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30760,1,3,0)
- ;;=3^Rash
- ;;^UTILITY(U,$J,358.3,30760,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,30760,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,30761,0)
- ;;=R22.0^^135^1384^105
- ;;^UTILITY(U,$J,358.3,30761,1,0)
+ ;;^UTILITY(U,$J,358.3,31195,1,3,0)
+ ;;=3^Intellectual Disabilities,Severe
+ ;;^UTILITY(U,$J,358.3,31195,1,4,0)
+ ;;=4^F72.
+ ;;^UTILITY(U,$J,358.3,31195,2)
+ ;;=^5003670
+ ;;^UTILITY(U,$J,358.3,31196,0)
+ ;;=F73.^^123^1566^4
+ ;;^UTILITY(U,$J,358.3,31196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30761,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Head
- ;;^UTILITY(U,$J,358.3,30761,1,4,0)
- ;;=4^R22.0
- ;;^UTILITY(U,$J,358.3,30761,2)
- ;;=^5019284
- ;;^UTILITY(U,$J,358.3,30762,0)
- ;;=R22.1^^135^1384^108
- ;;^UTILITY(U,$J,358.3,30762,1,0)
+ ;;^UTILITY(U,$J,358.3,31196,1,3,0)
+ ;;=3^Intellectual Disabilities,Profound
+ ;;^UTILITY(U,$J,358.3,31196,1,4,0)
+ ;;=4^F73.
+ ;;^UTILITY(U,$J,358.3,31196,2)
+ ;;=^5003671
+ ;;^UTILITY(U,$J,358.3,31197,0)
+ ;;=F78.^^123^1566^5
+ ;;^UTILITY(U,$J,358.3,31197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30762,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Neck
- ;;^UTILITY(U,$J,358.3,30762,1,4,0)
- ;;=4^R22.1
- ;;^UTILITY(U,$J,358.3,30762,2)
- ;;=^5019285
- ;;^UTILITY(U,$J,358.3,30763,0)
- ;;=R22.2^^135^1384^111
- ;;^UTILITY(U,$J,358.3,30763,1,0)
+ ;;^UTILITY(U,$J,358.3,31197,1,3,0)
+ ;;=3^Intellectual Disabilities,Oth Specified
+ ;;^UTILITY(U,$J,358.3,31197,1,4,0)
+ ;;=4^F78.
+ ;;^UTILITY(U,$J,358.3,31197,2)
+ ;;=^5003672
+ ;;^UTILITY(U,$J,358.3,31198,0)
+ ;;=F79.^^123^1566^6
+ ;;^UTILITY(U,$J,358.3,31198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30763,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Trunk
- ;;^UTILITY(U,$J,358.3,30763,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,30763,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,30764,0)
- ;;=R22.31^^135^1384^110
- ;;^UTILITY(U,$J,358.3,30764,1,0)
+ ;;^UTILITY(U,$J,358.3,31198,1,3,0)
+ ;;=3^Intellectual Disabilities,Unspec
+ ;;^UTILITY(U,$J,358.3,31198,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,31198,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,31199,0)
+ ;;=Z00.6^^123^1567^1
+ ;;^UTILITY(U,$J,358.3,31199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30764,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
- ;;^UTILITY(U,$J,358.3,30764,1,4,0)
- ;;=4^R22.31
- ;;^UTILITY(U,$J,358.3,30764,2)
- ;;=^5019288
- ;;^UTILITY(U,$J,358.3,30765,0)
- ;;=R22.32^^135^1384^107
- ;;^UTILITY(U,$J,358.3,30765,1,0)
+ ;;^UTILITY(U,$J,358.3,31199,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,31199,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,31199,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,31200,0)
+ ;;=F45.22^^123^1568^1
+ ;;^UTILITY(U,$J,358.3,31200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30765,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
- ;;^UTILITY(U,$J,358.3,30765,1,4,0)
- ;;=4^R22.32
- ;;^UTILITY(U,$J,358.3,30765,2)
- ;;=^5019289
- ;;^UTILITY(U,$J,358.3,30766,0)
- ;;=R22.33^^135^1384^103
- ;;^UTILITY(U,$J,358.3,30766,1,0)
+ ;;^UTILITY(U,$J,358.3,31200,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,31200,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,31200,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,31201,0)
+ ;;=F45.20^^123^1568^7
+ ;;^UTILITY(U,$J,358.3,31201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30766,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
- ;;^UTILITY(U,$J,358.3,30766,1,4,0)
- ;;=4^R22.33
- ;;^UTILITY(U,$J,358.3,30766,2)
- ;;=^5019290
- ;;^UTILITY(U,$J,358.3,30767,0)
- ;;=R22.42^^135^1384^106
- ;;^UTILITY(U,$J,358.3,30767,1,0)
+ ;;^UTILITY(U,$J,358.3,31201,1,3,0)
+ ;;=3^Hypochondiacal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,31201,1,4,0)
+ ;;=4^F45.20
+ ;;^UTILITY(U,$J,358.3,31201,2)
+ ;;=^5003586
+ ;;^UTILITY(U,$J,358.3,31202,0)
+ ;;=F45.21^^123^1568^9
+ ;;^UTILITY(U,$J,358.3,31202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30767,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,30767,1,4,0)
- ;;=4^R22.42
- ;;^UTILITY(U,$J,358.3,30767,2)
- ;;=^5134179
- ;;^UTILITY(U,$J,358.3,30768,0)
- ;;=R22.41^^135^1384^109
- ;;^UTILITY(U,$J,358.3,30768,1,0)
+ ;;^UTILITY(U,$J,358.3,31202,1,3,0)
+ ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,31202,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,31202,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,31203,0)
+ ;;=F45.29^^123^1568^8
+ ;;^UTILITY(U,$J,358.3,31203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30768,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,30768,1,4,0)
- ;;=4^R22.41
- ;;^UTILITY(U,$J,358.3,30768,2)
- ;;=^5134178
- ;;^UTILITY(U,$J,358.3,30769,0)
- ;;=R22.43^^135^1384^104
- ;;^UTILITY(U,$J,358.3,30769,1,0)
+ ;;^UTILITY(U,$J,358.3,31203,1,3,0)
+ ;;=3^Hypochondriacal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,31203,1,4,0)
+ ;;=4^F45.29
+ ;;^UTILITY(U,$J,358.3,31203,2)
+ ;;=^5003589
+ ;;^UTILITY(U,$J,358.3,31204,0)
+ ;;=F45.8^^123^1568^15
+ ;;^UTILITY(U,$J,358.3,31204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30769,1,3,0)
- ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
- ;;^UTILITY(U,$J,358.3,30769,1,4,0)
- ;;=4^R22.43
- ;;^UTILITY(U,$J,358.3,30769,2)
- ;;=^5019291
- ;;^UTILITY(U,$J,358.3,30770,0)
- ;;=R22.9^^135^1384^112
+ ;;^UTILITY(U,$J,358.3,31204,1,3,0)
+ ;;=3^Somatoform Disorders NEC
+ ;;^UTILITY(U,$J,358.3,31204,1,4,0)
+ ;;=4^F45.8

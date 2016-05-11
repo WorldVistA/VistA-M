@@ -1,140 +1,136 @@
-IBDEI07X ; ; 19-NOV-2015
+IBDEI07X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3143,0)
- ;;=L98.9^^28^247^101
- ;;^UTILITY(U,$J,358.3,3143,1,0)
+ ;;^UTILITY(U,$J,358.3,3405,2)
+ ;;=^5014330
+ ;;^UTILITY(U,$J,358.3,3406,0)
+ ;;=M84.80^^18^219^48
+ ;;^UTILITY(U,$J,358.3,3406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3143,1,3,0)
- ;;=3^Skin Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3143,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,3143,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,3144,0)
- ;;=L08.9^^28^247^104
- ;;^UTILITY(U,$J,358.3,3144,1,0)
+ ;;^UTILITY(U,$J,358.3,3406,1,3,0)
+ ;;=3^Fx,Disorder of Continuity of Bone,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3406,1,4,0)
+ ;;=4^M84.80
+ ;;^UTILITY(U,$J,358.3,3406,2)
+ ;;=^5014304
+ ;;^UTILITY(U,$J,358.3,3407,0)
+ ;;=M10.00^^18^219^67
+ ;;^UTILITY(U,$J,358.3,3407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3144,1,3,0)
- ;;=3^Skin Infection,Local,Unspec
- ;;^UTILITY(U,$J,358.3,3144,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,3144,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,3145,0)
- ;;=L57.9^^28^247^97
- ;;^UTILITY(U,$J,358.3,3145,1,0)
+ ;;^UTILITY(U,$J,358.3,3407,1,3,0)
+ ;;=3^Gout,Idiopathic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3407,1,4,0)
+ ;;=4^M10.00
+ ;;^UTILITY(U,$J,358.3,3407,2)
+ ;;=^5010284
+ ;;^UTILITY(U,$J,358.3,3408,0)
+ ;;=M10.9^^18^219^68
+ ;;^UTILITY(U,$J,358.3,3408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3145,1,3,0)
- ;;=3^Skin Changes d/t Chr Expsr to Nonionizing Radiation,Unspec
- ;;^UTILITY(U,$J,358.3,3145,1,4,0)
- ;;=4^L57.9
- ;;^UTILITY(U,$J,358.3,3145,2)
- ;;=^5009227
- ;;^UTILITY(U,$J,358.3,3146,0)
- ;;=L90.9^^28^247^99
- ;;^UTILITY(U,$J,358.3,3146,1,0)
+ ;;^UTILITY(U,$J,358.3,3408,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,3408,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,3408,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,3409,0)
+ ;;=M1A.00X1^^18^219^61
+ ;;^UTILITY(U,$J,358.3,3409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3146,1,3,0)
- ;;=3^Skin Disorder,Atrophic,Unspec
- ;;^UTILITY(U,$J,358.3,3146,1,4,0)
- ;;=4^L90.9
- ;;^UTILITY(U,$J,358.3,3146,2)
- ;;=^5009458
- ;;^UTILITY(U,$J,358.3,3147,0)
- ;;=L91.9^^28^247^100
- ;;^UTILITY(U,$J,358.3,3147,1,0)
+ ;;^UTILITY(U,$J,358.3,3409,1,3,0)
+ ;;=3^Gout,Chr Idiopathic w/ Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3409,1,4,0)
+ ;;=4^M1A.00X1
+ ;;^UTILITY(U,$J,358.3,3409,2)
+ ;;=^5010858
+ ;;^UTILITY(U,$J,358.3,3410,0)
+ ;;=M1A.00X0^^18^219^62
+ ;;^UTILITY(U,$J,358.3,3410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3147,1,3,0)
- ;;=3^Skin Disorder,Hypertrophic,Unspec
- ;;^UTILITY(U,$J,358.3,3147,1,4,0)
- ;;=4^L91.9
- ;;^UTILITY(U,$J,358.3,3147,2)
- ;;=^5009461
- ;;^UTILITY(U,$J,358.3,3148,0)
- ;;=R20.0^^28^247^96
- ;;^UTILITY(U,$J,358.3,3148,1,0)
+ ;;^UTILITY(U,$J,358.3,3410,1,3,0)
+ ;;=3^Gout,Chr Idiopathic w/o Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3410,1,4,0)
+ ;;=4^M1A.00X0
+ ;;^UTILITY(U,$J,358.3,3410,2)
+ ;;=^5010857
+ ;;^UTILITY(U,$J,358.3,3411,0)
+ ;;=M1A.40X1^^18^219^63
+ ;;^UTILITY(U,$J,358.3,3411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3148,1,3,0)
- ;;=3^Skin Anesthesia
- ;;^UTILITY(U,$J,358.3,3148,1,4,0)
- ;;=4^R20.0
- ;;^UTILITY(U,$J,358.3,3148,2)
- ;;=^5019278
- ;;^UTILITY(U,$J,358.3,3149,0)
- ;;=R20.3^^28^247^102
- ;;^UTILITY(U,$J,358.3,3149,1,0)
+ ;;^UTILITY(U,$J,358.3,3411,1,3,0)
+ ;;=3^Gout,Chr Secondary w/ Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3411,1,4,0)
+ ;;=4^M1A.40X1
+ ;;^UTILITY(U,$J,358.3,3411,2)
+ ;;=^5010994
+ ;;^UTILITY(U,$J,358.3,3412,0)
+ ;;=M1A.40X0^^18^219^64
+ ;;^UTILITY(U,$J,358.3,3412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3149,1,3,0)
- ;;=3^Skin Hyperesthesia
- ;;^UTILITY(U,$J,358.3,3149,1,4,0)
- ;;=4^R20.3
- ;;^UTILITY(U,$J,358.3,3149,2)
- ;;=^60011
- ;;^UTILITY(U,$J,358.3,3150,0)
- ;;=R20.1^^28^247^103
- ;;^UTILITY(U,$J,358.3,3150,1,0)
+ ;;^UTILITY(U,$J,358.3,3412,1,3,0)
+ ;;=3^Gout,Chr Secondary w/o Tophus,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3412,1,4,0)
+ ;;=4^M1A.40X0
+ ;;^UTILITY(U,$J,358.3,3412,2)
+ ;;=^5010993
+ ;;^UTILITY(U,$J,358.3,3413,0)
+ ;;=M1A.9XX1^^18^219^65
+ ;;^UTILITY(U,$J,358.3,3413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3150,1,3,0)
- ;;=3^Skin Hypoesthesia
- ;;^UTILITY(U,$J,358.3,3150,1,4,0)
- ;;=4^R20.1
- ;;^UTILITY(U,$J,358.3,3150,2)
- ;;=^5019279
- ;;^UTILITY(U,$J,358.3,3151,0)
- ;;=R20.2^^28^247^105
- ;;^UTILITY(U,$J,358.3,3151,1,0)
+ ;;^UTILITY(U,$J,358.3,3413,1,3,0)
+ ;;=3^Gout,Chr w/ Tophus,Unspec
+ ;;^UTILITY(U,$J,358.3,3413,1,4,0)
+ ;;=4^M1A.9XX1
+ ;;^UTILITY(U,$J,358.3,3413,2)
+ ;;=^5133773
+ ;;^UTILITY(U,$J,358.3,3414,0)
+ ;;=M1A.9XX0^^18^219^66
+ ;;^UTILITY(U,$J,358.3,3414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3151,1,3,0)
- ;;=3^Skin Paresthesia
- ;;^UTILITY(U,$J,358.3,3151,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,3151,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,3152,0)
- ;;=R20.8^^28^247^107
- ;;^UTILITY(U,$J,358.3,3152,1,0)
+ ;;^UTILITY(U,$J,358.3,3414,1,3,0)
+ ;;=3^Gout,Chr w/o Tophus,Unspec
+ ;;^UTILITY(U,$J,358.3,3414,1,4,0)
+ ;;=4^M1A.9XX0
+ ;;^UTILITY(U,$J,358.3,3414,2)
+ ;;=^5011027
+ ;;^UTILITY(U,$J,358.3,3415,0)
+ ;;=M15.1^^18^219^69
+ ;;^UTILITY(U,$J,358.3,3415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3152,1,3,0)
- ;;=3^Skin Sensation,Other Disturbances
- ;;^UTILITY(U,$J,358.3,3152,1,4,0)
- ;;=4^R20.8
- ;;^UTILITY(U,$J,358.3,3152,2)
- ;;=^5019281
- ;;^UTILITY(U,$J,358.3,3153,0)
- ;;=R20.9^^28^247^106
- ;;^UTILITY(U,$J,358.3,3153,1,0)
+ ;;^UTILITY(U,$J,358.3,3415,1,3,0)
+ ;;=3^Heberden's Nodes w/ Arthropathy
+ ;;^UTILITY(U,$J,358.3,3415,1,4,0)
+ ;;=4^M15.1
+ ;;^UTILITY(U,$J,358.3,3415,2)
+ ;;=^5010763
+ ;;^UTILITY(U,$J,358.3,3416,0)
+ ;;=R29.4^^18^219^70
+ ;;^UTILITY(U,$J,358.3,3416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3153,1,3,0)
- ;;=3^Skin Sensation Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,3153,1,4,0)
- ;;=4^R20.9
- ;;^UTILITY(U,$J,358.3,3153,2)
- ;;=^5019282
- ;;^UTILITY(U,$J,358.3,3154,0)
- ;;=R23.9^^28^247^98
- ;;^UTILITY(U,$J,358.3,3154,1,0)
+ ;;^UTILITY(U,$J,358.3,3416,1,3,0)
+ ;;=3^Hip,Clicking
+ ;;^UTILITY(U,$J,358.3,3416,1,4,0)
+ ;;=4^R29.4
+ ;;^UTILITY(U,$J,358.3,3416,2)
+ ;;=^5019315
+ ;;^UTILITY(U,$J,358.3,3417,0)
+ ;;=M79.4^^18^219^72
+ ;;^UTILITY(U,$J,358.3,3417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3154,1,3,0)
- ;;=3^Skin Changes,Unspec
- ;;^UTILITY(U,$J,358.3,3154,1,4,0)
- ;;=4^R23.9
- ;;^UTILITY(U,$J,358.3,3154,2)
- ;;=^5019298
- ;;^UTILITY(U,$J,358.3,3155,0)
- ;;=M79.9^^28^247^108
- ;;^UTILITY(U,$J,358.3,3155,1,0)
+ ;;^UTILITY(U,$J,358.3,3417,1,3,0)
+ ;;=3^Hypertrophy of Infrapatellar Fat Pad
+ ;;^UTILITY(U,$J,358.3,3417,1,4,0)
+ ;;=4^M79.4
+ ;;^UTILITY(U,$J,358.3,3417,2)
+ ;;=^5013324
+ ;;^UTILITY(U,$J,358.3,3418,0)
+ ;;=M96.89^^18^219^73
+ ;;^UTILITY(U,$J,358.3,3418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3155,1,3,0)
- ;;=3^Soft Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,3155,1,4,0)
- ;;=4^M79.9
- ;;^UTILITY(U,$J,358.3,3155,2)
- ;;=^5013358
- ;;^UTILITY(U,$J,358.3,3156,0)
- ;;=L55.9^^28^247^109
- ;;^UTILITY(U,$J,358.3,3156,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3156,1,3,0)
- ;;=3^Sunburn,Unspec
+ ;;^UTILITY(U,$J,358.3,3418,1,3,0)
+ ;;=3^Intraoperative/Postproc Compl/Disorder of Musculoskel System
+ ;;^UTILITY(U,$J,358.3,3418,1,4,0)
+ ;;=4^M96.89
+ ;;^UTILITY(U,$J,358.3,3418,2)
+ ;;=^5015399

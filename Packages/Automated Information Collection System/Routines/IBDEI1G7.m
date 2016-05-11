@@ -1,130 +1,128 @@
-IBDEI1G7 ; ; 19-NOV-2015
+IBDEI1G7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24187,0)
- ;;=Z91.19^^116^1187^40
- ;;^UTILITY(U,$J,358.3,24187,1,0)
+ ;;^UTILITY(U,$J,358.3,24602,2)
+ ;;=^5003084
+ ;;^UTILITY(U,$J,358.3,24603,0)
+ ;;=F10.921^^93^1093^1
+ ;;^UTILITY(U,$J,358.3,24603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24187,1,3,0)
- ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
- ;;^UTILITY(U,$J,358.3,24187,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,24187,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,24188,0)
- ;;=Z73.89^^116^1187^32
- ;;^UTILITY(U,$J,358.3,24188,1,0)
+ ;;^UTILITY(U,$J,358.3,24603,1,3,0)
+ ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24603,1,4,0)
+ ;;=4^F10.921
+ ;;^UTILITY(U,$J,358.3,24603,2)
+ ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,24604,0)
+ ;;=F05.^^93^1093^4
+ ;;^UTILITY(U,$J,358.3,24604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24188,1,3,0)
- ;;=3^Prblms related to life mngmt difficulty, oth
- ;;^UTILITY(U,$J,358.3,24188,1,4,0)
- ;;=4^Z73.89
- ;;^UTILITY(U,$J,358.3,24188,2)
- ;;=^5063280
- ;;^UTILITY(U,$J,358.3,24189,0)
- ;;=Z55.9^^116^1187^31
- ;;^UTILITY(U,$J,358.3,24189,1,0)
+ ;;^UTILITY(U,$J,358.3,24604,1,3,0)
+ ;;=3^Delirium d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,24604,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,24604,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,24605,0)
+ ;;=F05.^^93^1093^5
+ ;;^UTILITY(U,$J,358.3,24605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24189,1,3,0)
- ;;=3^Prblms related to educ & literacy, unspec
- ;;^UTILITY(U,$J,358.3,24189,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,24189,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,24190,0)
- ;;=Z63.8^^116^1187^33
- ;;^UTILITY(U,$J,358.3,24190,1,0)
+ ;;^UTILITY(U,$J,358.3,24605,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,24605,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,24605,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,24606,0)
+ ;;=A81.00^^93^1094^9
+ ;;^UTILITY(U,$J,358.3,24606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24190,1,3,0)
- ;;=3^Prblms related to prim support grp, oth, unspec
- ;;^UTILITY(U,$J,358.3,24190,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,24190,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,24191,0)
- ;;=Z63.9^^116^1187^34
- ;;^UTILITY(U,$J,358.3,24191,1,0)
+ ;;^UTILITY(U,$J,358.3,24606,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,24606,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,24606,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,24607,0)
+ ;;=A81.01^^93^1094^38
+ ;;^UTILITY(U,$J,358.3,24607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24191,1,3,0)
- ;;=3^Prblms related to prim support grp, unspec
- ;;^UTILITY(U,$J,358.3,24191,1,4,0)
- ;;=4^Z63.9
- ;;^UTILITY(U,$J,358.3,24191,2)
- ;;=^5063175
- ;;^UTILITY(U,$J,358.3,24192,0)
- ;;=Z65.8^^116^1187^35
- ;;^UTILITY(U,$J,358.3,24192,1,0)
+ ;;^UTILITY(U,$J,358.3,24607,1,3,0)
+ ;;=3^Variant Creutzfeldt-Jakob Disease
+ ;;^UTILITY(U,$J,358.3,24607,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,24607,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,24608,0)
+ ;;=A81.09^^93^1094^8
+ ;;^UTILITY(U,$J,358.3,24608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24192,1,3,0)
- ;;=3^Prblms related to psychosocial circumst, oth
- ;;^UTILITY(U,$J,358.3,24192,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,24192,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,24193,0)
- ;;=Z65.9^^116^1187^36
- ;;^UTILITY(U,$J,358.3,24193,1,0)
+ ;;^UTILITY(U,$J,358.3,24608,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,24608,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,24608,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,24609,0)
+ ;;=A81.2^^93^1094^33
+ ;;^UTILITY(U,$J,358.3,24609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24193,1,3,0)
- ;;=3^Prblms related to unspec psychosocial circumst
- ;;^UTILITY(U,$J,358.3,24193,1,4,0)
- ;;=4^Z65.9
- ;;^UTILITY(U,$J,358.3,24193,2)
- ;;=^5063186
- ;;^UTILITY(U,$J,358.3,24194,0)
- ;;=Z72.0^^116^1187^45
- ;;^UTILITY(U,$J,358.3,24194,1,0)
+ ;;^UTILITY(U,$J,358.3,24609,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,24609,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,24609,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,24610,0)
+ ;;=F01.50^^93^1094^31
+ ;;^UTILITY(U,$J,358.3,24610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24194,1,3,0)
- ;;=3^Tobacco use, NOS
- ;;^UTILITY(U,$J,358.3,24194,1,4,0)
- ;;=4^Z72.0
- ;;^UTILITY(U,$J,358.3,24194,2)
- ;;=^5063255
- ;;^UTILITY(U,$J,358.3,24195,0)
- ;;=Z73.5^^116^1187^43
- ;;^UTILITY(U,$J,358.3,24195,1,0)
+ ;;^UTILITY(U,$J,358.3,24610,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,24610,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,24610,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,24611,0)
+ ;;=F01.51^^93^1094^32
+ ;;^UTILITY(U,$J,358.3,24611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24195,1,3,0)
- ;;=3^Social role conflict, NEC
- ;;^UTILITY(U,$J,358.3,24195,1,4,0)
- ;;=4^Z73.5
- ;;^UTILITY(U,$J,358.3,24195,2)
- ;;=^5063273
- ;;^UTILITY(U,$J,358.3,24196,0)
- ;;=Z91.130^^116^1187^41
- ;;^UTILITY(U,$J,358.3,24196,1,0)
+ ;;^UTILITY(U,$J,358.3,24611,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,24611,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,24611,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,24612,0)
+ ;;=F10.27^^93^1094^1
+ ;;^UTILITY(U,$J,358.3,24612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24196,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen d/t age-rel dblity
- ;;^UTILITY(U,$J,358.3,24196,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,24196,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,24197,0)
- ;;=Z91.138^^116^1187^42
- ;;^UTILITY(U,$J,358.3,24197,1,0)
+ ;;^UTILITY(U,$J,358.3,24612,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,24612,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,24612,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,24613,0)
+ ;;=F19.97^^93^1094^37
+ ;;^UTILITY(U,$J,358.3,24613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24197,1,3,0)
- ;;=3^Pt's unintent undrdose of meds regimen for oth reason
- ;;^UTILITY(U,$J,358.3,24197,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,24197,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,24198,0)
- ;;=Z95.3^^116^1187^37
- ;;^UTILITY(U,$J,358.3,24198,1,0)
+ ;;^UTILITY(U,$J,358.3,24613,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,24613,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,24613,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,24614,0)
+ ;;=F02.80^^93^1094^13
+ ;;^UTILITY(U,$J,358.3,24614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24198,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,24198,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,24198,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,24199,0)
- ;;=Z63.31^^116^1187^1
- ;;^UTILITY(U,$J,358.3,24199,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24199,1,3,0)
- ;;=3^Absence of family member d/t military deployment
+ ;;^UTILITY(U,$J,358.3,24614,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,24614,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,24614,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,24615,0)
+ ;;=F02.81^^93^1094^14

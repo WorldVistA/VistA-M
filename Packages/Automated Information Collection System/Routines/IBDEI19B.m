@@ -1,128 +1,130 @@
-IBDEI19B ; ; 19-NOV-2015
+IBDEI19B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21015,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,21015,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,21016,0)
- ;;=F11.14^^99^1011^8
- ;;^UTILITY(U,$J,358.3,21016,1,0)
+ ;;^UTILITY(U,$J,358.3,21351,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,21351,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,21352,0)
+ ;;=Y36.7X0S^^84^948^130
+ ;;^UTILITY(U,$J,358.3,21352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21016,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21016,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,21016,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,21017,0)
- ;;=F11.182^^99^1011^10
- ;;^UTILITY(U,$J,358.3,21017,1,0)
+ ;;^UTILITY(U,$J,358.3,21352,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,21352,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,21352,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,21353,0)
+ ;;=F02.81^^84^949^11
+ ;;^UTILITY(U,$J,358.3,21353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21017,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,21017,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,21017,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,21018,0)
- ;;=F11.20^^99^1011^5
- ;;^UTILITY(U,$J,358.3,21018,1,0)
+ ;;^UTILITY(U,$J,358.3,21353,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,21353,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,21353,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,21354,0)
+ ;;=F02.80^^84^949^12
+ ;;^UTILITY(U,$J,358.3,21354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21018,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,21018,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,21018,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,21019,0)
- ;;=F11.21^^99^1011^6
- ;;^UTILITY(U,$J,358.3,21019,1,0)
+ ;;^UTILITY(U,$J,358.3,21354,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,21354,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,21354,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,21355,0)
+ ;;=F03.91^^84^949^13
+ ;;^UTILITY(U,$J,358.3,21355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21019,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,21019,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,21019,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,21020,0)
- ;;=F11.23^^99^1011^7
- ;;^UTILITY(U,$J,358.3,21020,1,0)
+ ;;^UTILITY(U,$J,358.3,21355,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,21355,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,21355,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,21356,0)
+ ;;=G31.83^^84^949^14
+ ;;^UTILITY(U,$J,358.3,21356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21020,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,21020,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,21020,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,21021,0)
- ;;=F11.24^^99^1011^9
- ;;^UTILITY(U,$J,358.3,21021,1,0)
+ ;;^UTILITY(U,$J,358.3,21356,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,21356,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,21356,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,21357,0)
+ ;;=F01.51^^84^949^30
+ ;;^UTILITY(U,$J,358.3,21357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21021,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,21021,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,21021,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,21022,0)
- ;;=F11.29^^99^1011^2
- ;;^UTILITY(U,$J,358.3,21022,1,0)
+ ;;^UTILITY(U,$J,358.3,21357,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,21357,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,21357,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,21358,0)
+ ;;=F01.50^^84^949^31
+ ;;^UTILITY(U,$J,358.3,21358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21022,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,21022,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,21022,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,21023,0)
- ;;=F11.220^^99^1011^1
- ;;^UTILITY(U,$J,358.3,21023,1,0)
+ ;;^UTILITY(U,$J,358.3,21358,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,21358,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,21358,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,21359,0)
+ ;;=A81.9^^84^949^6
+ ;;^UTILITY(U,$J,358.3,21359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21023,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,21023,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,21023,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,21024,0)
- ;;=F19.10^^99^1012^3
- ;;^UTILITY(U,$J,358.3,21024,1,0)
+ ;;^UTILITY(U,$J,358.3,21359,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,21359,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,21359,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,21360,0)
+ ;;=A81.09^^84^949^8
+ ;;^UTILITY(U,$J,358.3,21360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21024,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,21024,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,21024,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,21025,0)
- ;;=F19.14^^99^1012^1
- ;;^UTILITY(U,$J,358.3,21025,1,0)
+ ;;^UTILITY(U,$J,358.3,21360,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,21360,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,21360,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,21361,0)
+ ;;=A81.00^^84^949^9
+ ;;^UTILITY(U,$J,358.3,21361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21025,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,21025,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,21025,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,21026,0)
- ;;=F19.182^^99^1012^2
- ;;^UTILITY(U,$J,358.3,21026,1,0)
+ ;;^UTILITY(U,$J,358.3,21361,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,21361,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,21361,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,21362,0)
+ ;;=A81.01^^84^949^10
+ ;;^UTILITY(U,$J,358.3,21362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21026,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,21026,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,21026,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,21027,0)
- ;;=F19.20^^99^1012^6
- ;;^UTILITY(U,$J,358.3,21027,1,0)
+ ;;^UTILITY(U,$J,358.3,21362,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,21362,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,21362,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,21363,0)
+ ;;=A81.89^^84^949^7
+ ;;^UTILITY(U,$J,358.3,21363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21027,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,21027,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,21027,2)
- ;;=^5003431
+ ;;^UTILITY(U,$J,358.3,21363,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,21363,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,21363,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,21364,0)
+ ;;=A81.2^^84^949^27

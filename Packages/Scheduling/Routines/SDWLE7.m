@@ -1,5 +1,5 @@
-SDWLE7() ;;IOFO BAY PINES/OG - WAITING LIST-ENTER/EDIT - MOVE EWL ENTRY  ; Compiled August 14, 2007 11:18:43
- ;;5.3;scheduling;**446**;AUG 13 1993;Build 77
+SDWLE7 ;IOFO BAY PINES/OG - WAITING LIST-ENTER/EDIT - MOVE EWL ENTRY ;1/11/16 10:31am
+ ;;5.3;scheduling;**446,645**;AUG 13 1993;Build 7
  ;
  ;  ******************************************************************
  ;  CHANGE LOG
@@ -62,7 +62,9 @@ P4 ; Display data and confirm.
  S DIR("A",4)="Wait List Type: SPECIFIC CLINIC"
  S DIR("A",5)="Clinic: "_SDWLSC1X
  S Y=SDWLDDT D DD^%DT
- S DIR("A",6)="Desired Date of Appointment: "_Y
+ ; SD*5.3*645 - replaced Desired Date with CID/Preferred date
+ ;S DIR("A",6)="Desired Date of Appointment: "_Y
+ S DIR("A",6)="CID/Preferred Date of Appointment: "_Y
  S DIR("A",7)="Comments: "_SDWLCM
  S DIR("A")="Continue?"
  S DIR("B")="YES"

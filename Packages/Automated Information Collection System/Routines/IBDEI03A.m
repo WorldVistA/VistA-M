@@ -1,140 +1,138 @@
-IBDEI03A ; ; 19-NOV-2015
+IBDEI03A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,796,1,0)
+ ;;^UTILITY(U,$J,358.3,1089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,796,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Oils/Greases
- ;;^UTILITY(U,$J,358.3,796,1,4,0)
- ;;=4^L24.1
- ;;^UTILITY(U,$J,358.3,796,2)
- ;;=^5009127
- ;;^UTILITY(U,$J,358.3,797,0)
- ;;=L24.2^^9^88^100
- ;;^UTILITY(U,$J,358.3,797,1,0)
+ ;;^UTILITY(U,$J,358.3,1089,1,3,0)
+ ;;=3^Urethritis,Nonspec
+ ;;^UTILITY(U,$J,358.3,1089,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,1089,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,1090,0)
+ ;;=N39.0^^6^112^11
+ ;;^UTILITY(U,$J,358.3,1090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,797,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Solvents
- ;;^UTILITY(U,$J,358.3,797,1,4,0)
- ;;=4^L24.2
- ;;^UTILITY(U,$J,358.3,797,2)
- ;;=^5009128
- ;;^UTILITY(U,$J,358.3,798,0)
- ;;=L24.3^^9^88^93
- ;;^UTILITY(U,$J,358.3,798,1,0)
+ ;;^UTILITY(U,$J,358.3,1090,1,3,0)
+ ;;=3^Urinary Tract Infection
+ ;;^UTILITY(U,$J,358.3,1090,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,1090,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,1091,0)
+ ;;=R33.9^^6^112^12
+ ;;^UTILITY(U,$J,358.3,1091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,798,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Cosmetics
- ;;^UTILITY(U,$J,358.3,798,1,4,0)
- ;;=4^L24.3
- ;;^UTILITY(U,$J,358.3,798,2)
- ;;=^5009129
- ;;^UTILITY(U,$J,358.3,799,0)
- ;;=L24.5^^9^88^98
- ;;^UTILITY(U,$J,358.3,799,1,0)
+ ;;^UTILITY(U,$J,358.3,1091,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,1091,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,1091,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,1092,0)
+ ;;=R32.^^6^112^10
+ ;;^UTILITY(U,$J,358.3,1092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,799,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Oth Chemical Products
- ;;^UTILITY(U,$J,358.3,799,1,4,0)
- ;;=4^L24.5
- ;;^UTILITY(U,$J,358.3,799,2)
- ;;=^5009131
- ;;^UTILITY(U,$J,358.3,800,0)
- ;;=L24.6^^9^88^95
- ;;^UTILITY(U,$J,358.3,800,1,0)
+ ;;^UTILITY(U,$J,358.3,1092,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,1092,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,1092,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,1093,0)
+ ;;=B97.89^^6^113^7
+ ;;^UTILITY(U,$J,358.3,1093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,800,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Food in Contact w/ Skin
- ;;^UTILITY(U,$J,358.3,800,1,4,0)
- ;;=4^L24.6
- ;;^UTILITY(U,$J,358.3,800,2)
- ;;=^5009132
- ;;^UTILITY(U,$J,358.3,801,0)
- ;;=L24.7^^9^88^99
- ;;^UTILITY(U,$J,358.3,801,1,0)
+ ;;^UTILITY(U,$J,358.3,1093,1,3,0)
+ ;;=3^Viral Agents as the Cause of Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,1093,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,1093,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,1094,0)
+ ;;=H54.7^^6^113^8
+ ;;^UTILITY(U,$J,358.3,1094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,801,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,801,1,4,0)
- ;;=4^L24.7
- ;;^UTILITY(U,$J,358.3,801,2)
- ;;=^5009133
- ;;^UTILITY(U,$J,358.3,802,0)
- ;;=L24.81^^9^88^96
- ;;^UTILITY(U,$J,358.3,802,1,0)
+ ;;^UTILITY(U,$J,358.3,1094,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,1094,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,1094,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,1095,0)
+ ;;=I83.91^^6^113^5
+ ;;^UTILITY(U,$J,358.3,1095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,802,1,3,0)
- ;;=3^Irritant Contact Dermatitis d/t Metals
- ;;^UTILITY(U,$J,358.3,802,1,4,0)
- ;;=4^L24.81
- ;;^UTILITY(U,$J,358.3,802,2)
- ;;=^5009134
- ;;^UTILITY(U,$J,358.3,803,0)
- ;;=R21.^^9^88^107
- ;;^UTILITY(U,$J,358.3,803,1,0)
+ ;;^UTILITY(U,$J,358.3,1095,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Right Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1095,1,4,0)
+ ;;=4^I83.91
+ ;;^UTILITY(U,$J,358.3,1095,2)
+ ;;=^5008020
+ ;;^UTILITY(U,$J,358.3,1096,0)
+ ;;=I83.92^^6^113^4
+ ;;^UTILITY(U,$J,358.3,1096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,803,1,3,0)
- ;;=3^Rash/Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,803,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,803,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,804,0)
- ;;=L27.0^^9^88^110
- ;;^UTILITY(U,$J,358.3,804,1,0)
+ ;;^UTILITY(U,$J,358.3,1096,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
+ ;;^UTILITY(U,$J,358.3,1096,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,1096,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,1097,0)
+ ;;=I83.93^^6^113^3
+ ;;^UTILITY(U,$J,358.3,1097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,804,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,804,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,804,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,805,0)
- ;;=Z91.010^^9^88^35
- ;;^UTILITY(U,$J,358.3,805,1,0)
+ ;;^UTILITY(U,$J,358.3,1097,1,3,0)
+ ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
+ ;;^UTILITY(U,$J,358.3,1097,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,1097,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,1098,0)
+ ;;=R53.1^^6^113^9
+ ;;^UTILITY(U,$J,358.3,1098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,805,1,3,0)
- ;;=3^Allergy to Peanuts
- ;;^UTILITY(U,$J,358.3,805,1,4,0)
- ;;=4^Z91.010
- ;;^UTILITY(U,$J,358.3,805,2)
- ;;=^5063599
- ;;^UTILITY(U,$J,358.3,806,0)
- ;;=Z91.011^^9^88^32
- ;;^UTILITY(U,$J,358.3,806,1,0)
+ ;;^UTILITY(U,$J,358.3,1098,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,1098,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,1098,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,1099,0)
+ ;;=R63.4^^6^113^10
+ ;;^UTILITY(U,$J,358.3,1099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,806,1,3,0)
- ;;=3^Allergy to Milk Products
- ;;^UTILITY(U,$J,358.3,806,1,4,0)
- ;;=4^Z91.011
- ;;^UTILITY(U,$J,358.3,806,2)
- ;;=^5063600
- ;;^UTILITY(U,$J,358.3,807,0)
- ;;=Z91.012^^9^88^29
- ;;^UTILITY(U,$J,358.3,807,1,0)
+ ;;^UTILITY(U,$J,358.3,1099,1,3,0)
+ ;;=3^Weight Loss,Abnormal
+ ;;^UTILITY(U,$J,358.3,1099,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,1099,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,1100,0)
+ ;;=B02.9^^6^113^11
+ ;;^UTILITY(U,$J,358.3,1100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,807,1,3,0)
- ;;=3^Allergy to Eggs
- ;;^UTILITY(U,$J,358.3,807,1,4,0)
- ;;=4^Z91.012
- ;;^UTILITY(U,$J,358.3,807,2)
- ;;=^5063601
- ;;^UTILITY(U,$J,358.3,808,0)
- ;;=Z91.013^^9^88^37
- ;;^UTILITY(U,$J,358.3,808,1,0)
+ ;;^UTILITY(U,$J,358.3,1100,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,1100,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,1100,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,1101,0)
+ ;;=I49.3^^6^113^6
+ ;;^UTILITY(U,$J,358.3,1101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,808,1,3,0)
- ;;=3^Allergy to Seafood
- ;;^UTILITY(U,$J,358.3,808,1,4,0)
- ;;=4^Z91.013
- ;;^UTILITY(U,$J,358.3,808,2)
- ;;=^5063602
- ;;^UTILITY(U,$J,358.3,809,0)
- ;;=Z91.030^^9^88^52
- ;;^UTILITY(U,$J,358.3,809,1,0)
+ ;;^UTILITY(U,$J,358.3,1101,1,3,0)
+ ;;=3^Vetricular Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,1101,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,1101,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,1102,0)
+ ;;=I83.019^^6^113^2
+ ;;^UTILITY(U,$J,358.3,1102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,809,1,3,0)
- ;;=3^Bee Allergy
- ;;^UTILITY(U,$J,358.3,809,1,4,0)
- ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,1102,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site

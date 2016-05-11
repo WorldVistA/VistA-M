@@ -1,132 +1,130 @@
-IBDEI1F9 ; ; 19-NOV-2015
+IBDEI1F9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23736,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,23737,0)
- ;;=Z91.128^^113^1147^39
- ;;^UTILITY(U,$J,358.3,23737,1,0)
+ ;;^UTILITY(U,$J,358.3,24173,1,3,0)
+ ;;=3^Personality Disorder NEC
+ ;;^UTILITY(U,$J,358.3,24173,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,24173,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,24174,0)
+ ;;=F60.9^^90^1054^10
+ ;;^UTILITY(U,$J,358.3,24174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23737,1,3,0)
- ;;=3^Pt's intent underdose of meds d/t oth reasons
- ;;^UTILITY(U,$J,358.3,23737,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,23737,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,23738,0)
- ;;=Z63.71^^113^1147^44
- ;;^UTILITY(U,$J,358.3,23738,1,0)
+ ;;^UTILITY(U,$J,358.3,24174,1,3,0)
+ ;;=3^Personality Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24174,1,4,0)
+ ;;=4^F60.9
+ ;;^UTILITY(U,$J,358.3,24174,2)
+ ;;=^5003639
+ ;;^UTILITY(U,$J,358.3,24175,0)
+ ;;=Z65.4^^90^1055^4
+ ;;^UTILITY(U,$J,358.3,24175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23738,1,3,0)
- ;;=3^Stress on family d/t rtrn of family member from deployment
- ;;^UTILITY(U,$J,358.3,23738,1,4,0)
- ;;=4^Z63.71
- ;;^UTILITY(U,$J,358.3,23738,2)
- ;;=^5063171
- ;;^UTILITY(U,$J,358.3,23739,0)
- ;;=Z03.89^^113^1148^1
- ;;^UTILITY(U,$J,358.3,23739,1,0)
+ ;;^UTILITY(U,$J,358.3,24175,1,3,0)
+ ;;=3^Victim of Crime,Terrorism or Torture
+ ;;^UTILITY(U,$J,358.3,24175,1,4,0)
+ ;;=4^Z65.4
+ ;;^UTILITY(U,$J,358.3,24175,2)
+ ;;=^5063183
+ ;;^UTILITY(U,$J,358.3,24176,0)
+ ;;=Z65.0^^90^1055^1
+ ;;^UTILITY(U,$J,358.3,24176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23739,1,3,0)
- ;;=3^Observation for Suspected Diseases & Condition Ruled Out
- ;;^UTILITY(U,$J,358.3,23739,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,23739,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,23740,0)
- ;;=E11.9^^113^1149^11
- ;;^UTILITY(U,$J,358.3,23740,1,0)
+ ;;^UTILITY(U,$J,358.3,24176,1,3,0)
+ ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
+ ;;^UTILITY(U,$J,358.3,24176,1,4,0)
+ ;;=4^Z65.0
+ ;;^UTILITY(U,$J,358.3,24176,2)
+ ;;=^5063179
+ ;;^UTILITY(U,$J,358.3,24177,0)
+ ;;=Z65.2^^90^1055^3
+ ;;^UTILITY(U,$J,358.3,24177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23740,1,3,0)
- ;;=3^Type 2 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,23740,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,23740,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,23741,0)
- ;;=E11.65^^113^1149^9
- ;;^UTILITY(U,$J,358.3,23741,1,0)
+ ;;^UTILITY(U,$J,358.3,24177,1,3,0)
+ ;;=3^Problems Related to Release from Prison
+ ;;^UTILITY(U,$J,358.3,24177,1,4,0)
+ ;;=4^Z65.2
+ ;;^UTILITY(U,$J,358.3,24177,2)
+ ;;=^5063181
+ ;;^UTILITY(U,$J,358.3,24178,0)
+ ;;=Z65.3^^90^1055^2
+ ;;^UTILITY(U,$J,358.3,24178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23741,1,3,0)
- ;;=3^Type 2 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,23741,1,4,0)
- ;;=4^E11.65
- ;;^UTILITY(U,$J,358.3,23741,2)
- ;;=^5002663
- ;;^UTILITY(U,$J,358.3,23742,0)
- ;;=E10.9^^113^1149^6
- ;;^UTILITY(U,$J,358.3,23742,1,0)
+ ;;^UTILITY(U,$J,358.3,24178,1,3,0)
+ ;;=3^Problems Related to Oth Legal Circumstances
+ ;;^UTILITY(U,$J,358.3,24178,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,24178,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,24179,0)
+ ;;=Z65.8^^90^1056^5
+ ;;^UTILITY(U,$J,358.3,24179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23742,1,3,0)
- ;;=3^Type 1 DM w/o Complications
- ;;^UTILITY(U,$J,358.3,23742,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,23742,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,23743,0)
- ;;=E10.65^^113^1149^4
- ;;^UTILITY(U,$J,358.3,23743,1,0)
+ ;;^UTILITY(U,$J,358.3,24179,1,3,0)
+ ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
+ ;;^UTILITY(U,$J,358.3,24179,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,24179,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,24180,0)
+ ;;=Z64.0^^90^1056^4
+ ;;^UTILITY(U,$J,358.3,24180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23743,1,3,0)
- ;;=3^Type 1 DM w/ Hyperglycemia
- ;;^UTILITY(U,$J,358.3,23743,1,4,0)
- ;;=4^E10.65
- ;;^UTILITY(U,$J,358.3,23743,2)
- ;;=^5002623
- ;;^UTILITY(U,$J,358.3,23744,0)
- ;;=E11.42^^113^1149^7
- ;;^UTILITY(U,$J,358.3,23744,1,0)
+ ;;^UTILITY(U,$J,358.3,24180,1,3,0)
+ ;;=3^Problems Related to Unwanted Pregnancy
+ ;;^UTILITY(U,$J,358.3,24180,1,4,0)
+ ;;=4^Z64.0
+ ;;^UTILITY(U,$J,358.3,24180,2)
+ ;;=^5063176
+ ;;^UTILITY(U,$J,358.3,24181,0)
+ ;;=Z64.1^^90^1056^3
+ ;;^UTILITY(U,$J,358.3,24181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23744,1,3,0)
- ;;=3^Type 2 DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,23744,1,4,0)
- ;;=4^E11.42
- ;;^UTILITY(U,$J,358.3,23744,2)
- ;;=^5002646
- ;;^UTILITY(U,$J,358.3,23745,0)
- ;;=E10.42^^113^1149^2
- ;;^UTILITY(U,$J,358.3,23745,1,0)
+ ;;^UTILITY(U,$J,358.3,24181,1,3,0)
+ ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,24181,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,24181,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,24182,0)
+ ;;=Z64.4^^90^1056^1
+ ;;^UTILITY(U,$J,358.3,24182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23745,1,3,0)
- ;;=3^Type 1 DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,23745,1,4,0)
- ;;=4^E10.42
- ;;^UTILITY(U,$J,358.3,23745,2)
- ;;=^5002606
- ;;^UTILITY(U,$J,358.3,23746,0)
- ;;=E13.42^^113^1149^1
- ;;^UTILITY(U,$J,358.3,23746,1,0)
+ ;;^UTILITY(U,$J,358.3,24182,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,24182,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,24182,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,24183,0)
+ ;;=Z65.5^^90^1056^2
+ ;;^UTILITY(U,$J,358.3,24183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23746,1,3,0)
- ;;=3^Secondary Type DM w/ Diabetic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,23746,1,4,0)
- ;;=4^E13.42
- ;;^UTILITY(U,$J,358.3,23746,2)
- ;;=^5002686
- ;;^UTILITY(U,$J,358.3,23747,0)
- ;;=E10.621^^113^1149^3
- ;;^UTILITY(U,$J,358.3,23747,1,0)
+ ;;^UTILITY(U,$J,358.3,24183,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,24183,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,24183,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,24184,0)
+ ;;=Z62.820^^90^1057^4
+ ;;^UTILITY(U,$J,358.3,24184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23747,1,3,0)
- ;;=3^Type 1 DM w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,23747,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,23747,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,23748,0)
- ;;=E10.649^^113^1149^5
- ;;^UTILITY(U,$J,358.3,23748,1,0)
+ ;;^UTILITY(U,$J,358.3,24184,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,24184,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,24184,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,24185,0)
+ ;;=Z62.891^^90^1057^6
+ ;;^UTILITY(U,$J,358.3,24185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23748,1,3,0)
- ;;=3^Type 1 DM w/ Hypoglycemia w/o Coma
- ;;^UTILITY(U,$J,358.3,23748,1,4,0)
- ;;=4^E10.649
- ;;^UTILITY(U,$J,358.3,23748,2)
- ;;=^5002622
- ;;^UTILITY(U,$J,358.3,23749,0)
- ;;=E11.621^^113^1149^8
- ;;^UTILITY(U,$J,358.3,23749,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23749,1,3,0)
- ;;=3^Type 2 DM w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,24185,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,24185,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,24185,2)
+ ;;=^5063161

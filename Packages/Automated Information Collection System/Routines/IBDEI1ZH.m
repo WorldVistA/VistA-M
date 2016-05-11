@@ -1,116 +1,138 @@
-IBDEI1ZH ; ; 19-NOV-2015
+IBDEI1ZH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33221,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,33221,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,33221,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,33222,0)
- ;;=Z69.11^^148^1631^4
- ;;^UTILITY(U,$J,358.3,33222,1,0)
+ ;;^UTILITY(U,$J,358.3,33658,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,33658,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,33659,0)
+ ;;=K59.1^^131^1675^32
+ ;;^UTILITY(U,$J,358.3,33659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33222,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
- ;;^UTILITY(U,$J,358.3,33222,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,33222,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,33223,0)
- ;;=Z91.410^^148^1631^5
- ;;^UTILITY(U,$J,358.3,33223,1,0)
+ ;;^UTILITY(U,$J,358.3,33659,1,3,0)
+ ;;=3^Diarrhea,Functional
+ ;;^UTILITY(U,$J,358.3,33659,1,4,0)
+ ;;=4^K59.1
+ ;;^UTILITY(U,$J,358.3,33659,2)
+ ;;=^270281
+ ;;^UTILITY(U,$J,358.3,33660,0)
+ ;;=K61.4^^131^1675^4
+ ;;^UTILITY(U,$J,358.3,33660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33223,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,33223,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,33223,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,33224,0)
- ;;=Z69.12^^148^1631^2
- ;;^UTILITY(U,$J,358.3,33224,1,0)
+ ;;^UTILITY(U,$J,358.3,33660,1,3,0)
+ ;;=3^Abscess,Intrasphincteric
+ ;;^UTILITY(U,$J,358.3,33660,1,4,0)
+ ;;=4^K61.4
+ ;;^UTILITY(U,$J,358.3,33660,2)
+ ;;=^5008752
+ ;;^UTILITY(U,$J,358.3,33661,0)
+ ;;=K61.0^^131^1675^2
+ ;;^UTILITY(U,$J,358.3,33661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33224,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,33224,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,33224,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,33225,0)
- ;;=T74.21XA^^148^1631^12
- ;;^UTILITY(U,$J,358.3,33225,1,0)
+ ;;^UTILITY(U,$J,358.3,33661,1,3,0)
+ ;;=3^Abscess,Anal
+ ;;^UTILITY(U,$J,358.3,33661,1,4,0)
+ ;;=4^K61.0
+ ;;^UTILITY(U,$J,358.3,33661,2)
+ ;;=^5008749
+ ;;^UTILITY(U,$J,358.3,33662,0)
+ ;;=K61.1^^131^1675^6
+ ;;^UTILITY(U,$J,358.3,33662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33225,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,33225,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,33225,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,33226,0)
- ;;=T74.21XD^^148^1631^13
- ;;^UTILITY(U,$J,358.3,33226,1,0)
+ ;;^UTILITY(U,$J,358.3,33662,1,3,0)
+ ;;=3^Abscess,Rectal
+ ;;^UTILITY(U,$J,358.3,33662,1,4,0)
+ ;;=4^K61.1
+ ;;^UTILITY(U,$J,358.3,33662,2)
+ ;;=^259588
+ ;;^UTILITY(U,$J,358.3,33663,0)
+ ;;=K61.2^^131^1675^3
+ ;;^UTILITY(U,$J,358.3,33663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33226,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,33226,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,33226,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,33227,0)
- ;;=T76.21XA^^148^1631^14
- ;;^UTILITY(U,$J,358.3,33227,1,0)
+ ;;^UTILITY(U,$J,358.3,33663,1,3,0)
+ ;;=3^Abscess,Anorectal
+ ;;^UTILITY(U,$J,358.3,33663,1,4,0)
+ ;;=4^K61.2
+ ;;^UTILITY(U,$J,358.3,33663,2)
+ ;;=^5008750
+ ;;^UTILITY(U,$J,358.3,33664,0)
+ ;;=K61.3^^131^1675^5
+ ;;^UTILITY(U,$J,358.3,33664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33227,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,33227,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,33227,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,33228,0)
- ;;=T76.21XD^^148^1631^15
- ;;^UTILITY(U,$J,358.3,33228,1,0)
+ ;;^UTILITY(U,$J,358.3,33664,1,3,0)
+ ;;=3^Abscess,Ischiorectal
+ ;;^UTILITY(U,$J,358.3,33664,1,4,0)
+ ;;=4^K61.3
+ ;;^UTILITY(U,$J,358.3,33664,2)
+ ;;=^5008751
+ ;;^UTILITY(U,$J,358.3,33665,0)
+ ;;=K50.014^^131^1675^22
+ ;;^UTILITY(U,$J,358.3,33665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33228,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
- ;;^UTILITY(U,$J,358.3,33228,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,33228,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,33229,0)
- ;;=Z69.81^^148^1631^3
- ;;^UTILITY(U,$J,358.3,33229,1,0)
+ ;;^UTILITY(U,$J,358.3,33665,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,33665,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,33665,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,33666,0)
+ ;;=K50.114^^131^1675^21
+ ;;^UTILITY(U,$J,358.3,33666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33229,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,33229,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,33229,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,33230,0)
- ;;=Z69.82^^148^1631^1
- ;;^UTILITY(U,$J,358.3,33230,1,0)
+ ;;^UTILITY(U,$J,358.3,33666,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,33666,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,33666,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,33667,0)
+ ;;=D12.6^^131^1675^7
+ ;;^UTILITY(U,$J,358.3,33667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33230,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,33230,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,33230,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,33231,0)
- ;;=T74.01XA^^148^1631^16
- ;;^UTILITY(U,$J,358.3,33231,1,0)
+ ;;^UTILITY(U,$J,358.3,33667,1,3,0)
+ ;;=3^Adenomatous Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,33667,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,33667,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,33668,0)
+ ;;=K64.9^^131^1675^57
+ ;;^UTILITY(U,$J,358.3,33668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33231,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter
- ;;^UTILITY(U,$J,358.3,33231,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,33231,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,33232,0)
- ;;=T74.01XD^^148^1631^17
- ;;^UTILITY(U,$J,358.3,33232,1,0)
+ ;;^UTILITY(U,$J,358.3,33668,1,3,0)
+ ;;=3^Hemorrhoids w/o Complication
+ ;;^UTILITY(U,$J,358.3,33668,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,33668,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,33669,0)
+ ;;=K50.814^^131^1675^30
+ ;;^UTILITY(U,$J,358.3,33669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33232,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,33669,1,3,0)
+ ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,33669,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,33669,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,33670,0)
+ ;;=D12.9^^131^1675^9
+ ;;^UTILITY(U,$J,358.3,33670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33670,1,3,0)
+ ;;=3^Benign Neop of Anus
+ ;;^UTILITY(U,$J,358.3,33670,1,4,0)
+ ;;=4^D12.9
+ ;;^UTILITY(U,$J,358.3,33670,2)
+ ;;=^5001972
+ ;;^UTILITY(U,$J,358.3,33671,0)
+ ;;=D12.8^^131^1675^15
+ ;;^UTILITY(U,$J,358.3,33671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33671,1,3,0)
+ ;;=3^Benign Neop of Rectum
+ ;;^UTILITY(U,$J,358.3,33671,1,4,0)
+ ;;=4^D12.8
+ ;;^UTILITY(U,$J,358.3,33671,2)
+ ;;=^5001971

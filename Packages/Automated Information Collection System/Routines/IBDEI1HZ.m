@@ -1,120 +1,126 @@
-IBDEI1HZ ; ; 19-NOV-2015
+IBDEI1HZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25035,1,4,0)
- ;;=4^T84.82XA
- ;;^UTILITY(U,$J,358.3,25035,2)
- ;;=^5055457
- ;;^UTILITY(U,$J,358.3,25036,0)
- ;;=T84.83XA^^124^1239^61
- ;;^UTILITY(U,$J,358.3,25036,1,0)
+ ;;^UTILITY(U,$J,358.3,25417,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,25417,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,25417,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,25418,0)
+ ;;=G47.33^^95^1164^21
+ ;;^UTILITY(U,$J,358.3,25418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25036,1,3,0)
- ;;=3^Hemorrhage d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25036,1,4,0)
- ;;=4^T84.83XA
- ;;^UTILITY(U,$J,358.3,25036,2)
- ;;=^5055460
- ;;^UTILITY(U,$J,358.3,25037,0)
- ;;=T84.84XA^^124^1239^158
- ;;^UTILITY(U,$J,358.3,25037,1,0)
+ ;;^UTILITY(U,$J,358.3,25418,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,25418,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,25418,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,25419,0)
+ ;;=G47.31^^95^1164^1
+ ;;^UTILITY(U,$J,358.3,25419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25037,1,3,0)
- ;;=3^Pain d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25037,1,4,0)
- ;;=4^T84.84XA
- ;;^UTILITY(U,$J,358.3,25037,2)
- ;;=^5055463
- ;;^UTILITY(U,$J,358.3,25038,0)
- ;;=T84.85XA^^124^1239^205
- ;;^UTILITY(U,$J,358.3,25038,1,0)
+ ;;^UTILITY(U,$J,358.3,25419,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,25419,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,25419,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,25420,0)
+ ;;=G47.21^^95^1164^5
+ ;;^UTILITY(U,$J,358.3,25420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25038,1,3,0)
- ;;=3^Stenosis d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25038,1,4,0)
- ;;=4^T84.85XA
- ;;^UTILITY(U,$J,358.3,25038,2)
- ;;=^5055466
- ;;^UTILITY(U,$J,358.3,25039,0)
- ;;=T84.86XA^^124^1239^210
- ;;^UTILITY(U,$J,358.3,25039,1,0)
+ ;;^UTILITY(U,$J,358.3,25420,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,25420,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,25420,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,25421,0)
+ ;;=G47.22^^95^1164^4
+ ;;^UTILITY(U,$J,358.3,25421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25039,1,3,0)
- ;;=3^Thrombosis d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25039,1,4,0)
- ;;=4^T84.86XA
- ;;^UTILITY(U,$J,358.3,25039,2)
- ;;=^5055469
- ;;^UTILITY(U,$J,358.3,25040,0)
- ;;=T84.9XXA^^124^1239^26
- ;;^UTILITY(U,$J,358.3,25040,1,0)
+ ;;^UTILITY(U,$J,358.3,25421,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,25421,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,25421,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,25422,0)
+ ;;=G47.23^^95^1164^6
+ ;;^UTILITY(U,$J,358.3,25422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25040,1,3,0)
- ;;=3^Complications d/t Internal Ortho Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,25040,1,4,0)
- ;;=4^T84.9XXA
- ;;^UTILITY(U,$J,358.3,25040,2)
- ;;=^5055475
- ;;^UTILITY(U,$J,358.3,25041,0)
- ;;=I97.110^^124^1239^200
- ;;^UTILITY(U,$J,358.3,25041,1,0)
+ ;;^UTILITY(U,$J,358.3,25422,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,25422,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,25422,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,25423,0)
+ ;;=G47.24^^95^1164^7
+ ;;^UTILITY(U,$J,358.3,25423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25041,1,3,0)
- ;;=3^Postprocedure Cardiac Insufficiency Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25041,1,4,0)
- ;;=4^I97.110
- ;;^UTILITY(U,$J,358.3,25041,2)
- ;;=^5008083
- ;;^UTILITY(U,$J,358.3,25042,0)
- ;;=I97.111^^124^1239^201
- ;;^UTILITY(U,$J,358.3,25042,1,0)
+ ;;^UTILITY(U,$J,358.3,25423,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,25423,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,25423,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,25424,0)
+ ;;=G47.26^^95^1164^8
+ ;;^UTILITY(U,$J,358.3,25424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25042,1,3,0)
- ;;=3^Postprocedure Cardiac Insufficiency Following Oth Surgery
- ;;^UTILITY(U,$J,358.3,25042,1,4,0)
- ;;=4^I97.111
- ;;^UTILITY(U,$J,358.3,25042,2)
- ;;=^5008084
- ;;^UTILITY(U,$J,358.3,25043,0)
- ;;=I97.120^^124^1239^196
- ;;^UTILITY(U,$J,358.3,25043,1,0)
+ ;;^UTILITY(U,$J,358.3,25424,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,25424,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,25424,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,25425,0)
+ ;;=G47.20^^95^1164^9
+ ;;^UTILITY(U,$J,358.3,25425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25043,1,3,0)
- ;;=3^Postprocedure Cardiac Arrest Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25043,1,4,0)
- ;;=4^I97.120
- ;;^UTILITY(U,$J,358.3,25043,2)
- ;;=^5008085
- ;;^UTILITY(U,$J,358.3,25044,0)
- ;;=I97.121^^124^1239^197
- ;;^UTILITY(U,$J,358.3,25044,1,0)
+ ;;^UTILITY(U,$J,358.3,25425,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
+ ;;^UTILITY(U,$J,358.3,25425,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,25425,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,25426,0)
+ ;;=F51.3^^95^1164^19
+ ;;^UTILITY(U,$J,358.3,25426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25044,1,3,0)
- ;;=3^Postprocedure Cardiac Arrest Followint Oth Surgery
- ;;^UTILITY(U,$J,358.3,25044,1,4,0)
- ;;=4^I97.121
- ;;^UTILITY(U,$J,358.3,25044,2)
- ;;=^5008086
- ;;^UTILITY(U,$J,358.3,25045,0)
- ;;=I97.130^^124^1239^203
- ;;^UTILITY(U,$J,358.3,25045,1,0)
+ ;;^UTILITY(U,$J,358.3,25426,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type
+ ;;^UTILITY(U,$J,358.3,25426,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,25426,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,25427,0)
+ ;;=F51.4^^95^1164^20
+ ;;^UTILITY(U,$J,358.3,25427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25045,1,3,0)
- ;;=3^Postprocedure Hrt Failure Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25045,1,4,0)
- ;;=4^I97.130
- ;;^UTILITY(U,$J,358.3,25045,2)
- ;;=^5008087
- ;;^UTILITY(U,$J,358.3,25046,0)
- ;;=I97.131^^124^1239^204
- ;;^UTILITY(U,$J,358.3,25046,1,0)
+ ;;^UTILITY(U,$J,358.3,25427,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleep Terror Type
+ ;;^UTILITY(U,$J,358.3,25427,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,25427,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,25428,0)
+ ;;=F51.5^^95^1164^18
+ ;;^UTILITY(U,$J,358.3,25428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25046,1,3,0)
- ;;=3^Postprocedure Hrt Failure Following Oth Surgery
- ;;^UTILITY(U,$J,358.3,25046,1,4,0)
- ;;=4^I97.131
- ;;^UTILITY(U,$J,358.3,25046,2)
- ;;=^5008088
- ;;^UTILITY(U,$J,358.3,25047,0)
- ;;=I97.190^^124^1239^198
+ ;;^UTILITY(U,$J,358.3,25428,1,3,0)
+ ;;=3^Nightmare Disorder
+ ;;^UTILITY(U,$J,358.3,25428,1,4,0)
+ ;;=4^F51.5
+ ;;^UTILITY(U,$J,358.3,25428,2)
+ ;;=^5003615
+ ;;^UTILITY(U,$J,358.3,25429,0)
+ ;;=G47.52^^95^1164^22
+ ;;^UTILITY(U,$J,358.3,25429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25429,1,3,0)
+ ;;=3^Rapid Eye Movement Sleep Behavior Disorder

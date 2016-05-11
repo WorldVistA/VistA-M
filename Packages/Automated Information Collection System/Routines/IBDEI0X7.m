@@ -1,136 +1,134 @@
-IBDEI0X7 ; ; 19-NOV-2015
+IBDEI0X7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15305,1,4,0)
- ;;=4^C43.21
- ;;^UTILITY(U,$J,358.3,15305,2)
- ;;=^5000999
- ;;^UTILITY(U,$J,358.3,15306,0)
- ;;=C43.22^^85^815^3
- ;;^UTILITY(U,$J,358.3,15306,1,0)
+ ;;^UTILITY(U,$J,358.3,15578,1,4,0)
+ ;;=4^Z64.1
+ ;;^UTILITY(U,$J,358.3,15578,2)
+ ;;=^5063177
+ ;;^UTILITY(U,$J,358.3,15579,0)
+ ;;=Z64.4^^58^679^1
+ ;;^UTILITY(U,$J,358.3,15579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15306,1,3,0)
- ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,15306,1,4,0)
- ;;=4^C43.22
- ;;^UTILITY(U,$J,358.3,15306,2)
- ;;=^5001000
- ;;^UTILITY(U,$J,358.3,15307,0)
- ;;=C43.31^^85^815^8
- ;;^UTILITY(U,$J,358.3,15307,1,0)
+ ;;^UTILITY(U,$J,358.3,15579,1,3,0)
+ ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
+ ;;^UTILITY(U,$J,358.3,15579,1,4,0)
+ ;;=4^Z64.4
+ ;;^UTILITY(U,$J,358.3,15579,2)
+ ;;=^5063178
+ ;;^UTILITY(U,$J,358.3,15580,0)
+ ;;=Z65.5^^58^679^2
+ ;;^UTILITY(U,$J,358.3,15580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15307,1,3,0)
- ;;=3^Malig Melanoma of Nose
- ;;^UTILITY(U,$J,358.3,15307,1,4,0)
- ;;=4^C43.31
- ;;^UTILITY(U,$J,358.3,15307,2)
- ;;=^5001002
- ;;^UTILITY(U,$J,358.3,15308,0)
- ;;=C43.39^^85^815^2
- ;;^UTILITY(U,$J,358.3,15308,1,0)
+ ;;^UTILITY(U,$J,358.3,15580,1,3,0)
+ ;;=3^Exposure to Disaster,War or Other Hostilities
+ ;;^UTILITY(U,$J,358.3,15580,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,15580,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,15581,0)
+ ;;=Z62.820^^58^680^4
+ ;;^UTILITY(U,$J,358.3,15581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15308,1,3,0)
- ;;=3^Malig Melanoma of Face NEC
- ;;^UTILITY(U,$J,358.3,15308,1,4,0)
- ;;=4^C43.39
- ;;^UTILITY(U,$J,358.3,15308,2)
- ;;=^5001003
- ;;^UTILITY(U,$J,358.3,15309,0)
- ;;=C43.4^^85^815^14
- ;;^UTILITY(U,$J,358.3,15309,1,0)
+ ;;^UTILITY(U,$J,358.3,15581,1,3,0)
+ ;;=3^Parent-Child Relational Problem
+ ;;^UTILITY(U,$J,358.3,15581,1,4,0)
+ ;;=4^Z62.820
+ ;;^UTILITY(U,$J,358.3,15581,2)
+ ;;=^5063157
+ ;;^UTILITY(U,$J,358.3,15582,0)
+ ;;=Z62.891^^58^680^6
+ ;;^UTILITY(U,$J,358.3,15582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15309,1,3,0)
- ;;=3^Malig Melanoma of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,15309,1,4,0)
- ;;=4^C43.4
- ;;^UTILITY(U,$J,358.3,15309,2)
- ;;=^5001004
- ;;^UTILITY(U,$J,358.3,15310,0)
- ;;=C43.51^^85^815^1
- ;;^UTILITY(U,$J,358.3,15310,1,0)
+ ;;^UTILITY(U,$J,358.3,15582,1,3,0)
+ ;;=3^Sibling Relational Problem
+ ;;^UTILITY(U,$J,358.3,15582,1,4,0)
+ ;;=4^Z62.891
+ ;;^UTILITY(U,$J,358.3,15582,2)
+ ;;=^5063161
+ ;;^UTILITY(U,$J,358.3,15583,0)
+ ;;=Z62.898^^58^680^1
+ ;;^UTILITY(U,$J,358.3,15583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15310,1,3,0)
- ;;=3^Malig Melanoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,15310,1,4,0)
- ;;=4^C43.51
- ;;^UTILITY(U,$J,358.3,15310,2)
- ;;=^5001005
- ;;^UTILITY(U,$J,358.3,15311,0)
- ;;=C43.52^^85^815^15
- ;;^UTILITY(U,$J,358.3,15311,1,0)
+ ;;^UTILITY(U,$J,358.3,15583,1,3,0)
+ ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,15583,1,4,0)
+ ;;=4^Z62.898
+ ;;^UTILITY(U,$J,358.3,15583,2)
+ ;;=^5063162
+ ;;^UTILITY(U,$J,358.3,15584,0)
+ ;;=Z63.0^^58^680^5
+ ;;^UTILITY(U,$J,358.3,15584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15311,1,3,0)
- ;;=3^Malig Melanoma of Skin of Breast
- ;;^UTILITY(U,$J,358.3,15311,1,4,0)
- ;;=4^C43.52
- ;;^UTILITY(U,$J,358.3,15311,2)
- ;;=^5001006
- ;;^UTILITY(U,$J,358.3,15312,0)
- ;;=C43.59^^85^815^17
- ;;^UTILITY(U,$J,358.3,15312,1,0)
+ ;;^UTILITY(U,$J,358.3,15584,1,3,0)
+ ;;=3^Relationship Distress w/ Spouse/Partner
+ ;;^UTILITY(U,$J,358.3,15584,1,4,0)
+ ;;=4^Z63.0
+ ;;^UTILITY(U,$J,358.3,15584,2)
+ ;;=^5063164
+ ;;^UTILITY(U,$J,358.3,15585,0)
+ ;;=Z63.5^^58^680^2
+ ;;^UTILITY(U,$J,358.3,15585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15312,1,3,0)
- ;;=3^Malig Melanoma of Trunk NEC
- ;;^UTILITY(U,$J,358.3,15312,1,4,0)
- ;;=4^C43.59
- ;;^UTILITY(U,$J,358.3,15312,2)
- ;;=^5001007
- ;;^UTILITY(U,$J,358.3,15313,0)
- ;;=C43.61^^85^815^13
- ;;^UTILITY(U,$J,358.3,15313,1,0)
+ ;;^UTILITY(U,$J,358.3,15585,1,3,0)
+ ;;=3^Disruption of Family by Separation or Divorce
+ ;;^UTILITY(U,$J,358.3,15585,1,4,0)
+ ;;=4^Z63.5
+ ;;^UTILITY(U,$J,358.3,15585,2)
+ ;;=^5063169
+ ;;^UTILITY(U,$J,358.3,15586,0)
+ ;;=Z63.8^^58^680^3
+ ;;^UTILITY(U,$J,358.3,15586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15313,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,15313,1,4,0)
- ;;=4^C43.61
- ;;^UTILITY(U,$J,358.3,15313,2)
- ;;=^5001009
- ;;^UTILITY(U,$J,358.3,15314,0)
- ;;=C43.62^^85^815^6
- ;;^UTILITY(U,$J,358.3,15314,1,0)
+ ;;^UTILITY(U,$J,358.3,15586,1,3,0)
+ ;;=3^High Exporessed Emotion Level w/in Family
+ ;;^UTILITY(U,$J,358.3,15586,1,4,0)
+ ;;=4^Z63.8
+ ;;^UTILITY(U,$J,358.3,15586,2)
+ ;;=^5063174
+ ;;^UTILITY(U,$J,358.3,15587,0)
+ ;;=Z63.4^^58^680^7
+ ;;^UTILITY(U,$J,358.3,15587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15314,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,15314,1,4,0)
- ;;=4^C43.62
- ;;^UTILITY(U,$J,358.3,15314,2)
- ;;=^5001010
- ;;^UTILITY(U,$J,358.3,15315,0)
- ;;=C43.71^^85^815^12
- ;;^UTILITY(U,$J,358.3,15315,1,0)
+ ;;^UTILITY(U,$J,358.3,15587,1,3,0)
+ ;;=3^Uncomplicated Bereavement
+ ;;^UTILITY(U,$J,358.3,15587,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,15587,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,15588,0)
+ ;;=F20.9^^58^681^5
+ ;;^UTILITY(U,$J,358.3,15588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15315,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,15315,1,4,0)
- ;;=4^C43.71
- ;;^UTILITY(U,$J,358.3,15315,2)
- ;;=^5001012
- ;;^UTILITY(U,$J,358.3,15316,0)
- ;;=C43.72^^85^815^5
- ;;^UTILITY(U,$J,358.3,15316,1,0)
+ ;;^UTILITY(U,$J,358.3,15588,1,3,0)
+ ;;=3^Schizophrenia
+ ;;^UTILITY(U,$J,358.3,15588,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,15588,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,15589,0)
+ ;;=F20.81^^58^681^8
+ ;;^UTILITY(U,$J,358.3,15589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15316,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,15316,1,4,0)
- ;;=4^C43.72
- ;;^UTILITY(U,$J,358.3,15316,2)
- ;;=^5001013
- ;;^UTILITY(U,$J,358.3,15317,0)
- ;;=C43.8^^85^815^9
- ;;^UTILITY(U,$J,358.3,15317,1,0)
+ ;;^UTILITY(U,$J,358.3,15589,1,3,0)
+ ;;=3^Schizophreniform Disorder
+ ;;^UTILITY(U,$J,358.3,15589,1,4,0)
+ ;;=4^F20.81
+ ;;^UTILITY(U,$J,358.3,15589,2)
+ ;;=^5003474
+ ;;^UTILITY(U,$J,358.3,15590,0)
+ ;;=F22.^^58^681^2
+ ;;^UTILITY(U,$J,358.3,15590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15317,1,3,0)
- ;;=3^Malig Melanoma of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,15317,1,4,0)
- ;;=4^C43.8
- ;;^UTILITY(U,$J,358.3,15317,2)
- ;;=^5001014
- ;;^UTILITY(U,$J,358.3,15318,0)
- ;;=D03.0^^85^815^26
- ;;^UTILITY(U,$J,358.3,15318,1,0)
+ ;;^UTILITY(U,$J,358.3,15590,1,3,0)
+ ;;=3^Delusional Disorder
+ ;;^UTILITY(U,$J,358.3,15590,1,4,0)
+ ;;=4^F22.
+ ;;^UTILITY(U,$J,358.3,15590,2)
+ ;;=^5003478
+ ;;^UTILITY(U,$J,358.3,15591,0)
+ ;;=F23.^^58^681^1
+ ;;^UTILITY(U,$J,358.3,15591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15318,1,3,0)
- ;;=3^Melanoma in Situ of Lip
- ;;^UTILITY(U,$J,358.3,15318,1,4,0)
- ;;=4^D03.0
+ ;;^UTILITY(U,$J,358.3,15591,1,3,0)
+ ;;=3^Brief Psychotic Disorder

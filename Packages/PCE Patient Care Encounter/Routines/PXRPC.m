@@ -1,6 +1,7 @@
-PXRPC ;ISL/JLC - PCE DATA2PCE RPC ; 07 Apr 2015  3:12 PM
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**200,209**;Aug 12, 1996;Build 4
+PXRPC ;ISL/JLC - PCE DATA2PCE RPC ;09/17/15  09:50
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**200,209,210**;Aug 12, 1996;Build 21
  ;
+ ; Reference to UCUMDATA^LEXMUCUM supported by ICR #6225
  ;
  ;
 SAVE(OK,PCELIST,LOC,PKGNAME,SRC) ; save PCE information
@@ -10,14 +11,15 @@ SAVE(OK,PCELIST,LOC,PKGNAME,SRC) ; save PCE information
  I $G(PKGNAME)="" S OK=-3 Q
  I $G(SRC)="" S OK=-3 Q
  M ^TMP("PXRPC",$J,VSTR)=PCELIST
-DQSAVE ; 
+DQSAVE ;
  N PKG,TYP,CODE,IEN,I,X,PXAPI,PXDEL,ERROR
  N CAT,NARR,ROOT,ROOT2,PXAVST,LEXIEN
  N PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT,MOD,MODCNT,MODIDX,MODS
  N COM,COMMENT,COMMENTS
  N DFN,PROBLEMS,PXAPREDT,ORCPTDEL
  ; Vars for Info Source (IMMIS) Imm. Admin Route (IMMRT), Body Site (IMMAL), Lot, Manufacturer, Exp. Date & Comments
- N IMMISNM,IMMISIEN,IMMRTNM,IMMRTIEN,IMMRTERR,IMMALNAME,IMMALIEN,IMMALERR,IMMLOT,IMMMANUF,IMMEXPDT,IMMCOMM,IMMCOMMS
+ N IMMISNM,IMMISIEN,IMMRTNM,IMMRTIEN,IMMRTERR,IMMALNAME,IMMALIEN,IMMALERR,IMMLOT,IMMMANUF,IMMEXPDT,IMMCOMM,IMMCOMMS,IMMLOTIEN
+ N NUM,REMARK,SEQ,IMMDSG,IMMCVX,IMMCVXER
  S PKG=$$PKG2IEN^VSIT(PKGNAME) I PKG=-1 S OK=-3 Q
  S (PRV,CPT,ICD,IMM,SK,PED,HF,XAM,TRT)=0
  S I="" F  S I=$O(PCELIST(I)) Q:'I  S X=PCELIST(I) D
@@ -87,9 +89,14 @@ DQSAVE ;
  . . . S:$L($P(X,U,10))>0&(PXDXI=1) COMMENT($P(X,U,10))="DX/PL^"_ICD
  . . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
  . I $E(TYP,1,3)="IMM" D  Q
+ . . ; If the CVX Code is present, then use it to find the corresponding Immunization,
+ . . ; but only if the Immunization IEN is not specified 
+ . . S IMMCVX=$P(X,U,11)
+ . . I CODE="",IMMCVX'="" S CODE=$$FIND1^DIC(9999999.14,,,IMMCVX,"C",,"IMMCVXER")
  . . Q:'$L(CODE)
  . . S IMM=IMM+1,ROOT="PXAPI(""IMMUNIZATION"","_IMM_")"
  . . S @ROOT@("IMMUN")=CODE
+ . . I IMMCVX'="" S @ROOT@("CVX")=IMMCVX
  . . S:$L($P(X,U,5)) @ROOT@("SERIES")=$P(X,U,5)
  . . S:$L($P(X,U,7)) @ROOT@("REACTION")=$P(X,U,7)
  . . S:$L($P(X,U,8)) @ROOT@("CONTRAINDICATED")=$P(X,U,8)
@@ -97,35 +104,31 @@ DQSAVE ;
  . . S:$P(X,U,6)>0 @ROOT@("ENC PROVIDER")=$P(X,U,6)
  . . S:$L($P(X,U,10))>0 COMMENT($P(X,U,10))="IMMUNIZATION^"_IMM
  . . ; These are the additional fields being added by PX*1.0*209
- . . ;S:$L($P(X,U,11)) @ROOT@("CVX")=$P(X,U,11)
- . . S IMMISNM=$P(X,U,12)
- . . ; Look up the value in the "H" Cross-reference
- . . S IMMISIEN=$$FIND1^DIC(920.1,,,IMMISNM,"H",,"IMMISERR")
+ . . S IMMISIEN=$$IMMSRC($P(X,U,12))
  . . S:IMMISIEN @ROOT@("INFO SOURCE")=IMMISIEN
- . . S:$L($P(X,U,13)) @ROOT@("DOSAGE")=$P(X,U,13)
- . . S IMMRTNM=$P(X,U,14)
- . . S IMMRTIEN=$$FIND1^DIC(920.2,,,IMMRTNM,,,"IMMRTERR")
+ . . S IMMRTIEN=$$IMMROUTE($P(X,U,14))
  . . S:IMMRTIEN @ROOT@("ADMIN ROUTE")=IMMRTIEN
- . . S IMMALNAME=$P(X,U,15)
- . . S IMMALIEN=$$FIND1^DIC(920.3,,,IMMALNAME,,,"IMMALERR")
+ . . S IMMALIEN=$$IMMLOC($P(X,U,15))
  . . S:IMMALIEN @ROOT@("ANATOMIC LOC")=IMMALIEN
- . . ;S:$L($P(X,U,16)) @ROOT@("LOT NUM")=$P(X,U,16)
- . . S IMMLOT=$P(X,U,16)
- . . S IMMMANUF=$P(X,U,17)
- . . S IMMEXPDT=$P(X,U,18)
- . . ; If the Lot Number, Manufacturer and Expiration Date are all specified,
- . . ; then find an entry matching all three values in File 9999999.41 (IMMUNIZATION LOT)
- . . ; If we don't find a match, then add the fields to the Comment.
- . . ; For now, we will not receive the Expiration Date from Walgreens, so we always update the Comment.
- . . S IMMCOMM=""
- . . S:IMMLOT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Lot#: "_IMMLOT
- . . S:IMMMANUF'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Mfr: "_IMMMANUF
- . . S:IMMEXPDT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Expiration Date: "_IMMEXPDT
- . . ; If we have something to add to the Imm comment, either add it to the existing comment
- . . ; (if one exists) or just set it in the COMMENT field.
+ . . S IMMLOT=$$IMMLOT($P(X,U,16),$P(X,U,17),$P(X,U,18))
+ . . S IMMLOTIEN=$P(IMMLOT,"^",1)
+ . . S IMMCOMM=$P(IMMLOT,"^",2)
+ . . S:IMMLOTIEN @ROOT@("LOT NUM")=IMMLOTIEN
+ . . S IMMDSG=$$IMMDSG($P(X,U,13))
+ . . I $P(IMMDSG,U,1)'="" D
+ . . . S @ROOT@("DOSE")=$P(IMMDSG,U,1)
+ . . . I $P(IMMDSG,U,2) S @ROOT@("DOSE UNITS")=$P(IMMDSG,U,2)
+ . . I $P(IMMDSG,U,3)'="" D  ; add Dosage to comments
+ . . . S IMMCOMM=$S($G(IMMCOMM)'="":IMMCOMM_"; ",1:"")_$P(IMMDSG,U,3)
  . . I IMMCOMM'="" D
+ . . . ; If we have something to add to the Imm comment, either add it to the existing comment
+ . . . ; (if one exists) or just set it in the COMMENT field.
  . . . I $L($P(X,U,10)) S IMMCOMMS($P(X,U,10))=IMMCOMM ; This will get added later to the existing comment
  . . . E  S @ROOT@("COMMENT")=IMMCOMM
+ . . S:$P(X,U,19)>0 @ROOT@("EVENT D/T")=$P(X,U,19)
+ . . S:$P(X,U,20)>0 @ROOT@("ORD PROVIDER")=$P(X,U,20)
+ . . I $P(X,U,21)'="" D IMMVIS($P(X,U,21),ROOT)
+ . . I $P(X,U,22)'="" D IMMRMRKS($P(X,U,22),IMM,.REMARK)
  . . I $E(TYP,4)="-" S @ROOT@("DELETE")=1
  . I $E(TYP,1,2)="SK" D  Q
  . . Q:'$L(CODE)
@@ -186,9 +189,109 @@ DQSAVE ;
  . I $G(IMMCOMMS(COM))'="" S COMMENTS(COM)=COMMENTS(COM)_$S(COMMENTS(COM)="":"",1:" ")_IMMCOMMS(COM)
  . S PXAPI($P(COMMENT(COM),"^",1),$P(COMMENT(COM),"^",2),"COMMENT")=COMMENTS(COM)
  ;
+ ;Store the Remarks (currently used by immunizations) - PX,210
+ S COM=""
+ F  S COM=$O(REMARK(COM)) Q:COM=""  I $D(COMMENTS(COM)) D
+ . S TYP=$P(REMARK(COM),"^",1)
+ . S NUM=$P(REMARK(COM),"^",2)
+ . S SEQ=$O(PXAPI(TYP,NUM,"REMARKS",""),-1)+1
+ . S PXAPI(TYP,NUM,"REMARKS",SEQ,0)=COMMENTS(COM)
+ ;
  S PXAPI("ENCOUNTER",1,"ENCOUNTER TYPE")="P"
-DATA2PCE ; 
+DATA2PCE ;
  I '$D(PXAPI)#10 S OK=-3 Q
  I '($D(PXAVST)#2) S PXAVST=""
  S OK=$$DATA2PCE^PXAI("PXAPI",PKG,SRC,.PXAVST,"","",.ERROR,"","","")
  Q
+ ;
+IMMSRC(IMMIS) ; Returns Event Info Source IEN
+ N IMMISHL,IMMISIEN,X
+ S IMMISHL=$P(IMMIS,";",1)
+ S IMMISIEN=$P(IMMIS,";",2)
+ ; Look up the value in the "H" Cross-reference
+ I 'IMMISIEN D
+ . S IMMISIEN=$$FIND1^DIC(920.1,,,IMMISHL,"H",,"IMMISERR")
+ Q IMMISIEN
+ ;
+IMMROUTE(IMMRT) ; Returns Route IEN
+ N IMMRTHL,IMMRTIEN,IMMRTNM,X
+ S IMMRTNM=$P(IMMRT,";",1)
+ S IMMRTHL=$P(IMMRT,";",2)
+ S IMMRTIEN=$P(IMMRT,";",3)
+ I 'IMMRTIEN,IMMRTHL'="" D
+ . S IMMRTIEN=$$FIND1^DIC(920.2,,,IMMRTHL,"H",,"IMMRTERR")
+ I 'IMMRTIEN,IMMRTNM'="" D
+ . S IMMRTIEN=$$FIND1^DIC(920.2,,,IMMRTNM,"B",,"IMMRTERR")
+ Q IMMRTIEN
+ ;
+IMMLOC(IMMAL) ; Returns Anatomic Location IEN
+ N IMMALHL,IMMALIEN,IMMALNM,X
+ S IMMALNM=$P(IMMAL,";",1)
+ S IMMALHL=$P(IMMAL,";",2)
+ S IMMALIEN=$P(IMMAL,";",3)
+ I 'IMMALIEN,IMMALHL'="" D
+ . S IMMALIEN=$$FIND1^DIC(920.3,,,IMMALHL,"B",,"IMMALERR")
+ I 'IMMALIEN,IMMALNM'="" D
+ . S IMMALIEN=$$FIND1^DIC(920.3,,,IMMALNM,"B",,"IMMALERR")
+ Q IMMALIEN
+ ;
+IMMLOT(IMMLOT,IMMMANUF,IMMEXPDT) ; Returns Lot_IEN^Comment
+ N IMMCOMM,IMMLOTIEN,IMMLOTNM,X
+ S IMMLOTNM=$P(IMMLOT,";",1)
+ S IMMLOTIEN=$P(IMMLOT,";",2)
+ ;
+ I IMMLOTIEN Q IMMLOTIEN
+ ;
+ ; If the Lot Number, Manufacturer and Expiration Date are all specified,
+ ; then find an entry matching all three values in File 9999999.41 (IMMUNIZATION LOT)
+ ; If we don't find a match, then add the fields to the Comment.
+ ; For now, we will not receive the Expiration Date from Walgreens, so we always update the Comment.
+ S IMMCOMM=""
+ S:IMMLOTNM'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Lot#: "_IMMLOTNM
+ S:IMMMANUF'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Mfr: "_IMMMANUF
+ S:IMMEXPDT'="" IMMCOMM=IMMCOMM_$S(IMMCOMM="":"",1:" ")_"Expiration Date: "_IMMEXPDT
+ Q "^"_IMMCOMM
+ ;
+IMMVIS(IMMVISMULT,ROOT) ; Sets ROOT's VIS multiple
+ N IMMVIS,IMMVISDT,IMMVISENTRY,PXSEQ,PXX,X
+ S PXSEQ=0
+ F PXX=1:1:$L(IMMVISMULT,";") D
+ . S IMMVISENTRY=$$TRIM^XLFSTR($P(IMMVISMULT,";",PXX))
+ . S IMMVIS=$P(IMMVISENTRY,"/",1)
+ . I 'IMMVIS Q
+ . S IMMVISDT=$P(IMMVISENTRY,"/",2)
+ . I IMMVISDT S IMMVIS=IMMVIS_U_IMMVISDT
+ . S PXSEQ=PXSEQ+1
+ . S @ROOT@("VIS",PXSEQ,0)=IMMVIS
+ Q
+ ;
+IMMRMRKS(IMMREMARKS,IMMNUM,REMARK) ; Sets REMARK array
+ N PXEND,PXSTART,PXX,X
+ S PXSTART=$P(IMMREMARKS,";",1)
+ S PXEND=$P(IMMREMARKS,";",2)
+ I ('PXSTART)!('PXEND)!(PXEND<PXSTART) Q
+ F PXX=PXSTART:1:PXEND D
+ . S REMARK(PXX)="IMMUNIZATION^"_IMMNUM
+ Q
+ ;
+IMMDSG(IMMDSG) ;
+ N IMMDOSE,IMMUNIT,IMMUNITIEN,IMMDOSEV,IMMUNERR,X
+ S IMMDSG=$$TRIM^XLFSTR(IMMDSG)
+ I IMMDSG="" Q ""
+ S IMMDOSE=$P(IMMDSG,";",1)
+ S IMMUNIT=$P(IMMDSG,";",2)
+ S IMMUNITIEN=$P(IMMDSG,";",3)
+ I IMMDSG[" ",IMMDSG'[";" D  ;Remove this DO block when VLER DAS starts using ";" between dose and units
+ . S IMMDOSE=$P(IMMDSG," ",1)
+ . S IMMUNIT=$P(IMMDSG," ",2)
+ ;
+ I IMMDOSE="" Q ""
+ ;
+ I IMMUNIT'="",'IMMUNITIEN D
+ . N UCUMDATA
+ . D UCUMDATA^LEXMUCUM(IMMUNIT,.UCUMDATA)  ; ICR 6225
+ . S IMMUNITIEN=$O(UCUMDATA(0))
+ D CHK^DIE(9000010.11,1312,,IMMDOSE,.IMMDOSEV,"IMMUNERR")
+ I IMMUNITIEN,IMMDOSEV'="^" Q IMMDOSEV_U_IMMUNITIEN
+ ;
+ Q U_U_"Dosage: "_IMMDOSE_" "_IMMUNIT

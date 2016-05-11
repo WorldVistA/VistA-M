@@ -1,138 +1,126 @@
-IBDEI191 ; ; 19-NOV-2015
+IBDEI191 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20886,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,20886,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,20887,0)
- ;;=F29.^^99^994^7
- ;;^UTILITY(U,$J,358.3,20887,1,0)
+ ;;^UTILITY(U,$J,358.3,21228,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,21228,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,21229,0)
+ ;;=V00.838A^^84^948^93
+ ;;^UTILITY(U,$J,358.3,21229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20887,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,20887,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,20887,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,20888,0)
- ;;=F07.0^^99^994^4
- ;;^UTILITY(U,$J,358.3,20888,1,0)
+ ;;^UTILITY(U,$J,358.3,21229,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21229,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,21229,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,21230,0)
+ ;;=V00.838D^^84^948^94
+ ;;^UTILITY(U,$J,358.3,21230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20888,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,20888,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,20888,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,20889,0)
- ;;=Z91.49^^99^995^9
- ;;^UTILITY(U,$J,358.3,20889,1,0)
+ ;;^UTILITY(U,$J,358.3,21230,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21230,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,21230,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,21231,0)
+ ;;=V00.891A^^84^948^57
+ ;;^UTILITY(U,$J,358.3,21231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20889,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma
- ;;^UTILITY(U,$J,358.3,20889,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,20889,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,20890,0)
- ;;=Z91.5^^99^995^10
- ;;^UTILITY(U,$J,358.3,20890,1,0)
+ ;;^UTILITY(U,$J,358.3,21231,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21231,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,21231,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,21232,0)
+ ;;=V00.891D^^84^948^58
+ ;;^UTILITY(U,$J,358.3,21232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20890,1,3,0)
- ;;=3^Personal Hx of Self-Harm
- ;;^UTILITY(U,$J,358.3,20890,1,4,0)
- ;;=4^Z91.5
- ;;^UTILITY(U,$J,358.3,20890,2)
- ;;=^5063624
- ;;^UTILITY(U,$J,358.3,20891,0)
- ;;=Z91.82^^99^995^8
- ;;^UTILITY(U,$J,358.3,20891,1,0)
+ ;;^UTILITY(U,$J,358.3,21232,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21232,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,21232,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,21233,0)
+ ;;=V00.892A^^84^948^99
+ ;;^UTILITY(U,$J,358.3,21233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20891,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,20891,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,20891,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,20892,0)
- ;;=Z91.89^^99^995^11
- ;;^UTILITY(U,$J,358.3,20892,1,0)
+ ;;^UTILITY(U,$J,358.3,21233,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21233,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,21233,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,21234,0)
+ ;;=V00.892D^^84^948^100
+ ;;^UTILITY(U,$J,358.3,21234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20892,1,3,0)
- ;;=3^Personal Risk Factors
- ;;^UTILITY(U,$J,358.3,20892,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,20892,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,20893,0)
- ;;=Z72.9^^99^995^12
- ;;^UTILITY(U,$J,358.3,20893,1,0)
+ ;;^UTILITY(U,$J,358.3,21234,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21234,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,21234,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,21235,0)
+ ;;=V00.898A^^84^948^97
+ ;;^UTILITY(U,$J,358.3,21235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20893,1,3,0)
- ;;=3^Problem Related to Lifestyle
- ;;^UTILITY(U,$J,358.3,20893,1,4,0)
- ;;=4^Z72.9
- ;;^UTILITY(U,$J,358.3,20893,2)
- ;;=^5063267
- ;;^UTILITY(U,$J,358.3,20894,0)
- ;;=Z72.811^^99^995^1
- ;;^UTILITY(U,$J,358.3,20894,1,0)
+ ;;^UTILITY(U,$J,358.3,21235,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21235,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,21235,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,21236,0)
+ ;;=V00.898D^^84^948^98
+ ;;^UTILITY(U,$J,358.3,21236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20894,1,3,0)
- ;;=3^Adult Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,20894,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,20894,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,20895,0)
- ;;=Z91.19^^99^995^5
- ;;^UTILITY(U,$J,358.3,20895,1,0)
+ ;;^UTILITY(U,$J,358.3,21236,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21236,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,21236,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,21237,0)
+ ;;=W00.0XXA^^84^948^79
+ ;;^UTILITY(U,$J,358.3,21237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20895,1,3,0)
- ;;=3^Nonadherence to Medical Treatment
- ;;^UTILITY(U,$J,358.3,20895,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,20895,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,20896,0)
- ;;=E66.9^^99^995^6
- ;;^UTILITY(U,$J,358.3,20896,1,0)
+ ;;^UTILITY(U,$J,358.3,21237,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21237,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,21237,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,21238,0)
+ ;;=W00.0XXD^^84^948^80
+ ;;^UTILITY(U,$J,358.3,21238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20896,1,3,0)
- ;;=3^Obesity
- ;;^UTILITY(U,$J,358.3,20896,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,20896,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,20897,0)
- ;;=Z76.5^^99^995^3
- ;;^UTILITY(U,$J,358.3,20897,1,0)
+ ;;^UTILITY(U,$J,358.3,21238,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21238,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,21238,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,21239,0)
+ ;;=W00.1XXA^^84^948^59
+ ;;^UTILITY(U,$J,358.3,21239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20897,1,3,0)
- ;;=3^Malingering
- ;;^UTILITY(U,$J,358.3,20897,1,4,0)
- ;;=4^Z76.5
- ;;^UTILITY(U,$J,358.3,20897,2)
- ;;=^5063302
- ;;^UTILITY(U,$J,358.3,20898,0)
- ;;=R41.83^^99^995^2
- ;;^UTILITY(U,$J,358.3,20898,1,0)
+ ;;^UTILITY(U,$J,358.3,21239,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21239,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,21239,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,21240,0)
+ ;;=W00.1XXD^^84^948^60
+ ;;^UTILITY(U,$J,358.3,21240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20898,1,3,0)
- ;;=3^Borderline Intellectual Functioning
- ;;^UTILITY(U,$J,358.3,20898,1,4,0)
- ;;=4^R41.83
- ;;^UTILITY(U,$J,358.3,20898,2)
- ;;=^5019442
- ;;^UTILITY(U,$J,358.3,20899,0)
- ;;=Z56.82^^99^995^4
- ;;^UTILITY(U,$J,358.3,20899,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20899,1,3,0)
- ;;=3^Military Deployment Status,Current
- ;;^UTILITY(U,$J,358.3,20899,1,4,0)
- ;;=4^Z56.82
- ;;^UTILITY(U,$J,358.3,20899,2)
- ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,21240,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21240,1,4,0)
+ ;;=4^W00.1XXD

@@ -1,5 +1,5 @@
-ORTSKLPS ;SLC/JMH-nightly task to lapse old unsigned orders ;03/11/10  07:52
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280**;Dec 17, 1997;Build 85
+ORTSKLPS ;SLC/JMH - NIGHTLY TASK TO LAPSE OLD UNSIGNED ORDERS;03/27/2015  11:45
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**243,280,350**;Dec 17, 1997;Build 77
  ;
 TASK ;
  ;only run between Midnight and 1:59:59 AM
@@ -12,6 +12,7 @@ TASK ;
  ;loop through unsigned orders
  N ORVP,ORDT,ORN,ORACT,ORINVDT,ORPARAM,ORDIAL,ORDISP
  S ORVP="" F  S ORVP=$O(^OR(100,"AS",ORVP)) Q:'$L(ORVP)  D
+ .N ORDATA,ORDERERS
  .S ORINVDT=0 F  S ORINVDT=$O(^OR(100,"AS",ORVP,ORINVDT)) Q:'ORINVDT  D
  ..S ORDT=9999999-ORINVDT
  ..S ORN=0 F  S ORN=$O(^OR(100,"AS",ORVP,ORINVDT,ORN)) Q:'ORN  D
@@ -35,6 +36,11 @@ TASK ;
  ...I $$FMDIFF^XLFDT($$NOW^XLFDT,ORDT,2)<(ORPARAM*24*60*60) Q
  ...;if old then lapse
  ...D LAPSE^ORCSAVE2(ORN_";"_ORACT)
+ ...S ORDATA=$S($G(ORDATA)'="":ORDATA_U,1:"")_ORN
+ ...;Since one alert covers many orders (not passing order number to EN^ORB3), collect the orderer
+ ...S ORDERERS($$ORDERER^ORQOR2(ORN))=""
+ .;send notification, one per patient
+ .D:$D(ORDATA) EN^ORB3(78,+ORVP,"",.ORDERERS,"Lapsed Unsigned Order(s)","NEW;"_ORDATA)
  ;loop through pending events
  N ORPT,OREVT,ORPTR,Y
  S ORPT="" F  S ORPT=$O(^ORE(100.2,"AE",ORPT)) Q:'ORPT  D

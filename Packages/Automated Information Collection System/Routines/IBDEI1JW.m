@@ -1,134 +1,136 @@
-IBDEI1JW ; ; 19-NOV-2015
+IBDEI1JW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25924,1,0)
+ ;;^UTILITY(U,$J,358.3,26304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25924,1,3,0)
- ;;=3^Right Lower Quadrant Abdominal Pain
- ;;^UTILITY(U,$J,358.3,25924,1,4,0)
- ;;=4^R10.31
- ;;^UTILITY(U,$J,358.3,25924,2)
- ;;=^5019211
- ;;^UTILITY(U,$J,358.3,25925,0)
- ;;=R10.32^^127^1267^3
- ;;^UTILITY(U,$J,358.3,25925,1,0)
+ ;;^UTILITY(U,$J,358.3,26304,1,3,0)
+ ;;=3^Acute Stress Disorder
+ ;;^UTILITY(U,$J,358.3,26304,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,26304,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,26305,0)
+ ;;=F43.21^^98^1244^3
+ ;;^UTILITY(U,$J,358.3,26305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25925,1,3,0)
- ;;=3^Left Lower Quadrant Abdominal Pain
- ;;^UTILITY(U,$J,358.3,25925,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,25925,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,25926,0)
- ;;=R10.33^^127^1267^6
- ;;^UTILITY(U,$J,358.3,25926,1,0)
+ ;;^UTILITY(U,$J,358.3,26305,1,3,0)
+ ;;=3^Adjustment Disorder w/ Depressed Mood
+ ;;^UTILITY(U,$J,358.3,26305,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,26305,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,26306,0)
+ ;;=F43.22^^98^1244^2
+ ;;^UTILITY(U,$J,358.3,26306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25926,1,3,0)
- ;;=3^Periumbilical Pain
- ;;^UTILITY(U,$J,358.3,25926,1,4,0)
- ;;=4^R10.33
- ;;^UTILITY(U,$J,358.3,25926,2)
- ;;=^5019213
- ;;^UTILITY(U,$J,358.3,25927,0)
- ;;=R10.13^^127^1267^2
- ;;^UTILITY(U,$J,358.3,25927,1,0)
+ ;;^UTILITY(U,$J,358.3,26306,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,26306,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,26306,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,26307,0)
+ ;;=F43.23^^98^1244^5
+ ;;^UTILITY(U,$J,358.3,26307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25927,1,3,0)
- ;;=3^Epigastric Pain
- ;;^UTILITY(U,$J,358.3,25927,1,4,0)
- ;;=4^R10.13
- ;;^UTILITY(U,$J,358.3,25927,2)
- ;;=^5019208
- ;;^UTILITY(U,$J,358.3,25928,0)
- ;;=R10.84^^127^1267^1
- ;;^UTILITY(U,$J,358.3,25928,1,0)
+ ;;^UTILITY(U,$J,358.3,26307,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety & Depressed Mood
+ ;;^UTILITY(U,$J,358.3,26307,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,26307,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,26308,0)
+ ;;=F43.24^^98^1244^4
+ ;;^UTILITY(U,$J,358.3,26308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25928,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,25928,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,25928,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,25929,0)
- ;;=R10.2^^127^1267^5
- ;;^UTILITY(U,$J,358.3,25929,1,0)
+ ;;^UTILITY(U,$J,358.3,26308,1,3,0)
+ ;;=3^Adjustment Disorder w/ Disturbance of Conduct
+ ;;^UTILITY(U,$J,358.3,26308,1,4,0)
+ ;;=4^F43.24
+ ;;^UTILITY(U,$J,358.3,26308,2)
+ ;;=^331951
+ ;;^UTILITY(U,$J,358.3,26309,0)
+ ;;=F43.25^^98^1244^6
+ ;;^UTILITY(U,$J,358.3,26309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25929,1,3,0)
- ;;=3^Pelvic/Perineal Pain
- ;;^UTILITY(U,$J,358.3,25929,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,25929,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,25930,0)
- ;;=Z48.01^^127^1268^1
- ;;^UTILITY(U,$J,358.3,25930,1,0)
+ ;;^UTILITY(U,$J,358.3,26309,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Disturbance Emotions & Conduct
+ ;;^UTILITY(U,$J,358.3,26309,1,4,0)
+ ;;=4^F43.25
+ ;;^UTILITY(U,$J,358.3,26309,2)
+ ;;=^331952
+ ;;^UTILITY(U,$J,358.3,26310,0)
+ ;;=F43.8^^98^1244^15
+ ;;^UTILITY(U,$J,358.3,26310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25930,1,3,0)
- ;;=3^Change/Removal of Surgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,25930,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,25930,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,25931,0)
- ;;=Z48.02^^127^1268^3
- ;;^UTILITY(U,$J,358.3,25931,1,0)
+ ;;^UTILITY(U,$J,358.3,26310,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder NEC
+ ;;^UTILITY(U,$J,358.3,26310,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,26310,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,26311,0)
+ ;;=F43.20^^98^1244^7
+ ;;^UTILITY(U,$J,358.3,26311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25931,1,3,0)
- ;;=3^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,25931,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,25931,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,25932,0)
- ;;=Z48.812^^127^1268^4
- ;;^UTILITY(U,$J,358.3,25932,1,0)
+ ;;^UTILITY(U,$J,358.3,26311,1,3,0)
+ ;;=3^Adjustment Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26311,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,26311,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,26312,0)
+ ;;=F43.9^^98^1244^16
+ ;;^UTILITY(U,$J,358.3,26312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25932,1,3,0)
- ;;=3^Surgical Aftercare Following Surgery on Circulatory System
- ;;^UTILITY(U,$J,358.3,25932,1,4,0)
- ;;=4^Z48.812
- ;;^UTILITY(U,$J,358.3,25932,2)
- ;;=^5063049
- ;;^UTILITY(U,$J,358.3,25933,0)
- ;;=Z09.^^127^1268^2
- ;;^UTILITY(U,$J,358.3,25933,1,0)
+ ;;^UTILITY(U,$J,358.3,26312,1,3,0)
+ ;;=3^Trauma/Stressor-Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26312,1,4,0)
+ ;;=4^F43.9
+ ;;^UTILITY(U,$J,358.3,26312,2)
+ ;;=^5003576
+ ;;^UTILITY(U,$J,358.3,26313,0)
+ ;;=F43.11^^98^1244^9
+ ;;^UTILITY(U,$J,358.3,26313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25933,1,3,0)
- ;;=3^F/U Exam After Treatment for Condition Other Than Malig Neop
- ;;^UTILITY(U,$J,358.3,25933,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,25933,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,25934,0)
- ;;=I25.10^^127^1269^5
- ;;^UTILITY(U,$J,358.3,25934,1,0)
+ ;;^UTILITY(U,$J,358.3,26313,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,26313,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,26313,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,26314,0)
+ ;;=F43.12^^98^1244^10
+ ;;^UTILITY(U,$J,358.3,26314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25934,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,25934,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,25934,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,25935,0)
- ;;=I50.9^^127^1269^9
- ;;^UTILITY(U,$J,358.3,25935,1,0)
+ ;;^UTILITY(U,$J,358.3,26314,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,26314,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,26314,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,26315,0)
+ ;;=F43.10^^98^1244^11
+ ;;^UTILITY(U,$J,358.3,26315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25935,1,3,0)
- ;;=3^Congestive Heart Failure
- ;;^UTILITY(U,$J,358.3,25935,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,25935,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,25936,0)
- ;;=I65.21^^127^1269^16
- ;;^UTILITY(U,$J,358.3,25936,1,0)
+ ;;^UTILITY(U,$J,358.3,26315,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,26315,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,26315,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,26316,0)
+ ;;=F43.8^^98^1244^12
+ ;;^UTILITY(U,$J,358.3,26316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25936,1,3,0)
- ;;=3^Occlusion/Stenosis of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,25936,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,25936,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,25937,0)
- ;;=I65.22^^127^1269^14
+ ;;^UTILITY(U,$J,358.3,26316,1,3,0)
+ ;;=3^Reaction to Severe Stress,Other
+ ;;^UTILITY(U,$J,358.3,26316,1,4,0)
+ ;;=4^F43.8
+ ;;^UTILITY(U,$J,358.3,26316,2)
+ ;;=^5003575
+ ;;^UTILITY(U,$J,358.3,26317,0)
+ ;;=F43.9^^98^1244^13
+ ;;^UTILITY(U,$J,358.3,26317,1,0)
+ ;;=^358.31IA^4^2

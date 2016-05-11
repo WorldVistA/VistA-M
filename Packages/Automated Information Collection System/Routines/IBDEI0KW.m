@@ -1,140 +1,138 @@
-IBDEI0KW ; ; 19-NOV-2015
+IBDEI0KW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9459,1,3,0)
- ;;=3^Migraine w/o Aura Intractable
- ;;^UTILITY(U,$J,358.3,9459,1,4,0)
- ;;=4^G43.019
- ;;^UTILITY(U,$J,358.3,9459,2)
- ;;=^5003879
- ;;^UTILITY(U,$J,358.3,9460,0)
- ;;=G43.109^^63^608^5
- ;;^UTILITY(U,$J,358.3,9460,1,0)
+ ;;^UTILITY(U,$J,358.3,9750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9460,1,3,0)
- ;;=3^Migraine w/ Aura Not Intractable
- ;;^UTILITY(U,$J,358.3,9460,1,4,0)
- ;;=4^G43.109
- ;;^UTILITY(U,$J,358.3,9460,2)
- ;;=^5003881
- ;;^UTILITY(U,$J,358.3,9461,0)
- ;;=G43.119^^63^608^4
- ;;^UTILITY(U,$J,358.3,9461,1,0)
+ ;;^UTILITY(U,$J,358.3,9750,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Left Eye
+ ;;^UTILITY(U,$J,358.3,9750,1,4,0)
+ ;;=4^H18.052
+ ;;^UTILITY(U,$J,358.3,9750,2)
+ ;;=^5005024
+ ;;^UTILITY(U,$J,358.3,9751,0)
+ ;;=H18.20^^44^495^51
+ ;;^UTILITY(U,$J,358.3,9751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9461,1,3,0)
- ;;=3^Migraine w/ Aura Intractable
- ;;^UTILITY(U,$J,358.3,9461,1,4,0)
- ;;=4^G43.119
- ;;^UTILITY(U,$J,358.3,9461,2)
- ;;=^5003883
- ;;^UTILITY(U,$J,358.3,9462,0)
- ;;=G43.809^^63^608^2
- ;;^UTILITY(U,$J,358.3,9462,1,0)
+ ;;^UTILITY(U,$J,358.3,9751,1,3,0)
+ ;;=3^Corneal Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,9751,1,4,0)
+ ;;=4^H18.20
+ ;;^UTILITY(U,$J,358.3,9751,2)
+ ;;=^5005035
+ ;;^UTILITY(U,$J,358.3,9752,0)
+ ;;=H18.11^^44^495^25
+ ;;^UTILITY(U,$J,358.3,9752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9462,1,3,0)
- ;;=3^Migrain Not Intractable w/o Status Magrainosus,Other
- ;;^UTILITY(U,$J,358.3,9462,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,9462,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,9463,0)
- ;;=G43.909^^63^608^3
- ;;^UTILITY(U,$J,358.3,9463,1,0)
+ ;;^UTILITY(U,$J,358.3,9752,1,3,0)
+ ;;=3^Bullous Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9752,1,4,0)
+ ;;=4^H18.11
+ ;;^UTILITY(U,$J,358.3,9752,2)
+ ;;=^5005032
+ ;;^UTILITY(U,$J,358.3,9753,0)
+ ;;=H18.12^^44^495^24
+ ;;^UTILITY(U,$J,358.3,9753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9463,1,3,0)
- ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,9463,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,9463,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,9464,0)
- ;;=G44.209^^63^608^8
- ;;^UTILITY(U,$J,358.3,9464,1,0)
+ ;;^UTILITY(U,$J,358.3,9753,1,3,0)
+ ;;=3^Bullous Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9753,1,4,0)
+ ;;=4^H18.12
+ ;;^UTILITY(U,$J,358.3,9753,2)
+ ;;=^5005033
+ ;;^UTILITY(U,$J,358.3,9754,0)
+ ;;=H18.831^^44^495^150
+ ;;^UTILITY(U,$J,358.3,9754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9464,1,3,0)
- ;;=3^Tension-Type Headache Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,9464,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,9464,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,9465,0)
- ;;=R51.^^63^608^1
- ;;^UTILITY(U,$J,358.3,9465,1,0)
+ ;;^UTILITY(U,$J,358.3,9754,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Right Eye
+ ;;^UTILITY(U,$J,358.3,9754,1,4,0)
+ ;;=4^H18.831
+ ;;^UTILITY(U,$J,358.3,9754,2)
+ ;;=^5005126
+ ;;^UTILITY(U,$J,358.3,9755,0)
+ ;;=H18.832^^44^495^149
+ ;;^UTILITY(U,$J,358.3,9755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9465,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,9465,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,9465,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,9466,0)
- ;;=G20.^^63^609^7
- ;;^UTILITY(U,$J,358.3,9466,1,0)
+ ;;^UTILITY(U,$J,358.3,9755,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Left Eye
+ ;;^UTILITY(U,$J,358.3,9755,1,4,0)
+ ;;=4^H18.832
+ ;;^UTILITY(U,$J,358.3,9755,2)
+ ;;=^5005127
+ ;;^UTILITY(U,$J,358.3,9756,0)
+ ;;=H18.421^^44^495^14
+ ;;^UTILITY(U,$J,358.3,9756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9466,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,9466,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,9466,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,9467,0)
- ;;=G21.8^^63^609^9
- ;;^UTILITY(U,$J,358.3,9467,1,0)
+ ;;^UTILITY(U,$J,358.3,9756,1,3,0)
+ ;;=3^Band Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,9756,1,4,0)
+ ;;=4^H18.421
+ ;;^UTILITY(U,$J,358.3,9756,2)
+ ;;=^5005066
+ ;;^UTILITY(U,$J,358.3,9757,0)
+ ;;=H18.422^^44^495^13
+ ;;^UTILITY(U,$J,358.3,9757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9467,1,3,0)
- ;;=3^Secondary Parkinsonism,Other
- ;;^UTILITY(U,$J,358.3,9467,1,4,0)
- ;;=4^G21.8
- ;;^UTILITY(U,$J,358.3,9467,2)
- ;;=^5003777
- ;;^UTILITY(U,$J,358.3,9468,0)
- ;;=G25.0^^63^609^4
- ;;^UTILITY(U,$J,358.3,9468,1,0)
+ ;;^UTILITY(U,$J,358.3,9757,1,3,0)
+ ;;=3^Band Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,9757,1,4,0)
+ ;;=4^H18.422
+ ;;^UTILITY(U,$J,358.3,9757,2)
+ ;;=^5005067
+ ;;^UTILITY(U,$J,358.3,9758,0)
+ ;;=H18.50^^44^495^80
+ ;;^UTILITY(U,$J,358.3,9758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9468,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,9468,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,9468,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,9469,0)
- ;;=G25.1^^63^609^3
- ;;^UTILITY(U,$J,358.3,9469,1,0)
+ ;;^UTILITY(U,$J,358.3,9758,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec
+ ;;^UTILITY(U,$J,358.3,9758,1,4,0)
+ ;;=4^H18.50
+ ;;^UTILITY(U,$J,358.3,9758,2)
+ ;;=^5005084
+ ;;^UTILITY(U,$J,358.3,9759,0)
+ ;;=H18.51^^44^495^61
+ ;;^UTILITY(U,$J,358.3,9759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9469,1,3,0)
- ;;=3^Drug-Induced Tremor
- ;;^UTILITY(U,$J,358.3,9469,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,9469,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,9470,0)
- ;;=G25.2^^63^609^12
- ;;^UTILITY(U,$J,358.3,9470,1,0)
+ ;;^UTILITY(U,$J,358.3,9759,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy
+ ;;^UTILITY(U,$J,358.3,9759,1,4,0)
+ ;;=4^H18.51
+ ;;^UTILITY(U,$J,358.3,9759,2)
+ ;;=^268988
+ ;;^UTILITY(U,$J,358.3,9760,0)
+ ;;=H18.601^^44^495^106
+ ;;^UTILITY(U,$J,358.3,9760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9470,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,9470,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,9470,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,9471,0)
- ;;=G25.3^^63^609^6
- ;;^UTILITY(U,$J,358.3,9471,1,0)
+ ;;^UTILITY(U,$J,358.3,9760,1,3,0)
+ ;;=3^Keratoconus,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9760,1,4,0)
+ ;;=4^H18.601
+ ;;^UTILITY(U,$J,358.3,9760,2)
+ ;;=^5005089
+ ;;^UTILITY(U,$J,358.3,9761,0)
+ ;;=H18.602^^44^495^105
+ ;;^UTILITY(U,$J,358.3,9761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9471,1,3,0)
- ;;=3^Myoclonus
- ;;^UTILITY(U,$J,358.3,9471,1,4,0)
- ;;=4^G25.3
- ;;^UTILITY(U,$J,358.3,9471,2)
- ;;=^80620
- ;;^UTILITY(U,$J,358.3,9472,0)
- ;;=G25.69^^63^609^11
- ;;^UTILITY(U,$J,358.3,9472,1,0)
+ ;;^UTILITY(U,$J,358.3,9761,1,3,0)
+ ;;=3^Keratoconus,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9761,1,4,0)
+ ;;=4^H18.602
+ ;;^UTILITY(U,$J,358.3,9761,2)
+ ;;=^5005090
+ ;;^UTILITY(U,$J,358.3,9762,0)
+ ;;=H10.32^^44^495^42
+ ;;^UTILITY(U,$J,358.3,9762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9472,1,3,0)
- ;;=3^Tics,Organic Origin,Other
- ;;^UTILITY(U,$J,358.3,9472,1,4,0)
- ;;=4^G25.69
- ;;^UTILITY(U,$J,358.3,9472,2)
- ;;=^5003797
+ ;;^UTILITY(U,$J,358.3,9762,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9762,1,4,0)
+ ;;=4^H10.32
+ ;;^UTILITY(U,$J,358.3,9762,2)
+ ;;=^5133459
+ ;;^UTILITY(U,$J,358.3,9763,0)
+ ;;=H10.31^^44^495^43
+ ;;^UTILITY(U,$J,358.3,9763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9763,1,3,0)
+ ;;=3^Conjunctivitis,Acute,Right Eye,Unspec

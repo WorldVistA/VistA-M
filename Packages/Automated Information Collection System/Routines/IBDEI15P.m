@@ -1,132 +1,140 @@
-IBDEI15P ; ; 19-NOV-2015
+IBDEI15P ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19319,2)
- ;;=^5011756
- ;;^UTILITY(U,$J,358.3,19320,0)
- ;;=M32.14^^94^922^159
- ;;^UTILITY(U,$J,358.3,19320,1,0)
+ ;;^UTILITY(U,$J,358.3,19669,0)
+ ;;=J06.0^^84^920^4
+ ;;^UTILITY(U,$J,358.3,19669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19320,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
- ;;^UTILITY(U,$J,358.3,19320,1,4,0)
- ;;=4^M32.14
- ;;^UTILITY(U,$J,358.3,19320,2)
- ;;=^5011757
- ;;^UTILITY(U,$J,358.3,19321,0)
- ;;=M32.12^^94^922^161
- ;;^UTILITY(U,$J,358.3,19321,1,0)
+ ;;^UTILITY(U,$J,358.3,19669,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,19669,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,19669,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,19670,0)
+ ;;=J06.9^^84^920^9
+ ;;^UTILITY(U,$J,358.3,19670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19321,1,3,0)
- ;;=3^Systemic Lupus Erythematosus,Pericarditis
- ;;^UTILITY(U,$J,358.3,19321,1,4,0)
- ;;=4^M32.12
- ;;^UTILITY(U,$J,358.3,19321,2)
- ;;=^5011755
- ;;^UTILITY(U,$J,358.3,19322,0)
- ;;=M05.59^^94^922^142
- ;;^UTILITY(U,$J,358.3,19322,1,0)
+ ;;^UTILITY(U,$J,358.3,19670,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,19670,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,19670,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,19671,0)
+ ;;=J33.9^^84^920^19
+ ;;^UTILITY(U,$J,358.3,19671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19322,1,3,0)
- ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
- ;;^UTILITY(U,$J,358.3,19322,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,19322,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,19323,0)
- ;;=M05.711^^94^922^136
- ;;^UTILITY(U,$J,358.3,19323,1,0)
+ ;;^UTILITY(U,$J,358.3,19671,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,19671,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,19671,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,19672,0)
+ ;;=J32.0^^84^920^15
+ ;;^UTILITY(U,$J,358.3,19672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19323,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Shoulder
- ;;^UTILITY(U,$J,358.3,19323,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,19323,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,19324,0)
- ;;=M05.712^^94^922^129
- ;;^UTILITY(U,$J,358.3,19324,1,0)
+ ;;^UTILITY(U,$J,358.3,19672,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,19672,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,19672,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,19673,0)
+ ;;=J32.1^^84^920^14
+ ;;^UTILITY(U,$J,358.3,19673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19324,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Shoulder
- ;;^UTILITY(U,$J,358.3,19324,1,4,0)
- ;;=4^M05.712
- ;;^UTILITY(U,$J,358.3,19324,2)
- ;;=^5010002
- ;;^UTILITY(U,$J,358.3,19325,0)
- ;;=M05.731^^94^922^137
- ;;^UTILITY(U,$J,358.3,19325,1,0)
+ ;;^UTILITY(U,$J,358.3,19673,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,19673,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,19673,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,19674,0)
+ ;;=J32.9^^84^920^16
+ ;;^UTILITY(U,$J,358.3,19674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19325,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Wrist
- ;;^UTILITY(U,$J,358.3,19325,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,19325,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,19326,0)
- ;;=M05.732^^94^922^130
- ;;^UTILITY(U,$J,358.3,19326,1,0)
+ ;;^UTILITY(U,$J,358.3,19674,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19674,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,19674,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,19675,0)
+ ;;=J30.9^^84^920^11
+ ;;^UTILITY(U,$J,358.3,19675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19326,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Wrist
- ;;^UTILITY(U,$J,358.3,19326,1,4,0)
- ;;=4^M05.732
- ;;^UTILITY(U,$J,358.3,19326,2)
- ;;=^5010008
- ;;^UTILITY(U,$J,358.3,19327,0)
- ;;=M05.741^^94^922^133
- ;;^UTILITY(U,$J,358.3,19327,1,0)
+ ;;^UTILITY(U,$J,358.3,19675,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19675,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,19675,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,19676,0)
+ ;;=J30.0^^84^920^24
+ ;;^UTILITY(U,$J,358.3,19676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19327,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hand
- ;;^UTILITY(U,$J,358.3,19327,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,19327,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,19328,0)
- ;;=M05.742^^94^922^126
- ;;^UTILITY(U,$J,358.3,19328,1,0)
+ ;;^UTILITY(U,$J,358.3,19676,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,19676,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,19676,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,19677,0)
+ ;;=K05.00^^84^920^2
+ ;;^UTILITY(U,$J,358.3,19677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19328,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hand
- ;;^UTILITY(U,$J,358.3,19328,1,4,0)
- ;;=4^M05.742
- ;;^UTILITY(U,$J,358.3,19328,2)
- ;;=^5010011
- ;;^UTILITY(U,$J,358.3,19329,0)
- ;;=M05.751^^94^922^134
- ;;^UTILITY(U,$J,358.3,19329,1,0)
+ ;;^UTILITY(U,$J,358.3,19677,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,19677,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,19677,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,19678,0)
+ ;;=R04.0^^84^920^17
+ ;;^UTILITY(U,$J,358.3,19678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19329,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Hip
- ;;^UTILITY(U,$J,358.3,19329,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,19329,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,19330,0)
- ;;=M05.752^^94^922^127
- ;;^UTILITY(U,$J,358.3,19330,1,0)
+ ;;^UTILITY(U,$J,358.3,19678,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,19678,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,19678,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,19679,0)
+ ;;=R09.82^^84^920^21
+ ;;^UTILITY(U,$J,358.3,19679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19330,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Hip
- ;;^UTILITY(U,$J,358.3,19330,1,4,0)
- ;;=4^M05.752
- ;;^UTILITY(U,$J,358.3,19330,2)
- ;;=^5010014
- ;;^UTILITY(U,$J,358.3,19331,0)
- ;;=M05.761^^94^922^135
- ;;^UTILITY(U,$J,358.3,19331,1,0)
+ ;;^UTILITY(U,$J,358.3,19679,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,19679,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,19679,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,19680,0)
+ ;;=K12.30^^84^920^20
+ ;;^UTILITY(U,$J,358.3,19680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19331,1,3,0)
- ;;=3^Rheumatoid Arthritis of Right Knee
- ;;^UTILITY(U,$J,358.3,19331,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,19331,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,19332,0)
- ;;=M05.762^^94^922^128
- ;;^UTILITY(U,$J,358.3,19332,1,0)
+ ;;^UTILITY(U,$J,358.3,19680,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,19680,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,19680,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,19681,0)
+ ;;=J30.1^^84^920^10
+ ;;^UTILITY(U,$J,358.3,19681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19332,1,3,0)
- ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,19681,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,19681,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,19681,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,19682,0)
+ ;;=R09.81^^84^920^18
+ ;;^UTILITY(U,$J,358.3,19682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19682,1,3,0)
+ ;;=3^Nasal Congestion

@@ -1,136 +1,128 @@
-IBDEI0L8 ; ; 19-NOV-2015
+IBDEI0L8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9622,0)
- ;;=90746^^66^628^7^^^^1
- ;;^UTILITY(U,$J,358.3,9622,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9622,1,2,0)
- ;;=2^90746
- ;;^UTILITY(U,$J,358.3,9622,1,3,0)
- ;;=3^Hepatitis B Vaccine
- ;;^UTILITY(U,$J,358.3,9623,0)
- ;;=90636^^66^628^6^^^^1
- ;;^UTILITY(U,$J,358.3,9623,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9623,1,2,0)
- ;;=2^90636
- ;;^UTILITY(U,$J,358.3,9623,1,3,0)
- ;;=3^Hepatitis A&B Vaccine
- ;;^UTILITY(U,$J,358.3,9624,0)
- ;;=90707^^66^628^9^^^^1
- ;;^UTILITY(U,$J,358.3,9624,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9624,1,2,0)
- ;;=2^90707
- ;;^UTILITY(U,$J,358.3,9624,1,3,0)
- ;;=3^MMR Vaccine
- ;;^UTILITY(U,$J,358.3,9625,0)
- ;;=90658^^66^628^3^^^^1
- ;;^UTILITY(U,$J,358.3,9625,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9625,1,2,0)
- ;;=2^90658
- ;;^UTILITY(U,$J,358.3,9625,1,3,0)
- ;;=3^Flu Vaccine IM (Flulaval)
- ;;^UTILITY(U,$J,358.3,9626,0)
- ;;=90732^^66^628^10^^^^1
- ;;^UTILITY(U,$J,358.3,9626,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9626,1,2,0)
- ;;=2^90732
- ;;^UTILITY(U,$J,358.3,9626,1,3,0)
- ;;=3^Pneumococcal
- ;;^UTILITY(U,$J,358.3,9627,0)
- ;;=90714^^66^628^11^^^^1
- ;;^UTILITY(U,$J,358.3,9627,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9627,1,2,0)
- ;;=2^90714
- ;;^UTILITY(U,$J,358.3,9627,1,3,0)
- ;;=3^TD VACCINE
- ;;^UTILITY(U,$J,358.3,9628,0)
- ;;=90715^^66^628^12^^^^1
- ;;^UTILITY(U,$J,358.3,9628,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9628,1,2,0)
- ;;=2^90715
- ;;^UTILITY(U,$J,358.3,9628,1,3,0)
- ;;=3^TDAP VACCINE
- ;;^UTILITY(U,$J,358.3,9629,0)
- ;;=90656^^66^628^4^^^^1
- ;;^UTILITY(U,$J,358.3,9629,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9629,1,2,0)
- ;;=2^90656
- ;;^UTILITY(U,$J,358.3,9629,1,3,0)
- ;;=3^Flu Vaccine Single Dose Syringe (Afluria)
- ;;^UTILITY(U,$J,358.3,9630,0)
- ;;=90662^^66^628^2^^^^1
- ;;^UTILITY(U,$J,358.3,9630,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9630,1,2,0)
- ;;=2^90662
- ;;^UTILITY(U,$J,358.3,9630,1,3,0)
- ;;=3^Flu Vaccine High Dose Syringe (Fluzone)
- ;;^UTILITY(U,$J,358.3,9631,0)
- ;;=90736^^66^628^13^^^^1
- ;;^UTILITY(U,$J,358.3,9631,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9631,1,2,0)
- ;;=2^90736
- ;;^UTILITY(U,$J,358.3,9631,1,3,0)
- ;;=3^ZOSTER (SHINGLES) VACCINE
- ;;^UTILITY(U,$J,358.3,9632,0)
- ;;=95120^^66^629^5^^^^1
- ;;^UTILITY(U,$J,358.3,9632,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9632,1,2,0)
- ;;=2^95120
- ;;^UTILITY(U,$J,358.3,9632,1,3,0)
- ;;=3^Allergy Injection
- ;;^UTILITY(U,$J,358.3,9633,0)
- ;;=J3301^^66^629^29^^^^1
- ;;^UTILITY(U,$J,358.3,9633,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9633,1,2,0)
- ;;=2^J3301
- ;;^UTILITY(U,$J,358.3,9633,1,3,0)
- ;;=3^Kenalog per 10mg
- ;;^UTILITY(U,$J,358.3,9634,0)
- ;;=J9217^^66^629^32^^^^1
- ;;^UTILITY(U,$J,358.3,9634,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9634,1,2,0)
- ;;=2^J9217
- ;;^UTILITY(U,$J,358.3,9634,1,3,0)
- ;;=3^Lupron per 7.5mg
- ;;^UTILITY(U,$J,358.3,9635,0)
- ;;=J1885^^66^629^46^^^^1
- ;;^UTILITY(U,$J,358.3,9635,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9635,1,2,0)
- ;;=2^J1885
- ;;^UTILITY(U,$J,358.3,9635,1,3,0)
- ;;=3^Toradol per 15mg
- ;;^UTILITY(U,$J,358.3,9636,0)
- ;;=J3420^^66^629^47^^^^1
- ;;^UTILITY(U,$J,358.3,9636,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9636,1,2,0)
- ;;=2^J3420
- ;;^UTILITY(U,$J,358.3,9636,1,3,0)
- ;;=3^Vitamin B12 per 1000mcg
- ;;^UTILITY(U,$J,358.3,9637,0)
- ;;=J2270^^66^629^38^^^^1
- ;;^UTILITY(U,$J,358.3,9637,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9637,1,2,0)
- ;;=2^J2270
- ;;^UTILITY(U,$J,358.3,9637,1,3,0)
- ;;=3^Morphine Sulfate per 10mg
- ;;^UTILITY(U,$J,358.3,9638,0)
- ;;=J1940^^66^629^30^^^^1
- ;;^UTILITY(U,$J,358.3,9638,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,9907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9907,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Left Eye,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9907,1,4,0)
+ ;;=4^H40.1324
+ ;;^UTILITY(U,$J,358.3,9907,2)
+ ;;=^5005783
+ ;;^UTILITY(U,$J,358.3,9908,0)
+ ;;=H40.1330^^44^496^91
+ ;;^UTILITY(U,$J,358.3,9908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9908,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,9908,1,4,0)
+ ;;=4^H40.1330
+ ;;^UTILITY(U,$J,358.3,9908,2)
+ ;;=^5005784
+ ;;^UTILITY(U,$J,358.3,9909,0)
+ ;;=H40.1331^^44^496^88
+ ;;^UTILITY(U,$J,358.3,9909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9909,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9909,1,4,0)
+ ;;=4^H40.1331
+ ;;^UTILITY(U,$J,358.3,9909,2)
+ ;;=^5005785
+ ;;^UTILITY(U,$J,358.3,9910,0)
+ ;;=H40.1332^^44^496^89
+ ;;^UTILITY(U,$J,358.3,9910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9910,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9910,1,4,0)
+ ;;=4^H40.1332
+ ;;^UTILITY(U,$J,358.3,9910,2)
+ ;;=^5005786
+ ;;^UTILITY(U,$J,358.3,9911,0)
+ ;;=H40.1333^^44^496^90
+ ;;^UTILITY(U,$J,358.3,9911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9911,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9911,1,4,0)
+ ;;=4^H40.1333
+ ;;^UTILITY(U,$J,358.3,9911,2)
+ ;;=^5005787
+ ;;^UTILITY(U,$J,358.3,9912,0)
+ ;;=H40.1334^^44^496^87
+ ;;^UTILITY(U,$J,358.3,9912,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9912,1,3,0)
+ ;;=3^Pigmentary Glaucoma,Bilateral,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,9912,1,4,0)
+ ;;=4^H40.1334
+ ;;^UTILITY(U,$J,358.3,9912,2)
+ ;;=^5005788
+ ;;^UTILITY(U,$J,358.3,9913,0)
+ ;;=H40.151^^44^496^118
+ ;;^UTILITY(U,$J,358.3,9913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9913,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Right Eye
+ ;;^UTILITY(U,$J,358.3,9913,1,4,0)
+ ;;=4^H40.151
+ ;;^UTILITY(U,$J,358.3,9913,2)
+ ;;=^5138037
+ ;;^UTILITY(U,$J,358.3,9914,0)
+ ;;=H40.152^^44^496^117
+ ;;^UTILITY(U,$J,358.3,9914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9914,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Left Eye
+ ;;^UTILITY(U,$J,358.3,9914,1,4,0)
+ ;;=4^H40.152
+ ;;^UTILITY(U,$J,358.3,9914,2)
+ ;;=^5138038
+ ;;^UTILITY(U,$J,358.3,9915,0)
+ ;;=H40.153^^44^496^116
+ ;;^UTILITY(U,$J,358.3,9915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9915,1,3,0)
+ ;;=3^Residual Stage Open-Angle Glaucoma,Bilateral
+ ;;^UTILITY(U,$J,358.3,9915,1,4,0)
+ ;;=4^H40.153
+ ;;^UTILITY(U,$J,358.3,9915,2)
+ ;;=^5138039
+ ;;^UTILITY(U,$J,358.3,9916,0)
+ ;;=H40.20X1^^44^496^103
+ ;;^UTILITY(U,$J,358.3,9916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9916,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Mild Stage
+ ;;^UTILITY(U,$J,358.3,9916,1,4,0)
+ ;;=4^H40.20X1
+ ;;^UTILITY(U,$J,358.3,9916,2)
+ ;;=^5005814
+ ;;^UTILITY(U,$J,358.3,9917,0)
+ ;;=H40.20X2^^44^496^104
+ ;;^UTILITY(U,$J,358.3,9917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9917,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,9917,1,4,0)
+ ;;=4^H40.20X2
+ ;;^UTILITY(U,$J,358.3,9917,2)
+ ;;=^5005815
+ ;;^UTILITY(U,$J,358.3,9918,0)
+ ;;=H40.20X3^^44^496^105
+ ;;^UTILITY(U,$J,358.3,9918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9918,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Severe Stage
+ ;;^UTILITY(U,$J,358.3,9918,1,4,0)
+ ;;=4^H40.20X3
+ ;;^UTILITY(U,$J,358.3,9918,2)
+ ;;=^5005816
+ ;;^UTILITY(U,$J,358.3,9919,0)
+ ;;=H40.20X4^^44^496^102
+ ;;^UTILITY(U,$J,358.3,9919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9919,1,3,0)
+ ;;=3^Primary Angle-Closure Glaucoma,Indeterminate Stage

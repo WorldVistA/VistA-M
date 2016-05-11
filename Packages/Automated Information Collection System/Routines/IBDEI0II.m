@@ -1,140 +1,134 @@
-IBDEI0II ; ; 19-NOV-2015
+IBDEI0II ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8312,0)
- ;;=N39.41^^55^537^66
- ;;^UTILITY(U,$J,358.3,8312,1,0)
+ ;;^UTILITY(U,$J,358.3,8591,1,4,0)
+ ;;=4^H65.111
+ ;;^UTILITY(U,$J,358.3,8591,2)
+ ;;=^5006577
+ ;;^UTILITY(U,$J,358.3,8592,0)
+ ;;=H65.112^^39^462^7
+ ;;^UTILITY(U,$J,358.3,8592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8312,1,3,0)
- ;;=3^Urge incontinence
- ;;^UTILITY(U,$J,358.3,8312,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,8312,2)
- ;;=^5015680
- ;;^UTILITY(U,$J,358.3,8313,0)
- ;;=R35.0^^55^537^20
- ;;^UTILITY(U,$J,358.3,8313,1,0)
+ ;;^UTILITY(U,$J,358.3,8592,1,3,0)
+ ;;=3^Acute/subacute allergic otitis media, left ear
+ ;;^UTILITY(U,$J,358.3,8592,1,4,0)
+ ;;=4^H65.112
+ ;;^UTILITY(U,$J,358.3,8592,2)
+ ;;=^5006578
+ ;;^UTILITY(U,$J,358.3,8593,0)
+ ;;=H66.001^^39^462^5
+ ;;^UTILITY(U,$J,358.3,8593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8313,1,3,0)
- ;;=3^Frequency of micturition
- ;;^UTILITY(U,$J,358.3,8313,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,8313,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,8314,0)
- ;;=R35.1^^55^537^46
- ;;^UTILITY(U,$J,358.3,8314,1,0)
+ ;;^UTILITY(U,$J,358.3,8593,1,3,0)
+ ;;=3^Acute suppr otitis media w/o spon rupt ear drum, right
+ ;;^UTILITY(U,$J,358.3,8593,1,4,0)
+ ;;=4^H66.001
+ ;;^UTILITY(U,$J,358.3,8593,2)
+ ;;=^5006613
+ ;;^UTILITY(U,$J,358.3,8594,0)
+ ;;=H66.002^^39^462^6
+ ;;^UTILITY(U,$J,358.3,8594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8314,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,8314,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,8314,2)
- ;;=^5019335
- ;;^UTILITY(U,$J,358.3,8315,0)
- ;;=R39.15^^55^537^67
- ;;^UTILITY(U,$J,358.3,8315,1,0)
+ ;;^UTILITY(U,$J,358.3,8594,1,3,0)
+ ;;=3^Acute suppr otitis media w/o spon rupt ear drum, left e
+ ;;^UTILITY(U,$J,358.3,8594,1,4,0)
+ ;;=4^H66.002
+ ;;^UTILITY(U,$J,358.3,8594,2)
+ ;;=^5006614
+ ;;^UTILITY(U,$J,358.3,8595,0)
+ ;;=H66.3X1^^39^462^18
+ ;;^UTILITY(U,$J,358.3,8595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8315,1,3,0)
- ;;=3^Urgency of urination
- ;;^UTILITY(U,$J,358.3,8315,1,4,0)
- ;;=4^R39.15
- ;;^UTILITY(U,$J,358.3,8315,2)
- ;;=^5019345
- ;;^UTILITY(U,$J,358.3,8316,0)
- ;;=R39.11^^55^537^24
- ;;^UTILITY(U,$J,358.3,8316,1,0)
+ ;;^UTILITY(U,$J,358.3,8595,1,3,0)
+ ;;=3^Chronic suppurative otitis media, right ear NEC
+ ;;^UTILITY(U,$J,358.3,8595,1,4,0)
+ ;;=4^H66.3X1
+ ;;^UTILITY(U,$J,358.3,8595,2)
+ ;;=^5006633
+ ;;^UTILITY(U,$J,358.3,8596,0)
+ ;;=H66.3X2^^39^462^17
+ ;;^UTILITY(U,$J,358.3,8596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8316,1,3,0)
- ;;=3^Hesitancy of micturition
- ;;^UTILITY(U,$J,358.3,8316,1,4,0)
- ;;=4^R39.11
- ;;^UTILITY(U,$J,358.3,8316,2)
- ;;=^5019341
- ;;^UTILITY(U,$J,358.3,8317,0)
- ;;=R39.16^^55^537^59
- ;;^UTILITY(U,$J,358.3,8317,1,0)
+ ;;^UTILITY(U,$J,358.3,8596,1,3,0)
+ ;;=3^Chronic suppurative otitis media, left ear NEC
+ ;;^UTILITY(U,$J,358.3,8596,1,4,0)
+ ;;=4^H66.3X2
+ ;;^UTILITY(U,$J,358.3,8596,2)
+ ;;=^5133538
+ ;;^UTILITY(U,$J,358.3,8597,0)
+ ;;=H74.01^^39^462^63
+ ;;^UTILITY(U,$J,358.3,8597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8317,1,3,0)
- ;;=3^Straining to void
- ;;^UTILITY(U,$J,358.3,8317,1,4,0)
- ;;=4^R39.16
- ;;^UTILITY(U,$J,358.3,8317,2)
- ;;=^5019346
- ;;^UTILITY(U,$J,358.3,8318,0)
- ;;=R36.0^^55^537^64
- ;;^UTILITY(U,$J,358.3,8318,1,0)
+ ;;^UTILITY(U,$J,358.3,8597,1,3,0)
+ ;;=3^Tympanosclerosis, right ear
+ ;;^UTILITY(U,$J,358.3,8597,1,4,0)
+ ;;=4^H74.01
+ ;;^UTILITY(U,$J,358.3,8597,2)
+ ;;=^5006796
+ ;;^UTILITY(U,$J,358.3,8598,0)
+ ;;=H74.02^^39^462^62
+ ;;^UTILITY(U,$J,358.3,8598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8318,1,3,0)
- ;;=3^Urethral discharge without blood
- ;;^UTILITY(U,$J,358.3,8318,1,4,0)
- ;;=4^R36.0
- ;;^UTILITY(U,$J,358.3,8318,2)
- ;;=^5019337
- ;;^UTILITY(U,$J,358.3,8319,0)
- ;;=R36.9^^55^537^65
- ;;^UTILITY(U,$J,358.3,8319,1,0)
+ ;;^UTILITY(U,$J,358.3,8598,1,3,0)
+ ;;=3^Tympanosclerosis, left ear
+ ;;^UTILITY(U,$J,358.3,8598,1,4,0)
+ ;;=4^H74.02
+ ;;^UTILITY(U,$J,358.3,8598,2)
+ ;;=^5006797
+ ;;^UTILITY(U,$J,358.3,8599,0)
+ ;;=H74.11^^39^462^10
+ ;;^UTILITY(U,$J,358.3,8599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8319,1,3,0)
- ;;=3^Urethral discharge, unspecified
- ;;^UTILITY(U,$J,358.3,8319,1,4,0)
- ;;=4^R36.9
- ;;^UTILITY(U,$J,358.3,8319,2)
- ;;=^5019338
- ;;^UTILITY(U,$J,358.3,8320,0)
- ;;=R97.2^^55^537^15
- ;;^UTILITY(U,$J,358.3,8320,1,0)
+ ;;^UTILITY(U,$J,358.3,8599,1,3,0)
+ ;;=3^Adhesive right middle ear disease
+ ;;^UTILITY(U,$J,358.3,8599,1,4,0)
+ ;;=4^H74.11
+ ;;^UTILITY(U,$J,358.3,8599,2)
+ ;;=^5006800
+ ;;^UTILITY(U,$J,358.3,8600,0)
+ ;;=H74.12^^39^462^9
+ ;;^UTILITY(U,$J,358.3,8600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8320,1,3,0)
- ;;=3^Elevated prostate specific antigen [PSA]
- ;;^UTILITY(U,$J,358.3,8320,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,8320,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,8321,0)
- ;;=R80.9^^55^537^56
- ;;^UTILITY(U,$J,358.3,8321,1,0)
+ ;;^UTILITY(U,$J,358.3,8600,1,3,0)
+ ;;=3^Adhesive left middle ear disease
+ ;;^UTILITY(U,$J,358.3,8600,1,4,0)
+ ;;=4^H74.12
+ ;;^UTILITY(U,$J,358.3,8600,2)
+ ;;=^5006801
+ ;;^UTILITY(U,$J,358.3,8601,0)
+ ;;=H81.01^^39^462^41
+ ;;^UTILITY(U,$J,358.3,8601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8321,1,3,0)
- ;;=3^Proteinuria, unspecified
- ;;^UTILITY(U,$J,358.3,8321,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,8321,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,8322,0)
- ;;=Z87.442^^55^537^52
- ;;^UTILITY(U,$J,358.3,8322,1,0)
+ ;;^UTILITY(U,$J,358.3,8601,1,3,0)
+ ;;=3^Meniere's disease, right ear
+ ;;^UTILITY(U,$J,358.3,8601,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,8601,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,8602,0)
+ ;;=H81.02^^39^462^40
+ ;;^UTILITY(U,$J,358.3,8602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8322,1,3,0)
- ;;=3^Personal history of urinary calculi
- ;;^UTILITY(U,$J,358.3,8322,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,8322,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,8323,0)
- ;;=C02.9^^55^538^80
- ;;^UTILITY(U,$J,358.3,8323,1,0)
+ ;;^UTILITY(U,$J,358.3,8602,1,3,0)
+ ;;=3^Meniere's disease, left ear
+ ;;^UTILITY(U,$J,358.3,8602,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,8602,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,8603,0)
+ ;;=H81.391^^39^462^52
+ ;;^UTILITY(U,$J,358.3,8603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8323,1,3,0)
- ;;=3^Malignant neoplasm of tongue, unspecified
- ;;^UTILITY(U,$J,358.3,8323,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,8323,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,8324,0)
- ;;=C06.9^^55^538^67
- ;;^UTILITY(U,$J,358.3,8324,1,0)
+ ;;^UTILITY(U,$J,358.3,8603,1,3,0)
+ ;;=3^Peripheral vertigo, right ear NEC
+ ;;^UTILITY(U,$J,358.3,8603,1,4,0)
+ ;;=4^H81.391
+ ;;^UTILITY(U,$J,358.3,8603,2)
+ ;;=^5006876
+ ;;^UTILITY(U,$J,358.3,8604,0)
+ ;;=H81.392^^39^462^51
+ ;;^UTILITY(U,$J,358.3,8604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8324,1,3,0)
- ;;=3^Malignant neoplasm of mouth, unspecified
- ;;^UTILITY(U,$J,358.3,8324,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,8324,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,8325,0)
- ;;=C10.9^^55^538^69
- ;;^UTILITY(U,$J,358.3,8325,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8325,1,3,0)
- ;;=3^Malignant neoplasm of oropharynx, unspecified
+ ;;^UTILITY(U,$J,358.3,8604,1,3,0)
+ ;;=3^Peripheral vertigo, left ear NEC

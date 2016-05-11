@@ -1,136 +1,134 @@
-IBDEI0TI ; ; 19-NOV-2015
+IBDEI0TI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13571,1,4,0)
- ;;=4^H53.022
- ;;^UTILITY(U,$J,358.3,13571,2)
- ;;=^5006300
- ;;^UTILITY(U,$J,358.3,13572,0)
- ;;=H53.31^^80^762^1
- ;;^UTILITY(U,$J,358.3,13572,1,0)
+ ;;^UTILITY(U,$J,358.3,13836,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,13837,0)
+ ;;=K75.3^^53^596^13
+ ;;^UTILITY(U,$J,358.3,13837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13572,1,3,0)
- ;;=3^Abnormal Retinal Correspondence
- ;;^UTILITY(U,$J,358.3,13572,1,4,0)
- ;;=4^H53.31
- ;;^UTILITY(U,$J,358.3,13572,2)
- ;;=^268844
- ;;^UTILITY(U,$J,358.3,13573,0)
- ;;=H53.30^^80^762^5
- ;;^UTILITY(U,$J,358.3,13573,1,0)
+ ;;^UTILITY(U,$J,358.3,13837,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,13837,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,13837,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,13838,0)
+ ;;=K76.6^^53^596^22
+ ;;^UTILITY(U,$J,358.3,13838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13573,1,3,0)
- ;;=3^Binocular Vision Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,13573,1,4,0)
- ;;=4^H53.30
- ;;^UTILITY(U,$J,358.3,13573,2)
- ;;=^5006322
- ;;^UTILITY(U,$J,358.3,13574,0)
- ;;=H53.481^^80^762^6
- ;;^UTILITY(U,$J,358.3,13574,1,0)
+ ;;^UTILITY(U,$J,358.3,13838,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,13838,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,13838,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,13839,0)
+ ;;=F20.3^^53^597^25
+ ;;^UTILITY(U,$J,358.3,13839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13574,1,3,0)
- ;;=3^Contraction of Visual Field,Generalized,Right Eye
- ;;^UTILITY(U,$J,358.3,13574,1,4,0)
- ;;=4^H53.481
- ;;^UTILITY(U,$J,358.3,13574,2)
- ;;=^5006344
- ;;^UTILITY(U,$J,358.3,13575,0)
- ;;=H53.482^^80^762^7
- ;;^UTILITY(U,$J,358.3,13575,1,0)
+ ;;^UTILITY(U,$J,358.3,13839,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,13839,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,13839,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,13840,0)
+ ;;=F20.9^^53^597^21
+ ;;^UTILITY(U,$J,358.3,13840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13575,1,3,0)
- ;;=3^Contraction of Visual Field,Generalized,Left Eye
- ;;^UTILITY(U,$J,358.3,13575,1,4,0)
- ;;=4^H53.482
- ;;^UTILITY(U,$J,358.3,13575,2)
- ;;=^5006345
- ;;^UTILITY(U,$J,358.3,13576,0)
- ;;=H53.483^^80^762^8
- ;;^UTILITY(U,$J,358.3,13576,1,0)
+ ;;^UTILITY(U,$J,358.3,13840,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,13840,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,13840,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,13841,0)
+ ;;=F31.9^^53^597^6
+ ;;^UTILITY(U,$J,358.3,13841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13576,1,3,0)
- ;;=3^Contraction of Visual Field,Generalized,Bilateral
- ;;^UTILITY(U,$J,358.3,13576,1,4,0)
- ;;=4^H53.483
- ;;^UTILITY(U,$J,358.3,13576,2)
- ;;=^5006346
- ;;^UTILITY(U,$J,358.3,13577,0)
- ;;=H51.12^^80^762^9
- ;;^UTILITY(U,$J,358.3,13577,1,0)
+ ;;^UTILITY(U,$J,358.3,13841,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13841,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,13841,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,13842,0)
+ ;;=F31.72^^53^597^7
+ ;;^UTILITY(U,$J,358.3,13842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13577,1,3,0)
- ;;=3^Convergence Excess
- ;;^UTILITY(U,$J,358.3,13577,1,4,0)
- ;;=4^H51.12
- ;;^UTILITY(U,$J,358.3,13577,2)
- ;;=^5006252
- ;;^UTILITY(U,$J,358.3,13578,0)
- ;;=H51.11^^80^762^10
- ;;^UTILITY(U,$J,358.3,13578,1,0)
+ ;;^UTILITY(U,$J,358.3,13842,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,13842,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,13842,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,13843,0)
+ ;;=F31.71^^53^597^5
+ ;;^UTILITY(U,$J,358.3,13843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13578,1,3,0)
- ;;=3^Convergence Insufficiency
- ;;^UTILITY(U,$J,358.3,13578,1,4,0)
- ;;=4^H51.11
- ;;^UTILITY(U,$J,358.3,13578,2)
- ;;=^5006251
- ;;^UTILITY(U,$J,358.3,13579,0)
- ;;=H52.03^^80^762^11
- ;;^UTILITY(U,$J,358.3,13579,1,0)
+ ;;^UTILITY(U,$J,358.3,13843,1,3,0)
+ ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,13843,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,13843,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,13844,0)
+ ;;=F31.70^^53^597^4
+ ;;^UTILITY(U,$J,358.3,13844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13579,1,3,0)
- ;;=3^Hypermetropia,Bilateral
- ;;^UTILITY(U,$J,358.3,13579,1,4,0)
- ;;=4^H52.03
- ;;^UTILITY(U,$J,358.3,13579,2)
- ;;=^5006262
- ;;^UTILITY(U,$J,358.3,13580,0)
- ;;=H55.89^^80^762^14
- ;;^UTILITY(U,$J,358.3,13580,1,0)
+ ;;^UTILITY(U,$J,358.3,13844,1,3,0)
+ ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
+ ;;^UTILITY(U,$J,358.3,13844,1,4,0)
+ ;;=4^F31.70
+ ;;^UTILITY(U,$J,358.3,13844,2)
+ ;;=^5003510
+ ;;^UTILITY(U,$J,358.3,13845,0)
+ ;;=F29.^^53^597^19
+ ;;^UTILITY(U,$J,358.3,13845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13580,1,3,0)
- ;;=3^Irregular Eye Movements NEC
- ;;^UTILITY(U,$J,358.3,13580,1,4,0)
- ;;=4^H55.89
- ;;^UTILITY(U,$J,358.3,13580,2)
- ;;=^5006374
- ;;^UTILITY(U,$J,358.3,13581,0)
- ;;=H53.62^^80^762^19
- ;;^UTILITY(U,$J,358.3,13581,1,0)
+ ;;^UTILITY(U,$J,358.3,13845,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,13845,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,13845,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,13846,0)
+ ;;=F28.^^53^597^20
+ ;;^UTILITY(U,$J,358.3,13846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13581,1,3,0)
- ;;=3^Night Blindness,Acquired
- ;;^UTILITY(U,$J,358.3,13581,1,4,0)
- ;;=4^H53.62
- ;;^UTILITY(U,$J,358.3,13581,2)
- ;;=^265401
- ;;^UTILITY(U,$J,358.3,13582,0)
- ;;=H53.63^^80^762^20
- ;;^UTILITY(U,$J,358.3,13582,1,0)
+ ;;^UTILITY(U,$J,358.3,13846,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
+ ;;^UTILITY(U,$J,358.3,13846,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,13846,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,13847,0)
+ ;;=F41.9^^53^597^3
+ ;;^UTILITY(U,$J,358.3,13847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13582,1,3,0)
- ;;=3^Night Blindness,Congenital
- ;;^UTILITY(U,$J,358.3,13582,1,4,0)
- ;;=4^H53.63
- ;;^UTILITY(U,$J,358.3,13582,2)
- ;;=^265396
- ;;^UTILITY(U,$J,358.3,13583,0)
- ;;=H53.69^^80^762^18
- ;;^UTILITY(U,$J,358.3,13583,1,0)
+ ;;^UTILITY(U,$J,358.3,13847,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13847,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,13847,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,13848,0)
+ ;;=F42.^^53^597^13
+ ;;^UTILITY(U,$J,358.3,13848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13583,1,3,0)
- ;;=3^Night Blindness NEC
- ;;^UTILITY(U,$J,358.3,13583,1,4,0)
- ;;=4^H53.69
- ;;^UTILITY(U,$J,358.3,13583,2)
- ;;=^87726
- ;;^UTILITY(U,$J,358.3,13584,0)
- ;;=H52.521^^80^762^23
- ;;^UTILITY(U,$J,358.3,13584,1,0)
+ ;;^UTILITY(U,$J,358.3,13848,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,13848,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,13848,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,13849,0)
+ ;;=F45.0^^53^597^23
+ ;;^UTILITY(U,$J,358.3,13849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13584,1,3,0)
- ;;=3^Paresis of Accommodation,Right eye
- ;;^UTILITY(U,$J,358.3,13584,1,4,0)
- ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,13849,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,13849,1,4,0)
+ ;;=4^F45.0

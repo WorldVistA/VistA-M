@@ -1,136 +1,136 @@
-IBDEI081 ; ; 19-NOV-2015
+IBDEI081 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3198,1,0)
+ ;;^UTILITY(U,$J,358.3,3459,1,4,0)
+ ;;=4^M19.93
+ ;;^UTILITY(U,$J,358.3,3459,2)
+ ;;=^5010856
+ ;;^UTILITY(U,$J,358.3,3460,0)
+ ;;=M19.90^^18^219^114
+ ;;^UTILITY(U,$J,358.3,3460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3198,1,3,0)
- ;;=3^Aneurysm,Aortic w/o Rupture,Unspec Site
- ;;^UTILITY(U,$J,358.3,3198,1,4,0)
- ;;=4^I71.9
- ;;^UTILITY(U,$J,358.3,3198,2)
- ;;=^5007792
- ;;^UTILITY(U,$J,358.3,3199,0)
- ;;=I71.2^^28^249^4
- ;;^UTILITY(U,$J,358.3,3199,1,0)
+ ;;^UTILITY(U,$J,358.3,3460,1,3,0)
+ ;;=3^Osteoarthritis,Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3460,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,3460,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,3461,0)
+ ;;=M89.40^^18^219^115
+ ;;^UTILITY(U,$J,358.3,3461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3199,1,3,0)
- ;;=3^Aneurysm,Thoracic Aortic w/o Rupture
- ;;^UTILITY(U,$J,358.3,3199,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,3199,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,3200,0)
- ;;=I71.6^^28^249^5
- ;;^UTILITY(U,$J,358.3,3200,1,0)
+ ;;^UTILITY(U,$J,358.3,3461,1,3,0)
+ ;;=3^Osteoarthropathy,Hypertrophic,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3461,1,4,0)
+ ;;=4^M89.40
+ ;;^UTILITY(U,$J,358.3,3461,2)
+ ;;=^5015014
+ ;;^UTILITY(U,$J,358.3,3462,0)
+ ;;=M89.30^^18^219^116
+ ;;^UTILITY(U,$J,358.3,3462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3200,1,3,0)
- ;;=3^Aneurysm,Thoracoabdominal Aortic w/o Rupture
- ;;^UTILITY(U,$J,358.3,3200,1,4,0)
- ;;=4^I71.6
- ;;^UTILITY(U,$J,358.3,3200,2)
- ;;=^5007791
- ;;^UTILITY(U,$J,358.3,3201,0)
- ;;=I20.1^^28^249^7
- ;;^UTILITY(U,$J,358.3,3201,1,0)
+ ;;^UTILITY(U,$J,358.3,3462,1,3,0)
+ ;;=3^Osteoarthropathy,Hypertrophy of Bone,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3462,1,4,0)
+ ;;=4^M89.30
+ ;;^UTILITY(U,$J,358.3,3462,2)
+ ;;=^5014986
+ ;;^UTILITY(U,$J,358.3,3463,0)
+ ;;=M93.90^^18^219^117
+ ;;^UTILITY(U,$J,358.3,3463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3201,1,3,0)
- ;;=3^Angina Pectoris w/ Spasm
- ;;^UTILITY(U,$J,358.3,3201,1,4,0)
- ;;=4^I20.1
- ;;^UTILITY(U,$J,358.3,3201,2)
- ;;=^5007077
- ;;^UTILITY(U,$J,358.3,3202,0)
- ;;=I20.9^^28^249^8
- ;;^UTILITY(U,$J,358.3,3202,1,0)
+ ;;^UTILITY(U,$J,358.3,3463,1,3,0)
+ ;;=3^Osteochondropathy,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3463,1,4,0)
+ ;;=4^M93.90
+ ;;^UTILITY(U,$J,358.3,3463,2)
+ ;;=^5015303
+ ;;^UTILITY(U,$J,358.3,3464,0)
+ ;;=M92.9^^18^219^118
+ ;;^UTILITY(U,$J,358.3,3464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3202,1,3,0)
- ;;=3^Angina Pectoris,Unspec
- ;;^UTILITY(U,$J,358.3,3202,1,4,0)
- ;;=4^I20.9
- ;;^UTILITY(U,$J,358.3,3202,2)
- ;;=^5007079
- ;;^UTILITY(U,$J,358.3,3203,0)
- ;;=I35.1^^28^249^11
- ;;^UTILITY(U,$J,358.3,3203,1,0)
+ ;;^UTILITY(U,$J,358.3,3464,1,3,0)
+ ;;=3^Osteochondrosis,Juvenile,Unspec
+ ;;^UTILITY(U,$J,358.3,3464,1,4,0)
+ ;;=4^M92.9
+ ;;^UTILITY(U,$J,358.3,3464,2)
+ ;;=^5015242
+ ;;^UTILITY(U,$J,358.3,3465,0)
+ ;;=M42.9^^18^219^119
+ ;;^UTILITY(U,$J,358.3,3465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3203,1,3,0)
- ;;=3^Aortic Valve Insufficiency,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,3203,1,4,0)
- ;;=4^I35.1
- ;;^UTILITY(U,$J,358.3,3203,2)
- ;;=^5007175
- ;;^UTILITY(U,$J,358.3,3204,0)
- ;;=I35.2^^28^249^12
- ;;^UTILITY(U,$J,358.3,3204,1,0)
+ ;;^UTILITY(U,$J,358.3,3465,1,3,0)
+ ;;=3^Osteochondrosis,Spinal,Unspec
+ ;;^UTILITY(U,$J,358.3,3465,1,4,0)
+ ;;=4^M42.9
+ ;;^UTILITY(U,$J,358.3,3465,2)
+ ;;=^5011910
+ ;;^UTILITY(U,$J,358.3,3466,0)
+ ;;=M89.50^^18^219^120
+ ;;^UTILITY(U,$J,358.3,3466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3204,1,3,0)
- ;;=3^Aortic Valve Stenosis w/ Insufficiency,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,3204,1,4,0)
- ;;=4^I35.2
- ;;^UTILITY(U,$J,358.3,3204,2)
- ;;=^5007176
- ;;^UTILITY(U,$J,358.3,3205,0)
- ;;=I35.0^^28^249^13
- ;;^UTILITY(U,$J,358.3,3205,1,0)
+ ;;^UTILITY(U,$J,358.3,3466,1,3,0)
+ ;;=3^Osteolysis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3466,1,4,0)
+ ;;=4^M89.50
+ ;;^UTILITY(U,$J,358.3,3466,2)
+ ;;=^5015037
+ ;;^UTILITY(U,$J,358.3,3467,0)
+ ;;=M83.9^^18^219^121
+ ;;^UTILITY(U,$J,358.3,3467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3205,1,3,0)
- ;;=3^Aortic Valve Stenosis,Nonrheumatic
- ;;^UTILITY(U,$J,358.3,3205,1,4,0)
- ;;=4^I35.0
- ;;^UTILITY(U,$J,358.3,3205,2)
- ;;=^5007174
- ;;^UTILITY(U,$J,358.3,3206,0)
- ;;=I35.9^^28^249^10
- ;;^UTILITY(U,$J,358.3,3206,1,0)
+ ;;^UTILITY(U,$J,358.3,3467,1,3,0)
+ ;;=3^Osteomalacia,Unspec
+ ;;^UTILITY(U,$J,358.3,3467,1,4,0)
+ ;;=4^M83.9
+ ;;^UTILITY(U,$J,358.3,3467,2)
+ ;;=^5013565
+ ;;^UTILITY(U,$J,358.3,3468,0)
+ ;;=M86.9^^18^219^122
+ ;;^UTILITY(U,$J,358.3,3468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3206,1,3,0)
- ;;=3^Aortic Valve Disorder,Nonrheumatic,Unspec
- ;;^UTILITY(U,$J,358.3,3206,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,3206,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,3207,0)
- ;;=I35.8^^28^249^9
- ;;^UTILITY(U,$J,358.3,3207,1,0)
+ ;;^UTILITY(U,$J,358.3,3468,1,3,0)
+ ;;=3^Osteomyelitis,Unspec
+ ;;^UTILITY(U,$J,358.3,3468,1,4,0)
+ ;;=4^M86.9
+ ;;^UTILITY(U,$J,358.3,3468,2)
+ ;;=^5014656
+ ;;^UTILITY(U,$J,358.3,3469,0)
+ ;;=M87.9^^18^219^123
+ ;;^UTILITY(U,$J,358.3,3469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3207,1,3,0)
- ;;=3^Aortic Valve Disorder,Nonrheumatic,Other
- ;;^UTILITY(U,$J,358.3,3207,1,4,0)
- ;;=4^I35.8
- ;;^UTILITY(U,$J,358.3,3207,2)
- ;;=^5007177
- ;;^UTILITY(U,$J,358.3,3208,0)
- ;;=I77.6^^28^249^14
- ;;^UTILITY(U,$J,358.3,3208,1,0)
+ ;;^UTILITY(U,$J,358.3,3469,1,3,0)
+ ;;=3^Osteonecrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3469,1,4,0)
+ ;;=4^M87.9
+ ;;^UTILITY(U,$J,358.3,3469,2)
+ ;;=^5014873
+ ;;^UTILITY(U,$J,358.3,3470,0)
+ ;;=M89.60^^18^219^124
+ ;;^UTILITY(U,$J,358.3,3470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3208,1,3,0)
- ;;=3^Arteritis,Unspec
- ;;^UTILITY(U,$J,358.3,3208,1,4,0)
- ;;=4^I77.6
- ;;^UTILITY(U,$J,358.3,3208,2)
- ;;=^5007813
- ;;^UTILITY(U,$J,358.3,3209,0)
- ;;=I25.810^^28^249^15
- ;;^UTILITY(U,$J,358.3,3209,1,0)
+ ;;^UTILITY(U,$J,358.3,3470,1,3,0)
+ ;;=3^Osteopathy after Poliomyelitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3470,1,4,0)
+ ;;=4^M89.60
+ ;;^UTILITY(U,$J,358.3,3470,2)
+ ;;=^5015061
+ ;;^UTILITY(U,$J,358.3,3471,0)
+ ;;=M90.80^^18^219^125
+ ;;^UTILITY(U,$J,358.3,3471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3209,1,3,0)
- ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,3209,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,3209,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,3210,0)
- ;;=I70.91^^28^249^16
- ;;^UTILITY(U,$J,358.3,3210,1,0)
+ ;;^UTILITY(U,$J,358.3,3471,1,3,0)
+ ;;=3^Osteopathy in Dieseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,3471,1,4,0)
+ ;;=4^M90.80
+ ;;^UTILITY(U,$J,358.3,3471,2)
+ ;;=^5015168
+ ;;^UTILITY(U,$J,358.3,3472,0)
+ ;;=M80.00XA^^18^219^127
+ ;;^UTILITY(U,$J,358.3,3472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3210,1,3,0)
- ;;=3^Atherosclerosis,Generalized
- ;;^UTILITY(U,$J,358.3,3210,1,4,0)
- ;;=4^I70.91
- ;;^UTILITY(U,$J,358.3,3210,2)
- ;;=^5007785
- ;;^UTILITY(U,$J,358.3,3211,0)
- ;;=I70.90^^28^249^17
- ;;^UTILITY(U,$J,358.3,3211,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3472,1,3,0)
+ ;;=3^Osteoporosis,Age-Related Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,3472,1,4,0)
+ ;;=4^M80.00XA

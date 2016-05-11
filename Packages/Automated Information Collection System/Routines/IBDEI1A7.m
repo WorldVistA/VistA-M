@@ -1,126 +1,140 @@
-IBDEI1A7 ; ; 19-NOV-2015
+IBDEI1A7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21419,1,0)
+ ;;^UTILITY(U,$J,358.3,21794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21419,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left ank/ft
- ;;^UTILITY(U,$J,358.3,21419,1,4,0)
- ;;=4^M05.572
- ;;^UTILITY(U,$J,358.3,21419,2)
- ;;=^5009974
- ;;^UTILITY(U,$J,358.3,21420,0)
- ;;=M05.522^^101^1030^110
- ;;^UTILITY(U,$J,358.3,21420,1,0)
+ ;;^UTILITY(U,$J,358.3,21794,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
+ ;;^UTILITY(U,$J,358.3,21794,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,21794,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,21795,0)
+ ;;=L27.1^^87^970^266
+ ;;^UTILITY(U,$J,358.3,21795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21420,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left elbow
- ;;^UTILITY(U,$J,358.3,21420,1,4,0)
- ;;=4^M05.522
- ;;^UTILITY(U,$J,358.3,21420,2)
- ;;=^5009959
- ;;^UTILITY(U,$J,358.3,21421,0)
- ;;=M05.542^^101^1030^111
- ;;^UTILITY(U,$J,358.3,21421,1,0)
+ ;;^UTILITY(U,$J,358.3,21795,1,3,0)
+ ;;=3^Skin Eruption d/t Drugs/Meds,Localized
+ ;;^UTILITY(U,$J,358.3,21795,1,4,0)
+ ;;=4^L27.1
+ ;;^UTILITY(U,$J,358.3,21795,2)
+ ;;=^5009145
+ ;;^UTILITY(U,$J,358.3,21796,0)
+ ;;=L29.0^^87^970^250
+ ;;^UTILITY(U,$J,358.3,21796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21421,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hand 
- ;;^UTILITY(U,$J,358.3,21421,1,4,0)
- ;;=4^M05.542
- ;;^UTILITY(U,$J,358.3,21421,2)
- ;;=^5009965
- ;;^UTILITY(U,$J,358.3,21422,0)
- ;;=M05.552^^101^1030^112
- ;;^UTILITY(U,$J,358.3,21422,1,0)
+ ;;^UTILITY(U,$J,358.3,21796,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,21796,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,21796,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,21797,0)
+ ;;=L29.9^^87^970^251
+ ;;^UTILITY(U,$J,358.3,21797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21422,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left hip
- ;;^UTILITY(U,$J,358.3,21422,1,4,0)
- ;;=4^M05.552
- ;;^UTILITY(U,$J,358.3,21422,2)
- ;;=^5009968
- ;;^UTILITY(U,$J,358.3,21423,0)
- ;;=M05.562^^101^1030^113
- ;;^UTILITY(U,$J,358.3,21423,1,0)
+ ;;^UTILITY(U,$J,358.3,21797,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,21797,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,21797,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,21798,0)
+ ;;=L30.0^^87^970^232
+ ;;^UTILITY(U,$J,358.3,21798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21423,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left knee 
- ;;^UTILITY(U,$J,358.3,21423,1,4,0)
- ;;=4^M05.562
- ;;^UTILITY(U,$J,358.3,21423,2)
- ;;=^5009971
- ;;^UTILITY(U,$J,358.3,21424,0)
- ;;=M05.512^^101^1030^114
- ;;^UTILITY(U,$J,358.3,21424,1,0)
+ ;;^UTILITY(U,$J,358.3,21798,1,3,0)
+ ;;=3^Nummular Dermatitis
+ ;;^UTILITY(U,$J,358.3,21798,1,4,0)
+ ;;=4^L30.0
+ ;;^UTILITY(U,$J,358.3,21798,2)
+ ;;=^186823
+ ;;^UTILITY(U,$J,358.3,21799,0)
+ ;;=L30.1^^87^970^140
+ ;;^UTILITY(U,$J,358.3,21799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21424,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left shoulder 
- ;;^UTILITY(U,$J,358.3,21424,1,4,0)
- ;;=4^M05.512
- ;;^UTILITY(U,$J,358.3,21424,2)
- ;;=^5009956
- ;;^UTILITY(U,$J,358.3,21425,0)
- ;;=M05.532^^101^1030^115
- ;;^UTILITY(U,$J,358.3,21425,1,0)
+ ;;^UTILITY(U,$J,358.3,21799,1,3,0)
+ ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,21799,1,4,0)
+ ;;=4^L30.1
+ ;;^UTILITY(U,$J,358.3,21799,2)
+ ;;=^5009154
+ ;;^UTILITY(U,$J,358.3,21800,0)
+ ;;=L30.2^^87^970^132
+ ;;^UTILITY(U,$J,358.3,21800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21425,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of left wrist
- ;;^UTILITY(U,$J,358.3,21425,1,4,0)
- ;;=4^M05.532
- ;;^UTILITY(U,$J,358.3,21425,2)
- ;;=^5009962
- ;;^UTILITY(U,$J,358.3,21426,0)
- ;;=M05.59^^101^1030^108
- ;;^UTILITY(U,$J,358.3,21426,1,0)
+ ;;^UTILITY(U,$J,358.3,21800,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,21800,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,21800,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,21801,0)
+ ;;=L30.4^^87^970^144
+ ;;^UTILITY(U,$J,358.3,21801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21426,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit mult sites 
- ;;^UTILITY(U,$J,358.3,21426,1,4,0)
- ;;=4^M05.59
- ;;^UTILITY(U,$J,358.3,21426,2)
- ;;=^5009976
- ;;^UTILITY(U,$J,358.3,21427,0)
- ;;=M05.571^^101^1030^116
- ;;^UTILITY(U,$J,358.3,21427,1,0)
+ ;;^UTILITY(U,$J,358.3,21801,1,3,0)
+ ;;=3^Erythema Intertrigo
+ ;;^UTILITY(U,$J,358.3,21801,1,4,0)
+ ;;=4^L30.4
+ ;;^UTILITY(U,$J,358.3,21801,2)
+ ;;=^5009157
+ ;;^UTILITY(U,$J,358.3,21802,0)
+ ;;=L30.8^^87^970^135
+ ;;^UTILITY(U,$J,358.3,21802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21427,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right ank/ft
- ;;^UTILITY(U,$J,358.3,21427,1,4,0)
- ;;=4^M05.571
- ;;^UTILITY(U,$J,358.3,21427,2)
- ;;=^5009973
- ;;^UTILITY(U,$J,358.3,21428,0)
- ;;=M05.521^^101^1030^117
- ;;^UTILITY(U,$J,358.3,21428,1,0)
+ ;;^UTILITY(U,$J,358.3,21802,1,3,0)
+ ;;=3^Dermatitis NEC
+ ;;^UTILITY(U,$J,358.3,21802,1,4,0)
+ ;;=4^L30.8
+ ;;^UTILITY(U,$J,358.3,21802,2)
+ ;;=^5009158
+ ;;^UTILITY(U,$J,358.3,21803,0)
+ ;;=L30.9^^87^970^136
+ ;;^UTILITY(U,$J,358.3,21803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21428,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right elbow 
- ;;^UTILITY(U,$J,358.3,21428,1,4,0)
- ;;=4^M05.521
- ;;^UTILITY(U,$J,358.3,21428,2)
- ;;=^5009958
- ;;^UTILITY(U,$J,358.3,21429,0)
- ;;=M05.541^^101^1030^118
- ;;^UTILITY(U,$J,358.3,21429,1,0)
+ ;;^UTILITY(U,$J,358.3,21803,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21803,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,21803,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,21804,0)
+ ;;=L40.0^^87^970^253
+ ;;^UTILITY(U,$J,358.3,21804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21429,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right hand 
- ;;^UTILITY(U,$J,358.3,21429,1,4,0)
- ;;=4^M05.541
- ;;^UTILITY(U,$J,358.3,21429,2)
- ;;=^5009964
- ;;^UTILITY(U,$J,358.3,21430,0)
- ;;=M05.551^^101^1030^119
- ;;^UTILITY(U,$J,358.3,21430,1,0)
+ ;;^UTILITY(U,$J,358.3,21804,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,21804,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,21804,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,21805,0)
+ ;;=L40.1^^87^970^256
+ ;;^UTILITY(U,$J,358.3,21805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21430,1,3,0)
- ;;=3^Rheu polyneurop w rheu arthrit of right hip 
- ;;^UTILITY(U,$J,358.3,21430,1,4,0)
- ;;=4^M05.551
- ;;^UTILITY(U,$J,358.3,21430,2)
- ;;=^5009967
- ;;^UTILITY(U,$J,358.3,21431,0)
- ;;=M05.561^^101^1030^120
- ;;^UTILITY(U,$J,358.3,21431,1,0)
+ ;;^UTILITY(U,$J,358.3,21805,1,3,0)
+ ;;=3^Pustulosis Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,21805,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,21805,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,21806,0)
+ ;;=L40.2^^87^970^11
+ ;;^UTILITY(U,$J,358.3,21806,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21806,1,3,0)
+ ;;=3^Acrodermatitis Continua
+ ;;^UTILITY(U,$J,358.3,21806,1,4,0)
+ ;;=4^L40.2
+ ;;^UTILITY(U,$J,358.3,21806,2)
+ ;;=^5009162
+ ;;^UTILITY(U,$J,358.3,21807,0)
+ ;;=L40.3^^87^970^255
+ ;;^UTILITY(U,$J,358.3,21807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21807,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,21807,1,4,0)
+ ;;=4^L40.3

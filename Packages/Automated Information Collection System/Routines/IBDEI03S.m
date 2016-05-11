@@ -1,142 +1,136 @@
-IBDEI03S ; ; 19-NOV-2015
+IBDEI03S ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1062,1,4,0)
- ;;=4^E78.4
- ;;^UTILITY(U,$J,358.3,1062,2)
- ;;=^5002968
- ;;^UTILITY(U,$J,358.3,1063,0)
- ;;=E87.1^^12^126^27
- ;;^UTILITY(U,$J,358.3,1063,1,0)
+ ;;^UTILITY(U,$J,358.3,1343,1,3,0)
+ ;;=3^Noise effects on right inner ear
+ ;;^UTILITY(U,$J,358.3,1343,1,4,0)
+ ;;=4^H83.3X1
+ ;;^UTILITY(U,$J,358.3,1343,2)
+ ;;=^5006906
+ ;;^UTILITY(U,$J,358.3,1344,0)
+ ;;=H83.3X2^^8^133^2
+ ;;^UTILITY(U,$J,358.3,1344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1063,1,3,0)
- ;;=3^Hypo-osmolatlity & Hyponatremia
- ;;^UTILITY(U,$J,358.3,1063,1,4,0)
- ;;=4^E87.1
- ;;^UTILITY(U,$J,358.3,1063,2)
- ;;=^5003019
- ;;^UTILITY(U,$J,358.3,1064,0)
- ;;=E87.5^^12^126^24
- ;;^UTILITY(U,$J,358.3,1064,1,0)
+ ;;^UTILITY(U,$J,358.3,1344,1,3,0)
+ ;;=3^Noise effects on left inner ear
+ ;;^UTILITY(U,$J,358.3,1344,1,4,0)
+ ;;=4^H83.3X2
+ ;;^UTILITY(U,$J,358.3,1344,2)
+ ;;=^5006907
+ ;;^UTILITY(U,$J,358.3,1345,0)
+ ;;=H83.3X3^^8^133^1
+ ;;^UTILITY(U,$J,358.3,1345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1064,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,1064,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,1064,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,1065,0)
- ;;=E87.6^^12^126^29
- ;;^UTILITY(U,$J,358.3,1065,1,0)
+ ;;^UTILITY(U,$J,358.3,1345,1,3,0)
+ ;;=3^Noise effects on bilateral inner ear
+ ;;^UTILITY(U,$J,358.3,1345,1,4,0)
+ ;;=4^H83.3X3
+ ;;^UTILITY(U,$J,358.3,1345,2)
+ ;;=^5006908
+ ;;^UTILITY(U,$J,358.3,1346,0)
+ ;;=H55.01^^8^134^1
+ ;;^UTILITY(U,$J,358.3,1346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1065,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,1065,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,1065,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,1066,0)
- ;;=G81.90^^12^126^10
- ;;^UTILITY(U,$J,358.3,1066,1,0)
+ ;;^UTILITY(U,$J,358.3,1346,1,3,0)
+ ;;=3^Congenital nystagmus
+ ;;^UTILITY(U,$J,358.3,1346,1,4,0)
+ ;;=4^H55.01
+ ;;^UTILITY(U,$J,358.3,1346,2)
+ ;;=^5006371
+ ;;^UTILITY(U,$J,358.3,1347,0)
+ ;;=H55.04^^8^134^2
+ ;;^UTILITY(U,$J,358.3,1347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1066,1,3,0)
- ;;=3^Hemiplegia,Unspec
- ;;^UTILITY(U,$J,358.3,1066,1,4,0)
- ;;=4^G81.90
- ;;^UTILITY(U,$J,358.3,1066,2)
- ;;=^5004120
- ;;^UTILITY(U,$J,358.3,1067,0)
- ;;=G81.91^^12^126^9
- ;;^UTILITY(U,$J,358.3,1067,1,0)
+ ;;^UTILITY(U,$J,358.3,1347,1,3,0)
+ ;;=3^Dissociated nystagmus
+ ;;^UTILITY(U,$J,358.3,1347,1,4,0)
+ ;;=4^H55.04
+ ;;^UTILITY(U,$J,358.3,1347,2)
+ ;;=^269325
+ ;;^UTILITY(U,$J,358.3,1348,0)
+ ;;=H55.02^^8^134^3
+ ;;^UTILITY(U,$J,358.3,1348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1067,1,3,0)
- ;;=3^Hemiplegia Affecting Right Dominant Side
- ;;^UTILITY(U,$J,358.3,1067,1,4,0)
- ;;=4^G81.91
- ;;^UTILITY(U,$J,358.3,1067,2)
- ;;=^5004121
- ;;^UTILITY(U,$J,358.3,1068,0)
- ;;=G81.92^^12^126^8
- ;;^UTILITY(U,$J,358.3,1068,1,0)
+ ;;^UTILITY(U,$J,358.3,1348,1,3,0)
+ ;;=3^Latent nystagmus
+ ;;^UTILITY(U,$J,358.3,1348,1,4,0)
+ ;;=4^H55.02
+ ;;^UTILITY(U,$J,358.3,1348,2)
+ ;;=^5006372
+ ;;^UTILITY(U,$J,358.3,1349,0)
+ ;;=H55.09^^8^134^4
+ ;;^UTILITY(U,$J,358.3,1349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1068,1,3,0)
- ;;=3^Hemiplegia Affecting Left Dominant Side
- ;;^UTILITY(U,$J,358.3,1068,1,4,0)
- ;;=4^G81.92
- ;;^UTILITY(U,$J,358.3,1068,2)
- ;;=^5004122
- ;;^UTILITY(U,$J,358.3,1069,0)
- ;;=H91.91^^12^126^6
- ;;^UTILITY(U,$J,358.3,1069,1,0)
+ ;;^UTILITY(U,$J,358.3,1349,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,1349,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,1349,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,1350,0)
+ ;;=H55.81^^8^134^5
+ ;;^UTILITY(U,$J,358.3,1350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1069,1,3,0)
- ;;=3^Hearing Loss,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,1069,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,1069,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,1070,0)
- ;;=H91.92^^12^126^5
- ;;^UTILITY(U,$J,358.3,1070,1,0)
+ ;;^UTILITY(U,$J,358.3,1350,1,3,0)
+ ;;=3^Saccadic eye movements
+ ;;^UTILITY(U,$J,358.3,1350,1,4,0)
+ ;;=4^H55.81
+ ;;^UTILITY(U,$J,358.3,1350,2)
+ ;;=^5006373
+ ;;^UTILITY(U,$J,358.3,1351,0)
+ ;;=H55.03^^8^134^6
+ ;;^UTILITY(U,$J,358.3,1351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1070,1,3,0)
- ;;=3^Hearing Loss,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,1070,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,1070,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,1071,0)
- ;;=H91.93^^12^126^4
- ;;^UTILITY(U,$J,358.3,1071,1,0)
+ ;;^UTILITY(U,$J,358.3,1351,1,3,0)
+ ;;=3^Visual deprivation nystagmus
+ ;;^UTILITY(U,$J,358.3,1351,1,4,0)
+ ;;=4^H55.03
+ ;;^UTILITY(U,$J,358.3,1351,2)
+ ;;=^269322
+ ;;^UTILITY(U,$J,358.3,1352,0)
+ ;;=T36.5X5A^^8^135^1
+ ;;^UTILITY(U,$J,358.3,1352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1071,1,3,0)
- ;;=3^Hearing Loss,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,1071,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,1071,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,1072,0)
- ;;=I10.^^12^126^2
- ;;^UTILITY(U,$J,358.3,1072,1,0)
+ ;;^UTILITY(U,$J,358.3,1352,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, initial encounter
+ ;;^UTILITY(U,$J,358.3,1352,1,4,0)
+ ;;=4^T36.5X5A
+ ;;^UTILITY(U,$J,358.3,1352,2)
+ ;;=^5049358
+ ;;^UTILITY(U,$J,358.3,1353,0)
+ ;;=T36.5X5S^^8^135^2
+ ;;^UTILITY(U,$J,358.3,1353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1072,1,3,0)
- ;;=3^HTN,Essential
- ;;^UTILITY(U,$J,358.3,1072,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,1072,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,1073,0)
- ;;=K64.8^^12^126^14
- ;;^UTILITY(U,$J,358.3,1073,1,0)
+ ;;^UTILITY(U,$J,358.3,1353,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, sequela
+ ;;^UTILITY(U,$J,358.3,1353,1,4,0)
+ ;;=4^T36.5X5S
+ ;;^UTILITY(U,$J,358.3,1353,2)
+ ;;=^5049360
+ ;;^UTILITY(U,$J,358.3,1354,0)
+ ;;=T36.5X5D^^8^135^3
+ ;;^UTILITY(U,$J,358.3,1354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1073,1,3,0)
- ;;=3^Hemorrhoids,Other
- ;;^UTILITY(U,$J,358.3,1073,1,4,0)
- ;;=4^K64.8
- ;;^UTILITY(U,$J,358.3,1073,2)
- ;;=^5008774
- ;;^UTILITY(U,$J,358.3,1074,0)
- ;;=K64.4^^12^126^13
- ;;^UTILITY(U,$J,358.3,1074,1,0)
+ ;;^UTILITY(U,$J,358.3,1354,1,3,0)
+ ;;=3^Adverse effect of aminoglycosides, subsequent encounter
+ ;;^UTILITY(U,$J,358.3,1354,1,4,0)
+ ;;=4^T36.5X5D
+ ;;^UTILITY(U,$J,358.3,1354,2)
+ ;;=^5049359
+ ;;^UTILITY(U,$J,358.3,1355,0)
+ ;;=T45.1X5A^^8^135^5
+ ;;^UTILITY(U,$J,358.3,1355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1074,1,3,0)
- ;;=3^Hemorrhoidal Skin Tags,Residual
- ;;^UTILITY(U,$J,358.3,1074,1,4,0)
- ;;=4^K64.4
- ;;^UTILITY(U,$J,358.3,1074,2)
- ;;=^269834
- ;;^UTILITY(U,$J,358.3,1075,0)
- ;;=I95.9^^12^126^30
- ;;^UTILITY(U,$J,358.3,1075,1,0)
+ ;;^UTILITY(U,$J,358.3,1355,1,3,0)
+ ;;=3^Adverse effect of antineoplastic and immunosup drugs, init
+ ;;^UTILITY(U,$J,358.3,1355,1,4,0)
+ ;;=4^T45.1X5A
+ ;;^UTILITY(U,$J,358.3,1355,2)
+ ;;=^5051026
+ ;;^UTILITY(U,$J,358.3,1356,0)
+ ;;=T45.1X5D^^8^135^6
+ ;;^UTILITY(U,$J,358.3,1356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1075,1,3,0)
- ;;=3^Hypotension,Unspec
- ;;^UTILITY(U,$J,358.3,1075,1,4,0)
- ;;=4^I95.9
- ;;^UTILITY(U,$J,358.3,1075,2)
- ;;=^5008080
- ;;^UTILITY(U,$J,358.3,1076,0)
- ;;=K73.9^^12^126^19
- ;;^UTILITY(U,$J,358.3,1076,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1356,1,3,0)
+ ;;=3^Adverse effect of antineoplastic and immunosup drugs, subs

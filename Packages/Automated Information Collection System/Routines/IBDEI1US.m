@@ -1,130 +1,122 @@
-IBDEI1US ; ; 19-NOV-2015
+IBDEI1US ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31026,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31026,1,3,0)
- ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
- ;;^UTILITY(U,$J,358.3,31026,1,4,0)
- ;;=4^R92.8
- ;;^UTILITY(U,$J,358.3,31026,2)
- ;;=^5019712
- ;;^UTILITY(U,$J,358.3,31027,0)
- ;;=R87.619^^135^1388^1
- ;;^UTILITY(U,$J,358.3,31027,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31027,1,3,0)
- ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
- ;;^UTILITY(U,$J,358.3,31027,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,31027,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,31028,0)
- ;;=Z79.890^^135^1388^26
- ;;^UTILITY(U,$J,358.3,31028,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31028,1,3,0)
- ;;=3^Hormone Replacement Therapy,Postmenopausal
- ;;^UTILITY(U,$J,358.3,31028,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,31028,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,31029,0)
- ;;=Z33.1^^135^1388^50
- ;;^UTILITY(U,$J,358.3,31029,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31029,1,3,0)
- ;;=3^Pregnant State,Incidental
- ;;^UTILITY(U,$J,358.3,31029,1,4,0)
- ;;=4^Z33.1
- ;;^UTILITY(U,$J,358.3,31029,2)
- ;;=^5062853
- ;;^UTILITY(U,$J,358.3,31030,0)
- ;;=Z39.2^^135^1388^49
- ;;^UTILITY(U,$J,358.3,31030,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31030,1,3,0)
- ;;=3^Postpartum Follow-up Routine Encounter
- ;;^UTILITY(U,$J,358.3,31030,1,4,0)
- ;;=4^Z39.2
- ;;^UTILITY(U,$J,358.3,31030,2)
- ;;=^5062906
- ;;^UTILITY(U,$J,358.3,31031,0)
- ;;=Z30.09^^135^1388^10
- ;;^UTILITY(U,$J,358.3,31031,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31031,1,3,0)
- ;;=3^Counsel/Advice on Contraception Encounter
- ;;^UTILITY(U,$J,358.3,31031,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,31031,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,31032,0)
- ;;=Z30.9^^135^1388^9
- ;;^UTILITY(U,$J,358.3,31032,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31032,1,3,0)
- ;;=3^Contraceptive Management Encounter
- ;;^UTILITY(U,$J,358.3,31032,1,4,0)
- ;;=4^Z30.9
- ;;^UTILITY(U,$J,358.3,31032,2)
- ;;=^5062828
- ;;^UTILITY(U,$J,358.3,31033,0)
- ;;=N64.3^^135^1388^23
- ;;^UTILITY(U,$J,358.3,31033,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31033,1,3,0)
- ;;=3^Galactorrhea Not Associated w/ Childbirth
- ;;^UTILITY(U,$J,358.3,31033,1,4,0)
- ;;=4^N64.3
- ;;^UTILITY(U,$J,358.3,31033,2)
- ;;=^270460
- ;;^UTILITY(U,$J,358.3,31034,0)
- ;;=R92.2^^135^1388^27
- ;;^UTILITY(U,$J,358.3,31034,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31034,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,31034,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,31034,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,31035,0)
- ;;=Z30.432^^135^1388^53
- ;;^UTILITY(U,$J,358.3,31035,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31035,1,3,0)
- ;;=3^Removal of IUD
- ;;^UTILITY(U,$J,358.3,31035,1,4,0)
- ;;=4^Z30.432
- ;;^UTILITY(U,$J,358.3,31035,2)
- ;;=^5062824
- ;;^UTILITY(U,$J,358.3,31036,0)
- ;;=S31.000A^^135^1389^5
- ;;^UTILITY(U,$J,358.3,31036,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31036,1,3,0)
- ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
- ;;^UTILITY(U,$J,358.3,31036,1,4,0)
- ;;=4^S31.000A
- ;;^UTILITY(U,$J,358.3,31036,2)
- ;;=^5023993
- ;;^UTILITY(U,$J,358.3,31037,0)
- ;;=S31.010A^^135^1389^2
- ;;^UTILITY(U,$J,358.3,31037,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31037,1,3,0)
- ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
- ;;^UTILITY(U,$J,358.3,31037,1,4,0)
- ;;=4^S31.010A
- ;;^UTILITY(U,$J,358.3,31037,2)
- ;;=^5023999
- ;;^UTILITY(U,$J,358.3,31038,0)
- ;;=T07.^^135^1389^4
- ;;^UTILITY(U,$J,358.3,31038,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31038,1,3,0)
- ;;=3^Multiple Injuries,Unspec
- ;;^UTILITY(U,$J,358.3,31038,1,4,0)
- ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,31482,0)
+ ;;=29904^^125^1594^6^^^^1
+ ;;^UTILITY(U,$J,358.3,31482,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31482,1,2,0)
+ ;;=2^Arthroscopy,subtalar jt,w/rem of foreign body
+ ;;^UTILITY(U,$J,358.3,31482,1,3,0)
+ ;;=3^29904
+ ;;^UTILITY(U,$J,358.3,31483,0)
+ ;;=29905^^125^1594^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31483,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31483,1,2,0)
+ ;;=2^Arthroscopy,subtalar jt,w/ Synovectomy
+ ;;^UTILITY(U,$J,358.3,31483,1,3,0)
+ ;;=3^29905
+ ;;^UTILITY(U,$J,358.3,31484,0)
+ ;;=29906^^125^1594^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31484,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31484,1,2,0)
+ ;;=2^Arthroscopy, subtalar jt,w/ debridement
+ ;;^UTILITY(U,$J,358.3,31484,1,3,0)
+ ;;=3^29906
+ ;;^UTILITY(U,$J,358.3,31485,0)
+ ;;=29907^^125^1594^7^^^^1
+ ;;^UTILITY(U,$J,358.3,31485,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31485,1,2,0)
+ ;;=2^Arthroscopy,subtalar w/ fusion
+ ;;^UTILITY(U,$J,358.3,31485,1,3,0)
+ ;;=3^29907
+ ;;^UTILITY(U,$J,358.3,31486,0)
+ ;;=97605^^125^1594^16^^^^1
+ ;;^UTILITY(U,$J,358.3,31486,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31486,1,2,0)
+ ;;=2^Neg Press Wound Tx <= 50 cm
+ ;;^UTILITY(U,$J,358.3,31486,1,3,0)
+ ;;=3^97605
+ ;;^UTILITY(U,$J,358.3,31487,0)
+ ;;=97606^^125^1594^17^^^^1
+ ;;^UTILITY(U,$J,358.3,31487,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31487,1,2,0)
+ ;;=2^Neg Press Wound Tx > 50 cm
+ ;;^UTILITY(U,$J,358.3,31487,1,3,0)
+ ;;=3^97606
+ ;;^UTILITY(U,$J,358.3,31488,0)
+ ;;=2028F^^125^1594^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31488,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31488,1,2,0)
+ ;;=2^Foot Exam Performed
+ ;;^UTILITY(U,$J,358.3,31488,1,3,0)
+ ;;=3^2028F
+ ;;^UTILITY(U,$J,358.3,31489,0)
+ ;;=G8883^^125^1594^9^^^^1
+ ;;^UTILITY(U,$J,358.3,31489,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31489,1,2,0)
+ ;;=2^Bx Result RVW,Comm,Tracked
+ ;;^UTILITY(U,$J,358.3,31489,1,3,0)
+ ;;=3^G8883
+ ;;^UTILITY(U,$J,358.3,31490,0)
+ ;;=S0395^^125^1594^13^^^^1
+ ;;^UTILITY(U,$J,358.3,31490,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31490,1,2,0)
+ ;;=2^Impression Cast
+ ;;^UTILITY(U,$J,358.3,31490,1,3,0)
+ ;;=3^S0395
+ ;;^UTILITY(U,$J,358.3,31491,0)
+ ;;=E2402^^125^1594^15^^^^1
+ ;;^UTILITY(U,$J,358.3,31491,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31491,1,2,0)
+ ;;=2^Neg Press Wound Therapy Pump
+ ;;^UTILITY(U,$J,358.3,31491,1,3,0)
+ ;;=3^E2402
+ ;;^UTILITY(U,$J,358.3,31492,0)
+ ;;=28400^^125^1595^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31492,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31492,1,2,0)
+ ;;=2^Closed TX of calcaneal fracture; without manipulation
+ ;;^UTILITY(U,$J,358.3,31492,1,3,0)
+ ;;=3^28400
+ ;;^UTILITY(U,$J,358.3,31493,0)
+ ;;=28405^^125^1595^3^^^^1
+ ;;^UTILITY(U,$J,358.3,31493,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31493,1,2,0)
+ ;;=2^Closed TX of calcaneal fracture; with manipulation
+ ;;^UTILITY(U,$J,358.3,31493,1,3,0)
+ ;;=3^28405
+ ;;^UTILITY(U,$J,358.3,31494,0)
+ ;;=28406^^125^1595^66^^^^1
+ ;;^UTILITY(U,$J,358.3,31494,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31494,1,2,0)
+ ;;=2^Perc Fixation of Calcaneous Fx
+ ;;^UTILITY(U,$J,358.3,31494,1,3,0)
+ ;;=3^28406
+ ;;^UTILITY(U,$J,358.3,31495,0)
+ ;;=28415^^125^1595^34^^^^1
+ ;;^UTILITY(U,$J,358.3,31495,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31495,1,2,0)
+ ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation;
+ ;;^UTILITY(U,$J,358.3,31495,1,3,0)
+ ;;=3^28415
+ ;;^UTILITY(U,$J,358.3,31496,0)
+ ;;=28420^^125^1595^35^^^^1
+ ;;^UTILITY(U,$J,358.3,31496,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31496,1,2,0)
+ ;;=2^Open TX of calcaneal fracture, with or without internal or external fixation; with primary iliac or other autogenous bone graft

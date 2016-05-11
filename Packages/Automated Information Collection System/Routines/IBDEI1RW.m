@@ -1,134 +1,136 @@
-IBDEI1RW ; ; 19-NOV-2015
+IBDEI1RW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29683,1,3,0)
- ;;=3^Polyp of Colon
- ;;^UTILITY(U,$J,358.3,29683,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,29683,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,29684,0)
- ;;=D12.3^^135^1367^17
- ;;^UTILITY(U,$J,358.3,29684,1,0)
+ ;;^UTILITY(U,$J,358.3,30134,2)
+ ;;=^5000916
+ ;;^UTILITY(U,$J,358.3,30135,0)
+ ;;=D57.40^^118^1501^15
+ ;;^UTILITY(U,$J,358.3,30135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29684,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,29684,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,29684,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,29685,0)
- ;;=D12.2^^135^1367^11
- ;;^UTILITY(U,$J,358.3,29685,1,0)
+ ;;^UTILITY(U,$J,358.3,30135,1,3,0)
+ ;;=3^Sickle-cell thalassemia without crisis
+ ;;^UTILITY(U,$J,358.3,30135,1,4,0)
+ ;;=4^D57.40
+ ;;^UTILITY(U,$J,358.3,30135,2)
+ ;;=^329908
+ ;;^UTILITY(U,$J,358.3,30136,0)
+ ;;=D57.419^^118^1501^14
+ ;;^UTILITY(U,$J,358.3,30136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29685,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,29685,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,29685,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,29686,0)
- ;;=D12.5^^135^1367^16
- ;;^UTILITY(U,$J,358.3,29686,1,0)
+ ;;^UTILITY(U,$J,358.3,30136,1,3,0)
+ ;;=3^Sickle-cell thalassemia with crisis, unspecified
+ ;;^UTILITY(U,$J,358.3,30136,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,30136,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,30137,0)
+ ;;=D56.0^^118^1501^1
+ ;;^UTILITY(U,$J,358.3,30137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29686,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,29686,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,29686,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,29687,0)
- ;;=D12.4^^135^1367^14
- ;;^UTILITY(U,$J,358.3,29687,1,0)
+ ;;^UTILITY(U,$J,358.3,30137,1,3,0)
+ ;;=3^Alpha thalassemia
+ ;;^UTILITY(U,$J,358.3,30137,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,30137,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,30138,0)
+ ;;=D56.1^^118^1501^2
+ ;;^UTILITY(U,$J,358.3,30138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29687,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,29687,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,29687,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,29688,0)
- ;;=D73.2^^135^1367^19
- ;;^UTILITY(U,$J,358.3,29688,1,0)
+ ;;^UTILITY(U,$J,358.3,30138,1,3,0)
+ ;;=3^Beta thalassemia
+ ;;^UTILITY(U,$J,358.3,30138,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,30138,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,30139,0)
+ ;;=D56.2^^118^1501^3
+ ;;^UTILITY(U,$J,358.3,30139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29688,1,3,0)
- ;;=3^Congestive Splenomegaly,Chronic
- ;;^UTILITY(U,$J,358.3,29688,1,4,0)
- ;;=4^D73.2
- ;;^UTILITY(U,$J,358.3,29688,2)
- ;;=^268000
- ;;^UTILITY(U,$J,358.3,29689,0)
- ;;=I85.00^^135^1367^46
- ;;^UTILITY(U,$J,358.3,29689,1,0)
+ ;;^UTILITY(U,$J,358.3,30139,1,3,0)
+ ;;=3^Delta-beta thalassemia
+ ;;^UTILITY(U,$J,358.3,30139,1,4,0)
+ ;;=4^D56.2
+ ;;^UTILITY(U,$J,358.3,30139,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,30140,0)
+ ;;=D56.3^^118^1501^18
+ ;;^UTILITY(U,$J,358.3,30140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29689,1,3,0)
- ;;=3^Esophageal Varices w/o Bleeding
- ;;^UTILITY(U,$J,358.3,29689,1,4,0)
- ;;=4^I85.00
- ;;^UTILITY(U,$J,358.3,29689,2)
- ;;=^5008023
- ;;^UTILITY(U,$J,358.3,29690,0)
- ;;=K20.9^^135^1367^47
- ;;^UTILITY(U,$J,358.3,29690,1,0)
+ ;;^UTILITY(U,$J,358.3,30140,1,3,0)
+ ;;=3^Thalassemia minor
+ ;;^UTILITY(U,$J,358.3,30140,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,30140,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,30141,0)
+ ;;=D56.5^^118^1501^7
+ ;;^UTILITY(U,$J,358.3,30141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29690,1,3,0)
- ;;=3^Esophagitis,Unspec
- ;;^UTILITY(U,$J,358.3,29690,1,4,0)
- ;;=4^K20.9
- ;;^UTILITY(U,$J,358.3,29690,2)
- ;;=^295809
- ;;^UTILITY(U,$J,358.3,29691,0)
- ;;=K21.9^^135^1367^55
- ;;^UTILITY(U,$J,358.3,29691,1,0)
+ ;;^UTILITY(U,$J,358.3,30141,1,3,0)
+ ;;=3^Hemoglobin E-beta thalassemia
+ ;;^UTILITY(U,$J,358.3,30141,1,4,0)
+ ;;=4^D56.5
+ ;;^UTILITY(U,$J,358.3,30141,2)
+ ;;=^340498
+ ;;^UTILITY(U,$J,358.3,30142,0)
+ ;;=D56.8^^118^1501^19
+ ;;^UTILITY(U,$J,358.3,30142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29691,1,3,0)
- ;;=3^Gastroesophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,29691,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,29691,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,29692,0)
- ;;=K25.7^^135^1367^50
- ;;^UTILITY(U,$J,358.3,29692,1,0)
+ ;;^UTILITY(U,$J,358.3,30142,1,3,0)
+ ;;=3^Thalassemias NEC
+ ;;^UTILITY(U,$J,358.3,30142,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,30142,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,30143,0)
+ ;;=D57.3^^118^1501^16
+ ;;^UTILITY(U,$J,358.3,30143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29692,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation,Chronic
- ;;^UTILITY(U,$J,358.3,29692,1,4,0)
- ;;=4^K25.7
- ;;^UTILITY(U,$J,358.3,29692,2)
- ;;=^5008521
- ;;^UTILITY(U,$J,358.3,29693,0)
- ;;=K26.9^^135^1367^44
- ;;^UTILITY(U,$J,358.3,29693,1,0)
+ ;;^UTILITY(U,$J,358.3,30143,1,3,0)
+ ;;=3^Sickle-cell trait
+ ;;^UTILITY(U,$J,358.3,30143,1,4,0)
+ ;;=4^D57.3
+ ;;^UTILITY(U,$J,358.3,30143,2)
+ ;;=^5002313
+ ;;^UTILITY(U,$J,358.3,30144,0)
+ ;;=D57.1^^118^1501^13
+ ;;^UTILITY(U,$J,358.3,30144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29693,1,3,0)
- ;;=3^Duadenal Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,29693,1,4,0)
- ;;=4^K26.9
- ;;^UTILITY(U,$J,358.3,29693,2)
- ;;=^5008527
- ;;^UTILITY(U,$J,358.3,29694,0)
- ;;=K27.9^^135^1367^72
- ;;^UTILITY(U,$J,358.3,29694,1,0)
+ ;;^UTILITY(U,$J,358.3,30144,1,3,0)
+ ;;=3^Sickle-cell disease without crisis
+ ;;^UTILITY(U,$J,358.3,30144,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,30144,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,30145,0)
+ ;;=D57.02^^118^1501^6
+ ;;^UTILITY(U,$J,358.3,30145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29694,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec
- ;;^UTILITY(U,$J,358.3,29694,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,29694,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,29695,0)
- ;;=K29.70^^135^1367^51
- ;;^UTILITY(U,$J,358.3,29695,1,0)
+ ;;^UTILITY(U,$J,358.3,30145,1,3,0)
+ ;;=3^Hb-SS disease with splenic sequestration
+ ;;^UTILITY(U,$J,358.3,30145,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,30145,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,30146,0)
+ ;;=D57.01^^118^1501^4
+ ;;^UTILITY(U,$J,358.3,30146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29695,1,3,0)
- ;;=3^Gastritis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,29695,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,29695,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,29696,0)
- ;;=K29.90^^135^1367^52
- ;;^UTILITY(U,$J,358.3,29696,1,0)
+ ;;^UTILITY(U,$J,358.3,30146,1,3,0)
+ ;;=3^Hb-SS disease with acute chest syndrome
+ ;;^UTILITY(U,$J,358.3,30146,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,30146,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,30147,0)
+ ;;=D57.00^^118^1501^5
+ ;;^UTILITY(U,$J,358.3,30147,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30147,1,3,0)
+ ;;=3^Hb-SS disease with crisis, unspecified
+ ;;^UTILITY(U,$J,358.3,30147,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,30147,2)
+ ;;=^5002306

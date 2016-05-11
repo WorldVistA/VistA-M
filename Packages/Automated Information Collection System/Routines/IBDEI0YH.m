@@ -1,124 +1,138 @@
-IBDEI0YH ; ; 19-NOV-2015
+IBDEI0YH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15882,1,0)
+ ;;^UTILITY(U,$J,358.3,16188,2)
+ ;;=^5001319
+ ;;^UTILITY(U,$J,358.3,16189,0)
+ ;;=C74.01^^61^726^5
+ ;;^UTILITY(U,$J,358.3,16189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15882,1,3,0)
- ;;=3^Intraoperative Complication of the Spleen
- ;;^UTILITY(U,$J,358.3,15882,1,4,0)
- ;;=4^D78.81
- ;;^UTILITY(U,$J,358.3,15882,2)
- ;;=^5002403
- ;;^UTILITY(U,$J,358.3,15883,0)
- ;;=H59.229^^85^828^3
- ;;^UTILITY(U,$J,358.3,15883,1,0)
+ ;;^UTILITY(U,$J,358.3,16189,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Cortex,Right
+ ;;^UTILITY(U,$J,358.3,16189,1,4,0)
+ ;;=4^C74.01
+ ;;^UTILITY(U,$J,358.3,16189,2)
+ ;;=^5001312
+ ;;^UTILITY(U,$J,358.3,16190,0)
+ ;;=C74.02^^61^726^4
+ ;;^UTILITY(U,$J,358.3,16190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15883,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Eye/Adnexa,Unspec,During Surgery
- ;;^UTILITY(U,$J,358.3,15883,1,4,0)
- ;;=4^H59.229
- ;;^UTILITY(U,$J,358.3,15883,2)
- ;;=^5006416
- ;;^UTILITY(U,$J,358.3,15884,0)
- ;;=D78.12^^85^828^11
- ;;^UTILITY(U,$J,358.3,15884,1,0)
+ ;;^UTILITY(U,$J,358.3,16190,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Cortex,Left
+ ;;^UTILITY(U,$J,358.3,16190,1,4,0)
+ ;;=4^C74.02
+ ;;^UTILITY(U,$J,358.3,16190,2)
+ ;;=^5001313
+ ;;^UTILITY(U,$J,358.3,16191,0)
+ ;;=C74.11^^61^726^7
+ ;;^UTILITY(U,$J,358.3,16191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15884,1,3,0)
- ;;=3^Accidental Puncture/Laceration of Spleen During Surgery
- ;;^UTILITY(U,$J,358.3,15884,1,4,0)
- ;;=4^D78.12
- ;;^UTILITY(U,$J,358.3,15884,2)
- ;;=^5002400
- ;;^UTILITY(U,$J,358.3,15885,0)
- ;;=I97.811^^85^828^14
- ;;^UTILITY(U,$J,358.3,15885,1,0)
+ ;;^UTILITY(U,$J,358.3,16191,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Medulla,Right
+ ;;^UTILITY(U,$J,358.3,16191,1,4,0)
+ ;;=4^C74.11
+ ;;^UTILITY(U,$J,358.3,16191,2)
+ ;;=^5001315
+ ;;^UTILITY(U,$J,358.3,16192,0)
+ ;;=C74.12^^61^726^6
+ ;;^UTILITY(U,$J,358.3,16192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15885,1,3,0)
- ;;=3^Intraoperative Cerebrovascular Infarction During Surgery
- ;;^UTILITY(U,$J,358.3,15885,1,4,0)
- ;;=4^I97.811
- ;;^UTILITY(U,$J,358.3,15885,2)
- ;;=^5008108
- ;;^UTILITY(U,$J,358.3,15886,0)
- ;;=S31.154A^^85^829^3
- ;;^UTILITY(U,$J,358.3,15886,1,0)
+ ;;^UTILITY(U,$J,358.3,16192,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Medulla,Left
+ ;;^UTILITY(U,$J,358.3,16192,1,4,0)
+ ;;=4^C74.12
+ ;;^UTILITY(U,$J,358.3,16192,2)
+ ;;=^5001316
+ ;;^UTILITY(U,$J,358.3,16193,0)
+ ;;=C44.91^^61^726^1
+ ;;^UTILITY(U,$J,358.3,16193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15886,1,3,0)
- ;;=3^Open Bite of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15886,1,4,0)
- ;;=4^S31.154A
- ;;^UTILITY(U,$J,358.3,15886,2)
- ;;=^5134487
- ;;^UTILITY(U,$J,358.3,15887,0)
- ;;=S31.151A^^85^829^4
- ;;^UTILITY(U,$J,358.3,15887,1,0)
+ ;;^UTILITY(U,$J,358.3,16193,1,3,0)
+ ;;=3^BCC of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16193,1,4,0)
+ ;;=4^C44.91
+ ;;^UTILITY(U,$J,358.3,16193,2)
+ ;;=^5001092
+ ;;^UTILITY(U,$J,358.3,16194,0)
+ ;;=C41.9^^61^726^10
+ ;;^UTILITY(U,$J,358.3,16194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15887,1,3,0)
- ;;=3^Open Bite of LUQ of Abd Wall w/o Penet Perit Cav,Init Cav
- ;;^UTILITY(U,$J,358.3,15887,1,4,0)
- ;;=4^S31.151A
- ;;^UTILITY(U,$J,358.3,15887,2)
- ;;=^5024104
- ;;^UTILITY(U,$J,358.3,15888,0)
- ;;=S31.153A^^85^829^35
- ;;^UTILITY(U,$J,358.3,15888,1,0)
+ ;;^UTILITY(U,$J,358.3,16194,1,3,0)
+ ;;=3^Malig Neop Bone & Articular Cartilage,Unspec
+ ;;^UTILITY(U,$J,358.3,16194,1,4,0)
+ ;;=4^C41.9
+ ;;^UTILITY(U,$J,358.3,16194,2)
+ ;;=^5000993
+ ;;^UTILITY(U,$J,358.3,16195,0)
+ ;;=C71.9^^61^726^11
+ ;;^UTILITY(U,$J,358.3,16195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15888,1,3,0)
- ;;=3^Open Bite of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15888,1,4,0)
- ;;=4^S31.153A
- ;;^UTILITY(U,$J,358.3,15888,2)
- ;;=^5024110
- ;;^UTILITY(U,$J,358.3,15889,0)
- ;;=S31.150A^^85^829^36
- ;;^UTILITY(U,$J,358.3,15889,1,0)
+ ;;^UTILITY(U,$J,358.3,16195,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,16195,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,16195,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,16196,0)
+ ;;=C46.9^^61^726^2
+ ;;^UTILITY(U,$J,358.3,16196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15889,1,3,0)
- ;;=3^Open Bite of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15889,1,4,0)
- ;;=4^S31.150A
- ;;^UTILITY(U,$J,358.3,15889,2)
- ;;=^5024101
- ;;^UTILITY(U,$J,358.3,15890,0)
- ;;=S91.052A^^85^829^5
- ;;^UTILITY(U,$J,358.3,15890,1,0)
+ ;;^UTILITY(U,$J,358.3,16196,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,16196,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,16196,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,16197,0)
+ ;;=C43.9^^61^726^3
+ ;;^UTILITY(U,$J,358.3,16197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15890,1,3,0)
- ;;=3^Open Bite of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,15890,1,4,0)
- ;;=4^S91.052A
- ;;^UTILITY(U,$J,358.3,15890,2)
- ;;=^5044162
- ;;^UTILITY(U,$J,358.3,15891,0)
- ;;=S31.825A^^85^829^6
- ;;^UTILITY(U,$J,358.3,15891,1,0)
+ ;;^UTILITY(U,$J,358.3,16197,1,3,0)
+ ;;=3^Malig Melanoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16197,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,16197,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,16198,0)
+ ;;=D03.9^^61^726^18
+ ;;^UTILITY(U,$J,358.3,16198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15891,1,3,0)
- ;;=3^Open Bite of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,15891,1,4,0)
- ;;=4^S31.825A
- ;;^UTILITY(U,$J,358.3,15891,2)
- ;;=^5024317
- ;;^UTILITY(U,$J,358.3,15892,0)
- ;;=S01.452A^^85^829^7
- ;;^UTILITY(U,$J,358.3,15892,1,0)
+ ;;^UTILITY(U,$J,358.3,16198,1,3,0)
+ ;;=3^Melanoma in Situ,Unspec
+ ;;^UTILITY(U,$J,358.3,16198,1,4,0)
+ ;;=4^D03.9
+ ;;^UTILITY(U,$J,358.3,16198,2)
+ ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,16199,0)
+ ;;=C44.99^^61^726^16
+ ;;^UTILITY(U,$J,358.3,16199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15892,1,3,0)
- ;;=3^Open Bite of Left Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,15892,1,4,0)
- ;;=4^S01.452A
- ;;^UTILITY(U,$J,358.3,15892,2)
- ;;=^5020180
- ;;^UTILITY(U,$J,358.3,15893,0)
- ;;=S01.352A^^85^829^8
- ;;^UTILITY(U,$J,358.3,15893,1,0)
+ ;;^UTILITY(U,$J,358.3,16199,1,3,0)
+ ;;=3^Malig Neop Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16199,1,4,0)
+ ;;=4^C44.99
+ ;;^UTILITY(U,$J,358.3,16199,2)
+ ;;=^5001094
+ ;;^UTILITY(U,$J,358.3,16200,0)
+ ;;=C48.2^^61^726^14
+ ;;^UTILITY(U,$J,358.3,16200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15893,1,3,0)
- ;;=3^Open Bite of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,15893,1,4,0)
- ;;=4^S01.352A
- ;;^UTILITY(U,$J,358.3,15893,2)
- ;;=^5020141
- ;;^UTILITY(U,$J,358.3,15894,0)
- ;;=S51.052A^^85^829^9
+ ;;^UTILITY(U,$J,358.3,16200,1,3,0)
+ ;;=3^Malig Neop Peritoneum,Unspec
+ ;;^UTILITY(U,$J,358.3,16200,1,4,0)
+ ;;=4^C48.2
+ ;;^UTILITY(U,$J,358.3,16200,2)
+ ;;=^5001122
+ ;;^UTILITY(U,$J,358.3,16201,0)
+ ;;=C38.4^^61^726^15
+ ;;^UTILITY(U,$J,358.3,16201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16201,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,16201,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,16201,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,16202,0)
+ ;;=C44.92^^61^726^19

@@ -1,130 +1,136 @@
-IBDEI0UE ; ; 19-NOV-2015
+IBDEI0UE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13993,0)
- ;;=H40.061^^82^770^106
- ;;^UTILITY(U,$J,358.3,13993,1,0)
+ ;;^UTILITY(U,$J,358.3,14257,0)
+ ;;=R22.2^^53^605^111
+ ;;^UTILITY(U,$J,358.3,14257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13993,1,3,0)
- ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Right Eye
- ;;^UTILITY(U,$J,358.3,13993,1,4,0)
- ;;=4^H40.061
- ;;^UTILITY(U,$J,358.3,13993,2)
- ;;=^5005744
- ;;^UTILITY(U,$J,358.3,13994,0)
- ;;=H40.062^^82^770^107
- ;;^UTILITY(U,$J,358.3,13994,1,0)
+ ;;^UTILITY(U,$J,358.3,14257,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,14257,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,14257,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,14258,0)
+ ;;=R22.31^^53^605^110
+ ;;^UTILITY(U,$J,358.3,14258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13994,1,3,0)
- ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Left Eye
- ;;^UTILITY(U,$J,358.3,13994,1,4,0)
- ;;=4^H40.062
- ;;^UTILITY(U,$J,358.3,13994,2)
- ;;=^5005745
- ;;^UTILITY(U,$J,358.3,13995,0)
- ;;=H40.10X0^^82^770^81
- ;;^UTILITY(U,$J,358.3,13995,1,0)
+ ;;^UTILITY(U,$J,358.3,14258,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,14258,1,4,0)
+ ;;=4^R22.31
+ ;;^UTILITY(U,$J,358.3,14258,2)
+ ;;=^5019288
+ ;;^UTILITY(U,$J,358.3,14259,0)
+ ;;=R22.32^^53^605^107
+ ;;^UTILITY(U,$J,358.3,14259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13995,1,3,0)
- ;;=3^Open-Angle Glaucoma,Stage Unspec
- ;;^UTILITY(U,$J,358.3,13995,1,4,0)
- ;;=4^H40.10X0
- ;;^UTILITY(U,$J,358.3,13995,2)
- ;;=^5005748
- ;;^UTILITY(U,$J,358.3,13996,0)
- ;;=H40.10X1^^82^770^78
- ;;^UTILITY(U,$J,358.3,13996,1,0)
+ ;;^UTILITY(U,$J,358.3,14259,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,14259,1,4,0)
+ ;;=4^R22.32
+ ;;^UTILITY(U,$J,358.3,14259,2)
+ ;;=^5019289
+ ;;^UTILITY(U,$J,358.3,14260,0)
+ ;;=R22.33^^53^605^103
+ ;;^UTILITY(U,$J,358.3,14260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13996,1,3,0)
- ;;=3^Open-Angle Glaucoma,Mild Stage
- ;;^UTILITY(U,$J,358.3,13996,1,4,0)
- ;;=4^H40.10X1
- ;;^UTILITY(U,$J,358.3,13996,2)
- ;;=^5005749
- ;;^UTILITY(U,$J,358.3,13997,0)
- ;;=H40.10X2^^82^770^79
- ;;^UTILITY(U,$J,358.3,13997,1,0)
+ ;;^UTILITY(U,$J,358.3,14260,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Upper Limb
+ ;;^UTILITY(U,$J,358.3,14260,1,4,0)
+ ;;=4^R22.33
+ ;;^UTILITY(U,$J,358.3,14260,2)
+ ;;=^5019290
+ ;;^UTILITY(U,$J,358.3,14261,0)
+ ;;=R22.42^^53^605^106
+ ;;^UTILITY(U,$J,358.3,14261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13997,1,3,0)
- ;;=3^Open-Angle Glaucoma,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13997,1,4,0)
- ;;=4^H40.10X2
- ;;^UTILITY(U,$J,358.3,13997,2)
- ;;=^5005750
- ;;^UTILITY(U,$J,358.3,13998,0)
- ;;=H40.10X3^^82^770^80
- ;;^UTILITY(U,$J,358.3,13998,1,0)
+ ;;^UTILITY(U,$J,358.3,14261,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,14261,1,4,0)
+ ;;=4^R22.42
+ ;;^UTILITY(U,$J,358.3,14261,2)
+ ;;=^5134179
+ ;;^UTILITY(U,$J,358.3,14262,0)
+ ;;=R22.41^^53^605^109
+ ;;^UTILITY(U,$J,358.3,14262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13998,1,3,0)
- ;;=3^Open-Angle Glaucoma,Severe Stage
- ;;^UTILITY(U,$J,358.3,13998,1,4,0)
- ;;=4^H40.10X3
- ;;^UTILITY(U,$J,358.3,13998,2)
- ;;=^5005751
- ;;^UTILITY(U,$J,358.3,13999,0)
- ;;=H40.10X4^^82^770^77
- ;;^UTILITY(U,$J,358.3,13999,1,0)
+ ;;^UTILITY(U,$J,358.3,14262,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,14262,1,4,0)
+ ;;=4^R22.41
+ ;;^UTILITY(U,$J,358.3,14262,2)
+ ;;=^5134178
+ ;;^UTILITY(U,$J,358.3,14263,0)
+ ;;=R22.43^^53^605^104
+ ;;^UTILITY(U,$J,358.3,14263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13999,1,3,0)
- ;;=3^Open-Angle Glaucoma,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13999,1,4,0)
- ;;=4^H40.10X4
- ;;^UTILITY(U,$J,358.3,13999,2)
- ;;=^5005752
- ;;^UTILITY(U,$J,358.3,14000,0)
- ;;=H40.11X1^^82^770^110
- ;;^UTILITY(U,$J,358.3,14000,1,0)
+ ;;^UTILITY(U,$J,358.3,14263,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Bilateral Lower Limb
+ ;;^UTILITY(U,$J,358.3,14263,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,14263,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,14264,0)
+ ;;=R22.9^^53^605^112
+ ;;^UTILITY(U,$J,358.3,14264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14000,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Mild Stage
- ;;^UTILITY(U,$J,358.3,14000,1,4,0)
- ;;=4^H40.11X1
- ;;^UTILITY(U,$J,358.3,14000,2)
- ;;=^5005754
- ;;^UTILITY(U,$J,358.3,14001,0)
- ;;=H40.11X2^^82^770^111
- ;;^UTILITY(U,$J,358.3,14001,1,0)
+ ;;^UTILITY(U,$J,358.3,14264,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,14264,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,14264,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,14265,0)
+ ;;=R23.0^^53^605^57
+ ;;^UTILITY(U,$J,358.3,14265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14001,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14001,1,4,0)
- ;;=4^H40.11X2
- ;;^UTILITY(U,$J,358.3,14001,2)
- ;;=^5005755
- ;;^UTILITY(U,$J,358.3,14002,0)
- ;;=H40.11X3^^82^770^112
- ;;^UTILITY(U,$J,358.3,14002,1,0)
+ ;;^UTILITY(U,$J,358.3,14265,1,3,0)
+ ;;=3^Cyanosis
+ ;;^UTILITY(U,$J,358.3,14265,1,4,0)
+ ;;=4^R23.0
+ ;;^UTILITY(U,$J,358.3,14265,2)
+ ;;=^5019293
+ ;;^UTILITY(U,$J,358.3,14266,0)
+ ;;=R23.1^^53^605^128
+ ;;^UTILITY(U,$J,358.3,14266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14002,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Severe Stage
- ;;^UTILITY(U,$J,358.3,14002,1,4,0)
- ;;=4^H40.11X3
- ;;^UTILITY(U,$J,358.3,14002,2)
- ;;=^5005756
- ;;^UTILITY(U,$J,358.3,14003,0)
- ;;=H40.11X4^^82^770^109
- ;;^UTILITY(U,$J,358.3,14003,1,0)
+ ;;^UTILITY(U,$J,358.3,14266,1,3,0)
+ ;;=3^Pallor
+ ;;^UTILITY(U,$J,358.3,14266,1,4,0)
+ ;;=4^R23.1
+ ;;^UTILITY(U,$J,358.3,14266,2)
+ ;;=^5019294
+ ;;^UTILITY(U,$J,358.3,14267,0)
+ ;;=R23.2^^53^605^75
+ ;;^UTILITY(U,$J,358.3,14267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14003,1,3,0)
- ;;=3^Primary Open-Angle Glaucoma,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14003,1,4,0)
- ;;=4^H40.11X4
- ;;^UTILITY(U,$J,358.3,14003,2)
- ;;=^5005757
- ;;^UTILITY(U,$J,358.3,14004,0)
- ;;=H40.1211^^82^770^71
- ;;^UTILITY(U,$J,358.3,14004,1,0)
+ ;;^UTILITY(U,$J,358.3,14267,1,3,0)
+ ;;=3^Flushing
+ ;;^UTILITY(U,$J,358.3,14267,1,4,0)
+ ;;=4^R23.2
+ ;;^UTILITY(U,$J,358.3,14267,2)
+ ;;=^47184
+ ;;^UTILITY(U,$J,358.3,14268,0)
+ ;;=R23.4^^53^605^147
+ ;;^UTILITY(U,$J,358.3,14268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14004,1,3,0)
- ;;=3^Low-Tension Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14004,1,4,0)
- ;;=4^H40.1211
- ;;^UTILITY(U,$J,358.3,14004,2)
- ;;=^5005759
- ;;^UTILITY(U,$J,358.3,14005,0)
- ;;=H40.1212^^82^770^72
- ;;^UTILITY(U,$J,358.3,14005,1,0)
+ ;;^UTILITY(U,$J,358.3,14268,1,3,0)
+ ;;=3^Skin Texture Changes
+ ;;^UTILITY(U,$J,358.3,14268,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,14268,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,14269,0)
+ ;;=R26.0^^53^605^43
+ ;;^UTILITY(U,$J,358.3,14269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14005,1,3,0)
- ;;=3^Low-Tension Glaucoma,Right Eye,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,14269,1,3,0)
+ ;;=3^Ataxic Gait
+ ;;^UTILITY(U,$J,358.3,14269,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,14269,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,14270,0)
+ ;;=R26.1^^53^605^130

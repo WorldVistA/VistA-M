@@ -1,134 +1,136 @@
-IBDEI0FT ; ; 19-NOV-2015
+IBDEI0FT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6989,1,4,0)
- ;;=4^D04.0
- ;;^UTILITY(U,$J,358.3,6989,2)
- ;;=^267725
- ;;^UTILITY(U,$J,358.3,6990,0)
- ;;=D04.11^^46^459^13
- ;;^UTILITY(U,$J,358.3,6990,1,0)
+ ;;^UTILITY(U,$J,358.3,7302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6990,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Eyelid
- ;;^UTILITY(U,$J,358.3,6990,1,4,0)
- ;;=4^D04.11
- ;;^UTILITY(U,$J,358.3,6990,2)
- ;;=^5001910
- ;;^UTILITY(U,$J,358.3,6991,0)
- ;;=D04.12^^46^459^7
- ;;^UTILITY(U,$J,358.3,6991,1,0)
+ ;;^UTILITY(U,$J,358.3,7302,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7302,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,7302,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,7303,0)
+ ;;=T76.21XA^^30^407^4
+ ;;^UTILITY(U,$J,358.3,7303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6991,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Eyelid
- ;;^UTILITY(U,$J,358.3,6991,1,4,0)
- ;;=4^D04.12
- ;;^UTILITY(U,$J,358.3,6991,2)
- ;;=^5001911
- ;;^UTILITY(U,$J,358.3,6992,0)
- ;;=D04.21^^46^459^12
- ;;^UTILITY(U,$J,358.3,6992,1,0)
+ ;;^UTILITY(U,$J,358.3,7303,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7303,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,7303,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,7304,0)
+ ;;=Y07.9^^30^407^9
+ ;;^UTILITY(U,$J,358.3,7304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6992,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,6992,1,4,0)
- ;;=4^D04.21
- ;;^UTILITY(U,$J,358.3,6992,2)
- ;;=^5001913
- ;;^UTILITY(U,$J,358.3,6993,0)
- ;;=D04.22^^46^459^6
- ;;^UTILITY(U,$J,358.3,6993,1,0)
+ ;;^UTILITY(U,$J,358.3,7304,1,3,0)
+ ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
+ ;;^UTILITY(U,$J,358.3,7304,1,4,0)
+ ;;=4^Y07.9
+ ;;^UTILITY(U,$J,358.3,7304,2)
+ ;;=^5061209
+ ;;^UTILITY(U,$J,358.3,7305,0)
+ ;;=T74.21XD^^30^407^3
+ ;;^UTILITY(U,$J,358.3,7305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6993,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,6993,1,4,0)
- ;;=4^D04.22
- ;;^UTILITY(U,$J,358.3,6993,2)
- ;;=^5001914
- ;;^UTILITY(U,$J,358.3,6994,0)
- ;;=D04.30^^46^459^5
- ;;^UTILITY(U,$J,358.3,6994,1,0)
+ ;;^UTILITY(U,$J,358.3,7305,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,7305,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,7305,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,7306,0)
+ ;;=T74.21XS^^30^407^2
+ ;;^UTILITY(U,$J,358.3,7306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6994,1,3,0)
- ;;=3^Carcinoma in Situ Skin Face,Unspec
- ;;^UTILITY(U,$J,358.3,6994,1,4,0)
- ;;=4^D04.30
- ;;^UTILITY(U,$J,358.3,6994,2)
- ;;=^5001915
- ;;^UTILITY(U,$J,358.3,6995,0)
- ;;=D04.39^^46^459^4
- ;;^UTILITY(U,$J,358.3,6995,1,0)
+ ;;^UTILITY(U,$J,358.3,7306,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,7306,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,7306,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,7307,0)
+ ;;=T76.21XD^^30^407^6
+ ;;^UTILITY(U,$J,358.3,7307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6995,1,3,0)
- ;;=3^Carcinoma in Situ Skin Face NEC
- ;;^UTILITY(U,$J,358.3,6995,1,4,0)
- ;;=4^D04.39
- ;;^UTILITY(U,$J,358.3,6995,2)
- ;;=^5001916
- ;;^UTILITY(U,$J,358.3,6996,0)
- ;;=D04.4^^46^459^16
- ;;^UTILITY(U,$J,358.3,6996,1,0)
+ ;;^UTILITY(U,$J,358.3,7307,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,7307,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,7307,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,7308,0)
+ ;;=T76.21XS^^30^407^5
+ ;;^UTILITY(U,$J,358.3,7308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6996,1,3,0)
- ;;=3^Carcinoma in Situ Skin Scalp/Neck
- ;;^UTILITY(U,$J,358.3,6996,1,4,0)
- ;;=4^D04.4
- ;;^UTILITY(U,$J,358.3,6996,2)
- ;;=^267729
- ;;^UTILITY(U,$J,358.3,6997,0)
- ;;=D04.5^^46^459^17
- ;;^UTILITY(U,$J,358.3,6997,1,0)
+ ;;^UTILITY(U,$J,358.3,7308,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,7308,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,7308,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,7309,0)
+ ;;=Y07.53^^30^407^7
+ ;;^UTILITY(U,$J,358.3,7309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6997,1,3,0)
- ;;=3^Carcinoma in Situ Skin Trunk
- ;;^UTILITY(U,$J,358.3,6997,1,4,0)
- ;;=4^D04.5
- ;;^UTILITY(U,$J,358.3,6997,2)
- ;;=^5001917
- ;;^UTILITY(U,$J,358.3,6998,0)
- ;;=D04.61^^46^459^15
- ;;^UTILITY(U,$J,358.3,6998,1,0)
+ ;;^UTILITY(U,$J,358.3,7309,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,7309,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,7309,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,7310,0)
+ ;;=Y07.59^^30^407^8
+ ;;^UTILITY(U,$J,358.3,7310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6998,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,6998,1,4,0)
- ;;=4^D04.61
- ;;^UTILITY(U,$J,358.3,6998,2)
- ;;=^5001919
- ;;^UTILITY(U,$J,358.3,6999,0)
- ;;=D04.62^^46^459^9
- ;;^UTILITY(U,$J,358.3,6999,1,0)
+ ;;^UTILITY(U,$J,358.3,7310,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,7310,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,7310,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,7311,0)
+ ;;=E66.01^^30^408^127
+ ;;^UTILITY(U,$J,358.3,7311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6999,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,6999,1,4,0)
- ;;=4^D04.62
- ;;^UTILITY(U,$J,358.3,6999,2)
- ;;=^5001920
- ;;^UTILITY(U,$J,358.3,7000,0)
- ;;=D04.71^^46^459^14
- ;;^UTILITY(U,$J,358.3,7000,1,0)
+ ;;^UTILITY(U,$J,358.3,7311,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,7311,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,7311,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,7312,0)
+ ;;=F18.10^^30^408^102
+ ;;^UTILITY(U,$J,358.3,7312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7000,1,3,0)
- ;;=3^Carcinoma in Situ Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,7000,1,4,0)
- ;;=4^D04.71
- ;;^UTILITY(U,$J,358.3,7000,2)
- ;;=^5001922
- ;;^UTILITY(U,$J,358.3,7001,0)
- ;;=D04.72^^46^459^8
- ;;^UTILITY(U,$J,358.3,7001,1,0)
+ ;;^UTILITY(U,$J,358.3,7312,1,3,0)
+ ;;=3^Inhalant Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,7312,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,7312,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,7313,0)
+ ;;=F55.0^^30^408^38
+ ;;^UTILITY(U,$J,358.3,7313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7001,1,3,0)
- ;;=3^Carcinoma in Situ Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,7001,1,4,0)
- ;;=4^D04.72
- ;;^UTILITY(U,$J,358.3,7001,2)
- ;;=^5001923
- ;;^UTILITY(U,$J,358.3,7002,0)
- ;;=D04.8^^46^459^11
- ;;^UTILITY(U,$J,358.3,7002,1,0)
+ ;;^UTILITY(U,$J,358.3,7313,1,3,0)
+ ;;=3^Antacid Abuse
+ ;;^UTILITY(U,$J,358.3,7313,1,4,0)
+ ;;=4^F55.0
+ ;;^UTILITY(U,$J,358.3,7313,2)
+ ;;=^5003628
+ ;;^UTILITY(U,$J,358.3,7314,0)
+ ;;=F18.90^^30^408^103
+ ;;^UTILITY(U,$J,358.3,7314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7002,1,3,0)
- ;;=3^Carcinoma in Situ Skin Other Sites
+ ;;^UTILITY(U,$J,358.3,7314,1,3,0)
+ ;;=3^Inhalant Use Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,7314,1,4,0)
+ ;;=4^F18.90
+ ;;^UTILITY(U,$J,358.3,7314,2)
+ ;;=^5003405
+ ;;^UTILITY(U,$J,358.3,7315,0)
+ ;;=F55.2^^30^408^109
+ ;;^UTILITY(U,$J,358.3,7315,1,0)
+ ;;=^358.31IA^4^2

@@ -1,124 +1,140 @@
-IBDEI1C3 ; ; 19-NOV-2015
+IBDEI1C3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22232,1,4,0)
- ;;=4^S82.822S
- ;;^UTILITY(U,$J,358.3,22232,2)
- ;;=^5136943
- ;;^UTILITY(U,$J,358.3,22233,0)
- ;;=S82.821S^^101^1038^109
- ;;^UTILITY(U,$J,358.3,22233,1,0)
+ ;;^UTILITY(U,$J,358.3,22675,1,3,0)
+ ;;=3^Conditions d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,22675,1,4,0)
+ ;;=4^A69.29
+ ;;^UTILITY(U,$J,358.3,22675,2)
+ ;;=^5000379
+ ;;^UTILITY(U,$J,358.3,22676,0)
+ ;;=A69.23^^87^983^5
+ ;;^UTILITY(U,$J,358.3,22676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22233,1,3,0)
- ;;=3^Torus fracture of lower end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22233,1,4,0)
- ;;=4^S82.821S
- ;;^UTILITY(U,$J,358.3,22233,2)
- ;;=^5042430
- ;;^UTILITY(U,$J,358.3,22234,0)
- ;;=S82.812S^^101^1038^111
- ;;^UTILITY(U,$J,358.3,22234,1,0)
+ ;;^UTILITY(U,$J,358.3,22676,1,3,0)
+ ;;=3^Arthritis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,22676,1,4,0)
+ ;;=4^A69.23
+ ;;^UTILITY(U,$J,358.3,22676,2)
+ ;;=^5000378
+ ;;^UTILITY(U,$J,358.3,22677,0)
+ ;;=A51.0^^87^983^29
+ ;;^UTILITY(U,$J,358.3,22677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22234,1,3,0)
- ;;=3^Torus fracture of upper end of left fibula, sequela
- ;;^UTILITY(U,$J,358.3,22234,1,4,0)
- ;;=4^S82.812S
- ;;^UTILITY(U,$J,358.3,22234,2)
- ;;=^5042418
- ;;^UTILITY(U,$J,358.3,22235,0)
- ;;=S82.811S^^101^1038^113
- ;;^UTILITY(U,$J,358.3,22235,1,0)
+ ;;^UTILITY(U,$J,358.3,22677,1,3,0)
+ ;;=3^Genital Syphilis,Primary
+ ;;^UTILITY(U,$J,358.3,22677,1,4,0)
+ ;;=4^A51.0
+ ;;^UTILITY(U,$J,358.3,22677,2)
+ ;;=^5000272
+ ;;^UTILITY(U,$J,358.3,22678,0)
+ ;;=A52.3^^87^983^54
+ ;;^UTILITY(U,$J,358.3,22678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22235,1,3,0)
- ;;=3^Torus fracture of upper end of right fibula, sequela
- ;;^UTILITY(U,$J,358.3,22235,1,4,0)
- ;;=4^S82.811S
- ;;^UTILITY(U,$J,358.3,22235,2)
- ;;=^5042412
- ;;^UTILITY(U,$J,358.3,22236,0)
- ;;=S82.865S^^101^1038^37
- ;;^UTILITY(U,$J,358.3,22236,1,0)
+ ;;^UTILITY(U,$J,358.3,22678,1,3,0)
+ ;;=3^Neurosyphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,22678,1,4,0)
+ ;;=4^A52.3
+ ;;^UTILITY(U,$J,358.3,22678,2)
+ ;;=^5000298
+ ;;^UTILITY(U,$J,358.3,22679,0)
+ ;;=A52.10^^87^983^53
+ ;;^UTILITY(U,$J,358.3,22679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22236,1,3,0)
- ;;=3^Nondisp Maisonneuve's fx of left leg, sequela   
- ;;^UTILITY(U,$J,358.3,22236,1,4,0)
- ;;=4^S82.865S
- ;;^UTILITY(U,$J,358.3,22236,2)
- ;;=^5042750
- ;;^UTILITY(U,$J,358.3,22237,0)
- ;;=S82.864S^^101^1038^38
- ;;^UTILITY(U,$J,358.3,22237,1,0)
+ ;;^UTILITY(U,$J,358.3,22679,1,3,0)
+ ;;=3^Neurosyphilis Symptomatic,Unspec
+ ;;^UTILITY(U,$J,358.3,22679,1,4,0)
+ ;;=4^A52.10
+ ;;^UTILITY(U,$J,358.3,22679,2)
+ ;;=^5000291
+ ;;^UTILITY(U,$J,358.3,22680,0)
+ ;;=A52.9^^87^983^49
+ ;;^UTILITY(U,$J,358.3,22680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22237,1,3,0)
- ;;=3^Nondisp Maisonneuve's fx of right leg, sequela   
- ;;^UTILITY(U,$J,358.3,22237,1,4,0)
- ;;=4^S82.864S
- ;;^UTILITY(U,$J,358.3,22237,2)
- ;;=^5042734
- ;;^UTILITY(U,$J,358.3,22238,0)
- ;;=S12.44XS^^101^1039^50
- ;;^UTILITY(U,$J,358.3,22238,1,0)
+ ;;^UTILITY(U,$J,358.3,22680,1,3,0)
+ ;;=3^Late Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,22680,1,4,0)
+ ;;=4^A52.9
+ ;;^UTILITY(U,$J,358.3,22680,2)
+ ;;=^5000308
+ ;;^UTILITY(U,$J,358.3,22681,0)
+ ;;=A53.9^^87^983^79
+ ;;^UTILITY(U,$J,358.3,22681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22238,1,3,0)
- ;;=3^Type 3 traum spondylolysis of fifth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,22238,1,4,0)
- ;;=4^S12.44XS
- ;;^UTILITY(U,$J,358.3,22238,2)
- ;;=^5021826
- ;;^UTILITY(U,$J,358.3,22239,0)
- ;;=S12.34XS^^101^1039^51
- ;;^UTILITY(U,$J,358.3,22239,1,0)
+ ;;^UTILITY(U,$J,358.3,22681,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,22681,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,22681,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,22682,0)
+ ;;=B37.3^^87^983^17
+ ;;^UTILITY(U,$J,358.3,22682,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22239,1,3,0)
- ;;=3^Type 3 traum spondylolysis of fourth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,22239,1,4,0)
- ;;=4^S12.34XS
- ;;^UTILITY(U,$J,358.3,22239,2)
- ;;=^5021772
- ;;^UTILITY(U,$J,358.3,22240,0)
- ;;=S12.14XS^^101^1039^52
- ;;^UTILITY(U,$J,358.3,22240,1,0)
+ ;;^UTILITY(U,$J,358.3,22682,1,3,0)
+ ;;=3^Candidiasis Vulva/Vagina
+ ;;^UTILITY(U,$J,358.3,22682,1,4,0)
+ ;;=4^B37.3
+ ;;^UTILITY(U,$J,358.3,22682,2)
+ ;;=^5000615
+ ;;^UTILITY(U,$J,358.3,22683,0)
+ ;;=B58.9^^87^983^82
+ ;;^UTILITY(U,$J,358.3,22683,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22240,1,3,0)
- ;;=3^Type 3 traum spondylolysis of second cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,22240,1,4,0)
- ;;=4^S12.14XS
- ;;^UTILITY(U,$J,358.3,22240,2)
- ;;=^5021664
- ;;^UTILITY(U,$J,358.3,22241,0)
- ;;=S12.64XS^^101^1039^53
- ;;^UTILITY(U,$J,358.3,22241,1,0)
+ ;;^UTILITY(U,$J,358.3,22683,1,3,0)
+ ;;=3^Toxoplasmosis,Unspec
+ ;;^UTILITY(U,$J,358.3,22683,1,4,0)
+ ;;=4^B58.9
+ ;;^UTILITY(U,$J,358.3,22683,2)
+ ;;=^5000733
+ ;;^UTILITY(U,$J,358.3,22684,0)
+ ;;=A59.01^^87^983^83
+ ;;^UTILITY(U,$J,358.3,22684,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22241,1,3,0)
- ;;=3^Type 3 traum spondylolysis of seventh cervcal vert, sqla
- ;;^UTILITY(U,$J,358.3,22241,1,4,0)
- ;;=4^S12.64XS
- ;;^UTILITY(U,$J,358.3,22241,2)
- ;;=^5021934
- ;;^UTILITY(U,$J,358.3,22242,0)
- ;;=S12.54XS^^101^1039^54
- ;;^UTILITY(U,$J,358.3,22242,1,0)
+ ;;^UTILITY(U,$J,358.3,22684,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,22684,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,22684,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,22685,0)
+ ;;=B59.^^87^983^66
+ ;;^UTILITY(U,$J,358.3,22685,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22242,1,3,0)
- ;;=3^Type 3 traum spondylolysis of sixth cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,22242,1,4,0)
- ;;=4^S12.54XS
- ;;^UTILITY(U,$J,358.3,22242,2)
- ;;=^5021880
- ;;^UTILITY(U,$J,358.3,22243,0)
- ;;=S12.24XS^^101^1039^55
- ;;^UTILITY(U,$J,358.3,22243,1,0)
+ ;;^UTILITY(U,$J,358.3,22685,1,3,0)
+ ;;=3^Pneumocystosis
+ ;;^UTILITY(U,$J,358.3,22685,1,4,0)
+ ;;=4^B59.
+ ;;^UTILITY(U,$J,358.3,22685,2)
+ ;;=^5000734
+ ;;^UTILITY(U,$J,358.3,22686,0)
+ ;;=H83.09^^87^983^48
+ ;;^UTILITY(U,$J,358.3,22686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22243,1,3,0)
- ;;=3^Type 3 traum spondylolysis of third cervcal vert, sequela
- ;;^UTILITY(U,$J,358.3,22243,1,4,0)
- ;;=4^S12.24XS
- ;;^UTILITY(U,$J,358.3,22243,2)
- ;;=^5021718
- ;;^UTILITY(U,$J,358.3,22244,0)
- ;;=S32.052S^^101^1039^61
- ;;^UTILITY(U,$J,358.3,22244,1,0)
+ ;;^UTILITY(U,$J,358.3,22686,1,3,0)
+ ;;=3^Labyrinthitis,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,22686,1,4,0)
+ ;;=4^H83.09
+ ;;^UTILITY(U,$J,358.3,22686,2)
+ ;;=^5006897
+ ;;^UTILITY(U,$J,358.3,22687,0)
+ ;;=H83.01^^87^983^47
+ ;;^UTILITY(U,$J,358.3,22687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22244,1,3,0)
- ;;=3^Unstable burst fracture of fifth lumbar vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22687,1,3,0)
+ ;;=3^Labyrinthitis,Right Ear
+ ;;^UTILITY(U,$J,358.3,22687,1,4,0)
+ ;;=4^H83.01
+ ;;^UTILITY(U,$J,358.3,22687,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,22688,0)
+ ;;=H83.03^^87^983^45
+ ;;^UTILITY(U,$J,358.3,22688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22688,1,3,0)
+ ;;=3^Labyrinthitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,22688,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,22688,2)
+ ;;=^5006896

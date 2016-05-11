@@ -1,134 +1,136 @@
-IBDEI185 ; ; 19-NOV-2015
+IBDEI185 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20464,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,20465,0)
- ;;=D50.9^^97^961^26
- ;;^UTILITY(U,$J,358.3,20465,1,0)
+ ;;^UTILITY(U,$J,358.3,20815,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,20816,0)
+ ;;=Y07.9^^84^940^9
+ ;;^UTILITY(U,$J,358.3,20816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20465,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,20465,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,20465,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,20466,0)
- ;;=D64.81^^97^961^2
- ;;^UTILITY(U,$J,358.3,20466,1,0)
+ ;;^UTILITY(U,$J,358.3,20816,1,3,0)
+ ;;=3^Perpetrator of Maltreatment/Neglect,Unspec
+ ;;^UTILITY(U,$J,358.3,20816,1,4,0)
+ ;;=4^Y07.9
+ ;;^UTILITY(U,$J,358.3,20816,2)
+ ;;=^5061209
+ ;;^UTILITY(U,$J,358.3,20817,0)
+ ;;=T74.21XD^^84^940^3
+ ;;^UTILITY(U,$J,358.3,20817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20466,1,3,0)
- ;;=3^Anemia d/t Antineoplastic Chemotherapy
- ;;^UTILITY(U,$J,358.3,20466,1,4,0)
- ;;=4^D64.81
- ;;^UTILITY(U,$J,358.3,20466,2)
- ;;=^5002349
- ;;^UTILITY(U,$J,358.3,20467,0)
- ;;=D63.1^^97^961^4
- ;;^UTILITY(U,$J,358.3,20467,1,0)
+ ;;^UTILITY(U,$J,358.3,20817,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,20817,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,20817,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,20818,0)
+ ;;=T74.21XS^^84^940^2
+ ;;^UTILITY(U,$J,358.3,20818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20467,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,20467,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,20467,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,20468,0)
- ;;=D62.^^97^961^1
- ;;^UTILITY(U,$J,358.3,20468,1,0)
+ ;;^UTILITY(U,$J,358.3,20818,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Sequela
+ ;;^UTILITY(U,$J,358.3,20818,1,4,0)
+ ;;=4^T74.21XS
+ ;;^UTILITY(U,$J,358.3,20818,2)
+ ;;=^5054154
+ ;;^UTILITY(U,$J,358.3,20819,0)
+ ;;=T76.21XD^^84^940^6
+ ;;^UTILITY(U,$J,358.3,20819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20468,1,3,0)
- ;;=3^Acute Blood Loss Anemia
- ;;^UTILITY(U,$J,358.3,20468,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,20468,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,20469,0)
- ;;=D51.9^^97^961^32
- ;;^UTILITY(U,$J,358.3,20469,1,0)
+ ;;^UTILITY(U,$J,358.3,20819,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sub Encntr
+ ;;^UTILITY(U,$J,358.3,20819,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,20819,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,20820,0)
+ ;;=T76.21XS^^84^940^5
+ ;;^UTILITY(U,$J,358.3,20820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20469,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,20469,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,20469,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,20470,0)
- ;;=D51.3^^97^961^31
- ;;^UTILITY(U,$J,358.3,20470,1,0)
+ ;;^UTILITY(U,$J,358.3,20820,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Sequela
+ ;;^UTILITY(U,$J,358.3,20820,1,4,0)
+ ;;=4^T76.21XS
+ ;;^UTILITY(U,$J,358.3,20820,2)
+ ;;=^5054229
+ ;;^UTILITY(U,$J,358.3,20821,0)
+ ;;=Y07.53^^84^940^7
+ ;;^UTILITY(U,$J,358.3,20821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20470,1,3,0)
- ;;=3^Vitamin B12 Deficiency Anemia,Dietary
- ;;^UTILITY(U,$J,358.3,20470,1,4,0)
- ;;=4^D51.3
- ;;^UTILITY(U,$J,358.3,20470,2)
- ;;=^5002287
- ;;^UTILITY(U,$J,358.3,20471,0)
- ;;=D51.0^^97^961^28
- ;;^UTILITY(U,$J,358.3,20471,1,0)
+ ;;^UTILITY(U,$J,358.3,20821,1,3,0)
+ ;;=3^Instructor,Perpetrator of MST
+ ;;^UTILITY(U,$J,358.3,20821,1,4,0)
+ ;;=4^Y07.53
+ ;;^UTILITY(U,$J,358.3,20821,2)
+ ;;=^5061207
+ ;;^UTILITY(U,$J,358.3,20822,0)
+ ;;=Y07.59^^84^940^8
+ ;;^UTILITY(U,$J,358.3,20822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20471,1,3,0)
- ;;=3^Pernicious Anemia
- ;;^UTILITY(U,$J,358.3,20471,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,20471,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,20472,0)
- ;;=D50.0^^97^961^3
- ;;^UTILITY(U,$J,358.3,20472,1,0)
+ ;;^UTILITY(U,$J,358.3,20822,1,3,0)
+ ;;=3^Non-Family Member,Perpetrator of MST/Abuse NEC
+ ;;^UTILITY(U,$J,358.3,20822,1,4,0)
+ ;;=4^Y07.59
+ ;;^UTILITY(U,$J,358.3,20822,2)
+ ;;=^5061208
+ ;;^UTILITY(U,$J,358.3,20823,0)
+ ;;=E66.01^^84^941^120
+ ;;^UTILITY(U,$J,358.3,20823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20472,1,3,0)
- ;;=3^Anemia d/t Blood Loss (Chronic)
- ;;^UTILITY(U,$J,358.3,20472,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,20472,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,20473,0)
- ;;=E11.21^^97^961^18
- ;;^UTILITY(U,$J,358.3,20473,1,0)
+ ;;^UTILITY(U,$J,358.3,20823,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,20823,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,20823,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,20824,0)
+ ;;=F18.10^^84^941^95
+ ;;^UTILITY(U,$J,358.3,20824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20473,1,3,0)
- ;;=3^DM Type 2 w/ Nephropathy
- ;;^UTILITY(U,$J,358.3,20473,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,20473,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,20474,0)
- ;;=E11.22^^97^961^8
- ;;^UTILITY(U,$J,358.3,20474,1,0)
+ ;;^UTILITY(U,$J,358.3,20824,1,3,0)
+ ;;=3^Inhalant Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20824,1,4,0)
+ ;;=4^F18.10
+ ;;^UTILITY(U,$J,358.3,20824,2)
+ ;;=^5003380
+ ;;^UTILITY(U,$J,358.3,20825,0)
+ ;;=F55.0^^84^941^38
+ ;;^UTILITY(U,$J,358.3,20825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20474,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic CKD
- ;;^UTILITY(U,$J,358.3,20474,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,20474,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,20475,0)
- ;;=E11.29^^97^961^19
- ;;^UTILITY(U,$J,358.3,20475,1,0)
+ ;;^UTILITY(U,$J,358.3,20825,1,3,0)
+ ;;=3^Antacid Abuse
+ ;;^UTILITY(U,$J,358.3,20825,1,4,0)
+ ;;=4^F55.0
+ ;;^UTILITY(U,$J,358.3,20825,2)
+ ;;=^5003628
+ ;;^UTILITY(U,$J,358.3,20826,0)
+ ;;=F18.90^^84^941^96
+ ;;^UTILITY(U,$J,358.3,20826,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20475,1,3,0)
- ;;=3^DM Type 2 w/ Other Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,20475,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,20475,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,20476,0)
- ;;=E11.311^^97^961^20
- ;;^UTILITY(U,$J,358.3,20476,1,0)
+ ;;^UTILITY(U,$J,358.3,20826,1,3,0)
+ ;;=3^Inhalant Use Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,20826,1,4,0)
+ ;;=4^F18.90
+ ;;^UTILITY(U,$J,358.3,20826,2)
+ ;;=^5003405
+ ;;^UTILITY(U,$J,358.3,20827,0)
+ ;;=F55.2^^84^941^102
+ ;;^UTILITY(U,$J,358.3,20827,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20476,1,3,0)
- ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/ Macular edema
- ;;^UTILITY(U,$J,358.3,20476,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,20476,2)
- ;;=^5002632
- ;;^UTILITY(U,$J,358.3,20477,0)
- ;;=E11.319^^97^961^21
- ;;^UTILITY(U,$J,358.3,20477,1,0)
+ ;;^UTILITY(U,$J,358.3,20827,1,3,0)
+ ;;=3^Laxative Abuse
+ ;;^UTILITY(U,$J,358.3,20827,1,4,0)
+ ;;=4^F55.2
+ ;;^UTILITY(U,$J,358.3,20827,2)
+ ;;=^5003630
+ ;;^UTILITY(U,$J,358.3,20828,0)
+ ;;=F55.1^^84^941^81
+ ;;^UTILITY(U,$J,358.3,20828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20477,1,3,0)
- ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,20477,1,4,0)
- ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,20828,1,3,0)
+ ;;=3^Herbal/Folk Remedy Abuse
+ ;;^UTILITY(U,$J,358.3,20828,1,4,0)
+ ;;=4^F55.1
+ ;;^UTILITY(U,$J,358.3,20828,2)
+ ;;=^5003629

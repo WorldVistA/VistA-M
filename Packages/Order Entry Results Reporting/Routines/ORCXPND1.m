@@ -1,5 +1,5 @@
 ORCXPND1 ; SLC/MKB - Expanded Display cont ;09/21/12  05:58
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306**;Dec 17, 1997;Build 43
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**26,67,75,89,92,94,148,159,188,172,215,243,280,340,306,350**;Dec 17, 1997;Build 77
  ;
  ; External References
  ;   DBIA  2387  ^LAB(60
@@ -51,8 +51,8 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  K ^TMP("LRRR",$J)  ;DBIA 2503
  I (ID?2.5E1" "2N1" "1.N1"-"7N1"."1.4N)!(ID?2.5E1" "2N1" "1.N1"-"7N) D AP^ORCXPND3 Q  ;ID=Accession #-Date/time specimen taken
  S ORIFN=+ID,IDE=$G(^OR(100,+ID,4)) Q:'$L(IDE)  ; OE# -> Lab#
- I +IDE  D RR^LR7OR1(+ORVP,IDE) I '$D(^TMP("LRRR",$J,+ORVP)) S $P(IDE,";",1,3)=";;" ;Order possibly purged, reset to lookup on file 63
- I '+IDE,$P(IDE,";",5)  D RR^LR7OR1(+ORVP,,9999999-$P(IDE,";",5),9999999-$P(IDE,";",5),$P(IDE,";",4))
+ I $P(IDE,";",5) D RR^LR7OR1(+ORVP,,9999999-$P(IDE,";",5),9999999-$P(IDE,";",5),$P(IDE,";",4)) ;lookup on file 63 first
+ I '$P(IDE,";",5),+IDE D RR^LR7OR1(+ORVP,IDE) I '$D(^TMP("LRRR",$J,+ORVP)) S $P(IDE,";",1,3)=";;"
  K ORCY D TEXT^ORQ12(.ORCY,ORIFN,80)
  S IG=0 F  S IG=$O(ORCY(IG)) Q:IG<1  S X=ORCY(IG) D ITEM^ORCXPND(X)
  D BLANK^ORCXPND I '$D(^TMP("LRRR",$J,+ORVP)) S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)="No data available." Q
@@ -74,15 +74,41 @@ LABS ; -- Laboratory [RESULTS ONLY for ID=OE order #]
  . I SS="CH" D  Q
  .. S (TCNT,TST)=0 F  S TST=$O(TEST(SS,IVDT,TST)) Q:TST=""  S CCNT=0,TCNT=TCNT+1 D
  ... I TCNT=1 D
- .... S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)="   Collection time:          "_$$FMTE^XLFDT(9999999-IVDT,1)
- .... S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=$$S(1,CCNT," ")_$$S(3,CCNT,"Test Name")_$$S(29,CCNT,"Result")_$$S(39,CCNT,"Units")_$$S(55,CCNT,"Range") D:$D(IOUON) SETVIDEO^ORCXPND(LCNT,1,70,IOUON,IOUOFF)
- ... I TST S X=TEST(SS,IVDT,TST),CCNT=0 I +X D
- .... S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=$$S(1,CCNT,$P(^LAB(60,+X,0),U))_$$S(26,CCNT,$J($P(X,U,2),7))_$$S(34,CCNT,$S($L($P(X,U,3)):$P(X,U,3),1:""))_$$S(39,CCNT,$P(X,U,4))_$$S(45,CCNT,$J($P(X,U,5),15))
- .... I $L($P(X,U,3)),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOINHI,IOINORM)
- .... I $P(X,U,3)["*",$D(IOBON),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOBON_IOINHI,IOBOFF_IOINORM)
- ... I TST="N" S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=" Comments: " D
- .... N CMT S CMT=0 F  S CMT=$O(TEST(SS,IVDT,"N",CMT)) Q:'CMT  S LCNT=LCNT+1,^TMP("ORXPND",$J,LCNT,0)=" "_TEST(SS,IVDT,"N",CMT)
+ .... S LINE="Collection time: "_$$FMTE^XLFDT(9999999-IVDT,"M")
+ .... D SETLINE(LINE,.LCNT)
+ .... S LINE=$$S(1,CCNT," ")_$$S(3,CCNT,"Test Name")_$$S(29,CCNT,"Result")_$$S(39,CCNT,"Units")_$$S(55,CCNT,"Range")_$$S(63,CCNT,"Site Code")
+ .... D SETLINE(LINE,.LCNT)
+ .... D:$D(IOUON) SETVIDEO^ORCXPND(LCNT,1,70,IOUON,IOUOFF)
+ ... I TST S XT=TEST(SS,IVDT,TST),CCNT=0 I +XT D
+ .... S LINE=$$S(1,CCNT,$P(^LAB(60,+XT,0),U))_$$S(26,CCNT,$J($P(XT,U,2),7))_$$S(34,CCNT,$S($L($P(XT,U,3)):$P(XT,U,3),1:""))_$$S(39,CCNT,$P(XT,U,4))_$$S(45,CCNT,$J($P(XT,U,5),15))_$$S(61,CCNT,$J($S($L($P(XT,U,20)):"["_$P(XT,U,20)_"]",1:""),10))
+ .... D SETLINE(LINE,.LCNT)
+ .... I $P(XT,U,20) S ^TMP("ORPLS",$J,$P(XT,U,20))=""
+ .... I $L($P(XT,U,3)),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOINHI,IOINORM)
+ .... I $P(XT,U,3)["*",$D(IOBON),$D(IOINHI) D SETVIDEO^ORCXPND(LCNT,26,8,IOBON_IOINHI,IOBOFF_IOINORM)
+ ... I TST="N" S LINE=" Comments: " D
+ .... D SETLINE(LINE,.LCNT)
+ .... N CMT S CMT=0 F  S CMT=$O(TEST(SS,IVDT,"N",CMT)) Q:'CMT  S LINE=" "_TEST(SS,IVDT,"N",CMT) D SETLINE(LINE,.LCNT)
+ I $L($O(^TMP("ORPLS",$J,""))) D SETLINE(" ",.LCNT),SETLINE(" ",.LCNT),SETLINE("===============================================================================",.LCNT),PLS
+ D SETLINE(" ",.LCNT)
  K ^TMP("LRRR",$J)
+ Q
+ ;
+PLS ; List performing laboratories
+ N LINE,ORPLS,X
+ D SETLINE("Performing Lab Sites",.LCNT)
+ S ORPLS=0
+ F  S ORPLS=$O(^TMP("ORPLS",$J,ORPLS)) Q:ORPLS<1  D
+ . S LINE=$$LJ^XLFSTR("["_ORPLS_"] ",8)_$$NAME^XUAF4(ORPLS)
+ . D SETLINE(LINE,.LCNT)
+ . S X=$$PADD^XUAF4(ORPLS)
+ . S LINE=$$REPEAT^XLFSTR(" ",8)_$P(X,U)_" "_$P(X,U,2)_", "_$P(X,U,3)_" "_$P(X,U,4)
+ . D SETLINE(LINE,.LCNT)
+ D SETLINE("===============================================================================",.LCNT)
+ K ^TMP("ORPLS",$J)
+ Q
+ ;
+SETLINE(LINE,CNT) ;
+ S CNT=CNT+1,^TMP("ORXPND",$J,CNT,0)=LINE
  Q
  ;
 DELAY ; -- Delayed Orders

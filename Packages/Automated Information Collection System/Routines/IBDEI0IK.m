@@ -1,134 +1,136 @@
-IBDEI0IK ; ; 19-NOV-2015
+IBDEI0IK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8339,0)
- ;;=C23.^^55^538^60
- ;;^UTILITY(U,$J,358.3,8339,1,0)
+ ;;^UTILITY(U,$J,358.3,8618,1,3,0)
+ ;;=3^Enlarged lymph nodes, unspecified
+ ;;^UTILITY(U,$J,358.3,8618,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,8618,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,8619,0)
+ ;;=R05.^^39^463^4
+ ;;^UTILITY(U,$J,358.3,8619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8339,1,3,0)
- ;;=3^Malignant neoplasm of gallbladder
- ;;^UTILITY(U,$J,358.3,8339,1,4,0)
- ;;=4^C23.
- ;;^UTILITY(U,$J,358.3,8339,2)
- ;;=^267098
- ;;^UTILITY(U,$J,358.3,8340,0)
- ;;=C24.0^^55^538^59
- ;;^UTILITY(U,$J,358.3,8340,1,0)
+ ;;^UTILITY(U,$J,358.3,8619,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,8619,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,8619,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,8620,0)
+ ;;=R04.2^^39^463^7
+ ;;^UTILITY(U,$J,358.3,8620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8340,1,3,0)
- ;;=3^Malignant neoplasm of extrahepatic bile duct
- ;;^UTILITY(U,$J,358.3,8340,1,4,0)
- ;;=4^C24.0
- ;;^UTILITY(U,$J,358.3,8340,2)
- ;;=^5000940
- ;;^UTILITY(U,$J,358.3,8341,0)
- ;;=C24.1^^55^538^50
- ;;^UTILITY(U,$J,358.3,8341,1,0)
+ ;;^UTILITY(U,$J,358.3,8620,1,3,0)
+ ;;=3^Hemoptysis
+ ;;^UTILITY(U,$J,358.3,8620,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,8620,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,8621,0)
+ ;;=Z43.0^^39^463^2
+ ;;^UTILITY(U,$J,358.3,8621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8341,1,3,0)
- ;;=3^Malignant neoplasm of ampulla of Vater
- ;;^UTILITY(U,$J,358.3,8341,1,4,0)
- ;;=4^C24.1
- ;;^UTILITY(U,$J,358.3,8341,2)
- ;;=^267100
- ;;^UTILITY(U,$J,358.3,8342,0)
- ;;=C25.9^^55^538^70
- ;;^UTILITY(U,$J,358.3,8342,1,0)
+ ;;^UTILITY(U,$J,358.3,8621,1,3,0)
+ ;;=3^Attention to Tracheostomy
+ ;;^UTILITY(U,$J,358.3,8621,1,4,0)
+ ;;=4^Z43.0
+ ;;^UTILITY(U,$J,358.3,8621,2)
+ ;;=^5062958
+ ;;^UTILITY(U,$J,358.3,8622,0)
+ ;;=G51.0^^39^463^3
+ ;;^UTILITY(U,$J,358.3,8622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8342,1,3,0)
- ;;=3^Malignant neoplasm of pancreas, unspecified
- ;;^UTILITY(U,$J,358.3,8342,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,8342,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,8343,0)
- ;;=C31.9^^55^538^49
- ;;^UTILITY(U,$J,358.3,8343,1,0)
+ ;;^UTILITY(U,$J,358.3,8622,1,3,0)
+ ;;=3^Bell's palsy
+ ;;^UTILITY(U,$J,358.3,8622,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,8622,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,8623,0)
+ ;;=C77.9^^39^464^1
+ ;;^UTILITY(U,$J,358.3,8623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8343,1,3,0)
- ;;=3^Malignant neoplasm of accessory sinus, unspecified
- ;;^UTILITY(U,$J,358.3,8343,1,4,0)
- ;;=4^C31.9
- ;;^UTILITY(U,$J,358.3,8343,2)
- ;;=^5000953
- ;;^UTILITY(U,$J,358.3,8344,0)
- ;;=C32.9^^55^538^62
- ;;^UTILITY(U,$J,358.3,8344,1,0)
+ ;;^UTILITY(U,$J,358.3,8623,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of lymph node, unsp
+ ;;^UTILITY(U,$J,358.3,8623,1,4,0)
+ ;;=4^C77.9
+ ;;^UTILITY(U,$J,358.3,8623,2)
+ ;;=^5001333
+ ;;^UTILITY(U,$J,358.3,8624,0)
+ ;;=C77.0^^39^464^2
+ ;;^UTILITY(U,$J,358.3,8624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8344,1,3,0)
- ;;=3^Malignant neoplasm of larynx, unspecified
- ;;^UTILITY(U,$J,358.3,8344,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,8344,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,8345,0)
- ;;=C34.91^^55^538^82
- ;;^UTILITY(U,$J,358.3,8345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8345,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right bronchus or lung
- ;;^UTILITY(U,$J,358.3,8345,1,4,0)
- ;;=4^C34.91
- ;;^UTILITY(U,$J,358.3,8345,2)
- ;;=^5000967
- ;;^UTILITY(U,$J,358.3,8346,0)
- ;;=C34.92^^55^538^81
- ;;^UTILITY(U,$J,358.3,8346,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8346,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left bronchus or lung
- ;;^UTILITY(U,$J,358.3,8346,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,8346,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,8347,0)
- ;;=C38.4^^55^538^71
- ;;^UTILITY(U,$J,358.3,8347,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8347,1,3,0)
- ;;=3^Malignant neoplasm of pleura
- ;;^UTILITY(U,$J,358.3,8347,1,4,0)
- ;;=4^C38.4
- ;;^UTILITY(U,$J,358.3,8347,2)
- ;;=^267140
- ;;^UTILITY(U,$J,358.3,8348,0)
- ;;=C45.0^^55^538^86
- ;;^UTILITY(U,$J,358.3,8348,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8348,1,3,0)
- ;;=3^Mesothelioma of pleura
- ;;^UTILITY(U,$J,358.3,8348,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,8348,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,8349,0)
- ;;=C49.9^^55^538^55
- ;;^UTILITY(U,$J,358.3,8349,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8349,1,3,0)
- ;;=3^Malignant neoplasm of connective and soft tissue, unsp
- ;;^UTILITY(U,$J,358.3,8349,1,4,0)
- ;;=4^C49.9
- ;;^UTILITY(U,$J,358.3,8349,2)
- ;;=^5001136
- ;;^UTILITY(U,$J,358.3,8350,0)
- ;;=C43.9^^55^538^48
- ;;^UTILITY(U,$J,358.3,8350,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8350,1,3,0)
- ;;=3^Malignant melanoma of skin, unspecified
- ;;^UTILITY(U,$J,358.3,8350,1,4,0)
- ;;=4^C43.9
- ;;^UTILITY(U,$J,358.3,8350,2)
- ;;=^5001015
- ;;^UTILITY(U,$J,358.3,8351,0)
- ;;=D03.9^^55^538^85
- ;;^UTILITY(U,$J,358.3,8351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8351,1,3,0)
- ;;=3^Melanoma in situ, unspecified
- ;;^UTILITY(U,$J,358.3,8351,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,8351,2)
- ;;=^5001908
+ ;;^UTILITY(U,$J,358.3,8624,1,3,0)
+ ;;=3^Secondary and unsp malignant neoplasm of nodes of head,face and neck
+ ;;^UTILITY(U,$J,358.3,8624,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,8624,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,8625,0)
+ ;;=92015^^40^465^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8625,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8625,1,2,0)
+ ;;=2^Refraction
+ ;;^UTILITY(U,$J,358.3,8625,1,3,0)
+ ;;=3^92015
+ ;;^UTILITY(U,$J,358.3,8626,0)
+ ;;=92311^^40^466^3^^^^1
+ ;;^UTILITY(U,$J,358.3,8626,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8626,1,2,0)
+ ;;=2^Contact Lens-Aphakia OD/OS
+ ;;^UTILITY(U,$J,358.3,8626,1,3,0)
+ ;;=3^92311
+ ;;^UTILITY(U,$J,358.3,8627,0)
+ ;;=92312^^40^466^4^^^^1
+ ;;^UTILITY(U,$J,358.3,8627,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8627,1,2,0)
+ ;;=2^Contact Lens-Aphakia OU
+ ;;^UTILITY(U,$J,358.3,8627,1,3,0)
+ ;;=3^92312
+ ;;^UTILITY(U,$J,358.3,8628,0)
+ ;;=92340^^40^466^6^^^^1
+ ;;^UTILITY(U,$J,358.3,8628,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8628,1,2,0)
+ ;;=2^Glasses Fitting, Monofocal
+ ;;^UTILITY(U,$J,358.3,8628,1,3,0)
+ ;;=3^92340
+ ;;^UTILITY(U,$J,358.3,8629,0)
+ ;;=92341^^40^466^5^^^^1
+ ;;^UTILITY(U,$J,358.3,8629,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8629,1,2,0)
+ ;;=2^Glasses Fitting, Bifocal
+ ;;^UTILITY(U,$J,358.3,8629,1,3,0)
+ ;;=3^92341
+ ;;^UTILITY(U,$J,358.3,8630,0)
+ ;;=92342^^40^466^8^^^^1
+ ;;^UTILITY(U,$J,358.3,8630,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8630,1,2,0)
+ ;;=2^Glasses Fitting, Multifocal
+ ;;^UTILITY(U,$J,358.3,8630,1,3,0)
+ ;;=3^92342
+ ;;^UTILITY(U,$J,358.3,8631,0)
+ ;;=92352^^40^466^7^^^^1
+ ;;^UTILITY(U,$J,358.3,8631,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8631,1,2,0)
+ ;;=2^Glasses Fitting, Monofocal for Aphakia
+ ;;^UTILITY(U,$J,358.3,8631,1,3,0)
+ ;;=3^92352
+ ;;^UTILITY(U,$J,358.3,8632,0)
+ ;;=92353^^40^466^9^^^^1
+ ;;^UTILITY(U,$J,358.3,8632,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,8632,1,2,0)
+ ;;=2^Glasses Fitting, Multifocal, for Aphakia
+ ;;^UTILITY(U,$J,358.3,8632,1,3,0)
+ ;;=3^92353
+ ;;^UTILITY(U,$J,358.3,8633,0)
+ ;;=92354^^40^466^10^^^^1

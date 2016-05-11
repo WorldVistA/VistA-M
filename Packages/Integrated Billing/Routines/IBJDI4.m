@@ -1,5 +1,6 @@
-IBJDI4 ;ALB/CPM - PATIENTS WITH UNIDENTIFIED INSURANCE ; 17-DEC-96
- ;;2.0;INTEGRATED BILLING;**69,98,100,118**;21-MAR-94
+IBJDI4 ;ALB/CPM - PATIENTS WITH UNIDENTIFIED INSURANCE ;17-DEC-96
+ ;;2.0;INTEGRATED BILLING;**69,98,100,118,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
  ;
@@ -18,7 +19,7 @@ DATE D DATE^IBOUTL I IBBDT=""!(IBEDT="") G ENQ
  ;
  ; - Select a detailed or summary report.
  D DS^IBJD G:IBRPT["^" ENQ S IBSEL=0
- I IBRPT="S" W !!,"This report only requires an 80 column printer." G DEV
+ I IBRPT="S" W !!,"This report only requires an 80 column printer." G FMT
  ;
 SEL W !!,"Print 1-MAIN REPORT or 2-LINE ITEM REPORTS: 1// "
  R X:DTIME G:'$T!(X["^") ENQ S:X="" X=1 I "1^2"'[X D HLP2 G SEL
@@ -39,7 +40,11 @@ RMK ; - Select print/not print remarks.
  S DIR("A")="Do you want the patient's remarks to print on the report"
  S DIR("B")="NO" D ^DIR K DIR S IBRMK=Y I IBRMK["^" G ENQ
  ;
- W !!,"You will need a 132 column printer for this report."
+FMT ; - Select output format.
+ K IBOUT
+ S IBOUT=$$OUT I $G(STOP) G ENQ
+ ;
+ I IBOUT="R",IBRPT="D" W !!,"You will need a 132 column printer for this report."
  ;
 DEV ; - Select a device.
  W !!,"Note: This report may take a while to run."
@@ -48,7 +53,7 @@ DEV ; - Select a device.
  S %ZIS="QM" D ^%ZIS G:POP ENQ
  I $D(IO("Q")) D  G ENQ
  .S ZTRTN="DQ^IBJDI4",ZTDESC="IB - PATIENTS WITH UNIDENTIFIED INSURANCE"
- .F I="IB*","VAUTD","VAUTD(" S ZTSAVE(I)=""
+ .F I="IB*","IBOUT","VAUTD","VAUTD(" S ZTSAVE(I)=""
  .D ^%ZTLOAD
  .W !!,$S($D(ZTSK):"This job has been queued. The task number is "_ZTSK_".",1:"Unable to queue this job.")
  .K ZTSK,IO("Q") D HOME^%ZIS
@@ -75,7 +80,7 @@ ENQ K ^TMP("IBJDI41",$J),^TMP("IBJDI42",$J)
 ENQ1 K IB,IBQ,IBBDT,IBEDT,IBRMK,IBRPT,IBD,IBDN,IBPH,IBPAG,IBRUN,IBX,IBX1,IBX2
  K IBC,IBELIG,IBPER,IBPM,IBPMD,IBDOD,IBFL,IBFL1,IBIPC,IBINSC,IBPAT,IBSEL
  K IBDIV,IBSEL1,IBSORT,VAUTD,DFN,POP,I,J,K,X,X1,X2,Y,ZTDESC,ZTRTN,ZTSAVE
- K DIR,DIROUT,DTOUT,DUOUT,DIRUT,%,%ZIS
+ K DIR,DIROUT,DTOUT,DUOUT,DIRUT,%,%ZIS,IBOUT,IBXTRACT,STOP
  Q
  ;
 HLP1 ; - 'Sort by division' prompt.
@@ -127,3 +132,12 @@ TYP1 G:Y TYPQ S TYP=+$P($G(^DIC(36,+INS,0)),U,13) I 'TYP G TYPQ
  I $D(^IBE(355.2,"B","INDEMNITY",TYP)) S Y=4
  ;
 TYPQ Q Y
+ ;
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y

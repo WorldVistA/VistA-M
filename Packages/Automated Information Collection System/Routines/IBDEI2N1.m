@@ -1,138 +1,118 @@
-IBDEI2N1 ; ; 19-NOV-2015
+IBDEI2N1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQR(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44272,2)
- ;;=^5018797
- ;;^UTILITY(U,$J,358.3,44273,0)
- ;;=N20.1^^200^2224^9
- ;;^UTILITY(U,$J,358.3,44273,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44273,1,3,0)
- ;;=3^Calculus Ureter
- ;;^UTILITY(U,$J,358.3,44273,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,44273,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,44274,0)
- ;;=N18.9^^200^2224^18
- ;;^UTILITY(U,$J,358.3,44274,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44274,1,3,0)
- ;;=3^Chronic Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,44274,1,4,0)
- ;;=4^N18.9
- ;;^UTILITY(U,$J,358.3,44274,2)
- ;;=^332812
- ;;^UTILITY(U,$J,358.3,44275,0)
- ;;=N18.6^^200^2224^28
- ;;^UTILITY(U,$J,358.3,44275,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44275,1,3,0)
- ;;=3^End Stage Renal Disease (ESRD)
- ;;^UTILITY(U,$J,358.3,44275,1,4,0)
- ;;=4^N18.6
- ;;^UTILITY(U,$J,358.3,44275,2)
- ;;=^303986
- ;;^UTILITY(U,$J,358.3,44276,0)
- ;;=N52.9^^200^2224^44
- ;;^UTILITY(U,$J,358.3,44276,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44276,1,3,0)
- ;;=3^Erectile Dysfunction,Unspec
- ;;^UTILITY(U,$J,358.3,44276,1,4,0)
- ;;=4^N52.9
- ;;^UTILITY(U,$J,358.3,44276,2)
- ;;=^5015763
- ;;^UTILITY(U,$J,358.3,44277,0)
- ;;=N32.81^^200^2224^75
- ;;^UTILITY(U,$J,358.3,44277,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44277,1,3,0)
- ;;=3^Overactive Bladder
- ;;^UTILITY(U,$J,358.3,44277,1,4,0)
- ;;=4^N32.81
- ;;^UTILITY(U,$J,358.3,44277,2)
- ;;=^5015652
- ;;^UTILITY(U,$J,358.3,44278,0)
- ;;=Q61.2^^200^2224^79
- ;;^UTILITY(U,$J,358.3,44278,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44278,1,3,0)
- ;;=3^Polycystic Kidney,Adult Type
- ;;^UTILITY(U,$J,358.3,44278,1,4,0)
- ;;=4^Q61.2
- ;;^UTILITY(U,$J,358.3,44278,2)
- ;;=^5018796
- ;;^UTILITY(U,$J,358.3,44279,0)
- ;;=N41.1^^200^2224^83
- ;;^UTILITY(U,$J,358.3,44279,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44279,1,3,0)
- ;;=3^Prostatitis,Chronic
- ;;^UTILITY(U,$J,358.3,44279,1,4,0)
- ;;=4^N41.1
- ;;^UTILITY(U,$J,358.3,44279,2)
- ;;=^186931
- ;;^UTILITY(U,$J,358.3,44280,0)
- ;;=N11.9^^200^2224^91
- ;;^UTILITY(U,$J,358.3,44280,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44280,1,3,0)
- ;;=3^Pyelonephritis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,44280,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,44280,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,44281,0)
- ;;=N20.9^^200^2224^102
- ;;^UTILITY(U,$J,358.3,44281,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44281,1,3,0)
- ;;=3^Urinary Calculus,Unspec
- ;;^UTILITY(U,$J,358.3,44281,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,44281,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,44282,0)
- ;;=R51.^^200^2225^2
- ;;^UTILITY(U,$J,358.3,44282,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44282,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,44282,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,44282,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,44283,0)
- ;;=G44.1^^200^2225^9
- ;;^UTILITY(U,$J,358.3,44283,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44283,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,44283,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,44283,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,44284,0)
- ;;=G43.909^^200^2225^5
- ;;^UTILITY(U,$J,358.3,44284,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44284,1,3,0)
- ;;=3^Migraine,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,44284,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,44284,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,44285,0)
- ;;=G44.009^^200^2225^1
- ;;^UTILITY(U,$J,358.3,44285,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44285,1,3,0)
- ;;=3^Cluster Headache,Unspec,Not Intractable
- ;;^UTILITY(U,$J,358.3,44285,1,4,0)
- ;;=4^G44.009
- ;;^UTILITY(U,$J,358.3,44285,2)
- ;;=^5003921
- ;;^UTILITY(U,$J,358.3,44286,0)
- ;;=G44.40^^200^2225^4
+ ;;^UTILITY(U,$J,358.6)
+ ;;=^IBE(358.6,
+ ;;^UTILITY(U,$J,358.6,0)
+ ;;=IMP/EXP PACKAGE INTERFACE^358.6I^9^9
+ ;;^UTILITY(U,$J,358.6,1,0)
+ ;;=DG SELECT CPT PROCEDURE CODES^CPT^IBDFN4^SCHEDULING^^3^2^^1^^^1^2^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,1,1,0)
+ ;;=^^2^2^2961007^^^^
+ ;;^UTILITY(U,$J,358.6,1,1,1,0)
+ ;;=Allows for the selection of CPT codes from the CPT file. Only active codes
+ ;;^UTILITY(U,$J,358.6,1,1,2,0)
+ ;;=are allowed.
+ ;;^UTILITY(U,$J,358.6,1,2)
+ ;;=CODE^5^SHORT NAME^28^DESCRIPTION^161^^^^^^^^^^CODE^1^1
+ ;;^UTILITY(U,$J,358.6,1,3)
+ ;;=SELECT CPT PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,1,9)
+ ;;=S X=$$CPT^IBDFN12(X)
+ ;;^UTILITY(U,$J,358.6,1,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,1,15,0)
+ ;;=^358.615I^2^2
+ ;;^UTILITY(U,$J,358.6,1,15,1,0)
+ ;;=SHORT NAME^28^2^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,1,15,2,0)
+ ;;=DESCRIPTION^161^3^^PROCEDURE
+ ;;^UTILITY(U,$J,358.6,1,16)
+ ;;=o^1^Procedure Narrative^^r^2^CPT CODE^1
+ ;;^UTILITY(U,$J,358.6,2,0)
+ ;;=INPUT PROCEDURE CODE (CPT4)^^^PATIENT CARE ENCOUNTER^^1^4^^1^0^^1^^^^SMP
+ ;;^UTILITY(U,$J,358.6,2,1,0)
+ ;;=^^1^1^2960205^^^^
+ ;;^UTILITY(U,$J,358.6,2,1,1,0)
+ ;;=Used for inputting CPT coded procedures performed on the patient.
+ ;;^UTILITY(U,$J,358.6,2,2)
+ ;;=^^^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,2,3)
+ ;;=CPT4 PROCEDURE CODES
+ ;;^UTILITY(U,$J,358.6,2,9)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.6,2,10)
+ ;;=Enter an active CPT procedure code.
+ ;;^UTILITY(U,$J,358.6,2,11)
+ ;;=D TESTCPT^IBDFN7
+ ;;^UTILITY(U,$J,358.6,2,12)
+ ;;=PROCEDURE^1^6^7^3^2
+ ;;^UTILITY(U,$J,358.6,2,13,0)
+ ;;=^358.613V^2^2
+ ;;^UTILITY(U,$J,358.6,2,13,1,0)
+ ;;=1;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,2,13,2,0)
+ ;;=2;IBD(358.98,^^0
+ ;;^UTILITY(U,$J,358.6,2,14)
+ ;;=S Y=$$DSPLYCPT^IBDFN9(Y)
+ ;;^UTILITY(U,$J,358.6,2,17)
+ ;;=D SLCTCPT^IBDFN12(.X)
+ ;;^UTILITY(U,$J,358.6,2,18)
+ ;;=S IBDF("OTHER")="81^I '$P(^(0),U,4)" D LIST^IBDFDE2(.IBDSEL,.IBDF,"CPT Procedure Code")
+ ;;^UTILITY(U,$J,358.6,2,19)
+ ;;=D CPT^IBDFN14(X)
+ ;;^UTILITY(U,$J,358.6,3,0)
+ ;;=DPT PATIENT'S NAME^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,3,1,0)
+ ;;=^^2^2^2930212^^^^
+ ;;^UTILITY(U,$J,358.6,3,1,1,0)
+ ;;= 
+ ;;^UTILITY(U,$J,358.6,3,1,2,0)
+ ;;=Patient's Name
+ ;;^UTILITY(U,$J,358.6,3,2)
+ ;;=Patient's Name^30^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,3,3)
+ ;;=PATIENT NAME
+ ;;^UTILITY(U,$J,358.6,3,7,0)
+ ;;=^358.67^1^1
+ ;;^UTILITY(U,$J,358.6,3,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,4,0)
+ ;;=DPT PATIENT'S PID^VADPT^IBDFN^REGISTRATION^1^2^1^1^1^^^1
+ ;;^UTILITY(U,$J,358.6,4,1,0)
+ ;;=^^1^1^2931015^^
+ ;;^UTILITY(U,$J,358.6,4,1,1,0)
+ ;;=Used to display the patient identifier.
+ ;;^UTILITY(U,$J,358.6,4,2)
+ ;;=PATIENT IDENTIFIER^15^^^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,4,3)
+ ;;=PATIENT IDENTIFIER PID
+ ;;^UTILITY(U,$J,358.6,4,7,0)
+ ;;=^358.67^1^1
+ ;;^UTILITY(U,$J,358.6,4,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,5,0)
+ ;;=DPT PATIENT'S DOB/AGE^VADPT^IBDFN^REGISTRATION^1^2^2^^1^^^1
+ ;;^UTILITY(U,$J,358.6,5,1,0)
+ ;;=^^2^2^2951023^
+ ;;^UTILITY(U,$J,358.6,5,1,1,0)
+ ;;=Patient's DOB in MM DD, YYYY format
+ ;;^UTILITY(U,$J,358.6,5,1,2,0)
+ ;;=Patient's age in years.
+ ;;^UTILITY(U,$J,358.6,5,2)
+ ;;=Patient's DOB^12^Patient's Age^3^^^^^^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,5,3)
+ ;;=PATIENT DOB AGE PIMS
+ ;;^UTILITY(U,$J,358.6,5,7,0)
+ ;;=^358.67^1^1
+ ;;^UTILITY(U,$J,358.6,5,7,1,0)
+ ;;=DFN
+ ;;^UTILITY(U,$J,358.6,5,15,0)
+ ;;=^358.615I^1^1
+ ;;^UTILITY(U,$J,358.6,5,15,1,0)
+ ;;=Patient's Age^3^2
+ ;;^UTILITY(U,$J,358.6,6,0)
+ ;;=DG SELECT VISIT TYPE CPT PROCEDURES^VSIT^IBDFN4^SCHEDULING^^3^2^^1^^^1^7^^^^^^^^1
+ ;;^UTILITY(U,$J,358.6,6,1,0)
+ ;;=^^1^1^2941116^^^^

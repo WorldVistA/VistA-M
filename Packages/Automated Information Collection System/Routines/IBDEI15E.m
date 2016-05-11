@@ -1,134 +1,130 @@
-IBDEI15E ; ; 19-NOV-2015
+IBDEI15E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19176,0)
- ;;=J01.91^^94^918^76
- ;;^UTILITY(U,$J,358.3,19176,1,0)
+ ;;^UTILITY(U,$J,358.3,19532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19176,1,3,0)
- ;;=3^Sinusitis,Acute Recurrent Unspec
- ;;^UTILITY(U,$J,358.3,19176,1,4,0)
- ;;=4^J01.91
- ;;^UTILITY(U,$J,358.3,19176,2)
- ;;=^5008128
- ;;^UTILITY(U,$J,358.3,19177,0)
- ;;=J03.90^^94^918^81
- ;;^UTILITY(U,$J,358.3,19177,1,0)
+ ;;^UTILITY(U,$J,358.3,19532,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,19532,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,19532,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,19533,0)
+ ;;=L87.2^^84^918^141
+ ;;^UTILITY(U,$J,358.3,19533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19177,1,3,0)
- ;;=3^Tonsillitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,19177,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,19177,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,19178,0)
- ;;=J01.90^^94^918^77
- ;;^UTILITY(U,$J,358.3,19178,1,0)
+ ;;^UTILITY(U,$J,358.3,19533,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,19533,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,19533,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,19534,0)
+ ;;=L89.300^^84^918^242
+ ;;^UTILITY(U,$J,358.3,19534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19178,1,3,0)
- ;;=3^Sinusitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,19178,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,19178,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,19179,0)
- ;;=J20.1^^94^918^10
- ;;^UTILITY(U,$J,358.3,19179,1,0)
+ ;;^UTILITY(U,$J,358.3,19534,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,19534,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,19534,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,19535,0)
+ ;;=L89.301^^84^918^237
+ ;;^UTILITY(U,$J,358.3,19535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19179,1,3,0)
- ;;=3^Bronchitis,Acute d/t Hemophilus Influenza
- ;;^UTILITY(U,$J,358.3,19179,1,4,0)
- ;;=4^J20.1
- ;;^UTILITY(U,$J,358.3,19179,2)
- ;;=^5008187
- ;;^UTILITY(U,$J,358.3,19180,0)
- ;;=J20.0^^94^918^11
- ;;^UTILITY(U,$J,358.3,19180,1,0)
+ ;;^UTILITY(U,$J,358.3,19535,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,19535,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,19535,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,19536,0)
+ ;;=L89.302^^84^918^238
+ ;;^UTILITY(U,$J,358.3,19536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19180,1,3,0)
- ;;=3^Bronchitis,Acute d/t Mycoplasma Pneumonia
- ;;^UTILITY(U,$J,358.3,19180,1,4,0)
- ;;=4^J20.0
- ;;^UTILITY(U,$J,358.3,19180,2)
- ;;=^5008186
- ;;^UTILITY(U,$J,358.3,19181,0)
- ;;=J20.2^^94^918^6
- ;;^UTILITY(U,$J,358.3,19181,1,0)
+ ;;^UTILITY(U,$J,358.3,19536,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,19536,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,19536,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,19537,0)
+ ;;=L89.303^^84^918^239
+ ;;^UTILITY(U,$J,358.3,19537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19181,1,3,0)
- ;;=3^Bonchitis,Acute d/t Streptococcus
- ;;^UTILITY(U,$J,358.3,19181,1,4,0)
- ;;=4^J20.2
- ;;^UTILITY(U,$J,358.3,19181,2)
- ;;=^5008188
- ;;^UTILITY(U,$J,358.3,19182,0)
- ;;=J20.4^^94^918^13
- ;;^UTILITY(U,$J,358.3,19182,1,0)
+ ;;^UTILITY(U,$J,358.3,19537,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,19537,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,19537,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,19538,0)
+ ;;=L89.304^^84^918^240
+ ;;^UTILITY(U,$J,358.3,19538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19182,1,3,0)
- ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
- ;;^UTILITY(U,$J,358.3,19182,1,4,0)
- ;;=4^J20.4
- ;;^UTILITY(U,$J,358.3,19182,2)
- ;;=^5008190
- ;;^UTILITY(U,$J,358.3,19183,0)
- ;;=J20.3^^94^918^8
- ;;^UTILITY(U,$J,358.3,19183,1,0)
+ ;;^UTILITY(U,$J,358.3,19538,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,19538,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,19538,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,19539,0)
+ ;;=L89.309^^84^918^241
+ ;;^UTILITY(U,$J,358.3,19539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19183,1,3,0)
- ;;=3^Bronchitis,Acute d/t Coxsackievirus
- ;;^UTILITY(U,$J,358.3,19183,1,4,0)
- ;;=4^J20.3
- ;;^UTILITY(U,$J,358.3,19183,2)
- ;;=^5008189
- ;;^UTILITY(U,$J,358.3,19184,0)
- ;;=J20.9^^94^918^7
- ;;^UTILITY(U,$J,358.3,19184,1,0)
+ ;;^UTILITY(U,$J,358.3,19539,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,19539,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,19539,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,19540,0)
+ ;;=L89.90^^84^918^247
+ ;;^UTILITY(U,$J,358.3,19540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19184,1,3,0)
- ;;=3^Bronchitis,Acute Unspec
- ;;^UTILITY(U,$J,358.3,19184,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,19184,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,19185,0)
- ;;=J20.8^^94^918^12
- ;;^UTILITY(U,$J,358.3,19185,1,0)
+ ;;^UTILITY(U,$J,358.3,19540,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,19540,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,19540,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,19541,0)
+ ;;=L89.91^^84^918^243
+ ;;^UTILITY(U,$J,358.3,19541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19185,1,3,0)
- ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
- ;;^UTILITY(U,$J,358.3,19185,1,4,0)
- ;;=4^J20.8
- ;;^UTILITY(U,$J,358.3,19185,2)
- ;;=^5008194
- ;;^UTILITY(U,$J,358.3,19186,0)
- ;;=J20.5^^94^918^14
- ;;^UTILITY(U,$J,358.3,19186,1,0)
+ ;;^UTILITY(U,$J,358.3,19541,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,19541,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,19541,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,19542,0)
+ ;;=L89.92^^84^918^244
+ ;;^UTILITY(U,$J,358.3,19542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19186,1,3,0)
- ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
- ;;^UTILITY(U,$J,358.3,19186,1,4,0)
- ;;=4^J20.5
- ;;^UTILITY(U,$J,358.3,19186,2)
- ;;=^5008191
- ;;^UTILITY(U,$J,358.3,19187,0)
- ;;=J20.7^^94^918^9
- ;;^UTILITY(U,$J,358.3,19187,1,0)
+ ;;^UTILITY(U,$J,358.3,19542,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,19542,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,19542,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,19543,0)
+ ;;=L89.93^^84^918^245
+ ;;^UTILITY(U,$J,358.3,19543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19187,1,3,0)
- ;;=3^Bronchitis,Acute d/t Echovirus
- ;;^UTILITY(U,$J,358.3,19187,1,4,0)
- ;;=4^J20.7
- ;;^UTILITY(U,$J,358.3,19187,2)
- ;;=^5008193
- ;;^UTILITY(U,$J,358.3,19188,0)
- ;;=J20.6^^94^918^15
- ;;^UTILITY(U,$J,358.3,19188,1,0)
+ ;;^UTILITY(U,$J,358.3,19543,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,19543,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,19543,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,19544,0)
+ ;;=L89.94^^84^918^246
+ ;;^UTILITY(U,$J,358.3,19544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19188,1,3,0)
- ;;=3^Bronchitis,Acute d/t Rhinovirus
- ;;^UTILITY(U,$J,358.3,19188,1,4,0)
- ;;=4^J20.6
- ;;^UTILITY(U,$J,358.3,19188,2)
- ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,19544,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,19544,1,4,0)
+ ;;=4^L89.94

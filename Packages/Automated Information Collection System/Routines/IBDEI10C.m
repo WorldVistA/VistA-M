@@ -1,134 +1,130 @@
-IBDEI10C ; ; 19-NOV-2015
+IBDEI10C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16759,1,3,0)
- ;;=3^Urethritis,Nonspecific
- ;;^UTILITY(U,$J,358.3,16759,1,4,0)
- ;;=4^N34.1
- ;;^UTILITY(U,$J,358.3,16759,2)
- ;;=^5015655
- ;;^UTILITY(U,$J,358.3,16760,0)
- ;;=N34.3^^88^853^85
- ;;^UTILITY(U,$J,358.3,16760,1,0)
+ ;;^UTILITY(U,$J,358.3,17090,1,4,0)
+ ;;=4^Z73.4
+ ;;^UTILITY(U,$J,358.3,17090,2)
+ ;;=^5063272
+ ;;^UTILITY(U,$J,358.3,17091,0)
+ ;;=Z79.2^^70^809^22
+ ;;^UTILITY(U,$J,358.3,17091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16760,1,3,0)
- ;;=3^Urethral Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,16760,1,4,0)
- ;;=4^N34.3
- ;;^UTILITY(U,$J,358.3,16760,2)
- ;;=^5015656
- ;;^UTILITY(U,$J,358.3,16761,0)
- ;;=Z87.442^^88^853^58
- ;;^UTILITY(U,$J,358.3,16761,1,0)
+ ;;^UTILITY(U,$J,358.3,17091,1,3,0)
+ ;;=3^Long term (current) use of antibiotics
+ ;;^UTILITY(U,$J,358.3,17091,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,17091,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,17092,0)
+ ;;=Z79.01^^70^809^23
+ ;;^UTILITY(U,$J,358.3,17092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16761,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,16761,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,16761,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,16762,0)
- ;;=R35.0^^88^853^88
- ;;^UTILITY(U,$J,358.3,16762,1,0)
+ ;;^UTILITY(U,$J,358.3,17092,1,3,0)
+ ;;=3^Long term (current) use of anticoagulants
+ ;;^UTILITY(U,$J,358.3,17092,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,17092,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,17093,0)
+ ;;=Z79.02^^70^809^24
+ ;;^UTILITY(U,$J,358.3,17093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16762,1,3,0)
- ;;=3^Urinary Frequency
- ;;^UTILITY(U,$J,358.3,16762,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,16762,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,16763,0)
- ;;=N39.42^^88^853^89
- ;;^UTILITY(U,$J,358.3,16763,1,0)
+ ;;^UTILITY(U,$J,358.3,17093,1,3,0)
+ ;;=3^Long term (current) use of antithrombtc/antipltlts
+ ;;^UTILITY(U,$J,358.3,17093,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,17093,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,17094,0)
+ ;;=Z79.82^^70^809^25
+ ;;^UTILITY(U,$J,358.3,17094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16763,1,3,0)
- ;;=3^Urinary Incontinence w/o Sensory Awareness
- ;;^UTILITY(U,$J,358.3,16763,1,4,0)
- ;;=4^N39.42
- ;;^UTILITY(U,$J,358.3,16763,2)
- ;;=^5015681
- ;;^UTILITY(U,$J,358.3,16764,0)
- ;;=N39.45^^88^853^90
- ;;^UTILITY(U,$J,358.3,16764,1,0)
+ ;;^UTILITY(U,$J,358.3,17094,1,3,0)
+ ;;=3^Long term (current) use of aspirin
+ ;;^UTILITY(U,$J,358.3,17094,1,4,0)
+ ;;=4^Z79.82
+ ;;^UTILITY(U,$J,358.3,17094,2)
+ ;;=^5063340
+ ;;^UTILITY(U,$J,358.3,17095,0)
+ ;;=Z79.899^^70^809^21
+ ;;^UTILITY(U,$J,358.3,17095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16764,1,3,0)
- ;;=3^Urinary Incontinence,Continuous Leakage
- ;;^UTILITY(U,$J,358.3,16764,1,4,0)
- ;;=4^N39.45
- ;;^UTILITY(U,$J,358.3,16764,2)
- ;;=^5015684
- ;;^UTILITY(U,$J,358.3,16765,0)
- ;;=R39.81^^88^853^91
- ;;^UTILITY(U,$J,358.3,16765,1,0)
+ ;;^UTILITY(U,$J,358.3,17095,1,3,0)
+ ;;=3^Long term (current) drug therapy, oth
+ ;;^UTILITY(U,$J,358.3,17095,1,4,0)
+ ;;=4^Z79.899
+ ;;^UTILITY(U,$J,358.3,17095,2)
+ ;;=^5063343
+ ;;^UTILITY(U,$J,358.3,17096,0)
+ ;;=Z79.51^^70^809^26
+ ;;^UTILITY(U,$J,358.3,17096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16765,1,3,0)
- ;;=3^Urinary Incontinence,Functional
- ;;^UTILITY(U,$J,358.3,16765,1,4,0)
- ;;=4^R39.81
- ;;^UTILITY(U,$J,358.3,16765,2)
- ;;=^5019349
- ;;^UTILITY(U,$J,358.3,16766,0)
- ;;=N39.46^^88^853^92
- ;;^UTILITY(U,$J,358.3,16766,1,0)
+ ;;^UTILITY(U,$J,358.3,17096,1,3,0)
+ ;;=3^Long term (current) use of inhaled steroids
+ ;;^UTILITY(U,$J,358.3,17096,1,4,0)
+ ;;=4^Z79.51
+ ;;^UTILITY(U,$J,358.3,17096,2)
+ ;;=^5063335
+ ;;^UTILITY(U,$J,358.3,17097,0)
+ ;;=Z79.4^^70^809^27
+ ;;^UTILITY(U,$J,358.3,17097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16766,1,3,0)
- ;;=3^Urinary Incontinence,Mixed,Male/Female
- ;;^UTILITY(U,$J,358.3,16766,1,4,0)
- ;;=4^N39.46
- ;;^UTILITY(U,$J,358.3,16766,2)
- ;;=^5015685
- ;;^UTILITY(U,$J,358.3,16767,0)
- ;;=N39.44^^88^853^93
- ;;^UTILITY(U,$J,358.3,16767,1,0)
+ ;;^UTILITY(U,$J,358.3,17097,1,3,0)
+ ;;=3^Long term (current) use of insulin
+ ;;^UTILITY(U,$J,358.3,17097,1,4,0)
+ ;;=4^Z79.4
+ ;;^UTILITY(U,$J,358.3,17097,2)
+ ;;=^5063334
+ ;;^UTILITY(U,$J,358.3,17098,0)
+ ;;=Z79.1^^70^809^28
+ ;;^UTILITY(U,$J,358.3,17098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16767,1,3,0)
- ;;=3^Urinary Incontinence,Nocturnal Enuresis
- ;;^UTILITY(U,$J,358.3,16767,1,4,0)
- ;;=4^N39.44
- ;;^UTILITY(U,$J,358.3,16767,2)
- ;;=^5015683
- ;;^UTILITY(U,$J,358.3,16768,0)
- ;;=N39.498^^88^853^94
- ;;^UTILITY(U,$J,358.3,16768,1,0)
+ ;;^UTILITY(U,$J,358.3,17098,1,3,0)
+ ;;=3^Long term (current) use of non-stroidl non-inflam (NSAID)
+ ;;^UTILITY(U,$J,358.3,17098,1,4,0)
+ ;;=4^Z79.1
+ ;;^UTILITY(U,$J,358.3,17098,2)
+ ;;=^5063332
+ ;;^UTILITY(U,$J,358.3,17099,0)
+ ;;=Z79.891^^70^809^29
+ ;;^UTILITY(U,$J,358.3,17099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16768,1,3,0)
- ;;=3^Urinary Incontinence,Other
- ;;^UTILITY(U,$J,358.3,16768,1,4,0)
- ;;=4^N39.498
- ;;^UTILITY(U,$J,358.3,16768,2)
- ;;=^5015686
- ;;^UTILITY(U,$J,358.3,16769,0)
- ;;=N39.490^^88^853^95
- ;;^UTILITY(U,$J,358.3,16769,1,0)
+ ;;^UTILITY(U,$J,358.3,17099,1,3,0)
+ ;;=3^Long term (current) use of opiate analgesic
+ ;;^UTILITY(U,$J,358.3,17099,1,4,0)
+ ;;=4^Z79.891
+ ;;^UTILITY(U,$J,358.3,17099,2)
+ ;;=^5063342
+ ;;^UTILITY(U,$J,358.3,17100,0)
+ ;;=Z79.52^^70^809^30
+ ;;^UTILITY(U,$J,358.3,17100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16769,1,3,0)
- ;;=3^Urinary Incontinence,Overflow
- ;;^UTILITY(U,$J,358.3,16769,1,4,0)
- ;;=4^N39.490
- ;;^UTILITY(U,$J,358.3,16769,2)
- ;;=^331569
- ;;^UTILITY(U,$J,358.3,16770,0)
- ;;=N39.43^^88^853^96
- ;;^UTILITY(U,$J,358.3,16770,1,0)
+ ;;^UTILITY(U,$J,358.3,17100,1,3,0)
+ ;;=3^Long term (current) use of systemic steroids
+ ;;^UTILITY(U,$J,358.3,17100,1,4,0)
+ ;;=4^Z79.52
+ ;;^UTILITY(U,$J,358.3,17100,2)
+ ;;=^5063336
+ ;;^UTILITY(U,$J,358.3,17101,0)
+ ;;=Z91.19^^70^809^40
+ ;;^UTILITY(U,$J,358.3,17101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16770,1,3,0)
- ;;=3^Urinary Incontinence,Post-Void Dribbling
- ;;^UTILITY(U,$J,358.3,16770,1,4,0)
- ;;=4^N39.43
- ;;^UTILITY(U,$J,358.3,16770,2)
- ;;=^5015682
- ;;^UTILITY(U,$J,358.3,16771,0)
- ;;=N39.3^^88^853^97
- ;;^UTILITY(U,$J,358.3,16771,1,0)
+ ;;^UTILITY(U,$J,358.3,17101,1,3,0)
+ ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
+ ;;^UTILITY(U,$J,358.3,17101,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,17101,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,17102,0)
+ ;;=Z73.89^^70^809^32
+ ;;^UTILITY(U,$J,358.3,17102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16771,1,3,0)
- ;;=3^Urinary Incontinence,Stress,Male/Female
- ;;^UTILITY(U,$J,358.3,16771,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,16771,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,16772,0)
- ;;=R32.^^88^853^98
- ;;^UTILITY(U,$J,358.3,16772,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17102,1,3,0)
+ ;;=3^Prblms related to life mngmt difficulty, oth
+ ;;^UTILITY(U,$J,358.3,17102,1,4,0)
+ ;;=4^Z73.89
+ ;;^UTILITY(U,$J,358.3,17102,2)
+ ;;=^5063280
+ ;;^UTILITY(U,$J,358.3,17103,0)
+ ;;=Z55.9^^70^809^31

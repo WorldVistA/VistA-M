@@ -1,134 +1,132 @@
-IBDEI20A ; ; 19-NOV-2015
+IBDEI20A ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33587,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,33587,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,33588,0)
- ;;=F70.^^148^1668^1
- ;;^UTILITY(U,$J,358.3,33588,1,0)
+ ;;^UTILITY(U,$J,358.3,34034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33588,1,3,0)
- ;;=3^Intellectual Disabilities,Mild
- ;;^UTILITY(U,$J,358.3,33588,1,4,0)
- ;;=4^F70.
- ;;^UTILITY(U,$J,358.3,33588,2)
- ;;=^5003668
- ;;^UTILITY(U,$J,358.3,33589,0)
- ;;=F71.^^148^1668^2
- ;;^UTILITY(U,$J,358.3,33589,1,0)
+ ;;^UTILITY(U,$J,358.3,34034,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,34034,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,34034,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,34035,0)
+ ;;=Z85.47^^131^1681^100
+ ;;^UTILITY(U,$J,358.3,34035,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33589,1,3,0)
- ;;=3^Intellectual Disabilities,Moderate
- ;;^UTILITY(U,$J,358.3,33589,1,4,0)
- ;;=4^F71.
- ;;^UTILITY(U,$J,358.3,33589,2)
- ;;=^5003669
- ;;^UTILITY(U,$J,358.3,33590,0)
- ;;=F72.^^148^1668^3
- ;;^UTILITY(U,$J,358.3,33590,1,0)
+ ;;^UTILITY(U,$J,358.3,34035,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Testis
+ ;;^UTILITY(U,$J,358.3,34035,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,34035,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,34036,0)
+ ;;=Z85.51^^131^1681^84
+ ;;^UTILITY(U,$J,358.3,34036,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33590,1,3,0)
- ;;=3^Intellectual Disabilities,Severe
- ;;^UTILITY(U,$J,358.3,33590,1,4,0)
- ;;=4^F72.
- ;;^UTILITY(U,$J,358.3,33590,2)
- ;;=^5003670
- ;;^UTILITY(U,$J,358.3,33591,0)
- ;;=F73.^^148^1668^4
- ;;^UTILITY(U,$J,358.3,33591,1,0)
+ ;;^UTILITY(U,$J,358.3,34036,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,34036,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,34036,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,34037,0)
+ ;;=Z85.528^^131^1681^89
+ ;;^UTILITY(U,$J,358.3,34037,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33591,1,3,0)
- ;;=3^Intellectual Disabilities,Profound
- ;;^UTILITY(U,$J,358.3,33591,1,4,0)
- ;;=4^F73.
- ;;^UTILITY(U,$J,358.3,33591,2)
- ;;=^5003671
- ;;^UTILITY(U,$J,358.3,33592,0)
- ;;=F78.^^148^1668^5
- ;;^UTILITY(U,$J,358.3,33592,1,0)
+ ;;^UTILITY(U,$J,358.3,34037,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Kidney
+ ;;^UTILITY(U,$J,358.3,34037,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,34037,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,34038,0)
+ ;;=Z85.6^^131^1681^80
+ ;;^UTILITY(U,$J,358.3,34038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33592,1,3,0)
- ;;=3^Intellectual Disabilities,Oth Specified
- ;;^UTILITY(U,$J,358.3,33592,1,4,0)
- ;;=4^F78.
- ;;^UTILITY(U,$J,358.3,33592,2)
- ;;=^5003672
- ;;^UTILITY(U,$J,358.3,33593,0)
- ;;=F79.^^148^1668^6
- ;;^UTILITY(U,$J,358.3,33593,1,0)
+ ;;^UTILITY(U,$J,358.3,34038,1,3,0)
+ ;;=3^Personal Hx of Leukemia
+ ;;^UTILITY(U,$J,358.3,34038,1,4,0)
+ ;;=4^Z85.6
+ ;;^UTILITY(U,$J,358.3,34038,2)
+ ;;=^5063434
+ ;;^UTILITY(U,$J,358.3,34039,0)
+ ;;=Z85.72^^131^1681^104
+ ;;^UTILITY(U,$J,358.3,34039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33593,1,3,0)
- ;;=3^Intellectual Disabilities,Unspec
- ;;^UTILITY(U,$J,358.3,33593,1,4,0)
- ;;=4^F79.
- ;;^UTILITY(U,$J,358.3,33593,2)
- ;;=^5003673
- ;;^UTILITY(U,$J,358.3,33594,0)
- ;;=Z00.6^^148^1669^1
- ;;^UTILITY(U,$J,358.3,33594,1,0)
+ ;;^UTILITY(U,$J,358.3,34039,1,3,0)
+ ;;=3^Personal Hx of Non-Hodgkin Lymphomas
+ ;;^UTILITY(U,$J,358.3,34039,1,4,0)
+ ;;=4^Z85.72
+ ;;^UTILITY(U,$J,358.3,34039,2)
+ ;;=^5063436
+ ;;^UTILITY(U,$J,358.3,34040,0)
+ ;;=Z85.79^^131^1681^94
+ ;;^UTILITY(U,$J,358.3,34040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33594,1,3,0)
- ;;=3^Exam of Participant of Control in Clinical Research Program
- ;;^UTILITY(U,$J,358.3,33594,1,4,0)
- ;;=4^Z00.6
- ;;^UTILITY(U,$J,358.3,33594,2)
- ;;=^5062608
- ;;^UTILITY(U,$J,358.3,33595,0)
- ;;=F45.22^^148^1670^1
- ;;^UTILITY(U,$J,358.3,33595,1,0)
+ ;;^UTILITY(U,$J,358.3,34040,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
+ ;;^UTILITY(U,$J,358.3,34040,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,34040,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,34041,0)
+ ;;=Z85.820^^131^1681^83
+ ;;^UTILITY(U,$J,358.3,34041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33595,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,33595,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,33595,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,33596,0)
- ;;=F45.20^^148^1670^2
- ;;^UTILITY(U,$J,358.3,33596,1,0)
+ ;;^UTILITY(U,$J,358.3,34041,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,34041,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,34041,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,34042,0)
+ ;;=Z85.828^^131^1681^98
+ ;;^UTILITY(U,$J,358.3,34042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33596,1,3,0)
- ;;=3^Hypochondiacal Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33596,1,4,0)
- ;;=4^F45.20
- ;;^UTILITY(U,$J,358.3,33596,2)
- ;;=^5003586
- ;;^UTILITY(U,$J,358.3,33597,0)
- ;;=F45.21^^148^1670^4
- ;;^UTILITY(U,$J,358.3,33597,1,0)
+ ;;^UTILITY(U,$J,358.3,34042,1,3,0)
+ ;;=3^Personal Hx of Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,34042,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,34042,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,34043,0)
+ ;;=Z85.71^^131^1681^78
+ ;;^UTILITY(U,$J,358.3,34043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33597,1,3,0)
- ;;=3^Hypochondriasis
- ;;^UTILITY(U,$J,358.3,33597,1,4,0)
- ;;=4^F45.21
- ;;^UTILITY(U,$J,358.3,33597,2)
- ;;=^5003587
- ;;^UTILITY(U,$J,358.3,33598,0)
- ;;=F45.29^^148^1670^3
- ;;^UTILITY(U,$J,358.3,33598,1,0)
+ ;;^UTILITY(U,$J,358.3,34043,1,3,0)
+ ;;=3^Personal Hx of Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,34043,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,34043,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,34044,0)
+ ;;=Z65.8^^131^1681^138
+ ;;^UTILITY(U,$J,358.3,34044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33598,1,3,0)
- ;;=3^Hypochondriacal Disorders NEC
- ;;^UTILITY(U,$J,358.3,33598,1,4,0)
- ;;=4^F45.29
- ;;^UTILITY(U,$J,358.3,33598,2)
- ;;=^5003589
- ;;^UTILITY(U,$J,358.3,33599,0)
- ;;=F45.8^^148^1670^9
- ;;^UTILITY(U,$J,358.3,33599,1,0)
+ ;;^UTILITY(U,$J,358.3,34044,1,3,0)
+ ;;=3^Psychosocial Circumstance Related Problems
+ ;;^UTILITY(U,$J,358.3,34044,1,4,0)
+ ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,34044,2)
+ ;;=^5063185
+ ;;^UTILITY(U,$J,358.3,34045,0)
+ ;;=Z86.11^^131^1681^115
+ ;;^UTILITY(U,$J,358.3,34045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33599,1,3,0)
- ;;=3^Somatoform Disorders NEC
- ;;^UTILITY(U,$J,358.3,33599,1,4,0)
- ;;=4^F45.8
- ;;^UTILITY(U,$J,358.3,33599,2)
- ;;=^331915
- ;;^UTILITY(U,$J,358.3,33600,0)
- ;;=F45.41^^148^1670^5
- ;;^UTILITY(U,$J,358.3,33600,1,0)
+ ;;^UTILITY(U,$J,358.3,34045,1,3,0)
+ ;;=3^Personal Hx of Tuberculosis
+ ;;^UTILITY(U,$J,358.3,34045,1,4,0)
+ ;;=4^Z86.11
+ ;;^UTILITY(U,$J,358.3,34045,2)
+ ;;=^5063461
+ ;;^UTILITY(U,$J,358.3,34046,0)
+ ;;=Z86.13^^131^1681^82
+ ;;^UTILITY(U,$J,358.3,34046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33600,1,3,0)
- ;;=3^Pain Disorder Exclusively Related to Psychological Factors
+ ;;^UTILITY(U,$J,358.3,34046,1,3,0)
+ ;;=3^Personal Hx of Malaria
+ ;;^UTILITY(U,$J,358.3,34046,1,4,0)
+ ;;=4^Z86.13
+ ;;^UTILITY(U,$J,358.3,34046,2)
+ ;;=^5063463

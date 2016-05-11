@@ -1,132 +1,136 @@
-IBDEI0W1 ; ; 19-NOV-2015
+IBDEI0W1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14761,1,4,0)
- ;;=4^R10.10
- ;;^UTILITY(U,$J,358.3,14761,2)
- ;;=^5019205
- ;;^UTILITY(U,$J,358.3,14762,0)
- ;;=Z48.00^^85^795^12
- ;;^UTILITY(U,$J,358.3,14762,1,0)
+ ;;^UTILITY(U,$J,358.3,15022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14762,1,3,0)
- ;;=3^Change/Removal Nonsurgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,14762,1,4,0)
- ;;=4^Z48.00
- ;;^UTILITY(U,$J,358.3,14762,2)
- ;;=^5063033
- ;;^UTILITY(U,$J,358.3,14763,0)
- ;;=Z48.01^^85^795^13
- ;;^UTILITY(U,$J,358.3,14763,1,0)
+ ;;^UTILITY(U,$J,358.3,15022,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,15022,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,15022,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,15023,0)
+ ;;=I25.9^^56^636^10
+ ;;^UTILITY(U,$J,358.3,15023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14763,1,3,0)
- ;;=3^Change/Removal Surgical Wound Dressing
- ;;^UTILITY(U,$J,358.3,14763,1,4,0)
- ;;=4^Z48.01
- ;;^UTILITY(U,$J,358.3,14763,2)
- ;;=^5063034
- ;;^UTILITY(U,$J,358.3,14764,0)
- ;;=Z48.02^^85^795^16
- ;;^UTILITY(U,$J,358.3,14764,1,0)
+ ;;^UTILITY(U,$J,358.3,15023,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,15023,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,15023,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,15024,0)
+ ;;=I35.0^^56^636^17
+ ;;^UTILITY(U,$J,358.3,15024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14764,1,3,0)
- ;;=3^Removal of Sutures
- ;;^UTILITY(U,$J,358.3,14764,1,4,0)
- ;;=4^Z48.02
- ;;^UTILITY(U,$J,358.3,14764,2)
- ;;=^5063035
- ;;^UTILITY(U,$J,358.3,14765,0)
- ;;=Z48.3^^85^795^4
- ;;^UTILITY(U,$J,358.3,14765,1,0)
+ ;;^UTILITY(U,$J,358.3,15024,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,15024,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,15024,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,15025,0)
+ ;;=I35.1^^56^636^16
+ ;;^UTILITY(U,$J,358.3,15025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14765,1,3,0)
- ;;=3^Aftercare Following Neoplasm Surgery
- ;;^UTILITY(U,$J,358.3,14765,1,4,0)
- ;;=4^Z48.3
- ;;^UTILITY(U,$J,358.3,14765,2)
- ;;=^5063046
- ;;^UTILITY(U,$J,358.3,14766,0)
- ;;=Z48.810^^85^795^7
- ;;^UTILITY(U,$J,358.3,14766,1,0)
+ ;;^UTILITY(U,$J,358.3,15025,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,15025,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,15025,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,15026,0)
+ ;;=I35.2^^56^636^18
+ ;;^UTILITY(U,$J,358.3,15026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14766,1,3,0)
- ;;=3^Aftercare Following Sense Organ Surgery
- ;;^UTILITY(U,$J,358.3,14766,1,4,0)
- ;;=4^Z48.810
- ;;^UTILITY(U,$J,358.3,14766,2)
- ;;=^5063047
- ;;^UTILITY(U,$J,358.3,14767,0)
- ;;=Z48.811^^85^795^5
- ;;^UTILITY(U,$J,358.3,14767,1,0)
+ ;;^UTILITY(U,$J,358.3,15026,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,15026,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,15026,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,15027,0)
+ ;;=I35.8^^56^636^14
+ ;;^UTILITY(U,$J,358.3,15027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14767,1,3,0)
- ;;=3^Aftercare Following Nervous System Surgery
- ;;^UTILITY(U,$J,358.3,14767,1,4,0)
- ;;=4^Z48.811
- ;;^UTILITY(U,$J,358.3,14767,2)
- ;;=^5063048
- ;;^UTILITY(U,$J,358.3,14768,0)
- ;;=Z48.812^^85^795^1
- ;;^UTILITY(U,$J,358.3,14768,1,0)
+ ;;^UTILITY(U,$J,358.3,15027,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Other
+ ;;^UTILITY(U,$J,358.3,15027,1,4,0)
+ ;;=4^I35.8
+ ;;^UTILITY(U,$J,358.3,15027,2)
+ ;;=^5007177
+ ;;^UTILITY(U,$J,358.3,15028,0)
+ ;;=I35.9^^56^636^15
+ ;;^UTILITY(U,$J,358.3,15028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14768,1,3,0)
- ;;=3^Aftercare Following Circulatory System Surgery
- ;;^UTILITY(U,$J,358.3,14768,1,4,0)
- ;;=4^Z48.812
- ;;^UTILITY(U,$J,358.3,14768,2)
- ;;=^5063049
- ;;^UTILITY(U,$J,358.3,14769,0)
- ;;=Z48.813^^85^795^6
- ;;^UTILITY(U,$J,358.3,14769,1,0)
+ ;;^UTILITY(U,$J,358.3,15028,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,15028,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,15028,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,15029,0)
+ ;;=I48.91^^56^636^5
+ ;;^UTILITY(U,$J,358.3,15029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14769,1,3,0)
- ;;=3^Aftercare Following Respiratory System Surgery
- ;;^UTILITY(U,$J,358.3,14769,1,4,0)
- ;;=4^Z48.813
- ;;^UTILITY(U,$J,358.3,14769,2)
- ;;=^5063050
- ;;^UTILITY(U,$J,358.3,14770,0)
- ;;=Z48.814^^85^795^10
- ;;^UTILITY(U,$J,358.3,14770,1,0)
+ ;;^UTILITY(U,$J,358.3,15029,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,15029,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,15029,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,15030,0)
+ ;;=I49.9^^56^636^8
+ ;;^UTILITY(U,$J,358.3,15030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14770,1,3,0)
- ;;=3^Aftercare Following Teeth/Oral Cavity Surgery
- ;;^UTILITY(U,$J,358.3,14770,1,4,0)
- ;;=4^Z48.814
- ;;^UTILITY(U,$J,358.3,14770,2)
- ;;=^5063051
- ;;^UTILITY(U,$J,358.3,14771,0)
- ;;=Z48.815^^85^795^2
- ;;^UTILITY(U,$J,358.3,14771,1,0)
+ ;;^UTILITY(U,$J,358.3,15030,1,3,0)
+ ;;=3^Cardiac Arrhythmia,Unspec
+ ;;^UTILITY(U,$J,358.3,15030,1,4,0)
+ ;;=4^I49.9
+ ;;^UTILITY(U,$J,358.3,15030,2)
+ ;;=^5007237
+ ;;^UTILITY(U,$J,358.3,15031,0)
+ ;;=I50.9^^56^636^12
+ ;;^UTILITY(U,$J,358.3,15031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14771,1,3,0)
- ;;=3^Aftercare Following Digestive System Surgery
- ;;^UTILITY(U,$J,358.3,14771,1,4,0)
- ;;=4^Z48.815
- ;;^UTILITY(U,$J,358.3,14771,2)
- ;;=^5063052
- ;;^UTILITY(U,$J,358.3,14772,0)
- ;;=Z48.816^^85^795^3
- ;;^UTILITY(U,$J,358.3,14772,1,0)
+ ;;^UTILITY(U,$J,358.3,15031,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,15031,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,15031,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,15032,0)
+ ;;=I73.9^^56^636^19
+ ;;^UTILITY(U,$J,358.3,15032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14772,1,3,0)
- ;;=3^Aftercare Following GU System Surgery
- ;;^UTILITY(U,$J,358.3,14772,1,4,0)
- ;;=4^Z48.816
- ;;^UTILITY(U,$J,358.3,14772,2)
- ;;=^5063053
- ;;^UTILITY(U,$J,358.3,14773,0)
- ;;=Z48.817^^85^795^8
- ;;^UTILITY(U,$J,358.3,14773,1,0)
+ ;;^UTILITY(U,$J,358.3,15032,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,15032,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,15032,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,15033,0)
+ ;;=I87.2^^56^636^26
+ ;;^UTILITY(U,$J,358.3,15033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14773,1,3,0)
- ;;=3^Aftercare Following Skin Surgery
- ;;^UTILITY(U,$J,358.3,14773,1,4,0)
- ;;=4^Z48.817
- ;;^UTILITY(U,$J,358.3,14773,2)
- ;;=^5063054
- ;;^UTILITY(U,$J,358.3,14774,0)
- ;;=Z48.89^^85^795^9
- ;;^UTILITY(U,$J,358.3,14774,1,0)
+ ;;^UTILITY(U,$J,358.3,15033,1,3,0)
+ ;;=3^Venous Insufficiency
+ ;;^UTILITY(U,$J,358.3,15033,1,4,0)
+ ;;=4^I87.2
+ ;;^UTILITY(U,$J,358.3,15033,2)
+ ;;=^5008047
+ ;;^UTILITY(U,$J,358.3,15034,0)
+ ;;=R03.0^^56^636^11
+ ;;^UTILITY(U,$J,358.3,15034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15034,1,3,0)
+ ;;=3^Elevated B/P Reading w/o HTN Dx
+ ;;^UTILITY(U,$J,358.3,15034,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,15034,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,15035,0)
+ ;;=I25.110^^56^636^3
+ ;;^UTILITY(U,$J,358.3,15035,1,0)
  ;;=^358.31IA^4^2

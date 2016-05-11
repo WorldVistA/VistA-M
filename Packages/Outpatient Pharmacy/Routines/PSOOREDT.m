@@ -1,5 +1,5 @@
-PSOOREDT ;BIR/SAB - edit orders from backdoor ;5/8/08 3:27pm
- ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313**;DEC 1997;Build 76
+PSOOREDT ;BIR/SAB - Edit orders from backdoor ;5/8/08 3:27pm
+ ;;7.0;OUTPATIENT PHARMACY;**4,20,27,37,57,46,78,102,104,119,143,148,260,281,304,289,298,379,377,391,313,427**;DEC 1997;Build 21
  ;External reference to ^PSDRUG supported by DBIA 221
  ;External reference to PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 10060
@@ -67,7 +67,9 @@ EDT ; Rx Edit (Backdoor)
  .I FLN=20,'$G(REF) S VALMSG="There is no Refill Data to be edited." Q
  .S DR=$P(FDR,"^",FLN) I DR="RF" D REF^PSOORED2 Q
  .I DR="PSOCOU" D PSOCOU^PSOORED6 Q
- .I FLN=2,'$P(PSOPAR,"^",3),$$RXRLDT^PSOBPSUT(RXN,0),$$STATUS^PSOBPSUT(RXN,0)'="" D  Q
+ .; Allow edit of the NDC when the EDIT DRUG setting is off
+ .; Other checks regarding if the NDC may be edited are found in NDC^PSODRG - PSO*7*427
+ .I FLN=2,'$P(PSOPAR,"^",3) D  Q
  ..N NDC D NDC^PSODRG(RXN,0,,.NDC) I $G(NDC)="^"!($G(NDC)="") Q
  ..S (PSODRUG("NDC"),PSORXED("FLD",27))=NDC
  .I FLN'>2,'$P(PSOPAR,"^",3) S VALMSG="Check site parameters, Drug data is not editable." Q

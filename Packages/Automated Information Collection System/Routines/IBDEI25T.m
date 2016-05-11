@@ -1,138 +1,126 @@
-IBDEI25T ; ; 19-NOV-2015
+IBDEI25T ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36213,2)
- ;;=^270482
- ;;^UTILITY(U,$J,358.3,36214,0)
- ;;=N80.1^^166^1835^45
- ;;^UTILITY(U,$J,358.3,36214,1,0)
+ ;;^UTILITY(U,$J,358.3,36636,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Hip
+ ;;^UTILITY(U,$J,358.3,36636,1,4,0)
+ ;;=4^M05.152
+ ;;^UTILITY(U,$J,358.3,36636,2)
+ ;;=^5009876
+ ;;^UTILITY(U,$J,358.3,36637,0)
+ ;;=M05.162^^137^1768^30
+ ;;^UTILITY(U,$J,358.3,36637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36214,1,3,0)
- ;;=3^Endometriosis of ovary
- ;;^UTILITY(U,$J,358.3,36214,1,4,0)
- ;;=4^N80.1
- ;;^UTILITY(U,$J,358.3,36214,2)
- ;;=^270484
- ;;^UTILITY(U,$J,358.3,36215,0)
- ;;=N81.11^^166^1835^35
- ;;^UTILITY(U,$J,358.3,36215,1,0)
+ ;;^UTILITY(U,$J,358.3,36637,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Knee
+ ;;^UTILITY(U,$J,358.3,36637,1,4,0)
+ ;;=4^M05.162
+ ;;^UTILITY(U,$J,358.3,36637,2)
+ ;;=^5009879
+ ;;^UTILITY(U,$J,358.3,36638,0)
+ ;;=M05.112^^137^1768^31
+ ;;^UTILITY(U,$J,358.3,36638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36215,1,3,0)
- ;;=3^Cystocele, midline
- ;;^UTILITY(U,$J,358.3,36215,1,4,0)
- ;;=4^N81.11
- ;;^UTILITY(U,$J,358.3,36215,2)
- ;;=^331534
- ;;^UTILITY(U,$J,358.3,36216,0)
- ;;=N81.0^^166^1835^101
- ;;^UTILITY(U,$J,358.3,36216,1,0)
+ ;;^UTILITY(U,$J,358.3,36638,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Shldr
+ ;;^UTILITY(U,$J,358.3,36638,1,4,0)
+ ;;=4^M05.112
+ ;;^UTILITY(U,$J,358.3,36638,2)
+ ;;=^5009864
+ ;;^UTILITY(U,$J,358.3,36639,0)
+ ;;=M05.132^^137^1768^32
+ ;;^UTILITY(U,$J,358.3,36639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36216,1,3,0)
- ;;=3^Urethrocele
- ;;^UTILITY(U,$J,358.3,36216,1,4,0)
- ;;=4^N81.0
- ;;^UTILITY(U,$J,358.3,36216,2)
- ;;=^331536
- ;;^UTILITY(U,$J,358.3,36217,0)
- ;;=N81.6^^166^1835^86
- ;;^UTILITY(U,$J,358.3,36217,1,0)
+ ;;^UTILITY(U,$J,358.3,36639,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Left Wrist
+ ;;^UTILITY(U,$J,358.3,36639,1,4,0)
+ ;;=4^M05.132
+ ;;^UTILITY(U,$J,358.3,36639,2)
+ ;;=^5009870
+ ;;^UTILITY(U,$J,358.3,36640,0)
+ ;;=M05.19^^137^1768^33
+ ;;^UTILITY(U,$J,358.3,36640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36217,1,3,0)
- ;;=3^Rectocele
- ;;^UTILITY(U,$J,358.3,36217,1,4,0)
- ;;=4^N81.6
- ;;^UTILITY(U,$J,358.3,36217,2)
- ;;=^259590
- ;;^UTILITY(U,$J,358.3,36218,0)
- ;;=N81.2^^166^1835^57
- ;;^UTILITY(U,$J,358.3,36218,1,0)
+ ;;^UTILITY(U,$J,358.3,36640,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Mult Sites
+ ;;^UTILITY(U,$J,358.3,36640,1,4,0)
+ ;;=4^M05.19
+ ;;^UTILITY(U,$J,358.3,36640,2)
+ ;;=^5009884
+ ;;^UTILITY(U,$J,358.3,36641,0)
+ ;;=M05.171^^137^1768^34
+ ;;^UTILITY(U,$J,358.3,36641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36218,1,3,0)
- ;;=3^Incomplete uterovaginal prolapse
- ;;^UTILITY(U,$J,358.3,36218,1,4,0)
- ;;=4^N81.2
- ;;^UTILITY(U,$J,358.3,36218,2)
- ;;=^5015839
- ;;^UTILITY(U,$J,358.3,36219,0)
- ;;=N81.4^^166^1835^102
- ;;^UTILITY(U,$J,358.3,36219,1,0)
+ ;;^UTILITY(U,$J,358.3,36641,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,36641,1,4,0)
+ ;;=4^M05.171
+ ;;^UTILITY(U,$J,358.3,36641,2)
+ ;;=^5009881
+ ;;^UTILITY(U,$J,358.3,36642,0)
+ ;;=M05.121^^137^1768^35
+ ;;^UTILITY(U,$J,358.3,36642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36219,1,3,0)
- ;;=3^Uterovaginal prolapse, unspecified
- ;;^UTILITY(U,$J,358.3,36219,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,36219,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,36220,0)
- ;;=N83.0^^166^1835^55
- ;;^UTILITY(U,$J,358.3,36220,1,0)
+ ;;^UTILITY(U,$J,358.3,36642,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Elbow
+ ;;^UTILITY(U,$J,358.3,36642,1,4,0)
+ ;;=4^M05.121
+ ;;^UTILITY(U,$J,358.3,36642,2)
+ ;;=^5009866
+ ;;^UTILITY(U,$J,358.3,36643,0)
+ ;;=M05.141^^137^1768^36
+ ;;^UTILITY(U,$J,358.3,36643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36220,1,3,0)
- ;;=3^Follicular cyst of ovary
- ;;^UTILITY(U,$J,358.3,36220,1,4,0)
- ;;=4^N83.0
- ;;^UTILITY(U,$J,358.3,36220,2)
- ;;=^5015854
- ;;^UTILITY(U,$J,358.3,36221,0)
- ;;=N83.1^^166^1835^33
- ;;^UTILITY(U,$J,358.3,36221,1,0)
+ ;;^UTILITY(U,$J,358.3,36643,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hand
+ ;;^UTILITY(U,$J,358.3,36643,1,4,0)
+ ;;=4^M05.141
+ ;;^UTILITY(U,$J,358.3,36643,2)
+ ;;=^5009872
+ ;;^UTILITY(U,$J,358.3,36644,0)
+ ;;=M05.151^^137^1768^37
+ ;;^UTILITY(U,$J,358.3,36644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36221,1,3,0)
- ;;=3^Corpus luteum cyst
- ;;^UTILITY(U,$J,358.3,36221,1,4,0)
- ;;=4^N83.1
- ;;^UTILITY(U,$J,358.3,36221,2)
- ;;=^28631
- ;;^UTILITY(U,$J,358.3,36222,0)
- ;;=N83.8^^166^1835^73
- ;;^UTILITY(U,$J,358.3,36222,1,0)
+ ;;^UTILITY(U,$J,358.3,36644,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Hip
+ ;;^UTILITY(U,$J,358.3,36644,1,4,0)
+ ;;=4^M05.151
+ ;;^UTILITY(U,$J,358.3,36644,2)
+ ;;=^5009875
+ ;;^UTILITY(U,$J,358.3,36645,0)
+ ;;=M05.161^^137^1768^38
+ ;;^UTILITY(U,$J,358.3,36645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36222,1,3,0)
- ;;=3^Noninflammatory disord of ovary, fallop and broad ligmt NEC
- ;;^UTILITY(U,$J,358.3,36222,1,4,0)
- ;;=4^N83.8
- ;;^UTILITY(U,$J,358.3,36222,2)
- ;;=^5015864
- ;;^UTILITY(U,$J,358.3,36223,0)
- ;;=N83.20^^166^1835^75
- ;;^UTILITY(U,$J,358.3,36223,1,0)
+ ;;^UTILITY(U,$J,358.3,36645,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Knee
+ ;;^UTILITY(U,$J,358.3,36645,1,4,0)
+ ;;=4^M05.161
+ ;;^UTILITY(U,$J,358.3,36645,2)
+ ;;=^5009878
+ ;;^UTILITY(U,$J,358.3,36646,0)
+ ;;=M05.111^^137^1768^39
+ ;;^UTILITY(U,$J,358.3,36646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36223,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,36223,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,36223,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,36224,0)
- ;;=N83.29^^166^1835^74
- ;;^UTILITY(U,$J,358.3,36224,1,0)
+ ;;^UTILITY(U,$J,358.3,36646,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Shldr
+ ;;^UTILITY(U,$J,358.3,36646,1,4,0)
+ ;;=4^M05.111
+ ;;^UTILITY(U,$J,358.3,36646,2)
+ ;;=^5009863
+ ;;^UTILITY(U,$J,358.3,36647,0)
+ ;;=M05.131^^137^1768^40
+ ;;^UTILITY(U,$J,358.3,36647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36224,1,3,0)
- ;;=3^Ovarian Cysts NEC
- ;;^UTILITY(U,$J,358.3,36224,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,36224,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,36225,0)
- ;;=N85.00^^166^1835^44
- ;;^UTILITY(U,$J,358.3,36225,1,0)
+ ;;^UTILITY(U,$J,358.3,36647,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Right Wrist
+ ;;^UTILITY(U,$J,358.3,36647,1,4,0)
+ ;;=4^M05.131
+ ;;^UTILITY(U,$J,358.3,36647,2)
+ ;;=^5009869
+ ;;^UTILITY(U,$J,358.3,36648,0)
+ ;;=M05.10^^137^1768^41
+ ;;^UTILITY(U,$J,358.3,36648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36225,1,3,0)
- ;;=3^Endometrial hyperplasia, unspecified
- ;;^UTILITY(U,$J,358.3,36225,1,4,0)
- ;;=4^N85.00
- ;;^UTILITY(U,$J,358.3,36225,2)
- ;;=^331542
- ;;^UTILITY(U,$J,358.3,36226,0)
- ;;=N87.9^^166^1835^41
- ;;^UTILITY(U,$J,358.3,36226,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36226,1,3,0)
- ;;=3^Dysplasia of cervix uteri, unspecified
- ;;^UTILITY(U,$J,358.3,36226,1,4,0)
- ;;=4^N87.9
- ;;^UTILITY(U,$J,358.3,36226,2)
- ;;=^5015877
- ;;^UTILITY(U,$J,358.3,36227,0)
- ;;=N88.2^^166^1835^94
+ ;;^UTILITY(U,$J,358.3,36648,1,3,0)
+ ;;=3^Rheu Lung Disease w/ Rheu Arth of Unspec Site

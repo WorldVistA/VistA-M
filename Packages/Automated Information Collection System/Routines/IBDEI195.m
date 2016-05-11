@@ -1,130 +1,130 @@
-IBDEI195 ; ; 19-NOV-2015
+IBDEI195 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20939,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,20940,0)
- ;;=Z65.3^^99^1001^2
- ;;^UTILITY(U,$J,358.3,20940,1,0)
+ ;;^UTILITY(U,$J,358.3,21278,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21278,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,21278,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,21279,0)
+ ;;=W17.2XXA^^84^948^77
+ ;;^UTILITY(U,$J,358.3,21279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20940,1,3,0)
- ;;=3^Problems Related to Oth Legal Circumstances
- ;;^UTILITY(U,$J,358.3,20940,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,20940,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,20941,0)
- ;;=Z65.8^^99^1002^5
- ;;^UTILITY(U,$J,358.3,20941,1,0)
+ ;;^UTILITY(U,$J,358.3,21279,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21279,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,21279,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,21280,0)
+ ;;=W17.2XXD^^84^948^78
+ ;;^UTILITY(U,$J,358.3,21280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20941,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,20941,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,20941,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,20942,0)
- ;;=Z64.0^^99^1002^4
- ;;^UTILITY(U,$J,358.3,20942,1,0)
+ ;;^UTILITY(U,$J,358.3,21280,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21280,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,21280,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,21281,0)
+ ;;=W17.3XXA^^84^948^75
+ ;;^UTILITY(U,$J,358.3,21281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20942,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,20942,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,20942,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,20943,0)
- ;;=Z64.1^^99^1002^3
- ;;^UTILITY(U,$J,358.3,20943,1,0)
+ ;;^UTILITY(U,$J,358.3,21281,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21281,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,21281,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,21282,0)
+ ;;=W17.3XXD^^84^948^76
+ ;;^UTILITY(U,$J,358.3,21282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20943,1,3,0)
- ;;=3^Problems Related to Multiparity
- ;;^UTILITY(U,$J,358.3,20943,1,4,0)
- ;;=4^Z64.1
- ;;^UTILITY(U,$J,358.3,20943,2)
- ;;=^5063177
- ;;^UTILITY(U,$J,358.3,20944,0)
- ;;=Z64.4^^99^1002^1
- ;;^UTILITY(U,$J,358.3,20944,1,0)
+ ;;^UTILITY(U,$J,358.3,21282,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21282,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,21282,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,21283,0)
+ ;;=W17.4XXA^^84^948^39
+ ;;^UTILITY(U,$J,358.3,21283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20944,1,3,0)
- ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
- ;;^UTILITY(U,$J,358.3,20944,1,4,0)
- ;;=4^Z64.4
- ;;^UTILITY(U,$J,358.3,20944,2)
- ;;=^5063178
- ;;^UTILITY(U,$J,358.3,20945,0)
- ;;=Z65.5^^99^1002^2
- ;;^UTILITY(U,$J,358.3,20945,1,0)
+ ;;^UTILITY(U,$J,358.3,21283,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21283,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,21283,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,21284,0)
+ ;;=W17.4XXD^^84^948^40
+ ;;^UTILITY(U,$J,358.3,21284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20945,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,20945,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,20945,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,20946,0)
- ;;=Z62.820^^99^1003^4
- ;;^UTILITY(U,$J,358.3,20946,1,0)
+ ;;^UTILITY(U,$J,358.3,21284,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21284,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,21284,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,21285,0)
+ ;;=W17.81XA^^84^948^27
+ ;;^UTILITY(U,$J,358.3,21285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20946,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,20946,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,20946,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,20947,0)
- ;;=Z62.891^^99^1003^6
- ;;^UTILITY(U,$J,358.3,20947,1,0)
+ ;;^UTILITY(U,$J,358.3,21285,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21285,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,21285,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,21286,0)
+ ;;=W17.81XD^^84^948^28
+ ;;^UTILITY(U,$J,358.3,21286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20947,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,20947,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,20947,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,20948,0)
- ;;=Z62.898^^99^1003^1
- ;;^UTILITY(U,$J,358.3,20948,1,0)
+ ;;^UTILITY(U,$J,358.3,21286,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21286,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,21286,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,21287,0)
+ ;;=W17.89XA^^84^948^55
+ ;;^UTILITY(U,$J,358.3,21287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20948,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
- ;;^UTILITY(U,$J,358.3,20948,1,4,0)
- ;;=4^Z62.898
- ;;^UTILITY(U,$J,358.3,20948,2)
- ;;=^5063162
- ;;^UTILITY(U,$J,358.3,20949,0)
- ;;=Z63.0^^99^1003^5
- ;;^UTILITY(U,$J,358.3,20949,1,0)
+ ;;^UTILITY(U,$J,358.3,21287,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21287,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,21287,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,21288,0)
+ ;;=W17.89XD^^84^948^56
+ ;;^UTILITY(U,$J,358.3,21288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20949,1,3,0)
- ;;=3^Relationship Distress w/ Spouse/Partner
- ;;^UTILITY(U,$J,358.3,20949,1,4,0)
- ;;=4^Z63.0
- ;;^UTILITY(U,$J,358.3,20949,2)
- ;;=^5063164
- ;;^UTILITY(U,$J,358.3,20950,0)
- ;;=Z63.5^^99^1003^2
- ;;^UTILITY(U,$J,358.3,20950,1,0)
+ ;;^UTILITY(U,$J,358.3,21288,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21288,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,21288,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,21289,0)
+ ;;=W18.11XA^^84^948^63
+ ;;^UTILITY(U,$J,358.3,21289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20950,1,3,0)
- ;;=3^Disruption of Family by Separation or Divorce
- ;;^UTILITY(U,$J,358.3,20950,1,4,0)
- ;;=4^Z63.5
- ;;^UTILITY(U,$J,358.3,20950,2)
- ;;=^5063169
- ;;^UTILITY(U,$J,358.3,20951,0)
- ;;=Z63.8^^99^1003^3
- ;;^UTILITY(U,$J,358.3,20951,1,0)
+ ;;^UTILITY(U,$J,358.3,21289,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,21289,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,21289,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,21290,0)
+ ;;=W18.11XD^^84^948^64
+ ;;^UTILITY(U,$J,358.3,21290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20951,1,3,0)
- ;;=3^High Exporessed Emotion Level w/in Family
- ;;^UTILITY(U,$J,358.3,20951,1,4,0)
- ;;=4^Z63.8
- ;;^UTILITY(U,$J,358.3,20951,2)
- ;;=^5063174
- ;;^UTILITY(U,$J,358.3,20952,0)
- ;;=Z63.4^^99^1003^7
- ;;^UTILITY(U,$J,358.3,20952,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21290,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,21290,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,21290,2)
+ ;;=^5059802

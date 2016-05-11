@@ -1,142 +1,124 @@
-IBDEI03X ; ; 19-NOV-2015
+IBDEI03X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1130,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,1130,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,1131,0)
- ;;=H66.91^^12^130^33
- ;;^UTILITY(U,$J,358.3,1131,1,0)
+ ;;^UTILITY(U,$J,358.3,1405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1131,1,3,0)
- ;;=3^Otitis Media,Unspec,Right Ear
- ;;^UTILITY(U,$J,358.3,1131,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,1131,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,1132,0)
- ;;=H66.92^^12^130^32
- ;;^UTILITY(U,$J,358.3,1132,1,0)
+ ;;^UTILITY(U,$J,358.3,1405,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, undetermined, sequela
+ ;;^UTILITY(U,$J,358.3,1405,1,4,0)
+ ;;=4^T36.8X4S
+ ;;^UTILITY(U,$J,358.3,1405,2)
+ ;;=^5049411
+ ;;^UTILITY(U,$J,358.3,1406,0)
+ ;;=T49.6X1A^^8^135^54
+ ;;^UTILITY(U,$J,358.3,1406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1132,1,3,0)
- ;;=3^Otitis Media,Unspec,Left Ear
- ;;^UTILITY(U,$J,358.3,1132,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,1132,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,1133,0)
- ;;=H66.93^^12^130^31
- ;;^UTILITY(U,$J,358.3,1133,1,0)
+ ;;^UTILITY(U,$J,358.3,1406,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, accidental, init
+ ;;^UTILITY(U,$J,358.3,1406,1,4,0)
+ ;;=4^T49.6X1A
+ ;;^UTILITY(U,$J,358.3,1406,2)
+ ;;=^5051914
+ ;;^UTILITY(U,$J,358.3,1407,0)
+ ;;=T49.6X1D^^8^135^55
+ ;;^UTILITY(U,$J,358.3,1407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1133,1,3,0)
- ;;=3^Otitis Media,Unspec,Bilateral
- ;;^UTILITY(U,$J,358.3,1133,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,1133,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,1134,0)
- ;;=M19.90^^12^130^16
- ;;^UTILITY(U,$J,358.3,1134,1,0)
+ ;;^UTILITY(U,$J,358.3,1407,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, accidental, subs
+ ;;^UTILITY(U,$J,358.3,1407,1,4,0)
+ ;;=4^T49.6X1D
+ ;;^UTILITY(U,$J,358.3,1407,2)
+ ;;=^5051915
+ ;;^UTILITY(U,$J,358.3,1408,0)
+ ;;=T49.6X1S^^8^135^56
+ ;;^UTILITY(U,$J,358.3,1408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1134,1,3,0)
- ;;=3^Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,1134,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,1134,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,1135,0)
- ;;=M81.0^^12^130^18
- ;;^UTILITY(U,$J,358.3,1135,1,0)
+ ;;^UTILITY(U,$J,358.3,1408,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,1408,1,4,0)
+ ;;=4^T49.6X1S
+ ;;^UTILITY(U,$J,358.3,1408,2)
+ ;;=^5051916
+ ;;^UTILITY(U,$J,358.3,1409,0)
+ ;;=T49.6X3D^^8^135^64
+ ;;^UTILITY(U,$J,358.3,1409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1135,1,3,0)
- ;;=3^Osteoporosis,Age-Related,w/o Current Path Fracture
- ;;^UTILITY(U,$J,358.3,1135,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,1135,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,1136,0)
- ;;=R11.2^^12^130^2
- ;;^UTILITY(U,$J,358.3,1136,1,0)
+ ;;^UTILITY(U,$J,358.3,1409,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and preparations, assault, subs
+ ;;^UTILITY(U,$J,358.3,1409,1,4,0)
+ ;;=4^T49.6X3D
+ ;;^UTILITY(U,$J,358.3,1409,2)
+ ;;=^5051921
+ ;;^UTILITY(U,$J,358.3,1410,0)
+ ;;=T49.6X3S^^8^135^57
+ ;;^UTILITY(U,$J,358.3,1410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1136,1,3,0)
- ;;=3^Nausea w/ Vomiting
- ;;^UTILITY(U,$J,358.3,1136,1,4,0)
- ;;=4^R11.2
- ;;^UTILITY(U,$J,358.3,1136,2)
- ;;=^5019237
- ;;^UTILITY(U,$J,358.3,1137,0)
- ;;=H57.13^^12^130^13
- ;;^UTILITY(U,$J,358.3,1137,1,0)
+ ;;^UTILITY(U,$J,358.3,1410,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, assault, sequela
+ ;;^UTILITY(U,$J,358.3,1410,1,4,0)
+ ;;=4^T49.6X3S
+ ;;^UTILITY(U,$J,358.3,1410,2)
+ ;;=^5051922
+ ;;^UTILITY(U,$J,358.3,1411,0)
+ ;;=T49.6X2A^^8^135^58
+ ;;^UTILITY(U,$J,358.3,1411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1137,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,1137,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,1137,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,1138,0)
- ;;=H57.11^^12^130^15
- ;;^UTILITY(U,$J,358.3,1138,1,0)
+ ;;^UTILITY(U,$J,358.3,1411,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, init
+ ;;^UTILITY(U,$J,358.3,1411,1,4,0)
+ ;;=4^T49.6X2A
+ ;;^UTILITY(U,$J,358.3,1411,2)
+ ;;=^5051917
+ ;;^UTILITY(U,$J,358.3,1412,0)
+ ;;=T49.6X2D^^8^135^59
+ ;;^UTILITY(U,$J,358.3,1412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1138,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,1138,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,1138,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,1139,0)
- ;;=H57.12^^12^130^14
- ;;^UTILITY(U,$J,358.3,1139,1,0)
+ ;;^UTILITY(U,$J,358.3,1412,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, subs
+ ;;^UTILITY(U,$J,358.3,1412,1,4,0)
+ ;;=4^T49.6X2D
+ ;;^UTILITY(U,$J,358.3,1412,2)
+ ;;=^5051918
+ ;;^UTILITY(U,$J,358.3,1413,0)
+ ;;=T49.6X2S^^8^135^60
+ ;;^UTILITY(U,$J,358.3,1413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1139,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,1139,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,1139,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,1140,0)
- ;;=H92.01^^12^130^21
- ;;^UTILITY(U,$J,358.3,1140,1,0)
+ ;;^UTILITY(U,$J,358.3,1413,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,1413,1,4,0)
+ ;;=4^T49.6X2S
+ ;;^UTILITY(U,$J,358.3,1413,2)
+ ;;=^5051919
+ ;;^UTILITY(U,$J,358.3,1414,0)
+ ;;=T49.6X4A^^8^135^61
+ ;;^UTILITY(U,$J,358.3,1414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1140,1,3,0)
- ;;=3^Otalgia,Right Ear
- ;;^UTILITY(U,$J,358.3,1140,1,4,0)
- ;;=4^H92.01
- ;;^UTILITY(U,$J,358.3,1140,2)
- ;;=^5006945
- ;;^UTILITY(U,$J,358.3,1141,0)
- ;;=H92.02^^12^130^20
- ;;^UTILITY(U,$J,358.3,1141,1,0)
+ ;;^UTILITY(U,$J,358.3,1414,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, init
+ ;;^UTILITY(U,$J,358.3,1414,1,4,0)
+ ;;=4^T49.6X4A
+ ;;^UTILITY(U,$J,358.3,1414,2)
+ ;;=^5051923
+ ;;^UTILITY(U,$J,358.3,1415,0)
+ ;;=T49.6X4D^^8^135^62
+ ;;^UTILITY(U,$J,358.3,1415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1141,1,3,0)
- ;;=3^Otalgia,Left Ear
- ;;^UTILITY(U,$J,358.3,1141,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,1141,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,1142,0)
- ;;=H92.03^^12^130^19
- ;;^UTILITY(U,$J,358.3,1142,1,0)
+ ;;^UTILITY(U,$J,358.3,1415,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, subs
+ ;;^UTILITY(U,$J,358.3,1415,1,4,0)
+ ;;=4^T49.6X4D
+ ;;^UTILITY(U,$J,358.3,1415,2)
+ ;;=^5051924
+ ;;^UTILITY(U,$J,358.3,1416,0)
+ ;;=T49.6X4S^^8^135^63
+ ;;^UTILITY(U,$J,358.3,1416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1142,1,3,0)
- ;;=3^Otalgia,Bilateral
- ;;^UTILITY(U,$J,358.3,1142,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,1142,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,1143,0)
- ;;=J00.^^12^130^1
- ;;^UTILITY(U,$J,358.3,1143,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1143,1,3,0)
- ;;=3^Nasopharyngitis,Acute
- ;;^UTILITY(U,$J,358.3,1143,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,1143,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,1144,0)
- ;;=F17.200^^12^130^4
- ;;^UTILITY(U,$J,358.3,1144,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1416,1,3,0)
+ ;;=3^Poisoning by otorhino drugs and prep, undetermined, sequela
+ ;;^UTILITY(U,$J,358.3,1416,1,4,0)
+ ;;=4^T49.6X4S
+ ;;^UTILITY(U,$J,358.3,1416,2)
+ ;;=^5051925
+ ;;^UTILITY(U,$J,358.3,1417,0)
+ ;;=T36.91XA^^8^135^65

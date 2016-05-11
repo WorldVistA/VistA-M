@@ -1,132 +1,138 @@
-IBDEI0MV ; ; 19-NOV-2015
+IBDEI0MV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10444,0)
- ;;=H10.9^^68^668^8
- ;;^UTILITY(U,$J,358.3,10444,1,0)
+ ;;^UTILITY(U,$J,358.3,10667,1,4,0)
+ ;;=4^F31.81
+ ;;^UTILITY(U,$J,358.3,10667,2)
+ ;;=^5003519
+ ;;^UTILITY(U,$J,358.3,10668,0)
+ ;;=F34.1^^47^519^9
+ ;;^UTILITY(U,$J,358.3,10668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10444,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,10444,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,10444,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,10445,0)
- ;;=H11.32^^68^668^6
- ;;^UTILITY(U,$J,358.3,10445,1,0)
+ ;;^UTILITY(U,$J,358.3,10668,1,3,0)
+ ;;=3^Dysthymic Disorder
+ ;;^UTILITY(U,$J,358.3,10668,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,10668,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,10669,0)
+ ;;=F41.1^^47^519^5
+ ;;^UTILITY(U,$J,358.3,10669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10445,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,10445,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,10445,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,10446,0)
- ;;=H11.31^^68^668^7
- ;;^UTILITY(U,$J,358.3,10446,1,0)
+ ;;^UTILITY(U,$J,358.3,10669,1,3,0)
+ ;;=3^Anxiety Disorder,Generalized
+ ;;^UTILITY(U,$J,358.3,10669,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,10669,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,10670,0)
+ ;;=F33.1^^47^519^11
+ ;;^UTILITY(U,$J,358.3,10670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10446,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,10446,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,10446,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,10447,0)
- ;;=H01.002^^68^668^3
- ;;^UTILITY(U,$J,358.3,10447,1,0)
+ ;;^UTILITY(U,$J,358.3,10670,1,3,0)
+ ;;=3^MDD,Recurrent,Moderate
+ ;;^UTILITY(U,$J,358.3,10670,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,10670,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,10671,0)
+ ;;=F06.8^^47^519^13
+ ;;^UTILITY(U,$J,358.3,10671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10447,1,3,0)
- ;;=3^Blepharitis Unspec,Right Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10447,1,4,0)
- ;;=4^H01.002
- ;;^UTILITY(U,$J,358.3,10447,2)
- ;;=^5004239
- ;;^UTILITY(U,$J,358.3,10448,0)
- ;;=H01.004^^68^668^2
- ;;^UTILITY(U,$J,358.3,10448,1,0)
+ ;;^UTILITY(U,$J,358.3,10671,1,3,0)
+ ;;=3^Mental Disorders d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,10671,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,10671,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,10672,0)
+ ;;=F43.12^^47^519^32
+ ;;^UTILITY(U,$J,358.3,10672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10448,1,3,0)
- ;;=3^Blepharitis Unspec,Left Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10448,1,4,0)
- ;;=4^H01.004
- ;;^UTILITY(U,$J,358.3,10448,2)
- ;;=^5004241
- ;;^UTILITY(U,$J,358.3,10449,0)
- ;;=H01.005^^68^668^1
- ;;^UTILITY(U,$J,358.3,10449,1,0)
+ ;;^UTILITY(U,$J,358.3,10672,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,10672,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,10672,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,10673,0)
+ ;;=F43.10^^47^519^33
+ ;;^UTILITY(U,$J,358.3,10673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10449,1,3,0)
- ;;=3^Blepharitis Unspec,Left Lower Eyelid
- ;;^UTILITY(U,$J,358.3,10449,1,4,0)
- ;;=4^H01.005
- ;;^UTILITY(U,$J,358.3,10449,2)
- ;;=^5133380
- ;;^UTILITY(U,$J,358.3,10450,0)
- ;;=H01.001^^68^668^4
- ;;^UTILITY(U,$J,358.3,10450,1,0)
+ ;;^UTILITY(U,$J,358.3,10673,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,10673,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,10673,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,10674,0)
+ ;;=F06.0^^47^519^37
+ ;;^UTILITY(U,$J,358.3,10674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10450,1,3,0)
- ;;=3^Blepharitis Unspec,Right Upper Eyelid
- ;;^UTILITY(U,$J,358.3,10450,1,4,0)
- ;;=4^H01.001
- ;;^UTILITY(U,$J,358.3,10450,2)
- ;;=^5004238
- ;;^UTILITY(U,$J,358.3,10451,0)
- ;;=H57.13^^68^668^10
- ;;^UTILITY(U,$J,358.3,10451,1,0)
+ ;;^UTILITY(U,$J,358.3,10674,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Physiol Condition
+ ;;^UTILITY(U,$J,358.3,10674,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,10674,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,10675,0)
+ ;;=F20.9^^47^519^39
+ ;;^UTILITY(U,$J,358.3,10675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10451,1,3,0)
- ;;=3^Ocular Pain,Bilateral
- ;;^UTILITY(U,$J,358.3,10451,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,10451,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,10452,0)
- ;;=H57.12^^68^668^11
- ;;^UTILITY(U,$J,358.3,10452,1,0)
+ ;;^UTILITY(U,$J,358.3,10675,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,10675,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,10675,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,10676,0)
+ ;;=F29.^^47^519^36
+ ;;^UTILITY(U,$J,358.3,10676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10452,1,3,0)
- ;;=3^Ocular Pain,Left Eye
- ;;^UTILITY(U,$J,358.3,10452,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,10452,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,10453,0)
- ;;=H57.11^^68^668^12
- ;;^UTILITY(U,$J,358.3,10453,1,0)
+ ;;^UTILITY(U,$J,358.3,10676,1,3,0)
+ ;;=3^Psychosis Not d/t Substance/Physiol Condition
+ ;;^UTILITY(U,$J,358.3,10676,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,10676,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,10677,0)
+ ;;=F41.9^^47^519^6
+ ;;^UTILITY(U,$J,358.3,10677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10453,1,3,0)
- ;;=3^Ocular Pain,Right Eye
- ;;^UTILITY(U,$J,358.3,10453,1,4,0)
- ;;=4^H57.11
- ;;^UTILITY(U,$J,358.3,10453,2)
- ;;=^5006382
- ;;^UTILITY(U,$J,358.3,10454,0)
- ;;=S05.02XA^^68^669^3
- ;;^UTILITY(U,$J,358.3,10454,1,0)
+ ;;^UTILITY(U,$J,358.3,10677,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10677,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,10677,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,10678,0)
+ ;;=F31.9^^47^519^7
+ ;;^UTILITY(U,$J,358.3,10678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10454,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Left Eye,Init
- ;;^UTILITY(U,$J,358.3,10454,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,10454,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,10455,0)
- ;;=S05.01XA^^68^669^4
- ;;^UTILITY(U,$J,358.3,10455,1,0)
+ ;;^UTILITY(U,$J,358.3,10678,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10678,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,10678,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,10679,0)
+ ;;=F32.9^^47^519^12
+ ;;^UTILITY(U,$J,358.3,10679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10455,1,3,0)
- ;;=3^Inj Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init
- ;;^UTILITY(U,$J,358.3,10455,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,10455,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,10456,0)
- ;;=T15.02XA^^68^669^1
- ;;^UTILITY(U,$J,358.3,10456,1,0)
+ ;;^UTILITY(U,$J,358.3,10679,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,10679,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,10679,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,10680,0)
+ ;;=R46.0^^47^519^10
+ ;;^UTILITY(U,$J,358.3,10680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10456,1,3,0)
- ;;=3^Foreign Body in Cornea,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,10456,1,4,0)
- ;;=4^T15.02XA
+ ;;^UTILITY(U,$J,358.3,10680,1,3,0)
+ ;;=3^Hygiene,Personal,Very Lowe Level
+ ;;^UTILITY(U,$J,358.3,10680,1,4,0)
+ ;;=4^R46.0
+ ;;^UTILITY(U,$J,358.3,10680,2)
+ ;;=^5019478

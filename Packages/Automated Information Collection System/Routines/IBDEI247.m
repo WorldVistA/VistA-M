@@ -1,120 +1,130 @@
-IBDEI247 ; ; 19-NOV-2015
+IBDEI247 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35516,1,0)
+ ;;^UTILITY(U,$J,358.3,35866,1,4,0)
+ ;;=4^M05.412
+ ;;^UTILITY(U,$J,358.3,35866,2)
+ ;;=^5009933
+ ;;^UTILITY(U,$J,358.3,35867,0)
+ ;;=M05.432^^134^1731^64
+ ;;^UTILITY(U,$J,358.3,35867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35516,1,3,0)
- ;;=3^Prem separtn of placenta w afibrinogenemia, third trimester
- ;;^UTILITY(U,$J,358.3,35516,1,4,0)
- ;;=4^O45.013
- ;;^UTILITY(U,$J,358.3,35516,2)
- ;;=^5017450
- ;;^UTILITY(U,$J,358.3,35517,0)
- ;;=O45.021^^166^1820^31
- ;;^UTILITY(U,$J,358.3,35517,1,0)
+ ;;^UTILITY(U,$J,358.3,35867,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Left Wrist
+ ;;^UTILITY(U,$J,358.3,35867,1,4,0)
+ ;;=4^M05.432
+ ;;^UTILITY(U,$J,358.3,35867,2)
+ ;;=^5009939
+ ;;^UTILITY(U,$J,358.3,35868,0)
+ ;;=M05.49^^134^1731^65
+ ;;^UTILITY(U,$J,358.3,35868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35517,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, first tri
- ;;^UTILITY(U,$J,358.3,35517,1,4,0)
- ;;=4^O45.021
- ;;^UTILITY(U,$J,358.3,35517,2)
- ;;=^5017452
- ;;^UTILITY(U,$J,358.3,35518,0)
- ;;=O45.022^^166^1820^32
- ;;^UTILITY(U,$J,358.3,35518,1,0)
+ ;;^UTILITY(U,$J,358.3,35868,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Mult Sites
+ ;;^UTILITY(U,$J,358.3,35868,1,4,0)
+ ;;=4^M05.49
+ ;;^UTILITY(U,$J,358.3,35868,2)
+ ;;=^5009953
+ ;;^UTILITY(U,$J,358.3,35869,0)
+ ;;=M05.471^^134^1731^66
+ ;;^UTILITY(U,$J,358.3,35869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35518,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, second tri
- ;;^UTILITY(U,$J,358.3,35518,1,4,0)
- ;;=4^O45.022
- ;;^UTILITY(U,$J,358.3,35518,2)
- ;;=^5017453
- ;;^UTILITY(U,$J,358.3,35519,0)
- ;;=O45.023^^166^1820^33
- ;;^UTILITY(U,$J,358.3,35519,1,0)
+ ;;^UTILITY(U,$J,358.3,35869,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35869,1,4,0)
+ ;;=4^M05.471
+ ;;^UTILITY(U,$J,358.3,35869,2)
+ ;;=^5009950
+ ;;^UTILITY(U,$J,358.3,35870,0)
+ ;;=M05.421^^134^1731^67
+ ;;^UTILITY(U,$J,358.3,35870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35519,1,3,0)
- ;;=3^Prem separtn of placenta w dissem intravasc coag, third tri
- ;;^UTILITY(U,$J,358.3,35519,1,4,0)
- ;;=4^O45.023
- ;;^UTILITY(U,$J,358.3,35519,2)
- ;;=^5017454
- ;;^UTILITY(U,$J,358.3,35520,0)
- ;;=O45.091^^166^1820^34
- ;;^UTILITY(U,$J,358.3,35520,1,0)
+ ;;^UTILITY(U,$J,358.3,35870,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Elbow
+ ;;^UTILITY(U,$J,358.3,35870,1,4,0)
+ ;;=4^M05.421
+ ;;^UTILITY(U,$J,358.3,35870,2)
+ ;;=^5009935
+ ;;^UTILITY(U,$J,358.3,35871,0)
+ ;;=M05.441^^134^1731^68
+ ;;^UTILITY(U,$J,358.3,35871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35520,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, first trimester
- ;;^UTILITY(U,$J,358.3,35520,1,4,0)
- ;;=4^O45.091
- ;;^UTILITY(U,$J,358.3,35520,2)
- ;;=^5017456
- ;;^UTILITY(U,$J,358.3,35521,0)
- ;;=O45.092^^166^1820^35
- ;;^UTILITY(U,$J,358.3,35521,1,0)
+ ;;^UTILITY(U,$J,358.3,35871,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hand
+ ;;^UTILITY(U,$J,358.3,35871,1,4,0)
+ ;;=4^M05.441
+ ;;^UTILITY(U,$J,358.3,35871,2)
+ ;;=^5009941
+ ;;^UTILITY(U,$J,358.3,35872,0)
+ ;;=M05.451^^134^1731^69
+ ;;^UTILITY(U,$J,358.3,35872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35521,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, second trimester
- ;;^UTILITY(U,$J,358.3,35521,1,4,0)
- ;;=4^O45.092
- ;;^UTILITY(U,$J,358.3,35521,2)
- ;;=^5017457
- ;;^UTILITY(U,$J,358.3,35522,0)
- ;;=O45.093^^166^1820^36
- ;;^UTILITY(U,$J,358.3,35522,1,0)
+ ;;^UTILITY(U,$J,358.3,35872,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Hip
+ ;;^UTILITY(U,$J,358.3,35872,1,4,0)
+ ;;=4^M05.451
+ ;;^UTILITY(U,$J,358.3,35872,2)
+ ;;=^5009944
+ ;;^UTILITY(U,$J,358.3,35873,0)
+ ;;=M05.461^^134^1731^70
+ ;;^UTILITY(U,$J,358.3,35873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35522,1,3,0)
- ;;=3^Prem separtn of placenta w oth coag defect, third trimester
- ;;^UTILITY(U,$J,358.3,35522,1,4,0)
- ;;=4^O45.093
- ;;^UTILITY(U,$J,358.3,35522,2)
- ;;=^5017458
- ;;^UTILITY(U,$J,358.3,35523,0)
- ;;=O46.001^^166^1820^4
- ;;^UTILITY(U,$J,358.3,35523,1,0)
+ ;;^UTILITY(U,$J,358.3,35873,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Knee
+ ;;^UTILITY(U,$J,358.3,35873,1,4,0)
+ ;;=4^M05.461
+ ;;^UTILITY(U,$J,358.3,35873,2)
+ ;;=^5009947
+ ;;^UTILITY(U,$J,358.3,35874,0)
+ ;;=M05.411^^134^1731^71
+ ;;^UTILITY(U,$J,358.3,35874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35523,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, first trimester
- ;;^UTILITY(U,$J,358.3,35523,1,4,0)
- ;;=4^O46.001
- ;;^UTILITY(U,$J,358.3,35523,2)
- ;;=^5017467
- ;;^UTILITY(U,$J,358.3,35524,0)
- ;;=O46.002^^166^1820^5
- ;;^UTILITY(U,$J,358.3,35524,1,0)
+ ;;^UTILITY(U,$J,358.3,35874,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Shoulder
+ ;;^UTILITY(U,$J,358.3,35874,1,4,0)
+ ;;=4^M05.411
+ ;;^UTILITY(U,$J,358.3,35874,2)
+ ;;=^5009932
+ ;;^UTILITY(U,$J,358.3,35875,0)
+ ;;=M05.431^^134^1731^72
+ ;;^UTILITY(U,$J,358.3,35875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35524,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, second trimester
- ;;^UTILITY(U,$J,358.3,35524,1,4,0)
- ;;=4^O46.002
- ;;^UTILITY(U,$J,358.3,35524,2)
- ;;=^5017468
- ;;^UTILITY(U,$J,358.3,35525,0)
- ;;=O46.003^^166^1820^6
- ;;^UTILITY(U,$J,358.3,35525,1,0)
+ ;;^UTILITY(U,$J,358.3,35875,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Right Wrist
+ ;;^UTILITY(U,$J,358.3,35875,1,4,0)
+ ;;=4^M05.431
+ ;;^UTILITY(U,$J,358.3,35875,2)
+ ;;=^5009938
+ ;;^UTILITY(U,$J,358.3,35876,0)
+ ;;=M05.40^^134^1731^73
+ ;;^UTILITY(U,$J,358.3,35876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35525,1,3,0)
- ;;=3^Antepartum hemorrhage w coag defect, unsp, third trimester
- ;;^UTILITY(U,$J,358.3,35525,1,4,0)
- ;;=4^O46.003
- ;;^UTILITY(U,$J,358.3,35525,2)
- ;;=^5017469
- ;;^UTILITY(U,$J,358.3,35526,0)
- ;;=O46.011^^166^1820^1
- ;;^UTILITY(U,$J,358.3,35526,1,0)
+ ;;^UTILITY(U,$J,358.3,35876,1,3,0)
+ ;;=3^Rheum Myopathy w/ Rheum Arth Unspec Site
+ ;;^UTILITY(U,$J,358.3,35876,1,4,0)
+ ;;=4^M05.40
+ ;;^UTILITY(U,$J,358.3,35876,2)
+ ;;=^5009931
+ ;;^UTILITY(U,$J,358.3,35877,0)
+ ;;=M06.372^^134^1731^123
+ ;;^UTILITY(U,$J,358.3,35877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35526,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, first trimester
- ;;^UTILITY(U,$J,358.3,35526,1,4,0)
- ;;=4^O46.011
- ;;^UTILITY(U,$J,358.3,35526,2)
- ;;=^5017471
- ;;^UTILITY(U,$J,358.3,35527,0)
- ;;=O46.012^^166^1820^2
- ;;^UTILITY(U,$J,358.3,35527,1,0)
+ ;;^UTILITY(U,$J,358.3,35877,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,35877,1,4,0)
+ ;;=4^M06.372
+ ;;^UTILITY(U,$J,358.3,35877,2)
+ ;;=^5010116
+ ;;^UTILITY(U,$J,358.3,35878,0)
+ ;;=M06.322^^134^1731^124
+ ;;^UTILITY(U,$J,358.3,35878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35527,1,3,0)
- ;;=3^Antepartum hemorrhage w afibrinogenemia, second trimester
- ;;^UTILITY(U,$J,358.3,35527,1,4,0)
- ;;=4^O46.012
+ ;;^UTILITY(U,$J,358.3,35878,1,3,0)
+ ;;=3^Rheumatoid Nodule Left Elbow
+ ;;^UTILITY(U,$J,358.3,35878,1,4,0)
+ ;;=4^M06.322
+ ;;^UTILITY(U,$J,358.3,35878,2)
+ ;;=^5010101
+ ;;^UTILITY(U,$J,358.3,35879,0)
+ ;;=M06.342^^134^1731^125

@@ -1,122 +1,130 @@
-IBDEI0QK ; ; 19-NOV-2015
+IBDEI0QK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12171,2)
- ;;=^5047674
- ;;^UTILITY(U,$J,358.3,12172,0)
- ;;=T23.221A^^71^708^39
- ;;^UTILITY(U,$J,358.3,12172,1,0)
+ ;;^UTILITY(U,$J,358.3,12446,1,3,0)
+ ;;=3^Gastroduodenitis, unspecified, without bleeding
+ ;;^UTILITY(U,$J,358.3,12446,1,4,0)
+ ;;=4^K29.90
+ ;;^UTILITY(U,$J,358.3,12446,2)
+ ;;=^5008556
+ ;;^UTILITY(U,$J,358.3,12447,0)
+ ;;=K29.70^^50^563^17
+ ;;^UTILITY(U,$J,358.3,12447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12172,1,3,0)
- ;;=3^Burn second degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12172,1,4,0)
- ;;=4^T23.221A
- ;;^UTILITY(U,$J,358.3,12172,2)
- ;;=^5047749
- ;;^UTILITY(U,$J,358.3,12173,0)
- ;;=T23.222A^^71^708^38
- ;;^UTILITY(U,$J,358.3,12173,1,0)
+ ;;^UTILITY(U,$J,358.3,12447,1,3,0)
+ ;;=3^Gastritis, unspecified, without bleeding
+ ;;^UTILITY(U,$J,358.3,12447,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,12447,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,12448,0)
+ ;;=K29.71^^50^563^16
+ ;;^UTILITY(U,$J,358.3,12448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12173,1,3,0)
- ;;=3^Burn second degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12173,1,4,0)
- ;;=4^T23.222A
- ;;^UTILITY(U,$J,358.3,12173,2)
- ;;=^5047752
- ;;^UTILITY(U,$J,358.3,12174,0)
- ;;=T23.321A^^71^708^43
- ;;^UTILITY(U,$J,358.3,12174,1,0)
+ ;;^UTILITY(U,$J,358.3,12448,1,3,0)
+ ;;=3^Gastritis, unspecified, with bleeding
+ ;;^UTILITY(U,$J,358.3,12448,1,4,0)
+ ;;=4^K29.71
+ ;;^UTILITY(U,$J,358.3,12448,2)
+ ;;=^5008553
+ ;;^UTILITY(U,$J,358.3,12449,0)
+ ;;=K29.91^^50^563^18
+ ;;^UTILITY(U,$J,358.3,12449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12174,1,3,0)
- ;;=3^Burn third degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12174,1,4,0)
- ;;=4^T23.321A
- ;;^UTILITY(U,$J,358.3,12174,2)
- ;;=^5047827
- ;;^UTILITY(U,$J,358.3,12175,0)
- ;;=T23.322A^^71^708^42
- ;;^UTILITY(U,$J,358.3,12175,1,0)
+ ;;^UTILITY(U,$J,358.3,12449,1,3,0)
+ ;;=3^Gastroduodenitis, unspecified, with bleeding
+ ;;^UTILITY(U,$J,358.3,12449,1,4,0)
+ ;;=4^K29.91
+ ;;^UTILITY(U,$J,358.3,12449,2)
+ ;;=^5008557
+ ;;^UTILITY(U,$J,358.3,12450,0)
+ ;;=E08.43^^50^563^10
+ ;;^UTILITY(U,$J,358.3,12450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12175,1,3,0)
- ;;=3^Burn third degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,12175,1,4,0)
- ;;=4^T23.322A
- ;;^UTILITY(U,$J,358.3,12175,2)
- ;;=^5047830
- ;;^UTILITY(U,$J,358.3,12176,0)
- ;;=T23.101A^^71^708^33
- ;;^UTILITY(U,$J,358.3,12176,1,0)
+ ;;^UTILITY(U,$J,358.3,12450,1,3,0)
+ ;;=3^Diab due to undrl cond w diabetic autonm (poly)neuropathy
+ ;;^UTILITY(U,$J,358.3,12450,1,4,0)
+ ;;=4^E08.43
+ ;;^UTILITY(U,$J,358.3,12450,2)
+ ;;=^5002525
+ ;;^UTILITY(U,$J,358.3,12451,0)
+ ;;=E09.43^^50^563^11
+ ;;^UTILITY(U,$J,358.3,12451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12176,1,3,0)
- ;;=3^Burn first degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12176,1,4,0)
- ;;=4^T23.101A
- ;;^UTILITY(U,$J,358.3,12176,2)
- ;;=^5047656
- ;;^UTILITY(U,$J,358.3,12177,0)
- ;;=T23.102A^^71^708^32
- ;;^UTILITY(U,$J,358.3,12177,1,0)
+ ;;^UTILITY(U,$J,358.3,12451,1,3,0)
+ ;;=3^Drug/chem diab w neuro comp w diab autonm (poly)neuropathy
+ ;;^UTILITY(U,$J,358.3,12451,1,4,0)
+ ;;=4^E09.43
+ ;;^UTILITY(U,$J,358.3,12451,2)
+ ;;=^5002567
+ ;;^UTILITY(U,$J,358.3,12452,0)
+ ;;=E10.43^^50^563^28
+ ;;^UTILITY(U,$J,358.3,12452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12177,1,3,0)
- ;;=3^Burn first degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12177,1,4,0)
- ;;=4^T23.102A
- ;;^UTILITY(U,$J,358.3,12177,2)
- ;;=^5047659
- ;;^UTILITY(U,$J,358.3,12178,0)
- ;;=T23.201A^^71^708^37
- ;;^UTILITY(U,$J,358.3,12178,1,0)
+ ;;^UTILITY(U,$J,358.3,12452,1,3,0)
+ ;;=3^Type 1 diabetes w diabetic autonomic (poly)neuropathy
+ ;;^UTILITY(U,$J,358.3,12452,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,12452,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,12453,0)
+ ;;=E11.43^^50^563^29
+ ;;^UTILITY(U,$J,358.3,12453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12178,1,3,0)
- ;;=3^Burn second degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12178,1,4,0)
- ;;=4^T23.201A
- ;;^UTILITY(U,$J,358.3,12178,2)
- ;;=^5047734
- ;;^UTILITY(U,$J,358.3,12179,0)
- ;;=T23.202A^^71^708^36
- ;;^UTILITY(U,$J,358.3,12179,1,0)
+ ;;^UTILITY(U,$J,358.3,12453,1,3,0)
+ ;;=3^Type 2 diabetes w diabetic autonomic (poly)neuropathy
+ ;;^UTILITY(U,$J,358.3,12453,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,12453,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,12454,0)
+ ;;=K31.89^^50^563^27
+ ;;^UTILITY(U,$J,358.3,12454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12179,1,3,0)
- ;;=3^Burn second degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12179,1,4,0)
- ;;=4^T23.202A
- ;;^UTILITY(U,$J,358.3,12179,2)
- ;;=^5047737
- ;;^UTILITY(U,$J,358.3,12180,0)
- ;;=T23.301A^^71^708^41
- ;;^UTILITY(U,$J,358.3,12180,1,0)
+ ;;^UTILITY(U,$J,358.3,12454,1,3,0)
+ ;;=3^Stomach and Duodenum Diseases NEC
+ ;;^UTILITY(U,$J,358.3,12454,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,12454,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,12455,0)
+ ;;=K31.89^^50^563^26
+ ;;^UTILITY(U,$J,358.3,12455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12180,1,3,0)
- ;;=3^Burn third degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12180,1,4,0)
- ;;=4^T23.301A
- ;;^UTILITY(U,$J,358.3,12180,2)
- ;;=^5047812
- ;;^UTILITY(U,$J,358.3,12181,0)
- ;;=T23.302A^^71^708^40
- ;;^UTILITY(U,$J,358.3,12181,1,0)
+ ;;^UTILITY(U,$J,358.3,12455,1,3,0)
+ ;;=3^Portal hypertensive gastropathy
+ ;;^UTILITY(U,$J,358.3,12455,1,4,0)
+ ;;=4^K31.89
+ ;;^UTILITY(U,$J,358.3,12455,2)
+ ;;=^5008569
+ ;;^UTILITY(U,$J,358.3,12456,0)
+ ;;=K94.23^^50^563^21
+ ;;^UTILITY(U,$J,358.3,12456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12181,1,3,0)
- ;;=3^Burn third degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,12181,1,4,0)
- ;;=4^T23.302A
- ;;^UTILITY(U,$J,358.3,12181,2)
- ;;=^5047815
- ;;^UTILITY(U,$J,358.3,12182,0)
- ;;=T79.A11A^^71^708^248
- ;;^UTILITY(U,$J,358.3,12182,1,0)
+ ;;^UTILITY(U,$J,358.3,12456,1,3,0)
+ ;;=3^Gastrostomy malfunction
+ ;;^UTILITY(U,$J,358.3,12456,1,4,0)
+ ;;=4^K94.23
+ ;;^UTILITY(U,$J,358.3,12456,2)
+ ;;=^5008931
+ ;;^UTILITY(U,$J,358.3,12457,0)
+ ;;=K94.29^^50^563^9
+ ;;^UTILITY(U,$J,358.3,12457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12182,1,3,0)
- ;;=3^Traumatic compartment syndrome of right upper extrem, init
- ;;^UTILITY(U,$J,358.3,12182,1,4,0)
- ;;=4^T79.A11A
- ;;^UTILITY(U,$J,358.3,12182,2)
- ;;=^5054326
- ;;^UTILITY(U,$J,358.3,12183,0)
- ;;=T79.A12A^^71^708^247
- ;;^UTILITY(U,$J,358.3,12183,1,0)
+ ;;^UTILITY(U,$J,358.3,12457,1,3,0)
+ ;;=3^Complications of gastrostomy NEC
+ ;;^UTILITY(U,$J,358.3,12457,1,4,0)
+ ;;=4^K94.29
+ ;;^UTILITY(U,$J,358.3,12457,2)
+ ;;=^5008932
+ ;;^UTILITY(U,$J,358.3,12458,0)
+ ;;=K94.21^^50^563^20
+ ;;^UTILITY(U,$J,358.3,12458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12183,1,3,0)
- ;;=3^Traumatic compartment syndrome of left upper extremity, init
+ ;;^UTILITY(U,$J,358.3,12458,1,3,0)
+ ;;=3^Gastrostomy hemorrhage
+ ;;^UTILITY(U,$J,358.3,12458,1,4,0)
+ ;;=4^K94.21
+ ;;^UTILITY(U,$J,358.3,12458,2)
+ ;;=^5008929

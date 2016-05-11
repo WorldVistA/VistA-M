@@ -1,130 +1,136 @@
-IBDEI1GJ ; ; 19-NOV-2015
+IBDEI1GJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24346,1,3,0)
- ;;=3^Acquired Absence of Right Hand
- ;;^UTILITY(U,$J,358.3,24346,1,4,0)
- ;;=4^Z89.111
- ;;^UTILITY(U,$J,358.3,24346,2)
- ;;=^5063537
- ;;^UTILITY(U,$J,358.3,24347,0)
- ;;=Z89.112^^118^1211^1
- ;;^UTILITY(U,$J,358.3,24347,1,0)
+ ;;^UTILITY(U,$J,358.3,24758,0)
+ ;;=F90.9^^93^1105^5
+ ;;^UTILITY(U,$J,358.3,24758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24347,1,3,0)
- ;;=3^Acquired Absence of Left Hand
- ;;^UTILITY(U,$J,358.3,24347,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,24347,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,24348,0)
- ;;=Z89.121^^118^1211^11
- ;;^UTILITY(U,$J,358.3,24348,1,0)
+ ;;^UTILITY(U,$J,358.3,24758,1,3,0)
+ ;;=3^ADHD,Unspec
+ ;;^UTILITY(U,$J,358.3,24758,1,4,0)
+ ;;=4^F90.9
+ ;;^UTILITY(U,$J,358.3,24758,2)
+ ;;=^5003696
+ ;;^UTILITY(U,$J,358.3,24759,0)
+ ;;=Z70.9^^93^1106^4
+ ;;^UTILITY(U,$J,358.3,24759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24348,1,3,0)
- ;;=3^Acquired Absence of Right Wrist
- ;;^UTILITY(U,$J,358.3,24348,1,4,0)
- ;;=4^Z89.121
- ;;^UTILITY(U,$J,358.3,24348,2)
- ;;=^5063540
- ;;^UTILITY(U,$J,358.3,24349,0)
- ;;=Z89.122^^118^1211^5
- ;;^UTILITY(U,$J,358.3,24349,1,0)
+ ;;^UTILITY(U,$J,358.3,24759,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,24759,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,24759,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,24760,0)
+ ;;=Z71.9^^93^1106^1
+ ;;^UTILITY(U,$J,358.3,24760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24349,1,3,0)
- ;;=3^Acquired Absence of Left Wrist
- ;;^UTILITY(U,$J,358.3,24349,1,4,0)
- ;;=4^Z89.122
- ;;^UTILITY(U,$J,358.3,24349,2)
- ;;=^5063541
- ;;^UTILITY(U,$J,358.3,24350,0)
- ;;=Z89.211^^118^1211^9
- ;;^UTILITY(U,$J,358.3,24350,1,0)
+ ;;^UTILITY(U,$J,358.3,24760,1,3,0)
+ ;;=3^Counseling/Consultation NEC
+ ;;^UTILITY(U,$J,358.3,24760,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,24760,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,24761,0)
+ ;;=Z51.81^^93^1106^5
+ ;;^UTILITY(U,$J,358.3,24761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24350,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb Below Elbow
- ;;^UTILITY(U,$J,358.3,24350,1,4,0)
- ;;=4^Z89.211
- ;;^UTILITY(U,$J,358.3,24350,2)
- ;;=^5063545
- ;;^UTILITY(U,$J,358.3,24351,0)
- ;;=Z89.212^^118^1211^12
- ;;^UTILITY(U,$J,358.3,24351,1,0)
+ ;;^UTILITY(U,$J,358.3,24761,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,24761,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,24761,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,24762,0)
+ ;;=Z69.12^^93^1106^2
+ ;;^UTILITY(U,$J,358.3,24762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24351,1,3,0)
- ;;=3^Acquired Absence of Upper Limb Below Elbow
- ;;^UTILITY(U,$J,358.3,24351,1,4,0)
- ;;=4^Z89.212
- ;;^UTILITY(U,$J,358.3,24351,2)
- ;;=^5063546
- ;;^UTILITY(U,$J,358.3,24352,0)
- ;;=Z89.221^^118^1211^8
- ;;^UTILITY(U,$J,358.3,24352,1,0)
+ ;;^UTILITY(U,$J,358.3,24762,1,3,0)
+ ;;=3^Mental Health Svcs for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,24762,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,24762,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,24763,0)
+ ;;=Z69.11^^93^1106^3
+ ;;^UTILITY(U,$J,358.3,24763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24352,1,3,0)
- ;;=3^Acquired Absence of Right Upper Limb Above Elbow
- ;;^UTILITY(U,$J,358.3,24352,1,4,0)
- ;;=4^Z89.221
- ;;^UTILITY(U,$J,358.3,24352,2)
- ;;=^5063548
- ;;^UTILITY(U,$J,358.3,24353,0)
- ;;=Z89.222^^118^1211^3
- ;;^UTILITY(U,$J,358.3,24353,1,0)
+ ;;^UTILITY(U,$J,358.3,24763,1,3,0)
+ ;;=3^Mental Health Svcs for Victim of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,24763,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,24763,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,24764,0)
+ ;;=Z60.0^^93^1107^2
+ ;;^UTILITY(U,$J,358.3,24764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24353,1,3,0)
- ;;=3^Acquired Absence of Left Upper Limb Above Elbow
- ;;^UTILITY(U,$J,358.3,24353,1,4,0)
- ;;=4^Z89.222
- ;;^UTILITY(U,$J,358.3,24353,2)
- ;;=^5063549
- ;;^UTILITY(U,$J,358.3,24354,0)
- ;;=Z89.231^^118^1211^7
- ;;^UTILITY(U,$J,358.3,24354,1,0)
+ ;;^UTILITY(U,$J,358.3,24764,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,24764,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,24764,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,24765,0)
+ ;;=Z60.2^^93^1107^3
+ ;;^UTILITY(U,$J,358.3,24765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24354,1,3,0)
- ;;=3^Acquired Absence of Right Shoulder
- ;;^UTILITY(U,$J,358.3,24354,1,4,0)
- ;;=4^Z89.231
- ;;^UTILITY(U,$J,358.3,24354,2)
- ;;=^5063551
- ;;^UTILITY(U,$J,358.3,24355,0)
- ;;=Z89.232^^118^1211^2
- ;;^UTILITY(U,$J,358.3,24355,1,0)
+ ;;^UTILITY(U,$J,358.3,24765,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,24765,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,24765,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,24766,0)
+ ;;=Z60.3^^93^1107^1
+ ;;^UTILITY(U,$J,358.3,24766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24355,1,3,0)
- ;;=3^Acquired Absence of Left Shoulder
- ;;^UTILITY(U,$J,358.3,24355,1,4,0)
- ;;=4^Z89.232
- ;;^UTILITY(U,$J,358.3,24355,2)
- ;;=^5063552
- ;;^UTILITY(U,$J,358.3,24356,0)
- ;;=Z89.411^^118^1212^10
- ;;^UTILITY(U,$J,358.3,24356,1,0)
+ ;;^UTILITY(U,$J,358.3,24766,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,24766,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,24766,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,24767,0)
+ ;;=Z60.4^^93^1107^5
+ ;;^UTILITY(U,$J,358.3,24767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24356,1,3,0)
- ;;=3^Acquired Absence of Right Great Toe
- ;;^UTILITY(U,$J,358.3,24356,1,4,0)
- ;;=4^Z89.411
- ;;^UTILITY(U,$J,358.3,24356,2)
- ;;=^5063554
- ;;^UTILITY(U,$J,358.3,24357,0)
- ;;=Z89.412^^118^1212^3
- ;;^UTILITY(U,$J,358.3,24357,1,0)
+ ;;^UTILITY(U,$J,358.3,24767,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,24767,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,24767,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,24768,0)
+ ;;=Z60.5^^93^1107^6
+ ;;^UTILITY(U,$J,358.3,24768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24357,1,3,0)
- ;;=3^Acquired Absence of Left Great Toe
- ;;^UTILITY(U,$J,358.3,24357,1,4,0)
- ;;=4^Z89.412
- ;;^UTILITY(U,$J,358.3,24357,2)
- ;;=^5063555
- ;;^UTILITY(U,$J,358.3,24358,0)
- ;;=Z89.421^^118^1212^14
- ;;^UTILITY(U,$J,358.3,24358,1,0)
+ ;;^UTILITY(U,$J,358.3,24768,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,24768,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,24768,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,24769,0)
+ ;;=Z60.9^^93^1107^4
+ ;;^UTILITY(U,$J,358.3,24769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24358,1,3,0)
- ;;=3^Acquired Absence of Right Toe(s)
- ;;^UTILITY(U,$J,358.3,24358,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,24358,2)
- ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,24769,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,24769,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,24769,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,24770,0)
+ ;;=F65.4^^93^1108^6
+ ;;^UTILITY(U,$J,358.3,24770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24770,1,3,0)
+ ;;=3^Pedophilia Disorder
+ ;;^UTILITY(U,$J,358.3,24770,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,24770,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,24771,0)
+ ;;=F65.2^^93^1108^1

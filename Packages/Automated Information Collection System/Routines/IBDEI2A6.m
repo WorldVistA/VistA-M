@@ -1,124 +1,138 @@
-IBDEI2A6 ; ; 19-NOV-2015
+IBDEI2A6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38301,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,38301,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,38301,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,38302,0)
- ;;=F10.231^^177^1940^5
- ;;^UTILITY(U,$J,358.3,38302,1,0)
+ ;;^UTILITY(U,$J,358.3,38690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38302,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,38302,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,38302,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,38303,0)
- ;;=F10.232^^177^1940^6
- ;;^UTILITY(U,$J,358.3,38303,1,0)
+ ;;^UTILITY(U,$J,358.3,38690,1,3,0)
+ ;;=3^Alopecia Areata,Unspec
+ ;;^UTILITY(U,$J,358.3,38690,1,4,0)
+ ;;=4^L63.9
+ ;;^UTILITY(U,$J,358.3,38690,2)
+ ;;=^5009246
+ ;;^UTILITY(U,$J,358.3,38691,0)
+ ;;=L70.0^^151^1896^3
+ ;;^UTILITY(U,$J,358.3,38691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38303,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,38303,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,38303,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,38304,0)
- ;;=F10.239^^177^1940^7
- ;;^UTILITY(U,$J,358.3,38304,1,0)
+ ;;^UTILITY(U,$J,358.3,38691,1,3,0)
+ ;;=3^Acne Vulgaris
+ ;;^UTILITY(U,$J,358.3,38691,1,4,0)
+ ;;=4^L70.0
+ ;;^UTILITY(U,$J,358.3,38691,2)
+ ;;=^5009268
+ ;;^UTILITY(U,$J,358.3,38692,0)
+ ;;=L73.0^^151^1896^2
+ ;;^UTILITY(U,$J,358.3,38692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38304,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,38304,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,38304,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,38305,0)
- ;;=F10.24^^177^1940^9
- ;;^UTILITY(U,$J,358.3,38305,1,0)
+ ;;^UTILITY(U,$J,358.3,38692,1,3,0)
+ ;;=3^Acne Keloid
+ ;;^UTILITY(U,$J,358.3,38692,1,4,0)
+ ;;=4^L73.0
+ ;;^UTILITY(U,$J,358.3,38692,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,38693,0)
+ ;;=L63.0^^151^1896^8
+ ;;^UTILITY(U,$J,358.3,38693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38305,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,38305,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,38305,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,38306,0)
- ;;=F10.29^^177^1940^11
- ;;^UTILITY(U,$J,358.3,38306,1,0)
+ ;;^UTILITY(U,$J,358.3,38693,1,3,0)
+ ;;=3^Alopecia Totalis
+ ;;^UTILITY(U,$J,358.3,38693,1,4,0)
+ ;;=4^L63.0
+ ;;^UTILITY(U,$J,358.3,38693,2)
+ ;;=^5009242
+ ;;^UTILITY(U,$J,358.3,38694,0)
+ ;;=L63.1^^151^1896^9
+ ;;^UTILITY(U,$J,358.3,38694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38306,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,38306,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,38306,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,38307,0)
- ;;=F15.10^^177^1941^4
- ;;^UTILITY(U,$J,358.3,38307,1,0)
+ ;;^UTILITY(U,$J,358.3,38694,1,3,0)
+ ;;=3^Alopecia Universalis
+ ;;^UTILITY(U,$J,358.3,38694,1,4,0)
+ ;;=4^L63.1
+ ;;^UTILITY(U,$J,358.3,38694,2)
+ ;;=^5009243
+ ;;^UTILITY(U,$J,358.3,38695,0)
+ ;;=L65.2^^151^1896^7
+ ;;^UTILITY(U,$J,358.3,38695,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38307,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,38307,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,38307,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,38308,0)
- ;;=F15.14^^177^1941^2
- ;;^UTILITY(U,$J,358.3,38308,1,0)
+ ;;^UTILITY(U,$J,358.3,38695,1,3,0)
+ ;;=3^Alopecia Mucinosa
+ ;;^UTILITY(U,$J,358.3,38695,1,4,0)
+ ;;=4^L65.2
+ ;;^UTILITY(U,$J,358.3,38695,2)
+ ;;=^5103
+ ;;^UTILITY(U,$J,358.3,38696,0)
+ ;;=L66.9^^151^1896^6
+ ;;^UTILITY(U,$J,358.3,38696,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38308,1,3,0)
- ;;=3^Amphetamine-Induced Depressive,Bipolar & Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38308,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,38308,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,38309,0)
- ;;=F15.182^^177^1941^3
- ;;^UTILITY(U,$J,358.3,38309,1,0)
+ ;;^UTILITY(U,$J,358.3,38696,1,3,0)
+ ;;=3^Alopecia Cicatricial,Unspec
+ ;;^UTILITY(U,$J,358.3,38696,1,4,0)
+ ;;=4^L66.9
+ ;;^UTILITY(U,$J,358.3,38696,2)
+ ;;=^5009258
+ ;;^UTILITY(U,$J,358.3,38697,0)
+ ;;=A60.9^^151^1896^11
+ ;;^UTILITY(U,$J,358.3,38697,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38309,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,38309,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,38309,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,38310,0)
- ;;=F15.20^^177^1941^5
- ;;^UTILITY(U,$J,358.3,38310,1,0)
+ ;;^UTILITY(U,$J,358.3,38697,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,38697,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,38697,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,38698,0)
+ ;;=L56.1^^151^1897^28
+ ;;^UTILITY(U,$J,358.3,38698,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38310,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,38310,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,38310,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,38311,0)
- ;;=F15.21^^177^1941^6
- ;;^UTILITY(U,$J,358.3,38311,1,0)
+ ;;^UTILITY(U,$J,358.3,38698,1,3,0)
+ ;;=3^Drug Photoallergic Response
+ ;;^UTILITY(U,$J,358.3,38698,1,4,0)
+ ;;=4^L56.1
+ ;;^UTILITY(U,$J,358.3,38698,2)
+ ;;=^5009215
+ ;;^UTILITY(U,$J,358.3,38699,0)
+ ;;=L56.0^^151^1897^29
+ ;;^UTILITY(U,$J,358.3,38699,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38311,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,38311,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,38311,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,38312,0)
- ;;=F15.23^^177^1941^1
- ;;^UTILITY(U,$J,358.3,38312,1,0)
+ ;;^UTILITY(U,$J,358.3,38699,1,3,0)
+ ;;=3^Drug Phototoxic Response
+ ;;^UTILITY(U,$J,358.3,38699,1,4,0)
+ ;;=4^L56.0
+ ;;^UTILITY(U,$J,358.3,38699,2)
+ ;;=^5009214
+ ;;^UTILITY(U,$J,358.3,38700,0)
+ ;;=L23.9^^151^1897^6
+ ;;^UTILITY(U,$J,358.3,38700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38312,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,38312,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,38312,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,38313,0)
- ;;=F12.10^^177^1942^1
- ;;^UTILITY(U,$J,358.3,38313,1,0)
+ ;;^UTILITY(U,$J,358.3,38700,1,3,0)
+ ;;=3^Dermatitis,Allergic Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,38700,1,4,0)
+ ;;=4^L23.9
+ ;;^UTILITY(U,$J,358.3,38700,2)
+ ;;=^5009125
+ ;;^UTILITY(U,$J,358.3,38701,0)
+ ;;=L30.9^^151^1897^21
+ ;;^UTILITY(U,$J,358.3,38701,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38701,1,3,0)
+ ;;=3^Dermatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38701,1,4,0)
+ ;;=4^L30.9
+ ;;^UTILITY(U,$J,358.3,38701,2)
+ ;;=^5009159
+ ;;^UTILITY(U,$J,358.3,38702,0)
+ ;;=L24.9^^151^1897^16
+ ;;^UTILITY(U,$J,358.3,38702,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38702,1,3,0)
+ ;;=3^Dermatitis,Irritant Contact,Cause Unspec
+ ;;^UTILITY(U,$J,358.3,38702,1,4,0)
+ ;;=4^L24.9
+ ;;^UTILITY(U,$J,358.3,38702,2)
+ ;;=^5009136
+ ;;^UTILITY(U,$J,358.3,38703,0)
+ ;;=L30.0^^151^1897^17
+ ;;^UTILITY(U,$J,358.3,38703,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38703,1,3,0)
+ ;;=3^Dermatitis,Nummular

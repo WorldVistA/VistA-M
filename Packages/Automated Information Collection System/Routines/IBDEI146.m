@@ -1,132 +1,134 @@
-IBDEI146 ; ; 19-NOV-2015
+IBDEI146 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18603,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,18604,0)
- ;;=K29.90^^94^911^52
- ;;^UTILITY(U,$J,358.3,18604,1,0)
+ ;;^UTILITY(U,$J,358.3,18947,1,4,0)
+ ;;=4^H04.202
+ ;;^UTILITY(U,$J,358.3,18947,2)
+ ;;=^5004485
+ ;;^UTILITY(U,$J,358.3,18948,0)
+ ;;=L72.0^^82^901^25
+ ;;^UTILITY(U,$J,358.3,18948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18604,1,3,0)
- ;;=3^Gastroduodenitis w/o Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,18604,1,4,0)
- ;;=4^K29.90
- ;;^UTILITY(U,$J,358.3,18604,2)
- ;;=^5008556
- ;;^UTILITY(U,$J,358.3,18605,0)
- ;;=K30.^^94^911^45
- ;;^UTILITY(U,$J,358.3,18605,1,0)
+ ;;^UTILITY(U,$J,358.3,18948,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,18948,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,18948,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,18949,0)
+ ;;=L72.11^^82^901^35
+ ;;^UTILITY(U,$J,358.3,18949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18605,1,3,0)
- ;;=3^Dyspepsia,Functional
- ;;^UTILITY(U,$J,358.3,18605,1,4,0)
- ;;=4^K30.
- ;;^UTILITY(U,$J,358.3,18605,2)
- ;;=^5008558
- ;;^UTILITY(U,$J,358.3,18606,0)
- ;;=K31.89^^94^911^34
- ;;^UTILITY(U,$J,358.3,18606,1,0)
+ ;;^UTILITY(U,$J,358.3,18949,1,3,0)
+ ;;=3^Pilar Cyst
+ ;;^UTILITY(U,$J,358.3,18949,1,4,0)
+ ;;=4^L72.11
+ ;;^UTILITY(U,$J,358.3,18949,2)
+ ;;=^5009278
+ ;;^UTILITY(U,$J,358.3,18950,0)
+ ;;=L72.12^^82^901^43
+ ;;^UTILITY(U,$J,358.3,18950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18606,1,3,0)
- ;;=3^Diseases of Stomach & Duodenum,Other
- ;;^UTILITY(U,$J,358.3,18606,1,4,0)
- ;;=4^K31.89
- ;;^UTILITY(U,$J,358.3,18606,2)
- ;;=^5008569
- ;;^UTILITY(U,$J,358.3,18607,0)
- ;;=K31.9^^94^911^33
- ;;^UTILITY(U,$J,358.3,18607,1,0)
+ ;;^UTILITY(U,$J,358.3,18950,1,3,0)
+ ;;=3^Trichodermal Cyst
+ ;;^UTILITY(U,$J,358.3,18950,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,18950,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,18951,0)
+ ;;=L72.8^^82^901^29
+ ;;^UTILITY(U,$J,358.3,18951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18607,1,3,0)
- ;;=3^Disease of Stomach & Duodenum,Unspec
- ;;^UTILITY(U,$J,358.3,18607,1,4,0)
- ;;=4^K31.9
- ;;^UTILITY(U,$J,358.3,18607,2)
- ;;=^5008570
- ;;^UTILITY(U,$J,358.3,18608,0)
- ;;=K40.90^^94^911^68
- ;;^UTILITY(U,$J,358.3,18608,1,0)
+ ;;^UTILITY(U,$J,358.3,18951,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
+ ;;^UTILITY(U,$J,358.3,18951,1,4,0)
+ ;;=4^L72.8
+ ;;^UTILITY(U,$J,358.3,18951,2)
+ ;;=^5009282
+ ;;^UTILITY(U,$J,358.3,18952,0)
+ ;;=H35.31^^82^902^19
+ ;;^UTILITY(U,$J,358.3,18952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18608,1,3,0)
- ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,18608,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,18608,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,18609,0)
- ;;=K40.20^^94^911^67
- ;;^UTILITY(U,$J,358.3,18609,1,0)
+ ;;^UTILITY(U,$J,358.3,18952,1,3,0)
+ ;;=3^Nonexudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,18952,1,4,0)
+ ;;=4^H35.31
+ ;;^UTILITY(U,$J,358.3,18952,2)
+ ;;=^5005647
+ ;;^UTILITY(U,$J,358.3,18953,0)
+ ;;=H35.32^^82^902^10
+ ;;^UTILITY(U,$J,358.3,18953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18609,1,3,0)
- ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,18609,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,18609,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,18610,0)
- ;;=K44.9^^94^911^31
- ;;^UTILITY(U,$J,358.3,18610,1,0)
+ ;;^UTILITY(U,$J,358.3,18953,1,3,0)
+ ;;=3^Exudative Age-Related Macular Degeneration
+ ;;^UTILITY(U,$J,358.3,18953,1,4,0)
+ ;;=4^H35.32
+ ;;^UTILITY(U,$J,358.3,18953,2)
+ ;;=^5005648
+ ;;^UTILITY(U,$J,358.3,18954,0)
+ ;;=H35.352^^82^902^2
+ ;;^UTILITY(U,$J,358.3,18954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18610,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,18610,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,18610,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,18611,0)
- ;;=K46.9^^94^911^1
- ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;^UTILITY(U,$J,358.3,18954,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Left Eye
+ ;;^UTILITY(U,$J,358.3,18954,1,4,0)
+ ;;=4^H35.352
+ ;;^UTILITY(U,$J,358.3,18954,2)
+ ;;=^5005655
+ ;;^UTILITY(U,$J,358.3,18955,0)
+ ;;=H35.351^^82^902^3
+ ;;^UTILITY(U,$J,358.3,18955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18611,1,3,0)
- ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,18611,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,18611,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,18612,0)
- ;;=K50.90^^94^911^29
- ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;^UTILITY(U,$J,358.3,18955,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,18955,1,4,0)
+ ;;=4^H35.351
+ ;;^UTILITY(U,$J,358.3,18955,2)
+ ;;=^5005654
+ ;;^UTILITY(U,$J,358.3,18956,0)
+ ;;=H35.353^^82^902^1
+ ;;^UTILITY(U,$J,358.3,18956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18612,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,18612,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,18612,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,18613,0)
- ;;=K50.911^^94^911^27
- ;;^UTILITY(U,$J,358.3,18613,1,0)
+ ;;^UTILITY(U,$J,358.3,18956,1,3,0)
+ ;;=3^Cystoid Macular Degeneration,Bilateral
+ ;;^UTILITY(U,$J,358.3,18956,1,4,0)
+ ;;=4^H35.353
+ ;;^UTILITY(U,$J,358.3,18956,2)
+ ;;=^5005656
+ ;;^UTILITY(U,$J,358.3,18957,0)
+ ;;=H35.342^^82^902^17
+ ;;^UTILITY(U,$J,358.3,18957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18613,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,18613,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,18613,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,18614,0)
- ;;=K50.912^^94^911^25
- ;;^UTILITY(U,$J,358.3,18614,1,0)
+ ;;^UTILITY(U,$J,358.3,18957,1,3,0)
+ ;;=3^Macular Cyst/Hole/Pseudohole,Left Eye
+ ;;^UTILITY(U,$J,358.3,18957,1,4,0)
+ ;;=4^H35.342
+ ;;^UTILITY(U,$J,358.3,18957,2)
+ ;;=^5005651
+ ;;^UTILITY(U,$J,358.3,18958,0)
+ ;;=H35.341^^82^902^18
+ ;;^UTILITY(U,$J,358.3,18958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18614,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,18614,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,18614,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,18615,0)
- ;;=K50.919^^94^911^28
- ;;^UTILITY(U,$J,358.3,18615,1,0)
+ ;;^UTILITY(U,$J,358.3,18958,1,3,0)
+ ;;=3^Macular Cyst/Hole/Pseudohole,Right Eye
+ ;;^UTILITY(U,$J,358.3,18958,1,4,0)
+ ;;=4^H35.341
+ ;;^UTILITY(U,$J,358.3,18958,2)
+ ;;=^5005650
+ ;;^UTILITY(U,$J,358.3,18959,0)
+ ;;=H35.371^^82^902^27
+ ;;^UTILITY(U,$J,358.3,18959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18615,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,18615,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,18615,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,18616,0)
- ;;=K50.914^^94^911^23
- ;;^UTILITY(U,$J,358.3,18616,1,0)
+ ;;^UTILITY(U,$J,358.3,18959,1,3,0)
+ ;;=3^Puckering of Macula,Right Eye
+ ;;^UTILITY(U,$J,358.3,18959,1,4,0)
+ ;;=4^H35.371
+ ;;^UTILITY(U,$J,358.3,18959,2)
+ ;;=^5005662
+ ;;^UTILITY(U,$J,358.3,18960,0)
+ ;;=H35.372^^82^902^26
+ ;;^UTILITY(U,$J,358.3,18960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18616,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,18960,1,3,0)
+ ;;=3^Puckering of Macula,Left Eye

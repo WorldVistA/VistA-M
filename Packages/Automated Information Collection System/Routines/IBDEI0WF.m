@@ -1,134 +1,134 @@
-IBDEI0WF ; ; 19-NOV-2015
+IBDEI0WF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14938,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,14939,0)
- ;;=C44.40^^85^805^31
- ;;^UTILITY(U,$J,358.3,14939,1,0)
+ ;;^UTILITY(U,$J,358.3,15207,1,4,0)
+ ;;=4^Z11.59
+ ;;^UTILITY(U,$J,358.3,15207,2)
+ ;;=^5062675
+ ;;^UTILITY(U,$J,358.3,15208,0)
+ ;;=Z12.39^^56^647^8
+ ;;^UTILITY(U,$J,358.3,15208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14939,1,3,0)
- ;;=3^Malig Neop of Skin of Scalp/Neck,Unspec
- ;;^UTILITY(U,$J,358.3,14939,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,14939,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,14940,0)
- ;;=C73.^^85^805^32
- ;;^UTILITY(U,$J,358.3,14940,1,0)
+ ;;^UTILITY(U,$J,358.3,15208,1,3,0)
+ ;;=3^Malig Neop of Breast Screening NEC
+ ;;^UTILITY(U,$J,358.3,15208,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,15208,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,15209,0)
+ ;;=Z12.12^^56^647^10
+ ;;^UTILITY(U,$J,358.3,15209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14940,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,14940,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,14940,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,14941,0)
- ;;=H60.311^^85^805^15
- ;;^UTILITY(U,$J,358.3,14941,1,0)
+ ;;^UTILITY(U,$J,358.3,15209,1,3,0)
+ ;;=3^Malig Neop of Rectum Screening
+ ;;^UTILITY(U,$J,358.3,15209,1,4,0)
+ ;;=4^Z12.12
+ ;;^UTILITY(U,$J,358.3,15209,2)
+ ;;=^5062682
+ ;;^UTILITY(U,$J,358.3,15210,0)
+ ;;=Z12.5^^56^647^9
+ ;;^UTILITY(U,$J,358.3,15210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14941,1,3,0)
- ;;=3^Diffuse Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,14941,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,14941,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,14942,0)
- ;;=H60.312^^85^805^14
- ;;^UTILITY(U,$J,358.3,14942,1,0)
+ ;;^UTILITY(U,$J,358.3,15210,1,3,0)
+ ;;=3^Malig Neop of Prostate Screening
+ ;;^UTILITY(U,$J,358.3,15210,1,4,0)
+ ;;=4^Z12.5
+ ;;^UTILITY(U,$J,358.3,15210,2)
+ ;;=^5062688
+ ;;^UTILITY(U,$J,358.3,15211,0)
+ ;;=Z13.5^^56^647^4
+ ;;^UTILITY(U,$J,358.3,15211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14942,1,3,0)
- ;;=3^Diffuse Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,14942,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,14942,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,14943,0)
- ;;=H60.313^^85^805^13
- ;;^UTILITY(U,$J,358.3,14943,1,0)
+ ;;^UTILITY(U,$J,358.3,15211,1,3,0)
+ ;;=3^Eye and Ear Disorder Screening
+ ;;^UTILITY(U,$J,358.3,15211,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,15211,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,15212,0)
+ ;;=Z13.1^^56^647^2
+ ;;^UTILITY(U,$J,358.3,15212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14943,1,3,0)
- ;;=3^Diffuse Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,14943,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,14943,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,14944,0)
- ;;=H60.321^^85^805^22
- ;;^UTILITY(U,$J,358.3,14944,1,0)
+ ;;^UTILITY(U,$J,358.3,15212,1,3,0)
+ ;;=3^Diabetes Mellitus Screening
+ ;;^UTILITY(U,$J,358.3,15212,1,4,0)
+ ;;=4^Z13.1
+ ;;^UTILITY(U,$J,358.3,15212,2)
+ ;;=^5062700
+ ;;^UTILITY(U,$J,358.3,15213,0)
+ ;;=Z13.220^^56^647^7
+ ;;^UTILITY(U,$J,358.3,15213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14944,1,3,0)
- ;;=3^Hemorrhagic Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,14944,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,14944,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,14945,0)
- ;;=H60.322^^85^805^21
- ;;^UTILITY(U,$J,358.3,14945,1,0)
+ ;;^UTILITY(U,$J,358.3,15213,1,3,0)
+ ;;=3^Lipoid Disorder Screening
+ ;;^UTILITY(U,$J,358.3,15213,1,4,0)
+ ;;=4^Z13.220
+ ;;^UTILITY(U,$J,358.3,15213,2)
+ ;;=^5062702
+ ;;^UTILITY(U,$J,358.3,15214,0)
+ ;;=Z11.1^^56^647^11
+ ;;^UTILITY(U,$J,358.3,15214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14945,1,3,0)
- ;;=3^Hemorrhagic Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,14945,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,14945,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,14946,0)
- ;;=H60.323^^85^805^20
- ;;^UTILITY(U,$J,358.3,14946,1,0)
+ ;;^UTILITY(U,$J,358.3,15214,1,3,0)
+ ;;=3^Respiratory Tuberculosis Screening
+ ;;^UTILITY(U,$J,358.3,15214,1,4,0)
+ ;;=4^Z11.1
+ ;;^UTILITY(U,$J,358.3,15214,2)
+ ;;=^5062670
+ ;;^UTILITY(U,$J,358.3,15215,0)
+ ;;=Z13.6^^56^647^1
+ ;;^UTILITY(U,$J,358.3,15215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14946,1,3,0)
- ;;=3^Hemorrhagic Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,14946,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,14946,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,14947,0)
- ;;=H60.391^^85^805^28
- ;;^UTILITY(U,$J,358.3,14947,1,0)
+ ;;^UTILITY(U,$J,358.3,15215,1,3,0)
+ ;;=3^Cardiovascular Disorder Screening
+ ;;^UTILITY(U,$J,358.3,15215,1,4,0)
+ ;;=4^Z13.6
+ ;;^UTILITY(U,$J,358.3,15215,2)
+ ;;=^5062707
+ ;;^UTILITY(U,$J,358.3,15216,0)
+ ;;=Z00.01^^56^647^5
+ ;;^UTILITY(U,$J,358.3,15216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14947,1,3,0)
- ;;=3^Infective Otitis Externa,Right Ear
- ;;^UTILITY(U,$J,358.3,14947,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,14947,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,14948,0)
- ;;=H60.392^^85^805^27
- ;;^UTILITY(U,$J,358.3,14948,1,0)
+ ;;^UTILITY(U,$J,358.3,15216,1,3,0)
+ ;;=3^General Adult Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,15216,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,15216,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,15217,0)
+ ;;=C34.91^^56^648^10
+ ;;^UTILITY(U,$J,358.3,15217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14948,1,3,0)
- ;;=3^Infective Otitis Externa,Left Ear
- ;;^UTILITY(U,$J,358.3,14948,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,14948,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,14949,0)
- ;;=H60.393^^85^805^26
- ;;^UTILITY(U,$J,358.3,14949,1,0)
+ ;;^UTILITY(U,$J,358.3,15217,1,3,0)
+ ;;=3^Malig Neop of Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,15217,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,15217,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,15218,0)
+ ;;=C34.92^^56^648^9
+ ;;^UTILITY(U,$J,358.3,15218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14949,1,3,0)
- ;;=3^Infective Otitis Externa,Bilateral
- ;;^UTILITY(U,$J,358.3,14949,1,4,0)
- ;;=4^H60.393
- ;;^UTILITY(U,$J,358.3,14949,2)
- ;;=^5006461
- ;;^UTILITY(U,$J,358.3,14950,0)
- ;;=H60.02^^85^805^2
- ;;^UTILITY(U,$J,358.3,14950,1,0)
+ ;;^UTILITY(U,$J,358.3,15218,1,3,0)
+ ;;=3^Malig Neop of Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,15218,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,15218,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,15219,0)
+ ;;=G47.33^^56^648^11
+ ;;^UTILITY(U,$J,358.3,15219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14950,1,3,0)
- ;;=3^Abscess of Left External Ear
- ;;^UTILITY(U,$J,358.3,14950,1,4,0)
- ;;=4^H60.02
- ;;^UTILITY(U,$J,358.3,14950,2)
- ;;=^5006437
- ;;^UTILITY(U,$J,358.3,14951,0)
- ;;=H60.01^^85^805^3
- ;;^UTILITY(U,$J,358.3,14951,1,0)
+ ;;^UTILITY(U,$J,358.3,15219,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,15219,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,15219,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,15220,0)
+ ;;=J01.90^^56^648^3
+ ;;^UTILITY(U,$J,358.3,15220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14951,1,3,0)
- ;;=3^Abscess of Right External Ear
- ;;^UTILITY(U,$J,358.3,14951,1,4,0)
- ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,15220,1,3,0)
+ ;;=3^Acute Sinusitis,Unspec

@@ -1,138 +1,124 @@
-IBDEI1FK ; ; 19-NOV-2015
+IBDEI1FK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23884,1,0)
+ ;;^UTILITY(U,$J,358.3,24309,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24309,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,24309,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,24310,0)
+ ;;=F16.929^^90^1064^15
+ ;;^UTILITY(U,$J,358.3,24310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23884,1,3,0)
- ;;=3^Gastritis, w/o bleeding, unspec
- ;;^UTILITY(U,$J,358.3,23884,1,4,0)
- ;;=4^K29.70
- ;;^UTILITY(U,$J,358.3,23884,2)
- ;;=^5008552
- ;;^UTILITY(U,$J,358.3,23885,0)
- ;;=K21.9^^116^1169^4
- ;;^UTILITY(U,$J,358.3,23885,1,0)
+ ;;^UTILITY(U,$J,358.3,24310,1,3,0)
+ ;;=3^Hallucinogen Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24310,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,24310,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,24311,0)
+ ;;=F16.180^^90^1064^1
+ ;;^UTILITY(U,$J,358.3,24311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23885,1,3,0)
- ;;=3^Gastro-esophageal reflux dz w/o esophagitis
- ;;^UTILITY(U,$J,358.3,23885,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,23885,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,23886,0)
- ;;=K92.2^^116^1169^6
- ;;^UTILITY(U,$J,358.3,23886,1,0)
+ ;;^UTILITY(U,$J,358.3,24311,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24311,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,24311,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,24312,0)
+ ;;=F16.280^^90^1064^2
+ ;;^UTILITY(U,$J,358.3,24312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23886,1,3,0)
- ;;=3^Gastrointestinal hemorrhage, unspec
- ;;^UTILITY(U,$J,358.3,23886,1,4,0)
- ;;=4^K92.2
- ;;^UTILITY(U,$J,358.3,23886,2)
- ;;=^5008915
- ;;^UTILITY(U,$J,358.3,23887,0)
- ;;=K52.9^^116^1169^5
- ;;^UTILITY(U,$J,358.3,23887,1,0)
+ ;;^UTILITY(U,$J,358.3,24312,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24312,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,24312,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,24313,0)
+ ;;=F16.980^^90^1064^3
+ ;;^UTILITY(U,$J,358.3,24313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23887,1,3,0)
- ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
- ;;^UTILITY(U,$J,358.3,23887,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,23887,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,23888,0)
- ;;=K82.9^^116^1169^2
- ;;^UTILITY(U,$J,358.3,23888,1,0)
+ ;;^UTILITY(U,$J,358.3,24313,1,3,0)
+ ;;=3^Hallucinogen Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24313,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,24313,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,24314,0)
+ ;;=F16.14^^90^1064^4
+ ;;^UTILITY(U,$J,358.3,24314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23888,1,3,0)
- ;;=3^Gallbladder disease,Unspec 
- ;;^UTILITY(U,$J,358.3,23888,1,4,0)
- ;;=4^K82.9
- ;;^UTILITY(U,$J,358.3,23888,2)
- ;;=^5008875
- ;;^UTILITY(U,$J,358.3,23889,0)
- ;;=H40.9^^116^1169^7
- ;;^UTILITY(U,$J,358.3,23889,1,0)
+ ;;^UTILITY(U,$J,358.3,24314,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24314,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,24314,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,24315,0)
+ ;;=F16.24^^90^1064^5
+ ;;^UTILITY(U,$J,358.3,24315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23889,1,3,0)
- ;;=3^Glaucoma, unspec
- ;;^UTILITY(U,$J,358.3,23889,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,23889,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,23890,0)
- ;;=M10.9^^116^1169^8
- ;;^UTILITY(U,$J,358.3,23890,1,0)
+ ;;^UTILITY(U,$J,358.3,24315,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24315,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,24315,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,24316,0)
+ ;;=F16.94^^90^1064^6
+ ;;^UTILITY(U,$J,358.3,24316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23890,1,3,0)
- ;;=3^Gout, unspec
- ;;^UTILITY(U,$J,358.3,23890,1,4,0)
- ;;=4^M10.9
- ;;^UTILITY(U,$J,358.3,23890,2)
- ;;=^5010404
- ;;^UTILITY(U,$J,358.3,23891,0)
- ;;=K21.9^^116^1169^1
- ;;^UTILITY(U,$J,358.3,23891,1,0)
+ ;;^UTILITY(U,$J,358.3,24316,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24316,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,24316,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,24317,0)
+ ;;=F16.159^^90^1064^7
+ ;;^UTILITY(U,$J,358.3,24317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23891,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,23891,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,23891,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,23892,0)
- ;;=R31.0^^116^1169^9
- ;;^UTILITY(U,$J,358.3,23892,1,0)
+ ;;^UTILITY(U,$J,358.3,24317,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24317,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,24317,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,24318,0)
+ ;;=F16.259^^90^1064^8
+ ;;^UTILITY(U,$J,358.3,24318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23892,1,3,0)
- ;;=3^Gross Hematuria
- ;;^UTILITY(U,$J,358.3,23892,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,23892,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,23893,0)
- ;;=B02.9^^116^1170^21
- ;;^UTILITY(U,$J,358.3,23893,1,0)
+ ;;^UTILITY(U,$J,358.3,24318,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24318,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,24318,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,24319,0)
+ ;;=F16.959^^90^1064^9
+ ;;^UTILITY(U,$J,358.3,24319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23893,1,3,0)
- ;;=3^Herpes (Zoster) w/o complications
- ;;^UTILITY(U,$J,358.3,23893,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,23893,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,23894,0)
- ;;=B19.10^^116^1170^17
- ;;^UTILITY(U,$J,358.3,23894,1,0)
+ ;;^UTILITY(U,$J,358.3,24319,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24319,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,24319,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,24320,0)
+ ;;=F16.99^^90^1064^20
+ ;;^UTILITY(U,$J,358.3,24320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23894,1,3,0)
- ;;=3^Hepatitis B,Viral Unspec
- ;;^UTILITY(U,$J,358.3,23894,1,4,0)
- ;;=4^B19.10
- ;;^UTILITY(U,$J,358.3,23894,2)
- ;;=^5000552
- ;;^UTILITY(U,$J,358.3,23895,0)
- ;;=B17.10^^116^1170^2
- ;;^UTILITY(U,$J,358.3,23895,1,0)
+ ;;^UTILITY(U,$J,358.3,24320,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24320,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,24320,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,24321,0)
+ ;;=F11.10^^90^1065^23
+ ;;^UTILITY(U,$J,358.3,24321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23895,1,3,0)
- ;;=3^Acute Hepatitis C w/o hepatic coma
- ;;^UTILITY(U,$J,358.3,23895,1,4,0)
- ;;=4^B17.10
- ;;^UTILITY(U,$J,358.3,23895,2)
- ;;=^5000542
- ;;^UTILITY(U,$J,358.3,23896,0)
- ;;=B18.2^^116^1170^20
- ;;^UTILITY(U,$J,358.3,23896,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23896,1,3,0)
- ;;=3^Hepatitis C,Viral,Chronic
- ;;^UTILITY(U,$J,358.3,23896,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,23896,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,23897,0)
- ;;=E05.90^^116^1170^27
- ;;^UTILITY(U,$J,358.3,23897,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23897,1,3,0)
- ;;=3^Hyperthyroidism w/o Thyrotoxic Crisis/Storm,Unspec

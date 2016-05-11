@@ -1,134 +1,132 @@
-IBDEI26I ; ; 19-NOV-2015
+IBDEI26I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36586,1,4,0)
- ;;=4^D59.5
- ;;^UTILITY(U,$J,358.3,36586,2)
- ;;=^5002327
- ;;^UTILITY(U,$J,358.3,36587,0)
- ;;=D59.6^^169^1850^24
- ;;^UTILITY(U,$J,358.3,36587,1,0)
+ ;;^UTILITY(U,$J,358.3,36957,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,36958,0)
+ ;;=R63.4^^137^1780^3
+ ;;^UTILITY(U,$J,358.3,36958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36587,1,3,0)
- ;;=3^Hemoglobinuria due to hemolysis from other external causes
- ;;^UTILITY(U,$J,358.3,36587,1,4,0)
- ;;=4^D59.6
- ;;^UTILITY(U,$J,358.3,36587,2)
- ;;=^5002328
- ;;^UTILITY(U,$J,358.3,36588,0)
- ;;=D59.8^^169^1850^2
- ;;^UTILITY(U,$J,358.3,36588,1,0)
+ ;;^UTILITY(U,$J,358.3,36958,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,36958,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,36958,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,36959,0)
+ ;;=R10.0^^137^1780^4
+ ;;^UTILITY(U,$J,358.3,36959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36588,1,3,0)
- ;;=3^Acquired hemolytic anemias NEC
- ;;^UTILITY(U,$J,358.3,36588,1,4,0)
- ;;=4^D59.8
- ;;^UTILITY(U,$J,358.3,36588,2)
- ;;=^5002329
- ;;^UTILITY(U,$J,358.3,36589,0)
- ;;=D59.9^^169^1850^1
- ;;^UTILITY(U,$J,358.3,36589,1,0)
+ ;;^UTILITY(U,$J,358.3,36959,1,3,0)
+ ;;=3^Acute Abdomen
+ ;;^UTILITY(U,$J,358.3,36959,1,4,0)
+ ;;=4^R10.0
+ ;;^UTILITY(U,$J,358.3,36959,2)
+ ;;=^885
+ ;;^UTILITY(U,$J,358.3,36960,0)
+ ;;=M80.08XA^^137^1780^58
+ ;;^UTILITY(U,$J,358.3,36960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36589,1,3,0)
- ;;=3^Acquired hemolytic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,36589,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,36589,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,36590,0)
- ;;=D61.810^^169^1850^13
- ;;^UTILITY(U,$J,358.3,36590,1,0)
+ ;;^UTILITY(U,$J,358.3,36960,1,3,0)
+ ;;=3^Osteoporosis,Age-Related w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36960,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,36960,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,36961,0)
+ ;;=K52.2^^137^1780^5
+ ;;^UTILITY(U,$J,358.3,36961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36590,1,3,0)
- ;;=3^Antineoplastic chemotherapy induced pancytopenia
- ;;^UTILITY(U,$J,358.3,36590,1,4,0)
- ;;=4^D61.810
- ;;^UTILITY(U,$J,358.3,36590,2)
- ;;=^5002339
- ;;^UTILITY(U,$J,358.3,36591,0)
- ;;=D61.811^^169^1850^20
- ;;^UTILITY(U,$J,358.3,36591,1,0)
+ ;;^UTILITY(U,$J,358.3,36961,1,3,0)
+ ;;=3^Allergic/Dietetic Gastroenteritis/Colitis
+ ;;^UTILITY(U,$J,358.3,36961,1,4,0)
+ ;;=4^K52.2
+ ;;^UTILITY(U,$J,358.3,36961,2)
+ ;;=^5008701
+ ;;^UTILITY(U,$J,358.3,36962,0)
+ ;;=R63.0^^137^1780^6
+ ;;^UTILITY(U,$J,358.3,36962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36591,1,3,0)
- ;;=3^Drug-induced pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,36591,1,4,0)
- ;;=4^D61.811
- ;;^UTILITY(U,$J,358.3,36591,2)
- ;;=^5002340
- ;;^UTILITY(U,$J,358.3,36592,0)
- ;;=D61.818^^169^1850^36
- ;;^UTILITY(U,$J,358.3,36592,1,0)
+ ;;^UTILITY(U,$J,358.3,36962,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,36962,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,36962,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,36963,0)
+ ;;=R09.01^^137^1780^7
+ ;;^UTILITY(U,$J,358.3,36963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36592,1,3,0)
- ;;=3^Pancytopenia NEC
- ;;^UTILITY(U,$J,358.3,36592,1,4,0)
- ;;=4^D61.818
- ;;^UTILITY(U,$J,358.3,36592,2)
- ;;=^340501
- ;;^UTILITY(U,$J,358.3,36593,0)
- ;;=D61.82^^169^1850^32
- ;;^UTILITY(U,$J,358.3,36593,1,0)
+ ;;^UTILITY(U,$J,358.3,36963,1,3,0)
+ ;;=3^Asphyxia
+ ;;^UTILITY(U,$J,358.3,36963,1,4,0)
+ ;;=4^R09.01
+ ;;^UTILITY(U,$J,358.3,36963,2)
+ ;;=^11005
+ ;;^UTILITY(U,$J,358.3,36964,0)
+ ;;=R07.9^^137^1780^12
+ ;;^UTILITY(U,$J,358.3,36964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36593,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,36593,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,36593,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,36594,0)
- ;;=D61.9^^169^1850^14
- ;;^UTILITY(U,$J,358.3,36594,1,0)
+ ;;^UTILITY(U,$J,358.3,36964,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,36964,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,36964,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,36965,0)
+ ;;=M48.52XA^^137^1780^13
+ ;;^UTILITY(U,$J,358.3,36965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36594,1,3,0)
- ;;=3^Aplastic anemia, unspecified
- ;;^UTILITY(U,$J,358.3,36594,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,36594,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,36595,0)
- ;;=D62.^^169^1850^3
- ;;^UTILITY(U,$J,358.3,36595,1,0)
+ ;;^UTILITY(U,$J,358.3,36965,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36965,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,36965,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,36966,0)
+ ;;=M48.53XA^^137^1780^14
+ ;;^UTILITY(U,$J,358.3,36966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36595,1,3,0)
- ;;=3^Acute posthemorrhagic anemia
- ;;^UTILITY(U,$J,358.3,36595,1,4,0)
- ;;=4^D62.
- ;;^UTILITY(U,$J,358.3,36595,2)
- ;;=^267986
- ;;^UTILITY(U,$J,358.3,36596,0)
- ;;=D63.1^^169^1850^7
- ;;^UTILITY(U,$J,358.3,36596,1,0)
+ ;;^UTILITY(U,$J,358.3,36966,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervicothoracic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36966,1,4,0)
+ ;;=4^M48.53XA
+ ;;^UTILITY(U,$J,358.3,36966,2)
+ ;;=^5012171
+ ;;^UTILITY(U,$J,358.3,36967,0)
+ ;;=M48.56XA^^137^1780^15
+ ;;^UTILITY(U,$J,358.3,36967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36596,1,3,0)
- ;;=3^Anemia in chronic kidney disease
- ;;^UTILITY(U,$J,358.3,36596,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,36596,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,36597,0)
- ;;=D63.0^^169^1850^8
- ;;^UTILITY(U,$J,358.3,36597,1,0)
+ ;;^UTILITY(U,$J,358.3,36967,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbar Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36967,1,4,0)
+ ;;=4^M48.56XA
+ ;;^UTILITY(U,$J,358.3,36967,2)
+ ;;=^5012183
+ ;;^UTILITY(U,$J,358.3,36968,0)
+ ;;=M48.57XA^^137^1780^16
+ ;;^UTILITY(U,$J,358.3,36968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36597,1,3,0)
- ;;=3^Anemia in neoplastic disease
- ;;^UTILITY(U,$J,358.3,36597,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,36597,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,36598,0)
- ;;=D63.8^^169^1850^9
- ;;^UTILITY(U,$J,358.3,36598,1,0)
+ ;;^UTILITY(U,$J,358.3,36968,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36968,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,36968,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,36969,0)
+ ;;=M48.51XA^^137^1780^17
+ ;;^UTILITY(U,$J,358.3,36969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36598,1,3,0)
- ;;=3^Anemia in other chronic diseases classified elsewhere
- ;;^UTILITY(U,$J,358.3,36598,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,36598,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,36599,0)
- ;;=D64.81^^169^1850^4
- ;;^UTILITY(U,$J,358.3,36599,1,0)
+ ;;^UTILITY(U,$J,358.3,36969,1,3,0)
+ ;;=3^Collapsed Vertebra,Occipito/Atlanto/Axial Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,36969,1,4,0)
+ ;;=4^M48.51XA
+ ;;^UTILITY(U,$J,358.3,36969,2)
+ ;;=^5012163
+ ;;^UTILITY(U,$J,358.3,36970,0)
+ ;;=M48.58XA^^137^1780^18
+ ;;^UTILITY(U,$J,358.3,36970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36599,1,3,0)
- ;;=3^Anemia due to antineoplastic chemotherapy
+ ;;^UTILITY(U,$J,358.3,36970,1,3,0)
+ ;;=3^Collapsed Vertebra,Sacral/Sacrococcygeal Region,Init Encntr

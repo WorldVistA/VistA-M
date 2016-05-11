@@ -1,136 +1,126 @@
-IBDEI1ZU ; ; 19-NOV-2015
+IBDEI1ZU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33383,1,0)
+ ;;^UTILITY(U,$J,358.3,33829,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33829,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,33829,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,33830,0)
+ ;;=C91.00^^131^1680^5
+ ;;^UTILITY(U,$J,358.3,33830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33383,1,3,0)
- ;;=3^Tardive Dyskinesia
- ;;^UTILITY(U,$J,358.3,33383,1,4,0)
- ;;=4^G24.01
- ;;^UTILITY(U,$J,358.3,33383,2)
- ;;=^5003784
- ;;^UTILITY(U,$J,358.3,33384,0)
- ;;=G24.09^^148^1642^8
- ;;^UTILITY(U,$J,358.3,33384,1,0)
+ ;;^UTILITY(U,$J,358.3,33830,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33830,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,33830,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,33831,0)
+ ;;=C91.01^^131^1680^4
+ ;;^UTILITY(U,$J,358.3,33831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33384,1,3,0)
- ;;=3^Tardive Dystonia
- ;;^UTILITY(U,$J,358.3,33384,1,4,0)
- ;;=4^G24.09
- ;;^UTILITY(U,$J,358.3,33384,2)
- ;;=^5003786
- ;;^UTILITY(U,$J,358.3,33385,0)
- ;;=G25.1^^148^1642^4
- ;;^UTILITY(U,$J,358.3,33385,1,0)
+ ;;^UTILITY(U,$J,358.3,33831,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,33831,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,33831,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,33832,0)
+ ;;=C92.01^^131^1680^7
+ ;;^UTILITY(U,$J,358.3,33832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33385,1,3,0)
- ;;=3^Medication-Induced Postural Tremor
- ;;^UTILITY(U,$J,358.3,33385,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,33385,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,33386,0)
- ;;=G25.71^^148^1642^6
- ;;^UTILITY(U,$J,358.3,33386,1,0)
+ ;;^UTILITY(U,$J,358.3,33832,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,33832,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,33832,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,33833,0)
+ ;;=C92.00^^131^1680^8
+ ;;^UTILITY(U,$J,358.3,33833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33386,1,3,0)
- ;;=3^Tardive Akathisia/Medication-Induced Acute Akatisia
- ;;^UTILITY(U,$J,358.3,33386,1,4,0)
- ;;=4^G25.71
- ;;^UTILITY(U,$J,358.3,33386,2)
- ;;=^5003799
- ;;^UTILITY(U,$J,358.3,33387,0)
- ;;=G25.79^^148^1642^2
- ;;^UTILITY(U,$J,358.3,33387,1,0)
+ ;;^UTILITY(U,$J,358.3,33833,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33833,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,33833,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,33834,0)
+ ;;=C92.61^^131^1680^9
+ ;;^UTILITY(U,$J,358.3,33834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33387,1,3,0)
- ;;=3^Medication-Induced Movement Disorder NEC
- ;;^UTILITY(U,$J,358.3,33387,1,4,0)
- ;;=4^G25.79
- ;;^UTILITY(U,$J,358.3,33387,2)
- ;;=^5003800
- ;;^UTILITY(U,$J,358.3,33388,0)
- ;;=F42.^^148^1643^6
- ;;^UTILITY(U,$J,358.3,33388,1,0)
+ ;;^UTILITY(U,$J,358.3,33834,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,33834,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,33834,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,33835,0)
+ ;;=C92.60^^131^1680^10
+ ;;^UTILITY(U,$J,358.3,33835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33388,1,3,0)
- ;;=3^Obsessive-Compulsive Disorder
- ;;^UTILITY(U,$J,358.3,33388,1,4,0)
- ;;=4^F42.
- ;;^UTILITY(U,$J,358.3,33388,2)
- ;;=^5003568
- ;;^UTILITY(U,$J,358.3,33389,0)
- ;;=F45.22^^148^1643^1
- ;;^UTILITY(U,$J,358.3,33389,1,0)
+ ;;^UTILITY(U,$J,358.3,33835,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33835,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,33835,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,33836,0)
+ ;;=C92.A1^^131^1680^11
+ ;;^UTILITY(U,$J,358.3,33836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33389,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,33389,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,33389,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,33390,0)
- ;;=F63.3^^148^1643^7
- ;;^UTILITY(U,$J,358.3,33390,1,0)
+ ;;^UTILITY(U,$J,358.3,33836,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,33836,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,33836,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,33837,0)
+ ;;=C92.A0^^131^1680^12
+ ;;^UTILITY(U,$J,358.3,33837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33390,1,3,0)
- ;;=3^Trichotillomania
- ;;^UTILITY(U,$J,358.3,33390,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,33390,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,33391,0)
- ;;=L98.1^^148^1643^2
- ;;^UTILITY(U,$J,358.3,33391,1,0)
+ ;;^UTILITY(U,$J,358.3,33837,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33837,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,33837,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,33838,0)
+ ;;=C92.51^^131^1680^13
+ ;;^UTILITY(U,$J,358.3,33838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33391,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,33391,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,33391,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,33392,0)
- ;;=F63.0^^148^1643^4
- ;;^UTILITY(U,$J,358.3,33392,1,0)
+ ;;^UTILITY(U,$J,358.3,33838,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,33838,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,33838,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,33839,0)
+ ;;=C92.50^^131^1680^14
+ ;;^UTILITY(U,$J,358.3,33839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33392,1,3,0)
- ;;=3^Gambling Disorder
- ;;^UTILITY(U,$J,358.3,33392,1,4,0)
- ;;=4^F63.0
- ;;^UTILITY(U,$J,358.3,33392,2)
- ;;=^5003640
- ;;^UTILITY(U,$J,358.3,33393,0)
- ;;=F68.10^^148^1643^3
- ;;^UTILITY(U,$J,358.3,33393,1,0)
+ ;;^UTILITY(U,$J,358.3,33839,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33839,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,33839,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,33840,0)
+ ;;=C94.40^^131^1680^17
+ ;;^UTILITY(U,$J,358.3,33840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33393,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,33393,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,33393,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,33394,0)
- ;;=F63.9^^148^1643^5
- ;;^UTILITY(U,$J,358.3,33394,1,0)
+ ;;^UTILITY(U,$J,358.3,33840,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33840,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,33840,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,33841,0)
+ ;;=C94.42^^131^1680^15
+ ;;^UTILITY(U,$J,358.3,33841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33394,1,3,0)
- ;;=3^Impulse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33394,1,4,0)
- ;;=4^F63.9
- ;;^UTILITY(U,$J,358.3,33394,2)
- ;;=^5003646
- ;;^UTILITY(U,$J,358.3,33395,0)
- ;;=F06.2^^148^1644^5
- ;;^UTILITY(U,$J,358.3,33395,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33395,1,3,0)
- ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,33395,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,33395,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,33396,0)
- ;;=F06.0^^148^1644^6
- ;;^UTILITY(U,$J,358.3,33396,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33841,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse

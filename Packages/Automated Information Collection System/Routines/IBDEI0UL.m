@@ -1,122 +1,134 @@
-IBDEI0UL ; ; 19-NOV-2015
+IBDEI0UL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14078,2)
- ;;=^5005898
- ;;^UTILITY(U,$J,358.3,14079,0)
- ;;=H40.53X3^^82^770^47
- ;;^UTILITY(U,$J,358.3,14079,1,0)
+ ;;^UTILITY(U,$J,358.3,14350,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,14351,0)
+ ;;=R97.8^^53^605^22
+ ;;^UTILITY(U,$J,358.3,14351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14079,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,14079,1,4,0)
- ;;=4^H40.53X3
- ;;^UTILITY(U,$J,358.3,14079,2)
- ;;=^5005899
- ;;^UTILITY(U,$J,358.3,14080,0)
- ;;=H40.53X4^^82^770^48
- ;;^UTILITY(U,$J,358.3,14080,1,0)
+ ;;^UTILITY(U,$J,358.3,14351,1,3,0)
+ ;;=3^Abnormal Tumor Markers NEC
+ ;;^UTILITY(U,$J,358.3,14351,1,4,0)
+ ;;=4^R97.8
+ ;;^UTILITY(U,$J,358.3,14351,2)
+ ;;=^5019749
+ ;;^UTILITY(U,$J,358.3,14352,0)
+ ;;=R93.8^^53^605^12
+ ;;^UTILITY(U,$J,358.3,14352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14080,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14080,1,4,0)
- ;;=4^H40.53X4
- ;;^UTILITY(U,$J,358.3,14080,2)
- ;;=^5005900
- ;;^UTILITY(U,$J,358.3,14081,0)
- ;;=H40.1411^^82^770^8
- ;;^UTILITY(U,$J,358.3,14081,1,0)
+ ;;^UTILITY(U,$J,358.3,14352,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Body Structures
+ ;;^UTILITY(U,$J,358.3,14352,1,4,0)
+ ;;=4^R93.8
+ ;;^UTILITY(U,$J,358.3,14352,2)
+ ;;=^5019721
+ ;;^UTILITY(U,$J,358.3,14353,0)
+ ;;=R93.1^^53^605^14
+ ;;^UTILITY(U,$J,358.3,14353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14081,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14081,1,4,0)
- ;;=4^H40.1411
- ;;^UTILITY(U,$J,358.3,14081,2)
- ;;=^5138018
- ;;^UTILITY(U,$J,358.3,14082,0)
- ;;=H40.1412^^82^770^9
- ;;^UTILITY(U,$J,358.3,14082,1,0)
+ ;;^UTILITY(U,$J,358.3,14353,1,3,0)
+ ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
+ ;;^UTILITY(U,$J,358.3,14353,1,4,0)
+ ;;=4^R93.1
+ ;;^UTILITY(U,$J,358.3,14353,2)
+ ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,14354,0)
+ ;;=R68.83^^53^605^48
+ ;;^UTILITY(U,$J,358.3,14354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14082,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14082,1,4,0)
- ;;=4^H40.1412
- ;;^UTILITY(U,$J,358.3,14082,2)
- ;;=^5138019
- ;;^UTILITY(U,$J,358.3,14083,0)
- ;;=H40.1413^^82^770^10
- ;;^UTILITY(U,$J,358.3,14083,1,0)
+ ;;^UTILITY(U,$J,358.3,14354,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,14354,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,14354,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,14355,0)
+ ;;=R68.2^^53^605^62
+ ;;^UTILITY(U,$J,358.3,14355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14083,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14083,1,4,0)
- ;;=4^H40.1413
- ;;^UTILITY(U,$J,358.3,14083,2)
- ;;=^5138020
- ;;^UTILITY(U,$J,358.3,14084,0)
- ;;=H40.1414^^82^770^11
- ;;^UTILITY(U,$J,358.3,14084,1,0)
+ ;;^UTILITY(U,$J,358.3,14355,1,3,0)
+ ;;=3^Dry Mouth,Unspec
+ ;;^UTILITY(U,$J,358.3,14355,1,4,0)
+ ;;=4^R68.2
+ ;;^UTILITY(U,$J,358.3,14355,2)
+ ;;=^5019552
+ ;;^UTILITY(U,$J,358.3,14356,0)
+ ;;=R09.02^^53^605^88
+ ;;^UTILITY(U,$J,358.3,14356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14084,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14084,1,4,0)
- ;;=4^H40.1414
- ;;^UTILITY(U,$J,358.3,14084,2)
- ;;=^5138021
- ;;^UTILITY(U,$J,358.3,14085,0)
- ;;=H40.1421^^82^770^4
- ;;^UTILITY(U,$J,358.3,14085,1,0)
+ ;;^UTILITY(U,$J,358.3,14356,1,3,0)
+ ;;=3^Hypoxemia
+ ;;^UTILITY(U,$J,358.3,14356,1,4,0)
+ ;;=4^R09.02
+ ;;^UTILITY(U,$J,358.3,14356,2)
+ ;;=^332831
+ ;;^UTILITY(U,$J,358.3,14357,0)
+ ;;=R39.81^^53^605^92
+ ;;^UTILITY(U,$J,358.3,14357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14085,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14085,1,4,0)
- ;;=4^H40.1421
- ;;^UTILITY(U,$J,358.3,14085,2)
- ;;=^5138023
- ;;^UTILITY(U,$J,358.3,14086,0)
- ;;=H40.1422^^82^770^5
- ;;^UTILITY(U,$J,358.3,14086,1,0)
+ ;;^UTILITY(U,$J,358.3,14357,1,3,0)
+ ;;=3^Incontinence d/t Cognitive Imprmt/Svr Disability/Mobility
+ ;;^UTILITY(U,$J,358.3,14357,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,14357,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,14358,0)
+ ;;=R29.6^^53^605^146
+ ;;^UTILITY(U,$J,358.3,14358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14086,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14086,1,4,0)
- ;;=4^H40.1422
- ;;^UTILITY(U,$J,358.3,14086,2)
- ;;=^5138024
- ;;^UTILITY(U,$J,358.3,14087,0)
- ;;=H40.1423^^82^770^6
- ;;^UTILITY(U,$J,358.3,14087,1,0)
+ ;;^UTILITY(U,$J,358.3,14358,1,3,0)
+ ;;=3^Repeated Falls
+ ;;^UTILITY(U,$J,358.3,14358,1,4,0)
+ ;;=4^R29.6
+ ;;^UTILITY(U,$J,358.3,14358,2)
+ ;;=^5019317
+ ;;^UTILITY(U,$J,358.3,14359,0)
+ ;;=R44.1^^53^605^160
+ ;;^UTILITY(U,$J,358.3,14359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14087,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14087,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,14087,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,14088,0)
- ;;=H40.1424^^82^770^7
- ;;^UTILITY(U,$J,358.3,14088,1,0)
+ ;;^UTILITY(U,$J,358.3,14359,1,3,0)
+ ;;=3^Visual Hallucinations
+ ;;^UTILITY(U,$J,358.3,14359,1,4,0)
+ ;;=4^R44.1
+ ;;^UTILITY(U,$J,358.3,14359,2)
+ ;;=^5019456
+ ;;^UTILITY(U,$J,358.3,14360,0)
+ ;;=S43.51XA^^53^606^12
+ ;;^UTILITY(U,$J,358.3,14360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14088,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14088,1,4,0)
- ;;=4^H40.1424
- ;;^UTILITY(U,$J,358.3,14088,2)
- ;;=^5138026
- ;;^UTILITY(U,$J,358.3,14089,0)
- ;;=H40.31X0^^82^770^138
- ;;^UTILITY(U,$J,358.3,14089,1,0)
+ ;;^UTILITY(U,$J,358.3,14360,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,14360,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,14360,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,14361,0)
+ ;;=S43.52XA^^53^606^1
+ ;;^UTILITY(U,$J,358.3,14361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14089,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14089,1,4,0)
- ;;=4^H40.31X0
- ;;^UTILITY(U,$J,358.3,14089,2)
- ;;=^5005852
- ;;^UTILITY(U,$J,358.3,14090,0)
- ;;=H40.31X1^^82^770^135
- ;;^UTILITY(U,$J,358.3,14090,1,0)
+ ;;^UTILITY(U,$J,358.3,14361,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,14361,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,14361,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,14362,0)
+ ;;=S43.421A^^53^606^17
+ ;;^UTILITY(U,$J,358.3,14362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14090,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,14362,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,14362,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,14362,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,14363,0)
+ ;;=S43.422A^^53^606^6
+ ;;^UTILITY(U,$J,358.3,14363,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14363,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,14363,1,4,0)
+ ;;=4^S43.422A

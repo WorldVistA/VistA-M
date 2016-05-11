@@ -1,130 +1,128 @@
-IBDEI12D ; ; 19-NOV-2015
+IBDEI12D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17747,0)
- ;;=K22.5^^91^881^8
- ;;^UTILITY(U,$J,358.3,17747,1,0)
+ ;;^UTILITY(U,$J,358.3,18082,1,4,0)
+ ;;=4^36224
+ ;;^UTILITY(U,$J,358.3,18083,0)
+ ;;=36253^^77^863^47^^^^1
+ ;;^UTILITY(U,$J,358.3,18083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17747,1,3,0)
- ;;=3^Diverticulum of esophagus, acquired
- ;;^UTILITY(U,$J,358.3,17747,1,4,0)
- ;;=4^K22.5
- ;;^UTILITY(U,$J,358.3,17747,2)
- ;;=^5008509
- ;;^UTILITY(U,$J,358.3,17748,0)
- ;;=K22.6^^91^881^20
- ;;^UTILITY(U,$J,358.3,17748,1,0)
+ ;;^UTILITY(U,$J,358.3,18083,1,2,0)
+ ;;=2^Superselect Cath Ren Art&Access Art
+ ;;^UTILITY(U,$J,358.3,18083,1,4,0)
+ ;;=4^36253
+ ;;^UTILITY(U,$J,358.3,18084,0)
+ ;;=37252^^77^863^32^^^^1
+ ;;^UTILITY(U,$J,358.3,18084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17748,1,3,0)
- ;;=3^Gastro-esophageal laceration-hemorrhage syndrome
- ;;^UTILITY(U,$J,358.3,17748,1,4,0)
- ;;=4^K22.6
- ;;^UTILITY(U,$J,358.3,17748,2)
- ;;=^5008510
- ;;^UTILITY(U,$J,358.3,17749,0)
- ;;=K21.9^^91^881^22
- ;;^UTILITY(U,$J,358.3,17749,1,0)
+ ;;^UTILITY(U,$J,358.3,18084,1,2,0)
+ ;;=2^Intravas US,Non Cor,Dx/Tx w/ S&I,Init Vessel
+ ;;^UTILITY(U,$J,358.3,18084,1,4,0)
+ ;;=4^37252
+ ;;^UTILITY(U,$J,358.3,18085,0)
+ ;;=37253^^77^863^33^^^^1
+ ;;^UTILITY(U,$J,358.3,18085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17749,1,3,0)
- ;;=3^Gastro-esophageal reflux disease w/o esophagitis
- ;;^UTILITY(U,$J,358.3,17749,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,17749,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,17750,0)
- ;;=K22.70^^91^881^5
- ;;^UTILITY(U,$J,358.3,17750,1,0)
+ ;;^UTILITY(U,$J,358.3,18085,1,2,0)
+ ;;=2^Intravas US,Non Cor,Dx/Tx w/ S&I,Ea Addl Vsl
+ ;;^UTILITY(U,$J,358.3,18085,1,4,0)
+ ;;=4^37253
+ ;;^UTILITY(U,$J,358.3,18086,0)
+ ;;=34800^^77^864^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17750,1,3,0)
- ;;=3^Barrett's esophagus w/o dysplasia
- ;;^UTILITY(U,$J,358.3,17750,1,4,0)
- ;;=4^K22.70
- ;;^UTILITY(U,$J,358.3,17750,2)
- ;;=^5008511
- ;;^UTILITY(U,$J,358.3,17751,0)
- ;;=K22.710^^91^881^4
- ;;^UTILITY(U,$J,358.3,17751,1,0)
+ ;;^UTILITY(U,$J,358.3,18086,1,2,0)
+ ;;=2^Endovasc Abdo Repair w/ Tube
+ ;;^UTILITY(U,$J,358.3,18086,1,4,0)
+ ;;=4^34800
+ ;;^UTILITY(U,$J,358.3,18087,0)
+ ;;=34802^^77^864^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17751,1,3,0)
- ;;=3^Barrett's esophagus w/ low grade dysplasia
- ;;^UTILITY(U,$J,358.3,17751,1,4,0)
- ;;=4^K22.710
- ;;^UTILITY(U,$J,358.3,17751,2)
- ;;=^5008512
- ;;^UTILITY(U,$J,358.3,17752,0)
- ;;=K22.711^^91^881^3
- ;;^UTILITY(U,$J,358.3,17752,1,0)
+ ;;^UTILITY(U,$J,358.3,18087,1,2,0)
+ ;;=2^Endovasc Abdo Repair w/ Bifurc
+ ;;^UTILITY(U,$J,358.3,18087,1,4,0)
+ ;;=4^34802
+ ;;^UTILITY(U,$J,358.3,18088,0)
+ ;;=34803^^77^864^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17752,1,3,0)
- ;;=3^Barrett's esophagus w/ high grade dysplasia
- ;;^UTILITY(U,$J,358.3,17752,1,4,0)
- ;;=4^K22.711
- ;;^UTILITY(U,$J,358.3,17752,2)
- ;;=^5008513
- ;;^UTILITY(U,$J,358.3,17753,0)
- ;;=K22.719^^91^881^2
- ;;^UTILITY(U,$J,358.3,17753,1,0)
+ ;;^UTILITY(U,$J,358.3,18088,1,2,0)
+ ;;=2^Endovas AAA Repair w/ 3-P Part
+ ;;^UTILITY(U,$J,358.3,18088,1,4,0)
+ ;;=4^34803
+ ;;^UTILITY(U,$J,358.3,18089,0)
+ ;;=34804^^77^864^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17753,1,3,0)
- ;;=3^Barrett's esophagus w/ dysplasia, unspecified
- ;;^UTILITY(U,$J,358.3,17753,1,4,0)
- ;;=4^K22.719
- ;;^UTILITY(U,$J,358.3,17753,2)
- ;;=^5008514
- ;;^UTILITY(U,$J,358.3,17754,0)
- ;;=K44.9^^91^881^7
- ;;^UTILITY(U,$J,358.3,17754,1,0)
+ ;;^UTILITY(U,$J,358.3,18089,1,2,0)
+ ;;=2^Endovasc AAA Repair w/ Unibody Bifurc
+ ;;^UTILITY(U,$J,358.3,18089,1,4,0)
+ ;;=4^34804
+ ;;^UTILITY(U,$J,358.3,18090,0)
+ ;;=36005^^77^865^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17754,1,3,0)
- ;;=3^Diaphragmatic hernia w/o obstruction or gangrene
- ;;^UTILITY(U,$J,358.3,17754,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,17754,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,17755,0)
- ;;=Q39.4^^91^881^14
- ;;^UTILITY(U,$J,358.3,17755,1,0)
+ ;;^UTILITY(U,$J,358.3,18090,1,2,0)
+ ;;=2^Contrast Venography
+ ;;^UTILITY(U,$J,358.3,18090,1,4,0)
+ ;;=4^36005
+ ;;^UTILITY(U,$J,358.3,18091,0)
+ ;;=36002^^77^865^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17755,1,3,0)
- ;;=3^Esophageal web
- ;;^UTILITY(U,$J,358.3,17755,1,4,0)
- ;;=4^Q39.4
- ;;^UTILITY(U,$J,358.3,17755,2)
- ;;=^5018659
- ;;^UTILITY(U,$J,358.3,17756,0)
- ;;=T18.108A^^91^881^17
- ;;^UTILITY(U,$J,358.3,17756,1,0)
+ ;;^UTILITY(U,$J,358.3,18091,1,2,0)
+ ;;=2^Inj Trt Ext Pseudoaneurysm
+ ;;^UTILITY(U,$J,358.3,18091,1,4,0)
+ ;;=4^36002
+ ;;^UTILITY(U,$J,358.3,18092,0)
+ ;;=75894^^77^866^5^^^^1
+ ;;^UTILITY(U,$J,358.3,18092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17756,1,3,0)
- ;;=3^Foreign body in esophagus causing oth injury, init
- ;;^UTILITY(U,$J,358.3,17756,1,4,0)
- ;;=4^T18.108A
- ;;^UTILITY(U,$J,358.3,17756,2)
- ;;=^5046582
- ;;^UTILITY(U,$J,358.3,17757,0)
- ;;=T18.118A^^91^881^19
- ;;^UTILITY(U,$J,358.3,17757,1,0)
+ ;;^UTILITY(U,$J,358.3,18092,1,2,0)
+ ;;=2^Transcath Tx,Emobolization,Any Method S&I
+ ;;^UTILITY(U,$J,358.3,18092,1,4,0)
+ ;;=4^75894
+ ;;^UTILITY(U,$J,358.3,18093,0)
+ ;;=36246^^77^866^2^^^^1
+ ;;^UTILITY(U,$J,358.3,18093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17757,1,3,0)
- ;;=3^Gastric contents in esophagus causing oth injury, init
- ;;^UTILITY(U,$J,358.3,17757,1,4,0)
- ;;=4^T18.118A
- ;;^UTILITY(U,$J,358.3,17757,2)
- ;;=^5046588
- ;;^UTILITY(U,$J,358.3,17758,0)
- ;;=T18.128A^^91^881^16
- ;;^UTILITY(U,$J,358.3,17758,1,0)
+ ;;^UTILITY(U,$J,358.3,18093,1,2,0)
+ ;;=2^Initial 2nd Order Abd/Pelvic/Low Ext
+ ;;^UTILITY(U,$J,358.3,18093,1,4,0)
+ ;;=4^36246
+ ;;^UTILITY(U,$J,358.3,18094,0)
+ ;;=36247^^77^866^3^^^^1
+ ;;^UTILITY(U,$J,358.3,18094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17758,1,3,0)
- ;;=3^Food in esophagus causing other injury, initial encounter
- ;;^UTILITY(U,$J,358.3,17758,1,4,0)
- ;;=4^T18.128A
- ;;^UTILITY(U,$J,358.3,17758,2)
- ;;=^5046594
- ;;^UTILITY(U,$J,358.3,17759,0)
- ;;=T18.198A^^91^881^18
- ;;^UTILITY(U,$J,358.3,17759,1,0)
+ ;;^UTILITY(U,$J,358.3,18094,1,2,0)
+ ;;=2^Initial 3rd Order Abd/Pelvic/Low Ext
+ ;;^UTILITY(U,$J,358.3,18094,1,4,0)
+ ;;=4^36247
+ ;;^UTILITY(U,$J,358.3,18095,0)
+ ;;=36248^^77^866^4^^^^1
+ ;;^UTILITY(U,$J,358.3,18095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17759,1,3,0)
- ;;=3^Foreign object in esophagus causing oth injury, init
+ ;;^UTILITY(U,$J,358.3,18095,1,2,0)
+ ;;=2^Additional 2nd Order
+ ;;^UTILITY(U,$J,358.3,18095,1,4,0)
+ ;;=4^36248
+ ;;^UTILITY(U,$J,358.3,18096,0)
+ ;;=75898^^77^866^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18096,1,2,0)
+ ;;=2^Angio F/U for Transcath Tx,Embolization
+ ;;^UTILITY(U,$J,358.3,18096,1,4,0)
+ ;;=4^75898
+ ;;^UTILITY(U,$J,358.3,18097,0)
+ ;;=22510^^77^867^1^^^^1
+ ;;^UTILITY(U,$J,358.3,18097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18097,1,2,0)
+ ;;=2^Vert,1 Vert Body,Uni/Bil Inj Cervicothrc
+ ;;^UTILITY(U,$J,358.3,18097,1,4,0)
+ ;;=4^22510
+ ;;^UTILITY(U,$J,358.3,18098,0)
+ ;;=22512^^77^867^3^^^^1

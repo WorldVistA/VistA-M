@@ -1,132 +1,136 @@
-IBDEI0ZP ; ; 19-NOV-2015
+IBDEI0ZP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16455,1,3,0)
- ;;=3^Nevus,Non-Neoplastic
- ;;^UTILITY(U,$J,358.3,16455,1,4,0)
- ;;=4^I78.1
- ;;^UTILITY(U,$J,358.3,16455,2)
- ;;=^269807
- ;;^UTILITY(U,$J,358.3,16456,0)
- ;;=Z95.0^^88^847^61
- ;;^UTILITY(U,$J,358.3,16456,1,0)
+ ;;^UTILITY(U,$J,358.3,16786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16456,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,16456,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,16456,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,16457,0)
- ;;=I73.9^^88^847^55
- ;;^UTILITY(U,$J,358.3,16457,1,0)
+ ;;^UTILITY(U,$J,358.3,16786,1,3,0)
+ ;;=3^External Ear Abscess,Left
+ ;;^UTILITY(U,$J,358.3,16786,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,16786,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,16787,0)
+ ;;=H60.01^^70^790^12
+ ;;^UTILITY(U,$J,358.3,16787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16457,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,16457,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,16457,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,16458,0)
- ;;=I80.9^^88^847^56
- ;;^UTILITY(U,$J,358.3,16458,1,0)
+ ;;^UTILITY(U,$J,358.3,16787,1,3,0)
+ ;;=3^External Ear Abscess,Right
+ ;;^UTILITY(U,$J,358.3,16787,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,16787,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,16788,0)
+ ;;=H60.13^^70^790^13
+ ;;^UTILITY(U,$J,358.3,16788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16458,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,16458,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,16458,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,16459,0)
- ;;=Z98.61^^88^847^57
- ;;^UTILITY(U,$J,358.3,16459,1,0)
+ ;;^UTILITY(U,$J,358.3,16788,1,3,0)
+ ;;=3^External Ear Cellulitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,16788,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,16788,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,16789,0)
+ ;;=H60.12^^70^790^14
+ ;;^UTILITY(U,$J,358.3,16789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16459,1,3,0)
- ;;=3^Postprocedural State,Coronary Angioplasty
- ;;^UTILITY(U,$J,358.3,16459,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,16459,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,16460,0)
- ;;=Z98.62^^88^847^58
- ;;^UTILITY(U,$J,358.3,16460,1,0)
+ ;;^UTILITY(U,$J,358.3,16789,1,3,0)
+ ;;=3^External Ear Cellulitis,Left
+ ;;^UTILITY(U,$J,358.3,16789,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,16789,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,16790,0)
+ ;;=H60.11^^70^790^15
+ ;;^UTILITY(U,$J,358.3,16790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16460,1,3,0)
- ;;=3^Postprocedural State,Peripheral Vascular Angioplasty
- ;;^UTILITY(U,$J,358.3,16460,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,16460,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,16461,0)
- ;;=Z95.810^^88^847^59
- ;;^UTILITY(U,$J,358.3,16461,1,0)
+ ;;^UTILITY(U,$J,358.3,16790,1,3,0)
+ ;;=3^External Ear Cellulitis,Right
+ ;;^UTILITY(U,$J,358.3,16790,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,16790,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,16791,0)
+ ;;=G40.909^^70^790^4
+ ;;^UTILITY(U,$J,358.3,16791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16461,1,3,0)
- ;;=3^Presence of Automatic Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,16461,1,4,0)
- ;;=4^Z95.810
- ;;^UTILITY(U,$J,358.3,16461,2)
- ;;=^5063674
- ;;^UTILITY(U,$J,358.3,16462,0)
- ;;=Z95.5^^88^847^62
- ;;^UTILITY(U,$J,358.3,16462,1,0)
+ ;;^UTILITY(U,$J,358.3,16791,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,16791,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,16791,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,16792,0)
+ ;;=M77.9^^70^790^3
+ ;;^UTILITY(U,$J,358.3,16792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16462,1,3,0)
- ;;=3^Presence of Coronary Angioplasty Implant & Graft
- ;;^UTILITY(U,$J,358.3,16462,1,4,0)
- ;;=4^Z95.5
- ;;^UTILITY(U,$J,358.3,16462,2)
- ;;=^5063673
- ;;^UTILITY(U,$J,358.3,16463,0)
- ;;=Z95.811^^88^847^64
- ;;^UTILITY(U,$J,358.3,16463,1,0)
+ ;;^UTILITY(U,$J,358.3,16792,1,3,0)
+ ;;=3^Enthesopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,16792,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,16792,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,16793,0)
+ ;;=K29.70^^70^791^3
+ ;;^UTILITY(U,$J,358.3,16793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16463,1,3,0)
- ;;=3^Presence of Heart Assist Device
- ;;^UTILITY(U,$J,358.3,16463,1,4,0)
- ;;=4^Z95.811
- ;;^UTILITY(U,$J,358.3,16463,2)
- ;;=^5063675
- ;;^UTILITY(U,$J,358.3,16464,0)
- ;;=Z95.812^^88^847^63
- ;;^UTILITY(U,$J,358.3,16464,1,0)
+ ;;^UTILITY(U,$J,358.3,16793,1,3,0)
+ ;;=3^Gastritis, w/o bleeding, unspec
+ ;;^UTILITY(U,$J,358.3,16793,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,16793,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,16794,0)
+ ;;=K21.9^^70^791^4
+ ;;^UTILITY(U,$J,358.3,16794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16464,1,3,0)
- ;;=3^Presence of Fully Implantable Artificial Heart
- ;;^UTILITY(U,$J,358.3,16464,1,4,0)
- ;;=4^Z95.812
- ;;^UTILITY(U,$J,358.3,16464,2)
- ;;=^5063676
- ;;^UTILITY(U,$J,358.3,16465,0)
- ;;=Z95.818^^88^847^60
- ;;^UTILITY(U,$J,358.3,16465,1,0)
+ ;;^UTILITY(U,$J,358.3,16794,1,3,0)
+ ;;=3^Gastro-esophageal reflux dz w/o esophagitis
+ ;;^UTILITY(U,$J,358.3,16794,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,16794,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,16795,0)
+ ;;=K92.2^^70^791^6
+ ;;^UTILITY(U,$J,358.3,16795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16465,1,3,0)
- ;;=3^Presence of Cardiac Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,16465,1,4,0)
- ;;=4^Z95.818
- ;;^UTILITY(U,$J,358.3,16465,2)
- ;;=^5063677
- ;;^UTILITY(U,$J,358.3,16466,0)
- ;;=Z95.820^^88^847^65
- ;;^UTILITY(U,$J,358.3,16466,1,0)
+ ;;^UTILITY(U,$J,358.3,16795,1,3,0)
+ ;;=3^Gastrointestinal hemorrhage, unspec
+ ;;^UTILITY(U,$J,358.3,16795,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,16795,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,16796,0)
+ ;;=K52.9^^70^791^5
+ ;;^UTILITY(U,$J,358.3,16796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16466,1,3,0)
- ;;=3^Presence of Peripheral Vasc Angioplasty w/ Implants & Grafts
- ;;^UTILITY(U,$J,358.3,16466,1,4,0)
- ;;=4^Z95.820
- ;;^UTILITY(U,$J,358.3,16466,2)
- ;;=^5063678
- ;;^UTILITY(U,$J,358.3,16467,0)
- ;;=Z95.828^^88^847^67
- ;;^UTILITY(U,$J,358.3,16467,1,0)
+ ;;^UTILITY(U,$J,358.3,16796,1,3,0)
+ ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,16796,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,16796,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,16797,0)
+ ;;=K82.9^^70^791^2
+ ;;^UTILITY(U,$J,358.3,16797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16467,1,3,0)
- ;;=3^Presence of Vascular Implants & Grafts,Other
- ;;^UTILITY(U,$J,358.3,16467,1,4,0)
- ;;=4^Z95.828
- ;;^UTILITY(U,$J,358.3,16467,2)
- ;;=^5063679
- ;;^UTILITY(U,$J,358.3,16468,0)
- ;;=Z95.2^^88^847^66
+ ;;^UTILITY(U,$J,358.3,16797,1,3,0)
+ ;;=3^Gallbladder disease,Unspec 
+ ;;^UTILITY(U,$J,358.3,16797,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,16797,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,16798,0)
+ ;;=H40.9^^70^791^7
+ ;;^UTILITY(U,$J,358.3,16798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16798,1,3,0)
+ ;;=3^Glaucoma, unspec
+ ;;^UTILITY(U,$J,358.3,16798,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,16798,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,16799,0)
+ ;;=M10.9^^70^791^8
+ ;;^UTILITY(U,$J,358.3,16799,1,0)
+ ;;=^358.31IA^4^2

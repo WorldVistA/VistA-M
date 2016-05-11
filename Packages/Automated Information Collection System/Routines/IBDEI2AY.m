@@ -1,126 +1,140 @@
-IBDEI2AY ; ; 19-NOV-2015
+IBDEI2AY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38670,1,4,0)
- ;;=4^I69.954
- ;;^UTILITY(U,$J,358.3,38670,2)
- ;;=^5133587
- ;;^UTILITY(U,$J,358.3,38671,0)
- ;;=I69.951^^180^1981^13
- ;;^UTILITY(U,$J,358.3,38671,1,0)
+ ;;^UTILITY(U,$J,358.3,39058,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,39058,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,39058,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,39059,0)
+ ;;=D23.4^^151^1912^31
+ ;;^UTILITY(U,$J,358.3,39059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38671,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff right dominant side
- ;;^UTILITY(U,$J,358.3,38671,1,4,0)
- ;;=4^I69.951
- ;;^UTILITY(U,$J,358.3,38671,2)
- ;;=^5007561
- ;;^UTILITY(U,$J,358.3,38672,0)
- ;;=I69.953^^180^1981^14
- ;;^UTILITY(U,$J,358.3,38672,1,0)
+ ;;^UTILITY(U,$J,358.3,39059,1,3,0)
+ ;;=3^Benign Neop Skin Scalp and Neck
+ ;;^UTILITY(U,$J,358.3,39059,1,4,0)
+ ;;=4^D23.4
+ ;;^UTILITY(U,$J,358.3,39059,2)
+ ;;=^5002068
+ ;;^UTILITY(U,$J,358.3,39060,0)
+ ;;=L92.0^^151^1913^1
+ ;;^UTILITY(U,$J,358.3,39060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38672,1,3,0)
- ;;=3^Hemiplga fol unsp cerebvasc disease aff right nondom side
- ;;^UTILITY(U,$J,358.3,38672,1,4,0)
- ;;=4^I69.953
- ;;^UTILITY(U,$J,358.3,38672,2)
- ;;=^5007562
- ;;^UTILITY(U,$J,358.3,38673,0)
- ;;=G81.92^^180^1981^7
- ;;^UTILITY(U,$J,358.3,38673,1,0)
+ ;;^UTILITY(U,$J,358.3,39060,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,39060,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,39060,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,39061,0)
+ ;;=L91.8^^151^1914^7
+ ;;^UTILITY(U,$J,358.3,39061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38673,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting left dominant side
- ;;^UTILITY(U,$J,358.3,38673,1,4,0)
- ;;=4^G81.92
- ;;^UTILITY(U,$J,358.3,38673,2)
- ;;=^5004122
- ;;^UTILITY(U,$J,358.3,38674,0)
- ;;=G81.94^^180^1981^8
- ;;^UTILITY(U,$J,358.3,38674,1,0)
+ ;;^UTILITY(U,$J,358.3,39061,1,3,0)
+ ;;=3^Hypertrophic Skin Disorders
+ ;;^UTILITY(U,$J,358.3,39061,1,4,0)
+ ;;=4^L91.8
+ ;;^UTILITY(U,$J,358.3,39061,2)
+ ;;=^5009460
+ ;;^UTILITY(U,$J,358.3,39062,0)
+ ;;=D18.01^^151^1914^1
+ ;;^UTILITY(U,$J,358.3,39062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38674,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting left nondominant side
- ;;^UTILITY(U,$J,358.3,38674,1,4,0)
- ;;=4^G81.94
- ;;^UTILITY(U,$J,358.3,38674,2)
- ;;=^5004124
- ;;^UTILITY(U,$J,358.3,38675,0)
- ;;=G81.91^^180^1981^9
- ;;^UTILITY(U,$J,358.3,38675,1,0)
+ ;;^UTILITY(U,$J,358.3,39062,1,3,0)
+ ;;=3^Hemangioma of Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,39062,1,4,0)
+ ;;=4^D18.01
+ ;;^UTILITY(U,$J,358.3,39062,2)
+ ;;=^267697
+ ;;^UTILITY(U,$J,358.3,39063,0)
+ ;;=L91.0^^151^1914^6
+ ;;^UTILITY(U,$J,358.3,39063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38675,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting right dominant side
- ;;^UTILITY(U,$J,358.3,38675,1,4,0)
- ;;=4^G81.91
- ;;^UTILITY(U,$J,358.3,38675,2)
- ;;=^5004121
- ;;^UTILITY(U,$J,358.3,38676,0)
- ;;=G81.93^^180^1981^10
- ;;^UTILITY(U,$J,358.3,38676,1,0)
+ ;;^UTILITY(U,$J,358.3,39063,1,3,0)
+ ;;=3^Hypertrophic Scar
+ ;;^UTILITY(U,$J,358.3,39063,1,4,0)
+ ;;=4^L91.0
+ ;;^UTILITY(U,$J,358.3,39063,2)
+ ;;=^5009459
+ ;;^UTILITY(U,$J,358.3,39064,0)
+ ;;=L68.0^^151^1914^2
+ ;;^UTILITY(U,$J,358.3,39064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38676,1,3,0)
- ;;=3^Hemiplegia, unspecified affecting right nondominant side
- ;;^UTILITY(U,$J,358.3,38676,1,4,0)
- ;;=4^G81.93
- ;;^UTILITY(U,$J,358.3,38676,2)
- ;;=^5004123
- ;;^UTILITY(U,$J,358.3,38677,0)
- ;;=I69.942^^180^1981^23
- ;;^UTILITY(U,$J,358.3,38677,1,0)
+ ;;^UTILITY(U,$J,358.3,39064,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,39064,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,39064,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,39065,0)
+ ;;=L68.9^^151^1914^5
+ ;;^UTILITY(U,$J,358.3,39065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38677,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left dom side
- ;;^UTILITY(U,$J,358.3,38677,1,4,0)
- ;;=4^I69.942
- ;;^UTILITY(U,$J,358.3,38677,2)
- ;;=^5133582
- ;;^UTILITY(U,$J,358.3,38678,0)
- ;;=I69.944^^180^1981^24
- ;;^UTILITY(U,$J,358.3,38678,1,0)
+ ;;^UTILITY(U,$J,358.3,39065,1,3,0)
+ ;;=3^Hypertrichosis,Unspec
+ ;;^UTILITY(U,$J,358.3,39065,1,4,0)
+ ;;=4^L68.9
+ ;;^UTILITY(U,$J,358.3,39065,2)
+ ;;=^5009267
+ ;;^UTILITY(U,$J,358.3,39066,0)
+ ;;=L74.510^^151^1914^3
+ ;;^UTILITY(U,$J,358.3,39066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38678,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff left nondom side
- ;;^UTILITY(U,$J,358.3,38678,1,4,0)
- ;;=4^I69.944
- ;;^UTILITY(U,$J,358.3,38678,2)
- ;;=^5133585
- ;;^UTILITY(U,$J,358.3,38679,0)
- ;;=I69.941^^180^1981^25
- ;;^UTILITY(U,$J,358.3,38679,1,0)
+ ;;^UTILITY(U,$J,358.3,39066,1,3,0)
+ ;;=3^Hyperhidrosis,Primary,Focal,Axilla
+ ;;^UTILITY(U,$J,358.3,39066,1,4,0)
+ ;;=4^L74.510
+ ;;^UTILITY(U,$J,358.3,39066,2)
+ ;;=^5009290
+ ;;^UTILITY(U,$J,358.3,39067,0)
+ ;;=L81.4^^151^1914^4
+ ;;^UTILITY(U,$J,358.3,39067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38679,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right dom side
- ;;^UTILITY(U,$J,358.3,38679,1,4,0)
- ;;=4^I69.941
- ;;^UTILITY(U,$J,358.3,38679,2)
- ;;=^5133581
- ;;^UTILITY(U,$J,358.3,38680,0)
- ;;=I69.943^^180^1981^26
- ;;^UTILITY(U,$J,358.3,38680,1,0)
+ ;;^UTILITY(U,$J,358.3,39067,1,3,0)
+ ;;=3^Hyperpigmentation,Other
+ ;;^UTILITY(U,$J,358.3,39067,1,4,0)
+ ;;=4^L81.4
+ ;;^UTILITY(U,$J,358.3,39067,2)
+ ;;=^5009314
+ ;;^UTILITY(U,$J,358.3,39068,0)
+ ;;=L90.0^^151^1915^4
+ ;;^UTILITY(U,$J,358.3,39068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38680,1,3,0)
- ;;=3^Monoplg low lmb fol unsp cerebvasc dis aff right nondom side
- ;;^UTILITY(U,$J,358.3,38680,1,4,0)
- ;;=4^I69.943
- ;;^UTILITY(U,$J,358.3,38680,2)
- ;;=^5133584
- ;;^UTILITY(U,$J,358.3,38681,0)
- ;;=G35.^^180^1981^27
- ;;^UTILITY(U,$J,358.3,38681,1,0)
+ ;;^UTILITY(U,$J,358.3,39068,1,3,0)
+ ;;=3^Lichen Sclerosus et Atrophicus
+ ;;^UTILITY(U,$J,358.3,39068,1,4,0)
+ ;;=4^L90.0
+ ;;^UTILITY(U,$J,358.3,39068,2)
+ ;;=^70699
+ ;;^UTILITY(U,$J,358.3,39069,0)
+ ;;=L28.0^^151^1915^5
+ ;;^UTILITY(U,$J,358.3,39069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38681,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,38681,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,38681,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,38682,0)
- ;;=G20.^^180^1981^28
- ;;^UTILITY(U,$J,358.3,38682,1,0)
+ ;;^UTILITY(U,$J,358.3,39069,1,3,0)
+ ;;=3^Lichen Simplex Chronicus
+ ;;^UTILITY(U,$J,358.3,39069,1,4,0)
+ ;;=4^L28.0
+ ;;^UTILITY(U,$J,358.3,39069,2)
+ ;;=^259859
+ ;;^UTILITY(U,$J,358.3,39070,0)
+ ;;=L66.1^^151^1915^1
+ ;;^UTILITY(U,$J,358.3,39070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38682,1,3,0)
- ;;=3^Parkinson's disease
- ;;^UTILITY(U,$J,358.3,38682,1,4,0)
- ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,39070,1,3,0)
+ ;;=3^Lichen Planopilaris
+ ;;^UTILITY(U,$J,358.3,39070,1,4,0)
+ ;;=4^L66.1
+ ;;^UTILITY(U,$J,358.3,39070,2)
+ ;;=^5009253
+ ;;^UTILITY(U,$J,358.3,39071,0)
+ ;;=L43.0^^151^1915^2
+ ;;^UTILITY(U,$J,358.3,39071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39071,1,3,0)
+ ;;=3^Lichen Planus,Hypertrophic
+ ;;^UTILITY(U,$J,358.3,39071,1,4,0)
+ ;;=4^L43.0
+ ;;^UTILITY(U,$J,358.3,39071,2)
+ ;;=^5009178

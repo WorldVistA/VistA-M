@@ -1,126 +1,130 @@
-IBDEI2CO ; ; 19-NOV-2015
+IBDEI2CO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39468,1,3,0)
- ;;=3^Primary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,39468,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,39468,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,39469,0)
- ;;=M19.041^^183^2023^24
- ;;^UTILITY(U,$J,358.3,39469,1,0)
+ ;;^UTILITY(U,$J,358.3,39845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39469,1,3,0)
- ;;=3^Primary osteoarthritis, right hand
- ;;^UTILITY(U,$J,358.3,39469,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,39469,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,39470,0)
- ;;=M19.011^^183^2023^25
- ;;^UTILITY(U,$J,358.3,39470,1,0)
+ ;;^UTILITY(U,$J,358.3,39845,1,3,0)
+ ;;=3^Retinal Vasculitis,Right Eye
+ ;;^UTILITY(U,$J,358.3,39845,1,4,0)
+ ;;=4^H35.061
+ ;;^UTILITY(U,$J,358.3,39845,2)
+ ;;=^5005602
+ ;;^UTILITY(U,$J,358.3,39846,0)
+ ;;=H35.062^^153^1930^87
+ ;;^UTILITY(U,$J,358.3,39846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39470,1,3,0)
- ;;=3^Primary osteoarthritis, right shoulder
- ;;^UTILITY(U,$J,358.3,39470,1,4,0)
- ;;=4^M19.011
- ;;^UTILITY(U,$J,358.3,39470,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,39471,0)
- ;;=M76.12^^183^2023^26
- ;;^UTILITY(U,$J,358.3,39471,1,0)
+ ;;^UTILITY(U,$J,358.3,39846,1,3,0)
+ ;;=3^Retinal Vasculitis,Left Eye
+ ;;^UTILITY(U,$J,358.3,39846,1,4,0)
+ ;;=4^H35.062
+ ;;^UTILITY(U,$J,358.3,39846,2)
+ ;;=^5005603
+ ;;^UTILITY(U,$J,358.3,39847,0)
+ ;;=H34.13^^153^1930^6
+ ;;^UTILITY(U,$J,358.3,39847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39471,1,3,0)
- ;;=3^Psoas tendinitis, left hip
- ;;^UTILITY(U,$J,358.3,39471,1,4,0)
- ;;=4^M76.12
- ;;^UTILITY(U,$J,358.3,39471,2)
- ;;=^5013271
- ;;^UTILITY(U,$J,358.3,39472,0)
- ;;=M76.11^^183^2023^27
- ;;^UTILITY(U,$J,358.3,39472,1,0)
+ ;;^UTILITY(U,$J,358.3,39847,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,39847,1,4,0)
+ ;;=4^H34.13
+ ;;^UTILITY(U,$J,358.3,39847,2)
+ ;;=^5005559
+ ;;^UTILITY(U,$J,358.3,39848,0)
+ ;;=H34.11^^153^1930^8
+ ;;^UTILITY(U,$J,358.3,39848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39472,1,3,0)
- ;;=3^Psoas tendinitis, right hip
- ;;^UTILITY(U,$J,358.3,39472,1,4,0)
- ;;=4^M76.11
- ;;^UTILITY(U,$J,358.3,39472,2)
- ;;=^5013270
- ;;^UTILITY(U,$J,358.3,39473,0)
- ;;=M70.62^^183^2023^58
- ;;^UTILITY(U,$J,358.3,39473,1,0)
+ ;;^UTILITY(U,$J,358.3,39848,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39848,1,4,0)
+ ;;=4^H34.11
+ ;;^UTILITY(U,$J,358.3,39848,2)
+ ;;=^5005557
+ ;;^UTILITY(U,$J,358.3,39849,0)
+ ;;=H34.12^^153^1930^7
+ ;;^UTILITY(U,$J,358.3,39849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39473,1,3,0)
- ;;=3^Trochanteric bursitis, left hip
- ;;^UTILITY(U,$J,358.3,39473,1,4,0)
- ;;=4^M70.62
- ;;^UTILITY(U,$J,358.3,39473,2)
- ;;=^5013060
- ;;^UTILITY(U,$J,358.3,39474,0)
- ;;=M70.61^^183^2023^59
- ;;^UTILITY(U,$J,358.3,39474,1,0)
+ ;;^UTILITY(U,$J,358.3,39849,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,39849,1,4,0)
+ ;;=4^H34.12
+ ;;^UTILITY(U,$J,358.3,39849,2)
+ ;;=^5005558
+ ;;^UTILITY(U,$J,358.3,39850,0)
+ ;;=H34.231^^153^1930^72
+ ;;^UTILITY(U,$J,358.3,39850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39474,1,3,0)
- ;;=3^Trochanteric bursitis, right hip
- ;;^UTILITY(U,$J,358.3,39474,1,4,0)
- ;;=4^M70.61
- ;;^UTILITY(U,$J,358.3,39474,2)
- ;;=^5013059
- ;;^UTILITY(U,$J,358.3,39475,0)
- ;;=S22.9XXS^^183^2024^6
- ;;^UTILITY(U,$J,358.3,39475,1,0)
+ ;;^UTILITY(U,$J,358.3,39850,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39850,1,4,0)
+ ;;=4^H34.231
+ ;;^UTILITY(U,$J,358.3,39850,2)
+ ;;=^5005564
+ ;;^UTILITY(U,$J,358.3,39851,0)
+ ;;=H34.232^^153^1930^71
+ ;;^UTILITY(U,$J,358.3,39851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39475,1,3,0)
- ;;=3^Fracture of bony thorax, part unspecified, sequela
- ;;^UTILITY(U,$J,358.3,39475,1,4,0)
- ;;=4^S22.9XXS
- ;;^UTILITY(U,$J,358.3,39475,2)
- ;;=^5023158
- ;;^UTILITY(U,$J,358.3,39476,0)
- ;;=S42.92XS^^183^2024^14
- ;;^UTILITY(U,$J,358.3,39476,1,0)
+ ;;^UTILITY(U,$J,358.3,39851,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,39851,1,4,0)
+ ;;=4^H34.232
+ ;;^UTILITY(U,$J,358.3,39851,2)
+ ;;=^5005565
+ ;;^UTILITY(U,$J,358.3,39852,0)
+ ;;=H34.233^^153^1930^70
+ ;;^UTILITY(U,$J,358.3,39852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39476,1,3,0)
- ;;=3^Fracture of left shoulder girdle, part unspecified, sequela
- ;;^UTILITY(U,$J,358.3,39476,1,4,0)
- ;;=4^S42.92XS
- ;;^UTILITY(U,$J,358.3,39476,2)
- ;;=^5027656
- ;;^UTILITY(U,$J,358.3,39477,0)
- ;;=S12.9XXS^^183^2024^21
- ;;^UTILITY(U,$J,358.3,39477,1,0)
+ ;;^UTILITY(U,$J,358.3,39852,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,39852,1,4,0)
+ ;;=4^H34.233
+ ;;^UTILITY(U,$J,358.3,39852,2)
+ ;;=^5005566
+ ;;^UTILITY(U,$J,358.3,39853,0)
+ ;;=H34.211^^153^1930^63
+ ;;^UTILITY(U,$J,358.3,39853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39477,1,3,0)
- ;;=3^Fracture of neck, unspecified, sequela
- ;;^UTILITY(U,$J,358.3,39477,1,4,0)
- ;;=4^S12.9XXS
- ;;^UTILITY(U,$J,358.3,39477,2)
- ;;=^5021964
- ;;^UTILITY(U,$J,358.3,39478,0)
- ;;=S42.91XS^^183^2024^31
- ;;^UTILITY(U,$J,358.3,39478,1,0)
+ ;;^UTILITY(U,$J,358.3,39853,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39853,1,4,0)
+ ;;=4^H34.211
+ ;;^UTILITY(U,$J,358.3,39853,2)
+ ;;=^5005560
+ ;;^UTILITY(U,$J,358.3,39854,0)
+ ;;=H34.212^^153^1930^62
+ ;;^UTILITY(U,$J,358.3,39854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39478,1,3,0)
- ;;=3^Fracture of right shoulder girdle, part unspecified, sequela
- ;;^UTILITY(U,$J,358.3,39478,1,4,0)
- ;;=4^S42.91XS
- ;;^UTILITY(U,$J,358.3,39478,2)
- ;;=^5027649
- ;;^UTILITY(U,$J,358.3,39479,0)
- ;;=S72.001S^^183^2024^40
- ;;^UTILITY(U,$J,358.3,39479,1,0)
+ ;;^UTILITY(U,$J,358.3,39854,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,39854,1,4,0)
+ ;;=4^H34.212
+ ;;^UTILITY(U,$J,358.3,39854,2)
+ ;;=^5005561
+ ;;^UTILITY(U,$J,358.3,39855,0)
+ ;;=H34.213^^153^1930^61
+ ;;^UTILITY(U,$J,358.3,39855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39479,1,3,0)
- ;;=3^Fracture of unspecified part of neck of right femur, sequela
- ;;^UTILITY(U,$J,358.3,39479,1,4,0)
- ;;=4^S72.001S
- ;;^UTILITY(U,$J,358.3,39479,2)
- ;;=^5037062
- ;;^UTILITY(U,$J,358.3,39480,0)
- ;;=S32.9XXS^^183^2024^41
- ;;^UTILITY(U,$J,358.3,39480,1,0)
+ ;;^UTILITY(U,$J,358.3,39855,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,39855,1,4,0)
+ ;;=4^H34.213
+ ;;^UTILITY(U,$J,358.3,39855,2)
+ ;;=^5005562
+ ;;^UTILITY(U,$J,358.3,39856,0)
+ ;;=H34.811^^153^1930^11
+ ;;^UTILITY(U,$J,358.3,39856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39480,1,3,0)
- ;;=3^Fracture of unspecified parts of lumbosacral spine & pelvis, sequela
+ ;;^UTILITY(U,$J,358.3,39856,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,39856,1,4,0)
+ ;;=4^H34.811
+ ;;^UTILITY(U,$J,358.3,39856,2)
+ ;;=^5005568
+ ;;^UTILITY(U,$J,358.3,39857,0)
+ ;;=H34.813^^153^1930^9
+ ;;^UTILITY(U,$J,358.3,39857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39857,1,3,0)
+ ;;=3^Central Retinal Vein Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,39857,1,4,0)
+ ;;=4^H34.813

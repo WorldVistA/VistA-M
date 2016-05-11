@@ -1,120 +1,134 @@
-IBDEI1XH ; ; 19-NOV-2015
+IBDEI1XH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32282,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,32282,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,32283,0)
- ;;=T74.01XD^^143^1517^17
- ;;^UTILITY(U,$J,358.3,32283,1,0)
+ ;;^UTILITY(U,$J,358.3,32699,1,4,0)
+ ;;=4^S91.332A
+ ;;^UTILITY(U,$J,358.3,32699,2)
+ ;;=^5044335
+ ;;^UTILITY(U,$J,358.3,32700,0)
+ ;;=S91.331A^^126^1623^30
+ ;;^UTILITY(U,$J,358.3,32700,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32283,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,32283,1,4,0)
- ;;=4^T74.01XD
- ;;^UTILITY(U,$J,358.3,32283,2)
- ;;=^5054141
- ;;^UTILITY(U,$J,358.3,32284,0)
- ;;=T76.01XA^^143^1517^18
- ;;^UTILITY(U,$J,358.3,32284,1,0)
+ ;;^UTILITY(U,$J,358.3,32700,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt ft, init enc
+ ;;^UTILITY(U,$J,358.3,32700,1,4,0)
+ ;;=4^S91.331A
+ ;;^UTILITY(U,$J,358.3,32700,2)
+ ;;=^5044332
+ ;;^UTILITY(U,$J,358.3,32701,0)
+ ;;=S91.302D^^126^1623^13
+ ;;^UTILITY(U,$J,358.3,32701,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32284,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Initial Encnter
- ;;^UTILITY(U,$J,358.3,32284,1,4,0)
- ;;=4^T76.01XA
- ;;^UTILITY(U,$J,358.3,32284,2)
- ;;=^5054215
- ;;^UTILITY(U,$J,358.3,32285,0)
- ;;=T76.01XD^^143^1517^19
- ;;^UTILITY(U,$J,358.3,32285,1,0)
+ ;;^UTILITY(U,$J,358.3,32701,1,3,0)
+ ;;=3^Open wound,lft ft,unspec,subseq enc
+ ;;^UTILITY(U,$J,358.3,32701,1,4,0)
+ ;;=4^S91.302D
+ ;;^UTILITY(U,$J,358.3,32701,2)
+ ;;=^5044318
+ ;;^UTILITY(U,$J,358.3,32702,0)
+ ;;=L85.3^^126^1624^1
+ ;;^UTILITY(U,$J,358.3,32702,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32285,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Suspected,Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,32285,1,4,0)
- ;;=4^T76.01XD
- ;;^UTILITY(U,$J,358.3,32285,2)
- ;;=^5054216
- ;;^UTILITY(U,$J,358.3,32286,0)
- ;;=Z91.412^^143^1517^7
- ;;^UTILITY(U,$J,358.3,32286,1,0)
+ ;;^UTILITY(U,$J,358.3,32702,1,3,0)
+ ;;=3^Xerosis cutis
+ ;;^UTILITY(U,$J,358.3,32702,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,32702,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,32703,0)
+ ;;=Z77.29^^126^1625^1
+ ;;^UTILITY(U,$J,358.3,32703,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32286,1,3,0)
- ;;=3^Personal Hx of Spouse or Partner Neglect
- ;;^UTILITY(U,$J,358.3,32286,1,4,0)
- ;;=4^Z91.412
- ;;^UTILITY(U,$J,358.3,32286,2)
- ;;=^5063621
- ;;^UTILITY(U,$J,358.3,32287,0)
- ;;=T74.31XA^^143^1517^20
- ;;^UTILITY(U,$J,358.3,32287,1,0)
+ ;;^UTILITY(U,$J,358.3,32703,1,3,0)
+ ;;=3^Contact w/ & (suspected) exp to oth hazardous subs
+ ;;^UTILITY(U,$J,358.3,32703,1,4,0)
+ ;;=4^Z77.29
+ ;;^UTILITY(U,$J,358.3,32703,2)
+ ;;=^5063325
+ ;;^UTILITY(U,$J,358.3,32704,0)
+ ;;=Z59.0^^126^1625^2
+ ;;^UTILITY(U,$J,358.3,32704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32287,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Initial Encnter
- ;;^UTILITY(U,$J,358.3,32287,1,4,0)
- ;;=4^T74.31XA
- ;;^UTILITY(U,$J,358.3,32287,2)
- ;;=^5054158
- ;;^UTILITY(U,$J,358.3,32288,0)
- ;;=T74.31XD^^143^1517^21
- ;;^UTILITY(U,$J,358.3,32288,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32288,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Confirmed Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,32288,1,4,0)
- ;;=4^T74.31XD
- ;;^UTILITY(U,$J,358.3,32288,2)
- ;;=^5054159
- ;;^UTILITY(U,$J,358.3,32289,0)
- ;;=T76.31XA^^143^1517^22
- ;;^UTILITY(U,$J,358.3,32289,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32289,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Initial Encnter
- ;;^UTILITY(U,$J,358.3,32289,1,4,0)
- ;;=4^T76.31XA
- ;;^UTILITY(U,$J,358.3,32289,2)
- ;;=^5054233
- ;;^UTILITY(U,$J,358.3,32290,0)
- ;;=T76.31XD^^143^1517^23
- ;;^UTILITY(U,$J,358.3,32290,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32290,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Abuse,Psychological Suspected Subsequent Encnter
- ;;^UTILITY(U,$J,358.3,32290,1,4,0)
- ;;=4^T76.31XD
- ;;^UTILITY(U,$J,358.3,32290,2)
- ;;=^5054234
- ;;^UTILITY(U,$J,358.3,32291,0)
- ;;=Z91.411^^143^1517^6
- ;;^UTILITY(U,$J,358.3,32291,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32291,1,3,0)
- ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
- ;;^UTILITY(U,$J,358.3,32291,1,4,0)
- ;;=4^Z91.411
- ;;^UTILITY(U,$J,358.3,32291,2)
- ;;=^5063620
- ;;^UTILITY(U,$J,358.3,32292,0)
- ;;=F06.4^^143^1518^6
- ;;^UTILITY(U,$J,358.3,32292,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32292,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,32292,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,32292,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,32293,0)
- ;;=F41.0^^143^1518^14
- ;;^UTILITY(U,$J,358.3,32293,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32293,1,3,0)
- ;;=3^Panic Disorder
- ;;^UTILITY(U,$J,358.3,32293,1,4,0)
- ;;=4^F41.0
- ;;^UTILITY(U,$J,358.3,32293,2)
- ;;=^5003564
- ;;^UTILITY(U,$J,358.3,32294,0)
- ;;=F41.1^^143^1518^12
+ ;;^UTILITY(U,$J,358.3,32704,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,32704,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,32704,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,32705,0)
+ ;;=90471^^127^1626^6^^^^1
+ ;;^UTILITY(U,$J,358.3,32705,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32705,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,32705,1,3,0)
+ ;;=3^Immunization Administration (use w/ Vacs below)
+ ;;^UTILITY(U,$J,358.3,32706,0)
+ ;;=90472^^127^1626^5^^^^1
+ ;;^UTILITY(U,$J,358.3,32706,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32706,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,32706,1,3,0)
+ ;;=3^Immunization Admin, ea add
+ ;;^UTILITY(U,$J,358.3,32707,0)
+ ;;=90632^^127^1626^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32707,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32707,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,32707,1,3,0)
+ ;;=3^Hepatitis A Vaccine
+ ;;^UTILITY(U,$J,358.3,32708,0)
+ ;;=90746^^127^1626^4^^^^1
+ ;;^UTILITY(U,$J,358.3,32708,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32708,1,2,0)
+ ;;=2^90746
+ ;;^UTILITY(U,$J,358.3,32708,1,3,0)
+ ;;=3^Hepatitis B Vaccine
+ ;;^UTILITY(U,$J,358.3,32709,0)
+ ;;=90636^^127^1626^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32709,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32709,1,2,0)
+ ;;=2^90636
+ ;;^UTILITY(U,$J,358.3,32709,1,3,0)
+ ;;=3^Hepatitis A&B Vaccine
+ ;;^UTILITY(U,$J,358.3,32710,0)
+ ;;=90707^^127^1626^9^^^^1
+ ;;^UTILITY(U,$J,358.3,32710,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32710,1,2,0)
+ ;;=2^90707
+ ;;^UTILITY(U,$J,358.3,32710,1,3,0)
+ ;;=3^MMR Virus
+ ;;^UTILITY(U,$J,358.3,32711,0)
+ ;;=90658^^127^1626^7^^^^1
+ ;;^UTILITY(U,$J,358.3,32711,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32711,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,32711,1,3,0)
+ ;;=3^Influenza Vaccine
+ ;;^UTILITY(U,$J,358.3,32712,0)
+ ;;=90732^^127^1626^10^^^^1
+ ;;^UTILITY(U,$J,358.3,32712,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32712,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,32712,1,3,0)
+ ;;=3^Pneumococcal Vaccine
+ ;;^UTILITY(U,$J,358.3,32713,0)
+ ;;=90715^^127^1626^12^^^^1
+ ;;^UTILITY(U,$J,358.3,32713,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32713,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,32713,1,3,0)
+ ;;=3^TDaP Vaccine
+ ;;^UTILITY(U,$J,358.3,32714,0)
+ ;;=90736^^127^1626^13^^^^1
+ ;;^UTILITY(U,$J,358.3,32714,1,0)
+ ;;=^358.31IA^3^2

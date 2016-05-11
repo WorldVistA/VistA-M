@@ -1,5 +1,5 @@
-PSJBCMA ;BIR/MV-RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;1/23/13 1:23pm
- ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308**;16 DEC 97;Build 12
+PSJBCMA ;BIR/MV - RETURN INPATIENT ACTIVE MEDS (CONDENSED) ;1/23/13 1:23pm
+ ;;5.0;INPATIENT MEDICATIONS ;**32,41,46,57,63,66,56,69,58,81,91,104,111,112,186,159,173,190,113,225,253,267,279,308,318**;16 DEC 97;Build 4
  ;
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(51 is supported by DBIA 2176.
@@ -241,6 +241,7 @@ CLINICS(CL,IGNOSND) ;IM & CO order tests                                        
  ..S PSJCNT=PSJSTRT F  Q:PSJCNT>PSJSTOP  S VAIP("D")=PSJCNT D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 S PSJCNT=$$FMADD^XLFDT(PSJCNT,1) Q:$G(PSJVAIN4)  ;check to see if patient was admitted during time frame of report
  .I 'PSJVAIN4,$G(PSBREC(2)),$G(PSBREC(0))="ADMLKUP" S VAIP("D")=PSBREC(2) D IN5^VADPT S:+VAIP("3") PSJVAIN4=1 ;return patient data for Edit med log option if patient was admitted when med log entry was recorded
  .I 'PSJVAIN4,$G(PSBPRNDT) S VAIP("D")=$P(PSBSTRT,".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1
+ .I 'PSJVAIN4,($G(PSBTYPE)="PM"),$G(PSJ("STARTDT")) S VAIP("D")=$P(PSJ("STARTDT"),".") D IN5^VADPT S:+VAIP("3") PSJVAIN4=1
  I $G(PSJVAIN4) Q:'$$CLINIC(CL) 1                          ;no valid appt date
  N A
  S A=$O(^PS(53.46,"B",+CL,"")) Q:'A 0

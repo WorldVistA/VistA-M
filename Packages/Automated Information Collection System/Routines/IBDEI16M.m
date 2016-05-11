@@ -1,136 +1,136 @@
-IBDEI16M ; ; 19-NOV-2015
+IBDEI16M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19754,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,19755,0)
- ;;=R93.5^^94^928^6
- ;;^UTILITY(U,$J,358.3,19755,1,0)
+ ;;^UTILITY(U,$J,358.3,20099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19755,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,19755,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,19755,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,19756,0)
- ;;=R93.6^^94^928^8
- ;;^UTILITY(U,$J,358.3,19756,1,0)
+ ;;^UTILITY(U,$J,358.3,20099,1,3,0)
+ ;;=3^Malig Neop Pancreas,Unspec
+ ;;^UTILITY(U,$J,358.3,20099,1,4,0)
+ ;;=4^C25.9
+ ;;^UTILITY(U,$J,358.3,20099,2)
+ ;;=^5000946
+ ;;^UTILITY(U,$J,358.3,20100,0)
+ ;;=C47.9^^84^929^146
+ ;;^UTILITY(U,$J,358.3,20100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19756,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,19756,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,19756,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,19757,0)
- ;;=R94.4^^94^928^16
- ;;^UTILITY(U,$J,358.3,19757,1,0)
+ ;;^UTILITY(U,$J,358.3,20100,1,3,0)
+ ;;=3^Malig Neop Peripheral Nerves/Autonomic Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,20100,1,4,0)
+ ;;=4^C47.9
+ ;;^UTILITY(U,$J,358.3,20100,2)
+ ;;=^5001121
+ ;;^UTILITY(U,$J,358.3,20101,0)
+ ;;=C38.4^^84^929^147
+ ;;^UTILITY(U,$J,358.3,20101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19757,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,19757,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,19757,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,19758,0)
- ;;=R94.5^^94^928^17
- ;;^UTILITY(U,$J,358.3,19758,1,0)
+ ;;^UTILITY(U,$J,358.3,20101,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,20101,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,20101,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,20102,0)
+ ;;=C61.^^84^929^148
+ ;;^UTILITY(U,$J,358.3,20102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19758,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,19758,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,19758,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,19759,0)
- ;;=R94.6^^94^928^21
- ;;^UTILITY(U,$J,358.3,19759,1,0)
+ ;;^UTILITY(U,$J,358.3,20102,1,3,0)
+ ;;=3^Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,20102,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,20102,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,20103,0)
+ ;;=C20.^^84^929^149
+ ;;^UTILITY(U,$J,358.3,20103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19759,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,19759,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,19759,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,19760,0)
- ;;=R94.7^^94^928^5
- ;;^UTILITY(U,$J,358.3,19760,1,0)
+ ;;^UTILITY(U,$J,358.3,20103,1,3,0)
+ ;;=3^Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,20103,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,20103,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,20104,0)
+ ;;=C64.1^^84^929^154
+ ;;^UTILITY(U,$J,358.3,20104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19760,1,3,0)
- ;;=3^Abnormal Endocrine Function Sutdies NEC
- ;;^UTILITY(U,$J,358.3,19760,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,19760,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,19761,0)
- ;;=R94.31^^94^928^4
- ;;^UTILITY(U,$J,358.3,19761,1,0)
+ ;;^UTILITY(U,$J,358.3,20104,1,3,0)
+ ;;=3^Malig Neop Right Kidney,Except Renal pelvis
+ ;;^UTILITY(U,$J,358.3,20104,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,20104,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,20105,0)
+ ;;=C65.1^^84^929^157
+ ;;^UTILITY(U,$J,358.3,20105,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19761,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,19761,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,19761,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,19762,0)
- ;;=R97.0^^94^928^67
- ;;^UTILITY(U,$J,358.3,19762,1,0)
+ ;;^UTILITY(U,$J,358.3,20105,1,3,0)
+ ;;=3^Malig Neop Right Renal Pelvis
+ ;;^UTILITY(U,$J,358.3,20105,1,4,0)
+ ;;=4^C65.1
+ ;;^UTILITY(U,$J,358.3,20105,2)
+ ;;=^5001251
+ ;;^UTILITY(U,$J,358.3,20106,0)
+ ;;=C62.91^^84^929^158
+ ;;^UTILITY(U,$J,358.3,20106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19762,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,19762,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,19762,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,19763,0)
- ;;=R97.1^^94^928^66
- ;;^UTILITY(U,$J,358.3,19763,1,0)
+ ;;^UTILITY(U,$J,358.3,20106,1,3,0)
+ ;;=3^Malig Neop Right Testis
+ ;;^UTILITY(U,$J,358.3,20106,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,20106,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,20107,0)
+ ;;=C17.9^^84^929^159
+ ;;^UTILITY(U,$J,358.3,20107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19763,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,19763,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,19763,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,19764,0)
- ;;=R97.2^^94^928^68
- ;;^UTILITY(U,$J,358.3,19764,1,0)
+ ;;^UTILITY(U,$J,358.3,20107,1,3,0)
+ ;;=3^Malig Neop Small Intestine,Unspec
+ ;;^UTILITY(U,$J,358.3,20107,1,4,0)
+ ;;=4^C17.9
+ ;;^UTILITY(U,$J,358.3,20107,2)
+ ;;=^5000926
+ ;;^UTILITY(U,$J,358.3,20108,0)
+ ;;=C16.9^^84^929^160
+ ;;^UTILITY(U,$J,358.3,20108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19764,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,19764,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,19764,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,19765,0)
- ;;=R97.8^^94^928^22
- ;;^UTILITY(U,$J,358.3,19765,1,0)
+ ;;^UTILITY(U,$J,358.3,20108,1,3,0)
+ ;;=3^Malig Neop Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,20108,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,20108,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,20109,0)
+ ;;=C02.9^^84^929^162
+ ;;^UTILITY(U,$J,358.3,20109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19765,1,3,0)
- ;;=3^Abnormal Tumor Markers NEC
- ;;^UTILITY(U,$J,358.3,19765,1,4,0)
- ;;=4^R97.8
- ;;^UTILITY(U,$J,358.3,19765,2)
- ;;=^5019749
- ;;^UTILITY(U,$J,358.3,19766,0)
- ;;=R93.8^^94^928^12
- ;;^UTILITY(U,$J,358.3,19766,1,0)
+ ;;^UTILITY(U,$J,358.3,20109,1,3,0)
+ ;;=3^Malig Neop Tongue,Unspec
+ ;;^UTILITY(U,$J,358.3,20109,1,4,0)
+ ;;=4^C02.9
+ ;;^UTILITY(U,$J,358.3,20109,2)
+ ;;=^5000891
+ ;;^UTILITY(U,$J,358.3,20110,0)
+ ;;=C64.9^^84^929^127
+ ;;^UTILITY(U,$J,358.3,20110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19766,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Body Structures
- ;;^UTILITY(U,$J,358.3,19766,1,4,0)
- ;;=4^R93.8
- ;;^UTILITY(U,$J,358.3,19766,2)
- ;;=^5019721
- ;;^UTILITY(U,$J,358.3,19767,0)
- ;;=R93.1^^94^928^14
- ;;^UTILITY(U,$J,358.3,19767,1,0)
+ ;;^UTILITY(U,$J,358.3,20110,1,3,0)
+ ;;=3^Malig Neop Kidney,Except Renal Pelvis,Unspec
+ ;;^UTILITY(U,$J,358.3,20110,1,4,0)
+ ;;=4^C64.9
+ ;;^UTILITY(U,$J,358.3,20110,2)
+ ;;=^5001250
+ ;;^UTILITY(U,$J,358.3,20111,0)
+ ;;=C34.92^^84^929^130
+ ;;^UTILITY(U,$J,358.3,20111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19767,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Heart/Cor Circ
- ;;^UTILITY(U,$J,358.3,19767,1,4,0)
- ;;=4^R93.1
- ;;^UTILITY(U,$J,358.3,19767,2)
- ;;=^5019714
+ ;;^UTILITY(U,$J,358.3,20111,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,20111,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,20111,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,20112,0)
+ ;;=C34.90^^84^929^116
+ ;;^UTILITY(U,$J,358.3,20112,1,0)
+ ;;=^358.31IA^4^2

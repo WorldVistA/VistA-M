@@ -1,122 +1,140 @@
-IBDEI2AL ; ; 19-NOV-2015
+IBDEI2AL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38510,0)
- ;;=Z13.850^^180^1975^19
- ;;^UTILITY(U,$J,358.3,38510,1,0)
+ ;;^UTILITY(U,$J,358.3,38886,0)
+ ;;=Z85.820^^151^1904^9
+ ;;^UTILITY(U,$J,358.3,38886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38510,1,3,0)
- ;;=3^TBI Screening
- ;;^UTILITY(U,$J,358.3,38510,1,4,0)
- ;;=4^Z13.850
- ;;^UTILITY(U,$J,358.3,38510,2)
- ;;=^5062717
- ;;^UTILITY(U,$J,358.3,38511,0)
- ;;=Z87.820^^180^1975^18
- ;;^UTILITY(U,$J,358.3,38511,1,0)
+ ;;^UTILITY(U,$J,358.3,38886,1,3,0)
+ ;;=3^Personal Hx of Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,38886,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,38886,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,38887,0)
+ ;;=Z87.2^^151^1904^12
+ ;;^UTILITY(U,$J,358.3,38887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38511,1,3,0)
- ;;=3^Personal history of traumatic brain injury
- ;;^UTILITY(U,$J,358.3,38511,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,38511,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,38512,0)
- ;;=S06.890A^^180^1975^16
- ;;^UTILITY(U,$J,358.3,38512,1,0)
+ ;;^UTILITY(U,$J,358.3,38887,1,3,0)
+ ;;=3^Personal Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,38887,1,4,0)
+ ;;=4^Z87.2
+ ;;^UTILITY(U,$J,358.3,38887,2)
+ ;;=^5063484
+ ;;^UTILITY(U,$J,358.3,38888,0)
+ ;;=L08.0^^151^1904^43
+ ;;^UTILITY(U,$J,358.3,38888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38512,1,3,0)
- ;;=3^Intcrn inj w/o LOC, init encntr
- ;;^UTILITY(U,$J,358.3,38512,1,4,0)
- ;;=4^S06.890A
- ;;^UTILITY(U,$J,358.3,38512,2)
- ;;=^5021176
- ;;^UTILITY(U,$J,358.3,38513,0)
- ;;=S06.1X5A^^180^1975^20
- ;;^UTILITY(U,$J,358.3,38513,1,0)
+ ;;^UTILITY(U,$J,358.3,38888,1,3,0)
+ ;;=3^Pyoderma
+ ;;^UTILITY(U,$J,358.3,38888,1,4,0)
+ ;;=4^L08.0
+ ;;^UTILITY(U,$J,358.3,38888,2)
+ ;;=^5009078
+ ;;^UTILITY(U,$J,358.3,38889,0)
+ ;;=L73.1^^151^1904^37
+ ;;^UTILITY(U,$J,358.3,38889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38513,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC >24 hr w ret consc lev, init
- ;;^UTILITY(U,$J,358.3,38513,1,4,0)
- ;;=4^S06.1X5A
- ;;^UTILITY(U,$J,358.3,38513,2)
- ;;=^5020711
- ;;^UTILITY(U,$J,358.3,38514,0)
- ;;=S06.1X6A^^180^1975^21
- ;;^UTILITY(U,$J,358.3,38514,1,0)
+ ;;^UTILITY(U,$J,358.3,38889,1,3,0)
+ ;;=3^Pseudofolliculitis Barbae
+ ;;^UTILITY(U,$J,358.3,38889,1,4,0)
+ ;;=4^L73.1
+ ;;^UTILITY(U,$J,358.3,38889,2)
+ ;;=^5009284
+ ;;^UTILITY(U,$J,358.3,38890,0)
+ ;;=L42.^^151^1904^16
+ ;;^UTILITY(U,$J,358.3,38890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38514,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC >24 hr w/o ret consc w surv, init
- ;;^UTILITY(U,$J,358.3,38514,1,4,0)
- ;;=4^S06.1X6A
- ;;^UTILITY(U,$J,358.3,38514,2)
- ;;=^5020714
- ;;^UTILITY(U,$J,358.3,38515,0)
- ;;=S06.1X3A^^180^1975^22
- ;;^UTILITY(U,$J,358.3,38515,1,0)
+ ;;^UTILITY(U,$J,358.3,38890,1,3,0)
+ ;;=3^Pityriasis Rosea
+ ;;^UTILITY(U,$J,358.3,38890,1,4,0)
+ ;;=4^L42.
+ ;;^UTILITY(U,$J,358.3,38890,2)
+ ;;=^94726
+ ;;^UTILITY(U,$J,358.3,38891,0)
+ ;;=L44.0^^151^1904^17
+ ;;^UTILITY(U,$J,358.3,38891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38515,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, init
- ;;^UTILITY(U,$J,358.3,38515,1,4,0)
- ;;=4^S06.1X3A
- ;;^UTILITY(U,$J,358.3,38515,2)
- ;;=^5020705
- ;;^UTILITY(U,$J,358.3,38516,0)
- ;;=S06.1X1A^^180^1975^23
- ;;^UTILITY(U,$J,358.3,38516,1,0)
+ ;;^UTILITY(U,$J,358.3,38891,1,3,0)
+ ;;=3^Pityriasis Rubra Pilaris
+ ;;^UTILITY(U,$J,358.3,38891,1,4,0)
+ ;;=4^L44.0
+ ;;^UTILITY(U,$J,358.3,38891,2)
+ ;;=^94729
+ ;;^UTILITY(U,$J,358.3,38892,0)
+ ;;=L29.0^^151^1904^31
+ ;;^UTILITY(U,$J,358.3,38892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38516,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 30 minutes or less, init
- ;;^UTILITY(U,$J,358.3,38516,1,4,0)
- ;;=4^S06.1X1A
- ;;^UTILITY(U,$J,358.3,38516,2)
- ;;=^5020699
- ;;^UTILITY(U,$J,358.3,38517,0)
- ;;=S06.1X2A^^180^1975^24
- ;;^UTILITY(U,$J,358.3,38517,1,0)
+ ;;^UTILITY(U,$J,358.3,38892,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,38892,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,38892,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,38893,0)
+ ;;=L29.1^^151^1904^33
+ ;;^UTILITY(U,$J,358.3,38893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38517,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 31-59 min, init
- ;;^UTILITY(U,$J,358.3,38517,1,4,0)
- ;;=4^S06.1X2A
- ;;^UTILITY(U,$J,358.3,38517,2)
- ;;=^5020702
- ;;^UTILITY(U,$J,358.3,38518,0)
- ;;=S06.1X4A^^180^1975^25
- ;;^UTILITY(U,$J,358.3,38518,1,0)
+ ;;^UTILITY(U,$J,358.3,38893,1,3,0)
+ ;;=3^Pruritus Scroti
+ ;;^UTILITY(U,$J,358.3,38893,1,4,0)
+ ;;=4^L29.1
+ ;;^UTILITY(U,$J,358.3,38893,2)
+ ;;=^5009150
+ ;;^UTILITY(U,$J,358.3,38894,0)
+ ;;=L29.2^^151^1904^34
+ ;;^UTILITY(U,$J,358.3,38894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38518,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 6 hours to 24 hours, init
- ;;^UTILITY(U,$J,358.3,38518,1,4,0)
- ;;=4^S06.1X4A
- ;;^UTILITY(U,$J,358.3,38518,2)
- ;;=^5020708
- ;;^UTILITY(U,$J,358.3,38519,0)
- ;;=S06.1X7A^^180^1975^27
- ;;^UTILITY(U,$J,358.3,38519,1,0)
+ ;;^UTILITY(U,$J,358.3,38894,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,38894,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,38894,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,38895,0)
+ ;;=L29.3^^151^1904^35
+ ;;^UTILITY(U,$J,358.3,38895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38519,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC w death d/t brain inj bf consc, init
- ;;^UTILITY(U,$J,358.3,38519,1,4,0)
- ;;=4^S06.1X7A
- ;;^UTILITY(U,$J,358.3,38519,2)
- ;;=^5020717
- ;;^UTILITY(U,$J,358.3,38520,0)
- ;;=S06.1X8A^^180^1975^28
- ;;^UTILITY(U,$J,358.3,38520,1,0)
+ ;;^UTILITY(U,$J,358.3,38895,1,3,0)
+ ;;=3^Pruritus,Anogenital,Unspec
+ ;;^UTILITY(U,$J,358.3,38895,1,4,0)
+ ;;=4^L29.3
+ ;;^UTILITY(U,$J,358.3,38895,2)
+ ;;=^5009151
+ ;;^UTILITY(U,$J,358.3,38896,0)
+ ;;=L29.9^^151^1904^36
+ ;;^UTILITY(U,$J,358.3,38896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38520,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC w death d/t oth cause bf consc, init
- ;;^UTILITY(U,$J,358.3,38520,1,4,0)
- ;;=4^S06.1X8A
- ;;^UTILITY(U,$J,358.3,38520,2)
- ;;=^5020720
- ;;^UTILITY(U,$J,358.3,38521,0)
- ;;=S06.1X9A^^180^1975^26
- ;;^UTILITY(U,$J,358.3,38521,1,0)
+ ;;^UTILITY(U,$J,358.3,38896,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,38896,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,38896,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,38897,0)
+ ;;=L40.0^^151^1904^40
+ ;;^UTILITY(U,$J,358.3,38897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38521,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of unsp duration, init
- ;;^UTILITY(U,$J,358.3,38521,1,4,0)
- ;;=4^S06.1X9A
+ ;;^UTILITY(U,$J,358.3,38897,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,38897,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,38897,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,38898,0)
+ ;;=L40.3^^151^1904^42
+ ;;^UTILITY(U,$J,358.3,38898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38898,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,38898,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,38898,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,38899,0)
+ ;;=L40.4^^151^1904^41
+ ;;^UTILITY(U,$J,358.3,38899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38899,1,3,0)
+ ;;=3^Psoriasis,Guttate

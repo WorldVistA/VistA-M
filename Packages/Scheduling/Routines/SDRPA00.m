@@ -1,8 +1,15 @@
-SDRPA00 ;BP-OIFO/OWAIN,ESW - Patient Appointment Information Transmission  ; 11/2/04 11:09am  ; 2/24/08 11:25am
- ;;5.3;Scheduling;**290,333,349,376,491**;Aug 13,1993;Build 53
+SDRPA00 ;BP-OIFO/OWAIN,ESW - Patient Appointment Information Transmission  ;11/2/04 11:09am;2/24/08 11:25am
+ ;;5.3;Scheduling;**290,333,349,376,491,639**;Aug 13,1993;Build 7
  ;SD/491 - calling SRPA03 instead of SDRPA04  (dupl)
+ ;SD/639 - disable manual and tasked entries
  Q
 EN ;manual entry
+ ; SD*639 Disable Manual Startup PAIT Transmission option
+ D BMES^XPDUTL("This Manual Startup PAIT Transmission option has been placed Out of Order")
+ D MES^XPDUTL("by SD*5.3*639.")
+ D MES^XPDUTL("")
+ Q
+ ;
  N SDI,Y,ZTSK,ZTRTN,ZTDESC,ZTDTH,ZTIO,ZTSAVE,RUNID,REC
  I '$$RUNCK^SDRPA02() W !,"You attempted to start PAIT outside the authorized transmission dates.",!,"Job has been terminated.",! Q
  S RUNID=$O(^SDWL(409.6,":"),-1)
@@ -21,6 +28,12 @@ EN ;manual entry
  W !!,"Task number: ",ZTSK,!
  Q
 START ;Tasked entry
+ ; SD*639 Disable Taskman PAIT Transmission option
+ D BMES^XPDUTL("This Taskman PAIT Transmission option has been placed Out of Order")
+ D MES^XPDUTL("by SD*5.3*639.")
+ D MES^XPDUTL("")
+ Q
+ ;
  N SDOUT,DFN,DFNEND,SDCNT,SDCNT0,RUNID,RUNDT,SDPREV,FIRST,SDDAM,TODAY,SD6A,SD8A,SD68,RUNIDP,SDPR,ZTSKN
  I '$$RUNCK^SDRPA02() Q  ;check scheduling
  I $G(ZTSK)="" D  Q

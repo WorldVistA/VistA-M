@@ -1,5 +1,6 @@
-IBOTR1 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - USER INTERFACE ; 5-JUN-91
- ;;2.0;INTEGRATED BILLING;**21,42,72,100,118,128**;21-MAR-94
+IBOTR1 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - USER INTERFACE ;5-JUN-91
+ ;;2.0;INTEGRATED BILLING;**21,42,72,100,118,128,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCROTR1
  ;
@@ -77,11 +78,16 @@ EXRC S DIR(0)="Y",DIR("B")="NO"
  S DIR("?")="^S IBOFF=66 D HELP^IBOTR11"
  W ! D ^DIR K DIR S IBINRC=+Y I $D(DIRUT)!$D(DTOUT)!$D(DUOUT) G END
  ;
-DEV W !!,"You will need a 132 column printer for this report!"
+ ;Select report type
+ K IBOUT
+ S IBOUT=$$OUT
+ ;
+DEV I IBOUT="R" W !!,"You will need a 132 column printer for this report!"
+ N %ZIS,ZTRTN,ZTDESC,ZTSAVE,ZTSK
  S %ZIS="QM" D ^%ZIS G:POP END
  I $D(IO("Q")) D  G END
  .S ZTRTN="^IBOTR2",ZTDESC="INSURANCE PAYMENT TREND REPORT"
- .F X="IB*","VAUTD","VAUTD(" S ZTSAVE(X)=""
+ .F X="IB*","IBOUT","VAUTD","VAUTD(" S ZTSAVE(X)=""
  .D ^%ZTLOAD W !!,$S($D(ZTSK):"This job has been queued. The task number is "_ZTSK_".",1:"Unable to queue this job.")
  .K ZTSK,IO("Q") D HOME^%ZIS
  U IO
@@ -91,3 +97,12 @@ DEV W !!,"You will need a 132 column printer for this report!"
  ;
 END K DIRUT,DTOUT,DUOUT,DIROUT
  Q
+ ;
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y

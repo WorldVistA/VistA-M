@@ -1,0 +1,79 @@
+PXVINV ;BIR/ADM - IMMUNIZATION INVENTORY REPORT ;11/05/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**210**;Aug 12, 1996;Build 21
+ ;
+EN ; entry point for inventory report
+ N C,CNT,DIC,DIR,LINE,PAGE,PXV,PXV0,PXVCT,PXVEXP,PXVHALT,PXVHDR,PXVIMM,PXVLN,PXVMAN,PXVNAME,PXVOUT,PXVPRINT,PXVSEL,PXVSTAT,PXVTITL,PXVVAC,X,Y,Z
+ S PXVOUT=0
+ W @IOF,"IMMUNIZATION INVENTORY REPORTS",!
+ K DIR S DIR("A",1)="Display/Print Which of the Following?",DIR("A",2)=""
+ S DIR("A",3)="1. All or Selected Active Inventory",DIR("A",4)="2. Active Inventory With Zero Doses Available"
+ S DIR("A",5)="",DIR("A")="Enter a number",DIR(0)="NO^1:2"
+ S DIR("?",1)=" Enter '1' to display/print all or selected active immunization inventory"
+ S DIR("?",2)=" items or enter '2' to display/print all active immunization inventory"
+ S DIR("?")=" items with zero doses in stock." D ^DIR K DIR I $D(DTOUT)!$D(DUOUT)!'Y S PXVOUT=1 D END Q
+ S PXVSEL=Y
+ I PXVSEL=2 G DEV
+ W ! K DIR S DIR("A")="Display Inventory Information for All Immunizations",DIR("B")="YES",DIR(0)="Y"
+ S DIR("?",1)=" Press ENTER to display inventory information for all immunizations or"
+ S DIR("?")=" enter 'NO' to select specific immunizations."
+ D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S PXVOUT=1 D END Q
+ I 'Y D IMM I PXVOUT D END Q
+DEV K IOP,%ZIS,POP,IO("Q") S %ZIS("A")="Display/Print on which Device: ",%ZIS="QM"
+ W ! D ^%ZIS I POP S PXVOUT=1 G END
+ I $D(IO("Q")) K IO("Q") S ZTDESC="IMMUNIZATION INVENTORY",ZTRTN="BEG^PXVINV",(ZTSAVE("PXVIMM*"),ZTSAVE("PXVSEL"))="" D ^%ZTLOAD G END
+BEG ;
+ U IO S (PXVHDR,PXVIMM,PXVOUT)=0,PAGE=1 K ^TMP("PXV",$J) S Y=DT X ^DD("DD") S PXVPRINT="DATE PRINTED: "_Y
+ S PXVTITL="ACTIVE IMMUNIZATION INVENTORY"
+ I PXVSEL=1 S PXVTITL=$S($O(PXVIMM(0)):"SELECTED",1:"ALL")_" "_PXVTITL
+ I PXVSEL=2 S PXVTITL=PXVTITL_" - ZERO DOSES AVAILABLE"
+ I $O(PXVIMM(0)) S PXVIMM=1
+ S (PXVVAC,CNT)=0 F  S PXVVAC=$O(^AUTTIML("C",PXVVAC)) Q:'PXVVAC!PXVOUT  D
+ .S PXVLN=0 F  S PXVLN=$O(^AUTTIML("C",PXVVAC,PXVLN)) Q:'PXVLN!PXVOUT  D UTIL
+ D HDR,PRINT,END
+ Q
+UTIL ;
+ S PXV0=$G(^AUTTIML(PXVLN,0)) I $P(PXV0,"^",3)=0 D
+ .S Z=$E($P($G(^AUTTIMM(PXVVAC,0)),"^"),1,80)
+ .I PXVSEL=1 D
+ ..I PXVIMM S:$D(PXVIMM(PXVVAC)) ^TMP("PXV",$J,Z,PXVLN)=PXV0,CNT=CNT+1,^TMP("PXV",$J)=CNT Q
+ ..S ^TMP("PXV",$J,Z,PXVLN)=PXV0,CNT=CNT+1,^TMP("PXV",$J)=CNT Q
+ .I PXVSEL=2,$P(PXV0,"^",12)=0 S ^TMP("PXV",$J,Z,PXVLN)=PXV0,CNT=CNT+1,^TMP("PXV",$J)=CNT
+ Q
+IMM ; select immunization(s) for display
+ W !! S PXVIMM=1 K DIC S DIC("S")="I '$P(^(0),""^"",7)",DIC=9999999.14,DIC(0)="QEAMZ",DIC("A")="Display Inventory Information for which Immunization? " D ^DIC I Y<0 S PXVOUT=1 Q
+ S PXVCT=+Y,PXVIMM(PXVCT)=+Y
+MORE ; ask for more immunizations
+ K DIC S DIC("S")="I '$P(^(0),""^"",7)",DIC=9999999.14,DIC(0)="QEAMZ",DIC("A")="Select an Additional Immunization:  " D ^DIC I Y>0 S PXVCT=+Y,PXVIMM(PXVCT)=+Y G MORE
+ Q
+PRINT ; print report
+ I $Y+5>IOSL D HDR I PXVOUT Q
+ S PXVNAME="" F  S PXVNAME=$O(^TMP("PXV",$J,PXVNAME)) Q:PXVNAME=""!PXVOUT  S PXVLN=0 F  S PXVLN=$O(^TMP("PXV",$J,PXVNAME,PXVLN)) Q:'PXVLN!PXVOUT  D INV Q:PXVOUT
+ S PXVNAME="" I $O(^TMP("PXV",$J,PXVNAME))="" W !,"NO ACTIVE IMMUNIZATION INVENTORY FOUND" I PXVSEL=2 W " WITH ZERO DOSES AVAILABLE"
+ Q
+INV ;
+ I $Y+4>IOSL D HDR I PXVOUT Q
+ S PXV0=^TMP("PXV",$J,PXVNAME,PXVLN)
+ F I=1,2,3,4,9,12 S PXV(I)=$P(PXV0,"^",I)
+ S Y=PXV(2),C=$P(^DD(9999999.41,.02,0),"^",2) D:Y'="" Y^DIQ S PXVMAN=Y
+ S Y=PXV(3),C=$P(^DD(9999999.41,.03,0),"^",2) D:Y'="" Y^DIQ S PXVSTAT=Y
+ S Y=PXV(4),C=$P(^DD(9999999.41,.04,0),"^",2) D:Y'="" Y^DIQ S PXVVAC=Y
+ S Y=PXV(9),C=$P(^DD(9999999.41,.09,0),"^",2) D:Y'="" Y^DIQ S PXVEXP=Y
+ W !,PXVVAC,!,PXV(1),?30,PXVSTAT,?45,PXV(12),?65,PXVEXP,!,PXVMAN,!
+ Q
+END I 'PXVOUT,$E(IOST)="C" W !! K DIR S DIR(0)="FOA",DIR("A")="Press Enter/Return key to continue " D ^DIR K DIR
+ W:$E(IOST)="P" @IOF K ^TMP("PXV",$J) I $D(ZTQUEUED) Q:$G(ZTSTOP)  S ZTREQ="@" Q
+ K C,CNT,DIC,DIR,LINE,PAGE,PXV,PXV0,PXVCT,PXVEXP,PXVHALT,PXVHDR,PXVIMM,PXVLN,PXVMAN,PXVNAME,PXVOUT,PXVPRINT,PXVSEL,PXVSTAT,PXVTITL,PXVVAC,X,Y,Z
+ D ^%ZISC W @IOF
+ Q
+HDR ; print heading
+ I $D(ZTQUEUED) D STOP I PXVHALT S PXVOUT=1 Q
+ I $E(IOST)'="P",PXVHDR K DIR S DIR(0)="FOA",DIR("A")="Press Enter/Return key to continue " D ^DIR K DIR I $D(DTOUT)!$D(DUOUT) S PXVOUT=1 Q
+ W @IOF,!,?(80-$L(PXVTITL)\2),PXVTITL
+ I $E(IOST)="P" W !,?(80-$L(PXVPRINT)\2),PXVPRINT,!
+ W !,"IMMUNIZATION",!,"LOT NUMBER",?30,"STATUS",?45,"DOSES UNUSED",?65,"EXPIRATION DATE",!,"MANUFACTURER",! F LINE=1:1:80 W "="
+ S PXVHDR=1
+ Q
+STOP ;
+ S PXVHALT=0 Q:'$D(^%ZIS(14.7))
+ S ZTSTOP=0 I $$S^%ZTLOAD S (PXVHALT,ZTSTOP)=1 W !!!,?10,"** Task Being Stopped at User's Request **",!!! K ZTREQ
+ Q

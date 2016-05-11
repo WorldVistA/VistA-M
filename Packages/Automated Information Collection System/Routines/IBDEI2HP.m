@@ -1,110 +1,118 @@
-IBDEI2HP ; ; 19-NOV-2015
+IBDEI2HP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41786,1,3,0)
- ;;=3^28555
- ;;^UTILITY(U,$J,358.3,41787,0)
- ;;=28570^^191^2123^28^^^^1
- ;;^UTILITY(U,$J,358.3,41787,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41787,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,41787,1,3,0)
- ;;=3^28570
- ;;^UTILITY(U,$J,358.3,41788,0)
- ;;=28575^^191^2123^29^^^^1
- ;;^UTILITY(U,$J,358.3,41788,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41788,1,2,0)
- ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,41788,1,3,0)
- ;;=3^28575
- ;;^UTILITY(U,$J,358.3,41789,0)
- ;;=28576^^191^2123^61^^^^1
- ;;^UTILITY(U,$J,358.3,41789,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41789,1,2,0)
- ;;=2^Perc Fixation Talotarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,41789,1,3,0)
- ;;=3^28576
- ;;^UTILITY(U,$J,358.3,41790,0)
- ;;=28585^^191^2123^49^^^^1
- ;;^UTILITY(U,$J,358.3,41790,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41790,1,2,0)
- ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,41790,1,3,0)
- ;;=3^28585
- ;;^UTILITY(U,$J,358.3,41791,0)
- ;;=28600^^191^2123^32^^^^1
- ;;^UTILITY(U,$J,358.3,41791,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41791,1,2,0)
- ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,41791,1,3,0)
- ;;=3^28600
- ;;^UTILITY(U,$J,358.3,41792,0)
- ;;=28606^^191^2123^65^^^^1
- ;;^UTILITY(U,$J,358.3,41792,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41792,1,2,0)
- ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,41792,1,3,0)
- ;;=3^28606
- ;;^UTILITY(U,$J,358.3,41793,0)
- ;;=28615^^191^2123^50^^^^1
- ;;^UTILITY(U,$J,358.3,41793,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41793,1,2,0)
- ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,41793,1,3,0)
- ;;=3^28615
- ;;^UTILITY(U,$J,358.3,41794,0)
- ;;=28630^^191^2123^26^^^^1
- ;;^UTILITY(U,$J,358.3,41794,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41794,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,41794,1,3,0)
- ;;=3^28630
- ;;^UTILITY(U,$J,358.3,41795,0)
- ;;=28635^^191^2123^27^^^^1
- ;;^UTILITY(U,$J,358.3,41795,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41795,1,2,0)
- ;;=2^Closed Tx of metatarsophalangeal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,41795,1,3,0)
- ;;=3^28635
- ;;^UTILITY(U,$J,358.3,41796,0)
- ;;=28636^^191^2123^60^^^^1
- ;;^UTILITY(U,$J,358.3,41796,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41796,1,2,0)
- ;;=2^Perc Fixation Metatarsophalangeal Joint Dislocation
- ;;^UTILITY(U,$J,358.3,41796,1,3,0)
- ;;=3^28636
- ;;^UTILITY(U,$J,358.3,41797,0)
- ;;=28645^^191^2123^48^^^^1
- ;;^UTILITY(U,$J,358.3,41797,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41797,1,2,0)
- ;;=2^Open Tx of metatarsophalangeal joint dislocation, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,41797,1,3,0)
- ;;=3^28645
- ;;^UTILITY(U,$J,358.3,41798,0)
- ;;=28660^^191^2123^24^^^^1
- ;;^UTILITY(U,$J,358.3,41798,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41798,1,2,0)
- ;;=2^Closed Tx of interphalangeal joint dislocation; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,41798,1,3,0)
- ;;=3^28660
- ;;^UTILITY(U,$J,358.3,41799,0)
- ;;=28665^^191^2123^25^^^^1
- ;;^UTILITY(U,$J,358.3,41799,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41799,1,2,0)
- ;;=2^Closed Tx of interphalangeal joint dislocation; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,41799,1,3,0)
- ;;=3^28665
+ ;;^UTILITY(U,$J,358.3,42225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42225,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42225,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,42225,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,42226,0)
+ ;;=S56.311A^^159^2017^56
+ ;;^UTILITY(U,$J,358.3,42226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42226,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42226,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,42226,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,42227,0)
+ ;;=S56.312A^^159^2017^35
+ ;;^UTILITY(U,$J,358.3,42227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42227,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42227,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,42227,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,42228,0)
+ ;;=S56.411A^^159^2017^44
+ ;;^UTILITY(U,$J,358.3,42228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42228,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42228,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,42228,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,42229,0)
+ ;;=S56.412A^^159^2017^24
+ ;;^UTILITY(U,$J,358.3,42229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42229,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42229,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,42229,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,42230,0)
+ ;;=S56.413A^^159^2017^52
+ ;;^UTILITY(U,$J,358.3,42230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42230,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42230,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,42230,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,42231,0)
+ ;;=S56.414A^^159^2017^32
+ ;;^UTILITY(U,$J,358.3,42231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42231,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42231,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,42231,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,42232,0)
+ ;;=S56.415A^^159^2017^54
+ ;;^UTILITY(U,$J,358.3,42232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42232,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42232,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,42232,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,42233,0)
+ ;;=S56.416A^^159^2017^34
+ ;;^UTILITY(U,$J,358.3,42233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42233,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42233,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,42233,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,42234,0)
+ ;;=S66.912A^^159^2017^22
+ ;;^UTILITY(U,$J,358.3,42234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42234,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,42234,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,42234,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,42235,0)
+ ;;=S66.911A^^159^2017^42
+ ;;^UTILITY(U,$J,358.3,42235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42235,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,42235,1,4,0)
+ ;;=4^S66.911A
+ ;;^UTILITY(U,$J,358.3,42235,2)
+ ;;=^5036531
+ ;;^UTILITY(U,$J,358.3,42236,0)
+ ;;=S63.501A^^159^2017^18
+ ;;^UTILITY(U,$J,358.3,42236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42236,1,3,0)
+ ;;=3^Sprain of Right Wrist

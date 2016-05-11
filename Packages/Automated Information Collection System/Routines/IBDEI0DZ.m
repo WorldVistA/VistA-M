@@ -1,124 +1,140 @@
-IBDEI0DZ ; ; 19-NOV-2015
+IBDEI0DZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6096,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,6097,0)
- ;;=L97.511^^40^383^127
- ;;^UTILITY(U,$J,358.3,6097,1,0)
+ ;;^UTILITY(U,$J,358.3,6425,1,4,0)
+ ;;=4^N20.9
+ ;;^UTILITY(U,$J,358.3,6425,2)
+ ;;=^5015610
+ ;;^UTILITY(U,$J,358.3,6426,0)
+ ;;=N30.81^^30^392^22
+ ;;^UTILITY(U,$J,358.3,6426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6097,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,6097,1,4,0)
- ;;=4^L97.511
- ;;^UTILITY(U,$J,358.3,6097,2)
- ;;=^5009545
- ;;^UTILITY(U,$J,358.3,6098,0)
- ;;=L97.512^^40^383^128
- ;;^UTILITY(U,$J,358.3,6098,1,0)
+ ;;^UTILITY(U,$J,358.3,6426,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Other
+ ;;^UTILITY(U,$J,358.3,6426,1,4,0)
+ ;;=4^N30.81
+ ;;^UTILITY(U,$J,358.3,6426,2)
+ ;;=^5134089
+ ;;^UTILITY(U,$J,358.3,6427,0)
+ ;;=N30.21^^30^392^23
+ ;;^UTILITY(U,$J,358.3,6427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6098,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,6098,1,4,0)
- ;;=4^L97.512
- ;;^UTILITY(U,$J,358.3,6098,2)
- ;;=^5009546
- ;;^UTILITY(U,$J,358.3,6099,0)
- ;;=L97.513^^40^383^129
- ;;^UTILITY(U,$J,358.3,6099,1,0)
+ ;;^UTILITY(U,$J,358.3,6427,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Other,Chronic
+ ;;^UTILITY(U,$J,358.3,6427,1,4,0)
+ ;;=4^N30.21
+ ;;^UTILITY(U,$J,358.3,6427,2)
+ ;;=^5134088
+ ;;^UTILITY(U,$J,358.3,6428,0)
+ ;;=N30.20^^30^392^27
+ ;;^UTILITY(U,$J,358.3,6428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6099,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,6099,1,4,0)
- ;;=4^L97.513
- ;;^UTILITY(U,$J,358.3,6099,2)
- ;;=^5009547
- ;;^UTILITY(U,$J,358.3,6100,0)
- ;;=L97.514^^40^383^130
- ;;^UTILITY(U,$J,358.3,6100,1,0)
+ ;;^UTILITY(U,$J,358.3,6428,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Other,Chronic
+ ;;^UTILITY(U,$J,358.3,6428,1,4,0)
+ ;;=4^N30.20
+ ;;^UTILITY(U,$J,358.3,6428,2)
+ ;;=^5015636
+ ;;^UTILITY(U,$J,358.3,6429,0)
+ ;;=N30.80^^30^392^26
+ ;;^UTILITY(U,$J,358.3,6429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6100,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,6100,1,4,0)
- ;;=4^L97.514
- ;;^UTILITY(U,$J,358.3,6100,2)
- ;;=^5009548
- ;;^UTILITY(U,$J,358.3,6101,0)
- ;;=L97.519^^40^383^131
- ;;^UTILITY(U,$J,358.3,6101,1,0)
+ ;;^UTILITY(U,$J,358.3,6429,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Other
+ ;;^UTILITY(U,$J,358.3,6429,1,4,0)
+ ;;=4^N30.80
+ ;;^UTILITY(U,$J,358.3,6429,2)
+ ;;=^5015641
+ ;;^UTILITY(U,$J,358.3,6430,0)
+ ;;=N30.10^^30^392^64
+ ;;^UTILITY(U,$J,358.3,6430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6101,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Foot NEC,Unspec Severity
- ;;^UTILITY(U,$J,358.3,6101,1,4,0)
- ;;=4^L97.519
- ;;^UTILITY(U,$J,358.3,6101,2)
- ;;=^5009549
- ;;^UTILITY(U,$J,358.3,6102,0)
- ;;=L97.811^^40^383^137
- ;;^UTILITY(U,$J,358.3,6102,1,0)
+ ;;^UTILITY(U,$J,358.3,6430,1,3,0)
+ ;;=3^Interstitial Cystitis,Chr,w/o Hematuria
+ ;;^UTILITY(U,$J,358.3,6430,1,4,0)
+ ;;=4^N30.10
+ ;;^UTILITY(U,$J,358.3,6430,2)
+ ;;=^5015634
+ ;;^UTILITY(U,$J,358.3,6431,0)
+ ;;=N30.11^^30^392^63
+ ;;^UTILITY(U,$J,358.3,6431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6102,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,6102,1,4,0)
- ;;=4^L97.811
- ;;^UTILITY(U,$J,358.3,6102,2)
- ;;=^5009560
- ;;^UTILITY(U,$J,358.3,6103,0)
- ;;=L97.812^^40^383^138
- ;;^UTILITY(U,$J,358.3,6103,1,0)
+ ;;^UTILITY(U,$J,358.3,6431,1,3,0)
+ ;;=3^Interstitial Cystitis,Chr,w/ Hematuria
+ ;;^UTILITY(U,$J,358.3,6431,1,4,0)
+ ;;=4^N30.11
+ ;;^UTILITY(U,$J,358.3,6431,2)
+ ;;=^5015635
+ ;;^UTILITY(U,$J,358.3,6432,0)
+ ;;=R51.^^30^393^2
+ ;;^UTILITY(U,$J,358.3,6432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6103,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,6103,1,4,0)
- ;;=4^L97.812
- ;;^UTILITY(U,$J,358.3,6103,2)
- ;;=^5009561
- ;;^UTILITY(U,$J,358.3,6104,0)
- ;;=L97.813^^40^383^139
- ;;^UTILITY(U,$J,358.3,6104,1,0)
+ ;;^UTILITY(U,$J,358.3,6432,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,6432,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,6432,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,6433,0)
+ ;;=G44.1^^30^393^9
+ ;;^UTILITY(U,$J,358.3,6433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6104,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,6104,1,4,0)
- ;;=4^L97.813
- ;;^UTILITY(U,$J,358.3,6104,2)
- ;;=^5009562
- ;;^UTILITY(U,$J,358.3,6105,0)
- ;;=L97.814^^40^383^140
- ;;^UTILITY(U,$J,358.3,6105,1,0)
+ ;;^UTILITY(U,$J,358.3,6433,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,6433,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,6433,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,6434,0)
+ ;;=G43.909^^30^393^5
+ ;;^UTILITY(U,$J,358.3,6434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6105,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,6105,1,4,0)
- ;;=4^L97.814
- ;;^UTILITY(U,$J,358.3,6105,2)
- ;;=^5009563
- ;;^UTILITY(U,$J,358.3,6106,0)
- ;;=L97.819^^40^383^141
- ;;^UTILITY(U,$J,358.3,6106,1,0)
+ ;;^UTILITY(U,$J,358.3,6434,1,3,0)
+ ;;=3^Migraine,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,6434,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,6434,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,6435,0)
+ ;;=G44.009^^30^393^1
+ ;;^UTILITY(U,$J,358.3,6435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6106,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Right Lower Leg,Unspec Severity
- ;;^UTILITY(U,$J,358.3,6106,1,4,0)
- ;;=4^L97.819
- ;;^UTILITY(U,$J,358.3,6106,2)
- ;;=^5009564
- ;;^UTILITY(U,$J,358.3,6107,0)
- ;;=L97.121^^40^383^112
- ;;^UTILITY(U,$J,358.3,6107,1,0)
+ ;;^UTILITY(U,$J,358.3,6435,1,3,0)
+ ;;=3^Cluster Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,6435,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,6435,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,6436,0)
+ ;;=G44.40^^30^393^4
+ ;;^UTILITY(U,$J,358.3,6436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6107,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Thigh,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,6107,1,4,0)
- ;;=4^L97.121
- ;;^UTILITY(U,$J,358.3,6107,2)
- ;;=^5009490
- ;;^UTILITY(U,$J,358.3,6108,0)
- ;;=L97.122^^40^383^113
- ;;^UTILITY(U,$J,358.3,6108,1,0)
+ ;;^UTILITY(U,$J,358.3,6436,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,6436,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,6436,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,6437,0)
+ ;;=G44.89^^30^393^3
+ ;;^UTILITY(U,$J,358.3,6437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6108,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Thigh,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,6108,1,4,0)
- ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,6437,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,6437,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,6437,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,6438,0)
+ ;;=G44.84^^30^393^7
+ ;;^UTILITY(U,$J,358.3,6438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6438,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,6438,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,6438,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,6439,0)
+ ;;=G44.301^^30^393^6

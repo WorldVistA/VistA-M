@@ -1,138 +1,138 @@
-IBDEI0CN ; ; 19-NOV-2015
+IBDEI0CN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5478,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,5478,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,5479,0)
- ;;=K21.9^^40^367^35
- ;;^UTILITY(U,$J,358.3,5479,1,0)
+ ;;^UTILITY(U,$J,358.3,5792,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,5792,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,5793,0)
+ ;;=I12.0^^30^384^8
+ ;;^UTILITY(U,$J,358.3,5793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5479,1,3,0)
- ;;=3^Gastro-Esophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,5479,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,5479,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,5480,0)
- ;;=K22.10^^40^367^32
- ;;^UTILITY(U,$J,358.3,5480,1,0)
+ ;;^UTILITY(U,$J,358.3,5793,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,5793,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,5793,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,5794,0)
+ ;;=I13.10^^30^384^6
+ ;;^UTILITY(U,$J,358.3,5794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5480,1,3,0)
- ;;=3^Esophagus Ulcer w/o Bleeding
- ;;^UTILITY(U,$J,358.3,5480,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,5480,2)
- ;;=^329929
- ;;^UTILITY(U,$J,358.3,5481,0)
- ;;=K22.2^^40^367^31
- ;;^UTILITY(U,$J,358.3,5481,1,0)
+ ;;^UTILITY(U,$J,358.3,5794,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,5794,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,5794,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,5795,0)
+ ;;=I13.0^^30^384^4
+ ;;^UTILITY(U,$J,358.3,5795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5481,1,3,0)
- ;;=3^Esophageal Obstruction
- ;;^UTILITY(U,$J,358.3,5481,1,4,0)
- ;;=4^K22.2
- ;;^UTILITY(U,$J,358.3,5481,2)
- ;;=^5008507
- ;;^UTILITY(U,$J,358.3,5482,0)
- ;;=K25.9^^40^367^34
- ;;^UTILITY(U,$J,358.3,5482,1,0)
+ ;;^UTILITY(U,$J,358.3,5795,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,5795,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,5795,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,5796,0)
+ ;;=I13.11^^30^384^7
+ ;;^UTILITY(U,$J,358.3,5796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5482,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,5482,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,5482,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,5483,0)
- ;;=K27.9^^40^367^87
- ;;^UTILITY(U,$J,358.3,5483,1,0)
+ ;;^UTILITY(U,$J,358.3,5796,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,5796,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,5796,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,5797,0)
+ ;;=I13.2^^30^384^5
+ ;;^UTILITY(U,$J,358.3,5797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5483,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,5483,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,5483,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,5484,0)
- ;;=K40.20^^40^367^13
- ;;^UTILITY(U,$J,358.3,5484,1,0)
+ ;;^UTILITY(U,$J,358.3,5797,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,5797,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,5797,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,5798,0)
+ ;;=I48.91^^30^384^1
+ ;;^UTILITY(U,$J,358.3,5798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5484,1,3,0)
- ;;=3^Bilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,5484,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,5484,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,5485,0)
- ;;=K40.90^^40^367^94
- ;;^UTILITY(U,$J,358.3,5485,1,0)
+ ;;^UTILITY(U,$J,358.3,5798,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,5798,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,5798,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,5799,0)
+ ;;=I48.92^^30^384^2
+ ;;^UTILITY(U,$J,358.3,5799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5485,1,3,0)
- ;;=3^Unilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,5485,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,5485,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,5486,0)
- ;;=K42.9^^40^367^93
- ;;^UTILITY(U,$J,358.3,5486,1,0)
+ ;;^UTILITY(U,$J,358.3,5799,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,5799,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,5799,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,5800,0)
+ ;;=I48.0^^30^384^12
+ ;;^UTILITY(U,$J,358.3,5800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5486,1,3,0)
- ;;=3^Umbilical Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,5486,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,5486,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,5487,0)
- ;;=K43.9^^40^367^95
- ;;^UTILITY(U,$J,358.3,5487,1,0)
+ ;;^UTILITY(U,$J,358.3,5800,1,3,0)
+ ;;=3^Paroxysmal Atrial Fibrillation
+ ;;^UTILITY(U,$J,358.3,5800,1,4,0)
+ ;;=4^I48.0
+ ;;^UTILITY(U,$J,358.3,5800,2)
+ ;;=^90473
+ ;;^UTILITY(U,$J,358.3,5801,0)
+ ;;=B07.9^^30^385^288
+ ;;^UTILITY(U,$J,358.3,5801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5487,1,3,0)
- ;;=3^Ventral Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,5487,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,5487,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,5488,0)
- ;;=K44.9^^40^367^24
- ;;^UTILITY(U,$J,358.3,5488,1,0)
+ ;;^UTILITY(U,$J,358.3,5801,1,3,0)
+ ;;=3^Viral Wart,Unspec
+ ;;^UTILITY(U,$J,358.3,5801,1,4,0)
+ ;;=4^B07.9
+ ;;^UTILITY(U,$J,358.3,5801,2)
+ ;;=^5000519
+ ;;^UTILITY(U,$J,358.3,5802,0)
+ ;;=A63.0^^30^385^34
+ ;;^UTILITY(U,$J,358.3,5802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5488,1,3,0)
- ;;=3^Diaphragmatic Hernia
- ;;^UTILITY(U,$J,358.3,5488,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,5488,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,5489,0)
- ;;=K56.49^^40^367^43
- ;;^UTILITY(U,$J,358.3,5489,1,0)
+ ;;^UTILITY(U,$J,358.3,5802,1,3,0)
+ ;;=3^Anogenital (Venereal) Warts
+ ;;^UTILITY(U,$J,358.3,5802,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,5802,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,5803,0)
+ ;;=B35.0^^30^385^279
+ ;;^UTILITY(U,$J,358.3,5803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5489,1,3,0)
- ;;=3^Impaction of Intestine NEC
- ;;^UTILITY(U,$J,358.3,5489,1,4,0)
- ;;=4^K56.49
- ;;^UTILITY(U,$J,358.3,5489,2)
- ;;=^87650
- ;;^UTILITY(U,$J,358.3,5490,0)
- ;;=K58.0^^40^367^46
- ;;^UTILITY(U,$J,358.3,5490,1,0)
+ ;;^UTILITY(U,$J,358.3,5803,1,3,0)
+ ;;=3^Tinea Barbae and Tinea Capitis
+ ;;^UTILITY(U,$J,358.3,5803,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,5803,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,5804,0)
+ ;;=B35.1^^30^385^284
+ ;;^UTILITY(U,$J,358.3,5804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5490,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,5490,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,5490,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,5491,0)
- ;;=K58.9^^40^367^47
- ;;^UTILITY(U,$J,358.3,5491,1,0)
+ ;;^UTILITY(U,$J,358.3,5804,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,5804,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,5804,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,5805,0)
+ ;;=B35.6^^30^385^281
+ ;;^UTILITY(U,$J,358.3,5805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5491,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,5491,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,5491,2)
- ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,5805,1,3,0)
+ ;;=3^Tinea Cruris
+ ;;^UTILITY(U,$J,358.3,5805,1,4,0)
+ ;;=4^B35.6
+ ;;^UTILITY(U,$J,358.3,5805,2)
+ ;;=^119711

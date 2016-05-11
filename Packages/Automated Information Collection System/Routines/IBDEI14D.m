@@ -1,138 +1,132 @@
-IBDEI14D ; ; 19-NOV-2015
+IBDEI14D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18693,1,3,0)
- ;;=3^Bladder Disorders,Other Spec
- ;;^UTILITY(U,$J,358.3,18693,1,4,0)
- ;;=4^N32.89
- ;;^UTILITY(U,$J,358.3,18693,2)
- ;;=^87989
- ;;^UTILITY(U,$J,358.3,18694,0)
- ;;=N33.^^94^912^4
- ;;^UTILITY(U,$J,358.3,18694,1,0)
+ ;;^UTILITY(U,$J,358.3,19038,0)
+ ;;=H35.413^^82^904^24
+ ;;^UTILITY(U,$J,358.3,19038,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18694,1,3,0)
- ;;=3^Bladder Disorders,Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,18694,1,4,0)
- ;;=4^N33.
- ;;^UTILITY(U,$J,358.3,18694,2)
- ;;=^5015654
- ;;^UTILITY(U,$J,358.3,18695,0)
- ;;=N34.2^^94^912^99
- ;;^UTILITY(U,$J,358.3,18695,1,0)
+ ;;^UTILITY(U,$J,358.3,19038,1,3,0)
+ ;;=3^Lattice Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,19038,1,4,0)
+ ;;=4^H35.413
+ ;;^UTILITY(U,$J,358.3,19038,2)
+ ;;=^5005673
+ ;;^UTILITY(U,$J,358.3,19039,0)
+ ;;=H35.442^^82^904^1
+ ;;^UTILITY(U,$J,358.3,19039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18695,1,3,0)
- ;;=3^Urethritis
- ;;^UTILITY(U,$J,358.3,18695,1,4,0)
- ;;=4^N34.2
- ;;^UTILITY(U,$J,358.3,18695,2)
- ;;=^88231
- ;;^UTILITY(U,$J,358.3,18696,0)
- ;;=N34.1^^94^912^100
- ;;^UTILITY(U,$J,358.3,18696,1,0)
+ ;;^UTILITY(U,$J,358.3,19039,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Left Eye
+ ;;^UTILITY(U,$J,358.3,19039,1,4,0)
+ ;;=4^H35.442
+ ;;^UTILITY(U,$J,358.3,19039,2)
+ ;;=^5005684
+ ;;^UTILITY(U,$J,358.3,19040,0)
+ ;;=H35.441^^82^904^2
+ ;;^UTILITY(U,$J,358.3,19040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18696,1,3,0)
- ;;=3^Urethritis,Nonspec
- ;;^UTILITY(U,$J,358.3,18696,1,4,0)
- ;;=4^N34.1
- ;;^UTILITY(U,$J,358.3,18696,2)
- ;;=^5015655
- ;;^UTILITY(U,$J,358.3,18697,0)
- ;;=N39.0^^94^912^104
- ;;^UTILITY(U,$J,358.3,18697,1,0)
+ ;;^UTILITY(U,$J,358.3,19040,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Right Eye
+ ;;^UTILITY(U,$J,358.3,19040,1,4,0)
+ ;;=4^H35.441
+ ;;^UTILITY(U,$J,358.3,19040,2)
+ ;;=^5005683
+ ;;^UTILITY(U,$J,358.3,19041,0)
+ ;;=H35.443^^82^904^3
+ ;;^UTILITY(U,$J,358.3,19041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18697,1,3,0)
- ;;=3^Urinary Tract Infection,Site Not Spec
- ;;^UTILITY(U,$J,358.3,18697,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,18697,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,18698,0)
- ;;=N31.0^^94^912^72
- ;;^UTILITY(U,$J,358.3,18698,1,0)
+ ;;^UTILITY(U,$J,358.3,19041,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,19041,1,4,0)
+ ;;=4^H35.443
+ ;;^UTILITY(U,$J,358.3,19041,2)
+ ;;=^5005685
+ ;;^UTILITY(U,$J,358.3,19042,0)
+ ;;=H35.52^^82^904^34
+ ;;^UTILITY(U,$J,358.3,19042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18698,1,3,0)
- ;;=3^Neuropathic Bladder,Uninhibited NEC
- ;;^UTILITY(U,$J,358.3,18698,1,4,0)
- ;;=4^N31.0
- ;;^UTILITY(U,$J,358.3,18698,2)
- ;;=^5015644
- ;;^UTILITY(U,$J,358.3,18699,0)
- ;;=R31.9^^94^912^54
- ;;^UTILITY(U,$J,358.3,18699,1,0)
+ ;;^UTILITY(U,$J,358.3,19042,1,3,0)
+ ;;=3^Pigmentary Retinal Dystrophy
+ ;;^UTILITY(U,$J,358.3,19042,1,4,0)
+ ;;=4^H35.52
+ ;;^UTILITY(U,$J,358.3,19042,2)
+ ;;=^5005697
+ ;;^UTILITY(U,$J,358.3,19043,0)
+ ;;=H35.63^^82^904^42
+ ;;^UTILITY(U,$J,358.3,19043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18699,1,3,0)
- ;;=3^Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,18699,1,4,0)
- ;;=4^R31.9
- ;;^UTILITY(U,$J,358.3,18699,2)
- ;;=^5019328
- ;;^UTILITY(U,$J,358.3,18700,0)
- ;;=R31.0^^94^912^52
- ;;^UTILITY(U,$J,358.3,18700,1,0)
+ ;;^UTILITY(U,$J,358.3,19043,1,3,0)
+ ;;=3^Retinal Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,19043,1,4,0)
+ ;;=4^H35.63
+ ;;^UTILITY(U,$J,358.3,19043,2)
+ ;;=^5005701
+ ;;^UTILITY(U,$J,358.3,19044,0)
+ ;;=H35.61^^82^904^44
+ ;;^UTILITY(U,$J,358.3,19044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18700,1,3,0)
- ;;=3^Hematuria,Gross
- ;;^UTILITY(U,$J,358.3,18700,1,4,0)
- ;;=4^R31.0
- ;;^UTILITY(U,$J,358.3,18700,2)
- ;;=^5019325
- ;;^UTILITY(U,$J,358.3,18701,0)
- ;;=R31.2^^94^912^53
- ;;^UTILITY(U,$J,358.3,18701,1,0)
+ ;;^UTILITY(U,$J,358.3,19044,1,3,0)
+ ;;=3^Retinal Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,19044,1,4,0)
+ ;;=4^H35.61
+ ;;^UTILITY(U,$J,358.3,19044,2)
+ ;;=^5005699
+ ;;^UTILITY(U,$J,358.3,19045,0)
+ ;;=H35.62^^82^904^43
+ ;;^UTILITY(U,$J,358.3,19045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18701,1,3,0)
- ;;=3^Hematuria,Microscopic
- ;;^UTILITY(U,$J,358.3,18701,1,4,0)
- ;;=4^R31.2
- ;;^UTILITY(U,$J,358.3,18701,2)
- ;;=^5019327
- ;;^UTILITY(U,$J,358.3,18702,0)
- ;;=R31.1^^94^912^51
- ;;^UTILITY(U,$J,358.3,18702,1,0)
+ ;;^UTILITY(U,$J,358.3,19045,1,3,0)
+ ;;=3^Retinal Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,19045,1,4,0)
+ ;;=4^H35.62
+ ;;^UTILITY(U,$J,358.3,19045,2)
+ ;;=^5005700
+ ;;^UTILITY(U,$J,358.3,19046,0)
+ ;;=H35.89^^82^904^41
+ ;;^UTILITY(U,$J,358.3,19046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18702,1,3,0)
- ;;=3^Hematuria,Benign Essential Microscopic
- ;;^UTILITY(U,$J,358.3,18702,1,4,0)
- ;;=4^R31.1
- ;;^UTILITY(U,$J,358.3,18702,2)
- ;;=^5019326
- ;;^UTILITY(U,$J,358.3,18703,0)
- ;;=N40.0^^94^912^30
- ;;^UTILITY(U,$J,358.3,18703,1,0)
+ ;;^UTILITY(U,$J,358.3,19046,1,3,0)
+ ;;=3^Retinal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,19046,1,4,0)
+ ;;=4^H35.89
+ ;;^UTILITY(U,$J,358.3,19046,2)
+ ;;=^5005717
+ ;;^UTILITY(U,$J,358.3,19047,0)
+ ;;=H31.003^^82^904^12
+ ;;^UTILITY(U,$J,358.3,19047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18703,1,3,0)
- ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,18703,1,4,0)
- ;;=4^N40.0
- ;;^UTILITY(U,$J,358.3,18703,2)
- ;;=^5015689
- ;;^UTILITY(U,$J,358.3,18704,0)
- ;;=N40.1^^94^912^29
- ;;^UTILITY(U,$J,358.3,18704,1,0)
+ ;;^UTILITY(U,$J,358.3,19047,1,3,0)
+ ;;=3^Chorioretinal Scars,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,19047,1,4,0)
+ ;;=4^H31.003
+ ;;^UTILITY(U,$J,358.3,19047,2)
+ ;;=^5005438
+ ;;^UTILITY(U,$J,358.3,19048,0)
+ ;;=H31.001^^82^904^16
+ ;;^UTILITY(U,$J,358.3,19048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18704,1,3,0)
- ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
- ;;^UTILITY(U,$J,358.3,18704,1,4,0)
- ;;=4^N40.1
- ;;^UTILITY(U,$J,358.3,18704,2)
- ;;=^5015690
- ;;^UTILITY(U,$J,358.3,18705,0)
- ;;=N41.0^^94^912^82
- ;;^UTILITY(U,$J,358.3,18705,1,0)
+ ;;^UTILITY(U,$J,358.3,19048,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,19048,1,4,0)
+ ;;=4^H31.001
+ ;;^UTILITY(U,$J,358.3,19048,2)
+ ;;=^5005436
+ ;;^UTILITY(U,$J,358.3,19049,0)
+ ;;=H31.002^^82^904^14
+ ;;^UTILITY(U,$J,358.3,19049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18705,1,3,0)
- ;;=3^Prostatitis,Acute
- ;;^UTILITY(U,$J,358.3,18705,1,4,0)
- ;;=4^N41.0
- ;;^UTILITY(U,$J,358.3,18705,2)
- ;;=^259106
- ;;^UTILITY(U,$J,358.3,18706,0)
- ;;=N45.1^^94^912^31
- ;;^UTILITY(U,$J,358.3,18706,1,0)
+ ;;^UTILITY(U,$J,358.3,19049,1,3,0)
+ ;;=3^Chorioretinal Scars,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,19049,1,4,0)
+ ;;=4^H31.002
+ ;;^UTILITY(U,$J,358.3,19049,2)
+ ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,19050,0)
+ ;;=H31.091^^82^904^15
+ ;;^UTILITY(U,$J,358.3,19050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18706,1,3,0)
- ;;=3^Epididymitis
- ;;^UTILITY(U,$J,358.3,18706,1,4,0)
- ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,19050,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Other
+ ;;^UTILITY(U,$J,358.3,19050,1,4,0)
+ ;;=4^H31.091

@@ -1,124 +1,126 @@
-IBDEI1Q2 ; ; 19-NOV-2015
+IBDEI1Q2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28811,0)
- ;;=W00.0XXA^^132^1339^79
- ;;^UTILITY(U,$J,358.3,28811,1,0)
+ ;;^UTILITY(U,$J,358.3,29230,2)
+ ;;=^5017205
+ ;;^UTILITY(U,$J,358.3,29231,0)
+ ;;=O40.3XX5^^115^1455^216
+ ;;^UTILITY(U,$J,358.3,29231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28811,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,28811,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,28811,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,28812,0)
- ;;=W00.0XXD^^132^1339^80
- ;;^UTILITY(U,$J,358.3,28812,1,0)
+ ;;^UTILITY(U,$J,358.3,29231,1,3,0)
+ ;;=3^Polyhydramnios, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29231,1,4,0)
+ ;;=4^O40.3XX5
+ ;;^UTILITY(U,$J,358.3,29231,2)
+ ;;=^5017206
+ ;;^UTILITY(U,$J,358.3,29232,0)
+ ;;=O41.01X0^^115^1456^44
+ ;;^UTILITY(U,$J,358.3,29232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28812,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28812,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,28812,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,28813,0)
- ;;=W00.1XXA^^132^1339^59
- ;;^UTILITY(U,$J,358.3,28813,1,0)
+ ;;^UTILITY(U,$J,358.3,29232,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,29232,1,4,0)
+ ;;=4^O41.01X0
+ ;;^UTILITY(U,$J,358.3,29232,2)
+ ;;=^5017220
+ ;;^UTILITY(U,$J,358.3,29233,0)
+ ;;=O41.01X1^^115^1456^39
+ ;;^UTILITY(U,$J,358.3,29233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28813,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,28813,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,28813,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,28814,0)
- ;;=W00.1XXD^^132^1339^60
- ;;^UTILITY(U,$J,358.3,28814,1,0)
+ ;;^UTILITY(U,$J,358.3,29233,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29233,1,4,0)
+ ;;=4^O41.01X1
+ ;;^UTILITY(U,$J,358.3,29233,2)
+ ;;=^5017221
+ ;;^UTILITY(U,$J,358.3,29234,0)
+ ;;=O41.01X2^^115^1456^40
+ ;;^UTILITY(U,$J,358.3,29234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28814,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28814,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,28814,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,28815,0)
- ;;=W00.2XXA^^132^1339^53
- ;;^UTILITY(U,$J,358.3,28815,1,0)
+ ;;^UTILITY(U,$J,358.3,29234,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29234,1,4,0)
+ ;;=4^O41.01X2
+ ;;^UTILITY(U,$J,358.3,29234,2)
+ ;;=^5017222
+ ;;^UTILITY(U,$J,358.3,29235,0)
+ ;;=O41.01X3^^115^1456^41
+ ;;^UTILITY(U,$J,358.3,29235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28815,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,28815,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,28815,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,28816,0)
- ;;=W00.2XXD^^132^1339^54
- ;;^UTILITY(U,$J,358.3,28816,1,0)
+ ;;^UTILITY(U,$J,358.3,29235,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29235,1,4,0)
+ ;;=4^O41.01X3
+ ;;^UTILITY(U,$J,358.3,29235,2)
+ ;;=^5017223
+ ;;^UTILITY(U,$J,358.3,29236,0)
+ ;;=O41.01X4^^115^1456^42
+ ;;^UTILITY(U,$J,358.3,29236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28816,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28816,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,28816,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,28817,0)
- ;;=W00.9XXA^^132^1339^25
- ;;^UTILITY(U,$J,358.3,28817,1,0)
+ ;;^UTILITY(U,$J,358.3,29236,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29236,1,4,0)
+ ;;=4^O41.01X4
+ ;;^UTILITY(U,$J,358.3,29236,2)
+ ;;=^5017224
+ ;;^UTILITY(U,$J,358.3,29237,0)
+ ;;=O41.01X5^^115^1456^43
+ ;;^UTILITY(U,$J,358.3,29237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28817,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,28817,1,4,0)
- ;;=4^W00.9XXA
- ;;^UTILITY(U,$J,358.3,28817,2)
- ;;=^5059519
- ;;^UTILITY(U,$J,358.3,28818,0)
- ;;=W00.9XXD^^132^1339^26
- ;;^UTILITY(U,$J,358.3,28818,1,0)
+ ;;^UTILITY(U,$J,358.3,29237,1,3,0)
+ ;;=3^Oligohydramnios, first trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,29237,1,4,0)
+ ;;=4^O41.01X5
+ ;;^UTILITY(U,$J,358.3,29237,2)
+ ;;=^5017225
+ ;;^UTILITY(U,$J,358.3,29238,0)
+ ;;=O41.02X0^^115^1456^50
+ ;;^UTILITY(U,$J,358.3,29238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28818,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28818,1,4,0)
- ;;=4^W00.9XXD
- ;;^UTILITY(U,$J,358.3,28818,2)
- ;;=^5059520
- ;;^UTILITY(U,$J,358.3,28819,0)
- ;;=W01.0XXA^^132^1339^87
- ;;^UTILITY(U,$J,358.3,28819,1,0)
+ ;;^UTILITY(U,$J,358.3,29238,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, not applicable or unsp
+ ;;^UTILITY(U,$J,358.3,29238,1,4,0)
+ ;;=4^O41.02X0
+ ;;^UTILITY(U,$J,358.3,29238,2)
+ ;;=^5017227
+ ;;^UTILITY(U,$J,358.3,29239,0)
+ ;;=O41.02X1^^115^1456^45
+ ;;^UTILITY(U,$J,358.3,29239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28819,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,28819,1,4,0)
- ;;=4^W01.0XXA
- ;;^UTILITY(U,$J,358.3,28819,2)
- ;;=^5059522
- ;;^UTILITY(U,$J,358.3,28820,0)
- ;;=W01.0XXD^^132^1339^88
- ;;^UTILITY(U,$J,358.3,28820,1,0)
+ ;;^UTILITY(U,$J,358.3,29239,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 1
+ ;;^UTILITY(U,$J,358.3,29239,1,4,0)
+ ;;=4^O41.02X1
+ ;;^UTILITY(U,$J,358.3,29239,2)
+ ;;=^5017228
+ ;;^UTILITY(U,$J,358.3,29240,0)
+ ;;=O41.02X2^^115^1456^46
+ ;;^UTILITY(U,$J,358.3,29240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28820,1,3,0)
- ;;=3^Fall,Same Level,From Slip/Trip w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28820,1,4,0)
- ;;=4^W01.0XXD
- ;;^UTILITY(U,$J,358.3,28820,2)
- ;;=^5059523
- ;;^UTILITY(U,$J,358.3,28821,0)
- ;;=W03.XXXA^^132^1339^85
- ;;^UTILITY(U,$J,358.3,28821,1,0)
+ ;;^UTILITY(U,$J,358.3,29240,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 2
+ ;;^UTILITY(U,$J,358.3,29240,1,4,0)
+ ;;=4^O41.02X2
+ ;;^UTILITY(U,$J,358.3,29240,2)
+ ;;=^5017229
+ ;;^UTILITY(U,$J,358.3,29241,0)
+ ;;=O41.02X3^^115^1456^47
+ ;;^UTILITY(U,$J,358.3,29241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28821,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,28821,1,4,0)
- ;;=4^W03.XXXA
- ;;^UTILITY(U,$J,358.3,28821,2)
- ;;=^5059544
- ;;^UTILITY(U,$J,358.3,28822,0)
- ;;=W03.XXXD^^132^1339^86
- ;;^UTILITY(U,$J,358.3,28822,1,0)
+ ;;^UTILITY(U,$J,358.3,29241,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 3
+ ;;^UTILITY(U,$J,358.3,29241,1,4,0)
+ ;;=4^O41.02X3
+ ;;^UTILITY(U,$J,358.3,29241,2)
+ ;;=^5017230
+ ;;^UTILITY(U,$J,358.3,29242,0)
+ ;;=O41.02X4^^115^1456^48
+ ;;^UTILITY(U,$J,358.3,29242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28822,1,3,0)
- ;;=3^Fall,Same Level d/t Collision w/ Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,28822,1,4,0)
- ;;=4^W03.XXXD
- ;;^UTILITY(U,$J,358.3,28822,2)
- ;;=^5059545
+ ;;^UTILITY(U,$J,358.3,29242,1,3,0)
+ ;;=3^Oligohydramnios, second trimester, fetus 4
+ ;;^UTILITY(U,$J,358.3,29242,1,4,0)
+ ;;=4^O41.02X4
+ ;;^UTILITY(U,$J,358.3,29242,2)
+ ;;=^5017231

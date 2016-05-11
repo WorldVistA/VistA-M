@@ -1,132 +1,128 @@
-IBDEI0XM ; ; 19-NOV-2015
+IBDEI0XM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15495,0)
- ;;=L03.124^^85^821^12
- ;;^UTILITY(U,$J,358.3,15495,1,0)
+ ;;^UTILITY(U,$J,358.3,15763,0)
+ ;;=F17.201^^58^691^10
+ ;;^UTILITY(U,$J,358.3,15763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15495,1,3,0)
- ;;=3^Acute Lymphangitis of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,15495,1,4,0)
- ;;=4^L03.124
- ;;^UTILITY(U,$J,358.3,15495,2)
- ;;=^5009040
- ;;^UTILITY(U,$J,358.3,15496,0)
- ;;=L03.222^^85^821^14
- ;;^UTILITY(U,$J,358.3,15496,1,0)
+ ;;^UTILITY(U,$J,358.3,15763,1,3,0)
+ ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,15763,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,15763,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,15764,0)
+ ;;=F17.203^^58^691^11
+ ;;^UTILITY(U,$J,358.3,15764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15496,1,3,0)
- ;;=3^Acute Lymphangitis of Neck
- ;;^UTILITY(U,$J,358.3,15496,1,4,0)
- ;;=4^L03.222
- ;;^UTILITY(U,$J,358.3,15496,2)
- ;;=^5009046
- ;;^UTILITY(U,$J,358.3,15497,0)
- ;;=L03.898^^85^821^15
- ;;^UTILITY(U,$J,358.3,15497,1,0)
+ ;;^UTILITY(U,$J,358.3,15764,1,3,0)
+ ;;=3^Nicotine Withdrawal
+ ;;^UTILITY(U,$J,358.3,15764,1,4,0)
+ ;;=4^F17.203
+ ;;^UTILITY(U,$J,358.3,15764,2)
+ ;;=^5003362
+ ;;^UTILITY(U,$J,358.3,15765,0)
+ ;;=F17.210^^58^691^4
+ ;;^UTILITY(U,$J,358.3,15765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15497,1,3,0)
- ;;=3^Acute Lymphangitis of Other Sites
- ;;^UTILITY(U,$J,358.3,15497,1,4,0)
- ;;=4^L03.898
- ;;^UTILITY(U,$J,358.3,15497,2)
- ;;=^5009066
- ;;^UTILITY(U,$J,358.3,15498,0)
- ;;=L03.325^^85^821^16
- ;;^UTILITY(U,$J,358.3,15498,1,0)
+ ;;^UTILITY(U,$J,358.3,15765,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15765,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,15765,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,15766,0)
+ ;;=F17.211^^58^691^3
+ ;;^UTILITY(U,$J,358.3,15766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15498,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,15498,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,15498,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,15499,0)
- ;;=L03.121^^85^821^17
- ;;^UTILITY(U,$J,358.3,15499,1,0)
+ ;;^UTILITY(U,$J,358.3,15766,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,15766,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,15766,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,15767,0)
+ ;;=F17.220^^58^691^2
+ ;;^UTILITY(U,$J,358.3,15767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15499,1,3,0)
- ;;=3^Acute Lymphangitis of Right Axilla
- ;;^UTILITY(U,$J,358.3,15499,1,4,0)
- ;;=4^L03.121
- ;;^UTILITY(U,$J,358.3,15499,2)
- ;;=^5009037
- ;;^UTILITY(U,$J,358.3,15500,0)
- ;;=L03.021^^85^821^18
- ;;^UTILITY(U,$J,358.3,15500,1,0)
+ ;;^UTILITY(U,$J,358.3,15767,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15767,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,15767,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,15768,0)
+ ;;=F17.221^^58^691^1
+ ;;^UTILITY(U,$J,358.3,15768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15500,1,3,0)
- ;;=3^Acute Lymphangitis of Right Finger
- ;;^UTILITY(U,$J,358.3,15500,1,4,0)
- ;;=4^L03.021
- ;;^UTILITY(U,$J,358.3,15500,2)
- ;;=^5009022
- ;;^UTILITY(U,$J,358.3,15501,0)
- ;;=L03.125^^85^821^19
- ;;^UTILITY(U,$J,358.3,15501,1,0)
+ ;;^UTILITY(U,$J,358.3,15768,1,3,0)
+ ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,15768,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,15768,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,15769,0)
+ ;;=F17.290^^58^691^5
+ ;;^UTILITY(U,$J,358.3,15769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15501,1,3,0)
- ;;=3^Acute Lymphangitis of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,15501,1,4,0)
- ;;=4^L03.125
- ;;^UTILITY(U,$J,358.3,15501,2)
- ;;=^5009041
- ;;^UTILITY(U,$J,358.3,15502,0)
- ;;=L03.041^^85^821^20
- ;;^UTILITY(U,$J,358.3,15502,1,0)
+ ;;^UTILITY(U,$J,358.3,15769,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15769,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,15769,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,15770,0)
+ ;;=F17.291^^58^691^6
+ ;;^UTILITY(U,$J,358.3,15770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15502,1,3,0)
- ;;=3^Acute Lymphangitis of Right Toe
- ;;^UTILITY(U,$J,358.3,15502,1,4,0)
- ;;=4^L03.041
- ;;^UTILITY(U,$J,358.3,15502,2)
- ;;=^5009028
- ;;^UTILITY(U,$J,358.3,15503,0)
- ;;=L03.123^^85^821^21
- ;;^UTILITY(U,$J,358.3,15503,1,0)
+ ;;^UTILITY(U,$J,358.3,15770,1,3,0)
+ ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,15770,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,15770,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,15771,0)
+ ;;=F17.208^^58^691^7
+ ;;^UTILITY(U,$J,358.3,15771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15503,1,3,0)
- ;;=3^Acute Lymphangitis of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,15503,1,4,0)
- ;;=4^L03.123
- ;;^UTILITY(U,$J,358.3,15503,2)
- ;;=^5009039
- ;;^UTILITY(U,$J,358.3,15504,0)
- ;;=L03.329^^85^821^22
- ;;^UTILITY(U,$J,358.3,15504,1,0)
+ ;;^UTILITY(U,$J,358.3,15771,1,3,0)
+ ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15771,1,4,0)
+ ;;=4^F17.208
+ ;;^UTILITY(U,$J,358.3,15771,2)
+ ;;=^5003363
+ ;;^UTILITY(U,$J,358.3,15772,0)
+ ;;=F17.209^^58^691^8
+ ;;^UTILITY(U,$J,358.3,15772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15504,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,15504,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,15504,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,15505,0)
- ;;=L03.326^^85^821^23
- ;;^UTILITY(U,$J,358.3,15505,1,0)
+ ;;^UTILITY(U,$J,358.3,15772,1,3,0)
+ ;;=3^Nicotine Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15772,1,4,0)
+ ;;=4^F17.209
+ ;;^UTILITY(U,$J,358.3,15772,2)
+ ;;=^5003364
+ ;;^UTILITY(U,$J,358.3,15773,0)
+ ;;=F14.10^^58^692^1
+ ;;^UTILITY(U,$J,358.3,15773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15505,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,15505,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,15505,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,15506,0)
- ;;=L03.129^^85^821^13
- ;;^UTILITY(U,$J,358.3,15506,1,0)
+ ;;^UTILITY(U,$J,358.3,15773,1,3,0)
+ ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,15773,1,4,0)
+ ;;=4^F14.10
+ ;;^UTILITY(U,$J,358.3,15773,2)
+ ;;=^5003239
+ ;;^UTILITY(U,$J,358.3,15774,0)
+ ;;=F14.14^^58^692^5
+ ;;^UTILITY(U,$J,358.3,15774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15506,1,3,0)
- ;;=3^Acute Lymphangitis of Limb,Unspec Part
- ;;^UTILITY(U,$J,358.3,15506,1,4,0)
- ;;=4^L03.129
- ;;^UTILITY(U,$J,358.3,15506,2)
- ;;=^5009042
- ;;^UTILITY(U,$J,358.3,15507,0)
- ;;=L03.91^^85^821^24
- ;;^UTILITY(U,$J,358.3,15507,1,0)
+ ;;^UTILITY(U,$J,358.3,15774,1,3,0)
+ ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15774,1,4,0)
+ ;;=4^F14.14
+ ;;^UTILITY(U,$J,358.3,15774,2)
+ ;;=^5003244
+ ;;^UTILITY(U,$J,358.3,15775,0)
+ ;;=F14.182^^58^692^6
+ ;;^UTILITY(U,$J,358.3,15775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15507,1,3,0)
- ;;=3^Acute Lymphangitis,Unspec
- ;;^UTILITY(U,$J,358.3,15507,1,4,0)
- ;;=4^L03.91

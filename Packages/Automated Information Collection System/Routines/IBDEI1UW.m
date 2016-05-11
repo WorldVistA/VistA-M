@@ -1,124 +1,108 @@
-IBDEI1UW ; ; 19-NOV-2015
+IBDEI1UW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31076,1,4,0)
- ;;=4^R40.2223
- ;;^UTILITY(U,$J,358.3,31076,2)
- ;;=^5019383
- ;;^UTILITY(U,$J,358.3,31077,0)
- ;;=R40.2222^^135^1390^20
- ;;^UTILITY(U,$J,358.3,31077,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31077,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
- ;;^UTILITY(U,$J,358.3,31077,1,4,0)
- ;;=4^R40.2222
- ;;^UTILITY(U,$J,358.3,31077,2)
- ;;=^5019382
- ;;^UTILITY(U,$J,358.3,31078,0)
- ;;=R40.2221^^135^1390^21
- ;;^UTILITY(U,$J,358.3,31078,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31078,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
- ;;^UTILITY(U,$J,358.3,31078,1,4,0)
- ;;=4^R40.2221
- ;;^UTILITY(U,$J,358.3,31078,2)
- ;;=^5019381
- ;;^UTILITY(U,$J,358.3,31079,0)
- ;;=R40.2220^^135^1390^22
- ;;^UTILITY(U,$J,358.3,31079,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31079,1,3,0)
- ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
- ;;^UTILITY(U,$J,358.3,31079,1,4,0)
- ;;=4^R40.2220
- ;;^UTILITY(U,$J,358.3,31079,2)
- ;;=^5019380
- ;;^UTILITY(U,$J,358.3,31080,0)
- ;;=R40.2214^^135^1390^23
- ;;^UTILITY(U,$J,358.3,31080,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31080,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,31080,1,4,0)
- ;;=4^R40.2214
- ;;^UTILITY(U,$J,358.3,31080,2)
- ;;=^5019379
- ;;^UTILITY(U,$J,358.3,31081,0)
- ;;=R40.2213^^135^1390^25
- ;;^UTILITY(U,$J,358.3,31081,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31081,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,31081,1,4,0)
- ;;=4^R40.2213
- ;;^UTILITY(U,$J,358.3,31081,2)
- ;;=^5019378
- ;;^UTILITY(U,$J,358.3,31082,0)
- ;;=R40.2212^^135^1390^24
- ;;^UTILITY(U,$J,358.3,31082,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31082,1,3,0)
- ;;=3^Coma Scale,Best Verbal,None,Emger Dept
- ;;^UTILITY(U,$J,358.3,31082,1,4,0)
- ;;=4^R40.2212
- ;;^UTILITY(U,$J,358.3,31082,2)
- ;;=^5019377
- ;;^UTILITY(U,$J,358.3,31083,0)
- ;;=R40.2344^^135^1390^6
- ;;^UTILITY(U,$J,358.3,31083,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31083,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
- ;;^UTILITY(U,$J,358.3,31083,1,4,0)
- ;;=4^R40.2344
- ;;^UTILITY(U,$J,358.3,31083,2)
- ;;=^5019419
- ;;^UTILITY(U,$J,358.3,31084,0)
- ;;=R40.2343^^135^1390^7
- ;;^UTILITY(U,$J,358.3,31084,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31084,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,31084,1,4,0)
- ;;=4^R40.2343
- ;;^UTILITY(U,$J,358.3,31084,2)
- ;;=^5019418
- ;;^UTILITY(U,$J,358.3,31085,0)
- ;;=R40.2342^^135^1390^8
- ;;^UTILITY(U,$J,358.3,31085,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31085,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
- ;;^UTILITY(U,$J,358.3,31085,1,4,0)
- ;;=4^R40.2342
- ;;^UTILITY(U,$J,358.3,31085,2)
- ;;=^5019417
- ;;^UTILITY(U,$J,358.3,31086,0)
- ;;=R40.2341^^135^1390^9
- ;;^UTILITY(U,$J,358.3,31086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31086,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
- ;;^UTILITY(U,$J,358.3,31086,1,4,0)
- ;;=4^R40.2341
- ;;^UTILITY(U,$J,358.3,31086,2)
- ;;=^5019416
- ;;^UTILITY(U,$J,358.3,31087,0)
- ;;=R40.2340^^135^1390^10
- ;;^UTILITY(U,$J,358.3,31087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31087,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,31087,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,31087,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,31088,0)
- ;;=R40.2324^^135^1390^1
- ;;^UTILITY(U,$J,358.3,31088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31088,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,31535,1,2,0)
+ ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
+ ;;^UTILITY(U,$J,358.3,31535,1,3,0)
+ ;;=3^27828
+ ;;^UTILITY(U,$J,358.3,31536,0)
+ ;;=27829^^125^1595^43^^^^1
+ ;;^UTILITY(U,$J,358.3,31536,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31536,1,2,0)
+ ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,31536,1,3,0)
+ ;;=3^27829
+ ;;^UTILITY(U,$J,358.3,31537,0)
+ ;;=28540^^125^1595^30^^^^1
+ ;;^UTILITY(U,$J,358.3,31537,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31537,1,2,0)
+ ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
+ ;;^UTILITY(U,$J,358.3,31537,1,3,0)
+ ;;=3^28540
+ ;;^UTILITY(U,$J,358.3,31538,0)
+ ;;=28545^^125^1595^31^^^^1
+ ;;^UTILITY(U,$J,358.3,31538,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31538,1,2,0)
+ ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,31538,1,3,0)
+ ;;=3^28545
+ ;;^UTILITY(U,$J,358.3,31539,0)
+ ;;=28546^^125^1595^63^^^^1
+ ;;^UTILITY(U,$J,358.3,31539,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31539,1,2,0)
+ ;;=2^Perc Fixation Tarsal Bone Dislocation
+ ;;^UTILITY(U,$J,358.3,31539,1,3,0)
+ ;;=3^28546
+ ;;^UTILITY(U,$J,358.3,31540,0)
+ ;;=28555^^125^1595^40^^^^1
+ ;;^UTILITY(U,$J,358.3,31540,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31540,1,2,0)
+ ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
+ ;;^UTILITY(U,$J,358.3,31540,1,3,0)
+ ;;=3^28555
+ ;;^UTILITY(U,$J,358.3,31541,0)
+ ;;=28570^^125^1595^28^^^^1
+ ;;^UTILITY(U,$J,358.3,31541,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31541,1,2,0)
+ ;;=2^Closed Tx of talotarsal joint dislocation; w/o anesthesia
+ ;;^UTILITY(U,$J,358.3,31541,1,3,0)
+ ;;=3^28570
+ ;;^UTILITY(U,$J,358.3,31542,0)
+ ;;=28575^^125^1595^29^^^^1
+ ;;^UTILITY(U,$J,358.3,31542,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31542,1,2,0)
+ ;;=2^Closed Tx of talotarsal joint dislocation; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,31542,1,3,0)
+ ;;=3^28575
+ ;;^UTILITY(U,$J,358.3,31543,0)
+ ;;=28576^^125^1595^61^^^^1
+ ;;^UTILITY(U,$J,358.3,31543,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31543,1,2,0)
+ ;;=2^Perc Fixation Talotarsal Joint Dislocation
+ ;;^UTILITY(U,$J,358.3,31543,1,3,0)
+ ;;=3^28576
+ ;;^UTILITY(U,$J,358.3,31544,0)
+ ;;=28585^^125^1595^49^^^^1
+ ;;^UTILITY(U,$J,358.3,31544,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31544,1,2,0)
+ ;;=2^Open Tx of talotarsal joint dislocation, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,31544,1,3,0)
+ ;;=3^28585
+ ;;^UTILITY(U,$J,358.3,31545,0)
+ ;;=28600^^125^1595^32^^^^1
+ ;;^UTILITY(U,$J,358.3,31545,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31545,1,2,0)
+ ;;=2^Closed Tx of tarsometatarsal joint dislocation; requiring anesthesia
+ ;;^UTILITY(U,$J,358.3,31545,1,3,0)
+ ;;=3^28600
+ ;;^UTILITY(U,$J,358.3,31546,0)
+ ;;=28606^^125^1595^65^^^^1
+ ;;^UTILITY(U,$J,358.3,31546,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31546,1,2,0)
+ ;;=2^Perc Fixation Tarsometatarsal Joint Dislocation
+ ;;^UTILITY(U,$J,358.3,31546,1,3,0)
+ ;;=3^28606
+ ;;^UTILITY(U,$J,358.3,31547,0)
+ ;;=28615^^125^1595^50^^^^1
+ ;;^UTILITY(U,$J,358.3,31547,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31547,1,2,0)
+ ;;=2^Open Tx of tarsometatarsal joint dislocation, with or w/o internal or external fixation
+ ;;^UTILITY(U,$J,358.3,31547,1,3,0)
+ ;;=3^28615
+ ;;^UTILITY(U,$J,358.3,31548,0)
+ ;;=28630^^125^1595^26^^^^1
+ ;;^UTILITY(U,$J,358.3,31548,1,0)
+ ;;=^358.31IA^3^2

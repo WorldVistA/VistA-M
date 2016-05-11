@@ -1,128 +1,134 @@
-IBDEI066 ; ; 19-NOV-2015
+IBDEI066 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2289,0)
- ;;=Z94.3^^19^192^27
- ;;^UTILITY(U,$J,358.3,2289,1,0)
+ ;;^UTILITY(U,$J,358.3,2558,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,2558,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,2559,0)
+ ;;=R41.844^^18^204^11
+ ;;^UTILITY(U,$J,358.3,2559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2289,1,3,0)
- ;;=3^Heart and Lungs Transplant Status
- ;;^UTILITY(U,$J,358.3,2289,1,4,0)
- ;;=4^Z94.3
- ;;^UTILITY(U,$J,358.3,2289,2)
- ;;=^5063657
- ;;^UTILITY(U,$J,358.3,2290,0)
- ;;=Z48.21^^19^192^1
- ;;^UTILITY(U,$J,358.3,2290,1,0)
+ ;;^UTILITY(U,$J,358.3,2559,1,3,0)
+ ;;=3^Cognitive Decline,Frontal Lobe/Executive Function Deficit
+ ;;^UTILITY(U,$J,358.3,2559,1,4,0)
+ ;;=4^R41.844
+ ;;^UTILITY(U,$J,358.3,2559,2)
+ ;;=^5019447
+ ;;^UTILITY(U,$J,358.3,2560,0)
+ ;;=R41.843^^18^204^12
+ ;;^UTILITY(U,$J,358.3,2560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2290,1,3,0)
- ;;=3^Aftercare Following Heart Transplant
- ;;^UTILITY(U,$J,358.3,2290,1,4,0)
- ;;=4^Z48.21
- ;;^UTILITY(U,$J,358.3,2290,2)
- ;;=^5063038
- ;;^UTILITY(U,$J,358.3,2291,0)
- ;;=Z48.280^^19^192^2
- ;;^UTILITY(U,$J,358.3,2291,1,0)
+ ;;^UTILITY(U,$J,358.3,2560,1,3,0)
+ ;;=3^Cognitive Decline,Psychomotor Deficit
+ ;;^UTILITY(U,$J,358.3,2560,1,4,0)
+ ;;=4^R41.843
+ ;;^UTILITY(U,$J,358.3,2560,2)
+ ;;=^5019446
+ ;;^UTILITY(U,$J,358.3,2561,0)
+ ;;=R41.9^^18^204^13
+ ;;^UTILITY(U,$J,358.3,2561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2291,1,3,0)
- ;;=3^Aftercare Following Heart-Lung Transplant
- ;;^UTILITY(U,$J,358.3,2291,1,4,0)
- ;;=4^Z48.280
- ;;^UTILITY(U,$J,358.3,2291,2)
- ;;=^5063042
- ;;^UTILITY(U,$J,358.3,2292,0)
- ;;=I25.10^^19^193^2
- ;;^UTILITY(U,$J,358.3,2292,1,0)
+ ;;^UTILITY(U,$J,358.3,2561,1,3,0)
+ ;;=3^Cognitive Decline,Unspec
+ ;;^UTILITY(U,$J,358.3,2561,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,2561,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,2562,0)
+ ;;=R41.842^^18^204^14
+ ;;^UTILITY(U,$J,358.3,2562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2292,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2292,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,2292,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,2293,0)
- ;;=I25.110^^19^193^3
- ;;^UTILITY(U,$J,358.3,2293,1,0)
+ ;;^UTILITY(U,$J,358.3,2562,1,3,0)
+ ;;=3^Cognitive Decline,Visuospatial Deficit
+ ;;^UTILITY(U,$J,358.3,2562,1,4,0)
+ ;;=4^R41.842
+ ;;^UTILITY(U,$J,358.3,2562,2)
+ ;;=^5019445
+ ;;^UTILITY(U,$J,358.3,2563,0)
+ ;;=G31.84^^18^204^15
+ ;;^UTILITY(U,$J,358.3,2563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2293,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/ Unstable Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2293,1,4,0)
- ;;=4^I25.110
- ;;^UTILITY(U,$J,358.3,2293,2)
- ;;=^5007108
- ;;^UTILITY(U,$J,358.3,2294,0)
- ;;=I25.111^^19^193^4
- ;;^UTILITY(U,$J,358.3,2294,1,0)
+ ;;^UTILITY(U,$J,358.3,2563,1,3,0)
+ ;;=3^Cognitive Impairment,Mild
+ ;;^UTILITY(U,$J,358.3,2563,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,2563,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,2564,0)
+ ;;=G31.83^^18^204^19
+ ;;^UTILITY(U,$J,358.3,2564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2294,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/ Ang Pctrs w/ Spasm
- ;;^UTILITY(U,$J,358.3,2294,1,4,0)
- ;;=4^I25.111
- ;;^UTILITY(U,$J,358.3,2294,2)
- ;;=^5007109
- ;;^UTILITY(U,$J,358.3,2295,0)
- ;;=I25.118^^19^193^5
- ;;^UTILITY(U,$J,358.3,2295,1,0)
+ ;;^UTILITY(U,$J,358.3,2564,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,2564,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,2564,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,2565,0)
+ ;;=G31.2^^18^204^22
+ ;;^UTILITY(U,$J,358.3,2565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2295,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2295,1,4,0)
- ;;=4^I25.118
- ;;^UTILITY(U,$J,358.3,2295,2)
- ;;=^5007110
- ;;^UTILITY(U,$J,358.3,2296,0)
- ;;=I25.119^^19^193^6
- ;;^UTILITY(U,$J,358.3,2296,1,0)
+ ;;^UTILITY(U,$J,358.3,2565,1,3,0)
+ ;;=3^Dementia,Alcohol-Related
+ ;;^UTILITY(U,$J,358.3,2565,1,4,0)
+ ;;=4^G31.2
+ ;;^UTILITY(U,$J,358.3,2565,2)
+ ;;=^5003810
+ ;;^UTILITY(U,$J,358.3,2566,0)
+ ;;=A81.09^^18^204^25
+ ;;^UTILITY(U,$J,358.3,2566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2296,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,2296,1,4,0)
- ;;=4^I25.119
- ;;^UTILITY(U,$J,358.3,2296,2)
- ;;=^5007111
- ;;^UTILITY(U,$J,358.3,2297,0)
- ;;=I25.810^^19^193^1
- ;;^UTILITY(U,$J,358.3,2297,1,0)
+ ;;^UTILITY(U,$J,358.3,2566,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,2566,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,2566,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,2567,0)
+ ;;=A81.00^^18^204^26
+ ;;^UTILITY(U,$J,358.3,2567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2297,1,3,0)
- ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
- ;;^UTILITY(U,$J,358.3,2297,1,4,0)
- ;;=4^I25.810
- ;;^UTILITY(U,$J,358.3,2297,2)
- ;;=^5007141
- ;;^UTILITY(U,$J,358.3,2298,0)
- ;;=I25.82^^19^193^10
- ;;^UTILITY(U,$J,358.3,2298,1,0)
+ ;;^UTILITY(U,$J,358.3,2567,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2567,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,2567,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,2568,0)
+ ;;=A81.01^^18^204^27
+ ;;^UTILITY(U,$J,358.3,2568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2298,1,3,0)
- ;;=3^Total Occlusion of Coronary Artery,Chronic
- ;;^UTILITY(U,$J,358.3,2298,1,4,0)
- ;;=4^I25.82
- ;;^UTILITY(U,$J,358.3,2298,2)
- ;;=^335262
- ;;^UTILITY(U,$J,358.3,2299,0)
- ;;=I25.83^^19^193^8
- ;;^UTILITY(U,$J,358.3,2299,1,0)
+ ;;^UTILITY(U,$J,358.3,2568,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,2568,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,2568,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,2569,0)
+ ;;=G31.9^^18^204^28
+ ;;^UTILITY(U,$J,358.3,2569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2299,1,3,0)
- ;;=3^Coronary Atherosclerosis d/t Lipid Rich Plaque
- ;;^UTILITY(U,$J,358.3,2299,1,4,0)
- ;;=4^I25.83
- ;;^UTILITY(U,$J,358.3,2299,2)
- ;;=^336601
- ;;^UTILITY(U,$J,358.3,2300,0)
- ;;=I25.84^^19^193^7
- ;;^UTILITY(U,$J,358.3,2300,1,0)
+ ;;^UTILITY(U,$J,358.3,2569,1,3,0)
+ ;;=3^Dementia,Degenerative Disease Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,2569,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,2569,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,2570,0)
+ ;;=G10.^^18^204^45
+ ;;^UTILITY(U,$J,358.3,2570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2300,1,3,0)
- ;;=3^Coronary Atherosclerosis d/t Calcified Coronary Lesion
- ;;^UTILITY(U,$J,358.3,2300,1,4,0)
- ;;=4^I25.84
- ;;^UTILITY(U,$J,358.3,2300,2)
- ;;=^340518
- ;;^UTILITY(U,$J,358.3,2301,0)
- ;;=I25.89^^19^193^9
- ;;^UTILITY(U,$J,358.3,2301,1,0)
+ ;;^UTILITY(U,$J,358.3,2570,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,2570,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,2570,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,2571,0)
+ ;;=G94.^^18^204^24
+ ;;^UTILITY(U,$J,358.3,2571,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2571,1,3,0)
+ ;;=3^Dementia,Brain Disorder in Diseases Classified Elsewhere

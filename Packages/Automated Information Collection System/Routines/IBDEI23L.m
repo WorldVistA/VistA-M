@@ -1,134 +1,126 @@
-IBDEI23L ; ; 19-NOV-2015
+IBDEI23L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35206,1,0)
+ ;;^UTILITY(U,$J,358.3,35583,0)
+ ;;=N07.7^^134^1726^6
+ ;;^UTILITY(U,$J,358.3,35583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35206,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Severe Stage
- ;;^UTILITY(U,$J,358.3,35206,1,4,0)
- ;;=4^H40.11X3
- ;;^UTILITY(U,$J,358.3,35206,2)
- ;;=^5005756
- ;;^UTILITY(U,$J,358.3,35207,0)
- ;;=H40.11X4^^163^1794^4
- ;;^UTILITY(U,$J,358.3,35207,1,0)
+ ;;^UTILITY(U,$J,358.3,35583,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Diffuse Crescentic Glomerular NEC
+ ;;^UTILITY(U,$J,358.3,35583,1,4,0)
+ ;;=4^N07.7
+ ;;^UTILITY(U,$J,358.3,35583,2)
+ ;;=^5015566
+ ;;^UTILITY(U,$J,358.3,35584,0)
+ ;;=N07.1^^134^1726^7
+ ;;^UTILITY(U,$J,358.3,35584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35207,1,3,0)
- ;;=3^Glaucoma,Primary Open-Angle,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,35207,1,4,0)
- ;;=4^H40.11X4
- ;;^UTILITY(U,$J,358.3,35207,2)
- ;;=^5005757
- ;;^UTILITY(U,$J,358.3,35208,0)
- ;;=H11.33^^163^1794^1
- ;;^UTILITY(U,$J,358.3,35208,1,0)
+ ;;^UTILITY(U,$J,358.3,35584,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Focal/Segmental Glomerular Lesions NEC
+ ;;^UTILITY(U,$J,358.3,35584,1,4,0)
+ ;;=4^N07.1
+ ;;^UTILITY(U,$J,358.3,35584,2)
+ ;;=^5015560
+ ;;^UTILITY(U,$J,358.3,35585,0)
+ ;;=N07.0^^134^1726^8
+ ;;^UTILITY(U,$J,358.3,35585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35208,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,35208,1,4,0)
- ;;=4^H11.33
- ;;^UTILITY(U,$J,358.3,35208,2)
- ;;=^5004784
- ;;^UTILITY(U,$J,358.3,35209,0)
- ;;=H11.31^^163^1794^3
- ;;^UTILITY(U,$J,358.3,35209,1,0)
+ ;;^UTILITY(U,$J,358.3,35585,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Minor Glomerular Abnormality NEC
+ ;;^UTILITY(U,$J,358.3,35585,1,4,0)
+ ;;=4^N07.0
+ ;;^UTILITY(U,$J,358.3,35585,2)
+ ;;=^5015559
+ ;;^UTILITY(U,$J,358.3,35586,0)
+ ;;=N07.8^^134^1726^9
+ ;;^UTILITY(U,$J,358.3,35586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35209,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,35209,1,4,0)
- ;;=4^H11.31
- ;;^UTILITY(U,$J,358.3,35209,2)
- ;;=^5004782
- ;;^UTILITY(U,$J,358.3,35210,0)
- ;;=H11.32^^163^1794^2
- ;;^UTILITY(U,$J,358.3,35210,1,0)
+ ;;^UTILITY(U,$J,358.3,35586,1,3,0)
+ ;;=3^Hereditary Nephropathy w/ Morphologic Lesions NEC
+ ;;^UTILITY(U,$J,358.3,35586,1,4,0)
+ ;;=4^N07.8
+ ;;^UTILITY(U,$J,358.3,35586,2)
+ ;;=^5015567
+ ;;^UTILITY(U,$J,358.3,35587,0)
+ ;;=N41.9^^134^1726^10
+ ;;^UTILITY(U,$J,358.3,35587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35210,1,3,0)
- ;;=3^Conjunctival Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,35210,1,4,0)
- ;;=4^H11.32
- ;;^UTILITY(U,$J,358.3,35210,2)
- ;;=^5004783
- ;;^UTILITY(U,$J,358.3,35211,0)
- ;;=H61.23^^163^1794^12
- ;;^UTILITY(U,$J,358.3,35211,1,0)
+ ;;^UTILITY(U,$J,358.3,35587,1,3,0)
+ ;;=3^Inflammatory Prostate Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,35587,1,4,0)
+ ;;=4^N41.9
+ ;;^UTILITY(U,$J,358.3,35587,2)
+ ;;=^5015694
+ ;;^UTILITY(U,$J,358.3,35588,0)
+ ;;=N06.6^^134^1726^11
+ ;;^UTILITY(U,$J,358.3,35588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35211,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral
- ;;^UTILITY(U,$J,358.3,35211,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,35211,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,35212,0)
- ;;=H61.22^^163^1794^13
- ;;^UTILITY(U,$J,358.3,35212,1,0)
+ ;;^UTILITY(U,$J,358.3,35588,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Dense Deposit Disease
+ ;;^UTILITY(U,$J,358.3,35588,1,4,0)
+ ;;=4^N06.6
+ ;;^UTILITY(U,$J,358.3,35588,2)
+ ;;=^5015555
+ ;;^UTILITY(U,$J,358.3,35589,0)
+ ;;=N06.7^^134^1726^12
+ ;;^UTILITY(U,$J,358.3,35589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35212,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,35212,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,35212,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,35213,0)
- ;;=H66.91^^163^1794^17
- ;;^UTILITY(U,$J,358.3,35213,1,0)
+ ;;^UTILITY(U,$J,358.3,35589,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Diffuse Crescentic Glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,35589,1,4,0)
+ ;;=4^N06.7
+ ;;^UTILITY(U,$J,358.3,35589,2)
+ ;;=^5015556
+ ;;^UTILITY(U,$J,358.3,35590,0)
+ ;;=N06.1^^134^1726^13
+ ;;^UTILITY(U,$J,358.3,35590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35213,1,3,0)
- ;;=3^Otitis Media,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35213,1,4,0)
- ;;=4^H66.91
- ;;^UTILITY(U,$J,358.3,35213,2)
- ;;=^5006640
- ;;^UTILITY(U,$J,358.3,35214,0)
- ;;=H66.92^^163^1794^16
- ;;^UTILITY(U,$J,358.3,35214,1,0)
+ ;;^UTILITY(U,$J,358.3,35590,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Focal/Segmental Glomerular Lesions
+ ;;^UTILITY(U,$J,358.3,35590,1,4,0)
+ ;;=4^N06.1
+ ;;^UTILITY(U,$J,358.3,35590,2)
+ ;;=^5015550
+ ;;^UTILITY(U,$J,358.3,35591,0)
+ ;;=N06.0^^134^1726^14
+ ;;^UTILITY(U,$J,358.3,35591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35214,1,3,0)
- ;;=3^Otitis Media,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35214,1,4,0)
- ;;=4^H66.92
- ;;^UTILITY(U,$J,358.3,35214,2)
- ;;=^5006641
- ;;^UTILITY(U,$J,358.3,35215,0)
- ;;=H66.93^^163^1794^15
- ;;^UTILITY(U,$J,358.3,35215,1,0)
+ ;;^UTILITY(U,$J,358.3,35591,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Minor Glomerular Abnormality
+ ;;^UTILITY(U,$J,358.3,35591,1,4,0)
+ ;;=4^N06.0
+ ;;^UTILITY(U,$J,358.3,35591,2)
+ ;;=^5015549
+ ;;^UTILITY(U,$J,358.3,35592,0)
+ ;;=N06.8^^134^1726^15
+ ;;^UTILITY(U,$J,358.3,35592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35215,1,3,0)
- ;;=3^Otitis Media,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,35215,1,4,0)
- ;;=4^H66.93
- ;;^UTILITY(U,$J,358.3,35215,2)
- ;;=^5006642
- ;;^UTILITY(U,$J,358.3,35216,0)
- ;;=H91.91^^163^1794^11
- ;;^UTILITY(U,$J,358.3,35216,1,0)
+ ;;^UTILITY(U,$J,358.3,35592,1,3,0)
+ ;;=3^Isolated Proteinuria w/ Morphologic Lesion
+ ;;^UTILITY(U,$J,358.3,35592,1,4,0)
+ ;;=4^N06.8
+ ;;^UTILITY(U,$J,358.3,35592,2)
+ ;;=^5015557
+ ;;^UTILITY(U,$J,358.3,35593,0)
+ ;;=N14.3^^134^1726^24
+ ;;^UTILITY(U,$J,358.3,35593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35216,1,3,0)
- ;;=3^Hearing Loss,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35216,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,35216,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,35217,0)
- ;;=H91.92^^163^1794^10
- ;;^UTILITY(U,$J,358.3,35217,1,0)
+ ;;^UTILITY(U,$J,358.3,35593,1,3,0)
+ ;;=3^Nephropathy Induced by Heavy Metals
+ ;;^UTILITY(U,$J,358.3,35593,1,4,0)
+ ;;=4^N14.3
+ ;;^UTILITY(U,$J,358.3,35593,2)
+ ;;=^5015593
+ ;;^UTILITY(U,$J,358.3,35594,0)
+ ;;=N14.1^^134^1726^23
+ ;;^UTILITY(U,$J,358.3,35594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35217,1,3,0)
- ;;=3^Hearing Loss,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,35217,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,35217,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,35218,0)
- ;;=H91.93^^163^1794^9
- ;;^UTILITY(U,$J,358.3,35218,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35218,1,3,0)
- ;;=3^Hearing Loss,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,35218,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,35218,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,35219,0)
- ;;=H61.21^^163^1794^14
+ ;;^UTILITY(U,$J,358.3,35594,1,3,0)
+ ;;=3^Nephropathy Induced by Drug/Meds/Biol Subst
+ ;;^UTILITY(U,$J,358.3,35594,1,4,0)
+ ;;=4^N14.1
+ ;;^UTILITY(U,$J,358.3,35594,2)
+ ;;=^5015591
+ ;;^UTILITY(U,$J,358.3,35595,0)
+ ;;=N29.^^134^1726^16

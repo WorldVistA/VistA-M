@@ -1,5 +1,5 @@
 PSOREJU2 ;BIRM/MFR - BPS (ECME) - Clinical Rejects Utilities (1) ;10/15/04
- ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421**;DEC 1997;Build 15
+ ;;7.0;OUTPATIENT PHARMACY;**148,260,287,341,290,358,359,385,403,421,427**;DEC 1997;Build 21
  ;Reference to $$DIVNCPDP^BPSBUTL supported by IA 4719
  ;Reference to File 9002313.23 - BPS NCPDP REASON FOR SERVICE CODE supported by IA 4714
  ;
@@ -13,6 +13,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  ;                       "PAYER MESSAGE" - Message returned by the payer
  ;                       "REASON" - Reject Reason description (from payer)
  ;                       "INSURANCE NAME" - Patient's Insurance Company Name
+ ;                       "INSURANCE POINTER" - Patient Insurance Company Pointer
  ;                       "COB" - Coordination of Benefits
  ;                       "GROUP NAME" - Patient's Insurance Group Name
  ;                       "GROUP NUMBER" - Patient's Insurance Group Number
@@ -77,6 +78,7 @@ GET(RX,RFL,REJDATA,REJID,OKCL,CODE,RRRFLG) ; get reject data from subfile 52.25
  . S REJDATA(IDX,"REASON")=$G(REJFLD(3))
  . S REJDATA(IDX,"PHARMACIST")=$G(REJFLD(4))
  . S REJDATA(IDX,"INSURANCE NAME")=$G(REJFLD(20))
+ . S REJDATA(IDX,"INSURANCE POINTER")=$G(REJFLD(33))  ;PSO*427
  . S REJDATA(IDX,"COB")=$G(REJFLD(27))
  . S REJDATA(IDX,"GROUP NAME")=$G(REJFLD(6))
  . S REJDATA(IDX,"GROUP NUMBER")=$G(REJFLD(21))

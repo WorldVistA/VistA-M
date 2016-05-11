@@ -1,130 +1,128 @@
-IBDEI0US ; ; 19-NOV-2015
+IBDEI0US ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14167,1,4,0)
- ;;=4^H54.2
- ;;^UTILITY(U,$J,358.3,14167,2)
- ;;=^5006361
- ;;^UTILITY(U,$J,358.3,14168,0)
- ;;=H54.3^^82^773^8
- ;;^UTILITY(U,$J,358.3,14168,1,0)
+ ;;^UTILITY(U,$J,358.3,14436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14168,1,3,0)
- ;;=3^Unqualified Visual Loss,Both Eyes
- ;;^UTILITY(U,$J,358.3,14168,1,4,0)
- ;;=4^H54.3
- ;;^UTILITY(U,$J,358.3,14168,2)
- ;;=^268886
- ;;^UTILITY(U,$J,358.3,14169,0)
- ;;=H54.41^^82^773^5
- ;;^UTILITY(U,$J,358.3,14169,1,0)
+ ;;^UTILITY(U,$J,358.3,14436,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,14436,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,14436,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,14437,0)
+ ;;=F14.23^^53^607^22
+ ;;^UTILITY(U,$J,358.3,14437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14169,1,3,0)
- ;;=3^Blindness-Right Eye/Normal Vision-Left Eye
- ;;^UTILITY(U,$J,358.3,14169,1,4,0)
- ;;=4^H54.41
- ;;^UTILITY(U,$J,358.3,14169,2)
- ;;=^5006363
- ;;^UTILITY(U,$J,358.3,14170,0)
- ;;=H54.42^^82^773^3
- ;;^UTILITY(U,$J,358.3,14170,1,0)
+ ;;^UTILITY(U,$J,358.3,14437,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,14437,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,14437,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,14438,0)
+ ;;=F14.229^^53^607^19
+ ;;^UTILITY(U,$J,358.3,14438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14170,1,3,0)
- ;;=3^Blindness-Left Eye/Normal Vision-Right Eye
- ;;^UTILITY(U,$J,358.3,14170,1,4,0)
- ;;=4^H54.42
- ;;^UTILITY(U,$J,358.3,14170,2)
- ;;=^5133518
- ;;^UTILITY(U,$J,358.3,14171,0)
- ;;=H54.7^^82^773^9
- ;;^UTILITY(U,$J,358.3,14171,1,0)
+ ;;^UTILITY(U,$J,358.3,14438,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,14438,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,14438,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,14439,0)
+ ;;=F14.222^^53^607^17
+ ;;^UTILITY(U,$J,358.3,14439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14171,1,3,0)
- ;;=3^Visual Loss,Unspec
- ;;^UTILITY(U,$J,358.3,14171,1,4,0)
- ;;=4^H54.7
- ;;^UTILITY(U,$J,358.3,14171,2)
- ;;=^5006368
- ;;^UTILITY(U,$J,358.3,14172,0)
- ;;=H54.8^^82^773^6
- ;;^UTILITY(U,$J,358.3,14172,1,0)
+ ;;^UTILITY(U,$J,358.3,14439,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,14439,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,14439,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,14440,0)
+ ;;=F14.221^^53^607^16
+ ;;^UTILITY(U,$J,358.3,14440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14172,1,3,0)
- ;;=3^Legal Blindness,as Defined in USA
- ;;^UTILITY(U,$J,358.3,14172,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,14172,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,14173,0)
- ;;=E11.9^^82^774^26
- ;;^UTILITY(U,$J,358.3,14173,1,0)
+ ;;^UTILITY(U,$J,358.3,14440,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,14440,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,14440,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,14441,0)
+ ;;=F14.220^^53^607^18
+ ;;^UTILITY(U,$J,358.3,14441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14173,1,3,0)
- ;;=3^DM Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,14173,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,14173,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,14174,0)
- ;;=E11.39^^82^774^15
- ;;^UTILITY(U,$J,358.3,14174,1,0)
+ ;;^UTILITY(U,$J,358.3,14441,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14441,1,4,0)
+ ;;=4^F14.220
+ ;;^UTILITY(U,$J,358.3,14441,2)
+ ;;=^5003255
+ ;;^UTILITY(U,$J,358.3,14442,0)
+ ;;=F14.20^^53^607^23
+ ;;^UTILITY(U,$J,358.3,14442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14174,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complications
- ;;^UTILITY(U,$J,358.3,14174,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,14174,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,14175,0)
- ;;=E11.36^^82^774^14
- ;;^UTILITY(U,$J,358.3,14175,1,0)
+ ;;^UTILITY(U,$J,358.3,14442,1,3,0)
+ ;;=3^Cocaine Dependence,Uncompicated
+ ;;^UTILITY(U,$J,358.3,14442,1,4,0)
+ ;;=4^F14.20
+ ;;^UTILITY(U,$J,358.3,14442,2)
+ ;;=^5003253
+ ;;^UTILITY(U,$J,358.3,14443,0)
+ ;;=F10.120^^53^607^1
+ ;;^UTILITY(U,$J,358.3,14443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14175,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,14175,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,14175,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,14176,0)
- ;;=E11.359^^82^774^20
- ;;^UTILITY(U,$J,358.3,14176,1,0)
+ ;;^UTILITY(U,$J,358.3,14443,1,3,0)
+ ;;=3^Alcohol Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14443,1,4,0)
+ ;;=4^F10.120
+ ;;^UTILITY(U,$J,358.3,14443,2)
+ ;;=^5003069
+ ;;^UTILITY(U,$J,358.3,14444,0)
+ ;;=F10.10^^53^607^2
+ ;;^UTILITY(U,$J,358.3,14444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14176,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14176,1,4,0)
- ;;=4^E11.359
- ;;^UTILITY(U,$J,358.3,14176,2)
- ;;=^5002641
- ;;^UTILITY(U,$J,358.3,14177,0)
- ;;=E11.351^^82^774^21
- ;;^UTILITY(U,$J,358.3,14177,1,0)
+ ;;^UTILITY(U,$J,358.3,14444,1,3,0)
+ ;;=3^Alcohol Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14444,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,14444,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,14445,0)
+ ;;=F17.201^^53^607^28
+ ;;^UTILITY(U,$J,358.3,14445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14177,1,3,0)
- ;;=3^DM Type 2 w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14177,1,4,0)
- ;;=4^E11.351
- ;;^UTILITY(U,$J,358.3,14177,2)
- ;;=^5002640
- ;;^UTILITY(U,$J,358.3,14178,0)
- ;;=E11.349^^82^774^22
- ;;^UTILITY(U,$J,358.3,14178,1,0)
+ ;;^UTILITY(U,$J,358.3,14445,1,3,0)
+ ;;=3^Nicotine Dependence In Remission,Unspec
+ ;;^UTILITY(U,$J,358.3,14445,1,4,0)
+ ;;=4^F17.201
+ ;;^UTILITY(U,$J,358.3,14445,2)
+ ;;=^5003361
+ ;;^UTILITY(U,$J,358.3,14446,0)
+ ;;=F17.210^^53^607^27
+ ;;^UTILITY(U,$J,358.3,14446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14178,1,3,0)
- ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14178,1,4,0)
- ;;=4^E11.349
- ;;^UTILITY(U,$J,358.3,14178,2)
- ;;=^5002639
- ;;^UTILITY(U,$J,358.3,14179,0)
- ;;=E11.341^^82^774^23
- ;;^UTILITY(U,$J,358.3,14179,1,0)
+ ;;^UTILITY(U,$J,358.3,14446,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,14446,1,4,0)
+ ;;=4^F17.210
+ ;;^UTILITY(U,$J,358.3,14446,2)
+ ;;=^5003365
+ ;;^UTILITY(U,$J,358.3,14447,0)
+ ;;=F17.291^^53^607^29
+ ;;^UTILITY(U,$J,358.3,14447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14179,1,3,0)
- ;;=3^DM Type 2 w/ Severe NonProlif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14179,1,4,0)
- ;;=4^E11.341
- ;;^UTILITY(U,$J,358.3,14179,2)
- ;;=^5002638
- ;;^UTILITY(U,$J,358.3,14180,0)
- ;;=E11.339^^82^774^18
+ ;;^UTILITY(U,$J,358.3,14447,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,In Remission
+ ;;^UTILITY(U,$J,358.3,14447,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,14447,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,14448,0)
+ ;;=F17.290^^53^607^30
+ ;;^UTILITY(U,$J,358.3,14448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14448,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated

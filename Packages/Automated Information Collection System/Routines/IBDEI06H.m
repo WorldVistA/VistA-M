@@ -1,132 +1,140 @@
-IBDEI06H ; ; 19-NOV-2015
+IBDEI06H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2431,1,4,0)
- ;;=4^I70.561
- ;;^UTILITY(U,$J,358.3,2431,2)
- ;;=^5007717
- ;;^UTILITY(U,$J,358.3,2432,0)
- ;;=I70.562^^19^203^44
- ;;^UTILITY(U,$J,358.3,2432,1,0)
+ ;;^UTILITY(U,$J,358.3,2703,1,4,0)
+ ;;=4^K59.9
+ ;;^UTILITY(U,$J,358.3,2703,2)
+ ;;=^5008744
+ ;;^UTILITY(U,$J,358.3,2704,0)
+ ;;=K63.9^^18^206^64
+ ;;^UTILITY(U,$J,358.3,2704,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2432,1,3,0)
- ;;=3^Athscl Nonautologous Bio Bypass of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,2432,1,4,0)
- ;;=4^I70.562
- ;;^UTILITY(U,$J,358.3,2432,2)
- ;;=^5007718
- ;;^UTILITY(U,$J,358.3,2433,0)
- ;;=I70.563^^19^203^42
- ;;^UTILITY(U,$J,358.3,2433,1,0)
+ ;;^UTILITY(U,$J,358.3,2704,1,3,0)
+ ;;=3^Intestinal Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2704,1,4,0)
+ ;;=4^K63.9
+ ;;^UTILITY(U,$J,358.3,2704,2)
+ ;;=^5008768
+ ;;^UTILITY(U,$J,358.3,2705,0)
+ ;;=K58.0^^18^206^62
+ ;;^UTILITY(U,$J,358.3,2705,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2433,1,3,0)
- ;;=3^Athscl Nonautologous Bio Bypass of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,2433,1,4,0)
- ;;=4^I70.563
- ;;^UTILITY(U,$J,358.3,2433,2)
- ;;=^5007719
- ;;^UTILITY(U,$J,358.3,2434,0)
- ;;=I70.511^^19^203^47
- ;;^UTILITY(U,$J,358.3,2434,1,0)
+ ;;^UTILITY(U,$J,358.3,2705,1,3,0)
+ ;;=3^IBS w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,2705,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,2705,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,2706,0)
+ ;;=K58.9^^18^206^63
+ ;;^UTILITY(U,$J,358.3,2706,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2434,1,3,0)
- ;;=3^Athscl Nonautologous Bio Bypass of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,2434,1,4,0)
- ;;=4^I70.511
- ;;^UTILITY(U,$J,358.3,2434,2)
- ;;=^5007692
- ;;^UTILITY(U,$J,358.3,2435,0)
- ;;=I70.512^^19^203^45
- ;;^UTILITY(U,$J,358.3,2435,1,0)
+ ;;^UTILITY(U,$J,358.3,2706,1,3,0)
+ ;;=3^IBS w/o Diarrhea
+ ;;^UTILITY(U,$J,358.3,2706,1,4,0)
+ ;;=4^K58.9
+ ;;^UTILITY(U,$J,358.3,2706,2)
+ ;;=^5008740
+ ;;^UTILITY(U,$J,358.3,2707,0)
+ ;;=K90.9^^18^206^66
+ ;;^UTILITY(U,$J,358.3,2707,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2435,1,3,0)
- ;;=3^Athscl Nonautologous Bio Bypass of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,2435,1,4,0)
- ;;=4^I70.512
- ;;^UTILITY(U,$J,358.3,2435,2)
- ;;=^5007693
- ;;^UTILITY(U,$J,358.3,2436,0)
- ;;=I70.513^^19^203^43
- ;;^UTILITY(U,$J,358.3,2436,1,0)
+ ;;^UTILITY(U,$J,358.3,2707,1,3,0)
+ ;;=3^Malabsorption,Intestinal,Unspec
+ ;;^UTILITY(U,$J,358.3,2707,1,4,0)
+ ;;=4^K90.9
+ ;;^UTILITY(U,$J,358.3,2707,2)
+ ;;=^5008899
+ ;;^UTILITY(U,$J,358.3,2708,0)
+ ;;=K86.9^^18^206^67
+ ;;^UTILITY(U,$J,358.3,2708,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2436,1,3,0)
- ;;=3^Athscl Nonautologous Bio Bypass of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,2436,1,4,0)
- ;;=4^I70.513
- ;;^UTILITY(U,$J,358.3,2436,2)
- ;;=^5007694
- ;;^UTILITY(U,$J,358.3,2437,0)
- ;;=I70.8^^19^203^15
- ;;^UTILITY(U,$J,358.3,2437,1,0)
+ ;;^UTILITY(U,$J,358.3,2708,1,3,0)
+ ;;=3^Pancreas Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2708,1,4,0)
+ ;;=4^K86.9
+ ;;^UTILITY(U,$J,358.3,2708,2)
+ ;;=^5008892
+ ;;^UTILITY(U,$J,358.3,2709,0)
+ ;;=K85.9^^18^206^68
+ ;;^UTILITY(U,$J,358.3,2709,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2437,1,3,0)
- ;;=3^Atherosclerosis of Oth Arteries
- ;;^UTILITY(U,$J,358.3,2437,1,4,0)
- ;;=4^I70.8
- ;;^UTILITY(U,$J,358.3,2437,2)
- ;;=^5007783
- ;;^UTILITY(U,$J,358.3,2438,0)
- ;;=I71.00^^19^203^62
- ;;^UTILITY(U,$J,358.3,2438,1,0)
+ ;;^UTILITY(U,$J,358.3,2709,1,3,0)
+ ;;=3^Pancreatitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,2709,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,2709,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,2710,0)
+ ;;=Z87.11^^18^206^69
+ ;;^UTILITY(U,$J,358.3,2710,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2438,1,3,0)
- ;;=3^Dissection of Aorta,Unspec Site
- ;;^UTILITY(U,$J,358.3,2438,1,4,0)
- ;;=4^I71.00
- ;;^UTILITY(U,$J,358.3,2438,2)
- ;;=^35660
- ;;^UTILITY(U,$J,358.3,2439,0)
- ;;=I71.01^^19^203^63
- ;;^UTILITY(U,$J,358.3,2439,1,0)
+ ;;^UTILITY(U,$J,358.3,2710,1,3,0)
+ ;;=3^Personal Hx of PUD
+ ;;^UTILITY(U,$J,358.3,2710,1,4,0)
+ ;;=4^Z87.11
+ ;;^UTILITY(U,$J,358.3,2710,2)
+ ;;=^5063482
+ ;;^UTILITY(U,$J,358.3,2711,0)
+ ;;=D73.9^^18^206^70
+ ;;^UTILITY(U,$J,358.3,2711,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2439,1,3,0)
- ;;=3^Dissection of Thoracic Aorta
- ;;^UTILITY(U,$J,358.3,2439,1,4,0)
- ;;=4^I71.01
- ;;^UTILITY(U,$J,358.3,2439,2)
- ;;=^303289
- ;;^UTILITY(U,$J,358.3,2440,0)
- ;;=I71.02^^19^203^61
- ;;^UTILITY(U,$J,358.3,2440,1,0)
+ ;;^UTILITY(U,$J,358.3,2711,1,3,0)
+ ;;=3^Spleen Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,2711,1,4,0)
+ ;;=4^D73.9
+ ;;^UTILITY(U,$J,358.3,2711,2)
+ ;;=^5002386
+ ;;^UTILITY(U,$J,358.3,2712,0)
+ ;;=K26.7^^18^206^71
+ ;;^UTILITY(U,$J,358.3,2712,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2440,1,3,0)
- ;;=3^Dissection of Abdominal Aorta
- ;;^UTILITY(U,$J,358.3,2440,1,4,0)
- ;;=4^I71.02
- ;;^UTILITY(U,$J,358.3,2440,2)
- ;;=^303290
- ;;^UTILITY(U,$J,358.3,2441,0)
- ;;=I71.03^^19^203^64
- ;;^UTILITY(U,$J,358.3,2441,1,0)
+ ;;^UTILITY(U,$J,358.3,2712,1,3,0)
+ ;;=3^Ulcer,Chronic Duodenal w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,2712,1,4,0)
+ ;;=4^K26.7
+ ;;^UTILITY(U,$J,358.3,2712,2)
+ ;;=^5008526
+ ;;^UTILITY(U,$J,358.3,2713,0)
+ ;;=K25.7^^18^206^72
+ ;;^UTILITY(U,$J,358.3,2713,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2441,1,3,0)
- ;;=3^Dissection of Thoracoabdominal Aorta
- ;;^UTILITY(U,$J,358.3,2441,1,4,0)
- ;;=4^I71.03
- ;;^UTILITY(U,$J,358.3,2441,2)
- ;;=^303291
- ;;^UTILITY(U,$J,358.3,2442,0)
- ;;=I71.1^^19^203^87
- ;;^UTILITY(U,$J,358.3,2442,1,0)
+ ;;^UTILITY(U,$J,358.3,2713,1,3,0)
+ ;;=3^Ulcer,Chronic Gastric w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,2713,1,4,0)
+ ;;=4^K25.7
+ ;;^UTILITY(U,$J,358.3,2713,2)
+ ;;=^5008521
+ ;;^UTILITY(U,$J,358.3,2714,0)
+ ;;=K27.7^^18^206^73
+ ;;^UTILITY(U,$J,358.3,2714,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2442,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,2442,1,4,0)
- ;;=4^I71.1
- ;;^UTILITY(U,$J,358.3,2442,2)
- ;;=^5007786
- ;;^UTILITY(U,$J,358.3,2443,0)
- ;;=I71.2^^19^203^88
- ;;^UTILITY(U,$J,358.3,2443,1,0)
+ ;;^UTILITY(U,$J,358.3,2714,1,3,0)
+ ;;=3^Ulcer,Chronic Peptic w/o Hemorrhage/Perforation
+ ;;^UTILITY(U,$J,358.3,2714,1,4,0)
+ ;;=4^K27.7
+ ;;^UTILITY(U,$J,358.3,2714,2)
+ ;;=^5008535
+ ;;^UTILITY(U,$J,358.3,2715,0)
+ ;;=D55.9^^18^207^1
+ ;;^UTILITY(U,$J,358.3,2715,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2443,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,2443,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,2443,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,2444,0)
- ;;=I71.3^^19^203^1
- ;;^UTILITY(U,$J,358.3,2444,1,0)
+ ;;^UTILITY(U,$J,358.3,2715,1,3,0)
+ ;;=3^Anemia d/t Enzyme Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2715,1,4,0)
+ ;;=4^D55.9
+ ;;^UTILITY(U,$J,358.3,2715,2)
+ ;;=^5002304
+ ;;^UTILITY(U,$J,358.3,2716,0)
+ ;;=D63.1^^18^207^2
+ ;;^UTILITY(U,$J,358.3,2716,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2716,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,2716,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,2716,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,2717,0)
+ ;;=D63.0^^18^207^3

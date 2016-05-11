@@ -1,5 +1,5 @@
-ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;10:42 AM  6 Sep 1998
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394**;Dec 17, 1997;Build 5
+ORWDXM4 ; SLC/KCM - Order Dialogs, Menus;10:42 AM  6 Sep 1998 ;12/16/14  10:07
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,215,296,280,394,350**;Dec 17, 1997;Build 77
  ;
 SETUP ; -- setup dialog (continued from ORWDXM1)
  ;    if xfer med order, setup ORDIALOG differently
@@ -26,11 +26,11 @@ SETUPS ; -- setup for specific types of dialogs (continued from ORWDXM1)
  . S ORCAT="I"
  I ORCAT="O",$D(OREVENT("EFFECTIVE")),(ORDG=+$O(^ORD(100.98,"B","O RX",0))) D
  . S ORDIALOG($O(^ORD(101.41,"B",X,0)),1)=OREVENT("EFFECTIVE")
- ;p394 force interactive dialog for imaging QO for female of child-bearing age. 
+ ;p394 force interactive dialog for imaging QO for female of child-bearing age.
  N ORRAORD S ORRAORD=0 ;set is radiology flag to false (0)
  I ORDIALOG=$O(^ORD(101.41,"B","RA OERR EXAM",0)) D
  . N ORPRMPT1,ORPRMPT2,ORCODE S ORRAORD=1
- . Q:($G(ORTYPE)'="Q")!($G(ORSEX)'="F") 
+ . Q:($G(ORTYPE)'="Q")!($G(ORSEX)'="F")
  . S ORPRMPT1=$O(^ORD(101.41,"B","OR GTX PREGNANT",0)),ORPRMPT2=$P($G(ORDIALOG(ORPRMPT1)),"^")
  . S ORCODE=$G(^ORD(101.41,ORDIALOG,10,ORPRMPT2,7)) N Y S Y="Y" X ORCODE K ORCODE
  . S:Y="Y" ORWPSWRG="" ;
@@ -39,7 +39,9 @@ SETUPS ; -- setup for specific types of dialogs (continued from ORWDXM1)
  I ORDIALOG=$O(^ORD(101.41,"B","FHW1",0))                 D DO^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","FHW2",0))                 D EL^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PSJ OR PAT OE",0))        D UD^ORWDXM2 G XENV
+ I ORDIALOG=$O(^ORD(101.41,"B","PSJ OR CLINIC OE",0))        D UD^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",0)) D IV^ORWDXM2 G XENV
+ I ORDIALOG=$O(^ORD(101.41,"B","CLINIC OR PAT FLUID OE",0)) D IV^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PSO OERR",0))             D OP^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PSO SUPPLY",0))           D OP^ORWDXM2 G XENV
  I ORDIALOG=$O(^ORD(101.41,"B","PS MEDS",0))              D PS^ORWDPS3 G XENV

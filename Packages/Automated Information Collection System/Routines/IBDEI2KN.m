@@ -1,124 +1,136 @@
-IBDEI2KN ; ; 19-NOV-2015
+IBDEI2KN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43131,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w ret consc lev, sequela
- ;;^UTILITY(U,$J,358.3,43131,1,4,0)
- ;;=4^S06.6X5S
- ;;^UTILITY(U,$J,358.3,43131,2)
- ;;=^5021103
- ;;^UTILITY(U,$J,358.3,43132,0)
- ;;=S06.6X6S^^195^2167^58
- ;;^UTILITY(U,$J,358.3,43132,1,0)
+ ;;^UTILITY(U,$J,358.3,43633,0)
+ ;;=C49.9^^167^2085^51
+ ;;^UTILITY(U,$J,358.3,43633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43132,1,3,0)
- ;;=3^Traum subrac hem w LOC >24 hr w/o ret consc w surv, sequela
- ;;^UTILITY(U,$J,358.3,43132,1,4,0)
- ;;=4^S06.6X6S
- ;;^UTILITY(U,$J,358.3,43132,2)
- ;;=^5021106
- ;;^UTILITY(U,$J,358.3,43133,0)
- ;;=S06.6X7S^^195^2167^69
- ;;^UTILITY(U,$J,358.3,43133,1,0)
+ ;;^UTILITY(U,$J,358.3,43633,1,3,0)
+ ;;=3^Malig Neop Connective & Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,43633,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,43633,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,43634,0)
+ ;;=E11.9^^167^2085^19
+ ;;^UTILITY(U,$J,358.3,43634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43133,1,3,0)
- ;;=3^Traum subrac hem w LOC w death d/t brain inj bf consc, sqla
- ;;^UTILITY(U,$J,358.3,43133,1,4,0)
- ;;=4^S06.6X7S
- ;;^UTILITY(U,$J,358.3,43133,2)
- ;;=^5021109
- ;;^UTILITY(U,$J,358.3,43134,0)
- ;;=S06.6X8S^^195^2167^72
- ;;^UTILITY(U,$J,358.3,43134,1,0)
+ ;;^UTILITY(U,$J,358.3,43634,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,43634,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,43634,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,43635,0)
+ ;;=E10.9^^167^2085^18
+ ;;^UTILITY(U,$J,358.3,43635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43134,1,3,0)
- ;;=3^Traum subrac hem w LOC w death d/t oth cause bf consc, sqla
- ;;^UTILITY(U,$J,358.3,43134,1,4,0)
- ;;=4^S06.6X8S
- ;;^UTILITY(U,$J,358.3,43134,2)
- ;;=^5021112
- ;;^UTILITY(U,$J,358.3,43135,0)
- ;;=S06.6X9S^^195^2167^67
- ;;^UTILITY(U,$J,358.3,43135,1,0)
+ ;;^UTILITY(U,$J,358.3,43635,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,43635,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,43635,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,43636,0)
+ ;;=D50.0^^167^2085^48
+ ;;^UTILITY(U,$J,358.3,43636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43135,1,3,0)
- ;;=3^Traum subrac hem w LOC of unsp duration, sequela
- ;;^UTILITY(U,$J,358.3,43135,1,4,0)
- ;;=4^S06.6X9S
- ;;^UTILITY(U,$J,358.3,43135,2)
- ;;=^5021115
- ;;^UTILITY(U,$J,358.3,43136,0)
- ;;=S06.890A^^195^2167^41
- ;;^UTILITY(U,$J,358.3,43136,1,0)
+ ;;^UTILITY(U,$J,358.3,43636,1,3,0)
+ ;;=3^Iron Deficiency Anemia d/t Blood Loss
+ ;;^UTILITY(U,$J,358.3,43636,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,43636,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,43637,0)
+ ;;=D62.^^167^2085^6
+ ;;^UTILITY(U,$J,358.3,43637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43136,1,3,0)
- ;;=3^Intcran inj w/o LOC, init encntr
- ;;^UTILITY(U,$J,358.3,43136,1,4,0)
- ;;=4^S06.890A
- ;;^UTILITY(U,$J,358.3,43136,2)
- ;;=^5021176
- ;;^UTILITY(U,$J,358.3,43137,0)
- ;;=S06.891A^^195^2167^35
- ;;^UTILITY(U,$J,358.3,43137,1,0)
+ ;;^UTILITY(U,$J,358.3,43637,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,43637,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,43637,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,43638,0)
+ ;;=D64.9^^167^2085^8
+ ;;^UTILITY(U,$J,358.3,43638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43137,1,3,0)
- ;;=3^Intcran inj w LOC of 30 minutes or less, init
- ;;^UTILITY(U,$J,358.3,43137,1,4,0)
- ;;=4^S06.891A
- ;;^UTILITY(U,$J,358.3,43137,2)
- ;;=^5021179
- ;;^UTILITY(U,$J,358.3,43138,0)
- ;;=S06.892A^^195^2167^36
- ;;^UTILITY(U,$J,358.3,43138,1,0)
+ ;;^UTILITY(U,$J,358.3,43638,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,43638,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,43638,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,43639,0)
+ ;;=F03.90^^167^2085^17
+ ;;^UTILITY(U,$J,358.3,43639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43138,1,3,0)
- ;;=3^Intcran inj w LOC of 31-59 min, init
- ;;^UTILITY(U,$J,358.3,43138,1,4,0)
- ;;=4^S06.892A
- ;;^UTILITY(U,$J,358.3,43138,2)
- ;;=^5021182
- ;;^UTILITY(U,$J,358.3,43139,0)
- ;;=S06.894A^^195^2167^37
- ;;^UTILITY(U,$J,358.3,43139,1,0)
+ ;;^UTILITY(U,$J,358.3,43639,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturb,Unspec
+ ;;^UTILITY(U,$J,358.3,43639,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,43639,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,43640,0)
+ ;;=G30.9^^167^2085^7
+ ;;^UTILITY(U,$J,358.3,43640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43139,1,3,0)
- ;;=3^Intcran inj w LOC of 6 hours to 24 hours, init
- ;;^UTILITY(U,$J,358.3,43139,1,4,0)
- ;;=4^S06.894A
- ;;^UTILITY(U,$J,358.3,43139,2)
- ;;=^5021188
- ;;^UTILITY(U,$J,358.3,43140,0)
- ;;=S06.895A^^195^2167^33
- ;;^UTILITY(U,$J,358.3,43140,1,0)
+ ;;^UTILITY(U,$J,358.3,43640,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,43640,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,43640,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,43641,0)
+ ;;=I10.^^167^2085^43
+ ;;^UTILITY(U,$J,358.3,43641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43140,1,3,0)
- ;;=3^Intcran inj w LOC >24 hr w ret consc lev, init
- ;;^UTILITY(U,$J,358.3,43140,1,4,0)
- ;;=4^S06.895A
- ;;^UTILITY(U,$J,358.3,43140,2)
- ;;=^5021191
- ;;^UTILITY(U,$J,358.3,43141,0)
- ;;=S06.896A^^195^2167^34
- ;;^UTILITY(U,$J,358.3,43141,1,0)
+ ;;^UTILITY(U,$J,358.3,43641,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,43641,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,43641,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,43642,0)
+ ;;=G45.9^^167^2085^66
+ ;;^UTILITY(U,$J,358.3,43642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43141,1,3,0)
- ;;=3^Intcran inj w LOC >24 hr w/o ret consc w surv, init
- ;;^UTILITY(U,$J,358.3,43141,1,4,0)
- ;;=4^S06.896A
- ;;^UTILITY(U,$J,358.3,43141,2)
- ;;=^5021194
- ;;^UTILITY(U,$J,358.3,43142,0)
- ;;=S06.897A^^195^2167^40
- ;;^UTILITY(U,$J,358.3,43142,1,0)
+ ;;^UTILITY(U,$J,358.3,43642,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec
+ ;;^UTILITY(U,$J,358.3,43642,1,4,0)
+ ;;=4^G45.9
+ ;;^UTILITY(U,$J,358.3,43642,2)
+ ;;=^5003959
+ ;;^UTILITY(U,$J,358.3,43643,0)
+ ;;=K85.9^^167^2085^5
+ ;;^UTILITY(U,$J,358.3,43643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43142,1,3,0)
- ;;=3^Intcran inj w LOC w death due to brain injury bf consc, init
- ;;^UTILITY(U,$J,358.3,43142,1,4,0)
- ;;=4^S06.897A
- ;;^UTILITY(U,$J,358.3,43142,2)
- ;;=^5021197
- ;;^UTILITY(U,$J,358.3,43143,0)
- ;;=S06.898A^^195^2167^39
- ;;^UTILITY(U,$J,358.3,43143,1,0)
+ ;;^UTILITY(U,$J,358.3,43643,1,3,0)
+ ;;=3^Acute Pancreatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,43643,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,43643,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,43644,0)
+ ;;=N18.4^^167^2085^14
+ ;;^UTILITY(U,$J,358.3,43644,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43644,1,3,0)
+ ;;=3^Chronic Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,43644,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,43644,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,43645,0)
+ ;;=R40.3^^167^2085^57
+ ;;^UTILITY(U,$J,358.3,43645,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43645,1,3,0)
+ ;;=3^Persistent Vegetative State
+ ;;^UTILITY(U,$J,358.3,43645,1,4,0)
+ ;;=4^R40.3
+ ;;^UTILITY(U,$J,358.3,43645,2)
+ ;;=^5019434
+ ;;^UTILITY(U,$J,358.3,43646,0)
+ ;;=R44.3^^167^2085^38

@@ -1,136 +1,146 @@
-IBDEI02Y ; ; 19-NOV-2015
+IBDEI02Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,620,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,621,0)
- ;;=F03.90^^6^76^15
- ;;^UTILITY(U,$J,358.3,621,1,0)
+ ;;^UTILITY(U,$J,358.3,924,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,621,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,621,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,621,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,622,0)
- ;;=F01.51^^6^76^30
- ;;^UTILITY(U,$J,358.3,622,1,0)
+ ;;^UTILITY(U,$J,358.3,924,1,3,0)
+ ;;=3^Hepatitis B w/o Hepatic Coma
+ ;;^UTILITY(U,$J,358.3,924,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,924,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,925,0)
+ ;;=B17.10^^6^104^17
+ ;;^UTILITY(U,$J,358.3,925,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,622,1,3,0)
- ;;=3^Vascular Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,622,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,622,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,623,0)
- ;;=F01.50^^6^76^31
- ;;^UTILITY(U,$J,358.3,623,1,0)
+ ;;^UTILITY(U,$J,358.3,925,1,3,0)
+ ;;=3^Hepatitis C w/o Hepatic Coma,Acute
+ ;;^UTILITY(U,$J,358.3,925,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,925,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,926,0)
+ ;;=B18.2^^6^104^18
+ ;;^UTILITY(U,$J,358.3,926,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,623,1,3,0)
- ;;=3^Vascular Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,623,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,623,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,624,0)
- ;;=A81.9^^6^76^6
- ;;^UTILITY(U,$J,358.3,624,1,0)
+ ;;^UTILITY(U,$J,358.3,926,1,3,0)
+ ;;=3^Hepatitis C,Chr
+ ;;^UTILITY(U,$J,358.3,926,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,926,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,927,0)
+ ;;=E03.9^^6^104^31
+ ;;^UTILITY(U,$J,358.3,927,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,624,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,624,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,624,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,625,0)
- ;;=A81.09^^6^76^8
- ;;^UTILITY(U,$J,358.3,625,1,0)
+ ;;^UTILITY(U,$J,358.3,927,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,927,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,927,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,928,0)
+ ;;=E16.2^^6^104^28
+ ;;^UTILITY(U,$J,358.3,928,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,625,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease NEC
- ;;^UTILITY(U,$J,358.3,625,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,625,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,626,0)
- ;;=A81.00^^6^76^9
- ;;^UTILITY(U,$J,358.3,626,1,0)
+ ;;^UTILITY(U,$J,358.3,928,1,3,0)
+ ;;=3^Hypoglycemia,Unspec
+ ;;^UTILITY(U,$J,358.3,928,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,928,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,929,0)
+ ;;=E78.0^^6^104^21
+ ;;^UTILITY(U,$J,358.3,929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,626,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,626,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,626,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,627,0)
- ;;=A81.01^^6^76^10
- ;;^UTILITY(U,$J,358.3,627,1,0)
+ ;;^UTILITY(U,$J,358.3,929,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,929,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,929,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,930,0)
+ ;;=E78.1^^6^104^23
+ ;;^UTILITY(U,$J,358.3,930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,627,1,3,0)
- ;;=3^Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,627,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,627,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,628,0)
- ;;=A81.89^^6^76^7
- ;;^UTILITY(U,$J,358.3,628,1,0)
+ ;;^UTILITY(U,$J,358.3,930,1,3,0)
+ ;;=3^Hyperglyceridemia,Pure
+ ;;^UTILITY(U,$J,358.3,930,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,930,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,931,0)
+ ;;=E78.5^^6^104^26
+ ;;^UTILITY(U,$J,358.3,931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,628,1,3,0)
- ;;=3^Atypical Virus Infections of CNS NEC
- ;;^UTILITY(U,$J,358.3,628,1,4,0)
- ;;=4^A81.89
- ;;^UTILITY(U,$J,358.3,628,2)
- ;;=^5000413
- ;;^UTILITY(U,$J,358.3,629,0)
- ;;=A81.2^^6^76^27
- ;;^UTILITY(U,$J,358.3,629,1,0)
+ ;;^UTILITY(U,$J,358.3,931,1,3,0)
+ ;;=3^Hyperlipidemia,Unspec
+ ;;^UTILITY(U,$J,358.3,931,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,931,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,932,0)
+ ;;=E78.4^^6^104^25
+ ;;^UTILITY(U,$J,358.3,932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,629,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,629,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,629,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,630,0)
- ;;=B20.^^6^76^17
- ;;^UTILITY(U,$J,358.3,630,1,0)
+ ;;^UTILITY(U,$J,358.3,932,1,3,0)
+ ;;=3^Hyperlipidemia,Other
+ ;;^UTILITY(U,$J,358.3,932,1,4,0)
+ ;;=4^E78.4
+ ;;^UTILITY(U,$J,358.3,932,2)
+ ;;=^5002968
+ ;;^UTILITY(U,$J,358.3,933,0)
+ ;;=E87.1^^6^104^27
+ ;;^UTILITY(U,$J,358.3,933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,630,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,630,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,630,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,631,0)
- ;;=B20.^^6^76^18
- ;;^UTILITY(U,$J,358.3,631,1,0)
+ ;;^UTILITY(U,$J,358.3,933,1,3,0)
+ ;;=3^Hypo-osmolatlity & Hyponatremia
+ ;;^UTILITY(U,$J,358.3,933,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,933,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,934,0)
+ ;;=E87.5^^6^104^24
+ ;;^UTILITY(U,$J,358.3,934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,631,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,631,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,631,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,632,0)
- ;;=F10.27^^6^76^1
- ;;^UTILITY(U,$J,358.3,632,1,0)
+ ;;^UTILITY(U,$J,358.3,934,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,934,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,934,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,935,0)
+ ;;=E87.6^^6^104^29
+ ;;^UTILITY(U,$J,358.3,935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,632,1,3,0)
- ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
- ;;^UTILITY(U,$J,358.3,632,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,632,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,633,0)
- ;;=F19.97^^6^76^29
- ;;^UTILITY(U,$J,358.3,633,1,0)
+ ;;^UTILITY(U,$J,358.3,935,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,935,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,935,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,936,0)
+ ;;=G81.90^^6^104^10
+ ;;^UTILITY(U,$J,358.3,936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,633,1,3,0)
- ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
- ;;^UTILITY(U,$J,358.3,633,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,633,2)
- ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,936,1,3,0)
+ ;;=3^Hemiplegia,Unspec
+ ;;^UTILITY(U,$J,358.3,936,1,4,0)
+ ;;=4^G81.90
+ ;;^UTILITY(U,$J,358.3,936,2)
+ ;;=^5004120
+ ;;^UTILITY(U,$J,358.3,937,0)
+ ;;=G81.91^^6^104^9
+ ;;^UTILITY(U,$J,358.3,937,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,937,1,3,0)
+ ;;=3^Hemiplegia Affecting Right Dominant Side
+ ;;^UTILITY(U,$J,358.3,937,1,4,0)
+ ;;=4^G81.91
+ ;;^UTILITY(U,$J,358.3,937,2)
+ ;;=^5004121
+ ;;^UTILITY(U,$J,358.3,938,0)
+ ;;=G81.92^^6^104^8
+ ;;^UTILITY(U,$J,358.3,938,1,0)
+ ;;=^358.31IA^4^2

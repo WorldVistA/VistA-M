@@ -1,134 +1,134 @@
-IBDEI0NJ ; ; 19-NOV-2015
+IBDEI0NJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10756,0)
- ;;=D68.32^^68^675^82
- ;;^UTILITY(U,$J,358.3,10756,1,0)
+ ;;^UTILITY(U,$J,358.3,10986,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,10986,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,10987,0)
+ ;;=R09.89^^47^524^29
+ ;;^UTILITY(U,$J,358.3,10987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10756,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,10756,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,10756,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,10757,0)
- ;;=C22.2^^68^675^83
- ;;^UTILITY(U,$J,358.3,10757,1,0)
+ ;;^UTILITY(U,$J,358.3,10987,1,3,0)
+ ;;=3^Carotid Bruit
+ ;;^UTILITY(U,$J,358.3,10987,1,4,0)
+ ;;=4^R09.89
+ ;;^UTILITY(U,$J,358.3,10987,2)
+ ;;=^5019204
+ ;;^UTILITY(U,$J,358.3,10988,0)
+ ;;=I63.239^^47^524^30
+ ;;^UTILITY(U,$J,358.3,10988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10757,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,10757,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,10757,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,10758,0)
- ;;=D58.9^^68^675^85
- ;;^UTILITY(U,$J,358.3,10758,1,0)
+ ;;^UTILITY(U,$J,358.3,10988,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,10988,1,4,0)
+ ;;=4^I63.239
+ ;;^UTILITY(U,$J,358.3,10988,2)
+ ;;=^5133567
+ ;;^UTILITY(U,$J,358.3,10989,0)
+ ;;=I63.20^^47^524^31
+ ;;^UTILITY(U,$J,358.3,10989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10758,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,10758,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,10758,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,10759,0)
- ;;=C81.99^^68^675^86
- ;;^UTILITY(U,$J,358.3,10759,1,0)
+ ;;^UTILITY(U,$J,358.3,10989,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occlusion/Stenosis Percerebral Arteries
+ ;;^UTILITY(U,$J,358.3,10989,1,4,0)
+ ;;=4^I63.20
+ ;;^UTILITY(U,$J,358.3,10989,2)
+ ;;=^5007312
+ ;;^UTILITY(U,$J,358.3,10990,0)
+ ;;=I51.9^^47^524^32
+ ;;^UTILITY(U,$J,358.3,10990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10759,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,10759,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,10759,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,10760,0)
- ;;=C81.90^^68^675^87
- ;;^UTILITY(U,$J,358.3,10760,1,0)
+ ;;^UTILITY(U,$J,358.3,10990,1,3,0)
+ ;;=3^Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10990,1,4,0)
+ ;;=4^I51.9
+ ;;^UTILITY(U,$J,358.3,10990,2)
+ ;;=^5007258
+ ;;^UTILITY(U,$J,358.3,10991,0)
+ ;;=I50.9^^47^524^33
+ ;;^UTILITY(U,$J,358.3,10991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10760,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,10760,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,10760,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,10761,0)
- ;;=D89.2^^68^675^88
- ;;^UTILITY(U,$J,358.3,10761,1,0)
+ ;;^UTILITY(U,$J,358.3,10991,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,10991,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,10991,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,10992,0)
+ ;;=I62.1^^47^524^35
+ ;;^UTILITY(U,$J,358.3,10992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10761,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,10761,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,10761,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,10762,0)
- ;;=D05.12^^68^675^89
- ;;^UTILITY(U,$J,358.3,10762,1,0)
+ ;;^UTILITY(U,$J,358.3,10992,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Extradural
+ ;;^UTILITY(U,$J,358.3,10992,1,4,0)
+ ;;=4^I62.1
+ ;;^UTILITY(U,$J,358.3,10992,2)
+ ;;=^269743
+ ;;^UTILITY(U,$J,358.3,10993,0)
+ ;;=I61.9^^47^524^36
+ ;;^UTILITY(U,$J,358.3,10993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10762,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,10762,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,10762,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,10763,0)
- ;;=D05.11^^68^675^90
- ;;^UTILITY(U,$J,358.3,10763,1,0)
+ ;;^UTILITY(U,$J,358.3,10993,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Intracerebral,Unspec
+ ;;^UTILITY(U,$J,358.3,10993,1,4,0)
+ ;;=4^I61.9
+ ;;^UTILITY(U,$J,358.3,10993,2)
+ ;;=^5007288
+ ;;^UTILITY(U,$J,358.3,10994,0)
+ ;;=I62.9^^47^524^37
+ ;;^UTILITY(U,$J,358.3,10994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10763,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,10763,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,10763,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,10764,0)
- ;;=D05.10^^68^675^91
- ;;^UTILITY(U,$J,358.3,10764,1,0)
+ ;;^UTILITY(U,$J,358.3,10994,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Intracranial,Unspec
+ ;;^UTILITY(U,$J,358.3,10994,1,4,0)
+ ;;=4^I62.9
+ ;;^UTILITY(U,$J,358.3,10994,2)
+ ;;=^5007293
+ ;;^UTILITY(U,$J,358.3,10995,0)
+ ;;=I60.9^^47^524^38
+ ;;^UTILITY(U,$J,358.3,10995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10764,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,10764,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,10764,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,10765,0)
- ;;=D50.0^^68^675^92
- ;;^UTILITY(U,$J,358.3,10765,1,0)
+ ;;^UTILITY(U,$J,358.3,10995,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Subarachnoid,Unspec
+ ;;^UTILITY(U,$J,358.3,10995,1,4,0)
+ ;;=4^I60.9
+ ;;^UTILITY(U,$J,358.3,10995,2)
+ ;;=^5007279
+ ;;^UTILITY(U,$J,358.3,10996,0)
+ ;;=I62.00^^47^524^39
+ ;;^UTILITY(U,$J,358.3,10996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10765,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,10765,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,10765,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,10766,0)
- ;;=D50.9^^68^675^93
- ;;^UTILITY(U,$J,358.3,10766,1,0)
+ ;;^UTILITY(U,$J,358.3,10996,1,3,0)
+ ;;=3^Hemorrhage,Nontraumatic Subdural,Unspec
+ ;;^UTILITY(U,$J,358.3,10996,1,4,0)
+ ;;=4^I62.00
+ ;;^UTILITY(U,$J,358.3,10996,2)
+ ;;=^5007289
+ ;;^UTILITY(U,$J,358.3,10997,0)
+ ;;=R58.^^47^524^34
+ ;;^UTILITY(U,$J,358.3,10997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10766,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,10766,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,10766,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,10767,0)
- ;;=C46.9^^68^675^94
- ;;^UTILITY(U,$J,358.3,10767,1,0)
+ ;;^UTILITY(U,$J,358.3,10997,1,3,0)
+ ;;=3^Hemorrhage NEC
+ ;;^UTILITY(U,$J,358.3,10997,1,4,0)
+ ;;=4^R58.
+ ;;^UTILITY(U,$J,358.3,10997,2)
+ ;;=^5019528
+ ;;^UTILITY(U,$J,358.3,10998,0)
+ ;;=E78.0^^47^524^40
+ ;;^UTILITY(U,$J,358.3,10998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10767,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,10767,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,10767,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,10768,0)
- ;;=C22.0^^68^675^95
- ;;^UTILITY(U,$J,358.3,10768,1,0)
+ ;;^UTILITY(U,$J,358.3,10998,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,10998,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,10998,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,10999,0)
+ ;;=E78.1^^47^524^41
+ ;;^UTILITY(U,$J,358.3,10999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10768,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,10768,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,10768,2)
- ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,10999,1,3,0)
+ ;;=3^Hyperglyceridemia,Pure

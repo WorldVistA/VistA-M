@@ -1,134 +1,140 @@
-IBDEI0PE ; ; 19-NOV-2015
+IBDEI0PE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11634,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,11635,0)
- ;;=R93.2^^68^687^9
- ;;^UTILITY(U,$J,358.3,11635,1,0)
+ ;;^UTILITY(U,$J,358.3,11872,0)
+ ;;=G47.10^^47^537^8
+ ;;^UTILITY(U,$J,358.3,11872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11635,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,11635,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,11635,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,11636,0)
- ;;=R93.3^^68^687^7
- ;;^UTILITY(U,$J,358.3,11636,1,0)
+ ;;^UTILITY(U,$J,358.3,11872,1,3,0)
+ ;;=3^Hypersomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,11872,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,11872,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,11873,0)
+ ;;=G47.01^^47^537^9
+ ;;^UTILITY(U,$J,358.3,11873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11636,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,11636,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,11636,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,11637,0)
- ;;=R93.4^^68^687^11
- ;;^UTILITY(U,$J,358.3,11637,1,0)
+ ;;^UTILITY(U,$J,358.3,11873,1,3,0)
+ ;;=3^Insomnia d/t Medical Condition
+ ;;^UTILITY(U,$J,358.3,11873,1,4,0)
+ ;;=4^G47.01
+ ;;^UTILITY(U,$J,358.3,11873,2)
+ ;;=^5003969
+ ;;^UTILITY(U,$J,358.3,11874,0)
+ ;;=G47.00^^47^537^17
+ ;;^UTILITY(U,$J,358.3,11874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11637,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,11637,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,11637,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,11638,0)
- ;;=R93.5^^68^687^6
- ;;^UTILITY(U,$J,358.3,11638,1,0)
+ ;;^UTILITY(U,$J,358.3,11874,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,11874,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,11874,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,11875,0)
+ ;;=Z72.821^^47^537^23
+ ;;^UTILITY(U,$J,358.3,11875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11638,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,11638,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,11638,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,11639,0)
- ;;=R93.6^^68^687^8
- ;;^UTILITY(U,$J,358.3,11639,1,0)
+ ;;^UTILITY(U,$J,358.3,11875,1,3,0)
+ ;;=3^Sleep Hygiene,Inadequate
+ ;;^UTILITY(U,$J,358.3,11875,1,4,0)
+ ;;=4^Z72.821
+ ;;^UTILITY(U,$J,358.3,11875,2)
+ ;;=^5063265
+ ;;^UTILITY(U,$J,358.3,11876,0)
+ ;;=G47.63^^47^537^24
+ ;;^UTILITY(U,$J,358.3,11876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11639,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,11639,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,11639,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,11640,0)
- ;;=R94.4^^68^687^16
- ;;^UTILITY(U,$J,358.3,11640,1,0)
+ ;;^UTILITY(U,$J,358.3,11876,1,3,0)
+ ;;=3^Sleep Related Bruxism
+ ;;^UTILITY(U,$J,358.3,11876,1,4,0)
+ ;;=4^G47.63
+ ;;^UTILITY(U,$J,358.3,11876,2)
+ ;;=^332783
+ ;;^UTILITY(U,$J,358.3,11877,0)
+ ;;=G47.9^^47^537^25
+ ;;^UTILITY(U,$J,358.3,11877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11640,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,11640,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,11640,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,11641,0)
- ;;=R94.5^^68^687^17
- ;;^UTILITY(U,$J,358.3,11641,1,0)
+ ;;^UTILITY(U,$J,358.3,11877,1,3,0)
+ ;;=3^Sleep Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11877,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,11877,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,11878,0)
+ ;;=G47.62^^47^537^26
+ ;;^UTILITY(U,$J,358.3,11878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11641,1,3,0)
- ;;=3^Abnormal Liver Function Studies
- ;;^UTILITY(U,$J,358.3,11641,1,4,0)
- ;;=4^R94.5
- ;;^UTILITY(U,$J,358.3,11641,2)
- ;;=^5019742
- ;;^UTILITY(U,$J,358.3,11642,0)
- ;;=R94.6^^68^687^21
- ;;^UTILITY(U,$J,358.3,11642,1,0)
+ ;;^UTILITY(U,$J,358.3,11878,1,3,0)
+ ;;=3^Sleep Related Leg Cramps
+ ;;^UTILITY(U,$J,358.3,11878,1,4,0)
+ ;;=4^G47.62
+ ;;^UTILITY(U,$J,358.3,11878,2)
+ ;;=^332782
+ ;;^UTILITY(U,$J,358.3,11879,0)
+ ;;=G47.61^^47^537^27
+ ;;^UTILITY(U,$J,358.3,11879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11642,1,3,0)
- ;;=3^Abnormal Thyroid Function Studies
- ;;^UTILITY(U,$J,358.3,11642,1,4,0)
- ;;=4^R94.6
- ;;^UTILITY(U,$J,358.3,11642,2)
- ;;=^5019743
- ;;^UTILITY(U,$J,358.3,11643,0)
- ;;=R94.7^^68^687^5
- ;;^UTILITY(U,$J,358.3,11643,1,0)
+ ;;^UTILITY(U,$J,358.3,11879,1,3,0)
+ ;;=3^Sleep Related Movement Disorder,Periodic
+ ;;^UTILITY(U,$J,358.3,11879,1,4,0)
+ ;;=4^G47.61
+ ;;^UTILITY(U,$J,358.3,11879,2)
+ ;;=^5003987
+ ;;^UTILITY(U,$J,358.3,11880,0)
+ ;;=F51.12^^47^537^28
+ ;;^UTILITY(U,$J,358.3,11880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11643,1,3,0)
- ;;=3^Abnormal Endocrine Function Sutdies NEC
- ;;^UTILITY(U,$J,358.3,11643,1,4,0)
- ;;=4^R94.7
- ;;^UTILITY(U,$J,358.3,11643,2)
- ;;=^5019744
- ;;^UTILITY(U,$J,358.3,11644,0)
- ;;=R94.31^^68^687^4
- ;;^UTILITY(U,$J,358.3,11644,1,0)
+ ;;^UTILITY(U,$J,358.3,11880,1,3,0)
+ ;;=3^Sleep Syndrome,Insufficient Sleep
+ ;;^UTILITY(U,$J,358.3,11880,1,4,0)
+ ;;=4^F51.12
+ ;;^UTILITY(U,$J,358.3,11880,2)
+ ;;=^5003610
+ ;;^UTILITY(U,$J,358.3,11881,0)
+ ;;=F51.4^^47^537^29
+ ;;^UTILITY(U,$J,358.3,11881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11644,1,3,0)
- ;;=3^Abnormal EKG
- ;;^UTILITY(U,$J,358.3,11644,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,11644,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,11645,0)
- ;;=R97.0^^68^687^67
- ;;^UTILITY(U,$J,358.3,11645,1,0)
+ ;;^UTILITY(U,$J,358.3,11881,1,3,0)
+ ;;=3^Sleep Terrors
+ ;;^UTILITY(U,$J,358.3,11881,1,4,0)
+ ;;=4^F51.4
+ ;;^UTILITY(U,$J,358.3,11881,2)
+ ;;=^5003614
+ ;;^UTILITY(U,$J,358.3,11882,0)
+ ;;=F51.3^^47^537^30
+ ;;^UTILITY(U,$J,358.3,11882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11645,1,3,0)
- ;;=3^Elevated Carcinoembryonic Antigen 
- ;;^UTILITY(U,$J,358.3,11645,1,4,0)
- ;;=4^R97.0
- ;;^UTILITY(U,$J,358.3,11645,2)
- ;;=^5019746
- ;;^UTILITY(U,$J,358.3,11646,0)
- ;;=R97.1^^68^687^66
- ;;^UTILITY(U,$J,358.3,11646,1,0)
+ ;;^UTILITY(U,$J,358.3,11882,1,3,0)
+ ;;=3^Sleepwalking
+ ;;^UTILITY(U,$J,358.3,11882,1,4,0)
+ ;;=4^F51.3
+ ;;^UTILITY(U,$J,358.3,11882,2)
+ ;;=^5003613
+ ;;^UTILITY(U,$J,358.3,11883,0)
+ ;;=Z88.6^^47^538^2
+ ;;^UTILITY(U,$J,358.3,11883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11646,1,3,0)
- ;;=3^Elevated Cancer Antigen 125
- ;;^UTILITY(U,$J,358.3,11646,1,4,0)
- ;;=4^R97.1
- ;;^UTILITY(U,$J,358.3,11646,2)
- ;;=^5019747
- ;;^UTILITY(U,$J,358.3,11647,0)
- ;;=R97.2^^68^687^68
- ;;^UTILITY(U,$J,358.3,11647,1,0)
+ ;;^UTILITY(U,$J,358.3,11883,1,3,0)
+ ;;=3^Allergy to Analgesic Agent
+ ;;^UTILITY(U,$J,358.3,11883,1,4,0)
+ ;;=4^Z88.6
+ ;;^UTILITY(U,$J,358.3,11883,2)
+ ;;=^5063527
+ ;;^UTILITY(U,$J,358.3,11884,0)
+ ;;=Z88.4^^47^538^3
+ ;;^UTILITY(U,$J,358.3,11884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11647,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,11647,1,4,0)
- ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,11884,1,3,0)
+ ;;=3^Allergy to Anesthetic Agent
+ ;;^UTILITY(U,$J,358.3,11884,1,4,0)
+ ;;=4^Z88.4
+ ;;^UTILITY(U,$J,358.3,11884,2)
+ ;;=^5063525
+ ;;^UTILITY(U,$J,358.3,11885,0)
+ ;;=Z88.3^^47^538^4
+ ;;^UTILITY(U,$J,358.3,11885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11885,1,3,0)
+ ;;=3^Allergy to Anti-Infective Agents

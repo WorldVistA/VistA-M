@@ -1,136 +1,130 @@
-IBDEI0WT ; ; 19-NOV-2015
+IBDEI0WT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15126,1,3,0)
- ;;=3^Benign Neop of Descending Colon
- ;;^UTILITY(U,$J,358.3,15126,1,4,0)
- ;;=4^D12.4
- ;;^UTILITY(U,$J,358.3,15126,2)
- ;;=^5001967
- ;;^UTILITY(U,$J,358.3,15127,0)
- ;;=D12.5^^85^809^11
- ;;^UTILITY(U,$J,358.3,15127,1,0)
+ ;;^UTILITY(U,$J,358.3,15396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15127,1,3,0)
- ;;=3^Benign Neop of Sigmoid Colon
- ;;^UTILITY(U,$J,358.3,15127,1,4,0)
- ;;=4^D12.5
- ;;^UTILITY(U,$J,358.3,15127,2)
- ;;=^5001968
- ;;^UTILITY(U,$J,358.3,15128,0)
- ;;=D12.6^^85^809^9
- ;;^UTILITY(U,$J,358.3,15128,1,0)
+ ;;^UTILITY(U,$J,358.3,15396,1,3,0)
+ ;;=3^Mental Disorder d/t Another Medical Condition NEC
+ ;;^UTILITY(U,$J,358.3,15396,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,15396,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,15397,0)
+ ;;=G30.9^^58^662^5
+ ;;^UTILITY(U,$J,358.3,15397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15128,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,15128,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,15128,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,15129,0)
- ;;=E66.01^^85^809^85
- ;;^UTILITY(U,$J,358.3,15129,1,0)
+ ;;^UTILITY(U,$J,358.3,15397,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,15397,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,15397,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,15398,0)
+ ;;=G31.9^^58^662^23
+ ;;^UTILITY(U,$J,358.3,15398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15129,1,3,0)
- ;;=3^Morbid Obesity d/t Excess Calories
- ;;^UTILITY(U,$J,358.3,15129,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,15129,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,15130,0)
- ;;=E66.9^^85^809^86
- ;;^UTILITY(U,$J,358.3,15130,1,0)
+ ;;^UTILITY(U,$J,358.3,15398,1,3,0)
+ ;;=3^Major Neurocognitive Disorder d/t Alzheimer's Disease,Possible
+ ;;^UTILITY(U,$J,358.3,15398,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,15398,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,15399,0)
+ ;;=G31.01^^58^662^30
+ ;;^UTILITY(U,$J,358.3,15399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15130,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,15130,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,15130,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,15131,0)
- ;;=K21.9^^85^809^35
- ;;^UTILITY(U,$J,358.3,15131,1,0)
+ ;;^UTILITY(U,$J,358.3,15399,1,3,0)
+ ;;=3^Pick's Disease
+ ;;^UTILITY(U,$J,358.3,15399,1,4,0)
+ ;;=4^G31.01
+ ;;^UTILITY(U,$J,358.3,15399,2)
+ ;;=^329915
+ ;;^UTILITY(U,$J,358.3,15400,0)
+ ;;=G31.1^^58^662^36
+ ;;^UTILITY(U,$J,358.3,15400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15131,1,3,0)
- ;;=3^Gastro-Esophageal Reflux Disease w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,15131,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,15131,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,15132,0)
- ;;=K22.10^^85^809^32
- ;;^UTILITY(U,$J,358.3,15132,1,0)
+ ;;^UTILITY(U,$J,358.3,15400,1,3,0)
+ ;;=3^Senile Degeneration of the Brain NOS
+ ;;^UTILITY(U,$J,358.3,15400,1,4,0)
+ ;;=4^G31.1
+ ;;^UTILITY(U,$J,358.3,15400,2)
+ ;;=^5003809
+ ;;^UTILITY(U,$J,358.3,15401,0)
+ ;;=G94.^^58^662^7
+ ;;^UTILITY(U,$J,358.3,15401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15132,1,3,0)
- ;;=3^Esophagus Ulcer w/o Bleeding
- ;;^UTILITY(U,$J,358.3,15132,1,4,0)
- ;;=4^K22.10
- ;;^UTILITY(U,$J,358.3,15132,2)
- ;;=^329929
- ;;^UTILITY(U,$J,358.3,15133,0)
- ;;=K22.2^^85^809^31
- ;;^UTILITY(U,$J,358.3,15133,1,0)
+ ;;^UTILITY(U,$J,358.3,15401,1,3,0)
+ ;;=3^Brain Disorders in Diseases Classified Elsewhere NEC
+ ;;^UTILITY(U,$J,358.3,15401,1,4,0)
+ ;;=4^G94.
+ ;;^UTILITY(U,$J,358.3,15401,2)
+ ;;=^5004187
+ ;;^UTILITY(U,$J,358.3,15402,0)
+ ;;=G31.83^^58^662^16
+ ;;^UTILITY(U,$J,358.3,15402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15133,1,3,0)
- ;;=3^Esophageal Obstruction
- ;;^UTILITY(U,$J,358.3,15133,1,4,0)
- ;;=4^K22.2
- ;;^UTILITY(U,$J,358.3,15133,2)
- ;;=^5008507
- ;;^UTILITY(U,$J,358.3,15134,0)
- ;;=K25.9^^85^809^34
- ;;^UTILITY(U,$J,358.3,15134,1,0)
+ ;;^UTILITY(U,$J,358.3,15402,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,15402,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,15402,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,15403,0)
+ ;;=G31.89^^58^662^11
+ ;;^UTILITY(U,$J,358.3,15403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15134,1,3,0)
- ;;=3^Gastric Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,15134,1,4,0)
- ;;=4^K25.9
- ;;^UTILITY(U,$J,358.3,15134,2)
- ;;=^5008522
- ;;^UTILITY(U,$J,358.3,15135,0)
- ;;=K27.9^^85^809^87
- ;;^UTILITY(U,$J,358.3,15135,1,0)
+ ;;^UTILITY(U,$J,358.3,15403,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System NEC
+ ;;^UTILITY(U,$J,358.3,15403,1,4,0)
+ ;;=4^G31.89
+ ;;^UTILITY(U,$J,358.3,15403,2)
+ ;;=^5003814
+ ;;^UTILITY(U,$J,358.3,15404,0)
+ ;;=G31.9^^58^662^12
+ ;;^UTILITY(U,$J,358.3,15404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15135,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,15135,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,15135,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,15136,0)
- ;;=K40.20^^85^809^13
- ;;^UTILITY(U,$J,358.3,15136,1,0)
+ ;;^UTILITY(U,$J,358.3,15404,1,3,0)
+ ;;=3^Degenerative Diseases of Nervous System,Unspec
+ ;;^UTILITY(U,$J,358.3,15404,1,4,0)
+ ;;=4^G31.9
+ ;;^UTILITY(U,$J,358.3,15404,2)
+ ;;=^5003815
+ ;;^UTILITY(U,$J,358.3,15405,0)
+ ;;=G23.8^^58^662^10
+ ;;^UTILITY(U,$J,358.3,15405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15136,1,3,0)
- ;;=3^Bilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,15136,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,15136,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,15137,0)
- ;;=K40.90^^85^809^94
- ;;^UTILITY(U,$J,358.3,15137,1,0)
+ ;;^UTILITY(U,$J,358.3,15405,1,3,0)
+ ;;=3^Degenerative Diseases of Basal Ganglia NEC
+ ;;^UTILITY(U,$J,358.3,15405,1,4,0)
+ ;;=4^G23.8
+ ;;^UTILITY(U,$J,358.3,15405,2)
+ ;;=^5003782
+ ;;^UTILITY(U,$J,358.3,15406,0)
+ ;;=G31.09^^58^662^22
+ ;;^UTILITY(U,$J,358.3,15406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15137,1,3,0)
- ;;=3^Unilateral Inguinal Hernia
- ;;^UTILITY(U,$J,358.3,15137,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,15137,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,15138,0)
- ;;=K42.9^^85^809^93
- ;;^UTILITY(U,$J,358.3,15138,1,0)
+ ;;^UTILITY(U,$J,358.3,15406,1,3,0)
+ ;;=3^Major Frontotemporal Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,15406,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,15406,2)
+ ;;=^329916^F02.81
+ ;;^UTILITY(U,$J,358.3,15407,0)
+ ;;=G30.0^^58^662^3
+ ;;^UTILITY(U,$J,358.3,15407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15138,1,3,0)
- ;;=3^Umbilical Hernia w/o Obstruction/Gangrene
- ;;^UTILITY(U,$J,358.3,15138,1,4,0)
- ;;=4^K42.9
- ;;^UTILITY(U,$J,358.3,15138,2)
- ;;=^5008606
- ;;^UTILITY(U,$J,358.3,15139,0)
- ;;=K43.9^^85^809^95
- ;;^UTILITY(U,$J,358.3,15139,1,0)
+ ;;^UTILITY(U,$J,358.3,15407,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,15407,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,15407,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,15408,0)
+ ;;=G30.1^^58^662^4
+ ;;^UTILITY(U,$J,358.3,15408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15139,1,3,0)
- ;;=3^Ventral Hernia w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,15408,1,3,0)
+ ;;=3^Alzheimer's Disease with Late Onset
+ ;;^UTILITY(U,$J,358.3,15408,1,4,0)
+ ;;=4^G30.1

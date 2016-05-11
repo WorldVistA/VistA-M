@@ -1,124 +1,126 @@
-IBDEI2FJ ; ; 19-NOV-2015
+IBDEI2FJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40797,1,4,0)
- ;;=4^S82.855A
- ;;^UTILITY(U,$J,358.3,40797,2)
- ;;=^5042639
- ;;^UTILITY(U,$J,358.3,40798,0)
- ;;=S92.065A^^189^2086^364
- ;;^UTILITY(U,$J,358.3,40798,1,0)
+ ;;^UTILITY(U,$J,358.3,41213,1,3,0)
+ ;;=3^Acquired Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,41213,1,4,0)
+ ;;=4^D59.9
+ ;;^UTILITY(U,$J,358.3,41213,2)
+ ;;=^5002330
+ ;;^UTILITY(U,$J,358.3,41214,0)
+ ;;=C91.00^^159^2004^5
+ ;;^UTILITY(U,$J,358.3,41214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40798,1,3,0)
- ;;=3^Nondisp intraarticular fx of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,40798,1,4,0)
- ;;=4^S92.065A
- ;;^UTILITY(U,$J,358.3,40798,2)
- ;;=^5044577
- ;;^UTILITY(U,$J,358.3,40799,0)
- ;;=S92.064A^^189^2086^365
- ;;^UTILITY(U,$J,358.3,40799,1,0)
+ ;;^UTILITY(U,$J,358.3,41214,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41214,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,41214,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,41215,0)
+ ;;=C91.01^^159^2004^4
+ ;;^UTILITY(U,$J,358.3,41215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40799,1,3,0)
- ;;=3^Nondisp intraarticular fx of rt calcaneus, init
- ;;^UTILITY(U,$J,358.3,40799,1,4,0)
- ;;=4^S92.064A
- ;;^UTILITY(U,$J,358.3,40799,2)
- ;;=^5044570
- ;;^UTILITY(U,$J,358.3,40800,0)
- ;;=S92.061A^^189^2086^138
- ;;^UTILITY(U,$J,358.3,40800,1,0)
+ ;;^UTILITY(U,$J,358.3,41215,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,41215,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,41215,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,41216,0)
+ ;;=C92.01^^159^2004^7
+ ;;^UTILITY(U,$J,358.3,41216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40800,1,3,0)
- ;;=3^Disp intraarticular fx of right calcaneus, init
- ;;^UTILITY(U,$J,358.3,40800,1,4,0)
- ;;=4^S92.061A
- ;;^UTILITY(U,$J,358.3,40800,2)
- ;;=^5044549
- ;;^UTILITY(U,$J,358.3,40801,0)
- ;;=S92.062A^^189^2086^137
- ;;^UTILITY(U,$J,358.3,40801,1,0)
+ ;;^UTILITY(U,$J,358.3,41216,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,41216,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,41216,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,41217,0)
+ ;;=C92.00^^159^2004^8
+ ;;^UTILITY(U,$J,358.3,41217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40801,1,3,0)
- ;;=3^Disp intraarticular fx of lft calcaneus, init
- ;;^UTILITY(U,$J,358.3,40801,1,4,0)
- ;;=4^S92.062A
- ;;^UTILITY(U,$J,358.3,40801,2)
- ;;=^5044556
- ;;^UTILITY(U,$J,358.3,40802,0)
- ;;=S92.055A^^189^2086^250
- ;;^UTILITY(U,$J,358.3,40802,1,0)
+ ;;^UTILITY(U,$J,358.3,41217,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41217,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,41217,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,41218,0)
+ ;;=C92.61^^159^2004^9
+ ;;^UTILITY(U,$J,358.3,41218,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40802,1,3,0)
- ;;=3^Nondisp extrartic fx of lft calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40802,1,4,0)
- ;;=4^S92.055A
- ;;^UTILITY(U,$J,358.3,40802,2)
- ;;=^5044535
- ;;^UTILITY(U,$J,358.3,40803,0)
- ;;=S92.054A^^189^2086^251
- ;;^UTILITY(U,$J,358.3,40803,1,0)
+ ;;^UTILITY(U,$J,358.3,41218,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,41218,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,41218,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,41219,0)
+ ;;=C92.60^^159^2004^10
+ ;;^UTILITY(U,$J,358.3,41219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40803,1,3,0)
- ;;=3^Nondisp extrartic fx of rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40803,1,4,0)
- ;;=4^S92.054A
- ;;^UTILITY(U,$J,358.3,40803,2)
- ;;=^5044528
- ;;^UTILITY(U,$J,358.3,40804,0)
- ;;=S92.051A^^189^2086^26
- ;;^UTILITY(U,$J,358.3,40804,1,0)
+ ;;^UTILITY(U,$J,358.3,41219,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41219,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,41219,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,41220,0)
+ ;;=C92.A1^^159^2004^11
+ ;;^UTILITY(U,$J,358.3,41220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40804,1,3,0)
- ;;=3^Disp extrartic fx rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40804,1,4,0)
- ;;=4^S92.051A
- ;;^UTILITY(U,$J,358.3,40804,2)
- ;;=^5044507
- ;;^UTILITY(U,$J,358.3,40805,0)
- ;;=S92.052A^^189^2086^25
- ;;^UTILITY(U,$J,358.3,40805,1,0)
+ ;;^UTILITY(U,$J,358.3,41220,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,41220,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,41220,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,41221,0)
+ ;;=C92.A0^^159^2004^12
+ ;;^UTILITY(U,$J,358.3,41221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40805,1,3,0)
- ;;=3^Disp extrartic fx of lft calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40805,1,4,0)
- ;;=4^S92.052A
- ;;^UTILITY(U,$J,358.3,40805,2)
- ;;=^5044514
- ;;^UTILITY(U,$J,358.3,40806,0)
- ;;=S92.045A^^189^2086^354
- ;;^UTILITY(U,$J,358.3,40806,1,0)
+ ;;^UTILITY(U,$J,358.3,41221,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41221,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,41221,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,41222,0)
+ ;;=C92.51^^159^2004^13
+ ;;^UTILITY(U,$J,358.3,41222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40806,1,3,0)
- ;;=3^Nondisp fx of tuberosity of lft calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40806,1,4,0)
- ;;=4^S92.045A
- ;;^UTILITY(U,$J,358.3,40806,2)
- ;;=^5137560
- ;;^UTILITY(U,$J,358.3,40807,0)
- ;;=S92.044A^^189^2086^355
- ;;^UTILITY(U,$J,358.3,40807,1,0)
+ ;;^UTILITY(U,$J,358.3,41222,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,41222,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,41222,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,41223,0)
+ ;;=C92.50^^159^2004^14
+ ;;^UTILITY(U,$J,358.3,41223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40807,1,3,0)
- ;;=3^Nondisp fx of tuberosity of rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40807,1,4,0)
- ;;=4^S92.044A
- ;;^UTILITY(U,$J,358.3,40807,2)
- ;;=^5044500
- ;;^UTILITY(U,$J,358.3,40808,0)
- ;;=S92.041A^^189^2086^129
- ;;^UTILITY(U,$J,358.3,40808,1,0)
+ ;;^UTILITY(U,$J,358.3,41223,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41223,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,41223,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,41224,0)
+ ;;=C94.40^^159^2004^17
+ ;;^UTILITY(U,$J,358.3,41224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40808,1,3,0)
- ;;=3^Disp fx of tuberosity of rt calcaneus, oth, init
- ;;^UTILITY(U,$J,358.3,40808,1,4,0)
- ;;=4^S92.041A
- ;;^UTILITY(U,$J,358.3,40808,2)
- ;;=^5044493
- ;;^UTILITY(U,$J,358.3,40809,0)
- ;;=S92.042A^^189^2086^128
- ;;^UTILITY(U,$J,358.3,40809,1,0)
+ ;;^UTILITY(U,$J,358.3,41224,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,41224,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,41224,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,41225,0)
+ ;;=C94.42^^159^2004^15
+ ;;^UTILITY(U,$J,358.3,41225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40809,1,3,0)
- ;;=3^Disp fx of tuberosity of lft calcaneus, oth, init
+ ;;^UTILITY(U,$J,358.3,41225,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse

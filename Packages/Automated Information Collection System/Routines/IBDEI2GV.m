@@ -1,126 +1,134 @@
-IBDEI2GV ; ; 19-NOV-2015
+IBDEI2GV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41386,1,0)
+ ;;^UTILITY(U,$J,358.3,41831,1,4,0)
+ ;;=4^M87.350
+ ;;^UTILITY(U,$J,358.3,41831,2)
+ ;;=^5014809
+ ;;^UTILITY(U,$J,358.3,41832,0)
+ ;;=M87.351^^159^2010^167
+ ;;^UTILITY(U,$J,358.3,41832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41386,1,3,0)
- ;;=3^Sprain of metatarsophalangeal jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,41386,1,4,0)
- ;;=4^S93.521A
- ;;^UTILITY(U,$J,358.3,41386,2)
- ;;=^5045846
- ;;^UTILITY(U,$J,358.3,41387,0)
- ;;=S93.522A^^189^2096^13
- ;;^UTILITY(U,$J,358.3,41387,1,0)
+ ;;^UTILITY(U,$J,358.3,41832,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,41832,1,4,0)
+ ;;=4^M87.351
+ ;;^UTILITY(U,$J,358.3,41832,2)
+ ;;=^5014810
+ ;;^UTILITY(U,$J,358.3,41833,0)
+ ;;=M87.352^^159^2010^164
+ ;;^UTILITY(U,$J,358.3,41833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41387,1,3,0)
- ;;=3^Sprain of metatarsophalangeal jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,41387,1,4,0)
- ;;=4^S93.522A
- ;;^UTILITY(U,$J,358.3,41387,2)
- ;;=^5045849
- ;;^UTILITY(U,$J,358.3,41388,0)
- ;;=S93.514A^^189^2096^12
- ;;^UTILITY(U,$J,358.3,41388,1,0)
+ ;;^UTILITY(U,$J,358.3,41833,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,41833,1,4,0)
+ ;;=4^M87.352
+ ;;^UTILITY(U,$J,358.3,41833,2)
+ ;;=^5014811
+ ;;^UTILITY(U,$J,358.3,41834,0)
+ ;;=M87.811^^159^2010^79
+ ;;^UTILITY(U,$J,358.3,41834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41388,1,3,0)
- ;;=3^Sprain of interphalangeal jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41388,1,4,0)
- ;;=4^S93.514A
- ;;^UTILITY(U,$J,358.3,41388,2)
- ;;=^5045834
- ;;^UTILITY(U,$J,358.3,41389,0)
- ;;=S93.515A^^189^2096^10
- ;;^UTILITY(U,$J,358.3,41389,1,0)
+ ;;^UTILITY(U,$J,358.3,41834,1,3,0)
+ ;;=3^Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41834,1,4,0)
+ ;;=4^M87.811
+ ;;^UTILITY(U,$J,358.3,41834,2)
+ ;;=^5014831
+ ;;^UTILITY(U,$J,358.3,41835,0)
+ ;;=M87.812^^159^2010^76
+ ;;^UTILITY(U,$J,358.3,41835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41389,1,3,0)
- ;;=3^Sprain of interphalangeal jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41389,1,4,0)
- ;;=4^S93.515A
- ;;^UTILITY(U,$J,358.3,41389,2)
- ;;=^5045837
- ;;^UTILITY(U,$J,358.3,41390,0)
- ;;=S93.511A^^189^2096^11
- ;;^UTILITY(U,$J,358.3,41390,1,0)
+ ;;^UTILITY(U,$J,358.3,41835,1,3,0)
+ ;;=3^Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41835,1,4,0)
+ ;;=4^M87.812
+ ;;^UTILITY(U,$J,358.3,41835,2)
+ ;;=^5014832
+ ;;^UTILITY(U,$J,358.3,41836,0)
+ ;;=M87.850^^159^2010^77
+ ;;^UTILITY(U,$J,358.3,41836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41390,1,3,0)
- ;;=3^Sprain of interphalangeal jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,41390,1,4,0)
- ;;=4^S93.511A
- ;;^UTILITY(U,$J,358.3,41390,2)
- ;;=^5045825
- ;;^UTILITY(U,$J,358.3,41391,0)
- ;;=S93.512A^^189^2096^9
- ;;^UTILITY(U,$J,358.3,41391,1,0)
+ ;;^UTILITY(U,$J,358.3,41836,1,3,0)
+ ;;=3^Osteonecrosis,Pelvis
+ ;;^UTILITY(U,$J,358.3,41836,1,4,0)
+ ;;=4^M87.850
+ ;;^UTILITY(U,$J,358.3,41836,2)
+ ;;=^5014852
+ ;;^UTILITY(U,$J,358.3,41837,0)
+ ;;=M87.851^^159^2010^78
+ ;;^UTILITY(U,$J,358.3,41837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41391,1,3,0)
- ;;=3^Sprain of interphalangeal jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,41391,1,4,0)
- ;;=4^S93.512A
- ;;^UTILITY(U,$J,358.3,41391,2)
- ;;=^5045828
- ;;^UTILITY(U,$J,358.3,41392,0)
- ;;=M70.842^^189^2096^3
- ;;^UTILITY(U,$J,358.3,41392,1,0)
+ ;;^UTILITY(U,$J,358.3,41837,1,3,0)
+ ;;=3^Osteonecrosis,Right Femur
+ ;;^UTILITY(U,$J,358.3,41837,1,4,0)
+ ;;=4^M87.851
+ ;;^UTILITY(U,$J,358.3,41837,2)
+ ;;=^5014853
+ ;;^UTILITY(U,$J,358.3,41838,0)
+ ;;=M87.852^^159^2010^75
+ ;;^UTILITY(U,$J,358.3,41838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41392,1,3,0)
- ;;=3^Soft Tissue Disorders r/t Use/Pressure,Left Hand
- ;;^UTILITY(U,$J,358.3,41392,1,4,0)
- ;;=4^M70.842
- ;;^UTILITY(U,$J,358.3,41392,2)
- ;;=^5013075
- ;;^UTILITY(U,$J,358.3,41393,0)
- ;;=M70.841^^189^2096^4
- ;;^UTILITY(U,$J,358.3,41393,1,0)
+ ;;^UTILITY(U,$J,358.3,41838,1,3,0)
+ ;;=3^Osteonecrosis,Left Femur
+ ;;^UTILITY(U,$J,358.3,41838,1,4,0)
+ ;;=4^M87.852
+ ;;^UTILITY(U,$J,358.3,41838,2)
+ ;;=^5014854
+ ;;^UTILITY(U,$J,358.3,41839,0)
+ ;;=M88.0^^159^2010^66
+ ;;^UTILITY(U,$J,358.3,41839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41393,1,3,0)
- ;;=3^Soft Tissue Disorders r/t Use/Pressure,Right Hand
- ;;^UTILITY(U,$J,358.3,41393,1,4,0)
- ;;=4^M70.841
- ;;^UTILITY(U,$J,358.3,41393,2)
- ;;=^5013074
- ;;^UTILITY(U,$J,358.3,41394,0)
- ;;=M65.872^^189^2096^47
- ;;^UTILITY(U,$J,358.3,41394,1,0)
+ ;;^UTILITY(U,$J,358.3,41839,1,3,0)
+ ;;=3^Osteitis Deformans of Skull
+ ;;^UTILITY(U,$J,358.3,41839,1,4,0)
+ ;;=4^M88.0
+ ;;^UTILITY(U,$J,358.3,41839,2)
+ ;;=^5014874
+ ;;^UTILITY(U,$J,358.3,41840,0)
+ ;;=M88.1^^159^2010^67
+ ;;^UTILITY(U,$J,358.3,41840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41394,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Left Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,41394,1,4,0)
- ;;=4^M65.872
- ;;^UTILITY(U,$J,358.3,41394,2)
- ;;=^5012813
- ;;^UTILITY(U,$J,358.3,41395,0)
- ;;=M65.871^^189^2096^48
- ;;^UTILITY(U,$J,358.3,41395,1,0)
+ ;;^UTILITY(U,$J,358.3,41840,1,3,0)
+ ;;=3^Osteitis Deformans of Vertebrae
+ ;;^UTILITY(U,$J,358.3,41840,1,4,0)
+ ;;=4^M88.1
+ ;;^UTILITY(U,$J,358.3,41840,2)
+ ;;=^5014875
+ ;;^UTILITY(U,$J,358.3,41841,0)
+ ;;=M88.89^^159^2010^65
+ ;;^UTILITY(U,$J,358.3,41841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41395,1,3,0)
- ;;=3^Synovitis & Tenosynovitis,Right Ankle/Foot NEC
- ;;^UTILITY(U,$J,358.3,41395,1,4,0)
- ;;=4^M65.871
- ;;^UTILITY(U,$J,358.3,41395,2)
- ;;=^5012812
- ;;^UTILITY(U,$J,358.3,41396,0)
- ;;=S93.402D^^189^2096^22
- ;;^UTILITY(U,$J,358.3,41396,1,0)
+ ;;^UTILITY(U,$J,358.3,41841,1,3,0)
+ ;;=3^Osteitis Deformans of Mult Sites
+ ;;^UTILITY(U,$J,358.3,41841,1,4,0)
+ ;;=4^M88.89
+ ;;^UTILITY(U,$J,358.3,41841,2)
+ ;;=^5014898
+ ;;^UTILITY(U,$J,358.3,41842,0)
+ ;;=M94.0^^159^2010^15
+ ;;^UTILITY(U,$J,358.3,41842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41396,1,3,0)
- ;;=3^Sprain of unspec ligament of lft ankl,subs
- ;;^UTILITY(U,$J,358.3,41396,1,4,0)
- ;;=4^S93.402D
- ;;^UTILITY(U,$J,358.3,41396,2)
- ;;=^5045778
- ;;^UTILITY(U,$J,358.3,41397,0)
- ;;=S93.401D^^189^2096^21
- ;;^UTILITY(U,$J,358.3,41397,1,0)
+ ;;^UTILITY(U,$J,358.3,41842,1,3,0)
+ ;;=3^Chondrocostal Junction Syndrome/Costochondritis
+ ;;^UTILITY(U,$J,358.3,41842,1,4,0)
+ ;;=4^M94.0
+ ;;^UTILITY(U,$J,358.3,41842,2)
+ ;;=^5015327
+ ;;^UTILITY(U,$J,358.3,41843,0)
+ ;;=M94.20^^159^2010^18
+ ;;^UTILITY(U,$J,358.3,41843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41397,1,3,0)
- ;;=3^Sprain of unsp ligament rt ankl,subs
- ;;^UTILITY(U,$J,358.3,41397,1,4,0)
- ;;=4^S93.401D
- ;;^UTILITY(U,$J,358.3,41397,2)
- ;;=^5045775
- ;;^UTILITY(U,$J,358.3,41398,0)
- ;;=M76.72^^189^2097^6
- ;;^UTILITY(U,$J,358.3,41398,1,0)
+ ;;^UTILITY(U,$J,358.3,41843,1,3,0)
+ ;;=3^Chondromalacia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41843,1,4,0)
+ ;;=4^M94.20
+ ;;^UTILITY(U,$J,358.3,41843,2)
+ ;;=^5015329
+ ;;^UTILITY(U,$J,358.3,41844,0)
+ ;;=M94.261^^159^2010^17
+ ;;^UTILITY(U,$J,358.3,41844,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41844,1,3,0)
+ ;;=3^Chondromalacia,Right Knee

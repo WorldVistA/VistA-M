@@ -1,130 +1,132 @@
-IBDEI1ST ; ; 19-NOV-2015
+IBDEI1ST ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30108,0)
- ;;=Z85.79^^135^1373^94
- ;;^UTILITY(U,$J,358.3,30108,1,0)
+ ;;^UTILITY(U,$J,358.3,30564,0)
+ ;;=G56.11^^121^1521^21
+ ;;^UTILITY(U,$J,358.3,30564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30108,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,30108,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,30108,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,30109,0)
- ;;=Z85.820^^135^1373^83
- ;;^UTILITY(U,$J,358.3,30109,1,0)
+ ;;^UTILITY(U,$J,358.3,30564,1,3,0)
+ ;;=3^Median Nerve Lesions,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30564,1,4,0)
+ ;;=4^G56.11
+ ;;^UTILITY(U,$J,358.3,30564,2)
+ ;;=^5004021
+ ;;^UTILITY(U,$J,358.3,30565,0)
+ ;;=G56.12^^121^1521^20
+ ;;^UTILITY(U,$J,358.3,30565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30109,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,30109,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,30109,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,30110,0)
- ;;=Z85.828^^135^1373^98
- ;;^UTILITY(U,$J,358.3,30110,1,0)
+ ;;^UTILITY(U,$J,358.3,30565,1,3,0)
+ ;;=3^Median Nerve Lesions,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30565,1,4,0)
+ ;;=4^G56.12
+ ;;^UTILITY(U,$J,358.3,30565,2)
+ ;;=^5004022
+ ;;^UTILITY(U,$J,358.3,30566,0)
+ ;;=G56.21^^121^1521^52
+ ;;^UTILITY(U,$J,358.3,30566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30110,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,30110,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,30110,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,30111,0)
- ;;=Z85.71^^135^1373^78
- ;;^UTILITY(U,$J,358.3,30111,1,0)
+ ;;^UTILITY(U,$J,358.3,30566,1,3,0)
+ ;;=3^Ulnar Nerve Lesion,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30566,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,30566,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,30567,0)
+ ;;=G56.22^^121^1521^51
+ ;;^UTILITY(U,$J,358.3,30567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30111,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,30111,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,30111,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,30112,0)
- ;;=Z65.8^^135^1373^138
- ;;^UTILITY(U,$J,358.3,30112,1,0)
+ ;;^UTILITY(U,$J,358.3,30567,1,3,0)
+ ;;=3^Ulnar Nerve Lesion,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30567,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,30567,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,30568,0)
+ ;;=G58.7^^121^1521^24
+ ;;^UTILITY(U,$J,358.3,30568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30112,1,3,0)
- ;;=3^Psychosocial Circumstance Related Problems
- ;;^UTILITY(U,$J,358.3,30112,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,30112,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,30113,0)
- ;;=Z86.11^^135^1373^115
- ;;^UTILITY(U,$J,358.3,30113,1,0)
+ ;;^UTILITY(U,$J,358.3,30568,1,3,0)
+ ;;=3^Mononeuritis Multiplex
+ ;;^UTILITY(U,$J,358.3,30568,1,4,0)
+ ;;=4^G58.7
+ ;;^UTILITY(U,$J,358.3,30568,2)
+ ;;=^5004063
+ ;;^UTILITY(U,$J,358.3,30569,0)
+ ;;=G56.91^^121^1521^28
+ ;;^UTILITY(U,$J,358.3,30569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30113,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,30113,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,30113,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,30114,0)
- ;;=Z86.13^^135^1373^82
- ;;^UTILITY(U,$J,358.3,30114,1,0)
+ ;;^UTILITY(U,$J,358.3,30569,1,3,0)
+ ;;=3^Mononeuropathy Right Upper Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,30569,1,4,0)
+ ;;=4^G56.91
+ ;;^UTILITY(U,$J,358.3,30569,2)
+ ;;=^5004036
+ ;;^UTILITY(U,$J,358.3,30570,0)
+ ;;=G56.92^^121^1521^26
+ ;;^UTILITY(U,$J,358.3,30570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30114,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,30114,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,30114,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,30115,0)
- ;;=Z86.73^^135^1373^112
- ;;^UTILITY(U,$J,358.3,30115,1,0)
+ ;;^UTILITY(U,$J,358.3,30570,1,3,0)
+ ;;=3^Mononeuropathy Left Upper Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,30570,1,4,0)
+ ;;=4^G56.92
+ ;;^UTILITY(U,$J,358.3,30570,2)
+ ;;=^5004037
+ ;;^UTILITY(U,$J,358.3,30571,0)
+ ;;=G57.11^^121^1521^23
+ ;;^UTILITY(U,$J,358.3,30571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30115,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,30115,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,30115,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,30116,0)
- ;;=Z86.79^^135^1373^75
- ;;^UTILITY(U,$J,358.3,30116,1,0)
+ ;;^UTILITY(U,$J,358.3,30571,1,3,0)
+ ;;=3^Meralgia Paresthetica,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,30571,1,4,0)
+ ;;=4^G57.11
+ ;;^UTILITY(U,$J,358.3,30571,2)
+ ;;=^5004042
+ ;;^UTILITY(U,$J,358.3,30572,0)
+ ;;=G57.12^^121^1521^22
+ ;;^UTILITY(U,$J,358.3,30572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30116,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,30116,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,30116,2)
- ;;=^5063479
- ;;^UTILITY(U,$J,358.3,30117,0)
- ;;=Z91.040^^135^1373^64
- ;;^UTILITY(U,$J,358.3,30117,1,0)
+ ;;^UTILITY(U,$J,358.3,30572,1,3,0)
+ ;;=3^Meralgia Paresthetica,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,30572,1,4,0)
+ ;;=4^G57.12
+ ;;^UTILITY(U,$J,358.3,30572,2)
+ ;;=^5004043
+ ;;^UTILITY(U,$J,358.3,30573,0)
+ ;;=G57.91^^121^1521^27
+ ;;^UTILITY(U,$J,358.3,30573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30117,1,3,0)
- ;;=3^Latex Allergy Status
- ;;^UTILITY(U,$J,358.3,30117,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,30117,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,30118,0)
- ;;=Z98.89^^135^1373^120
- ;;^UTILITY(U,$J,358.3,30118,1,0)
+ ;;^UTILITY(U,$J,358.3,30573,1,3,0)
+ ;;=3^Mononeuropathy Right Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,30573,1,4,0)
+ ;;=4^G57.91
+ ;;^UTILITY(U,$J,358.3,30573,2)
+ ;;=^5133369
+ ;;^UTILITY(U,$J,358.3,30574,0)
+ ;;=G57.92^^121^1521^25
+ ;;^UTILITY(U,$J,358.3,30574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30118,1,3,0)
- ;;=3^Postprocedural States/Hx of Surgery NEC
- ;;^UTILITY(U,$J,358.3,30118,1,4,0)
- ;;=4^Z98.89
- ;;^UTILITY(U,$J,358.3,30118,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,30119,0)
- ;;=Z92.3^^135^1373^79
- ;;^UTILITY(U,$J,358.3,30119,1,0)
+ ;;^UTILITY(U,$J,358.3,30574,1,3,0)
+ ;;=3^Mononeuropathy Left Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,30574,1,4,0)
+ ;;=4^G57.92
+ ;;^UTILITY(U,$J,358.3,30574,2)
+ ;;=^5133370
+ ;;^UTILITY(U,$J,358.3,30575,0)
+ ;;=G58.9^^121^1521^29
+ ;;^UTILITY(U,$J,358.3,30575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30119,1,3,0)
- ;;=3^Personal Hx of Irradiation
- ;;^UTILITY(U,$J,358.3,30119,1,4,0)
- ;;=4^Z92.3
- ;;^UTILITY(U,$J,358.3,30119,2)
- ;;=^5063637
- ;;^UTILITY(U,$J,358.3,30120,0)
- ;;=Z91.120^^135^1373^60
- ;;^UTILITY(U,$J,358.3,30120,1,0)
+ ;;^UTILITY(U,$J,358.3,30575,1,3,0)
+ ;;=3^Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,30575,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,30575,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,30576,0)
+ ;;=G60.9^^121^1521^19
+ ;;^UTILITY(U,$J,358.3,30576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30120,1,3,0)
- ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,30576,1,3,0)
+ ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,30576,1,4,0)
+ ;;=4^G60.9

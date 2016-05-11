@@ -1,5 +1,5 @@
 PSOTRI ;BIRM/BNT - OP TRICARE/CHAMPVA Audit Log Utilities ;07/21/2010
- ;;7.0;OUTPATIENT PHARMACY;**358,385**;DEC 1997;Build 27
+ ;;7.0;OUTPATIENT PHARMACY;**358,385,427**;DEC 1997;Build 21
  ;
  ; Reference to DUR1^BPSNCPD3 supported by IA 4560
  ;
@@ -8,6 +8,7 @@ PSOTRI ;BIRM/BNT - OP TRICARE/CHAMPVA Audit Log Utilities ;07/21/2010
  ;
 AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  ; Main entry to create a new record in the PSO AUDIT LOG file #52.87
+ ; Note that AUDIT^PSOTRI is called by ECME (BPSECMP2) - ICR 6156
  ; INPUT: RX    (r) = Prescription IEN
  ;        RFL   (o) = Prescription Fill # (Default is original zero fill)
  ;        RXCOB (o) = Coordination of Benefits
@@ -16,7 +17,7 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  ;        JST   (o) = Justification text
  ;        AUD   (r) = Audit Type
  ;                   R = NCPDP REJECT - Associated with an Override audit action
- ;                   N = NON BILLABLE RX - Associated with an Override audit action
+ ;                   N = NON BILLABLE - Associated with an Override audit action
  ;                   I = INPATIENT - Associated with a Bypass audit action
  ;                   P = PARTIAL FILL
  ;        ELIG  (r) = Eligibility Type
@@ -68,9 +69,9 @@ AUDIT(RX,RFL,RXCOB,JST,AUD,ELIG) ;
  S PSODOA=$$NOW^XLFDT()
  ; Date of Service
  S PSODOS=$$DOS^PSOBPSU1(RX,RFL)
- ; User (If null OR Audit Type is Inpatient set to POSTMASTER)
+ ; User (If null OR Audit Type is Inpatient OR bypass-type reject, set to POSTMASTER)
  S PSOUSER=DUZ
- I (PSOUSER="")!(AUD="I") S PSOUSER=.5
+ I (PSOUSER="")!(AUD="I")!$$BYPASS^PSOBPSU1(ELIG,JST) S PSOUSER=.5
  ; Quantity
  S PSOQTY=$S(RFL>0:$G(RFLARR(52.1,RFL_","_RX_",",1,"I")),1:$G(RXARR(52,RX_",",7,"I")))
  ;

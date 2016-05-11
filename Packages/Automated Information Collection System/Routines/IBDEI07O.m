@@ -1,140 +1,140 @@
-IBDEI07O ; ; 19-NOV-2015
+IBDEI07O ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3019,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,3019,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,3020,0)
- ;;=D50.0^^28^246^10
- ;;^UTILITY(U,$J,358.3,3020,1,0)
+ ;;^UTILITY(U,$J,358.3,3285,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,3286,0)
+ ;;=N90.9^^18^216^112
+ ;;^UTILITY(U,$J,358.3,3286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3020,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,3020,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,3020,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,3021,0)
- ;;=D50.9^^28^246^11
- ;;^UTILITY(U,$J,358.3,3021,1,0)
+ ;;^UTILITY(U,$J,358.3,3286,1,3,0)
+ ;;=3^Vulva/Perineum Noninflammaotory Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3286,1,4,0)
+ ;;=4^N90.9
+ ;;^UTILITY(U,$J,358.3,3286,2)
+ ;;=^5015901
+ ;;^UTILITY(U,$J,358.3,3287,0)
+ ;;=A49.9^^18^217^1
+ ;;^UTILITY(U,$J,358.3,3287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3021,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,3021,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,3021,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,3022,0)
- ;;=D53.9^^28^246^12
- ;;^UTILITY(U,$J,358.3,3022,1,0)
+ ;;^UTILITY(U,$J,358.3,3287,1,3,0)
+ ;;=3^Infection,Bacterial,Unspec
+ ;;^UTILITY(U,$J,358.3,3287,1,4,0)
+ ;;=4^A49.9
+ ;;^UTILITY(U,$J,358.3,3287,2)
+ ;;=^5000241
+ ;;^UTILITY(U,$J,358.3,3288,0)
+ ;;=B37.9^^18^217^2
+ ;;^UTILITY(U,$J,358.3,3288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3022,1,3,0)
- ;;=3^Anemia,Nutritional,Unspec
- ;;^UTILITY(U,$J,358.3,3022,1,4,0)
- ;;=4^D53.9
- ;;^UTILITY(U,$J,358.3,3022,2)
- ;;=^5002298
- ;;^UTILITY(U,$J,358.3,3023,0)
- ;;=D51.0^^28^246^13
- ;;^UTILITY(U,$J,358.3,3023,1,0)
+ ;;^UTILITY(U,$J,358.3,3288,1,3,0)
+ ;;=3^Infection,Candidiasis,Unspec
+ ;;^UTILITY(U,$J,358.3,3288,1,4,0)
+ ;;=4^B37.9
+ ;;^UTILITY(U,$J,358.3,3288,2)
+ ;;=^5000624
+ ;;^UTILITY(U,$J,358.3,3289,0)
+ ;;=Z20.9^^18^217^3
+ ;;^UTILITY(U,$J,358.3,3289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3023,1,3,0)
- ;;=3^Anemia,Pernicious (Vitamin B12 Defic)
- ;;^UTILITY(U,$J,358.3,3023,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,3023,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,3024,0)
- ;;=D46.4^^28^246^14
- ;;^UTILITY(U,$J,358.3,3024,1,0)
+ ;;^UTILITY(U,$J,358.3,3289,1,3,0)
+ ;;=3^Infection,Communicable Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3289,1,4,0)
+ ;;=4^Z20.9
+ ;;^UTILITY(U,$J,358.3,3289,2)
+ ;;=^5062776
+ ;;^UTILITY(U,$J,358.3,3290,0)
+ ;;=B30.9^^18^217^4
+ ;;^UTILITY(U,$J,358.3,3290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3024,1,3,0)
- ;;=3^Anemia,Refractory,Unspec
- ;;^UTILITY(U,$J,358.3,3024,1,4,0)
- ;;=4^D46.4
- ;;^UTILITY(U,$J,358.3,3024,2)
- ;;=^5002250
- ;;^UTILITY(U,$J,358.3,3025,0)
- ;;=D57.419^^28^246^15
- ;;^UTILITY(U,$J,358.3,3025,1,0)
+ ;;^UTILITY(U,$J,358.3,3290,1,3,0)
+ ;;=3^Infection,Conjunctivitis,Viral,Unspec
+ ;;^UTILITY(U,$J,358.3,3290,1,4,0)
+ ;;=4^B30.9
+ ;;^UTILITY(U,$J,358.3,3290,2)
+ ;;=^5000586
+ ;;^UTILITY(U,$J,358.3,3291,0)
+ ;;=B25.9^^18^217^5
+ ;;^UTILITY(U,$J,358.3,3291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3025,1,3,0)
- ;;=3^Anemia,Sickle-Cell Thalassemia w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,3025,1,4,0)
- ;;=4^D57.419
- ;;^UTILITY(U,$J,358.3,3025,2)
- ;;=^5002316
- ;;^UTILITY(U,$J,358.3,3026,0)
- ;;=D57.40^^28^246^16
- ;;^UTILITY(U,$J,358.3,3026,1,0)
+ ;;^UTILITY(U,$J,358.3,3291,1,3,0)
+ ;;=3^Infection,Cytomegaloviral Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3291,1,4,0)
+ ;;=4^B25.9
+ ;;^UTILITY(U,$J,358.3,3291,2)
+ ;;=^5000560
+ ;;^UTILITY(U,$J,358.3,3292,0)
+ ;;=B35.9^^18^217^6
+ ;;^UTILITY(U,$J,358.3,3292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3026,1,3,0)
- ;;=3^Anemia,Sickle-Cell Thalassemia w/o Crisis
- ;;^UTILITY(U,$J,358.3,3026,1,4,0)
- ;;=4^D57.40
- ;;^UTILITY(U,$J,358.3,3026,2)
- ;;=^329908
- ;;^UTILITY(U,$J,358.3,3027,0)
- ;;=D56.9^^28^246^17
- ;;^UTILITY(U,$J,358.3,3027,1,0)
+ ;;^UTILITY(U,$J,358.3,3292,1,3,0)
+ ;;=3^Infection,Dermatophytosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3292,1,4,0)
+ ;;=4^B35.9
+ ;;^UTILITY(U,$J,358.3,3292,2)
+ ;;=^5000607
+ ;;^UTILITY(U,$J,358.3,3293,0)
+ ;;=A49.2^^18^217^8
+ ;;^UTILITY(U,$J,358.3,3293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3027,1,3,0)
- ;;=3^Anemia,Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,3027,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,3027,2)
- ;;=^340606
- ;;^UTILITY(U,$J,358.3,3028,0)
- ;;=D64.9^^28^246^18
- ;;^UTILITY(U,$J,358.3,3028,1,0)
+ ;;^UTILITY(U,$J,358.3,3293,1,3,0)
+ ;;=3^Infection,Hemophilus Influenzae
+ ;;^UTILITY(U,$J,358.3,3293,1,4,0)
+ ;;=4^A49.2
+ ;;^UTILITY(U,$J,358.3,3293,2)
+ ;;=^5000238
+ ;;^UTILITY(U,$J,358.3,3294,0)
+ ;;=B00.9^^18^217^9
+ ;;^UTILITY(U,$J,358.3,3294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3028,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,3028,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,3028,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,3029,0)
- ;;=D51.9^^28^246^19
- ;;^UTILITY(U,$J,358.3,3029,1,0)
+ ;;^UTILITY(U,$J,358.3,3294,1,3,0)
+ ;;=3^Infection,Herpesviral,Unspec
+ ;;^UTILITY(U,$J,358.3,3294,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,3294,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,3295,0)
+ ;;=B20.^^18^217^7
+ ;;^UTILITY(U,$J,358.3,3295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3029,1,3,0)
- ;;=3^Anemia,Vitamin B12 Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,3029,1,4,0)
- ;;=4^D51.9
- ;;^UTILITY(U,$J,358.3,3029,2)
- ;;=^5002289
- ;;^UTILITY(U,$J,358.3,3030,0)
- ;;=R78.81^^28^246^20
- ;;^UTILITY(U,$J,358.3,3030,1,0)
+ ;;^UTILITY(U,$J,358.3,3295,1,3,0)
+ ;;=3^Infection,HIV
+ ;;^UTILITY(U,$J,358.3,3295,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,3295,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,3296,0)
+ ;;=B82.9^^18^217^10
+ ;;^UTILITY(U,$J,358.3,3296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3030,1,3,0)
- ;;=3^Bacteremia
- ;;^UTILITY(U,$J,358.3,3030,1,4,0)
- ;;=4^R78.81
- ;;^UTILITY(U,$J,358.3,3030,2)
- ;;=^12280
- ;;^UTILITY(U,$J,358.3,3031,0)
- ;;=R79.9^^28^246^21
- ;;^UTILITY(U,$J,358.3,3031,1,0)
+ ;;^UTILITY(U,$J,358.3,3296,1,3,0)
+ ;;=3^Infection,Intestinal Parasitism,Unspec
+ ;;^UTILITY(U,$J,358.3,3296,1,4,0)
+ ;;=4^B82.9
+ ;;^UTILITY(U,$J,358.3,3296,2)
+ ;;=^5000798
+ ;;^UTILITY(U,$J,358.3,3297,0)
+ ;;=A49.02^^18^217^11
+ ;;^UTILITY(U,$J,358.3,3297,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3031,1,3,0)
- ;;=3^Blood Chemistry,Abnormal Finding,Unspec
- ;;^UTILITY(U,$J,358.3,3031,1,4,0)
- ;;=4^R79.9
- ;;^UTILITY(U,$J,358.3,3031,2)
- ;;=^5019594
- ;;^UTILITY(U,$J,358.3,3032,0)
- ;;=R79.81^^28^246^22
- ;;^UTILITY(U,$J,358.3,3032,1,0)
+ ;;^UTILITY(U,$J,358.3,3297,1,3,0)
+ ;;=3^Infection,MRSA,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3297,1,4,0)
+ ;;=4^A49.02
+ ;;^UTILITY(U,$J,358.3,3297,2)
+ ;;=^5000236
+ ;;^UTILITY(U,$J,358.3,3298,0)
+ ;;=A49.3^^18^217^12
+ ;;^UTILITY(U,$J,358.3,3298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3032,1,3,0)
- ;;=3^Blood-Gas Level,Abnormal
- ;;^UTILITY(U,$J,358.3,3032,1,4,0)
- ;;=4^R79.81
- ;;^UTILITY(U,$J,358.3,3032,2)
- ;;=^5019592
- ;;^UTILITY(U,$J,358.3,3033,0)
- ;;=R79.1^^28^246^23
+ ;;^UTILITY(U,$J,358.3,3298,1,3,0)
+ ;;=3^Infection,Mycoplasma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,3298,1,4,0)
+ ;;=4^A49.3
+ ;;^UTILITY(U,$J,358.3,3298,2)
+ ;;=^5000239
+ ;;^UTILITY(U,$J,358.3,3299,0)
+ ;;=B49.^^18^217^13
+ ;;^UTILITY(U,$J,358.3,3299,1,0)
+ ;;=^358.31IA^4^2

@@ -1,136 +1,138 @@
-IBDEI101 ; ; 19-NOV-2015
+IBDEI101 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16614,1,4,0)
- ;;=4^H01.006
- ;;^UTILITY(U,$J,358.3,16614,2)
- ;;=^5004242
- ;;^UTILITY(U,$J,358.3,16615,0)
- ;;=H01.003^^88^851^3
- ;;^UTILITY(U,$J,358.3,16615,1,0)
+ ;;^UTILITY(U,$J,358.3,16945,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,16945,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,16946,0)
+ ;;=M79.605^^70^798^19
+ ;;^UTILITY(U,$J,358.3,16946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16615,1,3,0)
- ;;=3^Blepharitis Right Eye,Unspec Eyelid
- ;;^UTILITY(U,$J,358.3,16615,1,4,0)
- ;;=4^H01.003
- ;;^UTILITY(U,$J,358.3,16615,2)
- ;;=^5004240
- ;;^UTILITY(U,$J,358.3,16616,0)
- ;;=H54.0^^88^851^8
- ;;^UTILITY(U,$J,358.3,16616,1,0)
+ ;;^UTILITY(U,$J,358.3,16946,1,3,0)
+ ;;=3^Pain in left leg
+ ;;^UTILITY(U,$J,358.3,16946,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,16946,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,16947,0)
+ ;;=F60.2^^70^799^1
+ ;;^UTILITY(U,$J,358.3,16947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16616,1,3,0)
- ;;=3^Blindness,Both Eyes
- ;;^UTILITY(U,$J,358.3,16616,1,4,0)
- ;;=4^H54.0
- ;;^UTILITY(U,$J,358.3,16616,2)
- ;;=^5006357
- ;;^UTILITY(U,$J,358.3,16617,0)
- ;;=H54.12^^88^851^4
- ;;^UTILITY(U,$J,358.3,16617,1,0)
+ ;;^UTILITY(U,$J,358.3,16947,1,3,0)
+ ;;=3^Antisocial personality disorder
+ ;;^UTILITY(U,$J,358.3,16947,1,4,0)
+ ;;=4^F60.2
+ ;;^UTILITY(U,$J,358.3,16947,2)
+ ;;=^9066
+ ;;^UTILITY(U,$J,358.3,16948,0)
+ ;;=F60.6^^70^799^2
+ ;;^UTILITY(U,$J,358.3,16948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16617,1,3,0)
- ;;=3^Blindness Left Eye,Low Vision Rt Eye
- ;;^UTILITY(U,$J,358.3,16617,1,4,0)
- ;;=4^H54.12
- ;;^UTILITY(U,$J,358.3,16617,2)
- ;;=^5006360
- ;;^UTILITY(U,$J,358.3,16618,0)
- ;;=H54.42^^88^851^5
- ;;^UTILITY(U,$J,358.3,16618,1,0)
+ ;;^UTILITY(U,$J,358.3,16948,1,3,0)
+ ;;=3^Avoidant personality disorder
+ ;;^UTILITY(U,$J,358.3,16948,1,4,0)
+ ;;=4^F60.6
+ ;;^UTILITY(U,$J,358.3,16948,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,16949,0)
+ ;;=F60.3^^70^799^3
+ ;;^UTILITY(U,$J,358.3,16949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16618,1,3,0)
- ;;=3^Blindness Left Eye,Normal Vision Rt Eye
- ;;^UTILITY(U,$J,358.3,16618,1,4,0)
- ;;=4^H54.42
- ;;^UTILITY(U,$J,358.3,16618,2)
- ;;=^5133518
- ;;^UTILITY(U,$J,358.3,16619,0)
- ;;=H54.8^^88^851^9
- ;;^UTILITY(U,$J,358.3,16619,1,0)
+ ;;^UTILITY(U,$J,358.3,16949,1,3,0)
+ ;;=3^Borderline personality disorder
+ ;;^UTILITY(U,$J,358.3,16949,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,16949,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,16950,0)
+ ;;=F34.0^^70^799^4
+ ;;^UTILITY(U,$J,358.3,16950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16619,1,3,0)
- ;;=3^Blindness,Legal Defined in USA
- ;;^UTILITY(U,$J,358.3,16619,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,16619,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,16620,0)
- ;;=H53.60^^88^851^10
- ;;^UTILITY(U,$J,358.3,16620,1,0)
+ ;;^UTILITY(U,$J,358.3,16950,1,3,0)
+ ;;=3^Cyclothymic disorder
+ ;;^UTILITY(U,$J,358.3,16950,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,16950,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,16951,0)
+ ;;=F60.7^^70^799^5
+ ;;^UTILITY(U,$J,358.3,16951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16620,1,3,0)
- ;;=3^Blindness,Night,Unspec
- ;;^UTILITY(U,$J,358.3,16620,1,4,0)
- ;;=4^H53.60
- ;;^UTILITY(U,$J,358.3,16620,2)
- ;;=^5006353
- ;;^UTILITY(U,$J,358.3,16621,0)
- ;;=H54.11^^88^851^6
- ;;^UTILITY(U,$J,358.3,16621,1,0)
+ ;;^UTILITY(U,$J,358.3,16951,1,3,0)
+ ;;=3^Dependent personality disorder
+ ;;^UTILITY(U,$J,358.3,16951,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,16951,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,16952,0)
+ ;;=F60.4^^70^799^6
+ ;;^UTILITY(U,$J,358.3,16952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16621,1,3,0)
- ;;=3^Blindness Right Eye,Low Vision Lt Eye
- ;;^UTILITY(U,$J,358.3,16621,1,4,0)
- ;;=4^H54.11
- ;;^UTILITY(U,$J,358.3,16621,2)
- ;;=^5006359
- ;;^UTILITY(U,$J,358.3,16622,0)
- ;;=H54.41^^88^851^7
- ;;^UTILITY(U,$J,358.3,16622,1,0)
+ ;;^UTILITY(U,$J,358.3,16952,1,3,0)
+ ;;=3^Histrionic personality disorder
+ ;;^UTILITY(U,$J,358.3,16952,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,16952,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,16953,0)
+ ;;=F60.81^^70^799^7
+ ;;^UTILITY(U,$J,358.3,16953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16622,1,3,0)
- ;;=3^Blindness Right Eye,Normal Vision Lt Eye
- ;;^UTILITY(U,$J,358.3,16622,1,4,0)
- ;;=4^H54.41
- ;;^UTILITY(U,$J,358.3,16622,2)
- ;;=^5006363
- ;;^UTILITY(U,$J,358.3,16623,0)
- ;;=H26.9^^88^851^14
- ;;^UTILITY(U,$J,358.3,16623,1,0)
+ ;;^UTILITY(U,$J,358.3,16953,1,3,0)
+ ;;=3^Narcissistic personality disorder
+ ;;^UTILITY(U,$J,358.3,16953,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,16953,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,16954,0)
+ ;;=F60.5^^70^799^8
+ ;;^UTILITY(U,$J,358.3,16954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16623,1,3,0)
- ;;=3^Cataract,Unspec
- ;;^UTILITY(U,$J,358.3,16623,1,4,0)
- ;;=4^H26.9
- ;;^UTILITY(U,$J,358.3,16623,2)
- ;;=^5005363
- ;;^UTILITY(U,$J,358.3,16624,0)
- ;;=H25.9^^88^851^13
- ;;^UTILITY(U,$J,358.3,16624,1,0)
+ ;;^UTILITY(U,$J,358.3,16954,1,3,0)
+ ;;=3^Obsessive-compulsive personality disorder
+ ;;^UTILITY(U,$J,358.3,16954,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,16954,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,16955,0)
+ ;;=F60.0^^70^799^9
+ ;;^UTILITY(U,$J,358.3,16955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16624,1,3,0)
- ;;=3^Cataract,Age-Related,Unspec
- ;;^UTILITY(U,$J,358.3,16624,1,4,0)
- ;;=4^H25.9
- ;;^UTILITY(U,$J,358.3,16624,2)
- ;;=^5005296
- ;;^UTILITY(U,$J,358.3,16625,0)
- ;;=Z98.41^^88^851^12
- ;;^UTILITY(U,$J,358.3,16625,1,0)
+ ;;^UTILITY(U,$J,358.3,16955,1,3,0)
+ ;;=3^Paranoid personality disorder
+ ;;^UTILITY(U,$J,358.3,16955,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,16955,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,16956,0)
+ ;;=F60.89^^70^799^10
+ ;;^UTILITY(U,$J,358.3,16956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16625,1,3,0)
- ;;=3^Cataract Extraction,Postprocedure,Right Eye
- ;;^UTILITY(U,$J,358.3,16625,1,4,0)
- ;;=4^Z98.41
- ;;^UTILITY(U,$J,358.3,16625,2)
- ;;=^5063737
- ;;^UTILITY(U,$J,358.3,16626,0)
- ;;=Z98.42^^88^851^11
- ;;^UTILITY(U,$J,358.3,16626,1,0)
+ ;;^UTILITY(U,$J,358.3,16956,1,3,0)
+ ;;=3^Personality disorders, spec, other
+ ;;^UTILITY(U,$J,358.3,16956,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,16956,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,16957,0)
+ ;;=F60.1^^70^799^11
+ ;;^UTILITY(U,$J,358.3,16957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16626,1,3,0)
- ;;=3^Cataract Extraction,Postprocedure,Left Eye
- ;;^UTILITY(U,$J,358.3,16626,1,4,0)
- ;;=4^Z98.42
- ;;^UTILITY(U,$J,358.3,16626,2)
- ;;=^5063738
- ;;^UTILITY(U,$J,358.3,16627,0)
- ;;=H53.50^^88^851^15
- ;;^UTILITY(U,$J,358.3,16627,1,0)
+ ;;^UTILITY(U,$J,358.3,16957,1,3,0)
+ ;;=3^Schizoid personality disorder
+ ;;^UTILITY(U,$J,358.3,16957,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,16957,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,16958,0)
+ ;;=F21.^^70^799^12
+ ;;^UTILITY(U,$J,358.3,16958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16627,1,3,0)
- ;;=3^Color Vision Deficiencies,Unspec
- ;;^UTILITY(U,$J,358.3,16627,1,4,0)
- ;;=4^H53.50
+ ;;^UTILITY(U,$J,358.3,16958,1,3,0)
+ ;;=3^Schizotypal disorder
+ ;;^UTILITY(U,$J,358.3,16958,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,16958,2)
+ ;;=^5003477

@@ -1,130 +1,128 @@
-IBDEI0BQ ; ; 19-NOV-2015
+IBDEI0BQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5027,1,2,0)
- ;;=2^Repair Simple > 30 cm
- ;;^UTILITY(U,$J,358.3,5027,1,4,0)
- ;;=4^12018
- ;;^UTILITY(U,$J,358.3,5028,0)
- ;;=12020^^39^340^8^^^^1
- ;;^UTILITY(U,$J,358.3,5028,1,0)
+ ;;^UTILITY(U,$J,358.3,5307,0)
+ ;;=N03.6^^27^344^11
+ ;;^UTILITY(U,$J,358.3,5307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5028,1,2,0)
- ;;=2^Rx wound dehisc,simple close
- ;;^UTILITY(U,$J,358.3,5028,1,4,0)
- ;;=4^12020
- ;;^UTILITY(U,$J,358.3,5029,0)
- ;;=12021^^39^340^9^^^^1
- ;;^UTILITY(U,$J,358.3,5029,1,0)
+ ;;^UTILITY(U,$J,358.3,5307,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5307,1,4,0)
+ ;;=4^N03.6
+ ;;^UTILITY(U,$J,358.3,5307,2)
+ ;;=^5015527
+ ;;^UTILITY(U,$J,358.3,5308,0)
+ ;;=N03.7^^27^344^12
+ ;;^UTILITY(U,$J,358.3,5308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5029,1,2,0)
- ;;=2^Rx wound dehisc, w/ packing
- ;;^UTILITY(U,$J,358.3,5029,1,4,0)
- ;;=4^12021
- ;;^UTILITY(U,$J,358.3,5030,0)
- ;;=12031^^39^341^1^^^^1
- ;;^UTILITY(U,$J,358.3,5030,1,0)
+ ;;^UTILITY(U,$J,358.3,5308,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5308,1,4,0)
+ ;;=4^N03.7
+ ;;^UTILITY(U,$J,358.3,5308,2)
+ ;;=^5015528
+ ;;^UTILITY(U,$J,358.3,5309,0)
+ ;;=N03.8^^27^344^19
+ ;;^UTILITY(U,$J,358.3,5309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5030,1,2,0)
- ;;=2^Repair Intermediate 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5030,1,4,0)
- ;;=4^12031
- ;;^UTILITY(U,$J,358.3,5031,0)
- ;;=12032^^39^341^2^^^^1
- ;;^UTILITY(U,$J,358.3,5031,1,0)
+ ;;^UTILITY(U,$J,358.3,5309,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,5309,1,4,0)
+ ;;=4^N03.8
+ ;;^UTILITY(U,$J,358.3,5309,2)
+ ;;=^5015529
+ ;;^UTILITY(U,$J,358.3,5310,0)
+ ;;=N03.9^^27^344^20
+ ;;^UTILITY(U,$J,358.3,5310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5031,1,2,0)
- ;;=2^Repair Intermediate 2.6-7.5 cm
- ;;^UTILITY(U,$J,358.3,5031,1,4,0)
- ;;=4^12032
- ;;^UTILITY(U,$J,358.3,5032,0)
- ;;=12034^^39^341^3^^^^1
- ;;^UTILITY(U,$J,358.3,5032,1,0)
+ ;;^UTILITY(U,$J,358.3,5310,1,3,0)
+ ;;=3^Chr nephritic syndrome w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,5310,1,4,0)
+ ;;=4^N03.9
+ ;;^UTILITY(U,$J,358.3,5310,2)
+ ;;=^5015530
+ ;;^UTILITY(U,$J,358.3,5311,0)
+ ;;=N04.0^^27^344^60
+ ;;^UTILITY(U,$J,358.3,5311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5032,1,2,0)
- ;;=2^Repair Intermediate 7.6-12.5 cm
- ;;^UTILITY(U,$J,358.3,5032,1,4,0)
- ;;=4^12034
- ;;^UTILITY(U,$J,358.3,5033,0)
- ;;=12035^^39^341^4^^^^1
- ;;^UTILITY(U,$J,358.3,5033,1,0)
+ ;;^UTILITY(U,$J,358.3,5311,1,3,0)
+ ;;=3^Nephrotic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,5311,1,4,0)
+ ;;=4^N04.0
+ ;;^UTILITY(U,$J,358.3,5311,2)
+ ;;=^5015531
+ ;;^UTILITY(U,$J,358.3,5312,0)
+ ;;=N04.1^^27^344^59
+ ;;^UTILITY(U,$J,358.3,5312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5033,1,2,0)
- ;;=2^Repair Intermediate 12.6-20.0 cm
- ;;^UTILITY(U,$J,358.3,5033,1,4,0)
- ;;=4^12035
- ;;^UTILITY(U,$J,358.3,5034,0)
- ;;=12036^^39^341^5^^^^1
- ;;^UTILITY(U,$J,358.3,5034,1,0)
+ ;;^UTILITY(U,$J,358.3,5312,1,3,0)
+ ;;=3^Nephrotic syndrome w/ focal & segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5312,1,4,0)
+ ;;=4^N04.1
+ ;;^UTILITY(U,$J,358.3,5312,2)
+ ;;=^5015532
+ ;;^UTILITY(U,$J,358.3,5313,0)
+ ;;=N04.2^^27^344^56
+ ;;^UTILITY(U,$J,358.3,5313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5034,1,2,0)
- ;;=2^Repair Intermediate 20.1-30.0 cm
- ;;^UTILITY(U,$J,358.3,5034,1,4,0)
- ;;=4^12036
- ;;^UTILITY(U,$J,358.3,5035,0)
- ;;=12037^^39^341^6^^^^1
- ;;^UTILITY(U,$J,358.3,5035,1,0)
+ ;;^UTILITY(U,$J,358.3,5313,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse membranous glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,5313,1,4,0)
+ ;;=4^N04.2
+ ;;^UTILITY(U,$J,358.3,5313,2)
+ ;;=^5015533
+ ;;^UTILITY(U,$J,358.3,5314,0)
+ ;;=N04.3^^27^344^57
+ ;;^UTILITY(U,$J,358.3,5314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5035,1,2,0)
- ;;=2^Repair Intermediate > 30 cm
- ;;^UTILITY(U,$J,358.3,5035,1,4,0)
- ;;=4^12037
- ;;^UTILITY(U,$J,358.3,5036,0)
- ;;=12051^^39^342^1^^^^1
- ;;^UTILITY(U,$J,358.3,5036,1,0)
+ ;;^UTILITY(U,$J,358.3,5314,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5314,1,4,0)
+ ;;=4^N04.3
+ ;;^UTILITY(U,$J,358.3,5314,2)
+ ;;=^5015534
+ ;;^UTILITY(U,$J,358.3,5315,0)
+ ;;=N04.4^^27^344^55
+ ;;^UTILITY(U,$J,358.3,5315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5036,1,2,0)
- ;;=2^Repair, Intermediate < 2.5 cm or less
- ;;^UTILITY(U,$J,358.3,5036,1,4,0)
- ;;=4^12051
- ;;^UTILITY(U,$J,358.3,5037,0)
- ;;=12052^^39^342^2^^^^1
- ;;^UTILITY(U,$J,358.3,5037,1,0)
+ ;;^UTILITY(U,$J,358.3,5315,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5315,1,4,0)
+ ;;=4^N04.4
+ ;;^UTILITY(U,$J,358.3,5315,2)
+ ;;=^5015535
+ ;;^UTILITY(U,$J,358.3,5316,0)
+ ;;=N04.5^^27^344^58
+ ;;^UTILITY(U,$J,358.3,5316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5037,1,2,0)
- ;;=2^Repair, Intermediate 2.6-5.0 cm
- ;;^UTILITY(U,$J,358.3,5037,1,4,0)
- ;;=4^12052
- ;;^UTILITY(U,$J,358.3,5038,0)
- ;;=12053^^39^342^3^^^^1
- ;;^UTILITY(U,$J,358.3,5038,1,0)
+ ;;^UTILITY(U,$J,358.3,5316,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse mesangiocapillary glomrlneph
+ ;;^UTILITY(U,$J,358.3,5316,1,4,0)
+ ;;=4^N04.5
+ ;;^UTILITY(U,$J,358.3,5316,2)
+ ;;=^5015536
+ ;;^UTILITY(U,$J,358.3,5317,0)
+ ;;=N04.6^^27^344^53
+ ;;^UTILITY(U,$J,358.3,5317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5038,1,2,0)
- ;;=2^Repair, Intermediate 5.1-7.5 cm
- ;;^UTILITY(U,$J,358.3,5038,1,4,0)
- ;;=4^12053
- ;;^UTILITY(U,$J,358.3,5039,0)
- ;;=12054^^39^342^4^^^^1
- ;;^UTILITY(U,$J,358.3,5039,1,0)
+ ;;^UTILITY(U,$J,358.3,5317,1,3,0)
+ ;;=3^Nephrotic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5317,1,4,0)
+ ;;=4^N04.6
+ ;;^UTILITY(U,$J,358.3,5317,2)
+ ;;=^5015537
+ ;;^UTILITY(U,$J,358.3,5318,0)
+ ;;=N04.7^^27^344^54
+ ;;^UTILITY(U,$J,358.3,5318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5039,1,2,0)
- ;;=2^Repair, Intermediate 7.6-12.5 cm
- ;;^UTILITY(U,$J,358.3,5039,1,4,0)
- ;;=4^12054
- ;;^UTILITY(U,$J,358.3,5040,0)
- ;;=12055^^39^342^5^^^^1
- ;;^UTILITY(U,$J,358.3,5040,1,0)
+ ;;^UTILITY(U,$J,358.3,5318,1,3,0)
+ ;;=3^Nephrotic syndrome w/ diffuse crescentic glomerulonephritis
+ ;;^UTILITY(U,$J,358.3,5318,1,4,0)
+ ;;=4^N04.7
+ ;;^UTILITY(U,$J,358.3,5318,2)
+ ;;=^5015538
+ ;;^UTILITY(U,$J,358.3,5319,0)
+ ;;=N04.8^^27^344^61
+ ;;^UTILITY(U,$J,358.3,5319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5040,1,2,0)
- ;;=2^Repair, Intermediate 12.6-20.0 cm
- ;;^UTILITY(U,$J,358.3,5040,1,4,0)
- ;;=4^12055
- ;;^UTILITY(U,$J,358.3,5041,0)
- ;;=12056^^39^342^6^^^^1
- ;;^UTILITY(U,$J,358.3,5041,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5041,1,2,0)
- ;;=2^Repair, Intermediate 20.1-30.0 cm
- ;;^UTILITY(U,$J,358.3,5041,1,4,0)
- ;;=4^12056
- ;;^UTILITY(U,$J,358.3,5042,0)
- ;;=12057^^39^342^7^^^^1
- ;;^UTILITY(U,$J,358.3,5042,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5042,1,2,0)
- ;;=2^Repair, Intermediate > 30.0 cm
- ;;^UTILITY(U,$J,358.3,5042,1,4,0)
- ;;=4^12057
- ;;^UTILITY(U,$J,358.3,5043,0)
- ;;=12041^^39^343^1^^^^1

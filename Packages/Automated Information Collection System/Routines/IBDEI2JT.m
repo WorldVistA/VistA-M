@@ -1,128 +1,138 @@
-IBDEI2JT ; ; 19-NOV-2015
+IBDEI2JT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42740,1,0)
+ ;;^UTILITY(U,$J,358.3,43229,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,43230,0)
+ ;;=C34.92^^164^2066^10
+ ;;^UTILITY(U,$J,358.3,43230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42740,1,3,0)
- ;;=3^Acute osteomyelitis, lft ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42740,1,4,0)
- ;;=4^M86.172
- ;;^UTILITY(U,$J,358.3,42740,2)
- ;;=^5014531
- ;;^UTILITY(U,$J,358.3,42741,0)
- ;;=M86.271^^192^2144^31
- ;;^UTILITY(U,$J,358.3,42741,1,0)
+ ;;^UTILITY(U,$J,358.3,43230,1,3,0)
+ ;;=3^Malig Neop,Unspec Part,Lt Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,43230,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,43230,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,43231,0)
+ ;;=J20.9^^164^2066^3
+ ;;^UTILITY(U,$J,358.3,43231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42741,1,3,0)
- ;;=3^Subacute osteomyelitis, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,42741,1,4,0)
- ;;=4^M86.271
- ;;^UTILITY(U,$J,358.3,42741,2)
- ;;=^5014554
- ;;^UTILITY(U,$J,358.3,42742,0)
- ;;=M86.571^^192^2144^6
- ;;^UTILITY(U,$J,358.3,42742,1,0)
+ ;;^UTILITY(U,$J,358.3,43231,1,3,0)
+ ;;=3^Bronchitis,Acute
+ ;;^UTILITY(U,$J,358.3,43231,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,43231,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,43232,0)
+ ;;=J42.^^164^2066^4
+ ;;^UTILITY(U,$J,358.3,43232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42742,1,3,0)
- ;;=3^Chronic hematogenous osteomyel, rt ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42742,1,4,0)
- ;;=4^M86.571
- ;;^UTILITY(U,$J,358.3,42742,2)
- ;;=^5014626
- ;;^UTILITY(U,$J,358.3,42743,0)
- ;;=M86.572^^192^2144^5
- ;;^UTILITY(U,$J,358.3,42743,1,0)
+ ;;^UTILITY(U,$J,358.3,43232,1,3,0)
+ ;;=3^Bronchitis,Chronic
+ ;;^UTILITY(U,$J,358.3,43232,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,43232,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,43233,0)
+ ;;=J45.909^^164^2066^2
+ ;;^UTILITY(U,$J,358.3,43233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42743,1,3,0)
- ;;=3^Chronic hematogenous osteomyel, lft ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42743,1,4,0)
- ;;=4^M86.572
- ;;^UTILITY(U,$J,358.3,42743,2)
- ;;=^5014627
- ;;^UTILITY(U,$J,358.3,42744,0)
- ;;=M86.671^^192^2144^10
- ;;^UTILITY(U,$J,358.3,42744,1,0)
+ ;;^UTILITY(U,$J,358.3,43233,1,3,0)
+ ;;=3^Asthma,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,43233,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,43233,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,43234,0)
+ ;;=J45.902^^164^2066^1
+ ;;^UTILITY(U,$J,358.3,43234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42744,1,3,0)
- ;;=3^Chronic osteomyelitis, rt ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42744,1,4,0)
- ;;=4^M86.671
- ;;^UTILITY(U,$J,358.3,42744,2)
- ;;=^5014641
- ;;^UTILITY(U,$J,358.3,42745,0)
- ;;=M86.672^^192^2144^9
- ;;^UTILITY(U,$J,358.3,42745,1,0)
+ ;;^UTILITY(U,$J,358.3,43234,1,3,0)
+ ;;=3^Asthma,Unspec, w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,43234,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,43234,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,43235,0)
+ ;;=J61.^^164^2066^15
+ ;;^UTILITY(U,$J,358.3,43235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42745,1,3,0)
- ;;=3^Chronic osteomyelitis, lft ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42745,1,4,0)
- ;;=4^M86.672
- ;;^UTILITY(U,$J,358.3,42745,2)
- ;;=^5014642
- ;;^UTILITY(U,$J,358.3,42746,0)
- ;;=M86.8X7^^192^2144^21
- ;;^UTILITY(U,$J,358.3,42746,1,0)
+ ;;^UTILITY(U,$J,358.3,43235,1,3,0)
+ ;;=3^Pneumoconiosis d/t Asbest & Oth Min Fibers
+ ;;^UTILITY(U,$J,358.3,43235,1,4,0)
+ ;;=4^J61.
+ ;;^UTILITY(U,$J,358.3,43235,2)
+ ;;=^5008262
+ ;;^UTILITY(U,$J,358.3,43236,0)
+ ;;=R09.1^^164^2066^14
+ ;;^UTILITY(U,$J,358.3,43236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42746,1,3,0)
- ;;=3^Osteomyelitis, ankl & ft, oth
- ;;^UTILITY(U,$J,358.3,42746,1,4,0)
- ;;=4^M86.8X7
- ;;^UTILITY(U,$J,358.3,42746,2)
- ;;=^5014653
- ;;^UTILITY(U,$J,358.3,42747,0)
- ;;=M86.371^^192^2144^8
- ;;^UTILITY(U,$J,358.3,42747,1,0)
+ ;;^UTILITY(U,$J,358.3,43236,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,43236,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,43236,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,43237,0)
+ ;;=J84.10^^164^2066^16
+ ;;^UTILITY(U,$J,358.3,43237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42747,1,3,0)
- ;;=3^Chronic multifoc osteomyel, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,42747,1,4,0)
- ;;=4^M86.371
- ;;^UTILITY(U,$J,358.3,42747,2)
- ;;=^5014578
- ;;^UTILITY(U,$J,358.3,42748,0)
- ;;=M86.372^^192^2144^7
- ;;^UTILITY(U,$J,358.3,42748,1,0)
+ ;;^UTILITY(U,$J,358.3,43237,1,3,0)
+ ;;=3^Pulmonary Fibrosis,Unspec
+ ;;^UTILITY(U,$J,358.3,43237,1,4,0)
+ ;;=4^J84.10
+ ;;^UTILITY(U,$J,358.3,43237,2)
+ ;;=^5008300
+ ;;^UTILITY(U,$J,358.3,43238,0)
+ ;;=R91.1^^164^2066^17
+ ;;^UTILITY(U,$J,358.3,43238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42748,1,3,0)
- ;;=3^Chronic multifoc osteomyel, lft ankl & ft
- ;;^UTILITY(U,$J,358.3,42748,1,4,0)
- ;;=4^M86.372
- ;;^UTILITY(U,$J,358.3,42748,2)
- ;;=^5014579
- ;;^UTILITY(U,$J,358.3,42749,0)
- ;;=M92.71^^192^2144^11
- ;;^UTILITY(U,$J,358.3,42749,1,0)
+ ;;^UTILITY(U,$J,358.3,43238,1,3,0)
+ ;;=3^Pulmonay Nodule,Solitary
+ ;;^UTILITY(U,$J,358.3,43238,1,4,0)
+ ;;=4^R91.1
+ ;;^UTILITY(U,$J,358.3,43238,2)
+ ;;=^5019707
+ ;;^UTILITY(U,$J,358.3,43239,0)
+ ;;=B49.^^164^2067^52
+ ;;^UTILITY(U,$J,358.3,43239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42749,1,3,0)
- ;;=3^Juvenile osteochondrosis of metatarsus, rt ft
- ;;^UTILITY(U,$J,358.3,42749,1,4,0)
- ;;=4^M92.71
- ;;^UTILITY(U,$J,358.3,42749,2)
- ;;=^5015239
- ;;^UTILITY(U,$J,358.3,42750,0)
- ;;=M92.72^^192^2144^12
- ;;^UTILITY(U,$J,358.3,42750,1,0)
+ ;;^UTILITY(U,$J,358.3,43239,1,3,0)
+ ;;=3^Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,43239,1,4,0)
+ ;;=4^B49.
+ ;;^UTILITY(U,$J,358.3,43239,2)
+ ;;=^5000690
+ ;;^UTILITY(U,$J,358.3,43240,0)
+ ;;=C49.9^^164^2067^51
+ ;;^UTILITY(U,$J,358.3,43240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42750,1,3,0)
- ;;=3^Juvenile osteochondrosis of metatarsus, lft ft
- ;;^UTILITY(U,$J,358.3,42750,1,4,0)
- ;;=4^M92.72
- ;;^UTILITY(U,$J,358.3,42750,2)
- ;;=^5015240
- ;;^UTILITY(U,$J,358.3,42751,0)
- ;;=M92.62^^192^2144^13
- ;;^UTILITY(U,$J,358.3,42751,1,0)
+ ;;^UTILITY(U,$J,358.3,43240,1,3,0)
+ ;;=3^Malig Neop Connective & Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,43240,1,4,0)
+ ;;=4^C49.9
+ ;;^UTILITY(U,$J,358.3,43240,2)
+ ;;=^5001136
+ ;;^UTILITY(U,$J,358.3,43241,0)
+ ;;=E11.9^^164^2067^19
+ ;;^UTILITY(U,$J,358.3,43241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42751,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, lft ankl
- ;;^UTILITY(U,$J,358.3,42751,1,4,0)
- ;;=4^M92.62
- ;;^UTILITY(U,$J,358.3,42751,2)
- ;;=^5015237
- ;;^UTILITY(U,$J,358.3,42752,0)
- ;;=M92.61^^192^2144^14
- ;;^UTILITY(U,$J,358.3,42752,1,0)
+ ;;^UTILITY(U,$J,358.3,43241,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,43241,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,43241,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,43242,0)
+ ;;=E10.9^^164^2067^18
+ ;;^UTILITY(U,$J,358.3,43242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42752,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, rt ankle
+ ;;^UTILITY(U,$J,358.3,43242,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,43242,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,43242,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,43243,0)
+ ;;=D50.0^^164^2067^48

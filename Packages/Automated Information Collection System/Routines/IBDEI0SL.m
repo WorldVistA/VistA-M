@@ -1,128 +1,130 @@
-IBDEI0SL ; ; 19-NOV-2015
+IBDEI0SL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13153,1,4,0)
- ;;=4^H40.241
- ;;^UTILITY(U,$J,358.3,13153,2)
- ;;=^5005843
- ;;^UTILITY(U,$J,358.3,13154,0)
- ;;=H40.242^^80^754^114
- ;;^UTILITY(U,$J,358.3,13154,1,0)
+ ;;^UTILITY(U,$J,358.3,13408,2)
+ ;;=^340496
+ ;;^UTILITY(U,$J,358.3,13409,0)
+ ;;=D75.9^^53^593^55
+ ;;^UTILITY(U,$J,358.3,13409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13154,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Left Eye
- ;;^UTILITY(U,$J,358.3,13154,1,4,0)
- ;;=4^H40.242
- ;;^UTILITY(U,$J,358.3,13154,2)
- ;;=^5005844
- ;;^UTILITY(U,$J,358.3,13155,0)
- ;;=H40.61X0^^80^754^43
- ;;^UTILITY(U,$J,358.3,13155,1,0)
+ ;;^UTILITY(U,$J,358.3,13409,1,3,0)
+ ;;=3^Disease of Blood/Blood-Forming Organs,Unspec
+ ;;^UTILITY(U,$J,358.3,13409,1,4,0)
+ ;;=4^D75.9
+ ;;^UTILITY(U,$J,358.3,13409,2)
+ ;;=^5002393
+ ;;^UTILITY(U,$J,358.3,13410,0)
+ ;;=D59.0^^53^593^58
+ ;;^UTILITY(U,$J,358.3,13410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13155,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13155,1,4,0)
- ;;=4^H40.61X0
- ;;^UTILITY(U,$J,358.3,13155,2)
- ;;=^5005906
- ;;^UTILITY(U,$J,358.3,13156,0)
- ;;=H40.61X2^^80^754^41
- ;;^UTILITY(U,$J,358.3,13156,1,0)
+ ;;^UTILITY(U,$J,358.3,13410,1,3,0)
+ ;;=3^Drug-Induced Autoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,13410,1,4,0)
+ ;;=4^D59.0
+ ;;^UTILITY(U,$J,358.3,13410,2)
+ ;;=^5002323
+ ;;^UTILITY(U,$J,358.3,13411,0)
+ ;;=D59.2^^53^593^59
+ ;;^UTILITY(U,$J,358.3,13411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13156,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13156,1,4,0)
- ;;=4^H40.61X2
- ;;^UTILITY(U,$J,358.3,13156,2)
- ;;=^5005908
- ;;^UTILITY(U,$J,358.3,13157,0)
- ;;=H40.61X3^^80^754^42
- ;;^UTILITY(U,$J,358.3,13157,1,0)
+ ;;^UTILITY(U,$J,358.3,13411,1,3,0)
+ ;;=3^Drug-Induced Nonautoimmune Hemolytic Anemia
+ ;;^UTILITY(U,$J,358.3,13411,1,4,0)
+ ;;=4^D59.2
+ ;;^UTILITY(U,$J,358.3,13411,2)
+ ;;=^5002325
+ ;;^UTILITY(U,$J,358.3,13412,0)
+ ;;=R59.9^^53^593^62
+ ;;^UTILITY(U,$J,358.3,13412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13157,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13157,1,4,0)
- ;;=4^H40.61X3
- ;;^UTILITY(U,$J,358.3,13157,2)
- ;;=^5133509
- ;;^UTILITY(U,$J,358.3,13158,0)
- ;;=H40.61X4^^80^754^39
- ;;^UTILITY(U,$J,358.3,13158,1,0)
+ ;;^UTILITY(U,$J,358.3,13412,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,13412,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,13412,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,13413,0)
+ ;;=D47.3^^53^593^63
+ ;;^UTILITY(U,$J,358.3,13413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13158,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13158,1,4,0)
- ;;=4^H40.61X4
- ;;^UTILITY(U,$J,358.3,13158,2)
- ;;=^5005909
- ;;^UTILITY(U,$J,358.3,13159,0)
- ;;=H40.62X1^^80^754^35
- ;;^UTILITY(U,$J,358.3,13159,1,0)
+ ;;^UTILITY(U,$J,358.3,13413,1,3,0)
+ ;;=3^Essential Thrombocythemia
+ ;;^UTILITY(U,$J,358.3,13413,1,4,0)
+ ;;=4^D47.3
+ ;;^UTILITY(U,$J,358.3,13413,2)
+ ;;=^5002258
+ ;;^UTILITY(U,$J,358.3,13414,0)
+ ;;=C82.09^^53^593^64
+ ;;^UTILITY(U,$J,358.3,13414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13159,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13159,1,4,0)
- ;;=4^H40.62X1
- ;;^UTILITY(U,$J,358.3,13159,2)
- ;;=^5005911
- ;;^UTILITY(U,$J,358.3,13160,0)
- ;;=H40.62X0^^80^754^38
- ;;^UTILITY(U,$J,358.3,13160,1,0)
+ ;;^UTILITY(U,$J,358.3,13414,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13414,1,4,0)
+ ;;=4^C82.09
+ ;;^UTILITY(U,$J,358.3,13414,2)
+ ;;=^5001470
+ ;;^UTILITY(U,$J,358.3,13415,0)
+ ;;=C82.00^^53^593^65
+ ;;^UTILITY(U,$J,358.3,13415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13160,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13160,1,4,0)
- ;;=4^H40.62X0
- ;;^UTILITY(U,$J,358.3,13160,2)
- ;;=^5005910
- ;;^UTILITY(U,$J,358.3,13161,0)
- ;;=H40.62X2^^80^754^36
- ;;^UTILITY(U,$J,358.3,13161,1,0)
+ ;;^UTILITY(U,$J,358.3,13415,1,3,0)
+ ;;=3^Follicular Lymphoma Grade I,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13415,1,4,0)
+ ;;=4^C82.00
+ ;;^UTILITY(U,$J,358.3,13415,2)
+ ;;=^5001461
+ ;;^UTILITY(U,$J,358.3,13416,0)
+ ;;=C82.19^^53^593^66
+ ;;^UTILITY(U,$J,358.3,13416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13161,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13161,1,4,0)
- ;;=4^H40.62X2
- ;;^UTILITY(U,$J,358.3,13161,2)
- ;;=^5005912
- ;;^UTILITY(U,$J,358.3,13162,0)
- ;;=H40.62X3^^80^754^37
- ;;^UTILITY(U,$J,358.3,13162,1,0)
+ ;;^UTILITY(U,$J,358.3,13416,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13416,1,4,0)
+ ;;=4^C82.19
+ ;;^UTILITY(U,$J,358.3,13416,2)
+ ;;=^5001480
+ ;;^UTILITY(U,$J,358.3,13417,0)
+ ;;=C82.10^^53^593^67
+ ;;^UTILITY(U,$J,358.3,13417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13162,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13162,1,4,0)
- ;;=4^H40.62X3
- ;;^UTILITY(U,$J,358.3,13162,2)
- ;;=^5133510
- ;;^UTILITY(U,$J,358.3,13163,0)
- ;;=H40.62X4^^80^754^34
- ;;^UTILITY(U,$J,358.3,13163,1,0)
+ ;;^UTILITY(U,$J,358.3,13417,1,3,0)
+ ;;=3^Follicular Lymphoma Grade II,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13417,1,4,0)
+ ;;=4^C82.10
+ ;;^UTILITY(U,$J,358.3,13417,2)
+ ;;=^5001471
+ ;;^UTILITY(U,$J,358.3,13418,0)
+ ;;=C82.29^^53^593^68
+ ;;^UTILITY(U,$J,358.3,13418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13163,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13163,1,4,0)
- ;;=4^H40.62X4
- ;;^UTILITY(U,$J,358.3,13163,2)
- ;;=^5005913
- ;;^UTILITY(U,$J,358.3,13164,0)
- ;;=H40.63X0^^80^754^33
- ;;^UTILITY(U,$J,358.3,13164,1,0)
+ ;;^UTILITY(U,$J,358.3,13418,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13418,1,4,0)
+ ;;=4^C82.29
+ ;;^UTILITY(U,$J,358.3,13418,2)
+ ;;=^5001490
+ ;;^UTILITY(U,$J,358.3,13419,0)
+ ;;=C82.20^^53^593^69
+ ;;^UTILITY(U,$J,358.3,13419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13164,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13164,1,4,0)
- ;;=4^H40.63X0
- ;;^UTILITY(U,$J,358.3,13164,2)
- ;;=^5005914
- ;;^UTILITY(U,$J,358.3,13165,0)
- ;;=H40.63X1^^80^754^30
- ;;^UTILITY(U,$J,358.3,13165,1,0)
+ ;;^UTILITY(U,$J,358.3,13419,1,3,0)
+ ;;=3^Follicular Lymphoma Grade III,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13419,1,4,0)
+ ;;=4^C82.20
+ ;;^UTILITY(U,$J,358.3,13419,2)
+ ;;=^5001481
+ ;;^UTILITY(U,$J,358.3,13420,0)
+ ;;=C82.39^^53^593^70
+ ;;^UTILITY(U,$J,358.3,13420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13165,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,13165,1,4,0)
- ;;=4^H40.63X1
- ;;^UTILITY(U,$J,358.3,13165,2)
- ;;=^5005915
+ ;;^UTILITY(U,$J,358.3,13420,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13420,1,4,0)
+ ;;=4^C82.39
+ ;;^UTILITY(U,$J,358.3,13420,2)
+ ;;=^5001500
+ ;;^UTILITY(U,$J,358.3,13421,0)
+ ;;=C82.30^^53^593^71
+ ;;^UTILITY(U,$J,358.3,13421,1,0)
+ ;;=^358.31IA^4^2

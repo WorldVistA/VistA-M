@@ -1,138 +1,138 @@
-IBDEI089 ; ; 19-NOV-2015
+IBDEI089 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3305,1,0)
+ ;;^UTILITY(U,$J,358.3,3564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3305,1,3,0)
- ;;=3^Vertigo,Benign Paroxysmal,Right Ear
- ;;^UTILITY(U,$J,358.3,3305,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,3305,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,3306,0)
- ;;=H81.12^^28^251^11
- ;;^UTILITY(U,$J,358.3,3306,1,0)
+ ;;^UTILITY(U,$J,358.3,3564,1,3,0)
+ ;;=3^Encephalopathy,Toxic
+ ;;^UTILITY(U,$J,358.3,3564,1,4,0)
+ ;;=4^G92.
+ ;;^UTILITY(U,$J,358.3,3564,2)
+ ;;=^259061
+ ;;^UTILITY(U,$J,358.3,3565,0)
+ ;;=G93.40^^18^220^56
+ ;;^UTILITY(U,$J,358.3,3565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3306,1,3,0)
- ;;=3^Vertigo,Benign Paroxysmal,Left Ear
- ;;^UTILITY(U,$J,358.3,3306,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,3306,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,3307,0)
- ;;=H81.13^^28^251^10
- ;;^UTILITY(U,$J,358.3,3307,1,0)
+ ;;^UTILITY(U,$J,358.3,3565,1,3,0)
+ ;;=3^Encephalopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,3565,1,4,0)
+ ;;=4^G93.40
+ ;;^UTILITY(U,$J,358.3,3565,2)
+ ;;=^329917
+ ;;^UTILITY(U,$J,358.3,3566,0)
+ ;;=Z13.858^^18^220^85
+ ;;^UTILITY(U,$J,358.3,3566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3307,1,3,0)
- ;;=3^Vertigo,Benign Paroxysmal,Bilateral
- ;;^UTILITY(U,$J,358.3,3307,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,3307,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,3308,0)
- ;;=H81.391^^28^251^18
- ;;^UTILITY(U,$J,358.3,3308,1,0)
+ ;;^UTILITY(U,$J,358.3,3566,1,3,0)
+ ;;=3^Nervous System Disorder Screening
+ ;;^UTILITY(U,$J,358.3,3566,1,4,0)
+ ;;=4^Z13.858
+ ;;^UTILITY(U,$J,358.3,3566,2)
+ ;;=^5062718
+ ;;^UTILITY(U,$J,358.3,3567,0)
+ ;;=G40.911^^18^220^57
+ ;;^UTILITY(U,$J,358.3,3567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3308,1,3,0)
- ;;=3^Vertigo,Peripheral,Right Ear
- ;;^UTILITY(U,$J,358.3,3308,1,4,0)
- ;;=4^H81.391
- ;;^UTILITY(U,$J,358.3,3308,2)
- ;;=^5006876
- ;;^UTILITY(U,$J,358.3,3309,0)
- ;;=H81.392^^28^251^17
- ;;^UTILITY(U,$J,358.3,3309,1,0)
+ ;;^UTILITY(U,$J,358.3,3567,1,3,0)
+ ;;=3^Epilepsy,Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,3567,1,4,0)
+ ;;=4^G40.911
+ ;;^UTILITY(U,$J,358.3,3567,2)
+ ;;=^5003866
+ ;;^UTILITY(U,$J,358.3,3568,0)
+ ;;=G40.919^^18^220^58
+ ;;^UTILITY(U,$J,358.3,3568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3309,1,3,0)
- ;;=3^Vertigo,Peripheral,Left Ear
- ;;^UTILITY(U,$J,358.3,3309,1,4,0)
- ;;=4^H81.392
- ;;^UTILITY(U,$J,358.3,3309,2)
- ;;=^5006877
- ;;^UTILITY(U,$J,358.3,3310,0)
- ;;=H81.393^^28^251^16
- ;;^UTILITY(U,$J,358.3,3310,1,0)
+ ;;^UTILITY(U,$J,358.3,3568,1,3,0)
+ ;;=3^Epilepsy,Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,3568,1,4,0)
+ ;;=4^G40.919
+ ;;^UTILITY(U,$J,358.3,3568,2)
+ ;;=^5003867
+ ;;^UTILITY(U,$J,358.3,3569,0)
+ ;;=G40.901^^18^220^59
+ ;;^UTILITY(U,$J,358.3,3569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3310,1,3,0)
- ;;=3^Vertigo,Peripheral,Bilateral
- ;;^UTILITY(U,$J,358.3,3310,1,4,0)
- ;;=4^H81.393
- ;;^UTILITY(U,$J,358.3,3310,2)
- ;;=^5006878
- ;;^UTILITY(U,$J,358.3,3311,0)
- ;;=H81.91^^28^251^21
- ;;^UTILITY(U,$J,358.3,3311,1,0)
+ ;;^UTILITY(U,$J,358.3,3569,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,3569,1,4,0)
+ ;;=4^G40.901
+ ;;^UTILITY(U,$J,358.3,3569,2)
+ ;;=^5003864
+ ;;^UTILITY(U,$J,358.3,3570,0)
+ ;;=G40.909^^18^220^60
+ ;;^UTILITY(U,$J,358.3,3570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3311,1,3,0)
- ;;=3^Vestibular Function Disorder,Right Ear
- ;;^UTILITY(U,$J,358.3,3311,1,4,0)
- ;;=4^H81.91
- ;;^UTILITY(U,$J,358.3,3311,2)
- ;;=^5133551
- ;;^UTILITY(U,$J,358.3,3312,0)
- ;;=H81.92^^28^251^20
- ;;^UTILITY(U,$J,358.3,3312,1,0)
+ ;;^UTILITY(U,$J,358.3,3570,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
+ ;;^UTILITY(U,$J,358.3,3570,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,3570,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,3571,0)
+ ;;=G25.0^^18^220^61
+ ;;^UTILITY(U,$J,358.3,3571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3312,1,3,0)
- ;;=3^Vestibular Function Disorder,Left Ear
- ;;^UTILITY(U,$J,358.3,3312,1,4,0)
- ;;=4^H81.92
- ;;^UTILITY(U,$J,358.3,3312,2)
- ;;=^5133552
- ;;^UTILITY(U,$J,358.3,3313,0)
- ;;=H81.93^^28^251^19
- ;;^UTILITY(U,$J,358.3,3313,1,0)
+ ;;^UTILITY(U,$J,358.3,3571,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,3571,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,3571,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,3572,0)
+ ;;=G25.9^^18^220^62
+ ;;^UTILITY(U,$J,358.3,3572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3313,1,3,0)
- ;;=3^Vestibular Function Disorder,Bilateral
- ;;^UTILITY(U,$J,358.3,3313,1,4,0)
- ;;=4^H81.93
- ;;^UTILITY(U,$J,358.3,3313,2)
- ;;=^5006889
- ;;^UTILITY(U,$J,358.3,3314,0)
- ;;=R63.0^^28^252^1
- ;;^UTILITY(U,$J,358.3,3314,1,0)
+ ;;^UTILITY(U,$J,358.3,3572,1,3,0)
+ ;;=3^Extrapyramidal/Movement Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3572,1,4,0)
+ ;;=4^G25.9
+ ;;^UTILITY(U,$J,358.3,3572,2)
+ ;;=^5003803
+ ;;^UTILITY(U,$J,358.3,3573,0)
+ ;;=R29.810^^18^220^63
+ ;;^UTILITY(U,$J,358.3,3573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3314,1,3,0)
- ;;=3^Anorexia
- ;;^UTILITY(U,$J,358.3,3314,1,4,0)
- ;;=4^R63.0
- ;;^UTILITY(U,$J,358.3,3314,2)
- ;;=^7939
- ;;^UTILITY(U,$J,358.3,3315,0)
- ;;=R64.^^28^252^2
- ;;^UTILITY(U,$J,358.3,3315,1,0)
+ ;;^UTILITY(U,$J,358.3,3573,1,3,0)
+ ;;=3^Facial Weakness
+ ;;^UTILITY(U,$J,358.3,3573,1,4,0)
+ ;;=4^R29.810
+ ;;^UTILITY(U,$J,358.3,3573,2)
+ ;;=^329954
+ ;;^UTILITY(U,$J,358.3,3574,0)
+ ;;=R25.3^^18^220^64
+ ;;^UTILITY(U,$J,358.3,3574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3315,1,3,0)
- ;;=3^Cachexia
- ;;^UTILITY(U,$J,358.3,3315,1,4,0)
- ;;=4^R64.
- ;;^UTILITY(U,$J,358.3,3315,2)
- ;;=^17920
- ;;^UTILITY(U,$J,358.3,3316,0)
- ;;=E86.0^^28^252^4
- ;;^UTILITY(U,$J,358.3,3316,1,0)
+ ;;^UTILITY(U,$J,358.3,3574,1,3,0)
+ ;;=3^Fasciculation
+ ;;^UTILITY(U,$J,358.3,3574,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,3574,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,3575,0)
+ ;;=R26.9^^18^220^65
+ ;;^UTILITY(U,$J,358.3,3575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3316,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,3316,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,3316,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,3317,0)
- ;;=Z86.31^^28^252^75
- ;;^UTILITY(U,$J,358.3,3317,1,0)
+ ;;^UTILITY(U,$J,358.3,3575,1,3,0)
+ ;;=3^Gait/Mobility Abnormalities,Unspec
+ ;;^UTILITY(U,$J,358.3,3575,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,3575,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,3576,0)
+ ;;=R51.^^18^220^66
+ ;;^UTILITY(U,$J,358.3,3576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3317,1,3,0)
- ;;=3^Personal Hx of Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,3317,1,4,0)
- ;;=4^Z86.31
- ;;^UTILITY(U,$J,358.3,3317,2)
- ;;=^5063467
- ;;^UTILITY(U,$J,358.3,3318,0)
- ;;=E10.8^^28^252^5
- ;;^UTILITY(U,$J,358.3,3318,1,0)
+ ;;^UTILITY(U,$J,358.3,3576,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,3576,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,3576,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,3577,0)
+ ;;=G81.92^^18^220^67
+ ;;^UTILITY(U,$J,358.3,3577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3318,1,3,0)
- ;;=3^Diabetes Type 1 w/ Unspec Complications
+ ;;^UTILITY(U,$J,358.3,3577,1,3,0)
+ ;;=3^Hemiplegia,Affecting Lt Dominant Side,Unspec

@@ -1,132 +1,134 @@
-IBDEI046 ; ; 19-NOV-2015
+IBDEI046 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1255,1,3,0)
- ;;=3^Auditor Evoke Potent, Compre
- ;;^UTILITY(U,$J,358.3,1256,0)
- ;;=92586^^13^137^5^^^^1
- ;;^UTILITY(U,$J,358.3,1256,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1256,1,2,0)
- ;;=2^92586
- ;;^UTILITY(U,$J,358.3,1256,1,3,0)
- ;;=3^Auditor Evoke Potent, Limit
- ;;^UTILITY(U,$J,358.3,1257,0)
- ;;=92620^^13^137^7^^^^1
- ;;^UTILITY(U,$J,358.3,1257,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1257,1,2,0)
- ;;=2^92620
- ;;^UTILITY(U,$J,358.3,1257,1,3,0)
- ;;=3^Auditory Function, 60 Min
- ;;^UTILITY(U,$J,358.3,1258,0)
- ;;=92621^^13^137^6^^^^1
- ;;^UTILITY(U,$J,358.3,1258,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1258,1,2,0)
- ;;=2^92621
- ;;^UTILITY(U,$J,358.3,1258,1,3,0)
- ;;=3^Auditory Function, + 15 Min
- ;;^UTILITY(U,$J,358.3,1259,0)
- ;;=92557^^13^137^10^^^^1
- ;;^UTILITY(U,$J,358.3,1259,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1259,1,2,0)
- ;;=2^92557
- ;;^UTILITY(U,$J,358.3,1259,1,3,0)
- ;;=3^Comprehensive Audiometric Exam
- ;;^UTILITY(U,$J,358.3,1260,0)
- ;;=92582^^13^137^11^^^^1
- ;;^UTILITY(U,$J,358.3,1260,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1260,1,2,0)
- ;;=2^92582
- ;;^UTILITY(U,$J,358.3,1260,1,3,0)
- ;;=3^Conditioning Play Audiometry
- ;;^UTILITY(U,$J,358.3,1261,0)
- ;;=92571^^13^137^18^^^^1
- ;;^UTILITY(U,$J,358.3,1261,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1261,1,2,0)
- ;;=2^92571
- ;;^UTILITY(U,$J,358.3,1261,1,3,0)
- ;;=3^Filtered Speech Test
- ;;^UTILITY(U,$J,358.3,1262,0)
- ;;=92596^^13^137^12^^^^1
- ;;^UTILITY(U,$J,358.3,1262,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1262,1,2,0)
- ;;=2^92596
- ;;^UTILITY(U,$J,358.3,1262,1,3,0)
- ;;=3^Ear Protector Attenuation
- ;;^UTILITY(U,$J,358.3,1263,0)
- ;;=92584^^13^137^13^^^^1
- ;;^UTILITY(U,$J,358.3,1263,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1263,1,2,0)
- ;;=2^92584
- ;;^UTILITY(U,$J,358.3,1263,1,3,0)
- ;;=3^Electrocochleography
- ;;^UTILITY(U,$J,358.3,1264,0)
- ;;=92562^^13^137^25^^^^1
- ;;^UTILITY(U,$J,358.3,1264,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1264,1,2,0)
- ;;=2^92562
- ;;^UTILITY(U,$J,358.3,1264,1,3,0)
- ;;=3^Loudness Balance Test
- ;;^UTILITY(U,$J,358.3,1265,0)
- ;;=92588^^13^137^27^^^^1
- ;;^UTILITY(U,$J,358.3,1265,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1265,1,2,0)
- ;;=2^92588
- ;;^UTILITY(U,$J,358.3,1265,1,3,0)
- ;;=3^Otoacoustic Emissions,Diagnostic
- ;;^UTILITY(U,$J,358.3,1266,0)
- ;;=92587^^13^137^28^^^^1
- ;;^UTILITY(U,$J,358.3,1266,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1266,1,2,0)
- ;;=2^92587
- ;;^UTILITY(U,$J,358.3,1266,1,3,0)
- ;;=3^Otoacoustic Emissions,Limited
- ;;^UTILITY(U,$J,358.3,1267,0)
- ;;=92552^^13^137^29^^^^1
- ;;^UTILITY(U,$J,358.3,1267,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1267,1,2,0)
- ;;=2^92552
- ;;^UTILITY(U,$J,358.3,1267,1,3,0)
- ;;=3^Pure Tone Audiometry, Air
- ;;^UTILITY(U,$J,358.3,1268,0)
- ;;=92553^^13^137^30^^^^1
- ;;^UTILITY(U,$J,358.3,1268,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1268,1,2,0)
- ;;=2^92553
- ;;^UTILITY(U,$J,358.3,1268,1,3,0)
- ;;=3^Pure Tone Audiometry, Air & Bone
- ;;^UTILITY(U,$J,358.3,1269,0)
- ;;=92570^^13^137^1^^^^1
- ;;^UTILITY(U,$J,358.3,1269,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1269,1,2,0)
- ;;=2^92570
- ;;^UTILITY(U,$J,358.3,1269,1,3,0)
- ;;=3^Acoustic Immittance Testing
- ;;^UTILITY(U,$J,358.3,1270,0)
- ;;=92558^^13^137^16^^^^1
- ;;^UTILITY(U,$J,358.3,1270,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1270,1,2,0)
- ;;=2^92558
- ;;^UTILITY(U,$J,358.3,1270,1,3,0)
- ;;=3^Evoked Otoacoustic Emmissions,Scrn,Auto
- ;;^UTILITY(U,$J,358.3,1271,0)
- ;;=92611^^13^137^26^^^^1
- ;;^UTILITY(U,$J,358.3,1271,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1271,1,2,0)
- ;;=2^92611
+ ;;^UTILITY(U,$J,358.3,1528,2)
+ ;;=^5007219
+ ;;^UTILITY(U,$J,358.3,1529,0)
+ ;;=I49.40^^11^143^33
+ ;;^UTILITY(U,$J,358.3,1529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1529,1,3,0)
+ ;;=3^Premature Depolarization,Unspec
+ ;;^UTILITY(U,$J,358.3,1529,1,4,0)
+ ;;=4^I49.40
+ ;;^UTILITY(U,$J,358.3,1529,2)
+ ;;=^5007234
+ ;;^UTILITY(U,$J,358.3,1530,0)
+ ;;=I49.1^^11^143^7
+ ;;^UTILITY(U,$J,358.3,1530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1530,1,3,0)
+ ;;=3^Atrial Premature Depolarization
+ ;;^UTILITY(U,$J,358.3,1530,1,4,0)
+ ;;=4^I49.1
+ ;;^UTILITY(U,$J,358.3,1530,2)
+ ;;=^5007231
+ ;;^UTILITY(U,$J,358.3,1531,0)
+ ;;=I49.49^^11^143^32
+ ;;^UTILITY(U,$J,358.3,1531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1531,1,3,0)
+ ;;=3^Premature Depolarization NEC
+ ;;^UTILITY(U,$J,358.3,1531,1,4,0)
+ ;;=4^I49.49
+ ;;^UTILITY(U,$J,358.3,1531,2)
+ ;;=^5007235
+ ;;^UTILITY(U,$J,358.3,1532,0)
+ ;;=I49.5^^11^143^40
+ ;;^UTILITY(U,$J,358.3,1532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1532,1,3,0)
+ ;;=3^Sick Sinus Syndrome
+ ;;^UTILITY(U,$J,358.3,1532,1,4,0)
+ ;;=4^I49.5
+ ;;^UTILITY(U,$J,358.3,1532,2)
+ ;;=^110404
+ ;;^UTILITY(U,$J,358.3,1533,0)
+ ;;=R00.1^^11^143^9
+ ;;^UTILITY(U,$J,358.3,1533,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1533,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,1533,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,1533,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,1534,0)
+ ;;=T82.110A^^11^143^10
+ ;;^UTILITY(U,$J,358.3,1534,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1534,1,3,0)
+ ;;=3^Breakdown of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1534,1,4,0)
+ ;;=4^T82.110A
+ ;;^UTILITY(U,$J,358.3,1534,2)
+ ;;=^5054680
+ ;;^UTILITY(U,$J,358.3,1535,0)
+ ;;=T82.111A^^11^143^11
+ ;;^UTILITY(U,$J,358.3,1535,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1535,1,3,0)
+ ;;=3^Breakdown of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1535,1,4,0)
+ ;;=4^T82.111A
+ ;;^UTILITY(U,$J,358.3,1535,2)
+ ;;=^5054683
+ ;;^UTILITY(U,$J,358.3,1536,0)
+ ;;=T82.120A^^11^143^17
+ ;;^UTILITY(U,$J,358.3,1536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1536,1,3,0)
+ ;;=3^Displacement of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1536,1,4,0)
+ ;;=4^T82.120A
+ ;;^UTILITY(U,$J,358.3,1536,2)
+ ;;=^5054692
+ ;;^UTILITY(U,$J,358.3,1537,0)
+ ;;=T82.121A^^11^143^18
+ ;;^UTILITY(U,$J,358.3,1537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1537,1,3,0)
+ ;;=3^Displacement of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1537,1,4,0)
+ ;;=4^T82.121A
+ ;;^UTILITY(U,$J,358.3,1537,2)
+ ;;=^5054695
+ ;;^UTILITY(U,$J,358.3,1538,0)
+ ;;=T82.190A^^11^143^26
+ ;;^UTILITY(U,$J,358.3,1538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1538,1,3,0)
+ ;;=3^Mech Compl of Cardiac Electrode,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1538,1,4,0)
+ ;;=4^T82.190A
+ ;;^UTILITY(U,$J,358.3,1538,2)
+ ;;=^5054704
+ ;;^UTILITY(U,$J,358.3,1539,0)
+ ;;=T82.191A^^11^143^27
+ ;;^UTILITY(U,$J,358.3,1539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1539,1,3,0)
+ ;;=3^Mech Compl of Cardiac Pulse Generator,Init Encntr
+ ;;^UTILITY(U,$J,358.3,1539,1,4,0)
+ ;;=4^T82.191A
+ ;;^UTILITY(U,$J,358.3,1539,2)
+ ;;=^5054707
+ ;;^UTILITY(U,$J,358.3,1540,0)
+ ;;=Z95.0^^11^143^35
+ ;;^UTILITY(U,$J,358.3,1540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1540,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,1540,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,1540,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,1541,0)
+ ;;=Z95.810^^11^143^34
+ ;;^UTILITY(U,$J,358.3,1541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1541,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Defibrillator
+ ;;^UTILITY(U,$J,358.3,1541,1,4,0)
+ ;;=4^Z95.810

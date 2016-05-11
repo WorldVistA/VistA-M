@@ -1,128 +1,138 @@
-IBDEI0IN ; ; 19-NOV-2015
+IBDEI0IN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8377,1,0)
+ ;;^UTILITY(U,$J,358.3,8665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8377,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone
- ;;^UTILITY(U,$J,358.3,8377,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,8377,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,8378,0)
- ;;=C79.52^^55^538^120
- ;;^UTILITY(U,$J,358.3,8378,1,0)
+ ;;^UTILITY(U,$J,358.3,8665,1,3,0)
+ ;;=3^Zoster Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,8665,1,4,0)
+ ;;=4^B02.32
+ ;;^UTILITY(U,$J,358.3,8665,2)
+ ;;=^5000495
+ ;;^UTILITY(U,$J,358.3,8666,0)
+ ;;=B00.52^^41^468^82
+ ;;^UTILITY(U,$J,358.3,8666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8378,1,3,0)
- ;;=3^Secondary malignant neoplasm of bone marrow
- ;;^UTILITY(U,$J,358.3,8378,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,8378,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,8379,0)
- ;;=C79.71^^55^538^125
- ;;^UTILITY(U,$J,358.3,8379,1,0)
+ ;;^UTILITY(U,$J,358.3,8666,1,3,0)
+ ;;=3^Herpesviral Keratitis
+ ;;^UTILITY(U,$J,358.3,8666,1,4,0)
+ ;;=4^B00.52
+ ;;^UTILITY(U,$J,358.3,8666,2)
+ ;;=^5000474
+ ;;^UTILITY(U,$J,358.3,8667,0)
+ ;;=B00.51^^41^468^81
+ ;;^UTILITY(U,$J,358.3,8667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8379,1,3,0)
- ;;=3^Secondary malignant neoplasm of right adrenal gland
- ;;^UTILITY(U,$J,358.3,8379,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,8379,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,8380,0)
- ;;=C79.72^^55^538^122
- ;;^UTILITY(U,$J,358.3,8380,1,0)
+ ;;^UTILITY(U,$J,358.3,8667,1,3,0)
+ ;;=3^Herpesviral Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,8667,1,4,0)
+ ;;=4^B00.51
+ ;;^UTILITY(U,$J,358.3,8667,2)
+ ;;=^5000473
+ ;;^UTILITY(U,$J,358.3,8668,0)
+ ;;=B30.8^^41^468^47
+ ;;^UTILITY(U,$J,358.3,8668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8380,1,3,0)
- ;;=3^Secondary malignant neoplasm of left adrenal gland
- ;;^UTILITY(U,$J,358.3,8380,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,8380,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,8381,0)
- ;;=C83.50^^55^538^46
- ;;^UTILITY(U,$J,358.3,8381,1,0)
+ ;;^UTILITY(U,$J,358.3,8668,1,3,0)
+ ;;=3^Conjunctivitis,Viral NEC
+ ;;^UTILITY(U,$J,358.3,8668,1,4,0)
+ ;;=4^B30.8
+ ;;^UTILITY(U,$J,358.3,8668,2)
+ ;;=^88239
+ ;;^UTILITY(U,$J,358.3,8669,0)
+ ;;=C69.41^^41^468^113
+ ;;^UTILITY(U,$J,358.3,8669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8381,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,8381,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,8381,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,8382,0)
- ;;=C83.59^^55^538^47
- ;;^UTILITY(U,$J,358.3,8382,1,0)
+ ;;^UTILITY(U,$J,358.3,8669,1,3,0)
+ ;;=3^Malig Neop of Right Ciliary Body
+ ;;^UTILITY(U,$J,358.3,8669,1,4,0)
+ ;;=4^C69.41
+ ;;^UTILITY(U,$J,358.3,8669,2)
+ ;;=^5001279
+ ;;^UTILITY(U,$J,358.3,8670,0)
+ ;;=C69.42^^41^468^111
+ ;;^UTILITY(U,$J,358.3,8670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8382,1,3,0)
- ;;=3^Lymphoblastic lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,8382,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,8382,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,8383,0)
- ;;=C83.70^^55^538^18
- ;;^UTILITY(U,$J,358.3,8383,1,0)
+ ;;^UTILITY(U,$J,358.3,8670,1,3,0)
+ ;;=3^Malig Neop of Left Ciliary Body
+ ;;^UTILITY(U,$J,358.3,8670,1,4,0)
+ ;;=4^C69.42
+ ;;^UTILITY(U,$J,358.3,8670,2)
+ ;;=^5001280
+ ;;^UTILITY(U,$J,358.3,8671,0)
+ ;;=C69.01^^41^468^114
+ ;;^UTILITY(U,$J,358.3,8671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8383,1,3,0)
- ;;=3^Burkitt lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,8383,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,8383,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,8384,0)
- ;;=C83.79^^55^538^17
- ;;^UTILITY(U,$J,358.3,8384,1,0)
+ ;;^UTILITY(U,$J,358.3,8671,1,3,0)
+ ;;=3^Malig Neop of Right Conjunctiva
+ ;;^UTILITY(U,$J,358.3,8671,1,4,0)
+ ;;=4^C69.01
+ ;;^UTILITY(U,$J,358.3,8671,2)
+ ;;=^5001267
+ ;;^UTILITY(U,$J,358.3,8672,0)
+ ;;=C69.02^^41^468^112
+ ;;^UTILITY(U,$J,358.3,8672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8384,1,3,0)
- ;;=3^Burkitt lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,8384,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,8384,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,8385,0)
- ;;=C81.90^^55^538^40
- ;;^UTILITY(U,$J,358.3,8385,1,0)
+ ;;^UTILITY(U,$J,358.3,8672,1,3,0)
+ ;;=3^Malig Neop of Left Conjunctiva
+ ;;^UTILITY(U,$J,358.3,8672,1,4,0)
+ ;;=4^C69.02
+ ;;^UTILITY(U,$J,358.3,8672,2)
+ ;;=^5001268
+ ;;^UTILITY(U,$J,358.3,8673,0)
+ ;;=D31.41^^41^468^17
+ ;;^UTILITY(U,$J,358.3,8673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8385,1,3,0)
- ;;=3^Hodgkin lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,8385,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,8385,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,8386,0)
- ;;=C81.99^^55^538^39
- ;;^UTILITY(U,$J,358.3,8386,1,0)
+ ;;^UTILITY(U,$J,358.3,8673,1,3,0)
+ ;;=3^Benign Neop of Right Ciliary Body
+ ;;^UTILITY(U,$J,358.3,8673,1,4,0)
+ ;;=4^D31.41
+ ;;^UTILITY(U,$J,358.3,8673,2)
+ ;;=^5002124
+ ;;^UTILITY(U,$J,358.3,8674,0)
+ ;;=D31.42^^41^468^15
+ ;;^UTILITY(U,$J,358.3,8674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8386,1,3,0)
- ;;=3^Hodgkin lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,8386,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,8386,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,8387,0)
- ;;=C82.90^^55^538^33
- ;;^UTILITY(U,$J,358.3,8387,1,0)
+ ;;^UTILITY(U,$J,358.3,8674,1,3,0)
+ ;;=3^Benign Neop of Left Ciliary Body
+ ;;^UTILITY(U,$J,358.3,8674,1,4,0)
+ ;;=4^D31.42
+ ;;^UTILITY(U,$J,358.3,8674,2)
+ ;;=^5002125
+ ;;^UTILITY(U,$J,358.3,8675,0)
+ ;;=D31.01^^41^468^18
+ ;;^UTILITY(U,$J,358.3,8675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8387,1,3,0)
- ;;=3^Follicular lymphoma, unspecified, unspecified site
- ;;^UTILITY(U,$J,358.3,8387,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,8387,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,8388,0)
- ;;=C82.99^^55^538^32
- ;;^UTILITY(U,$J,358.3,8388,1,0)
+ ;;^UTILITY(U,$J,358.3,8675,1,3,0)
+ ;;=3^Benign Neop of Right Conjunctiva
+ ;;^UTILITY(U,$J,358.3,8675,1,4,0)
+ ;;=4^D31.01
+ ;;^UTILITY(U,$J,358.3,8675,2)
+ ;;=^5002112
+ ;;^UTILITY(U,$J,358.3,8676,0)
+ ;;=D31.02^^41^468^16
+ ;;^UTILITY(U,$J,358.3,8676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8388,1,3,0)
- ;;=3^Follicular lymphoma, unsp, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,8388,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,8388,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,8389,0)
- ;;=C91.40^^55^538^34
- ;;^UTILITY(U,$J,358.3,8389,1,0)
+ ;;^UTILITY(U,$J,358.3,8676,1,3,0)
+ ;;=3^Benign Neop of Left Conjunctiva
+ ;;^UTILITY(U,$J,358.3,8676,1,4,0)
+ ;;=4^D31.02
+ ;;^UTILITY(U,$J,358.3,8676,2)
+ ;;=^5002113
+ ;;^UTILITY(U,$J,358.3,8677,0)
+ ;;=H20.00^^41^468^91
+ ;;^UTILITY(U,$J,358.3,8677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8389,1,3,0)
- ;;=3^Hairy cell leukemia not having achieved remission
+ ;;^UTILITY(U,$J,358.3,8677,1,3,0)
+ ;;=3^Iridocyclitis,Acute/Subacute,Unspec
+ ;;^UTILITY(U,$J,358.3,8677,1,4,0)
+ ;;=4^H20.00
+ ;;^UTILITY(U,$J,358.3,8677,2)
+ ;;=^5005133
+ ;;^UTILITY(U,$J,358.3,8678,0)
+ ;;=H20.051^^41^468^88
+ ;;^UTILITY(U,$J,358.3,8678,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8678,1,3,0)
+ ;;=3^Hypopyon,Right Eye

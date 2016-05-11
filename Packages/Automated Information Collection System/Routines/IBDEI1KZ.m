@@ -1,134 +1,124 @@
-IBDEI1KZ ; ; 19-NOV-2015
+IBDEI1KZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26442,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,26442,1,4,0)
- ;;=4^H40.1333
- ;;^UTILITY(U,$J,358.3,26442,2)
- ;;=^5005787
- ;;^UTILITY(U,$J,358.3,26443,0)
- ;;=H40.1334^^130^1290^53
- ;;^UTILITY(U,$J,358.3,26443,1,0)
+ ;;^UTILITY(U,$J,358.3,26813,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26813,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,26813,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,26814,0)
+ ;;=G47.34^^100^1290^26
+ ;;^UTILITY(U,$J,358.3,26814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26443,1,3,0)
- ;;=3^glc,Pigmentary,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26443,1,4,0)
- ;;=4^H40.1334
- ;;^UTILITY(U,$J,358.3,26443,2)
- ;;=^5005788
- ;;^UTILITY(U,$J,358.3,26444,0)
- ;;=H40.211^^130^1290^27
- ;;^UTILITY(U,$J,358.3,26444,1,0)
+ ;;^UTILITY(U,$J,358.3,26814,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
+ ;;^UTILITY(U,$J,358.3,26814,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,26814,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,26815,0)
+ ;;=G47.9^^100^1290^28
+ ;;^UTILITY(U,$J,358.3,26815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26444,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Right Eye
- ;;^UTILITY(U,$J,358.3,26444,1,4,0)
- ;;=4^H40.211
- ;;^UTILITY(U,$J,358.3,26444,2)
- ;;=^5005818
- ;;^UTILITY(U,$J,358.3,26445,0)
- ;;=H40.212^^130^1290^26
- ;;^UTILITY(U,$J,358.3,26445,1,0)
+ ;;^UTILITY(U,$J,358.3,26815,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,26815,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,26815,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,26816,0)
+ ;;=F10.10^^100^1291^27
+ ;;^UTILITY(U,$J,358.3,26816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26445,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Left Eye
- ;;^UTILITY(U,$J,358.3,26445,1,4,0)
- ;;=4^H40.212
- ;;^UTILITY(U,$J,358.3,26445,2)
- ;;=^5005819
- ;;^UTILITY(U,$J,358.3,26446,0)
- ;;=H40.213^^130^1290^25
- ;;^UTILITY(U,$J,358.3,26446,1,0)
+ ;;^UTILITY(U,$J,358.3,26816,1,3,0)
+ ;;=3^Alcohol Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,26816,1,4,0)
+ ;;=4^F10.10
+ ;;^UTILITY(U,$J,358.3,26816,2)
+ ;;=^5003068
+ ;;^UTILITY(U,$J,358.3,26817,0)
+ ;;=F10.14^^100^1291^34
+ ;;^UTILITY(U,$J,358.3,26817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26446,1,3,0)
- ;;=3^glc,Acute Angle-Closure,Bilateral
- ;;^UTILITY(U,$J,358.3,26446,1,4,0)
- ;;=4^H40.213
- ;;^UTILITY(U,$J,358.3,26446,2)
- ;;=^5005820
- ;;^UTILITY(U,$J,358.3,26447,0)
- ;;=H40.9^^130^1290^71
- ;;^UTILITY(U,$J,358.3,26447,1,0)
+ ;;^UTILITY(U,$J,358.3,26817,1,3,0)
+ ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26817,1,4,0)
+ ;;=4^F10.14
+ ;;^UTILITY(U,$J,358.3,26817,2)
+ ;;=^5003072
+ ;;^UTILITY(U,$J,358.3,26818,0)
+ ;;=F10.182^^100^1291^36
+ ;;^UTILITY(U,$J,358.3,26818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26447,1,3,0)
- ;;=3^glc,Unspec
- ;;^UTILITY(U,$J,358.3,26447,1,4,0)
- ;;=4^H40.9
- ;;^UTILITY(U,$J,358.3,26447,2)
- ;;=^5005931
- ;;^UTILITY(U,$J,358.3,26448,0)
- ;;=Z83.511^^130^1290^12
- ;;^UTILITY(U,$J,358.3,26448,1,0)
+ ;;^UTILITY(U,$J,358.3,26818,1,3,0)
+ ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26818,1,4,0)
+ ;;=4^F10.182
+ ;;^UTILITY(U,$J,358.3,26818,2)
+ ;;=^5003078
+ ;;^UTILITY(U,$J,358.3,26819,0)
+ ;;=F10.20^^100^1291^28
+ ;;^UTILITY(U,$J,358.3,26819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26448,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,26448,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,26448,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,26449,0)
- ;;=Z13.5^^130^1290^21
- ;;^UTILITY(U,$J,358.3,26449,1,0)
+ ;;^UTILITY(U,$J,358.3,26819,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26819,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,26819,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,26820,0)
+ ;;=F10.21^^100^1291^29
+ ;;^UTILITY(U,$J,358.3,26820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26449,1,3,0)
- ;;=3^Screening for Eye/Ear Disorders
- ;;^UTILITY(U,$J,358.3,26449,1,4,0)
- ;;=4^Z13.5
- ;;^UTILITY(U,$J,358.3,26449,2)
- ;;=^5062706
- ;;^UTILITY(U,$J,358.3,26450,0)
- ;;=H44.50^^130^1290^13
- ;;^UTILITY(U,$J,358.3,26450,1,0)
+ ;;^UTILITY(U,$J,358.3,26820,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,26820,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,26820,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,26821,0)
+ ;;=F10.230^^100^1291^30
+ ;;^UTILITY(U,$J,358.3,26821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26450,1,3,0)
- ;;=3^Globe Degenerated Conditions,Unspec
- ;;^UTILITY(U,$J,358.3,26450,1,4,0)
- ;;=4^H44.50
- ;;^UTILITY(U,$J,358.3,26450,2)
- ;;=^5006020
- ;;^UTILITY(U,$J,358.3,26451,0)
- ;;=H44.521^^130^1290^7
- ;;^UTILITY(U,$J,358.3,26451,1,0)
+ ;;^UTILITY(U,$J,358.3,26821,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,26821,1,4,0)
+ ;;=4^F10.230
+ ;;^UTILITY(U,$J,358.3,26821,2)
+ ;;=^5003086
+ ;;^UTILITY(U,$J,358.3,26822,0)
+ ;;=F10.231^^100^1291^31
+ ;;^UTILITY(U,$J,358.3,26822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26451,1,3,0)
- ;;=3^Atrophy of Globe,Right Eye
- ;;^UTILITY(U,$J,358.3,26451,1,4,0)
- ;;=4^H44.521
- ;;^UTILITY(U,$J,358.3,26451,2)
- ;;=^5006025
- ;;^UTILITY(U,$J,358.3,26452,0)
- ;;=H44.522^^130^1290^6
- ;;^UTILITY(U,$J,358.3,26452,1,0)
+ ;;^UTILITY(U,$J,358.3,26822,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
+ ;;^UTILITY(U,$J,358.3,26822,1,4,0)
+ ;;=4^F10.231
+ ;;^UTILITY(U,$J,358.3,26822,2)
+ ;;=^5003087
+ ;;^UTILITY(U,$J,358.3,26823,0)
+ ;;=F10.232^^100^1291^32
+ ;;^UTILITY(U,$J,358.3,26823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26452,1,3,0)
- ;;=3^Atrophy of Globe,Left EYe
- ;;^UTILITY(U,$J,358.3,26452,1,4,0)
- ;;=4^H44.522
- ;;^UTILITY(U,$J,358.3,26452,2)
- ;;=^5006026
- ;;^UTILITY(U,$J,358.3,26453,0)
- ;;=H44.523^^130^1290^5
- ;;^UTILITY(U,$J,358.3,26453,1,0)
+ ;;^UTILITY(U,$J,358.3,26823,1,3,0)
+ ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,26823,1,4,0)
+ ;;=4^F10.232
+ ;;^UTILITY(U,$J,358.3,26823,2)
+ ;;=^5003088
+ ;;^UTILITY(U,$J,358.3,26824,0)
+ ;;=F10.239^^100^1291^33
+ ;;^UTILITY(U,$J,358.3,26824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26453,1,3,0)
- ;;=3^Atrophy of Globe,Bilateral
- ;;^UTILITY(U,$J,358.3,26453,1,4,0)
- ;;=4^H44.523
- ;;^UTILITY(U,$J,358.3,26453,2)
- ;;=^5006027
- ;;^UTILITY(U,$J,358.3,26454,0)
- ;;=H44.511^^130^1290^24
- ;;^UTILITY(U,$J,358.3,26454,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26454,1,3,0)
- ;;=3^glc,Absolute,Right Eye
- ;;^UTILITY(U,$J,358.3,26454,1,4,0)
- ;;=4^H44.511
- ;;^UTILITY(U,$J,358.3,26454,2)
- ;;=^5006021
- ;;^UTILITY(U,$J,358.3,26455,0)
- ;;=H44.512^^130^1290^23
- ;;^UTILITY(U,$J,358.3,26455,1,0)
+ ;;^UTILITY(U,$J,358.3,26824,1,3,0)
+ ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
+ ;;^UTILITY(U,$J,358.3,26824,1,4,0)
+ ;;=4^F10.239
+ ;;^UTILITY(U,$J,358.3,26824,2)
+ ;;=^5003089
+ ;;^UTILITY(U,$J,358.3,26825,0)
+ ;;=F10.24^^100^1291^35
+ ;;^UTILITY(U,$J,358.3,26825,1,0)
  ;;=^358.31IA^4^2

@@ -1,130 +1,138 @@
-IBDEI0W8 ; ; 19-NOV-2015
+IBDEI0W8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14851,1,4,0)
- ;;=4^C50.522
- ;;^UTILITY(U,$J,358.3,14851,2)
- ;;=^5133338
- ;;^UTILITY(U,$J,358.3,14852,0)
- ;;=C50.621^^85^798^3
- ;;^UTILITY(U,$J,358.3,14852,1,0)
+ ;;^UTILITY(U,$J,358.3,15114,0)
+ ;;=K21.0^^56^640^13
+ ;;^UTILITY(U,$J,358.3,15114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14852,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Right Breast
- ;;^UTILITY(U,$J,358.3,14852,1,4,0)
- ;;=4^C50.621
- ;;^UTILITY(U,$J,358.3,14852,2)
- ;;=^5001186
- ;;^UTILITY(U,$J,358.3,14853,0)
- ;;=C50.622^^85^798^2
- ;;^UTILITY(U,$J,358.3,14853,1,0)
+ ;;^UTILITY(U,$J,358.3,15114,1,3,0)
+ ;;=3^GERD w/ Esophagitis
+ ;;^UTILITY(U,$J,358.3,15114,1,4,0)
+ ;;=4^K21.0
+ ;;^UTILITY(U,$J,358.3,15114,2)
+ ;;=^5008504
+ ;;^UTILITY(U,$J,358.3,15115,0)
+ ;;=K58.0^^56^640^16
+ ;;^UTILITY(U,$J,358.3,15115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14853,1,3,0)
- ;;=3^Malig Neop of Axillary Tail of Left Breast
- ;;^UTILITY(U,$J,358.3,14853,1,4,0)
- ;;=4^C50.622
- ;;^UTILITY(U,$J,358.3,14853,2)
- ;;=^5001187
- ;;^UTILITY(U,$J,358.3,14854,0)
- ;;=C50.821^^85^798^14
- ;;^UTILITY(U,$J,358.3,14854,1,0)
+ ;;^UTILITY(U,$J,358.3,15115,1,3,0)
+ ;;=3^IBS w/ Diarrhea
+ ;;^UTILITY(U,$J,358.3,15115,1,4,0)
+ ;;=4^K58.0
+ ;;^UTILITY(U,$J,358.3,15115,2)
+ ;;=^5008739
+ ;;^UTILITY(U,$J,358.3,15116,0)
+ ;;=C61.^^56^641^21
+ ;;^UTILITY(U,$J,358.3,15116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14854,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Right Breast
- ;;^UTILITY(U,$J,358.3,14854,1,4,0)
- ;;=4^C50.821
- ;;^UTILITY(U,$J,358.3,14854,2)
- ;;=^5001192
- ;;^UTILITY(U,$J,358.3,14855,0)
- ;;=C50.822^^85^798^13
- ;;^UTILITY(U,$J,358.3,14855,1,0)
+ ;;^UTILITY(U,$J,358.3,15116,1,3,0)
+ ;;=3^Malig Neop of Prostate
+ ;;^UTILITY(U,$J,358.3,15116,1,4,0)
+ ;;=4^C61.
+ ;;^UTILITY(U,$J,358.3,15116,2)
+ ;;=^267239
+ ;;^UTILITY(U,$J,358.3,15117,0)
+ ;;=N20.0^^56^641^2
+ ;;^UTILITY(U,$J,358.3,15117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14855,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Left Breast
- ;;^UTILITY(U,$J,358.3,14855,1,4,0)
- ;;=4^C50.822
- ;;^UTILITY(U,$J,358.3,14855,2)
- ;;=^5001193
- ;;^UTILITY(U,$J,358.3,14856,0)
- ;;=C50.921^^85^798^15
- ;;^UTILITY(U,$J,358.3,14856,1,0)
+ ;;^UTILITY(U,$J,358.3,15117,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,15117,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,15117,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,15118,0)
+ ;;=N39.0^^56^641^28
+ ;;^UTILITY(U,$J,358.3,15118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14856,1,3,0)
- ;;=3^Malig Neop of Right Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,14856,1,4,0)
- ;;=4^C50.921
- ;;^UTILITY(U,$J,358.3,14856,2)
- ;;=^5001198
- ;;^UTILITY(U,$J,358.3,14857,0)
- ;;=C50.922^^85^798^6
- ;;^UTILITY(U,$J,358.3,14857,1,0)
+ ;;^UTILITY(U,$J,358.3,15118,1,3,0)
+ ;;=3^UTI,Site Unspec
+ ;;^UTILITY(U,$J,358.3,15118,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,15118,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,15119,0)
+ ;;=N40.0^^56^641^12
+ ;;^UTILITY(U,$J,358.3,15119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14857,1,3,0)
- ;;=3^Malig Neop of Left Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,14857,1,4,0)
- ;;=4^C50.922
- ;;^UTILITY(U,$J,358.3,14857,2)
- ;;=^5133340
- ;;^UTILITY(U,$J,358.3,14858,0)
- ;;=N62.^^85^798^1
- ;;^UTILITY(U,$J,358.3,14858,1,0)
+ ;;^UTILITY(U,$J,358.3,15119,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,15119,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,15119,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,15120,0)
+ ;;=N40.1^^56^641^11
+ ;;^UTILITY(U,$J,358.3,15120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14858,1,3,0)
- ;;=3^Hypertrophy of Breast
- ;;^UTILITY(U,$J,358.3,14858,1,4,0)
- ;;=4^N62.
- ;;^UTILITY(U,$J,358.3,14858,2)
- ;;=^5015790
- ;;^UTILITY(U,$J,358.3,14859,0)
- ;;=I25.10^^85^799^8
- ;;^UTILITY(U,$J,358.3,14859,1,0)
+ ;;^UTILITY(U,$J,358.3,15120,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,15120,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,15120,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,15121,0)
+ ;;=N40.2^^56^641^24
+ ;;^UTILITY(U,$J,358.3,15121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14859,1,3,0)
- ;;=3^Athscl Hrt Disease of Native Coronary Artery w/o Ang Pctrs
- ;;^UTILITY(U,$J,358.3,14859,1,4,0)
- ;;=4^I25.10
- ;;^UTILITY(U,$J,358.3,14859,2)
- ;;=^5007107
- ;;^UTILITY(U,$J,358.3,14860,0)
- ;;=I50.9^^85^799^22
- ;;^UTILITY(U,$J,358.3,14860,1,0)
+ ;;^UTILITY(U,$J,358.3,15121,1,3,0)
+ ;;=3^Nodular Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,15121,1,4,0)
+ ;;=4^N40.2
+ ;;^UTILITY(U,$J,358.3,15121,2)
+ ;;=^5015691
+ ;;^UTILITY(U,$J,358.3,15122,0)
+ ;;=N40.3^^56^641^23
+ ;;^UTILITY(U,$J,358.3,15122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14860,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,14860,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,14860,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,14861,0)
- ;;=I50.43^^85^799^5
- ;;^UTILITY(U,$J,358.3,14861,1,0)
+ ;;^UTILITY(U,$J,358.3,15122,1,3,0)
+ ;;=3^Nodular Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,15122,1,4,0)
+ ;;=4^N40.3
+ ;;^UTILITY(U,$J,358.3,15122,2)
+ ;;=^5015692
+ ;;^UTILITY(U,$J,358.3,15123,0)
+ ;;=N42.83^^56^641^26
+ ;;^UTILITY(U,$J,358.3,15123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14861,1,3,0)
- ;;=3^Acute on Chronic Combined Systolic/Diastolic Hrt Failure
- ;;^UTILITY(U,$J,358.3,14861,1,4,0)
- ;;=4^I50.43
- ;;^UTILITY(U,$J,358.3,14861,2)
- ;;=^5007250
- ;;^UTILITY(U,$J,358.3,14862,0)
- ;;=I50.42^^85^799^12
- ;;^UTILITY(U,$J,358.3,14862,1,0)
+ ;;^UTILITY(U,$J,358.3,15123,1,3,0)
+ ;;=3^Prostate Cyst
+ ;;^UTILITY(U,$J,358.3,15123,1,4,0)
+ ;;=4^N42.83
+ ;;^UTILITY(U,$J,358.3,15123,2)
+ ;;=^322241
+ ;;^UTILITY(U,$J,358.3,15124,0)
+ ;;=N52.9^^56^641^13
+ ;;^UTILITY(U,$J,358.3,15124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14862,1,3,0)
- ;;=3^Chronic Combined Systolic/Diastolic Hrt Failure
- ;;^UTILITY(U,$J,358.3,14862,1,4,0)
- ;;=4^I50.42
- ;;^UTILITY(U,$J,358.3,14862,2)
- ;;=^5007249
- ;;^UTILITY(U,$J,358.3,14863,0)
- ;;=I50.40^^85^799^15
- ;;^UTILITY(U,$J,358.3,14863,1,0)
+ ;;^UTILITY(U,$J,358.3,15124,1,3,0)
+ ;;=3^Erectile Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,15124,1,4,0)
+ ;;=4^N52.9
+ ;;^UTILITY(U,$J,358.3,15124,2)
+ ;;=^5015763
+ ;;^UTILITY(U,$J,358.3,15125,0)
+ ;;=R39.89^^56^641^15
+ ;;^UTILITY(U,$J,358.3,15125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14863,1,3,0)
- ;;=3^Combined Systolic/Diastolic Hrt Failure,Unspec
- ;;^UTILITY(U,$J,358.3,14863,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,14863,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,14864,0)
- ;;=I50.41^^85^799^2
+ ;;^UTILITY(U,$J,358.3,15125,1,3,0)
+ ;;=3^Genitourinary System Symptoms/Signs NEC
+ ;;^UTILITY(U,$J,358.3,15125,1,4,0)
+ ;;=4^R39.89
+ ;;^UTILITY(U,$J,358.3,15125,2)
+ ;;=^5019350
+ ;;^UTILITY(U,$J,358.3,15126,0)
+ ;;=R39.2^^56^641^14
+ ;;^UTILITY(U,$J,358.3,15126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15126,1,3,0)
+ ;;=3^Extrarenal Uremia
+ ;;^UTILITY(U,$J,358.3,15126,1,4,0)
+ ;;=4^R39.2
+ ;;^UTILITY(U,$J,358.3,15126,2)
+ ;;=^5019348
+ ;;^UTILITY(U,$J,358.3,15127,0)
+ ;;=R30.1^^56^641^29
+ ;;^UTILITY(U,$J,358.3,15127,1,0)
+ ;;=^358.31IA^4^2

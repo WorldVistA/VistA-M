@@ -1,120 +1,134 @@
-IBDEI0MI ; ; 19-NOV-2015
+IBDEI0MI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10276,1,4,0)
- ;;=4^L97.324
- ;;^UTILITY(U,$J,358.3,10276,2)
- ;;=^5009523
- ;;^UTILITY(U,$J,358.3,10277,0)
- ;;=L97.329^^68^664^175
- ;;^UTILITY(U,$J,358.3,10277,1,0)
+ ;;^UTILITY(U,$J,358.3,10491,1,4,0)
+ ;;=4^H30.892
+ ;;^UTILITY(U,$J,358.3,10491,2)
+ ;;=^5005431
+ ;;^UTILITY(U,$J,358.3,10492,0)
+ ;;=H30.893^^44^505^16
+ ;;^UTILITY(U,$J,358.3,10492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10277,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Ankle w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,10277,1,4,0)
- ;;=4^L97.329
- ;;^UTILITY(U,$J,358.3,10277,2)
- ;;=^5009524
- ;;^UTILITY(U,$J,358.3,10278,0)
- ;;=L97.411^^68^664^216
- ;;^UTILITY(U,$J,358.3,10278,1,0)
+ ;;^UTILITY(U,$J,358.3,10492,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,10492,1,4,0)
+ ;;=4^H30.893
+ ;;^UTILITY(U,$J,358.3,10492,2)
+ ;;=^5005432
+ ;;^UTILITY(U,$J,358.3,10493,0)
+ ;;=H31.001^^44^505^23
+ ;;^UTILITY(U,$J,358.3,10493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10278,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,10278,1,4,0)
- ;;=4^L97.411
- ;;^UTILITY(U,$J,358.3,10278,2)
- ;;=^5009530
- ;;^UTILITY(U,$J,358.3,10279,0)
- ;;=L97.412^^68^664^217
- ;;^UTILITY(U,$J,358.3,10279,1,0)
+ ;;^UTILITY(U,$J,358.3,10493,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10493,1,4,0)
+ ;;=4^H31.001
+ ;;^UTILITY(U,$J,358.3,10493,2)
+ ;;=^5005436
+ ;;^UTILITY(U,$J,358.3,10494,0)
+ ;;=H31.002^^44^505^22
+ ;;^UTILITY(U,$J,358.3,10494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10279,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,10279,1,4,0)
- ;;=4^L97.412
- ;;^UTILITY(U,$J,358.3,10279,2)
- ;;=^5009531
- ;;^UTILITY(U,$J,358.3,10280,0)
- ;;=L97.413^^68^664^218
- ;;^UTILITY(U,$J,358.3,10280,1,0)
+ ;;^UTILITY(U,$J,358.3,10494,1,3,0)
+ ;;=3^Chorioretinal Scars,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10494,1,4,0)
+ ;;=4^H31.002
+ ;;^UTILITY(U,$J,358.3,10494,2)
+ ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,10495,0)
+ ;;=H31.003^^44^505^21
+ ;;^UTILITY(U,$J,358.3,10495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10280,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,10280,1,4,0)
- ;;=4^L97.413
- ;;^UTILITY(U,$J,358.3,10280,2)
- ;;=^5009532
- ;;^UTILITY(U,$J,358.3,10281,0)
- ;;=L97.414^^68^664^219
- ;;^UTILITY(U,$J,358.3,10281,1,0)
+ ;;^UTILITY(U,$J,358.3,10495,1,3,0)
+ ;;=3^Chorioretinal Scars,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,10495,1,4,0)
+ ;;=4^H31.003
+ ;;^UTILITY(U,$J,358.3,10495,2)
+ ;;=^5005438
+ ;;^UTILITY(U,$J,358.3,10496,0)
+ ;;=H31.021^^44^505^91
+ ;;^UTILITY(U,$J,358.3,10496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10281,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,10281,1,4,0)
- ;;=4^L97.414
- ;;^UTILITY(U,$J,358.3,10281,2)
- ;;=^5009533
- ;;^UTILITY(U,$J,358.3,10282,0)
- ;;=L97.419^^68^664^220
- ;;^UTILITY(U,$J,358.3,10282,1,0)
+ ;;^UTILITY(U,$J,358.3,10496,1,3,0)
+ ;;=3^Retinopathy,Solar,Right Eye
+ ;;^UTILITY(U,$J,358.3,10496,1,4,0)
+ ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,10496,2)
+ ;;=^5005443
+ ;;^UTILITY(U,$J,358.3,10497,0)
+ ;;=H31.022^^44^505^90
+ ;;^UTILITY(U,$J,358.3,10497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10282,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Right Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,10282,1,4,0)
- ;;=4^L97.419
- ;;^UTILITY(U,$J,358.3,10282,2)
- ;;=^5009534
- ;;^UTILITY(U,$J,358.3,10283,0)
- ;;=L97.421^^68^664^186
- ;;^UTILITY(U,$J,358.3,10283,1,0)
+ ;;^UTILITY(U,$J,358.3,10497,1,3,0)
+ ;;=3^Retinopathy,Solar,Left Eye
+ ;;^UTILITY(U,$J,358.3,10497,1,4,0)
+ ;;=4^H31.022
+ ;;^UTILITY(U,$J,358.3,10497,2)
+ ;;=^5005444
+ ;;^UTILITY(U,$J,358.3,10498,0)
+ ;;=H31.023^^44^505^89
+ ;;^UTILITY(U,$J,358.3,10498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10283,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,10283,1,4,0)
- ;;=4^L97.421
- ;;^UTILITY(U,$J,358.3,10283,2)
- ;;=^5009535
- ;;^UTILITY(U,$J,358.3,10284,0)
- ;;=L97.422^^68^664^187
- ;;^UTILITY(U,$J,358.3,10284,1,0)
+ ;;^UTILITY(U,$J,358.3,10498,1,3,0)
+ ;;=3^Retinopathy,Solar,Bilateral
+ ;;^UTILITY(U,$J,358.3,10498,1,4,0)
+ ;;=4^H31.023
+ ;;^UTILITY(U,$J,358.3,10498,2)
+ ;;=^5005445
+ ;;^UTILITY(U,$J,358.3,10499,0)
+ ;;=H31.011^^44^505^54
+ ;;^UTILITY(U,$J,358.3,10499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10284,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,10284,1,4,0)
- ;;=4^L97.422
- ;;^UTILITY(U,$J,358.3,10284,2)
- ;;=^5009536
- ;;^UTILITY(U,$J,358.3,10285,0)
- ;;=L97.423^^68^664^188
- ;;^UTILITY(U,$J,358.3,10285,1,0)
+ ;;^UTILITY(U,$J,358.3,10499,1,3,0)
+ ;;=3^Macula Scars of Posterior Pole,Right Eye
+ ;;^UTILITY(U,$J,358.3,10499,1,4,0)
+ ;;=4^H31.011
+ ;;^UTILITY(U,$J,358.3,10499,2)
+ ;;=^5005439
+ ;;^UTILITY(U,$J,358.3,10500,0)
+ ;;=H31.012^^44^505^53
+ ;;^UTILITY(U,$J,358.3,10500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10285,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,10285,1,4,0)
- ;;=4^L97.423
- ;;^UTILITY(U,$J,358.3,10285,2)
- ;;=^5009537
- ;;^UTILITY(U,$J,358.3,10286,0)
- ;;=L97.424^^68^664^189
- ;;^UTILITY(U,$J,358.3,10286,1,0)
+ ;;^UTILITY(U,$J,358.3,10500,1,3,0)
+ ;;=3^Macula Scars of Posterior Pole,Left Eye
+ ;;^UTILITY(U,$J,358.3,10500,1,4,0)
+ ;;=4^H31.012
+ ;;^UTILITY(U,$J,358.3,10500,2)
+ ;;=^5005440
+ ;;^UTILITY(U,$J,358.3,10501,0)
+ ;;=H31.321^^44^505^27
+ ;;^UTILITY(U,$J,358.3,10501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10286,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,10286,1,4,0)
- ;;=4^L97.424
- ;;^UTILITY(U,$J,358.3,10286,2)
- ;;=^5009538
- ;;^UTILITY(U,$J,358.3,10287,0)
- ;;=L97.429^^68^664^190
- ;;^UTILITY(U,$J,358.3,10287,1,0)
+ ;;^UTILITY(U,$J,358.3,10501,1,3,0)
+ ;;=3^Choroidal Rupture,Right Eye
+ ;;^UTILITY(U,$J,358.3,10501,1,4,0)
+ ;;=4^H31.321
+ ;;^UTILITY(U,$J,358.3,10501,2)
+ ;;=^5005472
+ ;;^UTILITY(U,$J,358.3,10502,0)
+ ;;=H31.322^^44^505^26
+ ;;^UTILITY(U,$J,358.3,10502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10287,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Heel/Midfoot w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,10287,1,4,0)
- ;;=4^L97.429
- ;;^UTILITY(U,$J,358.3,10287,2)
- ;;=^5009539
- ;;^UTILITY(U,$J,358.3,10288,0)
- ;;=L97.511^^68^664^211
+ ;;^UTILITY(U,$J,358.3,10502,1,3,0)
+ ;;=3^Choroidal Rupture,Left Eye
+ ;;^UTILITY(U,$J,358.3,10502,1,4,0)
+ ;;=4^H31.322
+ ;;^UTILITY(U,$J,358.3,10502,2)
+ ;;=^5005473
+ ;;^UTILITY(U,$J,358.3,10503,0)
+ ;;=H43.21^^44^505^30
+ ;;^UTILITY(U,$J,358.3,10503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10503,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,10503,1,4,0)
+ ;;=4^H43.21
+ ;;^UTILITY(U,$J,358.3,10503,2)
+ ;;=^5005942
+ ;;^UTILITY(U,$J,358.3,10504,0)
+ ;;=H43.22^^44^505^29
+ ;;^UTILITY(U,$J,358.3,10504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10504,1,3,0)
+ ;;=3^Crystalline Deposits in Vitreous Body,Left Eye

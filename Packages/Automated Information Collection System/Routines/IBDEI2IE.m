@@ -1,132 +1,124 @@
-IBDEI2IE ; ; 19-NOV-2015
+IBDEI2IE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42111,2)
- ;;=^5002657
- ;;^UTILITY(U,$J,358.3,42112,0)
- ;;=E11.628^^192^2135^33
- ;;^UTILITY(U,$J,358.3,42112,1,0)
+ ;;^UTILITY(U,$J,358.3,42537,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,42537,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,42538,0)
+ ;;=Y04.1XXD^^159^2023^2
+ ;;^UTILITY(U,$J,358.3,42538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42112,1,3,0)
- ;;=3^DM Type 2 w/ Skin Compl NEC
- ;;^UTILITY(U,$J,358.3,42112,1,4,0)
- ;;=4^E11.628
- ;;^UTILITY(U,$J,358.3,42112,2)
- ;;=^5002658
- ;;^UTILITY(U,$J,358.3,42113,0)
- ;;=E11.69^^192^2135^19
- ;;^UTILITY(U,$J,358.3,42113,1,0)
+ ;;^UTILITY(U,$J,358.3,42538,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42538,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,42538,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,42539,0)
+ ;;=Y04.2XXA^^159^2023^5
+ ;;^UTILITY(U,$J,358.3,42539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42113,1,3,0)
- ;;=3^DM Type 2 w/ Complications NEC
- ;;^UTILITY(U,$J,358.3,42113,1,4,0)
- ;;=4^E11.69
- ;;^UTILITY(U,$J,358.3,42113,2)
- ;;=^5002664
- ;;^UTILITY(U,$J,358.3,42114,0)
- ;;=E11.8^^192^2135^20
- ;;^UTILITY(U,$J,358.3,42114,1,0)
+ ;;^UTILITY(U,$J,358.3,42539,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42539,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,42539,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,42540,0)
+ ;;=Y04.8XXA^^159^2023^3
+ ;;^UTILITY(U,$J,358.3,42540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42114,1,3,0)
- ;;=3^DM Type 2 w/ Complications,Unspec
- ;;^UTILITY(U,$J,358.3,42114,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,42114,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,42115,0)
- ;;=E10.51^^192^2135^13
- ;;^UTILITY(U,$J,358.3,42115,1,0)
+ ;;^UTILITY(U,$J,358.3,42540,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42540,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,42540,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,42541,0)
+ ;;=Y04.2XXD^^159^2023^6
+ ;;^UTILITY(U,$J,358.3,42541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42115,1,3,0)
- ;;=3^DM Type 1 w/ Diab Periph Angiopathy w/o Gangrene
- ;;^UTILITY(U,$J,358.3,42115,1,4,0)
- ;;=4^E10.51
- ;;^UTILITY(U,$J,358.3,42115,2)
- ;;=^5002610
- ;;^UTILITY(U,$J,358.3,42116,0)
- ;;=E10.52^^192^2135^12
- ;;^UTILITY(U,$J,358.3,42116,1,0)
+ ;;^UTILITY(U,$J,358.3,42541,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42541,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,42541,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,42542,0)
+ ;;=Y04.8XXD^^159^2023^4
+ ;;^UTILITY(U,$J,358.3,42542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42116,1,3,0)
- ;;=3^DM Type 1 w/ Diab Periph Angiopathy w/ Gangrene
- ;;^UTILITY(U,$J,358.3,42116,1,4,0)
- ;;=4^E10.52
- ;;^UTILITY(U,$J,358.3,42116,2)
- ;;=^5002611
- ;;^UTILITY(U,$J,358.3,42117,0)
- ;;=E10.59^^192^2135^1
- ;;^UTILITY(U,$J,358.3,42117,1,0)
+ ;;^UTILITY(U,$J,358.3,42542,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42542,1,4,0)
+ ;;=4^Y04.8XXD
+ ;;^UTILITY(U,$J,358.3,42542,2)
+ ;;=^5061175
+ ;;^UTILITY(U,$J,358.3,42543,0)
+ ;;=Y36.200A^^159^2023^124
+ ;;^UTILITY(U,$J,358.3,42543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42117,1,3,0)
- ;;=3^DM Type 1 w/ Circulatory Compl NEC
- ;;^UTILITY(U,$J,358.3,42117,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,42117,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,42118,0)
- ;;=E10.610^^192^2135^10
- ;;^UTILITY(U,$J,358.3,42118,1,0)
+ ;;^UTILITY(U,$J,358.3,42543,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42543,1,4,0)
+ ;;=4^Y36.200A
+ ;;^UTILITY(U,$J,358.3,42543,2)
+ ;;=^5061607
+ ;;^UTILITY(U,$J,358.3,42544,0)
+ ;;=Y36.200D^^159^2023^125
+ ;;^UTILITY(U,$J,358.3,42544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42118,1,3,0)
- ;;=3^DM Type 1 w/ Diab Neuropathy Arthropathy
- ;;^UTILITY(U,$J,358.3,42118,1,4,0)
- ;;=4^E10.610
- ;;^UTILITY(U,$J,358.3,42118,2)
- ;;=^5002613
- ;;^UTILITY(U,$J,358.3,42119,0)
- ;;=E10.618^^192^2135^5
- ;;^UTILITY(U,$J,358.3,42119,1,0)
+ ;;^UTILITY(U,$J,358.3,42544,1,3,0)
+ ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42544,1,4,0)
+ ;;=4^Y36.200D
+ ;;^UTILITY(U,$J,358.3,42544,2)
+ ;;=^5061608
+ ;;^UTILITY(U,$J,358.3,42545,0)
+ ;;=Y36.300A^^159^2023^126
+ ;;^UTILITY(U,$J,358.3,42545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42119,1,3,0)
- ;;=3^DM Type 1 w/ Diab Arthopathy NEC
- ;;^UTILITY(U,$J,358.3,42119,1,4,0)
- ;;=4^E10.618
- ;;^UTILITY(U,$J,358.3,42119,2)
- ;;=^5002614
- ;;^UTILITY(U,$J,358.3,42120,0)
- ;;=E10.620^^192^2135^7
- ;;^UTILITY(U,$J,358.3,42120,1,0)
+ ;;^UTILITY(U,$J,358.3,42545,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42545,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,42545,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,42546,0)
+ ;;=Y36.300D^^159^2023^127
+ ;;^UTILITY(U,$J,358.3,42546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42120,1,3,0)
- ;;=3^DM Type 1 w/ Diab Dermatitis
- ;;^UTILITY(U,$J,358.3,42120,1,4,0)
- ;;=4^E10.620
- ;;^UTILITY(U,$J,358.3,42120,2)
- ;;=^5002615
- ;;^UTILITY(U,$J,358.3,42121,0)
- ;;=E10.621^^192^2135^15
- ;;^UTILITY(U,$J,358.3,42121,1,0)
+ ;;^UTILITY(U,$J,358.3,42546,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42546,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,42546,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,42547,0)
+ ;;=Y36.410A^^159^2023^121
+ ;;^UTILITY(U,$J,358.3,42547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42121,1,3,0)
- ;;=3^DM Type 1 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,42121,1,4,0)
- ;;=4^E10.621
- ;;^UTILITY(U,$J,358.3,42121,2)
- ;;=^5002616
- ;;^UTILITY(U,$J,358.3,42122,0)
- ;;=E10.622^^192^2135^17
- ;;^UTILITY(U,$J,358.3,42122,1,0)
+ ;;^UTILITY(U,$J,358.3,42547,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42547,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,42547,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,42548,0)
+ ;;=Y36.410D^^159^2023^123
+ ;;^UTILITY(U,$J,358.3,42548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42122,1,3,0)
- ;;=3^DM Type 1 w/ Skin Ulcer NEC
- ;;^UTILITY(U,$J,358.3,42122,1,4,0)
- ;;=4^E10.622
- ;;^UTILITY(U,$J,358.3,42122,2)
- ;;=^5002617
- ;;^UTILITY(U,$J,358.3,42123,0)
- ;;=E10.628^^192^2135^16
- ;;^UTILITY(U,$J,358.3,42123,1,0)
+ ;;^UTILITY(U,$J,358.3,42548,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,42548,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,42548,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,42549,0)
+ ;;=Y36.6X0A^^159^2023^113
+ ;;^UTILITY(U,$J,358.3,42549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42123,1,3,0)
- ;;=3^DM Type 1 w/ Skin Compl NEC
- ;;^UTILITY(U,$J,358.3,42123,1,4,0)
- ;;=4^E10.628
- ;;^UTILITY(U,$J,358.3,42123,2)
- ;;=^5002618
- ;;^UTILITY(U,$J,358.3,42124,0)
- ;;=E10.69^^192^2135^2
- ;;^UTILITY(U,$J,358.3,42124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42124,1,3,0)
- ;;=3^DM Type 1 w/ Complications NEC
+ ;;^UTILITY(U,$J,358.3,42549,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr

@@ -1,122 +1,136 @@
-IBDEI19Q ; ; 19-NOV-2015
+IBDEI19Q ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21207,1,4,0)
- ;;=4^I69.144
- ;;^UTILITY(U,$J,358.3,21207,2)
- ;;=^5007439
- ;;^UTILITY(U,$J,358.3,21208,0)
- ;;=I69.041^^101^1027^66
- ;;^UTILITY(U,$J,358.3,21208,1,0)
+ ;;^UTILITY(U,$J,358.3,21575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21208,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,21208,1,4,0)
- ;;=4^I69.041
- ;;^UTILITY(U,$J,358.3,21208,2)
- ;;=^5007405
- ;;^UTILITY(U,$J,358.3,21209,0)
- ;;=I69.042^^101^1027^67
- ;;^UTILITY(U,$J,358.3,21209,1,0)
+ ;;^UTILITY(U,$J,358.3,21575,1,3,0)
+ ;;=3^Abnormal Levels of Serum Enzymes
+ ;;^UTILITY(U,$J,358.3,21575,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,21575,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,21576,0)
+ ;;=R97.2^^87^965^18
+ ;;^UTILITY(U,$J,358.3,21576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21209,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,21209,1,4,0)
- ;;=4^I69.042
- ;;^UTILITY(U,$J,358.3,21209,2)
- ;;=^5133572
- ;;^UTILITY(U,$J,358.3,21210,0)
- ;;=I69.043^^101^1027^68
- ;;^UTILITY(U,$J,358.3,21210,1,0)
+ ;;^UTILITY(U,$J,358.3,21576,1,3,0)
+ ;;=3^Elevated Prostate Specific Antigen
+ ;;^UTILITY(U,$J,358.3,21576,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,21576,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,21577,0)
+ ;;=R03.0^^87^965^17
+ ;;^UTILITY(U,$J,358.3,21577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21210,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff r nondom side
- ;;^UTILITY(U,$J,358.3,21210,1,4,0)
- ;;=4^I69.043
- ;;^UTILITY(U,$J,358.3,21210,2)
- ;;=^5007406
- ;;^UTILITY(U,$J,358.3,21211,0)
- ;;=I69.044^^101^1027^69
- ;;^UTILITY(U,$J,358.3,21211,1,0)
+ ;;^UTILITY(U,$J,358.3,21577,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,21577,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,21577,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,21578,0)
+ ;;=Z91.19^^87^965^42
+ ;;^UTILITY(U,$J,358.3,21578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21211,1,3,0)
- ;;=3^Monoplg low lmb fol ntrm subarach hemor aff left nondom side
- ;;^UTILITY(U,$J,358.3,21211,1,4,0)
- ;;=4^I69.044
- ;;^UTILITY(U,$J,358.3,21211,2)
- ;;=^5007407
- ;;^UTILITY(U,$J,358.3,21212,0)
- ;;=I69.841^^101^1027^72
- ;;^UTILITY(U,$J,358.3,21212,1,0)
+ ;;^UTILITY(U,$J,358.3,21578,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,21578,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,21578,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,21579,0)
+ ;;=E66.01^^87^965^43
+ ;;^UTILITY(U,$J,358.3,21579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21212,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff right dom side
- ;;^UTILITY(U,$J,358.3,21212,1,4,0)
- ;;=4^I69.841
- ;;^UTILITY(U,$J,358.3,21212,2)
- ;;=^5007532
- ;;^UTILITY(U,$J,358.3,21213,0)
- ;;=I69.842^^101^1027^73
- ;;^UTILITY(U,$J,358.3,21213,1,0)
+ ;;^UTILITY(U,$J,358.3,21579,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,21579,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,21579,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,21580,0)
+ ;;=H93.19^^87^965^54
+ ;;^UTILITY(U,$J,358.3,21580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21213,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc disease aff left dom side
- ;;^UTILITY(U,$J,358.3,21213,1,4,0)
- ;;=4^I69.842
- ;;^UTILITY(U,$J,358.3,21213,2)
- ;;=^5133577
- ;;^UTILITY(U,$J,358.3,21214,0)
- ;;=I69.843^^101^1027^70
- ;;^UTILITY(U,$J,358.3,21214,1,0)
+ ;;^UTILITY(U,$J,358.3,21580,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,21580,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,21580,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,21581,0)
+ ;;=G47.00^^87^965^31
+ ;;^UTILITY(U,$J,358.3,21581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21214,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff right nondom side
- ;;^UTILITY(U,$J,358.3,21214,1,4,0)
- ;;=4^I69.843
- ;;^UTILITY(U,$J,358.3,21214,2)
- ;;=^5007533
- ;;^UTILITY(U,$J,358.3,21215,0)
- ;;=I69.844^^101^1027^71
- ;;^UTILITY(U,$J,358.3,21215,1,0)
+ ;;^UTILITY(U,$J,358.3,21581,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,21581,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,21581,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,21582,0)
+ ;;=F43.10^^87^965^47
+ ;;^UTILITY(U,$J,358.3,21582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21215,1,3,0)
- ;;=3^Monoplg low lmb fol oth cerebvasc dis aff left nondom side
- ;;^UTILITY(U,$J,358.3,21215,1,4,0)
- ;;=4^I69.844
- ;;^UTILITY(U,$J,358.3,21215,2)
- ;;=^5133578
- ;;^UTILITY(U,$J,358.3,21216,0)
- ;;=I69.241^^101^1027^74
- ;;^UTILITY(U,$J,358.3,21216,1,0)
+ ;;^UTILITY(U,$J,358.3,21582,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,21582,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,21582,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,21583,0)
+ ;;=F43.11^^87^965^45
+ ;;^UTILITY(U,$J,358.3,21583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21216,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff right dom side
- ;;^UTILITY(U,$J,358.3,21216,1,4,0)
- ;;=4^I69.241
- ;;^UTILITY(U,$J,358.3,21216,2)
- ;;=^5007469
- ;;^UTILITY(U,$J,358.3,21217,0)
- ;;=I69.242^^101^1027^75
- ;;^UTILITY(U,$J,358.3,21217,1,0)
+ ;;^UTILITY(U,$J,358.3,21583,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,21583,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,21583,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,21584,0)
+ ;;=F43.12^^87^965^46
+ ;;^UTILITY(U,$J,358.3,21584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21217,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff left dom side
- ;;^UTILITY(U,$J,358.3,21217,1,4,0)
- ;;=4^I69.242
- ;;^UTILITY(U,$J,358.3,21217,2)
- ;;=^5133574
- ;;^UTILITY(U,$J,358.3,21218,0)
- ;;=I69.243^^101^1027^76
- ;;^UTILITY(U,$J,358.3,21218,1,0)
+ ;;^UTILITY(U,$J,358.3,21584,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,21584,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,21584,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,21585,0)
+ ;;=I25.119^^87^965^5
+ ;;^UTILITY(U,$J,358.3,21585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21218,1,3,0)
- ;;=3^Monoplg low lmb fol oth ntrm intcrn hemor aff r nondom side
- ;;^UTILITY(U,$J,358.3,21218,1,4,0)
- ;;=4^I69.243
- ;;^UTILITY(U,$J,358.3,21218,2)
- ;;=^5007470
- ;;^UTILITY(U,$J,358.3,21219,0)
- ;;=I69.244^^101^1027^77
- ;;^UTILITY(U,$J,358.3,21219,1,0)
+ ;;^UTILITY(U,$J,358.3,21585,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21585,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,21585,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,21586,0)
+ ;;=I25.10^^87^965^7
+ ;;^UTILITY(U,$J,358.3,21586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21586,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21586,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,21586,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,21587,0)
+ ;;=I25.110^^87^965^6
+ ;;^UTILITY(U,$J,358.3,21587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21587,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21587,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,21587,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,21588,0)
+ ;;=F17.219^^87^965^39
+ ;;^UTILITY(U,$J,358.3,21588,1,0)
  ;;=^358.31IA^4^2

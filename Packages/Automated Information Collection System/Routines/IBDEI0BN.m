@@ -1,124 +1,130 @@
-IBDEI0BN ; ; 19-NOV-2015
+IBDEI0BN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4981,1,2,0)
- ;;=2^Scalp/Neck/Head 1.1 - 2.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4981,1,4,0)
- ;;=4^11422
- ;;^UTILITY(U,$J,358.3,4982,0)
- ;;=11423^^39^333^4^^^^1
- ;;^UTILITY(U,$J,358.3,4982,1,0)
+ ;;^UTILITY(U,$J,358.3,5269,1,4,0)
+ ;;=4^R34.
+ ;;^UTILITY(U,$J,358.3,5269,2)
+ ;;=^5019333
+ ;;^UTILITY(U,$J,358.3,5270,0)
+ ;;=K76.7^^27^343^9
+ ;;^UTILITY(U,$J,358.3,5270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4982,1,2,0)
- ;;=2^Scalp/Neck/Head 2.1 - 3.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4982,1,4,0)
- ;;=4^11423
- ;;^UTILITY(U,$J,358.3,4983,0)
- ;;=11424^^39^333^5^^^^1
- ;;^UTILITY(U,$J,358.3,4983,1,0)
+ ;;^UTILITY(U,$J,358.3,5270,1,3,0)
+ ;;=3^Hepatorenal Syndrome
+ ;;^UTILITY(U,$J,358.3,5270,1,4,0)
+ ;;=4^K76.7
+ ;;^UTILITY(U,$J,358.3,5270,2)
+ ;;=^56497
+ ;;^UTILITY(U,$J,358.3,5271,0)
+ ;;=N00.0^^27^344^8
+ ;;^UTILITY(U,$J,358.3,5271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4983,1,2,0)
- ;;=2^Scalp/Neck/Head 3.1 - 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4983,1,4,0)
- ;;=4^11424
- ;;^UTILITY(U,$J,358.3,4984,0)
- ;;=11426^^39^333^6^^^^1
- ;;^UTILITY(U,$J,358.3,4984,1,0)
+ ;;^UTILITY(U,$J,358.3,5271,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ minor glomerular abnormality
+ ;;^UTILITY(U,$J,358.3,5271,1,4,0)
+ ;;=4^N00.0
+ ;;^UTILITY(U,$J,358.3,5271,2)
+ ;;=^5015491
+ ;;^UTILITY(U,$J,358.3,5272,0)
+ ;;=N00.1^^27^344^7
+ ;;^UTILITY(U,$J,358.3,5272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4984,1,2,0)
- ;;=2^Scalp/Neck/Head > 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4984,1,4,0)
- ;;=4^11426
- ;;^UTILITY(U,$J,358.3,4985,0)
- ;;=11440^^39^334^1^^^^1
- ;;^UTILITY(U,$J,358.3,4985,1,0)
+ ;;^UTILITY(U,$J,358.3,5272,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ focal and segmental glomerular lesions
+ ;;^UTILITY(U,$J,358.3,5272,1,4,0)
+ ;;=4^N00.1
+ ;;^UTILITY(U,$J,358.3,5272,2)
+ ;;=^5015492
+ ;;^UTILITY(U,$J,358.3,5273,0)
+ ;;=N00.2^^27^344^4
+ ;;^UTILITY(U,$J,358.3,5273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4985,1,2,0)
- ;;=2^Face/Ear/Lip 0.5 cm or less Benign Excision
- ;;^UTILITY(U,$J,358.3,4985,1,4,0)
- ;;=4^11440
- ;;^UTILITY(U,$J,358.3,4986,0)
- ;;=11441^^39^334^2^^^^1
- ;;^UTILITY(U,$J,358.3,4986,1,0)
+ ;;^UTILITY(U,$J,358.3,5273,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse membranous glomrlneph
+ ;;^UTILITY(U,$J,358.3,5273,1,4,0)
+ ;;=4^N00.2
+ ;;^UTILITY(U,$J,358.3,5273,2)
+ ;;=^5015493
+ ;;^UTILITY(U,$J,358.3,5274,0)
+ ;;=N00.3^^27^344^5
+ ;;^UTILITY(U,$J,358.3,5274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4986,1,2,0)
- ;;=2^Face/Ear/Lip 0.6 - 1.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4986,1,4,0)
- ;;=4^11441
- ;;^UTILITY(U,$J,358.3,4987,0)
- ;;=11442^^39^334^3^^^^1
- ;;^UTILITY(U,$J,358.3,4987,1,0)
+ ;;^UTILITY(U,$J,358.3,5274,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse mesangial prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5274,1,4,0)
+ ;;=4^N00.3
+ ;;^UTILITY(U,$J,358.3,5274,2)
+ ;;=^5015494
+ ;;^UTILITY(U,$J,358.3,5275,0)
+ ;;=N00.4^^27^344^3
+ ;;^UTILITY(U,$J,358.3,5275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4987,1,2,0)
- ;;=2^Face/Ear/Lip 1.1 - 2.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4987,1,4,0)
- ;;=4^11442
- ;;^UTILITY(U,$J,358.3,4988,0)
- ;;=11443^^39^334^4^^^^1
- ;;^UTILITY(U,$J,358.3,4988,1,0)
+ ;;^UTILITY(U,$J,358.3,5275,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse endocaplry prolif glomrlneph
+ ;;^UTILITY(U,$J,358.3,5275,1,4,0)
+ ;;=4^N00.4
+ ;;^UTILITY(U,$J,358.3,5275,2)
+ ;;=^5015495
+ ;;^UTILITY(U,$J,358.3,5276,0)
+ ;;=N00.5^^27^344^6
+ ;;^UTILITY(U,$J,358.3,5276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4988,1,2,0)
- ;;=2^Face/Ear/Lip 2.1 - 3.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4988,1,4,0)
- ;;=4^11443
- ;;^UTILITY(U,$J,358.3,4989,0)
- ;;=11444^^39^334^5^^^^1
- ;;^UTILITY(U,$J,358.3,4989,1,0)
+ ;;^UTILITY(U,$J,358.3,5276,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse mesangiocap glomrlneph
+ ;;^UTILITY(U,$J,358.3,5276,1,4,0)
+ ;;=4^N00.5
+ ;;^UTILITY(U,$J,358.3,5276,2)
+ ;;=^5015496
+ ;;^UTILITY(U,$J,358.3,5277,0)
+ ;;=N00.6^^27^344^1
+ ;;^UTILITY(U,$J,358.3,5277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4989,1,2,0)
- ;;=2^Face/Ear/Lip 3.1 - 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4989,1,4,0)
- ;;=4^11444
- ;;^UTILITY(U,$J,358.3,4990,0)
- ;;=11446^^39^334^6^^^^1
- ;;^UTILITY(U,$J,358.3,4990,1,0)
+ ;;^UTILITY(U,$J,358.3,5277,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ dense deposit disease
+ ;;^UTILITY(U,$J,358.3,5277,1,4,0)
+ ;;=4^N00.6
+ ;;^UTILITY(U,$J,358.3,5277,2)
+ ;;=^5015497
+ ;;^UTILITY(U,$J,358.3,5278,0)
+ ;;=N00.7^^27^344^2
+ ;;^UTILITY(U,$J,358.3,5278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4990,1,2,0)
- ;;=2^Face/Ear/Lip > 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4990,1,4,0)
- ;;=4^11446
- ;;^UTILITY(U,$J,358.3,4991,0)
- ;;=11400^^39^335^1^^^^1
- ;;^UTILITY(U,$J,358.3,4991,1,0)
+ ;;^UTILITY(U,$J,358.3,5278,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ diffuse crescentic glomrlneph
+ ;;^UTILITY(U,$J,358.3,5278,1,4,0)
+ ;;=4^N00.7
+ ;;^UTILITY(U,$J,358.3,5278,2)
+ ;;=^5015498
+ ;;^UTILITY(U,$J,358.3,5279,0)
+ ;;=N00.8^^27^344^9
+ ;;^UTILITY(U,$J,358.3,5279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4991,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.5 cm or less Benign Excision
- ;;^UTILITY(U,$J,358.3,4991,1,4,0)
- ;;=4^11400
- ;;^UTILITY(U,$J,358.3,4992,0)
- ;;=11401^^39^335^2^^^^1
- ;;^UTILITY(U,$J,358.3,4992,1,0)
+ ;;^UTILITY(U,$J,358.3,5279,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ other morphologic changes
+ ;;^UTILITY(U,$J,358.3,5279,1,4,0)
+ ;;=4^N00.8
+ ;;^UTILITY(U,$J,358.3,5279,2)
+ ;;=^5015499
+ ;;^UTILITY(U,$J,358.3,5280,0)
+ ;;=N00.9^^27^344^10
+ ;;^UTILITY(U,$J,358.3,5280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4992,1,2,0)
- ;;=2^Trunk/Arm/Leg 0.6 - 1.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4992,1,4,0)
- ;;=4^11401
- ;;^UTILITY(U,$J,358.3,4993,0)
- ;;=11402^^39^335^3^^^^1
- ;;^UTILITY(U,$J,358.3,4993,1,0)
+ ;;^UTILITY(U,$J,358.3,5280,1,3,0)
+ ;;=3^Acute nephritic syndrome w/ unsp morphologic changes
+ ;;^UTILITY(U,$J,358.3,5280,1,4,0)
+ ;;=4^N00.9
+ ;;^UTILITY(U,$J,358.3,5280,2)
+ ;;=^5015500
+ ;;^UTILITY(U,$J,358.3,5281,0)
+ ;;=N01.0^^27^344^70
+ ;;^UTILITY(U,$J,358.3,5281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4993,1,2,0)
- ;;=2^Trunk/Arm/Leg 1.1 - 2.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4993,1,4,0)
- ;;=4^11402
- ;;^UTILITY(U,$J,358.3,4994,0)
- ;;=11403^^39^335^4^^^^1
- ;;^UTILITY(U,$J,358.3,4994,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4994,1,2,0)
- ;;=2^Trunk/Arm/Leg 2.1 - 3.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4994,1,4,0)
- ;;=4^11403
- ;;^UTILITY(U,$J,358.3,4995,0)
- ;;=11404^^39^335^5^^^^1
- ;;^UTILITY(U,$J,358.3,4995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4995,1,2,0)
- ;;=2^Trunk/Arm/Leg 3.1 - 4.0 cm Benign Excision
- ;;^UTILITY(U,$J,358.3,4995,1,4,0)
- ;;=4^11404
- ;;^UTILITY(U,$J,358.3,4996,0)
- ;;=11406^^39^335^6^^^^1
- ;;^UTILITY(U,$J,358.3,4996,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5281,1,3,0)
+ ;;=3^Rapidly progr neph synd w/ minor glomerular abnlt
+ ;;^UTILITY(U,$J,358.3,5281,1,4,0)
+ ;;=4^N01.0
+ ;;^UTILITY(U,$J,358.3,5281,2)
+ ;;=^5015501
+ ;;^UTILITY(U,$J,358.3,5282,0)
+ ;;=N01.1^^27^344^69

@@ -1,120 +1,138 @@
-IBDEI0ES ; ; 19-NOV-2015
+IBDEI0ES ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6462,0)
- ;;=I63.9^^43^401^5
- ;;^UTILITY(U,$J,358.3,6462,1,0)
+ ;;^UTILITY(U,$J,358.3,6808,0)
+ ;;=Z98.0^^30^397^62
+ ;;^UTILITY(U,$J,358.3,6808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6462,1,3,0)
- ;;=3^Cerebral Infarction w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6462,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,6462,2)
- ;;=^5007355^F01.51
- ;;^UTILITY(U,$J,358.3,6463,0)
- ;;=I65.9^^43^401^25
- ;;^UTILITY(U,$J,358.3,6463,1,0)
+ ;;^UTILITY(U,$J,358.3,6808,1,3,0)
+ ;;=3^Intestinal Bypass/Anastomosis Status
+ ;;^UTILITY(U,$J,358.3,6808,1,4,0)
+ ;;=4^Z98.0
+ ;;^UTILITY(U,$J,358.3,6808,2)
+ ;;=^5063733
+ ;;^UTILITY(U,$J,358.3,6809,0)
+ ;;=Z91.128^^30^397^61
+ ;;^UTILITY(U,$J,358.3,6809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6463,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Artery w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6463,1,4,0)
- ;;=4^I65.9
- ;;^UTILITY(U,$J,358.3,6463,2)
- ;;=^269751^F01.50
- ;;^UTILITY(U,$J,358.3,6464,0)
- ;;=I65.9^^43^401^26
- ;;^UTILITY(U,$J,358.3,6464,1,0)
+ ;;^UTILITY(U,$J,358.3,6809,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Other Reasons
+ ;;^UTILITY(U,$J,358.3,6809,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,6809,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,6810,0)
+ ;;=Z77.120^^30^397^67
+ ;;^UTILITY(U,$J,358.3,6810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6464,1,3,0)
- ;;=3^Occlusion/Stenosis of Precerebral Artery w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6464,1,4,0)
- ;;=4^I65.9
- ;;^UTILITY(U,$J,358.3,6464,2)
- ;;=^269751^F01.51
- ;;^UTILITY(U,$J,358.3,6465,0)
- ;;=I66.9^^43^401^23
- ;;^UTILITY(U,$J,358.3,6465,1,0)
+ ;;^UTILITY(U,$J,358.3,6810,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,6810,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,6810,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,6811,0)
+ ;;=Z86.74^^30^397^110
+ ;;^UTILITY(U,$J,358.3,6811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6465,1,3,0)
- ;;=3^Occlusion/Stenosis of Cerebral Artery w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6465,1,4,0)
- ;;=4^I66.9
- ;;^UTILITY(U,$J,358.3,6465,2)
- ;;=^5007379^F01.50
- ;;^UTILITY(U,$J,358.3,6466,0)
- ;;=I66.9^^43^401^24
- ;;^UTILITY(U,$J,358.3,6466,1,0)
+ ;;^UTILITY(U,$J,358.3,6811,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,6811,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,6811,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,6812,0)
+ ;;=Z86.718^^30^397^117
+ ;;^UTILITY(U,$J,358.3,6812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6466,1,3,0)
- ;;=3^Occlusion/Stenosis of Cerebral Artery w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6466,1,4,0)
- ;;=4^I66.9
- ;;^UTILITY(U,$J,358.3,6466,2)
- ;;=^5007379^F01.51
- ;;^UTILITY(U,$J,358.3,6467,0)
- ;;=I67.9^^43^401^8
- ;;^UTILITY(U,$J,358.3,6467,1,0)
+ ;;^UTILITY(U,$J,358.3,6812,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,6812,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,6812,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,6813,0)
+ ;;=Z96.1^^30^397^127
+ ;;^UTILITY(U,$J,358.3,6813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6467,1,3,0)
- ;;=3^Cerebrovascular Disease w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6467,1,4,0)
- ;;=4^I67.9
- ;;^UTILITY(U,$J,358.3,6467,2)
- ;;=^5007389^F01.50
- ;;^UTILITY(U,$J,358.3,6468,0)
- ;;=I67.9^^43^401^7
- ;;^UTILITY(U,$J,358.3,6468,1,0)
+ ;;^UTILITY(U,$J,358.3,6813,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,6813,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,6813,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,6814,0)
+ ;;=Z96.612^^30^397^132
+ ;;^UTILITY(U,$J,358.3,6814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6468,1,3,0)
- ;;=3^Cerebrovascular Disease w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,6468,1,4,0)
- ;;=4^I67.9
- ;;^UTILITY(U,$J,358.3,6468,2)
- ;;=^5007389^F01.51
- ;;^UTILITY(U,$J,358.3,6469,0)
- ;;=I68.8^^43^401^9
- ;;^UTILITY(U,$J,358.3,6469,1,0)
+ ;;^UTILITY(U,$J,358.3,6814,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,6814,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,6814,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,6815,0)
+ ;;=Z96.611^^30^397^137
+ ;;^UTILITY(U,$J,358.3,6815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6469,1,3,0)
- ;;=3^Cerebrovascular Disorder in Oth Diseases w/o Behavioral Disturbance NEC
- ;;^UTILITY(U,$J,358.3,6469,1,4,0)
- ;;=4^I68.8
- ;;^UTILITY(U,$J,358.3,6469,2)
- ;;=^5007392^F01.50
- ;;^UTILITY(U,$J,358.3,6470,0)
- ;;=I68.8^^43^401^10
- ;;^UTILITY(U,$J,358.3,6470,1,0)
+ ;;^UTILITY(U,$J,358.3,6815,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,6815,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,6815,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,6816,0)
+ ;;=Z93.0^^30^397^145
+ ;;^UTILITY(U,$J,358.3,6816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6470,1,3,0)
- ;;=3^Cerebrovascular Disorder in Oth Diseases w/ Behavioral Disturbance NEC
- ;;^UTILITY(U,$J,358.3,6470,1,4,0)
- ;;=4^I68.8
- ;;^UTILITY(U,$J,358.3,6470,2)
- ;;=^5007392^F01.51
- ;;^UTILITY(U,$J,358.3,6471,0)
- ;;=I69.990^^43^401^1
- ;;^UTILITY(U,$J,358.3,6471,1,0)
+ ;;^UTILITY(U,$J,358.3,6816,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,6816,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,6816,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,6817,0)
+ ;;=Z99.3^^30^397^149
+ ;;^UTILITY(U,$J,358.3,6817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6471,1,3,0)
- ;;=3^Apraxia Following Cerebrovascular Disease w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,6471,1,4,0)
- ;;=4^I69.990
- ;;^UTILITY(U,$J,358.3,6471,2)
- ;;=^5007568^F01.50
- ;;^UTILITY(U,$J,358.3,6472,0)
- ;;=I69.990^^43^401^2
- ;;^UTILITY(U,$J,358.3,6472,1,0)
+ ;;^UTILITY(U,$J,358.3,6817,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,6817,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,6817,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,6818,0)
+ ;;=A15.0^^30^398^88
+ ;;^UTILITY(U,$J,358.3,6818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6472,1,3,0)
- ;;=3^Apraxia Following Cerebrovascular Disease w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,6472,1,4,0)
- ;;=4^I69.990
- ;;^UTILITY(U,$J,358.3,6472,2)
- ;;=^5007568^F01.51
- ;;^UTILITY(U,$J,358.3,6473,0)
- ;;=I69.991^^43^401^11
- ;;^UTILITY(U,$J,358.3,6473,1,0)
+ ;;^UTILITY(U,$J,358.3,6818,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,6818,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,6818,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,6819,0)
+ ;;=B20.^^30^398^32
+ ;;^UTILITY(U,$J,358.3,6819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6473,1,3,0)
- ;;=3^Dysphagia Following Cerebrovascular Disease w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,6819,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,6819,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,6819,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,6820,0)
+ ;;=B02.9^^30^398^97
+ ;;^UTILITY(U,$J,358.3,6820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6820,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,6820,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,6820,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,6821,0)
+ ;;=A60.9^^30^398^3
+ ;;^UTILITY(U,$J,358.3,6821,1,0)
+ ;;=^358.31IA^4^2

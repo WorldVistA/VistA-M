@@ -1,126 +1,130 @@
-IBDEI1Y2 ; ; 19-NOV-2015
+IBDEI1Y2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32551,0)
- ;;=F10.10^^143^1543^1
- ;;^UTILITY(U,$J,358.3,32551,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32551,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,32551,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,32551,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,32552,0)
- ;;=F10.14^^143^1543^8
- ;;^UTILITY(U,$J,358.3,32552,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32552,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,32552,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,32552,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,32553,0)
- ;;=F10.182^^143^1543^10
- ;;^UTILITY(U,$J,358.3,32553,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32553,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,32553,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,32553,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,32554,0)
- ;;=F10.20^^143^1543^2
- ;;^UTILITY(U,$J,358.3,32554,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32554,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,32554,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,32554,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,32555,0)
- ;;=F10.21^^143^1543^3
- ;;^UTILITY(U,$J,358.3,32555,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32555,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,32555,1,4,0)
- ;;=4^F10.21
- ;;^UTILITY(U,$J,358.3,32555,2)
- ;;=^5003082
- ;;^UTILITY(U,$J,358.3,32556,0)
- ;;=F10.230^^143^1543^4
- ;;^UTILITY(U,$J,358.3,32556,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32556,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,32556,1,4,0)
- ;;=4^F10.230
- ;;^UTILITY(U,$J,358.3,32556,2)
- ;;=^5003086
- ;;^UTILITY(U,$J,358.3,32557,0)
- ;;=F10.231^^143^1543^5
- ;;^UTILITY(U,$J,358.3,32557,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32557,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,32557,1,4,0)
- ;;=4^F10.231
- ;;^UTILITY(U,$J,358.3,32557,2)
- ;;=^5003087
- ;;^UTILITY(U,$J,358.3,32558,0)
- ;;=F10.232^^143^1543^6
- ;;^UTILITY(U,$J,358.3,32558,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32558,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe w/ Withdrawal Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,32558,1,4,0)
- ;;=4^F10.232
- ;;^UTILITY(U,$J,358.3,32558,2)
- ;;=^5003088
- ;;^UTILITY(U,$J,358.3,32559,0)
- ;;=F10.239^^143^1543^7
- ;;^UTILITY(U,$J,358.3,32559,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32559,1,3,0)
- ;;=3^Alcohol Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,32559,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,32559,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,32560,0)
- ;;=F10.24^^143^1543^9
- ;;^UTILITY(U,$J,358.3,32560,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32560,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,32560,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,32560,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,32561,0)
- ;;=F10.29^^143^1543^11
- ;;^UTILITY(U,$J,358.3,32561,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32561,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32561,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,32561,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,32562,0)
- ;;=F15.10^^143^1544^4
- ;;^UTILITY(U,$J,358.3,32562,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32562,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Mild
- ;;^UTILITY(U,$J,358.3,32562,1,4,0)
- ;;=4^F15.10
- ;;^UTILITY(U,$J,358.3,32562,2)
- ;;=^5003282
- ;;^UTILITY(U,$J,358.3,32563,0)
- ;;=F15.14^^143^1544^2
+ ;;^UTILITY(U,$J,358.3,32996,1,2,0)
+ ;;=2^29125
+ ;;^UTILITY(U,$J,358.3,32996,1,3,0)
+ ;;=3^Short Arm Splint; Static
+ ;;^UTILITY(U,$J,358.3,32997,0)
+ ;;=29126^^130^1651^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32997,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32997,1,2,0)
+ ;;=2^29126
+ ;;^UTILITY(U,$J,358.3,32997,1,3,0)
+ ;;=3^Short Arm Splint; Dynamic
+ ;;^UTILITY(U,$J,358.3,32998,0)
+ ;;=29130^^130^1651^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32998,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32998,1,2,0)
+ ;;=2^29130
+ ;;^UTILITY(U,$J,358.3,32998,1,3,0)
+ ;;=3^Finger Splint
+ ;;^UTILITY(U,$J,358.3,32999,0)
+ ;;=99078^^130^1652^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32999,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32999,1,2,0)
+ ;;=2^99078
+ ;;^UTILITY(U,$J,358.3,32999,1,3,0)
+ ;;=3^Group Health Education
+ ;;^UTILITY(U,$J,358.3,33000,0)
+ ;;=G0109^^130^1652^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33000,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33000,1,2,0)
+ ;;=2^G0109
+ ;;^UTILITY(U,$J,358.3,33000,1,3,0)
+ ;;=3^Diab Mgmt Trn,Grp,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,33001,0)
+ ;;=98960^^130^1652^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33001,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33001,1,2,0)
+ ;;=2^98960
+ ;;^UTILITY(U,$J,358.3,33001,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,1 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,33002,0)
+ ;;=98961^^130^1652^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33002,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33002,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,33002,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,2-4 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,33003,0)
+ ;;=98962^^130^1652^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33003,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33003,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,33003,1,3,0)
+ ;;=3^Self-Mgmt Educ/Train,5-8 Pt,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,33004,0)
+ ;;=G0108^^130^1652^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33004,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33004,1,2,0)
+ ;;=2^G0108
+ ;;^UTILITY(U,$J,358.3,33004,1,3,0)
+ ;;=3^Diab Mgmt Trn,Indiv,Ea 30Min
+ ;;^UTILITY(U,$J,358.3,33005,0)
+ ;;=95115^^130^1653^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33005,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33005,1,2,0)
+ ;;=2^95115
+ ;;^UTILITY(U,$J,358.3,33005,1,3,0)
+ ;;=3^Allergy Shot,Single
+ ;;^UTILITY(U,$J,358.3,33006,0)
+ ;;=95117^^130^1653^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33006,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33006,1,2,0)
+ ;;=2^95117
+ ;;^UTILITY(U,$J,358.3,33006,1,3,0)
+ ;;=3^Allergy Shot,2 or More
+ ;;^UTILITY(U,$J,358.3,33007,0)
+ ;;=93010^^130^1654^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33007,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33007,1,2,0)
+ ;;=2^93010
+ ;;^UTILITY(U,$J,358.3,33007,1,3,0)
+ ;;=3^EKG Interp & Rpt Only-MD
+ ;;^UTILITY(U,$J,358.3,33008,0)
+ ;;=93000^^130^1654^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33008,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33008,1,2,0)
+ ;;=2^93000
+ ;;^UTILITY(U,$J,358.3,33008,1,3,0)
+ ;;=3^EKG w/ Interp & Rpt-MD
+ ;;^UTILITY(U,$J,358.3,33009,0)
+ ;;=93005^^130^1654^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33009,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33009,1,2,0)
+ ;;=2^93005
+ ;;^UTILITY(U,$J,358.3,33009,1,3,0)
+ ;;=3^EKG,Tracing Only
+ ;;^UTILITY(U,$J,358.3,33010,0)
+ ;;=99406^^130^1655^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33010,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33010,1,2,0)
+ ;;=2^99406
+ ;;^UTILITY(U,$J,358.3,33010,1,3,0)
+ ;;=3^Behav Chng Tobacco Use 3-10 Min
+ ;;^UTILITY(U,$J,358.3,33011,0)
+ ;;=99407^^130^1655^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33011,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33011,1,2,0)
+ ;;=2^99407
+ ;;^UTILITY(U,$J,358.3,33011,1,3,0)
+ ;;=3^Behav Chng Tobacco Use > 10 Min
+ ;;^UTILITY(U,$J,358.3,33012,0)
+ ;;=99408^^130^1655^1^^^^1

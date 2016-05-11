@@ -1,132 +1,130 @@
-IBDEI14B ; ; 19-NOV-2015
+IBDEI14B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18667,1,4,0)
- ;;=4^F52.0
- ;;^UTILITY(U,$J,358.3,18667,2)
- ;;=^5003618
- ;;^UTILITY(U,$J,358.3,18668,0)
- ;;=F52.22^^94^912^93
- ;;^UTILITY(U,$J,358.3,18668,1,0)
+ ;;^UTILITY(U,$J,358.3,19013,0)
+ ;;=H35.031^^82^904^23
+ ;;^UTILITY(U,$J,358.3,19013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18668,1,3,0)
- ;;=3^Sexual Arousal Disorder,Female
- ;;^UTILITY(U,$J,358.3,18668,1,4,0)
- ;;=4^F52.22
- ;;^UTILITY(U,$J,358.3,18668,2)
- ;;=^5003621
- ;;^UTILITY(U,$J,358.3,18669,0)
- ;;=F52.8^^94^912^94
- ;;^UTILITY(U,$J,358.3,18669,1,0)
+ ;;^UTILITY(U,$J,358.3,19013,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,19013,1,4,0)
+ ;;=4^H35.031
+ ;;^UTILITY(U,$J,358.3,19013,2)
+ ;;=^5005590
+ ;;^UTILITY(U,$J,358.3,19014,0)
+ ;;=H35.032^^82^904^22
+ ;;^UTILITY(U,$J,358.3,19014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18669,1,3,0)
- ;;=3^Sexual Dysfnct Not d/t Substance/Known Physiological Cond
- ;;^UTILITY(U,$J,358.3,18669,1,4,0)
- ;;=4^F52.8
- ;;^UTILITY(U,$J,358.3,18669,2)
- ;;=^5003624
- ;;^UTILITY(U,$J,358.3,18670,0)
- ;;=F52.21^^94^912^33
- ;;^UTILITY(U,$J,358.3,18670,1,0)
+ ;;^UTILITY(U,$J,358.3,19014,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,19014,1,4,0)
+ ;;=4^H35.032
+ ;;^UTILITY(U,$J,358.3,19014,2)
+ ;;=^5005591
+ ;;^UTILITY(U,$J,358.3,19015,0)
+ ;;=H35.033^^82^904^21
+ ;;^UTILITY(U,$J,358.3,19015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18670,1,3,0)
- ;;=3^Erectile Disorder,Male (Psychogenic)
- ;;^UTILITY(U,$J,358.3,18670,1,4,0)
- ;;=4^F52.21
- ;;^UTILITY(U,$J,358.3,18670,2)
- ;;=^5003620
- ;;^UTILITY(U,$J,358.3,18671,0)
- ;;=I12.9^^94^912^55
- ;;^UTILITY(U,$J,358.3,18671,1,0)
+ ;;^UTILITY(U,$J,358.3,19015,1,3,0)
+ ;;=3^Hypertensive Retinopathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,19015,1,4,0)
+ ;;=4^H35.033
+ ;;^UTILITY(U,$J,358.3,19015,2)
+ ;;=^5005592
+ ;;^UTILITY(U,$J,358.3,19016,0)
+ ;;=H34.9^^82^904^45
+ ;;^UTILITY(U,$J,358.3,19016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18671,1,3,0)
- ;;=3^Hypertensive Kidney Disease Chronic w/ Stg 1-4
- ;;^UTILITY(U,$J,358.3,18671,1,4,0)
- ;;=4^I12.9
- ;;^UTILITY(U,$J,358.3,18671,2)
- ;;=^5007066
- ;;^UTILITY(U,$J,358.3,18672,0)
- ;;=N04.9^^94^912^69
- ;;^UTILITY(U,$J,358.3,18672,1,0)
+ ;;^UTILITY(U,$J,358.3,19016,1,3,0)
+ ;;=3^Retinal Vascular Occlusion,Unspec
+ ;;^UTILITY(U,$J,358.3,19016,1,4,0)
+ ;;=4^H34.9
+ ;;^UTILITY(U,$J,358.3,19016,2)
+ ;;=^5005580
+ ;;^UTILITY(U,$J,358.3,19017,0)
+ ;;=H34.13^^82^904^4
+ ;;^UTILITY(U,$J,358.3,19017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18672,1,3,0)
- ;;=3^Nephrotic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,18672,1,4,0)
- ;;=4^N04.9
- ;;^UTILITY(U,$J,358.3,18672,2)
- ;;=^5015540
- ;;^UTILITY(U,$J,358.3,18673,0)
- ;;=N02.9^^94^912^50
- ;;^UTILITY(U,$J,358.3,18673,1,0)
+ ;;^UTILITY(U,$J,358.3,19017,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,19017,1,4,0)
+ ;;=4^H34.13
+ ;;^UTILITY(U,$J,358.3,19017,2)
+ ;;=^5005559
+ ;;^UTILITY(U,$J,358.3,19018,0)
+ ;;=H34.12^^82^904^5
+ ;;^UTILITY(U,$J,358.3,19018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18673,1,3,0)
- ;;=3^Hematuria w/ Unspec Morphologic Changes,Recurrent & Persistent
- ;;^UTILITY(U,$J,358.3,18673,1,4,0)
- ;;=4^N02.9
- ;;^UTILITY(U,$J,358.3,18673,2)
- ;;=^5015520
- ;;^UTILITY(U,$J,358.3,18674,0)
- ;;=N06.9^^94^912^86
- ;;^UTILITY(U,$J,358.3,18674,1,0)
+ ;;^UTILITY(U,$J,358.3,19018,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,19018,1,4,0)
+ ;;=4^H34.12
+ ;;^UTILITY(U,$J,358.3,19018,2)
+ ;;=^5005558
+ ;;^UTILITY(U,$J,358.3,19019,0)
+ ;;=H34.11^^82^904^6
+ ;;^UTILITY(U,$J,358.3,19019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18674,1,3,0)
- ;;=3^Proteinuria Isolated w/ Unspec Morphologic Lesion
- ;;^UTILITY(U,$J,358.3,18674,1,4,0)
- ;;=4^N06.9
- ;;^UTILITY(U,$J,358.3,18674,2)
- ;;=^5015558
- ;;^UTILITY(U,$J,358.3,18675,0)
- ;;=N05.9^^94^912^66
- ;;^UTILITY(U,$J,358.3,18675,1,0)
+ ;;^UTILITY(U,$J,358.3,19019,1,3,0)
+ ;;=3^Central Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,19019,1,4,0)
+ ;;=4^H34.11
+ ;;^UTILITY(U,$J,358.3,19019,2)
+ ;;=^5005557
+ ;;^UTILITY(U,$J,358.3,19020,0)
+ ;;=H34.211^^82^904^29
+ ;;^UTILITY(U,$J,358.3,19020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18675,1,3,0)
- ;;=3^Nephritic Syndrome w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,18675,1,4,0)
- ;;=4^N05.9
- ;;^UTILITY(U,$J,358.3,18675,2)
- ;;=^5134086
- ;;^UTILITY(U,$J,358.3,18676,0)
- ;;=N07.9^^94^912^68
- ;;^UTILITY(U,$J,358.3,18676,1,0)
+ ;;^UTILITY(U,$J,358.3,19020,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,19020,1,4,0)
+ ;;=4^H34.211
+ ;;^UTILITY(U,$J,358.3,19020,2)
+ ;;=^5005560
+ ;;^UTILITY(U,$J,358.3,19021,0)
+ ;;=H34.212^^82^904^28
+ ;;^UTILITY(U,$J,358.3,19021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18676,1,3,0)
- ;;=3^Nephropathy Hereditary w/ Unspec Morphologic Lesions
- ;;^UTILITY(U,$J,358.3,18676,1,4,0)
- ;;=4^N07.9
- ;;^UTILITY(U,$J,358.3,18676,2)
- ;;=^5015568
- ;;^UTILITY(U,$J,358.3,18677,0)
- ;;=N15.9^^94^912^92
- ;;^UTILITY(U,$J,358.3,18677,1,0)
+ ;;^UTILITY(U,$J,358.3,19021,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,19021,1,4,0)
+ ;;=4^H34.212
+ ;;^UTILITY(U,$J,358.3,19021,2)
+ ;;=^5005561
+ ;;^UTILITY(U,$J,358.3,19022,0)
+ ;;=H34.213^^82^904^27
+ ;;^UTILITY(U,$J,358.3,19022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18677,1,3,0)
- ;;=3^Renal Tubulo-Interstitial Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18677,1,4,0)
- ;;=4^N15.9
- ;;^UTILITY(U,$J,358.3,18677,2)
- ;;=^5015596
- ;;^UTILITY(U,$J,358.3,18678,0)
- ;;=N17.9^^94^912^61
- ;;^UTILITY(U,$J,358.3,18678,1,0)
+ ;;^UTILITY(U,$J,358.3,19022,1,3,0)
+ ;;=3^Partial Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,19022,1,4,0)
+ ;;=4^H34.213
+ ;;^UTILITY(U,$J,358.3,19022,2)
+ ;;=^5005562
+ ;;^UTILITY(U,$J,358.3,19023,0)
+ ;;=H34.232^^82^904^36
+ ;;^UTILITY(U,$J,358.3,19023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18678,1,3,0)
- ;;=3^Kidney Failure,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,18678,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,18678,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,18679,0)
- ;;=N19.^^94^912^62
- ;;^UTILITY(U,$J,358.3,18679,1,0)
+ ;;^UTILITY(U,$J,358.3,19023,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Left Eye
+ ;;^UTILITY(U,$J,358.3,19023,1,4,0)
+ ;;=4^H34.232
+ ;;^UTILITY(U,$J,358.3,19023,2)
+ ;;=^5005565
+ ;;^UTILITY(U,$J,358.3,19024,0)
+ ;;=H34.231^^82^904^37
+ ;;^UTILITY(U,$J,358.3,19024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18679,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,18679,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,18679,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,18680,0)
- ;;=N11.0^^94^912^90
- ;;^UTILITY(U,$J,358.3,18680,1,0)
+ ;;^UTILITY(U,$J,358.3,19024,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Right Eye
+ ;;^UTILITY(U,$J,358.3,19024,1,4,0)
+ ;;=4^H34.231
+ ;;^UTILITY(U,$J,358.3,19024,2)
+ ;;=^5005564
+ ;;^UTILITY(U,$J,358.3,19025,0)
+ ;;=H34.233^^82^904^35
+ ;;^UTILITY(U,$J,358.3,19025,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19025,1,3,0)
+ ;;=3^Retinal Artery Branch Occlusion,Bilateral

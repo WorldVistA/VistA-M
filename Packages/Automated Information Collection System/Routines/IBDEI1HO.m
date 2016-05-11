@@ -1,124 +1,138 @@
-IBDEI1HO ; ; 19-NOV-2015
+IBDEI1HO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24907,2)
- ;;=^5054917
- ;;^UTILITY(U,$J,358.3,24908,0)
- ;;=T81.72XA^^124^1239^24
- ;;^UTILITY(U,$J,358.3,24908,1,0)
+ ;;^UTILITY(U,$J,358.3,25273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24908,1,3,0)
- ;;=3^Complication of Vein Following Procedure,Init Encntr
- ;;^UTILITY(U,$J,358.3,24908,1,4,0)
- ;;=4^T81.72XA
- ;;^UTILITY(U,$J,358.3,24908,2)
- ;;=^5054650
- ;;^UTILITY(U,$J,358.3,24909,0)
- ;;=T82.817A^^124^1239^51
- ;;^UTILITY(U,$J,358.3,24909,1,0)
+ ;;^UTILITY(U,$J,358.3,25273,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,25273,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,25273,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,25274,0)
+ ;;=Z56.0^^95^1147^13
+ ;;^UTILITY(U,$J,358.3,25274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24909,1,3,0)
- ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24909,1,4,0)
- ;;=4^T82.817A
- ;;^UTILITY(U,$J,358.3,24909,2)
- ;;=^5054914
- ;;^UTILITY(U,$J,358.3,24910,0)
- ;;=T80.0XXA^^124^1239^1
- ;;^UTILITY(U,$J,358.3,24910,1,0)
+ ;;^UTILITY(U,$J,358.3,25274,1,3,0)
+ ;;=3^Unemployeement,Unspec
+ ;;^UTILITY(U,$J,358.3,25274,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,25274,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,25275,0)
+ ;;=Z56.1^^95^1147^2
+ ;;^UTILITY(U,$J,358.3,25275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24910,1,3,0)
- ;;=3^Air Embolism Following Infusion/Transfusion/Therapeutic Inj,Init Encntr
- ;;^UTILITY(U,$J,358.3,24910,1,4,0)
- ;;=4^T80.0XXA
- ;;^UTILITY(U,$J,358.3,24910,2)
- ;;=^5054344
- ;;^UTILITY(U,$J,358.3,24911,0)
- ;;=T81.718A^^124^1239^20
- ;;^UTILITY(U,$J,358.3,24911,1,0)
+ ;;^UTILITY(U,$J,358.3,25275,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,25275,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,25275,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,25276,0)
+ ;;=Z56.2^^95^1147^11
+ ;;^UTILITY(U,$J,358.3,25276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24911,1,3,0)
- ;;=3^Complication of Artery Following Procedure,Init Encntr
- ;;^UTILITY(U,$J,358.3,24911,1,4,0)
- ;;=4^T81.718A
- ;;^UTILITY(U,$J,358.3,24911,2)
- ;;=^5054644
- ;;^UTILITY(U,$J,358.3,24912,0)
- ;;=J95.811^^124^1239^195
- ;;^UTILITY(U,$J,358.3,24912,1,0)
+ ;;^UTILITY(U,$J,358.3,25276,1,3,0)
+ ;;=3^Threat of Job Loss
+ ;;^UTILITY(U,$J,358.3,25276,1,4,0)
+ ;;=4^Z56.2
+ ;;^UTILITY(U,$J,358.3,25276,2)
+ ;;=^5063109
+ ;;^UTILITY(U,$J,358.3,25277,0)
+ ;;=Z56.3^^95^1147^10
+ ;;^UTILITY(U,$J,358.3,25277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24912,1,3,0)
- ;;=3^Postprocedural Pneumothorax
- ;;^UTILITY(U,$J,358.3,24912,1,4,0)
- ;;=4^J95.811
- ;;^UTILITY(U,$J,358.3,24912,2)
- ;;=^5008336
- ;;^UTILITY(U,$J,358.3,24913,0)
- ;;=T82.110A^^124^1239^4
- ;;^UTILITY(U,$J,358.3,24913,1,0)
+ ;;^UTILITY(U,$J,358.3,25277,1,3,0)
+ ;;=3^Stressful Work Schedule
+ ;;^UTILITY(U,$J,358.3,25277,1,4,0)
+ ;;=4^Z56.3
+ ;;^UTILITY(U,$J,358.3,25277,2)
+ ;;=^5063110
+ ;;^UTILITY(U,$J,358.3,25278,0)
+ ;;=Z56.4^^95^1147^3
+ ;;^UTILITY(U,$J,358.3,25278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24913,1,3,0)
- ;;=3^Breakdown of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,24913,1,4,0)
- ;;=4^T82.110A
- ;;^UTILITY(U,$J,358.3,24913,2)
- ;;=^5054680
- ;;^UTILITY(U,$J,358.3,24914,0)
- ;;=T82.191A^^124^1239^139
- ;;^UTILITY(U,$J,358.3,24914,1,0)
+ ;;^UTILITY(U,$J,358.3,25278,1,3,0)
+ ;;=3^Discord w/ Boss & Workmates
+ ;;^UTILITY(U,$J,358.3,25278,1,4,0)
+ ;;=4^Z56.4
+ ;;^UTILITY(U,$J,358.3,25278,2)
+ ;;=^5063111
+ ;;^UTILITY(U,$J,358.3,25279,0)
+ ;;=Z56.5^^95^1147^12
+ ;;^UTILITY(U,$J,358.3,25279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24914,1,3,0)
- ;;=3^Mechanical Compl of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,24914,1,4,0)
- ;;=4^T82.191A
- ;;^UTILITY(U,$J,358.3,24914,2)
- ;;=^5054707
- ;;^UTILITY(U,$J,358.3,24915,0)
- ;;=T82.111A^^124^1239^5
- ;;^UTILITY(U,$J,358.3,24915,1,0)
+ ;;^UTILITY(U,$J,358.3,25279,1,3,0)
+ ;;=3^Uncongenial Work Environment
+ ;;^UTILITY(U,$J,358.3,25279,1,4,0)
+ ;;=4^Z56.5
+ ;;^UTILITY(U,$J,358.3,25279,2)
+ ;;=^5063112
+ ;;^UTILITY(U,$J,358.3,25280,0)
+ ;;=Z56.6^^95^1147^5
+ ;;^UTILITY(U,$J,358.3,25280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24915,1,3,0)
- ;;=3^Breakdown of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,24915,1,4,0)
- ;;=4^T82.111A
- ;;^UTILITY(U,$J,358.3,24915,2)
- ;;=^5054683
- ;;^UTILITY(U,$J,358.3,24916,0)
- ;;=T82.120A^^124^1239^34
- ;;^UTILITY(U,$J,358.3,24916,1,0)
+ ;;^UTILITY(U,$J,358.3,25280,1,3,0)
+ ;;=3^Physical & Mental Strain Related to Work NEC
+ ;;^UTILITY(U,$J,358.3,25280,1,4,0)
+ ;;=4^Z56.6
+ ;;^UTILITY(U,$J,358.3,25280,2)
+ ;;=^5063113
+ ;;^UTILITY(U,$J,358.3,25281,0)
+ ;;=Z56.82^^95^1147^4
+ ;;^UTILITY(U,$J,358.3,25281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24916,1,3,0)
- ;;=3^Displacement of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,24916,1,4,0)
- ;;=4^T82.120A
- ;;^UTILITY(U,$J,358.3,24916,2)
- ;;=^5054692
- ;;^UTILITY(U,$J,358.3,24917,0)
- ;;=T82.121A^^124^1239^35
- ;;^UTILITY(U,$J,358.3,24917,1,0)
+ ;;^UTILITY(U,$J,358.3,25281,1,3,0)
+ ;;=3^Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,25281,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,25281,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,25282,0)
+ ;;=Z56.89^^95^1147^7
+ ;;^UTILITY(U,$J,358.3,25282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24917,1,3,0)
- ;;=3^Displacement of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,24917,1,4,0)
- ;;=4^T82.121A
- ;;^UTILITY(U,$J,358.3,24917,2)
- ;;=^5054695
- ;;^UTILITY(U,$J,358.3,24918,0)
- ;;=T82.190A^^124^1239^141
- ;;^UTILITY(U,$J,358.3,24918,1,0)
+ ;;^UTILITY(U,$J,358.3,25282,1,3,0)
+ ;;=3^Problems Related to Employment,Other
+ ;;^UTILITY(U,$J,358.3,25282,1,4,0)
+ ;;=4^Z56.89
+ ;;^UTILITY(U,$J,358.3,25282,2)
+ ;;=^5063116
+ ;;^UTILITY(U,$J,358.3,25283,0)
+ ;;=F64.1^^95^1148^2
+ ;;^UTILITY(U,$J,358.3,25283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24918,1,3,0)
- ;;=3^Mechanical Compl of Cardiact Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,24918,1,4,0)
- ;;=4^T82.190A
- ;;^UTILITY(U,$J,358.3,24918,2)
- ;;=^5054704
- ;;^UTILITY(U,$J,358.3,24919,0)
- ;;=T82.310A^^124^1239^2
- ;;^UTILITY(U,$J,358.3,24919,1,0)
+ ;;^UTILITY(U,$J,358.3,25283,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,25283,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,25283,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,25284,0)
+ ;;=F64.8^^95^1148^1
+ ;;^UTILITY(U,$J,358.3,25284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24919,1,3,0)
- ;;=3^Breakdown of Aortic Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,24919,1,4,0)
- ;;=4^T82.310A
+ ;;^UTILITY(U,$J,358.3,25284,1,3,0)
+ ;;=3^Gender Dysphoria NEC
+ ;;^UTILITY(U,$J,358.3,25284,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,25284,2)
+ ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,25285,0)
+ ;;=F64.9^^95^1148^3
+ ;;^UTILITY(U,$J,358.3,25285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25285,1,3,0)
+ ;;=3^Gender Dysphoria,Unspec
+ ;;^UTILITY(U,$J,358.3,25285,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,25285,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,25286,0)
+ ;;=Z59.2^^95^1149^1
+ ;;^UTILITY(U,$J,358.3,25286,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,25286,1,3,0)
+ ;;=3^Discord w/ Neighbors,Lodgers or Landlord

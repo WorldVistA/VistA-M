@@ -1,136 +1,122 @@
-IBDEI1P0 ; ; 19-NOV-2015
+IBDEI1P0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,28322,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,28322,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,28323,0)
- ;;=Z12.12^^132^1329^14
- ;;^UTILITY(U,$J,358.3,28323,1,0)
+ ;;^UTILITY(U,$J,358.3,28779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28323,1,3,0)
- ;;=3^Rectum Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,28323,1,4,0)
- ;;=4^Z12.12
- ;;^UTILITY(U,$J,358.3,28323,2)
- ;;=^5062682
- ;;^UTILITY(U,$J,358.3,28324,0)
- ;;=Z71.89^^132^1329^12
- ;;^UTILITY(U,$J,358.3,28324,1,0)
+ ;;^UTILITY(U,$J,358.3,28779,1,3,0)
+ ;;=3^Antepartum hemorrhage w oth coag defect, third trimester
+ ;;^UTILITY(U,$J,358.3,28779,1,4,0)
+ ;;=4^O46.093
+ ;;^UTILITY(U,$J,358.3,28779,2)
+ ;;=^5017481
+ ;;^UTILITY(U,$J,358.3,28780,0)
+ ;;=O10.011^^115^1449^25
+ ;;^UTILITY(U,$J,358.3,28780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28324,1,3,0)
- ;;=3^Other Specified Counseling
- ;;^UTILITY(U,$J,358.3,28324,1,4,0)
- ;;=4^Z71.89
- ;;^UTILITY(U,$J,358.3,28324,2)
- ;;=^5063253
- ;;^UTILITY(U,$J,358.3,28325,0)
- ;;=Z12.5^^132^1329^13
- ;;^UTILITY(U,$J,358.3,28325,1,0)
+ ;;^UTILITY(U,$J,358.3,28780,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28780,1,4,0)
+ ;;=4^O10.011
+ ;;^UTILITY(U,$J,358.3,28780,2)
+ ;;=^5016108
+ ;;^UTILITY(U,$J,358.3,28781,0)
+ ;;=O10.012^^115^1449^26
+ ;;^UTILITY(U,$J,358.3,28781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28325,1,3,0)
- ;;=3^Prostate Malignant Neoplasm Screen
- ;;^UTILITY(U,$J,358.3,28325,1,4,0)
- ;;=4^Z12.5
- ;;^UTILITY(U,$J,358.3,28325,2)
- ;;=^5062688
- ;;^UTILITY(U,$J,358.3,28326,0)
- ;;=Z00.00^^132^1329^9
- ;;^UTILITY(U,$J,358.3,28326,1,0)
+ ;;^UTILITY(U,$J,358.3,28781,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28781,1,4,0)
+ ;;=4^O10.012
+ ;;^UTILITY(U,$J,358.3,28781,2)
+ ;;=^5016109
+ ;;^UTILITY(U,$J,358.3,28782,0)
+ ;;=O10.013^^115^1449^27
+ ;;^UTILITY(U,$J,358.3,28782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28326,1,3,0)
- ;;=3^General Adult Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,28326,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,28326,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,28327,0)
- ;;=Z02.79^^132^1329^11
- ;;^UTILITY(U,$J,358.3,28327,1,0)
+ ;;^UTILITY(U,$J,358.3,28782,1,3,0)
+ ;;=3^Pre-existing essential htn comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28782,1,4,0)
+ ;;=4^O10.013
+ ;;^UTILITY(U,$J,358.3,28782,2)
+ ;;=^5016110
+ ;;^UTILITY(U,$J,358.3,28783,0)
+ ;;=O10.03^^115^1449^28
+ ;;^UTILITY(U,$J,358.3,28783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28327,1,3,0)
- ;;=3^Medical Certificate Encounter
- ;;^UTILITY(U,$J,358.3,28327,1,4,0)
- ;;=4^Z02.79
- ;;^UTILITY(U,$J,358.3,28327,2)
- ;;=^5062641
- ;;^UTILITY(U,$J,358.3,28328,0)
- ;;=Z71.3^^132^1329^7
- ;;^UTILITY(U,$J,358.3,28328,1,0)
+ ;;^UTILITY(U,$J,358.3,28783,1,3,0)
+ ;;=3^Pre-existing essential htn comp the puerperium
+ ;;^UTILITY(U,$J,358.3,28783,1,4,0)
+ ;;=4^O10.03
+ ;;^UTILITY(U,$J,358.3,28783,2)
+ ;;=^5016113
+ ;;^UTILITY(U,$J,358.3,28784,0)
+ ;;=O10.411^^115^1449^34
+ ;;^UTILITY(U,$J,358.3,28784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28328,1,3,0)
- ;;=3^Dietary Counseling
- ;;^UTILITY(U,$J,358.3,28328,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,28328,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,28329,0)
- ;;=Z71.7^^132^1329^10
- ;;^UTILITY(U,$J,358.3,28329,1,0)
+ ;;^UTILITY(U,$J,358.3,28784,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28784,1,4,0)
+ ;;=4^O10.411
+ ;;^UTILITY(U,$J,358.3,28784,2)
+ ;;=^5016132
+ ;;^UTILITY(U,$J,358.3,28785,0)
+ ;;=O10.412^^115^1449^35
+ ;;^UTILITY(U,$J,358.3,28785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28329,1,3,0)
- ;;=3^HIV Counseling
- ;;^UTILITY(U,$J,358.3,28329,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,28329,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,28330,0)
- ;;=Z71.6^^132^1329^15
- ;;^UTILITY(U,$J,358.3,28330,1,0)
+ ;;^UTILITY(U,$J,358.3,28785,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, second trimester
+ ;;^UTILITY(U,$J,358.3,28785,1,4,0)
+ ;;=4^O10.412
+ ;;^UTILITY(U,$J,358.3,28785,2)
+ ;;=^5016133
+ ;;^UTILITY(U,$J,358.3,28786,0)
+ ;;=O10.413^^115^1449^36
+ ;;^UTILITY(U,$J,358.3,28786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28330,1,3,0)
- ;;=3^Tobacco Abuse Counseling
- ;;^UTILITY(U,$J,358.3,28330,1,4,0)
- ;;=4^Z71.6
- ;;^UTILITY(U,$J,358.3,28330,2)
- ;;=^5063250
- ;;^UTILITY(U,$J,358.3,28331,0)
- ;;=D86.0^^132^1330^45
- ;;^UTILITY(U,$J,358.3,28331,1,0)
+ ;;^UTILITY(U,$J,358.3,28786,1,3,0)
+ ;;=3^Pre-existing secondary htn comp pregnancy, third trimester
+ ;;^UTILITY(U,$J,358.3,28786,1,4,0)
+ ;;=4^O10.413
+ ;;^UTILITY(U,$J,358.3,28786,2)
+ ;;=^5016134
+ ;;^UTILITY(U,$J,358.3,28787,0)
+ ;;=O10.43^^115^1449^37
+ ;;^UTILITY(U,$J,358.3,28787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28331,1,3,0)
- ;;=3^Sarcoidosis of Lung
- ;;^UTILITY(U,$J,358.3,28331,1,4,0)
- ;;=4^D86.0
- ;;^UTILITY(U,$J,358.3,28331,2)
- ;;=^5002442
- ;;^UTILITY(U,$J,358.3,28332,0)
- ;;=D86.1^^132^1330^47
- ;;^UTILITY(U,$J,358.3,28332,1,0)
+ ;;^UTILITY(U,$J,358.3,28787,1,3,0)
+ ;;=3^Pre-existing secondary htn comp the puerperium
+ ;;^UTILITY(U,$J,358.3,28787,1,4,0)
+ ;;=4^O10.43
+ ;;^UTILITY(U,$J,358.3,28787,2)
+ ;;=^5016137
+ ;;^UTILITY(U,$J,358.3,28788,0)
+ ;;=O10.111^^115^1449^24
+ ;;^UTILITY(U,$J,358.3,28788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28332,1,3,0)
- ;;=3^Sarcoidosis of Lymph nodes
- ;;^UTILITY(U,$J,358.3,28332,1,4,0)
- ;;=4^D86.1
- ;;^UTILITY(U,$J,358.3,28332,2)
- ;;=^5002443
- ;;^UTILITY(U,$J,358.3,28333,0)
- ;;=D86.2^^132^1330^46
- ;;^UTILITY(U,$J,358.3,28333,1,0)
+ ;;^UTILITY(U,$J,358.3,28788,1,3,0)
+ ;;=3^Pre-exist hyp heart disease comp pregnancy, first trimester
+ ;;^UTILITY(U,$J,358.3,28788,1,4,0)
+ ;;=4^O10.111
+ ;;^UTILITY(U,$J,358.3,28788,2)
+ ;;=^5016114
+ ;;^UTILITY(U,$J,358.3,28789,0)
+ ;;=O10.211^^115^1449^17
+ ;;^UTILITY(U,$J,358.3,28789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28333,1,3,0)
- ;;=3^Sarcoidosis of Lung w/ Sarcoidosis of Lymph Nodes
- ;;^UTILITY(U,$J,358.3,28333,1,4,0)
- ;;=4^D86.2
- ;;^UTILITY(U,$J,358.3,28333,2)
- ;;=^5002444
- ;;^UTILITY(U,$J,358.3,28334,0)
- ;;=D86.89^^132^1330^48
- ;;^UTILITY(U,$J,358.3,28334,1,0)
+ ;;^UTILITY(U,$J,358.3,28789,1,3,0)
+ ;;=3^Pre-exist hyp chronic kidney disease comp preg, first tri
+ ;;^UTILITY(U,$J,358.3,28789,1,4,0)
+ ;;=4^O10.211
+ ;;^UTILITY(U,$J,358.3,28789,2)
+ ;;=^5016120
+ ;;^UTILITY(U,$J,358.3,28790,0)
+ ;;=O10.212^^115^1449^18
+ ;;^UTILITY(U,$J,358.3,28790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28334,1,3,0)
- ;;=3^Sarcoidosis of Other Sites
- ;;^UTILITY(U,$J,358.3,28334,1,4,0)
- ;;=4^D86.89
- ;;^UTILITY(U,$J,358.3,28334,2)
- ;;=^5002453
- ;;^UTILITY(U,$J,358.3,28335,0)
- ;;=D86.9^^132^1330^51
- ;;^UTILITY(U,$J,358.3,28335,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28335,1,3,0)
- ;;=3^Sarcoidosis,Unspec
- ;;^UTILITY(U,$J,358.3,28335,1,4,0)
- ;;=4^D86.9
+ ;;^UTILITY(U,$J,358.3,28790,1,3,0)
+ ;;=3^Pre-exist hyp chronic kidney disease comp preg, second tri
+ ;;^UTILITY(U,$J,358.3,28790,1,4,0)
+ ;;=4^O10.212
+ ;;^UTILITY(U,$J,358.3,28790,2)
+ ;;=^5016121

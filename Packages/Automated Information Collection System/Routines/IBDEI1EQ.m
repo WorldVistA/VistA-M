@@ -1,136 +1,124 @@
-IBDEI1EQ ; ; 19-NOV-2015
+IBDEI1EQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23487,1,0)
+ ;;^UTILITY(U,$J,358.3,23929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23487,1,3,0)
- ;;=3^Multiple sclerosis
- ;;^UTILITY(U,$J,358.3,23487,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,23487,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,23488,0)
- ;;=E46.^^113^1133^2
- ;;^UTILITY(U,$J,358.3,23488,1,0)
+ ;;^UTILITY(U,$J,358.3,23929,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23929,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,23929,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,23930,0)
+ ;;=T76.31XA^^90^1035^11
+ ;;^UTILITY(U,$J,358.3,23930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23488,1,3,0)
- ;;=3^Malnutrition, protein-calorie, unspec
- ;;^UTILITY(U,$J,358.3,23488,1,4,0)
- ;;=4^E46.
- ;;^UTILITY(U,$J,358.3,23488,2)
- ;;=^5002790
- ;;^UTILITY(U,$J,358.3,23489,0)
- ;;=I21.3^^113^1133^9
- ;;^UTILITY(U,$J,358.3,23489,1,0)
+ ;;^UTILITY(U,$J,358.3,23930,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,23930,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,23930,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,23931,0)
+ ;;=T76.31XD^^90^1035^12
+ ;;^UTILITY(U,$J,358.3,23931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23489,1,3,0)
- ;;=3^Myocardial Infarction w/ STEMI,Site Unspec
- ;;^UTILITY(U,$J,358.3,23489,1,4,0)
- ;;=4^I21.3
- ;;^UTILITY(U,$J,358.3,23489,2)
- ;;=^5007087
- ;;^UTILITY(U,$J,358.3,23490,0)
- ;;=R53.81^^113^1133^1
- ;;^UTILITY(U,$J,358.3,23490,1,0)
+ ;;^UTILITY(U,$J,358.3,23931,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,23931,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,23931,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,23932,0)
+ ;;=Z91.411^^90^1035^30
+ ;;^UTILITY(U,$J,358.3,23932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23490,1,3,0)
- ;;=3^Malaise
- ;;^UTILITY(U,$J,358.3,23490,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,23490,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,23491,0)
- ;;=G43.909^^113^1133^4
- ;;^UTILITY(U,$J,358.3,23491,1,0)
+ ;;^UTILITY(U,$J,358.3,23932,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23932,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,23932,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,23933,0)
+ ;;=Z69.021^^90^1035^17
+ ;;^UTILITY(U,$J,358.3,23933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23491,1,3,0)
- ;;=3^Migraine,Not Intrctbl,w/o Status Migrainosus
- ;;^UTILITY(U,$J,358.3,23491,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,23491,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,23492,0)
- ;;=G58.9^^113^1133^7
- ;;^UTILITY(U,$J,358.3,23492,1,0)
+ ;;^UTILITY(U,$J,358.3,23933,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,23933,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23933,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23934,0)
+ ;;=Z69.021^^90^1035^18
+ ;;^UTILITY(U,$J,358.3,23934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23492,1,3,0)
- ;;=3^Mononeuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,23492,1,4,0)
- ;;=4^G58.9
- ;;^UTILITY(U,$J,358.3,23492,2)
- ;;=^5004065
- ;;^UTILITY(U,$J,358.3,23493,0)
- ;;=R35.0^^113^1133^3
- ;;^UTILITY(U,$J,358.3,23493,1,0)
+ ;;^UTILITY(U,$J,358.3,23934,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,23934,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23934,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23935,0)
+ ;;=Z69.021^^90^1035^19
+ ;;^UTILITY(U,$J,358.3,23935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23493,1,3,0)
- ;;=3^Micturition Frequency
- ;;^UTILITY(U,$J,358.3,23493,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,23493,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,23494,0)
- ;;=I25.2^^113^1133^10
- ;;^UTILITY(U,$J,358.3,23494,1,0)
+ ;;^UTILITY(U,$J,358.3,23935,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23935,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23935,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23936,0)
+ ;;=Z69.021^^90^1035^20
+ ;;^UTILITY(U,$J,358.3,23936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23494,1,3,0)
- ;;=3^Myocardial Infarction,Healed/Old
- ;;^UTILITY(U,$J,358.3,23494,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,23494,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,23495,0)
- ;;=H60.313^^113^1134^14
- ;;^UTILITY(U,$J,358.3,23495,1,0)
+ ;;^UTILITY(U,$J,358.3,23936,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,23936,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,23936,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,23937,0)
+ ;;=Z69.011^^90^1035^22
+ ;;^UTILITY(U,$J,358.3,23937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23495,1,3,0)
- ;;=3^Otitis Externa Diffuse,Bilateral
- ;;^UTILITY(U,$J,358.3,23495,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,23495,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,23496,0)
- ;;=H60.311^^113^1134^16
- ;;^UTILITY(U,$J,358.3,23496,1,0)
+ ;;^UTILITY(U,$J,358.3,23937,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,23937,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,23937,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,23938,0)
+ ;;=Z69.011^^90^1035^23
+ ;;^UTILITY(U,$J,358.3,23938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23496,1,3,0)
- ;;=3^Otitis Externa Diffuse,Right
- ;;^UTILITY(U,$J,358.3,23496,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,23496,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,23497,0)
- ;;=H60.312^^113^1134^15
- ;;^UTILITY(U,$J,358.3,23497,1,0)
+ ;;^UTILITY(U,$J,358.3,23938,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,23938,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,23938,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,23939,0)
+ ;;=Z69.011^^90^1035^24
+ ;;^UTILITY(U,$J,358.3,23939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23497,1,3,0)
- ;;=3^Otitis Externa Diffuse,Left
- ;;^UTILITY(U,$J,358.3,23497,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,23497,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,23498,0)
- ;;=H60.391^^113^1134^22
- ;;^UTILITY(U,$J,358.3,23498,1,0)
+ ;;^UTILITY(U,$J,358.3,23939,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,23939,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,23939,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,23940,0)
+ ;;=Z69.011^^90^1035^25
+ ;;^UTILITY(U,$J,358.3,23940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23498,1,3,0)
- ;;=3^Otitis Externa Infective,Right
- ;;^UTILITY(U,$J,358.3,23498,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,23498,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,23499,0)
- ;;=H60.392^^113^1134^21
- ;;^UTILITY(U,$J,358.3,23499,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23499,1,3,0)
- ;;=3^Otitis Externa Infective,Left
- ;;^UTILITY(U,$J,358.3,23499,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,23499,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,23500,0)
- ;;=H60.393^^113^1134^20
- ;;^UTILITY(U,$J,358.3,23500,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23940,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,23940,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,23940,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,23941,0)
+ ;;=F06.4^^90^1036^6

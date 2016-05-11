@@ -1,124 +1,132 @@
-IBDEI2G0 ; ; 19-NOV-2015
+IBDEI2G0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41004,2)
- ;;=^5045309
- ;;^UTILITY(U,$J,358.3,41005,0)
- ;;=S92.411K^^189^2086^125
- ;;^UTILITY(U,$J,358.3,41005,1,0)
+ ;;^UTILITY(U,$J,358.3,41431,0)
+ ;;=Z86.73^^159^2005^112
+ ;;^UTILITY(U,$J,358.3,41431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41005,1,3,0)
- ;;=3^Disp fx of prox phalanx rt grt toe, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41005,1,4,0)
- ;;=4^S92.411K
- ;;^UTILITY(U,$J,358.3,41005,2)
- ;;=^5045302
- ;;^UTILITY(U,$J,358.3,41006,0)
- ;;=S92.405K^^189^2086^265
- ;;^UTILITY(U,$J,358.3,41006,1,0)
+ ;;^UTILITY(U,$J,358.3,41431,1,3,0)
+ ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
+ ;;^UTILITY(U,$J,358.3,41431,1,4,0)
+ ;;=4^Z86.73
+ ;;^UTILITY(U,$J,358.3,41431,2)
+ ;;=^5063477
+ ;;^UTILITY(U,$J,358.3,41432,0)
+ ;;=Z86.79^^159^2005^75
+ ;;^UTILITY(U,$J,358.3,41432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41006,1,3,0)
- ;;=3^Nondisp fx lft grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41006,1,4,0)
- ;;=4^S92.405K
- ;;^UTILITY(U,$J,358.3,41006,2)
- ;;=^5045295
- ;;^UTILITY(U,$J,358.3,41007,0)
- ;;=S92.912K^^189^2086^203
- ;;^UTILITY(U,$J,358.3,41007,1,0)
+ ;;^UTILITY(U,$J,358.3,41432,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Diseases
+ ;;^UTILITY(U,$J,358.3,41432,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,41432,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,41433,0)
+ ;;=Z91.040^^159^2005^64
+ ;;^UTILITY(U,$J,358.3,41433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41007,1,3,0)
- ;;=3^Fx of lft toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41007,1,4,0)
- ;;=4^S92.912K
- ;;^UTILITY(U,$J,358.3,41007,2)
- ;;=^5045603
- ;;^UTILITY(U,$J,358.3,41008,0)
- ;;=S92.911K^^189^2086^220
- ;;^UTILITY(U,$J,358.3,41008,1,0)
+ ;;^UTILITY(U,$J,358.3,41433,1,3,0)
+ ;;=3^Latex Allergy Status
+ ;;^UTILITY(U,$J,358.3,41433,1,4,0)
+ ;;=4^Z91.040
+ ;;^UTILITY(U,$J,358.3,41433,2)
+ ;;=^5063607
+ ;;^UTILITY(U,$J,358.3,41434,0)
+ ;;=Z98.89^^159^2005^120
+ ;;^UTILITY(U,$J,358.3,41434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41008,1,3,0)
- ;;=3^Fx of rt toe(s), subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41008,1,4,0)
- ;;=4^S92.911K
- ;;^UTILITY(U,$J,358.3,41008,2)
- ;;=^5045596
- ;;^UTILITY(U,$J,358.3,41009,0)
- ;;=S92.902K^^189^2086^194
- ;;^UTILITY(U,$J,358.3,41009,1,0)
+ ;;^UTILITY(U,$J,358.3,41434,1,3,0)
+ ;;=3^Postprocedural States/Hx of Surgery NEC
+ ;;^UTILITY(U,$J,358.3,41434,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,41434,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,41435,0)
+ ;;=Z92.3^^159^2005^79
+ ;;^UTILITY(U,$J,358.3,41435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41009,1,3,0)
- ;;=3^Fx of lft ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41009,1,4,0)
- ;;=4^S92.902K
- ;;^UTILITY(U,$J,358.3,41009,2)
- ;;=^5045589
- ;;^UTILITY(U,$J,358.3,41010,0)
- ;;=S92.901K^^189^2086^210
- ;;^UTILITY(U,$J,358.3,41010,1,0)
+ ;;^UTILITY(U,$J,358.3,41435,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,41435,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,41435,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,41436,0)
+ ;;=Z91.120^^159^2005^60
+ ;;^UTILITY(U,$J,358.3,41436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41010,1,3,0)
- ;;=3^Fx of rt ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41010,1,4,0)
- ;;=4^S92.901K
- ;;^UTILITY(U,$J,358.3,41010,2)
- ;;=^5045582
- ;;^UTILITY(U,$J,358.3,41011,0)
- ;;=S92.592K^^189^2086^198
- ;;^UTILITY(U,$J,358.3,41011,1,0)
+ ;;^UTILITY(U,$J,358.3,41436,1,3,0)
+ ;;=3^Intentional Underdose of Meds d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,41436,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,41436,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,41437,0)
+ ;;=Z91.11^^159^2005^69
+ ;;^UTILITY(U,$J,358.3,41437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41011,1,3,0)
- ;;=3^Fx of lft lsr toe(s), subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41011,1,4,0)
- ;;=4^S92.592K
- ;;^UTILITY(U,$J,358.3,41011,2)
- ;;=^5045568
- ;;^UTILITY(U,$J,358.3,41012,0)
- ;;=S92.591K^^189^2086^215
- ;;^UTILITY(U,$J,358.3,41012,1,0)
+ ;;^UTILITY(U,$J,358.3,41437,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,41437,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,41437,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,41438,0)
+ ;;=Z87.891^^159^2005^103
+ ;;^UTILITY(U,$J,358.3,41438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41012,1,3,0)
- ;;=3^Fx of rt lsr toe(s), subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41012,1,4,0)
- ;;=4^S92.591K
- ;;^UTILITY(U,$J,358.3,41012,2)
- ;;=^5045561
- ;;^UTILITY(U,$J,358.3,41013,0)
- ;;=S92.035K^^189^2086^229
- ;;^UTILITY(U,$J,358.3,41013,1,0)
+ ;;^UTILITY(U,$J,358.3,41438,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,41438,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,41438,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,41439,0)
+ ;;=Z77.090^^159^2005^11
+ ;;^UTILITY(U,$J,358.3,41439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41013,1,3,0)
- ;;=3^Nondisp avuls fx tubersity lft calc, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41013,1,4,0)
- ;;=4^S92.035K
- ;;^UTILITY(U,$J,358.3,41013,2)
- ;;=^5044483
- ;;^UTILITY(U,$J,358.3,41014,0)
- ;;=S92.034K^^189^2086^228
- ;;^UTILITY(U,$J,358.3,41014,1,0)
+ ;;^UTILITY(U,$J,358.3,41439,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,41439,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,41439,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,41440,0)
+ ;;=Z57.8^^159^2005^72
+ ;;^UTILITY(U,$J,358.3,41440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41014,1,3,0)
- ;;=3^Nondisp avuls fx tuberosity rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41014,1,4,0)
- ;;=4^S92.034K
- ;;^UTILITY(U,$J,358.3,41014,2)
- ;;=^5044476
- ;;^UTILITY(U,$J,358.3,41015,0)
- ;;=S92.032K^^189^2086^6
- ;;^UTILITY(U,$J,358.3,41015,1,0)
+ ;;^UTILITY(U,$J,358.3,41440,1,3,0)
+ ;;=3^Occupational Exposure to Other Risk Factors
+ ;;^UTILITY(U,$J,358.3,41440,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,41440,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,41441,0)
+ ;;=Z77.21^^159^2005^53
+ ;;^UTILITY(U,$J,358.3,41441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41015,1,3,0)
- ;;=3^Disp avuls fx tubersotiy lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41015,1,4,0)
- ;;=4^S92.032K
- ;;^UTILITY(U,$J,358.3,41015,2)
- ;;=^5044462
- ;;^UTILITY(U,$J,358.3,41016,0)
- ;;=S92.031K^^189^2086^5
- ;;^UTILITY(U,$J,358.3,41016,1,0)
+ ;;^UTILITY(U,$J,358.3,41441,1,3,0)
+ ;;=3^Hazardous Body Fluid Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,41441,1,4,0)
+ ;;=4^Z77.21
+ ;;^UTILITY(U,$J,358.3,41441,2)
+ ;;=^5063323
+ ;;^UTILITY(U,$J,358.3,41442,0)
+ ;;=Z91.81^^159^2005^57
+ ;;^UTILITY(U,$J,358.3,41442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41016,1,3,0)
- ;;=3^Disp avuls fx tuberosity rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41016,1,4,0)
- ;;=4^S92.031K
+ ;;^UTILITY(U,$J,358.3,41442,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,41442,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,41442,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,41443,0)
+ ;;=Z91.89^^159^2005^118
+ ;;^UTILITY(U,$J,358.3,41443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41443,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,41443,1,4,0)
+ ;;=4^Z91.89

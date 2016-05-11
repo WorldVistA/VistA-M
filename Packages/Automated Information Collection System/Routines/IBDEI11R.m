@@ -1,134 +1,136 @@
-IBDEI11R ; ; 19-NOV-2015
+IBDEI11R ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17431,1,4,0)
- ;;=4^Z86.51
- ;;^UTILITY(U,$J,358.3,17431,2)
- ;;=^5063470
- ;;^UTILITY(U,$J,358.3,17432,0)
- ;;=Z86.31^^88^861^103
- ;;^UTILITY(U,$J,358.3,17432,1,0)
+ ;;^UTILITY(U,$J,358.3,17775,1,4,0)
+ ;;=4^T84.51XA
+ ;;^UTILITY(U,$J,358.3,17775,2)
+ ;;=^5055385
+ ;;^UTILITY(U,$J,358.3,17776,0)
+ ;;=T84.54XA^^76^858^194
+ ;;^UTILITY(U,$J,358.3,17776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17432,1,3,0)
- ;;=3^Personal Hx of Diabetic Foot Ulcer
- ;;^UTILITY(U,$J,358.3,17432,1,4,0)
- ;;=4^Z86.31
- ;;^UTILITY(U,$J,358.3,17432,2)
- ;;=^5063467
- ;;^UTILITY(U,$J,358.3,17433,0)
- ;;=Z86.59^^88^861^105
- ;;^UTILITY(U,$J,358.3,17433,1,0)
+ ;;^UTILITY(U,$J,358.3,17776,1,3,0)
+ ;;=3^Prosthetic Left Knee Joint Infection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17776,1,4,0)
+ ;;=4^T84.54XA
+ ;;^UTILITY(U,$J,358.3,17776,2)
+ ;;=^5055394
+ ;;^UTILITY(U,$J,358.3,17777,0)
+ ;;=T84.53XA^^76^858^196
+ ;;^UTILITY(U,$J,358.3,17777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17433,1,3,0)
- ;;=3^Personal Hx of Mental/Behavioral Disorders
- ;;^UTILITY(U,$J,358.3,17433,1,4,0)
- ;;=4^Z86.59
- ;;^UTILITY(U,$J,358.3,17433,2)
- ;;=^5063471
- ;;^UTILITY(U,$J,358.3,17434,0)
- ;;=Z86.14^^88^861^104
- ;;^UTILITY(U,$J,358.3,17434,1,0)
+ ;;^UTILITY(U,$J,358.3,17777,1,3,0)
+ ;;=3^Prosthetic Right Knee Joint Infection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17777,1,4,0)
+ ;;=4^T84.53XA
+ ;;^UTILITY(U,$J,358.3,17777,2)
+ ;;=^5055391
+ ;;^UTILITY(U,$J,358.3,17778,0)
+ ;;=T84.59XA^^76^858^197
+ ;;^UTILITY(U,$J,358.3,17778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17434,1,3,0)
- ;;=3^Personal Hx of MRSA
- ;;^UTILITY(U,$J,358.3,17434,1,4,0)
- ;;=4^Z86.14
- ;;^UTILITY(U,$J,358.3,17434,2)
- ;;=^5063464
- ;;^UTILITY(U,$J,358.3,17435,0)
- ;;=Z91.82^^88^861^106
- ;;^UTILITY(U,$J,358.3,17435,1,0)
+ ;;^UTILITY(U,$J,358.3,17778,1,3,0)
+ ;;=3^Prosthetic Shoulder Joint Infection,Init Encntr
+ ;;^UTILITY(U,$J,358.3,17778,1,4,0)
+ ;;=4^T84.59XA
+ ;;^UTILITY(U,$J,358.3,17778,2)
+ ;;=^5055397
+ ;;^UTILITY(U,$J,358.3,17779,0)
+ ;;=T82.6XXA^^76^858^192
+ ;;^UTILITY(U,$J,358.3,17779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17435,1,3,0)
- ;;=3^Personal Hx of Military Deployment
- ;;^UTILITY(U,$J,358.3,17435,1,4,0)
- ;;=4^Z91.82
- ;;^UTILITY(U,$J,358.3,17435,2)
- ;;=^5063626
- ;;^UTILITY(U,$J,358.3,17436,0)
- ;;=Z86.03^^88^861^107
- ;;^UTILITY(U,$J,358.3,17436,1,0)
+ ;;^UTILITY(U,$J,358.3,17779,1,3,0)
+ ;;=3^Prosthetic Heart Valve Infection, initial encounter
+ ;;^UTILITY(U,$J,358.3,17779,1,4,0)
+ ;;=4^T82.6XXA
+ ;;^UTILITY(U,$J,358.3,17779,2)
+ ;;=^5054908
+ ;;^UTILITY(U,$J,358.3,17780,0)
+ ;;=N12.^^76^858^200
+ ;;^UTILITY(U,$J,358.3,17780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17436,1,3,0)
- ;;=3^Personal Hx of Neop of Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,17436,1,4,0)
- ;;=4^Z86.03
- ;;^UTILITY(U,$J,358.3,17436,2)
- ;;=^5063460
- ;;^UTILITY(U,$J,358.3,17437,0)
- ;;=Z87.891^^88^861^108
- ;;^UTILITY(U,$J,358.3,17437,1,0)
+ ;;^UTILITY(U,$J,358.3,17780,1,3,0)
+ ;;=3^Pyelonephritis
+ ;;^UTILITY(U,$J,358.3,17780,1,4,0)
+ ;;=4^N12.
+ ;;^UTILITY(U,$J,358.3,17780,2)
+ ;;=^5015575
+ ;;^UTILITY(U,$J,358.3,17781,0)
+ ;;=J30.9^^76^858^203
+ ;;^UTILITY(U,$J,358.3,17781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17437,1,3,0)
- ;;=3^Personal Hx of Nicotine Dependence
- ;;^UTILITY(U,$J,358.3,17437,1,4,0)
- ;;=4^Z87.891
- ;;^UTILITY(U,$J,358.3,17437,2)
- ;;=^5063518
- ;;^UTILITY(U,$J,358.3,17438,0)
- ;;=Z87.310^^88^861^109
- ;;^UTILITY(U,$J,358.3,17438,1,0)
+ ;;^UTILITY(U,$J,358.3,17781,1,3,0)
+ ;;=3^Rhinitis, allergic
+ ;;^UTILITY(U,$J,358.3,17781,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,17781,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,17782,0)
+ ;;=B86.^^76^858^205
+ ;;^UTILITY(U,$J,358.3,17782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17438,1,3,0)
- ;;=3^Personal Hx of Osteoporosis Fx
- ;;^UTILITY(U,$J,358.3,17438,1,4,0)
- ;;=4^Z87.310
- ;;^UTILITY(U,$J,358.3,17438,2)
- ;;=^5063485
- ;;^UTILITY(U,$J,358.3,17439,0)
- ;;=Z87.11^^88^861^110
- ;;^UTILITY(U,$J,358.3,17439,1,0)
+ ;;^UTILITY(U,$J,358.3,17782,1,3,0)
+ ;;=3^Scabies
+ ;;^UTILITY(U,$J,358.3,17782,1,4,0)
+ ;;=4^B86.
+ ;;^UTILITY(U,$J,358.3,17782,2)
+ ;;=^108096
+ ;;^UTILITY(U,$J,358.3,17783,0)
+ ;;=M00.9^^76^858^209
+ ;;^UTILITY(U,$J,358.3,17783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17439,1,3,0)
- ;;=3^Personal Hx of Peptic Ulcer Disease
- ;;^UTILITY(U,$J,358.3,17439,1,4,0)
- ;;=4^Z87.11
- ;;^UTILITY(U,$J,358.3,17439,2)
- ;;=^5063482
- ;;^UTILITY(U,$J,358.3,17440,0)
- ;;=Z87.01^^88^861^111
- ;;^UTILITY(U,$J,358.3,17440,1,0)
+ ;;^UTILITY(U,$J,358.3,17783,1,3,0)
+ ;;=3^Septic Joint/Arthritis
+ ;;^UTILITY(U,$J,358.3,17783,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,17783,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,17784,0)
+ ;;=B02.9^^76^858^213
+ ;;^UTILITY(U,$J,358.3,17784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17440,1,3,0)
- ;;=3^Personal Hx of Pneumonia
- ;;^UTILITY(U,$J,358.3,17440,1,4,0)
- ;;=4^Z87.01
- ;;^UTILITY(U,$J,358.3,17440,2)
- ;;=^5063480
- ;;^UTILITY(U,$J,358.3,17441,0)
- ;;=Z86.12^^88^861^112
- ;;^UTILITY(U,$J,358.3,17441,1,0)
+ ;;^UTILITY(U,$J,358.3,17784,1,3,0)
+ ;;=3^Shingles/zoster
+ ;;^UTILITY(U,$J,358.3,17784,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,17784,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,17785,0)
+ ;;=J01.90^^76^858^214
+ ;;^UTILITY(U,$J,358.3,17785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17441,1,3,0)
- ;;=3^Personal Hx of Poliomyelitis
- ;;^UTILITY(U,$J,358.3,17441,1,4,0)
- ;;=4^Z86.12
- ;;^UTILITY(U,$J,358.3,17441,2)
- ;;=^5063462
- ;;^UTILITY(U,$J,358.3,17442,0)
- ;;=Z87.430^^88^861^113
- ;;^UTILITY(U,$J,358.3,17442,1,0)
+ ;;^UTILITY(U,$J,358.3,17785,1,3,0)
+ ;;=3^Sinusitis, acute
+ ;;^UTILITY(U,$J,358.3,17785,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,17785,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,17786,0)
+ ;;=J32.9^^76^858^215
+ ;;^UTILITY(U,$J,358.3,17786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17442,1,3,0)
- ;;=3^Personal Hx of Prostatic Dysplasia
- ;;^UTILITY(U,$J,358.3,17442,1,4,0)
- ;;=4^Z87.430
- ;;^UTILITY(U,$J,358.3,17442,2)
- ;;=^5063493
- ;;^UTILITY(U,$J,358.3,17443,0)
- ;;=Z91.49^^88^861^114
- ;;^UTILITY(U,$J,358.3,17443,1,0)
+ ;;^UTILITY(U,$J,358.3,17786,1,3,0)
+ ;;=3^Sinusitis, chronic
+ ;;^UTILITY(U,$J,358.3,17786,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,17786,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,17787,0)
+ ;;=A49.01^^76^858^154
+ ;;^UTILITY(U,$J,358.3,17787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17443,1,3,0)
- ;;=3^Personal Hx of Psychological Trauma NEC
- ;;^UTILITY(U,$J,358.3,17443,1,4,0)
- ;;=4^Z91.49
- ;;^UTILITY(U,$J,358.3,17443,2)
- ;;=^5063623
- ;;^UTILITY(U,$J,358.3,17444,0)
- ;;=Z91.5^^88^861^115
- ;;^UTILITY(U,$J,358.3,17444,1,0)
+ ;;^UTILITY(U,$J,358.3,17787,1,3,0)
+ ;;=3^Methicillin Susceptible Staphylococcus Aureus Infection
+ ;;^UTILITY(U,$J,358.3,17787,1,4,0)
+ ;;=4^A49.01
+ ;;^UTILITY(U,$J,358.3,17787,2)
+ ;;=^5000235
+ ;;^UTILITY(U,$J,358.3,17788,0)
+ ;;=R61.^^76^858^228
+ ;;^UTILITY(U,$J,358.3,17788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17444,1,3,0)
- ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,17788,1,3,0)
+ ;;=3^Sweats/Night Sweats
+ ;;^UTILITY(U,$J,358.3,17788,1,4,0)
+ ;;=4^R61.

@@ -1,138 +1,34 @@
-IBDEI2N0 ; ; 19-NOV-2015
+IBDEI2N0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44259,1,3,0)
- ;;=3^Urethral Discharge,Unspec
- ;;^UTILITY(U,$J,358.3,44259,1,4,0)
- ;;=4^R36.9
- ;;^UTILITY(U,$J,358.3,44259,2)
- ;;=^5019338
- ;;^UTILITY(U,$J,358.3,44260,0)
- ;;=R97.2^^200^2224^27
- ;;^UTILITY(U,$J,358.3,44260,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44260,1,3,0)
- ;;=3^Elevated PSA
- ;;^UTILITY(U,$J,358.3,44260,1,4,0)
- ;;=4^R97.2
- ;;^UTILITY(U,$J,358.3,44260,2)
- ;;=^5019748
- ;;^UTILITY(U,$J,358.3,44261,0)
- ;;=R80.1^^200^2224^87
- ;;^UTILITY(U,$J,358.3,44261,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44261,1,3,0)
- ;;=3^Proteinuria Persistent,Unspec
- ;;^UTILITY(U,$J,358.3,44261,1,4,0)
- ;;=4^R80.1
- ;;^UTILITY(U,$J,358.3,44261,2)
- ;;=^5019596
- ;;^UTILITY(U,$J,358.3,44262,0)
- ;;=R80.0^^200^2224^85
- ;;^UTILITY(U,$J,358.3,44262,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44262,1,3,0)
- ;;=3^Proteinuria Isolated
- ;;^UTILITY(U,$J,358.3,44262,1,4,0)
- ;;=4^R80.0
- ;;^UTILITY(U,$J,358.3,44262,2)
- ;;=^5019595
- ;;^UTILITY(U,$J,358.3,44263,0)
- ;;=R80.8^^200^2224^88
- ;;^UTILITY(U,$J,358.3,44263,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44263,1,3,0)
- ;;=3^Proteinuria,Other
- ;;^UTILITY(U,$J,358.3,44263,1,4,0)
- ;;=4^R80.8
- ;;^UTILITY(U,$J,358.3,44263,2)
- ;;=^5019598
- ;;^UTILITY(U,$J,358.3,44264,0)
- ;;=R80.3^^200^2224^84
- ;;^UTILITY(U,$J,358.3,44264,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44264,1,3,0)
- ;;=3^Proteinuria Bence Jones
- ;;^UTILITY(U,$J,358.3,44264,1,4,0)
- ;;=4^R80.3
- ;;^UTILITY(U,$J,358.3,44264,2)
- ;;=^13272
- ;;^UTILITY(U,$J,358.3,44265,0)
- ;;=R80.9^^200^2224^89
- ;;^UTILITY(U,$J,358.3,44265,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44265,1,3,0)
- ;;=3^Proteinuria,Unspec
- ;;^UTILITY(U,$J,358.3,44265,1,4,0)
- ;;=4^R80.9
- ;;^UTILITY(U,$J,358.3,44265,2)
- ;;=^5019599
- ;;^UTILITY(U,$J,358.3,44266,0)
- ;;=Z87.442^^200^2224^77
- ;;^UTILITY(U,$J,358.3,44266,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44266,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,44266,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,44266,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,44267,0)
- ;;=N18.1^^200^2224^13
- ;;^UTILITY(U,$J,358.3,44267,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44267,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 1
- ;;^UTILITY(U,$J,358.3,44267,1,4,0)
- ;;=4^N18.1
- ;;^UTILITY(U,$J,358.3,44267,2)
- ;;=^5015602
- ;;^UTILITY(U,$J,358.3,44268,0)
- ;;=N18.2^^200^2224^14
- ;;^UTILITY(U,$J,358.3,44268,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44268,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 2
- ;;^UTILITY(U,$J,358.3,44268,1,4,0)
- ;;=4^N18.2
- ;;^UTILITY(U,$J,358.3,44268,2)
- ;;=^5015603
- ;;^UTILITY(U,$J,358.3,44269,0)
- ;;=N18.3^^200^2224^15
- ;;^UTILITY(U,$J,358.3,44269,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44269,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 3
- ;;^UTILITY(U,$J,358.3,44269,1,4,0)
- ;;=4^N18.3
- ;;^UTILITY(U,$J,358.3,44269,2)
- ;;=^5015604
- ;;^UTILITY(U,$J,358.3,44270,0)
- ;;=N18.4^^200^2224^16
- ;;^UTILITY(U,$J,358.3,44270,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44270,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 4
- ;;^UTILITY(U,$J,358.3,44270,1,4,0)
- ;;=4^N18.4
- ;;^UTILITY(U,$J,358.3,44270,2)
- ;;=^5015605
- ;;^UTILITY(U,$J,358.3,44271,0)
- ;;=N18.5^^200^2224^17
- ;;^UTILITY(U,$J,358.3,44271,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44271,1,3,0)
- ;;=3^Chronic Kidney Disease,Stage 5
- ;;^UTILITY(U,$J,358.3,44271,1,4,0)
- ;;=4^N18.5
- ;;^UTILITY(U,$J,358.3,44271,2)
- ;;=^5015606
- ;;^UTILITY(U,$J,358.3,44272,0)
- ;;=Q61.3^^200^2224^80
- ;;^UTILITY(U,$J,358.3,44272,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44272,1,3,0)
- ;;=3^Polycystic Kidney,Unspec
- ;;^UTILITY(U,$J,358.3,44272,1,4,0)
- ;;=4^Q61.3
+ ;;^DD(358.6,.01,1,2,2)
+ ;;=K ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)
+ ;;^DD(358.6,.01,1,2,"%D",0)
+ ;;=^^4^4^2940224^
+ ;;^DD(358.6,.01,1,2,"%D",1,0)
+ ;;= 
+ ;;^DD(358.6,.01,1,2,"%D",2,0)
+ ;;=For package interfaces that are output routines the name has the custodial
+ ;;^DD(358.6,.01,1,2,"%D",3,0)
+ ;;=package's name space as a prefix. This cross-reference removes that
+ ;;^DD(358.6,.01,1,2,"%D",4,0)
+ ;;=prefix. It is used to improve the display of output routines for the user.
+ ;;^DD(358.6,.01,1,2,"DT")
+ ;;=2930409
+ ;;^DD(358.6,.01,3)
+ ;;=Answer must be 3-40 characters in length. All entries with Action Type other than PRINT REPORT must be be prefixed with the namespace of the package that is responsible for the data.
+ ;;^DD(358.6,.01,21,0)
+ ;;=^^3^3^2950412^^^^
+ ;;^DD(358.6,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.6,.01,21,2,0)
+ ;;=The name of the Package Interface. For interfaces returning data the name
+ ;;^DD(358.6,.01,21,3,0)
+ ;;=should be preceded with the namespace of the package.
+ ;;^DD(358.6,.01,23,0)
+ ;;=^^1^1^2950412^
+ ;;^DD(358.6,.01,23,1,0)
+ ;;= 
+ ;;^DD(358.6,.01,"DT")
+ ;;=2930409

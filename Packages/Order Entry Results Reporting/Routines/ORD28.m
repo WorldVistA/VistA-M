@@ -1,4 +1,4 @@
-ORD28 ; COMPILED XREF FOR FILE #100 ; 03/08/11
+ORD28 ; COMPILED XREF FOR FILE #100 ; 03/10/16
  ; 
  S DIKZK=1
  S DIKZ(0)=$G(^OR(100,DA,0))
@@ -17,6 +17,11 @@ ORD28 ; COMPILED XREF FOR FILE #100 ; 03/08/11
  S X=$P($G(DIKZ(0)),U,2)
  I X'="" X ^DD(100,.02,1,11,1)
  S DIKZ(0)=$G(^OR(100,DA,0))
+ S X=$P($G(DIKZ(0)),U,5)
+ I X'="" S ^OR(100,"C",$E(X,1,30),DA)=""
+ S DIKZ(3)=$G(^OR(100,DA,3))
+ S X=$P($G(DIKZ(3)),U,4)
+ I X'="" S ^OR(100,"D",$E(X,1,30),DA)=""
  S X=$P($G(DIKZ(0)),U,8)
  I X'="" D SS^ORDD100
  S X=$P($G(DIKZ(0)),U,8)

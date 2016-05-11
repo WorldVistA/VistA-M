@@ -1,134 +1,134 @@
-IBDEI113 ; ; 19-NOV-2015
+IBDEI113 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17111,0)
- ;;=G58.9^^88^857^100
- ;;^UTILITY(U,$J,358.3,17111,1,0)
+ ;;^UTILITY(U,$J,358.3,17450,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,17450,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,17451,0)
+ ;;=S13.4XXA^^73^841^18
+ ;;^UTILITY(U,$J,358.3,17451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17111,1,3,0)
- ;;=3^Neuropathy,Mononeuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,17111,1,4,0)
- ;;=4^G58.9
- ;;^UTILITY(U,$J,358.3,17111,2)
- ;;=^5004065
- ;;^UTILITY(U,$J,358.3,17112,0)
- ;;=G54.9^^88^857^102
- ;;^UTILITY(U,$J,358.3,17112,1,0)
+ ;;^UTILITY(U,$J,358.3,17451,1,3,0)
+ ;;=3^Sprain of Ligaments Cervical Spine,Init Encrtr
+ ;;^UTILITY(U,$J,358.3,17451,1,4,0)
+ ;;=4^S13.4XXA
+ ;;^UTILITY(U,$J,358.3,17451,2)
+ ;;=^5022028
+ ;;^UTILITY(U,$J,358.3,17452,0)
+ ;;=M48.06^^73^841^12
+ ;;^UTILITY(U,$J,358.3,17452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17112,1,3,0)
- ;;=3^Neuropathy,Nerve Root/Plexus Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,17112,1,4,0)
- ;;=4^G54.9
- ;;^UTILITY(U,$J,358.3,17112,2)
- ;;=^5004015
- ;;^UTILITY(U,$J,358.3,17113,0)
- ;;=G54.6^^88^857^103
- ;;^UTILITY(U,$J,358.3,17113,1,0)
+ ;;^UTILITY(U,$J,358.3,17452,1,3,0)
+ ;;=3^Spinal Stenosis, lumbar region
+ ;;^UTILITY(U,$J,358.3,17452,1,4,0)
+ ;;=4^M48.06
+ ;;^UTILITY(U,$J,358.3,17452,2)
+ ;;=^5012093
+ ;;^UTILITY(U,$J,358.3,17453,0)
+ ;;=J32.9^^73^841^7
+ ;;^UTILITY(U,$J,358.3,17453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17113,1,3,0)
- ;;=3^Neuropathy,Phantom Limb Syndrome w/ Pain
- ;;^UTILITY(U,$J,358.3,17113,1,4,0)
- ;;=4^G54.6
- ;;^UTILITY(U,$J,358.3,17113,2)
- ;;=^5004013
- ;;^UTILITY(U,$J,358.3,17114,0)
- ;;=G54.7^^88^857^104
- ;;^UTILITY(U,$J,358.3,17114,1,0)
+ ;;^UTILITY(U,$J,358.3,17453,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,17453,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,17453,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,17454,0)
+ ;;=M48.02^^73^841^13
+ ;;^UTILITY(U,$J,358.3,17454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17114,1,3,0)
- ;;=3^Neuropathy,Phantom Limb Syndrome w/o Pain
- ;;^UTILITY(U,$J,358.3,17114,1,4,0)
- ;;=4^G54.7
- ;;^UTILITY(U,$J,358.3,17114,2)
- ;;=^5004014
- ;;^UTILITY(U,$J,358.3,17115,0)
- ;;=G62.2^^88^857^105
- ;;^UTILITY(U,$J,358.3,17115,1,0)
+ ;;^UTILITY(U,$J,358.3,17454,1,3,0)
+ ;;=3^Spinal stenosis, cervical region
+ ;;^UTILITY(U,$J,358.3,17454,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,17454,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,17455,0)
+ ;;=M48.04^^73^841^15
+ ;;^UTILITY(U,$J,358.3,17455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17115,1,3,0)
- ;;=3^Neuropathy,Polyneuropathy d/t Toxic Agents
- ;;^UTILITY(U,$J,358.3,17115,1,4,0)
- ;;=4^G62.2
- ;;^UTILITY(U,$J,358.3,17115,2)
- ;;=^268531
- ;;^UTILITY(U,$J,358.3,17116,0)
- ;;=G62.82^^88^857^94
- ;;^UTILITY(U,$J,358.3,17116,1,0)
+ ;;^UTILITY(U,$J,358.3,17455,1,3,0)
+ ;;=3^Spinal stenosis, thoracic region
+ ;;^UTILITY(U,$J,358.3,17455,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,17455,2)
+ ;;=^5012091
+ ;;^UTILITY(U,$J,358.3,17456,0)
+ ;;=M48.00^^73^841^14
+ ;;^UTILITY(U,$J,358.3,17456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17116,1,3,0)
- ;;=3^Neuropathy,Drug-Induced Polyneuropathy
- ;;^UTILITY(U,$J,358.3,17116,1,4,0)
- ;;=4^G62.82
- ;;^UTILITY(U,$J,358.3,17116,2)
- ;;=^5004077
- ;;^UTILITY(U,$J,358.3,17117,0)
- ;;=G62.9^^88^857^106
- ;;^UTILITY(U,$J,358.3,17117,1,0)
+ ;;^UTILITY(U,$J,358.3,17456,1,3,0)
+ ;;=3^Spinal stenosis, site unspecified
+ ;;^UTILITY(U,$J,358.3,17456,1,4,0)
+ ;;=4^M48.00
+ ;;^UTILITY(U,$J,358.3,17456,2)
+ ;;=^5012087
+ ;;^UTILITY(U,$J,358.3,17457,0)
+ ;;=S14.109S^^73^841^2
+ ;;^UTILITY(U,$J,358.3,17457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17117,1,3,0)
- ;;=3^Neuropathy,Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,17117,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,17117,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,17118,0)
- ;;=G57.90^^88^857^99
- ;;^UTILITY(U,$J,358.3,17118,1,0)
+ ;;^UTILITY(U,$J,358.3,17457,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17457,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,17457,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,17458,0)
+ ;;=S24.109S^^73^841^4
+ ;;^UTILITY(U,$J,358.3,17458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17118,1,3,0)
- ;;=3^Neuropathy,Mononeuropathy,Lower Limb,Unspec
- ;;^UTILITY(U,$J,358.3,17118,1,4,0)
- ;;=4^G57.90
- ;;^UTILITY(U,$J,358.3,17118,2)
- ;;=^5004061
- ;;^UTILITY(U,$J,358.3,17119,0)
- ;;=G56.90^^88^857^101
- ;;^UTILITY(U,$J,358.3,17119,1,0)
+ ;;^UTILITY(U,$J,358.3,17458,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17458,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,17458,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,17459,0)
+ ;;=S34.109S^^73^841^3
+ ;;^UTILITY(U,$J,358.3,17459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17119,1,3,0)
- ;;=3^Neuropathy,Mononeuropathy,Upper Limb,Unspec
- ;;^UTILITY(U,$J,358.3,17119,1,4,0)
- ;;=4^G56.90
- ;;^UTILITY(U,$J,358.3,17119,2)
- ;;=^5004035
- ;;^UTILITY(U,$J,358.3,17120,0)
- ;;=R29.5^^88^857^107
- ;;^UTILITY(U,$J,358.3,17120,1,0)
+ ;;^UTILITY(U,$J,358.3,17459,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Lumbar Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17459,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,17459,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,17460,0)
+ ;;=I69.328^^73^841^11
+ ;;^UTILITY(U,$J,358.3,17460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17120,1,3,0)
- ;;=3^Paralysis,Transient
- ;;^UTILITY(U,$J,358.3,17120,1,4,0)
- ;;=4^R29.5
- ;;^UTILITY(U,$J,358.3,17120,2)
- ;;=^5019316
- ;;^UTILITY(U,$J,358.3,17121,0)
- ;;=G83.9^^88^857^108
- ;;^UTILITY(U,$J,358.3,17121,1,0)
+ ;;^UTILITY(U,$J,358.3,17460,1,3,0)
+ ;;=3^Speech/Lang Deficits following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,17460,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,17460,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,17461,0)
+ ;;=F20.2^^73^842^3
+ ;;^UTILITY(U,$J,358.3,17461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17121,1,3,0)
- ;;=3^Paralytic Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,17121,1,4,0)
- ;;=4^G83.9
- ;;^UTILITY(U,$J,358.3,17121,2)
- ;;=^5004151
- ;;^UTILITY(U,$J,358.3,17122,0)
- ;;=G82.20^^88^857^109
- ;;^UTILITY(U,$J,358.3,17122,1,0)
+ ;;^UTILITY(U,$J,358.3,17461,1,3,0)
+ ;;=3^Schizophrenia, catatonic
+ ;;^UTILITY(U,$J,358.3,17461,1,4,0)
+ ;;=4^F20.2
+ ;;^UTILITY(U,$J,358.3,17461,2)
+ ;;=^5003471
+ ;;^UTILITY(U,$J,358.3,17462,0)
+ ;;=F20.1^^73^842^4
+ ;;^UTILITY(U,$J,358.3,17462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17122,1,3,0)
- ;;=3^Paraplegia,Unspec
- ;;^UTILITY(U,$J,358.3,17122,1,4,0)
- ;;=4^G82.20
- ;;^UTILITY(U,$J,358.3,17122,2)
- ;;=^5004125
- ;;^UTILITY(U,$J,358.3,17123,0)
- ;;=G21.9^^88^857^111
- ;;^UTILITY(U,$J,358.3,17123,1,0)
+ ;;^UTILITY(U,$J,358.3,17462,1,3,0)
+ ;;=3^Schizophrenia, disorganized
+ ;;^UTILITY(U,$J,358.3,17462,1,4,0)
+ ;;=4^F20.1
+ ;;^UTILITY(U,$J,358.3,17462,2)
+ ;;=^5003470
+ ;;^UTILITY(U,$J,358.3,17463,0)
+ ;;=F20.0^^73^842^5
+ ;;^UTILITY(U,$J,358.3,17463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17123,1,3,0)
- ;;=3^Parkinsonism,Secondary,Unspec
- ;;^UTILITY(U,$J,358.3,17123,1,4,0)
- ;;=4^G21.9
- ;;^UTILITY(U,$J,358.3,17123,2)
- ;;=^5003778
+ ;;^UTILITY(U,$J,358.3,17463,1,3,0)
+ ;;=3^Schizophrenia, paranoid

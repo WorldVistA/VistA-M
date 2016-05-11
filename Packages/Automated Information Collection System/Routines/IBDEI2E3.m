@@ -1,126 +1,138 @@
-IBDEI2E3 ; ; 19-NOV-2015
+IBDEI2E3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40147,1,0)
+ ;;^UTILITY(U,$J,358.3,40544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40147,1,3,0)
- ;;=3^Injury Median Nerve Left Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40147,1,4,0)
- ;;=4^S64.12XA
- ;;^UTILITY(U,$J,358.3,40147,2)
- ;;=^5035775
- ;;^UTILITY(U,$J,358.3,40148,0)
- ;;=S64.11XA^^186^2076^244
- ;;^UTILITY(U,$J,358.3,40148,1,0)
+ ;;^UTILITY(U,$J,358.3,40544,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,40544,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,40544,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,40545,0)
+ ;;=I13.2^^159^1992^5
+ ;;^UTILITY(U,$J,358.3,40545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40148,1,3,0)
- ;;=3^Injury Median Nerve Right Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40148,1,4,0)
- ;;=4^S64.11XA
- ;;^UTILITY(U,$J,358.3,40148,2)
- ;;=^5035772
- ;;^UTILITY(U,$J,358.3,40149,0)
- ;;=S54.22XA^^186^2076^245
- ;;^UTILITY(U,$J,358.3,40149,1,0)
+ ;;^UTILITY(U,$J,358.3,40545,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,40545,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,40545,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,40546,0)
+ ;;=I48.91^^159^1992^1
+ ;;^UTILITY(U,$J,358.3,40546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40149,1,3,0)
- ;;=3^Injury Radial Nerve Left Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40149,1,4,0)
- ;;=4^S54.22XA
- ;;^UTILITY(U,$J,358.3,40149,2)
- ;;=^5031430
- ;;^UTILITY(U,$J,358.3,40150,0)
- ;;=S44.22XA^^186^2076^246
- ;;^UTILITY(U,$J,358.3,40150,1,0)
+ ;;^UTILITY(U,$J,358.3,40546,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,40546,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,40546,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,40547,0)
+ ;;=I48.92^^159^1992^2
+ ;;^UTILITY(U,$J,358.3,40547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40150,1,3,0)
- ;;=3^Injury Radial Nerve Left Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40150,1,4,0)
- ;;=4^S44.22XA
- ;;^UTILITY(U,$J,358.3,40150,2)
- ;;=^5027960
- ;;^UTILITY(U,$J,358.3,40151,0)
- ;;=S64.22XA^^186^2076^247
- ;;^UTILITY(U,$J,358.3,40151,1,0)
+ ;;^UTILITY(U,$J,358.3,40547,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,40547,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,40547,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,40548,0)
+ ;;=B07.9^^159^1993^288
+ ;;^UTILITY(U,$J,358.3,40548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40151,1,3,0)
- ;;=3^Injury Radial Nerve Left Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40151,1,4,0)
- ;;=4^S64.22XA
- ;;^UTILITY(U,$J,358.3,40151,2)
- ;;=^5035784
- ;;^UTILITY(U,$J,358.3,40152,0)
- ;;=S54.21XA^^186^2076^248
- ;;^UTILITY(U,$J,358.3,40152,1,0)
+ ;;^UTILITY(U,$J,358.3,40548,1,3,0)
+ ;;=3^Viral Wart,Unspec
+ ;;^UTILITY(U,$J,358.3,40548,1,4,0)
+ ;;=4^B07.9
+ ;;^UTILITY(U,$J,358.3,40548,2)
+ ;;=^5000519
+ ;;^UTILITY(U,$J,358.3,40549,0)
+ ;;=A63.0^^159^1993^34
+ ;;^UTILITY(U,$J,358.3,40549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40152,1,3,0)
- ;;=3^Injury Radial Nerve Right Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40152,1,4,0)
- ;;=4^S54.21XA
- ;;^UTILITY(U,$J,358.3,40152,2)
- ;;=^5031427
- ;;^UTILITY(U,$J,358.3,40153,0)
- ;;=S44.21XA^^186^2076^249
- ;;^UTILITY(U,$J,358.3,40153,1,0)
+ ;;^UTILITY(U,$J,358.3,40549,1,3,0)
+ ;;=3^Anogenital (Venereal) Warts
+ ;;^UTILITY(U,$J,358.3,40549,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,40549,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,40550,0)
+ ;;=B35.0^^159^1993^279
+ ;;^UTILITY(U,$J,358.3,40550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40153,1,3,0)
- ;;=3^Injury Radial Nerve Right Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40153,1,4,0)
- ;;=4^S44.21XA
- ;;^UTILITY(U,$J,358.3,40153,2)
- ;;=^5027957
- ;;^UTILITY(U,$J,358.3,40154,0)
- ;;=S64.21XA^^186^2076^250
- ;;^UTILITY(U,$J,358.3,40154,1,0)
+ ;;^UTILITY(U,$J,358.3,40550,1,3,0)
+ ;;=3^Tinea Barbae and Tinea Capitis
+ ;;^UTILITY(U,$J,358.3,40550,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,40550,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,40551,0)
+ ;;=B35.1^^159^1993^284
+ ;;^UTILITY(U,$J,358.3,40551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40154,1,3,0)
- ;;=3^Injury Radial Nerve Right Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40154,1,4,0)
- ;;=4^S64.21XA
- ;;^UTILITY(U,$J,358.3,40154,2)
- ;;=^5035781
- ;;^UTILITY(U,$J,358.3,40155,0)
- ;;=S54.02XA^^186^2076^252
- ;;^UTILITY(U,$J,358.3,40155,1,0)
+ ;;^UTILITY(U,$J,358.3,40551,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,40551,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,40551,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,40552,0)
+ ;;=B35.6^^159^1993^281
+ ;;^UTILITY(U,$J,358.3,40552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40155,1,3,0)
- ;;=3^Injury Ulnar Nerve Left Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40155,1,4,0)
- ;;=4^S54.02XA
- ;;^UTILITY(U,$J,358.3,40155,2)
- ;;=^5031412
- ;;^UTILITY(U,$J,358.3,40156,0)
- ;;=S44.02XA^^186^2076^253
- ;;^UTILITY(U,$J,358.3,40156,1,0)
+ ;;^UTILITY(U,$J,358.3,40552,1,3,0)
+ ;;=3^Tinea Cruris
+ ;;^UTILITY(U,$J,358.3,40552,1,4,0)
+ ;;=4^B35.6
+ ;;^UTILITY(U,$J,358.3,40552,2)
+ ;;=^119711
+ ;;^UTILITY(U,$J,358.3,40553,0)
+ ;;=B35.3^^159^1993^283
+ ;;^UTILITY(U,$J,358.3,40553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40156,1,3,0)
- ;;=3^Injury Ulnar Nerve Left Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40156,1,4,0)
- ;;=4^S44.02XA
- ;;^UTILITY(U,$J,358.3,40156,2)
- ;;=^5027942
- ;;^UTILITY(U,$J,358.3,40157,0)
- ;;=S64.02XA^^186^2076^254
- ;;^UTILITY(U,$J,358.3,40157,1,0)
+ ;;^UTILITY(U,$J,358.3,40553,1,3,0)
+ ;;=3^Tinea Pedis
+ ;;^UTILITY(U,$J,358.3,40553,1,4,0)
+ ;;=4^B35.3
+ ;;^UTILITY(U,$J,358.3,40553,2)
+ ;;=^119732
+ ;;^UTILITY(U,$J,358.3,40554,0)
+ ;;=B35.5^^159^1993^282
+ ;;^UTILITY(U,$J,358.3,40554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40157,1,3,0)
- ;;=3^Injury Ulnar Nerve Left Wrist/Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,40157,1,4,0)
- ;;=4^S64.02XA
- ;;^UTILITY(U,$J,358.3,40157,2)
- ;;=^5035766
- ;;^UTILITY(U,$J,358.3,40158,0)
- ;;=S54.01XA^^186^2076^255
- ;;^UTILITY(U,$J,358.3,40158,1,0)
+ ;;^UTILITY(U,$J,358.3,40554,1,3,0)
+ ;;=3^Tinea Imbricata
+ ;;^UTILITY(U,$J,358.3,40554,1,4,0)
+ ;;=4^B35.5
+ ;;^UTILITY(U,$J,358.3,40554,2)
+ ;;=^119725
+ ;;^UTILITY(U,$J,358.3,40555,0)
+ ;;=B35.4^^159^1993^280
+ ;;^UTILITY(U,$J,358.3,40555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40158,1,3,0)
- ;;=3^Injury Ulnar Nerve Right Forearm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40158,1,4,0)
- ;;=4^S54.01XA
- ;;^UTILITY(U,$J,358.3,40158,2)
- ;;=^5031409
- ;;^UTILITY(U,$J,358.3,40159,0)
- ;;=S44.01XA^^186^2076^256
- ;;^UTILITY(U,$J,358.3,40159,1,0)
+ ;;^UTILITY(U,$J,358.3,40555,1,3,0)
+ ;;=3^Tinea Corporis
+ ;;^UTILITY(U,$J,358.3,40555,1,4,0)
+ ;;=4^B35.4
+ ;;^UTILITY(U,$J,358.3,40555,2)
+ ;;=^119704
+ ;;^UTILITY(U,$J,358.3,40556,0)
+ ;;=B35.8^^159^1993^137
+ ;;^UTILITY(U,$J,358.3,40556,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40556,1,3,0)
+ ;;=3^Dermatophytoses,Other
+ ;;^UTILITY(U,$J,358.3,40556,1,4,0)
+ ;;=4^B35.8
+ ;;^UTILITY(U,$J,358.3,40556,2)
+ ;;=^5000606
+ ;;^UTILITY(U,$J,358.3,40557,0)
+ ;;=B36.9^^159^1993^272
+ ;;^UTILITY(U,$J,358.3,40557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40557,1,3,0)
+ ;;=3^Superficial Mycosis,Unspec

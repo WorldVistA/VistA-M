@@ -1,128 +1,132 @@
-IBDEI278 ; ; 19-NOV-2015
+IBDEI278 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36913,0)
- ;;=C94.20^^169^1862^7
- ;;^UTILITY(U,$J,358.3,36913,1,0)
+ ;;^UTILITY(U,$J,358.3,37298,1,4,0)
+ ;;=4^M71.812
+ ;;^UTILITY(U,$J,358.3,37298,2)
+ ;;=^5013211
+ ;;^UTILITY(U,$J,358.3,37299,0)
+ ;;=M71.821^^140^1787^81
+ ;;^UTILITY(U,$J,358.3,37299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36913,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia not achieve remission
- ;;^UTILITY(U,$J,358.3,36913,1,4,0)
- ;;=4^C94.20
- ;;^UTILITY(U,$J,358.3,36913,2)
- ;;=^5001837
- ;;^UTILITY(U,$J,358.3,36914,0)
- ;;=C94.21^^169^1862^9
- ;;^UTILITY(U,$J,358.3,36914,1,0)
+ ;;^UTILITY(U,$J,358.3,37299,1,3,0)
+ ;;=3^Bursopathies, rt elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37299,1,4,0)
+ ;;=4^M71.821
+ ;;^UTILITY(U,$J,358.3,37299,2)
+ ;;=^5013213
+ ;;^UTILITY(U,$J,358.3,37300,0)
+ ;;=M71.822^^140^1787^72
+ ;;^UTILITY(U,$J,358.3,37300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36914,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in remission
- ;;^UTILITY(U,$J,358.3,36914,1,4,0)
- ;;=4^C94.21
- ;;^UTILITY(U,$J,358.3,36914,2)
- ;;=^5001838
- ;;^UTILITY(U,$J,358.3,36915,0)
- ;;=C94.22^^169^1862^8
- ;;^UTILITY(U,$J,358.3,36915,1,0)
+ ;;^UTILITY(U,$J,358.3,37300,1,3,0)
+ ;;=3^Bursopathies, lft elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37300,1,4,0)
+ ;;=4^M71.822
+ ;;^UTILITY(U,$J,358.3,37300,2)
+ ;;=^5013214
+ ;;^UTILITY(U,$J,358.3,37301,0)
+ ;;=M71.831^^140^1787^86
+ ;;^UTILITY(U,$J,358.3,37301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36915,1,3,0)
- ;;=3^Acute megakaryoblastic leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,36915,1,4,0)
- ;;=4^C94.22
- ;;^UTILITY(U,$J,358.3,36915,2)
- ;;=^5001839
- ;;^UTILITY(U,$J,358.3,36916,0)
- ;;=C94.30^^169^1862^45
- ;;^UTILITY(U,$J,358.3,36916,1,0)
+ ;;^UTILITY(U,$J,358.3,37301,1,3,0)
+ ;;=3^Bursopathies, rt wrist, oth, spesc
+ ;;^UTILITY(U,$J,358.3,37301,1,4,0)
+ ;;=4^M71.831
+ ;;^UTILITY(U,$J,358.3,37301,2)
+ ;;=^5013216
+ ;;^UTILITY(U,$J,358.3,37302,0)
+ ;;=M71.832^^140^1787^77
+ ;;^UTILITY(U,$J,358.3,37302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36916,1,3,0)
- ;;=3^Mast cell leukemia not having achieved remission
- ;;^UTILITY(U,$J,358.3,36916,1,4,0)
- ;;=4^C94.30
- ;;^UTILITY(U,$J,358.3,36916,2)
- ;;=^5001840
- ;;^UTILITY(U,$J,358.3,36917,0)
- ;;=C94.31^^169^1862^47
- ;;^UTILITY(U,$J,358.3,36917,1,0)
+ ;;^UTILITY(U,$J,358.3,37302,1,3,0)
+ ;;=3^Bursopathies, lft wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,37302,1,4,0)
+ ;;=4^M71.832
+ ;;^UTILITY(U,$J,358.3,37302,2)
+ ;;=^5013217
+ ;;^UTILITY(U,$J,358.3,37303,0)
+ ;;=M71.841^^140^1787^82
+ ;;^UTILITY(U,$J,358.3,37303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36917,1,3,0)
- ;;=3^Mast cell leukemia, in remission
- ;;^UTILITY(U,$J,358.3,36917,1,4,0)
- ;;=4^C94.31
- ;;^UTILITY(U,$J,358.3,36917,2)
- ;;=^5001841
- ;;^UTILITY(U,$J,358.3,36918,0)
- ;;=C94.32^^169^1862^46
- ;;^UTILITY(U,$J,358.3,36918,1,0)
+ ;;^UTILITY(U,$J,358.3,37303,1,3,0)
+ ;;=3^Bursopathies, rt hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37303,1,4,0)
+ ;;=4^M71.841
+ ;;^UTILITY(U,$J,358.3,37303,2)
+ ;;=^5013219
+ ;;^UTILITY(U,$J,358.3,37304,0)
+ ;;=M71.842^^140^1787^73
+ ;;^UTILITY(U,$J,358.3,37304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36918,1,3,0)
- ;;=3^Mast cell leukemia, in relapse
- ;;^UTILITY(U,$J,358.3,36918,1,4,0)
- ;;=4^C94.32
- ;;^UTILITY(U,$J,358.3,36918,2)
- ;;=^5001842
- ;;^UTILITY(U,$J,358.3,36919,0)
- ;;=C95.00^^169^1862^4
- ;;^UTILITY(U,$J,358.3,36919,1,0)
+ ;;^UTILITY(U,$J,358.3,37304,1,3,0)
+ ;;=3^Bursopathies, lft hand, oth, spec
+ ;;^UTILITY(U,$J,358.3,37304,1,4,0)
+ ;;=4^M71.842
+ ;;^UTILITY(U,$J,358.3,37304,2)
+ ;;=^5013220
+ ;;^UTILITY(U,$J,358.3,37305,0)
+ ;;=M71.851^^140^1787^83
+ ;;^UTILITY(U,$J,358.3,37305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36919,1,3,0)
- ;;=3^Acute leukemia of unsp cell type not achieve remission
- ;;^UTILITY(U,$J,358.3,36919,1,4,0)
- ;;=4^C95.00
- ;;^UTILITY(U,$J,358.3,36919,2)
- ;;=^5001850
- ;;^UTILITY(U,$J,358.3,36920,0)
- ;;=C95.01^^169^1862^5
- ;;^UTILITY(U,$J,358.3,36920,1,0)
+ ;;^UTILITY(U,$J,358.3,37305,1,3,0)
+ ;;=3^Bursopathies, rt hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37305,1,4,0)
+ ;;=4^M71.851
+ ;;^UTILITY(U,$J,358.3,37305,2)
+ ;;=^5013222
+ ;;^UTILITY(U,$J,358.3,37306,0)
+ ;;=M71.852^^140^1787^74
+ ;;^UTILITY(U,$J,358.3,37306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36920,1,3,0)
- ;;=3^Acute leukemia of unspecified cell type, in remission
- ;;^UTILITY(U,$J,358.3,36920,1,4,0)
- ;;=4^C95.01
- ;;^UTILITY(U,$J,358.3,36920,2)
- ;;=^5001851
- ;;^UTILITY(U,$J,358.3,36921,0)
- ;;=C95.02^^169^1862^6
- ;;^UTILITY(U,$J,358.3,36921,1,0)
+ ;;^UTILITY(U,$J,358.3,37306,1,3,0)
+ ;;=3^Bursopathies, lft hip, oth, spec
+ ;;^UTILITY(U,$J,358.3,37306,1,4,0)
+ ;;=4^M71.852
+ ;;^UTILITY(U,$J,358.3,37306,2)
+ ;;=^5013223
+ ;;^UTILITY(U,$J,358.3,37307,0)
+ ;;=M71.861^^140^1787^84
+ ;;^UTILITY(U,$J,358.3,37307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36921,1,3,0)
- ;;=3^Acute leukemia of unspecified cell type, in relapse
- ;;^UTILITY(U,$J,358.3,36921,1,4,0)
- ;;=4^C95.02
- ;;^UTILITY(U,$J,358.3,36921,2)
- ;;=^5001852
- ;;^UTILITY(U,$J,358.3,36922,0)
- ;;=D45.^^169^1862^58
- ;;^UTILITY(U,$J,358.3,36922,1,0)
+ ;;^UTILITY(U,$J,358.3,37307,1,3,0)
+ ;;=3^Bursopathies, rt knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,37307,1,4,0)
+ ;;=4^M71.861
+ ;;^UTILITY(U,$J,358.3,37307,2)
+ ;;=^5013225
+ ;;^UTILITY(U,$J,358.3,37308,0)
+ ;;=M71.862^^140^1787^75
+ ;;^UTILITY(U,$J,358.3,37308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36922,1,3,0)
- ;;=3^Polycythemia vera
- ;;^UTILITY(U,$J,358.3,36922,1,4,0)
- ;;=4^D45.
- ;;^UTILITY(U,$J,358.3,36922,2)
- ;;=^96105
- ;;^UTILITY(U,$J,358.3,36923,0)
- ;;=C95.10^^169^1862^25
- ;;^UTILITY(U,$J,358.3,36923,1,0)
+ ;;^UTILITY(U,$J,358.3,37308,1,3,0)
+ ;;=3^Bursopathies, lft knee, oth, spec
+ ;;^UTILITY(U,$J,358.3,37308,1,4,0)
+ ;;=4^M71.862
+ ;;^UTILITY(U,$J,358.3,37308,2)
+ ;;=^5013226
+ ;;^UTILITY(U,$J,358.3,37309,0)
+ ;;=M71.871^^140^1787^80
+ ;;^UTILITY(U,$J,358.3,37309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36923,1,3,0)
- ;;=3^Chronic leukemia of unsp cell type not achieve remission
- ;;^UTILITY(U,$J,358.3,36923,1,4,0)
- ;;=4^C95.10
- ;;^UTILITY(U,$J,358.3,36923,2)
- ;;=^5001853
- ;;^UTILITY(U,$J,358.3,36924,0)
- ;;=C95.11^^169^1862^26
- ;;^UTILITY(U,$J,358.3,36924,1,0)
+ ;;^UTILITY(U,$J,358.3,37309,1,3,0)
+ ;;=3^Bursopathies, rt ankle & foot, oth, spec
+ ;;^UTILITY(U,$J,358.3,37309,1,4,0)
+ ;;=4^M71.871
+ ;;^UTILITY(U,$J,358.3,37309,2)
+ ;;=^5013228
+ ;;^UTILITY(U,$J,358.3,37310,0)
+ ;;=M71.872^^140^1787^71
+ ;;^UTILITY(U,$J,358.3,37310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36924,1,3,0)
- ;;=3^Chronic leukemia of unspecified cell type, in remission
- ;;^UTILITY(U,$J,358.3,36924,1,4,0)
- ;;=4^C95.11
- ;;^UTILITY(U,$J,358.3,36924,2)
- ;;=^5001854
- ;;^UTILITY(U,$J,358.3,36925,0)
- ;;=C95.12^^169^1862^27
- ;;^UTILITY(U,$J,358.3,36925,1,0)
+ ;;^UTILITY(U,$J,358.3,37310,1,3,0)
+ ;;=3^Bursopathies, lft ankle & foot, oth, spec
+ ;;^UTILITY(U,$J,358.3,37310,1,4,0)
+ ;;=4^M71.872
+ ;;^UTILITY(U,$J,358.3,37310,2)
+ ;;=^5013229
+ ;;^UTILITY(U,$J,358.3,37311,0)
+ ;;=M71.88^^140^1787^79
+ ;;^UTILITY(U,$J,358.3,37311,1,0)
  ;;=^358.31IA^4^2

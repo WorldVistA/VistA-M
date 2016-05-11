@@ -1,136 +1,134 @@
-IBDEI1WX ; ; 19-NOV-2015
+IBDEI1WX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32027,0)
- ;;=F64.9^^141^1483^3
- ;;^UTILITY(U,$J,358.3,32027,1,0)
+ ;;^UTILITY(U,$J,358.3,32449,2)
+ ;;=^5044273
+ ;;^UTILITY(U,$J,358.3,32450,0)
+ ;;=G57.61^^126^1613^31
+ ;;^UTILITY(U,$J,358.3,32450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32027,1,3,0)
- ;;=3^Gender Dysphoria,Unspec
- ;;^UTILITY(U,$J,358.3,32027,1,4,0)
- ;;=4^F64.9
- ;;^UTILITY(U,$J,358.3,32027,2)
- ;;=^5003650
- ;;^UTILITY(U,$J,358.3,32028,0)
- ;;=Z59.2^^141^1484^1
- ;;^UTILITY(U,$J,358.3,32028,1,0)
+ ;;^UTILITY(U,$J,358.3,32450,1,3,0)
+ ;;=3^Lesion of plantar nerve, right lower limb
+ ;;^UTILITY(U,$J,358.3,32450,1,4,0)
+ ;;=4^G57.61
+ ;;^UTILITY(U,$J,358.3,32450,2)
+ ;;=^5004057
+ ;;^UTILITY(U,$J,358.3,32451,0)
+ ;;=G57.62^^126^1613^30
+ ;;^UTILITY(U,$J,358.3,32451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32028,1,3,0)
- ;;=3^Discord w/ Neighbors,Lodgers or Landlord
- ;;^UTILITY(U,$J,358.3,32028,1,4,0)
- ;;=4^Z59.2
- ;;^UTILITY(U,$J,358.3,32028,2)
- ;;=^5063131
- ;;^UTILITY(U,$J,358.3,32029,0)
- ;;=Z59.0^^141^1484^3
- ;;^UTILITY(U,$J,358.3,32029,1,0)
+ ;;^UTILITY(U,$J,358.3,32451,1,3,0)
+ ;;=3^Lesion of plantar nerve, left lower limb
+ ;;^UTILITY(U,$J,358.3,32451,1,4,0)
+ ;;=4^G57.62
+ ;;^UTILITY(U,$J,358.3,32451,2)
+ ;;=^5004058
+ ;;^UTILITY(U,$J,358.3,32452,0)
+ ;;=L03.042^^126^1613^32
+ ;;^UTILITY(U,$J,358.3,32452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32029,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,32029,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,32029,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,32030,0)
- ;;=Z59.1^^141^1484^5
- ;;^UTILITY(U,$J,358.3,32030,1,0)
+ ;;^UTILITY(U,$J,358.3,32452,1,3,0)
+ ;;=3^Lymphangitis,Left Toe,Acute
+ ;;^UTILITY(U,$J,358.3,32452,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,32452,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,32453,0)
+ ;;=L03.041^^126^1613^33
+ ;;^UTILITY(U,$J,358.3,32453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32030,1,3,0)
- ;;=3^Inadequate Housing
- ;;^UTILITY(U,$J,358.3,32030,1,4,0)
- ;;=4^Z59.1
- ;;^UTILITY(U,$J,358.3,32030,2)
- ;;=^5063130
- ;;^UTILITY(U,$J,358.3,32031,0)
- ;;=Z59.3^^141^1484^9
- ;;^UTILITY(U,$J,358.3,32031,1,0)
+ ;;^UTILITY(U,$J,358.3,32453,1,3,0)
+ ;;=3^Lymphangitis,Right Toe,Acute
+ ;;^UTILITY(U,$J,358.3,32453,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,32453,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,32454,0)
+ ;;=M77.41^^126^1614^5
+ ;;^UTILITY(U,$J,358.3,32454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32031,1,3,0)
- ;;=3^Problems Related to Living in Residential Institution
- ;;^UTILITY(U,$J,358.3,32031,1,4,0)
- ;;=4^Z59.3
- ;;^UTILITY(U,$J,358.3,32031,2)
- ;;=^5063132
- ;;^UTILITY(U,$J,358.3,32032,0)
- ;;=Z59.4^^141^1484^7
- ;;^UTILITY(U,$J,358.3,32032,1,0)
+ ;;^UTILITY(U,$J,358.3,32454,1,3,0)
+ ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,32454,1,4,0)
+ ;;=4^M77.41
+ ;;^UTILITY(U,$J,358.3,32454,2)
+ ;;=^5013313
+ ;;^UTILITY(U,$J,358.3,32455,0)
+ ;;=M77.42^^126^1614^4
+ ;;^UTILITY(U,$J,358.3,32455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32032,1,3,0)
- ;;=3^Lack of Adequate Food or Safe Drinking Water
- ;;^UTILITY(U,$J,358.3,32032,1,4,0)
- ;;=4^Z59.4
- ;;^UTILITY(U,$J,358.3,32032,2)
- ;;=^5063133
- ;;^UTILITY(U,$J,358.3,32033,0)
- ;;=Z59.5^^141^1484^2
- ;;^UTILITY(U,$J,358.3,32033,1,0)
+ ;;^UTILITY(U,$J,358.3,32455,1,3,0)
+ ;;=3^Metatarsalgia, left foot
+ ;;^UTILITY(U,$J,358.3,32455,1,4,0)
+ ;;=4^M77.42
+ ;;^UTILITY(U,$J,358.3,32455,2)
+ ;;=^5013314
+ ;;^UTILITY(U,$J,358.3,32456,0)
+ ;;=D22.71^^126^1614^3
+ ;;^UTILITY(U,$J,358.3,32456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32033,1,3,0)
- ;;=3^Extreme Poverty
- ;;^UTILITY(U,$J,358.3,32033,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,32033,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,32034,0)
- ;;=Z59.6^^141^1484^8
- ;;^UTILITY(U,$J,358.3,32034,1,0)
+ ;;^UTILITY(U,$J,358.3,32456,1,3,0)
+ ;;=3^Melanocytic nevi of rt lwr limb, including hip
+ ;;^UTILITY(U,$J,358.3,32456,1,4,0)
+ ;;=4^D22.71
+ ;;^UTILITY(U,$J,358.3,32456,2)
+ ;;=^5002056
+ ;;^UTILITY(U,$J,358.3,32457,0)
+ ;;=D22.72^^126^1614^2
+ ;;^UTILITY(U,$J,358.3,32457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32034,1,3,0)
- ;;=3^Low Income
- ;;^UTILITY(U,$J,358.3,32034,1,4,0)
- ;;=4^Z59.6
- ;;^UTILITY(U,$J,358.3,32034,2)
- ;;=^5063135
- ;;^UTILITY(U,$J,358.3,32035,0)
- ;;=Z59.7^^141^1484^6
- ;;^UTILITY(U,$J,358.3,32035,1,0)
+ ;;^UTILITY(U,$J,358.3,32457,1,3,0)
+ ;;=3^Melanocytic nevi of lft lwr limb, including hip
+ ;;^UTILITY(U,$J,358.3,32457,1,4,0)
+ ;;=4^D22.72
+ ;;^UTILITY(U,$J,358.3,32457,2)
+ ;;=^5002057
+ ;;^UTILITY(U,$J,358.3,32458,0)
+ ;;=Q74.2^^126^1614^1
+ ;;^UTILITY(U,$J,358.3,32458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32035,1,3,0)
- ;;=3^Insufficient Social Insurance/Welfare Support
- ;;^UTILITY(U,$J,358.3,32035,1,4,0)
- ;;=4^Z59.7
- ;;^UTILITY(U,$J,358.3,32035,2)
- ;;=^5063136
- ;;^UTILITY(U,$J,358.3,32036,0)
- ;;=Z59.9^^141^1484^4
- ;;^UTILITY(U,$J,358.3,32036,1,0)
+ ;;^UTILITY(U,$J,358.3,32458,1,3,0)
+ ;;=3^Malformity,Lower Limb(s),Congenital
+ ;;^UTILITY(U,$J,358.3,32458,1,4,0)
+ ;;=4^Q74.2
+ ;;^UTILITY(U,$J,358.3,32458,2)
+ ;;=^5018992
+ ;;^UTILITY(U,$J,358.3,32459,0)
+ ;;=M60.9^^126^1614^15
+ ;;^UTILITY(U,$J,358.3,32459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32036,1,3,0)
- ;;=3^Housing/Economic Problems,Unspec
- ;;^UTILITY(U,$J,358.3,32036,1,4,0)
- ;;=4^Z59.9
- ;;^UTILITY(U,$J,358.3,32036,2)
- ;;=^5063138
- ;;^UTILITY(U,$J,358.3,32037,0)
- ;;=G21.19^^141^1485^3
- ;;^UTILITY(U,$J,358.3,32037,1,0)
+ ;;^UTILITY(U,$J,358.3,32459,1,3,0)
+ ;;=3^Myositis, unspecified
+ ;;^UTILITY(U,$J,358.3,32459,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,32459,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,32460,0)
+ ;;=G57.92^^126^1614^7
+ ;;^UTILITY(U,$J,358.3,32460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32037,1,3,0)
- ;;=3^Medication-Induced Parkinsonism NEC
- ;;^UTILITY(U,$J,358.3,32037,1,4,0)
- ;;=4^G21.19
- ;;^UTILITY(U,$J,358.3,32037,2)
- ;;=^5003773
- ;;^UTILITY(U,$J,358.3,32038,0)
- ;;=G21.11^^141^1485^5
- ;;^UTILITY(U,$J,358.3,32038,1,0)
+ ;;^UTILITY(U,$J,358.3,32460,1,3,0)
+ ;;=3^Mononeuropathy lft lwr limb, unspec
+ ;;^UTILITY(U,$J,358.3,32460,1,4,0)
+ ;;=4^G57.92
+ ;;^UTILITY(U,$J,358.3,32460,2)
+ ;;=^5133370
+ ;;^UTILITY(U,$J,358.3,32461,0)
+ ;;=G57.91^^126^1614^8
+ ;;^UTILITY(U,$J,358.3,32461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32038,1,3,0)
- ;;=3^Neuroleptic-Induced Parkinsonism
- ;;^UTILITY(U,$J,358.3,32038,1,4,0)
- ;;=4^G21.11
- ;;^UTILITY(U,$J,358.3,32038,2)
- ;;=^5003772
- ;;^UTILITY(U,$J,358.3,32039,0)
- ;;=G24.02^^141^1485^1
- ;;^UTILITY(U,$J,358.3,32039,1,0)
+ ;;^UTILITY(U,$J,358.3,32461,1,3,0)
+ ;;=3^Mononeuropathy rt lwr limb, unspec
+ ;;^UTILITY(U,$J,358.3,32461,1,4,0)
+ ;;=4^G57.91
+ ;;^UTILITY(U,$J,358.3,32461,2)
+ ;;=^5133369
+ ;;^UTILITY(U,$J,358.3,32462,0)
+ ;;=M60.862^^126^1614^11
+ ;;^UTILITY(U,$J,358.3,32462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32039,1,3,0)
- ;;=3^Medication-Induced Acute Dystonia
- ;;^UTILITY(U,$J,358.3,32039,1,4,0)
- ;;=4^G24.02
- ;;^UTILITY(U,$J,358.3,32039,2)
- ;;=^5003785
- ;;^UTILITY(U,$J,358.3,32040,0)
- ;;=G24.01^^141^1485^7
+ ;;^UTILITY(U,$J,358.3,32462,1,3,0)
+ ;;=3^Myositis, lft lwr leg, oth
+ ;;^UTILITY(U,$J,358.3,32462,1,4,0)
+ ;;=4^M60.862

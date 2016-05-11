@@ -1,124 +1,134 @@
-IBDEI1BW ; ; 19-NOV-2015
+IBDEI1BW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22149,1,4,0)
- ;;=4^S82.144S
- ;;^UTILITY(U,$J,358.3,22149,2)
- ;;=^5040934
- ;;^UTILITY(U,$J,358.3,22150,0)
- ;;=S82.255S^^101^1038^41
- ;;^UTILITY(U,$J,358.3,22150,1,0)
+ ;;^UTILITY(U,$J,358.3,22583,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,22583,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,22584,0)
+ ;;=Z83.71^^87^982^25
+ ;;^UTILITY(U,$J,358.3,22584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22150,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of left tibia, sequela 
- ;;^UTILITY(U,$J,358.3,22150,1,4,0)
- ;;=4^S82.255S
- ;;^UTILITY(U,$J,358.3,22150,2)
- ;;=^5041506
- ;;^UTILITY(U,$J,358.3,22151,0)
- ;;=S82.254S^^101^1038^43
- ;;^UTILITY(U,$J,358.3,22151,1,0)
+ ;;^UTILITY(U,$J,358.3,22584,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,22584,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,22584,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,22585,0)
+ ;;=Z84.81^^87^982^29
+ ;;^UTILITY(U,$J,358.3,22585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22151,1,3,0)
- ;;=3^Nondisp fx of comminuted shaft of right tibia, sequela 
- ;;^UTILITY(U,$J,358.3,22151,1,4,0)
- ;;=4^S82.254S
- ;;^UTILITY(U,$J,358.3,22151,2)
- ;;=^5041490
- ;;^UTILITY(U,$J,358.3,22152,0)
- ;;=S82.125S^^101^1038^45
- ;;^UTILITY(U,$J,358.3,22152,1,0)
+ ;;^UTILITY(U,$J,358.3,22585,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,22585,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,22585,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,22586,0)
+ ;;=Z86.010^^87^982^76
+ ;;^UTILITY(U,$J,358.3,22586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22152,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22152,1,4,0)
- ;;=4^S82.125S
- ;;^UTILITY(U,$J,358.3,22152,2)
- ;;=^5040758
- ;;^UTILITY(U,$J,358.3,22153,0)
- ;;=S82.124S^^101^1038^46
- ;;^UTILITY(U,$J,358.3,22153,1,0)
+ ;;^UTILITY(U,$J,358.3,22586,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,22586,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,22586,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,22587,0)
+ ;;=Z86.14^^87^982^81
+ ;;^UTILITY(U,$J,358.3,22587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22153,1,3,0)
- ;;=3^Nondisp fx of lateral condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22153,1,4,0)
- ;;=4^S82.124S
- ;;^UTILITY(U,$J,358.3,22153,2)
- ;;=^5040742
- ;;^UTILITY(U,$J,358.3,22154,0)
- ;;=S82.115S^^101^1038^49
- ;;^UTILITY(U,$J,358.3,22154,1,0)
+ ;;^UTILITY(U,$J,358.3,22587,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,22587,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,22587,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,22588,0)
+ ;;=Z86.31^^87^982^77
+ ;;^UTILITY(U,$J,358.3,22588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22154,1,3,0)
- ;;=3^Nondisp fx of left tibial spine, sequela       
- ;;^UTILITY(U,$J,358.3,22154,1,4,0)
- ;;=4^S82.115S
- ;;^UTILITY(U,$J,358.3,22154,2)
- ;;=^5040662
- ;;^UTILITY(U,$J,358.3,22155,0)
- ;;=S82.155S^^101^1038^50
- ;;^UTILITY(U,$J,358.3,22155,1,0)
+ ;;^UTILITY(U,$J,358.3,22588,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,22588,1,4,0)
+ ;;=4^Z86.31
+ ;;^UTILITY(U,$J,358.3,22588,2)
+ ;;=^5063467
+ ;;^UTILITY(U,$J,358.3,22589,0)
+ ;;=Z86.711^^87^982^107
+ ;;^UTILITY(U,$J,358.3,22589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22155,1,3,0)
- ;;=3^Nondisp fx of left tibial tuberosity, sequela   
- ;;^UTILITY(U,$J,358.3,22155,1,4,0)
- ;;=4^S82.155S
- ;;^UTILITY(U,$J,358.3,22155,2)
- ;;=^5041046
- ;;^UTILITY(U,$J,358.3,22156,0)
- ;;=S82.135S^^101^1038^51
- ;;^UTILITY(U,$J,358.3,22156,1,0)
+ ;;^UTILITY(U,$J,358.3,22589,1,3,0)
+ ;;=3^Personal Hx of Pulmonary Embolism
+ ;;^UTILITY(U,$J,358.3,22589,1,4,0)
+ ;;=4^Z86.711
+ ;;^UTILITY(U,$J,358.3,22589,2)
+ ;;=^5063474
+ ;;^UTILITY(U,$J,358.3,22590,0)
+ ;;=Z86.72^^87^982^113
+ ;;^UTILITY(U,$J,358.3,22590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22156,1,3,0)
- ;;=3^Nondisp fx of medial condyle of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22156,1,4,0)
- ;;=4^S82.135S
- ;;^UTILITY(U,$J,358.3,22156,2)
- ;;=^5040854
- ;;^UTILITY(U,$J,358.3,22157,0)
- ;;=S82.134S^^101^1038^52
- ;;^UTILITY(U,$J,358.3,22157,1,0)
+ ;;^UTILITY(U,$J,358.3,22590,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,22590,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,22590,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,22591,0)
+ ;;=Z87.310^^87^982^105
+ ;;^UTILITY(U,$J,358.3,22591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22157,1,3,0)
- ;;=3^Nondisp fx of medial condyle of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22157,1,4,0)
- ;;=4^S82.134S
- ;;^UTILITY(U,$J,358.3,22157,2)
- ;;=^5040838
- ;;^UTILITY(U,$J,358.3,22158,0)
- ;;=S82.55XS^^101^1038^53
- ;;^UTILITY(U,$J,358.3,22158,1,0)
+ ;;^UTILITY(U,$J,358.3,22591,1,3,0)
+ ;;=3^Personal Hx of Osteoporosis Fx
+ ;;^UTILITY(U,$J,358.3,22591,1,4,0)
+ ;;=4^Z87.310
+ ;;^UTILITY(U,$J,358.3,22591,2)
+ ;;=^5063485
+ ;;^UTILITY(U,$J,358.3,22592,0)
+ ;;=Z87.442^^87^982^116
+ ;;^UTILITY(U,$J,358.3,22592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22158,1,3,0)
- ;;=3^Nondisp fx of medial malleolus of left tibia, sequela
- ;;^UTILITY(U,$J,358.3,22158,1,4,0)
- ;;=4^S82.55XS
- ;;^UTILITY(U,$J,358.3,22158,2)
- ;;=^5042294
- ;;^UTILITY(U,$J,358.3,22159,0)
- ;;=S82.54XS^^101^1038^54
- ;;^UTILITY(U,$J,358.3,22159,1,0)
+ ;;^UTILITY(U,$J,358.3,22592,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,22592,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,22592,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,22593,0)
+ ;;=Z87.81^^87^982^114
+ ;;^UTILITY(U,$J,358.3,22593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22159,1,3,0)
- ;;=3^Nondisp fx of medial malleolus of right tibia, sequela
- ;;^UTILITY(U,$J,358.3,22159,1,4,0)
- ;;=4^S82.54XS
- ;;^UTILITY(U,$J,358.3,22159,2)
- ;;=^5042278
- ;;^UTILITY(U,$J,358.3,22160,0)
- ;;=S82.114S^^101^1038^61
- ;;^UTILITY(U,$J,358.3,22160,1,0)
+ ;;^UTILITY(U,$J,358.3,22593,1,3,0)
+ ;;=3^Personal Hx of Traumatic Fx (Healed)
+ ;;^UTILITY(U,$J,358.3,22593,1,4,0)
+ ;;=4^Z87.81
+ ;;^UTILITY(U,$J,358.3,22593,2)
+ ;;=^5063513
+ ;;^UTILITY(U,$J,358.3,22594,0)
+ ;;=Z87.890^^87^982^109
+ ;;^UTILITY(U,$J,358.3,22594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22160,1,3,0)
- ;;=3^Nondisp fx of right tibial spine, sequela      
- ;;^UTILITY(U,$J,358.3,22160,1,4,0)
- ;;=4^S82.114S
- ;;^UTILITY(U,$J,358.3,22160,2)
- ;;=^5040646
- ;;^UTILITY(U,$J,358.3,22161,0)
- ;;=S82.154S^^101^1038^62
- ;;^UTILITY(U,$J,358.3,22161,1,0)
+ ;;^UTILITY(U,$J,358.3,22594,1,3,0)
+ ;;=3^Personal Hx of Sex Reassignment
+ ;;^UTILITY(U,$J,358.3,22594,1,4,0)
+ ;;=4^Z87.890
+ ;;^UTILITY(U,$J,358.3,22594,2)
+ ;;=^5063517
+ ;;^UTILITY(U,$J,358.3,22595,0)
+ ;;=Z87.892^^87^982^74
+ ;;^UTILITY(U,$J,358.3,22595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22161,1,3,0)
- ;;=3^Nondisp fx of right tibial tuberosity, sequela  
+ ;;^UTILITY(U,$J,358.3,22595,1,3,0)
+ ;;=3^Personal Hx of Anaphylaxis
+ ;;^UTILITY(U,$J,358.3,22595,1,4,0)
+ ;;=4^Z87.892
+ ;;^UTILITY(U,$J,358.3,22595,2)
+ ;;=^5063519
+ ;;^UTILITY(U,$J,358.3,22596,0)
+ ;;=Z87.39^^87^982^102
+ ;;^UTILITY(U,$J,358.3,22596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22596,1,3,0)
+ ;;=3^Personal Hx of Musculoskeletal/Connective Tissue Disease

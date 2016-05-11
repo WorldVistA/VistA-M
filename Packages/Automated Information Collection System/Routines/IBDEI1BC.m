@@ -1,120 +1,130 @@
-IBDEI1BC ; ; 19-NOV-2015
+IBDEI1BC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21912,1,3,0)
- ;;=3^Disp fx of proximal phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21912,1,4,0)
- ;;=4^S62.614S
- ;;^UTILITY(U,$J,358.3,21912,2)
- ;;=^5034486
- ;;^UTILITY(U,$J,358.3,21913,0)
- ;;=S62.661S^^101^1035^69
- ;;^UTILITY(U,$J,358.3,21913,1,0)
+ ;;^UTILITY(U,$J,358.3,22326,0)
+ ;;=C92.A1^^87^981^11
+ ;;^UTILITY(U,$J,358.3,22326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21913,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left index finger, sequela
- ;;^UTILITY(U,$J,358.3,21913,1,4,0)
- ;;=4^S62.661S
- ;;^UTILITY(U,$J,358.3,21913,2)
- ;;=^5034815
- ;;^UTILITY(U,$J,358.3,21914,0)
- ;;=S62.667S^^101^1035^70
- ;;^UTILITY(U,$J,358.3,21914,1,0)
+ ;;^UTILITY(U,$J,358.3,22326,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,22326,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,22326,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,22327,0)
+ ;;=C92.A0^^87^981^12
+ ;;^UTILITY(U,$J,358.3,22327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21914,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left little finger, sequela
- ;;^UTILITY(U,$J,358.3,21914,1,4,0)
- ;;=4^S62.667S
- ;;^UTILITY(U,$J,358.3,21914,2)
- ;;=^5034857
- ;;^UTILITY(U,$J,358.3,21915,0)
- ;;=S62.663S^^101^1035^71
- ;;^UTILITY(U,$J,358.3,21915,1,0)
+ ;;^UTILITY(U,$J,358.3,22327,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,22327,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,22327,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,22328,0)
+ ;;=C92.51^^87^981^13
+ ;;^UTILITY(U,$J,358.3,22328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21915,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left middle finger, sequela
- ;;^UTILITY(U,$J,358.3,21915,1,4,0)
- ;;=4^S62.663S
- ;;^UTILITY(U,$J,358.3,21915,2)
- ;;=^5034829
- ;;^UTILITY(U,$J,358.3,21916,0)
- ;;=S62.665S^^101^1035^72
- ;;^UTILITY(U,$J,358.3,21916,1,0)
+ ;;^UTILITY(U,$J,358.3,22328,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,22328,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,22328,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,22329,0)
+ ;;=C92.50^^87^981^14
+ ;;^UTILITY(U,$J,358.3,22329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21916,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of left ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21916,1,4,0)
- ;;=4^S62.665S
- ;;^UTILITY(U,$J,358.3,21916,2)
- ;;=^5034843
- ;;^UTILITY(U,$J,358.3,21917,0)
- ;;=S62.660S^^101^1035^74
- ;;^UTILITY(U,$J,358.3,21917,1,0)
+ ;;^UTILITY(U,$J,358.3,22329,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,22329,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,22329,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,22330,0)
+ ;;=C94.40^^87^981^17
+ ;;^UTILITY(U,$J,358.3,22330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21917,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right index finger, sequela
- ;;^UTILITY(U,$J,358.3,21917,1,4,0)
- ;;=4^S62.660S
- ;;^UTILITY(U,$J,358.3,21917,2)
- ;;=^5034808
- ;;^UTILITY(U,$J,358.3,21918,0)
- ;;=S62.666S^^101^1035^75
- ;;^UTILITY(U,$J,358.3,21918,1,0)
+ ;;^UTILITY(U,$J,358.3,22330,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,22330,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,22330,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,22331,0)
+ ;;=C94.42^^87^981^15
+ ;;^UTILITY(U,$J,358.3,22331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21918,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right little finger, sequela
- ;;^UTILITY(U,$J,358.3,21918,1,4,0)
- ;;=4^S62.666S
- ;;^UTILITY(U,$J,358.3,21918,2)
- ;;=^5034850
- ;;^UTILITY(U,$J,358.3,21919,0)
- ;;=S62.662S^^101^1035^76
- ;;^UTILITY(U,$J,358.3,21919,1,0)
+ ;;^UTILITY(U,$J,358.3,22331,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,22331,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,22331,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,22332,0)
+ ;;=C94.41^^87^981^16
+ ;;^UTILITY(U,$J,358.3,22332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21919,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right middle finger, sequela
- ;;^UTILITY(U,$J,358.3,21919,1,4,0)
- ;;=4^S62.662S
- ;;^UTILITY(U,$J,358.3,21919,2)
- ;;=^5034822
- ;;^UTILITY(U,$J,358.3,21920,0)
- ;;=S62.664S^^101^1035^77
- ;;^UTILITY(U,$J,358.3,21920,1,0)
+ ;;^UTILITY(U,$J,358.3,22332,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,22332,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,22332,2)
+ ;;=^5001844
+ ;;^UTILITY(U,$J,358.3,22333,0)
+ ;;=D62.^^87^981^18
+ ;;^UTILITY(U,$J,358.3,22333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21920,1,3,0)
- ;;=3^Nondisp fx of distal phalanx of right ring finger, sequela
- ;;^UTILITY(U,$J,358.3,21920,1,4,0)
- ;;=4^S62.664S
- ;;^UTILITY(U,$J,358.3,21920,2)
- ;;=^5034836
- ;;^UTILITY(U,$J,358.3,21921,0)
- ;;=S62.651S^^101^1035^79
- ;;^UTILITY(U,$J,358.3,21921,1,0)
+ ;;^UTILITY(U,$J,358.3,22333,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,22333,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,22333,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,22334,0)
+ ;;=C92.41^^87^981^19
+ ;;^UTILITY(U,$J,358.3,22334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21921,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left index finger, sequela
- ;;^UTILITY(U,$J,358.3,21921,1,4,0)
- ;;=4^S62.651S
- ;;^UTILITY(U,$J,358.3,21921,2)
- ;;=^5034745
- ;;^UTILITY(U,$J,358.3,21922,0)
- ;;=S62.657S^^101^1035^80
- ;;^UTILITY(U,$J,358.3,21922,1,0)
+ ;;^UTILITY(U,$J,358.3,22334,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,22334,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,22334,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,22335,0)
+ ;;=C92.40^^87^981^20
+ ;;^UTILITY(U,$J,358.3,22335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21922,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left little finger, sequela
- ;;^UTILITY(U,$J,358.3,21922,1,4,0)
- ;;=4^S62.657S
- ;;^UTILITY(U,$J,358.3,21922,2)
- ;;=^5034787
- ;;^UTILITY(U,$J,358.3,21923,0)
- ;;=S62.653S^^101^1035^81
- ;;^UTILITY(U,$J,358.3,21923,1,0)
+ ;;^UTILITY(U,$J,358.3,22335,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,22335,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,22335,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,22336,0)
+ ;;=D56.0^^87^981^21
+ ;;^UTILITY(U,$J,358.3,22336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21923,1,3,0)
- ;;=3^Nondisp fx of medial phalanx of left middle finger, sequela
- ;;^UTILITY(U,$J,358.3,21923,1,4,0)
- ;;=4^S62.653S
- ;;^UTILITY(U,$J,358.3,21923,2)
- ;;=^5034759
+ ;;^UTILITY(U,$J,358.3,22336,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,22336,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,22336,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,22337,0)
+ ;;=D63.1^^87^981^23
+ ;;^UTILITY(U,$J,358.3,22337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22337,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,22337,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,22337,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,22338,0)
+ ;;=D63.0^^87^981^24
+ ;;^UTILITY(U,$J,358.3,22338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22338,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease

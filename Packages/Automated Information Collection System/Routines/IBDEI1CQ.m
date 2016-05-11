@@ -1,130 +1,128 @@
-IBDEI1CQ ; ; 19-NOV-2015
+IBDEI1CQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22507,1,4,0)
- ;;=4^S22.42XS
- ;;^UTILITY(U,$J,358.3,22507,2)
- ;;=^5023134
- ;;^UTILITY(U,$J,358.3,22508,0)
- ;;=S22.41XS^^101^1041^19
- ;;^UTILITY(U,$J,358.3,22508,1,0)
+ ;;^UTILITY(U,$J,358.3,22974,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,22974,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,22975,0)
+ ;;=M48.52XG^^87^987^19
+ ;;^UTILITY(U,$J,358.3,22975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22508,1,3,0)
- ;;=3^Multiple fractures of ribs, right side, sequela
- ;;^UTILITY(U,$J,358.3,22508,1,4,0)
- ;;=4^S22.41XS
- ;;^UTILITY(U,$J,358.3,22508,2)
- ;;=^5023128
- ;;^UTILITY(U,$J,358.3,22509,0)
- ;;=S22.23XS^^101^1041^20
- ;;^UTILITY(U,$J,358.3,22509,1,0)
+ ;;^UTILITY(U,$J,358.3,22975,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,22975,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,22975,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,22976,0)
+ ;;=M48.52XS^^87^987^20
+ ;;^UTILITY(U,$J,358.3,22976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22509,1,3,0)
- ;;=3^Sternal manubrial dissociation, sequela
- ;;^UTILITY(U,$J,358.3,22509,1,4,0)
- ;;=4^S22.23XS
- ;;^UTILITY(U,$J,358.3,22509,2)
- ;;=^5023098
- ;;^UTILITY(U,$J,358.3,22510,0)
- ;;=S02.110S^^101^1041^21
- ;;^UTILITY(U,$J,358.3,22510,1,0)
+ ;;^UTILITY(U,$J,358.3,22976,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,22976,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,22976,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,22977,0)
+ ;;=M48.57XG^^87^987^27
+ ;;^UTILITY(U,$J,358.3,22977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22510,1,3,0)
- ;;=3^Type I occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,22510,1,4,0)
- ;;=4^S02.110S
- ;;^UTILITY(U,$J,358.3,22510,2)
- ;;=^5020269
- ;;^UTILITY(U,$J,358.3,22511,0)
- ;;=S02.111S^^101^1041^22
- ;;^UTILITY(U,$J,358.3,22511,1,0)
+ ;;^UTILITY(U,$J,358.3,22977,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,22977,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,22977,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,22978,0)
+ ;;=M48.57XS^^87^987^28
+ ;;^UTILITY(U,$J,358.3,22978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22511,1,3,0)
- ;;=3^Type II occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,22511,1,4,0)
- ;;=4^S02.111S
- ;;^UTILITY(U,$J,358.3,22511,2)
- ;;=^5020275
- ;;^UTILITY(U,$J,358.3,22512,0)
- ;;=S02.112S^^101^1041^23
- ;;^UTILITY(U,$J,358.3,22512,1,0)
+ ;;^UTILITY(U,$J,358.3,22978,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,22978,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,22978,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,22979,0)
+ ;;=M48.54XD^^87^987^29
+ ;;^UTILITY(U,$J,358.3,22979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22512,1,3,0)
- ;;=3^Type III occipital condyle fracture, sequela
- ;;^UTILITY(U,$J,358.3,22512,1,4,0)
- ;;=4^S02.112S
- ;;^UTILITY(U,$J,358.3,22512,2)
- ;;=^5020281
- ;;^UTILITY(U,$J,358.3,22513,0)
- ;;=S02.64XS^^101^1041^13
- ;;^UTILITY(U,$J,358.3,22513,1,0)
+ ;;^UTILITY(U,$J,358.3,22979,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,22979,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,22979,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,22980,0)
+ ;;=M48.57XG^^87^987^30
+ ;;^UTILITY(U,$J,358.3,22980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22513,1,3,0)
- ;;=3^Fracture of ramus of mandible, sequela
- ;;^UTILITY(U,$J,358.3,22513,1,4,0)
- ;;=4^S02.64XS
- ;;^UTILITY(U,$J,358.3,22513,2)
- ;;=^5020401
- ;;^UTILITY(U,$J,358.3,22514,0)
- ;;=A4220^^102^1042^1^^^^1
- ;;^UTILITY(U,$J,358.3,22514,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22514,1,1,0)
- ;;=1^A4220
- ;;^UTILITY(U,$J,358.3,22514,1,3,0)
- ;;=3^Infusion Pump Refill Kit
- ;;^UTILITY(U,$J,358.3,22515,0)
- ;;=99195^^102^1043^1^^^^1
- ;;^UTILITY(U,$J,358.3,22515,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22515,1,1,0)
- ;;=1^99195
- ;;^UTILITY(U,$J,358.3,22515,1,3,0)
- ;;=3^Phlebotomy
- ;;^UTILITY(U,$J,358.3,22516,0)
- ;;=20220^^102^1044^2^^^^1
- ;;^UTILITY(U,$J,358.3,22516,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22516,1,1,0)
- ;;=1^20220
- ;;^UTILITY(U,$J,358.3,22516,1,3,0)
- ;;=3^Bone Biopsy, Trocar/Needle
- ;;^UTILITY(U,$J,358.3,22517,0)
- ;;=62270^^102^1044^9^^^^1
- ;;^UTILITY(U,$J,358.3,22517,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22517,1,1,0)
- ;;=1^62270
- ;;^UTILITY(U,$J,358.3,22517,1,3,0)
- ;;=3^Lumbar Puncture
- ;;^UTILITY(U,$J,358.3,22518,0)
- ;;=45300^^102^1044^11^^^^1
- ;;^UTILITY(U,$J,358.3,22518,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22518,1,1,0)
- ;;=1^45300
- ;;^UTILITY(U,$J,358.3,22518,1,3,0)
- ;;=3^Proctosigmoidoscopy
- ;;^UTILITY(U,$J,358.3,22519,0)
- ;;=31575^^102^1044^8^^^^1
- ;;^UTILITY(U,$J,358.3,22519,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22519,1,1,0)
- ;;=1^31575
- ;;^UTILITY(U,$J,358.3,22519,1,3,0)
- ;;=3^Laryngoscopy,flex fibroptic,diag
- ;;^UTILITY(U,$J,358.3,22520,0)
- ;;=38220^^102^1044^3^^^^1
- ;;^UTILITY(U,$J,358.3,22520,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22520,1,1,0)
- ;;=1^38220
- ;;^UTILITY(U,$J,358.3,22520,1,3,0)
- ;;=3^Bone Marrow Aspiration
- ;;^UTILITY(U,$J,358.3,22521,0)
- ;;=38221^^102^1044^4^^^^1
- ;;^UTILITY(U,$J,358.3,22521,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,22521,1,1,0)
- ;;=1^38221
+ ;;^UTILITY(U,$J,358.3,22980,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,22980,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,22980,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,22981,0)
+ ;;=M48.54XS^^87^987^31
+ ;;^UTILITY(U,$J,358.3,22981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22981,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,22981,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,22981,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,22982,0)
+ ;;=M62.830^^87^987^59
+ ;;^UTILITY(U,$J,358.3,22982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22982,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,22982,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,22982,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,22983,0)
+ ;;=M19.92^^87^987^120
+ ;;^UTILITY(U,$J,358.3,22983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22983,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22983,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,22983,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,22984,0)
+ ;;=M85.872^^87^987^80
+ ;;^UTILITY(U,$J,358.3,22984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22984,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,22984,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,22984,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,22985,0)
+ ;;=M85.832^^87^987^81
+ ;;^UTILITY(U,$J,358.3,22985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22985,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,22985,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,22985,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,22986,0)
+ ;;=M85.842^^87^987^82
+ ;;^UTILITY(U,$J,358.3,22986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22986,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,22986,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,22986,2)
+ ;;=^5014484

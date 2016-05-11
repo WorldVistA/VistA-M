@@ -1,134 +1,138 @@
-IBDEI0X5 ; ; 19-NOV-2015
+IBDEI0X5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15279,1,4,0)
- ;;=4^S71.011A
- ;;^UTILITY(U,$J,358.3,15279,2)
- ;;=^5036975
- ;;^UTILITY(U,$J,358.3,15280,0)
- ;;=S81.011A^^85^813^51
- ;;^UTILITY(U,$J,358.3,15280,1,0)
+ ;;^UTILITY(U,$J,358.3,15552,1,3,0)
+ ;;=3^Voyeuristic Disorder
+ ;;^UTILITY(U,$J,358.3,15552,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,15552,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,15553,0)
+ ;;=F65.81^^58^676^3
+ ;;^UTILITY(U,$J,358.3,15553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15280,1,3,0)
- ;;=3^Laceration w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,15280,1,4,0)
- ;;=4^S81.011A
- ;;^UTILITY(U,$J,358.3,15280,2)
- ;;=^5040032
- ;;^UTILITY(U,$J,358.3,15281,0)
- ;;=S81.811A^^85^813^56
- ;;^UTILITY(U,$J,358.3,15281,1,0)
+ ;;^UTILITY(U,$J,358.3,15553,1,3,0)
+ ;;=3^Frotteuristic Disorder
+ ;;^UTILITY(U,$J,358.3,15553,1,4,0)
+ ;;=4^F65.81
+ ;;^UTILITY(U,$J,358.3,15553,2)
+ ;;=^5003659
+ ;;^UTILITY(U,$J,358.3,15554,0)
+ ;;=F65.51^^58^676^7
+ ;;^UTILITY(U,$J,358.3,15554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15281,1,3,0)
- ;;=3^Laceration w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,15281,1,4,0)
- ;;=4^S81.811A
- ;;^UTILITY(U,$J,358.3,15281,2)
- ;;=^5040071
- ;;^UTILITY(U,$J,358.3,15282,0)
- ;;=S71.111A^^85^813^62
- ;;^UTILITY(U,$J,358.3,15282,1,0)
+ ;;^UTILITY(U,$J,358.3,15554,1,3,0)
+ ;;=3^Sexual Masochism Disorder
+ ;;^UTILITY(U,$J,358.3,15554,1,4,0)
+ ;;=4^F65.51
+ ;;^UTILITY(U,$J,358.3,15554,2)
+ ;;=^5003657
+ ;;^UTILITY(U,$J,358.3,15555,0)
+ ;;=F65.52^^58^676^8
+ ;;^UTILITY(U,$J,358.3,15555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15282,1,3,0)
- ;;=3^Laceration w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,15282,1,4,0)
- ;;=4^S71.111A
- ;;^UTILITY(U,$J,358.3,15282,2)
- ;;=^5037014
- ;;^UTILITY(U,$J,358.3,15283,0)
- ;;=C44.00^^85^814^10
- ;;^UTILITY(U,$J,358.3,15283,1,0)
+ ;;^UTILITY(U,$J,358.3,15555,1,3,0)
+ ;;=3^Sexual Sadism Disorder
+ ;;^UTILITY(U,$J,358.3,15555,1,4,0)
+ ;;=4^F65.52
+ ;;^UTILITY(U,$J,358.3,15555,2)
+ ;;=^5003658
+ ;;^UTILITY(U,$J,358.3,15556,0)
+ ;;=F65.0^^58^676^2
+ ;;^UTILITY(U,$J,358.3,15556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15283,1,3,0)
- ;;=3^Malig Neop of Skin of Lip
- ;;^UTILITY(U,$J,358.3,15283,1,4,0)
- ;;=4^C44.00
- ;;^UTILITY(U,$J,358.3,15283,2)
- ;;=^340596
- ;;^UTILITY(U,$J,358.3,15284,0)
- ;;=C44.102^^85^814^13
- ;;^UTILITY(U,$J,358.3,15284,1,0)
+ ;;^UTILITY(U,$J,358.3,15556,1,3,0)
+ ;;=3^Fetishistic Disorder
+ ;;^UTILITY(U,$J,358.3,15556,1,4,0)
+ ;;=4^F65.0
+ ;;^UTILITY(U,$J,358.3,15556,2)
+ ;;=^5003651
+ ;;^UTILITY(U,$J,358.3,15557,0)
+ ;;=F65.1^^58^676^9
+ ;;^UTILITY(U,$J,358.3,15557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15284,1,3,0)
- ;;=3^Malig Neop of Skin of Right Eyelid
- ;;^UTILITY(U,$J,358.3,15284,1,4,0)
- ;;=4^C44.102
- ;;^UTILITY(U,$J,358.3,15284,2)
- ;;=^5001017
- ;;^UTILITY(U,$J,358.3,15285,0)
- ;;=C44.109^^85^814^7
- ;;^UTILITY(U,$J,358.3,15285,1,0)
+ ;;^UTILITY(U,$J,358.3,15557,1,3,0)
+ ;;=3^Transvestic Disorder
+ ;;^UTILITY(U,$J,358.3,15557,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,15557,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,15558,0)
+ ;;=F65.89^^58^676^4
+ ;;^UTILITY(U,$J,358.3,15558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15285,1,3,0)
- ;;=3^Malig Neop of Skin of Left Eyelid
- ;;^UTILITY(U,$J,358.3,15285,1,4,0)
- ;;=4^C44.109
- ;;^UTILITY(U,$J,358.3,15285,2)
- ;;=^5001018
- ;;^UTILITY(U,$J,358.3,15286,0)
- ;;=C44.202^^85^814^12
- ;;^UTILITY(U,$J,358.3,15286,1,0)
+ ;;^UTILITY(U,$J,358.3,15558,1,3,0)
+ ;;=3^Paraphilic Disorder NEC
+ ;;^UTILITY(U,$J,358.3,15558,1,4,0)
+ ;;=4^F65.89
+ ;;^UTILITY(U,$J,358.3,15558,2)
+ ;;=^5003660
+ ;;^UTILITY(U,$J,358.3,15559,0)
+ ;;=F65.9^^58^676^5
+ ;;^UTILITY(U,$J,358.3,15559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15286,1,3,0)
- ;;=3^Malig Neop of Skin of Right Ear
- ;;^UTILITY(U,$J,358.3,15286,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,15286,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,15287,0)
- ;;=C44.209^^85^814^6
- ;;^UTILITY(U,$J,358.3,15287,1,0)
+ ;;^UTILITY(U,$J,358.3,15559,1,3,0)
+ ;;=3^Paraphilic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,15559,1,4,0)
+ ;;=4^F65.9
+ ;;^UTILITY(U,$J,358.3,15559,2)
+ ;;=^5003661
+ ;;^UTILITY(U,$J,358.3,15560,0)
+ ;;=F60.0^^58^677^8
+ ;;^UTILITY(U,$J,358.3,15560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15287,1,3,0)
- ;;=3^Malig Neop of Skin of Left Ear
- ;;^UTILITY(U,$J,358.3,15287,1,4,0)
- ;;=4^C44.209
- ;;^UTILITY(U,$J,358.3,15287,2)
- ;;=^5001030
- ;;^UTILITY(U,$J,358.3,15288,0)
- ;;=C44.300^^85^814^5
- ;;^UTILITY(U,$J,358.3,15288,1,0)
+ ;;^UTILITY(U,$J,358.3,15560,1,3,0)
+ ;;=3^Paranoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15560,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,15560,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,15561,0)
+ ;;=F60.1^^58^677^11
+ ;;^UTILITY(U,$J,358.3,15561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15288,1,3,0)
- ;;=3^Malig Neop of Skin of Face,Unspec
- ;;^UTILITY(U,$J,358.3,15288,1,4,0)
- ;;=4^C44.300
- ;;^UTILITY(U,$J,358.3,15288,2)
- ;;=^5001040
- ;;^UTILITY(U,$J,358.3,15289,0)
- ;;=C44.301^^85^814^11
- ;;^UTILITY(U,$J,358.3,15289,1,0)
+ ;;^UTILITY(U,$J,358.3,15561,1,3,0)
+ ;;=3^Schizoid Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15561,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,15561,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,15562,0)
+ ;;=F21.^^58^677^12
+ ;;^UTILITY(U,$J,358.3,15562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15289,1,3,0)
- ;;=3^Malig Neop of Skin of Nose
- ;;^UTILITY(U,$J,358.3,15289,1,4,0)
- ;;=4^C44.301
- ;;^UTILITY(U,$J,358.3,15289,2)
- ;;=^5001041
- ;;^UTILITY(U,$J,358.3,15290,0)
- ;;=C44.309^^85^814^4
- ;;^UTILITY(U,$J,358.3,15290,1,0)
+ ;;^UTILITY(U,$J,358.3,15562,1,3,0)
+ ;;=3^Schizotypal Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15562,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,15562,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,15563,0)
+ ;;=F60.5^^58^677^7
+ ;;^UTILITY(U,$J,358.3,15563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15290,1,3,0)
- ;;=3^Malig Neop of Skin of Face NEC
- ;;^UTILITY(U,$J,358.3,15290,1,4,0)
- ;;=4^C44.309
- ;;^UTILITY(U,$J,358.3,15290,2)
- ;;=^5001042
- ;;^UTILITY(U,$J,358.3,15291,0)
- ;;=C44.40^^85^814^16
- ;;^UTILITY(U,$J,358.3,15291,1,0)
+ ;;^UTILITY(U,$J,358.3,15563,1,3,0)
+ ;;=3^Obsessive-Compulsive Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15563,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,15563,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,15564,0)
+ ;;=F60.4^^58^677^5
+ ;;^UTILITY(U,$J,358.3,15564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15291,1,3,0)
- ;;=3^Malig Neop of Skin of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,15291,1,4,0)
- ;;=4^C44.40
- ;;^UTILITY(U,$J,358.3,15291,2)
- ;;=^340600
- ;;^UTILITY(U,$J,358.3,15292,0)
- ;;=C44.500^^85^814^1
- ;;^UTILITY(U,$J,358.3,15292,1,0)
+ ;;^UTILITY(U,$J,358.3,15564,1,3,0)
+ ;;=3^Histrionic Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15564,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,15564,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,15565,0)
+ ;;=F60.7^^58^677^4
+ ;;^UTILITY(U,$J,358.3,15565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15292,1,3,0)
- ;;=3^Malig Neop of Anal Skin
+ ;;^UTILITY(U,$J,358.3,15565,1,3,0)
+ ;;=3^Dependent Personality Disorder
+ ;;^UTILITY(U,$J,358.3,15565,1,4,0)
+ ;;=4^F60.7

@@ -1,120 +1,132 @@
-IBDEI0UU ; ; 19-NOV-2015
+IBDEI0UU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14192,1,0)
+ ;;^UTILITY(U,$J,358.3,14461,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,14461,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,14462,0)
+ ;;=I83.219^^53^608^4
+ ;;^UTILITY(U,$J,358.3,14462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14192,1,3,0)
- ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14192,1,4,0)
- ;;=4^E10.329
- ;;^UTILITY(U,$J,358.3,14192,2)
- ;;=^5002595
- ;;^UTILITY(U,$J,358.3,14193,0)
- ;;=E10.331^^82^774^5
- ;;^UTILITY(U,$J,358.3,14193,1,0)
+ ;;^UTILITY(U,$J,358.3,14462,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,14462,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,14462,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,14463,0)
+ ;;=I83.029^^53^608^1
+ ;;^UTILITY(U,$J,358.3,14463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14193,1,3,0)
- ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14193,1,4,0)
- ;;=4^E10.331
- ;;^UTILITY(U,$J,358.3,14193,2)
- ;;=^5002596
- ;;^UTILITY(U,$J,358.3,14194,0)
- ;;=E10.339^^82^774^6
- ;;^UTILITY(U,$J,358.3,14194,1,0)
+ ;;^UTILITY(U,$J,358.3,14463,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,14463,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,14463,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,14464,0)
+ ;;=I83.229^^53^608^2
+ ;;^UTILITY(U,$J,358.3,14464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14194,1,3,0)
- ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14194,1,4,0)
- ;;=4^E10.339
- ;;^UTILITY(U,$J,358.3,14194,2)
- ;;=^5002597
- ;;^UTILITY(U,$J,358.3,14195,0)
- ;;=E10.341^^82^774^9
- ;;^UTILITY(U,$J,358.3,14195,1,0)
+ ;;^UTILITY(U,$J,358.3,14464,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,14464,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,14464,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,14465,0)
+ ;;=B00.81^^53^609^25
+ ;;^UTILITY(U,$J,358.3,14465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14195,1,3,0)
- ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14195,1,4,0)
- ;;=4^E10.341
- ;;^UTILITY(U,$J,358.3,14195,2)
- ;;=^5002598
- ;;^UTILITY(U,$J,358.3,14196,0)
- ;;=E10.349^^82^774^10
- ;;^UTILITY(U,$J,358.3,14196,1,0)
+ ;;^UTILITY(U,$J,358.3,14465,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,14465,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,14465,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,14466,0)
+ ;;=D25.9^^53^609^31
+ ;;^UTILITY(U,$J,358.3,14466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14196,1,3,0)
- ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14196,1,4,0)
- ;;=4^E10.349
- ;;^UTILITY(U,$J,358.3,14196,2)
- ;;=^5002599
- ;;^UTILITY(U,$J,358.3,14197,0)
- ;;=E10.351^^82^774^7
- ;;^UTILITY(U,$J,358.3,14197,1,0)
+ ;;^UTILITY(U,$J,358.3,14466,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,14466,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,14466,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,14467,0)
+ ;;=F52.9^^53^609^55
+ ;;^UTILITY(U,$J,358.3,14467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14197,1,3,0)
- ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14197,1,4,0)
- ;;=4^E10.351
- ;;^UTILITY(U,$J,358.3,14197,2)
- ;;=^5002600
- ;;^UTILITY(U,$J,358.3,14198,0)
- ;;=E10.359^^82^774^8
- ;;^UTILITY(U,$J,358.3,14198,1,0)
+ ;;^UTILITY(U,$J,358.3,14467,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,14467,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,14467,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,14468,0)
+ ;;=R37.^^53^609^56
+ ;;^UTILITY(U,$J,358.3,14468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14198,1,3,0)
- ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14198,1,4,0)
- ;;=4^E10.359
- ;;^UTILITY(U,$J,358.3,14198,2)
- ;;=^5002601
- ;;^UTILITY(U,$J,358.3,14199,0)
- ;;=E08.311^^82^774^33
- ;;^UTILITY(U,$J,358.3,14199,1,0)
+ ;;^UTILITY(U,$J,358.3,14468,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,14468,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,14468,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,14469,0)
+ ;;=N60.01^^53^609^59
+ ;;^UTILITY(U,$J,358.3,14469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14199,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14199,1,4,0)
- ;;=4^E08.311
- ;;^UTILITY(U,$J,358.3,14199,2)
- ;;=^5002510
- ;;^UTILITY(U,$J,358.3,14200,0)
- ;;=E08.319^^82^774^34
- ;;^UTILITY(U,$J,358.3,14200,1,0)
+ ;;^UTILITY(U,$J,358.3,14469,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,14469,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,14469,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,14470,0)
+ ;;=N60.02^^53^609^58
+ ;;^UTILITY(U,$J,358.3,14470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14200,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14200,1,4,0)
- ;;=4^E08.319
- ;;^UTILITY(U,$J,358.3,14200,2)
- ;;=^5002511
- ;;^UTILITY(U,$J,358.3,14201,0)
- ;;=E08.321^^82^774^35
- ;;^UTILITY(U,$J,358.3,14201,1,0)
+ ;;^UTILITY(U,$J,358.3,14470,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,14470,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,14470,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,14471,0)
+ ;;=N60.09^^53^609^60
+ ;;^UTILITY(U,$J,358.3,14471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14201,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14201,1,4,0)
- ;;=4^E08.321
- ;;^UTILITY(U,$J,358.3,14201,2)
- ;;=^5002512
- ;;^UTILITY(U,$J,358.3,14202,0)
- ;;=E08.329^^82^774^36
- ;;^UTILITY(U,$J,358.3,14202,1,0)
+ ;;^UTILITY(U,$J,358.3,14471,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,14471,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,14471,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,14472,0)
+ ;;=N60.11^^53^609^12
+ ;;^UTILITY(U,$J,358.3,14472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14202,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,14202,1,4,0)
- ;;=4^E08.329
- ;;^UTILITY(U,$J,358.3,14202,2)
- ;;=^5002513
- ;;^UTILITY(U,$J,358.3,14203,0)
- ;;=E08.331^^82^774^37
- ;;^UTILITY(U,$J,358.3,14203,1,0)
+ ;;^UTILITY(U,$J,358.3,14472,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,14472,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,14472,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,14473,0)
+ ;;=N60.12^^53^609^11
+ ;;^UTILITY(U,$J,358.3,14473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14203,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,14203,1,4,0)
- ;;=4^E08.331
+ ;;^UTILITY(U,$J,358.3,14473,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,14473,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,14473,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,14474,0)
+ ;;=N60.19^^53^609^13
+ ;;^UTILITY(U,$J,358.3,14474,1,0)
+ ;;=^358.31IA^4^2

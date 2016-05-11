@@ -1,138 +1,118 @@
-IBDEI1DH ; ; 19-NOV-2015
+IBDEI1DH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22880,1,0)
+ ;;^UTILITY(U,$J,358.3,23330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22880,1,3,0)
- ;;=3^Personal Hx Malig Neop Trachea
- ;;^UTILITY(U,$J,358.3,22880,1,4,0)
- ;;=4^Z85.12
- ;;^UTILITY(U,$J,358.3,22880,2)
- ;;=^5063409
- ;;^UTILITY(U,$J,358.3,22881,0)
- ;;=Z85.42^^104^1066^23
- ;;^UTILITY(U,$J,358.3,22881,1,0)
+ ;;^UTILITY(U,$J,358.3,23330,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23330,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,23330,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,23331,0)
+ ;;=S56.212A^^87^994^20
+ ;;^UTILITY(U,$J,358.3,23331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22881,1,3,0)
- ;;=3^Personal Hx Malig Neop Parts of Uterus
- ;;^UTILITY(U,$J,358.3,22881,1,4,0)
- ;;=4^Z85.42
- ;;^UTILITY(U,$J,358.3,22881,2)
- ;;=^5063419
- ;;^UTILITY(U,$J,358.3,22882,0)
- ;;=Z79.01^^104^1067^16
- ;;^UTILITY(U,$J,358.3,22882,1,0)
+ ;;^UTILITY(U,$J,358.3,23331,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23331,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,23331,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,23332,0)
+ ;;=S56.311A^^87^994^56
+ ;;^UTILITY(U,$J,358.3,23332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22882,1,3,0)
- ;;=3^L/T (Current) Use of Anticoagulants
- ;;^UTILITY(U,$J,358.3,22882,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,22882,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,22883,0)
- ;;=Z76.0^^104^1067^18
- ;;^UTILITY(U,$J,358.3,22883,1,0)
+ ;;^UTILITY(U,$J,358.3,23332,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23332,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,23332,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,23333,0)
+ ;;=S56.312A^^87^994^35
+ ;;^UTILITY(U,$J,358.3,23333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22883,1,3,0)
- ;;=3^Medication Renewal
- ;;^UTILITY(U,$J,358.3,22883,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,22883,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,22884,0)
- ;;=R79.1^^104^1067^2
- ;;^UTILITY(U,$J,358.3,22884,1,0)
+ ;;^UTILITY(U,$J,358.3,23333,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23333,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,23333,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,23334,0)
+ ;;=S56.411A^^87^994^44
+ ;;^UTILITY(U,$J,358.3,23334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22884,1,3,0)
- ;;=3^Abnormal Coagulation Profile
- ;;^UTILITY(U,$J,358.3,22884,1,4,0)
- ;;=4^R79.1
- ;;^UTILITY(U,$J,358.3,22884,2)
- ;;=^5019591
- ;;^UTILITY(U,$J,358.3,22885,0)
- ;;=Z95.810^^104^1067^1
- ;;^UTILITY(U,$J,358.3,22885,1,0)
+ ;;^UTILITY(U,$J,358.3,23334,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23334,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,23334,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,23335,0)
+ ;;=S56.412A^^87^994^24
+ ;;^UTILITY(U,$J,358.3,23335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22885,1,3,0)
- ;;=3^AICD
- ;;^UTILITY(U,$J,358.3,22885,1,4,0)
- ;;=4^Z95.810
- ;;^UTILITY(U,$J,358.3,22885,2)
- ;;=^5063674
- ;;^UTILITY(U,$J,358.3,22886,0)
- ;;=I25.3^^104^1067^3
- ;;^UTILITY(U,$J,358.3,22886,1,0)
+ ;;^UTILITY(U,$J,358.3,23335,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23335,1,4,0)
+ ;;=4^S56.412A
+ ;;^UTILITY(U,$J,358.3,23335,2)
+ ;;=^5031766
+ ;;^UTILITY(U,$J,358.3,23336,0)
+ ;;=S56.413A^^87^994^52
+ ;;^UTILITY(U,$J,358.3,23336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22886,1,3,0)
- ;;=3^Aneurysm of Heart
- ;;^UTILITY(U,$J,358.3,22886,1,4,0)
- ;;=4^I25.3
- ;;^UTILITY(U,$J,358.3,22886,2)
- ;;=^5007112
- ;;^UTILITY(U,$J,358.3,22887,0)
- ;;=I35.9^^104^1067^4
- ;;^UTILITY(U,$J,358.3,22887,1,0)
+ ;;^UTILITY(U,$J,358.3,23336,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23336,1,4,0)
+ ;;=4^S56.413A
+ ;;^UTILITY(U,$J,358.3,23336,2)
+ ;;=^5031769
+ ;;^UTILITY(U,$J,358.3,23337,0)
+ ;;=S56.414A^^87^994^32
+ ;;^UTILITY(U,$J,358.3,23337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22887,1,3,0)
- ;;=3^Aortic Valve Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,22887,1,4,0)
- ;;=4^I35.9
- ;;^UTILITY(U,$J,358.3,22887,2)
- ;;=^5007178
- ;;^UTILITY(U,$J,358.3,22888,0)
- ;;=Z95.2^^104^1067^26
- ;;^UTILITY(U,$J,358.3,22888,1,0)
+ ;;^UTILITY(U,$J,358.3,23337,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23337,1,4,0)
+ ;;=4^S56.414A
+ ;;^UTILITY(U,$J,358.3,23337,2)
+ ;;=^5031772
+ ;;^UTILITY(U,$J,358.3,23338,0)
+ ;;=S56.415A^^87^994^54
+ ;;^UTILITY(U,$J,358.3,23338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22888,1,3,0)
- ;;=3^Presence of Prosthetic Heart Valve
- ;;^UTILITY(U,$J,358.3,22888,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,22888,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,22889,0)
- ;;=I74.9^^104^1067^5
- ;;^UTILITY(U,$J,358.3,22889,1,0)
+ ;;^UTILITY(U,$J,358.3,23338,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23338,1,4,0)
+ ;;=4^S56.415A
+ ;;^UTILITY(U,$J,358.3,23338,2)
+ ;;=^5031775
+ ;;^UTILITY(U,$J,358.3,23339,0)
+ ;;=S56.416A^^87^994^34
+ ;;^UTILITY(U,$J,358.3,23339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22889,1,3,0)
- ;;=3^Arterial Embolism/Thrombosis,Unspec
- ;;^UTILITY(U,$J,358.3,22889,1,4,0)
- ;;=4^I74.9
- ;;^UTILITY(U,$J,358.3,22889,2)
- ;;=^5007805
- ;;^UTILITY(U,$J,358.3,22890,0)
- ;;=I48.91^^104^1067^6
- ;;^UTILITY(U,$J,358.3,22890,1,0)
+ ;;^UTILITY(U,$J,358.3,23339,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23339,1,4,0)
+ ;;=4^S56.416A
+ ;;^UTILITY(U,$J,358.3,23339,2)
+ ;;=^5031778
+ ;;^UTILITY(U,$J,358.3,23340,0)
+ ;;=S66.912A^^87^994^22
+ ;;^UTILITY(U,$J,358.3,23340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22890,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,22890,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,22890,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,22891,0)
- ;;=I48.92^^104^1067^7
- ;;^UTILITY(U,$J,358.3,22891,1,0)
+ ;;^UTILITY(U,$J,358.3,23340,1,3,0)
+ ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
+ ;;^UTILITY(U,$J,358.3,23340,1,4,0)
+ ;;=4^S66.912A
+ ;;^UTILITY(U,$J,358.3,23340,2)
+ ;;=^5036534
+ ;;^UTILITY(U,$J,358.3,23341,0)
+ ;;=S66.911A^^87^994^42
+ ;;^UTILITY(U,$J,358.3,23341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22891,1,3,0)
- ;;=3^Atrial Flutter,Unspec
- ;;^UTILITY(U,$J,358.3,22891,1,4,0)
- ;;=4^I48.92
- ;;^UTILITY(U,$J,358.3,22891,2)
- ;;=^5007230
- ;;^UTILITY(U,$J,358.3,22892,0)
- ;;=Z95.0^^104^1067^8
- ;;^UTILITY(U,$J,358.3,22892,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22892,1,3,0)
- ;;=3^Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,22892,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,22892,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,22893,0)
- ;;=I42.8^^104^1067^9
- ;;^UTILITY(U,$J,358.3,22893,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22893,1,3,0)
- ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,23341,1,3,0)
+ ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec

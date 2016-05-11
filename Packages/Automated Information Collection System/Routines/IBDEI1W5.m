@@ -1,132 +1,128 @@
-IBDEI1W5 ; ; 19-NOV-2015
+IBDEI1W5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31670,0)
- ;;=F60.4^^138^1444^5
- ;;^UTILITY(U,$J,358.3,31670,1,0)
+ ;;^UTILITY(U,$J,358.3,32111,1,3,0)
+ ;;=3^Disp fx of prox phalanx of rt lsr toe(s), init
+ ;;^UTILITY(U,$J,358.3,32111,1,4,0)
+ ;;=4^S92.511A
+ ;;^UTILITY(U,$J,358.3,32111,2)
+ ;;=^5045431
+ ;;^UTILITY(U,$J,358.3,32112,0)
+ ;;=S92.491A^^126^1609^212
+ ;;^UTILITY(U,$J,358.3,32112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31670,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,31670,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,31670,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,31671,0)
- ;;=F60.7^^138^1444^4
- ;;^UTILITY(U,$J,358.3,31671,1,0)
+ ;;^UTILITY(U,$J,358.3,32112,1,3,0)
+ ;;=3^Fx of rt grt toe, oth, init
+ ;;^UTILITY(U,$J,358.3,32112,1,4,0)
+ ;;=4^S92.491A
+ ;;^UTILITY(U,$J,358.3,32112,2)
+ ;;=^5045382
+ ;;^UTILITY(U,$J,358.3,32113,0)
+ ;;=S92.425A^^126^1609^313
+ ;;^UTILITY(U,$J,358.3,32113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31671,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,31671,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,31671,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,31672,0)
- ;;=F60.2^^138^1444^1
- ;;^UTILITY(U,$J,358.3,31672,1,0)
+ ;;^UTILITY(U,$J,358.3,32113,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of lft grt toe, init
+ ;;^UTILITY(U,$J,358.3,32113,1,4,0)
+ ;;=4^S92.425A
+ ;;^UTILITY(U,$J,358.3,32113,2)
+ ;;=^5045368
+ ;;^UTILITY(U,$J,358.3,32114,0)
+ ;;=S92.424A^^126^1609^315
+ ;;^UTILITY(U,$J,358.3,32114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31672,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,31672,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,31672,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,31673,0)
- ;;=F60.81^^138^1444^6
- ;;^UTILITY(U,$J,358.3,31673,1,0)
+ ;;^UTILITY(U,$J,358.3,32114,1,3,0)
+ ;;=3^Nondisp fx of dist phalanx of rt grt toe, init
+ ;;^UTILITY(U,$J,358.3,32114,1,4,0)
+ ;;=4^S92.424A
+ ;;^UTILITY(U,$J,358.3,32114,2)
+ ;;=^5045361
+ ;;^UTILITY(U,$J,358.3,32115,0)
+ ;;=S92.505A^^126^1609^323
+ ;;^UTILITY(U,$J,358.3,32115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31673,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,31673,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,31673,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,31674,0)
- ;;=F60.6^^138^1444^2
- ;;^UTILITY(U,$J,358.3,31674,1,0)
+ ;;^UTILITY(U,$J,358.3,32115,1,3,0)
+ ;;=3^Nondisp fx of lft lsr toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,32115,1,4,0)
+ ;;=4^S92.505A
+ ;;^UTILITY(U,$J,358.3,32115,2)
+ ;;=^5045424
+ ;;^UTILITY(U,$J,358.3,32116,0)
+ ;;=S92.504A^^126^1609^353
+ ;;^UTILITY(U,$J,358.3,32116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31674,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,31674,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,31674,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,31675,0)
- ;;=F60.3^^138^1444^3
- ;;^UTILITY(U,$J,358.3,31675,1,0)
+ ;;^UTILITY(U,$J,358.3,32116,1,3,0)
+ ;;=3^Nondisp fx of rt lsr toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,32116,1,4,0)
+ ;;=4^S92.504A
+ ;;^UTILITY(U,$J,358.3,32116,2)
+ ;;=^5045417
+ ;;^UTILITY(U,$J,358.3,32117,0)
+ ;;=S92.502A^^126^1609^98
+ ;;^UTILITY(U,$J,358.3,32117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31675,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,31675,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,31675,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,31676,0)
- ;;=F60.89^^138^1444^9
- ;;^UTILITY(U,$J,358.3,31676,1,0)
+ ;;^UTILITY(U,$J,358.3,32117,1,3,0)
+ ;;=3^Disp fx of lft lsr toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,32117,1,4,0)
+ ;;=4^S92.502A
+ ;;^UTILITY(U,$J,358.3,32117,2)
+ ;;=^5045410
+ ;;^UTILITY(U,$J,358.3,32118,0)
+ ;;=S92.501A^^126^1609^127
+ ;;^UTILITY(U,$J,358.3,32118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31676,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,31676,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,31676,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,31677,0)
- ;;=F60.9^^138^1444^10
- ;;^UTILITY(U,$J,358.3,31677,1,0)
+ ;;^UTILITY(U,$J,358.3,32118,1,3,0)
+ ;;=3^Disp fx of rt lsr toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,32118,1,4,0)
+ ;;=4^S92.501A
+ ;;^UTILITY(U,$J,358.3,32118,2)
+ ;;=^5045403
+ ;;^UTILITY(U,$J,358.3,32119,0)
+ ;;=S92.492A^^126^1609^195
+ ;;^UTILITY(U,$J,358.3,32119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31677,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31677,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,31677,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,31678,0)
- ;;=Z65.4^^138^1445^4
- ;;^UTILITY(U,$J,358.3,31678,1,0)
+ ;;^UTILITY(U,$J,358.3,32119,1,3,0)
+ ;;=3^Fx of lft grt toe, oth, init
+ ;;^UTILITY(U,$J,358.3,32119,1,4,0)
+ ;;=4^S92.492A
+ ;;^UTILITY(U,$J,358.3,32119,2)
+ ;;=^5045389
+ ;;^UTILITY(U,$J,358.3,32120,0)
+ ;;=T33.822S^^126^1609^1
+ ;;^UTILITY(U,$J,358.3,32120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31678,1,3,0)
- ;;=3^Victim of Crime,Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,31678,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,31678,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,31679,0)
- ;;=Z65.0^^138^1445^1
- ;;^UTILITY(U,$J,358.3,31679,1,0)
+ ;;^UTILITY(U,$J,358.3,32120,1,3,0)
+ ;;=3
+ ;;^UTILITY(U,$J,358.3,32120,1,4,0)
+ ;;=4^T33.822S
+ ;;^UTILITY(U,$J,358.3,32120,2)
+ ;;=Superficial Frostbite of lft ft, sequela^5049126
+ ;;^UTILITY(U,$J,358.3,32121,0)
+ ;;=S92.911A^^126^1609^221
+ ;;^UTILITY(U,$J,358.3,32121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31679,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,31679,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,31679,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,31680,0)
- ;;=Z65.2^^138^1445^3
- ;;^UTILITY(U,$J,358.3,31680,1,0)
+ ;;^UTILITY(U,$J,358.3,32121,1,3,0)
+ ;;=3^Fx of rt toe(s), unspec, init
+ ;;^UTILITY(U,$J,358.3,32121,1,4,0)
+ ;;=4^S92.911A
+ ;;^UTILITY(U,$J,358.3,32121,2)
+ ;;=^5045592
+ ;;^UTILITY(U,$J,358.3,32122,0)
+ ;;=T34.821S^^126^1609^187
+ ;;^UTILITY(U,$J,358.3,32122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31680,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,31680,1,4,0)
- ;;=4^Z65.2
- ;;^UTILITY(U,$J,358.3,31680,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,31681,0)
- ;;=Z65.3^^138^1445^2
- ;;^UTILITY(U,$J,358.3,31681,1,0)
+ ;;^UTILITY(U,$J,358.3,32122,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of rt ft, sequela
+ ;;^UTILITY(U,$J,358.3,32122,1,4,0)
+ ;;=4^T34.821S
+ ;;^UTILITY(U,$J,358.3,32122,2)
+ ;;=^5049234
+ ;;^UTILITY(U,$J,358.3,32123,0)
+ ;;=T34.822S^^126^1609^182
+ ;;^UTILITY(U,$J,358.3,32123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31681,1,3,0)
- ;;=3^Problems Related to Oth Legal Circumstances
- ;;^UTILITY(U,$J,358.3,31681,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,31681,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,31682,0)
- ;;=Z65.8^^138^1446^5
- ;;^UTILITY(U,$J,358.3,31682,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31682,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,31682,1,4,0)
- ;;=4^Z65.8
+ ;;^UTILITY(U,$J,358.3,32123,1,3,0)
+ ;;=3^Frostbite w/ tissue necrosis of lft ft, seqeula
+ ;;^UTILITY(U,$J,358.3,32123,1,4,0)
+ ;;=4^T34.822S

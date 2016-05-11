@@ -1,112 +1,140 @@
-IBDEI2HG ; ; 19-NOV-2015
+IBDEI2HG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41666,1,3,0)
- ;;=3^28299
- ;;^UTILITY(U,$J,358.3,41667,0)
- ;;=28300^^191^2119^23^^^^1
- ;;^UTILITY(U,$J,358.3,41667,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41667,1,2,0)
- ;;=2^Resection of joint by Lapidus Type
- ;;^UTILITY(U,$J,358.3,41667,1,3,0)
- ;;=3^28300
- ;;^UTILITY(U,$J,358.3,41668,0)
- ;;=28302^^191^2119^13^^^^1
- ;;^UTILITY(U,$J,358.3,41668,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41668,1,2,0)
- ;;=2^Osteotomy; talus
- ;;^UTILITY(U,$J,358.3,41668,1,3,0)
- ;;=3^28302
- ;;^UTILITY(U,$J,358.3,41669,0)
- ;;=28304^^191^2119^10^^^^1
- ;;^UTILITY(U,$J,358.3,41669,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41669,1,2,0)
- ;;=2^Osteotomy, tarsal bones, other than calcaneus or talus
- ;;^UTILITY(U,$J,358.3,41669,1,3,0)
- ;;=3^28304
- ;;^UTILITY(U,$J,358.3,41670,0)
- ;;=28306^^191^2119^11^^^^1
- ;;^UTILITY(U,$J,358.3,41670,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41670,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; 1st metatarsal
- ;;^UTILITY(U,$J,358.3,41670,1,3,0)
- ;;=3^28306
- ;;^UTILITY(U,$J,358.3,41671,0)
- ;;=28308^^191^2119^12^^^^1
- ;;^UTILITY(U,$J,358.3,41671,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41671,1,2,0)
- ;;=2^Osteotomy, with or without lengthening, shortening or angular correction, metatarsal; other than first metatarsal, each
- ;;^UTILITY(U,$J,358.3,41671,1,3,0)
- ;;=3^28308
- ;;^UTILITY(U,$J,358.3,41672,0)
- ;;=28315^^191^2119^27^^^^1
- ;;^UTILITY(U,$J,358.3,41672,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41672,1,2,0)
- ;;=2^Sesamoidectomy, first toe
- ;;^UTILITY(U,$J,358.3,41672,1,3,0)
- ;;=3^28315
- ;;^UTILITY(U,$J,358.3,41673,0)
- ;;=28001^^191^2120^1^^^^1
- ;;^UTILITY(U,$J,358.3,41673,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41673,1,2,0)
- ;;=2^Incision and Drainage, bursa, foot
- ;;^UTILITY(U,$J,358.3,41673,1,3,0)
- ;;=3^28001
- ;;^UTILITY(U,$J,358.3,41674,0)
- ;;=28002^^191^2120^2^^^^1
- ;;^UTILITY(U,$J,358.3,41674,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41674,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; single bursal space 
- ;;^UTILITY(U,$J,358.3,41674,1,3,0)
- ;;=3^28002
- ;;^UTILITY(U,$J,358.3,41675,0)
- ;;=28003^^191^2120^3^^^^1
- ;;^UTILITY(U,$J,358.3,41675,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41675,1,2,0)
- ;;=2^Incision and Drainage below fascia, with/without tendon sheath involvement, foot; multiple areas 
- ;;^UTILITY(U,$J,358.3,41675,1,3,0)
- ;;=3^28003
- ;;^UTILITY(U,$J,358.3,41676,0)
- ;;=28008^^191^2120^4^^^^1
- ;;^UTILITY(U,$J,358.3,41676,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41676,1,2,0)
- ;;=2^Fasciotomy, foot and/or toe
- ;;^UTILITY(U,$J,358.3,41676,1,3,0)
- ;;=3^28008
- ;;^UTILITY(U,$J,358.3,41677,0)
- ;;=28010^^191^2120^5^^^^1
- ;;^UTILITY(U,$J,358.3,41677,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41677,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; single tendon
- ;;^UTILITY(U,$J,358.3,41677,1,3,0)
- ;;=3^28010
- ;;^UTILITY(U,$J,358.3,41678,0)
- ;;=28011^^191^2120^6^^^^1
- ;;^UTILITY(U,$J,358.3,41678,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41678,1,2,0)
- ;;=2^Tenotomy, percutaneous, toe; multiple tendons
- ;;^UTILITY(U,$J,358.3,41678,1,3,0)
- ;;=3^28011
- ;;^UTILITY(U,$J,358.3,41679,0)
- ;;=28020^^191^2120^7^^^^1
- ;;^UTILITY(U,$J,358.3,41679,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41679,1,2,0)
- ;;=2^Arthrotomy, including exploration, drainage, or removal of loose or foreign body; intertarsal or tarsometatarsal joint
- ;;^UTILITY(U,$J,358.3,41679,1,3,0)
- ;;=3^28020
- ;;^UTILITY(U,$J,358.3,41680,0)
- ;;=28022^^191^2120^8^^^^1
+ ;;^UTILITY(U,$J,358.3,42107,1,4,0)
+ ;;=4^R22.43
+ ;;^UTILITY(U,$J,358.3,42107,2)
+ ;;=^5019291
+ ;;^UTILITY(U,$J,358.3,42108,0)
+ ;;=R22.9^^159^2016^112
+ ;;^UTILITY(U,$J,358.3,42108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42108,1,3,0)
+ ;;=3^Localized Swelling/Mass/Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,42108,1,4,0)
+ ;;=4^R22.9
+ ;;^UTILITY(U,$J,358.3,42108,2)
+ ;;=^5019292
+ ;;^UTILITY(U,$J,358.3,42109,0)
+ ;;=R23.0^^159^2016^57
+ ;;^UTILITY(U,$J,358.3,42109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42109,1,3,0)
+ ;;=3^Cyanosis
+ ;;^UTILITY(U,$J,358.3,42109,1,4,0)
+ ;;=4^R23.0
+ ;;^UTILITY(U,$J,358.3,42109,2)
+ ;;=^5019293
+ ;;^UTILITY(U,$J,358.3,42110,0)
+ ;;=R23.1^^159^2016^128
+ ;;^UTILITY(U,$J,358.3,42110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42110,1,3,0)
+ ;;=3^Pallor
+ ;;^UTILITY(U,$J,358.3,42110,1,4,0)
+ ;;=4^R23.1
+ ;;^UTILITY(U,$J,358.3,42110,2)
+ ;;=^5019294
+ ;;^UTILITY(U,$J,358.3,42111,0)
+ ;;=R23.2^^159^2016^75
+ ;;^UTILITY(U,$J,358.3,42111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42111,1,3,0)
+ ;;=3^Flushing
+ ;;^UTILITY(U,$J,358.3,42111,1,4,0)
+ ;;=4^R23.2
+ ;;^UTILITY(U,$J,358.3,42111,2)
+ ;;=^47184
+ ;;^UTILITY(U,$J,358.3,42112,0)
+ ;;=R23.4^^159^2016^147
+ ;;^UTILITY(U,$J,358.3,42112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42112,1,3,0)
+ ;;=3^Skin Texture Changes
+ ;;^UTILITY(U,$J,358.3,42112,1,4,0)
+ ;;=4^R23.4
+ ;;^UTILITY(U,$J,358.3,42112,2)
+ ;;=^5019296
+ ;;^UTILITY(U,$J,358.3,42113,0)
+ ;;=R26.0^^159^2016^43
+ ;;^UTILITY(U,$J,358.3,42113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42113,1,3,0)
+ ;;=3^Ataxic Gait
+ ;;^UTILITY(U,$J,358.3,42113,1,4,0)
+ ;;=4^R26.0
+ ;;^UTILITY(U,$J,358.3,42113,2)
+ ;;=^5019304
+ ;;^UTILITY(U,$J,358.3,42114,0)
+ ;;=R26.1^^159^2016^130
+ ;;^UTILITY(U,$J,358.3,42114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42114,1,3,0)
+ ;;=3^Paralytic Gait
+ ;;^UTILITY(U,$J,358.3,42114,1,4,0)
+ ;;=4^R26.1
+ ;;^UTILITY(U,$J,358.3,42114,2)
+ ;;=^5019305
+ ;;^UTILITY(U,$J,358.3,42115,0)
+ ;;=R26.81^^159^2016^156
+ ;;^UTILITY(U,$J,358.3,42115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42115,1,3,0)
+ ;;=3^Unsteadiness on Feet
+ ;;^UTILITY(U,$J,358.3,42115,1,4,0)
+ ;;=4^R26.81
+ ;;^UTILITY(U,$J,358.3,42115,2)
+ ;;=^5019307
+ ;;^UTILITY(U,$J,358.3,42116,0)
+ ;;=R26.89^^159^2016^30
+ ;;^UTILITY(U,$J,358.3,42116,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42116,1,3,0)
+ ;;=3^Abnormalities of Gait and Mobility NEC
+ ;;^UTILITY(U,$J,358.3,42116,1,4,0)
+ ;;=4^R26.89
+ ;;^UTILITY(U,$J,358.3,42116,2)
+ ;;=^5019308
+ ;;^UTILITY(U,$J,358.3,42117,0)
+ ;;=R26.9^^159^2016^31
+ ;;^UTILITY(U,$J,358.3,42117,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42117,1,3,0)
+ ;;=3^Abnormalities of Gait and Mobility,Unspec
+ ;;^UTILITY(U,$J,358.3,42117,1,4,0)
+ ;;=4^R26.9
+ ;;^UTILITY(U,$J,358.3,42117,2)
+ ;;=^5019309
+ ;;^UTILITY(U,$J,358.3,42118,0)
+ ;;=R27.0^^159^2016^42
+ ;;^UTILITY(U,$J,358.3,42118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42118,1,3,0)
+ ;;=3^Ataxia,Unspec
+ ;;^UTILITY(U,$J,358.3,42118,1,4,0)
+ ;;=4^R27.0
+ ;;^UTILITY(U,$J,358.3,42118,2)
+ ;;=^5019310
+ ;;^UTILITY(U,$J,358.3,42119,0)
+ ;;=R27.8^^159^2016^100
+ ;;^UTILITY(U,$J,358.3,42119,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42119,1,3,0)
+ ;;=3^Lack of Coordination NEC
+ ;;^UTILITY(U,$J,358.3,42119,1,4,0)
+ ;;=4^R27.8
+ ;;^UTILITY(U,$J,358.3,42119,2)
+ ;;=^5019311
+ ;;^UTILITY(U,$J,358.3,42120,0)
+ ;;=R27.9^^159^2016^101
+ ;;^UTILITY(U,$J,358.3,42120,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42120,1,3,0)
+ ;;=3^Lack of Coordination,Unspec
+ ;;^UTILITY(U,$J,358.3,42120,1,4,0)
+ ;;=4^R27.9
+ ;;^UTILITY(U,$J,358.3,42120,2)
+ ;;=^5019312
+ ;;^UTILITY(U,$J,358.3,42121,0)
+ ;;=R29.0^^159^2016^153

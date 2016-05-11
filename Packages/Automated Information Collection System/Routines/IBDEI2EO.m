@@ -1,132 +1,120 @@
-IBDEI2EO ; ; 19-NOV-2015
+IBDEI2EO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40406,1,0)
+ ;;^UTILITY(U,$J,358.3,40812,0)
+ ;;=L97.522^^159^1993^182
+ ;;^UTILITY(U,$J,358.3,40812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40406,1,3,0)
- ;;=3^Lipoma of Skin/Subcutaneous Tissue,Trunk
- ;;^UTILITY(U,$J,358.3,40406,1,4,0)
- ;;=4^D17.1
- ;;^UTILITY(U,$J,358.3,40406,2)
- ;;=^5002006
- ;;^UTILITY(U,$J,358.3,40407,0)
- ;;=C44.202^^186^2076^334
- ;;^UTILITY(U,$J,358.3,40407,1,0)
+ ;;^UTILITY(U,$J,358.3,40812,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,40812,1,4,0)
+ ;;=4^L97.522
+ ;;^UTILITY(U,$J,358.3,40812,2)
+ ;;=^5009551
+ ;;^UTILITY(U,$J,358.3,40813,0)
+ ;;=L97.523^^159^1993^183
+ ;;^UTILITY(U,$J,358.3,40813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40407,1,3,0)
- ;;=3^Malig Neop Skin,Unspec,Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,40407,1,4,0)
- ;;=4^C44.202
- ;;^UTILITY(U,$J,358.3,40407,2)
- ;;=^5001029
- ;;^UTILITY(U,$J,358.3,40408,0)
- ;;=C44.292^^186^2076^330
- ;;^UTILITY(U,$J,358.3,40408,1,0)
+ ;;^UTILITY(U,$J,358.3,40813,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,40813,1,4,0)
+ ;;=4^L97.523
+ ;;^UTILITY(U,$J,358.3,40813,2)
+ ;;=^5009552
+ ;;^UTILITY(U,$J,358.3,40814,0)
+ ;;=L97.524^^159^1993^184
+ ;;^UTILITY(U,$J,358.3,40814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40408,1,3,0)
- ;;=3^Malig Neop Skin,Oth,Right Ear/External Auric Canal NEC
- ;;^UTILITY(U,$J,358.3,40408,1,4,0)
- ;;=4^C44.292
- ;;^UTILITY(U,$J,358.3,40408,2)
- ;;=^5001038
- ;;^UTILITY(U,$J,358.3,40409,0)
- ;;=C44.509^^186^2076^335
- ;;^UTILITY(U,$J,358.3,40409,1,0)
+ ;;^UTILITY(U,$J,358.3,40814,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,40814,1,4,0)
+ ;;=4^L97.524
+ ;;^UTILITY(U,$J,358.3,40814,2)
+ ;;=^5009553
+ ;;^UTILITY(U,$J,358.3,40815,0)
+ ;;=L97.529^^159^1993^185
+ ;;^UTILITY(U,$J,358.3,40815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40409,1,3,0)
- ;;=3^Malig Neop Skin,Unspec,Trunk
- ;;^UTILITY(U,$J,358.3,40409,1,4,0)
- ;;=4^C44.509
- ;;^UTILITY(U,$J,358.3,40409,2)
- ;;=^5001053
- ;;^UTILITY(U,$J,358.3,40410,0)
- ;;=C43.22^^186^2076^306
- ;;^UTILITY(U,$J,358.3,40410,1,0)
+ ;;^UTILITY(U,$J,358.3,40815,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Foot w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,40815,1,4,0)
+ ;;=4^L97.529
+ ;;^UTILITY(U,$J,358.3,40815,2)
+ ;;=^5009554
+ ;;^UTILITY(U,$J,358.3,40816,0)
+ ;;=L97.911^^159^1993^221
+ ;;^UTILITY(U,$J,358.3,40816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40410,1,3,0)
- ;;=3^Malig Melanoma,Left Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,40410,1,4,0)
- ;;=4^C43.22
- ;;^UTILITY(U,$J,358.3,40410,2)
- ;;=^5001000
- ;;^UTILITY(U,$J,358.3,40411,0)
- ;;=C43.12^^186^2076^307
- ;;^UTILITY(U,$J,358.3,40411,1,0)
+ ;;^UTILITY(U,$J,358.3,40816,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,40816,1,4,0)
+ ;;=4^L97.911
+ ;;^UTILITY(U,$J,358.3,40816,2)
+ ;;=^5133679
+ ;;^UTILITY(U,$J,358.3,40817,0)
+ ;;=L97.912^^159^1993^222
+ ;;^UTILITY(U,$J,358.3,40817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40411,1,3,0)
- ;;=3^Malig Melanoma,Left Eyelid
- ;;^UTILITY(U,$J,358.3,40411,1,4,0)
- ;;=4^C43.12
- ;;^UTILITY(U,$J,358.3,40411,2)
- ;;=^5000997
- ;;^UTILITY(U,$J,358.3,40412,0)
- ;;=C43.0^^186^2076^308
- ;;^UTILITY(U,$J,358.3,40412,1,0)
+ ;;^UTILITY(U,$J,358.3,40817,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,40817,1,4,0)
+ ;;=4^L97.912
+ ;;^UTILITY(U,$J,358.3,40817,2)
+ ;;=^5133681
+ ;;^UTILITY(U,$J,358.3,40818,0)
+ ;;=L97.913^^159^1993^223
+ ;;^UTILITY(U,$J,358.3,40818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40412,1,3,0)
- ;;=3^Malig Melanoma,Lip
- ;;^UTILITY(U,$J,358.3,40412,1,4,0)
- ;;=4^C43.0
- ;;^UTILITY(U,$J,358.3,40412,2)
- ;;=^5000994
- ;;^UTILITY(U,$J,358.3,40413,0)
- ;;=C43.31^^186^2076^309
- ;;^UTILITY(U,$J,358.3,40413,1,0)
+ ;;^UTILITY(U,$J,358.3,40818,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,40818,1,4,0)
+ ;;=4^L97.913
+ ;;^UTILITY(U,$J,358.3,40818,2)
+ ;;=^5133683
+ ;;^UTILITY(U,$J,358.3,40819,0)
+ ;;=L97.914^^159^1993^224
+ ;;^UTILITY(U,$J,358.3,40819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40413,1,3,0)
- ;;=3^Malig Melanoma,Nose
- ;;^UTILITY(U,$J,358.3,40413,1,4,0)
- ;;=4^C43.31
- ;;^UTILITY(U,$J,358.3,40413,2)
- ;;=^5001002
- ;;^UTILITY(U,$J,358.3,40414,0)
- ;;=C43.39^^186^2076^310
- ;;^UTILITY(U,$J,358.3,40414,1,0)
+ ;;^UTILITY(U,$J,358.3,40819,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,40819,1,4,0)
+ ;;=4^L97.914
+ ;;^UTILITY(U,$J,358.3,40819,2)
+ ;;=^5133685
+ ;;^UTILITY(U,$J,358.3,40820,0)
+ ;;=L97.919^^159^1993^225
+ ;;^UTILITY(U,$J,358.3,40820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40414,1,3,0)
- ;;=3^Malig Melanoma,Oth Parts of Face
- ;;^UTILITY(U,$J,358.3,40414,1,4,0)
- ;;=4^C43.39
- ;;^UTILITY(U,$J,358.3,40414,2)
- ;;=^5001003
- ;;^UTILITY(U,$J,358.3,40415,0)
- ;;=C43.21^^186^2076^311
- ;;^UTILITY(U,$J,358.3,40415,1,0)
+ ;;^UTILITY(U,$J,358.3,40820,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,40820,1,4,0)
+ ;;=4^L97.919
+ ;;^UTILITY(U,$J,358.3,40820,2)
+ ;;=^5133688
+ ;;^UTILITY(U,$J,358.3,40821,0)
+ ;;=L97.921^^159^1993^191
+ ;;^UTILITY(U,$J,358.3,40821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40415,1,3,0)
- ;;=3^Malig Melanoma,Right Ear/External Auric Canal
- ;;^UTILITY(U,$J,358.3,40415,1,4,0)
- ;;=4^C43.21
- ;;^UTILITY(U,$J,358.3,40415,2)
- ;;=^5000999
- ;;^UTILITY(U,$J,358.3,40416,0)
- ;;=C43.11^^186^2076^312
- ;;^UTILITY(U,$J,358.3,40416,1,0)
+ ;;^UTILITY(U,$J,358.3,40821,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,40821,1,4,0)
+ ;;=4^L97.921
+ ;;^UTILITY(U,$J,358.3,40821,2)
+ ;;=^5133680
+ ;;^UTILITY(U,$J,358.3,40822,0)
+ ;;=L97.922^^159^1993^192
+ ;;^UTILITY(U,$J,358.3,40822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40416,1,3,0)
- ;;=3^Malig Melanoma,Right Eyelid
- ;;^UTILITY(U,$J,358.3,40416,1,4,0)
- ;;=4^C43.11
- ;;^UTILITY(U,$J,358.3,40416,2)
- ;;=^5000996
- ;;^UTILITY(U,$J,358.3,40417,0)
- ;;=C43.4^^186^2076^313
- ;;^UTILITY(U,$J,358.3,40417,1,0)
+ ;;^UTILITY(U,$J,358.3,40822,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,40822,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,40822,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,40823,0)
+ ;;=L97.923^^159^1993^193
+ ;;^UTILITY(U,$J,358.3,40823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40417,1,3,0)
- ;;=3^Malig Melanoma,Scalp/Neck
- ;;^UTILITY(U,$J,358.3,40417,1,4,0)
- ;;=4^C43.4
- ;;^UTILITY(U,$J,358.3,40417,2)
- ;;=^5001004
- ;;^UTILITY(U,$J,358.3,40418,0)
- ;;=C43.59^^186^2076^315
- ;;^UTILITY(U,$J,358.3,40418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40418,1,3,0)
- ;;=3^Malig Melanoma,Trunk Oth Part
- ;;^UTILITY(U,$J,358.3,40418,1,4,0)
- ;;=4^C43.59
- ;;^UTILITY(U,$J,358.3,40418,2)
- ;;=^5001007
+ ;;^UTILITY(U,$J,358.3,40823,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle

@@ -1,124 +1,132 @@
-IBDEI1I0 ; ; 19-NOV-2015
+IBDEI1I0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25047,1,0)
+ ;;^UTILITY(U,$J,358.3,25429,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,25429,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,25430,0)
+ ;;=G25.81^^95^1164^23
+ ;;^UTILITY(U,$J,358.3,25430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25047,1,3,0)
- ;;=3^Postprocedure Cardiac Functn Disturb Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25047,1,4,0)
- ;;=4^I97.190
- ;;^UTILITY(U,$J,358.3,25047,2)
- ;;=^5008089
- ;;^UTILITY(U,$J,358.3,25048,0)
- ;;=I97.191^^124^1239^199
- ;;^UTILITY(U,$J,358.3,25048,1,0)
+ ;;^UTILITY(U,$J,358.3,25430,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,25430,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,25430,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,25431,0)
+ ;;=G47.19^^95^1164^11
+ ;;^UTILITY(U,$J,358.3,25431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25048,1,3,0)
- ;;=3^Postprocedure Cardiac Functn Disturb Following Oth Surgery
- ;;^UTILITY(U,$J,358.3,25048,1,4,0)
- ;;=4^I97.191
- ;;^UTILITY(U,$J,358.3,25048,2)
- ;;=^5008090
- ;;^UTILITY(U,$J,358.3,25049,0)
- ;;=I97.710^^124^1239^92
- ;;^UTILITY(U,$J,358.3,25049,1,0)
+ ;;^UTILITY(U,$J,358.3,25431,1,3,0)
+ ;;=3^Hypersomnolence Disorder NEC
+ ;;^UTILITY(U,$J,358.3,25431,1,4,0)
+ ;;=4^G47.19
+ ;;^UTILITY(U,$J,358.3,25431,2)
+ ;;=^5003973
+ ;;^UTILITY(U,$J,358.3,25432,0)
+ ;;=G47.8^^95^1164^27
+ ;;^UTILITY(U,$J,358.3,25432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25049,1,3,0)
- ;;=3^Intraoperative Cardiac Arrensst During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25049,1,4,0)
- ;;=4^I97.710
- ;;^UTILITY(U,$J,358.3,25049,2)
- ;;=^5008103
- ;;^UTILITY(U,$J,358.3,25050,0)
- ;;=I97.711^^124^1239^93
- ;;^UTILITY(U,$J,358.3,25050,1,0)
+ ;;^UTILITY(U,$J,358.3,25432,1,3,0)
+ ;;=3^Sleep-Wake Disorder NEC
+ ;;^UTILITY(U,$J,358.3,25432,1,4,0)
+ ;;=4^G47.8
+ ;;^UTILITY(U,$J,358.3,25432,2)
+ ;;=^5003989
+ ;;^UTILITY(U,$J,358.3,25433,0)
+ ;;=G47.411^^95^1164^16
+ ;;^UTILITY(U,$J,358.3,25433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25050,1,3,0)
- ;;=3^Intraoperative Cardiac Arrest During Oth Surgery
- ;;^UTILITY(U,$J,358.3,25050,1,4,0)
- ;;=4^I97.711
- ;;^UTILITY(U,$J,358.3,25050,2)
- ;;=^5008104
- ;;^UTILITY(U,$J,358.3,25051,0)
- ;;=I97.790^^124^1239^94
- ;;^UTILITY(U,$J,358.3,25051,1,0)
+ ;;^UTILITY(U,$J,358.3,25433,1,3,0)
+ ;;=3^Narcolepsy w/ Cataplexy w/o Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,25433,1,4,0)
+ ;;=4^G47.411
+ ;;^UTILITY(U,$J,358.3,25433,2)
+ ;;=^5003981
+ ;;^UTILITY(U,$J,358.3,25434,0)
+ ;;=G47.37^^95^1164^2
+ ;;^UTILITY(U,$J,358.3,25434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25051,1,3,0)
- ;;=3^Intraoperative Cardiac Functn Disturb During Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,25051,1,4,0)
- ;;=4^I97.790
- ;;^UTILITY(U,$J,358.3,25051,2)
- ;;=^5008105
- ;;^UTILITY(U,$J,358.3,25052,0)
- ;;=I97.791^^124^1239^95
- ;;^UTILITY(U,$J,358.3,25052,1,0)
+ ;;^UTILITY(U,$J,358.3,25434,1,3,0)
+ ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
+ ;;^UTILITY(U,$J,358.3,25434,1,4,0)
+ ;;=4^G47.37
+ ;;^UTILITY(U,$J,358.3,25434,2)
+ ;;=^332767
+ ;;^UTILITY(U,$J,358.3,25435,0)
+ ;;=G47.31^^95^1164^3
+ ;;^UTILITY(U,$J,358.3,25435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25052,1,3,0)
- ;;=3^Intraoperative Cardiac Functn Disturb During Oth Surgery
- ;;^UTILITY(U,$J,358.3,25052,1,4,0)
- ;;=4^I97.791
- ;;^UTILITY(U,$J,358.3,25052,2)
- ;;=^5008106
- ;;^UTILITY(U,$J,358.3,25053,0)
- ;;=T81.72XA^^124^1239^25
- ;;^UTILITY(U,$J,358.3,25053,1,0)
+ ;;^UTILITY(U,$J,358.3,25435,1,3,0)
+ ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,25435,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,25435,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,25436,0)
+ ;;=F51.11^^95^1164^10
+ ;;^UTILITY(U,$J,358.3,25436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25053,1,3,0)
- ;;=3^Complication of Vein Following Procedure NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,25053,1,4,0)
- ;;=4^T81.72XA
- ;;^UTILITY(U,$J,358.3,25053,2)
- ;;=^5054650
- ;;^UTILITY(U,$J,358.3,25054,0)
- ;;=J95.88^^124^1239^98
- ;;^UTILITY(U,$J,358.3,25054,1,0)
+ ;;^UTILITY(U,$J,358.3,25436,1,3,0)
+ ;;=3^Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,25436,1,4,0)
+ ;;=4^F51.11
+ ;;^UTILITY(U,$J,358.3,25436,2)
+ ;;=^5003609
+ ;;^UTILITY(U,$J,358.3,25437,0)
+ ;;=F51.01^^95^1164^13
+ ;;^UTILITY(U,$J,358.3,25437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25054,1,3,0)
- ;;=3^Intraoperative Complications of Respiratory System NEC
- ;;^UTILITY(U,$J,358.3,25054,1,4,0)
- ;;=4^J95.88
- ;;^UTILITY(U,$J,358.3,25054,2)
- ;;=^5008345
- ;;^UTILITY(U,$J,358.3,25055,0)
- ;;=J95.89^^124^1239^202
- ;;^UTILITY(U,$J,358.3,25055,1,0)
+ ;;^UTILITY(U,$J,358.3,25437,1,3,0)
+ ;;=3^Insomnia Disorder
+ ;;^UTILITY(U,$J,358.3,25437,1,4,0)
+ ;;=4^F51.01
+ ;;^UTILITY(U,$J,358.3,25437,2)
+ ;;=^5003603
+ ;;^UTILITY(U,$J,358.3,25438,0)
+ ;;=G47.36^^95^1164^24
+ ;;^UTILITY(U,$J,358.3,25438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25055,1,3,0)
- ;;=3^Postprocedure Complications/Disorders of Respiratory System NEC
- ;;^UTILITY(U,$J,358.3,25055,1,4,0)
- ;;=4^J95.89
- ;;^UTILITY(U,$J,358.3,25055,2)
- ;;=^5008346
- ;;^UTILITY(U,$J,358.3,25056,0)
- ;;=K91.3^^124^1239^194
- ;;^UTILITY(U,$J,358.3,25056,1,0)
+ ;;^UTILITY(U,$J,358.3,25438,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
+ ;;^UTILITY(U,$J,358.3,25438,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,25438,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,25439,0)
+ ;;=G47.35^^95^1164^25
+ ;;^UTILITY(U,$J,358.3,25439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25056,1,3,0)
- ;;=3^Postprocedural Intestinal Obstruction
- ;;^UTILITY(U,$J,358.3,25056,1,4,0)
- ;;=4^K91.3
- ;;^UTILITY(U,$J,358.3,25056,2)
- ;;=^5008902
- ;;^UTILITY(U,$J,358.3,25057,0)
- ;;=K91.81^^124^1239^96
- ;;^UTILITY(U,$J,358.3,25057,1,0)
+ ;;^UTILITY(U,$J,358.3,25439,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,25439,1,4,0)
+ ;;=4^G47.35
+ ;;^UTILITY(U,$J,358.3,25439,2)
+ ;;=^332765
+ ;;^UTILITY(U,$J,358.3,25440,0)
+ ;;=G47.34^^95^1164^26
+ ;;^UTILITY(U,$J,358.3,25440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25057,1,3,0)
- ;;=3^Intraoperative Complications of Digestive System
- ;;^UTILITY(U,$J,358.3,25057,1,4,0)
- ;;=4^K91.81
- ;;^UTILITY(U,$J,358.3,25057,2)
- ;;=^5008907
- ;;^UTILITY(U,$J,358.3,25058,0)
- ;;=K91.82^^124^1239^192
- ;;^UTILITY(U,$J,358.3,25058,1,0)
+ ;;^UTILITY(U,$J,358.3,25440,1,3,0)
+ ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
+ ;;^UTILITY(U,$J,358.3,25440,1,4,0)
+ ;;=4^G47.34
+ ;;^UTILITY(U,$J,358.3,25440,2)
+ ;;=^5003978
+ ;;^UTILITY(U,$J,358.3,25441,0)
+ ;;=G47.9^^95^1164^28
+ ;;^UTILITY(U,$J,358.3,25441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25058,1,3,0)
- ;;=3^Postprocedural Hepatic Failure
- ;;^UTILITY(U,$J,358.3,25058,1,4,0)
- ;;=4^K91.82
- ;;^UTILITY(U,$J,358.3,25058,2)
- ;;=^5008908
- ;;^UTILITY(U,$J,358.3,25059,0)
- ;;=K91.83^^124^1239^193
+ ;;^UTILITY(U,$J,358.3,25441,1,3,0)
+ ;;=3^Sleep-Wake Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,25441,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,25441,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,25442,0)
+ ;;=F10.10^^95^1165^27
+ ;;^UTILITY(U,$J,358.3,25442,1,0)
+ ;;=^358.31IA^4^2

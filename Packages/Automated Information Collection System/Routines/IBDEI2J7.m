@@ -1,120 +1,140 @@
-IBDEI2J7 ; ; 19-NOV-2015
+IBDEI2J7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42470,1,4,0)
- ;;=4^S82.871M
- ;;^UTILITY(U,$J,358.3,42470,2)
- ;;=^5042777
- ;;^UTILITY(U,$J,358.3,42471,0)
- ;;=S82.872M^^192^2137^142
- ;;^UTILITY(U,$J,358.3,42471,1,0)
+ ;;^UTILITY(U,$J,358.3,42941,1,3,0)
+ ;;=3^Urethral stricture, unspec
+ ;;^UTILITY(U,$J,358.3,42941,1,4,0)
+ ;;=4^N35.9
+ ;;^UTILITY(U,$J,358.3,42941,2)
+ ;;=^5015671
+ ;;^UTILITY(U,$J,358.3,42942,0)
+ ;;=N36.2^^162^2052^4
+ ;;^UTILITY(U,$J,358.3,42942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42471,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subs for opn fx type I/2 w/nonunion
- ;;^UTILITY(U,$J,358.3,42471,1,4,0)
- ;;=4^S82.872M
- ;;^UTILITY(U,$J,358.3,42471,2)
- ;;=^5042793
- ;;^UTILITY(U,$J,358.3,42472,0)
- ;;=S82.871K^^192^2137^148
- ;;^UTILITY(U,$J,358.3,42472,1,0)
+ ;;^UTILITY(U,$J,358.3,42942,1,3,0)
+ ;;=3^Urethral caruncle
+ ;;^UTILITY(U,$J,358.3,42942,1,4,0)
+ ;;=4^N36.2
+ ;;^UTILITY(U,$J,358.3,42942,2)
+ ;;=^265500
+ ;;^UTILITY(U,$J,358.3,42943,0)
+ ;;=N36.42^^162^2052^2
+ ;;^UTILITY(U,$J,358.3,42943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42472,1,3,0)
- ;;=3^Disp pilon fx rt tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42472,1,4,0)
- ;;=4^S82.871K
- ;;^UTILITY(U,$J,358.3,42472,2)
- ;;=^5042776
- ;;^UTILITY(U,$J,358.3,42473,0)
- ;;=S82.872K^^192^2137^143
- ;;^UTILITY(U,$J,358.3,42473,1,0)
+ ;;^UTILITY(U,$J,358.3,42943,1,3,0)
+ ;;=3^Intrinsic sphincter deficiency (ISD)
+ ;;^UTILITY(U,$J,358.3,42943,1,4,0)
+ ;;=4^N36.42
+ ;;^UTILITY(U,$J,358.3,42943,2)
+ ;;=^5015674
+ ;;^UTILITY(U,$J,358.3,42944,0)
+ ;;=N36.43^^162^2052^1
+ ;;^UTILITY(U,$J,358.3,42944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42473,1,3,0)
- ;;=3^Disp pilon fx lft tibia, subsq for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42473,1,4,0)
- ;;=4^S82.872K
- ;;^UTILITY(U,$J,358.3,42473,2)
- ;;=^5042792
- ;;^UTILITY(U,$J,358.3,42474,0)
- ;;=S82.874N^^192^2137^372
- ;;^UTILITY(U,$J,358.3,42474,1,0)
+ ;;^UTILITY(U,$J,358.3,42944,1,3,0)
+ ;;=3^Comb hypermobility,urethra & intrinsic sphinc defic
+ ;;^UTILITY(U,$J,358.3,42944,1,4,0)
+ ;;=4^N36.43
+ ;;^UTILITY(U,$J,358.3,42944,2)
+ ;;=^5015675
+ ;;^UTILITY(U,$J,358.3,42945,0)
+ ;;=R35.1^^162^2053^3
+ ;;^UTILITY(U,$J,358.3,42945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42474,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42474,1,4,0)
- ;;=4^S82.874N
- ;;^UTILITY(U,$J,358.3,42474,2)
- ;;=^5042826
- ;;^UTILITY(U,$J,358.3,42475,0)
- ;;=S82.875N^^192^2137^367
- ;;^UTILITY(U,$J,358.3,42475,1,0)
+ ;;^UTILITY(U,$J,358.3,42945,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,42945,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,42945,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,42946,0)
+ ;;=R35.0^^162^2053^6
+ ;;^UTILITY(U,$J,358.3,42946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42475,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42475,1,4,0)
- ;;=4^S82.875N
- ;;^UTILITY(U,$J,358.3,42475,2)
- ;;=^5042842
- ;;^UTILITY(U,$J,358.3,42476,0)
- ;;=S82.874M^^192^2137^373
- ;;^UTILITY(U,$J,358.3,42476,1,0)
+ ;;^UTILITY(U,$J,358.3,42946,1,3,0)
+ ;;=3^Urinary Frequency
+ ;;^UTILITY(U,$J,358.3,42946,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,42946,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,42947,0)
+ ;;=R39.11^^162^2053^7
+ ;;^UTILITY(U,$J,358.3,42947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42476,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42476,1,4,0)
- ;;=4^S82.874M
- ;;^UTILITY(U,$J,358.3,42476,2)
- ;;=^5042825
- ;;^UTILITY(U,$J,358.3,42477,0)
- ;;=S82.875M^^192^2137^368
- ;;^UTILITY(U,$J,358.3,42477,1,0)
+ ;;^UTILITY(U,$J,358.3,42947,1,3,0)
+ ;;=3^Urinary Hesitancy
+ ;;^UTILITY(U,$J,358.3,42947,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,42947,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,42948,0)
+ ;;=R39.15^^162^2053^10
+ ;;^UTILITY(U,$J,358.3,42948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42477,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42477,1,4,0)
- ;;=4^S82.875M
- ;;^UTILITY(U,$J,358.3,42477,2)
- ;;=^5042841
- ;;^UTILITY(U,$J,358.3,42478,0)
- ;;=S82.874K^^192^2137^371
- ;;^UTILITY(U,$J,358.3,42478,1,0)
+ ;;^UTILITY(U,$J,358.3,42948,1,3,0)
+ ;;=3^Urinary Urgency
+ ;;^UTILITY(U,$J,358.3,42948,1,4,0)
+ ;;=4^R39.15
+ ;;^UTILITY(U,$J,358.3,42948,2)
+ ;;=^5019345
+ ;;^UTILITY(U,$J,358.3,42949,0)
+ ;;=R39.12^^162^2053^11
+ ;;^UTILITY(U,$J,358.3,42949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42478,1,3,0)
- ;;=3^Nondisp pilon fx rt tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42478,1,4,0)
- ;;=4^S82.874K
- ;;^UTILITY(U,$J,358.3,42478,2)
- ;;=^5042824
- ;;^UTILITY(U,$J,358.3,42479,0)
- ;;=S82.875K^^192^2137^366
- ;;^UTILITY(U,$J,358.3,42479,1,0)
+ ;;^UTILITY(U,$J,358.3,42949,1,3,0)
+ ;;=3^Weak Urinary Stream
+ ;;^UTILITY(U,$J,358.3,42949,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,42949,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,42950,0)
+ ;;=N39.41^^162^2053^5
+ ;;^UTILITY(U,$J,358.3,42950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42479,1,3,0)
- ;;=3^Nondisp pilon fx lft tib, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42479,1,4,0)
- ;;=4^S82.875K
- ;;^UTILITY(U,$J,358.3,42479,2)
- ;;=^5042840
- ;;^UTILITY(U,$J,358.3,42480,0)
- ;;=S82.845K^^192^2137^240
- ;;^UTILITY(U,$J,358.3,42480,1,0)
+ ;;^UTILITY(U,$J,358.3,42950,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,42950,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,42950,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,42951,0)
+ ;;=N39.42^^162^2053^8
+ ;;^UTILITY(U,$J,358.3,42951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42480,1,3,0)
- ;;=3^Nondisp bimalleol fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42480,1,4,0)
- ;;=4^S82.845K
- ;;^UTILITY(U,$J,358.3,42480,2)
- ;;=^5042552
- ;;^UTILITY(U,$J,358.3,42481,0)
- ;;=S82.844K^^192^2137^241
- ;;^UTILITY(U,$J,358.3,42481,1,0)
+ ;;^UTILITY(U,$J,358.3,42951,1,3,0)
+ ;;=3^Urinary Incontinence
+ ;;^UTILITY(U,$J,358.3,42951,1,4,0)
+ ;;=4^N39.42
+ ;;^UTILITY(U,$J,358.3,42951,2)
+ ;;=^5015681
+ ;;^UTILITY(U,$J,358.3,42952,0)
+ ;;=N32.81^^162^2053^4
+ ;;^UTILITY(U,$J,358.3,42952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42481,1,3,0)
- ;;=3^Nondisp bimalleol fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42481,1,4,0)
- ;;=4^S82.844K
- ;;^UTILITY(U,$J,358.3,42481,2)
- ;;=^5042536
- ;;^UTILITY(U,$J,358.3,42482,0)
- ;;=S82.844N^^192^2137^239
+ ;;^UTILITY(U,$J,358.3,42952,1,3,0)
+ ;;=3^Overactive Bladder
+ ;;^UTILITY(U,$J,358.3,42952,1,4,0)
+ ;;=4^N32.81
+ ;;^UTILITY(U,$J,358.3,42952,2)
+ ;;=^5015652
+ ;;^UTILITY(U,$J,358.3,42953,0)
+ ;;=R31.0^^162^2053^1
+ ;;^UTILITY(U,$J,358.3,42953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42953,1,3,0)
+ ;;=3^Gross Hematuria
+ ;;^UTILITY(U,$J,358.3,42953,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,42953,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,42954,0)
+ ;;=R31.1^^162^2053^2
+ ;;^UTILITY(U,$J,358.3,42954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42954,1,3,0)
+ ;;=3^Microscopic Hematuria
+ ;;^UTILITY(U,$J,358.3,42954,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,42954,2)
+ ;;=^5019326

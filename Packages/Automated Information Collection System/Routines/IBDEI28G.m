@@ -1,122 +1,128 @@
-IBDEI28G ; ; 19-NOV-2015
+IBDEI28G ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37503,1,3,0)
- ;;=3^Compartment syndrome of left upper extremity, subs
- ;;^UTILITY(U,$J,358.3,37503,1,4,0)
- ;;=4^T79.A12D
- ;;^UTILITY(U,$J,358.3,37503,2)
- ;;=^5054330
- ;;^UTILITY(U,$J,358.3,37504,0)
- ;;=T79.A21A^^172^1885^10
- ;;^UTILITY(U,$J,358.3,37504,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37504,1,3,0)
- ;;=3^Compartment syndrome of right lower extrem, init
- ;;^UTILITY(U,$J,358.3,37504,1,4,0)
- ;;=4^T79.A21A
- ;;^UTILITY(U,$J,358.3,37504,2)
- ;;=^5054335
- ;;^UTILITY(U,$J,358.3,37505,0)
- ;;=T79.A21D^^172^1885^11
- ;;^UTILITY(U,$J,358.3,37505,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37505,1,3,0)
- ;;=3^Compartment syndrome of right lower extrem, subs
- ;;^UTILITY(U,$J,358.3,37505,1,4,0)
- ;;=4^T79.A21D
- ;;^UTILITY(U,$J,358.3,37505,2)
- ;;=^5054336
- ;;^UTILITY(U,$J,358.3,37506,0)
- ;;=T79.A22A^^172^1885^4
- ;;^UTILITY(U,$J,358.3,37506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37506,1,3,0)
- ;;=3^Compartment syndrome of left lower extremity, init
- ;;^UTILITY(U,$J,358.3,37506,1,4,0)
- ;;=4^T79.A22A
- ;;^UTILITY(U,$J,358.3,37506,2)
- ;;=^5137969
- ;;^UTILITY(U,$J,358.3,37507,0)
- ;;=T79.A22D^^172^1885^5
- ;;^UTILITY(U,$J,358.3,37507,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37507,1,3,0)
- ;;=3^Compartment syndrome of left lower extremity, subs
- ;;^UTILITY(U,$J,358.3,37507,1,4,0)
- ;;=4^T79.A22D
- ;;^UTILITY(U,$J,358.3,37507,2)
- ;;=^5137970
- ;;^UTILITY(U,$J,358.3,37508,0)
- ;;=T79.A9XA^^172^1885^8
- ;;^UTILITY(U,$J,358.3,37508,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37508,1,3,0)
- ;;=3^Compartment syndrome of other sites, init encntr
- ;;^UTILITY(U,$J,358.3,37508,1,4,0)
- ;;=4^T79.A9XA
- ;;^UTILITY(U,$J,358.3,37508,2)
- ;;=^5054341
- ;;^UTILITY(U,$J,358.3,37509,0)
- ;;=T79.A9XD^^172^1885^9
- ;;^UTILITY(U,$J,358.3,37509,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37509,1,3,0)
- ;;=3^Compartment syndrome of other sites, subs encntr
- ;;^UTILITY(U,$J,358.3,37509,1,4,0)
- ;;=4^T79.A9XD
- ;;^UTILITY(U,$J,358.3,37509,2)
- ;;=^5054342
- ;;^UTILITY(U,$J,358.3,37510,0)
- ;;=G90.513^^172^1885^19
- ;;^UTILITY(U,$J,358.3,37510,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37510,1,3,0)
- ;;=3^Complex regional pain syndrome I of upper limb, bilateral
- ;;^UTILITY(U,$J,358.3,37510,1,4,0)
- ;;=4^G90.513
- ;;^UTILITY(U,$J,358.3,37510,2)
- ;;=^5004166
- ;;^UTILITY(U,$J,358.3,37511,0)
- ;;=T84.52XD^^172^1885^25
- ;;^UTILITY(U,$J,358.3,37511,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37511,1,3,0)
- ;;=3^Infect/inflm reaction d/t internal left hip prosth, subs
- ;;^UTILITY(U,$J,358.3,37511,1,4,0)
- ;;=4^T84.52XD
- ;;^UTILITY(U,$J,358.3,37511,2)
- ;;=^5055389
- ;;^UTILITY(U,$J,358.3,37512,0)
- ;;=T84.54XD^^172^1885^26
- ;;^UTILITY(U,$J,358.3,37512,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37512,1,3,0)
- ;;=3^Infect/inflm reaction d/t internal left knee prosth, subs
- ;;^UTILITY(U,$J,358.3,37512,1,4,0)
- ;;=4^T84.54XD
- ;;^UTILITY(U,$J,358.3,37512,2)
- ;;=^5055395
- ;;^UTILITY(U,$J,358.3,37513,0)
- ;;=T84.51XD^^172^1885^29
- ;;^UTILITY(U,$J,358.3,37513,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37513,1,3,0)
- ;;=3^Infect/inflm reaction d/t internal right hip prosth, subs
- ;;^UTILITY(U,$J,358.3,37513,1,4,0)
- ;;=4^T84.51XD
- ;;^UTILITY(U,$J,358.3,37513,2)
- ;;=^5055386
- ;;^UTILITY(U,$J,358.3,37514,0)
- ;;=T84.53XD^^172^1885^30
- ;;^UTILITY(U,$J,358.3,37514,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37514,1,3,0)
- ;;=3^Infect/inflm reaction d/t internal right knee prosth, subs
- ;;^UTILITY(U,$J,358.3,37514,1,4,0)
- ;;=4^T84.53XD
- ;;^UTILITY(U,$J,358.3,37514,2)
- ;;=^5055392
- ;;^UTILITY(U,$J,358.3,37515,0)
- ;;=T84.59XD^^172^1885^32
+ ;;^UTILITY(U,$J,358.3,37883,0)
+ ;;=90875^^144^1819^17^^^^1
+ ;;^UTILITY(U,$J,358.3,37883,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37883,1,2,0)
+ ;;=2^90875
+ ;;^UTILITY(U,$J,358.3,37883,1,3,0)
+ ;;=3^Psychophysiological Tx 30 Min
+ ;;^UTILITY(U,$J,358.3,37884,0)
+ ;;=90876^^144^1819^18^^^^1
+ ;;^UTILITY(U,$J,358.3,37884,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37884,1,2,0)
+ ;;=2^90876
+ ;;^UTILITY(U,$J,358.3,37884,1,3,0)
+ ;;=3^Psychophysiological Tx 45 Min
+ ;;^UTILITY(U,$J,358.3,37885,0)
+ ;;=90846^^144^1819^2^^^^1
+ ;;^UTILITY(U,$J,358.3,37885,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37885,1,2,0)
+ ;;=2^90846
+ ;;^UTILITY(U,$J,358.3,37885,1,3,0)
+ ;;=3^Family Psychotherpy w/o Patient
+ ;;^UTILITY(U,$J,358.3,37886,0)
+ ;;=99356^^144^1819^9^^^^1
+ ;;^UTILITY(U,$J,358.3,37886,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37886,1,2,0)
+ ;;=2^99356
+ ;;^UTILITY(U,$J,358.3,37886,1,3,0)
+ ;;=3^Prolonged Svcs,INPT/OBS,1st hr
+ ;;^UTILITY(U,$J,358.3,37887,0)
+ ;;=99357^^144^1819^10^^^^1
+ ;;^UTILITY(U,$J,358.3,37887,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37887,1,2,0)
+ ;;=2^99357
+ ;;^UTILITY(U,$J,358.3,37887,1,3,0)
+ ;;=3^Prolonged Svcs,INPT/OBS,ea addl 30 min
+ ;;^UTILITY(U,$J,358.3,37888,0)
+ ;;=99354^^144^1819^11^^^^1
+ ;;^UTILITY(U,$J,358.3,37888,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37888,1,2,0)
+ ;;=2^99354
+ ;;^UTILITY(U,$J,358.3,37888,1,3,0)
+ ;;=3^Prolonged Svcs,OPT,1st hr
+ ;;^UTILITY(U,$J,358.3,37889,0)
+ ;;=99355^^144^1819^12^^^^1
+ ;;^UTILITY(U,$J,358.3,37889,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37889,1,2,0)
+ ;;=2^99355
+ ;;^UTILITY(U,$J,358.3,37889,1,3,0)
+ ;;=3^Prolonged Svcs,OPT,ea addl 30 min
+ ;;^UTILITY(U,$J,358.3,37890,0)
+ ;;=Q3014^^144^1820^9^^^^1
+ ;;^UTILITY(U,$J,358.3,37890,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37890,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,37890,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,37891,0)
+ ;;=S0255^^144^1820^4^^^^1
+ ;;^UTILITY(U,$J,358.3,37891,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37891,1,2,0)
+ ;;=2^S0255
+ ;;^UTILITY(U,$J,358.3,37891,1,3,0)
+ ;;=3^Hospice Referral
+ ;;^UTILITY(U,$J,358.3,37892,0)
+ ;;=H0031^^144^1820^7^^^^1
+ ;;^UTILITY(U,$J,358.3,37892,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37892,1,2,0)
+ ;;=2^H0031
+ ;;^UTILITY(U,$J,358.3,37892,1,3,0)
+ ;;=3^Psychosoc Assmt by Non LIP
+ ;;^UTILITY(U,$J,358.3,37893,0)
+ ;;=90901^^144^1820^3^^^^1
+ ;;^UTILITY(U,$J,358.3,37893,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37893,1,2,0)
+ ;;=2^90901
+ ;;^UTILITY(U,$J,358.3,37893,1,3,0)
+ ;;=3^Biofeedback Train Any Method/Cerified Trnr
+ ;;^UTILITY(U,$J,358.3,37894,0)
+ ;;=90885^^144^1820^6^^^^1
+ ;;^UTILITY(U,$J,358.3,37894,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37894,1,2,0)
+ ;;=2^90885
+ ;;^UTILITY(U,$J,358.3,37894,1,3,0)
+ ;;=3^Psy Evaluation of Records by Suicide Prevent
+ ;;^UTILITY(U,$J,358.3,37895,0)
+ ;;=A0160^^144^1820^5^^^^1
+ ;;^UTILITY(U,$J,358.3,37895,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37895,1,2,0)
+ ;;=2^A0160
+ ;;^UTILITY(U,$J,358.3,37895,1,3,0)
+ ;;=3^Non-Emergent Pt Transport by SWS
+ ;;^UTILITY(U,$J,358.3,37896,0)
+ ;;=90791^^144^1820^8^^^^1
+ ;;^UTILITY(U,$J,358.3,37896,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37896,1,2,0)
+ ;;=2^90791
+ ;;^UTILITY(U,$J,358.3,37896,1,3,0)
+ ;;=3^Social Industrial Survey or F/U C&P
+ ;;^UTILITY(U,$J,358.3,37897,0)
+ ;;=99497^^144^1820^1^^^^1
+ ;;^UTILITY(U,$J,358.3,37897,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,37897,1,2,0)
+ ;;=2^99497
+ ;;^UTILITY(U,$J,358.3,37897,1,3,0)
+ ;;=3^Advanced Care Plan,30 min
+ ;;^UTILITY(U,$J,358.3,37898,0)
+ ;;=99498^^144^1820^2^^^^1
+ ;;^UTILITY(U,$J,358.3,37898,1,0)
+ ;;=^358.31IA^3^2

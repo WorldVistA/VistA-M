@@ -1,130 +1,142 @@
-IBDEI0DQ ; ; 19-NOV-2015
+IBDEI0DQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5986,1,0)
+ ;;^UTILITY(U,$J,358.3,6304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5986,1,3,0)
- ;;=3^Trigger Finger,Left Index Finger
- ;;^UTILITY(U,$J,358.3,5986,1,4,0)
- ;;=4^M65.322
- ;;^UTILITY(U,$J,358.3,5986,2)
- ;;=^5012781
- ;;^UTILITY(U,$J,358.3,5987,0)
- ;;=M65.331^^40^382^9
- ;;^UTILITY(U,$J,358.3,5987,1,0)
+ ;;^UTILITY(U,$J,358.3,6304,1,3,0)
+ ;;=3^Abscess,Anorectal
+ ;;^UTILITY(U,$J,358.3,6304,1,4,0)
+ ;;=4^K61.2
+ ;;^UTILITY(U,$J,358.3,6304,2)
+ ;;=^5008750
+ ;;^UTILITY(U,$J,358.3,6305,0)
+ ;;=K61.3^^30^391^5
+ ;;^UTILITY(U,$J,358.3,6305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5987,1,3,0)
- ;;=3^Trigger Finger,Right Middle Finger
- ;;^UTILITY(U,$J,358.3,5987,1,4,0)
- ;;=4^M65.331
- ;;^UTILITY(U,$J,358.3,5987,2)
- ;;=^5012783
- ;;^UTILITY(U,$J,358.3,5988,0)
- ;;=M65.321^^40^382^7
- ;;^UTILITY(U,$J,358.3,5988,1,0)
+ ;;^UTILITY(U,$J,358.3,6305,1,3,0)
+ ;;=3^Abscess,Ischiorectal
+ ;;^UTILITY(U,$J,358.3,6305,1,4,0)
+ ;;=4^K61.3
+ ;;^UTILITY(U,$J,358.3,6305,2)
+ ;;=^5008751
+ ;;^UTILITY(U,$J,358.3,6306,0)
+ ;;=K50.014^^30^391^22
+ ;;^UTILITY(U,$J,358.3,6306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5988,1,3,0)
- ;;=3^Trigger Finger,Right Index Finger
- ;;^UTILITY(U,$J,358.3,5988,1,4,0)
- ;;=4^M65.321
- ;;^UTILITY(U,$J,358.3,5988,2)
- ;;=^5012780
- ;;^UTILITY(U,$J,358.3,5989,0)
- ;;=M65.312^^40^382^6
- ;;^UTILITY(U,$J,358.3,5989,1,0)
+ ;;^UTILITY(U,$J,358.3,6306,1,3,0)
+ ;;=3^Crohn's Disease of Small Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,6306,1,4,0)
+ ;;=4^K50.014
+ ;;^UTILITY(U,$J,358.3,6306,2)
+ ;;=^5008628
+ ;;^UTILITY(U,$J,358.3,6307,0)
+ ;;=K50.114^^30^391^21
+ ;;^UTILITY(U,$J,358.3,6307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5989,1,3,0)
- ;;=3^Trigger Finger,Left Thumb
- ;;^UTILITY(U,$J,358.3,5989,1,4,0)
- ;;=4^M65.312
- ;;^UTILITY(U,$J,358.3,5989,2)
- ;;=^5012778
- ;;^UTILITY(U,$J,358.3,5990,0)
- ;;=M65.311^^40^382^11
- ;;^UTILITY(U,$J,358.3,5990,1,0)
+ ;;^UTILITY(U,$J,358.3,6307,1,3,0)
+ ;;=3^Crohn's Disease of Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,6307,1,4,0)
+ ;;=4^K50.114
+ ;;^UTILITY(U,$J,358.3,6307,2)
+ ;;=^5008635
+ ;;^UTILITY(U,$J,358.3,6308,0)
+ ;;=D12.6^^30^391^7
+ ;;^UTILITY(U,$J,358.3,6308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5990,1,3,0)
- ;;=3^Trigger Finger,Right Thumb
- ;;^UTILITY(U,$J,358.3,5990,1,4,0)
- ;;=4^M65.311
- ;;^UTILITY(U,$J,358.3,5990,2)
- ;;=^5012777
- ;;^UTILITY(U,$J,358.3,5991,0)
- ;;=E08.621^^40^383^86
- ;;^UTILITY(U,$J,358.3,5991,1,0)
+ ;;^UTILITY(U,$J,358.3,6308,1,3,0)
+ ;;=3^Adenomatous Polyp of Colon
+ ;;^UTILITY(U,$J,358.3,6308,1,4,0)
+ ;;=4^D12.6
+ ;;^UTILITY(U,$J,358.3,6308,2)
+ ;;=^5001969
+ ;;^UTILITY(U,$J,358.3,6309,0)
+ ;;=K64.9^^30^391^58
+ ;;^UTILITY(U,$J,358.3,6309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5991,1,3,0)
- ;;=3^Diabetes d/t Underlying Condition w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,5991,1,4,0)
- ;;=4^E08.621
- ;;^UTILITY(U,$J,358.3,5991,2)
- ;;=^5002534
- ;;^UTILITY(U,$J,358.3,5992,0)
- ;;=E09.621^^40^383^85
- ;;^UTILITY(U,$J,358.3,5992,1,0)
+ ;;^UTILITY(U,$J,358.3,6309,1,3,0)
+ ;;=3^Hemorrhoids w/o Complication
+ ;;^UTILITY(U,$J,358.3,6309,1,4,0)
+ ;;=4^K64.9
+ ;;^UTILITY(U,$J,358.3,6309,2)
+ ;;=^5008775
+ ;;^UTILITY(U,$J,358.3,6310,0)
+ ;;=K50.814^^30^391^30
+ ;;^UTILITY(U,$J,358.3,6310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5992,1,3,0)
- ;;=3^Diabetes d/t Drug/Chemical Induced w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,5992,1,4,0)
- ;;=4^E09.621
- ;;^UTILITY(U,$J,358.3,5992,2)
- ;;=^5002576
- ;;^UTILITY(U,$J,358.3,5993,0)
- ;;=I70.231^^40^383^22
- ;;^UTILITY(U,$J,358.3,5993,1,0)
+ ;;^UTILITY(U,$J,358.3,6310,1,3,0)
+ ;;=3^Crohn's Disease,Small/Large Intestine w/ Abscess
+ ;;^UTILITY(U,$J,358.3,6310,1,4,0)
+ ;;=4^K50.814
+ ;;^UTILITY(U,$J,358.3,6310,2)
+ ;;=^5008642
+ ;;^UTILITY(U,$J,358.3,6311,0)
+ ;;=D12.9^^30^391^9
+ ;;^UTILITY(U,$J,358.3,6311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5993,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,5993,1,4,0)
- ;;=4^I70.231
- ;;^UTILITY(U,$J,358.3,5993,2)
- ;;=^5007588
- ;;^UTILITY(U,$J,358.3,5994,0)
- ;;=I70.232^^40^383^23
- ;;^UTILITY(U,$J,358.3,5994,1,0)
+ ;;^UTILITY(U,$J,358.3,6311,1,3,0)
+ ;;=3^Benign Neop of Anus
+ ;;^UTILITY(U,$J,358.3,6311,1,4,0)
+ ;;=4^D12.9
+ ;;^UTILITY(U,$J,358.3,6311,2)
+ ;;=^5001972
+ ;;^UTILITY(U,$J,358.3,6312,0)
+ ;;=D12.8^^30^391^15
+ ;;^UTILITY(U,$J,358.3,6312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5994,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,5994,1,4,0)
- ;;=4^I70.232
- ;;^UTILITY(U,$J,358.3,5994,2)
- ;;=^5007589
- ;;^UTILITY(U,$J,358.3,5995,0)
- ;;=I70.233^^40^383^24
- ;;^UTILITY(U,$J,358.3,5995,1,0)
+ ;;^UTILITY(U,$J,358.3,6312,1,3,0)
+ ;;=3^Benign Neop of Rectum
+ ;;^UTILITY(U,$J,358.3,6312,1,4,0)
+ ;;=4^D12.8
+ ;;^UTILITY(U,$J,358.3,6312,2)
+ ;;=^5001971
+ ;;^UTILITY(U,$J,358.3,6313,0)
+ ;;=K92.2^^30^391^50
+ ;;^UTILITY(U,$J,358.3,6313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5995,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,5995,1,4,0)
- ;;=4^I70.233
- ;;^UTILITY(U,$J,358.3,5995,2)
- ;;=^5007590
- ;;^UTILITY(U,$J,358.3,5996,0)
- ;;=I70.234^^40^383^25
- ;;^UTILITY(U,$J,358.3,5996,1,0)
+ ;;^UTILITY(U,$J,358.3,6313,1,3,0)
+ ;;=3^GI Bleed,Unspec
+ ;;^UTILITY(U,$J,358.3,6313,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,6313,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,6314,0)
+ ;;=K62.5^^30^391^8
+ ;;^UTILITY(U,$J,358.3,6314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5996,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,5996,1,4,0)
- ;;=4^I70.234
- ;;^UTILITY(U,$J,358.3,5996,2)
- ;;=^5007591
- ;;^UTILITY(U,$J,358.3,5997,0)
- ;;=I70.235^^40^383^26
- ;;^UTILITY(U,$J,358.3,5997,1,0)
+ ;;^UTILITY(U,$J,358.3,6314,1,3,0)
+ ;;=3^BRBPR
+ ;;^UTILITY(U,$J,358.3,6314,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,6314,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,6315,0)
+ ;;=K92.1^^30^391^73
+ ;;^UTILITY(U,$J,358.3,6315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5997,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,5997,1,4,0)
- ;;=4^I70.235
- ;;^UTILITY(U,$J,358.3,5997,2)
- ;;=^5007592
- ;;^UTILITY(U,$J,358.3,5998,0)
- ;;=I70.238^^40^383^27
- ;;^UTILITY(U,$J,358.3,5998,1,0)
+ ;;^UTILITY(U,$J,358.3,6315,1,3,0)
+ ;;=3^Melena
+ ;;^UTILITY(U,$J,358.3,6315,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,6315,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,6316,0)
+ ;;=R19.5^^30^391^49
+ ;;^UTILITY(U,$J,358.3,6316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5998,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Lower Leg Ulcer
- ;;^UTILITY(U,$J,358.3,5998,1,4,0)
- ;;=4^I70.238
+ ;;^UTILITY(U,$J,358.3,6316,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,6316,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,6316,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,6317,0)
+ ;;=R10.13^^30^391^46
+ ;;^UTILITY(U,$J,358.3,6317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6317,1,3,0)
+ ;;=3^Epigastric Pain
+ ;;^UTILITY(U,$J,358.3,6317,1,4,0)
+ ;;=4^R10.13
+ ;;^UTILITY(U,$J,358.3,6317,2)
+ ;;=^5019208

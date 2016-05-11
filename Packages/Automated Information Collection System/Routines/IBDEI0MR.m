@@ -1,136 +1,134 @@
-IBDEI0MR ; ; 19-NOV-2015
+IBDEI0MR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10390,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,10390,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,10391,0)
- ;;=E89.0^^68^667^50
- ;;^UTILITY(U,$J,358.3,10391,1,0)
+ ;;^UTILITY(U,$J,358.3,10616,1,4,0)
+ ;;=4^R41.81
+ ;;^UTILITY(U,$J,358.3,10616,2)
+ ;;=^5019440
+ ;;^UTILITY(U,$J,358.3,10617,0)
+ ;;=R41.82^^47^518^8
+ ;;^UTILITY(U,$J,358.3,10617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10391,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,10391,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,10391,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,10392,0)
- ;;=E03.2^^68^667^32
- ;;^UTILITY(U,$J,358.3,10392,1,0)
+ ;;^UTILITY(U,$J,358.3,10617,1,3,0)
+ ;;=3^Cognitive Decline,Altered Mental Status
+ ;;^UTILITY(U,$J,358.3,10617,1,4,0)
+ ;;=4^R41.82
+ ;;^UTILITY(U,$J,358.3,10617,2)
+ ;;=^5019441
+ ;;^UTILITY(U,$J,358.3,10618,0)
+ ;;=R41.841^^47^518^9
+ ;;^UTILITY(U,$J,358.3,10618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10392,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,10392,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,10392,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,10393,0)
- ;;=E03.9^^68^667^33
- ;;^UTILITY(U,$J,358.3,10393,1,0)
+ ;;^UTILITY(U,$J,358.3,10618,1,3,0)
+ ;;=3^Cognitive Decline,Communication Deficit
+ ;;^UTILITY(U,$J,358.3,10618,1,4,0)
+ ;;=4^R41.841
+ ;;^UTILITY(U,$J,358.3,10618,2)
+ ;;=^5019444
+ ;;^UTILITY(U,$J,358.3,10619,0)
+ ;;=R41.0^^47^518^10
+ ;;^UTILITY(U,$J,358.3,10619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10393,1,3,0)
- ;;=3^Hypothyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,10393,1,4,0)
- ;;=4^E03.9
- ;;^UTILITY(U,$J,358.3,10393,2)
- ;;=^5002476
- ;;^UTILITY(U,$J,358.3,10394,0)
- ;;=E06.0^^68^667^53
- ;;^UTILITY(U,$J,358.3,10394,1,0)
+ ;;^UTILITY(U,$J,358.3,10619,1,3,0)
+ ;;=3^Cognitive Decline,Disorientation,Unspec
+ ;;^UTILITY(U,$J,358.3,10619,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,10619,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,10620,0)
+ ;;=R41.844^^47^518^11
+ ;;^UTILITY(U,$J,358.3,10620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10394,1,3,0)
- ;;=3^Thyroiditis,Acute
- ;;^UTILITY(U,$J,358.3,10394,1,4,0)
- ;;=4^E06.0
- ;;^UTILITY(U,$J,358.3,10394,2)
- ;;=^2692
- ;;^UTILITY(U,$J,358.3,10395,0)
- ;;=E06.1^^68^667^54
- ;;^UTILITY(U,$J,358.3,10395,1,0)
+ ;;^UTILITY(U,$J,358.3,10620,1,3,0)
+ ;;=3^Cognitive Decline,Frontal Lobe/Executive Function Deficit
+ ;;^UTILITY(U,$J,358.3,10620,1,4,0)
+ ;;=4^R41.844
+ ;;^UTILITY(U,$J,358.3,10620,2)
+ ;;=^5019447
+ ;;^UTILITY(U,$J,358.3,10621,0)
+ ;;=R41.843^^47^518^12
+ ;;^UTILITY(U,$J,358.3,10621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10395,1,3,0)
- ;;=3^Thyroiditis,Subacute
- ;;^UTILITY(U,$J,358.3,10395,1,4,0)
- ;;=4^E06.1
- ;;^UTILITY(U,$J,358.3,10395,2)
- ;;=^119376
- ;;^UTILITY(U,$J,358.3,10396,0)
- ;;=C73.^^68^667^37
- ;;^UTILITY(U,$J,358.3,10396,1,0)
+ ;;^UTILITY(U,$J,358.3,10621,1,3,0)
+ ;;=3^Cognitive Decline,Psychomotor Deficit
+ ;;^UTILITY(U,$J,358.3,10621,1,4,0)
+ ;;=4^R41.843
+ ;;^UTILITY(U,$J,358.3,10621,2)
+ ;;=^5019446
+ ;;^UTILITY(U,$J,358.3,10622,0)
+ ;;=R41.9^^47^518^13
+ ;;^UTILITY(U,$J,358.3,10622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10396,1,3,0)
- ;;=3^Malig Neop of Thyroid Gland
- ;;^UTILITY(U,$J,358.3,10396,1,4,0)
- ;;=4^C73.
- ;;^UTILITY(U,$J,358.3,10396,2)
- ;;=^267296
- ;;^UTILITY(U,$J,358.3,10397,0)
- ;;=E10.21^^68^667^8
- ;;^UTILITY(U,$J,358.3,10397,1,0)
+ ;;^UTILITY(U,$J,358.3,10622,1,3,0)
+ ;;=3^Cognitive Decline,Unspec
+ ;;^UTILITY(U,$J,358.3,10622,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,10622,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,10623,0)
+ ;;=R41.842^^47^518^14
+ ;;^UTILITY(U,$J,358.3,10623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10397,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,10397,1,4,0)
- ;;=4^E10.21
- ;;^UTILITY(U,$J,358.3,10397,2)
- ;;=^5002589
- ;;^UTILITY(U,$J,358.3,10398,0)
- ;;=E10.9^^68^667^12
- ;;^UTILITY(U,$J,358.3,10398,1,0)
+ ;;^UTILITY(U,$J,358.3,10623,1,3,0)
+ ;;=3^Cognitive Decline,Visuospatial Deficit
+ ;;^UTILITY(U,$J,358.3,10623,1,4,0)
+ ;;=4^R41.842
+ ;;^UTILITY(U,$J,358.3,10623,2)
+ ;;=^5019445
+ ;;^UTILITY(U,$J,358.3,10624,0)
+ ;;=G31.84^^47^518^15
+ ;;^UTILITY(U,$J,358.3,10624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10398,1,3,0)
- ;;=3^DM Type 1 w/o Complications
- ;;^UTILITY(U,$J,358.3,10398,1,4,0)
- ;;=4^E10.9
- ;;^UTILITY(U,$J,358.3,10398,2)
- ;;=^5002626
- ;;^UTILITY(U,$J,358.3,10399,0)
- ;;=E11.21^^68^667^17
- ;;^UTILITY(U,$J,358.3,10399,1,0)
+ ;;^UTILITY(U,$J,358.3,10624,1,3,0)
+ ;;=3^Cognitive Impairment,Mild
+ ;;^UTILITY(U,$J,358.3,10624,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,10624,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,10625,0)
+ ;;=G31.83^^47^518^19
+ ;;^UTILITY(U,$J,358.3,10625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10399,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,10399,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,10399,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,10400,0)
- ;;=E11.39^^68^667^18
- ;;^UTILITY(U,$J,358.3,10400,1,0)
+ ;;^UTILITY(U,$J,358.3,10625,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,10625,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,10625,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,10626,0)
+ ;;=G31.2^^47^518^22
+ ;;^UTILITY(U,$J,358.3,10626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10400,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
- ;;^UTILITY(U,$J,358.3,10400,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,10400,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,10401,0)
- ;;=E11.43^^68^667^15
- ;;^UTILITY(U,$J,358.3,10401,1,0)
+ ;;^UTILITY(U,$J,358.3,10626,1,3,0)
+ ;;=3^Dementia,Alcohol-Related
+ ;;^UTILITY(U,$J,358.3,10626,1,4,0)
+ ;;=4^G31.2
+ ;;^UTILITY(U,$J,358.3,10626,2)
+ ;;=^5003810
+ ;;^UTILITY(U,$J,358.3,10627,0)
+ ;;=A81.09^^47^518^25
+ ;;^UTILITY(U,$J,358.3,10627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10401,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
- ;;^UTILITY(U,$J,358.3,10401,1,4,0)
- ;;=4^E11.43
- ;;^UTILITY(U,$J,358.3,10401,2)
- ;;=^5002647
- ;;^UTILITY(U,$J,358.3,10402,0)
- ;;=E11.59^^68^667^13
- ;;^UTILITY(U,$J,358.3,10402,1,0)
+ ;;^UTILITY(U,$J,358.3,10627,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,10627,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,10627,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,10628,0)
+ ;;=A81.00^^47^518^26
+ ;;^UTILITY(U,$J,358.3,10628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10402,1,3,0)
- ;;=3^DM Type 2 w/ Circulatory Complications NEC
- ;;^UTILITY(U,$J,358.3,10402,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,10402,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,10403,0)
- ;;=E11.618^^68^667^14
- ;;^UTILITY(U,$J,358.3,10403,1,0)
+ ;;^UTILITY(U,$J,358.3,10628,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10628,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,10628,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,10629,0)
+ ;;=A81.01^^47^518^27
+ ;;^UTILITY(U,$J,358.3,10629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10403,1,3,0)
- ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
- ;;^UTILITY(U,$J,358.3,10403,1,4,0)
- ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,10629,1,3,0)
+ ;;=3^Dementia,Creutzfeldt-Jakob Disease,Variant

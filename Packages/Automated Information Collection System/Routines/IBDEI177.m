@@ -1,126 +1,132 @@
-IBDEI177 ; ; 19-NOV-2015
+IBDEI177 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20019,1,4,0)
- ;;=4^V00.891A
- ;;^UTILITY(U,$J,358.3,20019,2)
- ;;=^5055964
- ;;^UTILITY(U,$J,358.3,20020,0)
- ;;=V00.891D^^94^935^58
- ;;^UTILITY(U,$J,358.3,20020,1,0)
+ ;;^UTILITY(U,$J,358.3,20371,2)
+ ;;=^5008188
+ ;;^UTILITY(U,$J,358.3,20372,0)
+ ;;=J20.4^^84^931^13
+ ;;^UTILITY(U,$J,358.3,20372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20020,1,3,0)
- ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20020,1,4,0)
- ;;=4^V00.891D
- ;;^UTILITY(U,$J,358.3,20020,2)
- ;;=^5055965
- ;;^UTILITY(U,$J,358.3,20021,0)
- ;;=V00.892A^^94^935^99
- ;;^UTILITY(U,$J,358.3,20021,1,0)
+ ;;^UTILITY(U,$J,358.3,20372,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Parainfluenza Virus
+ ;;^UTILITY(U,$J,358.3,20372,1,4,0)
+ ;;=4^J20.4
+ ;;^UTILITY(U,$J,358.3,20372,2)
+ ;;=^5008190
+ ;;^UTILITY(U,$J,358.3,20373,0)
+ ;;=J20.3^^84^931^8
+ ;;^UTILITY(U,$J,358.3,20373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20021,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,20021,1,4,0)
- ;;=4^V00.892A
- ;;^UTILITY(U,$J,358.3,20021,2)
- ;;=^5055967
- ;;^UTILITY(U,$J,358.3,20022,0)
- ;;=V00.892D^^94^935^100
- ;;^UTILITY(U,$J,358.3,20022,1,0)
+ ;;^UTILITY(U,$J,358.3,20373,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Coxsackievirus
+ ;;^UTILITY(U,$J,358.3,20373,1,4,0)
+ ;;=4^J20.3
+ ;;^UTILITY(U,$J,358.3,20373,2)
+ ;;=^5008189
+ ;;^UTILITY(U,$J,358.3,20374,0)
+ ;;=J20.9^^84^931^7
+ ;;^UTILITY(U,$J,358.3,20374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20022,1,3,0)
- ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20022,1,4,0)
- ;;=4^V00.892D
- ;;^UTILITY(U,$J,358.3,20022,2)
- ;;=^5055968
- ;;^UTILITY(U,$J,358.3,20023,0)
- ;;=V00.898A^^94^935^97
- ;;^UTILITY(U,$J,358.3,20023,1,0)
+ ;;^UTILITY(U,$J,358.3,20374,1,3,0)
+ ;;=3^Bronchitis,Acute Unspec
+ ;;^UTILITY(U,$J,358.3,20374,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,20374,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,20375,0)
+ ;;=J20.8^^84^931^12
+ ;;^UTILITY(U,$J,358.3,20375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20023,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,20023,1,4,0)
- ;;=4^V00.898A
- ;;^UTILITY(U,$J,358.3,20023,2)
- ;;=^5055970
- ;;^UTILITY(U,$J,358.3,20024,0)
- ;;=V00.898D^^94^935^98
- ;;^UTILITY(U,$J,358.3,20024,1,0)
+ ;;^UTILITY(U,$J,358.3,20375,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Oth Spec Organisms
+ ;;^UTILITY(U,$J,358.3,20375,1,4,0)
+ ;;=4^J20.8
+ ;;^UTILITY(U,$J,358.3,20375,2)
+ ;;=^5008194
+ ;;^UTILITY(U,$J,358.3,20376,0)
+ ;;=J20.5^^84^931^14
+ ;;^UTILITY(U,$J,358.3,20376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20024,1,3,0)
- ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20024,1,4,0)
- ;;=4^V00.898D
- ;;^UTILITY(U,$J,358.3,20024,2)
- ;;=^5055971
- ;;^UTILITY(U,$J,358.3,20025,0)
- ;;=W00.0XXA^^94^935^79
- ;;^UTILITY(U,$J,358.3,20025,1,0)
+ ;;^UTILITY(U,$J,358.3,20376,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Respiratory Syncytial Virus
+ ;;^UTILITY(U,$J,358.3,20376,1,4,0)
+ ;;=4^J20.5
+ ;;^UTILITY(U,$J,358.3,20376,2)
+ ;;=^5008191
+ ;;^UTILITY(U,$J,358.3,20377,0)
+ ;;=J20.7^^84^931^9
+ ;;^UTILITY(U,$J,358.3,20377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20025,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,20025,1,4,0)
- ;;=4^W00.0XXA
- ;;^UTILITY(U,$J,358.3,20025,2)
- ;;=^5059510
- ;;^UTILITY(U,$J,358.3,20026,0)
- ;;=W00.0XXD^^94^935^80
- ;;^UTILITY(U,$J,358.3,20026,1,0)
+ ;;^UTILITY(U,$J,358.3,20377,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Echovirus
+ ;;^UTILITY(U,$J,358.3,20377,1,4,0)
+ ;;=4^J20.7
+ ;;^UTILITY(U,$J,358.3,20377,2)
+ ;;=^5008193
+ ;;^UTILITY(U,$J,358.3,20378,0)
+ ;;=J20.6^^84^931^15
+ ;;^UTILITY(U,$J,358.3,20378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20026,1,3,0)
- ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20026,1,4,0)
- ;;=4^W00.0XXD
- ;;^UTILITY(U,$J,358.3,20026,2)
- ;;=^5059511
- ;;^UTILITY(U,$J,358.3,20027,0)
- ;;=W00.1XXA^^94^935^59
- ;;^UTILITY(U,$J,358.3,20027,1,0)
+ ;;^UTILITY(U,$J,358.3,20378,1,3,0)
+ ;;=3^Bronchitis,Acute d/t Rhinovirus
+ ;;^UTILITY(U,$J,358.3,20378,1,4,0)
+ ;;=4^J20.6
+ ;;^UTILITY(U,$J,358.3,20378,2)
+ ;;=^5008192
+ ;;^UTILITY(U,$J,358.3,20379,0)
+ ;;=J18.9^^84^931^67
+ ;;^UTILITY(U,$J,358.3,20379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20027,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,20027,1,4,0)
- ;;=4^W00.1XXA
- ;;^UTILITY(U,$J,358.3,20027,2)
- ;;=^5059513
- ;;^UTILITY(U,$J,358.3,20028,0)
- ;;=W00.1XXD^^94^935^60
- ;;^UTILITY(U,$J,358.3,20028,1,0)
+ ;;^UTILITY(U,$J,358.3,20379,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,20379,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,20379,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,20380,0)
+ ;;=J18.8^^84^931^68
+ ;;^UTILITY(U,$J,358.3,20380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20028,1,3,0)
- ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20028,1,4,0)
- ;;=4^W00.1XXD
- ;;^UTILITY(U,$J,358.3,20028,2)
- ;;=^5059514
- ;;^UTILITY(U,$J,358.3,20029,0)
- ;;=W00.2XXA^^94^935^53
- ;;^UTILITY(U,$J,358.3,20029,1,0)
+ ;;^UTILITY(U,$J,358.3,20380,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism NEC
+ ;;^UTILITY(U,$J,358.3,20380,1,4,0)
+ ;;=4^J18.8
+ ;;^UTILITY(U,$J,358.3,20380,2)
+ ;;=^5008185
+ ;;^UTILITY(U,$J,358.3,20381,0)
+ ;;=J11.00^^84^931^28
+ ;;^UTILITY(U,$J,358.3,20381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20029,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Init Encntr
- ;;^UTILITY(U,$J,358.3,20029,1,4,0)
- ;;=4^W00.2XXA
- ;;^UTILITY(U,$J,358.3,20029,2)
- ;;=^5059516
- ;;^UTILITY(U,$J,358.3,20030,0)
- ;;=W00.2XXD^^94^935^54
- ;;^UTILITY(U,$J,358.3,20030,1,0)
+ ;;^UTILITY(U,$J,358.3,20381,1,3,0)
+ ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type Pneumonia
+ ;;^UTILITY(U,$J,358.3,20381,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,20381,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,20382,0)
+ ;;=J12.9^^84^931^69
+ ;;^UTILITY(U,$J,358.3,20382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20030,1,3,0)
- ;;=3^Fall from One Level to Another d/t Ice/Snow,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20030,1,4,0)
- ;;=4^W00.2XXD
- ;;^UTILITY(U,$J,358.3,20030,2)
- ;;=^5059517
- ;;^UTILITY(U,$J,358.3,20031,0)
- ;;=W00.9XXA^^94^935^25
- ;;^UTILITY(U,$J,358.3,20031,1,0)
+ ;;^UTILITY(U,$J,358.3,20382,1,3,0)
+ ;;=3^Pneumonia,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,20382,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,20382,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,20383,0)
+ ;;=J10.08^^84^931^41
+ ;;^UTILITY(U,$J,358.3,20383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20031,1,3,0)
- ;;=3^Fall d/t Ice/Snow,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,20031,1,4,0)
- ;;=4^W00.9XXA
+ ;;^UTILITY(U,$J,358.3,20383,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Influenza Virus w/ Oth Pneumonia
+ ;;^UTILITY(U,$J,358.3,20383,1,4,0)
+ ;;=4^J10.08
+ ;;^UTILITY(U,$J,358.3,20383,2)
+ ;;=^5008150
+ ;;^UTILITY(U,$J,358.3,20384,0)
+ ;;=J10.00^^84^931^40
+ ;;^UTILITY(U,$J,358.3,20384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20384,1,3,0)
+ ;;=3^Influenza d/t Oth ID'd Flu Virus w/ Unspec Type Pneumonia

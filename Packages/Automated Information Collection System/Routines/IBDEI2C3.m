@@ -1,124 +1,136 @@
-IBDEI2C3 ; ; 19-NOV-2015
+IBDEI2C3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39206,1,0)
+ ;;^UTILITY(U,$J,358.3,39575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39206,1,3,0)
- ;;=3^Concussion w/o LOC, initial encounter
- ;;^UTILITY(U,$J,358.3,39206,1,4,0)
- ;;=4^S06.0X0A
- ;;^UTILITY(U,$J,358.3,39206,2)
- ;;=^5020666
- ;;^UTILITY(U,$J,358.3,39207,0)
- ;;=Z13.850^^183^2013^19
- ;;^UTILITY(U,$J,358.3,39207,1,0)
+ ;;^UTILITY(U,$J,358.3,39575,1,3,0)
+ ;;=3^Pinguecula,Left Eye
+ ;;^UTILITY(U,$J,358.3,39575,1,4,0)
+ ;;=4^H11.152
+ ;;^UTILITY(U,$J,358.3,39575,2)
+ ;;=^5004762
+ ;;^UTILITY(U,$J,358.3,39576,0)
+ ;;=H11.151^^153^1926^56
+ ;;^UTILITY(U,$J,358.3,39576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39207,1,3,0)
- ;;=3^TBI Screening
- ;;^UTILITY(U,$J,358.3,39207,1,4,0)
- ;;=4^Z13.850
- ;;^UTILITY(U,$J,358.3,39207,2)
- ;;=^5062717
- ;;^UTILITY(U,$J,358.3,39208,0)
- ;;=Z87.820^^183^2013^18
- ;;^UTILITY(U,$J,358.3,39208,1,0)
+ ;;^UTILITY(U,$J,358.3,39576,1,3,0)
+ ;;=3^Pinguecula,Right Eye
+ ;;^UTILITY(U,$J,358.3,39576,1,4,0)
+ ;;=4^H11.151
+ ;;^UTILITY(U,$J,358.3,39576,2)
+ ;;=^5004761
+ ;;^UTILITY(U,$J,358.3,39577,0)
+ ;;=H40.11X1^^153^1926^38
+ ;;^UTILITY(U,$J,358.3,39577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39208,1,3,0)
- ;;=3^Personal history of traumatic brain injury
- ;;^UTILITY(U,$J,358.3,39208,1,4,0)
- ;;=4^Z87.820
- ;;^UTILITY(U,$J,358.3,39208,2)
- ;;=^5063514
- ;;^UTILITY(U,$J,358.3,39209,0)
- ;;=S06.890A^^183^2013^16
- ;;^UTILITY(U,$J,358.3,39209,1,0)
+ ;;^UTILITY(U,$J,358.3,39577,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Mild Stage
+ ;;^UTILITY(U,$J,358.3,39577,1,4,0)
+ ;;=4^H40.11X1
+ ;;^UTILITY(U,$J,358.3,39577,2)
+ ;;=^5005754
+ ;;^UTILITY(U,$J,358.3,39578,0)
+ ;;=H40.11X2^^153^1926^39
+ ;;^UTILITY(U,$J,358.3,39578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39209,1,3,0)
- ;;=3^Intcrn inj w/o LOC, init encntr
- ;;^UTILITY(U,$J,358.3,39209,1,4,0)
- ;;=4^S06.890A
- ;;^UTILITY(U,$J,358.3,39209,2)
- ;;=^5021176
- ;;^UTILITY(U,$J,358.3,39210,0)
- ;;=S06.1X5A^^183^2013^20
- ;;^UTILITY(U,$J,358.3,39210,1,0)
+ ;;^UTILITY(U,$J,358.3,39578,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Moderate Stage
+ ;;^UTILITY(U,$J,358.3,39578,1,4,0)
+ ;;=4^H40.11X2
+ ;;^UTILITY(U,$J,358.3,39578,2)
+ ;;=^5005755
+ ;;^UTILITY(U,$J,358.3,39579,0)
+ ;;=H40.11X3^^153^1926^40
+ ;;^UTILITY(U,$J,358.3,39579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39210,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC >24 hr w ret consc lev, init
- ;;^UTILITY(U,$J,358.3,39210,1,4,0)
- ;;=4^S06.1X5A
- ;;^UTILITY(U,$J,358.3,39210,2)
- ;;=^5020711
- ;;^UTILITY(U,$J,358.3,39211,0)
- ;;=S06.1X6A^^183^2013^21
- ;;^UTILITY(U,$J,358.3,39211,1,0)
+ ;;^UTILITY(U,$J,358.3,39579,1,3,0)
+ ;;=3^Glaucoma,Primary Open-Angle,Severe Stage
+ ;;^UTILITY(U,$J,358.3,39579,1,4,0)
+ ;;=4^H40.11X3
+ ;;^UTILITY(U,$J,358.3,39579,2)
+ ;;=^5005756
+ ;;^UTILITY(U,$J,358.3,39580,0)
+ ;;=H11.002^^153^1926^58
+ ;;^UTILITY(U,$J,358.3,39580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39211,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC >24 hr w/o ret consc w surv, init
- ;;^UTILITY(U,$J,358.3,39211,1,4,0)
- ;;=4^S06.1X6A
- ;;^UTILITY(U,$J,358.3,39211,2)
- ;;=^5020714
- ;;^UTILITY(U,$J,358.3,39212,0)
- ;;=S06.1X3A^^183^2013^22
- ;;^UTILITY(U,$J,358.3,39212,1,0)
+ ;;^UTILITY(U,$J,358.3,39580,1,3,0)
+ ;;=3^Pterygium,Left Eye
+ ;;^UTILITY(U,$J,358.3,39580,1,4,0)
+ ;;=4^H11.002
+ ;;^UTILITY(U,$J,358.3,39580,2)
+ ;;=^5004718
+ ;;^UTILITY(U,$J,358.3,39581,0)
+ ;;=H11.001^^153^1926^59
+ ;;^UTILITY(U,$J,358.3,39581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39212,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 1-5 hrs 59 min, init
- ;;^UTILITY(U,$J,358.3,39212,1,4,0)
- ;;=4^S06.1X3A
- ;;^UTILITY(U,$J,358.3,39212,2)
- ;;=^5020705
- ;;^UTILITY(U,$J,358.3,39213,0)
- ;;=S06.1X1A^^183^2013^23
- ;;^UTILITY(U,$J,358.3,39213,1,0)
+ ;;^UTILITY(U,$J,358.3,39581,1,3,0)
+ ;;=3^Pterygium,Right Eye
+ ;;^UTILITY(U,$J,358.3,39581,1,4,0)
+ ;;=4^H11.001
+ ;;^UTILITY(U,$J,358.3,39581,2)
+ ;;=^5004717
+ ;;^UTILITY(U,$J,358.3,39582,0)
+ ;;=H35.373^^153^1926^60
+ ;;^UTILITY(U,$J,358.3,39582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39213,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 30 minutes or less, init
- ;;^UTILITY(U,$J,358.3,39213,1,4,0)
- ;;=4^S06.1X1A
- ;;^UTILITY(U,$J,358.3,39213,2)
- ;;=^5020699
- ;;^UTILITY(U,$J,358.3,39214,0)
- ;;=S06.1X2A^^183^2013^24
- ;;^UTILITY(U,$J,358.3,39214,1,0)
+ ;;^UTILITY(U,$J,358.3,39582,1,3,0)
+ ;;=3^Puckering of Macula,Bilateral
+ ;;^UTILITY(U,$J,358.3,39582,1,4,0)
+ ;;=4^H35.373
+ ;;^UTILITY(U,$J,358.3,39582,2)
+ ;;=^5005664
+ ;;^UTILITY(U,$J,358.3,39583,0)
+ ;;=H35.372^^153^1926^61
+ ;;^UTILITY(U,$J,358.3,39583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39214,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 31-59 min, init
- ;;^UTILITY(U,$J,358.3,39214,1,4,0)
- ;;=4^S06.1X2A
- ;;^UTILITY(U,$J,358.3,39214,2)
- ;;=^5020702
- ;;^UTILITY(U,$J,358.3,39215,0)
- ;;=S06.1X4A^^183^2013^25
- ;;^UTILITY(U,$J,358.3,39215,1,0)
+ ;;^UTILITY(U,$J,358.3,39583,1,3,0)
+ ;;=3^Puckering of Macula,Left eye
+ ;;^UTILITY(U,$J,358.3,39583,1,4,0)
+ ;;=4^H35.372
+ ;;^UTILITY(U,$J,358.3,39583,2)
+ ;;=^5005663
+ ;;^UTILITY(U,$J,358.3,39584,0)
+ ;;=H35.371^^153^1926^62
+ ;;^UTILITY(U,$J,358.3,39584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39215,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC of 6 hours to 24 hours, init
- ;;^UTILITY(U,$J,358.3,39215,1,4,0)
- ;;=4^S06.1X4A
- ;;^UTILITY(U,$J,358.3,39215,2)
- ;;=^5020708
- ;;^UTILITY(U,$J,358.3,39216,0)
- ;;=S06.1X7A^^183^2013^27
- ;;^UTILITY(U,$J,358.3,39216,1,0)
+ ;;^UTILITY(U,$J,358.3,39584,1,3,0)
+ ;;=3^Puckering of Macula,Right eye
+ ;;^UTILITY(U,$J,358.3,39584,1,4,0)
+ ;;=4^H35.371
+ ;;^UTILITY(U,$J,358.3,39584,2)
+ ;;=^5005662
+ ;;^UTILITY(U,$J,358.3,39585,0)
+ ;;=H52.223^^153^1926^2
+ ;;^UTILITY(U,$J,358.3,39585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39216,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC w death d/t brain inj bf consc, init
- ;;^UTILITY(U,$J,358.3,39216,1,4,0)
- ;;=4^S06.1X7A
- ;;^UTILITY(U,$J,358.3,39216,2)
- ;;=^5020717
- ;;^UTILITY(U,$J,358.3,39217,0)
- ;;=S06.1X8A^^183^2013^28
- ;;^UTILITY(U,$J,358.3,39217,1,0)
+ ;;^UTILITY(U,$J,358.3,39585,1,3,0)
+ ;;=3^Astigmatism,Bilateral
+ ;;^UTILITY(U,$J,358.3,39585,1,4,0)
+ ;;=4^H52.223
+ ;;^UTILITY(U,$J,358.3,39585,2)
+ ;;=^5006276
+ ;;^UTILITY(U,$J,358.3,39586,0)
+ ;;=H52.222^^153^1926^3
+ ;;^UTILITY(U,$J,358.3,39586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39217,1,3,0)
- ;;=3^Traumatic cerebral edema w LOC w death d/t oth cause bf consc, init
- ;;^UTILITY(U,$J,358.3,39217,1,4,0)
- ;;=4^S06.1X8A
- ;;^UTILITY(U,$J,358.3,39217,2)
- ;;=^5020720
- ;;^UTILITY(U,$J,358.3,39218,0)
- ;;=S06.1X9A^^183^2013^26
+ ;;^UTILITY(U,$J,358.3,39586,1,3,0)
+ ;;=3^Astigmatism,Left Eye
+ ;;^UTILITY(U,$J,358.3,39586,1,4,0)
+ ;;=4^H52.222
+ ;;^UTILITY(U,$J,358.3,39586,2)
+ ;;=^5006275
+ ;;^UTILITY(U,$J,358.3,39587,0)
+ ;;=H52.221^^153^1926^4
+ ;;^UTILITY(U,$J,358.3,39587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39587,1,3,0)
+ ;;=3^Astigmatism,Right Eye
+ ;;^UTILITY(U,$J,358.3,39587,1,4,0)
+ ;;=4^H52.221
+ ;;^UTILITY(U,$J,358.3,39587,2)
+ ;;=^5006274
+ ;;^UTILITY(U,$J,358.3,39588,0)
+ ;;=Z13.5^^153^1926^63
+ ;;^UTILITY(U,$J,358.3,39588,1,0)
+ ;;=^358.31IA^4^2

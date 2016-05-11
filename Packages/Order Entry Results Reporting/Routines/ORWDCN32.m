@@ -1,5 +1,5 @@
-ORWDCN32 ; SLC/KCM/REV - Consults calls [ 12/16/97  12:47 PM ] ;01/25/12  09:38
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,306**;Dec 17, 1997;Build 43
+ORWDCN32 ; SLC/KCM/REV - Consults calls [ 12/16/97  12:47 PM ] ;02/23/15  06:35
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,306,350**;Dec 17, 1997;Build 77
  ;
 DEF(LST,WHY)         ; load consult info
  N ILST,NAM,IEN,X
@@ -12,12 +12,12 @@ DEF(LST,WHY)         ; load consult info
  S LST($$NXT)="~Outpt Urgencies" D OUTURG
  S LST($$NXT)="~Inpt Place" D INPLACE
  S LST($$NXT)="~Outpt Place" D OUTPLACE
- S LST($$NXT)="~EarliestDate" D EAD
+ S LST($$NXT)="~Clin Ind Date" D CID
  Q
-EAD ; get default value for Earliest Appropriate Date ;WAT V29
+CID ; get default value for Clinically Indicated Date
  N DTDFLT,ENTITY
- S ENTITY="PKG"
- S DTDFLT=$$GET^XPAR(ENTITY,"ORCDGMRC EARLIEST DATE DEFAULT",1,"Q") ;ICR 2263
+ S ENTITY="DIV^SYS^PKG"
+ S DTDFLT=$$GET^XPAR(ENTITY,"ORCDGMRC CLIN IND DATE DEFAULT",1,"Q") ;ICR 2263
  S LST($$NXT)="d^"_DTDFLT
  Q
 SHORT ;return list of Consults or Procedures quick orders

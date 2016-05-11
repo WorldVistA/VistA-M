@@ -1,0 +1,144 @@
+SDECALV ;ALB/SAT - VISTA SCHEDULING RPCS ;JAN 15, 2016
+ ;;5.3;Scheduling;**627**;Aug 13, 1993;Build 249
+ ;
+EN1(SDALVR)  ;
+EN ;VISIT CREATION
+ ;required:
+ ;  SDDATE
+ ;  SDLOC
+ ;  SDPAT
+ ;optional:
+ ; SDALV  (used in SDECALV1)
+ ; SDALVR (used in SDECALV1)
+ ; SDAPDT
+ ; SDCODT
+ ; SDHL - HOSPITAL LOCATION id
+ ; SDLOC
+ ; SDOPT
+ ; SDPROT
+ ; SDPVL
+ ; SDTYPE
+ ; SDUSR
+ ; SDVELG
+ N D0,DA,DIC,DIE,DR
+ N SDAFLG,SDCAT,SDCLN,SDVSIT
+ N SDAPDT,SDCAT,SDCODT,SDDATE,SDHL,SDLOC,SDOLOC,SDOPT,SDPAT,SDPROT,SDPVL
+ N SDTYPE,SDUSR,SDVELG
+ D INIT^SDECALV1(.SDALVR)
+ S SDAPDT=$G(SDALVR("APPT DATE"))
+ S SDCAT=$G(SDALVR("SDCAT"))
+ S SDDATE=$G(SDALVR("SDDATE"))
+ S SDHL=$G(SDALVR("SDHL"))
+ S SDLOC=$G(SDALVR("SDLOC"))
+ S SDCODT=$G(SDALVR("SDCODT"))
+ S SDOLOC=$G(SDALVR("SDOLOC"))
+ S SDOPT=$G(SDALVR("SDOPT"))
+ S SDPAT=$G(SDALVR("SDPAT"))
+ S SDPROT=$G(SDALVR("SDPROT"))
+ S SDPVL=$G(SDALVR("SDPVL"))
+ S SDTYPE=$G(SDALVR("SDTYPE"))
+ S SDUSR=$G(SDALVR("SDUSR"))
+ S SDVELG=$G(SDALVR("SDVELG"))
+ I $D(SDAFLG) D EOJ Q
+ LOCK +^TMP("SDECALV",SDPAT):60
+ I $D(SDADD) D GENVISIT,EOJ Q  ; forced add
+ Q
+ ;
+AUTO ; NON-INTERACTIVE MODE
+ S SDAVDC=9999999-$P(SDDATE,".")_"."_$P(SDDATE,".",2)
+ F SDAI=0:0 S SDAI=$O(^AUPNVSIT("AA",SDPAT,SDAVDC,SDAI)) Q:SDAI=""  D CHECK Q:SDVSIT
+ Q:SDVSIT
+ D GENVISIT
+ Q
+ ;
+CHECK ; CHECK VISIT AUTO MODE
+ N SDAX
+ S SDAX=^AUPNVSIT(SDAI,0)
+ Q:$P(SDAX,U,11)
+ I $D(SDCLN),$P(SDAX,U,8)'=SDCLN Q  ;CHANGED THIS LINE ON 4/4/96 - DOES THIS FIX IT?
+ I '$D(SDCLN),$P(SDAX,U,8)]"" Q  ;if not passing clinic and visit has clinic do not select this visit
+ Q:$P(SDAX,U,3)'=SDTYPE
+ Q:$P(SDAX,U,6)'=SDLOC
+ Q:$P(SDAX,U,7)'=SDCAT
+ S SDVSIT=SDAI
+ Q
+ ;
+ ;--------------------------------------------------------------
+ ;
+GENVISIT ; GENERATE NEW VISIT
+ ;INPUT:
+ ; SDALVR("SDDATE")     .01  VISIT/ADMIT DATE&TIME in fm format
+ ;                      .02  DATE VISIT CREATED
+ ; SDALVR("SDTYPE")     .03  TYPE  valid values:
+ ;       I:IHS
+ ;       C:CONTRACT
+ ;       T:TRIBAL
+ ;       O:OTHER
+ ;       6:638 PROGRAM
+ ;       V:VA
+ ; SDPAT                .05  Patient pointer to PATIENT file 2
+ ; SDLOC                .06  LOC. OF ENCOUNTER pointer to LOCATION file
+ ; SDCAT                .07  Service Category
+ ; SDCLN                .08  DSS ID (Clinic Stop)
+ ; SDPVL                .12  Parent Visit Link
+ ;                      .13  Date Last Modified in fm format
+ ; SDCODT               .18  Check out Date&Time
+ ; SDVELG               .21  Eligibility pointer to ELIGIBILITY CODE file 8
+ ; SDHL                 .22  Hospital Location pointer to file 44
+ ; SDUSR                .23  Created by user pointer to NEW PERSON
+ ; SDOPT                .24  Option used to Create pointer to OPTION file
+ ; SDPROT               .25  Protocol pointer to PROTOCOL file
+ ; SDOLOC               2101 outside location
+ ;
+ N AUPNDOB,AUPNDOD,AUPNSEX
+ N SDDOB,SDDOD,SDFDA,SDIEN,SDMSG,SDSEX,X,Y,%DT
+ S Y=SDPAT D ^AUPNPAT K Y
+ S SDSEX=AUPNSEX,SDDOB=AUPNDOB,SDDOD=AUPNDOD
+ S X=$G(SDDATE),%DT="TRXN" D ^%DT S X=Y I X=-1 S SDAFLG=2,SDAFLG("ERR")=".01^"_SDDATE_"^DATE INVALID FOR PATIENT,CANNOT CREATE VISIT .01 VALUE" Q
+ D VSIT01^AUPNVSIT
+ I '$D(X) S SDAFLG=2,SDAFLG("ERR")=".01^"_SDDATE_"^DATE INVALID FOR PATIENT,CANNOT CREATE VISIT .01 VALUE" Q
+ S SDFDA="SDFDA(9000010,""+1,"")"
+ S @SDFDA@(.01)=SDDATE
+ S @SDFDA@(.02)=$$NOW^XLFDT
+ S @SDFDA@(.03)=$G(SDTYPE)
+ S @SDFDA@(.05)=$G(SDPAT)
+ S @SDFDA@(.06)=$G(SDLOC)
+ S @SDFDA@(.07)=$G(SDCAT)
+ S @SDFDA@(.08)=$G(SDCLN)
+ S @SDFDA@(.12)=$G(SDPVL)
+ S @SDFDA@(.13)=DT
+ S @SDFDA@(.18)=$G(SDCODT)
+ S @SDFDA@(.21)=$G(SDVELG)
+ S @SDFDA@(.22)=$G(SDHL)
+ S @SDFDA@(.23)=$G(SDUSR)
+ S @SDFDA@(.24)=$G(SDOPT)
+ S @SDFDA@(.25)=$G(SDPROT)
+ S @SDFDA@(2101)=$S($G(SDOLOC)]"":SDOLOC,1:"")
+ S VID=$$GETVID^VSITVID S @SDFDA@(15001)=VID
+ D UPDATE^DIE("","SDFDA","SDIEN","SDMSG")
+ ;
+ I $D(SDMSG) S SDAFLG=2,SDAFLG("ERR")=".01^"_SDALVR("CDT")_"^VISIT CREATION FAILED" Q
+ S SDVSIT=+SDIEN(1)
+ I $T(GETVID^VSITVID)]"",$P($G(^DIC(150.9,1,4)),U,2)]"" S VID=$$GETVID^VSITVID S DIE=9000010,DA=SDVSIT,DR="15001///"_VID D ^DIE K VID,DIE,DR,DA
+ S SDVSIT("NEW")=1
+ Q
+ ;
+ ;--------------------------------------------------------------
+ ;
+INIT ; INITIALIZATION/EDIT INPUT VARIABLES
+ D INIT^SDECALV1
+ Q
+ ;
+EOJ ; CLEAN UP
+ LOCK -^TMP("SDECALV",SDPAT)
+ ; The line below must 'hard set' the clinic code because
+ ; ^DIE would have to be called recursively.  An exception to the
+ ; standard has been granted by DSM/OIRM.
+ I SDVSIT,$D(SDCLN),$P(^AUPNVSIT(SDVSIT,0),U,8)="" S $P(^AUPNVSIT(SDVSIT,0),U,8)=SDCLN ; ***** BAD, VERY BAD, FORGIVE US PLEASE *****
+ ;I SDVSIT,$P($G(^AUPNVSIT(SDVSIT,11)),U,4)="" S $P(^AUPNVSIT(SDVSIT,11),U,4)=$$UID^AUPNVSIT(SDVSIT) ;stuff UID if blank
+ K X,Y
+ K DIRUT,DTOUT,DUOUT
+ K SDADD,SDADF
+ K SDAC,SDAI,SDAL,SDALV,SDAO,SDAVD,SDAVDC,SDAX,SDA11
+ I $D(SDALVR)\10 S SDALVR("SDPAT")=SDPAT,SDALVR("SDVSIT")=SDVSIT S:$D(SDVSIT("NEW")) SDALVR("SDVSIT","NEW")=SDVSIT("NEW") S:$D(SDAFLG) SDALVR("SDAFLG")=SDAFLG D EN1^SDECEKL
+ Q

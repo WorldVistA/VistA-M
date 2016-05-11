@@ -1,9 +1,10 @@
-IBCOMA ;ALB/CMS - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE; 08-03-98
- ;;2.0;INTEGRATED BILLING;**103**;21-MAR-94
+IBCOMA ;ALB/CMS - IDENTIFY ACTIVE POLICIES W/NO EFFECTIVE DATE;08-03-98
+ ;;2.0;INTEGRATED BILLING;**103,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
 EN ;Entry point from option
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- N IBAIB,IBBDT,IBEDT,IBRF,IBRL,IBQUIT,IBSIN,IBSTR,X,Y
+ N IBAIB,IBBDT,IBEDT,IBRF,IBRL,IBOUT,IBQUIT,IBSIN,IBSTR,X,Y
  S (IBAIB,IBBDT,IBEDT,IBRF,IBRL,IBSIN,IBSTR)=""
  W !!,?10,"Identify Active Policies with NO Effective Date",!
  S DIR("A",1)="Sort report by"
@@ -31,6 +32,8 @@ VER W !!
  K DIR,DIROUT,DTOUT,DUOUT,DIRUT
  I IBSIN'=2 D VR I IBBDT=""!(IBEDT="") W "     <Date Range not entered>" G VER
  I $G(IBQUIT)=1 G EXIT
+ ;
+ S IBOUT=$$OUT G:IBOUT="" EXIT
  ;
  W !! D QUE
  ;
@@ -91,7 +94,7 @@ QUE ; Ask Device
  W !,?10,"You may want to queue this report!",!
  S %ZIS="QM" D ^%ZIS G:POP QUEQ
  I $D(IO("Q")) K IO("Q") D  G QUEQ
- .S ZTRTN="BEG^IBCOMA1",ZTSAVE("IBRF")="",ZTSAVE("IBRL")=""
+ .S ZTRTN="BEG^IBCOMA1",ZTSAVE("IBRF")="",ZTSAVE("IBRL")="",ZTSAVE("IBOUT")=""
  .S ZTSAVE("IBAIB")="",ZTSAVE("IBBDT")="",ZTSAVE("IBEDT")="",ZTSAVE("IBSIN")=""
  .S ZTDESC="IB - Identify Active Policies w/no Effective Date"
  .D ^%ZTLOAD K ZTSK D HOME^%ZIS
@@ -101,6 +104,14 @@ QUE ; Ask Device
  D BEG^IBCOMA1
  ;
 QUEQ ; EXIT CLEAN-UP
- W ! D ^%ZISC K IBAIB,IBRF,IBRL,IBSIN,IBSTR,^TMP("IBCOMA",$J)
+ W ! D ^%ZISC K IBAIB,IBOUT,IBRF,IBRL,IBSIN,IBSTR,^TMP("IBCOMA",$J)
  Q
- ;IBCOMA
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

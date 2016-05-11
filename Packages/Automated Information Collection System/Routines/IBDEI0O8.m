@@ -1,136 +1,134 @@
-IBDEI0O8 ; ; 19-NOV-2015
+IBDEI0O8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11081,0)
- ;;=J11.1^^68^677^44
- ;;^UTILITY(U,$J,358.3,11081,1,0)
+ ;;^UTILITY(U,$J,358.3,11317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11081,1,3,0)
- ;;=3^Influenza d/t Unident Influenza Virus w/ Oth Resp Manifest
- ;;^UTILITY(U,$J,358.3,11081,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,11081,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,11082,0)
- ;;=N12.^^68^677^85
- ;;^UTILITY(U,$J,358.3,11082,1,0)
+ ;;^UTILITY(U,$J,358.3,11317,1,3,0)
+ ;;=3^Urethral Syndrome,Unspec
+ ;;^UTILITY(U,$J,358.3,11317,1,4,0)
+ ;;=4^N34.3
+ ;;^UTILITY(U,$J,358.3,11317,2)
+ ;;=^5015656
+ ;;^UTILITY(U,$J,358.3,11318,0)
+ ;;=Z87.442^^47^530^58
+ ;;^UTILITY(U,$J,358.3,11318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11082,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,11082,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,11082,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,11083,0)
- ;;=N11.9^^68^677^86
- ;;^UTILITY(U,$J,358.3,11083,1,0)
+ ;;^UTILITY(U,$J,358.3,11318,1,3,0)
+ ;;=3^Personal Hx of Urinary Calculi
+ ;;^UTILITY(U,$J,358.3,11318,1,4,0)
+ ;;=4^Z87.442
+ ;;^UTILITY(U,$J,358.3,11318,2)
+ ;;=^5063497
+ ;;^UTILITY(U,$J,358.3,11319,0)
+ ;;=R35.0^^47^530^88
+ ;;^UTILITY(U,$J,358.3,11319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11083,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis,Chronic
- ;;^UTILITY(U,$J,358.3,11083,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,11083,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,11084,0)
- ;;=N13.6^^68^677^73
- ;;^UTILITY(U,$J,358.3,11084,1,0)
+ ;;^UTILITY(U,$J,358.3,11319,1,3,0)
+ ;;=3^Urinary Frequency
+ ;;^UTILITY(U,$J,358.3,11319,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,11319,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,11320,0)
+ ;;=N39.42^^47^530^89
+ ;;^UTILITY(U,$J,358.3,11320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11084,1,3,0)
- ;;=3^Pyonephrosis
- ;;^UTILITY(U,$J,358.3,11084,1,4,0)
- ;;=4^N13.6
- ;;^UTILITY(U,$J,358.3,11084,2)
- ;;=^101552
- ;;^UTILITY(U,$J,358.3,11085,0)
- ;;=N30.91^^68^677^19
- ;;^UTILITY(U,$J,358.3,11085,1,0)
+ ;;^UTILITY(U,$J,358.3,11320,1,3,0)
+ ;;=3^Urinary Incontinence w/o Sensory Awareness
+ ;;^UTILITY(U,$J,358.3,11320,1,4,0)
+ ;;=4^N39.42
+ ;;^UTILITY(U,$J,358.3,11320,2)
+ ;;=^5015681
+ ;;^UTILITY(U,$J,358.3,11321,0)
+ ;;=N39.45^^47^530^90
+ ;;^UTILITY(U,$J,358.3,11321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11085,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,11085,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,11085,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,11086,0)
- ;;=N30.90^^68^677^20
- ;;^UTILITY(U,$J,358.3,11086,1,0)
+ ;;^UTILITY(U,$J,358.3,11321,1,3,0)
+ ;;=3^Urinary Incontinence,Continuous Leakage
+ ;;^UTILITY(U,$J,358.3,11321,1,4,0)
+ ;;=4^N39.45
+ ;;^UTILITY(U,$J,358.3,11321,2)
+ ;;=^5015684
+ ;;^UTILITY(U,$J,358.3,11322,0)
+ ;;=R39.81^^47^530^91
+ ;;^UTILITY(U,$J,358.3,11322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11086,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,11086,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,11086,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,11087,0)
- ;;=N41.9^^68^677^38
- ;;^UTILITY(U,$J,358.3,11087,1,0)
+ ;;^UTILITY(U,$J,358.3,11322,1,3,0)
+ ;;=3^Urinary Incontinence,Functional
+ ;;^UTILITY(U,$J,358.3,11322,1,4,0)
+ ;;=4^R39.81
+ ;;^UTILITY(U,$J,358.3,11322,2)
+ ;;=^5019349
+ ;;^UTILITY(U,$J,358.3,11323,0)
+ ;;=N39.46^^47^530^92
+ ;;^UTILITY(U,$J,358.3,11323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11087,1,3,0)
- ;;=3^Inflammatory Disease of Prostate,Unspec
- ;;^UTILITY(U,$J,358.3,11087,1,4,0)
- ;;=4^N41.9
- ;;^UTILITY(U,$J,358.3,11087,2)
- ;;=^5015694
- ;;^UTILITY(U,$J,358.3,11088,0)
- ;;=N70.91^^68^677^75
- ;;^UTILITY(U,$J,358.3,11088,1,0)
+ ;;^UTILITY(U,$J,358.3,11323,1,3,0)
+ ;;=3^Urinary Incontinence,Mixed,Male/Female
+ ;;^UTILITY(U,$J,358.3,11323,1,4,0)
+ ;;=4^N39.46
+ ;;^UTILITY(U,$J,358.3,11323,2)
+ ;;=^5015685
+ ;;^UTILITY(U,$J,358.3,11324,0)
+ ;;=N39.44^^47^530^93
+ ;;^UTILITY(U,$J,358.3,11324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11088,1,3,0)
- ;;=3^Salpingitis,Unspec
- ;;^UTILITY(U,$J,358.3,11088,1,4,0)
- ;;=4^N70.91
- ;;^UTILITY(U,$J,358.3,11088,2)
- ;;=^5015806
- ;;^UTILITY(U,$J,358.3,11089,0)
- ;;=N70.93^^68^677^74
- ;;^UTILITY(U,$J,358.3,11089,1,0)
+ ;;^UTILITY(U,$J,358.3,11324,1,3,0)
+ ;;=3^Urinary Incontinence,Nocturnal Enuresis
+ ;;^UTILITY(U,$J,358.3,11324,1,4,0)
+ ;;=4^N39.44
+ ;;^UTILITY(U,$J,358.3,11324,2)
+ ;;=^5015683
+ ;;^UTILITY(U,$J,358.3,11325,0)
+ ;;=N39.498^^47^530^94
+ ;;^UTILITY(U,$J,358.3,11325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11089,1,3,0)
- ;;=3^Salpingitis & Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,11089,1,4,0)
- ;;=4^N70.93
- ;;^UTILITY(U,$J,358.3,11089,2)
- ;;=^5015808
- ;;^UTILITY(U,$J,358.3,11090,0)
- ;;=N70.92^^68^677^55
- ;;^UTILITY(U,$J,358.3,11090,1,0)
+ ;;^UTILITY(U,$J,358.3,11325,1,3,0)
+ ;;=3^Urinary Incontinence,Other
+ ;;^UTILITY(U,$J,358.3,11325,1,4,0)
+ ;;=4^N39.498
+ ;;^UTILITY(U,$J,358.3,11325,2)
+ ;;=^5015686
+ ;;^UTILITY(U,$J,358.3,11326,0)
+ ;;=N39.490^^47^530^95
+ ;;^UTILITY(U,$J,358.3,11326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11090,1,3,0)
- ;;=3^Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,11090,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,11090,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,11091,0)
- ;;=N73.9^^68^677^37
- ;;^UTILITY(U,$J,358.3,11091,1,0)
+ ;;^UTILITY(U,$J,358.3,11326,1,3,0)
+ ;;=3^Urinary Incontinence,Overflow
+ ;;^UTILITY(U,$J,358.3,11326,1,4,0)
+ ;;=4^N39.490
+ ;;^UTILITY(U,$J,358.3,11326,2)
+ ;;=^331569
+ ;;^UTILITY(U,$J,358.3,11327,0)
+ ;;=N39.43^^47^530^96
+ ;;^UTILITY(U,$J,358.3,11327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11091,1,3,0)
- ;;=3^Inflammatory Disease Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,11091,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,11091,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,11092,0)
- ;;=A56.11^^68^677^36
- ;;^UTILITY(U,$J,358.3,11092,1,0)
+ ;;^UTILITY(U,$J,358.3,11327,1,3,0)
+ ;;=3^Urinary Incontinence,Post-Void Dribbling
+ ;;^UTILITY(U,$J,358.3,11327,1,4,0)
+ ;;=4^N39.43
+ ;;^UTILITY(U,$J,358.3,11327,2)
+ ;;=^5015682
+ ;;^UTILITY(U,$J,358.3,11328,0)
+ ;;=N39.3^^47^530^97
+ ;;^UTILITY(U,$J,358.3,11328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11092,1,3,0)
- ;;=3^Inflammatory Disease Chlamydial Female Pelvic
- ;;^UTILITY(U,$J,358.3,11092,1,4,0)
- ;;=4^A56.11
- ;;^UTILITY(U,$J,358.3,11092,2)
- ;;=^5000342
- ;;^UTILITY(U,$J,358.3,11093,0)
- ;;=N73.5^^68^677^64
- ;;^UTILITY(U,$J,358.3,11093,1,0)
+ ;;^UTILITY(U,$J,358.3,11328,1,3,0)
+ ;;=3^Urinary Incontinence,Stress,Male/Female
+ ;;^UTILITY(U,$J,358.3,11328,1,4,0)
+ ;;=4^N39.3
+ ;;^UTILITY(U,$J,358.3,11328,2)
+ ;;=^5015679
+ ;;^UTILITY(U,$J,358.3,11329,0)
+ ;;=R32.^^47^530^98
+ ;;^UTILITY(U,$J,358.3,11329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11093,1,3,0)
- ;;=3^Peritonitis Female Pelvic,Unspec
- ;;^UTILITY(U,$J,358.3,11093,1,4,0)
- ;;=4^N73.5
- ;;^UTILITY(U,$J,358.3,11093,2)
- ;;=^5015817
- ;;^UTILITY(U,$J,358.3,11094,0)
- ;;=N72.^^68^677^35
+ ;;^UTILITY(U,$J,358.3,11329,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,11329,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,11329,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,11330,0)
+ ;;=N39.41^^47^530^99

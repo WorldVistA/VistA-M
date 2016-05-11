@@ -1,132 +1,130 @@
-IBDEI2FC ; ; 19-NOV-2015
+IBDEI2FC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40707,2)
- ;;=^5045633
- ;;^UTILITY(U,$J,358.3,40708,0)
- ;;=L30.9^^189^2084^56
- ;;^UTILITY(U,$J,358.3,40708,1,0)
+ ;;^UTILITY(U,$J,358.3,41121,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,41121,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,41122,0)
+ ;;=N52.34^^159^2000^38
+ ;;^UTILITY(U,$J,358.3,41122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40708,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,40708,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,40708,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,40709,0)
- ;;=M20.5X2^^189^2084^40
- ;;^UTILITY(U,$J,358.3,40709,1,0)
+ ;;^UTILITY(U,$J,358.3,41122,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,41122,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,41122,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,41123,0)
+ ;;=N52.39^^159^2000^40
+ ;;^UTILITY(U,$J,358.3,41123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40709,1,3,0)
- ;;=3^Deformitis,Left Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,40709,1,4,0)
- ;;=4^M20.5X2
- ;;^UTILITY(U,$J,358.3,40709,2)
- ;;=^5011054
- ;;^UTILITY(U,$J,358.3,40710,0)
- ;;=M20.5X1^^189^2084^42
- ;;^UTILITY(U,$J,358.3,40710,1,0)
+ ;;^UTILITY(U,$J,358.3,41123,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,41123,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,41123,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,41124,0)
+ ;;=N52.33^^159^2000^39
+ ;;^UTILITY(U,$J,358.3,41124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40710,1,3,0)
- ;;=3^Deformitis,Right Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,40710,1,4,0)
- ;;=4^M20.5X1
- ;;^UTILITY(U,$J,358.3,40710,2)
- ;;=^5011053
- ;;^UTILITY(U,$J,358.3,40711,0)
- ;;=M24.871^^189^2084^49
- ;;^UTILITY(U,$J,358.3,40711,1,0)
+ ;;^UTILITY(U,$J,358.3,41124,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,41124,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,41124,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,41125,0)
+ ;;=N52.32^^159^2000^36
+ ;;^UTILITY(U,$J,358.3,41125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40711,1,3,0)
- ;;=3^Derangement,Right Ankle Joint NEC
- ;;^UTILITY(U,$J,358.3,40711,1,4,0)
- ;;=4^M24.871
- ;;^UTILITY(U,$J,358.3,40711,2)
- ;;=^5011468
- ;;^UTILITY(U,$J,358.3,40712,0)
- ;;=M24.875^^189^2084^48
- ;;^UTILITY(U,$J,358.3,40712,1,0)
+ ;;^UTILITY(U,$J,358.3,41125,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,41125,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,41125,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,41126,0)
+ ;;=N52.31^^159^2000^37
+ ;;^UTILITY(U,$J,358.3,41126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40712,1,3,0)
- ;;=3^Derangement,Left Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,40712,1,4,0)
- ;;=4^M24.875
- ;;^UTILITY(U,$J,358.3,40712,2)
- ;;=^5011472
- ;;^UTILITY(U,$J,358.3,40713,0)
- ;;=M24.874^^189^2084^50
- ;;^UTILITY(U,$J,358.3,40713,1,0)
+ ;;^UTILITY(U,$J,358.3,41126,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,41126,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,41126,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,41127,0)
+ ;;=N52.2^^159^2000^43
+ ;;^UTILITY(U,$J,358.3,41127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40713,1,3,0)
- ;;=3^Derangement,Right Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,40713,1,4,0)
- ;;=4^M24.874
- ;;^UTILITY(U,$J,358.3,40713,2)
- ;;=^5011471
- ;;^UTILITY(U,$J,358.3,40714,0)
- ;;=M24.872^^189^2084^47
- ;;^UTILITY(U,$J,358.3,40714,1,0)
+ ;;^UTILITY(U,$J,358.3,41127,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,41127,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,41127,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,41128,0)
+ ;;=N52.03^^159^2000^34
+ ;;^UTILITY(U,$J,358.3,41128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40714,1,3,0)
- ;;=3^Derangement,Left Ankle Joint NEC
- ;;^UTILITY(U,$J,358.3,40714,1,4,0)
- ;;=4^M24.872
- ;;^UTILITY(U,$J,358.3,40714,2)
- ;;=^5011469
- ;;^UTILITY(U,$J,358.3,40715,0)
- ;;=L30.1^^189^2084^74
- ;;^UTILITY(U,$J,358.3,40715,1,0)
+ ;;^UTILITY(U,$J,358.3,41128,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,41128,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,41128,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,41129,0)
+ ;;=N52.02^^159^2000^35
+ ;;^UTILITY(U,$J,358.3,41129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40715,1,3,0)
- ;;=3^Dyshidrosis [pompholyx]
- ;;^UTILITY(U,$J,358.3,40715,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,40715,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,40716,0)
- ;;=L98.9^^189^2084^73
- ;;^UTILITY(U,$J,358.3,40716,1,0)
+ ;;^UTILITY(U,$J,358.3,41129,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,41129,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,41129,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,41130,0)
+ ;;=N52.1^^159^2000^42
+ ;;^UTILITY(U,$J,358.3,41130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40716,1,3,0)
- ;;=3^Disorder of skin and subcut tissue, unspec
- ;;^UTILITY(U,$J,358.3,40716,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,40716,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,40717,0)
- ;;=Q72.891^^189^2084^37
- ;;^UTILITY(U,$J,358.3,40717,1,0)
+ ;;^UTILITY(U,$J,358.3,41130,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,41130,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,41130,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,41131,0)
+ ;;=N52.01^^159^2000^41
+ ;;^UTILITY(U,$J,358.3,41131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40717,1,3,0)
- ;;=3^Defects,Reduction Right Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,40717,1,4,0)
- ;;=4^Q72.891
- ;;^UTILITY(U,$J,358.3,40717,2)
- ;;=^5018985
- ;;^UTILITY(U,$J,358.3,40718,0)
- ;;=Q72.892^^189^2084^36
- ;;^UTILITY(U,$J,358.3,40718,1,0)
+ ;;^UTILITY(U,$J,358.3,41131,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,41131,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,41131,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,41132,0)
+ ;;=N95.2^^159^2000^81
+ ;;^UTILITY(U,$J,358.3,41132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40718,1,3,0)
- ;;=3^Defects,Reduction Left Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,40718,1,4,0)
- ;;=4^Q72.892
- ;;^UTILITY(U,$J,358.3,40718,2)
- ;;=^5134172
- ;;^UTILITY(U,$J,358.3,40719,0)
- ;;=Q72.893^^189^2084^35
- ;;^UTILITY(U,$J,358.3,40719,1,0)
+ ;;^UTILITY(U,$J,358.3,41132,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,41132,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,41132,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,41133,0)
+ ;;=R30.9^^159^2000^65
+ ;;^UTILITY(U,$J,358.3,41133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40719,1,3,0)
- ;;=3^Defects,Reduction Bilateral Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,40719,1,4,0)
- ;;=4^Q72.893
- ;;^UTILITY(U,$J,358.3,40719,2)
- ;;=^5018986
- ;;^UTILITY(U,$J,358.3,40720,0)
- ;;=M21.962^^189^2084^43
- ;;^UTILITY(U,$J,358.3,40720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40720,1,3,0)
- ;;=3^Deformity,Left Lower Leg,Acquired
+ ;;^UTILITY(U,$J,358.3,41133,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,41133,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,41133,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,41134,0)
+ ;;=R30.0^^159^2000^26

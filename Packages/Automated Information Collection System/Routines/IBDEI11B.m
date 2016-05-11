@@ -1,136 +1,130 @@
-IBDEI11B ; ; 19-NOV-2015
+IBDEI11B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17218,1,3,0)
- ;;=3^Pain,Unspec
- ;;^UTILITY(U,$J,358.3,17218,1,4,0)
- ;;=4^R52.
- ;;^UTILITY(U,$J,358.3,17218,2)
- ;;=^5019514
- ;;^UTILITY(U,$J,358.3,17219,0)
- ;;=I83.819^^88^858^78
- ;;^UTILITY(U,$J,358.3,17219,1,0)
+ ;;^UTILITY(U,$J,358.3,17556,1,3,0)
+ ;;=3^Encntr for exam & obs folwng alleged adlt rape
+ ;;^UTILITY(U,$J,358.3,17556,1,4,0)
+ ;;=4^Z04.41
+ ;;^UTILITY(U,$J,358.3,17556,2)
+ ;;=^5062660
+ ;;^UTILITY(U,$J,358.3,17557,0)
+ ;;=Z76.0^^73^849^11
+ ;;^UTILITY(U,$J,358.3,17557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17219,1,3,0)
- ;;=3^Pain,Varicose Veins,Lower Extremities
- ;;^UTILITY(U,$J,358.3,17219,1,4,0)
- ;;=4^I83.819
- ;;^UTILITY(U,$J,358.3,17219,2)
- ;;=^5008014
- ;;^UTILITY(U,$J,358.3,17220,0)
- ;;=M25.532^^88^858^79
- ;;^UTILITY(U,$J,358.3,17220,1,0)
+ ;;^UTILITY(U,$J,358.3,17557,1,3,0)
+ ;;=3^Encntr for issue of repeat prescription
+ ;;^UTILITY(U,$J,358.3,17557,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,17557,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,17558,0)
+ ;;=Z69.12^^73^849^13
+ ;;^UTILITY(U,$J,358.3,17558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17220,1,3,0)
- ;;=3^Pain,Wrist,Left
- ;;^UTILITY(U,$J,358.3,17220,1,4,0)
- ;;=4^M25.532
- ;;^UTILITY(U,$J,358.3,17220,2)
- ;;=^5011609
- ;;^UTILITY(U,$J,358.3,17221,0)
- ;;=M25.531^^88^858^80
- ;;^UTILITY(U,$J,358.3,17221,1,0)
+ ;;^UTILITY(U,$J,358.3,17558,1,3,0)
+ ;;=3^Encntr for mntl hlth serv for perp of spous or prtnr abuse
+ ;;^UTILITY(U,$J,358.3,17558,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,17558,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,17559,0)
+ ;;=Z69.010^^73^849^14
+ ;;^UTILITY(U,$J,358.3,17559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17221,1,3,0)
- ;;=3^Pain,Wrist,Right
- ;;^UTILITY(U,$J,358.3,17221,1,4,0)
- ;;=4^M25.531
- ;;^UTILITY(U,$J,358.3,17221,2)
- ;;=^5011608
- ;;^UTILITY(U,$J,358.3,17222,0)
- ;;=H57.12^^88^858^51
- ;;^UTILITY(U,$J,358.3,17222,1,0)
+ ;;^UTILITY(U,$J,358.3,17559,1,3,0)
+ ;;=3^Encntr for mntl hlth serv for vctm of prntl child abuse
+ ;;^UTILITY(U,$J,358.3,17559,1,4,0)
+ ;;=4^Z69.010
+ ;;^UTILITY(U,$J,358.3,17559,2)
+ ;;=^5063228
+ ;;^UTILITY(U,$J,358.3,17560,0)
+ ;;=Z69.11^^73^849^15
+ ;;^UTILITY(U,$J,358.3,17560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17222,1,3,0)
- ;;=3^Pain,Ocular,Left Eye
- ;;^UTILITY(U,$J,358.3,17222,1,4,0)
- ;;=4^H57.12
- ;;^UTILITY(U,$J,358.3,17222,2)
- ;;=^5006383
- ;;^UTILITY(U,$J,358.3,17223,0)
- ;;=Z93.0^^88^859^1
- ;;^UTILITY(U,$J,358.3,17223,1,0)
+ ;;^UTILITY(U,$J,358.3,17560,1,3,0)
+ ;;=3^Encntr for mntl hlth serv for vctm of spous or prtnr abuse
+ ;;^UTILITY(U,$J,358.3,17560,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,17560,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,17561,0)
+ ;;=Z65.5^^73^849^16
+ ;;^UTILITY(U,$J,358.3,17561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17223,1,3,0)
- ;;=3^Artificial Opening,Tracheostomy Status
- ;;^UTILITY(U,$J,358.3,17223,1,4,0)
- ;;=4^Z93.0
- ;;^UTILITY(U,$J,358.3,17223,2)
- ;;=^5063642
- ;;^UTILITY(U,$J,358.3,17224,0)
- ;;=J45.991^^88^859^2
- ;;^UTILITY(U,$J,358.3,17224,1,0)
+ ;;^UTILITY(U,$J,358.3,17561,1,3,0)
+ ;;=3^Expsr to disaster, war & oth hostilities
+ ;;^UTILITY(U,$J,358.3,17561,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,17561,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,17562,0)
+ ;;=Z59.0^^73^849^18
+ ;;^UTILITY(U,$J,358.3,17562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17224,1,3,0)
- ;;=3^Asthma,Cough Variant
- ;;^UTILITY(U,$J,358.3,17224,1,4,0)
- ;;=4^J45.991
- ;;^UTILITY(U,$J,358.3,17224,2)
- ;;=^329927
- ;;^UTILITY(U,$J,358.3,17225,0)
- ;;=J45.990^^88^859^3
- ;;^UTILITY(U,$J,358.3,17225,1,0)
+ ;;^UTILITY(U,$J,358.3,17562,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,17562,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,17562,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,17563,0)
+ ;;=Z59.5^^73^849^17
+ ;;^UTILITY(U,$J,358.3,17563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17225,1,3,0)
- ;;=3^Asthma,Exercise Induced Bronchospasm
- ;;^UTILITY(U,$J,358.3,17225,1,4,0)
- ;;=4^J45.990
- ;;^UTILITY(U,$J,358.3,17225,2)
- ;;=^329926
- ;;^UTILITY(U,$J,358.3,17226,0)
- ;;=J45.909^^88^859^6
- ;;^UTILITY(U,$J,358.3,17226,1,0)
+ ;;^UTILITY(U,$J,358.3,17563,1,3,0)
+ ;;=3^Extreme poverty
+ ;;^UTILITY(U,$J,358.3,17563,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,17563,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,17564,0)
+ ;;=Z71.7^^73^849^19
+ ;;^UTILITY(U,$J,358.3,17564,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17226,1,3,0)
- ;;=3^Asthma,Unspec,Uncomplicated
- ;;^UTILITY(U,$J,358.3,17226,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,17226,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,17227,0)
- ;;=J45.901^^88^859^4
- ;;^UTILITY(U,$J,358.3,17227,1,0)
+ ;;^UTILITY(U,$J,358.3,17564,1,3,0)
+ ;;=3^Human immunodeficiency virus [HIV] counseling
+ ;;^UTILITY(U,$J,358.3,17564,1,4,0)
+ ;;=4^Z71.7
+ ;;^UTILITY(U,$J,358.3,17564,2)
+ ;;=^5063251
+ ;;^UTILITY(U,$J,358.3,17565,0)
+ ;;=Z73.4^^73^849^20
+ ;;^UTILITY(U,$J,358.3,17565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17227,1,3,0)
- ;;=3^Asthma,Unspec w/ Acute Exacerbation
- ;;^UTILITY(U,$J,358.3,17227,1,4,0)
- ;;=4^J45.901
- ;;^UTILITY(U,$J,358.3,17227,2)
- ;;=^5008254
- ;;^UTILITY(U,$J,358.3,17228,0)
- ;;=J45.902^^88^859^5
- ;;^UTILITY(U,$J,358.3,17228,1,0)
+ ;;^UTILITY(U,$J,358.3,17565,1,3,0)
+ ;;=3^Inadqute social skills, not elswhr classified
+ ;;^UTILITY(U,$J,358.3,17565,1,4,0)
+ ;;=4^Z73.4
+ ;;^UTILITY(U,$J,358.3,17565,2)
+ ;;=^5063272
+ ;;^UTILITY(U,$J,358.3,17566,0)
+ ;;=Z79.2^^73^849^22
+ ;;^UTILITY(U,$J,358.3,17566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17228,1,3,0)
- ;;=3^Asthma,Unspec w/ Status Asthmaticus
- ;;^UTILITY(U,$J,358.3,17228,1,4,0)
- ;;=4^J45.902
- ;;^UTILITY(U,$J,358.3,17228,2)
- ;;=^5008255
- ;;^UTILITY(U,$J,358.3,17229,0)
- ;;=J15.9^^88^859^7
- ;;^UTILITY(U,$J,358.3,17229,1,0)
+ ;;^UTILITY(U,$J,358.3,17566,1,3,0)
+ ;;=3^Long term (current) use of antibiotics
+ ;;^UTILITY(U,$J,358.3,17566,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,17566,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,17567,0)
+ ;;=Z79.01^^73^849^23
+ ;;^UTILITY(U,$J,358.3,17567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17229,1,3,0)
- ;;=3^Bacterial Pneumonia,Unspec
- ;;^UTILITY(U,$J,358.3,17229,1,4,0)
- ;;=4^J15.9
- ;;^UTILITY(U,$J,358.3,17229,2)
- ;;=^5008178
- ;;^UTILITY(U,$J,358.3,17230,0)
- ;;=R06.9^^88^859^11
- ;;^UTILITY(U,$J,358.3,17230,1,0)
+ ;;^UTILITY(U,$J,358.3,17567,1,3,0)
+ ;;=3^Long term (current) use of anticoagulants
+ ;;^UTILITY(U,$J,358.3,17567,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,17567,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,17568,0)
+ ;;=Z79.02^^73^849^24
+ ;;^UTILITY(U,$J,358.3,17568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17230,1,3,0)
- ;;=3^Breathing Abnormalities,Unspec
- ;;^UTILITY(U,$J,358.3,17230,1,4,0)
- ;;=4^R06.9
- ;;^UTILITY(U,$J,358.3,17230,2)
- ;;=^5019194
- ;;^UTILITY(U,$J,358.3,17231,0)
- ;;=J47.1^^88^859^9
- ;;^UTILITY(U,$J,358.3,17231,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17231,1,3,0)
- ;;=3^Branchietasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,17568,1,3,0)
+ ;;=3^Long term (current) use of antithrombtc/antipltlts
+ ;;^UTILITY(U,$J,358.3,17568,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,17568,2)
+ ;;=^5063331

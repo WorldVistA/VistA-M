@@ -1,126 +1,134 @@
-IBDEI2G5 ; ; 19-NOV-2015
+IBDEI2G5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41063,0)
- ;;=S82.851K^^189^2086^156
- ;;^UTILITY(U,$J,358.3,41063,1,0)
+ ;;^UTILITY(U,$J,358.3,41495,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,41495,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,41495,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,41496,0)
+ ;;=Z89.611^^159^2005^7
+ ;;^UTILITY(U,$J,358.3,41496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41063,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41063,1,4,0)
- ;;=4^S82.851K
- ;;^UTILITY(U,$J,358.3,41063,2)
- ;;=^5042584
- ;;^UTILITY(U,$J,358.3,41064,0)
- ;;=S82.852K^^189^2086^150
- ;;^UTILITY(U,$J,358.3,41064,1,0)
+ ;;^UTILITY(U,$J,358.3,41496,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,41496,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,41496,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,41497,0)
+ ;;=Z89.612^^159^2005^4
+ ;;^UTILITY(U,$J,358.3,41497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41064,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41064,1,4,0)
- ;;=4^S82.852K
- ;;^UTILITY(U,$J,358.3,41064,2)
- ;;=^5042600
- ;;^UTILITY(U,$J,358.3,41065,0)
- ;;=S92.114K^^189^2086^283
- ;;^UTILITY(U,$J,358.3,41065,1,0)
+ ;;^UTILITY(U,$J,358.3,41497,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,41497,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,41497,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,41498,0)
+ ;;=Z90.710^^159^2005^1
+ ;;^UTILITY(U,$J,358.3,41498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41065,1,3,0)
- ;;=3^Nondisp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41065,1,4,0)
- ;;=4^S92.114K
- ;;^UTILITY(U,$J,358.3,41065,2)
- ;;=^5044630
- ;;^UTILITY(U,$J,358.3,41066,0)
- ;;=S92.115K^^189^2086^282
- ;;^UTILITY(U,$J,358.3,41066,1,0)
+ ;;^UTILITY(U,$J,358.3,41498,1,3,0)
+ ;;=3^Acquired Absence of Cervix & Uterus
+ ;;^UTILITY(U,$J,358.3,41498,1,4,0)
+ ;;=4^Z90.710
+ ;;^UTILITY(U,$J,358.3,41498,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,41499,0)
+ ;;=Z91.030^^159^2005^13
+ ;;^UTILITY(U,$J,358.3,41499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41066,1,3,0)
- ;;=3^Nondisp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41066,1,4,0)
- ;;=4^S92.115K
- ;;^UTILITY(U,$J,358.3,41066,2)
- ;;=^5044637
- ;;^UTILITY(U,$J,358.3,41067,0)
- ;;=S92.112K^^189^2086^57
- ;;^UTILITY(U,$J,358.3,41067,1,0)
+ ;;^UTILITY(U,$J,358.3,41499,1,3,0)
+ ;;=3^Bee Allergy
+ ;;^UTILITY(U,$J,358.3,41499,1,4,0)
+ ;;=4^Z91.030
+ ;;^UTILITY(U,$J,358.3,41499,2)
+ ;;=^5063605
+ ;;^UTILITY(U,$J,358.3,41500,0)
+ ;;=Z91.038^^159^2005^59
+ ;;^UTILITY(U,$J,358.3,41500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41067,1,3,0)
- ;;=3^Disp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41067,1,4,0)
- ;;=4^S92.112K
- ;;^UTILITY(U,$J,358.3,41067,2)
- ;;=^5044616
- ;;^UTILITY(U,$J,358.3,41068,0)
- ;;=S92.111K^^189^2086^58
- ;;^UTILITY(U,$J,358.3,41068,1,0)
+ ;;^UTILITY(U,$J,358.3,41500,1,3,0)
+ ;;=3^Insect Allergy NEC
+ ;;^UTILITY(U,$J,358.3,41500,1,4,0)
+ ;;=4^Z91.038
+ ;;^UTILITY(U,$J,358.3,41500,2)
+ ;;=^5063606
+ ;;^UTILITY(U,$J,358.3,41501,0)
+ ;;=Z91.041^^159^2005^139
+ ;;^UTILITY(U,$J,358.3,41501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41068,1,3,0)
- ;;=3^Disp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41068,1,4,0)
- ;;=4^S92.111K
- ;;^UTILITY(U,$J,358.3,41068,2)
- ;;=^5044609
- ;;^UTILITY(U,$J,358.3,41069,0)
- ;;=S92.142K^^189^2086^20
- ;;^UTILITY(U,$J,358.3,41069,1,0)
+ ;;^UTILITY(U,$J,358.3,41501,1,3,0)
+ ;;=3^Radiographic Dye Allergy
+ ;;^UTILITY(U,$J,358.3,41501,1,4,0)
+ ;;=4^Z91.041
+ ;;^UTILITY(U,$J,358.3,41501,2)
+ ;;=^5063608
+ ;;^UTILITY(U,$J,358.3,41502,0)
+ ;;=Z91.130^^159^2005^146
+ ;;^UTILITY(U,$J,358.3,41502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41069,1,3,0)
- ;;=3^Disp dome fx lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41069,1,4,0)
- ;;=4^S92.142K
- ;;^UTILITY(U,$J,358.3,41069,2)
- ;;=^5044742
- ;;^UTILITY(U,$J,358.3,41070,0)
- ;;=S92.141K^^189^2086^23
- ;;^UTILITY(U,$J,358.3,41070,1,0)
+ ;;^UTILITY(U,$J,358.3,41502,1,3,0)
+ ;;=3^Underdose of Med Regiment d/t Age-Related Debility
+ ;;^UTILITY(U,$J,358.3,41502,1,4,0)
+ ;;=4^Z91.130
+ ;;^UTILITY(U,$J,358.3,41502,2)
+ ;;=^5063614
+ ;;^UTILITY(U,$J,358.3,41503,0)
+ ;;=Z91.138^^159^2005^147
+ ;;^UTILITY(U,$J,358.3,41503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41070,1,3,0)
- ;;=3^Disp dome fx rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41070,1,4,0)
- ;;=4^S92.141K
- ;;^UTILITY(U,$J,358.3,41070,2)
- ;;=^5044735
- ;;^UTILITY(U,$J,358.3,41071,0)
- ;;=S92.135K^^189^2086^356
- ;;^UTILITY(U,$J,358.3,41071,1,0)
+ ;;^UTILITY(U,$J,358.3,41503,1,3,0)
+ ;;=3^Underdose of Med Regiment for Other Reason
+ ;;^UTILITY(U,$J,358.3,41503,1,4,0)
+ ;;=4^Z91.138
+ ;;^UTILITY(U,$J,358.3,41503,2)
+ ;;=^5063615
+ ;;^UTILITY(U,$J,358.3,41504,0)
+ ;;=Z91.14^^159^2005^71
+ ;;^UTILITY(U,$J,358.3,41504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41071,1,3,0)
- ;;=3^Nondisp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41071,1,4,0)
- ;;=4^S92.135K
- ;;^UTILITY(U,$J,358.3,41071,2)
- ;;=^5044721
- ;;^UTILITY(U,$J,358.3,41072,0)
- ;;=S92.134K^^189^2086^357
- ;;^UTILITY(U,$J,358.3,41072,1,0)
+ ;;^UTILITY(U,$J,358.3,41504,1,3,0)
+ ;;=3^Noncompliance w/ Medication Regimen
+ ;;^UTILITY(U,$J,358.3,41504,1,4,0)
+ ;;=4^Z91.14
+ ;;^UTILITY(U,$J,358.3,41504,2)
+ ;;=^5063616
+ ;;^UTILITY(U,$J,358.3,41505,0)
+ ;;=Z91.19^^159^2005^70
+ ;;^UTILITY(U,$J,358.3,41505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41072,1,3,0)
- ;;=3^Nondisp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41072,1,4,0)
- ;;=4^S92.134K
- ;;^UTILITY(U,$J,358.3,41072,2)
- ;;=^5044714
- ;;^UTILITY(U,$J,358.3,41073,0)
- ;;=S92.132K^^189^2086^130
- ;;^UTILITY(U,$J,358.3,41073,1,0)
+ ;;^UTILITY(U,$J,358.3,41505,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment & Regimen
+ ;;^UTILITY(U,$J,358.3,41505,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,41505,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,41506,0)
+ ;;=Z93.1^^159^2005^52
+ ;;^UTILITY(U,$J,358.3,41506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41073,1,3,0)
- ;;=3^Disp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41073,1,4,0)
- ;;=4^S92.132K
- ;;^UTILITY(U,$J,358.3,41073,2)
- ;;=^5044700
- ;;^UTILITY(U,$J,358.3,41074,0)
- ;;=S92.131K^^189^2086^131
- ;;^UTILITY(U,$J,358.3,41074,1,0)
+ ;;^UTILITY(U,$J,358.3,41506,1,3,0)
+ ;;=3^Gastrostomy Status
+ ;;^UTILITY(U,$J,358.3,41506,1,4,0)
+ ;;=4^Z93.1
+ ;;^UTILITY(U,$J,358.3,41506,2)
+ ;;=^5063643
+ ;;^UTILITY(U,$J,358.3,41507,0)
+ ;;=Z93.2^^159^2005^58
+ ;;^UTILITY(U,$J,358.3,41507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41074,1,3,0)
- ;;=3^Disp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41074,1,4,0)
- ;;=4^S92.131K
- ;;^UTILITY(U,$J,358.3,41074,2)
- ;;=^5044693
- ;;^UTILITY(U,$J,358.3,41075,0)
- ;;=S92.125K^^189^2086^256
+ ;;^UTILITY(U,$J,358.3,41507,1,3,0)
+ ;;=3^Ileostomy Status
+ ;;^UTILITY(U,$J,358.3,41507,1,4,0)
+ ;;=4^Z93.2
+ ;;^UTILITY(U,$J,358.3,41507,2)
+ ;;=^5063644
+ ;;^UTILITY(U,$J,358.3,41508,0)
+ ;;=Z93.3^^159^2005^15
+ ;;^UTILITY(U,$J,358.3,41508,1,0)
+ ;;=^358.31IA^4^2

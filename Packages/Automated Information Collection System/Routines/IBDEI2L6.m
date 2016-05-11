@@ -1,134 +1,134 @@
-IBDEI2L6 ; ; 19-NOV-2015
+IBDEI2L6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,43382,1,0)
+ ;;^UTILITY(U,$J,358.3,43901,1,4,0)
+ ;;=4^N94.810
+ ;;^UTILITY(U,$J,358.3,43901,2)
+ ;;=^336618
+ ;;^UTILITY(U,$J,358.3,43902,0)
+ ;;=N94.818^^170^2107^101
+ ;;^UTILITY(U,$J,358.3,43902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43382,1,3,0)
- ;;=3^Liver Transplant Status
- ;;^UTILITY(U,$J,358.3,43382,1,4,0)
- ;;=4^Z94.4
- ;;^UTILITY(U,$J,358.3,43382,2)
- ;;=^5063658
- ;;^UTILITY(U,$J,358.3,43383,0)
- ;;=Z94.81^^197^2189^1
- ;;^UTILITY(U,$J,358.3,43383,1,0)
+ ;;^UTILITY(U,$J,358.3,43902,1,3,0)
+ ;;=3^Vulvodynia,Other
+ ;;^UTILITY(U,$J,358.3,43902,1,4,0)
+ ;;=4^N94.818
+ ;;^UTILITY(U,$J,358.3,43902,2)
+ ;;=^5015923
+ ;;^UTILITY(U,$J,358.3,43903,0)
+ ;;=N94.819^^170^2107^102
+ ;;^UTILITY(U,$J,358.3,43903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43383,1,3,0)
- ;;=3^Bone Marrow Transplant Status
- ;;^UTILITY(U,$J,358.3,43383,1,4,0)
- ;;=4^Z94.81
- ;;^UTILITY(U,$J,358.3,43383,2)
- ;;=^5063662
- ;;^UTILITY(U,$J,358.3,43384,0)
- ;;=Z94.84^^197^2189^11
- ;;^UTILITY(U,$J,358.3,43384,1,0)
+ ;;^UTILITY(U,$J,358.3,43903,1,3,0)
+ ;;=3^Vulvodynia,Unspec
+ ;;^UTILITY(U,$J,358.3,43903,1,4,0)
+ ;;=4^N94.819
+ ;;^UTILITY(U,$J,358.3,43903,2)
+ ;;=^5015924
+ ;;^UTILITY(U,$J,358.3,43904,0)
+ ;;=I05.8^^170^2108^17
+ ;;^UTILITY(U,$J,358.3,43904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43384,1,3,0)
- ;;=3^Stem Cell Transplant Status
- ;;^UTILITY(U,$J,358.3,43384,1,4,0)
- ;;=4^Z94.84
- ;;^UTILITY(U,$J,358.3,43384,2)
- ;;=^5063665
- ;;^UTILITY(U,$J,358.3,43385,0)
- ;;=Z94.83^^197^2189^9
- ;;^UTILITY(U,$J,358.3,43385,1,0)
+ ;;^UTILITY(U,$J,358.3,43904,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,43904,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,43904,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,43905,0)
+ ;;=I10.^^170^2108^9
+ ;;^UTILITY(U,$J,358.3,43905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43385,1,3,0)
- ;;=3^Pancreas Transplant Status
- ;;^UTILITY(U,$J,358.3,43385,1,4,0)
- ;;=4^Z94.83
- ;;^UTILITY(U,$J,358.3,43385,2)
- ;;=^5063664
- ;;^UTILITY(U,$J,358.3,43386,0)
- ;;=Z94.82^^197^2189^5
- ;;^UTILITY(U,$J,358.3,43386,1,0)
+ ;;^UTILITY(U,$J,358.3,43905,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,43905,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,43905,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,43906,0)
+ ;;=I25.2^^170^2108^15
+ ;;^UTILITY(U,$J,358.3,43906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43386,1,3,0)
- ;;=3^Intestine Transplant Status
- ;;^UTILITY(U,$J,358.3,43386,1,4,0)
- ;;=4^Z94.82
- ;;^UTILITY(U,$J,358.3,43386,2)
- ;;=^5063663
- ;;^UTILITY(U,$J,358.3,43387,0)
- ;;=Z94.9^^197^2189^12
- ;;^UTILITY(U,$J,358.3,43387,1,0)
+ ;;^UTILITY(U,$J,358.3,43906,1,3,0)
+ ;;=3^Old MI
+ ;;^UTILITY(U,$J,358.3,43906,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,43906,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,43907,0)
+ ;;=I25.10^^170^2108^4
+ ;;^UTILITY(U,$J,358.3,43907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43387,1,3,0)
- ;;=3^Transplanted Organ & Tissue Status,Unspec
- ;;^UTILITY(U,$J,358.3,43387,1,4,0)
- ;;=4^Z94.9
- ;;^UTILITY(U,$J,358.3,43387,2)
- ;;=^5063667
- ;;^UTILITY(U,$J,358.3,43388,0)
- ;;=Z23.^^197^2190^1
- ;;^UTILITY(U,$J,358.3,43388,1,0)
+ ;;^UTILITY(U,$J,358.3,43907,1,3,0)
+ ;;=3^Athscl Hrt Disease,Native Coronary Artery, w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43907,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,43907,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,43908,0)
+ ;;=I25.810^^170^2108^1
+ ;;^UTILITY(U,$J,358.3,43908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43388,1,3,0)
- ;;=3^Immunization Encounter
- ;;^UTILITY(U,$J,358.3,43388,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,43388,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,43389,0)
- ;;=Z28.3^^197^2190^2
- ;;^UTILITY(U,$J,358.3,43389,1,0)
+ ;;^UTILITY(U,$J,358.3,43908,1,3,0)
+ ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,43908,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,43908,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,43909,0)
+ ;;=I25.811^^170^2108^3
+ ;;^UTILITY(U,$J,358.3,43909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43389,1,3,0)
- ;;=3^Underimmunization Status
- ;;^UTILITY(U,$J,358.3,43389,1,4,0)
- ;;=4^Z28.3
- ;;^UTILITY(U,$J,358.3,43389,2)
- ;;=^5062805
- ;;^UTILITY(U,$J,358.3,43390,0)
- ;;=E66.9^^197^2191^5
- ;;^UTILITY(U,$J,358.3,43390,1,0)
+ ;;^UTILITY(U,$J,358.3,43909,1,3,0)
+ ;;=3^Athscl Hrt Disease of Transplanted Hrt w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43909,1,4,0)
+ ;;=4^I25.811
+ ;;^UTILITY(U,$J,358.3,43909,2)
+ ;;=^5007142
+ ;;^UTILITY(U,$J,358.3,43910,0)
+ ;;=I25.812^^170^2108^2
+ ;;^UTILITY(U,$J,358.3,43910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43390,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,43390,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,43390,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,43391,0)
- ;;=M81.0^^197^2191^6
- ;;^UTILITY(U,$J,358.3,43391,1,0)
+ ;;^UTILITY(U,$J,358.3,43910,1,3,0)
+ ;;=3^Athscl Bypass Cor Art of Transplanted Hrt w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,43910,1,4,0)
+ ;;=4^I25.812
+ ;;^UTILITY(U,$J,358.3,43910,2)
+ ;;=^5007143
+ ;;^UTILITY(U,$J,358.3,43911,0)
+ ;;=I35.0^^170^2108^10
+ ;;^UTILITY(U,$J,358.3,43911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43391,1,3,0)
- ;;=3^Osteoporosis,Age-Related,w/o Current Fracture
- ;;^UTILITY(U,$J,358.3,43391,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,43391,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,43392,0)
- ;;=R87.619^^197^2191^1
- ;;^UTILITY(U,$J,358.3,43392,1,0)
+ ;;^UTILITY(U,$J,358.3,43911,1,3,0)
+ ;;=3^Nonrhematic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,43911,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,43911,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,43912,0)
+ ;;=I35.1^^170^2108^13
+ ;;^UTILITY(U,$J,358.3,43912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43392,1,3,0)
- ;;=3^Abnormal Cytology Findings from Cervix Uteri Specimen
- ;;^UTILITY(U,$J,358.3,43392,1,4,0)
- ;;=4^R87.619
- ;;^UTILITY(U,$J,358.3,43392,2)
- ;;=^5019676
- ;;^UTILITY(U,$J,358.3,43393,0)
- ;;=Z79.890^^197^2191^7
- ;;^UTILITY(U,$J,358.3,43393,1,0)
+ ;;^UTILITY(U,$J,358.3,43912,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,43912,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,43912,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,43913,0)
+ ;;=I35.2^^170^2108^14
+ ;;^UTILITY(U,$J,358.3,43913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43393,1,3,0)
- ;;=3^Postmenopausal Hormone Replacement Therapy
- ;;^UTILITY(U,$J,358.3,43393,1,4,0)
- ;;=4^Z79.890
- ;;^UTILITY(U,$J,358.3,43393,2)
- ;;=^331975
- ;;^UTILITY(U,$J,358.3,43394,0)
- ;;=Z30.09^^197^2191^2
- ;;^UTILITY(U,$J,358.3,43394,1,0)
+ ;;^UTILITY(U,$J,358.3,43913,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,43913,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,43913,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,43914,0)
+ ;;=I35.8^^170^2108^11
+ ;;^UTILITY(U,$J,358.3,43914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,43394,1,3,0)
- ;;=3^Contraception Counseling/Advice
- ;;^UTILITY(U,$J,358.3,43394,1,4,0)
- ;;=4^Z30.09
- ;;^UTILITY(U,$J,358.3,43394,2)
- ;;=^5062817
- ;;^UTILITY(U,$J,358.3,43395,0)
- ;;=Z15.01^^197^2191^3
+ ;;^UTILITY(U,$J,358.3,43914,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorders NEC

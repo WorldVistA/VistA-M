@@ -1,132 +1,126 @@
-IBDEI0XJ ; ; 19-NOV-2015
+IBDEI0XJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15455,1,0)
+ ;;^UTILITY(U,$J,358.3,15727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15455,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,15455,1,4,0)
- ;;=4^M47.814
- ;;^UTILITY(U,$J,358.3,15455,2)
- ;;=^5012071
- ;;^UTILITY(U,$J,358.3,15456,0)
- ;;=M47.815^^85^818^35
- ;;^UTILITY(U,$J,358.3,15456,1,0)
+ ;;^UTILITY(U,$J,358.3,15727,1,3,0)
+ ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,15727,1,4,0)
+ ;;=4^F11.220
+ ;;^UTILITY(U,$J,358.3,15727,2)
+ ;;=^5003129
+ ;;^UTILITY(U,$J,358.3,15728,0)
+ ;;=F11.188^^58^688^3
+ ;;^UTILITY(U,$J,358.3,15728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15456,1,3,0)
- ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracolumbar Region
- ;;^UTILITY(U,$J,358.3,15456,1,4,0)
- ;;=4^M47.815
- ;;^UTILITY(U,$J,358.3,15456,2)
- ;;=^5012072
- ;;^UTILITY(U,$J,358.3,15457,0)
- ;;=S08.111A^^85^819^3
- ;;^UTILITY(U,$J,358.3,15457,1,0)
+ ;;^UTILITY(U,$J,358.3,15728,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15728,1,4,0)
+ ;;=4^F11.188
+ ;;^UTILITY(U,$J,358.3,15728,2)
+ ;;=^5003125
+ ;;^UTILITY(U,$J,358.3,15729,0)
+ ;;=F11.288^^58^688^4
+ ;;^UTILITY(U,$J,358.3,15729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15457,1,3,0)
- ;;=3^Complete Traumatic Amputation of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,15457,1,4,0)
- ;;=4^S08.111A
- ;;^UTILITY(U,$J,358.3,15457,2)
- ;;=^5021251
- ;;^UTILITY(U,$J,358.3,15458,0)
- ;;=S08.112A^^85^819^2
- ;;^UTILITY(U,$J,358.3,15458,1,0)
+ ;;^UTILITY(U,$J,358.3,15729,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15729,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,15729,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,15730,0)
+ ;;=F11.988^^58^688^5
+ ;;^UTILITY(U,$J,358.3,15730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15458,1,3,0)
- ;;=3^Complete Traumatic Amputation of Left Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,15458,1,4,0)
- ;;=4^S08.112A
- ;;^UTILITY(U,$J,358.3,15458,2)
- ;;=^5021254
- ;;^UTILITY(U,$J,358.3,15459,0)
- ;;=S08.0XXA^^85^819^1
- ;;^UTILITY(U,$J,358.3,15459,1,0)
+ ;;^UTILITY(U,$J,358.3,15730,1,3,0)
+ ;;=3^Opioid Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15730,1,4,0)
+ ;;=4^F11.988
+ ;;^UTILITY(U,$J,358.3,15730,2)
+ ;;=^5003154
+ ;;^UTILITY(U,$J,358.3,15731,0)
+ ;;=F11.921^^58^688^6
+ ;;^UTILITY(U,$J,358.3,15731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15459,1,3,0)
- ;;=3^Avulsion of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,15459,1,4,0)
- ;;=4^S08.0XXA
- ;;^UTILITY(U,$J,358.3,15459,2)
- ;;=^5021248
- ;;^UTILITY(U,$J,358.3,15460,0)
- ;;=S09.90XA^^85^819^6
- ;;^UTILITY(U,$J,358.3,15460,1,0)
+ ;;^UTILITY(U,$J,358.3,15731,1,3,0)
+ ;;=3^Opioid Induced Delirium
+ ;;^UTILITY(U,$J,358.3,15731,1,4,0)
+ ;;=4^F11.921
+ ;;^UTILITY(U,$J,358.3,15731,2)
+ ;;=^5003144
+ ;;^UTILITY(U,$J,358.3,15732,0)
+ ;;=F11.94^^58^688^7
+ ;;^UTILITY(U,$J,358.3,15732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15460,1,3,0)
- ;;=3^Injury of Head,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,15460,1,4,0)
- ;;=4^S09.90XA
- ;;^UTILITY(U,$J,358.3,15460,2)
- ;;=^5021332
- ;;^UTILITY(U,$J,358.3,15461,0)
- ;;=S09.8XXA^^85^819^5
- ;;^UTILITY(U,$J,358.3,15461,1,0)
+ ;;^UTILITY(U,$J,358.3,15732,1,3,0)
+ ;;=3^Opioid Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15732,1,4,0)
+ ;;=4^F11.94
+ ;;^UTILITY(U,$J,358.3,15732,2)
+ ;;=^5003148
+ ;;^UTILITY(U,$J,358.3,15733,0)
+ ;;=F11.181^^58^688^8
+ ;;^UTILITY(U,$J,358.3,15733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15461,1,3,0)
- ;;=3^Injury of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,15461,1,4,0)
- ;;=4^S09.8XXA
- ;;^UTILITY(U,$J,358.3,15461,2)
- ;;=^5021329
- ;;^UTILITY(U,$J,358.3,15462,0)
- ;;=S08.89XA^^85^819^7
- ;;^UTILITY(U,$J,358.3,15462,1,0)
+ ;;^UTILITY(U,$J,358.3,15733,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15733,1,4,0)
+ ;;=4^F11.181
+ ;;^UTILITY(U,$J,358.3,15733,2)
+ ;;=^5003123
+ ;;^UTILITY(U,$J,358.3,15734,0)
+ ;;=F11.281^^58^688^9
+ ;;^UTILITY(U,$J,358.3,15734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15462,1,3,0)
- ;;=3^Traumatic Amputation of Parts of Head NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,15462,1,4,0)
- ;;=4^S08.89XA
- ;;^UTILITY(U,$J,358.3,15462,2)
- ;;=^5021275
- ;;^UTILITY(U,$J,358.3,15463,0)
- ;;=S09.93XA^^85^819^4
- ;;^UTILITY(U,$J,358.3,15463,1,0)
+ ;;^UTILITY(U,$J,358.3,15734,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15734,1,4,0)
+ ;;=4^F11.281
+ ;;^UTILITY(U,$J,358.3,15734,2)
+ ;;=^5003138
+ ;;^UTILITY(U,$J,358.3,15735,0)
+ ;;=F11.981^^58^688^10
+ ;;^UTILITY(U,$J,358.3,15735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15463,1,3,0)
- ;;=3^Injury of Face,Unspec,Init Encntr
- ;;^UTILITY(U,$J,358.3,15463,1,4,0)
- ;;=4^S09.93XA
- ;;^UTILITY(U,$J,358.3,15463,2)
- ;;=^5021341
- ;;^UTILITY(U,$J,358.3,15464,0)
- ;;=M79.671^^85^820^13
- ;;^UTILITY(U,$J,358.3,15464,1,0)
+ ;;^UTILITY(U,$J,358.3,15735,1,3,0)
+ ;;=3^Opioid Induced Sexual Dysfunction w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15735,1,4,0)
+ ;;=4^F11.981
+ ;;^UTILITY(U,$J,358.3,15735,2)
+ ;;=^5003152
+ ;;^UTILITY(U,$J,358.3,15736,0)
+ ;;=F11.282^^58^688^11
+ ;;^UTILITY(U,$J,358.3,15736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15464,1,3,0)
- ;;=3^Right Foot Pain
- ;;^UTILITY(U,$J,358.3,15464,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,15464,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,15465,0)
- ;;=M79.675^^85^820^9
- ;;^UTILITY(U,$J,358.3,15465,1,0)
+ ;;^UTILITY(U,$J,358.3,15736,1,3,0)
+ ;;=3^Opioid Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,15736,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,15736,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,15737,0)
+ ;;=F11.982^^58^688^12
+ ;;^UTILITY(U,$J,358.3,15737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15465,1,3,0)
- ;;=3^Left Toe(s) Pain
- ;;^UTILITY(U,$J,358.3,15465,1,4,0)
- ;;=4^M79.675
- ;;^UTILITY(U,$J,358.3,15465,2)
- ;;=^5013354
- ;;^UTILITY(U,$J,358.3,15466,0)
- ;;=M79.674^^85^820^19
- ;;^UTILITY(U,$J,358.3,15466,1,0)
+ ;;^UTILITY(U,$J,358.3,15737,1,3,0)
+ ;;=3^Opioid Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,15737,1,4,0)
+ ;;=4^F11.982
+ ;;^UTILITY(U,$J,358.3,15737,2)
+ ;;=^5003153
+ ;;^UTILITY(U,$J,358.3,15738,0)
+ ;;=F11.121^^58^688^13
+ ;;^UTILITY(U,$J,358.3,15738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15466,1,3,0)
- ;;=3^Right Toe(s) Pain
- ;;^UTILITY(U,$J,358.3,15466,1,4,0)
- ;;=4^M79.674
- ;;^UTILITY(U,$J,358.3,15466,2)
- ;;=^5013353
- ;;^UTILITY(U,$J,358.3,15467,0)
- ;;=M79.672^^85^820^3
- ;;^UTILITY(U,$J,358.3,15467,1,0)
+ ;;^UTILITY(U,$J,358.3,15738,1,3,0)
+ ;;=3^Opioid Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,15738,1,4,0)
+ ;;=4^F11.121
+ ;;^UTILITY(U,$J,358.3,15738,2)
+ ;;=^5003116
+ ;;^UTILITY(U,$J,358.3,15739,0)
+ ;;=F11.221^^58^688^14
+ ;;^UTILITY(U,$J,358.3,15739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15467,1,3,0)
- ;;=3^Left Foot Pain
- ;;^UTILITY(U,$J,358.3,15467,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,15467,2)
- ;;=^5013351

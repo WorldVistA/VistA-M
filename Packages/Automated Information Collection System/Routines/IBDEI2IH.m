@@ -1,132 +1,130 @@
-IBDEI2IH ; ; 19-NOV-2015
+IBDEI2IH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42149,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,42150,0)
- ;;=M20.5X2^^192^2135^40
- ;;^UTILITY(U,$J,358.3,42150,1,0)
+ ;;^UTILITY(U,$J,358.3,42573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42150,1,3,0)
- ;;=3^Deformitis,Left Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,42150,1,4,0)
- ;;=4^M20.5X2
- ;;^UTILITY(U,$J,358.3,42150,2)
- ;;=^5011054
- ;;^UTILITY(U,$J,358.3,42151,0)
- ;;=M20.5X1^^192^2135^42
- ;;^UTILITY(U,$J,358.3,42151,1,0)
+ ;;^UTILITY(U,$J,358.3,42573,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,42573,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,42573,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,42574,0)
+ ;;=G31.83^^159^2024^14
+ ;;^UTILITY(U,$J,358.3,42574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42151,1,3,0)
- ;;=3^Deformitis,Right Toe(s),Acquired
- ;;^UTILITY(U,$J,358.3,42151,1,4,0)
- ;;=4^M20.5X1
- ;;^UTILITY(U,$J,358.3,42151,2)
- ;;=^5011053
- ;;^UTILITY(U,$J,358.3,42152,0)
- ;;=M24.871^^192^2135^49
- ;;^UTILITY(U,$J,358.3,42152,1,0)
+ ;;^UTILITY(U,$J,358.3,42574,1,3,0)
+ ;;=3^Dementia w/ Lewy Bodies
+ ;;^UTILITY(U,$J,358.3,42574,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,42574,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,42575,0)
+ ;;=F01.51^^159^2024^30
+ ;;^UTILITY(U,$J,358.3,42575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42152,1,3,0)
- ;;=3^Derangement,Right Ankle Joint NEC
- ;;^UTILITY(U,$J,358.3,42152,1,4,0)
- ;;=4^M24.871
- ;;^UTILITY(U,$J,358.3,42152,2)
- ;;=^5011468
- ;;^UTILITY(U,$J,358.3,42153,0)
- ;;=M24.875^^192^2135^48
- ;;^UTILITY(U,$J,358.3,42153,1,0)
+ ;;^UTILITY(U,$J,358.3,42575,1,3,0)
+ ;;=3^Vascular Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42575,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,42575,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,42576,0)
+ ;;=F01.50^^159^2024^31
+ ;;^UTILITY(U,$J,358.3,42576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42153,1,3,0)
- ;;=3^Derangement,Left Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,42153,1,4,0)
- ;;=4^M24.875
- ;;^UTILITY(U,$J,358.3,42153,2)
- ;;=^5011472
- ;;^UTILITY(U,$J,358.3,42154,0)
- ;;=M24.874^^192^2135^50
- ;;^UTILITY(U,$J,358.3,42154,1,0)
+ ;;^UTILITY(U,$J,358.3,42576,1,3,0)
+ ;;=3^Vascular Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42576,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,42576,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,42577,0)
+ ;;=A81.9^^159^2024^6
+ ;;^UTILITY(U,$J,358.3,42577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42154,1,3,0)
- ;;=3^Derangement,Right Foot Joint NEC
- ;;^UTILITY(U,$J,358.3,42154,1,4,0)
- ;;=4^M24.874
- ;;^UTILITY(U,$J,358.3,42154,2)
- ;;=^5011471
- ;;^UTILITY(U,$J,358.3,42155,0)
- ;;=M24.872^^192^2135^47
- ;;^UTILITY(U,$J,358.3,42155,1,0)
+ ;;^UTILITY(U,$J,358.3,42577,1,3,0)
+ ;;=3^Atypical Virus Infection of CNS,Unspec
+ ;;^UTILITY(U,$J,358.3,42577,1,4,0)
+ ;;=4^A81.9
+ ;;^UTILITY(U,$J,358.3,42577,2)
+ ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,42578,0)
+ ;;=A81.09^^159^2024^8
+ ;;^UTILITY(U,$J,358.3,42578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42155,1,3,0)
- ;;=3^Derangement,Left Ankle Joint NEC
- ;;^UTILITY(U,$J,358.3,42155,1,4,0)
- ;;=4^M24.872
- ;;^UTILITY(U,$J,358.3,42155,2)
- ;;=^5011469
- ;;^UTILITY(U,$J,358.3,42156,0)
- ;;=L30.1^^192^2135^74
- ;;^UTILITY(U,$J,358.3,42156,1,0)
+ ;;^UTILITY(U,$J,358.3,42578,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease NEC
+ ;;^UTILITY(U,$J,358.3,42578,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,42578,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,42579,0)
+ ;;=A81.00^^159^2024^9
+ ;;^UTILITY(U,$J,358.3,42579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42156,1,3,0)
- ;;=3^Dyshidrosis [pompholyx]
- ;;^UTILITY(U,$J,358.3,42156,1,4,0)
- ;;=4^L30.1
- ;;^UTILITY(U,$J,358.3,42156,2)
- ;;=^5009154
- ;;^UTILITY(U,$J,358.3,42157,0)
- ;;=L98.9^^192^2135^73
- ;;^UTILITY(U,$J,358.3,42157,1,0)
+ ;;^UTILITY(U,$J,358.3,42579,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,42579,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,42579,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,42580,0)
+ ;;=A81.01^^159^2024^10
+ ;;^UTILITY(U,$J,358.3,42580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42157,1,3,0)
- ;;=3^Disorder of skin and subcut tissue, unspec
- ;;^UTILITY(U,$J,358.3,42157,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,42157,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,42158,0)
- ;;=Q72.891^^192^2135^37
- ;;^UTILITY(U,$J,358.3,42158,1,0)
+ ;;^UTILITY(U,$J,358.3,42580,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,42580,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,42580,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,42581,0)
+ ;;=A81.89^^159^2024^7
+ ;;^UTILITY(U,$J,358.3,42581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42158,1,3,0)
- ;;=3^Defects,Reduction Right Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,42158,1,4,0)
- ;;=4^Q72.891
- ;;^UTILITY(U,$J,358.3,42158,2)
- ;;=^5018985
- ;;^UTILITY(U,$J,358.3,42159,0)
- ;;=Q72.892^^192^2135^36
- ;;^UTILITY(U,$J,358.3,42159,1,0)
+ ;;^UTILITY(U,$J,358.3,42581,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,42581,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,42581,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,42582,0)
+ ;;=A81.2^^159^2024^27
+ ;;^UTILITY(U,$J,358.3,42582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42159,1,3,0)
- ;;=3^Defects,Reduction Left Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,42159,1,4,0)
- ;;=4^Q72.892
- ;;^UTILITY(U,$J,358.3,42159,2)
- ;;=^5134172
- ;;^UTILITY(U,$J,358.3,42160,0)
- ;;=Q72.893^^192^2135^35
- ;;^UTILITY(U,$J,358.3,42160,1,0)
+ ;;^UTILITY(U,$J,358.3,42582,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,42582,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,42582,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,42583,0)
+ ;;=B20.^^159^2024^17
+ ;;^UTILITY(U,$J,358.3,42583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42160,1,3,0)
- ;;=3^Defects,Reduction Bilateral Lower Limb NEC
- ;;^UTILITY(U,$J,358.3,42160,1,4,0)
- ;;=4^Q72.893
- ;;^UTILITY(U,$J,358.3,42160,2)
- ;;=^5018986
- ;;^UTILITY(U,$J,358.3,42161,0)
- ;;=M21.962^^192^2135^43
- ;;^UTILITY(U,$J,358.3,42161,1,0)
+ ;;^UTILITY(U,$J,358.3,42583,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42583,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,42583,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,42584,0)
+ ;;=B20.^^159^2024^18
+ ;;^UTILITY(U,$J,358.3,42584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42161,1,3,0)
- ;;=3^Deformity,Left Lower Leg,Acquired
- ;;^UTILITY(U,$J,358.3,42161,1,4,0)
- ;;=4^M21.962
- ;;^UTILITY(U,$J,358.3,42161,2)
- ;;=^5011172
- ;;^UTILITY(U,$J,358.3,42162,0)
- ;;=M21.961^^192^2135^44
- ;;^UTILITY(U,$J,358.3,42162,1,0)
+ ;;^UTILITY(U,$J,358.3,42584,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,42584,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,42584,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,42585,0)
+ ;;=F10.27^^159^2024^1
+ ;;^UTILITY(U,$J,358.3,42585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42162,1,3,0)
- ;;=3^Deformity,Right Lower Leg,Acquired
+ ;;^UTILITY(U,$J,358.3,42585,1,3,0)
+ ;;=3^Alcohol Dependence w/ Alcohol-Induced Persisting Dementia
+ ;;^UTILITY(U,$J,358.3,42585,1,4,0)
+ ;;=4^F10.27

@@ -1,144 +1,126 @@
-IBDEI0HL ; ; 19-NOV-2015
+IBDEI0HL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7877,1,4,0)
- ;;=4^L71.0
- ;;^UTILITY(U,$J,358.3,7877,2)
- ;;=^5009274
- ;;^UTILITY(U,$J,358.3,7878,0)
- ;;=L71.1^^55^531^135
- ;;^UTILITY(U,$J,358.3,7878,1,0)
+ ;;^UTILITY(U,$J,358.3,8136,1,4,0)
+ ;;=4^S86.891A
+ ;;^UTILITY(U,$J,358.3,8136,2)
+ ;;=^5137173
+ ;;^UTILITY(U,$J,358.3,8137,0)
+ ;;=S86.892A^^33^431^137
+ ;;^UTILITY(U,$J,358.3,8137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7878,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,7878,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,7878,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,7879,0)
- ;;=L30.4^^55^531^36
- ;;^UTILITY(U,$J,358.3,7879,1,0)
+ ;;^UTILITY(U,$J,358.3,8137,1,3,0)
+ ;;=3^Musc/Tend Left Lower Leg Level Inj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8137,1,4,0)
+ ;;=4^S86.892A
+ ;;^UTILITY(U,$J,358.3,8137,2)
+ ;;=^5137174
+ ;;^UTILITY(U,$J,358.3,8138,0)
+ ;;=S43.51XA^^33^431^221
+ ;;^UTILITY(U,$J,358.3,8138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7879,1,3,0)
- ;;=3^Erythema intertrigo
- ;;^UTILITY(U,$J,358.3,7879,1,4,0)
- ;;=4^L30.4
- ;;^UTILITY(U,$J,358.3,7879,2)
- ;;=^5009157
- ;;^UTILITY(U,$J,358.3,7880,0)
- ;;=L26.^^55^531^39
- ;;^UTILITY(U,$J,358.3,7880,1,0)
+ ;;^UTILITY(U,$J,358.3,8138,1,3,0)
+ ;;=3^Sprain of right acromioclavicular joint, initial encounter
+ ;;^UTILITY(U,$J,358.3,8138,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,8138,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,8139,0)
+ ;;=S43.52XA^^33^431^202
+ ;;^UTILITY(U,$J,358.3,8139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7880,1,3,0)
- ;;=3^Exfoliative dermatitis
- ;;^UTILITY(U,$J,358.3,7880,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,7880,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,7881,0)
- ;;=L53.8^^55^531^37
- ;;^UTILITY(U,$J,358.3,7881,1,0)
+ ;;^UTILITY(U,$J,358.3,8139,1,3,0)
+ ;;=3^Sprain of left acromioclavicular joint, initial encounter
+ ;;^UTILITY(U,$J,358.3,8139,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,8139,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,8140,0)
+ ;;=S93.401A^^33^431^240
+ ;;^UTILITY(U,$J,358.3,8140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7881,1,3,0)
- ;;=3^Erythematous Conditions NEC
- ;;^UTILITY(U,$J,358.3,7881,1,4,0)
- ;;=4^L53.8
- ;;^UTILITY(U,$J,358.3,7881,2)
- ;;=^88044
- ;;^UTILITY(U,$J,358.3,7882,0)
- ;;=L92.0^^55^531^47
- ;;^UTILITY(U,$J,358.3,7882,1,0)
+ ;;^UTILITY(U,$J,358.3,8140,1,3,0)
+ ;;=3^Sprain of unspecified ligament of right ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,8140,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,8140,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,8141,0)
+ ;;=S93.402A^^33^431^239
+ ;;^UTILITY(U,$J,358.3,8141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7882,1,3,0)
- ;;=3^Granuloma annulare
- ;;^UTILITY(U,$J,358.3,7882,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,7882,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,7883,0)
- ;;=L95.1^^55^531^35
- ;;^UTILITY(U,$J,358.3,7883,1,0)
+ ;;^UTILITY(U,$J,358.3,8141,1,3,0)
+ ;;=3^Sprain of unspecified ligament of left ankle, init encntr
+ ;;^UTILITY(U,$J,358.3,8141,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,8141,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,8142,0)
+ ;;=S53.401A^^33^431^222
+ ;;^UTILITY(U,$J,358.3,8142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7883,1,3,0)
- ;;=3^Erythema elevatum diutinum
- ;;^UTILITY(U,$J,358.3,7883,1,4,0)
- ;;=4^L95.1
- ;;^UTILITY(U,$J,358.3,7883,2)
- ;;=^5009477
- ;;^UTILITY(U,$J,358.3,7884,0)
- ;;=L98.2^^55^531^40
- ;;^UTILITY(U,$J,358.3,7884,1,0)
+ ;;^UTILITY(U,$J,358.3,8142,1,3,0)
+ ;;=3^Sprain of right elbow unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,8142,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,8142,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,8143,0)
+ ;;=S53.402A^^33^431^203
+ ;;^UTILITY(U,$J,358.3,8143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7884,1,3,0)
- ;;=3^Febrile neutrophilic dermatosis [Sweet]
- ;;^UTILITY(U,$J,358.3,7884,1,4,0)
- ;;=4^L98.2
- ;;^UTILITY(U,$J,358.3,7884,2)
- ;;=^5009575
- ;;^UTILITY(U,$J,358.3,7885,0)
- ;;=L53.9^^55^531^38
- ;;^UTILITY(U,$J,358.3,7885,1,0)
+ ;;^UTILITY(U,$J,358.3,8143,1,3,0)
+ ;;=3^Sprain of left elbow unspec, initial encounter
+ ;;^UTILITY(U,$J,358.3,8143,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,8143,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,8144,0)
+ ;;=S63.610A^^33^431^225
+ ;;^UTILITY(U,$J,358.3,8144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7885,1,3,0)
- ;;=3^Erythematous condition, unspecified
- ;;^UTILITY(U,$J,358.3,7885,1,4,0)
- ;;=4^L53.9
- ;;^UTILITY(U,$J,358.3,7885,2)
- ;;=^5009210
- ;;^UTILITY(U,$J,358.3,7886,0)
- ;;=L40.0^^55^531^131
- ;;^UTILITY(U,$J,358.3,7886,1,0)
+ ;;^UTILITY(U,$J,358.3,8144,1,3,0)
+ ;;=3^Sprain of right index finger unspec, initial encou
+ ;;^UTILITY(U,$J,358.3,8144,1,4,0)
+ ;;=4^S63.610A
+ ;;^UTILITY(U,$J,358.3,8144,2)
+ ;;=^5035622
+ ;;^UTILITY(U,$J,358.3,8145,0)
+ ;;=S63.611A^^33^431^206
+ ;;^UTILITY(U,$J,358.3,8145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7886,1,3,0)
- ;;=3^Psoriasis vulgaris
- ;;^UTILITY(U,$J,358.3,7886,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,7886,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,7887,0)
- ;;=L40.8^^55^531^130
- ;;^UTILITY(U,$J,358.3,7887,1,0)
+ ;;^UTILITY(U,$J,358.3,8145,1,3,0)
+ ;;=3^Sprain of left index finger unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,8145,1,4,0)
+ ;;=4^S63.611A
+ ;;^UTILITY(U,$J,358.3,8145,2)
+ ;;=^5035625
+ ;;^UTILITY(U,$J,358.3,8146,0)
+ ;;=S63.612A^^33^431^228
+ ;;^UTILITY(U,$J,358.3,8146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7887,1,3,0)
- ;;=3^Psoriasis NEC
- ;;^UTILITY(U,$J,358.3,7887,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,7887,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,7888,0)
- ;;=L40.1^^55^531^46
- ;;^UTILITY(U,$J,358.3,7888,1,0)
+ ;;^UTILITY(U,$J,358.3,8146,1,3,0)
+ ;;=3^Sprain of right middle finger unspec, initial enco
+ ;;^UTILITY(U,$J,358.3,8146,1,4,0)
+ ;;=4^S63.612A
+ ;;^UTILITY(U,$J,358.3,8146,2)
+ ;;=^5035628
+ ;;^UTILITY(U,$J,358.3,8147,0)
+ ;;=S63.613A^^33^431^209
+ ;;^UTILITY(U,$J,358.3,8147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7888,1,3,0)
- ;;=3^Generalized pustular psoriasis
- ;;^UTILITY(U,$J,358.3,7888,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,7888,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,7889,0)
- ;;=L40.2^^55^531^2
- ;;^UTILITY(U,$J,358.3,7889,1,0)
+ ;;^UTILITY(U,$J,358.3,8147,1,3,0)
+ ;;=3^Sprain of left middle finger unspec, initial encou
+ ;;^UTILITY(U,$J,358.3,8147,1,4,0)
+ ;;=4^S63.613A
+ ;;^UTILITY(U,$J,358.3,8147,2)
+ ;;=^5035631
+ ;;^UTILITY(U,$J,358.3,8148,0)
+ ;;=S63.614A^^33^431^229
+ ;;^UTILITY(U,$J,358.3,8148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7889,1,3,0)
- ;;=3^Acrodermatitis continua
- ;;^UTILITY(U,$J,358.3,7889,1,4,0)
- ;;=4^L40.2
- ;;^UTILITY(U,$J,358.3,7889,2)
- ;;=^5009162
- ;;^UTILITY(U,$J,358.3,7890,0)
- ;;=L40.3^^55^531^132
- ;;^UTILITY(U,$J,358.3,7890,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7890,1,3,0)
- ;;=3^Pustulosis palmaris et plantaris
- ;;^UTILITY(U,$J,358.3,7890,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,7890,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,7891,0)
- ;;=L40.4^^55^531^48
- ;;^UTILITY(U,$J,358.3,7891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7891,1,3,0)
- ;;=3^Guttate psoriasis
+ ;;^UTILITY(U,$J,358.3,8148,1,3,0)
+ ;;=3^Sprain of right ring finger unspec, initial encoun
+ ;;^UTILITY(U,$J,358.3,8148,1,4,0)
+ ;;=4^S63.614A

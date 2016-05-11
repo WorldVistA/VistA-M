@@ -1,124 +1,132 @@
-IBDEI2JC ; ; 19-NOV-2015
+IBDEI2JC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42529,1,3,0)
- ;;=3^Disp fx navicular rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42529,1,4,0)
- ;;=4^S92.251K
- ;;^UTILITY(U,$J,358.3,42529,2)
- ;;=^5045008
- ;;^UTILITY(U,$J,358.3,42530,0)
- ;;=S92.245K^^192^2137^274
- ;;^UTILITY(U,$J,358.3,42530,1,0)
+ ;;^UTILITY(U,$J,358.3,43011,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,43011,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,43011,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,43012,0)
+ ;;=G56.41^^164^2060^64
+ ;;^UTILITY(U,$J,358.3,43012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42530,1,3,0)
- ;;=3^Nondisp fx med cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42530,1,4,0)
- ;;=4^S92.245K
- ;;^UTILITY(U,$J,358.3,42530,2)
- ;;=^5044994
- ;;^UTILITY(U,$J,358.3,42531,0)
- ;;=S92.244K^^192^2137^275
- ;;^UTILITY(U,$J,358.3,42531,1,0)
+ ;;^UTILITY(U,$J,358.3,43012,1,3,0)
+ ;;=3^Causalgia Rt Upper Limb
+ ;;^UTILITY(U,$J,358.3,43012,1,4,0)
+ ;;=4^G56.41
+ ;;^UTILITY(U,$J,358.3,43012,2)
+ ;;=^5004030
+ ;;^UTILITY(U,$J,358.3,43013,0)
+ ;;=G56.42^^164^2060^63
+ ;;^UTILITY(U,$J,358.3,43013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42531,1,3,0)
- ;;=3^Nondisp fx med cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42531,1,4,0)
- ;;=4^S92.244K
- ;;^UTILITY(U,$J,358.3,42531,2)
- ;;=^5044987
- ;;^UTILITY(U,$J,358.3,42532,0)
- ;;=S92.232K^^192^2137^36
- ;;^UTILITY(U,$J,358.3,42532,1,0)
+ ;;^UTILITY(U,$J,358.3,43013,1,3,0)
+ ;;=3^Causalgia Lt Upper Limb
+ ;;^UTILITY(U,$J,358.3,43013,1,4,0)
+ ;;=4^G56.42
+ ;;^UTILITY(U,$J,358.3,43013,2)
+ ;;=^5004031
+ ;;^UTILITY(U,$J,358.3,43014,0)
+ ;;=I65.21^^164^2060^130
+ ;;^UTILITY(U,$J,358.3,43014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42532,1,3,0)
- ;;=3^Disp fx intermed cuneiform of lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42532,1,4,0)
- ;;=4^S92.232K
- ;;^UTILITY(U,$J,358.3,42532,2)
- ;;=^5044931
- ;;^UTILITY(U,$J,358.3,42533,0)
- ;;=S92.231K^^192^2137^37
- ;;^UTILITY(U,$J,358.3,42533,1,0)
+ ;;^UTILITY(U,$J,358.3,43014,1,3,0)
+ ;;=3^Occlusion & Stenosis Rt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43014,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,43014,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,43015,0)
+ ;;=I65.22^^164^2060^129
+ ;;^UTILITY(U,$J,358.3,43015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42533,1,3,0)
- ;;=3^Disp fx intermed cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42533,1,4,0)
- ;;=4^S92.231K
- ;;^UTILITY(U,$J,358.3,42533,2)
- ;;=^5044924
- ;;^UTILITY(U,$J,358.3,42534,0)
- ;;=S92.225K^^192^2137^267
- ;;^UTILITY(U,$J,358.3,42534,1,0)
+ ;;^UTILITY(U,$J,358.3,43015,1,3,0)
+ ;;=3^Occlusion & Stenosis Lt Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43015,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,43015,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,43016,0)
+ ;;=I65.23^^164^2060^128
+ ;;^UTILITY(U,$J,358.3,43016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42534,1,3,0)
- ;;=3^Nondisp fx ltrl cuneiform of lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42534,1,4,0)
- ;;=4^S92.225K
- ;;^UTILITY(U,$J,358.3,42534,2)
- ;;=^5044910
- ;;^UTILITY(U,$J,358.3,42535,0)
- ;;=S92.224K^^192^2137^326
- ;;^UTILITY(U,$J,358.3,42535,1,0)
+ ;;^UTILITY(U,$J,358.3,43016,1,3,0)
+ ;;=3^Occlusion & Stenosis Bil Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,43016,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,43016,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,43017,0)
+ ;;=I63.131^^164^2060^71
+ ;;^UTILITY(U,$J,358.3,43017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42535,1,3,0)
- ;;=3^Nondisp fx of ltrl cuneiform of rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42535,1,4,0)
- ;;=4^S92.224K
- ;;^UTILITY(U,$J,358.3,42535,2)
- ;;=^5044903
- ;;^UTILITY(U,$J,358.3,42536,0)
- ;;=S92.222K^^192^2137^40
- ;;^UTILITY(U,$J,358.3,42536,1,0)
+ ;;^UTILITY(U,$J,358.3,43017,1,3,0)
+ ;;=3^Cereb Infarc d/t Rt Carotid Artery Embolism
+ ;;^UTILITY(U,$J,358.3,43017,1,4,0)
+ ;;=4^I63.131
+ ;;^UTILITY(U,$J,358.3,43017,2)
+ ;;=^5007308
+ ;;^UTILITY(U,$J,358.3,43018,0)
+ ;;=I63.132^^164^2060^69
+ ;;^UTILITY(U,$J,358.3,43018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42536,1,3,0)
- ;;=3^Disp fx ltrl cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42536,1,4,0)
- ;;=4^S92.222K
- ;;^UTILITY(U,$J,358.3,42536,2)
- ;;=^5044889
- ;;^UTILITY(U,$J,358.3,42537,0)
- ;;=S92.221K^^192^2137^41
- ;;^UTILITY(U,$J,358.3,42537,1,0)
+ ;;^UTILITY(U,$J,358.3,43018,1,3,0)
+ ;;=3^Cereb Infarc d/t Lt Carotid Artery Embolism
+ ;;^UTILITY(U,$J,358.3,43018,1,4,0)
+ ;;=4^I63.132
+ ;;^UTILITY(U,$J,358.3,43018,2)
+ ;;=^5007309
+ ;;^UTILITY(U,$J,358.3,43019,0)
+ ;;=I63.231^^164^2060^72
+ ;;^UTILITY(U,$J,358.3,43019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42537,1,3,0)
- ;;=3^Disp fx ltrl cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42537,1,4,0)
- ;;=4^S92.221K
- ;;^UTILITY(U,$J,358.3,42537,2)
- ;;=^5044882
- ;;^UTILITY(U,$J,358.3,42538,0)
- ;;=S92.241K^^192^2137^49
- ;;^UTILITY(U,$J,358.3,42538,1,0)
+ ;;^UTILITY(U,$J,358.3,43019,1,3,0)
+ ;;=3^Cereb Infarc d/t Rt Carotid Artery Occl/Sten
+ ;;^UTILITY(U,$J,358.3,43019,1,4,0)
+ ;;=4^I63.231
+ ;;^UTILITY(U,$J,358.3,43019,2)
+ ;;=^5007316
+ ;;^UTILITY(U,$J,358.3,43020,0)
+ ;;=I63.232^^164^2060^70
+ ;;^UTILITY(U,$J,358.3,43020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42538,1,3,0)
- ;;=3^Disp fx med cuneiform rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42538,1,4,0)
- ;;=4^S92.241K
- ;;^UTILITY(U,$J,358.3,42538,2)
- ;;=^5044966
- ;;^UTILITY(U,$J,358.3,42539,0)
- ;;=S92.242K^^192^2137^48
- ;;^UTILITY(U,$J,358.3,42539,1,0)
+ ;;^UTILITY(U,$J,358.3,43020,1,3,0)
+ ;;=3^Cereb Infarc d/t Lt Carotid Artery Occl/Sten
+ ;;^UTILITY(U,$J,358.3,43020,1,4,0)
+ ;;=4^I63.232
+ ;;^UTILITY(U,$J,358.3,43020,2)
+ ;;=^5007317
+ ;;^UTILITY(U,$J,358.3,43021,0)
+ ;;=I63.9^^164^2060^73
+ ;;^UTILITY(U,$J,358.3,43021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42539,1,3,0)
- ;;=3^Disp fx med cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42539,1,4,0)
- ;;=4^S92.242K
- ;;^UTILITY(U,$J,358.3,42539,2)
- ;;=^5044973
- ;;^UTILITY(U,$J,358.3,42540,0)
- ;;=S92.235K^^192^2137^263
- ;;^UTILITY(U,$J,358.3,42540,1,0)
+ ;;^UTILITY(U,$J,358.3,43021,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec
+ ;;^UTILITY(U,$J,358.3,43021,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,43021,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,43022,0)
+ ;;=I70.211^^164^2060^57
+ ;;^UTILITY(U,$J,358.3,43022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42540,1,3,0)
- ;;=3^Nondisp fx intermed cuneiform lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42540,1,4,0)
- ;;=4^S92.235K
- ;;^UTILITY(U,$J,358.3,42540,2)
- ;;=^5044952
- ;;^UTILITY(U,$J,358.3,42541,0)
- ;;=S92.234K^^192^2137^264
- ;;^UTILITY(U,$J,358.3,42541,1,0)
+ ;;^UTILITY(U,$J,358.3,43022,1,3,0)
+ ;;=3^Athscl of Rt Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,43022,1,4,0)
+ ;;=4^I70.211
+ ;;^UTILITY(U,$J,358.3,43022,2)
+ ;;=^5007578
+ ;;^UTILITY(U,$J,358.3,43023,0)
+ ;;=I70.212^^164^2060^50
+ ;;^UTILITY(U,$J,358.3,43023,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43023,1,3,0)
+ ;;=3^Athscl of Lt Leg w/ Intrmt Claud
+ ;;^UTILITY(U,$J,358.3,43023,1,4,0)
+ ;;=4^I70.212
+ ;;^UTILITY(U,$J,358.3,43023,2)
+ ;;=^5007579
+ ;;^UTILITY(U,$J,358.3,43024,0)
+ ;;=I70.213^^164^2060^47

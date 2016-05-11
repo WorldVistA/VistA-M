@@ -1,122 +1,136 @@
-IBDEI2DW ; ; 19-NOV-2015
+IBDEI2DW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40060,1,0)
+ ;;^UTILITY(U,$J,358.3,40454,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,40454,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,40455,0)
+ ;;=K21.9^^159^1988^21
+ ;;^UTILITY(U,$J,358.3,40455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40060,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40060,1,4,0)
- ;;=4^S68.613A
- ;;^UTILITY(U,$J,358.3,40060,2)
- ;;=^5036744
- ;;^UTILITY(U,$J,358.3,40061,0)
- ;;=S68.615A^^186^2076^63
- ;;^UTILITY(U,$J,358.3,40061,1,0)
+ ;;^UTILITY(U,$J,358.3,40455,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,40455,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,40455,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,40456,0)
+ ;;=N40.0^^159^1988^20
+ ;;^UTILITY(U,$J,358.3,40456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40061,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40061,1,4,0)
- ;;=4^S68.615A
- ;;^UTILITY(U,$J,358.3,40061,2)
- ;;=^5036750
- ;;^UTILITY(U,$J,358.3,40062,0)
- ;;=S68.512A^^186^2076^64
- ;;^UTILITY(U,$J,358.3,40062,1,0)
+ ;;^UTILITY(U,$J,358.3,40456,1,3,0)
+ ;;=3^Enlarged Prostate w/o LUTS
+ ;;^UTILITY(U,$J,358.3,40456,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,40456,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,40457,0)
+ ;;=N40.1^^159^1988^19
+ ;;^UTILITY(U,$J,358.3,40457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40062,1,3,0)
- ;;=3^Amputation,Traumatic,Left Trnsphal Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40062,1,4,0)
- ;;=4^S68.512A
- ;;^UTILITY(U,$J,358.3,40062,2)
- ;;=^5036720
- ;;^UTILITY(U,$J,358.3,40063,0)
- ;;=S58.111A^^186^2076^67
- ;;^UTILITY(U,$J,358.3,40063,1,0)
+ ;;^UTILITY(U,$J,358.3,40457,1,3,0)
+ ;;=3^Enlarged Prostate w/ LUTS
+ ;;^UTILITY(U,$J,358.3,40457,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,40457,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,40458,0)
+ ;;=L03.811^^159^1988^10
+ ;;^UTILITY(U,$J,358.3,40458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40063,1,3,0)
- ;;=3^Amputation,Traumatic,Right Arm Between Elbow & Wrist Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,40063,1,4,0)
- ;;=4^S58.111A
- ;;^UTILITY(U,$J,358.3,40063,2)
- ;;=^5031925
- ;;^UTILITY(U,$J,358.3,40064,0)
- ;;=S98.131A^^186^2076^65
- ;;^UTILITY(U,$J,358.3,40064,1,0)
+ ;;^UTILITY(U,$J,358.3,40458,1,3,0)
+ ;;=3^Cellulitis,Head (Except Face)
+ ;;^UTILITY(U,$J,358.3,40458,1,4,0)
+ ;;=4^L03.811
+ ;;^UTILITY(U,$J,358.3,40458,2)
+ ;;=^5009063
+ ;;^UTILITY(U,$J,358.3,40459,0)
+ ;;=L03.818^^159^1988^11
+ ;;^UTILITY(U,$J,358.3,40459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40064,1,3,0)
- ;;=3^Amputation,Traumatic,Right 1 Lesser Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,40064,1,4,0)
- ;;=4^S98.131A
- ;;^UTILITY(U,$J,358.3,40064,2)
- ;;=^5046281
- ;;^UTILITY(U,$J,358.3,40065,0)
- ;;=S98.011A^^186^2076^68
- ;;^UTILITY(U,$J,358.3,40065,1,0)
+ ;;^UTILITY(U,$J,358.3,40459,1,3,0)
+ ;;=3^Cellulitis,Oth Sites
+ ;;^UTILITY(U,$J,358.3,40459,1,4,0)
+ ;;=4^L03.818
+ ;;^UTILITY(U,$J,358.3,40459,2)
+ ;;=^5009064
+ ;;^UTILITY(U,$J,358.3,40460,0)
+ ;;=L03.891^^159^1988^35
+ ;;^UTILITY(U,$J,358.3,40460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40065,1,3,0)
- ;;=3^Amputation,Traumatic,Right Foot at Ankle Level,Init Encntr
- ;;^UTILITY(U,$J,358.3,40065,1,4,0)
- ;;=4^S98.011A
- ;;^UTILITY(U,$J,358.3,40065,2)
- ;;=^5046245
- ;;^UTILITY(U,$J,358.3,40066,0)
- ;;=S98.911A^^186^2076^69
- ;;^UTILITY(U,$J,358.3,40066,1,0)
+ ;;^UTILITY(U,$J,358.3,40460,1,3,0)
+ ;;=3^Lymphangitis,Head (Except Face),Acute
+ ;;^UTILITY(U,$J,358.3,40460,1,4,0)
+ ;;=4^L03.891
+ ;;^UTILITY(U,$J,358.3,40460,2)
+ ;;=^5009065
+ ;;^UTILITY(U,$J,358.3,40461,0)
+ ;;=L03.898^^159^1988^36
+ ;;^UTILITY(U,$J,358.3,40461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40066,1,3,0)
- ;;=3^Amputation,Traumatic,Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,40066,1,4,0)
- ;;=4^S98.911A
- ;;^UTILITY(U,$J,358.3,40066,2)
- ;;=^5046335
- ;;^UTILITY(U,$J,358.3,40067,0)
- ;;=S98.111A^^186^2076^70
- ;;^UTILITY(U,$J,358.3,40067,1,0)
+ ;;^UTILITY(U,$J,358.3,40461,1,3,0)
+ ;;=3^Lymphangitis,Oth Sites,Acute
+ ;;^UTILITY(U,$J,358.3,40461,1,4,0)
+ ;;=4^L03.898
+ ;;^UTILITY(U,$J,358.3,40461,2)
+ ;;=^5009066
+ ;;^UTILITY(U,$J,358.3,40462,0)
+ ;;=L03.90^^159^1988^12
+ ;;^UTILITY(U,$J,358.3,40462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40067,1,3,0)
- ;;=3^Amputation,Traumatic,Right Great Toe,Init Encntr
- ;;^UTILITY(U,$J,358.3,40067,1,4,0)
- ;;=4^S98.111A
- ;;^UTILITY(U,$J,358.3,40067,2)
- ;;=^5046263
- ;;^UTILITY(U,$J,358.3,40068,0)
- ;;=S98.311A^^186^2076^76
- ;;^UTILITY(U,$J,358.3,40068,1,0)
+ ;;^UTILITY(U,$J,358.3,40462,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,40462,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,40462,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,40463,0)
+ ;;=L03.91^^159^1988^34
+ ;;^UTILITY(U,$J,358.3,40463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40068,1,3,0)
- ;;=3^Amputation,Traumatic,Right Midfoot,Init Encntr
- ;;^UTILITY(U,$J,358.3,40068,1,4,0)
- ;;=4^S98.311A
- ;;^UTILITY(U,$J,358.3,40068,2)
- ;;=^5046317
- ;;^UTILITY(U,$J,358.3,40069,0)
- ;;=S48.911A^^186^2076^77
- ;;^UTILITY(U,$J,358.3,40069,1,0)
+ ;;^UTILITY(U,$J,358.3,40463,1,3,0)
+ ;;=3^Lymphangitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,40463,1,4,0)
+ ;;=4^L03.91
+ ;;^UTILITY(U,$J,358.3,40463,2)
+ ;;=^5009068
+ ;;^UTILITY(U,$J,358.3,40464,0)
+ ;;=M51.26^^159^1988^32
+ ;;^UTILITY(U,$J,358.3,40464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40069,1,3,0)
- ;;=3^Amputation,Traumatic,Right Shoulder/Upper Arm,Init Encntr
- ;;^UTILITY(U,$J,358.3,40069,1,4,0)
- ;;=4^S48.911A
- ;;^UTILITY(U,$J,358.3,40069,2)
- ;;=^5028323
- ;;^UTILITY(U,$J,358.3,40070,0)
- ;;=S98.211A^^186^2076^66
- ;;^UTILITY(U,$J,358.3,40070,1,0)
+ ;;^UTILITY(U,$J,358.3,40464,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,40464,1,4,0)
+ ;;=4^M51.26
+ ;;^UTILITY(U,$J,358.3,40464,2)
+ ;;=^5012249
+ ;;^UTILITY(U,$J,358.3,40465,0)
+ ;;=M51.27^^159^1988^33
+ ;;^UTILITY(U,$J,358.3,40465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40070,1,3,0)
- ;;=3^Amputation,Traumatic,Right 2 or More Lesser Toes,Init Encntr
- ;;^UTILITY(U,$J,358.3,40070,1,4,0)
- ;;=4^S98.211A
- ;;^UTILITY(U,$J,358.3,40070,2)
- ;;=^5046299
- ;;^UTILITY(U,$J,358.3,40071,0)
- ;;=S68.110A^^186^2076^71
- ;;^UTILITY(U,$J,358.3,40071,1,0)
+ ;;^UTILITY(U,$J,358.3,40465,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,40465,1,4,0)
+ ;;=4^M51.27
+ ;;^UTILITY(U,$J,358.3,40465,2)
+ ;;=^5012250
+ ;;^UTILITY(U,$J,358.3,40466,0)
+ ;;=G47.33^^159^1988^51
+ ;;^UTILITY(U,$J,358.3,40466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40071,1,3,0)
- ;;=3^Amputation,Traumatic,Right MCP Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40071,1,4,0)
- ;;=4^S68.110A
- ;;^UTILITY(U,$J,358.3,40071,2)
- ;;=^5036639
+ ;;^UTILITY(U,$J,358.3,40466,1,3,0)
+ ;;=3^Sleep Apnea,Obstructive
+ ;;^UTILITY(U,$J,358.3,40466,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,40466,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,40467,0)
+ ;;=G44.1^^159^1988^55
+ ;;^UTILITY(U,$J,358.3,40467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40467,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,40467,1,4,0)
+ ;;=4^G44.1

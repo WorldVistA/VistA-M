@@ -1,5 +1,5 @@
-SDCO1 ;ALB/RMO - Appointment - Check Out;Apr 23 1999  ; 12/11/08 5:30pm  ; Compiled December 12, 2008 13:01:34
- ;;5.3;Scheduling;**27,132,149,193,250,296,446,538**;08/13/93;Build 5
+SDCO1 ;ALB/RMO - Appointment - Check Out ;JAN 15, 2016
+ ;;5.3;Scheduling;**27,132,149,193,250,296,446,538,627**;08/13/93;Build 249
  ;
  ;check out if sd/369 is released before 446!!!
  ;
@@ -29,7 +29,7 @@ CO(DFN,SDT,SDCL,SDDA,SDASK,SDCODT,SDCOACT,SDLNE,SDCOALBF) ;Appt Check Out
  ;           SDLNE    Appt Mgmt Line Number       [Optional]
  ; Output -- SDCOALBF Re-build Appt Mgmt List
  I $D(XRTL) D T0^%ZOSV
- N SDCOQUIT,SDOE,SDATA
+ N SDCOQUIT,SDOE,SDATA,SDECAPPT
  S:'SDDA SDDA=$$FIND^SDAM2(DFN,SDT,SDCL)
  I 'SDDA W !!,*7,">>> You cannot check out this appointment." D PAUSE^VALM1 G COQ
  S SDATA=$G(^DPT(DFN,"S",SDT,0))
@@ -61,6 +61,10 @@ CO(DFN,SDT,SDCL,SDDA,SDASK,SDCODT,SDCOACT,SDLNE,SDCOALBF) ;Appt Check Out
  . . . N SDAPTYP
  . . . S SDTRES=$$INTV^PXAPI("INTV","SD","PIMS",$P($G(^SCE(+SDOE,0)),U,5),$P($G(^SCE(+SDOE,0)),U,4),DFN)
  . . . Q:SDTRES<0
+ . . . ;update SDEC APPOINTMENT - alb/sat 627
+ . . . S SDECAPPT=$$APPTGET^SDECUTL(DFN,SDT,SDCL)  ;get SDEC APPOINTMENT ien
+ . . . I SDECAPPT="" D SDEC^SDAMWI1 S SDECAPPT=$$APPTGET^SDECUTL(DFN,SDT,SDCL)
+ . . . D CO1^SDEC25B(SDECAPPT,$S($G(SDCODT)="":$E($$NOW^XLFDT,1,12),1:SDCODT),+SDOE)
  . . . ;
  . . . ; -- ask user if they want to see c/o screen
  . . . S SDGAFC=$$ASK^SDCO6

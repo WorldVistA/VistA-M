@@ -1,128 +1,132 @@
-IBDEI1ZZ ; ; 19-NOV-2015
+IBDEI1ZZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33449,1,0)
+ ;;^UTILITY(U,$J,358.3,33892,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,33892,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,33892,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,33893,0)
+ ;;=D68.32^^131^1680^84
+ ;;^UTILITY(U,$J,358.3,33893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33449,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33449,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,33449,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,33450,0)
- ;;=Z65.4^^148^1651^4
- ;;^UTILITY(U,$J,358.3,33450,1,0)
+ ;;^UTILITY(U,$J,358.3,33893,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,33893,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,33893,2)
+ ;;=^5002357
+ ;;^UTILITY(U,$J,358.3,33894,0)
+ ;;=C22.2^^131^1680^85
+ ;;^UTILITY(U,$J,358.3,33894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33450,1,3,0)
- ;;=3^Victim of Crime,Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,33450,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,33450,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,33451,0)
- ;;=Z65.0^^148^1651^1
- ;;^UTILITY(U,$J,358.3,33451,1,0)
+ ;;^UTILITY(U,$J,358.3,33894,1,3,0)
+ ;;=3^Hepatoblastoma
+ ;;^UTILITY(U,$J,358.3,33894,1,4,0)
+ ;;=4^C22.2
+ ;;^UTILITY(U,$J,358.3,33894,2)
+ ;;=^5000935
+ ;;^UTILITY(U,$J,358.3,33895,0)
+ ;;=D58.9^^131^1680^87
+ ;;^UTILITY(U,$J,358.3,33895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33451,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,33451,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,33451,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,33452,0)
- ;;=Z65.2^^148^1651^3
- ;;^UTILITY(U,$J,358.3,33452,1,0)
+ ;;^UTILITY(U,$J,358.3,33895,1,3,0)
+ ;;=3^Hereditary Hemolytic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33895,1,4,0)
+ ;;=4^D58.9
+ ;;^UTILITY(U,$J,358.3,33895,2)
+ ;;=^5002322
+ ;;^UTILITY(U,$J,358.3,33896,0)
+ ;;=C81.99^^131^1680^88
+ ;;^UTILITY(U,$J,358.3,33896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33452,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,33452,1,4,0)
- ;;=4^Z65.2
- ;;^UTILITY(U,$J,358.3,33452,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,33453,0)
- ;;=Z65.3^^148^1651^2
- ;;^UTILITY(U,$J,358.3,33453,1,0)
+ ;;^UTILITY(U,$J,358.3,33896,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,33896,1,4,0)
+ ;;=4^C81.99
+ ;;^UTILITY(U,$J,358.3,33896,2)
+ ;;=^5001460
+ ;;^UTILITY(U,$J,358.3,33897,0)
+ ;;=C81.90^^131^1680^89
+ ;;^UTILITY(U,$J,358.3,33897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33453,1,3,0)
- ;;=3^Problems Related to Oth Legal Circumstances
- ;;^UTILITY(U,$J,358.3,33453,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,33453,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,33454,0)
- ;;=Z65.8^^148^1652^5
- ;;^UTILITY(U,$J,358.3,33454,1,0)
+ ;;^UTILITY(U,$J,358.3,33897,1,3,0)
+ ;;=3^Hodgkin Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33897,1,4,0)
+ ;;=4^C81.90
+ ;;^UTILITY(U,$J,358.3,33897,2)
+ ;;=^5001451
+ ;;^UTILITY(U,$J,358.3,33898,0)
+ ;;=D89.2^^131^1680^90
+ ;;^UTILITY(U,$J,358.3,33898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33454,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,33454,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,33454,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,33455,0)
- ;;=Z64.0^^148^1652^4
- ;;^UTILITY(U,$J,358.3,33455,1,0)
+ ;;^UTILITY(U,$J,358.3,33898,1,3,0)
+ ;;=3^Hypergammaglobulenemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33898,1,4,0)
+ ;;=4^D89.2
+ ;;^UTILITY(U,$J,358.3,33898,2)
+ ;;=^5002455
+ ;;^UTILITY(U,$J,358.3,33899,0)
+ ;;=D05.12^^131^1680^91
+ ;;^UTILITY(U,$J,358.3,33899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33455,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,33455,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,33455,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,33456,0)
- ;;=Z64.1^^148^1652^3
- ;;^UTILITY(U,$J,358.3,33456,1,0)
+ ;;^UTILITY(U,$J,358.3,33899,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,33899,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,33899,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,33900,0)
+ ;;=D05.11^^131^1680^92
+ ;;^UTILITY(U,$J,358.3,33900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33456,1,3,0)
- ;;=3^Problems Related to Multiparity
- ;;^UTILITY(U,$J,358.3,33456,1,4,0)
- ;;=4^Z64.1
- ;;^UTILITY(U,$J,358.3,33456,2)
- ;;=^5063177
- ;;^UTILITY(U,$J,358.3,33457,0)
- ;;=Z64.4^^148^1652^1
- ;;^UTILITY(U,$J,358.3,33457,1,0)
+ ;;^UTILITY(U,$J,358.3,33900,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,33900,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,33900,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,33901,0)
+ ;;=D05.10^^131^1680^93
+ ;;^UTILITY(U,$J,358.3,33901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33457,1,3,0)
- ;;=3^Discord w/ Social Service Provider,Including Probation Officer,Case Manager,Social Worker
- ;;^UTILITY(U,$J,358.3,33457,1,4,0)
- ;;=4^Z64.4
- ;;^UTILITY(U,$J,358.3,33457,2)
- ;;=^5063178
- ;;^UTILITY(U,$J,358.3,33458,0)
- ;;=Z65.5^^148^1652^2
- ;;^UTILITY(U,$J,358.3,33458,1,0)
+ ;;^UTILITY(U,$J,358.3,33901,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
+ ;;^UTILITY(U,$J,358.3,33901,1,4,0)
+ ;;=4^D05.10
+ ;;^UTILITY(U,$J,358.3,33901,2)
+ ;;=^5001929
+ ;;^UTILITY(U,$J,358.3,33902,0)
+ ;;=D50.0^^131^1680^94
+ ;;^UTILITY(U,$J,358.3,33902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33458,1,3,0)
- ;;=3^Exposure to Disaster,War or Other Hostilities
- ;;^UTILITY(U,$J,358.3,33458,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,33458,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,33459,0)
- ;;=Z62.820^^148^1653^4
- ;;^UTILITY(U,$J,358.3,33459,1,0)
+ ;;^UTILITY(U,$J,358.3,33902,1,3,0)
+ ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
+ ;;^UTILITY(U,$J,358.3,33902,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,33902,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,33903,0)
+ ;;=D50.9^^131^1680^95
+ ;;^UTILITY(U,$J,358.3,33903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33459,1,3,0)
- ;;=3^Parent-Child Relational Problem
- ;;^UTILITY(U,$J,358.3,33459,1,4,0)
- ;;=4^Z62.820
- ;;^UTILITY(U,$J,358.3,33459,2)
- ;;=^5063157
- ;;^UTILITY(U,$J,358.3,33460,0)
- ;;=Z62.891^^148^1653^6
- ;;^UTILITY(U,$J,358.3,33460,1,0)
+ ;;^UTILITY(U,$J,358.3,33903,1,3,0)
+ ;;=3^Iron Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33903,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,33903,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,33904,0)
+ ;;=C46.9^^131^1680^96
+ ;;^UTILITY(U,$J,358.3,33904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33460,1,3,0)
- ;;=3^Sibling Relational Problem
- ;;^UTILITY(U,$J,358.3,33460,1,4,0)
- ;;=4^Z62.891
- ;;^UTILITY(U,$J,358.3,33460,2)
- ;;=^5063161
- ;;^UTILITY(U,$J,358.3,33461,0)
- ;;=Z62.898^^148^1653^1
- ;;^UTILITY(U,$J,358.3,33461,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33461,1,3,0)
- ;;=3^Child Affected by Parental Relationship Distress
+ ;;^UTILITY(U,$J,358.3,33904,1,3,0)
+ ;;=3^Kaposi's Sarcoma,Unspec
+ ;;^UTILITY(U,$J,358.3,33904,1,4,0)
+ ;;=4^C46.9
+ ;;^UTILITY(U,$J,358.3,33904,2)
+ ;;=^5001108
+ ;;^UTILITY(U,$J,358.3,33905,0)
+ ;;=C22.0^^131^1680^97

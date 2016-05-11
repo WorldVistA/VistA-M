@@ -1,128 +1,134 @@
-IBDEI27B ; ; 19-NOV-2015
+IBDEI27B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36950,1,0)
+ ;;^UTILITY(U,$J,358.3,37337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36950,1,3,0)
- ;;=3^Refract cytopenia w multilin dysplasia and ring sideroblasts
- ;;^UTILITY(U,$J,358.3,36950,1,4,0)
- ;;=4^D46.B
- ;;^UTILITY(U,$J,358.3,36950,2)
- ;;=^5002252
- ;;^UTILITY(U,$J,358.3,36951,0)
- ;;=D46.22^^169^1863^16
- ;;^UTILITY(U,$J,358.3,36951,1,0)
+ ;;^UTILITY(U,$J,358.3,37337,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,37337,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,37337,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,37338,0)
+ ;;=M06.4^^140^1787^164
+ ;;^UTILITY(U,$J,358.3,37338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36951,1,3,0)
- ;;=3^Refractory anemia with excess of blasts 2
- ;;^UTILITY(U,$J,358.3,36951,1,4,0)
- ;;=4^D46.22
- ;;^UTILITY(U,$J,358.3,36951,2)
- ;;=^5002249
- ;;^UTILITY(U,$J,358.3,36952,0)
- ;;=D46.C^^169^1863^3
- ;;^UTILITY(U,$J,358.3,36952,1,0)
+ ;;^UTILITY(U,$J,358.3,37338,1,3,0)
+ ;;=3^Inflammatory polyarthropathy
+ ;;^UTILITY(U,$J,358.3,37338,1,4,0)
+ ;;=4^M06.4
+ ;;^UTILITY(U,$J,358.3,37338,2)
+ ;;=^5010120
+ ;;^UTILITY(U,$J,358.3,37339,0)
+ ;;=M54.5^^140^1787^191
+ ;;^UTILITY(U,$J,358.3,37339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36952,1,3,0)
- ;;=3^Myelodysplastic syndrome w isolated del(5q) chromsoml abnlt
- ;;^UTILITY(U,$J,358.3,36952,1,4,0)
- ;;=4^D46.C
- ;;^UTILITY(U,$J,358.3,36952,2)
- ;;=^5002253
- ;;^UTILITY(U,$J,358.3,36953,0)
- ;;=D46.9^^169^1863^4
- ;;^UTILITY(U,$J,358.3,36953,1,0)
+ ;;^UTILITY(U,$J,358.3,37339,1,3,0)
+ ;;=3^Low back pain
+ ;;^UTILITY(U,$J,358.3,37339,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,37339,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,37340,0)
+ ;;=M35.5^^140^1787^195
+ ;;^UTILITY(U,$J,358.3,37340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36953,1,3,0)
- ;;=3^Myelodysplastic syndrome, unspecified
- ;;^UTILITY(U,$J,358.3,36953,1,4,0)
- ;;=4^D46.9
- ;;^UTILITY(U,$J,358.3,36953,2)
- ;;=^334031
- ;;^UTILITY(U,$J,358.3,36954,0)
- ;;=D47.1^^169^1863^1
- ;;^UTILITY(U,$J,358.3,36954,1,0)
+ ;;^UTILITY(U,$J,358.3,37340,1,3,0)
+ ;;=3^Multifocal fibrosclerosis
+ ;;^UTILITY(U,$J,358.3,37340,1,4,0)
+ ;;=4^M35.5
+ ;;^UTILITY(U,$J,358.3,37340,2)
+ ;;=^5011794
+ ;;^UTILITY(U,$J,358.3,37341,0)
+ ;;=M79.1^^140^1787^196
+ ;;^UTILITY(U,$J,358.3,37341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36954,1,3,0)
- ;;=3^Chronic myeloproliferative disease
- ;;^UTILITY(U,$J,358.3,36954,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,36954,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,36955,0)
- ;;=D47.Z1^^169^1863^12
- ;;^UTILITY(U,$J,358.3,36955,1,0)
+ ;;^UTILITY(U,$J,358.3,37341,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,37341,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,37341,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,37342,0)
+ ;;=G73.7^^140^1787^197
+ ;;^UTILITY(U,$J,358.3,37342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36955,1,3,0)
- ;;=3^Post-transplant lymphoproliferative disorder (PTLD)
- ;;^UTILITY(U,$J,358.3,36955,1,4,0)
- ;;=4^D47.Z1
- ;;^UTILITY(U,$J,358.3,36955,2)
- ;;=^5002261
- ;;^UTILITY(U,$J,358.3,36956,0)
- ;;=D48.7^^169^1863^8
- ;;^UTILITY(U,$J,358.3,36956,1,0)
+ ;;^UTILITY(U,$J,358.3,37342,1,3,0)
+ ;;=3^Myopathy in diseases classified elsewhere
+ ;;^UTILITY(U,$J,358.3,37342,1,4,0)
+ ;;=4^G73.7
+ ;;^UTILITY(U,$J,358.3,37342,2)
+ ;;=^5004103
+ ;;^UTILITY(U,$J,358.3,37343,0)
+ ;;=M71.50^^140^1787^66
+ ;;^UTILITY(U,$J,358.3,37343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36956,1,3,0)
- ;;=3^Neoplasm of uncertain behavior of other specified sites
- ;;^UTILITY(U,$J,358.3,36956,1,4,0)
- ;;=4^D48.7
- ;;^UTILITY(U,$J,358.3,36956,2)
- ;;=^267779
- ;;^UTILITY(U,$J,358.3,36957,0)
- ;;=D48.9^^169^1863^11
- ;;^UTILITY(U,$J,358.3,36957,1,0)
+ ;;^UTILITY(U,$J,358.3,37343,1,3,0)
+ ;;=3^Bursitis, NEC, unspec site, oth
+ ;;^UTILITY(U,$J,358.3,37343,1,4,0)
+ ;;=4^M71.50
+ ;;^UTILITY(U,$J,358.3,37343,2)
+ ;;=^5013190
+ ;;^UTILITY(U,$J,358.3,37344,0)
+ ;;=E83.59^^140^1787^104
+ ;;^UTILITY(U,$J,358.3,37344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36957,1,3,0)
- ;;=3^Neoplasm of uncertain behavior, unspecified
- ;;^UTILITY(U,$J,358.3,36957,1,4,0)
- ;;=4^D48.9
- ;;^UTILITY(U,$J,358.3,36957,2)
- ;;=^5002269
- ;;^UTILITY(U,$J,358.3,36958,0)
- ;;=D49.0^^169^1864^8
- ;;^UTILITY(U,$J,358.3,36958,1,0)
+ ;;^UTILITY(U,$J,358.3,37344,1,3,0)
+ ;;=3^Disorders of calcium metabolism, oth
+ ;;^UTILITY(U,$J,358.3,37344,1,4,0)
+ ;;=4^E83.59
+ ;;^UTILITY(U,$J,358.3,37344,2)
+ ;;=^5003006
+ ;;^UTILITY(U,$J,358.3,37345,0)
+ ;;=L93.2^^140^1787^187
+ ;;^UTILITY(U,$J,358.3,37345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36958,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of digestive system
- ;;^UTILITY(U,$J,358.3,36958,1,4,0)
- ;;=4^D49.0
- ;;^UTILITY(U,$J,358.3,36958,2)
- ;;=^5002270
- ;;^UTILITY(U,$J,358.3,36959,0)
- ;;=D49.1^^169^1864^12
- ;;^UTILITY(U,$J,358.3,36959,1,0)
+ ;;^UTILITY(U,$J,358.3,37345,1,3,0)
+ ;;=3^Local lupus erythematosus, oth
+ ;;^UTILITY(U,$J,358.3,37345,1,4,0)
+ ;;=4^L93.2
+ ;;^UTILITY(U,$J,358.3,37345,2)
+ ;;=^5009469
+ ;;^UTILITY(U,$J,358.3,37346,0)
+ ;;=L40.59^^140^1787^209
+ ;;^UTILITY(U,$J,358.3,37346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36959,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of respiratory system
- ;;^UTILITY(U,$J,358.3,36959,1,4,0)
- ;;=4^D49.1
- ;;^UTILITY(U,$J,358.3,36959,2)
- ;;=^5002271
- ;;^UTILITY(U,$J,358.3,36960,0)
- ;;=D49.2^^169^1864^5
- ;;^UTILITY(U,$J,358.3,36960,1,0)
+ ;;^UTILITY(U,$J,358.3,37346,1,3,0)
+ ;;=3^Psoriatic arthropathy, oth
+ ;;^UTILITY(U,$J,358.3,37346,1,4,0)
+ ;;=4^L40.59
+ ;;^UTILITY(U,$J,358.3,37346,2)
+ ;;=^5009170
+ ;;^UTILITY(U,$J,358.3,37347,0)
+ ;;=M1A.40X1^^140^1787^155
+ ;;^UTILITY(U,$J,358.3,37347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36960,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of bone, soft tissue, and skin
- ;;^UTILITY(U,$J,358.3,36960,1,4,0)
- ;;=4^D49.2
- ;;^UTILITY(U,$J,358.3,36960,2)
- ;;=^5002272
- ;;^UTILITY(U,$J,358.3,36961,0)
- ;;=D49.3^^169^1864^7
- ;;^UTILITY(U,$J,358.3,36961,1,0)
+ ;;^UTILITY(U,$J,358.3,37347,1,3,0)
+ ;;=3^Gout, chron, secndry, unspec site, w/ tophus, oth
+ ;;^UTILITY(U,$J,358.3,37347,1,4,0)
+ ;;=4^M1A.40X1
+ ;;^UTILITY(U,$J,358.3,37347,2)
+ ;;=^5010994
+ ;;^UTILITY(U,$J,358.3,37348,0)
+ ;;=D89.89^^140^1787^103
+ ;;^UTILITY(U,$J,358.3,37348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36961,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of breast
- ;;^UTILITY(U,$J,358.3,36961,1,4,0)
- ;;=4^D49.3
- ;;^UTILITY(U,$J,358.3,36961,2)
- ;;=^5002273
- ;;^UTILITY(U,$J,358.3,36962,0)
- ;;=D49.4^^169^1864^4
- ;;^UTILITY(U,$J,358.3,36962,1,0)
+ ;;^UTILITY(U,$J,358.3,37348,1,3,0)
+ ;;=3^Disorders invlvng immune mechanism, NEC, oth, spec
+ ;;^UTILITY(U,$J,358.3,37348,1,4,0)
+ ;;=4^D89.89
+ ;;^UTILITY(U,$J,358.3,37348,2)
+ ;;=^5002458
+ ;;^UTILITY(U,$J,358.3,37349,0)
+ ;;=M12.30^^140^1787^199
+ ;;^UTILITY(U,$J,358.3,37349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36962,1,3,0)
- ;;=3^Neoplasm of unspecified behavior of bladder
+ ;;^UTILITY(U,$J,358.3,37349,1,3,0)
+ ;;=3^Palindromic rheumatism, unspec site
+ ;;^UTILITY(U,$J,358.3,37349,1,4,0)
+ ;;=4^M12.30
+ ;;^UTILITY(U,$J,358.3,37349,2)
+ ;;=^5010570
+ ;;^UTILITY(U,$J,358.3,37350,0)
+ ;;=M35.3^^140^1787^203

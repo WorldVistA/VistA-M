@@ -1,116 +1,124 @@
-IBDEI1WL ; ; 19-NOV-2015
+IBDEI1WL ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31878,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Suspected,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,31878,1,4,0)
- ;;=4^T76.11XD
- ;;^UTILITY(U,$J,358.3,31878,2)
- ;;=^5054222
- ;;^UTILITY(U,$J,358.3,31879,0)
- ;;=Z69.11^^141^1474^4
- ;;^UTILITY(U,$J,358.3,31879,1,0)
+ ;;^UTILITY(U,$J,358.3,32302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31879,1,3,0)
- ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
- ;;^UTILITY(U,$J,358.3,31879,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,31879,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,31880,0)
- ;;=Z91.410^^141^1474^5
- ;;^UTILITY(U,$J,358.3,31880,1,0)
+ ;;^UTILITY(U,$J,358.3,32302,1,3,0)
+ ;;=3^Fx of tarsal bone(s) lft ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,32302,1,4,0)
+ ;;=4^S92.202K
+ ;;^UTILITY(U,$J,358.3,32302,2)
+ ;;=^5044833
+ ;;^UTILITY(U,$J,358.3,32303,0)
+ ;;=S92.201K^^126^1609^225
+ ;;^UTILITY(U,$J,358.3,32303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31880,1,3,0)
- ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,31880,1,4,0)
- ;;=4^Z91.410
- ;;^UTILITY(U,$J,358.3,31880,2)
- ;;=^5063619
- ;;^UTILITY(U,$J,358.3,31881,0)
- ;;=Z69.12^^141^1474^2
- ;;^UTILITY(U,$J,358.3,31881,1,0)
+ ;;^UTILITY(U,$J,358.3,32303,1,3,0)
+ ;;=3^Fx of tarsal bone(s) rt ft, subs w/ nonunion, unspec
+ ;;^UTILITY(U,$J,358.3,32303,1,4,0)
+ ;;=4^S92.201K
+ ;;^UTILITY(U,$J,358.3,32303,2)
+ ;;=^5044826
+ ;;^UTILITY(U,$J,358.3,32304,0)
+ ;;=S92.192K^^126^1609^200
+ ;;^UTILITY(U,$J,358.3,32304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31881,1,3,0)
- ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
- ;;^UTILITY(U,$J,358.3,31881,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,31881,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,31882,0)
- ;;=T74.21XA^^141^1474^12
- ;;^UTILITY(U,$J,358.3,31882,1,0)
+ ;;^UTILITY(U,$J,358.3,32304,1,3,0)
+ ;;=3^Fx of lft talus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32304,1,4,0)
+ ;;=4^S92.192K
+ ;;^UTILITY(U,$J,358.3,32304,2)
+ ;;=^5137589
+ ;;^UTILITY(U,$J,358.3,32305,0)
+ ;;=S92.191K^^126^1609^217
+ ;;^UTILITY(U,$J,358.3,32305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31882,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,31882,1,4,0)
- ;;=4^T74.21XA
- ;;^UTILITY(U,$J,358.3,31882,2)
- ;;=^5054152
- ;;^UTILITY(U,$J,358.3,31883,0)
- ;;=T74.21XD^^141^1474^13
- ;;^UTILITY(U,$J,358.3,31883,1,0)
+ ;;^UTILITY(U,$J,358.3,32305,1,3,0)
+ ;;=3^Fx of rt talus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32305,1,4,0)
+ ;;=4^S92.191K
+ ;;^UTILITY(U,$J,358.3,32305,2)
+ ;;=^5044819
+ ;;^UTILITY(U,$J,358.3,32306,0)
+ ;;=S92.155K^^126^1609^226
+ ;;^UTILITY(U,$J,358.3,32306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31883,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,31883,1,4,0)
- ;;=4^T74.21XD
- ;;^UTILITY(U,$J,358.3,31883,2)
- ;;=^5054153
- ;;^UTILITY(U,$J,358.3,31884,0)
- ;;=T76.21XA^^141^1474^14
- ;;^UTILITY(U,$J,358.3,31884,1,0)
+ ;;^UTILITY(U,$J,358.3,32306,1,3,0)
+ ;;=3^Nondisp avuls fx (chip) lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32306,1,4,0)
+ ;;=4^S92.155K
+ ;;^UTILITY(U,$J,358.3,32306,2)
+ ;;=^5044805
+ ;;^UTILITY(U,$J,358.3,32307,0)
+ ;;=S92.154K^^126^1609^227
+ ;;^UTILITY(U,$J,358.3,32307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31884,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Initial Encounter
- ;;^UTILITY(U,$J,358.3,31884,1,4,0)
- ;;=4^T76.21XA
- ;;^UTILITY(U,$J,358.3,31884,2)
- ;;=^5054227
- ;;^UTILITY(U,$J,358.3,31885,0)
- ;;=T76.21XD^^141^1474^15
- ;;^UTILITY(U,$J,358.3,31885,1,0)
+ ;;^UTILITY(U,$J,358.3,32307,1,3,0)
+ ;;=3^Nondisp avuls fx (chip) rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32307,1,4,0)
+ ;;=4^S92.154K
+ ;;^UTILITY(U,$J,358.3,32307,2)
+ ;;=^5044798
+ ;;^UTILITY(U,$J,358.3,32308,0)
+ ;;=S92.152K^^126^1609^3
+ ;;^UTILITY(U,$J,358.3,32308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31885,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Sexual Suspected,Susequent Encounter
- ;;^UTILITY(U,$J,358.3,31885,1,4,0)
- ;;=4^T76.21XD
- ;;^UTILITY(U,$J,358.3,31885,2)
- ;;=^5054228
- ;;^UTILITY(U,$J,358.3,31886,0)
- ;;=Z69.81^^141^1474^3
- ;;^UTILITY(U,$J,358.3,31886,1,0)
+ ;;^UTILITY(U,$J,358.3,32308,1,3,0)
+ ;;=3^Disp avuls fx (chip) lft talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32308,1,4,0)
+ ;;=4^S92.152K
+ ;;^UTILITY(U,$J,358.3,32308,2)
+ ;;=^5044784
+ ;;^UTILITY(U,$J,358.3,32309,0)
+ ;;=S92.151K^^126^1609^4
+ ;;^UTILITY(U,$J,358.3,32309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31886,1,3,0)
- ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,31886,1,4,0)
- ;;=4^Z69.81
- ;;^UTILITY(U,$J,358.3,31886,2)
- ;;=^5063234
- ;;^UTILITY(U,$J,358.3,31887,0)
- ;;=Z69.82^^141^1474^1
- ;;^UTILITY(U,$J,358.3,31887,1,0)
+ ;;^UTILITY(U,$J,358.3,32309,1,3,0)
+ ;;=3^Disp avuls fx (chip) of rt talus, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32309,1,4,0)
+ ;;=4^S92.151K
+ ;;^UTILITY(U,$J,358.3,32309,2)
+ ;;=^5044777
+ ;;^UTILITY(U,$J,358.3,32310,0)
+ ;;=S92.145K^^126^1609^244
+ ;;^UTILITY(U,$J,358.3,32310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31887,1,3,0)
- ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
- ;;^UTILITY(U,$J,358.3,31887,1,4,0)
- ;;=4^Z69.82
- ;;^UTILITY(U,$J,358.3,31887,2)
- ;;=^5063235
- ;;^UTILITY(U,$J,358.3,31888,0)
- ;;=T74.01XA^^141^1474^16
- ;;^UTILITY(U,$J,358.3,31888,1,0)
+ ;;^UTILITY(U,$J,358.3,32310,1,3,0)
+ ;;=3^Nondisp dome fx lft tauls, subs w/ nonunion
+ ;;^UTILITY(U,$J,358.3,32310,1,4,0)
+ ;;=4^S92.145K
+ ;;^UTILITY(U,$J,358.3,32310,2)
+ ;;=^5044763
+ ;;^UTILITY(U,$J,358.3,32311,0)
+ ;;=S92.055K^^126^1609^249
+ ;;^UTILITY(U,$J,358.3,32311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31888,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Initial Encnter
- ;;^UTILITY(U,$J,358.3,31888,1,4,0)
- ;;=4^T74.01XA
- ;;^UTILITY(U,$J,358.3,31888,2)
- ;;=^5054140
- ;;^UTILITY(U,$J,358.3,31889,0)
- ;;=T74.01XD^^141^1474^17
- ;;^UTILITY(U,$J,358.3,31889,1,0)
+ ;;^UTILITY(U,$J,358.3,32311,1,3,0)
+ ;;=3^Nondisp extrartic fx lft calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32311,1,4,0)
+ ;;=4^S92.055K
+ ;;^UTILITY(U,$J,358.3,32311,2)
+ ;;=^5044539
+ ;;^UTILITY(U,$J,358.3,32312,0)
+ ;;=S92.054K^^126^1609^252
+ ;;^UTILITY(U,$J,358.3,32312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31889,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Neglect Confirmed,Subsequent Encnter
+ ;;^UTILITY(U,$J,358.3,32312,1,3,0)
+ ;;=3^Nondisp extrartic fx rt calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32312,1,4,0)
+ ;;=4^S92.054K
+ ;;^UTILITY(U,$J,358.3,32312,2)
+ ;;=^5044532
+ ;;^UTILITY(U,$J,358.3,32313,0)
+ ;;=S92.052K^^126^1609^24
+ ;;^UTILITY(U,$J,358.3,32313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32313,1,3,0)
+ ;;=3^Disp extrartic fx lft calcaneus, subs w/ nonunion, oth
+ ;;^UTILITY(U,$J,358.3,32313,1,4,0)
+ ;;=4^S92.052K
+ ;;^UTILITY(U,$J,358.3,32313,2)
+ ;;=^5044518
+ ;;^UTILITY(U,$J,358.3,32314,0)
+ ;;=S92.051K^^126^1609^27

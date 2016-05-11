@@ -1,5 +1,5 @@
-PSOSULBL ;BHAM ISC/RTR,SAB-Print Suspended labels ;4/8/93
- ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370**;DEC 1997;Build 14
+PSOSULBL ;BHAM ISC/RTR,SAB - Print Suspended labels ;4/8/93
+ ;;7.0;OUTPATIENT PHARMACY;**139,173,174,148,200,260,264,287,289,290,354,421,370,427**;DEC 1997;Build 21
  ;External reference ^PS(55 supported by DBIA 2228
  ;Reference to SAVNDC^PSSNDCUT supported by IA 4707
  ;Reference ^PSDRUG( supported by DBIA 221
@@ -35,6 +35,8 @@ TMP F SFN=0:0 S SFN=$O(^PS(52.5,"AC",DFN,SDT,SFN)) Q:'SFN  D
  . S RXFILL=$$GET1^DIQ(52.5,SFN,9,"I") I RXFILL="" S RXFILL=$$LSTRFL^PSOBPSU1(RXIEN)
  . I RXSITE=$G(PSOSITE),'PRINTED,RXDFN=DFN,RXSTS<9 D
  . . I PARTIAL,'$D(^PSRX(RXIEN,"P",PARTIAL)) Q
+ . . ; If already printed and the REPRINT flag is not set, remove from queue and quit
+ . . I $$PRINTED(SFN,RXIEN,RXFILL)=1 D REMOVE(SFN,RXIEN,RXFILL,.5,"","") Q 
  . . I RXEXPDT<DT,RXSTS<11 D  Q
  . . . N RXREC S RXREC=RXIEN D EX^PSOSUTL
  . . . K DIE,DA S DIE=52,DA=RXIEN,DR="100///11" D ^DIE K DIE,DA
@@ -188,3 +190,70 @@ ACT(ACTTYPE) ;adds activity info for rx not printed from suspense/not sent to OP
  K PSUS,RXF,I,FDA,DIC,DIE,DR,Y,X,%,%I,%H,RSDT
  Q
  ;
+PRINTED(SFN,RX,RFL) ;
+ ; Check if a label log indicates that a label has already been printed
+ ; Input Parameters
+ ;    SFN - IEN of RX Suspense file (#52.5)
+ ;    RX  - IEN of Prescription file (#50)
+ ;    RFL - Refill number
+ ; Output
+ ;     0 - Label not printed
+ ;     1 - Label already printed
+ ;     2 - Label already printed and reprint flag is set
+ ;
+ ; Check parameters
+ I '$G(SFN) Q 0
+ I '$G(RX) Q 0
+ I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
+ ;
+ N LBL,PTLBL
+ ; Check label log
+ S LBL=0,PTLBL=0
+ F  S LBL=$O(^PSRX(RX,"L",LBL)) Q:'LBL  D  Q:PTLBL
+ . I +$$GET1^DIQ(52.032,LBL_","_RX,1,"I")'=RFL Q
+ . I $$GET1^DIQ(52.032,LBL_","_RX,4,"I") Q    ; Warning Label printed
+ . I $$GET1^DIQ(52.032,LBL_","_RX,2)["INTERACTION" Q  ; Comment contains "Interaction"
+ . S PTLBL=1
+ ; If the label log indicates a label was printed and the REPRINT flag is set, change the output to 2
+ I PTLBL=1,$$GET1^DIQ(52.5,SFN_",",8,"I") S PTLBL=2
+ ; 
+ Q PTLBL
+ ;
+REMOVE(SFN,RX,RFL,USR,DSP,PRTFLG) ;
+ ; Remove the RX from the RX Suspense queue (#52.5)
+ ; Input Parameters
+ ;    SFN - IEN of RX Suspense file (#52.5)
+ ;    RX  - IEN of Prescription file (#52)
+ ;    RFL - Refill number
+ ;    USR - User to enter into the Activity Log
+ ;    DSP - Display message
+ ;    PRTFLG - 1:Printed,2:Printed and Reprint Flag
+ ;
+ ; If Reprint flag and display flags are on, display message and quit
+ I $G(PRTFLG)=2,$G(DSP)  W !,"Reprint Flag is on.  Prescription left on suspense." H 1 Q
+ ;
+ ; Check parameters
+ I '$G(SFN) Q
+ I '$D(^PS(52.5,SFN,0)) Q
+ I '$G(RX) Q
+ I '$D(^PSRX(RX,0)) Q
+ I $G(RFL)="" S RFL=$$LSTRFL^PSOBPSU1(RX)
+ ;
+ N DIK,DA,DIE,DR,DTOUT
+ ;
+ ; Remove from the suspense queue
+ S DIK="^PS(52.5,",DA=SFN D ^DIK
+ ;
+ ; Update status in the PRESCRIPTION file
+ K DIE,DA
+ S DIE=52,DA=RX,DR="100///0" D ^DIE
+ ; 
+ ; Update the Activity Log
+ I '$D(USR) S USR=DUZ
+ I '$D(^VA(200,+USR,0)) S USR=DUZ
+ N X,DIC,DA,DD,DO,DR,DINUM,Y,DLAYGO
+ S DA(1)=RX,DIC="^PSRX("_RX_",""A"",",DLAYGO=52.3,DIC(0)="L",X=$$NOW^XLFDT()
+ S DIC("DR")=".02///S;.03////"_USR_";.04///"_$S(RFL>5:RFL+1,1:RFL)_";.05///Rx removed from suspense due to previous label print"
+ D FILE^DICN
+ I $G(DSP) W !,"Prescription has been removed from suspense." H 1
+ Q

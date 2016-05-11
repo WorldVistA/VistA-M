@@ -1,124 +1,128 @@
-IBDEI274 ; ; 19-NOV-2015
+IBDEI274 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36864,1,3,0)
- ;;=3^Malignant neoplasm of cauda equina
- ;;^UTILITY(U,$J,358.3,36864,1,4,0)
- ;;=4^C72.1
- ;;^UTILITY(U,$J,358.3,36864,2)
- ;;=^5001298
- ;;^UTILITY(U,$J,358.3,36865,0)
- ;;=C72.0^^169^1861^26
- ;;^UTILITY(U,$J,358.3,36865,1,0)
+ ;;^UTILITY(U,$J,358.3,37248,0)
+ ;;=M65.08^^140^1787^27
+ ;;^UTILITY(U,$J,358.3,37248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36865,1,3,0)
- ;;=3^Malignant neoplasm of spinal cord
- ;;^UTILITY(U,$J,358.3,36865,1,4,0)
- ;;=4^C72.0
- ;;^UTILITY(U,$J,358.3,36865,2)
- ;;=^267292
- ;;^UTILITY(U,$J,358.3,36866,0)
- ;;=C74.01^^169^1861^21
- ;;^UTILITY(U,$J,358.3,36866,1,0)
+ ;;^UTILITY(U,$J,358.3,37248,1,3,0)
+ ;;=3^Abscess of tendon sheath, oth site
+ ;;^UTILITY(U,$J,358.3,37248,1,4,0)
+ ;;=4^M65.08
+ ;;^UTILITY(U,$J,358.3,37248,2)
+ ;;=^5012731
+ ;;^UTILITY(U,$J,358.3,37249,0)
+ ;;=M67.811^^140^1787^118
+ ;;^UTILITY(U,$J,358.3,37249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36866,1,3,0)
- ;;=3^Malignant neoplasm of cortex of right adrenal gland
- ;;^UTILITY(U,$J,358.3,36866,1,4,0)
- ;;=4^C74.01
- ;;^UTILITY(U,$J,358.3,36866,2)
- ;;=^5001312
- ;;^UTILITY(U,$J,358.3,36867,0)
- ;;=C74.02^^169^1861^20
- ;;^UTILITY(U,$J,358.3,36867,1,0)
+ ;;^UTILITY(U,$J,358.3,37249,1,3,0)
+ ;;=3^Disorders of synovium, rt shldr, oth, spec
+ ;;^UTILITY(U,$J,358.3,37249,1,4,0)
+ ;;=4^M67.811
+ ;;^UTILITY(U,$J,358.3,37249,2)
+ ;;=^5012984
+ ;;^UTILITY(U,$J,358.3,37250,0)
+ ;;=M67.812^^140^1787^111
+ ;;^UTILITY(U,$J,358.3,37250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36867,1,3,0)
- ;;=3^Malignant neoplasm of cortex of left adrenal gland
- ;;^UTILITY(U,$J,358.3,36867,1,4,0)
- ;;=4^C74.02
- ;;^UTILITY(U,$J,358.3,36867,2)
- ;;=^5001313
- ;;^UTILITY(U,$J,358.3,36868,0)
- ;;=C74.11^^169^1861^23
- ;;^UTILITY(U,$J,358.3,36868,1,0)
+ ;;^UTILITY(U,$J,358.3,37250,1,3,0)
+ ;;=3^Disorders of synovium, lft shldr, oth, spec
+ ;;^UTILITY(U,$J,358.3,37250,1,4,0)
+ ;;=4^M67.812
+ ;;^UTILITY(U,$J,358.3,37250,2)
+ ;;=^5012985
+ ;;^UTILITY(U,$J,358.3,37251,0)
+ ;;=M67.813^^140^1787^132
+ ;;^UTILITY(U,$J,358.3,37251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36868,1,3,0)
- ;;=3^Malignant neoplasm of medulla of right adrenal gland
- ;;^UTILITY(U,$J,358.3,36868,1,4,0)
- ;;=4^C74.11
- ;;^UTILITY(U,$J,358.3,36868,2)
- ;;=^5001315
- ;;^UTILITY(U,$J,358.3,36869,0)
- ;;=C74.12^^169^1861^22
- ;;^UTILITY(U,$J,358.3,36869,1,0)
+ ;;^UTILITY(U,$J,358.3,37251,1,3,0)
+ ;;=3^Disorders of tendon, rt shoulder, oth, spec
+ ;;^UTILITY(U,$J,358.3,37251,1,4,0)
+ ;;=4^M67.813
+ ;;^UTILITY(U,$J,358.3,37251,2)
+ ;;=^5012986
+ ;;^UTILITY(U,$J,358.3,37252,0)
+ ;;=M67.814^^140^1787^125
+ ;;^UTILITY(U,$J,358.3,37252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36869,1,3,0)
- ;;=3^Malignant neoplasm of medulla of left adrenal gland
- ;;^UTILITY(U,$J,358.3,36869,1,4,0)
- ;;=4^C74.12
- ;;^UTILITY(U,$J,358.3,36869,2)
- ;;=^5001316
- ;;^UTILITY(U,$J,358.3,36870,0)
- ;;=C74.91^^169^1861^28
- ;;^UTILITY(U,$J,358.3,36870,1,0)
+ ;;^UTILITY(U,$J,358.3,37252,1,3,0)
+ ;;=3^Disorders of tendon, lft shldr, oth, spec
+ ;;^UTILITY(U,$J,358.3,37252,1,4,0)
+ ;;=4^M67.814
+ ;;^UTILITY(U,$J,358.3,37252,2)
+ ;;=^5012987
+ ;;^UTILITY(U,$J,358.3,37253,0)
+ ;;=M67.821^^140^1787^114
+ ;;^UTILITY(U,$J,358.3,37253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36870,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of right adrenal gland
- ;;^UTILITY(U,$J,358.3,36870,1,4,0)
- ;;=4^C74.91
- ;;^UTILITY(U,$J,358.3,36870,2)
- ;;=^5001318
- ;;^UTILITY(U,$J,358.3,36871,0)
- ;;=C74.92^^169^1861^27
- ;;^UTILITY(U,$J,358.3,36871,1,0)
+ ;;^UTILITY(U,$J,358.3,37253,1,3,0)
+ ;;=3^Disorders of synovium, rt elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37253,1,4,0)
+ ;;=4^M67.821
+ ;;^UTILITY(U,$J,358.3,37253,2)
+ ;;=^5012989
+ ;;^UTILITY(U,$J,358.3,37254,0)
+ ;;=M67.822^^140^1787^107
+ ;;^UTILITY(U,$J,358.3,37254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36871,1,3,0)
- ;;=3^Malignant neoplasm of unsp part of left adrenal gland
- ;;^UTILITY(U,$J,358.3,36871,1,4,0)
- ;;=4^C74.92
- ;;^UTILITY(U,$J,358.3,36871,2)
- ;;=^5001319
- ;;^UTILITY(U,$J,358.3,36872,0)
- ;;=C44.112^^169^1861^12
- ;;^UTILITY(U,$J,358.3,36872,1,0)
+ ;;^UTILITY(U,$J,358.3,37254,1,3,0)
+ ;;=3^Disorders of synovium, lft elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37254,1,4,0)
+ ;;=4^M67.822
+ ;;^UTILITY(U,$J,358.3,37254,2)
+ ;;=^5012990
+ ;;^UTILITY(U,$J,358.3,37255,0)
+ ;;=M67.823^^140^1787^128
+ ;;^UTILITY(U,$J,358.3,37255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36872,1,3,0)
- ;;=3^Basal cell carcinoma of skin or right eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,36872,1,4,0)
- ;;=4^C44.112
- ;;^UTILITY(U,$J,358.3,36872,2)
- ;;=^5001020
- ;;^UTILITY(U,$J,358.3,36873,0)
- ;;=C44.119^^169^1861^4
- ;;^UTILITY(U,$J,358.3,36873,1,0)
+ ;;^UTILITY(U,$J,358.3,37255,1,3,0)
+ ;;=3^Disorders of tendon, rt elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37255,1,4,0)
+ ;;=4^M67.823
+ ;;^UTILITY(U,$J,358.3,37255,2)
+ ;;=^5012991
+ ;;^UTILITY(U,$J,358.3,37256,0)
+ ;;=M67.824^^140^1787^121
+ ;;^UTILITY(U,$J,358.3,37256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36873,1,3,0)
- ;;=3^Basal cell carcinoma of skin of left eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,36873,1,4,0)
- ;;=4^C44.119
- ;;^UTILITY(U,$J,358.3,36873,2)
- ;;=^5001021
- ;;^UTILITY(U,$J,358.3,36874,0)
- ;;=C44.122^^169^1861^39
- ;;^UTILITY(U,$J,358.3,36874,1,0)
+ ;;^UTILITY(U,$J,358.3,37256,1,3,0)
+ ;;=3^Disorders of tendon, lft elbow, oth, spec
+ ;;^UTILITY(U,$J,358.3,37256,1,4,0)
+ ;;=4^M67.824
+ ;;^UTILITY(U,$J,358.3,37256,2)
+ ;;=^5012992
+ ;;^UTILITY(U,$J,358.3,37257,0)
+ ;;=M67.831^^140^1787^119
+ ;;^UTILITY(U,$J,358.3,37257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36874,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of right eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,36874,1,4,0)
- ;;=4^C44.122
- ;;^UTILITY(U,$J,358.3,36874,2)
- ;;=^5001023
- ;;^UTILITY(U,$J,358.3,36875,0)
- ;;=C44.129^^169^1861^33
- ;;^UTILITY(U,$J,358.3,36875,1,0)
+ ;;^UTILITY(U,$J,358.3,37257,1,3,0)
+ ;;=3^Disorders of synovium, rt wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,37257,1,4,0)
+ ;;=4^M67.831
+ ;;^UTILITY(U,$J,358.3,37257,2)
+ ;;=^5012994
+ ;;^UTILITY(U,$J,358.3,37258,0)
+ ;;=M67.832^^140^1787^112
+ ;;^UTILITY(U,$J,358.3,37258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36875,1,3,0)
- ;;=3^Squamous cell carcinoma of skin of left eyelid,including canthus
- ;;^UTILITY(U,$J,358.3,36875,1,4,0)
- ;;=4^C44.129
- ;;^UTILITY(U,$J,358.3,36875,2)
- ;;=^5001024
- ;;^UTILITY(U,$J,358.3,36876,0)
- ;;=C44.222^^169^1861^40
- ;;^UTILITY(U,$J,358.3,36876,1,0)
+ ;;^UTILITY(U,$J,358.3,37258,1,3,0)
+ ;;=3^Disorders of synovium, lft wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,37258,1,4,0)
+ ;;=4^M67.832
+ ;;^UTILITY(U,$J,358.3,37258,2)
+ ;;=^5012995
+ ;;^UTILITY(U,$J,358.3,37259,0)
+ ;;=M67.833^^140^1787^133
+ ;;^UTILITY(U,$J,358.3,37259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37259,1,3,0)
+ ;;=3^Disorders of tendon, rt wrist, oth, spec
+ ;;^UTILITY(U,$J,358.3,37259,1,4,0)
+ ;;=4^M67.833
+ ;;^UTILITY(U,$J,358.3,37259,2)
+ ;;=^5012996
+ ;;^UTILITY(U,$J,358.3,37260,0)
+ ;;=M67.834^^140^1787^126
+ ;;^UTILITY(U,$J,358.3,37260,1,0)
  ;;=^358.31IA^4^2

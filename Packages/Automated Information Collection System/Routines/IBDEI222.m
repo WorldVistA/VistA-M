@@ -1,134 +1,128 @@
-IBDEI222 ; ; 19-NOV-2015
+IBDEI222 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34459,0)
- ;;=G04.1^^157^1752^4
- ;;^UTILITY(U,$J,358.3,34459,1,0)
+ ;;^UTILITY(U,$J,358.3,34865,0)
+ ;;=S83.402A^^131^1693^4
+ ;;^UTILITY(U,$J,358.3,34865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34459,1,3,0)
- ;;=3^Paraplegia,Tropical Spastic
- ;;^UTILITY(U,$J,358.3,34459,1,4,0)
- ;;=4^G04.1
- ;;^UTILITY(U,$J,358.3,34459,2)
- ;;=^5003733
- ;;^UTILITY(U,$J,358.3,34460,0)
- ;;=G82.21^^157^1752^2
- ;;^UTILITY(U,$J,358.3,34460,1,0)
+ ;;^UTILITY(U,$J,358.3,34865,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,34865,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,34865,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,34866,0)
+ ;;=S93.402A^^131^1693^2
+ ;;^UTILITY(U,$J,358.3,34866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34460,1,3,0)
- ;;=3^Paraplegia,Complete
- ;;^UTILITY(U,$J,358.3,34460,1,4,0)
- ;;=4^G82.21
- ;;^UTILITY(U,$J,358.3,34460,2)
- ;;=^5004126
- ;;^UTILITY(U,$J,358.3,34461,0)
- ;;=M47.10^^157^1752^34
- ;;^UTILITY(U,$J,358.3,34461,1,0)
+ ;;^UTILITY(U,$J,358.3,34866,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,34866,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,34866,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,34867,0)
+ ;;=S93.401A^^131^1693^13
+ ;;^UTILITY(U,$J,358.3,34867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34461,1,3,0)
- ;;=3^Sponylosis w/ Myelopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,34461,1,4,0)
- ;;=4^M47.10
- ;;^UTILITY(U,$J,358.3,34461,2)
- ;;=^5012050
- ;;^UTILITY(U,$J,358.3,34462,0)
- ;;=M47.20^^157^1752^30
- ;;^UTILITY(U,$J,358.3,34462,1,0)
+ ;;^UTILITY(U,$J,358.3,34867,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,34867,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,34867,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,34868,0)
+ ;;=S56.511A^^131^1693^39
+ ;;^UTILITY(U,$J,358.3,34868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34462,1,3,0)
- ;;=3^Spondylosis w/ Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,34462,1,4,0)
- ;;=4^M47.20
- ;;^UTILITY(U,$J,358.3,34462,2)
- ;;=^5012059
- ;;^UTILITY(U,$J,358.3,34463,0)
- ;;=M48.02^^157^1752^15
- ;;^UTILITY(U,$J,358.3,34463,1,0)
+ ;;^UTILITY(U,$J,358.3,34868,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,34868,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,34868,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,34869,0)
+ ;;=S56.512A^^131^1693^19
+ ;;^UTILITY(U,$J,358.3,34869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34463,1,3,0)
- ;;=3^Spinal Stenosis,Cervical Region
- ;;^UTILITY(U,$J,358.3,34463,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,34463,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,34464,0)
- ;;=M48.04^^157^1752^19
- ;;^UTILITY(U,$J,358.3,34464,1,0)
+ ;;^UTILITY(U,$J,358.3,34869,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,34869,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,34869,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,34870,0)
+ ;;=S13.8XXA^^131^1693^10
+ ;;^UTILITY(U,$J,358.3,34870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34464,1,3,0)
- ;;=3^Spinal Stenosis,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34464,1,4,0)
- ;;=4^M48.04
- ;;^UTILITY(U,$J,358.3,34464,2)
- ;;=^5012091
- ;;^UTILITY(U,$J,358.3,34465,0)
- ;;=M48.07^^157^1752^18
- ;;^UTILITY(U,$J,358.3,34465,1,0)
+ ;;^UTILITY(U,$J,358.3,34870,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,34870,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,34870,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,34871,0)
+ ;;=S16.1XXA^^131^1693^37
+ ;;^UTILITY(U,$J,358.3,34871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34465,1,3,0)
- ;;=3^Spinal Stenosis,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34465,1,4,0)
- ;;=4^M48.07
- ;;^UTILITY(U,$J,358.3,34465,2)
- ;;=^5012094
- ;;^UTILITY(U,$J,358.3,34466,0)
- ;;=M54.10^^157^1752^10
- ;;^UTILITY(U,$J,358.3,34466,1,0)
+ ;;^UTILITY(U,$J,358.3,34871,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,34871,1,4,0)
+ ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,34871,2)
+ ;;=^5022358
+ ;;^UTILITY(U,$J,358.3,34872,0)
+ ;;=S33.5XXA^^131^1693^8
+ ;;^UTILITY(U,$J,358.3,34872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34466,1,3,0)
- ;;=3^Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,34466,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,34466,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,34467,0)
- ;;=M54.12^^157^1752^6
- ;;^UTILITY(U,$J,358.3,34467,1,0)
+ ;;^UTILITY(U,$J,358.3,34872,1,3,0)
+ ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,34872,1,4,0)
+ ;;=4^S33.5XXA
+ ;;^UTILITY(U,$J,358.3,34872,2)
+ ;;=^5025172
+ ;;^UTILITY(U,$J,358.3,34873,0)
+ ;;=F10.20^^131^1694^4
+ ;;^UTILITY(U,$J,358.3,34873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34467,1,3,0)
- ;;=3^Radiculopathy,Cervical Region
- ;;^UTILITY(U,$J,358.3,34467,1,4,0)
- ;;=4^M54.12
- ;;^UTILITY(U,$J,358.3,34467,2)
- ;;=^5012297
- ;;^UTILITY(U,$J,358.3,34468,0)
- ;;=M54.14^^157^1752^11
- ;;^UTILITY(U,$J,358.3,34468,1,0)
+ ;;^UTILITY(U,$J,358.3,34873,1,3,0)
+ ;;=3^Alcohol Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,34873,1,4,0)
+ ;;=4^F10.20
+ ;;^UTILITY(U,$J,358.3,34873,2)
+ ;;=^5003081
+ ;;^UTILITY(U,$J,358.3,34874,0)
+ ;;=F11.29^^131^1694^46
+ ;;^UTILITY(U,$J,358.3,34874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34468,1,3,0)
- ;;=3^Radiculopathy,Thoracic Region
- ;;^UTILITY(U,$J,358.3,34468,1,4,0)
- ;;=4^M54.14
- ;;^UTILITY(U,$J,358.3,34468,2)
- ;;=^5012299
- ;;^UTILITY(U,$J,358.3,34469,0)
- ;;=M54.16^^157^1752^8
- ;;^UTILITY(U,$J,358.3,34469,1,0)
+ ;;^UTILITY(U,$J,358.3,34874,1,3,0)
+ ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,34874,1,4,0)
+ ;;=4^F11.29
+ ;;^UTILITY(U,$J,358.3,34874,2)
+ ;;=^5003141
+ ;;^UTILITY(U,$J,358.3,34875,0)
+ ;;=F11.288^^131^1694^45
+ ;;^UTILITY(U,$J,358.3,34875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34469,1,3,0)
- ;;=3^Radiculopathy,Lumbar Region
- ;;^UTILITY(U,$J,358.3,34469,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,34469,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,34470,0)
- ;;=M54.17^^157^1752^9
- ;;^UTILITY(U,$J,358.3,34470,1,0)
+ ;;^UTILITY(U,$J,358.3,34875,1,3,0)
+ ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
+ ;;^UTILITY(U,$J,358.3,34875,1,4,0)
+ ;;=4^F11.288
+ ;;^UTILITY(U,$J,358.3,34875,2)
+ ;;=^5003140
+ ;;^UTILITY(U,$J,358.3,34876,0)
+ ;;=F11.282^^131^1694^44
+ ;;^UTILITY(U,$J,358.3,34876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34470,1,3,0)
- ;;=3^Radiculopathy,Lumbosacral Region
- ;;^UTILITY(U,$J,358.3,34470,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,34470,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,34471,0)
- ;;=M54.13^^157^1752^7
- ;;^UTILITY(U,$J,358.3,34471,1,0)
+ ;;^UTILITY(U,$J,358.3,34876,1,3,0)
+ ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,34876,1,4,0)
+ ;;=4^F11.282
+ ;;^UTILITY(U,$J,358.3,34876,2)
+ ;;=^5003139
+ ;;^UTILITY(U,$J,358.3,34877,0)
+ ;;=F11.281^^131^1694^43
+ ;;^UTILITY(U,$J,358.3,34877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34471,1,3,0)
- ;;=3^Radiculopathy,Cervicothoracic Region
- ;;^UTILITY(U,$J,358.3,34471,1,4,0)
- ;;=4^M54.13
- ;;^UTILITY(U,$J,358.3,34471,2)
- ;;=^5012298

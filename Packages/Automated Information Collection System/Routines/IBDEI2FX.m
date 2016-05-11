@@ -1,122 +1,134 @@
-IBDEI2FX ; ; 19-NOV-2015
+IBDEI2FX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40969,1,0)
+ ;;^UTILITY(U,$J,358.3,41392,1,4,0)
+ ;;=4^D68.0
+ ;;^UTILITY(U,$J,358.3,41392,2)
+ ;;=^127267
+ ;;^UTILITY(U,$J,358.3,41393,0)
+ ;;=C88.0^^159^2004^195
+ ;;^UTILITY(U,$J,358.3,41393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40969,1,3,0)
- ;;=3^Disp fx of 3rd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40969,1,4,0)
- ;;=4^S92.331K
- ;;^UTILITY(U,$J,358.3,40969,2)
- ;;=^5045148
- ;;^UTILITY(U,$J,358.3,40970,0)
- ;;=S92.325K^^189^2086^290
- ;;^UTILITY(U,$J,358.3,40970,1,0)
+ ;;^UTILITY(U,$J,358.3,41393,1,3,0)
+ ;;=3^Waldenstrom Macroglobulinemia
+ ;;^UTILITY(U,$J,358.3,41393,1,4,0)
+ ;;=4^C88.0
+ ;;^UTILITY(U,$J,358.3,41393,2)
+ ;;=^5001748
+ ;;^UTILITY(U,$J,358.3,41394,0)
+ ;;=C91.02^^159^2004^3
+ ;;^UTILITY(U,$J,358.3,41394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40970,1,3,0)
- ;;=3^Nondisp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40970,1,4,0)
- ;;=4^S92.325K
- ;;^UTILITY(U,$J,358.3,40970,2)
- ;;=^5045134
- ;;^UTILITY(U,$J,358.3,40971,0)
- ;;=S92.324K^^189^2086^291
- ;;^UTILITY(U,$J,358.3,40971,1,0)
+ ;;^UTILITY(U,$J,358.3,41394,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,41394,1,4,0)
+ ;;=4^C91.02
+ ;;^UTILITY(U,$J,358.3,41394,2)
+ ;;=^5001764
+ ;;^UTILITY(U,$J,358.3,41395,0)
+ ;;=C92.02^^159^2004^6
+ ;;^UTILITY(U,$J,358.3,41395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40971,1,3,0)
- ;;=3^Nondisp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40971,1,4,0)
- ;;=4^S92.324K
- ;;^UTILITY(U,$J,358.3,40971,2)
- ;;=^5045127
- ;;^UTILITY(U,$J,358.3,40972,0)
- ;;=S92.322K^^189^2086^65
- ;;^UTILITY(U,$J,358.3,40972,1,0)
+ ;;^UTILITY(U,$J,358.3,41395,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,41395,1,4,0)
+ ;;=4^C92.02
+ ;;^UTILITY(U,$J,358.3,41395,2)
+ ;;=^5001791
+ ;;^UTILITY(U,$J,358.3,41396,0)
+ ;;=D09.3^^159^2004^45
+ ;;^UTILITY(U,$J,358.3,41396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40972,1,3,0)
- ;;=3^Disp fx of 2nd metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40972,1,4,0)
- ;;=4^S92.322K
- ;;^UTILITY(U,$J,358.3,40972,2)
- ;;=^5045113
- ;;^UTILITY(U,$J,358.3,40973,0)
- ;;=S92.321K^^189^2086^66
- ;;^UTILITY(U,$J,358.3,40973,1,0)
+ ;;^UTILITY(U,$J,358.3,41396,1,3,0)
+ ;;=3^Carcinoma in Situ of Thyroid/Oth Endocrine Glands
+ ;;^UTILITY(U,$J,358.3,41396,1,4,0)
+ ;;=4^D09.3
+ ;;^UTILITY(U,$J,358.3,41396,2)
+ ;;=^5001955
+ ;;^UTILITY(U,$J,358.3,41397,0)
+ ;;=C22.0^^159^2004^86
+ ;;^UTILITY(U,$J,358.3,41397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40973,1,3,0)
- ;;=3^Disp fx of 2nd metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40973,1,4,0)
- ;;=4^S92.321K
- ;;^UTILITY(U,$J,358.3,40973,2)
- ;;=^5045106
- ;;^UTILITY(U,$J,358.3,40974,0)
- ;;=S92.315K^^189^2086^285
- ;;^UTILITY(U,$J,358.3,40974,1,0)
+ ;;^UTILITY(U,$J,358.3,41397,1,3,0)
+ ;;=3^Hepatocellular Carcinoma
+ ;;^UTILITY(U,$J,358.3,41397,1,4,0)
+ ;;=4^C22.0
+ ;;^UTILITY(U,$J,358.3,41397,2)
+ ;;=^5000933
+ ;;^UTILITY(U,$J,358.3,41398,0)
+ ;;=C24.9^^159^2004^110
+ ;;^UTILITY(U,$J,358.3,41398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40974,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40974,1,4,0)
- ;;=4^S92.315K
- ;;^UTILITY(U,$J,358.3,40974,2)
- ;;=^5045092
- ;;^UTILITY(U,$J,358.3,40975,0)
- ;;=S92.314K^^189^2086^286
- ;;^UTILITY(U,$J,358.3,40975,1,0)
+ ;;^UTILITY(U,$J,358.3,41398,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,41398,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,41398,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,41399,0)
+ ;;=C50.922^^159^2004^134
+ ;;^UTILITY(U,$J,358.3,41399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40975,1,3,0)
- ;;=3^Nondisp fx of 1st metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40975,1,4,0)
- ;;=4^S92.314K
- ;;^UTILITY(U,$J,358.3,40975,2)
- ;;=^5045085
- ;;^UTILITY(U,$J,358.3,40976,0)
- ;;=S92.312K^^189^2086^61
- ;;^UTILITY(U,$J,358.3,40976,1,0)
+ ;;^UTILITY(U,$J,358.3,41399,1,3,0)
+ ;;=3^Malig Neop Left Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41399,1,4,0)
+ ;;=4^C50.922
+ ;;^UTILITY(U,$J,358.3,41399,2)
+ ;;=^5133340
+ ;;^UTILITY(U,$J,358.3,41400,0)
+ ;;=C34.91^^159^2004^152
+ ;;^UTILITY(U,$J,358.3,41400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40976,1,3,0)
- ;;=3^Disp fx of 1st metrsl bone, lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40976,1,4,0)
- ;;=4^S92.312K
- ;;^UTILITY(U,$J,358.3,40976,2)
- ;;=^5045071
- ;;^UTILITY(U,$J,358.3,40977,0)
- ;;=S92.311K^^189^2086^62
- ;;^UTILITY(U,$J,358.3,40977,1,0)
+ ;;^UTILITY(U,$J,358.3,41400,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,41400,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,41400,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,41401,0)
+ ;;=C50.921^^159^2004^156
+ ;;^UTILITY(U,$J,358.3,41401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40977,1,3,0)
- ;;=3^Disp fx of 1st metrsl bone, rt ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40977,1,4,0)
- ;;=4^S92.311K
- ;;^UTILITY(U,$J,358.3,40977,2)
- ;;=^5045064
- ;;^UTILITY(U,$J,358.3,40978,0)
- ;;=S92.302K^^189^2086^206
- ;;^UTILITY(U,$J,358.3,40978,1,0)
+ ;;^UTILITY(U,$J,358.3,41401,1,3,0)
+ ;;=3^Malig Neop Right Male Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,41401,1,4,0)
+ ;;=4^C50.921
+ ;;^UTILITY(U,$J,358.3,41401,2)
+ ;;=^5001198
+ ;;^UTILITY(U,$J,358.3,41402,0)
+ ;;=C90.02^^159^2004^167
+ ;;^UTILITY(U,$J,358.3,41402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40978,1,3,0)
- ;;=3^Fx of metrsl bone(s), lft ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40978,1,4,0)
- ;;=4^S92.302K
- ;;^UTILITY(U,$J,358.3,40978,2)
- ;;=^5045057
- ;;^UTILITY(U,$J,358.3,40979,0)
- ;;=S92.301K^^189^2086^207
- ;;^UTILITY(U,$J,358.3,40979,1,0)
+ ;;^UTILITY(U,$J,358.3,41402,1,3,0)
+ ;;=3^Multiple Myeloma,In Relapse
+ ;;^UTILITY(U,$J,358.3,41402,1,4,0)
+ ;;=4^C90.02
+ ;;^UTILITY(U,$J,358.3,41402,2)
+ ;;=^5001753
+ ;;^UTILITY(U,$J,358.3,41403,0)
+ ;;=D51.9^^159^2004^25
+ ;;^UTILITY(U,$J,358.3,41403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40979,1,3,0)
- ;;=3^Fx of metrsl bone(s), rt ft, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,40979,1,4,0)
- ;;=4^S92.301K
- ;;^UTILITY(U,$J,358.3,40979,2)
- ;;=^5045050
- ;;^UTILITY(U,$J,358.3,40980,0)
- ;;=S92.255K^^189^2086^336
- ;;^UTILITY(U,$J,358.3,40980,1,0)
+ ;;^UTILITY(U,$J,358.3,41403,1,3,0)
+ ;;=3^Anemia in Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,41403,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,41403,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,41404,0)
+ ;;=C79.51^^159^2004^30
+ ;;^UTILITY(U,$J,358.3,41404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40980,1,3,0)
- ;;=3^Nondisp fx of navclr lft ft, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,40980,1,4,0)
- ;;=4^S92.255K
- ;;^UTILITY(U,$J,358.3,40980,2)
- ;;=^5045036
+ ;;^UTILITY(U,$J,358.3,41404,1,3,0)
+ ;;=3^Bone Mets
+ ;;^UTILITY(U,$J,358.3,41404,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,41404,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,41405,0)
+ ;;=C80.1^^159^2004^163
+ ;;^UTILITY(U,$J,358.3,41405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41405,1,3,0)
+ ;;=3^Malig Neop,Primary,Unspec Site

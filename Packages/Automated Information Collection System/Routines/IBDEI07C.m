@@ -1,132 +1,136 @@
-IBDEI07C ; ; 19-NOV-2015
+IBDEI07C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2860,2)
- ;;=^329888
- ;;^UTILITY(U,$J,358.3,2861,0)
- ;;=G31.2^^28^243^22
- ;;^UTILITY(U,$J,358.3,2861,1,0)
+ ;;^UTILITY(U,$J,358.3,3125,0)
+ ;;=Z97.3^^18^214^17
+ ;;^UTILITY(U,$J,358.3,3125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2861,1,3,0)
- ;;=3^Dementia,Alcohol-Related
- ;;^UTILITY(U,$J,358.3,2861,1,4,0)
- ;;=4^G31.2
- ;;^UTILITY(U,$J,358.3,2861,2)
- ;;=^5003810
- ;;^UTILITY(U,$J,358.3,2862,0)
- ;;=A81.09^^28^243^25
- ;;^UTILITY(U,$J,358.3,2862,1,0)
+ ;;^UTILITY(U,$J,358.3,3125,1,3,0)
+ ;;=3^Contact Lenses/Eyeglasses,Presence of
+ ;;^UTILITY(U,$J,358.3,3125,1,4,0)
+ ;;=4^Z97.3
+ ;;^UTILITY(U,$J,358.3,3125,2)
+ ;;=^5063729
+ ;;^UTILITY(U,$J,358.3,3126,0)
+ ;;=H53.72^^18^214^18
+ ;;^UTILITY(U,$J,358.3,3126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2862,1,3,0)
- ;;=3^Dementia,Creutzfeldt-Jakob Disease,Other
- ;;^UTILITY(U,$J,358.3,2862,1,4,0)
- ;;=4^A81.09
- ;;^UTILITY(U,$J,358.3,2862,2)
- ;;=^5000410
- ;;^UTILITY(U,$J,358.3,2863,0)
- ;;=A81.00^^28^243^26
- ;;^UTILITY(U,$J,358.3,2863,1,0)
+ ;;^UTILITY(U,$J,358.3,3126,1,3,0)
+ ;;=3^Contrast Sensitivity,Impaired
+ ;;^UTILITY(U,$J,358.3,3126,1,4,0)
+ ;;=4^H53.72
+ ;;^UTILITY(U,$J,358.3,3126,2)
+ ;;=^5006355
+ ;;^UTILITY(U,$J,358.3,3127,0)
+ ;;=H04.121^^18^214^21
+ ;;^UTILITY(U,$J,358.3,3127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2863,1,3,0)
- ;;=3^Dementia,Creutzfeldt-Jakob Disease,Unspec
- ;;^UTILITY(U,$J,358.3,2863,1,4,0)
- ;;=4^A81.00
- ;;^UTILITY(U,$J,358.3,2863,2)
- ;;=^5000409
- ;;^UTILITY(U,$J,358.3,2864,0)
- ;;=A81.01^^28^243^27
- ;;^UTILITY(U,$J,358.3,2864,1,0)
+ ;;^UTILITY(U,$J,358.3,3127,1,3,0)
+ ;;=3^Dry Eye Syndrome Right Lacrimal Gland
+ ;;^UTILITY(U,$J,358.3,3127,1,4,0)
+ ;;=4^H04.121
+ ;;^UTILITY(U,$J,358.3,3127,2)
+ ;;=^5004463
+ ;;^UTILITY(U,$J,358.3,3128,0)
+ ;;=H04.122^^18^214^20
+ ;;^UTILITY(U,$J,358.3,3128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2864,1,3,0)
- ;;=3^Dementia,Creutzfeldt-Jakob Disease,Variant
- ;;^UTILITY(U,$J,358.3,2864,1,4,0)
- ;;=4^A81.01
- ;;^UTILITY(U,$J,358.3,2864,2)
- ;;=^336701
- ;;^UTILITY(U,$J,358.3,2865,0)
- ;;=G31.9^^28^243^28
- ;;^UTILITY(U,$J,358.3,2865,1,0)
+ ;;^UTILITY(U,$J,358.3,3128,1,3,0)
+ ;;=3^Dry Eye Syndrome Left Lacrimal Gland
+ ;;^UTILITY(U,$J,358.3,3128,1,4,0)
+ ;;=4^H04.122
+ ;;^UTILITY(U,$J,358.3,3128,2)
+ ;;=^5004464
+ ;;^UTILITY(U,$J,358.3,3129,0)
+ ;;=H04.123^^18^214^19
+ ;;^UTILITY(U,$J,358.3,3129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2865,1,3,0)
- ;;=3^Dementia,Degenerative Disease Nervous System,Unspec
- ;;^UTILITY(U,$J,358.3,2865,1,4,0)
- ;;=4^G31.9
- ;;^UTILITY(U,$J,358.3,2865,2)
- ;;=^5003815
- ;;^UTILITY(U,$J,358.3,2866,0)
- ;;=G10.^^28^243^45
- ;;^UTILITY(U,$J,358.3,2866,1,0)
+ ;;^UTILITY(U,$J,358.3,3129,1,3,0)
+ ;;=3^Dry Eye Syndrome Bilateral Lacrimal Glands
+ ;;^UTILITY(U,$J,358.3,3129,1,4,0)
+ ;;=4^H04.123
+ ;;^UTILITY(U,$J,358.3,3129,2)
+ ;;=^5004465
+ ;;^UTILITY(U,$J,358.3,3130,0)
+ ;;=H02.106^^18^214^22
+ ;;^UTILITY(U,$J,358.3,3130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2866,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2866,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,2866,2)
- ;;=^5003751^F02.80
- ;;^UTILITY(U,$J,358.3,2867,0)
- ;;=G94.^^28^243^24
- ;;^UTILITY(U,$J,358.3,2867,1,0)
+ ;;^UTILITY(U,$J,358.3,3130,1,3,0)
+ ;;=3^Ectropion Left Eye,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,3130,1,4,0)
+ ;;=4^H02.106
+ ;;^UTILITY(U,$J,358.3,3130,2)
+ ;;=^5004306
+ ;;^UTILITY(U,$J,358.3,3131,0)
+ ;;=H02.103^^18^214^23
+ ;;^UTILITY(U,$J,358.3,3131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2867,1,3,0)
- ;;=3^Dementia,Brain Disorder in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,2867,1,4,0)
- ;;=4^G94.
- ;;^UTILITY(U,$J,358.3,2867,2)
- ;;=^5004187
- ;;^UTILITY(U,$J,358.3,2868,0)
- ;;=G31.09^^28^243^29
- ;;^UTILITY(U,$J,358.3,2868,1,0)
+ ;;^UTILITY(U,$J,358.3,3131,1,3,0)
+ ;;=3^Ectropion Right Eye,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,3131,1,4,0)
+ ;;=4^H02.103
+ ;;^UTILITY(U,$J,358.3,3131,2)
+ ;;=^5004304
+ ;;^UTILITY(U,$J,358.3,3132,0)
+ ;;=H02.006^^18^214^24
+ ;;^UTILITY(U,$J,358.3,3132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2868,1,3,0)
- ;;=3^Dementia,Frontotemporal,Other
- ;;^UTILITY(U,$J,358.3,2868,1,4,0)
- ;;=4^G31.09
- ;;^UTILITY(U,$J,358.3,2868,2)
- ;;=^329916
- ;;^UTILITY(U,$J,358.3,2869,0)
- ;;=G23.8^^28^243^23
- ;;^UTILITY(U,$J,358.3,2869,1,0)
+ ;;^UTILITY(U,$J,358.3,3132,1,3,0)
+ ;;=3^Entropion Left Eye,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,3132,1,4,0)
+ ;;=4^H02.006
+ ;;^UTILITY(U,$J,358.3,3132,2)
+ ;;=^5004277
+ ;;^UTILITY(U,$J,358.3,3133,0)
+ ;;=H02.003^^18^214^25
+ ;;^UTILITY(U,$J,358.3,3133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2869,1,3,0)
- ;;=3^Dementia,Basal Ganglia Degenerative Diseases
- ;;^UTILITY(U,$J,358.3,2869,1,4,0)
- ;;=4^G23.8
- ;;^UTILITY(U,$J,358.3,2869,2)
- ;;=^5003782
- ;;^UTILITY(U,$J,358.3,2870,0)
- ;;=G31.89^^28^243^31
- ;;^UTILITY(U,$J,358.3,2870,1,0)
+ ;;^UTILITY(U,$J,358.3,3133,1,3,0)
+ ;;=3^Entropion Right Eye,Unspec Eyelid
+ ;;^UTILITY(U,$J,358.3,3133,1,4,0)
+ ;;=4^H02.003
+ ;;^UTILITY(U,$J,358.3,3133,2)
+ ;;=^5004275
+ ;;^UTILITY(U,$J,358.3,3134,0)
+ ;;=H53.71^^18^214^26
+ ;;^UTILITY(U,$J,358.3,3134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2870,1,3,0)
- ;;=3^Dementia,Nervous System Degenerative Diseases
- ;;^UTILITY(U,$J,358.3,2870,1,4,0)
- ;;=4^G31.89
- ;;^UTILITY(U,$J,358.3,2870,2)
- ;;=^5003814
- ;;^UTILITY(U,$J,358.3,2871,0)
- ;;=F06.8^^28^243^30
- ;;^UTILITY(U,$J,358.3,2871,1,0)
+ ;;^UTILITY(U,$J,358.3,3134,1,3,0)
+ ;;=3^Glare Sensitivity
+ ;;^UTILITY(U,$J,358.3,3134,1,4,0)
+ ;;=4^H53.71
+ ;;^UTILITY(U,$J,358.3,3134,2)
+ ;;=^5006354
+ ;;^UTILITY(U,$J,358.3,3135,0)
+ ;;=H40.9^^18^214^27
+ ;;^UTILITY(U,$J,358.3,3135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2871,1,3,0)
- ;;=3^Dementia,Mental Disorders d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,2871,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,2871,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,2872,0)
- ;;=F10.27^^28^243^32
- ;;^UTILITY(U,$J,358.3,2872,1,0)
+ ;;^UTILITY(U,$J,358.3,3135,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,3135,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,3135,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,3136,0)
+ ;;=H54.52^^18^214^28
+ ;;^UTILITY(U,$J,358.3,3136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2872,1,3,0)
- ;;=3^Dementia,Persisting,Alcohol-Induced
- ;;^UTILITY(U,$J,358.3,2872,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,2872,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,2873,0)
- ;;=F19.97^^28^243^33
- ;;^UTILITY(U,$J,358.3,2873,1,0)
+ ;;^UTILITY(U,$J,358.3,3136,1,3,0)
+ ;;=3^Low Vision Lt Eye,Normal Vision Rt Eye
+ ;;^UTILITY(U,$J,358.3,3136,1,4,0)
+ ;;=4^H54.52
+ ;;^UTILITY(U,$J,358.3,3136,2)
+ ;;=^5133519
+ ;;^UTILITY(U,$J,358.3,3137,0)
+ ;;=H54.51^^18^214^29
+ ;;^UTILITY(U,$J,358.3,3137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2873,1,3,0)
- ;;=3^Dementia,Persisting,Psychoactive Subst Use
+ ;;^UTILITY(U,$J,358.3,3137,1,3,0)
+ ;;=3^Low Vision Rt Eye,Normal Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,3137,1,4,0)
+ ;;=4^H54.51
+ ;;^UTILITY(U,$J,358.3,3137,2)
+ ;;=^5006365
+ ;;^UTILITY(U,$J,358.3,3138,0)
+ ;;=H35.30^^18^214^30

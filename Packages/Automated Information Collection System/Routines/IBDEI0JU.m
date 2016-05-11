@@ -1,126 +1,138 @@
-IBDEI0JU ; ; 19-NOV-2015
+IBDEI0JU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8943,1,0)
+ ;;^UTILITY(U,$J,358.3,9221,1,4,0)
+ ;;=4^H01.112
+ ;;^UTILITY(U,$J,358.3,9221,2)
+ ;;=^5004254
+ ;;^UTILITY(U,$J,358.3,9222,0)
+ ;;=H01.111^^41^476^7
+ ;;^UTILITY(U,$J,358.3,9222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8943,1,3,0)
- ;;=3^Diabetes due to underlying condition w diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,8943,1,4,0)
- ;;=4^E08.21
- ;;^UTILITY(U,$J,358.3,8943,2)
- ;;=^5002507
- ;;^UTILITY(U,$J,358.3,8944,0)
- ;;=E09.21^^55^555^34
- ;;^UTILITY(U,$J,358.3,8944,1,0)
+ ;;^UTILITY(U,$J,358.3,9222,1,3,0)
+ ;;=3^Allergic Dermatitis of Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9222,1,4,0)
+ ;;=4^H01.111
+ ;;^UTILITY(U,$J,358.3,9222,2)
+ ;;=^5004253
+ ;;^UTILITY(U,$J,358.3,9223,0)
+ ;;=H44.522^^41^476^8
+ ;;^UTILITY(U,$J,358.3,9223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8944,1,3,0)
- ;;=3^Drug/chem diabetes w diabetic nephropathy
- ;;^UTILITY(U,$J,358.3,8944,1,4,0)
- ;;=4^E09.21
- ;;^UTILITY(U,$J,358.3,8944,2)
- ;;=^5002549
- ;;^UTILITY(U,$J,358.3,8945,0)
- ;;=E08.311^^55^555^7
- ;;^UTILITY(U,$J,358.3,8945,1,0)
+ ;;^UTILITY(U,$J,358.3,9223,1,3,0)
+ ;;=3^Atrophy of Globe,Left Eye
+ ;;^UTILITY(U,$J,358.3,9223,1,4,0)
+ ;;=4^H44.522
+ ;;^UTILITY(U,$J,358.3,9223,2)
+ ;;=^5006026
+ ;;^UTILITY(U,$J,358.3,9224,0)
+ ;;=H44.521^^41^476^9
+ ;;^UTILITY(U,$J,358.3,9224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8945,1,3,0)
- ;;=3^Diabetes due to underlying condition w unsp diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,8945,1,4,0)
- ;;=4^E08.311
- ;;^UTILITY(U,$J,358.3,8945,2)
- ;;=^5002510
- ;;^UTILITY(U,$J,358.3,8946,0)
- ;;=E08.319^^55^555^8
- ;;^UTILITY(U,$J,358.3,8946,1,0)
+ ;;^UTILITY(U,$J,358.3,9224,1,3,0)
+ ;;=3^Atrophy of Globe,Right Eye
+ ;;^UTILITY(U,$J,358.3,9224,1,4,0)
+ ;;=4^H44.521
+ ;;^UTILITY(U,$J,358.3,9224,2)
+ ;;=^5006025
+ ;;^UTILITY(U,$J,358.3,9225,0)
+ ;;=C44.119^^41^476^10
+ ;;^UTILITY(U,$J,358.3,9225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8946,1,3,0)
- ;;=3^Diabetes due to underlying condition w unsp diab rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,8946,1,4,0)
- ;;=4^E08.319
- ;;^UTILITY(U,$J,358.3,8946,2)
- ;;=^5002511
- ;;^UTILITY(U,$J,358.3,8947,0)
- ;;=E08.36^^55^555^9
- ;;^UTILITY(U,$J,358.3,8947,1,0)
+ ;;^UTILITY(U,$J,358.3,9225,1,3,0)
+ ;;=3^BCC Skin of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,9225,1,4,0)
+ ;;=4^C44.119
+ ;;^UTILITY(U,$J,358.3,9225,2)
+ ;;=^5001021
+ ;;^UTILITY(U,$J,358.3,9226,0)
+ ;;=C44.112^^41^476^11
+ ;;^UTILITY(U,$J,358.3,9226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8947,1,3,0)
- ;;=3^Diabetes due to underlying condition w diabetic cataract
- ;;^UTILITY(U,$J,358.3,8947,1,4,0)
- ;;=4^E08.36
- ;;^UTILITY(U,$J,358.3,8947,2)
- ;;=^5002520
- ;;^UTILITY(U,$J,358.3,8948,0)
- ;;=E08.39^^55^555^10
- ;;^UTILITY(U,$J,358.3,8948,1,0)
+ ;;^UTILITY(U,$J,358.3,9226,1,3,0)
+ ;;=3^BCC Skin of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,9226,1,4,0)
+ ;;=4^C44.112
+ ;;^UTILITY(U,$J,358.3,9226,2)
+ ;;=^5001020
+ ;;^UTILITY(U,$J,358.3,9227,0)
+ ;;=H00.15^^41^476^12
+ ;;^UTILITY(U,$J,358.3,9227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8948,1,3,0)
- ;;=3^Diabetes due to underlying condition w oth diabetic opth comp
- ;;^UTILITY(U,$J,358.3,8948,1,4,0)
- ;;=4^E08.39
- ;;^UTILITY(U,$J,358.3,8948,2)
- ;;=^5002521
- ;;^UTILITY(U,$J,358.3,8949,0)
- ;;=E09.311^^55^555^56
- ;;^UTILITY(U,$J,358.3,8949,1,0)
+ ;;^UTILITY(U,$J,358.3,9227,1,3,0)
+ ;;=3^Chalazion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9227,1,4,0)
+ ;;=4^H00.15
+ ;;^UTILITY(U,$J,358.3,9227,2)
+ ;;=^5133378
+ ;;^UTILITY(U,$J,358.3,9228,0)
+ ;;=H00.14^^41^476^13
+ ;;^UTILITY(U,$J,358.3,9228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8949,1,3,0)
- ;;=3^Drug/chem diabetes w unsp diabetic rtnop w macular edema
- ;;^UTILITY(U,$J,358.3,8949,1,4,0)
- ;;=4^E09.311
- ;;^UTILITY(U,$J,358.3,8949,2)
- ;;=^5002552
- ;;^UTILITY(U,$J,358.3,8950,0)
- ;;=E09.319^^55^555^57
- ;;^UTILITY(U,$J,358.3,8950,1,0)
+ ;;^UTILITY(U,$J,358.3,9228,1,3,0)
+ ;;=3^Chalazion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9228,1,4,0)
+ ;;=4^H00.14
+ ;;^UTILITY(U,$J,358.3,9228,2)
+ ;;=^5004236
+ ;;^UTILITY(U,$J,358.3,9229,0)
+ ;;=H00.12^^41^476^14
+ ;;^UTILITY(U,$J,358.3,9229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8950,1,3,0)
- ;;=3^Drug/chem diabetes w unsp diabetic rtnop w/o macular edema
- ;;^UTILITY(U,$J,358.3,8950,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,8950,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,8951,0)
- ;;=E09.36^^55^555^32
- ;;^UTILITY(U,$J,358.3,8951,1,0)
+ ;;^UTILITY(U,$J,358.3,9229,1,3,0)
+ ;;=3^Chalazion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9229,1,4,0)
+ ;;=4^H00.12
+ ;;^UTILITY(U,$J,358.3,9229,2)
+ ;;=^5004234
+ ;;^UTILITY(U,$J,358.3,9230,0)
+ ;;=H00.11^^41^476^15
+ ;;^UTILITY(U,$J,358.3,9230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8951,1,3,0)
- ;;=3^Drug/chem diabetes w diabetic cataract
- ;;^UTILITY(U,$J,358.3,8951,1,4,0)
- ;;=4^E09.36
- ;;^UTILITY(U,$J,358.3,8951,2)
- ;;=^5002562
- ;;^UTILITY(U,$J,358.3,8952,0)
- ;;=E09.39^^55^555^51
- ;;^UTILITY(U,$J,358.3,8952,1,0)
+ ;;^UTILITY(U,$J,358.3,9230,1,3,0)
+ ;;=3^Chalazion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9230,1,4,0)
+ ;;=4^H00.11
+ ;;^UTILITY(U,$J,358.3,9230,2)
+ ;;=^5004233
+ ;;^UTILITY(U,$J,358.3,9231,0)
+ ;;=H02.115^^41^476^17
+ ;;^UTILITY(U,$J,358.3,9231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8952,1,3,0)
- ;;=3^Drug/chem diabetes w oth diabetic ophthalmic complication
- ;;^UTILITY(U,$J,358.3,8952,1,4,0)
- ;;=4^E09.39
- ;;^UTILITY(U,$J,358.3,8952,2)
- ;;=^5002563
- ;;^UTILITY(U,$J,358.3,8953,0)
- ;;=E08.40^^55^555^11
- ;;^UTILITY(U,$J,358.3,8953,1,0)
+ ;;^UTILITY(U,$J,358.3,9231,1,3,0)
+ ;;=3^Cicatricial Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9231,1,4,0)
+ ;;=4^H02.115
+ ;;^UTILITY(U,$J,358.3,9231,2)
+ ;;=^5133410
+ ;;^UTILITY(U,$J,358.3,9232,0)
+ ;;=H02.114^^41^476^18
+ ;;^UTILITY(U,$J,358.3,9232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8953,1,3,0)
- ;;=3^Diabetes due to underlying condition w diabetic neurop, unsp
- ;;^UTILITY(U,$J,358.3,8953,1,4,0)
- ;;=4^E08.40
- ;;^UTILITY(U,$J,358.3,8953,2)
- ;;=^5002522
- ;;^UTILITY(U,$J,358.3,8954,0)
- ;;=E08.41^^55^555^12
- ;;^UTILITY(U,$J,358.3,8954,1,0)
+ ;;^UTILITY(U,$J,358.3,9232,1,3,0)
+ ;;=3^Cicatricial Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9232,1,4,0)
+ ;;=4^H02.114
+ ;;^UTILITY(U,$J,358.3,9232,2)
+ ;;=^5004310
+ ;;^UTILITY(U,$J,358.3,9233,0)
+ ;;=H02.112^^41^476^19
+ ;;^UTILITY(U,$J,358.3,9233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8954,1,3,0)
- ;;=3^Diabetes due to underlying condition w diabetic mononeuropathy
- ;;^UTILITY(U,$J,358.3,8954,1,4,0)
- ;;=4^E08.41
- ;;^UTILITY(U,$J,358.3,8954,2)
- ;;=^5002523
- ;;^UTILITY(U,$J,358.3,8955,0)
- ;;=E08.42^^55^555^13
- ;;^UTILITY(U,$J,358.3,8955,1,0)
+ ;;^UTILITY(U,$J,358.3,9233,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9233,1,4,0)
+ ;;=4^H02.112
+ ;;^UTILITY(U,$J,358.3,9233,2)
+ ;;=^5004308
+ ;;^UTILITY(U,$J,358.3,9234,0)
+ ;;=H02.111^^41^476^20
+ ;;^UTILITY(U,$J,358.3,9234,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9234,1,3,0)
+ ;;=3^Cicatricial Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9234,1,4,0)
+ ;;=4^H02.111
+ ;;^UTILITY(U,$J,358.3,9234,2)
+ ;;=^5004307

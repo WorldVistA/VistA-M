@@ -1,130 +1,130 @@
-IBDEI0Q3 ; ; 19-NOV-2015
+IBDEI0Q3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11949,1,3,0)
- ;;=3^Fall from Tree,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11949,1,4,0)
- ;;=4^W14.XXXD
- ;;^UTILITY(U,$J,358.3,11949,2)
- ;;=^5059623
- ;;^UTILITY(U,$J,358.3,11950,0)
- ;;=W17.2XXA^^68^694^77
- ;;^UTILITY(U,$J,358.3,11950,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11950,1,3,0)
- ;;=3^Fall into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,11950,1,4,0)
- ;;=4^W17.2XXA
- ;;^UTILITY(U,$J,358.3,11950,2)
- ;;=^5059772
- ;;^UTILITY(U,$J,358.3,11951,0)
- ;;=W17.2XXD^^68^694^78
- ;;^UTILITY(U,$J,358.3,11951,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11951,1,3,0)
- ;;=3^Fall into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11951,1,4,0)
- ;;=4^W17.2XXD
- ;;^UTILITY(U,$J,358.3,11951,2)
- ;;=^5059773
- ;;^UTILITY(U,$J,358.3,11952,0)
- ;;=W17.3XXA^^68^694^75
- ;;^UTILITY(U,$J,358.3,11952,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11952,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Init Encntr
- ;;^UTILITY(U,$J,358.3,11952,1,4,0)
- ;;=4^W17.3XXA
- ;;^UTILITY(U,$J,358.3,11952,2)
- ;;=^5059775
- ;;^UTILITY(U,$J,358.3,11953,0)
- ;;=W17.3XXD^^68^694^76
- ;;^UTILITY(U,$J,358.3,11953,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11953,1,3,0)
- ;;=3^Fall into Empty Swimming Pool,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11953,1,4,0)
- ;;=4^W17.3XXD
- ;;^UTILITY(U,$J,358.3,11953,2)
- ;;=^5059776
- ;;^UTILITY(U,$J,358.3,11954,0)
- ;;=W17.4XXA^^68^694^39
- ;;^UTILITY(U,$J,358.3,11954,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11954,1,3,0)
- ;;=3^Fall from Dock,Init Encntr
- ;;^UTILITY(U,$J,358.3,11954,1,4,0)
- ;;=4^W17.4XXA
- ;;^UTILITY(U,$J,358.3,11954,2)
- ;;=^5059778
- ;;^UTILITY(U,$J,358.3,11955,0)
- ;;=W17.4XXD^^68^694^40
- ;;^UTILITY(U,$J,358.3,11955,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11955,1,3,0)
- ;;=3^Fall from Dock,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11955,1,4,0)
- ;;=4^W17.4XXD
- ;;^UTILITY(U,$J,358.3,11955,2)
- ;;=^5059779
- ;;^UTILITY(U,$J,358.3,11956,0)
- ;;=W17.81XA^^68^694^27
- ;;^UTILITY(U,$J,358.3,11956,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11956,1,3,0)
- ;;=3^Fall down Embankment,Init Encntr
- ;;^UTILITY(U,$J,358.3,11956,1,4,0)
- ;;=4^W17.81XA
- ;;^UTILITY(U,$J,358.3,11956,2)
- ;;=^5059781
- ;;^UTILITY(U,$J,358.3,11957,0)
- ;;=W17.81XD^^68^694^28
- ;;^UTILITY(U,$J,358.3,11957,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11957,1,3,0)
- ;;=3^Fall down Embankment,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11957,1,4,0)
- ;;=4^W17.81XD
- ;;^UTILITY(U,$J,358.3,11957,2)
- ;;=^5059782
- ;;^UTILITY(U,$J,358.3,11958,0)
- ;;=W17.89XA^^68^694^55
- ;;^UTILITY(U,$J,358.3,11958,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11958,1,3,0)
- ;;=3^Fall from One level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,11958,1,4,0)
- ;;=4^W17.89XA
- ;;^UTILITY(U,$J,358.3,11958,2)
- ;;=^5059787
- ;;^UTILITY(U,$J,358.3,11959,0)
- ;;=W17.89XD^^68^694^56
- ;;^UTILITY(U,$J,358.3,11959,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11959,1,3,0)
- ;;=3^Fall from One level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11959,1,4,0)
- ;;=4^W17.89XD
- ;;^UTILITY(U,$J,358.3,11959,2)
- ;;=^5059788
- ;;^UTILITY(U,$J,358.3,11960,0)
- ;;=W18.11XA^^68^694^63
- ;;^UTILITY(U,$J,358.3,11960,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11960,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,11960,1,4,0)
- ;;=4^W18.11XA
- ;;^UTILITY(U,$J,358.3,11960,2)
- ;;=^5059801
- ;;^UTILITY(U,$J,358.3,11961,0)
- ;;=W18.11XD^^68^694^64
- ;;^UTILITY(U,$J,358.3,11961,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11961,1,3,0)
- ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,11961,1,4,0)
- ;;=4^W18.11XD
- ;;^UTILITY(U,$J,358.3,11961,2)
- ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,12213,0)
+ ;;=45380^^49^549^3^^^^1
+ ;;^UTILITY(U,$J,358.3,12213,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12213,1,2,0)
+ ;;=2^45380
+ ;;^UTILITY(U,$J,358.3,12213,1,3,0)
+ ;;=3^Colonoscopy w/Biopsy
+ ;;^UTILITY(U,$J,358.3,12214,0)
+ ;;=45384^^49^549^10^^^^1
+ ;;^UTILITY(U,$J,358.3,12214,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12214,1,2,0)
+ ;;=2^45384
+ ;;^UTILITY(U,$J,358.3,12214,1,3,0)
+ ;;=3^Colonoscopy w/Tumor Removal by hot forceps
+ ;;^UTILITY(U,$J,358.3,12215,0)
+ ;;=45385^^49^549^11^^^^1
+ ;;^UTILITY(U,$J,358.3,12215,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12215,1,2,0)
+ ;;=2^45385
+ ;;^UTILITY(U,$J,358.3,12215,1,3,0)
+ ;;=3^Colonoscopy w/Tumor removal by snare
+ ;;^UTILITY(U,$J,358.3,12216,0)
+ ;;=45379^^49^549^6^^^^1
+ ;;^UTILITY(U,$J,358.3,12216,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12216,1,2,0)
+ ;;=2^45379
+ ;;^UTILITY(U,$J,358.3,12216,1,3,0)
+ ;;=3^Colonoscopy w/FB Removal
+ ;;^UTILITY(U,$J,358.3,12217,0)
+ ;;=45382^^49^549^4^^^^1
+ ;;^UTILITY(U,$J,358.3,12217,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12217,1,2,0)
+ ;;=2^45382
+ ;;^UTILITY(U,$J,358.3,12217,1,3,0)
+ ;;=3^Colonoscopy w/Control hemorrhage
+ ;;^UTILITY(U,$J,358.3,12218,0)
+ ;;=45386^^49^549^1^^^^1
+ ;;^UTILITY(U,$J,358.3,12218,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12218,1,2,0)
+ ;;=2^45386
+ ;;^UTILITY(U,$J,358.3,12218,1,3,0)
+ ;;=3^Colonoscopy w/Balloon Dilation Stricture
+ ;;^UTILITY(U,$J,358.3,12219,0)
+ ;;=45391^^49^549^5^^^^1
+ ;;^UTILITY(U,$J,358.3,12219,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12219,1,2,0)
+ ;;=2^45391
+ ;;^UTILITY(U,$J,358.3,12219,1,3,0)
+ ;;=3^Colonoscopy w/EUS
+ ;;^UTILITY(U,$J,358.3,12220,0)
+ ;;=45392^^49^549^7^^^^1
+ ;;^UTILITY(U,$J,358.3,12220,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12220,1,2,0)
+ ;;=2^45392
+ ;;^UTILITY(U,$J,358.3,12220,1,3,0)
+ ;;=3^Colonoscopy w/Intramural FNA/Bx
+ ;;^UTILITY(U,$J,358.3,12221,0)
+ ;;=45381^^49^549^13^^^^1
+ ;;^UTILITY(U,$J,358.3,12221,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12221,1,2,0)
+ ;;=2^45381
+ ;;^UTILITY(U,$J,358.3,12221,1,3,0)
+ ;;=3^Colonoscopy,Submucosal Inj
+ ;;^UTILITY(U,$J,358.3,12222,0)
+ ;;=45389^^49^549^9^^^^1
+ ;;^UTILITY(U,$J,358.3,12222,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12222,1,2,0)
+ ;;=2^45389
+ ;;^UTILITY(U,$J,358.3,12222,1,3,0)
+ ;;=3^Colonoscopy w/Stent Placement
+ ;;^UTILITY(U,$J,358.3,12223,0)
+ ;;=45390^^49^549^8^^^^1
+ ;;^UTILITY(U,$J,358.3,12223,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12223,1,2,0)
+ ;;=2^45390
+ ;;^UTILITY(U,$J,358.3,12223,1,3,0)
+ ;;=3^Colonoscopy w/Resection
+ ;;^UTILITY(U,$J,358.3,12224,0)
+ ;;=45398^^49^549^2^^^^1
+ ;;^UTILITY(U,$J,358.3,12224,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12224,1,2,0)
+ ;;=2^45398
+ ;;^UTILITY(U,$J,358.3,12224,1,3,0)
+ ;;=3^Colonoscopy w/Band Ligation(s)
+ ;;^UTILITY(U,$J,358.3,12225,0)
+ ;;=45399^^49^549^14^^^^1
+ ;;^UTILITY(U,$J,358.3,12225,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12225,1,2,0)
+ ;;=2^45399
+ ;;^UTILITY(U,$J,358.3,12225,1,3,0)
+ ;;=3^Unlisted Colon Procedure
+ ;;^UTILITY(U,$J,358.3,12226,0)
+ ;;=43260^^49^550^11^^^^1
+ ;;^UTILITY(U,$J,358.3,12226,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12226,1,2,0)
+ ;;=2^43260
+ ;;^UTILITY(U,$J,358.3,12226,1,3,0)
+ ;;=3^ERCP, Diagnostic
+ ;;^UTILITY(U,$J,358.3,12227,0)
+ ;;=43264^^49^550^10^^^^1
+ ;;^UTILITY(U,$J,358.3,12227,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12227,1,2,0)
+ ;;=2^43264
+ ;;^UTILITY(U,$J,358.3,12227,1,3,0)
+ ;;=3^ERCP w/Stone Removal
+ ;;^UTILITY(U,$J,358.3,12228,0)
+ ;;=43262^^49^550^4^^^^1
+ ;;^UTILITY(U,$J,358.3,12228,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,12228,1,2,0)
+ ;;=2^43262

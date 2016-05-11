@@ -1,132 +1,128 @@
-IBDEI0UP ; ; 19-NOV-2015
+IBDEI0UP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14128,1,3,0)
- ;;=3^Interstitial Keratitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,14128,1,4,0)
- ;;=4^H16.303
- ;;^UTILITY(U,$J,358.3,14128,2)
- ;;=^5004948
- ;;^UTILITY(U,$J,358.3,14129,0)
- ;;=H05.011^^82^771^4
- ;;^UTILITY(U,$J,358.3,14129,1,0)
+ ;;^UTILITY(U,$J,358.3,14399,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14399,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,14399,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,14400,0)
+ ;;=S86.811A^^53^606^48
+ ;;^UTILITY(U,$J,358.3,14400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14129,1,3,0)
- ;;=3^Cellulitis of Right Orbit
- ;;^UTILITY(U,$J,358.3,14129,1,4,0)
- ;;=4^H05.011
- ;;^UTILITY(U,$J,358.3,14129,2)
- ;;=^5004560
- ;;^UTILITY(U,$J,358.3,14130,0)
- ;;=H05.012^^82^771^3
- ;;^UTILITY(U,$J,358.3,14130,1,0)
+ ;;^UTILITY(U,$J,358.3,14400,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,14400,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,14400,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,14401,0)
+ ;;=S86.812A^^53^606^28
+ ;;^UTILITY(U,$J,358.3,14401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14130,1,3,0)
- ;;=3^Cellulitis of Left Orbit
- ;;^UTILITY(U,$J,358.3,14130,1,4,0)
- ;;=4^H05.012
- ;;^UTILITY(U,$J,358.3,14130,2)
- ;;=^5004561
- ;;^UTILITY(U,$J,358.3,14131,0)
- ;;=J32.9^^82^771^23
- ;;^UTILITY(U,$J,358.3,14131,1,0)
+ ;;^UTILITY(U,$J,358.3,14401,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,14401,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,14401,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,14402,0)
+ ;;=S86.111A^^53^606^50
+ ;;^UTILITY(U,$J,358.3,14402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14131,1,3,0)
- ;;=3^Sinusitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,14131,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,14131,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,14132,0)
- ;;=L03.212^^82^771^16
- ;;^UTILITY(U,$J,358.3,14132,1,0)
+ ;;^UTILITY(U,$J,358.3,14402,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14402,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,14402,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,14403,0)
+ ;;=S86.112A^^53^606^30
+ ;;^UTILITY(U,$J,358.3,14403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14132,1,3,0)
- ;;=3^Lymphangitis of Face,Acute
- ;;^UTILITY(U,$J,358.3,14132,1,4,0)
- ;;=4^L03.212
- ;;^UTILITY(U,$J,358.3,14132,2)
- ;;=^5009044
- ;;^UTILITY(U,$J,358.3,14133,0)
- ;;=L03.211^^82^771^2
- ;;^UTILITY(U,$J,358.3,14133,1,0)
+ ;;^UTILITY(U,$J,358.3,14403,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,14403,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,14403,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,14404,0)
+ ;;=S83.401A^^53^606^15
+ ;;^UTILITY(U,$J,358.3,14404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14133,1,3,0)
- ;;=3^Cellulitis of Face
- ;;^UTILITY(U,$J,358.3,14133,1,4,0)
- ;;=4^L03.211
- ;;^UTILITY(U,$J,358.3,14133,2)
- ;;=^5009043
- ;;^UTILITY(U,$J,358.3,14134,0)
- ;;=K12.2^^82^771^5
- ;;^UTILITY(U,$J,358.3,14134,1,0)
+ ;;^UTILITY(U,$J,358.3,14404,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,14404,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,14404,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,14405,0)
+ ;;=S83.402A^^53^606^4
+ ;;^UTILITY(U,$J,358.3,14405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14134,1,3,0)
- ;;=3^Cellulitis/Abscess of Mouth
- ;;^UTILITY(U,$J,358.3,14134,1,4,0)
- ;;=4^K12.2
- ;;^UTILITY(U,$J,358.3,14134,2)
- ;;=^5008485
- ;;^UTILITY(U,$J,358.3,14135,0)
- ;;=T85.79XA^^82^771^12
- ;;^UTILITY(U,$J,358.3,14135,1,0)
+ ;;^UTILITY(U,$J,358.3,14405,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,14405,1,4,0)
+ ;;=4^S83.402A
+ ;;^UTILITY(U,$J,358.3,14405,2)
+ ;;=^5043106
+ ;;^UTILITY(U,$J,358.3,14406,0)
+ ;;=S93.402A^^53^606^2
+ ;;^UTILITY(U,$J,358.3,14406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14135,1,3,0)
- ;;=3^Infect/Inflm Reaction d/t Internal Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,14135,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,14135,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,14136,0)
- ;;=T86.842^^82^771^7
- ;;^UTILITY(U,$J,358.3,14136,1,0)
+ ;;^UTILITY(U,$J,358.3,14406,1,3,0)
+ ;;=3^Sprain of Left Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,14406,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,14406,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,14407,0)
+ ;;=S93.401A^^53^606^13
+ ;;^UTILITY(U,$J,358.3,14407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14136,1,3,0)
- ;;=3^Corneal Transplant Infection
- ;;^UTILITY(U,$J,358.3,14136,1,4,0)
- ;;=4^T86.842
- ;;^UTILITY(U,$J,358.3,14136,2)
- ;;=^5055746
- ;;^UTILITY(U,$J,358.3,14137,0)
- ;;=H05.013^^82^771^1
- ;;^UTILITY(U,$J,358.3,14137,1,0)
+ ;;^UTILITY(U,$J,358.3,14407,1,3,0)
+ ;;=3^Sprain of Right Ankle Ligament
+ ;;^UTILITY(U,$J,358.3,14407,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,14407,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,14408,0)
+ ;;=S56.511A^^53^606^39
+ ;;^UTILITY(U,$J,358.3,14408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14137,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,14137,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,14137,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,14138,0)
- ;;=H25.041^^82^772^14
- ;;^UTILITY(U,$J,358.3,14138,1,0)
+ ;;^UTILITY(U,$J,358.3,14408,1,3,0)
+ ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,14408,1,4,0)
+ ;;=4^S56.511A
+ ;;^UTILITY(U,$J,358.3,14408,2)
+ ;;=^5031838
+ ;;^UTILITY(U,$J,358.3,14409,0)
+ ;;=S56.512A^^53^606^19
+ ;;^UTILITY(U,$J,358.3,14409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14138,1,3,0)
- ;;=3^Cataract,Posterior Subcapsular Polar Age-Related,Right Eye
- ;;^UTILITY(U,$J,358.3,14138,1,4,0)
- ;;=4^H25.041
- ;;^UTILITY(U,$J,358.3,14138,2)
- ;;=^5005275
- ;;^UTILITY(U,$J,358.3,14139,0)
- ;;=H25.042^^82^772^15
- ;;^UTILITY(U,$J,358.3,14139,1,0)
+ ;;^UTILITY(U,$J,358.3,14409,1,3,0)
+ ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
+ ;;^UTILITY(U,$J,358.3,14409,1,4,0)
+ ;;=4^S56.512A
+ ;;^UTILITY(U,$J,358.3,14409,2)
+ ;;=^5031841
+ ;;^UTILITY(U,$J,358.3,14410,0)
+ ;;=S13.8XXA^^53^606^10
+ ;;^UTILITY(U,$J,358.3,14410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14139,1,3,0)
- ;;=3^Cataract,Posterior Subcapsular Polar Age-Related,Left Eye
- ;;^UTILITY(U,$J,358.3,14139,1,4,0)
- ;;=4^H25.042
- ;;^UTILITY(U,$J,358.3,14139,2)
- ;;=^5005276
- ;;^UTILITY(U,$J,358.3,14140,0)
- ;;=H25.043^^82^772^16
- ;;^UTILITY(U,$J,358.3,14140,1,0)
+ ;;^UTILITY(U,$J,358.3,14410,1,3,0)
+ ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14410,1,4,0)
+ ;;=4^S13.8XXA
+ ;;^UTILITY(U,$J,358.3,14410,2)
+ ;;=^5022034
+ ;;^UTILITY(U,$J,358.3,14411,0)
+ ;;=S16.1XXA^^53^606^37
+ ;;^UTILITY(U,$J,358.3,14411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14140,1,3,0)
- ;;=3^Cataract,Posterior Subcapsular Polar Age-Related,Bilateral
- ;;^UTILITY(U,$J,358.3,14140,1,4,0)
- ;;=4^H25.043
- ;;^UTILITY(U,$J,358.3,14140,2)
- ;;=^5005277
- ;;^UTILITY(U,$J,358.3,14141,0)
- ;;=H25.013^^82^772^8
+ ;;^UTILITY(U,$J,358.3,14411,1,3,0)
+ ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14411,1,4,0)
+ ;;=4^S16.1XXA

@@ -1,130 +1,136 @@
-IBDEI232 ; ; 19-NOV-2015
+IBDEI232 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,34959,0)
- ;;=L89.112^^163^1788^98
- ;;^UTILITY(U,$J,358.3,34959,1,0)
+ ;;^UTILITY(U,$J,358.3,35336,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,35336,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,35337,0)
+ ;;=J45.909^^134^1717^15
+ ;;^UTILITY(U,$J,358.3,35337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34959,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,34959,1,4,0)
- ;;=4^L89.112
- ;;^UTILITY(U,$J,358.3,34959,2)
- ;;=^5009354
- ;;^UTILITY(U,$J,358.3,34960,0)
- ;;=L89.113^^163^1788^99
- ;;^UTILITY(U,$J,358.3,34960,1,0)
+ ;;^UTILITY(U,$J,358.3,35337,1,3,0)
+ ;;=3^Asthma,Uncomplicated,Unspec
+ ;;^UTILITY(U,$J,358.3,35337,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,35337,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,35338,0)
+ ;;=J45.902^^134^1717^12
+ ;;^UTILITY(U,$J,358.3,35338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34960,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,34960,1,4,0)
- ;;=4^L89.113
- ;;^UTILITY(U,$J,358.3,34960,2)
- ;;=^5009355
- ;;^UTILITY(U,$J,358.3,34961,0)
- ;;=L89.114^^163^1788^100
- ;;^UTILITY(U,$J,358.3,34961,1,0)
+ ;;^UTILITY(U,$J,358.3,35338,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,35338,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,35338,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,35339,0)
+ ;;=J98.11^^134^1717^16
+ ;;^UTILITY(U,$J,358.3,35339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34961,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,34961,1,4,0)
- ;;=4^L89.114
- ;;^UTILITY(U,$J,358.3,34961,2)
- ;;=^5009356
- ;;^UTILITY(U,$J,358.3,34962,0)
- ;;=L89.119^^163^1788^101
- ;;^UTILITY(U,$J,358.3,34962,1,0)
+ ;;^UTILITY(U,$J,358.3,35339,1,3,0)
+ ;;=3^Atelectasis
+ ;;^UTILITY(U,$J,358.3,35339,1,4,0)
+ ;;=4^J98.11
+ ;;^UTILITY(U,$J,358.3,35339,2)
+ ;;=^5008360
+ ;;^UTILITY(U,$J,358.3,35340,0)
+ ;;=A31.9^^134^1717^55
+ ;;^UTILITY(U,$J,358.3,35340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34962,1,3,0)
- ;;=3^Pressure Ulcer Right Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,34962,1,4,0)
- ;;=4^L89.119
- ;;^UTILITY(U,$J,358.3,34962,2)
- ;;=^5009357
- ;;^UTILITY(U,$J,358.3,34963,0)
- ;;=L89.120^^163^1788^54
- ;;^UTILITY(U,$J,358.3,34963,1,0)
+ ;;^UTILITY(U,$J,358.3,35340,1,3,0)
+ ;;=3^Mycobacterial Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,35340,1,4,0)
+ ;;=4^A31.9
+ ;;^UTILITY(U,$J,358.3,35340,2)
+ ;;=^5000153
+ ;;^UTILITY(U,$J,358.3,35341,0)
+ ;;=A31.0^^134^1717^54
+ ;;^UTILITY(U,$J,358.3,35341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34963,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Unstageable
- ;;^UTILITY(U,$J,358.3,34963,1,4,0)
- ;;=4^L89.120
- ;;^UTILITY(U,$J,358.3,34963,2)
- ;;=^5009358
- ;;^UTILITY(U,$J,358.3,34964,0)
- ;;=L89.121^^163^1788^49
- ;;^UTILITY(U,$J,358.3,34964,1,0)
+ ;;^UTILITY(U,$J,358.3,35341,1,3,0)
+ ;;=3^Mycobacterial Infection,Pulmonary
+ ;;^UTILITY(U,$J,358.3,35341,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,35341,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,35342,0)
+ ;;=A31.2^^134^1717^32
+ ;;^UTILITY(U,$J,358.3,35342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34964,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 1
- ;;^UTILITY(U,$J,358.3,34964,1,4,0)
- ;;=4^L89.121
- ;;^UTILITY(U,$J,358.3,34964,2)
- ;;=^5009359
- ;;^UTILITY(U,$J,358.3,34965,0)
- ;;=L89.122^^163^1788^50
- ;;^UTILITY(U,$J,358.3,34965,1,0)
+ ;;^UTILITY(U,$J,358.3,35342,1,3,0)
+ ;;=3^Disseminated Mycobacterium Avium-Intracellulare Complex
+ ;;^UTILITY(U,$J,358.3,35342,1,4,0)
+ ;;=4^A31.2
+ ;;^UTILITY(U,$J,358.3,35342,2)
+ ;;=^5000151
+ ;;^UTILITY(U,$J,358.3,35343,0)
+ ;;=J47.9^^134^1717^18
+ ;;^UTILITY(U,$J,358.3,35343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34965,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 2
- ;;^UTILITY(U,$J,358.3,34965,1,4,0)
- ;;=4^L89.122
- ;;^UTILITY(U,$J,358.3,34965,2)
- ;;=^5009360
- ;;^UTILITY(U,$J,358.3,34966,0)
- ;;=L89.123^^163^1788^51
- ;;^UTILITY(U,$J,358.3,34966,1,0)
+ ;;^UTILITY(U,$J,358.3,35343,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,35343,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,35343,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,35344,0)
+ ;;=J41.8^^134^1717^20
+ ;;^UTILITY(U,$J,358.3,35344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34966,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 3
- ;;^UTILITY(U,$J,358.3,34966,1,4,0)
- ;;=4^L89.123
- ;;^UTILITY(U,$J,358.3,34966,2)
- ;;=^5009361
- ;;^UTILITY(U,$J,358.3,34967,0)
- ;;=L89.124^^163^1788^52
- ;;^UTILITY(U,$J,358.3,34967,1,0)
+ ;;^UTILITY(U,$J,358.3,35344,1,3,0)
+ ;;=3^Bronchitis,Chr,Mixed Simple & Mucopurulent
+ ;;^UTILITY(U,$J,358.3,35344,1,4,0)
+ ;;=4^J41.8
+ ;;^UTILITY(U,$J,358.3,35344,2)
+ ;;=^5008233
+ ;;^UTILITY(U,$J,358.3,35345,0)
+ ;;=J20.9^^134^1717^19
+ ;;^UTILITY(U,$J,358.3,35345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34967,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage 4
- ;;^UTILITY(U,$J,358.3,34967,1,4,0)
- ;;=4^L89.124
- ;;^UTILITY(U,$J,358.3,34967,2)
- ;;=^5009362
- ;;^UTILITY(U,$J,358.3,34968,0)
- ;;=L89.129^^163^1788^53
- ;;^UTILITY(U,$J,358.3,34968,1,0)
+ ;;^UTILITY(U,$J,358.3,35345,1,3,0)
+ ;;=3^Bronchitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,35345,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,35345,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,35346,0)
+ ;;=J41.0^^134^1717^21
+ ;;^UTILITY(U,$J,358.3,35346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34968,1,3,0)
- ;;=3^Pressure Ulcer Left Upper Back,Stage Unspec
- ;;^UTILITY(U,$J,358.3,34968,1,4,0)
- ;;=4^L89.129
- ;;^UTILITY(U,$J,358.3,34968,2)
- ;;=^5133652
- ;;^UTILITY(U,$J,358.3,34969,0)
- ;;=L89.130^^163^1788^96
- ;;^UTILITY(U,$J,358.3,34969,1,0)
+ ;;^UTILITY(U,$J,358.3,35346,1,3,0)
+ ;;=3^Bronchitis,Chr,Simple
+ ;;^UTILITY(U,$J,358.3,35346,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,35346,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,35347,0)
+ ;;=J44.1^^134^1717^23
+ ;;^UTILITY(U,$J,358.3,35347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34969,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Unstageable
- ;;^UTILITY(U,$J,358.3,34969,1,4,0)
- ;;=4^L89.130
- ;;^UTILITY(U,$J,358.3,34969,2)
- ;;=^5009363
- ;;^UTILITY(U,$J,358.3,34970,0)
- ;;=L89.131^^163^1788^91
- ;;^UTILITY(U,$J,358.3,34970,1,0)
+ ;;^UTILITY(U,$J,358.3,35347,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,35347,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,35347,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,35348,0)
+ ;;=I27.81^^134^1717^28
+ ;;^UTILITY(U,$J,358.3,35348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34970,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 1
- ;;^UTILITY(U,$J,358.3,34970,1,4,0)
- ;;=4^L89.131
- ;;^UTILITY(U,$J,358.3,34970,2)
- ;;=^5009364
- ;;^UTILITY(U,$J,358.3,34971,0)
- ;;=L89.132^^163^1788^92
- ;;^UTILITY(U,$J,358.3,34971,1,0)
+ ;;^UTILITY(U,$J,358.3,35348,1,3,0)
+ ;;=3^Cor Pulmonale,Chr
+ ;;^UTILITY(U,$J,358.3,35348,1,4,0)
+ ;;=4^I27.81
+ ;;^UTILITY(U,$J,358.3,35348,2)
+ ;;=^5007152
+ ;;^UTILITY(U,$J,358.3,35349,0)
+ ;;=R05.^^134^1717^29
+ ;;^UTILITY(U,$J,358.3,35349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,34971,1,3,0)
- ;;=3^Pressure Ulcer Right Lower Back,Stage 2
+ ;;^UTILITY(U,$J,358.3,35349,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,35349,1,4,0)
+ ;;=4^R05.

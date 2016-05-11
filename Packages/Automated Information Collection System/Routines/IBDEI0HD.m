@@ -1,138 +1,128 @@
-IBDEI0HD ; ; 19-NOV-2015
+IBDEI0HD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7768,1,0)
+ ;;^UTILITY(U,$J,358.3,8038,1,3,0)
+ ;;=3^Contusion of left lower leg, initial encounter
+ ;;^UTILITY(U,$J,358.3,8038,1,4,0)
+ ;;=4^S80.12XA
+ ;;^UTILITY(U,$J,358.3,8038,2)
+ ;;=^5039903
+ ;;^UTILITY(U,$J,358.3,8039,0)
+ ;;=T75.4XXA^^33^431^58
+ ;;^UTILITY(U,$J,358.3,8039,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7768,1,3,0)
- ;;=3^Personal Hx of Urinary Calculi
- ;;^UTILITY(U,$J,358.3,7768,1,4,0)
- ;;=4^Z87.442
- ;;^UTILITY(U,$J,358.3,7768,2)
- ;;=^5063497
- ;;^UTILITY(U,$J,358.3,7769,0)
- ;;=N20.0^^52^520^2
- ;;^UTILITY(U,$J,358.3,7769,1,0)
+ ;;^UTILITY(U,$J,358.3,8039,1,3,0)
+ ;;=3^Electrocution, initial encounter
+ ;;^UTILITY(U,$J,358.3,8039,1,4,0)
+ ;;=4^T75.4XXA
+ ;;^UTILITY(U,$J,358.3,8039,2)
+ ;;=^5054203
+ ;;^UTILITY(U,$J,358.3,8040,0)
+ ;;=T15.91XA^^33^431^61
+ ;;^UTILITY(U,$J,358.3,8040,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7769,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,7769,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,7769,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,7770,0)
- ;;=N20.1^^52^520^3
- ;;^UTILITY(U,$J,358.3,7770,1,0)
+ ;;^UTILITY(U,$J,358.3,8040,1,3,0)
+ ;;=3^FB on Right External Eye,Part Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8040,1,4,0)
+ ;;=4^T15.91XA
+ ;;^UTILITY(U,$J,358.3,8040,2)
+ ;;=^5046411
+ ;;^UTILITY(U,$J,358.3,8041,0)
+ ;;=T15.92XA^^33^431^60
+ ;;^UTILITY(U,$J,358.3,8041,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7770,1,3,0)
- ;;=3^Calculus of Ureter
- ;;^UTILITY(U,$J,358.3,7770,1,4,0)
- ;;=4^N20.1
- ;;^UTILITY(U,$J,358.3,7770,2)
- ;;=^5015608
- ;;^UTILITY(U,$J,358.3,7771,0)
- ;;=N20.2^^52^520^4
- ;;^UTILITY(U,$J,358.3,7771,1,0)
+ ;;^UTILITY(U,$J,358.3,8041,1,3,0)
+ ;;=3^FB on Left External Eye,Part Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,8041,1,4,0)
+ ;;=4^T15.92XA
+ ;;^UTILITY(U,$J,358.3,8041,2)
+ ;;=^5046414
+ ;;^UTILITY(U,$J,358.3,8042,0)
+ ;;=S82.891A^^33^431^63
+ ;;^UTILITY(U,$J,358.3,8042,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7771,1,3,0)
- ;;=3^Calculus of Kidney w/ Calculus of Ureter
- ;;^UTILITY(U,$J,358.3,7771,1,4,0)
- ;;=4^N20.2
- ;;^UTILITY(U,$J,358.3,7771,2)
- ;;=^5015609
- ;;^UTILITY(U,$J,358.3,7772,0)
- ;;=N20.9^^52^520^5
- ;;^UTILITY(U,$J,358.3,7772,1,0)
+ ;;^UTILITY(U,$J,358.3,8042,1,3,0)
+ ;;=3^Fx of Right Lower Leg NEC,Init for Clos Fx
+ ;;^UTILITY(U,$J,358.3,8042,1,4,0)
+ ;;=4^S82.891A
+ ;;^UTILITY(U,$J,358.3,8042,2)
+ ;;=^5042863
+ ;;^UTILITY(U,$J,358.3,8043,0)
+ ;;=S82.892A^^33^431^62
+ ;;^UTILITY(U,$J,358.3,8043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7772,1,3,0)
- ;;=3^Urinary Calculus,Unspec
- ;;^UTILITY(U,$J,358.3,7772,1,4,0)
- ;;=4^N20.9
- ;;^UTILITY(U,$J,358.3,7772,2)
- ;;=^5015610
- ;;^UTILITY(U,$J,358.3,7773,0)
- ;;=E72.53^^52^520^6
- ;;^UTILITY(U,$J,358.3,7773,1,0)
+ ;;^UTILITY(U,$J,358.3,8043,1,3,0)
+ ;;=3^Fx of Left Lower Leg NEC,Init for Clos Fx
+ ;;^UTILITY(U,$J,358.3,8043,1,4,0)
+ ;;=4^S82.892A
+ ;;^UTILITY(U,$J,358.3,8043,2)
+ ;;=^5136944
+ ;;^UTILITY(U,$J,358.3,8044,0)
+ ;;=S62.101A^^33^431^89
+ ;;^UTILITY(U,$J,358.3,8044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7773,1,3,0)
- ;;=3^Hyperoxaluria
- ;;^UTILITY(U,$J,358.3,7773,1,4,0)
- ;;=4^E72.53
- ;;^UTILITY(U,$J,358.3,7773,2)
- ;;=^60210
- ;;^UTILITY(U,$J,358.3,7774,0)
- ;;=R78.89^^52^521^1
- ;;^UTILITY(U,$J,358.3,7774,1,0)
+ ;;^UTILITY(U,$J,358.3,8044,1,3,0)
+ ;;=3^Fx of unsp carpal bone, right wrist, init for clos fx
+ ;;^UTILITY(U,$J,358.3,8044,1,4,0)
+ ;;=4^S62.101A
+ ;;^UTILITY(U,$J,358.3,8044,2)
+ ;;=^5033199
+ ;;^UTILITY(U,$J,358.3,8045,0)
+ ;;=S62.102A^^33^431^88
+ ;;^UTILITY(U,$J,358.3,8045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7774,1,3,0)
- ;;=3^Lithium Toxicity
- ;;^UTILITY(U,$J,358.3,7774,1,4,0)
- ;;=4^R78.89
- ;;^UTILITY(U,$J,358.3,7774,2)
- ;;=^5019588
- ;;^UTILITY(U,$J,358.3,7775,0)
- ;;=99241^^53^522^1
- ;;^UTILITY(U,$J,358.3,7775,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7775,1,1,0)
- ;;=1^Chart Consult 15 Min or Less
- ;;^UTILITY(U,$J,358.3,7775,1,2,0)
- ;;=2^99241
- ;;^UTILITY(U,$J,358.3,7776,0)
- ;;=99242^^53^522^2
- ;;^UTILITY(U,$J,358.3,7776,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7776,1,1,0)
- ;;=1^Chart Consult 15-30 Min
- ;;^UTILITY(U,$J,358.3,7776,1,2,0)
- ;;=2^99242
- ;;^UTILITY(U,$J,358.3,7777,0)
- ;;=99243^^53^522^3
- ;;^UTILITY(U,$J,358.3,7777,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,7777,1,1,0)
- ;;=1^Chart Consult 30-45 Min
- ;;^UTILITY(U,$J,358.3,7777,1,2,0)
- ;;=2^99243
- ;;^UTILITY(U,$J,358.3,7778,0)
- ;;=99605^^54^523^1^^^^1
- ;;^UTILITY(U,$J,358.3,7778,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7778,1,2,0)
- ;;=2^Chart Consult-New Pt,Init 15min
- ;;^UTILITY(U,$J,358.3,7778,1,3,0)
- ;;=3^99605
- ;;^UTILITY(U,$J,358.3,7779,0)
- ;;=99606^^54^523^2^^^^1
- ;;^UTILITY(U,$J,358.3,7779,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7779,1,2,0)
- ;;=2^Chart Consult-Est Pt,Init 15min
- ;;^UTILITY(U,$J,358.3,7779,1,3,0)
- ;;=3^99606
- ;;^UTILITY(U,$J,358.3,7780,0)
- ;;=99607^^54^523^3^^^^1
- ;;^UTILITY(U,$J,358.3,7780,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7780,1,2,0)
- ;;=2^Chart Consult-New/Est Pt,Ea Addl 15min
- ;;^UTILITY(U,$J,358.3,7780,1,3,0)
- ;;=3^99607
- ;;^UTILITY(U,$J,358.3,7781,0)
- ;;=97001^^54^524^1^^^^1
- ;;^UTILITY(U,$J,358.3,7781,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7781,1,2,0)
- ;;=2^Chart Consult-New Pt Eval
- ;;^UTILITY(U,$J,358.3,7781,1,3,0)
- ;;=3^97001
- ;;^UTILITY(U,$J,358.3,7782,0)
- ;;=97002^^54^524^2^^^^1
- ;;^UTILITY(U,$J,358.3,7782,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,7782,1,2,0)
- ;;=2^Chart Consult-Pt Re-Eval
- ;;^UTILITY(U,$J,358.3,7782,1,3,0)
- ;;=3^97002
- ;;^UTILITY(U,$J,358.3,7783,0)
- ;;=76140^^54^525^1^^^^1
+ ;;^UTILITY(U,$J,358.3,8045,1,3,0)
+ ;;=3^Fx of unsp carpal bone, left wrist, init for clos fx
+ ;;^UTILITY(U,$J,358.3,8045,1,4,0)
+ ;;=4^S62.102A
+ ;;^UTILITY(U,$J,358.3,8045,2)
+ ;;=^5033206
+ ;;^UTILITY(U,$J,358.3,8046,0)
+ ;;=S42.001A^^33^431^93
+ ;;^UTILITY(U,$J,358.3,8046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8046,1,3,0)
+ ;;=3^Fx of unsp part of right clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,8046,1,4,0)
+ ;;=4^S42.001A
+ ;;^UTILITY(U,$J,358.3,8046,2)
+ ;;=^5026369
+ ;;^UTILITY(U,$J,358.3,8047,0)
+ ;;=S42.002A^^33^431^92
+ ;;^UTILITY(U,$J,358.3,8047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8047,1,3,0)
+ ;;=3^Fx of unsp part of left clavicle, init for clos fx
+ ;;^UTILITY(U,$J,358.3,8047,1,4,0)
+ ;;=4^S42.002A
+ ;;^UTILITY(U,$J,358.3,8047,2)
+ ;;=^5026376
+ ;;^UTILITY(U,$J,358.3,8048,0)
+ ;;=S42.401A^^33^431^82
+ ;;^UTILITY(U,$J,358.3,8048,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8048,1,3,0)
+ ;;=3^Fx of right lower end of humerus unspec, init
+ ;;^UTILITY(U,$J,358.3,8048,1,4,0)
+ ;;=4^S42.401A
+ ;;^UTILITY(U,$J,358.3,8048,2)
+ ;;=^5027294
+ ;;^UTILITY(U,$J,358.3,8049,0)
+ ;;=S42.402A^^33^431^69
+ ;;^UTILITY(U,$J,358.3,8049,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8049,1,3,0)
+ ;;=3^Fx of left lower end of humerus unspec, init for cl
+ ;;^UTILITY(U,$J,358.3,8049,1,4,0)
+ ;;=4^S42.402A
+ ;;^UTILITY(U,$J,358.3,8049,2)
+ ;;=^5134713
+ ;;^UTILITY(U,$J,358.3,8050,0)
+ ;;=S72.91XA^^33^431^77
+ ;;^UTILITY(U,$J,358.3,8050,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8050,1,3,0)
+ ;;=3^Fx of right femur unspec, init for clos fx
+ ;;^UTILITY(U,$J,358.3,8050,1,4,0)
+ ;;=4^S72.91XA

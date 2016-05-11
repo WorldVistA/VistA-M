@@ -1,134 +1,124 @@
-IBDEI0RO ; ; 19-NOV-2015
+IBDEI0RO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12700,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,12700,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,12701,0)
- ;;=H61.21^^77^737^31
- ;;^UTILITY(U,$J,358.3,12701,1,0)
+ ;;^UTILITY(U,$J,358.3,12978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12701,1,3,0)
- ;;=3^Impacted cerumen, right ear
- ;;^UTILITY(U,$J,358.3,12701,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,12701,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,12702,0)
- ;;=H61.22^^77^737^30
- ;;^UTILITY(U,$J,358.3,12702,1,0)
+ ;;^UTILITY(U,$J,358.3,12978,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,12978,1,4,0)
+ ;;=4^L97.922
+ ;;^UTILITY(U,$J,358.3,12978,2)
+ ;;=^5133682
+ ;;^UTILITY(U,$J,358.3,12979,0)
+ ;;=L97.923^^53^582^193
+ ;;^UTILITY(U,$J,358.3,12979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12702,1,3,0)
- ;;=3^Impacted cerumen, left ear
- ;;^UTILITY(U,$J,358.3,12702,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,12702,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,12703,0)
- ;;=H68.101^^77^737^25
- ;;^UTILITY(U,$J,358.3,12703,1,0)
+ ;;^UTILITY(U,$J,358.3,12979,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,12979,1,4,0)
+ ;;=4^L97.923
+ ;;^UTILITY(U,$J,358.3,12979,2)
+ ;;=^5133684
+ ;;^UTILITY(U,$J,358.3,12980,0)
+ ;;=L97.924^^53^582^194
+ ;;^UTILITY(U,$J,358.3,12980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12703,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,12703,1,4,0)
- ;;=4^H68.101
- ;;^UTILITY(U,$J,358.3,12703,2)
- ;;=^5006658
- ;;^UTILITY(U,$J,358.3,12704,0)
- ;;=H68.102^^77^737^24
- ;;^UTILITY(U,$J,358.3,12704,1,0)
+ ;;^UTILITY(U,$J,358.3,12980,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,12980,1,4,0)
+ ;;=4^L97.924
+ ;;^UTILITY(U,$J,358.3,12980,2)
+ ;;=^5133686
+ ;;^UTILITY(U,$J,358.3,12981,0)
+ ;;=L97.929^^53^582^195
+ ;;^UTILITY(U,$J,358.3,12981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12704,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,12704,1,4,0)
- ;;=4^H68.102
- ;;^UTILITY(U,$J,358.3,12704,2)
- ;;=^5006659
- ;;^UTILITY(U,$J,358.3,12705,0)
- ;;=H68.103^^77^737^23
- ;;^UTILITY(U,$J,358.3,12705,1,0)
+ ;;^UTILITY(U,$J,358.3,12981,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,12981,1,4,0)
+ ;;=4^L97.929
+ ;;^UTILITY(U,$J,358.3,12981,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,12982,0)
+ ;;=L98.2^^53^582^149
+ ;;^UTILITY(U,$J,358.3,12982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12705,1,3,0)
- ;;=3^Eustachian Tube Obstruction,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,12705,1,4,0)
- ;;=4^H68.103
- ;;^UTILITY(U,$J,358.3,12705,2)
- ;;=^5006660
- ;;^UTILITY(U,$J,358.3,12706,0)
- ;;=H70.11^^77^737^16
- ;;^UTILITY(U,$J,358.3,12706,1,0)
+ ;;^UTILITY(U,$J,358.3,12982,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,12982,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,12982,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,12983,0)
+ ;;=L98.9^^53^582^267
+ ;;^UTILITY(U,$J,358.3,12983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12706,1,3,0)
- ;;=3^Chronic mastoiditis, right ear
- ;;^UTILITY(U,$J,358.3,12706,1,4,0)
- ;;=4^H70.11
- ;;^UTILITY(U,$J,358.3,12706,2)
- ;;=^5006698
- ;;^UTILITY(U,$J,358.3,12707,0)
- ;;=H70.12^^77^737^15
- ;;^UTILITY(U,$J,358.3,12707,1,0)
+ ;;^UTILITY(U,$J,358.3,12983,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,12983,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,12983,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,12984,0)
+ ;;=I70.731^^53^582^80
+ ;;^UTILITY(U,$J,358.3,12984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12707,1,3,0)
- ;;=3^Chronic mastoiditis, left ear
- ;;^UTILITY(U,$J,358.3,12707,1,4,0)
- ;;=4^H70.12
- ;;^UTILITY(U,$J,358.3,12707,2)
- ;;=^5006699
- ;;^UTILITY(U,$J,358.3,12708,0)
- ;;=H83.01^^77^737^36
- ;;^UTILITY(U,$J,358.3,12708,1,0)
+ ;;^UTILITY(U,$J,358.3,12984,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,12984,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,12984,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,12985,0)
+ ;;=I70.732^^53^582^81
+ ;;^UTILITY(U,$J,358.3,12985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12708,1,3,0)
- ;;=3^Labyrinthitis, right ear
- ;;^UTILITY(U,$J,358.3,12708,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,12708,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,12709,0)
- ;;=H83.02^^77^737^35
- ;;^UTILITY(U,$J,358.3,12709,1,0)
+ ;;^UTILITY(U,$J,358.3,12985,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,12985,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,12985,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,12986,0)
+ ;;=I70.733^^53^582^82
+ ;;^UTILITY(U,$J,358.3,12986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12709,1,3,0)
- ;;=3^Labyrinthitis, left ear
- ;;^UTILITY(U,$J,358.3,12709,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,12709,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,12710,0)
- ;;=H73.001^^77^737^4
- ;;^UTILITY(U,$J,358.3,12710,1,0)
+ ;;^UTILITY(U,$J,358.3,12986,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,12986,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,12986,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,12987,0)
+ ;;=I70.734^^53^582^83
+ ;;^UTILITY(U,$J,358.3,12987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12710,1,3,0)
- ;;=3^Acute myringitis, right ear
- ;;^UTILITY(U,$J,358.3,12710,1,4,0)
- ;;=4^H73.001
- ;;^UTILITY(U,$J,358.3,12710,2)
- ;;=^5006763
- ;;^UTILITY(U,$J,358.3,12711,0)
- ;;=H73.002^^77^737^3
- ;;^UTILITY(U,$J,358.3,12711,1,0)
+ ;;^UTILITY(U,$J,358.3,12987,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,12987,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,12987,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,12988,0)
+ ;;=I70.735^^53^582^84
+ ;;^UTILITY(U,$J,358.3,12988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12711,1,3,0)
- ;;=3^Acute myringitis, left ear
- ;;^UTILITY(U,$J,358.3,12711,1,4,0)
- ;;=4^H73.002
- ;;^UTILITY(U,$J,358.3,12711,2)
- ;;=^5006764
- ;;^UTILITY(U,$J,358.3,12712,0)
- ;;=H71.91^^77^737^14
- ;;^UTILITY(U,$J,358.3,12712,1,0)
+ ;;^UTILITY(U,$J,358.3,12988,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,12988,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,12988,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,12989,0)
+ ;;=I70.741^^53^582^79
+ ;;^UTILITY(U,$J,358.3,12989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12712,1,3,0)
- ;;=3^Cholesteatoma, right ear,Unspec
- ;;^UTILITY(U,$J,358.3,12712,1,4,0)
- ;;=4^H71.91
- ;;^UTILITY(U,$J,358.3,12712,2)
- ;;=^5006739
- ;;^UTILITY(U,$J,358.3,12713,0)
- ;;=H71.92^^77^737^13
- ;;^UTILITY(U,$J,358.3,12713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12713,1,3,0)
- ;;=3^Cholesteatoma, left ear,Unspec
+ ;;^UTILITY(U,$J,358.3,12989,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,12989,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,12989,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,12990,0)
+ ;;=I70.742^^53^582^76

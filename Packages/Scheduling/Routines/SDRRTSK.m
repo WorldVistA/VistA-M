@@ -1,5 +1,5 @@
-SDRRTSK ;10N20/MAH;Recall Reminder-Clinic Print Task; 01/15/2008
- ;;5.3;Scheduling;**536,579**;Aug 13, 1993;Build 3
+SDRRTSK ;10N20/MAH - RECALL LETTER PRINT TASK ;FEB 04, 2016
+ ;;5.3;Scheduling;**536,579,643**;Aug 13, 1993;Build 14
  ;THIS ROUTINE WILL PRINT LETTER FOR SELECTED METHOD OF PRINTING
  ;WILL LOOK AT CLINIC RECALL LOCATION
 DATE ;lOOKS TO SEE HOW MANY DAYS IN ADVANCE TO PRINT LETTER
@@ -28,7 +28,9 @@ DATE ;lOOKS TO SEE HOW MANY DAYS IN ADVANCE TO PRINT LETTER
  ....I $P($G(^SD(403.5,D0,0)),"^",9)>45 S TIME=$P($G(^SD(403.5,D0,0)),"^",9) S TIME="**"_TIME_"**"
  ....S LAB=$S($P($G(^SD(403.5,D0,0)),"^",8)="f":"Lab test(s) have been ordered that require you to FAST",$P(^SD(403.5,D0,0),"^",8)="n":"Lab test(s) have been ordered, which need to be done before an appointment is made",1:"")
  ....S DFN=+DTA
- ....Q:$P(DTA,U,6)<ZSDT!($P(DTA,U,6)>ZEDT)
+ ....;Q:$P(DTA,U,6)<ZSDT!($P(DTA,U,6)>ZEDT)
+ ....Q:$P(DTA,U,6)>ZEDT     ;alb/sat 643
+ ....Q:$P(DTA,U,10)'=""     ;alb/sat 643
  ....Q:$$TESTPAT^VADPT(DFN)
  ....D ADD^VADPT,DEM^VADPT
  ....S STATE=$P(VAPA(5),"^",1),STATE=$$GET1^DIQ(5,STATE_",",1)

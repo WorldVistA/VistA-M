@@ -1,128 +1,124 @@
-IBDEI2I4 ; ; 19-NOV-2015
+IBDEI2I4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41987,1,0)
+ ;;^UTILITY(U,$J,358.3,42414,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,42414,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,42415,0)
+ ;;=R40.2222^^159^2022^20
+ ;;^UTILITY(U,$J,358.3,42415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41987,1,3,0)
- ;;=3^Bite,Open Rt Grt Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,41987,1,4,0)
- ;;=4^S91.151A
- ;;^UTILITY(U,$J,358.3,41987,2)
- ;;=^5044243
- ;;^UTILITY(U,$J,358.3,41988,0)
- ;;=S91.152A^^192^2133^4
- ;;^UTILITY(U,$J,358.3,41988,1,0)
+ ;;^UTILITY(U,$J,358.3,42415,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,42415,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,42415,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,42416,0)
+ ;;=R40.2221^^159^2022^21
+ ;;^UTILITY(U,$J,358.3,42416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41988,1,3,0)
- ;;=3^Bite,Open Lft Grt Toe w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,41988,1,4,0)
- ;;=4^S91.152A
- ;;^UTILITY(U,$J,358.3,41988,2)
- ;;=^5044246
- ;;^UTILITY(U,$J,358.3,41989,0)
- ;;=S91.154A^^192^2133^10
- ;;^UTILITY(U,$J,358.3,41989,1,0)
+ ;;^UTILITY(U,$J,358.3,42416,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,42416,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,42416,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,42417,0)
+ ;;=R40.2220^^159^2022^22
+ ;;^UTILITY(U,$J,358.3,42417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41989,1,3,0)
- ;;=3^Bite,Open Rt Lsr Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,41989,1,4,0)
- ;;=4^S91.154A
- ;;^UTILITY(U,$J,358.3,41989,2)
- ;;=^5044252
- ;;^UTILITY(U,$J,358.3,41990,0)
- ;;=S91.155A^^192^2133^6
- ;;^UTILITY(U,$J,358.3,41990,1,0)
+ ;;^UTILITY(U,$J,358.3,42417,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,42417,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,42417,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,42418,0)
+ ;;=R40.2214^^159^2022^23
+ ;;^UTILITY(U,$J,358.3,42418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41990,1,3,0)
- ;;=3^Bite,Open Lft Lsr Toe(s) w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,41990,1,4,0)
- ;;=4^S91.155A
- ;;^UTILITY(U,$J,358.3,41990,2)
- ;;=^5044255
- ;;^UTILITY(U,$J,358.3,41991,0)
- ;;=L75.0^^192^2133^17
- ;;^UTILITY(U,$J,358.3,41991,1,0)
+ ;;^UTILITY(U,$J,358.3,42418,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,42418,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,42418,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,42419,0)
+ ;;=R40.2213^^159^2022^25
+ ;;^UTILITY(U,$J,358.3,42419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41991,1,3,0)
- ;;=3^Bromhidrosis
- ;;^UTILITY(U,$J,358.3,41991,1,4,0)
- ;;=4^L75.0
- ;;^UTILITY(U,$J,358.3,41991,2)
- ;;=^5009297
- ;;^UTILITY(U,$J,358.3,41992,0)
- ;;=S90.421A^^192^2133^15
- ;;^UTILITY(U,$J,358.3,41992,1,0)
+ ;;^UTILITY(U,$J,358.3,42419,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,42419,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,42419,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,42420,0)
+ ;;=R40.2212^^159^2022^24
+ ;;^UTILITY(U,$J,358.3,42420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41992,1,3,0)
- ;;=3^Blister (nontherm), rt grt toe, init enc
- ;;^UTILITY(U,$J,358.3,41992,1,4,0)
- ;;=4^S90.421A
- ;;^UTILITY(U,$J,358.3,41992,2)
- ;;=^5043907
- ;;^UTILITY(U,$J,358.3,41993,0)
- ;;=S90.422A^^192^2133^12
- ;;^UTILITY(U,$J,358.3,41993,1,0)
+ ;;^UTILITY(U,$J,358.3,42420,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,42420,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,42420,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,42421,0)
+ ;;=R40.2344^^159^2022^6
+ ;;^UTILITY(U,$J,358.3,42421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41993,1,3,0)
- ;;=3^Blister (nontherm), lft grt toe, init enc
- ;;^UTILITY(U,$J,358.3,41993,1,4,0)
- ;;=4^S90.422A
- ;;^UTILITY(U,$J,358.3,41993,2)
- ;;=^5043910
- ;;^UTILITY(U,$J,358.3,41994,0)
- ;;=T25.032A^^192^2133^33
- ;;^UTILITY(U,$J,358.3,41994,1,0)
+ ;;^UTILITY(U,$J,358.3,42421,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,42421,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,42421,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,42422,0)
+ ;;=R40.2343^^159^2022^7
+ ;;^UTILITY(U,$J,358.3,42422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41994,1,3,0)
- ;;=3^Burn of lft toe(s)(nail), unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,41994,1,4,0)
- ;;=4^T25.032A
- ;;^UTILITY(U,$J,358.3,41994,2)
- ;;=^5048505
- ;;^UTILITY(U,$J,358.3,41995,0)
- ;;=T25.031A^^192^2133^49
- ;;^UTILITY(U,$J,358.3,41995,1,0)
+ ;;^UTILITY(U,$J,358.3,42422,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,42422,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,42422,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,42423,0)
+ ;;=R40.2342^^159^2022^8
+ ;;^UTILITY(U,$J,358.3,42423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41995,1,3,0)
- ;;=3^Burn of rt toe(s)(nail), unsp degree, init enc
- ;;^UTILITY(U,$J,358.3,41995,1,4,0)
- ;;=4^T25.031A
- ;;^UTILITY(U,$J,358.3,41995,2)
- ;;=^5048502
- ;;^UTILITY(U,$J,358.3,41996,0)
- ;;=T25.021A^^192^2133^41
- ;;^UTILITY(U,$J,358.3,41996,1,0)
+ ;;^UTILITY(U,$J,358.3,42423,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,42423,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,42423,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,42424,0)
+ ;;=R40.2341^^159^2022^9
+ ;;^UTILITY(U,$J,358.3,42424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41996,1,3,0)
- ;;=3^Burn of rt ft, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,41996,1,4,0)
- ;;=4^T25.021A
- ;;^UTILITY(U,$J,358.3,41996,2)
- ;;=^5048496
- ;;^UTILITY(U,$J,358.3,41997,0)
- ;;=T25.022A^^192^2133^25
- ;;^UTILITY(U,$J,358.3,41997,1,0)
+ ;;^UTILITY(U,$J,358.3,42424,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,42424,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,42424,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,42425,0)
+ ;;=R40.2340^^159^2022^10
+ ;;^UTILITY(U,$J,358.3,42425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41997,1,3,0)
- ;;=3^Burn of lft ft, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,41997,1,4,0)
- ;;=4^T25.022A
- ;;^UTILITY(U,$J,358.3,41997,2)
- ;;=^5048499
- ;;^UTILITY(U,$J,358.3,41998,0)
- ;;=T25.011A^^192^2133^37
- ;;^UTILITY(U,$J,358.3,41998,1,0)
+ ;;^UTILITY(U,$J,358.3,42425,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,42425,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,42425,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,42426,0)
+ ;;=R40.2324^^159^2022^1
+ ;;^UTILITY(U,$J,358.3,42426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41998,1,3,0)
- ;;=3^Burn of rt ankl, unspec degree, init enc
- ;;^UTILITY(U,$J,358.3,41998,1,4,0)
- ;;=4^T25.011A
- ;;^UTILITY(U,$J,358.3,41998,2)
- ;;=^5048490
- ;;^UTILITY(U,$J,358.3,41999,0)
- ;;=T25.012A^^192^2133^21
- ;;^UTILITY(U,$J,358.3,41999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41999,1,3,0)
- ;;=3^Burn of lft ankl, unspec degree, init enc
+ ;;^UTILITY(U,$J,358.3,42426,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs

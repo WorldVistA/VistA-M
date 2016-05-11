@@ -1,122 +1,136 @@
-IBDEI0WE ; ; 19-NOV-2015
+IBDEI0WE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14927,0)
- ;;=K57.92^^85^803^2
- ;;^UTILITY(U,$J,358.3,14927,1,0)
+ ;;^UTILITY(U,$J,358.3,15194,1,3,0)
+ ;;=3^Fitting/Adjustment of Non-Vascular Catheter
+ ;;^UTILITY(U,$J,358.3,15194,1,4,0)
+ ;;=4^Z46.82
+ ;;^UTILITY(U,$J,358.3,15194,2)
+ ;;=^5063022
+ ;;^UTILITY(U,$J,358.3,15195,0)
+ ;;=Z51.11^^56^646^3
+ ;;^UTILITY(U,$J,358.3,15195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14927,1,3,0)
- ;;=3^Diverticulitis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14927,1,4,0)
- ;;=4^K57.92
- ;;^UTILITY(U,$J,358.3,14927,2)
- ;;=^5008737
- ;;^UTILITY(U,$J,358.3,14928,0)
- ;;=K57.80^^85^803^1
- ;;^UTILITY(U,$J,358.3,14928,1,0)
+ ;;^UTILITY(U,$J,358.3,15195,1,3,0)
+ ;;=3^Antineoplastic Chemotherapy
+ ;;^UTILITY(U,$J,358.3,15195,1,4,0)
+ ;;=4^Z51.11
+ ;;^UTILITY(U,$J,358.3,15195,2)
+ ;;=^5063061
+ ;;^UTILITY(U,$J,358.3,15196,0)
+ ;;=Z71.9^^56^646^14
+ ;;^UTILITY(U,$J,358.3,15196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14928,1,3,0)
- ;;=3^Diverticulitis of Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14928,1,4,0)
- ;;=4^K57.80
- ;;^UTILITY(U,$J,358.3,14928,2)
- ;;=^5008733
- ;;^UTILITY(U,$J,358.3,14929,0)
- ;;=K57.52^^85^803^5
- ;;^UTILITY(U,$J,358.3,14929,1,0)
+ ;;^UTILITY(U,$J,358.3,15196,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,15196,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,15196,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,15197,0)
+ ;;=Z76.0^^56^646^19
+ ;;^UTILITY(U,$J,358.3,15197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14929,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14929,1,4,0)
- ;;=4^K57.52
- ;;^UTILITY(U,$J,358.3,14929,2)
- ;;=^5008731
- ;;^UTILITY(U,$J,358.3,14930,0)
- ;;=K57.40^^85^803^6
- ;;^UTILITY(U,$J,358.3,14930,1,0)
+ ;;^UTILITY(U,$J,358.3,15197,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,15197,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,15197,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,15198,0)
+ ;;=Z02.9^^56^646^2
+ ;;^UTILITY(U,$J,358.3,15198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14930,1,3,0)
- ;;=3^Diverticulitis of Small/Large Intestine w/ Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14930,1,4,0)
- ;;=4^K57.40
- ;;^UTILITY(U,$J,358.3,14930,2)
- ;;=^5008727
- ;;^UTILITY(U,$J,358.3,14931,0)
- ;;=K57.32^^85^803^4
- ;;^UTILITY(U,$J,358.3,14931,1,0)
+ ;;^UTILITY(U,$J,358.3,15198,1,3,0)
+ ;;=3^Administrative Exam,Unspec
+ ;;^UTILITY(U,$J,358.3,15198,1,4,0)
+ ;;=4^Z02.9
+ ;;^UTILITY(U,$J,358.3,15198,2)
+ ;;=^5062646
+ ;;^UTILITY(U,$J,358.3,15199,0)
+ ;;=Z59.0^^56^646^18
+ ;;^UTILITY(U,$J,358.3,15199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14931,1,3,0)
- ;;=3^Diverticulitis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14931,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,14931,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,14932,0)
- ;;=K57.90^^85^804^1
- ;;^UTILITY(U,$J,358.3,14932,1,0)
+ ;;^UTILITY(U,$J,358.3,15199,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,15199,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,15199,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,15200,0)
+ ;;=Z71.0^^56^646^20
+ ;;^UTILITY(U,$J,358.3,15200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14932,1,3,0)
- ;;=3^Diverticulosis of Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14932,1,4,0)
- ;;=4^K57.90
- ;;^UTILITY(U,$J,358.3,14932,2)
- ;;=^5008735
- ;;^UTILITY(U,$J,358.3,14933,0)
- ;;=K57.50^^85^804^4
- ;;^UTILITY(U,$J,358.3,14933,1,0)
+ ;;^UTILITY(U,$J,358.3,15200,1,3,0)
+ ;;=3^Persons Consulting on Behalf of Another Person
+ ;;^UTILITY(U,$J,358.3,15200,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,15200,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,15201,0)
+ ;;=Z01.818^^56^646^21
+ ;;^UTILITY(U,$J,358.3,15201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14933,1,3,0)
- ;;=3^Diverticulosis of Small/Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14933,1,4,0)
- ;;=4^K57.50
- ;;^UTILITY(U,$J,358.3,14933,2)
- ;;=^5008729
- ;;^UTILITY(U,$J,358.3,14934,0)
- ;;=K57.30^^85^804^2
- ;;^UTILITY(U,$J,358.3,14934,1,0)
+ ;;^UTILITY(U,$J,358.3,15201,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,15201,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,15201,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,15202,0)
+ ;;=Z04.9^^56^646^15
+ ;;^UTILITY(U,$J,358.3,15202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14934,1,3,0)
- ;;=3^Diverticulosis of Large Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14934,1,4,0)
- ;;=4^K57.30
- ;;^UTILITY(U,$J,358.3,14934,2)
- ;;=^5008723
- ;;^UTILITY(U,$J,358.3,14935,0)
- ;;=K57.10^^85^804^3
- ;;^UTILITY(U,$J,358.3,14935,1,0)
+ ;;^UTILITY(U,$J,358.3,15202,1,3,0)
+ ;;=3^Exam/Observation for Unspec Reason
+ ;;^UTILITY(U,$J,358.3,15202,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,15202,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,15203,0)
+ ;;=Z49.01^^56^646^16
+ ;;^UTILITY(U,$J,358.3,15203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14935,1,3,0)
- ;;=3^Diverticulosis of Small Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,14935,1,4,0)
- ;;=4^K57.10
- ;;^UTILITY(U,$J,358.3,14935,2)
- ;;=^5008717
- ;;^UTILITY(U,$J,358.3,14936,0)
- ;;=C02.9^^85^805^33
- ;;^UTILITY(U,$J,358.3,14936,1,0)
+ ;;^UTILITY(U,$J,358.3,15203,1,3,0)
+ ;;=3^Fitting/Adjustment of Extracorpeal Dialysis Catheter
+ ;;^UTILITY(U,$J,358.3,15203,1,4,0)
+ ;;=4^Z49.01
+ ;;^UTILITY(U,$J,358.3,15203,2)
+ ;;=^5063056
+ ;;^UTILITY(U,$J,358.3,15204,0)
+ ;;=Z71.3^^56^647^3
+ ;;^UTILITY(U,$J,358.3,15204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14936,1,3,0)
- ;;=3^Malig Neop of Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,14936,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,14936,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,14937,0)
- ;;=C06.9^^85^805^30
- ;;^UTILITY(U,$J,358.3,14937,1,0)
+ ;;^UTILITY(U,$J,358.3,15204,1,3,0)
+ ;;=3^Dietary Counseling/Surveillance
+ ;;^UTILITY(U,$J,358.3,15204,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,15204,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,15205,0)
+ ;;=Z00.00^^56^647^6
+ ;;^UTILITY(U,$J,358.3,15205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14937,1,3,0)
- ;;=3^Malig Neop of Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,14937,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,14937,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,14938,0)
- ;;=C32.9^^85^805^29
- ;;^UTILITY(U,$J,358.3,14938,1,0)
+ ;;^UTILITY(U,$J,358.3,15205,1,3,0)
+ ;;=3^General Adult Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,15205,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,15205,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,15206,0)
+ ;;=Z01.89^^56^647^12
+ ;;^UTILITY(U,$J,358.3,15206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14938,1,3,0)
- ;;=3^Malig Neop of Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,14938,1,4,0)
- ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,15206,1,3,0)
+ ;;=3^Special Exam NEC
+ ;;^UTILITY(U,$J,358.3,15206,1,4,0)
+ ;;=4^Z01.89
+ ;;^UTILITY(U,$J,358.3,15206,2)
+ ;;=^5062632
+ ;;^UTILITY(U,$J,358.3,15207,0)
+ ;;=Z11.59^^56^647^13
+ ;;^UTILITY(U,$J,358.3,15207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15207,1,3,0)
+ ;;=3^Viral Disease Screening NEC

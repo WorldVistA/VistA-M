@@ -1,5 +1,5 @@
-GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;10/13/15  07:31
- ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,73,85**;DEC 27, 1997;Build 3
+GMRCEDT4 ;SLC/DCM,JFR - UTILITIES FOR EDITING FIELDS ;10/14/15  11:51
+ ;;3.0;CONSULT/REQUEST TRACKING;**1,5,12,15,22,33,66,73,85,81**;DEC 27, 1997;Build 6
  ;
  ; This routine invokes IA #5747 (ICDEX), #872 (ORD(101)), #10142 (DDIOL), #10006 (DIC)
  ;                         #2051 (FIND1^DIC), #2056 (GET1^DIQ), #10026 (DIR), #10028 (DIWE), #5679 (LEXU)
@@ -113,9 +113,9 @@ SETUP   ;get info needed for edit (save global reads)
  I $P(Y(1),U,2)'=+GMRCPL D
  . S GMRCED(4)=$P(Y(1),U,2)_U_$P(Y(1),U,3),GMRCPL=GMRCED(4)
  Q
-5 ;edit Earliest Appr. Date wat/66
+5 ;edit Clinically Ind. Date wat/66/81
  N X,Y,DIR
- S DIR(0)="D^^K:Y<DT X",DIR("A")="Earliest Appropriate Date: " ;S DIR(0)="D^DT:GMRCFTDT:EX"
+ S DIR(0)="D^^K:Y<DT X",DIR("A")="Clinically Indicated Date: " ;S DIR(0)="D^DT:GMRCFTDT:EX"
  S DIR("?")="Enter a date greater than or equal to TODAY"
  S DIR("B")=$$FMTE^XLFDT(DT)
  D ^DIR I $D(DTOUT)!($D(DUOUT)) Q

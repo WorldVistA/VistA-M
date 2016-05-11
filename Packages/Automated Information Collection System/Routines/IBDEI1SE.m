@@ -1,136 +1,128 @@
-IBDEI1SE ; ; 19-NOV-2015
+IBDEI1SE ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29916,1,0)
+ ;;^UTILITY(U,$J,358.3,30357,0)
+ ;;=D46.1^^118^1506^17
+ ;;^UTILITY(U,$J,358.3,30357,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29916,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,29916,1,4,0)
- ;;=4^C92.41
- ;;^UTILITY(U,$J,358.3,29916,2)
- ;;=^5001802
- ;;^UTILITY(U,$J,358.3,29917,0)
- ;;=C92.40^^135^1372^20
- ;;^UTILITY(U,$J,358.3,29917,1,0)
+ ;;^UTILITY(U,$J,358.3,30357,1,3,0)
+ ;;=3^Refractory anemia with ring sideroblasts
+ ;;^UTILITY(U,$J,358.3,30357,1,4,0)
+ ;;=4^D46.1
+ ;;^UTILITY(U,$J,358.3,30357,2)
+ ;;=^5002246
+ ;;^UTILITY(U,$J,358.3,30358,0)
+ ;;=D46.20^^118^1506^14
+ ;;^UTILITY(U,$J,358.3,30358,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29917,1,3,0)
- ;;=3^Acute Promyelocytic Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,29917,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,29917,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,29918,0)
- ;;=D56.0^^135^1372^21
- ;;^UTILITY(U,$J,358.3,29918,1,0)
+ ;;^UTILITY(U,$J,358.3,30358,1,3,0)
+ ;;=3^Refractory anemia with excess of blasts, unspecified
+ ;;^UTILITY(U,$J,358.3,30358,1,4,0)
+ ;;=4^D46.20
+ ;;^UTILITY(U,$J,358.3,30358,2)
+ ;;=^5002247
+ ;;^UTILITY(U,$J,358.3,30359,0)
+ ;;=D46.21^^118^1506^15
+ ;;^UTILITY(U,$J,358.3,30359,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29918,1,3,0)
- ;;=3^Alpha Thalassemia
- ;;^UTILITY(U,$J,358.3,29918,1,4,0)
- ;;=4^D56.0
- ;;^UTILITY(U,$J,358.3,29918,2)
- ;;=^340494
- ;;^UTILITY(U,$J,358.3,29919,0)
- ;;=D63.1^^135^1372^23
- ;;^UTILITY(U,$J,358.3,29919,1,0)
+ ;;^UTILITY(U,$J,358.3,30359,1,3,0)
+ ;;=3^Refractory anemia with excess of blasts 1
+ ;;^UTILITY(U,$J,358.3,30359,1,4,0)
+ ;;=4^D46.21
+ ;;^UTILITY(U,$J,358.3,30359,2)
+ ;;=^5002248
+ ;;^UTILITY(U,$J,358.3,30360,0)
+ ;;=D46.A^^118^1506^19
+ ;;^UTILITY(U,$J,358.3,30360,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29919,1,3,0)
- ;;=3^Anemia in Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,29919,1,4,0)
- ;;=4^D63.1
- ;;^UTILITY(U,$J,358.3,29919,2)
- ;;=^332908
- ;;^UTILITY(U,$J,358.3,29920,0)
- ;;=D63.0^^135^1372^24
- ;;^UTILITY(U,$J,358.3,29920,1,0)
+ ;;^UTILITY(U,$J,358.3,30360,1,3,0)
+ ;;=3^Refractory cytopenia with multilineage dysplasia
+ ;;^UTILITY(U,$J,358.3,30360,1,4,0)
+ ;;=4^D46.A
+ ;;^UTILITY(U,$J,358.3,30360,2)
+ ;;=^5002251
+ ;;^UTILITY(U,$J,358.3,30361,0)
+ ;;=D46.B^^118^1506^13
+ ;;^UTILITY(U,$J,358.3,30361,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29920,1,3,0)
- ;;=3^Anemia in Neoplastic Disease
- ;;^UTILITY(U,$J,358.3,29920,1,4,0)
- ;;=4^D63.0
- ;;^UTILITY(U,$J,358.3,29920,2)
- ;;=^321978
- ;;^UTILITY(U,$J,358.3,29921,0)
- ;;=D63.8^^135^1372^22
- ;;^UTILITY(U,$J,358.3,29921,1,0)
+ ;;^UTILITY(U,$J,358.3,30361,1,3,0)
+ ;;=3^Refract cytopenia w multilin dysplasia and ring sideroblasts
+ ;;^UTILITY(U,$J,358.3,30361,1,4,0)
+ ;;=4^D46.B
+ ;;^UTILITY(U,$J,358.3,30361,2)
+ ;;=^5002252
+ ;;^UTILITY(U,$J,358.3,30362,0)
+ ;;=D46.22^^118^1506^16
+ ;;^UTILITY(U,$J,358.3,30362,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29921,1,3,0)
- ;;=3^Anemia in Chronic Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,29921,1,4,0)
- ;;=4^D63.8
- ;;^UTILITY(U,$J,358.3,29921,2)
- ;;=^5002343
- ;;^UTILITY(U,$J,358.3,29922,0)
- ;;=C22.3^^135^1372^25
- ;;^UTILITY(U,$J,358.3,29922,1,0)
+ ;;^UTILITY(U,$J,358.3,30362,1,3,0)
+ ;;=3^Refractory anemia with excess of blasts 2
+ ;;^UTILITY(U,$J,358.3,30362,1,4,0)
+ ;;=4^D46.22
+ ;;^UTILITY(U,$J,358.3,30362,2)
+ ;;=^5002249
+ ;;^UTILITY(U,$J,358.3,30363,0)
+ ;;=D46.C^^118^1506^3
+ ;;^UTILITY(U,$J,358.3,30363,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29922,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,29922,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,29922,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,29923,0)
- ;;=D61.9^^135^1372^26
- ;;^UTILITY(U,$J,358.3,29923,1,0)
+ ;;^UTILITY(U,$J,358.3,30363,1,3,0)
+ ;;=3^Myelodysplastic syndrome w isolated del(5q) chromsoml abnlt
+ ;;^UTILITY(U,$J,358.3,30363,1,4,0)
+ ;;=4^D46.C
+ ;;^UTILITY(U,$J,358.3,30363,2)
+ ;;=^5002253
+ ;;^UTILITY(U,$J,358.3,30364,0)
+ ;;=D46.9^^118^1506^4
+ ;;^UTILITY(U,$J,358.3,30364,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29923,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,29923,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,29923,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,29924,0)
- ;;=D56.1^^135^1372^28
- ;;^UTILITY(U,$J,358.3,29924,1,0)
+ ;;^UTILITY(U,$J,358.3,30364,1,3,0)
+ ;;=3^Myelodysplastic syndrome, unspecified
+ ;;^UTILITY(U,$J,358.3,30364,1,4,0)
+ ;;=4^D46.9
+ ;;^UTILITY(U,$J,358.3,30364,2)
+ ;;=^334031
+ ;;^UTILITY(U,$J,358.3,30365,0)
+ ;;=D47.1^^118^1506^1
+ ;;^UTILITY(U,$J,358.3,30365,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29924,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,29924,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,29924,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,29925,0)
- ;;=C83.79^^135^1372^29
- ;;^UTILITY(U,$J,358.3,29925,1,0)
+ ;;^UTILITY(U,$J,358.3,30365,1,3,0)
+ ;;=3^Chronic myeloproliferative disease
+ ;;^UTILITY(U,$J,358.3,30365,1,4,0)
+ ;;=4^D47.1
+ ;;^UTILITY(U,$J,358.3,30365,2)
+ ;;=^5002256
+ ;;^UTILITY(U,$J,358.3,30366,0)
+ ;;=D47.Z1^^118^1506^12
+ ;;^UTILITY(U,$J,358.3,30366,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29925,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,29925,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,29925,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,29926,0)
- ;;=C83.70^^135^1372^30
- ;;^UTILITY(U,$J,358.3,29926,1,0)
+ ;;^UTILITY(U,$J,358.3,30366,1,3,0)
+ ;;=3^Post-transplant lymphoproliferative disorder (PTLD)
+ ;;^UTILITY(U,$J,358.3,30366,1,4,0)
+ ;;=4^D47.Z1
+ ;;^UTILITY(U,$J,358.3,30366,2)
+ ;;=^5002261
+ ;;^UTILITY(U,$J,358.3,30367,0)
+ ;;=D48.7^^118^1506^8
+ ;;^UTILITY(U,$J,358.3,30367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29926,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,29926,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,29926,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,29927,0)
- ;;=D09.0^^135^1372^37
- ;;^UTILITY(U,$J,358.3,29927,1,0)
+ ;;^UTILITY(U,$J,358.3,30367,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior of other specified sites
+ ;;^UTILITY(U,$J,358.3,30367,1,4,0)
+ ;;=4^D48.7
+ ;;^UTILITY(U,$J,358.3,30367,2)
+ ;;=^267779
+ ;;^UTILITY(U,$J,358.3,30368,0)
+ ;;=D48.9^^118^1506^11
+ ;;^UTILITY(U,$J,358.3,30368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29927,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,29927,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,29927,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,29928,0)
- ;;=D06.9^^135^1372^38
- ;;^UTILITY(U,$J,358.3,29928,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29928,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,29928,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,29928,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,29929,0)
- ;;=D06.0^^135^1372^40
- ;;^UTILITY(U,$J,358.3,29929,1,0)
+ ;;^UTILITY(U,$J,358.3,30368,1,3,0)
+ ;;=3^Neoplasm of uncertain behavior, unspecified
+ ;;^UTILITY(U,$J,358.3,30368,1,4,0)
+ ;;=4^D48.9
+ ;;^UTILITY(U,$J,358.3,30368,2)
+ ;;=^5002269
+ ;;^UTILITY(U,$J,358.3,30369,0)
+ ;;=D49.0^^118^1507^8
+ ;;^UTILITY(U,$J,358.3,30369,1,0)
  ;;=^358.31IA^4^2

@@ -1,6 +1,6 @@
 BPSOSCE ;BHAM ISC/FCS/DRS/DLF - New entry in 9002313.02 ;06/01/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;Create an Electronic Claim Submission record
  ; the BPS array is shared by all of the BPSOSC* routines
@@ -74,7 +74,7 @@ NEWCLAIM(START,END,TOTAL) ; function, returns null on success, else error
  .S ^BPSC(BPS(9002313.02),400,INDEX,0)=NODE0
  .S BPS(9002313.0201)=INDEX
  .; Process entries in medication multiple
- .F SEG=130:10:280 D XLOOP^BPSOSCF(BPS("NCPDP","IEN"),SEG,INDEX) ; BPS*1*15 - add Purchaser and Provider segments
+ .F SEG=130:10:300 D XLOOP^BPSOSCF(BPS("NCPDP","IEN"),SEG,INDEX) ; BPS*1*19 - add Intermediary and Last Known 4Rx segments
  .; Update the indices
  .S ^BPSC(BPS(9002313.02),400,"B",INDEX,INDEX)=""
  .; Update top-level node of the multiple

@@ -1,128 +1,136 @@
-IBDEI0B4 ; ; 19-NOV-2015
+IBDEI0B4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4716,0)
- ;;=I63.522^^37^315^5
- ;;^UTILITY(U,$J,358.3,4716,1,0)
+ ;;^UTILITY(U,$J,358.3,5010,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5010,1,2,0)
+ ;;=2^A9900
+ ;;^UTILITY(U,$J,358.3,5010,1,3,0)
+ ;;=3^SUPPLY/ACCESSORY/SERVICE
+ ;;^UTILITY(U,$J,358.3,5011,0)
+ ;;=A4690^^26^320^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5011,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5011,1,2,0)
+ ;;=2^A4690
+ ;;^UTILITY(U,$J,358.3,5011,1,3,0)
+ ;;=3^DIALYZER, EACH
+ ;;^UTILITY(U,$J,358.3,5012,0)
+ ;;=A4750^^26^320^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5012,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5012,1,2,0)
+ ;;=2^A4750
+ ;;^UTILITY(U,$J,358.3,5012,1,3,0)
+ ;;=3^ART OR VENOUS BLOOD TUBING
+ ;;^UTILITY(U,$J,358.3,5013,0)
+ ;;=E1590^^26^320^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5013,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5013,1,2,0)
+ ;;=2^E1590
+ ;;^UTILITY(U,$J,358.3,5013,1,3,0)
+ ;;=3^HEMODIALYSIS MACHINE
+ ;;^UTILITY(U,$J,358.3,5014,0)
+ ;;=90371^^26^321^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5014,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5014,1,2,0)
+ ;;=2^90371
+ ;;^UTILITY(U,$J,358.3,5014,1,3,0)
+ ;;=3^HEP B IG IM
+ ;;^UTILITY(U,$J,358.3,5015,0)
+ ;;=90740^^26^321^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5015,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5015,1,2,0)
+ ;;=2^90740
+ ;;^UTILITY(U,$J,358.3,5015,1,3,0)
+ ;;=3^HEPB VACC ILL PAT 3 DOSE IM
+ ;;^UTILITY(U,$J,358.3,5016,0)
+ ;;=90632^^26^321^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5016,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5016,1,2,0)
+ ;;=2^90632
+ ;;^UTILITY(U,$J,358.3,5016,1,3,0)
+ ;;=3^HEP A VACCINE ADULT IM
+ ;;^UTILITY(U,$J,358.3,5017,0)
+ ;;=90732^^26^321^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5017,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5017,1,2,0)
+ ;;=2^90732
+ ;;^UTILITY(U,$J,358.3,5017,1,3,0)
+ ;;=3^PNEUMOCOCCAL VACCINE
+ ;;^UTILITY(U,$J,358.3,5018,0)
+ ;;=86580^^26^321^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5018,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5018,1,2,0)
+ ;;=2^86580
+ ;;^UTILITY(U,$J,358.3,5018,1,3,0)
+ ;;=3^TB INTRADERMAL TEST
+ ;;^UTILITY(U,$J,358.3,5019,0)
+ ;;=90658^^26^321^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5019,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5019,1,2,0)
+ ;;=2^90658
+ ;;^UTILITY(U,$J,358.3,5019,1,3,0)
+ ;;=3^FLU VACCINE
+ ;;^UTILITY(U,$J,358.3,5020,0)
+ ;;=90715^^26^321^10^^^^1
+ ;;^UTILITY(U,$J,358.3,5020,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5020,1,2,0)
+ ;;=2^90715
+ ;;^UTILITY(U,$J,358.3,5020,1,3,0)
+ ;;=3^Tdap Vaccine
+ ;;^UTILITY(U,$J,358.3,5021,0)
+ ;;=90471^^26^321^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5021,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5021,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,5021,1,3,0)
+ ;;=3^IMMUNIZATION ADMIN,1 VACCINE
+ ;;^UTILITY(U,$J,358.3,5022,0)
+ ;;=90472^^26^321^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5022,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5022,1,2,0)
+ ;;=2^90472
+ ;;^UTILITY(U,$J,358.3,5022,1,3,0)
+ ;;=3^IMMUNIZATION ADMIN,EA ADDL VACCINE
+ ;;^UTILITY(U,$J,358.3,5023,0)
+ ;;=90999^^26^322^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5023,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5023,1,2,0)
+ ;;=2^90999
+ ;;^UTILITY(U,$J,358.3,5023,1,3,0)
+ ;;=3^Daily Dialysis Treatment
+ ;;^UTILITY(U,$J,358.3,5024,0)
+ ;;=90935^^26^323^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5024,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5024,1,2,0)
+ ;;=2^90935
+ ;;^UTILITY(U,$J,358.3,5024,1,3,0)
+ ;;=3^HEMODIALYSIS SINGLE EVAL
+ ;;^UTILITY(U,$J,358.3,5025,0)
+ ;;=90937^^26^323^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5025,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5025,1,2,0)
+ ;;=2^90937
+ ;;^UTILITY(U,$J,358.3,5025,1,3,0)
+ ;;=3^HEMODIALYSIS REPEATED EVAL
+ ;;^UTILITY(U,$J,358.3,5026,0)
+ ;;=Z49.31^^27^324^1
+ ;;^UTILITY(U,$J,358.3,5026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4716,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Ant Cerebral Artery
- ;;^UTILITY(U,$J,358.3,4716,1,4,0)
- ;;=4^I63.522
- ;;^UTILITY(U,$J,358.3,4716,2)
- ;;=^5007347
- ;;^UTILITY(U,$J,358.3,4717,0)
- ;;=I63.531^^37^315^6
- ;;^UTILITY(U,$J,358.3,4717,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4717,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Post Cerebral Artery
- ;;^UTILITY(U,$J,358.3,4717,1,4,0)
- ;;=4^I63.531
- ;;^UTILITY(U,$J,358.3,4717,2)
- ;;=^5007348
- ;;^UTILITY(U,$J,358.3,4718,0)
- ;;=I63.532^^37^315^7
- ;;^UTILITY(U,$J,358.3,4718,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4718,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Post Cerebral Artery
- ;;^UTILITY(U,$J,358.3,4718,1,4,0)
- ;;=4^I63.532
- ;;^UTILITY(U,$J,358.3,4718,2)
- ;;=^5007349
- ;;^UTILITY(U,$J,358.3,4719,0)
- ;;=I63.541^^37^315^8
- ;;^UTILITY(U,$J,358.3,4719,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4719,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Cereblr Artery
- ;;^UTILITY(U,$J,358.3,4719,1,4,0)
- ;;=4^I63.541
- ;;^UTILITY(U,$J,358.3,4719,2)
- ;;=^5007350
- ;;^UTILITY(U,$J,358.3,4720,0)
- ;;=I63.542^^37^315^9
- ;;^UTILITY(U,$J,358.3,4720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4720,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Cereblr Artery
- ;;^UTILITY(U,$J,358.3,4720,1,4,0)
- ;;=4^I63.542
- ;;^UTILITY(U,$J,358.3,4720,2)
- ;;=^5007351
- ;;^UTILITY(U,$J,358.3,4721,0)
- ;;=I63.59^^37^315^10
- ;;^UTILITY(U,$J,358.3,4721,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4721,1,3,0)
- ;;=3^Cerebral Infarction d/t Occls/Stenosis of Cerebral Artery
- ;;^UTILITY(U,$J,358.3,4721,1,4,0)
- ;;=4^I63.59
- ;;^UTILITY(U,$J,358.3,4721,2)
- ;;=^5007352
- ;;^UTILITY(U,$J,358.3,4722,0)
- ;;=I63.9^^37^315^11
- ;;^UTILITY(U,$J,358.3,4722,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4722,1,3,0)
- ;;=3^Cerebral Infarction,Unspec
- ;;^UTILITY(U,$J,358.3,4722,1,4,0)
- ;;=4^I63.9
- ;;^UTILITY(U,$J,358.3,4722,2)
- ;;=^5007355
- ;;^UTILITY(U,$J,358.3,4723,0)
- ;;=I61.9^^37^315^13
- ;;^UTILITY(U,$J,358.3,4723,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4723,1,3,0)
- ;;=3^Nontraumatic Intracerebral Hemorrhage,Unspec
- ;;^UTILITY(U,$J,358.3,4723,1,4,0)
- ;;=4^I61.9
- ;;^UTILITY(U,$J,358.3,4723,2)
- ;;=^5007288
- ;;^UTILITY(U,$J,358.3,4724,0)
- ;;=I65.21^^37^315^17
- ;;^UTILITY(U,$J,358.3,4724,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4724,1,3,0)
- ;;=3^Occlusion/Stenosis of Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,4724,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,4724,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,4725,0)
- ;;=I65.22^^37^315^16
- ;;^UTILITY(U,$J,358.3,4725,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4725,1,3,0)
- ;;=3^Occlusion/Stenosis of Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,4725,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,4725,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,4726,0)
- ;;=I65.23^^37^315^15
- ;;^UTILITY(U,$J,358.3,4726,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4726,1,3,0)
- ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,4726,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,4726,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,4727,0)
- ;;=G45.9^^37^315^20
- ;;^UTILITY(U,$J,358.3,4727,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4727,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attack,Unspec
- ;;^UTILITY(U,$J,358.3,4727,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,4727,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,4728,0)
- ;;=I62.00^^37^315^14
- ;;^UTILITY(U,$J,358.3,4728,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5026,1,3,0)
+ ;;=3^Adequacy Testing for Hemodialysis

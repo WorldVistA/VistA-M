@@ -1,5 +1,5 @@
 PSOPMP0 ;BIRM/MFR - Patient Medication Profile - Listmanager ;10/28/06
- ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313**;DEC 1997;Build 76
+ ;;7.0;OUTPATIENT PHARMACY;**260,281,303,289,382,313,427**;DEC 1997;Build 21
  ;Reference to EN1^GMRADPT supported by IA #10099
  ;Reference to EN6^GMRVUTL supported by IA #1120
  ;Reference to ^PS(55 supported by DBIA 2228
@@ -72,17 +72,17 @@ SETLINE ;Sets the line to be displayed in ListMan
  . . . S Z=$G(^TMP("PSOPMPSR",$J,GROUP,STS,SUB))
  . . . S X1="",SEQ=$G(SEQ)+1,X1=$J(SEQ,3)
  . . . S QTYL=$L($P(Z,"^",4)) S:QTYL<5 QTYL=5
- . . . I GRP["R"!(GRP["T") S $E(X1,5)=$P(Z,"^",2),$E(X1,19)=$E($P(Z,"^",3),1,(32-QTYL))
+ . . . I GRP["R"!(GRP["T")!(GRP["H") S $E(X1,5)=$P(Z,"^",2),$E(X1,19)=$E($P(Z,"^",3),1,(32-QTYL))
  . . . I GRP["P"!(GRP["N") S $E(X1,5)=$P(Z,"^",3)
  . . . I GRP["N" S $E(X1,49)="Date Documented:"
  . . . I GRP'["N" S $E(X1,52-QTYL)=$J($P(Z,"^",4),QTYL),$E(X1,53)=$P(Z,"^",5),$E(X1,57)=$P(Z,"^",6)
  . . . S $E(X1,66)=$P(Z,"^",7)
  . . . S $E(X1,74)=$J($P(Z,"^",8),3),$E(X1,78)=$J($P(Z,"^",9),3)
  . . . S LINE=LINE+1,^TMP("PSOPMP0",$J,LINE,0)=X1,HIGHLN(LINE)=""
- . . . S IENSUB=$S(GRP["R"!(GRP["T"):"RX",GRP["P":"PEN",1:"NVA")
+ . . . S IENSUB=$S(GRP["R"!(GRP["T")!(GRP["H"):"RX",GRP["P":"PEN",1:"NVA")
  . . . S ^TMP("PSOPMP0",$J,SEQ,IENSUB)=$P(Z,"^")
  . . . I IENSUB="PEN"&($P($G(^PS(52.41,+$P(Z,"^"),0)),"^",23)=1) S ^TMP("PSOPMP0",$J,LINE,"RV")=1
- . . . I $G(PSOSIGDP) D SETSIG^PSOPMP1($S(GRP["R"!(GRP["T"):"R",GRP["P":"P",1:"N"),+Z,.LINE,PSODFN)
+ . . . I $G(PSOSIGDP) D SETSIG^PSOPMP1($S(GRP["R"!(GRP["T")!(GRP["H"):"R",GRP["P":"P",1:"N"),+Z,.LINE,PSODFN)
  ;
  ;Saving NORMAL video attributes to be reset later
  I LINE>$G(LASTLINE) D
@@ -93,7 +93,7 @@ SETLINE ;Sets the line to be displayed in ListMan
  Q
  ;
 SETSORT(FIELD) ;Sets the data sorted by the FIELD specified
- N SEQ,RX,RXNUM,DRUG,DRNAME,QTY,STATUS,STS,ISSDT,DOCDAT,LSTFD,REFREM,DAYSUP,SIG,Z,ORD,GRPCNT,GROUP,RFRX,OI,PSOBADR
+ N SEQ,RX,RXNUM,DRUG,DRNAME,QTY,STATUS,STS,ISSDT,DOCDAT,LSTFD,REFREM,DAYSUP,SIG,Z,ORD,GRPCNT,GROUP,RFRX,OI,PSOBADR,RDREJ
  K ^TMP("PSOPMPSR",$J)
  ;Loading prescription (file #55)
  S SEQ=0
@@ -118,7 +118,13 @@ SETSORT(FIELD) ;Sets the data sorted by the FIELD specified
  . S SORT=$S(FIELD="RX":RXNUM_" ",FIELD="DR":DRNAME_RXNUM,FIELD="ID":+ISSDT_RXNUM_" ",FIELD="LF":+LSTFD_RXNUM_" ")
  . S STS="<NULL>" I $G(PSOSTSGP) S STS=$P(STATUS,"^")_"^"_$P(STATUS,"^",2)
  . S GROUP=$P(PSORDSEQ("R"),"^")_"R^"_$P(PSORDSEQ("R"),"^",2)
- . I $$FIND^PSOREJUT(RX,,,"79,88") S GROUP=$P(PSORDSEQ("T"),"^")_"T^"_$P(PSORDSEQ("T"),"^",2),STS="<NULL>"
+ . ; PSO*427 changes for RRR/TRI/CVA reject display
+ . S RDREJ=0  ; initialize RTS/DUR reject flag to 0
+ . I $$FIND^PSOREJUT(RX,,,"79,88") S GROUP=$P(PSORDSEQ("T"),"^")_"T^"_$P(PSORDSEQ("T"),"^",2),STS="<NULL>",RDREJ=1
+ . ; next look for any unresolved TRI/CVA rejects  *427
+ . I 'RDREJ,$$TRIC^PSOREJP1(RX),$$FIND^PSOREJUT(RX,,,,1) S GROUP=$P(PSORDSEQ("H"),U,1)_"H^"_$P(PSORDSEQ("H"),U,2),STS="<NULL>"
+ . ; next look for any unresolved RRR rejects  *427
+ . I 'RDREJ,'$$TRIC^PSOREJP1(RX),$$FIND^PSOREJUT(RX,,,,,1) S GROUP=$P(PSORDSEQ("H"),U,1)_"H^"_$P(PSORDSEQ("H"),U,2),STS="<NULL>"
  . S ^TMP("PSOPMPSR",$J,GROUP,STS,SORT)=Z
  . S GRPCNT(GROUP)=$G(GRPCNT(GROUP))+1,GRPCNT(GROUP,STS)=$G(GRPCNT(GROUP,STS))+1
  ;

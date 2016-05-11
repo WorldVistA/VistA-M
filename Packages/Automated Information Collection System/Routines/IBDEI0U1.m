@@ -1,136 +1,128 @@
-IBDEI0U1 ; ; 19-NOV-2015
+IBDEI0U1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13824,1,3,0)
- ;;=3^Benign Neop of Left Ciliary Body
- ;;^UTILITY(U,$J,358.3,13824,1,4,0)
- ;;=4^D31.42
- ;;^UTILITY(U,$J,358.3,13824,2)
- ;;=^5002125
- ;;^UTILITY(U,$J,358.3,13825,0)
- ;;=D31.01^^82^769^18
- ;;^UTILITY(U,$J,358.3,13825,1,0)
+ ;;^UTILITY(U,$J,358.3,14083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13825,1,3,0)
- ;;=3^Benign Neop of Right Conjunctiva
- ;;^UTILITY(U,$J,358.3,13825,1,4,0)
- ;;=4^D31.01
- ;;^UTILITY(U,$J,358.3,13825,2)
- ;;=^5002112
- ;;^UTILITY(U,$J,358.3,13826,0)
- ;;=D31.02^^82^769^16
- ;;^UTILITY(U,$J,358.3,13826,1,0)
+ ;;^UTILITY(U,$J,358.3,14083,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Other
+ ;;^UTILITY(U,$J,358.3,14083,1,4,0)
+ ;;=4^G43.819
+ ;;^UTILITY(U,$J,358.3,14083,2)
+ ;;=^5003903
+ ;;^UTILITY(U,$J,358.3,14084,0)
+ ;;=G43.909^^53^600^27
+ ;;^UTILITY(U,$J,358.3,14084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13826,1,3,0)
- ;;=3^Benign Neop of Left Conjunctiva
- ;;^UTILITY(U,$J,358.3,13826,1,4,0)
- ;;=4^D31.02
- ;;^UTILITY(U,$J,358.3,13826,2)
- ;;=^5002113
- ;;^UTILITY(U,$J,358.3,13827,0)
- ;;=H20.00^^82^769^91
- ;;^UTILITY(U,$J,358.3,13827,1,0)
+ ;;^UTILITY(U,$J,358.3,14084,1,3,0)
+ ;;=3^Migraine Not Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,14084,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,14084,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,14085,0)
+ ;;=G43.919^^53^600^26
+ ;;^UTILITY(U,$J,358.3,14085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13827,1,3,0)
- ;;=3^Iridocyclitis,Acute/Subacute,Unspec
- ;;^UTILITY(U,$J,358.3,13827,1,4,0)
- ;;=4^H20.00
- ;;^UTILITY(U,$J,358.3,13827,2)
- ;;=^5005133
- ;;^UTILITY(U,$J,358.3,13828,0)
- ;;=H20.051^^82^769^88
- ;;^UTILITY(U,$J,358.3,13828,1,0)
+ ;;^UTILITY(U,$J,358.3,14085,1,3,0)
+ ;;=3^Migraine Intractable w/o Status Migrainosus,Unspec
+ ;;^UTILITY(U,$J,358.3,14085,1,4,0)
+ ;;=4^G43.919
+ ;;^UTILITY(U,$J,358.3,14085,2)
+ ;;=^5003911
+ ;;^UTILITY(U,$J,358.3,14086,0)
+ ;;=G51.0^^53^600^5
+ ;;^UTILITY(U,$J,358.3,14086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13828,1,3,0)
- ;;=3^Hypopyon,Right Eye
- ;;^UTILITY(U,$J,358.3,13828,1,4,0)
- ;;=4^H20.051
- ;;^UTILITY(U,$J,358.3,13828,2)
- ;;=^5005150
- ;;^UTILITY(U,$J,358.3,13829,0)
- ;;=H20.052^^82^769^87
- ;;^UTILITY(U,$J,358.3,13829,1,0)
+ ;;^UTILITY(U,$J,358.3,14086,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,14086,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,14086,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,14087,0)
+ ;;=G57.10^^53^600^22
+ ;;^UTILITY(U,$J,358.3,14087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13829,1,3,0)
- ;;=3^Hypopyon,Left Eye
- ;;^UTILITY(U,$J,358.3,13829,1,4,0)
- ;;=4^H20.052
- ;;^UTILITY(U,$J,358.3,13829,2)
- ;;=^5005151
- ;;^UTILITY(U,$J,358.3,13830,0)
- ;;=H21.01^^82^769^85
- ;;^UTILITY(U,$J,358.3,13830,1,0)
+ ;;^UTILITY(U,$J,358.3,14087,1,3,0)
+ ;;=3^Meralgia Paresthetica Lower Limb,Unspec
+ ;;^UTILITY(U,$J,358.3,14087,1,4,0)
+ ;;=4^G57.10
+ ;;^UTILITY(U,$J,358.3,14087,2)
+ ;;=^5004041
+ ;;^UTILITY(U,$J,358.3,14088,0)
+ ;;=G57.12^^53^600^23
+ ;;^UTILITY(U,$J,358.3,14088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13830,1,3,0)
- ;;=3^Hyphema,Right Eye
- ;;^UTILITY(U,$J,358.3,13830,1,4,0)
- ;;=4^H21.01
- ;;^UTILITY(U,$J,358.3,13830,2)
- ;;=^5005172
- ;;^UTILITY(U,$J,358.3,13831,0)
- ;;=H21.02^^82^769^84
- ;;^UTILITY(U,$J,358.3,13831,1,0)
+ ;;^UTILITY(U,$J,358.3,14088,1,3,0)
+ ;;=3^Meralgia Paresthetica,Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,14088,1,4,0)
+ ;;=4^G57.12
+ ;;^UTILITY(U,$J,358.3,14088,2)
+ ;;=^5004043
+ ;;^UTILITY(U,$J,358.3,14089,0)
+ ;;=G57.11^^53^600^24
+ ;;^UTILITY(U,$J,358.3,14089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13831,1,3,0)
- ;;=3^Hyphema,Left Eye
- ;;^UTILITY(U,$J,358.3,13831,1,4,0)
- ;;=4^H21.02
- ;;^UTILITY(U,$J,358.3,13831,2)
- ;;=^5005173
- ;;^UTILITY(U,$J,358.3,13832,0)
- ;;=H21.261^^82^769^94
- ;;^UTILITY(U,$J,358.3,13832,1,0)
+ ;;^UTILITY(U,$J,358.3,14089,1,3,0)
+ ;;=3^Meralgia Paresthetica,Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,14089,1,4,0)
+ ;;=4^G57.11
+ ;;^UTILITY(U,$J,358.3,14089,2)
+ ;;=^5004042
+ ;;^UTILITY(U,$J,358.3,14090,0)
+ ;;=G60.8^^53^600^32
+ ;;^UTILITY(U,$J,358.3,14090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13832,1,3,0)
- ;;=3^Iris Atrophy,Right Eye
- ;;^UTILITY(U,$J,358.3,13832,1,4,0)
- ;;=4^H21.261
- ;;^UTILITY(U,$J,358.3,13832,2)
- ;;=^5005199
- ;;^UTILITY(U,$J,358.3,13833,0)
- ;;=H21.262^^82^769^93
- ;;^UTILITY(U,$J,358.3,13833,1,0)
+ ;;^UTILITY(U,$J,358.3,14090,1,3,0)
+ ;;=3^Neuropathies,Oth Hereditary and Idiopathic
+ ;;^UTILITY(U,$J,358.3,14090,1,4,0)
+ ;;=4^G60.8
+ ;;^UTILITY(U,$J,358.3,14090,2)
+ ;;=^5004070
+ ;;^UTILITY(U,$J,358.3,14091,0)
+ ;;=G60.9^^53^600^33
+ ;;^UTILITY(U,$J,358.3,14091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13833,1,3,0)
- ;;=3^Iris Atrophy,Left Eye
- ;;^UTILITY(U,$J,358.3,13833,1,4,0)
- ;;=4^H21.262
- ;;^UTILITY(U,$J,358.3,13833,2)
- ;;=^5005200
- ;;^UTILITY(U,$J,358.3,13834,0)
- ;;=H21.541^^82^769^138
- ;;^UTILITY(U,$J,358.3,13834,1,0)
+ ;;^UTILITY(U,$J,358.3,14091,1,3,0)
+ ;;=3^Neuropathy,Hereditary and Idiopathic Unspec
+ ;;^UTILITY(U,$J,358.3,14091,1,4,0)
+ ;;=4^G60.9
+ ;;^UTILITY(U,$J,358.3,14091,2)
+ ;;=^5004071
+ ;;^UTILITY(U,$J,358.3,14092,0)
+ ;;=I69.959^^53^600^18
+ ;;^UTILITY(U,$J,358.3,14092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13834,1,3,0)
- ;;=3^Posterior Synechiae,Right Eye
- ;;^UTILITY(U,$J,358.3,13834,1,4,0)
- ;;=4^H21.541
- ;;^UTILITY(U,$J,358.3,13834,2)
- ;;=^5005251
- ;;^UTILITY(U,$J,358.3,13835,0)
- ;;=H21.542^^82^769^137
- ;;^UTILITY(U,$J,358.3,13835,1,0)
+ ;;^UTILITY(U,$J,358.3,14092,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Diz Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,14092,1,4,0)
+ ;;=4^I69.959
+ ;;^UTILITY(U,$J,358.3,14092,2)
+ ;;=^5007563
+ ;;^UTILITY(U,$J,358.3,14093,0)
+ ;;=I69.359^^53^600^19
+ ;;^UTILITY(U,$J,358.3,14093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13835,1,3,0)
- ;;=3^Posterior Synechiae,Left Eye
- ;;^UTILITY(U,$J,358.3,13835,1,4,0)
- ;;=4^H21.542
- ;;^UTILITY(U,$J,358.3,13835,2)
- ;;=^5005252
- ;;^UTILITY(U,$J,358.3,13836,0)
- ;;=H21.511^^82^769^8
- ;;^UTILITY(U,$J,358.3,13836,1,0)
+ ;;^UTILITY(U,$J,358.3,14093,1,3,0)
+ ;;=3^Hemplg/Hemprs d/t Cerebvasc Infrc Aff Unspec Side
+ ;;^UTILITY(U,$J,358.3,14093,1,4,0)
+ ;;=4^I69.359
+ ;;^UTILITY(U,$J,358.3,14093,2)
+ ;;=^5007508
+ ;;^UTILITY(U,$J,358.3,14094,0)
+ ;;=S14.109S^^53^600^39
+ ;;^UTILITY(U,$J,358.3,14094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13836,1,3,0)
- ;;=3^Anterior Synechiae,Right Eye
- ;;^UTILITY(U,$J,358.3,13836,1,4,0)
- ;;=4^H21.511
- ;;^UTILITY(U,$J,358.3,13836,2)
- ;;=^5005239
- ;;^UTILITY(U,$J,358.3,13837,0)
- ;;=H21.512^^82^769^7
- ;;^UTILITY(U,$J,358.3,13837,1,0)
+ ;;^UTILITY(U,$J,358.3,14094,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,14094,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,14094,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,14095,0)
+ ;;=S34.109S^^53^600^40
+ ;;^UTILITY(U,$J,358.3,14095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13837,1,3,0)
- ;;=3^Anterior Synechiae,Left Eye
+ ;;^UTILITY(U,$J,358.3,14095,1,3,0)
+ ;;=3^Sequela of Unspec Injury to Lumbar Spinal Cord

@@ -1,134 +1,136 @@
-IBDEI26M ; ; 19-NOV-2015
+IBDEI26M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36638,1,3,0)
- ;;=3^Von Willebrand's disease
- ;;^UTILITY(U,$J,358.3,36638,1,4,0)
- ;;=4^D68.0
- ;;^UTILITY(U,$J,358.3,36638,2)
- ;;=^127267
- ;;^UTILITY(U,$J,358.3,36639,0)
- ;;=D68.311^^169^1853^2
- ;;^UTILITY(U,$J,358.3,36639,1,0)
+ ;;^UTILITY(U,$J,358.3,37010,1,3,0)
+ ;;=3^Dyspnea NEC
+ ;;^UTILITY(U,$J,358.3,37010,1,4,0)
+ ;;=4^R06.09
+ ;;^UTILITY(U,$J,358.3,37010,2)
+ ;;=^5019182
+ ;;^UTILITY(U,$J,358.3,37011,0)
+ ;;=R53.81^^137^1780^48
+ ;;^UTILITY(U,$J,358.3,37011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36639,1,3,0)
- ;;=3^Acquired hemophilia
- ;;^UTILITY(U,$J,358.3,36639,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,36639,2)
- ;;=^340502
- ;;^UTILITY(U,$J,358.3,36640,0)
- ;;=D68.312^^169^1853^4
- ;;^UTILITY(U,$J,358.3,36640,1,0)
+ ;;^UTILITY(U,$J,358.3,37011,1,3,0)
+ ;;=3^Malaise NEC
+ ;;^UTILITY(U,$J,358.3,37011,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,37011,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,37012,0)
+ ;;=M87.30^^137^1780^66
+ ;;^UTILITY(U,$J,358.3,37012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36640,1,3,0)
- ;;=3^Antiphospholipid antibody with hemorrhagic disorder
- ;;^UTILITY(U,$J,358.3,36640,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,36640,2)
- ;;=^340503
- ;;^UTILITY(U,$J,358.3,36641,0)
- ;;=D68.318^^169^1853^13
- ;;^UTILITY(U,$J,358.3,36641,1,0)
+ ;;^UTILITY(U,$J,358.3,37012,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Unspec Bone
+ ;;^UTILITY(U,$J,358.3,37012,1,4,0)
+ ;;=4^M87.30
+ ;;^UTILITY(U,$J,358.3,37012,2)
+ ;;=^5014787
+ ;;^UTILITY(U,$J,358.3,37013,0)
+ ;;=M85.80^^137^1780^8
+ ;;^UTILITY(U,$J,358.3,37013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36641,1,3,0)
- ;;=3^Hemorrhagic disord d/t intrns circ anticoag,antib,inhib NEC
- ;;^UTILITY(U,$J,358.3,36641,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,36641,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,36642,0)
- ;;=D65.^^169^1853^7
- ;;^UTILITY(U,$J,358.3,36642,1,0)
+ ;;^UTILITY(U,$J,358.3,37013,1,3,0)
+ ;;=3^Bone Density/Structure Disorder,Unspec Site
+ ;;^UTILITY(U,$J,358.3,37013,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,37013,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,37014,0)
+ ;;=K52.89^^137^1780^52
+ ;;^UTILITY(U,$J,358.3,37014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36642,1,3,0)
- ;;=3^Disseminated intravascular coagulation
- ;;^UTILITY(U,$J,358.3,36642,1,4,0)
- ;;=4^D65.
- ;;^UTILITY(U,$J,358.3,36642,2)
- ;;=^5002352
- ;;^UTILITY(U,$J,358.3,36643,0)
- ;;=D68.32^^169^1853^12
- ;;^UTILITY(U,$J,358.3,36643,1,0)
+ ;;^UTILITY(U,$J,358.3,37014,1,3,0)
+ ;;=3^Noninfective Gastroenteritis/Colitis
+ ;;^UTILITY(U,$J,358.3,37014,1,4,0)
+ ;;=4^K52.89
+ ;;^UTILITY(U,$J,358.3,37014,2)
+ ;;=^5008703
+ ;;^UTILITY(U,$J,358.3,37015,0)
+ ;;=R30.9^^137^1780^59
+ ;;^UTILITY(U,$J,358.3,37015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36643,1,3,0)
- ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
- ;;^UTILITY(U,$J,358.3,36643,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,36643,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,36644,0)
- ;;=D68.4^^169^1853^1
- ;;^UTILITY(U,$J,358.3,36644,1,0)
+ ;;^UTILITY(U,$J,358.3,37015,1,3,0)
+ ;;=3^Painful Micturition,Unspec
+ ;;^UTILITY(U,$J,358.3,37015,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,37015,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,37016,0)
+ ;;=R00.2^^137^1780^60
+ ;;^UTILITY(U,$J,358.3,37016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36644,1,3,0)
- ;;=3^Acquired coagulation factor deficiency
- ;;^UTILITY(U,$J,358.3,36644,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,36644,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,36645,0)
- ;;=D68.8^^169^1853^5
- ;;^UTILITY(U,$J,358.3,36645,1,0)
+ ;;^UTILITY(U,$J,358.3,37016,1,3,0)
+ ;;=3^Palpitations
+ ;;^UTILITY(U,$J,358.3,37016,1,4,0)
+ ;;=4^R00.2
+ ;;^UTILITY(U,$J,358.3,37016,2)
+ ;;=^5019165
+ ;;^UTILITY(U,$J,358.3,37017,0)
+ ;;=M84.58XA^^137^1780^61
+ ;;^UTILITY(U,$J,358.3,37017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36645,1,3,0)
- ;;=3^Coagulation Defects NEC
- ;;^UTILITY(U,$J,358.3,36645,1,4,0)
- ;;=4^D68.8
- ;;^UTILITY(U,$J,358.3,36645,2)
- ;;=^5002363
- ;;^UTILITY(U,$J,358.3,36646,0)
- ;;=D68.9^^169^1853^6
- ;;^UTILITY(U,$J,358.3,36646,1,0)
+ ;;^UTILITY(U,$J,358.3,37017,1,3,0)
+ ;;=3^Pathological Fx in Neoplastic Disease,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37017,1,4,0)
+ ;;=4^M84.58XA
+ ;;^UTILITY(U,$J,358.3,37017,2)
+ ;;=^5014208
+ ;;^UTILITY(U,$J,358.3,37018,0)
+ ;;=M84.68XA^^137^1780^62
+ ;;^UTILITY(U,$J,358.3,37018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36646,1,3,0)
- ;;=3^Coagulation Defects,Unspec
- ;;^UTILITY(U,$J,358.3,36646,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,36646,2)
- ;;=^5002364
- ;;^UTILITY(U,$J,358.3,36647,0)
- ;;=D69.1^^169^1853^22
- ;;^UTILITY(U,$J,358.3,36647,1,0)
+ ;;^UTILITY(U,$J,358.3,37018,1,3,0)
+ ;;=3^Pathological Fx in Oth Disease,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37018,1,4,0)
+ ;;=4^M84.68XA
+ ;;^UTILITY(U,$J,358.3,37018,2)
+ ;;=^5134051
+ ;;^UTILITY(U,$J,358.3,37019,0)
+ ;;=M84.48XA^^137^1780^63
+ ;;^UTILITY(U,$J,358.3,37019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36647,1,3,0)
- ;;=3^Qualitative platelet defects
- ;;^UTILITY(U,$J,358.3,36647,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,36647,2)
- ;;=^101922
- ;;^UTILITY(U,$J,358.3,36648,0)
- ;;=D47.3^^169^1853^8
- ;;^UTILITY(U,$J,358.3,36648,1,0)
+ ;;^UTILITY(U,$J,358.3,37019,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,37019,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,37019,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,37020,0)
+ ;;=R06.3^^137^1780^64
+ ;;^UTILITY(U,$J,358.3,37020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36648,1,3,0)
- ;;=3^Essential (hemorrhagic) thrombocythemia
- ;;^UTILITY(U,$J,358.3,36648,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,36648,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,36649,0)
- ;;=D69.0^^169^1853^3
- ;;^UTILITY(U,$J,358.3,36649,1,0)
+ ;;^UTILITY(U,$J,358.3,37020,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,37020,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,37020,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,37021,0)
+ ;;=G93.3^^137^1780^65
+ ;;^UTILITY(U,$J,358.3,37021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36649,1,3,0)
- ;;=3^Allergic purpura
- ;;^UTILITY(U,$J,358.3,36649,1,4,0)
- ;;=4^D69.0
- ;;^UTILITY(U,$J,358.3,36649,2)
- ;;=^5002365
- ;;^UTILITY(U,$J,358.3,36650,0)
- ;;=D69.2^^169^1853^19
- ;;^UTILITY(U,$J,358.3,36650,1,0)
+ ;;^UTILITY(U,$J,358.3,37021,1,3,0)
+ ;;=3^Postviral Fatigue Syndrome
+ ;;^UTILITY(U,$J,358.3,37021,1,4,0)
+ ;;=4^G93.3
+ ;;^UTILITY(U,$J,358.3,37021,2)
+ ;;=^5004181
+ ;;^UTILITY(U,$J,358.3,37022,0)
+ ;;=G47.9^^137^1780^67
+ ;;^UTILITY(U,$J,358.3,37022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36650,1,3,0)
- ;;=3^Nonthrombocytopenic purpura NEC
- ;;^UTILITY(U,$J,358.3,36650,1,4,0)
- ;;=4^D69.2
- ;;^UTILITY(U,$J,358.3,36650,2)
- ;;=^5002366
- ;;^UTILITY(U,$J,358.3,36651,0)
- ;;=D69.3^^169^1853^18
- ;;^UTILITY(U,$J,358.3,36651,1,0)
+ ;;^UTILITY(U,$J,358.3,37022,1,3,0)
+ ;;=3^Sleep Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,37022,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,37022,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,37023,0)
+ ;;=R06.83^^137^1780^68
+ ;;^UTILITY(U,$J,358.3,37023,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37023,1,3,0)
+ ;;=3^Snoring

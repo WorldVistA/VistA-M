@@ -1,140 +1,136 @@
-IBDEI06Z ; ; 19-NOV-2015
+IBDEI06Z ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2685,0)
- ;;=M71.162^^25^225^40
- ;;^UTILITY(U,$J,358.3,2685,1,0)
+ ;;^UTILITY(U,$J,358.3,2949,1,3,0)
+ ;;=3^Myocardial Infarction,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,2949,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,2949,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,2950,0)
+ ;;=I25.2^^18^210^53
+ ;;^UTILITY(U,$J,358.3,2950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2685,1,3,0)
- ;;=3^Infective bursitis, lft knee
- ;;^UTILITY(U,$J,358.3,2685,1,4,0)
- ;;=4^M71.162
- ;;^UTILITY(U,$J,358.3,2685,2)
- ;;=^5013140
- ;;^UTILITY(U,$J,358.3,2686,0)
- ;;=M71.171^^25^225^44
- ;;^UTILITY(U,$J,358.3,2686,1,0)
+ ;;^UTILITY(U,$J,358.3,2950,1,3,0)
+ ;;=3^Myocardial Infarction,Old
+ ;;^UTILITY(U,$J,358.3,2950,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,2950,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,2951,0)
+ ;;=I78.1^^18^210^54
+ ;;^UTILITY(U,$J,358.3,2951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2686,1,3,0)
- ;;=3^Infective bursitis, rt ankle & foot
- ;;^UTILITY(U,$J,358.3,2686,1,4,0)
- ;;=4^M71.171
- ;;^UTILITY(U,$J,358.3,2686,2)
- ;;=^5013142
- ;;^UTILITY(U,$J,358.3,2687,0)
- ;;=M71.172^^25^225^36
- ;;^UTILITY(U,$J,358.3,2687,1,0)
+ ;;^UTILITY(U,$J,358.3,2951,1,3,0)
+ ;;=3^Nevus,Non-Neoplastic
+ ;;^UTILITY(U,$J,358.3,2951,1,4,0)
+ ;;=4^I78.1
+ ;;^UTILITY(U,$J,358.3,2951,2)
+ ;;=^269807
+ ;;^UTILITY(U,$J,358.3,2952,0)
+ ;;=Z95.0^^18^210^61
+ ;;^UTILITY(U,$J,358.3,2952,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2687,1,3,0)
- ;;=3^Infective bursitis, lft ankle & foot
- ;;^UTILITY(U,$J,358.3,2687,1,4,0)
- ;;=4^M71.172
- ;;^UTILITY(U,$J,358.3,2687,2)
- ;;=^5013143
- ;;^UTILITY(U,$J,358.3,2688,0)
- ;;=M71.18^^25^225^1
- ;;^UTILITY(U,$J,358.3,2688,1,0)
+ ;;^UTILITY(U,$J,358.3,2952,1,3,0)
+ ;;=3^Presence of Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,2952,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,2952,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,2953,0)
+ ;;=I73.9^^18^210^55
+ ;;^UTILITY(U,$J,358.3,2953,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2688,1,3,0)
- ;;=3
- ;;^UTILITY(U,$J,358.3,2688,1,4,0)
- ;;=4^M71.18
- ;;^UTILITY(U,$J,358.3,2688,2)
- ;;=^5133865
- ;;^UTILITY(U,$J,358.3,2689,0)
- ;;=M71.19^^25^225^43
- ;;^UTILITY(U,$J,358.3,2689,1,0)
+ ;;^UTILITY(U,$J,358.3,2953,1,3,0)
+ ;;=3^PVD,Unspec
+ ;;^UTILITY(U,$J,358.3,2953,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,2953,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,2954,0)
+ ;;=I80.9^^18^210^56
+ ;;^UTILITY(U,$J,358.3,2954,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2689,1,3,0)
- ;;=3^Infective bursitis, mltpl sites
- ;;^UTILITY(U,$J,358.3,2689,1,4,0)
- ;;=4^M71.19
- ;;^UTILITY(U,$J,358.3,2689,2)
- ;;=^5013145
- ;;^UTILITY(U,$J,358.3,2690,0)
- ;;=M71.50^^25^225^23
- ;;^UTILITY(U,$J,358.3,2690,1,0)
+ ;;^UTILITY(U,$J,358.3,2954,1,3,0)
+ ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,2954,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,2954,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,2955,0)
+ ;;=Z98.61^^18^210^57
+ ;;^UTILITY(U,$J,358.3,2955,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2690,1,3,0)
- ;;=3^Bursitis, unspec site NEC
- ;;^UTILITY(U,$J,358.3,2690,1,4,0)
- ;;=4^M71.50
- ;;^UTILITY(U,$J,358.3,2690,2)
- ;;=^5013190
- ;;^UTILITY(U,$J,358.3,2691,0)
- ;;=M71.521^^25^225^18
- ;;^UTILITY(U,$J,358.3,2691,1,0)
+ ;;^UTILITY(U,$J,358.3,2955,1,3,0)
+ ;;=3^Postprocedural State,Coronary Angioplasty
+ ;;^UTILITY(U,$J,358.3,2955,1,4,0)
+ ;;=4^Z98.61
+ ;;^UTILITY(U,$J,358.3,2955,2)
+ ;;=^5063742
+ ;;^UTILITY(U,$J,358.3,2956,0)
+ ;;=Z98.62^^18^210^58
+ ;;^UTILITY(U,$J,358.3,2956,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2691,1,3,0)
- ;;=3^Bursitis, rt elbow NEC
- ;;^UTILITY(U,$J,358.3,2691,1,4,0)
- ;;=4^M71.521
- ;;^UTILITY(U,$J,358.3,2691,2)
- ;;=^5013191
- ;;^UTILITY(U,$J,358.3,2692,0)
- ;;=M71.522^^25^225^11
- ;;^UTILITY(U,$J,358.3,2692,1,0)
+ ;;^UTILITY(U,$J,358.3,2956,1,3,0)
+ ;;=3^Postprocedural State,Peripheral Vascular Angioplasty
+ ;;^UTILITY(U,$J,358.3,2956,1,4,0)
+ ;;=4^Z98.62
+ ;;^UTILITY(U,$J,358.3,2956,2)
+ ;;=^5063743
+ ;;^UTILITY(U,$J,358.3,2957,0)
+ ;;=Z95.810^^18^210^59
+ ;;^UTILITY(U,$J,358.3,2957,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2692,1,3,0)
- ;;=3^Bursitis, lft elbow NEC
- ;;^UTILITY(U,$J,358.3,2692,1,4,0)
- ;;=4^M71.522
- ;;^UTILITY(U,$J,358.3,2692,2)
- ;;=^5013192
- ;;^UTILITY(U,$J,358.3,2693,0)
- ;;=M71.531^^25^225^22
- ;;^UTILITY(U,$J,358.3,2693,1,0)
+ ;;^UTILITY(U,$J,358.3,2957,1,3,0)
+ ;;=3^Presence of Automatic Cardiac Defibrillator
+ ;;^UTILITY(U,$J,358.3,2957,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,2957,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,2958,0)
+ ;;=Z95.5^^18^210^62
+ ;;^UTILITY(U,$J,358.3,2958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2693,1,3,0)
- ;;=3^Bursitis, rt wrist NEC
- ;;^UTILITY(U,$J,358.3,2693,1,4,0)
- ;;=4^M71.531
- ;;^UTILITY(U,$J,358.3,2693,2)
- ;;=^5013194
- ;;^UTILITY(U,$J,358.3,2694,0)
- ;;=M71.532^^25^225^15
- ;;^UTILITY(U,$J,358.3,2694,1,0)
+ ;;^UTILITY(U,$J,358.3,2958,1,3,0)
+ ;;=3^Presence of Coronary Angioplasty Implant & Graft
+ ;;^UTILITY(U,$J,358.3,2958,1,4,0)
+ ;;=4^Z95.5
+ ;;^UTILITY(U,$J,358.3,2958,2)
+ ;;=^5063673
+ ;;^UTILITY(U,$J,358.3,2959,0)
+ ;;=Z95.811^^18^210^64
+ ;;^UTILITY(U,$J,358.3,2959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2694,1,3,0)
- ;;=3^Bursitis, lft wrist NEC
- ;;^UTILITY(U,$J,358.3,2694,1,4,0)
- ;;=4^M71.532
- ;;^UTILITY(U,$J,358.3,2694,2)
- ;;=^5013195
- ;;^UTILITY(U,$J,358.3,2695,0)
- ;;=M71.541^^25^225^19
- ;;^UTILITY(U,$J,358.3,2695,1,0)
+ ;;^UTILITY(U,$J,358.3,2959,1,3,0)
+ ;;=3^Presence of Heart Assist Device
+ ;;^UTILITY(U,$J,358.3,2959,1,4,0)
+ ;;=4^Z95.811
+ ;;^UTILITY(U,$J,358.3,2959,2)
+ ;;=^5063675
+ ;;^UTILITY(U,$J,358.3,2960,0)
+ ;;=Z95.812^^18^210^63
+ ;;^UTILITY(U,$J,358.3,2960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2695,1,3,0)
- ;;=3^Bursitis, rt hand NEC
- ;;^UTILITY(U,$J,358.3,2695,1,4,0)
- ;;=4^M71.541
- ;;^UTILITY(U,$J,358.3,2695,2)
- ;;=^5013197
- ;;^UTILITY(U,$J,358.3,2696,0)
- ;;=M71.542^^25^225^12
- ;;^UTILITY(U,$J,358.3,2696,1,0)
+ ;;^UTILITY(U,$J,358.3,2960,1,3,0)
+ ;;=3^Presence of Fully Implantable Artificial Heart
+ ;;^UTILITY(U,$J,358.3,2960,1,4,0)
+ ;;=4^Z95.812
+ ;;^UTILITY(U,$J,358.3,2960,2)
+ ;;=^5063676
+ ;;^UTILITY(U,$J,358.3,2961,0)
+ ;;=Z95.818^^18^210^60
+ ;;^UTILITY(U,$J,358.3,2961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2696,1,3,0)
- ;;=3^Bursitis, lft hand NEC
- ;;^UTILITY(U,$J,358.3,2696,1,4,0)
- ;;=4^M71.542
- ;;^UTILITY(U,$J,358.3,2696,2)
- ;;=^5013198
- ;;^UTILITY(U,$J,358.3,2697,0)
- ;;=M71.551^^25^225^20
- ;;^UTILITY(U,$J,358.3,2697,1,0)
+ ;;^UTILITY(U,$J,358.3,2961,1,3,0)
+ ;;=3^Presence of Cardiac Implants & Grafts,Other
+ ;;^UTILITY(U,$J,358.3,2961,1,4,0)
+ ;;=4^Z95.818
+ ;;^UTILITY(U,$J,358.3,2961,2)
+ ;;=^5063677
+ ;;^UTILITY(U,$J,358.3,2962,0)
+ ;;=Z95.820^^18^210^65
+ ;;^UTILITY(U,$J,358.3,2962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2697,1,3,0)
- ;;=3^Bursitis, rt hip NEC
- ;;^UTILITY(U,$J,358.3,2697,1,4,0)
- ;;=4^M71.551
- ;;^UTILITY(U,$J,358.3,2697,2)
- ;;=^5013200
- ;;^UTILITY(U,$J,358.3,2698,0)
- ;;=M71.552^^25^225^13
- ;;^UTILITY(U,$J,358.3,2698,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2698,1,3,0)
- ;;=3^Bursitis, lft hip NEC
+ ;;^UTILITY(U,$J,358.3,2962,1,3,0)
+ ;;=3^Presence of Peripheral Vasc Angioplasty w/ Implants & Grafts

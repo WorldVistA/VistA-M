@@ -1,94 +1,120 @@
-IBDEI2HO ; ; 19-NOV-2015
+IBDEI2HO ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41775,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation of, medial and/or lateral malleolus; w/o fixation of posterior lip
- ;;^UTILITY(U,$J,358.3,41775,1,3,0)
- ;;=3^27822
- ;;^UTILITY(U,$J,358.3,41776,0)
- ;;=27823^^191^2123^52^^^^1
- ;;^UTILITY(U,$J,358.3,41776,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41776,1,2,0)
- ;;=2^Open Tx of trimalleolar ankle fracture, with or w/o internal or external fixation, medial and/or lateral malleolus; with fixation of posterior lip  
- ;;^UTILITY(U,$J,358.3,41776,1,3,0)
- ;;=3^27823
- ;;^UTILITY(U,$J,358.3,41777,0)
- ;;=27824^^191^2123^22^^^^1
- ;;^UTILITY(U,$J,358.3,41777,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41777,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; w/o manipulation 
- ;;^UTILITY(U,$J,358.3,41777,1,3,0)
- ;;=3^27824
- ;;^UTILITY(U,$J,358.3,41778,0)
- ;;=27825^^191^2123^23^^^^1
- ;;^UTILITY(U,$J,358.3,41778,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41778,1,2,0)
- ;;=2^Closed Tx of fracture of weight bearing articular portion of distal tibia, with or w/o anesthesia; with skeletal traction &/or requiring manipulation
- ;;^UTILITY(U,$J,358.3,41778,1,3,0)
- ;;=3^27825
- ;;^UTILITY(U,$J,358.3,41779,0)
- ;;=27826^^191^2123^44^^^^1
- ;;^UTILITY(U,$J,358.3,41779,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41779,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of fibula only
- ;;^UTILITY(U,$J,358.3,41779,1,3,0)
- ;;=3^27826
- ;;^UTILITY(U,$J,358.3,41780,0)
- ;;=27827^^191^2123^45^^^^1
- ;;^UTILITY(U,$J,358.3,41780,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41780,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portion of distal tibia, w/ internal or external fixation; of tibia only
- ;;^UTILITY(U,$J,358.3,41780,1,3,0)
- ;;=3^27827
- ;;^UTILITY(U,$J,358.3,41781,0)
- ;;=27828^^191^2123^46^^^^1
- ;;^UTILITY(U,$J,358.3,41781,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41781,1,2,0)
- ;;=2^Open Tx of fracture of weight bearing articular surface/portionof distal tibia, w/ internal or external fixation; of both tibia & fibula
- ;;^UTILITY(U,$J,358.3,41781,1,3,0)
- ;;=3^27828
- ;;^UTILITY(U,$J,358.3,41782,0)
- ;;=27829^^191^2123^43^^^^1
- ;;^UTILITY(U,$J,358.3,41782,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41782,1,2,0)
- ;;=2^Open Tx of distal tibiofibular joint disruption, with or w/o internal or external fixation
- ;;^UTILITY(U,$J,358.3,41782,1,3,0)
- ;;=3^27829
- ;;^UTILITY(U,$J,358.3,41783,0)
- ;;=28540^^191^2123^30^^^^1
- ;;^UTILITY(U,$J,358.3,41783,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41783,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; w/o anesthesia
- ;;^UTILITY(U,$J,358.3,41783,1,3,0)
- ;;=3^28540
- ;;^UTILITY(U,$J,358.3,41784,0)
- ;;=28545^^191^2123^31^^^^1
- ;;^UTILITY(U,$J,358.3,41784,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41784,1,2,0)
- ;;=2^Closed Tx of tarsal bone dislocation, other than talotarsal; requiring anesthesia
- ;;^UTILITY(U,$J,358.3,41784,1,3,0)
- ;;=3^28545
- ;;^UTILITY(U,$J,358.3,41785,0)
- ;;=28546^^191^2123^63^^^^1
- ;;^UTILITY(U,$J,358.3,41785,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41785,1,2,0)
- ;;=2^Perc Fixation Tarsal Bone Dislocation
- ;;^UTILITY(U,$J,358.3,41785,1,3,0)
- ;;=3^28546
- ;;^UTILITY(U,$J,358.3,41786,0)
- ;;=28555^^191^2123^40^^^^1
- ;;^UTILITY(U,$J,358.3,41786,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41786,1,2,0)
- ;;=2^Open TX of tarsal bone disloc,w/ internal fixation
+ ;;^UTILITY(U,$J,358.3,42213,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,42213,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,42214,0)
+ ;;=S56.113A^^159^2017^51
+ ;;^UTILITY(U,$J,358.3,42214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42214,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42214,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,42214,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,42215,0)
+ ;;=S56.114A^^159^2017^31
+ ;;^UTILITY(U,$J,358.3,42215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42215,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42215,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,42215,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,42216,0)
+ ;;=S56.115A^^159^2017^53
+ ;;^UTILITY(U,$J,358.3,42216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42216,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42216,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,42216,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,42217,0)
+ ;;=S56.417A^^159^2017^45
+ ;;^UTILITY(U,$J,358.3,42217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42217,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42217,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,42217,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,42218,0)
+ ;;=S56.418A^^159^2017^25
+ ;;^UTILITY(U,$J,358.3,42218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42218,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42218,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,42218,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,42219,0)
+ ;;=S56.811A^^159^2017^41
+ ;;^UTILITY(U,$J,358.3,42219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42219,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42219,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,42219,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,42220,0)
+ ;;=S56.812A^^159^2017^21
+ ;;^UTILITY(U,$J,358.3,42220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42220,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42220,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,42220,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,42221,0)
+ ;;=S56.116A^^159^2017^33
+ ;;^UTILITY(U,$J,358.3,42221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42221,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42221,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,42221,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,42222,0)
+ ;;=S56.117A^^159^2017^46
+ ;;^UTILITY(U,$J,358.3,42222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42222,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42222,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,42222,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,42223,0)
+ ;;=S56.118A^^159^2017^26
+ ;;^UTILITY(U,$J,358.3,42223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42223,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42223,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,42223,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,42224,0)
+ ;;=S56.211A^^159^2017^40
+ ;;^UTILITY(U,$J,358.3,42224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42224,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,42224,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,42224,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,42225,0)
+ ;;=S56.212A^^159^2017^20

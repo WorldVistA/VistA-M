@@ -1,5 +1,5 @@
 VPSRPC15  ;BPOIFO/KG - Patient Problems;07/31/14 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**4**;Jul 31, 2014;Build 27
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14**;Jul 31, 2014;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -42,7 +42,7 @@ GETPRBLM(VPSARR,DFN) ;given DFN, returns the patient problems
  ;
 SETEXP(VPSARR,FILE,DFN,PRBIEN) ;set expression
  N GMPVAMC S GMPVAMC=0
- N GMPPROV S GMPROV=0
+ N GMPROV S GMPROV=0
  N GMPORIG,GMPFLD
  D GETFLDS^GMPLEDT3(PRBIEN)
  D SET(.VPSARR,FILE,DFN_";"_PRBIEN,1.01,$P($G(GMPFLD(1.01)),U,2),"EXPRESSIONS")
@@ -51,3 +51,29 @@ SETEXP(VPSARR,FILE,DFN,PRBIEN) ;set expression
 SET(VPSARR,VPSFL,VPSIEN,VPSFLD,VPSDA,VPSDS) ;Set line item to output array
  I VPSDA'="" D SET^VPSRPC1(.VPSARR,VPSFL,VPSIEN,VPSFLD,VPSDA,$G(VPSDS),5) ;Set line item to output array
  QUIT
+ ;
+GETHF(VPSARR,DFN) ;given DFN, returns the patient health factors
+ N IEN,DAT
+ S IEN=""
+ ; Look up health factors for the patient
+ F  S IEN=$O(^AUPNVHF("C",DFN,IEN)) Q:'IEN  D
+ . S DAT=$$GET1^DIQ(9000010.23,IEN_",",.01) ; retrieve the patient's health factor
+ . D SET^VPSRPC1(.VPSARR,9000010.23,DFN_";"_IEN,.01,DAT,"HEALTH FACTOR",9)
+ QUIT
+ ;
+GETADEM(VPSARR,DFN) ;given DFN, returns the patient demographics, insurance, and up-coming appointments.
+ ; OUTPUT
+ ;   VPSARR - passed in by reference; this is the output array to store patient demographics
+ ; INPUT
+ ;   DFN    - patient DFN (This value must be validated before calling this procedure)
+ ;
+ D ENR^VPSRPC16(.VPSARR,DFN) ; Store Patient Enrollment
+ D OTH^VPSRPC26(.VPSARR,DFN) ; Store Other information not in KNOWN API
+ D POW^VPSRPC26(.VPSARR,DFN) ; Store POW
+ D PH^VPSRPC26(.VPSARR,DFN) ; Store Purple Heart
+ D MP^VPSRPC26(.VPSARR,DFN) ; Store Missing Person
+ D SVC^VPSRPC26(.VPSARR,DFN) ; Store Service Connected and Rated Disabilities
+ D CHG^VPSRPC26(.VPSARR,DFN) ; Store Change DT/TM
+ D BLPAT^VPSRPC26(.VPSARR,DFN) ; Store Billing Patient
+ D PCT^VPSRPC26(.VPSARR,DFN) ; Primary Care Team
+ Q

@@ -1,144 +1,124 @@
-IBDEI0WM ; ; 19-NOV-2015
+IBDEI0WM ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15031,0)
- ;;=K85.1^^85^808^15
- ;;^UTILITY(U,$J,358.3,15031,1,0)
+ ;;^UTILITY(U,$J,358.3,15309,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,15309,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,15310,0)
+ ;;=T76.11XD^^58^658^8
+ ;;^UTILITY(U,$J,358.3,15310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15031,1,3,0)
- ;;=3^Biliary Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,15031,1,4,0)
- ;;=4^K85.1
- ;;^UTILITY(U,$J,358.3,15031,2)
- ;;=^5008883
- ;;^UTILITY(U,$J,358.3,15032,0)
- ;;=K85.2^^85^808^6
- ;;^UTILITY(U,$J,358.3,15032,1,0)
+ ;;^UTILITY(U,$J,358.3,15310,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,15310,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,15310,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,15311,0)
+ ;;=Z69.11^^58^658^28
+ ;;^UTILITY(U,$J,358.3,15311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15032,1,3,0)
- ;;=3^Alcohol Induced Acute Pancreatitis
- ;;^UTILITY(U,$J,358.3,15032,1,4,0)
- ;;=4^K85.2
- ;;^UTILITY(U,$J,358.3,15032,2)
- ;;=^5008884
- ;;^UTILITY(U,$J,358.3,15033,0)
- ;;=R05.^^85^808^24
- ;;^UTILITY(U,$J,358.3,15033,1,0)
+ ;;^UTILITY(U,$J,358.3,15311,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Abuse/Neglect
+ ;;^UTILITY(U,$J,358.3,15311,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,15311,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,15312,0)
+ ;;=Z91.410^^58^658^29
+ ;;^UTILITY(U,$J,358.3,15312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15033,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,15033,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,15033,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,15034,0)
- ;;=R06.00^^85^808^35
- ;;^UTILITY(U,$J,358.3,15034,1,0)
+ ;;^UTILITY(U,$J,358.3,15312,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,15312,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,15312,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,15313,0)
+ ;;=Z69.12^^58^658^26
+ ;;^UTILITY(U,$J,358.3,15313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15034,1,3,0)
- ;;=3^Dyspnea,Unspec
- ;;^UTILITY(U,$J,358.3,15034,1,4,0)
- ;;=4^R06.00
- ;;^UTILITY(U,$J,358.3,15034,2)
- ;;=^5019180
- ;;^UTILITY(U,$J,358.3,15035,0)
- ;;=R06.01^^85^808^57
- ;;^UTILITY(U,$J,358.3,15035,1,0)
+ ;;^UTILITY(U,$J,358.3,15313,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Abuse-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,15313,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,15313,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,15314,0)
+ ;;=T74.21XA^^58^658^13
+ ;;^UTILITY(U,$J,358.3,15314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15035,1,3,0)
- ;;=3^Orthopnea
- ;;^UTILITY(U,$J,358.3,15035,1,4,0)
- ;;=4^R06.01
- ;;^UTILITY(U,$J,358.3,15035,2)
- ;;=^186737
- ;;^UTILITY(U,$J,358.3,15036,0)
- ;;=R06.3^^85^808^58
- ;;^UTILITY(U,$J,358.3,15036,1,0)
+ ;;^UTILITY(U,$J,358.3,15314,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,15314,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,15314,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,15315,0)
+ ;;=T74.21XD^^58^658^14
+ ;;^UTILITY(U,$J,358.3,15315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15036,1,3,0)
- ;;=3^Periodic Breathing
- ;;^UTILITY(U,$J,358.3,15036,1,4,0)
- ;;=4^R06.3
- ;;^UTILITY(U,$J,358.3,15036,2)
- ;;=^5019185
- ;;^UTILITY(U,$J,358.3,15037,0)
- ;;=R06.2^^85^808^77
- ;;^UTILITY(U,$J,358.3,15037,1,0)
+ ;;^UTILITY(U,$J,358.3,15315,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,15315,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,15315,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,15316,0)
+ ;;=T76.21XA^^58^658^15
+ ;;^UTILITY(U,$J,358.3,15316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15037,1,3,0)
- ;;=3^Wheezing
- ;;^UTILITY(U,$J,358.3,15037,1,4,0)
- ;;=4^R06.2
- ;;^UTILITY(U,$J,358.3,15037,2)
- ;;=^5019184
- ;;^UTILITY(U,$J,358.3,15038,0)
- ;;=R06.4^^85^808^48
- ;;^UTILITY(U,$J,358.3,15038,1,0)
+ ;;^UTILITY(U,$J,358.3,15316,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,15316,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,15316,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,15317,0)
+ ;;=T76.21XD^^58^658^16
+ ;;^UTILITY(U,$J,358.3,15317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15038,1,3,0)
- ;;=3^Hyperventilation
- ;;^UTILITY(U,$J,358.3,15038,1,4,0)
- ;;=4^R06.4
- ;;^UTILITY(U,$J,358.3,15038,2)
- ;;=^5019186
- ;;^UTILITY(U,$J,358.3,15039,0)
- ;;=R06.6^^85^808^46
- ;;^UTILITY(U,$J,358.3,15039,1,0)
+ ;;^UTILITY(U,$J,358.3,15317,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,15317,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,15317,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,15318,0)
+ ;;=Z69.81^^58^658^27
+ ;;^UTILITY(U,$J,358.3,15318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15039,1,3,0)
- ;;=3^Hiccough
- ;;^UTILITY(U,$J,358.3,15039,1,4,0)
- ;;=4^R06.6
- ;;^UTILITY(U,$J,358.3,15039,2)
- ;;=^5019188
- ;;^UTILITY(U,$J,358.3,15040,0)
- ;;=R06.81^^85^808^13
- ;;^UTILITY(U,$J,358.3,15040,1,0)
+ ;;^UTILITY(U,$J,358.3,15318,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,15318,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,15318,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,15319,0)
+ ;;=Z69.82^^58^658^21
+ ;;^UTILITY(U,$J,358.3,15319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15040,1,3,0)
- ;;=3^Apnea NEC
- ;;^UTILITY(U,$J,358.3,15040,1,4,0)
- ;;=4^R06.81
- ;;^UTILITY(U,$J,358.3,15040,2)
- ;;=^5019190
- ;;^UTILITY(U,$J,358.3,15041,0)
- ;;=R06.82^^85^808^71
- ;;^UTILITY(U,$J,358.3,15041,1,0)
+ ;;^UTILITY(U,$J,358.3,15319,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse,Physical or Sexual
+ ;;^UTILITY(U,$J,358.3,15319,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,15319,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,15320,0)
+ ;;=T74.01XA^^58^658^1
+ ;;^UTILITY(U,$J,358.3,15320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15041,1,3,0)
- ;;=3^Tachypnea NEC
- ;;^UTILITY(U,$J,358.3,15041,1,4,0)
- ;;=4^R06.82
- ;;^UTILITY(U,$J,358.3,15041,2)
- ;;=^5019191
- ;;^UTILITY(U,$J,358.3,15042,0)
- ;;=R06.83^^85^808^68
- ;;^UTILITY(U,$J,358.3,15042,1,0)
+ ;;^UTILITY(U,$J,358.3,15320,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,15320,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,15320,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,15321,0)
+ ;;=T74.01XD^^58^658^2
+ ;;^UTILITY(U,$J,358.3,15321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15042,1,3,0)
- ;;=3^Snoring
- ;;^UTILITY(U,$J,358.3,15042,1,4,0)
- ;;=4^R06.83
- ;;^UTILITY(U,$J,358.3,15042,2)
- ;;=^5019192
- ;;^UTILITY(U,$J,358.3,15043,0)
- ;;=R06.89^^85^808^16
- ;;^UTILITY(U,$J,358.3,15043,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15043,1,3,0)
- ;;=3^Breathing Abnormalities NEC
- ;;^UTILITY(U,$J,358.3,15043,1,4,0)
- ;;=4^R06.89
- ;;^UTILITY(U,$J,358.3,15043,2)
- ;;=^5019193
- ;;^UTILITY(U,$J,358.3,15044,0)
- ;;=R07.1^^85^808^18
- ;;^UTILITY(U,$J,358.3,15044,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15044,1,3,0)
- ;;=3^Chest Pain on Breathing
- ;;^UTILITY(U,$J,358.3,15044,1,4,0)
- ;;=4^R07.1
- ;;^UTILITY(U,$J,358.3,15044,2)
- ;;=^5019196
+ ;;^UTILITY(U,$J,358.3,15321,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 

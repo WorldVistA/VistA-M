@@ -1,136 +1,138 @@
-IBDEI14U ; ; 19-NOV-2015
+IBDEI14U ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18916,1,3,0)
- ;;=3^Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,18916,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,18916,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,18917,0)
- ;;=C20.^^94^916^147
- ;;^UTILITY(U,$J,358.3,18917,1,0)
+ ;;^UTILITY(U,$J,358.3,19271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18917,1,3,0)
- ;;=3^Malig Neop Rectum
- ;;^UTILITY(U,$J,358.3,18917,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,18917,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,18918,0)
- ;;=C64.1^^94^916^152
- ;;^UTILITY(U,$J,358.3,18918,1,0)
+ ;;^UTILITY(U,$J,358.3,19271,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,19271,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,19271,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,19272,0)
+ ;;=Z00.5^^84^914^7
+ ;;^UTILITY(U,$J,358.3,19272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18918,1,3,0)
- ;;=3^Malig Neop Right Kidney,Except Renal pelvis
- ;;^UTILITY(U,$J,358.3,18918,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,18918,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,18919,0)
- ;;=C65.1^^94^916^155
- ;;^UTILITY(U,$J,358.3,18919,1,0)
+ ;;^UTILITY(U,$J,358.3,19272,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,19272,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,19272,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,19273,0)
+ ;;=Z02.3^^84^914^6
+ ;;^UTILITY(U,$J,358.3,19273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18919,1,3,0)
- ;;=3^Malig Neop Right Renal Pelvis
- ;;^UTILITY(U,$J,358.3,18919,1,4,0)
- ;;=4^C65.1
- ;;^UTILITY(U,$J,358.3,18919,2)
- ;;=^5001251
- ;;^UTILITY(U,$J,358.3,18920,0)
- ;;=C62.91^^94^916^156
- ;;^UTILITY(U,$J,358.3,18920,1,0)
+ ;;^UTILITY(U,$J,358.3,19273,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,19273,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,19273,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,19274,0)
+ ;;=Z02.89^^84^914^1
+ ;;^UTILITY(U,$J,358.3,19274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18920,1,3,0)
- ;;=3^Malig Neop Right Testis
- ;;^UTILITY(U,$J,358.3,18920,1,4,0)
- ;;=4^C62.91
- ;;^UTILITY(U,$J,358.3,18920,2)
- ;;=^5001237
- ;;^UTILITY(U,$J,358.3,18921,0)
- ;;=C17.9^^94^916^157
- ;;^UTILITY(U,$J,358.3,18921,1,0)
+ ;;^UTILITY(U,$J,358.3,19274,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,19274,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,19274,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,19275,0)
+ ;;=Z00.8^^84^914^8
+ ;;^UTILITY(U,$J,358.3,19275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18921,1,3,0)
- ;;=3^Malig Neop Small Intestine,Unspec
- ;;^UTILITY(U,$J,358.3,18921,1,4,0)
- ;;=4^C17.9
- ;;^UTILITY(U,$J,358.3,18921,2)
- ;;=^5000926
- ;;^UTILITY(U,$J,358.3,18922,0)
- ;;=C16.9^^94^916^158
- ;;^UTILITY(U,$J,358.3,18922,1,0)
+ ;;^UTILITY(U,$J,358.3,19275,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,19275,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,19275,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,19276,0)
+ ;;=Z02.1^^84^914^14
+ ;;^UTILITY(U,$J,358.3,19276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18922,1,3,0)
- ;;=3^Malig Neop Stomach,Unspec
- ;;^UTILITY(U,$J,358.3,18922,1,4,0)
- ;;=4^C16.9
- ;;^UTILITY(U,$J,358.3,18922,2)
- ;;=^5000923
- ;;^UTILITY(U,$J,358.3,18923,0)
- ;;=C02.9^^94^916^160
- ;;^UTILITY(U,$J,358.3,18923,1,0)
+ ;;^UTILITY(U,$J,358.3,19276,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,19276,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,19276,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,19277,0)
+ ;;=Z01.810^^84^914^2
+ ;;^UTILITY(U,$J,358.3,19277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18923,1,3,0)
- ;;=3^Malig Neop Tongue,Unspec
- ;;^UTILITY(U,$J,358.3,18923,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,18923,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,18924,0)
- ;;=C64.9^^94^916^125
- ;;^UTILITY(U,$J,358.3,18924,1,0)
+ ;;^UTILITY(U,$J,358.3,19277,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19277,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,19277,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,19278,0)
+ ;;=Z01.811^^84^914^16
+ ;;^UTILITY(U,$J,358.3,19278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18924,1,3,0)
- ;;=3^Malig Neop Kidney,Except Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,18924,1,4,0)
- ;;=4^C64.9
- ;;^UTILITY(U,$J,358.3,18924,2)
- ;;=^5001250
- ;;^UTILITY(U,$J,358.3,18925,0)
- ;;=C34.92^^94^916^128
- ;;^UTILITY(U,$J,358.3,18925,1,0)
+ ;;^UTILITY(U,$J,358.3,19278,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19278,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,19278,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,19279,0)
+ ;;=Z01.812^^84^914^13
+ ;;^UTILITY(U,$J,358.3,19279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18925,1,3,0)
- ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,18925,1,4,0)
- ;;=4^C34.92
- ;;^UTILITY(U,$J,358.3,18925,2)
- ;;=^5000968
- ;;^UTILITY(U,$J,358.3,18926,0)
- ;;=C34.90^^94^916^114
- ;;^UTILITY(U,$J,358.3,18926,1,0)
+ ;;^UTILITY(U,$J,358.3,19279,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19279,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,19279,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,19280,0)
+ ;;=Z01.818^^84^914^15
+ ;;^UTILITY(U,$J,358.3,19280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18926,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,18926,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,18926,2)
- ;;=^5000966
- ;;^UTILITY(U,$J,358.3,18927,0)
- ;;=C65.9^^94^916^148
- ;;^UTILITY(U,$J,358.3,18927,1,0)
+ ;;^UTILITY(U,$J,358.3,19280,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,19280,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,19280,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,19281,0)
+ ;;=Z71.0^^84^914^9
+ ;;^UTILITY(U,$J,358.3,19281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18927,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,18927,1,4,0)
- ;;=4^C65.9
- ;;^UTILITY(U,$J,358.3,18927,2)
- ;;=^5001253
- ;;^UTILITY(U,$J,358.3,18928,0)
- ;;=C50.912^^94^916^129
- ;;^UTILITY(U,$J,358.3,18928,1,0)
+ ;;^UTILITY(U,$J,358.3,19281,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,19281,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,19281,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,19282,0)
+ ;;=Z59.8^^84^914^10
+ ;;^UTILITY(U,$J,358.3,19282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18928,1,3,0)
- ;;=3^Malig Neop Left Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,18928,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,18928,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,18929,0)
- ;;=C50.911^^94^916^151
- ;;^UTILITY(U,$J,358.3,18929,1,0)
+ ;;^UTILITY(U,$J,358.3,19282,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,19282,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,19282,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,19283,0)
+ ;;=I20.0^^84^915^14
+ ;;^UTILITY(U,$J,358.3,19283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18929,1,3,0)
- ;;=3^Malig Neop Right Female Breast,Unspec Site
+ ;;^UTILITY(U,$J,358.3,19283,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,19283,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,19283,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,19284,0)
+ ;;=I25.110^^84^915^7
+ ;;^UTILITY(U,$J,358.3,19284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19284,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs

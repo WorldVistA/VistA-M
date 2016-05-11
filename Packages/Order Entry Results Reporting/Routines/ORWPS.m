@@ -1,11 +1,14 @@
-ORWPS ; SLC/KCM/JLI/REV/CLA - Meds Tab; 06/09/2010
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,141,173,203,190,195,265,275,243,280**;Dec 17, 1997;Build 85
- ;;Per VHA Directive 2004-038, this routine should not be modified.
-COVER(LST,DFN) ; retrieve meds for cover sheet
+ORWPS ;SLC/KCM,JLI,REV,CLA - MEDS TAB;12/04/2014  13:06 ;08/31/15  10:47
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,85,116,132,141,173,203,190,195,265,275,243,280,350**;Dec 17, 1997;Build 77
+ ;;Per VHA Directive 6402, this routine should not be modified.
+COVER(LST,DFN,FILTER) ; retrieve meds for cover sheet
+ S FILTER=$G(FILTER,0)
  K ^TMP("PS",$J)
  D OCL^PSOORRL(DFN,"","")
- N ILST,ITMP,X S ILST=0
+ N ILST,ITMP,X,VAIN,VAERR S ILST=0
+ D:FILTER INP^VADPT
  S ITMP="" F  S ITMP=$O(^TMP("PS",$J,ITMP)) Q:'ITMP  D
+ . I FILTER,$G(VAIN(1))>0,$P(^TMP("PS",$J,ITMP,0),U)["N;O" Q
  . S X=^TMP("PS",$J,ITMP,0)
  . I '$L($P(X,U,2)) S X="??"  ; show something if drug empty
  . I $D(^TMP("PS",$J,ITMP,"CLINIC",0)) S LST($$NXT)=$P(X,U,1,2)_U_$P(X,U,8,9)_U_"C"
@@ -182,16 +185,15 @@ DETAIL(ROOT,DFN,ID) ; -- show details for a med order
  Q
 MEDHIST(ORROOT,DFN,ORIFN) ; -- show admin history for a med  (RV)
  N ORPSID,HPIV,ISIV,CKPKG,ORPHMID
- N CLINDISP,IVDIAL
+ N CLIVDISP
  S ORPSID=+$P($$OI^ORX8(ORIFN),U,3),ISIV=0,HPIV=0
  S ORROOT=$NA(^TMP("ORHIST",$J)) K @ORROOT
  S ORPHMID=$G(^OR(100,+ORIFN,4))  ;Pharmacy order number
  S ISIV=$O(^ORD(100.98,"B","IV RX",ISIV))
  S HPIV=$O(^ORD(100.98,"B","TPN",HPIV))
- S CLINDISP=$O(^ORD(100.98,"B","C RX",""))
- S IVDIAL=$O(^ORD(101.41,"B","PSJI OR PAT FLUID OE",""))
+ S CLIVDISP=$O(^ORD(100.98,"B","CI RX",""))
  S CKPKG=$$PATCH^XPDUTL("PSB*2.0*19")
- ;if the order is pending or the order has no pharmacy # 
+ ;if the order is pending or the order has no pharmacy #
  ;or the order is not in the Display Group IV MEDICATION
  ; then use the Orderable item number to get the MAH.
  I (ORPHMID["P")!(ORPHMID="") D  Q
@@ -199,7 +201,7 @@ MEDHIST(ORROOT,DFN,ORIFN) ; -- show admin history for a med  (RV)
  . . S @ORROOT@(0)="This report is only available using BCMA version 2.0."
  . D HISTORY^PSBMLHS(.ORROOT,DFN,ORPSID)  ; DBIA #3459 for BCMA v2.0
  ; If the order has a Display Group of IV MEDICATION the use the Pharmacy order number to get the MA
- I ($P($G(^OR(100,+ORIFN,0)),U,11)=ISIV)!($P($G(^OR(100,+ORIFN,0)),U,11)=HPIV)!(($P($G(^OR(100,+ORIFN,0)),U,11)=CLINDISP)&(+$P($G(^OR(100,+ORIFN,0)),U,5)=IVDIAL)) D  Q
+ I ($P($G(^OR(100,+ORIFN,0)),U,11)=ISIV)!($P($G(^OR(100,+ORIFN,0)),U,11)=HPIV)!($P($G(^OR(100,+ORIFN,0)),U,11)=CLIVDISP) D  Q
  . I 'CKPKG S @ORROOT@(0)="Medication Administration History is not available at this time for IV fluids."
  . I CKPKG D
  . . D RPC^PSBO(.ORROOT,"PM",DFN,"","","","","","","","","",ORPHMID)  ;DBIA #3955

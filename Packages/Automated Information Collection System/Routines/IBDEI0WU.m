@@ -1,140 +1,126 @@
-IBDEI0WU ; ; 19-NOV-2015
+IBDEI0WU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15139,1,4,0)
- ;;=4^K43.9
- ;;^UTILITY(U,$J,358.3,15139,2)
- ;;=^5008615
- ;;^UTILITY(U,$J,358.3,15140,0)
- ;;=K44.9^^85^809^24
- ;;^UTILITY(U,$J,358.3,15140,1,0)
+ ;;^UTILITY(U,$J,358.3,15408,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,15409,0)
+ ;;=B20.^^58^662^18
+ ;;^UTILITY(U,$J,358.3,15409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15140,1,3,0)
- ;;=3^Diaphragmatic Hernia
- ;;^UTILITY(U,$J,358.3,15140,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,15140,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,15141,0)
- ;;=K56.49^^85^809^43
- ;;^UTILITY(U,$J,358.3,15141,1,0)
+ ;;^UTILITY(U,$J,358.3,15409,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15409,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,15409,2)
+ ;;=^5000555^F02.81
+ ;;^UTILITY(U,$J,358.3,15410,0)
+ ;;=B20.^^58^662^19
+ ;;^UTILITY(U,$J,358.3,15410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15141,1,3,0)
- ;;=3^Impaction of Intestine NEC
- ;;^UTILITY(U,$J,358.3,15141,1,4,0)
- ;;=4^K56.49
- ;;^UTILITY(U,$J,358.3,15141,2)
- ;;=^87650
- ;;^UTILITY(U,$J,358.3,15142,0)
- ;;=K58.0^^85^809^46
- ;;^UTILITY(U,$J,358.3,15142,1,0)
+ ;;^UTILITY(U,$J,358.3,15410,1,3,0)
+ ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15410,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,15410,2)
+ ;;=^5000555^F02.80
+ ;;^UTILITY(U,$J,358.3,15411,0)
+ ;;=G10.^^58^662^20
+ ;;^UTILITY(U,$J,358.3,15411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15142,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/ Diarrhea
- ;;^UTILITY(U,$J,358.3,15142,1,4,0)
- ;;=4^K58.0
- ;;^UTILITY(U,$J,358.3,15142,2)
- ;;=^5008739
- ;;^UTILITY(U,$J,358.3,15143,0)
- ;;=K58.9^^85^809^47
- ;;^UTILITY(U,$J,358.3,15143,1,0)
+ ;;^UTILITY(U,$J,358.3,15411,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15411,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,15411,2)
+ ;;=^5003751^F02.81
+ ;;^UTILITY(U,$J,358.3,15412,0)
+ ;;=G10.^^58^662^21
+ ;;^UTILITY(U,$J,358.3,15412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15143,1,3,0)
- ;;=3^Irritable Bowel Syndrome w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,15143,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,15143,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,15144,0)
- ;;=K59.00^^85^809^22
- ;;^UTILITY(U,$J,358.3,15144,1,0)
+ ;;^UTILITY(U,$J,358.3,15412,1,3,0)
+ ;;=3^Huntington's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15412,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,15412,2)
+ ;;=^5003751^F02.80
+ ;;^UTILITY(U,$J,358.3,15413,0)
+ ;;=G90.3^^58^662^25
+ ;;^UTILITY(U,$J,358.3,15413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15144,1,3,0)
- ;;=3^Constipation,Unspec
- ;;^UTILITY(U,$J,358.3,15144,1,4,0)
- ;;=4^K59.00
- ;;^UTILITY(U,$J,358.3,15144,2)
- ;;=^323537
- ;;^UTILITY(U,$J,358.3,15145,0)
- ;;=K61.0^^85^809^4
- ;;^UTILITY(U,$J,358.3,15145,1,0)
+ ;;^UTILITY(U,$J,358.3,15413,1,3,0)
+ ;;=3^Multi-System Degeneration of the Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,15413,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,15413,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,15414,0)
+ ;;=G91.2^^58^662^26
+ ;;^UTILITY(U,$J,358.3,15414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15145,1,3,0)
- ;;=3^Anal Abscess
- ;;^UTILITY(U,$J,358.3,15145,1,4,0)
- ;;=4^K61.0
- ;;^UTILITY(U,$J,358.3,15145,2)
- ;;=^5008749
- ;;^UTILITY(U,$J,358.3,15146,0)
- ;;=K61.1^^85^809^88
- ;;^UTILITY(U,$J,358.3,15146,1,0)
+ ;;^UTILITY(U,$J,358.3,15414,1,3,0)
+ ;;=3^NPH w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15414,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,15414,2)
+ ;;=^5004174^F02.81
+ ;;^UTILITY(U,$J,358.3,15415,0)
+ ;;=G91.2^^58^662^27
+ ;;^UTILITY(U,$J,358.3,15415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15146,1,3,0)
- ;;=3^Rectal Abscess
- ;;^UTILITY(U,$J,358.3,15146,1,4,0)
- ;;=4^K61.1
- ;;^UTILITY(U,$J,358.3,15146,2)
- ;;=^259588
- ;;^UTILITY(U,$J,358.3,15147,0)
- ;;=K61.2^^85^809^5
- ;;^UTILITY(U,$J,358.3,15147,1,0)
+ ;;^UTILITY(U,$J,358.3,15415,1,3,0)
+ ;;=3^NPH w/ Dementia w/o Behavorial Disturbances
+ ;;^UTILITY(U,$J,358.3,15415,1,4,0)
+ ;;=4^G91.2
+ ;;^UTILITY(U,$J,358.3,15415,2)
+ ;;=^5004174^F02.80
+ ;;^UTILITY(U,$J,358.3,15416,0)
+ ;;=G30.8^^58^662^2
+ ;;^UTILITY(U,$J,358.3,15416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15147,1,3,0)
- ;;=3^Anorectal Abscess
- ;;^UTILITY(U,$J,358.3,15147,1,4,0)
- ;;=4^K61.2
- ;;^UTILITY(U,$J,358.3,15147,2)
- ;;=^5008750
- ;;^UTILITY(U,$J,358.3,15148,0)
- ;;=K61.3^^85^809^48
- ;;^UTILITY(U,$J,358.3,15148,1,0)
+ ;;^UTILITY(U,$J,358.3,15416,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,15416,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,15416,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,15417,0)
+ ;;=A81.89^^58^662^6
+ ;;^UTILITY(U,$J,358.3,15417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15148,1,3,0)
- ;;=3^Ischiorectal Abscess
- ;;^UTILITY(U,$J,358.3,15148,1,4,0)
- ;;=4^K61.3
- ;;^UTILITY(U,$J,358.3,15148,2)
- ;;=^5008751
- ;;^UTILITY(U,$J,358.3,15149,0)
- ;;=K61.4^^85^809^45
- ;;^UTILITY(U,$J,358.3,15149,1,0)
+ ;;^UTILITY(U,$J,358.3,15417,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,15417,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,15417,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,15418,0)
+ ;;=F19.97^^58^662^35
+ ;;^UTILITY(U,$J,358.3,15418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15149,1,3,0)
- ;;=3^Intrasphincteric Abscess
- ;;^UTILITY(U,$J,358.3,15149,1,4,0)
- ;;=4^K61.4
- ;;^UTILITY(U,$J,358.3,15149,2)
- ;;=^5008752
- ;;^UTILITY(U,$J,358.3,15150,0)
- ;;=K63.5^^85^809^17
- ;;^UTILITY(U,$J,358.3,15150,1,0)
+ ;;^UTILITY(U,$J,358.3,15418,1,3,0)
+ ;;=3^Psychoactive Substance Use w/ Persisting Dementia NEC
+ ;;^UTILITY(U,$J,358.3,15418,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,15418,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,15419,0)
+ ;;=G20.^^58^662^28
+ ;;^UTILITY(U,$J,358.3,15419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15150,1,3,0)
- ;;=3^Colon Polyp
- ;;^UTILITY(U,$J,358.3,15150,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,15150,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,15151,0)
- ;;=K70.2^^85^809^3
- ;;^UTILITY(U,$J,358.3,15151,1,0)
+ ;;^UTILITY(U,$J,358.3,15419,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15419,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,15419,2)
+ ;;=^5003770^F02.81
+ ;;^UTILITY(U,$J,358.3,15420,0)
+ ;;=G20.^^58^662^29
+ ;;^UTILITY(U,$J,358.3,15420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15151,1,3,0)
- ;;=3^Alcoholic Fibrosis/Sclerosis of Liver
- ;;^UTILITY(U,$J,358.3,15151,1,4,0)
- ;;=4^K70.2
- ;;^UTILITY(U,$J,358.3,15151,2)
- ;;=^5008787
- ;;^UTILITY(U,$J,358.3,15152,0)
- ;;=K80.20^^85^809^14
- ;;^UTILITY(U,$J,358.3,15152,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15152,1,3,0)
- ;;=3^Calculus of Gallbladder w/o Cholecystitis/Obstruction
- ;;^UTILITY(U,$J,358.3,15152,1,4,0)
- ;;=4^K80.20
- ;;^UTILITY(U,$J,358.3,15152,2)
- ;;=^5008846
- ;;^UTILITY(U,$J,358.3,15153,0)
- ;;=K80.80^^85^809^16
+ ;;^UTILITY(U,$J,358.3,15420,1,3,0)
+ ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
+ ;;^UTILITY(U,$J,358.3,15420,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,15420,2)
+ ;;=^5003770^F02.80

@@ -1,138 +1,124 @@
-IBDEI03W ; ; 19-NOV-2015
+IBDEI03W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1117,1,0)
+ ;;^UTILITY(U,$J,358.3,1393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1117,1,3,0)
- ;;=3^Osteomyelofibrosis
- ;;^UTILITY(U,$J,358.3,1117,1,4,0)
- ;;=4^D47.4
- ;;^UTILITY(U,$J,358.3,1117,2)
- ;;=^5002259
- ;;^UTILITY(U,$J,358.3,1118,0)
- ;;=I34.1^^12^130^10
- ;;^UTILITY(U,$J,358.3,1118,1,0)
+ ;;^UTILITY(U,$J,358.3,1393,1,3,0)
+ ;;=3^Poisoning by antineopl and immunosup drugs, undet, sequela
+ ;;^UTILITY(U,$J,358.3,1393,1,4,0)
+ ;;=4^T45.1X4S
+ ;;^UTILITY(U,$J,358.3,1393,2)
+ ;;=^5051025
+ ;;^UTILITY(U,$J,358.3,1394,0)
+ ;;=T36.8X1A^^8^135^42
+ ;;^UTILITY(U,$J,358.3,1394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1118,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,1118,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,1118,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,1119,0)
- ;;=E66.9^^12^130^12
- ;;^UTILITY(U,$J,358.3,1119,1,0)
+ ;;^UTILITY(U,$J,358.3,1394,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, accidental, init
+ ;;^UTILITY(U,$J,358.3,1394,1,4,0)
+ ;;=4^T36.8X1A
+ ;;^UTILITY(U,$J,358.3,1394,2)
+ ;;=^5049400
+ ;;^UTILITY(U,$J,358.3,1395,0)
+ ;;=T36.8X1D^^8^135^43
+ ;;^UTILITY(U,$J,358.3,1395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1119,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,1119,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,1119,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,1120,0)
- ;;=E66.01^^12^130^11
- ;;^UTILITY(U,$J,358.3,1120,1,0)
+ ;;^UTILITY(U,$J,358.3,1395,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, accidental, subs
+ ;;^UTILITY(U,$J,358.3,1395,1,4,0)
+ ;;=4^T36.8X1D
+ ;;^UTILITY(U,$J,358.3,1395,2)
+ ;;=^5049401
+ ;;^UTILITY(U,$J,358.3,1396,0)
+ ;;=T36.8X1S^^8^135^44
+ ;;^UTILITY(U,$J,358.3,1396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1120,1,3,0)
- ;;=3^Obesity,Morbid
- ;;^UTILITY(U,$J,358.3,1120,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,1120,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,1121,0)
- ;;=G60.9^^12^130^3
- ;;^UTILITY(U,$J,358.3,1121,1,0)
+ ;;^UTILITY(U,$J,358.3,1396,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,1396,1,4,0)
+ ;;=4^T36.8X1S
+ ;;^UTILITY(U,$J,358.3,1396,2)
+ ;;=^5049402
+ ;;^UTILITY(U,$J,358.3,1397,0)
+ ;;=T36.8X3A^^8^135^45
+ ;;^UTILITY(U,$J,358.3,1397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1121,1,3,0)
- ;;=3^Neuropathy,Hereditary & Idiopathic Unspec
- ;;^UTILITY(U,$J,358.3,1121,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,1121,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,1122,0)
- ;;=H60.311^^12^130^24
- ;;^UTILITY(U,$J,358.3,1122,1,0)
+ ;;^UTILITY(U,$J,358.3,1397,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, assault, init encntr
+ ;;^UTILITY(U,$J,358.3,1397,1,4,0)
+ ;;=4^T36.8X3A
+ ;;^UTILITY(U,$J,358.3,1397,2)
+ ;;=^5049406
+ ;;^UTILITY(U,$J,358.3,1398,0)
+ ;;=T36.8X3D^^8^135^46
+ ;;^UTILITY(U,$J,358.3,1398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1122,1,3,0)
- ;;=3^Otitis Externa Diffused,Right Ear
- ;;^UTILITY(U,$J,358.3,1122,1,4,0)
- ;;=4^H60.311
- ;;^UTILITY(U,$J,358.3,1122,2)
- ;;=^5006447
- ;;^UTILITY(U,$J,358.3,1123,0)
- ;;=H60.312^^12^130^23
- ;;^UTILITY(U,$J,358.3,1123,1,0)
+ ;;^UTILITY(U,$J,358.3,1398,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, assault, subs encntr
+ ;;^UTILITY(U,$J,358.3,1398,1,4,0)
+ ;;=4^T36.8X3D
+ ;;^UTILITY(U,$J,358.3,1398,2)
+ ;;=^5049407
+ ;;^UTILITY(U,$J,358.3,1399,0)
+ ;;=T36.8X3S^^8^135^53
+ ;;^UTILITY(U,$J,358.3,1399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1123,1,3,0)
- ;;=3^Otitis Externa Diffused,Left Ear
- ;;^UTILITY(U,$J,358.3,1123,1,4,0)
- ;;=4^H60.312
- ;;^UTILITY(U,$J,358.3,1123,2)
- ;;=^5006448
- ;;^UTILITY(U,$J,358.3,1124,0)
- ;;=H60.313^^12^130^22
- ;;^UTILITY(U,$J,358.3,1124,1,0)
+ ;;^UTILITY(U,$J,358.3,1399,1,3,0)
+ ;;=3^Poisoning by other systemic antibiotics, assault, sequela
+ ;;^UTILITY(U,$J,358.3,1399,1,4,0)
+ ;;=4^T36.8X3S
+ ;;^UTILITY(U,$J,358.3,1399,2)
+ ;;=^5049408
+ ;;^UTILITY(U,$J,358.3,1400,0)
+ ;;=T36.8X2A^^8^135^47
+ ;;^UTILITY(U,$J,358.3,1400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1124,1,3,0)
- ;;=3^Otitis Externa Diffused,Bilateral
- ;;^UTILITY(U,$J,358.3,1124,1,4,0)
- ;;=4^H60.313
- ;;^UTILITY(U,$J,358.3,1124,2)
- ;;=^5006449
- ;;^UTILITY(U,$J,358.3,1125,0)
- ;;=H60.321^^12^130^27
- ;;^UTILITY(U,$J,358.3,1125,1,0)
+ ;;^UTILITY(U,$J,358.3,1400,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, self-harm, init
+ ;;^UTILITY(U,$J,358.3,1400,1,4,0)
+ ;;=4^T36.8X2A
+ ;;^UTILITY(U,$J,358.3,1400,2)
+ ;;=^5049403
+ ;;^UTILITY(U,$J,358.3,1401,0)
+ ;;=T36.8X2D^^8^135^48
+ ;;^UTILITY(U,$J,358.3,1401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1125,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Right Ear
- ;;^UTILITY(U,$J,358.3,1125,1,4,0)
- ;;=4^H60.321
- ;;^UTILITY(U,$J,358.3,1125,2)
- ;;=^5006451
- ;;^UTILITY(U,$J,358.3,1126,0)
- ;;=H60.322^^12^130^26
- ;;^UTILITY(U,$J,358.3,1126,1,0)
+ ;;^UTILITY(U,$J,358.3,1401,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, self-harm, subs
+ ;;^UTILITY(U,$J,358.3,1401,1,4,0)
+ ;;=4^T36.8X2D
+ ;;^UTILITY(U,$J,358.3,1401,2)
+ ;;=^5049404
+ ;;^UTILITY(U,$J,358.3,1402,0)
+ ;;=T36.8X2S^^8^135^49
+ ;;^UTILITY(U,$J,358.3,1402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1126,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Left Ear
- ;;^UTILITY(U,$J,358.3,1126,1,4,0)
- ;;=4^H60.322
- ;;^UTILITY(U,$J,358.3,1126,2)
- ;;=^5006452
- ;;^UTILITY(U,$J,358.3,1127,0)
- ;;=H60.323^^12^130^25
- ;;^UTILITY(U,$J,358.3,1127,1,0)
+ ;;^UTILITY(U,$J,358.3,1402,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,1402,1,4,0)
+ ;;=4^T36.8X2S
+ ;;^UTILITY(U,$J,358.3,1402,2)
+ ;;=^5049405
+ ;;^UTILITY(U,$J,358.3,1403,0)
+ ;;=T36.8X4A^^8^135^50
+ ;;^UTILITY(U,$J,358.3,1403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1127,1,3,0)
- ;;=3^Otitis Externa Hemorrhagic,Bilateral
- ;;^UTILITY(U,$J,358.3,1127,1,4,0)
- ;;=4^H60.323
- ;;^UTILITY(U,$J,358.3,1127,2)
- ;;=^5006453
- ;;^UTILITY(U,$J,358.3,1128,0)
- ;;=H60.391^^12^130^30
- ;;^UTILITY(U,$J,358.3,1128,1,0)
+ ;;^UTILITY(U,$J,358.3,1403,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, undetermined, init
+ ;;^UTILITY(U,$J,358.3,1403,1,4,0)
+ ;;=4^T36.8X4A
+ ;;^UTILITY(U,$J,358.3,1403,2)
+ ;;=^5049409
+ ;;^UTILITY(U,$J,358.3,1404,0)
+ ;;=T36.8X4D^^8^135^51
+ ;;^UTILITY(U,$J,358.3,1404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1128,1,3,0)
- ;;=3^Otitis Externa Infective,Right Ear
- ;;^UTILITY(U,$J,358.3,1128,1,4,0)
- ;;=4^H60.391
- ;;^UTILITY(U,$J,358.3,1128,2)
- ;;=^5006459
- ;;^UTILITY(U,$J,358.3,1129,0)
- ;;=H60.392^^12^130^29
- ;;^UTILITY(U,$J,358.3,1129,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1129,1,3,0)
- ;;=3^Otitis Externa Infective,Left Ear
- ;;^UTILITY(U,$J,358.3,1129,1,4,0)
- ;;=4^H60.392
- ;;^UTILITY(U,$J,358.3,1129,2)
- ;;=^5006460
- ;;^UTILITY(U,$J,358.3,1130,0)
- ;;=H60.323^^12^130^28
- ;;^UTILITY(U,$J,358.3,1130,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1130,1,3,0)
- ;;=3^Otitis Externa Infective,Bilateral
+ ;;^UTILITY(U,$J,358.3,1404,1,3,0)
+ ;;=3^Poisoning by oth systemic antibiotics, undetermined, subs
+ ;;^UTILITY(U,$J,358.3,1404,1,4,0)
+ ;;=4^T36.8X4D
+ ;;^UTILITY(U,$J,358.3,1404,2)
+ ;;=^5049410
+ ;;^UTILITY(U,$J,358.3,1405,0)
+ ;;=T36.8X4S^^8^135^52

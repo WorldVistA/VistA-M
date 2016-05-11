@@ -1,136 +1,134 @@
-IBDEI1CZ ; ; 19-NOV-2015
+IBDEI1CZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22646,1,3,0)
- ;;=3^Anemia,Folate Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,22646,1,4,0)
- ;;=4^D52.9
- ;;^UTILITY(U,$J,358.3,22646,2)
- ;;=^5002293
- ;;^UTILITY(U,$J,358.3,22647,0)
- ;;=D52.0^^104^1054^11
- ;;^UTILITY(U,$J,358.3,22647,1,0)
+ ;;^UTILITY(U,$J,358.3,23092,0)
+ ;;=D86.85^^87^991^42
+ ;;^UTILITY(U,$J,358.3,23092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22647,1,3,0)
- ;;=3^Anemia,Folate Deficiency,Dietary
- ;;^UTILITY(U,$J,358.3,22647,1,4,0)
- ;;=4^D52.0
- ;;^UTILITY(U,$J,358.3,22647,2)
- ;;=^5002290
- ;;^UTILITY(U,$J,358.3,22648,0)
- ;;=D52.1^^104^1054^12
- ;;^UTILITY(U,$J,358.3,22648,1,0)
+ ;;^UTILITY(U,$J,358.3,23092,1,3,0)
+ ;;=3^Sarcoid Myocarditis
+ ;;^UTILITY(U,$J,358.3,23092,1,4,0)
+ ;;=4^D86.85
+ ;;^UTILITY(U,$J,358.3,23092,2)
+ ;;=^5002450
+ ;;^UTILITY(U,$J,358.3,23093,0)
+ ;;=D86.83^^87^991^40
+ ;;^UTILITY(U,$J,358.3,23093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22648,1,3,0)
- ;;=3^Anemia,Folate Deficiency,Drug-Induced
- ;;^UTILITY(U,$J,358.3,22648,1,4,0)
- ;;=4^D52.1
- ;;^UTILITY(U,$J,358.3,22648,2)
- ;;=^5002291
- ;;^UTILITY(U,$J,358.3,22649,0)
- ;;=D59.9^^104^1054^14
- ;;^UTILITY(U,$J,358.3,22649,1,0)
+ ;;^UTILITY(U,$J,358.3,23093,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,23093,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,23093,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,23094,0)
+ ;;=D84.1^^87^991^16
+ ;;^UTILITY(U,$J,358.3,23094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22649,1,3,0)
- ;;=3^Anemia,Hemolytic,Acquired
- ;;^UTILITY(U,$J,358.3,22649,1,4,0)
- ;;=4^D59.9
- ;;^UTILITY(U,$J,358.3,22649,2)
- ;;=^5002330
- ;;^UTILITY(U,$J,358.3,22650,0)
- ;;=D59.1^^104^1054^15
- ;;^UTILITY(U,$J,358.3,22650,1,0)
+ ;;^UTILITY(U,$J,358.3,23094,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,23094,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,23094,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,23095,0)
+ ;;=D81.810^^87^991^5
+ ;;^UTILITY(U,$J,358.3,23095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22650,1,3,0)
- ;;=3^Anemia,Hemolytic,Autoimmune
- ;;^UTILITY(U,$J,358.3,22650,1,4,0)
- ;;=4^D59.1
- ;;^UTILITY(U,$J,358.3,22650,2)
- ;;=^5002324
- ;;^UTILITY(U,$J,358.3,22651,0)
- ;;=D58.9^^104^1054^16
- ;;^UTILITY(U,$J,358.3,22651,1,0)
+ ;;^UTILITY(U,$J,358.3,23095,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,23095,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,23095,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,23096,0)
+ ;;=E88.01^^87^991^2
+ ;;^UTILITY(U,$J,358.3,23096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22651,1,3,0)
- ;;=3^Anemia,Hemolytic,Hereditary,Unspec
- ;;^UTILITY(U,$J,358.3,22651,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,22651,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,22652,0)
- ;;=D59.4^^104^1054^17
- ;;^UTILITY(U,$J,358.3,22652,1,0)
+ ;;^UTILITY(U,$J,358.3,23096,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,23096,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,23096,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,23097,0)
+ ;;=J09.X1^^87^991^25
+ ;;^UTILITY(U,$J,358.3,23097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22652,1,3,0)
- ;;=3^Anemia,Hemolytic,Nonautoimmune
- ;;^UTILITY(U,$J,358.3,22652,1,4,0)
- ;;=4^D59.4
- ;;^UTILITY(U,$J,358.3,22652,2)
- ;;=^5002326
- ;;^UTILITY(U,$J,358.3,22653,0)
- ;;=D58.0^^104^1054^30
- ;;^UTILITY(U,$J,358.3,22653,1,0)
+ ;;^UTILITY(U,$J,358.3,23097,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,23097,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,23097,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,23098,0)
+ ;;=J09.X2^^87^991^26
+ ;;^UTILITY(U,$J,358.3,23098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22653,1,3,0)
- ;;=3^Spherocytosis,Hereditary
- ;;^UTILITY(U,$J,358.3,22653,1,4,0)
- ;;=4^D58.0
- ;;^UTILITY(U,$J,358.3,22653,2)
- ;;=^5002321
- ;;^UTILITY(U,$J,358.3,22654,0)
- ;;=D50.9^^104^1054^18
- ;;^UTILITY(U,$J,358.3,22654,1,0)
+ ;;^UTILITY(U,$J,358.3,23098,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,23098,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,23098,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,23099,0)
+ ;;=J09.X3^^87^991^27
+ ;;^UTILITY(U,$J,358.3,23099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22654,1,3,0)
- ;;=3^Anemia,Iron Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,22654,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,22654,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,22655,0)
- ;;=D61.82^^104^1054^28
- ;;^UTILITY(U,$J,358.3,22655,1,0)
+ ;;^UTILITY(U,$J,358.3,23099,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,23099,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,23099,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,23100,0)
+ ;;=J09.X9^^87^991^28
+ ;;^UTILITY(U,$J,358.3,23100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22655,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,22655,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,22655,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,22656,0)
- ;;=D53.2^^104^1054^21
- ;;^UTILITY(U,$J,358.3,22656,1,0)
+ ;;^UTILITY(U,$J,358.3,23100,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,23100,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,23100,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,23101,0)
+ ;;=J44.9^^87^991^14
+ ;;^UTILITY(U,$J,358.3,23101,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22656,1,3,0)
- ;;=3^Anemia,Scorbutic
- ;;^UTILITY(U,$J,358.3,22656,1,4,0)
- ;;=4^D53.2
- ;;^UTILITY(U,$J,358.3,22656,2)
- ;;=^5002296
- ;;^UTILITY(U,$J,358.3,22657,0)
- ;;=D51.0^^104^1054^26
- ;;^UTILITY(U,$J,358.3,22657,1,0)
+ ;;^UTILITY(U,$J,358.3,23101,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,23101,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,23101,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,23102,0)
+ ;;=J44.1^^87^991^12
+ ;;^UTILITY(U,$J,358.3,23102,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22657,1,3,0)
- ;;=3^Anemia,Vit B12 Defic d/t Intrinsic Factor Deficiency
- ;;^UTILITY(U,$J,358.3,22657,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,22657,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,22658,0)
- ;;=D57.1^^104^1054^29
- ;;^UTILITY(U,$J,358.3,22658,1,0)
+ ;;^UTILITY(U,$J,358.3,23102,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,23102,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,23102,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,23103,0)
+ ;;=J42.^^87^991^10
+ ;;^UTILITY(U,$J,358.3,23103,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22658,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,22658,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,22658,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,22659,0)
- ;;=D64.0^^104^1054^22
- ;;^UTILITY(U,$J,358.3,22659,1,0)
+ ;;^UTILITY(U,$J,358.3,23103,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,23103,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,23103,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,23104,0)
+ ;;=J43.9^^87^991^22
+ ;;^UTILITY(U,$J,358.3,23104,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22659,1,3,0)
- ;;=3^Anemia,Sideroblastic,Hereditary
+ ;;^UTILITY(U,$J,358.3,23104,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,23104,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,23104,2)
+ ;;=^5008238

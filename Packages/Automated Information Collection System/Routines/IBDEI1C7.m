@@ -1,122 +1,134 @@
-IBDEI1C7 ; ; 19-NOV-2015
+IBDEI1C7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22279,2)
- ;;=^5021574
- ;;^UTILITY(U,$J,358.3,22280,0)
- ;;=M48.42XS^^101^1039^11
- ;;^UTILITY(U,$J,358.3,22280,1,0)
+ ;;^UTILITY(U,$J,358.3,22727,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,22728,0)
+ ;;=N76.2^^87^983^91
+ ;;^UTILITY(U,$J,358.3,22728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22280,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervical region, sqla
- ;;^UTILITY(U,$J,358.3,22280,1,4,0)
- ;;=4^M48.42XS
- ;;^UTILITY(U,$J,358.3,22280,2)
- ;;=^5012134
- ;;^UTILITY(U,$J,358.3,22281,0)
- ;;=M48.43XS^^101^1039^12
- ;;^UTILITY(U,$J,358.3,22281,1,0)
+ ;;^UTILITY(U,$J,358.3,22728,1,3,0)
+ ;;=3^Vulvitis,Acute
+ ;;^UTILITY(U,$J,358.3,22728,1,4,0)
+ ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,22728,2)
+ ;;=^5015828
+ ;;^UTILITY(U,$J,358.3,22729,0)
+ ;;=N76.0^^87^983^87
+ ;;^UTILITY(U,$J,358.3,22729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22281,1,3,0)
- ;;=3^Fatigue fracture of vertebra, cervicothoracic region, sqla
- ;;^UTILITY(U,$J,358.3,22281,1,4,0)
- ;;=4^M48.43XS
- ;;^UTILITY(U,$J,358.3,22281,2)
- ;;=^5012138
- ;;^UTILITY(U,$J,358.3,22282,0)
- ;;=M48.46XS^^101^1039^13
- ;;^UTILITY(U,$J,358.3,22282,1,0)
+ ;;^UTILITY(U,$J,358.3,22729,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,22729,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,22729,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,22730,0)
+ ;;=M00.20^^87^983^3
+ ;;^UTILITY(U,$J,358.3,22730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22282,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbar region, sqla
- ;;^UTILITY(U,$J,358.3,22282,1,4,0)
- ;;=4^M48.46XS
- ;;^UTILITY(U,$J,358.3,22282,2)
- ;;=^5012150
- ;;^UTILITY(U,$J,358.3,22283,0)
- ;;=M48.47XS^^101^1039^14
- ;;^UTILITY(U,$J,358.3,22283,1,0)
+ ;;^UTILITY(U,$J,358.3,22730,1,3,0)
+ ;;=3^Arthritis Streptococcal,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,22730,1,4,0)
+ ;;=4^M00.20
+ ;;^UTILITY(U,$J,358.3,22730,2)
+ ;;=^5009645
+ ;;^UTILITY(U,$J,358.3,22731,0)
+ ;;=M00.80^^87^983^4
+ ;;^UTILITY(U,$J,358.3,22731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22283,1,3,0)
- ;;=3^Fatigue fracture of vertebra, lumbosacral region, sqla
- ;;^UTILITY(U,$J,358.3,22283,1,4,0)
- ;;=4^M48.47XS
- ;;^UTILITY(U,$J,358.3,22283,2)
- ;;=^5012154
- ;;^UTILITY(U,$J,358.3,22284,0)
- ;;=M48.41XS^^101^1039^15
- ;;^UTILITY(U,$J,358.3,22284,1,0)
+ ;;^UTILITY(U,$J,358.3,22731,1,3,0)
+ ;;=3^Arthritis d/t Bacteria,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,22731,1,4,0)
+ ;;=4^M00.80
+ ;;^UTILITY(U,$J,358.3,22731,2)
+ ;;=^5009669
+ ;;^UTILITY(U,$J,358.3,22732,0)
+ ;;=M00.9^^87^983^72
+ ;;^UTILITY(U,$J,358.3,22732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22284,1,3,0)
- ;;=3^Fatigue fracture of vertebra, occipt-atlan-ax region, sqla
- ;;^UTILITY(U,$J,358.3,22284,1,4,0)
- ;;=4^M48.41XS
- ;;^UTILITY(U,$J,358.3,22284,2)
- ;;=^5012130
- ;;^UTILITY(U,$J,358.3,22285,0)
- ;;=M48.48XS^^101^1039^16
- ;;^UTILITY(U,$J,358.3,22285,1,0)
+ ;;^UTILITY(U,$J,358.3,22732,1,3,0)
+ ;;=3^Pyogenic Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,22732,1,4,0)
+ ;;=4^M00.9
+ ;;^UTILITY(U,$J,358.3,22732,2)
+ ;;=^5009693
+ ;;^UTILITY(U,$J,358.3,22733,0)
+ ;;=M00.00^^87^983^78
+ ;;^UTILITY(U,$J,358.3,22733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22285,1,3,0)
- ;;=3^Fatigue fracture of vertebra, sacr/sacrocygl region, sqla
- ;;^UTILITY(U,$J,358.3,22285,1,4,0)
- ;;=4^M48.48XS
- ;;^UTILITY(U,$J,358.3,22285,2)
- ;;=^5012158
- ;;^UTILITY(U,$J,358.3,22286,0)
- ;;=M48.44XS^^101^1039^17
- ;;^UTILITY(U,$J,358.3,22286,1,0)
+ ;;^UTILITY(U,$J,358.3,22733,1,3,0)
+ ;;=3^Staphylococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,22733,1,4,0)
+ ;;=4^M00.00
+ ;;^UTILITY(U,$J,358.3,22733,2)
+ ;;=^5009597
+ ;;^UTILITY(U,$J,358.3,22734,0)
+ ;;=M00.10^^87^983^65
+ ;;^UTILITY(U,$J,358.3,22734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22286,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracic region, sqla
- ;;^UTILITY(U,$J,358.3,22286,1,4,0)
- ;;=4^M48.44XS
- ;;^UTILITY(U,$J,358.3,22286,2)
- ;;=^5012142
- ;;^UTILITY(U,$J,358.3,22287,0)
- ;;=M48.45XS^^101^1039^18
- ;;^UTILITY(U,$J,358.3,22287,1,0)
+ ;;^UTILITY(U,$J,358.3,22734,1,3,0)
+ ;;=3^Pneumococcal Arthritis,Unspec Joint
+ ;;^UTILITY(U,$J,358.3,22734,1,4,0)
+ ;;=4^M00.10
+ ;;^UTILITY(U,$J,358.3,22734,2)
+ ;;=^5009621
+ ;;^UTILITY(U,$J,358.3,22735,0)
+ ;;=M86.20^^87^983^62
+ ;;^UTILITY(U,$J,358.3,22735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22287,1,3,0)
- ;;=3^Fatigue fracture of vertebra, thoracolumbar region, sqla
- ;;^UTILITY(U,$J,358.3,22287,1,4,0)
- ;;=4^M48.45XS
- ;;^UTILITY(U,$J,358.3,22287,2)
- ;;=^5012146
- ;;^UTILITY(U,$J,358.3,22288,0)
- ;;=S12.041S^^101^1039^27
- ;;^UTILITY(U,$J,358.3,22288,1,0)
+ ;;^UTILITY(U,$J,358.3,22735,1,3,0)
+ ;;=3^Osteomyelitis,Subacute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22735,1,4,0)
+ ;;=4^M86.20
+ ;;^UTILITY(U,$J,358.3,22735,2)
+ ;;=^5014535
+ ;;^UTILITY(U,$J,358.3,22736,0)
+ ;;=M86.10^^87^983^58
+ ;;^UTILITY(U,$J,358.3,22736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22288,1,3,0)
- ;;=3^Nondisp lateral mass fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22288,1,4,0)
- ;;=4^S12.041S
- ;;^UTILITY(U,$J,358.3,22288,2)
- ;;=^5021592
- ;;^UTILITY(U,$J,358.3,22289,0)
- ;;=S12.031S^^101^1039^28
- ;;^UTILITY(U,$J,358.3,22289,1,0)
+ ;;^UTILITY(U,$J,358.3,22736,1,3,0)
+ ;;=3^Osteomyelitis,Acute,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22736,1,4,0)
+ ;;=4^M86.10
+ ;;^UTILITY(U,$J,358.3,22736,2)
+ ;;=^5014521
+ ;;^UTILITY(U,$J,358.3,22737,0)
+ ;;=M86.00^^87^983^57
+ ;;^UTILITY(U,$J,358.3,22737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22289,1,3,0)
- ;;=3^Nondisp posterior arch fx first cervcal vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22289,1,4,0)
- ;;=4^S12.031S
- ;;^UTILITY(U,$J,358.3,22289,2)
- ;;=^5021580
- ;;^UTILITY(U,$J,358.3,22290,0)
- ;;=S32.051S^^101^1039^37
- ;;^UTILITY(U,$J,358.3,22290,1,0)
+ ;;^UTILITY(U,$J,358.3,22737,1,3,0)
+ ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22737,1,4,0)
+ ;;=4^M86.00
+ ;;^UTILITY(U,$J,358.3,22737,2)
+ ;;=^5014497
+ ;;^UTILITY(U,$J,358.3,22738,0)
+ ;;=M86.50^^87^983^59
+ ;;^UTILITY(U,$J,358.3,22738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22290,1,3,0)
- ;;=3^Stable burst fracture of fifth lumbar vertebra, sequela
- ;;^UTILITY(U,$J,358.3,22290,1,4,0)
- ;;=4^S32.051S
- ;;^UTILITY(U,$J,358.3,22290,2)
- ;;=^5024502
- ;;^UTILITY(U,$J,358.3,22291,0)
- ;;=S12.01XS^^101^1039^38
- ;;^UTILITY(U,$J,358.3,22291,1,0)
+ ;;^UTILITY(U,$J,358.3,22738,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22738,1,4,0)
+ ;;=4^M86.50
+ ;;^UTILITY(U,$J,358.3,22738,2)
+ ;;=^5014607
+ ;;^UTILITY(U,$J,358.3,22739,0)
+ ;;=M86.30^^87^983^60
+ ;;^UTILITY(U,$J,358.3,22739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22291,1,3,0)
- ;;=3^Stable burst fracture of first cervical vertebra, sequela
+ ;;^UTILITY(U,$J,358.3,22739,1,3,0)
+ ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22739,1,4,0)
+ ;;=4^M86.30
+ ;;^UTILITY(U,$J,358.3,22739,2)
+ ;;=^5014559
+ ;;^UTILITY(U,$J,358.3,22740,0)
+ ;;=M86.8X9^^87^983^63
+ ;;^UTILITY(U,$J,358.3,22740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22740,1,3,0)
+ ;;=3^Osteomyelitis,Unspec Sites
+ ;;^UTILITY(U,$J,358.3,22740,1,4,0)
+ ;;=4^M86.8X9

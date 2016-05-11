@@ -1,122 +1,136 @@
-IBDEI2EC ; ; 19-NOV-2015
+IBDEI2EC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,40257,1,4,0)
- ;;=4^S68.126A
- ;;^UTILITY(U,$J,358.3,40257,2)
- ;;=^5036687
- ;;^UTILITY(U,$J,358.3,40258,0)
- ;;=S68.122A^^186^2076^38
- ;;^UTILITY(U,$J,358.3,40258,1,0)
+ ;;^UTILITY(U,$J,358.3,40658,2)
+ ;;=^5009046
+ ;;^UTILITY(U,$J,358.3,40659,0)
+ ;;=L03.311^^159^1993^95
+ ;;^UTILITY(U,$J,358.3,40659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40258,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40258,1,4,0)
- ;;=4^S68.122A
- ;;^UTILITY(U,$J,358.3,40258,2)
- ;;=^5036675
- ;;^UTILITY(U,$J,358.3,40259,0)
- ;;=S68.124A^^186^2076^39
- ;;^UTILITY(U,$J,358.3,40259,1,0)
+ ;;^UTILITY(U,$J,358.3,40659,1,3,0)
+ ;;=3^Cellulitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,40659,1,4,0)
+ ;;=4^L03.311
+ ;;^UTILITY(U,$J,358.3,40659,2)
+ ;;=^5009047
+ ;;^UTILITY(U,$J,358.3,40660,0)
+ ;;=L03.312^^159^1993^96
+ ;;^UTILITY(U,$J,358.3,40660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40259,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40259,1,4,0)
- ;;=4^S68.124A
- ;;^UTILITY(U,$J,358.3,40259,2)
- ;;=^5036681
- ;;^UTILITY(U,$J,358.3,40260,0)
- ;;=S68.021A^^186^2076^40
- ;;^UTILITY(U,$J,358.3,40260,1,0)
+ ;;^UTILITY(U,$J,358.3,40660,1,3,0)
+ ;;=3^Cellulitis of Back
+ ;;^UTILITY(U,$J,358.3,40660,1,4,0)
+ ;;=4^L03.312
+ ;;^UTILITY(U,$J,358.3,40660,2)
+ ;;=^5009048
+ ;;^UTILITY(U,$J,358.3,40661,0)
+ ;;=L03.313^^159^1993^98
+ ;;^UTILITY(U,$J,358.3,40661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40260,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right MCP Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40260,1,4,0)
- ;;=4^S68.021A
- ;;^UTILITY(U,$J,358.3,40260,2)
- ;;=^5036630
- ;;^UTILITY(U,$J,358.3,40261,0)
- ;;=S68.620A^^186^2076^43
- ;;^UTILITY(U,$J,358.3,40261,1,0)
+ ;;^UTILITY(U,$J,358.3,40661,1,3,0)
+ ;;=3^Cellulitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,40661,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,40661,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,40662,0)
+ ;;=L03.314^^159^1993^100
+ ;;^UTILITY(U,$J,358.3,40662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40261,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Trnsphal Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40261,1,4,0)
- ;;=4^S68.620A
- ;;^UTILITY(U,$J,358.3,40261,2)
- ;;=^5036765
- ;;^UTILITY(U,$J,358.3,40262,0)
- ;;=S68.626A^^186^2076^44
- ;;^UTILITY(U,$J,358.3,40262,1,0)
+ ;;^UTILITY(U,$J,358.3,40662,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,40662,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,40662,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,40663,0)
+ ;;=L03.315^^159^1993^107
+ ;;^UTILITY(U,$J,358.3,40663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40262,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Trnsphal Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40262,1,4,0)
- ;;=4^S68.626A
- ;;^UTILITY(U,$J,358.3,40262,2)
- ;;=^5036783
- ;;^UTILITY(U,$J,358.3,40263,0)
- ;;=S68.622A^^186^2076^45
- ;;^UTILITY(U,$J,358.3,40263,1,0)
+ ;;^UTILITY(U,$J,358.3,40663,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,40663,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,40663,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,40664,0)
+ ;;=L03.316^^159^1993^114
+ ;;^UTILITY(U,$J,358.3,40664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40263,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Trnsphal Middle Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40263,1,4,0)
- ;;=4^S68.622A
- ;;^UTILITY(U,$J,358.3,40263,2)
- ;;=^5036771
- ;;^UTILITY(U,$J,358.3,40264,0)
- ;;=S68.624A^^186^2076^46
- ;;^UTILITY(U,$J,358.3,40264,1,0)
+ ;;^UTILITY(U,$J,358.3,40664,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,40664,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,40664,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,40665,0)
+ ;;=L03.319^^159^1993^113
+ ;;^UTILITY(U,$J,358.3,40665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40264,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Trnsphal Ring Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40264,1,4,0)
- ;;=4^S68.624A
- ;;^UTILITY(U,$J,358.3,40264,2)
- ;;=^5036777
- ;;^UTILITY(U,$J,358.3,40265,0)
- ;;=S68.521A^^186^2076^47
- ;;^UTILITY(U,$J,358.3,40265,1,0)
+ ;;^UTILITY(U,$J,358.3,40665,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,40665,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,40665,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,40666,0)
+ ;;=L03.321^^159^1993^13
+ ;;^UTILITY(U,$J,358.3,40666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40265,1,3,0)
- ;;=3^Amputation,Partial Traumatic Right Trnsphal Thumb,Init Encntr
- ;;^UTILITY(U,$J,358.3,40265,1,4,0)
- ;;=4^S68.521A
- ;;^UTILITY(U,$J,358.3,40265,2)
- ;;=^5036726
- ;;^UTILITY(U,$J,358.3,40266,0)
- ;;=Q17.5^^186^2076^364
- ;;^UTILITY(U,$J,358.3,40266,1,0)
+ ;;^UTILITY(U,$J,358.3,40666,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,40666,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,40666,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,40667,0)
+ ;;=L03.322^^159^1993^14
+ ;;^UTILITY(U,$J,358.3,40667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40266,1,3,0)
- ;;=3^Prominent Ear
- ;;^UTILITY(U,$J,358.3,40266,1,4,0)
- ;;=4^Q17.5
- ;;^UTILITY(U,$J,358.3,40266,2)
- ;;=^5018514
- ;;^UTILITY(U,$J,358.3,40267,0)
- ;;=S68.121A^^186^2076^18
- ;;^UTILITY(U,$J,358.3,40267,1,0)
+ ;;^UTILITY(U,$J,358.3,40667,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,40667,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,40667,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,40668,0)
+ ;;=L03.323^^159^1993^15
+ ;;^UTILITY(U,$J,358.3,40668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40267,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left MCP Index Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40267,1,4,0)
- ;;=4^S68.121A
- ;;^UTILITY(U,$J,358.3,40267,2)
- ;;=^5036672
- ;;^UTILITY(U,$J,358.3,40268,0)
- ;;=S68.127A^^186^2076^19
- ;;^UTILITY(U,$J,358.3,40268,1,0)
+ ;;^UTILITY(U,$J,358.3,40668,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,40668,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,40668,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,40669,0)
+ ;;=L03.324^^159^1993^17
+ ;;^UTILITY(U,$J,358.3,40669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,40268,1,3,0)
- ;;=3^Amputation,Partial Traumatic Left MCP Little Finger,Init Encntr
- ;;^UTILITY(U,$J,358.3,40268,1,4,0)
- ;;=4^S68.127A
- ;;^UTILITY(U,$J,358.3,40268,2)
- ;;=^5036690
- ;;^UTILITY(U,$J,358.3,40269,0)
- ;;=S68.123A^^186^2076^20
- ;;^UTILITY(U,$J,358.3,40269,1,0)
+ ;;^UTILITY(U,$J,358.3,40669,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,40669,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,40669,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,40670,0)
+ ;;=L03.325^^159^1993^23
+ ;;^UTILITY(U,$J,358.3,40670,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40670,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,40670,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,40670,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,40671,0)
+ ;;=L03.326^^159^1993^29
+ ;;^UTILITY(U,$J,358.3,40671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40671,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,40671,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,40671,2)
+ ;;=^5009060

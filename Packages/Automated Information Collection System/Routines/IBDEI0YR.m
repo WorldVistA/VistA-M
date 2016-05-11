@@ -1,126 +1,138 @@
-IBDEI0YR ; ; 19-NOV-2015
+IBDEI0YR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16001,1,4,0)
- ;;=4^S91.032A
- ;;^UTILITY(U,$J,358.3,16001,2)
- ;;=^5044150
- ;;^UTILITY(U,$J,358.3,16002,0)
- ;;=S91.332A^^85^830^10
- ;;^UTILITY(U,$J,358.3,16002,1,0)
+ ;;^UTILITY(U,$J,358.3,16325,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,16325,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,16326,0)
+ ;;=C64.2^^64^739^16
+ ;;^UTILITY(U,$J,358.3,16326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16002,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,16002,1,4,0)
- ;;=4^S91.332A
- ;;^UTILITY(U,$J,358.3,16002,2)
- ;;=^5044335
- ;;^UTILITY(U,$J,358.3,16003,0)
- ;;=S71.032A^^85^830^14
- ;;^UTILITY(U,$J,358.3,16003,1,0)
+ ;;^UTILITY(U,$J,358.3,16326,1,3,0)
+ ;;=3^Malig Neop Kidney,Left
+ ;;^UTILITY(U,$J,358.3,16326,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,16326,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,16327,0)
+ ;;=C71.9^^64^739^8
+ ;;^UTILITY(U,$J,358.3,16327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16003,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,16003,1,4,0)
- ;;=4^S71.032A
- ;;^UTILITY(U,$J,358.3,16003,2)
- ;;=^5036990
- ;;^UTILITY(U,$J,358.3,16004,0)
- ;;=S81.032A^^85^830^17
- ;;^UTILITY(U,$J,358.3,16004,1,0)
+ ;;^UTILITY(U,$J,358.3,16327,1,3,0)
+ ;;=3^Malig Neop Brain,Unspec
+ ;;^UTILITY(U,$J,358.3,16327,1,4,0)
+ ;;=4^C71.9
+ ;;^UTILITY(U,$J,358.3,16327,2)
+ ;;=^5001297
+ ;;^UTILITY(U,$J,358.3,16328,0)
+ ;;=C16.9^^64^739^23
+ ;;^UTILITY(U,$J,358.3,16328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16004,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,16004,1,4,0)
- ;;=4^S81.032A
- ;;^UTILITY(U,$J,358.3,16004,2)
- ;;=^5040047
- ;;^UTILITY(U,$J,358.3,16005,0)
- ;;=S81.832A^^85^830^22
- ;;^UTILITY(U,$J,358.3,16005,1,0)
+ ;;^UTILITY(U,$J,358.3,16328,1,3,0)
+ ;;=3^Malig Neop Stomach,Unspec
+ ;;^UTILITY(U,$J,358.3,16328,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,16328,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,16329,0)
+ ;;=C20.^^64^739^22
+ ;;^UTILITY(U,$J,358.3,16329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16005,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,16005,1,4,0)
- ;;=4^S81.832A
- ;;^UTILITY(U,$J,358.3,16005,2)
- ;;=^5040086
- ;;^UTILITY(U,$J,358.3,16006,0)
- ;;=S71.132A^^85^830^28
- ;;^UTILITY(U,$J,358.3,16006,1,0)
+ ;;^UTILITY(U,$J,358.3,16329,1,3,0)
+ ;;=3^Malig Neop Rectum
+ ;;^UTILITY(U,$J,358.3,16329,1,4,0)
+ ;;=4^C20.
+ ;;^UTILITY(U,$J,358.3,16329,2)
+ ;;=^267090
+ ;;^UTILITY(U,$J,358.3,16330,0)
+ ;;=C43.9^^64^739^5
+ ;;^UTILITY(U,$J,358.3,16330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16006,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,16006,1,4,0)
- ;;=4^S71.132A
- ;;^UTILITY(U,$J,358.3,16006,2)
- ;;=^5037029
- ;;^UTILITY(U,$J,358.3,16007,0)
- ;;=S91.031A^^85^830^37
- ;;^UTILITY(U,$J,358.3,16007,1,0)
+ ;;^UTILITY(U,$J,358.3,16330,1,3,0)
+ ;;=3^Malig Melanoma Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,16330,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,16330,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,16331,0)
+ ;;=C22.9^^64^739^20
+ ;;^UTILITY(U,$J,358.3,16331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16007,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,16007,1,4,0)
- ;;=4^S91.031A
- ;;^UTILITY(U,$J,358.3,16007,2)
- ;;=^5044147
- ;;^UTILITY(U,$J,358.3,16008,0)
- ;;=S91.331A^^85^830^42
- ;;^UTILITY(U,$J,358.3,16008,1,0)
+ ;;^UTILITY(U,$J,358.3,16331,1,3,0)
+ ;;=3^Malig Neop Liver,Unspec as Prim/Second
+ ;;^UTILITY(U,$J,358.3,16331,1,4,0)
+ ;;=4^C22.9
+ ;;^UTILITY(U,$J,358.3,16331,2)
+ ;;=^267096
+ ;;^UTILITY(U,$J,358.3,16332,0)
+ ;;=C32.9^^64^739^18
+ ;;^UTILITY(U,$J,358.3,16332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16008,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,16008,1,4,0)
- ;;=4^S91.331A
- ;;^UTILITY(U,$J,358.3,16008,2)
- ;;=^5044332
- ;;^UTILITY(U,$J,358.3,16009,0)
- ;;=S71.031A^^85^830^46
- ;;^UTILITY(U,$J,358.3,16009,1,0)
+ ;;^UTILITY(U,$J,358.3,16332,1,3,0)
+ ;;=3^Malig Neop Larynx,Unspec
+ ;;^UTILITY(U,$J,358.3,16332,1,4,0)
+ ;;=4^C32.9
+ ;;^UTILITY(U,$J,358.3,16332,2)
+ ;;=^5000956
+ ;;^UTILITY(U,$J,358.3,16333,0)
+ ;;=C50.911^^64^739^10
+ ;;^UTILITY(U,$J,358.3,16333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16009,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,16009,1,4,0)
- ;;=4^S71.031A
- ;;^UTILITY(U,$J,358.3,16009,2)
- ;;=^5036987
- ;;^UTILITY(U,$J,358.3,16010,0)
- ;;=S81.031A^^85^830^49
- ;;^UTILITY(U,$J,358.3,16010,1,0)
+ ;;^UTILITY(U,$J,358.3,16333,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Female
+ ;;^UTILITY(U,$J,358.3,16333,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,16333,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,16334,0)
+ ;;=C50.912^^64^739^9
+ ;;^UTILITY(U,$J,358.3,16334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16010,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,16010,1,4,0)
- ;;=4^S81.031A
- ;;^UTILITY(U,$J,358.3,16010,2)
- ;;=^5040044
- ;;^UTILITY(U,$J,358.3,16011,0)
- ;;=S81.831A^^85^830^54
- ;;^UTILITY(U,$J,358.3,16011,1,0)
+ ;;^UTILITY(U,$J,358.3,16334,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Female
+ ;;^UTILITY(U,$J,358.3,16334,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,16334,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,16335,0)
+ ;;=C24.9^^64^739^6
+ ;;^UTILITY(U,$J,358.3,16335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16011,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,16011,1,4,0)
- ;;=4^S81.831A
- ;;^UTILITY(U,$J,358.3,16011,2)
- ;;=^5040083
- ;;^UTILITY(U,$J,358.3,16012,0)
- ;;=S71.131A^^85^830^60
- ;;^UTILITY(U,$J,358.3,16012,1,0)
+ ;;^UTILITY(U,$J,358.3,16335,1,3,0)
+ ;;=3^Malig Neop Biliary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,16335,1,4,0)
+ ;;=4^C24.9
+ ;;^UTILITY(U,$J,358.3,16335,2)
+ ;;=^5000942
+ ;;^UTILITY(U,$J,358.3,16336,0)
+ ;;=C90.00^^64^739^24
+ ;;^UTILITY(U,$J,358.3,16336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16012,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,16012,1,4,0)
- ;;=4^S71.131A
- ;;^UTILITY(U,$J,358.3,16012,2)
- ;;=^5037026
- ;;^UTILITY(U,$J,358.3,16013,0)
- ;;=Z01.83^^85^831^1
- ;;^UTILITY(U,$J,358.3,16013,1,0)
+ ;;^UTILITY(U,$J,358.3,16336,1,3,0)
+ ;;=3^Multiple Myeloma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,16336,1,4,0)
+ ;;=4^C90.00
+ ;;^UTILITY(U,$J,358.3,16336,2)
+ ;;=^5001752
+ ;;^UTILITY(U,$J,358.3,16337,0)
+ ;;=C85.89^^64^739^29
+ ;;^UTILITY(U,$J,358.3,16337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16013,1,3,0)
- ;;=3^Encounter for Blood Typing
- ;;^UTILITY(U,$J,358.3,16013,1,4,0)
- ;;=4^Z01.83
+ ;;^UTILITY(U,$J,358.3,16337,1,3,0)
+ ;;=3^Non-Hodgkin Lymphoma NEC,Extranodal & Solid Organ
+ ;;^UTILITY(U,$J,358.3,16337,1,4,0)
+ ;;=4^C85.89
+ ;;^UTILITY(U,$J,358.3,16337,2)
+ ;;=^5001730
+ ;;^UTILITY(U,$J,358.3,16338,0)
+ ;;=C79.51^^64^739^32
+ ;;^UTILITY(U,$J,358.3,16338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16338,1,3,0)
+ ;;=3^Secondary Malig Neop Bone
+ ;;^UTILITY(U,$J,358.3,16338,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,16338,2)
+ ;;=^5001350

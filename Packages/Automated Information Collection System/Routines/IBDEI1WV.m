@@ -1,136 +1,126 @@
-IBDEI1WV ; ; 19-NOV-2015
+IBDEI1WV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32000,1,4,0)
- ;;=4^F44.81
- ;;^UTILITY(U,$J,358.3,32000,2)
- ;;=^331909
- ;;^UTILITY(U,$J,358.3,32001,0)
- ;;=F44.9^^141^1480^4
- ;;^UTILITY(U,$J,358.3,32001,1,0)
+ ;;^UTILITY(U,$J,358.3,32425,1,4,0)
+ ;;=4^S91.111A
+ ;;^UTILITY(U,$J,358.3,32425,2)
+ ;;=^5044183
+ ;;^UTILITY(U,$J,358.3,32426,0)
+ ;;=S91.112A^^126^1613^19
+ ;;^UTILITY(U,$J,358.3,32426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32001,1,3,0)
- ;;=3^Dissociative Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32001,1,4,0)
- ;;=4^F44.9
- ;;^UTILITY(U,$J,358.3,32001,2)
- ;;=^5003584
- ;;^UTILITY(U,$J,358.3,32002,0)
- ;;=F44.0^^141^1480^2
- ;;^UTILITY(U,$J,358.3,32002,1,0)
+ ;;^UTILITY(U,$J,358.3,32426,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32426,1,4,0)
+ ;;=4^S91.112A
+ ;;^UTILITY(U,$J,358.3,32426,2)
+ ;;=^5044186
+ ;;^UTILITY(U,$J,358.3,32427,0)
+ ;;=S91.214A^^126^1613^15
+ ;;^UTILITY(U,$J,358.3,32427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32002,1,3,0)
- ;;=3^Dissociative Amnesia
- ;;^UTILITY(U,$J,358.3,32002,1,4,0)
- ;;=4^F44.0
- ;;^UTILITY(U,$J,358.3,32002,2)
- ;;=^5003577
- ;;^UTILITY(U,$J,358.3,32003,0)
- ;;=F48.1^^141^1480^1
- ;;^UTILITY(U,$J,358.3,32003,1,0)
+ ;;^UTILITY(U,$J,358.3,32427,1,3,0)
+ ;;=3^Lacrtn w/o foregin body rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32427,1,4,0)
+ ;;=4^S91.214A
+ ;;^UTILITY(U,$J,358.3,32427,2)
+ ;;=^5044279
+ ;;^UTILITY(U,$J,358.3,32428,0)
+ ;;=S91.215A^^126^1613^21
+ ;;^UTILITY(U,$J,358.3,32428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32003,1,3,0)
- ;;=3^Depersonalization/Derealization Disorder
- ;;^UTILITY(U,$J,358.3,32003,1,4,0)
- ;;=4^F48.1
- ;;^UTILITY(U,$J,358.3,32003,2)
- ;;=^5003593
- ;;^UTILITY(U,$J,358.3,32004,0)
- ;;=F44.89^^141^1480^3
- ;;^UTILITY(U,$J,358.3,32004,1,0)
+ ;;^UTILITY(U,$J,358.3,32428,1,3,0)
+ ;;=3^Lacrtn w/o foreign body lft lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32428,1,4,0)
+ ;;=4^S91.215A
+ ;;^UTILITY(U,$J,358.3,32428,2)
+ ;;=^5044282
+ ;;^UTILITY(U,$J,358.3,32429,0)
+ ;;=S91.022A^^126^1613^5
+ ;;^UTILITY(U,$J,358.3,32429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32004,1,3,0)
- ;;=3^Dissociative Disorder NEC
- ;;^UTILITY(U,$J,358.3,32004,1,4,0)
- ;;=4^F44.89
- ;;^UTILITY(U,$J,358.3,32004,2)
- ;;=^5003583
- ;;^UTILITY(U,$J,358.3,32005,0)
- ;;=F50.02^^141^1481^1
- ;;^UTILITY(U,$J,358.3,32005,1,0)
+ ;;^UTILITY(U,$J,358.3,32429,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft ankl, init
+ ;;^UTILITY(U,$J,358.3,32429,1,4,0)
+ ;;=4^S91.022A
+ ;;^UTILITY(U,$J,358.3,32429,2)
+ ;;=^5137406
+ ;;^UTILITY(U,$J,358.3,32430,0)
+ ;;=S91.021A^^126^1613^10
+ ;;^UTILITY(U,$J,358.3,32430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32005,1,3,0)
- ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
- ;;^UTILITY(U,$J,358.3,32005,1,4,0)
- ;;=4^F50.02
- ;;^UTILITY(U,$J,358.3,32005,2)
- ;;=^5003599
- ;;^UTILITY(U,$J,358.3,32006,0)
- ;;=F50.01^^141^1481^2
- ;;^UTILITY(U,$J,358.3,32006,1,0)
+ ;;^UTILITY(U,$J,358.3,32430,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt ankl, init
+ ;;^UTILITY(U,$J,358.3,32430,1,4,0)
+ ;;=4^S91.021A
+ ;;^UTILITY(U,$J,358.3,32430,2)
+ ;;=^5044144
+ ;;^UTILITY(U,$J,358.3,32431,0)
+ ;;=S81.821A^^126^1613^14
+ ;;^UTILITY(U,$J,358.3,32431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32006,1,3,0)
- ;;=3^Anorexia Nervosa,Restricting Type
- ;;^UTILITY(U,$J,358.3,32006,1,4,0)
- ;;=4^F50.01
- ;;^UTILITY(U,$J,358.3,32006,2)
- ;;=^5003598
- ;;^UTILITY(U,$J,358.3,32007,0)
- ;;=F50.9^^141^1481^7
- ;;^UTILITY(U,$J,358.3,32007,1,0)
+ ;;^UTILITY(U,$J,358.3,32431,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lwr leg, init
+ ;;^UTILITY(U,$J,358.3,32431,1,4,0)
+ ;;=4^S81.821A
+ ;;^UTILITY(U,$J,358.3,32431,2)
+ ;;=^5040080
+ ;;^UTILITY(U,$J,358.3,32432,0)
+ ;;=S81.822A^^126^1613^2
+ ;;^UTILITY(U,$J,358.3,32432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32007,1,3,0)
- ;;=3^Feeding/Eating Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32007,1,4,0)
- ;;=4^F50.9
- ;;^UTILITY(U,$J,358.3,32007,2)
- ;;=^5003602
- ;;^UTILITY(U,$J,358.3,32008,0)
- ;;=F50.8^^141^1481^6
- ;;^UTILITY(U,$J,358.3,32008,1,0)
+ ;;^UTILITY(U,$J,358.3,32432,1,3,0)
+ ;;=3^Lacrtn w/ foregin body lft lwr leg, init
+ ;;^UTILITY(U,$J,358.3,32432,1,4,0)
+ ;;=4^S81.822A
+ ;;^UTILITY(U,$J,358.3,32432,2)
+ ;;=^5136691
+ ;;^UTILITY(U,$J,358.3,32433,0)
+ ;;=S91.321A^^126^1613^3
+ ;;^UTILITY(U,$J,358.3,32433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32008,1,3,0)
- ;;=3^Feeding/Eating Disorder NEC
- ;;^UTILITY(U,$J,358.3,32008,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32008,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32009,0)
- ;;=F50.8^^141^1481^3
- ;;^UTILITY(U,$J,358.3,32009,1,0)
+ ;;^UTILITY(U,$J,358.3,32433,1,3,0)
+ ;;=3^Lacrtn w/ foregin body rt ft, init
+ ;;^UTILITY(U,$J,358.3,32433,1,4,0)
+ ;;=4^S91.321A
+ ;;^UTILITY(U,$J,358.3,32433,2)
+ ;;=^5044329
+ ;;^UTILITY(U,$J,358.3,32434,0)
+ ;;=S91.322A^^126^1613^1
+ ;;^UTILITY(U,$J,358.3,32434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32009,1,3,0)
- ;;=3^Avoidant/Restrictive Food Intake Disorder
- ;;^UTILITY(U,$J,358.3,32009,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32009,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32010,0)
- ;;=F50.8^^141^1481^4
- ;;^UTILITY(U,$J,358.3,32010,1,0)
+ ;;^UTILITY(U,$J,358.3,32434,1,3,0)
+ ;;=3^Lacrtn w/ foregin body lft ft, init
+ ;;^UTILITY(U,$J,358.3,32434,1,4,0)
+ ;;=4^S91.322A
+ ;;^UTILITY(U,$J,358.3,32434,2)
+ ;;=^5137527
+ ;;^UTILITY(U,$J,358.3,32435,0)
+ ;;=S91.125A^^126^1613^8
+ ;;^UTILITY(U,$J,358.3,32435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32010,1,3,0)
- ;;=3^Binge-Eating Disorder
- ;;^UTILITY(U,$J,358.3,32010,1,4,0)
- ;;=4^F50.8
- ;;^UTILITY(U,$J,358.3,32010,2)
- ;;=^5003601
- ;;^UTILITY(U,$J,358.3,32011,0)
- ;;=F50.2^^141^1481^5
- ;;^UTILITY(U,$J,358.3,32011,1,0)
+ ;;^UTILITY(U,$J,358.3,32435,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32435,1,4,0)
+ ;;=4^S91.125A
+ ;;^UTILITY(U,$J,358.3,32435,2)
+ ;;=^5137448
+ ;;^UTILITY(U,$J,358.3,32436,0)
+ ;;=S91.124A^^126^1613^12
+ ;;^UTILITY(U,$J,358.3,32436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32011,1,3,0)
- ;;=3^Bulimia Nervosa
- ;;^UTILITY(U,$J,358.3,32011,1,4,0)
- ;;=4^F50.2
- ;;^UTILITY(U,$J,358.3,32011,2)
- ;;=^5003600
- ;;^UTILITY(U,$J,358.3,32012,0)
- ;;=Z55.9^^141^1482^1
- ;;^UTILITY(U,$J,358.3,32012,1,0)
+ ;;^UTILITY(U,$J,358.3,32436,1,3,0)
+ ;;=3^Lacrtn w/ foreign body rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32436,1,4,0)
+ ;;=4^S91.124A
+ ;;^UTILITY(U,$J,358.3,32436,2)
+ ;;=^5044207
+ ;;^UTILITY(U,$J,358.3,32437,0)
+ ;;=S91.122A^^126^1613^7
+ ;;^UTILITY(U,$J,358.3,32437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32012,1,3,0)
- ;;=3^Acedemic/Educational Problem
- ;;^UTILITY(U,$J,358.3,32012,1,4,0)
- ;;=4^Z55.9
- ;;^UTILITY(U,$J,358.3,32012,2)
- ;;=^5063106
- ;;^UTILITY(U,$J,358.3,32013,0)
- ;;=Z56.81^^141^1482^9
- ;;^UTILITY(U,$J,358.3,32013,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32013,1,3,0)
- ;;=3^Sexual Harassment on the Job
- ;;^UTILITY(U,$J,358.3,32013,1,4,0)
- ;;=4^Z56.81
+ ;;^UTILITY(U,$J,358.3,32437,1,3,0)
+ ;;=3^Lacrtn w/ foreign body lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32437,1,4,0)
+ ;;=4^S91.122A

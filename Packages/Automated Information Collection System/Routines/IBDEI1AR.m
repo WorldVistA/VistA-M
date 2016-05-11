@@ -1,122 +1,136 @@
-IBDEI1AR ; ; 19-NOV-2015
+IBDEI1AR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21660,1,0)
+ ;;^UTILITY(U,$J,358.3,22052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21660,1,3,0)
- ;;=3^Nondisp medial condyle fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21660,1,4,0)
- ;;=4^S72.434S
- ;;^UTILITY(U,$J,358.3,21660,2)
- ;;=^5038915
- ;;^UTILITY(U,$J,358.3,21661,0)
- ;;=S72.435S^^101^1033^71
- ;;^UTILITY(U,$J,358.3,21661,1,0)
+ ;;^UTILITY(U,$J,358.3,22052,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,22052,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,22052,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,22053,0)
+ ;;=E89.6^^87^973^47
+ ;;^UTILITY(U,$J,358.3,22053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21661,1,3,0)
- ;;=3^Nondisp medial condyle fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21661,1,4,0)
- ;;=4^S72.435S
- ;;^UTILITY(U,$J,358.3,21661,2)
- ;;=^5038931
- ;;^UTILITY(U,$J,358.3,21662,0)
- ;;=S72.441S^^101^1033^24
- ;;^UTILITY(U,$J,358.3,21662,1,0)
+ ;;^UTILITY(U,$J,358.3,22053,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,22053,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,22053,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,22054,0)
+ ;;=L68.0^^87^973^25
+ ;;^UTILITY(U,$J,358.3,22054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21662,1,3,0)
- ;;=3^Displaced lower epiphysis fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21662,1,4,0)
- ;;=4^S72.441S
- ;;^UTILITY(U,$J,358.3,21662,2)
- ;;=^5038963
- ;;^UTILITY(U,$J,358.3,21663,0)
- ;;=S72.442S^^101^1033^23
- ;;^UTILITY(U,$J,358.3,21663,1,0)
+ ;;^UTILITY(U,$J,358.3,22054,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,22054,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,22054,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,22055,0)
+ ;;=M80.00XA^^87^973^2
+ ;;^UTILITY(U,$J,358.3,22055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21663,1,3,0)
- ;;=3^Displaced lower epiphysis fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21663,1,4,0)
- ;;=4^S72.442S
- ;;^UTILITY(U,$J,358.3,21663,2)
- ;;=^5136242
- ;;^UTILITY(U,$J,358.3,21664,0)
- ;;=S72.444S^^101^1033^70
- ;;^UTILITY(U,$J,358.3,21664,1,0)
+ ;;^UTILITY(U,$J,358.3,22055,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22055,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,22055,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,22056,0)
+ ;;=M81.0^^87^973^3
+ ;;^UTILITY(U,$J,358.3,22056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21664,1,3,0)
- ;;=3^Nondisp lower epiphy fx of right femur, sequela
- ;;^UTILITY(U,$J,358.3,21664,1,4,0)
- ;;=4^S72.444S
- ;;^UTILITY(U,$J,358.3,21664,2)
- ;;=^5038984
- ;;^UTILITY(U,$J,358.3,21665,0)
- ;;=S72.445S^^101^1033^69
- ;;^UTILITY(U,$J,358.3,21665,1,0)
+ ;;^UTILITY(U,$J,358.3,22056,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,22056,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,22056,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,22057,0)
+ ;;=M85.80^^87^973^44
+ ;;^UTILITY(U,$J,358.3,22057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21665,1,3,0)
- ;;=3^Nondisp lower epiphy fx of left femur, sequela
- ;;^UTILITY(U,$J,358.3,21665,1,4,0)
- ;;=4^S72.445S
- ;;^UTILITY(U,$J,358.3,21665,2)
- ;;=^5136269
- ;;^UTILITY(U,$J,358.3,21666,0)
- ;;=S72.451S^^101^1033^41
- ;;^UTILITY(U,$J,358.3,21666,1,0)
+ ;;^UTILITY(U,$J,358.3,22057,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22057,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,22057,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,22058,0)
+ ;;=N62.^^87^973^24
+ ;;^UTILITY(U,$J,358.3,22058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21666,1,3,0)
- ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end r femur, sqla
- ;;^UTILITY(U,$J,358.3,21666,1,4,0)
- ;;=4^S72.451S
- ;;^UTILITY(U,$J,358.3,21666,2)
- ;;=^5039005
- ;;^UTILITY(U,$J,358.3,21667,0)
- ;;=S72.452S^^101^1033^42
- ;;^UTILITY(U,$J,358.3,21667,1,0)
+ ;;^UTILITY(U,$J,358.3,22058,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,22058,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,22058,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,22059,0)
+ ;;=E10.43^^87^973^6
+ ;;^UTILITY(U,$J,358.3,22059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21667,1,3,0)
- ;;=3^Displaced suprcndl fx w/o intrcndl extn lower end l femur, sqla
- ;;^UTILITY(U,$J,358.3,21667,1,4,0)
- ;;=4^S72.452S
- ;;^UTILITY(U,$J,358.3,21667,2)
- ;;=^5039021
- ;;^UTILITY(U,$J,358.3,21668,0)
- ;;=S72.454S^^101^1033^88
- ;;^UTILITY(U,$J,358.3,21668,1,0)
+ ;;^UTILITY(U,$J,358.3,22059,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,22059,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,22059,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,22060,0)
+ ;;=E10.59^^87^973^4
+ ;;^UTILITY(U,$J,358.3,22060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21668,1,3,0)
- ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end r femr, sqla
- ;;^UTILITY(U,$J,358.3,21668,1,4,0)
- ;;=4^S72.454S
- ;;^UTILITY(U,$J,358.3,21668,2)
- ;;=^5039053
- ;;^UTILITY(U,$J,358.3,21669,0)
- ;;=S72.455S^^101^1033^89
- ;;^UTILITY(U,$J,358.3,21669,1,0)
+ ;;^UTILITY(U,$J,358.3,22060,1,3,0)
+ ;;=3^DM Type 1 w/ Circulatory Complications
+ ;;^UTILITY(U,$J,358.3,22060,1,4,0)
+ ;;=4^E10.59
+ ;;^UTILITY(U,$J,358.3,22060,2)
+ ;;=^5002612
+ ;;^UTILITY(U,$J,358.3,22061,0)
+ ;;=E10.618^^87^973^5
+ ;;^UTILITY(U,$J,358.3,22061,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21669,1,3,0)
- ;;=3^Nondisp suprcndl fx w/o intrcndl extn lower end l femr, sqla
- ;;^UTILITY(U,$J,358.3,21669,1,4,0)
- ;;=4^S72.455S
- ;;^UTILITY(U,$J,358.3,21669,2)
- ;;=^5039069
- ;;^UTILITY(U,$J,358.3,21670,0)
- ;;=S72.461S^^101^1033^39
- ;;^UTILITY(U,$J,358.3,21670,1,0)
+ ;;^UTILITY(U,$J,358.3,22061,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Arthropathy
+ ;;^UTILITY(U,$J,358.3,22061,1,4,0)
+ ;;=4^E10.618
+ ;;^UTILITY(U,$J,358.3,22061,2)
+ ;;=^5002614
+ ;;^UTILITY(U,$J,358.3,22062,0)
+ ;;=E10.621^^87^973^7
+ ;;^UTILITY(U,$J,358.3,22062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21670,1,3,0)
- ;;=3^Displaced suprcndl fx w intrcndl extn lower end of r femur, sqla
- ;;^UTILITY(U,$J,358.3,21670,1,4,0)
- ;;=4^S72.461S
- ;;^UTILITY(U,$J,358.3,21670,2)
- ;;=^5039093
- ;;^UTILITY(U,$J,358.3,21671,0)
- ;;=S72.462S^^101^1033^40
- ;;^UTILITY(U,$J,358.3,21671,1,0)
+ ;;^UTILITY(U,$J,358.3,22062,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,22062,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,22062,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,22063,0)
+ ;;=E10.622^^87^973^11
+ ;;^UTILITY(U,$J,358.3,22063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21671,1,3,0)
- ;;=3^Displaced suprcndl fx w intrcndl extn lower end of l femur, sqla
- ;;^UTILITY(U,$J,358.3,21671,1,4,0)
- ;;=4^S72.462S
- ;;^UTILITY(U,$J,358.3,21671,2)
- ;;=^5136422
+ ;;^UTILITY(U,$J,358.3,22063,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,22063,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,22063,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,22064,0)
+ ;;=E10.65^^87^973^10
+ ;;^UTILITY(U,$J,358.3,22064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22064,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycermia
+ ;;^UTILITY(U,$J,358.3,22064,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,22064,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,22065,0)
+ ;;=E10.39^^87^973^9
+ ;;^UTILITY(U,$J,358.3,22065,1,0)
+ ;;=^358.31IA^4^2

@@ -1,128 +1,134 @@
-IBDEI2JY ; ; 19-NOV-2015
+IBDEI2JY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42803,2)
- ;;=^5045699
- ;;^UTILITY(U,$J,358.3,42804,0)
- ;;=S93.145A^^192^2147^32
- ;;^UTILITY(U,$J,358.3,42804,1,0)
+ ;;^UTILITY(U,$J,358.3,43297,2)
+ ;;=^5049187
+ ;;^UTILITY(U,$J,358.3,43298,0)
+ ;;=T34.522A^^164^2067^33
+ ;;^UTILITY(U,$J,358.3,43298,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42804,1,3,0)
- ;;=3^Subluxation of MTP jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42804,1,4,0)
- ;;=4^S93.145A
- ;;^UTILITY(U,$J,358.3,42804,2)
- ;;=^5045711
- ;;^UTILITY(U,$J,358.3,42805,0)
- ;;=S93.144A^^192^2147^34
- ;;^UTILITY(U,$J,358.3,42805,1,0)
+ ;;^UTILITY(U,$J,358.3,43298,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis Lt Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43298,1,4,0)
+ ;;=4^T34.522A
+ ;;^UTILITY(U,$J,358.3,43298,2)
+ ;;=^5049190
+ ;;^UTILITY(U,$J,358.3,43299,0)
+ ;;=T33.821A^^164^2067^30
+ ;;^UTILITY(U,$J,358.3,43299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42805,1,3,0)
- ;;=3^Subluxation of MTP jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42805,1,4,0)
- ;;=4^S93.144A
- ;;^UTILITY(U,$J,358.3,42805,2)
- ;;=^5045708
- ;;^UTILITY(U,$J,358.3,42806,0)
- ;;=S93.131A^^192^2147^37
- ;;^UTILITY(U,$J,358.3,42806,1,0)
+ ;;^UTILITY(U,$J,358.3,43299,1,3,0)
+ ;;=3^Frostbite Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43299,1,4,0)
+ ;;=4^T33.821A
+ ;;^UTILITY(U,$J,358.3,43299,2)
+ ;;=^5049121
+ ;;^UTILITY(U,$J,358.3,43300,0)
+ ;;=T33.822A^^164^2067^28
+ ;;^UTILITY(U,$J,358.3,43300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42806,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,42806,1,4,0)
- ;;=4^S93.131A
- ;;^UTILITY(U,$J,358.3,42806,2)
- ;;=^5045678
- ;;^UTILITY(U,$J,358.3,42807,0)
- ;;=S93.132A^^192^2147^35
- ;;^UTILITY(U,$J,358.3,42807,1,0)
+ ;;^UTILITY(U,$J,358.3,43300,1,3,0)
+ ;;=3^Frostbite Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43300,1,4,0)
+ ;;=4^T33.822A
+ ;;^UTILITY(U,$J,358.3,43300,2)
+ ;;=^5049124
+ ;;^UTILITY(U,$J,358.3,43301,0)
+ ;;=T34.821A^^164^2067^34
+ ;;^UTILITY(U,$J,358.3,43301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42807,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,42807,1,4,0)
- ;;=4^S93.132A
- ;;^UTILITY(U,$J,358.3,42807,2)
- ;;=^5045681
- ;;^UTILITY(U,$J,358.3,42808,0)
- ;;=S93.134A^^192^2147^38
- ;;^UTILITY(U,$J,358.3,42808,1,0)
+ ;;^UTILITY(U,$J,358.3,43301,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43301,1,4,0)
+ ;;=4^T34.821A
+ ;;^UTILITY(U,$J,358.3,43301,2)
+ ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,43302,0)
+ ;;=T34.822A^^164^2067^32
+ ;;^UTILITY(U,$J,358.3,43302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42808,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42808,1,4,0)
- ;;=4^S93.134A
- ;;^UTILITY(U,$J,358.3,42808,2)
- ;;=^5045687
- ;;^UTILITY(U,$J,358.3,42809,0)
- ;;=S93.135A^^192^2147^36
- ;;^UTILITY(U,$J,358.3,42809,1,0)
+ ;;^UTILITY(U,$J,358.3,43302,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necrosis Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43302,1,4,0)
+ ;;=4^T34.822A
+ ;;^UTILITY(U,$J,358.3,43302,2)
+ ;;=^5049235
+ ;;^UTILITY(U,$J,358.3,43303,0)
+ ;;=T69.021A^^164^2067^46
+ ;;^UTILITY(U,$J,358.3,43303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42809,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,42809,1,4,0)
- ;;=4^S93.135A
- ;;^UTILITY(U,$J,358.3,42809,2)
- ;;=^5045690
- ;;^UTILITY(U,$J,358.3,42810,0)
- ;;=S93.101A^^192^2147^41
- ;;^UTILITY(U,$J,358.3,42810,1,0)
+ ;;^UTILITY(U,$J,358.3,43303,1,3,0)
+ ;;=3^Immersion Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43303,1,4,0)
+ ;;=4^T69.021A
+ ;;^UTILITY(U,$J,358.3,43303,2)
+ ;;=^5053963
+ ;;^UTILITY(U,$J,358.3,43304,0)
+ ;;=T69.022A^^164^2067^45
+ ;;^UTILITY(U,$J,358.3,43304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42810,1,3,0)
- ;;=3^Subluxation rt toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,42810,1,4,0)
- ;;=4^S93.101A
- ;;^UTILITY(U,$J,358.3,42810,2)
- ;;=^5045624
- ;;^UTILITY(U,$J,358.3,42811,0)
- ;;=S93.102A^^192^2147^30
- ;;^UTILITY(U,$J,358.3,42811,1,0)
+ ;;^UTILITY(U,$J,358.3,43304,1,3,0)
+ ;;=3^Immersion Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,43304,1,4,0)
+ ;;=4^T69.022A
+ ;;^UTILITY(U,$J,358.3,43304,2)
+ ;;=^5053966
+ ;;^UTILITY(U,$J,358.3,43305,0)
+ ;;=Z02.3^^164^2067^26
+ ;;^UTILITY(U,$J,358.3,43305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42811,1,3,0)
- ;;=3^Subluxation lft toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,42811,1,4,0)
- ;;=4^S93.102A
- ;;^UTILITY(U,$J,358.3,42811,2)
- ;;=^5045627
- ;;^UTILITY(U,$J,358.3,42812,0)
- ;;=S93.401A^^192^2147^20
- ;;^UTILITY(U,$J,358.3,42812,1,0)
+ ;;^UTILITY(U,$J,358.3,43305,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,43305,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,43305,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,43306,0)
+ ;;=Z02.1^^164^2067^25
+ ;;^UTILITY(U,$J,358.3,43306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42812,1,3,0)
- ;;=3^Sprain of unsp ligament rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,42812,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,42812,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,42813,0)
- ;;=S93.402A^^192^2147^18
- ;;^UTILITY(U,$J,358.3,42813,1,0)
+ ;;^UTILITY(U,$J,358.3,43306,1,3,0)
+ ;;=3^Exam for Pre-Employment
+ ;;^UTILITY(U,$J,358.3,43306,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,43306,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,43307,0)
+ ;;=Z02.89^^164^2067^24
+ ;;^UTILITY(U,$J,358.3,43307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42813,1,3,0)
- ;;=3^Sprain of unsp ligament lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,42813,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,42813,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,42814,0)
- ;;=S86.012A^^192^2147^24
- ;;^UTILITY(U,$J,358.3,42814,1,0)
+ ;;^UTILITY(U,$J,358.3,43307,1,3,0)
+ ;;=3^Exam for Administrative Purpose
+ ;;^UTILITY(U,$J,358.3,43307,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,43307,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,43308,0)
+ ;;=Z01.810^^164^2068^1
+ ;;^UTILITY(U,$J,358.3,43308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42814,1,3,0)
- ;;=3^Strain of lft Achilles tendon, init enc
- ;;^UTILITY(U,$J,358.3,42814,1,4,0)
- ;;=4^S86.012A
- ;;^UTILITY(U,$J,358.3,42814,2)
- ;;=^5043430
- ;;^UTILITY(U,$J,358.3,42815,0)
- ;;=S86.011A^^192^2147^25
- ;;^UTILITY(U,$J,358.3,42815,1,0)
+ ;;^UTILITY(U,$J,358.3,43308,1,3,0)
+ ;;=3^Pre-Op,Cardio Exam
+ ;;^UTILITY(U,$J,358.3,43308,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,43308,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,43309,0)
+ ;;=Z01.811^^164^2068^4
+ ;;^UTILITY(U,$J,358.3,43309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42815,1,3,0)
- ;;=3^Strain of rt Achilles tendon, init enc
- ;;^UTILITY(U,$J,358.3,42815,1,4,0)
- ;;=4^S86.011A
- ;;^UTILITY(U,$J,358.3,42815,2)
- ;;=^5043427
- ;;^UTILITY(U,$J,358.3,42816,0)
- ;;=M79.89^^192^2147^2
+ ;;^UTILITY(U,$J,358.3,43309,1,3,0)
+ ;;=3^Pre-Op,Resp Exam
+ ;;^UTILITY(U,$J,358.3,43309,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,43309,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,43310,0)
+ ;;=Z01.812^^164^2068^2
+ ;;^UTILITY(U,$J,358.3,43310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43310,1,3,0)
+ ;;=3^Pre-Op,Lab Exam
+ ;;^UTILITY(U,$J,358.3,43310,1,4,0)
+ ;;=4^Z01.812

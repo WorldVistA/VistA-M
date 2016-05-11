@@ -1,6 +1,6 @@
 IBCEST1 ;ALB/ESG - IB 837 EDI Status Message Processing Cont ;18-JUL-2005
- ;;2.0;INTEGRATED BILLING;**320,397**;21-MAR-94;Build 3
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**320,397,552**;21-MAR-94;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -19,6 +19,8 @@ CHKSUM(IBARRAY) ; Incoming 277STAT status message checksum calculation
  . S DATA=$$EXT($G(@IBARRAY@(LN,0))) Q:DATA=""
  . S IBREC=$P(DATA,U,1)
  . I IBREC="277STAT" S STSFLG=1 Q      ; set the STS flag
+ . ;IB*552 - ticket 1120403 only evaluate 2 digit numbers <MAXNUMBER> error
+ . I $L(IBREC)>2 Q
  . I IBREC<1 Q             ; rec# too low
  . I IBREC'<99 Q           ; rec# too high
  . F POS=1:1:$L(DATA) S Y=Y+($A(DATA,POS)*POS)

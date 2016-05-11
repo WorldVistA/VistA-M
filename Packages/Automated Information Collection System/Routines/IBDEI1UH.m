@@ -1,118 +1,116 @@
-IBDEI1UH ; ; 19-NOV-2015
+IBDEI1UH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30887,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30887,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30887,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,30887,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,30888,0)
- ;;=S56.311A^^135^1385^56
- ;;^UTILITY(U,$J,358.3,30888,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30888,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30888,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,30888,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,30889,0)
- ;;=S56.312A^^135^1385^35
- ;;^UTILITY(U,$J,358.3,30889,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30889,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30889,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,30889,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,30890,0)
- ;;=S56.411A^^135^1385^44
- ;;^UTILITY(U,$J,358.3,30890,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30890,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30890,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,30890,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,30891,0)
- ;;=S56.412A^^135^1385^24
- ;;^UTILITY(U,$J,358.3,30891,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30891,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30891,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,30891,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,30892,0)
- ;;=S56.413A^^135^1385^52
- ;;^UTILITY(U,$J,358.3,30892,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30892,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30892,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,30892,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,30893,0)
- ;;=S56.414A^^135^1385^32
- ;;^UTILITY(U,$J,358.3,30893,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30893,1,3,0)
- ;;=3^Strain of Left Middle Finger at Forearm Levle Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30893,1,4,0)
- ;;=4^S56.414A
- ;;^UTILITY(U,$J,358.3,30893,2)
- ;;=^5031772
- ;;^UTILITY(U,$J,358.3,30894,0)
- ;;=S56.415A^^135^1385^54
- ;;^UTILITY(U,$J,358.3,30894,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30894,1,3,0)
- ;;=3^Strain of Right Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30894,1,4,0)
- ;;=4^S56.415A
- ;;^UTILITY(U,$J,358.3,30894,2)
- ;;=^5031775
- ;;^UTILITY(U,$J,358.3,30895,0)
- ;;=S56.416A^^135^1385^34
- ;;^UTILITY(U,$J,358.3,30895,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30895,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,30895,1,4,0)
- ;;=4^S56.416A
- ;;^UTILITY(U,$J,358.3,30895,2)
- ;;=^5031778
- ;;^UTILITY(U,$J,358.3,30896,0)
- ;;=S66.912A^^135^1385^22
- ;;^UTILITY(U,$J,358.3,30896,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30896,1,3,0)
- ;;=3^Strain of Left Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,30896,1,4,0)
- ;;=4^S66.912A
- ;;^UTILITY(U,$J,358.3,30896,2)
- ;;=^5036534
- ;;^UTILITY(U,$J,358.3,30897,0)
- ;;=S66.911A^^135^1385^42
- ;;^UTILITY(U,$J,358.3,30897,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30897,1,3,0)
- ;;=3^Strain of Right Hand Muscle/Fasc/Tendon,Unspec
- ;;^UTILITY(U,$J,358.3,30897,1,4,0)
- ;;=4^S66.911A
- ;;^UTILITY(U,$J,358.3,30897,2)
- ;;=^5036531
- ;;^UTILITY(U,$J,358.3,30898,0)
- ;;=S63.501A^^135^1385^18
- ;;^UTILITY(U,$J,358.3,30898,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30898,1,3,0)
- ;;=3^Sprain of Right Wrist
+ ;;^UTILITY(U,$J,358.3,31329,1,3,0)
+ ;;=3^11402
+ ;;^UTILITY(U,$J,358.3,31330,0)
+ ;;=11403^^125^1584^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31330,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31330,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;2.1cm-3.0cm
+ ;;^UTILITY(U,$J,358.3,31330,1,3,0)
+ ;;=3^11403
+ ;;^UTILITY(U,$J,358.3,31331,0)
+ ;;=11404^^125^1584^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31331,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31331,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;3.1cm-4.0cm
+ ;;^UTILITY(U,$J,358.3,31331,1,3,0)
+ ;;=3^11404
+ ;;^UTILITY(U,$J,358.3,31332,0)
+ ;;=11406^^125^1584^6^^^^1
+ ;;^UTILITY(U,$J,358.3,31332,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31332,1,2,0)
+ ;;=2^Exc Benign Lesion-Trunk,Legs;> 4.0cm
+ ;;^UTILITY(U,$J,358.3,31332,1,3,0)
+ ;;=3^11406
+ ;;^UTILITY(U,$J,358.3,31333,0)
+ ;;=11420^^125^1584^7^^^^1
+ ;;^UTILITY(U,$J,358.3,31333,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31333,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;0.5cm or less
+ ;;^UTILITY(U,$J,358.3,31333,1,3,0)
+ ;;=3^11420
+ ;;^UTILITY(U,$J,358.3,31334,0)
+ ;;=11421^^125^1584^8^^^^1
+ ;;^UTILITY(U,$J,358.3,31334,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31334,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;0.6cm-1.0cm
+ ;;^UTILITY(U,$J,358.3,31334,1,3,0)
+ ;;=3^11421
+ ;;^UTILITY(U,$J,358.3,31335,0)
+ ;;=11422^^125^1584^9^^^^1
+ ;;^UTILITY(U,$J,358.3,31335,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31335,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,31335,1,3,0)
+ ;;=3^11422
+ ;;^UTILITY(U,$J,358.3,31336,0)
+ ;;=11423^^125^1584^10^^^^1
+ ;;^UTILITY(U,$J,358.3,31336,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31336,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;2.1cm-3.0cm
+ ;;^UTILITY(U,$J,358.3,31336,1,3,0)
+ ;;=3^11423
+ ;;^UTILITY(U,$J,358.3,31337,0)
+ ;;=11424^^125^1584^11^^^^1
+ ;;^UTILITY(U,$J,358.3,31337,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31337,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;3.1cm-4.0cm
+ ;;^UTILITY(U,$J,358.3,31337,1,3,0)
+ ;;=3^11424
+ ;;^UTILITY(U,$J,358.3,31338,0)
+ ;;=11426^^125^1584^12^^^^1
+ ;;^UTILITY(U,$J,358.3,31338,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31338,1,2,0)
+ ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;> 4.0cm
+ ;;^UTILITY(U,$J,358.3,31338,1,3,0)
+ ;;=3^11426
+ ;;^UTILITY(U,$J,358.3,31339,0)
+ ;;=11600^^125^1585^1^^^^1
+ ;;^UTILITY(U,$J,358.3,31339,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31339,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.5cm or less
+ ;;^UTILITY(U,$J,358.3,31339,1,3,0)
+ ;;=3^11600
+ ;;^UTILITY(U,$J,358.3,31340,0)
+ ;;=11601^^125^1585^2^^^^1
+ ;;^UTILITY(U,$J,358.3,31340,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31340,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 0.6cm to 1.0cm
+ ;;^UTILITY(U,$J,358.3,31340,1,3,0)
+ ;;=3^11601
+ ;;^UTILITY(U,$J,358.3,31341,0)
+ ;;=11602^^125^1585^3^^^^1
+ ;;^UTILITY(U,$J,358.3,31341,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31341,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 1.1cm to 2.0cm
+ ;;^UTILITY(U,$J,358.3,31341,1,3,0)
+ ;;=3^11602
+ ;;^UTILITY(U,$J,358.3,31342,0)
+ ;;=11603^^125^1585^4^^^^1
+ ;;^UTILITY(U,$J,358.3,31342,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31342,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 2.1cm to 3.0cm
+ ;;^UTILITY(U,$J,358.3,31342,1,3,0)
+ ;;=3^11603
+ ;;^UTILITY(U,$J,358.3,31343,0)
+ ;;=11604^^125^1585^5^^^^1
+ ;;^UTILITY(U,$J,358.3,31343,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31343,1,2,0)
+ ;;=2^Excision Malignant Lesions-trunk, arms or legs; 3.1cm to 4.0cm

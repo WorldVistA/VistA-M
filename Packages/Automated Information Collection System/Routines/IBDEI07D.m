@@ -1,138 +1,136 @@
-IBDEI07D ; ; 19-NOV-2015
+IBDEI07D ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2873,1,4,0)
- ;;=4^F19.97
- ;;^UTILITY(U,$J,358.3,2873,2)
- ;;=^5003465
- ;;^UTILITY(U,$J,358.3,2874,0)
- ;;=G31.01^^28^243^34
- ;;^UTILITY(U,$J,358.3,2874,1,0)
+ ;;^UTILITY(U,$J,358.3,3138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2874,1,3,0)
- ;;=3^Dementia,Pick's Disease
- ;;^UTILITY(U,$J,358.3,2874,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,2874,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,2875,0)
- ;;=A81.2^^28^243^35
- ;;^UTILITY(U,$J,358.3,2875,1,0)
+ ;;^UTILITY(U,$J,358.3,3138,1,3,0)
+ ;;=3^Macular Degeneration,Unspec
+ ;;^UTILITY(U,$J,358.3,3138,1,4,0)
+ ;;=4^H35.30
+ ;;^UTILITY(U,$J,358.3,3138,2)
+ ;;=^5005646
+ ;;^UTILITY(U,$J,358.3,3139,0)
+ ;;=H55.00^^18^214^31
+ ;;^UTILITY(U,$J,358.3,3139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2875,1,3,0)
- ;;=3^Dementia,Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,2875,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,2875,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,2876,0)
- ;;=G31.1^^28^243^36
- ;;^UTILITY(U,$J,358.3,2876,1,0)
+ ;;^UTILITY(U,$J,358.3,3139,1,3,0)
+ ;;=3^Nystagmus,Unspec
+ ;;^UTILITY(U,$J,358.3,3139,1,4,0)
+ ;;=4^H55.00
+ ;;^UTILITY(U,$J,358.3,3139,2)
+ ;;=^5006370
+ ;;^UTILITY(U,$J,358.3,3140,0)
+ ;;=H11.001^^18^214^34
+ ;;^UTILITY(U,$J,358.3,3140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2876,1,3,0)
- ;;=3^Dementia,Senile Degeneration of Brain NEC
- ;;^UTILITY(U,$J,358.3,2876,1,4,0)
- ;;=4^G31.1
- ;;^UTILITY(U,$J,358.3,2876,2)
- ;;=^5003809
- ;;^UTILITY(U,$J,358.3,2877,0)
- ;;=F03.90^^28^243^21
- ;;^UTILITY(U,$J,358.3,2877,1,0)
+ ;;^UTILITY(U,$J,358.3,3140,1,3,0)
+ ;;=3^Pterygium Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,3140,1,4,0)
+ ;;=4^H11.001
+ ;;^UTILITY(U,$J,358.3,3140,2)
+ ;;=^5004717
+ ;;^UTILITY(U,$J,358.3,3141,0)
+ ;;=H11.002^^18^214^33
+ ;;^UTILITY(U,$J,358.3,3141,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2877,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,2877,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,2877,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,2878,0)
- ;;=F03.91^^28^243^18
- ;;^UTILITY(U,$J,358.3,2878,1,0)
+ ;;^UTILITY(U,$J,358.3,3141,1,3,0)
+ ;;=3^Pterygium Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,3141,1,4,0)
+ ;;=4^H11.002
+ ;;^UTILITY(U,$J,358.3,3141,2)
+ ;;=^5004718
+ ;;^UTILITY(U,$J,358.3,3142,0)
+ ;;=H11.003^^18^214^32
+ ;;^UTILITY(U,$J,358.3,3142,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2878,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,2878,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,2878,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,2879,0)
- ;;=F01.51^^28^243^37
- ;;^UTILITY(U,$J,358.3,2879,1,0)
+ ;;^UTILITY(U,$J,358.3,3142,1,3,0)
+ ;;=3^Pterygium Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,3142,1,4,0)
+ ;;=4^H11.003
+ ;;^UTILITY(U,$J,358.3,3142,2)
+ ;;=^5004719
+ ;;^UTILITY(U,$J,358.3,3143,0)
+ ;;=H33.001^^18^214^37
+ ;;^UTILITY(U,$J,358.3,3143,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2879,1,3,0)
- ;;=3^Dementia,Vascular w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,2879,1,4,0)
- ;;=4^F01.51
- ;;^UTILITY(U,$J,358.3,2879,2)
- ;;=^5003047
- ;;^UTILITY(U,$J,358.3,2880,0)
- ;;=F01.50^^28^243^38
- ;;^UTILITY(U,$J,358.3,2880,1,0)
+ ;;^UTILITY(U,$J,358.3,3143,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,3143,1,4,0)
+ ;;=4^H33.001
+ ;;^UTILITY(U,$J,358.3,3143,2)
+ ;;=^5005490
+ ;;^UTILITY(U,$J,358.3,3144,0)
+ ;;=H33.002^^18^214^36
+ ;;^UTILITY(U,$J,358.3,3144,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2880,1,3,0)
- ;;=3^Dementia,Vascular w/o Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,2880,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,2880,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,2881,0)
- ;;=R42.^^28^243^39
- ;;^UTILITY(U,$J,358.3,2881,1,0)
+ ;;^UTILITY(U,$J,358.3,3144,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,3144,1,4,0)
+ ;;=4^H33.002
+ ;;^UTILITY(U,$J,358.3,3144,2)
+ ;;=^5005491
+ ;;^UTILITY(U,$J,358.3,3145,0)
+ ;;=H33.003^^18^214^35
+ ;;^UTILITY(U,$J,358.3,3145,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2881,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,2881,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,2881,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,2882,0)
- ;;=R45.86^^28^243^40
- ;;^UTILITY(U,$J,358.3,2882,1,0)
+ ;;^UTILITY(U,$J,358.3,3145,1,3,0)
+ ;;=3^Retinal Detachment w/ Retinal Break Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,3145,1,4,0)
+ ;;=4^H33.003
+ ;;^UTILITY(U,$J,358.3,3145,2)
+ ;;=^5005492
+ ;;^UTILITY(U,$J,358.3,3146,0)
+ ;;=H53.9^^18^214^38
+ ;;^UTILITY(U,$J,358.3,3146,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2882,1,3,0)
- ;;=3^Emotional Lability
- ;;^UTILITY(U,$J,358.3,2882,1,4,0)
- ;;=4^R45.86
- ;;^UTILITY(U,$J,358.3,2882,2)
- ;;=^5019475
- ;;^UTILITY(U,$J,358.3,2883,0)
- ;;=R44.3^^28^243^43
- ;;^UTILITY(U,$J,358.3,2883,1,0)
+ ;;^UTILITY(U,$J,358.3,3146,1,3,0)
+ ;;=3^Visual Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,3146,1,4,0)
+ ;;=4^H53.9
+ ;;^UTILITY(U,$J,358.3,3146,2)
+ ;;=^124001
+ ;;^UTILITY(U,$J,358.3,3147,0)
+ ;;=H54.62^^18^214^40
+ ;;^UTILITY(U,$J,358.3,3147,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2883,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,2883,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,2883,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,2884,0)
- ;;=R46.0^^28^243^46
- ;;^UTILITY(U,$J,358.3,2884,1,0)
+ ;;^UTILITY(U,$J,358.3,3147,1,3,0)
+ ;;=3^Visual Loss Lt Eye,Normal Vision Rt Eye
+ ;;^UTILITY(U,$J,358.3,3147,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,3147,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,3148,0)
+ ;;=H54.61^^18^214^41
+ ;;^UTILITY(U,$J,358.3,3148,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2884,1,3,0)
- ;;=3^Hygiene,Personal,Very Low Level
- ;;^UTILITY(U,$J,358.3,2884,1,4,0)
- ;;=4^R46.0
- ;;^UTILITY(U,$J,358.3,2884,2)
- ;;=^5019478
- ;;^UTILITY(U,$J,358.3,2885,0)
- ;;=Z91.83^^28^243^52
- ;;^UTILITY(U,$J,358.3,2885,1,0)
+ ;;^UTILITY(U,$J,358.3,3148,1,3,0)
+ ;;=3^Visual Loss Rt Eye,Normal Vision Lt Eye
+ ;;^UTILITY(U,$J,358.3,3148,1,4,0)
+ ;;=4^H54.61
+ ;;^UTILITY(U,$J,358.3,3148,2)
+ ;;=^5006367
+ ;;^UTILITY(U,$J,358.3,3149,0)
+ ;;=H54.3^^18^214^39
+ ;;^UTILITY(U,$J,358.3,3149,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2885,1,3,0)
- ;;=3^Personal Hx of Wandering
- ;;^UTILITY(U,$J,358.3,2885,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,2885,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,2886,0)
- ;;=A81.9^^28^243^6
- ;;^UTILITY(U,$J,358.3,2886,1,0)
+ ;;^UTILITY(U,$J,358.3,3149,1,3,0)
+ ;;=3^Visual Loss Both Eyes,Unqualified
+ ;;^UTILITY(U,$J,358.3,3149,1,4,0)
+ ;;=4^H54.3
+ ;;^UTILITY(U,$J,358.3,3149,2)
+ ;;=^268886
+ ;;^UTILITY(U,$J,358.3,3150,0)
+ ;;=W10.9XXA^^18^215^22
+ ;;^UTILITY(U,$J,358.3,3150,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2886,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,2886,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,2886,2)
- ;;=^5000414
+ ;;^UTILITY(U,$J,358.3,3150,1,3,0)
+ ;;=3^Fall,Stairs/Steps,Init Encntr,Unspec
+ ;;^UTILITY(U,$J,358.3,3150,1,4,0)
+ ;;=4^W10.9XXA
+ ;;^UTILITY(U,$J,358.3,3150,2)
+ ;;=^5059592
+ ;;^UTILITY(U,$J,358.3,3151,0)
+ ;;=W10.0XXA^^18^215^19
+ ;;^UTILITY(U,$J,358.3,3151,1,0)
+ ;;=^358.31IA^4^2

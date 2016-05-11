@@ -1,124 +1,132 @@
-IBDEI1XJ ; ; 19-NOV-2015
+IBDEI1XJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32307,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,32307,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,32308,0)
- ;;=F06.33^^143^1519^1
- ;;^UTILITY(U,$J,358.3,32308,1,0)
+ ;;^UTILITY(U,$J,358.3,32730,0)
+ ;;=99396^^127^1631^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32730,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32730,1,2,0)
+ ;;=2^99396
+ ;;^UTILITY(U,$J,358.3,32730,1,3,0)
+ ;;=3^Preventive Hlth Visit,Est Pt 40-64
+ ;;^UTILITY(U,$J,358.3,32731,0)
+ ;;=99397^^127^1631^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32731,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32731,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,32731,1,3,0)
+ ;;=3^Preventive Hlth Visit,Est Pt > 64
+ ;;^UTILITY(U,$J,358.3,32732,0)
+ ;;=99385^^127^1632^1^^^^1
+ ;;^UTILITY(U,$J,358.3,32732,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32732,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,32732,1,3,0)
+ ;;=3^Preventive Hlth Visit,New Pt 18-39
+ ;;^UTILITY(U,$J,358.3,32733,0)
+ ;;=99386^^127^1632^2^^^^1
+ ;;^UTILITY(U,$J,358.3,32733,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32733,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,32733,1,3,0)
+ ;;=3^Preventive Hlth Visit,New Pt 40-64
+ ;;^UTILITY(U,$J,358.3,32734,0)
+ ;;=99387^^127^1632^3^^^^1
+ ;;^UTILITY(U,$J,358.3,32734,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,32734,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,32734,1,3,0)
+ ;;=3^Preventive Hlth Visit,New Pt > 64
+ ;;^UTILITY(U,$J,358.3,32735,0)
+ ;;=Z68.1^^128^1633^1
+ ;;^UTILITY(U,$J,358.3,32735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32308,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,32308,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,32308,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,32309,0)
- ;;=F06.34^^143^1519^2
- ;;^UTILITY(U,$J,358.3,32309,1,0)
+ ;;^UTILITY(U,$J,358.3,32735,1,3,0)
+ ;;=3^Body Mass Index (BMI) 19 or Less
+ ;;^UTILITY(U,$J,358.3,32735,1,4,0)
+ ;;=4^Z68.1
+ ;;^UTILITY(U,$J,358.3,32735,2)
+ ;;=^5063198
+ ;;^UTILITY(U,$J,358.3,32736,0)
+ ;;=Z68.20^^128^1633^2
+ ;;^UTILITY(U,$J,358.3,32736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32309,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,32309,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,32309,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,32310,0)
- ;;=F31.11^^143^1519^3
- ;;^UTILITY(U,$J,358.3,32310,1,0)
+ ;;^UTILITY(U,$J,358.3,32736,1,3,0)
+ ;;=3^Body Mass Index (BMI) 20.0-20.9
+ ;;^UTILITY(U,$J,358.3,32736,1,4,0)
+ ;;=4^Z68.20
+ ;;^UTILITY(U,$J,358.3,32736,2)
+ ;;=^5063199
+ ;;^UTILITY(U,$J,358.3,32737,0)
+ ;;=Z68.21^^128^1633^3
+ ;;^UTILITY(U,$J,358.3,32737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32310,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,32310,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,32310,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,32311,0)
- ;;=F31.12^^143^1519^4
- ;;^UTILITY(U,$J,358.3,32311,1,0)
+ ;;^UTILITY(U,$J,358.3,32737,1,3,0)
+ ;;=3^Body Mass Index (BMI) 21.0-21.9
+ ;;^UTILITY(U,$J,358.3,32737,1,4,0)
+ ;;=4^Z68.21
+ ;;^UTILITY(U,$J,358.3,32737,2)
+ ;;=^5063200
+ ;;^UTILITY(U,$J,358.3,32738,0)
+ ;;=Z68.22^^128^1633^4
+ ;;^UTILITY(U,$J,358.3,32738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32311,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,32311,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,32311,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,32312,0)
- ;;=F31.13^^143^1519^5
- ;;^UTILITY(U,$J,358.3,32312,1,0)
+ ;;^UTILITY(U,$J,358.3,32738,1,3,0)
+ ;;=3^Body Mass Index (BMI) 22.0-22.9
+ ;;^UTILITY(U,$J,358.3,32738,1,4,0)
+ ;;=4^Z68.22
+ ;;^UTILITY(U,$J,358.3,32738,2)
+ ;;=^5063201
+ ;;^UTILITY(U,$J,358.3,32739,0)
+ ;;=Z68.23^^128^1633^5
+ ;;^UTILITY(U,$J,358.3,32739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32312,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,32312,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,32312,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,32313,0)
- ;;=F31.2^^143^1519^6
- ;;^UTILITY(U,$J,358.3,32313,1,0)
+ ;;^UTILITY(U,$J,358.3,32739,1,3,0)
+ ;;=3^Body Mass Index (BMI) 23.0-23.9
+ ;;^UTILITY(U,$J,358.3,32739,1,4,0)
+ ;;=4^Z68.23
+ ;;^UTILITY(U,$J,358.3,32739,2)
+ ;;=^5063202
+ ;;^UTILITY(U,$J,358.3,32740,0)
+ ;;=Z68.24^^128^1633^6
+ ;;^UTILITY(U,$J,358.3,32740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32313,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,32313,1,4,0)
- ;;=4^F31.2
- ;;^UTILITY(U,$J,358.3,32313,2)
- ;;=^5003499
- ;;^UTILITY(U,$J,358.3,32314,0)
- ;;=F31.73^^143^1519^7
- ;;^UTILITY(U,$J,358.3,32314,1,0)
+ ;;^UTILITY(U,$J,358.3,32740,1,3,0)
+ ;;=3^Body Mass Index (BMI) 24.0-24.9
+ ;;^UTILITY(U,$J,358.3,32740,1,4,0)
+ ;;=4^Z68.24
+ ;;^UTILITY(U,$J,358.3,32740,2)
+ ;;=^5063203
+ ;;^UTILITY(U,$J,358.3,32741,0)
+ ;;=Z68.25^^128^1633^7
+ ;;^UTILITY(U,$J,358.3,32741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32314,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Partial Remission
- ;;^UTILITY(U,$J,358.3,32314,1,4,0)
- ;;=4^F31.73
- ;;^UTILITY(U,$J,358.3,32314,2)
- ;;=^5003513
- ;;^UTILITY(U,$J,358.3,32315,0)
- ;;=F31.74^^143^1519^8
- ;;^UTILITY(U,$J,358.3,32315,1,0)
+ ;;^UTILITY(U,$J,358.3,32741,1,3,0)
+ ;;=3^Body Mass Index (BMI) 25.0-25.9
+ ;;^UTILITY(U,$J,358.3,32741,1,4,0)
+ ;;=4^Z68.25
+ ;;^UTILITY(U,$J,358.3,32741,2)
+ ;;=^5063204
+ ;;^UTILITY(U,$J,358.3,32742,0)
+ ;;=Z68.26^^128^1633^8
+ ;;^UTILITY(U,$J,358.3,32742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32315,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,In Full Remission
- ;;^UTILITY(U,$J,358.3,32315,1,4,0)
- ;;=4^F31.74
- ;;^UTILITY(U,$J,358.3,32315,2)
- ;;=^5003514
- ;;^UTILITY(U,$J,358.3,32316,0)
- ;;=F31.30^^143^1519^9
- ;;^UTILITY(U,$J,358.3,32316,1,0)
+ ;;^UTILITY(U,$J,358.3,32742,1,3,0)
+ ;;=3^Body Mass Index (BMI) 26.0-26.9
+ ;;^UTILITY(U,$J,358.3,32742,1,4,0)
+ ;;=4^Z68.26
+ ;;^UTILITY(U,$J,358.3,32742,2)
+ ;;=^5063205
+ ;;^UTILITY(U,$J,358.3,32743,0)
+ ;;=Z68.27^^128^1633^9
+ ;;^UTILITY(U,$J,358.3,32743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32316,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Unspec
- ;;^UTILITY(U,$J,358.3,32316,1,4,0)
- ;;=4^F31.30
- ;;^UTILITY(U,$J,358.3,32316,2)
- ;;=^5003500
- ;;^UTILITY(U,$J,358.3,32317,0)
- ;;=F31.31^^143^1519^10
- ;;^UTILITY(U,$J,358.3,32317,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32317,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Mild
- ;;^UTILITY(U,$J,358.3,32317,1,4,0)
- ;;=4^F31.31
- ;;^UTILITY(U,$J,358.3,32317,2)
- ;;=^5003501
- ;;^UTILITY(U,$J,358.3,32318,0)
- ;;=F31.32^^143^1519^11
- ;;^UTILITY(U,$J,358.3,32318,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32318,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Moderate
- ;;^UTILITY(U,$J,358.3,32318,1,4,0)
- ;;=4^F31.32
- ;;^UTILITY(U,$J,358.3,32318,2)
- ;;=^5003502
- ;;^UTILITY(U,$J,358.3,32319,0)
- ;;=F31.4^^143^1519^12
- ;;^UTILITY(U,$J,358.3,32319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32319,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Depressed,Severe
+ ;;^UTILITY(U,$J,358.3,32743,1,3,0)
+ ;;=3^Body Mass Index (BMI) 27.0-27.9
+ ;;^UTILITY(U,$J,358.3,32743,1,4,0)
+ ;;=4^Z68.27

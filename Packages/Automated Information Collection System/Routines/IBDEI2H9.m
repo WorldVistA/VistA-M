@@ -1,110 +1,142 @@
-IBDEI2H9 ; ; 19-NOV-2015
+IBDEI2H9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41568,1,2,0)
- ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 2nd-14th lesion, each
- ;;^UTILITY(U,$J,358.3,41568,1,3,0)
- ;;=3^17003
- ;;^UTILITY(U,$J,358.3,41569,0)
- ;;=17004^^191^2111^3^^^^1
- ;;^UTILITY(U,$J,358.3,41569,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41569,1,2,0)
- ;;=2^Destruction, all benign or premalignant lesions other than skin tags or cutaneous vascular proliferative lesions; 15 or more lesions
- ;;^UTILITY(U,$J,358.3,41569,1,3,0)
- ;;=3^17004
- ;;^UTILITY(U,$J,358.3,41570,0)
- ;;=17110^^191^2111^4^^^^1
- ;;^UTILITY(U,$J,358.3,41570,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41570,1,2,0)
- ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; up to 14 lesions
- ;;^UTILITY(U,$J,358.3,41570,1,3,0)
- ;;=3^17110
- ;;^UTILITY(U,$J,358.3,41571,0)
- ;;=17111^^191^2111^5^^^^1
- ;;^UTILITY(U,$J,358.3,41571,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41571,1,2,0)
- ;;=2^Destruction, of flat warts, molluscum contagiosum, or milia; 15 or more lesions
- ;;^UTILITY(U,$J,358.3,41571,1,3,0)
- ;;=3^17111
- ;;^UTILITY(U,$J,358.3,41572,0)
- ;;=17250^^191^2111^6^^^^1
- ;;^UTILITY(U,$J,358.3,41572,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41572,1,2,0)
- ;;=2^Chemical cauterization of granulation tissue
- ;;^UTILITY(U,$J,358.3,41572,1,3,0)
- ;;=3^17250
- ;;^UTILITY(U,$J,358.3,41573,0)
- ;;=11400^^191^2112^1^^^^1
- ;;^UTILITY(U,$J,358.3,41573,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41573,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;0.5cm or less
- ;;^UTILITY(U,$J,358.3,41573,1,3,0)
- ;;=3^11400
- ;;^UTILITY(U,$J,358.3,41574,0)
- ;;=11401^^191^2112^2^^^^1
- ;;^UTILITY(U,$J,358.3,41574,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41574,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;0.6cm-1.0cm
- ;;^UTILITY(U,$J,358.3,41574,1,3,0)
- ;;=3^11401
- ;;^UTILITY(U,$J,358.3,41575,0)
- ;;=11402^^191^2112^3^^^^1
- ;;^UTILITY(U,$J,358.3,41575,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41575,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;1.1cm-2.0cm
- ;;^UTILITY(U,$J,358.3,41575,1,3,0)
- ;;=3^11402
- ;;^UTILITY(U,$J,358.3,41576,0)
- ;;=11403^^191^2112^4^^^^1
- ;;^UTILITY(U,$J,358.3,41576,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41576,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;2.1cm-3.0cm
- ;;^UTILITY(U,$J,358.3,41576,1,3,0)
- ;;=3^11403
- ;;^UTILITY(U,$J,358.3,41577,0)
- ;;=11404^^191^2112^5^^^^1
- ;;^UTILITY(U,$J,358.3,41577,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41577,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;3.1cm-4.0cm
- ;;^UTILITY(U,$J,358.3,41577,1,3,0)
- ;;=3^11404
- ;;^UTILITY(U,$J,358.3,41578,0)
- ;;=11406^^191^2112^6^^^^1
- ;;^UTILITY(U,$J,358.3,41578,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41578,1,2,0)
- ;;=2^Exc Benign Lesion-Trunk,Legs;> 4.0cm
- ;;^UTILITY(U,$J,358.3,41578,1,3,0)
- ;;=3^11406
- ;;^UTILITY(U,$J,358.3,41579,0)
- ;;=11420^^191^2112^7^^^^1
- ;;^UTILITY(U,$J,358.3,41579,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41579,1,2,0)
- ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;0.5cm or less
- ;;^UTILITY(U,$J,358.3,41579,1,3,0)
- ;;=3^11420
- ;;^UTILITY(U,$J,358.3,41580,0)
- ;;=11421^^191^2112^8^^^^1
- ;;^UTILITY(U,$J,358.3,41580,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41580,1,2,0)
- ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;0.6cm-1.0cm
- ;;^UTILITY(U,$J,358.3,41580,1,3,0)
- ;;=3^11421
- ;;^UTILITY(U,$J,358.3,41581,0)
- ;;=11422^^191^2112^9^^^^1
- ;;^UTILITY(U,$J,358.3,41581,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41581,1,2,0)
- ;;=2^Exc Benign Lesion-Scalp,Neck,Hands,Ft,Genita;1.1cm-2.0cm
+ ;;^UTILITY(U,$J,358.3,42014,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,42014,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,42015,0)
+ ;;=J98.01^^159^2014^11
+ ;;^UTILITY(U,$J,358.3,42015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42015,1,3,0)
+ ;;=3^Bronchospasm,Acute
+ ;;^UTILITY(U,$J,358.3,42015,1,4,0)
+ ;;=4^J98.01
+ ;;^UTILITY(U,$J,358.3,42015,2)
+ ;;=^334092
+ ;;^UTILITY(U,$J,358.3,42016,0)
+ ;;=G47.30^^159^2014^53
+ ;;^UTILITY(U,$J,358.3,42016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42016,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,42016,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,42016,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,42017,0)
+ ;;=R06.02^^159^2014^52
+ ;;^UTILITY(U,$J,358.3,42017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42017,1,3,0)
+ ;;=3^Shortness of Breath
+ ;;^UTILITY(U,$J,358.3,42017,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,42017,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,42018,0)
+ ;;=R06.09^^159^2014^17
+ ;;^UTILITY(U,$J,358.3,42018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42018,1,3,0)
+ ;;=3^Dyspnea,Other Forms
+ ;;^UTILITY(U,$J,358.3,42018,1,4,0)
+ ;;=4^R06.09
+ ;;^UTILITY(U,$J,358.3,42018,2)
+ ;;=^5019182
+ ;;^UTILITY(U,$J,358.3,42019,0)
+ ;;=R06.00^^159^2014^18
+ ;;^UTILITY(U,$J,358.3,42019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42019,1,3,0)
+ ;;=3^Dyspnea,Unspec
+ ;;^UTILITY(U,$J,358.3,42019,1,4,0)
+ ;;=4^R06.00
+ ;;^UTILITY(U,$J,358.3,42019,2)
+ ;;=^5019180
+ ;;^UTILITY(U,$J,358.3,42020,0)
+ ;;=R06.89^^159^2014^6
+ ;;^UTILITY(U,$J,358.3,42020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42020,1,3,0)
+ ;;=3^Breathing Abnormalities,Other
+ ;;^UTILITY(U,$J,358.3,42020,1,4,0)
+ ;;=4^R06.89
+ ;;^UTILITY(U,$J,358.3,42020,2)
+ ;;=^5019193
+ ;;^UTILITY(U,$J,358.3,42021,0)
+ ;;=R06.83^^159^2014^54
+ ;;^UTILITY(U,$J,358.3,42021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42021,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,42021,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,42021,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,42022,0)
+ ;;=R06.3^^159^2014^32
+ ;;^UTILITY(U,$J,358.3,42022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42022,1,3,0)
+ ;;=3^Periodic Breathing
+ ;;^UTILITY(U,$J,358.3,42022,1,4,0)
+ ;;=4^R06.3
+ ;;^UTILITY(U,$J,358.3,42022,2)
+ ;;=^5019185
+ ;;^UTILITY(U,$J,358.3,42023,0)
+ ;;=R06.1^^159^2014^56
+ ;;^UTILITY(U,$J,358.3,42023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42023,1,3,0)
+ ;;=3^Stridor
+ ;;^UTILITY(U,$J,358.3,42023,1,4,0)
+ ;;=4^R06.1
+ ;;^UTILITY(U,$J,358.3,42023,2)
+ ;;=^5019183
+ ;;^UTILITY(U,$J,358.3,42024,0)
+ ;;=R05.^^159^2014^15
+ ;;^UTILITY(U,$J,358.3,42024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42024,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,42024,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,42024,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,42025,0)
+ ;;=R04.2^^159^2014^24
+ ;;^UTILITY(U,$J,358.3,42025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42025,1,3,0)
+ ;;=3^Hemoptysis
+ ;;^UTILITY(U,$J,358.3,42025,1,4,0)
+ ;;=4^R04.2
+ ;;^UTILITY(U,$J,358.3,42025,2)
+ ;;=^5019175
+ ;;^UTILITY(U,$J,358.3,42026,0)
+ ;;=R91.8^^159^2014^1
+ ;;^UTILITY(U,$J,358.3,42026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42026,1,3,0)
+ ;;=3^Abnormal Finding of Lung Field,Other Nonspecific
+ ;;^UTILITY(U,$J,358.3,42026,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,42026,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,42027,0)
+ ;;=R06.2^^159^2014^57
+ ;;^UTILITY(U,$J,358.3,42027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42027,1,3,0)
+ ;;=3^Wheezing
+ ;;^UTILITY(U,$J,358.3,42027,1,4,0)
+ ;;=4^R06.2
+ ;;^UTILITY(U,$J,358.3,42027,2)
+ ;;=^5019184
+ ;;^UTILITY(U,$J,358.3,42028,0)
+ ;;=J44.0^^159^2014^13
+ ;;^UTILITY(U,$J,358.3,42028,1,0)
+ ;;=^358.31IA^4^2

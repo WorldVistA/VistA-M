@@ -1,128 +1,128 @@
-IBDEI0SI ; ; 19-NOV-2015
+IBDEI0SI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13117,0)
- ;;=H40.1233^^80^754^65
- ;;^UTILITY(U,$J,358.3,13117,1,0)
+ ;;^UTILITY(U,$J,358.3,13370,1,4,0)
+ ;;=4^C91.00
+ ;;^UTILITY(U,$J,358.3,13370,2)
+ ;;=^5001762
+ ;;^UTILITY(U,$J,358.3,13371,0)
+ ;;=C91.01^^53^593^4
+ ;;^UTILITY(U,$J,358.3,13371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13117,1,3,0)
- ;;=3^Low-Tension Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,13117,1,4,0)
- ;;=4^H40.1233
- ;;^UTILITY(U,$J,358.3,13117,2)
- ;;=^5005770
- ;;^UTILITY(U,$J,358.3,13118,0)
- ;;=H40.1234^^80^754^62
- ;;^UTILITY(U,$J,358.3,13118,1,0)
+ ;;^UTILITY(U,$J,358.3,13371,1,3,0)
+ ;;=3^Acute Lymphoblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,13371,1,4,0)
+ ;;=4^C91.01
+ ;;^UTILITY(U,$J,358.3,13371,2)
+ ;;=^5001763
+ ;;^UTILITY(U,$J,358.3,13372,0)
+ ;;=C92.01^^53^593^7
+ ;;^UTILITY(U,$J,358.3,13372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13118,1,3,0)
- ;;=3^Low-Tension Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13118,1,4,0)
- ;;=4^H40.1234
- ;;^UTILITY(U,$J,358.3,13118,2)
- ;;=^5005771
- ;;^UTILITY(U,$J,358.3,13119,0)
- ;;=H40.1310^^80^754^101
- ;;^UTILITY(U,$J,358.3,13119,1,0)
+ ;;^UTILITY(U,$J,358.3,13372,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,13372,1,4,0)
+ ;;=4^C92.01
+ ;;^UTILITY(U,$J,358.3,13372,2)
+ ;;=^5001790
+ ;;^UTILITY(U,$J,358.3,13373,0)
+ ;;=C92.00^^53^593^8
+ ;;^UTILITY(U,$J,358.3,13373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13119,1,3,0)
- ;;=3^Pigmentary Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13119,1,4,0)
- ;;=4^H40.1310
- ;;^UTILITY(U,$J,358.3,13119,2)
- ;;=^5005775
- ;;^UTILITY(U,$J,358.3,13120,0)
- ;;=H40.1311^^80^754^98
- ;;^UTILITY(U,$J,358.3,13120,1,0)
+ ;;^UTILITY(U,$J,358.3,13373,1,3,0)
+ ;;=3^Acute Myeloblastic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13373,1,4,0)
+ ;;=4^C92.00
+ ;;^UTILITY(U,$J,358.3,13373,2)
+ ;;=^5001789
+ ;;^UTILITY(U,$J,358.3,13374,0)
+ ;;=C92.61^^53^593^9
+ ;;^UTILITY(U,$J,358.3,13374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13120,1,3,0)
- ;;=3^Pigmentary Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13120,1,4,0)
- ;;=4^H40.1311
- ;;^UTILITY(U,$J,358.3,13120,2)
- ;;=^5005776
- ;;^UTILITY(U,$J,358.3,13121,0)
- ;;=H40.1312^^80^754^99
- ;;^UTILITY(U,$J,358.3,13121,1,0)
+ ;;^UTILITY(U,$J,358.3,13374,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,In Remission
+ ;;^UTILITY(U,$J,358.3,13374,1,4,0)
+ ;;=4^C92.61
+ ;;^UTILITY(U,$J,358.3,13374,2)
+ ;;=^5001808
+ ;;^UTILITY(U,$J,358.3,13375,0)
+ ;;=C92.60^^53^593^10
+ ;;^UTILITY(U,$J,358.3,13375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13121,1,3,0)
- ;;=3^Pigmentary Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13121,1,4,0)
- ;;=4^H40.1312
- ;;^UTILITY(U,$J,358.3,13121,2)
- ;;=^5005777
- ;;^UTILITY(U,$J,358.3,13122,0)
- ;;=H40.1313^^80^754^100
- ;;^UTILITY(U,$J,358.3,13122,1,0)
+ ;;^UTILITY(U,$J,358.3,13375,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ 11q23-Abnormality,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13375,1,4,0)
+ ;;=4^C92.60
+ ;;^UTILITY(U,$J,358.3,13375,2)
+ ;;=^5001807
+ ;;^UTILITY(U,$J,358.3,13376,0)
+ ;;=C92.A1^^53^593^11
+ ;;^UTILITY(U,$J,358.3,13376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13122,1,3,0)
- ;;=3^Pigmentary Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13122,1,4,0)
- ;;=4^H40.1313
- ;;^UTILITY(U,$J,358.3,13122,2)
- ;;=^5005778
- ;;^UTILITY(U,$J,358.3,13123,0)
- ;;=H40.1314^^80^754^97
- ;;^UTILITY(U,$J,358.3,13123,1,0)
+ ;;^UTILITY(U,$J,358.3,13376,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,In Remission
+ ;;^UTILITY(U,$J,358.3,13376,1,4,0)
+ ;;=4^C92.A1
+ ;;^UTILITY(U,$J,358.3,13376,2)
+ ;;=^5001814
+ ;;^UTILITY(U,$J,358.3,13377,0)
+ ;;=C92.A0^^53^593^12
+ ;;^UTILITY(U,$J,358.3,13377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13123,1,3,0)
- ;;=3^Pigmentary Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13123,1,4,0)
- ;;=4^H40.1314
- ;;^UTILITY(U,$J,358.3,13123,2)
- ;;=^5005779
- ;;^UTILITY(U,$J,358.3,13124,0)
- ;;=H40.1320^^80^754^96
- ;;^UTILITY(U,$J,358.3,13124,1,0)
+ ;;^UTILITY(U,$J,358.3,13377,1,3,0)
+ ;;=3^Acute Myeloid Leukemia w/ Multilin Dysplasia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13377,1,4,0)
+ ;;=4^C92.A0
+ ;;^UTILITY(U,$J,358.3,13377,2)
+ ;;=^5001813
+ ;;^UTILITY(U,$J,358.3,13378,0)
+ ;;=C92.51^^53^593^13
+ ;;^UTILITY(U,$J,358.3,13378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13124,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13124,1,4,0)
- ;;=4^H40.1320
- ;;^UTILITY(U,$J,358.3,13124,2)
- ;;=^5005780
- ;;^UTILITY(U,$J,358.3,13125,0)
- ;;=H40.1321^^80^754^93
- ;;^UTILITY(U,$J,358.3,13125,1,0)
+ ;;^UTILITY(U,$J,358.3,13378,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,13378,1,4,0)
+ ;;=4^C92.51
+ ;;^UTILITY(U,$J,358.3,13378,2)
+ ;;=^5001805
+ ;;^UTILITY(U,$J,358.3,13379,0)
+ ;;=C92.50^^53^593^14
+ ;;^UTILITY(U,$J,358.3,13379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13125,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,13125,1,4,0)
- ;;=4^H40.1321
- ;;^UTILITY(U,$J,358.3,13125,2)
- ;;=^5005781
- ;;^UTILITY(U,$J,358.3,13126,0)
- ;;=H40.1322^^80^754^94
- ;;^UTILITY(U,$J,358.3,13126,1,0)
+ ;;^UTILITY(U,$J,358.3,13379,1,3,0)
+ ;;=3^Acute Myelomonocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13379,1,4,0)
+ ;;=4^C92.50
+ ;;^UTILITY(U,$J,358.3,13379,2)
+ ;;=^5001804
+ ;;^UTILITY(U,$J,358.3,13380,0)
+ ;;=C94.40^^53^593^17
+ ;;^UTILITY(U,$J,358.3,13380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13126,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13126,1,4,0)
- ;;=4^H40.1322
- ;;^UTILITY(U,$J,358.3,13126,2)
- ;;=^5005782
- ;;^UTILITY(U,$J,358.3,13127,0)
- ;;=H40.1323^^80^754^95
- ;;^UTILITY(U,$J,358.3,13127,1,0)
+ ;;^UTILITY(U,$J,358.3,13380,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13380,1,4,0)
+ ;;=4^C94.40
+ ;;^UTILITY(U,$J,358.3,13380,2)
+ ;;=^5001843
+ ;;^UTILITY(U,$J,358.3,13381,0)
+ ;;=C94.42^^53^593^15
+ ;;^UTILITY(U,$J,358.3,13381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13127,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,13127,1,4,0)
- ;;=4^H40.1323
- ;;^UTILITY(U,$J,358.3,13127,2)
- ;;=^5133495
- ;;^UTILITY(U,$J,358.3,13128,0)
- ;;=H40.1324^^80^754^92
- ;;^UTILITY(U,$J,358.3,13128,1,0)
+ ;;^UTILITY(U,$J,358.3,13381,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Relapse
+ ;;^UTILITY(U,$J,358.3,13381,1,4,0)
+ ;;=4^C94.42
+ ;;^UTILITY(U,$J,358.3,13381,2)
+ ;;=^5001845
+ ;;^UTILITY(U,$J,358.3,13382,0)
+ ;;=C94.41^^53^593^16
+ ;;^UTILITY(U,$J,358.3,13382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13128,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13128,1,4,0)
- ;;=4^H40.1324
- ;;^UTILITY(U,$J,358.3,13128,2)
- ;;=^5005783
- ;;^UTILITY(U,$J,358.3,13129,0)
- ;;=H40.1330^^80^754^91
- ;;^UTILITY(U,$J,358.3,13129,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13382,1,3,0)
+ ;;=3^Acute Panmyelosis w/ Myelofibrosis,In Remission
+ ;;^UTILITY(U,$J,358.3,13382,1,4,0)
+ ;;=4^C94.41
+ ;;^UTILITY(U,$J,358.3,13382,2)
+ ;;=^5001844

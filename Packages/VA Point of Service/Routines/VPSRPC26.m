@@ -1,5 +1,5 @@
 VPSRPC26  ;BPOIFO/EL,SLOIFO/BT - Patient Demographic (continue);07/31/14 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**4**;Jul 31, 2014;Build 27
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**4,14**;Jul 31, 2014;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -11,6 +11,7 @@ VPSRPC26  ;BPOIFO/EL,SLOIFO/BT - Patient Demographic (continue);07/31/14 13:07
  ; #4419  - IBBAPI call           (Supported)
  ; #4425  - ^DGS( references      (Controlled Sub)
  ; #4462  - $$GETSHAD^DGUTL3      (Supported)
+ ; #4499  - $$LST^EASECU          (Controlled Sub)
  ; #4807  - $$RDIS^DGRPDB         (Supported)
  ; #6107  - PCDETAIL^ORWPT1 call  (Controlled Sub)
  ; #10035 - ^DPT( references      (Supported)
@@ -177,7 +178,9 @@ CHG(VPSARR,DFN) ; Store Change DT/TM fields
 BLPAT(VPSARR,DFN) ; Store Billing Patient
  N BP S BP=+$$RXST^IBARXEU(DFN)
  QUIT:BP=-1
- N VAL S VAL=$S(BP=0:"NON-EXEMPT",1:"EXEMPT") D SET(.VPSARR,354,DFN,"COMPUTED",VAL) ; COPAY INCOME EXEMPTION STATUS
+ N VAL S VAL=$S(BP=0:"NON-EXEMPT",1:"EXEMPT") D SET(.VPSARR,354,DFN,"RX COPAY",VAL) ; COPAY INCOME EXEMPTION STATUS-
+ ;N VAL S VAL=$S(BP=0:"NON-EXEMPT",1:"EXEMPT") D SET(.VPSARR,354,DFN,"COMPUTED",VAL) ; COPAY INCOME EXEMPTION STATUS
+ D SET(.VPSARR,408.31,DFN,".03",$P($$LST^EASECU(DFN),U,3)) ;"LTC CO-PAY"
  QUIT
  ;
 PCT(VPSARR,DFN) ; Primary Care Team

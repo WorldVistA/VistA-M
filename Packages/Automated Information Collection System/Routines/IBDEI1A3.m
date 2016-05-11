@@ -1,130 +1,136 @@
-IBDEI1A3 ; ; 19-NOV-2015
+IBDEI1A3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21368,1,4,0)
- ;;=4^M06.071
- ;;^UTILITY(U,$J,358.3,21368,2)
- ;;=^5010066
- ;;^UTILITY(U,$J,358.3,21369,0)
- ;;=M06.021^^101^1030^88
- ;;^UTILITY(U,$J,358.3,21369,1,0)
+ ;;^UTILITY(U,$J,358.3,21741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21369,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right elbow 
- ;;^UTILITY(U,$J,358.3,21369,1,4,0)
- ;;=4^M06.021
- ;;^UTILITY(U,$J,358.3,21369,2)
- ;;=^5010051
- ;;^UTILITY(U,$J,358.3,21370,0)
- ;;=M06.041^^101^1030^89
- ;;^UTILITY(U,$J,358.3,21370,1,0)
+ ;;^UTILITY(U,$J,358.3,21741,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,21741,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,21741,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,21742,0)
+ ;;=L03.042^^87^970^20
+ ;;^UTILITY(U,$J,358.3,21742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21370,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right hand 
- ;;^UTILITY(U,$J,358.3,21370,1,4,0)
- ;;=4^M06.041
- ;;^UTILITY(U,$J,358.3,21370,2)
- ;;=^5010057
- ;;^UTILITY(U,$J,358.3,21371,0)
- ;;=M06.051^^101^1030^90
- ;;^UTILITY(U,$J,358.3,21371,1,0)
+ ;;^UTILITY(U,$J,358.3,21742,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,21742,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,21742,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,21743,0)
+ ;;=M34.0^^87^970^249
+ ;;^UTILITY(U,$J,358.3,21743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21371,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right hip 
- ;;^UTILITY(U,$J,358.3,21371,1,4,0)
- ;;=4^M06.051
- ;;^UTILITY(U,$J,358.3,21371,2)
- ;;=^5010060
- ;;^UTILITY(U,$J,358.3,21372,0)
- ;;=M06.061^^101^1030^91
- ;;^UTILITY(U,$J,358.3,21372,1,0)
+ ;;^UTILITY(U,$J,358.3,21743,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,21743,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,21743,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,21744,0)
+ ;;=M34.1^^87^970^91
+ ;;^UTILITY(U,$J,358.3,21744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21372,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right knee
- ;;^UTILITY(U,$J,358.3,21372,1,4,0)
- ;;=4^M06.061
- ;;^UTILITY(U,$J,358.3,21372,2)
- ;;=^5010063
- ;;^UTILITY(U,$J,358.3,21373,0)
- ;;=M06.011^^101^1030^92
- ;;^UTILITY(U,$J,358.3,21373,1,0)
+ ;;^UTILITY(U,$J,358.3,21744,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,21744,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,21744,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,21745,0)
+ ;;=M34.2^^87^970^273
+ ;;^UTILITY(U,$J,358.3,21745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21373,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right shoulder
- ;;^UTILITY(U,$J,358.3,21373,1,4,0)
- ;;=4^M06.011
- ;;^UTILITY(U,$J,358.3,21373,2)
- ;;=^5010048
- ;;^UTILITY(U,$J,358.3,21374,0)
- ;;=M06.031^^101^1030^93
- ;;^UTILITY(U,$J,358.3,21374,1,0)
+ ;;^UTILITY(U,$J,358.3,21745,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,21745,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,21745,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,21746,0)
+ ;;=M34.81^^87^970^275
+ ;;^UTILITY(U,$J,358.3,21746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21374,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right wrist 
- ;;^UTILITY(U,$J,358.3,21374,1,4,0)
- ;;=4^M06.031
- ;;^UTILITY(U,$J,358.3,21374,2)
- ;;=^5010054
- ;;^UTILITY(U,$J,358.3,21375,0)
- ;;=M06.08^^101^1030^94
- ;;^UTILITY(U,$J,358.3,21375,1,0)
+ ;;^UTILITY(U,$J,358.3,21746,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,21746,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,21746,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,21747,0)
+ ;;=M34.82^^87^970^276
+ ;;^UTILITY(U,$J,358.3,21747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21375,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, vertebrae
- ;;^UTILITY(U,$J,358.3,21375,1,4,0)
- ;;=4^M06.08
- ;;^UTILITY(U,$J,358.3,21375,2)
- ;;=^5010069
- ;;^UTILITY(U,$J,358.3,21376,0)
- ;;=M06.272^^101^1030^123
- ;;^UTILITY(U,$J,358.3,21376,1,0)
+ ;;^UTILITY(U,$J,358.3,21747,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,21747,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,21747,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,21748,0)
+ ;;=M34.83^^87^970^277
+ ;;^UTILITY(U,$J,358.3,21748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21376,1,3,0)
- ;;=3^Rheumatoid bursitis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,21376,1,4,0)
- ;;=4^M06.272
- ;;^UTILITY(U,$J,358.3,21376,2)
- ;;=^5010092
- ;;^UTILITY(U,$J,358.3,21377,0)
- ;;=M06.222^^101^1030^124
- ;;^UTILITY(U,$J,358.3,21377,1,0)
+ ;;^UTILITY(U,$J,358.3,21748,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,21748,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,21748,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,21749,0)
+ ;;=M34.89^^87^970^274
+ ;;^UTILITY(U,$J,358.3,21749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21377,1,3,0)
- ;;=3^Rheumatoid bursitis, left elbow
- ;;^UTILITY(U,$J,358.3,21377,1,4,0)
- ;;=4^M06.222
- ;;^UTILITY(U,$J,358.3,21377,2)
- ;;=^5010077
- ;;^UTILITY(U,$J,358.3,21378,0)
- ;;=M06.242^^101^1030^125
- ;;^UTILITY(U,$J,358.3,21378,1,0)
+ ;;^UTILITY(U,$J,358.3,21749,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,21749,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,21749,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,21750,0)
+ ;;=M34.9^^87^970^278
+ ;;^UTILITY(U,$J,358.3,21750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21378,1,3,0)
- ;;=3^Rheumatoid bursitis, left hand
- ;;^UTILITY(U,$J,358.3,21378,1,4,0)
- ;;=4^M06.242
- ;;^UTILITY(U,$J,358.3,21378,2)
- ;;=^5010083
- ;;^UTILITY(U,$J,358.3,21379,0)
- ;;=M06.252^^101^1030^126
- ;;^UTILITY(U,$J,358.3,21379,1,0)
+ ;;^UTILITY(U,$J,358.3,21750,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21750,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,21750,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,21751,0)
+ ;;=R21.^^87^970^257
+ ;;^UTILITY(U,$J,358.3,21751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21379,1,3,0)
- ;;=3^Rheumatoid bursitis, left hip
- ;;^UTILITY(U,$J,358.3,21379,1,4,0)
- ;;=4^M06.252
- ;;^UTILITY(U,$J,358.3,21379,2)
- ;;=^5010086
- ;;^UTILITY(U,$J,358.3,21380,0)
- ;;=M06.262^^101^1030^127
- ;;^UTILITY(U,$J,358.3,21380,1,0)
+ ;;^UTILITY(U,$J,358.3,21751,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,21751,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,21751,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,21752,0)
+ ;;=R23.3^^87^970^269
+ ;;^UTILITY(U,$J,358.3,21752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21380,1,3,0)
- ;;=3^Rheumatoid bursitis, left knee
- ;;^UTILITY(U,$J,358.3,21380,1,4,0)
- ;;=4^M06.262
- ;;^UTILITY(U,$J,358.3,21380,2)
- ;;=^5010089
- ;;^UTILITY(U,$J,358.3,21381,0)
- ;;=M06.212^^101^1030^128
+ ;;^UTILITY(U,$J,358.3,21752,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,21752,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,21752,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,21753,0)
+ ;;=L03.113^^87^970^112
+ ;;^UTILITY(U,$J,358.3,21753,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21753,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,21753,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,21753,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,21754,0)
+ ;;=L03.114^^87^970^105
+ ;;^UTILITY(U,$J,358.3,21754,1,0)
+ ;;=^358.31IA^4^2

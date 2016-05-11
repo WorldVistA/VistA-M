@@ -1,5 +1,5 @@
-ORCACT01 ;SLC/MKB-Validate order actions cont ;10/24/13  09:11
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374**;Dec 17, 1997;Build 9
+ORCACT01 ;SLC/MKB-Validate order actions cont ;05/21/15  11:14
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**94,116,134,141,163,187,190,213,243,306,374,350**;Dec 17, 1997;Build 77
  ;
  ;
 ES ; -- sign [on chart]
@@ -21,8 +21,8 @@ ES ; -- sign [on chart]
 ES1 I PKG="PS" D  ;authorized to write meds?
  . N TYPE,OI,PSOI,DEAFLG,PKI,IVERROR,ORDGNM
  . S X=$G(^VA(200,DUZ,"PS"))
- . I '$P(X,U) S ERROR="You are not authorized to sign med orders!" Q
- . I $P(X,U,4),$$NOW^XLFDT>$P(X,U,4) S ERROR="You are no longer authorized to sign med orders!" Q
+ . I DG'="SPLY",'$P(X,U) S ERROR="You are not authorized to sign med orders!" Q
+ . I DG'="SPLY",$P(X,U,4),$$NOW^XLFDT>$P(X,U,4) S ERROR="You are no longer authorized to sign med orders!" Q
  . ;Q:DG="IV RX"  Q:$P(ORA0,U,2)="DC"  ;don't need to ck DEA#
  . Q:$P(ORA0,U,2)="DC"
  . S ORDGNM=$$GET1^DIQ(100,+IFN_",",2)
@@ -35,7 +35,7 @@ ES1 I PKG="PS" D  ;authorized to write meds?
  . S DETPRO=$$DETOX^XUSER(+$G(DUZ))
  . I DETFLAG,DETPRO="" S ERROR=3 Q
  . I DETFLAG,DETPRO>0 S Y=DETPRO X ^DD("DD") S ERROR="5^"_Y Q
- . I (DEAFLG>0||$$ISCLOZ^ORALWORD(OI)) D  I $G(ERROR)]"" Q
+ . I (DEAFLG>0!($$ISCLOZ^ORALWORD(OI))) D  I $G(ERROR)]"" Q
  .. N RET
  .. I $$ISCLOZ^ORALWORD(OI) D  Q
  ... S RET=$$DEA^XUSER(,DUZ) I RET="" S ERROR=1
@@ -79,6 +79,8 @@ XFR ; -- transfer to inpt/outpt [IFN=order to be transferred]
  Q
  ;
 RW ; -- rewrite/copy
+ N ORISCL D ISCLORD^ORUTL(.ORISCL,+IFN)
+ I ORISCL S ERROR="Cannot copy Clinic Medication or Clinic Infusion orders!"
  I ACTSTS=12 S ERROR="Orders that have been dc'd due to editing may not be copied!" Q
  I DG="NV RX" S ERROR="Non-VA Med orders cannot be copied!" Q
  I DG="TPN" S ERROR="TPN orders may not be rewritten!" Q

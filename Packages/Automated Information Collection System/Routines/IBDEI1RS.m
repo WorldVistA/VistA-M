@@ -1,136 +1,132 @@
-IBDEI1RS ; ; 19-NOV-2015
+IBDEI1RS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29631,1,4,0)
- ;;=4^E83.30
- ;;^UTILITY(U,$J,358.3,29631,2)
- ;;=^5002997
- ;;^UTILITY(U,$J,358.3,29632,0)
- ;;=E83.51^^135^1364^28
- ;;^UTILITY(U,$J,358.3,29632,1,0)
+ ;;^UTILITY(U,$J,358.3,30083,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,30083,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,30084,0)
+ ;;=C60.9^^118^1498^10
+ ;;^UTILITY(U,$J,358.3,30084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29632,1,3,0)
- ;;=3^Hypocalcemia
- ;;^UTILITY(U,$J,358.3,29632,1,4,0)
- ;;=4^E83.51
- ;;^UTILITY(U,$J,358.3,29632,2)
- ;;=^60542
- ;;^UTILITY(U,$J,358.3,29633,0)
- ;;=E83.52^^135^1364^26
- ;;^UTILITY(U,$J,358.3,29633,1,0)
+ ;;^UTILITY(U,$J,358.3,30084,1,3,0)
+ ;;=3^Malignant neoplasm of penis, unspecified
+ ;;^UTILITY(U,$J,358.3,30084,1,4,0)
+ ;;=4^C60.9
+ ;;^UTILITY(U,$J,358.3,30084,2)
+ ;;=^5001229
+ ;;^UTILITY(U,$J,358.3,30085,0)
+ ;;=C67.9^^118^1498^4
+ ;;^UTILITY(U,$J,358.3,30085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29633,1,3,0)
- ;;=3^Hypercalcemia
- ;;^UTILITY(U,$J,358.3,29633,1,4,0)
- ;;=4^E83.52
- ;;^UTILITY(U,$J,358.3,29633,2)
- ;;=^59932
- ;;^UTILITY(U,$J,358.3,29634,0)
- ;;=E87.5^^135^1364^27
- ;;^UTILITY(U,$J,358.3,29634,1,0)
+ ;;^UTILITY(U,$J,358.3,30085,1,3,0)
+ ;;=3^Malignant neoplasm of bladder, unspecified
+ ;;^UTILITY(U,$J,358.3,30085,1,4,0)
+ ;;=4^C67.9
+ ;;^UTILITY(U,$J,358.3,30085,2)
+ ;;=^5001263
+ ;;^UTILITY(U,$J,358.3,30086,0)
+ ;;=C64.2^^118^1498^7
+ ;;^UTILITY(U,$J,358.3,30086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29634,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,29634,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,29634,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,29635,0)
- ;;=E89.2^^135^1364^48
- ;;^UTILITY(U,$J,358.3,29635,1,0)
+ ;;^UTILITY(U,$J,358.3,30086,1,3,0)
+ ;;=3^Malignant neoplasm of left kidney, except renal pelvis
+ ;;^UTILITY(U,$J,358.3,30086,1,4,0)
+ ;;=4^C64.2
+ ;;^UTILITY(U,$J,358.3,30086,2)
+ ;;=^5001249
+ ;;^UTILITY(U,$J,358.3,30087,0)
+ ;;=C64.1^^118^1498^12
+ ;;^UTILITY(U,$J,358.3,30087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29635,1,3,0)
- ;;=3^PostProcedural Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,29635,1,4,0)
- ;;=4^E89.2
- ;;^UTILITY(U,$J,358.3,29635,2)
- ;;=^5003037
- ;;^UTILITY(U,$J,358.3,29636,0)
- ;;=E89.6^^135^1364^47
- ;;^UTILITY(U,$J,358.3,29636,1,0)
+ ;;^UTILITY(U,$J,358.3,30087,1,3,0)
+ ;;=3^Malignant neoplasm of right kidney, except renal pelvis
+ ;;^UTILITY(U,$J,358.3,30087,1,4,0)
+ ;;=4^C64.1
+ ;;^UTILITY(U,$J,358.3,30087,2)
+ ;;=^5001248
+ ;;^UTILITY(U,$J,358.3,30088,0)
+ ;;=C65.1^^118^1498^13
+ ;;^UTILITY(U,$J,358.3,30088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29636,1,3,0)
- ;;=3^PostProcedural Adrenocortical Hypofunction
- ;;^UTILITY(U,$J,358.3,29636,1,4,0)
- ;;=4^E89.6
- ;;^UTILITY(U,$J,358.3,29636,2)
- ;;=^5003042
- ;;^UTILITY(U,$J,358.3,29637,0)
- ;;=L68.0^^135^1364^25
- ;;^UTILITY(U,$J,358.3,29637,1,0)
+ ;;^UTILITY(U,$J,358.3,30088,1,3,0)
+ ;;=3^Malignant neoplasm of right renal pelvis
+ ;;^UTILITY(U,$J,358.3,30088,1,4,0)
+ ;;=4^C65.1
+ ;;^UTILITY(U,$J,358.3,30088,2)
+ ;;=^5001251
+ ;;^UTILITY(U,$J,358.3,30089,0)
+ ;;=C65.2^^118^1498^8
+ ;;^UTILITY(U,$J,358.3,30089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29637,1,3,0)
- ;;=3^Hirsutism
- ;;^UTILITY(U,$J,358.3,29637,1,4,0)
- ;;=4^L68.0
- ;;^UTILITY(U,$J,358.3,29637,2)
- ;;=^5009262
- ;;^UTILITY(U,$J,358.3,29638,0)
- ;;=M80.00XA^^135^1364^2
- ;;^UTILITY(U,$J,358.3,29638,1,0)
+ ;;^UTILITY(U,$J,358.3,30089,1,3,0)
+ ;;=3^Malignant neoplasm of left renal pelvis
+ ;;^UTILITY(U,$J,358.3,30089,1,4,0)
+ ;;=4^C65.2
+ ;;^UTILITY(U,$J,358.3,30089,2)
+ ;;=^5001252
+ ;;^UTILITY(U,$J,358.3,30090,0)
+ ;;=C66.1^^118^1498^14
+ ;;^UTILITY(U,$J,358.3,30090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29638,1,3,0)
- ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
- ;;^UTILITY(U,$J,358.3,29638,1,4,0)
- ;;=4^M80.00XA
- ;;^UTILITY(U,$J,358.3,29638,2)
- ;;=^5013363
- ;;^UTILITY(U,$J,358.3,29639,0)
- ;;=M81.0^^135^1364^3
- ;;^UTILITY(U,$J,358.3,29639,1,0)
+ ;;^UTILITY(U,$J,358.3,30090,1,3,0)
+ ;;=3^Malignant neoplasm of right ureter
+ ;;^UTILITY(U,$J,358.3,30090,1,4,0)
+ ;;=4^C66.1
+ ;;^UTILITY(U,$J,358.3,30090,2)
+ ;;=^5001254
+ ;;^UTILITY(U,$J,358.3,30091,0)
+ ;;=C66.2^^118^1498^9
+ ;;^UTILITY(U,$J,358.3,30091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29639,1,3,0)
- ;;=3^Age-Related Osteoporosis w/o Fx
- ;;^UTILITY(U,$J,358.3,29639,1,4,0)
- ;;=4^M81.0
- ;;^UTILITY(U,$J,358.3,29639,2)
- ;;=^5013555
- ;;^UTILITY(U,$J,358.3,29640,0)
- ;;=M85.80^^135^1364^44
- ;;^UTILITY(U,$J,358.3,29640,1,0)
+ ;;^UTILITY(U,$J,358.3,30091,1,3,0)
+ ;;=3^Malignant neoplasm of left ureter
+ ;;^UTILITY(U,$J,358.3,30091,1,4,0)
+ ;;=4^C66.2
+ ;;^UTILITY(U,$J,358.3,30091,2)
+ ;;=^5001255
+ ;;^UTILITY(U,$J,358.3,30092,0)
+ ;;=C68.0^^118^1498^15
+ ;;^UTILITY(U,$J,358.3,30092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29640,1,3,0)
- ;;=3^Osteopenia,Unspec Site
- ;;^UTILITY(U,$J,358.3,29640,1,4,0)
- ;;=4^M85.80
- ;;^UTILITY(U,$J,358.3,29640,2)
- ;;=^5014473
- ;;^UTILITY(U,$J,358.3,29641,0)
- ;;=N62.^^135^1364^24
- ;;^UTILITY(U,$J,358.3,29641,1,0)
+ ;;^UTILITY(U,$J,358.3,30092,1,3,0)
+ ;;=3^Malignant neoplasm of urethra
+ ;;^UTILITY(U,$J,358.3,30092,1,4,0)
+ ;;=4^C68.0
+ ;;^UTILITY(U,$J,358.3,30092,2)
+ ;;=^267266
+ ;;^UTILITY(U,$J,358.3,30093,0)
+ ;;=D09.0^^118^1498^1
+ ;;^UTILITY(U,$J,358.3,30093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29641,1,3,0)
- ;;=3^Gynecomastia
- ;;^UTILITY(U,$J,358.3,29641,1,4,0)
- ;;=4^N62.
- ;;^UTILITY(U,$J,358.3,29641,2)
- ;;=^5015790
- ;;^UTILITY(U,$J,358.3,29642,0)
- ;;=E10.43^^135^1364^6
- ;;^UTILITY(U,$J,358.3,29642,1,0)
+ ;;^UTILITY(U,$J,358.3,30093,1,3,0)
+ ;;=3^Carcinoma in situ of bladder
+ ;;^UTILITY(U,$J,358.3,30093,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,30093,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,30094,0)
+ ;;=C15.9^^118^1499^9
+ ;;^UTILITY(U,$J,358.3,30094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29642,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
- ;;^UTILITY(U,$J,358.3,29642,1,4,0)
- ;;=4^E10.43
- ;;^UTILITY(U,$J,358.3,29642,2)
- ;;=^5002607
- ;;^UTILITY(U,$J,358.3,29643,0)
- ;;=E10.59^^135^1364^4
- ;;^UTILITY(U,$J,358.3,29643,1,0)
+ ;;^UTILITY(U,$J,358.3,30094,1,3,0)
+ ;;=3^Malignant neoplasm of esophagus, unspecified
+ ;;^UTILITY(U,$J,358.3,30094,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,30094,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,30095,0)
+ ;;=C16.9^^118^1499^18
+ ;;^UTILITY(U,$J,358.3,30095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29643,1,3,0)
- ;;=3^DM Type 1 w/ Circulatory Complications
- ;;^UTILITY(U,$J,358.3,29643,1,4,0)
- ;;=4^E10.59
- ;;^UTILITY(U,$J,358.3,29643,2)
- ;;=^5002612
- ;;^UTILITY(U,$J,358.3,29644,0)
- ;;=E10.618^^135^1364^5
- ;;^UTILITY(U,$J,358.3,29644,1,0)
+ ;;^UTILITY(U,$J,358.3,30095,1,3,0)
+ ;;=3^Malignant neoplasm of stomach, unspecified
+ ;;^UTILITY(U,$J,358.3,30095,1,4,0)
+ ;;=4^C16.9
+ ;;^UTILITY(U,$J,358.3,30095,2)
+ ;;=^5000923
+ ;;^UTILITY(U,$J,358.3,30096,0)
+ ;;=C17.9^^118^1499^17
+ ;;^UTILITY(U,$J,358.3,30096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29644,1,3,0)
- ;;=3^DM Type 1 w/ Diabetic Arthropathy
- ;;^UTILITY(U,$J,358.3,29644,1,4,0)
- ;;=4^E10.618

@@ -1,142 +1,124 @@
-IBDEI1H4 ; ; 19-NOV-2015
+IBDEI1H4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,24632,1,0)
+ ;;^UTILITY(U,$J,358.3,25019,1,4,0)
+ ;;=4^F18.24
+ ;;^UTILITY(U,$J,358.3,25019,2)
+ ;;=^5003397
+ ;;^UTILITY(U,$J,358.3,25020,0)
+ ;;=F18.121^^93^1126^14
+ ;;^UTILITY(U,$J,358.3,25020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24632,1,3,0)
- ;;=3^Enterobiasis (pin worms)
- ;;^UTILITY(U,$J,358.3,24632,1,4,0)
- ;;=4^B80.
- ;;^UTILITY(U,$J,358.3,24632,2)
- ;;=^189147
- ;;^UTILITY(U,$J,358.3,24633,0)
- ;;=B55.9^^121^1221^135
- ;;^UTILITY(U,$J,358.3,24633,1,0)
+ ;;^UTILITY(U,$J,358.3,25020,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25020,1,4,0)
+ ;;=4^F18.121
+ ;;^UTILITY(U,$J,358.3,25020,2)
+ ;;=^5003382
+ ;;^UTILITY(U,$J,358.3,25021,0)
+ ;;=F18.221^^93^1126^15
+ ;;^UTILITY(U,$J,358.3,25021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24633,1,3,0)
- ;;=3^Leishmaniasis, unspecified
- ;;^UTILITY(U,$J,358.3,24633,1,4,0)
- ;;=4^B55.9
- ;;^UTILITY(U,$J,358.3,24633,2)
- ;;=^5000707
- ;;^UTILITY(U,$J,358.3,24634,0)
- ;;=B78.9^^121^1221^219
- ;;^UTILITY(U,$J,358.3,24634,1,0)
+ ;;^UTILITY(U,$J,358.3,25021,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25021,1,4,0)
+ ;;=4^F18.221
+ ;;^UTILITY(U,$J,358.3,25021,2)
+ ;;=^5003395
+ ;;^UTILITY(U,$J,358.3,25022,0)
+ ;;=F18.921^^93^1126^16
+ ;;^UTILITY(U,$J,358.3,25022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24634,1,3,0)
- ;;=3^Strongyloidiasis, unspecified
- ;;^UTILITY(U,$J,358.3,24634,1,4,0)
- ;;=4^B78.9
- ;;^UTILITY(U,$J,358.3,24634,2)
- ;;=^5000791
- ;;^UTILITY(U,$J,358.3,24635,0)
- ;;=B58.9^^121^1221^231
- ;;^UTILITY(U,$J,358.3,24635,1,0)
+ ;;^UTILITY(U,$J,358.3,25022,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25022,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,25022,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,25023,0)
+ ;;=F18.129^^93^1126^17
+ ;;^UTILITY(U,$J,358.3,25023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24635,1,3,0)
- ;;=3^Toxoplasmosis, unspecified
- ;;^UTILITY(U,$J,358.3,24635,1,4,0)
- ;;=4^B58.9
- ;;^UTILITY(U,$J,358.3,24635,2)
- ;;=^5000733
- ;;^UTILITY(U,$J,358.3,24636,0)
- ;;=B85.1^^121^1221^137
- ;;^UTILITY(U,$J,358.3,24636,1,0)
+ ;;^UTILITY(U,$J,358.3,25023,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25023,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,25023,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,25024,0)
+ ;;=F18.229^^93^1126^18
+ ;;^UTILITY(U,$J,358.3,25024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24636,1,3,0)
- ;;=3^Lice,Body
- ;;^UTILITY(U,$J,358.3,24636,1,4,0)
- ;;=4^B85.1
- ;;^UTILITY(U,$J,358.3,24636,2)
- ;;=^5000805
- ;;^UTILITY(U,$J,358.3,24637,0)
- ;;=B85.0^^121^1221^138
- ;;^UTILITY(U,$J,358.3,24637,1,0)
+ ;;^UTILITY(U,$J,358.3,25024,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25024,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,25024,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,25025,0)
+ ;;=F18.929^^93^1126^19
+ ;;^UTILITY(U,$J,358.3,25025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24637,1,3,0)
- ;;=3^Lice,Head
- ;;^UTILITY(U,$J,358.3,24637,1,4,0)
- ;;=4^B85.0
- ;;^UTILITY(U,$J,358.3,24637,2)
- ;;=^5000804
- ;;^UTILITY(U,$J,358.3,24638,0)
- ;;=B85.3^^121^1221^139
- ;;^UTILITY(U,$J,358.3,24638,1,0)
+ ;;^UTILITY(U,$J,358.3,25025,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25025,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,25025,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,25026,0)
+ ;;=F18.180^^93^1126^1
+ ;;^UTILITY(U,$J,358.3,25026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24638,1,3,0)
- ;;=3^Lice,Pubic
- ;;^UTILITY(U,$J,358.3,24638,1,4,0)
- ;;=4^B85.3
- ;;^UTILITY(U,$J,358.3,24638,2)
- ;;=^5000807
- ;;^UTILITY(U,$J,358.3,24639,0)
- ;;=R05.^^121^1221^48
- ;;^UTILITY(U,$J,358.3,24639,1,0)
+ ;;^UTILITY(U,$J,358.3,25026,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25026,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,25026,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,25027,0)
+ ;;=F18.280^^93^1126^2
+ ;;^UTILITY(U,$J,358.3,25027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24639,1,3,0)
- ;;=3^Cough
- ;;^UTILITY(U,$J,358.3,24639,1,4,0)
- ;;=4^R05.
- ;;^UTILITY(U,$J,358.3,24639,2)
- ;;=^5019179
- ;;^UTILITY(U,$J,358.3,24640,0)
- ;;=R51.^^121^1221^99
- ;;^UTILITY(U,$J,358.3,24640,1,0)
+ ;;^UTILITY(U,$J,358.3,25027,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,25027,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,25027,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,25028,0)
+ ;;=F18.980^^93^1126^3
+ ;;^UTILITY(U,$J,358.3,25028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24640,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,24640,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,24640,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,24641,0)
- ;;=M79.1^^121^1221^151
- ;;^UTILITY(U,$J,358.3,24641,1,0)
+ ;;^UTILITY(U,$J,358.3,25028,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25028,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,25028,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,25029,0)
+ ;;=F18.94^^93^1126^4
+ ;;^UTILITY(U,$J,358.3,25029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24641,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,24641,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,24641,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,24642,0)
- ;;=R10.9^^121^1221^4
- ;;^UTILITY(U,$J,358.3,24642,1,0)
+ ;;^UTILITY(U,$J,358.3,25029,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,25029,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,25029,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,25030,0)
+ ;;=F18.17^^93^1126^5
+ ;;^UTILITY(U,$J,358.3,25030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24642,1,3,0)
- ;;=3^Abdominal Pain,Unspec
- ;;^UTILITY(U,$J,358.3,24642,1,4,0)
- ;;=4^R10.9
- ;;^UTILITY(U,$J,358.3,24642,2)
- ;;=^5019230
- ;;^UTILITY(U,$J,358.3,24643,0)
- ;;=R10.84^^121^1221^2
- ;;^UTILITY(U,$J,358.3,24643,1,0)
+ ;;^UTILITY(U,$J,358.3,25030,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,25030,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,25030,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,25031,0)
+ ;;=F18.27^^93^1126^6
+ ;;^UTILITY(U,$J,358.3,25031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24643,1,3,0)
- ;;=3^Abdominal Pain,Generalized
- ;;^UTILITY(U,$J,358.3,24643,1,4,0)
- ;;=4^R10.84
- ;;^UTILITY(U,$J,358.3,24643,2)
- ;;=^5019229
- ;;^UTILITY(U,$J,358.3,24644,0)
- ;;=R10.32^^121^1221^3
- ;;^UTILITY(U,$J,358.3,24644,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24644,1,3,0)
- ;;=3^Abdominal Pain,LLQ
- ;;^UTILITY(U,$J,358.3,24644,1,4,0)
- ;;=4^R10.32
- ;;^UTILITY(U,$J,358.3,24644,2)
- ;;=^5019212
- ;;^UTILITY(U,$J,358.3,24645,0)
- ;;=R10.2^^121^1221^172
- ;;^UTILITY(U,$J,358.3,24645,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,24645,1,3,0)
- ;;=3^Pelvic or Perineal Pain
- ;;^UTILITY(U,$J,358.3,24645,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,24645,2)
- ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,25031,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder

@@ -1,130 +1,140 @@
-IBDEI0BG ; ; 19-NOV-2015
+IBDEI0BG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4875,1,4,0)
- ;;=4^T82.897A
- ;;^UTILITY(U,$J,358.3,4875,2)
- ;;=^5054950
- ;;^UTILITY(U,$J,358.3,4876,0)
- ;;=T82.110A^^37^323^1
- ;;^UTILITY(U,$J,358.3,4876,1,0)
+ ;;^UTILITY(U,$J,358.3,5174,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,5174,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,5175,0)
+ ;;=N13.8^^27^332^21
+ ;;^UTILITY(U,$J,358.3,5175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4876,1,3,0)
- ;;=3^Cardiac Electrode Breakdown,Init Encntr
- ;;^UTILITY(U,$J,358.3,4876,1,4,0)
- ;;=4^T82.110A
- ;;^UTILITY(U,$J,358.3,4876,2)
- ;;=^5054680
- ;;^UTILITY(U,$J,358.3,4877,0)
- ;;=T82.111A^^37^323^4
- ;;^UTILITY(U,$J,358.3,4877,1,0)
+ ;;^UTILITY(U,$J,358.3,5175,1,3,0)
+ ;;=3^Urinary Obstruction
+ ;;^UTILITY(U,$J,358.3,5175,1,4,0)
+ ;;=4^N13.8
+ ;;^UTILITY(U,$J,358.3,5175,2)
+ ;;=^5015588
+ ;;^UTILITY(U,$J,358.3,5176,0)
+ ;;=R33.8^^27^332^22
+ ;;^UTILITY(U,$J,358.3,5176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4877,1,3,0)
- ;;=3^Cardiac Pulse Generator Battery Breakdown,Init
- ;;^UTILITY(U,$J,358.3,4877,1,4,0)
- ;;=4^T82.111A
- ;;^UTILITY(U,$J,358.3,4877,2)
- ;;=^5054683
- ;;^UTILITY(U,$J,358.3,4878,0)
- ;;=T82.120A^^37^323^2
- ;;^UTILITY(U,$J,358.3,4878,1,0)
+ ;;^UTILITY(U,$J,358.3,5176,1,3,0)
+ ;;=3^Urinary Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,5176,1,4,0)
+ ;;=4^R33.8
+ ;;^UTILITY(U,$J,358.3,5176,2)
+ ;;=^5019331
+ ;;^UTILITY(U,$J,358.3,5177,0)
+ ;;=R39.15^^27^332^24
+ ;;^UTILITY(U,$J,358.3,5177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4878,1,3,0)
- ;;=3^Cardiac Electrode Displacement,Init Encntr
- ;;^UTILITY(U,$J,358.3,4878,1,4,0)
- ;;=4^T82.120A
- ;;^UTILITY(U,$J,358.3,4878,2)
- ;;=^5054692
- ;;^UTILITY(U,$J,358.3,4879,0)
- ;;=T82.121A^^37^323^5
- ;;^UTILITY(U,$J,358.3,4879,1,0)
+ ;;^UTILITY(U,$J,358.3,5177,1,3,0)
+ ;;=3^Urinary Urgency
+ ;;^UTILITY(U,$J,358.3,5177,1,4,0)
+ ;;=4^R39.15
+ ;;^UTILITY(U,$J,358.3,5177,2)
+ ;;=^5019345
+ ;;^UTILITY(U,$J,358.3,5178,0)
+ ;;=R39.12^^27^332^25
+ ;;^UTILITY(U,$J,358.3,5178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4879,1,3,0)
- ;;=3^Cardiac Pulse Generator Battery Displacement,Init
- ;;^UTILITY(U,$J,358.3,4879,1,4,0)
- ;;=4^T82.121A
- ;;^UTILITY(U,$J,358.3,4879,2)
- ;;=^5054695
- ;;^UTILITY(U,$J,358.3,4880,0)
- ;;=T82.190A^^37^323^3
- ;;^UTILITY(U,$J,358.3,4880,1,0)
+ ;;^UTILITY(U,$J,358.3,5178,1,3,0)
+ ;;=3^Weak Urinary Stream
+ ;;^UTILITY(U,$J,358.3,5178,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,5178,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,5179,0)
+ ;;=R80.9^^27^332^16
+ ;;^UTILITY(U,$J,358.3,5179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4880,1,3,0)
- ;;=3^Cardiac Electrode Mech Complication,Init Encntr
- ;;^UTILITY(U,$J,358.3,4880,1,4,0)
- ;;=4^T82.190A
- ;;^UTILITY(U,$J,358.3,4880,2)
- ;;=^5054704
- ;;^UTILITY(U,$J,358.3,4881,0)
- ;;=T82.191A^^37^323^6
- ;;^UTILITY(U,$J,358.3,4881,1,0)
+ ;;^UTILITY(U,$J,358.3,5179,1,3,0)
+ ;;=3^Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,5179,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,5179,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,5180,0)
+ ;;=D51.8^^27^333^2
+ ;;^UTILITY(U,$J,358.3,5180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4881,1,3,0)
- ;;=3^Cardiac Pulse Generator Battery Mech Complication,Init Encntr
- ;;^UTILITY(U,$J,358.3,4881,1,4,0)
- ;;=4^T82.191A
- ;;^UTILITY(U,$J,358.3,4881,2)
- ;;=^5054707
- ;;^UTILITY(U,$J,358.3,4882,0)
- ;;=T82.818A^^37^323^11
- ;;^UTILITY(U,$J,358.3,4882,1,0)
+ ;;^UTILITY(U,$J,358.3,5180,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,5180,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,5180,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,5181,0)
+ ;;=D52.9^^27^333^1
+ ;;^UTILITY(U,$J,358.3,5181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4882,1,3,0)
- ;;=3^Embolism of Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4882,1,4,0)
- ;;=4^T82.818A
- ;;^UTILITY(U,$J,358.3,4882,2)
- ;;=^5054917
- ;;^UTILITY(U,$J,358.3,4883,0)
- ;;=T82.828A^^37^323^13
- ;;^UTILITY(U,$J,358.3,4883,1,0)
+ ;;^UTILITY(U,$J,358.3,5181,1,3,0)
+ ;;=3^Anemia,Folate Deficiency
+ ;;^UTILITY(U,$J,358.3,5181,1,4,0)
+ ;;=4^D52.9
+ ;;^UTILITY(U,$J,358.3,5181,2)
+ ;;=^5002293
+ ;;^UTILITY(U,$J,358.3,5182,0)
+ ;;=I10.^^27^334^12
+ ;;^UTILITY(U,$J,358.3,5182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4883,1,3,0)
- ;;=3^Fibrosis of Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4883,1,4,0)
- ;;=4^T82.828A
- ;;^UTILITY(U,$J,358.3,4883,2)
- ;;=^5054923
- ;;^UTILITY(U,$J,358.3,4884,0)
- ;;=T82.838A^^37^323^15
- ;;^UTILITY(U,$J,358.3,4884,1,0)
+ ;;^UTILITY(U,$J,358.3,5182,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,5182,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,5182,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,5183,0)
+ ;;=I15.0^^27^334^13
+ ;;^UTILITY(U,$J,358.3,5183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4884,1,3,0)
- ;;=3^Hemorrhage of Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4884,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,4884,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,4885,0)
- ;;=T82.848A^^37^323^21
- ;;^UTILITY(U,$J,358.3,4885,1,0)
+ ;;^UTILITY(U,$J,358.3,5183,1,3,0)
+ ;;=3^Hypertension,Renovascular
+ ;;^UTILITY(U,$J,358.3,5183,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,5183,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,5184,0)
+ ;;=I13.11^^27^334^8
+ ;;^UTILITY(U,$J,358.3,5184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4885,1,3,0)
- ;;=3^Pain from Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4885,1,4,0)
- ;;=4^T82.848A
- ;;^UTILITY(U,$J,358.3,4885,2)
- ;;=^5054935
- ;;^UTILITY(U,$J,358.3,4886,0)
- ;;=T82.858A^^37^323^26
- ;;^UTILITY(U,$J,358.3,4886,1,0)
+ ;;^UTILITY(U,$J,358.3,5184,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,5184,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,5184,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,5185,0)
+ ;;=I13.2^^27^334^7
+ ;;^UTILITY(U,$J,358.3,5185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4886,1,3,0)
- ;;=3^Stenosis of Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4886,1,4,0)
- ;;=4^T82.858A
- ;;^UTILITY(U,$J,358.3,4886,2)
- ;;=^5054941
- ;;^UTILITY(U,$J,358.3,4887,0)
- ;;=T82.868A^^37^323^28
- ;;^UTILITY(U,$J,358.3,4887,1,0)
+ ;;^UTILITY(U,$J,358.3,5185,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,5185,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,5185,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,5186,0)
+ ;;=I70.1^^27^334^3
+ ;;^UTILITY(U,$J,358.3,5186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4887,1,3,0)
- ;;=3^Thrombosis of Vascular Prosth Dev/Graft,Init
- ;;^UTILITY(U,$J,358.3,4887,1,4,0)
- ;;=4^T82.868A
- ;;^UTILITY(U,$J,358.3,4887,2)
- ;;=^5054947
- ;;^UTILITY(U,$J,358.3,4888,0)
- ;;=T82.898A^^37^323^8
+ ;;^UTILITY(U,$J,358.3,5186,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,5186,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,5186,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,5187,0)
+ ;;=I77.3^^27^334^2
+ ;;^UTILITY(U,$J,358.3,5187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5187,1,3,0)
+ ;;=3^Arterial Fibromuscular Dysplasia
+ ;;^UTILITY(U,$J,358.3,5187,1,4,0)
+ ;;=4^I77.3
+ ;;^UTILITY(U,$J,358.3,5187,2)
+ ;;=^5007812
+ ;;^UTILITY(U,$J,358.3,5188,0)
+ ;;=E26.02^^27^334^5

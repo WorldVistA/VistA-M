@@ -1,130 +1,124 @@
-IBDEI2HT ; ; 19-NOV-2015
+IBDEI2HT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41844,1,2,0)
- ;;=2^Orthopedic Mens Shoes Dpth Inlay,Each
- ;;^UTILITY(U,$J,358.3,41844,1,3,0)
- ;;=3^L3221
- ;;^UTILITY(U,$J,358.3,41845,0)
- ;;=Q4102^^191^2128^23^^^^1
- ;;^UTILITY(U,$J,358.3,41845,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41845,1,2,0)
- ;;=2^Oasis Wound Matrix
- ;;^UTILITY(U,$J,358.3,41845,1,3,0)
- ;;=3^Q4102
- ;;^UTILITY(U,$J,358.3,41846,0)
- ;;=L4360^^191^2128^27^^^^1
- ;;^UTILITY(U,$J,358.3,41846,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41846,1,2,0)
- ;;=2^Pneumatic Walking Splint
- ;;^UTILITY(U,$J,358.3,41846,1,3,0)
- ;;=3^L4360
- ;;^UTILITY(U,$J,358.3,41847,0)
- ;;=A6219^^191^2128^15^^^^1
- ;;^UTILITY(U,$J,358.3,41847,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41847,1,2,0)
- ;;=2^Gauze <= 16sq in w/ Border
- ;;^UTILITY(U,$J,358.3,41847,1,3,0)
- ;;=3^A6219
- ;;^UTILITY(U,$J,358.3,41848,0)
- ;;=Q4121^^191^2128^31^^^^1
- ;;^UTILITY(U,$J,358.3,41848,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41848,1,2,0)
- ;;=2^Theraskin,per sq cen
- ;;^UTILITY(U,$J,358.3,41848,1,3,0)
- ;;=3^Q4121
- ;;^UTILITY(U,$J,358.3,41849,0)
- ;;=Q4124^^191^2128^22^^^^1
- ;;^UTILITY(U,$J,358.3,41849,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41849,1,2,0)
- ;;=2^Oasis Tri-Layer Wound Matrix,per sq cen
- ;;^UTILITY(U,$J,358.3,41849,1,3,0)
- ;;=3^Q4124
- ;;^UTILITY(U,$J,358.3,41850,0)
- ;;=Q4101^^191^2128^2^^^^1
- ;;^UTILITY(U,$J,358.3,41850,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41850,1,2,0)
- ;;=2^Apligraf
- ;;^UTILITY(U,$J,358.3,41850,1,3,0)
- ;;=3^Q4101
- ;;^UTILITY(U,$J,358.3,41851,0)
- ;;=A4580^^191^2128^4^^^^1
- ;;^UTILITY(U,$J,358.3,41851,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41851,1,2,0)
- ;;=2^Cast Supplies,Plaster
- ;;^UTILITY(U,$J,358.3,41851,1,3,0)
- ;;=3^A4580
- ;;^UTILITY(U,$J,358.3,41852,0)
- ;;=A4590^^191^2128^3^^^^1
- ;;^UTILITY(U,$J,358.3,41852,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41852,1,2,0)
- ;;=2^Cast Material,Special Fbrgl
- ;;^UTILITY(U,$J,358.3,41852,1,3,0)
- ;;=3^A4590
- ;;^UTILITY(U,$J,358.3,41853,0)
- ;;=A6021^^191^2128^10^^^^1
- ;;^UTILITY(U,$J,358.3,41853,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41853,1,2,0)
- ;;=2^Drsg Collagen <=16 sq in
- ;;^UTILITY(U,$J,358.3,41853,1,3,0)
- ;;=3^A6021
- ;;^UTILITY(U,$J,358.3,41854,0)
- ;;=A6196^^191^2128^8^^^^1
- ;;^UTILITY(U,$J,358.3,41854,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41854,1,2,0)
- ;;=2^Drsg Alginate <=16 sq in
- ;;^UTILITY(U,$J,358.3,41854,1,3,0)
- ;;=3^A6196
- ;;^UTILITY(U,$J,358.3,41855,0)
- ;;=A6197^^191^2128^9^^^^1
- ;;^UTILITY(U,$J,358.3,41855,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41855,1,2,0)
- ;;=2^Drsg Alginate >16 <=48 sq in
- ;;^UTILITY(U,$J,358.3,41855,1,3,0)
- ;;=3^A6197
- ;;^UTILITY(U,$J,358.3,41856,0)
- ;;=A6209^^191^2128^11^^^^1
- ;;^UTILITY(U,$J,358.3,41856,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41856,1,2,0)
- ;;=2^Drsg Foam <=16 sq in w/o Bdr
- ;;^UTILITY(U,$J,358.3,41856,1,3,0)
- ;;=3^A6209
- ;;^UTILITY(U,$J,358.3,41857,0)
- ;;=A6251^^191^2128^7^^^^1
- ;;^UTILITY(U,$J,358.3,41857,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41857,1,2,0)
- ;;=2^Drsg Absorpt <=16 sq in w/o Bdr
- ;;^UTILITY(U,$J,358.3,41857,1,3,0)
- ;;=3^A6251
- ;;^UTILITY(U,$J,358.3,41858,0)
- ;;=A6441^^191^2128^26^^^^1
- ;;^UTILITY(U,$J,358.3,41858,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41858,1,2,0)
- ;;=2^Pad Bandage W >= 3 < 5/Yd
- ;;^UTILITY(U,$J,358.3,41858,1,3,0)
- ;;=3^A6441
- ;;^UTILITY(U,$J,358.3,41859,0)
- ;;=A6456^^191^2128^35^^^^1
- ;;^UTILITY(U,$J,358.3,41859,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,41859,1,2,0)
- ;;=2^Zinc Past Bandage W >= 3 < 5/Yd
- ;;^UTILITY(U,$J,358.3,41859,1,3,0)
- ;;=3^A6456
- ;;^UTILITY(U,$J,358.3,41860,0)
- ;;=A6010^^191^2128^32^^^^1
+ ;;^UTILITY(U,$J,358.3,42273,1,4,0)
+ ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,42273,2)
+ ;;=^5003267
+ ;;^UTILITY(U,$J,358.3,42274,0)
+ ;;=F14.282^^159^2018^14
+ ;;^UTILITY(U,$J,358.3,42274,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42274,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
+ ;;^UTILITY(U,$J,358.3,42274,1,4,0)
+ ;;=4^F14.282
+ ;;^UTILITY(U,$J,358.3,42274,2)
+ ;;=^5003266
+ ;;^UTILITY(U,$J,358.3,42275,0)
+ ;;=F14.281^^159^2018^15
+ ;;^UTILITY(U,$J,358.3,42275,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42275,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
+ ;;^UTILITY(U,$J,358.3,42275,1,4,0)
+ ;;=4^F14.281
+ ;;^UTILITY(U,$J,358.3,42275,2)
+ ;;=^5003265
+ ;;^UTILITY(U,$J,358.3,42276,0)
+ ;;=F14.280^^159^2018^12
+ ;;^UTILITY(U,$J,358.3,42276,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42276,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,42276,1,4,0)
+ ;;=4^F14.280
+ ;;^UTILITY(U,$J,358.3,42276,2)
+ ;;=^5003264
+ ;;^UTILITY(U,$J,358.3,42277,0)
+ ;;=F14.259^^159^2018^11
+ ;;^UTILITY(U,$J,358.3,42277,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42277,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,42277,1,4,0)
+ ;;=4^F14.259
+ ;;^UTILITY(U,$J,358.3,42277,2)
+ ;;=^5003263
+ ;;^UTILITY(U,$J,358.3,42278,0)
+ ;;=F14.251^^159^2018^10
+ ;;^UTILITY(U,$J,358.3,42278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42278,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
+ ;;^UTILITY(U,$J,358.3,42278,1,4,0)
+ ;;=4^F14.251
+ ;;^UTILITY(U,$J,358.3,42278,2)
+ ;;=^5003262
+ ;;^UTILITY(U,$J,358.3,42279,0)
+ ;;=F14.250^^159^2018^9
+ ;;^UTILITY(U,$J,358.3,42279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42279,1,3,0)
+ ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
+ ;;^UTILITY(U,$J,358.3,42279,1,4,0)
+ ;;=4^F14.250
+ ;;^UTILITY(U,$J,358.3,42279,2)
+ ;;=^5003261
+ ;;^UTILITY(U,$J,358.3,42280,0)
+ ;;=F14.24^^159^2018^13
+ ;;^UTILITY(U,$J,358.3,42280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42280,1,3,0)
+ ;;=3^Cocaine Dependence w/ Cocaine-Induced Mood Disorder
+ ;;^UTILITY(U,$J,358.3,42280,1,4,0)
+ ;;=4^F14.24
+ ;;^UTILITY(U,$J,358.3,42280,2)
+ ;;=^5003260
+ ;;^UTILITY(U,$J,358.3,42281,0)
+ ;;=F14.23^^159^2018^22
+ ;;^UTILITY(U,$J,358.3,42281,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42281,1,3,0)
+ ;;=3^Cocaine Dependence w/ Withdrawal
+ ;;^UTILITY(U,$J,358.3,42281,1,4,0)
+ ;;=4^F14.23
+ ;;^UTILITY(U,$J,358.3,42281,2)
+ ;;=^5003259
+ ;;^UTILITY(U,$J,358.3,42282,0)
+ ;;=F14.229^^159^2018^19
+ ;;^UTILITY(U,$J,358.3,42282,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42282,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,42282,1,4,0)
+ ;;=4^F14.229
+ ;;^UTILITY(U,$J,358.3,42282,2)
+ ;;=^5003258
+ ;;^UTILITY(U,$J,358.3,42283,0)
+ ;;=F14.222^^159^2018^17
+ ;;^UTILITY(U,$J,358.3,42283,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42283,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication w/ Perceptual Disturbance
+ ;;^UTILITY(U,$J,358.3,42283,1,4,0)
+ ;;=4^F14.222
+ ;;^UTILITY(U,$J,358.3,42283,2)
+ ;;=^5003257
+ ;;^UTILITY(U,$J,358.3,42284,0)
+ ;;=F14.221^^159^2018^16
+ ;;^UTILITY(U,$J,358.3,42284,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42284,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication Delirium
+ ;;^UTILITY(U,$J,358.3,42284,1,4,0)
+ ;;=4^F14.221
+ ;;^UTILITY(U,$J,358.3,42284,2)
+ ;;=^5003256
+ ;;^UTILITY(U,$J,358.3,42285,0)
+ ;;=F14.220^^159^2018^18
+ ;;^UTILITY(U,$J,358.3,42285,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42285,1,3,0)
+ ;;=3^Cocaine Dependence w/ Intoxication,Uncomplicated

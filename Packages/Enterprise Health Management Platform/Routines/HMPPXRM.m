@@ -1,0 +1,89 @@
+HMPPXRM ;SLC/AGP,ASMR/RRB - Clinical Reminders routine. ; 8/16/12 7:09pm
+ ;;2.0;ENTERPRISE HEALTH MANAGEMENT PLATFORM;**;Sep 01, 2011;Build 63
+ ;Per VA Directive 6402, this routine should not be modified.
+ ;
+ Q
+ ;
+EVALLIST(RESULT,PT,USER,LOC) ;
+ N CNT,NUM,RIEN,TMP,UID,HMPTMP,HMPSYS
+ N DUEDATE,I,J,LASTDONE,NAME,NODE,STATUS,TXT
+ ;S USER=$P(USERUID,":",5)
+ D GETLIST^ORQQPX(.HMPTMP,LOC)
+ S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S CNT=0,NUM=0 F  S CNT=$O(HMPTMP(CNT)) Q:CNT'>0  D
+ .S RIEN=$G(HMPTMP(CNT)) I RIEN'>0 Q
+ .;begin fix DE 2818 ICR 6113 ASF 11/16
+ .;S NAME="" S NAME=$P($G(^PXD(811.9,RIEN,0)),U,3)
+ .;I NAME="" S NAME=$P($G(^PXD(811.9,RIEN,0)),U)
+ .S NAME=$$GET1^DIQ(811.9,REIN_",",1.2)
+ .I NAME="" S NAME=$$GET1^DIQ(811.9,REIN_",",.01)
+ .; end DE2818 fix
+ .S UID="urn:va:pxrm:"_HMPSYS_":"_RIEN
+ .S NUM=NUM+1,TMP("reminders",NUM,"uid")=UID,TMP("reminders",NUM,"name")=NAME
+ .K ^TMP("PXRHM",$J)
+ .D MAIN^PXRM(PT,RIEN,5)     ; 5 returns all reminder info
+ .S I=1,TXT=""
+ .S NAME="",NAME=$O(^TMP("PXRHM",$J,RIEN,NAME)) Q:NAME=""  D
+ ..S NODE=$G(^TMP("PXRHM",$J,RIEN,NAME))
+ ..S STATUS=$P(NODE,U),DUEDATE=$$JSONDT^HMPUTILS($P(NODE,U,2)),LASTDONE=$$JSONDT^HMPUTILS($P(NODE,U,3))
+ ..S J=0 F  S J=$O(^TMP("PXRHM",$J,RIEN,NAME,"TXT",J)) Q:J=""  D
+ ...S TXT=$G(TXT)_^TMP("PXRHM",$J,RIEN,NAME,"TXT",J)_$C(13)_$C(10),I=I+1
+ .K ^TMP("PXRHM",$J)
+ .S TMP("reminders",NUM,"status")=STATUS
+ .S TMP("reminders",NUM,"dueDate")=DUEDATE
+ .S TMP("reminders",NUM,"lastDone")=LASTDONE
+ .S TMP("reminders",NUM,"clinicalMaintenance")=TXT
+ S TMP("success")="true"
+ D ENCODE^HMPJSON("TMP","RESULT","ERROR")
+ I $D(ERROR) D SETERROR(.TMP,.ERROR,.RESULT)
+ Q
+ ;
+EVALREM(RESULT,PT,UID) ;return detail for a pt's clinical reminder
+ K ^TMP("PXRHM",$J)
+ N DUEDATE,I,J,LASTDONE,NAME,NODE,RIEN,STATUS,TMP,TXT
+ S RIEN=$P(UID,":",5)
+ D MAIN^PXRM(PT,RIEN,5)     ; 5 returns all reminder info
+ S I=1,TXT=""
+ S NAME="",NAME=$O(^TMP("PXRHM",$J,RIEN,NAME)) Q:NAME=""  D
+ .S NODE=$G(^TMP("PXRHM",$J,RIEN,NAME))
+ .S STATUS=$P(NODE,U),DUEDATE=$$JSONDT^HMPUTILS($P(NODE,U,2)),LASTDONE=$$JSONDT^HMPUTILS($P(NODE,U,3))
+ .S J=0 F  S J=$O(^TMP("PXRHM",$J,RIEN,NAME,"TXT",J)) Q:J=""  D
+ ..S TXT=$G(TXT)_^TMP("PXRHM",$J,RIEN,NAME,"TXT",J)_$C(13)_$C(10),I=I+1
+ K ^TMP("PXRHM",$J)
+ S TMP("uid")=UID
+ S TMP("status")=STATUS
+ S TMP("dueDate")=DUEDATE
+ S TMP("lastDone")=LASTDONE
+ S TMP("clinicalMaintenance")=TXT
+ S TMP("success")="true"
+ D ENCODE^HMPJSON("TMP","RESULT","ERROR")
+ I $D(ERROR) D SETERROR(.TMP,.ERROR,.RESULT)
+ Q
+ ;
+REMLIST(RESULT,USERUID,LOC) ;
+ N CNT,NUM,RIEN,TMP,UID,USER,HMPTMP,HMPSYS
+ S USER=$P(USERUID,":",5)
+ D GETLIST^ORQQPX(.HMPTMP,LOC)
+ S HMPSYS=$$GET^XPAR("SYS","HMP SYSTEM NAME")
+ S CNT=0,NUM=0 F  S CNT=$O(HMPTMP(CNT)) Q:CNT'>0  D
+ .S RIEN=$G(HMPTMP(CNT)) I RIEN'>0 Q
+ .;begin fix DE 2818 ICR 6113 ASF 11/16
+ .;S NAME="" S NAME=$P($G(^PXD(811.9,RIEN,0)),U,3)
+ .;I NAME="" S NAME=$P($G(^PXD(811.9,RIEN,0)),U)
+ .S NAME=$$GET1^DIQ(811.9,REIN_",",1.2)
+ .I NAME="" S NAME=$$GET1^DIQ(811.9,REIN_",",.01)
+ .; end DE2818 fix
+ .S UID="urn:va:pxrm:"_HMPSYS_":"_RIEN
+ .S NUM=NUM+1,TMP("reminders",NUM,"uid")=UID,TMP("reminders",NUM,"name")=NAME
+ S TMP("success")="true"
+ D ENCODE^HMPJSON("TMP","RESULT","ERROR")
+ I $D(ERROR) D SETERROR(.TMP,.ERROR,.RESULT)
+ Q
+ ;
+SETERROR(INPDATA,ERRORMSG,OUTPUT) ;
+ N ERRARR,TXT
+ S TXT(1)="Problem encoding json output"
+ D SETERROR^HMPUTILS(.ERRARR,.ERRORMSG,.TXT,.INPDATA)
+ D ENCODE^HMPJSON("ERRARR","OUTPUT","ERROR")
+ Q
+ ;

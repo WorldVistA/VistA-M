@@ -1,140 +1,136 @@
-IBDEI0HZ ; ; 19-NOV-2015
+IBDEI0HZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8057,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,8058,0)
- ;;=H81.12^^55^534^26
- ;;^UTILITY(U,$J,358.3,8058,1,0)
+ ;;^UTILITY(U,$J,358.3,8320,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,8320,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,8321,0)
+ ;;=D35.01^^35^442^14
+ ;;^UTILITY(U,$J,358.3,8321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8058,1,3,0)
- ;;=3^Benign paroxysmal vertigo, left ear
- ;;^UTILITY(U,$J,358.3,8058,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,8058,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,8059,0)
- ;;=H81.11^^55^534^27
- ;;^UTILITY(U,$J,358.3,8059,1,0)
+ ;;^UTILITY(U,$J,358.3,8321,1,3,0)
+ ;;=3^Benign Neop of Right Adrenal Gland
+ ;;^UTILITY(U,$J,358.3,8321,1,4,0)
+ ;;=4^D35.01
+ ;;^UTILITY(U,$J,358.3,8321,2)
+ ;;=^5002143
+ ;;^UTILITY(U,$J,358.3,8322,0)
+ ;;=D35.02^^35^442^10
+ ;;^UTILITY(U,$J,358.3,8322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8059,1,3,0)
- ;;=3^Benign paroxysmal vertigo, right ear
- ;;^UTILITY(U,$J,358.3,8059,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,8059,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,8060,0)
- ;;=H81.13^^55^534^25
- ;;^UTILITY(U,$J,358.3,8060,1,0)
+ ;;^UTILITY(U,$J,358.3,8322,1,3,0)
+ ;;=3^Benign Neop of Left Adrenal Gland
+ ;;^UTILITY(U,$J,358.3,8322,1,4,0)
+ ;;=4^D35.02
+ ;;^UTILITY(U,$J,358.3,8322,2)
+ ;;=^5002144
+ ;;^UTILITY(U,$J,358.3,8323,0)
+ ;;=D35.1^^35^442^11
+ ;;^UTILITY(U,$J,358.3,8323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8060,1,3,0)
- ;;=3^Benign paroxysmal vertigo, bilateral
- ;;^UTILITY(U,$J,358.3,8060,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,8060,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,8061,0)
- ;;=H93.13^^55^534^117
- ;;^UTILITY(U,$J,358.3,8061,1,0)
+ ;;^UTILITY(U,$J,358.3,8323,1,3,0)
+ ;;=3^Benign Neop of Parathyroid Gland
+ ;;^UTILITY(U,$J,358.3,8323,1,4,0)
+ ;;=4^D35.1
+ ;;^UTILITY(U,$J,358.3,8323,2)
+ ;;=^267689
+ ;;^UTILITY(U,$J,358.3,8324,0)
+ ;;=D35.4^^35^442^12
+ ;;^UTILITY(U,$J,358.3,8324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8061,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,8061,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,8061,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,8062,0)
- ;;=H93.12^^55^534^118
- ;;^UTILITY(U,$J,358.3,8062,1,0)
+ ;;^UTILITY(U,$J,358.3,8324,1,3,0)
+ ;;=3^Benign Neop of Pineal Gland
+ ;;^UTILITY(U,$J,358.3,8324,1,4,0)
+ ;;=4^D35.4
+ ;;^UTILITY(U,$J,358.3,8324,2)
+ ;;=^267691
+ ;;^UTILITY(U,$J,358.3,8325,0)
+ ;;=D35.5^^35^442^7
+ ;;^UTILITY(U,$J,358.3,8325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8062,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,8062,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,8062,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,8063,0)
- ;;=H93.11^^55^534^119
- ;;^UTILITY(U,$J,358.3,8063,1,0)
+ ;;^UTILITY(U,$J,358.3,8325,1,3,0)
+ ;;=3^Benign Neop of Carotid Body
+ ;;^UTILITY(U,$J,358.3,8325,1,4,0)
+ ;;=4^D35.5
+ ;;^UTILITY(U,$J,358.3,8325,2)
+ ;;=^267692
+ ;;^UTILITY(U,$J,358.3,8326,0)
+ ;;=D35.6^^35^442^6
+ ;;^UTILITY(U,$J,358.3,8326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8063,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,8063,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,8063,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,8064,0)
- ;;=H92.01^^55^534^104
- ;;^UTILITY(U,$J,358.3,8064,1,0)
+ ;;^UTILITY(U,$J,358.3,8326,1,3,0)
+ ;;=3^Benign Neop of Aortic Body/Oth Paraganglia
+ ;;^UTILITY(U,$J,358.3,8326,1,4,0)
+ ;;=4^D35.6
+ ;;^UTILITY(U,$J,358.3,8326,2)
+ ;;=^267693
+ ;;^UTILITY(U,$J,358.3,8327,0)
+ ;;=D35.7^^35^442^9
+ ;;^UTILITY(U,$J,358.3,8327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8064,1,3,0)
- ;;=3^Otalgia, right ear
- ;;^UTILITY(U,$J,358.3,8064,1,4,0)
- ;;=4^H92.01
- ;;^UTILITY(U,$J,358.3,8064,2)
- ;;=^5006945
- ;;^UTILITY(U,$J,358.3,8065,0)
- ;;=H92.02^^55^534^103
- ;;^UTILITY(U,$J,358.3,8065,1,0)
+ ;;^UTILITY(U,$J,358.3,8327,1,3,0)
+ ;;=3^Benign Neop of Endocrine Glands,Oth Specified
+ ;;^UTILITY(U,$J,358.3,8327,1,4,0)
+ ;;=4^D35.7
+ ;;^UTILITY(U,$J,358.3,8327,2)
+ ;;=^5002147
+ ;;^UTILITY(U,$J,358.3,8328,0)
+ ;;=C74.01^^35^442^65
+ ;;^UTILITY(U,$J,358.3,8328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8065,1,3,0)
- ;;=3^Otalgia, left ear
- ;;^UTILITY(U,$J,358.3,8065,1,4,0)
- ;;=4^H92.02
- ;;^UTILITY(U,$J,358.3,8065,2)
- ;;=^5006946
- ;;^UTILITY(U,$J,358.3,8066,0)
- ;;=H92.03^^55^534^102
- ;;^UTILITY(U,$J,358.3,8066,1,0)
+ ;;^UTILITY(U,$J,358.3,8328,1,3,0)
+ ;;=3^Malig Neop of Right Adrenal Gland Cortex
+ ;;^UTILITY(U,$J,358.3,8328,1,4,0)
+ ;;=4^C74.01
+ ;;^UTILITY(U,$J,358.3,8328,2)
+ ;;=^5001312
+ ;;^UTILITY(U,$J,358.3,8329,0)
+ ;;=C74.02^^35^442^60
+ ;;^UTILITY(U,$J,358.3,8329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8066,1,3,0)
- ;;=3^Otalgia, bilateral
- ;;^UTILITY(U,$J,358.3,8066,1,4,0)
- ;;=4^H92.03
- ;;^UTILITY(U,$J,358.3,8066,2)
- ;;=^5006947
- ;;^UTILITY(U,$J,358.3,8067,0)
- ;;=H91.92^^55^534^77
- ;;^UTILITY(U,$J,358.3,8067,1,0)
+ ;;^UTILITY(U,$J,358.3,8329,1,3,0)
+ ;;=3^Malig Neop of Left Adrenal Gland Cortex
+ ;;^UTILITY(U,$J,358.3,8329,1,4,0)
+ ;;=4^C74.02
+ ;;^UTILITY(U,$J,358.3,8329,2)
+ ;;=^5001313
+ ;;^UTILITY(U,$J,358.3,8330,0)
+ ;;=C74.11^^35^442^66
+ ;;^UTILITY(U,$J,358.3,8330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8067,1,3,0)
- ;;=3^Hearing Loss,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8067,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,8067,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,8068,0)
- ;;=H91.93^^55^534^76
- ;;^UTILITY(U,$J,358.3,8068,1,0)
+ ;;^UTILITY(U,$J,358.3,8330,1,3,0)
+ ;;=3^Malig Neop of Right Adrenal Gland Medulla
+ ;;^UTILITY(U,$J,358.3,8330,1,4,0)
+ ;;=4^C74.11
+ ;;^UTILITY(U,$J,358.3,8330,2)
+ ;;=^5001315
+ ;;^UTILITY(U,$J,358.3,8331,0)
+ ;;=C74.12^^35^442^61
+ ;;^UTILITY(U,$J,358.3,8331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8068,1,3,0)
- ;;=3^Hearing Loss,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,8068,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,8068,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,8069,0)
- ;;=H91.91^^55^534^78
- ;;^UTILITY(U,$J,358.3,8069,1,0)
+ ;;^UTILITY(U,$J,358.3,8331,1,3,0)
+ ;;=3^Malig Neop of Left Adrenal Gland Medulla
+ ;;^UTILITY(U,$J,358.3,8331,1,4,0)
+ ;;=4^C74.12
+ ;;^UTILITY(U,$J,358.3,8331,2)
+ ;;=^5001316
+ ;;^UTILITY(U,$J,358.3,8332,0)
+ ;;=C75.0^^35^442^62
+ ;;^UTILITY(U,$J,358.3,8332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8069,1,3,0)
- ;;=3^Hearing Loss,Right Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8069,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,8069,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,8070,0)
- ;;=J00.^^55^534^7
- ;;^UTILITY(U,$J,358.3,8070,1,0)
+ ;;^UTILITY(U,$J,358.3,8332,1,3,0)
+ ;;=3^Malig Neop of Parathyroid Gland
+ ;;^UTILITY(U,$J,358.3,8332,1,4,0)
+ ;;=4^C75.0
+ ;;^UTILITY(U,$J,358.3,8332,2)
+ ;;=^267299
+ ;;^UTILITY(U,$J,358.3,8333,0)
+ ;;=C75.1^^35^442^64
+ ;;^UTILITY(U,$J,358.3,8333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8070,1,3,0)
- ;;=3^Acute nasopharyngitis [common cold]
- ;;^UTILITY(U,$J,358.3,8070,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,8070,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,8071,0)
- ;;=J01.00^^55^534^6
- ;;^UTILITY(U,$J,358.3,8071,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8333,1,3,0)
+ ;;=3^Malig Neop of Pituitary Gland
+ ;;^UTILITY(U,$J,358.3,8333,1,4,0)
+ ;;=4^C75.1

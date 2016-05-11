@@ -1,130 +1,132 @@
-IBDEI24I ; ; 19-NOV-2015
+IBDEI24I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35649,1,4,0)
- ;;=4^O99.283
- ;;^UTILITY(U,$J,358.3,35649,2)
- ;;=^5017937
- ;;^UTILITY(U,$J,358.3,35650,0)
- ;;=O99.285^^166^1824^19
- ;;^UTILITY(U,$J,358.3,35650,1,0)
+ ;;^UTILITY(U,$J,358.3,36009,0)
+ ;;=J45.991^^134^1740^14
+ ;;^UTILITY(U,$J,358.3,36009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35650,1,3,0)
- ;;=3^Endocrine, nutritional and metabolic diseases comp the puerp
- ;;^UTILITY(U,$J,358.3,35650,1,4,0)
- ;;=4^O99.285
- ;;^UTILITY(U,$J,358.3,35650,2)
- ;;=^5017939
- ;;^UTILITY(U,$J,358.3,35651,0)
- ;;=O99.011^^166^1824^3
- ;;^UTILITY(U,$J,358.3,35651,1,0)
+ ;;^UTILITY(U,$J,358.3,36009,1,3,0)
+ ;;=3^Cough Variant Asthma
+ ;;^UTILITY(U,$J,358.3,36009,1,4,0)
+ ;;=4^J45.991
+ ;;^UTILITY(U,$J,358.3,36009,2)
+ ;;=^329927
+ ;;^UTILITY(U,$J,358.3,36010,0)
+ ;;=J43.9^^134^1740^16
+ ;;^UTILITY(U,$J,358.3,36010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35651,1,3,0)
- ;;=3^Anemia complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35651,1,4,0)
- ;;=4^O99.011
- ;;^UTILITY(U,$J,358.3,35651,2)
- ;;=^5017916
- ;;^UTILITY(U,$J,358.3,35652,0)
- ;;=O99.012^^166^1824^4
- ;;^UTILITY(U,$J,358.3,35652,1,0)
+ ;;^UTILITY(U,$J,358.3,36010,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,36010,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,36010,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,36011,0)
+ ;;=J45.990^^134^1740^17
+ ;;^UTILITY(U,$J,358.3,36011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35652,1,3,0)
- ;;=3^Anemia complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35652,1,4,0)
- ;;=4^O99.012
- ;;^UTILITY(U,$J,358.3,35652,2)
- ;;=^5017917
- ;;^UTILITY(U,$J,358.3,35653,0)
- ;;=O99.013^^166^1824^5
- ;;^UTILITY(U,$J,358.3,35653,1,0)
+ ;;^UTILITY(U,$J,358.3,36011,1,3,0)
+ ;;=3^Exercise Induced Bronchospasm
+ ;;^UTILITY(U,$J,358.3,36011,1,4,0)
+ ;;=4^J45.990
+ ;;^UTILITY(U,$J,358.3,36011,2)
+ ;;=^329926
+ ;;^UTILITY(U,$J,358.3,36012,0)
+ ;;=J45.22^^134^1740^19
+ ;;^UTILITY(U,$J,358.3,36012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35653,1,3,0)
- ;;=3^Anemia complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35653,1,4,0)
- ;;=4^O99.013
- ;;^UTILITY(U,$J,358.3,35653,2)
- ;;=^5017918
- ;;^UTILITY(U,$J,358.3,35654,0)
- ;;=O99.03^^166^1824^6
- ;;^UTILITY(U,$J,358.3,35654,1,0)
+ ;;^UTILITY(U,$J,358.3,36012,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36012,1,4,0)
+ ;;=4^J45.22
+ ;;^UTILITY(U,$J,358.3,36012,2)
+ ;;=^5008244
+ ;;^UTILITY(U,$J,358.3,36013,0)
+ ;;=J45.20^^134^1740^20
+ ;;^UTILITY(U,$J,358.3,36013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35654,1,3,0)
- ;;=3^Anemia complicating the puerperium
- ;;^UTILITY(U,$J,358.3,35654,1,4,0)
- ;;=4^O99.03
- ;;^UTILITY(U,$J,358.3,35654,2)
- ;;=^5017921
- ;;^UTILITY(U,$J,358.3,35655,0)
- ;;=O99.321^^166^1824^12
- ;;^UTILITY(U,$J,358.3,35655,1,0)
+ ;;^UTILITY(U,$J,358.3,36013,1,3,0)
+ ;;=3^Mild Intermittent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36013,1,4,0)
+ ;;=4^J45.20
+ ;;^UTILITY(U,$J,358.3,36013,2)
+ ;;=^5008242
+ ;;^UTILITY(U,$J,358.3,36014,0)
+ ;;=J45.21^^134^1740^18
+ ;;^UTILITY(U,$J,358.3,36014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35655,1,3,0)
- ;;=3^Drug use complicating pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35655,1,4,0)
- ;;=4^O99.321
- ;;^UTILITY(U,$J,358.3,35655,2)
- ;;=^5017947
- ;;^UTILITY(U,$J,358.3,35656,0)
- ;;=O99.322^^166^1824^13
- ;;^UTILITY(U,$J,358.3,35656,1,0)
+ ;;^UTILITY(U,$J,358.3,36014,1,3,0)
+ ;;=3^Mild Intermittent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36014,1,4,0)
+ ;;=4^J45.21
+ ;;^UTILITY(U,$J,358.3,36014,2)
+ ;;=^5008243
+ ;;^UTILITY(U,$J,358.3,36015,0)
+ ;;=J45.31^^134^1740^21
+ ;;^UTILITY(U,$J,358.3,36015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35656,1,3,0)
- ;;=3^Drug use complicating pregnancy, second trimester
- ;;^UTILITY(U,$J,358.3,35656,1,4,0)
- ;;=4^O99.322
- ;;^UTILITY(U,$J,358.3,35656,2)
- ;;=^5017948
- ;;^UTILITY(U,$J,358.3,35657,0)
- ;;=O99.323^^166^1824^14
- ;;^UTILITY(U,$J,358.3,35657,1,0)
+ ;;^UTILITY(U,$J,358.3,36015,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36015,1,4,0)
+ ;;=4^J45.31
+ ;;^UTILITY(U,$J,358.3,36015,2)
+ ;;=^5008246
+ ;;^UTILITY(U,$J,358.3,36016,0)
+ ;;=J45.32^^134^1740^22
+ ;;^UTILITY(U,$J,358.3,36016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35657,1,3,0)
- ;;=3^Drug use complicating pregnancy, third trimester
- ;;^UTILITY(U,$J,358.3,35657,1,4,0)
- ;;=4^O99.323
- ;;^UTILITY(U,$J,358.3,35657,2)
- ;;=^5017949
- ;;^UTILITY(U,$J,358.3,35658,0)
- ;;=O99.325^^166^1824^15
- ;;^UTILITY(U,$J,358.3,35658,1,0)
+ ;;^UTILITY(U,$J,358.3,36016,1,3,0)
+ ;;=3^Mild Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36016,1,4,0)
+ ;;=4^J45.32
+ ;;^UTILITY(U,$J,358.3,36016,2)
+ ;;=^5008247
+ ;;^UTILITY(U,$J,358.3,36017,0)
+ ;;=J45.30^^134^1740^23
+ ;;^UTILITY(U,$J,358.3,36017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35658,1,3,0)
- ;;=3^Drug use complicating the puerperium
- ;;^UTILITY(U,$J,358.3,35658,1,4,0)
- ;;=4^O99.325
- ;;^UTILITY(U,$J,358.3,35658,2)
- ;;=^5017951
- ;;^UTILITY(U,$J,358.3,35659,0)
- ;;=O90.6^^166^1824^57
- ;;^UTILITY(U,$J,358.3,35659,1,0)
+ ;;^UTILITY(U,$J,358.3,36017,1,3,0)
+ ;;=3^Mild Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36017,1,4,0)
+ ;;=4^J45.30
+ ;;^UTILITY(U,$J,358.3,36017,2)
+ ;;=^5008245
+ ;;^UTILITY(U,$J,358.3,36018,0)
+ ;;=J45.41^^134^1740^24
+ ;;^UTILITY(U,$J,358.3,36018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35659,1,3,0)
- ;;=3^Postpartum mood disturbance
- ;;^UTILITY(U,$J,358.3,35659,1,4,0)
- ;;=4^O90.6
- ;;^UTILITY(U,$J,358.3,35659,2)
- ;;=^5017818
- ;;^UTILITY(U,$J,358.3,35660,0)
- ;;=F53.^^166^1824^79
- ;;^UTILITY(U,$J,358.3,35660,1,0)
+ ;;^UTILITY(U,$J,358.3,36018,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Exacerbation
+ ;;^UTILITY(U,$J,358.3,36018,1,4,0)
+ ;;=4^J45.41
+ ;;^UTILITY(U,$J,358.3,36018,2)
+ ;;=^5008249
+ ;;^UTILITY(U,$J,358.3,36019,0)
+ ;;=J45.42^^134^1740^25
+ ;;^UTILITY(U,$J,358.3,36019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35660,1,3,0)
- ;;=3^Puerperal psychosis
- ;;^UTILITY(U,$J,358.3,35660,1,4,0)
- ;;=4^F53.
- ;;^UTILITY(U,$J,358.3,35660,2)
- ;;=^5003626
- ;;^UTILITY(U,$J,358.3,35661,0)
- ;;=O99.411^^166^1824^8
- ;;^UTILITY(U,$J,358.3,35661,1,0)
+ ;;^UTILITY(U,$J,358.3,36019,1,3,0)
+ ;;=3^Moderate Persistent Asthma w/ Status Asthmaticus
+ ;;^UTILITY(U,$J,358.3,36019,1,4,0)
+ ;;=4^J45.42
+ ;;^UTILITY(U,$J,358.3,36019,2)
+ ;;=^5008250
+ ;;^UTILITY(U,$J,358.3,36020,0)
+ ;;=J45.40^^134^1740^26
+ ;;^UTILITY(U,$J,358.3,36020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35661,1,3,0)
- ;;=3^Diseases of the circ sys comp pregnancy, first trimester
- ;;^UTILITY(U,$J,358.3,35661,1,4,0)
- ;;=4^O99.411
- ;;^UTILITY(U,$J,358.3,35661,2)
- ;;=^5017970
- ;;^UTILITY(U,$J,358.3,35662,0)
- ;;=O99.412^^166^1824^9
+ ;;^UTILITY(U,$J,358.3,36020,1,3,0)
+ ;;=3^Moderate Persistent Asthma,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,36020,1,4,0)
+ ;;=4^J45.40
+ ;;^UTILITY(U,$J,358.3,36020,2)
+ ;;=^5008248
+ ;;^UTILITY(U,$J,358.3,36021,0)
+ ;;=J41.1^^134^1740^27
+ ;;^UTILITY(U,$J,358.3,36021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36021,1,3,0)
+ ;;=3^Mucopurulent Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,36021,1,4,0)
+ ;;=4^J41.1

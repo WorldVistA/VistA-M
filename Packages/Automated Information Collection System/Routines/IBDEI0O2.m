@@ -1,136 +1,136 @@
-IBDEI0O2 ; ; 19-NOV-2015
+IBDEI0O2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11002,1,0)
+ ;;^UTILITY(U,$J,358.3,11236,2)
+ ;;=^5063591
+ ;;^UTILITY(U,$J,358.3,11237,0)
+ ;;=Z90.712^^47^530^3
+ ;;^UTILITY(U,$J,358.3,11237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11002,1,3,0)
- ;;=3^Presence of Left Artificial Leg
- ;;^UTILITY(U,$J,358.3,11002,1,4,0)
- ;;=4^Z97.14
- ;;^UTILITY(U,$J,358.3,11002,2)
- ;;=^5063725
- ;;^UTILITY(U,$J,358.3,11003,0)
- ;;=Z97.15^^68^676^123
- ;;^UTILITY(U,$J,358.3,11003,1,0)
+ ;;^UTILITY(U,$J,358.3,11237,1,3,0)
+ ;;=3^Acquired Absence of Cervix w/ Remaining Uterus
+ ;;^UTILITY(U,$J,358.3,11237,1,4,0)
+ ;;=4^Z90.712
+ ;;^UTILITY(U,$J,358.3,11237,2)
+ ;;=^5063593
+ ;;^UTILITY(U,$J,358.3,11238,0)
+ ;;=Z90.711^^47^530^4
+ ;;^UTILITY(U,$J,358.3,11238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11003,1,3,0)
- ;;=3^Presence of Bilateral Artificial Arms
- ;;^UTILITY(U,$J,358.3,11003,1,4,0)
- ;;=4^Z97.15
- ;;^UTILITY(U,$J,358.3,11003,2)
- ;;=^5063726
- ;;^UTILITY(U,$J,358.3,11004,0)
- ;;=Z97.16^^68^676^124
- ;;^UTILITY(U,$J,358.3,11004,1,0)
+ ;;^UTILITY(U,$J,358.3,11238,1,3,0)
+ ;;=3^Acquired Absence of Uterus w/ Remaining Cervical Stump
+ ;;^UTILITY(U,$J,358.3,11238,1,4,0)
+ ;;=4^Z90.711
+ ;;^UTILITY(U,$J,358.3,11238,2)
+ ;;=^5063592
+ ;;^UTILITY(U,$J,358.3,11239,0)
+ ;;=R34.^^47^530^5
+ ;;^UTILITY(U,$J,358.3,11239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11004,1,3,0)
- ;;=3^Presence of Bilateral Artificial Legs
- ;;^UTILITY(U,$J,358.3,11004,1,4,0)
- ;;=4^Z97.16
- ;;^UTILITY(U,$J,358.3,11004,2)
- ;;=^5063727
- ;;^UTILITY(U,$J,358.3,11005,0)
- ;;=Z98.61^^68^676^17
- ;;^UTILITY(U,$J,358.3,11005,1,0)
+ ;;^UTILITY(U,$J,358.3,11239,1,3,0)
+ ;;=3^Anuria & Oliguria
+ ;;^UTILITY(U,$J,358.3,11239,1,4,0)
+ ;;=4^R34.
+ ;;^UTILITY(U,$J,358.3,11239,2)
+ ;;=^5019333
+ ;;^UTILITY(U,$J,358.3,11240,0)
+ ;;=Z93.50^^47^530^6
+ ;;^UTILITY(U,$J,358.3,11240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11005,1,3,0)
- ;;=3^Coronary Angioplasty Status
- ;;^UTILITY(U,$J,358.3,11005,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,11005,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,11006,0)
- ;;=Z98.62^^68^676^73
- ;;^UTILITY(U,$J,358.3,11006,1,0)
+ ;;^UTILITY(U,$J,358.3,11240,1,3,0)
+ ;;=3^Artificial Opening,Cystostomy,Unspec
+ ;;^UTILITY(U,$J,358.3,11240,1,4,0)
+ ;;=4^Z93.50
+ ;;^UTILITY(U,$J,358.3,11240,2)
+ ;;=^5063647
+ ;;^UTILITY(U,$J,358.3,11241,0)
+ ;;=Z93.6^^47^530^7
+ ;;^UTILITY(U,$J,358.3,11241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11006,1,3,0)
- ;;=3^Peripheral Vascular Angioplasty Status
- ;;^UTILITY(U,$J,358.3,11006,1,4,0)
- ;;=4^Z98.62
- ;;^UTILITY(U,$J,358.3,11006,2)
- ;;=^5063743
- ;;^UTILITY(U,$J,358.3,11007,0)
- ;;=Z98.84^^68^676^12
- ;;^UTILITY(U,$J,358.3,11007,1,0)
+ ;;^UTILITY(U,$J,358.3,11241,1,3,0)
+ ;;=3^Artificial Opening,Urinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,11241,1,4,0)
+ ;;=4^Z93.6
+ ;;^UTILITY(U,$J,358.3,11241,2)
+ ;;=^5063651
+ ;;^UTILITY(U,$J,358.3,11242,0)
+ ;;=N32.9^^47^530^8
+ ;;^UTILITY(U,$J,358.3,11242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11007,1,3,0)
- ;;=3^Bariatric Surgery Status
- ;;^UTILITY(U,$J,358.3,11007,1,4,0)
- ;;=4^Z98.84
- ;;^UTILITY(U,$J,358.3,11007,2)
- ;;=^5063749
- ;;^UTILITY(U,$J,358.3,11008,0)
- ;;=Z99.2^^68^676^141
- ;;^UTILITY(U,$J,358.3,11008,1,0)
+ ;;^UTILITY(U,$J,358.3,11242,1,3,0)
+ ;;=3^Baldder Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11242,1,4,0)
+ ;;=4^N32.9
+ ;;^UTILITY(U,$J,358.3,11242,2)
+ ;;=^5015653
+ ;;^UTILITY(U,$J,358.3,11243,0)
+ ;;=R39.14^^47^530^10
+ ;;^UTILITY(U,$J,358.3,11243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11008,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,11008,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,11008,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,11009,0)
- ;;=Z99.81^^68^676^144
- ;;^UTILITY(U,$J,358.3,11009,1,0)
+ ;;^UTILITY(U,$J,358.3,11243,1,3,0)
+ ;;=3^Bladder Emptying,Imcomplete Feeling
+ ;;^UTILITY(U,$J,358.3,11243,1,4,0)
+ ;;=4^R39.14
+ ;;^UTILITY(U,$J,358.3,11243,2)
+ ;;=^5019344
+ ;;^UTILITY(U,$J,358.3,11244,0)
+ ;;=N31.9^^47^530^11
+ ;;^UTILITY(U,$J,358.3,11244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11009,1,3,0)
- ;;=3^Supplemental Oxygen Dependence
- ;;^UTILITY(U,$J,358.3,11009,1,4,0)
- ;;=4^Z99.81
- ;;^UTILITY(U,$J,358.3,11009,2)
- ;;=^5063760
- ;;^UTILITY(U,$J,358.3,11010,0)
- ;;=Z90.79^^68^676^2
- ;;^UTILITY(U,$J,358.3,11010,1,0)
+ ;;^UTILITY(U,$J,358.3,11244,1,3,0)
+ ;;=3^Bladder,Neuromuscular Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,11244,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,11244,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,11245,0)
+ ;;=N32.81^^47^530^9
+ ;;^UTILITY(U,$J,358.3,11245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11010,1,3,0)
- ;;=3^Acquired Absence of Genital Organs NEC
- ;;^UTILITY(U,$J,358.3,11010,1,4,0)
- ;;=4^Z90.79
- ;;^UTILITY(U,$J,358.3,11010,2)
- ;;=^5063596
- ;;^UTILITY(U,$J,358.3,11011,0)
- ;;=Z90.5^^68^676^3
- ;;^UTILITY(U,$J,358.3,11011,1,0)
+ ;;^UTILITY(U,$J,358.3,11245,1,3,0)
+ ;;=3^Baldder,Overactive
+ ;;^UTILITY(U,$J,358.3,11245,1,4,0)
+ ;;=4^N32.81
+ ;;^UTILITY(U,$J,358.3,11245,2)
+ ;;=^5015652
+ ;;^UTILITY(U,$J,358.3,11246,0)
+ ;;=N20.0^^47^530^12
+ ;;^UTILITY(U,$J,358.3,11246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11011,1,3,0)
- ;;=3^Acquired Absence of Kidney
- ;;^UTILITY(U,$J,358.3,11011,1,4,0)
- ;;=4^Z90.5
- ;;^UTILITY(U,$J,358.3,11011,2)
- ;;=^5063590
- ;;^UTILITY(U,$J,358.3,11012,0)
- ;;=Z90.2^^68^676^6
- ;;^UTILITY(U,$J,358.3,11012,1,0)
+ ;;^UTILITY(U,$J,358.3,11246,1,3,0)
+ ;;=3^Calculus of Kidney
+ ;;^UTILITY(U,$J,358.3,11246,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,11246,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,11247,0)
+ ;;=N20.2^^47^530^13
+ ;;^UTILITY(U,$J,358.3,11247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11012,1,3,0)
- ;;=3^Acquired Absence of Lung (part of)
- ;;^UTILITY(U,$J,358.3,11012,1,4,0)
- ;;=4^Z90.2
- ;;^UTILITY(U,$J,358.3,11012,2)
- ;;=^5063585
- ;;^UTILITY(U,$J,358.3,11013,0)
- ;;=Z98.1^^68^676^10
- ;;^UTILITY(U,$J,358.3,11013,1,0)
+ ;;^UTILITY(U,$J,358.3,11247,1,3,0)
+ ;;=3^Calculus of Kidney w/ Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,11247,1,4,0)
+ ;;=4^N20.2
+ ;;^UTILITY(U,$J,358.3,11247,2)
+ ;;=^5015609
+ ;;^UTILITY(U,$J,358.3,11248,0)
+ ;;=N21.9^^47^530^14
+ ;;^UTILITY(U,$J,358.3,11248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11013,1,3,0)
- ;;=3^Arthrodesis Status
- ;;^UTILITY(U,$J,358.3,11013,1,4,0)
- ;;=4^Z98.1
- ;;^UTILITY(U,$J,358.3,11013,2)
- ;;=^5063734
- ;;^UTILITY(U,$J,358.3,11014,0)
- ;;=Z94.7^^68^676^16
- ;;^UTILITY(U,$J,358.3,11014,1,0)
+ ;;^UTILITY(U,$J,358.3,11248,1,3,0)
+ ;;=3^Calculus of Lower Urinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,11248,1,4,0)
+ ;;=4^N21.9
+ ;;^UTILITY(U,$J,358.3,11248,2)
+ ;;=^5015613
+ ;;^UTILITY(U,$J,358.3,11249,0)
+ ;;=N20.1^^47^530^15
+ ;;^UTILITY(U,$J,358.3,11249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11014,1,3,0)
- ;;=3^Corneal Transplant Status
- ;;^UTILITY(U,$J,358.3,11014,1,4,0)
- ;;=4^Z94.7
- ;;^UTILITY(U,$J,358.3,11014,2)
- ;;=^5063661
- ;;^UTILITY(U,$J,358.3,11015,0)
- ;;=Z83.511^^68^676^30
- ;;^UTILITY(U,$J,358.3,11015,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11249,1,3,0)
+ ;;=3^Calculus of Ureter
+ ;;^UTILITY(U,$J,358.3,11249,1,4,0)
+ ;;=4^N20.1
+ ;;^UTILITY(U,$J,358.3,11249,2)
+ ;;=^5015608

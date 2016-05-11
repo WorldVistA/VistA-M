@@ -1,140 +1,130 @@
-IBDEI140 ; ; 19-NOV-2015
+IBDEI140 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18524,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,18524,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,18525,0)
- ;;=E13.9^^94^908^22
- ;;^UTILITY(U,$J,358.3,18525,1,0)
+ ;;^UTILITY(U,$J,358.3,18870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18525,1,3,0)
- ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
- ;;^UTILITY(U,$J,358.3,18525,1,4,0)
- ;;=4^E13.9
- ;;^UTILITY(U,$J,358.3,18525,2)
- ;;=^5002704
- ;;^UTILITY(U,$J,358.3,18526,0)
- ;;=E16.2^^94^908^29
- ;;^UTILITY(U,$J,358.3,18526,1,0)
+ ;;^UTILITY(U,$J,358.3,18870,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Right Eye
+ ;;^UTILITY(U,$J,358.3,18870,1,4,0)
+ ;;=4^H25.041
+ ;;^UTILITY(U,$J,358.3,18870,2)
+ ;;=^5005275
+ ;;^UTILITY(U,$J,358.3,18871,0)
+ ;;=H25.042^^82^900^16
+ ;;^UTILITY(U,$J,358.3,18871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18526,1,3,0)
- ;;=3^Hypoglycemia,Unspec
- ;;^UTILITY(U,$J,358.3,18526,1,4,0)
- ;;=4^E16.2
- ;;^UTILITY(U,$J,358.3,18526,2)
- ;;=^5002708
- ;;^UTILITY(U,$J,358.3,18527,0)
- ;;=E20.0^^94^908^34
- ;;^UTILITY(U,$J,358.3,18527,1,0)
+ ;;^UTILITY(U,$J,358.3,18871,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Left Eye
+ ;;^UTILITY(U,$J,358.3,18871,1,4,0)
+ ;;=4^H25.042
+ ;;^UTILITY(U,$J,358.3,18871,2)
+ ;;=^5005276
+ ;;^UTILITY(U,$J,358.3,18872,0)
+ ;;=H25.043^^82^900^17
+ ;;^UTILITY(U,$J,358.3,18872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18527,1,3,0)
- ;;=3^Idiopathic Hypoparathyroidism
- ;;^UTILITY(U,$J,358.3,18527,1,4,0)
- ;;=4^E20.0
- ;;^UTILITY(U,$J,358.3,18527,2)
- ;;=^5002712
- ;;^UTILITY(U,$J,358.3,18528,0)
- ;;=E20.9^^94^908^30
- ;;^UTILITY(U,$J,358.3,18528,1,0)
+ ;;^UTILITY(U,$J,358.3,18872,1,3,0)
+ ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,18872,1,4,0)
+ ;;=4^H25.043
+ ;;^UTILITY(U,$J,358.3,18872,2)
+ ;;=^5005277
+ ;;^UTILITY(U,$J,358.3,18873,0)
+ ;;=H25.011^^82^900^11
+ ;;^UTILITY(U,$J,358.3,18873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18528,1,3,0)
- ;;=3^Hypoparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,18528,1,4,0)
- ;;=4^E20.9
- ;;^UTILITY(U,$J,358.3,18528,2)
- ;;=^5002714
- ;;^UTILITY(U,$J,358.3,18529,0)
- ;;=E23.0^^94^908^31
- ;;^UTILITY(U,$J,358.3,18529,1,0)
+ ;;^UTILITY(U,$J,358.3,18873,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Right Eye
+ ;;^UTILITY(U,$J,358.3,18873,1,4,0)
+ ;;=4^H25.011
+ ;;^UTILITY(U,$J,358.3,18873,2)
+ ;;=^5005267
+ ;;^UTILITY(U,$J,358.3,18874,0)
+ ;;=H25.012^^82^900^10
+ ;;^UTILITY(U,$J,358.3,18874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18529,1,3,0)
- ;;=3^Hypopituitarism
- ;;^UTILITY(U,$J,358.3,18529,1,4,0)
- ;;=4^E23.0
- ;;^UTILITY(U,$J,358.3,18529,2)
- ;;=^60685
- ;;^UTILITY(U,$J,358.3,18530,0)
- ;;=E27.1^^94^908^51
- ;;^UTILITY(U,$J,358.3,18530,1,0)
+ ;;^UTILITY(U,$J,358.3,18874,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Left Eye
+ ;;^UTILITY(U,$J,358.3,18874,1,4,0)
+ ;;=4^H25.012
+ ;;^UTILITY(U,$J,358.3,18874,2)
+ ;;=^5005268
+ ;;^UTILITY(U,$J,358.3,18875,0)
+ ;;=H25.013^^82^900^9
+ ;;^UTILITY(U,$J,358.3,18875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18530,1,3,0)
- ;;=3^Primary Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,18530,1,4,0)
- ;;=4^E27.1
- ;;^UTILITY(U,$J,358.3,18530,2)
- ;;=^5002740
- ;;^UTILITY(U,$J,358.3,18531,0)
- ;;=E27.2^^94^908^1
- ;;^UTILITY(U,$J,358.3,18531,1,0)
+ ;;^UTILITY(U,$J,358.3,18875,1,3,0)
+ ;;=3^Cortical Age-Related Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,18875,1,4,0)
+ ;;=4^H25.013
+ ;;^UTILITY(U,$J,358.3,18875,2)
+ ;;=^5005269
+ ;;^UTILITY(U,$J,358.3,18876,0)
+ ;;=H25.13^^82^900^6
+ ;;^UTILITY(U,$J,358.3,18876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18531,1,3,0)
- ;;=3^Addisonian Crisis
- ;;^UTILITY(U,$J,358.3,18531,1,4,0)
- ;;=4^E27.2
- ;;^UTILITY(U,$J,358.3,18531,2)
- ;;=^263725
- ;;^UTILITY(U,$J,358.3,18532,0)
- ;;=E27.3^^94^908^23
- ;;^UTILITY(U,$J,358.3,18532,1,0)
+ ;;^UTILITY(U,$J,358.3,18876,1,3,0)
+ ;;=3^Age-Related Nuclear Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,18876,1,4,0)
+ ;;=4^H25.13
+ ;;^UTILITY(U,$J,358.3,18876,2)
+ ;;=^5005286
+ ;;^UTILITY(U,$J,358.3,18877,0)
+ ;;=H25.12^^82^900^7
+ ;;^UTILITY(U,$J,358.3,18877,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18532,1,3,0)
- ;;=3^Drug-induced Adrenocortical Insufficiency
- ;;^UTILITY(U,$J,358.3,18532,1,4,0)
- ;;=4^E27.3
- ;;^UTILITY(U,$J,358.3,18532,2)
- ;;=^5002741
- ;;^UTILITY(U,$J,358.3,18533,0)
- ;;=E29.1^^94^908^52
- ;;^UTILITY(U,$J,358.3,18533,1,0)
+ ;;^UTILITY(U,$J,358.3,18877,1,3,0)
+ ;;=3^Age-Related Nuclear Cataract,Left Eye
+ ;;^UTILITY(U,$J,358.3,18877,1,4,0)
+ ;;=4^H25.12
+ ;;^UTILITY(U,$J,358.3,18877,2)
+ ;;=^5005285
+ ;;^UTILITY(U,$J,358.3,18878,0)
+ ;;=H25.11^^82^900^8
+ ;;^UTILITY(U,$J,358.3,18878,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18533,1,3,0)
- ;;=3^Testicular Hypofunction
- ;;^UTILITY(U,$J,358.3,18533,1,4,0)
- ;;=4^E29.1
- ;;^UTILITY(U,$J,358.3,18533,2)
- ;;=^5002754
- ;;^UTILITY(U,$J,358.3,18534,0)
- ;;=E55.9^^94^908^59
- ;;^UTILITY(U,$J,358.3,18534,1,0)
+ ;;^UTILITY(U,$J,358.3,18878,1,3,0)
+ ;;=3^Age-Related Nuclear Cataract,Right Eye
+ ;;^UTILITY(U,$J,358.3,18878,1,4,0)
+ ;;=4^H25.11
+ ;;^UTILITY(U,$J,358.3,18878,2)
+ ;;=^5005284
+ ;;^UTILITY(U,$J,358.3,18879,0)
+ ;;=H26.492^^82^900^19
+ ;;^UTILITY(U,$J,358.3,18879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18534,1,3,0)
- ;;=3^Vitamin D Deficiency,Unspec
- ;;^UTILITY(U,$J,358.3,18534,1,4,0)
- ;;=4^E55.9
- ;;^UTILITY(U,$J,358.3,18534,2)
- ;;=^5002799
- ;;^UTILITY(U,$J,358.3,18535,0)
- ;;=E66.01^^94^908^38
- ;;^UTILITY(U,$J,358.3,18535,1,0)
+ ;;^UTILITY(U,$J,358.3,18879,1,3,0)
+ ;;=3^Secondary Cataract,Left Eye
+ ;;^UTILITY(U,$J,358.3,18879,1,4,0)
+ ;;=4^H26.492
+ ;;^UTILITY(U,$J,358.3,18879,2)
+ ;;=^5005359
+ ;;^UTILITY(U,$J,358.3,18880,0)
+ ;;=H26.491^^82^900^20
+ ;;^UTILITY(U,$J,358.3,18880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18535,1,3,0)
- ;;=3^Morbid Obesity
- ;;^UTILITY(U,$J,358.3,18535,1,4,0)
- ;;=4^E66.01
- ;;^UTILITY(U,$J,358.3,18535,2)
- ;;=^5002826
- ;;^UTILITY(U,$J,358.3,18536,0)
- ;;=E66.8^^94^908^42
- ;;^UTILITY(U,$J,358.3,18536,1,0)
+ ;;^UTILITY(U,$J,358.3,18880,1,3,0)
+ ;;=3^Secondary Cataract,Right Eye
+ ;;^UTILITY(U,$J,358.3,18880,1,4,0)
+ ;;=4^H26.491
+ ;;^UTILITY(U,$J,358.3,18880,2)
+ ;;=^5005358
+ ;;^UTILITY(U,$J,358.3,18881,0)
+ ;;=H26.493^^82^900^18
+ ;;^UTILITY(U,$J,358.3,18881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18536,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,18536,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,18536,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,18537,0)
- ;;=E66.9^^94^908^43
- ;;^UTILITY(U,$J,358.3,18537,1,0)
+ ;;^UTILITY(U,$J,358.3,18881,1,3,0)
+ ;;=3^Secondary Cataract,Bilateral
+ ;;^UTILITY(U,$J,358.3,18881,1,4,0)
+ ;;=4^H26.493
+ ;;^UTILITY(U,$J,358.3,18881,2)
+ ;;=^5005360
+ ;;^UTILITY(U,$J,358.3,18882,0)
+ ;;=H43.811^^82^900^28
+ ;;^UTILITY(U,$J,358.3,18882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18537,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,18537,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,18537,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,18538,0)
- ;;=E74.39^^94^908^35
+ ;;^UTILITY(U,$J,358.3,18882,1,3,0)
+ ;;=3^Vitreous Degeneration,Right Eye
+ ;;^UTILITY(U,$J,358.3,18882,1,4,0)
+ ;;=4^H43.811

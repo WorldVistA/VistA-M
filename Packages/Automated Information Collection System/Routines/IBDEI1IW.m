@@ -1,136 +1,124 @@
-IBDEI1IW ; ; 19-NOV-2015
+IBDEI1IW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,25454,0)
- ;;=B00.1^^124^1247^43
- ;;^UTILITY(U,$J,358.3,25454,1,0)
+ ;;^UTILITY(U,$J,358.3,25852,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,25852,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,25852,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,25853,0)
+ ;;=T76.31XD^^98^1209^12
+ ;;^UTILITY(U,$J,358.3,25853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25454,1,3,0)
- ;;=3^Herpesviral Vesicular Dermatitis
- ;;^UTILITY(U,$J,358.3,25454,1,4,0)
- ;;=4^B00.1
- ;;^UTILITY(U,$J,358.3,25454,2)
- ;;=^5000468
- ;;^UTILITY(U,$J,358.3,25455,0)
- ;;=A60.01^^124^1247^44
- ;;^UTILITY(U,$J,358.3,25455,1,0)
+ ;;^UTILITY(U,$J,358.3,25853,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,25853,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,25853,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,25854,0)
+ ;;=Z91.411^^98^1209^30
+ ;;^UTILITY(U,$J,358.3,25854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25455,1,3,0)
- ;;=3^Herpetic Infect of Penis
- ;;^UTILITY(U,$J,358.3,25455,1,4,0)
- ;;=4^A60.01
- ;;^UTILITY(U,$J,358.3,25455,2)
- ;;=^5000353
- ;;^UTILITY(U,$J,358.3,25456,0)
- ;;=A60.04^^124^1247^45
- ;;^UTILITY(U,$J,358.3,25456,1,0)
+ ;;^UTILITY(U,$J,358.3,25854,1,3,0)
+ ;;=3^Personal Hx of Spouse or Parnter Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25854,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,25854,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,25855,0)
+ ;;=Z69.021^^98^1209^17
+ ;;^UTILITY(U,$J,358.3,25855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25456,1,3,0)
- ;;=3^Herpetic Vulvovaginitis
- ;;^UTILITY(U,$J,358.3,25456,1,4,0)
- ;;=4^A60.04
- ;;^UTILITY(U,$J,358.3,25456,2)
- ;;=^5000356
- ;;^UTILITY(U,$J,358.3,25457,0)
- ;;=Z21.^^124^1247^33
- ;;^UTILITY(U,$J,358.3,25457,1,0)
+ ;;^UTILITY(U,$J,358.3,25855,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25855,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25855,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25856,0)
+ ;;=Z69.021^^98^1209^18
+ ;;^UTILITY(U,$J,358.3,25856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25457,1,3,0)
- ;;=3^HIV + Status (Asymptomatic)
- ;;^UTILITY(U,$J,358.3,25457,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,25457,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,25458,0)
- ;;=B20.^^124^1247^32
- ;;^UTILITY(U,$J,358.3,25458,1,0)
+ ;;^UTILITY(U,$J,358.3,25856,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,25856,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25856,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25857,0)
+ ;;=Z69.021^^98^1209^19
+ ;;^UTILITY(U,$J,358.3,25857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25458,1,3,0)
- ;;=3^HIV + (Symptomatic)/AIDS
- ;;^UTILITY(U,$J,358.3,25458,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,25458,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,25459,0)
- ;;=A63.0^^124^1247^47
- ;;^UTILITY(U,$J,358.3,25459,1,0)
+ ;;^UTILITY(U,$J,358.3,25857,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25857,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25857,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25858,0)
+ ;;=Z69.021^^98^1209^20
+ ;;^UTILITY(U,$J,358.3,25858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25459,1,3,0)
- ;;=3^Human Papillomavirus infection
- ;;^UTILITY(U,$J,358.3,25459,1,4,0)
- ;;=4^A63.0
- ;;^UTILITY(U,$J,358.3,25459,2)
- ;;=^5000360
- ;;^UTILITY(U,$J,358.3,25460,0)
- ;;=T85.79XA^^124^1247^48
- ;;^UTILITY(U,$J,358.3,25460,1,0)
+ ;;^UTILITY(U,$J,358.3,25858,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25858,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,25858,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,25859,0)
+ ;;=Z69.011^^98^1209^22
+ ;;^UTILITY(U,$J,358.3,25859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25460,1,3,0)
- ;;=3^Infect/inflm reaction d/t implantable device graft,init encntr
- ;;^UTILITY(U,$J,358.3,25460,1,4,0)
- ;;=4^T85.79XA
- ;;^UTILITY(U,$J,358.3,25460,2)
- ;;=^5055676
- ;;^UTILITY(U,$J,358.3,25461,0)
- ;;=J11.00^^124^1247^60
- ;;^UTILITY(U,$J,358.3,25461,1,0)
+ ;;^UTILITY(U,$J,358.3,25859,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,25859,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25859,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25860,0)
+ ;;=Z69.011^^98^1209^23
+ ;;^UTILITY(U,$J,358.3,25860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25461,1,3,0)
- ;;=3^Influenza with unspecified type of pneumonia
- ;;^UTILITY(U,$J,358.3,25461,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,25461,2)
- ;;=^5008156
- ;;^UTILITY(U,$J,358.3,25462,0)
- ;;=H83.09^^124^1247^61
- ;;^UTILITY(U,$J,358.3,25462,1,0)
+ ;;^UTILITY(U,$J,358.3,25860,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,25860,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25860,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25861,0)
+ ;;=Z69.011^^98^1209^24
+ ;;^UTILITY(U,$J,358.3,25861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25462,1,3,0)
- ;;=3^Labyrinthitis, NOS
- ;;^UTILITY(U,$J,358.3,25462,1,4,0)
- ;;=4^H83.09
- ;;^UTILITY(U,$J,358.3,25462,2)
- ;;=^5006897
- ;;^UTILITY(U,$J,358.3,25463,0)
- ;;=H83.02^^124^1247^63
- ;;^UTILITY(U,$J,358.3,25463,1,0)
+ ;;^UTILITY(U,$J,358.3,25861,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,25861,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25861,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25862,0)
+ ;;=Z69.011^^98^1209^25
+ ;;^UTILITY(U,$J,358.3,25862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25463,1,3,0)
- ;;=3^Labyrinthitis, left ear
- ;;^UTILITY(U,$J,358.3,25463,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,25463,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,25464,0)
- ;;=H83.01^^124^1247^64
- ;;^UTILITY(U,$J,358.3,25464,1,0)
+ ;;^UTILITY(U,$J,358.3,25862,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,25862,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,25862,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,25863,0)
+ ;;=F06.4^^98^1210^6
+ ;;^UTILITY(U,$J,358.3,25863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25464,1,3,0)
- ;;=3^Labyrinthitis, right ear
- ;;^UTILITY(U,$J,358.3,25464,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,25464,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,25465,0)
- ;;=H83.03^^124^1247^62
- ;;^UTILITY(U,$J,358.3,25465,1,0)
+ ;;^UTILITY(U,$J,358.3,25863,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,25863,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,25863,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,25864,0)
+ ;;=F41.0^^98^1210^15
+ ;;^UTILITY(U,$J,358.3,25864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25465,1,3,0)
- ;;=3^Labyrinthitis, bilateral
- ;;^UTILITY(U,$J,358.3,25465,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,25465,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,25466,0)
- ;;=A48.1^^124^1247^66
- ;;^UTILITY(U,$J,358.3,25466,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,25466,1,3,0)
- ;;=3^Legionella pneumonia/Legionnnaire's
- ;;^UTILITY(U,$J,358.3,25466,1,4,0)
- ;;=4^A48.1
- ;;^UTILITY(U,$J,358.3,25466,2)
- ;;=^68817
- ;;^UTILITY(U,$J,358.3,25467,0)
- ;;=A69.20^^124^1247^67

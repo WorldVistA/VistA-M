@@ -1,6 +1,7 @@
 BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
- ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**1,5,8,10,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  ;----------------------------------------------------------------------
  ; Assemble ASCII formatted claim submission record
  ;
@@ -8,27 +9,27 @@ BPSECA1 ;BHAM ISC/FCS/DRS/VA/DLF - Assemble formatted claim ;05/14/2004
  ;  CLAIMIEN - pointer into 9002313.02
  ;  MSG - Array passed by reference - This will have the claim packet
  ;
- ; NCPDP 5.1 changes
- ;     5.1 has 14 claim segments (header, patient, insurance, claim
- ;                                pharmacy provider, prescriber,
- ;                                COB, workers comp, DUR, Pricing,
- ;                                coupon, compound, prior auth,
- ;                                clinical)
- ;    5.1 requires field identifiers and separators on all fields
+ ;    5.1 had 14 claim segments (Header, Patient, Insurance, Claim
+ ;                                Pharmacy Provider, Prescriber,
+ ;                                COB, Workers Comp, DUR, Pricing,
+ ;                                Coupon, Compound, Prior Auth,
+ ;                                Clinical)
+ ;
+ ;    D.0 added 3 new request segments (Additional Documentation,
+ ;                                       Facility, Narrative)
+ ;
+ ;    D.1 - D.9 introduces Alphanumeric NCPDP numbers and new
+ ;                              Purchase and Provider segments
+ ;
+ ;    E.0 - E.6 added 2 new request segments (Intermediary, Last
+ ;                                             Known 4RX)
+ ;
+ ;    5.1/D.0 requires field identifiers and separators on all fields
  ;        other than the header
- ;    5.1 Segment separators are required prior to each segment
+ ;    5.1/D.0 segment separators are required prior to each segment
  ;        following the header
- ;    5.1 Group separators appear at the end of each
+ ;    5.1/D.0 group separators appear at the end of each
  ;        transaction (prescription)
- ;
- ;   Adjustments were also made to the reversal logic as well.
- ;
- ; NCPDP D.0 changes
- ;    D.0 added 3 new request segments (additional documentation,
- ;                                      facility, narrative)
- ; BPS*1*15
- ;    D.1 - D.9 Introduces Alphanumeric NCPDP numbers
- ;    and new Purchase and Provider segment
  ;
 ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  N IEN,RECORD,BPS,UERETVAL,DET51,WP
@@ -59,7 +60,7 @@ ASCII(CLAIMIEN,MSG) ;EP - from BPSOSQG
  D XLOOP^BPSOSH2("100^110^120",.IEN,.BPS,.RECORD)
  ;
  ; Set list of repeating claim segments
- S DET51="130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280" ; BPS*1*15 new 270 and 280 segment nodes
+ S DET51="130^140^150^160^170^180^190^200^210^220^230^240^250^260^270^280^290^300"
  ;
  ; Loop through prescription multiple and get create repeating segments
  S IEN(9002313.0201)=0

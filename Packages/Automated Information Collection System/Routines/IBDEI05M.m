@@ -1,130 +1,134 @@
-IBDEI05M ; ; 19-NOV-2015
+IBDEI05M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1999,1,0)
+ ;;^UTILITY(U,$J,358.3,2284,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1999,1,2,0)
- ;;=2^93561
- ;;^UTILITY(U,$J,358.3,1999,1,3,0)
- ;;=3^Thermal Dilution Study W/Cardiac Output
- ;;^UTILITY(U,$J,358.3,2000,0)
- ;;=93571^^17^177^10^^^^1
- ;;^UTILITY(U,$J,358.3,2000,1,0)
+ ;;^UTILITY(U,$J,358.3,2284,1,2,0)
+ ;;=2^Ultrasound Therapy,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2284,1,3,0)
+ ;;=3^97035
+ ;;^UTILITY(U,$J,358.3,2285,0)
+ ;;=97028^^14^181^22^^^^1
+ ;;^UTILITY(U,$J,358.3,2285,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2000,1,2,0)
- ;;=2^93571
- ;;^UTILITY(U,$J,358.3,2000,1,3,0)
- ;;=3^Intravascular Dopplar Add-On, First Vessel
- ;;^UTILITY(U,$J,358.3,2001,0)
- ;;=93572^^17^177^11^^^^1
- ;;^UTILITY(U,$J,358.3,2001,1,0)
+ ;;^UTILITY(U,$J,358.3,2285,1,2,0)
+ ;;=2^Ultraviolet Therapy
+ ;;^UTILITY(U,$J,358.3,2285,1,3,0)
+ ;;=3^97028
+ ;;^UTILITY(U,$J,358.3,2286,0)
+ ;;=97110^^14^181^20^^^^1
+ ;;^UTILITY(U,$J,358.3,2286,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2001,1,2,0)
- ;;=2^93572
- ;;^UTILITY(U,$J,358.3,2001,1,3,0)
- ;;=3^Intravascular Dopplar, Each Addl Vessel
- ;;^UTILITY(U,$J,358.3,2002,0)
- ;;=93740^^17^177^14^^^^1
- ;;^UTILITY(U,$J,358.3,2002,1,0)
+ ;;^UTILITY(U,$J,358.3,2286,1,2,0)
+ ;;=2^Therapeutic Exercises,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2286,1,3,0)
+ ;;=3^97110
+ ;;^UTILITY(U,$J,358.3,2287,0)
+ ;;=97112^^14^181^12^^^^1
+ ;;^UTILITY(U,$J,358.3,2287,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2002,1,2,0)
- ;;=2^93740
- ;;^UTILITY(U,$J,358.3,2002,1,3,0)
- ;;=3^Temperature Gradient Studies
- ;;^UTILITY(U,$J,358.3,2003,0)
- ;;=93784^^17^177^2^^^^1
- ;;^UTILITY(U,$J,358.3,2003,1,0)
+ ;;^UTILITY(U,$J,358.3,2287,1,2,0)
+ ;;=2^Neuromuscular Re-Education
+ ;;^UTILITY(U,$J,358.3,2287,1,3,0)
+ ;;=3^97112
+ ;;^UTILITY(U,$J,358.3,2288,0)
+ ;;=97140^^14^181^9^^^^1
+ ;;^UTILITY(U,$J,358.3,2288,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2003,1,2,0)
- ;;=2^93784
- ;;^UTILITY(U,$J,358.3,2003,1,3,0)
- ;;=3^Amb BP Monitor 24+ hrs,Int&Rpt
- ;;^UTILITY(U,$J,358.3,2004,0)
- ;;=93786^^17^177^3^^^^1
- ;;^UTILITY(U,$J,358.3,2004,1,0)
+ ;;^UTILITY(U,$J,358.3,2288,1,2,0)
+ ;;=2^Manual Therapy,Ea 15min
+ ;;^UTILITY(U,$J,358.3,2288,1,3,0)
+ ;;=3^97140
+ ;;^UTILITY(U,$J,358.3,2289,0)
+ ;;=97039^^14^181^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2289,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2004,1,2,0)
- ;;=2^93786
- ;;^UTILITY(U,$J,358.3,2004,1,3,0)
- ;;=3^Amb BP Monitor 24+ hrs,Record Only
- ;;^UTILITY(U,$J,358.3,2005,0)
- ;;=93788^^17^177^1^^^^1
- ;;^UTILITY(U,$J,358.3,2005,1,0)
+ ;;^UTILITY(U,$J,358.3,2289,1,2,0)
+ ;;=2^Cold Laser Therapy
+ ;;^UTILITY(U,$J,358.3,2289,1,3,0)
+ ;;=3^97039
+ ;;^UTILITY(U,$J,358.3,2290,0)
+ ;;=97026^^14^181^8^^^^1
+ ;;^UTILITY(U,$J,358.3,2290,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2005,1,2,0)
- ;;=2^93788
- ;;^UTILITY(U,$J,358.3,2005,1,3,0)
- ;;=3^Amb BP Analysis & Rpt
- ;;^UTILITY(U,$J,358.3,2006,0)
- ;;=93790^^17^177^4^^^^1
- ;;^UTILITY(U,$J,358.3,2006,1,0)
+ ;;^UTILITY(U,$J,358.3,2290,1,2,0)
+ ;;=2^Infrared Heat to 1 or more areas
+ ;;^UTILITY(U,$J,358.3,2290,1,3,0)
+ ;;=3^97026
+ ;;^UTILITY(U,$J,358.3,2291,0)
+ ;;=29540^^14^181^13^^^^1
+ ;;^UTILITY(U,$J,358.3,2291,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2006,1,2,0)
- ;;=2^93790
- ;;^UTILITY(U,$J,358.3,2006,1,3,0)
- ;;=3^Amb BP Review w/ Int&Rpt
- ;;^UTILITY(U,$J,358.3,2007,0)
- ;;=34800^^17^178^1^^^^1
- ;;^UTILITY(U,$J,358.3,2007,1,0)
+ ;;^UTILITY(U,$J,358.3,2291,1,2,0)
+ ;;=2^Strapping/Taping,Ankle and/or Foot
+ ;;^UTILITY(U,$J,358.3,2291,1,3,0)
+ ;;=3^29540
+ ;;^UTILITY(U,$J,358.3,2292,0)
+ ;;=29260^^14^181^14^^^^1
+ ;;^UTILITY(U,$J,358.3,2292,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2007,1,2,0)
- ;;=2^34800
- ;;^UTILITY(U,$J,358.3,2007,1,3,0)
- ;;=3^Endovasc Abd Repair,Infrarenal AAA w/Tube
- ;;^UTILITY(U,$J,358.3,2008,0)
- ;;=34802^^17^178^2^^^^1
- ;;^UTILITY(U,$J,358.3,2008,1,0)
+ ;;^UTILITY(U,$J,358.3,2292,1,2,0)
+ ;;=2^Strapping/Taping,Elbow/Wrist
+ ;;^UTILITY(U,$J,358.3,2292,1,3,0)
+ ;;=3^29260
+ ;;^UTILITY(U,$J,358.3,2293,0)
+ ;;=29520^^14^181^16^^^^1
+ ;;^UTILITY(U,$J,358.3,2293,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2008,1,2,0)
- ;;=2^34802
- ;;^UTILITY(U,$J,358.3,2008,1,3,0)
- ;;=3^Endovasc Abd Repr,Infrarenal AAA w/Bifurc,1 Dock Limb
- ;;^UTILITY(U,$J,358.3,2009,0)
- ;;=34803^^17^178^3^^^^1
- ;;^UTILITY(U,$J,358.3,2009,1,0)
+ ;;^UTILITY(U,$J,358.3,2293,1,2,0)
+ ;;=2^Strapping/Taping,Hip
+ ;;^UTILITY(U,$J,358.3,2293,1,3,0)
+ ;;=3^29520
+ ;;^UTILITY(U,$J,358.3,2294,0)
+ ;;=29530^^14^181^17^^^^1
+ ;;^UTILITY(U,$J,358.3,2294,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2009,1,2,0)
- ;;=2^34803
- ;;^UTILITY(U,$J,358.3,2009,1,3,0)
- ;;=3^Endovasc Abd Repr,Infrarenal AAA w/Bifurc,2 Dock Limbs
- ;;^UTILITY(U,$J,358.3,2010,0)
- ;;=93279^^17^179^11^^^^1
- ;;^UTILITY(U,$J,358.3,2010,1,0)
+ ;;^UTILITY(U,$J,358.3,2294,1,2,0)
+ ;;=2^Strapping/Taping,Knee
+ ;;^UTILITY(U,$J,358.3,2294,1,3,0)
+ ;;=3^29530
+ ;;^UTILITY(U,$J,358.3,2295,0)
+ ;;=29240^^14^181^18^^^^1
+ ;;^UTILITY(U,$J,358.3,2295,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2010,1,2,0)
- ;;=2^93279
- ;;^UTILITY(U,$J,358.3,2010,1,3,0)
- ;;=3^PM DEVICE PROGR EVAL, SNGL
- ;;^UTILITY(U,$J,358.3,2011,0)
- ;;=93280^^17^179^9^^^^1
- ;;^UTILITY(U,$J,358.3,2011,1,0)
+ ;;^UTILITY(U,$J,358.3,2295,1,2,0)
+ ;;=2^Strapping/Taping,Shoulder
+ ;;^UTILITY(U,$J,358.3,2295,1,3,0)
+ ;;=3^29240
+ ;;^UTILITY(U,$J,358.3,2296,0)
+ ;;=29550^^14^181^19^^^^1
+ ;;^UTILITY(U,$J,358.3,2296,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2011,1,2,0)
- ;;=2^93280
- ;;^UTILITY(U,$J,358.3,2011,1,3,0)
- ;;=3^PM DEVICE PROGR EVAL, DUAL
- ;;^UTILITY(U,$J,358.3,2012,0)
- ;;=93281^^17^179^10^^^^1
- ;;^UTILITY(U,$J,358.3,2012,1,0)
+ ;;^UTILITY(U,$J,358.3,2296,1,2,0)
+ ;;=2^Strapping/Taping,Toes
+ ;;^UTILITY(U,$J,358.3,2296,1,3,0)
+ ;;=3^29550
+ ;;^UTILITY(U,$J,358.3,2297,0)
+ ;;=29280^^14^181^15^^^^1
+ ;;^UTILITY(U,$J,358.3,2297,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2012,1,2,0)
- ;;=2^93281
- ;;^UTILITY(U,$J,358.3,2012,1,3,0)
- ;;=3^PM DEVICE PROGR EVAL, MULTI
- ;;^UTILITY(U,$J,358.3,2013,0)
- ;;=93282^^17^179^3^^^^1
- ;;^UTILITY(U,$J,358.3,2013,1,0)
+ ;;^UTILITY(U,$J,358.3,2297,1,2,0)
+ ;;=2^Strapping/Taping,Hand or Finger
+ ;;^UTILITY(U,$J,358.3,2297,1,3,0)
+ ;;=3^29280
+ ;;^UTILITY(U,$J,358.3,2298,0)
+ ;;=97799^^14^181^3^^^^1
+ ;;^UTILITY(U,$J,358.3,2298,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2013,1,2,0)
- ;;=2^93282
- ;;^UTILITY(U,$J,358.3,2013,1,3,0)
- ;;=3^ICD DEVICE PROG EVAL, 1 SNGL
- ;;^UTILITY(U,$J,358.3,2014,0)
- ;;=93283^^17^179^4^^^^1
- ;;^UTILITY(U,$J,358.3,2014,1,0)
+ ;;^UTILITY(U,$J,358.3,2298,1,2,0)
+ ;;=2^Dry Needling
+ ;;^UTILITY(U,$J,358.3,2298,1,3,0)
+ ;;=3^97799
+ ;;^UTILITY(U,$J,358.3,2299,0)
+ ;;=98940^^14^182^1^^^^1
+ ;;^UTILITY(U,$J,358.3,2299,1,0)
  ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,2014,1,2,0)
- ;;=2^93283
- ;;^UTILITY(U,$J,358.3,2014,1,3,0)
- ;;=3^ICD DEVICE PROGR EVAL, DUAL
+ ;;^UTILITY(U,$J,358.3,2299,1,2,0)
+ ;;=2^CMT; Spinal, one to two regions
+ ;;^UTILITY(U,$J,358.3,2299,1,3,0)
+ ;;=3^98940
+ ;;^UTILITY(U,$J,358.3,2300,0)
+ ;;=98941^^14^182^2^^^^1
+ ;;^UTILITY(U,$J,358.3,2300,1,0)
+ ;;=^358.31IA^3^2

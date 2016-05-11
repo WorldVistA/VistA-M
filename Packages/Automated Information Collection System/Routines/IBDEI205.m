@@ -1,128 +1,130 @@
-IBDEI205 ; ; 19-NOV-2015
+IBDEI205 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33525,1,0)
+ ;;^UTILITY(U,$J,358.3,33970,1,4,0)
+ ;;=4^D75.89
+ ;;^UTILITY(U,$J,358.3,33970,2)
+ ;;=^5002392
+ ;;^UTILITY(U,$J,358.3,33971,0)
+ ;;=D47.Z9^^131^1680^173
+ ;;^UTILITY(U,$J,358.3,33971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33525,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33525,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,33525,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,33526,0)
- ;;=F16.21^^148^1660^3
- ;;^UTILITY(U,$J,358.3,33526,1,0)
+ ;;^UTILITY(U,$J,358.3,33971,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior,Other
+ ;;^UTILITY(U,$J,358.3,33971,1,4,0)
+ ;;=4^D47.Z9
+ ;;^UTILITY(U,$J,358.3,33971,2)
+ ;;=^5002262
+ ;;^UTILITY(U,$J,358.3,33972,0)
+ ;;=D05.82^^131^1680^34
+ ;;^UTILITY(U,$J,358.3,33972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33526,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33526,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,33526,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,33527,0)
- ;;=F11.10^^148^1661^4
- ;;^UTILITY(U,$J,358.3,33527,1,0)
+ ;;^UTILITY(U,$J,358.3,33972,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Other Spec Type
+ ;;^UTILITY(U,$J,358.3,33972,1,4,0)
+ ;;=4^D05.82
+ ;;^UTILITY(U,$J,358.3,33972,2)
+ ;;=^5001934
+ ;;^UTILITY(U,$J,358.3,33973,0)
+ ;;=D05.81^^131^1680^36
+ ;;^UTILITY(U,$J,358.3,33973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33527,1,3,0)
- ;;=3^Opioid Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33527,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,33527,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,33528,0)
- ;;=F11.129^^148^1661^3
- ;;^UTILITY(U,$J,358.3,33528,1,0)
+ ;;^UTILITY(U,$J,358.3,33973,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,33973,1,4,0)
+ ;;=4^D05.81
+ ;;^UTILITY(U,$J,358.3,33973,2)
+ ;;=^5001933
+ ;;^UTILITY(U,$J,358.3,33974,0)
+ ;;=D05.80^^131^1680^38
+ ;;^UTILITY(U,$J,358.3,33974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33528,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbances;Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33528,1,4,0)
- ;;=4^F11.129
- ;;^UTILITY(U,$J,358.3,33528,2)
- ;;=^5003118
- ;;^UTILITY(U,$J,358.3,33529,0)
- ;;=F11.14^^148^1661^8
- ;;^UTILITY(U,$J,358.3,33529,1,0)
+ ;;^UTILITY(U,$J,358.3,33974,1,3,0)
+ ;;=3^Carcinoma in Situ Unspec Breast,Oth Spec Type
+ ;;^UTILITY(U,$J,358.3,33974,1,4,0)
+ ;;=4^D05.80
+ ;;^UTILITY(U,$J,358.3,33974,2)
+ ;;=^5001932
+ ;;^UTILITY(U,$J,358.3,33975,0)
+ ;;=D56.8^^131^1680^186
+ ;;^UTILITY(U,$J,358.3,33975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33529,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33529,1,4,0)
- ;;=4^F11.14
- ;;^UTILITY(U,$J,358.3,33529,2)
- ;;=^5003119
- ;;^UTILITY(U,$J,358.3,33530,0)
- ;;=F11.182^^148^1661^10
- ;;^UTILITY(U,$J,358.3,33530,1,0)
+ ;;^UTILITY(U,$J,358.3,33975,1,3,0)
+ ;;=3^Thalassemias,Other
+ ;;^UTILITY(U,$J,358.3,33975,1,4,0)
+ ;;=4^D56.8
+ ;;^UTILITY(U,$J,358.3,33975,2)
+ ;;=^5002305
+ ;;^UTILITY(U,$J,358.3,33976,0)
+ ;;=C82.89^^131^1680^76
+ ;;^UTILITY(U,$J,358.3,33976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33530,1,3,0)
- ;;=3^Opioid-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33530,1,4,0)
- ;;=4^F11.182
- ;;^UTILITY(U,$J,358.3,33530,2)
- ;;=^5003124
- ;;^UTILITY(U,$J,358.3,33531,0)
- ;;=F11.20^^148^1661^5
- ;;^UTILITY(U,$J,358.3,33531,1,0)
+ ;;^UTILITY(U,$J,358.3,33976,1,3,0)
+ ;;=3^Follicular Lymphoma,Extranodal/Solid Organ Sites,Other Types
+ ;;^UTILITY(U,$J,358.3,33976,1,4,0)
+ ;;=4^C82.89
+ ;;^UTILITY(U,$J,358.3,33976,2)
+ ;;=^5001540
+ ;;^UTILITY(U,$J,358.3,33977,0)
+ ;;=D51.8^^131^1680^193
+ ;;^UTILITY(U,$J,358.3,33977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33531,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33531,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,33531,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,33532,0)
- ;;=F11.21^^148^1661^6
- ;;^UTILITY(U,$J,358.3,33532,1,0)
+ ;;^UTILITY(U,$J,358.3,33977,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemias,Other
+ ;;^UTILITY(U,$J,358.3,33977,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,33977,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,33978,0)
+ ;;=I80.9^^131^1680^178
+ ;;^UTILITY(U,$J,358.3,33978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33532,1,3,0)
- ;;=3^Opioid Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33532,1,4,0)
- ;;=4^F11.21
- ;;^UTILITY(U,$J,358.3,33532,2)
- ;;=^5003128
- ;;^UTILITY(U,$J,358.3,33533,0)
- ;;=F11.23^^148^1661^7
- ;;^UTILITY(U,$J,358.3,33533,1,0)
+ ;;^UTILITY(U,$J,358.3,33978,1,3,0)
+ ;;=3^Phlebitis/Thrombophlebitis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,33978,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,33978,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,33979,0)
+ ;;=D45.^^131^1680^179
+ ;;^UTILITY(U,$J,358.3,33979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33533,1,3,0)
- ;;=3^Opioid Withdrawal
- ;;^UTILITY(U,$J,358.3,33533,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,33533,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,33534,0)
- ;;=F11.24^^148^1661^9
- ;;^UTILITY(U,$J,358.3,33534,1,0)
+ ;;^UTILITY(U,$J,358.3,33979,1,3,0)
+ ;;=3^Polycythemia Vera
+ ;;^UTILITY(U,$J,358.3,33979,1,4,0)
+ ;;=4^D45.
+ ;;^UTILITY(U,$J,358.3,33979,2)
+ ;;=^96105
+ ;;^UTILITY(U,$J,358.3,33980,0)
+ ;;=C77.3^^131^1680^109
+ ;;^UTILITY(U,$J,358.3,33980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33534,1,3,0)
- ;;=3^Opioid-Induced Depressive Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,33534,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,33534,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,33535,0)
- ;;=F11.29^^148^1661^2
- ;;^UTILITY(U,$J,358.3,33535,1,0)
+ ;;^UTILITY(U,$J,358.3,33980,1,3,0)
+ ;;=3^Malig Neop Axilla/Upper Limb Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,33980,1,4,0)
+ ;;=4^C77.3
+ ;;^UTILITY(U,$J,358.3,33980,2)
+ ;;=^5001330
+ ;;^UTILITY(U,$J,358.3,33981,0)
+ ;;=C77.2^^131^1680^125
+ ;;^UTILITY(U,$J,358.3,33981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33535,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,33535,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,33535,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,33536,0)
- ;;=F11.220^^148^1661^1
- ;;^UTILITY(U,$J,358.3,33536,1,0)
+ ;;^UTILITY(U,$J,358.3,33981,1,3,0)
+ ;;=3^Malig Neop Intra-Abdominal Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,33981,1,4,0)
+ ;;=4^C77.2
+ ;;^UTILITY(U,$J,358.3,33981,2)
+ ;;=^267316
+ ;;^UTILITY(U,$J,358.3,33982,0)
+ ;;=C77.1^^131^1680^126
+ ;;^UTILITY(U,$J,358.3,33982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33536,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33536,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,33536,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,33537,0)
- ;;=F19.10^^148^1662^3
- ;;^UTILITY(U,$J,358.3,33537,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33537,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33982,1,3,0)
+ ;;=3^Malig Neop Intrathoracic Lymph Nodes,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,33982,1,4,0)
+ ;;=4^C77.1
+ ;;^UTILITY(U,$J,358.3,33982,2)
+ ;;=^267315
+ ;;^UTILITY(U,$J,358.3,33983,0)
+ ;;=C77.0^^131^1680^142

@@ -1,136 +1,126 @@
-IBDEI0V5 ; ; 19-NOV-2015
+IBDEI0V5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14332,1,3,0)
- ;;=3^Lumbosacral Root Disorders NEC
- ;;^UTILITY(U,$J,358.3,14332,1,4,0)
- ;;=4^G54.4
- ;;^UTILITY(U,$J,358.3,14332,2)
- ;;=^5004011
- ;;^UTILITY(U,$J,358.3,14333,0)
- ;;=R25.9^^82^776^2
- ;;^UTILITY(U,$J,358.3,14333,1,0)
+ ;;^UTILITY(U,$J,358.3,14602,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,14602,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,14603,0)
+ ;;=V00.838A^^53^612^93
+ ;;^UTILITY(U,$J,358.3,14603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14333,1,3,0)
- ;;=3^Abnormal Involuntary Movements,Unspec
- ;;^UTILITY(U,$J,358.3,14333,1,4,0)
- ;;=4^R25.9
- ;;^UTILITY(U,$J,358.3,14333,2)
- ;;=^5019303
- ;;^UTILITY(U,$J,358.3,14334,0)
- ;;=R25.0^^82^776^1
- ;;^UTILITY(U,$J,358.3,14334,1,0)
+ ;;^UTILITY(U,$J,358.3,14603,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14603,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,14603,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,14604,0)
+ ;;=V00.838D^^53^612^94
+ ;;^UTILITY(U,$J,358.3,14604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14334,1,3,0)
- ;;=3^Abnormal Head Movements
- ;;^UTILITY(U,$J,358.3,14334,1,4,0)
- ;;=4^R25.0
- ;;^UTILITY(U,$J,358.3,14334,2)
- ;;=^5019299
- ;;^UTILITY(U,$J,358.3,14335,0)
- ;;=R25.1^^82^776^54
- ;;^UTILITY(U,$J,358.3,14335,1,0)
+ ;;^UTILITY(U,$J,358.3,14604,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14604,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,14604,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,14605,0)
+ ;;=V00.891A^^53^612^57
+ ;;^UTILITY(U,$J,358.3,14605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14335,1,3,0)
- ;;=3^Tremor,Unspec
- ;;^UTILITY(U,$J,358.3,14335,1,4,0)
- ;;=4^R25.1
- ;;^UTILITY(U,$J,358.3,14335,2)
- ;;=^5019300
- ;;^UTILITY(U,$J,358.3,14336,0)
- ;;=R25.2^^82^776^11
- ;;^UTILITY(U,$J,358.3,14336,1,0)
+ ;;^UTILITY(U,$J,358.3,14605,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14605,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,14605,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,14606,0)
+ ;;=V00.891D^^53^612^58
+ ;;^UTILITY(U,$J,358.3,14606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14336,1,3,0)
- ;;=3^Cramp & Spasm
- ;;^UTILITY(U,$J,358.3,14336,1,4,0)
- ;;=4^R25.2
- ;;^UTILITY(U,$J,358.3,14336,2)
- ;;=^5019301
- ;;^UTILITY(U,$J,358.3,14337,0)
- ;;=R25.3^^82^776^18
- ;;^UTILITY(U,$J,358.3,14337,1,0)
+ ;;^UTILITY(U,$J,358.3,14606,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14606,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,14606,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,14607,0)
+ ;;=V00.892A^^53^612^99
+ ;;^UTILITY(U,$J,358.3,14607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14337,1,3,0)
- ;;=3^Fasciculation
- ;;^UTILITY(U,$J,358.3,14337,1,4,0)
- ;;=4^R25.3
- ;;^UTILITY(U,$J,358.3,14337,2)
- ;;=^44985
- ;;^UTILITY(U,$J,358.3,14338,0)
- ;;=R51.^^82^776^25
- ;;^UTILITY(U,$J,358.3,14338,1,0)
+ ;;^UTILITY(U,$J,358.3,14607,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14607,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,14607,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,14608,0)
+ ;;=V00.892D^^53^612^100
+ ;;^UTILITY(U,$J,358.3,14608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14338,1,3,0)
- ;;=3^Headache
- ;;^UTILITY(U,$J,358.3,14338,1,4,0)
- ;;=4^R51.
- ;;^UTILITY(U,$J,358.3,14338,2)
- ;;=^5019513
- ;;^UTILITY(U,$J,358.3,14339,0)
- ;;=G44.1^^82^776^56
- ;;^UTILITY(U,$J,358.3,14339,1,0)
+ ;;^UTILITY(U,$J,358.3,14608,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14608,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,14608,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,14609,0)
+ ;;=V00.898A^^53^612^97
+ ;;^UTILITY(U,$J,358.3,14609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14339,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,14339,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,14339,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,14340,0)
- ;;=S02.3XXA^^82^776^22
- ;;^UTILITY(U,$J,358.3,14340,1,0)
+ ;;^UTILITY(U,$J,358.3,14609,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14609,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,14609,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,14610,0)
+ ;;=V00.898D^^53^612^98
+ ;;^UTILITY(U,$J,358.3,14610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14340,1,3,0)
- ;;=3^Fx of Orbital Floor,Init Encntr for Closed Fx
- ;;^UTILITY(U,$J,358.3,14340,1,4,0)
- ;;=4^S02.3XXA
- ;;^UTILITY(U,$J,358.3,14340,2)
- ;;=^5020312
- ;;^UTILITY(U,$J,358.3,14341,0)
- ;;=H51.9^^82^776^7
- ;;^UTILITY(U,$J,358.3,14341,1,0)
+ ;;^UTILITY(U,$J,358.3,14610,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14610,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,14610,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,14611,0)
+ ;;=W00.0XXA^^53^612^79
+ ;;^UTILITY(U,$J,358.3,14611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14341,1,3,0)
- ;;=3^Binocular Movement Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14341,1,4,0)
- ;;=4^H51.9
- ;;^UTILITY(U,$J,358.3,14341,2)
- ;;=^5006258
- ;;^UTILITY(U,$J,358.3,14342,0)
- ;;=H49.13^^82^776^19
- ;;^UTILITY(U,$J,358.3,14342,1,0)
+ ;;^UTILITY(U,$J,358.3,14611,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14611,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,14611,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,14612,0)
+ ;;=W00.0XXD^^53^612^80
+ ;;^UTILITY(U,$J,358.3,14612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14342,1,3,0)
- ;;=3^Fourth Trochlear Nerve Palsy,Bilateral
- ;;^UTILITY(U,$J,358.3,14342,1,4,0)
- ;;=4^H49.13
- ;;^UTILITY(U,$J,358.3,14342,2)
- ;;=^5006186
- ;;^UTILITY(U,$J,358.3,14343,0)
- ;;=H47.013^^82^776^26
- ;;^UTILITY(U,$J,358.3,14343,1,0)
+ ;;^UTILITY(U,$J,358.3,14612,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14612,1,4,0)
+ ;;=4^W00.0XXD
+ ;;^UTILITY(U,$J,358.3,14612,2)
+ ;;=^5059511
+ ;;^UTILITY(U,$J,358.3,14613,0)
+ ;;=W00.1XXA^^53^612^59
+ ;;^UTILITY(U,$J,358.3,14613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14343,1,3,0)
- ;;=3^Ischemic Optic Neuropathy,Bilateral
- ;;^UTILITY(U,$J,358.3,14343,1,4,0)
- ;;=4^H47.013
- ;;^UTILITY(U,$J,358.3,14343,2)
- ;;=^5006107
- ;;^UTILITY(U,$J,358.3,14344,0)
- ;;=D86.82^^82^776^33
- ;;^UTILITY(U,$J,358.3,14344,1,0)
+ ;;^UTILITY(U,$J,358.3,14613,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,14613,1,4,0)
+ ;;=4^W00.1XXA
+ ;;^UTILITY(U,$J,358.3,14613,2)
+ ;;=^5059513
+ ;;^UTILITY(U,$J,358.3,14614,0)
+ ;;=W00.1XXD^^53^612^60
+ ;;^UTILITY(U,$J,358.3,14614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14344,1,3,0)
- ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
- ;;^UTILITY(U,$J,358.3,14344,1,4,0)
- ;;=4^D86.82
- ;;^UTILITY(U,$J,358.3,14344,2)
- ;;=^5002447
- ;;^UTILITY(U,$J,358.3,14345,0)
- ;;=H49.883^^82^776^38
- ;;^UTILITY(U,$J,358.3,14345,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14345,1,3,0)
- ;;=3^Paralytic Strabismus,Bilateral
+ ;;^UTILITY(U,$J,358.3,14614,1,3,0)
+ ;;=3^Fall from Stairs/Steps d/t Ice/Snow,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,14614,1,4,0)
+ ;;=4^W00.1XXD

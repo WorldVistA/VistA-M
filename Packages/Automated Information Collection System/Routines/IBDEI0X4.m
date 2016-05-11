@@ -1,128 +1,136 @@
-IBDEI0X4 ; ; 19-NOV-2015
+IBDEI0X4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15267,1,0)
+ ;;^UTILITY(U,$J,358.3,15539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15267,1,3,0)
- ;;=3^Laceration w/o FB of Right Wrist,Init Encntr
- ;;^UTILITY(U,$J,358.3,15267,1,4,0)
- ;;=4^S61.511A
- ;;^UTILITY(U,$J,358.3,15267,2)
- ;;=^5033026
- ;;^UTILITY(U,$J,358.3,15268,0)
- ;;=S01.01XA^^85^813^66
- ;;^UTILITY(U,$J,358.3,15268,1,0)
+ ;;^UTILITY(U,$J,358.3,15539,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,15539,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,15539,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,15540,0)
+ ;;=Z71.9^^58^674^1
+ ;;^UTILITY(U,$J,358.3,15540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15268,1,3,0)
- ;;=3^Laceration w/o FB of Scalp,Init Encntr
- ;;^UTILITY(U,$J,358.3,15268,1,4,0)
- ;;=4^S01.01XA
- ;;^UTILITY(U,$J,358.3,15268,2)
- ;;=^5020036
- ;;^UTILITY(U,$J,358.3,15269,0)
- ;;=S01.91XA^^85^813^4
- ;;^UTILITY(U,$J,358.3,15269,1,0)
+ ;;^UTILITY(U,$J,358.3,15540,1,3,0)
+ ;;=3^Counseling/Consultation NEC
+ ;;^UTILITY(U,$J,358.3,15540,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,15540,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,15541,0)
+ ;;=Z51.81^^58^674^5
+ ;;^UTILITY(U,$J,358.3,15541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15269,1,3,0)
- ;;=3^Laceration w/o FB of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15269,1,4,0)
- ;;=4^S01.91XA
- ;;^UTILITY(U,$J,358.3,15269,2)
- ;;=^5020243
- ;;^UTILITY(U,$J,358.3,15270,0)
- ;;=S11.91XA^^85^813^35
- ;;^UTILITY(U,$J,358.3,15270,1,0)
+ ;;^UTILITY(U,$J,358.3,15541,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,15541,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,15541,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,15542,0)
+ ;;=Z69.12^^58^674^2
+ ;;^UTILITY(U,$J,358.3,15542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15270,1,3,0)
- ;;=3^Laceration w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15270,1,4,0)
- ;;=4^S11.91XA
- ;;^UTILITY(U,$J,358.3,15270,2)
- ;;=^5021530
- ;;^UTILITY(U,$J,358.3,15271,0)
- ;;=S91.012A^^85^813^7
- ;;^UTILITY(U,$J,358.3,15271,1,0)
+ ;;^UTILITY(U,$J,358.3,15542,1,3,0)
+ ;;=3^Mental Health Svcs for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,15542,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,15542,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,15543,0)
+ ;;=Z69.11^^58^674^3
+ ;;^UTILITY(U,$J,358.3,15543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15271,1,3,0)
- ;;=3^Laceration w/o FB of Left Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,15271,1,4,0)
- ;;=4^S91.012A
- ;;^UTILITY(U,$J,358.3,15271,2)
- ;;=^5044138
- ;;^UTILITY(U,$J,358.3,15272,0)
- ;;=S91.312A^^85^813^12
- ;;^UTILITY(U,$J,358.3,15272,1,0)
+ ;;^UTILITY(U,$J,358.3,15543,1,3,0)
+ ;;=3^Mental Health Svcs for Victim of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,15543,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,15543,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,15544,0)
+ ;;=Z60.0^^58^675^2
+ ;;^UTILITY(U,$J,358.3,15544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15272,1,3,0)
- ;;=3^Laceration w/o FB of Left Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,15272,1,4,0)
- ;;=4^S91.312A
- ;;^UTILITY(U,$J,358.3,15272,2)
- ;;=^5044323
- ;;^UTILITY(U,$J,358.3,15273,0)
- ;;=S71.012A^^85^813^16
- ;;^UTILITY(U,$J,358.3,15273,1,0)
+ ;;^UTILITY(U,$J,358.3,15544,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,15544,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,15544,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,15545,0)
+ ;;=Z60.2^^58^675^3
+ ;;^UTILITY(U,$J,358.3,15545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15273,1,3,0)
- ;;=3^Laceration w/o FB of Left Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,15273,1,4,0)
- ;;=4^S71.012A
- ;;^UTILITY(U,$J,358.3,15273,2)
- ;;=^5036978
- ;;^UTILITY(U,$J,358.3,15274,0)
- ;;=S81.012A^^85^813^19
- ;;^UTILITY(U,$J,358.3,15274,1,0)
+ ;;^UTILITY(U,$J,358.3,15545,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,15545,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,15545,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,15546,0)
+ ;;=Z60.3^^58^675^1
+ ;;^UTILITY(U,$J,358.3,15546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15274,1,3,0)
- ;;=3^Laceration w/o FB of Left Knee,Init Encntr
- ;;^UTILITY(U,$J,358.3,15274,1,4,0)
- ;;=4^S81.012A
- ;;^UTILITY(U,$J,358.3,15274,2)
- ;;=^5040035
- ;;^UTILITY(U,$J,358.3,15275,0)
- ;;=S81.812A^^85^813^24
- ;;^UTILITY(U,$J,358.3,15275,1,0)
+ ;;^UTILITY(U,$J,358.3,15546,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,15546,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,15546,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,15547,0)
+ ;;=Z60.4^^58^675^5
+ ;;^UTILITY(U,$J,358.3,15547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15275,1,3,0)
- ;;=3^Laceration w/o FB of Left Lower Leg,Init Encntr
- ;;^UTILITY(U,$J,358.3,15275,1,4,0)
- ;;=4^S81.812A
- ;;^UTILITY(U,$J,358.3,15275,2)
- ;;=^5040074
- ;;^UTILITY(U,$J,358.3,15276,0)
- ;;=S71.112A^^85^813^30
- ;;^UTILITY(U,$J,358.3,15276,1,0)
+ ;;^UTILITY(U,$J,358.3,15547,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,15547,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,15547,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,15548,0)
+ ;;=Z60.5^^58^675^6
+ ;;^UTILITY(U,$J,358.3,15548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15276,1,3,0)
- ;;=3^Laceration w/o FB of Left Thigh,Init Encntr
- ;;^UTILITY(U,$J,358.3,15276,1,4,0)
- ;;=4^S71.112A
- ;;^UTILITY(U,$J,358.3,15276,2)
- ;;=^5037017
- ;;^UTILITY(U,$J,358.3,15277,0)
- ;;=S91.011A^^85^813^39
- ;;^UTILITY(U,$J,358.3,15277,1,0)
+ ;;^UTILITY(U,$J,358.3,15548,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,15548,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,15548,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,15549,0)
+ ;;=Z60.9^^58^675^4
+ ;;^UTILITY(U,$J,358.3,15549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15277,1,3,0)
- ;;=3^Laceration w/o FB of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,15277,1,4,0)
- ;;=4^S91.011A
- ;;^UTILITY(U,$J,358.3,15277,2)
- ;;=^5044135
- ;;^UTILITY(U,$J,358.3,15278,0)
- ;;=S91.311A^^85^813^44
- ;;^UTILITY(U,$J,358.3,15278,1,0)
+ ;;^UTILITY(U,$J,358.3,15549,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,15549,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,15549,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,15550,0)
+ ;;=F65.4^^58^676^6
+ ;;^UTILITY(U,$J,358.3,15550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15278,1,3,0)
- ;;=3^Laceration w/o FB of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,15278,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,15278,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,15279,0)
- ;;=S71.011A^^85^813^48
- ;;^UTILITY(U,$J,358.3,15279,1,0)
+ ;;^UTILITY(U,$J,358.3,15550,1,3,0)
+ ;;=3^Pedophilia Disorder
+ ;;^UTILITY(U,$J,358.3,15550,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,15550,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,15551,0)
+ ;;=F65.2^^58^676^1
+ ;;^UTILITY(U,$J,358.3,15551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15279,1,3,0)
- ;;=3^Laceration w/o FB of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,15551,1,3,0)
+ ;;=3^Exhibitionistic Disorder
+ ;;^UTILITY(U,$J,358.3,15551,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,15551,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,15552,0)
+ ;;=F65.3^^58^676^10
+ ;;^UTILITY(U,$J,358.3,15552,1,0)
+ ;;=^358.31IA^4^2

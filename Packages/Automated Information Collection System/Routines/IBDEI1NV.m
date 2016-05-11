@@ -1,130 +1,132 @@
-IBDEI1NV ; ; 19-NOV-2015
+IBDEI1NV ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27792,1,0)
+ ;;^UTILITY(U,$J,358.3,28223,1,4,0)
+ ;;=4^L89.144
+ ;;^UTILITY(U,$J,358.3,28223,2)
+ ;;=^5133659
+ ;;^UTILITY(U,$J,358.3,28224,0)
+ ;;=L89.149^^112^1416^47
+ ;;^UTILITY(U,$J,358.3,28224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27792,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,27792,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,27792,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,27793,0)
- ;;=Z85.3^^132^1321^85
- ;;^UTILITY(U,$J,358.3,27793,1,0)
+ ;;^UTILITY(U,$J,358.3,28224,1,3,0)
+ ;;=3^Pressure Ulcer Left Lower Back,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28224,1,4,0)
+ ;;=4^L89.149
+ ;;^UTILITY(U,$J,358.3,28224,2)
+ ;;=^5133654
+ ;;^UTILITY(U,$J,358.3,28225,0)
+ ;;=L89.150^^112^1416^108
+ ;;^UTILITY(U,$J,358.3,28225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27793,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,27793,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,27793,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,27794,0)
- ;;=Z85.41^^132^1321^87
- ;;^UTILITY(U,$J,358.3,27794,1,0)
+ ;;^UTILITY(U,$J,358.3,28225,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Unstageable
+ ;;^UTILITY(U,$J,358.3,28225,1,4,0)
+ ;;=4^L89.150
+ ;;^UTILITY(U,$J,358.3,28225,2)
+ ;;=^5009368
+ ;;^UTILITY(U,$J,358.3,28226,0)
+ ;;=L89.151^^112^1416^103
+ ;;^UTILITY(U,$J,358.3,28226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27794,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,27794,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,27794,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,27795,0)
- ;;=Z85.43^^132^1321^95
- ;;^UTILITY(U,$J,358.3,27795,1,0)
+ ;;^UTILITY(U,$J,358.3,28226,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 1
+ ;;^UTILITY(U,$J,358.3,28226,1,4,0)
+ ;;=4^L89.151
+ ;;^UTILITY(U,$J,358.3,28226,2)
+ ;;=^5009369
+ ;;^UTILITY(U,$J,358.3,28227,0)
+ ;;=L89.152^^112^1416^104
+ ;;^UTILITY(U,$J,358.3,28227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27795,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,27795,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,27795,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,27796,0)
- ;;=Z85.46^^132^1321^96
- ;;^UTILITY(U,$J,358.3,27796,1,0)
+ ;;^UTILITY(U,$J,358.3,28227,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 2
+ ;;^UTILITY(U,$J,358.3,28227,1,4,0)
+ ;;=4^L89.152
+ ;;^UTILITY(U,$J,358.3,28227,2)
+ ;;=^5009370
+ ;;^UTILITY(U,$J,358.3,28228,0)
+ ;;=L89.153^^112^1416^105
+ ;;^UTILITY(U,$J,358.3,28228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27796,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,27796,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,27796,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,27797,0)
- ;;=Z85.47^^132^1321^100
- ;;^UTILITY(U,$J,358.3,27797,1,0)
+ ;;^UTILITY(U,$J,358.3,28228,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 3
+ ;;^UTILITY(U,$J,358.3,28228,1,4,0)
+ ;;=4^L89.153
+ ;;^UTILITY(U,$J,358.3,28228,2)
+ ;;=^5009371
+ ;;^UTILITY(U,$J,358.3,28229,0)
+ ;;=L89.154^^112^1416^106
+ ;;^UTILITY(U,$J,358.3,28229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27797,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,27797,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,27797,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,27798,0)
- ;;=Z85.51^^132^1321^84
- ;;^UTILITY(U,$J,358.3,27798,1,0)
+ ;;^UTILITY(U,$J,358.3,28229,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage 4
+ ;;^UTILITY(U,$J,358.3,28229,1,4,0)
+ ;;=4^L89.154
+ ;;^UTILITY(U,$J,358.3,28229,2)
+ ;;=^5009372
+ ;;^UTILITY(U,$J,358.3,28230,0)
+ ;;=L89.159^^112^1416^107
+ ;;^UTILITY(U,$J,358.3,28230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27798,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,27798,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,27798,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,27799,0)
- ;;=Z85.528^^132^1321^89
- ;;^UTILITY(U,$J,358.3,27799,1,0)
+ ;;^UTILITY(U,$J,358.3,28230,1,3,0)
+ ;;=3^Pressure Ulcer Sacral Region,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28230,1,4,0)
+ ;;=4^L89.159
+ ;;^UTILITY(U,$J,358.3,28230,2)
+ ;;=^5009373
+ ;;^UTILITY(U,$J,358.3,28231,0)
+ ;;=L89.210^^112^1416^90
+ ;;^UTILITY(U,$J,358.3,28231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27799,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,27799,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,27799,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,27800,0)
- ;;=Z85.6^^132^1321^80
- ;;^UTILITY(U,$J,358.3,27800,1,0)
+ ;;^UTILITY(U,$J,358.3,28231,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,28231,1,4,0)
+ ;;=4^L89.210
+ ;;^UTILITY(U,$J,358.3,28231,2)
+ ;;=^5009379
+ ;;^UTILITY(U,$J,358.3,28232,0)
+ ;;=L89.211^^112^1416^85
+ ;;^UTILITY(U,$J,358.3,28232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27800,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,27800,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,27800,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,27801,0)
- ;;=Z85.72^^132^1321^104
- ;;^UTILITY(U,$J,358.3,27801,1,0)
+ ;;^UTILITY(U,$J,358.3,28232,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,28232,1,4,0)
+ ;;=4^L89.211
+ ;;^UTILITY(U,$J,358.3,28232,2)
+ ;;=^5009380
+ ;;^UTILITY(U,$J,358.3,28233,0)
+ ;;=L89.212^^112^1416^86
+ ;;^UTILITY(U,$J,358.3,28233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27801,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,27801,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,27801,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,27802,0)
- ;;=Z85.79^^132^1321^94
- ;;^UTILITY(U,$J,358.3,27802,1,0)
+ ;;^UTILITY(U,$J,358.3,28233,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,28233,1,4,0)
+ ;;=4^L89.212
+ ;;^UTILITY(U,$J,358.3,28233,2)
+ ;;=^5009381
+ ;;^UTILITY(U,$J,358.3,28234,0)
+ ;;=L89.213^^112^1416^87
+ ;;^UTILITY(U,$J,358.3,28234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27802,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,27802,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,27802,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,27803,0)
- ;;=Z85.820^^132^1321^83
- ;;^UTILITY(U,$J,358.3,27803,1,0)
+ ;;^UTILITY(U,$J,358.3,28234,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,28234,1,4,0)
+ ;;=4^L89.213
+ ;;^UTILITY(U,$J,358.3,28234,2)
+ ;;=^5009382
+ ;;^UTILITY(U,$J,358.3,28235,0)
+ ;;=L89.214^^112^1416^88
+ ;;^UTILITY(U,$J,358.3,28235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27803,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,27803,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,27803,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,27804,0)
- ;;=Z85.828^^132^1321^98
- ;;^UTILITY(U,$J,358.3,27804,1,0)
+ ;;^UTILITY(U,$J,358.3,28235,1,3,0)
+ ;;=3^Pressure Ulcer Right Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,28235,1,4,0)
+ ;;=4^L89.214
+ ;;^UTILITY(U,$J,358.3,28235,2)
+ ;;=^5009383
+ ;;^UTILITY(U,$J,358.3,28236,0)
+ ;;=L89.219^^112^1416^89
+ ;;^UTILITY(U,$J,358.3,28236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27804,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,27804,1,4,0)
- ;;=4^Z85.828

@@ -1,128 +1,138 @@
-IBDEI0JN ; ; 19-NOV-2015
+IBDEI0JN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8852,1,0)
+ ;;^UTILITY(U,$J,358.3,9127,1,4,0)
+ ;;=4^H59.41
+ ;;^UTILITY(U,$J,358.3,9127,2)
+ ;;=^5006426
+ ;;^UTILITY(U,$J,358.3,9128,0)
+ ;;=H59.42^^41^474^45
+ ;;^UTILITY(U,$J,358.3,9128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8852,1,3,0)
- ;;=3^Male Genital Organ Disorders NEC
- ;;^UTILITY(U,$J,358.3,8852,1,4,0)
- ;;=4^N50.8
- ;;^UTILITY(U,$J,358.3,8852,2)
- ;;=^88009
- ;;^UTILITY(U,$J,358.3,8853,0)
- ;;=R10.2^^55^549^17
- ;;^UTILITY(U,$J,358.3,8853,1,0)
+ ;;^UTILITY(U,$J,358.3,9128,1,3,0)
+ ;;=3^Inflammation of Postprocedural Bleb,Stage 2
+ ;;^UTILITY(U,$J,358.3,9128,1,4,0)
+ ;;=4^H59.42
+ ;;^UTILITY(U,$J,358.3,9128,2)
+ ;;=^5006427
+ ;;^UTILITY(U,$J,358.3,9129,0)
+ ;;=H59.43^^41^474^46
+ ;;^UTILITY(U,$J,358.3,9129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8853,1,3,0)
- ;;=3^Pelvic and perineal pain
- ;;^UTILITY(U,$J,358.3,8853,1,4,0)
- ;;=4^R10.2
- ;;^UTILITY(U,$J,358.3,8853,2)
- ;;=^5019209
- ;;^UTILITY(U,$J,358.3,8854,0)
- ;;=Z85.810^^55^550^7
- ;;^UTILITY(U,$J,358.3,8854,1,0)
+ ;;^UTILITY(U,$J,358.3,9129,1,3,0)
+ ;;=3^Inflammation of Postprocedural Bleb,Stage 3
+ ;;^UTILITY(U,$J,358.3,9129,1,4,0)
+ ;;=4^H59.43
+ ;;^UTILITY(U,$J,358.3,9129,2)
+ ;;=^5006428
+ ;;^UTILITY(U,$J,358.3,9130,0)
+ ;;=H59.40^^41^474^47
+ ;;^UTILITY(U,$J,358.3,9130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8854,1,3,0)
- ;;=3^Personal history of malignant neoplasm of tongue
- ;;^UTILITY(U,$J,358.3,8854,1,4,0)
- ;;=4^Z85.810
- ;;^UTILITY(U,$J,358.3,8854,2)
- ;;=^5063438
- ;;^UTILITY(U,$J,358.3,8855,0)
- ;;=Z85.05^^55^550^8
- ;;^UTILITY(U,$J,358.3,8855,1,0)
+ ;;^UTILITY(U,$J,358.3,9130,1,3,0)
+ ;;=3^Inflammation of Postprocedural Bleb,Unspec
+ ;;^UTILITY(U,$J,358.3,9130,1,4,0)
+ ;;=4^H59.40
+ ;;^UTILITY(U,$J,358.3,9130,2)
+ ;;=^5006425
+ ;;^UTILITY(U,$J,358.3,9131,0)
+ ;;=H54.8^^41^474^48
+ ;;^UTILITY(U,$J,358.3,9131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8855,1,3,0)
- ;;=3^Personal history of malignant neoplasm of liver
- ;;^UTILITY(U,$J,358.3,8855,1,4,0)
- ;;=4^Z85.05
- ;;^UTILITY(U,$J,358.3,8855,2)
- ;;=^5063402
- ;;^UTILITY(U,$J,358.3,8856,0)
- ;;=Z85.068^^55^550^9
- ;;^UTILITY(U,$J,358.3,8856,1,0)
+ ;;^UTILITY(U,$J,358.3,9131,1,3,0)
+ ;;=3^Legal Blindness,as Defined in USA
+ ;;^UTILITY(U,$J,358.3,9131,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,9131,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,9132,0)
+ ;;=H40.1231^^41^474^35
+ ;;^UTILITY(U,$J,358.3,9132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8856,1,3,0)
- ;;=3^Personal history of malignant neoplasm of small intestine
- ;;^UTILITY(U,$J,358.3,8856,1,4,0)
- ;;=4^Z85.068
- ;;^UTILITY(U,$J,358.3,8856,2)
- ;;=^5063404
- ;;^UTILITY(U,$J,358.3,8857,0)
- ;;=Z85.07^^55^550^10
- ;;^UTILITY(U,$J,358.3,8857,1,0)
+ ;;^UTILITY(U,$J,358.3,9132,1,3,0)
+ ;;=3^Glaucoma,Low-Tension,Mild Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,9132,1,4,0)
+ ;;=4^H40.1231
+ ;;^UTILITY(U,$J,358.3,9132,2)
+ ;;=^5005768
+ ;;^UTILITY(U,$J,358.3,9133,0)
+ ;;=H40.1232^^41^474^36
+ ;;^UTILITY(U,$J,358.3,9133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8857,1,3,0)
- ;;=3^Personal history of malignant neoplasm of pancreas
- ;;^UTILITY(U,$J,358.3,8857,1,4,0)
- ;;=4^Z85.07
- ;;^UTILITY(U,$J,358.3,8857,2)
- ;;=^5063405
- ;;^UTILITY(U,$J,358.3,8858,0)
- ;;=Z85.09^^55^550^11
- ;;^UTILITY(U,$J,358.3,8858,1,0)
+ ;;^UTILITY(U,$J,358.3,9133,1,3,0)
+ ;;=3^Glaucoma,Low-Tension,Moderate Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,9133,1,4,0)
+ ;;=4^H40.1232
+ ;;^UTILITY(U,$J,358.3,9133,2)
+ ;;=^5005769
+ ;;^UTILITY(U,$J,358.3,9134,0)
+ ;;=H40.1233^^41^474^37
+ ;;^UTILITY(U,$J,358.3,9134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8858,1,3,0)
- ;;=3^Personal history of malignant neoplasm of digestive organs
- ;;^UTILITY(U,$J,358.3,8858,1,4,0)
- ;;=4^Z85.09
- ;;^UTILITY(U,$J,358.3,8858,2)
- ;;=^5063406
- ;;^UTILITY(U,$J,358.3,8859,0)
- ;;=Z85.12^^55^550^12
- ;;^UTILITY(U,$J,358.3,8859,1,0)
+ ;;^UTILITY(U,$J,358.3,9134,1,3,0)
+ ;;=3^Glaucoma,Low-Tension,Severe Stage,Bilateral
+ ;;^UTILITY(U,$J,358.3,9134,1,4,0)
+ ;;=4^H40.1233
+ ;;^UTILITY(U,$J,358.3,9134,2)
+ ;;=^5005770
+ ;;^UTILITY(U,$J,358.3,9135,0)
+ ;;=H52.13^^41^474^49
+ ;;^UTILITY(U,$J,358.3,9135,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8859,1,3,0)
- ;;=3^Personal history of malignant neoplasm of trachea
- ;;^UTILITY(U,$J,358.3,8859,1,4,0)
- ;;=4^Z85.12
- ;;^UTILITY(U,$J,358.3,8859,2)
- ;;=^5063409
- ;;^UTILITY(U,$J,358.3,8860,0)
- ;;=Z85.22^^55^550^13
- ;;^UTILITY(U,$J,358.3,8860,1,0)
+ ;;^UTILITY(U,$J,358.3,9135,1,3,0)
+ ;;=3^Myopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,9135,1,4,0)
+ ;;=4^H52.13
+ ;;^UTILITY(U,$J,358.3,9135,2)
+ ;;=^5006266
+ ;;^UTILITY(U,$J,358.3,9136,0)
+ ;;=H52.12^^41^474^50
+ ;;^UTILITY(U,$J,358.3,9136,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8860,1,3,0)
- ;;=3^Personal history of malignant neoplasm of nasl cav,med ear,acces sinus
- ;;^UTILITY(U,$J,358.3,8860,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,8860,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,8861,0)
- ;;=Z85.41^^55^550^14
- ;;^UTILITY(U,$J,358.3,8861,1,0)
+ ;;^UTILITY(U,$J,358.3,9136,1,3,0)
+ ;;=3^Myopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,9136,1,4,0)
+ ;;=4^H52.12
+ ;;^UTILITY(U,$J,358.3,9136,2)
+ ;;=^5006265
+ ;;^UTILITY(U,$J,358.3,9137,0)
+ ;;=H52.11^^41^474^51
+ ;;^UTILITY(U,$J,358.3,9137,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8861,1,3,0)
- ;;=3^Personal history of malignant neoplasm of cervix uteri
- ;;^UTILITY(U,$J,358.3,8861,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,8861,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,8862,0)
- ;;=Z85.42^^55^550^15
- ;;^UTILITY(U,$J,358.3,8862,1,0)
+ ;;^UTILITY(U,$J,358.3,9137,1,3,0)
+ ;;=3^Myopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,9137,1,4,0)
+ ;;=4^H52.11
+ ;;^UTILITY(U,$J,358.3,9137,2)
+ ;;=^5006264
+ ;;^UTILITY(U,$J,358.3,9138,0)
+ ;;=H40.053^^41^474^52
+ ;;^UTILITY(U,$J,358.3,9138,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8862,1,3,0)
- ;;=3^Personal history of malignant neoplasm of oth prt uterus
- ;;^UTILITY(U,$J,358.3,8862,1,4,0)
- ;;=4^Z85.42
- ;;^UTILITY(U,$J,358.3,8862,2)
- ;;=^5063419
- ;;^UTILITY(U,$J,358.3,8863,0)
- ;;=Z85.48^^55^550^16
- ;;^UTILITY(U,$J,358.3,8863,1,0)
+ ;;^UTILITY(U,$J,358.3,9138,1,3,0)
+ ;;=3^Ocular HTN,Bilateral
+ ;;^UTILITY(U,$J,358.3,9138,1,4,0)
+ ;;=4^H40.053
+ ;;^UTILITY(U,$J,358.3,9138,2)
+ ;;=^5005742
+ ;;^UTILITY(U,$J,358.3,9139,0)
+ ;;=H40.052^^41^474^53
+ ;;^UTILITY(U,$J,358.3,9139,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8863,1,3,0)
- ;;=3^Personal history of malignant neoplasm of epididymis
- ;;^UTILITY(U,$J,358.3,8863,1,4,0)
- ;;=4^Z85.48
- ;;^UTILITY(U,$J,358.3,8863,2)
- ;;=^5063425
- ;;^UTILITY(U,$J,358.3,8864,0)
- ;;=Z85.54^^55^550^17
- ;;^UTILITY(U,$J,358.3,8864,1,0)
+ ;;^UTILITY(U,$J,358.3,9139,1,3,0)
+ ;;=3^Ocular HTN,Left Eye
+ ;;^UTILITY(U,$J,358.3,9139,1,4,0)
+ ;;=4^H40.052
+ ;;^UTILITY(U,$J,358.3,9139,2)
+ ;;=^5005741
+ ;;^UTILITY(U,$J,358.3,9140,0)
+ ;;=H40.051^^41^474^54
+ ;;^UTILITY(U,$J,358.3,9140,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8864,1,3,0)
- ;;=3^Personal history of malignant neoplasm of ureter
+ ;;^UTILITY(U,$J,358.3,9140,1,3,0)
+ ;;=3^Ocular HTN,Right Eye
+ ;;^UTILITY(U,$J,358.3,9140,1,4,0)
+ ;;=4^H40.051
+ ;;^UTILITY(U,$J,358.3,9140,2)
+ ;;=^5005740

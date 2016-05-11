@@ -1,5 +1,6 @@
-IBJDI5 ;ALB/CPM - INSURANCE POLICIES NOT VERIFIED ; 18-DEC-96
- ;;2.0;INTEGRATED BILLING;**69,98,100,118,123**;21-MAR-94
+IBJDI5 ;ALB/CPM - INSURANCE POLICIES NOT VERIFIED ;18-DEC-96
+ ;;2.0;INTEGRATED BILLING;**69,98,100,118,123,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; - Option entry point.
  ;
@@ -17,6 +18,11 @@ DATE D DATE^IBOUTL I IBBDT=""!(IBEDT="") G ENQ
  S DIR("A")="  over a year ago"
  S DIR("B")="NO" D ^DIR K DIR S IBVER=Y I IBVER["^" G ENQ
  ;
+ ; pick excel or report format
+ N IBOUT
+ S IBOUT=$$OUT
+ ;
+ ;
  I IBRPT="D" W !!,"You will need a 132 column printer for this report!"
  E  W !!,"This report only requires an 80 column printer."
  ;
@@ -27,7 +33,7 @@ DATE D DATE^IBOUTL I IBBDT=""!(IBEDT="") G ENQ
  S %ZIS="QM" D ^%ZIS G:POP ENQ
  I $D(IO("Q")) D  G ENQ
  .S ZTRTN="DQ^IBJDI5",ZTDESC="IB - INSURANCE POLICIES NOT VERIFIED"
- .F I="IBBDT","IBEDT","IBRPT","IBVER" S ZTSAVE(I)=""
+ .F I="IBBDT","IBEDT","IBRPT","IBVER","IBOUT" S ZTSAVE(I)=""
  .D ^%ZTLOAD
  .W !!,$S($D(ZTSK):"This job has been queued. The task number is "_ZTSK_".",1:"Unable to queue this job.")
  .K ZTSK,IO("Q") D HOME^%ZIS
@@ -101,7 +107,8 @@ DQ ; - Tasked entry point.
  ; - Print the reports.
  S (IBPAG,IBQ)=0 D NOW^%DTC S IBRUN=$$DAT2^IBOUTL(%)
  I IBRPT="D" D DET
- I 'IBQ D SUM
+ I 'IBQ D:IBOUT="R" SUM
+ I IBOUT="E" D EXCSUM
  ;
  I 'IBQ D PAUSE
  ;
@@ -111,7 +118,7 @@ ENQ K ^TMP("IBJDI51",$J),^TMP("IBJDI52",$J)
  D ^%ZISC
 ENQ1 K IB,IBQ,IBBDT,IBEDT,IBRPT,IBD,IBDN,IBPH,IBPM,IBINS,IBPMD,IBPAG,IBRUN,%
  K IBEBY,IBVBY,IBVDTE,IBDOD,IBPER,IBC,IBC1,IBC2,IBC3,IBCDFN,IBVER,IBVFLG
- K IBCDFND,IBX,IBX1,IBX2,IBX3,DFN,POP,X,X1,X2,Y,ZTDESC,ZTRTN,ZTSAVE,%ZIS
+ K IBCDFND,IBX,IBX1,IBX2,IBX3,DFN,POP,X,X1,X2,Y,ZTDESC,ZTRTN,ZTSAVE,%ZIS,IBXTRACT,STOP
  Q
  ;
 ENC(IBOED) ; - Encounter extract for outpatient loop.
@@ -156,20 +163,26 @@ ENCKQ Q Y
  ;
 DET ; - Print the detailed report.
  I '$D(^TMP("IBJDI52",$J,0)) S IBX=0 D HDET W !,"All policies within the selected date range have been verified." D PAUSE
+ I IBOUT="E" S IBX=0 D EXCHDR
  S IBX="" F  S IBX=$O(^TMP("IBJDI52",$J,IBX)) Q:IBX=""  D  Q:IBQ
- .D HDET Q:IBQ
+ .I IBOUT="R" D HDET Q:IBQ
  .S IBX1="" F  S IBX1=$O(^TMP("IBJDI52",$J,IBX,IBX1)) Q:IBX1=""  D  Q:IBQ
- ..I $Y>(IOSL-4) D PAUSE Q:IBQ  D HDET Q:IBQ
- ..W $P(IBX1,"@@"),?33,$$SSN($P(IBX1,"@@",2)),?47,$P(IBX1,"@@",3)
+ ..I IBOUT="R" I $Y>(IOSL-4) D PAUSE Q:IBQ  D HDET Q:IBQ
+ ..I IBOUT="R" W $P(IBX1,"@@"),?33,$$SSN($P(IBX1,"@@",2)),?47,$P(IBX1,"@@",3)
  ..S IBX2=0 F  S IBX2=$O(^TMP("IBJDI52",$J,IBX,IBX1,IBX2)) Q:'IBX2  S IBX3=^(IBX2) D
- ...I $Y>(IOSL-4) D PAUSE Q:IBQ  D HDET Q:IBQ
- ...W ?62,$P(IBX3,U),?94,$E($P($G(^VA(200,+$P(IBX3,U,2),0)),U),1,24)
- ...W ?120,$$DAT2^IBOUTL($P(IBX3,U,3)),!
- ...I IBX W ?94,$E($P($G(^VA(200,+$P(IBX3,U,4),0)),U),1,24),?120,$$DAT2^IBOUTL($P(IBX3,U,5)),!
+ ...I IBOUT="R" I $Y>(IOSL-4) D PAUSE Q:IBQ  D HDET Q:IBQ
+ ...I IBOUT="R" D
+ ....W ?62,$P(IBX3,U),?94,$E($P($G(^VA(200,+$P(IBX3,U,2),0)),U),1,24)
+ ....W ?120,$$DAT2^IBOUTL($P(IBX3,U,3)),!
+ ....I IBX W ?94,$E($P($G(^VA(200,+$P(IBX3,U,4),0)),U),1,24),?120,$$DAT2^IBOUTL($P(IBX3,U,5)),!
+ ...I IBOUT="E" D
+ ....W $P(IBX1,"@@")_U_$$SSN($P(IBX1,"@@",2))_U_$P(IBX1,"@@",3)
+ ....W U_$P(IBX3,U)_U_$E($P($G(^VA(200,+$P(IBX3,U,2),0)),U),1,24)_U_$$DAT2^IBOUTL($P(IBX3,U,3)),!
+ ....I IBX W "^^^^"_$E($P($G(^VA(200,+$P(IBX3,U,4),0)),U),1,24)_U_$$DAT2^IBOUTL($P(IBX3,U,5)),!
  .;
- .I 'IBQ D PAUSE
+ .I 'IBQ,IBOUT="R" D PAUSE
  ;
- I '$D(^TMP("IBJDI52",$J,1)),IBVER S IBX=1 D HDET W !,"All policies within the selected date range have been verified less than a year ago." D PAUSE
+ I IBOUT="R",'$D(^TMP("IBJDI52",$J,1)),IBVER S IBX=1 D HDET W !,"All policies within the selected date range have been verified less than a year ago." D PAUSE
  Q
  ;
 HDET ; - Write the detail report header.
@@ -182,6 +195,13 @@ HDET ; - Write the detail report header.
  W ?62,"Insurance Company",?94,"Policy ",$S(IBX:"Verified",1:"Entered")," By",?120,"Date ",$S(IBX:"Verif'd",1:"Entered")
  W !,$$DASH(132),!!
  S IBQ=$$STOP^IBOUTL("Insurance Policies Not Verified")
+ Q
+ ;
+EXCHDR ; Excel format
+ W !,"Insurance Policies ",$S(IBX:"Verified Over a Year Ago",1:"Not Verified")
+ w !,"Run Date: ",IBRUN
+ W !,"For Patients treated for the period "_$$DAT1^IBOUTL(IBBDT)_" to "_$$DAT1^IBOUTL(IBEDT)_"  ('*' = Had inpatient care)"
+ W !,"Patient"_U_"SSN"_U_"Date of Death"_U_"Insurance Company"_U_"Policy ",$S(IBX:"Verified",1:"Entered")," By"_U_"Date ",$S(IBX:"Verif'd",1:"Entered"),!
  Q
  ;
 SUM ; - Print the summary report.
@@ -198,6 +218,19 @@ SUM ; - Print the summary report.
  W !?19,"Number of Policies Not Verified:",?53,$J(IB("NOT"),5),?62,"(",$S('IB("TOT"):0,1:$J(100-IBPER,0,2)),"%)"
  Q
  ;
+EXCSUM ;excell format
+ W !!,"INSURANCE POLICIES NOT VERIFIED",$S(IBVER:"/VERIFIED OVER 1 YEAR",1:"")
+ W !,"SUMMARY REPORT"
+ W !,"For Patients treated from ",$$DAT1^IBOUTL(IBBDT)," - ",$$DAT1^IBOUTL(IBEDT)
+ W !,"Run Date: ",IBRUN
+ ;
+ S IBPER=$S('IB("TOT"):0,1:IB("VER")/IB("TOT")*100)
+ W !,"Number of Patients Treated:"_U_IB("TOT")
+ W !,"Number of Policies Verified:"_U_IB("VER")_U_"(",IBPER,"%)"
+ I IBVER W !,"Number of Policies Verified Over a Year Ago:"_U_IB("VERO")_U_"(",$S('IB("VERO"):0,1:IB("VERO")/IB("TOT")*100),"%)"
+ W !,"Number of Policies Not Verified:"_U_IB("NOT")_U_"("_$S('IB("TOT"):0,1:(100-IBPER))_"%)"
+ Q
+ ;
 DASH(X) ; - Return a dashed line.
  Q $TR($J("",X)," ","=")
  ;
@@ -210,3 +243,12 @@ PAUSE ; - Page break.
  ;
 SSN(X) ; - Format the SSN.
  Q $S(X]"":$E(X,1,3)_"-"_$E(X,4,5)_"-"_$E(X,6,10),1:"")
+  ;
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y

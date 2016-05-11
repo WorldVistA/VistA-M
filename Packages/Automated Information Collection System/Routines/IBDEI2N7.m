@@ -1,134 +1,48 @@
-IBDEI2N7 ; ; 19-NOV-2015
+IBDEI2N7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44350,1,3,0)
- ;;=3^Angiosarcoma of Liver
- ;;^UTILITY(U,$J,358.3,44350,1,4,0)
- ;;=4^C22.3
- ;;^UTILITY(U,$J,358.3,44350,2)
- ;;=^5000936
- ;;^UTILITY(U,$J,358.3,44351,0)
- ;;=D61.9^^200^2228^26
- ;;^UTILITY(U,$J,358.3,44351,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44351,1,3,0)
- ;;=3^Aplastic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,44351,1,4,0)
- ;;=4^D61.9
- ;;^UTILITY(U,$J,358.3,44351,2)
- ;;=^5002342
- ;;^UTILITY(U,$J,358.3,44352,0)
- ;;=D56.1^^200^2228^28
- ;;^UTILITY(U,$J,358.3,44352,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44352,1,3,0)
- ;;=3^Beta Thalassemia
- ;;^UTILITY(U,$J,358.3,44352,1,4,0)
- ;;=4^D56.1
- ;;^UTILITY(U,$J,358.3,44352,2)
- ;;=^340495
- ;;^UTILITY(U,$J,358.3,44353,0)
- ;;=C83.79^^200^2228^29
- ;;^UTILITY(U,$J,358.3,44353,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44353,1,3,0)
- ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,44353,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,44353,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,44354,0)
- ;;=C83.70^^200^2228^30
- ;;^UTILITY(U,$J,358.3,44354,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44354,1,3,0)
- ;;=3^Burkitt Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,44354,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,44354,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,44355,0)
- ;;=D09.0^^200^2228^37
- ;;^UTILITY(U,$J,358.3,44355,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44355,1,3,0)
- ;;=3^Carcinoma in Situ of Bladder
- ;;^UTILITY(U,$J,358.3,44355,1,4,0)
- ;;=4^D09.0
- ;;^UTILITY(U,$J,358.3,44355,2)
- ;;=^267742
- ;;^UTILITY(U,$J,358.3,44356,0)
- ;;=D06.9^^200^2228^38
- ;;^UTILITY(U,$J,358.3,44356,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44356,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix
- ;;^UTILITY(U,$J,358.3,44356,1,4,0)
- ;;=4^D06.9
- ;;^UTILITY(U,$J,358.3,44356,2)
- ;;=^5001941
- ;;^UTILITY(U,$J,358.3,44357,0)
- ;;=D06.0^^200^2228^40
- ;;^UTILITY(U,$J,358.3,44357,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44357,1,3,0)
- ;;=3^Carcinoma in Situ of Endocervix
- ;;^UTILITY(U,$J,358.3,44357,1,4,0)
- ;;=4^D06.0
- ;;^UTILITY(U,$J,358.3,44357,2)
- ;;=^5001938
- ;;^UTILITY(U,$J,358.3,44358,0)
- ;;=D06.1^^200^2228^41
- ;;^UTILITY(U,$J,358.3,44358,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44358,1,3,0)
- ;;=3^Carcinoma in Situ of Exocervix
- ;;^UTILITY(U,$J,358.3,44358,1,4,0)
- ;;=4^D06.1
- ;;^UTILITY(U,$J,358.3,44358,2)
- ;;=^5001939
- ;;^UTILITY(U,$J,358.3,44359,0)
- ;;=D06.7^^200^2228^39
- ;;^UTILITY(U,$J,358.3,44359,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44359,1,3,0)
- ;;=3^Carcinoma in Situ of Cervix,Other Parts
- ;;^UTILITY(U,$J,358.3,44359,1,4,0)
- ;;=4^D06.7
- ;;^UTILITY(U,$J,358.3,44359,2)
- ;;=^5001940
- ;;^UTILITY(U,$J,358.3,44360,0)
- ;;=D04.9^^200^2228^42
- ;;^UTILITY(U,$J,358.3,44360,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44360,1,3,0)
- ;;=3^Carcinoma in Situ of Skin
- ;;^UTILITY(U,$J,358.3,44360,1,4,0)
- ;;=4^D04.9
- ;;^UTILITY(U,$J,358.3,44360,2)
- ;;=^5001925
- ;;^UTILITY(U,$J,358.3,44361,0)
- ;;=C91.11^^200^2228^45
- ;;^UTILITY(U,$J,358.3,44361,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44361,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,In Remission
- ;;^UTILITY(U,$J,358.3,44361,1,4,0)
- ;;=4^C91.11
- ;;^UTILITY(U,$J,358.3,44361,2)
- ;;=^5001766
- ;;^UTILITY(U,$J,358.3,44362,0)
- ;;=C91.10^^200^2228^46
- ;;^UTILITY(U,$J,358.3,44362,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44362,1,3,0)
- ;;=3^Chronic Lymphocytic Leukemia of B-Cell Type,Not in Remission
- ;;^UTILITY(U,$J,358.3,44362,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,44362,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,44363,0)
- ;;=C92.11^^200^2228^47
- ;;^UTILITY(U,$J,358.3,44363,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.91,0,"GL")
+ ;;=^IBE(358.91,
+ ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
+ ;;=
+ ;;^DIC(358.91,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.91,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.91,"%D",2,0)
+ ;;=This file is nearly identical to file #357.91. It is used by the
+ ;;^DIC(358.91,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.91,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.91,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.91,0,"DDA")
+ ;;=N
+ ;;^DD(358.91,0,"DT")
+ ;;=2960123
+ ;;^DD(358.91,0,"IX","B",358.91,.01)
+ ;;=
+ ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
+ ;;=
+ ;;^DD(358.91,0,"PT",358.22,.06)
+ ;;=
+ ;;^DD(358.91,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.91,.01,0)
+ ;;=NAME^RFX^^0;1^K:$L(X)>30 X
+ ;;^DD(358.91,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.91,.01,1,1,0)
+ ;;=358.91^B
+ ;;^DD(358.91,.01,1,1,1)
+ ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.91,.01,1,1,2)
+ ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
+ ;;^DD(358.91,.01,3)
+ ;;=NAME MUST BE UNDER 31 CHARACTERS
+ ;;^DD(358.91,.01,21,0)
+ ;;=^^1^1^2930608^
+ ;;^DD(358.91,.01,21,1,0)
+ ;;=The name should describe the appearance of the marking area on the form.

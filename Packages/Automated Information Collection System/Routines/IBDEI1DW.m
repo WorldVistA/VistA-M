@@ -1,128 +1,124 @@
-IBDEI1DW ; ; 19-NOV-2015
+IBDEI1DW ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23082,1,3,0)
- ;;=3^Pick's Disease
- ;;^UTILITY(U,$J,358.3,23082,1,4,0)
- ;;=4^G31.01
- ;;^UTILITY(U,$J,358.3,23082,2)
- ;;=^329915
- ;;^UTILITY(U,$J,358.3,23083,0)
- ;;=G23.1^^107^1087^28
- ;;^UTILITY(U,$J,358.3,23083,1,0)
+ ;;^UTILITY(U,$J,358.3,23520,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,23521,0)
+ ;;=R40.2222^^87^999^20
+ ;;^UTILITY(U,$J,358.3,23521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23083,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia
- ;;^UTILITY(U,$J,358.3,23083,1,4,0)
- ;;=4^G23.1
- ;;^UTILITY(U,$J,358.3,23083,2)
- ;;=^5003780
- ;;^UTILITY(U,$J,358.3,23084,0)
- ;;=99377^^108^1088^1^^^^1
- ;;^UTILITY(U,$J,358.3,23084,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23084,1,1,0)
- ;;=1^99377
- ;;^UTILITY(U,$J,358.3,23084,1,2,0)
- ;;=2^Hospice Care Supervision,15-29 min
- ;;^UTILITY(U,$J,358.3,23085,0)
- ;;=99378^^108^1088^2^^^^1
- ;;^UTILITY(U,$J,358.3,23085,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23085,1,1,0)
- ;;=1^99378
- ;;^UTILITY(U,$J,358.3,23085,1,2,0)
- ;;=2^Hospice Care Supervision,30 min or more
- ;;^UTILITY(U,$J,358.3,23086,0)
- ;;=G0182^^108^1088^12^^^^1
- ;;^UTILITY(U,$J,358.3,23086,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23086,1,1,0)
- ;;=1^G0182
- ;;^UTILITY(U,$J,358.3,23086,1,2,0)
- ;;=2^Hospice Care-Use with each encounter
- ;;^UTILITY(U,$J,358.3,23087,0)
- ;;=S0257^^108^1089^1^^^^1
- ;;^UTILITY(U,$J,358.3,23087,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23087,1,1,0)
- ;;=1^S0257
- ;;^UTILITY(U,$J,358.3,23087,1,2,0)
- ;;=2^End of Life Counseling
- ;;^UTILITY(U,$J,358.3,23088,0)
- ;;=98960^^108^1090^1^^^^1
- ;;^UTILITY(U,$J,358.3,23088,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23088,1,1,0)
- ;;=1^98960
- ;;^UTILITY(U,$J,358.3,23088,1,2,0)
- ;;=2^Self-Mgmt Educ/Train,1 Pt
- ;;^UTILITY(U,$J,358.3,23089,0)
- ;;=98961^^108^1090^2^^^^1
- ;;^UTILITY(U,$J,358.3,23089,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23089,1,1,0)
- ;;=1^98961
- ;;^UTILITY(U,$J,358.3,23089,1,2,0)
- ;;=2^Self-Mgmt Educ/Train,2-4 Pts
- ;;^UTILITY(U,$J,358.3,23090,0)
- ;;=98962^^108^1090^3^^^^1
- ;;^UTILITY(U,$J,358.3,23090,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23090,1,1,0)
- ;;=1^98962
- ;;^UTILITY(U,$J,358.3,23090,1,2,0)
- ;;=2^Self-Mgmt Educ/Train,5-8 Pts
- ;;^UTILITY(U,$J,358.3,23091,0)
- ;;=99090^^108^1091^1^^^^1
- ;;^UTILITY(U,$J,358.3,23091,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23091,1,1,0)
- ;;=1^99090
- ;;^UTILITY(U,$J,358.3,23091,1,2,0)
- ;;=2^Computer Data Analysis
- ;;^UTILITY(U,$J,358.3,23092,0)
- ;;=99091^^108^1091^2^^^^1
- ;;^UTILITY(U,$J,358.3,23092,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23092,1,1,0)
- ;;=1^99091
- ;;^UTILITY(U,$J,358.3,23092,1,2,0)
- ;;=2^Interpretation of Data < 30 Min
- ;;^UTILITY(U,$J,358.3,23093,0)
- ;;=99366^^108^1092^1^^^^1
- ;;^UTILITY(U,$J,358.3,23093,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23093,1,1,0)
- ;;=1^99366
- ;;^UTILITY(U,$J,358.3,23093,1,2,0)
- ;;=2^Team Conf w/ Pt by HCP 30 Min
- ;;^UTILITY(U,$J,358.3,23094,0)
- ;;=99368^^108^1092^2^^^^1
- ;;^UTILITY(U,$J,358.3,23094,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23094,1,1,0)
- ;;=1^99368
- ;;^UTILITY(U,$J,358.3,23094,1,2,0)
- ;;=2^Team Conf w/o Pt by HCP 30 Min
- ;;^UTILITY(U,$J,358.3,23095,0)
- ;;=99354^^108^1093^1^^^^1
- ;;^UTILITY(U,$J,358.3,23095,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23095,1,1,0)
- ;;=1^99354
- ;;^UTILITY(U,$J,358.3,23095,1,2,0)
- ;;=2^Prolonged Service F-T-F,1st Hr
- ;;^UTILITY(U,$J,358.3,23096,0)
- ;;=99358^^108^1093^3^^^^1
- ;;^UTILITY(U,$J,358.3,23096,1,0)
- ;;=^358.31IA^2^2
- ;;^UTILITY(U,$J,358.3,23096,1,1,0)
- ;;=1^99358
- ;;^UTILITY(U,$J,358.3,23096,1,2,0)
- ;;=2^Prolonged Service w/o Contact,1st Hr
- ;;^UTILITY(U,$J,358.3,23097,0)
- ;;=99359^^108^1093^4^^^^1
- ;;^UTILITY(U,$J,358.3,23097,1,0)
- ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,23521,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23521,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,23521,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,23522,0)
+ ;;=R40.2221^^87^999^21
+ ;;^UTILITY(U,$J,358.3,23522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23522,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,23522,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,23522,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,23523,0)
+ ;;=R40.2220^^87^999^22
+ ;;^UTILITY(U,$J,358.3,23523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23523,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23523,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,23523,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,23524,0)
+ ;;=R40.2214^^87^999^23
+ ;;^UTILITY(U,$J,358.3,23524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23524,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23524,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,23524,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,23525,0)
+ ;;=R40.2213^^87^999^25
+ ;;^UTILITY(U,$J,358.3,23525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23525,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23525,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,23525,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,23526,0)
+ ;;=R40.2212^^87^999^24
+ ;;^UTILITY(U,$J,358.3,23526,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23526,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23526,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,23526,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,23527,0)
+ ;;=R40.2344^^87^999^6
+ ;;^UTILITY(U,$J,358.3,23527,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23527,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23527,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,23527,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,23528,0)
+ ;;=R40.2343^^87^999^7
+ ;;^UTILITY(U,$J,358.3,23528,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23528,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,23528,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,23528,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,23529,0)
+ ;;=R40.2342^^87^999^8
+ ;;^UTILITY(U,$J,358.3,23529,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23529,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,23529,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,23529,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,23530,0)
+ ;;=R40.2341^^87^999^9
+ ;;^UTILITY(U,$J,358.3,23530,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23530,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,23530,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,23530,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,23531,0)
+ ;;=R40.2340^^87^999^10
+ ;;^UTILITY(U,$J,358.3,23531,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23531,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,23531,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,23531,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,23532,0)
+ ;;=R40.2324^^87^999^1
+ ;;^UTILITY(U,$J,358.3,23532,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23532,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,23532,1,4,0)
+ ;;=4^R40.2324

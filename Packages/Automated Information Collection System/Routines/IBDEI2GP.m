@@ -1,130 +1,130 @@
-IBDEI2GP ; ; 19-NOV-2015
+IBDEI2GP ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41310,1,0)
+ ;;^UTILITY(U,$J,358.3,41755,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,41756,0)
+ ;;=M18.0^^159^2010^122
+ ;;^UTILITY(U,$J,358.3,41756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41310,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, lft ankl
- ;;^UTILITY(U,$J,358.3,41310,1,4,0)
- ;;=4^M92.62
- ;;^UTILITY(U,$J,358.3,41310,2)
- ;;=^5015237
- ;;^UTILITY(U,$J,358.3,41311,0)
- ;;=M92.61^^189^2093^14
- ;;^UTILITY(U,$J,358.3,41311,1,0)
+ ;;^UTILITY(U,$J,358.3,41756,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,41756,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,41756,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,41757,0)
+ ;;=M18.11^^159^2010^132
+ ;;^UTILITY(U,$J,358.3,41757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41311,1,3,0)
- ;;=3^Juvenile osteochondrosis of tarsus, rt ankle
- ;;^UTILITY(U,$J,358.3,41311,1,4,0)
- ;;=4^M92.61
- ;;^UTILITY(U,$J,358.3,41311,2)
- ;;=^5015236
- ;;^UTILITY(U,$J,358.3,41312,0)
- ;;=Z47.89^^189^2093^16
- ;;^UTILITY(U,$J,358.3,41312,1,0)
+ ;;^UTILITY(U,$J,358.3,41757,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,41757,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,41757,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,41758,0)
+ ;;=M18.12^^159^2010^126
+ ;;^UTILITY(U,$J,358.3,41758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41312,1,3,0)
- ;;=3^Orthopedic aftercare, oth
- ;;^UTILITY(U,$J,358.3,41312,1,4,0)
- ;;=4^Z47.89
- ;;^UTILITY(U,$J,358.3,41312,2)
- ;;=^5063032
- ;;^UTILITY(U,$J,358.3,41313,0)
- ;;=M19.072^^189^2093^18
- ;;^UTILITY(U,$J,358.3,41313,1,0)
+ ;;^UTILITY(U,$J,358.3,41758,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,41758,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,41758,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,41759,0)
+ ;;=M19.011^^159^2010^135
+ ;;^UTILITY(U,$J,358.3,41759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41313,1,3,0)
- ;;=3^Osteoarthritis,Left Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,41313,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,41313,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,41314,0)
- ;;=M19.071^^189^2093^19
- ;;^UTILITY(U,$J,358.3,41314,1,0)
+ ;;^UTILITY(U,$J,358.3,41759,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41759,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,41759,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,41760,0)
+ ;;=M19.012^^159^2010^129
+ ;;^UTILITY(U,$J,358.3,41760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41314,1,3,0)
- ;;=3^Osteoarthritis,Right Ankle/Foot,Primary
- ;;^UTILITY(U,$J,358.3,41314,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,41314,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,41315,0)
- ;;=M19.90^^189^2093^20
- ;;^UTILITY(U,$J,358.3,41315,1,0)
+ ;;^UTILITY(U,$J,358.3,41760,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41760,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,41760,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,41761,0)
+ ;;=M19.031^^159^2010^136
+ ;;^UTILITY(U,$J,358.3,41761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41315,1,3,0)
- ;;=3^Osteoarthritis,Unspec Site
- ;;^UTILITY(U,$J,358.3,41315,1,4,0)
+ ;;^UTILITY(U,$J,358.3,41761,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,41761,1,4,0)
+ ;;=4^M19.031
+ ;;^UTILITY(U,$J,358.3,41761,2)
+ ;;=^5010814
+ ;;^UTILITY(U,$J,358.3,41762,0)
+ ;;=M19.032^^159^2010^130
+ ;;^UTILITY(U,$J,358.3,41762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41762,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,41762,1,4,0)
+ ;;=4^M19.032
+ ;;^UTILITY(U,$J,358.3,41762,2)
+ ;;=^5010815
+ ;;^UTILITY(U,$J,358.3,41763,0)
+ ;;=M19.041^^159^2010^131
+ ;;^UTILITY(U,$J,358.3,41763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41763,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,41763,1,4,0)
+ ;;=4^M19.041
+ ;;^UTILITY(U,$J,358.3,41763,2)
+ ;;=^5010817
+ ;;^UTILITY(U,$J,358.3,41764,0)
+ ;;=M19.042^^159^2010^125
+ ;;^UTILITY(U,$J,358.3,41764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41764,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,41764,1,4,0)
+ ;;=4^M19.042
+ ;;^UTILITY(U,$J,358.3,41764,2)
+ ;;=^5010818
+ ;;^UTILITY(U,$J,358.3,41765,0)
+ ;;=M19.90^^159^2010^68
+ ;;^UTILITY(U,$J,358.3,41765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41765,1,3,0)
+ ;;=3^Osteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,41765,1,4,0)
  ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,41315,2)
+ ;;^UTILITY(U,$J,358.3,41765,2)
  ;;=^5010853
- ;;^UTILITY(U,$J,358.3,41316,0)
- ;;=M96.0^^189^2094^14
- ;;^UTILITY(U,$J,358.3,41316,1,0)
+ ;;^UTILITY(U,$J,358.3,41766,0)
+ ;;=M25.40^^159^2010^37
+ ;;^UTILITY(U,$J,358.3,41766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41316,1,3,0)
- ;;=3^Pseudarthrosis after fusion or arthrodesis
- ;;^UTILITY(U,$J,358.3,41316,1,4,0)
- ;;=4^M96.0
- ;;^UTILITY(U,$J,358.3,41316,2)
- ;;=^5015373
- ;;^UTILITY(U,$J,358.3,41317,0)
- ;;=R20.2^^189^2094^1
- ;;^UTILITY(U,$J,358.3,41317,1,0)
+ ;;^UTILITY(U,$J,358.3,41766,1,3,0)
+ ;;=3^Effusion,Unspec
+ ;;^UTILITY(U,$J,358.3,41766,1,4,0)
+ ;;=4^M25.40
+ ;;^UTILITY(U,$J,358.3,41766,2)
+ ;;=^5011575
+ ;;^UTILITY(U,$J,358.3,41767,0)
+ ;;=M45.0^^159^2010^6
+ ;;^UTILITY(U,$J,358.3,41767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41317,1,3,0)
- ;;=3^Paresthesia of skin
- ;;^UTILITY(U,$J,358.3,41317,1,4,0)
- ;;=4^R20.2
- ;;^UTILITY(U,$J,358.3,41317,2)
- ;;=^5019280
- ;;^UTILITY(U,$J,358.3,41318,0)
- ;;=I87.003^^189^2094^12
- ;;^UTILITY(U,$J,358.3,41318,1,0)
+ ;;^UTILITY(U,$J,358.3,41767,1,3,0)
+ ;;=3^Ankylosing Spondylitis of Spine,Mult Sites
+ ;;^UTILITY(U,$J,358.3,41767,1,4,0)
+ ;;=4^M45.0
+ ;;^UTILITY(U,$J,358.3,41767,2)
+ ;;=^5011960
+ ;;^UTILITY(U,$J,358.3,41768,0)
+ ;;=M45.2^^159^2010^3
+ ;;^UTILITY(U,$J,358.3,41768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41318,1,3,0)
- ;;=3^Postthrom syndr w/o compl of bilat lwr extrem
- ;;^UTILITY(U,$J,358.3,41318,1,4,0)
- ;;=4^I87.003
- ;;^UTILITY(U,$J,358.3,41318,2)
- ;;=^5008029
- ;;^UTILITY(U,$J,358.3,41319,0)
- ;;=I87.001^^189^2094^11
- ;;^UTILITY(U,$J,358.3,41319,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41319,1,3,0)
- ;;=3^Postrhomb syndr w/o compl of rt lwr extrem
- ;;^UTILITY(U,$J,358.3,41319,1,4,0)
- ;;=4^I87.001
- ;;^UTILITY(U,$J,358.3,41319,2)
- ;;=^5008027
- ;;^UTILITY(U,$J,358.3,41320,0)
- ;;=I80.01^^189^2094^8
- ;;^UTILITY(U,$J,358.3,41320,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41320,1,3,0)
- ;;=3^Phlebitis & Thromboph,Right Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,41320,1,4,0)
- ;;=4^I80.01
- ;;^UTILITY(U,$J,358.3,41320,2)
- ;;=^5007821
- ;;^UTILITY(U,$J,358.3,41321,0)
- ;;=I80.02^^189^2094^6
- ;;^UTILITY(U,$J,358.3,41321,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41321,1,3,0)
- ;;=3^Phlebitis & Thromboph,Left Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,41321,1,4,0)
- ;;=4^I80.02
- ;;^UTILITY(U,$J,358.3,41321,2)
- ;;=^5007822
- ;;^UTILITY(U,$J,358.3,41322,0)
- ;;=I80.03^^189^2094^4
- ;;^UTILITY(U,$J,358.3,41322,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41322,1,3,0)
- ;;=3^Phlebitis & Thromboph,Bilateral Lower Sprfcl Vessels
- ;;^UTILITY(U,$J,358.3,41322,1,4,0)
- ;;=4^I80.03

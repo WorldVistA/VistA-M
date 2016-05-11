@@ -1,138 +1,126 @@
-IBDEI0GZ ; ; 19-NOV-2015
+IBDEI0GZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7586,1,4,0)
- ;;=4^I12.0
- ;;^UTILITY(U,$J,358.3,7586,2)
- ;;=^5007065
- ;;^UTILITY(U,$J,358.3,7587,0)
- ;;=I13.0^^52^508^6
- ;;^UTILITY(U,$J,358.3,7587,1,0)
+ ;;^UTILITY(U,$J,358.3,7848,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,7848,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,7849,0)
+ ;;=X00.1XXA^^30^415^13
+ ;;^UTILITY(U,$J,358.3,7849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7587,1,3,0)
- ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,7587,1,4,0)
- ;;=4^I13.0
- ;;^UTILITY(U,$J,358.3,7587,2)
- ;;=^5007067
- ;;^UTILITY(U,$J,358.3,7588,0)
- ;;=I13.10^^52^508^9
- ;;^UTILITY(U,$J,358.3,7588,1,0)
+ ;;^UTILITY(U,$J,358.3,7849,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7849,1,4,0)
+ ;;=4^X00.1XXA
+ ;;^UTILITY(U,$J,358.3,7849,2)
+ ;;=^5060664
+ ;;^UTILITY(U,$J,358.3,7850,0)
+ ;;=X00.1XXD^^30^415^14
+ ;;^UTILITY(U,$J,358.3,7850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7588,1,3,0)
- ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
- ;;^UTILITY(U,$J,358.3,7588,1,4,0)
- ;;=4^I13.10
- ;;^UTILITY(U,$J,358.3,7588,2)
- ;;=^5007068
- ;;^UTILITY(U,$J,358.3,7589,0)
- ;;=I15.1^^52^508^11
- ;;^UTILITY(U,$J,358.3,7589,1,0)
+ ;;^UTILITY(U,$J,358.3,7850,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7850,1,4,0)
+ ;;=4^X00.1XXD
+ ;;^UTILITY(U,$J,358.3,7850,2)
+ ;;=^5060665
+ ;;^UTILITY(U,$J,358.3,7851,0)
+ ;;=Y36.820S^^30^415^21
+ ;;^UTILITY(U,$J,358.3,7851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7589,1,3,0)
- ;;=3^Hypertension Secondary to Oth Renal Disorders
- ;;^UTILITY(U,$J,358.3,7589,1,4,0)
- ;;=4^I15.1
- ;;^UTILITY(U,$J,358.3,7589,2)
- ;;=^5007072
- ;;^UTILITY(U,$J,358.3,7590,0)
- ;;=I15.2^^52^508^10
- ;;^UTILITY(U,$J,358.3,7590,1,0)
+ ;;^UTILITY(U,$J,358.3,7851,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7851,1,4,0)
+ ;;=4^Y36.820S
+ ;;^UTILITY(U,$J,358.3,7851,2)
+ ;;=^5061795
+ ;;^UTILITY(U,$J,358.3,7852,0)
+ ;;=Y36.810S^^30^415^24
+ ;;^UTILITY(U,$J,358.3,7852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7590,1,3,0)
- ;;=3^Hypertension Secondary to Endocrine Disorders
- ;;^UTILITY(U,$J,358.3,7590,1,4,0)
- ;;=4^I15.2
- ;;^UTILITY(U,$J,358.3,7590,2)
- ;;=^5007073
- ;;^UTILITY(U,$J,358.3,7591,0)
- ;;=I50.1^^52^508^16
- ;;^UTILITY(U,$J,358.3,7591,1,0)
+ ;;^UTILITY(U,$J,358.3,7852,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7852,1,4,0)
+ ;;=4^Y36.810S
+ ;;^UTILITY(U,$J,358.3,7852,2)
+ ;;=^5061789
+ ;;^UTILITY(U,$J,358.3,7853,0)
+ ;;=Y36.6X0S^^30^415^114
+ ;;^UTILITY(U,$J,358.3,7853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7591,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,7591,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,7591,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,7592,0)
- ;;=E26.09^^52^508^17
- ;;^UTILITY(U,$J,358.3,7592,1,0)
+ ;;^UTILITY(U,$J,358.3,7853,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7853,1,4,0)
+ ;;=4^Y36.6X0S
+ ;;^UTILITY(U,$J,358.3,7853,2)
+ ;;=^5061777
+ ;;^UTILITY(U,$J,358.3,7854,0)
+ ;;=Y36.410S^^30^415^122
+ ;;^UTILITY(U,$J,358.3,7854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7592,1,3,0)
- ;;=3^Primary Hyperaldosteronism,Other
- ;;^UTILITY(U,$J,358.3,7592,1,4,0)
- ;;=4^E26.09
- ;;^UTILITY(U,$J,358.3,7592,2)
- ;;=^5002735
- ;;^UTILITY(U,$J,358.3,7593,0)
- ;;=I15.8^^52^508^18
- ;;^UTILITY(U,$J,358.3,7593,1,0)
+ ;;^UTILITY(U,$J,358.3,7854,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7854,1,4,0)
+ ;;=4^Y36.410S
+ ;;^UTILITY(U,$J,358.3,7854,2)
+ ;;=^5061693
+ ;;^UTILITY(U,$J,358.3,7855,0)
+ ;;=Y36.200S^^30^415^119
+ ;;^UTILITY(U,$J,358.3,7855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7593,1,3,0)
- ;;=3^Secondary Hypertension,Other
- ;;^UTILITY(U,$J,358.3,7593,1,4,0)
- ;;=4^I15.8
- ;;^UTILITY(U,$J,358.3,7593,2)
- ;;=^5007074
- ;;^UTILITY(U,$J,358.3,7594,0)
- ;;=E27.5^^52^508^1
- ;;^UTILITY(U,$J,358.3,7594,1,0)
+ ;;^UTILITY(U,$J,358.3,7855,1,3,0)
+ ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7855,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,7855,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,7856,0)
+ ;;=Y36.300S^^30^415^120
+ ;;^UTILITY(U,$J,358.3,7856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7594,1,3,0)
- ;;=3^Adrenomedullary Hyperfunction
- ;;^UTILITY(U,$J,358.3,7594,1,4,0)
- ;;=4^E27.5
- ;;^UTILITY(U,$J,358.3,7594,2)
- ;;=^5002744
- ;;^UTILITY(U,$J,358.3,7595,0)
- ;;=E26.01^^52^508^4
- ;;^UTILITY(U,$J,358.3,7595,1,0)
+ ;;^UTILITY(U,$J,358.3,7856,1,3,0)
+ ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7856,1,4,0)
+ ;;=4^Y36.300S
+ ;;^UTILITY(U,$J,358.3,7856,2)
+ ;;=^5061663
+ ;;^UTILITY(U,$J,358.3,7857,0)
+ ;;=Y36.230A^^30^415^116
+ ;;^UTILITY(U,$J,358.3,7857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7595,1,3,0)
- ;;=3^Conn's Syndrome
- ;;^UTILITY(U,$J,358.3,7595,1,4,0)
- ;;=4^E26.01
- ;;^UTILITY(U,$J,358.3,7595,2)
- ;;=^329905
- ;;^UTILITY(U,$J,358.3,7596,0)
- ;;=I15.9^^52^508^19
- ;;^UTILITY(U,$J,358.3,7596,1,0)
+ ;;^UTILITY(U,$J,358.3,7857,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7857,1,4,0)
+ ;;=4^Y36.230A
+ ;;^UTILITY(U,$J,358.3,7857,2)
+ ;;=^5061625
+ ;;^UTILITY(U,$J,358.3,7858,0)
+ ;;=Y36.230D^^30^415^117
+ ;;^UTILITY(U,$J,358.3,7858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7596,1,3,0)
- ;;=3^Secondary Hypertension,Unspec
- ;;^UTILITY(U,$J,358.3,7596,1,4,0)
- ;;=4^I15.9
- ;;^UTILITY(U,$J,358.3,7596,2)
- ;;=^5007075
- ;;^UTILITY(U,$J,358.3,7597,0)
- ;;=B20.^^52^509^3
- ;;^UTILITY(U,$J,358.3,7597,1,0)
+ ;;^UTILITY(U,$J,358.3,7858,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7858,1,4,0)
+ ;;=4^Y36.230D
+ ;;^UTILITY(U,$J,358.3,7858,2)
+ ;;=^5061626
+ ;;^UTILITY(U,$J,358.3,7859,0)
+ ;;=Y36.230S^^30^415^118
+ ;;^UTILITY(U,$J,358.3,7859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7597,1,3,0)
- ;;=3^HIV Disease
- ;;^UTILITY(U,$J,358.3,7597,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,7597,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,7598,0)
- ;;=J18.9^^52^509^6
- ;;^UTILITY(U,$J,358.3,7598,1,0)
+ ;;^UTILITY(U,$J,358.3,7859,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,7859,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,7859,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,7860,0)
+ ;;=Y36.7X0S^^30^415^130
+ ;;^UTILITY(U,$J,358.3,7860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7598,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,7598,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,7598,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,7599,0)
- ;;=J10.1^^52^509^1
- ;;^UTILITY(U,$J,358.3,7599,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7599,1,3,0)
- ;;=3^Flu w/ Respiratory Manifestations
- ;;^UTILITY(U,$J,358.3,7599,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,7599,2)
- ;;=^5008151
+ ;;^UTILITY(U,$J,358.3,7860,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,7860,1,4,0)
+ ;;=4^Y36.7X0S

@@ -1,140 +1,140 @@
-IBDEI08X ; ; 19-NOV-2015
+IBDEI08X ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3628,1,4,0)
- ;;=4^N17.9
- ;;^UTILITY(U,$J,358.3,3628,2)
- ;;=^338532
- ;;^UTILITY(U,$J,358.3,3629,0)
- ;;=N19.^^28^257^15
- ;;^UTILITY(U,$J,358.3,3629,1,0)
+ ;;^UTILITY(U,$J,358.3,3890,1,4,0)
+ ;;=4^Z96.9
+ ;;^UTILITY(U,$J,358.3,3890,2)
+ ;;=^5063719
+ ;;^UTILITY(U,$J,358.3,3891,0)
+ ;;=Z72.6^^18^224^59
+ ;;^UTILITY(U,$J,358.3,3891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3629,1,3,0)
- ;;=3^Kidney Failure,Unspec
- ;;^UTILITY(U,$J,358.3,3629,1,4,0)
- ;;=4^N19.
- ;;^UTILITY(U,$J,358.3,3629,2)
- ;;=^5015607
- ;;^UTILITY(U,$J,358.3,3630,0)
- ;;=N26.1^^28^257^16
- ;;^UTILITY(U,$J,358.3,3630,1,0)
+ ;;^UTILITY(U,$J,358.3,3891,1,3,0)
+ ;;=3^Gambling and Betting
+ ;;^UTILITY(U,$J,358.3,3891,1,4,0)
+ ;;=4^Z72.6
+ ;;^UTILITY(U,$J,358.3,3891,2)
+ ;;=^5063261
+ ;;^UTILITY(U,$J,358.3,3892,0)
+ ;;=Z72.53^^18^224^62
+ ;;^UTILITY(U,$J,358.3,3892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3630,1,3,0)
- ;;=3^Kidney,Atrophy
- ;;^UTILITY(U,$J,358.3,3630,1,4,0)
- ;;=4^N26.1
- ;;^UTILITY(U,$J,358.3,3630,2)
- ;;=^5015620
- ;;^UTILITY(U,$J,358.3,3631,0)
- ;;=N26.2^^28^257^17
- ;;^UTILITY(U,$J,358.3,3631,1,0)
+ ;;^UTILITY(U,$J,358.3,3892,1,3,0)
+ ;;=3^High Risk Bisexual Behavior
+ ;;^UTILITY(U,$J,358.3,3892,1,4,0)
+ ;;=4^Z72.53
+ ;;^UTILITY(U,$J,358.3,3892,2)
+ ;;=^5063260
+ ;;^UTILITY(U,$J,358.3,3893,0)
+ ;;=Z72.51^^18^224^63
+ ;;^UTILITY(U,$J,358.3,3893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3631,1,3,0)
- ;;=3^Kidney,Page
- ;;^UTILITY(U,$J,358.3,3631,1,4,0)
- ;;=4^N26.2
- ;;^UTILITY(U,$J,358.3,3631,2)
- ;;=^5015621
- ;;^UTILITY(U,$J,358.3,3632,0)
- ;;=N27.9^^28^257^18
- ;;^UTILITY(U,$J,358.3,3632,1,0)
+ ;;^UTILITY(U,$J,358.3,3893,1,3,0)
+ ;;=3^High Risk Heterosexual Behavior
+ ;;^UTILITY(U,$J,358.3,3893,1,4,0)
+ ;;=4^Z72.51
+ ;;^UTILITY(U,$J,358.3,3893,2)
+ ;;=^5063258
+ ;;^UTILITY(U,$J,358.3,3894,0)
+ ;;=Z72.52^^18^224^64
+ ;;^UTILITY(U,$J,358.3,3894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3632,1,3,0)
- ;;=3^Kidney,Small,Unspec
- ;;^UTILITY(U,$J,358.3,3632,1,4,0)
- ;;=4^N27.9
- ;;^UTILITY(U,$J,358.3,3632,2)
- ;;=^5015625
- ;;^UTILITY(U,$J,358.3,3633,0)
- ;;=N00.9^^28^257^19
- ;;^UTILITY(U,$J,358.3,3633,1,0)
+ ;;^UTILITY(U,$J,358.3,3894,1,3,0)
+ ;;=3^High Risk Homosexual Behavior
+ ;;^UTILITY(U,$J,358.3,3894,1,4,0)
+ ;;=4^Z72.52
+ ;;^UTILITY(U,$J,358.3,3894,2)
+ ;;=^5063259
+ ;;^UTILITY(U,$J,358.3,3895,0)
+ ;;=R68.0^^18^224^65
+ ;;^UTILITY(U,$J,358.3,3895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3633,1,3,0)
- ;;=3^Nephritic Syndrome,Acute w/ Unspec Morphologic Changes
- ;;^UTILITY(U,$J,358.3,3633,1,4,0)
- ;;=4^N00.9
- ;;^UTILITY(U,$J,358.3,3633,2)
- ;;=^5015500
- ;;^UTILITY(U,$J,358.3,3634,0)
- ;;=N11.9^^28^257^21
- ;;^UTILITY(U,$J,358.3,3634,1,0)
+ ;;^UTILITY(U,$J,358.3,3895,1,3,0)
+ ;;=3^Hypothermia,Not from Low Environmental Temperature
+ ;;^UTILITY(U,$J,358.3,3895,1,4,0)
+ ;;=4^R68.0
+ ;;^UTILITY(U,$J,358.3,3895,2)
+ ;;=^5019549
+ ;;^UTILITY(U,$J,358.3,3896,0)
+ ;;=R99.^^18^224^66
+ ;;^UTILITY(U,$J,358.3,3896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3634,1,3,0)
- ;;=3^Nephritis,Chronic Tubulo-Interstitial,Unspec
- ;;^UTILITY(U,$J,358.3,3634,1,4,0)
- ;;=4^N11.9
- ;;^UTILITY(U,$J,358.3,3634,2)
- ;;=^5015574
- ;;^UTILITY(U,$J,358.3,3635,0)
- ;;=N10.^^28^257^20
- ;;^UTILITY(U,$J,358.3,3635,1,0)
+ ;;^UTILITY(U,$J,358.3,3896,1,3,0)
+ ;;=3^Ill-Defined/Unknown Cause of Mortality
+ ;;^UTILITY(U,$J,358.3,3896,1,4,0)
+ ;;=4^R99.
+ ;;^UTILITY(U,$J,358.3,3896,2)
+ ;;=^5019750
+ ;;^UTILITY(U,$J,358.3,3897,0)
+ ;;=R69.^^18^224^67
+ ;;^UTILITY(U,$J,358.3,3897,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3635,1,3,0)
- ;;=3^Nephritis,Acute Tubulo-Interstitial
- ;;^UTILITY(U,$J,358.3,3635,1,4,0)
- ;;=4^N10.
- ;;^UTILITY(U,$J,358.3,3635,2)
- ;;=^5015570
- ;;^UTILITY(U,$J,358.3,3636,0)
- ;;=N12.^^28^257^22
- ;;^UTILITY(U,$J,358.3,3636,1,0)
+ ;;^UTILITY(U,$J,358.3,3897,1,3,0)
+ ;;=3^Illness,Unspec
+ ;;^UTILITY(U,$J,358.3,3897,1,4,0)
+ ;;=4^R69.
+ ;;^UTILITY(U,$J,358.3,3897,2)
+ ;;=^5019558
+ ;;^UTILITY(U,$J,358.3,3898,0)
+ ;;=D89.9^^18^224^68
+ ;;^UTILITY(U,$J,358.3,3898,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3636,1,3,0)
- ;;=3^Nephritis,Tubulo-Interstitial,Not Specified
- ;;^UTILITY(U,$J,358.3,3636,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,3636,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,3637,0)
- ;;=N11.0^^28^257^23
- ;;^UTILITY(U,$J,358.3,3637,1,0)
+ ;;^UTILITY(U,$J,358.3,3898,1,3,0)
+ ;;=3^Immune Mechanism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3898,1,4,0)
+ ;;=4^D89.9
+ ;;^UTILITY(U,$J,358.3,3898,2)
+ ;;=^5002459
+ ;;^UTILITY(U,$J,358.3,3899,0)
+ ;;=D84.9^^18^224^70
+ ;;^UTILITY(U,$J,358.3,3899,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3637,1,3,0)
- ;;=3^Pyelonephritis,Chronic Non-obstructive Reflux-Associated
- ;;^UTILITY(U,$J,358.3,3637,1,4,0)
- ;;=4^N11.0
- ;;^UTILITY(U,$J,358.3,3637,2)
- ;;=^5015571
- ;;^UTILITY(U,$J,358.3,3638,0)
- ;;=N11.1^^28^257^24
- ;;^UTILITY(U,$J,358.3,3638,1,0)
+ ;;^UTILITY(U,$J,358.3,3899,1,3,0)
+ ;;=3^Immunodeficiency,Unspec
+ ;;^UTILITY(U,$J,358.3,3899,1,4,0)
+ ;;=4^D84.9
+ ;;^UTILITY(U,$J,358.3,3899,2)
+ ;;=^5002441
+ ;;^UTILITY(U,$J,358.3,3900,0)
+ ;;=R68.82^^18^224^72
+ ;;^UTILITY(U,$J,358.3,3900,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3638,1,3,0)
- ;;=3^Pyelonephritis,Chronic Obstructive
- ;;^UTILITY(U,$J,358.3,3638,1,4,0)
- ;;=4^N11.1
- ;;^UTILITY(U,$J,358.3,3638,2)
- ;;=^5015572
- ;;^UTILITY(U,$J,358.3,3639,0)
- ;;=N23.^^28^257^25
- ;;^UTILITY(U,$J,358.3,3639,1,0)
+ ;;^UTILITY(U,$J,358.3,3900,1,3,0)
+ ;;=3^Libido,Decreased
+ ;;^UTILITY(U,$J,358.3,3900,1,4,0)
+ ;;=4^R68.82
+ ;;^UTILITY(U,$J,358.3,3900,2)
+ ;;=^329956
+ ;;^UTILITY(U,$J,358.3,3901,0)
+ ;;=R53.81^^18^224^73
+ ;;^UTILITY(U,$J,358.3,3901,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3639,1,3,0)
- ;;=3^Renal Colic,Unspec
- ;;^UTILITY(U,$J,358.3,3639,1,4,0)
- ;;=4^N23.
- ;;^UTILITY(U,$J,358.3,3639,2)
- ;;=^5015615
- ;;^UTILITY(U,$J,358.3,3640,0)
- ;;=Z99.2^^28^257^26
- ;;^UTILITY(U,$J,358.3,3640,1,0)
+ ;;^UTILITY(U,$J,358.3,3901,1,3,0)
+ ;;=3^Malaise,Other
+ ;;^UTILITY(U,$J,358.3,3901,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,3901,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,3902,0)
+ ;;=Z91.11^^18^224^74
+ ;;^UTILITY(U,$J,358.3,3902,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3640,1,3,0)
- ;;=3^Renal Dialysis Dependence
- ;;^UTILITY(U,$J,358.3,3640,1,4,0)
- ;;=4^Z99.2
- ;;^UTILITY(U,$J,358.3,3640,2)
- ;;=^5063758
- ;;^UTILITY(U,$J,358.3,3641,0)
- ;;=N26.9^^28^257^27
- ;;^UTILITY(U,$J,358.3,3641,1,0)
+ ;;^UTILITY(U,$J,358.3,3902,1,3,0)
+ ;;=3^Noncompliance w/ Dietary Regimen
+ ;;^UTILITY(U,$J,358.3,3902,1,4,0)
+ ;;=4^Z91.11
+ ;;^UTILITY(U,$J,358.3,3902,2)
+ ;;=^5063611
+ ;;^UTILITY(U,$J,358.3,3903,0)
+ ;;=Z91.120^^18^224^77
+ ;;^UTILITY(U,$J,358.3,3903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3641,1,3,0)
- ;;=3^Renal Sclerosis,Unspec
- ;;^UTILITY(U,$J,358.3,3641,1,4,0)
- ;;=4^N26.9
- ;;^UTILITY(U,$J,358.3,3641,2)
- ;;=^5015622
- ;;^UTILITY(U,$J,358.3,3642,0)
- ;;=N25.9^^28^257^28
+ ;;^UTILITY(U,$J,358.3,3903,1,3,0)
+ ;;=3^Noncompliance w/ Med Regimen d/t Financial Hardship
+ ;;^UTILITY(U,$J,358.3,3903,1,4,0)
+ ;;=4^Z91.120
+ ;;^UTILITY(U,$J,358.3,3903,2)
+ ;;=^5063612
+ ;;^UTILITY(U,$J,358.3,3904,0)
+ ;;=Z91.128^^18^224^78

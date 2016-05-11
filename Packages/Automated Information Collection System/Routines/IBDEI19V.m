@@ -1,122 +1,132 @@
-IBDEI19V ; ; 19-NOV-2015
+IBDEI19V ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21268,2)
- ;;=^5055460
- ;;^UTILITY(U,$J,358.3,21269,0)
- ;;=T84.83XD^^101^1029^11
- ;;^UTILITY(U,$J,358.3,21269,1,0)
+ ;;^UTILITY(U,$J,358.3,21639,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Chronic
+ ;;^UTILITY(U,$J,358.3,21639,1,4,0)
+ ;;=4^I82.891
+ ;;^UTILITY(U,$J,358.3,21639,2)
+ ;;=^5007939
+ ;;^UTILITY(U,$J,358.3,21640,0)
+ ;;=I82.890^^87^968^13
+ ;;^UTILITY(U,$J,358.3,21640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21269,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,21269,1,4,0)
- ;;=4^T84.83XD
- ;;^UTILITY(U,$J,358.3,21269,2)
- ;;=^5055461
- ;;^UTILITY(U,$J,358.3,21270,0)
- ;;=T84.83XS^^101^1029^12
- ;;^UTILITY(U,$J,358.3,21270,1,0)
+ ;;^UTILITY(U,$J,358.3,21640,1,3,0)
+ ;;=3^Embolism/Thrombosis Oth Spec Veins,Acute
+ ;;^UTILITY(U,$J,358.3,21640,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,21640,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,21641,0)
+ ;;=E78.0^^87^969^12
+ ;;^UTILITY(U,$J,358.3,21641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21270,1,3,0)
- ;;=3^Hemorrhage due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,21270,1,4,0)
- ;;=4^T84.83XS
- ;;^UTILITY(U,$J,358.3,21270,2)
- ;;=^5055462
- ;;^UTILITY(U,$J,358.3,21271,0)
- ;;=T84.89XA^^101^1029^1
- ;;^UTILITY(U,$J,358.3,21271,1,0)
+ ;;^UTILITY(U,$J,358.3,21641,1,3,0)
+ ;;=3^Pure Hypercholesterolemia
+ ;;^UTILITY(U,$J,358.3,21641,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,21641,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,21642,0)
+ ;;=E78.1^^87^969^13
+ ;;^UTILITY(U,$J,358.3,21642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21271,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,21271,1,4,0)
- ;;=4^T84.89XA
- ;;^UTILITY(U,$J,358.3,21271,2)
- ;;=^5055472
- ;;^UTILITY(U,$J,358.3,21272,0)
- ;;=T84.89XD^^101^1029^2
- ;;^UTILITY(U,$J,358.3,21272,1,0)
+ ;;^UTILITY(U,$J,358.3,21642,1,3,0)
+ ;;=3^Pure Hyperglyceridemia
+ ;;^UTILITY(U,$J,358.3,21642,1,4,0)
+ ;;=4^E78.1
+ ;;^UTILITY(U,$J,358.3,21642,2)
+ ;;=^101303
+ ;;^UTILITY(U,$J,358.3,21643,0)
+ ;;=E78.2^^87^969^11
+ ;;^UTILITY(U,$J,358.3,21643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21272,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,21272,1,4,0)
- ;;=4^T84.89XD
- ;;^UTILITY(U,$J,358.3,21272,2)
- ;;=^5055473
- ;;^UTILITY(U,$J,358.3,21273,0)
- ;;=T84.89XS^^101^1029^3
- ;;^UTILITY(U,$J,358.3,21273,1,0)
+ ;;^UTILITY(U,$J,358.3,21643,1,3,0)
+ ;;=3^Mixed Hyperlipidemia
+ ;;^UTILITY(U,$J,358.3,21643,1,4,0)
+ ;;=4^E78.2
+ ;;^UTILITY(U,$J,358.3,21643,2)
+ ;;=^78424
+ ;;^UTILITY(U,$J,358.3,21644,0)
+ ;;=I10.^^87^969^3
+ ;;^UTILITY(U,$J,358.3,21644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21273,1,3,0)
- ;;=3^Comp of internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,21273,1,4,0)
- ;;=4^T84.89XS
- ;;^UTILITY(U,$J,358.3,21273,2)
- ;;=^5055474
- ;;^UTILITY(U,$J,358.3,21274,0)
- ;;=T84.84XA^^101^1029^13
- ;;^UTILITY(U,$J,358.3,21274,1,0)
+ ;;^UTILITY(U,$J,358.3,21644,1,3,0)
+ ;;=3^Essential Primary Hypertension
+ ;;^UTILITY(U,$J,358.3,21644,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,21644,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,21645,0)
+ ;;=I11.9^^87^969^10
+ ;;^UTILITY(U,$J,358.3,21645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21274,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,21274,1,4,0)
- ;;=4^T84.84XA
- ;;^UTILITY(U,$J,358.3,21274,2)
- ;;=^5055463
- ;;^UTILITY(U,$J,358.3,21275,0)
- ;;=T84.84XD^^101^1029^14
- ;;^UTILITY(U,$J,358.3,21275,1,0)
+ ;;^UTILITY(U,$J,358.3,21645,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/o Heart Failure
+ ;;^UTILITY(U,$J,358.3,21645,1,4,0)
+ ;;=4^I11.9
+ ;;^UTILITY(U,$J,358.3,21645,2)
+ ;;=^5007064
+ ;;^UTILITY(U,$J,358.3,21646,0)
+ ;;=I11.0^^87^969^9
+ ;;^UTILITY(U,$J,358.3,21646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21275,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,21275,1,4,0)
- ;;=4^T84.84XD
- ;;^UTILITY(U,$J,358.3,21275,2)
- ;;=^5055464
- ;;^UTILITY(U,$J,358.3,21276,0)
- ;;=T84.84XS^^101^1029^15
- ;;^UTILITY(U,$J,358.3,21276,1,0)
+ ;;^UTILITY(U,$J,358.3,21646,1,3,0)
+ ;;=3^Hypertensive Heart Disease w/ Heart Failure
+ ;;^UTILITY(U,$J,358.3,21646,1,4,0)
+ ;;=4^I11.0
+ ;;^UTILITY(U,$J,358.3,21646,2)
+ ;;=^5007063
+ ;;^UTILITY(U,$J,358.3,21647,0)
+ ;;=I12.0^^87^969^8
+ ;;^UTILITY(U,$J,358.3,21647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21276,1,3,0)
- ;;=3^Pain due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,21276,1,4,0)
- ;;=4^T84.84XS
- ;;^UTILITY(U,$J,358.3,21276,2)
- ;;=^5055465
- ;;^UTILITY(U,$J,358.3,21277,0)
- ;;=T84.85XA^^101^1029^16
- ;;^UTILITY(U,$J,358.3,21277,1,0)
+ ;;^UTILITY(U,$J,358.3,21647,1,3,0)
+ ;;=3^Hypertensive Chr Kidney Disease w/ ESRD
+ ;;^UTILITY(U,$J,358.3,21647,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,21647,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,21648,0)
+ ;;=I13.10^^87^969^6
+ ;;^UTILITY(U,$J,358.3,21648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21277,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, init
- ;;^UTILITY(U,$J,358.3,21277,1,4,0)
- ;;=4^T84.85XA
- ;;^UTILITY(U,$J,358.3,21277,2)
- ;;=^5055466
- ;;^UTILITY(U,$J,358.3,21278,0)
- ;;=T84.85XD^^101^1029^17
- ;;^UTILITY(U,$J,358.3,21278,1,0)
+ ;;^UTILITY(U,$J,358.3,21648,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21648,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,21648,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,21649,0)
+ ;;=I13.0^^87^969^4
+ ;;^UTILITY(U,$J,358.3,21649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21278,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, subs
- ;;^UTILITY(U,$J,358.3,21278,1,4,0)
- ;;=4^T84.85XD
- ;;^UTILITY(U,$J,358.3,21278,2)
- ;;=^5055467
- ;;^UTILITY(U,$J,358.3,21279,0)
- ;;=T84.85XS^^101^1029^18
- ;;^UTILITY(U,$J,358.3,21279,1,0)
+ ;;^UTILITY(U,$J,358.3,21649,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21649,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,21649,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,21650,0)
+ ;;=I13.11^^87^969^7
+ ;;^UTILITY(U,$J,358.3,21650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21279,1,3,0)
- ;;=3^Stenosis due to internal orthopedic prosth dev/grft, sequela
- ;;^UTILITY(U,$J,358.3,21279,1,4,0)
- ;;=4^T84.85XS
- ;;^UTILITY(U,$J,358.3,21279,2)
- ;;=^5055468
- ;;^UTILITY(U,$J,358.3,21280,0)
- ;;=T84.86XA^^101^1029^20
- ;;^UTILITY(U,$J,358.3,21280,1,0)
+ ;;^UTILITY(U,$J,358.3,21650,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21650,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,21650,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,21651,0)
+ ;;=I13.2^^87^969^5
+ ;;^UTILITY(U,$J,358.3,21651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21280,1,3,0)
- ;;=3^Thrombosis due to internal orthopedic prosth dev/grft, init
+ ;;^UTILITY(U,$J,358.3,21651,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21651,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,21651,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,21652,0)
+ ;;=I48.91^^87^969^1

@@ -1,134 +1,130 @@
-IBDEI1OB ; ; 19-NOV-2015
+IBDEI1OB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27999,1,3,0)
- ;;=3^Vaginitis,Subacute & Chronic
- ;;^UTILITY(U,$J,358.3,27999,1,4,0)
- ;;=4^N76.1
- ;;^UTILITY(U,$J,358.3,27999,2)
- ;;=^5015827
- ;;^UTILITY(U,$J,358.3,28000,0)
- ;;=N76.2^^132^1322^91
- ;;^UTILITY(U,$J,358.3,28000,1,0)
+ ;;^UTILITY(U,$J,358.3,28432,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,28433,0)
+ ;;=D50.0^^112^1421^3
+ ;;^UTILITY(U,$J,358.3,28433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28000,1,3,0)
- ;;=3^Vulvitis,Acute
- ;;^UTILITY(U,$J,358.3,28000,1,4,0)
- ;;=4^N76.2
- ;;^UTILITY(U,$J,358.3,28000,2)
- ;;=^5015828
- ;;^UTILITY(U,$J,358.3,28001,0)
- ;;=N76.0^^132^1322^87
- ;;^UTILITY(U,$J,358.3,28001,1,0)
+ ;;^UTILITY(U,$J,358.3,28433,1,3,0)
+ ;;=3^Anemia d/t Blood Loss (Chronic)
+ ;;^UTILITY(U,$J,358.3,28433,1,4,0)
+ ;;=4^D50.0
+ ;;^UTILITY(U,$J,358.3,28433,2)
+ ;;=^267971
+ ;;^UTILITY(U,$J,358.3,28434,0)
+ ;;=E11.21^^112^1421^18
+ ;;^UTILITY(U,$J,358.3,28434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28001,1,3,0)
- ;;=3^Vaginitis,Acute
- ;;^UTILITY(U,$J,358.3,28001,1,4,0)
- ;;=4^N76.0
- ;;^UTILITY(U,$J,358.3,28001,2)
- ;;=^5015826
- ;;^UTILITY(U,$J,358.3,28002,0)
- ;;=M00.20^^132^1322^3
- ;;^UTILITY(U,$J,358.3,28002,1,0)
+ ;;^UTILITY(U,$J,358.3,28434,1,3,0)
+ ;;=3^DM Type 2 w/ Nephropathy
+ ;;^UTILITY(U,$J,358.3,28434,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,28434,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,28435,0)
+ ;;=E11.22^^112^1421^8
+ ;;^UTILITY(U,$J,358.3,28435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28002,1,3,0)
- ;;=3^Arthritis Streptococcal,Unspec Joint
- ;;^UTILITY(U,$J,358.3,28002,1,4,0)
- ;;=4^M00.20
- ;;^UTILITY(U,$J,358.3,28002,2)
- ;;=^5009645
- ;;^UTILITY(U,$J,358.3,28003,0)
- ;;=M00.80^^132^1322^4
- ;;^UTILITY(U,$J,358.3,28003,1,0)
+ ;;^UTILITY(U,$J,358.3,28435,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,28435,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,28435,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,28436,0)
+ ;;=E11.29^^112^1421^19
+ ;;^UTILITY(U,$J,358.3,28436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28003,1,3,0)
- ;;=3^Arthritis d/t Bacteria,Unspec Joint
- ;;^UTILITY(U,$J,358.3,28003,1,4,0)
- ;;=4^M00.80
- ;;^UTILITY(U,$J,358.3,28003,2)
- ;;=^5009669
- ;;^UTILITY(U,$J,358.3,28004,0)
- ;;=M00.9^^132^1322^72
- ;;^UTILITY(U,$J,358.3,28004,1,0)
+ ;;^UTILITY(U,$J,358.3,28436,1,3,0)
+ ;;=3^DM Type 2 w/ Other Diabetic Kidney Complication
+ ;;^UTILITY(U,$J,358.3,28436,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,28436,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,28437,0)
+ ;;=E11.311^^112^1421^20
+ ;;^UTILITY(U,$J,358.3,28437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28004,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,28004,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,28004,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,28005,0)
- ;;=M00.00^^132^1322^78
- ;;^UTILITY(U,$J,358.3,28005,1,0)
+ ;;^UTILITY(U,$J,358.3,28437,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/ Macular edema
+ ;;^UTILITY(U,$J,358.3,28437,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,28437,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,28438,0)
+ ;;=E11.319^^112^1421^21
+ ;;^UTILITY(U,$J,358.3,28438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28005,1,3,0)
- ;;=3^Staphylococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,28005,1,4,0)
- ;;=4^M00.00
- ;;^UTILITY(U,$J,358.3,28005,2)
- ;;=^5009597
- ;;^UTILITY(U,$J,358.3,28006,0)
- ;;=M00.10^^132^1322^65
- ;;^UTILITY(U,$J,358.3,28006,1,0)
+ ;;^UTILITY(U,$J,358.3,28438,1,3,0)
+ ;;=3^DM Type 2 w/ Unspec Diabetic Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,28438,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,28438,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,28439,0)
+ ;;=E11.40^^112^1421^10
+ ;;^UTILITY(U,$J,358.3,28439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28006,1,3,0)
- ;;=3^Pneumococcal Arthritis,Unspec Joint
- ;;^UTILITY(U,$J,358.3,28006,1,4,0)
- ;;=4^M00.10
- ;;^UTILITY(U,$J,358.3,28006,2)
- ;;=^5009621
- ;;^UTILITY(U,$J,358.3,28007,0)
- ;;=M86.20^^132^1322^62
- ;;^UTILITY(U,$J,358.3,28007,1,0)
+ ;;^UTILITY(U,$J,358.3,28439,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,28439,1,4,0)
+ ;;=4^E11.40
+ ;;^UTILITY(U,$J,358.3,28439,2)
+ ;;=^5002644
+ ;;^UTILITY(U,$J,358.3,28440,0)
+ ;;=E11.41^^112^1421^9
+ ;;^UTILITY(U,$J,358.3,28440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28007,1,3,0)
- ;;=3^Osteomyelitis,Subacute,Unspec Site
- ;;^UTILITY(U,$J,358.3,28007,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,28007,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,28008,0)
- ;;=M86.10^^132^1322^58
- ;;^UTILITY(U,$J,358.3,28008,1,0)
+ ;;^UTILITY(U,$J,358.3,28440,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Mononeuropathy
+ ;;^UTILITY(U,$J,358.3,28440,1,4,0)
+ ;;=4^E11.41
+ ;;^UTILITY(U,$J,358.3,28440,2)
+ ;;=^5002645
+ ;;^UTILITY(U,$J,358.3,28441,0)
+ ;;=E11.42^^112^1421^13
+ ;;^UTILITY(U,$J,358.3,28441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28008,1,3,0)
- ;;=3^Osteomyelitis,Acute,Unspec Site
- ;;^UTILITY(U,$J,358.3,28008,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,28008,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,28009,0)
- ;;=M86.00^^132^1322^57
- ;;^UTILITY(U,$J,358.3,28009,1,0)
+ ;;^UTILITY(U,$J,358.3,28441,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,28441,1,4,0)
+ ;;=4^E11.42
+ ;;^UTILITY(U,$J,358.3,28441,2)
+ ;;=^5002646
+ ;;^UTILITY(U,$J,358.3,28442,0)
+ ;;=E11.43^^112^1421^7
+ ;;^UTILITY(U,$J,358.3,28442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28009,1,3,0)
- ;;=3^Osteomyelitis,Acute Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,28009,1,4,0)
- ;;=4^M86.00
- ;;^UTILITY(U,$J,358.3,28009,2)
- ;;=^5014497
- ;;^UTILITY(U,$J,358.3,28010,0)
- ;;=M86.50^^132^1322^59
- ;;^UTILITY(U,$J,358.3,28010,1,0)
+ ;;^UTILITY(U,$J,358.3,28442,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,28442,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,28442,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,28443,0)
+ ;;=E11.51^^112^1421^11
+ ;;^UTILITY(U,$J,358.3,28443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28010,1,3,0)
- ;;=3^Osteomyelitis,Chronic Hematogenous,Unspec Site
- ;;^UTILITY(U,$J,358.3,28010,1,4,0)
- ;;=4^M86.50
- ;;^UTILITY(U,$J,358.3,28010,2)
- ;;=^5014607
- ;;^UTILITY(U,$J,358.3,28011,0)
- ;;=M86.30^^132^1322^60
- ;;^UTILITY(U,$J,358.3,28011,1,0)
+ ;;^UTILITY(U,$J,358.3,28443,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,28443,1,4,0)
+ ;;=4^E11.51
+ ;;^UTILITY(U,$J,358.3,28443,2)
+ ;;=^5002650
+ ;;^UTILITY(U,$J,358.3,28444,0)
+ ;;=E11.52^^112^1421^12
+ ;;^UTILITY(U,$J,358.3,28444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,28011,1,3,0)
- ;;=3^Osteomyelitis,Chronic Multifocal,Unspec Site
- ;;^UTILITY(U,$J,358.3,28011,1,4,0)
- ;;=4^M86.30
- ;;^UTILITY(U,$J,358.3,28011,2)
- ;;=^5014559
- ;;^UTILITY(U,$J,358.3,28012,0)
- ;;=M86.8X9^^132^1322^63
- ;;^UTILITY(U,$J,358.3,28012,1,0)
+ ;;^UTILITY(U,$J,358.3,28444,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,28444,1,4,0)
+ ;;=4^E11.52
+ ;;^UTILITY(U,$J,358.3,28444,2)
+ ;;=^5002651
+ ;;^UTILITY(U,$J,358.3,28445,0)
+ ;;=E11.621^^112^1421^14
+ ;;^UTILITY(U,$J,358.3,28445,1,0)
  ;;=^358.31IA^4^2

@@ -1,134 +1,124 @@
-IBDEI1L3 ; ; 19-NOV-2015
+IBDEI1L3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26494,0)
- ;;=H43.13^^130^1291^29
- ;;^UTILITY(U,$J,358.3,26494,1,0)
+ ;;^UTILITY(U,$J,358.3,26861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26494,1,3,0)
- ;;=3^Vitreous Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,26494,1,4,0)
- ;;=4^H43.13
- ;;^UTILITY(U,$J,358.3,26494,2)
- ;;=^5005940
- ;;^UTILITY(U,$J,358.3,26495,0)
- ;;=H43.393^^130^1291^35
- ;;^UTILITY(U,$J,358.3,26495,1,0)
+ ;;^UTILITY(U,$J,358.3,26861,1,3,0)
+ ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26861,1,4,0)
+ ;;=4^F12.188
+ ;;^UTILITY(U,$J,358.3,26861,2)
+ ;;=^5003164
+ ;;^UTILITY(U,$J,358.3,26862,0)
+ ;;=F12.20^^100^1293^17
+ ;;^UTILITY(U,$J,358.3,26862,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26495,1,3,0)
- ;;=3^Vitreous Opacities,Bilateral
- ;;^UTILITY(U,$J,358.3,26495,1,4,0)
- ;;=4^H43.393
- ;;^UTILITY(U,$J,358.3,26495,2)
- ;;=^5005951
- ;;^UTILITY(U,$J,358.3,26496,0)
- ;;=H43.391^^130^1291^37
- ;;^UTILITY(U,$J,358.3,26496,1,0)
+ ;;^UTILITY(U,$J,358.3,26862,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe
+ ;;^UTILITY(U,$J,358.3,26862,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,26862,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,26863,0)
+ ;;=F12.21^^100^1293^18
+ ;;^UTILITY(U,$J,358.3,26863,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26496,1,3,0)
- ;;=3^Vitreous Opacities,Right Eye
- ;;^UTILITY(U,$J,358.3,26496,1,4,0)
- ;;=4^H43.391
- ;;^UTILITY(U,$J,358.3,26496,2)
- ;;=^5005949
- ;;^UTILITY(U,$J,358.3,26497,0)
- ;;=H43.392^^130^1291^36
- ;;^UTILITY(U,$J,358.3,26497,1,0)
+ ;;^UTILITY(U,$J,358.3,26863,1,3,0)
+ ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
+ ;;^UTILITY(U,$J,358.3,26863,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,26863,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,26864,0)
+ ;;=F12.288^^100^1293^19
+ ;;^UTILITY(U,$J,358.3,26864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26497,1,3,0)
- ;;=3^Vitreous Opacities,Left Eye
- ;;^UTILITY(U,$J,358.3,26497,1,4,0)
- ;;=4^H43.392
- ;;^UTILITY(U,$J,358.3,26497,2)
- ;;=^5005950
- ;;^UTILITY(U,$J,358.3,26498,0)
- ;;=H43.311^^130^1291^34
- ;;^UTILITY(U,$J,358.3,26498,1,0)
+ ;;^UTILITY(U,$J,358.3,26864,1,3,0)
+ ;;=3^Cannabis Withdrawal
+ ;;^UTILITY(U,$J,358.3,26864,1,4,0)
+ ;;=4^F12.288
+ ;;^UTILITY(U,$J,358.3,26864,2)
+ ;;=^5003176
+ ;;^UTILITY(U,$J,358.3,26865,0)
+ ;;=F12.280^^100^1293^21
+ ;;^UTILITY(U,$J,358.3,26865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26498,1,3,0)
- ;;=3^Vitreous Membranes/Strands,Right Eye
- ;;^UTILITY(U,$J,358.3,26498,1,4,0)
- ;;=4^H43.311
- ;;^UTILITY(U,$J,358.3,26498,2)
- ;;=^5005945
- ;;^UTILITY(U,$J,358.3,26499,0)
- ;;=H43.312^^130^1291^33
- ;;^UTILITY(U,$J,358.3,26499,1,0)
+ ;;^UTILITY(U,$J,358.3,26865,1,3,0)
+ ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26865,1,4,0)
+ ;;=4^F12.280
+ ;;^UTILITY(U,$J,358.3,26865,2)
+ ;;=^5003175
+ ;;^UTILITY(U,$J,358.3,26866,0)
+ ;;=F12.121^^100^1293^6
+ ;;^UTILITY(U,$J,358.3,26866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26499,1,3,0)
- ;;=3^Vitreous Membranes/Strands,Left Eye
- ;;^UTILITY(U,$J,358.3,26499,1,4,0)
- ;;=4^H43.312
- ;;^UTILITY(U,$J,358.3,26499,2)
- ;;=^5005946
- ;;^UTILITY(U,$J,358.3,26500,0)
- ;;=H43.313^^130^1291^32
- ;;^UTILITY(U,$J,358.3,26500,1,0)
+ ;;^UTILITY(U,$J,358.3,26866,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26866,1,4,0)
+ ;;=4^F12.121
+ ;;^UTILITY(U,$J,358.3,26866,2)
+ ;;=^5003157
+ ;;^UTILITY(U,$J,358.3,26867,0)
+ ;;=F12.221^^100^1293^7
+ ;;^UTILITY(U,$J,358.3,26867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26500,1,3,0)
- ;;=3^Vitreous Membranes/Strands,Bilateral
- ;;^UTILITY(U,$J,358.3,26500,1,4,0)
- ;;=4^H43.313
- ;;^UTILITY(U,$J,358.3,26500,2)
- ;;=^5005947
- ;;^UTILITY(U,$J,358.3,26501,0)
- ;;=H43.01^^130^1291^40
- ;;^UTILITY(U,$J,358.3,26501,1,0)
+ ;;^UTILITY(U,$J,358.3,26867,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26867,1,4,0)
+ ;;=4^F12.221
+ ;;^UTILITY(U,$J,358.3,26867,2)
+ ;;=^5003169
+ ;;^UTILITY(U,$J,358.3,26868,0)
+ ;;=F12.921^^100^1293^8
+ ;;^UTILITY(U,$J,358.3,26868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26501,1,3,0)
- ;;=3^Vitreous Prolapse,Right Eye
- ;;^UTILITY(U,$J,358.3,26501,1,4,0)
- ;;=4^H43.01
- ;;^UTILITY(U,$J,358.3,26501,2)
- ;;=^5005934
- ;;^UTILITY(U,$J,358.3,26502,0)
- ;;=H43.02^^130^1291^39
- ;;^UTILITY(U,$J,358.3,26502,1,0)
+ ;;^UTILITY(U,$J,358.3,26868,1,3,0)
+ ;;=3^Cannabis Intoxication Delium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,26868,1,4,0)
+ ;;=4^F12.921
+ ;;^UTILITY(U,$J,358.3,26868,2)
+ ;;=^5003180
+ ;;^UTILITY(U,$J,358.3,26869,0)
+ ;;=F12.229^^100^1293^12
+ ;;^UTILITY(U,$J,358.3,26869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26502,1,3,0)
- ;;=3^Vitreous Prolapse,Left Eye
- ;;^UTILITY(U,$J,358.3,26502,1,4,0)
- ;;=4^H43.02
- ;;^UTILITY(U,$J,358.3,26502,2)
- ;;=^5005935
- ;;^UTILITY(U,$J,358.3,26503,0)
- ;;=H43.03^^130^1291^38
- ;;^UTILITY(U,$J,358.3,26503,1,0)
+ ;;^UTILITY(U,$J,358.3,26869,1,3,0)
+ ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26869,1,4,0)
+ ;;=4^F12.229
+ ;;^UTILITY(U,$J,358.3,26869,2)
+ ;;=^5003171
+ ;;^UTILITY(U,$J,358.3,26870,0)
+ ;;=F12.122^^100^1293^9
+ ;;^UTILITY(U,$J,358.3,26870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26503,1,3,0)
- ;;=3^Vitreous Prolapse,Bilateral
- ;;^UTILITY(U,$J,358.3,26503,1,4,0)
- ;;=4^H43.03
- ;;^UTILITY(U,$J,358.3,26503,2)
- ;;=^5005936
- ;;^UTILITY(U,$J,358.3,26504,0)
- ;;=H43.821^^130^1291^23
- ;;^UTILITY(U,$J,358.3,26504,1,0)
+ ;;^UTILITY(U,$J,358.3,26870,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,26870,1,4,0)
+ ;;=4^F12.122
+ ;;^UTILITY(U,$J,358.3,26870,2)
+ ;;=^5003158
+ ;;^UTILITY(U,$J,358.3,26871,0)
+ ;;=F12.222^^100^1293^10
+ ;;^UTILITY(U,$J,358.3,26871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26504,1,3,0)
- ;;=3^Vitreomacular Adhesion,Right Eye
- ;;^UTILITY(U,$J,358.3,26504,1,4,0)
- ;;=4^H43.821
- ;;^UTILITY(U,$J,358.3,26504,2)
- ;;=^5005957
- ;;^UTILITY(U,$J,358.3,26505,0)
- ;;=H43.822^^130^1291^22
- ;;^UTILITY(U,$J,358.3,26505,1,0)
+ ;;^UTILITY(U,$J,358.3,26871,1,3,0)
+ ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,26871,1,4,0)
+ ;;=4^F12.222
+ ;;^UTILITY(U,$J,358.3,26871,2)
+ ;;=^5003170
+ ;;^UTILITY(U,$J,358.3,26872,0)
+ ;;=F12.129^^100^1293^14
+ ;;^UTILITY(U,$J,358.3,26872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26505,1,3,0)
- ;;=3^Vitreomacular Adhesion,Left Eye
- ;;^UTILITY(U,$J,358.3,26505,1,4,0)
- ;;=4^H43.822
- ;;^UTILITY(U,$J,358.3,26505,2)
- ;;=^5005958
- ;;^UTILITY(U,$J,358.3,26506,0)
- ;;=H43.823^^130^1291^21
- ;;^UTILITY(U,$J,358.3,26506,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26506,1,3,0)
- ;;=3^Vitreomacular Adhesion,Bilateral
- ;;^UTILITY(U,$J,358.3,26506,1,4,0)
- ;;=4^H43.823
- ;;^UTILITY(U,$J,358.3,26506,2)
- ;;=^5005959
+ ;;^UTILITY(U,$J,358.3,26872,1,3,0)
+ ;;=3^Cannabis Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,26872,1,4,0)
+ ;;=4^F12.129
+ ;;^UTILITY(U,$J,358.3,26872,2)
+ ;;=^5003159
+ ;;^UTILITY(U,$J,358.3,26873,0)
+ ;;=F12.922^^100^1293^11

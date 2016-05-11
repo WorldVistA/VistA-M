@@ -1,128 +1,140 @@
-IBDEI1YR ; ; 19-NOV-2015
+IBDEI1YR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32879,1,4,0)
- ;;=4^F32.3
- ;;^UTILITY(U,$J,358.3,32879,2)
- ;;=^5003524
- ;;^UTILITY(U,$J,358.3,32880,0)
- ;;=F32.4^^146^1586^19
- ;;^UTILITY(U,$J,358.3,32880,1,0)
+ ;;^UTILITY(U,$J,358.3,33328,0)
+ ;;=L56.3^^131^1669^268
+ ;;^UTILITY(U,$J,358.3,33328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32880,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,In Partial Remission
- ;;^UTILITY(U,$J,358.3,32880,1,4,0)
- ;;=4^F32.4
- ;;^UTILITY(U,$J,358.3,32880,2)
- ;;=^5003525
- ;;^UTILITY(U,$J,358.3,32881,0)
- ;;=F32.5^^146^1586^20
- ;;^UTILITY(U,$J,358.3,32881,1,0)
+ ;;^UTILITY(U,$J,358.3,33328,1,3,0)
+ ;;=3^Solar Urticaria
+ ;;^UTILITY(U,$J,358.3,33328,1,4,0)
+ ;;=4^L56.3
+ ;;^UTILITY(U,$J,358.3,33328,2)
+ ;;=^5009217
+ ;;^UTILITY(U,$J,358.3,33329,0)
+ ;;=L57.0^^131^1669^12
+ ;;^UTILITY(U,$J,358.3,33329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32881,1,3,0)
- ;;=3^Major Depressive Disorder,Single Episode,In Full Remission
- ;;^UTILITY(U,$J,358.3,32881,1,4,0)
- ;;=4^F32.5
- ;;^UTILITY(U,$J,358.3,32881,2)
- ;;=^5003526
- ;;^UTILITY(U,$J,358.3,32882,0)
- ;;=F33.9^^146^1586^13
- ;;^UTILITY(U,$J,358.3,32882,1,0)
+ ;;^UTILITY(U,$J,358.3,33329,1,3,0)
+ ;;=3^Actinic Keratosis
+ ;;^UTILITY(U,$J,358.3,33329,1,4,0)
+ ;;=4^L57.0
+ ;;^UTILITY(U,$J,358.3,33329,2)
+ ;;=^66900
+ ;;^UTILITY(U,$J,358.3,33330,0)
+ ;;=L60.0^^131^1669^161
+ ;;^UTILITY(U,$J,358.3,33330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32882,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Unspec
- ;;^UTILITY(U,$J,358.3,32882,1,4,0)
- ;;=4^F33.9
- ;;^UTILITY(U,$J,358.3,32882,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,32883,0)
- ;;=F33.0^^146^1586^10
- ;;^UTILITY(U,$J,358.3,32883,1,0)
+ ;;^UTILITY(U,$J,358.3,33330,1,3,0)
+ ;;=3^Ingrowing Nail
+ ;;^UTILITY(U,$J,358.3,33330,1,4,0)
+ ;;=4^L60.0
+ ;;^UTILITY(U,$J,358.3,33330,2)
+ ;;=^5009234
+ ;;^UTILITY(U,$J,358.3,33331,0)
+ ;;=L60.1^^131^1669^234
+ ;;^UTILITY(U,$J,358.3,33331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32883,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Mild
- ;;^UTILITY(U,$J,358.3,32883,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,32883,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,32884,0)
- ;;=F33.1^^146^1586^11
- ;;^UTILITY(U,$J,358.3,32884,1,0)
+ ;;^UTILITY(U,$J,358.3,33331,1,3,0)
+ ;;=3^Onycholysis
+ ;;^UTILITY(U,$J,358.3,33331,1,4,0)
+ ;;=4^L60.1
+ ;;^UTILITY(U,$J,358.3,33331,2)
+ ;;=^186837
+ ;;^UTILITY(U,$J,358.3,33332,0)
+ ;;=L60.2^^131^1669^233
+ ;;^UTILITY(U,$J,358.3,33332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32884,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,32884,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,32884,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,32885,0)
- ;;=F33.2^^146^1586^12
- ;;^UTILITY(U,$J,358.3,32885,1,0)
+ ;;^UTILITY(U,$J,358.3,33332,1,3,0)
+ ;;=3^Onychogryphosis
+ ;;^UTILITY(U,$J,358.3,33332,1,4,0)
+ ;;=4^L60.2
+ ;;^UTILITY(U,$J,358.3,33332,2)
+ ;;=^5009235
+ ;;^UTILITY(U,$J,358.3,33333,0)
+ ;;=L60.3^^131^1669^170
+ ;;^UTILITY(U,$J,358.3,33333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32885,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,32885,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,32885,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,32886,0)
- ;;=F33.3^^146^1586^7
- ;;^UTILITY(U,$J,358.3,32886,1,0)
+ ;;^UTILITY(U,$J,358.3,33333,1,3,0)
+ ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,33333,1,4,0)
+ ;;=4^L60.3
+ ;;^UTILITY(U,$J,358.3,33333,2)
+ ;;=^5009236
+ ;;^UTILITY(U,$J,358.3,33334,0)
+ ;;=L60.4^^131^1669^88
+ ;;^UTILITY(U,$J,358.3,33334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32886,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,32886,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,32886,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,32887,0)
- ;;=F33.41^^146^1586^8
- ;;^UTILITY(U,$J,358.3,32887,1,0)
+ ;;^UTILITY(U,$J,358.3,33334,1,3,0)
+ ;;=3^Beau's Lines
+ ;;^UTILITY(U,$J,358.3,33334,1,4,0)
+ ;;=4^L60.4
+ ;;^UTILITY(U,$J,358.3,33334,2)
+ ;;=^5009237
+ ;;^UTILITY(U,$J,358.3,33335,0)
+ ;;=L60.5^^131^1669^290
+ ;;^UTILITY(U,$J,358.3,33335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32887,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,32887,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,32887,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,32888,0)
- ;;=F33.42^^146^1586^9
- ;;^UTILITY(U,$J,358.3,32888,1,0)
+ ;;^UTILITY(U,$J,358.3,33335,1,3,0)
+ ;;=3^Yellow Nail Syndrome
+ ;;^UTILITY(U,$J,358.3,33335,1,4,0)
+ ;;=4^L60.5
+ ;;^UTILITY(U,$J,358.3,33335,2)
+ ;;=^5009238
+ ;;^UTILITY(U,$J,358.3,33336,0)
+ ;;=L60.8^^131^1669^168
+ ;;^UTILITY(U,$J,358.3,33336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32888,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,32888,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,32888,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,32889,0)
- ;;=F34.8^^146^1586^6
- ;;^UTILITY(U,$J,358.3,32889,1,0)
+ ;;^UTILITY(U,$J,358.3,33336,1,3,0)
+ ;;=3^Nail Disorders NEC
+ ;;^UTILITY(U,$J,358.3,33336,1,4,0)
+ ;;=4^L60.8
+ ;;^UTILITY(U,$J,358.3,33336,2)
+ ;;=^5009239
+ ;;^UTILITY(U,$J,358.3,33337,0)
+ ;;=L62.^^131^1669^169
+ ;;^UTILITY(U,$J,358.3,33337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32889,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,32889,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,32889,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,32890,0)
- ;;=F32.8^^146^1586^1
- ;;^UTILITY(U,$J,358.3,32890,1,0)
+ ;;^UTILITY(U,$J,358.3,33337,1,3,0)
+ ;;=3^Nail Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,33337,1,4,0)
+ ;;=4^L62.
+ ;;^UTILITY(U,$J,358.3,33337,2)
+ ;;=^5009241
+ ;;^UTILITY(U,$J,358.3,33338,0)
+ ;;=L64.9^^131^1669^33
+ ;;^UTILITY(U,$J,358.3,33338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32890,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,32890,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,32890,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,32891,0)
- ;;=F34.1^^146^1586^22
- ;;^UTILITY(U,$J,358.3,32891,1,0)
+ ;;^UTILITY(U,$J,358.3,33338,1,3,0)
+ ;;=3^Androgenic Alopecia,Unspec
+ ;;^UTILITY(U,$J,358.3,33338,1,4,0)
+ ;;=4^L64.9
+ ;;^UTILITY(U,$J,358.3,33338,2)
+ ;;=^5009249
+ ;;^UTILITY(U,$J,358.3,33339,0)
+ ;;=L65.9^^131^1669^231
+ ;;^UTILITY(U,$J,358.3,33339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32891,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,32891,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,32891,2)
- ;;=^331913
+ ;;^UTILITY(U,$J,358.3,33339,1,3,0)
+ ;;=3^Nonscarring Hair Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,33339,1,4,0)
+ ;;=4^L65.9
+ ;;^UTILITY(U,$J,358.3,33339,2)
+ ;;=^5009252
+ ;;^UTILITY(U,$J,358.3,33340,0)
+ ;;=L70.0^^131^1669^6
+ ;;^UTILITY(U,$J,358.3,33340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33340,1,3,0)
+ ;;=3^Acne Vulgaris
+ ;;^UTILITY(U,$J,358.3,33340,1,4,0)
+ ;;=4^L70.0
+ ;;^UTILITY(U,$J,358.3,33340,2)
+ ;;=^5009268
+ ;;^UTILITY(U,$J,358.3,33341,0)
+ ;;=L70.1^^131^1669^1
+ ;;^UTILITY(U,$J,358.3,33341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33341,1,3,0)
+ ;;=3^Acne Conglobata

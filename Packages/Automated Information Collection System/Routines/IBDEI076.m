@@ -1,134 +1,138 @@
-IBDEI076 ; ; 19-NOV-2015
+IBDEI076 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2776,1,0)
+ ;;^UTILITY(U,$J,358.3,3042,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,3042,1,4,0)
+ ;;=4^E11.311
+ ;;^UTILITY(U,$J,358.3,3042,2)
+ ;;=^5002632
+ ;;^UTILITY(U,$J,358.3,3043,0)
+ ;;=E11.319^^18^213^19
+ ;;^UTILITY(U,$J,358.3,3043,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2776,1,3,0)
- ;;=3^Intervertebral disc degeneration, lumbar region
- ;;^UTILITY(U,$J,358.3,2776,1,4,0)
- ;;=4^M51.36
- ;;^UTILITY(U,$J,358.3,2776,2)
- ;;=^5012253
- ;;^UTILITY(U,$J,358.3,2777,0)
- ;;=M51.37^^25^229^3
- ;;^UTILITY(U,$J,358.3,2777,1,0)
+ ;;^UTILITY(U,$J,358.3,3043,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic Reinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,3043,1,4,0)
+ ;;=4^E11.319
+ ;;^UTILITY(U,$J,358.3,3043,2)
+ ;;=^5002633
+ ;;^UTILITY(U,$J,358.3,3044,0)
+ ;;=Z72.4^^18^213^30
+ ;;^UTILITY(U,$J,358.3,3044,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2777,1,3,0)
- ;;=3^Intervertebral disc degeneration, lumbosacral region
- ;;^UTILITY(U,$J,358.3,2777,1,4,0)
- ;;=4^M51.37
- ;;^UTILITY(U,$J,358.3,2777,2)
- ;;=^5012254
- ;;^UTILITY(U,$J,358.3,2778,0)
- ;;=M51.06^^25^229^4
- ;;^UTILITY(U,$J,358.3,2778,1,0)
+ ;;^UTILITY(U,$J,358.3,3044,1,3,0)
+ ;;=3^Diet & Eating Habits,Inappropriate
+ ;;^UTILITY(U,$J,358.3,3044,1,4,0)
+ ;;=4^Z72.4
+ ;;^UTILITY(U,$J,358.3,3044,2)
+ ;;=^5063257
+ ;;^UTILITY(U,$J,358.3,3045,0)
+ ;;=R68.81^^18^213^31
+ ;;^UTILITY(U,$J,358.3,3045,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2778,1,3,0)
- ;;=3^Intervertebral disc disorders w/ myelopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,2778,1,4,0)
- ;;=4^M51.06
- ;;^UTILITY(U,$J,358.3,2778,2)
- ;;=^5012241
- ;;^UTILITY(U,$J,358.3,2779,0)
- ;;=M51.16^^25^229^5
- ;;^UTILITY(U,$J,358.3,2779,1,0)
+ ;;^UTILITY(U,$J,358.3,3045,1,3,0)
+ ;;=3^Early Satiety
+ ;;^UTILITY(U,$J,358.3,3045,1,4,0)
+ ;;=4^R68.81
+ ;;^UTILITY(U,$J,358.3,3045,2)
+ ;;=^5019554
+ ;;^UTILITY(U,$J,358.3,3046,0)
+ ;;=E34.9^^18^213^32
+ ;;^UTILITY(U,$J,358.3,3046,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2779,1,3,0)
- ;;=3^Intervertebral disc disorders w/ radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,2779,1,4,0)
- ;;=4^M51.16
- ;;^UTILITY(U,$J,358.3,2779,2)
- ;;=^5012245
- ;;^UTILITY(U,$J,358.3,2780,0)
- ;;=M51.17^^25^229^6
- ;;^UTILITY(U,$J,358.3,2780,1,0)
+ ;;^UTILITY(U,$J,358.3,3046,1,3,0)
+ ;;=3^Endocrine Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,3046,1,4,0)
+ ;;=4^E34.9
+ ;;^UTILITY(U,$J,358.3,3046,2)
+ ;;=^5002777
+ ;;^UTILITY(U,$J,358.3,3047,0)
+ ;;=R62.7^^18^213^33
+ ;;^UTILITY(U,$J,358.3,3047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2780,1,3,0)
- ;;=3^Intervertebral disc disorders w/ radiculopathy, lumbosacral region
- ;;^UTILITY(U,$J,358.3,2780,1,4,0)
- ;;=4^M51.17
- ;;^UTILITY(U,$J,358.3,2780,2)
- ;;=^5012246
- ;;^UTILITY(U,$J,358.3,2781,0)
- ;;=M54.5^^25^229^7
- ;;^UTILITY(U,$J,358.3,2781,1,0)
+ ;;^UTILITY(U,$J,358.3,3047,1,3,0)
+ ;;=3^Failure to Thrive,Adult
+ ;;^UTILITY(U,$J,358.3,3047,1,4,0)
+ ;;=4^R62.7
+ ;;^UTILITY(U,$J,358.3,3047,2)
+ ;;=^322019
+ ;;^UTILITY(U,$J,358.3,3048,0)
+ ;;=R63.3^^18^213^34
+ ;;^UTILITY(U,$J,358.3,3048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2781,1,3,0)
- ;;=3^Low back pain
- ;;^UTILITY(U,$J,358.3,2781,1,4,0)
- ;;=4^M54.5
- ;;^UTILITY(U,$J,358.3,2781,2)
- ;;=^5012311
- ;;^UTILITY(U,$J,358.3,2782,0)
- ;;=G54.1^^25^229^8
- ;;^UTILITY(U,$J,358.3,2782,1,0)
+ ;;^UTILITY(U,$J,358.3,3048,1,3,0)
+ ;;=3^Feeding Difficulty
+ ;;^UTILITY(U,$J,358.3,3048,1,4,0)
+ ;;=4^R63.3
+ ;;^UTILITY(U,$J,358.3,3048,2)
+ ;;=^5019541
+ ;;^UTILITY(U,$J,358.3,3049,0)
+ ;;=E87.8^^18^213^35
+ ;;^UTILITY(U,$J,358.3,3049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2782,1,3,0)
- ;;=3^Lumbosacral plexus disorders
- ;;^UTILITY(U,$J,358.3,2782,1,4,0)
- ;;=4^G54.1
- ;;^UTILITY(U,$J,358.3,2782,2)
- ;;=^5004008
- ;;^UTILITY(U,$J,358.3,2783,0)
- ;;=G54.4^^25^229^9
- ;;^UTILITY(U,$J,358.3,2783,1,0)
+ ;;^UTILITY(U,$J,358.3,3049,1,3,0)
+ ;;=3^Fluid & Electrolyte Balance Disorder NEC
+ ;;^UTILITY(U,$J,358.3,3049,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,3049,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,3050,0)
+ ;;=E87.70^^18^213^36
+ ;;^UTILITY(U,$J,358.3,3050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2783,1,3,0)
- ;;=3^Lumbosacral root disorders NEC
- ;;^UTILITY(U,$J,358.3,2783,1,4,0)
- ;;=4^G54.4
- ;;^UTILITY(U,$J,358.3,2783,2)
- ;;=^5004011
- ;;^UTILITY(U,$J,358.3,2784,0)
- ;;=M54.16^^25^229^10
- ;;^UTILITY(U,$J,358.3,2784,1,0)
+ ;;^UTILITY(U,$J,358.3,3050,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,3050,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,3050,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,3051,0)
+ ;;=R73.01^^18^213^50
+ ;;^UTILITY(U,$J,358.3,3051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2784,1,3,0)
- ;;=3^Radiculopathy, lumbar region
- ;;^UTILITY(U,$J,358.3,2784,1,4,0)
- ;;=4^M54.16
- ;;^UTILITY(U,$J,358.3,2784,2)
- ;;=^5012301
- ;;^UTILITY(U,$J,358.3,2785,0)
- ;;=M54.17^^25^229^11
- ;;^UTILITY(U,$J,358.3,2785,1,0)
+ ;;^UTILITY(U,$J,358.3,3051,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,3051,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,3051,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,3052,0)
+ ;;=R73.02^^18^213^51
+ ;;^UTILITY(U,$J,358.3,3052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2785,1,3,0)
- ;;=3^Radiculopathy, lumbosacral region
- ;;^UTILITY(U,$J,358.3,2785,1,4,0)
- ;;=4^M54.17
- ;;^UTILITY(U,$J,358.3,2785,2)
- ;;=^5012302
- ;;^UTILITY(U,$J,358.3,2786,0)
- ;;=M51.46^^25^229^12
- ;;^UTILITY(U,$J,358.3,2786,1,0)
+ ;;^UTILITY(U,$J,358.3,3052,1,3,0)
+ ;;=3^Impaired Oral Glucose Tolerance
+ ;;^UTILITY(U,$J,358.3,3052,1,4,0)
+ ;;=4^R73.02
+ ;;^UTILITY(U,$J,358.3,3052,2)
+ ;;=^5019562
+ ;;^UTILITY(U,$J,358.3,3053,0)
+ ;;=E83.119^^18^213^37
+ ;;^UTILITY(U,$J,358.3,3053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2786,1,3,0)
- ;;=3^Schmorl's nodes, lumbar region
- ;;^UTILITY(U,$J,358.3,2786,1,4,0)
- ;;=4^M51.46
- ;;^UTILITY(U,$J,358.3,2786,2)
- ;;=^5012257
- ;;^UTILITY(U,$J,358.3,2787,0)
- ;;=M99.03^^25^229^13
- ;;^UTILITY(U,$J,358.3,2787,1,0)
+ ;;^UTILITY(U,$J,358.3,3053,1,3,0)
+ ;;=3^Hemochromatosis,Unspec
+ ;;^UTILITY(U,$J,358.3,3053,1,4,0)
+ ;;=4^E83.119
+ ;;^UTILITY(U,$J,358.3,3053,2)
+ ;;=^5002995
+ ;;^UTILITY(U,$J,358.3,3054,0)
+ ;;=E83.52^^18^213^38
+ ;;^UTILITY(U,$J,358.3,3054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2787,1,3,0)
- ;;=3^Segmental and somatic dysfunction of lumbar region
- ;;^UTILITY(U,$J,358.3,2787,1,4,0)
- ;;=4^M99.03
- ;;^UTILITY(U,$J,358.3,2787,2)
- ;;=^5015403
- ;;^UTILITY(U,$J,358.3,2788,0)
- ;;=M48.06^^25^229^14
- ;;^UTILITY(U,$J,358.3,2788,1,0)
+ ;;^UTILITY(U,$J,358.3,3054,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,3054,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,3054,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,3055,0)
+ ;;=E11.65^^18^213^22
+ ;;^UTILITY(U,$J,358.3,3055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2788,1,3,0)
- ;;=3^Spinal stenosis, lumbar region
- ;;^UTILITY(U,$J,358.3,2788,1,4,0)
- ;;=4^M48.06
- ;;^UTILITY(U,$J,358.3,2788,2)
- ;;=^5012093
- ;;^UTILITY(U,$J,358.3,2789,0)
- ;;=S33.5XXA^^25^229^15
+ ;;^UTILITY(U,$J,358.3,3055,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,3055,1,4,0)
+ ;;=4^E11.65

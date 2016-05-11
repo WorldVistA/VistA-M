@@ -1,132 +1,128 @@
-IBDEI0D9 ; ; 19-NOV-2015
+IBDEI0D9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5762,2)
- ;;=^5010808
- ;;^UTILITY(U,$J,358.3,5763,0)
- ;;=M19.012^^40^376^11
- ;;^UTILITY(U,$J,358.3,5763,1,0)
+ ;;^UTILITY(U,$J,358.3,6078,2)
+ ;;=^5133689
+ ;;^UTILITY(U,$J,358.3,6079,0)
+ ;;=L98.2^^30^385^149
+ ;;^UTILITY(U,$J,358.3,6079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5763,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,5763,1,4,0)
- ;;=4^M19.012
- ;;^UTILITY(U,$J,358.3,5763,2)
- ;;=^5010809
- ;;^UTILITY(U,$J,358.3,5764,0)
- ;;=M19.021^^40^376^14
- ;;^UTILITY(U,$J,358.3,5764,1,0)
+ ;;^UTILITY(U,$J,358.3,6079,1,3,0)
+ ;;=3^Febrile Neutrophilic Dermatosis
+ ;;^UTILITY(U,$J,358.3,6079,1,4,0)
+ ;;=4^L98.2
+ ;;^UTILITY(U,$J,358.3,6079,2)
+ ;;=^5009575
+ ;;^UTILITY(U,$J,358.3,6080,0)
+ ;;=L98.9^^30^385^267
+ ;;^UTILITY(U,$J,358.3,6080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5764,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Elbow
- ;;^UTILITY(U,$J,358.3,5764,1,4,0)
- ;;=4^M19.021
- ;;^UTILITY(U,$J,358.3,5764,2)
- ;;=^5010811
- ;;^UTILITY(U,$J,358.3,5765,0)
- ;;=M19.022^^40^376^9
- ;;^UTILITY(U,$J,358.3,5765,1,0)
+ ;;^UTILITY(U,$J,358.3,6080,1,3,0)
+ ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,6080,1,4,0)
+ ;;=4^L98.9
+ ;;^UTILITY(U,$J,358.3,6080,2)
+ ;;=^5009595
+ ;;^UTILITY(U,$J,358.3,6081,0)
+ ;;=I70.731^^30^385^80
+ ;;^UTILITY(U,$J,358.3,6081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5765,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Elbow
- ;;^UTILITY(U,$J,358.3,5765,1,4,0)
- ;;=4^M19.022
- ;;^UTILITY(U,$J,358.3,5765,2)
- ;;=^5010812
- ;;^UTILITY(U,$J,358.3,5766,0)
- ;;=M19.031^^40^376^17
- ;;^UTILITY(U,$J,358.3,5766,1,0)
+ ;;^UTILITY(U,$J,358.3,6081,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6081,1,4,0)
+ ;;=4^I70.731
+ ;;^UTILITY(U,$J,358.3,6081,2)
+ ;;=^5007769
+ ;;^UTILITY(U,$J,358.3,6082,0)
+ ;;=I70.732^^30^385^81
+ ;;^UTILITY(U,$J,358.3,6082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5766,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Wrist
- ;;^UTILITY(U,$J,358.3,5766,1,4,0)
- ;;=4^M19.031
- ;;^UTILITY(U,$J,358.3,5766,2)
- ;;=^5010814
- ;;^UTILITY(U,$J,358.3,5767,0)
- ;;=M19.032^^40^376^12
- ;;^UTILITY(U,$J,358.3,5767,1,0)
+ ;;^UTILITY(U,$J,358.3,6082,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6082,1,4,0)
+ ;;=4^I70.732
+ ;;^UTILITY(U,$J,358.3,6082,2)
+ ;;=^5007770
+ ;;^UTILITY(U,$J,358.3,6083,0)
+ ;;=I70.733^^30^385^82
+ ;;^UTILITY(U,$J,358.3,6083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5767,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Wrist
- ;;^UTILITY(U,$J,358.3,5767,1,4,0)
- ;;=4^M19.032
- ;;^UTILITY(U,$J,358.3,5767,2)
- ;;=^5010815
- ;;^UTILITY(U,$J,358.3,5768,0)
- ;;=M19.041^^40^376^15
- ;;^UTILITY(U,$J,358.3,5768,1,0)
+ ;;^UTILITY(U,$J,358.3,6083,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6083,1,4,0)
+ ;;=4^I70.733
+ ;;^UTILITY(U,$J,358.3,6083,2)
+ ;;=^5007771
+ ;;^UTILITY(U,$J,358.3,6084,0)
+ ;;=I70.734^^30^385^83
+ ;;^UTILITY(U,$J,358.3,6084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5768,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Hand
- ;;^UTILITY(U,$J,358.3,5768,1,4,0)
- ;;=4^M19.041
- ;;^UTILITY(U,$J,358.3,5768,2)
- ;;=^5010817
- ;;^UTILITY(U,$J,358.3,5769,0)
- ;;=M19.042^^40^376^10
- ;;^UTILITY(U,$J,358.3,5769,1,0)
+ ;;^UTILITY(U,$J,358.3,6084,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6084,1,4,0)
+ ;;=4^I70.734
+ ;;^UTILITY(U,$J,358.3,6084,2)
+ ;;=^5007772
+ ;;^UTILITY(U,$J,358.3,6085,0)
+ ;;=I70.735^^30^385^84
+ ;;^UTILITY(U,$J,358.3,6085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5769,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Hand
- ;;^UTILITY(U,$J,358.3,5769,1,4,0)
- ;;=4^M19.042
- ;;^UTILITY(U,$J,358.3,5769,2)
- ;;=^5010818
- ;;^UTILITY(U,$J,358.3,5770,0)
- ;;=M19.071^^40^376^13
- ;;^UTILITY(U,$J,358.3,5770,1,0)
+ ;;^UTILITY(U,$J,358.3,6085,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6085,1,4,0)
+ ;;=4^I70.735
+ ;;^UTILITY(U,$J,358.3,6085,2)
+ ;;=^5007773
+ ;;^UTILITY(U,$J,358.3,6086,0)
+ ;;=I70.741^^30^385^79
+ ;;^UTILITY(U,$J,358.3,6086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5770,1,3,0)
- ;;=3^Primary Osteoarthritis,Right Ankle/Foot
- ;;^UTILITY(U,$J,358.3,5770,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,5770,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,5771,0)
- ;;=M19.072^^40^376^8
- ;;^UTILITY(U,$J,358.3,5771,1,0)
+ ;;^UTILITY(U,$J,358.3,6086,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,6086,1,4,0)
+ ;;=4^I70.741
+ ;;^UTILITY(U,$J,358.3,6086,2)
+ ;;=^5133601
+ ;;^UTILITY(U,$J,358.3,6087,0)
+ ;;=I70.742^^30^385^76
+ ;;^UTILITY(U,$J,358.3,6087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5771,1,3,0)
- ;;=3^Primary Osteoarthritis,Left Ankle/Foot
- ;;^UTILITY(U,$J,358.3,5771,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,5771,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,5772,0)
- ;;=M12.9^^40^376^1
- ;;^UTILITY(U,$J,358.3,5772,1,0)
+ ;;^UTILITY(U,$J,358.3,6087,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,6087,1,4,0)
+ ;;=4^I70.742
+ ;;^UTILITY(U,$J,358.3,6087,2)
+ ;;=^5133602
+ ;;^UTILITY(U,$J,358.3,6088,0)
+ ;;=I70.743^^30^385^75
+ ;;^UTILITY(U,$J,358.3,6088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5772,1,3,0)
- ;;=3^Arthropathy,Unspec
- ;;^UTILITY(U,$J,358.3,5772,1,4,0)
- ;;=4^M12.9
- ;;^UTILITY(U,$J,358.3,5772,2)
- ;;=^5010666
- ;;^UTILITY(U,$J,358.3,5773,0)
- ;;=M23.021^^40^376^2
- ;;^UTILITY(U,$J,358.3,5773,1,0)
+ ;;^UTILITY(U,$J,358.3,6088,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,6088,1,4,0)
+ ;;=4^I70.743
+ ;;^UTILITY(U,$J,358.3,6088,2)
+ ;;=^5133603
+ ;;^UTILITY(U,$J,358.3,6089,0)
+ ;;=I70.744^^30^385^77
+ ;;^UTILITY(U,$J,358.3,6089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5773,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Right Knee
- ;;^UTILITY(U,$J,358.3,5773,1,4,0)
- ;;=4^M23.021
- ;;^UTILITY(U,$J,358.3,5773,2)
- ;;=^5011201
- ;;^UTILITY(U,$J,358.3,5774,0)
- ;;=M23.022^^40^376^3
- ;;^UTILITY(U,$J,358.3,5774,1,0)
+ ;;^UTILITY(U,$J,358.3,6089,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,6089,1,4,0)
+ ;;=4^I70.744
+ ;;^UTILITY(U,$J,358.3,6089,2)
+ ;;=^5133604
+ ;;^UTILITY(U,$J,358.3,6090,0)
+ ;;=I70.745^^30^385^78
+ ;;^UTILITY(U,$J,358.3,6090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5774,1,3,0)
- ;;=3^Cystic Meniscus,Posterior Horn of Medial Meniscus,Left Knee
- ;;^UTILITY(U,$J,358.3,5774,1,4,0)
- ;;=4^M23.022
- ;;^UTILITY(U,$J,358.3,5774,2)
- ;;=^5011202
- ;;^UTILITY(U,$J,358.3,5775,0)
- ;;=M23.221^^40^376^4
- ;;^UTILITY(U,$J,358.3,5775,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5775,1,3,0)
- ;;=3^Derangement of Post Horn of Medial Meniscus d/t Old Tear/Inj,Right Knee
+ ;;^UTILITY(U,$J,358.3,6090,1,3,0)
+ ;;=3^Athscl of Bypass Graft of Left Leg w/ Oth Part Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,6090,1,4,0)
+ ;;=4^I70.745
+ ;;^UTILITY(U,$J,358.3,6090,2)
+ ;;=^5133605
+ ;;^UTILITY(U,$J,358.3,6091,0)
+ ;;=I83.009^^30^385^287

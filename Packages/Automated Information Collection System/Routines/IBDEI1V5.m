@@ -1,134 +1,134 @@
-IBDEI1V5 ; ; 19-NOV-2015
+IBDEI1V5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31186,1,4,0)
- ;;=4^W19.XXXD
- ;;^UTILITY(U,$J,358.3,31186,2)
- ;;=^5059834
- ;;^UTILITY(U,$J,358.3,31187,0)
- ;;=W54.0XXA^^135^1391^11
- ;;^UTILITY(U,$J,358.3,31187,1,0)
+ ;;^UTILITY(U,$J,358.3,31661,2)
+ ;;=^5010637
+ ;;^UTILITY(U,$J,358.3,31662,0)
+ ;;=M12.572^^126^1604^46
+ ;;^UTILITY(U,$J,358.3,31662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31187,1,3,0)
- ;;=3^Bitten by Dog,Init Encntr
- ;;^UTILITY(U,$J,358.3,31187,1,4,0)
- ;;=4^W54.0XXA
- ;;^UTILITY(U,$J,358.3,31187,2)
- ;;=^5060256
- ;;^UTILITY(U,$J,358.3,31188,0)
- ;;=W54.0XXD^^135^1391^12
- ;;^UTILITY(U,$J,358.3,31188,1,0)
+ ;;^UTILITY(U,$J,358.3,31662,1,3,0)
+ ;;=3^Arthropathy, Traumatic, lft ank & ft
+ ;;^UTILITY(U,$J,358.3,31662,1,4,0)
+ ;;=4^M12.572
+ ;;^UTILITY(U,$J,358.3,31662,2)
+ ;;=^5010638
+ ;;^UTILITY(U,$J,358.3,31663,0)
+ ;;=S80.811A^^126^1604^10
+ ;;^UTILITY(U,$J,358.3,31663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31188,1,3,0)
- ;;=3^Bitten by Dog,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31188,1,4,0)
- ;;=4^W54.0XXD
- ;;^UTILITY(U,$J,358.3,31188,2)
- ;;=^5060257
- ;;^UTILITY(U,$J,358.3,31189,0)
- ;;=W55.01XA^^135^1391^9
- ;;^UTILITY(U,$J,358.3,31189,1,0)
+ ;;^UTILITY(U,$J,358.3,31663,1,3,0)
+ ;;=3^Abrasion, rt lwr leg, init enc
+ ;;^UTILITY(U,$J,358.3,31663,1,4,0)
+ ;;=4^S80.811A
+ ;;^UTILITY(U,$J,358.3,31663,2)
+ ;;=^5039960
+ ;;^UTILITY(U,$J,358.3,31664,0)
+ ;;=S80.812A^^126^1604^5
+ ;;^UTILITY(U,$J,358.3,31664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31189,1,3,0)
- ;;=3^Bitten by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,31189,1,4,0)
- ;;=4^W55.01XA
- ;;^UTILITY(U,$J,358.3,31189,2)
- ;;=^5060265
- ;;^UTILITY(U,$J,358.3,31190,0)
- ;;=W55.01XD^^135^1391^10
- ;;^UTILITY(U,$J,358.3,31190,1,0)
+ ;;^UTILITY(U,$J,358.3,31664,1,3,0)
+ ;;=3^Abrasion, lft lwr leg, init enc
+ ;;^UTILITY(U,$J,358.3,31664,1,4,0)
+ ;;=4^S80.812A
+ ;;^UTILITY(U,$J,358.3,31664,2)
+ ;;=^5039963
+ ;;^UTILITY(U,$J,358.3,31665,0)
+ ;;=S90.511A^^126^1604^6
+ ;;^UTILITY(U,$J,358.3,31665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31190,1,3,0)
- ;;=3^Bitten by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31190,1,4,0)
- ;;=4^W55.01XD
- ;;^UTILITY(U,$J,358.3,31190,2)
- ;;=^5060266
- ;;^UTILITY(U,$J,358.3,31191,0)
- ;;=W55.03XA^^135^1391^101
- ;;^UTILITY(U,$J,358.3,31191,1,0)
+ ;;^UTILITY(U,$J,358.3,31665,1,3,0)
+ ;;=3^Abrasion, rt ank, init enc
+ ;;^UTILITY(U,$J,358.3,31665,1,4,0)
+ ;;=4^S90.511A
+ ;;^UTILITY(U,$J,358.3,31665,2)
+ ;;=^5043997
+ ;;^UTILITY(U,$J,358.3,31666,0)
+ ;;=S90.512A^^126^1604^1
+ ;;^UTILITY(U,$J,358.3,31666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31191,1,3,0)
- ;;=3^Scratched by Cat,Init Encntr
- ;;^UTILITY(U,$J,358.3,31191,1,4,0)
- ;;=4^W55.03XA
- ;;^UTILITY(U,$J,358.3,31191,2)
- ;;=^5060268
- ;;^UTILITY(U,$J,358.3,31192,0)
- ;;=W55.03XD^^135^1391^102
- ;;^UTILITY(U,$J,358.3,31192,1,0)
+ ;;^UTILITY(U,$J,358.3,31666,1,3,0)
+ ;;=3^Abrasion, lft ank, init enc
+ ;;^UTILITY(U,$J,358.3,31666,1,4,0)
+ ;;=4^S90.512A
+ ;;^UTILITY(U,$J,358.3,31666,2)
+ ;;=^5044000
+ ;;^UTILITY(U,$J,358.3,31667,0)
+ ;;=S90.411A^^126^1604^8
+ ;;^UTILITY(U,$J,358.3,31667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31192,1,3,0)
- ;;=3^Scratched by Cat,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31192,1,4,0)
- ;;=4^W55.03XD
- ;;^UTILITY(U,$J,358.3,31192,2)
- ;;=^5060269
- ;;^UTILITY(U,$J,358.3,31193,0)
- ;;=X00.8XXA^^135^1391^17
- ;;^UTILITY(U,$J,358.3,31193,1,0)
+ ;;^UTILITY(U,$J,358.3,31667,1,3,0)
+ ;;=3^Abrasion, rt grt toe, init enc
+ ;;^UTILITY(U,$J,358.3,31667,1,4,0)
+ ;;=4^S90.411A
+ ;;^UTILITY(U,$J,358.3,31667,2)
+ ;;=^5043889
+ ;;^UTILITY(U,$J,358.3,31668,0)
+ ;;=S90.412A^^126^1604^3
+ ;;^UTILITY(U,$J,358.3,31668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31193,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
- ;;^UTILITY(U,$J,358.3,31193,1,4,0)
- ;;=4^X00.8XXA
- ;;^UTILITY(U,$J,358.3,31193,2)
- ;;=^5060679
- ;;^UTILITY(U,$J,358.3,31194,0)
- ;;=X00.8XXD^^135^1391^18
- ;;^UTILITY(U,$J,358.3,31194,1,0)
+ ;;^UTILITY(U,$J,358.3,31668,1,3,0)
+ ;;=3^Abrasion, lft grt toe, init enc
+ ;;^UTILITY(U,$J,358.3,31668,1,4,0)
+ ;;=4^S90.412A
+ ;;^UTILITY(U,$J,358.3,31668,2)
+ ;;=^5043892
+ ;;^UTILITY(U,$J,358.3,31669,0)
+ ;;=S90.414A^^126^1604^9
+ ;;^UTILITY(U,$J,358.3,31669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31194,1,3,0)
- ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31194,1,4,0)
- ;;=4^X00.8XXD
- ;;^UTILITY(U,$J,358.3,31194,2)
- ;;=^5060680
- ;;^UTILITY(U,$J,358.3,31195,0)
- ;;=X32.XXXA^^135^1391^15
- ;;^UTILITY(U,$J,358.3,31195,1,0)
+ ;;^UTILITY(U,$J,358.3,31669,1,3,0)
+ ;;=3^Abrasion, rt lsr toe(s), init enc
+ ;;^UTILITY(U,$J,358.3,31669,1,4,0)
+ ;;=4^S90.414A
+ ;;^UTILITY(U,$J,358.3,31669,2)
+ ;;=^5043898
+ ;;^UTILITY(U,$J,358.3,31670,0)
+ ;;=S90.415A^^126^1604^4
+ ;;^UTILITY(U,$J,358.3,31670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31195,1,3,0)
- ;;=3^Exp to Sunlight,Init Encntr
- ;;^UTILITY(U,$J,358.3,31195,1,4,0)
- ;;=4^X32.XXXA
- ;;^UTILITY(U,$J,358.3,31195,2)
- ;;=^5060847
- ;;^UTILITY(U,$J,358.3,31196,0)
- ;;=X32.XXXD^^135^1391^16
- ;;^UTILITY(U,$J,358.3,31196,1,0)
+ ;;^UTILITY(U,$J,358.3,31670,1,3,0)
+ ;;=3^Abrasion, lft lsr toe(s), init enc
+ ;;^UTILITY(U,$J,358.3,31670,1,4,0)
+ ;;=4^S90.415A
+ ;;^UTILITY(U,$J,358.3,31670,2)
+ ;;=^5043901
+ ;;^UTILITY(U,$J,358.3,31671,0)
+ ;;=S90.811A^^126^1604^7
+ ;;^UTILITY(U,$J,358.3,31671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31196,1,3,0)
- ;;=3^Exp to Sunlight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31196,1,4,0)
- ;;=4^X32.XXXD
- ;;^UTILITY(U,$J,358.3,31196,2)
- ;;=^5060848
- ;;^UTILITY(U,$J,358.3,31197,0)
- ;;=Y04.0XXA^^135^1391^7
- ;;^UTILITY(U,$J,358.3,31197,1,0)
+ ;;^UTILITY(U,$J,358.3,31671,1,3,0)
+ ;;=3^Abrasion, rt ft, init enc
+ ;;^UTILITY(U,$J,358.3,31671,1,4,0)
+ ;;=4^S90.811A
+ ;;^UTILITY(U,$J,358.3,31671,2)
+ ;;=^5044051
+ ;;^UTILITY(U,$J,358.3,31672,0)
+ ;;=S90.812A^^126^1604^2
+ ;;^UTILITY(U,$J,358.3,31672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31197,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,31197,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,31197,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,31198,0)
- ;;=Y04.0XXD^^135^1391^8
- ;;^UTILITY(U,$J,358.3,31198,1,0)
+ ;;^UTILITY(U,$J,358.3,31672,1,3,0)
+ ;;=3^Abrasion, lft ft, init enc
+ ;;^UTILITY(U,$J,358.3,31672,1,4,0)
+ ;;=4^S90.812A
+ ;;^UTILITY(U,$J,358.3,31672,2)
+ ;;=^5044054
+ ;;^UTILITY(U,$J,358.3,31673,0)
+ ;;=Z98.1^^126^1604^45
+ ;;^UTILITY(U,$J,358.3,31673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31198,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,31198,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,31198,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,31199,0)
- ;;=Y04.1XXA^^135^1391^1
- ;;^UTILITY(U,$J,358.3,31199,1,0)
+ ;;^UTILITY(U,$J,358.3,31673,1,3,0)
+ ;;=3^Arthrodesis status
+ ;;^UTILITY(U,$J,358.3,31673,1,4,0)
+ ;;=4^Z98.1
+ ;;^UTILITY(U,$J,358.3,31673,2)
+ ;;=^5063734
+ ;;^UTILITY(U,$J,358.3,31674,0)
+ ;;=Z89.411^^126^1604^20
+ ;;^UTILITY(U,$J,358.3,31674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31199,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31674,1,3,0)
+ ;;=3^Absence, acquired of rt grt toe
+ ;;^UTILITY(U,$J,358.3,31674,1,4,0)
+ ;;=4^Z89.411

@@ -1,138 +1,136 @@
-IBDEI0FI ; ; 19-NOV-2015
+IBDEI0FI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6840,1,0)
+ ;;^UTILITY(U,$J,358.3,7153,1,4,0)
+ ;;=4^M79.652
+ ;;^UTILITY(U,$J,358.3,7153,2)
+ ;;=^5013345
+ ;;^UTILITY(U,$J,358.3,7154,0)
+ ;;=M79.622^^30^402^92
+ ;;^UTILITY(U,$J,358.3,7154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6840,1,3,0)
- ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,6840,1,4,0)
- ;;=4^D22.21
- ;;^UTILITY(U,$J,358.3,6840,2)
- ;;=^5002046
- ;;^UTILITY(U,$J,358.3,6841,0)
- ;;=D22.22^^46^451^34
- ;;^UTILITY(U,$J,358.3,6841,1,0)
+ ;;^UTILITY(U,$J,358.3,7154,1,3,0)
+ ;;=3^Pain in Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,7154,1,4,0)
+ ;;=4^M79.622
+ ;;^UTILITY(U,$J,358.3,7154,2)
+ ;;=^5013333
+ ;;^UTILITY(U,$J,358.3,7155,0)
+ ;;=M79.621^^30^402^106
+ ;;^UTILITY(U,$J,358.3,7155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6841,1,3,0)
- ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,6841,1,4,0)
- ;;=4^D22.22
- ;;^UTILITY(U,$J,358.3,6841,2)
- ;;=^5002047
- ;;^UTILITY(U,$J,358.3,6842,0)
- ;;=D22.30^^46^451^45
- ;;^UTILITY(U,$J,358.3,6842,1,0)
+ ;;^UTILITY(U,$J,358.3,7155,1,3,0)
+ ;;=3^Pain in Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,7155,1,4,0)
+ ;;=4^M79.621
+ ;;^UTILITY(U,$J,358.3,7155,2)
+ ;;=^5013332
+ ;;^UTILITY(U,$J,358.3,7156,0)
+ ;;=M79.631^^30^402^98
+ ;;^UTILITY(U,$J,358.3,7156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6842,1,3,0)
- ;;=3^Melanocytic Nevi of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,6842,1,4,0)
- ;;=4^D22.30
- ;;^UTILITY(U,$J,358.3,6842,2)
- ;;=^5002048
- ;;^UTILITY(U,$J,358.3,6843,0)
- ;;=D22.4^^46^451^43
- ;;^UTILITY(U,$J,358.3,6843,1,0)
+ ;;^UTILITY(U,$J,358.3,7156,1,3,0)
+ ;;=3^Pain in Right Forearm
+ ;;^UTILITY(U,$J,358.3,7156,1,4,0)
+ ;;=4^M79.631
+ ;;^UTILITY(U,$J,358.3,7156,2)
+ ;;=^5013335
+ ;;^UTILITY(U,$J,358.3,7157,0)
+ ;;=M79.661^^30^402^103
+ ;;^UTILITY(U,$J,358.3,7157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6843,1,3,0)
- ;;=3^Melanocytic Nevi of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,6843,1,4,0)
- ;;=4^D22.4
- ;;^UTILITY(U,$J,358.3,6843,2)
- ;;=^5002050
- ;;^UTILITY(U,$J,358.3,6844,0)
- ;;=D22.5^^46^451^44
- ;;^UTILITY(U,$J,358.3,6844,1,0)
+ ;;^UTILITY(U,$J,358.3,7157,1,3,0)
+ ;;=3^Pain in Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,7157,1,4,0)
+ ;;=4^M79.661
+ ;;^UTILITY(U,$J,358.3,7157,2)
+ ;;=^5013347
+ ;;^UTILITY(U,$J,358.3,7158,0)
+ ;;=M79.651^^30^402^105
+ ;;^UTILITY(U,$J,358.3,7158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6844,1,3,0)
- ;;=3^Melanocytic Nevi of Trunk
- ;;^UTILITY(U,$J,358.3,6844,1,4,0)
- ;;=4^D22.5
- ;;^UTILITY(U,$J,358.3,6844,2)
- ;;=^5002051
- ;;^UTILITY(U,$J,358.3,6845,0)
- ;;=D22.61^^46^451^42
- ;;^UTILITY(U,$J,358.3,6845,1,0)
+ ;;^UTILITY(U,$J,358.3,7158,1,3,0)
+ ;;=3^Pain in Right Thigh
+ ;;^UTILITY(U,$J,358.3,7158,1,4,0)
+ ;;=4^M79.651
+ ;;^UTILITY(U,$J,358.3,7158,2)
+ ;;=^5013344
+ ;;^UTILITY(U,$J,358.3,7159,0)
+ ;;=B02.0^^30^403^45
+ ;;^UTILITY(U,$J,358.3,7159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6845,1,3,0)
- ;;=3^Melanocytic Nevi of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,6845,1,4,0)
- ;;=4^D22.61
- ;;^UTILITY(U,$J,358.3,6845,2)
- ;;=^5002053
- ;;^UTILITY(U,$J,358.3,6846,0)
- ;;=D22.62^^46^451^37
- ;;^UTILITY(U,$J,358.3,6846,1,0)
+ ;;^UTILITY(U,$J,358.3,7159,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,7159,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,7159,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,7160,0)
+ ;;=B02.29^^30^403^37
+ ;;^UTILITY(U,$J,358.3,7160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6846,1,3,0)
- ;;=3^Melanocytic Nevi of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,6846,1,4,0)
- ;;=4^D22.62
- ;;^UTILITY(U,$J,358.3,6846,2)
- ;;=^5002054
- ;;^UTILITY(U,$J,358.3,6847,0)
- ;;=D22.71^^46^451^41
- ;;^UTILITY(U,$J,358.3,6847,1,0)
+ ;;^UTILITY(U,$J,358.3,7160,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,7160,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,7160,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,7161,0)
+ ;;=F03.90^^30^403^12
+ ;;^UTILITY(U,$J,358.3,7161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6847,1,3,0)
- ;;=3^Melanocytic Nevi of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,6847,1,4,0)
- ;;=4^D22.71
- ;;^UTILITY(U,$J,358.3,6847,2)
- ;;=^5002056
- ;;^UTILITY(U,$J,358.3,6848,0)
- ;;=D22.72^^46^451^36
- ;;^UTILITY(U,$J,358.3,6848,1,0)
+ ;;^UTILITY(U,$J,358.3,7161,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,7161,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,7161,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,7162,0)
+ ;;=F03.91^^30^403^11
+ ;;^UTILITY(U,$J,358.3,7162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6848,1,3,0)
- ;;=3^Melanocytic Nevi of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,6848,1,4,0)
- ;;=4^D22.72
- ;;^UTILITY(U,$J,358.3,6848,2)
- ;;=^5002057
- ;;^UTILITY(U,$J,358.3,6849,0)
- ;;=C44.390^^46^451^32
- ;;^UTILITY(U,$J,358.3,6849,1,0)
+ ;;^UTILITY(U,$J,358.3,7162,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,7162,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,7162,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,7163,0)
+ ;;=F01.50^^30^403^14
+ ;;^UTILITY(U,$J,358.3,7163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6849,1,3,0)
- ;;=3^Malig Neop Skin of Unspec Part of Face
- ;;^UTILITY(U,$J,358.3,6849,1,4,0)
- ;;=4^C44.390
- ;;^UTILITY(U,$J,358.3,6849,2)
- ;;=^5001049
- ;;^UTILITY(U,$J,358.3,6850,0)
- ;;=L81.1^^46^451^62
- ;;^UTILITY(U,$J,358.3,6850,1,0)
+ ;;^UTILITY(U,$J,358.3,7163,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,7163,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,7163,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,7164,0)
+ ;;=F10.27^^30^403^13
+ ;;^UTILITY(U,$J,358.3,7164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6850,1,3,0)
- ;;=3^Melasma
- ;;^UTILITY(U,$J,358.3,6850,1,4,0)
- ;;=4^L81.1
- ;;^UTILITY(U,$J,358.3,6850,2)
- ;;=^5009311
- ;;^UTILITY(U,$J,358.3,6851,0)
- ;;=L72.0^^46^451^64
- ;;^UTILITY(U,$J,358.3,6851,1,0)
+ ;;^UTILITY(U,$J,358.3,7164,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,7164,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,7164,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,7165,0)
+ ;;=F06.1^^30^403^6
+ ;;^UTILITY(U,$J,358.3,7165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6851,1,3,0)
- ;;=3^Milium
- ;;^UTILITY(U,$J,358.3,6851,1,4,0)
- ;;=4^L72.0
- ;;^UTILITY(U,$J,358.3,6851,2)
- ;;=^5009277
- ;;^UTILITY(U,$J,358.3,6852,0)
- ;;=I78.1^^46^452^8
- ;;^UTILITY(U,$J,358.3,6852,1,0)
+ ;;^UTILITY(U,$J,358.3,7165,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,7165,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,7165,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,7166,0)
+ ;;=F06.8^^30^403^21
+ ;;^UTILITY(U,$J,358.3,7166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6852,1,3,0)
- ;;=3^Nevus,Non-Neoplastic
- ;;^UTILITY(U,$J,358.3,6852,1,4,0)
- ;;=4^I78.1
- ;;^UTILITY(U,$J,358.3,6852,2)
- ;;=^269807
- ;;^UTILITY(U,$J,358.3,6853,0)
- ;;=L60.3^^46^452^2
- ;;^UTILITY(U,$J,358.3,6853,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6853,1,3,0)
- ;;=3^Nail Dystrophy
+ ;;^UTILITY(U,$J,358.3,7166,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,7166,1,4,0)
+ ;;=4^F06.8

@@ -1,126 +1,134 @@
-IBDEI17E ; ; 19-NOV-2015
+IBDEI17E ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20106,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,20107,0)
- ;;=Y04.1XXA^^94^935^1
- ;;^UTILITY(U,$J,358.3,20107,1,0)
+ ;;^UTILITY(U,$J,358.3,20462,2)
+ ;;=^5008826
+ ;;^UTILITY(U,$J,358.3,20463,0)
+ ;;=K75.3^^84^932^13
+ ;;^UTILITY(U,$J,358.3,20463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20107,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,20107,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,20107,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,20108,0)
- ;;=Y04.1XXD^^94^935^2
- ;;^UTILITY(U,$J,358.3,20108,1,0)
+ ;;^UTILITY(U,$J,358.3,20463,1,3,0)
+ ;;=3^Granulomatous Hepatitis NEC
+ ;;^UTILITY(U,$J,358.3,20463,1,4,0)
+ ;;=4^K75.3
+ ;;^UTILITY(U,$J,358.3,20463,2)
+ ;;=^5008827
+ ;;^UTILITY(U,$J,358.3,20464,0)
+ ;;=K76.6^^84^932^22
+ ;;^UTILITY(U,$J,358.3,20464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20108,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20108,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,20108,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,20109,0)
- ;;=Y04.2XXA^^94^935^5
- ;;^UTILITY(U,$J,358.3,20109,1,0)
+ ;;^UTILITY(U,$J,358.3,20464,1,3,0)
+ ;;=3^Portal Hypertension
+ ;;^UTILITY(U,$J,358.3,20464,1,4,0)
+ ;;=4^K76.6
+ ;;^UTILITY(U,$J,358.3,20464,2)
+ ;;=^5008834
+ ;;^UTILITY(U,$J,358.3,20465,0)
+ ;;=F20.3^^84^933^25
+ ;;^UTILITY(U,$J,358.3,20465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20109,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,20109,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,20109,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,20110,0)
- ;;=Y04.8XXA^^94^935^3
- ;;^UTILITY(U,$J,358.3,20110,1,0)
+ ;;^UTILITY(U,$J,358.3,20465,1,3,0)
+ ;;=3^Undifferentiated/Atypical Schizophrenia
+ ;;^UTILITY(U,$J,358.3,20465,1,4,0)
+ ;;=4^F20.3
+ ;;^UTILITY(U,$J,358.3,20465,2)
+ ;;=^5003472
+ ;;^UTILITY(U,$J,358.3,20466,0)
+ ;;=F20.9^^84^933^21
+ ;;^UTILITY(U,$J,358.3,20466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20110,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,20110,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,20110,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,20111,0)
- ;;=Y04.2XXD^^94^935^6
- ;;^UTILITY(U,$J,358.3,20111,1,0)
+ ;;^UTILITY(U,$J,358.3,20466,1,3,0)
+ ;;=3^Schizophrenia,Unspec
+ ;;^UTILITY(U,$J,358.3,20466,1,4,0)
+ ;;=4^F20.9
+ ;;^UTILITY(U,$J,358.3,20466,2)
+ ;;=^5003476
+ ;;^UTILITY(U,$J,358.3,20467,0)
+ ;;=F31.9^^84^933^6
+ ;;^UTILITY(U,$J,358.3,20467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20111,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20111,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,20111,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,20112,0)
- ;;=Y04.8XXD^^94^935^4
- ;;^UTILITY(U,$J,358.3,20112,1,0)
+ ;;^UTILITY(U,$J,358.3,20467,1,3,0)
+ ;;=3^Bipolar Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20467,1,4,0)
+ ;;=4^F31.9
+ ;;^UTILITY(U,$J,358.3,20467,2)
+ ;;=^331892
+ ;;^UTILITY(U,$J,358.3,20468,0)
+ ;;=F31.72^^84^933^7
+ ;;^UTILITY(U,$J,358.3,20468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20112,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20112,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,20112,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,20113,0)
- ;;=Y36.200A^^94^935^124
- ;;^UTILITY(U,$J,358.3,20113,1,0)
+ ;;^UTILITY(U,$J,358.3,20468,1,3,0)
+ ;;=3^Bipolr Disorder,Full Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,20468,1,4,0)
+ ;;=4^F31.72
+ ;;^UTILITY(U,$J,358.3,20468,2)
+ ;;=^5003512
+ ;;^UTILITY(U,$J,358.3,20469,0)
+ ;;=F31.71^^84^933^5
+ ;;^UTILITY(U,$J,358.3,20469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20113,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,20113,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,20113,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,20114,0)
- ;;=Y36.200D^^94^935^125
- ;;^UTILITY(U,$J,358.3,20114,1,0)
+ ;;^UTILITY(U,$J,358.3,20469,1,3,0)
+ ;;=3^Bipolar Disorder,Part Remis,Most Recent Episode Hypomanic
+ ;;^UTILITY(U,$J,358.3,20469,1,4,0)
+ ;;=4^F31.71
+ ;;^UTILITY(U,$J,358.3,20469,2)
+ ;;=^5003511
+ ;;^UTILITY(U,$J,358.3,20470,0)
+ ;;=F31.70^^84^933^4
+ ;;^UTILITY(U,$J,358.3,20470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20114,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20114,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,20114,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,20115,0)
- ;;=Y36.300A^^94^935^126
- ;;^UTILITY(U,$J,358.3,20115,1,0)
+ ;;^UTILITY(U,$J,358.3,20470,1,3,0)
+ ;;=3^Bipolar Disorder,In Remis,Most Recent Episode Unspec
+ ;;^UTILITY(U,$J,358.3,20470,1,4,0)
+ ;;=4^F31.70
+ ;;^UTILITY(U,$J,358.3,20470,2)
+ ;;=^5003510
+ ;;^UTILITY(U,$J,358.3,20471,0)
+ ;;=F29.^^84^933^19
+ ;;^UTILITY(U,$J,358.3,20471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20115,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,20115,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,20115,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,20116,0)
- ;;=Y36.300D^^94^935^127
- ;;^UTILITY(U,$J,358.3,20116,1,0)
+ ;;^UTILITY(U,$J,358.3,20471,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,20471,1,4,0)
+ ;;=4^F29.
+ ;;^UTILITY(U,$J,358.3,20471,2)
+ ;;=^5003484
+ ;;^UTILITY(U,$J,358.3,20472,0)
+ ;;=F28.^^84^933^20
+ ;;^UTILITY(U,$J,358.3,20472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20116,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20116,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,20116,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,20117,0)
- ;;=Y36.410A^^94^935^121
- ;;^UTILITY(U,$J,358.3,20117,1,0)
+ ;;^UTILITY(U,$J,358.3,20472,1,3,0)
+ ;;=3^Psychosis not d/t Substance/Known Physiol Cond NEC
+ ;;^UTILITY(U,$J,358.3,20472,1,4,0)
+ ;;=4^F28.
+ ;;^UTILITY(U,$J,358.3,20472,2)
+ ;;=^5003483
+ ;;^UTILITY(U,$J,358.3,20473,0)
+ ;;=F41.9^^84^933^3
+ ;;^UTILITY(U,$J,358.3,20473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20117,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,20117,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,20117,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,20118,0)
- ;;=Y36.410D^^94^935^123
- ;;^UTILITY(U,$J,358.3,20118,1,0)
+ ;;^UTILITY(U,$J,358.3,20473,1,3,0)
+ ;;=3^Anxiety Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,20473,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,20473,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,20474,0)
+ ;;=F42.^^84^933^13
+ ;;^UTILITY(U,$J,358.3,20474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20118,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,20118,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,20118,2)
- ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,20474,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,20474,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,20474,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,20475,0)
+ ;;=F45.0^^84^933^23
+ ;;^UTILITY(U,$J,358.3,20475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20475,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,20475,1,4,0)
+ ;;=4^F45.0

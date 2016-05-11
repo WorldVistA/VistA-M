@@ -1,134 +1,136 @@
-IBDEI162 ; ; 19-NOV-2015
+IBDEI162 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19487,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,19487,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,19487,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,19488,0)
- ;;=G25.0^^94^923^15
- ;;^UTILITY(U,$J,358.3,19488,1,0)
+ ;;^UTILITY(U,$J,358.3,19837,1,4,0)
+ ;;=4^D12.8
+ ;;^UTILITY(U,$J,358.3,19837,2)
+ ;;=^5001971
+ ;;^UTILITY(U,$J,358.3,19838,0)
+ ;;=K92.2^^84^924^49
+ ;;^UTILITY(U,$J,358.3,19838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19488,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,19488,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,19488,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,19489,0)
- ;;=G25.2^^94^923^39
- ;;^UTILITY(U,$J,358.3,19489,1,0)
+ ;;^UTILITY(U,$J,358.3,19838,1,3,0)
+ ;;=3^GI Bleed,Unspec
+ ;;^UTILITY(U,$J,358.3,19838,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,19838,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,19839,0)
+ ;;=K62.5^^84^924^8
+ ;;^UTILITY(U,$J,358.3,19839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19489,1,3,0)
- ;;=3^Tremor,Other Spec Forms
- ;;^UTILITY(U,$J,358.3,19489,1,4,0)
- ;;=4^G25.2
- ;;^UTILITY(U,$J,358.3,19489,2)
- ;;=^5003793
- ;;^UTILITY(U,$J,358.3,19490,0)
- ;;=G25.1^^94^923^38
- ;;^UTILITY(U,$J,358.3,19490,1,0)
+ ;;^UTILITY(U,$J,358.3,19839,1,3,0)
+ ;;=3^BRBPR
+ ;;^UTILITY(U,$J,358.3,19839,1,4,0)
+ ;;=4^K62.5
+ ;;^UTILITY(U,$J,358.3,19839,2)
+ ;;=^5008755
+ ;;^UTILITY(U,$J,358.3,19840,0)
+ ;;=K92.1^^84^924^71
+ ;;^UTILITY(U,$J,358.3,19840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19490,1,3,0)
- ;;=3^Tremor,Drug-Induced
- ;;^UTILITY(U,$J,358.3,19490,1,4,0)
- ;;=4^G25.1
- ;;^UTILITY(U,$J,358.3,19490,2)
- ;;=^5003792
- ;;^UTILITY(U,$J,358.3,19491,0)
- ;;=G25.81^^94^923^36
- ;;^UTILITY(U,$J,358.3,19491,1,0)
+ ;;^UTILITY(U,$J,358.3,19840,1,3,0)
+ ;;=3^Melena/Hematochezia
+ ;;^UTILITY(U,$J,358.3,19840,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,19840,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,19841,0)
+ ;;=R19.5^^84^924^48
+ ;;^UTILITY(U,$J,358.3,19841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19491,1,3,0)
- ;;=3^Restless Legs Syndrome
- ;;^UTILITY(U,$J,358.3,19491,1,4,0)
- ;;=4^G25.81
- ;;^UTILITY(U,$J,358.3,19491,2)
- ;;=^5003801
- ;;^UTILITY(U,$J,358.3,19492,0)
- ;;=G35.^^94^923^29
- ;;^UTILITY(U,$J,358.3,19492,1,0)
+ ;;^UTILITY(U,$J,358.3,19841,1,3,0)
+ ;;=3^Fecal Abnormalities NEC
+ ;;^UTILITY(U,$J,358.3,19841,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,19841,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,19842,0)
+ ;;=E53.8^^84^924^81
+ ;;^UTILITY(U,$J,358.3,19842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19492,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,19492,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,19492,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,19493,0)
- ;;=G40.901^^94^923^13
- ;;^UTILITY(U,$J,358.3,19493,1,0)
+ ;;^UTILITY(U,$J,358.3,19842,1,3,0)
+ ;;=3^Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,19842,1,4,0)
+ ;;=4^E53.8
+ ;;^UTILITY(U,$J,358.3,19842,2)
+ ;;=^5002797
+ ;;^UTILITY(U,$J,358.3,19843,0)
+ ;;=A54.00^^84^925^47
+ ;;^UTILITY(U,$J,358.3,19843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19493,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/ Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,19493,1,4,0)
- ;;=4^G40.901
- ;;^UTILITY(U,$J,358.3,19493,2)
- ;;=^5003864
- ;;^UTILITY(U,$J,358.3,19494,0)
- ;;=G40.909^^94^923^14
- ;;^UTILITY(U,$J,358.3,19494,1,0)
+ ;;^UTILITY(U,$J,358.3,19843,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,19843,1,4,0)
+ ;;=4^A54.00
+ ;;^UTILITY(U,$J,358.3,19843,2)
+ ;;=^5000311
+ ;;^UTILITY(U,$J,358.3,19844,0)
+ ;;=A54.09^^84^925^48
+ ;;^UTILITY(U,$J,358.3,19844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19494,1,3,0)
- ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus,Unspec
- ;;^UTILITY(U,$J,358.3,19494,1,4,0)
- ;;=4^G40.909
- ;;^UTILITY(U,$J,358.3,19494,2)
- ;;=^5003865
- ;;^UTILITY(U,$J,358.3,19495,0)
- ;;=G43.809^^94^923^26
- ;;^UTILITY(U,$J,358.3,19495,1,0)
+ ;;^UTILITY(U,$J,358.3,19844,1,3,0)
+ ;;=3^Gonococcal Infection Lower Genitourinary Tract,Other
+ ;;^UTILITY(U,$J,358.3,19844,1,4,0)
+ ;;=4^A54.09
+ ;;^UTILITY(U,$J,358.3,19844,2)
+ ;;=^5000315
+ ;;^UTILITY(U,$J,358.3,19845,0)
+ ;;=A54.02^^84^925^49
+ ;;^UTILITY(U,$J,358.3,19845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19495,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosus,Other
- ;;^UTILITY(U,$J,358.3,19495,1,4,0)
- ;;=4^G43.809
- ;;^UTILITY(U,$J,358.3,19495,2)
- ;;=^5003901
- ;;^UTILITY(U,$J,358.3,19496,0)
- ;;=G43.B0^^94^923^28
- ;;^UTILITY(U,$J,358.3,19496,1,0)
+ ;;^UTILITY(U,$J,358.3,19845,1,3,0)
+ ;;=3^Gonococcal Vulvovaginitis,Unspec
+ ;;^UTILITY(U,$J,358.3,19845,1,4,0)
+ ;;=4^A54.02
+ ;;^UTILITY(U,$J,358.3,19845,2)
+ ;;=^5000313
+ ;;^UTILITY(U,$J,358.3,19846,0)
+ ;;=A54.1^^84^925^46
+ ;;^UTILITY(U,$J,358.3,19846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19496,1,3,0)
- ;;=3^Migraine,Ophthalmoplegic Not Intractable
- ;;^UTILITY(U,$J,358.3,19496,1,4,0)
- ;;=4^G43.B0
- ;;^UTILITY(U,$J,358.3,19496,2)
- ;;=^5003914
- ;;^UTILITY(U,$J,358.3,19497,0)
- ;;=G43.C0^^94^923^17
- ;;^UTILITY(U,$J,358.3,19497,1,0)
+ ;;^UTILITY(U,$J,358.3,19846,1,3,0)
+ ;;=3^Gonococcal Infection Lower GU Tract w/ Periureth & Acc Gland Abscess
+ ;;^UTILITY(U,$J,358.3,19846,1,4,0)
+ ;;=4^A54.1
+ ;;^UTILITY(U,$J,358.3,19846,2)
+ ;;=^5000316
+ ;;^UTILITY(U,$J,358.3,19847,0)
+ ;;=A54.01^^84^925^45
+ ;;^UTILITY(U,$J,358.3,19847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19497,1,3,0)
- ;;=3^Headache Syndromes,Periodic Not Intractable
- ;;^UTILITY(U,$J,358.3,19497,1,4,0)
- ;;=4^G43.C0
- ;;^UTILITY(U,$J,358.3,19497,2)
- ;;=^5003916
- ;;^UTILITY(U,$J,358.3,19498,0)
- ;;=G43.A0^^94^923^8
- ;;^UTILITY(U,$J,358.3,19498,1,0)
+ ;;^UTILITY(U,$J,358.3,19847,1,3,0)
+ ;;=3^Gonococcal Cystitis & Urethritis,Unspec
+ ;;^UTILITY(U,$J,358.3,19847,1,4,0)
+ ;;=4^A54.01
+ ;;^UTILITY(U,$J,358.3,19847,2)
+ ;;=^5000312
+ ;;^UTILITY(U,$J,358.3,19848,0)
+ ;;=B37.49^^84^925^12
+ ;;^UTILITY(U,$J,358.3,19848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19498,1,3,0)
- ;;=3^Cyclical Vomiting Not Intractable
- ;;^UTILITY(U,$J,358.3,19498,1,4,0)
- ;;=4^G43.A0
- ;;^UTILITY(U,$J,358.3,19498,2)
- ;;=^5003912
- ;;^UTILITY(U,$J,358.3,19499,0)
- ;;=G43.C1^^94^923^16
- ;;^UTILITY(U,$J,358.3,19499,1,0)
+ ;;^UTILITY(U,$J,358.3,19848,1,3,0)
+ ;;=3^Candidiasis Urogenital,Other
+ ;;^UTILITY(U,$J,358.3,19848,1,4,0)
+ ;;=4^B37.49
+ ;;^UTILITY(U,$J,358.3,19848,2)
+ ;;=^5000618
+ ;;^UTILITY(U,$J,358.3,19849,0)
+ ;;=B37.41^^84^925^11
+ ;;^UTILITY(U,$J,358.3,19849,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19499,1,3,0)
- ;;=3^Headache Syndromes,Periodic Intractable
- ;;^UTILITY(U,$J,358.3,19499,1,4,0)
- ;;=4^G43.C1
- ;;^UTILITY(U,$J,358.3,19499,2)
- ;;=^5003917
- ;;^UTILITY(U,$J,358.3,19500,0)
- ;;=G43.B1^^94^923^27
- ;;^UTILITY(U,$J,358.3,19500,1,0)
+ ;;^UTILITY(U,$J,358.3,19849,1,3,0)
+ ;;=3^Candidal Cystitis & Urethritis
+ ;;^UTILITY(U,$J,358.3,19849,1,4,0)
+ ;;=4^B37.41
+ ;;^UTILITY(U,$J,358.3,19849,2)
+ ;;=^5000616
+ ;;^UTILITY(U,$J,358.3,19850,0)
+ ;;=B37.42^^84^925^10
+ ;;^UTILITY(U,$J,358.3,19850,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19850,1,3,0)
+ ;;=3^Candidal Balanitis
+ ;;^UTILITY(U,$J,358.3,19850,1,4,0)
+ ;;=4^B37.42

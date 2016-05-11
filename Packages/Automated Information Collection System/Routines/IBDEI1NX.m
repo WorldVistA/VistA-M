@@ -1,134 +1,126 @@
-IBDEI1NX ; ; 19-NOV-2015
+IBDEI1NX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27817,1,4,0)
- ;;=4^Z77.090
- ;;^UTILITY(U,$J,358.3,27817,2)
- ;;=^5063312
- ;;^UTILITY(U,$J,358.3,27818,0)
- ;;=Z57.8^^132^1321^72
- ;;^UTILITY(U,$J,358.3,27818,1,0)
+ ;;^UTILITY(U,$J,358.3,28249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27818,1,3,0)
- ;;=3^Occupational Exposure to Other Risk Factors
- ;;^UTILITY(U,$J,358.3,27818,1,4,0)
- ;;=4^Z57.8
- ;;^UTILITY(U,$J,358.3,27818,2)
- ;;=^5063127
- ;;^UTILITY(U,$J,358.3,27819,0)
- ;;=Z77.21^^132^1321^53
- ;;^UTILITY(U,$J,358.3,27819,1,0)
+ ;;^UTILITY(U,$J,358.3,28249,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,28249,1,4,0)
+ ;;=4^L89.320
+ ;;^UTILITY(U,$J,358.3,28249,2)
+ ;;=^5009399
+ ;;^UTILITY(U,$J,358.3,28250,0)
+ ;;=L89.321^^112^1416^19
+ ;;^UTILITY(U,$J,358.3,28250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27819,1,3,0)
- ;;=3^Hazardous Body Fluid Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27819,1,4,0)
- ;;=4^Z77.21
- ;;^UTILITY(U,$J,358.3,27819,2)
- ;;=^5063323
- ;;^UTILITY(U,$J,358.3,27820,0)
- ;;=Z91.81^^132^1321^57
- ;;^UTILITY(U,$J,358.3,27820,1,0)
+ ;;^UTILITY(U,$J,358.3,28250,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,28250,1,4,0)
+ ;;=4^L89.321
+ ;;^UTILITY(U,$J,358.3,28250,2)
+ ;;=^5009400
+ ;;^UTILITY(U,$J,358.3,28251,0)
+ ;;=L89.322^^112^1416^20
+ ;;^UTILITY(U,$J,358.3,28251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27820,1,3,0)
- ;;=3^History of Falling
- ;;^UTILITY(U,$J,358.3,27820,1,4,0)
- ;;=4^Z91.81
- ;;^UTILITY(U,$J,358.3,27820,2)
- ;;=^5063625
- ;;^UTILITY(U,$J,358.3,27821,0)
- ;;=Z91.89^^132^1321^118
- ;;^UTILITY(U,$J,358.3,27821,1,0)
+ ;;^UTILITY(U,$J,358.3,28251,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,28251,1,4,0)
+ ;;=4^L89.322
+ ;;^UTILITY(U,$J,358.3,28251,2)
+ ;;=^5009401
+ ;;^UTILITY(U,$J,358.3,28252,0)
+ ;;=L89.323^^112^1416^21
+ ;;^UTILITY(U,$J,358.3,28252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27821,1,3,0)
- ;;=3^Personal Risk Factors NEC
- ;;^UTILITY(U,$J,358.3,27821,1,4,0)
- ;;=4^Z91.89
- ;;^UTILITY(U,$J,358.3,27821,2)
- ;;=^5063628
- ;;^UTILITY(U,$J,358.3,27822,0)
- ;;=Z92.89^^132^1321^106
- ;;^UTILITY(U,$J,358.3,27822,1,0)
+ ;;^UTILITY(U,$J,358.3,28252,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,28252,1,4,0)
+ ;;=4^L89.323
+ ;;^UTILITY(U,$J,358.3,28252,2)
+ ;;=^5009402
+ ;;^UTILITY(U,$J,358.3,28253,0)
+ ;;=L89.324^^112^1416^22
+ ;;^UTILITY(U,$J,358.3,28253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27822,1,3,0)
- ;;=3^Personal Hx of Other Medical Treatment
- ;;^UTILITY(U,$J,358.3,27822,1,4,0)
- ;;=4^Z92.89
- ;;^UTILITY(U,$J,358.3,27822,2)
- ;;=^5063641
- ;;^UTILITY(U,$J,358.3,27823,0)
- ;;=Z77.110^^132^1321^9
- ;;^UTILITY(U,$J,358.3,27823,1,0)
+ ;;^UTILITY(U,$J,358.3,28253,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,28253,1,4,0)
+ ;;=4^L89.324
+ ;;^UTILITY(U,$J,358.3,28253,2)
+ ;;=^5009403
+ ;;^UTILITY(U,$J,358.3,28254,0)
+ ;;=L89.329^^112^1416^23
+ ;;^UTILITY(U,$J,358.3,28254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27823,1,3,0)
- ;;=3^Air Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27823,1,4,0)
- ;;=4^Z77.110
- ;;^UTILITY(U,$J,358.3,27823,2)
- ;;=^5063314
- ;;^UTILITY(U,$J,358.3,27824,0)
- ;;=Z77.112^^132^1321^142
- ;;^UTILITY(U,$J,358.3,27824,1,0)
+ ;;^UTILITY(U,$J,358.3,28254,1,3,0)
+ ;;=3^Pressure Ulcer Left Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28254,1,4,0)
+ ;;=4^L89.329
+ ;;^UTILITY(U,$J,358.3,28254,2)
+ ;;=^5133671
+ ;;^UTILITY(U,$J,358.3,28255,0)
+ ;;=L89.40^^112^1416^1
+ ;;^UTILITY(U,$J,358.3,28255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27824,1,3,0)
- ;;=3^Soil Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27824,1,4,0)
- ;;=4^Z77.112
- ;;^UTILITY(U,$J,358.3,27824,2)
- ;;=^5063316
- ;;^UTILITY(U,$J,358.3,27825,0)
- ;;=Z77.111^^132^1321^148
- ;;^UTILITY(U,$J,358.3,27825,1,0)
+ ;;^UTILITY(U,$J,358.3,28255,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,28255,1,4,0)
+ ;;=4^L89.40
+ ;;^UTILITY(U,$J,358.3,28255,2)
+ ;;=^5009404
+ ;;^UTILITY(U,$J,358.3,28256,0)
+ ;;=L89.41^^112^1416^2
+ ;;^UTILITY(U,$J,358.3,28256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27825,1,3,0)
- ;;=3^Water Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27825,1,4,0)
- ;;=4^Z77.111
- ;;^UTILITY(U,$J,358.3,27825,2)
- ;;=^5063315
- ;;^UTILITY(U,$J,358.3,27826,0)
- ;;=Z77.128^^132^1321^119
- ;;^UTILITY(U,$J,358.3,27826,1,0)
+ ;;^UTILITY(U,$J,358.3,28256,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 1
+ ;;^UTILITY(U,$J,358.3,28256,1,4,0)
+ ;;=4^L89.41
+ ;;^UTILITY(U,$J,358.3,28256,2)
+ ;;=^5009405
+ ;;^UTILITY(U,$J,358.3,28257,0)
+ ;;=L89.42^^112^1416^3
+ ;;^UTILITY(U,$J,358.3,28257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27826,1,3,0)
- ;;=3^Physical Environment Hazards Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27826,1,4,0)
- ;;=4^Z77.128
- ;;^UTILITY(U,$J,358.3,27826,2)
- ;;=^5063322
- ;;^UTILITY(U,$J,358.3,27827,0)
- ;;=Z77.123^^132^1321^140
- ;;^UTILITY(U,$J,358.3,27827,1,0)
+ ;;^UTILITY(U,$J,358.3,28257,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 2
+ ;;^UTILITY(U,$J,358.3,28257,1,4,0)
+ ;;=4^L89.42
+ ;;^UTILITY(U,$J,358.3,28257,2)
+ ;;=^5009406
+ ;;^UTILITY(U,$J,358.3,28258,0)
+ ;;=L89.43^^112^1416^4
+ ;;^UTILITY(U,$J,358.3,28258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27827,1,3,0)
- ;;=3^Radon/Radiation Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27827,1,4,0)
- ;;=4^Z77.123
- ;;^UTILITY(U,$J,358.3,27827,2)
- ;;=^5063321
- ;;^UTILITY(U,$J,358.3,27828,0)
- ;;=Z77.122^^132^1321^68
- ;;^UTILITY(U,$J,358.3,27828,1,0)
+ ;;^UTILITY(U,$J,358.3,28258,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 3
+ ;;^UTILITY(U,$J,358.3,28258,1,4,0)
+ ;;=4^L89.43
+ ;;^UTILITY(U,$J,358.3,28258,2)
+ ;;=^5009407
+ ;;^UTILITY(U,$J,358.3,28259,0)
+ ;;=L89.44^^112^1416^5
+ ;;^UTILITY(U,$J,358.3,28259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27828,1,3,0)
- ;;=3^Noise Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27828,1,4,0)
- ;;=4^Z77.122
- ;;^UTILITY(U,$J,358.3,27828,2)
- ;;=^5063320
- ;;^UTILITY(U,$J,358.3,27829,0)
- ;;=Z77.118^^132^1321^19
- ;;^UTILITY(U,$J,358.3,27829,1,0)
+ ;;^UTILITY(U,$J,358.3,28259,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Stage 4
+ ;;^UTILITY(U,$J,358.3,28259,1,4,0)
+ ;;=4^L89.44
+ ;;^UTILITY(U,$J,358.3,28259,2)
+ ;;=^5009408
+ ;;^UTILITY(U,$J,358.3,28260,0)
+ ;;=L89.45^^112^1416^6
+ ;;^UTILITY(U,$J,358.3,28260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27829,1,3,0)
- ;;=3^Environmental Pollution Contact/Exposure
- ;;^UTILITY(U,$J,358.3,27829,1,4,0)
- ;;=4^Z77.118
- ;;^UTILITY(U,$J,358.3,27829,2)
- ;;=^5063317
- ;;^UTILITY(U,$J,358.3,27830,0)
- ;;=Z77.9^^132^1321^54
- ;;^UTILITY(U,$J,358.3,27830,1,0)
+ ;;^UTILITY(U,$J,358.3,28260,1,3,0)
+ ;;=3^Pressure Ulcer Contiguous Site Back,Buttock & Hip,Unstageable
+ ;;^UTILITY(U,$J,358.3,28260,1,4,0)
+ ;;=4^L89.45
+ ;;^UTILITY(U,$J,358.3,28260,2)
+ ;;=^5009409
+ ;;^UTILITY(U,$J,358.3,28261,0)
+ ;;=L89.510^^112^1416^66
+ ;;^UTILITY(U,$J,358.3,28261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27830,1,3,0)
- ;;=3^Health Hazard Contact/Exposure

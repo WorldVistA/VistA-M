@@ -1,130 +1,134 @@
-IBDEI28Y ; ; 19-NOV-2015
+IBDEI28Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,37723,1,3,0)
- ;;=3^Sprain of left wrist, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37723,1,4,0)
- ;;=4^S63.502D
- ;;^UTILITY(U,$J,358.3,37723,2)
- ;;=^5035587
- ;;^UTILITY(U,$J,358.3,37724,0)
- ;;=S63.501D^^172^1890^30
- ;;^UTILITY(U,$J,358.3,37724,1,0)
+ ;;^UTILITY(U,$J,358.3,38115,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,38115,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,38116,0)
+ ;;=F42.^^145^1840^7
+ ;;^UTILITY(U,$J,358.3,38116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37724,1,3,0)
- ;;=3^Sprain of right wrist, subsequent encounter
- ;;^UTILITY(U,$J,358.3,37724,1,4,0)
- ;;=4^S63.501D
- ;;^UTILITY(U,$J,358.3,37724,2)
- ;;=^5035584
- ;;^UTILITY(U,$J,358.3,37725,0)
- ;;=S52.501D^^172^1890^12
- ;;^UTILITY(U,$J,358.3,37725,1,0)
+ ;;^UTILITY(U,$J,358.3,38116,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,38116,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,38116,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,38117,0)
+ ;;=F45.22^^145^1840^1
+ ;;^UTILITY(U,$J,358.3,38117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37725,1,3,0)
- ;;=3^Fracture of the lower end of right radius, subs encntr
- ;;^UTILITY(U,$J,358.3,37725,1,4,0)
- ;;=4^S52.501D
- ;;^UTILITY(U,$J,358.3,37725,2)
- ;;=^5030590
- ;;^UTILITY(U,$J,358.3,37726,0)
- ;;=Z89.442^^172^1891^1
- ;;^UTILITY(U,$J,358.3,37726,1,0)
+ ;;^UTILITY(U,$J,358.3,38117,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,38117,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,38117,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,38118,0)
+ ;;=F63.3^^145^1840^8
+ ;;^UTILITY(U,$J,358.3,38118,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37726,1,3,0)
- ;;=3^Acquired absence of left ankle
- ;;^UTILITY(U,$J,358.3,37726,1,4,0)
- ;;=4^Z89.442
- ;;^UTILITY(U,$J,358.3,37726,2)
- ;;=^5063564
- ;;^UTILITY(U,$J,358.3,37727,0)
- ;;=Z89.432^^172^1891^2
- ;;^UTILITY(U,$J,358.3,37727,1,0)
+ ;;^UTILITY(U,$J,358.3,38118,1,3,0)
+ ;;=3^Trichotillomania
+ ;;^UTILITY(U,$J,358.3,38118,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,38118,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,38119,0)
+ ;;=L98.1^^145^1840^2
+ ;;^UTILITY(U,$J,358.3,38119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37727,1,3,0)
- ;;=3^Acquired absence of left foot
- ;;^UTILITY(U,$J,358.3,37727,1,4,0)
- ;;=4^Z89.432
- ;;^UTILITY(U,$J,358.3,37727,2)
- ;;=^5063561
- ;;^UTILITY(U,$J,358.3,37728,0)
- ;;=Z89.412^^172^1891^3
- ;;^UTILITY(U,$J,358.3,37728,1,0)
+ ;;^UTILITY(U,$J,358.3,38119,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;^UTILITY(U,$J,358.3,38119,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,38119,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,38120,0)
+ ;;=F68.10^^145^1840^3
+ ;;^UTILITY(U,$J,358.3,38120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37728,1,3,0)
- ;;=3^Acquired absence of left great toe
- ;;^UTILITY(U,$J,358.3,37728,1,4,0)
- ;;=4^Z89.412
- ;;^UTILITY(U,$J,358.3,37728,2)
- ;;=^5063555
- ;;^UTILITY(U,$J,358.3,37729,0)
- ;;=Z89.112^^172^1891^4
- ;;^UTILITY(U,$J,358.3,37729,1,0)
+ ;;^UTILITY(U,$J,358.3,38120,1,3,0)
+ ;;=3^Factitious Disorder
+ ;;^UTILITY(U,$J,358.3,38120,1,4,0)
+ ;;=4^F68.10
+ ;;^UTILITY(U,$J,358.3,38120,2)
+ ;;=^5003663
+ ;;^UTILITY(U,$J,358.3,38121,0)
+ ;;=F63.9^^145^1840^5
+ ;;^UTILITY(U,$J,358.3,38121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37729,1,3,0)
- ;;=3^Acquired absence of left hand
- ;;^UTILITY(U,$J,358.3,37729,1,4,0)
- ;;=4^Z89.112
- ;;^UTILITY(U,$J,358.3,37729,2)
- ;;=^5063538
- ;;^UTILITY(U,$J,358.3,37730,0)
- ;;=Z89.622^^172^1891^5
- ;;^UTILITY(U,$J,358.3,37730,1,0)
+ ;;^UTILITY(U,$J,358.3,38121,1,3,0)
+ ;;=3^Impulse Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38121,1,4,0)
+ ;;=4^F63.9
+ ;;^UTILITY(U,$J,358.3,38121,2)
+ ;;=^5003646
+ ;;^UTILITY(U,$J,358.3,38122,0)
+ ;;=F42.^^145^1840^4
+ ;;^UTILITY(U,$J,358.3,38122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37730,1,3,0)
- ;;=3^Acquired absence of left hip joint
- ;;^UTILITY(U,$J,358.3,37730,1,4,0)
- ;;=4^Z89.622
- ;;^UTILITY(U,$J,358.3,37730,2)
- ;;=^5063576
- ;;^UTILITY(U,$J,358.3,37731,0)
- ;;=Z89.612^^172^1891^6
- ;;^UTILITY(U,$J,358.3,37731,1,0)
+ ;;^UTILITY(U,$J,358.3,38122,1,3,0)
+ ;;=3^Hoarding Disorder
+ ;;^UTILITY(U,$J,358.3,38122,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,38122,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,38123,0)
+ ;;=F06.8^^145^1840^6
+ ;;^UTILITY(U,$J,358.3,38123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37731,1,3,0)
- ;;=3^Acquired absence of left leg above knee
- ;;^UTILITY(U,$J,358.3,37731,1,4,0)
- ;;=4^Z89.612
- ;;^UTILITY(U,$J,358.3,37731,2)
- ;;=^5063573
- ;;^UTILITY(U,$J,358.3,37732,0)
- ;;=Z89.512^^172^1891^7
- ;;^UTILITY(U,$J,358.3,37732,1,0)
+ ;;^UTILITY(U,$J,358.3,38123,1,3,0)
+ ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,38123,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,38123,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,38124,0)
+ ;;=F06.2^^145^1841^5
+ ;;^UTILITY(U,$J,358.3,38124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37732,1,3,0)
- ;;=3^Acquired absence of left leg below knee
- ;;^UTILITY(U,$J,358.3,37732,1,4,0)
- ;;=4^Z89.512
- ;;^UTILITY(U,$J,358.3,37732,2)
- ;;=^5063567
- ;;^UTILITY(U,$J,358.3,37733,0)
- ;;=Z89.212^^172^1891^8
- ;;^UTILITY(U,$J,358.3,37733,1,0)
+ ;;^UTILITY(U,$J,358.3,38124,1,3,0)
+ ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,38124,1,4,0)
+ ;;=4^F06.2
+ ;;^UTILITY(U,$J,358.3,38124,2)
+ ;;=^5003055
+ ;;^UTILITY(U,$J,358.3,38125,0)
+ ;;=F06.0^^145^1841^6
+ ;;^UTILITY(U,$J,358.3,38125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37733,1,3,0)
- ;;=3^Acquired absence of left upper limb below elbow
- ;;^UTILITY(U,$J,358.3,37733,1,4,0)
- ;;=4^Z89.212
- ;;^UTILITY(U,$J,358.3,37733,2)
- ;;=^5063546
- ;;^UTILITY(U,$J,358.3,37734,0)
- ;;=Z89.422^^172^1891^9
- ;;^UTILITY(U,$J,358.3,37734,1,0)
+ ;;^UTILITY(U,$J,358.3,38125,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,38125,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,38125,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,38126,0)
+ ;;=F06.4^^145^1841^1
+ ;;^UTILITY(U,$J,358.3,38126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37734,1,3,0)
- ;;=3^Acquired absence of other left toe(s)
- ;;^UTILITY(U,$J,358.3,37734,1,4,0)
- ;;=4^Z89.422
- ;;^UTILITY(U,$J,358.3,37734,2)
- ;;=^5063558
- ;;^UTILITY(U,$J,358.3,37735,0)
- ;;=Z89.421^^172^1891^10
- ;;^UTILITY(U,$J,358.3,37735,1,0)
+ ;;^UTILITY(U,$J,358.3,38126,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,38126,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,38126,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,38127,0)
+ ;;=F06.1^^145^1841^2
+ ;;^UTILITY(U,$J,358.3,38127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,37735,1,3,0)
- ;;=3^Acquired absence of other right toe(s)
- ;;^UTILITY(U,$J,358.3,37735,1,4,0)
- ;;=4^Z89.421
- ;;^UTILITY(U,$J,358.3,37735,2)
- ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,38127,1,3,0)
+ ;;=3^Catatonia Associated w/ Schizophrenia
+ ;;^UTILITY(U,$J,358.3,38127,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,38127,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,38128,0)
+ ;;=R41.9^^145^1841^3
+ ;;^UTILITY(U,$J,358.3,38128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38128,1,3,0)
+ ;;=3^Neurocognitive Disorder,Unspec

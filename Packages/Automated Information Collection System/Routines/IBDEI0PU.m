@@ -1,132 +1,130 @@
-IBDEI0PU ; ; 19-NOV-2015
+IBDEI0PU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11837,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,11838,0)
- ;;=S91.104A^^68^692^22
- ;;^UTILITY(U,$J,358.3,11838,1,0)
+ ;;^UTILITY(U,$J,358.3,12078,1,4,0)
+ ;;=4^W10.1XXD
+ ;;^UTILITY(U,$J,358.3,12078,2)
+ ;;=^5059584
+ ;;^UTILITY(U,$J,358.3,12079,0)
+ ;;=W06.XXXD^^47^540^9
+ ;;^UTILITY(U,$J,358.3,12079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11838,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,11838,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,11838,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,11839,0)
- ;;=S81.802A^^68^692^13
- ;;^UTILITY(U,$J,358.3,11839,1,0)
+ ;;^UTILITY(U,$J,358.3,12079,1,3,0)
+ ;;=3^Fall from Bed,Subsequent
+ ;;^UTILITY(U,$J,358.3,12079,1,4,0)
+ ;;=4^W06.XXXD
+ ;;^UTILITY(U,$J,358.3,12079,2)
+ ;;=^5059560
+ ;;^UTILITY(U,$J,358.3,12080,0)
+ ;;=W07.XXXD^^47^540^10
+ ;;^UTILITY(U,$J,358.3,12080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11839,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,11839,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,11839,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,11840,0)
- ;;=S41.102A^^68^692^15
- ;;^UTILITY(U,$J,358.3,11840,1,0)
+ ;;^UTILITY(U,$J,358.3,12080,1,3,0)
+ ;;=3^Fall from Chair,Subsequent
+ ;;^UTILITY(U,$J,358.3,12080,1,4,0)
+ ;;=4^W07.XXXD
+ ;;^UTILITY(U,$J,358.3,12080,2)
+ ;;=^5059563
+ ;;^UTILITY(U,$J,358.3,12081,0)
+ ;;=W05.2XXD^^47^540^15
+ ;;^UTILITY(U,$J,358.3,12081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11840,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,11840,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,11840,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,11841,0)
- ;;=S91.001A^^68^692^16
- ;;^UTILITY(U,$J,358.3,11841,1,0)
+ ;;^UTILITY(U,$J,358.3,12081,1,3,0)
+ ;;=3^Fall from Non-Moving Motorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,12081,1,4,0)
+ ;;=4^W05.2XXD
+ ;;^UTILITY(U,$J,358.3,12081,2)
+ ;;=^5059557
+ ;;^UTILITY(U,$J,358.3,12082,0)
+ ;;=W05.1XXD^^47^540^16
+ ;;^UTILITY(U,$J,358.3,12082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11841,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,11841,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,11841,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,11842,0)
- ;;=S91.301A^^68^692^17
- ;;^UTILITY(U,$J,358.3,11842,1,0)
+ ;;^UTILITY(U,$J,358.3,12082,1,3,0)
+ ;;=3^Fall from Non-Moving Nonmotorized Scooter,Subsequent
+ ;;^UTILITY(U,$J,358.3,12082,1,4,0)
+ ;;=4^W05.1XXD
+ ;;^UTILITY(U,$J,358.3,12082,2)
+ ;;=^5059554
+ ;;^UTILITY(U,$J,358.3,12083,0)
+ ;;=W05.0XXD^^47^540^17
+ ;;^UTILITY(U,$J,358.3,12083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11842,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
- ;;^UTILITY(U,$J,358.3,11842,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,11842,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,11843,0)
- ;;=S51.801A^^68^692^18
- ;;^UTILITY(U,$J,358.3,11843,1,0)
+ ;;^UTILITY(U,$J,358.3,12083,1,3,0)
+ ;;=3^Fall from Non-Moving Wheelchair,Subsequent
+ ;;^UTILITY(U,$J,358.3,12083,1,4,0)
+ ;;=4^W05.0XXD
+ ;;^UTILITY(U,$J,358.3,12083,2)
+ ;;=^5059551
+ ;;^UTILITY(U,$J,358.3,12084,0)
+ ;;=W18.12XD^^47^540^21
+ ;;^UTILITY(U,$J,358.3,12084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11843,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,11843,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,11843,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,11844,0)
- ;;=S91.101A^^68^692^19
- ;;^UTILITY(U,$J,358.3,11844,1,0)
+ ;;^UTILITY(U,$J,358.3,12084,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12084,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,12084,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,12085,0)
+ ;;=W18.11XD^^47^540^22
+ ;;^UTILITY(U,$J,358.3,12085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11844,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,11844,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,11844,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,11845,0)
- ;;=S61.401A^^68^692^20
- ;;^UTILITY(U,$J,358.3,11845,1,0)
+ ;;^UTILITY(U,$J,358.3,12085,1,3,0)
+ ;;=3^Fall from Toilet,Subsequent
+ ;;^UTILITY(U,$J,358.3,12085,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,12085,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,12086,0)
+ ;;=W08.XXXD^^47^540^12
+ ;;^UTILITY(U,$J,358.3,12086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11845,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,11845,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,11845,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,11846,0)
- ;;=S71.001A^^68^692^21
- ;;^UTILITY(U,$J,358.3,11846,1,0)
+ ;;^UTILITY(U,$J,358.3,12086,1,3,0)
+ ;;=3^Fall from Furniture,Subsequent
+ ;;^UTILITY(U,$J,358.3,12086,1,4,0)
+ ;;=4^W08.XXXD
+ ;;^UTILITY(U,$J,358.3,12086,2)
+ ;;=^5059566
+ ;;^UTILITY(U,$J,358.3,12087,0)
+ ;;=W18.2XXD^^47^540^23
+ ;;^UTILITY(U,$J,358.3,12087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11846,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,11846,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,11846,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,11847,0)
- ;;=S91.105A^^68^692^12
- ;;^UTILITY(U,$J,358.3,11847,1,0)
+ ;;^UTILITY(U,$J,358.3,12087,1,3,0)
+ ;;=3^Fall in Shower/Bathtub,Subsequent
+ ;;^UTILITY(U,$J,358.3,12087,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,12087,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,12088,0)
+ ;;=W11.XXXD^^47^540^14
+ ;;^UTILITY(U,$J,358.3,12088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11847,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,11847,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,11847,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,11848,0)
- ;;=S81.801A^^68^692^23
- ;;^UTILITY(U,$J,358.3,11848,1,0)
+ ;;^UTILITY(U,$J,358.3,12088,1,3,0)
+ ;;=3^Fall from Ladder,Subsequent
+ ;;^UTILITY(U,$J,358.3,12088,1,4,0)
+ ;;=4^W11.XXXD
+ ;;^UTILITY(U,$J,358.3,12088,2)
+ ;;=^5059596
+ ;;^UTILITY(U,$J,358.3,12089,0)
+ ;;=W01.10XD^^47^540^2
+ ;;^UTILITY(U,$J,358.3,12089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11848,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,11848,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,11848,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,11849,0)
- ;;=S71.102A^^68^692^14
- ;;^UTILITY(U,$J,358.3,11849,1,0)
+ ;;^UTILITY(U,$J,358.3,12089,1,3,0)
+ ;;=3^Fall Same Level w/ Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12089,1,4,0)
+ ;;=4^W01.10XD
+ ;;^UTILITY(U,$J,358.3,12089,2)
+ ;;=^5059526
+ ;;^UTILITY(U,$J,358.3,12090,0)
+ ;;=W01.0XXD^^47^540^3
+ ;;^UTILITY(U,$J,358.3,12090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11849,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,11849,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,11849,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,11850,0)
- ;;=S71.101A^^68^692^24
- ;;^UTILITY(U,$J,358.3,11850,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11850,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,12090,1,3,0)
+ ;;=3^Fall Same Level w/o Strike Against Object,Subsequent
+ ;;^UTILITY(U,$J,358.3,12090,1,4,0)
+ ;;=4^W01.0XXD
+ ;;^UTILITY(U,$J,358.3,12090,2)
+ ;;=^5059523
+ ;;^UTILITY(U,$J,358.3,12091,0)
+ ;;=W18.30XD^^47^540^4

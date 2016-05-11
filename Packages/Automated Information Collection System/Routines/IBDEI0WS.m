@@ -1,138 +1,126 @@
-IBDEI0WS ; ; 19-NOV-2015
+IBDEI0WS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15113,0)
- ;;=C20.^^85^809^77
- ;;^UTILITY(U,$J,358.3,15113,1,0)
+ ;;^UTILITY(U,$J,358.3,15384,0)
+ ;;=F05.^^58^661^4
+ ;;^UTILITY(U,$J,358.3,15384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15113,1,3,0)
- ;;=3^Malig Neop of Rectum
- ;;^UTILITY(U,$J,358.3,15113,1,4,0)
- ;;=4^C20.
- ;;^UTILITY(U,$J,358.3,15113,2)
- ;;=^267090
- ;;^UTILITY(U,$J,358.3,15114,0)
- ;;=C25.0^^85^809^62
- ;;^UTILITY(U,$J,358.3,15114,1,0)
+ ;;^UTILITY(U,$J,358.3,15384,1,3,0)
+ ;;=3^Delirium d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,15384,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,15384,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,15385,0)
+ ;;=F05.^^58^661^5
+ ;;^UTILITY(U,$J,358.3,15385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15114,1,3,0)
- ;;=3^Malig Neop of Head of Pancreas
- ;;^UTILITY(U,$J,358.3,15114,1,4,0)
- ;;=4^C25.0
- ;;^UTILITY(U,$J,358.3,15114,2)
- ;;=^267104
- ;;^UTILITY(U,$J,358.3,15115,0)
- ;;=C25.1^^85^809^52
- ;;^UTILITY(U,$J,358.3,15115,1,0)
+ ;;^UTILITY(U,$J,358.3,15385,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,15385,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,15385,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,15386,0)
+ ;;=A81.00^^58^662^9
+ ;;^UTILITY(U,$J,358.3,15386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15115,1,3,0)
- ;;=3^Malig Neop of Body of Pancreas
- ;;^UTILITY(U,$J,358.3,15115,1,4,0)
- ;;=4^C25.1
- ;;^UTILITY(U,$J,358.3,15115,2)
- ;;=^267105
- ;;^UTILITY(U,$J,358.3,15116,0)
- ;;=C25.2^^85^809^81
- ;;^UTILITY(U,$J,358.3,15116,1,0)
+ ;;^UTILITY(U,$J,358.3,15386,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,15386,1,4,0)
+ ;;=4^A81.00
+ ;;^UTILITY(U,$J,358.3,15386,2)
+ ;;=^5000409
+ ;;^UTILITY(U,$J,358.3,15387,0)
+ ;;=A81.01^^58^662^38
+ ;;^UTILITY(U,$J,358.3,15387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15116,1,3,0)
- ;;=3^Malig Neop of Tail of Pancreas
- ;;^UTILITY(U,$J,358.3,15116,1,4,0)
- ;;=4^C25.2
- ;;^UTILITY(U,$J,358.3,15116,2)
- ;;=^267106
- ;;^UTILITY(U,$J,358.3,15117,0)
- ;;=C25.3^^85^809^73
- ;;^UTILITY(U,$J,358.3,15117,1,0)
+ ;;^UTILITY(U,$J,358.3,15387,1,3,0)
+ ;;=3^Variant Creutzfeldt-Jakob Disease
+ ;;^UTILITY(U,$J,358.3,15387,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,15387,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,15388,0)
+ ;;=A81.09^^58^662^8
+ ;;^UTILITY(U,$J,358.3,15388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15117,1,3,0)
- ;;=3^Malig Neop of Pancreatic Duct
- ;;^UTILITY(U,$J,358.3,15117,1,4,0)
- ;;=4^C25.3
- ;;^UTILITY(U,$J,358.3,15117,2)
- ;;=^267107
- ;;^UTILITY(U,$J,358.3,15118,0)
- ;;=C25.4^^85^809^58
- ;;^UTILITY(U,$J,358.3,15118,1,0)
+ ;;^UTILITY(U,$J,358.3,15388,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Other
+ ;;^UTILITY(U,$J,358.3,15388,1,4,0)
+ ;;=4^A81.09
+ ;;^UTILITY(U,$J,358.3,15388,2)
+ ;;=^5000410
+ ;;^UTILITY(U,$J,358.3,15389,0)
+ ;;=A81.2^^58^662^33
+ ;;^UTILITY(U,$J,358.3,15389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15118,1,3,0)
- ;;=3^Malig Neop of Endocrine Pancreas
- ;;^UTILITY(U,$J,358.3,15118,1,4,0)
- ;;=4^C25.4
- ;;^UTILITY(U,$J,358.3,15118,2)
- ;;=^5000943
- ;;^UTILITY(U,$J,358.3,15119,0)
- ;;=C25.7^^85^809^71
- ;;^UTILITY(U,$J,358.3,15119,1,0)
+ ;;^UTILITY(U,$J,358.3,15389,1,3,0)
+ ;;=3^Progressive Multifocal Leukoencephalopathy
+ ;;^UTILITY(U,$J,358.3,15389,1,4,0)
+ ;;=4^A81.2
+ ;;^UTILITY(U,$J,358.3,15389,2)
+ ;;=^5000411
+ ;;^UTILITY(U,$J,358.3,15390,0)
+ ;;=F01.50^^58^662^31
+ ;;^UTILITY(U,$J,358.3,15390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15119,1,3,0)
- ;;=3^Malig Neop of Pancreas NEC
- ;;^UTILITY(U,$J,358.3,15119,1,4,0)
- ;;=4^C25.7
- ;;^UTILITY(U,$J,358.3,15119,2)
- ;;=^5000944
- ;;^UTILITY(U,$J,358.3,15120,0)
- ;;=C25.8^^85^809^69
- ;;^UTILITY(U,$J,358.3,15120,1,0)
+ ;;^UTILITY(U,$J,358.3,15390,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,15390,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,15390,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,15391,0)
+ ;;=F01.51^^58^662^32
+ ;;^UTILITY(U,$J,358.3,15391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15120,1,3,0)
- ;;=3^Malig Neop of Overlapping Sites of Pancreas
- ;;^UTILITY(U,$J,358.3,15120,1,4,0)
- ;;=4^C25.8
- ;;^UTILITY(U,$J,358.3,15120,2)
- ;;=^5000945
- ;;^UTILITY(U,$J,358.3,15121,0)
- ;;=C25.9^^85^809^72
- ;;^UTILITY(U,$J,358.3,15121,1,0)
+ ;;^UTILITY(U,$J,358.3,15391,1,3,0)
+ ;;=3^Probable Major Vascular Neurocognitive Disorder w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,15391,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,15391,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,15392,0)
+ ;;=F10.27^^58^662^1
+ ;;^UTILITY(U,$J,358.3,15392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15121,1,3,0)
- ;;=3^Malig Neop of Pancreas,Unspec
- ;;^UTILITY(U,$J,358.3,15121,1,4,0)
- ;;=4^C25.9
- ;;^UTILITY(U,$J,358.3,15121,2)
- ;;=^5000946
- ;;^UTILITY(U,$J,358.3,15122,0)
- ;;=D12.0^^85^809^8
- ;;^UTILITY(U,$J,358.3,15122,1,0)
+ ;;^UTILITY(U,$J,358.3,15392,1,3,0)
+ ;;=3^Alcohol-Induced Major Neurocognitive Disorder,Nonamnestic Confabulatory Type
+ ;;^UTILITY(U,$J,358.3,15392,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,15392,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,15393,0)
+ ;;=F19.97^^58^662^37
+ ;;^UTILITY(U,$J,358.3,15393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15122,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,15122,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,15122,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,15123,0)
- ;;=D12.1^^85^809^6
- ;;^UTILITY(U,$J,358.3,15123,1,0)
+ ;;^UTILITY(U,$J,358.3,15393,1,3,0)
+ ;;=3^Substance-Induced Major Neurocognitive Disorder NEC
+ ;;^UTILITY(U,$J,358.3,15393,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,15393,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,15394,0)
+ ;;=F02.80^^58^662^13
+ ;;^UTILITY(U,$J,358.3,15394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15123,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,15123,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,15123,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,15124,0)
- ;;=D12.2^^85^809^7
- ;;^UTILITY(U,$J,358.3,15124,1,0)
+ ;;^UTILITY(U,$J,358.3,15394,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/o Behavorial Disturbance
+ ;;^UTILITY(U,$J,358.3,15394,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,15394,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,15395,0)
+ ;;=F02.81^^58^662^14
+ ;;^UTILITY(U,$J,358.3,15395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15124,1,3,0)
- ;;=3^Benign Neop of Ascending Colon
- ;;^UTILITY(U,$J,358.3,15124,1,4,0)
- ;;=4^D12.2
- ;;^UTILITY(U,$J,358.3,15124,2)
- ;;=^5001965
- ;;^UTILITY(U,$J,358.3,15125,0)
- ;;=D12.3^^85^809^12
- ;;^UTILITY(U,$J,358.3,15125,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15125,1,3,0)
- ;;=3^Benign Neop of Transverse Colon
- ;;^UTILITY(U,$J,358.3,15125,1,4,0)
- ;;=4^D12.3
- ;;^UTILITY(U,$J,358.3,15125,2)
- ;;=^5001966
- ;;^UTILITY(U,$J,358.3,15126,0)
- ;;=D12.4^^85^809^10
- ;;^UTILITY(U,$J,358.3,15126,1,0)
- ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,15395,1,3,0)
+ ;;=3^Dementia in Oth Diseases Classified Elsewhere w/ Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,15395,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,15395,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,15396,0)
+ ;;=F06.8^^58^662^24

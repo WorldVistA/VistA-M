@@ -1,142 +1,136 @@
-IBDEI09Y ; ; 19-NOV-2015
+IBDEI09Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4126,1,3,0)
- ;;=3^Allergy to Latex
- ;;^UTILITY(U,$J,358.3,4126,1,4,0)
- ;;=4^Z91.040
- ;;^UTILITY(U,$J,358.3,4126,2)
- ;;=^5063607
- ;;^UTILITY(U,$J,358.3,4127,0)
- ;;=Z91.011^^28^263^11
- ;;^UTILITY(U,$J,358.3,4127,1,0)
+ ;;^UTILITY(U,$J,358.3,4414,2)
+ ;;=^5001898
+ ;;^UTILITY(U,$J,358.3,4415,0)
+ ;;=D03.52^^21^277^48
+ ;;^UTILITY(U,$J,358.3,4415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4127,1,3,0)
- ;;=3^Allergy to Milk Products
- ;;^UTILITY(U,$J,358.3,4127,1,4,0)
- ;;=4^Z91.011
- ;;^UTILITY(U,$J,358.3,4127,2)
- ;;=^5063600
- ;;^UTILITY(U,$J,358.3,4128,0)
- ;;=Z88.5^^28^263^12
- ;;^UTILITY(U,$J,358.3,4128,1,0)
+ ;;^UTILITY(U,$J,358.3,4415,1,3,0)
+ ;;=3^Melanoma in Situ Breast,Skin/Soft Tissue
+ ;;^UTILITY(U,$J,358.3,4415,1,4,0)
+ ;;=4^D03.52
+ ;;^UTILITY(U,$J,358.3,4415,2)
+ ;;=^5001899
+ ;;^UTILITY(U,$J,358.3,4416,0)
+ ;;=D03.61^^21^277^56
+ ;;^UTILITY(U,$J,358.3,4416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4128,1,3,0)
- ;;=3^Allergy to Narcotic Agent
- ;;^UTILITY(U,$J,358.3,4128,1,4,0)
- ;;=4^Z88.5
- ;;^UTILITY(U,$J,358.3,4128,2)
- ;;=^5063526
- ;;^UTILITY(U,$J,358.3,4129,0)
- ;;=Z91.09^^28^263^13
- ;;^UTILITY(U,$J,358.3,4129,1,0)
+ ;;^UTILITY(U,$J,358.3,4416,1,3,0)
+ ;;=3^Melanoma in Situ Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4416,1,4,0)
+ ;;=4^D03.61
+ ;;^UTILITY(U,$J,358.3,4416,2)
+ ;;=^5001902
+ ;;^UTILITY(U,$J,358.3,4417,0)
+ ;;=D03.62^^21^277^52
+ ;;^UTILITY(U,$J,358.3,4417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4129,1,3,0)
- ;;=3^Allergy to Other Substances
- ;;^UTILITY(U,$J,358.3,4129,1,4,0)
- ;;=4^Z91.09
- ;;^UTILITY(U,$J,358.3,4129,2)
- ;;=^5063610
- ;;^UTILITY(U,$J,358.3,4130,0)
- ;;=Z91.010^^28^263^14
- ;;^UTILITY(U,$J,358.3,4130,1,0)
+ ;;^UTILITY(U,$J,358.3,4417,1,3,0)
+ ;;=3^Melanoma in Situ Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,4417,1,4,0)
+ ;;=4^D03.62
+ ;;^UTILITY(U,$J,358.3,4417,2)
+ ;;=^5001903
+ ;;^UTILITY(U,$J,358.3,4418,0)
+ ;;=D03.71^^21^277^55
+ ;;^UTILITY(U,$J,358.3,4418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4130,1,3,0)
- ;;=3^Allergy to Peanuts
- ;;^UTILITY(U,$J,358.3,4130,1,4,0)
- ;;=4^Z91.010
- ;;^UTILITY(U,$J,358.3,4130,2)
- ;;=^5063599
- ;;^UTILITY(U,$J,358.3,4131,0)
- ;;=Z88.0^^28^263^15
- ;;^UTILITY(U,$J,358.3,4131,1,0)
+ ;;^UTILITY(U,$J,358.3,4418,1,3,0)
+ ;;=3^Melanoma in Situ Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4418,1,4,0)
+ ;;=4^D03.71
+ ;;^UTILITY(U,$J,358.3,4418,2)
+ ;;=^5001905
+ ;;^UTILITY(U,$J,358.3,4419,0)
+ ;;=D03.72^^21^277^51
+ ;;^UTILITY(U,$J,358.3,4419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4131,1,3,0)
- ;;=3^Allergy to Penicillin
- ;;^UTILITY(U,$J,358.3,4131,1,4,0)
- ;;=4^Z88.0
- ;;^UTILITY(U,$J,358.3,4131,2)
- ;;=^5063521
- ;;^UTILITY(U,$J,358.3,4132,0)
- ;;=Z91.041^^28^263^16
- ;;^UTILITY(U,$J,358.3,4132,1,0)
+ ;;^UTILITY(U,$J,358.3,4419,1,3,0)
+ ;;=3^Melanoma in Situ Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4419,1,4,0)
+ ;;=4^D03.72
+ ;;^UTILITY(U,$J,358.3,4419,2)
+ ;;=^5001906
+ ;;^UTILITY(U,$J,358.3,4420,0)
+ ;;=D03.8^^21^277^61
+ ;;^UTILITY(U,$J,358.3,4420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4132,1,3,0)
- ;;=3^Allergy to Radiographic Dye
- ;;^UTILITY(U,$J,358.3,4132,1,4,0)
- ;;=4^Z91.041
- ;;^UTILITY(U,$J,358.3,4132,2)
- ;;=^5063608
- ;;^UTILITY(U,$J,358.3,4133,0)
- ;;=Z91.013^^28^263^17
- ;;^UTILITY(U,$J,358.3,4133,1,0)
+ ;;^UTILITY(U,$J,358.3,4420,1,3,0)
+ ;;=3^Melanoma in Situ of Other Sites
+ ;;^UTILITY(U,$J,358.3,4420,1,4,0)
+ ;;=4^D03.8
+ ;;^UTILITY(U,$J,358.3,4420,2)
+ ;;=^5001907
+ ;;^UTILITY(U,$J,358.3,4421,0)
+ ;;=D22.0^^21^277^38
+ ;;^UTILITY(U,$J,358.3,4421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4133,1,3,0)
- ;;=3^Allergy to Seafood
- ;;^UTILITY(U,$J,358.3,4133,1,4,0)
- ;;=4^Z91.013
- ;;^UTILITY(U,$J,358.3,4133,2)
- ;;=^5063602
- ;;^UTILITY(U,$J,358.3,4134,0)
- ;;=Z88.7^^28^263^18
- ;;^UTILITY(U,$J,358.3,4134,1,0)
+ ;;^UTILITY(U,$J,358.3,4421,1,3,0)
+ ;;=3^Melanocytic Nevi of Lip
+ ;;^UTILITY(U,$J,358.3,4421,1,4,0)
+ ;;=4^D22.0
+ ;;^UTILITY(U,$J,358.3,4421,2)
+ ;;=^5002041
+ ;;^UTILITY(U,$J,358.3,4422,0)
+ ;;=D22.12^^21^277^35
+ ;;^UTILITY(U,$J,358.3,4422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4134,1,3,0)
- ;;=3^Allergy to Serum and Vaccine
- ;;^UTILITY(U,$J,358.3,4134,1,4,0)
- ;;=4^Z88.7
- ;;^UTILITY(U,$J,358.3,4134,2)
- ;;=^5063528
- ;;^UTILITY(U,$J,358.3,4135,0)
- ;;=Z88.2^^28^263^19
- ;;^UTILITY(U,$J,358.3,4135,1,0)
+ ;;^UTILITY(U,$J,358.3,4422,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,4422,1,4,0)
+ ;;=4^D22.12
+ ;;^UTILITY(U,$J,358.3,4422,2)
+ ;;=^5002044
+ ;;^UTILITY(U,$J,358.3,4423,0)
+ ;;=D22.11^^21^277^40
+ ;;^UTILITY(U,$J,358.3,4423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4135,1,3,0)
- ;;=3^Allergy to Sulfonamides
- ;;^UTILITY(U,$J,358.3,4135,1,4,0)
- ;;=4^Z88.2
- ;;^UTILITY(U,$J,358.3,4135,2)
- ;;=^5063523
- ;;^UTILITY(U,$J,358.3,4136,0)
- ;;=Z72.811^^28^263^20
- ;;^UTILITY(U,$J,358.3,4136,1,0)
+ ;;^UTILITY(U,$J,358.3,4423,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,4423,1,4,0)
+ ;;=4^D22.11
+ ;;^UTILITY(U,$J,358.3,4423,2)
+ ;;=^5002043
+ ;;^UTILITY(U,$J,358.3,4424,0)
+ ;;=D22.21^^21^277^39
+ ;;^UTILITY(U,$J,358.3,4424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4136,1,3,0)
- ;;=3^Antisocial Behavior
- ;;^UTILITY(U,$J,358.3,4136,1,4,0)
- ;;=4^Z72.811
- ;;^UTILITY(U,$J,358.3,4136,2)
- ;;=^5063263
- ;;^UTILITY(U,$J,358.3,4137,0)
- ;;=Z93.9^^28^263^21
- ;;^UTILITY(U,$J,358.3,4137,1,0)
+ ;;^UTILITY(U,$J,358.3,4424,1,3,0)
+ ;;=3^Melanocytic Nevi of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4424,1,4,0)
+ ;;=4^D22.21
+ ;;^UTILITY(U,$J,358.3,4424,2)
+ ;;=^5002046
+ ;;^UTILITY(U,$J,358.3,4425,0)
+ ;;=D22.22^^21^277^34
+ ;;^UTILITY(U,$J,358.3,4425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4137,1,3,0)
- ;;=3^Artificial Opening Status,Unspec
- ;;^UTILITY(U,$J,358.3,4137,1,4,0)
- ;;=4^Z93.9
- ;;^UTILITY(U,$J,358.3,4137,2)
- ;;=^5063653
- ;;^UTILITY(U,$J,358.3,4138,0)
- ;;=Z74.01^^28^263^22
- ;;^UTILITY(U,$J,358.3,4138,1,0)
+ ;;^UTILITY(U,$J,358.3,4425,1,3,0)
+ ;;=3^Melanocytic Nevi of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4425,1,4,0)
+ ;;=4^D22.22
+ ;;^UTILITY(U,$J,358.3,4425,2)
+ ;;=^5002047
+ ;;^UTILITY(U,$J,358.3,4426,0)
+ ;;=D22.30^^21^277^45
+ ;;^UTILITY(U,$J,358.3,4426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4138,1,3,0)
- ;;=3^Bed Confinement Status
- ;;^UTILITY(U,$J,358.3,4138,1,4,0)
- ;;=4^Z74.01
- ;;^UTILITY(U,$J,358.3,4138,2)
- ;;=^5063282
- ;;^UTILITY(U,$J,358.3,4139,0)
- ;;=R68.83^^28^263^23
- ;;^UTILITY(U,$J,358.3,4139,1,0)
+ ;;^UTILITY(U,$J,358.3,4426,1,3,0)
+ ;;=3^Melanocytic Nevi of Unspec Part of Face
+ ;;^UTILITY(U,$J,358.3,4426,1,4,0)
+ ;;=4^D22.30
+ ;;^UTILITY(U,$J,358.3,4426,2)
+ ;;=^5002048
+ ;;^UTILITY(U,$J,358.3,4427,0)
+ ;;=D22.4^^21^277^43
+ ;;^UTILITY(U,$J,358.3,4427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4139,1,3,0)
- ;;=3^Chills w/o Fever
- ;;^UTILITY(U,$J,358.3,4139,1,4,0)
- ;;=4^R68.83
- ;;^UTILITY(U,$J,358.3,4139,2)
- ;;=^5019555
- ;;^UTILITY(U,$J,358.3,4140,0)
- ;;=R68.3^^28^263^24
+ ;;^UTILITY(U,$J,358.3,4427,1,3,0)
+ ;;=3^Melanocytic Nevi of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,4427,1,4,0)
+ ;;=4^D22.4
+ ;;^UTILITY(U,$J,358.3,4427,2)
+ ;;=^5002050

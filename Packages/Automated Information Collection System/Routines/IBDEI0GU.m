@@ -1,146 +1,134 @@
-IBDEI0GU ; ; 19-NOV-2015
+IBDEI0GU ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7517,1,3,0)
- ;;=3^Alkalosis
- ;;^UTILITY(U,$J,358.3,7517,1,4,0)
- ;;=4^E87.3
- ;;^UTILITY(U,$J,358.3,7517,2)
- ;;=^5003021
- ;;^UTILITY(U,$J,358.3,7518,0)
- ;;=E87.4^^52^504^23
- ;;^UTILITY(U,$J,358.3,7518,1,0)
+ ;;^UTILITY(U,$J,358.3,7786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7518,1,3,0)
- ;;=3^Mixed Acid-Base Balance Disorder
- ;;^UTILITY(U,$J,358.3,7518,1,4,0)
- ;;=4^E87.4
- ;;^UTILITY(U,$J,358.3,7518,2)
- ;;=^5003022
- ;;^UTILITY(U,$J,358.3,7519,0)
- ;;=E86.9^^52^504^28
- ;;^UTILITY(U,$J,358.3,7519,1,0)
+ ;;^UTILITY(U,$J,358.3,7786,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7786,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,7786,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,7787,0)
+ ;;=W17.2XXA^^30^415^77
+ ;;^UTILITY(U,$J,358.3,7787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7519,1,3,0)
- ;;=3^Volume Depletion,Unspec
- ;;^UTILITY(U,$J,358.3,7519,1,4,0)
- ;;=4^E86.9
- ;;^UTILITY(U,$J,358.3,7519,2)
- ;;=^332840
- ;;^UTILITY(U,$J,358.3,7520,0)
- ;;=E86.0^^52^504^6
- ;;^UTILITY(U,$J,358.3,7520,1,0)
+ ;;^UTILITY(U,$J,358.3,7787,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7787,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,7787,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,7788,0)
+ ;;=W17.2XXD^^30^415^78
+ ;;^UTILITY(U,$J,358.3,7788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7520,1,3,0)
- ;;=3^Dehydration
- ;;^UTILITY(U,$J,358.3,7520,1,4,0)
- ;;=4^E86.0
- ;;^UTILITY(U,$J,358.3,7520,2)
- ;;=^332743
- ;;^UTILITY(U,$J,358.3,7521,0)
- ;;=E86.1^^52^504^21
- ;;^UTILITY(U,$J,358.3,7521,1,0)
+ ;;^UTILITY(U,$J,358.3,7788,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7788,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,7788,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,7789,0)
+ ;;=W17.3XXA^^30^415^75
+ ;;^UTILITY(U,$J,358.3,7789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7521,1,3,0)
- ;;=3^Hypovolemia
- ;;^UTILITY(U,$J,358.3,7521,1,4,0)
- ;;=4^E86.1
- ;;^UTILITY(U,$J,358.3,7521,2)
- ;;=^332744
- ;;^UTILITY(U,$J,358.3,7522,0)
- ;;=E87.70^^52^504^10
- ;;^UTILITY(U,$J,358.3,7522,1,0)
+ ;;^UTILITY(U,$J,358.3,7789,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7789,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,7789,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,7790,0)
+ ;;=W17.3XXD^^30^415^76
+ ;;^UTILITY(U,$J,358.3,7790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7522,1,3,0)
- ;;=3^Fluid Overload,Unspec
- ;;^UTILITY(U,$J,358.3,7522,1,4,0)
- ;;=4^E87.70
- ;;^UTILITY(U,$J,358.3,7522,2)
- ;;=^5003023
- ;;^UTILITY(U,$J,358.3,7523,0)
- ;;=E87.5^^52^504^13
- ;;^UTILITY(U,$J,358.3,7523,1,0)
+ ;;^UTILITY(U,$J,358.3,7790,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7790,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,7790,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,7791,0)
+ ;;=W17.4XXA^^30^415^39
+ ;;^UTILITY(U,$J,358.3,7791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7523,1,3,0)
- ;;=3^Hyperkalemia
- ;;^UTILITY(U,$J,358.3,7523,1,4,0)
- ;;=4^E87.5
- ;;^UTILITY(U,$J,358.3,7523,2)
- ;;=^60041
- ;;^UTILITY(U,$J,358.3,7524,0)
- ;;=E87.6^^52^504^19
- ;;^UTILITY(U,$J,358.3,7524,1,0)
+ ;;^UTILITY(U,$J,358.3,7791,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7791,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,7791,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,7792,0)
+ ;;=W17.4XXD^^30^415^40
+ ;;^UTILITY(U,$J,358.3,7792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7524,1,3,0)
- ;;=3^Hypokalemia
- ;;^UTILITY(U,$J,358.3,7524,1,4,0)
- ;;=4^E87.6
- ;;^UTILITY(U,$J,358.3,7524,2)
- ;;=^60610
- ;;^UTILITY(U,$J,358.3,7525,0)
- ;;=E87.8^^52^504^8
- ;;^UTILITY(U,$J,358.3,7525,1,0)
+ ;;^UTILITY(U,$J,358.3,7792,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7792,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,7792,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,7793,0)
+ ;;=W17.81XA^^30^415^27
+ ;;^UTILITY(U,$J,358.3,7793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7525,1,3,0)
- ;;=3^Electrolyte & Fluid Balance Disorders NEC
- ;;^UTILITY(U,$J,358.3,7525,1,4,0)
- ;;=4^E87.8
- ;;^UTILITY(U,$J,358.3,7525,2)
- ;;=^5003026
- ;;^UTILITY(U,$J,358.3,7526,0)
- ;;=E26.81^^52^504^5
- ;;^UTILITY(U,$J,358.3,7526,1,0)
+ ;;^UTILITY(U,$J,358.3,7793,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7793,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,7793,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,7794,0)
+ ;;=W17.81XD^^30^415^28
+ ;;^UTILITY(U,$J,358.3,7794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7526,1,3,0)
- ;;=3^Bartter's Syndrome
- ;;^UTILITY(U,$J,358.3,7526,1,4,0)
- ;;=4^E26.81
- ;;^UTILITY(U,$J,358.3,7526,2)
- ;;=^329906
- ;;^UTILITY(U,$J,358.3,7527,0)
- ;;=E23.2^^52^504^7
- ;;^UTILITY(U,$J,358.3,7527,1,0)
+ ;;^UTILITY(U,$J,358.3,7794,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7794,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,7794,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,7795,0)
+ ;;=W17.89XA^^30^415^55
+ ;;^UTILITY(U,$J,358.3,7795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7527,1,3,0)
- ;;=3^Diabetes Insipidus
- ;;^UTILITY(U,$J,358.3,7527,1,4,0)
- ;;=4^E23.2
- ;;^UTILITY(U,$J,358.3,7527,2)
- ;;=^33572
- ;;^UTILITY(U,$J,358.3,7528,0)
- ;;=E83.41^^52^504^14
- ;;^UTILITY(U,$J,358.3,7528,1,0)
+ ;;^UTILITY(U,$J,358.3,7795,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7795,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,7795,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,7796,0)
+ ;;=W17.89XD^^30^415^56
+ ;;^UTILITY(U,$J,358.3,7796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7528,1,3,0)
- ;;=3^Hypermagnesemia
- ;;^UTILITY(U,$J,358.3,7528,1,4,0)
- ;;=4^E83.41
- ;;^UTILITY(U,$J,358.3,7528,2)
- ;;=^5003002
- ;;^UTILITY(U,$J,358.3,7529,0)
- ;;=E21.3^^52^504^16
- ;;^UTILITY(U,$J,358.3,7529,1,0)
+ ;;^UTILITY(U,$J,358.3,7796,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7796,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,7796,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,7797,0)
+ ;;=W18.11XA^^30^415^63
+ ;;^UTILITY(U,$J,358.3,7797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7529,1,3,0)
- ;;=3^Hyperparathyroidism,Unspec
- ;;^UTILITY(U,$J,358.3,7529,1,4,0)
- ;;=4^E21.3
- ;;^UTILITY(U,$J,358.3,7529,2)
- ;;=^331438
- ;;^UTILITY(U,$J,358.3,7530,0)
- ;;=E83.42^^52^504^20
- ;;^UTILITY(U,$J,358.3,7530,1,0)
+ ;;^UTILITY(U,$J,358.3,7797,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,7797,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,7797,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,7798,0)
+ ;;=W18.11XD^^30^415^64
+ ;;^UTILITY(U,$J,358.3,7798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7530,1,3,0)
- ;;=3^Hypomagnesemia
- ;;^UTILITY(U,$J,358.3,7530,1,4,0)
- ;;=4^E83.42
- ;;^UTILITY(U,$J,358.3,7530,2)
- ;;=^5003003
- ;;^UTILITY(U,$J,358.3,7531,0)
- ;;=N25.1^^52^504^24
- ;;^UTILITY(U,$J,358.3,7531,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7531,1,3,0)
- ;;=3^Nephrogenic Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,7798,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,7798,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,7798,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,7799,0)
+ ;;=W18.12XA^^30^415^61

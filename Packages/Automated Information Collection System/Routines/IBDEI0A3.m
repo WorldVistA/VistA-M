@@ -1,138 +1,142 @@
-IBDEI0A3 ; ; 19-NOV-2015
+IBDEI0A3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4193,1,0)
+ ;;^UTILITY(U,$J,358.3,4482,1,3,0)
+ ;;=3^Pityriasis Rubra Pilaris
+ ;;^UTILITY(U,$J,358.3,4482,1,4,0)
+ ;;=4^L44.0
+ ;;^UTILITY(U,$J,358.3,4482,2)
+ ;;=^94729
+ ;;^UTILITY(U,$J,358.3,4483,0)
+ ;;=L29.0^^21^279^31
+ ;;^UTILITY(U,$J,358.3,4483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4193,1,3,0)
- ;;=3^Illness,Unspec
- ;;^UTILITY(U,$J,358.3,4193,1,4,0)
- ;;=4^R69.
- ;;^UTILITY(U,$J,358.3,4193,2)
- ;;=^5019558
- ;;^UTILITY(U,$J,358.3,4194,0)
- ;;=D89.9^^28^263^68
- ;;^UTILITY(U,$J,358.3,4194,1,0)
+ ;;^UTILITY(U,$J,358.3,4483,1,3,0)
+ ;;=3^Pruritus Ani
+ ;;^UTILITY(U,$J,358.3,4483,1,4,0)
+ ;;=4^L29.0
+ ;;^UTILITY(U,$J,358.3,4483,2)
+ ;;=^100061
+ ;;^UTILITY(U,$J,358.3,4484,0)
+ ;;=L29.1^^21^279^33
+ ;;^UTILITY(U,$J,358.3,4484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4194,1,3,0)
- ;;=3^Immune Mechanism Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4194,1,4,0)
- ;;=4^D89.9
- ;;^UTILITY(U,$J,358.3,4194,2)
- ;;=^5002459
- ;;^UTILITY(U,$J,358.3,4195,0)
- ;;=D84.9^^28^263^70
- ;;^UTILITY(U,$J,358.3,4195,1,0)
+ ;;^UTILITY(U,$J,358.3,4484,1,3,0)
+ ;;=3^Pruritus Scroti
+ ;;^UTILITY(U,$J,358.3,4484,1,4,0)
+ ;;=4^L29.1
+ ;;^UTILITY(U,$J,358.3,4484,2)
+ ;;=^5009150
+ ;;^UTILITY(U,$J,358.3,4485,0)
+ ;;=L29.2^^21^279^34
+ ;;^UTILITY(U,$J,358.3,4485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4195,1,3,0)
- ;;=3^Immunodeficiency,Unspec
- ;;^UTILITY(U,$J,358.3,4195,1,4,0)
- ;;=4^D84.9
- ;;^UTILITY(U,$J,358.3,4195,2)
- ;;=^5002441
- ;;^UTILITY(U,$J,358.3,4196,0)
- ;;=R68.82^^28^263^72
- ;;^UTILITY(U,$J,358.3,4196,1,0)
+ ;;^UTILITY(U,$J,358.3,4485,1,3,0)
+ ;;=3^Pruritus Vulvae
+ ;;^UTILITY(U,$J,358.3,4485,1,4,0)
+ ;;=4^L29.2
+ ;;^UTILITY(U,$J,358.3,4485,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,4486,0)
+ ;;=L29.3^^21^279^35
+ ;;^UTILITY(U,$J,358.3,4486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4196,1,3,0)
- ;;=3^Libido,Decreased
- ;;^UTILITY(U,$J,358.3,4196,1,4,0)
- ;;=4^R68.82
- ;;^UTILITY(U,$J,358.3,4196,2)
- ;;=^329956
- ;;^UTILITY(U,$J,358.3,4197,0)
- ;;=R53.81^^28^263^73
- ;;^UTILITY(U,$J,358.3,4197,1,0)
+ ;;^UTILITY(U,$J,358.3,4486,1,3,0)
+ ;;=3^Pruritus,Anogenital,Unspec
+ ;;^UTILITY(U,$J,358.3,4486,1,4,0)
+ ;;=4^L29.3
+ ;;^UTILITY(U,$J,358.3,4486,2)
+ ;;=^5009151
+ ;;^UTILITY(U,$J,358.3,4487,0)
+ ;;=L29.9^^21^279^36
+ ;;^UTILITY(U,$J,358.3,4487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4197,1,3,0)
- ;;=3^Malaise,Other
- ;;^UTILITY(U,$J,358.3,4197,1,4,0)
- ;;=4^R53.81
- ;;^UTILITY(U,$J,358.3,4197,2)
- ;;=^5019518
- ;;^UTILITY(U,$J,358.3,4198,0)
- ;;=Z91.11^^28^263^74
- ;;^UTILITY(U,$J,358.3,4198,1,0)
+ ;;^UTILITY(U,$J,358.3,4487,1,3,0)
+ ;;=3^Pruritus,Unspec
+ ;;^UTILITY(U,$J,358.3,4487,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,4487,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,4488,0)
+ ;;=L40.0^^21^279^40
+ ;;^UTILITY(U,$J,358.3,4488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4198,1,3,0)
- ;;=3^Noncompliance w/ Dietary Regimen
- ;;^UTILITY(U,$J,358.3,4198,1,4,0)
- ;;=4^Z91.11
- ;;^UTILITY(U,$J,358.3,4198,2)
- ;;=^5063611
- ;;^UTILITY(U,$J,358.3,4199,0)
- ;;=Z91.120^^28^263^77
- ;;^UTILITY(U,$J,358.3,4199,1,0)
+ ;;^UTILITY(U,$J,358.3,4488,1,3,0)
+ ;;=3^Psoriasis Vulgaris
+ ;;^UTILITY(U,$J,358.3,4488,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,4488,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,4489,0)
+ ;;=L40.3^^21^279^42
+ ;;^UTILITY(U,$J,358.3,4489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4199,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Financial Hardship
- ;;^UTILITY(U,$J,358.3,4199,1,4,0)
- ;;=4^Z91.120
- ;;^UTILITY(U,$J,358.3,4199,2)
- ;;=^5063612
- ;;^UTILITY(U,$J,358.3,4200,0)
- ;;=Z91.128^^28^263^78
- ;;^UTILITY(U,$J,358.3,4200,1,0)
+ ;;^UTILITY(U,$J,358.3,4489,1,3,0)
+ ;;=3^Pustulosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,4489,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,4489,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,4490,0)
+ ;;=L40.4^^21^279^41
+ ;;^UTILITY(U,$J,358.3,4490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4200,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Other Reasons
- ;;^UTILITY(U,$J,358.3,4200,1,4,0)
- ;;=4^Z91.128
- ;;^UTILITY(U,$J,358.3,4200,2)
- ;;=^5063613
- ;;^UTILITY(U,$J,358.3,4201,0)
- ;;=Z91.130^^28^263^76
- ;;^UTILITY(U,$J,358.3,4201,1,0)
+ ;;^UTILITY(U,$J,358.3,4490,1,3,0)
+ ;;=3^Psoriasis,Guttate
+ ;;^UTILITY(U,$J,358.3,4490,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,4490,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,4491,0)
+ ;;=L40.8^^21^279^39
+ ;;^UTILITY(U,$J,358.3,4491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4201,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen d/t Age-Related Debility
- ;;^UTILITY(U,$J,358.3,4201,1,4,0)
- ;;=4^Z91.130
- ;;^UTILITY(U,$J,358.3,4201,2)
- ;;=^5063614
- ;;^UTILITY(U,$J,358.3,4202,0)
- ;;=Z91.138^^28^263^75
- ;;^UTILITY(U,$J,358.3,4202,1,0)
+ ;;^UTILITY(U,$J,358.3,4491,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,4491,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,4491,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,4492,0)
+ ;;=L89.95^^21^279^29
+ ;;^UTILITY(U,$J,358.3,4492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4202,1,3,0)
- ;;=3^Noncompliance w/ Med Regimen Unintentional
- ;;^UTILITY(U,$J,358.3,4202,1,4,0)
- ;;=4^Z91.138
- ;;^UTILITY(U,$J,358.3,4202,2)
- ;;=^5063615
- ;;^UTILITY(U,$J,358.3,4203,0)
- ;;=Z91.19^^28^263^79
- ;;^UTILITY(U,$J,358.3,4203,1,0)
+ ;;^UTILITY(U,$J,358.3,4492,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Unstageable (Covered by Eschar)
+ ;;^UTILITY(U,$J,358.3,4492,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,4492,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,4493,0)
+ ;;=L89.92^^21^279^25
+ ;;^UTILITY(U,$J,358.3,4493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4203,1,3,0)
- ;;=3^Noncompliance w/ Medical Treatment/Regimen
- ;;^UTILITY(U,$J,358.3,4203,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,4203,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,4204,0)
- ;;=Z91.15^^28^263^80
- ;;^UTILITY(U,$J,358.3,4204,1,0)
+ ;;^UTILITY(U,$J,358.3,4493,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,4493,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,4493,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,4494,0)
+ ;;=L89.93^^21^279^26
+ ;;^UTILITY(U,$J,358.3,4494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4204,1,3,0)
- ;;=3^Noncompliance w/ Renal Dialysis
- ;;^UTILITY(U,$J,358.3,4204,1,4,0)
- ;;=4^Z91.15
- ;;^UTILITY(U,$J,358.3,4204,2)
- ;;=^5063617
- ;;^UTILITY(U,$J,358.3,4205,0)
- ;;=Z57.2^^28^263^85
- ;;^UTILITY(U,$J,358.3,4205,1,0)
+ ;;^UTILITY(U,$J,358.3,4494,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,4494,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,4494,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,4495,0)
+ ;;=L89.94^^21^279^27
+ ;;^UTILITY(U,$J,358.3,4495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4205,1,3,0)
- ;;=3^Occupational Exposure to Dust
- ;;^UTILITY(U,$J,358.3,4205,1,4,0)
- ;;=4^Z57.2
- ;;^UTILITY(U,$J,358.3,4205,2)
- ;;=^5063120
- ;;^UTILITY(U,$J,358.3,4206,0)
- ;;=Z57.31^^28^263^91
- ;;^UTILITY(U,$J,358.3,4206,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4206,1,3,0)
- ;;=3^Occupational Exposure to Tobacco Smoke,Environmental
+ ;;^UTILITY(U,$J,358.3,4495,1,3,0)
+ ;;=3^Pressure Ulcer Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,4495,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,4495,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,4496,0)
+ ;;=L89.90^^21^279^28

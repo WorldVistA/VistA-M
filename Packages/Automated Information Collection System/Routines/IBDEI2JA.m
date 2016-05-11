@@ -1,126 +1,134 @@
-IBDEI2JA ; ; 19-NOV-2015
+IBDEI2JA ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42505,0)
- ;;=S82.852K^^192^2137^150
- ;;^UTILITY(U,$J,358.3,42505,1,0)
+ ;;^UTILITY(U,$J,358.3,42985,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,42985,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,42986,0)
+ ;;=E10.42^^164^2060^84
+ ;;^UTILITY(U,$J,358.3,42986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42505,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42505,1,4,0)
- ;;=4^S82.852K
- ;;^UTILITY(U,$J,358.3,42505,2)
- ;;=^5042600
- ;;^UTILITY(U,$J,358.3,42506,0)
- ;;=S92.114K^^192^2137^283
- ;;^UTILITY(U,$J,358.3,42506,1,0)
+ ;;^UTILITY(U,$J,358.3,42986,1,3,0)
+ ;;=3^DM Type 1 w/ DM Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,42986,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,42986,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,42987,0)
+ ;;=E10.43^^164^2060^78
+ ;;^UTILITY(U,$J,358.3,42987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42506,1,3,0)
- ;;=3^Nondisp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42506,1,4,0)
- ;;=4^S92.114K
- ;;^UTILITY(U,$J,358.3,42506,2)
- ;;=^5044630
- ;;^UTILITY(U,$J,358.3,42507,0)
- ;;=S92.115K^^192^2137^282
- ;;^UTILITY(U,$J,358.3,42507,1,0)
+ ;;^UTILITY(U,$J,358.3,42987,1,3,0)
+ ;;=3^DM Type 1 w/ DM Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,42987,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,42987,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,42988,0)
+ ;;=E10.51^^164^2060^82
+ ;;^UTILITY(U,$J,358.3,42988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42507,1,3,0)
- ;;=3^Nondisp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42507,1,4,0)
- ;;=4^S92.115K
- ;;^UTILITY(U,$J,358.3,42507,2)
- ;;=^5044637
- ;;^UTILITY(U,$J,358.3,42508,0)
- ;;=S92.112K^^192^2137^57
- ;;^UTILITY(U,$J,358.3,42508,1,0)
+ ;;^UTILITY(U,$J,358.3,42988,1,3,0)
+ ;;=3^DM Type 1 w/ DM Peripheral Angiopathy w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,42988,1,4,0)
+ ;;=4^E10.51
+ ;;^UTILITY(U,$J,358.3,42988,2)
+ ;;=^5002610
+ ;;^UTILITY(U,$J,358.3,42989,0)
+ ;;=E10.52^^164^2060^83
+ ;;^UTILITY(U,$J,358.3,42989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42508,1,3,0)
- ;;=3^Disp fx neck lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42508,1,4,0)
- ;;=4^S92.112K
- ;;^UTILITY(U,$J,358.3,42508,2)
- ;;=^5044616
- ;;^UTILITY(U,$J,358.3,42509,0)
- ;;=S92.111K^^192^2137^58
- ;;^UTILITY(U,$J,358.3,42509,1,0)
+ ;;^UTILITY(U,$J,358.3,42989,1,3,0)
+ ;;=3^DM Type 1 w/ DM Peripheral Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,42989,1,4,0)
+ ;;=4^E10.52
+ ;;^UTILITY(U,$J,358.3,42989,2)
+ ;;=^5002611
+ ;;^UTILITY(U,$J,358.3,42990,0)
+ ;;=E10.610^^164^2060^80
+ ;;^UTILITY(U,$J,358.3,42990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42509,1,3,0)
- ;;=3^Disp fx neck rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42509,1,4,0)
- ;;=4^S92.111K
- ;;^UTILITY(U,$J,358.3,42509,2)
- ;;=^5044609
- ;;^UTILITY(U,$J,358.3,42510,0)
- ;;=S92.142K^^192^2137^20
- ;;^UTILITY(U,$J,358.3,42510,1,0)
+ ;;^UTILITY(U,$J,358.3,42990,1,3,0)
+ ;;=3^DM Type 1 w/ DM Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,42990,1,4,0)
+ ;;=4^E10.610
+ ;;^UTILITY(U,$J,358.3,42990,2)
+ ;;=^5002613
+ ;;^UTILITY(U,$J,358.3,42991,0)
+ ;;=E10.620^^164^2060^79
+ ;;^UTILITY(U,$J,358.3,42991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42510,1,3,0)
- ;;=3^Disp dome fx lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42510,1,4,0)
- ;;=4^S92.142K
- ;;^UTILITY(U,$J,358.3,42510,2)
- ;;=^5044742
- ;;^UTILITY(U,$J,358.3,42511,0)
- ;;=S92.141K^^192^2137^23
- ;;^UTILITY(U,$J,358.3,42511,1,0)
+ ;;^UTILITY(U,$J,358.3,42991,1,3,0)
+ ;;=3^DM Type 1 w/ DM Dermatitis
+ ;;^UTILITY(U,$J,358.3,42991,1,4,0)
+ ;;=4^E10.620
+ ;;^UTILITY(U,$J,358.3,42991,2)
+ ;;=^5002615
+ ;;^UTILITY(U,$J,358.3,42992,0)
+ ;;=E10.621^^164^2060^85
+ ;;^UTILITY(U,$J,358.3,42992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42511,1,3,0)
- ;;=3^Disp dome fx rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42511,1,4,0)
- ;;=4^S92.141K
- ;;^UTILITY(U,$J,358.3,42511,2)
- ;;=^5044735
- ;;^UTILITY(U,$J,358.3,42512,0)
- ;;=S92.135K^^192^2137^356
- ;;^UTILITY(U,$J,358.3,42512,1,0)
+ ;;^UTILITY(U,$J,358.3,42992,1,3,0)
+ ;;=3^DM Type 1 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,42992,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,42992,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,42993,0)
+ ;;=E10.622^^164^2060^90
+ ;;^UTILITY(U,$J,358.3,42993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42512,1,3,0)
- ;;=3^Nondisp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42512,1,4,0)
- ;;=4^S92.135K
- ;;^UTILITY(U,$J,358.3,42512,2)
- ;;=^5044721
- ;;^UTILITY(U,$J,358.3,42513,0)
- ;;=S92.134K^^192^2137^357
- ;;^UTILITY(U,$J,358.3,42513,1,0)
+ ;;^UTILITY(U,$J,358.3,42993,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,42993,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,42993,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,42994,0)
+ ;;=E10.630^^164^2060^89
+ ;;^UTILITY(U,$J,358.3,42994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42513,1,3,0)
- ;;=3^Nondisp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42513,1,4,0)
- ;;=4^S92.134K
- ;;^UTILITY(U,$J,358.3,42513,2)
- ;;=^5044714
- ;;^UTILITY(U,$J,358.3,42514,0)
- ;;=S92.132K^^192^2137^130
- ;;^UTILITY(U,$J,358.3,42514,1,0)
+ ;;^UTILITY(U,$J,358.3,42994,1,3,0)
+ ;;=3^DM Type 1 w/ Peridontal Disease
+ ;;^UTILITY(U,$J,358.3,42994,1,4,0)
+ ;;=4^E10.630
+ ;;^UTILITY(U,$J,358.3,42994,2)
+ ;;=^5002619
+ ;;^UTILITY(U,$J,358.3,42995,0)
+ ;;=E10.641^^164^2060^87
+ ;;^UTILITY(U,$J,358.3,42995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42514,1,3,0)
- ;;=3^Disp fx post pro lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42514,1,4,0)
- ;;=4^S92.132K
- ;;^UTILITY(U,$J,358.3,42514,2)
- ;;=^5044700
- ;;^UTILITY(U,$J,358.3,42515,0)
- ;;=S92.131K^^192^2137^131
- ;;^UTILITY(U,$J,358.3,42515,1,0)
+ ;;^UTILITY(U,$J,358.3,42995,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,42995,1,4,0)
+ ;;=4^E10.641
+ ;;^UTILITY(U,$J,358.3,42995,2)
+ ;;=^5002621
+ ;;^UTILITY(U,$J,358.3,42996,0)
+ ;;=E10.649^^164^2060^88
+ ;;^UTILITY(U,$J,358.3,42996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42515,1,3,0)
- ;;=3^Disp fx post pro rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42515,1,4,0)
- ;;=4^S92.131K
- ;;^UTILITY(U,$J,358.3,42515,2)
- ;;=^5044693
- ;;^UTILITY(U,$J,358.3,42516,0)
- ;;=S92.125K^^192^2137^256
- ;;^UTILITY(U,$J,358.3,42516,1,0)
+ ;;^UTILITY(U,$J,358.3,42996,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,42996,1,4,0)
+ ;;=4^E10.649
+ ;;^UTILITY(U,$J,358.3,42996,2)
+ ;;=^5002622
+ ;;^UTILITY(U,$J,358.3,42997,0)
+ ;;=E10.65^^164^2060^86
+ ;;^UTILITY(U,$J,358.3,42997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42516,1,3,0)
- ;;=3^Nondisp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42516,1,4,0)
- ;;=4^S92.125K
- ;;^UTILITY(U,$J,358.3,42516,2)
- ;;=^5044679
- ;;^UTILITY(U,$J,358.3,42517,0)
- ;;=S92.124K^^192^2137^258
+ ;;^UTILITY(U,$J,358.3,42997,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,42997,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,42997,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,42998,0)
+ ;;=E11.40^^164^2060^95
+ ;;^UTILITY(U,$J,358.3,42998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42998,1,3,0)
+ ;;=3^DM Type 2 w/ DM Neuropathy,Unspec

@@ -1,126 +1,136 @@
-IBDEI2G6 ; ; 19-NOV-2015
+IBDEI2G6 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41075,1,0)
+ ;;^UTILITY(U,$J,358.3,41508,1,3,0)
+ ;;=3^Colostomy Status
+ ;;^UTILITY(U,$J,358.3,41508,1,4,0)
+ ;;=4^Z93.3
+ ;;^UTILITY(U,$J,358.3,41508,2)
+ ;;=^5063645
+ ;;^UTILITY(U,$J,358.3,41509,0)
+ ;;=Z94.0^^159^2005^63
+ ;;^UTILITY(U,$J,358.3,41509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41075,1,3,0)
- ;;=3^Nondisp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41075,1,4,0)
- ;;=4^S92.125K
- ;;^UTILITY(U,$J,358.3,41075,2)
- ;;=^5044679
- ;;^UTILITY(U,$J,358.3,41076,0)
- ;;=S92.124K^^189^2086^258
- ;;^UTILITY(U,$J,358.3,41076,1,0)
+ ;;^UTILITY(U,$J,358.3,41509,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,41509,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,41509,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,41510,0)
+ ;;=Z94.1^^159^2005^56
+ ;;^UTILITY(U,$J,358.3,41510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41076,1,3,0)
- ;;=3^Nondisp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41076,1,4,0)
- ;;=4^S92.124K
- ;;^UTILITY(U,$J,358.3,41076,2)
- ;;=^5044672
- ;;^UTILITY(U,$J,358.3,41077,0)
- ;;=S92.122K^^189^2086^31
- ;;^UTILITY(U,$J,358.3,41077,1,0)
+ ;;^UTILITY(U,$J,358.3,41510,1,3,0)
+ ;;=3^Heart Transplant Status
+ ;;^UTILITY(U,$J,358.3,41510,1,4,0)
+ ;;=4^Z94.1
+ ;;^UTILITY(U,$J,358.3,41510,2)
+ ;;=^5063655
+ ;;^UTILITY(U,$J,358.3,41511,0)
+ ;;=Z94.2^^159^2005^66
+ ;;^UTILITY(U,$J,358.3,41511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41077,1,3,0)
- ;;=3^Disp fx body lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41077,1,4,0)
- ;;=4^S92.122K
- ;;^UTILITY(U,$J,358.3,41077,2)
- ;;=^5044658
- ;;^UTILITY(U,$J,358.3,41078,0)
- ;;=S92.121K^^189^2086^33
- ;;^UTILITY(U,$J,358.3,41078,1,0)
+ ;;^UTILITY(U,$J,358.3,41511,1,3,0)
+ ;;=3^Lung Transplant Status
+ ;;^UTILITY(U,$J,358.3,41511,1,4,0)
+ ;;=4^Z94.2
+ ;;^UTILITY(U,$J,358.3,41511,2)
+ ;;=^5063656
+ ;;^UTILITY(U,$J,358.3,41512,0)
+ ;;=Z94.3^^159^2005^55
+ ;;^UTILITY(U,$J,358.3,41512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41078,1,3,0)
- ;;=3^Disp fx body rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41078,1,4,0)
- ;;=4^S92.121K
- ;;^UTILITY(U,$J,358.3,41078,2)
- ;;=^5044651
- ;;^UTILITY(U,$J,358.3,41079,0)
- ;;=S92.002K^^189^2086^191
- ;;^UTILITY(U,$J,358.3,41079,1,0)
+ ;;^UTILITY(U,$J,358.3,41512,1,3,0)
+ ;;=3^Heart & Lungs Transplant Status
+ ;;^UTILITY(U,$J,358.3,41512,1,4,0)
+ ;;=4^Z94.3
+ ;;^UTILITY(U,$J,358.3,41512,2)
+ ;;=^5063657
+ ;;^UTILITY(U,$J,358.3,41513,0)
+ ;;=Z94.4^^159^2005^65
+ ;;^UTILITY(U,$J,358.3,41513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41079,1,3,0)
- ;;=3^Fx of lft calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41079,1,4,0)
- ;;=4^S92.002K
- ;;^UTILITY(U,$J,358.3,41079,2)
- ;;=^5044364
- ;;^UTILITY(U,$J,358.3,41080,0)
- ;;=S92.001K^^189^2086^208
- ;;^UTILITY(U,$J,358.3,41080,1,0)
+ ;;^UTILITY(U,$J,358.3,41513,1,3,0)
+ ;;=3^Liver Transplant Status
+ ;;^UTILITY(U,$J,358.3,41513,1,4,0)
+ ;;=4^Z94.4
+ ;;^UTILITY(U,$J,358.3,41513,2)
+ ;;=^5063658
+ ;;^UTILITY(U,$J,358.3,41514,0)
+ ;;=Z94.84^^159^2005^143
+ ;;^UTILITY(U,$J,358.3,41514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41080,1,3,0)
- ;;=3^Fx of rt calcaneus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41080,1,4,0)
- ;;=4^S92.001K
- ;;^UTILITY(U,$J,358.3,41080,2)
- ;;=^5044357
- ;;^UTILITY(U,$J,358.3,41081,0)
- ;;=S92.102K^^189^2086^201
- ;;^UTILITY(U,$J,358.3,41081,1,0)
+ ;;^UTILITY(U,$J,358.3,41514,1,3,0)
+ ;;=3^Stem Cell Transplant Status
+ ;;^UTILITY(U,$J,358.3,41514,1,4,0)
+ ;;=4^Z94.84
+ ;;^UTILITY(U,$J,358.3,41514,2)
+ ;;=^5063665
+ ;;^UTILITY(U,$J,358.3,41515,0)
+ ;;=Z96.21^^159^2005^14
+ ;;^UTILITY(U,$J,358.3,41515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41081,1,3,0)
- ;;=3^Fx of lft talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41081,1,4,0)
- ;;=4^S92.102K
- ;;^UTILITY(U,$J,358.3,41081,2)
- ;;=^5044602
- ;;^UTILITY(U,$J,358.3,41082,0)
- ;;=S92.101K^^189^2086^218
- ;;^UTILITY(U,$J,358.3,41082,1,0)
+ ;;^UTILITY(U,$J,358.3,41515,1,3,0)
+ ;;=3^Cochlear Implant Status
+ ;;^UTILITY(U,$J,358.3,41515,1,4,0)
+ ;;=4^Z96.21
+ ;;^UTILITY(U,$J,358.3,41515,2)
+ ;;=^5063684
+ ;;^UTILITY(U,$J,358.3,41516,0)
+ ;;=Z96.41^^159^2005^126
+ ;;^UTILITY(U,$J,358.3,41516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41082,1,3,0)
- ;;=3^Fx of rt talus, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,41082,1,4,0)
- ;;=4^S92.101K
- ;;^UTILITY(U,$J,358.3,41082,2)
- ;;=^5044595
- ;;^UTILITY(U,$J,358.3,41083,0)
- ;;=S92.065K^^189^2086^362
- ;;^UTILITY(U,$J,358.3,41083,1,0)
+ ;;^UTILITY(U,$J,358.3,41516,1,3,0)
+ ;;=3^Presence of Insulin Pump
+ ;;^UTILITY(U,$J,358.3,41516,1,4,0)
+ ;;=4^Z96.41
+ ;;^UTILITY(U,$J,358.3,41516,2)
+ ;;=^5063688
+ ;;^UTILITY(U,$J,358.3,41517,0)
+ ;;=Z96.641^^159^2005^134
+ ;;^UTILITY(U,$J,358.3,41517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41083,1,3,0)
- ;;=3^Nondisp intartic fx lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41083,1,4,0)
- ;;=4^S92.065K
- ;;^UTILITY(U,$J,358.3,41083,2)
- ;;=^5044581
- ;;^UTILITY(U,$J,358.3,41084,0)
- ;;=S92.064K^^189^2086^363
- ;;^UTILITY(U,$J,358.3,41084,1,0)
+ ;;^UTILITY(U,$J,358.3,41517,1,3,0)
+ ;;=3^Presence of Right Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,41517,1,4,0)
+ ;;=4^Z96.641
+ ;;^UTILITY(U,$J,358.3,41517,2)
+ ;;=^5063701
+ ;;^UTILITY(U,$J,358.3,41518,0)
+ ;;=Z96.642^^159^2005^129
+ ;;^UTILITY(U,$J,358.3,41518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41084,1,3,0)
- ;;=3^Nondisp intartic fx rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41084,1,4,0)
- ;;=4^S92.064K
- ;;^UTILITY(U,$J,358.3,41084,2)
- ;;=^5044574
- ;;^UTILITY(U,$J,358.3,41085,0)
- ;;=S92.062K^^189^2086^136
- ;;^UTILITY(U,$J,358.3,41085,1,0)
+ ;;^UTILITY(U,$J,358.3,41518,1,3,0)
+ ;;=3^Presence of Left Artificial Hip Jt
+ ;;^UTILITY(U,$J,358.3,41518,1,4,0)
+ ;;=4^Z96.642
+ ;;^UTILITY(U,$J,358.3,41518,2)
+ ;;=^5063702
+ ;;^UTILITY(U,$J,358.3,41519,0)
+ ;;=Z96.643^^159^2005^121
+ ;;^UTILITY(U,$J,358.3,41519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41085,1,3,0)
- ;;=3^Disp intraarticular fx lft calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41085,1,4,0)
- ;;=4^S92.062K
- ;;^UTILITY(U,$J,358.3,41085,2)
- ;;=^5044560
- ;;^UTILITY(U,$J,358.3,41086,0)
- ;;=S92.061K^^189^2086^139
- ;;^UTILITY(U,$J,358.3,41086,1,0)
+ ;;^UTILITY(U,$J,358.3,41519,1,3,0)
+ ;;=3^Presence of Artificial Hip Jt,Bilateral
+ ;;^UTILITY(U,$J,358.3,41519,1,4,0)
+ ;;=4^Z96.643
+ ;;^UTILITY(U,$J,358.3,41519,2)
+ ;;=^5063703
+ ;;^UTILITY(U,$J,358.3,41520,0)
+ ;;=Z96.651^^159^2005^135
+ ;;^UTILITY(U,$J,358.3,41520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41086,1,3,0)
- ;;=3^Disp intraarticular fx rt calcaneus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41086,1,4,0)
- ;;=4^S92.061K
- ;;^UTILITY(U,$J,358.3,41086,2)
- ;;=^5044553
- ;;^UTILITY(U,$J,358.3,41087,0)
- ;;=S92.252K^^189^2086^55
- ;;^UTILITY(U,$J,358.3,41087,1,0)
+ ;;^UTILITY(U,$J,358.3,41520,1,3,0)
+ ;;=3^Presence of Right Artificial Knee Jt
+ ;;^UTILITY(U,$J,358.3,41520,1,4,0)
+ ;;=4^Z96.651
+ ;;^UTILITY(U,$J,358.3,41520,2)
+ ;;=^5063705
+ ;;^UTILITY(U,$J,358.3,41521,0)
+ ;;=Z96.652^^159^2005^130
+ ;;^UTILITY(U,$J,358.3,41521,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41521,1,3,0)
+ ;;=3^Presence of Left Artificial Knee Jt

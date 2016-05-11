@@ -1,134 +1,134 @@
-IBDEI1KS ; ; 19-NOV-2015
+IBDEI1KS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26353,1,0)
+ ;;^UTILITY(U,$J,358.3,26723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26353,1,3,0)
- ;;=3^Keratoconus,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26353,1,4,0)
- ;;=4^H18.602
- ;;^UTILITY(U,$J,358.3,26353,2)
- ;;=^5005090
- ;;^UTILITY(U,$J,358.3,26354,0)
- ;;=H18.603^^130^1288^23
- ;;^UTILITY(U,$J,358.3,26354,1,0)
+ ;;^UTILITY(U,$J,358.3,26723,1,3,0)
+ ;;=3^Counseling/Consultation NEC
+ ;;^UTILITY(U,$J,358.3,26723,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,26723,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,26724,0)
+ ;;=Z51.81^^100^1281^5
+ ;;^UTILITY(U,$J,358.3,26724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26354,1,3,0)
- ;;=3^Keratoconus,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,26354,1,4,0)
- ;;=4^H18.603
- ;;^UTILITY(U,$J,358.3,26354,2)
- ;;=^5005091
- ;;^UTILITY(U,$J,358.3,26355,0)
- ;;=H18.9^^130^1288^5
- ;;^UTILITY(U,$J,358.3,26355,1,0)
+ ;;^UTILITY(U,$J,358.3,26724,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,26724,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,26724,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,26725,0)
+ ;;=Z69.12^^100^1281^2
+ ;;^UTILITY(U,$J,358.3,26725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26355,1,3,0)
- ;;=3^Cornea Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,26355,1,4,0)
- ;;=4^H18.9
- ;;^UTILITY(U,$J,358.3,26355,2)
- ;;=^5005132
- ;;^UTILITY(U,$J,358.3,26356,0)
- ;;=H10.9^^130^1288^4
- ;;^UTILITY(U,$J,358.3,26356,1,0)
+ ;;^UTILITY(U,$J,358.3,26725,1,3,0)
+ ;;=3^Mental Health Svcs for Perpetrator of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,26725,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,26725,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,26726,0)
+ ;;=Z69.11^^100^1281^3
+ ;;^UTILITY(U,$J,358.3,26726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26356,1,3,0)
- ;;=3^Conjunctivitis,Unspec
- ;;^UTILITY(U,$J,358.3,26356,1,4,0)
- ;;=4^H10.9
- ;;^UTILITY(U,$J,358.3,26356,2)
- ;;=^5004716
- ;;^UTILITY(U,$J,358.3,26357,0)
- ;;=H11.233^^130^1288^26
- ;;^UTILITY(U,$J,358.3,26357,1,0)
+ ;;^UTILITY(U,$J,358.3,26726,1,3,0)
+ ;;=3^Mental Health Svcs for Victim of Spousal/Partner Abuse
+ ;;^UTILITY(U,$J,358.3,26726,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,26726,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,26727,0)
+ ;;=Z60.0^^100^1282^2
+ ;;^UTILITY(U,$J,358.3,26727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26357,1,3,0)
- ;;=3^Symblepharon,Bilateral
- ;;^UTILITY(U,$J,358.3,26357,1,4,0)
- ;;=4^H11.233
- ;;^UTILITY(U,$J,358.3,26357,2)
- ;;=^5004775
- ;;^UTILITY(U,$J,358.3,26358,0)
- ;;=H11.231^^130^1288^28
- ;;^UTILITY(U,$J,358.3,26358,1,0)
+ ;;^UTILITY(U,$J,358.3,26727,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,26727,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,26727,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,26728,0)
+ ;;=Z60.2^^100^1282^3
+ ;;^UTILITY(U,$J,358.3,26728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26358,1,3,0)
- ;;=3^Symblepharon,Right Eye
- ;;^UTILITY(U,$J,358.3,26358,1,4,0)
- ;;=4^H11.231
- ;;^UTILITY(U,$J,358.3,26358,2)
- ;;=^5004773
- ;;^UTILITY(U,$J,358.3,26359,0)
- ;;=H11.232^^130^1288^27
- ;;^UTILITY(U,$J,358.3,26359,1,0)
+ ;;^UTILITY(U,$J,358.3,26728,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,26728,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,26728,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,26729,0)
+ ;;=Z60.3^^100^1282^1
+ ;;^UTILITY(U,$J,358.3,26729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26359,1,3,0)
- ;;=3^Symblepharon,Left Eye
- ;;^UTILITY(U,$J,358.3,26359,1,4,0)
- ;;=4^H11.232
- ;;^UTILITY(U,$J,358.3,26359,2)
- ;;=^5004774
- ;;^UTILITY(U,$J,358.3,26360,0)
- ;;=H04.121^^130^1288^13
- ;;^UTILITY(U,$J,358.3,26360,1,0)
+ ;;^UTILITY(U,$J,358.3,26729,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,26729,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,26729,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,26730,0)
+ ;;=Z60.4^^100^1282^5
+ ;;^UTILITY(U,$J,358.3,26730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26360,1,3,0)
- ;;=3^Dry Eye Syndrome,Right Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,26360,1,4,0)
- ;;=4^H04.121
- ;;^UTILITY(U,$J,358.3,26360,2)
- ;;=^5004463
- ;;^UTILITY(U,$J,358.3,26361,0)
- ;;=H04.122^^130^1288^12
- ;;^UTILITY(U,$J,358.3,26361,1,0)
+ ;;^UTILITY(U,$J,358.3,26730,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,26730,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,26730,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,26731,0)
+ ;;=Z60.5^^100^1282^6
+ ;;^UTILITY(U,$J,358.3,26731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26361,1,3,0)
- ;;=3^Dry Eye Syndrome,Left Lacrimal Gland
- ;;^UTILITY(U,$J,358.3,26361,1,4,0)
- ;;=4^H04.122
- ;;^UTILITY(U,$J,358.3,26361,2)
- ;;=^5004464
- ;;^UTILITY(U,$J,358.3,26362,0)
- ;;=H04.123^^130^1288^11
- ;;^UTILITY(U,$J,358.3,26362,1,0)
+ ;;^UTILITY(U,$J,358.3,26731,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,26731,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,26731,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,26732,0)
+ ;;=Z60.9^^100^1282^4
+ ;;^UTILITY(U,$J,358.3,26732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26362,1,3,0)
- ;;=3^Dry Eye Syndrome,Bilateral Lacrimal Glands
- ;;^UTILITY(U,$J,358.3,26362,1,4,0)
- ;;=4^H04.123
- ;;^UTILITY(U,$J,358.3,26362,2)
- ;;=^5004465
- ;;^UTILITY(U,$J,358.3,26363,0)
- ;;=H15.111^^130^1288^16
- ;;^UTILITY(U,$J,358.3,26363,1,0)
+ ;;^UTILITY(U,$J,358.3,26732,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,26732,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,26732,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,26733,0)
+ ;;=F65.4^^100^1283^6
+ ;;^UTILITY(U,$J,358.3,26733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26363,1,3,0)
- ;;=3^Episcleritis Periodica Fugax,Right Eye
- ;;^UTILITY(U,$J,358.3,26363,1,4,0)
- ;;=4^H15.111
- ;;^UTILITY(U,$J,358.3,26363,2)
- ;;=^5004838
- ;;^UTILITY(U,$J,358.3,26364,0)
- ;;=H15.112^^130^1288^15
- ;;^UTILITY(U,$J,358.3,26364,1,0)
+ ;;^UTILITY(U,$J,358.3,26733,1,3,0)
+ ;;=3^Pedophilia Disorder
+ ;;^UTILITY(U,$J,358.3,26733,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,26733,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,26734,0)
+ ;;=F65.2^^100^1283^1
+ ;;^UTILITY(U,$J,358.3,26734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26364,1,3,0)
- ;;=3^Episcleritis Periodica Fugax,Left Eye
- ;;^UTILITY(U,$J,358.3,26364,1,4,0)
- ;;=4^H15.112
- ;;^UTILITY(U,$J,358.3,26364,2)
- ;;=^5004839
- ;;^UTILITY(U,$J,358.3,26365,0)
- ;;=H15.113^^130^1288^14
- ;;^UTILITY(U,$J,358.3,26365,1,0)
+ ;;^UTILITY(U,$J,358.3,26734,1,3,0)
+ ;;=3^Exhibitionistic Disorder
+ ;;^UTILITY(U,$J,358.3,26734,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,26734,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,26735,0)
+ ;;=F65.3^^100^1283^10
+ ;;^UTILITY(U,$J,358.3,26735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26365,1,3,0)
- ;;=3^Episcleritis Periodica Fugax,Bilateral
- ;;^UTILITY(U,$J,358.3,26365,1,4,0)
- ;;=4^H15.113
- ;;^UTILITY(U,$J,358.3,26365,2)
- ;;=^5004840
- ;;^UTILITY(U,$J,358.3,26366,0)
- ;;=T15.02XA^^130^1288^17
+ ;;^UTILITY(U,$J,358.3,26735,1,3,0)
+ ;;=3^Voyeuristic Disorder
+ ;;^UTILITY(U,$J,358.3,26735,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,26735,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,26736,0)
+ ;;=F65.81^^100^1283^3

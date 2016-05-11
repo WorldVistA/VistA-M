@@ -1,124 +1,136 @@
-IBDEI1RJ ; ; 19-NOV-2015
+IBDEI1RJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29514,1,4,0)
- ;;=4^L97.923
- ;;^UTILITY(U,$J,358.3,29514,2)
- ;;=^5133684
- ;;^UTILITY(U,$J,358.3,29515,0)
- ;;=L97.924^^135^1361^194
- ;;^UTILITY(U,$J,358.3,29515,1,0)
+ ;;^UTILITY(U,$J,358.3,29964,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,29964,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,29965,0)
+ ;;=99205^^117^1490^5
+ ;;^UTILITY(U,$J,358.3,29965,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29965,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,29965,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,29966,0)
+ ;;=99211^^117^1491^1
+ ;;^UTILITY(U,$J,358.3,29966,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29966,1,1,0)
+ ;;=1^Brief (no MD seen)
+ ;;^UTILITY(U,$J,358.3,29966,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,29967,0)
+ ;;=99212^^117^1491^2
+ ;;^UTILITY(U,$J,358.3,29967,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29967,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,29967,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,29968,0)
+ ;;=99213^^117^1491^3
+ ;;^UTILITY(U,$J,358.3,29968,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29968,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,29968,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,29969,0)
+ ;;=99214^^117^1491^4
+ ;;^UTILITY(U,$J,358.3,29969,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29969,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,29969,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,29970,0)
+ ;;=99215^^117^1491^5
+ ;;^UTILITY(U,$J,358.3,29970,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29970,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,29970,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,29971,0)
+ ;;=99241^^117^1492^1
+ ;;^UTILITY(U,$J,358.3,29971,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29971,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,29971,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,29972,0)
+ ;;=99242^^117^1492^2
+ ;;^UTILITY(U,$J,358.3,29972,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29972,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,29972,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,29973,0)
+ ;;=99243^^117^1492^3
+ ;;^UTILITY(U,$J,358.3,29973,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29973,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,29973,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,29974,0)
+ ;;=99244^^117^1492^4
+ ;;^UTILITY(U,$J,358.3,29974,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29974,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,29974,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,29975,0)
+ ;;=99245^^117^1492^5
+ ;;^UTILITY(U,$J,358.3,29975,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,29975,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,29975,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,29976,0)
+ ;;=D50.9^^118^1493^30
+ ;;^UTILITY(U,$J,358.3,29976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29515,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,29515,1,4,0)
- ;;=4^L97.924
- ;;^UTILITY(U,$J,358.3,29515,2)
- ;;=^5133686
- ;;^UTILITY(U,$J,358.3,29516,0)
- ;;=L97.929^^135^1361^195
- ;;^UTILITY(U,$J,358.3,29516,1,0)
+ ;;^UTILITY(U,$J,358.3,29976,1,3,0)
+ ;;=3^Iron deficiency anemia, unspecified
+ ;;^UTILITY(U,$J,358.3,29976,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,29976,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,29977,0)
+ ;;=D51.0^^118^1493^40
+ ;;^UTILITY(U,$J,358.3,29977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29516,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer of Left Lower Leg w/ Unspec Severity
- ;;^UTILITY(U,$J,358.3,29516,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,29516,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,29517,0)
- ;;=L98.2^^135^1361^149
- ;;^UTILITY(U,$J,358.3,29517,1,0)
+ ;;^UTILITY(U,$J,358.3,29977,1,3,0)
+ ;;=3^Vitamin B12 defic anemia due to intrinsic factor deficiency
+ ;;^UTILITY(U,$J,358.3,29977,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,29977,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,29978,0)
+ ;;=D53.8^^118^1493^34
+ ;;^UTILITY(U,$J,358.3,29978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29517,1,3,0)
- ;;=3^Febrile Neutrophilic Dermatosis
- ;;^UTILITY(U,$J,358.3,29517,1,4,0)
- ;;=4^L98.2
- ;;^UTILITY(U,$J,358.3,29517,2)
- ;;=^5009575
- ;;^UTILITY(U,$J,358.3,29518,0)
- ;;=L98.9^^135^1361^267
- ;;^UTILITY(U,$J,358.3,29518,1,0)
+ ;;^UTILITY(U,$J,358.3,29978,1,3,0)
+ ;;=3^Nutritional Anemias NEC
+ ;;^UTILITY(U,$J,358.3,29978,1,4,0)
+ ;;=4^D53.8
+ ;;^UTILITY(U,$J,358.3,29978,2)
+ ;;=^5002297
+ ;;^UTILITY(U,$J,358.3,29979,0)
+ ;;=D52.0^^118^1493^16
+ ;;^UTILITY(U,$J,358.3,29979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29518,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,29518,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,29518,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,29519,0)
- ;;=I70.731^^135^1361^80
- ;;^UTILITY(U,$J,358.3,29519,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29519,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,29519,1,4,0)
- ;;=4^I70.731
- ;;^UTILITY(U,$J,358.3,29519,2)
- ;;=^5007769
- ;;^UTILITY(U,$J,358.3,29520,0)
- ;;=I70.732^^135^1361^81
- ;;^UTILITY(U,$J,358.3,29520,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29520,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,29520,1,4,0)
- ;;=4^I70.732
- ;;^UTILITY(U,$J,358.3,29520,2)
- ;;=^5007770
- ;;^UTILITY(U,$J,358.3,29521,0)
- ;;=I70.733^^135^1361^82
- ;;^UTILITY(U,$J,358.3,29521,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29521,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Ankle Ulcer
- ;;^UTILITY(U,$J,358.3,29521,1,4,0)
- ;;=4^I70.733
- ;;^UTILITY(U,$J,358.3,29521,2)
- ;;=^5007771
- ;;^UTILITY(U,$J,358.3,29522,0)
- ;;=I70.734^^135^1361^83
- ;;^UTILITY(U,$J,358.3,29522,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29522,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Heel/Midfoot Ulcer
- ;;^UTILITY(U,$J,358.3,29522,1,4,0)
- ;;=4^I70.734
- ;;^UTILITY(U,$J,358.3,29522,2)
- ;;=^5007772
- ;;^UTILITY(U,$J,358.3,29523,0)
- ;;=I70.735^^135^1361^84
- ;;^UTILITY(U,$J,358.3,29523,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29523,1,3,0)
- ;;=3^Athscl of Bypass Graft of Right Leg w/ Oth Part Foot Ulcer
- ;;^UTILITY(U,$J,358.3,29523,1,4,0)
- ;;=4^I70.735
- ;;^UTILITY(U,$J,358.3,29523,2)
- ;;=^5007773
- ;;^UTILITY(U,$J,358.3,29524,0)
- ;;=I70.741^^135^1361^79
- ;;^UTILITY(U,$J,358.3,29524,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29524,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Thigh Ulcer
- ;;^UTILITY(U,$J,358.3,29524,1,4,0)
- ;;=4^I70.741
- ;;^UTILITY(U,$J,358.3,29524,2)
- ;;=^5133601
- ;;^UTILITY(U,$J,358.3,29525,0)
- ;;=I70.742^^135^1361^76
- ;;^UTILITY(U,$J,358.3,29525,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29525,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Calf Ulcer
- ;;^UTILITY(U,$J,358.3,29525,1,4,0)
- ;;=4^I70.742
- ;;^UTILITY(U,$J,358.3,29525,2)
- ;;=^5133602
- ;;^UTILITY(U,$J,358.3,29526,0)
- ;;=I70.743^^135^1361^75
- ;;^UTILITY(U,$J,358.3,29526,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29526,1,3,0)
- ;;=3^Athscl of Bypass Graft of Left Leg w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,29979,1,3,0)
+ ;;=3^Dietary folate deficiency anemia
+ ;;^UTILITY(U,$J,358.3,29979,1,4,0)
+ ;;=4^D52.0
+ ;;^UTILITY(U,$J,358.3,29979,2)
+ ;;=^5002290

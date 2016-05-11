@@ -1,126 +1,128 @@
-IBDEI25B ; ; 19-NOV-2015
+IBDEI25B ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35992,1,3,0)
- ;;=3^Oligohydramnios, first trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,35992,1,4,0)
- ;;=4^O41.01X5
- ;;^UTILITY(U,$J,358.3,35992,2)
- ;;=^5017225
- ;;^UTILITY(U,$J,358.3,35993,0)
- ;;=O41.02X0^^166^1828^50
- ;;^UTILITY(U,$J,358.3,35993,1,0)
+ ;;^UTILITY(U,$J,358.3,36403,2)
+ ;;=^5007133
+ ;;^UTILITY(U,$J,358.3,36404,0)
+ ;;=I25.759^^137^1760^36
+ ;;^UTILITY(U,$J,358.3,36404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35993,1,3,0)
- ;;=3^Oligohydramnios, second trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,35993,1,4,0)
- ;;=4^O41.02X0
- ;;^UTILITY(U,$J,358.3,35993,2)
- ;;=^5017227
- ;;^UTILITY(U,$J,358.3,35994,0)
- ;;=O41.02X1^^166^1828^45
- ;;^UTILITY(U,$J,358.3,35994,1,0)
+ ;;^UTILITY(U,$J,358.3,36404,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36404,1,4,0)
+ ;;=4^I25.759
+ ;;^UTILITY(U,$J,358.3,36404,2)
+ ;;=^5007134
+ ;;^UTILITY(U,$J,358.3,36405,0)
+ ;;=I25.750^^137^1760^37
+ ;;^UTILITY(U,$J,358.3,36405,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35994,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,35994,1,4,0)
- ;;=4^O41.02X1
- ;;^UTILITY(U,$J,358.3,35994,2)
- ;;=^5017228
- ;;^UTILITY(U,$J,358.3,35995,0)
- ;;=O41.02X2^^166^1828^46
- ;;^UTILITY(U,$J,358.3,35995,1,0)
+ ;;^UTILITY(U,$J,358.3,36405,1,3,0)
+ ;;=3^Athscl Native Cor Art of Transplt Hrt w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36405,1,4,0)
+ ;;=4^I25.750
+ ;;^UTILITY(U,$J,358.3,36405,2)
+ ;;=^5007131
+ ;;^UTILITY(U,$J,358.3,36406,0)
+ ;;=I25.731^^137^1760^39
+ ;;^UTILITY(U,$J,358.3,36406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35995,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,35995,1,4,0)
- ;;=4^O41.02X2
- ;;^UTILITY(U,$J,358.3,35995,2)
- ;;=^5017229
- ;;^UTILITY(U,$J,358.3,35996,0)
- ;;=O41.02X3^^166^1828^47
- ;;^UTILITY(U,$J,358.3,35996,1,0)
+ ;;^UTILITY(U,$J,358.3,36406,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36406,1,4,0)
+ ;;=4^I25.731
+ ;;^UTILITY(U,$J,358.3,36406,2)
+ ;;=^5007128
+ ;;^UTILITY(U,$J,358.3,36407,0)
+ ;;=I25.738^^137^1760^38
+ ;;^UTILITY(U,$J,358.3,36407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35996,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,35996,1,4,0)
- ;;=4^O41.02X3
- ;;^UTILITY(U,$J,358.3,35996,2)
- ;;=^5017230
- ;;^UTILITY(U,$J,358.3,35997,0)
- ;;=O41.02X4^^166^1828^48
- ;;^UTILITY(U,$J,358.3,35997,1,0)
+ ;;^UTILITY(U,$J,358.3,36407,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36407,1,4,0)
+ ;;=4^I25.738
+ ;;^UTILITY(U,$J,358.3,36407,2)
+ ;;=^5007129
+ ;;^UTILITY(U,$J,358.3,36408,0)
+ ;;=I25.739^^137^1760^40
+ ;;^UTILITY(U,$J,358.3,36408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35997,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,35997,1,4,0)
- ;;=4^O41.02X4
- ;;^UTILITY(U,$J,358.3,35997,2)
- ;;=^5017231
- ;;^UTILITY(U,$J,358.3,35998,0)
- ;;=O41.02X5^^166^1828^49
- ;;^UTILITY(U,$J,358.3,35998,1,0)
+ ;;^UTILITY(U,$J,358.3,36408,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36408,1,4,0)
+ ;;=4^I25.739
+ ;;^UTILITY(U,$J,358.3,36408,2)
+ ;;=^5007130
+ ;;^UTILITY(U,$J,358.3,36409,0)
+ ;;=I25.730^^137^1760^41
+ ;;^UTILITY(U,$J,358.3,36409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35998,1,3,0)
- ;;=3^Oligohydramnios, second trimester, fetus 5
- ;;^UTILITY(U,$J,358.3,35998,1,4,0)
- ;;=4^O41.02X5
- ;;^UTILITY(U,$J,358.3,35998,2)
- ;;=^5017232
- ;;^UTILITY(U,$J,358.3,35999,0)
- ;;=O41.03X0^^166^1828^56
- ;;^UTILITY(U,$J,358.3,35999,1,0)
+ ;;^UTILITY(U,$J,358.3,36409,1,3,0)
+ ;;=3^Athscl Nonaut Bio CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36409,1,4,0)
+ ;;=4^I25.730
+ ;;^UTILITY(U,$J,358.3,36409,2)
+ ;;=^5007127
+ ;;^UTILITY(U,$J,358.3,36410,0)
+ ;;=I25.791^^137^1760^24
+ ;;^UTILITY(U,$J,358.3,36410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35999,1,3,0)
- ;;=3^Oligohydramnios, third trimester, not applicable or unsp
- ;;^UTILITY(U,$J,358.3,35999,1,4,0)
- ;;=4^O41.03X0
- ;;^UTILITY(U,$J,358.3,35999,2)
- ;;=^5017234
- ;;^UTILITY(U,$J,358.3,36000,0)
- ;;=O41.03X1^^166^1828^51
- ;;^UTILITY(U,$J,358.3,36000,1,0)
+ ;;^UTILITY(U,$J,358.3,36410,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36410,1,4,0)
+ ;;=4^I25.791
+ ;;^UTILITY(U,$J,358.3,36410,2)
+ ;;=^5007140
+ ;;^UTILITY(U,$J,358.3,36411,0)
+ ;;=I25.798^^137^1760^22
+ ;;^UTILITY(U,$J,358.3,36411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36000,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 1
- ;;^UTILITY(U,$J,358.3,36000,1,4,0)
- ;;=4^O41.03X1
- ;;^UTILITY(U,$J,358.3,36000,2)
- ;;=^5017235
- ;;^UTILITY(U,$J,358.3,36001,0)
- ;;=O41.03X2^^166^1828^52
- ;;^UTILITY(U,$J,358.3,36001,1,0)
+ ;;^UTILITY(U,$J,358.3,36411,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36411,1,4,0)
+ ;;=4^I25.798
+ ;;^UTILITY(U,$J,358.3,36411,2)
+ ;;=^5133558
+ ;;^UTILITY(U,$J,358.3,36412,0)
+ ;;=I25.799^^137^1760^26
+ ;;^UTILITY(U,$J,358.3,36412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36001,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 2
- ;;^UTILITY(U,$J,358.3,36001,1,4,0)
- ;;=4^O41.03X2
- ;;^UTILITY(U,$J,358.3,36001,2)
- ;;=^5017236
- ;;^UTILITY(U,$J,358.3,36002,0)
- ;;=O41.03X3^^166^1828^53
- ;;^UTILITY(U,$J,358.3,36002,1,0)
+ ;;^UTILITY(U,$J,358.3,36412,1,3,0)
+ ;;=3^Athscl CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,36412,1,4,0)
+ ;;=4^I25.799
+ ;;^UTILITY(U,$J,358.3,36412,2)
+ ;;=^5133559
+ ;;^UTILITY(U,$J,358.3,36413,0)
+ ;;=I25.790^^137^1760^28
+ ;;^UTILITY(U,$J,358.3,36413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36002,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 3
- ;;^UTILITY(U,$J,358.3,36002,1,4,0)
- ;;=4^O41.03X3
- ;;^UTILITY(U,$J,358.3,36002,2)
- ;;=^5017237
- ;;^UTILITY(U,$J,358.3,36003,0)
- ;;=O41.03X4^^166^1828^54
- ;;^UTILITY(U,$J,358.3,36003,1,0)
+ ;;^UTILITY(U,$J,358.3,36413,1,3,0)
+ ;;=3^Athscl CABG w/ Unstable Angina
+ ;;^UTILITY(U,$J,358.3,36413,1,4,0)
+ ;;=4^I25.790
+ ;;^UTILITY(U,$J,358.3,36413,2)
+ ;;=^5007139
+ ;;^UTILITY(U,$J,358.3,36414,0)
+ ;;=I25.111^^137^1760^29
+ ;;^UTILITY(U,$J,358.3,36414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36003,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 4
- ;;^UTILITY(U,$J,358.3,36003,1,4,0)
- ;;=4^O41.03X4
- ;;^UTILITY(U,$J,358.3,36003,2)
- ;;=^5017238
- ;;^UTILITY(U,$J,358.3,36004,0)
- ;;=O41.03X5^^166^1828^55
- ;;^UTILITY(U,$J,358.3,36004,1,0)
+ ;;^UTILITY(U,$J,358.3,36414,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,36414,1,4,0)
+ ;;=4^I25.111
+ ;;^UTILITY(U,$J,358.3,36414,2)
+ ;;=^5007109
+ ;;^UTILITY(U,$J,358.3,36415,0)
+ ;;=I25.118^^137^1760^30
+ ;;^UTILITY(U,$J,358.3,36415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36004,1,3,0)
- ;;=3^Oligohydramnios, third trimester, fetus 5
+ ;;^UTILITY(U,$J,358.3,36415,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Cor Art w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,36415,1,4,0)
+ ;;=4^I25.118
+ ;;^UTILITY(U,$J,358.3,36415,2)
+ ;;=^5007110
+ ;;^UTILITY(U,$J,358.3,36416,0)
+ ;;=I25.119^^137^1760^31

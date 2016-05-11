@@ -1,138 +1,102 @@
-IBDEI2MZ ; ; 19-NOV-2015
+IBDEI2MZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+ Q:'DIFQ(358.6)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,44246,0)
- ;;=N52.1^^200^2224^42
- ;;^UTILITY(U,$J,358.3,44246,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44246,1,3,0)
- ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,44246,1,4,0)
- ;;=4^N52.1
- ;;^UTILITY(U,$J,358.3,44246,2)
- ;;=^5015755
- ;;^UTILITY(U,$J,358.3,44247,0)
- ;;=N52.01^^200^2224^41
- ;;^UTILITY(U,$J,358.3,44247,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44247,1,3,0)
- ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
- ;;^UTILITY(U,$J,358.3,44247,1,4,0)
- ;;=4^N52.01
- ;;^UTILITY(U,$J,358.3,44247,2)
- ;;=^5015752
- ;;^UTILITY(U,$J,358.3,44248,0)
- ;;=N95.2^^200^2224^81
- ;;^UTILITY(U,$J,358.3,44248,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44248,1,3,0)
- ;;=3^Postmenopausal Atrophic Vaginitis
- ;;^UTILITY(U,$J,358.3,44248,1,4,0)
- ;;=4^N95.2
- ;;^UTILITY(U,$J,358.3,44248,2)
- ;;=^270577
- ;;^UTILITY(U,$J,358.3,44249,0)
- ;;=R30.9^^200^2224^65
- ;;^UTILITY(U,$J,358.3,44249,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44249,1,3,0)
- ;;=3^Micturition Painful,Unspec
- ;;^UTILITY(U,$J,358.3,44249,1,4,0)
- ;;=4^R30.9
- ;;^UTILITY(U,$J,358.3,44249,2)
- ;;=^5019324
- ;;^UTILITY(U,$J,358.3,44250,0)
- ;;=R30.0^^200^2224^26
- ;;^UTILITY(U,$J,358.3,44250,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44250,1,3,0)
- ;;=3^Dysuria
- ;;^UTILITY(U,$J,358.3,44250,1,4,0)
- ;;=4^R30.0
- ;;^UTILITY(U,$J,358.3,44250,2)
- ;;=^5019322
- ;;^UTILITY(U,$J,358.3,44251,0)
- ;;=R33.9^^200^2224^105
- ;;^UTILITY(U,$J,358.3,44251,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44251,1,3,0)
- ;;=3^Urine Retention,Unspec
- ;;^UTILITY(U,$J,358.3,44251,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,44251,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,44252,0)
- ;;=R32.^^200^2224^103
- ;;^UTILITY(U,$J,358.3,44252,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44252,1,3,0)
- ;;=3^Urinary Incontinence,Unspec
- ;;^UTILITY(U,$J,358.3,44252,1,4,0)
- ;;=4^R32.
- ;;^UTILITY(U,$J,358.3,44252,2)
- ;;=^5019329
- ;;^UTILITY(U,$J,358.3,44253,0)
- ;;=N39.41^^200^2224^101
- ;;^UTILITY(U,$J,358.3,44253,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44253,1,3,0)
- ;;=3^Urge Incontinence
- ;;^UTILITY(U,$J,358.3,44253,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,44253,2)
- ;;=^5015680
- ;;^UTILITY(U,$J,358.3,44254,0)
- ;;=R35.0^^200^2224^63
- ;;^UTILITY(U,$J,358.3,44254,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44254,1,3,0)
- ;;=3^Micturition Frequency
- ;;^UTILITY(U,$J,358.3,44254,1,4,0)
- ;;=4^R35.0
- ;;^UTILITY(U,$J,358.3,44254,2)
- ;;=^5019334
- ;;^UTILITY(U,$J,358.3,44255,0)
- ;;=R35.1^^200^2224^73
- ;;^UTILITY(U,$J,358.3,44255,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44255,1,3,0)
- ;;=3^Nocturia
- ;;^UTILITY(U,$J,358.3,44255,1,4,0)
- ;;=4^R35.1
- ;;^UTILITY(U,$J,358.3,44255,2)
- ;;=^5019335
- ;;^UTILITY(U,$J,358.3,44256,0)
- ;;=R39.11^^200^2224^64
- ;;^UTILITY(U,$J,358.3,44256,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44256,1,3,0)
- ;;=3^Micturition Hesitancy
- ;;^UTILITY(U,$J,358.3,44256,1,4,0)
- ;;=4^R39.11
- ;;^UTILITY(U,$J,358.3,44256,2)
- ;;=^5019341
- ;;^UTILITY(U,$J,358.3,44257,0)
- ;;=R39.16^^200^2224^95
- ;;^UTILITY(U,$J,358.3,44257,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44257,1,3,0)
- ;;=3^Straining to Void
- ;;^UTILITY(U,$J,358.3,44257,1,4,0)
- ;;=4^R39.16
- ;;^UTILITY(U,$J,358.3,44257,2)
- ;;=^5019346
- ;;^UTILITY(U,$J,358.3,44258,0)
- ;;=R36.0^^200^2224^97
- ;;^UTILITY(U,$J,358.3,44258,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,44258,1,3,0)
- ;;=3^Urethral Discharge w/o Blood
- ;;^UTILITY(U,$J,358.3,44258,1,4,0)
- ;;=4^R36.0
- ;;^UTILITY(U,$J,358.3,44258,2)
- ;;=^5019337
- ;;^UTILITY(U,$J,358.3,44259,0)
- ;;=R36.9^^200^2224^98
- ;;^UTILITY(U,$J,358.3,44259,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.6,0,"GL")
+ ;;=^IBE(358.6,
+ ;;^DIC("B","IMP/EXP PACKAGE INTERFACE",358.6)
+ ;;=
+ ;;^DIC(358.6,"%D",0)
+ ;;=^^1^1^2950927^^^^
+ ;;^DIC(358.6,"%D",1,0)
+ ;;=This file is used as a workspace by the import/export utility.
+ ;;^DIC(358.6,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.6,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DIC(358.6,"%D",4,0)
+ ;;= 
+ ;;^DIC(358.6,"%D",5,0)
+ ;;=This file contains a description of all of the interfaces with other packages.
+ ;;^DIC(358.6,"%D",6,0)
+ ;;=The form will invoke the proper interface routines by doing a lookup on
+ ;;^DIC(358.6,"%D",7,0)
+ ;;=this file and then invoking the routine by indirection. The INPUT VARIABLE
+ ;;^DIC(358.6,"%D",8,0)
+ ;;=fields are for documentation purposes and to verify that the proper
+ ;;^DIC(358.6,"%D",9,0)
+ ;;=variables are defined. Data will be exchanged between the encounter form
+ ;;^DIC(358.6,"%D",10,0)
+ ;;=utilities and other packages by putting the data in a predefined location.
+ ;;^DIC(358.6,"%D",11,0)
+ ;;=The first part of the subscript is always be ^TMP("IB",$J,"INTERFACES".
+ ;;^DIC(358.6,"%D",12,0)
+ ;;=For output routines, but not selection routines, the fourth subscript is
+ ;;^DIC(358.6,"%D",13,0)
+ ;;=be the patient DFN. The next subscript is the name of the Package
+ ;;^DIC(358.6,"%D",14,0)
+ ;;=Interface. For single valued data and record valued data there is no
+ ;;^DIC(358.6,"%D",15,0)
+ ;;=additional subscript. For interfaces returning a list there is one
+ ;;^DIC(358.6,"%D",16,0)
+ ;;=additional subscript level, the number of the item on the list. For
+ ;;^DIC(358.6,"%D",17,0)
+ ;;=word processing type data the data will be in FM word-processing format,
+ ;;^DIC(358.6,"%D",18,0)
+ ;;=i.e., the final subscripts will be ...1,0),...2,0),...3,0), etc.
+ ;;^DIC(358.6,"%D",19,0)
+ ;;=these items of data can have its own entry in the Package Interface file,
+ ;;^DIC(358.6,"%D",20,0)
+ ;;=but by using the same entry point there is a savings because all of the
+ ;;^DIC(358.6,"%D",21,0)
+ ;;=data on that node can be obtained at once. The routines that invoke the
+ ;;^DIC(358.6,"%D",22,0)
+ ;;=entry point keep track of the entry points already invoked so they are
+ ;;^DIC(358.6,"%D",23,0)
+ ;;=not repeated.
+ ;;^DD(358.6,0)
+ ;;=FIELD^^21^76
+ ;;^DD(358.6,0,"DDA")
+ ;;=N
+ ;;^DD(358.6,0,"DT")
+ ;;=3000124
+ ;;^DD(358.6,0,"ID",.06)
+ ;;=W ""
+ ;;^DD(358.6,0,"ID","WRITE")
+ ;;=N IBDWNAM S IBDWNAM=$E($P(^(0),U),1,40) D EN^DDIOL(IBDWNAM,"","!?0")
+ ;;^DD(358.6,0,"ID","WRITE1")
+ ;;=N IBDWTYPE S IBDWTYPE=$S($P(^(0),"^",6)=1:"INPUT",$P(^(0),"^",6)=2:"OUTPUT",$P(^(0),"^",6)=3:"SELECTION",1:"REPORT")_$S($P(^(0),U,6)=3&'$P(^(0),"^",13):"  ** NOT SCANNABLE **",1:"") D EN^DDIOL("TYPE="_IBDWTYPE,"","?45")
+ ;;^DD(358.6,0,"IX","B",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"IX","C",358.6,.04)
+ ;;=
+ ;;^DD(358.6,0,"IX","D",358.6,3)
+ ;;=
+ ;;^DD(358.6,0,"IX","E",358.6,.01)
+ ;;=
+ ;;^DD(358.6,0,"NM","IMP/EXP PACKAGE INTERFACE")
+ ;;=
+ ;;^DD(358.6,0,"PT",358.2,.11)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.5,.03)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.6,.13)
+ ;;=
+ ;;^DD(358.6,0,"PT",358.93,.06)
+ ;;=
+ ;;^DD(358.6,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.6,.01,0)
+ ;;=NAME^RF^^0;1^K:X[""""!($A(X)=45) X I $D(X) K:$L(X)>40!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.6,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.6,.01,1,1,0)
+ ;;=358.6^B
+ ;;^DD(358.6,.01,1,1,1)
+ ;;=S ^IBE(358.6,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.6,.01,1,1,2)
+ ;;=K ^IBE(358.6,"B",$E(X,1,30),DA)
+ ;;^DD(358.6,.01,1,2,0)
+ ;;=358.6^E^MUMPS
+ ;;^DD(358.6,.01,1,2,1)
+ ;;=S ^IBE(358.6,"E",$E(X,$F(X," "),40),DA)=""

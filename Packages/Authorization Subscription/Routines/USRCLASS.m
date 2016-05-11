@@ -1,11 +1,18 @@
-USRCLASS ; SLC/JER - User Class Management actions ;11/25/09
- ;;1.0;AUTHORIZATION/SUBSCRIPTION;**7,11,33**;Jun 20, 1997;Build 7
+USRCLASS ; SLC/JER - User Class Management actions ; 12/14/15 9:34am
+ ;;1.0;AUTHORIZATION/SUBSCRIPTION;**7,11,33,37**;Sep 25, 2015;Build 31
+ ;Per VA Directive 6402, this routine should not be modified
+ ;
+ ; External References          DBIA#
+ ; POSTX^HMPEVNT                6301
+ ;
 EDIT ; Edit user classes
  N USRDA,USRDATA,USREXPND,USRI,USRSTAT,DIROUT,USRCHNG
- N USRLST,NAME,NAME1,NAME2,LINE,CANTMSG
+ N USRLST,NAME,NAME1,NAME2,LINE,CANTMSG,DA
  D:'$D(VALMY) EN^VALM2(XQORNOD(0)) S USRI=0,USRCHNG=0
- F  S USRI=$O(VALMY(USRI)) Q:+USRI'>0  D  Q:$D(DIROUT)
+ F  S USRI=$O(VALMY(USRI)) Q:+USRI'>0  D  Q:$D(DIROUT)!(+$P(USRDATA,U,2)'>0)
  . S USRDATA=$S(VALMAR="^TMP(""USRCLASS"",$J)":$G(^TMP("USRCLASSIDX",$J,USRI)),1:$G(^TMP("USREXPIDX",$J,USRI)))
+ . I (+$P(USRDATA,U,2)'>0) D  Q
+ . . S CANTMSG=1,VALMBCK="Q",USRCHNG=0
  . W !!,"Editing #",+USRDATA,!
  . S USRDA=+$P(USRDATA,U,2)
  . S NAME=$P(^USR(8930,USRDA,0),U),NAME1="|_ "_NAME,NAME2="-"_NAME
@@ -14,7 +21,11 @@ EDIT ; Edit user classes
  . I (LINE[NAME1)!(LINE[NAME2) D  Q
  . . S CANTMSG=1,VALMBCK="Q",USRCHNG=0
  . I +$G(USRCHNG) S USRLST=$S($L($G(USRLST)):$G(USRLST)_", ",1:"")_USRI
- . I $D(USRDATA) D UPDATE^USRL(USRDATA)
+ . I $D(USRDATA) D
+ .. D UPDATE^USRL(USRDATA)
+ .. I $D(DA) D POSTX^HMPEVNT("asu-class",USRDA) ; asu class was changed  DBIA 6301
+ .. I '$D(DA) D POSTX^HMPEVNT("asu-class",USRDA,"@") ; asu class was deleted  DBIA 6301
+ .. ;D ECLASS^HMPAT   ;send edits to HMP
  Q:$D(DIROUT)
  I $D(CANTMSG) D  K VALMY S VALMBCK="Q" Q
   . W !!,"  Expanded entries cannot be refreshed; please re-enter the option"
@@ -26,7 +37,7 @@ EDIT ; Edit user classes
  Q
 EDIT1 ; Single record edit
  ; Receives USRDA
- N DA,DIE,DR
+ N DIE,DR
  I '+$G(USRDA) W !,"No Classes selected." H 2 Q
  S DIE="^USR(8930,",DA=USRDA,DR="[USR CLASS STRUCTURE EDIT]"
  D FULL^VALM1,^DIE
@@ -56,7 +67,9 @@ CREATE ; Class constructor
  S USRDNM=$P($G(^TMP("USRCLASS",$J,0)),U,3)
  S USRLNM=$P($G(^TMP("USRCLASS",$J,0)),U,4)
  I 'USRCREAT Q  ; Don't rebuild without cause
- W !,"Rebuilding main class list."
+ ;send new class to HMP via VxSync
+ D POSTX^HMPEVNT("asu-class",DA)  ;DBIA 6301
+ ;D ECLASS^HMPAT   ;send edits to HMP
  D BUILD^USRCLST(USRSTAT,USRDNM,USRLNM)
  S VALMCNT=+$G(@VALMAR@(0))
  S VALMBCK="R"

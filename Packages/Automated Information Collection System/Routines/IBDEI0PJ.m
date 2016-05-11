@@ -1,128 +1,134 @@
-IBDEI0PJ ; ; 19-NOV-2015
+IBDEI0PJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11696,1,3,0)
- ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,11696,1,4,0)
- ;;=4^S86.312A
- ;;^UTILITY(U,$J,358.3,11696,2)
- ;;=^5043514
- ;;^UTILITY(U,$J,358.3,11697,0)
- ;;=S86.811A^^68^688^48
- ;;^UTILITY(U,$J,358.3,11697,1,0)
+ ;;^UTILITY(U,$J,358.3,11938,1,3,0)
+ ;;=3^F/U Exam After Treatment Encounter
+ ;;^UTILITY(U,$J,358.3,11938,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,11938,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,11939,0)
+ ;;=Z00.01^^47^538^60
+ ;;^UTILITY(U,$J,358.3,11939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11697,1,3,0)
- ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,11697,1,4,0)
- ;;=4^S86.811A
- ;;^UTILITY(U,$J,358.3,11697,2)
- ;;=^5043538
- ;;^UTILITY(U,$J,358.3,11698,0)
- ;;=S86.812A^^68^688^28
- ;;^UTILITY(U,$J,358.3,11698,1,0)
+ ;;^UTILITY(U,$J,358.3,11939,1,3,0)
+ ;;=3^General Medical Exam w/ Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,11939,1,4,0)
+ ;;=4^Z00.01
+ ;;^UTILITY(U,$J,358.3,11939,2)
+ ;;=^5062600
+ ;;^UTILITY(U,$J,358.3,11940,0)
+ ;;=Z00.00^^47^538^61
+ ;;^UTILITY(U,$J,358.3,11940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11698,1,3,0)
- ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
- ;;^UTILITY(U,$J,358.3,11698,1,4,0)
- ;;=4^S86.812A
- ;;^UTILITY(U,$J,358.3,11698,2)
- ;;=^5043541
- ;;^UTILITY(U,$J,358.3,11699,0)
- ;;=S86.111A^^68^688^50
- ;;^UTILITY(U,$J,358.3,11699,1,0)
+ ;;^UTILITY(U,$J,358.3,11940,1,3,0)
+ ;;=3^General Medical Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,11940,1,4,0)
+ ;;=4^Z00.00
+ ;;^UTILITY(U,$J,358.3,11940,2)
+ ;;=^5062599
+ ;;^UTILITY(U,$J,358.3,11941,0)
+ ;;=Z23.^^47^538^69
+ ;;^UTILITY(U,$J,358.3,11941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11699,1,3,0)
- ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,11699,1,4,0)
- ;;=4^S86.111A
- ;;^UTILITY(U,$J,358.3,11699,2)
- ;;=^5043460
- ;;^UTILITY(U,$J,358.3,11700,0)
- ;;=S86.112A^^68^688^30
- ;;^UTILITY(U,$J,358.3,11700,1,0)
+ ;;^UTILITY(U,$J,358.3,11941,1,3,0)
+ ;;=3^Immunization Encounter
+ ;;^UTILITY(U,$J,358.3,11941,1,4,0)
+ ;;=4^Z23.
+ ;;^UTILITY(U,$J,358.3,11941,2)
+ ;;=^5062795
+ ;;^UTILITY(U,$J,358.3,11942,0)
+ ;;=Z03.89^^47^538^81
+ ;;^UTILITY(U,$J,358.3,11942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11700,1,3,0)
- ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
- ;;^UTILITY(U,$J,358.3,11700,1,4,0)
- ;;=4^S86.112A
- ;;^UTILITY(U,$J,358.3,11700,2)
- ;;=^5043463
- ;;^UTILITY(U,$J,358.3,11701,0)
- ;;=S83.401A^^68^688^15
- ;;^UTILITY(U,$J,358.3,11701,1,0)
+ ;;^UTILITY(U,$J,358.3,11942,1,3,0)
+ ;;=3^Observation for Suspected Diseases/Ruled Out Conditions
+ ;;^UTILITY(U,$J,358.3,11942,1,4,0)
+ ;;=4^Z03.89
+ ;;^UTILITY(U,$J,358.3,11942,2)
+ ;;=^5062656
+ ;;^UTILITY(U,$J,358.3,11943,0)
+ ;;=Z04.9^^47^538^82
+ ;;^UTILITY(U,$J,358.3,11943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11701,1,3,0)
- ;;=3^Sprain of Right Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,11701,1,4,0)
- ;;=4^S83.401A
- ;;^UTILITY(U,$J,358.3,11701,2)
- ;;=^5043103
- ;;^UTILITY(U,$J,358.3,11702,0)
- ;;=S83.402A^^68^688^4
- ;;^UTILITY(U,$J,358.3,11702,1,0)
+ ;;^UTILITY(U,$J,358.3,11943,1,3,0)
+ ;;=3^Observation/Exam,Unspec Reason
+ ;;^UTILITY(U,$J,358.3,11943,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,11943,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,11944,0)
+ ;;=Z51.5^^47^538^94
+ ;;^UTILITY(U,$J,358.3,11944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11702,1,3,0)
- ;;=3^Sprain of Left Knee Collateral Ligament
- ;;^UTILITY(U,$J,358.3,11702,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,11702,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,11703,0)
- ;;=S93.402A^^68^688^2
- ;;^UTILITY(U,$J,358.3,11703,1,0)
+ ;;^UTILITY(U,$J,358.3,11944,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,11944,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,11944,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,11945,0)
+ ;;=Z12.9^^47^538^162
+ ;;^UTILITY(U,$J,358.3,11945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11703,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,11703,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,11703,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,11704,0)
- ;;=S93.401A^^68^688^13
- ;;^UTILITY(U,$J,358.3,11704,1,0)
+ ;;^UTILITY(U,$J,358.3,11945,1,3,0)
+ ;;=3^Screening for Malig Neop,Unspec Site
+ ;;^UTILITY(U,$J,358.3,11945,1,4,0)
+ ;;=4^Z12.9
+ ;;^UTILITY(U,$J,358.3,11945,2)
+ ;;=^5062698
+ ;;^UTILITY(U,$J,358.3,11946,0)
+ ;;=Z13.9^^47^538^163
+ ;;^UTILITY(U,$J,358.3,11946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11704,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,11704,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,11704,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,11705,0)
- ;;=S56.511A^^68^688^39
- ;;^UTILITY(U,$J,358.3,11705,1,0)
+ ;;^UTILITY(U,$J,358.3,11946,1,3,0)
+ ;;=3^Screening,Unspec
+ ;;^UTILITY(U,$J,358.3,11946,1,4,0)
+ ;;=4^Z13.9
+ ;;^UTILITY(U,$J,358.3,11946,2)
+ ;;=^5062721
+ ;;^UTILITY(U,$J,358.3,11947,0)
+ ;;=Z48.89^^47^538^164
+ ;;^UTILITY(U,$J,358.3,11947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11705,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,11705,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,11705,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,11706,0)
- ;;=S56.512A^^68^688^19
- ;;^UTILITY(U,$J,358.3,11706,1,0)
+ ;;^UTILITY(U,$J,358.3,11947,1,3,0)
+ ;;=3^Surgical Aftercare Encounter,Other Spec
+ ;;^UTILITY(U,$J,358.3,11947,1,4,0)
+ ;;=4^Z48.89
+ ;;^UTILITY(U,$J,358.3,11947,2)
+ ;;=^5063055
+ ;;^UTILITY(U,$J,358.3,11948,0)
+ ;;=Z51.81^^47^538^167
+ ;;^UTILITY(U,$J,358.3,11948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11706,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,11706,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,11706,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,11707,0)
- ;;=S13.8XXA^^68^688^10
- ;;^UTILITY(U,$J,358.3,11707,1,0)
+ ;;^UTILITY(U,$J,358.3,11948,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,11948,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,11948,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,11949,0)
+ ;;=Z77.9^^47^538^55
+ ;;^UTILITY(U,$J,358.3,11949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11707,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,11707,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,11707,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,11708,0)
- ;;=S16.1XXA^^68^688^37
- ;;^UTILITY(U,$J,358.3,11708,1,0)
+ ;;^UTILITY(U,$J,358.3,11949,1,3,0)
+ ;;=3^Exposures/Contact with Hazardous Substances
+ ;;^UTILITY(U,$J,358.3,11949,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,11949,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,11950,0)
+ ;;=R50.9^^47^538^57
+ ;;^UTILITY(U,$J,358.3,11950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11708,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,11708,1,4,0)
- ;;=4^S16.1XXA
+ ;;^UTILITY(U,$J,358.3,11950,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,11950,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,11950,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,11951,0)
+ ;;=Z96.9^^47^538^58
+ ;;^UTILITY(U,$J,358.3,11951,1,0)
+ ;;=^358.31IA^4^2

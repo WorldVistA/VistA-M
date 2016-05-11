@@ -1,126 +1,132 @@
-IBDEI207 ; ; 19-NOV-2015
+IBDEI207 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33549,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,33549,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,33549,2)
- ;;=^5003209
- ;;^UTILITY(U,$J,358.3,33550,0)
- ;;=F13.24^^148^1663^9
- ;;^UTILITY(U,$J,358.3,33550,1,0)
+ ;;^UTILITY(U,$J,358.3,33995,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,33996,0)
+ ;;=D75.1^^131^1680^180
+ ;;^UTILITY(U,$J,358.3,33996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33550,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
- ;;^UTILITY(U,$J,358.3,33550,1,4,0)
- ;;=4^F13.24
- ;;^UTILITY(U,$J,358.3,33550,2)
- ;;=^5003210
- ;;^UTILITY(U,$J,358.3,33551,0)
- ;;=F13.231^^148^1663^6
- ;;^UTILITY(U,$J,358.3,33551,1,0)
+ ;;^UTILITY(U,$J,358.3,33996,1,3,0)
+ ;;=3^Polycythemia,Secondary
+ ;;^UTILITY(U,$J,358.3,33996,1,4,0)
+ ;;=4^D75.1
+ ;;^UTILITY(U,$J,358.3,33996,2)
+ ;;=^186856
+ ;;^UTILITY(U,$J,358.3,33997,0)
+ ;;=C90.30^^131^1680^183
+ ;;^UTILITY(U,$J,358.3,33997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33551,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,33551,1,4,0)
- ;;=4^F13.231
- ;;^UTILITY(U,$J,358.3,33551,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,33552,0)
- ;;=F17.200^^148^1664^1
- ;;^UTILITY(U,$J,358.3,33552,1,0)
+ ;;^UTILITY(U,$J,358.3,33997,1,3,0)
+ ;;=3^Solitary Plasmacytoma,Not in Remission
+ ;;^UTILITY(U,$J,358.3,33997,1,4,0)
+ ;;=4^C90.30
+ ;;^UTILITY(U,$J,358.3,33997,2)
+ ;;=^5001759
+ ;;^UTILITY(U,$J,358.3,33998,0)
+ ;;=D56.3^^131^1680^184
+ ;;^UTILITY(U,$J,358.3,33998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33552,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33552,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,33552,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,33553,0)
- ;;=F17.201^^148^1664^2
- ;;^UTILITY(U,$J,358.3,33553,1,0)
+ ;;^UTILITY(U,$J,358.3,33998,1,3,0)
+ ;;=3^Thalassemia Minor
+ ;;^UTILITY(U,$J,358.3,33998,1,4,0)
+ ;;=4^D56.3
+ ;;^UTILITY(U,$J,358.3,33998,2)
+ ;;=^340497
+ ;;^UTILITY(U,$J,358.3,33999,0)
+ ;;=D56.9^^131^1680^185
+ ;;^UTILITY(U,$J,358.3,33999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33553,1,3,0)
- ;;=3^Tobacco Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,33553,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,33553,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,33554,0)
- ;;=F17.203^^148^1664^3
- ;;^UTILITY(U,$J,358.3,33554,1,0)
+ ;;^UTILITY(U,$J,358.3,33999,1,3,0)
+ ;;=3^Thalassemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33999,1,4,0)
+ ;;=4^D56.9
+ ;;^UTILITY(U,$J,358.3,33999,2)
+ ;;=^340606
+ ;;^UTILITY(U,$J,358.3,34000,0)
+ ;;=M31.1^^131^1680^187
+ ;;^UTILITY(U,$J,358.3,34000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33554,1,3,0)
- ;;=3^Tobacco Withdrawal
- ;;^UTILITY(U,$J,358.3,33554,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,33554,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,33555,0)
- ;;=F17.210^^148^1664^4
- ;;^UTILITY(U,$J,358.3,33555,1,0)
+ ;;^UTILITY(U,$J,358.3,34000,1,3,0)
+ ;;=3^Thrombotic Microangiopathy
+ ;;^UTILITY(U,$J,358.3,34000,1,4,0)
+ ;;=4^M31.1
+ ;;^UTILITY(U,$J,358.3,34000,2)
+ ;;=^119061
+ ;;^UTILITY(U,$J,358.3,34001,0)
+ ;;=D51.2^^131^1680^188
+ ;;^UTILITY(U,$J,358.3,34001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33555,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33555,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,33555,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,33556,0)
- ;;=F17.211^^148^1664^5
- ;;^UTILITY(U,$J,358.3,33556,1,0)
+ ;;^UTILITY(U,$J,358.3,34001,1,3,0)
+ ;;=3^Transcobalamin II Deficiency
+ ;;^UTILITY(U,$J,358.3,34001,1,4,0)
+ ;;=4^D51.2
+ ;;^UTILITY(U,$J,358.3,34001,2)
+ ;;=^5002286
+ ;;^UTILITY(U,$J,358.3,34002,0)
+ ;;=D05.92^^131^1680^35
+ ;;^UTILITY(U,$J,358.3,34002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33556,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,33556,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,33556,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,33557,0)
- ;;=F17.220^^148^1664^6
- ;;^UTILITY(U,$J,358.3,33557,1,0)
+ ;;^UTILITY(U,$J,358.3,34002,1,3,0)
+ ;;=3^Carcinoma in Situ Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,34002,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,34002,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,34003,0)
+ ;;=D05.91^^131^1680^37
+ ;;^UTILITY(U,$J,358.3,34003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33557,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33557,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,33557,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,33558,0)
- ;;=F17.221^^148^1664^7
- ;;^UTILITY(U,$J,358.3,33558,1,0)
+ ;;^UTILITY(U,$J,358.3,34003,1,3,0)
+ ;;=3^Carcinoma in Situ Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,34003,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,34003,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,34004,0)
+ ;;=D05.90^^131^1680^33
+ ;;^UTILITY(U,$J,358.3,34004,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33558,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,33558,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,33558,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,33559,0)
- ;;=F17.290^^148^1664^8
- ;;^UTILITY(U,$J,358.3,33559,1,0)
+ ;;^UTILITY(U,$J,358.3,34004,1,3,0)
+ ;;=3^Carcinoma in Situ Breast Unspec,Unspec Type
+ ;;^UTILITY(U,$J,358.3,34004,1,4,0)
+ ;;=4^D05.90
+ ;;^UTILITY(U,$J,358.3,34004,2)
+ ;;=^5001935
+ ;;^UTILITY(U,$J,358.3,34005,0)
+ ;;=D51.0^^131^1680^189
+ ;;^UTILITY(U,$J,358.3,34005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33559,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33559,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,33559,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,33560,0)
- ;;=F17.291^^148^1664^9
- ;;^UTILITY(U,$J,358.3,33560,1,0)
+ ;;^UTILITY(U,$J,358.3,34005,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,34005,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,34005,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,34006,0)
+ ;;=D51.1^^131^1680^190
+ ;;^UTILITY(U,$J,358.3,34006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33560,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,33560,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,33560,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,33561,0)
- ;;=F14.10^^148^1665^1
- ;;^UTILITY(U,$J,358.3,33561,1,0)
+ ;;^UTILITY(U,$J,358.3,34006,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia d/t Selective Vit B12 Malabsorp w/ Proteinuria
+ ;;^UTILITY(U,$J,358.3,34006,1,4,0)
+ ;;=4^D51.1
+ ;;^UTILITY(U,$J,358.3,34006,2)
+ ;;=^5002285
+ ;;^UTILITY(U,$J,358.3,34007,0)
+ ;;=D51.9^^131^1680^192
+ ;;^UTILITY(U,$J,358.3,34007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33561,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
+ ;;^UTILITY(U,$J,358.3,34007,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,34007,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,34007,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,34008,0)
+ ;;=D68.0^^131^1680^194
+ ;;^UTILITY(U,$J,358.3,34008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34008,1,3,0)
+ ;;=3^Von Willebrand's Disease

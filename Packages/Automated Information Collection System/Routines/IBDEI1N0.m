@@ -1,128 +1,134 @@
-IBDEI1N0 ; ; 19-NOV-2015
+IBDEI1N0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,27393,1,0)
+ ;;^UTILITY(U,$J,358.3,27787,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,27787,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,27788,0)
+ ;;=G43.901^^109^1385^9
+ ;;^UTILITY(U,$J,358.3,27788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27393,1,3,0)
- ;;=3^Disease of Stomach & Duodenum,Unspec
- ;;^UTILITY(U,$J,358.3,27393,1,4,0)
- ;;=4^K31.9
- ;;^UTILITY(U,$J,358.3,27393,2)
- ;;=^5008570
- ;;^UTILITY(U,$J,358.3,27394,0)
- ;;=K40.90^^132^1315^68
- ;;^UTILITY(U,$J,358.3,27394,1,0)
+ ;;^UTILITY(U,$J,358.3,27788,1,3,0)
+ ;;=3^Migraine Not Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,27788,1,4,0)
+ ;;=4^G43.901
+ ;;^UTILITY(U,$J,358.3,27788,2)
+ ;;=^5003908
+ ;;^UTILITY(U,$J,358.3,27789,0)
+ ;;=G43.101^^109^1385^14
+ ;;^UTILITY(U,$J,358.3,27789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27394,1,3,0)
- ;;=3^Inguinal Hernia,Unilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,27394,1,4,0)
- ;;=4^K40.90
- ;;^UTILITY(U,$J,358.3,27394,2)
- ;;=^5008591
- ;;^UTILITY(U,$J,358.3,27395,0)
- ;;=K40.20^^132^1315^67
- ;;^UTILITY(U,$J,358.3,27395,1,0)
+ ;;^UTILITY(U,$J,358.3,27789,1,3,0)
+ ;;=3^Migraine w/ Aura Not Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,27789,1,4,0)
+ ;;=4^G43.101
+ ;;^UTILITY(U,$J,358.3,27789,2)
+ ;;=^5003880
+ ;;^UTILITY(U,$J,358.3,27790,0)
+ ;;=G43.001^^109^1385^18
+ ;;^UTILITY(U,$J,358.3,27790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27395,1,3,0)
- ;;=3^Inguinal Hernia,Bilat w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,27395,1,4,0)
- ;;=4^K40.20
- ;;^UTILITY(U,$J,358.3,27395,2)
- ;;=^5008585
- ;;^UTILITY(U,$J,358.3,27396,0)
- ;;=K44.9^^132^1315^31
- ;;^UTILITY(U,$J,358.3,27396,1,0)
+ ;;^UTILITY(U,$J,358.3,27790,1,3,0)
+ ;;=3^Migraine w/o Aura Not Intractable w/ Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,27790,1,4,0)
+ ;;=4^G43.001
+ ;;^UTILITY(U,$J,358.3,27790,2)
+ ;;=^5003876
+ ;;^UTILITY(U,$J,358.3,27791,0)
+ ;;=G44.309^^109^1385^20
+ ;;^UTILITY(U,$J,358.3,27791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27396,1,3,0)
- ;;=3^Diaphragmatic Hernia w/o Obst or Gangrene
- ;;^UTILITY(U,$J,358.3,27396,1,4,0)
- ;;=4^K44.9
- ;;^UTILITY(U,$J,358.3,27396,2)
- ;;=^5008617
- ;;^UTILITY(U,$J,358.3,27397,0)
- ;;=K46.9^^132^1315^1
- ;;^UTILITY(U,$J,358.3,27397,1,0)
+ ;;^UTILITY(U,$J,358.3,27791,1,3,0)
+ ;;=3^Post-Traumatic Headache Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27791,1,4,0)
+ ;;=4^G44.309
+ ;;^UTILITY(U,$J,358.3,27791,2)
+ ;;=^5003942
+ ;;^UTILITY(U,$J,358.3,27792,0)
+ ;;=G44.201^^109^1385^21
+ ;;^UTILITY(U,$J,358.3,27792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27397,1,3,0)
- ;;=3^Abdominal Hernia w/o Obst or Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,27397,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,27397,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,27398,0)
- ;;=K50.90^^132^1315^29
- ;;^UTILITY(U,$J,358.3,27398,1,0)
+ ;;^UTILITY(U,$J,358.3,27792,1,3,0)
+ ;;=3^Tension-Type Headache Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,27792,1,4,0)
+ ;;=4^G44.201
+ ;;^UTILITY(U,$J,358.3,27792,2)
+ ;;=^5003935
+ ;;^UTILITY(U,$J,358.3,27793,0)
+ ;;=G20.^^109^1386^13
+ ;;^UTILITY(U,$J,358.3,27793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27398,1,3,0)
- ;;=3^Crohn's Disease w/o Complications,Unspec
- ;;^UTILITY(U,$J,358.3,27398,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,27398,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,27399,0)
- ;;=K50.911^^132^1315^27
- ;;^UTILITY(U,$J,358.3,27399,1,0)
+ ;;^UTILITY(U,$J,358.3,27793,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,27793,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,27793,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,27794,0)
+ ;;=G21.8^^109^1386^18
+ ;;^UTILITY(U,$J,358.3,27794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27399,1,3,0)
- ;;=3^Crohn's Disease w/ Rectal Bleeding,Unspec
- ;;^UTILITY(U,$J,358.3,27399,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,27399,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,27400,0)
- ;;=K50.912^^132^1315^25
- ;;^UTILITY(U,$J,358.3,27400,1,0)
+ ;;^UTILITY(U,$J,358.3,27794,1,3,0)
+ ;;=3^Secondary Parkinsonism,Other
+ ;;^UTILITY(U,$J,358.3,27794,1,4,0)
+ ;;=4^G21.8
+ ;;^UTILITY(U,$J,358.3,27794,2)
+ ;;=^5003777
+ ;;^UTILITY(U,$J,358.3,27795,0)
+ ;;=G25.0^^109^1386^8
+ ;;^UTILITY(U,$J,358.3,27795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27400,1,3,0)
- ;;=3^Crohn's Disease w/ Intestinal Obstruction,Unspec
- ;;^UTILITY(U,$J,358.3,27400,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,27400,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,27401,0)
- ;;=K50.919^^132^1315^28
- ;;^UTILITY(U,$J,358.3,27401,1,0)
+ ;;^UTILITY(U,$J,358.3,27795,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,27795,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,27795,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,27796,0)
+ ;;=G25.1^^109^1386^6
+ ;;^UTILITY(U,$J,358.3,27796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27401,1,3,0)
- ;;=3^Crohn's Disease w/ Unspec Complications,Unspec
- ;;^UTILITY(U,$J,358.3,27401,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,27401,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,27402,0)
- ;;=K50.914^^132^1315^23
- ;;^UTILITY(U,$J,358.3,27402,1,0)
+ ;;^UTILITY(U,$J,358.3,27796,1,3,0)
+ ;;=3^Drug-Induced Tremor
+ ;;^UTILITY(U,$J,358.3,27796,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,27796,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,27797,0)
+ ;;=G25.2^^109^1386^22
+ ;;^UTILITY(U,$J,358.3,27797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27402,1,3,0)
- ;;=3^Crohn's Disease w/ Abscess,Unspec
- ;;^UTILITY(U,$J,358.3,27402,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,27402,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,27403,0)
- ;;=K50.913^^132^1315^24
- ;;^UTILITY(U,$J,358.3,27403,1,0)
+ ;;^UTILITY(U,$J,358.3,27797,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,27797,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,27797,2)
+ ;;=^5003793
+ ;;^UTILITY(U,$J,358.3,27798,0)
+ ;;=G25.3^^109^1386^11
+ ;;^UTILITY(U,$J,358.3,27798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27403,1,3,0)
- ;;=3^Crohn's Disease w/ Fistula,Unspec
- ;;^UTILITY(U,$J,358.3,27403,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,27403,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,27404,0)
- ;;=K50.918^^132^1315^26
- ;;^UTILITY(U,$J,358.3,27404,1,0)
+ ;;^UTILITY(U,$J,358.3,27798,1,3,0)
+ ;;=3^Myoclonus
+ ;;^UTILITY(U,$J,358.3,27798,1,4,0)
+ ;;=4^G25.3
+ ;;^UTILITY(U,$J,358.3,27798,2)
+ ;;=^80620
+ ;;^UTILITY(U,$J,358.3,27799,0)
+ ;;=G25.69^^109^1386^20
+ ;;^UTILITY(U,$J,358.3,27799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27404,1,3,0)
- ;;=3^Crohn's Disease w/ Oth Complication,Unspec
- ;;^UTILITY(U,$J,358.3,27404,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,27404,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,27405,0)
- ;;=K51.90^^132^1315^80
- ;;^UTILITY(U,$J,358.3,27405,1,0)
+ ;;^UTILITY(U,$J,358.3,27799,1,3,0)
+ ;;=3^Tics,Organic Origin,Other
+ ;;^UTILITY(U,$J,358.3,27799,1,4,0)
+ ;;=4^G25.69
+ ;;^UTILITY(U,$J,358.3,27799,2)
+ ;;=^5003797
+ ;;^UTILITY(U,$J,358.3,27800,0)
+ ;;=G25.61^^109^1386^5
+ ;;^UTILITY(U,$J,358.3,27800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,27405,1,3,0)
- ;;=3^Ulcerative Colitis w/o Complications,Unspec
+ ;;^UTILITY(U,$J,358.3,27800,1,3,0)
+ ;;=3^Drug-Induced Tics

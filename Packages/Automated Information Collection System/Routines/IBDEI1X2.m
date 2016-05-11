@@ -1,136 +1,134 @@
-IBDEI1X2 ; ; 19-NOV-2015
+IBDEI1X2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32093,0)
- ;;=F65.89^^141^1492^4
- ;;^UTILITY(U,$J,358.3,32093,1,0)
+ ;;^UTILITY(U,$J,358.3,32514,0)
+ ;;=I87.001^^126^1617^11
+ ;;^UTILITY(U,$J,358.3,32514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32093,1,3,0)
- ;;=3^Paraphilic Disorder NEC
- ;;^UTILITY(U,$J,358.3,32093,1,4,0)
- ;;=4^F65.89
- ;;^UTILITY(U,$J,358.3,32093,2)
- ;;=^5003660
- ;;^UTILITY(U,$J,358.3,32094,0)
- ;;=F65.9^^141^1492^5
- ;;^UTILITY(U,$J,358.3,32094,1,0)
+ ;;^UTILITY(U,$J,358.3,32514,1,3,0)
+ ;;=3^Postrhomb syndr w/o compl of rt lwr extrem
+ ;;^UTILITY(U,$J,358.3,32514,1,4,0)
+ ;;=4^I87.001
+ ;;^UTILITY(U,$J,358.3,32514,2)
+ ;;=^5008027
+ ;;^UTILITY(U,$J,358.3,32515,0)
+ ;;=I80.01^^126^1617^8
+ ;;^UTILITY(U,$J,358.3,32515,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32094,1,3,0)
- ;;=3^Paraphilic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32094,1,4,0)
- ;;=4^F65.9
- ;;^UTILITY(U,$J,358.3,32094,2)
- ;;=^5003661
- ;;^UTILITY(U,$J,358.3,32095,0)
- ;;=F60.0^^141^1493^8
- ;;^UTILITY(U,$J,358.3,32095,1,0)
+ ;;^UTILITY(U,$J,358.3,32515,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Right Lower Sprfcl Vessels
+ ;;^UTILITY(U,$J,358.3,32515,1,4,0)
+ ;;=4^I80.01
+ ;;^UTILITY(U,$J,358.3,32515,2)
+ ;;=^5007821
+ ;;^UTILITY(U,$J,358.3,32516,0)
+ ;;=I80.02^^126^1617^6
+ ;;^UTILITY(U,$J,358.3,32516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32095,1,3,0)
- ;;=3^Paranoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,32095,1,4,0)
- ;;=4^F60.0
- ;;^UTILITY(U,$J,358.3,32095,2)
- ;;=^5003635
- ;;^UTILITY(U,$J,358.3,32096,0)
- ;;=F60.1^^141^1493^11
- ;;^UTILITY(U,$J,358.3,32096,1,0)
+ ;;^UTILITY(U,$J,358.3,32516,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Left Lower Sprfcl Vessels
+ ;;^UTILITY(U,$J,358.3,32516,1,4,0)
+ ;;=4^I80.02
+ ;;^UTILITY(U,$J,358.3,32516,2)
+ ;;=^5007822
+ ;;^UTILITY(U,$J,358.3,32517,0)
+ ;;=I80.03^^126^1617^4
+ ;;^UTILITY(U,$J,358.3,32517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32096,1,3,0)
- ;;=3^Schizoid Personality Disorder
- ;;^UTILITY(U,$J,358.3,32096,1,4,0)
- ;;=4^F60.1
- ;;^UTILITY(U,$J,358.3,32096,2)
- ;;=^108271
- ;;^UTILITY(U,$J,358.3,32097,0)
- ;;=F21.^^141^1493^12
- ;;^UTILITY(U,$J,358.3,32097,1,0)
+ ;;^UTILITY(U,$J,358.3,32517,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Bilateral Lower Sprfcl Vessels
+ ;;^UTILITY(U,$J,358.3,32517,1,4,0)
+ ;;=4^I80.03
+ ;;^UTILITY(U,$J,358.3,32517,2)
+ ;;=^5007823
+ ;;^UTILITY(U,$J,358.3,32518,0)
+ ;;=I80.11^^126^1617^7
+ ;;^UTILITY(U,$J,358.3,32518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32097,1,3,0)
- ;;=3^Schizotypal Personality Disorder
- ;;^UTILITY(U,$J,358.3,32097,1,4,0)
- ;;=4^F21.
- ;;^UTILITY(U,$J,358.3,32097,2)
- ;;=^5003477
- ;;^UTILITY(U,$J,358.3,32098,0)
- ;;=F60.5^^141^1493^7
- ;;^UTILITY(U,$J,358.3,32098,1,0)
+ ;;^UTILITY(U,$J,358.3,32518,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Right Femoral Vein
+ ;;^UTILITY(U,$J,358.3,32518,1,4,0)
+ ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,32518,2)
+ ;;=^5007825
+ ;;^UTILITY(U,$J,358.3,32519,0)
+ ;;=I80.12^^126^1617^5
+ ;;^UTILITY(U,$J,358.3,32519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32098,1,3,0)
- ;;=3^Obsessive-Compulsive Personality Disorder
- ;;^UTILITY(U,$J,358.3,32098,1,4,0)
- ;;=4^F60.5
- ;;^UTILITY(U,$J,358.3,32098,2)
- ;;=^331918
- ;;^UTILITY(U,$J,358.3,32099,0)
- ;;=F60.4^^141^1493^5
- ;;^UTILITY(U,$J,358.3,32099,1,0)
+ ;;^UTILITY(U,$J,358.3,32519,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Left Femoral Vein
+ ;;^UTILITY(U,$J,358.3,32519,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,32519,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,32520,0)
+ ;;=I80.13^^126^1617^3
+ ;;^UTILITY(U,$J,358.3,32520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32099,1,3,0)
- ;;=3^Histrionic Personality Disorder
- ;;^UTILITY(U,$J,358.3,32099,1,4,0)
- ;;=4^F60.4
- ;;^UTILITY(U,$J,358.3,32099,2)
- ;;=^5003636
- ;;^UTILITY(U,$J,358.3,32100,0)
- ;;=F60.7^^141^1493^4
- ;;^UTILITY(U,$J,358.3,32100,1,0)
+ ;;^UTILITY(U,$J,358.3,32520,1,3,0)
+ ;;=3^Phlebitis & Thromboph,Bilateral Femora Vein
+ ;;^UTILITY(U,$J,358.3,32520,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,32520,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,32521,0)
+ ;;=L98.0^^126^1617^21
+ ;;^UTILITY(U,$J,358.3,32521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32100,1,3,0)
- ;;=3^Dependent Personality Disorder
- ;;^UTILITY(U,$J,358.3,32100,1,4,0)
- ;;=4^F60.7
- ;;^UTILITY(U,$J,358.3,32100,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,32101,0)
- ;;=F60.2^^141^1493^1
- ;;^UTILITY(U,$J,358.3,32101,1,0)
+ ;;^UTILITY(U,$J,358.3,32521,1,3,0)
+ ;;=3^Pyogenic granuloma
+ ;;^UTILITY(U,$J,358.3,32521,1,4,0)
+ ;;=4^L98.0
+ ;;^UTILITY(U,$J,358.3,32521,2)
+ ;;=^5009574
+ ;;^UTILITY(U,$J,358.3,32522,0)
+ ;;=L40.0^^126^1617^16
+ ;;^UTILITY(U,$J,358.3,32522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32101,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,32101,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,32101,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,32102,0)
- ;;=F60.81^^141^1493^6
- ;;^UTILITY(U,$J,358.3,32102,1,0)
+ ;;^UTILITY(U,$J,358.3,32522,1,3,0)
+ ;;=3^Psoriasis vulgaris
+ ;;^UTILITY(U,$J,358.3,32522,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,32522,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,32523,0)
+ ;;=L40.1^^126^1617^19
+ ;;^UTILITY(U,$J,358.3,32523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32102,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,32102,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,32102,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,32103,0)
- ;;=F60.6^^141^1493^2
- ;;^UTILITY(U,$J,358.3,32103,1,0)
+ ;;^UTILITY(U,$J,358.3,32523,1,3,0)
+ ;;=3^Pustular Psoriasis,Generalized
+ ;;^UTILITY(U,$J,358.3,32523,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,32523,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,32524,0)
+ ;;=L40.9^^126^1617^17
+ ;;^UTILITY(U,$J,358.3,32524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32103,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,32103,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,32103,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,32104,0)
- ;;=F60.3^^141^1493^3
- ;;^UTILITY(U,$J,358.3,32104,1,0)
+ ;;^UTILITY(U,$J,358.3,32524,1,3,0)
+ ;;=3^Psoriasis, unspec
+ ;;^UTILITY(U,$J,358.3,32524,1,4,0)
+ ;;=4^L40.9
+ ;;^UTILITY(U,$J,358.3,32524,2)
+ ;;=^5009171
+ ;;^UTILITY(U,$J,358.3,32525,0)
+ ;;=L40.3^^126^1617^20
+ ;;^UTILITY(U,$J,358.3,32525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32104,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,32104,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,32104,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,32105,0)
- ;;=F60.89^^141^1493^9
- ;;^UTILITY(U,$J,358.3,32105,1,0)
+ ;;^UTILITY(U,$J,358.3,32525,1,3,0)
+ ;;=3^Pustulosis palmaris et plantaris
+ ;;^UTILITY(U,$J,358.3,32525,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,32525,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,32526,0)
+ ;;=L40.8^^126^1617^15
+ ;;^UTILITY(U,$J,358.3,32526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32105,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,32105,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,32105,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,32106,0)
- ;;=F60.9^^141^1493^10
+ ;;^UTILITY(U,$J,358.3,32526,1,3,0)
+ ;;=3^Psoriasis NEC
+ ;;^UTILITY(U,$J,358.3,32526,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,32526,2)
+ ;;=^271917

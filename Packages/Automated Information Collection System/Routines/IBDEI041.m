@@ -1,136 +1,136 @@
-IBDEI041 ; ; 19-NOV-2015
+IBDEI041 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1185,1,4,0)
- ;;=4^I80.202
- ;;^UTILITY(U,$J,358.3,1185,2)
- ;;=^5007829
- ;;^UTILITY(U,$J,358.3,1186,0)
- ;;=I80.203^^12^131^27
- ;;^UTILITY(U,$J,358.3,1186,1,0)
+ ;;^UTILITY(U,$J,358.3,1454,1,3,0)
+ ;;=3^Ears/Hearing Exam w/o Abnormal Findings
+ ;;^UTILITY(U,$J,358.3,1454,1,4,0)
+ ;;=4^Z01.10
+ ;;^UTILITY(U,$J,358.3,1454,2)
+ ;;=^5062614
+ ;;^UTILITY(U,$J,358.3,1455,0)
+ ;;=Z46.1^^8^136^17
+ ;;^UTILITY(U,$J,358.3,1455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1186,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis Deep Vessels Bilateral Lower Extremity
- ;;^UTILITY(U,$J,358.3,1186,1,4,0)
- ;;=4^I80.203
- ;;^UTILITY(U,$J,358.3,1186,2)
- ;;=^5007830
- ;;^UTILITY(U,$J,358.3,1187,0)
- ;;=K27.9^^12^131^21
- ;;^UTILITY(U,$J,358.3,1187,1,0)
+ ;;^UTILITY(U,$J,358.3,1455,1,3,0)
+ ;;=3^Fitting/Adjustment of Hearing Aid
+ ;;^UTILITY(U,$J,358.3,1455,1,4,0)
+ ;;=4^Z46.1
+ ;;^UTILITY(U,$J,358.3,1455,2)
+ ;;=^5063014
+ ;;^UTILITY(U,$J,358.3,1456,0)
+ ;;=Z09.^^8^136^14
+ ;;^UTILITY(U,$J,358.3,1456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1187,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation
- ;;^UTILITY(U,$J,358.3,1187,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,1187,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,1188,0)
- ;;=J31.0^^12^132^4
- ;;^UTILITY(U,$J,358.3,1188,1,0)
+ ;;^UTILITY(U,$J,358.3,1456,1,3,0)
+ ;;=3^F/U Exam After Trtmt for Cond Oth Than Malig Neop
+ ;;^UTILITY(U,$J,358.3,1456,1,4,0)
+ ;;=4^Z09.
+ ;;^UTILITY(U,$J,358.3,1456,2)
+ ;;=^5062668
+ ;;^UTILITY(U,$J,358.3,1457,0)
+ ;;=Z02.79^^8^136^20
+ ;;^UTILITY(U,$J,358.3,1457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1188,1,3,0)
- ;;=3^Rhinitis,Chronic
- ;;^UTILITY(U,$J,358.3,1188,1,4,0)
- ;;=4^J31.0
- ;;^UTILITY(U,$J,358.3,1188,2)
- ;;=^24434
- ;;^UTILITY(U,$J,358.3,1189,0)
- ;;=M06.9^^12^132^3
- ;;^UTILITY(U,$J,358.3,1189,1,0)
+ ;;^UTILITY(U,$J,358.3,1457,1,3,0)
+ ;;=3^Medical Certificate Issue NEC
+ ;;^UTILITY(U,$J,358.3,1457,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,1457,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,1458,0)
+ ;;=Z02.1^^8^136^9
+ ;;^UTILITY(U,$J,358.3,1458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1189,1,3,0)
- ;;=3^Rheumatoid Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,1189,1,4,0)
- ;;=4^M06.9
- ;;^UTILITY(U,$J,358.3,1189,2)
- ;;=^5010145
- ;;^UTILITY(U,$J,358.3,1190,0)
- ;;=M54.10^^12^132^1
- ;;^UTILITY(U,$J,358.3,1190,1,0)
+ ;;^UTILITY(U,$J,358.3,1458,1,3,0)
+ ;;=3^Exam for Employment
+ ;;^UTILITY(U,$J,358.3,1458,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,1458,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,1459,0)
+ ;;=Z13.5^^8^136^13
+ ;;^UTILITY(U,$J,358.3,1459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1190,1,3,0)
- ;;=3^Radiculopathy,Site Unspec
- ;;^UTILITY(U,$J,358.3,1190,1,4,0)
- ;;=4^M54.10
- ;;^UTILITY(U,$J,358.3,1190,2)
- ;;=^5012295
- ;;^UTILITY(U,$J,358.3,1191,0)
- ;;=R21.^^12^132^2
- ;;^UTILITY(U,$J,358.3,1191,1,0)
+ ;;^UTILITY(U,$J,358.3,1459,1,3,0)
+ ;;=3^Eye/Ear Disorder Screening
+ ;;^UTILITY(U,$J,358.3,1459,1,4,0)
+ ;;=4^Z13.5
+ ;;^UTILITY(U,$J,358.3,1459,2)
+ ;;=^5062706
+ ;;^UTILITY(U,$J,358.3,1460,0)
+ ;;=Z82.2^^8^136^15
+ ;;^UTILITY(U,$J,358.3,1460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1191,1,3,0)
- ;;=3^Rash & Oth Nonspecific Skin Eruption
- ;;^UTILITY(U,$J,358.3,1191,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,1191,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,1192,0)
- ;;=S23.9XXA^^12^133^18
- ;;^UTILITY(U,$J,358.3,1192,1,0)
+ ;;^UTILITY(U,$J,358.3,1460,1,3,0)
+ ;;=3^Family history of deafness and hearing loss
+ ;;^UTILITY(U,$J,358.3,1460,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,1460,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,1461,0)
+ ;;=Z83.52^^8^136^16
+ ;;^UTILITY(U,$J,358.3,1461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1192,1,3,0)
- ;;=3^Sprain Thorax,Unspec Part,Initial Encounter
- ;;^UTILITY(U,$J,358.3,1192,1,4,0)
- ;;=4^S23.9XXA
- ;;^UTILITY(U,$J,358.3,1192,2)
- ;;=^5023267
- ;;^UTILITY(U,$J,358.3,1193,0)
- ;;=I69.928^^12^133^13
- ;;^UTILITY(U,$J,358.3,1193,1,0)
+ ;;^UTILITY(U,$J,358.3,1461,1,3,0)
+ ;;=3^Family history of ear disorders
+ ;;^UTILITY(U,$J,358.3,1461,1,4,0)
+ ;;=4^Z83.52
+ ;;^UTILITY(U,$J,358.3,1461,2)
+ ;;=^5063384
+ ;;^UTILITY(U,$J,358.3,1462,0)
+ ;;=Z91.81^^8^136^18
+ ;;^UTILITY(U,$J,358.3,1462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1193,1,3,0)
- ;;=3^Speech/Lang Deficits Following Unspec Cerebrovascular Disease
- ;;^UTILITY(U,$J,358.3,1193,1,4,0)
- ;;=4^I69.928
- ;;^UTILITY(U,$J,358.3,1193,2)
- ;;=^5007557
- ;;^UTILITY(U,$J,358.3,1194,0)
- ;;=S13.4XXA^^12^133^17
- ;;^UTILITY(U,$J,358.3,1194,1,0)
+ ;;^UTILITY(U,$J,358.3,1462,1,3,0)
+ ;;=3^History of falling
+ ;;^UTILITY(U,$J,358.3,1462,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,1462,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,1463,0)
+ ;;=Z76.5^^8^136^19
+ ;;^UTILITY(U,$J,358.3,1463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1194,1,3,0)
- ;;=3^Sprain Ligaments Cervical Spine,Initial Encounter
- ;;^UTILITY(U,$J,358.3,1194,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,1194,2)
- ;;=^5022028
- ;;^UTILITY(U,$J,358.3,1195,0)
- ;;=M15.3^^12^133^5
- ;;^UTILITY(U,$J,358.3,1195,1,0)
+ ;;^UTILITY(U,$J,358.3,1463,1,3,0)
+ ;;=3^Malingerer [conscious simulation]
+ ;;^UTILITY(U,$J,358.3,1463,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,1463,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,1464,0)
+ ;;=Z53.09^^8^136^21
+ ;;^UTILITY(U,$J,358.3,1464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1195,1,3,0)
- ;;=3^Secondary Multiple Arthritis
- ;;^UTILITY(U,$J,358.3,1195,1,4,0)
- ;;=4^M15.3
- ;;^UTILITY(U,$J,358.3,1195,2)
- ;;=^5010765
- ;;^UTILITY(U,$J,358.3,1196,0)
- ;;=L08.9^^12^133^9
- ;;^UTILITY(U,$J,358.3,1196,1,0)
+ ;;^UTILITY(U,$J,358.3,1464,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec of contraindication
+ ;;^UTILITY(U,$J,358.3,1464,1,4,0)
+ ;;=4^Z53.09
+ ;;^UTILITY(U,$J,358.3,1464,2)
+ ;;=^5063093
+ ;;^UTILITY(U,$J,358.3,1465,0)
+ ;;=Z53.29^^8^136^23
+ ;;^UTILITY(U,$J,358.3,1465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1196,1,3,0)
- ;;=3^Skin Infection,Unspec
- ;;^UTILITY(U,$J,358.3,1196,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,1196,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,1197,0)
- ;;=L98.9^^12^133^10
- ;;^UTILITY(U,$J,358.3,1197,1,0)
+ ;;^UTILITY(U,$J,358.3,1465,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt decision for oth reasons
+ ;;^UTILITY(U,$J,358.3,1465,1,4,0)
+ ;;=4^Z53.29
+ ;;^UTILITY(U,$J,358.3,1465,2)
+ ;;=^5063097
+ ;;^UTILITY(U,$J,358.3,1466,0)
+ ;;=Z53.1^^8^136^22
+ ;;^UTILITY(U,$J,358.3,1466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1197,1,3,0)
- ;;=3^Skin/Subcutaneous Tissue Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1197,1,4,0)
- ;;=4^L98.9
- ;;^UTILITY(U,$J,358.3,1197,2)
- ;;=^5009595
- ;;^UTILITY(U,$J,358.3,1198,0)
- ;;=M48.06^^12^133^14
- ;;^UTILITY(U,$J,358.3,1198,1,0)
+ ;;^UTILITY(U,$J,358.3,1466,1,3,0)
+ ;;=3^Proc/trtmt not crd out bec pt belief and group pressure
+ ;;^UTILITY(U,$J,358.3,1466,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,1466,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,1467,0)
+ ;;=Z53.21^^8^136^25
+ ;;^UTILITY(U,$J,358.3,1467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1198,1,3,0)
- ;;=3^Spinal Stenosis,Lumbar Region
- ;;^UTILITY(U,$J,358.3,1198,1,4,0)
- ;;=4^M48.06
+ ;;^UTILITY(U,$J,358.3,1467,1,3,0)
+ ;;=3^Proc/trtmt not crd out d/t pt lv bef seen by hlth care prov

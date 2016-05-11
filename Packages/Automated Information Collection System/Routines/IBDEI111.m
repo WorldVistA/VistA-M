@@ -1,134 +1,138 @@
-IBDEI111 ; ; 19-NOV-2015
+IBDEI111 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17085,1,0)
+ ;;^UTILITY(U,$J,358.3,17423,2)
+ ;;=^331920
+ ;;^UTILITY(U,$J,358.3,17424,0)
+ ;;=F60.3^^73^839^3
+ ;;^UTILITY(U,$J,358.3,17424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17085,1,3,0)
- ;;=3^Huntington's Disease
- ;;^UTILITY(U,$J,358.3,17085,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,17085,2)
- ;;=^5003751
- ;;^UTILITY(U,$J,358.3,17086,0)
- ;;=G91.2^^88^857^72
- ;;^UTILITY(U,$J,358.3,17086,1,0)
+ ;;^UTILITY(U,$J,358.3,17424,1,3,0)
+ ;;=3^Borderline personality disorder
+ ;;^UTILITY(U,$J,358.3,17424,1,4,0)
+ ;;=4^F60.3
+ ;;^UTILITY(U,$J,358.3,17424,2)
+ ;;=^331921
+ ;;^UTILITY(U,$J,358.3,17425,0)
+ ;;=F34.0^^73^839^4
+ ;;^UTILITY(U,$J,358.3,17425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17086,1,3,0)
- ;;=3^Hydrocephalus,Idiopathic,Normal Pressure
- ;;^UTILITY(U,$J,358.3,17086,1,4,0)
- ;;=4^G91.2
- ;;^UTILITY(U,$J,358.3,17086,2)
- ;;=^5004174
- ;;^UTILITY(U,$J,358.3,17087,0)
- ;;=G91.9^^88^857^73
- ;;^UTILITY(U,$J,358.3,17087,1,0)
+ ;;^UTILITY(U,$J,358.3,17425,1,3,0)
+ ;;=3^Cyclothymic disorder
+ ;;^UTILITY(U,$J,358.3,17425,1,4,0)
+ ;;=4^F34.0
+ ;;^UTILITY(U,$J,358.3,17425,2)
+ ;;=^5003538
+ ;;^UTILITY(U,$J,358.3,17426,0)
+ ;;=F60.7^^73^839^5
+ ;;^UTILITY(U,$J,358.3,17426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17087,1,3,0)
- ;;=3^Hydrocephalus,Unspec
- ;;^UTILITY(U,$J,358.3,17087,1,4,0)
- ;;=4^G91.9
- ;;^UTILITY(U,$J,358.3,17087,2)
- ;;=^5004178
- ;;^UTILITY(U,$J,358.3,17088,0)
- ;;=R25.9^^88^857^74
- ;;^UTILITY(U,$J,358.3,17088,1,0)
+ ;;^UTILITY(U,$J,358.3,17426,1,3,0)
+ ;;=3^Dependent personality disorder
+ ;;^UTILITY(U,$J,358.3,17426,1,4,0)
+ ;;=4^F60.7
+ ;;^UTILITY(U,$J,358.3,17426,2)
+ ;;=^5003637
+ ;;^UTILITY(U,$J,358.3,17427,0)
+ ;;=F60.4^^73^839^6
+ ;;^UTILITY(U,$J,358.3,17427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17088,1,3,0)
- ;;=3^Involuntary Movements,Abnormal,Unspec
- ;;^UTILITY(U,$J,358.3,17088,1,4,0)
- ;;=4^R25.9
- ;;^UTILITY(U,$J,358.3,17088,2)
- ;;=^5019303
- ;;^UTILITY(U,$J,358.3,17089,0)
- ;;=G43.911^^88^857^75
- ;;^UTILITY(U,$J,358.3,17089,1,0)
+ ;;^UTILITY(U,$J,358.3,17427,1,3,0)
+ ;;=3^Histrionic personality disorder
+ ;;^UTILITY(U,$J,358.3,17427,1,4,0)
+ ;;=4^F60.4
+ ;;^UTILITY(U,$J,358.3,17427,2)
+ ;;=^5003636
+ ;;^UTILITY(U,$J,358.3,17428,0)
+ ;;=F60.81^^73^839^7
+ ;;^UTILITY(U,$J,358.3,17428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17089,1,3,0)
- ;;=3^Migraine,Intractable w/ Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,17089,1,4,0)
- ;;=4^G43.911
- ;;^UTILITY(U,$J,358.3,17089,2)
- ;;=^5003910
- ;;^UTILITY(U,$J,358.3,17090,0)
- ;;=G43.919^^88^857^76
- ;;^UTILITY(U,$J,358.3,17090,1,0)
+ ;;^UTILITY(U,$J,358.3,17428,1,3,0)
+ ;;=3^Narcissistic personality disorder
+ ;;^UTILITY(U,$J,358.3,17428,1,4,0)
+ ;;=4^F60.81
+ ;;^UTILITY(U,$J,358.3,17428,2)
+ ;;=^331919
+ ;;^UTILITY(U,$J,358.3,17429,0)
+ ;;=F60.5^^73^839^8
+ ;;^UTILITY(U,$J,358.3,17429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17090,1,3,0)
- ;;=3^Migraine,Intractable w/o Status Migrainosus,Unspec
- ;;^UTILITY(U,$J,358.3,17090,1,4,0)
- ;;=4^G43.919
- ;;^UTILITY(U,$J,358.3,17090,2)
- ;;=^5003911
- ;;^UTILITY(U,$J,358.3,17091,0)
- ;;=G43.901^^88^857^77
- ;;^UTILITY(U,$J,358.3,17091,1,0)
+ ;;^UTILITY(U,$J,358.3,17429,1,3,0)
+ ;;=3^Obsessive-compulsive personality disorder
+ ;;^UTILITY(U,$J,358.3,17429,1,4,0)
+ ;;=4^F60.5
+ ;;^UTILITY(U,$J,358.3,17429,2)
+ ;;=^331918
+ ;;^UTILITY(U,$J,358.3,17430,0)
+ ;;=F60.0^^73^839^9
+ ;;^UTILITY(U,$J,358.3,17430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17091,1,3,0)
- ;;=3^Migraine,Not Intractable w/ Status Migrainosis,Unspec
- ;;^UTILITY(U,$J,358.3,17091,1,4,0)
- ;;=4^G43.901
- ;;^UTILITY(U,$J,358.3,17091,2)
- ;;=^5003908
- ;;^UTILITY(U,$J,358.3,17092,0)
- ;;=G43.909^^88^857^78
- ;;^UTILITY(U,$J,358.3,17092,1,0)
+ ;;^UTILITY(U,$J,358.3,17430,1,3,0)
+ ;;=3^Paranoid personality disorder
+ ;;^UTILITY(U,$J,358.3,17430,1,4,0)
+ ;;=4^F60.0
+ ;;^UTILITY(U,$J,358.3,17430,2)
+ ;;=^5003635
+ ;;^UTILITY(U,$J,358.3,17431,0)
+ ;;=F60.89^^73^839^10
+ ;;^UTILITY(U,$J,358.3,17431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17092,1,3,0)
- ;;=3^Migraine,Not Intractable w/o Status Migrainosis,Unspec
- ;;^UTILITY(U,$J,358.3,17092,1,4,0)
- ;;=4^G43.909
- ;;^UTILITY(U,$J,358.3,17092,2)
- ;;=^5003909
- ;;^UTILITY(U,$J,358.3,17093,0)
- ;;=G12.20^^88^857^79
- ;;^UTILITY(U,$J,358.3,17093,1,0)
+ ;;^UTILITY(U,$J,358.3,17431,1,3,0)
+ ;;=3^Personality disorders, spec, other
+ ;;^UTILITY(U,$J,358.3,17431,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,17431,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,17432,0)
+ ;;=F60.1^^73^839^11
+ ;;^UTILITY(U,$J,358.3,17432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17093,1,3,0)
- ;;=3^Motor Neuron Disease,Unspec
- ;;^UTILITY(U,$J,358.3,17093,1,4,0)
- ;;=4^G12.20
- ;;^UTILITY(U,$J,358.3,17093,2)
- ;;=^5003761
- ;;^UTILITY(U,$J,358.3,17094,0)
- ;;=G25.70^^88^857^80
- ;;^UTILITY(U,$J,358.3,17094,1,0)
+ ;;^UTILITY(U,$J,358.3,17432,1,3,0)
+ ;;=3^Schizoid personality disorder
+ ;;^UTILITY(U,$J,358.3,17432,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,17432,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,17433,0)
+ ;;=F21.^^73^839^12
+ ;;^UTILITY(U,$J,358.3,17433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17094,1,3,0)
- ;;=3^Movement Disorder,Drug-Induced,Unspec
- ;;^UTILITY(U,$J,358.3,17094,1,4,0)
- ;;=4^G25.70
- ;;^UTILITY(U,$J,358.3,17094,2)
- ;;=^5003798
- ;;^UTILITY(U,$J,358.3,17095,0)
- ;;=G35.^^88^857^81
- ;;^UTILITY(U,$J,358.3,17095,1,0)
+ ;;^UTILITY(U,$J,358.3,17433,1,3,0)
+ ;;=3^Schizotypal disorder
+ ;;^UTILITY(U,$J,358.3,17433,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,17433,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,17434,0)
+ ;;=M54.10^^73^840^3
+ ;;^UTILITY(U,$J,358.3,17434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17095,1,3,0)
- ;;=3^Multiple Sclerosis
- ;;^UTILITY(U,$J,358.3,17095,1,4,0)
- ;;=4^G35.
- ;;^UTILITY(U,$J,358.3,17095,2)
- ;;=^79761
- ;;^UTILITY(U,$J,358.3,17096,0)
- ;;=G25.3^^88^857^82
- ;;^UTILITY(U,$J,358.3,17096,1,0)
+ ;;^UTILITY(U,$J,358.3,17434,1,3,0)
+ ;;=3^Radiculopathy, site unspec
+ ;;^UTILITY(U,$J,358.3,17434,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,17434,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,17435,0)
+ ;;=R21.^^73^840^5
+ ;;^UTILITY(U,$J,358.3,17435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17096,1,3,0)
- ;;=3^Myoclonus
- ;;^UTILITY(U,$J,358.3,17096,1,4,0)
- ;;=4^G25.3
- ;;^UTILITY(U,$J,358.3,17096,2)
- ;;=^80620
- ;;^UTILITY(U,$J,358.3,17097,0)
- ;;=G70.9^^88^857^83
- ;;^UTILITY(U,$J,358.3,17097,1,0)
+ ;;^UTILITY(U,$J,358.3,17435,1,3,0)
+ ;;=3^Rash & other nonspec skin eruption
+ ;;^UTILITY(U,$J,358.3,17435,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,17435,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,17436,0)
+ ;;=M06.9^^73^840^6
+ ;;^UTILITY(U,$J,358.3,17436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17097,1,3,0)
- ;;=3^Myoneural Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,17097,1,4,0)
- ;;=4^G70.9
- ;;^UTILITY(U,$J,358.3,17097,2)
- ;;=^5004087
- ;;^UTILITY(U,$J,358.3,17098,0)
- ;;=G31.9^^88^857^84
+ ;;^UTILITY(U,$J,358.3,17436,1,3,0)
+ ;;=3^Rheumatoid arthritis, unspec
+ ;;^UTILITY(U,$J,358.3,17436,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,17436,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,17437,0)
+ ;;=J31.0^^73^840^7

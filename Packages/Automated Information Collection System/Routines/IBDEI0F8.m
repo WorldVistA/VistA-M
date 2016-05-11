@@ -1,142 +1,132 @@
-IBDEI0F8 ; ; 19-NOV-2015
+IBDEI0F8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6706,2)
- ;;=^5009245
- ;;^UTILITY(U,$J,358.3,6707,0)
- ;;=L63.9^^46^445^5
- ;;^UTILITY(U,$J,358.3,6707,1,0)
+ ;;^UTILITY(U,$J,358.3,7021,2)
+ ;;=^5010762
+ ;;^UTILITY(U,$J,358.3,7022,0)
+ ;;=M06.9^^30^402^147
+ ;;^UTILITY(U,$J,358.3,7022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6707,1,3,0)
- ;;=3^Alopecia Areata,Unspec
- ;;^UTILITY(U,$J,358.3,6707,1,4,0)
- ;;=4^L63.9
- ;;^UTILITY(U,$J,358.3,6707,2)
- ;;=^5009246
- ;;^UTILITY(U,$J,358.3,6708,0)
- ;;=L70.0^^46^445^3
- ;;^UTILITY(U,$J,358.3,6708,1,0)
+ ;;^UTILITY(U,$J,358.3,7022,1,3,0)
+ ;;=3^Rheumatoid Arthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,7022,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,7022,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,7023,0)
+ ;;=M16.0^^30^402^115
+ ;;^UTILITY(U,$J,358.3,7023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6708,1,3,0)
- ;;=3^Acne Vulgaris
- ;;^UTILITY(U,$J,358.3,6708,1,4,0)
- ;;=4^L70.0
- ;;^UTILITY(U,$J,358.3,6708,2)
- ;;=^5009268
- ;;^UTILITY(U,$J,358.3,6709,0)
- ;;=L73.0^^46^445^2
- ;;^UTILITY(U,$J,358.3,6709,1,0)
+ ;;^UTILITY(U,$J,358.3,7023,1,3,0)
+ ;;=3^Primary Osteoarthritis of Hip,Bilateral
+ ;;^UTILITY(U,$J,358.3,7023,1,4,0)
+ ;;=4^M16.0
+ ;;^UTILITY(U,$J,358.3,7023,2)
+ ;;=^5010769
+ ;;^UTILITY(U,$J,358.3,7024,0)
+ ;;=M16.11^^30^402^124
+ ;;^UTILITY(U,$J,358.3,7024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6709,1,3,0)
- ;;=3^Acne Keloid
- ;;^UTILITY(U,$J,358.3,6709,1,4,0)
- ;;=4^L73.0
- ;;^UTILITY(U,$J,358.3,6709,2)
- ;;=^2149
- ;;^UTILITY(U,$J,358.3,6710,0)
- ;;=L63.0^^46^445^8
- ;;^UTILITY(U,$J,358.3,6710,1,0)
+ ;;^UTILITY(U,$J,358.3,7024,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,7024,1,4,0)
+ ;;=4^M16.11
+ ;;^UTILITY(U,$J,358.3,7024,2)
+ ;;=^5010771
+ ;;^UTILITY(U,$J,358.3,7025,0)
+ ;;=M16.12^^30^402^118
+ ;;^UTILITY(U,$J,358.3,7025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6710,1,3,0)
- ;;=3^Alopecia Totalis
- ;;^UTILITY(U,$J,358.3,6710,1,4,0)
- ;;=4^L63.0
- ;;^UTILITY(U,$J,358.3,6710,2)
- ;;=^5009242
- ;;^UTILITY(U,$J,358.3,6711,0)
- ;;=L63.1^^46^445^9
- ;;^UTILITY(U,$J,358.3,6711,1,0)
+ ;;^UTILITY(U,$J,358.3,7025,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,7025,1,4,0)
+ ;;=4^M16.12
+ ;;^UTILITY(U,$J,358.3,7025,2)
+ ;;=^5010772
+ ;;^UTILITY(U,$J,358.3,7026,0)
+ ;;=M17.0^^30^402^114
+ ;;^UTILITY(U,$J,358.3,7026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6711,1,3,0)
- ;;=3^Alopecia Universalis
- ;;^UTILITY(U,$J,358.3,6711,1,4,0)
- ;;=4^L63.1
- ;;^UTILITY(U,$J,358.3,6711,2)
- ;;=^5009243
- ;;^UTILITY(U,$J,358.3,6712,0)
- ;;=L65.2^^46^445^7
- ;;^UTILITY(U,$J,358.3,6712,1,0)
+ ;;^UTILITY(U,$J,358.3,7026,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral Knees
+ ;;^UTILITY(U,$J,358.3,7026,1,4,0)
+ ;;=4^M17.0
+ ;;^UTILITY(U,$J,358.3,7026,2)
+ ;;=^5010784
+ ;;^UTILITY(U,$J,358.3,7027,0)
+ ;;=M17.11^^30^402^125
+ ;;^UTILITY(U,$J,358.3,7027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6712,1,3,0)
- ;;=3^Alopecia Mucinosa
- ;;^UTILITY(U,$J,358.3,6712,1,4,0)
- ;;=4^L65.2
- ;;^UTILITY(U,$J,358.3,6712,2)
- ;;=^5103
- ;;^UTILITY(U,$J,358.3,6713,0)
- ;;=L66.9^^46^445^6
- ;;^UTILITY(U,$J,358.3,6713,1,0)
+ ;;^UTILITY(U,$J,358.3,7027,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,7027,1,4,0)
+ ;;=4^M17.11
+ ;;^UTILITY(U,$J,358.3,7027,2)
+ ;;=^5010786
+ ;;^UTILITY(U,$J,358.3,7028,0)
+ ;;=M17.12^^30^402^119
+ ;;^UTILITY(U,$J,358.3,7028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6713,1,3,0)
- ;;=3^Alopecia Cicatricial,Unspec
- ;;^UTILITY(U,$J,358.3,6713,1,4,0)
- ;;=4^L66.9
- ;;^UTILITY(U,$J,358.3,6713,2)
- ;;=^5009258
- ;;^UTILITY(U,$J,358.3,6714,0)
- ;;=A60.9^^46^445^11
- ;;^UTILITY(U,$J,358.3,6714,1,0)
+ ;;^UTILITY(U,$J,358.3,7028,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,7028,1,4,0)
+ ;;=4^M17.12
+ ;;^UTILITY(U,$J,358.3,7028,2)
+ ;;=^5010787
+ ;;^UTILITY(U,$J,358.3,7029,0)
+ ;;=M18.0^^30^402^113
+ ;;^UTILITY(U,$J,358.3,7029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6714,1,3,0)
- ;;=3^Anogenital Herpesviral Infection,Unspec
- ;;^UTILITY(U,$J,358.3,6714,1,4,0)
- ;;=4^A60.9
- ;;^UTILITY(U,$J,358.3,6714,2)
- ;;=^5000359
- ;;^UTILITY(U,$J,358.3,6715,0)
- ;;=L56.1^^46^446^28
- ;;^UTILITY(U,$J,358.3,6715,1,0)
+ ;;^UTILITY(U,$J,358.3,7029,1,3,0)
+ ;;=3^Primary Osteoarthritis of Bilateral 1st Carpometacarp Jts
+ ;;^UTILITY(U,$J,358.3,7029,1,4,0)
+ ;;=4^M18.0
+ ;;^UTILITY(U,$J,358.3,7029,2)
+ ;;=^5010795
+ ;;^UTILITY(U,$J,358.3,7030,0)
+ ;;=M18.11^^30^402^123
+ ;;^UTILITY(U,$J,358.3,7030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6715,1,3,0)
- ;;=3^Drug Photoallergic Response
- ;;^UTILITY(U,$J,358.3,6715,1,4,0)
- ;;=4^L56.1
- ;;^UTILITY(U,$J,358.3,6715,2)
- ;;=^5009215
- ;;^UTILITY(U,$J,358.3,6716,0)
- ;;=L56.0^^46^446^29
- ;;^UTILITY(U,$J,358.3,6716,1,0)
+ ;;^UTILITY(U,$J,358.3,7030,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,7030,1,4,0)
+ ;;=4^M18.11
+ ;;^UTILITY(U,$J,358.3,7030,2)
+ ;;=^5010797
+ ;;^UTILITY(U,$J,358.3,7031,0)
+ ;;=M18.12^^30^402^117
+ ;;^UTILITY(U,$J,358.3,7031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6716,1,3,0)
- ;;=3^Drug Phototoxic Response
- ;;^UTILITY(U,$J,358.3,6716,1,4,0)
- ;;=4^L56.0
- ;;^UTILITY(U,$J,358.3,6716,2)
- ;;=^5009214
- ;;^UTILITY(U,$J,358.3,6717,0)
- ;;=L23.9^^46^446^6
- ;;^UTILITY(U,$J,358.3,6717,1,0)
+ ;;^UTILITY(U,$J,358.3,7031,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Hand 1st Carpometacarp Jt
+ ;;^UTILITY(U,$J,358.3,7031,1,4,0)
+ ;;=4^M18.12
+ ;;^UTILITY(U,$J,358.3,7031,2)
+ ;;=^5010798
+ ;;^UTILITY(U,$J,358.3,7032,0)
+ ;;=M19.011^^30^402^126
+ ;;^UTILITY(U,$J,358.3,7032,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6717,1,3,0)
- ;;=3^Dermatitis,Allergic Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,6717,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,6717,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,6718,0)
- ;;=L30.9^^46^446^21
- ;;^UTILITY(U,$J,358.3,6718,1,0)
+ ;;^UTILITY(U,$J,358.3,7032,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,7032,1,4,0)
+ ;;=4^M19.011
+ ;;^UTILITY(U,$J,358.3,7032,2)
+ ;;=^5010808
+ ;;^UTILITY(U,$J,358.3,7033,0)
+ ;;=M19.012^^30^402^120
+ ;;^UTILITY(U,$J,358.3,7033,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6718,1,3,0)
- ;;=3^Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,6718,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,6718,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,6719,0)
- ;;=L24.9^^46^446^16
- ;;^UTILITY(U,$J,358.3,6719,1,0)
+ ;;^UTILITY(U,$J,358.3,7033,1,3,0)
+ ;;=3^Primary Osteoarthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,7033,1,4,0)
+ ;;=4^M19.012
+ ;;^UTILITY(U,$J,358.3,7033,2)
+ ;;=^5010809
+ ;;^UTILITY(U,$J,358.3,7034,0)
+ ;;=M19.031^^30^402^127
+ ;;^UTILITY(U,$J,358.3,7034,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6719,1,3,0)
- ;;=3^Dermatitis,Irritant Contact,Cause Unspec
- ;;^UTILITY(U,$J,358.3,6719,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,6719,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,6720,0)
- ;;=L30.0^^46^446^17
- ;;^UTILITY(U,$J,358.3,6720,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6720,1,3,0)
- ;;=3^Dermatitis,Nummular
+ ;;^UTILITY(U,$J,358.3,7034,1,3,0)
+ ;;=3^Primary Osteoarthritis of Right Wrist

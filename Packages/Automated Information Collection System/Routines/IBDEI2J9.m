@@ -1,118 +1,128 @@
-IBDEI2J9 ; ; 19-NOV-2015
+IBDEI2J9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42493,1,4,0)
- ;;=4^S82.61XK
- ;;^UTILITY(U,$J,358.3,42493,2)
- ;;=^5042320
- ;;^UTILITY(U,$J,358.3,42494,0)
- ;;=S82.855N^^192^2137^374
- ;;^UTILITY(U,$J,358.3,42494,1,0)
+ ;;^UTILITY(U,$J,358.3,42970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42494,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42494,1,4,0)
- ;;=4^S82.855N
- ;;^UTILITY(U,$J,358.3,42494,2)
- ;;=^5042650
- ;;^UTILITY(U,$J,358.3,42495,0)
- ;;=S82.854N^^192^2137^379
- ;;^UTILITY(U,$J,358.3,42495,1,0)
+ ;;^UTILITY(U,$J,358.3,42970,1,2,0)
+ ;;=2^Vascular Aorta/Inferior VC/Iliac,Cmplt
+ ;;^UTILITY(U,$J,358.3,42970,1,4,0)
+ ;;=4^93978
+ ;;^UTILITY(U,$J,358.3,42971,0)
+ ;;=93979^^163^2057^5^^^^1
+ ;;^UTILITY(U,$J,358.3,42971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42495,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42495,1,4,0)
- ;;=4^S82.854N
- ;;^UTILITY(U,$J,358.3,42495,2)
- ;;=^5042634
- ;;^UTILITY(U,$J,358.3,42496,0)
- ;;=S82.855M^^192^2137^375
- ;;^UTILITY(U,$J,358.3,42496,1,0)
+ ;;^UTILITY(U,$J,358.3,42971,1,2,0)
+ ;;=2^Vascular Aorta/Inferior VC/Iliac,Ltd
+ ;;^UTILITY(U,$J,358.3,42971,1,4,0)
+ ;;=4^93979
+ ;;^UTILITY(U,$J,358.3,42972,0)
+ ;;=93980^^163^2057^6^^^^1
+ ;;^UTILITY(U,$J,358.3,42972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42496,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42496,1,4,0)
- ;;=4^S82.855M
- ;;^UTILITY(U,$J,358.3,42496,2)
- ;;=^5042649
- ;;^UTILITY(U,$J,358.3,42497,0)
- ;;=S82.854M^^192^2137^380
- ;;^UTILITY(U,$J,358.3,42497,1,0)
+ ;;^UTILITY(U,$J,358.3,42972,1,2,0)
+ ;;=2^Vascular Penile,Cmplt
+ ;;^UTILITY(U,$J,358.3,42972,1,4,0)
+ ;;=4^93980
+ ;;^UTILITY(U,$J,358.3,42973,0)
+ ;;=93981^^163^2057^7^^^^1
+ ;;^UTILITY(U,$J,358.3,42973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42497,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42497,1,4,0)
- ;;=4^S82.854M
- ;;^UTILITY(U,$J,358.3,42497,2)
- ;;=^5042633
- ;;^UTILITY(U,$J,358.3,42498,0)
- ;;=S82.855K^^192^2137^376
- ;;^UTILITY(U,$J,358.3,42498,1,0)
+ ;;^UTILITY(U,$J,358.3,42973,1,2,0)
+ ;;=2^Vascular Penile,Ltd
+ ;;^UTILITY(U,$J,358.3,42973,1,4,0)
+ ;;=4^93981
+ ;;^UTILITY(U,$J,358.3,42974,0)
+ ;;=93982^^163^2057^1^^^^1
+ ;;^UTILITY(U,$J,358.3,42974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42498,1,3,0)
- ;;=3^Nondisp trimall fx lft lwr leg, subs for clos w/ nonunion
- ;;^UTILITY(U,$J,358.3,42498,1,4,0)
- ;;=4^S82.855K
- ;;^UTILITY(U,$J,358.3,42498,2)
- ;;=^5042648
- ;;^UTILITY(U,$J,358.3,42499,0)
- ;;=S82.854K^^192^2137^381
- ;;^UTILITY(U,$J,358.3,42499,1,0)
+ ;;^UTILITY(U,$J,358.3,42974,1,2,0)
+ ;;=2^Aneurysm Pressure Sensor Study,Cmplt
+ ;;^UTILITY(U,$J,358.3,42974,1,4,0)
+ ;;=4^93982
+ ;;^UTILITY(U,$J,358.3,42975,0)
+ ;;=93923^^163^2058^6^^^^1
+ ;;^UTILITY(U,$J,358.3,42975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42499,1,3,0)
- ;;=3^Nondisp trimall fx rt lwr leg, subs for clos w/ nonunion
- ;;^UTILITY(U,$J,358.3,42499,1,4,0)
- ;;=4^S82.854K
- ;;^UTILITY(U,$J,358.3,42499,2)
- ;;=^5042632
- ;;^UTILITY(U,$J,358.3,42500,0)
- ;;=S82.851N^^192^2137^157
- ;;^UTILITY(U,$J,358.3,42500,1,0)
+ ;;^UTILITY(U,$J,358.3,42975,1,2,0)
+ ;;=2^Noninvasive Bil Upper/Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,42975,1,4,0)
+ ;;=4^93923
+ ;;^UTILITY(U,$J,358.3,42976,0)
+ ;;=93924^^163^2058^5^^^^1
+ ;;^UTILITY(U,$J,358.3,42976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42500,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42500,1,4,0)
- ;;=4^S82.851N
- ;;^UTILITY(U,$J,358.3,42500,2)
- ;;=^5042586
- ;;^UTILITY(U,$J,358.3,42501,0)
- ;;=S82.852N^^192^2137^151
- ;;^UTILITY(U,$J,358.3,42501,1,0)
+ ;;^UTILITY(U,$J,358.3,42976,1,2,0)
+ ;;=2^Noninvasive Bil Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,42976,1,4,0)
+ ;;=4^93924
+ ;;^UTILITY(U,$J,358.3,42977,0)
+ ;;=93925^^163^2058^1^^^^1
+ ;;^UTILITY(U,$J,358.3,42977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42501,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,42501,1,4,0)
- ;;=4^S82.852N
- ;;^UTILITY(U,$J,358.3,42501,2)
- ;;=^5042602
- ;;^UTILITY(U,$J,358.3,42502,0)
- ;;=S82.851M^^192^2137^158
- ;;^UTILITY(U,$J,358.3,42502,1,0)
+ ;;^UTILITY(U,$J,358.3,42977,1,2,0)
+ ;;=2^Duplex Scan Bilat Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,42977,1,4,0)
+ ;;=4^93925
+ ;;^UTILITY(U,$J,358.3,42978,0)
+ ;;=93926^^163^2058^3^^^^1
+ ;;^UTILITY(U,$J,358.3,42978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42502,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42502,1,4,0)
- ;;=4^S82.851M
- ;;^UTILITY(U,$J,358.3,42502,2)
- ;;=^5042585
- ;;^UTILITY(U,$J,358.3,42503,0)
- ;;=S82.852M^^192^2137^152
- ;;^UTILITY(U,$J,358.3,42503,1,0)
+ ;;^UTILITY(U,$J,358.3,42978,1,2,0)
+ ;;=2^Duplex Scan Unilat Lower Extrem,Ltd
+ ;;^UTILITY(U,$J,358.3,42978,1,4,0)
+ ;;=4^93926
+ ;;^UTILITY(U,$J,358.3,42979,0)
+ ;;=93930^^163^2058^2^^^^1
+ ;;^UTILITY(U,$J,358.3,42979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42503,1,3,0)
- ;;=3^Disp trimall fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,42503,1,4,0)
- ;;=4^S82.852M
- ;;^UTILITY(U,$J,358.3,42503,2)
- ;;=^5042601
- ;;^UTILITY(U,$J,358.3,42504,0)
- ;;=S82.851K^^192^2137^156
- ;;^UTILITY(U,$J,358.3,42504,1,0)
+ ;;^UTILITY(U,$J,358.3,42979,1,2,0)
+ ;;=2^Duplex Scan Bilat Upper Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,42979,1,4,0)
+ ;;=4^93930
+ ;;^UTILITY(U,$J,358.3,42980,0)
+ ;;=93931^^163^2058^4^^^^1
+ ;;^UTILITY(U,$J,358.3,42980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42504,1,3,0)
- ;;=3^Disp trimall fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,42504,1,4,0)
- ;;=4^S82.851K
- ;;^UTILITY(U,$J,358.3,42504,2)
- ;;=^5042584
+ ;;^UTILITY(U,$J,358.3,42980,1,2,0)
+ ;;=2^Duplex Scan Unilat Upper Extrem,Ltd
+ ;;^UTILITY(U,$J,358.3,42980,1,4,0)
+ ;;=4^93931
+ ;;^UTILITY(U,$J,358.3,42981,0)
+ ;;=76775^^163^2059^1^^^^1
+ ;;^UTILITY(U,$J,358.3,42981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42981,1,2,0)
+ ;;=2^AAA
+ ;;^UTILITY(U,$J,358.3,42981,1,4,0)
+ ;;=4^76775
+ ;;^UTILITY(U,$J,358.3,42982,0)
+ ;;=76999^^163^2059^2^^^^1
+ ;;^UTILITY(U,$J,358.3,42982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42982,1,2,0)
+ ;;=2^Echo Examination Procedure
+ ;;^UTILITY(U,$J,358.3,42982,1,4,0)
+ ;;=4^76999
+ ;;^UTILITY(U,$J,358.3,42983,0)
+ ;;=76881^^163^2059^3^^^^1
+ ;;^UTILITY(U,$J,358.3,42983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42983,1,2,0)
+ ;;=2^US Extremity Nonvasc,Cmplt
+ ;;^UTILITY(U,$J,358.3,42983,1,4,0)
+ ;;=4^76881
+ ;;^UTILITY(U,$J,358.3,42984,0)
+ ;;=76882^^163^2059^4^^^^1
+ ;;^UTILITY(U,$J,358.3,42984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42984,1,2,0)
+ ;;=2^US Extremity Nonvasc,Ltd
+ ;;^UTILITY(U,$J,358.3,42984,1,4,0)
+ ;;=4^76882
+ ;;^UTILITY(U,$J,358.3,42985,0)
+ ;;=E10.40^^164^2060^81
+ ;;^UTILITY(U,$J,358.3,42985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42985,1,3,0)
+ ;;=3^DM Type 1 w/ DM Neuropathy,Unspec

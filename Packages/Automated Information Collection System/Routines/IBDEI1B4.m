@@ -1,126 +1,136 @@
-IBDEI1B4 ; ; 19-NOV-2015
+IBDEI1B4 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21817,0)
- ;;=S82.861S^^101^1034^38
- ;;^UTILITY(U,$J,358.3,21817,1,0)
+ ;;^UTILITY(U,$J,358.3,22220,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,22220,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,22220,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,22221,0)
+ ;;=N47.3^^87^977^24
+ ;;^UTILITY(U,$J,358.3,22221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21817,1,3,0)
- ;;=3^Disp maisonneuve's fx of right leg, sequela
- ;;^UTILITY(U,$J,358.3,21817,1,4,0)
- ;;=4^S82.861S
- ;;^UTILITY(U,$J,358.3,21817,2)
- ;;=^5042686
- ;;^UTILITY(U,$J,358.3,21818,0)
- ;;=S82.852S^^101^1034^54
- ;;^UTILITY(U,$J,358.3,21818,1,0)
+ ;;^UTILITY(U,$J,358.3,22221,1,3,0)
+ ;;=3^Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,22221,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,22221,2)
+ ;;=^5015726
+ ;;^UTILITY(U,$J,358.3,22222,0)
+ ;;=N47.5^^87^977^1
+ ;;^UTILITY(U,$J,358.3,22222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21818,1,3,0)
- ;;=3^Disp trimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,21818,1,4,0)
- ;;=4^S82.852S
- ;;^UTILITY(U,$J,358.3,21818,2)
- ;;=^5042606
- ;;^UTILITY(U,$J,358.3,21819,0)
- ;;=S82.851S^^101^1034^55
- ;;^UTILITY(U,$J,358.3,21819,1,0)
+ ;;^UTILITY(U,$J,358.3,22222,1,3,0)
+ ;;=3^Adhesions Prepuce & Glans Penis
+ ;;^UTILITY(U,$J,358.3,22222,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,22222,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,22223,0)
+ ;;=N47.4^^87^977^19
+ ;;^UTILITY(U,$J,358.3,22223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21819,1,3,0)
- ;;=3^Disp trimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,21819,1,4,0)
- ;;=4^S82.851S
- ;;^UTILITY(U,$J,358.3,21819,2)
- ;;=^5042590
- ;;^UTILITY(U,$J,358.3,21820,0)
- ;;=S82.845S^^101^1034^72
- ;;^UTILITY(U,$J,358.3,21820,1,0)
+ ;;^UTILITY(U,$J,358.3,22223,1,3,0)
+ ;;=3^Cyst of Prepuce,Benign
+ ;;^UTILITY(U,$J,358.3,22223,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,22223,2)
+ ;;=^5015727
+ ;;^UTILITY(U,$J,358.3,22224,0)
+ ;;=N47.8^^87^977^25
+ ;;^UTILITY(U,$J,358.3,22224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21820,1,3,0)
- ;;=3^Nondisp bimalleolar fx of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,21820,1,4,0)
- ;;=4^S82.845S
- ;;^UTILITY(U,$J,358.3,21820,2)
- ;;=^5042558
- ;;^UTILITY(U,$J,358.3,21821,0)
- ;;=S82.844S^^101^1034^73
- ;;^UTILITY(U,$J,358.3,21821,1,0)
+ ;;^UTILITY(U,$J,358.3,22224,1,3,0)
+ ;;=3^Disorders of Prepuce
+ ;;^UTILITY(U,$J,358.3,22224,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,22224,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,22225,0)
+ ;;=N47.7^^87^977^58
+ ;;^UTILITY(U,$J,358.3,22225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21821,1,3,0)
- ;;=3^Nondisp bimalleolar fx of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,21821,1,4,0)
- ;;=4^S82.844S
- ;;^UTILITY(U,$J,358.3,21821,2)
- ;;=^5042542
- ;;^UTILITY(U,$J,358.3,21822,0)
- ;;=S92.522S^^101^1034^42
- ;;^UTILITY(U,$J,358.3,21822,1,0)
+ ;;^UTILITY(U,$J,358.3,22225,1,3,0)
+ ;;=3^Inflammatory Diseases of Prepuce
+ ;;^UTILITY(U,$J,358.3,22225,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,22225,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,22226,0)
+ ;;=N47.6^^87^977^3
+ ;;^UTILITY(U,$J,358.3,22226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21822,1,3,0)
- ;;=3^Disp medial phalanx fx of left lesser toe, sequela
- ;;^UTILITY(U,$J,358.3,21822,1,4,0)
- ;;=4^S92.522S
- ;;^UTILITY(U,$J,358.3,21822,2)
- ;;=^5045486
- ;;^UTILITY(U,$J,358.3,21823,0)
- ;;=S62.212S^^101^1035^1
- ;;^UTILITY(U,$J,358.3,21823,1,0)
+ ;;^UTILITY(U,$J,358.3,22226,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,22226,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,22226,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,22227,0)
+ ;;=N48.1^^87^977^2
+ ;;^UTILITY(U,$J,358.3,22227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21823,1,3,0)
- ;;=3^Bennett's fracture, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21823,1,4,0)
- ;;=4^S62.212S
- ;;^UTILITY(U,$J,358.3,21823,2)
- ;;=^5033576
- ;;^UTILITY(U,$J,358.3,21824,0)
- ;;=S62.211S^^101^1035^2
- ;;^UTILITY(U,$J,358.3,21824,1,0)
+ ;;^UTILITY(U,$J,358.3,22227,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,22227,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,22227,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,22228,0)
+ ;;=N52.34^^87^977^38
+ ;;^UTILITY(U,$J,358.3,22228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21824,1,3,0)
- ;;=3^Bennett's fracture, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21824,1,4,0)
- ;;=4^S62.211S
- ;;^UTILITY(U,$J,358.3,21824,2)
- ;;=^5033569
- ;;^UTILITY(U,$J,358.3,21825,0)
- ;;=S62.316S^^101^1035^10
- ;;^UTILITY(U,$J,358.3,21825,1,0)
+ ;;^UTILITY(U,$J,358.3,22228,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,22228,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,22228,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,22229,0)
+ ;;=N52.39^^87^977^40
+ ;;^UTILITY(U,$J,358.3,22229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21825,1,3,0)
- ;;=3^Disp fx of base of 5th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21825,1,4,0)
- ;;=4^S62.316S
- ;;^UTILITY(U,$J,358.3,21825,2)
- ;;=^5033877
- ;;^UTILITY(U,$J,358.3,21826,0)
- ;;=S62.317S^^101^1035^9
- ;;^UTILITY(U,$J,358.3,21826,1,0)
+ ;;^UTILITY(U,$J,358.3,22229,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,22229,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,22229,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,22230,0)
+ ;;=N52.33^^87^977^39
+ ;;^UTILITY(U,$J,358.3,22230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21826,1,3,0)
- ;;=3^Disp fx of base of 5th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21826,1,4,0)
- ;;=4^S62.317S
- ;;^UTILITY(U,$J,358.3,21826,2)
- ;;=^5033884
- ;;^UTILITY(U,$J,358.3,21827,0)
- ;;=S62.315S^^101^1035^7
- ;;^UTILITY(U,$J,358.3,21827,1,0)
+ ;;^UTILITY(U,$J,358.3,22230,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,22230,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,22230,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,22231,0)
+ ;;=N52.32^^87^977^36
+ ;;^UTILITY(U,$J,358.3,22231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21827,1,3,0)
- ;;=3^Disp fx of base of 4th MC bone, left hand, sequela
- ;;^UTILITY(U,$J,358.3,21827,1,4,0)
- ;;=4^S62.315S
- ;;^UTILITY(U,$J,358.3,21827,2)
- ;;=^5033870
- ;;^UTILITY(U,$J,358.3,21828,0)
- ;;=S62.314S^^101^1035^8
- ;;^UTILITY(U,$J,358.3,21828,1,0)
+ ;;^UTILITY(U,$J,358.3,22231,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,22231,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,22231,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,22232,0)
+ ;;=N52.31^^87^977^37
+ ;;^UTILITY(U,$J,358.3,22232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21828,1,3,0)
- ;;=3^Disp fx of base of 4th MC bone, right hand, sequela
- ;;^UTILITY(U,$J,358.3,21828,1,4,0)
- ;;=4^S62.314S
- ;;^UTILITY(U,$J,358.3,21828,2)
- ;;=^5033863
- ;;^UTILITY(U,$J,358.3,21829,0)
- ;;=S62.310S^^101^1035^4
+ ;;^UTILITY(U,$J,358.3,22232,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,22232,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,22232,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,22233,0)
+ ;;=N52.2^^87^977^43
+ ;;^UTILITY(U,$J,358.3,22233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22233,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced

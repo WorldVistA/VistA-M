@@ -1,5 +1,5 @@
 GMTSLROE ; SLC/JER,KER - Lab Orders Extract Routine ; 09/21/2001
- ;;2.7;Health Summary;**9,28,47,96**;Oct 20, 1995;Build 9
+ ;;2.7;Health Summary;**9,28,47,96,112**;Oct 20, 1995;Build 3
  ;
  ; External References
  ;   DBIA 10035  ^DPT(
@@ -45,9 +45,11 @@ ORDER ; Get Orders
  S RL=$P(SPST,U,7) Q
 COLLECT ; Collection Date and Time
  N X S X=$P(CST,U),IDT=9999999-X D REGDTM4^GMTSU S CDT=X,CS=$P(CST,U,4),OS="COLLECTED"
+ S X=CS,OS=$S(X="C":"COLLECTED",X="U":"CANCELED",1:"On Collection List")
  Q
 RESULT ; Result Date and Time
  N X S X=$P(FST,U,2) D REGDTM4^GMTSU S RDT=X
+ I X S OS="COMPLETED"
  Q
 TEST ; Lab Test Ordered
  N TPTR,UPTR,ACCD,ACCA,ACCN
@@ -62,5 +64,5 @@ TEST ; Lab Test Ordered
  . N OACC
  . S OACC=$P($G(^LRO(69,CD,1,SN,2,TN,64.91)),"^",3)
  . I OACC]"" S ACC=OACC
- I $D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,4,TPTR,0)) S X=$P(^(0),U,5) I $G(OS)'="CANCELED" S OS=$S('$L(X):"PROCESSING",1:"COMPLETED")
+ I $D(^LRO(68,+ACCA,1,+ACCD,1,+ACCN,4,TPTR,0)) S X=$P(^(0),U,5) I $G(OS)'="CANCELED",$G(OS)'="On Collection List" S OS=$S('$L(X):"PROCESSING",1:"COMPLETED")
  Q

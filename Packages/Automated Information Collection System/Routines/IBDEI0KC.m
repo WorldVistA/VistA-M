@@ -1,138 +1,136 @@
-IBDEI0KC ; ; 19-NOV-2015
+IBDEI0KC ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9188,1,0)
+ ;;^UTILITY(U,$J,358.3,9456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9188,1,3,0)
- ;;=3^Vertebro-Basilar Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9188,1,4,0)
- ;;=4^G45.0
- ;;^UTILITY(U,$J,358.3,9188,2)
- ;;=^5003955
- ;;^UTILITY(U,$J,358.3,9189,0)
- ;;=G45.1^^58^573^4
- ;;^UTILITY(U,$J,358.3,9189,1,0)
+ ;;^UTILITY(U,$J,358.3,9456,1,3,0)
+ ;;=3^Retinal Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,9456,1,4,0)
+ ;;=4^H35.63
+ ;;^UTILITY(U,$J,358.3,9456,2)
+ ;;=^5005701
+ ;;^UTILITY(U,$J,358.3,9457,0)
+ ;;=H35.82^^41^478^82
+ ;;^UTILITY(U,$J,358.3,9457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9189,1,3,0)
- ;;=3^Carotid Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9189,1,4,0)
- ;;=4^G45.1
- ;;^UTILITY(U,$J,358.3,9189,2)
- ;;=^5003956
- ;;^UTILITY(U,$J,358.3,9190,0)
- ;;=G45.3^^58^573^1
- ;;^UTILITY(U,$J,358.3,9190,1,0)
+ ;;^UTILITY(U,$J,358.3,9457,1,3,0)
+ ;;=3^Retinal Ischemia
+ ;;^UTILITY(U,$J,358.3,9457,1,4,0)
+ ;;=4^H35.82
+ ;;^UTILITY(U,$J,358.3,9457,2)
+ ;;=^5005716
+ ;;^UTILITY(U,$J,358.3,9458,0)
+ ;;=H30.93^^41^478^15
+ ;;^UTILITY(U,$J,358.3,9458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9190,1,3,0)
- ;;=3^Amaurosis Fugax
- ;;^UTILITY(U,$J,358.3,9190,1,4,0)
- ;;=4^G45.3
- ;;^UTILITY(U,$J,358.3,9190,2)
- ;;=^304129
- ;;^UTILITY(U,$J,358.3,9191,0)
- ;;=G45.4^^58^573^13
- ;;^UTILITY(U,$J,358.3,9191,1,0)
+ ;;^UTILITY(U,$J,358.3,9458,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral
+ ;;^UTILITY(U,$J,358.3,9458,1,4,0)
+ ;;=4^H30.93
+ ;;^UTILITY(U,$J,358.3,9458,2)
+ ;;=^5005435
+ ;;^UTILITY(U,$J,358.3,9459,0)
+ ;;=H30.91^^41^478^19
+ ;;^UTILITY(U,$J,358.3,9459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9191,1,3,0)
- ;;=3^Transient Global Amnesia
- ;;^UTILITY(U,$J,358.3,9191,1,4,0)
- ;;=4^G45.4
- ;;^UTILITY(U,$J,358.3,9191,2)
- ;;=^293883
- ;;^UTILITY(U,$J,358.3,9192,0)
- ;;=G45.8^^58^573^11
- ;;^UTILITY(U,$J,358.3,9192,1,0)
+ ;;^UTILITY(U,$J,358.3,9459,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye
+ ;;^UTILITY(U,$J,358.3,9459,1,4,0)
+ ;;=4^H30.91
+ ;;^UTILITY(U,$J,358.3,9459,2)
+ ;;=^5133481
+ ;;^UTILITY(U,$J,358.3,9460,0)
+ ;;=H30.92^^41^478^17
+ ;;^UTILITY(U,$J,358.3,9460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9192,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks,Other
- ;;^UTILITY(U,$J,358.3,9192,1,4,0)
- ;;=4^G45.8
- ;;^UTILITY(U,$J,358.3,9192,2)
- ;;=^5003958
- ;;^UTILITY(U,$J,358.3,9193,0)
- ;;=G45.9^^58^573^12
- ;;^UTILITY(U,$J,358.3,9193,1,0)
+ ;;^UTILITY(U,$J,358.3,9460,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye
+ ;;^UTILITY(U,$J,358.3,9460,1,4,0)
+ ;;=4^H30.92
+ ;;^UTILITY(U,$J,358.3,9460,2)
+ ;;=^5133482
+ ;;^UTILITY(U,$J,358.3,9461,0)
+ ;;=H30.891^^41^478^20
+ ;;^UTILITY(U,$J,358.3,9461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9193,1,3,0)
- ;;=3^Transient Cerebral Ischemic Attacks,Unspec
- ;;^UTILITY(U,$J,358.3,9193,1,4,0)
- ;;=4^G45.9
- ;;^UTILITY(U,$J,358.3,9193,2)
- ;;=^5003959
- ;;^UTILITY(U,$J,358.3,9194,0)
- ;;=G46.0^^58^573^8
- ;;^UTILITY(U,$J,358.3,9194,1,0)
+ ;;^UTILITY(U,$J,358.3,9461,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,9461,1,4,0)
+ ;;=4^H30.891
+ ;;^UTILITY(U,$J,358.3,9461,2)
+ ;;=^5005430
+ ;;^UTILITY(U,$J,358.3,9462,0)
+ ;;=H30.892^^41^478^18
+ ;;^UTILITY(U,$J,358.3,9462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9194,1,3,0)
- ;;=3^Middle Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9194,1,4,0)
- ;;=4^G46.0
- ;;^UTILITY(U,$J,358.3,9194,2)
- ;;=^5003960
- ;;^UTILITY(U,$J,358.3,9195,0)
- ;;=G46.1^^58^573^2
- ;;^UTILITY(U,$J,358.3,9195,1,0)
+ ;;^UTILITY(U,$J,358.3,9462,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,9462,1,4,0)
+ ;;=4^H30.892
+ ;;^UTILITY(U,$J,358.3,9462,2)
+ ;;=^5005431
+ ;;^UTILITY(U,$J,358.3,9463,0)
+ ;;=H30.893^^41^478^16
+ ;;^UTILITY(U,$J,358.3,9463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9195,1,3,0)
- ;;=3^Anterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9195,1,4,0)
- ;;=4^G46.1
- ;;^UTILITY(U,$J,358.3,9195,2)
- ;;=^5003961
- ;;^UTILITY(U,$J,358.3,9196,0)
- ;;=G46.2^^58^573^10
- ;;^UTILITY(U,$J,358.3,9196,1,0)
+ ;;^UTILITY(U,$J,358.3,9463,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,9463,1,4,0)
+ ;;=4^H30.893
+ ;;^UTILITY(U,$J,358.3,9463,2)
+ ;;=^5005432
+ ;;^UTILITY(U,$J,358.3,9464,0)
+ ;;=H31.001^^41^478^23
+ ;;^UTILITY(U,$J,358.3,9464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9196,1,3,0)
- ;;=3^Posterior Cerebral Artery Syndrome
- ;;^UTILITY(U,$J,358.3,9196,1,4,0)
- ;;=4^G46.2
- ;;^UTILITY(U,$J,358.3,9196,2)
- ;;=^5003962
- ;;^UTILITY(U,$J,358.3,9197,0)
- ;;=G46.3^^58^573^3
- ;;^UTILITY(U,$J,358.3,9197,1,0)
+ ;;^UTILITY(U,$J,358.3,9464,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9464,1,4,0)
+ ;;=4^H31.001
+ ;;^UTILITY(U,$J,358.3,9464,2)
+ ;;=^5005436
+ ;;^UTILITY(U,$J,358.3,9465,0)
+ ;;=H31.002^^41^478^22
+ ;;^UTILITY(U,$J,358.3,9465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9197,1,3,0)
- ;;=3^Brain Stem Stroke Syndrome
- ;;^UTILITY(U,$J,358.3,9197,1,4,0)
- ;;=4^G46.3
- ;;^UTILITY(U,$J,358.3,9197,2)
- ;;=^5003963
- ;;^UTILITY(U,$J,358.3,9198,0)
- ;;=G46.7^^58^573^7
- ;;^UTILITY(U,$J,358.3,9198,1,0)
+ ;;^UTILITY(U,$J,358.3,9465,1,3,0)
+ ;;=3^Chorioretinal Scars,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9465,1,4,0)
+ ;;=4^H31.002
+ ;;^UTILITY(U,$J,358.3,9465,2)
+ ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,9466,0)
+ ;;=H31.003^^41^478^21
+ ;;^UTILITY(U,$J,358.3,9466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9198,1,3,0)
- ;;=3^Lacunar Syndromes,Other
- ;;^UTILITY(U,$J,358.3,9198,1,4,0)
- ;;=4^G46.7
- ;;^UTILITY(U,$J,358.3,9198,2)
- ;;=^5003967
- ;;^UTILITY(U,$J,358.3,9199,0)
- ;;=G46.8^^58^573^14
- ;;^UTILITY(U,$J,358.3,9199,1,0)
+ ;;^UTILITY(U,$J,358.3,9466,1,3,0)
+ ;;=3^Chorioretinal Scars,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,9466,1,4,0)
+ ;;=4^H31.003
+ ;;^UTILITY(U,$J,358.3,9466,2)
+ ;;=^5005438
+ ;;^UTILITY(U,$J,358.3,9467,0)
+ ;;=H31.021^^41^478^91
+ ;;^UTILITY(U,$J,358.3,9467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9199,1,3,0)
- ;;=3^Vascular Syndromes of Brain in CVD,Other
- ;;^UTILITY(U,$J,358.3,9199,1,4,0)
- ;;=4^G46.8
- ;;^UTILITY(U,$J,358.3,9199,2)
- ;;=^5003968
- ;;^UTILITY(U,$J,358.3,9200,0)
- ;;=I67.2^^58^573^5
- ;;^UTILITY(U,$J,358.3,9200,1,0)
+ ;;^UTILITY(U,$J,358.3,9467,1,3,0)
+ ;;=3^Retinopathy,Solar,Right Eye
+ ;;^UTILITY(U,$J,358.3,9467,1,4,0)
+ ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,9467,2)
+ ;;=^5005443
+ ;;^UTILITY(U,$J,358.3,9468,0)
+ ;;=H31.022^^41^478^90
+ ;;^UTILITY(U,$J,358.3,9468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9200,1,3,0)
- ;;=3^Cerebral Atherosclerosis
- ;;^UTILITY(U,$J,358.3,9200,1,4,0)
- ;;=4^I67.2
- ;;^UTILITY(U,$J,358.3,9200,2)
- ;;=^21571
- ;;^UTILITY(U,$J,358.3,9201,0)
- ;;=I69.898^^58^573^6
- ;;^UTILITY(U,$J,358.3,9201,1,0)
+ ;;^UTILITY(U,$J,358.3,9468,1,3,0)
+ ;;=3^Retinopathy,Solar,Left Eye
+ ;;^UTILITY(U,$J,358.3,9468,1,4,0)
+ ;;=4^H31.022
+ ;;^UTILITY(U,$J,358.3,9468,2)
+ ;;=^5005444
+ ;;^UTILITY(U,$J,358.3,9469,0)
+ ;;=H31.023^^41^478^89
+ ;;^UTILITY(U,$J,358.3,9469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9201,1,3,0)
- ;;=3^Cerebrovascular Disease Sequelae,Other

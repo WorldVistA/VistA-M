@@ -1,128 +1,124 @@
-IBDEI0WJ ; ; 19-NOV-2015
+IBDEI0WJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14992,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14992,1,3,0)
- ;;=3^Athscl of Bypass Graft,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14992,1,4,0)
- ;;=4^I70.763
- ;;^UTILITY(U,$J,358.3,14992,2)
- ;;=^5007778
- ;;^UTILITY(U,$J,358.3,14993,0)
- ;;=I70.762^^85^807^5
- ;;^UTILITY(U,$J,358.3,14993,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14993,1,3,0)
- ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14993,1,4,0)
- ;;=4^I70.762
- ;;^UTILITY(U,$J,358.3,14993,2)
- ;;=^5133608
- ;;^UTILITY(U,$J,358.3,14994,0)
- ;;=I70.761^^85^807^6
- ;;^UTILITY(U,$J,358.3,14994,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14994,1,3,0)
- ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14994,1,4,0)
- ;;=4^I70.761
- ;;^UTILITY(U,$J,358.3,14994,2)
- ;;=^5007777
- ;;^UTILITY(U,$J,358.3,14995,0)
- ;;=I70.663^^85^807^10
- ;;^UTILITY(U,$J,358.3,14995,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14995,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14995,1,4,0)
- ;;=4^I70.663
- ;;^UTILITY(U,$J,358.3,14995,2)
- ;;=^5007757
- ;;^UTILITY(U,$J,358.3,14996,0)
- ;;=I70.662^^85^807^11
- ;;^UTILITY(U,$J,358.3,14996,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14996,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14996,1,4,0)
- ;;=4^I70.662
- ;;^UTILITY(U,$J,358.3,14996,2)
- ;;=^5007756
- ;;^UTILITY(U,$J,358.3,14997,0)
- ;;=I70.661^^85^807^12
- ;;^UTILITY(U,$J,358.3,14997,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14997,1,3,0)
- ;;=3^Athscl of Nonbiol Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14997,1,4,0)
- ;;=4^I70.661
- ;;^UTILITY(U,$J,358.3,14997,2)
- ;;=^5007755
- ;;^UTILITY(U,$J,358.3,14998,0)
- ;;=I70.561^^85^807^9
- ;;^UTILITY(U,$J,358.3,14998,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14998,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14998,1,4,0)
- ;;=4^I70.561
- ;;^UTILITY(U,$J,358.3,14998,2)
- ;;=^5007717
- ;;^UTILITY(U,$J,358.3,14999,0)
- ;;=I70.562^^85^807^8
- ;;^UTILITY(U,$J,358.3,14999,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14999,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,14999,1,4,0)
- ;;=4^I70.562
- ;;^UTILITY(U,$J,358.3,14999,2)
- ;;=^5007718
- ;;^UTILITY(U,$J,358.3,15000,0)
- ;;=I70.563^^85^807^7
- ;;^UTILITY(U,$J,358.3,15000,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15000,1,3,0)
- ;;=3^Athscl of Nonaut Bio Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,15000,1,4,0)
- ;;=4^I70.563
- ;;^UTILITY(U,$J,358.3,15000,2)
- ;;=^5007719
- ;;^UTILITY(U,$J,358.3,15001,0)
- ;;=I70.462^^85^807^2
- ;;^UTILITY(U,$J,358.3,15001,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15001,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,15001,1,4,0)
- ;;=4^I70.462
- ;;^UTILITY(U,$J,358.3,15001,2)
- ;;=^5007680
- ;;^UTILITY(U,$J,358.3,15002,0)
- ;;=I70.461^^85^807^3
- ;;^UTILITY(U,$J,358.3,15002,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15002,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,15002,1,4,0)
- ;;=4^I70.461
- ;;^UTILITY(U,$J,358.3,15002,2)
- ;;=^5007679
- ;;^UTILITY(U,$J,358.3,15003,0)
- ;;=I70.463^^85^807^1
- ;;^UTILITY(U,$J,358.3,15003,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15003,1,3,0)
- ;;=3^Athscl Autol Vein Bypass,Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,15003,1,4,0)
- ;;=4^I70.463
- ;;^UTILITY(U,$J,358.3,15003,2)
- ;;=^5007681
- ;;^UTILITY(U,$J,358.3,15004,0)
- ;;=I70.361^^85^807^15
- ;;^UTILITY(U,$J,358.3,15004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15004,1,3,0)
- ;;=3^Athscl of Unspec Bypass,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,15264,1,2,0)
+ ;;=2^Q3014
+ ;;^UTILITY(U,$J,358.3,15264,1,3,0)
+ ;;=3^Telehealth Facility Fee
+ ;;^UTILITY(U,$J,358.3,15265,0)
+ ;;=90887^^57^652^7^^^^1
+ ;;^UTILITY(U,$J,358.3,15265,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15265,1,2,0)
+ ;;=2^90887
+ ;;^UTILITY(U,$J,358.3,15265,1,3,0)
+ ;;=3^Consult w/ Family,Interp/Expl Exam/Test Results
+ ;;^UTILITY(U,$J,358.3,15266,0)
+ ;;=90889^^57^652^19^^^^1
+ ;;^UTILITY(U,$J,358.3,15266,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15266,1,2,0)
+ ;;=2^90889
+ ;;^UTILITY(U,$J,358.3,15266,1,3,0)
+ ;;=3^Preparation of Report for Indiv/Agency/Insurance
+ ;;^UTILITY(U,$J,358.3,15267,0)
+ ;;=96118^^57^652^16^^^^1
+ ;;^UTILITY(U,$J,358.3,15267,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15267,1,2,0)
+ ;;=2^96118
+ ;;^UTILITY(U,$J,358.3,15267,1,3,0)
+ ;;=3^Neuropsych Tst admin by PhD/MD,per hr
+ ;;^UTILITY(U,$J,358.3,15268,0)
+ ;;=97150^^57^652^13^^^^1
+ ;;^UTILITY(U,$J,358.3,15268,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15268,1,2,0)
+ ;;=2^97150
+ ;;^UTILITY(U,$J,358.3,15268,1,3,0)
+ ;;=3^Group Therapeutic Procedures
+ ;;^UTILITY(U,$J,358.3,15269,0)
+ ;;=G0177^^57^652^32^^^^1
+ ;;^UTILITY(U,$J,358.3,15269,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15269,1,2,0)
+ ;;=2^G0177
+ ;;^UTILITY(U,$J,358.3,15269,1,3,0)
+ ;;=3^Train & Ed for Disabiling MH Problem 45+ min
+ ;;^UTILITY(U,$J,358.3,15270,0)
+ ;;=96116^^57^652^14^^^^1
+ ;;^UTILITY(U,$J,358.3,15270,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15270,1,2,0)
+ ;;=2^96116
+ ;;^UTILITY(U,$J,358.3,15270,1,3,0)
+ ;;=3^Neurobehavioral Status Exam by PhD/MD,per hr
+ ;;^UTILITY(U,$J,358.3,15271,0)
+ ;;=G0396^^57^652^1^^^^1
+ ;;^UTILITY(U,$J,358.3,15271,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15271,1,2,0)
+ ;;=2^G0396
+ ;;^UTILITY(U,$J,358.3,15271,1,3,0)
+ ;;=3^Alc/Drug Abuse Assm,Brief Intvn 15-30min
+ ;;^UTILITY(U,$J,358.3,15272,0)
+ ;;=G0397^^57^652^2^^^^1
+ ;;^UTILITY(U,$J,358.3,15272,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15272,1,2,0)
+ ;;=2^G0397
+ ;;^UTILITY(U,$J,358.3,15272,1,3,0)
+ ;;=3^Alc/Drug Abuse Assm,Brief Intvn > 30min
+ ;;^UTILITY(U,$J,358.3,15273,0)
+ ;;=G0409^^57^652^25^^^^1
+ ;;^UTILITY(U,$J,358.3,15273,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15273,1,2,0)
+ ;;=2^G0409
+ ;;^UTILITY(U,$J,358.3,15273,1,3,0)
+ ;;=3^SW & Psych Svcs R/T Pt rehab goals,ea 15min
+ ;;^UTILITY(U,$J,358.3,15274,0)
+ ;;=G0410^^57^652^12^^^^1
+ ;;^UTILITY(U,$J,358.3,15274,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15274,1,2,0)
+ ;;=2^G0410
+ ;;^UTILITY(U,$J,358.3,15274,1,3,0)
+ ;;=3^Group Psychtx,Partial Hosp Setting 45-50min
+ ;;^UTILITY(U,$J,358.3,15275,0)
+ ;;=S9453^^57^652^27^^^^1
+ ;;^UTILITY(U,$J,358.3,15275,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15275,1,2,0)
+ ;;=2^S9453
+ ;;^UTILITY(U,$J,358.3,15275,1,3,0)
+ ;;=3^Smoking Cessation Class per session
+ ;;^UTILITY(U,$J,358.3,15276,0)
+ ;;=G0436^^57^652^31^^^^1
+ ;;^UTILITY(U,$J,358.3,15276,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15276,1,2,0)
+ ;;=2^G0436
+ ;;^UTILITY(U,$J,358.3,15276,1,3,0)
+ ;;=3^Tob/Smoking Cess Counsel Asymp Pt,3-10min
+ ;;^UTILITY(U,$J,358.3,15277,0)
+ ;;=G0437^^57^652^30^^^^1
+ ;;^UTILITY(U,$J,358.3,15277,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15277,1,2,0)
+ ;;=2^G0437
+ ;;^UTILITY(U,$J,358.3,15277,1,3,0)
+ ;;=3^Tob/Smoking Cess Counsel Asymp Pt > 10min
+ ;;^UTILITY(U,$J,358.3,15278,0)
+ ;;=96101^^57^652^20^^^^1
+ ;;^UTILITY(U,$J,358.3,15278,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,15278,1,2,0)
+ ;;=2^96101
+ ;;^UTILITY(U,$J,358.3,15278,1,3,0)
+ ;;=3^Psych Test by Psychologist,per hr
+ ;;^UTILITY(U,$J,358.3,15279,0)
+ ;;=96105^^57^652^3^^^^1
+ ;;^UTILITY(U,$J,358.3,15279,1,0)
+ ;;=^358.31IA^3^2

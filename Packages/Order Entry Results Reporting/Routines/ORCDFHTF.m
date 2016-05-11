@@ -1,5 +1,7 @@
-ORCDFHTF ; SLC/MKB - Utility functions for FH Tubefeeding dialog ; 08 May 2002  2:12 PM
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,141,215**;Dec 17, 1997
+ORCDFHTF ; SLC/MKB - Utility functions for FH Tubefeeding dialog ;04/24/15  18:18
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,141,215,350**;Dec 17, 1997;Build 77
+ ;
+ ;
  ;
 EN ; -- entry action
  S ORCAT=$S($$INPT^ORCD:"I",1:"O")
@@ -33,8 +35,8 @@ VALIDQTY(X) ; -- Validates quantity X=amt units/freq X times
  S X=$$UP^XLFSTR(X),X=$$STRIP^XLFSTR(X," ") ; uppercase, no spaces
  S AMT=+X,X1=$P(X,"/"),X2=$P(X,"/",2) Q:'AMT ""
  S N=$P(X1,AMT,2),UNITS="" F X="^KCAL^K^","^ML^M^CC^C^","^OZ^O^","^UNITS^BOTTLES^CANS^PKG^U^","^TBSP^","^GM^GMS^GRAMS^G^" I X[(U_N_U) S UNITS=$P(X,U,2) Q
- Q:'$L(UNITS) "" S F=$P(X2,"X"),D=$P(X2,"X",2) S:'$L(F) F="QD"
- S FREQ="" F X="^QD^DAY^","^QH^HOUR^HR^","^BID^","^TID^","^QID^","^Q2H^","^Q3H^","^Q4H^","^Q6H^" I X[(U_F_U) S FREQ=$P(X,U,2) Q
+ Q:'$L(UNITS) "" S F=$P(X2,"X"),D=$P(X2,"X",2) S:'$L(F) F="DAY"
+ S FREQ="" F X="^DAY^DAY","^QD^DAY^","^QH^HOUR^HR^","^BID^","^TID^","^QID^","^Q2H^","^Q3H^","^Q4H^","^Q6H^" I X[(U_F_U) S FREQ=$P(X,U,2) Q
  Q:'$L(FREQ) "" S DUR="" S:D DUR=+D_$S(D'["F":"HR",1:"")
  Q AMT_" "_UNITS_"/"_FREQ_$S(DUR:" X "_DUR,1:"")
  ;

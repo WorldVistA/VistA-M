@@ -1,138 +1,130 @@
-IBDEI23M ; ; 19-NOV-2015
+IBDEI23M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,35219,1,0)
+ ;;^UTILITY(U,$J,358.3,35595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35219,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,35219,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,35219,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,35220,0)
- ;;=B18.2^^163^1795^10
- ;;^UTILITY(U,$J,358.3,35220,1,0)
+ ;;^UTILITY(U,$J,358.3,35595,1,3,0)
+ ;;=3^Kidney and Ureter Disorders in Diseases Classd Elsewhr
+ ;;^UTILITY(U,$J,358.3,35595,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,35595,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,35596,0)
+ ;;=N15.8^^134^1726^25
+ ;;^UTILITY(U,$J,358.3,35596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35220,1,3,0)
- ;;=3^Chr Viral Hepatitis C
- ;;^UTILITY(U,$J,358.3,35220,1,4,0)
- ;;=4^B18.2
- ;;^UTILITY(U,$J,358.3,35220,2)
- ;;=^5000548
- ;;^UTILITY(U,$J,358.3,35221,0)
- ;;=D12.6^^163^1795^9
- ;;^UTILITY(U,$J,358.3,35221,1,0)
+ ;;^UTILITY(U,$J,358.3,35596,1,3,0)
+ ;;=3^Renal Tubulo-Interstitial Diseases
+ ;;^UTILITY(U,$J,358.3,35596,1,4,0)
+ ;;=4^N15.8
+ ;;^UTILITY(U,$J,358.3,35596,2)
+ ;;=^5015595
+ ;;^UTILITY(U,$J,358.3,35597,0)
+ ;;=N14.4^^134^1726^26
+ ;;^UTILITY(U,$J,358.3,35597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35221,1,3,0)
- ;;=3^Benign Neop of Colon,Unspec
- ;;^UTILITY(U,$J,358.3,35221,1,4,0)
- ;;=4^D12.6
- ;;^UTILITY(U,$J,358.3,35221,2)
- ;;=^5001969
- ;;^UTILITY(U,$J,358.3,35222,0)
- ;;=D12.0^^163^1795^8
- ;;^UTILITY(U,$J,358.3,35222,1,0)
+ ;;^UTILITY(U,$J,358.3,35597,1,3,0)
+ ;;=3^Toxic Nephropathy NEC
+ ;;^UTILITY(U,$J,358.3,35597,1,4,0)
+ ;;=4^N14.4
+ ;;^UTILITY(U,$J,358.3,35597,2)
+ ;;=^5015594
+ ;;^UTILITY(U,$J,358.3,35598,0)
+ ;;=N05.6^^134^1726^18
+ ;;^UTILITY(U,$J,358.3,35598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35222,1,3,0)
- ;;=3^Benign Neop of Cecum
- ;;^UTILITY(U,$J,358.3,35222,1,4,0)
- ;;=4^D12.0
- ;;^UTILITY(U,$J,358.3,35222,2)
- ;;=^5001963
- ;;^UTILITY(U,$J,358.3,35223,0)
- ;;=K63.5^^163^1795^12
- ;;^UTILITY(U,$J,358.3,35223,1,0)
+ ;;^UTILITY(U,$J,358.3,35598,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Dense Deposit Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,35598,1,4,0)
+ ;;=4^N05.6
+ ;;^UTILITY(U,$J,358.3,35598,2)
+ ;;=^5015547
+ ;;^UTILITY(U,$J,358.3,35599,0)
+ ;;=N05.7^^134^1726^19
+ ;;^UTILITY(U,$J,358.3,35599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35223,1,3,0)
- ;;=3^Colon Polyp
- ;;^UTILITY(U,$J,358.3,35223,1,4,0)
- ;;=4^K63.5
- ;;^UTILITY(U,$J,358.3,35223,2)
- ;;=^5008765
- ;;^UTILITY(U,$J,358.3,35224,0)
- ;;=D12.1^^163^1795^7
- ;;^UTILITY(U,$J,358.3,35224,1,0)
+ ;;^UTILITY(U,$J,358.3,35599,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Diffuse Crescentic Glomerulonephritis,Unspec
+ ;;^UTILITY(U,$J,358.3,35599,1,4,0)
+ ;;=4^N05.7
+ ;;^UTILITY(U,$J,358.3,35599,2)
+ ;;=^5015548
+ ;;^UTILITY(U,$J,358.3,35600,0)
+ ;;=N05.1^^134^1726^20
+ ;;^UTILITY(U,$J,358.3,35600,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35224,1,3,0)
- ;;=3^Benign Neop of Appendix
- ;;^UTILITY(U,$J,358.3,35224,1,4,0)
- ;;=4^D12.1
- ;;^UTILITY(U,$J,358.3,35224,2)
- ;;=^5001964
- ;;^UTILITY(U,$J,358.3,35225,0)
- ;;=K64.9^^163^1795^15
- ;;^UTILITY(U,$J,358.3,35225,1,0)
+ ;;^UTILITY(U,$J,358.3,35600,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Focal/Segmental Glomerular Lesions,Unspec
+ ;;^UTILITY(U,$J,358.3,35600,1,4,0)
+ ;;=4^N05.1
+ ;;^UTILITY(U,$J,358.3,35600,2)
+ ;;=^5015542
+ ;;^UTILITY(U,$J,358.3,35601,0)
+ ;;=N05.0^^134^1726^21
+ ;;^UTILITY(U,$J,358.3,35601,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35225,1,3,0)
- ;;=3^Hemorrhoids,Unspec
- ;;^UTILITY(U,$J,358.3,35225,1,4,0)
- ;;=4^K64.9
- ;;^UTILITY(U,$J,358.3,35225,2)
- ;;=^5008775
- ;;^UTILITY(U,$J,358.3,35226,0)
- ;;=K21.9^^163^1795^14
- ;;^UTILITY(U,$J,358.3,35226,1,0)
+ ;;^UTILITY(U,$J,358.3,35601,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Minor Glomerular Abnormality,Unspec
+ ;;^UTILITY(U,$J,358.3,35601,1,4,0)
+ ;;=4^N05.0
+ ;;^UTILITY(U,$J,358.3,35601,2)
+ ;;=^5015541
+ ;;^UTILITY(U,$J,358.3,35602,0)
+ ;;=N05.8^^134^1726^22
+ ;;^UTILITY(U,$J,358.3,35602,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35226,1,3,0)
- ;;=3^GERD w/o Esophagitis
- ;;^UTILITY(U,$J,358.3,35226,1,4,0)
- ;;=4^K21.9
- ;;^UTILITY(U,$J,358.3,35226,2)
- ;;=^5008505
- ;;^UTILITY(U,$J,358.3,35227,0)
- ;;=K27.9^^163^1795^19
- ;;^UTILITY(U,$J,358.3,35227,1,0)
+ ;;^UTILITY(U,$J,358.3,35602,1,3,0)
+ ;;=3^Nephritic Syndrome w/ Morphologic Changes,Unspec
+ ;;^UTILITY(U,$J,358.3,35602,1,4,0)
+ ;;=4^N05.8
+ ;;^UTILITY(U,$J,358.3,35602,2)
+ ;;=^5134085
+ ;;^UTILITY(U,$J,358.3,35603,0)
+ ;;=R59.9^^134^1727^4
+ ;;^UTILITY(U,$J,358.3,35603,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35227,1,3,0)
- ;;=3^Peptic Ulcer w/o Hemorrhage/Perforation,Unspec Site
- ;;^UTILITY(U,$J,358.3,35227,1,4,0)
- ;;=4^K27.9
- ;;^UTILITY(U,$J,358.3,35227,2)
- ;;=^5008536
- ;;^UTILITY(U,$J,358.3,35228,0)
- ;;=K29.00^^163^1795^2
- ;;^UTILITY(U,$J,358.3,35228,1,0)
+ ;;^UTILITY(U,$J,358.3,35603,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Unspec
+ ;;^UTILITY(U,$J,358.3,35603,1,4,0)
+ ;;=4^R59.9
+ ;;^UTILITY(U,$J,358.3,35603,2)
+ ;;=^5019531
+ ;;^UTILITY(U,$J,358.3,35604,0)
+ ;;=R59.1^^134^1727^2
+ ;;^UTILITY(U,$J,358.3,35604,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35228,1,3,0)
- ;;=3^Acute Gastritis w/o Bleeding
- ;;^UTILITY(U,$J,358.3,35228,1,4,0)
- ;;=4^K29.00
- ;;^UTILITY(U,$J,358.3,35228,2)
- ;;=^5008542
- ;;^UTILITY(U,$J,358.3,35229,0)
- ;;=K46.9^^163^1795^1
- ;;^UTILITY(U,$J,358.3,35229,1,0)
+ ;;^UTILITY(U,$J,358.3,35604,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,35604,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,35604,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,35605,0)
+ ;;=R59.0^^134^1727^3
+ ;;^UTILITY(U,$J,358.3,35605,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35229,1,3,0)
- ;;=3^Abdominal Hernia w/o Obstruction/Gangrene,Unspec
- ;;^UTILITY(U,$J,358.3,35229,1,4,0)
- ;;=4^K46.9
- ;;^UTILITY(U,$J,358.3,35229,2)
- ;;=^5008623
- ;;^UTILITY(U,$J,358.3,35230,0)
- ;;=K52.9^^163^1795^18
- ;;^UTILITY(U,$J,358.3,35230,1,0)
+ ;;^UTILITY(U,$J,358.3,35605,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Localized
+ ;;^UTILITY(U,$J,358.3,35605,1,4,0)
+ ;;=4^R59.0
+ ;;^UTILITY(U,$J,358.3,35605,2)
+ ;;=^5019529
+ ;;^UTILITY(U,$J,358.3,35606,0)
+ ;;=D64.9^^134^1727^1
+ ;;^UTILITY(U,$J,358.3,35606,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35230,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,35230,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,35230,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,35231,0)
- ;;=K58.9^^163^1795^17
- ;;^UTILITY(U,$J,358.3,35231,1,0)
+ ;;^UTILITY(U,$J,358.3,35606,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,35606,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,35606,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,35607,0)
+ ;;=R79.9^^134^1728^1
+ ;;^UTILITY(U,$J,358.3,35607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35231,1,3,0)
- ;;=3^IBS w/o Diarrhea
- ;;^UTILITY(U,$J,358.3,35231,1,4,0)
- ;;=4^K58.9
- ;;^UTILITY(U,$J,358.3,35231,2)
- ;;=^5008740
- ;;^UTILITY(U,$J,358.3,35232,0)
- ;;=K74.60^^163^1795^11
- ;;^UTILITY(U,$J,358.3,35232,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,35232,1,3,0)
- ;;=3^Cirrhosis of Liver,Unspec
+ ;;^UTILITY(U,$J,358.3,35607,1,3,0)
+ ;;=3^Abnormal Finding of Blood Chemistry,Unspec
+ ;;^UTILITY(U,$J,358.3,35607,1,4,0)
+ ;;=4^R79.9

@@ -1,122 +1,138 @@
-IBDEI0YN ; ; 19-NOV-2015
+IBDEI0YN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15955,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15955,1,4,0)
- ;;=4^S01.83XA
- ;;^UTILITY(U,$J,358.3,15955,2)
- ;;=^5020231
- ;;^UTILITY(U,$J,358.3,15956,0)
- ;;=S01.93XA^^85^830^2
- ;;^UTILITY(U,$J,358.3,15956,1,0)
+ ;;^UTILITY(U,$J,358.3,16267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15956,1,3,0)
- ;;=3^Puncture Wound w/o FB of Head,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15956,1,4,0)
- ;;=4^S01.93XA
- ;;^UTILITY(U,$J,358.3,15956,2)
- ;;=^5020246
- ;;^UTILITY(U,$J,358.3,15957,0)
- ;;=S11.83XA^^85^830^32
- ;;^UTILITY(U,$J,358.3,15957,1,0)
+ ;;^UTILITY(U,$J,358.3,16267,1,3,0)
+ ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,16267,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,16267,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,16268,0)
+ ;;=I65.29^^61^729^10
+ ;;^UTILITY(U,$J,358.3,16268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15957,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15957,1,4,0)
- ;;=4^S11.83XA
- ;;^UTILITY(U,$J,358.3,15957,2)
- ;;=^5021515
- ;;^UTILITY(U,$J,358.3,15958,0)
- ;;=S11.93XA^^85^830^33
- ;;^UTILITY(U,$J,358.3,15958,1,0)
+ ;;^UTILITY(U,$J,358.3,16268,1,3,0)
+ ;;=3^Carotid Artery Occlusion/Stenosis,Unspec
+ ;;^UTILITY(U,$J,358.3,16268,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,16268,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,16269,0)
+ ;;=I23.0^^61^729^11
+ ;;^UTILITY(U,$J,358.3,16269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15958,1,3,0)
- ;;=3^Puncture Wound w/o FB of Neck,Unspec Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15958,1,4,0)
- ;;=4^S11.93XA
- ;;^UTILITY(U,$J,358.3,15958,2)
- ;;=^5021536
- ;;^UTILITY(U,$J,358.3,15959,0)
- ;;=S31.813A^^85^830^38
- ;;^UTILITY(U,$J,358.3,15959,1,0)
+ ;;^UTILITY(U,$J,358.3,16269,1,3,0)
+ ;;=3^Certain Sequelae of MI
+ ;;^UTILITY(U,$J,358.3,16269,1,4,0)
+ ;;=4^I23.0
+ ;;^UTILITY(U,$J,358.3,16269,2)
+ ;;=^5007094
+ ;;^UTILITY(U,$J,358.3,16270,0)
+ ;;=I82.509^^61^729^12
+ ;;^UTILITY(U,$J,358.3,16270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15959,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,15959,1,4,0)
- ;;=4^S31.813A
- ;;^UTILITY(U,$J,358.3,15959,2)
- ;;=^5024302
- ;;^UTILITY(U,$J,358.3,15960,0)
- ;;=S31.133A^^85^830^35
- ;;^UTILITY(U,$J,358.3,15960,1,0)
+ ;;^UTILITY(U,$J,358.3,16270,1,3,0)
+ ;;=3^Chr DVT/Embolism Lower Extremity,Unspec
+ ;;^UTILITY(U,$J,358.3,16270,1,4,0)
+ ;;=4^I82.509
+ ;;^UTILITY(U,$J,358.3,16270,2)
+ ;;=^5133628
+ ;;^UTILITY(U,$J,358.3,16271,0)
+ ;;=K70.0^^61^729^13
+ ;;^UTILITY(U,$J,358.3,16271,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15960,1,3,0)
- ;;=3^Puncture Wound w/o FB of RLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15960,1,4,0)
- ;;=4^S31.133A
- ;;^UTILITY(U,$J,358.3,15960,2)
- ;;=^5024080
- ;;^UTILITY(U,$J,358.3,15961,0)
- ;;=S31.134A^^85^830^3
- ;;^UTILITY(U,$J,358.3,15961,1,0)
+ ;;^UTILITY(U,$J,358.3,16271,1,3,0)
+ ;;=3^Chronic Liver Disease
+ ;;^UTILITY(U,$J,358.3,16271,1,4,0)
+ ;;=4^K70.0
+ ;;^UTILITY(U,$J,358.3,16271,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,16272,0)
+ ;;=E56.1^^61^729^29
+ ;;^UTILITY(U,$J,358.3,16272,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15961,1,3,0)
- ;;=3^Puncture Wound w/o FB of LLQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15961,1,4,0)
- ;;=4^S31.134A
- ;;^UTILITY(U,$J,358.3,15961,2)
- ;;=^5134457
- ;;^UTILITY(U,$J,358.3,15962,0)
- ;;=S31.823A^^85^830^6
- ;;^UTILITY(U,$J,358.3,15962,1,0)
+ ;;^UTILITY(U,$J,358.3,16272,1,3,0)
+ ;;=3^Vitamin K Deficiency
+ ;;^UTILITY(U,$J,358.3,16272,1,4,0)
+ ;;=4^E56.1
+ ;;^UTILITY(U,$J,358.3,16272,2)
+ ;;=^5002801
+ ;;^UTILITY(U,$J,358.3,16273,0)
+ ;;=Z96.649^^61^729^14
+ ;;^UTILITY(U,$J,358.3,16273,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15962,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,15962,1,4,0)
- ;;=4^S31.823A
- ;;^UTILITY(U,$J,358.3,15962,2)
- ;;=^5024314
- ;;^UTILITY(U,$J,358.3,15963,0)
- ;;=S31.130A^^85^830^36
- ;;^UTILITY(U,$J,358.3,15963,1,0)
+ ;;^UTILITY(U,$J,358.3,16273,1,3,0)
+ ;;=3^Hip Joint Replacement
+ ;;^UTILITY(U,$J,358.3,16273,1,4,0)
+ ;;=4^Z96.649
+ ;;^UTILITY(U,$J,358.3,16273,2)
+ ;;=^5063704
+ ;;^UTILITY(U,$J,358.3,16274,0)
+ ;;=Z96.659^^61^729^15
+ ;;^UTILITY(U,$J,358.3,16274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15963,1,3,0)
- ;;=3^Puncture Wound w/o FB of RUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15963,1,4,0)
- ;;=4^S31.130A
- ;;^UTILITY(U,$J,358.3,15963,2)
- ;;=^5024071
- ;;^UTILITY(U,$J,358.3,15964,0)
- ;;=S31.131A^^85^830^4
- ;;^UTILITY(U,$J,358.3,15964,1,0)
+ ;;^UTILITY(U,$J,358.3,16274,1,3,0)
+ ;;=3^Knee Joint Replacement
+ ;;^UTILITY(U,$J,358.3,16274,1,4,0)
+ ;;=4^Z96.659
+ ;;^UTILITY(U,$J,358.3,16274,2)
+ ;;=^5063708
+ ;;^UTILITY(U,$J,358.3,16275,0)
+ ;;=I69.90^^61^729^17
+ ;;^UTILITY(U,$J,358.3,16275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15964,1,3,0)
- ;;=3^Puncture Wound w/o FB of LUQ of Abd Wall w/o Penet Perit Cav,Init Encntr
- ;;^UTILITY(U,$J,358.3,15964,1,4,0)
- ;;=4^S31.131A
- ;;^UTILITY(U,$J,358.3,15964,2)
- ;;=^5024074
- ;;^UTILITY(U,$J,358.3,15965,0)
- ;;=S41.031A^^85^830^59
- ;;^UTILITY(U,$J,358.3,15965,1,0)
+ ;;^UTILITY(U,$J,358.3,16275,1,3,0)
+ ;;=3^Late Effects CVA
+ ;;^UTILITY(U,$J,358.3,16275,1,4,0)
+ ;;=4^I69.90
+ ;;^UTILITY(U,$J,358.3,16275,2)
+ ;;=^5007551
+ ;;^UTILITY(U,$J,358.3,16276,0)
+ ;;=I34.8^^61^729^19
+ ;;^UTILITY(U,$J,358.3,16276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15965,1,3,0)
- ;;=3^Puncture Wound w/o FB of Right Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,15965,1,4,0)
- ;;=4^S41.031A
- ;;^UTILITY(U,$J,358.3,15965,2)
- ;;=^5026309
- ;;^UTILITY(U,$J,358.3,15966,0)
- ;;=S41.032A^^85^830^27
- ;;^UTILITY(U,$J,358.3,15966,1,0)
+ ;;^UTILITY(U,$J,358.3,16276,1,3,0)
+ ;;=3^Mitral Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,16276,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,16276,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,16277,0)
+ ;;=I23.0^^61^729^20
+ ;;^UTILITY(U,$J,358.3,16277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15966,1,3,0)
- ;;=3^Puncture Wound w/o FB of Left Shoulder,Init Encntr
- ;;^UTILITY(U,$J,358.3,15966,1,4,0)
- ;;=4^S41.032A
- ;;^UTILITY(U,$J,358.3,15966,2)
- ;;=^5026312
- ;;^UTILITY(U,$J,358.3,15967,0)
- ;;=S51.031A^^85^830^41
+ ;;^UTILITY(U,$J,358.3,16277,1,3,0)
+ ;;=3^Mural Thrombus
+ ;;^UTILITY(U,$J,358.3,16277,1,4,0)
+ ;;=4^I23.0
+ ;;^UTILITY(U,$J,358.3,16277,2)
+ ;;=^5007094
+ ;;^UTILITY(U,$J,358.3,16278,0)
+ ;;=I73.9^^61^729^22
+ ;;^UTILITY(U,$J,358.3,16278,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16278,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16278,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,16278,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,16279,0)
+ ;;=Z86.79^^61^729^23
+ ;;^UTILITY(U,$J,358.3,16279,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16279,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Disease NEC
+ ;;^UTILITY(U,$J,358.3,16279,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,16279,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,16280,0)
+ ;;=Z86.72^^61^729^24
+ ;;^UTILITY(U,$J,358.3,16280,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16280,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis

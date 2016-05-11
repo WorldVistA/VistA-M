@@ -1,140 +1,124 @@
-IBDEI03Y ; ; 19-NOV-2015
+IBDEI03Y ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1144,1,3,0)
- ;;=3^Nicotine Dependence,Unspec
- ;;^UTILITY(U,$J,358.3,1144,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,1144,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,1145,0)
- ;;=L97.919^^12^130^7
- ;;^UTILITY(U,$J,358.3,1145,1,0)
+ ;;^UTILITY(U,$J,358.3,1417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1145,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Unspec Part Right Lower Leg
- ;;^UTILITY(U,$J,358.3,1145,1,4,0)
- ;;=4^L97.919
- ;;^UTILITY(U,$J,358.3,1145,2)
- ;;=^5133688
- ;;^UTILITY(U,$J,358.3,1146,0)
- ;;=L97.929^^12^130^6
- ;;^UTILITY(U,$J,358.3,1146,1,0)
+ ;;^UTILITY(U,$J,358.3,1417,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, init
+ ;;^UTILITY(U,$J,358.3,1417,1,4,0)
+ ;;=4^T36.91XA
+ ;;^UTILITY(U,$J,358.3,1417,2)
+ ;;=^5049418
+ ;;^UTILITY(U,$J,358.3,1418,0)
+ ;;=T36.91XD^^8^135^66
+ ;;^UTILITY(U,$J,358.3,1418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1146,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer Unspec Part Left Lower Leg
- ;;^UTILITY(U,$J,358.3,1146,1,4,0)
- ;;=4^L97.929
- ;;^UTILITY(U,$J,358.3,1146,2)
- ;;=^5133689
- ;;^UTILITY(U,$J,358.3,1147,0)
- ;;=L98.499^^12^130^5
- ;;^UTILITY(U,$J,358.3,1147,1,0)
+ ;;^UTILITY(U,$J,358.3,1418,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, subs
+ ;;^UTILITY(U,$J,358.3,1418,1,4,0)
+ ;;=4^T36.91XD
+ ;;^UTILITY(U,$J,358.3,1418,2)
+ ;;=^5049419
+ ;;^UTILITY(U,$J,358.3,1419,0)
+ ;;=T36.91XS^^8^135^67
+ ;;^UTILITY(U,$J,358.3,1419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1147,1,3,0)
- ;;=3^Non-Pressure Chr Skin Ulcer
- ;;^UTILITY(U,$J,358.3,1147,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,1147,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,1148,0)
- ;;=M15.8^^12^131^33
- ;;^UTILITY(U,$J,358.3,1148,1,0)
+ ;;^UTILITY(U,$J,358.3,1419,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, accidental, sequela
+ ;;^UTILITY(U,$J,358.3,1419,1,4,0)
+ ;;=4^T36.91XS
+ ;;^UTILITY(U,$J,358.3,1419,2)
+ ;;=^5049420
+ ;;^UTILITY(U,$J,358.3,1420,0)
+ ;;=T36.93XA^^8^135^68
+ ;;^UTILITY(U,$J,358.3,1420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1148,1,3,0)
- ;;=3^Polyosteoarthritis,Other
- ;;^UTILITY(U,$J,358.3,1148,1,4,0)
- ;;=4^M15.8
- ;;^UTILITY(U,$J,358.3,1148,2)
- ;;=^5010767
- ;;^UTILITY(U,$J,358.3,1149,0)
- ;;=F07.0^^12^131^22
- ;;^UTILITY(U,$J,358.3,1149,1,0)
+ ;;^UTILITY(U,$J,358.3,1420,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, assault, init encntr
+ ;;^UTILITY(U,$J,358.3,1420,1,4,0)
+ ;;=4^T36.93XA
+ ;;^UTILITY(U,$J,358.3,1420,2)
+ ;;=^5049424
+ ;;^UTILITY(U,$J,358.3,1421,0)
+ ;;=T36.93XD^^8^135^69
+ ;;^UTILITY(U,$J,358.3,1421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1149,1,3,0)
- ;;=3^Personality Change d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,1149,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,1149,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,1150,0)
- ;;=G62.9^^12^131^32
- ;;^UTILITY(U,$J,358.3,1150,1,0)
+ ;;^UTILITY(U,$J,358.3,1421,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, assault, subs encntr
+ ;;^UTILITY(U,$J,358.3,1421,1,4,0)
+ ;;=4^T36.93XD
+ ;;^UTILITY(U,$J,358.3,1421,2)
+ ;;=^5049425
+ ;;^UTILITY(U,$J,358.3,1422,0)
+ ;;=T36.93XS^^8^135^70
+ ;;^UTILITY(U,$J,358.3,1422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1150,1,3,0)
- ;;=3^Polyneuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,1150,1,4,0)
- ;;=4^G62.9
- ;;^UTILITY(U,$J,358.3,1150,2)
- ;;=^5004079
- ;;^UTILITY(U,$J,358.3,1151,0)
- ;;=F43.10^^12^131^1
- ;;^UTILITY(U,$J,358.3,1151,1,0)
+ ;;^UTILITY(U,$J,358.3,1422,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, assault, sequela
+ ;;^UTILITY(U,$J,358.3,1422,1,4,0)
+ ;;=4^T36.93XS
+ ;;^UTILITY(U,$J,358.3,1422,2)
+ ;;=^5049426
+ ;;^UTILITY(U,$J,358.3,1423,0)
+ ;;=T36.92XA^^8^135^71
+ ;;^UTILITY(U,$J,358.3,1423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1151,1,3,0)
- ;;=3^PTSD Unspec
- ;;^UTILITY(U,$J,358.3,1151,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,1151,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,1152,0)
- ;;=F43.12^^12^131^2
- ;;^UTILITY(U,$J,358.3,1152,1,0)
+ ;;^UTILITY(U,$J,358.3,1423,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, self-harm, init
+ ;;^UTILITY(U,$J,358.3,1423,1,4,0)
+ ;;=4^T36.92XA
+ ;;^UTILITY(U,$J,358.3,1423,2)
+ ;;=^5049421
+ ;;^UTILITY(U,$J,358.3,1424,0)
+ ;;=T36.92XD^^8^135^72
+ ;;^UTILITY(U,$J,358.3,1424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1152,1,3,0)
- ;;=3^PTSD,Chr
- ;;^UTILITY(U,$J,358.3,1152,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,1152,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,1153,0)
- ;;=G20.^^12^131^19
- ;;^UTILITY(U,$J,358.3,1153,1,0)
+ ;;^UTILITY(U,$J,358.3,1424,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, self-harm, subs
+ ;;^UTILITY(U,$J,358.3,1424,1,4,0)
+ ;;=4^T36.92XD
+ ;;^UTILITY(U,$J,358.3,1424,2)
+ ;;=^5049422
+ ;;^UTILITY(U,$J,358.3,1425,0)
+ ;;=T36.92XS^^8^135^73
+ ;;^UTILITY(U,$J,358.3,1425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1153,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,1153,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,1153,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,1154,0)
- ;;=I73.9^^12^131^3
- ;;^UTILITY(U,$J,358.3,1154,1,0)
+ ;;^UTILITY(U,$J,358.3,1425,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, self-harm, sequela
+ ;;^UTILITY(U,$J,358.3,1425,1,4,0)
+ ;;=4^T36.92XS
+ ;;^UTILITY(U,$J,358.3,1425,2)
+ ;;=^5049423
+ ;;^UTILITY(U,$J,358.3,1426,0)
+ ;;=T36.94XA^^8^135^74
+ ;;^UTILITY(U,$J,358.3,1426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1154,1,3,0)
- ;;=3^PVD,Unspecified
- ;;^UTILITY(U,$J,358.3,1154,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,1154,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,1155,0)
- ;;=I80.3^^12^131^28
- ;;^UTILITY(U,$J,358.3,1155,1,0)
+ ;;^UTILITY(U,$J,358.3,1426,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, undetermined, init
+ ;;^UTILITY(U,$J,358.3,1426,1,4,0)
+ ;;=4^T36.94XA
+ ;;^UTILITY(U,$J,358.3,1426,2)
+ ;;=^5049427
+ ;;^UTILITY(U,$J,358.3,1427,0)
+ ;;=T36.94XD^^8^135^75
+ ;;^UTILITY(U,$J,358.3,1427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1155,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis Lower Extremities,Unspec
- ;;^UTILITY(U,$J,358.3,1155,1,4,0)
- ;;=4^I80.3
- ;;^UTILITY(U,$J,358.3,1155,2)
- ;;=^5007845
- ;;^UTILITY(U,$J,358.3,1156,0)
- ;;=J02.9^^12^131^24
- ;;^UTILITY(U,$J,358.3,1156,1,0)
+ ;;^UTILITY(U,$J,358.3,1427,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, undetermined, subs
+ ;;^UTILITY(U,$J,358.3,1427,1,4,0)
+ ;;=4^T36.94XD
+ ;;^UTILITY(U,$J,358.3,1427,2)
+ ;;=^5049428
+ ;;^UTILITY(U,$J,358.3,1428,0)
+ ;;=T36.94XS^^8^135^76
+ ;;^UTILITY(U,$J,358.3,1428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1156,1,3,0)
- ;;=3^Pharyngitis Acute,Unspec
- ;;^UTILITY(U,$J,358.3,1156,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,1156,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,1157,0)
- ;;=J18.9^^12^131^31
- ;;^UTILITY(U,$J,358.3,1157,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1157,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,1157,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,1157,2)
- ;;=^95632
+ ;;^UTILITY(U,$J,358.3,1428,1,3,0)
+ ;;=3^Poisoning by unsp systemic antibiotic, undetermined, sequela
+ ;;^UTILITY(U,$J,358.3,1428,1,4,0)
+ ;;=4^T36.94XS
+ ;;^UTILITY(U,$J,358.3,1428,2)
+ ;;=^5049429
+ ;;^UTILITY(U,$J,358.3,1429,0)
+ ;;=T36.5X6A^^8^135^77

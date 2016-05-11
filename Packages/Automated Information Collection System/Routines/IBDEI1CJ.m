@@ -1,126 +1,126 @@
-IBDEI1CJ ; ; 19-NOV-2015
+IBDEI1CJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22423,1,3,0)
- ;;=3^Nondisp fx of trapezium, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,22423,1,4,0)
- ;;=4^S62.175S
- ;;^UTILITY(U,$J,358.3,22423,2)
- ;;=^5033499
- ;;^UTILITY(U,$J,358.3,22424,0)
- ;;=S62.174S^^101^1040^124
- ;;^UTILITY(U,$J,358.3,22424,1,0)
+ ;;^UTILITY(U,$J,358.3,22883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22424,1,3,0)
- ;;=3^Nondisp fx of trapezium, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,22424,1,4,0)
- ;;=4^S62.174S
- ;;^UTILITY(U,$J,358.3,22424,2)
- ;;=^5033492
- ;;^UTILITY(U,$J,358.3,22425,0)
- ;;=S62.185S^^101^1040^125
- ;;^UTILITY(U,$J,358.3,22425,1,0)
+ ;;^UTILITY(U,$J,358.3,22883,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,22883,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,22883,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,22884,0)
+ ;;=M48.50XA^^87^987^21
+ ;;^UTILITY(U,$J,358.3,22884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22425,1,3,0)
- ;;=3^Nondisp fx of trapezoid, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,22425,1,4,0)
- ;;=4^S62.185S
- ;;^UTILITY(U,$J,358.3,22425,2)
- ;;=^5033541
- ;;^UTILITY(U,$J,358.3,22426,0)
- ;;=S62.184S^^101^1040^126
- ;;^UTILITY(U,$J,358.3,22426,1,0)
+ ;;^UTILITY(U,$J,358.3,22884,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22884,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,22884,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,22885,0)
+ ;;=M48.50XD^^87^987^22
+ ;;^UTILITY(U,$J,358.3,22885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22426,1,3,0)
- ;;=3^Nondisp fx of trapezoid, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,22426,1,4,0)
- ;;=4^S62.184S
- ;;^UTILITY(U,$J,358.3,22426,2)
- ;;=^5033534
- ;;^UTILITY(U,$J,358.3,22427,0)
- ;;=S62.115S^^101^1040^127
- ;;^UTILITY(U,$J,358.3,22427,1,0)
+ ;;^UTILITY(U,$J,358.3,22885,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22885,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,22885,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,22886,0)
+ ;;=M48.52XA^^87^987^23
+ ;;^UTILITY(U,$J,358.3,22886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22427,1,3,0)
- ;;=3^Nondisp fx of triquetrum bone, left wrist, sequela
- ;;^UTILITY(U,$J,358.3,22427,1,4,0)
- ;;=4^S62.115S
- ;;^UTILITY(U,$J,358.3,22427,2)
- ;;=^5033247
- ;;^UTILITY(U,$J,358.3,22428,0)
- ;;=S62.114S^^101^1040^128
- ;;^UTILITY(U,$J,358.3,22428,1,0)
+ ;;^UTILITY(U,$J,358.3,22886,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22886,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,22886,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,22887,0)
+ ;;=M48.52XD^^87^987^24
+ ;;^UTILITY(U,$J,358.3,22887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22428,1,3,0)
- ;;=3^Nondisp fx of triquetrum bone, right wrist, sequela
- ;;^UTILITY(U,$J,358.3,22428,1,4,0)
- ;;=4^S62.114S
- ;;^UTILITY(U,$J,358.3,22428,2)
- ;;=^5033240
- ;;^UTILITY(U,$J,358.3,22429,0)
- ;;=S52.282S^^101^1040^4
- ;;^UTILITY(U,$J,358.3,22429,1,0)
+ ;;^UTILITY(U,$J,358.3,22887,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,22887,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,22887,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,22888,0)
+ ;;=M48.54XA^^87^987^32
+ ;;^UTILITY(U,$J,358.3,22888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22429,1,3,0)
- ;;=3^Bent bone of left ulna, sequela
- ;;^UTILITY(U,$J,358.3,22429,1,4,0)
- ;;=4^S52.282S
- ;;^UTILITY(U,$J,358.3,22429,2)
- ;;=^5029874
- ;;^UTILITY(U,$J,358.3,22430,0)
- ;;=S52.281S^^101^1040^6
- ;;^UTILITY(U,$J,358.3,22430,1,0)
+ ;;^UTILITY(U,$J,358.3,22888,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22888,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,22888,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,22889,0)
+ ;;=M48.54XD^^87^987^33
+ ;;^UTILITY(U,$J,358.3,22889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22430,1,3,0)
- ;;=3^Bent bone of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22430,1,4,0)
- ;;=4^S52.281S
- ;;^UTILITY(U,$J,358.3,22430,2)
- ;;=^5029858
- ;;^UTILITY(U,$J,358.3,22431,0)
- ;;=S52.252S^^101^1040^16
- ;;^UTILITY(U,$J,358.3,22431,1,0)
+ ;;^UTILITY(U,$J,358.3,22889,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,22889,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,22889,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,22890,0)
+ ;;=M48.57XA^^87^987^25
+ ;;^UTILITY(U,$J,358.3,22890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22431,1,3,0)
- ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,22431,1,4,0)
- ;;=4^S52.252S
- ;;^UTILITY(U,$J,358.3,22431,2)
- ;;=^5029634
- ;;^UTILITY(U,$J,358.3,22432,0)
- ;;=S52.251S^^101^1040^17
- ;;^UTILITY(U,$J,358.3,22432,1,0)
+ ;;^UTILITY(U,$J,358.3,22890,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,22890,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,22890,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,22891,0)
+ ;;=M48.57XD^^87^987^26
+ ;;^UTILITY(U,$J,358.3,22891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22432,1,3,0)
- ;;=3^Disp fx of comminuted shaft of ulna, right arm, sequela 
- ;;^UTILITY(U,$J,358.3,22432,1,4,0)
- ;;=4^S52.251S
- ;;^UTILITY(U,$J,358.3,22432,2)
- ;;=^5029618
- ;;^UTILITY(U,$J,358.3,22433,0)
- ;;=S52.042S^^101^1040^18
- ;;^UTILITY(U,$J,358.3,22433,1,0)
+ ;;^UTILITY(U,$J,358.3,22891,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,22891,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,22891,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,22892,0)
+ ;;=M50.30^^87^987^13
+ ;;^UTILITY(U,$J,358.3,22892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22433,1,3,0)
- ;;=3^Disp fx of coronoid process of left ulna, sequela 
- ;;^UTILITY(U,$J,358.3,22433,1,4,0)
- ;;=4^S52.042S
- ;;^UTILITY(U,$J,358.3,22433,2)
- ;;=^5028906
- ;;^UTILITY(U,$J,358.3,22434,0)
- ;;=S52.041S^^101^1040^19
- ;;^UTILITY(U,$J,358.3,22434,1,0)
+ ;;^UTILITY(U,$J,358.3,22892,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,22892,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,22892,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,22893,0)
+ ;;=M51.14^^87^987^52
+ ;;^UTILITY(U,$J,358.3,22893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22434,1,3,0)
- ;;=3^Disp fx of coronoid process of right ulna, sequela
- ;;^UTILITY(U,$J,358.3,22434,1,4,0)
- ;;=4^S52.041S
- ;;^UTILITY(U,$J,358.3,22434,2)
- ;;=^5028890
- ;;^UTILITY(U,$J,358.3,22435,0)
- ;;=S52.612S^^101^1040^27
- ;;^UTILITY(U,$J,358.3,22435,1,0)
+ ;;^UTILITY(U,$J,358.3,22893,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,22893,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,22893,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,22894,0)
+ ;;=M51.17^^87^987^51
+ ;;^UTILITY(U,$J,358.3,22894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22435,1,3,0)
- ;;=3^Disp fx of left ulna styloid process, sequela 
+ ;;^UTILITY(U,$J,358.3,22894,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,22894,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,22894,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,22895,0)
+ ;;=M51.34^^87^987^50
+ ;;^UTILITY(U,$J,358.3,22895,1,0)
+ ;;=^358.31IA^4^2

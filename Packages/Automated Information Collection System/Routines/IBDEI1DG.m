@@ -1,130 +1,120 @@
-IBDEI1DG ; ; 19-NOV-2015
+IBDEI1DG ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,22867,1,4,0)
- ;;=4^Z85.44
- ;;^UTILITY(U,$J,358.3,22867,2)
- ;;=^5063421
- ;;^UTILITY(U,$J,358.3,22868,0)
- ;;=Z85.71^^104^1066^1
- ;;^UTILITY(U,$J,358.3,22868,1,0)
+ ;;^UTILITY(U,$J,358.3,23318,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,23318,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,23319,0)
+ ;;=S56.112A^^87^994^23
+ ;;^UTILITY(U,$J,358.3,23319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22868,1,3,0)
- ;;=3^Personal Hx Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,22868,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,22868,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,22869,0)
- ;;=Z85.79^^104^1066^18
- ;;^UTILITY(U,$J,358.3,22869,1,0)
+ ;;^UTILITY(U,$J,358.3,23319,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23319,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,23319,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,23320,0)
+ ;;=S56.113A^^87^994^51
+ ;;^UTILITY(U,$J,358.3,23320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22869,1,3,0)
- ;;=3^Personal Hx Malig Neop Lymphoid/Hematopoietic/Related Tissues
- ;;^UTILITY(U,$J,358.3,22869,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,22869,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,22870,0)
- ;;=Z85.831^^104^1066^27
- ;;^UTILITY(U,$J,358.3,22870,1,0)
+ ;;^UTILITY(U,$J,358.3,23320,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23320,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,23320,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,23321,0)
+ ;;=S56.114A^^87^994^31
+ ;;^UTILITY(U,$J,358.3,23321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22870,1,3,0)
- ;;=3^Personal Hx Malig Neop Soft Tissue
- ;;^UTILITY(U,$J,358.3,22870,1,4,0)
- ;;=4^Z85.831
- ;;^UTILITY(U,$J,358.3,22870,2)
- ;;=^5063445
- ;;^UTILITY(U,$J,358.3,22871,0)
- ;;=Z85.49^^104^1066^19
- ;;^UTILITY(U,$J,358.3,22871,1,0)
+ ;;^UTILITY(U,$J,358.3,23321,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23321,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,23321,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,23322,0)
+ ;;=S56.115A^^87^994^53
+ ;;^UTILITY(U,$J,358.3,23322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22871,1,3,0)
- ;;=3^Personal Hx Malig Neop Male Genital Organs
- ;;^UTILITY(U,$J,358.3,22871,1,4,0)
- ;;=4^Z85.49
- ;;^UTILITY(U,$J,358.3,22871,2)
- ;;=^5063426
- ;;^UTILITY(U,$J,358.3,22872,0)
- ;;=Z85.820^^104^1066^2
- ;;^UTILITY(U,$J,358.3,22872,1,0)
+ ;;^UTILITY(U,$J,358.3,23322,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23322,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,23322,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,23323,0)
+ ;;=S56.417A^^87^994^45
+ ;;^UTILITY(U,$J,358.3,23323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22872,1,3,0)
- ;;=3^Personal Hx Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,22872,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,22872,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,22873,0)
- ;;=Z85.848^^104^1066^22
- ;;^UTILITY(U,$J,358.3,22873,1,0)
+ ;;^UTILITY(U,$J,358.3,23323,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23323,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,23323,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,23324,0)
+ ;;=S56.418A^^87^994^25
+ ;;^UTILITY(U,$J,358.3,23324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22873,1,3,0)
- ;;=3^Personal Hx Malig Neop Parts of Nervous Tissue
- ;;^UTILITY(U,$J,358.3,22873,1,4,0)
- ;;=4^Z85.848
- ;;^UTILITY(U,$J,358.3,22873,2)
- ;;=^5063448
- ;;^UTILITY(U,$J,358.3,22874,0)
- ;;=Z85.22^^104^1066^20
- ;;^UTILITY(U,$J,358.3,22874,1,0)
+ ;;^UTILITY(U,$J,358.3,23324,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23324,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,23324,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,23325,0)
+ ;;=S56.811A^^87^994^41
+ ;;^UTILITY(U,$J,358.3,23325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22874,1,3,0)
- ;;=3^Personal Hx Malig Neop Nasal Cavities/Middle Ear/Accessory Sinuses
- ;;^UTILITY(U,$J,358.3,22874,1,4,0)
- ;;=4^Z85.22
- ;;^UTILITY(U,$J,358.3,22874,2)
- ;;=^5063412
- ;;^UTILITY(U,$J,358.3,22875,0)
- ;;=Z85.818^^104^1066^16
- ;;^UTILITY(U,$J,358.3,22875,1,0)
+ ;;^UTILITY(U,$J,358.3,23325,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23325,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,23325,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,23326,0)
+ ;;=S56.812A^^87^994^21
+ ;;^UTILITY(U,$J,358.3,23326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22875,1,3,0)
- ;;=3^Personal Hx Malig Neop Lip/Oral Cavity/Pharynx
- ;;^UTILITY(U,$J,358.3,22875,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,22875,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,22876,0)
- ;;=Z85.46^^104^1066^24
- ;;^UTILITY(U,$J,358.3,22876,1,0)
+ ;;^UTILITY(U,$J,358.3,23326,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23326,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,23326,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,23327,0)
+ ;;=S56.116A^^87^994^33
+ ;;^UTILITY(U,$J,358.3,23327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22876,1,3,0)
- ;;=3^Personal Hx Malig Neop Prostate
- ;;^UTILITY(U,$J,358.3,22876,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,22876,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,22877,0)
- ;;=Z85.048^^104^1066^25
- ;;^UTILITY(U,$J,358.3,22877,1,0)
+ ;;^UTILITY(U,$J,358.3,23327,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23327,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,23327,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,23328,0)
+ ;;=S56.117A^^87^994^46
+ ;;^UTILITY(U,$J,358.3,23328,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22877,1,3,0)
- ;;=3^Personal Hx Malig Neop Rectum/Rectosigmoid Junction/Anus
- ;;^UTILITY(U,$J,358.3,22877,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,22877,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,22878,0)
- ;;=Z85.828^^104^1066^26
- ;;^UTILITY(U,$J,358.3,22878,1,0)
+ ;;^UTILITY(U,$J,358.3,23328,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23328,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,23328,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,23329,0)
+ ;;=S56.118A^^87^994^26
+ ;;^UTILITY(U,$J,358.3,23329,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22878,1,3,0)
- ;;=3^Personal Hx Malig Neop Skin
- ;;^UTILITY(U,$J,358.3,22878,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,22878,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,22879,0)
- ;;=Z85.47^^104^1066^29
- ;;^UTILITY(U,$J,358.3,22879,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,22879,1,3,0)
- ;;=3^Personal Hx Malig Neop Testis
- ;;^UTILITY(U,$J,358.3,22879,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,22879,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,22880,0)
- ;;=Z85.12^^104^1066^32
+ ;;^UTILITY(U,$J,358.3,23329,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,23329,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,23329,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,23330,0)
+ ;;=S56.211A^^87^994^40

@@ -1,136 +1,134 @@
-IBDEI2CI ; ; 19-NOV-2015
+IBDEI2CI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39391,1,4,0)
- ;;=4^J44.9
- ;;^UTILITY(U,$J,358.3,39391,2)
- ;;=^5008241
- ;;^UTILITY(U,$J,358.3,39392,0)
- ;;=Z98.61^^183^2020^6
- ;;^UTILITY(U,$J,358.3,39392,1,0)
+ ;;^UTILITY(U,$J,358.3,39767,1,4,0)
+ ;;=4^H52.31
+ ;;^UTILITY(U,$J,358.3,39767,2)
+ ;;=^7839
+ ;;^UTILITY(U,$J,358.3,39768,0)
+ ;;=H53.021^^153^1929^26
+ ;;^UTILITY(U,$J,358.3,39768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39392,1,3,0)
- ;;=3^Coronary angioplasty status
- ;;^UTILITY(U,$J,358.3,39392,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,39392,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,39393,0)
- ;;=J43.9^^183^2020^7
- ;;^UTILITY(U,$J,358.3,39393,1,0)
+ ;;^UTILITY(U,$J,358.3,39768,1,3,0)
+ ;;=3^Refractive Amblyopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,39768,1,4,0)
+ ;;=4^H53.021
+ ;;^UTILITY(U,$J,358.3,39768,2)
+ ;;=^5006299
+ ;;^UTILITY(U,$J,358.3,39769,0)
+ ;;=H53.022^^153^1929^25
+ ;;^UTILITY(U,$J,358.3,39769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39393,1,3,0)
- ;;=3^Emphysema, unspecified
- ;;^UTILITY(U,$J,358.3,39393,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,39393,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,39394,0)
- ;;=Z82.49^^183^2020^8
- ;;^UTILITY(U,$J,358.3,39394,1,0)
+ ;;^UTILITY(U,$J,358.3,39769,1,3,0)
+ ;;=3^Refractive Amblyopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,39769,1,4,0)
+ ;;=4^H53.022
+ ;;^UTILITY(U,$J,358.3,39769,2)
+ ;;=^5006300
+ ;;^UTILITY(U,$J,358.3,39770,0)
+ ;;=H53.31^^153^1929^1
+ ;;^UTILITY(U,$J,358.3,39770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39394,1,3,0)
- ;;=3^Family hx of ischem heart dis and oth dis of the circ sys
- ;;^UTILITY(U,$J,358.3,39394,1,4,0)
- ;;=4^Z82.49
- ;;^UTILITY(U,$J,358.3,39394,2)
- ;;=^5063369
- ;;^UTILITY(U,$J,358.3,39395,0)
- ;;=I50.9^^183^2020^9
- ;;^UTILITY(U,$J,358.3,39395,1,0)
+ ;;^UTILITY(U,$J,358.3,39770,1,3,0)
+ ;;=3^Abnormal Retinal Correspondence
+ ;;^UTILITY(U,$J,358.3,39770,1,4,0)
+ ;;=4^H53.31
+ ;;^UTILITY(U,$J,358.3,39770,2)
+ ;;=^268844
+ ;;^UTILITY(U,$J,358.3,39771,0)
+ ;;=H53.30^^153^1929^5
+ ;;^UTILITY(U,$J,358.3,39771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39395,1,3,0)
- ;;=3^Heart failure, unspecified
- ;;^UTILITY(U,$J,358.3,39395,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,39395,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,39396,0)
- ;;=I25.2^^183^2020^10
- ;;^UTILITY(U,$J,358.3,39396,1,0)
+ ;;^UTILITY(U,$J,358.3,39771,1,3,0)
+ ;;=3^Binocular Vision Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,39771,1,4,0)
+ ;;=4^H53.30
+ ;;^UTILITY(U,$J,358.3,39771,2)
+ ;;=^5006322
+ ;;^UTILITY(U,$J,358.3,39772,0)
+ ;;=H53.481^^153^1929^6
+ ;;^UTILITY(U,$J,358.3,39772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39396,1,3,0)
- ;;=3^Old myocardial infarction
- ;;^UTILITY(U,$J,358.3,39396,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,39396,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,39397,0)
- ;;=I42.8^^183^2020^5
- ;;^UTILITY(U,$J,358.3,39397,1,0)
+ ;;^UTILITY(U,$J,358.3,39772,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Right Eye
+ ;;^UTILITY(U,$J,358.3,39772,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,39772,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,39773,0)
+ ;;=H53.482^^153^1929^7
+ ;;^UTILITY(U,$J,358.3,39773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39397,1,3,0)
- ;;=3^Cardiomyopathies NEC
- ;;^UTILITY(U,$J,358.3,39397,1,4,0)
- ;;=4^I42.8
- ;;^UTILITY(U,$J,358.3,39397,2)
- ;;=^5007199
- ;;^UTILITY(U,$J,358.3,39398,0)
- ;;=I42.5^^183^2020^14
- ;;^UTILITY(U,$J,358.3,39398,1,0)
+ ;;^UTILITY(U,$J,358.3,39773,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Left Eye
+ ;;^UTILITY(U,$J,358.3,39773,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,39773,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,39774,0)
+ ;;=H53.483^^153^1929^8
+ ;;^UTILITY(U,$J,358.3,39774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39398,1,3,0)
- ;;=3^Restrictive Cardiomyopathy NEC
- ;;^UTILITY(U,$J,358.3,39398,1,4,0)
- ;;=4^I42.5
- ;;^UTILITY(U,$J,358.3,39398,2)
- ;;=^5007196
- ;;^UTILITY(U,$J,358.3,39399,0)
- ;;=Z95.1^^183^2020^11
- ;;^UTILITY(U,$J,358.3,39399,1,0)
+ ;;^UTILITY(U,$J,358.3,39774,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Bilateral
+ ;;^UTILITY(U,$J,358.3,39774,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,39774,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,39775,0)
+ ;;=H51.12^^153^1929^9
+ ;;^UTILITY(U,$J,358.3,39775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39399,1,3,0)
- ;;=3^Presence of aortocoronary bypass graft
- ;;^UTILITY(U,$J,358.3,39399,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,39399,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,39400,0)
- ;;=Z95.0^^183^2020^12
- ;;^UTILITY(U,$J,358.3,39400,1,0)
+ ;;^UTILITY(U,$J,358.3,39775,1,3,0)
+ ;;=3^Convergence Excess
+ ;;^UTILITY(U,$J,358.3,39775,1,4,0)
+ ;;=4^H51.12
+ ;;^UTILITY(U,$J,358.3,39775,2)
+ ;;=^5006252
+ ;;^UTILITY(U,$J,358.3,39776,0)
+ ;;=H51.11^^153^1929^10
+ ;;^UTILITY(U,$J,358.3,39776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39400,1,3,0)
- ;;=3^Presence of cardiac pacemaker
- ;;^UTILITY(U,$J,358.3,39400,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,39400,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,39401,0)
- ;;=J98.9^^183^2020^13
- ;;^UTILITY(U,$J,358.3,39401,1,0)
+ ;;^UTILITY(U,$J,358.3,39776,1,3,0)
+ ;;=3^Convergence Insufficiency
+ ;;^UTILITY(U,$J,358.3,39776,1,4,0)
+ ;;=4^H51.11
+ ;;^UTILITY(U,$J,358.3,39776,2)
+ ;;=^5006251
+ ;;^UTILITY(U,$J,358.3,39777,0)
+ ;;=H52.03^^153^1929^11
+ ;;^UTILITY(U,$J,358.3,39777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39401,1,3,0)
- ;;=3^Respiratory disorder, unspecified
- ;;^UTILITY(U,$J,358.3,39401,1,4,0)
- ;;=4^J98.9
- ;;^UTILITY(U,$J,358.3,39401,2)
- ;;=^5008366
- ;;^UTILITY(U,$J,358.3,39402,0)
- ;;=I22.9^^183^2020^15
- ;;^UTILITY(U,$J,358.3,39402,1,0)
+ ;;^UTILITY(U,$J,358.3,39777,1,3,0)
+ ;;=3^Hypermetropia,Bilateral
+ ;;^UTILITY(U,$J,358.3,39777,1,4,0)
+ ;;=4^H52.03
+ ;;^UTILITY(U,$J,358.3,39777,2)
+ ;;=^5006262
+ ;;^UTILITY(U,$J,358.3,39778,0)
+ ;;=H55.89^^153^1929^14
+ ;;^UTILITY(U,$J,358.3,39778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39402,1,3,0)
- ;;=3^Subsequent STEMI of unsp site
- ;;^UTILITY(U,$J,358.3,39402,1,4,0)
- ;;=4^I22.9
- ;;^UTILITY(U,$J,358.3,39402,2)
- ;;=^5007093
- ;;^UTILITY(U,$J,358.3,39403,0)
- ;;=I48.91^^183^2020^2
- ;;^UTILITY(U,$J,358.3,39403,1,0)
+ ;;^UTILITY(U,$J,358.3,39778,1,3,0)
+ ;;=3^Irregular Eye Movements NEC
+ ;;^UTILITY(U,$J,358.3,39778,1,4,0)
+ ;;=4^H55.89
+ ;;^UTILITY(U,$J,358.3,39778,2)
+ ;;=^5006374
+ ;;^UTILITY(U,$J,358.3,39779,0)
+ ;;=H53.62^^153^1929^19
+ ;;^UTILITY(U,$J,358.3,39779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39403,1,3,0)
- ;;=3^Atrial Fibrillation,Unspec
- ;;^UTILITY(U,$J,358.3,39403,1,4,0)
- ;;=4^I48.91
- ;;^UTILITY(U,$J,358.3,39403,2)
- ;;=^5007229
- ;;^UTILITY(U,$J,358.3,39404,0)
- ;;=F81.81^^183^2021^3
- ;;^UTILITY(U,$J,358.3,39404,1,0)
+ ;;^UTILITY(U,$J,358.3,39779,1,3,0)
+ ;;=3^Night Blindness,Acquired
+ ;;^UTILITY(U,$J,358.3,39779,1,4,0)
+ ;;=4^H53.62
+ ;;^UTILITY(U,$J,358.3,39779,2)
+ ;;=^265401
+ ;;^UTILITY(U,$J,358.3,39780,0)
+ ;;=H53.63^^153^1929^20
+ ;;^UTILITY(U,$J,358.3,39780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,39404,1,3,0)
- ;;=3^Disorder of written expression
- ;;^UTILITY(U,$J,358.3,39404,1,4,0)
- ;;=4^F81.81
+ ;;^UTILITY(U,$J,358.3,39780,1,3,0)
+ ;;=3^Night Blindness,Congenital

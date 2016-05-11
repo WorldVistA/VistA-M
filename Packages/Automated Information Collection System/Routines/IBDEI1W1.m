@@ -1,132 +1,126 @@
-IBDEI1W1 ; ; 19-NOV-2015
+IBDEI1W1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,31617,1,3,0)
- ;;=3^Body Dysmorphic Disorder
- ;;^UTILITY(U,$J,358.3,31617,1,4,0)
- ;;=4^F45.22
- ;;^UTILITY(U,$J,358.3,31617,2)
- ;;=^5003588
- ;;^UTILITY(U,$J,358.3,31618,0)
- ;;=F63.3^^138^1437^7
- ;;^UTILITY(U,$J,358.3,31618,1,0)
+ ;;^UTILITY(U,$J,358.3,32062,1,3,0)
+ ;;=3^Nondisp fx of intermed cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,32062,1,4,0)
+ ;;=4^S92.235A
+ ;;^UTILITY(U,$J,358.3,32062,2)
+ ;;=^5044948
+ ;;^UTILITY(U,$J,358.3,32063,0)
+ ;;=S92.241A^^126^1609^111
+ ;;^UTILITY(U,$J,358.3,32063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31618,1,3,0)
- ;;=3^Trichotillomania
- ;;^UTILITY(U,$J,358.3,31618,1,4,0)
- ;;=4^F63.3
- ;;^UTILITY(U,$J,358.3,31618,2)
- ;;=^5003643
- ;;^UTILITY(U,$J,358.3,31619,0)
- ;;=L98.1^^138^1437^2
- ;;^UTILITY(U,$J,358.3,31619,1,0)
+ ;;^UTILITY(U,$J,358.3,32063,1,3,0)
+ ;;=3^Disp fx of medial cuneiform of rt ft, init
+ ;;^UTILITY(U,$J,358.3,32063,1,4,0)
+ ;;=4^S92.241A
+ ;;^UTILITY(U,$J,358.3,32063,2)
+ ;;=^5044962
+ ;;^UTILITY(U,$J,358.3,32064,0)
+ ;;=S92.242A^^126^1609^110
+ ;;^UTILITY(U,$J,358.3,32064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31619,1,3,0)
- ;;=3^Excoriation (Skin-Picking) Disorder
- ;;^UTILITY(U,$J,358.3,31619,1,4,0)
- ;;=4^L98.1
- ;;^UTILITY(U,$J,358.3,31619,2)
- ;;=^186781
- ;;^UTILITY(U,$J,358.3,31620,0)
- ;;=F63.0^^138^1437^4
- ;;^UTILITY(U,$J,358.3,31620,1,0)
+ ;;^UTILITY(U,$J,358.3,32064,1,3,0)
+ ;;=3^Disp fx of medial cuneiform of lft ft, init
+ ;;^UTILITY(U,$J,358.3,32064,1,4,0)
+ ;;=4^S92.242A
+ ;;^UTILITY(U,$J,358.3,32064,2)
+ ;;=^5044969
+ ;;^UTILITY(U,$J,358.3,32065,0)
+ ;;=S92.354A^^126^1609^301
+ ;;^UTILITY(U,$J,358.3,32065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31620,1,3,0)
- ;;=3^Gambling Disorder
- ;;^UTILITY(U,$J,358.3,31620,1,4,0)
- ;;=4^F63.0
- ;;^UTILITY(U,$J,358.3,31620,2)
- ;;=^5003640
- ;;^UTILITY(U,$J,358.3,31621,0)
- ;;=F68.10^^138^1437^3
- ;;^UTILITY(U,$J,358.3,31621,1,0)
+ ;;^UTILITY(U,$J,358.3,32065,1,3,0)
+ ;;=3^Nondisp fx of 5th metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32065,1,4,0)
+ ;;=4^S92.354A
+ ;;^UTILITY(U,$J,358.3,32065,2)
+ ;;=^5045249
+ ;;^UTILITY(U,$J,358.3,32066,0)
+ ;;=S92.352A^^126^1609^75
+ ;;^UTILITY(U,$J,358.3,32066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31621,1,3,0)
- ;;=3^Factitious Disorder
- ;;^UTILITY(U,$J,358.3,31621,1,4,0)
- ;;=4^F68.10
- ;;^UTILITY(U,$J,358.3,31621,2)
- ;;=^5003663
- ;;^UTILITY(U,$J,358.3,31622,0)
- ;;=F63.9^^138^1437^5
- ;;^UTILITY(U,$J,358.3,31622,1,0)
+ ;;^UTILITY(U,$J,358.3,32066,1,3,0)
+ ;;=3^Disp fx of 5th metatarsal bone, lft ft
+ ;;^UTILITY(U,$J,358.3,32066,1,4,0)
+ ;;=4^S92.352A
+ ;;^UTILITY(U,$J,358.3,32066,2)
+ ;;=^5045235
+ ;;^UTILITY(U,$J,358.3,32067,0)
+ ;;=S92.351A^^126^1609^76
+ ;;^UTILITY(U,$J,358.3,32067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31622,1,3,0)
- ;;=3^Impulse Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31622,1,4,0)
- ;;=4^F63.9
- ;;^UTILITY(U,$J,358.3,31622,2)
- ;;=^5003646
- ;;^UTILITY(U,$J,358.3,31623,0)
- ;;=F06.2^^138^1438^5
- ;;^UTILITY(U,$J,358.3,31623,1,0)
+ ;;^UTILITY(U,$J,358.3,32067,1,3,0)
+ ;;=3^Disp fx of 5th metatarsal bone, rt ft
+ ;;^UTILITY(U,$J,358.3,32067,1,4,0)
+ ;;=4^S92.351A
+ ;;^UTILITY(U,$J,358.3,32067,2)
+ ;;=^5045228
+ ;;^UTILITY(U,$J,358.3,32068,0)
+ ;;=S92.345A^^126^1609^296
+ ;;^UTILITY(U,$J,358.3,32068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31623,1,3,0)
- ;;=3^Psychotic Disorder w/ Delusions d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,31623,1,4,0)
- ;;=4^F06.2
- ;;^UTILITY(U,$J,358.3,31623,2)
- ;;=^5003055
- ;;^UTILITY(U,$J,358.3,31624,0)
- ;;=F06.0^^138^1438^6
- ;;^UTILITY(U,$J,358.3,31624,1,0)
+ ;;^UTILITY(U,$J,358.3,32068,1,3,0)
+ ;;=3^Nondisp fx of 4th metatarsal bone, lft ft
+ ;;^UTILITY(U,$J,358.3,32068,1,4,0)
+ ;;=4^S92.345A
+ ;;^UTILITY(U,$J,358.3,32068,2)
+ ;;=^5045214
+ ;;^UTILITY(U,$J,358.3,32069,0)
+ ;;=S92.325A^^126^1609^288
+ ;;^UTILITY(U,$J,358.3,32069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31624,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucinations d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,31624,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,31624,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,31625,0)
- ;;=F06.4^^138^1438^1
- ;;^UTILITY(U,$J,358.3,31625,1,0)
+ ;;^UTILITY(U,$J,358.3,32069,1,3,0)
+ ;;=3^Nondisp fx of 2nd metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32069,1,4,0)
+ ;;=4^S92.325A
+ ;;^UTILITY(U,$J,358.3,32069,2)
+ ;;=^5045130
+ ;;^UTILITY(U,$J,358.3,32070,0)
+ ;;=S92.324A^^126^1609^289
+ ;;^UTILITY(U,$J,358.3,32070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31625,1,3,0)
- ;;=3^Anxiety Disorder d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,31625,1,4,0)
- ;;=4^F06.4
- ;;^UTILITY(U,$J,358.3,31625,2)
- ;;=^5003061
- ;;^UTILITY(U,$J,358.3,31626,0)
- ;;=F06.1^^138^1438^2
- ;;^UTILITY(U,$J,358.3,31626,1,0)
+ ;;^UTILITY(U,$J,358.3,32070,1,3,0)
+ ;;=3^Nondisp fx of 2nd metatarsal bone, rt ft, init
+ ;;^UTILITY(U,$J,358.3,32070,1,4,0)
+ ;;=4^S92.324A
+ ;;^UTILITY(U,$J,358.3,32070,2)
+ ;;=^5045123
+ ;;^UTILITY(U,$J,358.3,32071,0)
+ ;;=S92.322A^^126^1609^63
+ ;;^UTILITY(U,$J,358.3,32071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31626,1,3,0)
- ;;=3^Catatonia Associated w/ Schizophrenia
- ;;^UTILITY(U,$J,358.3,31626,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,31626,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,31627,0)
- ;;=R41.9^^138^1438^3
- ;;^UTILITY(U,$J,358.3,31627,1,0)
+ ;;^UTILITY(U,$J,358.3,32071,1,3,0)
+ ;;=3^Disp fx of 2nd metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32071,1,4,0)
+ ;;=4^S92.322A
+ ;;^UTILITY(U,$J,358.3,32071,2)
+ ;;=^5045109
+ ;;^UTILITY(U,$J,358.3,32072,0)
+ ;;=S92.321A^^126^1609^64
+ ;;^UTILITY(U,$J,358.3,32072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31627,1,3,0)
- ;;=3^Neurocognitive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31627,1,4,0)
- ;;=4^R41.9
- ;;^UTILITY(U,$J,358.3,31627,2)
- ;;=^5019449
- ;;^UTILITY(U,$J,358.3,31628,0)
- ;;=F29.^^138^1438^7
- ;;^UTILITY(U,$J,358.3,31628,1,0)
+ ;;^UTILITY(U,$J,358.3,32072,1,3,0)
+ ;;=3^Disp fx of 2nd metatarsal bone, rt ft
+ ;;^UTILITY(U,$J,358.3,32072,1,4,0)
+ ;;=4^S92.321A
+ ;;^UTILITY(U,$J,358.3,32072,2)
+ ;;=^5045102
+ ;;^UTILITY(U,$J,358.3,32073,0)
+ ;;=S92.315A^^126^1609^284
+ ;;^UTILITY(U,$J,358.3,32073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31628,1,3,0)
- ;;=3^Schizophrenia Spectrum/Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,31628,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,31628,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,31629,0)
- ;;=F07.0^^138^1438^4
- ;;^UTILITY(U,$J,358.3,31629,1,0)
+ ;;^UTILITY(U,$J,358.3,32073,1,3,0)
+ ;;=3^Nondisp fx of 1st metatarsal bone, lft ft, init
+ ;;^UTILITY(U,$J,358.3,32073,1,4,0)
+ ;;=4^S92.315A
+ ;;^UTILITY(U,$J,358.3,32073,2)
+ ;;=^5045088
+ ;;^UTILITY(U,$J,358.3,32074,0)
+ ;;=S92.312A^^126^1609^59
+ ;;^UTILITY(U,$J,358.3,32074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,31629,1,3,0)
- ;;=3^Personality Change d/t Another Medical Condition
- ;;^UTILITY(U,$J,358.3,31629,1,4,0)
- ;;=4^F07.0
- ;;^UTILITY(U,$J,358.3,31629,2)
- ;;=^5003063
- ;;^UTILITY(U,$J,358.3,31630,0)
- ;;=Z91.49^^138^1439^9
+ ;;^UTILITY(U,$J,358.3,32074,1,3,0)
+ ;;=3^Disp fx of 1st metatarsal bone, lft ft, init

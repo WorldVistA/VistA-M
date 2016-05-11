@@ -1,132 +1,142 @@
-IBDEI0BB ; ; 19-NOV-2015
+IBDEI0BB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4809,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,4809,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,4809,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,4810,0)
- ;;=I70.212^^37^318^10
- ;;^UTILITY(U,$J,358.3,4810,1,0)
+ ;;^UTILITY(U,$J,358.3,5105,1,3,0)
+ ;;=3^Diabetes Type 1 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,5105,1,4,0)
+ ;;=4^E10.22
+ ;;^UTILITY(U,$J,358.3,5105,2)
+ ;;=^5002590
+ ;;^UTILITY(U,$J,358.3,5106,0)
+ ;;=E10.9^^27^329^7
+ ;;^UTILITY(U,$J,358.3,5106,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4810,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,4810,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,4810,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,4811,0)
- ;;=I70.213^^37^318^6
- ;;^UTILITY(U,$J,358.3,4811,1,0)
+ ;;^UTILITY(U,$J,358.3,5106,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,5106,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,5106,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,5107,0)
+ ;;=E11.22^^27^329^8
+ ;;^UTILITY(U,$J,358.3,5107,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4811,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,4811,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,4811,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,4812,0)
- ;;=I70.261^^37^318^12
- ;;^UTILITY(U,$J,358.3,4812,1,0)
+ ;;^UTILITY(U,$J,358.3,5107,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diabetic CKD
+ ;;^UTILITY(U,$J,358.3,5107,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,5107,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,5108,0)
+ ;;=E11.9^^27^329^12
+ ;;^UTILITY(U,$J,358.3,5108,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4812,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4812,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,4812,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,4813,0)
- ;;=I70.262^^37^318^9
- ;;^UTILITY(U,$J,358.3,4813,1,0)
+ ;;^UTILITY(U,$J,358.3,5108,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,5108,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,5108,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,5109,0)
+ ;;=E13.22^^27^329^1
+ ;;^UTILITY(U,$J,358.3,5109,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4813,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4813,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,4813,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,4814,0)
- ;;=I70.263^^37^318^7
- ;;^UTILITY(U,$J,358.3,4814,1,0)
+ ;;^UTILITY(U,$J,358.3,5109,1,3,0)
+ ;;=3^DM w/ Diabetic CKD,Other
+ ;;^UTILITY(U,$J,358.3,5109,1,4,0)
+ ;;=4^E13.22
+ ;;^UTILITY(U,$J,358.3,5109,2)
+ ;;=^5002671
+ ;;^UTILITY(U,$J,358.3,5110,0)
+ ;;=E83.30^^27^330^26
+ ;;^UTILITY(U,$J,358.3,5110,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4814,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,4814,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,4814,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,4815,0)
- ;;=I70.221^^37^318^14
- ;;^UTILITY(U,$J,358.3,4815,1,0)
+ ;;^UTILITY(U,$J,358.3,5110,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,5110,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,5110,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,5111,0)
+ ;;=E83.31^^27^330^9
+ ;;^UTILITY(U,$J,358.3,5111,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4815,1,3,0)
- ;;=3^Athscl Native Art of Right Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,4815,1,4,0)
- ;;=4^I70.221
- ;;^UTILITY(U,$J,358.3,4815,2)
- ;;=^5007583
- ;;^UTILITY(U,$J,358.3,4816,0)
- ;;=I70.222^^37^318^11
- ;;^UTILITY(U,$J,358.3,4816,1,0)
+ ;;^UTILITY(U,$J,358.3,5111,1,3,0)
+ ;;=3^Familial Hypophosphatemia
+ ;;^UTILITY(U,$J,358.3,5111,1,4,0)
+ ;;=4^E83.31
+ ;;^UTILITY(U,$J,358.3,5111,2)
+ ;;=^5002998
+ ;;^UTILITY(U,$J,358.3,5112,0)
+ ;;=E83.51^^27^330^19
+ ;;^UTILITY(U,$J,358.3,5112,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4816,1,3,0)
- ;;=3^Athscl Native Art of Left Leg w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,4816,1,4,0)
- ;;=4^I70.222
- ;;^UTILITY(U,$J,358.3,4816,2)
- ;;=^5007584
- ;;^UTILITY(U,$J,358.3,4817,0)
- ;;=I70.223^^37^318^8
- ;;^UTILITY(U,$J,358.3,4817,1,0)
+ ;;^UTILITY(U,$J,358.3,5112,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,5112,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,5112,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,5113,0)
+ ;;=E83.52^^27^330^13
+ ;;^UTILITY(U,$J,358.3,5113,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4817,1,3,0)
- ;;=3^Athscl Native Art of Bilateral Legs w/ Rest Pain
- ;;^UTILITY(U,$J,358.3,4817,1,4,0)
- ;;=4^I70.223
- ;;^UTILITY(U,$J,358.3,4817,2)
- ;;=^5007585
- ;;^UTILITY(U,$J,358.3,4818,0)
- ;;=I73.9^^37^318^42
- ;;^UTILITY(U,$J,358.3,4818,1,0)
+ ;;^UTILITY(U,$J,358.3,5113,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,5113,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,5113,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,5114,0)
+ ;;=E87.0^^27^330^16
+ ;;^UTILITY(U,$J,358.3,5114,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4818,1,3,0)
- ;;=3^PVD,Unspec
- ;;^UTILITY(U,$J,358.3,4818,1,4,0)
- ;;=4^I73.9
- ;;^UTILITY(U,$J,358.3,4818,2)
- ;;=^184182
- ;;^UTILITY(U,$J,358.3,4819,0)
- ;;=I74.3^^37^318^28
- ;;^UTILITY(U,$J,358.3,4819,1,0)
+ ;;^UTILITY(U,$J,358.3,5114,1,3,0)
+ ;;=3^Hyperosmolality and Hypernatremia
+ ;;^UTILITY(U,$J,358.3,5114,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,5114,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,5115,0)
+ ;;=E87.1^^27^330^18
+ ;;^UTILITY(U,$J,358.3,5115,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4819,1,3,0)
- ;;=3^Embolism/Thrombosis of Lower Extremity Arteries
- ;;^UTILITY(U,$J,358.3,4819,1,4,0)
- ;;=4^I74.3
- ;;^UTILITY(U,$J,358.3,4819,2)
- ;;=^5007802
- ;;^UTILITY(U,$J,358.3,4820,0)
- ;;=I72.4^^37^318^2
- ;;^UTILITY(U,$J,358.3,4820,1,0)
+ ;;^UTILITY(U,$J,358.3,5115,1,3,0)
+ ;;=3^Hypo-osmolality and Hyponatremia
+ ;;^UTILITY(U,$J,358.3,5115,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,5115,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,5116,0)
+ ;;=E87.2^^27^330^1
+ ;;^UTILITY(U,$J,358.3,5116,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4820,1,3,0)
- ;;=3^Aneurysm of Lower Extremity Artery
- ;;^UTILITY(U,$J,358.3,4820,1,4,0)
- ;;=4^I72.4
- ;;^UTILITY(U,$J,358.3,4820,2)
- ;;=^269777
- ;;^UTILITY(U,$J,358.3,4821,0)
- ;;=F10.239^^37^319^2
- ;;^UTILITY(U,$J,358.3,4821,1,0)
+ ;;^UTILITY(U,$J,358.3,5116,1,3,0)
+ ;;=3^Acidosis
+ ;;^UTILITY(U,$J,358.3,5116,1,4,0)
+ ;;=4^E87.2
+ ;;^UTILITY(U,$J,358.3,5116,2)
+ ;;=^5003020
+ ;;^UTILITY(U,$J,358.3,5117,0)
+ ;;=E87.3^^27^330^3
+ ;;^UTILITY(U,$J,358.3,5117,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4821,1,3,0)
- ;;=3^Alcohol Dependence w/ Withdrawal,Unspec
- ;;^UTILITY(U,$J,358.3,4821,1,4,0)
- ;;=4^F10.239
- ;;^UTILITY(U,$J,358.3,4821,2)
- ;;=^5003089
- ;;^UTILITY(U,$J,358.3,4822,0)
- ;;=F10.231^^37^319^1
+ ;;^UTILITY(U,$J,358.3,5117,1,3,0)
+ ;;=3^Alkalosis
+ ;;^UTILITY(U,$J,358.3,5117,1,4,0)
+ ;;=4^E87.3
+ ;;^UTILITY(U,$J,358.3,5117,2)
+ ;;=^5003021
+ ;;^UTILITY(U,$J,358.3,5118,0)
+ ;;=E87.4^^27^330^24
+ ;;^UTILITY(U,$J,358.3,5118,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,5118,1,3,0)
+ ;;=3^Mixed Acid-Base Balance Disorder
+ ;;^UTILITY(U,$J,358.3,5118,1,4,0)
+ ;;=4^E87.4
+ ;;^UTILITY(U,$J,358.3,5118,2)
+ ;;=^5003022
+ ;;^UTILITY(U,$J,358.3,5119,0)
+ ;;=E86.9^^27^330^31

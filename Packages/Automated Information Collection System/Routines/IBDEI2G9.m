@@ -1,122 +1,134 @@
-IBDEI2G9 ; ; 19-NOV-2015
+IBDEI2G9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41111,1,3,0)
- ;;=3^Nondisp avuls fx (chip) lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41111,1,4,0)
- ;;=4^S92.155K
- ;;^UTILITY(U,$J,358.3,41111,2)
- ;;=^5044805
- ;;^UTILITY(U,$J,358.3,41112,0)
- ;;=S92.154K^^189^2086^227
- ;;^UTILITY(U,$J,358.3,41112,1,0)
+ ;;^UTILITY(U,$J,358.3,41547,1,4,0)
+ ;;=4^Z91.128
+ ;;^UTILITY(U,$J,358.3,41547,2)
+ ;;=^5063613
+ ;;^UTILITY(U,$J,358.3,41548,0)
+ ;;=Z77.120^^159^2005^67
+ ;;^UTILITY(U,$J,358.3,41548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41112,1,3,0)
- ;;=3^Nondisp avuls fx (chip) rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41112,1,4,0)
- ;;=4^S92.154K
- ;;^UTILITY(U,$J,358.3,41112,2)
- ;;=^5044798
- ;;^UTILITY(U,$J,358.3,41113,0)
- ;;=S92.152K^^189^2086^3
- ;;^UTILITY(U,$J,358.3,41113,1,0)
+ ;;^UTILITY(U,$J,358.3,41548,1,3,0)
+ ;;=3^Mold (Toxic) Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,41548,1,4,0)
+ ;;=4^Z77.120
+ ;;^UTILITY(U,$J,358.3,41548,2)
+ ;;=^5063318
+ ;;^UTILITY(U,$J,358.3,41549,0)
+ ;;=Z86.74^^159^2005^110
+ ;;^UTILITY(U,$J,358.3,41549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41113,1,3,0)
- ;;=3^Disp avuls fx (chip) lft talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41113,1,4,0)
- ;;=4^S92.152K
- ;;^UTILITY(U,$J,358.3,41113,2)
- ;;=^5044784
- ;;^UTILITY(U,$J,358.3,41114,0)
- ;;=S92.151K^^189^2086^4
- ;;^UTILITY(U,$J,358.3,41114,1,0)
+ ;;^UTILITY(U,$J,358.3,41549,1,3,0)
+ ;;=3^Personal Hx of Sudden Cardiac Arrest 
+ ;;^UTILITY(U,$J,358.3,41549,1,4,0)
+ ;;=4^Z86.74
+ ;;^UTILITY(U,$J,358.3,41549,2)
+ ;;=^5063478
+ ;;^UTILITY(U,$J,358.3,41550,0)
+ ;;=Z86.718^^159^2005^117
+ ;;^UTILITY(U,$J,358.3,41550,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41114,1,3,0)
- ;;=3^Disp avuls fx (chip) of rt talus, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41114,1,4,0)
- ;;=4^S92.151K
- ;;^UTILITY(U,$J,358.3,41114,2)
- ;;=^5044777
- ;;^UTILITY(U,$J,358.3,41115,0)
- ;;=S92.145K^^189^2086^244
- ;;^UTILITY(U,$J,358.3,41115,1,0)
+ ;;^UTILITY(U,$J,358.3,41550,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism (DVT)
+ ;;^UTILITY(U,$J,358.3,41550,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,41550,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,41551,0)
+ ;;=Z96.1^^159^2005^127
+ ;;^UTILITY(U,$J,358.3,41551,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41115,1,3,0)
- ;;=3^Nondisp dome fx lft tauls, subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,41115,1,4,0)
- ;;=4^S92.145K
- ;;^UTILITY(U,$J,358.3,41115,2)
- ;;=^5044763
- ;;^UTILITY(U,$J,358.3,41116,0)
- ;;=S92.055K^^189^2086^249
- ;;^UTILITY(U,$J,358.3,41116,1,0)
+ ;;^UTILITY(U,$J,358.3,41551,1,3,0)
+ ;;=3^Presence of Intraocular Lens
+ ;;^UTILITY(U,$J,358.3,41551,1,4,0)
+ ;;=4^Z96.1
+ ;;^UTILITY(U,$J,358.3,41551,2)
+ ;;=^5063682
+ ;;^UTILITY(U,$J,358.3,41552,0)
+ ;;=Z96.612^^159^2005^132
+ ;;^UTILITY(U,$J,358.3,41552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41116,1,3,0)
- ;;=3^Nondisp extrartic fx lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41116,1,4,0)
- ;;=4^S92.055K
- ;;^UTILITY(U,$J,358.3,41116,2)
- ;;=^5044539
- ;;^UTILITY(U,$J,358.3,41117,0)
- ;;=S92.054K^^189^2086^252
- ;;^UTILITY(U,$J,358.3,41117,1,0)
+ ;;^UTILITY(U,$J,358.3,41552,1,3,0)
+ ;;=3^Presence of Left Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,41552,1,4,0)
+ ;;=4^Z96.612
+ ;;^UTILITY(U,$J,358.3,41552,2)
+ ;;=^5063693
+ ;;^UTILITY(U,$J,358.3,41553,0)
+ ;;=Z96.611^^159^2005^137
+ ;;^UTILITY(U,$J,358.3,41553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41117,1,3,0)
- ;;=3^Nondisp extrartic fx rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41117,1,4,0)
- ;;=4^S92.054K
- ;;^UTILITY(U,$J,358.3,41117,2)
- ;;=^5044532
- ;;^UTILITY(U,$J,358.3,41118,0)
- ;;=S92.052K^^189^2086^24
- ;;^UTILITY(U,$J,358.3,41118,1,0)
+ ;;^UTILITY(U,$J,358.3,41553,1,3,0)
+ ;;=3^Presence of Right Artificial Shoulder Joint
+ ;;^UTILITY(U,$J,358.3,41553,1,4,0)
+ ;;=4^Z96.611
+ ;;^UTILITY(U,$J,358.3,41553,2)
+ ;;=^5063692
+ ;;^UTILITY(U,$J,358.3,41554,0)
+ ;;=Z93.0^^159^2005^145
+ ;;^UTILITY(U,$J,358.3,41554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41118,1,3,0)
- ;;=3^Disp extrartic fx lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41118,1,4,0)
- ;;=4^S92.052K
- ;;^UTILITY(U,$J,358.3,41118,2)
- ;;=^5044518
- ;;^UTILITY(U,$J,358.3,41119,0)
- ;;=S92.051K^^189^2086^27
- ;;^UTILITY(U,$J,358.3,41119,1,0)
+ ;;^UTILITY(U,$J,358.3,41554,1,3,0)
+ ;;=3^Tracheostomy Status
+ ;;^UTILITY(U,$J,358.3,41554,1,4,0)
+ ;;=4^Z93.0
+ ;;^UTILITY(U,$J,358.3,41554,2)
+ ;;=^5063642
+ ;;^UTILITY(U,$J,358.3,41555,0)
+ ;;=Z99.3^^159^2005^149
+ ;;^UTILITY(U,$J,358.3,41555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41119,1,3,0)
- ;;=3^Disp extrartic fx rt calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41119,1,4,0)
- ;;=4^S92.051K
- ;;^UTILITY(U,$J,358.3,41119,2)
- ;;=^5044511
- ;;^UTILITY(U,$J,358.3,41120,0)
- ;;=S92.045K^^189^2086^360
- ;;^UTILITY(U,$J,358.3,41120,1,0)
+ ;;^UTILITY(U,$J,358.3,41555,1,3,0)
+ ;;=3^Wheelchair Dependence
+ ;;^UTILITY(U,$J,358.3,41555,1,4,0)
+ ;;=4^Z99.3
+ ;;^UTILITY(U,$J,358.3,41555,2)
+ ;;=^5063759
+ ;;^UTILITY(U,$J,358.3,41556,0)
+ ;;=A15.0^^159^2006^84
+ ;;^UTILITY(U,$J,358.3,41556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41120,1,3,0)
- ;;=3^Nondisp fx tuberosity lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41120,1,4,0)
- ;;=4^S92.045K
- ;;^UTILITY(U,$J,358.3,41120,2)
- ;;=^5137564
- ;;^UTILITY(U,$J,358.3,41121,0)
- ;;=S92.044K^^189^2086^361
- ;;^UTILITY(U,$J,358.3,41121,1,0)
+ ;;^UTILITY(U,$J,358.3,41556,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,41556,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,41556,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,41557,0)
+ ;;=B20.^^159^2006^31
+ ;;^UTILITY(U,$J,358.3,41557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41121,1,3,0)
- ;;=3^Nondisp fx tuberosity rt calcaneu, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41121,1,4,0)
- ;;=4^S92.044K
- ;;^UTILITY(U,$J,358.3,41121,2)
- ;;=^5044504
- ;;^UTILITY(U,$J,358.3,41122,0)
- ;;=S92.042K^^189^2086^134
- ;;^UTILITY(U,$J,358.3,41122,1,0)
+ ;;^UTILITY(U,$J,358.3,41557,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,41557,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,41557,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,41558,0)
+ ;;=B02.9^^159^2006^93
+ ;;^UTILITY(U,$J,358.3,41558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41122,1,3,0)
- ;;=3^Disp fx tuberosity lft calcaneus, subs w/ nonunion, oth
- ;;^UTILITY(U,$J,358.3,41122,1,4,0)
- ;;=4^S92.042K
- ;;^UTILITY(U,$J,358.3,41122,2)
- ;;=^5137550
- ;;^UTILITY(U,$J,358.3,41123,0)
- ;;=S92.041K^^189^2086^135
+ ;;^UTILITY(U,$J,358.3,41558,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,41558,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,41558,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,41559,0)
+ ;;=A60.9^^159^2006^2
+ ;;^UTILITY(U,$J,358.3,41559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41559,1,3,0)
+ ;;=3^Anogenital Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,41559,1,4,0)
+ ;;=4^A60.9
+ ;;^UTILITY(U,$J,358.3,41559,2)
+ ;;=^5000359
+ ;;^UTILITY(U,$J,358.3,41560,0)
+ ;;=A60.04^^159^2006^34
+ ;;^UTILITY(U,$J,358.3,41560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41560,1,3,0)
+ ;;=3^Herpesviral Vulvovaginitis

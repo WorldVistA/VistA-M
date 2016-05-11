@@ -1,132 +1,136 @@
-IBDEI0P5 ; ; 19-NOV-2015
+IBDEI0P5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11513,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,11513,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,11513,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,11514,0)
- ;;=G44.1^^68^687^157
- ;;^UTILITY(U,$J,358.3,11514,1,0)
+ ;;^UTILITY(U,$J,358.3,11750,1,3,0)
+ ;;=3^Pain,Ocular,Right Eye
+ ;;^UTILITY(U,$J,358.3,11750,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,11750,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,11751,0)
+ ;;=R10.2^^47^535^53
+ ;;^UTILITY(U,$J,358.3,11751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11514,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,11514,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,11514,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,11515,0)
- ;;=G93.3^^68^687^144
- ;;^UTILITY(U,$J,358.3,11515,1,0)
+ ;;^UTILITY(U,$J,358.3,11751,1,3,0)
+ ;;=3^Pain,Pelvic & Perineal
+ ;;^UTILITY(U,$J,358.3,11751,1,4,0)
+ ;;=4^R10.2
+ ;;^UTILITY(U,$J,358.3,11751,2)
+ ;;=^5019209
+ ;;^UTILITY(U,$J,358.3,11752,0)
+ ;;=R10.33^^47^535^54
+ ;;^UTILITY(U,$J,358.3,11752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11515,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,11515,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,11515,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,11516,0)
- ;;=K08.101^^68^687^52
- ;;^UTILITY(U,$J,358.3,11516,1,0)
+ ;;^UTILITY(U,$J,358.3,11752,1,3,0)
+ ;;=3^Pain,Periumbilical
+ ;;^UTILITY(U,$J,358.3,11752,1,4,0)
+ ;;=4^R10.33
+ ;;^UTILITY(U,$J,358.3,11752,2)
+ ;;=^5019213
+ ;;^UTILITY(U,$J,358.3,11753,0)
+ ;;=G54.6^^47^535^55
+ ;;^UTILITY(U,$J,358.3,11753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11516,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,11516,1,4,0)
- ;;=4^K08.101
- ;;^UTILITY(U,$J,358.3,11516,2)
- ;;=^5008406
- ;;^UTILITY(U,$J,358.3,11517,0)
- ;;=K08.102^^68^687^53
- ;;^UTILITY(U,$J,358.3,11517,1,0)
+ ;;^UTILITY(U,$J,358.3,11753,1,3,0)
+ ;;=3^Pain,Phantom Limb Syndrome
+ ;;^UTILITY(U,$J,358.3,11753,1,4,0)
+ ;;=4^G54.6
+ ;;^UTILITY(U,$J,358.3,11753,2)
+ ;;=^5004013
+ ;;^UTILITY(U,$J,358.3,11754,0)
+ ;;=B02.23^^47^535^56
+ ;;^UTILITY(U,$J,358.3,11754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11517,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,11517,1,4,0)
- ;;=4^K08.102
- ;;^UTILITY(U,$J,358.3,11517,2)
- ;;=^5008407
- ;;^UTILITY(U,$J,358.3,11518,0)
- ;;=K08.103^^68^687^54
- ;;^UTILITY(U,$J,358.3,11518,1,0)
+ ;;^UTILITY(U,$J,358.3,11754,1,3,0)
+ ;;=3^Pain,Postherpetic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,11754,1,4,0)
+ ;;=4^B02.23
+ ;;^UTILITY(U,$J,358.3,11754,2)
+ ;;=^266550
+ ;;^UTILITY(U,$J,358.3,11755,0)
+ ;;=I70.229^^47^535^58
+ ;;^UTILITY(U,$J,358.3,11755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11518,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,11518,1,4,0)
- ;;=4^K08.103
- ;;^UTILITY(U,$J,358.3,11518,2)
- ;;=^5008408
- ;;^UTILITY(U,$J,358.3,11519,0)
- ;;=K08.104^^68^687^55
- ;;^UTILITY(U,$J,358.3,11519,1,0)
+ ;;^UTILITY(U,$J,358.3,11755,1,3,0)
+ ;;=3^Pain,Rest,Athscl Native Arteries of Unspec Extremity
+ ;;^UTILITY(U,$J,358.3,11755,1,4,0)
+ ;;=4^I70.229
+ ;;^UTILITY(U,$J,358.3,11755,2)
+ ;;=^5007587
+ ;;^UTILITY(U,$J,358.3,11756,0)
+ ;;=I70.329^^47^535^57
+ ;;^UTILITY(U,$J,358.3,11756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11519,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,11519,1,4,0)
- ;;=4^K08.104
- ;;^UTILITY(U,$J,358.3,11519,2)
- ;;=^5008409
- ;;^UTILITY(U,$J,358.3,11520,0)
- ;;=K08.109^^68^687^56
- ;;^UTILITY(U,$J,358.3,11520,1,0)
+ ;;^UTILITY(U,$J,358.3,11756,1,3,0)
+ ;;=3^Pain,Rest,Athscl Bypass Graft of the Extremity
+ ;;^UTILITY(U,$J,358.3,11756,1,4,0)
+ ;;=4^I70.329
+ ;;^UTILITY(U,$J,358.3,11756,2)
+ ;;=^5007625
+ ;;^UTILITY(U,$J,358.3,11757,0)
+ ;;=M25.512^^47^535^59
+ ;;^UTILITY(U,$J,358.3,11757,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11520,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,11520,1,4,0)
- ;;=4^K08.109
- ;;^UTILITY(U,$J,358.3,11520,2)
- ;;=^5008410
- ;;^UTILITY(U,$J,358.3,11521,0)
- ;;=K08.401^^68^687^133
- ;;^UTILITY(U,$J,358.3,11521,1,0)
+ ;;^UTILITY(U,$J,358.3,11757,1,3,0)
+ ;;=3^Pain,Shoulder,Left
+ ;;^UTILITY(U,$J,358.3,11757,1,4,0)
+ ;;=4^M25.512
+ ;;^UTILITY(U,$J,358.3,11757,2)
+ ;;=^5011603
+ ;;^UTILITY(U,$J,358.3,11758,0)
+ ;;=M25.511^^47^535^60
+ ;;^UTILITY(U,$J,358.3,11758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11521,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class I
- ;;^UTILITY(U,$J,358.3,11521,1,4,0)
- ;;=4^K08.401
- ;;^UTILITY(U,$J,358.3,11521,2)
- ;;=^5008432
- ;;^UTILITY(U,$J,358.3,11522,0)
- ;;=K08.402^^68^687^134
- ;;^UTILITY(U,$J,358.3,11522,1,0)
+ ;;^UTILITY(U,$J,358.3,11758,1,3,0)
+ ;;=3^Pain,Shoulder,Right
+ ;;^UTILITY(U,$J,358.3,11758,1,4,0)
+ ;;=4^M25.511
+ ;;^UTILITY(U,$J,358.3,11758,2)
+ ;;=^5011602
+ ;;^UTILITY(U,$J,358.3,11759,0)
+ ;;=D57.419^^47^535^61
+ ;;^UTILITY(U,$J,358.3,11759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11522,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class II
- ;;^UTILITY(U,$J,358.3,11522,1,4,0)
- ;;=4^K08.402
- ;;^UTILITY(U,$J,358.3,11522,2)
- ;;=^5008433
- ;;^UTILITY(U,$J,358.3,11523,0)
- ;;=K08.403^^68^687^135
- ;;^UTILITY(U,$J,358.3,11523,1,0)
+ ;;^UTILITY(U,$J,358.3,11759,1,3,0)
+ ;;=3^Pain,Sickle-Cell Thalassemia w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,11759,1,4,0)
+ ;;=4^D57.419
+ ;;^UTILITY(U,$J,358.3,11759,2)
+ ;;=^5002316
+ ;;^UTILITY(U,$J,358.3,11760,0)
+ ;;=M54.2^^47^535^62
+ ;;^UTILITY(U,$J,358.3,11760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11523,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class III
- ;;^UTILITY(U,$J,358.3,11523,1,4,0)
- ;;=4^K08.403
- ;;^UTILITY(U,$J,358.3,11523,2)
- ;;=^5008434
- ;;^UTILITY(U,$J,358.3,11524,0)
- ;;=K08.404^^68^687^136
- ;;^UTILITY(U,$J,358.3,11524,1,0)
+ ;;^UTILITY(U,$J,358.3,11760,1,3,0)
+ ;;=3^Pain,Spine,Cervicalgia
+ ;;^UTILITY(U,$J,358.3,11760,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,11760,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,11761,0)
+ ;;=M54.9^^47^535^63
+ ;;^UTILITY(U,$J,358.3,11761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11524,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class IV
- ;;^UTILITY(U,$J,358.3,11524,1,4,0)
- ;;=4^K08.404
- ;;^UTILITY(U,$J,358.3,11524,2)
- ;;=^5008435
- ;;^UTILITY(U,$J,358.3,11525,0)
- ;;=K08.409^^68^687^137
- ;;^UTILITY(U,$J,358.3,11525,1,0)
+ ;;^UTILITY(U,$J,358.3,11761,1,3,0)
+ ;;=3^Pain,Spine,Dorsalgia,Unspec
+ ;;^UTILITY(U,$J,358.3,11761,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,11761,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,11762,0)
+ ;;=M54.5^^47^535^64
+ ;;^UTILITY(U,$J,358.3,11762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11525,1,3,0)
- ;;=3^Partial Loss of Teeth,Unspec,Class Unspec
- ;;^UTILITY(U,$J,358.3,11525,1,4,0)
- ;;=4^K08.409
- ;;^UTILITY(U,$J,358.3,11525,2)
- ;;=^5008436
- ;;^UTILITY(U,$J,358.3,11526,0)
- ;;=N39.42^^68^687^93
+ ;;^UTILITY(U,$J,358.3,11762,1,3,0)
+ ;;=3^Pain,Spine,Low Back
+ ;;^UTILITY(U,$J,358.3,11762,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,11762,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,11763,0)
+ ;;=M54.41^^47^535^66
+ ;;^UTILITY(U,$J,358.3,11763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11763,1,3,0)
+ ;;=3^Pain,Spine,Lumbago w/ Sciatica,Right Side

@@ -1,134 +1,136 @@
-IBDEI0IR ; ; 19-NOV-2015
+IBDEI0IR ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8428,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,8428,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,8429,0)
- ;;=D68.32^^55^538^36
- ;;^UTILITY(U,$J,358.3,8429,1,0)
+ ;;^UTILITY(U,$J,358.3,8718,1,4,0)
+ ;;=4^H18.001
+ ;;^UTILITY(U,$J,358.3,8718,2)
+ ;;=^5005004
+ ;;^UTILITY(U,$J,358.3,8719,0)
+ ;;=H18.002^^41^468^48
+ ;;^UTILITY(U,$J,358.3,8719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8429,1,3,0)
- ;;=3^Hemorrhagic disord d/t extrinsic circulating anticoagulants
- ;;^UTILITY(U,$J,358.3,8429,1,4,0)
- ;;=4^D68.32
- ;;^UTILITY(U,$J,358.3,8429,2)
- ;;=^5002357
- ;;^UTILITY(U,$J,358.3,8430,0)
- ;;=D68.9^^55^538^28
- ;;^UTILITY(U,$J,358.3,8430,1,0)
+ ;;^UTILITY(U,$J,358.3,8719,1,3,0)
+ ;;=3^Corneal Deposit,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8719,1,4,0)
+ ;;=4^H18.002
+ ;;^UTILITY(U,$J,358.3,8719,2)
+ ;;=^5005005
+ ;;^UTILITY(U,$J,358.3,8720,0)
+ ;;=H18.051^^41^468^135
+ ;;^UTILITY(U,$J,358.3,8720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8430,1,3,0)
- ;;=3^Coagulation defect, unspecified
- ;;^UTILITY(U,$J,358.3,8430,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,8430,2)
- ;;=^5002364
- ;;^UTILITY(U,$J,358.3,8431,0)
- ;;=D47.3^^55^538^31
- ;;^UTILITY(U,$J,358.3,8431,1,0)
+ ;;^UTILITY(U,$J,358.3,8720,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Right Eye
+ ;;^UTILITY(U,$J,358.3,8720,1,4,0)
+ ;;=4^H18.051
+ ;;^UTILITY(U,$J,358.3,8720,2)
+ ;;=^5005023
+ ;;^UTILITY(U,$J,358.3,8721,0)
+ ;;=H18.052^^41^468^134
+ ;;^UTILITY(U,$J,358.3,8721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8431,1,3,0)
- ;;=3^Essential (hemorrhagic) thrombocythemia
- ;;^UTILITY(U,$J,358.3,8431,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,8431,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,8432,0)
- ;;=D69.6^^55^538^129
- ;;^UTILITY(U,$J,358.3,8432,1,0)
+ ;;^UTILITY(U,$J,358.3,8721,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Left Eye
+ ;;^UTILITY(U,$J,358.3,8721,1,4,0)
+ ;;=4^H18.052
+ ;;^UTILITY(U,$J,358.3,8721,2)
+ ;;=^5005024
+ ;;^UTILITY(U,$J,358.3,8722,0)
+ ;;=H18.20^^41^468^51
+ ;;^UTILITY(U,$J,358.3,8722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8432,1,3,0)
- ;;=3^Thrombocytopenia, unspecified
- ;;^UTILITY(U,$J,358.3,8432,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,8432,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,8433,0)
- ;;=D75.1^^55^538^127
- ;;^UTILITY(U,$J,358.3,8433,1,0)
+ ;;^UTILITY(U,$J,358.3,8722,1,3,0)
+ ;;=3^Corneal Edema,Unspec
+ ;;^UTILITY(U,$J,358.3,8722,1,4,0)
+ ;;=4^H18.20
+ ;;^UTILITY(U,$J,358.3,8722,2)
+ ;;=^5005035
+ ;;^UTILITY(U,$J,358.3,8723,0)
+ ;;=H18.11^^41^468^25
+ ;;^UTILITY(U,$J,358.3,8723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8433,1,3,0)
- ;;=3^Secondary polycythemia
- ;;^UTILITY(U,$J,358.3,8433,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,8433,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,8434,0)
- ;;=M31.1^^55^538^130
- ;;^UTILITY(U,$J,358.3,8434,1,0)
+ ;;^UTILITY(U,$J,358.3,8723,1,3,0)
+ ;;=3^Bullous Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,8723,1,4,0)
+ ;;=4^H18.11
+ ;;^UTILITY(U,$J,358.3,8723,2)
+ ;;=^5005032
+ ;;^UTILITY(U,$J,358.3,8724,0)
+ ;;=H18.12^^41^468^24
+ ;;^UTILITY(U,$J,358.3,8724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8434,1,3,0)
- ;;=3^Thrombotic microangiopathy
- ;;^UTILITY(U,$J,358.3,8434,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,8434,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,8435,0)
- ;;=I80.9^^55^538^92
- ;;^UTILITY(U,$J,358.3,8435,1,0)
+ ;;^UTILITY(U,$J,358.3,8724,1,3,0)
+ ;;=3^Bullous Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,8724,1,4,0)
+ ;;=4^H18.12
+ ;;^UTILITY(U,$J,358.3,8724,2)
+ ;;=^5005033
+ ;;^UTILITY(U,$J,358.3,8725,0)
+ ;;=H18.831^^41^468^150
+ ;;^UTILITY(U,$J,358.3,8725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8435,1,3,0)
- ;;=3^Phlebitis and thrombophlebitis of unspecified site
- ;;^UTILITY(U,$J,358.3,8435,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,8435,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,8436,0)
- ;;=R59.9^^55^538^30
- ;;^UTILITY(U,$J,358.3,8436,1,0)
+ ;;^UTILITY(U,$J,358.3,8725,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Right Eye
+ ;;^UTILITY(U,$J,358.3,8725,1,4,0)
+ ;;=4^H18.831
+ ;;^UTILITY(U,$J,358.3,8725,2)
+ ;;=^5005126
+ ;;^UTILITY(U,$J,358.3,8726,0)
+ ;;=H18.832^^41^468^149
+ ;;^UTILITY(U,$J,358.3,8726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8436,1,3,0)
- ;;=3^Enlarged lymph nodes, unspecified
- ;;^UTILITY(U,$J,358.3,8436,1,4,0)
- ;;=4^R59.9
- ;;^UTILITY(U,$J,358.3,8436,2)
- ;;=^5019531
- ;;^UTILITY(U,$J,358.3,8437,0)
- ;;=Z85.819^^55^538^112
- ;;^UTILITY(U,$J,358.3,8437,1,0)
+ ;;^UTILITY(U,$J,358.3,8726,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Left Eye
+ ;;^UTILITY(U,$J,358.3,8726,1,4,0)
+ ;;=4^H18.832
+ ;;^UTILITY(U,$J,358.3,8726,2)
+ ;;=^5005127
+ ;;^UTILITY(U,$J,358.3,8727,0)
+ ;;=H18.421^^41^468^14
+ ;;^UTILITY(U,$J,358.3,8727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8437,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of unsp site lip,oral cav,& pharynx
- ;;^UTILITY(U,$J,358.3,8437,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,8437,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,8438,0)
- ;;=Z85.818^^55^538^108
- ;;^UTILITY(U,$J,358.3,8438,1,0)
+ ;;^UTILITY(U,$J,358.3,8727,1,3,0)
+ ;;=3^Band Keratopathy,Right Eye
+ ;;^UTILITY(U,$J,358.3,8727,1,4,0)
+ ;;=4^H18.421
+ ;;^UTILITY(U,$J,358.3,8727,2)
+ ;;=^5005066
+ ;;^UTILITY(U,$J,358.3,8728,0)
+ ;;=H18.422^^41^468^13
+ ;;^UTILITY(U,$J,358.3,8728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8438,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of site of lip, oral cav, & pharynx
- ;;^UTILITY(U,$J,358.3,8438,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,8438,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,8439,0)
- ;;=Z85.01^^55^538^100
- ;;^UTILITY(U,$J,358.3,8439,1,0)
+ ;;^UTILITY(U,$J,358.3,8728,1,3,0)
+ ;;=3^Band Keratopathy,Left Eye
+ ;;^UTILITY(U,$J,358.3,8728,1,4,0)
+ ;;=4^H18.422
+ ;;^UTILITY(U,$J,358.3,8728,2)
+ ;;=^5005067
+ ;;^UTILITY(U,$J,358.3,8729,0)
+ ;;=H18.50^^41^468^80
+ ;;^UTILITY(U,$J,358.3,8729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8439,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of esophagus
- ;;^UTILITY(U,$J,358.3,8439,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,8439,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,8440,0)
- ;;=Z85.028^^55^538^110
- ;;^UTILITY(U,$J,358.3,8440,1,0)
+ ;;^UTILITY(U,$J,358.3,8729,1,3,0)
+ ;;=3^Hereditary Corneal Dystrophies,Unspec
+ ;;^UTILITY(U,$J,358.3,8729,1,4,0)
+ ;;=4^H18.50
+ ;;^UTILITY(U,$J,358.3,8729,2)
+ ;;=^5005084
+ ;;^UTILITY(U,$J,358.3,8730,0)
+ ;;=H18.51^^41^468^61
+ ;;^UTILITY(U,$J,358.3,8730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8440,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of stomach
- ;;^UTILITY(U,$J,358.3,8440,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,8440,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,8441,0)
- ;;=Z85.038^^55^538^102
- ;;^UTILITY(U,$J,358.3,8441,1,0)
+ ;;^UTILITY(U,$J,358.3,8730,1,3,0)
+ ;;=3^Endothelial Corneal Dystrophy
+ ;;^UTILITY(U,$J,358.3,8730,1,4,0)
+ ;;=4^H18.51
+ ;;^UTILITY(U,$J,358.3,8730,2)
+ ;;=^268988
+ ;;^UTILITY(U,$J,358.3,8731,0)
+ ;;=H18.601^^41^468^106
+ ;;^UTILITY(U,$J,358.3,8731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8441,1,3,0)
- ;;=3^Prsnl hx of malig neoplm of large intestine
+ ;;^UTILITY(U,$J,358.3,8731,1,3,0)
+ ;;=3^Keratoconus,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8731,1,4,0)
+ ;;=4^H18.601

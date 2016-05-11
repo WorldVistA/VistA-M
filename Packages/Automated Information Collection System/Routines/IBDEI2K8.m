@@ -1,126 +1,134 @@
-IBDEI2K8 ; ; 19-NOV-2015
+IBDEI2K8 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42926,1,4,0)
- ;;=4^S91.204A
- ;;^UTILITY(U,$J,358.3,42926,2)
- ;;=^5044267
- ;;^UTILITY(U,$J,358.3,42927,0)
- ;;=S91.205A^^192^2151^5
- ;;^UTILITY(U,$J,358.3,42927,1,0)
+ ;;^UTILITY(U,$J,358.3,43438,1,4,0)
+ ;;=4^I72.4
+ ;;^UTILITY(U,$J,358.3,43438,2)
+ ;;=^269777
+ ;;^UTILITY(U,$J,358.3,43439,0)
+ ;;=I72.0^^167^2078^35
+ ;;^UTILITY(U,$J,358.3,43439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42927,1,3,0)
- ;;=3^Open wound, lft lsr toe(s) w/ nail dmg, unspec, init
- ;;^UTILITY(U,$J,358.3,42927,1,4,0)
- ;;=4^S91.205A
- ;;^UTILITY(U,$J,358.3,42927,2)
- ;;=^5137430
- ;;^UTILITY(U,$J,358.3,42928,0)
- ;;=S91.134A^^192^2151^34
- ;;^UTILITY(U,$J,358.3,42928,1,0)
+ ;;^UTILITY(U,$J,358.3,43439,1,3,0)
+ ;;=3^Aneurysm of Carotid Artery
+ ;;^UTILITY(U,$J,358.3,43439,1,4,0)
+ ;;=4^I72.0
+ ;;^UTILITY(U,$J,358.3,43439,2)
+ ;;=^5007793
+ ;;^UTILITY(U,$J,358.3,43440,0)
+ ;;=I73.00^^167^2078^141
+ ;;^UTILITY(U,$J,358.3,43440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42928,1,3,0)
- ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,42928,1,4,0)
- ;;=4^S91.134A
- ;;^UTILITY(U,$J,358.3,42928,2)
- ;;=^5044222
- ;;^UTILITY(U,$J,358.3,42929,0)
- ;;=S91.135A^^192^2151^29
- ;;^UTILITY(U,$J,358.3,42929,1,0)
+ ;;^UTILITY(U,$J,358.3,43440,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,43440,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,43440,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,43441,0)
+ ;;=I73.9^^167^2078^131
+ ;;^UTILITY(U,$J,358.3,43441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42929,1,3,0)
- ;;=3^Punctr Wnd w/o FB, lft lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,42929,1,4,0)
- ;;=4^S91.135A
- ;;^UTILITY(U,$J,358.3,42929,2)
- ;;=^5044225
- ;;^UTILITY(U,$J,358.3,42930,0)
- ;;=S91.201A^^192^2151^9
- ;;^UTILITY(U,$J,358.3,42930,1,0)
+ ;;^UTILITY(U,$J,358.3,43441,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,43441,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,43441,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,43442,0)
+ ;;=I74.2^^167^2078^106
+ ;;^UTILITY(U,$J,358.3,43442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42930,1,3,0)
- ;;=3^Open wound, rt grt toe w/ nail dmg, unspec, init
- ;;^UTILITY(U,$J,358.3,42930,1,4,0)
- ;;=4^S91.201A
- ;;^UTILITY(U,$J,358.3,42930,2)
- ;;=^5044264
- ;;^UTILITY(U,$J,358.3,42931,0)
- ;;=S91.131A^^192^2151^32
- ;;^UTILITY(U,$J,358.3,42931,1,0)
+ ;;^UTILITY(U,$J,358.3,43442,1,3,0)
+ ;;=3^Embolism & Thrombosis UE Arteries
+ ;;^UTILITY(U,$J,358.3,43442,1,4,0)
+ ;;=4^I74.2
+ ;;^UTILITY(U,$J,358.3,43442,2)
+ ;;=^5007801
+ ;;^UTILITY(U,$J,358.3,43443,0)
+ ;;=I74.3^^167^2078^105
+ ;;^UTILITY(U,$J,358.3,43443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42931,1,3,0)
- ;;=3^Punctr Wnd w/o FB, rt grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,42931,1,4,0)
- ;;=4^S91.131A
- ;;^UTILITY(U,$J,358.3,42931,2)
- ;;=^5044213
- ;;^UTILITY(U,$J,358.3,42932,0)
- ;;=S91.132A^^192^2151^28
- ;;^UTILITY(U,$J,358.3,42932,1,0)
+ ;;^UTILITY(U,$J,358.3,43443,1,3,0)
+ ;;=3^Embolism & Thrombosis LE Arteries
+ ;;^UTILITY(U,$J,358.3,43443,1,4,0)
+ ;;=4^I74.3
+ ;;^UTILITY(U,$J,358.3,43443,2)
+ ;;=^5007802
+ ;;^UTILITY(U,$J,358.3,43444,0)
+ ;;=I80.11^^167^2078^138
+ ;;^UTILITY(U,$J,358.3,43444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42932,1,3,0)
- ;;=3^Punctr Wnd w/o FB, lft grt toe w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,42932,1,4,0)
- ;;=4^S91.132A
- ;;^UTILITY(U,$J,358.3,42932,2)
- ;;=^5044216
- ;;^UTILITY(U,$J,358.3,42933,0)
- ;;=S91.041A^^192^2151^19
- ;;^UTILITY(U,$J,358.3,42933,1,0)
+ ;;^UTILITY(U,$J,358.3,43444,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43444,1,4,0)
+ ;;=4^I80.11
+ ;;^UTILITY(U,$J,358.3,43444,2)
+ ;;=^5007825
+ ;;^UTILITY(U,$J,358.3,43445,0)
+ ;;=I80.211^^167^2078^139
+ ;;^UTILITY(U,$J,358.3,43445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42933,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,42933,1,4,0)
- ;;=4^S91.041A
- ;;^UTILITY(U,$J,358.3,42933,2)
- ;;=^5044156
- ;;^UTILITY(U,$J,358.3,42934,0)
- ;;=S91.042A^^192^2151^14
- ;;^UTILITY(U,$J,358.3,42934,1,0)
+ ;;^UTILITY(U,$J,358.3,43445,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt Iliac Vein
+ ;;^UTILITY(U,$J,358.3,43445,1,4,0)
+ ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.3,43445,2)
+ ;;=^5007831
+ ;;^UTILITY(U,$J,358.3,43446,0)
+ ;;=I80.12^^167^2078^135
+ ;;^UTILITY(U,$J,358.3,43446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42934,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,42934,1,4,0)
- ;;=4^S91.042A
- ;;^UTILITY(U,$J,358.3,42934,2)
- ;;=^5137412
- ;;^UTILITY(U,$J,358.3,42935,0)
- ;;=S81.841A^^192^2151^25
- ;;^UTILITY(U,$J,358.3,42935,1,0)
+ ;;^UTILITY(U,$J,358.3,43446,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43446,1,4,0)
+ ;;=4^I80.12
+ ;;^UTILITY(U,$J,358.3,43446,2)
+ ;;=^5007826
+ ;;^UTILITY(U,$J,358.3,43447,0)
+ ;;=I80.13^^167^2078^132
+ ;;^UTILITY(U,$J,358.3,43447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42935,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,42935,1,4,0)
- ;;=4^S81.841A
- ;;^UTILITY(U,$J,358.3,42935,2)
- ;;=^5040092
- ;;^UTILITY(U,$J,358.3,42936,0)
- ;;=S91.341A^^192^2151^20
- ;;^UTILITY(U,$J,358.3,42936,1,0)
+ ;;^UTILITY(U,$J,358.3,43447,1,3,0)
+ ;;=3^Phleb & Thrombphleb Bil Femoral Vein
+ ;;^UTILITY(U,$J,358.3,43447,1,4,0)
+ ;;=4^I80.13
+ ;;^UTILITY(U,$J,358.3,43447,2)
+ ;;=^5007827
+ ;;^UTILITY(U,$J,358.3,43448,0)
+ ;;=I80.202^^167^2078^137
+ ;;^UTILITY(U,$J,358.3,43448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42936,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt ft, init enc
- ;;^UTILITY(U,$J,358.3,42936,1,4,0)
- ;;=4^S91.341A
- ;;^UTILITY(U,$J,358.3,42936,2)
- ;;=^5044341
- ;;^UTILITY(U,$J,358.3,42937,0)
- ;;=S81.842A^^192^2151^18
- ;;^UTILITY(U,$J,358.3,42937,1,0)
+ ;;^UTILITY(U,$J,358.3,43448,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43448,1,4,0)
+ ;;=4^I80.202
+ ;;^UTILITY(U,$J,358.3,43448,2)
+ ;;=^5007829
+ ;;^UTILITY(U,$J,358.3,43449,0)
+ ;;=I80.201^^167^2078^140
+ ;;^UTILITY(U,$J,358.3,43449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42937,1,3,0)
- ;;=3^Punctr Wnd w/ FB, lft lwr leg, init enc
- ;;^UTILITY(U,$J,358.3,42937,1,4,0)
- ;;=4^S81.842A
- ;;^UTILITY(U,$J,358.3,42937,2)
- ;;=^5136697
- ;;^UTILITY(U,$J,358.3,42938,0)
- ;;=S91.144A^^192^2151^24
- ;;^UTILITY(U,$J,358.3,42938,1,0)
+ ;;^UTILITY(U,$J,358.3,43449,1,3,0)
+ ;;=3^Phleb & Thrombphleb Rt LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43449,1,4,0)
+ ;;=4^I80.201
+ ;;^UTILITY(U,$J,358.3,43449,2)
+ ;;=^5007828
+ ;;^UTILITY(U,$J,358.3,43450,0)
+ ;;=I80.203^^167^2078^134
+ ;;^UTILITY(U,$J,358.3,43450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42938,1,3,0)
- ;;=3^Punctr Wnd w/ FB, rt lsr toe(s) w/o nail dmg, init
- ;;^UTILITY(U,$J,358.3,42938,1,4,0)
- ;;=4^S91.144A
+ ;;^UTILITY(U,$J,358.3,43450,1,3,0)
+ ;;=3^Phleb & Thrombphleb Bil LE Deep Vessels
+ ;;^UTILITY(U,$J,358.3,43450,1,4,0)
+ ;;=4^I80.203
+ ;;^UTILITY(U,$J,358.3,43450,2)
+ ;;=^5007830
+ ;;^UTILITY(U,$J,358.3,43451,0)
+ ;;=I80.212^^167^2078^136
+ ;;^UTILITY(U,$J,358.3,43451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,43451,1,3,0)
+ ;;=3^Phleb & Thrombphleb Lt Iliac Vein

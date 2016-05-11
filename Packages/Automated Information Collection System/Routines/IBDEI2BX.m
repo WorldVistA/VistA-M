@@ -1,128 +1,118 @@
-IBDEI2BX ; ; 19-NOV-2015
+IBDEI2BX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,39114,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39114,1,2,0)
- ;;=2^Asp/Inj Interm Jt(Ac/Wrist/Ankle
- ;;^UTILITY(U,$J,358.3,39114,1,3,0)
- ;;=3^20605
- ;;^UTILITY(U,$J,358.3,39115,0)
- ;;=20610^^182^1998^2^^^^1
- ;;^UTILITY(U,$J,358.3,39115,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39115,1,2,0)
- ;;=2^Asp/Inj Maj Jt (Should/Hip/Knee
- ;;^UTILITY(U,$J,358.3,39115,1,3,0)
- ;;=3^20610
- ;;^UTILITY(U,$J,358.3,39116,0)
- ;;=20550^^182^1998^6^^^^1
- ;;^UTILITY(U,$J,358.3,39116,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39116,1,2,0)
- ;;=2^Inject Tendon/Ligament/Cyst 
- ;;^UTILITY(U,$J,358.3,39116,1,3,0)
- ;;=3^20550
- ;;^UTILITY(U,$J,358.3,39117,0)
- ;;=J1100^^182^1998^4^^^^1
- ;;^UTILITY(U,$J,358.3,39117,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39117,1,2,0)
- ;;=2^Dexamethasone Sodium Phos 1 mg
- ;;^UTILITY(U,$J,358.3,39117,1,3,0)
- ;;=3^J1100
- ;;^UTILITY(U,$J,358.3,39118,0)
- ;;=J0800^^182^1998^3^^^^1
- ;;^UTILITY(U,$J,358.3,39118,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39118,1,2,0)
- ;;=2^Corticotropin Inj up to 40 units
- ;;^UTILITY(U,$J,358.3,39118,1,3,0)
- ;;=3^J0800
- ;;^UTILITY(U,$J,358.3,39119,0)
- ;;=J1040^^182^1998^7^^^^1
- ;;^UTILITY(U,$J,358.3,39119,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39119,1,2,0)
- ;;=2^Methylprednisolone 80 Mg Inj
- ;;^UTILITY(U,$J,358.3,39119,1,3,0)
- ;;=3^J1040
- ;;^UTILITY(U,$J,358.3,39120,0)
- ;;=20552^^182^1998^8^^^^1
- ;;^UTILITY(U,$J,358.3,39120,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39120,1,2,0)
- ;;=2^Trigger Point(s) Inj,1-2 Muscles
- ;;^UTILITY(U,$J,358.3,39120,1,3,0)
- ;;=3^20552
- ;;^UTILITY(U,$J,358.3,39121,0)
- ;;=20553^^182^1998^9^^^^1
- ;;^UTILITY(U,$J,358.3,39121,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39121,1,2,0)
- ;;=2^Trigger Point(s) Inj,=/> 3 Muscles
- ;;^UTILITY(U,$J,358.3,39121,1,3,0)
- ;;=3^20553
- ;;^UTILITY(U,$J,358.3,39122,0)
- ;;=97597^^182^1999^2^^^^1
- ;;^UTILITY(U,$J,358.3,39122,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39122,1,2,0)
- ;;=2^Active Wound Care/20 Cm Or <
- ;;^UTILITY(U,$J,358.3,39122,1,3,0)
- ;;=3^97597
- ;;^UTILITY(U,$J,358.3,39123,0)
- ;;=97598^^182^1999^1^^^^1
- ;;^UTILITY(U,$J,358.3,39123,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39123,1,2,0)
- ;;=2^Active Wound Care each adtl 20 Cm
- ;;^UTILITY(U,$J,358.3,39123,1,3,0)
- ;;=3^97598
- ;;^UTILITY(U,$J,358.3,39124,0)
- ;;=97605^^182^1999^6^^^^1
- ;;^UTILITY(U,$J,358.3,39124,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39124,1,2,0)
- ;;=2^Neg Press Wound Tx < 50 Cm
- ;;^UTILITY(U,$J,358.3,39124,1,3,0)
- ;;=3^97605
- ;;^UTILITY(U,$J,358.3,39125,0)
- ;;=97606^^182^1999^7^^^^1
- ;;^UTILITY(U,$J,358.3,39125,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39125,1,2,0)
- ;;=2^Neg Press Wound Tx, > 50 Cm
- ;;^UTILITY(U,$J,358.3,39125,1,3,0)
- ;;=3^97606
- ;;^UTILITY(U,$J,358.3,39126,0)
- ;;=97602^^182^1999^8^^^^1
- ;;^UTILITY(U,$J,358.3,39126,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39126,1,2,0)
- ;;=2^Remove Divit. Tissue w/o Anesth
- ;;^UTILITY(U,$J,358.3,39126,1,3,0)
- ;;=3^97602
- ;;^UTILITY(U,$J,358.3,39127,0)
- ;;=G0281^^182^1999^4^^^^1
- ;;^UTILITY(U,$J,358.3,39127,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39127,1,2,0)
- ;;=2^Electrical Stim,Wound Care
- ;;^UTILITY(U,$J,358.3,39127,1,3,0)
- ;;=3^G0281
- ;;^UTILITY(U,$J,358.3,39128,0)
- ;;=G0283^^182^1999^3^^^^1
- ;;^UTILITY(U,$J,358.3,39128,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39128,1,2,0)
- ;;=2^Electrical Stim,Oth than Wnd Care
- ;;^UTILITY(U,$J,358.3,39128,1,3,0)
- ;;=3^G0283
- ;;^UTILITY(U,$J,358.3,39129,0)
- ;;=G0329^^182^1999^5^^^^1
- ;;^UTILITY(U,$J,358.3,39129,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,39129,1,2,0)
- ;;=2^Electromagnetic Therapy,Wound Care
+ ;;^UTILITY(U,$J,358.3,39500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39500,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39500,1,4,0)
+ ;;=4^E09.321
+ ;;^UTILITY(U,$J,358.3,39500,2)
+ ;;=^5002554
+ ;;^UTILITY(U,$J,358.3,39501,0)
+ ;;=E09.329^^153^1925^30
+ ;;^UTILITY(U,$J,358.3,39501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39501,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,39501,1,4,0)
+ ;;=4^E09.329
+ ;;^UTILITY(U,$J,358.3,39501,2)
+ ;;=^5002555
+ ;;^UTILITY(U,$J,358.3,39502,0)
+ ;;=E09.351^^153^1925^33
+ ;;^UTILITY(U,$J,358.3,39502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39502,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39502,1,4,0)
+ ;;=4^E09.351
+ ;;^UTILITY(U,$J,358.3,39502,2)
+ ;;=^5002560
+ ;;^UTILITY(U,$J,358.3,39503,0)
+ ;;=E09.359^^153^1925^34
+ ;;^UTILITY(U,$J,358.3,39503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39503,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,39503,1,4,0)
+ ;;=4^E09.359
+ ;;^UTILITY(U,$J,358.3,39503,2)
+ ;;=^5002561
+ ;;^UTILITY(U,$J,358.3,39504,0)
+ ;;=E08.351^^153^1925^45
+ ;;^UTILITY(U,$J,358.3,39504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39504,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39504,1,4,0)
+ ;;=4^E08.351
+ ;;^UTILITY(U,$J,358.3,39504,2)
+ ;;=^5002518
+ ;;^UTILITY(U,$J,358.3,39505,0)
+ ;;=E08.359^^153^1925^46
+ ;;^UTILITY(U,$J,358.3,39505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39505,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,39505,1,4,0)
+ ;;=4^E08.359
+ ;;^UTILITY(U,$J,358.3,39505,2)
+ ;;=^5002519
+ ;;^UTILITY(U,$J,358.3,39506,0)
+ ;;=E13.351^^153^1925^27
+ ;;^UTILITY(U,$J,358.3,39506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39506,1,3,0)
+ ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39506,1,4,0)
+ ;;=4^E13.351
+ ;;^UTILITY(U,$J,358.3,39506,2)
+ ;;=^5002680
+ ;;^UTILITY(U,$J,358.3,39507,0)
+ ;;=E13.359^^153^1925^28
+ ;;^UTILITY(U,$J,358.3,39507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39507,1,3,0)
+ ;;=3^DM w/ Prolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,39507,1,4,0)
+ ;;=4^E13.359
+ ;;^UTILITY(U,$J,358.3,39507,2)
+ ;;=^5002681
+ ;;^UTILITY(U,$J,358.3,39508,0)
+ ;;=E09.331^^153^1925^31
+ ;;^UTILITY(U,$J,358.3,39508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39508,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39508,1,4,0)
+ ;;=4^E09.331
+ ;;^UTILITY(U,$J,358.3,39508,2)
+ ;;=^5002556
+ ;;^UTILITY(U,$J,358.3,39509,0)
+ ;;=E09.341^^153^1925^35
+ ;;^UTILITY(U,$J,358.3,39509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39509,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/ Macula Edema
+ ;;^UTILITY(U,$J,358.3,39509,1,4,0)
+ ;;=4^E09.341
+ ;;^UTILITY(U,$J,358.3,39509,2)
+ ;;=^5002558
+ ;;^UTILITY(U,$J,358.3,39510,0)
+ ;;=E13.311^^153^1925^49
+ ;;^UTILITY(U,$J,358.3,39510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39510,1,3,0)
+ ;;=3^Diab w/ Unspec Diabetic Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,39510,1,4,0)
+ ;;=4^E13.311
+ ;;^UTILITY(U,$J,358.3,39510,2)
+ ;;=^5002673
+ ;;^UTILITY(U,$J,358.3,39511,0)
+ ;;=E09.339^^153^1925^32
+ ;;^UTILITY(U,$J,358.3,39511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39511,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema

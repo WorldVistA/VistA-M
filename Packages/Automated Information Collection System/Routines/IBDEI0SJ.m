@@ -1,126 +1,136 @@
-IBDEI0SJ ; ; 19-NOV-2015
+IBDEI0SJ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13129,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,13129,1,4,0)
- ;;=4^H40.1330
- ;;^UTILITY(U,$J,358.3,13129,2)
- ;;=^5005784
- ;;^UTILITY(U,$J,358.3,13130,0)
- ;;=H40.1331^^80^754^88
- ;;^UTILITY(U,$J,358.3,13130,1,0)
+ ;;^UTILITY(U,$J,358.3,13383,0)
+ ;;=D62.^^53^593^18
+ ;;^UTILITY(U,$J,358.3,13383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13130,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,13130,1,4,0)
- ;;=4^H40.1331
- ;;^UTILITY(U,$J,358.3,13130,2)
- ;;=^5005785
- ;;^UTILITY(U,$J,358.3,13131,0)
- ;;=H40.1332^^80^754^89
- ;;^UTILITY(U,$J,358.3,13131,1,0)
+ ;;^UTILITY(U,$J,358.3,13383,1,3,0)
+ ;;=3^Acute Posthemorrhagic Anemia
+ ;;^UTILITY(U,$J,358.3,13383,1,4,0)
+ ;;=4^D62.
+ ;;^UTILITY(U,$J,358.3,13383,2)
+ ;;=^267986
+ ;;^UTILITY(U,$J,358.3,13384,0)
+ ;;=C92.41^^53^593^19
+ ;;^UTILITY(U,$J,358.3,13384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13131,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13131,1,4,0)
- ;;=4^H40.1332
- ;;^UTILITY(U,$J,358.3,13131,2)
- ;;=^5005786
- ;;^UTILITY(U,$J,358.3,13132,0)
- ;;=H40.1333^^80^754^90
- ;;^UTILITY(U,$J,358.3,13132,1,0)
+ ;;^UTILITY(U,$J,358.3,13384,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,13384,1,4,0)
+ ;;=4^C92.41
+ ;;^UTILITY(U,$J,358.3,13384,2)
+ ;;=^5001802
+ ;;^UTILITY(U,$J,358.3,13385,0)
+ ;;=C92.40^^53^593^20
+ ;;^UTILITY(U,$J,358.3,13385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13132,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,13132,1,4,0)
- ;;=4^H40.1333
- ;;^UTILITY(U,$J,358.3,13132,2)
- ;;=^5005787
- ;;^UTILITY(U,$J,358.3,13133,0)
- ;;=H40.1334^^80^754^87
- ;;^UTILITY(U,$J,358.3,13133,1,0)
+ ;;^UTILITY(U,$J,358.3,13385,1,3,0)
+ ;;=3^Acute Promyelocytic Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,13385,1,4,0)
+ ;;=4^C92.40
+ ;;^UTILITY(U,$J,358.3,13385,2)
+ ;;=^5001801
+ ;;^UTILITY(U,$J,358.3,13386,0)
+ ;;=D56.0^^53^593^21
+ ;;^UTILITY(U,$J,358.3,13386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13133,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13133,1,4,0)
- ;;=4^H40.1334
- ;;^UTILITY(U,$J,358.3,13133,2)
- ;;=^5005788
- ;;^UTILITY(U,$J,358.3,13134,0)
- ;;=H40.151^^80^754^118
- ;;^UTILITY(U,$J,358.3,13134,1,0)
+ ;;^UTILITY(U,$J,358.3,13386,1,3,0)
+ ;;=3^Alpha Thalassemia
+ ;;^UTILITY(U,$J,358.3,13386,1,4,0)
+ ;;=4^D56.0
+ ;;^UTILITY(U,$J,358.3,13386,2)
+ ;;=^340494
+ ;;^UTILITY(U,$J,358.3,13387,0)
+ ;;=D63.1^^53^593^23
+ ;;^UTILITY(U,$J,358.3,13387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13134,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Right Eye
- ;;^UTILITY(U,$J,358.3,13134,1,4,0)
- ;;=4^H40.151
- ;;^UTILITY(U,$J,358.3,13134,2)
- ;;=^5138037
- ;;^UTILITY(U,$J,358.3,13135,0)
- ;;=H40.152^^80^754^117
- ;;^UTILITY(U,$J,358.3,13135,1,0)
+ ;;^UTILITY(U,$J,358.3,13387,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,13387,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,13387,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,13388,0)
+ ;;=D63.0^^53^593^24
+ ;;^UTILITY(U,$J,358.3,13388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13135,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Left Eye
- ;;^UTILITY(U,$J,358.3,13135,1,4,0)
- ;;=4^H40.152
- ;;^UTILITY(U,$J,358.3,13135,2)
- ;;=^5138038
- ;;^UTILITY(U,$J,358.3,13136,0)
- ;;=H40.153^^80^754^116
- ;;^UTILITY(U,$J,358.3,13136,1,0)
+ ;;^UTILITY(U,$J,358.3,13388,1,3,0)
+ ;;=3^Anemia in Neoplastic Disease
+ ;;^UTILITY(U,$J,358.3,13388,1,4,0)
+ ;;=4^D63.0
+ ;;^UTILITY(U,$J,358.3,13388,2)
+ ;;=^321978
+ ;;^UTILITY(U,$J,358.3,13389,0)
+ ;;=D63.8^^53^593^22
+ ;;^UTILITY(U,$J,358.3,13389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13136,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Bilateral
- ;;^UTILITY(U,$J,358.3,13136,1,4,0)
- ;;=4^H40.153
- ;;^UTILITY(U,$J,358.3,13136,2)
- ;;=^5138039
- ;;^UTILITY(U,$J,358.3,13137,0)
- ;;=H40.20X1^^80^754^103
- ;;^UTILITY(U,$J,358.3,13137,1,0)
+ ;;^UTILITY(U,$J,358.3,13389,1,3,0)
+ ;;=3^Anemia in Chronic Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,13389,1,4,0)
+ ;;=4^D63.8
+ ;;^UTILITY(U,$J,358.3,13389,2)
+ ;;=^5002343
+ ;;^UTILITY(U,$J,358.3,13390,0)
+ ;;=C22.3^^53^593^26
+ ;;^UTILITY(U,$J,358.3,13390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13137,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Mild Stage
- ;;^UTILITY(U,$J,358.3,13137,1,4,0)
- ;;=4^H40.20X1
- ;;^UTILITY(U,$J,358.3,13137,2)
- ;;=^5005814
- ;;^UTILITY(U,$J,358.3,13138,0)
- ;;=H40.20X2^^80^754^104
- ;;^UTILITY(U,$J,358.3,13138,1,0)
+ ;;^UTILITY(U,$J,358.3,13390,1,3,0)
+ ;;=3^Angiosarcoma of Liver
+ ;;^UTILITY(U,$J,358.3,13390,1,4,0)
+ ;;=4^C22.3
+ ;;^UTILITY(U,$J,358.3,13390,2)
+ ;;=^5000936
+ ;;^UTILITY(U,$J,358.3,13391,0)
+ ;;=D61.9^^53^593^27
+ ;;^UTILITY(U,$J,358.3,13391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13138,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Moderate Stage
- ;;^UTILITY(U,$J,358.3,13138,1,4,0)
- ;;=4^H40.20X2
- ;;^UTILITY(U,$J,358.3,13138,2)
- ;;=^5005815
- ;;^UTILITY(U,$J,358.3,13139,0)
- ;;=H40.20X3^^80^754^105
- ;;^UTILITY(U,$J,358.3,13139,1,0)
+ ;;^UTILITY(U,$J,358.3,13391,1,3,0)
+ ;;=3^Aplastic Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,13391,1,4,0)
+ ;;=4^D61.9
+ ;;^UTILITY(U,$J,358.3,13391,2)
+ ;;=^5002342
+ ;;^UTILITY(U,$J,358.3,13392,0)
+ ;;=D56.1^^53^593^29
+ ;;^UTILITY(U,$J,358.3,13392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13139,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Severe Stage
- ;;^UTILITY(U,$J,358.3,13139,1,4,0)
- ;;=4^H40.20X3
- ;;^UTILITY(U,$J,358.3,13139,2)
- ;;=^5005816
- ;;^UTILITY(U,$J,358.3,13140,0)
- ;;=H40.20X4^^80^754^102
- ;;^UTILITY(U,$J,358.3,13140,1,0)
+ ;;^UTILITY(U,$J,358.3,13392,1,3,0)
+ ;;=3^Beta Thalassemia
+ ;;^UTILITY(U,$J,358.3,13392,1,4,0)
+ ;;=4^D56.1
+ ;;^UTILITY(U,$J,358.3,13392,2)
+ ;;=^340495
+ ;;^UTILITY(U,$J,358.3,13393,0)
+ ;;=C83.79^^53^593^31
+ ;;^UTILITY(U,$J,358.3,13393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13140,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,13140,1,4,0)
- ;;=4^H40.20X4
- ;;^UTILITY(U,$J,358.3,13140,2)
- ;;=^5005817
- ;;^UTILITY(U,$J,358.3,13141,0)
- ;;=H40.2211^^80^754^23
- ;;^UTILITY(U,$J,358.3,13141,1,0)
+ ;;^UTILITY(U,$J,358.3,13393,1,3,0)
+ ;;=3^Burkitt Lymphoma,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,13393,1,4,0)
+ ;;=4^C83.79
+ ;;^UTILITY(U,$J,358.3,13393,2)
+ ;;=^5001600
+ ;;^UTILITY(U,$J,358.3,13394,0)
+ ;;=C83.70^^53^593^32
+ ;;^UTILITY(U,$J,358.3,13394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13141,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Mild Stage
+ ;;^UTILITY(U,$J,358.3,13394,1,3,0)
+ ;;=3^Burkitt Lymphoma,Unspec Site
+ ;;^UTILITY(U,$J,358.3,13394,1,4,0)
+ ;;=4^C83.70
+ ;;^UTILITY(U,$J,358.3,13394,2)
+ ;;=^5001591
+ ;;^UTILITY(U,$J,358.3,13395,0)
+ ;;=D09.0^^53^593^39
+ ;;^UTILITY(U,$J,358.3,13395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13395,1,3,0)
+ ;;=3^Carcinoma in Situ of Bladder
+ ;;^UTILITY(U,$J,358.3,13395,1,4,0)
+ ;;=4^D09.0
+ ;;^UTILITY(U,$J,358.3,13395,2)
+ ;;=^267742
+ ;;^UTILITY(U,$J,358.3,13396,0)
+ ;;=D06.9^^53^593^40

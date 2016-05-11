@@ -1,134 +1,132 @@
-IBDEI0G9 ; ; 19-NOV-2015
+IBDEI0G9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7214,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer,Right Lower Leg Oth Part
- ;;^UTILITY(U,$J,358.3,7214,1,4,0)
- ;;=4^L97.819
- ;;^UTILITY(U,$J,358.3,7214,2)
- ;;=^5009564
- ;;^UTILITY(U,$J,358.3,7215,0)
- ;;=L97.829^^49^479^119
- ;;^UTILITY(U,$J,358.3,7215,1,0)
+ ;;^UTILITY(U,$J,358.3,7515,2)
+ ;;=^5035583
+ ;;^UTILITY(U,$J,358.3,7516,0)
+ ;;=S63.502A^^30^409^8
+ ;;^UTILITY(U,$J,358.3,7516,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7215,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer,Left Lower Leg Oth Part
- ;;^UTILITY(U,$J,358.3,7215,1,4,0)
- ;;=4^L97.829
- ;;^UTILITY(U,$J,358.3,7215,2)
- ;;=^5009569
- ;;^UTILITY(U,$J,358.3,7216,0)
- ;;=L98.419^^49^479^114
- ;;^UTILITY(U,$J,358.3,7216,1,0)
+ ;;^UTILITY(U,$J,358.3,7516,1,3,0)
+ ;;=3^Sprain of Left Wrist
+ ;;^UTILITY(U,$J,358.3,7516,1,4,0)
+ ;;=4^S63.502A
+ ;;^UTILITY(U,$J,358.3,7516,2)
+ ;;=^5035586
+ ;;^UTILITY(U,$J,358.3,7517,0)
+ ;;=S83.8X1A^^30^409^15
+ ;;^UTILITY(U,$J,358.3,7517,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7216,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer,Buttock
- ;;^UTILITY(U,$J,358.3,7216,1,4,0)
- ;;=4^L98.419
- ;;^UTILITY(U,$J,358.3,7216,2)
- ;;=^5009581
- ;;^UTILITY(U,$J,358.3,7217,0)
- ;;=L98.429^^49^479^113
- ;;^UTILITY(U,$J,358.3,7217,1,0)
+ ;;^UTILITY(U,$J,358.3,7517,1,3,0)
+ ;;=3^Sprain of Right Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,7517,1,4,0)
+ ;;=4^S83.8X1A
+ ;;^UTILITY(U,$J,358.3,7517,2)
+ ;;=^5043160
+ ;;^UTILITY(U,$J,358.3,7518,0)
+ ;;=S83.8X2A^^30^409^6
+ ;;^UTILITY(U,$J,358.3,7518,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7217,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer,Back
- ;;^UTILITY(U,$J,358.3,7217,1,4,0)
- ;;=4^L98.429
- ;;^UTILITY(U,$J,358.3,7217,2)
- ;;=^5009586
- ;;^UTILITY(U,$J,358.3,7218,0)
- ;;=L98.499^^49^479^127
- ;;^UTILITY(U,$J,358.3,7218,1,0)
+ ;;^UTILITY(U,$J,358.3,7518,1,3,0)
+ ;;=3^Sprain of Left Knee,Oth Spec Parts
+ ;;^UTILITY(U,$J,358.3,7518,1,4,0)
+ ;;=4^S83.8X2A
+ ;;^UTILITY(U,$J,358.3,7518,2)
+ ;;=^5043163
+ ;;^UTILITY(U,$J,358.3,7519,0)
+ ;;=S86.211A^^30^409^45
+ ;;^UTILITY(U,$J,358.3,7519,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7218,1,3,0)
- ;;=3^Non-Pressure Chr Ulcer,Skin
- ;;^UTILITY(U,$J,358.3,7218,1,4,0)
- ;;=4^L98.499
- ;;^UTILITY(U,$J,358.3,7218,2)
- ;;=^5009591
- ;;^UTILITY(U,$J,358.3,7219,0)
- ;;=M90.80^^49^479^128
- ;;^UTILITY(U,$J,358.3,7219,1,0)
+ ;;^UTILITY(U,$J,358.3,7519,1,3,0)
+ ;;=3^Strain of Right Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7519,1,4,0)
+ ;;=4^S86.211A
+ ;;^UTILITY(U,$J,358.3,7519,2)
+ ;;=^5043484
+ ;;^UTILITY(U,$J,358.3,7520,0)
+ ;;=S86.212A^^30^409^26
+ ;;^UTILITY(U,$J,358.3,7520,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7219,1,3,0)
- ;;=3^Osteopathy in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,7219,1,4,0)
- ;;=4^M90.80
- ;;^UTILITY(U,$J,358.3,7219,2)
- ;;=^5015168
- ;;^UTILITY(U,$J,358.3,7220,0)
- ;;=Z83.3^^49^479^89
- ;;^UTILITY(U,$J,358.3,7220,1,0)
+ ;;^UTILITY(U,$J,358.3,7520,1,3,0)
+ ;;=3^Strain of Left Lower Leg Anterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7520,1,4,0)
+ ;;=4^S86.212A
+ ;;^UTILITY(U,$J,358.3,7520,2)
+ ;;=^5043487
+ ;;^UTILITY(U,$J,358.3,7521,0)
+ ;;=S86.311A^^30^409^47
+ ;;^UTILITY(U,$J,358.3,7521,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7220,1,3,0)
- ;;=3^Family Hx of Diabetes Mellitus
- ;;^UTILITY(U,$J,358.3,7220,1,4,0)
- ;;=4^Z83.3
- ;;^UTILITY(U,$J,358.3,7220,2)
- ;;=^5063379
- ;;^UTILITY(U,$J,358.3,7221,0)
- ;;=Z79.4^^49^479^95
- ;;^UTILITY(U,$J,358.3,7221,1,0)
+ ;;^UTILITY(U,$J,358.3,7521,1,3,0)
+ ;;=3^Strain of Right Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7521,1,4,0)
+ ;;=4^S86.311A
+ ;;^UTILITY(U,$J,358.3,7521,2)
+ ;;=^5043511
+ ;;^UTILITY(U,$J,358.3,7522,0)
+ ;;=S86.312A^^30^409^28
+ ;;^UTILITY(U,$J,358.3,7522,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7221,1,3,0)
- ;;=3^Long Term (Current) Use of Insulin
- ;;^UTILITY(U,$J,358.3,7221,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,7221,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,7222,0)
- ;;=Z09.^^49^479^88
- ;;^UTILITY(U,$J,358.3,7222,1,0)
+ ;;^UTILITY(U,$J,358.3,7522,1,3,0)
+ ;;=3^Strain of Left Lower Leg Peroneal Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7522,1,4,0)
+ ;;=4^S86.312A
+ ;;^UTILITY(U,$J,358.3,7522,2)
+ ;;=^5043514
+ ;;^UTILITY(U,$J,358.3,7523,0)
+ ;;=S86.811A^^30^409^46
+ ;;^UTILITY(U,$J,358.3,7523,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7222,1,3,0)
- ;;=3^F/U Exam After Treatment,Not Malig Neop
- ;;^UTILITY(U,$J,358.3,7222,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,7222,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,7223,0)
- ;;=Z76.0^^49^479^92
- ;;^UTILITY(U,$J,358.3,7223,1,0)
+ ;;^UTILITY(U,$J,358.3,7523,1,3,0)
+ ;;=3^Strain of Right Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,7523,1,4,0)
+ ;;=4^S86.811A
+ ;;^UTILITY(U,$J,358.3,7523,2)
+ ;;=^5043538
+ ;;^UTILITY(U,$J,358.3,7524,0)
+ ;;=S86.812A^^30^409^27
+ ;;^UTILITY(U,$J,358.3,7524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7223,1,3,0)
- ;;=3^Issue of Repeat Prescription
- ;;^UTILITY(U,$J,358.3,7223,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,7223,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,7224,0)
- ;;=E10.11^^49^479^36
- ;;^UTILITY(U,$J,358.3,7224,1,0)
+ ;;^UTILITY(U,$J,358.3,7524,1,3,0)
+ ;;=3^Strain of Left Lower Leg Muscle/Tendon NEC
+ ;;^UTILITY(U,$J,358.3,7524,1,4,0)
+ ;;=4^S86.812A
+ ;;^UTILITY(U,$J,358.3,7524,2)
+ ;;=^5043541
+ ;;^UTILITY(U,$J,358.3,7525,0)
+ ;;=S86.111A^^30^409^48
+ ;;^UTILITY(U,$J,358.3,7525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7224,1,3,0)
- ;;=3^Diabetes Type 1 w/ Ketacidosis w/ Coma
- ;;^UTILITY(U,$J,358.3,7224,1,4,0)
- ;;=4^E10.11
- ;;^UTILITY(U,$J,358.3,7224,2)
- ;;=^5002588
- ;;^UTILITY(U,$J,358.3,7225,0)
- ;;=E10.22^^49^479^18
- ;;^UTILITY(U,$J,358.3,7225,1,0)
+ ;;^UTILITY(U,$J,358.3,7525,1,3,0)
+ ;;=3^Strain of Right Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7525,1,4,0)
+ ;;=4^S86.111A
+ ;;^UTILITY(U,$J,358.3,7525,2)
+ ;;=^5043460
+ ;;^UTILITY(U,$J,358.3,7526,0)
+ ;;=S86.112A^^30^409^29
+ ;;^UTILITY(U,$J,358.3,7526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7225,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Chr Kidney Disease
- ;;^UTILITY(U,$J,358.3,7225,1,4,0)
- ;;=4^E10.22
- ;;^UTILITY(U,$J,358.3,7225,2)
- ;;=^5002590
- ;;^UTILITY(U,$J,358.3,7226,0)
- ;;=E10.29^^49^479^20
- ;;^UTILITY(U,$J,358.3,7226,1,0)
+ ;;^UTILITY(U,$J,358.3,7526,1,3,0)
+ ;;=3^Strain of Left Lower Leg Posterior Muscle/Tendon
+ ;;^UTILITY(U,$J,358.3,7526,1,4,0)
+ ;;=4^S86.112A
+ ;;^UTILITY(U,$J,358.3,7526,2)
+ ;;=^5043463
+ ;;^UTILITY(U,$J,358.3,7527,0)
+ ;;=S83.401A^^30^409^14
+ ;;^UTILITY(U,$J,358.3,7527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7226,1,3,0)
- ;;=3^Diabetes Type 1 w/ Diabetic Kidney Complication NEC
- ;;^UTILITY(U,$J,358.3,7226,1,4,0)
- ;;=4^E10.29
- ;;^UTILITY(U,$J,358.3,7226,2)
- ;;=^5002591
- ;;^UTILITY(U,$J,358.3,7227,0)
- ;;=E10.331^^49^479^40
- ;;^UTILITY(U,$J,358.3,7227,1,0)
+ ;;^UTILITY(U,$J,358.3,7527,1,3,0)
+ ;;=3^Sprain of Right Knee Collateral Ligament
+ ;;^UTILITY(U,$J,358.3,7527,1,4,0)
+ ;;=4^S83.401A
+ ;;^UTILITY(U,$J,358.3,7527,2)
+ ;;=^5043103
+ ;;^UTILITY(U,$J,358.3,7528,0)
+ ;;=S83.402A^^30^409^5
+ ;;^UTILITY(U,$J,358.3,7528,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7528,1,3,0)
+ ;;=3^Sprain of Left Knee Collateral Ligament

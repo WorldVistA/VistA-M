@@ -1,128 +1,134 @@
-IBDEI1A5 ; ; 19-NOV-2015
+IBDEI1A5 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21393,2)
- ;;=^5009945
- ;;^UTILITY(U,$J,358.3,21394,0)
- ;;=M05.462^^101^1030^98
- ;;^UTILITY(U,$J,358.3,21394,1,0)
+ ;;^UTILITY(U,$J,358.3,21767,1,4,0)
+ ;;=4^L03.313
+ ;;^UTILITY(U,$J,358.3,21767,2)
+ ;;=^5009049
+ ;;^UTILITY(U,$J,358.3,21768,0)
+ ;;=L03.314^^87^970^100
+ ;;^UTILITY(U,$J,358.3,21768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21394,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of left knee
- ;;^UTILITY(U,$J,358.3,21394,1,4,0)
- ;;=4^M05.462
- ;;^UTILITY(U,$J,358.3,21394,2)
- ;;=^5009948
- ;;^UTILITY(U,$J,358.3,21395,0)
- ;;=M05.412^^101^1030^99
- ;;^UTILITY(U,$J,358.3,21395,1,0)
+ ;;^UTILITY(U,$J,358.3,21768,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,21768,1,4,0)
+ ;;=4^L03.314
+ ;;^UTILITY(U,$J,358.3,21768,2)
+ ;;=^5009050
+ ;;^UTILITY(U,$J,358.3,21769,0)
+ ;;=L03.315^^87^970^107
+ ;;^UTILITY(U,$J,358.3,21769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21395,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of left shoulder 
- ;;^UTILITY(U,$J,358.3,21395,1,4,0)
- ;;=4^M05.412
- ;;^UTILITY(U,$J,358.3,21395,2)
- ;;=^5009933
- ;;^UTILITY(U,$J,358.3,21396,0)
- ;;=M05.432^^101^1030^100
- ;;^UTILITY(U,$J,358.3,21396,1,0)
+ ;;^UTILITY(U,$J,358.3,21769,1,3,0)
+ ;;=3^Cellulitis of Perineum
+ ;;^UTILITY(U,$J,358.3,21769,1,4,0)
+ ;;=4^L03.315
+ ;;^UTILITY(U,$J,358.3,21769,2)
+ ;;=^5009051
+ ;;^UTILITY(U,$J,358.3,21770,0)
+ ;;=L03.316^^87^970^114
+ ;;^UTILITY(U,$J,358.3,21770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21396,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of left wrist   
- ;;^UTILITY(U,$J,358.3,21396,1,4,0)
- ;;=4^M05.432
- ;;^UTILITY(U,$J,358.3,21396,2)
- ;;=^5009939
- ;;^UTILITY(U,$J,358.3,21397,0)
- ;;=M05.471^^101^1030^102
- ;;^UTILITY(U,$J,358.3,21397,1,0)
+ ;;^UTILITY(U,$J,358.3,21770,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,21770,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,21770,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,21771,0)
+ ;;=L03.319^^87^970^113
+ ;;^UTILITY(U,$J,358.3,21771,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21397,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right ank/ft   
- ;;^UTILITY(U,$J,358.3,21397,1,4,0)
- ;;=4^M05.471
- ;;^UTILITY(U,$J,358.3,21397,2)
- ;;=^5009950
- ;;^UTILITY(U,$J,358.3,21398,0)
- ;;=M05.421^^101^1030^101
- ;;^UTILITY(U,$J,358.3,21398,1,0)
+ ;;^UTILITY(U,$J,358.3,21771,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,21771,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,21771,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,21772,0)
+ ;;=L03.321^^87^970^13
+ ;;^UTILITY(U,$J,358.3,21772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21398,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right  elbow
- ;;^UTILITY(U,$J,358.3,21398,1,4,0)
- ;;=4^M05.421
- ;;^UTILITY(U,$J,358.3,21398,2)
- ;;=^5009935
- ;;^UTILITY(U,$J,358.3,21399,0)
- ;;=M05.441^^101^1030^103
- ;;^UTILITY(U,$J,358.3,21399,1,0)
+ ;;^UTILITY(U,$J,358.3,21772,1,3,0)
+ ;;=3^Acute Lymphangitis of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,21772,1,4,0)
+ ;;=4^L03.321
+ ;;^UTILITY(U,$J,358.3,21772,2)
+ ;;=^5009055
+ ;;^UTILITY(U,$J,358.3,21773,0)
+ ;;=L03.322^^87^970^14
+ ;;^UTILITY(U,$J,358.3,21773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21399,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right hand    
- ;;^UTILITY(U,$J,358.3,21399,1,4,0)
- ;;=4^M05.441
- ;;^UTILITY(U,$J,358.3,21399,2)
- ;;=^5009941
- ;;^UTILITY(U,$J,358.3,21400,0)
- ;;=M05.451^^101^1030^104
- ;;^UTILITY(U,$J,358.3,21400,1,0)
+ ;;^UTILITY(U,$J,358.3,21773,1,3,0)
+ ;;=3^Acute Lymphangitis of Back
+ ;;^UTILITY(U,$J,358.3,21773,1,4,0)
+ ;;=4^L03.322
+ ;;^UTILITY(U,$J,358.3,21773,2)
+ ;;=^5009056
+ ;;^UTILITY(U,$J,358.3,21774,0)
+ ;;=L03.323^^87^970^15
+ ;;^UTILITY(U,$J,358.3,21774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21400,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right hip  
- ;;^UTILITY(U,$J,358.3,21400,1,4,0)
- ;;=4^M05.451
- ;;^UTILITY(U,$J,358.3,21400,2)
- ;;=^5009944
- ;;^UTILITY(U,$J,358.3,21401,0)
- ;;=M05.461^^101^1030^105
- ;;^UTILITY(U,$J,358.3,21401,1,0)
+ ;;^UTILITY(U,$J,358.3,21774,1,3,0)
+ ;;=3^Acute Lymphangitis of Chest Wall
+ ;;^UTILITY(U,$J,358.3,21774,1,4,0)
+ ;;=4^L03.323
+ ;;^UTILITY(U,$J,358.3,21774,2)
+ ;;=^5009057
+ ;;^UTILITY(U,$J,358.3,21775,0)
+ ;;=L03.324^^87^970^17
+ ;;^UTILITY(U,$J,358.3,21775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21401,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right knee  
- ;;^UTILITY(U,$J,358.3,21401,1,4,0)
- ;;=4^M05.461
- ;;^UTILITY(U,$J,358.3,21401,2)
- ;;=^5009947
- ;;^UTILITY(U,$J,358.3,21402,0)
- ;;=M05.411^^101^1030^106
- ;;^UTILITY(U,$J,358.3,21402,1,0)
+ ;;^UTILITY(U,$J,358.3,21775,1,3,0)
+ ;;=3^Acute Lymphangitis of Groin
+ ;;^UTILITY(U,$J,358.3,21775,1,4,0)
+ ;;=4^L03.324
+ ;;^UTILITY(U,$J,358.3,21775,2)
+ ;;=^5009058
+ ;;^UTILITY(U,$J,358.3,21776,0)
+ ;;=L03.325^^87^970^23
+ ;;^UTILITY(U,$J,358.3,21776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21402,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right shoulder   
- ;;^UTILITY(U,$J,358.3,21402,1,4,0)
- ;;=4^M05.411
- ;;^UTILITY(U,$J,358.3,21402,2)
- ;;=^5009932
- ;;^UTILITY(U,$J,358.3,21403,0)
- ;;=M05.431^^101^1030^107
- ;;^UTILITY(U,$J,358.3,21403,1,0)
+ ;;^UTILITY(U,$J,358.3,21776,1,3,0)
+ ;;=3^Acute Lymphangitis of Perineum
+ ;;^UTILITY(U,$J,358.3,21776,1,4,0)
+ ;;=4^L03.325
+ ;;^UTILITY(U,$J,358.3,21776,2)
+ ;;=^5009059
+ ;;^UTILITY(U,$J,358.3,21777,0)
+ ;;=L03.326^^87^970^29
+ ;;^UTILITY(U,$J,358.3,21777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21403,1,3,0)
- ;;=3^Rheu myopathy w rheu arthrit of right wrist
- ;;^UTILITY(U,$J,358.3,21403,1,4,0)
- ;;=4^M05.431
- ;;^UTILITY(U,$J,358.3,21403,2)
- ;;=^5009938
- ;;^UTILITY(U,$J,358.3,21404,0)
- ;;=M06.372^^101^1030^138
- ;;^UTILITY(U,$J,358.3,21404,1,0)
+ ;;^UTILITY(U,$J,358.3,21777,1,3,0)
+ ;;=3^Acute Lymphangitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,21777,1,4,0)
+ ;;=4^L03.326
+ ;;^UTILITY(U,$J,358.3,21777,2)
+ ;;=^5009060
+ ;;^UTILITY(U,$J,358.3,21778,0)
+ ;;=L03.329^^87^970^28
+ ;;^UTILITY(U,$J,358.3,21778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21404,1,3,0)
- ;;=3^Rheumatoid nodule, left ankle and foot
- ;;^UTILITY(U,$J,358.3,21404,1,4,0)
- ;;=4^M06.372
- ;;^UTILITY(U,$J,358.3,21404,2)
- ;;=^5010116
- ;;^UTILITY(U,$J,358.3,21405,0)
- ;;=M06.322^^101^1030^139
- ;;^UTILITY(U,$J,358.3,21405,1,0)
+ ;;^UTILITY(U,$J,358.3,21778,1,3,0)
+ ;;=3^Acute Lymphangitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,21778,1,4,0)
+ ;;=4^L03.329
+ ;;^UTILITY(U,$J,358.3,21778,2)
+ ;;=^5009062
+ ;;^UTILITY(U,$J,358.3,21779,0)
+ ;;=L08.9^^87^970^167
+ ;;^UTILITY(U,$J,358.3,21779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21405,1,3,0)
- ;;=3^Rheumatoid nodule, left elbow
- ;;^UTILITY(U,$J,358.3,21405,1,4,0)
- ;;=4^M06.322
- ;;^UTILITY(U,$J,358.3,21405,2)
- ;;=^5010101
- ;;^UTILITY(U,$J,358.3,21406,0)
- ;;=M06.342^^101^1030^140
+ ;;^UTILITY(U,$J,358.3,21779,1,3,0)
+ ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,21779,1,4,0)
+ ;;=4^L08.9
+ ;;^UTILITY(U,$J,358.3,21779,2)
+ ;;=^5009082
+ ;;^UTILITY(U,$J,358.3,21780,0)
+ ;;=L11.0^^87^970^9
+ ;;^UTILITY(U,$J,358.3,21780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21780,1,3,0)
+ ;;=3^Acquired Keratosis Follicularis

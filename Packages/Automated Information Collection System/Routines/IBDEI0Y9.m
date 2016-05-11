@@ -1,132 +1,140 @@
-IBDEI0Y9 ; ; 19-NOV-2015
+IBDEI0Y9 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15782,1,4,0)
- ;;=4^L97.524
- ;;^UTILITY(U,$J,358.3,15782,2)
- ;;=^5009553
- ;;^UTILITY(U,$J,358.3,15783,0)
- ;;=L97.529^^85^825^101
- ;;^UTILITY(U,$J,358.3,15783,1,0)
+ ;;^UTILITY(U,$J,358.3,16084,1,4,0)
+ ;;=4^C62.11
+ ;;^UTILITY(U,$J,358.3,16084,2)
+ ;;=^5001234
+ ;;^UTILITY(U,$J,358.3,16085,0)
+ ;;=C62.12^^61^720^3
+ ;;^UTILITY(U,$J,358.3,16085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15783,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Foot NEC,Unspec Severity
- ;;^UTILITY(U,$J,358.3,15783,1,4,0)
- ;;=4^L97.529
- ;;^UTILITY(U,$J,358.3,15783,2)
- ;;=^5009554
- ;;^UTILITY(U,$J,358.3,15784,0)
- ;;=L97.821^^85^825^107
- ;;^UTILITY(U,$J,358.3,15784,1,0)
+ ;;^UTILITY(U,$J,358.3,16085,1,3,0)
+ ;;=3^Malig Neop Descended Testis,Left
+ ;;^UTILITY(U,$J,358.3,16085,1,4,0)
+ ;;=4^C62.12
+ ;;^UTILITY(U,$J,358.3,16085,2)
+ ;;=^5001235
+ ;;^UTILITY(U,$J,358.3,16086,0)
+ ;;=C62.91^^61^720^12
+ ;;^UTILITY(U,$J,358.3,16086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15784,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Breakdown of Skin
- ;;^UTILITY(U,$J,358.3,15784,1,4,0)
- ;;=4^L97.821
- ;;^UTILITY(U,$J,358.3,15784,2)
- ;;=^5009565
- ;;^UTILITY(U,$J,358.3,15785,0)
- ;;=L97.822^^85^825^108
- ;;^UTILITY(U,$J,358.3,15785,1,0)
+ ;;^UTILITY(U,$J,358.3,16086,1,3,0)
+ ;;=3^Malig Neop Testis,Right
+ ;;^UTILITY(U,$J,358.3,16086,1,4,0)
+ ;;=4^C62.91
+ ;;^UTILITY(U,$J,358.3,16086,2)
+ ;;=^5001237
+ ;;^UTILITY(U,$J,358.3,16087,0)
+ ;;=C62.92^^61^720^11
+ ;;^UTILITY(U,$J,358.3,16087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15785,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Fat Layer Exposed
- ;;^UTILITY(U,$J,358.3,15785,1,4,0)
- ;;=4^L97.822
- ;;^UTILITY(U,$J,358.3,15785,2)
- ;;=^5009566
- ;;^UTILITY(U,$J,358.3,15786,0)
- ;;=L97.823^^85^825^109
- ;;^UTILITY(U,$J,358.3,15786,1,0)
+ ;;^UTILITY(U,$J,358.3,16087,1,3,0)
+ ;;=3^Malig Neop Testis,Left
+ ;;^UTILITY(U,$J,358.3,16087,1,4,0)
+ ;;=4^C62.92
+ ;;^UTILITY(U,$J,358.3,16087,2)
+ ;;=^5001238
+ ;;^UTILITY(U,$J,358.3,16088,0)
+ ;;=C66.1^^61^720^14
+ ;;^UTILITY(U,$J,358.3,16088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15786,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Necrosis of Muscle
- ;;^UTILITY(U,$J,358.3,15786,1,4,0)
- ;;=4^L97.823
- ;;^UTILITY(U,$J,358.3,15786,2)
- ;;=^5009567
- ;;^UTILITY(U,$J,358.3,15787,0)
- ;;=L97.824^^85^825^110
- ;;^UTILITY(U,$J,358.3,15787,1,0)
+ ;;^UTILITY(U,$J,358.3,16088,1,3,0)
+ ;;=3^Malig Neop Ureter,Right
+ ;;^UTILITY(U,$J,358.3,16088,1,4,0)
+ ;;=4^C66.1
+ ;;^UTILITY(U,$J,358.3,16088,2)
+ ;;=^5001254
+ ;;^UTILITY(U,$J,358.3,16089,0)
+ ;;=C66.2^^61^720^13
+ ;;^UTILITY(U,$J,358.3,16089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15787,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Necrosis of Bone
- ;;^UTILITY(U,$J,358.3,15787,1,4,0)
- ;;=4^L97.824
- ;;^UTILITY(U,$J,358.3,15787,2)
- ;;=^5009568
- ;;^UTILITY(U,$J,358.3,15788,0)
- ;;=L97.829^^85^825^111
- ;;^UTILITY(U,$J,358.3,15788,1,0)
+ ;;^UTILITY(U,$J,358.3,16089,1,3,0)
+ ;;=3^Malig Neop Ureter,Left
+ ;;^UTILITY(U,$J,358.3,16089,1,4,0)
+ ;;=4^C66.2
+ ;;^UTILITY(U,$J,358.3,16089,2)
+ ;;=^5001255
+ ;;^UTILITY(U,$J,358.3,16090,0)
+ ;;=C68.0^^61^720^15
+ ;;^UTILITY(U,$J,358.3,16090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15788,1,3,0)
- ;;=3^Nonpressure Chr Ulcer of Left Lower Leg,Unspec Severity
- ;;^UTILITY(U,$J,358.3,15788,1,4,0)
- ;;=4^L97.829
- ;;^UTILITY(U,$J,358.3,15788,2)
- ;;=^5009569
- ;;^UTILITY(U,$J,358.3,15789,0)
- ;;=C61.^^85^826^26
- ;;^UTILITY(U,$J,358.3,15789,1,0)
+ ;;^UTILITY(U,$J,358.3,16090,1,3,0)
+ ;;=3^Malig Neop Urethra
+ ;;^UTILITY(U,$J,358.3,16090,1,4,0)
+ ;;=4^C68.0
+ ;;^UTILITY(U,$J,358.3,16090,2)
+ ;;=^267266
+ ;;^UTILITY(U,$J,358.3,16091,0)
+ ;;=C24.1^^61^721^16
+ ;;^UTILITY(U,$J,358.3,16091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15789,1,3,0)
- ;;=3^Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,15789,1,4,0)
- ;;=4^C61.
- ;;^UTILITY(U,$J,358.3,15789,2)
- ;;=^267239
- ;;^UTILITY(U,$J,358.3,15790,0)
- ;;=C67.9^^85^826^24
- ;;^UTILITY(U,$J,358.3,15790,1,0)
+ ;;^UTILITY(U,$J,358.3,16091,1,3,0)
+ ;;=3^Malig Neop Vater Ampulla
+ ;;^UTILITY(U,$J,358.3,16091,1,4,0)
+ ;;=4^C24.1
+ ;;^UTILITY(U,$J,358.3,16091,2)
+ ;;=^267100
+ ;;^UTILITY(U,$J,358.3,16092,0)
+ ;;=C21.0^^61^721^6
+ ;;^UTILITY(U,$J,358.3,16092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15790,1,3,0)
- ;;=3^Malig Neop of Bladder,Unspec
- ;;^UTILITY(U,$J,358.3,15790,1,4,0)
- ;;=4^C67.9
- ;;^UTILITY(U,$J,358.3,15790,2)
- ;;=^5001263
- ;;^UTILITY(U,$J,358.3,15791,0)
- ;;=C64.1^^85^826^27
- ;;^UTILITY(U,$J,358.3,15791,1,0)
+ ;;^UTILITY(U,$J,358.3,16092,1,3,0)
+ ;;=3^Malig Neop Anus,Unspec
+ ;;^UTILITY(U,$J,358.3,16092,1,4,0)
+ ;;=4^C21.0
+ ;;^UTILITY(U,$J,358.3,16092,2)
+ ;;=^5000930
+ ;;^UTILITY(U,$J,358.3,16093,0)
+ ;;=C24.0^^61^721^9
+ ;;^UTILITY(U,$J,358.3,16093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15791,1,3,0)
- ;;=3^Malig Neop of Right Kidney
- ;;^UTILITY(U,$J,358.3,15791,1,4,0)
- ;;=4^C64.1
- ;;^UTILITY(U,$J,358.3,15791,2)
- ;;=^5001248
- ;;^UTILITY(U,$J,358.3,15792,0)
- ;;=C64.2^^85^826^25
- ;;^UTILITY(U,$J,358.3,15792,1,0)
+ ;;^UTILITY(U,$J,358.3,16093,1,3,0)
+ ;;=3^Malig Neop Extrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,16093,1,4,0)
+ ;;=4^C24.0
+ ;;^UTILITY(U,$J,358.3,16093,2)
+ ;;=^5000940
+ ;;^UTILITY(U,$J,358.3,16094,0)
+ ;;=C18.9^^61^721^7
+ ;;^UTILITY(U,$J,358.3,16094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15792,1,3,0)
- ;;=3^Malig Neop of Left Kidney
- ;;^UTILITY(U,$J,358.3,15792,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,15792,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,15793,0)
- ;;=D17.6^^85^826^2
- ;;^UTILITY(U,$J,358.3,15793,1,0)
+ ;;^UTILITY(U,$J,358.3,16094,1,3,0)
+ ;;=3^Malig Neop Colon,Unspec
+ ;;^UTILITY(U,$J,358.3,16094,1,4,0)
+ ;;=4^C18.9
+ ;;^UTILITY(U,$J,358.3,16094,2)
+ ;;=^5000929
+ ;;^UTILITY(U,$J,358.3,16095,0)
+ ;;=C15.9^^61^721^8
+ ;;^UTILITY(U,$J,358.3,16095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15793,1,3,0)
- ;;=3^Benign Lipomatous Neop of Spermatic Cord
- ;;^UTILITY(U,$J,358.3,15793,1,4,0)
- ;;=4^D17.6
- ;;^UTILITY(U,$J,358.3,15793,2)
- ;;=^5002016
- ;;^UTILITY(U,$J,358.3,15794,0)
- ;;=N20.0^^85^826^4
- ;;^UTILITY(U,$J,358.3,15794,1,0)
+ ;;^UTILITY(U,$J,358.3,16095,1,3,0)
+ ;;=3^Malig Neop Esophagus,Unspec
+ ;;^UTILITY(U,$J,358.3,16095,1,4,0)
+ ;;=4^C15.9
+ ;;^UTILITY(U,$J,358.3,16095,2)
+ ;;=^5000919
+ ;;^UTILITY(U,$J,358.3,16096,0)
+ ;;=C23.^^61^721^10
+ ;;^UTILITY(U,$J,358.3,16096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15794,1,3,0)
- ;;=3^Calculus of Kidney
- ;;^UTILITY(U,$J,358.3,15794,1,4,0)
- ;;=4^N20.0
- ;;^UTILITY(U,$J,358.3,15794,2)
- ;;=^67056
- ;;^UTILITY(U,$J,358.3,15795,0)
- ;;=N20.2^^85^826^5
- ;;^UTILITY(U,$J,358.3,15795,1,0)
+ ;;^UTILITY(U,$J,358.3,16096,1,3,0)
+ ;;=3^Malig Neop Gallbladder
+ ;;^UTILITY(U,$J,358.3,16096,1,4,0)
+ ;;=4^C23.
+ ;;^UTILITY(U,$J,358.3,16096,2)
+ ;;=^267098
+ ;;^UTILITY(U,$J,358.3,16097,0)
+ ;;=C22.8^^61^721^11
+ ;;^UTILITY(U,$J,358.3,16097,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16097,1,3,0)
+ ;;=3^Malig Neop Liver,Primary,Unspec Type
+ ;;^UTILITY(U,$J,358.3,16097,1,4,0)
+ ;;=4^C22.8
+ ;;^UTILITY(U,$J,358.3,16097,2)
+ ;;=^5000939
+ ;;^UTILITY(U,$J,358.3,16098,0)
+ ;;=C22.7^^61^721^1

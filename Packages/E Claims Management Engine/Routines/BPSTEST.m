@@ -1,6 +1,6 @@
 BPSTEST ;OAK/ELZ - ECME TESTING TOOL ;11/15/07  09:55
- ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15**;JUN 2004;Build 13
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;1.0;E CLAIMS MGMT ENGINE;**6,7,8,10,11,15,19**;JUN 2004;Build 18
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
@@ -88,9 +88,27 @@ GETOVER(KEY1,KEY2,BPSORESP,BPSWHERE,BPSTYPE,BPPAYSEQ) ;
  . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.04,40)
  . I BPSSRESP="P"!(BPSSRESP="D") D PROMPT(BPSTIEN,.06,9)
  . I BPSSRESP="R" D PROMPT(BPSTIEN,1,"07")
- . ;Additional overrides for BPS*1*15
- . I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D PROMPT(BPSTIEN,.09,"")
- . I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D PROMPT(BPSTIEN,.1,"")
+ . ; 
+ . ; This section is for new D1-E6 fields so we can test that they are filed correctly
+ . ; At some point, these can probably be removed
+ . I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
+ .. ; Ask if you want to enter data for new D1-E6 fields - Quit if user says no
+ .. N DIR,DTOUT,DUOUT,DIROUT,DIRUT
+ .. S DIR(0)="YA",DIR("A")="Populate D1-E6 response fields? ",DIR("B")="No" D ^DIR
+ .. I Y'=1 Q
+ .. ; Additional overrides for D1-D9 (BPS*1*15)
+ .. D PROMPT(BPSTIEN,.09,"")
+ .. D PROMPT(BPSTIEN,.1,"")
+ .. ; Additional overrides for E0-E6 (BPS*1*19)
+ .. D PROMPT(BPSTIEN,2.01,"04")
+ .. D PROMPT(BPSTIEN,2.02,11)
+ .. D PROMPT(BPSTIEN,2.03,"01")
+ .. D PROMPT(BPSTIEN,2.04,"")
+ .. D PROMPT(BPSTIEN,2.05,"")
+ .. D PROMPT(BPSTIEN,2.06,"")
+ .. D PROMPT(BPSTIEN,2.07,"")
+ .. D PROMPT(BPSTIEN,2.08,"")
+ .. D PROMPT(BPSTIEN,3.01,"")
  ;
  W ! D PROMPT(BPSTIEN,.07,0)
  Q
@@ -104,7 +122,7 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ;    BPSDATA    - Passed by reference and updated with appropriate overrides
  ;
  N BPSTIEN,BPSRRESP,BPSSRESP,BPSPAID,BPSRCNT,BPSRIEN,BPSRCODE,BPSRCD,BPSCOPAY,BPSXXXX,BPSUNDEF
- N BPSAJPAY,BPSNFLDT ; BPS*1*15
+ N BPSAJPAY,BPSNFLDT,BPSX
  ;
  ; Check the Test Flag in set in BPS SETUP
  I '$$CHECK() Q
@@ -174,12 +192,44 @@ SETOVER(BPSTRANS,BPSTYPE,BPSDATA) ;
  ... K BPSDATA(1,510),BPSDATA(1,511)
  ... S BPSCOPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.06,"I")
  ... I BPSCOPAY]"" S BPSDATA(1,518)=$$DFF^BPSECFM(BPSCOPAY,8)
- .. ;Override Next Available Fill and Adjudicated Payment Type - BPS*1*15
  .. I BPSSRESP="P"!(BPSSRESP="D")!(BPSSRESP="R") D
+ ... ; D1-D9 fields (BPS*1*15)
+ ... ; Override Next Available Fill
  ... S BPSAJPAY=$$GET1^DIQ(9002313.32,BPSTIEN_",",.1,"I")
  ... I BPSAJPAY]"" S BPSDATA(1,1028)=$$NFF^BPSECFM(BPSAJPAY,2)
+ ... ; Adjudicated Payment Type
  ... S BPSNFLDT=$$GET1^DIQ(9002313.32,BPSTIEN_",",.09,"I")
  ... I BPSNFLDT]"" S BPSDATA(1,2004)=$$DTF1^BPSECFM(BPSNFLDT)
+ ... ;
+ ... ; E0-E6 overrides (BPS*1*19)
+ ... ; PERCENTAGE SALES TAX BASIS PAID
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.01,"I")
+ ... I BPSX]"" S BPSDATA(1,561)=BPSX
+ ... ; OTHER AMOUNT PAID QUALIFIER and associated field
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.02,"I")
+ ... I BPSX]"" S BPSDATA(1,564,1)=$$NFF^BPSECFM(BPSX,2),BPSDATA(1,565,1)=$$DFF^BPSECFM(5.64,8),BPSDATA(1,563)=1
+ ... ; PAYER ID QUALIFIER
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.03,"I")
+ ... I BPSX]"" S BPSDATA(9002313.03,9002313.03,"+1,",568)=BPSX
+ ... ; HELP DESK TELEPHONE NUMBER EXTENSION
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.04,"I")
+ ... I BPSX]"" S BPSDATA(1,"2022")=$$NFF^BPSECFM(BPSX,8)
+ ... ; PROFESSIONAL SERVICE FEE CONTRACTED/REIMURSEMENT AMOUNT
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.05,"I")
+ ... I BPSX]"" S BPSDATA(1,"2033")=$$DFF^BPSECFM(BPSX,8)
+ ... ; OTHER PAYER HELPDESK TELEPHONE EXTENSION
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.06,"I")
+ ... I BPSX]"" S BPSDATA(1,"2023",1)=$$NFF^BPSECFM(BPSX,8),BPSDATA(1,338,1)="01"
+ ... ; RESPONSE INTERMEDIARY AUTHORIZATION TYPE ID and associated fields
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.07,"I")
+ ... I BPSX]"" S BPSDATA(1,"2053",1)=$$NFF^BPSECFM(BPSX,2),BPSDATA(1,2052)=1
+ ... ; RESPONSE INTERMEDIARY AUTHORIZATION ID and associated fields
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",2.08,"I")
+ ... I BPSX]"" S BPSDATA(1,"2054",1)=$$ANFF^BPSECFM(BPSX,20),BPSDATA(1,2052)=1
+ ... ; INTERMEDIARY MESSAGE and associated fields
+ ... S BPSX=$$GET1^DIQ(9002313.32,BPSTIEN_",",3.01,"I")
+ ... I BPSX]"" S BPSDATA(1,"2051",1)=$$ANFF^BPSECFM(BPSX,200),BPSDATA(1,2052)=1
+ .. ;
  .. ; If rejected, get the rejection code and file them
  .. ; Also, delete the BPSPAID amount
  .. I BPSSRESP="R" D

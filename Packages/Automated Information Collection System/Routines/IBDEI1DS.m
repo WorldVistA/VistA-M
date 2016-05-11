@@ -1,134 +1,132 @@
-IBDEI1DS ; ; 19-NOV-2015
+IBDEI1DS ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23031,0)
- ;;=J43.9^^107^1084^11
- ;;^UTILITY(U,$J,358.3,23031,1,0)
+ ;;^UTILITY(U,$J,358.3,23469,2)
+ ;;=^100075
+ ;;^UTILITY(U,$J,358.3,23470,0)
+ ;;=R92.8^^87^997^4
+ ;;^UTILITY(U,$J,358.3,23470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23031,1,3,0)
- ;;=3^Emphysema,Unspec
- ;;^UTILITY(U,$J,358.3,23031,1,4,0)
- ;;=4^J43.9
- ;;^UTILITY(U,$J,358.3,23031,2)
- ;;=^5008238
- ;;^UTILITY(U,$J,358.3,23032,0)
- ;;=J96.20^^107^1084^4
- ;;^UTILITY(U,$J,358.3,23032,1,0)
+ ;;^UTILITY(U,$J,358.3,23470,1,3,0)
+ ;;=3^Abnormal/Inconclusive Findings on Dx Imaging of Breast
+ ;;^UTILITY(U,$J,358.3,23470,1,4,0)
+ ;;=4^R92.8
+ ;;^UTILITY(U,$J,358.3,23470,2)
+ ;;=^5019712
+ ;;^UTILITY(U,$J,358.3,23471,0)
+ ;;=R87.619^^87^997^1
+ ;;^UTILITY(U,$J,358.3,23471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23032,1,3,0)
- ;;=3^Acute/Chr Respiratory Failure
- ;;^UTILITY(U,$J,358.3,23032,1,4,0)
- ;;=4^J96.20
- ;;^UTILITY(U,$J,358.3,23032,2)
- ;;=^5008353
- ;;^UTILITY(U,$J,358.3,23033,0)
- ;;=J69.0^^107^1084^13
- ;;^UTILITY(U,$J,358.3,23033,1,0)
+ ;;^UTILITY(U,$J,358.3,23471,1,3,0)
+ ;;=3^Abnormal Cytology Findings in Specimen of Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,23471,1,4,0)
+ ;;=4^R87.619
+ ;;^UTILITY(U,$J,358.3,23471,2)
+ ;;=^5019676
+ ;;^UTILITY(U,$J,358.3,23472,0)
+ ;;=Z79.890^^87^997^26
+ ;;^UTILITY(U,$J,358.3,23472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23033,1,3,0)
- ;;=3^Pneumonitis d/t Inhalation of Food & Vomit
- ;;^UTILITY(U,$J,358.3,23033,1,4,0)
- ;;=4^J69.0
- ;;^UTILITY(U,$J,358.3,23033,2)
- ;;=^5008288
- ;;^UTILITY(U,$J,358.3,23034,0)
- ;;=J98.9^^107^1084^15
- ;;^UTILITY(U,$J,358.3,23034,1,0)
+ ;;^UTILITY(U,$J,358.3,23472,1,3,0)
+ ;;=3^Hormone Replacement Therapy,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,23472,1,4,0)
+ ;;=4^Z79.890
+ ;;^UTILITY(U,$J,358.3,23472,2)
+ ;;=^331975
+ ;;^UTILITY(U,$J,358.3,23473,0)
+ ;;=Z33.1^^87^997^50
+ ;;^UTILITY(U,$J,358.3,23473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23034,1,3,0)
- ;;=3^Respiratory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,23034,1,4,0)
- ;;=4^J98.9
- ;;^UTILITY(U,$J,358.3,23034,2)
- ;;=^5008366
- ;;^UTILITY(U,$J,358.3,23035,0)
- ;;=J91.8^^107^1084^12
- ;;^UTILITY(U,$J,358.3,23035,1,0)
+ ;;^UTILITY(U,$J,358.3,23473,1,3,0)
+ ;;=3^Pregnant State,Incidental
+ ;;^UTILITY(U,$J,358.3,23473,1,4,0)
+ ;;=4^Z33.1
+ ;;^UTILITY(U,$J,358.3,23473,2)
+ ;;=^5062853
+ ;;^UTILITY(U,$J,358.3,23474,0)
+ ;;=Z39.2^^87^997^49
+ ;;^UTILITY(U,$J,358.3,23474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23035,1,3,0)
- ;;=3^Pleural Effusion in Oth Conditions Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,23035,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,23035,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,23036,0)
- ;;=J84.10^^107^1084^14
- ;;^UTILITY(U,$J,358.3,23036,1,0)
+ ;;^UTILITY(U,$J,358.3,23474,1,3,0)
+ ;;=3^Postpartum Follow-up Routine Encounter
+ ;;^UTILITY(U,$J,358.3,23474,1,4,0)
+ ;;=4^Z39.2
+ ;;^UTILITY(U,$J,358.3,23474,2)
+ ;;=^5062906
+ ;;^UTILITY(U,$J,358.3,23475,0)
+ ;;=Z30.09^^87^997^10
+ ;;^UTILITY(U,$J,358.3,23475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23036,1,3,0)
- ;;=3^Pulmonary Fibrosis,Unspec
- ;;^UTILITY(U,$J,358.3,23036,1,4,0)
- ;;=4^J84.10
- ;;^UTILITY(U,$J,358.3,23036,2)
- ;;=^5008300
- ;;^UTILITY(U,$J,358.3,23037,0)
- ;;=R22.2^^107^1084^20
- ;;^UTILITY(U,$J,358.3,23037,1,0)
+ ;;^UTILITY(U,$J,358.3,23475,1,3,0)
+ ;;=3^Counsel/Advice on Contraception Encounter
+ ;;^UTILITY(U,$J,358.3,23475,1,4,0)
+ ;;=4^Z30.09
+ ;;^UTILITY(U,$J,358.3,23475,2)
+ ;;=^5062817
+ ;;^UTILITY(U,$J,358.3,23476,0)
+ ;;=Z30.9^^87^997^9
+ ;;^UTILITY(U,$J,358.3,23476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23037,1,3,0)
- ;;=3^Swelling,Mass & Lump,Trunk
- ;;^UTILITY(U,$J,358.3,23037,1,4,0)
- ;;=4^R22.2
- ;;^UTILITY(U,$J,358.3,23037,2)
- ;;=^5019286
- ;;^UTILITY(U,$J,358.3,23038,0)
- ;;=R06.02^^107^1084^19
- ;;^UTILITY(U,$J,358.3,23038,1,0)
+ ;;^UTILITY(U,$J,358.3,23476,1,3,0)
+ ;;=3^Contraceptive Management Encounter
+ ;;^UTILITY(U,$J,358.3,23476,1,4,0)
+ ;;=4^Z30.9
+ ;;^UTILITY(U,$J,358.3,23476,2)
+ ;;=^5062828
+ ;;^UTILITY(U,$J,358.3,23477,0)
+ ;;=N64.3^^87^997^23
+ ;;^UTILITY(U,$J,358.3,23477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23038,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,23038,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,23038,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,23039,0)
- ;;=J96.10^^107^1084^8
- ;;^UTILITY(U,$J,358.3,23039,1,0)
+ ;;^UTILITY(U,$J,358.3,23477,1,3,0)
+ ;;=3^Galactorrhea Not Associated w/ Childbirth
+ ;;^UTILITY(U,$J,358.3,23477,1,4,0)
+ ;;=4^N64.3
+ ;;^UTILITY(U,$J,358.3,23477,2)
+ ;;=^270460
+ ;;^UTILITY(U,$J,358.3,23478,0)
+ ;;=R92.2^^87^997^27
+ ;;^UTILITY(U,$J,358.3,23478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23039,1,3,0)
- ;;=3^Chronic Respiratory Failure
- ;;^UTILITY(U,$J,358.3,23039,1,4,0)
- ;;=4^J96.10
- ;;^UTILITY(U,$J,358.3,23039,2)
- ;;=^5008350
- ;;^UTILITY(U,$J,358.3,23040,0)
- ;;=J96.01^^107^1084^3
- ;;^UTILITY(U,$J,358.3,23040,1,0)
+ ;;^UTILITY(U,$J,358.3,23478,1,3,0)
+ ;;=3^Inconclusive Mammogram
+ ;;^UTILITY(U,$J,358.3,23478,1,4,0)
+ ;;=4^R92.2
+ ;;^UTILITY(U,$J,358.3,23478,2)
+ ;;=^5019711
+ ;;^UTILITY(U,$J,358.3,23479,0)
+ ;;=Z30.432^^87^997^53
+ ;;^UTILITY(U,$J,358.3,23479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23040,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23040,1,4,0)
- ;;=4^J96.01
- ;;^UTILITY(U,$J,358.3,23040,2)
- ;;=^5008348
- ;;^UTILITY(U,$J,358.3,23041,0)
- ;;=J96.02^^107^1084^2
- ;;^UTILITY(U,$J,358.3,23041,1,0)
+ ;;^UTILITY(U,$J,358.3,23479,1,3,0)
+ ;;=3^Removal of IUD
+ ;;^UTILITY(U,$J,358.3,23479,1,4,0)
+ ;;=4^Z30.432
+ ;;^UTILITY(U,$J,358.3,23479,2)
+ ;;=^5062824
+ ;;^UTILITY(U,$J,358.3,23480,0)
+ ;;=S31.000A^^87^998^5
+ ;;^UTILITY(U,$J,358.3,23480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23041,1,3,0)
- ;;=3^Acute Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23041,1,4,0)
- ;;=4^J96.02
- ;;^UTILITY(U,$J,358.3,23041,2)
- ;;=^5008349
- ;;^UTILITY(U,$J,358.3,23042,0)
- ;;=J96.21^^107^1084^6
- ;;^UTILITY(U,$J,358.3,23042,1,0)
+ ;;^UTILITY(U,$J,358.3,23480,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,23480,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,23480,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,23481,0)
+ ;;=S31.010A^^87^998^2
+ ;;^UTILITY(U,$J,358.3,23481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23042,1,3,0)
- ;;=3^Acute/Chr Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23042,1,4,0)
- ;;=4^J96.21
- ;;^UTILITY(U,$J,358.3,23042,2)
- ;;=^5008354
- ;;^UTILITY(U,$J,358.3,23043,0)
- ;;=J96.22^^107^1084^5
- ;;^UTILITY(U,$J,358.3,23043,1,0)
+ ;;^UTILITY(U,$J,358.3,23481,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,23481,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,23481,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,23482,0)
+ ;;=T07.^^87^998^4
+ ;;^UTILITY(U,$J,358.3,23482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23043,1,3,0)
- ;;=3^Acute/Chr Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23043,1,4,0)
- ;;=4^J96.22
- ;;^UTILITY(U,$J,358.3,23043,2)
- ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,23482,1,3,0)
+ ;;=3^Multiple Injuries,Unspec

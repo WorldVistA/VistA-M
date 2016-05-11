@@ -1,130 +1,136 @@
-IBDEI0SF ; ; 19-NOV-2015
+IBDEI0SF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13079,1,0)
+ ;;^UTILITY(U,$J,358.3,13331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13079,1,3,0)
- ;;=3^Choroidal Detachment,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,13079,1,4,0)
- ;;=4^H31.402
- ;;^UTILITY(U,$J,358.3,13079,2)
- ;;=^5005477
- ;;^UTILITY(U,$J,358.3,13080,0)
- ;;=H31.421^^80^754^120
- ;;^UTILITY(U,$J,358.3,13080,1,0)
+ ;;^UTILITY(U,$J,358.3,13331,1,3,0)
+ ;;=3^Diastolic Heart Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,13331,1,4,0)
+ ;;=4^I50.32
+ ;;^UTILITY(U,$J,358.3,13331,2)
+ ;;=^5007245
+ ;;^UTILITY(U,$J,358.3,13332,0)
+ ;;=I50.33^^53^591^4
+ ;;^UTILITY(U,$J,358.3,13332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13080,1,3,0)
- ;;=3^Serous Choroidal Detachment,Right Eye
- ;;^UTILITY(U,$J,358.3,13080,1,4,0)
- ;;=4^H31.421
- ;;^UTILITY(U,$J,358.3,13080,2)
- ;;=^5005483
- ;;^UTILITY(U,$J,358.3,13081,0)
- ;;=H31.422^^80^754^119
- ;;^UTILITY(U,$J,358.3,13081,1,0)
+ ;;^UTILITY(U,$J,358.3,13332,1,3,0)
+ ;;=3^Diastolic Heart Failure,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,13332,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,13332,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,13333,0)
+ ;;=I50.40^^53^591^9
+ ;;^UTILITY(U,$J,358.3,13333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13081,1,3,0)
- ;;=3^Serous Choroidal Detachment,Left Eye
- ;;^UTILITY(U,$J,358.3,13081,1,4,0)
- ;;=4^H31.422
- ;;^UTILITY(U,$J,358.3,13081,2)
- ;;=^5005484
- ;;^UTILITY(U,$J,358.3,13082,0)
- ;;=H21.231^^80^754^28
- ;;^UTILITY(U,$J,358.3,13082,1,0)
+ ;;^UTILITY(U,$J,358.3,13333,1,3,0)
+ ;;=3^Systolic & Diastolic Congestive Heart Failure,Combined Unspec
+ ;;^UTILITY(U,$J,358.3,13333,1,4,0)
+ ;;=4^I50.40
+ ;;^UTILITY(U,$J,358.3,13333,2)
+ ;;=^5007247
+ ;;^UTILITY(U,$J,358.3,13334,0)
+ ;;=I51.7^^53^591^2
+ ;;^UTILITY(U,$J,358.3,13334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13082,1,3,0)
- ;;=3^Degeneration of Iris,Right Eye
- ;;^UTILITY(U,$J,358.3,13082,1,4,0)
- ;;=4^H21.231
- ;;^UTILITY(U,$J,358.3,13082,2)
- ;;=^5005187
- ;;^UTILITY(U,$J,358.3,13083,0)
- ;;=H21.232^^80^754^27
- ;;^UTILITY(U,$J,358.3,13083,1,0)
+ ;;^UTILITY(U,$J,358.3,13334,1,3,0)
+ ;;=3^Cardiomegaly
+ ;;^UTILITY(U,$J,358.3,13334,1,4,0)
+ ;;=4^I51.7
+ ;;^UTILITY(U,$J,358.3,13334,2)
+ ;;=^5007257
+ ;;^UTILITY(U,$J,358.3,13335,0)
+ ;;=I42.6^^53^591^1
+ ;;^UTILITY(U,$J,358.3,13335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13083,1,3,0)
- ;;=3^Degeneration of Iris,Left Eye
- ;;^UTILITY(U,$J,358.3,13083,1,4,0)
- ;;=4^H21.232
- ;;^UTILITY(U,$J,358.3,13083,2)
- ;;=^5005188
- ;;^UTILITY(U,$J,358.3,13084,0)
- ;;=H40.011^^80^754^85
- ;;^UTILITY(U,$J,358.3,13084,1,0)
+ ;;^UTILITY(U,$J,358.3,13335,1,3,0)
+ ;;=3^Alcoholic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,13335,1,4,0)
+ ;;=4^I42.6
+ ;;^UTILITY(U,$J,358.3,13335,2)
+ ;;=^5007197
+ ;;^UTILITY(U,$J,358.3,13336,0)
+ ;;=I50.1^^53^591^8
+ ;;^UTILITY(U,$J,358.3,13336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13084,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,13084,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,13084,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,13085,0)
- ;;=H40.012^^80^754^86
- ;;^UTILITY(U,$J,358.3,13085,1,0)
+ ;;^UTILITY(U,$J,358.3,13336,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,13336,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,13336,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,13337,0)
+ ;;=I50.20^^53^591^13
+ ;;^UTILITY(U,$J,358.3,13337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13085,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,13085,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,13085,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,13086,0)
- ;;=H40.021^^80^754^82
- ;;^UTILITY(U,$J,358.3,13086,1,0)
+ ;;^UTILITY(U,$J,358.3,13337,1,3,0)
+ ;;=3^Systolic Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,13337,1,4,0)
+ ;;=4^I50.20
+ ;;^UTILITY(U,$J,358.3,13337,2)
+ ;;=^5007239
+ ;;^UTILITY(U,$J,358.3,13338,0)
+ ;;=I50.21^^53^591^10
+ ;;^UTILITY(U,$J,358.3,13338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13086,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,13086,1,4,0)
- ;;=4^H40.021
- ;;^UTILITY(U,$J,358.3,13086,2)
- ;;=^5005728
- ;;^UTILITY(U,$J,358.3,13087,0)
- ;;=H40.022^^80^754^83
- ;;^UTILITY(U,$J,358.3,13087,1,0)
+ ;;^UTILITY(U,$J,358.3,13338,1,3,0)
+ ;;=3^Systolic Heart Failure,Acute
+ ;;^UTILITY(U,$J,358.3,13338,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,13338,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,13339,0)
+ ;;=I50.22^^53^591^12
+ ;;^UTILITY(U,$J,358.3,13339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13087,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,13087,1,4,0)
- ;;=4^H40.022
- ;;^UTILITY(U,$J,358.3,13087,2)
- ;;=^5005729
- ;;^UTILITY(U,$J,358.3,13088,0)
- ;;=H40.031^^80^754^3
- ;;^UTILITY(U,$J,358.3,13088,1,0)
+ ;;^UTILITY(U,$J,358.3,13339,1,3,0)
+ ;;=3^Systolic Heart Failure,Chronic
+ ;;^UTILITY(U,$J,358.3,13339,1,4,0)
+ ;;=4^I50.22
+ ;;^UTILITY(U,$J,358.3,13339,2)
+ ;;=^5007241
+ ;;^UTILITY(U,$J,358.3,13340,0)
+ ;;=I50.23^^53^591^11
+ ;;^UTILITY(U,$J,358.3,13340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13088,1,3,0)
- ;;=3^Anatomical Narrow Angle,Right Eye
- ;;^UTILITY(U,$J,358.3,13088,1,4,0)
- ;;=4^H40.031
- ;;^UTILITY(U,$J,358.3,13088,2)
- ;;=^5005732
- ;;^UTILITY(U,$J,358.3,13089,0)
- ;;=H40.032^^80^754^2
- ;;^UTILITY(U,$J,358.3,13089,1,0)
+ ;;^UTILITY(U,$J,358.3,13340,1,3,0)
+ ;;=3^Systolic Heart Failure,Acute on Chronic
+ ;;^UTILITY(U,$J,358.3,13340,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,13340,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,13341,0)
+ ;;=I50.30^^53^591^6
+ ;;^UTILITY(U,$J,358.3,13341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13089,1,3,0)
- ;;=3^Anatomical Narrow Angle,Left Eye
- ;;^UTILITY(U,$J,358.3,13089,1,4,0)
- ;;=4^H40.032
- ;;^UTILITY(U,$J,358.3,13089,2)
- ;;=^5005733
- ;;^UTILITY(U,$J,358.3,13090,0)
- ;;=H40.033^^80^754^1
- ;;^UTILITY(U,$J,358.3,13090,1,0)
+ ;;^UTILITY(U,$J,358.3,13341,1,3,0)
+ ;;=3^Diastolic Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,13341,1,4,0)
+ ;;=4^I50.30
+ ;;^UTILITY(U,$J,358.3,13341,2)
+ ;;=^5007243
+ ;;^UTILITY(U,$J,358.3,13342,0)
+ ;;=I50.9^^53^591^7
+ ;;^UTILITY(U,$J,358.3,13342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13090,1,3,0)
- ;;=3^Anatomical Narrow Angle,Bilateral
- ;;^UTILITY(U,$J,358.3,13090,1,4,0)
- ;;=4^H40.033
- ;;^UTILITY(U,$J,358.3,13090,2)
- ;;=^5005734
- ;;^UTILITY(U,$J,358.3,13091,0)
- ;;=H40.041^^80^754^123
- ;;^UTILITY(U,$J,358.3,13091,1,0)
+ ;;^UTILITY(U,$J,358.3,13342,1,3,0)
+ ;;=3^Heart Failure,Unspec (CHF Unspec)
+ ;;^UTILITY(U,$J,358.3,13342,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,13342,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,13343,0)
+ ;;=I50.31^^53^591^3
+ ;;^UTILITY(U,$J,358.3,13343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13091,1,3,0)
- ;;=3^Steroid Responder,Right Eye
- ;;^UTILITY(U,$J,358.3,13091,1,4,0)
- ;;=4^H40.041
+ ;;^UTILITY(U,$J,358.3,13343,1,3,0)
+ ;;=3^Diastolic Heart Failure,Acute
+ ;;^UTILITY(U,$J,358.3,13343,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,13343,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,13344,0)
+ ;;=I30.0^^53^592^5
+ ;;^UTILITY(U,$J,358.3,13344,1,0)
+ ;;=^358.31IA^4^2

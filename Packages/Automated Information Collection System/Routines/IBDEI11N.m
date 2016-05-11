@@ -1,136 +1,136 @@
-IBDEI11N ; ; 19-NOV-2015
+IBDEI11N ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17379,1,3,0)
- ;;=3^Dry Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,17379,1,4,0)
- ;;=4^R68.2
- ;;^UTILITY(U,$J,358.3,17379,2)
- ;;=^5019552
- ;;^UTILITY(U,$J,358.3,17380,0)
- ;;=Z02.89^^88^861^1
- ;;^UTILITY(U,$J,358.3,17380,1,0)
+ ;;^UTILITY(U,$J,358.3,17722,0)
+ ;;=B39.2^^76^858^123
+ ;;^UTILITY(U,$J,358.3,17722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17380,1,3,0)
- ;;=3^Administrative Exam Encounter
- ;;^UTILITY(U,$J,358.3,17380,1,4,0)
- ;;=4^Z02.89
- ;;^UTILITY(U,$J,358.3,17380,2)
- ;;=^5062645
- ;;^UTILITY(U,$J,358.3,17381,0)
- ;;=Z09.^^88^861^56
- ;;^UTILITY(U,$J,358.3,17381,1,0)
+ ;;^UTILITY(U,$J,358.3,17722,1,3,0)
+ ;;=3^Histoplasmosis,Pulmonary
+ ;;^UTILITY(U,$J,358.3,17722,1,4,0)
+ ;;=4^B39.2
+ ;;^UTILITY(U,$J,358.3,17722,2)
+ ;;=^5000634
+ ;;^UTILITY(U,$J,358.3,17723,0)
+ ;;=B39.9^^76^858^121
+ ;;^UTILITY(U,$J,358.3,17723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17381,1,3,0)
- ;;=3^F/U Exam After Treatment Encounter
- ;;^UTILITY(U,$J,358.3,17381,1,4,0)
- ;;=4^Z09.
- ;;^UTILITY(U,$J,358.3,17381,2)
- ;;=^5062668
- ;;^UTILITY(U,$J,358.3,17382,0)
- ;;=Z00.01^^88^861^60
- ;;^UTILITY(U,$J,358.3,17382,1,0)
+ ;;^UTILITY(U,$J,358.3,17723,1,3,0)
+ ;;=3^Histoplasmosis NEC
+ ;;^UTILITY(U,$J,358.3,17723,1,4,0)
+ ;;=4^B39.9
+ ;;^UTILITY(U,$J,358.3,17723,2)
+ ;;=^5000638
+ ;;^UTILITY(U,$J,358.3,17724,0)
+ ;;=Z21.^^76^858^101
+ ;;^UTILITY(U,$J,358.3,17724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17382,1,3,0)
- ;;=3^General Medical Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,17382,1,4,0)
- ;;=4^Z00.01
- ;;^UTILITY(U,$J,358.3,17382,2)
- ;;=^5062600
- ;;^UTILITY(U,$J,358.3,17383,0)
- ;;=Z00.00^^88^861^61
- ;;^UTILITY(U,$J,358.3,17383,1,0)
+ ;;^UTILITY(U,$J,358.3,17724,1,3,0)
+ ;;=3^HIV + Status (Asymptomatic)
+ ;;^UTILITY(U,$J,358.3,17724,1,4,0)
+ ;;=4^Z21.
+ ;;^UTILITY(U,$J,358.3,17724,2)
+ ;;=^5062777
+ ;;^UTILITY(U,$J,358.3,17725,0)
+ ;;=B20.^^76^858^100
+ ;;^UTILITY(U,$J,358.3,17725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17383,1,3,0)
- ;;=3^General Medical Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,17383,1,4,0)
- ;;=4^Z00.00
- ;;^UTILITY(U,$J,358.3,17383,2)
- ;;=^5062599
- ;;^UTILITY(U,$J,358.3,17384,0)
- ;;=Z23.^^88^861^69
- ;;^UTILITY(U,$J,358.3,17384,1,0)
+ ;;^UTILITY(U,$J,358.3,17725,1,3,0)
+ ;;=3^HIV + (Symptomatic)/AIDS
+ ;;^UTILITY(U,$J,358.3,17725,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,17725,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,17726,0)
+ ;;=A63.0^^76^858^125
+ ;;^UTILITY(U,$J,358.3,17726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17384,1,3,0)
- ;;=3^Immunization Encounter
- ;;^UTILITY(U,$J,358.3,17384,1,4,0)
- ;;=4^Z23.
- ;;^UTILITY(U,$J,358.3,17384,2)
- ;;=^5062795
- ;;^UTILITY(U,$J,358.3,17385,0)
- ;;=Z03.89^^88^861^81
- ;;^UTILITY(U,$J,358.3,17385,1,0)
+ ;;^UTILITY(U,$J,358.3,17726,1,3,0)
+ ;;=3^Human Papillomavirus infection
+ ;;^UTILITY(U,$J,358.3,17726,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,17726,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,17727,0)
+ ;;=Z91.19^^76^858^124
+ ;;^UTILITY(U,$J,358.3,17727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17385,1,3,0)
- ;;=3^Observation for Suspected Diseases/Ruled Out Conditions
- ;;^UTILITY(U,$J,358.3,17385,1,4,0)
- ;;=4^Z03.89
- ;;^UTILITY(U,$J,358.3,17385,2)
- ;;=^5062656
- ;;^UTILITY(U,$J,358.3,17386,0)
- ;;=Z04.9^^88^861^82
- ;;^UTILITY(U,$J,358.3,17386,1,0)
+ ;;^UTILITY(U,$J,358.3,17727,1,3,0)
+ ;;=3^History of past non-compliance
+ ;;^UTILITY(U,$J,358.3,17727,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,17727,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,17728,0)
+ ;;=T85.79XA^^76^858^126
+ ;;^UTILITY(U,$J,358.3,17728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17386,1,3,0)
- ;;=3^Observation/Exam,Unspec Reason
- ;;^UTILITY(U,$J,358.3,17386,1,4,0)
- ;;=4^Z04.9
- ;;^UTILITY(U,$J,358.3,17386,2)
- ;;=^5062666
- ;;^UTILITY(U,$J,358.3,17387,0)
- ;;=Z51.5^^88^861^94
- ;;^UTILITY(U,$J,358.3,17387,1,0)
+ ;;^UTILITY(U,$J,358.3,17728,1,3,0)
+ ;;=3^Infect/inflm reaction d/t implantable device graft,init encntr
+ ;;^UTILITY(U,$J,358.3,17728,1,4,0)
+ ;;=4^T85.79XA
+ ;;^UTILITY(U,$J,358.3,17728,2)
+ ;;=^5055676
+ ;;^UTILITY(U,$J,358.3,17729,0)
+ ;;=J11.00^^76^858^129
+ ;;^UTILITY(U,$J,358.3,17729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17387,1,3,0)
- ;;=3^Palliative Care Encounter
- ;;^UTILITY(U,$J,358.3,17387,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,17387,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,17388,0)
- ;;=Z12.9^^88^861^162
- ;;^UTILITY(U,$J,358.3,17388,1,0)
+ ;;^UTILITY(U,$J,358.3,17729,1,3,0)
+ ;;=3^Influenza with unspecified type of pneumonia
+ ;;^UTILITY(U,$J,358.3,17729,1,4,0)
+ ;;=4^J11.00
+ ;;^UTILITY(U,$J,358.3,17729,2)
+ ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,17730,0)
+ ;;=B82.9^^76^858^132
+ ;;^UTILITY(U,$J,358.3,17730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17388,1,3,0)
- ;;=3^Screening for Malig Neop,Unspec Site
- ;;^UTILITY(U,$J,358.3,17388,1,4,0)
- ;;=4^Z12.9
- ;;^UTILITY(U,$J,358.3,17388,2)
- ;;=^5062698
- ;;^UTILITY(U,$J,358.3,17389,0)
- ;;=Z13.9^^88^861^163
- ;;^UTILITY(U,$J,358.3,17389,1,0)
+ ;;^UTILITY(U,$J,358.3,17730,1,3,0)
+ ;;=3^Intestinal parasitosis
+ ;;^UTILITY(U,$J,358.3,17730,1,4,0)
+ ;;=4^B82.9
+ ;;^UTILITY(U,$J,358.3,17730,2)
+ ;;=^5000798
+ ;;^UTILITY(U,$J,358.3,17731,0)
+ ;;=H83.09^^76^858^135
+ ;;^UTILITY(U,$J,358.3,17731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17389,1,3,0)
- ;;=3^Screening,Unspec
- ;;^UTILITY(U,$J,358.3,17389,1,4,0)
- ;;=4^Z13.9
- ;;^UTILITY(U,$J,358.3,17389,2)
- ;;=^5062721
- ;;^UTILITY(U,$J,358.3,17390,0)
- ;;=Z48.89^^88^861^164
- ;;^UTILITY(U,$J,358.3,17390,1,0)
+ ;;^UTILITY(U,$J,358.3,17731,1,3,0)
+ ;;=3^Labyrinthitis, NOS
+ ;;^UTILITY(U,$J,358.3,17731,1,4,0)
+ ;;=4^H83.09
+ ;;^UTILITY(U,$J,358.3,17731,2)
+ ;;=^5006897
+ ;;^UTILITY(U,$J,358.3,17732,0)
+ ;;=H83.02^^76^858^137
+ ;;^UTILITY(U,$J,358.3,17732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17390,1,3,0)
- ;;=3^Surgical Aftercare Encounter,Other Spec
- ;;^UTILITY(U,$J,358.3,17390,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,17390,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,17391,0)
- ;;=Z51.81^^88^861^167
- ;;^UTILITY(U,$J,358.3,17391,1,0)
+ ;;^UTILITY(U,$J,358.3,17732,1,3,0)
+ ;;=3^Labyrinthitis, left ear
+ ;;^UTILITY(U,$J,358.3,17732,1,4,0)
+ ;;=4^H83.02
+ ;;^UTILITY(U,$J,358.3,17732,2)
+ ;;=^5006895
+ ;;^UTILITY(U,$J,358.3,17733,0)
+ ;;=H83.01^^76^858^138
+ ;;^UTILITY(U,$J,358.3,17733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17391,1,3,0)
- ;;=3^Therapeutic Drug Level Monitoring
- ;;^UTILITY(U,$J,358.3,17391,1,4,0)
- ;;=4^Z51.81
- ;;^UTILITY(U,$J,358.3,17391,2)
- ;;=^5063064
- ;;^UTILITY(U,$J,358.3,17392,0)
- ;;=Z77.9^^88^861^55
- ;;^UTILITY(U,$J,358.3,17392,1,0)
+ ;;^UTILITY(U,$J,358.3,17733,1,3,0)
+ ;;=3^Labyrinthitis, right ear
+ ;;^UTILITY(U,$J,358.3,17733,1,4,0)
+ ;;=4^H83.01
+ ;;^UTILITY(U,$J,358.3,17733,2)
+ ;;=^5006894
+ ;;^UTILITY(U,$J,358.3,17734,0)
+ ;;=H83.03^^76^858^136
+ ;;^UTILITY(U,$J,358.3,17734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17392,1,3,0)
- ;;=3^Exposures/Contact with Hazardous Substances
+ ;;^UTILITY(U,$J,358.3,17734,1,3,0)
+ ;;=3^Labyrinthitis, bilateral
+ ;;^UTILITY(U,$J,358.3,17734,1,4,0)
+ ;;=4^H83.03
+ ;;^UTILITY(U,$J,358.3,17734,2)
+ ;;=^5006896
+ ;;^UTILITY(U,$J,358.3,17735,0)
+ ;;=A48.1^^76^858^139

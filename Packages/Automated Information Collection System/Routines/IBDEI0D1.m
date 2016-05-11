@@ -1,136 +1,144 @@
-IBDEI0D1 ; ; 19-NOV-2015
+IBDEI0D1 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5661,1,3,0)
- ;;=3^Malig Melanoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,5661,1,4,0)
- ;;=4^C43.61
- ;;^UTILITY(U,$J,358.3,5661,2)
- ;;=^5001009
- ;;^UTILITY(U,$J,358.3,5662,0)
- ;;=C43.62^^40^373^6
- ;;^UTILITY(U,$J,358.3,5662,1,0)
+ ;;^UTILITY(U,$J,358.3,5978,1,3,0)
+ ;;=3^Acne Conglobata
+ ;;^UTILITY(U,$J,358.3,5978,1,4,0)
+ ;;=4^L70.1
+ ;;^UTILITY(U,$J,358.3,5978,2)
+ ;;=^5009269
+ ;;^UTILITY(U,$J,358.3,5979,0)
+ ;;=L70.3^^30^385^5
+ ;;^UTILITY(U,$J,358.3,5979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5662,1,3,0)
- ;;=3^Malig Melanoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,5662,1,4,0)
- ;;=4^C43.62
- ;;^UTILITY(U,$J,358.3,5662,2)
- ;;=^5001010
- ;;^UTILITY(U,$J,358.3,5663,0)
- ;;=C43.71^^40^373^12
- ;;^UTILITY(U,$J,358.3,5663,1,0)
+ ;;^UTILITY(U,$J,358.3,5979,1,3,0)
+ ;;=3^Acne Tropica
+ ;;^UTILITY(U,$J,358.3,5979,1,4,0)
+ ;;=4^L70.3
+ ;;^UTILITY(U,$J,358.3,5979,2)
+ ;;=^5009270
+ ;;^UTILITY(U,$J,358.3,5980,0)
+ ;;=L70.5^^30^385^2
+ ;;^UTILITY(U,$J,358.3,5980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5663,1,3,0)
- ;;=3^Malig Melanoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,5663,1,4,0)
- ;;=4^C43.71
- ;;^UTILITY(U,$J,358.3,5663,2)
- ;;=^5001012
- ;;^UTILITY(U,$J,358.3,5664,0)
- ;;=C43.72^^40^373^5
- ;;^UTILITY(U,$J,358.3,5664,1,0)
+ ;;^UTILITY(U,$J,358.3,5980,1,3,0)
+ ;;=3^Acne Excoriee des Jeunes Filles
+ ;;^UTILITY(U,$J,358.3,5980,1,4,0)
+ ;;=4^L70.5
+ ;;^UTILITY(U,$J,358.3,5980,2)
+ ;;=^5009272
+ ;;^UTILITY(U,$J,358.3,5981,0)
+ ;;=L70.8^^30^385^4
+ ;;^UTILITY(U,$J,358.3,5981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5664,1,3,0)
- ;;=3^Malig Melanoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,5664,1,4,0)
- ;;=4^C43.72
- ;;^UTILITY(U,$J,358.3,5664,2)
- ;;=^5001013
- ;;^UTILITY(U,$J,358.3,5665,0)
- ;;=C43.8^^40^373^9
- ;;^UTILITY(U,$J,358.3,5665,1,0)
+ ;;^UTILITY(U,$J,358.3,5981,1,3,0)
+ ;;=3^Acne NEC
+ ;;^UTILITY(U,$J,358.3,5981,1,4,0)
+ ;;=4^L70.8
+ ;;^UTILITY(U,$J,358.3,5981,2)
+ ;;=^87239
+ ;;^UTILITY(U,$J,358.3,5982,0)
+ ;;=L70.9^^30^385^7
+ ;;^UTILITY(U,$J,358.3,5982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5665,1,3,0)
- ;;=3^Malig Melanoma of Overlapping Sites of Skin
- ;;^UTILITY(U,$J,358.3,5665,1,4,0)
- ;;=4^C43.8
- ;;^UTILITY(U,$J,358.3,5665,2)
- ;;=^5001014
- ;;^UTILITY(U,$J,358.3,5666,0)
- ;;=D03.0^^40^373^26
- ;;^UTILITY(U,$J,358.3,5666,1,0)
+ ;;^UTILITY(U,$J,358.3,5982,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,5982,1,4,0)
+ ;;=4^L70.9
+ ;;^UTILITY(U,$J,358.3,5982,2)
+ ;;=^5009273
+ ;;^UTILITY(U,$J,358.3,5983,0)
+ ;;=L71.0^^30^385^235
+ ;;^UTILITY(U,$J,358.3,5983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5666,1,3,0)
- ;;=3^Melanoma in Situ of Lip
- ;;^UTILITY(U,$J,358.3,5666,1,4,0)
- ;;=4^D03.0
- ;;^UTILITY(U,$J,358.3,5666,2)
- ;;=^5001888
- ;;^UTILITY(U,$J,358.3,5667,0)
- ;;=D03.11^^40^373^29
- ;;^UTILITY(U,$J,358.3,5667,1,0)
+ ;;^UTILITY(U,$J,358.3,5983,1,3,0)
+ ;;=3^Perioral Dermatitis
+ ;;^UTILITY(U,$J,358.3,5983,1,4,0)
+ ;;=4^L71.0
+ ;;^UTILITY(U,$J,358.3,5983,2)
+ ;;=^5009274
+ ;;^UTILITY(U,$J,358.3,5984,0)
+ ;;=L71.1^^30^385^259
+ ;;^UTILITY(U,$J,358.3,5984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5667,1,3,0)
- ;;=3^Melanoma in Situ of Right Eyelid
- ;;^UTILITY(U,$J,358.3,5667,1,4,0)
- ;;=4^D03.11
- ;;^UTILITY(U,$J,358.3,5667,2)
- ;;=^5001890
- ;;^UTILITY(U,$J,358.3,5668,0)
- ;;=D03.12^^40^373^23
- ;;^UTILITY(U,$J,358.3,5668,1,0)
+ ;;^UTILITY(U,$J,358.3,5984,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,5984,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,5984,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,5985,0)
+ ;;=L71.8^^30^385^260
+ ;;^UTILITY(U,$J,358.3,5985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5668,1,3,0)
- ;;=3^Melanoma in Situ of Left Eyelid
- ;;^UTILITY(U,$J,358.3,5668,1,4,0)
- ;;=4^D03.12
- ;;^UTILITY(U,$J,358.3,5668,2)
- ;;=^5001891
- ;;^UTILITY(U,$J,358.3,5669,0)
- ;;=D03.21^^40^373^28
- ;;^UTILITY(U,$J,358.3,5669,1,0)
+ ;;^UTILITY(U,$J,358.3,5985,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,5985,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,5985,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,5986,0)
+ ;;=L71.9^^30^385^261
+ ;;^UTILITY(U,$J,358.3,5986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5669,1,3,0)
- ;;=3^Melanoma in Situ of Right Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,5669,1,4,0)
- ;;=4^D03.21
- ;;^UTILITY(U,$J,358.3,5669,2)
- ;;=^5001893
- ;;^UTILITY(U,$J,358.3,5670,0)
- ;;=D03.22^^40^373^22
- ;;^UTILITY(U,$J,358.3,5670,1,0)
+ ;;^UTILITY(U,$J,358.3,5986,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,5986,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,5986,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,5987,0)
+ ;;=L72.0^^30^385^142
+ ;;^UTILITY(U,$J,358.3,5987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5670,1,3,0)
- ;;=3^Melanoma in Situ of Left Ear/External Auricular Canal
- ;;^UTILITY(U,$J,358.3,5670,1,4,0)
- ;;=4^D03.22
- ;;^UTILITY(U,$J,358.3,5670,2)
- ;;=^5001894
- ;;^UTILITY(U,$J,358.3,5671,0)
- ;;=D03.30^^40^373^21
- ;;^UTILITY(U,$J,358.3,5671,1,0)
+ ;;^UTILITY(U,$J,358.3,5987,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,5987,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,5987,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,5988,0)
+ ;;=L72.12^^30^385^285
+ ;;^UTILITY(U,$J,358.3,5988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5671,1,3,0)
- ;;=3^Melanoma in Situ of Face,Unspec
- ;;^UTILITY(U,$J,358.3,5671,1,4,0)
- ;;=4^D03.30
- ;;^UTILITY(U,$J,358.3,5671,2)
- ;;=^5001895
- ;;^UTILITY(U,$J,358.3,5672,0)
- ;;=D03.39^^40^373^20
- ;;^UTILITY(U,$J,358.3,5672,1,0)
+ ;;^UTILITY(U,$J,358.3,5988,1,3,0)
+ ;;=3^Trichodermal Cyst
+ ;;^UTILITY(U,$J,358.3,5988,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,5988,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,5989,0)
+ ;;=L72.2^^30^385^270
+ ;;^UTILITY(U,$J,358.3,5989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5672,1,3,0)
- ;;=3^Melanoma in Situ of Face NEC
- ;;^UTILITY(U,$J,358.3,5672,1,4,0)
- ;;=4^D03.39
- ;;^UTILITY(U,$J,358.3,5672,2)
- ;;=^5001896
- ;;^UTILITY(U,$J,358.3,5673,0)
- ;;=D03.4^^40^373^32
- ;;^UTILITY(U,$J,358.3,5673,1,0)
+ ;;^UTILITY(U,$J,358.3,5989,1,3,0)
+ ;;=3^Steatocystoma Multiplex
+ ;;^UTILITY(U,$J,358.3,5989,1,4,0)
+ ;;=4^L72.2
+ ;;^UTILITY(U,$J,358.3,5989,2)
+ ;;=^5009280
+ ;;^UTILITY(U,$J,358.3,5990,0)
+ ;;=L72.8^^30^385^151
+ ;;^UTILITY(U,$J,358.3,5990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5673,1,3,0)
- ;;=3^Melanoma in Situ of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,5673,1,4,0)
- ;;=4^D03.4
- ;;^UTILITY(U,$J,358.3,5673,2)
- ;;=^5001897
- ;;^UTILITY(U,$J,358.3,5674,0)
- ;;=D03.51^^40^373^18
- ;;^UTILITY(U,$J,358.3,5674,1,0)
+ ;;^UTILITY(U,$J,358.3,5990,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
+ ;;^UTILITY(U,$J,358.3,5990,1,4,0)
+ ;;=4^L72.8
+ ;;^UTILITY(U,$J,358.3,5990,2)
+ ;;=^5009282
+ ;;^UTILITY(U,$J,358.3,5991,0)
+ ;;=L72.9^^30^385^152
+ ;;^UTILITY(U,$J,358.3,5991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5674,1,3,0)
- ;;=3^Melanoma in Situ of Anal Skin
+ ;;^UTILITY(U,$J,358.3,5991,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,5991,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,5991,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,5992,0)
+ ;;=L73.0^^30^385^3
+ ;;^UTILITY(U,$J,358.3,5992,1,0)
+ ;;=^358.31IA^4^2

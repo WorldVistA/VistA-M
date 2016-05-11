@@ -1,136 +1,142 @@
-IBDEI044 ; ; 19-NOV-2015
+IBDEI044 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1226,1,3,0)
- ;;=3^Varicose Veins,Asymptomatic,Left Lower Extremity
- ;;^UTILITY(U,$J,358.3,1226,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,1226,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,1227,0)
- ;;=I83.93^^12^135^3
- ;;^UTILITY(U,$J,358.3,1227,1,0)
+ ;;^UTILITY(U,$J,358.3,1501,1,3,0)
+ ;;=3^AV Block,1st Degree
+ ;;^UTILITY(U,$J,358.3,1501,1,4,0)
+ ;;=4^I44.0
+ ;;^UTILITY(U,$J,358.3,1501,2)
+ ;;=^5007202
+ ;;^UTILITY(U,$J,358.3,1502,0)
+ ;;=I44.1^^11^143^2
+ ;;^UTILITY(U,$J,358.3,1502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1227,1,3,0)
- ;;=3^Varicose Veins,Asymptomatic,Bilateral Lower Extremities
- ;;^UTILITY(U,$J,358.3,1227,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,1227,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,1228,0)
- ;;=R53.1^^12^135^9
- ;;^UTILITY(U,$J,358.3,1228,1,0)
+ ;;^UTILITY(U,$J,358.3,1502,1,3,0)
+ ;;=3^AV Block,2nd Degree
+ ;;^UTILITY(U,$J,358.3,1502,1,4,0)
+ ;;=4^I44.1
+ ;;^UTILITY(U,$J,358.3,1502,2)
+ ;;=^5007203
+ ;;^UTILITY(U,$J,358.3,1503,0)
+ ;;=I44.5^^11^143^24
+ ;;^UTILITY(U,$J,358.3,1503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1228,1,3,0)
- ;;=3^Weakness
- ;;^UTILITY(U,$J,358.3,1228,1,4,0)
- ;;=4^R53.1
- ;;^UTILITY(U,$J,358.3,1228,2)
- ;;=^5019516
- ;;^UTILITY(U,$J,358.3,1229,0)
- ;;=R63.4^^12^135^10
- ;;^UTILITY(U,$J,358.3,1229,1,0)
+ ;;^UTILITY(U,$J,358.3,1503,1,3,0)
+ ;;=3^Left Posterior Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1503,1,4,0)
+ ;;=4^I44.5
+ ;;^UTILITY(U,$J,358.3,1503,2)
+ ;;=^5007207
+ ;;^UTILITY(U,$J,358.3,1504,0)
+ ;;=I44.60^^11^143^20
+ ;;^UTILITY(U,$J,358.3,1504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1229,1,3,0)
- ;;=3^Weight Loss,Abnormal
- ;;^UTILITY(U,$J,358.3,1229,1,4,0)
- ;;=4^R63.4
- ;;^UTILITY(U,$J,358.3,1229,2)
- ;;=^5019542
- ;;^UTILITY(U,$J,358.3,1230,0)
- ;;=B02.9^^12^135^11
- ;;^UTILITY(U,$J,358.3,1230,1,0)
+ ;;^UTILITY(U,$J,358.3,1504,1,3,0)
+ ;;=3^Fascicular Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1504,1,4,0)
+ ;;=4^I44.60
+ ;;^UTILITY(U,$J,358.3,1504,2)
+ ;;=^5007208
+ ;;^UTILITY(U,$J,358.3,1505,0)
+ ;;=I44.69^^11^143^19
+ ;;^UTILITY(U,$J,358.3,1505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1230,1,3,0)
- ;;=3^Zoster w/o Complications
- ;;^UTILITY(U,$J,358.3,1230,1,4,0)
- ;;=4^B02.9
- ;;^UTILITY(U,$J,358.3,1230,2)
- ;;=^5000501
- ;;^UTILITY(U,$J,358.3,1231,0)
- ;;=I49.3^^12^135^6
- ;;^UTILITY(U,$J,358.3,1231,1,0)
+ ;;^UTILITY(U,$J,358.3,1505,1,3,0)
+ ;;=3^Fascicular Block NEC
+ ;;^UTILITY(U,$J,358.3,1505,1,4,0)
+ ;;=4^I44.69
+ ;;^UTILITY(U,$J,358.3,1505,2)
+ ;;=^5007209
+ ;;^UTILITY(U,$J,358.3,1506,0)
+ ;;=I44.4^^11^143^22
+ ;;^UTILITY(U,$J,358.3,1506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1231,1,3,0)
- ;;=3^Vetricular Premature Depolarization
- ;;^UTILITY(U,$J,358.3,1231,1,4,0)
- ;;=4^I49.3
- ;;^UTILITY(U,$J,358.3,1231,2)
- ;;=^5007233
- ;;^UTILITY(U,$J,358.3,1232,0)
- ;;=I83.019^^12^135^2
- ;;^UTILITY(U,$J,358.3,1232,1,0)
+ ;;^UTILITY(U,$J,358.3,1506,1,3,0)
+ ;;=3^Left Anterior Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1506,1,4,0)
+ ;;=4^I44.4
+ ;;^UTILITY(U,$J,358.3,1506,2)
+ ;;=^5007206
+ ;;^UTILITY(U,$J,358.3,1507,0)
+ ;;=I44.7^^11^143^23
+ ;;^UTILITY(U,$J,358.3,1507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1232,1,3,0)
- ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,1232,1,4,0)
- ;;=4^I83.019
- ;;^UTILITY(U,$J,358.3,1232,2)
- ;;=^5007979
- ;;^UTILITY(U,$J,358.3,1233,0)
- ;;=I83.029^^12^135^1
- ;;^UTILITY(U,$J,358.3,1233,1,0)
+ ;;^UTILITY(U,$J,358.3,1507,1,3,0)
+ ;;=3^Left Bundle-Branch Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1507,1,4,0)
+ ;;=4^I44.7
+ ;;^UTILITY(U,$J,358.3,1507,2)
+ ;;=^5007210
+ ;;^UTILITY(U,$J,358.3,1508,0)
+ ;;=I45.0^^11^143^39
+ ;;^UTILITY(U,$J,358.3,1508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1233,1,3,0)
- ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer Unspec Site
- ;;^UTILITY(U,$J,358.3,1233,1,4,0)
- ;;=4^I83.029
- ;;^UTILITY(U,$J,358.3,1233,2)
- ;;=^5007986
- ;;^UTILITY(U,$J,358.3,1234,0)
- ;;=Z01.818^^12^136^3
- ;;^UTILITY(U,$J,358.3,1234,1,0)
+ ;;^UTILITY(U,$J,358.3,1508,1,3,0)
+ ;;=3^Right Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1508,1,4,0)
+ ;;=4^I45.0
+ ;;^UTILITY(U,$J,358.3,1508,2)
+ ;;=^5007211
+ ;;^UTILITY(U,$J,358.3,1509,0)
+ ;;=I45.19^^11^143^37
+ ;;^UTILITY(U,$J,358.3,1509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1234,1,3,0)
- ;;=3^Preporcedural Exam NEC
- ;;^UTILITY(U,$J,358.3,1234,1,4,0)
- ;;=4^Z01.818
- ;;^UTILITY(U,$J,358.3,1234,2)
- ;;=^5062628
- ;;^UTILITY(U,$J,358.3,1235,0)
- ;;=Z01.810^^12^136^4
- ;;^UTILITY(U,$J,358.3,1235,1,0)
+ ;;^UTILITY(U,$J,358.3,1509,1,3,0)
+ ;;=3^Right Bundle-Branch Block NEC
+ ;;^UTILITY(U,$J,358.3,1509,1,4,0)
+ ;;=4^I45.19
+ ;;^UTILITY(U,$J,358.3,1509,2)
+ ;;=^5007213
+ ;;^UTILITY(U,$J,358.3,1510,0)
+ ;;=I45.10^^11^143^38
+ ;;^UTILITY(U,$J,358.3,1510,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1235,1,3,0)
- ;;=3^Preprocedural Cardiovascular Exam
- ;;^UTILITY(U,$J,358.3,1235,1,4,0)
- ;;=4^Z01.810
- ;;^UTILITY(U,$J,358.3,1235,2)
- ;;=^5062625
- ;;^UTILITY(U,$J,358.3,1236,0)
- ;;=Z48.89^^12^136^7
- ;;^UTILITY(U,$J,358.3,1236,1,0)
+ ;;^UTILITY(U,$J,358.3,1510,1,3,0)
+ ;;=3^Right Bundle-Branch Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1510,1,4,0)
+ ;;=4^I45.10
+ ;;^UTILITY(U,$J,358.3,1510,2)
+ ;;=^5007212
+ ;;^UTILITY(U,$J,358.3,1511,0)
+ ;;=I45.2^^11^143^8
+ ;;^UTILITY(U,$J,358.3,1511,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1236,1,3,0)
- ;;=3^Surgical Aftercare,Oth Specified
- ;;^UTILITY(U,$J,358.3,1236,1,4,0)
- ;;=4^Z48.89
- ;;^UTILITY(U,$J,358.3,1236,2)
- ;;=^5063055
- ;;^UTILITY(U,$J,358.3,1237,0)
- ;;=Z51.89^^12^136^1
- ;;^UTILITY(U,$J,358.3,1237,1,0)
+ ;;^UTILITY(U,$J,358.3,1511,1,3,0)
+ ;;=3^Bifascicular Block
+ ;;^UTILITY(U,$J,358.3,1511,1,4,0)
+ ;;=4^I45.2
+ ;;^UTILITY(U,$J,358.3,1511,2)
+ ;;=^5007214
+ ;;^UTILITY(U,$J,358.3,1512,0)
+ ;;=I45.3^^11^143^42
+ ;;^UTILITY(U,$J,358.3,1512,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1237,1,3,0)
- ;;=3^Aftercare,Oth Specified
- ;;^UTILITY(U,$J,358.3,1237,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,1237,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,1238,0)
- ;;=Z71.9^^12^136^2
- ;;^UTILITY(U,$J,358.3,1238,1,0)
+ ;;^UTILITY(U,$J,358.3,1512,1,3,0)
+ ;;=3^Trifascicular Block
+ ;;^UTILITY(U,$J,358.3,1512,1,4,0)
+ ;;=4^I45.3
+ ;;^UTILITY(U,$J,358.3,1512,2)
+ ;;=^269726
+ ;;^UTILITY(U,$J,358.3,1513,0)
+ ;;=I45.5^^11^143^21
+ ;;^UTILITY(U,$J,358.3,1513,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1238,1,3,0)
- ;;=3^Counseling,Unspec
- ;;^UTILITY(U,$J,358.3,1238,1,4,0)
- ;;=4^Z71.9
- ;;^UTILITY(U,$J,358.3,1238,2)
- ;;=^5063254
- ;;^UTILITY(U,$J,358.3,1239,0)
- ;;=Z01.89^^12^136^6
- ;;^UTILITY(U,$J,358.3,1239,1,0)
+ ;;^UTILITY(U,$J,358.3,1513,1,3,0)
+ ;;=3^Heart Block,Oth Specified
+ ;;^UTILITY(U,$J,358.3,1513,1,4,0)
+ ;;=4^I45.5
+ ;;^UTILITY(U,$J,358.3,1513,2)
+ ;;=^5007216
+ ;;^UTILITY(U,$J,358.3,1514,0)
+ ;;=I45.6^^11^143^31
+ ;;^UTILITY(U,$J,358.3,1514,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1239,1,3,0)
- ;;=3^Special Exam,Oth Specified
+ ;;^UTILITY(U,$J,358.3,1514,1,3,0)
+ ;;=3^Pre-Excitation Syndrome
+ ;;^UTILITY(U,$J,358.3,1514,1,4,0)
+ ;;=4^I45.6
+ ;;^UTILITY(U,$J,358.3,1514,2)
+ ;;=^5007217
+ ;;^UTILITY(U,$J,358.3,1515,0)
+ ;;=I45.81^^11^143^25

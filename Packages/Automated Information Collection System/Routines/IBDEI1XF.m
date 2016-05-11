@@ -1,128 +1,124 @@
-IBDEI1XF ; ; 19-NOV-2015
+IBDEI1XF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,32257,1,4,0)
- ;;=4^F45.41
- ;;^UTILITY(U,$J,358.3,32257,2)
- ;;=^5003590
- ;;^UTILITY(U,$J,358.3,32258,0)
- ;;=F45.42^^141^1513^6
- ;;^UTILITY(U,$J,358.3,32258,1,0)
+ ;;^UTILITY(U,$J,358.3,32675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32258,1,3,0)
- ;;=3^Pain Disorder w/ Related Psychological Factors
- ;;^UTILITY(U,$J,358.3,32258,1,4,0)
- ;;=4^F45.42
- ;;^UTILITY(U,$J,358.3,32258,2)
- ;;=^5003591
- ;;^UTILITY(U,$J,358.3,32259,0)
- ;;=F45.0^^141^1513^7
- ;;^UTILITY(U,$J,358.3,32259,1,0)
+ ;;^UTILITY(U,$J,358.3,32675,1,3,0)
+ ;;=3^Open wound, lft lsr toe(s) w/o nail dmg, unspec, init enc
+ ;;^UTILITY(U,$J,358.3,32675,1,4,0)
+ ;;=4^S91.105A
+ ;;^UTILITY(U,$J,358.3,32675,2)
+ ;;=^5044177
+ ;;^UTILITY(U,$J,358.3,32676,0)
+ ;;=S91.231A^^126^1623^31
+ ;;^UTILITY(U,$J,358.3,32676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32259,1,3,0)
- ;;=3^Somatization Disorder
- ;;^UTILITY(U,$J,358.3,32259,1,4,0)
- ;;=4^F45.0
- ;;^UTILITY(U,$J,358.3,32259,2)
- ;;=^112280
- ;;^UTILITY(U,$J,358.3,32260,0)
- ;;=F45.9^^141^1513^8
- ;;^UTILITY(U,$J,358.3,32260,1,0)
+ ;;^UTILITY(U,$J,358.3,32676,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32676,1,4,0)
+ ;;=4^S91.231A
+ ;;^UTILITY(U,$J,358.3,32676,2)
+ ;;=^5044290
+ ;;^UTILITY(U,$J,358.3,32677,0)
+ ;;=S91.232A^^126^1623^27
+ ;;^UTILITY(U,$J,358.3,32677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32260,1,3,0)
- ;;=3^Somatoform Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,32260,1,4,0)
- ;;=4^F45.9
- ;;^UTILITY(U,$J,358.3,32260,2)
- ;;=^5003592
- ;;^UTILITY(U,$J,358.3,32261,0)
- ;;=F45.1^^141^1513^10
- ;;^UTILITY(U,$J,358.3,32261,1,0)
+ ;;^UTILITY(U,$J,358.3,32677,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft grt toe w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32677,1,4,0)
+ ;;=4^S91.232A
+ ;;^UTILITY(U,$J,358.3,32677,2)
+ ;;=^5044293
+ ;;^UTILITY(U,$J,358.3,32678,0)
+ ;;=S91.234A^^126^1623^33
+ ;;^UTILITY(U,$J,358.3,32678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32261,1,3,0)
- ;;=3^Undifferntiated Somatoform Disorder
- ;;^UTILITY(U,$J,358.3,32261,1,4,0)
- ;;=4^F45.1
- ;;^UTILITY(U,$J,358.3,32261,2)
- ;;=^5003585
- ;;^UTILITY(U,$J,358.3,32262,0)
- ;;=99605^^142^1514^1^^^^1
- ;;^UTILITY(U,$J,358.3,32262,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32262,1,2,0)
- ;;=2^MTMS BY PHARM,INIT 15 MIN
- ;;^UTILITY(U,$J,358.3,32262,1,3,0)
- ;;=3^99605
- ;;^UTILITY(U,$J,358.3,32263,0)
- ;;=99607^^142^1514^2^^^^1
- ;;^UTILITY(U,$J,358.3,32263,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32263,1,2,0)
- ;;=2^MTMS BY PHARM, EA ADDL 15 MIN
- ;;^UTILITY(U,$J,358.3,32263,1,3,0)
- ;;=3^99607
- ;;^UTILITY(U,$J,358.3,32264,0)
- ;;=99606^^142^1515^1^^^^1
- ;;^UTILITY(U,$J,358.3,32264,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32264,1,2,0)
- ;;=2^MTMS BY PHARM,INIT 15 MIN
- ;;^UTILITY(U,$J,358.3,32264,1,3,0)
- ;;=3^99606
- ;;^UTILITY(U,$J,358.3,32265,0)
- ;;=99607^^142^1515^2^^^^1
- ;;^UTILITY(U,$J,358.3,32265,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32265,1,2,0)
- ;;=2^MTMS BY PHARM, EA ADDL 15 MIN
- ;;^UTILITY(U,$J,358.3,32265,1,3,0)
- ;;=3^99607
- ;;^UTILITY(U,$J,358.3,32266,0)
- ;;=98960^^142^1516^1^^^^1
- ;;^UTILITY(U,$J,358.3,32266,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32266,1,2,0)
- ;;=2^INDIVIDUAL PATIENT, EA 30 MIN
- ;;^UTILITY(U,$J,358.3,32266,1,3,0)
- ;;=3^98960
- ;;^UTILITY(U,$J,358.3,32267,0)
- ;;=98961^^142^1516^2^^^^1
- ;;^UTILITY(U,$J,358.3,32267,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32267,1,2,0)
- ;;=2^2-4 PATIENTS, EA 30 MIN
- ;;^UTILITY(U,$J,358.3,32267,1,3,0)
- ;;=3^98961
- ;;^UTILITY(U,$J,358.3,32268,0)
- ;;=98962^^142^1516^3^^^^1
- ;;^UTILITY(U,$J,358.3,32268,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,32268,1,2,0)
- ;;=2^5-8 PATIENTS, EA 30 MIN
- ;;^UTILITY(U,$J,358.3,32268,1,3,0)
- ;;=3^98962
- ;;^UTILITY(U,$J,358.3,32269,0)
- ;;=T74.11XA^^143^1517^8
- ;;^UTILITY(U,$J,358.3,32269,1,0)
+ ;;^UTILITY(U,$J,358.3,32678,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/ nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32678,1,4,0)
+ ;;=4^S91.234A
+ ;;^UTILITY(U,$J,358.3,32678,2)
+ ;;=^5044296
+ ;;^UTILITY(U,$J,358.3,32679,0)
+ ;;=S91.202A^^126^1623^3
+ ;;^UTILITY(U,$J,358.3,32679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32269,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Initial Encounter
- ;;^UTILITY(U,$J,358.3,32269,1,4,0)
- ;;=4^T74.11XA
- ;;^UTILITY(U,$J,358.3,32269,2)
- ;;=^5054146
- ;;^UTILITY(U,$J,358.3,32270,0)
- ;;=T74.11XD^^143^1517^9
- ;;^UTILITY(U,$J,358.3,32270,1,0)
+ ;;^UTILITY(U,$J,358.3,32679,1,3,0)
+ ;;=3^Open wound, lft grt toe w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,32679,1,4,0)
+ ;;=4^S91.202A
+ ;;^UTILITY(U,$J,358.3,32679,2)
+ ;;=^5137421
+ ;;^UTILITY(U,$J,358.3,32680,0)
+ ;;=S91.204A^^126^1623^11
+ ;;^UTILITY(U,$J,358.3,32680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,32270,1,3,0)
- ;;=3^Spouse/Partner or Nonspouse/Nonpartner Violence,Physical,Confirmed,Subsequent Encounter
- ;;^UTILITY(U,$J,358.3,32270,1,4,0)
- ;;=4^T74.11XD
- ;;^UTILITY(U,$J,358.3,32270,2)
- ;;=^5054147
- ;;^UTILITY(U,$J,358.3,32271,0)
- ;;=T76.11XA^^143^1517^10
- ;;^UTILITY(U,$J,358.3,32271,1,0)
+ ;;^UTILITY(U,$J,358.3,32680,1,3,0)
+ ;;=3^Open wound, rt lsr toe(s) w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,32680,1,4,0)
+ ;;=4^S91.204A
+ ;;^UTILITY(U,$J,358.3,32680,2)
+ ;;=^5044267
+ ;;^UTILITY(U,$J,358.3,32681,0)
+ ;;=S91.205A^^126^1623^5
+ ;;^UTILITY(U,$J,358.3,32681,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32681,1,3,0)
+ ;;=3^Open wound, lft lsr toe(s) w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,32681,1,4,0)
+ ;;=4^S91.205A
+ ;;^UTILITY(U,$J,358.3,32681,2)
+ ;;=^5137430
+ ;;^UTILITY(U,$J,358.3,32682,0)
+ ;;=S91.134A^^126^1623^34
+ ;;^UTILITY(U,$J,358.3,32682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32682,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32682,1,4,0)
+ ;;=4^S91.134A
+ ;;^UTILITY(U,$J,358.3,32682,2)
+ ;;=^5044222
+ ;;^UTILITY(U,$J,358.3,32683,0)
+ ;;=S91.135A^^126^1623^29
+ ;;^UTILITY(U,$J,358.3,32683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32683,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft lsr toe(s) w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32683,1,4,0)
+ ;;=4^S91.135A
+ ;;^UTILITY(U,$J,358.3,32683,2)
+ ;;=^5044225
+ ;;^UTILITY(U,$J,358.3,32684,0)
+ ;;=S91.201A^^126^1623^9
+ ;;^UTILITY(U,$J,358.3,32684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32684,1,3,0)
+ ;;=3^Open wound, rt grt toe w/ nail dmg, unspec, init
+ ;;^UTILITY(U,$J,358.3,32684,1,4,0)
+ ;;=4^S91.201A
+ ;;^UTILITY(U,$J,358.3,32684,2)
+ ;;=^5044264
+ ;;^UTILITY(U,$J,358.3,32685,0)
+ ;;=S91.131A^^126^1623^32
+ ;;^UTILITY(U,$J,358.3,32685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32685,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, rt grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32685,1,4,0)
+ ;;=4^S91.131A
+ ;;^UTILITY(U,$J,358.3,32685,2)
+ ;;=^5044213
+ ;;^UTILITY(U,$J,358.3,32686,0)
+ ;;=S91.132A^^126^1623^28
+ ;;^UTILITY(U,$J,358.3,32686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32686,1,3,0)
+ ;;=3^Punctr Wnd w/o FB, lft grt toe w/o nail dmg, init
+ ;;^UTILITY(U,$J,358.3,32686,1,4,0)
+ ;;=4^S91.132A
+ ;;^UTILITY(U,$J,358.3,32686,2)
+ ;;=^5044216
+ ;;^UTILITY(U,$J,358.3,32687,0)
+ ;;=S91.041A^^126^1623^19

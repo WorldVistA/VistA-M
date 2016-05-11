@@ -1,138 +1,134 @@
-IBDEI13H ; ; 19-NOV-2015
+IBDEI13H ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18279,1,0)
+ ;;^UTILITY(U,$J,358.3,18606,2)
+ ;;=^267319
+ ;;^UTILITY(U,$J,358.3,18607,0)
+ ;;=C77.8^^79^881^16
+ ;;^UTILITY(U,$J,358.3,18607,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18279,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,18279,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,18279,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,18280,0)
- ;;=L21.8^^94^905^262
- ;;^UTILITY(U,$J,358.3,18280,1,0)
+ ;;^UTILITY(U,$J,358.3,18607,1,3,0)
+ ;;=3^Secondary Malig Neop of Mult Region Lymph Nodes
+ ;;^UTILITY(U,$J,358.3,18607,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,18607,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,18608,0)
+ ;;=C78.01^^79^881^18
+ ;;^UTILITY(U,$J,358.3,18608,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18280,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,18280,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,18280,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,18281,0)
- ;;=L21.9^^94^905^263
- ;;^UTILITY(U,$J,358.3,18281,1,0)
+ ;;^UTILITY(U,$J,358.3,18608,1,3,0)
+ ;;=3^Secondary Malig Neop of Right Lung
+ ;;^UTILITY(U,$J,358.3,18608,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,18608,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,18609,0)
+ ;;=C78.02^^79^881^14
+ ;;^UTILITY(U,$J,358.3,18609,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18281,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,18281,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,18281,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,18282,0)
- ;;=L23.7^^94^905^30
- ;;^UTILITY(U,$J,358.3,18282,1,0)
+ ;;^UTILITY(U,$J,358.3,18609,1,3,0)
+ ;;=3^Secondary Malig Neop of Left Lung
+ ;;^UTILITY(U,$J,358.3,18609,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,18609,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,18610,0)
+ ;;=C79.19^^79^881^21
+ ;;^UTILITY(U,$J,358.3,18610,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18282,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,18282,1,4,0)
- ;;=4^L23.7
- ;;^UTILITY(U,$J,358.3,18282,2)
- ;;=^5009122
- ;;^UTILITY(U,$J,358.3,18283,0)
- ;;=L23.9^^94^905^31
- ;;^UTILITY(U,$J,358.3,18283,1,0)
+ ;;^UTILITY(U,$J,358.3,18610,1,3,0)
+ ;;=3^Secondary Malig Neop of Urinary Organs NEC
+ ;;^UTILITY(U,$J,358.3,18610,1,4,0)
+ ;;=4^C79.19
+ ;;^UTILITY(U,$J,358.3,18610,2)
+ ;;=^267332
+ ;;^UTILITY(U,$J,358.3,18611,0)
+ ;;=C79.11^^79^881^2
+ ;;^UTILITY(U,$J,358.3,18611,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18283,1,3,0)
- ;;=3^Allergic Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,18283,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,18283,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,18284,0)
- ;;=L24.9^^94^905^163
- ;;^UTILITY(U,$J,358.3,18284,1,0)
+ ;;^UTILITY(U,$J,358.3,18611,1,3,0)
+ ;;=3^Secondary Malig Neop of Bladder
+ ;;^UTILITY(U,$J,358.3,18611,1,4,0)
+ ;;=4^C79.11
+ ;;^UTILITY(U,$J,358.3,18611,2)
+ ;;=^5001346
+ ;;^UTILITY(U,$J,358.3,18612,0)
+ ;;=C79.2^^79^881^20
+ ;;^UTILITY(U,$J,358.3,18612,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18284,1,3,0)
- ;;=3^Irritant Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,18284,1,4,0)
- ;;=4^L24.9
- ;;^UTILITY(U,$J,358.3,18284,2)
- ;;=^5009136
- ;;^UTILITY(U,$J,358.3,18285,0)
- ;;=L25.9^^94^905^115
- ;;^UTILITY(U,$J,358.3,18285,1,0)
+ ;;^UTILITY(U,$J,358.3,18612,1,3,0)
+ ;;=3^Secondary Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,18612,1,4,0)
+ ;;=4^C79.2
+ ;;^UTILITY(U,$J,358.3,18612,2)
+ ;;=^267333
+ ;;^UTILITY(U,$J,358.3,18613,0)
+ ;;=C79.31^^79^881^5
+ ;;^UTILITY(U,$J,358.3,18613,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18285,1,3,0)
- ;;=3^Contact Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,18285,1,4,0)
- ;;=4^L25.9
- ;;^UTILITY(U,$J,358.3,18285,2)
- ;;=^5133647
- ;;^UTILITY(U,$J,358.3,18286,0)
- ;;=L26.^^94^905^148
- ;;^UTILITY(U,$J,358.3,18286,1,0)
+ ;;^UTILITY(U,$J,358.3,18613,1,3,0)
+ ;;=3^Secondary Malig Neop of Brain
+ ;;^UTILITY(U,$J,358.3,18613,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,18613,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,18614,0)
+ ;;=C79.32^^79^881^7
+ ;;^UTILITY(U,$J,358.3,18614,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18286,1,3,0)
- ;;=3^Exfoliative Dermatitis
- ;;^UTILITY(U,$J,358.3,18286,1,4,0)
- ;;=4^L26.
- ;;^UTILITY(U,$J,358.3,18286,2)
- ;;=^263886
- ;;^UTILITY(U,$J,358.3,18287,0)
- ;;=L27.0^^94^905^265
- ;;^UTILITY(U,$J,358.3,18287,1,0)
+ ;;^UTILITY(U,$J,358.3,18614,1,3,0)
+ ;;=3^Secondary Malig Neop of Cerebral Meninges
+ ;;^UTILITY(U,$J,358.3,18614,1,4,0)
+ ;;=4^C79.32
+ ;;^UTILITY(U,$J,358.3,18614,2)
+ ;;=^5001348
+ ;;^UTILITY(U,$J,358.3,18615,0)
+ ;;=C79.51^^79^881^3
+ ;;^UTILITY(U,$J,358.3,18615,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18287,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Generalized
- ;;^UTILITY(U,$J,358.3,18287,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,18287,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,18288,0)
- ;;=L27.1^^94^905^266
- ;;^UTILITY(U,$J,358.3,18288,1,0)
+ ;;^UTILITY(U,$J,358.3,18615,1,3,0)
+ ;;=3^Secondary Malig Neop of Bone
+ ;;^UTILITY(U,$J,358.3,18615,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,18615,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,18616,0)
+ ;;=C79.52^^79^881^4
+ ;;^UTILITY(U,$J,358.3,18616,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18288,1,3,0)
- ;;=3^Skin Eruption d/t Drugs/Meds,Localized
- ;;^UTILITY(U,$J,358.3,18288,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,18288,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,18289,0)
- ;;=L29.0^^94^905^250
- ;;^UTILITY(U,$J,358.3,18289,1,0)
+ ;;^UTILITY(U,$J,358.3,18616,1,3,0)
+ ;;=3^Secondary Malig Neop of Bone Marrow
+ ;;^UTILITY(U,$J,358.3,18616,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,18616,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,18617,0)
+ ;;=C79.61^^79^881^19
+ ;;^UTILITY(U,$J,358.3,18617,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18289,1,3,0)
- ;;=3^Pruritus Ani
- ;;^UTILITY(U,$J,358.3,18289,1,4,0)
- ;;=4^L29.0
- ;;^UTILITY(U,$J,358.3,18289,2)
- ;;=^100061
- ;;^UTILITY(U,$J,358.3,18290,0)
- ;;=L29.9^^94^905^251
- ;;^UTILITY(U,$J,358.3,18290,1,0)
+ ;;^UTILITY(U,$J,358.3,18617,1,3,0)
+ ;;=3^Secondary Malig Neop of Right Ovary
+ ;;^UTILITY(U,$J,358.3,18617,1,4,0)
+ ;;=4^C79.61
+ ;;^UTILITY(U,$J,358.3,18617,2)
+ ;;=^5001353
+ ;;^UTILITY(U,$J,358.3,18618,0)
+ ;;=C79.62^^79^881^15
+ ;;^UTILITY(U,$J,358.3,18618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18290,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,18290,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,18290,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,18291,0)
- ;;=L30.0^^94^905^232
- ;;^UTILITY(U,$J,358.3,18291,1,0)
+ ;;^UTILITY(U,$J,358.3,18618,1,3,0)
+ ;;=3^Secondary Malig Neop of Left Ovary
+ ;;^UTILITY(U,$J,358.3,18618,1,4,0)
+ ;;=4^C79.62
+ ;;^UTILITY(U,$J,358.3,18618,2)
+ ;;=^5001354
+ ;;^UTILITY(U,$J,358.3,18619,0)
+ ;;=C79.71^^79^881^17
+ ;;^UTILITY(U,$J,358.3,18619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18291,1,3,0)
- ;;=3^Nummular Dermatitis
- ;;^UTILITY(U,$J,358.3,18291,1,4,0)
- ;;=4^L30.0
- ;;^UTILITY(U,$J,358.3,18291,2)
- ;;=^186823
- ;;^UTILITY(U,$J,358.3,18292,0)
- ;;=L30.1^^94^905^140
- ;;^UTILITY(U,$J,358.3,18292,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18292,1,3,0)
- ;;=3^Dyshidrosis
+ ;;^UTILITY(U,$J,358.3,18619,1,3,0)
+ ;;=3^Secondary Malig Neop of Right Adrenal Gland
+ ;;^UTILITY(U,$J,358.3,18619,1,4,0)
+ ;;=4^C79.71

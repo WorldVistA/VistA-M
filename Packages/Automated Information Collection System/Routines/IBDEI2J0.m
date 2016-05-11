@@ -1,126 +1,140 @@
-IBDEI2J0 ; ; 19-NOV-2015
+IBDEI2J0 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42387,1,0)
+ ;;^UTILITY(U,$J,358.3,42849,1,3,0)
+ ;;=3^Quadriplegia, Unspec
+ ;;^UTILITY(U,$J,358.3,42849,1,4,0)
+ ;;=4^G82.50
+ ;;^UTILITY(U,$J,358.3,42849,2)
+ ;;=^5004128
+ ;;^UTILITY(U,$J,358.3,42850,0)
+ ;;=G83.4^^162^2045^2
+ ;;^UTILITY(U,$J,358.3,42850,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42387,1,3,0)
- ;;=3^Frostbite of lft ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,42387,1,4,0)
- ;;=4^T33.822A
- ;;^UTILITY(U,$J,358.3,42387,2)
- ;;=^5049124
- ;;^UTILITY(U,$J,358.3,42388,0)
- ;;=T33.831A^^192^2137^180
- ;;^UTILITY(U,$J,358.3,42388,1,0)
+ ;;^UTILITY(U,$J,358.3,42850,1,3,0)
+ ;;=3^Cauda Equina Syndrome
+ ;;^UTILITY(U,$J,358.3,42850,1,4,0)
+ ;;=4^G83.4
+ ;;^UTILITY(U,$J,358.3,42850,2)
+ ;;=^265172
+ ;;^UTILITY(U,$J,358.3,42851,0)
+ ;;=G82.20^^162^2045^4
+ ;;^UTILITY(U,$J,358.3,42851,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42388,1,3,0)
- ;;=3^Frostbite of rt toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,42388,1,4,0)
- ;;=4^T33.831A
- ;;^UTILITY(U,$J,358.3,42388,2)
- ;;=^5049130
- ;;^UTILITY(U,$J,358.3,42389,0)
- ;;=T33.832A^^192^2137^177
- ;;^UTILITY(U,$J,358.3,42389,1,0)
+ ;;^UTILITY(U,$J,358.3,42851,1,3,0)
+ ;;=3^Paraplegia, Unspec
+ ;;^UTILITY(U,$J,358.3,42851,1,4,0)
+ ;;=4^G82.20
+ ;;^UTILITY(U,$J,358.3,42851,2)
+ ;;=^5004125
+ ;;^UTILITY(U,$J,358.3,42852,0)
+ ;;=G82.21^^162^2045^5
+ ;;^UTILITY(U,$J,358.3,42852,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42389,1,3,0)
- ;;=3^Frostbite of lft toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,42389,1,4,0)
- ;;=4^T33.832A
- ;;^UTILITY(U,$J,358.3,42389,2)
- ;;=^5049133
- ;;^UTILITY(U,$J,358.3,42390,0)
- ;;=T34.811A^^192^2137^186
- ;;^UTILITY(U,$J,358.3,42390,1,0)
+ ;;^UTILITY(U,$J,358.3,42852,1,3,0)
+ ;;=3^Paraplegia, complete
+ ;;^UTILITY(U,$J,358.3,42852,1,4,0)
+ ;;=4^G82.21
+ ;;^UTILITY(U,$J,358.3,42852,2)
+ ;;=^5004126
+ ;;^UTILITY(U,$J,358.3,42853,0)
+ ;;=G82.22^^162^2045^6
+ ;;^UTILITY(U,$J,358.3,42853,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42390,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt ankl, init
- ;;^UTILITY(U,$J,358.3,42390,1,4,0)
- ;;=4^T34.811A
- ;;^UTILITY(U,$J,358.3,42390,2)
- ;;=^5049223
- ;;^UTILITY(U,$J,358.3,42391,0)
- ;;=T34.812A^^192^2137^181
- ;;^UTILITY(U,$J,358.3,42391,1,0)
+ ;;^UTILITY(U,$J,358.3,42853,1,3,0)
+ ;;=3^Paraplegia, incomplete
+ ;;^UTILITY(U,$J,358.3,42853,1,4,0)
+ ;;=4^G82.22
+ ;;^UTILITY(U,$J,358.3,42853,2)
+ ;;=^5004127
+ ;;^UTILITY(U,$J,358.3,42854,0)
+ ;;=A52.17^^162^2045^3
+ ;;^UTILITY(U,$J,358.3,42854,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42391,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft ankl, init
- ;;^UTILITY(U,$J,358.3,42391,1,4,0)
- ;;=4^T34.812A
- ;;^UTILITY(U,$J,358.3,42391,2)
- ;;=^5049226
- ;;^UTILITY(U,$J,358.3,42392,0)
- ;;=Z46.89^^192^2137^161
- ;;^UTILITY(U,$J,358.3,42392,1,0)
+ ;;^UTILITY(U,$J,358.3,42854,1,3,0)
+ ;;=3^General paresis
+ ;;^UTILITY(U,$J,358.3,42854,1,4,0)
+ ;;=4^A52.17
+ ;;^UTILITY(U,$J,358.3,42854,2)
+ ;;=^265161
+ ;;^UTILITY(U,$J,358.3,42855,0)
+ ;;=D29.0^^162^2046^1
+ ;;^UTILITY(U,$J,358.3,42855,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42392,1,3,0)
- ;;=3^Fitting and adjustment of device, other
- ;;^UTILITY(U,$J,358.3,42392,1,4,0)
- ;;=4^Z46.89
- ;;^UTILITY(U,$J,358.3,42392,2)
- ;;=^5063023
- ;;^UTILITY(U,$J,358.3,42393,0)
- ;;=S92.532K^^192^2137^90
- ;;^UTILITY(U,$J,358.3,42393,1,0)
+ ;;^UTILITY(U,$J,358.3,42855,1,3,0)
+ ;;=3^Benign neoplasm of penis
+ ;;^UTILITY(U,$J,358.3,42855,1,4,0)
+ ;;=4^D29.0
+ ;;^UTILITY(U,$J,358.3,42855,2)
+ ;;=^267656
+ ;;^UTILITY(U,$J,358.3,42856,0)
+ ;;=F52.8^^162^2047^3
+ ;;^UTILITY(U,$J,358.3,42856,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42393,1,3,0)
- ;;=3^Disp fx of dist phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42393,1,4,0)
- ;;=4^S92.532K
- ;;^UTILITY(U,$J,358.3,42393,2)
- ;;=^5045526
- ;;^UTILITY(U,$J,358.3,42394,0)
- ;;=S92.531K^^192^2137^93
- ;;^UTILITY(U,$J,358.3,42394,1,0)
+ ;;^UTILITY(U,$J,358.3,42856,1,3,0)
+ ;;=3^Sexual dysfxn not d/t subst/knwn physlg cond,Oth
+ ;;^UTILITY(U,$J,358.3,42856,1,4,0)
+ ;;=4^F52.8
+ ;;^UTILITY(U,$J,358.3,42856,2)
+ ;;=^5003624
+ ;;^UTILITY(U,$J,358.3,42857,0)
+ ;;=F52.22^^162^2047^1
+ ;;^UTILITY(U,$J,358.3,42857,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42394,1,3,0)
- ;;=3^Disp fx of dist phalanx of rt lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42394,1,4,0)
- ;;=4^S92.531K
- ;;^UTILITY(U,$J,358.3,42394,2)
- ;;=^5045519
- ;;^UTILITY(U,$J,358.3,42395,0)
- ;;=S92.525K^^192^2137^331
- ;;^UTILITY(U,$J,358.3,42395,1,0)
+ ;;^UTILITY(U,$J,358.3,42857,1,3,0)
+ ;;=3^Female sexual arousal disorder
+ ;;^UTILITY(U,$J,358.3,42857,1,4,0)
+ ;;=4^F52.22
+ ;;^UTILITY(U,$J,358.3,42857,2)
+ ;;=^5003621
+ ;;^UTILITY(U,$J,358.3,42858,0)
+ ;;=F52.21^^162^2047^2
+ ;;^UTILITY(U,$J,358.3,42858,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42395,1,3,0)
- ;;=3^Nondisp fx of med phalanx of lft lsr toe(s), subs w/ nonunion
- ;;^UTILITY(U,$J,358.3,42395,1,4,0)
- ;;=4^S92.525K
- ;;^UTILITY(U,$J,358.3,42395,2)
- ;;=^5045505
- ;;^UTILITY(U,$J,358.3,42396,0)
- ;;=S92.404K^^192^2137^358
- ;;^UTILITY(U,$J,358.3,42396,1,0)
+ ;;^UTILITY(U,$J,358.3,42858,1,3,0)
+ ;;=3^Male erectile disorder
+ ;;^UTILITY(U,$J,358.3,42858,1,4,0)
+ ;;=4^F52.21
+ ;;^UTILITY(U,$J,358.3,42858,2)
+ ;;=^5003620
+ ;;^UTILITY(U,$J,358.3,42859,0)
+ ;;=N47.2^^162^2048^13
+ ;;^UTILITY(U,$J,358.3,42859,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42396,1,3,0)
- ;;=3^Nondisp fx rt grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42396,1,4,0)
- ;;=4^S92.404K
- ;;^UTILITY(U,$J,358.3,42396,2)
- ;;=^5045288
- ;;^UTILITY(U,$J,358.3,42397,0)
- ;;=S92.402K^^192^2137^38
- ;;^UTILITY(U,$J,358.3,42397,1,0)
+ ;;^UTILITY(U,$J,358.3,42859,1,3,0)
+ ;;=3^Paraphimosis
+ ;;^UTILITY(U,$J,358.3,42859,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,42859,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,42860,0)
+ ;;=N47.1^^162^2048^15
+ ;;^UTILITY(U,$J,358.3,42860,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42397,1,3,0)
- ;;=3^Disp fx lft grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42397,1,4,0)
- ;;=4^S92.402K
- ;;^UTILITY(U,$J,358.3,42397,2)
- ;;=^5045281
- ;;^UTILITY(U,$J,358.3,42398,0)
- ;;=S92.401K^^192^2137^132
- ;;^UTILITY(U,$J,358.3,42398,1,0)
+ ;;^UTILITY(U,$J,358.3,42860,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,42860,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,42860,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,42861,0)
+ ;;=N47.5^^162^2048^1
+ ;;^UTILITY(U,$J,358.3,42861,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42398,1,3,0)
- ;;=3^Disp fx rt grt toe, subs w/ nonunion, unspec
- ;;^UTILITY(U,$J,358.3,42398,1,4,0)
- ;;=4^S92.401K
- ;;^UTILITY(U,$J,358.3,42398,2)
- ;;=^5045274
- ;;^UTILITY(U,$J,358.3,42399,0)
- ;;=S92.355K^^192^2137^302
- ;;^UTILITY(U,$J,358.3,42399,1,0)
+ ;;^UTILITY(U,$J,358.3,42861,1,3,0)
+ ;;=3^Adhesions prepuce/glans penis
+ ;;^UTILITY(U,$J,358.3,42861,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,42861,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,42862,0)
+ ;;=N47.4^^162^2048^4
+ ;;^UTILITY(U,$J,358.3,42862,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,42862,1,3,0)
+ ;;=3^Benign cyst prepuce
+ ;;^UTILITY(U,$J,358.3,42862,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,42862,2)
+ ;;=^5015727

@@ -1,120 +1,136 @@
-IBDEI0PH ; ; 19-NOV-2015
+IBDEI0PH ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11672,1,4,0)
- ;;=4^S56.811A
- ;;^UTILITY(U,$J,358.3,11672,2)
- ;;=^5031862
- ;;^UTILITY(U,$J,358.3,11673,0)
- ;;=S56.812A^^68^688^21
- ;;^UTILITY(U,$J,358.3,11673,1,0)
+ ;;^UTILITY(U,$J,358.3,11912,1,3,0)
+ ;;=3^Counseling,Tobacco Abuse
+ ;;^UTILITY(U,$J,358.3,11912,1,4,0)
+ ;;=4^Z71.6
+ ;;^UTILITY(U,$J,358.3,11912,2)
+ ;;=^5063250
+ ;;^UTILITY(U,$J,358.3,11913,0)
+ ;;=Z71.41^^47^538^28
+ ;;^UTILITY(U,$J,358.3,11913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11673,1,3,0)
- ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11673,1,4,0)
- ;;=4^S56.812A
- ;;^UTILITY(U,$J,358.3,11673,2)
- ;;=^5031865
- ;;^UTILITY(U,$J,358.3,11674,0)
- ;;=S56.116A^^68^688^33
- ;;^UTILITY(U,$J,358.3,11674,1,0)
+ ;;^UTILITY(U,$J,358.3,11913,1,3,0)
+ ;;=3^Counseling,Alcohol Abuse
+ ;;^UTILITY(U,$J,358.3,11913,1,4,0)
+ ;;=4^Z71.41
+ ;;^UTILITY(U,$J,358.3,11913,2)
+ ;;=^5063246
+ ;;^UTILITY(U,$J,358.3,11914,0)
+ ;;=Z71.51^^47^538^30
+ ;;^UTILITY(U,$J,358.3,11914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11674,1,3,0)
- ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11674,1,4,0)
- ;;=4^S56.116A
- ;;^UTILITY(U,$J,358.3,11674,2)
- ;;=^5031631
- ;;^UTILITY(U,$J,358.3,11675,0)
- ;;=S56.117A^^68^688^46
- ;;^UTILITY(U,$J,358.3,11675,1,0)
+ ;;^UTILITY(U,$J,358.3,11914,1,3,0)
+ ;;=3^Counseling,Drug Abuser
+ ;;^UTILITY(U,$J,358.3,11914,1,4,0)
+ ;;=4^Z71.51
+ ;;^UTILITY(U,$J,358.3,11914,2)
+ ;;=^5063248
+ ;;^UTILITY(U,$J,358.3,11915,0)
+ ;;=Z71.3^^47^538^29
+ ;;^UTILITY(U,$J,358.3,11915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11675,1,3,0)
- ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11675,1,4,0)
- ;;=4^S56.117A
- ;;^UTILITY(U,$J,358.3,11675,2)
- ;;=^5031634
- ;;^UTILITY(U,$J,358.3,11676,0)
- ;;=S56.118A^^68^688^26
- ;;^UTILITY(U,$J,358.3,11676,1,0)
+ ;;^UTILITY(U,$J,358.3,11915,1,3,0)
+ ;;=3^Counseling,Dietary
+ ;;^UTILITY(U,$J,358.3,11915,1,4,0)
+ ;;=4^Z71.3
+ ;;^UTILITY(U,$J,358.3,11915,2)
+ ;;=^5063245
+ ;;^UTILITY(U,$J,358.3,11916,0)
+ ;;=Z71.81^^47^538^34
+ ;;^UTILITY(U,$J,358.3,11916,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11676,1,3,0)
- ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11676,1,4,0)
- ;;=4^S56.118A
- ;;^UTILITY(U,$J,358.3,11676,2)
- ;;=^5031637
- ;;^UTILITY(U,$J,358.3,11677,0)
- ;;=S56.211A^^68^688^40
- ;;^UTILITY(U,$J,358.3,11677,1,0)
+ ;;^UTILITY(U,$J,358.3,11916,1,3,0)
+ ;;=3^Counseling,Spiritual/Religious
+ ;;^UTILITY(U,$J,358.3,11916,1,4,0)
+ ;;=4^Z71.81
+ ;;^UTILITY(U,$J,358.3,11916,2)
+ ;;=^5063252
+ ;;^UTILITY(U,$J,358.3,11917,0)
+ ;;=Z71.9^^47^538^36
+ ;;^UTILITY(U,$J,358.3,11917,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11677,1,3,0)
- ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11677,1,4,0)
- ;;=4^S56.211A
- ;;^UTILITY(U,$J,358.3,11677,2)
- ;;=^5031691
- ;;^UTILITY(U,$J,358.3,11678,0)
- ;;=S56.212A^^68^688^20
- ;;^UTILITY(U,$J,358.3,11678,1,0)
+ ;;^UTILITY(U,$J,358.3,11917,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,11917,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,11917,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,11918,0)
+ ;;=F05.^^47^538^37
+ ;;^UTILITY(U,$J,358.3,11918,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11678,1,3,0)
- ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11678,1,4,0)
- ;;=4^S56.212A
- ;;^UTILITY(U,$J,358.3,11678,2)
- ;;=^5031694
- ;;^UTILITY(U,$J,358.3,11679,0)
- ;;=S56.311A^^68^688^56
- ;;^UTILITY(U,$J,358.3,11679,1,0)
+ ;;^UTILITY(U,$J,358.3,11918,1,3,0)
+ ;;=3^Delirium d/t Physiological Condition
+ ;;^UTILITY(U,$J,358.3,11918,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,11918,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,11919,0)
+ ;;=Z97.2^^47^538^38
+ ;;^UTILITY(U,$J,358.3,11919,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11679,1,3,0)
- ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11679,1,4,0)
- ;;=4^S56.311A
- ;;^UTILITY(U,$J,358.3,11679,2)
- ;;=^5031715
- ;;^UTILITY(U,$J,358.3,11680,0)
- ;;=S56.312A^^68^688^35
- ;;^UTILITY(U,$J,358.3,11680,1,0)
+ ;;^UTILITY(U,$J,358.3,11919,1,3,0)
+ ;;=3^Dental Prosthetic Device
+ ;;^UTILITY(U,$J,358.3,11919,1,4,0)
+ ;;=4^Z97.2
+ ;;^UTILITY(U,$J,358.3,11919,2)
+ ;;=^5063728
+ ;;^UTILITY(U,$J,358.3,11920,0)
+ ;;=Z99.89^^47^538^39
+ ;;^UTILITY(U,$J,358.3,11920,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11680,1,3,0)
- ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11680,1,4,0)
- ;;=4^S56.312A
- ;;^UTILITY(U,$J,358.3,11680,2)
- ;;=^5031718
- ;;^UTILITY(U,$J,358.3,11681,0)
- ;;=S56.411A^^68^688^44
- ;;^UTILITY(U,$J,358.3,11681,1,0)
+ ;;^UTILITY(U,$J,358.3,11920,1,3,0)
+ ;;=3^Dependence on Enabling Machines/Devices
+ ;;^UTILITY(U,$J,358.3,11920,1,4,0)
+ ;;=4^Z99.89
+ ;;^UTILITY(U,$J,358.3,11920,2)
+ ;;=^5063761
+ ;;^UTILITY(U,$J,358.3,11921,0)
+ ;;=Z66.^^47^538^40
+ ;;^UTILITY(U,$J,358.3,11921,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11681,1,3,0)
- ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11681,1,4,0)
- ;;=4^S56.411A
- ;;^UTILITY(U,$J,358.3,11681,2)
- ;;=^5031763
- ;;^UTILITY(U,$J,358.3,11682,0)
- ;;=S56.412A^^68^688^24
- ;;^UTILITY(U,$J,358.3,11682,1,0)
+ ;;^UTILITY(U,$J,358.3,11921,1,3,0)
+ ;;=3^Do Not Resuscitate
+ ;;^UTILITY(U,$J,358.3,11921,1,4,0)
+ ;;=4^Z66.
+ ;;^UTILITY(U,$J,358.3,11921,2)
+ ;;=^5063187
+ ;;^UTILITY(U,$J,358.3,11922,0)
+ ;;=Z79.2^^47^538^41
+ ;;^UTILITY(U,$J,358.3,11922,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11682,1,3,0)
- ;;=3^Strain of Left Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11682,1,4,0)
- ;;=4^S56.412A
- ;;^UTILITY(U,$J,358.3,11682,2)
- ;;=^5031766
- ;;^UTILITY(U,$J,358.3,11683,0)
- ;;=S56.413A^^68^688^52
- ;;^UTILITY(U,$J,358.3,11683,1,0)
+ ;;^UTILITY(U,$J,358.3,11922,1,3,0)
+ ;;=3^Drug Therapy,Antibiotics,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,11922,1,4,0)
+ ;;=4^Z79.2
+ ;;^UTILITY(U,$J,358.3,11922,2)
+ ;;=^321546
+ ;;^UTILITY(U,$J,358.3,11923,0)
+ ;;=Z79.01^^47^538^42
+ ;;^UTILITY(U,$J,358.3,11923,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11683,1,3,0)
- ;;=3^Strain of Right Middle Finger at Forearm Level Extensor Muscle/Fasc/Tendon
- ;;^UTILITY(U,$J,358.3,11683,1,4,0)
- ;;=4^S56.413A
- ;;^UTILITY(U,$J,358.3,11683,2)
- ;;=^5031769
- ;;^UTILITY(U,$J,358.3,11684,0)
- ;;=S56.414A^^68^688^32
+ ;;^UTILITY(U,$J,358.3,11923,1,3,0)
+ ;;=3^Drug Therapy,Anticoagulants,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,11923,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,11923,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,11924,0)
+ ;;=Z79.02^^47^538^43
+ ;;^UTILITY(U,$J,358.3,11924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11924,1,3,0)
+ ;;=3^Drug Therapy,Antithrombotics/Antiplateletes,Long Term Current Use
+ ;;^UTILITY(U,$J,358.3,11924,1,4,0)
+ ;;=4^Z79.02
+ ;;^UTILITY(U,$J,358.3,11924,2)
+ ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,11925,0)
+ ;;=Z79.82^^47^538^44
+ ;;^UTILITY(U,$J,358.3,11925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11925,1,3,0)
+ ;;=3^Drug Therapy,Aspirin,Long Term Current Use

@@ -1,138 +1,134 @@
-IBDEI16C ; ; 19-NOV-2015
+IBDEI16C ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19620,1,0)
+ ;;^UTILITY(U,$J,358.3,19970,1,3,0)
+ ;;=3^Idiopathic Pericarditis,Acute Nonspec
+ ;;^UTILITY(U,$J,358.3,19970,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,19970,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,19971,0)
+ ;;=I34.8^^84^928^6
+ ;;^UTILITY(U,$J,358.3,19971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19620,1,3,0)
- ;;=3^Insomnia not d/t Substance/Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,19620,1,4,0)
- ;;=4^F51.09
- ;;^UTILITY(U,$J,358.3,19620,2)
- ;;=^5003608
- ;;^UTILITY(U,$J,358.3,19621,0)
- ;;=H53.9^^94^928^159
- ;;^UTILITY(U,$J,358.3,19621,1,0)
+ ;;^UTILITY(U,$J,358.3,19971,1,3,0)
+ ;;=3^Mitral Valve Disorders,Nonrheumatic Other
+ ;;^UTILITY(U,$J,358.3,19971,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,19971,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,19972,0)
+ ;;=I34.0^^84^928^13
+ ;;^UTILITY(U,$J,358.3,19972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19621,1,3,0)
- ;;=3^Visual Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,19621,1,4,0)
- ;;=4^H53.9
- ;;^UTILITY(U,$J,358.3,19621,2)
- ;;=^124001
- ;;^UTILITY(U,$J,358.3,19622,0)
- ;;=I89.0^^94^928^113
- ;;^UTILITY(U,$J,358.3,19622,1,0)
+ ;;^UTILITY(U,$J,358.3,19972,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,19972,1,4,0)
+ ;;=4^I34.0
+ ;;^UTILITY(U,$J,358.3,19972,2)
+ ;;=^5007169
+ ;;^UTILITY(U,$J,358.3,19973,0)
+ ;;=I34.9^^84^928^12
+ ;;^UTILITY(U,$J,358.3,19973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19622,1,3,0)
- ;;=3^Lymphedema NEC
- ;;^UTILITY(U,$J,358.3,19622,1,4,0)
- ;;=4^I89.0
- ;;^UTILITY(U,$J,358.3,19622,2)
- ;;=^5008073
- ;;^UTILITY(U,$J,358.3,19623,0)
- ;;=I87.1^^94^928^158
- ;;^UTILITY(U,$J,358.3,19623,1,0)
+ ;;^UTILITY(U,$J,358.3,19973,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19973,1,4,0)
+ ;;=4^I34.9
+ ;;^UTILITY(U,$J,358.3,19973,2)
+ ;;=^5007173
+ ;;^UTILITY(U,$J,358.3,19974,0)
+ ;;=I34.2^^84^928^7
+ ;;^UTILITY(U,$J,358.3,19974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19623,1,3,0)
- ;;=3^Vein Compression
- ;;^UTILITY(U,$J,358.3,19623,1,4,0)
- ;;=4^I87.1
- ;;^UTILITY(U,$J,358.3,19623,2)
- ;;=^269850
- ;;^UTILITY(U,$J,358.3,19624,0)
- ;;=K08.8^^94^928^60
- ;;^UTILITY(U,$J,358.3,19624,1,0)
+ ;;^UTILITY(U,$J,358.3,19974,1,3,0)
+ ;;=3^Nonrhematic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,19974,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,19974,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,19975,0)
+ ;;=I35.0^^84^928^10
+ ;;^UTILITY(U,$J,358.3,19975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19624,1,3,0)
- ;;=3^Disorder of Teeth/Supporting Structures,Oth Specified
- ;;^UTILITY(U,$J,358.3,19624,1,4,0)
- ;;=4^K08.8
- ;;^UTILITY(U,$J,358.3,19624,2)
- ;;=^5008467
- ;;^UTILITY(U,$J,358.3,19625,0)
- ;;=N39.3^^94^928^152
- ;;^UTILITY(U,$J,358.3,19625,1,0)
+ ;;^UTILITY(U,$J,358.3,19975,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,19975,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,19975,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,19976,0)
+ ;;=I35.1^^84^928^9
+ ;;^UTILITY(U,$J,358.3,19976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19625,1,3,0)
- ;;=3^Stress Incontinence (Female/Male)
- ;;^UTILITY(U,$J,358.3,19625,1,4,0)
- ;;=4^N39.3
- ;;^UTILITY(U,$J,358.3,19625,2)
- ;;=^5015679
- ;;^UTILITY(U,$J,358.3,19626,0)
- ;;=R26.2^^94^928^58
- ;;^UTILITY(U,$J,358.3,19626,1,0)
+ ;;^UTILITY(U,$J,358.3,19976,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,19976,1,4,0)
+ ;;=4^I35.1
+ ;;^UTILITY(U,$J,358.3,19976,2)
+ ;;=^5007175
+ ;;^UTILITY(U,$J,358.3,19977,0)
+ ;;=I35.2^^84^928^11
+ ;;^UTILITY(U,$J,358.3,19977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19626,1,3,0)
- ;;=3^Difficulty in Walking NEC
- ;;^UTILITY(U,$J,358.3,19626,1,4,0)
- ;;=4^R26.2
- ;;^UTILITY(U,$J,358.3,19626,2)
- ;;=^5019306
- ;;^UTILITY(U,$J,358.3,19627,0)
- ;;=M54.6^^94^928^154
- ;;^UTILITY(U,$J,358.3,19627,1,0)
+ ;;^UTILITY(U,$J,358.3,19977,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis w/ Insufficiency
+ ;;^UTILITY(U,$J,358.3,19977,1,4,0)
+ ;;=4^I35.2
+ ;;^UTILITY(U,$J,358.3,19977,2)
+ ;;=^5007176
+ ;;^UTILITY(U,$J,358.3,19978,0)
+ ;;=I35.9^^84^928^8
+ ;;^UTILITY(U,$J,358.3,19978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19627,1,3,0)
- ;;=3^Thoracic Spine Pain
- ;;^UTILITY(U,$J,358.3,19627,1,4,0)
- ;;=4^M54.6
- ;;^UTILITY(U,$J,358.3,19627,2)
- ;;=^272507
- ;;^UTILITY(U,$J,358.3,19628,0)
- ;;=E66.8^^94^928^125
- ;;^UTILITY(U,$J,358.3,19628,1,0)
+ ;;^UTILITY(U,$J,358.3,19978,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19978,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,19978,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,19979,0)
+ ;;=I38.^^84^928^4
+ ;;^UTILITY(U,$J,358.3,19979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19628,1,3,0)
- ;;=3^Obesity NEC
- ;;^UTILITY(U,$J,358.3,19628,1,4,0)
- ;;=4^E66.8
- ;;^UTILITY(U,$J,358.3,19628,2)
- ;;=^5002831
- ;;^UTILITY(U,$J,358.3,19629,0)
- ;;=E66.9^^94^928^126
- ;;^UTILITY(U,$J,358.3,19629,1,0)
+ ;;^UTILITY(U,$J,358.3,19979,1,3,0)
+ ;;=3^Endocarditis,Valve Unspec
+ ;;^UTILITY(U,$J,358.3,19979,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,19979,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,19980,0)
+ ;;=I05.0^^84^928^18
+ ;;^UTILITY(U,$J,358.3,19980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19629,1,3,0)
- ;;=3^Obesity,Unspec
- ;;^UTILITY(U,$J,358.3,19629,1,4,0)
- ;;=4^E66.9
- ;;^UTILITY(U,$J,358.3,19629,2)
- ;;=^5002832
- ;;^UTILITY(U,$J,358.3,19630,0)
- ;;=F18.120^^94^928^94
- ;;^UTILITY(U,$J,358.3,19630,1,0)
+ ;;^UTILITY(U,$J,358.3,19980,1,3,0)
+ ;;=3^Rheumatic Mitral Stenosis
+ ;;^UTILITY(U,$J,358.3,19980,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,19980,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,19981,0)
+ ;;=I05.8^^84^928^19
+ ;;^UTILITY(U,$J,358.3,19981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19630,1,3,0)
- ;;=3^Inhalant Abuse w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,19630,1,4,0)
- ;;=4^F18.120
- ;;^UTILITY(U,$J,358.3,19630,2)
- ;;=^5003381
- ;;^UTILITY(U,$J,358.3,19631,0)
- ;;=G44.1^^94^928^157
- ;;^UTILITY(U,$J,358.3,19631,1,0)
+ ;;^UTILITY(U,$J,358.3,19981,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease NEC
+ ;;^UTILITY(U,$J,358.3,19981,1,4,0)
+ ;;=4^I05.8
+ ;;^UTILITY(U,$J,358.3,19981,2)
+ ;;=^5007043
+ ;;^UTILITY(U,$J,358.3,19982,0)
+ ;;=I05.9^^84^928^20
+ ;;^UTILITY(U,$J,358.3,19982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19631,1,3,0)
- ;;=3^Vascular Headache NEC
- ;;^UTILITY(U,$J,358.3,19631,1,4,0)
- ;;=4^G44.1
- ;;^UTILITY(U,$J,358.3,19631,2)
- ;;=^5003934
- ;;^UTILITY(U,$J,358.3,19632,0)
- ;;=G93.3^^94^928^144
- ;;^UTILITY(U,$J,358.3,19632,1,0)
+ ;;^UTILITY(U,$J,358.3,19982,1,3,0)
+ ;;=3^Rheumatic Mitral Valve Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,19982,1,4,0)
+ ;;=4^I05.9
+ ;;^UTILITY(U,$J,358.3,19982,2)
+ ;;=^5007044
+ ;;^UTILITY(U,$J,358.3,19983,0)
+ ;;=I07.1^^84^928^21
+ ;;^UTILITY(U,$J,358.3,19983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19632,1,3,0)
- ;;=3^Postviral Fatigue Syndrome
- ;;^UTILITY(U,$J,358.3,19632,1,4,0)
- ;;=4^G93.3
- ;;^UTILITY(U,$J,358.3,19632,2)
- ;;=^5004181
- ;;^UTILITY(U,$J,358.3,19633,0)
- ;;=K08.101^^94^928^52
- ;;^UTILITY(U,$J,358.3,19633,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19633,1,3,0)
- ;;=3^Complete Loss of Teeth,Unspec,Class I

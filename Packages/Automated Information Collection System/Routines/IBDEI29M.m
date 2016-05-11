@@ -1,130 +1,124 @@
-IBDEI29M ; ; 19-NOV-2015
+IBDEI29M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38046,0)
- ;;=F40.231^^177^1915^9
- ;;^UTILITY(U,$J,358.3,38046,1,0)
+ ;;^UTILITY(U,$J,358.3,38415,1,3,0)
+ ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38415,1,4,0)
+ ;;=4^F18.921
+ ;;^UTILITY(U,$J,358.3,38415,2)
+ ;;=^5003407
+ ;;^UTILITY(U,$J,358.3,38416,0)
+ ;;=F18.129^^145^1864^17
+ ;;^UTILITY(U,$J,358.3,38416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38046,1,3,0)
- ;;=3^Fear of Injections & Transfusions
- ;;^UTILITY(U,$J,358.3,38046,1,4,0)
- ;;=4^F40.231
- ;;^UTILITY(U,$J,358.3,38046,2)
- ;;=^5003551
- ;;^UTILITY(U,$J,358.3,38047,0)
- ;;=F40.232^^177^1915^11
- ;;^UTILITY(U,$J,358.3,38047,1,0)
+ ;;^UTILITY(U,$J,358.3,38416,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38416,1,4,0)
+ ;;=4^F18.129
+ ;;^UTILITY(U,$J,358.3,38416,2)
+ ;;=^5003383
+ ;;^UTILITY(U,$J,358.3,38417,0)
+ ;;=F18.229^^145^1864^18
+ ;;^UTILITY(U,$J,358.3,38417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38047,1,3,0)
- ;;=3^Fear of Oth Medical Care
- ;;^UTILITY(U,$J,358.3,38047,1,4,0)
- ;;=4^F40.232
- ;;^UTILITY(U,$J,358.3,38047,2)
- ;;=^5003552
- ;;^UTILITY(U,$J,358.3,38048,0)
- ;;=F40.233^^177^1915^10
- ;;^UTILITY(U,$J,358.3,38048,1,0)
+ ;;^UTILITY(U,$J,358.3,38417,1,3,0)
+ ;;=3^Inhalant Intoxication w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38417,1,4,0)
+ ;;=4^F18.229
+ ;;^UTILITY(U,$J,358.3,38417,2)
+ ;;=^5003396
+ ;;^UTILITY(U,$J,358.3,38418,0)
+ ;;=F18.929^^145^1864^19
+ ;;^UTILITY(U,$J,358.3,38418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38048,1,3,0)
- ;;=3^Fear of Injury
- ;;^UTILITY(U,$J,358.3,38048,1,4,0)
- ;;=4^F40.233
- ;;^UTILITY(U,$J,358.3,38048,2)
- ;;=^5003553
- ;;^UTILITY(U,$J,358.3,38049,0)
- ;;=F40.240^^177^1915^7
- ;;^UTILITY(U,$J,358.3,38049,1,0)
+ ;;^UTILITY(U,$J,358.3,38418,1,3,0)
+ ;;=3^Inhalant Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38418,1,4,0)
+ ;;=4^F18.929
+ ;;^UTILITY(U,$J,358.3,38418,2)
+ ;;=^5003408
+ ;;^UTILITY(U,$J,358.3,38419,0)
+ ;;=F18.180^^145^1864^1
+ ;;^UTILITY(U,$J,358.3,38419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38049,1,3,0)
- ;;=3^Claustrophobia
- ;;^UTILITY(U,$J,358.3,38049,1,4,0)
- ;;=4^F40.240
- ;;^UTILITY(U,$J,358.3,38049,2)
- ;;=^5003554
- ;;^UTILITY(U,$J,358.3,38050,0)
- ;;=F40.241^^177^1915^1
- ;;^UTILITY(U,$J,358.3,38050,1,0)
+ ;;^UTILITY(U,$J,358.3,38419,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38419,1,4,0)
+ ;;=4^F18.180
+ ;;^UTILITY(U,$J,358.3,38419,2)
+ ;;=^5003389
+ ;;^UTILITY(U,$J,358.3,38420,0)
+ ;;=F18.280^^145^1864^2
+ ;;^UTILITY(U,$J,358.3,38420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38050,1,3,0)
- ;;=3^Acrophobia
- ;;^UTILITY(U,$J,358.3,38050,1,4,0)
- ;;=4^F40.241
- ;;^UTILITY(U,$J,358.3,38050,2)
- ;;=^5003555
- ;;^UTILITY(U,$J,358.3,38051,0)
- ;;=F40.248^^177^1915^15
- ;;^UTILITY(U,$J,358.3,38051,1,0)
+ ;;^UTILITY(U,$J,358.3,38420,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38420,1,4,0)
+ ;;=4^F18.280
+ ;;^UTILITY(U,$J,358.3,38420,2)
+ ;;=^5003402
+ ;;^UTILITY(U,$J,358.3,38421,0)
+ ;;=F18.980^^145^1864^3
+ ;;^UTILITY(U,$J,358.3,38421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38051,1,3,0)
- ;;=3^Situational Type Phobia NEC
- ;;^UTILITY(U,$J,358.3,38051,1,4,0)
- ;;=4^F40.248
- ;;^UTILITY(U,$J,358.3,38051,2)
- ;;=^5003558
- ;;^UTILITY(U,$J,358.3,38052,0)
- ;;=F40.01^^177^1915^3
- ;;^UTILITY(U,$J,358.3,38052,1,0)
+ ;;^UTILITY(U,$J,358.3,38421,1,3,0)
+ ;;=3^Inhalant Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38421,1,4,0)
+ ;;=4^F18.980
+ ;;^UTILITY(U,$J,358.3,38421,2)
+ ;;=^5003414
+ ;;^UTILITY(U,$J,358.3,38422,0)
+ ;;=F18.94^^145^1864^4
+ ;;^UTILITY(U,$J,358.3,38422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38052,1,3,0)
- ;;=3^Agoraphobia w/ Panic Disorder
- ;;^UTILITY(U,$J,358.3,38052,1,4,0)
- ;;=4^F40.01
- ;;^UTILITY(U,$J,358.3,38052,2)
- ;;=^331911
- ;;^UTILITY(U,$J,358.3,38053,0)
- ;;=F06.33^^177^1916^1
- ;;^UTILITY(U,$J,358.3,38053,1,0)
+ ;;^UTILITY(U,$J,358.3,38422,1,3,0)
+ ;;=3^Inhalant Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38422,1,4,0)
+ ;;=4^F18.94
+ ;;^UTILITY(U,$J,358.3,38422,2)
+ ;;=^5003409
+ ;;^UTILITY(U,$J,358.3,38423,0)
+ ;;=F18.17^^145^1864^5
+ ;;^UTILITY(U,$J,358.3,38423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38053,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Manic Features
- ;;^UTILITY(U,$J,358.3,38053,1,4,0)
- ;;=4^F06.33
- ;;^UTILITY(U,$J,358.3,38053,2)
- ;;=^5003059
- ;;^UTILITY(U,$J,358.3,38054,0)
- ;;=F06.34^^177^1916^2
- ;;^UTILITY(U,$J,358.3,38054,1,0)
+ ;;^UTILITY(U,$J,358.3,38423,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38423,1,4,0)
+ ;;=4^F18.17
+ ;;^UTILITY(U,$J,358.3,38423,2)
+ ;;=^5003388
+ ;;^UTILITY(U,$J,358.3,38424,0)
+ ;;=F18.27^^145^1864^6
+ ;;^UTILITY(U,$J,358.3,38424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38054,1,3,0)
- ;;=3^Bipolar & Related Disorder d/t Medical Condition w/ Mixed Features
- ;;^UTILITY(U,$J,358.3,38054,1,4,0)
- ;;=4^F06.34
- ;;^UTILITY(U,$J,358.3,38054,2)
- ;;=^5003060
- ;;^UTILITY(U,$J,358.3,38055,0)
- ;;=F31.11^^177^1916^3
- ;;^UTILITY(U,$J,358.3,38055,1,0)
+ ;;^UTILITY(U,$J,358.3,38424,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,38424,1,4,0)
+ ;;=4^F18.27
+ ;;^UTILITY(U,$J,358.3,38424,2)
+ ;;=^5003401
+ ;;^UTILITY(U,$J,358.3,38425,0)
+ ;;=F18.97^^145^1864^7
+ ;;^UTILITY(U,$J,358.3,38425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38055,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Mild
- ;;^UTILITY(U,$J,358.3,38055,1,4,0)
- ;;=4^F31.11
- ;;^UTILITY(U,$J,358.3,38055,2)
- ;;=^5003496
- ;;^UTILITY(U,$J,358.3,38056,0)
- ;;=F31.12^^177^1916^4
- ;;^UTILITY(U,$J,358.3,38056,1,0)
+ ;;^UTILITY(U,$J,358.3,38425,1,3,0)
+ ;;=3^Inhalant Induced Major Neurocog Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,38425,1,4,0)
+ ;;=4^F18.97
+ ;;^UTILITY(U,$J,358.3,38425,2)
+ ;;=^5003413
+ ;;^UTILITY(U,$J,358.3,38426,0)
+ ;;=F18.188^^145^1864^8
+ ;;^UTILITY(U,$J,358.3,38426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38056,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Moderate
- ;;^UTILITY(U,$J,358.3,38056,1,4,0)
- ;;=4^F31.12
- ;;^UTILITY(U,$J,358.3,38056,2)
- ;;=^5003497
- ;;^UTILITY(U,$J,358.3,38057,0)
- ;;=F31.13^^177^1916^5
- ;;^UTILITY(U,$J,358.3,38057,1,0)
+ ;;^UTILITY(U,$J,358.3,38426,1,3,0)
+ ;;=3^Inhalant Induced Mild Neurocog Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,38426,1,4,0)
+ ;;=4^F18.188
+ ;;^UTILITY(U,$J,358.3,38426,2)
+ ;;=^5003390
+ ;;^UTILITY(U,$J,358.3,38427,0)
+ ;;=F18.288^^145^1864^9
+ ;;^UTILITY(U,$J,358.3,38427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38057,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,Severe
- ;;^UTILITY(U,$J,358.3,38057,1,4,0)
- ;;=4^F31.13
- ;;^UTILITY(U,$J,358.3,38057,2)
- ;;=^5003498
- ;;^UTILITY(U,$J,358.3,38058,0)
- ;;=F31.2^^177^1916^6
- ;;^UTILITY(U,$J,358.3,38058,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38058,1,3,0)
- ;;=3^Bipolar I Disorder,Current/Recent Episode Manic,w/ Psychotic Features

@@ -1,128 +1,128 @@
-IBDEI1KX ; ; 19-NOV-2015
+IBDEI1KX ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26417,1,3,0)
- ;;=3^glc,Low-Tension,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,26417,1,4,0)
- ;;=4^H40.1213
- ;;^UTILITY(U,$J,358.3,26417,2)
- ;;=^5005761
- ;;^UTILITY(U,$J,358.3,26418,0)
- ;;=H40.1214^^130^1290^38
- ;;^UTILITY(U,$J,358.3,26418,1,0)
+ ;;^UTILITY(U,$J,358.3,26788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26418,1,3,0)
- ;;=3^glc,Low-Tension,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26418,1,4,0)
- ;;=4^H40.1214
- ;;^UTILITY(U,$J,358.3,26418,2)
- ;;=^5005762
- ;;^UTILITY(U,$J,358.3,26419,0)
- ;;=H40.1220^^130^1290^37
- ;;^UTILITY(U,$J,358.3,26419,1,0)
+ ;;^UTILITY(U,$J,358.3,26788,1,3,0)
+ ;;=3^Insomnia,Other
+ ;;^UTILITY(U,$J,358.3,26788,1,4,0)
+ ;;=4^G47.09
+ ;;^UTILITY(U,$J,358.3,26788,2)
+ ;;=^5003970
+ ;;^UTILITY(U,$J,358.3,26789,0)
+ ;;=G47.00^^100^1290^15
+ ;;^UTILITY(U,$J,358.3,26789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26419,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,26419,1,4,0)
- ;;=4^H40.1220
- ;;^UTILITY(U,$J,358.3,26419,2)
- ;;=^5005763
- ;;^UTILITY(U,$J,358.3,26420,0)
- ;;=H40.1221^^130^1290^34
- ;;^UTILITY(U,$J,358.3,26420,1,0)
+ ;;^UTILITY(U,$J,358.3,26789,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,26789,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,26789,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,26790,0)
+ ;;=G47.10^^100^1290^12
+ ;;^UTILITY(U,$J,358.3,26790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26420,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,26420,1,4,0)
- ;;=4^H40.1221
- ;;^UTILITY(U,$J,358.3,26420,2)
- ;;=^5005764
- ;;^UTILITY(U,$J,358.3,26421,0)
- ;;=H40.1222^^130^1290^35
- ;;^UTILITY(U,$J,358.3,26421,1,0)
+ ;;^UTILITY(U,$J,358.3,26790,1,3,0)
+ ;;=3^Hypersomnolence Disorder/Unspec Hypersomnolence Disorder
+ ;;^UTILITY(U,$J,358.3,26790,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,26790,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,26791,0)
+ ;;=G47.419^^100^1290^17
+ ;;^UTILITY(U,$J,358.3,26791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26421,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26421,1,4,0)
- ;;=4^H40.1222
- ;;^UTILITY(U,$J,358.3,26421,2)
- ;;=^5005765
- ;;^UTILITY(U,$J,358.3,26422,0)
- ;;=H40.1223^^130^1290^36
- ;;^UTILITY(U,$J,358.3,26422,1,0)
+ ;;^UTILITY(U,$J,358.3,26791,1,3,0)
+ ;;=3^Narcolepsy w/o Cataplexy w/ Hypocretin Deficiency
+ ;;^UTILITY(U,$J,358.3,26791,1,4,0)
+ ;;=4^G47.419
+ ;;^UTILITY(U,$J,358.3,26791,2)
+ ;;=^5003982
+ ;;^UTILITY(U,$J,358.3,26792,0)
+ ;;=G47.33^^100^1290^21
+ ;;^UTILITY(U,$J,358.3,26792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26422,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,26422,1,4,0)
- ;;=4^H40.1223
- ;;^UTILITY(U,$J,358.3,26422,2)
- ;;=^5133492
- ;;^UTILITY(U,$J,358.3,26423,0)
- ;;=H40.1224^^130^1290^33
- ;;^UTILITY(U,$J,358.3,26423,1,0)
+ ;;^UTILITY(U,$J,358.3,26792,1,3,0)
+ ;;=3^Obstructive Sleep Apnea Hypopnea
+ ;;^UTILITY(U,$J,358.3,26792,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,26792,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,26793,0)
+ ;;=G47.31^^100^1290^1
+ ;;^UTILITY(U,$J,358.3,26793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26423,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26423,1,4,0)
- ;;=4^H40.1224
- ;;^UTILITY(U,$J,358.3,26423,2)
- ;;=^5005766
- ;;^UTILITY(U,$J,358.3,26424,0)
- ;;=H40.1230^^130^1290^32
- ;;^UTILITY(U,$J,358.3,26424,1,0)
+ ;;^UTILITY(U,$J,358.3,26793,1,3,0)
+ ;;=3^Central Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,26793,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,26793,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,26794,0)
+ ;;=G47.21^^100^1290^5
+ ;;^UTILITY(U,$J,358.3,26794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26424,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Stage Unspec
- ;;^UTILITY(U,$J,358.3,26424,1,4,0)
- ;;=4^H40.1230
- ;;^UTILITY(U,$J,358.3,26424,2)
- ;;=^5005767
- ;;^UTILITY(U,$J,358.3,26425,0)
- ;;=H40.1231^^130^1290^29
- ;;^UTILITY(U,$J,358.3,26425,1,0)
+ ;;^UTILITY(U,$J,358.3,26794,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Delayed Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,26794,1,4,0)
+ ;;=4^G47.21
+ ;;^UTILITY(U,$J,358.3,26794,2)
+ ;;=^332769
+ ;;^UTILITY(U,$J,358.3,26795,0)
+ ;;=G47.22^^100^1290^4
+ ;;^UTILITY(U,$J,358.3,26795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26425,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,26425,1,4,0)
- ;;=4^H40.1231
- ;;^UTILITY(U,$J,358.3,26425,2)
- ;;=^5005768
- ;;^UTILITY(U,$J,358.3,26426,0)
- ;;=H40.1232^^130^1290^30
- ;;^UTILITY(U,$J,358.3,26426,1,0)
+ ;;^UTILITY(U,$J,358.3,26795,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Advanced Sleep Phase Type
+ ;;^UTILITY(U,$J,358.3,26795,1,4,0)
+ ;;=4^G47.22
+ ;;^UTILITY(U,$J,358.3,26795,2)
+ ;;=^332770
+ ;;^UTILITY(U,$J,358.3,26796,0)
+ ;;=G47.23^^100^1290^6
+ ;;^UTILITY(U,$J,358.3,26796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26426,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,26426,1,4,0)
- ;;=4^H40.1232
- ;;^UTILITY(U,$J,358.3,26426,2)
- ;;=^5005769
- ;;^UTILITY(U,$J,358.3,26427,0)
- ;;=H40.1233^^130^1290^31
- ;;^UTILITY(U,$J,358.3,26427,1,0)
+ ;;^UTILITY(U,$J,358.3,26796,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Irregular Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,26796,1,4,0)
+ ;;=4^G47.23
+ ;;^UTILITY(U,$J,358.3,26796,2)
+ ;;=^5003975
+ ;;^UTILITY(U,$J,358.3,26797,0)
+ ;;=G47.24^^100^1290^7
+ ;;^UTILITY(U,$J,358.3,26797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26427,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,26427,1,4,0)
- ;;=4^H40.1233
- ;;^UTILITY(U,$J,358.3,26427,2)
- ;;=^5005770
- ;;^UTILITY(U,$J,358.3,26428,0)
- ;;=H40.1234^^130^1290^28
- ;;^UTILITY(U,$J,358.3,26428,1,0)
+ ;;^UTILITY(U,$J,358.3,26797,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Non-24 Hr Sleep Wake Type
+ ;;^UTILITY(U,$J,358.3,26797,1,4,0)
+ ;;=4^G47.24
+ ;;^UTILITY(U,$J,358.3,26797,2)
+ ;;=^5003976
+ ;;^UTILITY(U,$J,358.3,26798,0)
+ ;;=G47.26^^100^1290^8
+ ;;^UTILITY(U,$J,358.3,26798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26428,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,26428,1,4,0)
- ;;=4^H40.1234
- ;;^UTILITY(U,$J,358.3,26428,2)
- ;;=^5005771
- ;;^UTILITY(U,$J,358.3,26429,0)
- ;;=H40.1310^^130^1290^67
- ;;^UTILITY(U,$J,358.3,26429,1,0)
+ ;;^UTILITY(U,$J,358.3,26798,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Shift Work Type
+ ;;^UTILITY(U,$J,358.3,26798,1,4,0)
+ ;;=4^G47.26
+ ;;^UTILITY(U,$J,358.3,26798,2)
+ ;;=^332774
+ ;;^UTILITY(U,$J,358.3,26799,0)
+ ;;=G47.20^^100^1290^9
+ ;;^UTILITY(U,$J,358.3,26799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26429,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,26429,1,4,0)
- ;;=4^H40.1310
+ ;;^UTILITY(U,$J,358.3,26799,1,3,0)
+ ;;=3^Circadian Rhythm Sleep-Wake Disorder;Unspec Type
+ ;;^UTILITY(U,$J,358.3,26799,1,4,0)
+ ;;=4^G47.20
+ ;;^UTILITY(U,$J,358.3,26799,2)
+ ;;=^5003974
+ ;;^UTILITY(U,$J,358.3,26800,0)
+ ;;=F51.3^^100^1290^19
+ ;;^UTILITY(U,$J,358.3,26800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26800,1,3,0)
+ ;;=3^Non-Rapid Eye Movement Sleep Arousal Disorder;Sleepwalking Type

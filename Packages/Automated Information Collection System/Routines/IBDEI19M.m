@@ -1,124 +1,130 @@
-IBDEI19M ; ; 19-NOV-2015
+IBDEI19M ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21159,1,4,0)
- ;;=4^I69.193
- ;;^UTILITY(U,$J,358.3,21159,2)
- ;;=^5007455
- ;;^UTILITY(U,$J,358.3,21160,0)
- ;;=I69.293^^101^1027^16
- ;;^UTILITY(U,$J,358.3,21160,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21160,1,3,0)
- ;;=3^Ataxia following other nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,21160,1,4,0)
- ;;=4^I69.293
- ;;^UTILITY(U,$J,358.3,21160,2)
- ;;=^5007487
- ;;^UTILITY(U,$J,358.3,21161,0)
- ;;=I69.093^^101^1027^14
- ;;^UTILITY(U,$J,358.3,21161,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21161,1,3,0)
- ;;=3^Ataxia following nontraumatic subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,21161,1,4,0)
- ;;=4^I69.093
- ;;^UTILITY(U,$J,358.3,21161,2)
- ;;=^5007423
- ;;^UTILITY(U,$J,358.3,21162,0)
- ;;=I69.893^^101^1027^15
- ;;^UTILITY(U,$J,358.3,21162,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21162,1,3,0)
- ;;=3^Ataxia following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,21162,1,4,0)
- ;;=4^I69.893
- ;;^UTILITY(U,$J,358.3,21162,2)
- ;;=^5007549
- ;;^UTILITY(U,$J,358.3,21163,0)
- ;;=I69.31^^101^1027^17
- ;;^UTILITY(U,$J,358.3,21163,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21163,1,3,0)
- ;;=3^Cognitive deficits following cerebral infarction
- ;;^UTILITY(U,$J,358.3,21163,1,4,0)
- ;;=4^I69.31
- ;;^UTILITY(U,$J,358.3,21163,2)
- ;;=^5007490
- ;;^UTILITY(U,$J,358.3,21164,0)
- ;;=I69.11^^101^1027^18
- ;;^UTILITY(U,$J,358.3,21164,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21164,1,3,0)
- ;;=3^Cognitive deficits following nontraumatic intcrbl hemorrhage
- ;;^UTILITY(U,$J,358.3,21164,1,4,0)
- ;;=4^I69.11
- ;;^UTILITY(U,$J,358.3,21164,2)
- ;;=^5007426
- ;;^UTILITY(U,$J,358.3,21165,0)
- ;;=I69.01^^101^1027^19
- ;;^UTILITY(U,$J,358.3,21165,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21165,1,3,0)
- ;;=3^Cognitive deficits following ntrm subarachnoid hemorrhage
- ;;^UTILITY(U,$J,358.3,21165,1,4,0)
- ;;=4^I69.01
- ;;^UTILITY(U,$J,358.3,21165,2)
- ;;=^5007394
- ;;^UTILITY(U,$J,358.3,21166,0)
- ;;=I69.81^^101^1027^21
- ;;^UTILITY(U,$J,358.3,21166,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21166,1,3,0)
- ;;=3^Cognitive deficits following other cerebrovascular disease
- ;;^UTILITY(U,$J,358.3,21166,1,4,0)
- ;;=4^I69.81
- ;;^UTILITY(U,$J,358.3,21166,2)
- ;;=^5007521
- ;;^UTILITY(U,$J,358.3,21167,0)
- ;;=I69.21^^101^1027^20
- ;;^UTILITY(U,$J,358.3,21167,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21167,1,3,0)
- ;;=3^Cognitive deficits following oth ntrm intcrn hemorrhage
- ;;^UTILITY(U,$J,358.3,21167,1,4,0)
- ;;=4^I69.21
- ;;^UTILITY(U,$J,358.3,21167,2)
- ;;=^5007458
- ;;^UTILITY(U,$J,358.3,21168,0)
- ;;=I69.391^^101^1027^22
- ;;^UTILITY(U,$J,358.3,21168,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21168,1,3,0)
- ;;=3^Dysphagia following cerebral infarction
- ;;^UTILITY(U,$J,358.3,21168,1,4,0)
- ;;=4^I69.391
- ;;^UTILITY(U,$J,358.3,21168,2)
- ;;=^5007516
- ;;^UTILITY(U,$J,358.3,21169,0)
- ;;=I69.191^^101^1027^23
- ;;^UTILITY(U,$J,358.3,21169,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21169,1,3,0)
- ;;=3^Dysphagia following nontraumatic intracerebral hemorrhage
- ;;^UTILITY(U,$J,358.3,21169,1,4,0)
- ;;=4^I69.191
- ;;^UTILITY(U,$J,358.3,21169,2)
- ;;=^5007453
- ;;^UTILITY(U,$J,358.3,21170,0)
- ;;=I69.291^^101^1027^25
- ;;^UTILITY(U,$J,358.3,21170,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21170,1,3,0)
- ;;=3^Dysphagia following oth nontraumatic intracranial hemorrhage
- ;;^UTILITY(U,$J,358.3,21170,1,4,0)
- ;;=4^I69.291
- ;;^UTILITY(U,$J,358.3,21170,2)
- ;;=^5007485
- ;;^UTILITY(U,$J,358.3,21171,0)
- ;;=I69.091^^101^1027^24
- ;;^UTILITY(U,$J,358.3,21171,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21171,1,3,0)
- ;;=3^Dysphagia following nontraumatic subarachnoid hemorrhage
+ ;;^UTILITY(U,$J,358.3,21518,1,3,0)
+ ;;=3^Simple repair; 20.1 cm to 30 cm
+ ;;^UTILITY(U,$J,358.3,21519,0)
+ ;;=12007^^86^960^6^^^^1
+ ;;^UTILITY(U,$J,358.3,21519,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21519,1,2,0)
+ ;;=2^12007
+ ;;^UTILITY(U,$J,358.3,21519,1,3,0)
+ ;;=3^Simple repair; over 30 cm
+ ;;^UTILITY(U,$J,358.3,21520,0)
+ ;;=12011^^86^961^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21520,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21520,1,2,0)
+ ;;=2^12011
+ ;;^UTILITY(U,$J,358.3,21520,1,3,0)
+ ;;=3^Simple repair; 2.5 cm or less
+ ;;^UTILITY(U,$J,358.3,21521,0)
+ ;;=12013^^86^961^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21521,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21521,1,2,0)
+ ;;=2^12013
+ ;;^UTILITY(U,$J,358.3,21521,1,3,0)
+ ;;=3^Simple repair; 2.6 cm to 5.0 cm
+ ;;^UTILITY(U,$J,358.3,21522,0)
+ ;;=12014^^86^961^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21522,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21522,1,2,0)
+ ;;=2^12014
+ ;;^UTILITY(U,$J,358.3,21522,1,3,0)
+ ;;=3^Simple repair; 5.1 cm to 7.5 cm
+ ;;^UTILITY(U,$J,358.3,21523,0)
+ ;;=12015^^86^961^4^^^^1
+ ;;^UTILITY(U,$J,358.3,21523,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21523,1,2,0)
+ ;;=2^12015
+ ;;^UTILITY(U,$J,358.3,21523,1,3,0)
+ ;;=3^Simple repair; 7.6 cm to 12.5 cm
+ ;;^UTILITY(U,$J,358.3,21524,0)
+ ;;=12016^^86^961^5^^^^1
+ ;;^UTILITY(U,$J,358.3,21524,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21524,1,2,0)
+ ;;=2^12016
+ ;;^UTILITY(U,$J,358.3,21524,1,3,0)
+ ;;=3^Simple repair; 12.6 cm to 20 cm
+ ;;^UTILITY(U,$J,358.3,21525,0)
+ ;;=12017^^86^961^6^^^^1
+ ;;^UTILITY(U,$J,358.3,21525,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21525,1,2,0)
+ ;;=2^12017
+ ;;^UTILITY(U,$J,358.3,21525,1,3,0)
+ ;;=3^Simple repair; 20.1 cm to 30 cm
+ ;;^UTILITY(U,$J,358.3,21526,0)
+ ;;=12018^^86^961^7^^^^1
+ ;;^UTILITY(U,$J,358.3,21526,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21526,1,2,0)
+ ;;=2^12018
+ ;;^UTILITY(U,$J,358.3,21526,1,3,0)
+ ;;=3^Simple repair; over 30 cm
+ ;;^UTILITY(U,$J,358.3,21527,0)
+ ;;=99395^^86^962^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21527,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21527,1,2,0)
+ ;;=2^99395
+ ;;^UTILITY(U,$J,358.3,21527,1,3,0)
+ ;;=3^Preventive Med,Est 18-39
+ ;;^UTILITY(U,$J,358.3,21528,0)
+ ;;=99396^^86^962^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21528,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21528,1,2,0)
+ ;;=2^99396
+ ;;^UTILITY(U,$J,358.3,21528,1,3,0)
+ ;;=3^Preventive Med,Est 40-64
+ ;;^UTILITY(U,$J,358.3,21529,0)
+ ;;=99397^^86^962^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21529,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21529,1,2,0)
+ ;;=2^99397
+ ;;^UTILITY(U,$J,358.3,21529,1,3,0)
+ ;;=3^Preventive Med,Est > 64
+ ;;^UTILITY(U,$J,358.3,21530,0)
+ ;;=99385^^86^963^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21530,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21530,1,2,0)
+ ;;=2^99385
+ ;;^UTILITY(U,$J,358.3,21530,1,3,0)
+ ;;=3^Preventive Med,New 18-39
+ ;;^UTILITY(U,$J,358.3,21531,0)
+ ;;=99386^^86^963^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21531,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21531,1,2,0)
+ ;;=2^99386
+ ;;^UTILITY(U,$J,358.3,21531,1,3,0)
+ ;;=3^Preventive Med,New 40-64
+ ;;^UTILITY(U,$J,358.3,21532,0)
+ ;;=99387^^86^963^3^^^^1
+ ;;^UTILITY(U,$J,358.3,21532,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21532,1,2,0)
+ ;;=2^99387
+ ;;^UTILITY(U,$J,358.3,21532,1,3,0)
+ ;;=3^Preventive Med,New > 64
+ ;;^UTILITY(U,$J,358.3,21533,0)
+ ;;=90471^^86^964^1^^^^1
+ ;;^UTILITY(U,$J,358.3,21533,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,21533,1,2,0)
+ ;;=2^90471
+ ;;^UTILITY(U,$J,358.3,21533,1,3,0)
+ ;;=3^Immunization Admin (use w/ Vaccs)
+ ;;^UTILITY(U,$J,358.3,21534,0)
+ ;;=90472^^86^964^2^^^^1
+ ;;^UTILITY(U,$J,358.3,21534,1,0)
+ ;;=^358.31IA^3^2

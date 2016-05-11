@@ -1,142 +1,130 @@
-IBDEI16I ; ; 19-NOV-2015
+IBDEI16I ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19701,1,0)
+ ;;^UTILITY(U,$J,358.3,20047,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20047,1,4,0)
+ ;;=4^C82.30
+ ;;^UTILITY(U,$J,358.3,20047,2)
+ ;;=^5001491
+ ;;^UTILITY(U,$J,358.3,20048,0)
+ ;;=C82.49^^84^929^72
+ ;;^UTILITY(U,$J,358.3,20048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19701,1,3,0)
- ;;=3^Altered Mental Status,Unspec
- ;;^UTILITY(U,$J,358.3,19701,1,4,0)
- ;;=4^R41.82
- ;;^UTILITY(U,$J,358.3,19701,2)
- ;;=^5019441
- ;;^UTILITY(U,$J,358.3,19702,0)
- ;;=R43.0^^94^928^37
- ;;^UTILITY(U,$J,358.3,19702,1,0)
+ ;;^UTILITY(U,$J,358.3,20048,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20048,1,4,0)
+ ;;=4^C82.49
+ ;;^UTILITY(U,$J,358.3,20048,2)
+ ;;=^5001510
+ ;;^UTILITY(U,$J,358.3,20049,0)
+ ;;=C82.40^^84^929^73
+ ;;^UTILITY(U,$J,358.3,20049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19702,1,3,0)
- ;;=3^Anosmia
- ;;^UTILITY(U,$J,358.3,19702,1,4,0)
- ;;=4^R43.0
- ;;^UTILITY(U,$J,358.3,19702,2)
- ;;=^7949
- ;;^UTILITY(U,$J,358.3,19703,0)
- ;;=R43.1^^94^928^132
- ;;^UTILITY(U,$J,358.3,19703,1,0)
+ ;;^UTILITY(U,$J,358.3,20049,1,3,0)
+ ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20049,1,4,0)
+ ;;=4^C82.40
+ ;;^UTILITY(U,$J,358.3,20049,2)
+ ;;=^5001501
+ ;;^UTILITY(U,$J,358.3,20050,0)
+ ;;=C82.99^^84^929^74
+ ;;^UTILITY(U,$J,358.3,20050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19703,1,3,0)
- ;;=3^Parosmia
- ;;^UTILITY(U,$J,358.3,19703,1,4,0)
- ;;=4^R43.1
- ;;^UTILITY(U,$J,358.3,19703,2)
- ;;=^5019451
- ;;^UTILITY(U,$J,358.3,19704,0)
- ;;=R43.2^^94^928^129
- ;;^UTILITY(U,$J,358.3,19704,1,0)
+ ;;^UTILITY(U,$J,358.3,20050,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
+ ;;^UTILITY(U,$J,358.3,20050,1,4,0)
+ ;;=4^C82.99
+ ;;^UTILITY(U,$J,358.3,20050,2)
+ ;;=^5001550
+ ;;^UTILITY(U,$J,358.3,20051,0)
+ ;;=C82.90^^84^929^75
+ ;;^UTILITY(U,$J,358.3,20051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19704,1,3,0)
- ;;=3^Parageusia
- ;;^UTILITY(U,$J,358.3,19704,1,4,0)
- ;;=4^R43.2
- ;;^UTILITY(U,$J,358.3,19704,2)
- ;;=^5019452
- ;;^UTILITY(U,$J,358.3,19705,0)
- ;;=R43.9^^94^928^148
- ;;^UTILITY(U,$J,358.3,19705,1,0)
+ ;;^UTILITY(U,$J,358.3,20051,1,3,0)
+ ;;=3^Follicular Lymphoma Unspec,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20051,1,4,0)
+ ;;=4^C82.90
+ ;;^UTILITY(U,$J,358.3,20051,2)
+ ;;=^5001541
+ ;;^UTILITY(U,$J,358.3,20052,0)
+ ;;=R59.1^^84^929^60
+ ;;^UTILITY(U,$J,358.3,20052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19705,1,3,0)
- ;;=3^Smell and Taste Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,19705,1,4,0)
- ;;=4^R43.9
- ;;^UTILITY(U,$J,358.3,19705,2)
- ;;=^5019454
- ;;^UTILITY(U,$J,358.3,19706,0)
- ;;=R44.0^^94^928^44
- ;;^UTILITY(U,$J,358.3,19706,1,0)
+ ;;^UTILITY(U,$J,358.3,20052,1,3,0)
+ ;;=3^Enlarged Lymph Nodes,Generalized
+ ;;^UTILITY(U,$J,358.3,20052,1,4,0)
+ ;;=4^R59.1
+ ;;^UTILITY(U,$J,358.3,20052,2)
+ ;;=^5019530
+ ;;^UTILITY(U,$J,358.3,20053,0)
+ ;;=C91.40^^84^929^79
+ ;;^UTILITY(U,$J,358.3,20053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19706,1,3,0)
- ;;=3^Auditory Hallucinations
- ;;^UTILITY(U,$J,358.3,19706,1,4,0)
- ;;=4^R44.0
- ;;^UTILITY(U,$J,358.3,19706,2)
- ;;=^5019455
- ;;^UTILITY(U,$J,358.3,19707,0)
- ;;=R44.2^^94^928^78
- ;;^UTILITY(U,$J,358.3,19707,1,0)
+ ;;^UTILITY(U,$J,358.3,20053,1,3,0)
+ ;;=3^Hairy Cell Leukemia,Not in Remission
+ ;;^UTILITY(U,$J,358.3,20053,1,4,0)
+ ;;=4^C91.40
+ ;;^UTILITY(U,$J,358.3,20053,2)
+ ;;=^5001771
+ ;;^UTILITY(U,$J,358.3,20054,0)
+ ;;=C91.42^^84^929^77
+ ;;^UTILITY(U,$J,358.3,20054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19707,1,3,0)
- ;;=3^Hallucinations NEC
- ;;^UTILITY(U,$J,358.3,19707,1,4,0)
- ;;=4^R44.2
- ;;^UTILITY(U,$J,358.3,19707,2)
- ;;=^5019457
- ;;^UTILITY(U,$J,358.3,19708,0)
- ;;=R44.3^^94^928^79
- ;;^UTILITY(U,$J,358.3,19708,1,0)
+ ;;^UTILITY(U,$J,358.3,20054,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Relapse
+ ;;^UTILITY(U,$J,358.3,20054,1,4,0)
+ ;;=4^C91.42
+ ;;^UTILITY(U,$J,358.3,20054,2)
+ ;;=^5001773
+ ;;^UTILITY(U,$J,358.3,20055,0)
+ ;;=C91.41^^84^929^78
+ ;;^UTILITY(U,$J,358.3,20055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19708,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,19708,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,19708,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,19709,0)
- ;;=R45.0^^94^928^121
- ;;^UTILITY(U,$J,358.3,19709,1,0)
+ ;;^UTILITY(U,$J,358.3,20055,1,3,0)
+ ;;=3^Hairy Cell Leukemia,In Remission
+ ;;^UTILITY(U,$J,358.3,20055,1,4,0)
+ ;;=4^C91.41
+ ;;^UTILITY(U,$J,358.3,20055,2)
+ ;;=^5001772
+ ;;^UTILITY(U,$J,358.3,20056,0)
+ ;;=D57.01^^84^929^80
+ ;;^UTILITY(U,$J,358.3,20056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19709,1,3,0)
- ;;=3^Nervousness
- ;;^UTILITY(U,$J,358.3,19709,1,4,0)
- ;;=4^R45.0
- ;;^UTILITY(U,$J,358.3,19709,2)
- ;;=^5019461
- ;;^UTILITY(U,$J,358.3,19710,0)
- ;;=R47.01^^94^928^40
- ;;^UTILITY(U,$J,358.3,19710,1,0)
+ ;;^UTILITY(U,$J,358.3,20056,1,3,0)
+ ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
+ ;;^UTILITY(U,$J,358.3,20056,1,4,0)
+ ;;=4^D57.01
+ ;;^UTILITY(U,$J,358.3,20056,2)
+ ;;=^5002307
+ ;;^UTILITY(U,$J,358.3,20057,0)
+ ;;=D57.00^^84^929^81
+ ;;^UTILITY(U,$J,358.3,20057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19710,1,3,0)
- ;;=3^Aphasia
- ;;^UTILITY(U,$J,358.3,19710,1,4,0)
- ;;=4^R47.01
- ;;^UTILITY(U,$J,358.3,19710,2)
- ;;=^5019488
- ;;^UTILITY(U,$J,358.3,19711,0)
- ;;=R47.9^^94^928^150
- ;;^UTILITY(U,$J,358.3,19711,1,0)
+ ;;^UTILITY(U,$J,358.3,20057,1,3,0)
+ ;;=3^Hb-SS Disease w/ Crisis,Unspec
+ ;;^UTILITY(U,$J,358.3,20057,1,4,0)
+ ;;=4^D57.00
+ ;;^UTILITY(U,$J,358.3,20057,2)
+ ;;=^5002306
+ ;;^UTILITY(U,$J,358.3,20058,0)
+ ;;=D57.02^^84^929^82
+ ;;^UTILITY(U,$J,358.3,20058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19711,1,3,0)
- ;;=3^Speech Disturbances,Unspec
- ;;^UTILITY(U,$J,358.3,19711,1,4,0)
- ;;=4^R47.9
- ;;^UTILITY(U,$J,358.3,19711,2)
- ;;=^5019494
- ;;^UTILITY(U,$J,358.3,19712,0)
- ;;=R49.8^^94^928^162
- ;;^UTILITY(U,$J,358.3,19712,1,0)
+ ;;^UTILITY(U,$J,358.3,20058,1,3,0)
+ ;;=3^Hb-SS Disease w/ Splenic Sequestration
+ ;;^UTILITY(U,$J,358.3,20058,1,4,0)
+ ;;=4^D57.02
+ ;;^UTILITY(U,$J,358.3,20058,2)
+ ;;=^5002308
+ ;;^UTILITY(U,$J,358.3,20059,0)
+ ;;=D68.32^^84^929^84
+ ;;^UTILITY(U,$J,358.3,20059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19712,1,3,0)
- ;;=3^Voice and Resonance Disorders NEC
- ;;^UTILITY(U,$J,358.3,19712,1,4,0)
- ;;=4^R49.8
- ;;^UTILITY(U,$J,358.3,19712,2)
- ;;=^5019505
- ;;^UTILITY(U,$J,358.3,19713,0)
- ;;=R53.0^^94^928^115
- ;;^UTILITY(U,$J,358.3,19713,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19713,1,3,0)
- ;;=3^Malig Neop Related Fatigue
- ;;^UTILITY(U,$J,358.3,19713,1,4,0)
- ;;=4^R53.0
- ;;^UTILITY(U,$J,358.3,19713,2)
- ;;=^5019515
- ;;^UTILITY(U,$J,358.3,19714,0)
- ;;=R53.83^^94^928^71
- ;;^UTILITY(U,$J,358.3,19714,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19714,1,3,0)
- ;;=3^Fatigue NEC
- ;;^UTILITY(U,$J,358.3,19714,1,4,0)
- ;;=4^R53.83
- ;;^UTILITY(U,$J,358.3,19714,2)
- ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,20059,1,3,0)
+ ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
+ ;;^UTILITY(U,$J,358.3,20059,1,4,0)
+ ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,20059,2)
+ ;;=^5002357

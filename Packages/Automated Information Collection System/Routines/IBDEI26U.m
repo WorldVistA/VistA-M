@@ -1,126 +1,130 @@
-IBDEI26U ; ; 19-NOV-2015
+IBDEI26U ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36741,1,4,0)
- ;;=4^D58.8
- ;;^UTILITY(U,$J,358.3,36741,2)
- ;;=^267984
- ;;^UTILITY(U,$J,358.3,36742,0)
- ;;=D58.2^^169^1858^8
- ;;^UTILITY(U,$J,358.3,36742,1,0)
+ ;;^UTILITY(U,$J,358.3,37120,1,4,0)
+ ;;=4^M48.21
+ ;;^UTILITY(U,$J,358.3,37120,2)
+ ;;=^5012107
+ ;;^UTILITY(U,$J,358.3,37121,0)
+ ;;=M48.22^^140^1787^179
+ ;;^UTILITY(U,$J,358.3,37121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36742,1,3,0)
- ;;=3^Hemoglobinopathies NEC
- ;;^UTILITY(U,$J,358.3,36742,1,4,0)
- ;;=4^D58.2
- ;;^UTILITY(U,$J,358.3,36742,2)
- ;;=^87629
- ;;^UTILITY(U,$J,358.3,36743,0)
- ;;=C83.10^^169^1859^52
- ;;^UTILITY(U,$J,358.3,36743,1,0)
+ ;;^UTILITY(U,$J,358.3,37121,1,3,0)
+ ;;=3^Kissing spine, cervical region
+ ;;^UTILITY(U,$J,358.3,37121,1,4,0)
+ ;;=4^M48.22
+ ;;^UTILITY(U,$J,358.3,37121,2)
+ ;;=^5012108
+ ;;^UTILITY(U,$J,358.3,37122,0)
+ ;;=M48.23^^140^1787^180
+ ;;^UTILITY(U,$J,358.3,37122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36743,1,3,0)
- ;;=3^Mantle cell lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,36743,1,4,0)
- ;;=4^C83.10
- ;;^UTILITY(U,$J,358.3,36743,2)
- ;;=^5001561
- ;;^UTILITY(U,$J,358.3,36744,0)
- ;;=C83.19^^169^1859^51
- ;;^UTILITY(U,$J,358.3,36744,1,0)
+ ;;^UTILITY(U,$J,358.3,37122,1,3,0)
+ ;;=3^Kissing spine, cervicothoracic region
+ ;;^UTILITY(U,$J,358.3,37122,1,4,0)
+ ;;=4^M48.23
+ ;;^UTILITY(U,$J,358.3,37122,2)
+ ;;=^5012109
+ ;;^UTILITY(U,$J,358.3,37123,0)
+ ;;=M48.24^^140^1787^185
+ ;;^UTILITY(U,$J,358.3,37123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36744,1,3,0)
- ;;=3^Mantle cell lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,36744,1,4,0)
- ;;=4^C83.19
- ;;^UTILITY(U,$J,358.3,36744,2)
- ;;=^5001570
- ;;^UTILITY(U,$J,358.3,36745,0)
- ;;=C83.50^^169^1859^45
- ;;^UTILITY(U,$J,358.3,36745,1,0)
+ ;;^UTILITY(U,$J,358.3,37123,1,3,0)
+ ;;=3^Kissing spine, thoracic region
+ ;;^UTILITY(U,$J,358.3,37123,1,4,0)
+ ;;=4^M48.24
+ ;;^UTILITY(U,$J,358.3,37123,2)
+ ;;=^5012110
+ ;;^UTILITY(U,$J,358.3,37124,0)
+ ;;=M48.25^^140^1787^186
+ ;;^UTILITY(U,$J,358.3,37124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36745,1,3,0)
- ;;=3^Lymphoblastic (diffuse) lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,36745,1,4,0)
- ;;=4^C83.50
- ;;^UTILITY(U,$J,358.3,36745,2)
- ;;=^5001581
- ;;^UTILITY(U,$J,358.3,36746,0)
- ;;=C83.59^^169^1859^46
- ;;^UTILITY(U,$J,358.3,36746,1,0)
+ ;;^UTILITY(U,$J,358.3,37124,1,3,0)
+ ;;=3^Kissing spine, thoracolumbar region
+ ;;^UTILITY(U,$J,358.3,37124,1,4,0)
+ ;;=4^M48.25
+ ;;^UTILITY(U,$J,358.3,37124,2)
+ ;;=^5012111
+ ;;^UTILITY(U,$J,358.3,37125,0)
+ ;;=M48.26^^140^1787^181
+ ;;^UTILITY(U,$J,358.3,37125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36746,1,3,0)
- ;;=3^Lymphoblastic lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36746,1,4,0)
- ;;=4^C83.59
- ;;^UTILITY(U,$J,358.3,36746,2)
- ;;=^5001590
- ;;^UTILITY(U,$J,358.3,36747,0)
- ;;=C83.70^^169^1859^12
- ;;^UTILITY(U,$J,358.3,36747,1,0)
+ ;;^UTILITY(U,$J,358.3,37125,1,3,0)
+ ;;=3^Kissing spine, lumbar region
+ ;;^UTILITY(U,$J,358.3,37125,1,4,0)
+ ;;=4^M48.26
+ ;;^UTILITY(U,$J,358.3,37125,2)
+ ;;=^5012112
+ ;;^UTILITY(U,$J,358.3,37126,0)
+ ;;=M48.27^^140^1787^182
+ ;;^UTILITY(U,$J,358.3,37126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36747,1,3,0)
- ;;=3^Burkitt lymphoma, unspecified site
- ;;^UTILITY(U,$J,358.3,36747,1,4,0)
- ;;=4^C83.70
- ;;^UTILITY(U,$J,358.3,36747,2)
- ;;=^5001591
- ;;^UTILITY(U,$J,358.3,36748,0)
- ;;=C83.79^^169^1859^11
- ;;^UTILITY(U,$J,358.3,36748,1,0)
+ ;;^UTILITY(U,$J,358.3,37126,1,3,0)
+ ;;=3^Kissing spine, lumbosacral region
+ ;;^UTILITY(U,$J,358.3,37126,1,4,0)
+ ;;=4^M48.27
+ ;;^UTILITY(U,$J,358.3,37126,2)
+ ;;=^5012113
+ ;;^UTILITY(U,$J,358.3,37127,0)
+ ;;=M48.10^^140^1787^55
+ ;;^UTILITY(U,$J,358.3,37127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36748,1,3,0)
- ;;=3^Burkitt lymphoma, extranodal and solid organ sites
- ;;^UTILITY(U,$J,358.3,36748,1,4,0)
- ;;=4^C83.79
- ;;^UTILITY(U,$J,358.3,36748,2)
- ;;=^5001600
- ;;^UTILITY(U,$J,358.3,36749,0)
- ;;=C81.00^^169^1859^61
- ;;^UTILITY(U,$J,358.3,36749,1,0)
+ ;;^UTILITY(U,$J,358.3,37127,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], site unspec
+ ;;^UTILITY(U,$J,358.3,37127,1,4,0)
+ ;;=4^M48.10
+ ;;^UTILITY(U,$J,358.3,37127,2)
+ ;;=^5012096
+ ;;^UTILITY(U,$J,358.3,37128,0)
+ ;;=M48.11^^140^1787^53
+ ;;^UTILITY(U,$J,358.3,37128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36749,1,3,0)
- ;;=3^Nodular lymphocyte predominant Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,36749,1,4,0)
- ;;=4^C81.00
- ;;^UTILITY(U,$J,358.3,36749,2)
- ;;=^5001391
- ;;^UTILITY(U,$J,358.3,36750,0)
- ;;=C83.39^^169^1859^22
- ;;^UTILITY(U,$J,358.3,36750,1,0)
+ ;;^UTILITY(U,$J,358.3,37128,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], ocpito-atlanto-ax regn
+ ;;^UTILITY(U,$J,358.3,37128,1,4,0)
+ ;;=4^M48.11
+ ;;^UTILITY(U,$J,358.3,37128,2)
+ ;;=^5012097
+ ;;^UTILITY(U,$J,358.3,37129,0)
+ ;;=M48.12^^140^1787^48
+ ;;^UTILITY(U,$J,358.3,37129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36750,1,3,0)
- ;;=3^Diffuse large B-cell lymphoma, extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36750,1,4,0)
- ;;=4^C83.39
- ;;^UTILITY(U,$J,358.3,36750,2)
- ;;=^5001580
- ;;^UTILITY(U,$J,358.3,36751,0)
- ;;=C81.09^^169^1859^62
- ;;^UTILITY(U,$J,358.3,36751,1,0)
+ ;;^UTILITY(U,$J,358.3,37129,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], crvcl region
+ ;;^UTILITY(U,$J,358.3,37129,1,4,0)
+ ;;=4^M48.12
+ ;;^UTILITY(U,$J,358.3,37129,2)
+ ;;=^5012098
+ ;;^UTILITY(U,$J,358.3,37130,0)
+ ;;=M48.13^^140^1787^49
+ ;;^UTILITY(U,$J,358.3,37130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36751,1,3,0)
- ;;=3^Nodular lymphocyte predominant Hodgkin lymphoma, extrnod & solid org site
- ;;^UTILITY(U,$J,358.3,36751,1,4,0)
- ;;=4^C81.09
- ;;^UTILITY(U,$J,358.3,36751,2)
- ;;=^5001400
- ;;^UTILITY(U,$J,358.3,36752,0)
- ;;=C81.10^^169^1859^63
- ;;^UTILITY(U,$J,358.3,36752,1,0)
+ ;;^UTILITY(U,$J,358.3,37130,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], crvicothor regn
+ ;;^UTILITY(U,$J,358.3,37130,1,4,0)
+ ;;=4^M48.13
+ ;;^UTILITY(U,$J,358.3,37130,2)
+ ;;=^5012099
+ ;;^UTILITY(U,$J,358.3,37131,0)
+ ;;=M48.14^^140^1787^56
+ ;;^UTILITY(U,$J,358.3,37131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36752,1,3,0)
- ;;=3^Nodular sclerosis classical Hodgkin lymphoma, unsp site
- ;;^UTILITY(U,$J,358.3,36752,1,4,0)
- ;;=4^C81.10
- ;;^UTILITY(U,$J,358.3,36752,2)
- ;;=^5001401
- ;;^UTILITY(U,$J,358.3,36753,0)
- ;;=C81.19^^169^1859^64
- ;;^UTILITY(U,$J,358.3,36753,1,0)
+ ;;^UTILITY(U,$J,358.3,37131,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], thor regn
+ ;;^UTILITY(U,$J,358.3,37131,1,4,0)
+ ;;=4^M48.14
+ ;;^UTILITY(U,$J,358.3,37131,2)
+ ;;=^5012100
+ ;;^UTILITY(U,$J,358.3,37132,0)
+ ;;=M48.15^^140^1787^57
+ ;;^UTILITY(U,$J,358.3,37132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36753,1,3,0)
- ;;=3^Nodular sclerosis classical Hodgkin lymphoma,extrnod and solid organ sites
- ;;^UTILITY(U,$J,358.3,36753,1,4,0)
- ;;=4^C81.19
+ ;;^UTILITY(U,$J,358.3,37132,1,3,0)
+ ;;=3^Ankylsng hyperostosis [Forestier], thoralmbr regn
+ ;;^UTILITY(U,$J,358.3,37132,1,4,0)
+ ;;=4^M48.15
+ ;;^UTILITY(U,$J,358.3,37132,2)
+ ;;=^5012101
+ ;;^UTILITY(U,$J,358.3,37133,0)
+ ;;=M48.16^^140^1787^50

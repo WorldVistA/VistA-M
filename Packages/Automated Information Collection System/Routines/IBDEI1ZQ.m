@@ -1,132 +1,136 @@
-IBDEI1ZQ ; ; 19-NOV-2015
+IBDEI1ZQ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33330,2)
- ;;=^5003537
- ;;^UTILITY(U,$J,358.3,33331,0)
- ;;=F33.0^^148^1636^10
- ;;^UTILITY(U,$J,358.3,33331,1,0)
+ ;;^UTILITY(U,$J,358.3,33777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33331,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Mild
- ;;^UTILITY(U,$J,358.3,33331,1,4,0)
- ;;=4^F33.0
- ;;^UTILITY(U,$J,358.3,33331,2)
- ;;=^5003529
- ;;^UTILITY(U,$J,358.3,33332,0)
- ;;=F33.1^^148^1636^11
- ;;^UTILITY(U,$J,358.3,33332,1,0)
+ ;;^UTILITY(U,$J,358.3,33777,1,3,0)
+ ;;=3^Overactive Bladder
+ ;;^UTILITY(U,$J,358.3,33777,1,4,0)
+ ;;=4^N32.81
+ ;;^UTILITY(U,$J,358.3,33777,2)
+ ;;=^5015652
+ ;;^UTILITY(U,$J,358.3,33778,0)
+ ;;=Q61.2^^131^1676^79
+ ;;^UTILITY(U,$J,358.3,33778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33332,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Moderate
- ;;^UTILITY(U,$J,358.3,33332,1,4,0)
- ;;=4^F33.1
- ;;^UTILITY(U,$J,358.3,33332,2)
- ;;=^5003530
- ;;^UTILITY(U,$J,358.3,33333,0)
- ;;=F33.2^^148^1636^12
- ;;^UTILITY(U,$J,358.3,33333,1,0)
+ ;;^UTILITY(U,$J,358.3,33778,1,3,0)
+ ;;=3^Polycystic Kidney,Adult Type
+ ;;^UTILITY(U,$J,358.3,33778,1,4,0)
+ ;;=4^Q61.2
+ ;;^UTILITY(U,$J,358.3,33778,2)
+ ;;=^5018796
+ ;;^UTILITY(U,$J,358.3,33779,0)
+ ;;=N41.1^^131^1676^83
+ ;;^UTILITY(U,$J,358.3,33779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33333,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,Severe
- ;;^UTILITY(U,$J,358.3,33333,1,4,0)
- ;;=4^F33.2
- ;;^UTILITY(U,$J,358.3,33333,2)
- ;;=^5003531
- ;;^UTILITY(U,$J,358.3,33334,0)
- ;;=F33.3^^148^1636^7
- ;;^UTILITY(U,$J,358.3,33334,1,0)
+ ;;^UTILITY(U,$J,358.3,33779,1,3,0)
+ ;;=3^Prostatitis,Chronic
+ ;;^UTILITY(U,$J,358.3,33779,1,4,0)
+ ;;=4^N41.1
+ ;;^UTILITY(U,$J,358.3,33779,2)
+ ;;=^186931
+ ;;^UTILITY(U,$J,358.3,33780,0)
+ ;;=N11.9^^131^1676^91
+ ;;^UTILITY(U,$J,358.3,33780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33334,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent w/ Psychotic Features
- ;;^UTILITY(U,$J,358.3,33334,1,4,0)
- ;;=4^F33.3
- ;;^UTILITY(U,$J,358.3,33334,2)
- ;;=^5003532
- ;;^UTILITY(U,$J,358.3,33335,0)
- ;;=F33.41^^148^1636^8
- ;;^UTILITY(U,$J,358.3,33335,1,0)
+ ;;^UTILITY(U,$J,358.3,33780,1,3,0)
+ ;;=3^Pyelonephritis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,33780,1,4,0)
+ ;;=4^N11.9
+ ;;^UTILITY(U,$J,358.3,33780,2)
+ ;;=^5015574
+ ;;^UTILITY(U,$J,358.3,33781,0)
+ ;;=N20.9^^131^1676^102
+ ;;^UTILITY(U,$J,358.3,33781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33335,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Partial Remission
- ;;^UTILITY(U,$J,358.3,33335,1,4,0)
- ;;=4^F33.41
- ;;^UTILITY(U,$J,358.3,33335,2)
- ;;=^5003534
- ;;^UTILITY(U,$J,358.3,33336,0)
- ;;=F33.42^^148^1636^9
- ;;^UTILITY(U,$J,358.3,33336,1,0)
+ ;;^UTILITY(U,$J,358.3,33781,1,3,0)
+ ;;=3^Urinary Calculus,Unspec
+ ;;^UTILITY(U,$J,358.3,33781,1,4,0)
+ ;;=4^N20.9
+ ;;^UTILITY(U,$J,358.3,33781,2)
+ ;;=^5015610
+ ;;^UTILITY(U,$J,358.3,33782,0)
+ ;;=R51.^^131^1677^2
+ ;;^UTILITY(U,$J,358.3,33782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33336,1,3,0)
- ;;=3^Major Depressive Disorder,Recurrent,In Full Remission
- ;;^UTILITY(U,$J,358.3,33336,1,4,0)
- ;;=4^F33.42
- ;;^UTILITY(U,$J,358.3,33336,2)
- ;;=^5003535
- ;;^UTILITY(U,$J,358.3,33337,0)
- ;;=F34.8^^148^1636^6
- ;;^UTILITY(U,$J,358.3,33337,1,0)
+ ;;^UTILITY(U,$J,358.3,33782,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,33782,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,33782,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,33783,0)
+ ;;=G44.1^^131^1677^9
+ ;;^UTILITY(U,$J,358.3,33783,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33337,1,3,0)
- ;;=3^Disruptive Mood Dysregulation Disorder
- ;;^UTILITY(U,$J,358.3,33337,1,4,0)
- ;;=4^F34.8
- ;;^UTILITY(U,$J,358.3,33337,2)
- ;;=^5003539
- ;;^UTILITY(U,$J,358.3,33338,0)
- ;;=F32.8^^148^1636^1
- ;;^UTILITY(U,$J,358.3,33338,1,0)
+ ;;^UTILITY(U,$J,358.3,33783,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,33783,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,33783,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,33784,0)
+ ;;=G43.909^^131^1677^5
+ ;;^UTILITY(U,$J,358.3,33784,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33338,1,3,0)
- ;;=3^Depressive Disorder NEC
- ;;^UTILITY(U,$J,358.3,33338,1,4,0)
- ;;=4^F32.8
- ;;^UTILITY(U,$J,358.3,33338,2)
- ;;=^5003527
- ;;^UTILITY(U,$J,358.3,33339,0)
- ;;=F34.1^^148^1636^22
- ;;^UTILITY(U,$J,358.3,33339,1,0)
+ ;;^UTILITY(U,$J,358.3,33784,1,3,0)
+ ;;=3^Migraine,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,33784,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,33784,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,33785,0)
+ ;;=G44.009^^131^1677^1
+ ;;^UTILITY(U,$J,358.3,33785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33339,1,3,0)
- ;;=3^Persistent Depressive Disorder (Dysthymic)
- ;;^UTILITY(U,$J,358.3,33339,1,4,0)
- ;;=4^F34.1
- ;;^UTILITY(U,$J,358.3,33339,2)
- ;;=^331913
- ;;^UTILITY(U,$J,358.3,33340,0)
- ;;=F32.9^^148^1636^5
- ;;^UTILITY(U,$J,358.3,33340,1,0)
+ ;;^UTILITY(U,$J,358.3,33785,1,3,0)
+ ;;=3^Cluster Headache,Unspec,Not Intractable
+ ;;^UTILITY(U,$J,358.3,33785,1,4,0)
+ ;;=4^G44.009
+ ;;^UTILITY(U,$J,358.3,33785,2)
+ ;;=^5003921
+ ;;^UTILITY(U,$J,358.3,33786,0)
+ ;;=G44.40^^131^1677^4
+ ;;^UTILITY(U,$J,358.3,33786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33340,1,3,0)
- ;;=3^Depressive Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,33340,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,33340,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,33341,0)
- ;;=N94.3^^148^1636^23
- ;;^UTILITY(U,$J,358.3,33341,1,0)
+ ;;^UTILITY(U,$J,358.3,33786,1,3,0)
+ ;;=3^Medication Overuse Headache,Not Intractable
+ ;;^UTILITY(U,$J,358.3,33786,1,4,0)
+ ;;=4^G44.40
+ ;;^UTILITY(U,$J,358.3,33786,2)
+ ;;=^5003947
+ ;;^UTILITY(U,$J,358.3,33787,0)
+ ;;=G44.89^^131^1677^3
+ ;;^UTILITY(U,$J,358.3,33787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33341,1,3,0)
- ;;=3^Premenstrual Dysphoric Disorder
- ;;^UTILITY(U,$J,358.3,33341,1,4,0)
- ;;=4^N94.3
- ;;^UTILITY(U,$J,358.3,33341,2)
- ;;=^5015919
- ;;^UTILITY(U,$J,358.3,33342,0)
- ;;=G31.84^^148^1636^21
- ;;^UTILITY(U,$J,358.3,33342,1,0)
+ ;;^UTILITY(U,$J,358.3,33787,1,3,0)
+ ;;=3^Headache Syndrome NEC
+ ;;^UTILITY(U,$J,358.3,33787,1,4,0)
+ ;;=4^G44.89
+ ;;^UTILITY(U,$J,358.3,33787,2)
+ ;;=^5003954
+ ;;^UTILITY(U,$J,358.3,33788,0)
+ ;;=G44.84^^131^1677^7
+ ;;^UTILITY(U,$J,358.3,33788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33342,1,3,0)
- ;;=3^Mild Cognitive Impairment,So Stated
- ;;^UTILITY(U,$J,358.3,33342,1,4,0)
- ;;=4^G31.84
- ;;^UTILITY(U,$J,358.3,33342,2)
- ;;=^5003813
- ;;^UTILITY(U,$J,358.3,33343,0)
- ;;=F44.81^^148^1637^5
- ;;^UTILITY(U,$J,358.3,33343,1,0)
+ ;;^UTILITY(U,$J,358.3,33788,1,3,0)
+ ;;=3^Primary Exertional Headache
+ ;;^UTILITY(U,$J,358.3,33788,1,4,0)
+ ;;=4^G44.84
+ ;;^UTILITY(U,$J,358.3,33788,2)
+ ;;=^336563
+ ;;^UTILITY(U,$J,358.3,33789,0)
+ ;;=G44.301^^131^1677^6
+ ;;^UTILITY(U,$J,358.3,33789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33343,1,3,0)
- ;;=3^Dissociative Identity Disorder
+ ;;^UTILITY(U,$J,358.3,33789,1,3,0)
+ ;;=3^Post-Traumatic Headache,Unspec,Intractable
+ ;;^UTILITY(U,$J,358.3,33789,1,4,0)
+ ;;=4^G44.301
+ ;;^UTILITY(U,$J,358.3,33789,2)
+ ;;=^5003941
+ ;;^UTILITY(U,$J,358.3,33790,0)
+ ;;=G44.209^^131^1677^8
+ ;;^UTILITY(U,$J,358.3,33790,1,0)
+ ;;=^358.31IA^4^2

@@ -1,128 +1,134 @@
-IBDEI0YK ; ; 19-NOV-2015
+IBDEI0YK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15918,1,4,0)
- ;;=4^S01.85XA
- ;;^UTILITY(U,$J,358.3,15918,2)
- ;;=^5020237
- ;;^UTILITY(U,$J,358.3,15919,0)
- ;;=S11.85XA^^85^829^32
- ;;^UTILITY(U,$J,358.3,15919,1,0)
+ ;;^UTILITY(U,$J,358.3,16228,0)
+ ;;=Z85.3^^61^728^6
+ ;;^UTILITY(U,$J,358.3,16228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15919,1,3,0)
- ;;=3^Open Bite of Neck,Oth Part,Init Encntr
- ;;^UTILITY(U,$J,358.3,15919,1,4,0)
- ;;=4^S11.85XA
- ;;^UTILITY(U,$J,358.3,15919,2)
- ;;=^5021521
- ;;^UTILITY(U,$J,358.3,15920,0)
- ;;=S91.051A^^85^829^37
- ;;^UTILITY(U,$J,358.3,15920,1,0)
+ ;;^UTILITY(U,$J,358.3,16228,1,3,0)
+ ;;=3^Personal Hx Malig Neop Breast
+ ;;^UTILITY(U,$J,358.3,16228,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,16228,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,16229,0)
+ ;;=Z85.840^^61^728^12
+ ;;^UTILITY(U,$J,358.3,16229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15920,1,3,0)
- ;;=3^Open Bite of Right Ankle,Init Encntr
- ;;^UTILITY(U,$J,358.3,15920,1,4,0)
- ;;=4^S91.051A
- ;;^UTILITY(U,$J,358.3,15920,2)
- ;;=^5044159
- ;;^UTILITY(U,$J,358.3,15921,0)
- ;;=S31.815A^^85^829^38
- ;;^UTILITY(U,$J,358.3,15921,1,0)
+ ;;^UTILITY(U,$J,358.3,16229,1,3,0)
+ ;;=3^Personal Hx Malig Neop Eye
+ ;;^UTILITY(U,$J,358.3,16229,1,4,0)
+ ;;=4^Z85.840
+ ;;^UTILITY(U,$J,358.3,16229,2)
+ ;;=^5063446
+ ;;^UTILITY(U,$J,358.3,16230,0)
+ ;;=Z85.028^^61^728^28
+ ;;^UTILITY(U,$J,358.3,16230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15921,1,3,0)
- ;;=3^Open Bite of Right Buttock,Init Encntr
- ;;^UTILITY(U,$J,358.3,15921,1,4,0)
- ;;=4^S31.815A
- ;;^UTILITY(U,$J,358.3,15921,2)
- ;;=^5024305
- ;;^UTILITY(U,$J,358.3,15922,0)
- ;;=S01.451A^^85^829^39
- ;;^UTILITY(U,$J,358.3,15922,1,0)
+ ;;^UTILITY(U,$J,358.3,16230,1,3,0)
+ ;;=3^Personal Hx Malig Neop Stomach
+ ;;^UTILITY(U,$J,358.3,16230,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,16230,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,16231,0)
+ ;;=Z85.09^^61^728^9
+ ;;^UTILITY(U,$J,358.3,16231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15922,1,3,0)
- ;;=3^Open Bite of Right Cheek/Temporomandibular Area,Init Encntr
- ;;^UTILITY(U,$J,358.3,15922,1,4,0)
- ;;=4^S01.451A
- ;;^UTILITY(U,$J,358.3,15922,2)
- ;;=^5020177
- ;;^UTILITY(U,$J,358.3,15923,0)
- ;;=S01.351A^^85^829^40
- ;;^UTILITY(U,$J,358.3,15923,1,0)
+ ;;^UTILITY(U,$J,358.3,16231,1,3,0)
+ ;;=3^Personal Hx Malig Neop Digestive Organs
+ ;;^UTILITY(U,$J,358.3,16231,1,4,0)
+ ;;=4^Z85.09
+ ;;^UTILITY(U,$J,358.3,16231,2)
+ ;;=^5063406
+ ;;^UTILITY(U,$J,358.3,16232,0)
+ ;;=Z85.528^^61^728^14
+ ;;^UTILITY(U,$J,358.3,16232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15923,1,3,0)
- ;;=3^Open Bite of Right Ear,Init Encntr
- ;;^UTILITY(U,$J,358.3,15923,1,4,0)
- ;;=4^S01.351A
- ;;^UTILITY(U,$J,358.3,15923,2)
- ;;=^5020138
- ;;^UTILITY(U,$J,358.3,15924,0)
- ;;=S51.051A^^85^829^41
- ;;^UTILITY(U,$J,358.3,15924,1,0)
+ ;;^UTILITY(U,$J,358.3,16232,1,3,0)
+ ;;=3^Personal Hx Malig Neop Kidney
+ ;;^UTILITY(U,$J,358.3,16232,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,16232,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,16233,0)
+ ;;=Z85.05^^61^728^17
+ ;;^UTILITY(U,$J,358.3,16233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15924,1,3,0)
- ;;=3^Open Bite of Right Elbow,Init Encntr
- ;;^UTILITY(U,$J,358.3,15924,1,4,0)
- ;;=4^S51.051A
- ;;^UTILITY(U,$J,358.3,15924,2)
- ;;=^5028650
- ;;^UTILITY(U,$J,358.3,15925,0)
- ;;=S91.351A^^85^829^42
- ;;^UTILITY(U,$J,358.3,15925,1,0)
+ ;;^UTILITY(U,$J,358.3,16233,1,3,0)
+ ;;=3^Personal Hx Malig Neop Liver
+ ;;^UTILITY(U,$J,358.3,16233,1,4,0)
+ ;;=4^Z85.05
+ ;;^UTILITY(U,$J,358.3,16233,2)
+ ;;=^5063402
+ ;;^UTILITY(U,$J,358.3,16234,0)
+ ;;=Z85.43^^61^728^21
+ ;;^UTILITY(U,$J,358.3,16234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15925,1,3,0)
- ;;=3^Open Bite of Right Foot,Init Encntr
- ;;^UTILITY(U,$J,358.3,15925,1,4,0)
- ;;=4^S91.351A
- ;;^UTILITY(U,$J,358.3,15925,2)
- ;;=^5044344
- ;;^UTILITY(U,$J,358.3,15926,0)
- ;;=S91.251A^^85^829^43
- ;;^UTILITY(U,$J,358.3,15926,1,0)
+ ;;^UTILITY(U,$J,358.3,16234,1,3,0)
+ ;;=3^Personal Hx Malig Neop Ovary
+ ;;^UTILITY(U,$J,358.3,16234,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,16234,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,16235,0)
+ ;;=Z85.850^^61^728^30
+ ;;^UTILITY(U,$J,358.3,16235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15926,1,3,0)
- ;;=3^Open Bite of Right Great Toe w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15926,1,4,0)
- ;;=4^S91.251A
- ;;^UTILITY(U,$J,358.3,15926,2)
- ;;=^5044305
- ;;^UTILITY(U,$J,358.3,15927,0)
- ;;=S61.451A^^85^829^44
- ;;^UTILITY(U,$J,358.3,15927,1,0)
+ ;;^UTILITY(U,$J,358.3,16235,1,3,0)
+ ;;=3^Personal Hx Malig Neop Thyroid
+ ;;^UTILITY(U,$J,358.3,16235,1,4,0)
+ ;;=4^Z85.850
+ ;;^UTILITY(U,$J,358.3,16235,2)
+ ;;=^5063449
+ ;;^UTILITY(U,$J,358.3,16236,0)
+ ;;=Z85.810^^61^728^31
+ ;;^UTILITY(U,$J,358.3,16236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15927,1,3,0)
- ;;=3^Open Bite of Right Hand,Init Encntr
- ;;^UTILITY(U,$J,358.3,15927,1,4,0)
- ;;=4^S61.451A
- ;;^UTILITY(U,$J,358.3,15927,2)
- ;;=^5033011
- ;;^UTILITY(U,$J,358.3,15928,0)
- ;;=S71.051A^^85^829^45
- ;;^UTILITY(U,$J,358.3,15928,1,0)
+ ;;^UTILITY(U,$J,358.3,16236,1,3,0)
+ ;;=3^Personal Hx Malig Neop Tongue
+ ;;^UTILITY(U,$J,358.3,16236,1,4,0)
+ ;;=4^Z85.810
+ ;;^UTILITY(U,$J,358.3,16236,2)
+ ;;=^5063438
+ ;;^UTILITY(U,$J,358.3,16237,0)
+ ;;=Z85.118^^61^728^7
+ ;;^UTILITY(U,$J,358.3,16237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15928,1,3,0)
- ;;=3^Open Bite of Right Hip,Init Encntr
- ;;^UTILITY(U,$J,358.3,15928,1,4,0)
- ;;=4^S71.051A
- ;;^UTILITY(U,$J,358.3,15928,2)
- ;;=^5036999
- ;;^UTILITY(U,$J,358.3,15929,0)
- ;;=S61.350A^^85^829^46
- ;;^UTILITY(U,$J,358.3,15929,1,0)
+ ;;^UTILITY(U,$J,358.3,16237,1,3,0)
+ ;;=3^Personal Hx Malig Neop Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,16237,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,16237,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,16238,0)
+ ;;=Z85.41^^61^728^8
+ ;;^UTILITY(U,$J,358.3,16238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15929,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/ Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15929,1,4,0)
- ;;=4^S61.350A
- ;;^UTILITY(U,$J,358.3,15929,2)
- ;;=^5032966
- ;;^UTILITY(U,$J,358.3,15930,0)
- ;;=S61.250A^^85^829^47
- ;;^UTILITY(U,$J,358.3,15930,1,0)
+ ;;^UTILITY(U,$J,358.3,16238,1,3,0)
+ ;;=3^Personal Hx Malig Neop Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,16238,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,16238,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,16239,0)
+ ;;=Z85.858^^61^728^10
+ ;;^UTILITY(U,$J,358.3,16239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15930,1,3,0)
- ;;=3^Open Bite of Right Index Finger w/o Nail Damage,Init Encntr
- ;;^UTILITY(U,$J,358.3,15930,1,4,0)
- ;;=4^S61.250A
- ;;^UTILITY(U,$J,358.3,15930,2)
- ;;=^5032861
+ ;;^UTILITY(U,$J,358.3,16239,1,3,0)
+ ;;=3^Personal Hx Malig Neop Endocrine Glands
+ ;;^UTILITY(U,$J,358.3,16239,1,4,0)
+ ;;=4^Z85.858
+ ;;^UTILITY(U,$J,358.3,16239,2)
+ ;;=^5063450
+ ;;^UTILITY(U,$J,358.3,16240,0)
+ ;;=Z85.01^^61^728^11
+ ;;^UTILITY(U,$J,358.3,16240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16240,1,3,0)
+ ;;=3^Personal Hx Malig Neop Esophagus
+ ;;^UTILITY(U,$J,358.3,16240,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,16240,2)
+ ;;=^5063395

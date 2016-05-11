@@ -1,130 +1,134 @@
-IBDEI204 ; ; 19-NOV-2015
+IBDEI204 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33512,1,4,0)
- ;;=4^F15.14
- ;;^UTILITY(U,$J,358.3,33512,2)
- ;;=^5003287
- ;;^UTILITY(U,$J,358.3,33513,0)
- ;;=F15.182^^148^1658^3
- ;;^UTILITY(U,$J,358.3,33513,1,0)
+ ;;^UTILITY(U,$J,358.3,33957,1,4,0)
+ ;;=4^D61.82
+ ;;^UTILITY(U,$J,358.3,33957,2)
+ ;;=^334037
+ ;;^UTILITY(U,$J,358.3,33958,0)
+ ;;=D47.9^^131^1680^172
+ ;;^UTILITY(U,$J,358.3,33958,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33513,1,3,0)
- ;;=3^Amphetamine-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33513,1,4,0)
- ;;=4^F15.182
- ;;^UTILITY(U,$J,358.3,33513,2)
- ;;=^5003293
- ;;^UTILITY(U,$J,358.3,33514,0)
- ;;=F15.20^^148^1658^5
- ;;^UTILITY(U,$J,358.3,33514,1,0)
+ ;;^UTILITY(U,$J,358.3,33958,1,3,0)
+ ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
+ ;;^UTILITY(U,$J,358.3,33958,1,4,0)
+ ;;=4^D47.9
+ ;;^UTILITY(U,$J,358.3,33958,2)
+ ;;=^5002260
+ ;;^UTILITY(U,$J,358.3,33959,0)
+ ;;=D53.9^^131^1680^176
+ ;;^UTILITY(U,$J,358.3,33959,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33514,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33514,1,4,0)
- ;;=4^F15.20
- ;;^UTILITY(U,$J,358.3,33514,2)
- ;;=^5003295
- ;;^UTILITY(U,$J,358.3,33515,0)
- ;;=F15.21^^148^1658^6
- ;;^UTILITY(U,$J,358.3,33515,1,0)
+ ;;^UTILITY(U,$J,358.3,33959,1,3,0)
+ ;;=3^Nutritional Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,33959,1,4,0)
+ ;;=4^D53.9
+ ;;^UTILITY(U,$J,358.3,33959,2)
+ ;;=^5002298
+ ;;^UTILITY(U,$J,358.3,33960,0)
+ ;;=D47.4^^131^1680^177
+ ;;^UTILITY(U,$J,358.3,33960,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33515,1,3,0)
- ;;=3^Amphetamine-Type Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,33515,1,4,0)
- ;;=4^F15.21
- ;;^UTILITY(U,$J,358.3,33515,2)
- ;;=^5003296
- ;;^UTILITY(U,$J,358.3,33516,0)
- ;;=F15.23^^148^1658^1
- ;;^UTILITY(U,$J,358.3,33516,1,0)
+ ;;^UTILITY(U,$J,358.3,33960,1,3,0)
+ ;;=3^Osteomyelofibrosis
+ ;;^UTILITY(U,$J,358.3,33960,1,4,0)
+ ;;=4^D47.4
+ ;;^UTILITY(U,$J,358.3,33960,2)
+ ;;=^5002259
+ ;;^UTILITY(U,$J,358.3,33961,0)
+ ;;=D59.1^^131^1680^28
+ ;;^UTILITY(U,$J,358.3,33961,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33516,1,3,0)
- ;;=3^Amphetamine or Other Stimulant Withdrawal
- ;;^UTILITY(U,$J,358.3,33516,1,4,0)
- ;;=4^F15.23
- ;;^UTILITY(U,$J,358.3,33516,2)
- ;;=^5003301
- ;;^UTILITY(U,$J,358.3,33517,0)
- ;;=F12.10^^148^1659^1
- ;;^UTILITY(U,$J,358.3,33517,1,0)
+ ;;^UTILITY(U,$J,358.3,33961,1,3,0)
+ ;;=3^Autoimmune Hemolytic Anemia,Other
+ ;;^UTILITY(U,$J,358.3,33961,1,4,0)
+ ;;=4^D59.1
+ ;;^UTILITY(U,$J,358.3,33961,2)
+ ;;=^5002324
+ ;;^UTILITY(U,$J,358.3,33962,0)
+ ;;=D51.3^^131^1680^191
+ ;;^UTILITY(U,$J,358.3,33962,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33517,1,3,0)
- ;;=3^Cannabis Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33517,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,33517,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,33518,0)
- ;;=F12.180^^148^1659^2
- ;;^UTILITY(U,$J,358.3,33518,1,0)
+ ;;^UTILITY(U,$J,358.3,33962,1,3,0)
+ ;;=3^Vitamin B12 Deficiency Anemia,Other
+ ;;^UTILITY(U,$J,358.3,33962,1,4,0)
+ ;;=4^D51.3
+ ;;^UTILITY(U,$J,358.3,33962,2)
+ ;;=^5002287
+ ;;^UTILITY(U,$J,358.3,33963,0)
+ ;;=D77.^^131^1680^57
+ ;;^UTILITY(U,$J,358.3,33963,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33518,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Mild Use Disorders
- ;;^UTILITY(U,$J,358.3,33518,1,4,0)
- ;;=4^F12.180
- ;;^UTILITY(U,$J,358.3,33518,2)
- ;;=^5003163
- ;;^UTILITY(U,$J,358.3,33519,0)
- ;;=F12.188^^148^1659^3
- ;;^UTILITY(U,$J,358.3,33519,1,0)
+ ;;^UTILITY(U,$J,358.3,33963,1,3,0)
+ ;;=3^Disorder of Blood/Blood-Forming Organs in Diseases Classified Elsewhere,Other
+ ;;^UTILITY(U,$J,358.3,33963,1,4,0)
+ ;;=4^D77.
+ ;;^UTILITY(U,$J,358.3,33963,2)
+ ;;=^5002396
+ ;;^UTILITY(U,$J,358.3,33964,0)
+ ;;=D58.2^^131^1680^83
+ ;;^UTILITY(U,$J,358.3,33964,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33519,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33519,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,33519,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,33520,0)
- ;;=F12.20^^148^1659^4
- ;;^UTILITY(U,$J,358.3,33520,1,0)
+ ;;^UTILITY(U,$J,358.3,33964,1,3,0)
+ ;;=3^Hemoglobinopathies,Other
+ ;;^UTILITY(U,$J,358.3,33964,1,4,0)
+ ;;=4^D58.2
+ ;;^UTILITY(U,$J,358.3,33964,2)
+ ;;=^87629
+ ;;^UTILITY(U,$J,358.3,33965,0)
+ ;;=C88.8^^131^1680^103
+ ;;^UTILITY(U,$J,358.3,33965,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33520,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33520,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,33520,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,33521,0)
- ;;=F12.21^^148^1659^5
- ;;^UTILITY(U,$J,358.3,33521,1,0)
+ ;;^UTILITY(U,$J,358.3,33965,1,3,0)
+ ;;=3^Malig Immunoproliferative Diseases,Other
+ ;;^UTILITY(U,$J,358.3,33965,1,4,0)
+ ;;=4^C88.8
+ ;;^UTILITY(U,$J,358.3,33965,2)
+ ;;=^5001750
+ ;;^UTILITY(U,$J,358.3,33966,0)
+ ;;=D70.8^^131^1680^174
+ ;;^UTILITY(U,$J,358.3,33966,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33521,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,33521,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,33521,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,33522,0)
- ;;=F12.288^^148^1659^6
- ;;^UTILITY(U,$J,358.3,33522,1,0)
+ ;;^UTILITY(U,$J,358.3,33966,1,3,0)
+ ;;=3^Neutropenia,Other
+ ;;^UTILITY(U,$J,358.3,33966,1,4,0)
+ ;;=4^D70.8
+ ;;^UTILITY(U,$J,358.3,33966,2)
+ ;;=^334042
+ ;;^UTILITY(U,$J,358.3,33967,0)
+ ;;=D59.4^^131^1680^175
+ ;;^UTILITY(U,$J,358.3,33967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33522,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,33522,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,33522,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,33523,0)
- ;;=F12.280^^148^1659^7
- ;;^UTILITY(U,$J,358.3,33523,1,0)
+ ;;^UTILITY(U,$J,358.3,33967,1,3,0)
+ ;;=3^Nonautoimmune Hemolytic Anemias,Other
+ ;;^UTILITY(U,$J,358.3,33967,1,4,0)
+ ;;=4^D59.4
+ ;;^UTILITY(U,$J,358.3,33967,2)
+ ;;=^5002326
+ ;;^UTILITY(U,$J,358.3,33968,0)
+ ;;=D69.59^^131^1680^181
+ ;;^UTILITY(U,$J,358.3,33968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33523,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,33523,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,33523,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,33524,0)
- ;;=F16.10^^148^1660^1
- ;;^UTILITY(U,$J,358.3,33524,1,0)
+ ;;^UTILITY(U,$J,358.3,33968,1,3,0)
+ ;;=3^Secondary Thrombocytopenia,Other
+ ;;^UTILITY(U,$J,358.3,33968,1,4,0)
+ ;;=4^D69.59
+ ;;^UTILITY(U,$J,358.3,33968,2)
+ ;;=^5002369
+ ;;^UTILITY(U,$J,358.3,33969,0)
+ ;;=C22.7^^131^1680^46
+ ;;^UTILITY(U,$J,358.3,33969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33524,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33524,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,33524,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,33525,0)
- ;;=F16.20^^148^1660^2
+ ;;^UTILITY(U,$J,358.3,33969,1,3,0)
+ ;;=3^Carcinomas of Liver,Other Spec
+ ;;^UTILITY(U,$J,358.3,33969,1,4,0)
+ ;;=4^C22.7
+ ;;^UTILITY(U,$J,358.3,33969,2)
+ ;;=^5000938
+ ;;^UTILITY(U,$J,358.3,33970,0)
+ ;;=D75.89^^131^1680^56
+ ;;^UTILITY(U,$J,358.3,33970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33970,1,3,0)
+ ;;=3^Diseases of Blood/Blood-Forming Organs,Other Spec

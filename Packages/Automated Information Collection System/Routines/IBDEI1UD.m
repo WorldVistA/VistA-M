@@ -1,130 +1,126 @@
-IBDEI1UD ; ; 19-NOV-2015
+IBDEI1UD ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,30837,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,30837,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,30838,0)
- ;;=R90.89^^135^1384^13
- ;;^UTILITY(U,$J,358.3,30838,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30838,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,30838,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,30838,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,30839,0)
- ;;=R91.8^^135^1384^18
- ;;^UTILITY(U,$J,358.3,30839,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30839,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,30839,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,30839,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,30840,0)
- ;;=R92.0^^135^1384^117
- ;;^UTILITY(U,$J,358.3,30840,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30840,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,30840,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,30840,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,30841,0)
- ;;=R92.1^^135^1384^116
- ;;^UTILITY(U,$J,358.3,30841,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30841,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,30841,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,30841,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,30842,0)
- ;;=R92.2^^135^1384^91
- ;;^UTILITY(U,$J,358.3,30842,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30842,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,30842,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,30842,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,30843,0)
- ;;=R93.0^^135^1384^10
- ;;^UTILITY(U,$J,358.3,30843,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30843,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,30843,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,30843,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,30844,0)
- ;;=R93.2^^135^1384^9
- ;;^UTILITY(U,$J,358.3,30844,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30844,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
- ;;^UTILITY(U,$J,358.3,30844,1,4,0)
- ;;=4^R93.2
- ;;^UTILITY(U,$J,358.3,30844,2)
- ;;=^5019715
- ;;^UTILITY(U,$J,358.3,30845,0)
- ;;=R93.3^^135^1384^7
- ;;^UTILITY(U,$J,358.3,30845,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30845,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
- ;;^UTILITY(U,$J,358.3,30845,1,4,0)
- ;;=4^R93.3
- ;;^UTILITY(U,$J,358.3,30845,2)
- ;;=^5019716
- ;;^UTILITY(U,$J,358.3,30846,0)
- ;;=R93.4^^135^1384^11
- ;;^UTILITY(U,$J,358.3,30846,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30846,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Urinary Organs
- ;;^UTILITY(U,$J,358.3,30846,1,4,0)
- ;;=4^R93.4
- ;;^UTILITY(U,$J,358.3,30846,2)
- ;;=^5019717
- ;;^UTILITY(U,$J,358.3,30847,0)
- ;;=R93.5^^135^1384^6
- ;;^UTILITY(U,$J,358.3,30847,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30847,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
- ;;^UTILITY(U,$J,358.3,30847,1,4,0)
- ;;=4^R93.5
- ;;^UTILITY(U,$J,358.3,30847,2)
- ;;=^5019718
- ;;^UTILITY(U,$J,358.3,30848,0)
- ;;=R93.6^^135^1384^8
- ;;^UTILITY(U,$J,358.3,30848,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30848,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Limbs
- ;;^UTILITY(U,$J,358.3,30848,1,4,0)
- ;;=4^R93.6
- ;;^UTILITY(U,$J,358.3,30848,2)
- ;;=^5019719
- ;;^UTILITY(U,$J,358.3,30849,0)
- ;;=R94.4^^135^1384^16
- ;;^UTILITY(U,$J,358.3,30849,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,30849,1,3,0)
- ;;=3^Abnormal Kidney Function Studies
- ;;^UTILITY(U,$J,358.3,30849,1,4,0)
- ;;=4^R94.4
- ;;^UTILITY(U,$J,358.3,30849,2)
- ;;=^5019741
- ;;^UTILITY(U,$J,358.3,30850,0)
- ;;=R94.5^^135^1384^17
+ ;;^UTILITY(U,$J,358.3,31271,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,31272,0)
+ ;;=99024^^124^1576^1
+ ;;^UTILITY(U,$J,358.3,31272,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31272,1,1,0)
+ ;;=1^Post Op F/u in Global Per
+ ;;^UTILITY(U,$J,358.3,31272,1,2,0)
+ ;;=2^99024
+ ;;^UTILITY(U,$J,358.3,31273,0)
+ ;;=99241^^124^1577^1
+ ;;^UTILITY(U,$J,358.3,31273,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31273,1,1,0)
+ ;;=1^Problems Focus
+ ;;^UTILITY(U,$J,358.3,31273,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,31274,0)
+ ;;=99242^^124^1577^2
+ ;;^UTILITY(U,$J,358.3,31274,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31274,1,1,0)
+ ;;=1^Expand Prob Focus
+ ;;^UTILITY(U,$J,358.3,31274,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,31275,0)
+ ;;=99243^^124^1577^3
+ ;;^UTILITY(U,$J,358.3,31275,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31275,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,31275,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,31276,0)
+ ;;=99244^^124^1577^4
+ ;;^UTILITY(U,$J,358.3,31276,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31276,1,1,0)
+ ;;=1^Comprehensive,Mod Complex
+ ;;^UTILITY(U,$J,358.3,31276,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,31277,0)
+ ;;=99245^^124^1577^5
+ ;;^UTILITY(U,$J,358.3,31277,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,31277,1,1,0)
+ ;;=1^Comprehensive,High Complex
+ ;;^UTILITY(U,$J,358.3,31277,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,31278,0)
+ ;;=10060^^125^1578^1
+ ;;^UTILITY(U,$J,358.3,31278,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31278,1,2,0)
+ ;;=2^Incision and Drainage of abscess, simple or single
+ ;;^UTILITY(U,$J,358.3,31278,1,3,0)
+ ;;=3^10060
+ ;;^UTILITY(U,$J,358.3,31279,0)
+ ;;=10061^^125^1578^2
+ ;;^UTILITY(U,$J,358.3,31279,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31279,1,2,0)
+ ;;=2^Incision and Drainage of abscess; complicated or multiple
+ ;;^UTILITY(U,$J,358.3,31279,1,3,0)
+ ;;=3^10061
+ ;;^UTILITY(U,$J,358.3,31280,0)
+ ;;=10120^^125^1578^3
+ ;;^UTILITY(U,$J,358.3,31280,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31280,1,2,0)
+ ;;=2^Incision & Removal FB,Subq Tissue;Simple
+ ;;^UTILITY(U,$J,358.3,31280,1,3,0)
+ ;;=3^10120
+ ;;^UTILITY(U,$J,358.3,31281,0)
+ ;;=10121^^125^1578^4
+ ;;^UTILITY(U,$J,358.3,31281,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31281,1,2,0)
+ ;;=2^Incision & Removal FB,Subq Tissue;Complicated
+ ;;^UTILITY(U,$J,358.3,31281,1,3,0)
+ ;;=3^10121
+ ;;^UTILITY(U,$J,358.3,31282,0)
+ ;;=10140^^125^1578^5
+ ;;^UTILITY(U,$J,358.3,31282,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31282,1,2,0)
+ ;;=2^Incision and Drainage of hematoma, seroma or fluid collection
+ ;;^UTILITY(U,$J,358.3,31282,1,3,0)
+ ;;=3^10140
+ ;;^UTILITY(U,$J,358.3,31283,0)
+ ;;=10160^^125^1578^6
+ ;;^UTILITY(U,$J,358.3,31283,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31283,1,2,0)
+ ;;=2^Puncture aspiration of abscess, hemtoma, bulla, or cyst
+ ;;^UTILITY(U,$J,358.3,31283,1,3,0)
+ ;;=3^10160
+ ;;^UTILITY(U,$J,358.3,31284,0)
+ ;;=10180^^125^1578^7
+ ;;^UTILITY(U,$J,358.3,31284,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31284,1,2,0)
+ ;;=2^Incision and Drainage, complex, postoperative wound infection
+ ;;^UTILITY(U,$J,358.3,31284,1,3,0)
+ ;;=3^10180
+ ;;^UTILITY(U,$J,358.3,31285,0)
+ ;;=11000^^125^1579^4
+ ;;^UTILITY(U,$J,358.3,31285,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31285,1,2,0)
+ ;;=2^Debr of extensive eczematous 10%
+ ;;^UTILITY(U,$J,358.3,31285,1,3,0)
+ ;;=3^11000
+ ;;^UTILITY(U,$J,358.3,31286,0)
+ ;;=11010^^125^1579^2
+ ;;^UTILITY(U,$J,358.3,31286,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,31286,1,2,0)
+ ;;=2^Debr Rmvl Foreign Material;Skin,Subq Tissue
+ ;;^UTILITY(U,$J,358.3,31286,1,3,0)
+ ;;=3^11010

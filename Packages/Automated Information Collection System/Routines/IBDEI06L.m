@@ -1,128 +1,140 @@
-IBDEI06L ; ; 19-NOV-2015
+IBDEI06L ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2484,1,0)
+ ;;^UTILITY(U,$J,358.3,2758,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2484,1,3,0)
- ;;=3^Rheumatic Aortic Stenosis
- ;;^UTILITY(U,$J,358.3,2484,1,4,0)
- ;;=4^I06.0
- ;;^UTILITY(U,$J,358.3,2484,2)
- ;;=^269573
- ;;^UTILITY(U,$J,358.3,2485,0)
- ;;=I06.1^^19^204^1
- ;;^UTILITY(U,$J,358.3,2485,1,0)
+ ;;^UTILITY(U,$J,358.3,2758,1,3,0)
+ ;;=3^Breast Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2758,1,4,0)
+ ;;=4^N64.9
+ ;;^UTILITY(U,$J,358.3,2758,2)
+ ;;=^5015799
+ ;;^UTILITY(U,$J,358.3,2759,0)
+ ;;=N65.1^^18^208^15
+ ;;^UTILITY(U,$J,358.3,2759,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2485,1,3,0)
- ;;=3^Rheumatic Aortic Insufficiency
- ;;^UTILITY(U,$J,358.3,2485,1,4,0)
- ;;=4^I06.1
- ;;^UTILITY(U,$J,358.3,2485,2)
- ;;=^269575
- ;;^UTILITY(U,$J,358.3,2486,0)
- ;;=I06.2^^19^204^3
- ;;^UTILITY(U,$J,358.3,2486,1,0)
+ ;;^UTILITY(U,$J,358.3,2759,1,3,0)
+ ;;=3^Breast Reconstructed Disproportion
+ ;;^UTILITY(U,$J,358.3,2759,1,4,0)
+ ;;=4^N65.1
+ ;;^UTILITY(U,$J,358.3,2759,2)
+ ;;=^5015801
+ ;;^UTILITY(U,$J,358.3,2760,0)
+ ;;=N60.92^^18^208^10
+ ;;^UTILITY(U,$J,358.3,2760,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2486,1,3,0)
- ;;=3^Rheumatic Aortic Stenosis w/ Insufficiency
- ;;^UTILITY(U,$J,358.3,2486,1,4,0)
- ;;=4^I06.2
- ;;^UTILITY(U,$J,358.3,2486,2)
- ;;=^269577
- ;;^UTILITY(U,$J,358.3,2487,0)
- ;;=I06.8^^19^204^4
- ;;^UTILITY(U,$J,358.3,2487,1,0)
+ ;;^UTILITY(U,$J,358.3,2760,1,3,0)
+ ;;=3^Breast Dysplasia,Benign Mammary,Left
+ ;;^UTILITY(U,$J,358.3,2760,1,4,0)
+ ;;=4^N60.92
+ ;;^UTILITY(U,$J,358.3,2760,2)
+ ;;=^5134091
+ ;;^UTILITY(U,$J,358.3,2761,0)
+ ;;=N60.91^^18^208^11
+ ;;^UTILITY(U,$J,358.3,2761,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2487,1,3,0)
- ;;=3^Rheumatic Aortic Valve Diseases NEC
- ;;^UTILITY(U,$J,358.3,2487,1,4,0)
- ;;=4^I06.8
- ;;^UTILITY(U,$J,358.3,2487,2)
- ;;=^5007045
- ;;^UTILITY(U,$J,358.3,2488,0)
- ;;=I09.89^^19^204^6
- ;;^UTILITY(U,$J,358.3,2488,1,0)
+ ;;^UTILITY(U,$J,358.3,2761,1,3,0)
+ ;;=3^Breast Dysplasia,Benign Mammary,Right
+ ;;^UTILITY(U,$J,358.3,2761,1,4,0)
+ ;;=4^N60.91
+ ;;^UTILITY(U,$J,358.3,2761,2)
+ ;;=^5015788
+ ;;^UTILITY(U,$J,358.3,2762,0)
+ ;;=N62.^^18^208^12
+ ;;^UTILITY(U,$J,358.3,2762,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2488,1,3,0)
- ;;=3^Rheumatic Heart Diseases
- ;;^UTILITY(U,$J,358.3,2488,1,4,0)
- ;;=4^I09.89
- ;;^UTILITY(U,$J,358.3,2488,2)
- ;;=^5007060
- ;;^UTILITY(U,$J,358.3,2489,0)
- ;;=I08.8^^19^204^11
- ;;^UTILITY(U,$J,358.3,2489,1,0)
+ ;;^UTILITY(U,$J,358.3,2762,1,3,0)
+ ;;=3^Breast Hypertrophy
+ ;;^UTILITY(U,$J,358.3,2762,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,2762,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,2763,0)
+ ;;=N61.^^18^208^13
+ ;;^UTILITY(U,$J,358.3,2763,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2489,1,3,0)
- ;;=3^Rheumatic Multiple Valve Dieases NEC
- ;;^UTILITY(U,$J,358.3,2489,1,4,0)
- ;;=4^I08.8
- ;;^UTILITY(U,$J,358.3,2489,2)
- ;;=^5007056
- ;;^UTILITY(U,$J,358.3,2490,0)
- ;;=T82.9XXA^^19^205^2
- ;;^UTILITY(U,$J,358.3,2490,1,0)
+ ;;^UTILITY(U,$J,358.3,2763,1,3,0)
+ ;;=3^Breast Inflammatory Disorders
+ ;;^UTILITY(U,$J,358.3,2763,1,4,0)
+ ;;=4^N61.
+ ;;^UTILITY(U,$J,358.3,2763,2)
+ ;;=^5015789
+ ;;^UTILITY(U,$J,358.3,2764,0)
+ ;;=N63.^^18^208^14
+ ;;^UTILITY(U,$J,358.3,2764,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2490,1,3,0)
- ;;=3^Complication of Cardiac/Vascular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2490,1,4,0)
- ;;=4^T82.9XXA
- ;;^UTILITY(U,$J,358.3,2490,2)
- ;;=^5054956
- ;;^UTILITY(U,$J,358.3,2491,0)
- ;;=T82.857A^^19^205^9
- ;;^UTILITY(U,$J,358.3,2491,1,0)
+ ;;^UTILITY(U,$J,358.3,2764,1,3,0)
+ ;;=3^Breast Lump,Unspec
+ ;;^UTILITY(U,$J,358.3,2764,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,2764,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,2765,0)
+ ;;=L13.9^^18^208^17
+ ;;^UTILITY(U,$J,358.3,2765,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2491,1,3,0)
- ;;=3^Stenosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2491,1,4,0)
- ;;=4^T82.857A
- ;;^UTILITY(U,$J,358.3,2491,2)
- ;;=^5054938
- ;;^UTILITY(U,$J,358.3,2492,0)
- ;;=T82.867A^^19^205^10
- ;;^UTILITY(U,$J,358.3,2492,1,0)
+ ;;^UTILITY(U,$J,358.3,2765,1,3,0)
+ ;;=3^Bullous Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,2765,1,4,0)
+ ;;=4^L13.9
+ ;;^UTILITY(U,$J,358.3,2765,2)
+ ;;=^5009105
+ ;;^UTILITY(U,$J,358.3,2766,0)
+ ;;=L02.93^^18^208^18
+ ;;^UTILITY(U,$J,358.3,2766,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2492,1,3,0)
- ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2492,1,4,0)
- ;;=4^T82.867A
- ;;^UTILITY(U,$J,358.3,2492,2)
- ;;=^5054944
- ;;^UTILITY(U,$J,358.3,2493,0)
- ;;=T82.897A^^19^205^3
- ;;^UTILITY(U,$J,358.3,2493,1,0)
+ ;;^UTILITY(U,$J,358.3,2766,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,2766,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,2766,2)
+ ;;=^5009018
+ ;;^UTILITY(U,$J,358.3,2767,0)
+ ;;=L03.90^^18^208^19
+ ;;^UTILITY(U,$J,358.3,2767,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2493,1,3,0)
- ;;=3^Complications of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2493,1,4,0)
- ;;=4^T82.897A
- ;;^UTILITY(U,$J,358.3,2493,2)
- ;;=^5054950
- ;;^UTILITY(U,$J,358.3,2494,0)
- ;;=T82.817A^^19^205^4
- ;;^UTILITY(U,$J,358.3,2494,1,0)
+ ;;^UTILITY(U,$J,358.3,2767,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,2767,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,2767,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,2768,0)
+ ;;=L94.9^^18^208^20
+ ;;^UTILITY(U,$J,358.3,2768,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2494,1,3,0)
- ;;=3^Ebolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2494,1,4,0)
- ;;=4^T82.817A
- ;;^UTILITY(U,$J,358.3,2494,2)
- ;;=^5054914
- ;;^UTILITY(U,$J,358.3,2495,0)
- ;;=T82.827A^^19^205^5
- ;;^UTILITY(U,$J,358.3,2495,1,0)
+ ;;^UTILITY(U,$J,358.3,2768,1,3,0)
+ ;;=3^Connective Tissue Disorder,Localized,Unspec
+ ;;^UTILITY(U,$J,358.3,2768,1,4,0)
+ ;;=4^L94.9
+ ;;^UTILITY(U,$J,358.3,2768,2)
+ ;;=^5009475
+ ;;^UTILITY(U,$J,358.3,2769,0)
+ ;;=L84.^^18^208^21
+ ;;^UTILITY(U,$J,358.3,2769,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2495,1,3,0)
- ;;=3^Fibrosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,2495,1,4,0)
- ;;=4^T82.827A
- ;;^UTILITY(U,$J,358.3,2495,2)
- ;;=^5054920
- ;;^UTILITY(U,$J,358.3,2496,0)
- ;;=T82.837A^^19^205^6
- ;;^UTILITY(U,$J,358.3,2496,1,0)
+ ;;^UTILITY(U,$J,358.3,2769,1,3,0)
+ ;;=3^Corns & Callosities
+ ;;^UTILITY(U,$J,358.3,2769,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,2769,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,2770,0)
+ ;;=L27.0^^18^208^23
+ ;;^UTILITY(U,$J,358.3,2770,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2496,1,3,0)
- ;;=3^Hemorrhage of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2770,1,3,0)
+ ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,General
+ ;;^UTILITY(U,$J,358.3,2770,1,4,0)
+ ;;=4^L27.0
+ ;;^UTILITY(U,$J,358.3,2770,2)
+ ;;=^5009144
+ ;;^UTILITY(U,$J,358.3,2771,0)
+ ;;=L27.1^^18^208^24
+ ;;^UTILITY(U,$J,358.3,2771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2771,1,3,0)
+ ;;=3^Dermatitis d/t Drugs/Meds Taken Internally,Local
+ ;;^UTILITY(U,$J,358.3,2771,1,4,0)
+ ;;=4^L27.1

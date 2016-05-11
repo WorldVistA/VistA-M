@@ -1,126 +1,132 @@
-IBDEI2GT ; ; 19-NOV-2015
+IBDEI2GT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41361,1,3,0)
- ;;=3^Subluxation of MTP jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,41361,1,4,0)
- ;;=4^S93.142A
- ;;^UTILITY(U,$J,358.3,41361,2)
- ;;=^5045702
- ;;^UTILITY(U,$J,358.3,41362,0)
- ;;=S93.141A^^189^2096^33
- ;;^UTILITY(U,$J,358.3,41362,1,0)
+ ;;^UTILITY(U,$J,358.3,41806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41362,1,3,0)
- ;;=3^Subluxation of MTP jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,41362,1,4,0)
- ;;=4^S93.141A
- ;;^UTILITY(U,$J,358.3,41362,2)
- ;;=^5045699
- ;;^UTILITY(U,$J,358.3,41363,0)
- ;;=S93.145A^^189^2096^32
- ;;^UTILITY(U,$J,358.3,41363,1,0)
+ ;;^UTILITY(U,$J,358.3,41806,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41806,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,41806,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,41807,0)
+ ;;=M75.112^^159^2010^160
+ ;;^UTILITY(U,$J,358.3,41807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41363,1,3,0)
- ;;=3^Subluxation of MTP jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41363,1,4,0)
- ;;=4^S93.145A
- ;;^UTILITY(U,$J,358.3,41363,2)
- ;;=^5045711
- ;;^UTILITY(U,$J,358.3,41364,0)
- ;;=S93.144A^^189^2096^34
- ;;^UTILITY(U,$J,358.3,41364,1,0)
+ ;;^UTILITY(U,$J,358.3,41807,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41807,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,41807,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,41808,0)
+ ;;=M75.51^^159^2010^10
+ ;;^UTILITY(U,$J,358.3,41808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41364,1,3,0)
- ;;=3^Subluxation of MTP jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41364,1,4,0)
- ;;=4^S93.144A
- ;;^UTILITY(U,$J,358.3,41364,2)
- ;;=^5045708
- ;;^UTILITY(U,$J,358.3,41365,0)
- ;;=S93.131A^^189^2096^37
- ;;^UTILITY(U,$J,358.3,41365,1,0)
+ ;;^UTILITY(U,$J,358.3,41808,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41808,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,41808,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,41809,0)
+ ;;=M75.52^^159^2010^9
+ ;;^UTILITY(U,$J,358.3,41809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41365,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt grt toe, init
- ;;^UTILITY(U,$J,358.3,41365,1,4,0)
- ;;=4^S93.131A
- ;;^UTILITY(U,$J,358.3,41365,2)
- ;;=^5045678
- ;;^UTILITY(U,$J,358.3,41366,0)
- ;;=S93.132A^^189^2096^35
- ;;^UTILITY(U,$J,358.3,41366,1,0)
+ ;;^UTILITY(U,$J,358.3,41809,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41809,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,41809,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,41810,0)
+ ;;=M77.11^^159^2010^54
+ ;;^UTILITY(U,$J,358.3,41810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41366,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft grt toe, init
- ;;^UTILITY(U,$J,358.3,41366,1,4,0)
- ;;=4^S93.132A
- ;;^UTILITY(U,$J,358.3,41366,2)
- ;;=^5045681
- ;;^UTILITY(U,$J,358.3,41367,0)
- ;;=S93.134A^^189^2096^38
- ;;^UTILITY(U,$J,358.3,41367,1,0)
+ ;;^UTILITY(U,$J,358.3,41810,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,41810,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,41810,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,41811,0)
+ ;;=M77.12^^159^2010^53
+ ;;^UTILITY(U,$J,358.3,41811,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41367,1,3,0)
- ;;=3^Subluxation of intrphlngl jt rt lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41367,1,4,0)
- ;;=4^S93.134A
- ;;^UTILITY(U,$J,358.3,41367,2)
- ;;=^5045687
- ;;^UTILITY(U,$J,358.3,41368,0)
- ;;=S93.135A^^189^2096^36
- ;;^UTILITY(U,$J,358.3,41368,1,0)
+ ;;^UTILITY(U,$J,358.3,41811,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,41811,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,41811,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,41812,0)
+ ;;=M79.1^^159^2010^61
+ ;;^UTILITY(U,$J,358.3,41812,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41368,1,3,0)
- ;;=3^Subluxation of intrphlngl jt lft lsr toe(s), init
- ;;^UTILITY(U,$J,358.3,41368,1,4,0)
- ;;=4^S93.135A
- ;;^UTILITY(U,$J,358.3,41368,2)
- ;;=^5045690
- ;;^UTILITY(U,$J,358.3,41369,0)
- ;;=S93.101A^^189^2096^41
- ;;^UTILITY(U,$J,358.3,41369,1,0)
+ ;;^UTILITY(U,$J,358.3,41812,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,41812,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,41812,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,41813,0)
+ ;;=M79.7^^159^2010^39
+ ;;^UTILITY(U,$J,358.3,41813,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41369,1,3,0)
- ;;=3^Subluxation rt toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,41369,1,4,0)
- ;;=4^S93.101A
- ;;^UTILITY(U,$J,358.3,41369,2)
- ;;=^5045624
- ;;^UTILITY(U,$J,358.3,41370,0)
- ;;=S93.102A^^189^2096^30
- ;;^UTILITY(U,$J,358.3,41370,1,0)
+ ;;^UTILITY(U,$J,358.3,41813,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,41813,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,41813,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,41814,0)
+ ;;=M80.08XA^^159^2010^1
+ ;;^UTILITY(U,$J,358.3,41814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41370,1,3,0)
- ;;=3^Subluxation lft toe(s), unspec, init
- ;;^UTILITY(U,$J,358.3,41370,1,4,0)
- ;;=4^S93.102A
- ;;^UTILITY(U,$J,358.3,41370,2)
- ;;=^5045627
- ;;^UTILITY(U,$J,358.3,41371,0)
- ;;=S93.401A^^189^2096^20
- ;;^UTILITY(U,$J,358.3,41371,1,0)
+ ;;^UTILITY(U,$J,358.3,41814,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41814,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,41814,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,41815,0)
+ ;;=M80.08XD^^159^2010^2
+ ;;^UTILITY(U,$J,358.3,41815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41371,1,3,0)
- ;;=3^Sprain of unsp ligament rt ankl, init enc
- ;;^UTILITY(U,$J,358.3,41371,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,41371,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,41372,0)
- ;;=S93.402A^^189^2096^18
- ;;^UTILITY(U,$J,358.3,41372,1,0)
+ ;;^UTILITY(U,$J,358.3,41815,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,41815,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,41815,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,41816,0)
+ ;;=M84.48XA^^159^2010^118
+ ;;^UTILITY(U,$J,358.3,41816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41372,1,3,0)
- ;;=3^Sprain of unsp ligament lft ankl, init enc
- ;;^UTILITY(U,$J,358.3,41372,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,41372,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,41373,0)
- ;;=S86.012A^^189^2096^24
- ;;^UTILITY(U,$J,358.3,41373,1,0)
+ ;;^UTILITY(U,$J,358.3,41816,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41816,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,41816,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,41817,0)
+ ;;=M84.48XD^^159^2010^119
+ ;;^UTILITY(U,$J,358.3,41817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41373,1,3,0)
- ;;=3^Strain of lft Achilles tendon, init enc
+ ;;^UTILITY(U,$J,358.3,41817,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,41817,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,41817,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,41818,0)
+ ;;=M87.011^^159^2010^45
+ ;;^UTILITY(U,$J,358.3,41818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41818,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41818,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,41818,2)
+ ;;=^5014658

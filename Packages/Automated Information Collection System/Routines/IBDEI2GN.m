@@ -1,132 +1,130 @@
-IBDEI2GN ; ; 19-NOV-2015
+IBDEI2GN ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41284,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,41285,0)
- ;;=M19.071^^189^2093^29
- ;;^UTILITY(U,$J,358.3,41285,1,0)
+ ;;^UTILITY(U,$J,358.3,41730,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,41730,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,41730,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,41731,0)
+ ;;=M05.711^^159^2010^153
+ ;;^UTILITY(U,$J,358.3,41731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41285,1,3,0)
- ;;=3^Primary osteoarthritis, right ankle and foot
- ;;^UTILITY(U,$J,358.3,41285,1,4,0)
- ;;=4^M19.071
- ;;^UTILITY(U,$J,358.3,41285,2)
- ;;=^5010820
- ;;^UTILITY(U,$J,358.3,41286,0)
- ;;=M19.072^^189^2093^28
- ;;^UTILITY(U,$J,358.3,41286,1,0)
+ ;;^UTILITY(U,$J,358.3,41731,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,41731,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,41731,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,41732,0)
+ ;;=M05.712^^159^2010^146
+ ;;^UTILITY(U,$J,358.3,41732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41286,1,3,0)
- ;;=3^Primary osteoarthritis, left ankle and foot
- ;;^UTILITY(U,$J,358.3,41286,1,4,0)
- ;;=4^M19.072
- ;;^UTILITY(U,$J,358.3,41286,2)
- ;;=^5010821
- ;;^UTILITY(U,$J,358.3,41287,0)
- ;;=M15.9^^189^2093^27
- ;;^UTILITY(U,$J,358.3,41287,1,0)
+ ;;^UTILITY(U,$J,358.3,41732,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,41732,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,41732,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,41733,0)
+ ;;=M05.731^^159^2010^154
+ ;;^UTILITY(U,$J,358.3,41733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41287,1,3,0)
- ;;=3^Polyosteoarthritis, unspec
- ;;^UTILITY(U,$J,358.3,41287,1,4,0)
- ;;=4^M15.9
- ;;^UTILITY(U,$J,358.3,41287,2)
- ;;=^5010768
- ;;^UTILITY(U,$J,358.3,41288,0)
- ;;=M19.90^^189^2093^17
- ;;^UTILITY(U,$J,358.3,41288,1,0)
+ ;;^UTILITY(U,$J,358.3,41733,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,41733,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,41733,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,41734,0)
+ ;;=M05.732^^159^2010^147
+ ;;^UTILITY(U,$J,358.3,41734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41288,1,3,0)
- ;;=3^Osteoarthritis, unspec site, unspec
- ;;^UTILITY(U,$J,358.3,41288,1,4,0)
- ;;=4^M19.90
- ;;^UTILITY(U,$J,358.3,41288,2)
- ;;=^5010853
- ;;^UTILITY(U,$J,358.3,41289,0)
- ;;=M90.80^^189^2093^22
- ;;^UTILITY(U,$J,358.3,41289,1,0)
+ ;;^UTILITY(U,$J,358.3,41734,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,41734,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,41734,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,41735,0)
+ ;;=M05.741^^159^2010^150
+ ;;^UTILITY(U,$J,358.3,41735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41289,1,3,0)
- ;;=3^Osteopathy in diseases class elsewhere, unspec site
- ;;^UTILITY(U,$J,358.3,41289,1,4,0)
- ;;=4^M90.80
- ;;^UTILITY(U,$J,358.3,41289,2)
- ;;=^5015168
- ;;^UTILITY(U,$J,358.3,41290,0)
- ;;=M25.775^^189^2093^24
- ;;^UTILITY(U,$J,358.3,41290,1,0)
+ ;;^UTILITY(U,$J,358.3,41735,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,41735,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,41735,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,41736,0)
+ ;;=M05.742^^159^2010^143
+ ;;^UTILITY(U,$J,358.3,41736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41290,1,3,0)
- ;;=3^Osteophyte, left foot
- ;;^UTILITY(U,$J,358.3,41290,1,4,0)
- ;;=4^M25.775
- ;;^UTILITY(U,$J,358.3,41290,2)
- ;;=^5011668
- ;;^UTILITY(U,$J,358.3,41291,0)
- ;;=M25.774^^189^2093^26
- ;;^UTILITY(U,$J,358.3,41291,1,0)
+ ;;^UTILITY(U,$J,358.3,41736,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,41736,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,41736,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,41737,0)
+ ;;=M05.751^^159^2010^151
+ ;;^UTILITY(U,$J,358.3,41737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41291,1,3,0)
- ;;=3^Osteophyte, right foot
- ;;^UTILITY(U,$J,358.3,41291,1,4,0)
- ;;=4^M25.774
- ;;^UTILITY(U,$J,358.3,41291,2)
- ;;=^5011667
- ;;^UTILITY(U,$J,358.3,41292,0)
- ;;=M25.772^^189^2093^23
- ;;^UTILITY(U,$J,358.3,41292,1,0)
+ ;;^UTILITY(U,$J,358.3,41737,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,41737,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,41737,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,41738,0)
+ ;;=M05.752^^159^2010^144
+ ;;^UTILITY(U,$J,358.3,41738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41292,1,3,0)
- ;;=3^Osteophyte, left ankle
- ;;^UTILITY(U,$J,358.3,41292,1,4,0)
- ;;=4^M25.772
- ;;^UTILITY(U,$J,358.3,41292,2)
- ;;=^5011665
- ;;^UTILITY(U,$J,358.3,41293,0)
- ;;=M25.771^^189^2093^25
- ;;^UTILITY(U,$J,358.3,41293,1,0)
+ ;;^UTILITY(U,$J,358.3,41738,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,41738,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,41738,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,41739,0)
+ ;;=M05.761^^159^2010^152
+ ;;^UTILITY(U,$J,358.3,41739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41293,1,3,0)
- ;;=3^Osteophyte, right ankle
- ;;^UTILITY(U,$J,358.3,41293,1,4,0)
- ;;=4^M25.771
- ;;^UTILITY(U,$J,358.3,41293,2)
- ;;=^5011664
- ;;^UTILITY(U,$J,358.3,41294,0)
- ;;=L60.1^^189^2093^15
- ;;^UTILITY(U,$J,358.3,41294,1,0)
+ ;;^UTILITY(U,$J,358.3,41739,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,41739,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,41739,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,41740,0)
+ ;;=M05.762^^159^2010^145
+ ;;^UTILITY(U,$J,358.3,41740,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41294,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,41294,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,41294,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,41295,0)
- ;;=M86.272^^189^2093^30
- ;;^UTILITY(U,$J,358.3,41295,1,0)
+ ;;^UTILITY(U,$J,358.3,41740,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,41740,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,41740,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,41741,0)
+ ;;=M05.771^^159^2010^149
+ ;;^UTILITY(U,$J,358.3,41741,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41295,1,3,0)
- ;;=3^Subacute osteomyelitis, lft ankl & foot
- ;;^UTILITY(U,$J,358.3,41295,1,4,0)
- ;;=4^M86.272
- ;;^UTILITY(U,$J,358.3,41295,2)
- ;;=^5014555
- ;;^UTILITY(U,$J,358.3,41296,0)
- ;;=M86.071^^189^2093^2
- ;;^UTILITY(U,$J,358.3,41296,1,0)
+ ;;^UTILITY(U,$J,358.3,41741,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Ankle
+ ;;^UTILITY(U,$J,358.3,41741,1,4,0)
+ ;;=4^M05.771
+ ;;^UTILITY(U,$J,358.3,41741,2)
+ ;;=^5010019
+ ;;^UTILITY(U,$J,358.3,41742,0)
+ ;;=M05.772^^159^2010^142
+ ;;^UTILITY(U,$J,358.3,41742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41296,1,3,0)
- ;;=3^Acute hematogenous osteomyelitis, rt ankl & ft
- ;;^UTILITY(U,$J,358.3,41296,1,4,0)
- ;;=4^M86.071
- ;;^UTILITY(U,$J,358.3,41296,2)
- ;;=^5014516
- ;;^UTILITY(U,$J,358.3,41297,0)
- ;;=M86.072^^189^2093^1
- ;;^UTILITY(U,$J,358.3,41297,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41297,1,3,0)
- ;;=3^Acute hematogenous osteomyelitis, lft ankl & ft
+ ;;^UTILITY(U,$J,358.3,41742,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Ankle
+ ;;^UTILITY(U,$J,358.3,41742,1,4,0)
+ ;;=4^M05.772
+ ;;^UTILITY(U,$J,358.3,41742,2)
+ ;;=^5010020

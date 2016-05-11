@@ -1,136 +1,136 @@
-IBDEI0D3 ; ; 19-NOV-2015
+IBDEI0D3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5687,2)
- ;;=^5001144
- ;;^UTILITY(U,$J,358.3,5688,0)
- ;;=C4A.31^^40^374^9
- ;;^UTILITY(U,$J,358.3,5688,1,0)
+ ;;^UTILITY(U,$J,358.3,6006,0)
+ ;;=L89.301^^30^385^237
+ ;;^UTILITY(U,$J,358.3,6006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5688,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Nose
- ;;^UTILITY(U,$J,358.3,5688,1,4,0)
- ;;=4^C4A.31
- ;;^UTILITY(U,$J,358.3,5688,2)
- ;;=^5001145
- ;;^UTILITY(U,$J,358.3,5689,0)
- ;;=C4A.39^^40^374^2
- ;;^UTILITY(U,$J,358.3,5689,1,0)
+ ;;^UTILITY(U,$J,358.3,6006,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,6006,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,6006,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,6007,0)
+ ;;=L89.302^^30^385^238
+ ;;^UTILITY(U,$J,358.3,6007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5689,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Face NEC
- ;;^UTILITY(U,$J,358.3,5689,1,4,0)
- ;;=4^C4A.39
- ;;^UTILITY(U,$J,358.3,5689,2)
- ;;=^5001146
- ;;^UTILITY(U,$J,358.3,5690,0)
- ;;=C4A.4^^40^374^15
- ;;^UTILITY(U,$J,358.3,5690,1,0)
+ ;;^UTILITY(U,$J,358.3,6007,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,6007,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,6007,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,6008,0)
+ ;;=L89.303^^30^385^239
+ ;;^UTILITY(U,$J,358.3,6008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5690,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Scalp/Neck
- ;;^UTILITY(U,$J,358.3,5690,1,4,0)
- ;;=4^C4A.4
- ;;^UTILITY(U,$J,358.3,5690,2)
- ;;=^5001147
- ;;^UTILITY(U,$J,358.3,5691,0)
- ;;=C4A.51^^40^374^1
- ;;^UTILITY(U,$J,358.3,5691,1,0)
+ ;;^UTILITY(U,$J,358.3,6008,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,6008,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,6008,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,6009,0)
+ ;;=L89.304^^30^385^240
+ ;;^UTILITY(U,$J,358.3,6009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5691,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Anal Skin
- ;;^UTILITY(U,$J,358.3,5691,1,4,0)
- ;;=4^C4A.51
- ;;^UTILITY(U,$J,358.3,5691,2)
- ;;=^5001148
- ;;^UTILITY(U,$J,358.3,5692,0)
- ;;=C4A.52^^40^374^16
- ;;^UTILITY(U,$J,358.3,5692,1,0)
+ ;;^UTILITY(U,$J,358.3,6009,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,6009,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,6009,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,6010,0)
+ ;;=L89.309^^30^385^241
+ ;;^UTILITY(U,$J,358.3,6010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5692,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Skin of Breast
- ;;^UTILITY(U,$J,358.3,5692,1,4,0)
- ;;=4^C4A.52
- ;;^UTILITY(U,$J,358.3,5692,2)
- ;;=^5001149
- ;;^UTILITY(U,$J,358.3,5693,0)
- ;;=C4A.59^^40^374^17
- ;;^UTILITY(U,$J,358.3,5693,1,0)
+ ;;^UTILITY(U,$J,358.3,6010,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,6010,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,6010,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,6011,0)
+ ;;=L89.90^^30^385^247
+ ;;^UTILITY(U,$J,358.3,6011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5693,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Trunk NEC
- ;;^UTILITY(U,$J,358.3,5693,1,4,0)
- ;;=4^C4A.59
- ;;^UTILITY(U,$J,358.3,5693,2)
- ;;=^5001150
- ;;^UTILITY(U,$J,358.3,5694,0)
- ;;=C4A.61^^40^374^14
- ;;^UTILITY(U,$J,358.3,5694,1,0)
+ ;;^UTILITY(U,$J,358.3,6011,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,6011,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,6011,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,6012,0)
+ ;;=L89.91^^30^385^243
+ ;;^UTILITY(U,$J,358.3,6012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5694,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Upper Limb
- ;;^UTILITY(U,$J,358.3,5694,1,4,0)
- ;;=4^C4A.61
- ;;^UTILITY(U,$J,358.3,5694,2)
- ;;=^5001152
- ;;^UTILITY(U,$J,358.3,5695,0)
- ;;=C4A.62^^40^374^7
- ;;^UTILITY(U,$J,358.3,5695,1,0)
+ ;;^UTILITY(U,$J,358.3,6012,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,6012,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,6012,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,6013,0)
+ ;;=L89.92^^30^385^244
+ ;;^UTILITY(U,$J,358.3,6013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5695,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Upper Limb
- ;;^UTILITY(U,$J,358.3,5695,1,4,0)
- ;;=4^C4A.62
- ;;^UTILITY(U,$J,358.3,5695,2)
- ;;=^5001153
- ;;^UTILITY(U,$J,358.3,5696,0)
- ;;=C4A.71^^40^374^13
- ;;^UTILITY(U,$J,358.3,5696,1,0)
+ ;;^UTILITY(U,$J,358.3,6013,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,6013,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,6013,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,6014,0)
+ ;;=L89.93^^30^385^245
+ ;;^UTILITY(U,$J,358.3,6014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5696,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Right Lower Limb
- ;;^UTILITY(U,$J,358.3,5696,1,4,0)
- ;;=4^C4A.71
- ;;^UTILITY(U,$J,358.3,5696,2)
- ;;=^5001155
- ;;^UTILITY(U,$J,358.3,5697,0)
- ;;=C4A.72^^40^374^6
- ;;^UTILITY(U,$J,358.3,5697,1,0)
+ ;;^UTILITY(U,$J,358.3,6014,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,6014,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,6014,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,6015,0)
+ ;;=L89.94^^30^385^246
+ ;;^UTILITY(U,$J,358.3,6015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5697,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Left Lower Limb
- ;;^UTILITY(U,$J,358.3,5697,1,4,0)
- ;;=4^C4A.72
- ;;^UTILITY(U,$J,358.3,5697,2)
- ;;=^5001156
- ;;^UTILITY(U,$J,358.3,5698,0)
- ;;=C4A.8^^40^374^10
- ;;^UTILITY(U,$J,358.3,5698,1,0)
+ ;;^UTILITY(U,$J,358.3,6015,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,6015,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,6015,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,6016,0)
+ ;;=L89.95^^30^385^248
+ ;;^UTILITY(U,$J,358.3,6016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5698,1,3,0)
- ;;=3^Merkel Cell Carcinoma of Overlapping Sites
- ;;^UTILITY(U,$J,358.3,5698,1,4,0)
- ;;=4^C4A.8
- ;;^UTILITY(U,$J,358.3,5698,2)
- ;;=^5001157
- ;;^UTILITY(U,$J,358.3,5699,0)
- ;;=C4A.9^^40^374^18
- ;;^UTILITY(U,$J,358.3,5699,1,0)
+ ;;^UTILITY(U,$J,358.3,6016,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,6016,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,6016,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,6017,0)
+ ;;=L92.0^^30^385^156
+ ;;^UTILITY(U,$J,358.3,6017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5699,1,3,0)
- ;;=3^Merkel Cell Carcinoma,Unspec
- ;;^UTILITY(U,$J,358.3,5699,1,4,0)
- ;;=4^C4A.9
- ;;^UTILITY(U,$J,358.3,5699,2)
- ;;=^5001158
- ;;^UTILITY(U,$J,358.3,5700,0)
- ;;=S01.20XA^^40^375^33
- ;;^UTILITY(U,$J,358.3,5700,1,0)
+ ;;^UTILITY(U,$J,358.3,6017,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,6017,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,6017,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,6018,0)
+ ;;=L95.1^^30^385^143
+ ;;^UTILITY(U,$J,358.3,6018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5700,1,3,0)
- ;;=3^Open Wound of Nose,Init Encntr
- ;;^UTILITY(U,$J,358.3,5700,1,4,0)
- ;;=4^S01.20XA
- ;;^UTILITY(U,$J,358.3,5700,2)
- ;;=^5020090
+ ;;^UTILITY(U,$J,358.3,6018,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,6018,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,6018,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,6019,0)
+ ;;=L97.111^^30^385^226

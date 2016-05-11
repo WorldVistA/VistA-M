@@ -1,132 +1,124 @@
-IBDEI1SI ; ; 19-NOV-2015
+IBDEI1SI ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,29967,0)
- ;;=D58.9^^135^1372^85
- ;;^UTILITY(U,$J,358.3,29967,1,0)
+ ;;^UTILITY(U,$J,358.3,30405,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,30405,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,30406,0)
+ ;;=Z85.47^^118^1508^24
+ ;;^UTILITY(U,$J,358.3,30406,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29967,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,29967,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,29967,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,29968,0)
- ;;=C81.99^^135^1372^86
- ;;^UTILITY(U,$J,358.3,29968,1,0)
+ ;;^UTILITY(U,$J,358.3,30406,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of testis
+ ;;^UTILITY(U,$J,358.3,30406,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,30406,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,30407,0)
+ ;;=Z85.49^^118^1508^25
+ ;;^UTILITY(U,$J,358.3,30407,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29968,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,29968,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,29968,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,29969,0)
- ;;=C81.90^^135^1372^87
- ;;^UTILITY(U,$J,358.3,29969,1,0)
+ ;;^UTILITY(U,$J,358.3,30407,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of male genital organs
+ ;;^UTILITY(U,$J,358.3,30407,1,4,0)
+ ;;=4^Z85.49
+ ;;^UTILITY(U,$J,358.3,30407,2)
+ ;;=^5063426
+ ;;^UTILITY(U,$J,358.3,30408,0)
+ ;;=Z85.51^^118^1508^26
+ ;;^UTILITY(U,$J,358.3,30408,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29969,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,29969,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,29969,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,29970,0)
- ;;=D89.2^^135^1372^88
- ;;^UTILITY(U,$J,358.3,29970,1,0)
+ ;;^UTILITY(U,$J,358.3,30408,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of bladder
+ ;;^UTILITY(U,$J,358.3,30408,1,4,0)
+ ;;=4^Z85.51
+ ;;^UTILITY(U,$J,358.3,30408,2)
+ ;;=^5063428
+ ;;^UTILITY(U,$J,358.3,30409,0)
+ ;;=Z85.528^^118^1508^27
+ ;;^UTILITY(U,$J,358.3,30409,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29970,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,29970,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,29970,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,29971,0)
- ;;=D05.12^^135^1372^89
- ;;^UTILITY(U,$J,358.3,29971,1,0)
+ ;;^UTILITY(U,$J,358.3,30409,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of kidney NEC
+ ;;^UTILITY(U,$J,358.3,30409,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,30409,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,30410,0)
+ ;;=Z85.79^^118^1508^28
+ ;;^UTILITY(U,$J,358.3,30410,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29971,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,29971,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,29971,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,29972,0)
- ;;=D05.11^^135^1372^90
- ;;^UTILITY(U,$J,358.3,29972,1,0)
+ ;;^UTILITY(U,$J,358.3,30410,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of lymphoid, hematpoetc & rel tiss
+ ;;^UTILITY(U,$J,358.3,30410,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,30410,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,30411,0)
+ ;;=Z85.831^^118^1508^29
+ ;;^UTILITY(U,$J,358.3,30411,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29972,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,29972,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,29972,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,29973,0)
- ;;=D05.10^^135^1372^91
- ;;^UTILITY(U,$J,358.3,29973,1,0)
+ ;;^UTILITY(U,$J,358.3,30411,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of soft tissue
+ ;;^UTILITY(U,$J,358.3,30411,1,4,0)
+ ;;=4^Z85.831
+ ;;^UTILITY(U,$J,358.3,30411,2)
+ ;;=^5063445
+ ;;^UTILITY(U,$J,358.3,30412,0)
+ ;;=Z85.71^^118^1508^1
+ ;;^UTILITY(U,$J,358.3,30412,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29973,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,29973,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,29973,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,29974,0)
- ;;=D50.0^^135^1372^92
- ;;^UTILITY(U,$J,358.3,29974,1,0)
+ ;;^UTILITY(U,$J,358.3,30412,1,3,0)
+ ;;=3^Personal history of Hodgkin lymphoma
+ ;;^UTILITY(U,$J,358.3,30412,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,30412,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,30413,0)
+ ;;=Z85.830^^118^1508^30
+ ;;^UTILITY(U,$J,358.3,30413,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29974,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,29974,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,29974,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,29975,0)
- ;;=D50.9^^135^1372^93
- ;;^UTILITY(U,$J,358.3,29975,1,0)
+ ;;^UTILITY(U,$J,358.3,30413,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of bone
+ ;;^UTILITY(U,$J,358.3,30413,1,4,0)
+ ;;=4^Z85.830
+ ;;^UTILITY(U,$J,358.3,30413,2)
+ ;;=^5063444
+ ;;^UTILITY(U,$J,358.3,30414,0)
+ ;;=Z85.820^^118^1508^2
+ ;;^UTILITY(U,$J,358.3,30414,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29975,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,29975,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,29975,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,29976,0)
- ;;=C46.9^^135^1372^94
- ;;^UTILITY(U,$J,358.3,29976,1,0)
+ ;;^UTILITY(U,$J,358.3,30414,1,3,0)
+ ;;=3^Personal history of malignant melanoma of skin
+ ;;^UTILITY(U,$J,358.3,30414,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,30414,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,30415,0)
+ ;;=Z85.828^^118^1508^31
+ ;;^UTILITY(U,$J,358.3,30415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29976,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,29976,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,29976,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,29977,0)
- ;;=C22.0^^135^1372^95
- ;;^UTILITY(U,$J,358.3,29977,1,0)
+ ;;^UTILITY(U,$J,358.3,30415,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of skin NEC
+ ;;^UTILITY(U,$J,358.3,30415,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,30415,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,30416,0)
+ ;;=Z85.840^^118^1508^32
+ ;;^UTILITY(U,$J,358.3,30416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29977,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,29977,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,29977,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,29978,0)
- ;;=D05.02^^135^1372^96
- ;;^UTILITY(U,$J,358.3,29978,1,0)
+ ;;^UTILITY(U,$J,358.3,30416,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of eye
+ ;;^UTILITY(U,$J,358.3,30416,1,4,0)
+ ;;=4^Z85.840
+ ;;^UTILITY(U,$J,358.3,30416,2)
+ ;;=^5063446
+ ;;^UTILITY(U,$J,358.3,30417,0)
+ ;;=Z85.841^^118^1508^33
+ ;;^UTILITY(U,$J,358.3,30417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29978,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,29978,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,29978,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,29979,0)
- ;;=D05.01^^135^1372^97
- ;;^UTILITY(U,$J,358.3,29979,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,29979,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,29979,1,4,0)
- ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,30417,1,3,0)
+ ;;=3^Personal history of malignant neoplasm of brain

@@ -1,122 +1,134 @@
-IBDEI0UK ; ; 19-NOV-2015
+IBDEI0UK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14067,0)
- ;;=H40.51X1^^82^770^55
- ;;^UTILITY(U,$J,358.3,14067,1,0)
+ ;;^UTILITY(U,$J,358.3,14337,2)
+ ;;=^5019713
+ ;;^UTILITY(U,$J,358.3,14338,0)
+ ;;=R93.2^^53^605^9
+ ;;^UTILITY(U,$J,358.3,14338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14067,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14067,1,4,0)
- ;;=4^H40.51X1
- ;;^UTILITY(U,$J,358.3,14067,2)
- ;;=^5005889
- ;;^UTILITY(U,$J,358.3,14068,0)
- ;;=H40.51X2^^82^770^56
- ;;^UTILITY(U,$J,358.3,14068,1,0)
+ ;;^UTILITY(U,$J,358.3,14338,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,14338,1,4,0)
+ ;;=4^R93.2
+ ;;^UTILITY(U,$J,358.3,14338,2)
+ ;;=^5019715
+ ;;^UTILITY(U,$J,358.3,14339,0)
+ ;;=R93.3^^53^605^7
+ ;;^UTILITY(U,$J,358.3,14339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14068,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14068,1,4,0)
- ;;=4^H40.51X2
- ;;^UTILITY(U,$J,358.3,14068,2)
- ;;=^5005890
- ;;^UTILITY(U,$J,358.3,14069,0)
- ;;=H40.51X3^^82^770^57
- ;;^UTILITY(U,$J,358.3,14069,1,0)
+ ;;^UTILITY(U,$J,358.3,14339,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Digestive Tract Part
+ ;;^UTILITY(U,$J,358.3,14339,1,4,0)
+ ;;=4^R93.3
+ ;;^UTILITY(U,$J,358.3,14339,2)
+ ;;=^5019716
+ ;;^UTILITY(U,$J,358.3,14340,0)
+ ;;=R93.4^^53^605^11
+ ;;^UTILITY(U,$J,358.3,14340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14069,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14069,1,4,0)
- ;;=4^H40.51X3
- ;;^UTILITY(U,$J,358.3,14069,2)
- ;;=^5133507
- ;;^UTILITY(U,$J,358.3,14070,0)
- ;;=H40.51X4^^82^770^58
- ;;^UTILITY(U,$J,358.3,14070,1,0)
+ ;;^UTILITY(U,$J,358.3,14340,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Urinary Organs
+ ;;^UTILITY(U,$J,358.3,14340,1,4,0)
+ ;;=4^R93.4
+ ;;^UTILITY(U,$J,358.3,14340,2)
+ ;;=^5019717
+ ;;^UTILITY(U,$J,358.3,14341,0)
+ ;;=R93.5^^53^605^6
+ ;;^UTILITY(U,$J,358.3,14341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14070,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14070,1,4,0)
- ;;=4^H40.51X4
- ;;^UTILITY(U,$J,358.3,14070,2)
- ;;=^5005891
- ;;^UTILITY(U,$J,358.3,14071,0)
- ;;=H40.52X0^^82^770^49
- ;;^UTILITY(U,$J,358.3,14071,1,0)
+ ;;^UTILITY(U,$J,358.3,14341,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Abdominal Regions
+ ;;^UTILITY(U,$J,358.3,14341,1,4,0)
+ ;;=4^R93.5
+ ;;^UTILITY(U,$J,358.3,14341,2)
+ ;;=^5019718
+ ;;^UTILITY(U,$J,358.3,14342,0)
+ ;;=R93.6^^53^605^8
+ ;;^UTILITY(U,$J,358.3,14342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14071,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14071,1,4,0)
- ;;=4^H40.52X0
- ;;^UTILITY(U,$J,358.3,14071,2)
- ;;=^5005892
- ;;^UTILITY(U,$J,358.3,14072,0)
- ;;=H40.52X1^^82^770^50
- ;;^UTILITY(U,$J,358.3,14072,1,0)
+ ;;^UTILITY(U,$J,358.3,14342,1,3,0)
+ ;;=3^Abnormal Finding on Dx Image of Limbs
+ ;;^UTILITY(U,$J,358.3,14342,1,4,0)
+ ;;=4^R93.6
+ ;;^UTILITY(U,$J,358.3,14342,2)
+ ;;=^5019719
+ ;;^UTILITY(U,$J,358.3,14343,0)
+ ;;=R94.4^^53^605^16
+ ;;^UTILITY(U,$J,358.3,14343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14072,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,14072,1,4,0)
- ;;=4^H40.52X1
- ;;^UTILITY(U,$J,358.3,14072,2)
- ;;=^5005893
- ;;^UTILITY(U,$J,358.3,14073,0)
- ;;=H40.52X2^^82^770^51
- ;;^UTILITY(U,$J,358.3,14073,1,0)
+ ;;^UTILITY(U,$J,358.3,14343,1,3,0)
+ ;;=3^Abnormal Kidney Function Studies
+ ;;^UTILITY(U,$J,358.3,14343,1,4,0)
+ ;;=4^R94.4
+ ;;^UTILITY(U,$J,358.3,14343,2)
+ ;;=^5019741
+ ;;^UTILITY(U,$J,358.3,14344,0)
+ ;;=R94.5^^53^605^17
+ ;;^UTILITY(U,$J,358.3,14344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14073,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14073,1,4,0)
- ;;=4^H40.52X2
- ;;^UTILITY(U,$J,358.3,14073,2)
- ;;=^5005894
- ;;^UTILITY(U,$J,358.3,14074,0)
- ;;=H40.52X3^^82^770^52
- ;;^UTILITY(U,$J,358.3,14074,1,0)
+ ;;^UTILITY(U,$J,358.3,14344,1,3,0)
+ ;;=3^Abnormal Liver Function Studies
+ ;;^UTILITY(U,$J,358.3,14344,1,4,0)
+ ;;=4^R94.5
+ ;;^UTILITY(U,$J,358.3,14344,2)
+ ;;=^5019742
+ ;;^UTILITY(U,$J,358.3,14345,0)
+ ;;=R94.6^^53^605^21
+ ;;^UTILITY(U,$J,358.3,14345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14074,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,14074,1,4,0)
- ;;=4^H40.52X3
- ;;^UTILITY(U,$J,358.3,14074,2)
- ;;=^5133508
- ;;^UTILITY(U,$J,358.3,14075,0)
- ;;=H40.52X4^^82^770^53
- ;;^UTILITY(U,$J,358.3,14075,1,0)
+ ;;^UTILITY(U,$J,358.3,14345,1,3,0)
+ ;;=3^Abnormal Thyroid Function Studies
+ ;;^UTILITY(U,$J,358.3,14345,1,4,0)
+ ;;=4^R94.6
+ ;;^UTILITY(U,$J,358.3,14345,2)
+ ;;=^5019743
+ ;;^UTILITY(U,$J,358.3,14346,0)
+ ;;=R94.7^^53^605^5
+ ;;^UTILITY(U,$J,358.3,14346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14075,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,14075,1,4,0)
- ;;=4^H40.52X4
- ;;^UTILITY(U,$J,358.3,14075,2)
- ;;=^5005895
- ;;^UTILITY(U,$J,358.3,14076,0)
- ;;=H40.53X0^^82^770^44
- ;;^UTILITY(U,$J,358.3,14076,1,0)
+ ;;^UTILITY(U,$J,358.3,14346,1,3,0)
+ ;;=3^Abnormal Endocrine Function Sutdies NEC
+ ;;^UTILITY(U,$J,358.3,14346,1,4,0)
+ ;;=4^R94.7
+ ;;^UTILITY(U,$J,358.3,14346,2)
+ ;;=^5019744
+ ;;^UTILITY(U,$J,358.3,14347,0)
+ ;;=R94.31^^53^605^4
+ ;;^UTILITY(U,$J,358.3,14347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14076,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,14076,1,4,0)
- ;;=4^H40.53X0
- ;;^UTILITY(U,$J,358.3,14076,2)
- ;;=^5005896
- ;;^UTILITY(U,$J,358.3,14077,0)
- ;;=H40.53X1^^82^770^45
- ;;^UTILITY(U,$J,358.3,14077,1,0)
+ ;;^UTILITY(U,$J,358.3,14347,1,3,0)
+ ;;=3^Abnormal EKG
+ ;;^UTILITY(U,$J,358.3,14347,1,4,0)
+ ;;=4^R94.31
+ ;;^UTILITY(U,$J,358.3,14347,2)
+ ;;=^5019739
+ ;;^UTILITY(U,$J,358.3,14348,0)
+ ;;=R97.0^^53^605^67
+ ;;^UTILITY(U,$J,358.3,14348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14077,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,14077,1,4,0)
- ;;=4^H40.53X1
- ;;^UTILITY(U,$J,358.3,14077,2)
- ;;=^5005897
- ;;^UTILITY(U,$J,358.3,14078,0)
- ;;=H40.53X2^^82^770^46
- ;;^UTILITY(U,$J,358.3,14078,1,0)
+ ;;^UTILITY(U,$J,358.3,14348,1,3,0)
+ ;;=3^Elevated Carcinoembryonic Antigen 
+ ;;^UTILITY(U,$J,358.3,14348,1,4,0)
+ ;;=4^R97.0
+ ;;^UTILITY(U,$J,358.3,14348,2)
+ ;;=^5019746
+ ;;^UTILITY(U,$J,358.3,14349,0)
+ ;;=R97.1^^53^605^66
+ ;;^UTILITY(U,$J,358.3,14349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14078,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,14078,1,4,0)
- ;;=4^H40.53X2
+ ;;^UTILITY(U,$J,358.3,14349,1,3,0)
+ ;;=3^Elevated Cancer Antigen 125
+ ;;^UTILITY(U,$J,358.3,14349,1,4,0)
+ ;;=4^R97.1
+ ;;^UTILITY(U,$J,358.3,14349,2)
+ ;;=^5019747
+ ;;^UTILITY(U,$J,358.3,14350,0)
+ ;;=R97.2^^53^605^68
+ ;;^UTILITY(U,$J,358.3,14350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14350,1,3,0)
+ ;;=3^Elevated PSA
+ ;;^UTILITY(U,$J,358.3,14350,1,4,0)
+ ;;=4^R97.2

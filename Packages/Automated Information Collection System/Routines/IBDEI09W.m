@@ -1,144 +1,136 @@
-IBDEI09W ; ; 19-NOV-2015
+IBDEI09W ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4098,1,4,0)
- ;;=4^F51.04
- ;;^UTILITY(U,$J,358.3,4098,2)
- ;;=^5003606
- ;;^UTILITY(U,$J,358.3,4099,0)
- ;;=G47.00^^28^262^16
- ;;^UTILITY(U,$J,358.3,4099,1,0)
+ ;;^UTILITY(U,$J,358.3,4388,1,3,0)
+ ;;=3^Malig Neop Skin of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4388,1,4,0)
+ ;;=4^C44.799
+ ;;^UTILITY(U,$J,358.3,4388,2)
+ ;;=^5001086
+ ;;^UTILITY(U,$J,358.3,4389,0)
+ ;;=C44.89^^21^277^25
+ ;;^UTILITY(U,$J,358.3,4389,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4099,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,4099,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,4099,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,4100,0)
- ;;=F51.03^^28^262^13
- ;;^UTILITY(U,$J,358.3,4100,1,0)
+ ;;^UTILITY(U,$J,358.3,4389,1,3,0)
+ ;;=3^Malig Neop Skin of Overlapping Sites
+ ;;^UTILITY(U,$J,358.3,4389,1,4,0)
+ ;;=4^C44.89
+ ;;^UTILITY(U,$J,358.3,4389,2)
+ ;;=^5001090
+ ;;^UTILITY(U,$J,358.3,4390,0)
+ ;;=C43.0^^21^277^7
+ ;;^UTILITY(U,$J,358.3,4390,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4100,1,3,0)
- ;;=3^Insomnia,Paradoxical
- ;;^UTILITY(U,$J,358.3,4100,1,4,0)
- ;;=4^F51.03
- ;;^UTILITY(U,$J,358.3,4100,2)
- ;;=^5003605
- ;;^UTILITY(U,$J,358.3,4101,0)
- ;;=G47.33^^28^262^18
- ;;^UTILITY(U,$J,358.3,4101,1,0)
+ ;;^UTILITY(U,$J,358.3,4390,1,3,0)
+ ;;=3^Malig Melanoma of Lip
+ ;;^UTILITY(U,$J,358.3,4390,1,4,0)
+ ;;=4^C43.0
+ ;;^UTILITY(U,$J,358.3,4390,2)
+ ;;=^5000994
+ ;;^UTILITY(U,$J,358.3,4391,0)
+ ;;=C43.12^^21^277^4
+ ;;^UTILITY(U,$J,358.3,4391,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4101,1,3,0)
- ;;=3^Sleep Apnea,Obstructive
- ;;^UTILITY(U,$J,358.3,4101,1,4,0)
- ;;=4^G47.33
- ;;^UTILITY(U,$J,358.3,4101,2)
- ;;=^332763
- ;;^UTILITY(U,$J,358.3,4102,0)
- ;;=G47.30^^28^262^19
- ;;^UTILITY(U,$J,358.3,4102,1,0)
+ ;;^UTILITY(U,$J,358.3,4391,1,3,0)
+ ;;=3^Malig Melanoma of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,4391,1,4,0)
+ ;;=4^C43.12
+ ;;^UTILITY(U,$J,358.3,4391,2)
+ ;;=^5000997
+ ;;^UTILITY(U,$J,358.3,4392,0)
+ ;;=C43.11^^21^277^11
+ ;;^UTILITY(U,$J,358.3,4392,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4102,1,3,0)
- ;;=3^Sleep Apnea,Unspec
- ;;^UTILITY(U,$J,358.3,4102,1,4,0)
- ;;=4^G47.30
- ;;^UTILITY(U,$J,358.3,4102,2)
- ;;=^5003977
- ;;^UTILITY(U,$J,358.3,4103,0)
- ;;=Z72.820^^28^262^20
- ;;^UTILITY(U,$J,358.3,4103,1,0)
+ ;;^UTILITY(U,$J,358.3,4392,1,3,0)
+ ;;=3^Malig Melanoma of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,4392,1,4,0)
+ ;;=4^C43.11
+ ;;^UTILITY(U,$J,358.3,4392,2)
+ ;;=^5000996
+ ;;^UTILITY(U,$J,358.3,4393,0)
+ ;;=C43.21^^21^277^10
+ ;;^UTILITY(U,$J,358.3,4393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4103,1,3,0)
- ;;=3^Sleep Deprivation
- ;;^UTILITY(U,$J,358.3,4103,1,4,0)
- ;;=4^Z72.820
- ;;^UTILITY(U,$J,358.3,4103,2)
- ;;=^5063264
- ;;^UTILITY(U,$J,358.3,4104,0)
- ;;=F51.5^^28^262^21
- ;;^UTILITY(U,$J,358.3,4104,1,0)
+ ;;^UTILITY(U,$J,358.3,4393,1,3,0)
+ ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4393,1,4,0)
+ ;;=4^C43.21
+ ;;^UTILITY(U,$J,358.3,4393,2)
+ ;;=^5000999
+ ;;^UTILITY(U,$J,358.3,4394,0)
+ ;;=C43.22^^21^277^3
+ ;;^UTILITY(U,$J,358.3,4394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4104,1,3,0)
- ;;=3^Sleep Disorder,Nightmare
- ;;^UTILITY(U,$J,358.3,4104,1,4,0)
- ;;=4^F51.5
- ;;^UTILITY(U,$J,358.3,4104,2)
- ;;=^5003615
- ;;^UTILITY(U,$J,358.3,4105,0)
- ;;=F51.9^^28^262^22
- ;;^UTILITY(U,$J,358.3,4105,1,0)
+ ;;^UTILITY(U,$J,358.3,4394,1,3,0)
+ ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4394,1,4,0)
+ ;;=4^C43.22
+ ;;^UTILITY(U,$J,358.3,4394,2)
+ ;;=^5001000
+ ;;^UTILITY(U,$J,358.3,4395,0)
+ ;;=C43.31^^21^277^8
+ ;;^UTILITY(U,$J,358.3,4395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4105,1,3,0)
- ;;=3^Sleep Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4105,1,4,0)
- ;;=4^F51.9
- ;;^UTILITY(U,$J,358.3,4105,2)
- ;;=^5003617
- ;;^UTILITY(U,$J,358.3,4106,0)
- ;;=G47.14^^28^262^5
- ;;^UTILITY(U,$J,358.3,4106,1,0)
+ ;;^UTILITY(U,$J,358.3,4395,1,3,0)
+ ;;=3^Malig Melanoma of Nose
+ ;;^UTILITY(U,$J,358.3,4395,1,4,0)
+ ;;=4^C43.31
+ ;;^UTILITY(U,$J,358.3,4395,2)
+ ;;=^5001002
+ ;;^UTILITY(U,$J,358.3,4396,0)
+ ;;=C43.39^^21^277^2
+ ;;^UTILITY(U,$J,358.3,4396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4106,1,3,0)
- ;;=3^Hypersomnia d/t Medical Condition
- ;;^UTILITY(U,$J,358.3,4106,1,4,0)
- ;;=4^G47.14
- ;;^UTILITY(U,$J,358.3,4106,2)
- ;;=^5003972
- ;;^UTILITY(U,$J,358.3,4107,0)
- ;;=G47.10^^28^262^8
- ;;^UTILITY(U,$J,358.3,4107,1,0)
+ ;;^UTILITY(U,$J,358.3,4396,1,3,0)
+ ;;=3^Malig Melanoma of Face,Other Parts
+ ;;^UTILITY(U,$J,358.3,4396,1,4,0)
+ ;;=4^C43.39
+ ;;^UTILITY(U,$J,358.3,4396,2)
+ ;;=^5001003
+ ;;^UTILITY(U,$J,358.3,4397,0)
+ ;;=C43.4^^21^277^14
+ ;;^UTILITY(U,$J,358.3,4397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4107,1,3,0)
- ;;=3^Hypersomnia,Unspec
- ;;^UTILITY(U,$J,358.3,4107,1,4,0)
- ;;=4^G47.10
- ;;^UTILITY(U,$J,358.3,4107,2)
- ;;=^332926
- ;;^UTILITY(U,$J,358.3,4108,0)
- ;;=G47.01^^28^262^9
- ;;^UTILITY(U,$J,358.3,4108,1,0)
+ ;;^UTILITY(U,$J,358.3,4397,1,3,0)
+ ;;=3^Malig Melanoma of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,4397,1,4,0)
+ ;;=4^C43.4
+ ;;^UTILITY(U,$J,358.3,4397,2)
+ ;;=^5001004
+ ;;^UTILITY(U,$J,358.3,4398,0)
+ ;;=C43.59^^21^277^16
+ ;;^UTILITY(U,$J,358.3,4398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4108,1,3,0)
- ;;=3^Insomnia d/t Medical Condition
- ;;^UTILITY(U,$J,358.3,4108,1,4,0)
- ;;=4^G47.01
- ;;^UTILITY(U,$J,358.3,4108,2)
- ;;=^5003969
- ;;^UTILITY(U,$J,358.3,4109,0)
- ;;=G47.00^^28^262^17
- ;;^UTILITY(U,$J,358.3,4109,1,0)
+ ;;^UTILITY(U,$J,358.3,4398,1,3,0)
+ ;;=3^Malig Melanoma of Trunk,Other Part
+ ;;^UTILITY(U,$J,358.3,4398,1,4,0)
+ ;;=4^C43.59
+ ;;^UTILITY(U,$J,358.3,4398,2)
+ ;;=^5001007
+ ;;^UTILITY(U,$J,358.3,4399,0)
+ ;;=C43.51^^21^277^1
+ ;;^UTILITY(U,$J,358.3,4399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4109,1,3,0)
- ;;=3^Insomnia,Unspec
- ;;^UTILITY(U,$J,358.3,4109,1,4,0)
- ;;=4^G47.00
- ;;^UTILITY(U,$J,358.3,4109,2)
- ;;=^332924
- ;;^UTILITY(U,$J,358.3,4110,0)
- ;;=Z72.821^^28^262^23
- ;;^UTILITY(U,$J,358.3,4110,1,0)
+ ;;^UTILITY(U,$J,358.3,4399,1,3,0)
+ ;;=3^Malig Melanoma of Anal Skin
+ ;;^UTILITY(U,$J,358.3,4399,1,4,0)
+ ;;=4^C43.51
+ ;;^UTILITY(U,$J,358.3,4399,2)
+ ;;=^5001005
+ ;;^UTILITY(U,$J,358.3,4400,0)
+ ;;=C43.52^^21^277^15
+ ;;^UTILITY(U,$J,358.3,4400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4110,1,3,0)
- ;;=3^Sleep Hygiene,Inadequate
- ;;^UTILITY(U,$J,358.3,4110,1,4,0)
- ;;=4^Z72.821
- ;;^UTILITY(U,$J,358.3,4110,2)
- ;;=^5063265
- ;;^UTILITY(U,$J,358.3,4111,0)
- ;;=G47.63^^28^262^24
- ;;^UTILITY(U,$J,358.3,4111,1,0)
+ ;;^UTILITY(U,$J,358.3,4400,1,3,0)
+ ;;=3^Malig Melanoma of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,4400,1,4,0)
+ ;;=4^C43.52
+ ;;^UTILITY(U,$J,358.3,4400,2)
+ ;;=^5001006
+ ;;^UTILITY(U,$J,358.3,4401,0)
+ ;;=C43.61^^21^277^13
+ ;;^UTILITY(U,$J,358.3,4401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4111,1,3,0)
- ;;=3^Sleep Related Bruxism
- ;;^UTILITY(U,$J,358.3,4111,1,4,0)
- ;;=4^G47.63
- ;;^UTILITY(U,$J,358.3,4111,2)
- ;;=^332783
- ;;^UTILITY(U,$J,358.3,4112,0)
- ;;=G47.9^^28^262^25
- ;;^UTILITY(U,$J,358.3,4112,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4112,1,3,0)
- ;;=3^Sleep Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,4401,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Limb

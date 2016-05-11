@@ -1,128 +1,134 @@
-IBDEI279 ; ; 19-NOV-2015
+IBDEI279 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,36925,1,3,0)
- ;;=3^Chronic leukemia of unspecified cell type, in relapse
- ;;^UTILITY(U,$J,358.3,36925,1,4,0)
- ;;=4^C95.12
- ;;^UTILITY(U,$J,358.3,36925,2)
- ;;=^5001855
- ;;^UTILITY(U,$J,358.3,36926,0)
- ;;=D46.9^^169^1862^51
- ;;^UTILITY(U,$J,358.3,36926,1,0)
+ ;;^UTILITY(U,$J,358.3,37311,1,3,0)
+ ;;=3^Bursopathies, oth site, oth, spec
+ ;;^UTILITY(U,$J,358.3,37311,1,4,0)
+ ;;=4^M71.88
+ ;;^UTILITY(U,$J,358.3,37311,2)
+ ;;=^5133868
+ ;;^UTILITY(U,$J,358.3,37312,0)
+ ;;=M71.89^^140^1787^78
+ ;;^UTILITY(U,$J,358.3,37312,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36926,1,3,0)
- ;;=3^Myelodysplastic syndrome, unspecified
- ;;^UTILITY(U,$J,358.3,36926,1,4,0)
- ;;=4^D46.9
- ;;^UTILITY(U,$J,358.3,36926,2)
- ;;=^334031
- ;;^UTILITY(U,$J,358.3,36927,0)
- ;;=C95.90^^169^1862^39
- ;;^UTILITY(U,$J,358.3,36927,1,0)
+ ;;^UTILITY(U,$J,358.3,37312,1,3,0)
+ ;;=3^Bursopathies, multpl sites, oth, spec
+ ;;^UTILITY(U,$J,358.3,37312,1,4,0)
+ ;;=4^M71.89
+ ;;^UTILITY(U,$J,358.3,37312,2)
+ ;;=^5013231
+ ;;^UTILITY(U,$J,358.3,37313,0)
+ ;;=R76.0^^140^1787^213
+ ;;^UTILITY(U,$J,358.3,37313,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36927,1,3,0)
- ;;=3^Leukemia, unspecified not having achieved remission
- ;;^UTILITY(U,$J,358.3,36927,1,4,0)
- ;;=4^C95.90
- ;;^UTILITY(U,$J,358.3,36927,2)
- ;;=^5001856
- ;;^UTILITY(U,$J,358.3,36928,0)
- ;;=C95.91^^169^1862^41
- ;;^UTILITY(U,$J,358.3,36928,1,0)
+ ;;^UTILITY(U,$J,358.3,37313,1,3,0)
+ ;;=3^Raised antibody titer
+ ;;^UTILITY(U,$J,358.3,37313,1,4,0)
+ ;;=4^R76.0
+ ;;^UTILITY(U,$J,358.3,37313,2)
+ ;;=^5019569
+ ;;^UTILITY(U,$J,358.3,37314,0)
+ ;;=R76.9^^140^1787^2
+ ;;^UTILITY(U,$J,358.3,37314,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36928,1,3,0)
- ;;=3^Leukemia, unspecified, in remission
- ;;^UTILITY(U,$J,358.3,36928,1,4,0)
- ;;=4^C95.91
- ;;^UTILITY(U,$J,358.3,36928,2)
- ;;=^5001857
- ;;^UTILITY(U,$J,358.3,36929,0)
- ;;=C95.92^^169^1862^40
- ;;^UTILITY(U,$J,358.3,36929,1,0)
+ ;;^UTILITY(U,$J,358.3,37314,1,3,0)
+ ;;=3^Abnl immunological fndgs in serum, unspec
+ ;;^UTILITY(U,$J,358.3,37314,1,4,0)
+ ;;=4^R76.9
+ ;;^UTILITY(U,$J,358.3,37314,2)
+ ;;=^5019573
+ ;;^UTILITY(U,$J,358.3,37315,0)
+ ;;=M31.7^^140^1787^192
+ ;;^UTILITY(U,$J,358.3,37315,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36929,1,3,0)
- ;;=3^Leukemia, unspecified, in relapse
- ;;^UTILITY(U,$J,358.3,36929,1,4,0)
- ;;=4^C95.92
- ;;^UTILITY(U,$J,358.3,36929,2)
- ;;=^5001858
- ;;^UTILITY(U,$J,358.3,36930,0)
- ;;=D72.9^^169^1862^35
- ;;^UTILITY(U,$J,358.3,36930,1,0)
+ ;;^UTILITY(U,$J,358.3,37315,1,3,0)
+ ;;=3^Microscopic polyangiitis
+ ;;^UTILITY(U,$J,358.3,37315,1,4,0)
+ ;;=4^M31.7
+ ;;^UTILITY(U,$J,358.3,37315,2)
+ ;;=^5011749
+ ;;^UTILITY(U,$J,358.3,37316,0)
+ ;;=M31.4^^140^1787^58
+ ;;^UTILITY(U,$J,358.3,37316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36930,1,3,0)
- ;;=3^Disorder of white blood cells, unspecified
- ;;^UTILITY(U,$J,358.3,36930,1,4,0)
- ;;=4^D72.9
- ;;^UTILITY(U,$J,358.3,36930,2)
- ;;=^5002381
- ;;^UTILITY(U,$J,358.3,36931,0)
- ;;=D75.1^^169^1862^59
- ;;^UTILITY(U,$J,358.3,36931,1,0)
+ ;;^UTILITY(U,$J,358.3,37316,1,3,0)
+ ;;=3^Aortic arch syndrome [Takayasu]
+ ;;^UTILITY(U,$J,358.3,37316,1,4,0)
+ ;;=4^M31.4
+ ;;^UTILITY(U,$J,358.3,37316,2)
+ ;;=^5011746
+ ;;^UTILITY(U,$J,358.3,37317,0)
+ ;;=I77.6^^140^1787^59
+ ;;^UTILITY(U,$J,358.3,37317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36931,1,3,0)
- ;;=3^Secondary polycythemia
- ;;^UTILITY(U,$J,358.3,36931,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,36931,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,36932,0)
- ;;=D75.9^^169^1862^34
- ;;^UTILITY(U,$J,358.3,36932,1,0)
+ ;;^UTILITY(U,$J,358.3,37317,1,3,0)
+ ;;=3^Arteritis, unspec
+ ;;^UTILITY(U,$J,358.3,37317,1,4,0)
+ ;;=4^I77.6
+ ;;^UTILITY(U,$J,358.3,37317,2)
+ ;;=^5007813
+ ;;^UTILITY(U,$J,358.3,37318,0)
+ ;;=M26.62^^140^1787^60
+ ;;^UTILITY(U,$J,358.3,37318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36932,1,3,0)
- ;;=3^Disease of blood and blood-forming organs, unspecified
- ;;^UTILITY(U,$J,358.3,36932,1,4,0)
- ;;=4^D75.9
- ;;^UTILITY(U,$J,358.3,36932,2)
- ;;=^5002393
- ;;^UTILITY(U,$J,358.3,36933,0)
- ;;=C7A.010^^169^1862^42
- ;;^UTILITY(U,$J,358.3,36933,1,0)
+ ;;^UTILITY(U,$J,358.3,37318,1,3,0)
+ ;;=3^Arthralgia of temporomandibular joint
+ ;;^UTILITY(U,$J,358.3,37318,1,4,0)
+ ;;=4^M26.62
+ ;;^UTILITY(U,$J,358.3,37318,2)
+ ;;=^270034
+ ;;^UTILITY(U,$J,358.3,37319,0)
+ ;;=M12.9^^140^1787^61
+ ;;^UTILITY(U,$J,358.3,37319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36933,1,3,0)
- ;;=3^Malignant carcinoid tumor of the duodenum
- ;;^UTILITY(U,$J,358.3,36933,1,4,0)
- ;;=4^C7A.010
- ;;^UTILITY(U,$J,358.3,36933,2)
- ;;=^5001359
- ;;^UTILITY(U,$J,358.3,36934,0)
- ;;=C7A.011^^169^1862^44
- ;;^UTILITY(U,$J,358.3,36934,1,0)
+ ;;^UTILITY(U,$J,358.3,37319,1,3,0)
+ ;;=3^Arthropathy, unspec
+ ;;^UTILITY(U,$J,358.3,37319,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,37319,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,37320,0)
+ ;;=M35.2^^140^1787^62
+ ;;^UTILITY(U,$J,358.3,37320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36934,1,3,0)
- ;;=3^Malignant carcinoid tumor of the jejunum
- ;;^UTILITY(U,$J,358.3,36934,1,4,0)
- ;;=4^C7A.011
- ;;^UTILITY(U,$J,358.3,36934,2)
- ;;=^5001360
- ;;^UTILITY(U,$J,358.3,36935,0)
- ;;=C7A.012^^169^1862^43
- ;;^UTILITY(U,$J,358.3,36935,1,0)
+ ;;^UTILITY(U,$J,358.3,37320,1,3,0)
+ ;;=3^Behcet's disease
+ ;;^UTILITY(U,$J,358.3,37320,1,4,0)
+ ;;=4^M35.2
+ ;;^UTILITY(U,$J,358.3,37320,2)
+ ;;=^263705
+ ;;^UTILITY(U,$J,358.3,37321,0)
+ ;;=I82.91^^140^1787^94
+ ;;^UTILITY(U,$J,358.3,37321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36935,1,3,0)
- ;;=3^Malignant carcinoid tumor of the ileum
- ;;^UTILITY(U,$J,358.3,36935,1,4,0)
- ;;=4^C7A.012
- ;;^UTILITY(U,$J,358.3,36935,2)
- ;;=^5001361
- ;;^UTILITY(U,$J,358.3,36936,0)
- ;;=C93.30^^169^1862^38
- ;;^UTILITY(U,$J,358.3,36936,1,0)
+ ;;^UTILITY(U,$J,358.3,37321,1,3,0)
+ ;;=3^Chron embolism & thrombosis of unspec vein
+ ;;^UTILITY(U,$J,358.3,37321,1,4,0)
+ ;;=4^I82.91
+ ;;^UTILITY(U,$J,358.3,37321,2)
+ ;;=^5007941
+ ;;^UTILITY(U,$J,358.3,37322,0)
+ ;;=M1A.30X1^^140^1787^152
+ ;;^UTILITY(U,$J,358.3,37322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36936,1,3,0)
- ;;=3^Juvenile myelomonocytic leukemia,no remission
- ;;^UTILITY(U,$J,358.3,36936,1,4,0)
- ;;=4^C93.30
- ;;^UTILITY(U,$J,358.3,36936,2)
- ;;=^5001825
- ;;^UTILITY(U,$J,358.3,36937,0)
- ;;=C93.31^^169^1862^37
- ;;^UTILITY(U,$J,358.3,36937,1,0)
+ ;;^UTILITY(U,$J,358.3,37322,1,3,0)
+ ;;=3^Gout, chron d/t renal imprmnt, unsp site, w/ tophus (tophi)
+ ;;^UTILITY(U,$J,358.3,37322,1,4,0)
+ ;;=4^M1A.30X1
+ ;;^UTILITY(U,$J,358.3,37322,2)
+ ;;=^5010960
+ ;;^UTILITY(U,$J,358.3,37323,0)
+ ;;=M1A.9XX1^^140^1787^156
+ ;;^UTILITY(U,$J,358.3,37323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,36937,1,3,0)
- ;;=3^Juvenile myelomonocytic leukemia,in remission
- ;;^UTILITY(U,$J,358.3,36937,1,4,0)
- ;;=4^C93.31
+ ;;^UTILITY(U,$J,358.3,37323,1,3,0)
+ ;;=3^Gout, chron, unspec, w/ tophus (tophi)
+ ;;^UTILITY(U,$J,358.3,37323,1,4,0)
+ ;;=4^M1A.9XX1
+ ;;^UTILITY(U,$J,358.3,37323,2)
+ ;;=^5133773
+ ;;^UTILITY(U,$J,358.3,37324,0)
+ ;;=Z79.52^^140^1787^190
+ ;;^UTILITY(U,$J,358.3,37324,1,0)
+ ;;=^358.31IA^4^2

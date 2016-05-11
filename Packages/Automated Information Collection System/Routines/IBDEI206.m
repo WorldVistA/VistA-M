@@ -1,122 +1,130 @@
-IBDEI206 ; ; 19-NOV-2015
+IBDEI206 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,33537,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,33537,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,33538,0)
- ;;=F19.14^^148^1662^1
- ;;^UTILITY(U,$J,358.3,33538,1,0)
+ ;;^UTILITY(U,$J,358.3,33983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33538,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,33538,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,33538,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,33539,0)
- ;;=F19.182^^148^1662^2
- ;;^UTILITY(U,$J,358.3,33539,1,0)
+ ;;^UTILITY(U,$J,358.3,33983,1,3,0)
+ ;;=3^Malig Neop Nodes of Head,Face and Neck,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,33983,1,4,0)
+ ;;=4^C77.0
+ ;;^UTILITY(U,$J,358.3,33983,2)
+ ;;=^5001329
+ ;;^UTILITY(U,$J,358.3,33984,0)
+ ;;=C77.8^^131^1680^143
+ ;;^UTILITY(U,$J,358.3,33984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33539,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,33539,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,33539,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,33540,0)
- ;;=F19.20^^148^1662^6
- ;;^UTILITY(U,$J,358.3,33540,1,0)
+ ;;^UTILITY(U,$J,358.3,33984,1,3,0)
+ ;;=3^Malig Neop Nodes of Multiple Regions,Sec and Unspec
+ ;;^UTILITY(U,$J,358.3,33984,1,4,0)
+ ;;=4^C77.8
+ ;;^UTILITY(U,$J,358.3,33984,2)
+ ;;=^5001332
+ ;;^UTILITY(U,$J,358.3,33985,0)
+ ;;=C79.51^^131^1680^113
+ ;;^UTILITY(U,$J,358.3,33985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33540,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,33540,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,33540,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,33541,0)
- ;;=F19.21^^148^1662^5
- ;;^UTILITY(U,$J,358.3,33541,1,0)
+ ;;^UTILITY(U,$J,358.3,33985,1,3,0)
+ ;;=3^Malig Neop Bone,Secondary
+ ;;^UTILITY(U,$J,358.3,33985,1,4,0)
+ ;;=4^C79.51
+ ;;^UTILITY(U,$J,358.3,33985,2)
+ ;;=^5001350
+ ;;^UTILITY(U,$J,358.3,33986,0)
+ ;;=C79.52^^131^1680^112
+ ;;^UTILITY(U,$J,358.3,33986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33541,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,33541,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,33541,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,33542,0)
- ;;=F19.24^^148^1662^4
- ;;^UTILITY(U,$J,358.3,33542,1,0)
+ ;;^UTILITY(U,$J,358.3,33986,1,3,0)
+ ;;=3^Malig Neop Bone Marrow,Secondary
+ ;;^UTILITY(U,$J,358.3,33986,1,4,0)
+ ;;=4^C79.52
+ ;;^UTILITY(U,$J,358.3,33986,2)
+ ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,33987,0)
+ ;;=C79.31^^131^1680^114
+ ;;^UTILITY(U,$J,358.3,33987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33542,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,33542,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,33542,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,33543,0)
- ;;=F13.10^^148^1663^1
- ;;^UTILITY(U,$J,358.3,33543,1,0)
+ ;;^UTILITY(U,$J,358.3,33987,1,3,0)
+ ;;=3^Malig Neop Brain,Secondary
+ ;;^UTILITY(U,$J,358.3,33987,1,4,0)
+ ;;=4^C79.31
+ ;;^UTILITY(U,$J,358.3,33987,2)
+ ;;=^5001347
+ ;;^UTILITY(U,$J,358.3,33988,0)
+ ;;=C79.72^^131^1680^129
+ ;;^UTILITY(U,$J,358.3,33988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33543,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,33543,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,33543,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,33544,0)
- ;;=F13.14^^148^1663^7
- ;;^UTILITY(U,$J,358.3,33544,1,0)
+ ;;^UTILITY(U,$J,358.3,33988,1,3,0)
+ ;;=3^Malig Neop Left Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,33988,1,4,0)
+ ;;=4^C79.72
+ ;;^UTILITY(U,$J,358.3,33988,2)
+ ;;=^5001357
+ ;;^UTILITY(U,$J,358.3,33989,0)
+ ;;=C78.02^^131^1680^133
+ ;;^UTILITY(U,$J,358.3,33989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33544,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
- ;;^UTILITY(U,$J,358.3,33544,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,33544,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,33545,0)
- ;;=F13.182^^148^1663^8
- ;;^UTILITY(U,$J,358.3,33545,1,0)
+ ;;^UTILITY(U,$J,358.3,33989,1,3,0)
+ ;;=3^Malig Neop Left Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,33989,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,33989,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,33990,0)
+ ;;=C78.7^^131^1680^138
+ ;;^UTILITY(U,$J,358.3,33990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33545,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,33545,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,33545,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,33546,0)
- ;;=F13.20^^148^1663^2
- ;;^UTILITY(U,$J,358.3,33546,1,0)
+ ;;^UTILITY(U,$J,358.3,33990,1,3,0)
+ ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
+ ;;^UTILITY(U,$J,358.3,33990,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,33990,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,33991,0)
+ ;;=C79.71^^131^1680^151
+ ;;^UTILITY(U,$J,358.3,33991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33546,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,33546,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,33546,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,33547,0)
- ;;=F13.21^^148^1663^3
- ;;^UTILITY(U,$J,358.3,33547,1,0)
+ ;;^UTILITY(U,$J,358.3,33991,1,3,0)
+ ;;=3^Malig Neop Right Adrenal Gland,Secondary
+ ;;^UTILITY(U,$J,358.3,33991,1,4,0)
+ ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,33991,2)
+ ;;=^5001356
+ ;;^UTILITY(U,$J,358.3,33992,0)
+ ;;=C78.01^^131^1680^155
+ ;;^UTILITY(U,$J,358.3,33992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33547,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,33547,1,4,0)
- ;;=4^F13.21
- ;;^UTILITY(U,$J,358.3,33547,2)
- ;;=^331934
- ;;^UTILITY(U,$J,358.3,33548,0)
- ;;=F13.232^^148^1663^4
- ;;^UTILITY(U,$J,358.3,33548,1,0)
+ ;;^UTILITY(U,$J,358.3,33992,1,3,0)
+ ;;=3^Malig Neop Right Lung,Secondary
+ ;;^UTILITY(U,$J,358.3,33992,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,33992,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,33993,0)
+ ;;=C79.70^^131^1680^106
+ ;;^UTILITY(U,$J,358.3,33993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,33548,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,33548,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,33548,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,33549,0)
- ;;=F13.239^^148^1663^5
- ;;^UTILITY(U,$J,358.3,33549,1,0)
+ ;;^UTILITY(U,$J,358.3,33993,1,3,0)
+ ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,33993,1,4,0)
+ ;;=4^C79.70
+ ;;^UTILITY(U,$J,358.3,33993,2)
+ ;;=^5001355
+ ;;^UTILITY(U,$J,358.3,33994,0)
+ ;;=C78.00^^131^1680^139
+ ;;^UTILITY(U,$J,358.3,33994,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33994,1,3,0)
+ ;;=3^Malig Neop Lung Unspec,Secondary
+ ;;^UTILITY(U,$J,358.3,33994,1,4,0)
+ ;;=4^C78.00
+ ;;^UTILITY(U,$J,358.3,33994,2)
+ ;;=^5001334
+ ;;^UTILITY(U,$J,358.3,33995,0)
+ ;;=D57.1^^131^1680^182
+ ;;^UTILITY(U,$J,358.3,33995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33995,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,33995,1,4,0)
+ ;;=4^D57.1

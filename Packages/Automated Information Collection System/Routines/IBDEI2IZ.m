@@ -1,126 +1,128 @@
-IBDEI2IZ ; ; 19-NOV-2015
+IBDEI2IZ ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,42375,0)
- ;;=S80.852A^^192^2137^170
- ;;^UTILITY(U,$J,358.3,42375,1,0)
+ ;;^UTILITY(U,$J,358.3,42837,0)
+ ;;=T83.51XA^^162^2044^7
+ ;;^UTILITY(U,$J,358.3,42837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42375,1,3,0)
- ;;=3^Foreign body, lft lwr leg, Superficial,init
- ;;^UTILITY(U,$J,358.3,42375,1,4,0)
- ;;=4^S80.852A
- ;;^UTILITY(U,$J,358.3,42375,2)
- ;;=^5039990
- ;;^UTILITY(U,$J,358.3,42376,0)
- ;;=S90.452A^^192^2137^168
- ;;^UTILITY(U,$J,358.3,42376,1,0)
+ ;;^UTILITY(U,$J,358.3,42837,1,3,0)
+ ;;=3^Infectn/Inflam d/t Indwell Urinary Cath,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42837,1,4,0)
+ ;;=4^T83.51XA
+ ;;^UTILITY(U,$J,358.3,42837,2)
+ ;;=^5055058
+ ;;^UTILITY(U,$J,358.3,42838,0)
+ ;;=T83.59XA^^162^2044^8
+ ;;^UTILITY(U,$J,358.3,42838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42376,1,3,0)
- ;;=3^Foreign body, lft grt toe, Superficial,init
- ;;^UTILITY(U,$J,358.3,42376,1,4,0)
- ;;=4^S90.452A
- ;;^UTILITY(U,$J,358.3,42376,2)
- ;;=^5043946
- ;;^UTILITY(U,$J,358.3,42377,0)
- ;;=S90.455A^^192^2137^169
- ;;^UTILITY(U,$J,358.3,42377,1,0)
+ ;;^UTILITY(U,$J,358.3,42838,1,3,0)
+ ;;=3^Infectn/Inflam d/t dvc/implnt/grft GU Syst,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42838,1,4,0)
+ ;;=4^T83.59XA
+ ;;^UTILITY(U,$J,358.3,42838,2)
+ ;;=^5055061
+ ;;^UTILITY(U,$J,358.3,42839,0)
+ ;;=T83.9XXA^^162^2044^2
+ ;;^UTILITY(U,$J,358.3,42839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42377,1,3,0)
- ;;=3^Foreign body, lft lsr toe(s), Superficial,init
- ;;^UTILITY(U,$J,358.3,42377,1,4,0)
- ;;=4^S90.455A
- ;;^UTILITY(U,$J,358.3,42377,2)
- ;;=^5043955
- ;;^UTILITY(U,$J,358.3,42378,0)
- ;;=S90.851A^^192^2137^171
- ;;^UTILITY(U,$J,358.3,42378,1,0)
+ ;;^UTILITY(U,$J,358.3,42839,1,3,0)
+ ;;=3^Complic GU dvc/implnt/grft,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42839,1,4,0)
+ ;;=4^T83.9XXA
+ ;;^UTILITY(U,$J,358.3,42839,2)
+ ;;=^5055100
+ ;;^UTILITY(U,$J,358.3,42840,0)
+ ;;=T83.89XA^^162^2044^1
+ ;;^UTILITY(U,$J,358.3,42840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42378,1,3,0)
- ;;=3^Foreign body, rt ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,42378,1,4,0)
- ;;=4^S90.851A
- ;;^UTILITY(U,$J,358.3,42378,2)
- ;;=^5044078
- ;;^UTILITY(U,$J,358.3,42379,0)
- ;;=S90.852A^^192^2137^167
- ;;^UTILITY(U,$J,358.3,42379,1,0)
+ ;;^UTILITY(U,$J,358.3,42840,1,3,0)
+ ;;=3^Complic GU dvc/implnt/grft,Oth,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42840,1,4,0)
+ ;;=4^T83.89XA
+ ;;^UTILITY(U,$J,358.3,42840,2)
+ ;;=^5055097
+ ;;^UTILITY(U,$J,358.3,42841,0)
+ ;;=T83.86XA^^162^2044^11
+ ;;^UTILITY(U,$J,358.3,42841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42379,1,3,0)
- ;;=3^Foreign body, lft ft, Superficial,init
- ;;^UTILITY(U,$J,358.3,42379,1,4,0)
- ;;=4^S90.852A
- ;;^UTILITY(U,$J,358.3,42379,2)
- ;;=^5044081
- ;;^UTILITY(U,$J,358.3,42380,0)
- ;;=T34.821A^^192^2137^188
- ;;^UTILITY(U,$J,358.3,42380,1,0)
+ ;;^UTILITY(U,$J,358.3,42841,1,3,0)
+ ;;=3^Thrombosis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42841,1,4,0)
+ ;;=4^T83.86XA
+ ;;^UTILITY(U,$J,358.3,42841,2)
+ ;;=^5055094
+ ;;^UTILITY(U,$J,358.3,42842,0)
+ ;;=T83.85XA^^162^2044^10
+ ;;^UTILITY(U,$J,358.3,42842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42380,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt ft, init
- ;;^UTILITY(U,$J,358.3,42380,1,4,0)
- ;;=4^T34.821A
- ;;^UTILITY(U,$J,358.3,42380,2)
- ;;=^5049232
- ;;^UTILITY(U,$J,358.3,42381,0)
- ;;=T34.822A^^192^2137^183
- ;;^UTILITY(U,$J,358.3,42381,1,0)
+ ;;^UTILITY(U,$J,358.3,42842,1,3,0)
+ ;;=3^Stenoisis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42842,1,4,0)
+ ;;=4^T83.85XA
+ ;;^UTILITY(U,$J,358.3,42842,2)
+ ;;=^5055091
+ ;;^UTILITY(U,$J,358.3,42843,0)
+ ;;=T83.84XA^^162^2044^9
+ ;;^UTILITY(U,$J,358.3,42843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42381,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft ft, init
- ;;^UTILITY(U,$J,358.3,42381,1,4,0)
- ;;=4^T34.822A
- ;;^UTILITY(U,$J,358.3,42381,2)
- ;;=^5049235
- ;;^UTILITY(U,$J,358.3,42382,0)
- ;;=T34.831A^^192^2137^190
- ;;^UTILITY(U,$J,358.3,42382,1,0)
+ ;;^UTILITY(U,$J,358.3,42843,1,3,0)
+ ;;=3^Pain GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42843,1,4,0)
+ ;;=4^T83.84XA
+ ;;^UTILITY(U,$J,358.3,42843,2)
+ ;;=^5055088
+ ;;^UTILITY(U,$J,358.3,42844,0)
+ ;;=T83.83XA^^162^2044^6
+ ;;^UTILITY(U,$J,358.3,42844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42382,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of rt toe(s), init
- ;;^UTILITY(U,$J,358.3,42382,1,4,0)
- ;;=4^T34.831A
- ;;^UTILITY(U,$J,358.3,42382,2)
- ;;=^5049241
- ;;^UTILITY(U,$J,358.3,42383,0)
- ;;=T34.832A^^192^2137^185
- ;;^UTILITY(U,$J,358.3,42383,1,0)
+ ;;^UTILITY(U,$J,358.3,42844,1,3,0)
+ ;;=3^Hemorrhage GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42844,1,4,0)
+ ;;=4^T83.83XA
+ ;;^UTILITY(U,$J,358.3,42844,2)
+ ;;=^5055085
+ ;;^UTILITY(U,$J,358.3,42845,0)
+ ;;=T83.82XA^^162^2044^4
+ ;;^UTILITY(U,$J,358.3,42845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42383,1,3,0)
- ;;=3^Frostbite w/ tissue necrosis of lft toe(s), init
- ;;^UTILITY(U,$J,358.3,42383,1,4,0)
- ;;=4^T34.832A
- ;;^UTILITY(U,$J,358.3,42383,2)
- ;;=^5049244
- ;;^UTILITY(U,$J,358.3,42384,0)
- ;;=T33.811A^^192^2137^178
- ;;^UTILITY(U,$J,358.3,42384,1,0)
+ ;;^UTILITY(U,$J,358.3,42845,1,3,0)
+ ;;=3^Fibrosis GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42845,1,4,0)
+ ;;=4^T83.82XA
+ ;;^UTILITY(U,$J,358.3,42845,2)
+ ;;=^5055082
+ ;;^UTILITY(U,$J,358.3,42846,0)
+ ;;=T83.81XA^^162^2044^3
+ ;;^UTILITY(U,$J,358.3,42846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42384,1,3,0)
- ;;=3^Frostbite of rt ankl, Superficial,init
- ;;^UTILITY(U,$J,358.3,42384,1,4,0)
- ;;=4^T33.811A
- ;;^UTILITY(U,$J,358.3,42384,2)
- ;;=^5049112
- ;;^UTILITY(U,$J,358.3,42385,0)
- ;;=T33.812A^^192^2137^175
- ;;^UTILITY(U,$J,358.3,42385,1,0)
+ ;;^UTILITY(U,$J,358.3,42846,1,3,0)
+ ;;=3^Embolism GU dvc/implnt/grft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,42846,1,4,0)
+ ;;=4^T83.81XA
+ ;;^UTILITY(U,$J,358.3,42846,2)
+ ;;=^5055079
+ ;;^UTILITY(U,$J,358.3,42847,0)
+ ;;=Z46.6^^162^2044^5
+ ;;^UTILITY(U,$J,358.3,42847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42385,1,3,0)
- ;;=3^Frostbite of lft ankl,Superficial, init
- ;;^UTILITY(U,$J,358.3,42385,1,4,0)
- ;;=4^T33.812A
- ;;^UTILITY(U,$J,358.3,42385,2)
- ;;=^5049115
- ;;^UTILITY(U,$J,358.3,42386,0)
- ;;=T33.821A^^192^2137^179
- ;;^UTILITY(U,$J,358.3,42386,1,0)
+ ;;^UTILITY(U,$J,358.3,42847,1,3,0)
+ ;;=3^Fitting/Adjustment of Urinary Device
+ ;;^UTILITY(U,$J,358.3,42847,1,4,0)
+ ;;=4^Z46.6
+ ;;^UTILITY(U,$J,358.3,42847,2)
+ ;;=^5063020
+ ;;^UTILITY(U,$J,358.3,42848,0)
+ ;;=G37.3^^162^2045^1
+ ;;^UTILITY(U,$J,358.3,42848,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,42386,1,3,0)
- ;;=3^Frostbite of rt ft,Superficial, init
- ;;^UTILITY(U,$J,358.3,42386,1,4,0)
- ;;=4^T33.821A
- ;;^UTILITY(U,$J,358.3,42386,2)
- ;;=^5049121
- ;;^UTILITY(U,$J,358.3,42387,0)
- ;;=T33.822A^^192^2137^176
+ ;;^UTILITY(U,$J,358.3,42848,1,3,0)
+ ;;=3^Acute trnsvrs myelitis in demyelinating dz of CNS
+ ;;^UTILITY(U,$J,358.3,42848,1,4,0)
+ ;;=4^G37.3
+ ;;^UTILITY(U,$J,358.3,42848,2)
+ ;;=^5003824
+ ;;^UTILITY(U,$J,358.3,42849,0)
+ ;;=G82.50^^162^2045^7
+ ;;^UTILITY(U,$J,358.3,42849,1,0)
+ ;;=^358.31IA^4^2

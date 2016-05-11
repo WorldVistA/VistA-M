@@ -1,134 +1,134 @@
-IBDEI1LF ; ; 19-NOV-2015
+IBDEI1LF ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,26648,1,3,0)
- ;;=3^Retinal Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,26648,1,4,0)
- ;;=4^H35.61
- ;;^UTILITY(U,$J,358.3,26648,2)
- ;;=^5005699
- ;;^UTILITY(U,$J,358.3,26649,0)
- ;;=H35.62^^130^1295^43
- ;;^UTILITY(U,$J,358.3,26649,1,0)
+ ;;^UTILITY(U,$J,358.3,27007,1,4,0)
+ ;;=4^F78.
+ ;;^UTILITY(U,$J,358.3,27007,2)
+ ;;=^5003672
+ ;;^UTILITY(U,$J,358.3,27008,0)
+ ;;=F79.^^100^1302^6
+ ;;^UTILITY(U,$J,358.3,27008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26649,1,3,0)
- ;;=3^Retinal Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,26649,1,4,0)
- ;;=4^H35.62
- ;;^UTILITY(U,$J,358.3,26649,2)
- ;;=^5005700
- ;;^UTILITY(U,$J,358.3,26650,0)
- ;;=H35.89^^130^1295^41
- ;;^UTILITY(U,$J,358.3,26650,1,0)
+ ;;^UTILITY(U,$J,358.3,27008,1,3,0)
+ ;;=3^Intellectual Disabilities,Unspec
+ ;;^UTILITY(U,$J,358.3,27008,1,4,0)
+ ;;=4^F79.
+ ;;^UTILITY(U,$J,358.3,27008,2)
+ ;;=^5003673
+ ;;^UTILITY(U,$J,358.3,27009,0)
+ ;;=Z00.6^^100^1303^1
+ ;;^UTILITY(U,$J,358.3,27009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26650,1,3,0)
- ;;=3^Retinal Disorders NEC
- ;;^UTILITY(U,$J,358.3,26650,1,4,0)
- ;;=4^H35.89
- ;;^UTILITY(U,$J,358.3,26650,2)
- ;;=^5005717
- ;;^UTILITY(U,$J,358.3,26651,0)
- ;;=H31.003^^130^1295^12
- ;;^UTILITY(U,$J,358.3,26651,1,0)
+ ;;^UTILITY(U,$J,358.3,27009,1,3,0)
+ ;;=3^Exam of Participant of Control in Clinical Research Program
+ ;;^UTILITY(U,$J,358.3,27009,1,4,0)
+ ;;=4^Z00.6
+ ;;^UTILITY(U,$J,358.3,27009,2)
+ ;;=^5062608
+ ;;^UTILITY(U,$J,358.3,27010,0)
+ ;;=F45.22^^100^1304^1
+ ;;^UTILITY(U,$J,358.3,27010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26651,1,3,0)
- ;;=3^Chorioretinal Scars,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,26651,1,4,0)
- ;;=4^H31.003
- ;;^UTILITY(U,$J,358.3,26651,2)
- ;;=^5005438
- ;;^UTILITY(U,$J,358.3,26652,0)
- ;;=H31.001^^130^1295^16
- ;;^UTILITY(U,$J,358.3,26652,1,0)
+ ;;^UTILITY(U,$J,358.3,27010,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,27010,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,27010,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,27011,0)
+ ;;=F45.20^^100^1304^7
+ ;;^UTILITY(U,$J,358.3,27011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26652,1,3,0)
- ;;=3^Chorioretinal Scars,Right Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26652,1,4,0)
- ;;=4^H31.001
- ;;^UTILITY(U,$J,358.3,26652,2)
- ;;=^5005436
- ;;^UTILITY(U,$J,358.3,26653,0)
- ;;=H31.002^^130^1295^14
- ;;^UTILITY(U,$J,358.3,26653,1,0)
+ ;;^UTILITY(U,$J,358.3,27011,1,3,0)
+ ;;=3^Hypochondiacal Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27011,1,4,0)
+ ;;=4^F45.20
+ ;;^UTILITY(U,$J,358.3,27011,2)
+ ;;=^5003586
+ ;;^UTILITY(U,$J,358.3,27012,0)
+ ;;=F45.21^^100^1304^9
+ ;;^UTILITY(U,$J,358.3,27012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26653,1,3,0)
- ;;=3^Chorioretinal Scars,Left Eye,Unspec
- ;;^UTILITY(U,$J,358.3,26653,1,4,0)
- ;;=4^H31.002
- ;;^UTILITY(U,$J,358.3,26653,2)
- ;;=^5005437
- ;;^UTILITY(U,$J,358.3,26654,0)
- ;;=H31.091^^130^1295^15
- ;;^UTILITY(U,$J,358.3,26654,1,0)
+ ;;^UTILITY(U,$J,358.3,27012,1,3,0)
+ ;;=3^Hypochondriasis
+ ;;^UTILITY(U,$J,358.3,27012,1,4,0)
+ ;;=4^F45.21
+ ;;^UTILITY(U,$J,358.3,27012,2)
+ ;;=^5003587
+ ;;^UTILITY(U,$J,358.3,27013,0)
+ ;;=F45.29^^100^1304^8
+ ;;^UTILITY(U,$J,358.3,27013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26654,1,3,0)
- ;;=3^Chorioretinal Scars,Right Eye,Other
- ;;^UTILITY(U,$J,358.3,26654,1,4,0)
- ;;=4^H31.091
- ;;^UTILITY(U,$J,358.3,26654,2)
- ;;=^5005447
- ;;^UTILITY(U,$J,358.3,26655,0)
- ;;=H31.092^^130^1295^13
- ;;^UTILITY(U,$J,358.3,26655,1,0)
+ ;;^UTILITY(U,$J,358.3,27013,1,3,0)
+ ;;=3^Hypochondriacal Disorders NEC
+ ;;^UTILITY(U,$J,358.3,27013,1,4,0)
+ ;;=4^F45.29
+ ;;^UTILITY(U,$J,358.3,27013,2)
+ ;;=^5003589
+ ;;^UTILITY(U,$J,358.3,27014,0)
+ ;;=F45.8^^100^1304^15
+ ;;^UTILITY(U,$J,358.3,27014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26655,1,3,0)
- ;;=3^Chorioretinal Scars,Left Eye,Other
- ;;^UTILITY(U,$J,358.3,26655,1,4,0)
- ;;=4^H31.092
- ;;^UTILITY(U,$J,358.3,26655,2)
- ;;=^5133484
- ;;^UTILITY(U,$J,358.3,26656,0)
- ;;=H31.093^^130^1295^11
- ;;^UTILITY(U,$J,358.3,26656,1,0)
+ ;;^UTILITY(U,$J,358.3,27014,1,3,0)
+ ;;=3^Somatoform Disorders NEC
+ ;;^UTILITY(U,$J,358.3,27014,1,4,0)
+ ;;=4^F45.8
+ ;;^UTILITY(U,$J,358.3,27014,2)
+ ;;=^331915
+ ;;^UTILITY(U,$J,358.3,27015,0)
+ ;;=F45.41^^100^1304^10
+ ;;^UTILITY(U,$J,358.3,27015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26656,1,3,0)
- ;;=3^Chorioretinal Scars,Bilateral,Other
- ;;^UTILITY(U,$J,358.3,26656,1,4,0)
- ;;=4^H31.093
- ;;^UTILITY(U,$J,358.3,26656,2)
- ;;=^5005448
- ;;^UTILITY(U,$J,358.3,26657,0)
- ;;=G45.3^^130^1296^3
- ;;^UTILITY(U,$J,358.3,26657,1,0)
+ ;;^UTILITY(U,$J,358.3,27015,1,3,0)
+ ;;=3^Pain Disorder Exclusively Related to Psychological Factors
+ ;;^UTILITY(U,$J,358.3,27015,1,4,0)
+ ;;=4^F45.41
+ ;;^UTILITY(U,$J,358.3,27015,2)
+ ;;=^5003590
+ ;;^UTILITY(U,$J,358.3,27016,0)
+ ;;=F45.42^^100^1304^11
+ ;;^UTILITY(U,$J,358.3,27016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26657,1,3,0)
- ;;=3^Amaurosis Fugax
- ;;^UTILITY(U,$J,358.3,26657,1,4,0)
- ;;=4^G45.3
- ;;^UTILITY(U,$J,358.3,26657,2)
- ;;=^304129
- ;;^UTILITY(U,$J,358.3,26658,0)
- ;;=H53.121^^130^1296^67
- ;;^UTILITY(U,$J,358.3,26658,1,0)
+ ;;^UTILITY(U,$J,358.3,27016,1,3,0)
+ ;;=3^Pain Disorder w/ Related Psychological Factors
+ ;;^UTILITY(U,$J,358.3,27016,1,4,0)
+ ;;=4^F45.42
+ ;;^UTILITY(U,$J,358.3,27016,2)
+ ;;=^5003591
+ ;;^UTILITY(U,$J,358.3,27017,0)
+ ;;=F45.0^^100^1304^13
+ ;;^UTILITY(U,$J,358.3,27017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26658,1,3,0)
- ;;=3^Transient Visual Loss,Right Eye
- ;;^UTILITY(U,$J,358.3,26658,1,4,0)
- ;;=4^H53.121
- ;;^UTILITY(U,$J,358.3,26658,2)
- ;;=^5006309
- ;;^UTILITY(U,$J,358.3,26659,0)
- ;;=H53.122^^130^1296^66
- ;;^UTILITY(U,$J,358.3,26659,1,0)
+ ;;^UTILITY(U,$J,358.3,27017,1,3,0)
+ ;;=3^Somatization Disorder
+ ;;^UTILITY(U,$J,358.3,27017,1,4,0)
+ ;;=4^F45.0
+ ;;^UTILITY(U,$J,358.3,27017,2)
+ ;;=^112280
+ ;;^UTILITY(U,$J,358.3,27018,0)
+ ;;=F45.9^^100^1304^14
+ ;;^UTILITY(U,$J,358.3,27018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26659,1,3,0)
- ;;=3^Transient Visual Loss,Left Eye
- ;;^UTILITY(U,$J,358.3,26659,1,4,0)
- ;;=4^H53.122
- ;;^UTILITY(U,$J,358.3,26659,2)
- ;;=^5006310
- ;;^UTILITY(U,$J,358.3,26660,0)
- ;;=H53.123^^130^1296^65
- ;;^UTILITY(U,$J,358.3,26660,1,0)
+ ;;^UTILITY(U,$J,358.3,27018,1,3,0)
+ ;;=3^Somatoform Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27018,1,4,0)
+ ;;=4^F45.9
+ ;;^UTILITY(U,$J,358.3,27018,2)
+ ;;=^5003592
+ ;;^UTILITY(U,$J,358.3,27019,0)
+ ;;=F45.1^^100^1304^16
+ ;;^UTILITY(U,$J,358.3,27019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,26660,1,3,0)
- ;;=3^Transient Visual Loss,Bilateral
- ;;^UTILITY(U,$J,358.3,26660,1,4,0)
- ;;=4^H53.123
- ;;^UTILITY(U,$J,358.3,26660,2)
- ;;=^5006311
- ;;^UTILITY(U,$J,358.3,26661,0)
- ;;=H53.141^^130^1296^72
- ;;^UTILITY(U,$J,358.3,26661,1,0)
+ ;;^UTILITY(U,$J,358.3,27019,1,3,0)
+ ;;=3^Undifferntiated Somatoform Disorder
+ ;;^UTILITY(U,$J,358.3,27019,1,4,0)
+ ;;=4^F45.1
+ ;;^UTILITY(U,$J,358.3,27019,2)
+ ;;=^5003585
+ ;;^UTILITY(U,$J,358.3,27020,0)
+ ;;=F44.4^^100^1304^2
+ ;;^UTILITY(U,$J,358.3,27020,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27020,1,3,0)
+ ;;=3^Conversion Disorder w/ Abnormal Movement

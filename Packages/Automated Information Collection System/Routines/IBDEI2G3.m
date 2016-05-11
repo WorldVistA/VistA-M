@@ -1,118 +1,134 @@
-IBDEI2G3 ; ; 19-NOV-2015
+IBDEI2G3 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,41040,1,0)
+ ;;^UTILITY(U,$J,358.3,41469,1,4,0)
+ ;;=4^Z83.2
+ ;;^UTILITY(U,$J,358.3,41469,2)
+ ;;=^5063378
+ ;;^UTILITY(U,$J,358.3,41470,0)
+ ;;=Z82.71^^159^2005^47
+ ;;^UTILITY(U,$J,358.3,41470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41040,1,3,0)
- ;;=3^Nondisp bimalleol fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41040,1,4,0)
- ;;=4^S82.844K
- ;;^UTILITY(U,$J,358.3,41040,2)
- ;;=^5042536
- ;;^UTILITY(U,$J,358.3,41041,0)
- ;;=S82.844N^^189^2086^239
- ;;^UTILITY(U,$J,358.3,41041,1,0)
+ ;;^UTILITY(U,$J,358.3,41470,1,3,0)
+ ;;=3^Family Hx of Polycystic Kidney
+ ;;^UTILITY(U,$J,358.3,41470,1,4,0)
+ ;;=4^Z82.71
+ ;;^UTILITY(U,$J,358.3,41470,2)
+ ;;=^321531
+ ;;^UTILITY(U,$J,358.3,41471,0)
+ ;;=Z82.1^^159^2005^23
+ ;;^UTILITY(U,$J,358.3,41471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41041,1,3,0)
- ;;=3^Nondisp bimall fx rt lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41041,1,4,0)
- ;;=4^S82.844N
- ;;^UTILITY(U,$J,358.3,41041,2)
- ;;=^5042538
- ;;^UTILITY(U,$J,358.3,41042,0)
- ;;=S82.845N^^189^2086^238
- ;;^UTILITY(U,$J,358.3,41042,1,0)
+ ;;^UTILITY(U,$J,358.3,41471,1,3,0)
+ ;;=3^Family Hx of Blindness/Visual Loss
+ ;;^UTILITY(U,$J,358.3,41471,1,4,0)
+ ;;=4^Z82.1
+ ;;^UTILITY(U,$J,358.3,41471,2)
+ ;;=^5063365
+ ;;^UTILITY(U,$J,358.3,41472,0)
+ ;;=Z82.2^^159^2005^27
+ ;;^UTILITY(U,$J,358.3,41472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41042,1,3,0)
- ;;=3^Nondisp bimall fx lft lwr leg, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41042,1,4,0)
- ;;=4^S82.845N
- ;;^UTILITY(U,$J,358.3,41042,2)
- ;;=^5042554
- ;;^UTILITY(U,$J,358.3,41043,0)
- ;;=S82.844M^^189^2086^237
- ;;^UTILITY(U,$J,358.3,41043,1,0)
+ ;;^UTILITY(U,$J,358.3,41472,1,3,0)
+ ;;=3^Family Hx of Deafness/Hearing Loss
+ ;;^UTILITY(U,$J,358.3,41472,1,4,0)
+ ;;=4^Z82.2
+ ;;^UTILITY(U,$J,358.3,41472,2)
+ ;;=^5063366
+ ;;^UTILITY(U,$J,358.3,41473,0)
+ ;;=Z84.0^^159^2005^48
+ ;;^UTILITY(U,$J,358.3,41473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41043,1,3,0)
- ;;=3^Nondisp bimal fx rt lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41043,1,4,0)
- ;;=4^S82.844M
- ;;^UTILITY(U,$J,358.3,41043,2)
- ;;=^5042537
- ;;^UTILITY(U,$J,358.3,41044,0)
- ;;=S82.845M^^189^2086^234
- ;;^UTILITY(U,$J,358.3,41044,1,0)
+ ;;^UTILITY(U,$J,358.3,41473,1,3,0)
+ ;;=3^Family Hx of Skin Diseases
+ ;;^UTILITY(U,$J,358.3,41473,1,4,0)
+ ;;=4^Z84.0
+ ;;^UTILITY(U,$J,358.3,41473,2)
+ ;;=^5063388
+ ;;^UTILITY(U,$J,358.3,41474,0)
+ ;;=Z82.79^^159^2005^26
+ ;;^UTILITY(U,$J,358.3,41474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41044,1,3,0)
- ;;=3^Nondisp bimal fx lft lwr leg, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41044,1,4,0)
- ;;=4^S82.845M
- ;;^UTILITY(U,$J,358.3,41044,2)
- ;;=^5042553
- ;;^UTILITY(U,$J,358.3,41045,0)
- ;;=S82.844K^^189^2086^236
- ;;^UTILITY(U,$J,358.3,41045,1,0)
+ ;;^UTILITY(U,$J,358.3,41474,1,3,0)
+ ;;=3^Family Hx of Congen Malform,Deformations & Chromsoml Abnlt
+ ;;^UTILITY(U,$J,358.3,41474,1,4,0)
+ ;;=4^Z82.79
+ ;;^UTILITY(U,$J,358.3,41474,2)
+ ;;=^5063374
+ ;;^UTILITY(U,$J,358.3,41475,0)
+ ;;=Z84.89^^159^2005^46
+ ;;^UTILITY(U,$J,358.3,41475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41045,1,3,0)
- ;;=3^Nondisp bimal fx rt lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41045,1,4,0)
- ;;=4^S82.844K
- ;;^UTILITY(U,$J,358.3,41045,2)
- ;;=^5042536
- ;;^UTILITY(U,$J,358.3,41046,0)
- ;;=S82.845K^^189^2086^235
- ;;^UTILITY(U,$J,358.3,41046,1,0)
+ ;;^UTILITY(U,$J,358.3,41475,1,3,0)
+ ;;=3^Family Hx of Other Spec Conditions
+ ;;^UTILITY(U,$J,358.3,41475,1,4,0)
+ ;;=4^Z84.89
+ ;;^UTILITY(U,$J,358.3,41475,2)
+ ;;=^5063393
+ ;;^UTILITY(U,$J,358.3,41476,0)
+ ;;=Z81.1^^159^2005^20
+ ;;^UTILITY(U,$J,358.3,41476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41046,1,3,0)
- ;;=3^Nondisp bimal fx lft lwr leg, subs for clos fx w/ nonunion
- ;;^UTILITY(U,$J,358.3,41046,1,4,0)
- ;;=4^S82.845K
- ;;^UTILITY(U,$J,358.3,41046,2)
- ;;=^5042552
- ;;^UTILITY(U,$J,358.3,41047,0)
- ;;=S82.62XN^^189^2086^43
- ;;^UTILITY(U,$J,358.3,41047,1,0)
+ ;;^UTILITY(U,$J,358.3,41476,1,3,0)
+ ;;=3^Family Hx of Alcohol Abuse/Dependence
+ ;;^UTILITY(U,$J,358.3,41476,1,4,0)
+ ;;=4^Z81.1
+ ;;^UTILITY(U,$J,358.3,41476,2)
+ ;;=^5063359
+ ;;^UTILITY(U,$J,358.3,41477,0)
+ ;;=Z82.62^^159^2005^45
+ ;;^UTILITY(U,$J,358.3,41477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41047,1,3,0)
- ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41047,1,4,0)
- ;;=4^S82.62XN
- ;;^UTILITY(U,$J,358.3,41047,2)
- ;;=^5042338
- ;;^UTILITY(U,$J,358.3,41048,0)
- ;;=S82.61XN^^189^2086^46
- ;;^UTILITY(U,$J,358.3,41048,1,0)
+ ;;^UTILITY(U,$J,358.3,41477,1,3,0)
+ ;;=3^Family Hx of Osteoporosis
+ ;;^UTILITY(U,$J,358.3,41477,1,4,0)
+ ;;=4^Z82.62
+ ;;^UTILITY(U,$J,358.3,41477,2)
+ ;;=^5063372
+ ;;^UTILITY(U,$J,358.3,41478,0)
+ ;;=Z83.71^^159^2005^25
+ ;;^UTILITY(U,$J,358.3,41478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41048,1,3,0)
- ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type IIIA/B/C w/ nonunion
- ;;^UTILITY(U,$J,358.3,41048,1,4,0)
- ;;=4^S82.61XN
- ;;^UTILITY(U,$J,358.3,41048,2)
- ;;=^5042322
- ;;^UTILITY(U,$J,358.3,41049,0)
- ;;=S82.62XM^^189^2086^44
- ;;^UTILITY(U,$J,358.3,41049,1,0)
+ ;;^UTILITY(U,$J,358.3,41478,1,3,0)
+ ;;=3^Family Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,41478,1,4,0)
+ ;;=4^Z83.71
+ ;;^UTILITY(U,$J,358.3,41478,2)
+ ;;=^5063386
+ ;;^UTILITY(U,$J,358.3,41479,0)
+ ;;=Z84.81^^159^2005^29
+ ;;^UTILITY(U,$J,358.3,41479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41049,1,3,0)
- ;;=3^Disp fx ltrl mall lft fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41049,1,4,0)
- ;;=4^S82.62XM
- ;;^UTILITY(U,$J,358.3,41049,2)
- ;;=^5042337
- ;;^UTILITY(U,$J,358.3,41050,0)
- ;;=S82.61XM^^189^2086^47
- ;;^UTILITY(U,$J,358.3,41050,1,0)
+ ;;^UTILITY(U,$J,358.3,41479,1,3,0)
+ ;;=3^Family Hx of Genetic Disease
+ ;;^UTILITY(U,$J,358.3,41479,1,4,0)
+ ;;=4^Z84.81
+ ;;^UTILITY(U,$J,358.3,41479,2)
+ ;;=^5063392
+ ;;^UTILITY(U,$J,358.3,41480,0)
+ ;;=Z86.010^^159^2005^76
+ ;;^UTILITY(U,$J,358.3,41480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41050,1,3,0)
- ;;=3^Disp fx ltrl mall rt fib, subs for opn fx type I/II w/ nonunion
- ;;^UTILITY(U,$J,358.3,41050,1,4,0)
- ;;=4^S82.61XM
- ;;^UTILITY(U,$J,358.3,41050,2)
- ;;=^5042321
- ;;^UTILITY(U,$J,358.3,41051,0)
- ;;=S82.62XK^^189^2086^42
- ;;^UTILITY(U,$J,358.3,41051,1,0)
+ ;;^UTILITY(U,$J,358.3,41480,1,3,0)
+ ;;=3^Personal Hx of Colonic Polyps
+ ;;^UTILITY(U,$J,358.3,41480,1,4,0)
+ ;;=4^Z86.010
+ ;;^UTILITY(U,$J,358.3,41480,2)
+ ;;=^5063456
+ ;;^UTILITY(U,$J,358.3,41481,0)
+ ;;=Z86.14^^159^2005^81
+ ;;^UTILITY(U,$J,358.3,41481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,41051,1,3,0)
- ;;=3^Disp fx ltrl mall lft fib, subs for clos fx w/ nonunion
+ ;;^UTILITY(U,$J,358.3,41481,1,3,0)
+ ;;=3^Personal Hx of MRSA Infection
+ ;;^UTILITY(U,$J,358.3,41481,1,4,0)
+ ;;=4^Z86.14
+ ;;^UTILITY(U,$J,358.3,41481,2)
+ ;;=^5063464
+ ;;^UTILITY(U,$J,358.3,41482,0)
+ ;;=Z86.31^^159^2005^77
+ ;;^UTILITY(U,$J,358.3,41482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41482,1,3,0)
+ ;;=3^Personal Hx of Diabetic Foot Ulcer

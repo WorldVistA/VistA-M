@@ -1,126 +1,138 @@
-IBDEI175 ; ; 19-NOV-2015
+IBDEI175 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19995,1,0)
+ ;;^UTILITY(U,$J,358.3,20345,0)
+ ;;=B97.89^^84^931^89
+ ;;^UTILITY(U,$J,358.3,20345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19995,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
- ;;^UTILITY(U,$J,358.3,19995,1,4,0)
- ;;=4^R40.2340
- ;;^UTILITY(U,$J,358.3,19995,2)
- ;;=^5019415
- ;;^UTILITY(U,$J,358.3,19996,0)
- ;;=R40.2324^^94^934^1
- ;;^UTILITY(U,$J,358.3,19996,1,0)
+ ;;^UTILITY(U,$J,358.3,20345,1,3,0)
+ ;;=3^Viral Agent Cause of Disease
+ ;;^UTILITY(U,$J,358.3,20345,1,4,0)
+ ;;=4^B97.89
+ ;;^UTILITY(U,$J,358.3,20345,2)
+ ;;=^5000879
+ ;;^UTILITY(U,$J,358.3,20346,0)
+ ;;=B97.10^^84^931^21
+ ;;^UTILITY(U,$J,358.3,20346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19996,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
- ;;^UTILITY(U,$J,358.3,19996,1,4,0)
- ;;=4^R40.2324
- ;;^UTILITY(U,$J,358.3,19996,2)
- ;;=^5019409
- ;;^UTILITY(U,$J,358.3,19997,0)
- ;;=R40.2323^^94^934^4
- ;;^UTILITY(U,$J,358.3,19997,1,0)
+ ;;^UTILITY(U,$J,358.3,20346,1,3,0)
+ ;;=3^Enterovirus Cause of Disease
+ ;;^UTILITY(U,$J,358.3,20346,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,20346,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,20347,0)
+ ;;=B34.9^^84^931^90
+ ;;^UTILITY(U,$J,358.3,20347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19997,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,19997,1,4,0)
- ;;=4^R40.2323
- ;;^UTILITY(U,$J,358.3,19997,2)
- ;;=^5019408
- ;;^UTILITY(U,$J,358.3,19998,0)
- ;;=R40.2322^^94^934^2
- ;;^UTILITY(U,$J,358.3,19998,1,0)
+ ;;^UTILITY(U,$J,358.3,20347,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,20347,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,20347,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,20348,0)
+ ;;=A69.20^^84^931^50
+ ;;^UTILITY(U,$J,358.3,20348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19998,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
- ;;^UTILITY(U,$J,358.3,19998,1,4,0)
- ;;=4^R40.2322
- ;;^UTILITY(U,$J,358.3,19998,2)
- ;;=^5019407
- ;;^UTILITY(U,$J,358.3,19999,0)
- ;;=R40.2321^^94^934^5
- ;;^UTILITY(U,$J,358.3,19999,1,0)
+ ;;^UTILITY(U,$J,358.3,20348,1,3,0)
+ ;;=3^Lyme Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,20348,1,4,0)
+ ;;=4^A69.20
+ ;;^UTILITY(U,$J,358.3,20348,2)
+ ;;=^5000375
+ ;;^UTILITY(U,$J,358.3,20349,0)
+ ;;=A69.22^^84^931^52
+ ;;^UTILITY(U,$J,358.3,20349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19999,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
- ;;^UTILITY(U,$J,358.3,19999,1,4,0)
- ;;=4^R40.2321
- ;;^UTILITY(U,$J,358.3,19999,2)
- ;;=^5019406
- ;;^UTILITY(U,$J,358.3,20000,0)
- ;;=R40.2320^^94^934^3
- ;;^UTILITY(U,$J,358.3,20000,1,0)
+ ;;^UTILITY(U,$J,358.3,20349,1,3,0)
+ ;;=3^Neurologic Disorders d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,20349,1,4,0)
+ ;;=4^A69.22
+ ;;^UTILITY(U,$J,358.3,20349,2)
+ ;;=^5000377
+ ;;^UTILITY(U,$J,358.3,20350,0)
+ ;;=A69.21^^84^931^51
+ ;;^UTILITY(U,$J,358.3,20350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20000,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
- ;;^UTILITY(U,$J,358.3,20000,1,4,0)
- ;;=4^R40.2320
- ;;^UTILITY(U,$J,358.3,20000,2)
- ;;=^5019405
- ;;^UTILITY(U,$J,358.3,20001,0)
- ;;=R40.2314^^94^934^11
- ;;^UTILITY(U,$J,358.3,20001,1,0)
+ ;;^UTILITY(U,$J,358.3,20350,1,3,0)
+ ;;=3^Meningitis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,20350,1,4,0)
+ ;;=4^A69.21
+ ;;^UTILITY(U,$J,358.3,20350,2)
+ ;;=^5000376
+ ;;^UTILITY(U,$J,358.3,20351,0)
+ ;;=A69.29^^84^931^18
+ ;;^UTILITY(U,$J,358.3,20351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20001,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
- ;;^UTILITY(U,$J,358.3,20001,1,4,0)
- ;;=4^R40.2314
- ;;^UTILITY(U,$J,358.3,20001,2)
- ;;=^5019404
- ;;^UTILITY(U,$J,358.3,20002,0)
- ;;=R40.2313^^94^934^14
- ;;^UTILITY(U,$J,358.3,20002,1,0)
+ ;;^UTILITY(U,$J,358.3,20351,1,3,0)
+ ;;=3^Conditions d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,20351,1,4,0)
+ ;;=4^A69.29
+ ;;^UTILITY(U,$J,358.3,20351,2)
+ ;;=^5000379
+ ;;^UTILITY(U,$J,358.3,20352,0)
+ ;;=A69.23^^84^931^5
+ ;;^UTILITY(U,$J,358.3,20352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20002,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,20002,1,4,0)
- ;;=4^R40.2313
- ;;^UTILITY(U,$J,358.3,20002,2)
- ;;=^5019403
- ;;^UTILITY(U,$J,358.3,20003,0)
- ;;=R40.2312^^94^934^12
- ;;^UTILITY(U,$J,358.3,20003,1,0)
+ ;;^UTILITY(U,$J,358.3,20352,1,3,0)
+ ;;=3^Arthritis d/t Lyme Disease
+ ;;^UTILITY(U,$J,358.3,20352,1,4,0)
+ ;;=4^A69.23
+ ;;^UTILITY(U,$J,358.3,20352,2)
+ ;;=^5000378
+ ;;^UTILITY(U,$J,358.3,20353,0)
+ ;;=A51.0^^84^931^29
+ ;;^UTILITY(U,$J,358.3,20353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20003,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
- ;;^UTILITY(U,$J,358.3,20003,1,4,0)
- ;;=4^R40.2312
- ;;^UTILITY(U,$J,358.3,20003,2)
- ;;=^5019402
- ;;^UTILITY(U,$J,358.3,20004,0)
- ;;=R40.2311^^94^934^15
- ;;^UTILITY(U,$J,358.3,20004,1,0)
+ ;;^UTILITY(U,$J,358.3,20353,1,3,0)
+ ;;=3^Genital Syphilis,Primary
+ ;;^UTILITY(U,$J,358.3,20353,1,4,0)
+ ;;=4^A51.0
+ ;;^UTILITY(U,$J,358.3,20353,2)
+ ;;=^5000272
+ ;;^UTILITY(U,$J,358.3,20354,0)
+ ;;=A52.3^^84^931^54
+ ;;^UTILITY(U,$J,358.3,20354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20004,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,20004,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,20004,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,20005,0)
- ;;=R40.2310^^94^934^13
- ;;^UTILITY(U,$J,358.3,20005,1,0)
+ ;;^UTILITY(U,$J,358.3,20354,1,3,0)
+ ;;=3^Neurosyphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,20354,1,4,0)
+ ;;=4^A52.3
+ ;;^UTILITY(U,$J,358.3,20354,2)
+ ;;=^5000298
+ ;;^UTILITY(U,$J,358.3,20355,0)
+ ;;=A52.10^^84^931^53
+ ;;^UTILITY(U,$J,358.3,20355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20005,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,20005,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,20005,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,20006,0)
- ;;=R40.4^^94^934^38
- ;;^UTILITY(U,$J,358.3,20006,1,0)
+ ;;^UTILITY(U,$J,358.3,20355,1,3,0)
+ ;;=3^Neurosyphilis Symptomatic,Unspec
+ ;;^UTILITY(U,$J,358.3,20355,1,4,0)
+ ;;=4^A52.10
+ ;;^UTILITY(U,$J,358.3,20355,2)
+ ;;=^5000291
+ ;;^UTILITY(U,$J,358.3,20356,0)
+ ;;=A52.9^^84^931^49
+ ;;^UTILITY(U,$J,358.3,20356,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20006,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,20006,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,20006,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,20007,0)
- ;;=V00.811A^^94^935^45
- ;;^UTILITY(U,$J,358.3,20007,1,0)
+ ;;^UTILITY(U,$J,358.3,20356,1,3,0)
+ ;;=3^Late Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,20356,1,4,0)
+ ;;=4^A52.9
+ ;;^UTILITY(U,$J,358.3,20356,2)
+ ;;=^5000308
+ ;;^UTILITY(U,$J,358.3,20357,0)
+ ;;=A53.9^^84^931^79
+ ;;^UTILITY(U,$J,358.3,20357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20357,1,3,0)
+ ;;=3^Syphilis,Unspec
+ ;;^UTILITY(U,$J,358.3,20357,1,4,0)
+ ;;=4^A53.9
+ ;;^UTILITY(U,$J,358.3,20357,2)
+ ;;=^5000310
+ ;;^UTILITY(U,$J,358.3,20358,0)
+ ;;=B37.3^^84^931^17
+ ;;^UTILITY(U,$J,358.3,20358,1,0)
  ;;=^358.31IA^4^2

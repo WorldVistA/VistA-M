@@ -1,134 +1,134 @@
-IBDEI1DT ; ; 19-NOV-2015
+IBDEI1DT ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,23044,0)
- ;;=J96.11^^107^1084^10
- ;;^UTILITY(U,$J,358.3,23044,1,0)
+ ;;^UTILITY(U,$J,358.3,23482,1,4,0)
+ ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,23482,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,23483,0)
+ ;;=L08.89^^87^998^3
+ ;;^UTILITY(U,$J,358.3,23483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23044,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23044,1,4,0)
- ;;=4^J96.11
- ;;^UTILITY(U,$J,358.3,23044,2)
- ;;=^5008351
- ;;^UTILITY(U,$J,358.3,23045,0)
- ;;=J96.12^^107^1084^9
- ;;^UTILITY(U,$J,358.3,23045,1,0)
+ ;;^UTILITY(U,$J,358.3,23483,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,23483,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,23483,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,23484,0)
+ ;;=T14.90^^87^998^1
+ ;;^UTILITY(U,$J,358.3,23484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23045,1,3,0)
- ;;=3^Chronic Respiratory Failure w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23045,1,4,0)
- ;;=4^J96.12
- ;;^UTILITY(U,$J,358.3,23045,2)
- ;;=^5008352
- ;;^UTILITY(U,$J,358.3,23046,0)
- ;;=J96.91^^107^1084^18
- ;;^UTILITY(U,$J,358.3,23046,1,0)
+ ;;^UTILITY(U,$J,358.3,23484,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,23484,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,23484,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,23485,0)
+ ;;=S91.002A^^87^998^6
+ ;;^UTILITY(U,$J,358.3,23485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23046,1,3,0)
- ;;=3^Respiratory Failure,Unspec w/ Hypoxia
- ;;^UTILITY(U,$J,358.3,23046,1,4,0)
- ;;=4^J96.91
- ;;^UTILITY(U,$J,358.3,23046,2)
- ;;=^5008357
- ;;^UTILITY(U,$J,358.3,23047,0)
- ;;=J96.92^^107^1084^17
- ;;^UTILITY(U,$J,358.3,23047,1,0)
+ ;;^UTILITY(U,$J,358.3,23485,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,23485,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,23485,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,23486,0)
+ ;;=S91.302A^^87^998^7
+ ;;^UTILITY(U,$J,358.3,23486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23047,1,3,0)
- ;;=3^Respiratory Failure,Unspec w/ Hypercapnia
- ;;^UTILITY(U,$J,358.3,23047,1,4,0)
- ;;=4^J96.92
- ;;^UTILITY(U,$J,358.3,23047,2)
- ;;=^5008358
- ;;^UTILITY(U,$J,358.3,23048,0)
- ;;=Z51.5^^107^1085^1
- ;;^UTILITY(U,$J,358.3,23048,1,0)
+ ;;^UTILITY(U,$J,358.3,23486,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,23486,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,23486,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,23487,0)
+ ;;=S51.802A^^87^998^8
+ ;;^UTILITY(U,$J,358.3,23487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23048,1,3,0)
- ;;=3^Hospice/Palliative Care
- ;;^UTILITY(U,$J,358.3,23048,1,4,0)
- ;;=4^Z51.5
- ;;^UTILITY(U,$J,358.3,23048,2)
- ;;=^5063063
- ;;^UTILITY(U,$J,358.3,23049,0)
- ;;=B20.^^107^1086^2
- ;;^UTILITY(U,$J,358.3,23049,1,0)
+ ;;^UTILITY(U,$J,358.3,23487,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,23487,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,23487,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,23488,0)
+ ;;=S91.102A^^87^998^9
+ ;;^UTILITY(U,$J,358.3,23488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23049,1,3,0)
- ;;=3^HIV Disease
- ;;^UTILITY(U,$J,358.3,23049,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,23049,2)
- ;;=^5000555
- ;;^UTILITY(U,$J,358.3,23050,0)
- ;;=R65.10^^107^1086^3
- ;;^UTILITY(U,$J,358.3,23050,1,0)
+ ;;^UTILITY(U,$J,358.3,23488,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,23488,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,23488,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,23489,0)
+ ;;=S61.402A^^87^998^10
+ ;;^UTILITY(U,$J,358.3,23489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23050,1,3,0)
- ;;=3^SIRS w/o Acute Organ Dysfunction
- ;;^UTILITY(U,$J,358.3,23050,1,4,0)
- ;;=4^R65.10
- ;;^UTILITY(U,$J,358.3,23050,2)
- ;;=^5019545
- ;;^UTILITY(U,$J,358.3,23051,0)
- ;;=R64.^^107^1086^1
- ;;^UTILITY(U,$J,358.3,23051,1,0)
+ ;;^UTILITY(U,$J,358.3,23489,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,23489,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,23489,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,23490,0)
+ ;;=S71.002A^^87^998^11
+ ;;^UTILITY(U,$J,358.3,23490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23051,1,3,0)
- ;;=3^Cachexia
- ;;^UTILITY(U,$J,358.3,23051,1,4,0)
- ;;=4^R64.
- ;;^UTILITY(U,$J,358.3,23051,2)
- ;;=^17920
- ;;^UTILITY(U,$J,358.3,23052,0)
- ;;=A41.9^^107^1086^4
- ;;^UTILITY(U,$J,358.3,23052,1,0)
+ ;;^UTILITY(U,$J,358.3,23490,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,23490,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,23490,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,23491,0)
+ ;;=S91.104A^^87^998^22
+ ;;^UTILITY(U,$J,358.3,23491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23052,1,3,0)
- ;;=3^Sepsis,Unspec Organism (Septicemia)
- ;;^UTILITY(U,$J,358.3,23052,1,4,0)
- ;;=4^A41.9
- ;;^UTILITY(U,$J,358.3,23052,2)
- ;;=^5000214
- ;;^UTILITY(U,$J,358.3,23053,0)
- ;;=F02.81^^107^1087^11
- ;;^UTILITY(U,$J,358.3,23053,1,0)
+ ;;^UTILITY(U,$J,358.3,23491,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,23491,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,23491,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,23492,0)
+ ;;=S81.802A^^87^998^13
+ ;;^UTILITY(U,$J,358.3,23492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23053,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/ Behav Disturb
- ;;^UTILITY(U,$J,358.3,23053,1,4,0)
- ;;=4^F02.81
- ;;^UTILITY(U,$J,358.3,23053,2)
- ;;=^5003049
- ;;^UTILITY(U,$J,358.3,23054,0)
- ;;=F02.80^^107^1087^12
- ;;^UTILITY(U,$J,358.3,23054,1,0)
+ ;;^UTILITY(U,$J,358.3,23492,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec
+ ;;^UTILITY(U,$J,358.3,23492,1,4,0)
+ ;;=4^S81.802A
+ ;;^UTILITY(U,$J,358.3,23492,2)
+ ;;=^5040068
+ ;;^UTILITY(U,$J,358.3,23493,0)
+ ;;=S41.102A^^87^998^15
+ ;;^UTILITY(U,$J,358.3,23493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23054,1,3,0)
- ;;=3^Dementia in Oth Diseases Classd Elswhr w/o Behav Disturb
- ;;^UTILITY(U,$J,358.3,23054,1,4,0)
- ;;=4^F02.80
- ;;^UTILITY(U,$J,358.3,23054,2)
- ;;=^5003048
- ;;^UTILITY(U,$J,358.3,23055,0)
- ;;=F03.91^^107^1087^13
- ;;^UTILITY(U,$J,358.3,23055,1,0)
+ ;;^UTILITY(U,$J,358.3,23493,1,3,0)
+ ;;=3^Open Wound,Left Upper Arm,Unspec
+ ;;^UTILITY(U,$J,358.3,23493,1,4,0)
+ ;;=4^S41.102A
+ ;;^UTILITY(U,$J,358.3,23493,2)
+ ;;=^5026333
+ ;;^UTILITY(U,$J,358.3,23494,0)
+ ;;=S91.001A^^87^998^16
+ ;;^UTILITY(U,$J,358.3,23494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23055,1,3,0)
- ;;=3^Dementia w/ Behav Disturb,Unspec
- ;;^UTILITY(U,$J,358.3,23055,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,23055,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,23056,0)
- ;;=G31.83^^107^1087^14
- ;;^UTILITY(U,$J,358.3,23056,1,0)
+ ;;^UTILITY(U,$J,358.3,23494,1,3,0)
+ ;;=3^Open Wound,Right Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,23494,1,4,0)
+ ;;=4^S91.001A
+ ;;^UTILITY(U,$J,358.3,23494,2)
+ ;;=^5044129
+ ;;^UTILITY(U,$J,358.3,23495,0)
+ ;;=S91.301A^^87^998^17
+ ;;^UTILITY(U,$J,358.3,23495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,23056,1,3,0)
- ;;=3^Dementia w/ Lewy Bodies
- ;;^UTILITY(U,$J,358.3,23056,1,4,0)
- ;;=4^G31.83
- ;;^UTILITY(U,$J,358.3,23056,2)
- ;;=^329888
+ ;;^UTILITY(U,$J,358.3,23495,1,3,0)
+ ;;=3^Open Wound,Right Foot,Unspec

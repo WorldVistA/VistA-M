@@ -1,130 +1,132 @@
-IBDEI2B7 ; ; 19-NOV-2015
+IBDEI2B7 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,38784,1,0)
+ ;;^UTILITY(U,$J,358.3,39177,1,3,0)
+ ;;=3^Conjunctivitis,Left Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,39177,1,4,0)
+ ;;=4^H10.402
+ ;;^UTILITY(U,$J,358.3,39177,2)
+ ;;=^5004682
+ ;;^UTILITY(U,$J,358.3,39178,0)
+ ;;=H10.411^^153^1920^79
+ ;;^UTILITY(U,$J,358.3,39178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38784,1,3,0)
- ;;=3^Fracture of left foot, sequela
- ;;^UTILITY(U,$J,358.3,38784,1,4,0)
- ;;=4^S92.902S
- ;;^UTILITY(U,$J,358.3,38784,2)
- ;;=^5045591
- ;;^UTILITY(U,$J,358.3,38785,0)
- ;;=S52.92XS^^180^1986^11
- ;;^UTILITY(U,$J,358.3,38785,1,0)
+ ;;^UTILITY(U,$J,358.3,39178,1,3,0)
+ ;;=3^Giant Papillary Conjunctivitis,Right Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,39178,1,4,0)
+ ;;=4^H10.411
+ ;;^UTILITY(U,$J,358.3,39178,2)
+ ;;=^5004684
+ ;;^UTILITY(U,$J,358.3,39179,0)
+ ;;=H10.412^^153^1920^78
+ ;;^UTILITY(U,$J,358.3,39179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38785,1,3,0)
- ;;=3^Fracture of left forearm, sequela
- ;;^UTILITY(U,$J,358.3,38785,1,4,0)
- ;;=4^S52.92XS
- ;;^UTILITY(U,$J,358.3,38785,2)
- ;;=^5031189
- ;;^UTILITY(U,$J,358.3,38786,0)
- ;;=S82.92XS^^180^1986^12
- ;;^UTILITY(U,$J,358.3,38786,1,0)
+ ;;^UTILITY(U,$J,358.3,39179,1,3,0)
+ ;;=3^Giant Papillary Conjunctivitis,Left Eye,Chronic
+ ;;^UTILITY(U,$J,358.3,39179,1,4,0)
+ ;;=4^H10.412
+ ;;^UTILITY(U,$J,358.3,39179,2)
+ ;;=^5004685
+ ;;^UTILITY(U,$J,358.3,39180,0)
+ ;;=H10.45^^153^1920^1
+ ;;^UTILITY(U,$J,358.3,39180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38786,1,3,0)
- ;;=3^Fracture of left lower leg, sequela
- ;;^UTILITY(U,$J,358.3,38786,1,4,0)
- ;;=4^S82.92XS
- ;;^UTILITY(U,$J,358.3,38786,2)
- ;;=^5136992
- ;;^UTILITY(U,$J,358.3,38787,0)
- ;;=S82.002S^^180^1986^13
- ;;^UTILITY(U,$J,358.3,38787,1,0)
+ ;;^UTILITY(U,$J,358.3,39180,1,3,0)
+ ;;=3^Allergic Conjunctivitis,Chronic NEC
+ ;;^UTILITY(U,$J,358.3,39180,1,4,0)
+ ;;=4^H10.45
+ ;;^UTILITY(U,$J,358.3,39180,2)
+ ;;=^87396
+ ;;^UTILITY(U,$J,358.3,39181,0)
+ ;;=H10.501^^153^1920^21
+ ;;^UTILITY(U,$J,358.3,39181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38787,1,3,0)
- ;;=3^Fracture of left patella, sequela
- ;;^UTILITY(U,$J,358.3,38787,1,4,0)
- ;;=4^S82.002S
- ;;^UTILITY(U,$J,358.3,38787,2)
- ;;=^5040135
- ;;^UTILITY(U,$J,358.3,38788,0)
- ;;=S92.912S^^180^1986^15
- ;;^UTILITY(U,$J,358.3,38788,1,0)
+ ;;^UTILITY(U,$J,358.3,39181,1,3,0)
+ ;;=3^Blepharoconjunctivitis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39181,1,4,0)
+ ;;=4^H10.501
+ ;;^UTILITY(U,$J,358.3,39181,2)
+ ;;=^5004697
+ ;;^UTILITY(U,$J,358.3,39182,0)
+ ;;=H10.502^^153^1920^20
+ ;;^UTILITY(U,$J,358.3,39182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38788,1,3,0)
- ;;=3^Fracture of left toe(s), sequela
- ;;^UTILITY(U,$J,358.3,38788,1,4,0)
- ;;=4^S92.912S
- ;;^UTILITY(U,$J,358.3,38788,2)
- ;;=^5045605
- ;;^UTILITY(U,$J,358.3,38789,0)
- ;;=S62.92XS^^180^1986^16
- ;;^UTILITY(U,$J,358.3,38789,1,0)
+ ;;^UTILITY(U,$J,358.3,39182,1,3,0)
+ ;;=3^Blepharoconjunctivitis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39182,1,4,0)
+ ;;=4^H10.502
+ ;;^UTILITY(U,$J,358.3,39182,2)
+ ;;=^5004698
+ ;;^UTILITY(U,$J,358.3,39183,0)
+ ;;=H11.011^^153^1920^4
+ ;;^UTILITY(U,$J,358.3,39183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38789,1,3,0)
- ;;=3^Fracture of left wrist and hand, sequela
- ;;^UTILITY(U,$J,358.3,38789,1,4,0)
- ;;=4^S62.92XS
- ;;^UTILITY(U,$J,358.3,38789,2)
- ;;=^5034892
- ;;^UTILITY(U,$J,358.3,38790,0)
- ;;=S42.402S^^180^1986^17
- ;;^UTILITY(U,$J,358.3,38790,1,0)
+ ;;^UTILITY(U,$J,358.3,39183,1,3,0)
+ ;;=3^Amyloid Pterygium,Right Eye
+ ;;^UTILITY(U,$J,358.3,39183,1,4,0)
+ ;;=4^H11.011
+ ;;^UTILITY(U,$J,358.3,39183,2)
+ ;;=^5004720
+ ;;^UTILITY(U,$J,358.3,39184,0)
+ ;;=H11.012^^153^1920^3
+ ;;^UTILITY(U,$J,358.3,39184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38790,1,3,0)
- ;;=3^Fracture of lower end of left humerus, sequela
- ;;^UTILITY(U,$J,358.3,38790,1,4,0)
- ;;=4^S42.402S
- ;;^UTILITY(U,$J,358.3,38790,2)
- ;;=^5134725
- ;;^UTILITY(U,$J,358.3,38791,0)
- ;;=S42.401S^^180^1986^18
- ;;^UTILITY(U,$J,358.3,38791,1,0)
+ ;;^UTILITY(U,$J,358.3,39184,1,3,0)
+ ;;=3^Amyloid Pterygium,Left Eye
+ ;;^UTILITY(U,$J,358.3,39184,1,4,0)
+ ;;=4^H11.012
+ ;;^UTILITY(U,$J,358.3,39184,2)
+ ;;=^5004721
+ ;;^UTILITY(U,$J,358.3,39185,0)
+ ;;=H11.002^^153^1920^140
+ ;;^UTILITY(U,$J,358.3,39185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38791,1,3,0)
- ;;=3^Fracture of lower end of right humerus, sequela
- ;;^UTILITY(U,$J,358.3,38791,1,4,0)
- ;;=4^S42.401S
- ;;^UTILITY(U,$J,358.3,38791,2)
- ;;=^5027300
- ;;^UTILITY(U,$J,358.3,38792,0)
- ;;=S92.901S^^180^1986^27
- ;;^UTILITY(U,$J,358.3,38792,1,0)
+ ;;^UTILITY(U,$J,358.3,39185,1,3,0)
+ ;;=3^Pterygium,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39185,1,4,0)
+ ;;=4^H11.002
+ ;;^UTILITY(U,$J,358.3,39185,2)
+ ;;=^5004718
+ ;;^UTILITY(U,$J,358.3,39186,0)
+ ;;=H11.001^^153^1920^141
+ ;;^UTILITY(U,$J,358.3,39186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38792,1,3,0)
- ;;=3^Fracture of right foot, sequela
- ;;^UTILITY(U,$J,358.3,38792,1,4,0)
- ;;=4^S92.901S
- ;;^UTILITY(U,$J,358.3,38792,2)
- ;;=^5045584
- ;;^UTILITY(U,$J,358.3,38793,0)
- ;;=S52.91XS^^180^1986^28
- ;;^UTILITY(U,$J,358.3,38793,1,0)
+ ;;^UTILITY(U,$J,358.3,39186,1,3,0)
+ ;;=3^Pterygium,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,39186,1,4,0)
+ ;;=4^H11.001
+ ;;^UTILITY(U,$J,358.3,39186,2)
+ ;;=^5004717
+ ;;^UTILITY(U,$J,358.3,39187,0)
+ ;;=H11.151^^153^1920^132
+ ;;^UTILITY(U,$J,358.3,39187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38793,1,3,0)
- ;;=3^Fracture of right forearm, sequela
- ;;^UTILITY(U,$J,358.3,38793,1,4,0)
- ;;=4^S52.91XS
- ;;^UTILITY(U,$J,358.3,38793,2)
- ;;=^5031173
- ;;^UTILITY(U,$J,358.3,38794,0)
- ;;=S82.91XS^^180^1986^29
- ;;^UTILITY(U,$J,358.3,38794,1,0)
+ ;;^UTILITY(U,$J,358.3,39187,1,3,0)
+ ;;=3^Pinguecula,Right Eye
+ ;;^UTILITY(U,$J,358.3,39187,1,4,0)
+ ;;=4^H11.151
+ ;;^UTILITY(U,$J,358.3,39187,2)
+ ;;=^5004761
+ ;;^UTILITY(U,$J,358.3,39188,0)
+ ;;=H11.152^^153^1920^131
+ ;;^UTILITY(U,$J,358.3,39188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38794,1,3,0)
- ;;=3^Fracture of right lower leg, sequela
- ;;^UTILITY(U,$J,358.3,38794,1,4,0)
- ;;=4^S82.91XS
- ;;^UTILITY(U,$J,358.3,38794,2)
- ;;=^5136991
- ;;^UTILITY(U,$J,358.3,38795,0)
- ;;=S82.001S^^180^1986^30
- ;;^UTILITY(U,$J,358.3,38795,1,0)
+ ;;^UTILITY(U,$J,358.3,39188,1,3,0)
+ ;;=3^Pinguecula,Left Eye
+ ;;^UTILITY(U,$J,358.3,39188,1,4,0)
+ ;;=4^H11.152
+ ;;^UTILITY(U,$J,358.3,39188,2)
+ ;;=^5004762
+ ;;^UTILITY(U,$J,358.3,39189,0)
+ ;;=H11.121^^153^1920^34
+ ;;^UTILITY(U,$J,358.3,39189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38795,1,3,0)
- ;;=3^Fracture of right patella, sequela
- ;;^UTILITY(U,$J,358.3,38795,1,4,0)
- ;;=4^S82.001S
- ;;^UTILITY(U,$J,358.3,38795,2)
- ;;=^5040119
- ;;^UTILITY(U,$J,358.3,38796,0)
- ;;=S92.911S^^180^1986^32
- ;;^UTILITY(U,$J,358.3,38796,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,38796,1,3,0)
- ;;=3^Fracture of right toe(s), sequela
- ;;^UTILITY(U,$J,358.3,38796,1,4,0)
- ;;=4^S92.911S
+ ;;^UTILITY(U,$J,358.3,39189,1,3,0)
+ ;;=3^Conjunctival Concretions,Right Eye
+ ;;^UTILITY(U,$J,358.3,39189,1,4,0)
+ ;;=4^H11.121
+ ;;^UTILITY(U,$J,358.3,39189,2)
+ ;;=^5004749
+ ;;^UTILITY(U,$J,358.3,39190,0)
+ ;;=H11.122^^153^1920^33

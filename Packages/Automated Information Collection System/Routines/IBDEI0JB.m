@@ -1,138 +1,138 @@
-IBDEI0JB ; ; 19-NOV-2015
+IBDEI0JB ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8693,2)
- ;;=^5013243
- ;;^UTILITY(U,$J,358.3,8694,0)
- ;;=M75.81^^55^544^94
- ;;^UTILITY(U,$J,358.3,8694,1,0)
+ ;;^UTILITY(U,$J,358.3,8974,2)
+ ;;=^5005964
+ ;;^UTILITY(U,$J,358.3,8975,0)
+ ;;=H44.003^^41^470^20
+ ;;^UTILITY(U,$J,358.3,8975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8694,1,3,0)
- ;;=3^Shoulder NEC lesions, right shoulder
- ;;^UTILITY(U,$J,358.3,8694,1,4,0)
- ;;=4^M75.81
- ;;^UTILITY(U,$J,358.3,8694,2)
- ;;=^5013261
- ;;^UTILITY(U,$J,358.3,8695,0)
- ;;=M75.82^^55^544^93
- ;;^UTILITY(U,$J,358.3,8695,1,0)
+ ;;^UTILITY(U,$J,358.3,8975,1,3,0)
+ ;;=3^Purulent Endophthalmitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,8975,1,4,0)
+ ;;=4^H44.003
+ ;;^UTILITY(U,$J,358.3,8975,2)
+ ;;=^5005965
+ ;;^UTILITY(U,$J,358.3,8976,0)
+ ;;=H16.061^^41^470^19
+ ;;^UTILITY(U,$J,358.3,8976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8695,1,3,0)
- ;;=3^Shoulder NEC lesions, left shoulder
- ;;^UTILITY(U,$J,358.3,8695,1,4,0)
- ;;=4^M75.82
- ;;^UTILITY(U,$J,358.3,8695,2)
- ;;=^5013262
- ;;^UTILITY(U,$J,358.3,8696,0)
- ;;=M77.11^^55^544^45
- ;;^UTILITY(U,$J,358.3,8696,1,0)
+ ;;^UTILITY(U,$J,358.3,8976,1,3,0)
+ ;;=3^Mycotic Corneal Ulcer,Right Eye
+ ;;^UTILITY(U,$J,358.3,8976,1,4,0)
+ ;;=4^H16.061
+ ;;^UTILITY(U,$J,358.3,8976,2)
+ ;;=^5004890
+ ;;^UTILITY(U,$J,358.3,8977,0)
+ ;;=H16.062^^41^470^18
+ ;;^UTILITY(U,$J,358.3,8977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8696,1,3,0)
- ;;=3^Lateral epicondylitis, right elbow
- ;;^UTILITY(U,$J,358.3,8696,1,4,0)
- ;;=4^M77.11
- ;;^UTILITY(U,$J,358.3,8696,2)
- ;;=^5013304
- ;;^UTILITY(U,$J,358.3,8697,0)
- ;;=M77.12^^55^544^44
- ;;^UTILITY(U,$J,358.3,8697,1,0)
+ ;;^UTILITY(U,$J,358.3,8977,1,3,0)
+ ;;=3^Mycotic Corneal Ulcer,Left Eye
+ ;;^UTILITY(U,$J,358.3,8977,1,4,0)
+ ;;=4^H16.062
+ ;;^UTILITY(U,$J,358.3,8977,2)
+ ;;=^5004891
+ ;;^UTILITY(U,$J,358.3,8978,0)
+ ;;=H16.063^^41^470^17
+ ;;^UTILITY(U,$J,358.3,8978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8697,1,3,0)
- ;;=3^Lateral epicondylitis, left elbow
- ;;^UTILITY(U,$J,358.3,8697,1,4,0)
- ;;=4^M77.12
- ;;^UTILITY(U,$J,358.3,8697,2)
- ;;=^5013305
- ;;^UTILITY(U,$J,358.3,8698,0)
- ;;=M70.21^^55^544^52
- ;;^UTILITY(U,$J,358.3,8698,1,0)
+ ;;^UTILITY(U,$J,358.3,8978,1,3,0)
+ ;;=3^Mycotic Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,8978,1,4,0)
+ ;;=4^H16.063
+ ;;^UTILITY(U,$J,358.3,8978,2)
+ ;;=^5004892
+ ;;^UTILITY(U,$J,358.3,8979,0)
+ ;;=H16.301^^41^470^15
+ ;;^UTILITY(U,$J,358.3,8979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8698,1,3,0)
- ;;=3^Olecranon bursitis, right elbow
- ;;^UTILITY(U,$J,358.3,8698,1,4,0)
- ;;=4^M70.21
- ;;^UTILITY(U,$J,358.3,8698,2)
- ;;=^5013047
- ;;^UTILITY(U,$J,358.3,8699,0)
- ;;=M70.22^^55^544^51
- ;;^UTILITY(U,$J,358.3,8699,1,0)
+ ;;^UTILITY(U,$J,358.3,8979,1,3,0)
+ ;;=3^Interstitial Keratitis,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8979,1,4,0)
+ ;;=4^H16.301
+ ;;^UTILITY(U,$J,358.3,8979,2)
+ ;;=^5004946
+ ;;^UTILITY(U,$J,358.3,8980,0)
+ ;;=H16.302^^41^470^14
+ ;;^UTILITY(U,$J,358.3,8980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8699,1,3,0)
- ;;=3^Olecranon bursitis, left elbow
- ;;^UTILITY(U,$J,358.3,8699,1,4,0)
- ;;=4^M70.22
- ;;^UTILITY(U,$J,358.3,8699,2)
- ;;=^5013048
- ;;^UTILITY(U,$J,358.3,8700,0)
- ;;=M77.9^^55^544^27
- ;;^UTILITY(U,$J,358.3,8700,1,0)
+ ;;^UTILITY(U,$J,358.3,8980,1,3,0)
+ ;;=3^Interstitial Keratitis,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,8980,1,4,0)
+ ;;=4^H16.302
+ ;;^UTILITY(U,$J,358.3,8980,2)
+ ;;=^5004947
+ ;;^UTILITY(U,$J,358.3,8981,0)
+ ;;=H16.303^^41^470^13
+ ;;^UTILITY(U,$J,358.3,8981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8700,1,3,0)
- ;;=3^Enthesopathy, unspecified
- ;;^UTILITY(U,$J,358.3,8700,1,4,0)
- ;;=4^M77.9
- ;;^UTILITY(U,$J,358.3,8700,2)
- ;;=^5013319
- ;;^UTILITY(U,$J,358.3,8701,0)
- ;;=M72.0^^55^544^71
- ;;^UTILITY(U,$J,358.3,8701,1,0)
+ ;;^UTILITY(U,$J,358.3,8981,1,3,0)
+ ;;=3^Interstitial Keratitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,8981,1,4,0)
+ ;;=4^H16.303
+ ;;^UTILITY(U,$J,358.3,8981,2)
+ ;;=^5004948
+ ;;^UTILITY(U,$J,358.3,8982,0)
+ ;;=H05.011^^41^470^4
+ ;;^UTILITY(U,$J,358.3,8982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8701,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
- ;;^UTILITY(U,$J,358.3,8701,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,8701,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,8702,0)
- ;;=M72.2^^55^544^72
- ;;^UTILITY(U,$J,358.3,8702,1,0)
+ ;;^UTILITY(U,$J,358.3,8982,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,8982,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,8982,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,8983,0)
+ ;;=H05.012^^41^470^3
+ ;;^UTILITY(U,$J,358.3,8983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8702,1,3,0)
- ;;=3^Plantar fascial fibromatosis
- ;;^UTILITY(U,$J,358.3,8702,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,8702,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,8703,0)
- ;;=M62.40^^55^544^20
- ;;^UTILITY(U,$J,358.3,8703,1,0)
+ ;;^UTILITY(U,$J,358.3,8983,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,8983,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,8983,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,8984,0)
+ ;;=J32.9^^41^470^23
+ ;;^UTILITY(U,$J,358.3,8984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8703,1,3,0)
- ;;=3^Contracture of muscle, unspecified site
- ;;^UTILITY(U,$J,358.3,8703,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,8703,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,8704,0)
- ;;=M62.81^^55^544^49
- ;;^UTILITY(U,$J,358.3,8704,1,0)
+ ;;^UTILITY(U,$J,358.3,8984,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,8984,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,8984,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,8985,0)
+ ;;=L03.212^^41^470^16
+ ;;^UTILITY(U,$J,358.3,8985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8704,1,3,0)
- ;;=3^Muscle weakness (generalized)
- ;;^UTILITY(U,$J,358.3,8704,1,4,0)
- ;;=4^M62.81
- ;;^UTILITY(U,$J,358.3,8704,2)
- ;;=^332922
- ;;^UTILITY(U,$J,358.3,8705,0)
- ;;=M79.7^^55^544^28
- ;;^UTILITY(U,$J,358.3,8705,1,0)
+ ;;^UTILITY(U,$J,358.3,8985,1,3,0)
+ ;;=3^Lymphangitis of Face,Acute
+ ;;^UTILITY(U,$J,358.3,8985,1,4,0)
+ ;;=4^L03.212
+ ;;^UTILITY(U,$J,358.3,8985,2)
+ ;;=^5009044
+ ;;^UTILITY(U,$J,358.3,8986,0)
+ ;;=L03.211^^41^470^2
+ ;;^UTILITY(U,$J,358.3,8986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8705,1,3,0)
- ;;=3^Fibromyalgia
- ;;^UTILITY(U,$J,358.3,8705,1,4,0)
- ;;=4^M79.7
- ;;^UTILITY(U,$J,358.3,8705,2)
- ;;=^46261
- ;;^UTILITY(U,$J,358.3,8706,0)
- ;;=M79.2^^55^544^50
- ;;^UTILITY(U,$J,358.3,8706,1,0)
+ ;;^UTILITY(U,$J,358.3,8986,1,3,0)
+ ;;=3^Cellulitis of Face
+ ;;^UTILITY(U,$J,358.3,8986,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,8986,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,8987,0)
+ ;;=K12.2^^41^470^5
+ ;;^UTILITY(U,$J,358.3,8987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8706,1,3,0)
- ;;=3^Neuralgia and neuritis, unspecified
- ;;^UTILITY(U,$J,358.3,8706,1,4,0)
- ;;=4^M79.2
- ;;^UTILITY(U,$J,358.3,8706,2)
- ;;=^5013322
- ;;^UTILITY(U,$J,358.3,8707,0)
- ;;=M54.10^^55^544^83
+ ;;^UTILITY(U,$J,358.3,8987,1,3,0)
+ ;;=3^Cellulitis/Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,8987,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,8987,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,8988,0)
+ ;;=T85.79XA^^41^470^12

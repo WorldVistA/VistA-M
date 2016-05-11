@@ -1,124 +1,136 @@
-IBDEI1A2 ; ; 19-NOV-2015
+IBDEI1A2 ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,21356,1,4,0)
- ;;=4^M05.741
- ;;^UTILITY(U,$J,358.3,21356,2)
- ;;=^5010010
- ;;^UTILITY(U,$J,358.3,21357,0)
- ;;=M05.751^^101^1030^76
- ;;^UTILITY(U,$J,358.3,21357,1,0)
+ ;;^UTILITY(U,$J,358.3,21728,0)
+ ;;=L02.416^^87^970^124
+ ;;^UTILITY(U,$J,358.3,21728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21357,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right hip w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,21357,1,4,0)
- ;;=4^M05.751
- ;;^UTILITY(U,$J,358.3,21357,2)
- ;;=^5010013
- ;;^UTILITY(U,$J,358.3,21358,0)
- ;;=M05.761^^101^1030^77
- ;;^UTILITY(U,$J,358.3,21358,1,0)
+ ;;^UTILITY(U,$J,358.3,21728,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,21728,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,21728,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,21729,0)
+ ;;=L02.511^^87^970^128
+ ;;^UTILITY(U,$J,358.3,21729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21358,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right knee w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,21358,1,4,0)
- ;;=4^M05.761
- ;;^UTILITY(U,$J,358.3,21358,2)
- ;;=^5010016
- ;;^UTILITY(U,$J,358.3,21359,0)
- ;;=M05.711^^101^1030^78
- ;;^UTILITY(U,$J,358.3,21359,1,0)
+ ;;^UTILITY(U,$J,358.3,21729,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,21729,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,21729,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,21730,0)
+ ;;=L02.512^^87^970^123
+ ;;^UTILITY(U,$J,358.3,21730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21359,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right shoulder w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,21359,1,4,0)
- ;;=4^M05.711
- ;;^UTILITY(U,$J,358.3,21359,2)
- ;;=^5010001
- ;;^UTILITY(U,$J,358.3,21360,0)
- ;;=M05.731^^101^1030^79
- ;;^UTILITY(U,$J,358.3,21360,1,0)
+ ;;^UTILITY(U,$J,358.3,21730,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,21730,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,21730,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,21731,0)
+ ;;=L02.611^^87^970^127
+ ;;^UTILITY(U,$J,358.3,21731,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21360,1,3,0)
- ;;=3^Rheu arthrit w rheu factor of right wrist w/o org/sys involv
- ;;^UTILITY(U,$J,358.3,21360,1,4,0)
- ;;=4^M05.731
- ;;^UTILITY(U,$J,358.3,21360,2)
- ;;=^5010007
- ;;^UTILITY(U,$J,358.3,21361,0)
- ;;=M06.072^^101^1030^80
- ;;^UTILITY(U,$J,358.3,21361,1,0)
+ ;;^UTILITY(U,$J,358.3,21731,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,21731,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,21731,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,21732,0)
+ ;;=L02.612^^87^970^122
+ ;;^UTILITY(U,$J,358.3,21732,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21361,1,3,0)
- ;;=3^Rheu arthrit w/o rheu factor of left ank/ft
- ;;^UTILITY(U,$J,358.3,21361,1,4,0)
- ;;=4^M06.072
- ;;^UTILITY(U,$J,358.3,21361,2)
- ;;=^5010067
- ;;^UTILITY(U,$J,358.3,21362,0)
- ;;=M06.022^^101^1030^81
- ;;^UTILITY(U,$J,358.3,21362,1,0)
+ ;;^UTILITY(U,$J,358.3,21732,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,21732,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,21732,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,21733,0)
+ ;;=L02.92^^87^970^155
+ ;;^UTILITY(U,$J,358.3,21733,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21362,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left elbow 
- ;;^UTILITY(U,$J,358.3,21362,1,4,0)
- ;;=4^M06.022
- ;;^UTILITY(U,$J,358.3,21362,2)
- ;;=^5010052
- ;;^UTILITY(U,$J,358.3,21363,0)
- ;;=M06.042^^101^1030^82
- ;;^UTILITY(U,$J,358.3,21363,1,0)
+ ;;^UTILITY(U,$J,358.3,21733,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,21733,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,21733,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,21734,0)
+ ;;=L02.93^^87^970^93
+ ;;^UTILITY(U,$J,358.3,21734,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21363,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left hand 
- ;;^UTILITY(U,$J,358.3,21363,1,4,0)
- ;;=4^M06.042
- ;;^UTILITY(U,$J,358.3,21363,2)
- ;;=^5010058
- ;;^UTILITY(U,$J,358.3,21364,0)
- ;;=M06.052^^101^1030^83
- ;;^UTILITY(U,$J,358.3,21364,1,0)
+ ;;^UTILITY(U,$J,358.3,21734,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,21734,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,21734,2)
+ ;;=^5009018
+ ;;^UTILITY(U,$J,358.3,21735,0)
+ ;;=L03.011^^87^970^108
+ ;;^UTILITY(U,$J,358.3,21735,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21364,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left hip 
- ;;^UTILITY(U,$J,358.3,21364,1,4,0)
- ;;=4^M06.052
- ;;^UTILITY(U,$J,358.3,21364,2)
- ;;=^5010061
- ;;^UTILITY(U,$J,358.3,21365,0)
- ;;=M06.062^^101^1030^84
- ;;^UTILITY(U,$J,358.3,21365,1,0)
+ ;;^UTILITY(U,$J,358.3,21735,1,3,0)
+ ;;=3^Cellulitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,21735,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,21735,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,21736,0)
+ ;;=L03.012^^87^970^101
+ ;;^UTILITY(U,$J,358.3,21736,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21365,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left knee 
- ;;^UTILITY(U,$J,358.3,21365,1,4,0)
- ;;=4^M06.062
- ;;^UTILITY(U,$J,358.3,21365,2)
- ;;=^5010064
- ;;^UTILITY(U,$J,358.3,21366,0)
- ;;=M06.012^^101^1030^85
- ;;^UTILITY(U,$J,358.3,21366,1,0)
+ ;;^UTILITY(U,$J,358.3,21736,1,3,0)
+ ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,21736,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,21736,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,21737,0)
+ ;;=L03.021^^87^970^24
+ ;;^UTILITY(U,$J,358.3,21737,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21366,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left shoulder
- ;;^UTILITY(U,$J,358.3,21366,1,4,0)
- ;;=4^M06.012
- ;;^UTILITY(U,$J,358.3,21366,2)
- ;;=^5010049
- ;;^UTILITY(U,$J,358.3,21367,0)
- ;;=M06.032^^101^1030^86
- ;;^UTILITY(U,$J,358.3,21367,1,0)
+ ;;^UTILITY(U,$J,358.3,21737,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,21737,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,21737,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,21738,0)
+ ;;=L03.022^^87^970^18
+ ;;^UTILITY(U,$J,358.3,21738,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21367,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, left wrist 
- ;;^UTILITY(U,$J,358.3,21367,1,4,0)
- ;;=4^M06.032
- ;;^UTILITY(U,$J,358.3,21367,2)
- ;;=^5010055
- ;;^UTILITY(U,$J,358.3,21368,0)
- ;;=M06.071^^101^1030^87
- ;;^UTILITY(U,$J,358.3,21368,1,0)
+ ;;^UTILITY(U,$J,358.3,21738,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,21738,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,21738,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,21739,0)
+ ;;=L03.031^^87^970^111
+ ;;^UTILITY(U,$J,358.3,21739,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,21368,1,3,0)
- ;;=3^Rheu arthrit w/o rheumatoid factor, right ank/ft 
+ ;;^UTILITY(U,$J,358.3,21739,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,21739,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,21739,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,21740,0)
+ ;;=L03.032^^87^970^104
+ ;;^UTILITY(U,$J,358.3,21740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21740,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,21740,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,21740,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,21741,0)
+ ;;=L03.041^^87^970^26

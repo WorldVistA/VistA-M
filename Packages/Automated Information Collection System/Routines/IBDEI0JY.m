@@ -1,134 +1,132 @@
-IBDEI0JY ; ; 19-NOV-2015
+IBDEI0JY ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8992,1,0)
+ ;;^UTILITY(U,$J,358.3,9273,1,3,0)
+ ;;=3^Mechanical Ectropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9273,1,4,0)
+ ;;=4^H02.125
+ ;;^UTILITY(U,$J,358.3,9273,2)
+ ;;=^5133412
+ ;;^UTILITY(U,$J,358.3,9274,0)
+ ;;=H02.124^^41^476^70
+ ;;^UTILITY(U,$J,358.3,9274,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8992,1,3,0)
- ;;=3^Drug/chem diabetes w unsp complications
- ;;^UTILITY(U,$J,358.3,8992,1,4,0)
- ;;=4^E09.8
- ;;^UTILITY(U,$J,358.3,8992,2)
- ;;=^5002585
- ;;^UTILITY(U,$J,358.3,8993,0)
- ;;=E88.01^^55^556^13
- ;;^UTILITY(U,$J,358.3,8993,1,0)
+ ;;^UTILITY(U,$J,358.3,9274,1,3,0)
+ ;;=3^Mechanical Ectropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9274,1,4,0)
+ ;;=4^H02.124
+ ;;^UTILITY(U,$J,358.3,9274,2)
+ ;;=^5004315
+ ;;^UTILITY(U,$J,358.3,9275,0)
+ ;;=H02.121^^41^476^72
+ ;;^UTILITY(U,$J,358.3,9275,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8993,1,3,0)
- ;;=3^Alpha-1-antitrypsin deficiency
- ;;^UTILITY(U,$J,358.3,8993,1,4,0)
- ;;=4^E88.01
- ;;^UTILITY(U,$J,358.3,8993,2)
- ;;=^331442
- ;;^UTILITY(U,$J,358.3,8994,0)
- ;;=E71.310^^55^556^70
- ;;^UTILITY(U,$J,358.3,8994,1,0)
+ ;;^UTILITY(U,$J,358.3,9275,1,3,0)
+ ;;=3^Mechanical Ectropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9275,1,4,0)
+ ;;=4^H02.121
+ ;;^UTILITY(U,$J,358.3,9275,2)
+ ;;=^5004312
+ ;;^UTILITY(U,$J,358.3,9276,0)
+ ;;=H02.122^^41^476^71
+ ;;^UTILITY(U,$J,358.3,9276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8994,1,3,0)
- ;;=3^Long chain/very long chain acyl CoA dehydrogenase deficiency
- ;;^UTILITY(U,$J,358.3,8994,1,4,0)
- ;;=4^E71.310
- ;;^UTILITY(U,$J,358.3,8994,2)
- ;;=^5002870
- ;;^UTILITY(U,$J,358.3,8995,0)
- ;;=E71.311^^55^556^76
- ;;^UTILITY(U,$J,358.3,8995,1,0)
+ ;;^UTILITY(U,$J,358.3,9276,1,3,0)
+ ;;=3^Mechanical Ectropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9276,1,4,0)
+ ;;=4^H02.122
+ ;;^UTILITY(U,$J,358.3,9276,2)
+ ;;=^5004313
+ ;;^UTILITY(U,$J,358.3,9277,0)
+ ;;=H02.025^^41^476^73
+ ;;^UTILITY(U,$J,358.3,9277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8995,1,3,0)
- ;;=3^Medium chain acyl CoA dehydrogenase deficiency
- ;;^UTILITY(U,$J,358.3,8995,1,4,0)
- ;;=4^E71.311
- ;;^UTILITY(U,$J,358.3,8995,2)
- ;;=^5002871
- ;;^UTILITY(U,$J,358.3,8996,0)
- ;;=E71.312^^55^556^99
- ;;^UTILITY(U,$J,358.3,8996,1,0)
+ ;;^UTILITY(U,$J,358.3,9277,1,3,0)
+ ;;=3^Mechanical Entropion Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9277,1,4,0)
+ ;;=4^H02.025
+ ;;^UTILITY(U,$J,358.3,9277,2)
+ ;;=^5133399
+ ;;^UTILITY(U,$J,358.3,9278,0)
+ ;;=H02.024^^41^476^74
+ ;;^UTILITY(U,$J,358.3,9278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8996,1,3,0)
- ;;=3^Short chain acyl CoA dehydrogenase deficiency
- ;;^UTILITY(U,$J,358.3,8996,1,4,0)
- ;;=4^E71.312
- ;;^UTILITY(U,$J,358.3,8996,2)
- ;;=^5002872
- ;;^UTILITY(U,$J,358.3,8997,0)
- ;;=E71.313^^55^556^48
- ;;^UTILITY(U,$J,358.3,8997,1,0)
+ ;;^UTILITY(U,$J,358.3,9278,1,3,0)
+ ;;=3^Mechanical Entropion Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9278,1,4,0)
+ ;;=4^H02.024
+ ;;^UTILITY(U,$J,358.3,9278,2)
+ ;;=^5004286
+ ;;^UTILITY(U,$J,358.3,9279,0)
+ ;;=H02.022^^41^476^75
+ ;;^UTILITY(U,$J,358.3,9279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8997,1,3,0)
- ;;=3^Glutaric aciduria type II
- ;;^UTILITY(U,$J,358.3,8997,1,4,0)
- ;;=4^E71.313
- ;;^UTILITY(U,$J,358.3,8997,2)
- ;;=^5002873
- ;;^UTILITY(U,$J,358.3,8998,0)
- ;;=E71.314^^55^556^82
- ;;^UTILITY(U,$J,358.3,8998,1,0)
+ ;;^UTILITY(U,$J,358.3,9279,1,3,0)
+ ;;=3^Mechanical Entropion Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,9279,1,4,0)
+ ;;=4^H02.022
+ ;;^UTILITY(U,$J,358.3,9279,2)
+ ;;=^5004284
+ ;;^UTILITY(U,$J,358.3,9280,0)
+ ;;=H02.021^^41^476^76
+ ;;^UTILITY(U,$J,358.3,9280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8998,1,3,0)
- ;;=3^Muscle carnitine palmitoyltransferase deficiency
- ;;^UTILITY(U,$J,358.3,8998,1,4,0)
- ;;=4^E71.314
- ;;^UTILITY(U,$J,358.3,8998,2)
- ;;=^5002874
- ;;^UTILITY(U,$J,358.3,8999,0)
- ;;=E71.318^^55^556^39
- ;;^UTILITY(U,$J,358.3,8999,1,0)
+ ;;^UTILITY(U,$J,358.3,9280,1,3,0)
+ ;;=3^Mechanical Entropion Right Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,9280,1,4,0)
+ ;;=4^H02.021
+ ;;^UTILITY(U,$J,358.3,9280,2)
+ ;;=^5004283
+ ;;^UTILITY(U,$J,358.3,9281,0)
+ ;;=S01.152A^^41^476^77
+ ;;^UTILITY(U,$J,358.3,9281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8999,1,3,0)
- ;;=3^Fatty-Acid Oxidation Disorders NEC
- ;;^UTILITY(U,$J,358.3,8999,1,4,0)
- ;;=4^E71.318
- ;;^UTILITY(U,$J,358.3,8999,2)
- ;;=^5002875
- ;;^UTILITY(U,$J,358.3,9000,0)
- ;;=E71.50^^55^556^89
- ;;^UTILITY(U,$J,358.3,9000,1,0)
+ ;;^UTILITY(U,$J,358.3,9281,1,3,0)
+ ;;=3^Open Bite Left Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9281,1,4,0)
+ ;;=4^S01.152A
+ ;;^UTILITY(U,$J,358.3,9281,2)
+ ;;=^5020084
+ ;;^UTILITY(U,$J,358.3,9282,0)
+ ;;=S01.151A^^41^476^78
+ ;;^UTILITY(U,$J,358.3,9282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9000,1,3,0)
- ;;=3^Peroxisomal disorder, unspecified
- ;;^UTILITY(U,$J,358.3,9000,1,4,0)
- ;;=4^E71.50
- ;;^UTILITY(U,$J,358.3,9000,2)
- ;;=^5002880
- ;;^UTILITY(U,$J,358.3,9001,0)
- ;;=E71.510^^55^556^114
- ;;^UTILITY(U,$J,358.3,9001,1,0)
+ ;;^UTILITY(U,$J,358.3,9282,1,3,0)
+ ;;=3^Open Bite Right Eyelid/Periocular Area,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9282,1,4,0)
+ ;;=4^S01.151A
+ ;;^UTILITY(U,$J,358.3,9282,2)
+ ;;=^5020081
+ ;;^UTILITY(U,$J,358.3,9283,0)
+ ;;=C44.199^^41^476^66
+ ;;^UTILITY(U,$J,358.3,9283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9001,1,3,0)
- ;;=3^Zellweger syndrome
- ;;^UTILITY(U,$J,358.3,9001,1,4,0)
- ;;=4^E71.510
- ;;^UTILITY(U,$J,358.3,9001,2)
- ;;=^128776
- ;;^UTILITY(U,$J,358.3,9002,0)
- ;;=E71.522^^55^556^11
- ;;^UTILITY(U,$J,358.3,9002,1,0)
+ ;;^UTILITY(U,$J,358.3,9283,1,3,0)
+ ;;=3^Malig Neop Skin Left Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,9283,1,4,0)
+ ;;=4^C44.199
+ ;;^UTILITY(U,$J,358.3,9283,2)
+ ;;=^5001027
+ ;;^UTILITY(U,$J,358.3,9284,0)
+ ;;=C44.192^^41^476^68
+ ;;^UTILITY(U,$J,358.3,9284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9002,1,3,0)
- ;;=3^Adrenomyeloneuropathy
- ;;^UTILITY(U,$J,358.3,9002,1,4,0)
- ;;=4^E71.522
- ;;^UTILITY(U,$J,358.3,9002,2)
- ;;=^276921
- ;;^UTILITY(U,$J,358.3,9003,0)
- ;;=E71.529^^55^556^113
- ;;^UTILITY(U,$J,358.3,9003,1,0)
+ ;;^UTILITY(U,$J,358.3,9284,1,3,0)
+ ;;=3^Malig Neop Skin Right Eyelid NEC
+ ;;^UTILITY(U,$J,358.3,9284,1,4,0)
+ ;;=4^C44.192
+ ;;^UTILITY(U,$J,358.3,9284,2)
+ ;;=^5001026
+ ;;^UTILITY(U,$J,358.3,9285,0)
+ ;;=S05.42XA^^41^476^79
+ ;;^UTILITY(U,$J,358.3,9285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9003,1,3,0)
- ;;=3^X-linked adrenoleukodystrophy, unspecified type
- ;;^UTILITY(U,$J,358.3,9003,1,4,0)
- ;;=4^E71.529
- ;;^UTILITY(U,$J,358.3,9003,2)
- ;;=^5002886
- ;;^UTILITY(U,$J,358.3,9004,0)
- ;;=E71.548^^55^556^90
- ;;^UTILITY(U,$J,358.3,9004,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9004,1,3,0)
- ;;=3^Peroxisomal disorders NEC
- ;;^UTILITY(U,$J,358.3,9004,1,4,0)
- ;;=4^E71.548
- ;;^UTILITY(U,$J,358.3,9004,2)
- ;;=^5002891
- ;;^UTILITY(U,$J,358.3,9005,0)
- ;;=E88.40^^55^556^78
+ ;;^UTILITY(U,$J,358.3,9285,1,3,0)
+ ;;=3^Penetrating Wound of Orbit,Left Eye,Init Encntr
+ ;;^UTILITY(U,$J,358.3,9285,1,4,0)
+ ;;=4^S05.42XA
+ ;;^UTILITY(U,$J,358.3,9285,2)
+ ;;=^5020618
+ ;;^UTILITY(U,$J,358.3,9286,0)
+ ;;=S05.41XA^^41^476^80

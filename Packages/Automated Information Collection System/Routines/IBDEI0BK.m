@@ -1,130 +1,140 @@
-IBDEI0BK ; ; 19-NOV-2015
+IBDEI0BK ; ; 17-FEB-2016
  ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4934,0)
- ;;=11001^^39^329^17^^^^1
- ;;^UTILITY(U,$J,358.3,4934,1,0)
+ ;;^UTILITY(U,$J,358.3,5228,1,4,0)
+ ;;=4^T86.10
+ ;;^UTILITY(U,$J,358.3,5228,2)
+ ;;=^5055708
+ ;;^UTILITY(U,$J,358.3,5229,0)
+ ;;=T86.11^^27^340^7
+ ;;^UTILITY(U,$J,358.3,5229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4934,1,2,0)
- ;;=2^Debride infect skin Ea Addl 10%
- ;;^UTILITY(U,$J,358.3,4934,1,4,0)
- ;;=4^11001
- ;;^UTILITY(U,$J,358.3,4935,0)
- ;;=11045^^39^329^21^^^^1
- ;;^UTILITY(U,$J,358.3,4935,1,0)
+ ;;^UTILITY(U,$J,358.3,5229,1,3,0)
+ ;;=3^Kidney Transplant Rejection
+ ;;^UTILITY(U,$J,358.3,5229,1,4,0)
+ ;;=4^T86.11
+ ;;^UTILITY(U,$J,358.3,5229,2)
+ ;;=^5055709
+ ;;^UTILITY(U,$J,358.3,5230,0)
+ ;;=T86.12^^27^340^5
+ ;;^UTILITY(U,$J,358.3,5230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4935,1,2,0)
- ;;=2^Debride skin/SQ,ea addl 20sq cm
- ;;^UTILITY(U,$J,358.3,4935,1,4,0)
- ;;=4^11045
- ;;^UTILITY(U,$J,358.3,4936,0)
- ;;=11046^^39^329^19^^^^1
- ;;^UTILITY(U,$J,358.3,4936,1,0)
+ ;;^UTILITY(U,$J,358.3,5230,1,3,0)
+ ;;=3^Kidney Transplant Failure
+ ;;^UTILITY(U,$J,358.3,5230,1,4,0)
+ ;;=4^T86.12
+ ;;^UTILITY(U,$J,358.3,5230,2)
+ ;;=^5055710
+ ;;^UTILITY(U,$J,358.3,5231,0)
+ ;;=T86.13^^27^340^6
+ ;;^UTILITY(U,$J,358.3,5231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4936,1,2,0)
- ;;=2^Debride muscle,ea addl 20sq cm
- ;;^UTILITY(U,$J,358.3,4936,1,4,0)
- ;;=4^11046
- ;;^UTILITY(U,$J,358.3,4937,0)
- ;;=11047^^39^329^13^^^^1
- ;;^UTILITY(U,$J,358.3,4937,1,0)
+ ;;^UTILITY(U,$J,358.3,5231,1,3,0)
+ ;;=3^Kidney Transplant Infection
+ ;;^UTILITY(U,$J,358.3,5231,1,4,0)
+ ;;=4^T86.13
+ ;;^UTILITY(U,$J,358.3,5231,2)
+ ;;=^5055711
+ ;;^UTILITY(U,$J,358.3,5232,0)
+ ;;=Z94.0^^27^340^8
+ ;;^UTILITY(U,$J,358.3,5232,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4937,1,2,0)
- ;;=2^Debride Bone,ea addl 20sq cm
- ;;^UTILITY(U,$J,358.3,4937,1,4,0)
- ;;=4^11047
- ;;^UTILITY(U,$J,358.3,4938,0)
- ;;=19081^^39^329^3^^^^1
- ;;^UTILITY(U,$J,358.3,4938,1,0)
+ ;;^UTILITY(U,$J,358.3,5232,1,3,0)
+ ;;=3^Kidney Transplant Status
+ ;;^UTILITY(U,$J,358.3,5232,1,4,0)
+ ;;=4^Z94.0
+ ;;^UTILITY(U,$J,358.3,5232,2)
+ ;;=^5063654
+ ;;^UTILITY(U,$J,358.3,5233,0)
+ ;;=Z48.22^^27^340^1
+ ;;^UTILITY(U,$J,358.3,5233,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4938,1,2,0)
- ;;=2^Bx,Breast w/Device w/Stereotactic Guide,1st Lesion
- ;;^UTILITY(U,$J,358.3,4938,1,4,0)
- ;;=4^19081
- ;;^UTILITY(U,$J,358.3,4939,0)
- ;;=19082^^39^329^4^^^^1
- ;;^UTILITY(U,$J,358.3,4939,1,0)
+ ;;^UTILITY(U,$J,358.3,5233,1,3,0)
+ ;;=3^Aftercare Following Kidney Transplant
+ ;;^UTILITY(U,$J,358.3,5233,1,4,0)
+ ;;=4^Z48.22
+ ;;^UTILITY(U,$J,358.3,5233,2)
+ ;;=^5063039
+ ;;^UTILITY(U,$J,358.3,5234,0)
+ ;;=Z52.4^^27^340^2
+ ;;^UTILITY(U,$J,358.3,5234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4939,1,2,0)
- ;;=2^Bx,Breast w/Device w/Stereotactic Guide,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,4939,1,4,0)
- ;;=4^19082
- ;;^UTILITY(U,$J,358.3,4940,0)
- ;;=19083^^39^329^5^^^^1
- ;;^UTILITY(U,$J,358.3,4940,1,0)
+ ;;^UTILITY(U,$J,358.3,5234,1,3,0)
+ ;;=3^Kidney Donor
+ ;;^UTILITY(U,$J,358.3,5234,1,4,0)
+ ;;=4^Z52.4
+ ;;^UTILITY(U,$J,358.3,5234,2)
+ ;;=^5063082
+ ;;^UTILITY(U,$J,358.3,5235,0)
+ ;;=D47.Z1^^27^340^9
+ ;;^UTILITY(U,$J,358.3,5235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4940,1,2,0)
- ;;=2^Bx,Breast w/Device w/US,1st Lesion
- ;;^UTILITY(U,$J,358.3,4940,1,4,0)
- ;;=4^19083
- ;;^UTILITY(U,$J,358.3,4941,0)
- ;;=19084^^39^329^6^^^^1
- ;;^UTILITY(U,$J,358.3,4941,1,0)
+ ;;^UTILITY(U,$J,358.3,5235,1,3,0)
+ ;;=3^Post-Transplant Lymphoproliferative Disorder (PTLD)
+ ;;^UTILITY(U,$J,358.3,5235,1,4,0)
+ ;;=4^D47.Z1
+ ;;^UTILITY(U,$J,358.3,5235,2)
+ ;;=^5002261
+ ;;^UTILITY(U,$J,358.3,5236,0)
+ ;;=T86.10^^27^340^4
+ ;;^UTILITY(U,$J,358.3,5236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4941,1,2,0)
- ;;=2^Bx,Breast w/Device w/US,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,4941,1,4,0)
- ;;=4^19084
- ;;^UTILITY(U,$J,358.3,4942,0)
- ;;=19085^^39^329^1^^^^1
- ;;^UTILITY(U,$J,358.3,4942,1,0)
+ ;;^UTILITY(U,$J,358.3,5236,1,3,0)
+ ;;=3^Kidney Transplant Complication,Unspec
+ ;;^UTILITY(U,$J,358.3,5236,1,4,0)
+ ;;=4^T86.10
+ ;;^UTILITY(U,$J,358.3,5236,2)
+ ;;=^5055708
+ ;;^UTILITY(U,$J,358.3,5237,0)
+ ;;=N18.1^^27^341^1
+ ;;^UTILITY(U,$J,358.3,5237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4942,1,2,0)
- ;;=2^Bx,Breast w/Device w/MRI,1st Lesion
- ;;^UTILITY(U,$J,358.3,4942,1,4,0)
- ;;=4^19085
- ;;^UTILITY(U,$J,358.3,4943,0)
- ;;=19086^^39^329^2^^^^1
- ;;^UTILITY(U,$J,358.3,4943,1,0)
+ ;;^UTILITY(U,$J,358.3,5237,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 1
+ ;;^UTILITY(U,$J,358.3,5237,1,4,0)
+ ;;=4^N18.1
+ ;;^UTILITY(U,$J,358.3,5237,2)
+ ;;=^5015602
+ ;;^UTILITY(U,$J,358.3,5238,0)
+ ;;=N18.2^^27^341^2
+ ;;^UTILITY(U,$J,358.3,5238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4943,1,2,0)
- ;;=2^Bx,Breast w/Device w/MRI,Ea Addl Lesion
- ;;^UTILITY(U,$J,358.3,4943,1,4,0)
- ;;=4^19086
- ;;^UTILITY(U,$J,358.3,4944,0)
- ;;=10060^^39^330^17
- ;;^UTILITY(U,$J,358.3,4944,1,0)
+ ;;^UTILITY(U,$J,358.3,5238,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 2
+ ;;^UTILITY(U,$J,358.3,5238,1,4,0)
+ ;;=4^N18.2
+ ;;^UTILITY(U,$J,358.3,5238,2)
+ ;;=^5015603
+ ;;^UTILITY(U,$J,358.3,5239,0)
+ ;;=N18.3^^27^341^3
+ ;;^UTILITY(U,$J,358.3,5239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4944,1,2,0)
- ;;=2^I&D abscess,simple or single
- ;;^UTILITY(U,$J,358.3,4944,1,4,0)
- ;;=4^10060
- ;;^UTILITY(U,$J,358.3,4945,0)
- ;;=10061^^39^330^16
- ;;^UTILITY(U,$J,358.3,4945,1,0)
+ ;;^UTILITY(U,$J,358.3,5239,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 3
+ ;;^UTILITY(U,$J,358.3,5239,1,4,0)
+ ;;=4^N18.3
+ ;;^UTILITY(U,$J,358.3,5239,2)
+ ;;=^5015604
+ ;;^UTILITY(U,$J,358.3,5240,0)
+ ;;=N18.4^^27^341^4
+ ;;^UTILITY(U,$J,358.3,5240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4945,1,2,0)
- ;;=2^I&D abscess,complic or multip
- ;;^UTILITY(U,$J,358.3,4945,1,4,0)
- ;;=4^10061
- ;;^UTILITY(U,$J,358.3,4946,0)
- ;;=10160^^39^330^22
- ;;^UTILITY(U,$J,358.3,4946,1,0)
+ ;;^UTILITY(U,$J,358.3,5240,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 4
+ ;;^UTILITY(U,$J,358.3,5240,1,4,0)
+ ;;=4^N18.4
+ ;;^UTILITY(U,$J,358.3,5240,2)
+ ;;=^5015605
+ ;;^UTILITY(U,$J,358.3,5241,0)
+ ;;=N18.5^^27^341^5
+ ;;^UTILITY(U,$J,358.3,5241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4946,1,2,0)
- ;;=2^Needle asp absc/cyst/hematoma
- ;;^UTILITY(U,$J,358.3,4946,1,4,0)
- ;;=4^10160
- ;;^UTILITY(U,$J,358.3,4947,0)
- ;;=10140^^39^330^19
- ;;^UTILITY(U,$J,358.3,4947,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4947,1,2,0)
- ;;=2^I&D hematoma/seroma,skin
- ;;^UTILITY(U,$J,358.3,4947,1,4,0)
- ;;=4^10140
- ;;^UTILITY(U,$J,358.3,4948,0)
- ;;=19000^^39^330^7
- ;;^UTILITY(U,$J,358.3,4948,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4948,1,2,0)
- ;;=2^Aspirate breast cyst, first
- ;;^UTILITY(U,$J,358.3,4948,1,4,0)
- ;;=4^19000
- ;;^UTILITY(U,$J,358.3,4949,0)
- ;;=19001^^39^330^8
- ;;^UTILITY(U,$J,358.3,4949,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4949,1,2,0)
- ;;=2^Aspirate each addit breast cyst
+ ;;^UTILITY(U,$J,358.3,5241,1,3,0)
+ ;;=3^Chr Kidney Disease,Stage 5
+ ;;^UTILITY(U,$J,358.3,5241,1,4,0)
+ ;;=4^N18.5
+ ;;^UTILITY(U,$J,358.3,5241,2)
+ ;;=^5015606
+ ;;^UTILITY(U,$J,358.3,5242,0)
+ ;;=N18.9^^27^341^6
