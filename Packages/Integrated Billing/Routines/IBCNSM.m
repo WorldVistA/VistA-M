@@ -1,6 +1,6 @@
 IBCNSM ;ALB/AAS - INSURANCE MANAGEMENT, LIST MANAGER INIT ROUTINE ;21-OCT-92
- ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435**;21-MAR-94;Build 27
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**28,46,56,52,82,103,199,276,435,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;also used for IA #4694
  ;
@@ -97,7 +97,8 @@ SET(X) ; -- set arrays
  ;
 HDR ; -- screen header for initial screen
  D PID^VADPT
- S VALMHDR(1)="Insurance Management for Patient: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")
+ ; -- AWC/ ib*2.0*528 add the patient dob to display screen
+ S VALMHDR(1)="Insurance Management for Patient: "_$E($P($G(^DPT(DFN,0)),"^"),1,20)_" "_$E($G(^(0)),1)_VA("BID")_" "_$$FMTE^XLFDT($P($G(^DPT(DFN,0)),"^",3),5)
  S VALMHDR(2)=" "
  I +$$BUFFER^IBCNBU1(DFN) S VALMHDR(2)="*** Patient has Insurance Buffer Records"
  Q

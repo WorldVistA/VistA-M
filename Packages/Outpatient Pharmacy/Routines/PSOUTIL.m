@@ -1,5 +1,5 @@
-PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ; 03/28/93 20:46
- ;;7.0;OUTPATIENT PHARMACY;**64**;DEC 1997
+PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/15/15  10:58
+ ;;7.0;OUTPATIENT PHARMACY;**64,456**;DEC 1997;Build 2
  W !!,$C(7),"This routine not callable from PSOUTIL.."
  Q
  ;
@@ -27,13 +27,15 @@ RNPSOSD ;update PSOSD array for renewals
  ;
 PROV(PSORENW) ;called from psoornew
 CHKPRV ;check inactive providers and cosinging providers called from PSORENW (renew rx)
+ N OK
  I '$D(^VA(200,PSORENW("PROVIDER"),0)) D   G:PSORENW("DFLG") CHKPRVX
  .W !,$C(7),"Provider not in New Person File .. You must select a new provider"
  .S PSODIR("FIELD")=0 K PSORENW("PROVIDER") D PROV^PSODIR(.PSORENW)
  .S:$G(PSORENW("PROVIDER"))']"" PSORENW("DFLG")=1
  ;
- I '$G(^VA(200,PSORENW("PROVIDER"),"PS")) D   G:PSORENW("DFLG") CHKPRVX
- .W !,$C(7),$P(^VA(200,PSORENW("PROVIDER"),0),"^")_" is not a Valid provider .. You must select a new provider"
+ I '$G(^VA(200,PSORENW("PROVIDER"),"PS")) D   I 'OK G:PSORENW("DFLG") CHKPRVX
+ .I $$ISSPLY(),$D(^XUSEC("ORSUPPLY",PSORENW("PROVIDER"))) S OK=1 Q
+ .S OK=0 W !,$C(7),$P(^VA(200,PSORENW("PROVIDER"),0),"^")_" is not a Valid provider .. You must select a new provider"
  .S PSODIR("FIELD")=0 K PSORENW("PROVIDER") D PROV^PSODIR(.PSORENW)
  .S:$G(PSORENW("PROVIDER"))']"" PSORENW("DFLG")=1
  ;
@@ -164,3 +166,9 @@ GFDT ;
  S PSOX("FILL DATE")=$P(PSOX("RX3"),"^")
  Q
  ;
+ISSPLY() ;is the drug a supply item
+ ;assumes the existence of the PSODRUG array
+ I $G(PSODRUG("DEA"))="" Q 0
+ I $G(PSODRUG("VA CLASS"))="" Q 0
+ I PSODRUG("VA CLASS")?1"XA".E!(PSODRUG("VA CLASS")?1"XX".E)!(PSODRUG("VA CLASS")="DX900"&(PSODRUG("DEA")["S")) Q 1
+ Q 0

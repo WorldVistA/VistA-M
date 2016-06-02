@@ -1,5 +1,5 @@
-IBCOMC2 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T) ; 10-09-98
- ;;2.0;INTEGRATED BILLING;**103,153,516**;21-MAR-94;Build 123
+IBCOMC2 ;ALB/CMS - IDENTIFY PT BY AGE WITH OR WITHOUT INSURANCE (CON'T) ;10-09-98
+ ;;2.0;INTEGRATED BILLING;**103,153,516,528**;21-MAR-94;Build 163
  ;;Per VA Directive 6402, this routine should not be modified.
  Q
 ENH ; Sort help Text
@@ -24,6 +24,7 @@ AGEH ; Sort AGE help text
  ;
 HD ;Write Heading
  N IBX S IBPAGE=IBPAGE+1
+ I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Patient Name^SSN^Age^DOB^Means Test?^Inp/Out^Last Visit^Insurance Name^Reimb VA?^Plan Name" Q
  W @IOF,!,"Patients "_$S(IBSIN=3:"Without",1:"With")_" Insurance Report",?50,$$FMTE^XLFDT($$NOW^XLFDT,"Z"),?70," Page ",IBPAGE
  I IBPAGE=1 D
  .W !,?5,"Sorted by: "_$S(IBAIB=1:"Patient Name",1:"Terminal Digit")_" Range: "_$S(IBRF="A":"FIRST",1:IBRF)_" to "_$S(IBRL="zzzzzz":"LAST",1:IBRL)
@@ -43,17 +44,24 @@ WRT ;Write data lines
  .S IBDFN=0 F  S IBDFN=$O(^TMP("IBCOMC",$J,1,IBNA,IBDFN)) Q:('IBDFN)!(IBQUIT=1)  D
  ..S IBPT=$G(^TMP("IBCOMC",$J,1,IBNA,IBDFN))
  ..;
- ..I ($Y+5)>IOSL D  I IBQUIT=1 Q
+ ..I ($Y+5)>IOSL,(IBOUT="R") D  I IBQUIT=1 Q
  ...D ASK I IBQUIT=1 Q
  ...D HD
  ..;
- ..W !!,$E($P(IBPT,U,1),1,30)_"   "_$P(IBPT,U,2),?39,$P(IBPT,U,3),?44,$P(IBPT,U,4),?58,$P(IBPT,U,5),?65,$P(IBPT,U,6)
+ ..; Excel Output
+ ..I IBOUT="E" W !,$P(IBPT,U,1)_U_$TR($TR($P(IBPT,U,2),"(",""),")","")_U_$P(IBPT,U,3,5)_U_$P($P(IBPT,U,6)," ")_U_$P($P(IBPT,U,6)," ",2)
+ ..; Report Output
+ ..I IBOUT="R" W !!,$E($P(IBPT,U,1),1,30)_"   "_$P(IBPT,U,2),?39,$P(IBPT,U,3),?44,$P(IBPT,U,4),?58,$P(IBPT,U,5),?65,$P(IBPT,U,6)
  ..;
  ..S IBDA=0 F  S IBDA=$O(^TMP("IBCOMC",$J,1,IBNA,IBDFN,IBDA)) Q:('IBDA)!(IBQUIT=1)  D
  ...S IBINS=$G(^TMP("IBCOMC",$J,1,IBNA,IBDFN,IBDA))
- ...I IBSIN=3 W !,IBINS Q
- ...W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),!?4,"Plan Name: ",$E($P(IBINS,U,3),1,65)
+ ...I IBSIN=3 W:IBOUT="R" ! W:IBOUT="E" U W IBINS Q
+ ...; Excel Output
+ ...I IBOUT="E" W U_$P(IBINS,U,1,3)
+ ...; Report Output
+ ...I IBOUT="R" W !?3,$E($P(IBINS,U,1),1,30),?35,"Reimb VA? ",$P(IBINS,U,2),!?4,"Plan Name: ",$E($P(IBINS,U,3),1,65)
  ...;
+ I 'IBQUIT D ASK
  Q
  ;
 ASK ; Ask to Continue with display
@@ -63,4 +71,3 @@ ASK ; Ask to Continue with display
  S DIR(0)="E" D ^DIR
  I ($D(DIRUT))!($D(DUOUT)) S IBQUIT=1
  Q
- ;IBCOMC2

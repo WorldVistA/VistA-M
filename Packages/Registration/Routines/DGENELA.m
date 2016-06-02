@@ -1,5 +1,5 @@
-DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM - Patient Eligibility API ; 3/3/11 3:40pm
- ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841**;Aug 13,1993;Build 7
+DGENELA ;ALB/CJM,KCL,Zoltan/PJR,RGL,LBD,EG,TMK,CKN,ERC,TDM,JLS - Patient Eligibility API ;3/3/11 3:40pm
+ ;;5.3;Registration;**121,147,232,314,451,564,631,672,659,583,653,688,841,909**;Aug 13,1993;Build 32
  ;
 GET(DFN,DGELG) ;
  ;Description: Used to obtain the patient eligibility data.
@@ -58,6 +58,10 @@ GET(DFN,DGELG) ;
  ;"CVELEDT"           COMBAT VETERAN END DATE
  ;"SHAD"              SHAD EXPOSURE
  ;"MOH"               MEDAL OF HONOR
+ ;"CLE"                CAMP LEJEUNE INDICATED?
+ ;"CLEDT"              CAMP LEJEUNE DATE
+ ;"CLEST"              CAMP LEJEUNE CHANGE SITE
+ ;"CLESOR"             CAMP LEJEUNE SOURCE
  ;
  K DGELG
  S DGELG=""
@@ -132,6 +136,13 @@ GET(DFN,DGELG) ;
  S NODE=$G(^DPT(DFN,.54))
  S DGELG("MOH")=$P(NODE,"^")
  ;
+ ; Camp Lejeune Eligibility Indicator  DG*5.3*909
+ S NODE=$G(^DPT(DFN,.3217))
+ S DGELG("CLE")=$P(NODE,"^",1)
+ S DGELG("CLEDT")=$P(NODE,"^",2)
+ S DGELG("CLEST")=$P(NODE,"^",3)
+ S DGELG("CLESOR")=$P(NODE,"^",4)
+ ;
  ;means test category
  S DGELG("MTSTA")=""
  S IEN=$P($$LST^DGMTU(DFN),"^")
@@ -162,7 +173,7 @@ GET(DFN,DGELG) ;
  ;
 NATNAME(CODE) ;
  ;Description: Given an entry in file #8, Eligibility Code file,
- ;  finds the corresponding entry in file 8.1, MAS Eligbility Code file,
+ ;  finds the corresponding entry in file 8.1, MAS Eligibility Code file,
  ;  and returns the name
  ;Input:
  ;  CODE - pointer to file #8
@@ -174,7 +185,7 @@ NATNAME(CODE) ;
  ;
 NATCODE(CODE) ;
  ;Description: Given an entry in file #8, Eligibility Code file,
- ;  finds the corresponding entry in file 8.1, MAS Eligbility Code file
+ ;  finds the corresponding entry in file 8.1, MAS Eligibility Code file
  ;Input:
  ;  CODE - pointer to file #8
  ;Output:
@@ -201,7 +212,7 @@ ELIGSTAT(DFN,DGELG) ;
  ;Input:
  ;  DFN - ien of patient record
  ;
- ;Ouput:
+ ;Output:
  ;  Function Value - 1 on success, 0 on failure
  ;  DGELG array (pass by reference)
  ;    "ELIGSTA" - ELIGIBILITY STATUS

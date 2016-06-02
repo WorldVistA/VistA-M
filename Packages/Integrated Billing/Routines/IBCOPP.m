@@ -1,5 +1,6 @@
-IBCOPP ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER) ; 08-SEP-94
- ;;Version 2.0 ; INTEGRATED BILLING ;**28,62**; 21-MAR-94
+IBCOPP ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER) ;08-SEP-94
+ ;;2.0;INTEGRATED BILLING;**28,62,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Describe report 
  W !!?5,"This report will generate a list of insurance plans by company."
@@ -24,24 +25,32 @@ EN ; Describe report
  ;            all for certain companies, some for other companies)
  ; IBAPL=1 -- whether some or all ins. co's., run report for all plans
  ;            associated with those co's.
+ ; IBAO=E --  Output report in Excel format  ;528
+ ; IBAO=R --  Output report in Report format
  ;
+ N %ZIS,A,I,POP,ZTDEXC,ZTRTN,ZTSAVE,ZTDESC,IBAO
  S IBAPA=$$SELR^IBCOPP1 I IBAPA<0 G ENQ
  S IBAI=$$SELI^IBCOPP1 I IBAI<0 G ENQ
  S IBAPL=$$SELP^IBCOPP1 I IBAPL<0 G ENQ
+ S IBQUIT=0
  ;
  ; obtain plans for selected insurance companies
  ;
- I IBAI,IBAPL G DEVICE
+ I IBAI,IBAPL G EXCEL
+ ;
  D START I IBQUIT G ENQ
- I '$D(^TMP("IBINC",$J)) W !!,"No plans selected!" G ENQ
+ ;
+EXCEL ; CHECK TYPE OF OUTPUT  ;528 baa
+ ;
+ S IBAO=$$OUT^IBCOPP1 I IBAO<0 G ENQ
  ;
 DEVICE ; Ask user to select device
  ;
- W !!,"*** You will need a 132 column printer for this report. ***",!
+ I IBAO'="E" W !!,"   *** You will need a 132 column printer for this report. ***",!
  S %ZIS="QM" D ^%ZIS G:POP ENQ
  I $D(IO("Q")) D  G ENQ
  .S ZTRTN="^IBCOPP2",ZTDESC="IB - LIST OF PLANS BY INSURANCE COMPANY"
- .F I="^TMP(""IBINC"",$J,","IBAPA","IBAI","IBAPL" S ZTSAVE(I)=""
+ .F I="^TMP(""IBINC"",$J,","IBAPA","IBAI","IBAPL","IBAO" S ZTSAVE(I)=""
  .D ^%ZTLOAD K IO("Q") D HOME^%ZIS
  .W !!,$S($D(ZTSK):"This job has been queued as task #"_ZTSK_".",1:"Unable to queue this job.")
  .K ZTSK,IO("Q")
@@ -66,7 +75,7 @@ START ; Gather plans for all selected companies.
  I IBAPL G STARTQ
  ;
  ; - gather all companies if required
- I IBAI S A=0 F  S A=$O(^IBA(355.3,"B",A)) Q:'A  S ^TMP("IBINC",$J,$E($P($G(^DIC(36,A,0)),"^"),1,25),A)=""
+ I IBAI S A=0 F  S A=$O(^IBA(355.3,"B",A)) Q:'A  I $G(^DIC(36,A,0))]"" S ^TMP("IBINC",$J,$E($P($G(^DIC(36,A,0)),"^"),1,25),A)=""
  ;
  ; - gather plans for selected companies
  S IBIC="" F  S IBIC=$O(^TMP("IBINC",$J,IBIC)) Q:IBIC=""!IBQUIT  D
@@ -80,5 +89,5 @@ START ; Gather plans for all selected companies.
  ..; - set plans into an array
  ..S IBPN=0 F  S IBPN=$O(^TMP($J,"IBSEL",IBPN)) Q:'IBPN  S ^TMP("IBINC",$J,IBIC,IBCNS,IBPN)=""
  ;
-STARTQ K IBCNS,IBIC,IBJJ,IBCT,IBLCT,IBOK,IBPN,IBSEL,VAUTI,VAUTP,^TMP($J,"IBSEL")
+STARTQ K IBCNS,IBIC,IBJJ,IBCT,IBLCT,IBOK,IBPN,IBSEL,VAUTI,VAUTP,IBAO,^TMP($J,"IBSEL")
  Q

@@ -1,6 +1,6 @@
 IBCNBEE ;ALB/ARH - Ins Buffer: add/edit existing entries in buffer ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,184,252,251,356,361,371,377,416,438,452,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,184,252,251,356,361,371,377,416,438,452,497,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADD(IBSOURCE) ; add a new buffer file entry (#355.33), sets only status (0) node data
  N IBARR,IBERR,IBIFN,IBX I '$G(IBSOURCE) S IBSOURCE=1
@@ -54,7 +54,7 @@ POLICY(IBBUFDA,FLDS) ; edit the patient policy portion of the buffer file entry
  N DIC,DIE,DA,DR,X,Y,IBZZ I $P($G(^IBA(355.33,+$G(IBBUFDA),0)),U,4)'="E" Q
  I $G(FLDS)="" S FLDS="MR"
  ;
- S DR=$P($T(@(FLDS_"POL")+1),";;",2,9999) Q:DR=""
+ S DR=$P($T(@(FLDS_"POL")+1),";;",2,9999)_$P($T(@(FLDS_"POL")+2),";;",2,9999) Q:DR=""
  S DIE="^IBA(355.33,",DA=IBBUFDA
  S DIE("NO^")="BACKOUTOK" D ^DIE K DIE,DA,DR Q:$D(Y)
  ;
@@ -88,6 +88,12 @@ ESGHP(IBBUFDA) ; sponsoring employer information
  ; if not employer sponsored plan, delete any existing sponsoring employer data
  I $D(^IBA(355.33,IBBUFDA,61)),'$G(^IBA(355.33,IBBUFDA,61)) D DELEMP(IBBUFDA)
  Q
+ ;
+ASKSAVE(NAME) ;asks the user if changes to the Patient Registration File (Subscriber data) should be saved
+ ;returns 1 for yes, 0 for no
+ K DIR S DIR(0)="Y",DIR("A")="Save changes to the "_NAME_" File",DIR("B")="YES"
+ D ^DIR K DIR
+ Q $S($D(DIRUT):0,1:Y)
  ;
 DELEMP(IBBUFDA) ; delete sponsoring employer data
  N DIC,DIE,DA,DR,X,Y Q:'$D(^IBA(355.33,+$G(IBBUFDA),61))
@@ -157,7 +163,8 @@ MRGRP ; Group/Plan fields asked of MCCR users in the Buffer Process options (all
  ;;40.01;90.01;90.02;40.1;40.11;40.09;40.04:40.08
  ;
 MRPOL ; Patient Policy fields asked of MCCR users in the Buffer Process options (all buffer policy fields except ESGHP,60.05,60.06 60.02-61.01
- ;;60.02;60.03;60.14T;S IBZZ=X;I IBZZ'="18" S Y="@111";91.01///1;90.03T;60.08///@;60.09///@;62.01///@;S Y="@112";@111;91.01;90.03T;60.08;60.13;62.01T;@112;60.1:60.12;.03;60.15;60.16;61.01;62.02:62.06
+ ;;60.02;60.03;60.14PATIENT RELATIONSHIP TO SUBSCRIBER;S IBZZ=X;I IBZZ'="18" S Y="@111";91.01NAME OF SUBSCRIBER///1;90.03T;60.08SUBSCRIBER'S DOB///@;60.09SUBSCRIBER'S SSN///@;62.01///@;S Y="@112";@111;
+ ;;91.01NAME OF SUBSCRIBER;90.03T;60.08SUBSCRIBER'S DOB;60.13SUBSCRIBER'S SEX;62.01T;@112;60.1:60.12;.03;60.15;60.16;61.01;62.02:62.06
  ;
 OTINS ; Insurance Company fields asked of non-MCCR users entering buffer data from options outside IB (20.01-20.04,21.01-21.06)
  ;;20.01:20.04;21.01;I X="" S Y="@111";21.02;I X="" S Y="@111";21.03;@111;21.04:21.06

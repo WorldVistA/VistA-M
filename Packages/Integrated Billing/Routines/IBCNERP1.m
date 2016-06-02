@@ -1,6 +1,6 @@
 IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -20,12 +20,13 @@ IBCNERP1 ;DAOU/BHS - IBCNE USER IF eIV RESPONSE REPORT ;03-JUN-2002
  ;   run.  Response Report (0), Inactive Report (1), or Ambiguous 
  ;   Report (2).
  ;  IBCNESPC("DTEXP")=Expiration date used in the inactive policy report
+ ;  IBOUT="R" for Report format or "E" for Excel format
  ;
  ; Only call this routine at a tag
  Q
 EN(IPRF) ; Main entry pt
  ; Init vars
- N STOP,IBCNERTN,POP,IBCNESPC
+ N STOP,IBCNERTN,POP,IBCNESPC,IBOUT
  S IBCNESPC("RFLAG")=$G(IPRF)
  ;
  S STOP=0
@@ -47,7 +48,7 @@ EN(IPRF) ; Main entry pt
  ; Rpt by Date Range or Trace #
 R05 I '$G(IPRF) D RTYPE I STOP G:$$STOP EXIT G R05
  ; If rpt by Trace # - no other criteria is necessary
- I $G(IBCNESPC("TRCN")) G R100
+ I $G(IBCNESPC("TRCN")) G R60
  ; Date Range params
 R10 D DTRANGE I STOP G:$$STOP EXIT G R05
  ; Payer Selection param
@@ -60,15 +61,17 @@ R40 D TYPE I STOP G:$$STOP EXIT G R30
 R45 I $G(IPRF)=1 D DTEXP I STOP G:$$STOP EXIT G R40
  ; Sort by param - Payer or Patient
 R50 D SORT I STOP G:$$STOP EXIT G R45
+ ; Select the output type
+R60 S IBOUT=$$OUT I STOP G:$$STOP EXIT G R50
+ I IBOUT="E" W !!,"To avoid undesired wrapping, please enter '0;256;999' at the 'DEVICE:' prompt.",!
  ; Select output device
-R100 D DEVICE(IBCNERTN,.IBCNESPC) I STOP G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R50
- G EXIT
+R100 D DEVICE(IBCNERTN,.IBCNESPC,IBOUT) I STOP Q:+$G(IBFRB)&($G(IBOUT)="E")  G:$$STOP EXIT G:$G(IBCNESPC("TRCN"))'="" R05 G R50
  ;
 EXIT ; Exit pt
  Q
  ;
  ;
-COMPILE(IBCNERTN,IBCNESPC) ; 
+COMPILE(IBCNERTN,IBCNESPC,IBOUT) ; 
  ; Entry point called from EN^XUTMDEVQ in either direct or queued mode.
  ; Input params:
  ;  IBCNERTN = Routine name for ^TMP($J,...
@@ -77,16 +80,16 @@ COMPILE(IBCNERTN,IBCNESPC) ;
  ; Init scratch globals
  K ^TMP($J,IBCNERTN),^TMP($J,IBCNERTN_"X")
  ; Compile
- I IBCNERTN="IBCNERP1" D EN^IBCNERP2(IBCNERTN,.IBCNESPC)
+ I IBCNERTN="IBCNERP1" D EN^IBCNERP2(IBCNERTN,.IBCNESPC,IBOUT)
  I IBCNERTN="IBCNERP4" D EN^IBCNERP5(IBCNERTN,.IBCNESPC)
  I IBCNERTN="IBCNERP7" D EN^IBCNERP8(IBCNERTN,.IBCNESPC)
- I IBCNERTN="IBCNERPF" D EN^IBCNERPG(IBCNERTN,.IBCNESPC)
+ I IBCNERTN="IBCNERPF" D EN^IBCNERPG(IBCNERTN,.IBCNESPC,IBOUT)
  ; Print
  I '$G(ZTSTOP) D
- . I IBCNERTN="IBCNERP1" D EN3^IBCNERPA(IBCNERTN,.IBCNESPC)
- . I IBCNERTN="IBCNERP4" D EN6^IBCNERPA(IBCNERTN,.IBCNESPC)
- . I IBCNERTN="IBCNERP7" D EN^IBCNERP9(IBCNERTN,.IBCNESPC)
- . I IBCNERTN="IBCNERPF" D EN^IBCNERPH(IBCNERTN,.IBCNESPC)
+ . I IBCNERTN="IBCNERP1" D EN3^IBCNERPA(IBCNERTN,.IBCNESPC,IBOUT)
+ . I IBCNERTN="IBCNERP4" D EN6^IBCNERPA(IBCNERTN,.IBCNESPC,IBOUT)
+ . I IBCNERTN="IBCNERP7" D EN^IBCNERP9(IBCNERTN,.IBCNESPC,IBOUT)
+ . I IBCNERTN="IBCNERPF" D EN^IBCNERPH(IBCNERTN,.IBCNESPC,IBOUT)
  ; Close device
  D ^%ZISC
  ; Kill scratch globals
@@ -260,23 +263,33 @@ RTYPE ; Prompt to allow users to report by date range or Trace #
 RTYPEX ; RTYPE exit pt
  Q
  ;
-DEVICE(IBCNERTN,IBCNESPC) ; Device Handler and possible TaskManager calls
+DEVICE(IBCNERTN,IBCNESPC,IBOUT) ; Device Handler and possible TaskManager calls
  ;
  ; Input params:
  ;  IBCNERTN = Routine name for ^TMP($J,...
  ;  IBCNESPC = Array passed by ref of the report params
+ ;  IBOUT    = "R" for Report format or "E" for Excel format
  ;
  ; Init vars
  N ZTRTN,ZTDESC,ZTSAVE,POP
  ;
- I IBCNERTN="IBCNERP4"!(IBCNERTN="IBCNERPF"&($G(IBCNESPC("TYPE"))="D")) W !!!,"*** This report is 132 characters wide ***",!
- S ZTRTN="COMPILE^IBCNERP1("""_IBCNERTN_""",.IBCNESPC)"
+ I IBCNERTN="IBCNERP4"!(IBCNERTN="IBCNERPF"&($G(IBCNESPC("TYPE"))="D")) W:$G(IBOUT)="R" !!!,"*** This report is 132 characters wide ***",!
+ S ZTRTN="COMPILE^IBCNERP1("""_IBCNERTN_""",.IBCNESPC,"""_IBOUT_""")"
  S ZTDESC="IBCNE eIV "_$S(IBCNERTN="IBCNERP1":"Response",IBCNERTN="IBCNERPF":"Insurance Update",1:"Payer")_" Report"
  S ZTSAVE("IBCNESPC(")=""
  S ZTSAVE("IBCNERTN")=""
+ S ZTSAVE("IBOUT")=""
  D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE)
  I POP S STOP=1
  ;
 DEVICEX ; DEVICE exit pt
  Q
  ;
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y

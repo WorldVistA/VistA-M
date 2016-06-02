@@ -1,6 +1,6 @@
-IBCNBAC ;ALB/ARH/DAOU/WCW-Ins Buffer: Individually Accept Insurance Buffer Fields ; 28-APR-03
- ;;2.0;INTEGRATED BILLING;**184,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+IBCNBAC ;ALB/ARH/DAOU/WCW/AWC - Ins Buffer: Individually Accept Insurance Buffer Fields ;28-APR-03
+ ;;2.0;INTEGRATED BILLING;**184,497,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA,SKPBLANK) ; display a buffer entry's insurance company fields and an existing insurance company fields for comparison
  N IBEXTDA,IBFLD1,IBFLD2,X I '$G(IBBUFDA) Q
@@ -64,6 +64,10 @@ ESGHP(SKPBLANK) ; display employee sponsored group health plan
  ;
  Q
  ;
+SUB(SKPBLANK,IBFNAM,IBHOLD,IBXHOLD) ; display patient registration
+ D SUB^IBCNBCD7(SKPBLANK,IBFNAM,.IBHOLD,.IBXHOLD)
+ Q
+ ;
 FIELDS(SET,ESGHP,SKPBLANK) ; accept each field and set into temp array
  N CHGCHK,IBFLDLST,IBFLDVAL,IBUSER,IBLABEL,EXTFILE,IBEXTFLD
  S ESGHP=$G(ESGHP),SKPBLANK=$G(SKPBLANK)
@@ -108,16 +112,17 @@ FIELDS(SET,ESGHP,SKPBLANK) ; accept each field and set into temp array
  ;
  Q
  ;
-ESGHPFLD(ESGHP,IBBUFFLD) ; return true if field should be included, if ESGHP thEN include all 61.* fields, else exclude those fields
- N IBX,IBY S IBX=1 S ESGHP=$G(ESGHP)
- S IBY=0 I IBBUFFLD>61,IBBUFFLD<61.99 S IBY=1
+ESGHPFLD(ESGHP,IBBUFFLD) ; return true if field should be included, if ESGHP then include all 61.* fields, else exclude those fields
+ N IBX,IBY
+ S IBX=1,IBY=0,ESGHP=$G(ESGHP)
+ I IBBUFFLD>61,IBBUFFLD<61.99 S IBY=1
  I +IBY,'ESGHP S IBX=0
  I 'IBY,ESGHP S IBX=0
  Q IBX
  ;
 ACCEPT(BUFDATA,EXTDATA) ; ask user if they want to accept the change, returns true if yes
  N IBX S IBX=0
- I $G(BUFDATA)=$G(EXTDATA) Q
+ I $G(BUFDATA)=$G(EXTDATA) Q IBX
  I BUFDATA="" S DIR("A")="Accept Change, Delete",DIR("?")="The Buffer field is null, accepting the change will result in the Insurance Company data ("_EXTDATA_") being deleted"
  I BUFDATA'="" S DIR("A")="Accept Change, Replace",DIR("?")="Accepting the change will result Buffer data ("_BUFDATA_") replacing the Insurance Company data ("_EXTDATA_")"
  S DIR(0)="Y",DIR("B")="No" D ^DIR I Y=1 S IBX=1

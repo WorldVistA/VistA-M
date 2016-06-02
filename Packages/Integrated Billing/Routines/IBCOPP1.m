@@ -1,12 +1,13 @@
-IBCOPP1 ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER 1) ; 15-SEP-94 
- ;;Version 2.0 ; INTEGRATED BILLING ;**28**; 21-MAR-94
+IBCOPP1 ;ALB/NLR - LIST INS. PLANS BY CO. (DRIVER 1) ;15-SEP-94 
+ ;;2.0;INTEGRATED BILLING;**28,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 SELR() ; Prompt user to select report type
  ;
  ; IBV1=0 -- list insurance plans by company
  ; IBV1=1 -- list insurance plans by company with subscriber information
  ;
- N IBV1
+ N IBV1,STOP
  S DIR(0)="SA^1:1. List Insurance Plans by Company;2:2. List Insurance Plans by Company With Subscriber Information"
  S DIR("A")="     SELECT REPORT (1 OR 2): "
  S DIR("A",1)="1. List Insurance Plans by Company"
@@ -52,3 +53,12 @@ SELP() ; Prompt user to select all or subset of plans
  W ! D ^DIR W ! K DIR I Y<0!$D(DIRUT) S IBV3=-1 G SELPQ
  S IBV3=+Y K Y
 SELPQ Q IBV3
+ ;
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y

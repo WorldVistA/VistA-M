@@ -1,5 +1,5 @@
-DGENELA1 ;ALB/CJM,RTK,TDM,PJR,RGL,LBD,EG,TMK,CKN,ERC - Patient Eligibility API ; 3/3/11 3:38pm
- ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688,841**;Aug 13,1993;Build 7
+DGENELA1 ;ALB/CJM,RTK,TDM,PJR,RGL,LBD,EG,TMK,CKN,ERC - Patient Eligibility API ;20 Jan 2015  3:27 PM
+ ;;5.3;Registration;**147,327,314,367,497,451,564,631,672,659,583,746,653,688,841,909**;Aug 13,1993;Build 32
  ;
 CHECK(DGELG,DGPAT,DGCDIS,ERRMSG) ;
  ;Does validation checks on the eligibility contained in the DGELG array.
@@ -124,6 +124,8 @@ STORE(DGELG,DGPAT,DGCDIS,ERROR,SKIPCHK) ;
  .I $G(SKIPCHK)'=1,'$$CHECK(.DGELG,.DGPAT,.DGCDIS,.ERROR) Q
  .S SUB="" F  S SUB=$O(DGELG(SUB)) Q:SUB=""  D
  ..I SUB'="ELIG",SUB'="RATEDIS",SUB'="DFN" S FIELD=$$FIELD(SUB) I FIELD S DATA(FIELD)=DGELG(SUB)
+ .;lock Camp Lejeune when it comes over from HEC in Z11 - DG*5.3*909
+ .I "^Y^N^"[("^"_$G(DATA(.321701))_"^") S DATA(.32171)=1
  .;
  .;don't add the Primary Eligibility unless different, so as to not
  .;fire off x-refs unless necessary
@@ -145,7 +147,7 @@ STORE(DGELG,DGPAT,DGCDIS,ERROR,SKIPCHK) ;
  .;Add the new Patient Eligibilities
  .;Don't add the an eligibility unless different - so as to not
  .;fire off the x-refs unless necessary.
- .;Also, try to assign ien = the code (see input tranform of the field).
+ .;Also, try to assign ien = the code (see input transform of the field).
  .K DA,DATA
  .S DA(1)=DFN
  .S DATA(.01)=0
@@ -202,6 +204,10 @@ FIELD(SUB) ;
  Q:SUB="CVELEDT" .5295
  Q:SUB="SHAD" .32115
  Q:SUB="MOH" .541
+ Q:SUB="CLE" .321701     ; Added for Camp Lejeune - DG*5.3*909
+ Q:SUB="CLEDT" .321702   ; Added for Camp Lejeune - DG*5.3*909
+ Q:SUB="CLEST" .321703   ; Added for Camp Lejeune - DG*5.3*909
+ Q:SUB="CLESOR" .321704  ; Added for Camp Lejeune - DG*5.3*909
  ;
  Q ""
  ;
@@ -229,7 +235,7 @@ OVERLAY() ;
  ;
  N SUCCESS S SUCCESS=1
  ;
- ;delete the rated disabilties multiple
+ ;delete the rated disabilities multiple
  D DELRDIS^DGENELA2(DFN)
  ;
  ;add the rated disabilities

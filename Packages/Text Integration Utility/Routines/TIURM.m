@@ -1,5 +1,6 @@
 TIURM ; SLC/JER - MIS Document Review ;9/24/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**74,79,58,100,113,216,224**;Jun 20, 1997;Build 7
+ ;;1.0;TEXT INTEGRATION UTILITIES;**74,79,58,100,113,216,224,286**;Jun 20, 1997;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified
  ;12/7/00 split TIURM into TIURM & TIURM1
 MAKELIST(TIUCLASS) ; Get Search Criteria
  N DIRUT,DTOUT,DUOUT,TIUI,STATUS,TIUTYP,TIUSTAT,TIUEDFLT,TIUDCL
@@ -44,7 +45,8 @@ LATE S TIULDT=$S($D(TIUQUIK):9999999,1:$$LDATE^TIULA(TIUDPRMT))
  I TIUEDT>TIULDT D SWAP(.TIUEDT,.TIULDT)
  I $L(TIULDT,".")=1 D EXPRANGE(.TIUEDT,.TIULDT) ; P74.  Add late date time whether or not late date is same as early date.
  ; -- Reset late date to NOW on rebuild:
- S NOWFLAG=$S(TIULDT-$$NOW^XLFDT<.0001:1,1:0)
+ ; TIU*1.0*286 djh
+ S NOWFLAG=$$FMDIFF^XLFDT($$NOW^XLFDT,TIULDT,2)<60
  I '$G(TIURBLD) W !,"Searching for the documents."
  D BUILD(TIUCLASS,.STATUS,TIUEDT,TIULDT,NOWFLAG,.TIUDI)
  ; -- If attaching ID note & changed view,

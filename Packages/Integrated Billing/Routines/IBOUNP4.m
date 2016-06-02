@@ -1,35 +1,30 @@
 IBOUNP4 ;ALB/CJM - INPATIENT INSURANCE REPORT ;JAN 25,1992
- ;;Version 2.0 ; INTEGRATED BILLING ;; 21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; VAUTD =1 if all divisions selected
  ; VAUTD() - list of selected divisions
  ; IBOEND - end of the date range for the report
  ; IBOBEG - start of the date range for report
- ; IBOUK =1 if vets whose insurance is unknow should be included
+ ; IBOUK =1 if vets whose insurance is unknown should be included
  ; IBOUI =1 if vets that are no insured should be included
  ; IBOEXP = 1 if vets whose insurance is expiring should be included
  ; IBOBYWRD = 1 if report should be sorted by ward, = 0 otherwise
+ ; IBOUT = "E" if output should be in Excel format, = "R" otherwise
 MAIN ;
- ;***
- ;S XRTL=$ZU(0),XRTN="IBOUNP4-1" D T0^%ZOSV ;start rt clock
- ;
  N QUIT S QUIT=0,IBOBYWRD=0 K ^TMP($J)
  D DIVISION,PICK:'QUIT,CATGRY:'QUIT,SORTBY:'QUIT
+ ;
+ S IBOUT=$$OUT G:IBOUT="" EXIT
+ ;
  D:'$G(QUIT) DEVICE
  G:QUIT EXIT
 QUEUED ; entry point if queued
- ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBOUNP4" D T1^%ZOSV ;stop rt clock
- ;S XRTL=$ZU(0),XRTN="IBOUNP4-2" D T0^%ZOSV ;start rt clock
- ;
  D LOOP^IBOUNP5,REPORT^IBOUNP6
 EXIT ;
  K ^TMP($J)
- ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBOUNP4" D T1^%ZOSV ;stop rt clock
- ;
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
- K IBOBEG,IBOEND,IBOUK,IBOUI,IBOEXP,VAUTD,IBOPICK,IBOBYWRD
+ K IBOBEG,IBOEND,IBOUK,IBOUI,IBOEXP,VAUTD,IBOPICK,IBOBYWRD,IBOUT
  Q
 DRANGE ; select a date range for report
  S DIR(0)="D^::EX",DIR("A")="Start with DATE" D ^DIR I $D(DIRUT) S QUIT=1 K DIR Q
@@ -37,7 +32,7 @@ DRANGE ; select a date range for report
  S IBOEND=Y K DIR Q
 DEVICE ;
  I $D(ZTQUEUED) Q
- W !!,*7,"*** Margin width of this output is 132 ***"
+ I IBOUT="R" W !!,*7,"*** Margin width of this output is 132 ***"
  W !,"*** This output should be queued ***"
  S %ZIS="MQ" D ^%ZIS I POP S QUIT=1 Q
  I $D(IO("Q")) S ZTRTN="QUEUED^IBOUNP4",ZTIO=ION,ZTSAVE("VA*")="",ZTSAVE("IBO*")="",ZTDESC="INPATIENT INSURANCE REPORT" D ^%ZTLOAD W !,$S($D(ZTSK):"REQUEST QUEUED TASK="_ZTSK,1:"REQUEST CANCELLED") D HOME^%ZIS S QUIT=1 Q
@@ -75,3 +70,12 @@ SORTBY ;sets IBOBYWRD=1 if user wants the output sorted by ward
  D ^DIR I $D(DIRUT) S QUIT=1 Q
  S IBOBYWRD=Y
  Q
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

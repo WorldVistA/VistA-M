@@ -1,9 +1,10 @@
-IBCOMD ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS; 03-AUG-98
- ;;2.0;INTEGRATED BILLING;**103**;21-MAR-94
+IBCOMD ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS;03-AUG-98
+ ;;2.0;INTEGRATED BILLING;**103,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
 EN ; Entry point from option
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT
- N IBAIB,IBQUIT,IBCASE,IBFLD,IBQ,IBF,IBTY,X,Y
+ N IBAIB,IBOUT,IBQUIT,IBCASE,IBFLD,IBQ,IBF,IBTY,X,Y
  W !!,?10,"Generate Insurance Company Listings",!
  S DIR("A",1)="Sort report by"
  S DIR("A",2)="1  - Active Insurance Companies"
@@ -76,6 +77,8 @@ EN ; Entry point from option
  ..W $S(I=4:$P($G(^DIC(5,+$P(IBCASE(I),"^",2),0)),"^"),$P(IBCASE(I),"^",2)="":"'FIRST'",1:$P(IBCASE(I),"^",2))
  ..I $P(IBCASE(I),"^")="R" W " and ",$S($P(IBCASE(I),"^",3)="zzzzzz":"'LAST'",1:$P(IBCASE(I),"^",3))
  ;
+ S IBOUT=$$OUT G:IBOUT="" EXIT
+ ;
  D QUE
  ;
 EXIT Q
@@ -131,7 +134,7 @@ QUE ; Ask Device
  S %ZIS="QM" D ^%ZIS G:POP QUEQ
  I $D(IO("Q")) K IO("Q") D  G QUEQ
  .S ZTRTN="BEG^IBCOMD1"
- .S ZTSAVE("IBAIB")="",ZTSAVE("IBFLD(")=""
+ .S ZTSAVE("IBAIB")="",ZTSAVE("IBFLD(")="",ZTSAVE("IBOUT")=""
  .I $D(IBCASE) S ZTSAVE("IBCASE(")=""
  .S ZTDESC="IB - Identify Dup Insurance Companies"
  .D ^%ZTLOAD K ZTSK D HOME^%ZIS
@@ -140,3 +143,12 @@ QUE ; Ask Device
  I $E(IOST,1,2)["C-" W !!,?15,"... One Moment Please ..."
  D BEG^IBCOMD1
 QUEQ Q
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

@@ -1,5 +1,5 @@
 LRHYA ;DALOI/HOAK - HOWDY UTILITY-A ;9/16/2000
- ;;5.2;LAB SERVICE;**405,446**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**405,446,457**;Sep 27, 1994;Build 6
  ;
  ;
 OLT ; This block looks in the Howdy site file for tests that will print
@@ -47,6 +47,7 @@ LTE ; This block looks in the Howdy site file for those test to exclude
  .  ;
  .  K LRNODONE
  .  S LRIENZZ=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTS,0))
+ .  I $P($G(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,0)),U,6)'="" QUIT
  .  I $G(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,0))["CA" S LRNODONE=1,LRHYHOK=1 QUIT
  .  I $G(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,0))["CA" QUIT
  .  I $G(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,0))'["CA" S LRHYTOK=LRTSTS
@@ -73,6 +74,7 @@ LTE ; This block looks in the Howdy site file for those test to exclude
  ..  I $G(^LRHY(69.86,LRHYSITE,52))="" S LRNODUP=1
  ..  I $G(^LRHY(69.86,LRHYSITE,52))="N" S LRNODUP=1
  ..  Q:$G(LRNODUP)  S LRHYHOK=1 K LRCCOM S ZTRTN="FX2^LRHYDEL",ZTSAVE("L*")="",ZTDTH=$H,ZTIO="NULL" S:$D(ZTQUEUED) ZTREQ="@" D ^%ZTLOAD
+ ..  H 5
  .  E  D
  ..  Q:$D(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,1.1,1,0))
  ..  Q:$D(^LRO(69,LR3DTN,1,LR3SN,2,LRIENZZ,1.1,1,0))
@@ -108,6 +110,34 @@ CSTATUS ; This block checks for collection types to exclude
  QUIT
  ;
 EXLOC ; This block checks for Hospital locations to exclude
+ ;
+ I LR3DTN=DT Q
+ ;
+ ; This logic is to look for tests from an excluded location on the same specimen
+ ; number as tests from a non-excluded location because of orders being merged.
+ ; Variable LRLOCS will indicate this situation and will trigger a "check with clerk"
+ ; message.
+ ;
+ N LREX,LRNONEX,LRX,LRXX,LRMGINFO,LRMGDT,LRMGSN,LRXXLOC
+ I $D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) S LREX=1
+ I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) S LRNONEX=1
+ ;
+ S LRTSTS=0
+ F  S LRTSTS=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTS)) Q:+LRTSTS'>0  D  Q:$G(LRLOCS)
+ . S LR3ZTST=0
+ . S LR3ZTST=$O(^LRO(69,LR3DTN,1,LR3SN,2,"B",LRTSTS,LR3ZTST)) Q:+LR3ZTST'>0
+ . ;
+ . S LRX=$G(^LRO(69,LR3DTN,1,LR3SN,2,LR3ZTST,0))
+ . S LRMGINFO=$P(LRX,U,14)
+ . Q:LRMGINFO=""
+ . S LRMGDT=$P(LRMGINFO,";",1),LRMGSN=$P(LRMGINFO,";",2)
+ . S LRXX=$G(^LRO(69,LRMGDT,1,LRMGSN,0)),LRXXLOC=$P(LRXX,U,7)
+ . Q:LRXXLOC=""
+ . ;
+ . I $D(^LRHY(69.86,LRHYSITE,16,"B",LRXXLOC)),$G(LRNONEX)=1 S LRLOCS=1 Q
+ . I '$D(^LRHY(69.86,LRHYSITE,16,"B",LRXXLOC)),$G(LREX)=1 S LRLOCS=1 Q
+ ;
+ ;
  I $D(^LRHY(69.86,LRHYSITE,16,"B",LRLLOC66)) S LRHYHOK=1 D DONE S ^TMP("LRHYDY",$J,"EXLOC",LRORD,LRLLOC66,LR3SN)=""
  QUIT
 DONE ;

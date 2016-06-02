@@ -1,6 +1,6 @@
 IBCNERPG ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT COMPILE;16-SEP-2009
- ;;2.0;INTEGRATED BILLING;**416**;16-SEP-09;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; variables from IBCNERPF:
  ;   IBCNERTN = "IBCNERPF"
@@ -10,6 +10,7 @@ IBCNERPG ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT COMPILE;16-SEP-2009
  ;   IBCNESPC("PAT",ien) = patient iens for report, if IBCNESPC("PAT")="A", then include all
  ;   IBCNESPC("SORT") = sort by: 1 - Payer name, 2 - Patient Name, 3 - Clerk Name
  ;   IBCNESPC("TYPE") = report type: "S" - summary, "D" - detailed
+ ;   IBOUT = "R" for Report format or "E" for Excel format
  ;
  ; Output variables passed to IBCNERPH:
  ;   Summary report:
@@ -23,7 +24,7 @@ IBCNERPG ;BP/YMG - IBCNE EIV INSURANCE UPDATE REPORT COMPILE;16-SEP-2009
  ;
  Q
  ;
-EN(IBCNERTN,IBCNESPC) ; Entry point
+EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry point
  N ALLPYR,ALLPAT,DATE,BDATE,EDATE,RPDATA,RTYPE,SORT
  S ALLPYR=$S($G(IBCNESPC("PYR"))="A":1,1:0)
  S ALLPAT=$S($G(IBCNESPC("PAT"))="A":1,1:0)
@@ -32,7 +33,7 @@ EN(IBCNERTN,IBCNESPC) ; Entry point
  I EDATE'="",$P(EDATE,".",2)="" S EDATE=$$FMADD^XLFDT(EDATE,0,23,59,59)
  S RTYPE=$G(IBCNESPC("TYPE"))
  S SORT=$G(IBCNESPC("SORT"))
- I '$D(ZTQUEUED),$G(IOST)["C-" W !!,"Compiling report data ..."
+ I '$D(ZTQUEUED),$G(IOST)["C-",IBOUT="R" W !!,"Compiling report data ..."
  ; Kill scratch global
  K ^TMP($J,IBCNERTN)
  S DATE=$O(^IBCN(365,"AD",BDATE),-1)

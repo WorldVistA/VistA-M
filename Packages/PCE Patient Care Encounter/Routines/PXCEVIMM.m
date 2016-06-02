@@ -1,6 +1,6 @@
-PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;08/12/2014
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201**;Aug 12, 1996;Build 41
- ;; ;
+PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;09/14/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,201,210**;Aug 12, 1996;Build 21
+ ;;
  Q
  ;
  ;Line with the line label "FORMAT"
@@ -13,16 +13,30 @@ PXCEVIMM ;ISL/dee,SLC/ajb - Used to edit and display V IMMUNIZATION ;08/12/2014
  ;The Display & Edit routines are for special cases.
  ;  (The .01 field cannot have a special edit.)
  ;
-FORMAT ;;Immunization~9000010.11~0,3,11,12,13,811,812~0~^AUPNVIMM
+FORMAT ;;Immunization~9000010.11~0,2,3,11,12,13,14,15,811,812~0~^AUPNVIMM
  ;;0~1~.01~Immunization:  ~Immunization:  ~~~~~B
+ ;;12~7~1207~Lot Number:  ~Lot Number:  ~$$DISPLN^PXCEVIMM~~~~D
+ ;;12~2~1202~Ordering Provider:  ~Ordering Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;12~4~1204~Encounter Provider:  ~Encounter Provider:  ~~EPROV12^PXCEPRV~~~D
  ;;0~4~.04~Series:  ~Series:  ~~~~~D
  ;;0~6~.06~Reaction:  ~Reaction:  ~~~~~D
  ;;0~7~.07~Repeat Contraindicated:  ~Repeat Contraindicated:  ~~ECONTRAI^PXCEVIMM~~~D
- ;;12~1~1201~Administered Date and (optional) Time~Administered Date and Time:  ~~E1201^PXCEPOV1(0,30,30)~~~D
+ ;;12~1~1201~Administered Date and Time:  ~Administered Date and Time:  ~~~~~D
+ ;;13~12~1312~Dose:  ~Dose:  ~~~~~D
+ ;;13~13~1313~Dose Units:  ~Dose Units:  ~~~~~D
+ ;;13~2~1302~Route of Administration:  ~Route of Administration:  ~~~~~D
+ ;;13~3~1303~Site of Administration (Body):  ~Site of Administration (Body):  ~~~~~D
+ ;;2~0~2~VIS Offered/Given:  ~VIS:  ~$$DISPVIS^PXCEVIS~EVIS^PXCEVIS~~~D
  ;;811~1~81101~Comments:  ~Comments:  ~~~~~D
- ;;13~4~1304~Primary Diagnosis:  ~Primary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~~
- ;;3~2~.01~Other Diagnosis:  ~Other Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV2^PXCEVIMM~~~
+ ;;13~4~1304~Primary Diagnosis:  ~Primary Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV^PXCEVIMM~~S~
+ ;;3~2~.01~Other Diagnosis:  ~Other Diagnosis:  ~$$DISPLY01^PXCEPOV~EPOV2^PXCEVIMM~~S~
+ ;;14~3~1403~Date and Time Read:  ~Date/Time Read:  ~~EREADDT^PXCEVIMM~~~D
+ ;;14~2~1402~Reading in Millimeters (mm):  ~Reading in Millimeters (mm):  ~~~~~D
+ ;;14~1~1401~Results:  ~Results:  ~~~~~D
+ ;;14~4~1404~Reader:  ~Reader:  ~~EPROV12^PXCEPRV~~~D
+ ;;14~5~1405~Date and Time Reading Recorded:  ~Reading Recorded:  ~~~~~D
+ ;;14~6~1406~Hours Read Post-Inoculation:  ~Hours Read Post-Inoculation:  ~~~~~D
+ ;;15~1~1501~Reading Comments:  ~Reading Comments:  ~~~~~D
  ;;
  ;
  ;Cannot ask work processing
@@ -52,6 +66,29 @@ ECONTRAI ;
  I X="@" S Y="@"
  E  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1 Q
  S $P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))=$P(Y,"^")
+ Q
+ ;
+EREADDT ;
+ I $P(PXCEAFTR(14),"^",3)'="" D
+ . N DIERR,PXCEDILF,PXCEINT,PXCEEXT
+ . S PXCEINT=$P(PXCEAFTR($P(PXCETEXT,"~",1)),"^",$P(PXCETEXT,"~",2))
+ . S PXCEEXT=$$EXTERNAL^DILFD(PXCEFILE,$P(PXCETEXT,"~",3),"",PXCEINT,"PXCEDILF")
+ . S DIR("B")=$S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ S DIR(0)="9000010.11,1403AO"
+ S DIR("A")=$P(PXCETEXT,"~",4)
+ S:$P(PXCETEXT,"~",8)]"" DIR("?")=$P(PXCETEXT,"~",8)
+ D ^DIR
+ K DIR,DA
+ I X="@" S Y="@"
+ E  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1 Q
+ S $P(PXCEAFTR(14),"^",3)=$P(Y,"^")
+ N PXVX,X1,X2,X3
+ S X1=$P(PXCEAFTR(14),"^",3) ; DATE/TIME READ
+ S X2=$P(PXCEAFTR(12),"^") ; EVENT DATE AND TIME
+ S X3=2 ; return difference in seconds
+ S PXVX=""
+ I $G(X1),$L(X1)>7,$G(X2),$L(X2)>7,$G(X2)'>$G(X1) S PXVX=$$FMDIFF^XLFDT(X1,X2,X3)\3600
+ I PXVX D EN^DDIOL("Hours Read Post-Inoculation:  "_PXVX,"","!")
  Q
  ;
 ELOT ;
@@ -95,14 +132,14 @@ EPOV ;Edit the Associated DX
  I $D(DTOUT)!$D(DUOUT) S PXCEEND=1,PXCEQUIT=1 Q
  I +Y'>0 S PXCEEND=1 Q  ;S:$P(PXCETEXT,"~",3)=".08" PXCEQUIT=1 Q
  ;See if this diagnosis is in the PXCEAFTR(0)
- I $P(PXCETEXT,"~",2)'=8,(+Y=$P($G(PXCEAFTR(0)),"^",8)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=9,(+Y=$P($G(PXCEAFTR(0)),"^",9)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=10,(+Y=$P($G(PXCEAFTR(0)),"^",10)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=11,(+Y=$P($G(PXCEAFTR(0)),"^",11)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=12,(+Y=$P($G(PXCEAFTR(0)),"^",12)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=13,(+Y=$P($G(PXCEAFTR(0)),"^",13)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=14,(+Y=$P($G(PXCEAFTR(0)),"^",14)) S PXCEEND=1
- I $P(PXCETEXT,"~",2)'=15,(+Y=$P($G(PXCEAFTR(0)),"^",15)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=1,(+Y=$P($G(PXCEAFTR(80)),"^",1)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=2,(+Y=$P($G(PXCEAFTR(80)),"^",2)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=3,(+Y=$P($G(PXCEAFTR(80)),"^",3)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=4,(+Y=$P($G(PXCEAFTR(80)),"^",4)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=5,(+Y=$P($G(PXCEAFTR(80)),"^",5)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=6,(+Y=$P($G(PXCEAFTR(80)),"^",6)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=7,(+Y=$P($G(PXCEAFTR(80)),"^",7)) S PXCEEND=1
+ I $P(PXCETEXT,"~",2)'=8,(+Y=$P($G(PXCEAFTR8(80)),"^",8)) S PXCEEND=1
  ;
  ; check for duplicate diagnosis in OTHER DIAGNOSIS
  N DX D:+$G(PXCEFIEN)
@@ -170,4 +207,10 @@ DISPLY01(PXCEIMM) ;
  S PXCEINT=$P(PXCEIMM,"^",1)
  S PXCEEXT=$$EXTERNAL^DILFD(9000010.11,.01,"",PXCEINT,"PXCEDILF")
  Q $S('$D(DIERR):PXCEEXT,1:PXCEINT)
+ ;
+DISPLN(PXCEINT) ; display lot number with manufacturer
+ N PXCEDILF,PXCEEXT,PXV2,PXVMAN
+ S PXCEEXT=$$EXTERNAL^DILFD(9000010.11,1207,"",PXCEINT,"PXCEDILF")
+ S PXV2=$P(^AUTTIML(PXCEINT,0),"^",2),PXVMAN=$$EXTERNAL^DILFD(9999999.41,.02,"",PXV2,"PXCEDILF")
+ Q $S('$D(DIERR):PXCEEXT_"     "_PXVMAN,1:PXCEINT)
  ;

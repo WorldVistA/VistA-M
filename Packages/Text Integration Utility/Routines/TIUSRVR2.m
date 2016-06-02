@@ -1,5 +1,6 @@
 TIUSRVR2 ; SLC/JER - RPC for record-wise GET ; 11/23/07
- ;;1.0;TEXT INTEGRATION UTILITIES;**100,109,162,222,234**;Jun 20, 1997;Build 6
+ ;;1.0;TEXT INTEGRATION UTILITIES;**100,109,162,211,222,234,286**;Jun 20, 1997;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified
  ; 4/12/01 Moved signature modules to new rtn TIUSRVR3
 LOADREC(TIUDA,TIUL,TIUGDATA,TIUGWHOL,ACTION) ; Load ^TMP
  ;Requires TIUDA, array TIUL, TIUGDATA

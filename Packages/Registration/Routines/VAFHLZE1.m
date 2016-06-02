@@ -1,8 +1,8 @@
-VAFHLZE1 ;BPFO/JRP,TDM - Data extractor for ZEL segment ; 5/24/06 3:43pm
- ;;5.3;Registration;**342,497,602,672,653**;Aug 13, 1993;Build 2
+VAFHLZE1 ;BPFO/JRP,TDM,JLS - Data extractor for ZEL segment ;5/24/06 3:43pm
+ ;;5.3;Registration;**342,497,602,672,653,909**;Aug 13,1993;Build 32
  ;
 GETDATA ;Get information needed to build ZEL  segment
- ;Input: Existance of the following variables is assumed
+ ;Input: Existence of the following variables is assumed
  ;   DFN - Pointer to Patient (#2) file
  ;   VAFPELIG - Primary Eligibility string (.36 node)
  ;   VAFSTR - Fields to extract (padded with commas)
@@ -41,7 +41,7 @@ GETDATA ;Get information needed to build ZEL  segment
  .F X=1:1:Y S Z=$P(VAFSTR,",",X) I Z S:(Z>4) VAFHLZEL(Z)=HLQ
  ;Get needed nodes in Patient file (#2)
  N VAF
- F X=.3,.31,.321,.322,.362,.361 S VAF(X)=$G(^DPT(DFN,X))
+ F X=.3,.31,.321,.3217,.322,.362,.361 S VAF(X)=$G(^DPT(DFN,X))
  ;Military Disability Retirement
  I VAFSTR[",5," S X=$P(VAFPELIG,"^",12),VAFHLZEL(5)=$S(X=0:"N",X=1:"Y",1:HLQ)
  ;Claim Number
@@ -131,5 +131,13 @@ GETDATA ;Get information needed to build ZEL  segment
  I VAFSTR[39 S X=$P(VAFPELIG,"^",13),VAFHLZEL(39)=$S(X=0:"N",X=1:"Y",1:HLQ)
  ;SHAD Indicator
  I VAFSTR[40 S X=$P(VAF(.321),"^",15),VAFHLZEL(40)=$S(X=0:"N",X=1:"Y",1:HLQ)
+ ;CAMP LEJEUNE ELIGIBILITY INDICATOR DG*5.3*909 
+ S X=$P(VAF(.3217),"^",1),VAFHLZEL(41)=$S(X="Y":1,X="N":0,1:HLQ)
+ ;CAMP LEJEUNE ELIGIBILITY DATE REGISTERED
+ I VAFSTR[42 S X=$P(VAF(.3217),"^",2),VAFHLZEL(42)=$S(X]"":$P($$HLDATE^HLFNC(X,"DT"),"^",1),1:HLQ)
+ ;CAMP LEJEUNE ELIGIBILITY CHANGE SITE
+ I VAFSTR[43 S X=$P(VAF(.3217),"^",3),VAFHLZEL(43)=$S(X]"":X,1:HLQ)
+ ;CAMP LEJEUNE ELIGIBILITY SOURCE OF CHANGE 
+ I VAFSTR[44 S X=$P(VAF(.3217),"^",4),VAFHLZEL(44)=$S(X]"":X,1:HLQ)
  ;Done
  Q

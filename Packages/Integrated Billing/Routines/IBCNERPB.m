@@ -1,6 +1,6 @@
 IBCNERPB ;DAOU/RO -  eIV PAYER LINK REPORT ;AUG-2003
- ;;2.0;INTEGRATED BILLING;**184,252,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,271,416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -23,7 +23,7 @@ IBCNERPB ;DAOU/RO -  eIV PAYER LINK REPORT ;AUG-2003
  ;
 EN ; Main entry pt
  ; Init vars
- N STOP,IBCNERTN,POP,IBCNESPC
+ N STOP,IBCNERTN,POP,IBCNESPC,IBOUT
  ;
  S STOP=0
  S IBCNERTN="IBCNERPB"
@@ -64,7 +64,8 @@ R130 D IMAT^IBCNERPC I STOP G:$$STOP EXIT G R120
 R140 D ISORT^IBCNERPC I STOP G:$$STOP EXIT G R130
  ; Select output device
 R100 ; Issue output width warning if not queued
- I IBCNERTN="IBCNERPB",'$D(ZTQUEUED) W !!!,"*** This report is 132 characters wide ***",!
+ S IBOUT=$$OUT^IBCNERPC I STOP G:$$STOP EXIT G R05
+ I IBCNERTN="IBCNERPB",'$D(ZTQUEUED),IBOUT="R" W !!!,"*** This report is 132 characters wide ***",!
  D DEVICE(IBCNERTN,.IBCNESPC) I STOP G:$$STOP EXIT G R05
  G EXIT
  ;
@@ -154,7 +155,7 @@ PAYER ; Select Payer - File #365.12
  ;
  W !!!
  S DIC(0)="ABEQ"
- S DIC("A")=$$FO^IBCNEUT1("Select a Payer (RETURN for ALL Payers): ",39,"L")
+ S DIC("A")=$$FO^IBCNEUT1("Select a Payer (RETURN for ALL Payers): ",40,"L")
  ; Do not allow '~NO PAYER' or non-eIV payers
  S DIC("S")="I ($P(^(0),U,1)'=""~NO PAYER""),$$PYRAPP^IBCNEUT5(""IIV"",$G(Y))'="""""
  S DIC="^IBE(365.12,"
@@ -200,6 +201,7 @@ DEVICE(IBCNERTN,IBCNESPC) ; Device Handler and possible TaskManager calls
  ; Input params:
  ;  IBCNERTN = Routine name for ^TMP($J,...
  ;  IBCNESPC = Array passed by ref of the report params
+ ;  IBOUT    = "R" for Report format or "E" for Excel format
  ;
  ; Init vars
  N ZTRTN,ZTDESC,ZTSAVE,POP
@@ -208,6 +210,7 @@ DEVICE(IBCNERTN,IBCNESPC) ; Device Handler and possible TaskManager calls
  S ZTDESC="IBCNE eIV Payer Link Report"
  S ZTSAVE("IBCNESPC(")=""
  S ZTSAVE("IBCNERTN")=""
+ S ZTSAVE("IBOUT")=""
  D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE)
  I POP S STOP=1
  ;

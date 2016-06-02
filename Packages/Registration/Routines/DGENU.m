@@ -1,5 +1,5 @@
-DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK,PWC,TDM - Enrollment Utilities; 04/24/2006 9:20 AM ; 5/10/11 3:10pm
- ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841**;Aug 13,1993;Build 7
+DGENU ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TMK,PWC,TDM,JLS - Enrollment Utilities ;04/24/2006 9:20 AM
+ ;;5.3;Registration;**121,122,147,232,314,564,624,672,659,653,688,536,838,841,909**;Aug 13,1993;Build 32
  ;
 DISPLAY(DFN) ;
  ;Description: Display status message, current enrollment and
@@ -133,6 +133,10 @@ FIELD(SUB) ;
  .I SUB="CVELEDT" S FLD=50.18 Q
  .I SUB="SHAD" S FLD=50.19 Q  ;field added with DG*5.3*653
  .I SUB="MOH" S FLD=50.23 Q
+ .I SUB="CLE" S FLD=50.24 Q      ;field added with DG*5.3*909
+ .I SUB="CLEDT" S FLD=50.25 Q    ;field added with DG*5.3*909
+ .I SUB="CLEST" S FLD=50.26 Q    ;field added with DG*5.3*909
+ .I SUB="CLESOR" S FLD=50.27 Q   ;field added with DG*5.3*909
  .I SUB="DATETIME" S FLD=75.01 Q
  .I SUB="USER" S FLD=75.02 Q
  .I SUB="RADEXPM" S FLD=76 Q

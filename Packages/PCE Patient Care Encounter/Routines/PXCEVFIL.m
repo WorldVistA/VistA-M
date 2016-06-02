@@ -1,5 +1,5 @@
-PXCEVFIL ;ISL/dee - Main routine to edit a visit or v-file entry ;10/15/04 11:50am
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169**;Aug 12, 1996
+PXCEVFIL ;ISL/dee - Main routine to edit a visit or v-file entry ;09/05/2015
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**9,30,22,73,88,89,104,147,124,169,210**;Aug 12, 1996;Build 21
  ;
  Q
 EN(PXCECAT) ; -- main entry point for PXCE pxcecat EDIT
@@ -44,6 +44,7 @@ DOONE ;
 DOONE2 ;
  K PXKERROR
  S PXCENOER=0
+ I PXCECAT="IMM" S PXVNEWDA="" ; PX*1*210
  D EDIT^PXCEVFI1
  I 'PXCEQUIT,PXCECAT="SIT",$P($G(PXCEAFTR(0)),"^")]"",$P($G(PXCEAFTR(0)),"^",22)]"" D
  . I $D(^DPT(DFN,"S",$P(PXCEAFTR(0),"^"),0)),$P($G(^DPT(DFN,"S",$P(PXCEAFTR(0),"^"),0)),"^")=$P(PXCEAFTR(0),"^",22),$P(^DPT(DFN,"S",$P(PXCEAFTR(0),"^"),0),"^",2)["C" D
@@ -61,6 +62,7 @@ DOONE2 ;
  ... E  W !,$C(7),"The last entry did not have all of the required data and NOTHING was STORED."
  ... D WAIT^PXCEHELP
  . E  D SAVE^PXCEVFI2
+ I PXCECAT="IMM",$G(PXVNEWDA) D EVIS^PXCEVIS K PXVNEWDA ; PX*1*210
  D EXIT
  Q
  ;

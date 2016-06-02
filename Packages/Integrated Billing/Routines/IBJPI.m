@@ -1,11 +1,11 @@
 IBJPI ;DAOU/BHS - IBJP eIV SITE PARAMETERS SCREEN ;14-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,316,416,438,479,506,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Electronic Insurance Verification Interface parameters
  ;
 EN ; main entry pt for IBJP IIV SITE PARAMS
- N POP,X,CTRLCOL,VALMHDR,VALMCNT,%DT
+ N POP,X,CTRLCOL,VALMHDR,VALMCNT,%DT,IBHL7,IBSSIV
  D EN^VALM("IBJP IIV SITE PARAMETERS")
  Q
  ;
@@ -48,6 +48,7 @@ BLD ; build screen array
  N IBST,IBDATA,DISYS,X,STATUS,AIEN,ADATA
  ;
  S (IBLN,VALMCNT)=0,IBCOL=3,IBIIV=$G(^IBE(350.9,1,51))
+ S IBSSIV=$G(^IBE(350.9,1,100)),IBHL7=$G(^IBE(350.9,1,"HL7"))   ; IB*2*528/baa
  ; -- Gen Params
  S IBWID=49
  S IBLN=$$SETN("General Parameters",IBLN,IBCOL,1,)
@@ -58,6 +59,8 @@ BLD ; build screen array
  ;
  S IBLN=$$SET("Contact Person:  ",$S($P(IBIIV,U,16)'="":$$GET1^DIQ(200,$P(IBIIV,U,16)_",",.01,"E"),1:""),IBLN,IBWID)
  S IBLN=$$SET("Send MailMan message if communication problem:  ",$S($P(IBIIV,U,20):"YES",$P(IBIIV,U,20)=0:"NO",1:""),IBLN,IBWID)
+ S IBLN=$$SET("SSVI Enabled:  ",$S(IBSSIV:"YES",+IBSSIV=0:"NO",1:""),IBLN,IBWID)   ; IB*2*528/baa
+ S IBLN=$$SET("Number of days to retain SSVI data:  ",$P(IBHL7,U,2),IBLN,IBWID)    ; IB*2*528/baa
  ;
  ; Skip lines in between sections
  S IBLN=$$SET("","",IBLN,0)

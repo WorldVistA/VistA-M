@@ -1,5 +1,5 @@
-PXAPI ;ISL/dee - PCE's APIs ;4/16/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164**;Aug 12, 1996
+PXAPI ;ISL/dee - PCE's APIs ;06/30/15  10:24
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**15,14,27,28,124,164,210**;Aug 12, 1996;Build 21
  Q
  ;
 PROVNARR(PXPNAR,PXFILE,PXCLEX) ;Convert external Provider Narrative to internal.
@@ -189,3 +189,10 @@ PRVCLASS(PROVIDER,VISITDT) ;See if this is a good provider
  ;See PRVCLASS^PXAPIUTL for parameters and return values.
  Q $$PRVCLASS^PXAPIUTL($G(PROVIDER),$G(VISITDT))
  ;
+VIS(PXRESULT,PXVIS,PXDATE) ;Return Vaccine Information Statement entry
+ ;See VIS^PXAPIIM for parameters and return values.
+ ;
+ I '$G(PXVIS) Q
+ S PXDATE=$G(PXDATE,$$NOW^XLFDT())
+ D VIS^PXAPIIM(.PXRESULT,PXVIS,PXDATE)
+ Q

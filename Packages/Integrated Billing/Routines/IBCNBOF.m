@@ -1,5 +1,6 @@
-IBCNBOF ;ALB/ARH-Ins Buffer: Employee Report (Entered);1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82**;21-MAR-94
+IBCNBOF ;ALB/ARH - Ins Buffer: Employee Report (Entered);1 Jun 97
+ ;;2.0;INTEGRATED BILLING;**82,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;get parameters then run the report
  ;
@@ -14,8 +15,10 @@ EN ;get parameters then run the report
  ;
  S IBMONTH=$$MONTH^IBCNBOE G:IBMONTH="" EXIT  W !!
  ;
+ S IBOUT=$$OUT^IBCNBOE G:IBOUT="" EXIT
+ ;
 DEV ;get the device
- W !,"Report requires 132 columns."
+ I IBOUT="R" W !,"Report requires 132 columns."
  S %ZIS="QM",%ZIS("A")="OUTPUT DEVICE: " D ^%ZIS G:POP EXIT
  I $D(IO("Q")) S ZTRTN="RPT^IBCNBOF",ZTDESC=IBHDR,ZTSAVE("IB*")="" D ^%ZTLOAD K IO("Q") G EXIT
  U IO
@@ -24,9 +27,9 @@ RPT ; run report
  S IBQUIT=0
  ;
  D SEARCH(IBBEG,IBEND,IBMONTH,IBEMPL) G:IBQUIT EXIT
- D PRINT(IBBEG,IBEND,IBMONTH,IBEMPL)
+ D PRINT(IBBEG,IBEND,IBMONTH,IBEMPL,IBOUT)
  ;
-EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBQUIT,IBEMPL
+EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBOUT,IBQUIT,IBEMPL
  Q:$D(ZTQUEUED)
  D ^%ZISC
  Q
@@ -58,18 +61,22 @@ SET(XREF,S1,S2,STAT,NC,NG,NP) ;
  Q
  ;
  ;
-PRINT(IBBEG,IBEND,IBMONTH,IBEMPL) ;
+PRINT(IBBEG,IBEND,IBMONTH,IBEMPL,IBOUT) ;
  N IBXREF,IBS1,IBS2,IBRDT,IBPGN,IBRANGE,IBLN,IBI
  ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  S IBRANGE=$$FMTE^XLFDT(IBBEG)_" - "_$$FMTE^XLFDT(IBEND)
- S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),IBPGN=0
- D HDR
+ S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),(IBLN,IBPGN)=0
  ;
- S IBXREF="IBCNBOF",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D
- . I +$G(IBMONTH) W ! S IBLN=IBLN+1
+ D HDR:IBOUT="R",PHDL:IBOUT="E"
+ ;
+ S IBXREF="IBCNBOF",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D  Q:IBQUIT
+ . I +$G(IBMONTH),(IBOUT="R") W ! S IBLN=IBLN+1
  . ;
- . S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D:IBLN>(IOSL-3) HDR Q:IBQUIT  D
+ . S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D:IBLN>(IOSL-3)&(IBOUT="R") HDR Q:IBQUIT  D
  .. D PRTLN  S IBLN=IBLN+1
+ ;
+ I 'IBQUIT S IBI=$$PAUSE
  Q
  ;
 PRTLN ;
@@ -85,6 +92,12 @@ PRTLN ;
  S IBNP=$G(^TMP($J,IBXREF,IBS1,IBS2,"NP"))
  S DATM=$S(IBS2=99999:"TOTAL",1:$$FMTE^XLFDT(IBS2_"00"))
  ;
+ ; Excel output
+ I IBOUT="E" D  Q
+ .W !,IBEMP_U_DATM_U_$FN(IBCNT,",")_U_$FN(IBEN,",")_U_$FN(((IBEN/IBCNT)*100),",",1)_"%"_U_$FN(IBAC,",")_U_$FN(((IBAC/IBCNT)*100),",",1)_"%"
+ .W U_$FN(IBRJ,",")_U_$FN(((IBRJ/IBCNT)*100),",",1)_"%"_U_$FN(IBNC,",")_U_$FN(IBNG,",")_U_$FN(IBNP,",")
+ ;
+ ; Report output
  W !,$E(IBEMP,1,15),?17,DATM,?25,$J($FN(IBCNT,","),7)
  W ?35,$J($FN(IBEN,","),7),?43,$J("("_$FN(((IBEN/IBCNT)*100),",",1)_"%)",8)
  W ?54,$J($FN(IBAC,","),7),?62,$J("("_$FN(((IBAC/IBCNT)*100),",",1)_"%)",8)
@@ -100,6 +113,13 @@ HDR ;print the report header
  W ?(IOM-22),IBRDT,?(IOM-7)," PAGE ",IBPGN,!,?39,"NOT YET",?93,"NEW",?104,"NEW",?113,"NEW"
  W !,"EMPLOYEE",?17,"MONTH",?27,"TOTAL",?39,"PROCESSED",?58,"ACCEPTED",?77,"REJECTED",?93,"INS CO",?104,"GROUP",?113,"POLICY",!
  S IBI="",$P(IBI,"-",IOM+1)="" W IBI
+ Q
+ ;
+PHDL ; - Print the header line for the Excel spreadsheet
+ N X
+ S X="EMPLOYEE^MONTH^TOTAL^NOT YET PROCESSED^% NOT YET PROCESSED^ACCEPTED^% ACCEPTED^REJECTED^% REJECTED^NEW INS CO^NEW GROUP^NEW POLICY"
+ W X
+ K X
  Q
  ;
 PAUSE() ;pause at end of screen if beeing displayed on a terminal

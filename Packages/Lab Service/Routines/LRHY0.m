@@ -1,5 +1,5 @@
 LRHY0 ;DALOI/HOAK - HOWDY MAIN DRIVER ;10/15/10 11:00am
- ;;5.2;LAB SERVICE;**405,435,446**;Sep 27, 1994;Build 1
+ ;;5.2;LAB SERVICE;**405,435,446,457**;Sep 27, 1994;Build 6
  ;
 PICK ;
  ;  pick the site from Howdy Site FILE 69.86
@@ -48,7 +48,11 @@ VET ; Primary API for Howdy!  Called by [LRHY PATIENT CARD SCAN] option.
  N LRNOTST,LRLBLBP,LRLLOC66,LRMAX2,LRNLT,LRNODUP,LRNONE,LRNPZZX,LRODT
  N LRODT0,LRHYOK,LRORD24,LRORU3,LRPAST,LRPIX,LRAHEAD,LRCHK,LRHYCT,LRCOL99
  N LRDT0,LRDUPT,LRHT1,LRIX,LROLLOC,LRX,LR3X
- K LRCCOMX,LRDUX,LREDT,LRDX,DIB,DIK
+ ;
+VET1 ; Code below executes to handle Patient episode.
+ ; Then, Howdy waits here for next Patient
+ ;
+ K LRCCOMX,LRDUX,LREDT,LRDX,DIK
  K LR3D,LR33ORD,LR3T,LRANX6,LRCSQ,LRUP,LRHY3DT,LRHY3SN3
  K LRHYDJOB,LRHYSPC7,LRHYURG3,LRS3333,LRTAT,LREXORD
  K LRMERG,LRODRNUM,LRORDNUM,LRUNC,LRPARAM
@@ -65,9 +69,6 @@ VET ; Primary API for Howdy!  Called by [LRHY PATIENT CARD SCAN] option.
  K LRBINGO,LRCEN,LRCNTX,LRCTYPE,LRD,LRDA,LRDRAW0
  K LRDRAW1,LRDRAW7,LRDT,LRDTX,LRDUP,LRDUX,LREDT,LRDX
  K LRFINX
- ;
-VET1 ; Code below executes to handle Patient episode.
- ; Then, Howdy waits here for next Patient
  ;
  I '$G(LRDEV) D PICK Q:LREND
  ;
@@ -102,11 +103,11 @@ VET1 ; Code below executes to handle Patient episode.
  ; NEW CODE FOR VIC 4.0
  D RPCVIC^DPTLK(.DFN,X)
  ;
- I DFN<1 W !,"No record for this person." R X:15 G VET
+ I DFN<1 W !,"No record for this person." R X:15 G VET1
  S LRDFN=$G(^DPT(DFN,"LR"))
  ;
  I LRDFN D PT^LRX
- I 'LRDFN W !,"No Lab Data Available... Please check with clerk at the Desk." H 5 D LOG K X G VET
+ I 'LRDFN W !,"No Lab Data Available... Please check with clerk at the Desk." H 5 D LOG K X G VET1
  K ^TMP("LRHYDY",$J,"LRHYDY",$J,LRDFN)
  ;
  ; this call checks order against the 69.86
@@ -114,8 +115,9 @@ VET1 ; Code below executes to handle Patient episode.
  ;
  ;
  ;
- I $G(LRMULT) W !!!,"Please check with clerk at the Desk" H 5 D LOG K X G VET
- I '$G(LRORD) S LREND=1 W !,$G(LRCTYPE)," No Orders found. Please check with clerk at the Desk" H 5 D LOG K X G VET
+ I $G(LRLOCS) W !!!,"Please check with clerk at the Desk" H 5 K X G QUITH
+ I $G(LRMULT) W !!!,"Please check with clerk at the Desk" H 5 D LOG K X G QUITH
+ I '$G(LRORD) S LREND=1 W !,$G(LRCTYPE)," No Orders found. Please check with clerk at the Desk" H 5 D LOG K X G QUITH
  D NOW^%DTC
  ;
  ;
@@ -157,7 +159,7 @@ QUITH ;
  K LR3SN,LRDT0,LREAL,LRFUTURE,LRGOTIT,LRHOWDY,LRHYHOK,LRIENZZ
  K LRNOTST,LRLBLBP,LRLLOC66,LRMAX2,LRNLT,LRNODUP,LRNONE,LRNPZZX,LRODT
  K LRODT0,LRHYOK,LRORD24,LRORU3,LRPAST,LRPIX,LRAHEAD,LRCHK,LRHYCT,LRCOL99
- K LRDT0,LRDUPT,LRHT1,LRIX,LROLLOC,LRX,LR3X
+ K LRDT0,LRDUPT,LRHT1,LRIX,LROLLOC,LRX,LR3X,LRLOCS
  K VAIN
  ;
  ;

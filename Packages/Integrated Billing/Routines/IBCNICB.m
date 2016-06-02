@@ -1,6 +1,6 @@
 IBCNICB ;ALB/SBW - Update utilities for the ICB interface ;1 SEP 2009
- ;;2.0;INTEGRATED BILLING;**413,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**413,416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ACCEPAPI(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IVMREPTR,IBELIG) ;
  ;Provides API to be called by the Insurance Capture Buffer (ICB) 
@@ -126,8 +126,8 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  ;  IBGRPDA  - GROUP INSURANCE PLAN (#355.3) File IEN (Optional)
  ;  IBPOLDA  - INSURANCE TYPE (#2.312) sub-file of PATIENT (#2) IEN 
  ;             (Optional)
- ;  IBPOLCOM - Data to be filed into the COMMENT - PATIENT POLICY
- ;             (#1.08) field of the 2.312 sub-file.  (Optional)
+ ;  IBPOLCOM - Data to be filed into the COMMENT - SUBSCRIBER POLICY 
+ ;              MULTIPLE (2.312, 1.18) optional
  ;  IBPOLBIL - Data to be filed into the POLICY NOT BILLABLE  (#3.04)
  ;             field of the 2.312 sub-file. (Optional)
  ;             Corresponds to the Internal codes in 3.04 field of 
@@ -170,9 +170,9 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  . L +^DPT(DFN,.312,IBPOLDA):5 I '$T S RESULT(1)="-1^INSURANCE TYPE (#2.312) sub-file entry locked, data not updated" Q
  . S IBIENS=+IBPOLDA_","_+DFN_","
  . I $G(IBPOLBIL)]"",$$EXTERNAL^DILFD(2.312,3.04,"",IBPOLBIL)']"" S RESULT(1)="-1^POLICY NOT BILLABLE ("_IBPOLBIL_") not a valid value",IBPOLBIL=""
- . S:$G(IBPOLCOM)]"" IBFDA(2.312,IBIENS,1.08)=IBPOLCOM
  . S:$G(IBPOLBIL)]"" IBFDA(2.312,IBIENS,3.04)=IBPOLBIL
  . I $D(IBFDA)>0 D FILE^DIE(,"IBFDA") S:$D(RESULT(1))'>0 RESULT(1)=0
+ . D PPCOMM(DFN,IBPOLDA,IBPOLCOM,.RESULT)
  . L -^DPT(DFN,.312,IBPOLDA)
  ;
  ;Update Plan Filing Time Frame (#.13), Electronic Plan Type (#.15)
@@ -202,6 +202,78 @@ UPDTICB(RESULT,DFN,IBPOLDA,IBGRPDA,IBPOLCOM,IBPOLBIL,IBPLAN,IBELEC,IBGPCOM,IBFTF
  I $D(RESULT(1))'>0&($D(RESULT(2))'>0) S RESULT="0^No data to update"
  Q
  ;
+PPCOMM(DFN,IBPOLDA,IBPOLCOM,RESULT) ; ib*2*528   record patient policy comments
+ ; Input:
+ ;   DFN      = patient IEN
+ ;   IBPOLDA  = ien of selected INSURANCE POLICY at ^DPT("_DFN_",.312,
+ ;   IBPOLCOM = patient policy COMMENT data
+ ;
+ ; Output:
+ ;   RESULT   = Returned Parameter Array with results of call
+ ;
+ N IBDT,IBVCOM
+ S IBVCOM=""
+ ;
+ ; -- get the last comment made for the policy within VistA
+ S IBDT=$O(^DPT(DFN,.312,IBPOLDA,13,"B",""),-1)
+ I IBDT]"" S IBCDA=$O(^DPT(DFN,.312,IBPOLDA,13,"B",IBDT,""),-1) S IBVCOM=$G(^DPT(DFN,.312,IBPOLDA,13,IBCDA,1))
+ ;
+ ; -- no VistA comments for patient policy so go add the new ICB comment
+ I IBVCOM="",IBPOLCOM]"" D ADCOM(DFN,IBPOLDA,IBPOLCOM,.RESULT) Q
+ ;
+ ; -- the last comment within VistA is the same comment as the new ICB comment
+ I IBVCOM=IBPOLCOM Q
+ ;
+ ; -- VistA comment is different from ICB comment so add the ICB comment
+ D ADCOM(DFN,IBPOLDA,IBPOLCOM,.RESULT)
+ Q
+ ;
+ADCOM(DFN,IBPOLDA,IBPOLCOM,RESULT) ; add new entry to the COMMENT - SUBSCRIBER POLICY multiple
+ ; Input:
+ ;   DFN      = patient IEN
+ ;   IBPOLDA  = ien of INSURANCE POLICY at ^DPT("_DFN_",.312,
+ ;   IBPOLCOM = patient policy COMMENT data
+ ;   DUZ      = user IEN - system wide variable   
+ ;
+ ; Output:
+ ;   RESULT   = Returned Parameter Array with results of call
+ ;
+ ; -- lock the COMMENT - SUBSCRIBER POLICY multiple so that previous comments can't be edited
+ L +^DPT(DFN,.312,IBPOLDA,13):5 I '$T S RESULT(1)="-1^INSURANCE TYPE (#2.312,1.18) sub-file entry locked, data not updated" Q
+ ;
+ N FDA,IENS,DIERR
+ ;
+ ; -- populate the FDA array with data
+ S IENS="+1,"_IBPOLDA_","_DFN_","
+ S FDA(2.342,IENS,.01)=$$NOW^XLFDT()
+ S FDA(2.342,IENS,.02)=DUZ
+ S FDA(2.342,IENS,.03)=IBPOLCOM
+ ;
+ ; -- update comment
+ D UPDATE^DIE(,"FDA",,"DIERR")
+ ;
+ ; -- check for error
+ I $D(DIERR) S RESULT(1)="-1^INSURANCE TYPE (#2.312,1.18) error adding comment to INSURANCE TYPE (#2.312,1.18)"
+ E  S RESULT(1)=0
+ ;
+ ; -- unlock comment multiple
+ L -^DPT(DFN,.312,IBPOLDA,13)
+ Q
+ ;
+EDCOM(IBPOLDA,IBPOLCOM,IBDT) ; edit the existing entry at 2.312,1.18 multiple
+ ; input - IBPOLDA = ien of INSURANCE POLICY at ^DPT("_DFN_",.312,
+ ;         IBDT = date/time that comment was made
+ N DA,DIE,DR,IBNM
+ ; retrieve the latest comment made by the user
+ S DA=$O(^DPT(DFN,.312,IBPOLDA,13,"BB",DUZ,IBDT,""),-1)
+ S DIE="^DPT("_DFN_",.312,"_IBPOLDA_",13,"
+ S DA(2)=DFN,DA(1)=IBPOLDA
+ ;  retrieve the latest comment made by the user
+ S IBNM=$$GET1^DIQ(200,DUZ_",",.01,"E")
+ I $G(^DPT(DFN,.312,IBPOLDA,13,DA,1))]"" S DR=".01///"_$$NOW^XLFDT()_";.02///"_IBNM_";.03///"_IBPOLCOM
+ E  S DR=".01///@;.02///@"
+ D ^DIE
+ Q
 UPDPOL(RESULT,IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA) ;update a new group into 
  ;an existing patient policy entry for ICB interface
  ;Input

@@ -1,5 +1,6 @@
-IBCONSC ;ALB/MJB,SGD,AAS,RLW - NSC W/INSURANCE OUTPUT  ;06 JUN 88 13:51
- ;;2.0;INTEGRATED BILLING;**66,120**; 21-MAR-94
+IBCONSC ;ALB/MJB,SGD,AAS,RLW - NSC W/INSURANCE OUTPUT ;06 JUN 88 13:51
+ ;;2.0;INTEGRATED BILLING;**66,120,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
 INP ; Entry point for Inpatient Admission report
@@ -12,14 +13,15 @@ EN ; Entry point for Outpatient report
  S IBINPT=0,IBSUB=""
 EN1 ;
  ;***
- ;S XRTL=$ZU(0),XRTN="IBCONSC-1" D T0^%ZOSV ;start rt clock
  I '$D(DT) D DT^DICRW
  K ^TMP($J)
  ;
  D ^IBCONS4 I +$G(IBQUIT) G Q
  ;
+ S IBOUT=$$OUT G:IBOUT="" Q
+ ;
 DEV ; -- ask device
- W !!,*7,"*** Margin width of this output is 132 ***"
+ I IBOUT="R" W !!,*7,"*** Margin width of this output is 132 ***"
  W !,"*** This output should be queued ***"
  ;
  I +$G(IBINPT)=0,+$P($G(^IBE(350.9,1,6)),U,23) W !,"*** If queued, Outpatient Visits in Claims Tracking will be updated first ***"
@@ -32,12 +34,8 @@ DEV ; -- ask device
  ;
  U IO
  ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBCONSC" D T1^%ZOSV ;stop rt clock
- ;
- ;
 BEGIN ; Background job main entry point.  Set up the report header.
  ;***
- ;S XRTL=$ZU(0),XRTN="IBCONSC-2" D T0^%ZOSV ;start rt clock
  ;
  I $D(ZTQUEUED),+$G(IBINPT)=0,+$P($G(^IBE(350.9,1,6)),U,23) D UPCT ; update CT if parameter on, opt, queued
  ;
@@ -59,13 +57,11 @@ Q ; Clean up variables and close the output device.
  W !
  I $D(ZTQUEUED) S ZTREQ="@" Q
  D ^%ZISC
- K %,%DT,B,I,I1,II,J,K,L,M,N,X,X1,X2,Y,C,DFN,IBCNT,IBIFN,IBBILL,IBSELUBL,IBSELBNA,IBSELBIL,IBFORMFD
- K IBFLAG,IBI,IBDT,IBPAGE,IBL,IBHD,IBBEG1,IBBEG,IBEND,IBSTOP
+ K %,%DT,B,I,I1,II,J,K,L,M,N,X,X1,X2,Y,C,DFN,IBAT,IBCL,IBCNT,IBIFN,IBBILL,IBSELUBL,IBSELBNA,IBSELBIL,IBFORMFD
+ K IBFLAG,IBI,IBDT,IBPAGE,IBL,IBHD,IBBEG1,IBBEG,IBEND,IBOUT,IBSTOP,IBFDT,IBND0,IBNDM,IBNDMP,IBST,IBTDT,IBWHO
  K IBTRKR,IBOE,IBSELRNB,IBADMVT,IBETYP,IBRMARK,IBQUIT,IBSELCDV,IBSELRNG,IBSELSR1,IBSELSR2,IBAUTH,IBPRTICR,IBPRTIEX
  K IBINPT,IBPGM,IBVAR,IBFLAG,IBNAME,IBAPPT,IBDC,IBDAT,IBDFN,IBSELTRM,IBQUIT,IBPRTRDS,IBPRTIPC,IBPRTIGC
  K POP,^TMP($J),IBDV,IBSUB,VAUTD,IBINDT,IBINS,IBDATE,IBFL,PTF,IBSC,IBMOV
- ;***
- ;I $D(XRT0) S:'$D(XRTN) XRTN="IBCONSC" D T1^%ZOSV ;stop rt clock
  Q
  ;
  ;
@@ -90,3 +86,12 @@ UPCT ; Update Claims Tracking
  ;
  S IBTALK=1 D EN1^IBTRKR4
  Q
+ ;
+OUT() ;
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) Q ""
+ Q Y

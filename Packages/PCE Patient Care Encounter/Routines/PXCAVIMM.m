@@ -1,5 +1,5 @@
-PXCAVIMM ;ISL/dee - Validates & Translates data from the PCE Device Interface into PCE's PXK format for Immunizations ;3/14/97
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199**;Aug 12, 1996;Build 51
+PXCAVIMM ;ISL/dee - Validates & Translates data from the PCE Device Interface into PCE's PXK format for Immunizations ;07/30/15  09:21
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**27,124,199,210**;Aug 12, 1996;Build 21
  Q
  ; Variables
  ;   PXCAIMM  Copy of a IMMUNIZATION node of the PXCA array
@@ -10,19 +10,27 @@ PXCAVIMM ;ISL/dee - Validates & Translates data from the PCE Device Interface in
  ;   PXCAPNAR  Pointer to the provider narrative (9999999.27)
  ;
 IMM(PXCAIMM,PXCANUMB,PXCAPRV,PXCAERRS) ;
- N PXCAFTER
+ N PXCAFTER,PXDIAGPC,PXSEQ
  S PXCAFTER=$P(PXCAIMM,"^",1)_"^"_PXCAPAT_"^"_PXCAVSIT_"^"
  S PXCAFTER=PXCAFTER_$P(PXCAIMM,"^",2,4)
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,"IEN")=""
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,0,"BEFORE")=""
  ;PX*1*124
- S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,0,"AFTER")=PXCAFTER_"^^"_$P(PXCAIMM,"^",8)_"^"_$P(PXCAIMM,"^",9)_"^"_$P(PXCAIMM,"^",10)_"^"_$P(PXCAIMM,"^",11)_"^"_$P(PXCAIMM,"^",12)_"^"_$P(PXCAIMM,"^",13)_"^"_$P(PXCAIMM,"^",14)_"^"_$P(PXCAIMM,"^",15)
+ S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,0,"AFTER")=PXCAFTER
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,12,"BEFORE")=""
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,12,"AFTER")=$P(PXCAIMM,"^",6)_"^^^"_$S(PXCAPRV>0:PXCAPRV,1:"")
+ S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,13,"BEFORE")=""
+ S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,13,"AFTER")="^^^"_$P(PXCAIMM,"^",8)
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,811,"BEFORE")=""
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,811,"AFTER")=$P(PXCAIMM,"^",7)
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,812,"BEFORE")=""
  S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,812,"AFTER")="^"_PXCAPKG_"^"_PXCASOR
+ ;
+ S PXSEQ=0
+ F PXDIAGPC=9:1:15 D
+ . I $P(PXCAIMM,"^",PXDIAGPC)'="" D
+ . . S PXSEQ=PXSEQ+1
+ . . S ^TMP(PXCAGLB,$J,"IMM",PXCANUMB,3,PXSEQ,"AFTER")=$P(PXCAIMM,"^",PXDIAGPC)
  Q
  ;
 IMMUN(PXCA,PXCABULD,PXCAERRS) ;Validation routine for IMM

@@ -1,5 +1,5 @@
 IBCNSP0 ;ALB/AAS - INSURANCE MANAGEMENT - EXPANDED POLICY ;05-MAR-1993
- ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399,438,458,497,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**28,43,52,85,93,103,137,229,251,363,371,399,438,458,497,516,528**;21-MAR-94;Build 163
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;
@@ -34,7 +34,7 @@ CONTACT ; -- Insurance Contact Information
 POLICY ; -- Policy Region
  ; -- if pointer to policy file exists get data from policy file
  ; MRD;IB*2.0*516 - Increased length of Group Name and Type of Plan.
- N OFFSET,START,IBP,IBX,IBPLNID,IBPLNNM,IBPLNNA,IBPLNLA
+ N OFFSET,START,IBP,IBX,IBPLNID,IBPLNNM,IBPLNNA,IBPLNLA,IBTOP
  S (IBPLNID,IBPLNNM,IBPLNNA,IBPLNLA)=""
  S START=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
  D GPLAN(+IBCPOLD2)
@@ -46,7 +46,18 @@ POLICY ; -- Policy Region
  D SET(START+IBX,OFFSET,"    Group Number: "_$P(IBCPOLDL,"^",2)) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"             BIN: "_$P(IBCPOLD2,"^",2)) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"             PCN: "_$P(IBCPOLD2,"^",3)) S IBX=IBX+1
- D SET(START+IBX,OFFSET,"    Type of Plan: "_$E($P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^"),1,32)) S IBX=IBX+1
+ ;
+ ; -- use the abbreviations for the following type of plans
+ S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^") I IBTOP]"" D
+ . I IBTOP="HIGH DEDUCTIBLE HEALTH PLAN" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="HIGH DEDUCTIBLE HEALTH PLAN W/HEALTH REIMBURSEMENT ARRANGEMENT" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="HIGH DEDUCTIBLE HEALTH PLAN W/HEALTH SAVINGS ACCOUNT" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="HEALTH MAINTENANCE ORGANIZATION W/OUT OF NETWORK BENEFITS" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="EXCLUSIVE PROVIDER ORGANIZATION" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="MEDICARE ADVANTAGE" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2) Q
+ . I IBTOP="VISION" S IBTOP=$P($G(^IBE(355.1,+$P(IBCPOLD,"^",9),0)),"^",2)
+ D SET(START+IBX,OFFSET,"    Type of Plan: "_$E(IBTOP,1,61)) S IBX=IBX+1
+ ;
  I $P(IBCPOLD,U,14)]"" D SET(START+IBX,OFFSET,"   Plan Category: "_$$EXPAND^IBTRE(355.3,.14,$P(IBCPOLD,"^",14))) S IBX=IBX+1
  I $P(IBCPOLD,U,15)]"" D SET(START+IBX,OFFSET," Electronic Type: "_$$EXPAND^IBTRE(355.3,.15,$P(IBCPOLD,"^",15))) S IBX=IBX+1
  D SET(START+IBX,OFFSET,"  Plan Filing TF: "_$P(IBCPOLD,"^",13)_$S($P(IBCPOLD,U,16):" ("_$$FTFN^IBCNSU31(IBCPOL)_")",1:"")) S IBX=IBX+1
@@ -83,12 +94,12 @@ INS ; -- Insurance Co. Region  ;IB*2*497 offset changed to display starting at o
 INSQ Q
  ;
 SPON ; -- Sponsor (Insured Person) Region  ;IB*2*497  rearrange lines and move all lines into a single column
- N IBC3,IBZIP,START,OFFSET,IBA,DA,DR,DIC,DIQ
+ N IBC3,IBZIP,START,OFFSET,IBA,DA,DR,DIC,DIQ,Y
  S IBC3=$G(^DPT(DFN,.312,IBCDFN,3))
  S DA=+$P(IBC3,"^",2),DR=.01,DIQ(0)="E",DIC="^DIC(23,",DIQ="IBA" D EN^DIQ1
  S START=$O(^TMP("IBCNSVP",$J,""),-1)+1,OFFSET=2
- D SET(START,OFFSET," Insured Person's Information (use Subscriber Update Action) ",IORVON,IORVOFF)
- D SET(START+1,OFFSET,$$RJ^XLFSTR("Insured's DOB: ",18)_$$DAT3^IBOUTL($P(IBC3,"^")))
+ D SET(START,OFFSET," Subscriber's Information (use Subscriber Update Action) ",IORVON,IORVOFF)
+ D SET(START+1,OFFSET,$$RJ^XLFSTR("Subscriber's DOB: ",18)_$$DAT3^IBOUTL($P(IBC3,"^")))
  S Y=$P(IBC3,"^",10) D ZIPOUT^VAFADDR S IBZIP=Y
  D SET(START+2,OFFSET,$$RJ^XLFSTR("Str 1: ",18)_$P(IBC3,"^",6))
  D SET(START+3,OFFSET,$$RJ^XLFSTR("Str 2: ",18)_$P(IBC3,"^",7))
@@ -97,9 +108,9 @@ SPON ; -- Sponsor (Insured Person) Region  ;IB*2*497  rearrange lines and move a
  D SET(START+6,OFFSET,$$RJ^XLFSTR("SubDiv: ",18)_$P(IBC3,"^",14))
  D SET(START+7,OFFSET,$$RJ^XLFSTR("Country: ",18)_$P(IBC3,"^",13))
  D SET(START+8,OFFSET,$$RJ^XLFSTR("Phone: ",18)_$P(IBC3,"^",11))
- D SET(START+9,OFFSET,$$RJ^XLFSTR("Insured's Sex: ",18)_$$EXTERNAL^DILFD(2.312,3.12,,$P(IBC3,U,12)))
- D SET(START+10,OFFSET,$$RJ^XLFSTR("Insured's Branch: ",18)_$G(IBA(23,DA,.01,"E")))
- D SET(START+11,OFFSET,$$RJ^XLFSTR("Insured's Rank: ",18)_$P(IBC3,"^",3))
+ D SET(START+9,OFFSET,$$RJ^XLFSTR("Subscriber's Sex: ",18)_$$EXTERNAL^DILFD(2.312,3.12,,$P(IBC3,U,12)))
+ D SET(START+10,OFFSET,$$RJ^XLFSTR("Subscr's Branch: ",18)_$G(IBA(23,DA,.01,"E")))
+ D SET(START+11,OFFSET,$$RJ^XLFSTR("Subscr's Rank: ",18)_$P(IBC3,"^",3))
  ; blank lines at end of section
  D SET(START+12,2," ")
  D SET(START+13,2," ")
@@ -129,5 +140,3 @@ GPLAN(IBPLDA) ; get data from PLAN file (#366.03) related to the
  S IBPLNNA=$S($P(IBAP0,"^",2)=0:"NOT ACTIVE",1:"ACTIVE")
  S IBPLNLA=$S($P(IBAP0,"^",3)=0:"NOT ACTIVE",1:"ACTIVE")
  Q
- ;
- ;IBCNSP0

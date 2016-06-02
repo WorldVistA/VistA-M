@@ -1,6 +1,6 @@
-PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;10/23/12 12:14pm
- ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72**;Mar 2004;Build 16
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+PSBML ;BIRMINGHAM/EFC-BCMA,ASMR/BL MED LOG FUNCTIONS ; 12/3/15 4:08pm
+ ;;3.0;BAR CODE MED ADMIN;**6,3,4,9,11,13,25,45,33,52,70,72,79**;Mar 2004;Build 172
+ ;Per VA Directive 6402, this routine should not be modified.
  ; Reference/IA
  ; ^DPT/10035
  ; DIC(42/10039
@@ -12,21 +12,22 @@ PSBML ;BIRMINGHAM/EFC-BCMA MED LOG FUNCTIONS ;10/23/12 12:14pm
  ;
  ;*70 - store clinic name to admin location if exists.
  ;    - add witness duz, dt/tm for high risk/alert drug, Order level
- ;      HR code, and a witnesssed y/n flag to MEDLOG file.
+ ;      HR code, and a witnessed y/n flag to MEDLOG file.
  ;
 RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
+ K PSBEDTFL
  S PSBEDTFL=0
  N PSBORD,PSBTRAN,PSBFDA,PSBMES ;Add PSBMES variable for PSB*3*52
- N PSBCLIN,PSBWITN,PSBWITCM,PSBWITHR,PSBWITFL,LOC                 ;*70
- K PSBIEN,PSBHL7
+ N PSBCLIN,PSBWITN,PSBWITCM,PSBWITHR,PSBWITFL,LOC  ;*70
+ K PSBIEN,PSBHL7,%,PSBAUDIT,PSBINST
  S PSBIEN=$P(PSBHDR,U,1)
  S PSBTRAN=$P(PSBHDR,U,2),PSBHL7=PSBTRAN
  S PSBINST=$P($G(PSBHDR),U,3)
  ;*70 witness fields
  S PSBWITN=+$P(PSBHDR,U,4)                   ;init witness duz var
  S PSBWITCM=$P(PSBHDR,U,5)                   ;init witness comment
- S PSBWITHR=+$P(PSBHDR,U,6)                  ;init witn HR order level
- S PSBWITFL=$S(PSBWITN:1,1:0)             ;init witnessed?
+ S PSBWITHR=+$P(PSBHDR,U,6)                  ;init witness HR order level
+ S PSBWITFL=$S(PSBWITN:1,1:0)                ;init witnessed?
  I PSBWITN="",PSBWITHR=3 D  Q
  .S RESULTS(0)=1
  .S RESULTS(1)="-1^A Witness is required, however Witness information was null."
@@ -42,6 +43,7 @@ RPC(RESULTS,PSBHDR,PSBREC) ;BCMA MedLog Filing
  ;
  ;update medlog rec
 UPD I PSBTRAN="UPDATE STATUS" D  Q
+ .K PSBTAB,PSBUID
  .I '$D(^PSB(53.79,PSBIEN)) D  Q
  ..S RESULTS(0)=1
  ..S RESULTS(1)="-1^Administration is at an UNKNOWN STATUS"
@@ -61,6 +63,7 @@ UPD I PSBTRAN="UPDATE STATUS" D  Q
  D PSJ1^PSBVT(PSBREC(0),$P(PSBREC(1),";",2)_$P(PSBREC(1),";",1))
  S PSBTAB=$P(PSBREC(9),U,1),PSBUID=$P(PSBREC(9),U,2)
 MEDP D:PSBTRAN="MEDPASS"
+ .K PSBDIV,PSBON,PSBXDT,PSBYZ
  .I (PSBDOSEF["PATCH"),(PSBREC(3)="G") D  Q:+$G(RESULTS(1))<0
  ..S PSBXDT="" F  S PSBXDT=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT)) Q:PSBXDT=""  D  Q:+$G(RESULTS(1))<0
  ...S PSBYZ="" F  S PSBYZ=$O(^PSB(53.79,"AORDX",PSBDFN,PSBONX,PSBXDT,PSBYZ)) Q:'PSBYZ  I ("G"[$$GET1^DIQ(53.79,PSBYZ,.09,"I")) D  Q
@@ -139,7 +142,7 @@ MEDP D:PSBTRAN="MEDPASS"
  ...D VAL(53.79,PSBIEN,.32,PSBWITHR)              ;Witness HR ord code
  ...D VAL(53.79,PSBIEN,.33,PSBWITFL)              ;Witnessed? flag
  .;
- .;Overwrite fields below, rec already exsts
+ .;Overwrite fields below, rec already exists
  .I PSBREC(3)="G"!(PSBREC(3))="C" D                ;Gvn/Completed?
  ..D VAL(53.79,PSBIEN,.06,PSBNOW)                    ;Admin dt/tm
  ..D VAL(53.79,PSBIEN,.07,"`"_DUZ)                   ;Admin By duz
@@ -155,12 +158,15 @@ MEDP D:PSBTRAN="MEDPASS"
  .;DD/SOL/ADD
  .I PSBREC(3)="G"!(PSBREC(3)="I")!(PSBREC(3)="H")!(PSBREC(3)="R")!(PSBREC(3)="M") D     ;given/action stat codes?
  ..I PSBTRAN="UPDATE STATUS" K ^PSB(53.79,+PSBIEN,.5),^PSB(53.79,+PSBIEN,.6),^PSB(53.79,+PSBIEN,.7)
+ ..K PSBCNT,PSBIENS
  ..F PSBCNT=10:1 Q:'$D(PSBREC(PSBCNT))  D
  ...S Y=$P(PSBREC(PSBCNT),U)
  ...S PSBDD=$S(Y="DD":53.795,Y="ADD":53.796,Y="SOL":53.797,1:0)
  ...Q:'PSBDD
  ...S PSBIENS="+"_PSBCNT_","_PSBIEN
  ...D VAL(PSBDD,PSBIENS,.01,"`"_$P(PSBREC(PSBCNT),U,2))
+ ...D VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
+ ...D VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4))
  ...D:PSBDD=53.795 VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,3))
  ...D:PSBDD=53.796!(PSBDD=53.797) VAL(PSBDD,PSBIENS,.02,$P(PSBREC(PSBCNT),U,4)) ;Store units in Units ordered field, PSB*3*72
  ...D:PSBREC(3)="G"!(PSBREC(3)="I") VAL(PSBDD,PSBIENS,.03,$P(PSBREC(PSBCNT),U,4)) ;only store units given when infusing or given, PSB*3*72
@@ -199,6 +205,7 @@ VAL(PSBDD,PSBIEN,PSBFLD,PSBVAL) ;
  K ^TMP("DIERR",$J),PSBRET
  Q
 FILEIT ;Updt
+ K Z,X,PSB1,PSB2
  N PSBMSG,PSBAUD
  S (PSB1,PSB2)=""
  D APATCH^PSBML3
@@ -213,6 +220,9 @@ FILEIT ;Updt
  .K ^PSB(53.79,"APATCH",$P(^PSB(53.79,PSBINDX,0),U),$P(^PSB(53.79,PSBINDX,0),U,6),PSBINDX)
  S RESULTS(0)=1,RESULTS(1)="1^Data Successfully Filed^"_$S($G(PSBIEN(1))'="":$G(PSBIEN(1)),1:+$G(PSBIEN))
  D BCBU  ;NatContng
+ D  ;
+ . N X,DIC
+ . S X="PSB EVSEND VPR",DIC=101 D EN^XQOR ;should handle all BCMA Med Log events for VPR
  I $G(PSBINST,0) S PSBAUD=$S($P(PSBHDR,"^",1)="+1":PSBIEN(1),1:$P(PSBHDR,"^",1)) D AUDIT^PSBMLU(PSBAUD,"Instructor "_PSBINST(0)_" present.",PSBTRAN)
  Q
 ERR(X,Y) ;

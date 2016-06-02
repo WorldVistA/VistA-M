@@ -1,5 +1,6 @@
-IBCOMD1 ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS ; 03-AUG-98
- ;;2.0;INTEGRATED BILLING;**103**;21-MAR-94
+IBCOMD1 ;ALB/CMS - GENERATE INSURANCE COMPANY LISTINGS ;03-AUG-98
+ ;;2.0;INTEGRATED BILLING;**103,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 BEG ; Queued entry point.
@@ -19,8 +20,12 @@ BEG ; Queued entry point.
  ;
  ;  IBAIB - Required.   Include Active Insurance
  ;          1= Active Ins.   2= Inactive Ins. 3= Both
+ ;  IBOUT - Required.   Output format
+ ;          "R"= report format         "E"= Excel format
  ;
  N IBDA,IBDA0,IBDA11,IBDA13,IBI,IBPAGE,IBTMP,IBX,X,Y,IBJ,IBNOT
+ ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  K ^TMP("IBCOMD",$J) S IBPAGE=0
  ;
  ; - must look at all entries in file #36
@@ -61,11 +66,11 @@ BEG ; Queued entry point.
  .S $P(IBTMP,U,9)=$P(IBDA13,U,1)
  .S ^TMP("IBCOMD",$J,+$P(IBDA0,U,5),$S($P(IBDA0,U,1)]"":$P(IBDA0,U,1),1:"ZZZZ"),+IBDA)=IBTMP
  ;
- I '$D(^TMP("IBCOMD",$J)) D HD W !!,"** NO RECORDS FOUND **" G QUEQ
- D WRT
+ I '$D(^TMP("IBCOMD",$J)) D HD W !!,"** NO RECORDS FOUND **" D ASK G QUEQ
+ D HD:IBOUT="E",WRT
  ;
  ; Exit clean-UP
-QUEQ K IBAIB,IBCASE,IBFLD,IBQUIT,^TMP("IBCOMD",$J)
+QUEQ K IBAIB,IBCASE,IBFLD,IBOUT,IBQUIT,^TMP("IBCOMD",$J)
  I $D(ZTQUEUED) S ZTREQ="@" Q
  W ! D ^%ZISC
  Q
@@ -73,6 +78,7 @@ QUEQ K IBAIB,IBCASE,IBFLD,IBQUIT,^TMP("IBCOMD",$J)
  ;
 HD ; Write Heading
  S IBPAGE=IBPAGE+1
+ I IBOUT="E" W:($E(IOST,1,2)["C-") ! W "Active/Inactive^Insurance Name^Reimburse?^Street Address 1^Street Address 2^Street Address 3^City^State^ZIP^Phone Number" Q
  W @IOF,"Generate Insurance Company Listings",?50,$$FMTE^XLFDT($$NOW^XLFDT,"Z"),?70," Page ",IBPAGE
  W !,"List of ",$S(IBAIB=1:"Active",IBAIB=2:"Inactive",1:"All")," Insurance Companies"
  ;
@@ -91,29 +97,35 @@ HD ; Write Heading
  Q
  ;
 WRT ; Write data lines
- N IBA,IBNA,IBOFF,X,Y S IBQUIT=0
+ N IBA,IBNA,IBOFF,IBACT,X,Y S IBQUIT=0
  S IBA="" F  S IBA=$O(^TMP("IBCOMD",$J,IBA)) Q:(IBA="")!(IBQUIT=1)  D
- .I IBPAGE D ASK I IBQUIT=1 Q
- .D HD W !,$S(IBA=1:"Inactive Companies",1:"Active Companies"),!
+ .I IBPAGE,(IBOUT="R") D ASK I IBQUIT=1 Q
+ .; Excel Output
+ .I IBOUT="E" S IBACT=$S(IBA=1:"Inactive",1:"Active")
+ .; Report Output
+ .I IBOUT="R" D HD W !,$S(IBA=1:"Inactive Companies",1:"Active Companies"),!
  .S IBNA="" F  S IBNA=$O(^TMP("IBCOMD",$J,IBA,IBNA)) Q:(IBNA="")!(IBQUIT=1)  D
  ..S IBDA="" F  S IBDA=$O(^TMP("IBCOMD",$J,IBA,IBNA,IBDA)) Q:('IBDA)!(IBQUIT=1)  D
  ...S IBTMP=^TMP("IBCOMD",$J,IBA,IBNA,IBDA)
  ...S IBOFF=$S($P(IBTMP,U,4)]""!($P(IBTMP,U,5)]""):7,1:6)
- ...I ($Y+IBOFF)>IOSL D  I IBQUIT=1 Q
+ ...I ($Y+IBOFF)>IOSL,(IBOUT="R") D  I IBQUIT=1 Q
  ....D ASK I IBQUIT=1 Q
  ....D HD
  ...S IBTMP=^TMP("IBCOMD",$J,IBA,IBNA,IBDA)
+ ...; Excel Output
+ ...I IBOUT="E" W !,IBACT_U_IBTMP Q
+ ...; Report Output
  ...W !!,$P(IBTMP,U,1),?33,$P(IBTMP,U,2),?56,$P(IBTMP,U,9)
  ...I $P(IBTMP,U,3)]"" W !,$P(IBTMP,U,3)
  ...I $P(IBTMP,U,4)]""!($P(IBTMP,U,5)]"") W !,$P(IBTMP,U,4) W:$P(IBTMP,U,4)]""&($P(IBTMP,U,5)]"") ", " W $P(IBTMP,U,5)
  ...W !,$P(IBTMP,U,6) W:$P(IBTMP,U,6)]""&($P(IBTMP,U,7)]"") ", " W $P(IBTMP,U,7),"  ",$P(IBTMP,U,8)
+ I 'IBQUIT D ASK
  Q
  ;
 ASK ; Ask to Continue with display
  ; Returns IBQUIT=1 if user Timed out or entered ^
  I $E(IOST,1,2)'["C-" Q
  N DIR,DIROUT,DIRUT,DTOUT,DUOUT,IBI,X,Y
- F IBI=1:1:(IOSL-3) Q:$Y>(IOSL-3)  W !
  S DIR(0)="E" D ^DIR
  I ($D(DIRUT))!($D(DUOUT)) S IBQUIT=1
  Q

@@ -1,5 +1,6 @@
 TIUWRIIS ;SLC/AJB,AGP - War Related Illness and Injury Study Center ; 08/18/03
- ;;1.0;TEXT INTEGRATION UTILITIES;**159**;Jun 20, 1997
+ ;;1.0;TEXT INTEGRATION UTILITIES;**159,286**;Jun 20, 1997;Build 10
+ ;;Per VA Directive 6402, this routine should not be modified
  ;
  Q
 ADDRESS(DFN) ;
@@ -14,6 +15,10 @@ ADDRESS(DFN) ;
  S TIUCITY="             "_VAPA(4)
  S TIUST=$$GET1^DIQ(5,+VAPA(5),1)
  S TIUZIP=VAPA(6)
+ ;286 - Format address for Philippines
+ I +VAPA(25)=167 D
+ . S TIUST=VAPA(23)
+ . S TIUZIP=VAPA(24)
  S @TIUY@(4,0)=TIUCITY_", "_TIUST_"  "_TIUZIP
  Q "~@"_$NA(@TIUY)
 LAB2(DFN,TIUTEST,COUNT,TPERIOD,TIUEDT,TIULDT) ; Get Lab Results

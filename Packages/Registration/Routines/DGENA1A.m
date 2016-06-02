@@ -1,5 +1,5 @@
-DGENA1A ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TDM - Enrollment API - File Data Continued ; 5/10/11 12:03pm
- ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841**;Aug 13,1993;Build 7
+DGENA1A ;ALB/CJM,ISA/KWP,Zoltan,LBD,EG,CKN,ERC,TDM,JLS - Enrollment API - File Data Continued ;5/10/11 12:03pm
+ ;;5.3;Registration;**121,147,232,314,564,672,659,653,688,841,909**;Aug 13,1993;Build 32
  ;
 KILLALL(DGENRIEN) ;
  ;kills all x-refs on the record in the Patient Enrollment file
@@ -22,7 +22,7 @@ KILLALL(DGENRIEN) ;
 SETALL(DGENRIEN,DGENR) ;
  ;Sets all x-refs on the record in the Patient Enrollment file.
  ;Inputs:
- ;  DGENRIEN - ptr to PATIENT ENROLLMENT file
+ ;  DGENRIEN - pointer to PATIENT ENROLLMENT file
  ;  DGENR - array containing the record, pass by reference
  ;
  N SUB,VALUE
@@ -67,7 +67,7 @@ EDIT(DA,DGENR) ;
  ;Output - 1 on success, 0 on failure
  ;
  ; *** NOTE: This is called from within FM.  There is a problem in ***
- ; *** that ^DIE can not be used.  Instead, the fields             ***
+ ; *** that ^DIE cannot be used.  Instead, the fields              ***
  ; *** are hard-set and cross-referenced.                          ***
  ;
  N NODE
@@ -106,6 +106,10 @@ EDIT(DA,DGENR) ;
  S NODE=NODE_U_DGENR("ELIG","RADEXPM")
  S NODE=NODE_U_DGENR("ELIG","AOEXPLOC") ;field added with DG*5.3*688
  S NODE=NODE_U_DGENR("ELIG","MOH") ;field added with DG*5.3*841
+ S NODE=NODE_U_DGENR("ELIG","CLE")     ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLEDT")   ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLEST")   ;field added with DG*5.3*909
+ S NODE=NODE_U_DGENR("ELIG","CLESOR")  ;field added with DG*5.3*909
  S ^DGEN(27.11,DA,"E")=NODE
  S ^DGEN(27.11,DA,"U")=DGENR("DATETIME")_U_DGENR("USER")
  ;

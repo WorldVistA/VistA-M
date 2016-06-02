@@ -1,5 +1,5 @@
 SDWLPE ;IOFO BAY PINES/TEH - WAIT LIST - PARAMETER WAIT LIST ENTER/EDIT ; 5/24/11 11:27am
- ;;5.3;scheduling;**263,280,288,397,491,554**;AUG 13 1993;Build 11
+ ;;5.3;scheduling;**263,280,288,397,491,554,638**;AUG 13 1993;Build 8
  ;
  ;SD/491 - identify clinic institution through DIVISION ---> INSTITUTION path
 EN ;
@@ -74,7 +74,7 @@ SB2 N STR,INST,DIC,SDWLSC,SDWLSTOP S SDWLSTOP=0
  I '$P(^SDWL(409.32,SDA,0),U,3) I $P(^SDWL(409.32,SDA,0),U,2) S DR="2////^S X=DUZ" D ^DIE ;Checks to see whether the ACTIVATION DATE ENTERED BY field is filled before filling it  SD*5.3*554
  N DIC
  S SDWLSCN=$P($G(^SDWL(409.32,SDA,0)),U,1) D  Q:SDWLSTOP
- .I $D(^SDWL(409.3,"SC",SDWLSCN)) D
+ .I $D(^SDWL(409.3,"SC",SDWLSCN))&'$P($G(^SDWL(409.32,SDA,0)),U,4) D  ; Patch SD*5.3*638 adds a check for data in the DATE INACTIVATED (#3) field of the SD WL CLINIC LOCATION (409.32) file before evaluating open wait list entries.
  ..S SDWLN="",SDWLCNT=0 F  S SDWLN=$O(^SDWL(409.3,"SC",SDWLSCN,SDWLN)) Q:SDWLN=""  D
  ...S X=$G(^SDWL(409.3,SDWLN,0)) I '$D(^SDWL(409.3,SDWLN,"DIS")) S SDWLCNT=SDWLCNT+1,^TMP("SDWLPE",$J,"DIS",SDWLN,SDWLCNT)=X,SDWLSTOP=1
  ..I SDWLSTOP W !,"This Clinic has Patients on the Wait List and can not be inactivated."  H 2 Q

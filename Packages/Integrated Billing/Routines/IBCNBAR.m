@@ -1,9 +1,8 @@
-IBCNBAR ;ALB/ARH-Ins Buffer: process Accept and Reject ;15 Jan 2009
- ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+IBCNBAR ;ALB/ARH/AWC - Ins Buffer: process Accept and Reject ;15 Jan 2009
+ ;;2.0;INTEGRATED BILLING;**82,240,345,413,416,497,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- ;
-ACCEPT(IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBNEWINS,IBNEWGRP,IBNEWPOL,IBELIG) ; move buffer data into Insurance files then cleanup
+ACCEPT(IBBUFDA,DFN,IBINSDA,IBGRPDA,IBPOLDA,IBMVINS,IBMVGRP,IBMVPOL,IBMVSUB,IBNEWINS,IBNEWGRP,IBNEWPOL,IBELIG,IBSEL,IBRIEN,IBSIEN,IBFNAM,IBVAL,IBHOLD,IBXHOLD) ; move buffer data into Insurance files then cleanup
  ;    1) data moved into insurance files, new records created if needed or edit existing ones
  ;    2) complete some general functions that are executed whenever insurance is entered/edited
  ;    3) allow user to view buffer entry and new/updated insurance records
@@ -19,7 +18,7 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
  ;
  N IVMINSUP,IBNEW,IBCDFN,RIEN S IBCDFN=IBPOLDA S:+IBNEWPOL IBNEW=1 D BEFORE^IBCNSEVT ; insurance event driver
  ;
- N DIR,X,Y,IBX,IBINSH,IBGRPH,IBPOLH S (IBINSH,IBGRPH,IBPOLH)="Updated" W:$G(IBSUPRES)'>0 " ...",!
+ N DIR,X,Y,IBX,IBINSH,IBGRPH,IBPOLH,IBSUBH S (IBINSH,IBGRPH,IBPOLH,IBSUBH)="Updated" W:$G(IBSUPRES)'>0 " ...",!
  ;
  S RESULT(0)="-1^Add new INSURANCE COMPANY failed"
  I +IBNEWINS S IBINSDA=+$$NEWINS^IBCNBMN(IBBUFDA) G:'IBINSDA ACCPTQ  S IBINSH="Created",RESULT(1)="IBINSDA^"_IBINSDA
@@ -28,7 +27,7 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
  I +IBNEWGRP S IBGRPDA=+$$NEWGRP^IBCNBMN(IBBUFDA,+IBINSDA) G:'IBGRPDA ACCPTQ S IBGRPH="Created",RESULT(2)="IBGRPDA^"_IBGRPDA
  ;
  S RESULT(0)="-1^Add new patient insurance policy failed"
- I +IBNEWPOL S IBPOLDA=+$$NEWPOL^IBCNBMN(IBBUFDA,+IBINSDA,+IBGRPDA) G:'IBPOLDA ACCPTQ S IBPOLH="Created",RESULT(3)="IBPOLDA^"_IBPOLDA
+ I +IBNEWPOL S IBPOLDA=+$$NEWPOL^IBCNBMN(IBBUFDA,+IBINSDA,+IBGRPDA) G:'IBPOLDA ACCPTQ S (IBPOLH,IBSUBH)="Created",RESULT(3)="IBPOLDA^"_IBPOLDA
  ;
  ;Only do this check for ICB ACCEPAPI^IBCNICB interface
  S RESULT(0)="-1^Move TYPE parameter value="_IBMVINS_" is invalid"
@@ -53,7 +52,12 @@ PROCESS ; process all changes selected by user, add/edit insurance files based
  . . I IBISGRP'>0 S IBFLDS(355.3,IBGRPDA_",",.1)=DFN
  . . D FILE^DIE("","IBFLDS","IBERR")
  . W:$G(IBSUPRES)'>0 !,"Group/Plan "_IBGRPH_"..."
+ ;
  I +IBINSDA,+IBMVPOL,+IBGRPDA,+IBPOLDA D POLICY^IBCNBMI(IBBUFDA,IBPOLDA,+IBMVPOL,.RESULT) W:$G(IBSUPRES)'>0 !,"Patient Policy "_IBPOLH_"..."
+ ;
+ S RESULT(0)="-1^Move Patient Registration data into Insurance files failed"
+ I +IBINSDA,+$G(IBMVSUB),+IBGRPDA,+IBPOLDA D SUB^IBCNBMI(IBBUFDA,IBPOLDA,IBRIEN,IBSEL,+IBMVSUB,.RESULT,DFN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD) W:$G(IBSUPRES)'>0 !,"Subscriber Insurance Information "_IBSUBH_"..."
+ ;
  I +IBELIG S RIEN=$O(^IBCN(365,"AF",IBBUFDA,""),-1) I RIEN D GRPFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0),EBFILE^IBCNEHL1(DFN,IBPOLDA,RIEN,0) W:$G(IBSUPRES)'>0 !,"Eligibility/Benfits data Updated..."
  ;
  ;Only do this update for ICB ACCEPAPI^IBCNICB interface
@@ -87,7 +91,13 @@ CLEANUP ; general updates and checks done whenever insurance is added/edited and
  ;Suppress DIR call functionality for ICB ACCEPAPI^IBCNICB interface
  D:$G(IBSUPRES)'>0
  . W !! S DIR(0)="FO",DIR("A")="Press 'V' to view the changes or Return to continue" D ^DIR
- . I Y="V"!(Y="v") W !! D INS^IBCNBCD(IBBUFDA,IBINSDA),WAIT^IBCNBUH,GRP^IBCNBCD(IBBUFDA,IBGRPDA),WAIT^IBCNBUH,POLICY^IBCNBCD(IBBUFDA,IBPOLDA),WAIT^IBCNBUH
+ . I Y="V"!(Y="v") D
+ . . W !!
+ . . D INS^IBCNBCD(IBBUFDA,IBINSDA),WAIT^IBCNBUH
+ . . D GRP^IBCNBCD(IBBUFDA,IBGRPDA),WAIT^IBCNBUH
+ . . D POLICY^IBCNBCD(IBBUFDA,IBPOLDA),WAIT^IBCNBUH
+ . . S IBSIEN=$S(+IBPOLDA:IBPOLDA_","_DFN_",",1:0)
+ . . I +IBSIEN,+$G(IBSEL) D SBDISP^IBCNBCD4(IBBUFDA,DFN,IBPOLDA,IBSEL,IBRIEN,IBSIEN,IBFNAM,IBVAL,.IBHOLD,.IBXHOLD),WAIT^IBCNBUH
  ;
  ; if source is eIV, update insurance record field in transmission queue (365.1/.13)
  I $P(^IBA(355.33,IBBUFDA,0),U,3)=5 D UPDIREC^IBCNEHL3($O(^IBCN(365,"AF",IBBUFDA,"")),IBPOLDA)
@@ -145,4 +155,3 @@ IVM(AR,IBBUFDA,IVMREPTR,IBSUPRES) ; IVM must be notified whenever a buffer entry
  ;
  S IBY=$$UPDATE^IVMLINS4(DFN,AR,IBX,$G(IVMREPTR),$G(IBSUPRES))
  Q
- ;

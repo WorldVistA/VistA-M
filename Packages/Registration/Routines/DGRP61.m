@@ -1,5 +1,5 @@
-DGRP61 ;ALB/PJH,LBD - Patient MSDS History - List Manager Screen;12 JUN 1997 10:00 am ; 2/5/12 10:18pm
- ;;5.3;Registration;**797**;08/13/93;Build 24
+DGRP61 ;ALB/PJH,LBD - Patient MSDS History - List Manager Screen ;12 JUN 1997 10:00 am
+ ;;5.3;Registration;**797,909**;Aug 13,1993;Build 32
  ;
 EN(DFN) ;Main entry point to invoke the DGEN MSDS PATIENT list
  ; Input  -- DFN      Patient IEN
@@ -117,7 +117,8 @@ ACT(DGACT) ; Entry point for menu action selection
  I DGACT="D" D
  .I '$$RUSURE Q
  .S DIK=DIC,DA(1)=DFN,DA=DIPA("DA") D ^DIK K DIK
-ACTQ D INIT S VALMBCK="R" Q
+ ; DG*5.3*909 Potentially change Camp Lejeune to No with MSE changes
+ACTQ D INIT S VALMBCK="R" D SETCLNO^DGENCLEA Q
  ;
 ADD ; Add new MSE to #2.3216 sub-file
  N X,Y,DIK,DA,DR,DIE,NEXT,DGFRDT

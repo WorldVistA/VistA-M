@@ -1,6 +1,6 @@
-PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;06/17/2003
- ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194**;Aug 12, 1996;Build 2
- ;DBIA 4113 supports PXRMSXRM entry points. 
+PXPXRMI1 ; SLC/PKR,SCK - Build indexes for the V files. ;07/02/15  09:32
+ ;;1.0;PCE PATIENT CARE ENCOUNTER;**119,194,210**;Aug 12, 1996;Build 21
+ ;DBIA 4113 supports PXRMSXRM entry points.
  ;DBIA 4114 supports setting and killing ^PXRMINDX
  ;===============================================================
 VCPT ;Build the indexes for V CPT.
@@ -146,8 +146,8 @@ VHF ;Build the indexes for V HEALTH FACTORS.
  ;
  ;===============================================================
 VIMM ;Build the indexes for V IMMUNIZATION.
- N DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,GLOBAL,IMM,IND,NE,NERROR
- N START,TEMP,TENP,TEXT,VISIT
+ N CVX,DAS,DATE,DFN,DIFF,DONE,END,ENTRIES,ETEXT,EVENTDT,GLOBAL,IMM
+ N IND,NE,NERROR,START,TEMP,TENP,TEXT,VISIT
  ;Don't leave any old stuff around.
  K ^PXRMINDX(9000010.11)
  S GLOBAL=$$GET1^DID(9000010.11,"","","GLOBAL NAME")
@@ -194,9 +194,15 @@ VIMM ;Build the indexes for V IMMUNIZATION.
  . I DATE="" D  Q
  .. S ETEXT=DAS_" missing visit date"
  .. D ADDERROR^PXRMSXRM(GLOBAL,ETEXT,.NERROR)
+ . S EVENTDT=$P($G(^AUPNVIMM(DAS,12)),U,1)
+ . I EVENTDT S DATE=EVENTDT
  . S NE=NE+1
  . S ^PXRMINDX(9000010.11,"IP",IMM,DFN,DATE,DAS)=""
  . S ^PXRMINDX(9000010.11,"PI",DFN,IMM,DATE,DAS)=""
+ . S CVX=$P($G(^AUTTIMM(IMM,0)),U,3)
+ . I CVX'="" D
+ .. S ^PXRMINDX(9000010.11,"CVX","IP",CVX,DFN,DATE,DAS)=""
+ .. S ^PXRMINDX(9000010.11,"CVX","PI",DFN,CVX,DATE,DAS)=""
  S END=$H
  S TEXT=NE_" V IMMUNIZATION results indexed."
  D MES^XPDUTL(TEXT)

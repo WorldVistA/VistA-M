@@ -1,6 +1,6 @@
 IBCNBCD ;ALB/ARH - Ins Buffer: display/compare buffer and existing ins ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452,497**;21-MAR-94;Build 120
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,251,361,371,416,438,452,497,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INS(IBBUFDA,IBINSDA) ; display a buffer entry's insurance company fields and
  ; an existing insurance company's fields for comparison
@@ -23,7 +23,6 @@ INS(IBBUFDA,IBINSDA) ; display a buffer entry's insurance company fields and
  D DISPLAY(21.04,36,.114,"City:")
  D DISPLAY(21.05,36,.115,"State:")
  D DISPLAY(21.06,36,.116,"Zip Code:")
- ;
  S IBFLD1="(bold=accepted on Merge)",IBFLD2="(bold=replaced on Overwrite)" D WRTLN("",IBFLD1,IBFLD2,"","","U")
  Q
  ;
@@ -48,7 +47,6 @@ GRP(IBBUFDA,IBGRPDA) ; display a buffer entry's group insurance fields and an ex
  D DISPLAY(40.07,355.3,.07,"Exclude Pre-Cond:")
  D DISPLAY(40.08,355.3,.08,"Benefits Assign:")
  D DISPLAY(40.09,355.3,.09,"Type of Plan:")
- ;
  S IBFLD1="(bold=accepted on merge)",IBFLD2="(bold=replaced on overwrite)" D WRTLN("",IBFLD1,IBFLD2,"","","U")
  Q
  ;
@@ -71,10 +69,10 @@ POLICY(IBBUFDA,IBPOLDA) ; display a buffer entry's patient policy fields and an 
  D DISPLAY(60.06,2.312,16,"Relationship:")
  D DISPLAY(60.15,2.312,4.05,"Rx Relationship:")
  D DISPLAY(60.16,2.312,4.06,"Rx Person Code:")
- D DISPLAY(91.01,2.312,7.01,"Name of Insured:")
- D DISPLAY(60.08,2.312,3.01,"Insured's DOB:")
- D DISPLAY(60.09,2.312,3.05,"Insured's SSN:")
- D DISPLAY(60.13,2.312,3.12,"Insured's SEX:")
+ D DISPLAY(91.01,2.312,7.01,"Subscriber Name:")
+ D DISPLAY(60.08,2.312,3.01,"Subscriber's DOB:")
+ D DISPLAY(60.09,2.312,3.05,"Subscriber's SSN:")
+ D DISPLAY(60.13,2.312,3.12,"Subscriber's SEX:")
  D DISPLAY(60.1,2.312,4.01,"Primary Provider:")
  D DISPLAY(60.11,2.312,4.02,"Provider Phone:")
  D DISPLAY(60.12,2.312,.2,"Coor of Benefits:")
@@ -87,6 +85,7 @@ POLICY(IBBUFDA,IBPOLDA) ; display a buffer entry's patient policy fields and an 
  D DISPLAY(62.06,2.312,3.1,"Subscr Zip:")
  D DISPLAY(62.07,2.312,3.13,"Subscr Country:")
  D DISPLAY(62.08,2.312,3.14,"Subscr Subdiv:")
+ D DISPLAY(62.09,2.312,3.11,"Subscr Phone:")  ; 528 - baa
  ;
  I +$G(^IBA(355.33,IBBUFDA,61))!($$GET1^DIQ(2.312,IBEXTDA,2.1)="YES") D ESGHP
  ;

@@ -1,5 +1,5 @@
 VPSSRVY3 ;WOIFO/BT - VPS CLINICAL SURVEY QUESTIONNAIRE;01/16/15 13:07
- ;;1.0;VA POINT OF SERVICE (KIOSKS);**5**;Jan 16, 2015;Build 31
+ ;;1.0;VA POINT OF SERVICE (KIOSKS);**5,14**;Jan 16, 2015;Build 26
  ;;Per VHA Directive 2004-038, this routine should not be modified.
  ;
  ; External Reference DBIA#
@@ -13,7 +13,7 @@ UTGET(VPSDFN,TARGET,VPSQIEN,VPSQNM,VPSFDT,VPSTDT,VPSNUM) ;
  ;S UT=$$GETRPT(VPSDFN,TARGET,$G(VPSQIEN),$G(VPSQNM),$G(VPSFDT),$G(VPSTDT),$G(VPSNUM))
  Q UT
  ;
-GETRPT(VPSDFN,TARGET,VPSQIEN,VPSQNM,VPSFDT,VPSTDT,VPSNUM) ;
+GETRPT(VPSDFN,TARGET,VPSQIEN,VPSQNM,VPSFDT,VPSTDT,VPSNUM,AHFLG) ;
  ;INPUT
  ;  VPSDFN  : Patient IEN
  ;  TARGET  : Location for the results
@@ -22,6 +22,9 @@ GETRPT(VPSDFN,TARGET,VPSQIEN,VPSQNM,VPSFDT,VPSTDT,VPSNUM) ;
  ;  VPSFDT  : From Date
  ;  VPSTDT  : To Date
  ;  VPSNUM  : Number of Occurrences
+ ;  AHFLG   : Answer history Flag
+ ;            current answer          - 0 (default)
+ ;            all answers to question - 1     1
  ;
  ;OUTPUT
  ; If error
@@ -44,11 +47,7 @@ GETRPT(VPSDFN,TARGET,VPSQIEN,VPSQNM,VPSFDT,VPSTDT,VPSNUM) ;
  ;RESULT(8) = How many packs per week?  3
  ;
  ;
- ; File index structure
- ;    
- ;    VPS(853.8,"D", Questionnaire IEN (Template ID) , DFN, DT )
- ;K @TARGET
- N CNT,NEXTLINE
+ N CNT,NEXTLINE,TDT
  S NEXTLINE=0
  S CNT=0
  ;
@@ -70,15 +69,16 @@ STARTHS ;
  S VPSQNM=$G(VPSQNM)
  S VPSQNM=$$UPCASE^VPSSRVY2(VPSQNM)
  ; loop through obtaining the most current information first
- F  S TDT=$O(^VPS(853.8,VPSDFN,1,TDT),-1) Q:'TDT!FLG  D
- . I $G(VPSFDT),TDT<VPSFDT S FLG=1 Q
- . I $G(VPSTDT)="",$G(VPSFDT)]"",$G(VPSFDT)'=$P(TDT,".") Q
- . I $G(VPSNUM),CNT=VPSNUM S FLG=1 Q
- . I $$PASSCHK() D 
- .. S FLT=0
- .. D GETDATA(CNT,TDT,.FLT)
- .. Q:FLT
- .. S CNT=CNT+1
+ S FLG=0,TID=0
+ F  S TID=$O(^VPS(853.8,VPSDFN,1,TID)) Q:'TID!FLG  D
+ . S FDT=TDT
+ . F  S FDT=$O(^VPS(853.8,VPSDFN,1,TID,1,FDT),-1) Q:'FDT!FLG  D
+ .. I $G(VPSFDT),TDT<VPSFDT Q
+ .. I $G(VPSTDT)="",$G(VPSFDT)]"",$G(VPSFDT)'=$P(FDT,".") Q
+ .. I $G(VPSNUM),CNT=VPSNUM S FLG=1 Q
+ .. I $$PASSCHK(TID,$G(VPSQIEN),$G(VPSQNM)) D
+ ... D GETDATA(VPSDFN,TID,FDT,VPSQNM)
+ ... S CNT=CNT+1
  I CNT=0 D
  . N STR
  . S STR="No Survey results for "
@@ -95,12 +95,11 @@ EX ;
  ;
  Q "~@"_$NA(@TARGET)
  ;
-PASSCHK() ;
+PASSCHK(ID1,VPSQIEN,VPSQNM) ;
  ; test is see if this is the survey being requested
  I $G(VPSQIEN)="",$G(VPSQNM)="" Q 1
- N ID,ID1,FLG
+ N ID,FLG
  S FLG=1
- S ID1=$P(^VPS(853.8,VPSDFN,1,TDT,0),U,7)
  I $G(VPSQIEN)]"" D  Q 'FLG
  . S ID=$O(^VPS(853.85,"B",VPSQIEN,""))
  . I ID1=ID S FLG=0
@@ -111,32 +110,107 @@ PASSCHK() ;
  ;
  ; obtain the information from the clinical survey
  ; and format the information into the report
-GETDATA(OIEN,IEN,FILTER) ;
- N I
- S DATA=$G(^VPS(853.8,VPSDFN,1,IEN,0))
- S FILTER=$P(VPSQNM,":::V ",2)]""&(+$P(VPSQNM,":::V ",2)'=$$GET1^DIQ(853.85,$P(DATA,U,7)_",",2))
- Q:FILTER
- ; Survey Data IEN ^ Patient DFN ^ Patient Name ^  Questionnaire IEN ^ Questionnaire Name 
- D ADD("Patient Name: "_$$GET1^DIQ(2,VPSDFN_",",.01))
- D ADD("Questionnaire IEN: "_$$GET1^DIQ(853.85,$P(DATA,U,7)_",",.01))
- D ADD("Questionnaire Name: "_$$GET1^DIQ(853.85,$P(DATA,U,7)_",",1))
+GETDATA(VPSDFN,TID,FDT,VPSQNM) ;
+ ;
+ N I,DAT,DATA
+ S DATA=$G(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,0))
+ ; Patient DFN ^ Patient Name ^  Template ID ^ Questionnaire Name ^ Version
+ ;S DAT="Patient DFN: "_VPSDFN
+ ;D ADD(DAT)
+ ;S DAT="Patient Name: "_$$GET1^DIQ(2,VPSDFN_",",.01)
+ ;D ADD(DAT)
+ S DAT="Questionnaire Name: "_$$GET1^DIQ(853.85,TID_",",1)
+ D ADD(DAT)
+ S DAT="ID: "_$$GET1^DIQ(853.85,TID_",",.01)
+ ;D ADD(DAT)
+ S DAT=DAT_$J(" ",66-$L(DAT))_"Ver: "_$$GET1^DIQ(853.85,TID_",",2)
+ D ADD(DAT)
+ ; Obtain Response identifier
+ S DAT="Response Identifier: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.01)
+ D ADD(DAT)
  ; Obtain converted Date and Time Taken
- D ADD("Date and Time Taken: "_$$GET1^DIQ(853.81,IEN_","_VPSDFN_",",2))
+ S DAT="Date/Time Taken: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.02)
+ ;D ADD(DAT)
  ; Obtain Date and Time Last Modified and convert to external format
- D ADD("Date and Time Last Modified: "_$$GET1^DIQ(853.81,IEN_","_VPSDFN_",",3))
- ;I $G(CALC) D ADD("Survey Calculated Value: "_$$GET1^DIQ(853.81,IEN_","_VPSDFN_",",5))
- D ADD("Questions and Answers:")
- ; loop through the questions and responces
- N CV,CALCV
- S CV=0
- S I=0 F  S I=$O(^VPS(853.8,VPSDFN,1,IEN,3,I)) Q:'I  D
- . D ADD($$GET1^DIQ(853.811,I_","_IEN_","_VPSDFN_",",1)_" "_$$GET1^DIQ(853.811,I_","_IEN_","_VPSDFN_",",2))
- . ;I $G(CALC) D ADD("Value - "_$$GET1^DIQ(853.811,I_","_IEN_","_VPSDFN_",",3))
- . S DATA=$$GET1^DIQ(853.811,I_","_IEN_","_VPSDFN_",",3)
- . I $G(CALC),DATA]"" S CV=CV+1,CALCV(CV)=DATA
- D ADD("- - - - - - - - - - - - - - - - - - - - -")
- I $G(CALC) D ADD("Survey Calculated Value: "_$$GET1^DIQ(853.81,IEN_","_VPSDFN_",",5))
- F I=1:1:CV D ADD("Value - "_CALCV(I))
+ S DAT=DAT_$J(" ",41-$L(DAT))_"Last Modified: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.03)
+ D ADD(DAT)
+ ; Obtain COMPLETION STATUS
+ S DAT="Completion Status: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.04)
+ D ADD(DAT)
+ ; Obtain PATIENT SAFETY
+ S DAT="Patient Safety: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.05)
+ S DAT=DAT_$J(" ",41-$L(DAT))_"Immediate Action: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.06)
+ D ADD(DAT)
+ ; Obtain IMMEDIATE ACTION
+ ;S DAT="Immediate Action: "_$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",.06)
+ ;D ADD(DAT)
+ ; Obtain SURVEY CALCULATED VALUE
+ S DAT=$$GET1^DIQ(853.811,"1,"_FDT_","_TID_","_VPSDFN_",",4)
+ I $G(CALC),DAT]"" D ADD("Survey Calculated Value: "_DAT)
+ S I=0
+ N DAT1
+ F  S I=$O(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,2,I)) Q:'I  D
+ . S DAT=$P(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,2,I,0),U)
+ . I DAT]"" S DAT="Additional Calc Value Name: "_DAT ;D ADD(DAT)
+ . S DAT1=$P(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,2,I,0),U,2)
+ . I DAT1]"" S DAT1="Additional Calc Value Score: "_DAT1 ;D ADD(DAT)
+ . I DAT]""!(DAT1]"") S DAT=DAT_$J(" ",41-$L(DAT))_DAT1 D ADD(DAT)
+ S I=0
+ F  S I=$O(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,1,I)) Q:'I  D
+ . S DAT="Appointment Check-in: "_^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,1,I,0)
+ . D ADD(DAT)
+ N J,II
+ S I=0
+ F  S I=$O(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,3,I)) Q:'I  D
+ . D ADD("______________________________")
+ . ;S DAT="Question Number: "_$$GET1^DIQ(853.8113,I_",1,"_FDT_","_TID_","_VPSDFN_",",.01)
+ . ;D ADD(DAT)
+ . S DAT=$$GET1^DIQ(853.8113,I_",1,"_FDT_","_TID_","_VPSDFN_",",1)
+ . I $G(CALC),DAT]"" D ADD("Question Calculated Value: "_DAT)
+ . N TMP
+ . I $$GET1^DIQ(853.8113,I_",1,"_FDT_","_TID_","_VPSDFN_",",2,"","TMP")
+ . I $D(TMP(1)) S TMP(1)=$$GET1^DIQ(853.8113,I_",1,"_FDT_","_TID_","_VPSDFN_",",.01)_" - "_TMP(1)
+ . S J=0
+ . F  S J=$O(TMP(J)) Q:'J  D ADD(TMP(J))
+ . S II="A"
+ . N CUR
+ . S CUR=0
+ . F  S II=$O(^VPS(853.8,VPSDFN,1,TID,1,FDT,1,1,3,I,3,II),-1) Q:'II!(CUR=99&(+$G(AHFLG)=0))  D
+ .. I CUR'=0,CUR'=$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",1),+$G(AHFLG)=0 S CUR=99 Q
+ .. I CUR=0 S CUR=$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",1)
+ .. ;D ADD("     _-_-_-_-_-_-_-_-_-_-_-_-_-_-_-")
+ .. ; Obtain ANSWER IDENTIFIER
+ .. ;S DAT="Answer Identifier: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",.01)
+ .. ;D ADD(DAT)
+ .. ;S DAT="Interface Used: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",.02)
+ .. ;D ADD(DAT)
+ .. ;S DAT="Kiosk Identifier: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",3)
+ .. ;D ADD(DAT)
+ .. ;S DAT="Kiosk Session Identifier: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",4)
+ .. ;D ADD(DAT)
+ .. ;S DAT="Kiosk Group Identifier: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",5)
+ .. ;D ADD(DAT)
+ .. S DAT=""
+ .. K TMP
+ .. I $$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",6,"","TMP")
+ .. I $D(TMP(1)) D ADD("   "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",.01)_" - "_TMP(1))
+ .. S J=1
+ .. F  S J=$O(TMP(J)) Q:'J  D ADD("     "_TMP(J))
+ .. S DAT=$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",.03)
+ .. I DAT'="PATIENT" D
+ ... S DAT="    Respondent: "_DAT
+ ... ;D ADD("    "_DAT)
+ ... S DAT=DAT_$J(" ",41-$L(DAT))_"Respondent Name: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",.04)
+ ... D ADD(DAT)
+ .. S DAT="    Answer Date/Time: "_$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",1)
+ .. ;D ADD("    "_DAT)
+ .. S DAT1=$$GET1^DIQ(853.81133,II_","_I_",1,"_FDT_","_TID_","_VPSDFN_",",2)
+ .. I DAT1]"",+DAT1=0,DAT1'=0 D
+ ... S DAT1="Interviewer Name: "_DAT1
+ ... S DAT=DAT_$J(" ",41-$L(DAT))_DAT1
+ ... D ADD(DAT)
+ .. D ADD("")
+ .. S CUR=1
  D ADD("@#END OF SURVEY#@")
  Q
 ADD(TXT) ;
@@ -160,20 +234,11 @@ CLOSE ;
  S PDOARY=ARR
  Q
  ;
-TEST ;
- S DFN=7178910
- S GMTSEGH="TEST"
- S GMTSEND=3150313.235959
- S GMTSNDM=5
- S GMTSEGL=80
- S GMTSBEG=3140313.20113
- S GMTSEND=3150313.235959
- S GMTSEG(1)="1345^442029^5^1Y^^^"
- S GMTSEG(1,853.875,0)="^VPS(853.875,"
- S GMTSEG(1,853.875,1)=3
- D HS
- Q
- ;
+HSAHCAL ;
+ ; Entry point for including answer history and calculated values with the health summary 
+ ; AHFLG - is the flag for obtaining answer history
+ N AHFLG
+ S AHFLG=1
 HSCAL ;
  ; Entry point for including calculated values with the health summary 
  ; CALC - is the flag for obtaining calcualted values

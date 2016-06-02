@@ -1,6 +1,6 @@
 IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ;03-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,271,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,271,416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Input vars from IBCNERP1:
  ;  IBCNERTN="IBCNERP1"
@@ -16,6 +16,7 @@ IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ;03-JUN-2002
  ;   run.  Response Report (0), Inactive Report (1), or Ambiguous
  ;   Report (2).
  ;  IBCNESPC("DTEXP")=Expiration date used in the inactive policy report
+ ;  IBOUT="R" for Report format or "E" for Excel format
  ;
  ; Output vars used by IBCNERP3:
  ;  Structure of ^TMP based on eIV Response File (#365)
@@ -40,13 +41,13 @@ IBCNERP2 ;DAOU/BHS - IBCNE eIV RESPONSE REPORT COMPILE ;03-JUN-2002
  Q
  ;
  ;
-EN(IBCNERTN,IBCNESPC) ; Entry
+EN(IBCNERTN,IBCNESPC,IBOUT) ; Entry
  ; Init
  N IBDT,IBBDT,IBPY,IBPYR,IBPT
  N IBPAT,IBPTR,SORT1,SORT2,RPTDATA,IBTOT
  N PYRIEN,PATIEN,IBTRC,IBTYP,IBCT,IBSRT,IBEXP,FRST,TQN,DONTINC,IPRF
  ;
- I '$D(ZTQUEUED),$G(IOST)["C-" W !!,"Compiling report data ..."
+ I '$D(ZTQUEUED),$G(IOST)["C-",$G(IBOUT)="R" W !!,"Compiling report data ..."
  ;
  ; Temp ct
  S (IBTOT,IBCT)=0
@@ -157,8 +158,7 @@ EXIT ;
 X12(FILE,CODE,FLD) ; Output based on File # and X12 code
  I $G(FILE)=""!($G(CODE)="") Q ""
  ; Quit w/o label if not defined in File Def.
- Q $$LBL(365.02,$G(FLD))_$P($G(^IBE(FILE,CODE,0)),U,2)
- ;
+ Q $$LBL(365.02,$G(FLD))_$P($G(^IBE(FILE,CODE,0)),U,2)  ;
 LBL(FILE,FLD) ; Determine label from File Def.
  N IBLBL
  ;

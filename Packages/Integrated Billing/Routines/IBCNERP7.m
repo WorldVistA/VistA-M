@@ -1,6 +1,6 @@
 IBCNERP7 ;DAOU/BHS - eIV STATISTICAL REPORT ;10-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,416**;21-MAR-94;Build 58
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,416,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; eIV - Insurance Verification Interface
  ;
@@ -22,6 +22,7 @@ IBCNERP7 ;DAOU/BHS - eIV STATISTICAL REPORT ;10-JUN-2002
  ;                    MAILGROUP, generate as MailMan message for this
  ;                               MAILGROUP as defined in IB site 
  ;                               parameters
+ ;   IBOUT = "E" for Excel or "R" for report format
  ;
  ; Only enter routine from EN or MAILMSG tags
  Q
@@ -29,7 +30,7 @@ IBCNERP7 ;DAOU/BHS - eIV STATISTICAL REPORT ;10-JUN-2002
  ; Entry pt
 EN ;
  ; Init vars 
- N STOP,IBCNERTN,POP,IBCNESPC
+ N STOP,IBCNERTN,POP,IBCNESPC,IBOUT
  ;
  S STOP=0
  S IBCNERTN="IBCNERP7"
@@ -46,8 +47,10 @@ EN ;
 S10 D DTMRNG I STOP G EXIT
  ; Sort by parameter - Payer or Total Inquiries (Payer Report)
 S20 D SECTS I STOP G:$$STOP^IBCNERP1 EXIT G S10
+ ; Select report type  528 - baa
+S30 S IBOUT=$$OUT I STOP G:$$STOP^IBCNERP1 EXIT G S20
  ; Select the output device
-S50 D DEVICE^IBCNERP1(IBCNERTN,.IBCNESPC) I STOP G:$$STOP^IBCNERP1 EXIT G S20
+S50 D DEVICE^IBCNERP1(IBCNERTN,.IBCNESPC,IBOUT) I STOP G:$$STOP^IBCNERP1 EXIT G S20
  ;
 EXIT ; Quit this routine
  Q
@@ -124,7 +127,10 @@ SECTSX ; SECTS exit pt
 MAILMSG ; Tag to be called by TaskMan to generate report with default values
  ; and send as MailMan message
  ; Init vars
- N IBCNERTN,IBCNESPC,EDT,BDT,TM
+ N IBCNERTN,IBCNESPC,EDT,BDT,TM,IBOUT
+ ;
+ ; -- set the mail message to display in a report format
+ S IBOUT="R"
  ;
  ; Default report parameters
  ; Start Date/Time - End Date/Time range
@@ -152,7 +158,7 @@ MAILMSG ; Tag to be called by TaskMan to generate report with default values
  ; Compile the report data
  D EN^IBCNERP8(IBCNERTN,.IBCNESPC)
  ; Print the report - to MailMan
- I '$G(ZTSTOP) D EN^IBCNERP9(IBCNERTN,.IBCNESPC)
+ I '$G(ZTSTOP) D EN^IBCNERP9(IBCNERTN,.IBCNESPC,IBOUT)
  ;
  ; Kill scratch global
  KILL ^TMP($J,IBCNERTN)
@@ -162,5 +168,13 @@ MAILMSG ; Tag to be called by TaskMan to generate report with default values
  ;
  ; MAILMSG exit pt
  Q
- ;
+ ;  528 - baa : Add option to ouput data in excel format
+OUT() ; Prompt to allow users to select output format
+ N DIR,DIROUT,DIRUT,DTOUT,DUOUT,X,Y
+ W !
+ S DIR(0)="SA^E:Excel;R:Report"
+ S DIR("A")="(E)xcel Format or (R)eport Format: "
+ S DIR("B")="Report"
+ D ^DIR I $D(DIRUT) S STOP=1 Q ""
+ Q Y
  ;

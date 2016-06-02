@@ -1,5 +1,5 @@
 PXRMDLG6 ; SLC/AGP - Reminder Dialog Edit/Inquiry ;07/24/2013
- ;;2.0;CLINICAL REMINDERS;**12,26**;Feb 04, 2005;Build 404
+ ;;2.0;CLINICAL REMINDERS;**12,26,66**;Feb 04, 2005;Build 226
  ;
 ISACTDLG(DIEN) ;
  ;this returns a 1 if the dialog can be used in a TIU Template
@@ -88,6 +88,9 @@ FILESCR(IEN,FILENUM,DA) ;
  N DTYPE,LOCK,RESULT,STATUS
  I $G(PXRMINST)=1 Q 1
  S RESULT=1
+ I FILENUM=9999999.14 D  Q RESULT
+ .I $P($G(^AUTTIMM(IEN,0)),U,7)="" Q
+ .I $P($G(^AUTTIMM(IEN,6)),U)'="Y" S RESULT=0 Q
  ;I FILENUM=811.2,$G(DA)>0,$P($G(^PXRMD(801.41,DA,0)),U,4)="G" W !,"Cannot add a taxonomy as finding item to a group." Q 0
  ;DBIA #4640
  S STATUS=+$$GETSTAT^HDISVF01(FILENUM)

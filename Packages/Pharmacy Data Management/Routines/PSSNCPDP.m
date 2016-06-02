@@ -1,5 +1,5 @@
 PSSNCPDP ;BIR/LE - Pharmacy Data Management DD Utility ;10/30/97 9:41
- ;;1.0; PHARMACY DATA MANAGEMENT; **127**;9/30/97;Build 41
+ ;;1.0;PHARMACY DATA MANAGEMENT;**127,191**;9/30/97;Build 40
  ;
  Q
 EN ;
@@ -77,5 +77,35 @@ MILL ;Milliliter help text
  W !?5,"QUANTITY MULTIPLIER for this product will be 0.3. Notice in this case the"
  W !?5,"NCPDP QUANTITY MULTIPLIER is less than 1."
  W !
+ Q
+ ;
+ ;*191
+12 ;CHECK BCMA Prompt for removal flag
+ I '$G(PSDOSE) N PSDOSE S PSDOSE=$P(^PS(50.7,+DA,0),"^",2)
+ I X<1,$G(PSDOSE),^PS(50.606,PSDOSE,0)'="PATCH" Q
+ I X>0,$G(PSDOSE),^PS(50.606,PSDOSE,0)'="PATCH" D
+ .N VAL S VAL=X
+ .D EN^DDIOL("The dosage form for this orderable item is not PATCH.","","!!")
+ .K DIR,DIRUT,DUOUT,DTOUT S DIR(0)="Y",DIR("B")="N"
+ .S DIR("A")="Are you sure you want to designate this medication as requiring removal"
+ .S DIR("?")="Enter Y for Yes or N for No." D ^DIR K DIR
+ .I 'Y S X=$P($G(^PS(50.7,DA,4)),"^") D EN^DDIOL("No Changes were recorded.") Q
+ .S:Y X=VAL
+ Q
+ ;
+D12 ;
+ D EN^DDIOL("ENTRY OF 1, 2 OR 3 IS REQUIRED FOR DOSAGE FORM PATCH.")
+ D EN^DDIOL("Enter the value that applies to this orderable item.")
+ D EN^DDIOL("Choose from:","","!,?5")
+ D EN^DDIOL("1        Removal at Next Administration","","!,?7")
+ D EN^DDIOL("2        Removal Period Optional Prior to Next Administration","","!,?7")
+ D EN^DDIOL("3        Removal Period Required Prior to Next Administration","","!,?7")
+ D EN^DDIOL(" ","","!")
+ Q
+ ;
+D13 ;
+ N PSDOSE S PSDOSE=$P(^PS(50.7,+DA,0),"^",2)
+ I $G(PSDOSE),^PS(50.606,PSDOSE,0)="PATCH" D EN^DDIOL("ENTRY OF 1, 2 OR 3 IS REQUIRED FOR DOSAGE FORM PATCH.")
+ D EN^DDIOL("Enter the value that applies to this orderable item.")
  Q
  ;

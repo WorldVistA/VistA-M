@@ -1,6 +1,6 @@
 IBCNBLA1 ;ALB/ARH - Ins Buffer: LM action calls (cont) ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,133,149,184,252,271,416,438,506**;21-MAR-94;Build 74
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**82,133,149,184,252,271,416,438,506,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 ADDBUF ; add a new buffer entry protocol
  N DIC,DIR,DIRUT,DUOUT,X,Y,IBIN,DFN,IBBUFDA,IBDATA,AMLIST,IBHELP
@@ -185,7 +185,7 @@ ACCPTQ S VALMBCK="R" I +IBACCEPT S VALMBCK="Q" D UPDLN^IBCNBLL(IBBUFDA,"ACCEPTED
  ;
 RESP(BUFF) ; List Response Report for Trace # associated with this entry
  ; BUFF = buffer IEN
- N NG,IBRSP,IBSTR,IBTRC,STOP,IBCNERTN,POP,IBCNESPC
+ N NG,IBRSP,IBSTR,IBTRC,STOP,IBCNERTN,POP,IBCNESPC,IBOUT
  ; Reset to Full Screen Mode
  D FULL^VALM1
  S NG=0
@@ -194,6 +194,7 @@ RESP(BUFF) ; List Response Report for Trace # associated with this entry
  I 'NG S IBSTR=$G(^IBCN(365,IBRSP,0)),IBTRC=$P(IBSTR,U,9) I IBTRC="" S NG=1
  I NG W !!,"This entry does not have an associated eIV response." D PAUSE^VALM1 G RESPX
  S STOP=0,IBCNERTN="IBCNERP1",IBCNESPC("TRCN")=IBTRC_U_IBRSP
+ S IBOUT=$$OUT^IBCNERP1() G:IBOUT']"" RESPX I IBOUT="E" W !,!,"To avoid undesired wrapping, please enter '0;256;999' at the 'DEVICE:' prompt.",! ; AWC/ IB*2.0*528
  D R100^IBCNERP1
 RESPX S VALMBCK="R"
  Q

@@ -1,5 +1,6 @@
-IBCNBOA ;ALB/ARH-Ins Buffer: Activity Report ;1 Jun 97
- ;;2.0;INTEGRATED BILLING;**82,305**;21-MAR-94
+IBCNBOA ;ALB/ARH - Ins Buffer: Activity Report ;1 Jun 97
+ ;;2.0;INTEGRATED BILLING;**82,305,528**;21-MAR-94;Build 163
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;get parameters then run the report
  ;
@@ -11,6 +12,8 @@ EN ;get parameters then run the report
  ;
  S IBMONTH=$$MONTH^IBCNBOE G:IBMONTH="" EXIT  W !!
  ;
+ S IBOUT=$$OUT^IBCNBOE G:IBOUT="" EXIT
+ ;
 DEV ;get the device
  S %ZIS="QM",%ZIS("A")="OUTPUT DEVICE: " D ^%ZIS G:POP EXIT
  I $D(IO("Q")) S ZTRTN="RPT^IBCNBOA",ZTDESC=IBHDR,ZTSAVE("IB*")="" D ^%ZTLOAD K IO("Q") G EXIT
@@ -21,9 +24,9 @@ RPT ; run report
  ;
  ;Patch 305- QUIT in line below inserted for transmission to ARC
  D SEARCH(IBBEG,IBEND,IBMONTH) Q:$G(IBARFLAG)  G:IBQUIT EXIT
- D PRINT(IBBEG,IBEND)
+ D PRINT(IBBEG,IBEND,IBOUT)
  ;
-EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBQUIT
+EXIT K ^TMP($J),IBHDR,IBBEG,IBEND,IBMONTH,IBOUT,IBQUIT
  Q:$D(ZTQUEUED)
  D ^%ZISC
  Q
@@ -90,16 +93,31 @@ TMP1(XREF,S1,IC,GC,PC) ;
  ;
  ;
  ;
-PRINT(IBBEG,IBEND) ;
+PRINT(IBBEG,IBEND,IBOUT) ;
  N IBXREF,IBLABLE,IBS1,IBS2,IBS3,IBINS,IBGRP,IBPOL,IBCNT,IBIP,IBGP,IBPP,IBRDT,IBPGN,IBRANGE,IBLN,IBI
  ;
+ I "^R^E^"'[(U_$G(IBOUT)_U) S IBOUT="R"
  S IBRANGE=$$FMTE^XLFDT(+IBBEG)_" - "_$$FMTE^XLFDT(IBEND)
- S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),IBPGN=0
+ S IBRDT=$$FMTE^XLFDT($J($$NOW^XLFDT,0,4),2),IBRDT=$TR(IBRDT,"@"," "),(IBLN,IBPGN)=0
+ ;
+ ; Excel output
+ I IBOUT="E" D PHDL D  S IBI=$$PAUSE Q
+ . S IBXREF="IBCNBOA",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D
+ .. S IBLABLE=$S(IBS1=99999:"TOTALS",($E(IBBEG,1,5)<IBS1)&($E(IBEND,1,5)>IBS1):$$FMTE^XLFDT(IBS1_"00"),1:"")
+ .. I IBLABLE="" S IBLABLE=$$FMTE^XLFDT($S($E(IBBEG,1,5)<IBS1:IBS1_"01",1:IBBEG))_" - "_$$FMTE^XLFDT($S($E(IBEND,1,5)>IBS1:$$SCH^XLFDT("1M(L)",IBS1_11),1:IBEND))
+ .. S IBS2=0 F  S IBS2=$O(^TMP($J,IBXREF,IBS1,IBS2)) Q:IBS2=""  D
+ ... S IBS3="" F  S IBS3=$O(^TMP($J,IBXREF,IBS1,IBS2,IBS3)) Q:'IBS3  D PRTLN
+ .. ;
+ .. S IBINS=+$G(^TMP($J,"IBCNBOAC",IBS1,"I")),IBGRP=+$G(^TMP($J,"IBCNBOAC",IBS1,"G"))
+ .. S IBPOL=+$G(^TMP($J,"IBCNBOAC",IBS1,"P")),IBCNT=+$G(^TMP($J,"IBCNBOAC",IBS1,"CNT"))
+ .. S (IBIP,IBGP,IBPP)=0 I IBCNT'=0 S IBIP=((IBINS/IBCNT)*100)\1,IBGP=((IBGRP/IBCNT)*100)\1,IBPP=((IBPOL/IBCNT)*100)\1
+ .. W U_IBINS_U_IBIP_"%"_U_IBGRP_U_IBGP_"%"_U_IBPOL_U_IBPP_"%"
+ ;
  D HDR
  ;
  S IBXREF="IBCNBOA",IBS1="" F  S IBS1=$O(^TMP($J,IBXREF,IBS1)) Q:IBS1=""  D:IBLN>(IOSL-17) HDR Q:IBQUIT  D  S IBLN=IBLN+7
  . S IBLABLE=$S(IBS1=99999:"TOTALS",($E(IBBEG,1,5)<IBS1)&($E(IBEND,1,5)>IBS1):$$FMTE^XLFDT(IBS1_"00"),1:"")
- . I IBLABLE="" S IBLABLE=$$FMTE^XLFDT($S($E(IBBEG,1,5)<IBS1:IBS1_1,1:IBBEG))_" - "_$$FMTE^XLFDT($S($E(IBEND,1,5)>IBS1:$$SCH^XLFDT("1M(L)",IBS1_11),1:IBEND))
+ . I IBLABLE="" S IBLABLE=$$FMTE^XLFDT($S($E(IBBEG,1,5)<IBS1:IBS1_"01",1:IBBEG))_" - "_$$FMTE^XLFDT($S($E(IBEND,1,5)>IBS1:$$SCH^XLFDT("1M(L)",IBS1_11),1:IBEND))
  . W !,?(40-($L(IBLABLE)/2)),IBLABLE,!
  . W !,?43,"AVERAGE",?56,"LONGEST",?68,"SHORTEST"
  . W !,"STATUS",?22,"COUNT",?30,"PERCENT",?43,"# DAYS",?56,"# DAYS",?68,"# DAYS"
@@ -114,6 +132,8 @@ PRINT(IBBEG,IBEND) ;
  . W !!,?2,IBINS," New Compan",$S(IBINS=1:"y",1:"ies")," (",IBIP,"%), "
  . W IBGRP," New Group/Plan",$S(IBGRP=1:"",1:"s")," (",IBGP,"%), "
  . W IBPOL," New Patient Polic",$S(IBPOL=1:"y",1:"ies")," (",IBPP,"%)",!
+ ;
+ I 'IBQUIT S IBI=$$PAUSE
  Q
  ;
 PRTLN ;
@@ -126,6 +146,10 @@ PRTLN ;
  S IBLS=$G(^TMP($J,IBXREF,IBS1,IBS2,IBS3,"LS"))
  S IBTCNT=$G(^TMP($J,IBXREF,IBS1,2,9,"CNT")) Q:'IBTCNT
  ;
+ ; Excel output
+ I IBOUT="E" W !,IBLABLE_U_IBSTX_U_$FN(IBCNT,",")_U_((IBCNT/IBTCNT)*100)_"%"_U_$$STD((IBTM/IBCNT))_U_$$STD(IBHG)_U_$$STD(IBLS) Q
+ ;
+ ; Report output
  W !,IBSTX,?20,$J($FN(IBCNT,","),7),?30,$J(((IBCNT/IBTCNT)*100),6,1),"%",?43,$J($$STD((IBTM/IBCNT)),6,1),?56,$J($$STD(IBHG),6,1),?68,$J($$STD(IBLS),6,1)
  Q
  ;
@@ -144,6 +168,13 @@ HDR ;print the report header
  W !,"INSURANCE BUFFER ACTIVITY REPORT   ",IBRANGE," "
  W ?(IOM-22),IBRDT,?(IOM-7)," PAGE ",IBPGN,!
  S IBI="",$P(IBI,"-",IOM+1)="" W IBI,!
+ Q
+ ;
+PHDL ; - Print the header line for the Excel spreadsheet
+ N X
+ S X="MONTH^STATUS^COUNT^PERCENT^AVERAGE # DAYS^LONGEST # DAYS^SHORTEST # DAYS^New Companies^% New Companies^New Group/Plans^% New Group/Plans^New Patient Policies^% New Patient Policies"
+ W X
+ K X
  Q
  ;
 PAUSE() ;pause at end of screen if being displayed on a terminal
