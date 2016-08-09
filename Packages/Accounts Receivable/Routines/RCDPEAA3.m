@@ -1,5 +1,5 @@
 RCDPEAA3 ;ALB/KML - APAR Screen - callable entry points ;Nov 24, 2014@23:32:24
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -220,3 +220,35 @@ MVER(RCERA) ; Manually mark an EEOB as verified within APAR
  S ^TMP("RCDPE-EOB_WL",$J,RCLINE,0)=A
  Q
  ;
+ ;PRCA*4.5*304 - add a claim comment to the ERA detail line from APAR
+COMNT ;
+ N IEN,SEQ,DA,DIR,DTOUT,DUOUT,X,Y,DIRUT,DIROUT,ZDA,ZBILL,RCOMMENT,TCOMM
+ S RCOMMENT=0
+ S IEN=+$P(RCIENS,U,1)
+ ; Validate the selection
+ I IEN=0 D  G COMQ
+ . W !,"Cannot comment, no record in file ELECTRONIC REMITTANCE ADVICE file selected." D WAIT^VALM1
+ S SEQ=$P(^RCY(344.49,IEN,1,+$P(RCIENS,U,2),0),U,9) ; Just grab the first sequence number for the comment.
+ I $G(SEQ)="" D  G COMQ
+ . W !,"Cannot comment, no ERA detail record selected." D WAIT^VALM1
+ I $G(^RCY(344.4,IEN,1,SEQ,0))']"" D  G COMQ
+ . W !,"Cannot comment, ERA detail record selected not found." D WAIT^VALM1
+ ;
+ ; Allow user to put comment on this ERA Detail record
+ S ZDA=SEQ,ZDA(1)=IEN,ZBILL=$P($$GETBILL^RCDPESR0(.ZDA),"-",2)
+ W !,"Enter a comment on ERA #"_IEN_"  ERA Detail Seq #",SEQ,"  Bill #",ZBILL,!
+ S DIE="^RCY(344.4,"_IEN_",1,",DA=SEQ,DA(1)=IEN,DR="4Comment" D ^DIE G:$D(DTOUT)!$D(Y) COMQ
+ ; Now file user (DUZ) and DATE
+ K DR
+ ; If DA is not defined then the user deleted the comment with an @,
+ ; Delete the user and date too.
+ S TCOMM=$$GET1^DIQ(344.41,SEQ_","_IEN_",",4,"E")
+ I TCOMM="" S DA=SEQ,DA(1)=IEN,DR="4.01////@;4.02////@;"
+ E  S DR="4.01////"_$$DT^XLFDT_";4.02////"_$G(DUZ)_";"
+ D ^DIE
+ S RCOMMENT=1
+ D WAIT^VALM1
+ ;
+COMQ I RCOMMENT D INIT^RCDPEAA2(RCIENS) ; 
+ S VALMBCK="R"
+ Q

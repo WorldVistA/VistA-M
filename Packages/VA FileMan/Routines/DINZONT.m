@@ -1,6 +1,10 @@
 DINZONT ;SFISC/AC - SETS UP ^%ZOSF FOR Open M for NT ;2:45 PM  1 Oct 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K ^%ZOSF("MASTER"),^%ZOSF("SIGNOFF")
  F I=1:2 S Z=$P($T(Z+I),";;",2) Q:Z=""  S X=$P($T(Z+1+I),";;",2,99) S ^%ZOSF(Z)=X
  S ^%ZOSF("OS")="CACHE/OpenM^18"

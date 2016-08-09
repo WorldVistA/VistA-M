@@ -1,10 +1,15 @@
-DIIS ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%ZIS' IF YOU DON'T HAVE A '%ZIS' ROUTINE ;11:04 AM  18 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIIS ;SFISC/GFT-DELETE THIS LINE AND SAVE AS '%ZIS' IF YOU DON'T HAVE A '%ZIS' ROUTINE ;27OCT2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 %ZIS ;
  I $D(IOP)#2 S IO=$I G PARAMS
  S IO=$I ;READ "DEVICE: ",IO ;INSERT DEVICE SELECTION HERE
 PARAMS S IOM=80,IOSL=24,IOF="#",IOPAR="",POP=0,ION=$P(IO,";"),IOT="TRM"
+ S IO(0)=$P,IOBS="$C(8)"
  ;
  ; DIISS uses the variable IOST to determine what to set the screen
  ; handling variables to.  (See routine DIISS.)  DIISS currently
@@ -20,3 +25,11 @@ PARAMS S IOM=80,IOSL=24,IOF="#",IOPAR="",POP=0,ION=$P(IO,";"),IOT="TRM"
  S IOST="C-VT100"
  S IOXY="W $C(27,91)_(DY+1)_$C(59)_(DX+1)_$C(72)"
  Q
+ ;
+ ;
+ ;
+REWIND(IO2,IOT,IOPAR) ;Rewind Device
+ Q 0
+ ;
+HOME ;called from DDFIX,DDMP2,DDSCLONE,DIAR,DIARR,DIARR5,DIARX,DIFGO
+ S IO=$I G PARAMS

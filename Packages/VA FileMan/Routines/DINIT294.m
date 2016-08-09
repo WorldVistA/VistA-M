@@ -1,6 +1,10 @@
-DINIT294 ;SFISC/MKO-FORM AND BLOCK FILES ;1:30 PM  21 Apr 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT294 ;SFISC/MKO-FORM AND BLOCK FILES ;18JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT295
 Q Q
@@ -72,22 +76,24 @@ Q Q
  ;;=If the multiple has no index, or you wish to display the subentries
  ;;^DD(.4032,6,21,7,0)
  ;;=in record number order, enter !IEN.
- ;;^DD(.4032,6,"DT")
- ;;=2940503
+ ;;^DD(.4032,6,21,8,0)
+ ;;=  LEAVE THIS VALUE EMPTY IF YOU WANT TO ENTER 'COMPUTED MULTIPLE' CODE TO DO THE SELECTION
  ;;^DD(.4032,7,0)
- ;;=INITIAL POSITION^S^f:FIRST;l:LAST;n:NEW;^2;3^Q
+ ;;=INITIAL POSITION^S^f:FIRST;l:LAST;n:NEW;u:USER'S LAST^2;3^Q
+ ;;^DD(.4032,7,3)
+ ;;=Enter the initial position within the repeating block; f(FIRST), l(LAST), n(NEW), or u(USER'S LAST). 
  ;;^DD(.4032,7,21,0)
  ;;=^^5^5^2940908^
  ;;^DD(.4032,7,21,1,0)
  ;;=This is the position in the list where the cursor should initially rest
  ;;^DD(.4032,7,21,2,0)
- ;;=when the user first navigates to the repeating block.  Possible values are
+ ;;=when the user first navigates to the repeating block.  NEW indicates that
  ;;^DD(.4032,7,21,3,0)
- ;;=FIRST, LAST, and NEW, where NEW indicates that the cursor should initially
+ ;;=the cursor should initially rest on the blank line at the end of the list.  
  ;;^DD(.4032,7,21,4,0)
- ;;=rest on the blank line at the end of the list.  The default INITIAL
+ ;;=USER'S LAST is the last choice that the User has made for this file -- what  
  ;;^DD(.4032,7,21,5,0)
- ;;=POSITION is FIRST.
+ ;;=would be retrieved by the SPACE-BAR.  The default INITIAL POSITION is FIRST.
  ;;^DD(.4032,7,"DT")
  ;;=2940503
  ;;^DD(.4032,8,0)
@@ -176,3 +182,27 @@ Q Q
  ;;=different post-action.
  ;;^DD(.4032,12,"DT")
  ;;=2930610
+ ;;^DD(.4032,98,0)
+ ;;=COMPUTED MULTIPLE^K^^COMP MUL;E1,999^D ^DIM
+ ;;^DD(.4032,98,3)
+ ;;=Enter valid MUMPS code
+ ;;^DD(.4032,98,21,0)
+ ;;=^^4^4^3160118^
+ ;;^DD(.4032,98,21,1,0)
+ ;;=This MUMPS code will display a list of the values of the .01 field 
+ ;;^DD(.4032,98,21,2,0)
+ ;;=of the File being edited.  The code must Xecute the DICMX variable 
+ ;;^DD(.4032,98,21,3,0)
+ ;;=with D0 set to the IEN of the entry to be displayed.  
+ ;;^DD(.4032,98,21,4,0)
+ ;;=The code is automatically generated for a record selection page.
+ ;;^DD(.4032,98.1,0)
+ ;;=COMPUTED MUL PTR^NJ13,9^^COMP MUL PTR;E1,999^K:+$P(X,"E")'=X X
+ ;;^DD(.4032,98.1,3)
+ ;;=Enter a number with up to 13 digits and 9 decimal places
+ ;;^DD(.4032,98.1,21,0)
+ ;;=^^2^2^3160118^
+ ;;^DD(.4032,98.1,21,1,0)
+ ;;=The field contains the File# of the file from which the Computed Multiple values 
+ ;;^DD(.4032,98.1,21,2,0)
+ ;;=are retrieved (usually the file being edited by the Form).

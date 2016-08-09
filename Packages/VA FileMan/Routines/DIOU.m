@@ -1,6 +1,10 @@
 DIOU ;SFISC/TKW-GENERIC FILEMAN CODE GENERATION UTILITIES ;03:57 PM  5 Dec 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 BIJ(S,F,I,J) ;BUILD I & J ARRAY.  S=(SUB)FILE#, F=FIELD#
  N X,Y,% S X=0,(Y,J(0))=S F  Q:'$D(^DD(Y,0,"UP"))  S X=X+1,Y=^("UP")
  I X=0 G X

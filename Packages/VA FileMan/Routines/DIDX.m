@@ -1,6 +1,10 @@
-DIDX ;SFISC/XAK-BRIEF DD ;06:18 PM  20 Mar 2001
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIDX ;SFISC/XAK-BRIEF DD ;25SEP2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S D1=D0,DINM=1,DDRG=1,DDL1=14,DDL2=32 G B
  ;
 L S DJ(Z)=0
@@ -12,9 +16,12 @@ A I DIDX D  G:D1>0 A:^DD(F(Z),"B",DJ(Z),D1)
 B I $D(DIGR),D1-.01!'DID X DIGR E  G END
  S N=^DD(F(Z),D1,0) D HD:$Y+9>IOSL Q:M=U  W !!?Z+Z-2,$P(N,U,1),?30,S,F(Z),",",D1,S,S
  S X=$P(N,U,2) I X W ?M,$J(+X,8) I $D(^DD(+X,.01,0)),$P(^(0),U,2)["W" W "  WORD-PROCESSING" S X=""
- W ?M,S,S F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","VARIABLE POINTER","K","p" I X[$E(W) S:W="K" W="MUMPS" S:W="p" W="POINTER" D W1 I X["V" D VP0
- G T:X'["P"!X S Y=$P(N,U,3) I Y]"",@("$D(^"_Y_"0))") S W="TO "_$P(^(0),U,1)_" FILE (#"_+$P(X,"P",2)_")" D W1 G T
- S W="***** TO A FILE THAT IS UNDEFINED *******" D W1
+ W ?M,S,S F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","VARIABLE POINTER","K","p","m" I X[$E(W) S:W="K" W="MUMPS" S:W="p" W="POINTER" S:W="m" W="MULTIPLE" D W1 I X["V" D VP0
+ I 'X D
+ .N Y,NM S:X["P" Y=U_$P(N,U,3),NM=+$P(X,"P",2) I X["C" S NM=+$P(X,"p",2) I NM S Y=$G(^DIC(NM,0,"GL"))
+ .Q:'$D(Y)  I Y[U,$D(@(Y_"0)")) S W="TO "_$P(^(0),U)_" FILE (#"_NM_")"
+ .E  S W="***** TO A FILE THAT IS UNDEFINED *******"
+ .D W1
 T ;
  S W=0
 H ;

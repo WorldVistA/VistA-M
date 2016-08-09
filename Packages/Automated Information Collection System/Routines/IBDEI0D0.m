@@ -1,144 +1,274 @@
-IBDEI0D0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0D0 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5964,1,3,0)
- ;;=3^Photocontact Dermatitis
- ;;^UTILITY(U,$J,358.3,5964,1,4,0)
- ;;=4^L56.2
- ;;^UTILITY(U,$J,358.3,5964,2)
- ;;=^5009216
- ;;^UTILITY(U,$J,358.3,5965,0)
- ;;=L56.3^^30^385^268
- ;;^UTILITY(U,$J,358.3,5965,1,0)
+ ;;^UTILITY(U,$J,358.3,13009,1,4,0)
+ ;;=4^G10.
+ ;;^UTILITY(U,$J,358.3,13009,2)
+ ;;=^5003751^
+ ;;^UTILITY(U,$J,358.3,13010,0)
+ ;;=G30.8^^58^675^1
+ ;;^UTILITY(U,$J,358.3,13010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5965,1,3,0)
- ;;=3^Solar Urticaria
- ;;^UTILITY(U,$J,358.3,5965,1,4,0)
- ;;=4^L56.3
- ;;^UTILITY(U,$J,358.3,5965,2)
- ;;=^5009217
- ;;^UTILITY(U,$J,358.3,5966,0)
- ;;=L57.0^^30^385^12
- ;;^UTILITY(U,$J,358.3,5966,1,0)
+ ;;^UTILITY(U,$J,358.3,13010,1,3,0)
+ ;;=3^Alzheimer's Disease NEC
+ ;;^UTILITY(U,$J,358.3,13010,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,13010,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,13011,0)
+ ;;=A81.89^^58^675^5
+ ;;^UTILITY(U,$J,358.3,13011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5966,1,3,0)
- ;;=3^Actinic Keratosis
- ;;^UTILITY(U,$J,358.3,5966,1,4,0)
- ;;=4^L57.0
- ;;^UTILITY(U,$J,358.3,5966,2)
- ;;=^66900
- ;;^UTILITY(U,$J,358.3,5967,0)
- ;;=L60.0^^30^385^161
- ;;^UTILITY(U,$J,358.3,5967,1,0)
+ ;;^UTILITY(U,$J,358.3,13011,1,3,0)
+ ;;=3^Atypical Virus Infections of CNS NEC
+ ;;^UTILITY(U,$J,358.3,13011,1,4,0)
+ ;;=4^A81.89
+ ;;^UTILITY(U,$J,358.3,13011,2)
+ ;;=^5000413
+ ;;^UTILITY(U,$J,358.3,13012,0)
+ ;;=G20.^^58^675^69
+ ;;^UTILITY(U,$J,358.3,13012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5967,1,3,0)
- ;;=3^Ingrowing Nail
- ;;^UTILITY(U,$J,358.3,5967,1,4,0)
- ;;=4^L60.0
- ;;^UTILITY(U,$J,358.3,5967,2)
- ;;=^5009234
- ;;^UTILITY(U,$J,358.3,5968,0)
- ;;=L60.1^^30^385^234
- ;;^UTILITY(U,$J,358.3,5968,1,0)
+ ;;^UTILITY(U,$J,358.3,13012,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,13012,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,13012,2)
+ ;;=^5003770^
+ ;;^UTILITY(U,$J,358.3,13013,0)
+ ;;=G23.1^^58^675^73
+ ;;^UTILITY(U,$J,358.3,13013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5968,1,3,0)
- ;;=3^Onycholysis
- ;;^UTILITY(U,$J,358.3,5968,1,4,0)
- ;;=4^L60.1
- ;;^UTILITY(U,$J,358.3,5968,2)
- ;;=^186837
- ;;^UTILITY(U,$J,358.3,5969,0)
- ;;=L60.2^^30^385^233
- ;;^UTILITY(U,$J,358.3,5969,1,0)
+ ;;^UTILITY(U,$J,358.3,13013,1,3,0)
+ ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
+ ;;^UTILITY(U,$J,358.3,13013,1,4,0)
+ ;;=4^G23.1
+ ;;^UTILITY(U,$J,358.3,13013,2)
+ ;;=^5003780
+ ;;^UTILITY(U,$J,358.3,13014,0)
+ ;;=F03.91^^58^675^17
+ ;;^UTILITY(U,$J,358.3,13014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5969,1,3,0)
- ;;=3^Onychogryphosis
- ;;^UTILITY(U,$J,358.3,5969,1,4,0)
- ;;=4^L60.2
- ;;^UTILITY(U,$J,358.3,5969,2)
- ;;=^5009235
- ;;^UTILITY(U,$J,358.3,5970,0)
- ;;=L60.3^^30^385^170
- ;;^UTILITY(U,$J,358.3,5970,1,0)
+ ;;^UTILITY(U,$J,358.3,13014,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,13014,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,13014,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,13015,0)
+ ;;=F03.90^^58^675^19
+ ;;^UTILITY(U,$J,358.3,13015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5970,1,3,0)
- ;;=3^Nail Dystrophy
- ;;^UTILITY(U,$J,358.3,5970,1,4,0)
- ;;=4^L60.3
- ;;^UTILITY(U,$J,358.3,5970,2)
- ;;=^5009236
- ;;^UTILITY(U,$J,358.3,5971,0)
- ;;=L60.4^^30^385^88
- ;;^UTILITY(U,$J,358.3,5971,1,0)
+ ;;^UTILITY(U,$J,358.3,13015,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,13015,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,13015,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,13016,0)
+ ;;=F02.81^^58^675^40
+ ;;^UTILITY(U,$J,358.3,13016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5971,1,3,0)
- ;;=3^Beau's Lines
- ;;^UTILITY(U,$J,358.3,5971,1,4,0)
- ;;=4^L60.4
- ;;^UTILITY(U,$J,358.3,5971,2)
- ;;=^5009237
- ;;^UTILITY(U,$J,358.3,5972,0)
- ;;=L60.5^^30^385^290
- ;;^UTILITY(U,$J,358.3,5972,1,0)
+ ;;^UTILITY(U,$J,358.3,13016,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13016,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,13016,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,13017,0)
+ ;;=F02.80^^58^675^41
+ ;;^UTILITY(U,$J,358.3,13017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5972,1,3,0)
- ;;=3^Yellow Nail Syndrome
- ;;^UTILITY(U,$J,358.3,5972,1,4,0)
- ;;=4^L60.5
- ;;^UTILITY(U,$J,358.3,5972,2)
- ;;=^5009238
- ;;^UTILITY(U,$J,358.3,5973,0)
- ;;=L60.8^^30^385^168
- ;;^UTILITY(U,$J,358.3,5973,1,0)
+ ;;^UTILITY(U,$J,358.3,13017,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob ALZHEIMER'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13017,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,13017,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,13018,0)
+ ;;=G31.84^^58^675^56
+ ;;^UTILITY(U,$J,358.3,13018,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5973,1,3,0)
- ;;=3^Nail Disorders NEC
- ;;^UTILITY(U,$J,358.3,5973,1,4,0)
- ;;=4^L60.8
- ;;^UTILITY(U,$J,358.3,5973,2)
- ;;=^5009239
- ;;^UTILITY(U,$J,358.3,5974,0)
- ;;=L62.^^30^385^169
- ;;^UTILITY(U,$J,358.3,5974,1,0)
+ ;;^UTILITY(U,$J,358.3,13018,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t ALZHEIMER'S DISEASE
+ ;;^UTILITY(U,$J,358.3,13018,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,13018,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,13019,0)
+ ;;=F02.81^^58^675^24
+ ;;^UTILITY(U,$J,358.3,13019,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5974,1,3,0)
- ;;=3^Nail Disorders in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,5974,1,4,0)
- ;;=4^L62.
- ;;^UTILITY(U,$J,358.3,5974,2)
- ;;=^5009241
- ;;^UTILITY(U,$J,358.3,5975,0)
- ;;=L64.9^^30^385^33
- ;;^UTILITY(U,$J,358.3,5975,1,0)
+ ;;^UTILITY(U,$J,358.3,13019,1,3,0)
+ ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13019,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,13019,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,13020,0)
+ ;;=F02.80^^58^675^25
+ ;;^UTILITY(U,$J,358.3,13020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5975,1,3,0)
- ;;=3^Androgenic Alopecia,Unspec
- ;;^UTILITY(U,$J,358.3,5975,1,4,0)
- ;;=4^L64.9
- ;;^UTILITY(U,$J,358.3,5975,2)
- ;;=^5009249
- ;;^UTILITY(U,$J,358.3,5976,0)
- ;;=L65.9^^30^385^231
- ;;^UTILITY(U,$J,358.3,5976,1,0)
+ ;;^UTILITY(U,$J,358.3,13020,1,3,0)
+ ;;=3^Major Neurocog D/O d/t ANOTHER MED COND w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13020,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,13020,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,13021,0)
+ ;;=G31.84^^58^675^57
+ ;;^UTILITY(U,$J,358.3,13021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5976,1,3,0)
- ;;=3^Nonscarring Hair Loss,Unspec
- ;;^UTILITY(U,$J,358.3,5976,1,4,0)
- ;;=4^L65.9
- ;;^UTILITY(U,$J,358.3,5976,2)
- ;;=^5009252
- ;;^UTILITY(U,$J,358.3,5977,0)
- ;;=L70.0^^30^385^6
- ;;^UTILITY(U,$J,358.3,5977,1,0)
+ ;;^UTILITY(U,$J,358.3,13021,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t ANOTHER MEDICAL CONDITION
+ ;;^UTILITY(U,$J,358.3,13021,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,13021,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,13022,0)
+ ;;=A81.01^^58^675^9
+ ;;^UTILITY(U,$J,358.3,13022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5977,1,3,0)
- ;;=3^Acne Vulgaris
- ;;^UTILITY(U,$J,358.3,5977,1,4,0)
- ;;=4^L70.0
- ;;^UTILITY(U,$J,358.3,5977,2)
- ;;=^5009268
- ;;^UTILITY(U,$J,358.3,5978,0)
- ;;=L70.1^^30^385^1
- ;;^UTILITY(U,$J,358.3,5978,1,0)
+ ;;^UTILITY(U,$J,358.3,13022,1,3,0)
+ ;;=3^Creutzfeldt-Jakob Disease,Variant
+ ;;^UTILITY(U,$J,358.3,13022,1,4,0)
+ ;;=4^A81.01
+ ;;^UTILITY(U,$J,358.3,13022,2)
+ ;;=^336701
+ ;;^UTILITY(U,$J,358.3,13023,0)
+ ;;=F05.^^58^675^13
+ ;;^UTILITY(U,$J,358.3,13023,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13023,1,3,0)
+ ;;=3^Delirium d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,13023,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,13023,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,13024,0)
+ ;;=F05.^^58^675^14
+ ;;^UTILITY(U,$J,358.3,13024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13024,1,3,0)
+ ;;=3^Delirium d/t Multiple Etiologies
+ ;;^UTILITY(U,$J,358.3,13024,1,4,0)
+ ;;=4^F05.
+ ;;^UTILITY(U,$J,358.3,13024,2)
+ ;;=^5003052
+ ;;^UTILITY(U,$J,358.3,13025,0)
+ ;;=R41.0^^58^675^15
+ ;;^UTILITY(U,$J,358.3,13025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13025,1,3,0)
+ ;;=3^Delirium,Other Specified
+ ;;^UTILITY(U,$J,358.3,13025,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,13025,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,13026,0)
+ ;;=R41.0^^58^675^16
+ ;;^UTILITY(U,$J,358.3,13026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13026,1,3,0)
+ ;;=3^Delirium,Unspec
+ ;;^UTILITY(U,$J,358.3,13026,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,13026,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,13027,0)
+ ;;=G31.09^^58^675^20
+ ;;^UTILITY(U,$J,358.3,13027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13027,1,3,0)
+ ;;=3^Frontotemporal Disease
+ ;;^UTILITY(U,$J,358.3,13027,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,13027,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,13028,0)
+ ;;=F02.81^^58^675^36
+ ;;^UTILITY(U,$J,358.3,13028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13028,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13028,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,13028,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,13029,0)
+ ;;=F02.80^^58^675^37
+ ;;^UTILITY(U,$J,358.3,13029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13029,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13029,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,13029,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,13030,0)
+ ;;=F02.81^^58^675^42
+ ;;^UTILITY(U,$J,358.3,13030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13030,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13030,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,13030,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,13031,0)
+ ;;=F02.80^^58^675^43
+ ;;^UTILITY(U,$J,358.3,13031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13031,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13031,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,13031,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,13032,0)
+ ;;=G31.84^^58^675^58
+ ;;^UTILITY(U,$J,358.3,13032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13032,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
+ ;;^UTILITY(U,$J,358.3,13032,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,13032,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,13033,0)
+ ;;=F02.81^^58^675^26
+ ;;^UTILITY(U,$J,358.3,13033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13033,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13033,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,13033,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,13034,0)
+ ;;=F02.80^^58^675^27
+ ;;^UTILITY(U,$J,358.3,13034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13034,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,13034,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,13034,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,13035,0)
+ ;;=G31.84^^58^675^59
+ ;;^UTILITY(U,$J,358.3,13035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13035,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t HIV INFECTION
+ ;;^UTILITY(U,$J,358.3,13035,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,13035,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,13036,0)
+ ;;=F02.81^^58^675^28
+ ;;^UTILITY(U,$J,358.3,13036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13036,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb

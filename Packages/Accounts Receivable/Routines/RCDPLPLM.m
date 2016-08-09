@@ -1,6 +1,6 @@
-RCDPLPLM ;WISC/RFJ-link payments listmanager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,208**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPLPLM ;WISC/RFJ - link payments listmanager top routine ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,208,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N RCFCHECK,RCFTRACE,RCFCREDT,RCDPFXIT
  N %,%DT,%H,%I,RCDPPADT,X,Y
@@ -55,7 +55,7 @@ INIT ;  initialization for list manager list
  .   .   ;  receipt number
  .   .   D SET($P(RECDATA,"^"),RCLINE,6,18)
  .   .   ;  transaction number
- .   .   D SET($J(RCTRANDA,5),RCLINE,18,24)
+ .   .   D SET($J(RCTRANDA,5),RCLINE,20,24)
  .   .   ;  unapplied deposit number
  .   .   D SET($J($$GETUNAPP^RCXFMSCR(RCRECTDA,RCTRANDA,0),13),RCLINE,26,39)
  .   .   ;  receipt status

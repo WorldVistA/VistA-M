@@ -1,6 +1,10 @@
 DIPT ;SFISC/XAK,TKW-DISPLAY PRINT OR SORT TEMPLATE ;3DEC2008
- ;;22.0;VA FileMan;**157**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  N DS,DIWD,D,DRK,J,D9,Y,L,DA
  Q:'$D(^DIPT(D0,0))  S (DRK,J(0))=$P(^(0),U,4),L=0,DS(1)=0,D(L)="0FIELD",D9="",Y=2
  F DS(1)=0:0 S DS(1)=$O(^DIPT(D0,"F",DS(1))) Q:DS(1)=""  S DY=^(DS(1)) D Y

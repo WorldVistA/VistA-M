@@ -1,6 +1,10 @@
-DITR1 ;SFISC/GFT-FIND ENTRY MATCHES ;9:20 AM  15 Jun 2001
- ;;22.0;VA FileMan;**41**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DITR1 ;SFISC/GFT-FIND ENTRY MATCHES ;18-MAR-2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S W=DMRG,X=$P(Z,U),%=DFL\2,Y=@("D"_%),A=1 S:$G(DIFRDKP) DIFRNOAD=$D(@DIFRSA@("^DD",DIFRFILE,DDT(DTL),.01,0))
  N DIMATCH S DIMATCH=0
  G WORD:$P(^DD(DDT(DTL),.01,0),U,2)["W",Q:X="",ON:'W
@@ -74,9 +78,9 @@ P S A=$P(^DD(DIFL,DIREC,0),U,4)
  S %=$P(A,";",2),W=$P(A,";")
  I @("'$D("_$S('$D(B):DTO(DTL)_"Y,",DFL:DFR(DFL)_"DFN(DFL),",1:DFR(1))_"W))") S W="" Q
  I % S W=$P(^(W),U,%)
- E  S W=$E(^(W),+$E(W,2,9),$P(W,",",2))
+ E  S W=$E(^(W),+$E(%,2,9),$P(%,",",2))
  Q:DIKEY
- I %["F",W?.E1L.E F %=1:1:$L(W) I $E(W,%)?1L S W=$E(W,0,%-1)_$C($A(W,%)-32)_$E(W,%+1,999)
+UP I %["F" S W=$$UP^DILIBF(W)
  Q
  ;
 MATCHKEY(DIKEY,V,A,DIMATCH) ; Match Primary Key fields

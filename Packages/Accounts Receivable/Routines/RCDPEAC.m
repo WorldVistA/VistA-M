@@ -1,15 +1,15 @@
 RCDPEAC ;ALB/TMK/PJH - ACTIVE BILLS WITH EEOB ON FILE ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**208,269,276,298,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; Entry point for Active Bills With EEOB Report [RCDPE ACTIVE WITH EEOB REPORT]
- N %ZIS,CHAM,HDR,POP,RCCT,RCDISPTY,RCHDR,RCINS,RCLSTMGR,RCPGNUM,RCSORT,RCSTOP,RCTMPND,TRIC,VAUTD,X,Y
- N START,END
- ; PRCA*4.5*276 - Query Division
+ N %ZIS,DTOUT,DUOUT,CHAM,HDR,POP,RCCT,RCDISPTY,RCHDR,RCINS,RCLSTMGR,RCPGNUM,RCSORT,RCSTOP,RCTMPND,TRIC,VAUTD,X,Y
+ N START,END,RCZRO,RCMDRX
+ ; PRCA*4.5*276 - IA 1077 - Query Division
  D DIVISION^VAUTOMA
  I 'VAUTD&($D(VAUTD)'=11) Q
  ; PRCA*4.5*276 - select report format
- Q:'$$SELECT(.RCINS,.RCSORT)
+ Q:'$$SELECT(.RCINS,.RCSORT,.RCZRO,.RCMDRX)
  ;
  S RCTMPND="",RCPGNUM=0,RCSTOP=0
  I RCLSTMGR D  G ENOUT
@@ -37,7 +37,7 @@ ENQ ; Queued entry point for the report
  ; RCSORT = "PN" for sort by patient name followed by ;- if reverse order
  ;          "L4" for sort by patient SSN followed by ;- if reverse order
  ;
- N RC0,RC399,RC430,RCACT,RCBILL,RCEOB,RCEX,RCEXT,RCNEW,RCPT,RCSSN,RCSTOP,RCTOT,RCZ,RCZ0,RCZ1,X,Y,Z,Z0
+ N RC0,RC399,RC399M1,RC430,RCACT,RCBILL,RCEIEN,RCEOB,RCEX,RCEXT,RCNEW,RCPT,RCSSN,RCSTOP,RCTOT,RCZ,RCZ0,RCZ1,X,Y,Z,Z0
  N POSTDT,SN
  K ^TMP($J,"RCSORT")
  S RCCT=0 ;Page count for List Manager
@@ -48,11 +48,14 @@ ENQ ; Queued entry point for the report
  G:'RCACT ENOUT
  ;
  I 'RCLSTMGR D HDRLST^RCDPEARL(0,.RCHDR)  ; initial report header
- S RCBILL=0
- F  S RCBILL=$O(^PRCA(430,"AC",RCACT,RCBILL)) Q:RCBILL=""  I +$G(^PRCA(430,RCBILL,7))>0,$$INCLUDE(.RCINS,RCBILL,TRIC,CHAM),$$EEOB(RCBILL,.RCEOB) D
- . S (RCTOT,RCEOB,SN)=0 F  S RCEOB=$O(RCEOB(RCEOB)) Q:'RCEOB  F  S SN=$O(RCEOB(RCEOB,SN))  Q:'SN  D
- . . I $$DATE(RCEOB,START,END) S RCTOT=RCTOT+$G(^IBM(361.1,RCEOB,1)),^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL,+RCEOB(RCEOB,SN)_"_"_RCEOB_"_"_SN,RCEOB)=""
- . . I $O(RCEOB(0)) S ^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL)=RCTOT   ;This is from the eob and will be the same for each line
+ S RCBILL=0,RCDT=START-.0001
+ ; PRCA*4.5*303 - Changed loop to use the "AD" index on 361.1 so that the number of records checked is limited by
+ ; the START and END dates of when the EEOB was recieved in VistA
+ F  S RCDT=$O(^IBM(361.1,"AD",RCDT)) Q:(RCDT>END)!(RCDT="")  D
+ . S RCEIEN="" F  S RCEIEN=$O(^IBM(361.1,"AD",RCDT,RCEIEN)) Q:RCEIEN=""  S RCBILL=$P(^IBM(361.1,RCEIEN,0),U,1) I ($P(^PRCA(430,RCBILL,0),U,8)=RCACT),$$INCLUDE(.RCINS,RCBILL,TRIC,CHAM),$$EEOB(RCBILL,.RCEOB,RCZRO) D
+ . . S (RCTOT,RCEOB,SN)=0 F  S RCEOB=$O(RCEOB(RCEOB)) Q:'RCEOB  F  S SN=$O(RCEOB(RCEOB,SN))  Q:'SN  D
+ . . . S RCTOT=RCTOT+$G(^IBM(361.1,RCEOB,1)),^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL,+RCEOB(RCEOB,SN)_"_"_RCEOB_"_"_SN,RCEOB)=$P(RCEOB(RCEOB,SN),U,2) ; PRCA*4.5.303 add ERA PD AMOUNT
+ . . . I $O(RCEOB(0)) S ^TMP($J,"RCSORT",$$INSNM(RCBILL),$$SL1(RCSORT,RCBILL),RCBILL)=RCTOT   ;This is from the eob and will be the same for each line
  ;
  S RCZ="",(RCSTOP,RCNEW)=0
  F  S RCZ=$O(^TMP($J,"RCSORT",RCZ)) Q:RCZ=""!RCSTOP  D  S:($G(RCINS)="R")!($G(RCINS)="S")&(RCPGNUM>1) RCNEW=1
@@ -63,10 +66,12 @@ ENQ ; Queued entry point for the report
  ;
  I '$D(^TMP($J,"RCSORT")) S $P(Z," ",25)="",Z=Z_"*** NO RECORDS TO PRINT ***" D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  I $D(^TMP($J,"RCSORT")),'RCSTOP D SL^RCDPEARL($$ENDORPRT^RCDPEARL,.RCCT,RCTMPND)
+ ; PRCA*4.5*303 - If regular report (no listmanager or queued) ask user to quit
+ I 'RCSTOP,'RCLSTMGR,'$D(ZTQUEUED) D ASK^RCDPEARL(.RCSTOP)
  ;
 ENOUT I $D(ZTQUEUED) S ZTREQ="@"
  I '$D(ZTQUEUED) D ^%ZISC
- K ^TMP($J,"RCSORT")
+ K ^TMP($J,"RCSORT"),RCDT
  Q
  ;
 OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
@@ -74,11 +79,15 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  ; RCINS = insurance co info array
  ; RCSTOP passed by ref - returned if user chooses to stop
  ; RCNEW = 1 if the header should be forced to print
+ N ZZ,RCEPD
  S RCBILL=0 F  S RCBILL=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL)) Q:'RCBILL!RCSTOP  S RCZ1="" F  S RCZ1=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1)) Q:RCZ1=""!RCSTOP  D
  . I $D(ZTQUEUED),$$S^%ZTLOAD S (RCSTOP,ZTSTOP)=1 K ZTREQ I +$G(RCSTOP) W !!,"***TASK STOPPED BY USER***" Q
- . S RC399=$G(^DGCR(399,RCBILL,0)),RCPT=+$P(RC399,U,2),RC430=$G(^PRCA(430,RCBILL,0))   ;RC430 is from the top level
+ . ; IA 1992 - BILL/CLAIMS file (#399)
+ . S RC399=$G(^DGCR(399,RCBILL,0)),RC399M1=$G(^DGCR(399,RCBILL,"M1")),RCPT=+$P(RC399,U,2),RC430=$G(^PRCA(430,RCBILL,0))   ;RC430 is from the top level
  . ; PRCA*4.5*276 - Check for Division
  . I VAUTD=0 Q:$P(RC399,U,22)=""  Q:$G(VAUTD($P(RC399,U,22)))=""
+ . ; PRCA*$.5*303 Check for medical or pharmacy claims, don't check further if we are reporting both
+ . I RCMDRX'="B" S ZZ=$S((RCMDRX="P")&($P(RC399M1,U,8)'=""):1,(RCMDRX="M")&($P(RC399M1,U,8)=""):1,1:0) Q:ZZ=0
  . S RCSTOP=$$NEWPG(.RCINS,RCNEW) S RCNEW=0 Q:RCSTOP
  . S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
  . S X=$$GET1^DIQ(430,RCBILL_",",11)
@@ -95,15 +104,15 @@ OUTPUT(RCZ,RCZ0,RCSORT,RCSTOP,RCINS,RCNEW) ; Output the data
  .. S Z=$E($$INSNM(RCBILL)_$J("",30),1,30)_$E($J("",12)_$J(+X,"",2),1+$L($J(+X,"",2)),12+$L($J(+X,"",2)))_$E($J("",13)_$J(+$P(RC430,U,3),"",2),1+$L($J(+$P(RC430,U,3),"",2)),13+$L($J(+$P(RC430,U,3),"",2)))_$E($J("",13),1,13-$L(Y))_$J(Y,"",2)
  .. D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . ; PRCA*4.5*276 Do not display Date Referred
- . S RCEOB=0 F  S RCEOB=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) Q:'RCEOB!RCSTOP  D
+ . S RCEOB=0,RCEPD="" F  S RCEOB=$O(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) Q:'RCEOB!RCSTOP  S RCEPD=$G(^TMP($J,"RCSORT",RCZ,RCZ0,RCBILL,RCZ1,RCEOB)) D
  .. S RCSTOP=$$NEWPG(.RCINS,RCNEW)
  .. Q:RCSTOP
  .. S RC0=$G(^IBM(361.1,RCEOB,0))
  .. S RCSTOP=$$NEWPG(.RCINS,RCNEW) Q:RCSTOP
  .. ; PRCA*4.5*276 - Row #3: Trace#, Date Rec'd, Date Posted
- .. I $G(RCDISPTY) W !,RCEX_"^"_$P(RC0,U,7)_"^"_$$FMTE^XLFDT($P(RC0,U,5),"2D")_"^"_$S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")
+ .. I $G(RCDISPTY) W !,RCEX_"^"_$P(RC0,U,7)_"^"_$$FMTE^XLFDT($P(RC0,U,5),"2D")_"^"_$S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_"^"_RCEPD
  .. E  D
- ... S Z="  "_$P(RC0,U,7)_$J("",51-$L($P(RC0,U,7)))_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_" "_$E($S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_$J("",8),1,8)
+ ... S Z="  "_$P(RC0,U,7)_$J("",50-$L($P(RC0,U,7)))_$J(RCEPD,10,2)_" "_$E($$FMTE^XLFDT($P(RC0,U,5),"2D")_$J("",8),1,8)_" "_$E($S(RCZ1:$$FMTE^XLFDT(+RCZ1,"2D"),1:"")_$J("",8),1,8)
  ... D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  . I '$G(RCDISPTY) S Z="" D SL^RCDPEARL(Z,.RCCT,RCTMPND)
  ;
@@ -152,23 +161,28 @@ NEWPG(RCINS,RCNEW) ; Check for new page needed, output header
  . D:'$G(RCDISPTY) HDRLST^RCDPEARL(.RCSTOP,.RCHDR)
  Q RCSTOP
  ;
-EEOB(RCZ,RCEOB) ; Find all non-MRA  EEOBs for bill ien RCZ
+EEOB(RCZ,RCEOB,RCZRO) ; Find all non-MRA  EEOBs for bill ien RCZ
  ; Function returns 1 if any valid EEOBs found, 0 if none
  ; RCEOB(eob ien)=date posted returned for valid EEOBs found -
  ;                pass by reference
- N OK,Z,Z0,Z1,Z00,DET,SN
+ N OK,Z,Z0,Z00,DET,SN,ZPD,ZINC
  K RCEOB
  ;
- S (Z,OK,SN)=0
+ S (Z,OK,SN,ZINC)=0
+ ; IA 4051 for File #361.1
  F  S Z=$O(^IBM(361.1,"B",RCZ,Z)) Q:'Z  I $P($G(^IBM(361.1,Z,0)),U,4)'=1 D
  . ; retrieve the EEOB data from ERA Detail sub-entry
  . S (Z0,DET)=0
  . F  S Z0=$O(^RCY(344.4,"ADET",Z,Z0)) Q:'Z0  F  S DET=$O(^RCY(344.4,"ADET",Z,Z0,DET)) Q:'DET  D  ; ERA Detail
- . . S Z1=0 I DET S Z1=+$P($G(^RCY(344.4,Z0,1,DET,4)),U,3)  ; Receipt at ERA Detail (EEOB)
- . . I 'Z1 S Z1=+$P($G(^RCY(344.4,Z0,0)),U,8)  ; Receipt from ERA Level (receipts will not exist for each EEOB at ERA DETAIL for ERAs that are not auto-posted)
- . . S Z00=$P($G(^RCY(344.4,Z0,0)),U,14)  ; ERA DETAIL POST STATUS (344.4, .14)
- . . ; if ERA DETAIL POST STATUS is POSTED, POSTED MANUALLY, OR PARTIAL and has a receipt then include on report
- . . I Z1,(Z00=1)!(Z00=2)!(Z00=5) S SN=SN+1,RCEOB(Z,SN)=+$P($G(^RCY(344,Z1,0)),U,8),OK=1
+ . . ; PRCA*4.5*303 - added check for Zero paid or Paid > 0 check for report.
+ . . S ZINC=0,ZPD=+$P($G(^RCY(344.4,Z0,1,DET,0)),U,3)
+ . . I (RCZRO="Z"),(ZPD=0) S ZINC=1
+ . . I (RCZRO="A"),(ZPD>0) S ZINC=1
+ . . ; PRCA*4.5*303 - Removed looking for Receipt, include record based on ERA DETAIL POST STATUS
+ . . S Z00=$P($G(^RCY(344.4,Z0,0)),U,14)
+ . . ; PRCA*4.5*303 - Removed check for Receipt (If Z1 is not empty) Changed date to Piece 7 and
+ . . ; added check for either 0 paid or paid >0 depending on selection. Added ERA PD AMOUNT as second piece of RCEOB array
+ . . I (ZINC)&((Z00=0)!(Z00=1)!(Z00=2)!(Z00=5)) S SN=SN+1,RCEOB(Z,SN)=+$P($G(^RCY(344.4,Z0,0)),U,7)_U_ZPD,OK=1
  ;
  Q OK
  ;
@@ -179,15 +193,7 @@ SL1(RCSORT,RCZ) ; Function returns 1st sort level data from ien RCZ in file 430
  I RCSORT="L4" S DAT=$P($G(^DPT(+$P($G(^PRCA(430,RCZ,0)),U,7),0)),U,9),DAT=$E(DAT,$L(DAT)-3,$L(DAT))
  Q $S($G(DAT)'="":DAT,1:" ")
  ;
-DATE(RCEOB,START,END) ;Check for date range PRCA*4.5*298
- N RECDT,OK
- S RC0=$G(^IBM(361.1,RCEOB,0))
- S RECDT=$P(RC0,U,5)\1
- S OK=0
- I RECDT'<START,RECDT'>END S OK=1
- Q OK
- ;
-SELECT(RCINS,RCSORT) ; Select insurance co and sort criteria and if output for EXCEL format is selected
+SELECT(RCINS,RCSORT,RCZRO,RCMDRX) ; Select insurance co, sort criteria, Zero Payment, Bill type (Med/RX) and if output for EXCEL format is selected
  ; Function returns values selected for RCSORT and RCINS - passed by ref
  N RCQUIT,DONE,DIR,X,Y,%DT
  S (RCQUIT,DONE,RCLSTMGR)=0
@@ -214,6 +220,16 @@ SELECT(RCINS,RCSORT) ; Select insurance co and sort criteria and if output for E
  . K DIR
  . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
  . S RCINS("TO")=Y
+ ; PRCA*4.5*303 - Add Zero $ Prompt and Medical/Pharmacy EEOBs Prompt
+ S DIR(0)="SA^A:ALL;Z:ZERO PAYMENT EEOBs",DIR("A")="RUN REPORT FOR (A)LL EEOBs or (Z)ERO PAYMENT EEOBs only: ",DIR("B")="ALL" W ! D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT) G SELQ
+ ;
+ S RCZRO=$E(Y,1)
+  S DIR(0)="SA^B:BOTH;M:MEDICAL;P:PHARMACY",DIR("A")="RUN REPORT FOR (M)EDICAL, (P)HARMACY OR (B)OTH: ",DIR("B")="BOTH" W ! D ^DIR K DIR
+ I $D(DTOUT)!$D(DUOUT) G SELQ
+ ;
+ S RCMDRX=$E(Y,1)
+ ;
  S DIR(0)="SA^P:PATIENT NAME;L:LAST 4 OF PATIENT SSN",DIR("A")="WITHIN INS CO, SORT BY (P)ATIENT NAME OR (L)AST 4 OF SSN?: ",DIR("B")="PATIENT NAME" W ! D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT) G SELQ
  S RCSORT=$S(Y="P":"PN",1:"L4")
@@ -224,12 +240,12 @@ SELECT(RCINS,RCSORT) ; Select insurance co and sort criteria and if output for E
  ; PRCA*4.5*298 - Add Date Range Prompts
  K DIR
  S DIR("?")="ENTER THE EARLIEST RECEIVED DATE TO INCLUDE ON THE REPORT"
- S DIR(0)="DAO^:"_DT_":APE",DIR("A")="START DATE (RECEIVED): " D ^DIR K DIR
+ S DIR(0)="DAO^:"_DT_":APE",DIR("A")="START DATE (RECEIVED): ",DIR("B")="T" D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") G SELQ
  S START=Y
  K DIR
  S DIR("?")="ENTER THE LATEST RECEIVED DATE TO INCLUDE ON THE REPORT"
- S DIR("B")=Y(0)
+ S DIR("B")="T"
  S DIR(0)="DAO^"_START_":"_DT_":APE",DIR("A")="END DATE (RECEIVED): " D ^DIR K DIR
  I $D(DTOUT)!$D(DUOUT)!(Y="") G SELQ
  S END=Y
@@ -280,7 +296,7 @@ HDRBLD ; create the report header
  ;
  I RCDISPTY D  Q  ; Excel format, xecute code is QUIT, null page number
  . S RCHDR(0)=1,RCHDR("XECUTE")="Q",RCPGNUM=""
- . S RCHDR(1)="PATIENT NAME^SSN^BILL#^INS CO NAME^BALANCE^AMT BILLE^AMT PAID^TRACE#^DT REC'D^DT POST"
+ . S RCHDR(1)="PATIENT NAME^SSN^BILL#^INS CO NAME^BALANCE^AMT BILLE^AMT PAID^TRACE#^DT REC'D^DT POST^ERA PD AMT"
  ;
  N MSG,DATE,Y,DIV,HCNT
  S RCHDR(1)=$$HDRNM,HCNT=1  ; line 1 will be replaced by XECUTE code below
@@ -294,13 +310,13 @@ HDRBLD ; create the report header
  I RCINS="S" S Z=0,Z0="" F  S Z=$O(RCINS("S",Z)) Q:'Z  S Z0=Z0_$S(Z0'="":",",1:"")_$P($G(^DIC(36,Z,0)),U)
  S Z0="PAYERS: "_$S(RCINS="A":"ALL   ",RCINS="R":"RANGE FROM "_RCINS("FR")_"-"_RCINS("TO"),1:"")_Z0
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0,Z0=""
- S Z0=Z0_"DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_" - "_$$FMTE^XLFDT(END,"2Z")_"   TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"   "_"CHAMPVA: "_$S(CHAM=1:"YES",1:"NO")
+ S Z0=Z0_"DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_"  TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"  CHAMPVA: "_$S(CHAM=1:"YES",1:"NO")_"  EEOBs: "_$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"BOTH")
  S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Z0)\2)_Z0
  ;
  S HCNT=HCNT+1,RCHDR(HCNT)=""
  S Y="PATIENT NAME               SSN    BILL#",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="INS CO NAME                        BALANCE   AMT BILLED        AMT PAID",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="   TRACE#                                             DT REC'D  DT POST",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="   TRACE#                                           ERA PD AMT  REC'D  DT POST",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y=$TR($J("",IOM)," ","="),HCNT=HCNT+1,RCHDR(HCNT)=Y
  S RCHDR(0)=HCNT
  Q
@@ -322,7 +338,7 @@ HDRLM ; create the list manager version of the report header
  K RCHDR S RCPGNUM=0,RCSTOP=0
  N MSG,DATE,Y,DIV,HCNT
  S RCHDR("TITLE")=$$HDRNM,RCHDR("XECUTE")="Q"
- S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_" - "_$$FMTE^XLFDT(END,"2Z")_"     TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"     CHAMPVA: "_$S(CHAM=1:"YES",1:"NO"),HCNT=1
+ S RCHDR(1)="DATE RANGE: "_$$FMTE^XLFDT(START,"2Z")_"-"_$$FMTE^XLFDT(END,"2Z")_"  TRICARE: "_$S(TRIC=1:"YES",1:"NO")_"  CHAMPVA: "_$S(CHAM=1:"YES",1:"NO")_"  EEOBs: "_$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"BOTH"),HCNT=1
  I VAUTD=1 S Y="DIVISIONS: ALL"
  I VAUTD=0 D
  . S Z0=0,Y="DIVISIONS: " F X=1:1 S Z0=$O(VAUTD(Z0)) Q:Z0=""  S:X>1 Y=Y_", " S Y=Y_VAUTD(Z0)
@@ -334,7 +350,7 @@ HDRLM ; create the list manager version of the report header
  ;
  S Y="PATIENT NAME               SSN    BILL#",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S Y="INS CO NAME                        BALANCE   AMT BILLED        AMT PAID",HCNT=HCNT+1,RCHDR(HCNT)=Y
- S Y="   TRACE#                                             DT REC'D  DT POST",HCNT=HCNT+1,RCHDR(HCNT)=Y
+ S Y="   TRACE#                                           ERA PD AMT  REC'D  DT POST",HCNT=HCNT+1,RCHDR(HCNT)=Y
  S RCHDR(0)=HCNT
  Q
  ;

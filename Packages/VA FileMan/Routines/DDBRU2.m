@@ -1,6 +1,10 @@
-DDBRU2 ;SFISC/DCL-BROWSE LOCAL OR GLOBAL ARRAY DDBROOT DESCENDANTS ;12:54 PM  20 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRU2 ;SFISC/DCL-BROWSE LOCAL OR GLOBAL ARRAY DDBROOT DESCENDANTS ;2AUG2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 EN N DDBNCC G CNTNU
 ROOT(DDBNCC,DDBRTOP,DDBRBOT) ; Browse Array Root Descendants ; DDBNCC node count check (default=1000)
@@ -28,7 +32,7 @@ BLD(DDBNCC,DDBROOT,DDBN) ;build structures
  S DDBNCC=$G(DDBNCC,1000)
  S DDBR1X=$$OREF^DIQGU(DDBROOT)
  N DDBR1,DDBR1A,DDBR1B,DDBR1I,DDBR1Q,DDBI,DDBII,DDBX,DDBX1,DDBX1L,DDBX2,DDBX2L,DDBX3,DDBX3L,DDBXT
- S DDBR1A=$$R^%RCR(DDBR1X),DDBR1Q=""""""
+ S DDBR1A=$$OREF^DIQGU($NA(@$$CREF^DIQGU(DDBR1X))),DDBR1Q=""""""
  I $L(DDBR1A,",")>1,$P(DDBR1A,",",$L(DDBR1A,","))]"" S DDBR1Q=$P(DDBR1A,",",$L(DDBR1A,",")),$P(DDBR1A,",",$L(DDBR1A,","))=""
  S DDBR1=DDBR1A_DDBR1Q_")",DDBR1B=$L(DDBR1A)+1,DDBX2=" = ",DDBX2L=$L(DDBX2),DDBII=0
  F DDBI=1:1 S DDBR1=$Q(@DDBR1) Q:$P(DDBR1,DDBR1A)]""!(DDBR1="")  D  Q:DDBII
@@ -71,6 +75,7 @@ HLP ;
  W !!,"Enter a valid local or global array root"
  W !,"Can not be ^TMP, ^TMP( or ^TMP(""DDBARDL""",!
  Q
+ ;
 R(%R) ;
  N %C,%F,%G,%I,%R1,%R2
  S %R1=$P(%R,"(")_"("
@@ -99,7 +104,7 @@ R(%R) ;
  S %C=$L(%R2,","),%F=1 F %I=1:1 Q:%I'<%C  S %G=$P(%R2,",",%F,%I) Q:%G=""  I ($L(%G,"(")=$L(%G,")")&($L(%G,"""")#2))!(($L(%G,"""")#2)&($E(%G)="""")&($E(%G,$L(%G))="""")) D
  .S %G=$$S(%G),$P(%R2,",",%F,%I)=%G,%F=%F+$L(%G,","),%I=%F-1,%C=%C+($L(%G,",")-1)
  .Q
- S DDBERR=%F'=%C
+ S:'DDBERR DDBERR=%F'=%C
  Q %R1_%R2
 S(%Z) ;
  I $G(%Z)']"" Q ""

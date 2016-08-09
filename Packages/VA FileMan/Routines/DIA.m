@@ -1,20 +1,27 @@
-DIA ;SFISC/GFT-SELECT FIELDS TO EDIT ;4JUNE2008
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIA ;SFISC/GFT-SELECT FIELDS TO EDIT ;8AUF2014
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D DICS
-1 D F W !?F*3,"EDIT WHICH "_X I $S(DB:DIAT="",1:1) R ": ALL// ",X:DTIME S:'$T X=U,DTOUT=1 G ALL^DIA1:X=""!(X="ALL"),TEMP^DIA1:X?1"[".E&'F,L
+1 D F W !?F*3,"EDIT WHICH "_X G ED:$G(DIAT)]""&DB ;When we are editing a Template, DB is non-zero
+ S X=$$FIND^DIUCANON(.402,DI) I X S Y="["_$P(X,U,2)_"]" D RW(Y) G GO ;DI is FILE NUMBER
+ R ": ALL// ",X:DTIME S:'$T X=U,DTOUT=1
+GO G ALL^DIA1:X=""!(X="ALL"),TEMP^DIA1:X?1"[".E&'F,L
 ED G NDB:DIAT=""
 GDB S Y=$P(DIAT,";",DB) I "Q"[Y G NDB:Y="" D DB G GDB
  I Y?.NP,$P(Y,":",2),Y'["/" S Y=+Y_"-"_$P(Y,":",2)
  S %=$G(DI(DB,DIARTLVL-1,DI,DIAO)) I %]"" S Y=%
  E  I Y?1"^"1N1"."1.2N S DB=DB+1 G GDB ;WPB-0804-30857
- W ": "_Y D RW
+READ D RW(Y)
  I X="" S X=Y I X="ALL" G ALL^DIA1
 L S DSC=X?1"^".E I DSC S X=$E(X,2,999) I U[X K DR Q
  I $A(X)=64 G X:X'?1P.N,P:$L(X)>1,X:'DB S DB=DB+1 G 2
  K DIC,DIAB D DICS S DV="",J=$P(X,"-",2) I +J=J,$P(X,"-",1)=+X,J>X S D(F)=J K DA D RANGE^DIA1 K D S Y=DA G X:Y="" D DB G 2
 DIC ;
- S DIC(0)="EZI",DIC="^DD(DI,",Y=-1 G X^DIA3:X[";" S DIC("W")="S %=$P(^(0),U,2) I % W $S($P(^DD(+%,.01,0),U,2)[""W"":""  (word-processing)"",1:""  (multiple)"")" D ^DIC Q:$D(DTOUT)
+EGP S DIC(0)="EZI",DIC="^DD(DI,",Y=-1 G X^DIA3:X[";" D DICW^DIALOGZ(DI),^DIC Q:$D(DTOUT)  ;**CCO/NI
  I Y>0 D SET S Y=$P(Y(0),U,2) G 2:'Y S L=L+1,(DI,J(L))=+Y,I(L)=""""_$P($P(Y(0),U,4),";")_"""" G DOWN
  I $E(X)="]" S DRS=9,X=$E(X,2,999) G DIC:X]"",2
  G DIA^DIQQQ:X?."?" I $D(^DD(DI,"GR")) K Y S Y=-1 D:$L(X)<31
@@ -80,5 +87,10 @@ D ;takes 'Y' and puts it into 'DR' array -- Also called from DIA3
 DIAB I $D(DIAB) S ^UTILITY($J,DIAP#1000,DIARLVL-1,DI,DIAP\1000)=DIAB K DIAB
  Q
  ;
-RW I $L(Y)>19 D RW^DIR2 Q
- W "// " R X:DTIME I '$T S X=U,DTOUT=1 W $C(7)
+ ;
+RW(Y) ;sets X, and maybe DTOUT
+ W ": "_Y I $L(Y)>19 D RW^DIR2 Q
+ W "// " R X:DTIME E  S X=U,DTOUT=1 W $C(7) Q
+ S:X="" X=Y Q
+ ;
+ ;

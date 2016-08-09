@@ -1,138 +1,284 @@
-IBDEI09S ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI09S ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4334,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ > 89% Body Surface
- ;;^UTILITY(U,$J,358.3,4334,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,4334,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,4335,0)
- ;;=Z65.5^^21^273^26
- ;;^UTILITY(U,$J,358.3,4335,1,0)
+ ;;^UTILITY(U,$J,358.3,9796,0)
+ ;;=H16.203^^51^582^99
+ ;;^UTILITY(U,$J,358.3,9796,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4335,1,3,0)
- ;;=3^Exposure to Disaster/War/Hostilities
- ;;^UTILITY(U,$J,358.3,4335,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,4335,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,4336,0)
- ;;=Z77.22^^21^273^27
- ;;^UTILITY(U,$J,358.3,4336,1,0)
+ ;;^UTILITY(U,$J,358.3,9796,1,3,0)
+ ;;=3^Keratoconjunctivitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,9796,1,4,0)
+ ;;=4^H16.203
+ ;;^UTILITY(U,$J,358.3,9796,2)
+ ;;=^5004919
+ ;;^UTILITY(U,$J,358.3,9797,0)
+ ;;=H18.603^^51^582^104
+ ;;^UTILITY(U,$J,358.3,9797,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4336,1,3,0)
- ;;=3^Exposure to/Contact w/ Environmental Tobacco Smoke
- ;;^UTILITY(U,$J,358.3,4336,1,4,0)
- ;;=4^Z77.22
- ;;^UTILITY(U,$J,358.3,4336,2)
- ;;=^5063324
- ;;^UTILITY(U,$J,358.3,4337,0)
- ;;=L30.9^^21^273^5
- ;;^UTILITY(U,$J,358.3,4337,1,0)
+ ;;^UTILITY(U,$J,358.3,9797,1,3,0)
+ ;;=3^Keratoconus,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,9797,1,4,0)
+ ;;=4^H18.603
+ ;;^UTILITY(U,$J,358.3,9797,2)
+ ;;=^5005091
+ ;;^UTILITY(U,$J,358.3,9798,0)
+ ;;=H16.043^^51^582^115
+ ;;^UTILITY(U,$J,358.3,9798,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4337,1,3,0)
- ;;=3^Eczema,Unspec
- ;;^UTILITY(U,$J,358.3,4337,1,4,0)
- ;;=4^L30.9
- ;;^UTILITY(U,$J,358.3,4337,2)
- ;;=^5009159
- ;;^UTILITY(U,$J,358.3,4338,0)
- ;;=L23.9^^21^273^2
- ;;^UTILITY(U,$J,358.3,4338,1,0)
+ ;;^UTILITY(U,$J,358.3,9798,1,3,0)
+ ;;=3^Marginal Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,9798,1,4,0)
+ ;;=4^H16.043
+ ;;^UTILITY(U,$J,358.3,9798,2)
+ ;;=^5004884
+ ;;^UTILITY(U,$J,358.3,9799,0)
+ ;;=H16.423^^51^582^121
+ ;;^UTILITY(U,$J,358.3,9799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4338,1,3,0)
- ;;=3^Eczema,Allergic Contact,Unspec
- ;;^UTILITY(U,$J,358.3,4338,1,4,0)
- ;;=4^L23.9
- ;;^UTILITY(U,$J,358.3,4338,2)
- ;;=^5009125
- ;;^UTILITY(U,$J,358.3,4339,0)
- ;;=L20.82^^21^273^3
- ;;^UTILITY(U,$J,358.3,4339,1,0)
+ ;;^UTILITY(U,$J,358.3,9799,1,3,0)
+ ;;=3^Pannus Corneal,Bilateral
+ ;;^UTILITY(U,$J,358.3,9799,1,4,0)
+ ;;=4^H16.423
+ ;;^UTILITY(U,$J,358.3,9799,2)
+ ;;=^5004974
+ ;;^UTILITY(U,$J,358.3,9800,0)
+ ;;=H17.823^^51^582^127
+ ;;^UTILITY(U,$J,358.3,9800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4339,1,3,0)
- ;;=3^Eczema,Flexural
- ;;^UTILITY(U,$J,358.3,4339,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,4339,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,4340,0)
- ;;=L20.84^^21^273^4
- ;;^UTILITY(U,$J,358.3,4340,1,0)
+ ;;^UTILITY(U,$J,358.3,9800,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,9800,1,4,0)
+ ;;=4^H17.823
+ ;;^UTILITY(U,$J,358.3,9800,2)
+ ;;=^5005000
+ ;;^UTILITY(U,$J,358.3,9801,0)
+ ;;=H11.153^^51^582^130
+ ;;^UTILITY(U,$J,358.3,9801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4340,1,3,0)
- ;;=3^Eczema,Intrinsic
- ;;^UTILITY(U,$J,358.3,4340,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,4340,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,4341,0)
- ;;=L51.8^^21^273^10
- ;;^UTILITY(U,$J,358.3,4341,1,0)
+ ;;^UTILITY(U,$J,358.3,9801,1,3,0)
+ ;;=3^Pinguecula,Bilateral
+ ;;^UTILITY(U,$J,358.3,9801,1,4,0)
+ ;;=4^H11.153
+ ;;^UTILITY(U,$J,358.3,9801,2)
+ ;;=^5004763
+ ;;^UTILITY(U,$J,358.3,9802,0)
+ ;;=H18.053^^51^582^133
+ ;;^UTILITY(U,$J,358.3,9802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4341,1,3,0)
- ;;=3^Erythema Multiforme,Other
- ;;^UTILITY(U,$J,358.3,4341,1,4,0)
- ;;=4^L51.8
- ;;^UTILITY(U,$J,358.3,4341,2)
- ;;=^336639
- ;;^UTILITY(U,$J,358.3,4342,0)
- ;;=R23.4^^21^273^14
- ;;^UTILITY(U,$J,358.3,4342,1,0)
+ ;;^UTILITY(U,$J,358.3,9802,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Bilateral
+ ;;^UTILITY(U,$J,358.3,9802,1,4,0)
+ ;;=4^H18.053
+ ;;^UTILITY(U,$J,358.3,9802,2)
+ ;;=^5005025
+ ;;^UTILITY(U,$J,358.3,9803,0)
+ ;;=H21.543^^51^582^136
+ ;;^UTILITY(U,$J,358.3,9803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4342,1,3,0)
- ;;=3^Eschar/Desquamination of Skin
- ;;^UTILITY(U,$J,358.3,4342,1,4,0)
- ;;=4^R23.4
- ;;^UTILITY(U,$J,358.3,4342,2)
- ;;=^5019296
- ;;^UTILITY(U,$J,358.3,4343,0)
- ;;=L49.9^^21^273^23
- ;;^UTILITY(U,$J,358.3,4343,1,0)
+ ;;^UTILITY(U,$J,358.3,9803,1,3,0)
+ ;;=3^Posterior Synechiae,Bilateral
+ ;;^UTILITY(U,$J,358.3,9803,1,4,0)
+ ;;=4^H21.543
+ ;;^UTILITY(U,$J,358.3,9803,2)
+ ;;=^5005253
+ ;;^UTILITY(U,$J,358.3,9804,0)
+ ;;=H11.003^^51^582^139
+ ;;^UTILITY(U,$J,358.3,9804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4343,1,3,0)
- ;;=3^Exfoliation d/t Erythematous Cond w/ 90% or More Body Surface
- ;;^UTILITY(U,$J,358.3,4343,1,4,0)
- ;;=4^L49.9
- ;;^UTILITY(U,$J,358.3,4343,2)
- ;;=^5009199
- ;;^UTILITY(U,$J,358.3,4344,0)
- ;;=L74.9^^21^273^1
- ;;^UTILITY(U,$J,358.3,4344,1,0)
+ ;;^UTILITY(U,$J,358.3,9804,1,3,0)
+ ;;=3^Pterygium,Bilateral
+ ;;^UTILITY(U,$J,358.3,9804,1,4,0)
+ ;;=4^H11.003
+ ;;^UTILITY(U,$J,358.3,9804,2)
+ ;;=^5004719
+ ;;^UTILITY(U,$J,358.3,9805,0)
+ ;;=H16.143^^51^582^142
+ ;;^UTILITY(U,$J,358.3,9805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4344,1,3,0)
- ;;=3^Eccrine Sweat Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4344,1,4,0)
- ;;=4^L74.9
- ;;^UTILITY(U,$J,358.3,4344,2)
- ;;=^5009296
- ;;^UTILITY(U,$J,358.3,4345,0)
- ;;=L92.3^^21^274^1
- ;;^UTILITY(U,$J,358.3,4345,1,0)
+ ;;^UTILITY(U,$J,358.3,9805,1,3,0)
+ ;;=3^Punctate Keratitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,9805,1,4,0)
+ ;;=4^H16.143
+ ;;^UTILITY(U,$J,358.3,9805,2)
+ ;;=^5004915
+ ;;^UTILITY(U,$J,358.3,9806,0)
+ ;;=H21.553^^51^582^145
+ ;;^UTILITY(U,$J,358.3,9806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4345,1,3,0)
- ;;=3^FB Granuloma Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,4345,1,4,0)
- ;;=4^L92.3
- ;;^UTILITY(U,$J,358.3,4345,2)
- ;;=^5009464
- ;;^UTILITY(U,$J,358.3,4346,0)
- ;;=L66.2^^21^274^4
- ;;^UTILITY(U,$J,358.3,4346,1,0)
+ ;;^UTILITY(U,$J,358.3,9806,1,3,0)
+ ;;=3^Recession of Chamber Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,9806,1,4,0)
+ ;;=4^H21.553
+ ;;^UTILITY(U,$J,358.3,9806,2)
+ ;;=^5005257
+ ;;^UTILITY(U,$J,358.3,9807,0)
+ ;;=H18.833^^51^582^148
+ ;;^UTILITY(U,$J,358.3,9807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4346,1,3,0)
- ;;=3^Folliculitis Decalvans
- ;;^UTILITY(U,$J,358.3,4346,1,4,0)
- ;;=4^L66.2
- ;;^UTILITY(U,$J,358.3,4346,2)
- ;;=^5009254
- ;;^UTILITY(U,$J,358.3,4347,0)
- ;;=L73.9^^21^274^3
- ;;^UTILITY(U,$J,358.3,4347,1,0)
+ ;;^UTILITY(U,$J,358.3,9807,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,9807,1,4,0)
+ ;;=4^H18.833
+ ;;^UTILITY(U,$J,358.3,9807,2)
+ ;;=^5005128
+ ;;^UTILITY(U,$J,358.3,9808,0)
+ ;;=H11.233^^51^582^154
+ ;;^UTILITY(U,$J,358.3,9808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4347,1,3,0)
- ;;=3^Follicular Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,4347,1,4,0)
- ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,9808,1,3,0)
+ ;;=3^Symblepharon,Bilateral
+ ;;^UTILITY(U,$J,358.3,9808,1,4,0)
+ ;;=4^H11.233
+ ;;^UTILITY(U,$J,358.3,9808,2)
+ ;;=^5004775
+ ;;^UTILITY(U,$J,358.3,9809,0)
+ ;;=H10.213^^51^582^157
+ ;;^UTILITY(U,$J,358.3,9809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9809,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Bilateral,Acute
+ ;;^UTILITY(U,$J,358.3,9809,1,4,0)
+ ;;=4^H10.213
+ ;;^UTILITY(U,$J,358.3,9809,2)
+ ;;=^5004670
+ ;;^UTILITY(U,$J,358.3,9810,0)
+ ;;=H21.1X1^^51^582^162
+ ;;^UTILITY(U,$J,358.3,9810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9810,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,9810,1,4,0)
+ ;;=4^H21.1X1
+ ;;^UTILITY(U,$J,358.3,9810,2)
+ ;;=^5005175
+ ;;^UTILITY(U,$J,358.3,9811,0)
+ ;;=H21.1X2^^51^582^161
+ ;;^UTILITY(U,$J,358.3,9811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9811,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,9811,1,4,0)
+ ;;=4^H21.1X2
+ ;;^UTILITY(U,$J,358.3,9811,2)
+ ;;=^5005176
+ ;;^UTILITY(U,$J,358.3,9812,0)
+ ;;=H21.1X3^^51^582^160
+ ;;^UTILITY(U,$J,358.3,9812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9812,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,9812,1,4,0)
+ ;;=4^H21.1X3
+ ;;^UTILITY(U,$J,358.3,9812,2)
+ ;;=^5005177
+ ;;^UTILITY(U,$J,358.3,9813,0)
+ ;;=H31.401^^51^583^13
+ ;;^UTILITY(U,$J,358.3,9813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9813,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9813,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,9813,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,9814,0)
+ ;;=H31.402^^51^583^12
+ ;;^UTILITY(U,$J,358.3,9814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9814,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,9814,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,9814,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,9815,0)
+ ;;=H31.421^^51^583^120
+ ;;^UTILITY(U,$J,358.3,9815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9815,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,9815,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,9815,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,9816,0)
+ ;;=H31.422^^51^583^119
+ ;;^UTILITY(U,$J,358.3,9816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9816,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,9816,1,4,0)
+ ;;=4^H31.422
+ ;;^UTILITY(U,$J,358.3,9816,2)
+ ;;=^5005484
+ ;;^UTILITY(U,$J,358.3,9817,0)
+ ;;=H21.231^^51^583^28
+ ;;^UTILITY(U,$J,358.3,9817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9817,1,3,0)
+ ;;=3^Degeneration of Iris,Right Eye
+ ;;^UTILITY(U,$J,358.3,9817,1,4,0)
+ ;;=4^H21.231
+ ;;^UTILITY(U,$J,358.3,9817,2)
+ ;;=^5005187
+ ;;^UTILITY(U,$J,358.3,9818,0)
+ ;;=H21.232^^51^583^27
+ ;;^UTILITY(U,$J,358.3,9818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9818,1,3,0)
+ ;;=3^Degeneration of Iris,Left Eye
+ ;;^UTILITY(U,$J,358.3,9818,1,4,0)
+ ;;=4^H21.232
+ ;;^UTILITY(U,$J,358.3,9818,2)
+ ;;=^5005188
+ ;;^UTILITY(U,$J,358.3,9819,0)
+ ;;=H40.011^^51^583^85
+ ;;^UTILITY(U,$J,358.3,9819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9819,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,9819,1,4,0)
+ ;;=4^H40.011
+ ;;^UTILITY(U,$J,358.3,9819,2)
+ ;;=^5005724
+ ;;^UTILITY(U,$J,358.3,9820,0)
+ ;;=H40.012^^51^583^86
+ ;;^UTILITY(U,$J,358.3,9820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9820,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Low Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,9820,1,4,0)
+ ;;=4^H40.012
+ ;;^UTILITY(U,$J,358.3,9820,2)
+ ;;=^5005725
+ ;;^UTILITY(U,$J,358.3,9821,0)
+ ;;=H40.021^^51^583^82
+ ;;^UTILITY(U,$J,358.3,9821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9821,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Right Eye
+ ;;^UTILITY(U,$J,358.3,9821,1,4,0)
+ ;;=4^H40.021
+ ;;^UTILITY(U,$J,358.3,9821,2)
+ ;;=^5005728
+ ;;^UTILITY(U,$J,358.3,9822,0)
+ ;;=H40.022^^51^583^83
+ ;;^UTILITY(U,$J,358.3,9822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9822,1,3,0)
+ ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Left Eye
+ ;;^UTILITY(U,$J,358.3,9822,1,4,0)
+ ;;=4^H40.022
+ ;;^UTILITY(U,$J,358.3,9822,2)
+ ;;=^5005729
+ ;;^UTILITY(U,$J,358.3,9823,0)
+ ;;=H40.031^^51^583^3
+ ;;^UTILITY(U,$J,358.3,9823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,9823,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Right Eye
+ ;;^UTILITY(U,$J,358.3,9823,1,4,0)
+ ;;=4^H40.031
+ ;;^UTILITY(U,$J,358.3,9823,2)
+ ;;=^5005732

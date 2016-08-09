@@ -1,6 +1,10 @@
-DIWP ;SFISC/GFT-ASSEMBLE WP LINE ;25APR2012
- ;;22.0;VA FileMan;**46,152,169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIWP ;SFISC/GFT-ASSEMBLE WP LINE ;24APR2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  ;The DIWF variable contains a string of one-letter codes to control W-P output.
  ;"|" in DIWF means that "|"-windows are not to be evaluated, but are to be printed as
  ;     they stand.

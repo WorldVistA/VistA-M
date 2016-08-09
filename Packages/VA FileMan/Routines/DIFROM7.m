@@ -1,8 +1,13 @@
-DIFROM7 ;SFISC/(SLC/STAFF)-SITE TRACKING INSTALL BULLETIN ;01:06 PM  23 Aug 1993
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROM7 ;SFISC/(SLC/STAFF)-SITE TRACKING INSTALL BULLETIN ;29NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 SETUP(ROUTINE,STATUS) ;
  K ^TMP($J) N LINE,LINE1,LINE2,NUM,OK,ROUTINIS,TXT
+ D:'$D(DISYS) OS^DII
  D LOAD(ROUTINE,"^TMP($J,",0)
  I $P($P(^TMP($J,1,0),";")," ")'?1U1.3UN1"INIT" S STATUS="not changed" Q
  S ROUTINIS=$P(ROUTINE,"INIT")_"INIS"
@@ -22,9 +27,13 @@ SETUP(ROUTINE,STATUS) ;
  S STATUS=STATUS_" -- "_ROUTINIS_" saved"
  K ^TMP($J)
  Q
-LOAD(X,DIF,XCNP) X ^%ZOSF("LOAD")
+LOAD(X,DIF,XCNP) X ^DD("OS",DISYS,"LOAD")
  Q
-SAVE(X,DIE,XCN) X ^%ZOSF("SAVE")
+SAVE(X,DIE,XCN) ; VEN/SMH - Modified save code to work on Standalone Fileman
+ K ^UTILITY($J,0)
+ N I S I=0 F  S I=$O(^TMP($J,I)) Q:'I  S ^UTILITY($J,0,I)=^TMP($J,I,0)
+ X ^DD("OS",DISYS,"ZS")
+ K ^UTILITY($J,0)
  Q
 NMSPINIS ;;
  ;;

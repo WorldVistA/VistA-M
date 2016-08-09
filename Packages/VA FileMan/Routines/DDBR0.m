@@ -1,6 +1,10 @@
-DDBR0 ;SFISC/DCL-VA FILEMAN BROWSER FUNCTIONS ;NOV 04, 1996@13:47
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBR0 ;SFISC/DCL-VA FILEMAN BROWSER FUNCTIONS ;04:01 PM  26 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 PU N I,J,K S I=DDBL-DDBSRL,J=I-(DDBSRL-1),K=DDBL
  S DX=$P(DDBSX,";"),DY=$P(DDBSY,";",2)
@@ -59,7 +63,7 @@ COLA S X(2)="Col> " W $$WS^DDBR1(.X) D  G:X=""!(X=U) OUT
  I X<1!(X>255) W $C(7) G COLERR
  S DDBSF=X G COLENT
  Q
-COLERR S X(1)="    * [ Enter a number between 1 and 255 ] *"
+COLERR S X(1)="    * [ "_$$EZBLD^DIALOG(836)_" ] *" ;**'Enter a number between 1 and 255'
  G COLA
 OUT D PSR^DDBR0()
  Q

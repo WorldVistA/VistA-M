@@ -1,6 +1,10 @@
-DINIT00S ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;7:41 AM  6 Dec 2012
- ;;22.0;VA FileMan;**169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DINIT00S ;SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;08DEC2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9202,2,5,0)
@@ -154,7 +158,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9202,2,79,0)
  ;;=Exit Browser or help text                    <PF1>E or "EXIT"
  ;;^UTILITY(U,$J,.84,9202,2,80,0)
- ;;=Quit                                         <PF1>Q
+ ;;=Quit                                         <PF1>Q or <Ctrl-E>
  ;;^UTILITY(U,$J,.84,9202,2,81,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9202,2,82,0)

@@ -1,6 +1,10 @@
-DDMP ;SFISC/DPC-IMPORT ASCII DATA ;9/23/96  14:58
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDMP ;SFISC/DPC-IMPORT ASCII DATA ;5DEC2009
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 FILE(DDMPF,DDMPFLDS,DDMPFLG,DDMPFSRC,DDMPFMT) ;
  ;API for import tool.
  ;DDMPF - file# of primary import file.
@@ -96,7 +100,7 @@ PUTDRVR(DDMPSQ,DDMPFMT,DDMPFLG,DDMPNODE,DDMPSTAT) ;
  S DDMPNDCT=1
  S DDMPREF=$NA(^TMP($J,"DDMP",DDMPNODE))
  S DDMPTPAR(1)=^TMP($J,"DDMP",DDMPNODE)
- F  S DDMPREF=$Q(@DDMPREF) Q:DDMPREF'[($J_",""DDMP""")  D  Q:$G(DDMPSTAT("ABORT"))
+ F  S DDMPREF=$Q(@DDMPREF) Q:$QS(DDMPREF,1)'=$J!($QS(DDMPREF,2)'="DDMP")  D  Q:$G(DDMPSTAT("ABORT"))  ;GFT  $J MIGHT BE NON-NUMERIC
  . I DDMPREF'["OVF" D
  . . D RECPROC
  . . K DDMPTPAR S DDMPNDCT=0
@@ -153,7 +157,7 @@ PARSE(DDMPSQ,DDMPTPAR,DDMPNDCT) ;
  . . . . S DDMPIN=$P($P(DDMPIN,DDMPQ,2,99),DDMPFMT("FDELIM"),2,99)
  . . E  D
  . . . S DDMPTVAL=$P(DDMPIN,DDMPQ,1,2)_$S($L(DDMPIN,DDMPQ)>2:DDMPQ,1:"")
- . . . S DDMPIN=$P(DDMPIN,DDMPTVAL,2)
+ . . . S DDMPIN=$E(DDMPIN,$L(DDMPTVAL)+1,$L(DDMPIN)) ; S DDMPIN=$P(DDMPIN,DDMPTVAL,2)
  . . . I DDMPIN=DDMPFMT("FDELIM") S DDMPIN="",DDMPVAL=DDMPTVAL Q
  . . . S DDMPIN=$P(DDMPIN,DDMPFMT("FDELIM"),2,99)
  . . . I DDMPIN="",DDMPI'=DDMPNDCT S DDMPHOLD=DDMPTVAL Q

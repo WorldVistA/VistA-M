@@ -1,20 +1,26 @@
-DDS02 ;SFISC/MKO-OVERFLOW FROM ^DDS01 ;1:50 PM  16 Jul 1999
- ;;22.0;VA FileMan;**8,11**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
-UNED ;Change was made to uneditable field
- D MSG^DDSMSG("No editing allowed.",1)
- I $P($G(DDSO(0)),U,3)=2 N DDP S DDP=0
- S @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D")=DDSOLD S:$D(DDSU("X"))#2 ^("X")=DDSU("X")
+DDS02 ;SFISC/MKO-OVERFLOW FROM ^DDS01 ;2015-01-02  4:45 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+REFRESH(DDSPG) ;Refreshes the setup for page
+ N B,D,I,DIE,DDSDA,DDP
+ F B=0:0 S B=$O(@DDSREFT@(DDSPG,B)) Q:'B  D
+ .I '$D(DDSDA) S DDSDA=^(B),DIE=^(B,DDSDA,"GL"),DDP=$P(@DDSREFS@(DDSPG,B),U,3) ;GET THE ORIGINAL PAGE DATA
+ .S D="" F  S D=$O(@DDSREFT@(DDSPG,B,D)) Q:D=""  I +$G(^(D))=1 S $P(^(D),U)=0 ;REMEMBER TO RELOAD BLOCKS ON THIS PAGE!
+ .S I="" F  S I=$O(@DDSREFT@("F0",I)) Q:I=""  F  S D=$O(@DDSREFT@("F0",I,D)) Q:D=""  I $P(D,",",2)=B,$G(^(D,"F"))=3 K @DDSREFT@("F0",I,D) ;KILL OLD FORM-ONLY VALUE
+ I $D(D) D EN^DDS1(DDSPG)
  Q
+ ;
+ ;
  ;
 SV ;Save
  S DDACT="N"
  I $G(DDSDN)=1,DDO D ERR3^DDS3 Q
- I DDSSC'>1,'$G(DDSSEL),'$P(DDSSC(DDSSC),U,4) D S^DDS3 Q
- N DDSEM
- S DDSEM(1)="You cannot save changes at this level."
- S DDSEM(2)="To close the current page, press <PF1>C."
- D MSG^DDSMSG(.DDSEM,1)
+ I DDSSC'>1,'$P(DDSSC(DDSSC),U,4) D S^DDS3 Q  ;INCLUDED '$G(DDSSEL)
+ D MSG^DDSMSG($$EZBLD^DIALOG(3093),1) ;**CANNOT SAVE
  Q
  ;
 EXT ;Process external form
@@ -39,17 +45,17 @@ EXT ;Process external form
  . I 'DDSREQ,'DDSKEY Q
  . K DDSY
  . S DDSCHKQ=1,DIR0("L")=DDSEXT
- . D MSG^DDSMSG("This is a required "_$S(DDSKEY:"key ",1:"")_"field.",1)
+ . D MSG^DDSMSG($$EZBLD^DIALOG($S(DDSKEY:3092.2,1:3092.1)),1) ;'REQUIRED KEY FIELD'
  ;
  S DY=$P(DIR0,U),DX=$P(DIR0,U,2)
- I DDSEXT'=DDSX D
+REPNT I DDSEXT'=DDSX!$G(DDSREPNT) D  K DDSREPNT ;WRITE OUT NEW VALUE, IF IT DIFFERS FROM WHAT WAS INPUT
  . X IOXY
  . S DDSX=$E(DDSEXT,1,$P(DIR0,U,3))
  . I '$P(DIR0,U,6) S DDSX=DDSX_$J("",$P(DIR0,U,3)-$L(DDSEXT))
  . E  S DDSX=$J("",$P(DIR0,U,3)-$L(DDSEXT))_DDSX
  . W $P(DDGLVID,DDGLDEL)_DDSX_$P(DDGLVID,DDGLDEL,10)
  ;
- I $G(DDSU("K")),DDSY]""!(DDSFLD'=.01) D  Q:'$D(DDSY)
+CHECKEY I $G(DDSU("K")),DDSY]""!(DDSFLD'=.01) D  Q:'$D(DDSY)  ;CHECK KEY
  . N DDSFXR,DDSUI,DDSUNIQ,DDSVSV,DIIENS
  . D LOADXREF^DIKC1(DDP,"","",DDSU("K"),$NA(@DDSREFT@("F"))_"_","DDSFXR")
  . S:$D(@DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D"))#2 DDSVSV=^("D") S ^("D")=DDSY
@@ -61,13 +67,17 @@ EXT ;Process external form
  . I 'DDSUNIQ D
  .. K DDSY
  .. S DDSCHKQ=1,DIR0("L")=DDSEXT
- .. D MSG^DDSMSG("Another entry already exists with this key value.",1)
+ .. D MSG^DDSMSG($$EZBLD^DIALOG(3094),1) ;"Another Entry already exists with this KEY value."
  .. K @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D") S:$D(DDSVSV)#2 ^("D")=DDSVSV
  ;
  D:$G(DDSDA)!'$D(DDSREP)
  . S:$D(Y(0)) @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"X")=DDSEXT
- . S @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D")=DDSY I DDSY="",$D(DDSU("X")) S ^("X")=""
+ . S @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D")=DDSY I DDSY="",$D(DDSU("X")) S ^("X")="" ;CHANGE THE DATA!
  K DDSY
+ Q
+ ;
+DEC(FILE,FIELD,DEC) ;NOT USED (??)
+ S DEC="S X=$G(@DDSREFT@(""F"_FILE_""",DIIENS,"_FIELD_",""D""),"_$E(DEC,5,999)_")"
  Q
  ;
 PT ;Modify Y for pointer type fields

@@ -1,13 +1,15 @@
-PSODDPRE ;BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
- ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416**;DEC 1997;Build 32
- ;External references PSOL and PSOUL^PSSLOCK supported by DBIA 2789
- ;External references to ^PSSDSAPM supported by DBIA 5570
- ;External references to ^PSSHRQ2 supported by DBIA 5369
+PSODDPRE ; BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
+ ;;7.0;OUTPATIENT PHARMACY;**251,375,387,379,390,372,416,411**;DEC 1997;Build 95
+ ;External reference to PSOL^PSSLOCK supported by DBIA 2789
+ ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
+ ;External reference to ^PSSDSAPM supported by DBIA 5570
+ ;External reference to ^PSSHRQ2 supported by DBIA 5369
  ;External reference to ^PS(50.7 supported by DBIA 2223
  ;External reference to ^PS(55 supported by DBIA 2228
- ;External reference to ^PSDRUG( supported by DBIA 221
+ ;External reference to ^PSDRUG( supported by DBIA 4846
  ;External reference to ^PS(50.606 supported by DBIA 2174
  ;External reference to $$SUP^PSSDSAPI supported by DBIA 5425
+ ;External reference to ^PSSDIUTL supported by DBIA 5737
  ;
  W @IOF
  K IT,^TMP("PSORXDC",$J),^TMP("PSORXDD",$J),CLS,^TMP($J,"PSONVADD"),^TMP($J,"PSONRVADD"),^TMP($J,"PSORDI"),^TMP($J,"PSORMDD")
@@ -33,10 +35,11 @@ PSODDPRE ;BIR/SAB - Enhanced OP order checks ;09/20/06 3:38pm
  M PSODRUG=ZZPSODRG
  Q
 OBX  ;process enhanced order checks
+ Q:$G(PSOQUIT)!($G(PSORX("DFLG")))
  K ZDGDG,ZTHER,IT
  S LIST="PSOPEPS" K PSODLQT,DTOUT,DUOUT,DIRUT,PSODOSD
  I $P(^TMP($J,LIST,"OUT",0),"^")=-1 G EXIT
- W !,"Now Processing Enhanced Order Checks!  Please wait...",! H 1
+ W !,"Now Processing Enhanced Order Checks!  Please wait...",! H 2
  D FDB S PDRG=PSODRUG("IEN"),DO=0 D IN^PSSHRQ2(LIST)    ;call 2 fdb
  ;
  K DIR
@@ -49,7 +52,7 @@ OBX  ;process enhanced order checks
 EXIT ;
  D ^PSOBUILD
  K CAN,DA,DIR,DNM,DUPRX0,ISSD,J,LSTFL,MSG,PHYS,PSOCLC,PSONULN,REA,RFLS,RX0,RX2,RXN,RXREC,ST,Y,ZZ,ACT,PSOCLOZ,PSOLR,PSOLDT,PSOCD,SIG
- K DO,PDRG,IT,PSODLQT
+ K DO,PDRG,IT,PSODLQT,PSOTSTMD
  K ^TMP($J,LIST,"IN","PING"),^TMP($J,LIST,"OUT","EXCEPTIONS"),^TMP($J,"PSOPEPS"),^TMP($J,"PSORDI")
  Q
 DUP S:$P(PSOSD(STA,DNM),"^",2)<10!($P(PSOSD(STA,DNM),"^",2)=16) DUP=1 W !,PSONULN,!,$C(7),"Duplicate Drug in Local Rx:",!
@@ -74,9 +77,11 @@ DATA S DUPRX0=^PSRX(RXREC,0),RFLS=$P(DUPRX0,"^",9),ISSD=$P(^PSRX(RXREC,0),"^",13
  D PRSTAT(RXREC)
  W !?42,$J("Days Supply: ",24)_$P(DUPRX0,"^",8)
  W !,PSONULN,! I $P($G(^PS(53,+$P($G(PSORX("PATIENT STATUS")),"^"),0)),"^")["AUTH ABS"!($G(PSORX("PATIENT STATUS"))["AUTH ABS")&'$P(PSOPAR,"^",5) W !,"PATIENT ON AUTHORIZED ABSENCE!" K RXRECLOC Q
-ASKCAN I $P(PSOSD(STA,DNM),"^",2)>10,$P(PSOSD(STA,DNM),"^",2)'=16 D  Q
- .K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue" D ^DIR S:($D(DTOUT))!($D(DUOUT)) PSODLQT=1,PSORX("DFLG")=1 K DIR,DTOUT,DUOUT,DIRUT,RXRECLOC W @IOF
+ASKCAN I $P(PSOSD(STA,DNM),"^",2)>10,$P(PSOSD(STA,DNM),"^",2)'=16 D  Q  ;PSO*7*411 to comment
+ .K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue"
+ .D ^DIR S:($D(DTOUT))!($D(DUOUT)) (PSODLQT,PSORX("DFLG"))=1 K DIR,DTOUT,DUOUT,DIRUT,RXRECLOC W @IOF
  .S ^TMP("PSORXDD",$J,RXREC,0)=1
+ ;
  I '$P(PSOPAR,"^",16),'$D(^XUSEC("PSORPH",DUZ)) D  Q
  .S PSORX("DFLG")=1 K RXRECLOC,DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to continue"
  .D ^DIR K DIR
@@ -98,7 +103,7 @@ ASKCAN I $P(PSOSD(STA,DNM),"^",2)>10,$P(PSOSD(STA,DNM),"^",2)'=16 D  Q
  S PSOCLC=DUZ,MSG=$S($G(MSG)]"":MSG,1:ACT_" During New RX "_$S('$G(PSONV):"Entry",1:"Verification")_" - Duplicate Rx"),REA=$S($P(PSOSD(STA,DNM),"^",2)=12:"R",1:"C")
  W !! K ^UTILITY($J,"W") S DIWL=1,DIWR=75,DIWF=""
  S X="Rx #"_$P(^PSRX(+PSOSD(STA,DNM),0),"^")_" "_DNM_" will be discontinued after"_$S('$G(PSOTECCK):" the acceptance of the new order.",1:" reinstating the order.") D ^DIWP
- F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0)
+ N ZX F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W !,^UTILITY($J,"W",1,ZX,0)
  K ^UTILITY($J,"W"),X,DIWL,DIWR,DIWF W !
  S ^TMP("PSORXDC",$J,RXREC,0)="52^"_DA_"^"_MSG_"^"_REA_"^"_ACT_"^"_STA_"^"_DNM,PSONOOR="D",^TMP("PSORXDD",$J)=DNM H 2
  K RXRECLOC,DUP,CLS,PSONOOR
@@ -107,13 +112,13 @@ FDB ;build drug check input
  N ID,ORTYP,PSOI,ORN S DFN=PSODFN,CT=0
  S ID=+$$GETVUID^XTID(50.68,,+$P(PSODRUG("NDF"),"A",2)_",")
  S P1=$P(PSODRUG("NDF"),"A"),P2=$P(PSODRUG("NDF"),"A",2),X=$$PROD0^PSNAPIS(P1,P2),SEQN=+$P(X,"^",7)
- I 'SEQN K ^TMP($J,LIST,"OUT","EXCEPTIONS"),^TMP($J,LIST,"IN")
+ I 'SEQN K ^TMP($J,LIST,"OUT","EXCEPTIONS")
  S ^TMP($J,LIST,"IN","PROSPECTIVE","Z;1;PROSPECTIVE;1")=SEQN_"^"_ID_"^"_PSODRUG("IEN")_"^"_$P(^PSDRUG(PSODRUG("IEN"),0),"^")
- K:$D(PSODGCK)&$D(PSODGCKX) ^TMP($J,LIST,"IN","PROSPECTIVE","Z;1;PROSPECTIVE;1"),PSODGCKX
+ I $G(PSODGCKX) K ^TMP($J,LIST,"IN","PROSPECTIVE","Z;1;PROSPECTIVE;1")
  S ^TMP($J,LIST,"IN","IEN")=PSODFN,^TMP($J,LIST,"IN","DRUGDRUG")="",^TMP($J,LIST,"IN","THERAPY")=""
- K ID,P1,P2 N ODRG,TU S (STA,DNM)="" I '$G(PSOCOPY),'$G(SEQN) K SEQN Q
+ K ID,P1,P2 N ODRG,TU S (STA,DNM)="" I '$G(PSOCOPY),'$G(SEQN),'$G(PSODGCK) K SEQN Q
  ;build profile drug order checks
- F  S STA=$O(PSOSD(STA)) Q:STA=""  F  S DNM=$O(PSOSD(STA,DNM)) Q:DNM=""   D  ;I $P(PSOSD(STA,DNM),"^")'=$G(PSORENW("OIRXN")) S CT=CT+1 D
+ F  S STA=$O(PSOSD(STA)) Q:STA=""  F  S DNM=$O(PSOSD(STA,DNM)) Q:DNM=""   D
  .Q:$P(PSOSD(STA,DNM),"^")=$G(PSORENW("OIRXN"))&('$G(PSOCOPY))
  .S CT=CT+1
  .I STA="PENDING" N DDRG D
@@ -137,13 +142,14 @@ FDB ;build drug check input
  ..S RXREC=$P(PSOSD(STA,DNM),"^",10),ODRG=$P(^PS(55,PSODFN,"NVA",RXREC,0),"^",2),ORN=$P(^(0),"^",8),ORTYP="N"
  ..I ODRG D  K ODRG Q
  ...I $P($G(^PSDRUG(ODRG,0)),"^",3)["S"!($E($P($G(^PSDRUG(ODRG,0)),"^",2),1,2)="XA") Q
- ...S PDNM=$P(^PSDRUG(ODRG,0),"^") D ID
+ ...S PDNM=$P(^PSDRUG(ODRG,0),"^") S:CT=1&($G(PSODGCK))&('$G(PSODGCKX)) CT=2 D ID  ;CT=2 prevents overwrite of CK action drug prompt reply
  ..E  N PSOI,DDRG,ODRG,SEQN,DDRG S PSOI=$P(^PS(55,PSODFN,"NVA",RXREC,0),"^") D
  ...S PDNM=$P(^PS(50.7,PSOI,0),"^")_" "_$P(^PS(50.606,$P(^(0),"^",2),0),"^")
  ...S DDRG=$$DRG^PSSDSAPM(PSOI,"X") I '$P(DDRG,";") D:'$$NVATST(PSOI) OIX Q
  ...I $P($G(^PSDRUG($P(DDRG,";"),0)),"^",3)["S"!($E($P($G(^PSDRUG($P(DDRG,";"),0)),"^",2),1,2)="XA") Q
  ...S ODRG=$P(DDRG,";"),SEQN=+$P(DDRG,";",3) K PSOI
  ...N ID S ID=+$$GETVUID^XTID(50.68,,+$P($G(^PSDRUG(ODRG,"ND")),"^",3)_",")
+ ...I CT=1,$G(PSODGCK),'$G(PSODGCKX) S CT=2  ;prevents overwrite of CK action drug prompt reply
  ...D ID1
  .I $P($G(^PSRX(+PSOSD(STA,DNM),0)),"^",6) D
  ..Q:$G(^TMP("PSORXDC",$J,$P(PSOSD(STA,DNM),"^"),0))]""
@@ -178,7 +184,9 @@ ULRX ;
  ;
 PRSTAT(DA) ;Displays the prescription's status
  N PSOTRANS,PSOREL,PSOCMOP,RXPSTA,PSOX,RFLZRO,PSOLRD,PSORTS,CMOP
- D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)  S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
+ D HD^PSODDPR2():(($Y+5)>IOSL) Q:$G(PSODLQT)  ;PSO*7*411 to comment
+ S RXPSTA="Processing Status: ",PSOLRD=$P($G(^PSRX(RXREC,2)),"^",13)
+ ;
  D ^PSOCMOPA I $G(PSOCMOP)]"" D  K CMOP,PSOTRANS,PSOREL
  .S PSOTRANS=$E($P(PSOCMOP,"^",2),4,5)_"/"_$E($P(PSOCMOP,"^",2),6,7)_"/"_$E($P(PSOCMOP,"^",2),2,3)
  .S PSOREL=$S(CMOP("L")=0:$P($G(^PSRX(DA,2)),"^",13),1:$P(^PSRX(DA,1,CMOP("L"),0),"^",18))

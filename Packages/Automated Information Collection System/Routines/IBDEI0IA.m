@@ -1,130 +1,278 @@
-IBDEI0IA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0IA ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8486,1,0)
+ ;;^UTILITY(U,$J,358.3,18422,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18422,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,18422,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,18423,0)
+ ;;=99212^^83^960^1
+ ;;^UTILITY(U,$J,358.3,18423,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18423,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,18423,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,18424,0)
+ ;;=99213^^83^960^2
+ ;;^UTILITY(U,$J,358.3,18424,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18424,1,1,0)
+ ;;=1^Exp Problem Focused
+ ;;^UTILITY(U,$J,358.3,18424,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,18425,0)
+ ;;=99214^^83^960^3
+ ;;^UTILITY(U,$J,358.3,18425,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18425,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,18425,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,18426,0)
+ ;;=99215^^83^960^4
+ ;;^UTILITY(U,$J,358.3,18426,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18426,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,18426,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,18427,0)
+ ;;=99242^^83^961^1
+ ;;^UTILITY(U,$J,358.3,18427,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18427,1,1,0)
+ ;;=1^Exp Problem Focused
+ ;;^UTILITY(U,$J,358.3,18427,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,18428,0)
+ ;;=99243^^83^961^2
+ ;;^UTILITY(U,$J,358.3,18428,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18428,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,18428,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,18429,0)
+ ;;=99244^^83^961^3
+ ;;^UTILITY(U,$J,358.3,18429,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18429,1,1,0)
+ ;;=1^Comprehensive,Mod MDM
+ ;;^UTILITY(U,$J,358.3,18429,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,18430,0)
+ ;;=99245^^83^961^4
+ ;;^UTILITY(U,$J,358.3,18430,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,18430,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,18430,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,18431,0)
+ ;;=I71.3^^84^962^1
+ ;;^UTILITY(U,$J,358.3,18431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8486,1,3,0)
- ;;=3^Dysphagia, pharyngoesophageal phase
- ;;^UTILITY(U,$J,358.3,8486,1,4,0)
- ;;=4^R13.14
- ;;^UTILITY(U,$J,358.3,8486,2)
- ;;=^335279
- ;;^UTILITY(U,$J,358.3,8487,0)
- ;;=S02.2XXA^^39^459^2
- ;;^UTILITY(U,$J,358.3,8487,1,0)
+ ;;^UTILITY(U,$J,358.3,18431,1,3,0)
+ ;;=3^AAA Ruptured
+ ;;^UTILITY(U,$J,358.3,18431,1,4,0)
+ ;;=4^I71.3
+ ;;^UTILITY(U,$J,358.3,18431,2)
+ ;;=^5007788
+ ;;^UTILITY(U,$J,358.3,18432,0)
+ ;;=I71.4^^84^962^2
+ ;;^UTILITY(U,$J,358.3,18432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8487,1,3,0)
- ;;=3^Fracture of nasal bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,8487,1,4,0)
- ;;=4^S02.2XXA
- ;;^UTILITY(U,$J,358.3,8487,2)
- ;;=^5020306
- ;;^UTILITY(U,$J,358.3,8488,0)
- ;;=S02.609A^^39^459^1
- ;;^UTILITY(U,$J,358.3,8488,1,0)
+ ;;^UTILITY(U,$J,358.3,18432,1,3,0)
+ ;;=3^AAA w/o Rupture
+ ;;^UTILITY(U,$J,358.3,18432,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,18432,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,18433,0)
+ ;;=I82.A13^^84^962^75
+ ;;^UTILITY(U,$J,358.3,18433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8488,1,3,0)
- ;;=3^Fracture of mandible, unsp, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,8488,1,4,0)
- ;;=4^S02.609A
- ;;^UTILITY(U,$J,358.3,8488,2)
- ;;=^5020372
- ;;^UTILITY(U,$J,358.3,8489,0)
- ;;=S02.92XA^^39^459^4
- ;;^UTILITY(U,$J,358.3,8489,1,0)
+ ;;^UTILITY(U,$J,358.3,18433,1,3,0)
+ ;;=3^Embolism/Thrombosis of Bilateral Axillary Vein,Acute
+ ;;^UTILITY(U,$J,358.3,18433,1,4,0)
+ ;;=4^I82.A13
+ ;;^UTILITY(U,$J,358.3,18433,2)
+ ;;=^5007944
+ ;;^UTILITY(U,$J,358.3,18434,0)
+ ;;=I82.413^^84^962^76
+ ;;^UTILITY(U,$J,358.3,18434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8489,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,8489,1,4,0)
- ;;=4^S02.92XA
- ;;^UTILITY(U,$J,358.3,8489,2)
- ;;=^5020438
- ;;^UTILITY(U,$J,358.3,8490,0)
- ;;=S02.3XXA^^39^459^3
- ;;^UTILITY(U,$J,358.3,8490,1,0)
+ ;;^UTILITY(U,$J,358.3,18434,1,3,0)
+ ;;=3^Embolism/Thrombosis of Bilateral Femoral Vein,Acute
+ ;;^UTILITY(U,$J,358.3,18434,1,4,0)
+ ;;=4^I82.413
+ ;;^UTILITY(U,$J,358.3,18434,2)
+ ;;=^5007859
+ ;;^UTILITY(U,$J,358.3,18435,0)
+ ;;=I82.C13^^84^962^77
+ ;;^UTILITY(U,$J,358.3,18435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8490,1,3,0)
- ;;=3^Fracture of orbital floor, init encntr for closed fracture
- ;;^UTILITY(U,$J,358.3,8490,1,4,0)
- ;;=4^S02.3XXA
- ;;^UTILITY(U,$J,358.3,8490,2)
- ;;=^5020312
- ;;^UTILITY(U,$J,358.3,8491,0)
- ;;=S02.92XB^^39^459^5
- ;;^UTILITY(U,$J,358.3,8491,1,0)
+ ;;^UTILITY(U,$J,358.3,18435,1,3,0)
+ ;;=3^Embolism/Thrombosis of Bilateral Int Jugular Vein,Acute
+ ;;^UTILITY(U,$J,358.3,18435,1,4,0)
+ ;;=4^I82.C13
+ ;;^UTILITY(U,$J,358.3,18435,2)
+ ;;=^5007960
+ ;;^UTILITY(U,$J,358.3,18436,0)
+ ;;=I82.433^^84^962^78
+ ;;^UTILITY(U,$J,358.3,18436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8491,1,3,0)
- ;;=3^Fracture of unsp facial bones, init encntr for open fracture
- ;;^UTILITY(U,$J,358.3,8491,1,4,0)
- ;;=4^S02.92XB
- ;;^UTILITY(U,$J,358.3,8491,2)
- ;;=^5020439
- ;;^UTILITY(U,$J,358.3,8492,0)
- ;;=C00.2^^39^460^13
- ;;^UTILITY(U,$J,358.3,8492,1,0)
+ ;;^UTILITY(U,$J,358.3,18436,1,3,0)
+ ;;=3^Embolism/Thrombosis of Bilateral Popliteal Vein,Acute
+ ;;^UTILITY(U,$J,358.3,18436,1,4,0)
+ ;;=4^I82.433
+ ;;^UTILITY(U,$J,358.3,18436,2)
+ ;;=^5007867
+ ;;^UTILITY(U,$J,358.3,18437,0)
+ ;;=I82.B13^^84^962^79
+ ;;^UTILITY(U,$J,358.3,18437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8492,1,3,0)
- ;;=3^Malignant neoplasm of external lip, unspecified
- ;;^UTILITY(U,$J,358.3,8492,1,4,0)
- ;;=4^C00.2
- ;;^UTILITY(U,$J,358.3,8492,2)
- ;;=^5000884
- ;;^UTILITY(U,$J,358.3,8493,0)
- ;;=C02.9^^39^460^30
- ;;^UTILITY(U,$J,358.3,8493,1,0)
+ ;;^UTILITY(U,$J,358.3,18437,1,3,0)
+ ;;=3^Embolism/Thrombosis of Bilateral Subclavian Vein,Acute
+ ;;^UTILITY(U,$J,358.3,18437,1,4,0)
+ ;;=4^I82.B13
+ ;;^UTILITY(U,$J,358.3,18437,2)
+ ;;=^5007952
+ ;;^UTILITY(U,$J,358.3,18438,0)
+ ;;=I82.623^^84^962^82
+ ;;^UTILITY(U,$J,358.3,18438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8493,1,3,0)
- ;;=3^Malignant neoplasm of tongue, unspecified
- ;;^UTILITY(U,$J,358.3,8493,1,4,0)
- ;;=4^C02.9
- ;;^UTILITY(U,$J,358.3,8493,2)
- ;;=^5000891
- ;;^UTILITY(U,$J,358.3,8494,0)
- ;;=C07.^^39^460^24
- ;;^UTILITY(U,$J,358.3,8494,1,0)
+ ;;^UTILITY(U,$J,358.3,18438,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Bilateral Upper Extremities
+ ;;^UTILITY(U,$J,358.3,18438,1,4,0)
+ ;;=4^I82.623
+ ;;^UTILITY(U,$J,358.3,18438,2)
+ ;;=^5007921
+ ;;^UTILITY(U,$J,358.3,18439,0)
+ ;;=I82.622^^84^962^84
+ ;;^UTILITY(U,$J,358.3,18439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8494,1,3,0)
- ;;=3^Malignant neoplasm of parotid gland
- ;;^UTILITY(U,$J,358.3,8494,1,4,0)
- ;;=4^C07.
- ;;^UTILITY(U,$J,358.3,8494,2)
- ;;=^267005
- ;;^UTILITY(U,$J,358.3,8495,0)
- ;;=C08.0^^39^460^27
- ;;^UTILITY(U,$J,358.3,8495,1,0)
+ ;;^UTILITY(U,$J,358.3,18439,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Left Upper Extremity
+ ;;^UTILITY(U,$J,358.3,18439,1,4,0)
+ ;;=4^I82.622
+ ;;^UTILITY(U,$J,358.3,18439,2)
+ ;;=^5007920
+ ;;^UTILITY(U,$J,358.3,18440,0)
+ ;;=I82.621^^84^962^86
+ ;;^UTILITY(U,$J,358.3,18440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8495,1,3,0)
- ;;=3^Malignant neoplasm of submandibular gland
- ;;^UTILITY(U,$J,358.3,8495,1,4,0)
- ;;=4^C08.0
- ;;^UTILITY(U,$J,358.3,8495,2)
- ;;=^267006
- ;;^UTILITY(U,$J,358.3,8496,0)
- ;;=C03.9^^39^460^16
- ;;^UTILITY(U,$J,358.3,8496,1,0)
+ ;;^UTILITY(U,$J,358.3,18440,1,3,0)
+ ;;=3^Embolism/Thrombosis of Deep Veins of Right Upper Extremity
+ ;;^UTILITY(U,$J,358.3,18440,1,4,0)
+ ;;=4^I82.621
+ ;;^UTILITY(U,$J,358.3,18440,2)
+ ;;=^5007919
+ ;;^UTILITY(U,$J,358.3,18441,0)
+ ;;=I82.A12^^84^962^88
+ ;;^UTILITY(U,$J,358.3,18441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8496,1,3,0)
- ;;=3^Malignant neoplasm of gum, unspecified
- ;;^UTILITY(U,$J,358.3,8496,1,4,0)
- ;;=4^C03.9
- ;;^UTILITY(U,$J,358.3,8496,2)
- ;;=^5000892
- ;;^UTILITY(U,$J,358.3,8497,0)
- ;;=C04.9^^39^460^14
- ;;^UTILITY(U,$J,358.3,8497,1,0)
+ ;;^UTILITY(U,$J,358.3,18441,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Axillary Vein
+ ;;^UTILITY(U,$J,358.3,18441,1,4,0)
+ ;;=4^I82.A12
+ ;;^UTILITY(U,$J,358.3,18441,2)
+ ;;=^5007943
+ ;;^UTILITY(U,$J,358.3,18442,0)
+ ;;=I82.412^^84^962^89
+ ;;^UTILITY(U,$J,358.3,18442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8497,1,3,0)
- ;;=3^Malignant neoplasm of floor of mouth, unspecified
- ;;^UTILITY(U,$J,358.3,8497,1,4,0)
- ;;=4^C04.9
- ;;^UTILITY(U,$J,358.3,8497,2)
- ;;=^5000896
- ;;^UTILITY(U,$J,358.3,8498,0)
- ;;=C05.2^^39^460^32
- ;;^UTILITY(U,$J,358.3,8498,1,0)
+ ;;^UTILITY(U,$J,358.3,18442,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Femoral Vein
+ ;;^UTILITY(U,$J,358.3,18442,1,4,0)
+ ;;=4^I82.412
+ ;;^UTILITY(U,$J,358.3,18442,2)
+ ;;=^5007858
+ ;;^UTILITY(U,$J,358.3,18443,0)
+ ;;=I82.422^^84^962^90
+ ;;^UTILITY(U,$J,358.3,18443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8498,1,3,0)
- ;;=3^Malignant neoplasm of uvula
- ;;^UTILITY(U,$J,358.3,8498,1,4,0)
- ;;=4^C05.2
+ ;;^UTILITY(U,$J,358.3,18443,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Iliac Vein
+ ;;^UTILITY(U,$J,358.3,18443,1,4,0)
+ ;;=4^I82.422
+ ;;^UTILITY(U,$J,358.3,18443,2)
+ ;;=^5007862
+ ;;^UTILITY(U,$J,358.3,18444,0)
+ ;;=I82.C12^^84^962^91
+ ;;^UTILITY(U,$J,358.3,18444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18444,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Internal Jugular Vein
+ ;;^UTILITY(U,$J,358.3,18444,1,4,0)
+ ;;=4^I82.C12
+ ;;^UTILITY(U,$J,358.3,18444,2)
+ ;;=^5007959
+ ;;^UTILITY(U,$J,358.3,18445,0)
+ ;;=I82.432^^84^962^92
+ ;;^UTILITY(U,$J,358.3,18445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18445,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,18445,1,4,0)
+ ;;=4^I82.432
+ ;;^UTILITY(U,$J,358.3,18445,2)
+ ;;=^5007866
+ ;;^UTILITY(U,$J,358.3,18446,0)
+ ;;=I82.B12^^84^962^93
+ ;;^UTILITY(U,$J,358.3,18446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18446,1,3,0)
+ ;;=3^Embolism/Thrombosis of Left Subclavian Vein
+ ;;^UTILITY(U,$J,358.3,18446,1,4,0)
+ ;;=4^I82.B12
+ ;;^UTILITY(U,$J,358.3,18446,2)
+ ;;=^5007951
+ ;;^UTILITY(U,$J,358.3,18447,0)
+ ;;=I82.890^^84^962^97
+ ;;^UTILITY(U,$J,358.3,18447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18447,1,3,0)
+ ;;=3^Embolism/Thrombosis of Oth Specified Veins
+ ;;^UTILITY(U,$J,358.3,18447,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,18447,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,18448,0)
+ ;;=I82.A11^^84^962^98
+ ;;^UTILITY(U,$J,358.3,18448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18448,1,3,0)
+ ;;=3^Embolism/Thrombosis of Right Axillary Vein
+ ;;^UTILITY(U,$J,358.3,18448,1,4,0)
+ ;;=4^I82.A11
+ ;;^UTILITY(U,$J,358.3,18448,2)
+ ;;=^5007942
+ ;;^UTILITY(U,$J,358.3,18449,0)
+ ;;=I82.411^^84^962^99
+ ;;^UTILITY(U,$J,358.3,18449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18449,1,3,0)
+ ;;=3^Embolism/Thrombosis of Right Femoral Vein
+ ;;^UTILITY(U,$J,358.3,18449,1,4,0)
+ ;;=4^I82.411
+ ;;^UTILITY(U,$J,358.3,18449,2)
+ ;;=^5007857
+ ;;^UTILITY(U,$J,358.3,18450,0)
+ ;;=I82.290^^84^962^107
+ ;;^UTILITY(U,$J,358.3,18450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,18450,1,3,0)
+ ;;=3^Embolism/Thrombosis of Thoracic Veins NEC
+ ;;^UTILITY(U,$J,358.3,18450,1,4,0)
+ ;;=4^I82.290
+ ;;^UTILITY(U,$J,358.3,18450,2)
+ ;;=^5007852
+ ;;^UTILITY(U,$J,358.3,18451,0)
+ ;;=I82.411^^84^962^100
+ ;;^UTILITY(U,$J,358.3,18451,1,0)
+ ;;=^358.31IA^4^2

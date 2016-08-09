@@ -1,134 +1,268 @@
-IBDEI051 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI051 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1948,0)
- ;;=93602^^12^162^21^^^^1
- ;;^UTILITY(U,$J,358.3,1948,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1948,1,2,0)
- ;;=2^93602
- ;;^UTILITY(U,$J,358.3,1948,1,3,0)
- ;;=3^Intra-Atrial Record
- ;;^UTILITY(U,$J,358.3,1949,0)
- ;;=93603^^12^162^26^^^^1
- ;;^UTILITY(U,$J,358.3,1949,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1949,1,2,0)
- ;;=2^93603
- ;;^UTILITY(U,$J,358.3,1949,1,3,0)
- ;;=3^R Vent Record
- ;;^UTILITY(U,$J,358.3,1950,0)
- ;;=93609^^12^162^24^^^^1
- ;;^UTILITY(U,$J,358.3,1950,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1950,1,2,0)
- ;;=2^93609
- ;;^UTILITY(U,$J,358.3,1950,1,3,0)
- ;;=3^Mapping Of Tachycardia
- ;;^UTILITY(U,$J,358.3,1951,0)
- ;;=93610^^12^162^20^^^^1
- ;;^UTILITY(U,$J,358.3,1951,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1951,1,2,0)
- ;;=2^93610
- ;;^UTILITY(U,$J,358.3,1951,1,3,0)
- ;;=3^Intra-Atrial Pacing
- ;;^UTILITY(U,$J,358.3,1952,0)
- ;;=93612^^12^162^23^^^^1
- ;;^UTILITY(U,$J,358.3,1952,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1952,1,2,0)
- ;;=2^93612
- ;;^UTILITY(U,$J,358.3,1952,1,3,0)
- ;;=3^Intraventricular Pacing
- ;;^UTILITY(U,$J,358.3,1953,0)
- ;;=93615^^12^162^17^^^^1
- ;;^UTILITY(U,$J,358.3,1953,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1953,1,2,0)
- ;;=2^93615
- ;;^UTILITY(U,$J,358.3,1953,1,3,0)
- ;;=3^Esoph Record
- ;;^UTILITY(U,$J,358.3,1954,0)
- ;;=93616^^12^162^18^^^^1
- ;;^UTILITY(U,$J,358.3,1954,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1954,1,2,0)
- ;;=2^93616
- ;;^UTILITY(U,$J,358.3,1954,1,3,0)
- ;;=3^Esoph Record W/Pacing
- ;;^UTILITY(U,$J,358.3,1955,0)
- ;;=93618^^12^162^19^^^^1
- ;;^UTILITY(U,$J,358.3,1955,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1955,1,2,0)
- ;;=2^93618
- ;;^UTILITY(U,$J,358.3,1955,1,3,0)
- ;;=3^Induct Of Arryth By Elec Pace
- ;;^UTILITY(U,$J,358.3,1956,0)
- ;;=93619^^12^162^14^^^^1
- ;;^UTILITY(U,$J,358.3,1956,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1956,1,2,0)
- ;;=2^93619
- ;;^UTILITY(U,$J,358.3,1956,1,3,0)
- ;;=3^Eps Eval, No Induct Of Arryth
- ;;^UTILITY(U,$J,358.3,1957,0)
- ;;=93620^^12^162^11^^^^1
- ;;^UTILITY(U,$J,358.3,1957,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1957,1,2,0)
- ;;=2^93620
- ;;^UTILITY(U,$J,358.3,1957,1,3,0)
- ;;=3^Eps Eval W/Induct Of Arryth
- ;;^UTILITY(U,$J,358.3,1958,0)
- ;;=93621^^12^162^10^^^^1
- ;;^UTILITY(U,$J,358.3,1958,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1958,1,2,0)
- ;;=2^93621
- ;;^UTILITY(U,$J,358.3,1958,1,3,0)
- ;;=3^Eps Eval W/Atrial Record
- ;;^UTILITY(U,$J,358.3,1959,0)
- ;;=93622^^12^162^12^^^^1
- ;;^UTILITY(U,$J,358.3,1959,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1959,1,2,0)
- ;;=2^93622
- ;;^UTILITY(U,$J,358.3,1959,1,3,0)
- ;;=3^Eps Eval W/L Vent Record
- ;;^UTILITY(U,$J,358.3,1960,0)
- ;;=93623^^12^162^13^^^^1
- ;;^UTILITY(U,$J,358.3,1960,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1960,1,2,0)
- ;;=2^93623
- ;;^UTILITY(U,$J,358.3,1960,1,3,0)
- ;;=3^Eps Eval W/Prog Stim Drug (W/
- ;;^UTILITY(U,$J,358.3,1961,0)
- ;;=93624^^12^162^15^^^^1
- ;;^UTILITY(U,$J,358.3,1961,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1961,1,2,0)
- ;;=2^93624
- ;;^UTILITY(U,$J,358.3,1961,1,3,0)
- ;;=3^Eps F/U Study W/Pace W/Record
- ;;^UTILITY(U,$J,358.3,1962,0)
- ;;=93640^^12^162^8^^^^1
- ;;^UTILITY(U,$J,358.3,1962,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1962,1,2,0)
- ;;=2^93640
- ;;^UTILITY(U,$J,358.3,1962,1,3,0)
- ;;=3^Eps Eval Sgl/Dual Lead
- ;;^UTILITY(U,$J,358.3,1963,0)
- ;;=93641^^12^162^16^^^^1
- ;;^UTILITY(U,$J,358.3,1963,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,1963,1,2,0)
- ;;=2^93641
- ;;^UTILITY(U,$J,358.3,1963,1,3,0)
- ;;=3^Eps Test Sgl/Dual Pulse Gen
- ;;^UTILITY(U,$J,358.3,1964,0)
- ;;=93642^^12^162^9^^^^1
+ ;;^UTILITY(U,$J,358.3,4771,0)
+ ;;=I83.029^^30^323^4
+ ;;^UTILITY(U,$J,358.3,4771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4771,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Ulcer,Unspec Site
+ ;;^UTILITY(U,$J,358.3,4771,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,4771,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,4772,0)
+ ;;=I83.025^^30^323^5
+ ;;^UTILITY(U,$J,358.3,4772,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4772,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,4772,1,4,0)
+ ;;=4^I83.025
+ ;;^UTILITY(U,$J,358.3,4772,2)
+ ;;=^5007984
+ ;;^UTILITY(U,$J,358.3,4773,0)
+ ;;=I83.024^^30^323^6
+ ;;^UTILITY(U,$J,358.3,4773,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4773,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Heel/Midfoot Ulcer
+ ;;^UTILITY(U,$J,358.3,4773,1,4,0)
+ ;;=4^I83.024
+ ;;^UTILITY(U,$J,358.3,4773,2)
+ ;;=^5007983
+ ;;^UTILITY(U,$J,358.3,4774,0)
+ ;;=I83.028^^30^323^7
+ ;;^UTILITY(U,$J,358.3,4774,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4774,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Lower Leg Ulcer
+ ;;^UTILITY(U,$J,358.3,4774,1,4,0)
+ ;;=4^I83.028
+ ;;^UTILITY(U,$J,358.3,4774,2)
+ ;;=^5007985
+ ;;^UTILITY(U,$J,358.3,4775,0)
+ ;;=I83.023^^30^323^8
+ ;;^UTILITY(U,$J,358.3,4775,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4775,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Ankle Ulcer
+ ;;^UTILITY(U,$J,358.3,4775,1,4,0)
+ ;;=4^I83.023
+ ;;^UTILITY(U,$J,358.3,4775,2)
+ ;;=^5007982
+ ;;^UTILITY(U,$J,358.3,4776,0)
+ ;;=I83.022^^30^323^9
+ ;;^UTILITY(U,$J,358.3,4776,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4776,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Calf Ulcer
+ ;;^UTILITY(U,$J,358.3,4776,1,4,0)
+ ;;=4^I83.022
+ ;;^UTILITY(U,$J,358.3,4776,2)
+ ;;=^5007981
+ ;;^UTILITY(U,$J,358.3,4777,0)
+ ;;=I83.021^^30^323^10
+ ;;^UTILITY(U,$J,358.3,4777,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4777,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Thigh Ulcer
+ ;;^UTILITY(U,$J,358.3,4777,1,4,0)
+ ;;=4^I83.021
+ ;;^UTILITY(U,$J,358.3,4777,2)
+ ;;=^5007980
+ ;;^UTILITY(U,$J,358.3,4778,0)
+ ;;=I83.12^^30^323^11
+ ;;^UTILITY(U,$J,358.3,4778,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4778,1,3,0)
+ ;;=3^Varicose Veins of Left Lower Extrem w/ Inflammation
+ ;;^UTILITY(U,$J,358.3,4778,1,4,0)
+ ;;=4^I83.12
+ ;;^UTILITY(U,$J,358.3,4778,2)
+ ;;=^5007989
+ ;;^UTILITY(U,$J,358.3,4779,0)
+ ;;=I83.93^^30^323^1
+ ;;^UTILITY(U,$J,358.3,4779,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4779,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extrem
+ ;;^UTILITY(U,$J,358.3,4779,1,4,0)
+ ;;=4^I83.93
+ ;;^UTILITY(U,$J,358.3,4779,2)
+ ;;=^5008022
+ ;;^UTILITY(U,$J,358.3,4780,0)
+ ;;=I83.92^^30^323^2
+ ;;^UTILITY(U,$J,358.3,4780,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4780,1,3,0)
+ ;;=3^Asymptomatic Varicose Veins of Left Lower Extrem
+ ;;^UTILITY(U,$J,358.3,4780,1,4,0)
+ ;;=4^I83.92
+ ;;^UTILITY(U,$J,358.3,4780,2)
+ ;;=^5008021
+ ;;^UTILITY(U,$J,358.3,4781,0)
+ ;;=G97.32^^30^324^35
+ ;;^UTILITY(U,$J,358.3,4781,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4781,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Nervous System Organ/Sturcture
+ ;;^UTILITY(U,$J,358.3,4781,1,4,0)
+ ;;=4^G97.32
+ ;;^UTILITY(U,$J,358.3,4781,2)
+ ;;=^5004205
+ ;;^UTILITY(U,$J,358.3,4782,0)
+ ;;=D78.02^^30^324^38
+ ;;^UTILITY(U,$J,358.3,4782,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4782,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Spleen
+ ;;^UTILITY(U,$J,358.3,4782,1,4,0)
+ ;;=4^D78.02
+ ;;^UTILITY(U,$J,358.3,4782,2)
+ ;;=^5002398
+ ;;^UTILITY(U,$J,358.3,4783,0)
+ ;;=E36.01^^30^324^29
+ ;;^UTILITY(U,$J,358.3,4783,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4783,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System Organ/Structure
+ ;;^UTILITY(U,$J,358.3,4783,1,4,0)
+ ;;=4^E36.01
+ ;;^UTILITY(U,$J,358.3,4783,2)
+ ;;=^5002779
+ ;;^UTILITY(U,$J,358.3,4784,0)
+ ;;=I97.711^^30^324^12
+ ;;^UTILITY(U,$J,358.3,4784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4784,1,3,0)
+ ;;=3^Intraoperative Cardiac Arrest During Surgery
+ ;;^UTILITY(U,$J,358.3,4784,1,4,0)
+ ;;=4^I97.711
+ ;;^UTILITY(U,$J,358.3,4784,2)
+ ;;=^5008104
+ ;;^UTILITY(U,$J,358.3,4785,0)
+ ;;=I97.791^^30^324^13
+ ;;^UTILITY(U,$J,358.3,4785,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4785,1,3,0)
+ ;;=3^Intraoperative Cardiac Functional Disturbance During Surgery
+ ;;^UTILITY(U,$J,358.3,4785,1,4,0)
+ ;;=4^I97.791
+ ;;^UTILITY(U,$J,358.3,4785,2)
+ ;;=^5008106
+ ;;^UTILITY(U,$J,358.3,4786,0)
+ ;;=I97.411^^30^324^25
+ ;;^UTILITY(U,$J,358.3,4786,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4786,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Bypass
+ ;;^UTILITY(U,$J,358.3,4786,1,4,0)
+ ;;=4^I97.411
+ ;;^UTILITY(U,$J,358.3,4786,2)
+ ;;=^5008094
+ ;;^UTILITY(U,$J,358.3,4787,0)
+ ;;=I97.410^^30^324^26
+ ;;^UTILITY(U,$J,358.3,4787,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4787,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System During Cardiac Cath
+ ;;^UTILITY(U,$J,358.3,4787,1,4,0)
+ ;;=4^I97.410
+ ;;^UTILITY(U,$J,358.3,4787,2)
+ ;;=^5008093
+ ;;^UTILITY(U,$J,358.3,4788,0)
+ ;;=I97.42^^30^324^27
+ ;;^UTILITY(U,$J,358.3,4788,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4788,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Circ System
+ ;;^UTILITY(U,$J,358.3,4788,1,4,0)
+ ;;=4^I97.42
+ ;;^UTILITY(U,$J,358.3,4788,2)
+ ;;=^5008096
+ ;;^UTILITY(U,$J,358.3,4789,0)
+ ;;=K91.62^^30^324^28
+ ;;^UTILITY(U,$J,358.3,4789,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4789,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Digestive System
+ ;;^UTILITY(U,$J,358.3,4789,1,4,0)
+ ;;=4^K91.62
+ ;;^UTILITY(U,$J,358.3,4789,2)
+ ;;=^5008904
+ ;;^UTILITY(U,$J,358.3,4790,0)
+ ;;=H95.22^^30^324^30
+ ;;^UTILITY(U,$J,358.3,4790,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4790,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Ear/Mastoid
+ ;;^UTILITY(U,$J,358.3,4790,1,4,0)
+ ;;=4^H95.22
+ ;;^UTILITY(U,$J,358.3,4790,2)
+ ;;=^5007027
+ ;;^UTILITY(U,$J,358.3,4791,0)
+ ;;=E36.02^^30^324^31
+ ;;^UTILITY(U,$J,358.3,4791,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4791,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Endocrine System
+ ;;^UTILITY(U,$J,358.3,4791,1,4,0)
+ ;;=4^E36.02
+ ;;^UTILITY(U,$J,358.3,4791,2)
+ ;;=^5002780
+ ;;^UTILITY(U,$J,358.3,4792,0)
+ ;;=H59.121^^30^324^36
+ ;;^UTILITY(U,$J,358.3,4792,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4792,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Right Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,4792,1,4,0)
+ ;;=4^H59.121
+ ;;^UTILITY(U,$J,358.3,4792,2)
+ ;;=^5006405
+ ;;^UTILITY(U,$J,358.3,4793,0)
+ ;;=H59.122^^30^324^33
+ ;;^UTILITY(U,$J,358.3,4793,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4793,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Left Eye/Adnexa
+ ;;^UTILITY(U,$J,358.3,4793,1,4,0)
+ ;;=4^H59.122
+ ;;^UTILITY(U,$J,358.3,4793,2)
+ ;;=^5006406
+ ;;^UTILITY(U,$J,358.3,4794,0)
+ ;;=H59.123^^30^324^24
+ ;;^UTILITY(U,$J,358.3,4794,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4794,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Bilateral Eyes/Adnexa
+ ;;^UTILITY(U,$J,358.3,4794,1,4,0)
+ ;;=4^H59.123
+ ;;^UTILITY(U,$J,358.3,4794,2)
+ ;;=^5006407
+ ;;^UTILITY(U,$J,358.3,4795,0)
+ ;;=N99.62^^30^324^32
+ ;;^UTILITY(U,$J,358.3,4795,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4795,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of GU System
+ ;;^UTILITY(U,$J,358.3,4795,1,4,0)
+ ;;=4^N99.62
+ ;;^UTILITY(U,$J,358.3,4795,2)
+ ;;=^5015964
+ ;;^UTILITY(U,$J,358.3,4796,0)
+ ;;=M96.811^^30^324^34
+ ;;^UTILITY(U,$J,358.3,4796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4796,1,3,0)
+ ;;=3^Intraoperative Hemorrhage/Hematoma of Musculoskeletal System
+ ;;^UTILITY(U,$J,358.3,4796,1,4,0)
+ ;;=4^M96.811
+ ;;^UTILITY(U,$J,358.3,4796,2)
+ ;;=^5015394
+ ;;^UTILITY(U,$J,358.3,4797,0)
+ ;;=J95.62^^30^324^37
+ ;;^UTILITY(U,$J,358.3,4797,1,0)
+ ;;=^358.31IA^4^2

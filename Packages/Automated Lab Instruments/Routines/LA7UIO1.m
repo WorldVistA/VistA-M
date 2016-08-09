@@ -1,11 +1,13 @@
-LA7UIO1 ;DALOI/JMC - Process Download Message for an entry in 62.48 ;11/17/11  09:16
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**66,74**;Sep 27, 1994;Build 229
+LA7UIO1 ;DALOI/JMC - Process Download Message for an entry in 62.48 ;12/11/15  16:39
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**66,74,88**;Sep 27, 1994;Build 10
+ ;
+ ; Reference to PROTOCOL file (#101) supported by ICR #872
  ;
  Q
  ;
 BUILD ; Build one accession into an HL7 message
  ;
- N GBL,HL,LA760,LA761,LA7CDT,LA7CMT,LA7CS,LA7ERR,LA7FAC,LA7FS,LA7ECH,LA7HLP,LA7I,LA7ID,LA7LINK,LA7NVAF,LA7OBRSN,LA7PIDSN,LA7SCMT,LA7SID,LA7SPEC,LA7X,LA7Y
+ N GBL,HL,I,LA760,LA761,LA7CDT,LA7CMT,LA7CS,LA7ERR,LA7FAC,LA7FS,LA7ECH,LA7HLP,LA7I,LA7ID,LA7LINK,LA7NVAF,LA7OBRSN,LA7PIDSN,LA7SCMT,LA7SID,LA7SPEC,LA7SUB,LA7X,LA7Y
  S GBL="^TMP(""HLS"","_$J_")"
  ;
  I '$D(ZTQUEUED),$G(LRLL) W:$X+5>IOM !,$S($G(LRTYPE):"Cup",1:"Seq"),": " W LA76822,", "
@@ -32,7 +34,13 @@ BUILD ; Build one accession into an HL7 message
  ; Setup links and subscriber array for HL7 message generation
  S LA76248(0)=$G(^LAHM(62.48,LA76248,0)),LA7Y=$P(LA76248(0),"^")
  I $E(LA7Y,1,5)'="LA7UI"!($P(LA76248(0),"^",9)'=1) Q
- S LA7LINK="LA7UI ORM-O01 SUBS 2.2^"_LA7Y
+ ;
+ ; Check if interface has been updagraded to HL7 v2.5.1 otherwise use v2.2 protocol
+ S LA7SUB="LA7UI ORM-O01 SUBS"
+ S X=$O(^ORD(101,"B",LA7SUB,0))
+ I X<1 S LA7SUB="LA7UI ORM-O01 SUBS 2.2"
+ ;
+ S LA7LINK=LA7SUB_"^"_LA7Y
  S LA7FAC=$P($$SITE^VASITE(DT),"^",3)
  S LA7HLP("SUBSCRIBER")="^^"_LA7FAC_"^"_LA7Y_"^"
  ; Following line used when debugging
@@ -51,9 +59,17 @@ BUILD ; Build one accession into an HL7 message
  ;
 INIT ; Create/initialize HL message
  ;
+ N LA7EVENT,X
+ ;
  K @GBL
  S (LA76249,LA7NVAF,LA7PIDSN)=0
- D STARTMSG^LA7VHLU("LA7UI ORM-O01 EVENT 2.2",.LA76249)
+ ;
+ ; Check if interface has been updagraded to HL7 v2.5.1 otherwise use v2.2 protocol
+ S LA7EVENT="LA7UI ORM-O01 EVENT"
+ S X=$O(^ORD(101,"B",LA7EVENT,0))
+ I X<1 S LA7EVENT="LA7UI ORM-O01 EVENT 2.2"
+ D STARTMSG^LA7VHLU(LA7EVENT,.LA76249)
+ ;
  S LA7ID=$P(LRAUTO,"^",1)_"-O-"_LA7UID
  ;
  K ^TMP("LA7-ID",$J)
@@ -124,6 +140,8 @@ ORC ; Build ORC segment
  ; Provider
  S LA7X=$$FNDOLOC^LA7VHLU2(LA7UID)
  S ORC(12)=$$ORC12^LA7VORC($P(LA76802(0),"^",8),$P(LA7X,"^",3),LA7FS,LA7ECH,2)
+ ; Provider Callback Number ;**88
+ S ORC(14)=$$ORC14^LA7VORC($P(LA76802(0),"^",8),DT,LA7FS,LA7ECH)
  D BUILDSEG^LA7VHLU(.ORC,.LA7DATA,LA7FS)
  D FILESEG^LA7VHLU(GBL,.LA7DATA)
  D FILE6249^LA7VHLU(LA76249,.LA7DATA)
@@ -175,6 +193,8 @@ OBR ; Build OBR segment
  ; Ordering provider
  S LA7X=$$FNDOLOC^LA7VHLU2(LA7UID)
  S OBR(16)=$$ORC12^LA7VORC($P(LA76802(0),"^",8),$P(LA7X,"^",3),LA7FS,LA7ECH,2)
+ ; Provider Callback Number ;**88
+ S OBR(17)=$$ORC14^LA7VORC($P(LA76802(0),"^",8),DT,LA7FS,LA7ECH)
  ; Placer's field #1 - instrument name^card address
  K LA7X
  S LA7X(1)=$P(LRAUTO,"^")

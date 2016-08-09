@@ -1,140 +1,268 @@
-IBDEI0CX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0CX ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5923,1,0)
+ ;;^UTILITY(U,$J,358.3,12928,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,12929,0)
+ ;;=T76.31XA^^58^672^11
+ ;;^UTILITY(U,$J,358.3,12929,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5923,1,3,0)
- ;;=3^Acute Lymphangitis of Perineum
- ;;^UTILITY(U,$J,358.3,5923,1,4,0)
- ;;=4^L03.325
- ;;^UTILITY(U,$J,358.3,5923,2)
- ;;=^5009059
- ;;^UTILITY(U,$J,358.3,5924,0)
- ;;=L03.326^^30^385^29
- ;;^UTILITY(U,$J,358.3,5924,1,0)
+ ;;^UTILITY(U,$J,358.3,12929,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,12929,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,12929,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,12930,0)
+ ;;=T76.31XD^^58^672^12
+ ;;^UTILITY(U,$J,358.3,12930,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5924,1,3,0)
- ;;=3^Acute Lymphangitis of Umbilicus
- ;;^UTILITY(U,$J,358.3,5924,1,4,0)
- ;;=4^L03.326
- ;;^UTILITY(U,$J,358.3,5924,2)
- ;;=^5009060
- ;;^UTILITY(U,$J,358.3,5925,0)
- ;;=L03.329^^30^385^28
- ;;^UTILITY(U,$J,358.3,5925,1,0)
+ ;;^UTILITY(U,$J,358.3,12930,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,12930,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,12930,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,12931,0)
+ ;;=Z91.411^^58^672^41
+ ;;^UTILITY(U,$J,358.3,12931,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5925,1,3,0)
- ;;=3^Acute Lymphangitis of Trunk,Unspec
- ;;^UTILITY(U,$J,358.3,5925,1,4,0)
- ;;=4^L03.329
- ;;^UTILITY(U,$J,358.3,5925,2)
- ;;=^5009062
- ;;^UTILITY(U,$J,358.3,5926,0)
- ;;=L08.9^^30^385^167
- ;;^UTILITY(U,$J,358.3,5926,1,0)
+ ;;^UTILITY(U,$J,358.3,12931,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12931,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,12931,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,12932,0)
+ ;;=Z69.021^^58^672^18
+ ;;^UTILITY(U,$J,358.3,12932,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5926,1,3,0)
- ;;=3^Local Infection of Skin/Subcutaneous Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,5926,1,4,0)
- ;;=4^L08.9
- ;;^UTILITY(U,$J,358.3,5926,2)
- ;;=^5009082
- ;;^UTILITY(U,$J,358.3,5927,0)
- ;;=L11.0^^30^385^9
- ;;^UTILITY(U,$J,358.3,5927,1,0)
+ ;;^UTILITY(U,$J,358.3,12932,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Abuse
+ ;;^UTILITY(U,$J,358.3,12932,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,12932,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,12933,0)
+ ;;=Z69.021^^58^672^19
+ ;;^UTILITY(U,$J,358.3,12933,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5927,1,3,0)
- ;;=3^Acquired Keratosis Follicularis
- ;;^UTILITY(U,$J,358.3,5927,1,4,0)
- ;;=4^L11.0
- ;;^UTILITY(U,$J,358.3,5927,2)
- ;;=^5009091
- ;;^UTILITY(U,$J,358.3,5928,0)
- ;;=L20.0^^30^385^90
- ;;^UTILITY(U,$J,358.3,5928,1,0)
+ ;;^UTILITY(U,$J,358.3,12933,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Neglect
+ ;;^UTILITY(U,$J,358.3,12933,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,12933,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,12934,0)
+ ;;=Z69.021^^58^672^20
+ ;;^UTILITY(U,$J,358.3,12934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5928,1,3,0)
- ;;=3^Besnier's Prurigo
- ;;^UTILITY(U,$J,358.3,5928,1,4,0)
- ;;=4^L20.0
- ;;^UTILITY(U,$J,358.3,5928,2)
- ;;=^5009107
- ;;^UTILITY(U,$J,358.3,5929,0)
- ;;=L20.81^^30^385^87
- ;;^UTILITY(U,$J,358.3,5929,1,0)
+ ;;^UTILITY(U,$J,358.3,12934,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12934,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,12934,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,12935,0)
+ ;;=Z69.021^^58^672^21
+ ;;^UTILITY(U,$J,358.3,12935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5929,1,3,0)
- ;;=3^Atopic Neurodermatitis
- ;;^UTILITY(U,$J,358.3,5929,1,4,0)
- ;;=4^L20.81
- ;;^UTILITY(U,$J,358.3,5929,2)
- ;;=^5009108
- ;;^UTILITY(U,$J,358.3,5930,0)
- ;;=L20.82^^30^385^150
- ;;^UTILITY(U,$J,358.3,5930,1,0)
+ ;;^UTILITY(U,$J,358.3,12935,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,12935,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,12935,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,12936,0)
+ ;;=Z69.011^^58^672^23
+ ;;^UTILITY(U,$J,358.3,12936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5930,1,3,0)
- ;;=3^Flexural Eczema
- ;;^UTILITY(U,$J,358.3,5930,1,4,0)
- ;;=4^L20.82
- ;;^UTILITY(U,$J,358.3,5930,2)
- ;;=^5009109
- ;;^UTILITY(U,$J,358.3,5931,0)
- ;;=L20.84^^30^385^162
- ;;^UTILITY(U,$J,358.3,5931,1,0)
+ ;;^UTILITY(U,$J,358.3,12936,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,12936,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,12936,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,12937,0)
+ ;;=Z69.011^^58^672^24
+ ;;^UTILITY(U,$J,358.3,12937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5931,1,3,0)
- ;;=3^Intrinsic Eczema
- ;;^UTILITY(U,$J,358.3,5931,1,4,0)
- ;;=4^L20.84
- ;;^UTILITY(U,$J,358.3,5931,2)
- ;;=^5009111
- ;;^UTILITY(U,$J,358.3,5932,0)
- ;;=L20.89^^30^385^85
- ;;^UTILITY(U,$J,358.3,5932,1,0)
+ ;;^UTILITY(U,$J,358.3,12937,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,12937,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,12937,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,12938,0)
+ ;;=Z69.011^^58^672^25
+ ;;^UTILITY(U,$J,358.3,12938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5932,1,3,0)
- ;;=3^Atopic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,5932,1,4,0)
- ;;=4^L20.89
- ;;^UTILITY(U,$J,358.3,5932,2)
- ;;=^5009112
- ;;^UTILITY(U,$J,358.3,5933,0)
- ;;=L20.9^^30^385^86
- ;;^UTILITY(U,$J,358.3,5933,1,0)
+ ;;^UTILITY(U,$J,358.3,12938,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12938,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,12938,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,12939,0)
+ ;;=Z69.011^^58^672^26
+ ;;^UTILITY(U,$J,358.3,12939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5933,1,3,0)
- ;;=3^Atopic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,5933,1,4,0)
- ;;=4^L20.9
- ;;^UTILITY(U,$J,358.3,5933,2)
- ;;=^5009113
- ;;^UTILITY(U,$J,358.3,5934,0)
- ;;=L21.8^^30^385^262
- ;;^UTILITY(U,$J,358.3,5934,1,0)
+ ;;^UTILITY(U,$J,358.3,12939,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,12939,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,12939,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,12940,0)
+ ;;=Z69.12^^58^672^17
+ ;;^UTILITY(U,$J,358.3,12940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5934,1,3,0)
- ;;=3^Seborrheic Dermatitis NEC
- ;;^UTILITY(U,$J,358.3,5934,1,4,0)
- ;;=4^L21.8
- ;;^UTILITY(U,$J,358.3,5934,2)
- ;;=^303310
- ;;^UTILITY(U,$J,358.3,5935,0)
- ;;=L21.9^^30^385^263
- ;;^UTILITY(U,$J,358.3,5935,1,0)
+ ;;^UTILITY(U,$J,358.3,12940,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,12940,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,12940,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,12941,0)
+ ;;=Z69.12^^58^672^28
+ ;;^UTILITY(U,$J,358.3,12941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5935,1,3,0)
- ;;=3^Seborrheic Dermatitis,Unspec
- ;;^UTILITY(U,$J,358.3,5935,1,4,0)
- ;;=4^L21.9
- ;;^UTILITY(U,$J,358.3,5935,2)
- ;;=^188703
- ;;^UTILITY(U,$J,358.3,5936,0)
- ;;=L23.7^^30^385^30
- ;;^UTILITY(U,$J,358.3,5936,1,0)
+ ;;^UTILITY(U,$J,358.3,12941,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12941,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,12941,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,12942,0)
+ ;;=Z69.12^^58^672^29
+ ;;^UTILITY(U,$J,358.3,12942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5936,1,3,0)
- ;;=3^Allergic Contact Dermatitis d/t Plants
- ;;^UTILITY(U,$J,358.3,5936,1,4,0)
- ;;=4^L23.7
+ ;;^UTILITY(U,$J,358.3,12942,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,12942,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,12942,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,12943,0)
+ ;;=Z69.11^^58^672^32
+ ;;^UTILITY(U,$J,358.3,12943,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12943,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12943,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,12943,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,12944,0)
+ ;;=Z69.11^^58^672^33
+ ;;^UTILITY(U,$J,358.3,12944,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12944,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,12944,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,12944,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,12945,0)
+ ;;=Z69.11^^58^672^34
+ ;;^UTILITY(U,$J,358.3,12945,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12945,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,12945,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,12945,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,12946,0)
+ ;;=Z62.812^^58^672^36
+ ;;^UTILITY(U,$J,358.3,12946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12946,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,12946,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,12946,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,12947,0)
+ ;;=Z62.810^^58^672^37
+ ;;^UTILITY(U,$J,358.3,12947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12947,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,12947,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,12947,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,12948,0)
+ ;;=Z62.810^^58^672^39
+ ;;^UTILITY(U,$J,358.3,12948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12948,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,12948,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,12948,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,12949,0)
+ ;;=Z62.811^^58^672^38
+ ;;^UTILITY(U,$J,358.3,12949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12949,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,12949,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,12949,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,12950,0)
+ ;;=Z91.410^^58^672^42
+ ;;^UTILITY(U,$J,358.3,12950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12950,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,12950,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,12950,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,12951,0)
+ ;;=F06.4^^58^673^3
+ ;;^UTILITY(U,$J,358.3,12951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12951,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,12951,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,12951,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,12952,0)
+ ;;=F41.0^^58^673^12
+ ;;^UTILITY(U,$J,358.3,12952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12952,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,12952,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,12952,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,12953,0)
+ ;;=F41.1^^58^673^10
+ ;;^UTILITY(U,$J,358.3,12953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12953,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,12953,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,12953,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,12954,0)
+ ;;=F40.10^^58^673^17
+ ;;^UTILITY(U,$J,358.3,12954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,12954,1,3,0)
+ ;;=3^Social Anxiety Disorder (Social Phobia)
+ ;;^UTILITY(U,$J,358.3,12954,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,12954,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,12955,0)
+ ;;=F40.218^^58^673^2

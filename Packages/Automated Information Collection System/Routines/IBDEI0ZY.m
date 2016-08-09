@@ -1,140 +1,282 @@
-IBDEI0ZY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0ZY ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16904,2)
- ;;=^95428
- ;;^UTILITY(U,$J,358.3,16905,0)
- ;;=J91.8^^70^797^8
- ;;^UTILITY(U,$J,358.3,16905,1,0)
+ ;;^UTILITY(U,$J,358.3,36165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16905,1,3,0)
- ;;=3^Pleural effus in oth cond clsfd elsewhere
- ;;^UTILITY(U,$J,358.3,16905,1,4,0)
- ;;=4^J91.8
- ;;^UTILITY(U,$J,358.3,16905,2)
- ;;=^5008311
- ;;^UTILITY(U,$J,358.3,16906,0)
- ;;=J18.9^^70^797^10
- ;;^UTILITY(U,$J,358.3,16906,1,0)
+ ;;^UTILITY(U,$J,358.3,36165,1,3,0)
+ ;;=3^Procedure/Treatment not Done d/t Pt Belief/Group Pressure
+ ;;^UTILITY(U,$J,358.3,36165,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,36165,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,36166,0)
+ ;;=Z63.4^^130^1753^3
+ ;;^UTILITY(U,$J,358.3,36166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16906,1,3,0)
- ;;=3^Pneumonia, unspec organism
- ;;^UTILITY(U,$J,358.3,16906,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,16906,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,16907,0)
- ;;=I49.3^^70^797^12
- ;;^UTILITY(U,$J,358.3,16907,1,0)
+ ;;^UTILITY(U,$J,358.3,36166,1,3,0)
+ ;;=3^Disappearance/Death of Family Member
+ ;;^UTILITY(U,$J,358.3,36166,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,36166,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,36167,0)
+ ;;=Z69.021^^130^1753^10
+ ;;^UTILITY(U,$J,358.3,36167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16907,1,3,0)
- ;;=3^Premature ventricular depolarization
- ;;^UTILITY(U,$J,358.3,16907,1,4,0)
- ;;=4^I49.3
- ;;^UTILITY(U,$J,358.3,16907,2)
- ;;=^5007233
- ;;^UTILITY(U,$J,358.3,16908,0)
- ;;=L40.4^^70^797^14
- ;;^UTILITY(U,$J,358.3,16908,1,0)
+ ;;^UTILITY(U,$J,358.3,36167,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Non-Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,36167,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,36167,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,36168,0)
+ ;;=Z69.82^^130^1753^9
+ ;;^UTILITY(U,$J,358.3,36168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16908,1,3,0)
- ;;=3^Psoriasis Guttate
- ;;^UTILITY(U,$J,358.3,16908,1,4,0)
- ;;=4^L40.4
- ;;^UTILITY(U,$J,358.3,16908,2)
- ;;=^5009164
- ;;^UTILITY(U,$J,358.3,16909,0)
- ;;=L40.1^^70^797^16
- ;;^UTILITY(U,$J,358.3,16909,1,0)
+ ;;^UTILITY(U,$J,358.3,36168,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Abuse
+ ;;^UTILITY(U,$J,358.3,36168,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,36168,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,36169,0)
+ ;;=R45.851^^130^1753^13
+ ;;^UTILITY(U,$J,358.3,36169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16909,1,3,0)
- ;;=3^Psoriasis, generalized pustular
- ;;^UTILITY(U,$J,358.3,16909,1,4,0)
- ;;=4^L40.1
- ;;^UTILITY(U,$J,358.3,16909,2)
- ;;=^5009161
- ;;^UTILITY(U,$J,358.3,16910,0)
- ;;=L40.0^^70^797^15
- ;;^UTILITY(U,$J,358.3,16910,1,0)
+ ;;^UTILITY(U,$J,358.3,36169,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,36169,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,36169,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,36170,0)
+ ;;=Z65.9^^130^1753^12
+ ;;^UTILITY(U,$J,358.3,36170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16910,1,3,0)
- ;;=3^Psoriasis vulgaris
- ;;^UTILITY(U,$J,358.3,16910,1,4,0)
- ;;=4^L40.0
- ;;^UTILITY(U,$J,358.3,16910,2)
- ;;=^5009160
- ;;^UTILITY(U,$J,358.3,16911,0)
- ;;=L40.8^^70^797^17
- ;;^UTILITY(U,$J,358.3,16911,1,0)
+ ;;^UTILITY(U,$J,358.3,36170,1,3,0)
+ ;;=3^Psychosocial Circumstance Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,36170,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,36170,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,36171,0)
+ ;;=Z56.9^^130^1753^6
+ ;;^UTILITY(U,$J,358.3,36171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16911,1,3,0)
- ;;=3^Psoriasis, other
- ;;^UTILITY(U,$J,358.3,16911,1,4,0)
- ;;=4^L40.8
- ;;^UTILITY(U,$J,358.3,16911,2)
- ;;=^271917
- ;;^UTILITY(U,$J,358.3,16912,0)
- ;;=L29.9^^70^797^13
- ;;^UTILITY(U,$J,358.3,16912,1,0)
+ ;;^UTILITY(U,$J,358.3,36171,1,3,0)
+ ;;=3^Employment Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,36171,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,36171,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,36172,0)
+ ;;=R45.850^^130^1753^7
+ ;;^UTILITY(U,$J,358.3,36172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16912,1,3,0)
- ;;=3^Pruritus, unspec
- ;;^UTILITY(U,$J,358.3,16912,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,16912,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,16913,0)
- ;;=L40.3^^70^797^18
- ;;^UTILITY(U,$J,358.3,16913,1,0)
+ ;;^UTILITY(U,$J,358.3,36172,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,36172,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,36172,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,36173,0)
+ ;;=H54.7^^130^1754^7
+ ;;^UTILITY(U,$J,358.3,36173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16913,1,3,0)
- ;;=3^Pustulosis palmaris et plantaris
- ;;^UTILITY(U,$J,358.3,16913,1,4,0)
- ;;=4^L40.3
- ;;^UTILITY(U,$J,358.3,16913,2)
- ;;=^5009163
- ;;^UTILITY(U,$J,358.3,16914,0)
- ;;=J02.9^^70^797^6
- ;;^UTILITY(U,$J,358.3,16914,1,0)
+ ;;^UTILITY(U,$J,358.3,36173,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,36173,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,36173,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,36174,0)
+ ;;=R68.89^^130^1754^2
+ ;;^UTILITY(U,$J,358.3,36174,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16914,1,3,0)
- ;;=3^Pharyngitis,Acute,Unspec
- ;;^UTILITY(U,$J,358.3,16914,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,16914,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,16915,0)
- ;;=Z98.89^^70^797^11
- ;;^UTILITY(U,$J,358.3,16915,1,0)
+ ;;^UTILITY(U,$J,358.3,36174,1,3,0)
+ ;;=3^General Symptoms/Signs
+ ;;^UTILITY(U,$J,358.3,36174,1,4,0)
+ ;;=4^R68.89
+ ;;^UTILITY(U,$J,358.3,36174,2)
+ ;;=^5019557
+ ;;^UTILITY(U,$J,358.3,36175,0)
+ ;;=R47.89^^130^1754^6
+ ;;^UTILITY(U,$J,358.3,36175,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16915,1,3,0)
- ;;=3^Postprocedural States,Other Spec
- ;;^UTILITY(U,$J,358.3,16915,1,4,0)
- ;;=4^Z98.89
- ;;^UTILITY(U,$J,358.3,16915,2)
- ;;=^5063754
- ;;^UTILITY(U,$J,358.3,16916,0)
- ;;=R07.9^^70^798^3
- ;;^UTILITY(U,$J,358.3,16916,1,0)
+ ;;^UTILITY(U,$J,358.3,36175,1,3,0)
+ ;;=3^Speech Disturbances
+ ;;^UTILITY(U,$J,358.3,36175,1,4,0)
+ ;;=4^R47.89
+ ;;^UTILITY(U,$J,358.3,36175,2)
+ ;;=^5019493
+ ;;^UTILITY(U,$J,358.3,36176,0)
+ ;;=R43.9^^130^1754^5
+ ;;^UTILITY(U,$J,358.3,36176,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16916,1,3,0)
- ;;=3^Chest pain, unspec
- ;;^UTILITY(U,$J,358.3,16916,1,4,0)
- ;;=4^R07.9
- ;;^UTILITY(U,$J,358.3,16916,2)
- ;;=^5019201
- ;;^UTILITY(U,$J,358.3,16917,0)
- ;;=H57.13^^70^798^7
- ;;^UTILITY(U,$J,358.3,16917,1,0)
+ ;;^UTILITY(U,$J,358.3,36176,1,3,0)
+ ;;=3^Smell/Taste Disturbances,Unspec
+ ;;^UTILITY(U,$J,358.3,36176,1,4,0)
+ ;;=4^R43.9
+ ;;^UTILITY(U,$J,358.3,36176,2)
+ ;;=^5019454
+ ;;^UTILITY(U,$J,358.3,36177,0)
+ ;;=R13.10^^130^1754^1
+ ;;^UTILITY(U,$J,358.3,36177,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16917,1,3,0)
- ;;=3^Ocular pain, bilateral
- ;;^UTILITY(U,$J,358.3,16917,1,4,0)
- ;;=4^H57.13
- ;;^UTILITY(U,$J,358.3,16917,2)
- ;;=^5006384
- ;;^UTILITY(U,$J,358.3,16918,0)
- ;;=H57.11^^70^798^9
- ;;^UTILITY(U,$J,358.3,16918,1,0)
+ ;;^UTILITY(U,$J,358.3,36177,1,3,0)
+ ;;=3^Dysphagia,Unspec
+ ;;^UTILITY(U,$J,358.3,36177,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,36177,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,36178,0)
+ ;;=F52.9^^130^1754^4
+ ;;^UTILITY(U,$J,358.3,36178,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36178,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,36178,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,36178,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,36179,0)
+ ;;=R69.^^130^1754^3
+ ;;^UTILITY(U,$J,358.3,36179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36179,1,3,0)
+ ;;=3^Illness,Unspec
+ ;;^UTILITY(U,$J,358.3,36179,1,4,0)
+ ;;=4^R69.
+ ;;^UTILITY(U,$J,358.3,36179,2)
+ ;;=^5019558
+ ;;^UTILITY(U,$J,358.3,36180,0)
+ ;;=Z75.3^^130^1755^5
+ ;;^UTILITY(U,$J,358.3,36180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36180,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,36180,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,36180,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,36181,0)
+ ;;=Z75.0^^130^1755^3
+ ;;^UTILITY(U,$J,358.3,36181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36181,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,36181,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,36181,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,36182,0)
+ ;;=Z75.1^^130^1755^4
+ ;;^UTILITY(U,$J,358.3,36182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36182,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,36182,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,36182,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,36183,0)
+ ;;=Z75.4^^130^1755^6
+ ;;^UTILITY(U,$J,358.3,36183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36183,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,36183,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,36183,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,36184,0)
+ ;;=Z75.8^^130^1755^2
+ ;;^UTILITY(U,$J,358.3,36184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36184,1,3,0)
+ ;;=3^Medical Facilities/Health Care Problems
+ ;;^UTILITY(U,$J,358.3,36184,1,4,0)
+ ;;=4^Z75.8
+ ;;^UTILITY(U,$J,358.3,36184,2)
+ ;;=^5063295
+ ;;^UTILITY(U,$J,358.3,36185,0)
+ ;;=Z71.9^^130^1755^1
+ ;;^UTILITY(U,$J,358.3,36185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36185,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,36185,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,36185,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,36186,0)
+ ;;=Z89.201^^130^1756^10
+ ;;^UTILITY(U,$J,358.3,36186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36186,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,36186,1,4,0)
+ ;;=4^Z89.201
+ ;;^UTILITY(U,$J,358.3,36186,2)
+ ;;=^5063543
+ ;;^UTILITY(U,$J,358.3,36187,0)
+ ;;=Z89.202^^130^1756^4
+ ;;^UTILITY(U,$J,358.3,36187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36187,1,3,0)
+ ;;=3^Acquired Absence of Left Upper Limb,Unspec Level
+ ;;^UTILITY(U,$J,358.3,36187,1,4,0)
+ ;;=4^Z89.202
+ ;;^UTILITY(U,$J,358.3,36187,2)
+ ;;=^5063544
+ ;;^UTILITY(U,$J,358.3,36188,0)
+ ;;=Z89.111^^130^1756^6
+ ;;^UTILITY(U,$J,358.3,36188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36188,1,3,0)
+ ;;=3^Acquired Absence of Right Hand
+ ;;^UTILITY(U,$J,358.3,36188,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,36188,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,36189,0)
+ ;;=Z89.112^^130^1756^1
+ ;;^UTILITY(U,$J,358.3,36189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36189,1,3,0)
+ ;;=3^Acquired Absence of Left Hand
+ ;;^UTILITY(U,$J,358.3,36189,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,36189,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,36190,0)
+ ;;=Z89.121^^130^1756^11
+ ;;^UTILITY(U,$J,358.3,36190,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36190,1,3,0)
+ ;;=3^Acquired Absence of Right Wrist
+ ;;^UTILITY(U,$J,358.3,36190,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,36190,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,36191,0)
+ ;;=Z89.122^^130^1756^5
+ ;;^UTILITY(U,$J,358.3,36191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36191,1,3,0)
+ ;;=3^Acquired Absence of Left Wrist
+ ;;^UTILITY(U,$J,358.3,36191,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,36191,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,36192,0)
+ ;;=Z89.211^^130^1756^9
+ ;;^UTILITY(U,$J,358.3,36192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36192,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb Below Elbow
+ ;;^UTILITY(U,$J,358.3,36192,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,36192,2)
+ ;;=^5063545

@@ -1,11 +1,17 @@
-DINIT0F7 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;10:49 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT0F7 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;11:00 AM  4 Oct 2000
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0F8 S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;
  ;;^DIST(.404,.00109,40,1,4)
  ;;=1
+ ;;^DIST(.404,.00109,40,1,11)
+ ;;=S:$G(DICATTSC)=3 DDACT="CL"
  ;;^DIST(.404,.00109,40,1,20)
  ;;=F^^1:20
  ;;^DIST(.404,.00109,40,1,22)

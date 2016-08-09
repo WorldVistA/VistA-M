@@ -1,5 +1,5 @@
-LA7VHLU9 ;DALOI/JMC - HL7 segment builder utility ;09/14/11  15:56
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74**;Sep 27, 1994;Build 229
+LA7VHLU9 ;DALOI/JMC - HL7 segment builder utility ;09/08/15  15:44
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**68,74,88**;Sep 27, 1994;Build 10
  ;
  ; Reference to NPI^XUSNPI supported by DBIA #4532
  ; Reference to QI^XUSNPI supported by DBIA #4532
@@ -84,14 +84,12 @@ XCNTFM(LA7X,LA7ECH) ; Resolve XCN data type to FileMan (last name, first name, m
  . I $P(X,"^")="Individual_ID",$P(X,"^",2)>0 S LA7DUZ=$P(X,"^",2)
  ;
  ; Check for coding that indicates DUZ from a VA facility
- I 'LA7DUZ,LA7Z?.(1.N1"-VA"3N,1.N1"-VA"3N2U) D
- . N LA7J,LA7K
+ I 'LA7DUZ,LA7Z?1.N1"-VA".NU,$$IEN^XUAF4($P(LA7Z,"-VA",2)) D
+ . N LA7DFLTINST,LA7J,LA7K
  . S LA7Z(1)=$P(LA7Z,"-"),LA7Z(2)=$P(LA7Z,"-",2)
- . S LA7K=$$FINDSITE^LA7VHLU2(LA7Z(2),1,1)
- . S LA7J=$$DIV4^XUSER(.LA7J,LA7Z(1))
- . I LA7K,$D(LA7J(LA7K)) S LA7DUZ=LA7Z(1)
- . I LA7K,'LA7DUZ,'LA7J D  ;ccr_5591n - If user is not assigned any divisions, try find match based off default institution
- . . I $$KSP^XUPARAM("INST")=LA7K,$$ACTIVE^XUSER(LA7Z(1))'="" S LA7DUZ=LA7Z(1)
+ . S LA7DFLTINST=$$STA^XUAF4($$KSP^XUPARAM("INST"))
+ . I $E(LA7DFLTINST,1,3)'=$E(LA7Z(2),3,5) Q
+ . I $$ACTIVE^XUSER(LA7Z(1))'="" S LA7DUZ=LA7Z(1)
  ;
  ; Check if code resolves to a valid user.
  I 'LA7DUZ,LA7Z=+LA7Z D
@@ -111,3 +109,63 @@ XCNTFM(LA7X,LA7ECH) ; Resolve XCN data type to FileMan (last name, first name, m
  . S LA7Y=LA7Y_" ["_$P(LA7X,$E(LA7ECH))_":"_X_"]"
  ;
  Q LA7IDC_"^"_LA7DUZ_"^"_LA7Y
+ ;
+ ;
+ ;
+XTN(LA7FN,LA7DA,LA7FLDSEQ,LA7MAXREP,LA7DT,LA7FS,LA7ECH) ; Build extended telecommunication number ;**88
+ ; Call with LA7FN = Source File number
+ ;                   Presently file #2 (PATIENT), #4 (INSTITUTION) or #200 (NEW PERSON)
+ ;           LA7DA = Entry in source file
+ ;       LA7FLDSEQ = List of file #200 fields and sequence to build in field separate by ";"  e.g. ".138;.137;"
+ ;       LA7MAXREP = Maximum # of contact numbers to build in field.
+ ;           LA7DT = As of date in FileMan format
+ ;           LA7FS = HL field separator
+ ;          LA7ECH = HL encoding characters
+ ;
+ ; Returns extended telecommunication numbers
+ ;
+ N LA7X,LA7Y
+ S LA7Y=""
+ I $G(LA7DT)="" S LA7DT=DT
+ I $G(LA7MAXREP)="" S LA7MAXREP=99
+ ;
+ ; Check if this field has been built previously for this entity
+ I LA7FN,LA7DA,$D(^TMP($J,"LA7VHLU","99VAXTN",LA7FN,LA7DA,LA7FS_LA7ECH)) S LA7Y=^TMP($J,"LA7VHLU","99VAXTN",LA7FN,LA7DA,LA7FS_LA7ECH)
+ ;
+ ; Build from file #200 the following fields:
+ ;   #.131 PHONE (HOME), #.132 OFFICE PHONE, #.133 PHONE #3, #.134 PHONE #4, #.135 COMMERCIAL PHONE, #.136 FAX NUMBER, #.137 VOICE PAGER, #.138 DIGITAL PAGER
+ ;
+ I LA7Y="",LA7FN=200,LA7DA D
+ . N LA7ERR,LA7I,LA7J,LA7REP,LA7XTN
+ . I $G(LA7FLDSEQ)="" S LA7FLDSEQ=".132;.138;.137"
+ . D GETS^DIQ(200,LA7DA_",",LA7FLDSEQ,"E","LA7XTN(LA7DA)","LA7ERR")
+ . S LA7REP=0
+ . F LA7J=1:1 S LA7I=$P(LA7FLDSEQ,";",LA7J) Q:LA7I=""!(LA7REP=LA7MAXREP)  I LA7XTN(LA7DA,200,LA7DA_",",LA7I,"E")'="" D
+ . . S LA7X="",LA7REP=LA7REP+1
+ . . S $P(LA7X,$E(LA7ECH),2)=$S(LA7I=.131:"PRN",LA7I=.138:"BPN",LA7I=.137:"BPN",1:"WPN")
+ . . S $P(LA7X,$E(LA7ECH),3)=$S(LA7I=.138:"BP",LA7I=.137:"BP",LA7X=.136:"FX",1:"PH")
+ . . S $P(LA7X,$E(LA7ECH),9)=$$CHKDATA^LA7VHLU3($$GET1^DID(200,LA7I,"","LABEL")_" (#"_LA7I_")",LA7FS_LA7ECH)
+ . . S $P(LA7X,$E(LA7ECH),12)=$$CHKDATA^LA7VHLU3(LA7XTN(LA7DA,200,LA7DA_",",LA7I,"E"),LA7FS_LA7ECH)
+ . . I LA7REP>1 S LA7Y=LA7Y_$E(LA7ECH,2)_LA7X
+ . . E  S LA7Y=LA7X
+ ;
+ ; Build from file #2
+ I LA7Y="",LA7FN=2,LA7DA D
+ . N DFN,VAHOW,VAPA,VAERR,VAROOT,VATEST
+ . S DFN=LA7DA
+ . I LA7DT S (VATEST("ADD",9),VATEST("ADD",10))=LA7DT
+ . D ADD^VADPT
+ . I VAERR Q
+ . S $P(LA7Y,$E(LA7ECH),1)=""
+ . S $P(LA7Y,$E(LA7ECH),2)="PRN"
+ . S $P(LA7Y,$E(LA7ECH),3)="PH"
+ . S $P(LA7Y,$E(LA7ECH),12)=$$CHKDATA^LA7VHLU3($P(VAPA(8),"^"),LA7FS_LA7ECH)
+ ;
+ ; Build info from file #4
+ I LA7Y="",LA7FN=4,LA7DA D
+ . Q
+ ;
+ ; Save this field to TMP global to use for subsequent calls.
+ I LA7Y'="" S ^TMP($J,"LA7VHLU","99VAXTN",LA7FN,LA7DA,LA7FS_LA7ECH)=LA7Y
+ ;
+ Q LA7Y ;

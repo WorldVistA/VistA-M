@@ -1,8 +1,8 @@
 PRCHNPO1 ;SF-ISC/RSD/RHD-CONT. OF NEW PO ;6/9/96  19:48
-V ;;5.1;IFCAP;**16,79,100,108,189**;Oct 20, 2000;Build 1
+V ;;5.1;IFCAP;**16,79,100,108,191**;Oct 20, 2000;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ;PRC*5.1*189 Modify Prompt Pay % handling during Edit Order to
+ ;PRC*5.1*191 Modify Prompt Pay % handling during Edit Order to
  ;            insure ONLY one PP entry is allowed and only able
  ;            to allow/edit one entry in what is defined as a
  ;            multiple field.  Prompt Pay processing is NO 
@@ -10,8 +10,8 @@ V ;;5.1;IFCAP;**16,79,100,108,189**;Oct 20, 2000;Build 1
  ;            but called as new routine PRCHNPOC.
  ;
  I ('$G(PRCHPC)!($G(PRCHPC)=2)),'$G(PRCHPHAM) D
- .S PRCH=0,DIE="^PRC(442,",DR="[PRCHDISCNT]",(D0,DA,DA(1))=PRCHPO D ^DIE    ;PRC*5.1*189
- . D PPEDIT^PRCHNPOC      ;PRC*5.1*189
+ .S PRCH=0,DIE="^PRC(442,",DR="[PRCHDISCNT]",(D0,DA,DA(1))=PRCHPO D ^DIE    ;PRC*5.1*191
+ . D PPEDIT^PRCHNPOC      ;PRC*5.1*191
  F I=1:1 S PRCH=$O(^PRC(442,PRCHPO,3,PRCH)) Q:PRCH=""!(PRCH'>0)  S PRCHCN=$S($P(^(PRCH,0),U,5)]"":$P(^(0),U,5),1:".OM"),PRCHAC=$P(^(0),U,1),PRCHACT=$P(^(0),U,4),PRCHP=$P(^(0),U,2) D SET Q:'$D(PRCHPO)
  G ERR^PRCHNPO:'$D(PRCHPO) S $P(^PRC(442,PRCHPO,0),U,14)=$P(^PRC(442,PRCHPO,0),U,14)+I-1,PRCHLCNT=$P(^(0),U,14),Y=$G(^PRC(440,PRCHV,2)),PRCHN("LSA")=$P(Y,U,5),PRCHN("MB")=$S(PRCHDT:$P(Y,U,3),1:$P(Y,U,6))
  S PRCHBO=$S(PRCHDT:1.1,1:1) K PRCHB

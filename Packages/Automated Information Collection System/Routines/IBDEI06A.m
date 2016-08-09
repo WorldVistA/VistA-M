@@ -1,138 +1,296 @@
-IBDEI06A ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI06A ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2610,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,2611,0)
- ;;=F43.12^^18^205^32
- ;;^UTILITY(U,$J,358.3,2611,1,0)
+ ;;^UTILITY(U,$J,358.3,6121,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,6122,0)
+ ;;=N13.8^^39^434^21
+ ;;^UTILITY(U,$J,358.3,6122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2611,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,2611,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,2611,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,2612,0)
- ;;=F43.10^^18^205^33
- ;;^UTILITY(U,$J,358.3,2612,1,0)
+ ;;^UTILITY(U,$J,358.3,6122,1,3,0)
+ ;;=3^Urinary Obstruction
+ ;;^UTILITY(U,$J,358.3,6122,1,4,0)
+ ;;=4^N13.8
+ ;;^UTILITY(U,$J,358.3,6122,2)
+ ;;=^5015588
+ ;;^UTILITY(U,$J,358.3,6123,0)
+ ;;=R33.8^^39^434^22
+ ;;^UTILITY(U,$J,358.3,6123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2612,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,2612,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,2612,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,2613,0)
- ;;=F06.0^^18^205^37
- ;;^UTILITY(U,$J,358.3,2613,1,0)
+ ;;^UTILITY(U,$J,358.3,6123,1,3,0)
+ ;;=3^Urinary Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,6123,1,4,0)
+ ;;=4^R33.8
+ ;;^UTILITY(U,$J,358.3,6123,2)
+ ;;=^5019331
+ ;;^UTILITY(U,$J,358.3,6124,0)
+ ;;=R39.15^^39^434^24
+ ;;^UTILITY(U,$J,358.3,6124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2613,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Physiol Condition
- ;;^UTILITY(U,$J,358.3,2613,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,2613,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,2614,0)
- ;;=F20.9^^18^205^39
- ;;^UTILITY(U,$J,358.3,2614,1,0)
+ ;;^UTILITY(U,$J,358.3,6124,1,3,0)
+ ;;=3^Urinary Urgency
+ ;;^UTILITY(U,$J,358.3,6124,1,4,0)
+ ;;=4^R39.15
+ ;;^UTILITY(U,$J,358.3,6124,2)
+ ;;=^5019345
+ ;;^UTILITY(U,$J,358.3,6125,0)
+ ;;=R39.12^^39^434^25
+ ;;^UTILITY(U,$J,358.3,6125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2614,1,3,0)
- ;;=3^Schizophrenia,Unspec
- ;;^UTILITY(U,$J,358.3,2614,1,4,0)
- ;;=4^F20.9
- ;;^UTILITY(U,$J,358.3,2614,2)
- ;;=^5003476
- ;;^UTILITY(U,$J,358.3,2615,0)
- ;;=F29.^^18^205^36
- ;;^UTILITY(U,$J,358.3,2615,1,0)
+ ;;^UTILITY(U,$J,358.3,6125,1,3,0)
+ ;;=3^Weak Urinary Stream
+ ;;^UTILITY(U,$J,358.3,6125,1,4,0)
+ ;;=4^R39.12
+ ;;^UTILITY(U,$J,358.3,6125,2)
+ ;;=^5019342
+ ;;^UTILITY(U,$J,358.3,6126,0)
+ ;;=R80.9^^39^434^16
+ ;;^UTILITY(U,$J,358.3,6126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2615,1,3,0)
- ;;=3^Psychosis Not d/t Substance/Physiol Condition
- ;;^UTILITY(U,$J,358.3,2615,1,4,0)
- ;;=4^F29.
- ;;^UTILITY(U,$J,358.3,2615,2)
- ;;=^5003484
- ;;^UTILITY(U,$J,358.3,2616,0)
- ;;=F41.9^^18^205^6
- ;;^UTILITY(U,$J,358.3,2616,1,0)
+ ;;^UTILITY(U,$J,358.3,6126,1,3,0)
+ ;;=3^Proteinuria,Unspec
+ ;;^UTILITY(U,$J,358.3,6126,1,4,0)
+ ;;=4^R80.9
+ ;;^UTILITY(U,$J,358.3,6126,2)
+ ;;=^5019599
+ ;;^UTILITY(U,$J,358.3,6127,0)
+ ;;=D51.8^^39^435^2
+ ;;^UTILITY(U,$J,358.3,6127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2616,1,3,0)
- ;;=3^Anxiety Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,2616,1,4,0)
- ;;=4^F41.9
- ;;^UTILITY(U,$J,358.3,2616,2)
- ;;=^5003567
- ;;^UTILITY(U,$J,358.3,2617,0)
- ;;=F31.9^^18^205^7
- ;;^UTILITY(U,$J,358.3,2617,1,0)
+ ;;^UTILITY(U,$J,358.3,6127,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,6127,1,4,0)
+ ;;=4^D51.8
+ ;;^UTILITY(U,$J,358.3,6127,2)
+ ;;=^5002288
+ ;;^UTILITY(U,$J,358.3,6128,0)
+ ;;=D52.9^^39^435^1
+ ;;^UTILITY(U,$J,358.3,6128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2617,1,3,0)
- ;;=3^Bipolar Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,2617,1,4,0)
- ;;=4^F31.9
- ;;^UTILITY(U,$J,358.3,2617,2)
- ;;=^331892
- ;;^UTILITY(U,$J,358.3,2618,0)
- ;;=F32.9^^18^205^12
- ;;^UTILITY(U,$J,358.3,2618,1,0)
+ ;;^UTILITY(U,$J,358.3,6128,1,3,0)
+ ;;=3^Anemia,Folate Deficiency
+ ;;^UTILITY(U,$J,358.3,6128,1,4,0)
+ ;;=4^D52.9
+ ;;^UTILITY(U,$J,358.3,6128,2)
+ ;;=^5002293
+ ;;^UTILITY(U,$J,358.3,6129,0)
+ ;;=I10.^^39^436^12
+ ;;^UTILITY(U,$J,358.3,6129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2618,1,3,0)
- ;;=3^MDD,Single Episode,Unspec
- ;;^UTILITY(U,$J,358.3,2618,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,2618,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,2619,0)
- ;;=R46.0^^18^205^10
- ;;^UTILITY(U,$J,358.3,2619,1,0)
+ ;;^UTILITY(U,$J,358.3,6129,1,3,0)
+ ;;=3^Hypertension,Essential
+ ;;^UTILITY(U,$J,358.3,6129,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,6129,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,6130,0)
+ ;;=I15.0^^39^436^13
+ ;;^UTILITY(U,$J,358.3,6130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2619,1,3,0)
- ;;=3^Hygiene,Personal,Very Lowe Level
- ;;^UTILITY(U,$J,358.3,2619,1,4,0)
- ;;=4^R46.0
- ;;^UTILITY(U,$J,358.3,2619,2)
- ;;=^5019478
- ;;^UTILITY(U,$J,358.3,2620,0)
- ;;=F39.^^18^205^14
- ;;^UTILITY(U,$J,358.3,2620,1,0)
+ ;;^UTILITY(U,$J,358.3,6130,1,3,0)
+ ;;=3^Hypertension,Renovascular
+ ;;^UTILITY(U,$J,358.3,6130,1,4,0)
+ ;;=4^I15.0
+ ;;^UTILITY(U,$J,358.3,6130,2)
+ ;;=^5007071
+ ;;^UTILITY(U,$J,358.3,6131,0)
+ ;;=I13.11^^39^436^8
+ ;;^UTILITY(U,$J,358.3,6131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2620,1,3,0)
- ;;=3^Mood Affective Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,2620,1,4,0)
- ;;=4^F39.
- ;;^UTILITY(U,$J,358.3,2620,2)
- ;;=^5003541
- ;;^UTILITY(U,$J,358.3,2621,0)
- ;;=F06.30^^18^205^15
- ;;^UTILITY(U,$J,358.3,2621,1,0)
+ ;;^UTILITY(U,$J,358.3,6131,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,6131,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,6131,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,6132,0)
+ ;;=I13.2^^39^436^7
+ ;;^UTILITY(U,$J,358.3,6132,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2621,1,3,0)
- ;;=3^Mood Disorder d/t Physiological Condition
- ;;^UTILITY(U,$J,358.3,2621,1,4,0)
- ;;=4^F06.30
- ;;^UTILITY(U,$J,358.3,2621,2)
- ;;=^5003056
- ;;^UTILITY(U,$J,358.3,2622,0)
- ;;=F17.221^^18^205^19
- ;;^UTILITY(U,$J,358.3,2622,1,0)
+ ;;^UTILITY(U,$J,358.3,6132,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 5 Chr Kidney/ESRD
+ ;;^UTILITY(U,$J,358.3,6132,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,6132,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,6133,0)
+ ;;=I70.1^^39^436^3
+ ;;^UTILITY(U,$J,358.3,6133,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2622,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,in Remission
- ;;^UTILITY(U,$J,358.3,2622,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,2622,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,2623,0)
- ;;=F17.220^^18^205^18
- ;;^UTILITY(U,$J,358.3,2623,1,0)
+ ;;^UTILITY(U,$J,358.3,6133,1,3,0)
+ ;;=3^Atherosclerosis of Renal Artery
+ ;;^UTILITY(U,$J,358.3,6133,1,4,0)
+ ;;=4^I70.1
+ ;;^UTILITY(U,$J,358.3,6133,2)
+ ;;=^269760
+ ;;^UTILITY(U,$J,358.3,6134,0)
+ ;;=I77.3^^39^436^2
+ ;;^UTILITY(U,$J,358.3,6134,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2623,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,2623,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,2623,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,2624,0)
- ;;=F17.229^^18^205^16
+ ;;^UTILITY(U,$J,358.3,6134,1,3,0)
+ ;;=3^Arterial Fibromuscular Dysplasia
+ ;;^UTILITY(U,$J,358.3,6134,1,4,0)
+ ;;=4^I77.3
+ ;;^UTILITY(U,$J,358.3,6134,2)
+ ;;=^5007812
+ ;;^UTILITY(U,$J,358.3,6135,0)
+ ;;=E26.02^^39^436^5
+ ;;^UTILITY(U,$J,358.3,6135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6135,1,3,0)
+ ;;=3^Glucocorticoid-Remediable Aldosteronism
+ ;;^UTILITY(U,$J,358.3,6135,1,4,0)
+ ;;=4^E26.02
+ ;;^UTILITY(U,$J,358.3,6135,2)
+ ;;=^329904
+ ;;^UTILITY(U,$J,358.3,6136,0)
+ ;;=I12.9^^39^436^14
+ ;;^UTILITY(U,$J,358.3,6136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6136,1,3,0)
+ ;;=3^Hypertensive CKD Stage 1-4
+ ;;^UTILITY(U,$J,358.3,6136,1,4,0)
+ ;;=4^I12.9
+ ;;^UTILITY(U,$J,358.3,6136,2)
+ ;;=^5007066
+ ;;^UTILITY(U,$J,358.3,6137,0)
+ ;;=I12.0^^39^436^15
+ ;;^UTILITY(U,$J,358.3,6137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6137,1,3,0)
+ ;;=3^Hypertensive CKD Stage 5 or ESRD
+ ;;^UTILITY(U,$J,358.3,6137,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,6137,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,6138,0)
+ ;;=I13.0^^39^436^6
+ ;;^UTILITY(U,$J,358.3,6138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6138,1,3,0)
+ ;;=3^HTN Hrt & CKD w/ Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,6138,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,6138,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,6139,0)
+ ;;=I13.10^^39^436^9
+ ;;^UTILITY(U,$J,358.3,6139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6139,1,3,0)
+ ;;=3^HTN Hrt & CKD w/o Hrt Failure w/ Stage 1-4 Chr Kidney
+ ;;^UTILITY(U,$J,358.3,6139,1,4,0)
+ ;;=4^I13.10
+ ;;^UTILITY(U,$J,358.3,6139,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,6140,0)
+ ;;=I15.1^^39^436^11
+ ;;^UTILITY(U,$J,358.3,6140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6140,1,3,0)
+ ;;=3^Hypertension Secondary to Oth Renal Disorders
+ ;;^UTILITY(U,$J,358.3,6140,1,4,0)
+ ;;=4^I15.1
+ ;;^UTILITY(U,$J,358.3,6140,2)
+ ;;=^5007072
+ ;;^UTILITY(U,$J,358.3,6141,0)
+ ;;=I15.2^^39^436^10
+ ;;^UTILITY(U,$J,358.3,6141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6141,1,3,0)
+ ;;=3^Hypertension Secondary to Endocrine Disorders
+ ;;^UTILITY(U,$J,358.3,6141,1,4,0)
+ ;;=4^I15.2
+ ;;^UTILITY(U,$J,358.3,6141,2)
+ ;;=^5007073
+ ;;^UTILITY(U,$J,358.3,6142,0)
+ ;;=I50.1^^39^436^16
+ ;;^UTILITY(U,$J,358.3,6142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6142,1,3,0)
+ ;;=3^Left Ventricular Failure
+ ;;^UTILITY(U,$J,358.3,6142,1,4,0)
+ ;;=4^I50.1
+ ;;^UTILITY(U,$J,358.3,6142,2)
+ ;;=^5007238
+ ;;^UTILITY(U,$J,358.3,6143,0)
+ ;;=E26.09^^39^436^17
+ ;;^UTILITY(U,$J,358.3,6143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6143,1,3,0)
+ ;;=3^Primary Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,6143,1,4,0)
+ ;;=4^E26.09
+ ;;^UTILITY(U,$J,358.3,6143,2)
+ ;;=^5002735
+ ;;^UTILITY(U,$J,358.3,6144,0)
+ ;;=I15.8^^39^436^18
+ ;;^UTILITY(U,$J,358.3,6144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6144,1,3,0)
+ ;;=3^Secondary Hypertension,Other
+ ;;^UTILITY(U,$J,358.3,6144,1,4,0)
+ ;;=4^I15.8
+ ;;^UTILITY(U,$J,358.3,6144,2)
+ ;;=^5007074
+ ;;^UTILITY(U,$J,358.3,6145,0)
+ ;;=E27.5^^39^436^1
+ ;;^UTILITY(U,$J,358.3,6145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6145,1,3,0)
+ ;;=3^Adrenomedullary Hyperfunction
+ ;;^UTILITY(U,$J,358.3,6145,1,4,0)
+ ;;=4^E27.5
+ ;;^UTILITY(U,$J,358.3,6145,2)
+ ;;=^5002744
+ ;;^UTILITY(U,$J,358.3,6146,0)
+ ;;=E26.01^^39^436^4
+ ;;^UTILITY(U,$J,358.3,6146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6146,1,3,0)
+ ;;=3^Conn's Syndrome
+ ;;^UTILITY(U,$J,358.3,6146,1,4,0)
+ ;;=4^E26.01
+ ;;^UTILITY(U,$J,358.3,6146,2)
+ ;;=^329905
+ ;;^UTILITY(U,$J,358.3,6147,0)
+ ;;=I15.9^^39^436^19
+ ;;^UTILITY(U,$J,358.3,6147,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6147,1,3,0)
+ ;;=3^Secondary Hypertension,Unspec
+ ;;^UTILITY(U,$J,358.3,6147,1,4,0)
+ ;;=4^I15.9
+ ;;^UTILITY(U,$J,358.3,6147,2)
+ ;;=^5007075
+ ;;^UTILITY(U,$J,358.3,6148,0)
+ ;;=B20.^^39^437^3
+ ;;^UTILITY(U,$J,358.3,6148,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6148,1,3,0)
+ ;;=3^HIV Disease
+ ;;^UTILITY(U,$J,358.3,6148,1,4,0)
+ ;;=4^B20.
+ ;;^UTILITY(U,$J,358.3,6148,2)
+ ;;=^5000555
+ ;;^UTILITY(U,$J,358.3,6149,0)
+ ;;=J18.9^^39^437^6
+ ;;^UTILITY(U,$J,358.3,6149,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6149,1,3,0)
+ ;;=3^Pneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,6149,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,6149,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,6150,0)
+ ;;=J10.1^^39^437^1
+ ;;^UTILITY(U,$J,358.3,6150,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6150,1,3,0)
+ ;;=3^Flu w/ Respiratory Manifestations
+ ;;^UTILITY(U,$J,358.3,6150,1,4,0)
+ ;;=4^J10.1
+ ;;^UTILITY(U,$J,358.3,6150,2)
+ ;;=^5008151

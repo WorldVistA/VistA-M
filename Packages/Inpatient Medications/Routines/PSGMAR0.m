@@ -1,5 +1,5 @@
 PSGMAR0 ;BIR/CML3-GATHERS INFO FOR 24 HOUR MAR ; 7/21/08 9:34am
- ;;5.0; INPATIENT MEDICATIONS ;**8,15,20,111,145,196**;16 DEC 97;Build 13
+ ;;5.0;INPATIENT MEDICATIONS ;**8,15,20,111,145,196,326**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(55 supported by DBIA #2191.
  ; Reference to ^PS(59.7 supported by DBIA #2181.
@@ -94,7 +94,7 @@ GPI ; get patient info
 ORSET ; order record set
  S PSGMFOR="",ND2=$G(^PS(55,PSGP,5,PSGMARO,2)),(SD,X)=$P($P(ND2,"^",2),".") Q:X>PSGPLF  S FD=$P($P(ND2,"^",4),"."),T=$P(ND2,"^",6)
  ; 
- S A=$G(^PS(55,PSGP,5,PSGMARO,8)) I $P(A,"^")]"" S PSGMARWN="C!"_$P(A,"^") I $G(SUB1)]"",$G(SUB2)]"",'$D(^TMP($J,TM,PSGMARWN,SUB1,SUB2)) D SPN
+ S A=$G(^PS(55,PSGP,5,PSGMARO,8)) I ($P(A,"^",1)]"")&($P(A,"^",2)]"") S PSGMARWN="C!"_$P(A,"^") I $G(SUB1)]"",$G(SUB2)]"",'$D(^TMP($J,TM,PSGMARWN,SUB1,SUB2)) D SPN
  ;
  NEW MARX D DRGDISP^PSJLMUT1(PSGP,+PSGMARO_"U",20,0,.MARX,1)
  S DRG=MARX(1)_U_PSGMARO_"U",QST=$S(PST="C"!(PST="O"):PST,PST="OC":"OA",PST="P":"OP",$P(ND2,"^")["PRN":"OR",1:"CR")

@@ -1,5 +1,5 @@
-PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ;8/21/07 8:43am
- ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188**;9/30/97;Build 1
+PSSDDUT2 ;BIR/LDT - Pharmacy Data Management DD Utility ;1/20/16 2:45pm
+ ;;1.0;PHARMACY DATA MANAGEMENT;**3,21,61,81,95,127,126,139,131,143,188,189**;9/30/97;Build 54
  ;
  ;Reference to ^DIC(42 supported by DBIA #10039
  ;Reference to ^DD(59.723 supported by DBIA #2159
@@ -111,7 +111,7 @@ EDIT ;INPUT XFORM FOR DEA FIELD IN DRUG FILE (Replaces EDIT^PSODEA)
  I X["F",X["B" D EN^DDIOL("Inappropriate F designation!","","$C(7),!") K X Q
  ;;DEA CHANGE PSS*1*126
  I X["B",(+X<3) D EN^DDIOL("The B designation is only valid for schedule 3, 4, 5 !","","$C(7),!") K X Q
- I X["A"&(X["C"),+X=2!(+X=3) D EN^DDIOL("The A & C designation is not valid for schedule 2 or 3 narcotics !","","$C(7),!") K X Q
+ I X["A"&(X["C"),+X=2!(+X=3) D EN^DDIOL("The A & C designation is not valid for schedule 2 or 3 narcotics!","","$C(7),!") K X Q
  I $E(X)=1,X[2!(X[3)!(X[4)!(X[5) D EN^DDIOL("It contains other inappropriate schedule 2-5 narcotics!","","$C(7),!") K X Q
  I $E(X)=2,X[1!(X[3)!(X[4)!(X[5) D EN^DDIOL("It contains other inappropriate schedule 1,3-5 narcotics!","","$C(7),!") K X Q
  I $E(X)=3,X[1!(X[2)!(X[4)!(X[5) D EN^DDIOL("It contains other inappropriate schedule 1-2,4-5 narcotics!","","$C(7),!") K X Q
@@ -233,3 +233,106 @@ NCPDPWRN ;Message called from NCPDPQM
  S PSSHLP(2,"F")="!!" D WRITE
  S PSSHLP(5,"F")="!" D WRITE
  Q
+ ;
+MXDAYSUP ; INPUT TRANSFORM for Drug file (#50), MAXIMUM DAYS SUPPLY Field (#66)
+ ; Input: X  - Maximum Days Supply Entered by user
+ ;        DA - DRUG file (#50) IEN
+ Q:'$D(^PSDRUG(+$G(DA),0))
+ S X=+$G(X)
+ ; - DAY SUPPLY must be between 1 and 365 (inclusive)
+ I (X<1)!(X>365) D  Q
+ . D EN^DDIOL("Type a number between 1 and 365, 0 decimal digits.","","!!") K X W !
+ ;
+ ; - Checking against NDF Maximum
+ N VAPRDIEN S VAPRDIEN=+$$GET1^DIQ(50,DA,22,"I")
+ I VAPRDIEN D  I '$D(X) Q
+ . N NDFMAXDS
+ . S NDFMAXDS=$$GET1^DIQ(50.68,VAPRDIEN,32)
+ . I NDFMAXDS,NDFMAXDS<X D
+ . . D EN^DDIOL("Cannot be greater than NDF Maximum Days Supply: "_NDFMAXDS,"","!!") K X W !
+ ;
+ ; - Controlled Substances have different upper limits (not 365)
+ N DEASPHLG S DEASPHLG=$$GET1^DIQ(50,DA,3)
+ I DEASPHLG["2",X>30 D  Q
+ . D EN^DDIOL("Schedule 2 controlled substances have a maximum days supply limit of 30 days","","!!") K X W !
+ I (DEASPHLG["3")!(DEASPHLG["4")!(DEASPHLG["5"),X>90 D  Q
+ . D EN^DDIOL("Schedule 3-5 controlled substances have a maximum days supply limit of 90 days","","!!") K X W !
+ ;
+ ; - Clozapine Drug (Not controlled by this field)
+ I ($P($G(^PSDRUG(DA,"CLOZ1")),"^")="PSOCLO1") D  Q
+ . D EN^DDIOL("Maximum Days Supply for this drug is controlled by the Clozapine functionality","","!!") K X W !
+ ;
+ I X<$$MXDAYSUP^PSSUTIL1(DA) D
+ . W ! D EN^DDIOL("Note: Decreasing the MAXIMUM DAYS SUPPLY field will only affect new","","!")
+ . D EN^DDIOL("      prescriptions, including renewals and copies. Orders that are pending","","!")
+ . D EN^DDIOL("      or unreleased when the MAXIMUM DAYS SUPPLY field is decreased are not","","!")
+ . D EN^DDIOL("      affected by the decrease, so prescriptions with a DAYS SUPPLY above the","","!")
+ . D EN^DDIOL("      new MAXIMUM DAYS SUPPLY may need to be edited manually before they are","","!")
+ . D EN^DDIOL("      finished or released.","","!")
+ . W ! N DIR,X,Y S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
+ Q
+ ;
+IVSOLVOL ; IV Solution VOLUME field INPUT TRANSFORM
+ N OI
+ I X[""""!($A(X)=45)!(X'?.N0.1".".N)!(X>9999)!(X<.01) K X Q
+ I $$GET1^DIQ(52.7,DA,17,"I") S OI=+$$GET1^DIQ(52.7,DA,9,"I") I $$CKDUPSOL(OI,DA,+X,1) K X Q
+ S X=X_" ML" D EN^DDIOL(" ML","","?0")
+ Q
+ ;
+UIVFOE ; USED IN THE IV FLUID ORDER ENTRY field INPUT TRANSFORM
+ I X D
+ . N OI
+ . S OI=$$GET1^DIQ(52.7,DA,9,"I") I $$CKDUPSOL(OI,DA,+$$GET1^DIQ(52.7,DA,2),1) K X
+ Q
+ ;
+CKDUPSOL(OI,IVSOL,IVVOL,DSPMSG) ; Check if there's an ACTIVE Duplicate IV Solution Marked to be Used in the IV Order Dialog
+ ; Input: OI     - PHARMACY ORDERABLE ITEM (#50.7) Pointer
+ ;        IVSOL  - IV SOLUTIONS (#52.7) Pointer
+ ;        IVVOL  - IV Solution Volume
+ ;        DSPMSG - Display Message? (1:Yes/0:No)
+ ;Output: DUPSOL - Duplicate IV Solution IEN
+ N DUPSOL,OTHSOL,OTHVOL,DRUG
+ S (DUPSOL,OTHSOL)=0
+ ;
+ ; Invalid IV Solution
+ I '$D(^PS(52.7,+$G(IVSOL),0)) Q 0
+ ;
+ ; IV Solution is INACTIVE, no issues
+ I $$GET1^DIQ(52.7,IVSOL,8,"I"),$$GET1^DIQ(52.7,IVSOL,8,"I")'>DT Q 0
+ ;
+ ; Dispense Drug might not be matched to an Orderable Item yet
+ S DRUG=+$$GET1^DIQ(52.7,IVSOL,1,"I")
+ ;
+ I +$G(OI) D
+ . F  S OTHSOL=$O(^PS(52.7,"AOI",OI,OTHSOL)) Q:'OTHSOL!DUPSOL  D
+ . . I $$DUPVOL(IVSOL,OTHSOL) S DUPSOL=OTHSOL
+ E  D
+ . F  S OTHSOL=$O(^PS(52.7,"AC",DRUG,OTHSOL)) Q:'OTHSOL!DUPSOL  D
+ . . I $$DUPVOL(IVSOL,OTHSOL) S DUPSOL=OTHSOL
+ I $G(DSPMSG),DUPSOL D
+ . W !!,"The following IV Solution with the same volume is already linked to"
+ . W:$G(OI) !,"the Orderable Item ",$$GET1^DIQ(50.7,OI,.01)
+ . W:'$G(OI) !,"this dispense drug."
+ . W !
+ . W:$G(OI) !,"Dispense Drug: ",$$GET1^DIQ(52.7,DUPSOL,1)
+ . W !,"  IV Solution: ",$$GET1^DIQ(52.7,DUPSOL,.01)
+ . W !
+ . W !,"Only one Active IV Solution with a specific volume can be linked to an"
+ . W !,"Orderable Item or Dispense Drug when the IV Solution is marked to be used"
+ . W !,"in the CPRS IV Fluid Order Entry."
+ . W !,$C(7)
+ Q DUPSOL
+ ;
+DUPVOL(IVSOL1,IVSOL2) ; Check 2 IV Solutions to see if they have Duplicate Volumes
+ ; Cannot check against itself
+ I (IVSOL1=IVSOL2) Q 0
+ ; Not Used in the IV Order Dialog
+ I '$$GET1^DIQ(52.7,IVSOL2,17,"I") Q 0
+ ; Other IV Solution is INACTIVE
+ I $$GET1^DIQ(52.7,IVSOL2,8,"I"),$$GET1^DIQ(52.7,IVSOL2,8,"I")'>DT Q 0
+ ; IV Solution Volume
+ S OTHVOL=$$GET1^DIQ(52.7,IVSOL2,2)
+ ; IV Solutions have different volumes
+ I (+IVVOL'=+OTHVOL) Q 0
+ ; Capturing the Duplicate IV Solution IEN
+ Q 1

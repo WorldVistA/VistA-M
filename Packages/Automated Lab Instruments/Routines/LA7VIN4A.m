@@ -1,9 +1,11 @@
-LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;08/12/13  10:54
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80**;Sep 27, 1994;Build 19
+LA7VIN4A ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  16:17
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,80,88**;Sep 27, 1994;Build 10
  ;
  ;This routine is a continuation of LA7VIN4 and is only called from there.
  Q
  ;
+ ; ZEXCEPT is used to identify variables which are external to a specific TAG
+ ;         used in conjunction with Eclipse M-editor.
  ;
 LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  ; requires LA7INST,LA7TRAY,LA7CUP,LA7AA,LA7AD,LA7AN,LA7LWL
@@ -11,7 +13,7 @@ LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  ;
  I LA7ENTRY="LOG" D
  . I LA7INTYP>19,LA7INTYP<30 Q
- . I '$D(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)) D CREATE^LA7LOG(13)
+ . I '$D(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)) S LA7ERR=13,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  I LA7ENTRY="LLIST" S:'LA7CUP LA7CUP=LA7IDE ;cup=sequence number
  ;
  K LA7ISQN,LADT,LAGEN
@@ -23,13 +25,14 @@ LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  ;
  S LWL=LA7LWL
  I '$D(^LRO(68.2,+LWL,0)) D  Q
- . D CREATE^LA7LOG(19)
+ . S LA7ERR=19,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  ;
  ; Set accession area to area of specimen, allow multiple areas on same instrument.
  S WL=LA7AA
  I '$D(^LRO(68,+WL,0)) D  Q
- . D CREATE^LA7LOG(20)
+ . S LA7ERR=20,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  S LROVER=$P(LA7624(0),"^",12)
+ ;
  ; LEDI(MI & AP) override #62.4 setting so results never overlay unless same message
  I LA7INTYP=10 D
  . I LA7SS'?1(1"MI",1"SP",1"CY",1"EM") Q
@@ -41,6 +44,13 @@ LAGEN ; Sets up variables for call to ^LAGEN,  build entry in LAH
  S IDENT=$P($G(^LRO(68,LA7AA,1,LA7AD,1,LA7AN,0)),"^",6) ;identity field
  S IDE=+LA7IDE
  S LADT=LA7AD
+ ;
+ ; If auto release then set flag to not overlay data in LAH unless from same message.
+ I LA7OBR49="AR" S LROVER=0
+ I $G(LA7UID)'="",$D(^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL-UID",LA7UID)) D
+ . N I
+ . S I=0
+ . F  S I=$O(^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL-UID",LA7UID,I)) Q:'I  I $D(^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL-UID",LA7UID,I,LA76249)) S ISQN=I,LROVER=2 Q
  ;
  I LROVER<2 D
  . N LRDFN ; Protect LRDFN - call into LAGEN can set to 0

@@ -1,6 +1,12 @@
-DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;6DEC2009
- ;;22.0;VA FileMan;**19,64,74,81,99,133,163**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIQ ;SFISC/GFT-CAPTIONED TEMPLATE ;1MAR2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;GFT;;**19,64,74,81,99,129,133,999,1021,1035,1037,1053,1054**;
+ ;
+ ;
  G INQ^DII
  ;
 GET1(DIQGR,DA,DR,DIQGPARM,DIQGETA,DIQGERRA,DIQGIPAR) ;Extrinsic Function
@@ -49,7 +55,7 @@ R S:'$G(IOM) IOM=80 S:'$G(IOSL) IOSL=24,IOST="C-OTHER"
  ..S A=$O(^DD(DD,"B",DIQZ,0)) Q:'A
  ..I $D(^DD(DD,A,0)) S C=$P(^(0),U,2) I C["C" D COM S @(DIQS_"DIQZ)=X")
  I N<0,$D(^DD(DD,.001,0)) S W=.001,A=-1,Y=@("D"_(DL\2)) D W Q:'S  G A
- I $G(DIQ(0))["R",DL=1 S W=.001,A=-1,O="NUMBER",Y=D0 D W2 Q:'S
+NUMBER I $G(DIQ(0))["R",DL=1 S W=.001,A=-1,O=$$EZBLD^DIALOG(7099),Y=D0 D W2 Q:'S  ;**CCO/NI THE WORD 'NUMBER'
 A I DIQ(0)["A" D  ;Get AUDIT TRAIL data
  .N Z,D,SUB
  .I DL=1 S DIQAUDD="",(DIQAUDE(0),DIQAUDE)=D0 F Z=2:2 Q:'$D(^DD(DIQDD,0,"UP"))  D
@@ -72,7 +78,7 @@ N S @("N=$O("_D_"N))") I N="" S N=-1 G END:DL#2,MISSAUD
  E  G MISSAUD:N'>0 S X=DD,O=-1,@("D"_(DL\2)_"=N") Q:$$STOP  I $D(DSC(X)) X DSC(X) E  G N ;we've found a new sub-entry
  S DD(DL)=DD,D(DL)=D,N(DL)=N,DL=DL+1,DIQAUDD(DL)=DIQZ S:+N'=N N=""""_N_"""" S D=D_N_",",N=O,DD=X ;down a level
 FIND1 I DL#2=0 S N=0 N DIQAUDR K:$G(DIQAUDE) @("DIQE("_DIQAUDE_")") G N ;let's look for the 1st multiple
-WP I '$D(DIQS),$P(^DD(DD,.01,0),U,2)["W" S O=$P(^(0),U),C=$P(^(0),U,2) D  S DL=DL-1 G UP:S Q
+WP I '$D(DIQS),$P(^DD(DD,.01,0),U,2)["W" S O=$$LABEL^DIALOGZ(DD,.01),C=$P(^DD(DD,.01,0),U,2) D  S DL=DL-1 D WPAUD($G(DIQAUDD(DL)),1) G UP:S Q
  .N DIWF,DIWL,DIWR,DN,N,DD ;Word-processing field
  .D DIQ^DIWW I $D(DN),'DN S S=0
  S N=-1 D 1(DA) Q:'S
@@ -81,18 +87,39 @@ UP S DL=DL-1,D=D(DL),DD=DD(DL),N=N(DL) Q:$$STOP  G N ;go back UP a level
 MISSAUD I $G(DIQAUDE) S DIQE=DIQAUDE(0)_"," F  S DIQE=$O(^DIA(DIQDD,"B",DIQE)) Q:'DIQE  Q:DIQE-DIQAUDE  Q:$$STOP  I '$D(@("DIQE("_DIQE_")")) D  ;SHOW MISSING ENTRIES THAT WERE CAPTURED BY AUDIT TRAIL
  .N E,DIQEMISS
  .S E="" F  S E=$O(^DIA(DIQDD,"B",DIQE,E),-1) Q:'E  Q:$$STOP  I $P($G(^DIA(DIQDD,E,0)),U,3)=(DIQAUDD(DL)_",.01") D:'$G(DIQEMISS)  D WRITEAUD
- ..D WRITE($P(^DD(DD,.01,0),U)_":") W ! S DIQEMISS=1 ;Write the label of the missing multiple
+ ..D WRITE($$LABEL^DIALOGZ(DD,.01)_":") W ! S DIQEMISS=1 ;Write the label of the missing multiple
  G UP
  ;
  ;
+WPAUD(FLD,DIQCHNGD) N DIWF,DIWL,DIWR,E,O,Z,W,N ;DIQCHNGD=0 means FLD is currently deleted.
+ Q:'$G(FLD)
+ S E="",DIWF=$E("N",C["L")_"W|",DIWL=7,DIWR=IOM
+ F  S E=$O(DIQAUD(FLD,E),-1) Q:'E  Q:$$STOP  D
+ .S W=""
+ .I $D(^DIA(DIQDD,E,0)) S Z=$P(^(0),U,4),W=W_" on "_$$FMTE^DILIBF($P(^(0),U,2),"IL") I Z]"" S W=W_" by User #"_Z
+ .S Z=$G(^(4.1)),O=$P(Z,U),Z=$P(Z,U,2) I O,$D(^DIC(19,O,0)) S W=W_"  ("_$P(^(0),U)_" Option)"
+ .I Z S O=+Z,Z=$P(Z,";",2) I Z]"",$D(@(U_Z_O_",0)")) S W=W_"  ("_$P(^(0),U)_" Protocol)"
+ .S X=$O(^DIA(DIQDD,E,2.14,0)) ;Do we have old text stored for this audited event?
+ .I 'DIQCHNGD,X S W=$TR($$EZBLD^DIALOG(8197.1),"""")_W_":" S DIQCHNGD=1 ;'DELETED'
+ .E  I X S W="Changed"_W_" from:" S DIQCHNGD=1
+ .E  S W=$$EZBLD^DIALOG(8197.3)_W S DIQCHNGD=0 ;'CREATED'
+ .W ?4 D WRITE(W)
+ .S W=0,X="" F  D  S W=$O(^DIA(DIQDD,E,2.14,W)) Q:W'>0!(S=0)  S X=^(W,0) D ^DIWP D
+ ..N W D LF
+ .D ^DIWW
+ K DIQAUD(FLD)
+ D LF Q
+  ;
 END Q:$$STOP
  F DIQZ=0:0 S DIQZ=$O(DIQAUD(DIQZ)) Q:'DIQZ  I $D(^DD(DD,DIQZ,0)) D  ;write out audited DELETED fields
- .N D W ?2,$P(^(0),U),":" I $P(^(0),U,2) Q
+ .N D W ?2,$P(^(0),U),":" I $P(^(0),U,2) D WPAUD(DIQZ,0) Q
  .D PRINTAUD(DIQZ) Q:$$STOP
  I S,$G(DIQ(0))["C",$D(@(D_"0)")) D ^DIQ1 ;Computed fields at this level -- ONLY IF ENTRY EXISTS
  Q
  ;
-W S O=$P(^DD(DD,W,0),U),C=$P(^(0),U,2) I $D(DICS) X DICS E  Q
+W S O=$$LABEL^DIALOGZ(DD,W),C=$P(^DD(DD,W,0),U,2) I $D(DICS) X DICS E  Q
+VP I C["V" D  I $D(^DD(DD,W,0)) ;get naked back
+ .N F S F=$P(Y,";",2) I F["(",$D(@("^"_F_"0)"))#2 S F=+$P(^(0),U,2) I F S F=$O(^DD(DD,W,"V","B",F,0)) I F,$D(^DD(DD,W,"V",F,0)) S O=O_" ("_$P(^(0),U,4)_")"
  D Y
  I $D(DIQS) S:$D(@(DIQS_"O)")) @(DIQS_"O)=Y") S:$D(^(W)) @(DIQS_"W)=Y") Q
 W2 ;from DIQ1
@@ -110,9 +137,9 @@ PRINTAUD(FLD) N E
  ;
 WRITEAUD N O,Z,W,N ;WRITE AN ENTRY FROM THE AUDIT TRAIL
  S O=$G(^DIA(DIQDD,E,2)),N=$G(^(3))
- I N="" S W="Deleted """_O_""""
- E  S W=$S(O]"":"Changed from """_O_"""",1:"Created")
- I $D(^DIA(DIQDD,E,0)) S:$P(^(0),U,6)="i" W="Accessed" S Z=$P(^(0),U,4),W=W_" on "_$$FMTE^DILIBF($P(^(0),U,2),"IL") I Z]"" S W=W_" by User #"_Z
+ I N="" S W=$$EZBLD^DIALOG(8197.1,O) ;**CCO/NI 'DELETED'
+ E  S W=$S(O]"":$$EZBLD^DIALOG(8197.2,O),1:$$EZBLD^DIALOG(8197.3)) ;**CCO/NI 'CHANGED FROM' OR 'CREATED'
+ I $D(^DIA(DIQDD,E,0)) S:$P(^(0),U,6)="i" W=$$EZBLD^DIALOG(8197.5) K Z S Z(3)=$P(^(0),U,4),Z(2)=$$DATE^DIUTL($P(^(0),U,2)),Z(1)=W,W=$$EZBLD^DIALOG(8197.4,.Z) ;**'ACCESSED'; CCO/NI  WHEN, WHO
  W ?4 D WRITE(W)
  K W S Z=$G(^DIA(DIQDD,E,4.1)),O=$P(Z,U),Z=$P(Z,U,2) I O,$D(^DIC(19,O,0)) S W="  ("_$P(^(0),U)_" Option)"
  I Z S O=+Z,Z=$P(Z,";",2) I Z]"",$D(@(U_Z_O_",0)")) S W="  ("_$P(^(0),U)_" Protocol)"
@@ -125,12 +152,30 @@ WRITE(DIQW) N DIQWL
  ;
 Y ;PRINT TEMPLATES CALL HERE    NAKED REFERENCE IS TO ^DD(FILE#,FIELD#,0)
  I $G(Y)="" S Y="" Q
+TYPE ;I C["t" X $$OUTPUT^DIETLIBF Q  ;DATA TYPE IS IN FILE .81!
  I C["O",$D(^(2)) X ^(2) Q
-S I C["S" S C=";"_$P(^(0),U,3),%=$F(C,";"_Y_":") S:% Y=$P($E(C,%,999),";",1) Q
+S I C["S" D PARSET($$LANGSET,.Y) Q
  I C["P",$D(@("^"_$P(^(0),U,3)_"0)")) S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U) I $D(^DD(+C,.01,0)) S C=$P(^(0),U,2) G S
  I C["V",+Y,Y["(",$D(@("^"_$P(Y,";",2)_"0)")) S C=$P(^(0),U,2) Q:'$D(^(+Y,0))  S Y=$P(^(0),U) I $D(^DD(+C,.01,0)) S C=$P(^(0),U,2) G S
  Q:C'["D"  Q:'Y
-D S Y=$$FMTE^DILIBF(Y,"1U") Q
+D S Y=$$NAKED^DIUTL("$$DATE^DIUTL(Y)") Q  ;GENERAL DATE OUTPUT --NEEDS TO PRESERVE THE NAKED INDICATOR
+ ;
+ ;
+ ;
+SET(FILE,FIELD,Y) ;GET EXTERNAL VERSION OF 'Y' FOR A SET FIELD
+ I $D(^DD(FILE,FIELD,0)) D PARSET($$LANGSET,.Y)
+ Q Y
+ ;
+PARSET(C,Y) ;FOR SPECIFIER C, CHANGE Y TO ITS EXTERNAL VALUE  called from DIDU & DDS11
+ N DIN,%
+ S DIN=Y,C=";"_C,%=$F(C,";"_Y_":") I % S Y=$P($E(C,%,999),";")
+ Q
+ ;
+LANGSET() ;USES NAKED REFERENCE TO ^DD(FILE,FIELD,0)
+ N C S C=$P(^(0),U,3)
+ I $G(DUZ("LANG"))>1 Q $$NAKED^DIUTL("$$SETOUT^DIALOGZ")
+ Q C
+ ;
  ;
 DT D D:Y W Y Q
 H G H^DIO2

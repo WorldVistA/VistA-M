@@ -1,6 +1,10 @@
-DIL ;SFISC/GFT/XAK-TURN PRINT FLDS INTO CODE ;2DEC2002
- ;;22.0;VA FileMan;**25,102,119**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIL ;SFISC/GFT/XAK-TURN PRINT FLDS INTO CODE ;31DEC2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 LOOP F DD=1:1 S W=$P(R,$C(126),DD) G Q:W="" S:DIWL DIWL=9 D DM I DIO D  S DIO=0
  .S DN=-8 Q:DIO=1
  .I DIO=3 D UN
@@ -24,17 +28,33 @@ DE S DE="" I W[";S" D W:DG S I=+$P(W,";S",2),DG=0 S:'I I=1 S M(DP)=M(DP)+I,DE=DE
  S DE=DE_" W ?"_DG Q
 W ;
  D DIWR^DIL0:$D(DIWR)
-A ;
- K V S M(DP)=M(DP)+1 I DHD D
- .S I=99,V="" F  S V=$O(^UTILITY("DIL",$J,V)) Q:V=""  S Z=$O(^(V,0)) I I>Z S I=Z
- .F I=I:1:99 S Z="W !" D  I Z'="W !" D U
- ..S V="" F  S V=$O(^UTILITY("DIL",$J,V)) Q:V=""  I $D(^(V,I)) S %=$G(^($O(^(0))-I+99)) D
- ...F  Q:%'?1" ".E  S V=V+1,%=$E(%,2,999)
- ...I $L(Z)+$L(%)>245 D U
- ...S Z=Z_",?"_V_","""_%_""""
- K ^UTILITY("DIL",$J) Q
+A ;FROM DIP5 AND DIPZ & above
+ S M(DP)=M(DP)+1 I DHD D COLHEADS(.DHD)
+ I $D(DIOSUBHD) S:DIOSUBHD<2 DIOSUBHD=2 D COLHEADS(.DIOSUBHD)
+ Q
  ;
+ ;
+COLHEADS(DHD) ;TAKE COLUMN HEADERS AND STORE THEM AS WRITE STATEMENTS, STARTING AT ^UTILITY($J,DHD)
+ N V,I,Z,%
+ S I=99,V="" F  S V=$O(^UTILITY("DIL",$J,V)) Q:V=""  S Z=$O(^(V,0)) I I>Z S I=Z
+ F I=I:1:99 S Z="W !" D  I Z'="W !" D U
+ .S V="" F  S V=$O(^UTILITY("DIL",$J,V)) Q:V=""  I $D(^(V,I)) S %=$G(^($O(^(0))-I+99)) D
+ ..F  Q:%'?1" ".E  S V=V+1,%=$E(%,2,999)
+ ..I $L(Z)+$L(%)>245 D U
+ ..S Z=Z_",?"_V_","""_%_""""
+ K ^UTILITY("DIL",$J)
+ Q
 U S ^UTILITY($J,DHD)=Z,DHD=DHD+1,Z="W """"" Q
+ ;
+ ;
+SUBHEADS ;
+ N X
+ S X=$$EZBLD^DIALOG(7095) ;"PAGE"
+ W:$X+30>IOM !
+ W ?IOM-30,$$NOW^DIUTL,"  "
+ I $G(DC) W ?IOM-$L(X)-4,X," ",DC
+ F X=1.5:0 S X=$O(^UTILITY($J,X)) Q:X>50!'X  X ^(X)
+ Q
  ;
 D ;
  D PX:DHT<1 S F(DM)=DX,R(DX)=DP(DM),R(DX,1)=M(DP(DM)),F=F_W_",",DM=DM+1,DIL=DIL+1,DD=DD-1 I DHT+1 S DX=$S('DHT:900,1:DX) D:DHT PX Q

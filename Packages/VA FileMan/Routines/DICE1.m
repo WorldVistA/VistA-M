@@ -1,6 +1,10 @@
 DICE1 ;SFISC/XAK-TRIGGER LOGIC ;10:24 AM  9 Jul 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 FIELD S %=DI,%F=DL,DOLD=$P(^DD(DI,DL,0),U) W !!,"WHEN THE " D WR^DIDH
  R "IS CHANGED,",!,"WHAT FIELD SHOULD BE 'TRIGGERED': ",X:DTIME Q:U[X
  I X?1."?" S DIC="^DD("_DI_",",DIC(0)="QE",DIC("S")="S %=$P(^(0),U,2) I %'[""C""&(%'[""W"")",DIC("W")="W:$P(^(0),U,2) ""   (multiple)""" D ^DIC K DIC G FIELD

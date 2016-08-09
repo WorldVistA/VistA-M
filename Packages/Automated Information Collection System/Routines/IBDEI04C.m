@@ -1,134 +1,302 @@
-IBDEI04C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI04C ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1605,1,0)
+ ;;^UTILITY(U,$J,358.3,4079,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1605,1,3,0)
- ;;=3^Cardiomyopathy in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,1605,1,4,0)
- ;;=4^I43.
- ;;^UTILITY(U,$J,358.3,1605,2)
- ;;=^5007201
- ;;^UTILITY(U,$J,358.3,1606,0)
- ;;=I42.7^^11^145^7
- ;;^UTILITY(U,$J,358.3,1606,1,0)
+ ;;^UTILITY(U,$J,358.3,4079,1,3,0)
+ ;;=3^Rectal Abscess
+ ;;^UTILITY(U,$J,358.3,4079,1,4,0)
+ ;;=4^K61.1
+ ;;^UTILITY(U,$J,358.3,4079,2)
+ ;;=^259588
+ ;;^UTILITY(U,$J,358.3,4080,0)
+ ;;=K61.2^^30^305^5
+ ;;^UTILITY(U,$J,358.3,4080,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1606,1,3,0)
- ;;=3^Cardiomyopathy d/t Drug/External Agent
- ;;^UTILITY(U,$J,358.3,1606,1,4,0)
- ;;=4^I42.7
- ;;^UTILITY(U,$J,358.3,1606,2)
- ;;=^5007198
- ;;^UTILITY(U,$J,358.3,1607,0)
- ;;=I42.9^^11^145^9
- ;;^UTILITY(U,$J,358.3,1607,1,0)
+ ;;^UTILITY(U,$J,358.3,4080,1,3,0)
+ ;;=3^Anorectal Abscess
+ ;;^UTILITY(U,$J,358.3,4080,1,4,0)
+ ;;=4^K61.2
+ ;;^UTILITY(U,$J,358.3,4080,2)
+ ;;=^5008750
+ ;;^UTILITY(U,$J,358.3,4081,0)
+ ;;=K61.3^^30^305^48
+ ;;^UTILITY(U,$J,358.3,4081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1607,1,3,0)
- ;;=3^Cardiomyopathy,Unspec
- ;;^UTILITY(U,$J,358.3,1607,1,4,0)
- ;;=4^I42.9
- ;;^UTILITY(U,$J,358.3,1607,2)
- ;;=^5007200
- ;;^UTILITY(U,$J,358.3,1608,0)
- ;;=I50.9^^11^145^22
- ;;^UTILITY(U,$J,358.3,1608,1,0)
+ ;;^UTILITY(U,$J,358.3,4081,1,3,0)
+ ;;=3^Ischiorectal Abscess
+ ;;^UTILITY(U,$J,358.3,4081,1,4,0)
+ ;;=4^K61.3
+ ;;^UTILITY(U,$J,358.3,4081,2)
+ ;;=^5008751
+ ;;^UTILITY(U,$J,358.3,4082,0)
+ ;;=K61.4^^30^305^45
+ ;;^UTILITY(U,$J,358.3,4082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1608,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,1608,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,1608,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,1609,0)
- ;;=I50.1^^11^145^33
- ;;^UTILITY(U,$J,358.3,1609,1,0)
+ ;;^UTILITY(U,$J,358.3,4082,1,3,0)
+ ;;=3^Intrasphincteric Abscess
+ ;;^UTILITY(U,$J,358.3,4082,1,4,0)
+ ;;=4^K61.4
+ ;;^UTILITY(U,$J,358.3,4082,2)
+ ;;=^5008752
+ ;;^UTILITY(U,$J,358.3,4083,0)
+ ;;=K63.5^^30^305^17
+ ;;^UTILITY(U,$J,358.3,4083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1609,1,3,0)
- ;;=3^Left Ventricular Failure
- ;;^UTILITY(U,$J,358.3,1609,1,4,0)
- ;;=4^I50.1
- ;;^UTILITY(U,$J,358.3,1609,2)
- ;;=^5007238
- ;;^UTILITY(U,$J,358.3,1610,0)
- ;;=I50.20^^11^145^55
- ;;^UTILITY(U,$J,358.3,1610,1,0)
+ ;;^UTILITY(U,$J,358.3,4083,1,3,0)
+ ;;=3^Colon Polyp
+ ;;^UTILITY(U,$J,358.3,4083,1,4,0)
+ ;;=4^K63.5
+ ;;^UTILITY(U,$J,358.3,4083,2)
+ ;;=^5008765
+ ;;^UTILITY(U,$J,358.3,4084,0)
+ ;;=K70.2^^30^305^3
+ ;;^UTILITY(U,$J,358.3,4084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1610,1,3,0)
- ;;=3^Systolic Congestive Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,1610,1,4,0)
- ;;=4^I50.20
- ;;^UTILITY(U,$J,358.3,1610,2)
- ;;=^5007239
- ;;^UTILITY(U,$J,358.3,1611,0)
- ;;=I50.30^^11^145^19
- ;;^UTILITY(U,$J,358.3,1611,1,0)
+ ;;^UTILITY(U,$J,358.3,4084,1,3,0)
+ ;;=3^Alcoholic Fibrosis/Sclerosis of Liver
+ ;;^UTILITY(U,$J,358.3,4084,1,4,0)
+ ;;=4^K70.2
+ ;;^UTILITY(U,$J,358.3,4084,2)
+ ;;=^5008787
+ ;;^UTILITY(U,$J,358.3,4085,0)
+ ;;=K80.20^^30^305^14
+ ;;^UTILITY(U,$J,358.3,4085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1611,1,3,0)
- ;;=3^Diastolic Congestive Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,1611,1,4,0)
- ;;=4^I50.30
- ;;^UTILITY(U,$J,358.3,1611,2)
- ;;=^5007243
- ;;^UTILITY(U,$J,358.3,1612,0)
- ;;=I50.40^^11^145^54
- ;;^UTILITY(U,$J,358.3,1612,1,0)
+ ;;^UTILITY(U,$J,358.3,4085,1,3,0)
+ ;;=3^Calculus of Gallbladder w/o Cholecystitis/Obstruction
+ ;;^UTILITY(U,$J,358.3,4085,1,4,0)
+ ;;=4^K80.20
+ ;;^UTILITY(U,$J,358.3,4085,2)
+ ;;=^5008846
+ ;;^UTILITY(U,$J,358.3,4086,0)
+ ;;=K80.80^^30^305^16
+ ;;^UTILITY(U,$J,358.3,4086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1612,1,3,0)
- ;;=3^Systolic & Diastolic Congestive Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,1612,1,4,0)
- ;;=4^I50.40
- ;;^UTILITY(U,$J,358.3,1612,2)
- ;;=^5007247
- ;;^UTILITY(U,$J,358.3,1613,0)
- ;;=I51.7^^11^145^6
- ;;^UTILITY(U,$J,358.3,1613,1,0)
+ ;;^UTILITY(U,$J,358.3,4086,1,3,0)
+ ;;=3^Cholelithiasis w/o Obstruction NEC
+ ;;^UTILITY(U,$J,358.3,4086,1,4,0)
+ ;;=4^K80.80
+ ;;^UTILITY(U,$J,358.3,4086,2)
+ ;;=^5008871
+ ;;^UTILITY(U,$J,358.3,4087,0)
+ ;;=K81.9^^30^305^15
+ ;;^UTILITY(U,$J,358.3,4087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1613,1,3,0)
- ;;=3^Cardiomegaly
- ;;^UTILITY(U,$J,358.3,1613,1,4,0)
- ;;=4^I51.7
- ;;^UTILITY(U,$J,358.3,1613,2)
- ;;=^5007257
- ;;^UTILITY(U,$J,358.3,1614,0)
- ;;=I97.111^^11^145^42
- ;;^UTILITY(U,$J,358.3,1614,1,0)
+ ;;^UTILITY(U,$J,358.3,4087,1,3,0)
+ ;;=3^Cholecystitis,Unspec
+ ;;^UTILITY(U,$J,358.3,4087,1,4,0)
+ ;;=4^K81.9
+ ;;^UTILITY(U,$J,358.3,4087,2)
+ ;;=^87388
+ ;;^UTILITY(U,$J,358.3,4088,0)
+ ;;=K92.1^^30^305^84
+ ;;^UTILITY(U,$J,358.3,4088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1614,1,3,0)
- ;;=3^Postprocedural Cardiac Insufficiency Following Oth Surgery
- ;;^UTILITY(U,$J,358.3,1614,1,4,0)
- ;;=4^I97.111
- ;;^UTILITY(U,$J,358.3,1614,2)
- ;;=^5008084
- ;;^UTILITY(U,$J,358.3,1615,0)
- ;;=I97.120^^11^145^38
- ;;^UTILITY(U,$J,358.3,1615,1,0)
+ ;;^UTILITY(U,$J,358.3,4088,1,3,0)
+ ;;=3^Melena
+ ;;^UTILITY(U,$J,358.3,4088,1,4,0)
+ ;;=4^K92.1
+ ;;^UTILITY(U,$J,358.3,4088,2)
+ ;;=^5008914
+ ;;^UTILITY(U,$J,358.3,4089,0)
+ ;;=K94.01^^30^305^19
+ ;;^UTILITY(U,$J,358.3,4089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1615,1,3,0)
- ;;=3^Postprocedural Cardiac Arrest Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,1615,1,4,0)
- ;;=4^I97.120
- ;;^UTILITY(U,$J,358.3,1615,2)
- ;;=^5008085
- ;;^UTILITY(U,$J,358.3,1616,0)
- ;;=I97.121^^11^145^39
- ;;^UTILITY(U,$J,358.3,1616,1,0)
+ ;;^UTILITY(U,$J,358.3,4089,1,3,0)
+ ;;=3^Colostomy Hemorrhage
+ ;;^UTILITY(U,$J,358.3,4089,1,4,0)
+ ;;=4^K94.01
+ ;;^UTILITY(U,$J,358.3,4089,2)
+ ;;=^5008919
+ ;;^UTILITY(U,$J,358.3,4090,0)
+ ;;=K94.02^^30^305^20
+ ;;^UTILITY(U,$J,358.3,4090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1616,1,3,0)
- ;;=3^Postprocedural Cardiac Arrest Following Oth Surgery
- ;;^UTILITY(U,$J,358.3,1616,1,4,0)
- ;;=4^I97.121
- ;;^UTILITY(U,$J,358.3,1616,2)
- ;;=^5008086
- ;;^UTILITY(U,$J,358.3,1617,0)
- ;;=I97.130^^11^145^44
- ;;^UTILITY(U,$J,358.3,1617,1,0)
+ ;;^UTILITY(U,$J,358.3,4090,1,3,0)
+ ;;=3^Colostomy Infection
+ ;;^UTILITY(U,$J,358.3,4090,1,4,0)
+ ;;=4^K94.02
+ ;;^UTILITY(U,$J,358.3,4090,2)
+ ;;=^5008920
+ ;;^UTILITY(U,$J,358.3,4091,0)
+ ;;=K94.03^^30^305^21
+ ;;^UTILITY(U,$J,358.3,4091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1617,1,3,0)
- ;;=3^Postprocedural Heart Failure Following Cardiac Surgery
- ;;^UTILITY(U,$J,358.3,1617,1,4,0)
- ;;=4^I97.130
- ;;^UTILITY(U,$J,358.3,1617,2)
- ;;=^5008087
- ;;^UTILITY(U,$J,358.3,1618,0)
- ;;=I97.131^^11^145^45
+ ;;^UTILITY(U,$J,358.3,4091,1,3,0)
+ ;;=3^Colostomy Malfunction
+ ;;^UTILITY(U,$J,358.3,4091,1,4,0)
+ ;;=4^K94.03
+ ;;^UTILITY(U,$J,358.3,4091,2)
+ ;;=^5008921
+ ;;^UTILITY(U,$J,358.3,4092,0)
+ ;;=K94.09^^30^305^18
+ ;;^UTILITY(U,$J,358.3,4092,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4092,1,3,0)
+ ;;=3^Colostomy Complications NEC
+ ;;^UTILITY(U,$J,358.3,4092,1,4,0)
+ ;;=4^K94.09
+ ;;^UTILITY(U,$J,358.3,4092,2)
+ ;;=^5008922
+ ;;^UTILITY(U,$J,358.3,4093,0)
+ ;;=K94.11^^30^305^28
+ ;;^UTILITY(U,$J,358.3,4093,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4093,1,3,0)
+ ;;=3^Enterostomy Hemorrhage
+ ;;^UTILITY(U,$J,358.3,4093,1,4,0)
+ ;;=4^K94.11
+ ;;^UTILITY(U,$J,358.3,4093,2)
+ ;;=^5008924
+ ;;^UTILITY(U,$J,358.3,4094,0)
+ ;;=K94.12^^30^305^29
+ ;;^UTILITY(U,$J,358.3,4094,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4094,1,3,0)
+ ;;=3^Enterostomy Infection
+ ;;^UTILITY(U,$J,358.3,4094,1,4,0)
+ ;;=4^K94.12
+ ;;^UTILITY(U,$J,358.3,4094,2)
+ ;;=^5008925
+ ;;^UTILITY(U,$J,358.3,4095,0)
+ ;;=K94.13^^30^305^30
+ ;;^UTILITY(U,$J,358.3,4095,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4095,1,3,0)
+ ;;=3^Enterostomy Malfunction
+ ;;^UTILITY(U,$J,358.3,4095,1,4,0)
+ ;;=4^K94.13
+ ;;^UTILITY(U,$J,358.3,4095,2)
+ ;;=^5008926
+ ;;^UTILITY(U,$J,358.3,4096,0)
+ ;;=K94.19^^30^305^27
+ ;;^UTILITY(U,$J,358.3,4096,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4096,1,3,0)
+ ;;=3^Enterostomy Complications NEC
+ ;;^UTILITY(U,$J,358.3,4096,1,4,0)
+ ;;=4^K94.19
+ ;;^UTILITY(U,$J,358.3,4096,2)
+ ;;=^5008927
+ ;;^UTILITY(U,$J,358.3,4097,0)
+ ;;=K94.21^^30^305^37
+ ;;^UTILITY(U,$J,358.3,4097,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4097,1,3,0)
+ ;;=3^Gastrostomy Hemorrhage
+ ;;^UTILITY(U,$J,358.3,4097,1,4,0)
+ ;;=4^K94.21
+ ;;^UTILITY(U,$J,358.3,4097,2)
+ ;;=^5008929
+ ;;^UTILITY(U,$J,358.3,4098,0)
+ ;;=K94.22^^30^305^38
+ ;;^UTILITY(U,$J,358.3,4098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4098,1,3,0)
+ ;;=3^Gastrostomy Infection
+ ;;^UTILITY(U,$J,358.3,4098,1,4,0)
+ ;;=4^K94.22
+ ;;^UTILITY(U,$J,358.3,4098,2)
+ ;;=^5008930
+ ;;^UTILITY(U,$J,358.3,4099,0)
+ ;;=K94.23^^30^305^39
+ ;;^UTILITY(U,$J,358.3,4099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4099,1,3,0)
+ ;;=3^Gastrostomy Malfunction
+ ;;^UTILITY(U,$J,358.3,4099,1,4,0)
+ ;;=4^K94.23
+ ;;^UTILITY(U,$J,358.3,4099,2)
+ ;;=^5008931
+ ;;^UTILITY(U,$J,358.3,4100,0)
+ ;;=K94.29^^30^305^36
+ ;;^UTILITY(U,$J,358.3,4100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4100,1,3,0)
+ ;;=3^Gastrostomy Complications NEC
+ ;;^UTILITY(U,$J,358.3,4100,1,4,0)
+ ;;=4^K94.29
+ ;;^UTILITY(U,$J,358.3,4100,2)
+ ;;=^5008932
+ ;;^UTILITY(U,$J,358.3,4101,0)
+ ;;=R16.0^^30^305^40
+ ;;^UTILITY(U,$J,358.3,4101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4101,1,3,0)
+ ;;=3^Hepatomegaly NEC
+ ;;^UTILITY(U,$J,358.3,4101,1,4,0)
+ ;;=4^R16.0
+ ;;^UTILITY(U,$J,358.3,4101,2)
+ ;;=^5019248
+ ;;^UTILITY(U,$J,358.3,4102,0)
+ ;;=R16.2^^30^305^41
+ ;;^UTILITY(U,$J,358.3,4102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4102,1,3,0)
+ ;;=3^Hepatomegaly w/ Splenomegaly NEC
+ ;;^UTILITY(U,$J,358.3,4102,1,4,0)
+ ;;=4^R16.2
+ ;;^UTILITY(U,$J,358.3,4102,2)
+ ;;=^5019250
+ ;;^UTILITY(U,$J,358.3,4103,0)
+ ;;=R19.5^^30^305^33
+ ;;^UTILITY(U,$J,358.3,4103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4103,1,3,0)
+ ;;=3^Fecal Abnormalities
+ ;;^UTILITY(U,$J,358.3,4103,1,4,0)
+ ;;=4^R19.5
+ ;;^UTILITY(U,$J,358.3,4103,2)
+ ;;=^5019274
+ ;;^UTILITY(U,$J,358.3,4104,0)
+ ;;=R19.7^^30^305^25
+ ;;^UTILITY(U,$J,358.3,4104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4104,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,4104,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,4104,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,4105,0)
+ ;;=K43.2^^30^305^44
+ ;;^UTILITY(U,$J,358.3,4105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4105,1,3,0)
+ ;;=3^Incisional Hernia w/o Obstruction/Gangrene
+ ;;^UTILITY(U,$J,358.3,4105,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,4105,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,4106,0)
+ ;;=K85.8^^30^305^1
+ ;;^UTILITY(U,$J,358.3,4106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4106,1,3,0)
+ ;;=3^Acute Pancreatitis NEC
+ ;;^UTILITY(U,$J,358.3,4106,1,4,0)
+ ;;=4^K85.8
+ ;;^UTILITY(U,$J,358.3,4106,2)
+ ;;=^5008886
+ ;;^UTILITY(U,$J,358.3,4107,0)
+ ;;=K85.9^^30^305^2
+ ;;^UTILITY(U,$J,358.3,4107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4107,1,3,0)
+ ;;=3^Acute Pancreatitis,Unspec
+ ;;^UTILITY(U,$J,358.3,4107,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,4107,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,4108,0)
+ ;;=B25.2^^30^305^23
+ ;;^UTILITY(U,$J,358.3,4108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4108,1,3,0)
+ ;;=3^Cytomegaloviral Pancreatitis
+ ;;^UTILITY(U,$J,358.3,4108,1,4,0)
+ ;;=4^B25.2
+ ;;^UTILITY(U,$J,358.3,4108,2)
+ ;;=^5000558

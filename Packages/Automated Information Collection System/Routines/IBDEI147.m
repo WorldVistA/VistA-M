@@ -1,136 +1,260 @@
-IBDEI147 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI147 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18960,1,4,0)
- ;;=4^H35.372
- ;;^UTILITY(U,$J,358.3,18960,2)
- ;;=^5005663
- ;;^UTILITY(U,$J,358.3,18961,0)
- ;;=H35.362^^82^902^5
- ;;^UTILITY(U,$J,358.3,18961,1,0)
+ ;;^UTILITY(U,$J,358.3,40462,1,4,0)
+ ;;=4^Y36.300A
+ ;;^UTILITY(U,$J,358.3,40462,2)
+ ;;=^5061661
+ ;;^UTILITY(U,$J,358.3,40463,0)
+ ;;=Y36.300D^^148^1966^127
+ ;;^UTILITY(U,$J,358.3,40463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18961,1,3,0)
- ;;=3^Drusen of Macula,Left Eye
- ;;^UTILITY(U,$J,358.3,18961,1,4,0)
- ;;=4^H35.362
- ;;^UTILITY(U,$J,358.3,18961,2)
- ;;=^5005659
- ;;^UTILITY(U,$J,358.3,18962,0)
- ;;=H35.361^^82^902^6
- ;;^UTILITY(U,$J,358.3,18962,1,0)
+ ;;^UTILITY(U,$J,358.3,40463,1,3,0)
+ ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40463,1,4,0)
+ ;;=4^Y36.300D
+ ;;^UTILITY(U,$J,358.3,40463,2)
+ ;;=^5061662
+ ;;^UTILITY(U,$J,358.3,40464,0)
+ ;;=Y36.410A^^148^1966^121
+ ;;^UTILITY(U,$J,358.3,40464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18962,1,3,0)
- ;;=3^Drusen of Macula,Right Eye
- ;;^UTILITY(U,$J,358.3,18962,1,4,0)
- ;;=4^H35.361
- ;;^UTILITY(U,$J,358.3,18962,2)
- ;;=^5005658
- ;;^UTILITY(U,$J,358.3,18963,0)
- ;;=H35.363^^82^902^4
- ;;^UTILITY(U,$J,358.3,18963,1,0)
+ ;;^UTILITY(U,$J,358.3,40464,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40464,1,4,0)
+ ;;=4^Y36.410A
+ ;;^UTILITY(U,$J,358.3,40464,2)
+ ;;=^5061691
+ ;;^UTILITY(U,$J,358.3,40465,0)
+ ;;=Y36.410D^^148^1966^123
+ ;;^UTILITY(U,$J,358.3,40465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18963,1,3,0)
- ;;=3^Drusen of Macula,Bilateral
- ;;^UTILITY(U,$J,358.3,18963,1,4,0)
- ;;=4^H35.363
- ;;^UTILITY(U,$J,358.3,18963,2)
- ;;=^5005660
- ;;^UTILITY(U,$J,358.3,18964,0)
- ;;=H47.10^^82^902^25
- ;;^UTILITY(U,$J,358.3,18964,1,0)
+ ;;^UTILITY(U,$J,358.3,40465,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40465,1,4,0)
+ ;;=4^Y36.410D
+ ;;^UTILITY(U,$J,358.3,40465,2)
+ ;;=^5061692
+ ;;^UTILITY(U,$J,358.3,40466,0)
+ ;;=Y36.6X0A^^148^1966^113
+ ;;^UTILITY(U,$J,358.3,40466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18964,1,3,0)
- ;;=3^Papilledema,Unspec
- ;;^UTILITY(U,$J,358.3,18964,1,4,0)
- ;;=4^H47.10
- ;;^UTILITY(U,$J,358.3,18964,2)
- ;;=^5006121
- ;;^UTILITY(U,$J,358.3,18965,0)
- ;;=H47.20^^82^902^20
- ;;^UTILITY(U,$J,358.3,18965,1,0)
+ ;;^UTILITY(U,$J,358.3,40466,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40466,1,4,0)
+ ;;=4^Y36.6X0A
+ ;;^UTILITY(U,$J,358.3,40466,2)
+ ;;=^5061775
+ ;;^UTILITY(U,$J,358.3,40467,0)
+ ;;=Y36.6X0D^^148^1966^115
+ ;;^UTILITY(U,$J,358.3,40467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18965,1,3,0)
- ;;=3^Optic Atrophy,Unspec
- ;;^UTILITY(U,$J,358.3,18965,1,4,0)
- ;;=4^H47.20
- ;;^UTILITY(U,$J,358.3,18965,2)
- ;;=^5006126
- ;;^UTILITY(U,$J,358.3,18966,0)
- ;;=H47.231^^82^902^13
- ;;^UTILITY(U,$J,358.3,18966,1,0)
+ ;;^UTILITY(U,$J,358.3,40467,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40467,1,4,0)
+ ;;=4^Y36.6X0D
+ ;;^UTILITY(U,$J,358.3,40467,2)
+ ;;=^5061776
+ ;;^UTILITY(U,$J,358.3,40468,0)
+ ;;=Y36.7X0A^^148^1966^128
+ ;;^UTILITY(U,$J,358.3,40468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18966,1,3,0)
- ;;=3^Glaucomatous Optic Atrophy,Right Eye
- ;;^UTILITY(U,$J,358.3,18966,1,4,0)
- ;;=4^H47.231
- ;;^UTILITY(U,$J,358.3,18966,2)
- ;;=^5006131
- ;;^UTILITY(U,$J,358.3,18967,0)
- ;;=H47.232^^82^902^12
- ;;^UTILITY(U,$J,358.3,18967,1,0)
+ ;;^UTILITY(U,$J,358.3,40468,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40468,1,4,0)
+ ;;=4^Y36.7X0A
+ ;;^UTILITY(U,$J,358.3,40468,2)
+ ;;=^5061781
+ ;;^UTILITY(U,$J,358.3,40469,0)
+ ;;=Y36.7X0D^^148^1966^129
+ ;;^UTILITY(U,$J,358.3,40469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18967,1,3,0)
- ;;=3^Glaucomatous Optic Atrophy,Left Eye
- ;;^UTILITY(U,$J,358.3,18967,1,4,0)
- ;;=4^H47.232
- ;;^UTILITY(U,$J,358.3,18967,2)
- ;;=^5006132
- ;;^UTILITY(U,$J,358.3,18968,0)
- ;;=H47.233^^82^902^11
- ;;^UTILITY(U,$J,358.3,18968,1,0)
+ ;;^UTILITY(U,$J,358.3,40469,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40469,1,4,0)
+ ;;=4^Y36.7X0D
+ ;;^UTILITY(U,$J,358.3,40469,2)
+ ;;=^5061782
+ ;;^UTILITY(U,$J,358.3,40470,0)
+ ;;=Y36.810A^^148^1966^22
+ ;;^UTILITY(U,$J,358.3,40470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18968,1,3,0)
- ;;=3^Glaucomatous Optic Atrophy,Bilateral
- ;;^UTILITY(U,$J,358.3,18968,1,4,0)
- ;;=4^H47.233
- ;;^UTILITY(U,$J,358.3,18968,2)
- ;;=^5006133
- ;;^UTILITY(U,$J,358.3,18969,0)
- ;;=H47.321^^82^902^9
- ;;^UTILITY(U,$J,358.3,18969,1,0)
+ ;;^UTILITY(U,$J,358.3,40470,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40470,1,4,0)
+ ;;=4^Y36.810A
+ ;;^UTILITY(U,$J,358.3,40470,2)
+ ;;=^5061787
+ ;;^UTILITY(U,$J,358.3,40471,0)
+ ;;=Y36.810D^^148^1966^23
+ ;;^UTILITY(U,$J,358.3,40471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18969,1,3,0)
- ;;=3^Drusen of Optic Disc,Right Eye
- ;;^UTILITY(U,$J,358.3,18969,1,4,0)
- ;;=4^H47.321
- ;;^UTILITY(U,$J,358.3,18969,2)
- ;;=^5006141
- ;;^UTILITY(U,$J,358.3,18970,0)
- ;;=H47.322^^82^902^8
- ;;^UTILITY(U,$J,358.3,18970,1,0)
+ ;;^UTILITY(U,$J,358.3,40471,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40471,1,4,0)
+ ;;=4^Y36.810D
+ ;;^UTILITY(U,$J,358.3,40471,2)
+ ;;=^5061788
+ ;;^UTILITY(U,$J,358.3,40472,0)
+ ;;=Y36.820A^^148^1966^19
+ ;;^UTILITY(U,$J,358.3,40472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18970,1,3,0)
- ;;=3^Drusen of Optic Disc,Left Eye
- ;;^UTILITY(U,$J,358.3,18970,1,4,0)
- ;;=4^H47.322
- ;;^UTILITY(U,$J,358.3,18970,2)
- ;;=^5006142
- ;;^UTILITY(U,$J,358.3,18971,0)
- ;;=H47.323^^82^902^7
- ;;^UTILITY(U,$J,358.3,18971,1,0)
+ ;;^UTILITY(U,$J,358.3,40472,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40472,1,4,0)
+ ;;=4^Y36.820A
+ ;;^UTILITY(U,$J,358.3,40472,2)
+ ;;=^5061793
+ ;;^UTILITY(U,$J,358.3,40473,0)
+ ;;=Y36.820D^^148^1966^20
+ ;;^UTILITY(U,$J,358.3,40473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18971,1,3,0)
- ;;=3^Drusen of Optic Disc,Bilateral
- ;;^UTILITY(U,$J,358.3,18971,1,4,0)
- ;;=4^H47.323
- ;;^UTILITY(U,$J,358.3,18971,2)
- ;;=^5006143
- ;;^UTILITY(U,$J,358.3,18972,0)
- ;;=H46.9^^82^902^21
- ;;^UTILITY(U,$J,358.3,18972,1,0)
+ ;;^UTILITY(U,$J,358.3,40473,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40473,1,4,0)
+ ;;=4^Y36.820D
+ ;;^UTILITY(U,$J,358.3,40473,2)
+ ;;=^5061794
+ ;;^UTILITY(U,$J,358.3,40474,0)
+ ;;=Y37.200A^^148^1966^91
+ ;;^UTILITY(U,$J,358.3,40474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18972,1,3,0)
- ;;=3^Optic Neuritis,Unspec
- ;;^UTILITY(U,$J,358.3,18972,1,4,0)
- ;;=4^H46.9
- ;;^UTILITY(U,$J,358.3,18972,2)
- ;;=^5006104
- ;;^UTILITY(U,$J,358.3,18973,0)
- ;;=H46.02^^82^902^23
- ;;^UTILITY(U,$J,358.3,18973,1,0)
+ ;;^UTILITY(U,$J,358.3,40474,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40474,1,4,0)
+ ;;=4^Y37.200A
+ ;;^UTILITY(U,$J,358.3,40474,2)
+ ;;=^5137997
+ ;;^UTILITY(U,$J,358.3,40475,0)
+ ;;=Y37.200D^^148^1966^92
+ ;;^UTILITY(U,$J,358.3,40475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18973,1,3,0)
- ;;=3^Optic Papillitis,Left Eye
- ;;^UTILITY(U,$J,358.3,18973,1,4,0)
- ;;=4^H46.02
+ ;;^UTILITY(U,$J,358.3,40475,1,3,0)
+ ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40475,1,4,0)
+ ;;=4^Y37.200D
+ ;;^UTILITY(U,$J,358.3,40475,2)
+ ;;=^5137999
+ ;;^UTILITY(U,$J,358.3,40476,0)
+ ;;=X00.1XXA^^148^1966^13
+ ;;^UTILITY(U,$J,358.3,40476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40476,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40476,1,4,0)
+ ;;=4^X00.1XXA
+ ;;^UTILITY(U,$J,358.3,40476,2)
+ ;;=^5060664
+ ;;^UTILITY(U,$J,358.3,40477,0)
+ ;;=X00.1XXD^^148^1966^14
+ ;;^UTILITY(U,$J,358.3,40477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40477,1,3,0)
+ ;;=3^Exp to Smoke in Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40477,1,4,0)
+ ;;=4^X00.1XXD
+ ;;^UTILITY(U,$J,358.3,40477,2)
+ ;;=^5060665
+ ;;^UTILITY(U,$J,358.3,40478,0)
+ ;;=Y36.820S^^148^1966^21
+ ;;^UTILITY(U,$J,358.3,40478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40478,1,3,0)
+ ;;=3^Explosn of Bomb Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40478,1,4,0)
+ ;;=4^Y36.820S
+ ;;^UTILITY(U,$J,358.3,40478,2)
+ ;;=^5061795
+ ;;^UTILITY(U,$J,358.3,40479,0)
+ ;;=Y36.810S^^148^1966^24
+ ;;^UTILITY(U,$J,358.3,40479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40479,1,3,0)
+ ;;=3^Explosn of Mine Placed During War Op but Expld After,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40479,1,4,0)
+ ;;=4^Y36.810S
+ ;;^UTILITY(U,$J,358.3,40479,2)
+ ;;=^5061789
+ ;;^UTILITY(U,$J,358.3,40480,0)
+ ;;=Y36.6X0S^^148^1966^114
+ ;;^UTILITY(U,$J,358.3,40480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40480,1,3,0)
+ ;;=3^War Op Inv Biological Weapons,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40480,1,4,0)
+ ;;=4^Y36.6X0S
+ ;;^UTILITY(U,$J,358.3,40480,2)
+ ;;=^5061777
+ ;;^UTILITY(U,$J,358.3,40481,0)
+ ;;=Y36.410S^^148^1966^122
+ ;;^UTILITY(U,$J,358.3,40481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40481,1,3,0)
+ ;;=3^War Op Inv Rubber Bullets,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40481,1,4,0)
+ ;;=4^Y36.410S
+ ;;^UTILITY(U,$J,358.3,40481,2)
+ ;;=^5061693
+ ;;^UTILITY(U,$J,358.3,40482,0)
+ ;;=Y36.200S^^148^1966^119
+ ;;^UTILITY(U,$J,358.3,40482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40482,1,3,0)
+ ;;=3^War Op Inv Explosion/Fragments,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40482,1,4,0)
+ ;;=4^Y36.200S
+ ;;^UTILITY(U,$J,358.3,40482,2)
+ ;;=^5061609
+ ;;^UTILITY(U,$J,358.3,40483,0)
+ ;;=Y36.300S^^148^1966^120
+ ;;^UTILITY(U,$J,358.3,40483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40483,1,3,0)
+ ;;=3^War Op Inv Fire/Conflagr/Hot Subst,Unspec,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40483,1,4,0)
+ ;;=4^Y36.300S
+ ;;^UTILITY(U,$J,358.3,40483,2)
+ ;;=^5061663
+ ;;^UTILITY(U,$J,358.3,40484,0)
+ ;;=Y36.230A^^148^1966^116
+ ;;^UTILITY(U,$J,358.3,40484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40484,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Init Encntr
+ ;;^UTILITY(U,$J,358.3,40484,1,4,0)
+ ;;=4^Y36.230A
+ ;;^UTILITY(U,$J,358.3,40484,2)
+ ;;=^5061625
+ ;;^UTILITY(U,$J,358.3,40485,0)
+ ;;=Y36.230D^^148^1966^117
+ ;;^UTILITY(U,$J,358.3,40485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40485,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,40485,1,4,0)
+ ;;=4^Y36.230D
+ ;;^UTILITY(U,$J,358.3,40485,2)
+ ;;=^5061626
+ ;;^UTILITY(U,$J,358.3,40486,0)
+ ;;=Y36.230S^^148^1966^118
+ ;;^UTILITY(U,$J,358.3,40486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40486,1,3,0)
+ ;;=3^War Op Inv Explosion of IED,Milt Pers,Sequela
+ ;;^UTILITY(U,$J,358.3,40486,1,4,0)
+ ;;=4^Y36.230S
+ ;;^UTILITY(U,$J,358.3,40486,2)
+ ;;=^5061627
+ ;;^UTILITY(U,$J,358.3,40487,0)
+ ;;=Y36.7X0S^^148^1966^130
+ ;;^UTILITY(U,$J,358.3,40487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40487,1,3,0)
+ ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Sequela
+ ;;^UTILITY(U,$J,358.3,40487,1,4,0)
+ ;;=4^Y36.7X0S
+ ;;^UTILITY(U,$J,358.3,40487,2)
+ ;;=^5061783
+ ;;^UTILITY(U,$J,358.3,40488,0)
+ ;;=F02.81^^148^1967^11

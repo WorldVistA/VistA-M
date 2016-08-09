@@ -1,16 +1,20 @@
-DDS6 ;SFISC/MKO-DELETIONS ;2:09 PM  9 Feb 1996
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDS6 ;SFISC/MKO-DELETIONS ;14NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  ;Enter here if user deleted record from the .01 of the (sub)record
  ;(called from DDS01)
  ;In:  DDSU array, DDSOLD, DDSFLD
  D D
- I 'Y D
+ I 'Y D  ;DELETE DIDN'T HAPPEN
  . S @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"D")=DDSOLD
  . S:$D(DDSU("X"))#2 @DDSREFT@("F"_DDP,DDSDA,DDSFLD,"X")=DDSU("X")
  E  D
  . I $D(DDSREP) D
- .. D DEL^DDSM1(DDSDA)
+ .. D DEL^DDSM1(DDSDA)  ;THIS WILL COME BACK TO K IN THIS ROUTINE!
  . E  D K(DDSDA,DIE) I $D(DDSPTB) D
  .. S DDACT="NB"
  .. S $P(@DDSREFT@(DDSPG,DDSBK),U)=""
@@ -65,9 +69,9 @@ D ;Delete the subrecord
  ;
  S DDS6DA=DA N D0
  F DDSI=1:1 Q:$D(DA(DDSI))[0  S DDS6DA(DDSI)=DA(DDSI) N @("D"_DDSI)
- W $P(DDGLVID,DDGLDEL,9) S X=IOM X $G(^%ZOSF("RM"))
- S DR=".01///@" D ^DIE K DI
- W $P(DDGLVID,DDGLDEL,8) S X=0 X ^%ZOSF("RM")
+ W $P(DDGLVID,DDGLDEL,9) S X=IOM X DDGLZOSF("RM")
+ S DR=".01///@" D ^DIE K DI ;DELETE THE SUB-RECORD!
+ W $P(DDGLVID,DDGLDEL,8) S X=0 X DDGLZOSF("RM")
  ;
  ;I $D(DA) H 2 W $P(DDGLCLR,DDGLDEL,2) D R^DDSR S Y=0 Q
  I $D(DA) S:$Y>(DDSHBX+1) DDSKM=1,DDM=1 S Y=0 Q
@@ -92,7 +96,7 @@ K(DDSIEN,DIE) ;Remove all data pertaining to the (sub)record from @DDSREFT
  .. ;
  .. ;Loop through all records loaded for that block
  .. S IENS=" "
- .. F  S IENS=$O(@DDSREFT@(P,B,IENS)) Q:'IENS  D
+B .. F  S IENS=$O(@DDSREFT@(P,B,IENS)) Q:IENS'[","  D
  ... ;
  ... ;If the data pertains to the current or ancestor file, kill it
  ... ;Get the parent IENS (also indicates the block is repeating)
@@ -101,7 +105,7 @@ K(DDSIEN,DIE) ;Remove all data pertaining to the (sub)record from @DDSREFT
  ... I 'PDA,IENS?@PAT,$P(@DDSREFT@(P,B,IENS,"GL"),DIE)="" D
  .... K @DDSREFT@(P,B,IENS)
  .... K @DDSREFT@(FN,IENS)
- ... E  I PDA,@DDSREFT@(P,B,IENS,"GL")=DIE D
+SUB ... E  I $P($G(@DDSREFT@(P,B,IENS)),U,6)!PDA,@DDSREFT@(P,B,IENS,"GL")=DIE D  ;IF IT'S A MULTIPLE IN A REPEATING BLOCK
  .... D DELP(P,B,PDA,DDSIEN)
  .... K @DDSREFT@(FN,DDSIEN)
  Q

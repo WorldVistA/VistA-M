@@ -1,34 +1,38 @@
-DDBRWB ;SFISC/DCL-VA FILEMAN BROWSER PROTOCOLS ;NOV 04, 1996@13:56
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRWB ;SFISC/DCL-VA FILEMAN BROWSER PROTOCOLS ;01:54 PM  3 Sep 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 STPB ; Save To Paste Buffer
  I DDBSA=$NA(^TMP("DDWB",$J)) D  G PS^DDBR2
  .N X
- .S X(1)="",X(2)=$$CTXT^DDBR("<< Copy to Paste Buffer RESTRICTED When Viewing Buffer >>","",IOM)
+ .S X(1)="",X(2)=$$CTXT^DDBR($$EZBLD^DIALOG(7078.3),"",IOM) ;**RESTRICTED
  .W $$WS^DDBR1(.X),$C(7)
  .R X:5
  .Q
  I $E(DDBSA,1,11)="^DI(.84,920" D  G PS^DDBR2
  .N X
- .S X(1)="",X(2)=$$CTXT^DDBR("<<  RESTRICTED Must Exit HELP to Copy to Paste Buffer  >>","",IOM)
+ .S X(1)="",X(2)=$$CTXT^DDBR($$EZBLD^DIALOG(7078.4),"",IOM) ;**RESTRICTED
  .W $$WS^DDBR1(.X),$C(7)
  .R X:5
  .Q
  N X,XF,XT
-GTR S X(1)=$G(X(1)),X(2)="Copy Text Line(s) to Paste Buffer >"
+GTR S X(1)=$G(X(1)),X(2)=$$EZBLD^DIALOG(7078) ;**COPY TEXT
  W $$WS(.X)
  D  G:X=""!(X=U) OUT
  .D EN^DIR0($P(DDBSY,";",3)-1,$L($G(X(2)))+2,30,1,"",100,1,"","KPW",.X)
  .K DIR0
  .Q
- I $E(X)="?" S X(1)="* Enter line or range, separated by "":"", of lines *" G GTR
+ I $E(X)="?" S X(1)=$$EZBLD^DIALOG(7078.1) G GTR ;**ENTER LINES
  I 'X&($E(X)'="*") G OUT
  I $E(X)="*" S X=$TR(X,"a","A"),XF=1,XT=DDBTL
  E  S X=$TR(X,"a-/;|* ","A:::::"),XF=+X,XT=+$P(X,":",2)
- I XF<1!(XF>DDBTL) S X(1)="Must be a valid line or range of lines, from 1 to "_DDBTL G GTR
- I XT,XT<1!(XT>DDBTL) S X(1)="Must be a valid line or range of lines, from 1 to "_DDBTL G GTR
- I XT>0,XT<XF S X(1)="To value must be greater than from value" G GTR
+ I XF<1!(XF>DDBTL) S X(1)=$$EZBLD^DIALOG(7078.2,DDBTL) G GTR ;**ERROR
+ I XT,XT<1!(XT>DDBTL) S X(1)=$$EZBLD^DIALOG(7078.2,DDBTL) G GTR ;**
+ I XT>0,XT<XF S X(1)=$$EZBLD^DIALOG(1511) G GTR ;**FROM LESS THAN TO
  D SAVE(XF,$S(XT'>0:XF,1:XT),X["A")
  K X
  S X(2)="Text Copied to Buffer"
@@ -48,7 +52,7 @@ SAVE(FR,TO,APN) ; Save From To (lines) APN=append to end of current list
 VIEW I DDBSA=$NA(^TMP("DDWB",$J)) S DDBL=0 D SDLR^DDBR0(1),RLPIR^DDBR0 Q
  I $E(DDBSA,1,11)="^DI(.84,920" D  G PS^DDBR2
  .N X
- .S X(1)="",X(2)=$$CTXT^DDBR("<< RESTRICTED Must Exit HELP To View Buffer >>","",IOM)
+ .S X(1)="",X(2)=$$CTXT^DDBR($$EZBLD^DIALOG(7078.5),"",IOM) ;**RESTRICTED
  .W $$WS^DDBR1(.X),$C(7)
  .R X:5
  .Q
@@ -62,7 +66,7 @@ VIEW I DDBSA=$NA(^TMP("DDWB",$J)) S DDBL=0 D SDLR^DDBR0(1),RLPIR^DDBR0 Q
  ;
 SWITCH ; Switching Restricted while in View
  N X
- S X(1)="",X(2)=$$CTXT^DDBR("<< RESTRICTED Must Exit View Buffer to SWITCH >>","",IOM)
+ S X(1)="",X(2)=$$CTXT^DDBR($$EZBLD^DIALOG(7078.6),"",IOM) ;**RESTRICTED
  W $$WS^DDBR1(.X),$C(7)
  R X:5
  G PS^DDBR2

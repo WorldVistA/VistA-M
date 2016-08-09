@@ -1,6 +1,9 @@
-DICUIX1 ;SF/TOAD/TKW-FileMan: Lookup Tools, Indexes (called by DICUIX) ;4/13/00  13:40
- ;;22.0;VA FileMan;**4,28,3**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICUIX1 ;SF/TOAD/TKW-FileMan: Lookup Tools, Indexes (called by DICUIX) ;4JUL2008
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 GET(DITOP,DIFILE,DIFIELD,DIDEF,DICODE) ;
  ; get the definition and fetch code for a field
@@ -22,6 +25,7 @@ G2 ; piece out the fields data type, & handle multiples and WPs
 G3 ; handle computed fields
  ;
  I DITYPE["C" D  Q
+ .I DITYPE["m" D ERR^DICU1(520,DIFILE,"",DIFIELD,"Multiple Computed") Q  ;**GFT
  . S DICODE=$P(DIDEF,U,5,9999)
  . S DIDEF=$P(DIDEF,U,1,4)
  ;

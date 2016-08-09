@@ -1,6 +1,9 @@
-DDS0 ;SFISC/MLH-SETUP, CLEANUP ;4:45 AM  7 Sep 2006
- ;;22.0;VA FileMan;**8,151**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DDS0 ;SFISC/MLH-SETUP, CLEANUP ;24FEB2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 EN(DDSFILE,DR,DA) ;Initial setup
  S U="^"
@@ -69,12 +72,12 @@ REC(DDP,DA) ;Check record and lock
  . S DIE="",(DDSDL,DDSDLORG)=0,DDSDA="0,"
  . S DA="",DDSDAORG=DA
  ;
- D GL^DDS10(DDP,.DA,.DIE,.DDSDL,.DDSDA,1) Q:$G(DIERR)
+ D GL^DDS10(DDP,.DA,.DIE,.DDSDL,.DDSDA,'$P(^DIST(.403,+DDS,0),U,9)) Q:$G(DIERR)  ;Don't LOCK record if screen is DISPLAY-ONLY
  ;
  I $D(DIOVRD)[0 D  Q:$G(DIERR)
  . N DDSTOP S DDSTOP=$$FNO^DILIBF(DDP)
  . Q:$P($G(^DD(DDSTOP,0,"DI")),U,2)'["Y"
- . N P S P("FILE")=$P(@(DIE_"0)"),U)
+EGP . N P S P("FILE")=$$FILENAME^DIALOGZ(DDSTOP) ;**CCO/NI RESTRICTED FILE NAME
  . D BLD^DIALOG(405,DDSTOP,.P)
  ;
  S DDSDLORG=DDSDL
@@ -93,14 +96,16 @@ INIT ;Initialize some variables
  ; DDSH     = Flag to indicate help area is empty
  ; DDSSC    = Array to indicate what pages are on the screen
  ;
- S DDSHBX=IOSL-7
+DDSHBX S DDSHBX=17 I $G(DDS),$G(DDSPG),$D(DDSREFS) D
+ .N % S %=$O(@DDSREFS@("X",DDSPG,""),-1)+1 I %>DDSHBX S DDSHBX=% ;LAST FIELD CAPTION
+ .F DDH=0:0 S DDH=$O(@DDSREFS@(DDSPG,DDH)) Q:'DDH  I $G(^(DDH)) S %=$P(^(DDH),U,7)+^(DDH) I %>DDSHBX S DDSHBX=%
  S DDXY=IOXY_" S $X=DX,$Y=DY"
  ;
  K DDH,DDSSC,DDSCHANG,DDSSAVE
  S DDSH=1,(DDH,DDM,DDSCHG,DDSSC)=0,DDACT="N"
- S DDSREFT="^TMP(""DDS"",$J,"_+DDS_")"
+DDSREFT S DDSREFT=$NA(^TMP("DDS",$J,+DDS)) ;GFT
  K @DDSREFT
- ;
+MOUSEON I $G(DDS)>0 W *27,"[?1000h"
  N %,%H,%I,X
  D NOW^%DTC
  S $P(^DIST(.403,+DDS,0),U,6)=$E(%,1,12)
@@ -116,7 +121,7 @@ END I $D(DDSHBX) S DX=0,DY=IOSL-1 X IOXY
  . K DA,D0
  . S DA=DDSDAORG
  . F DDSI=1:1:DDSDLORG S DA(DDSI)=DDSDAORG(DDSI) K @("D"_DDSI)
- ;
+MOUSEOFF W *27,"[?1000l"
  K:$G(DDSPARM)'["E" DIERR,^TMP("DIERR",$J)
  K:$D(DDSREFT)#2 @DDSREFT,DDSREFT
  K ^TMP("DDSH",$J),^TMP("DDSWP",$J)
@@ -125,7 +130,7 @@ END I $D(DDSHBX) S DX=0,DY=IOSL-1 X IOXY
  K DDSDLORG,DDSDN,DDSEXT,DDSFDO,DDSFLD,DDSFLORG,DDSGL,DDSH,DDSI
  K DDSKM,DDSLN,DDSNP,DDSO,DDSOLD,DDSORD,DDSOPB,DDSOSV,DDSPTB,DDSPG
  K DDSPX,DDSPY,DDSQ,DDSREP,DDSSC,DDSSP,DDSSTACK,DDSTP,DDSU,DDSX
- K DDSHBX,DDSREFS,DDXY,DDSCTRL ;DI*151
+ K DDSHBX,DDSREFS,DDXY
  K DIC,DIR,DIR0N,DIROUT,DIRUT,DUOUT,DY,DX
  K A1,D,DDC,DDD,DI,DIEQ,DIK,DIW,DIY,DIZ,DS
  Q

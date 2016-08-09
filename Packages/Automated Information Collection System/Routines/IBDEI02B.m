@@ -1,136 +1,304 @@
-IBDEI02B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI02B ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,588,1,3,0)
- ;;=3^PTSD,Chronic
- ;;^UTILITY(U,$J,358.3,588,1,4,0)
- ;;=4^F43.12
- ;;^UTILITY(U,$J,358.3,588,2)
- ;;=^5003572
- ;;^UTILITY(U,$J,358.3,589,0)
- ;;=F43.10^^3^58^11
- ;;^UTILITY(U,$J,358.3,589,1,0)
+ ;;^UTILITY(U,$J,358.3,1849,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,1850,0)
+ ;;=99202^^13^150^2
+ ;;^UTILITY(U,$J,358.3,1850,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1850,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1850,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,1851,0)
+ ;;=99203^^13^150^3
+ ;;^UTILITY(U,$J,358.3,1851,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1851,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1851,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,1852,0)
+ ;;=99204^^13^150^4
+ ;;^UTILITY(U,$J,358.3,1852,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1852,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,1852,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,1853,0)
+ ;;=99205^^13^150^5
+ ;;^UTILITY(U,$J,358.3,1853,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1853,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,1853,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,1854,0)
+ ;;=99211^^13^151^1
+ ;;^UTILITY(U,$J,358.3,1854,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1854,1,1,0)
+ ;;=1^Brief (no MD seen)
+ ;;^UTILITY(U,$J,358.3,1854,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,1855,0)
+ ;;=99212^^13^151^2
+ ;;^UTILITY(U,$J,358.3,1855,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1855,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,1855,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,1856,0)
+ ;;=99213^^13^151^3
+ ;;^UTILITY(U,$J,358.3,1856,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1856,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1856,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,1857,0)
+ ;;=99214^^13^151^4
+ ;;^UTILITY(U,$J,358.3,1857,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1857,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1857,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,1858,0)
+ ;;=99215^^13^151^5
+ ;;^UTILITY(U,$J,358.3,1858,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1858,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,1858,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,1859,0)
+ ;;=99241^^13^152^1
+ ;;^UTILITY(U,$J,358.3,1859,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1859,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,1859,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,1860,0)
+ ;;=99242^^13^152^2
+ ;;^UTILITY(U,$J,358.3,1860,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1860,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,1860,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,1861,0)
+ ;;=99243^^13^152^3
+ ;;^UTILITY(U,$J,358.3,1861,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1861,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,1861,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,1862,0)
+ ;;=99244^^13^152^4
+ ;;^UTILITY(U,$J,358.3,1862,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1862,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,1862,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,1863,0)
+ ;;=99245^^13^152^5
+ ;;^UTILITY(U,$J,358.3,1863,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,1863,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,1863,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,1864,0)
+ ;;=I44.2^^14^153^3
+ ;;^UTILITY(U,$J,358.3,1864,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,589,1,3,0)
- ;;=3^PTSD,Unspec
- ;;^UTILITY(U,$J,358.3,589,1,4,0)
- ;;=4^F43.10
- ;;^UTILITY(U,$J,358.3,589,2)
- ;;=^5003570
- ;;^UTILITY(U,$J,358.3,590,0)
- ;;=F43.8^^3^58^12
- ;;^UTILITY(U,$J,358.3,590,1,0)
+ ;;^UTILITY(U,$J,358.3,1864,1,3,0)
+ ;;=3^AV Block,Complete
+ ;;^UTILITY(U,$J,358.3,1864,1,4,0)
+ ;;=4^I44.2
+ ;;^UTILITY(U,$J,358.3,1864,2)
+ ;;=^259621
+ ;;^UTILITY(U,$J,358.3,1865,0)
+ ;;=I44.30^^14^153^4
+ ;;^UTILITY(U,$J,358.3,1865,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,590,1,3,0)
- ;;=3^Reaction to Severe Stress,Other
- ;;^UTILITY(U,$J,358.3,590,1,4,0)
- ;;=4^F43.8
- ;;^UTILITY(U,$J,358.3,590,2)
- ;;=^5003575
- ;;^UTILITY(U,$J,358.3,591,0)
- ;;=F43.9^^3^58^13
- ;;^UTILITY(U,$J,358.3,591,1,0)
+ ;;^UTILITY(U,$J,358.3,1865,1,3,0)
+ ;;=3^AV Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1865,1,4,0)
+ ;;=4^I44.30
+ ;;^UTILITY(U,$J,358.3,1865,2)
+ ;;=^5007204
+ ;;^UTILITY(U,$J,358.3,1866,0)
+ ;;=I44.0^^14^153^1
+ ;;^UTILITY(U,$J,358.3,1866,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,591,1,3,0)
- ;;=3^Reaction to Severe Stress,Unspec
- ;;^UTILITY(U,$J,358.3,591,1,4,0)
- ;;=4^F43.9
- ;;^UTILITY(U,$J,358.3,591,2)
- ;;=^5003576
- ;;^UTILITY(U,$J,358.3,592,0)
- ;;=F94.1^^3^58^14
- ;;^UTILITY(U,$J,358.3,592,1,0)
+ ;;^UTILITY(U,$J,358.3,1866,1,3,0)
+ ;;=3^AV Block,1st Degree
+ ;;^UTILITY(U,$J,358.3,1866,1,4,0)
+ ;;=4^I44.0
+ ;;^UTILITY(U,$J,358.3,1866,2)
+ ;;=^5007202
+ ;;^UTILITY(U,$J,358.3,1867,0)
+ ;;=I44.1^^14^153^2
+ ;;^UTILITY(U,$J,358.3,1867,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,592,1,3,0)
- ;;=3^Reactive Attachment Disorder
- ;;^UTILITY(U,$J,358.3,592,1,4,0)
- ;;=4^F94.1
- ;;^UTILITY(U,$J,358.3,592,2)
- ;;=^5003705
- ;;^UTILITY(U,$J,358.3,593,0)
- ;;=F94.2^^3^58^8
- ;;^UTILITY(U,$J,358.3,593,1,0)
+ ;;^UTILITY(U,$J,358.3,1867,1,3,0)
+ ;;=3^AV Block,2nd Degree
+ ;;^UTILITY(U,$J,358.3,1867,1,4,0)
+ ;;=4^I44.1
+ ;;^UTILITY(U,$J,358.3,1867,2)
+ ;;=^5007203
+ ;;^UTILITY(U,$J,358.3,1868,0)
+ ;;=I44.5^^14^153^29
+ ;;^UTILITY(U,$J,358.3,1868,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,593,1,3,0)
- ;;=3^Disinhibited Social Engagement Disorder
- ;;^UTILITY(U,$J,358.3,593,1,4,0)
- ;;=4^F94.2
- ;;^UTILITY(U,$J,358.3,593,2)
- ;;=^5003706
- ;;^UTILITY(U,$J,358.3,594,0)
- ;;=F18.10^^3^59^21
- ;;^UTILITY(U,$J,358.3,594,1,0)
+ ;;^UTILITY(U,$J,358.3,1868,1,3,0)
+ ;;=3^Left Posterior Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1868,1,4,0)
+ ;;=4^I44.5
+ ;;^UTILITY(U,$J,358.3,1868,2)
+ ;;=^5007207
+ ;;^UTILITY(U,$J,358.3,1869,0)
+ ;;=I44.60^^14^153^25
+ ;;^UTILITY(U,$J,358.3,1869,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,594,1,3,0)
- ;;=3^Inhalant Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,594,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,594,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,595,0)
- ;;=F18.20^^3^59^22
- ;;^UTILITY(U,$J,358.3,595,1,0)
+ ;;^UTILITY(U,$J,358.3,1869,1,3,0)
+ ;;=3^Fascicular Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1869,1,4,0)
+ ;;=4^I44.60
+ ;;^UTILITY(U,$J,358.3,1869,2)
+ ;;=^5007208
+ ;;^UTILITY(U,$J,358.3,1870,0)
+ ;;=I44.69^^14^153^24
+ ;;^UTILITY(U,$J,358.3,1870,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,595,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,595,1,4,0)
- ;;=4^F18.20
- ;;^UTILITY(U,$J,358.3,595,2)
- ;;=^5003392
- ;;^UTILITY(U,$J,358.3,596,0)
- ;;=F18.21^^3^59^23
- ;;^UTILITY(U,$J,358.3,596,1,0)
+ ;;^UTILITY(U,$J,358.3,1870,1,3,0)
+ ;;=3^Fascicular Block NEC
+ ;;^UTILITY(U,$J,358.3,1870,1,4,0)
+ ;;=4^I44.69
+ ;;^UTILITY(U,$J,358.3,1870,2)
+ ;;=^5007209
+ ;;^UTILITY(U,$J,358.3,1871,0)
+ ;;=I44.4^^14^153^27
+ ;;^UTILITY(U,$J,358.3,1871,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,596,1,3,0)
- ;;=3^Inhalant Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,596,1,4,0)
- ;;=4^F18.21
- ;;^UTILITY(U,$J,358.3,596,2)
- ;;=^5003393
- ;;^UTILITY(U,$J,358.3,597,0)
- ;;=F18.14^^3^59^24
- ;;^UTILITY(U,$J,358.3,597,1,0)
+ ;;^UTILITY(U,$J,358.3,1871,1,3,0)
+ ;;=3^Left Anterior Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1871,1,4,0)
+ ;;=4^I44.4
+ ;;^UTILITY(U,$J,358.3,1871,2)
+ ;;=^5007206
+ ;;^UTILITY(U,$J,358.3,1872,0)
+ ;;=I44.7^^14^153^28
+ ;;^UTILITY(U,$J,358.3,1872,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,597,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,597,1,4,0)
- ;;=4^F18.14
- ;;^UTILITY(U,$J,358.3,597,2)
- ;;=^5003384
- ;;^UTILITY(U,$J,358.3,598,0)
- ;;=F18.24^^3^59^25
- ;;^UTILITY(U,$J,358.3,598,1,0)
+ ;;^UTILITY(U,$J,358.3,1872,1,3,0)
+ ;;=3^Left Bundle-Branch Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1872,1,4,0)
+ ;;=4^I44.7
+ ;;^UTILITY(U,$J,358.3,1872,2)
+ ;;=^5007210
+ ;;^UTILITY(U,$J,358.3,1873,0)
+ ;;=I45.0^^14^153^43
+ ;;^UTILITY(U,$J,358.3,1873,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,598,1,3,0)
- ;;=3^Inhalant-Induced Depressive Disorder w/ Moderate to Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,598,1,4,0)
- ;;=4^F18.24
- ;;^UTILITY(U,$J,358.3,598,2)
- ;;=^5003397
- ;;^UTILITY(U,$J,358.3,599,0)
- ;;=F18.121^^3^59^14
- ;;^UTILITY(U,$J,358.3,599,1,0)
+ ;;^UTILITY(U,$J,358.3,1873,1,3,0)
+ ;;=3^Right Fascicular Block
+ ;;^UTILITY(U,$J,358.3,1873,1,4,0)
+ ;;=4^I45.0
+ ;;^UTILITY(U,$J,358.3,1873,2)
+ ;;=^5007211
+ ;;^UTILITY(U,$J,358.3,1874,0)
+ ;;=I45.19^^14^153^41
+ ;;^UTILITY(U,$J,358.3,1874,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,599,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,599,1,4,0)
- ;;=4^F18.121
- ;;^UTILITY(U,$J,358.3,599,2)
- ;;=^5003382
- ;;^UTILITY(U,$J,358.3,600,0)
- ;;=F18.221^^3^59^15
- ;;^UTILITY(U,$J,358.3,600,1,0)
+ ;;^UTILITY(U,$J,358.3,1874,1,3,0)
+ ;;=3^Right Bundle-Branch Block NEC
+ ;;^UTILITY(U,$J,358.3,1874,1,4,0)
+ ;;=4^I45.19
+ ;;^UTILITY(U,$J,358.3,1874,2)
+ ;;=^5007213
+ ;;^UTILITY(U,$J,358.3,1875,0)
+ ;;=I45.10^^14^153^42
+ ;;^UTILITY(U,$J,358.3,1875,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,600,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,600,1,4,0)
- ;;=4^F18.221
- ;;^UTILITY(U,$J,358.3,600,2)
- ;;=^5003395
- ;;^UTILITY(U,$J,358.3,601,0)
- ;;=F18.921^^3^59^16
- ;;^UTILITY(U,$J,358.3,601,1,0)
+ ;;^UTILITY(U,$J,358.3,1875,1,3,0)
+ ;;=3^Right Bundle-Branch Block,Unspec
+ ;;^UTILITY(U,$J,358.3,1875,1,4,0)
+ ;;=4^I45.10
+ ;;^UTILITY(U,$J,358.3,1875,2)
+ ;;=^5007212
+ ;;^UTILITY(U,$J,358.3,1876,0)
+ ;;=I45.2^^14^153^11
+ ;;^UTILITY(U,$J,358.3,1876,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,601,1,3,0)
- ;;=3^Inhalant Intoxication Delirium w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,1876,1,3,0)
+ ;;=3^Bifascicular Block
+ ;;^UTILITY(U,$J,358.3,1876,1,4,0)
+ ;;=4^I45.2
+ ;;^UTILITY(U,$J,358.3,1876,2)
+ ;;=^5007214
+ ;;^UTILITY(U,$J,358.3,1877,0)
+ ;;=I45.3^^14^153^46
+ ;;^UTILITY(U,$J,358.3,1877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1877,1,3,0)
+ ;;=3^Trifascicular Block
+ ;;^UTILITY(U,$J,358.3,1877,1,4,0)
+ ;;=4^I45.3
+ ;;^UTILITY(U,$J,358.3,1877,2)
+ ;;=^269726
+ ;;^UTILITY(U,$J,358.3,1878,0)
+ ;;=I45.5^^14^153^26
+ ;;^UTILITY(U,$J,358.3,1878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1878,1,3,0)
+ ;;=3^Heart Block,Oth Specified
+ ;;^UTILITY(U,$J,358.3,1878,1,4,0)
+ ;;=4^I45.5
+ ;;^UTILITY(U,$J,358.3,1878,2)
+ ;;=^5007216
+ ;;^UTILITY(U,$J,358.3,1879,0)
+ ;;=I45.6^^14^153^35
+ ;;^UTILITY(U,$J,358.3,1879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1879,1,3,0)
+ ;;=3^Pre-Excitation Syndrome
+ ;;^UTILITY(U,$J,358.3,1879,1,4,0)
+ ;;=4^I45.6
+ ;;^UTILITY(U,$J,358.3,1879,2)
+ ;;=^5007217
+ ;;^UTILITY(U,$J,358.3,1880,0)
+ ;;=I45.81^^14^153^30
+ ;;^UTILITY(U,$J,358.3,1880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1880,1,3,0)
+ ;;=3^Long QT Syndrome
+ ;;^UTILITY(U,$J,358.3,1880,1,4,0)
+ ;;=4^I45.81
+ ;;^UTILITY(U,$J,358.3,1880,2)
+ ;;=^71760
+ ;;^UTILITY(U,$J,358.3,1881,0)
+ ;;=I45.9^^14^153^21
+ ;;^UTILITY(U,$J,358.3,1881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1881,1,3,0)
+ ;;=3^Conduction Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,1881,1,4,0)
+ ;;=4^I45.9
+ ;;^UTILITY(U,$J,358.3,1881,2)
+ ;;=^5007218
+ ;;^UTILITY(U,$J,358.3,1882,0)
+ ;;=I47.1^^14^153^45
+ ;;^UTILITY(U,$J,358.3,1882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,1882,1,3,0)
+ ;;=3^Supraventricular Tachycardia

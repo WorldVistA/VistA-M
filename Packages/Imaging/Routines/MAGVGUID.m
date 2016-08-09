@@ -1,5 +1,5 @@
-MAGVGUID ;WOIFO/RRB,DAC - Duplicate DICOM Study, Series, & SOP Instance UID Checks ; 25 May 2012 3:17 PM
- ;;3.0;IMAGING;**118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVGUID ;WOIFO/RRB,DAC - Duplicate DICOM Study, Series, & SOP Instance UID Checks ; 23 Nov 2015 3:17 PM
+ ;;3.0;IMAGING;**118,138,162**;Mar 19, 2002;Build 22;Nov 23, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -48,7 +48,7 @@ SAMEIMG(MAGIEN,DFN,STUDYUID,SERIESUID) ; check DFN and study & series UIDs
  S MAG0=$G(^MAG(2005,MAGIEN,0)) Q:MAG0="" -1 ; no 0-node
  S MAGDFN=$P(MAG0,"^",7) Q:DFN'=MAGDFN 1 ; different patient
  S MAGGROUP=$P(MAG0,"^",10)
- I ACNUMB'=$$GETACN(MAGIEN) Q 1
+ ; P162 DAC - Accession Number Check producing duplicates instread of resends
  S OLDSTUDY=$S(MAGGROUP:$P($G(^MAG(2005,MAGGROUP,"PACS")),"^",1),1:"")
  I $L(OLDSTUDY),OLDSTUDY'=STUDYUID Q 1  ; different study instance UIDs
  S OLDSERIES=$G(^MAG(2005,MAGIEN,"SERIESUID"))

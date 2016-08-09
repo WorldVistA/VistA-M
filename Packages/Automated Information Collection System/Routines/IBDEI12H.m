@@ -1,130 +1,286 @@
-IBDEI12H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI12H ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18143,0)
- ;;=I82.A12^^79^874^88
- ;;^UTILITY(U,$J,358.3,18143,1,0)
+ ;;^UTILITY(U,$J,358.3,38741,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,38741,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,38742,0)
+ ;;=J03.91^^148^1938^8
+ ;;^UTILITY(U,$J,358.3,38742,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18143,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Axillary Vein
- ;;^UTILITY(U,$J,358.3,18143,1,4,0)
- ;;=4^I82.A12
- ;;^UTILITY(U,$J,358.3,18143,2)
- ;;=^5007943
- ;;^UTILITY(U,$J,358.3,18144,0)
- ;;=I82.412^^79^874^89
- ;;^UTILITY(U,$J,358.3,18144,1,0)
+ ;;^UTILITY(U,$J,358.3,38742,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38742,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,38742,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,38743,0)
+ ;;=J04.0^^148^1938^3
+ ;;^UTILITY(U,$J,358.3,38743,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18144,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Femoral Vein
- ;;^UTILITY(U,$J,358.3,18144,1,4,0)
- ;;=4^I82.412
- ;;^UTILITY(U,$J,358.3,18144,2)
- ;;=^5007858
- ;;^UTILITY(U,$J,358.3,18145,0)
- ;;=I82.422^^79^874^90
- ;;^UTILITY(U,$J,358.3,18145,1,0)
+ ;;^UTILITY(U,$J,358.3,38743,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,38743,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,38743,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,38744,0)
+ ;;=J06.0^^148^1938^4
+ ;;^UTILITY(U,$J,358.3,38744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18145,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Iliac Vein
- ;;^UTILITY(U,$J,358.3,18145,1,4,0)
- ;;=4^I82.422
- ;;^UTILITY(U,$J,358.3,18145,2)
- ;;=^5007862
- ;;^UTILITY(U,$J,358.3,18146,0)
- ;;=I82.C12^^79^874^91
- ;;^UTILITY(U,$J,358.3,18146,1,0)
+ ;;^UTILITY(U,$J,358.3,38744,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,38744,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,38744,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,38745,0)
+ ;;=J06.9^^148^1938^9
+ ;;^UTILITY(U,$J,358.3,38745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18146,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Internal Jugular Vein
- ;;^UTILITY(U,$J,358.3,18146,1,4,0)
- ;;=4^I82.C12
- ;;^UTILITY(U,$J,358.3,18146,2)
- ;;=^5007959
- ;;^UTILITY(U,$J,358.3,18147,0)
- ;;=I82.432^^79^874^92
- ;;^UTILITY(U,$J,358.3,18147,1,0)
+ ;;^UTILITY(U,$J,358.3,38745,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,38745,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,38745,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,38746,0)
+ ;;=J33.9^^148^1938^19
+ ;;^UTILITY(U,$J,358.3,38746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18147,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Popliteal Vein
- ;;^UTILITY(U,$J,358.3,18147,1,4,0)
- ;;=4^I82.432
- ;;^UTILITY(U,$J,358.3,18147,2)
- ;;=^5007866
- ;;^UTILITY(U,$J,358.3,18148,0)
- ;;=I82.B12^^79^874^93
- ;;^UTILITY(U,$J,358.3,18148,1,0)
+ ;;^UTILITY(U,$J,358.3,38746,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,38746,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,38746,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,38747,0)
+ ;;=J32.0^^148^1938^15
+ ;;^UTILITY(U,$J,358.3,38747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18148,1,3,0)
- ;;=3^Embolism/Thrombosis of Left Subclavian Vein
- ;;^UTILITY(U,$J,358.3,18148,1,4,0)
- ;;=4^I82.B12
- ;;^UTILITY(U,$J,358.3,18148,2)
- ;;=^5007951
- ;;^UTILITY(U,$J,358.3,18149,0)
- ;;=I82.890^^79^874^97
- ;;^UTILITY(U,$J,358.3,18149,1,0)
+ ;;^UTILITY(U,$J,358.3,38747,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,38747,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,38747,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,38748,0)
+ ;;=J32.1^^148^1938^14
+ ;;^UTILITY(U,$J,358.3,38748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18149,1,3,0)
- ;;=3^Embolism/Thrombosis of Oth Specified Veins
- ;;^UTILITY(U,$J,358.3,18149,1,4,0)
- ;;=4^I82.890
- ;;^UTILITY(U,$J,358.3,18149,2)
- ;;=^5007938
- ;;^UTILITY(U,$J,358.3,18150,0)
- ;;=I82.A11^^79^874^98
- ;;^UTILITY(U,$J,358.3,18150,1,0)
+ ;;^UTILITY(U,$J,358.3,38748,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,38748,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,38748,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,38749,0)
+ ;;=J32.9^^148^1938^16
+ ;;^UTILITY(U,$J,358.3,38749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18150,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Axillary Vein
- ;;^UTILITY(U,$J,358.3,18150,1,4,0)
- ;;=4^I82.A11
- ;;^UTILITY(U,$J,358.3,18150,2)
- ;;=^5007942
- ;;^UTILITY(U,$J,358.3,18151,0)
- ;;=I82.411^^79^874^99
- ;;^UTILITY(U,$J,358.3,18151,1,0)
+ ;;^UTILITY(U,$J,358.3,38749,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38749,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,38749,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,38750,0)
+ ;;=J30.9^^148^1938^11
+ ;;^UTILITY(U,$J,358.3,38750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18151,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,18151,1,4,0)
- ;;=4^I82.411
- ;;^UTILITY(U,$J,358.3,18151,2)
- ;;=^5007857
- ;;^UTILITY(U,$J,358.3,18152,0)
- ;;=I82.290^^79^874^107
- ;;^UTILITY(U,$J,358.3,18152,1,0)
+ ;;^UTILITY(U,$J,358.3,38750,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38750,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,38750,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,38751,0)
+ ;;=J30.0^^148^1938^24
+ ;;^UTILITY(U,$J,358.3,38751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18152,1,3,0)
- ;;=3^Embolism/Thrombosis of Thoracic Veins NEC
- ;;^UTILITY(U,$J,358.3,18152,1,4,0)
- ;;=4^I82.290
- ;;^UTILITY(U,$J,358.3,18152,2)
- ;;=^5007852
- ;;^UTILITY(U,$J,358.3,18153,0)
- ;;=I82.411^^79^874^100
- ;;^UTILITY(U,$J,358.3,18153,1,0)
+ ;;^UTILITY(U,$J,358.3,38751,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,38751,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,38751,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,38752,0)
+ ;;=K05.00^^148^1938^2
+ ;;^UTILITY(U,$J,358.3,38752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18153,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Femoral Vein
- ;;^UTILITY(U,$J,358.3,18153,1,4,0)
- ;;=4^I82.411
- ;;^UTILITY(U,$J,358.3,18153,2)
- ;;=^5007857
- ;;^UTILITY(U,$J,358.3,18154,0)
- ;;=I82.421^^79^874^101
- ;;^UTILITY(U,$J,358.3,18154,1,0)
+ ;;^UTILITY(U,$J,358.3,38752,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,38752,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,38752,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,38753,0)
+ ;;=R04.0^^148^1938^17
+ ;;^UTILITY(U,$J,358.3,38753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18154,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Iliac Vein
- ;;^UTILITY(U,$J,358.3,18154,1,4,0)
- ;;=4^I82.421
- ;;^UTILITY(U,$J,358.3,18154,2)
- ;;=^5007861
- ;;^UTILITY(U,$J,358.3,18155,0)
- ;;=I82.C11^^79^874^102
- ;;^UTILITY(U,$J,358.3,18155,1,0)
+ ;;^UTILITY(U,$J,358.3,38753,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,38753,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,38753,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,38754,0)
+ ;;=R09.82^^148^1938^21
+ ;;^UTILITY(U,$J,358.3,38754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18155,1,3,0)
- ;;=3^Embolism/Thrombosis of Right Internal Jugular Vein
+ ;;^UTILITY(U,$J,358.3,38754,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,38754,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,38754,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,38755,0)
+ ;;=K12.30^^148^1938^20
+ ;;^UTILITY(U,$J,358.3,38755,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38755,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,38755,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,38755,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,38756,0)
+ ;;=J30.1^^148^1938^10
+ ;;^UTILITY(U,$J,358.3,38756,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38756,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,38756,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,38756,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,38757,0)
+ ;;=R09.81^^148^1938^18
+ ;;^UTILITY(U,$J,358.3,38757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38757,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,38757,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,38757,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,38758,0)
+ ;;=I69.928^^148^1938^22
+ ;;^UTILITY(U,$J,358.3,38758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38758,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,38758,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,38758,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,38759,0)
+ ;;=I69.328^^148^1938^23
+ ;;^UTILITY(U,$J,358.3,38759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38759,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,38759,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,38759,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,38760,0)
+ ;;=E04.0^^148^1939^39
+ ;;^UTILITY(U,$J,358.3,38760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38760,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,38760,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,38760,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,38761,0)
+ ;;=E04.1^^148^1939^41
+ ;;^UTILITY(U,$J,358.3,38761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38761,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,38761,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,38761,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,38762,0)
+ ;;=E04.2^^148^1939^40
+ ;;^UTILITY(U,$J,358.3,38762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38762,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,38762,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,38762,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,38763,0)
+ ;;=E01.1^^148^1939^36
+ ;;^UTILITY(U,$J,358.3,38763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38763,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,38763,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,38763,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,38764,0)
+ ;;=E05.00^^148^1939^56
+ ;;^UTILITY(U,$J,358.3,38764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38764,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,38764,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,38764,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,38765,0)
+ ;;=E05.01^^148^1939^55
+ ;;^UTILITY(U,$J,358.3,38765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38765,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,38765,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,38765,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,38766,0)
+ ;;=E05.90^^148^1939^58
+ ;;^UTILITY(U,$J,358.3,38766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38766,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,38766,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,38766,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,38767,0)
+ ;;=E05.91^^148^1939^57
+ ;;^UTILITY(U,$J,358.3,38767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38767,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,38767,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,38767,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,38768,0)
+ ;;=E89.0^^148^1939^50
+ ;;^UTILITY(U,$J,358.3,38768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38768,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,38768,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,38768,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,38769,0)
+ ;;=E03.2^^148^1939^32
+ ;;^UTILITY(U,$J,358.3,38769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38769,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,38769,1,4,0)
+ ;;=4^E03.2

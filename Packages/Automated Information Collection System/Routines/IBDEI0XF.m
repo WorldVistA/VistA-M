@@ -1,126 +1,276 @@
-IBDEI0XF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XF ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15678,1,3,0)
- ;;=3^Cannabis-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15678,1,4,0)
- ;;=4^F12.188
- ;;^UTILITY(U,$J,358.3,15678,2)
- ;;=^5003164
- ;;^UTILITY(U,$J,358.3,15679,0)
- ;;=F12.20^^58^686^17
- ;;^UTILITY(U,$J,358.3,15679,1,0)
+ ;;^UTILITY(U,$J,358.3,33617,1,4,0)
+ ;;=4^W13.0XXD
+ ;;^UTILITY(U,$J,358.3,33617,2)
+ ;;=^5059602
+ ;;^UTILITY(U,$J,358.3,33618,0)
+ ;;=W13.1XXA^^119^1583^31
+ ;;^UTILITY(U,$J,358.3,33618,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15679,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,15679,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,15679,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,15680,0)
- ;;=F12.21^^58^686^18
- ;;^UTILITY(U,$J,358.3,15680,1,0)
+ ;;^UTILITY(U,$J,358.3,33618,1,3,0)
+ ;;=3^Fall from Bridge,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33618,1,4,0)
+ ;;=4^W13.1XXA
+ ;;^UTILITY(U,$J,358.3,33618,2)
+ ;;=^5059604
+ ;;^UTILITY(U,$J,358.3,33619,0)
+ ;;=W13.1XXD^^119^1583^32
+ ;;^UTILITY(U,$J,358.3,33619,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15680,1,3,0)
- ;;=3^Cannabis Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,15680,1,4,0)
- ;;=4^F12.21
- ;;^UTILITY(U,$J,358.3,15680,2)
- ;;=^5003167
- ;;^UTILITY(U,$J,358.3,15681,0)
- ;;=F12.288^^58^686^19
- ;;^UTILITY(U,$J,358.3,15681,1,0)
+ ;;^UTILITY(U,$J,358.3,33619,1,3,0)
+ ;;=3^Fall from Bridge,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33619,1,4,0)
+ ;;=4^W13.1XXD
+ ;;^UTILITY(U,$J,358.3,33619,2)
+ ;;=^5059605
+ ;;^UTILITY(U,$J,358.3,33620,0)
+ ;;=W13.2XXA^^119^1583^69
+ ;;^UTILITY(U,$J,358.3,33620,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15681,1,3,0)
- ;;=3^Cannabis Withdrawal
- ;;^UTILITY(U,$J,358.3,15681,1,4,0)
- ;;=4^F12.288
- ;;^UTILITY(U,$J,358.3,15681,2)
- ;;=^5003176
- ;;^UTILITY(U,$J,358.3,15682,0)
- ;;=F12.280^^58^686^21
- ;;^UTILITY(U,$J,358.3,15682,1,0)
+ ;;^UTILITY(U,$J,358.3,33620,1,3,0)
+ ;;=3^Fall from/through Roof,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33620,1,4,0)
+ ;;=4^W13.2XXA
+ ;;^UTILITY(U,$J,358.3,33620,2)
+ ;;=^5059607
+ ;;^UTILITY(U,$J,358.3,33621,0)
+ ;;=W13.2XXD^^119^1583^70
+ ;;^UTILITY(U,$J,358.3,33621,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15682,1,3,0)
- ;;=3^Cannabis-Induced Anxiety Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15682,1,4,0)
- ;;=4^F12.280
- ;;^UTILITY(U,$J,358.3,15682,2)
- ;;=^5003175
- ;;^UTILITY(U,$J,358.3,15683,0)
- ;;=F12.121^^58^686^6
- ;;^UTILITY(U,$J,358.3,15683,1,0)
+ ;;^UTILITY(U,$J,358.3,33621,1,3,0)
+ ;;=3^Fall from/through Roof,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33621,1,4,0)
+ ;;=4^W13.2XXD
+ ;;^UTILITY(U,$J,358.3,33621,2)
+ ;;=^5059608
+ ;;^UTILITY(U,$J,358.3,33622,0)
+ ;;=W13.3XXA^^119^1583^83
+ ;;^UTILITY(U,$J,358.3,33622,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15683,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15683,1,4,0)
- ;;=4^F12.121
- ;;^UTILITY(U,$J,358.3,15683,2)
- ;;=^5003157
- ;;^UTILITY(U,$J,358.3,15684,0)
- ;;=F12.221^^58^686^7
- ;;^UTILITY(U,$J,358.3,15684,1,0)
+ ;;^UTILITY(U,$J,358.3,33622,1,3,0)
+ ;;=3^Fall through Floor,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33622,1,4,0)
+ ;;=4^W13.3XXA
+ ;;^UTILITY(U,$J,358.3,33622,2)
+ ;;=^5059610
+ ;;^UTILITY(U,$J,358.3,33623,0)
+ ;;=W13.3XXD^^119^1583^84
+ ;;^UTILITY(U,$J,358.3,33623,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15684,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15684,1,4,0)
- ;;=4^F12.221
- ;;^UTILITY(U,$J,358.3,15684,2)
- ;;=^5003169
- ;;^UTILITY(U,$J,358.3,15685,0)
- ;;=F12.921^^58^686^8
- ;;^UTILITY(U,$J,358.3,15685,1,0)
+ ;;^UTILITY(U,$J,358.3,33623,1,3,0)
+ ;;=3^Fall through Floor,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33623,1,4,0)
+ ;;=4^W13.3XXD
+ ;;^UTILITY(U,$J,358.3,33623,2)
+ ;;=^5059611
+ ;;^UTILITY(U,$J,358.3,33624,0)
+ ;;=W13.4XXA^^119^1583^71
+ ;;^UTILITY(U,$J,358.3,33624,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15685,1,3,0)
- ;;=3^Cannabis Intoxication Delium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15685,1,4,0)
- ;;=4^F12.921
- ;;^UTILITY(U,$J,358.3,15685,2)
- ;;=^5003180
- ;;^UTILITY(U,$J,358.3,15686,0)
- ;;=F12.229^^58^686^12
- ;;^UTILITY(U,$J,358.3,15686,1,0)
+ ;;^UTILITY(U,$J,358.3,33624,1,3,0)
+ ;;=3^Fall from/through Window,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33624,1,4,0)
+ ;;=4^W13.4XXA
+ ;;^UTILITY(U,$J,358.3,33624,2)
+ ;;=^5059613
+ ;;^UTILITY(U,$J,358.3,33625,0)
+ ;;=W13.4XXD^^119^1583^72
+ ;;^UTILITY(U,$J,358.3,33625,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15686,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15686,1,4,0)
- ;;=4^F12.229
- ;;^UTILITY(U,$J,358.3,15686,2)
- ;;=^5003171
- ;;^UTILITY(U,$J,358.3,15687,0)
- ;;=F12.122^^58^686^9
- ;;^UTILITY(U,$J,358.3,15687,1,0)
+ ;;^UTILITY(U,$J,358.3,33625,1,3,0)
+ ;;=3^Fall from/through Window,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33625,1,4,0)
+ ;;=4^W13.4XXD
+ ;;^UTILITY(U,$J,358.3,33625,2)
+ ;;=^5059614
+ ;;^UTILITY(U,$J,358.3,33626,0)
+ ;;=W13.8XXA^^119^1583^35
+ ;;^UTILITY(U,$J,358.3,33626,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15687,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15687,1,4,0)
- ;;=4^F12.122
- ;;^UTILITY(U,$J,358.3,15687,2)
- ;;=^5003158
- ;;^UTILITY(U,$J,358.3,15688,0)
- ;;=F12.222^^58^686^10
- ;;^UTILITY(U,$J,358.3,15688,1,0)
+ ;;^UTILITY(U,$J,358.3,33626,1,3,0)
+ ;;=3^Fall from Building/Structure,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33626,1,4,0)
+ ;;=4^W13.8XXA
+ ;;^UTILITY(U,$J,358.3,33626,2)
+ ;;=^5059616
+ ;;^UTILITY(U,$J,358.3,33627,0)
+ ;;=W13.8XXD^^119^1583^36
+ ;;^UTILITY(U,$J,358.3,33627,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15688,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15688,1,4,0)
- ;;=4^F12.222
- ;;^UTILITY(U,$J,358.3,15688,2)
- ;;=^5003170
- ;;^UTILITY(U,$J,358.3,15689,0)
- ;;=F12.129^^58^686^14
- ;;^UTILITY(U,$J,358.3,15689,1,0)
+ ;;^UTILITY(U,$J,358.3,33627,1,3,0)
+ ;;=3^Fall from Building/Structure,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33627,1,4,0)
+ ;;=4^W13.8XXD
+ ;;^UTILITY(U,$J,358.3,33627,2)
+ ;;=^5059617
+ ;;^UTILITY(U,$J,358.3,33628,0)
+ ;;=W13.9XXA^^119^1583^33
+ ;;^UTILITY(U,$J,358.3,33628,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15689,1,3,0)
- ;;=3^Cannabis Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,15689,1,4,0)
- ;;=4^F12.129
- ;;^UTILITY(U,$J,358.3,15689,2)
- ;;=^5003159
- ;;^UTILITY(U,$J,358.3,15690,0)
- ;;=F12.922^^58^686^11
- ;;^UTILITY(U,$J,358.3,15690,1,0)
+ ;;^UTILITY(U,$J,358.3,33628,1,3,0)
+ ;;=3^Fall from Building NOS,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33628,1,4,0)
+ ;;=4^W13.9XXA
+ ;;^UTILITY(U,$J,358.3,33628,2)
+ ;;=^5059619
+ ;;^UTILITY(U,$J,358.3,33629,0)
+ ;;=W13.9XXD^^119^1583^34
+ ;;^UTILITY(U,$J,358.3,33629,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15690,1,3,0)
- ;;=3^Cannabis Intoxication w/ Perceptual Disturbances w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,33629,1,3,0)
+ ;;=3^Fall from Building NOS,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33629,1,4,0)
+ ;;=4^W13.9XXD
+ ;;^UTILITY(U,$J,358.3,33629,2)
+ ;;=^5059620
+ ;;^UTILITY(U,$J,358.3,33630,0)
+ ;;=W14.XXXA^^119^1583^65
+ ;;^UTILITY(U,$J,358.3,33630,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33630,1,3,0)
+ ;;=3^Fall from Tree,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33630,1,4,0)
+ ;;=4^W14.XXXA
+ ;;^UTILITY(U,$J,358.3,33630,2)
+ ;;=^5059622
+ ;;^UTILITY(U,$J,358.3,33631,0)
+ ;;=W14.XXXD^^119^1583^66
+ ;;^UTILITY(U,$J,358.3,33631,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33631,1,3,0)
+ ;;=3^Fall from Tree,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33631,1,4,0)
+ ;;=4^W14.XXXD
+ ;;^UTILITY(U,$J,358.3,33631,2)
+ ;;=^5059623
+ ;;^UTILITY(U,$J,358.3,33632,0)
+ ;;=W17.2XXA^^119^1583^77
+ ;;^UTILITY(U,$J,358.3,33632,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33632,1,3,0)
+ ;;=3^Fall into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33632,1,4,0)
+ ;;=4^W17.2XXA
+ ;;^UTILITY(U,$J,358.3,33632,2)
+ ;;=^5059772
+ ;;^UTILITY(U,$J,358.3,33633,0)
+ ;;=W17.2XXD^^119^1583^78
+ ;;^UTILITY(U,$J,358.3,33633,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33633,1,3,0)
+ ;;=3^Fall into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33633,1,4,0)
+ ;;=4^W17.2XXD
+ ;;^UTILITY(U,$J,358.3,33633,2)
+ ;;=^5059773
+ ;;^UTILITY(U,$J,358.3,33634,0)
+ ;;=W17.3XXA^^119^1583^75
+ ;;^UTILITY(U,$J,358.3,33634,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33634,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33634,1,4,0)
+ ;;=4^W17.3XXA
+ ;;^UTILITY(U,$J,358.3,33634,2)
+ ;;=^5059775
+ ;;^UTILITY(U,$J,358.3,33635,0)
+ ;;=W17.3XXD^^119^1583^76
+ ;;^UTILITY(U,$J,358.3,33635,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33635,1,3,0)
+ ;;=3^Fall into Empty Swimming Pool,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33635,1,4,0)
+ ;;=4^W17.3XXD
+ ;;^UTILITY(U,$J,358.3,33635,2)
+ ;;=^5059776
+ ;;^UTILITY(U,$J,358.3,33636,0)
+ ;;=W17.4XXA^^119^1583^39
+ ;;^UTILITY(U,$J,358.3,33636,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33636,1,3,0)
+ ;;=3^Fall from Dock,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33636,1,4,0)
+ ;;=4^W17.4XXA
+ ;;^UTILITY(U,$J,358.3,33636,2)
+ ;;=^5059778
+ ;;^UTILITY(U,$J,358.3,33637,0)
+ ;;=W17.4XXD^^119^1583^40
+ ;;^UTILITY(U,$J,358.3,33637,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33637,1,3,0)
+ ;;=3^Fall from Dock,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33637,1,4,0)
+ ;;=4^W17.4XXD
+ ;;^UTILITY(U,$J,358.3,33637,2)
+ ;;=^5059779
+ ;;^UTILITY(U,$J,358.3,33638,0)
+ ;;=W17.81XA^^119^1583^27
+ ;;^UTILITY(U,$J,358.3,33638,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33638,1,3,0)
+ ;;=3^Fall down Embankment,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33638,1,4,0)
+ ;;=4^W17.81XA
+ ;;^UTILITY(U,$J,358.3,33638,2)
+ ;;=^5059781
+ ;;^UTILITY(U,$J,358.3,33639,0)
+ ;;=W17.81XD^^119^1583^28
+ ;;^UTILITY(U,$J,358.3,33639,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33639,1,3,0)
+ ;;=3^Fall down Embankment,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33639,1,4,0)
+ ;;=4^W17.81XD
+ ;;^UTILITY(U,$J,358.3,33639,2)
+ ;;=^5059782
+ ;;^UTILITY(U,$J,358.3,33640,0)
+ ;;=W17.89XA^^119^1583^55
+ ;;^UTILITY(U,$J,358.3,33640,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33640,1,3,0)
+ ;;=3^Fall from One level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33640,1,4,0)
+ ;;=4^W17.89XA
+ ;;^UTILITY(U,$J,358.3,33640,2)
+ ;;=^5059787
+ ;;^UTILITY(U,$J,358.3,33641,0)
+ ;;=W17.89XD^^119^1583^56
+ ;;^UTILITY(U,$J,358.3,33641,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33641,1,3,0)
+ ;;=3^Fall from One level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33641,1,4,0)
+ ;;=4^W17.89XD
+ ;;^UTILITY(U,$J,358.3,33641,2)
+ ;;=^5059788
+ ;;^UTILITY(U,$J,358.3,33642,0)
+ ;;=W18.11XA^^119^1583^63
+ ;;^UTILITY(U,$J,358.3,33642,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33642,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33642,1,4,0)
+ ;;=4^W18.11XA
+ ;;^UTILITY(U,$J,358.3,33642,2)
+ ;;=^5059801
+ ;;^UTILITY(U,$J,358.3,33643,0)
+ ;;=W18.11XD^^119^1583^64
+ ;;^UTILITY(U,$J,358.3,33643,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33643,1,3,0)
+ ;;=3^Fall from Toilet w/o Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33643,1,4,0)
+ ;;=4^W18.11XD
+ ;;^UTILITY(U,$J,358.3,33643,2)
+ ;;=^5059802
+ ;;^UTILITY(U,$J,358.3,33644,0)
+ ;;=W18.12XA^^119^1583^61
+ ;;^UTILITY(U,$J,358.3,33644,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33644,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33644,1,4,0)
+ ;;=4^W18.12XA

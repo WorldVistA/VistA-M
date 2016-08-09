@@ -1,5 +1,5 @@
-LRNIGHT ;SLC/CJS/AVAMC/REG - NIGHTLY LAB CLEANUP ;05/07/12  10:20
- ;;5.2;LAB SERVICE;**291,350**;Sep 27, 1994;Build 230
+LRNIGHT ;SLC/CJS/AVAMC/REG - NIGHTLY LAB CLEANUP ;01/11/16  15:26
+ ;;5.2;LAB SERVICE;**291,350,458**;Sep 27, 1994;Build 10
  ;
  ;D REQUE ;REQUED BY TASKMAN
  Q:'$D(^LAB(69.9,1,0))  S:$D(ZTQUEUED) DUZ(0)="@",ZTREQ="@" K ^LRO(69,"AN") K ^LRO(69,DT-1,1,"AD") I $P(^LAB(69.9,1,0),U,14) D MANUAL
@@ -53,6 +53,14 @@ SUBTASKS ; Task off other jobs that are initiated by LRNIGHT
  I $T(PRGNIGHT^LRSRVR5)'="" D
  . S ZTIO="",ZTDTH=$H
  . S ZTRTN="PRGNIGHT^LRSRVR5",ZTDESC="Lab file #95.4 purge/cleanup"
+ . D ^%ZTLOAD
+ . K ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZTDTH
+ ;
+ ;--------------------------------------------
+ ; Purge old entries in ^LAH global
+ I $T(LRNIGHT^LRVR3)'="" D
+ . S ZTIO="",ZTDTH=$H
+ . S ZTRTN="LRNIGHT^LRVR3",ZTDESC="Purge old instrument data from LAH global"
  . D ^%ZTLOAD
  . K ZTDESC,ZTIO,ZTRTN,ZTSAVE,ZTSK,ZTDTH
  ;

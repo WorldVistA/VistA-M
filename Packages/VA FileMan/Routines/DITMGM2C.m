@@ -1,6 +1,9 @@
 DITMGM2C ;SFISC/EDE(OHPRD)TKW-CONTINUATION OF DITMGM2 ;10/7/98  10:38
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 ENTRY ; PROCESS ONE FILE/SUBFILE ENTRY
  ;
@@ -51,7 +54,7 @@ DINUM ; DINUM FILE
  D TRNMRG^DIT("M",DITMGMFL,"",DIDA("F"),DIDA("T"))
  S $P(@(DITMFROM_DITMGMF_",0)"),U)=DITMGMF
  D
- . N DA D DA^DIEFU(DIDA("T"),.DA) Q:$D(DIERR) 
+ . N DA D DA^DIEFU(DIDA("T"),.DA) Q:$D(DIERR)
  . K DIK S DIK=$$ROOT^DIQGU(DITMGMFL,DIDA("T")) Q:$D(DIERR)
  . N DIDA D IX1^DIK Q
  D

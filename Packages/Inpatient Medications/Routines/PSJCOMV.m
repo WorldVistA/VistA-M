@@ -1,9 +1,9 @@
 PSJCOMV ;BIR/CML3-FINISH COMPLEX IV ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,267,257,281**;16 DEC 97;Build 113
  ;
- ; Reference to ^PS(55 is supported by DBIA 2191.
- ; Reference to ^%DTC is supported by DBIA 10000..
- ; Reference to ^DIR is supported by DBIA 10026.
+ ; Reference to ^%DTC is supported by DBIA 10000
+ ; Reference to ^DIR is supported by DBIA 10026
+ ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
  ;
  ;
 IV ; Move IV data in local variables to ^TMP
@@ -18,6 +18,8 @@ IV ; Move IV data in local variables to ^TMP
  S:'+$G(^TMP("PSJCOM",$J,+ON,.2)) $P(^(.2),U,1,3)=+P("PD")_U_P("DO")_U_$G(P("NAT"))
  F DRGT="AD","SOL" D:$D(DRG(DRGT)) PTD531
  I '+$P(PSJSYSP0,"^",9) D NEWNVAL^PSJCOM(ON,$S(+PSJSYSU=3:22005,1:22000))
+ S ^TMP("PSODAOC",$J,"IP IEN")=ON
+ D SETOC^PSJNEWOC(ON)
  I +PSJSYSU=3,+$P(PSJSYSP0,U,9) D VFYIV Q
  I +PSJSYSU=1,+$P(PSJSYSP0,U,9),$G(PSJIRNF) D VFYIV
  I $G(PSIVENO),($P(^PS(53.1,+PSJORD,0),U,9)="N") D EN^VALM("PSJ LM IV INPT ACTIVE")
@@ -48,6 +50,7 @@ VFYIV ;
  S:'$P(VND4,U,+PSJSYSU=3+9) $P(VND4,U,+PSJSYSU=3+9)=+$P(VND4,U,+PSJSYSU=3+9)
  S:$P(VND4,"^",15)&'$P(VND4,"^",16) $P(VND4,"^",15)="" S:$P(VND4,"^",18)&'$P(VND4,"^",19) $P(VND4,"^",18)="" S:$P(VND4,"^",22)&'$P(VND4,"^",23) $P(VND4,"^",22)="" S $P(VND4,"^",PSJSYSU,PSJSYSU+1)=DUZ_"^"_PSGDT,^TMP("PSJCOM",$J,+ON,4)=VND4
  S:'$D(^TMP("PSJCOM2",$J,+ON)) ^TMP("PSJCOM",$J,+ON,4)=VND4 S:$D(^TMP("PSJCOM2",$J,+ON)) ^TMP("PSJCOM2",$J,+ON,4)=VND4
+ S ^TMP("PSODAOC",$J,"IP IEN")=PSJORD
  W:'$D(PSJSPEED) ! W !,"ORDER VERIFIED.",!
  I '$D(PSJSPEED) K DIR S DIR(0)="E" D ^DIR K DIR
  S VALMBCK="Q"

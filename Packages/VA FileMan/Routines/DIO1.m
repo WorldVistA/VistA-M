@@ -1,6 +1,9 @@
 DIO1 ;SFISC/GFT,TKW-BUILD P-ARRAY (OR LINES IN COMPILED SORT) WHICH CREATES SORTED DATA ;20MAR2005
- ;;22.0;VA FileMan;**2,97,113,144**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  F DJ=0:1:7 F DX=-1:0 S DX=$O(Y(DJ,DX)) Q:DX=""  F DPR=-1:0 S DPR=$O(Y(DJ,DX,DPR)) D  Q:DPR=""
  .I DPR="" D:$D(DIBTPGM) SETU("Q") Q

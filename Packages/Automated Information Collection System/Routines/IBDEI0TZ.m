@@ -1,132 +1,288 @@
-IBDEI0TZ ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0TZ ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14057,1,3,0)
- ;;=3^Catatonic Disorder d/t Known Physiological Condition
- ;;^UTILITY(U,$J,358.3,14057,1,4,0)
- ;;=4^F06.1
- ;;^UTILITY(U,$J,358.3,14057,2)
- ;;=^5003054
- ;;^UTILITY(U,$J,358.3,14058,0)
- ;;=F06.8^^53^600^21
- ;;^UTILITY(U,$J,358.3,14058,1,0)
+ ;;^UTILITY(U,$J,358.3,30152,0)
+ ;;=F50.8^^113^1447^6
+ ;;^UTILITY(U,$J,358.3,30152,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14058,1,3,0)
- ;;=3^Mental Disorders d/t Known Physiological Condition,Other
- ;;^UTILITY(U,$J,358.3,14058,1,4,0)
- ;;=4^F06.8
- ;;^UTILITY(U,$J,358.3,14058,2)
- ;;=^5003062
- ;;^UTILITY(U,$J,358.3,14059,0)
- ;;=F06.0^^53^600^37
- ;;^UTILITY(U,$J,358.3,14059,1,0)
+ ;;^UTILITY(U,$J,358.3,30152,1,3,0)
+ ;;=3^Feeding/Eating Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,30152,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,30152,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,30153,0)
+ ;;=F50.8^^113^1447^3
+ ;;^UTILITY(U,$J,358.3,30153,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14059,1,3,0)
- ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
- ;;^UTILITY(U,$J,358.3,14059,1,4,0)
- ;;=4^F06.0
- ;;^UTILITY(U,$J,358.3,14059,2)
- ;;=^5003053
- ;;^UTILITY(U,$J,358.3,14060,0)
- ;;=G44.209^^53^600^42
- ;;^UTILITY(U,$J,358.3,14060,1,0)
+ ;;^UTILITY(U,$J,358.3,30153,1,3,0)
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,30153,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,30153,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,30154,0)
+ ;;=F50.8^^113^1447^4
+ ;;^UTILITY(U,$J,358.3,30154,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14060,1,3,0)
- ;;=3^Tension-Type Headache,Not Intractable,Unspec
- ;;^UTILITY(U,$J,358.3,14060,1,4,0)
- ;;=4^G44.209
- ;;^UTILITY(U,$J,358.3,14060,2)
- ;;=^5003936
- ;;^UTILITY(U,$J,358.3,14061,0)
- ;;=F09.^^53^600^20
- ;;^UTILITY(U,$J,358.3,14061,1,0)
+ ;;^UTILITY(U,$J,358.3,30154,1,3,0)
+ ;;=3^Binge-Eating Disorder
+ ;;^UTILITY(U,$J,358.3,30154,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,30154,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,30155,0)
+ ;;=F50.2^^113^1447^5
+ ;;^UTILITY(U,$J,358.3,30155,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14061,1,3,0)
- ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
- ;;^UTILITY(U,$J,358.3,14061,1,4,0)
- ;;=4^F09.
- ;;^UTILITY(U,$J,358.3,14061,2)
- ;;=^5003067
- ;;^UTILITY(U,$J,358.3,14062,0)
- ;;=F07.9^^53^600^35
- ;;^UTILITY(U,$J,358.3,14062,1,0)
+ ;;^UTILITY(U,$J,358.3,30155,1,3,0)
+ ;;=3^Bulimia Nervosa
+ ;;^UTILITY(U,$J,358.3,30155,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,30155,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,30156,0)
+ ;;=F50.8^^113^1447^8
+ ;;^UTILITY(U,$J,358.3,30156,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14062,1,3,0)
- ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
- ;;^UTILITY(U,$J,358.3,14062,1,4,0)
- ;;=4^F07.9
- ;;^UTILITY(U,$J,358.3,14062,2)
- ;;=^5003066
- ;;^UTILITY(U,$J,358.3,14063,0)
- ;;=G30.0^^53^600^1
- ;;^UTILITY(U,$J,358.3,14063,1,0)
+ ;;^UTILITY(U,$J,358.3,30156,1,3,0)
+ ;;=3^Pica in Adults
+ ;;^UTILITY(U,$J,358.3,30156,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,30156,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,30157,0)
+ ;;=F98.21^^113^1447^9
+ ;;^UTILITY(U,$J,358.3,30157,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14063,1,3,0)
- ;;=3^Alzheimer's Disease w/ Early Onset
- ;;^UTILITY(U,$J,358.3,14063,1,4,0)
- ;;=4^G30.0
- ;;^UTILITY(U,$J,358.3,14063,2)
- ;;=^5003805
- ;;^UTILITY(U,$J,358.3,14064,0)
- ;;=G30.8^^53^600^3
- ;;^UTILITY(U,$J,358.3,14064,1,0)
+ ;;^UTILITY(U,$J,358.3,30157,1,3,0)
+ ;;=3^Rumination Disorder
+ ;;^UTILITY(U,$J,358.3,30157,1,4,0)
+ ;;=4^F98.21
+ ;;^UTILITY(U,$J,358.3,30157,2)
+ ;;=^5003713
+ ;;^UTILITY(U,$J,358.3,30158,0)
+ ;;=Z55.9^^113^1448^1
+ ;;^UTILITY(U,$J,358.3,30158,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14064,1,3,0)
- ;;=3^Alzheimer's Disease,Other
- ;;^UTILITY(U,$J,358.3,14064,1,4,0)
- ;;=4^G30.8
- ;;^UTILITY(U,$J,358.3,14064,2)
- ;;=^5003807
- ;;^UTILITY(U,$J,358.3,14065,0)
- ;;=G30.1^^53^600^2
- ;;^UTILITY(U,$J,358.3,14065,1,0)
+ ;;^UTILITY(U,$J,358.3,30158,1,3,0)
+ ;;=3^Academic/Educational Problem
+ ;;^UTILITY(U,$J,358.3,30158,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,30158,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,30159,0)
+ ;;=Z56.82^^113^1448^2
+ ;;^UTILITY(U,$J,358.3,30159,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14065,1,3,0)
- ;;=3^Alzheimer's Disease w/ Late Onset
- ;;^UTILITY(U,$J,358.3,14065,1,4,0)
- ;;=4^G30.1
- ;;^UTILITY(U,$J,358.3,14065,2)
- ;;=^5003806
- ;;^UTILITY(U,$J,358.3,14066,0)
- ;;=G30.9^^53^600^4
- ;;^UTILITY(U,$J,358.3,14066,1,0)
+ ;;^UTILITY(U,$J,358.3,30159,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,30159,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,30159,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,30160,0)
+ ;;=F64.1^^113^1449^1
+ ;;^UTILITY(U,$J,358.3,30160,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14066,1,3,0)
- ;;=3^Alzheimer's Disease,Unspec
- ;;^UTILITY(U,$J,358.3,14066,1,4,0)
- ;;=4^G30.9
- ;;^UTILITY(U,$J,358.3,14066,2)
- ;;=^5003808
- ;;^UTILITY(U,$J,358.3,14067,0)
- ;;=G21.4^^53^600^45
- ;;^UTILITY(U,$J,358.3,14067,1,0)
+ ;;^UTILITY(U,$J,358.3,30160,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,30160,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,30160,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,30161,0)
+ ;;=F64.8^^113^1449^2
+ ;;^UTILITY(U,$J,358.3,30161,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14067,1,3,0)
- ;;=3^Vascular Parkinsonism
- ;;^UTILITY(U,$J,358.3,14067,1,4,0)
- ;;=4^G21.4
- ;;^UTILITY(U,$J,358.3,14067,2)
- ;;=^5003776
- ;;^UTILITY(U,$J,358.3,14068,0)
- ;;=G20.^^53^600^34
- ;;^UTILITY(U,$J,358.3,14068,1,0)
+ ;;^UTILITY(U,$J,358.3,30161,1,3,0)
+ ;;=3^Gender Dysphoria,Other Specified
+ ;;^UTILITY(U,$J,358.3,30161,1,4,0)
+ ;;=4^F64.8
+ ;;^UTILITY(U,$J,358.3,30161,2)
+ ;;=^5003649
+ ;;^UTILITY(U,$J,358.3,30162,0)
+ ;;=F64.9^^113^1449^3
+ ;;^UTILITY(U,$J,358.3,30162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14068,1,3,0)
- ;;=3^Parkinson's Disease
- ;;^UTILITY(U,$J,358.3,14068,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,14068,2)
- ;;=^5003770
- ;;^UTILITY(U,$J,358.3,14069,0)
- ;;=G25.0^^53^600^15
- ;;^UTILITY(U,$J,358.3,14069,1,0)
+ ;;^UTILITY(U,$J,358.3,30162,1,3,0)
+ ;;=3^Gender Dysphoria,Unspec
+ ;;^UTILITY(U,$J,358.3,30162,1,4,0)
+ ;;=4^F64.9
+ ;;^UTILITY(U,$J,358.3,30162,2)
+ ;;=^5003650
+ ;;^UTILITY(U,$J,358.3,30163,0)
+ ;;=Z59.2^^113^1450^1
+ ;;^UTILITY(U,$J,358.3,30163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14069,1,3,0)
- ;;=3^Essential Tremor
- ;;^UTILITY(U,$J,358.3,14069,1,4,0)
- ;;=4^G25.0
- ;;^UTILITY(U,$J,358.3,14069,2)
- ;;=^5003791
- ;;^UTILITY(U,$J,358.3,14070,0)
- ;;=G25.2^^53^600^44
+ ;;^UTILITY(U,$J,358.3,30163,1,3,0)
+ ;;=3^Discord w/ Neighbor,Lodger or Landlord
+ ;;^UTILITY(U,$J,358.3,30163,1,4,0)
+ ;;=4^Z59.2
+ ;;^UTILITY(U,$J,358.3,30163,2)
+ ;;=^5063131
+ ;;^UTILITY(U,$J,358.3,30164,0)
+ ;;=Z59.0^^113^1450^3
+ ;;^UTILITY(U,$J,358.3,30164,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30164,1,3,0)
+ ;;=3^Homelessness
+ ;;^UTILITY(U,$J,358.3,30164,1,4,0)
+ ;;=4^Z59.0
+ ;;^UTILITY(U,$J,358.3,30164,2)
+ ;;=^5063129
+ ;;^UTILITY(U,$J,358.3,30165,0)
+ ;;=Z59.1^^113^1450^5
+ ;;^UTILITY(U,$J,358.3,30165,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30165,1,3,0)
+ ;;=3^Inadequate Housing
+ ;;^UTILITY(U,$J,358.3,30165,1,4,0)
+ ;;=4^Z59.1
+ ;;^UTILITY(U,$J,358.3,30165,2)
+ ;;=^5063130
+ ;;^UTILITY(U,$J,358.3,30166,0)
+ ;;=Z59.3^^113^1450^9
+ ;;^UTILITY(U,$J,358.3,30166,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30166,1,3,0)
+ ;;=3^Problems Related to Living in Residential Institution
+ ;;^UTILITY(U,$J,358.3,30166,1,4,0)
+ ;;=4^Z59.3
+ ;;^UTILITY(U,$J,358.3,30166,2)
+ ;;=^5063132
+ ;;^UTILITY(U,$J,358.3,30167,0)
+ ;;=Z59.4^^113^1450^7
+ ;;^UTILITY(U,$J,358.3,30167,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30167,1,3,0)
+ ;;=3^Lack of Adequate Food or Safe Drinking Water
+ ;;^UTILITY(U,$J,358.3,30167,1,4,0)
+ ;;=4^Z59.4
+ ;;^UTILITY(U,$J,358.3,30167,2)
+ ;;=^5063133
+ ;;^UTILITY(U,$J,358.3,30168,0)
+ ;;=Z59.5^^113^1450^2
+ ;;^UTILITY(U,$J,358.3,30168,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30168,1,3,0)
+ ;;=3^Extreme Poverty
+ ;;^UTILITY(U,$J,358.3,30168,1,4,0)
+ ;;=4^Z59.5
+ ;;^UTILITY(U,$J,358.3,30168,2)
+ ;;=^5063134
+ ;;^UTILITY(U,$J,358.3,30169,0)
+ ;;=Z59.6^^113^1450^8
+ ;;^UTILITY(U,$J,358.3,30169,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30169,1,3,0)
+ ;;=3^Low Income
+ ;;^UTILITY(U,$J,358.3,30169,1,4,0)
+ ;;=4^Z59.6
+ ;;^UTILITY(U,$J,358.3,30169,2)
+ ;;=^5063135
+ ;;^UTILITY(U,$J,358.3,30170,0)
+ ;;=Z59.7^^113^1450^6
+ ;;^UTILITY(U,$J,358.3,30170,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30170,1,3,0)
+ ;;=3^Insufficient Social Insurance/Welfare Support
+ ;;^UTILITY(U,$J,358.3,30170,1,4,0)
+ ;;=4^Z59.7
+ ;;^UTILITY(U,$J,358.3,30170,2)
+ ;;=^5063136
+ ;;^UTILITY(U,$J,358.3,30171,0)
+ ;;=Z59.9^^113^1450^4
+ ;;^UTILITY(U,$J,358.3,30171,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30171,1,3,0)
+ ;;=3^Housing/Economic Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,30171,1,4,0)
+ ;;=4^Z59.9
+ ;;^UTILITY(U,$J,358.3,30171,2)
+ ;;=^5063138
+ ;;^UTILITY(U,$J,358.3,30172,0)
+ ;;=G21.19^^113^1451^10
+ ;;^UTILITY(U,$J,358.3,30172,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30172,1,3,0)
+ ;;=3^Medication-Induced Parkinsonism,Other
+ ;;^UTILITY(U,$J,358.3,30172,1,4,0)
+ ;;=4^G21.19
+ ;;^UTILITY(U,$J,358.3,30172,2)
+ ;;=^5003773
+ ;;^UTILITY(U,$J,358.3,30173,0)
+ ;;=G21.11^^113^1451^13
+ ;;^UTILITY(U,$J,358.3,30173,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30173,1,3,0)
+ ;;=3^Neuroleptic-Induced Parkinsonism
+ ;;^UTILITY(U,$J,358.3,30173,1,4,0)
+ ;;=4^G21.11
+ ;;^UTILITY(U,$J,358.3,30173,2)
+ ;;=^5003772
+ ;;^UTILITY(U,$J,358.3,30174,0)
+ ;;=G24.01^^113^1451^15
+ ;;^UTILITY(U,$J,358.3,30174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30174,1,3,0)
+ ;;=3^Tardive Dyskinesia
+ ;;^UTILITY(U,$J,358.3,30174,1,4,0)
+ ;;=4^G24.01
+ ;;^UTILITY(U,$J,358.3,30174,2)
+ ;;=^5003784
+ ;;^UTILITY(U,$J,358.3,30175,0)
+ ;;=G24.09^^113^1451^16
+ ;;^UTILITY(U,$J,358.3,30175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30175,1,3,0)
+ ;;=3^Tardive Dystonia
+ ;;^UTILITY(U,$J,358.3,30175,1,4,0)
+ ;;=4^G24.09
+ ;;^UTILITY(U,$J,358.3,30175,2)
+ ;;=^5003786
+ ;;^UTILITY(U,$J,358.3,30176,0)
+ ;;=G25.1^^113^1451^11
+ ;;^UTILITY(U,$J,358.3,30176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30176,1,3,0)
+ ;;=3^Medication-Induced Postural Tremor
+ ;;^UTILITY(U,$J,358.3,30176,1,4,0)
+ ;;=4^G25.1
+ ;;^UTILITY(U,$J,358.3,30176,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,30177,0)
+ ;;=G25.71^^113^1451^14
+ ;;^UTILITY(U,$J,358.3,30177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30177,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,30177,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,30177,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,30178,0)
+ ;;=G25.79^^113^1451^9
+ ;;^UTILITY(U,$J,358.3,30178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30178,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,30178,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,30178,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,30179,0)
+ ;;=T43.205A^^113^1451^4
+ ;;^UTILITY(U,$J,358.3,30179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30179,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30179,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,30179,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,30180,0)
+ ;;=T43.205D^^113^1451^5
+ ;;^UTILITY(U,$J,358.3,30180,1,0)
+ ;;=^358.31IA^4^2

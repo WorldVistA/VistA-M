@@ -1,34 +1,250 @@
-IBDEI002 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQ(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI002 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQR(358)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^DD(358,.01,1,6,0)
- ;;=358^AB^MUMPS
- ;;^DD(358,.01,1,6,1)
- ;;=Q
- ;;^DD(358,.01,1,6,2)
- ;;=Q
- ;;^DD(358,.01,1,6,"%D",0)
- ;;=^^4^4^2940606^^
- ;;^DD(358,.01,1,6,"%D",1,0)
- ;;=This cross-reference will be used to store the boxes needed for the compiled
- ;;^DD(358,.01,1,6,"%D",2,0)
- ;;=forms. The format will be ..."AB",form ien,row #,column #, Block ien)=
- ;;^DD(358,.01,1,6,"%D",3,0)
- ;;=box width^box height. The index will be created by the 'compile'
- ;;^DD(358,.01,1,6,"%D",4,0)
- ;;=action of the encounter form utilities.
- ;;^DD(358,.01,1,6,"DT")
- ;;=2940606
- ;;^DD(358,.01,3)
- ;;=The form name must be 3-30 uppercase characters in length.
- ;;^DD(358,.01,21,0)
- ;;=^^2^2^2931110^^
- ;;^DD(358,.01,21,1,0)
- ;;= 
- ;;^DD(358,.01,21,2,0)
- ;;=The name of the encounter form.
- ;;^DD(358,.01,"DEL",1,0)
- ;;=I 1 W "...Encounter Forms can only be deleted through the",!," DELETE UNUSED FORM action in the Encounter Form Utilities!"
- ;;^DD(358,.01,"DT")
- ;;=2940606
+ ;;^UTILITY(U,$J,358)
+ ;;=^IBE(358,
+ ;;^UTILITY(U,$J,358,0)
+ ;;=IMP/EXP ENCOUNTER FORM^358I^57^57
+ ;;^UTILITY(U,$J,358,1,0)
+ ;;=NATIONAL ADDICTION FY16-Q3^1^National Addiction form April 2016^1^0^1^1^^133^80^12^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,1,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,1,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,1,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,2,0)
+ ;;=NATIONAL ADHC FY16-Q3^2^National Adult Day Health Care May 2016^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,3,0)
+ ;;=NATIONAL ANESTHESIA FY16-Q3^0^National Anesthesia April 2016^1^0^1^1^^133^80^6^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,4,0)
+ ;;=NATIONAL AUDIO FY16-Q3^1^National Audiology May 2016^1^0^1^1^^133^80^5^1^^1^p^1
+ ;;^UTILITY(U,$J,358,4,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,4,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,4,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,4,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,5,0)
+ ;;=NATL CARDIOLOGY/CATH FY16-Q3^1^National Cardiology/Card Cath March 2016^1^0^1^1^^133^80^8^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,6,0)
+ ;;=NATIONAL CHIROPRACTIC FY16-Q3^2^National Chiropractic May 2016^1^0^1^1^^133^80^4^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,6,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,6,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,7,0)
+ ;;=NATIONAL CLIN PHARM FY16-Q3^2^NATIONAL CLINICAL PHARMACIST-REVIEWED/REVISED March 2016^1^0^1^1^^133^80^2^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,7,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,7,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,8,0)
+ ;;=NATIONAL C&P FY16-Q3^2^NATIONAL COMPENSATION AND PENSION-May 2016^1^0^1^1^^133^80^3^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,8,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,8,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,9,0)
+ ;;=NATIONAL CRITICAL CARE FY16-Q3^1^National Critical Care Form May 2016^1^0^1^1^^133^80^4^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,9,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,9,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,9,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,9,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,9,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,9,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,9,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,10,0)
+ ;;=NATIONAL DAY SURGERY FY16-Q3^0^National Minor Procedures May 2016^1^0^1^1^^133^80^19^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,10,2,0)
+ ;;=^358.02I^1^1
+ ;;^UTILITY(U,$J,358,10,2,1,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,11,0)
+ ;;=NATIONAL DERMATOLOGY FY16-Q3^0^National Derm Form-April 2016^1^0^^1^^133^80^9^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,12,0)
+ ;;=NATIONAL DIABETES FY16-Q3^2^NATIONAL DIABETES-March 2016^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,12,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,12,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,12,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,13,0)
+ ;;=NATIONAL DIALYSIS FY16-Q3^2^National Dialysis March 2016^1^0^1^1^^133^80^7^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,13,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,13,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,13,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,14,0)
+ ;;=NATIONAL ED FY16-Q3^1^National Emergency Dept Form April 2016^1^0^1^1^^133^80^31^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,14,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,14,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,14,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,14,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,14,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,14,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,14,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,15,0)
+ ;;=NATIONAL EMP HEALTH FY16-Q3^1^National Employee Health April 2016^1^0^1^1^^133^80^5^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,15,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,15,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,15,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,15,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,15,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,15,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,15,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,16,0)
+ ;;=NATIONAL ENT FY16-Q3^2^NATIONAL ENT-REVIEWED/REVISED May 2016^1^0^1^1^^133^80^4^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,16,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,16,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,16,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,17,0)
+ ;;=NATIONAL EYE FY16-Q3^1^National Eye May 2016^1^0^1^1^^133^80^13^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,17,2,0)
+ ;;=^358.02I^4^4
+ ;;^UTILITY(U,$J,358,17,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,17,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,17,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,17,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,18,0)
+ ;;=NATIONAL EYE TECH FY16-Q3^1^National Eye Technician May 2016^1^0^1^1^^133^80^12^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,18,2,0)
+ ;;=^358.02I^4^4
+ ;;^UTILITY(U,$J,358,18,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,18,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,18,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,18,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,19,0)
+ ;;=NATIONAL GEN SURG FY16-Q3^0^National Surgery May 2016^1^0^1^1^^133^80^18^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,20,0)
+ ;;=NATL HBPC PSYCHOLOGIST FY16-Q3^0^National HBPC Psychologist April 2016^1^0^1^1^^133^80^11^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,20,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,20,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,20,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,21,0)
+ ;;=NATL HBPC CLIN FY16-Q3^1^National HBPC Clinician March 2016^1^0^1^1^^133^80^30^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,21,2,0)
+ ;;=^358.02I^4^4
+ ;;^UTILITY(U,$J,358,21,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,21,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,21,2,3,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,21,2,4,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,22,0)
+ ;;=NATIONAL HEMATOLOGY FY16-Q3^0^National Hematology April 2016^1^0^0^1^^133^80^6^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,22,2,0)
+ ;;=^358.02I^2^2
+ ;;^UTILITY(U,$J,358,22,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,22,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,23,0)
+ ;;=NATL HOSP/PALL INPT FY16-Q3^2^NATIONAL INPATIENT HOSPICE AND PALLIATIVE CARE April 2016^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,24,0)
+ ;;=NATL HOSP/PALL OTPT FY16-Q3^2^NATIONAL HOSPICE AND PALLIATIVE CARE April 2016^1^0^1^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,25,0)
+ ;;=NATL HT CLINICIAN FY16-Q3^0^National CCHT Clinician April 2016^1^0^^1^^133^80^7^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,26,0)
+ ;;=NATL HT NURSE FY16-Q3^0^National CCHT Nursing April 2016^1^0^^1^^133^80^7^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,27,0)
+ ;;=NATL HT SWS FY16-Q3^0^National CCHT Social Work Services May 2016^1^0^^1^^133^80^3^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,28,0)
+ ;;=NATIONAL INFECTIOUS DX FY16-Q3^1^National Infectious Disease May 2016^1^0^1^1^^133^80^6^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,28,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,28,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,28,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,28,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,28,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,28,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,28,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,29,0)
+ ;;=NATIONAL IR FY16-Q3^0^NATIONAL INTERVENTIONAL RADIOLOGY May 2016^1^0^1^1^^133^80^8^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,30,0)
+ ;;=NATL MED FOSTER HOME FY16-Q3^1^National Medical Foster Home-March 2016^1^0^1^1^^133^80^30^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,30,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,30,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,30,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,30,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,30,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,30,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,30,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,31,0)
+ ;;=NATIONAL MEDICINE FY16-Q3^1^National Medicine Form March 2016^1^0^1^1^^133^80^30^1^^1^p^1^2.1
+ ;;^UTILITY(U,$J,358,31,2,0)
+ ;;=^358.02I^6^6
+ ;;^UTILITY(U,$J,358,31,2,1,0)
+ ;;=1^1
+ ;;^UTILITY(U,$J,358,31,2,2,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,31,2,3,0)
+ ;;=3^1
+ ;;^UTILITY(U,$J,358,31,2,4,0)
+ ;;=2^1
+ ;;^UTILITY(U,$J,358,31,2,5,0)
+ ;;=4^1
+ ;;^UTILITY(U,$J,358,31,2,6,0)
+ ;;=5^1
+ ;;^UTILITY(U,$J,358,32,0)
+ ;;=NATIONAL MH MHICM FY16-Q3^1^National MH Intensive Program April 2016^1^0^1^1^^133^80^12^1^^1^p^1^3
+ ;;^UTILITY(U,$J,358,32,2,0)
+ ;;=^358.02I^3^3
+ ;;^UTILITY(U,$J,358,32,2,1,0)
+ ;;=1^1

@@ -1,128 +1,288 @@
-IBDEI0HE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0HE ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8050,2)
- ;;=^5136471
- ;;^UTILITY(U,$J,358.3,8051,0)
- ;;=S72.92XA^^33^431^64
- ;;^UTILITY(U,$J,358.3,8051,1,0)
+ ;;^UTILITY(U,$J,358.3,17478,0)
+ ;;=R35.0^^76^898^3
+ ;;^UTILITY(U,$J,358.3,17478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8051,1,3,0)
- ;;=3^Fx of left femur unspec, init encntr for closed fx
- ;;^UTILITY(U,$J,358.3,8051,1,4,0)
- ;;=4^S72.92XA
- ;;^UTILITY(U,$J,358.3,8051,2)
- ;;=^5136472
- ;;^UTILITY(U,$J,358.3,8052,0)
- ;;=S82.401A^^33^431^78
- ;;^UTILITY(U,$J,358.3,8052,1,0)
+ ;;^UTILITY(U,$J,358.3,17478,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,17478,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,17478,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,17479,0)
+ ;;=I25.2^^76^898^10
+ ;;^UTILITY(U,$J,358.3,17479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8052,1,3,0)
- ;;=3^Fx of right fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,8052,1,4,0)
- ;;=4^S82.401A
- ;;^UTILITY(U,$J,358.3,8052,2)
- ;;=^5041677
- ;;^UTILITY(U,$J,358.3,8053,0)
- ;;=S82.402A^^33^431^65
- ;;^UTILITY(U,$J,358.3,8053,1,0)
+ ;;^UTILITY(U,$J,358.3,17479,1,3,0)
+ ;;=3^Myocardial Infarction,Healed/Old
+ ;;^UTILITY(U,$J,358.3,17479,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,17479,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,17480,0)
+ ;;=H60.313^^76^899^14
+ ;;^UTILITY(U,$J,358.3,17480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8053,1,3,0)
- ;;=3^Fx of left fibula shaft unspec, init for clos fx
- ;;^UTILITY(U,$J,358.3,8053,1,4,0)
- ;;=4^S82.402A
- ;;^UTILITY(U,$J,358.3,8053,2)
- ;;=^5041693
- ;;^UTILITY(U,$J,358.3,8054,0)
- ;;=S62.600A^^33^431^101
- ;;^UTILITY(U,$J,358.3,8054,1,0)
+ ;;^UTILITY(U,$J,358.3,17480,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Bilateral
+ ;;^UTILITY(U,$J,358.3,17480,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,17480,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,17481,0)
+ ;;=H60.311^^76^899^16
+ ;;^UTILITY(U,$J,358.3,17481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8054,1,3,0)
- ;;=3^Fx of unsp phalanx of right index finger, init
- ;;^UTILITY(U,$J,358.3,8054,1,4,0)
- ;;=4^S62.600A
- ;;^UTILITY(U,$J,358.3,8054,2)
- ;;=^5034382
- ;;^UTILITY(U,$J,358.3,8055,0)
- ;;=S62.601A^^33^431^96
- ;;^UTILITY(U,$J,358.3,8055,1,0)
+ ;;^UTILITY(U,$J,358.3,17481,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Right
+ ;;^UTILITY(U,$J,358.3,17481,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,17481,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,17482,0)
+ ;;=H60.312^^76^899^15
+ ;;^UTILITY(U,$J,358.3,17482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8055,1,3,0)
- ;;=3^Fx of unsp phalanx of left index finger, init
- ;;^UTILITY(U,$J,358.3,8055,1,4,0)
- ;;=4^S62.601A
- ;;^UTILITY(U,$J,358.3,8055,2)
- ;;=^5034389
- ;;^UTILITY(U,$J,358.3,8056,0)
- ;;=S62.602A^^33^431^103
- ;;^UTILITY(U,$J,358.3,8056,1,0)
+ ;;^UTILITY(U,$J,358.3,17482,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Left
+ ;;^UTILITY(U,$J,358.3,17482,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,17482,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,17483,0)
+ ;;=H60.391^^76^899^22
+ ;;^UTILITY(U,$J,358.3,17483,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8056,1,3,0)
- ;;=3^Fx of unsp phalanx of right middle finger, init
- ;;^UTILITY(U,$J,358.3,8056,1,4,0)
- ;;=4^S62.602A
- ;;^UTILITY(U,$J,358.3,8056,2)
- ;;=^5034396
- ;;^UTILITY(U,$J,358.3,8057,0)
- ;;=S62.603A^^33^431^98
- ;;^UTILITY(U,$J,358.3,8057,1,0)
+ ;;^UTILITY(U,$J,358.3,17483,1,3,0)
+ ;;=3^Otitis Externa Infective,Right
+ ;;^UTILITY(U,$J,358.3,17483,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,17483,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,17484,0)
+ ;;=H60.392^^76^899^21
+ ;;^UTILITY(U,$J,358.3,17484,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8057,1,3,0)
- ;;=3^Fx of unsp phalanx of left middle finger, init
- ;;^UTILITY(U,$J,358.3,8057,1,4,0)
- ;;=4^S62.603A
- ;;^UTILITY(U,$J,358.3,8057,2)
- ;;=^5034403
- ;;^UTILITY(U,$J,358.3,8058,0)
- ;;=S62.604A^^33^431^104
- ;;^UTILITY(U,$J,358.3,8058,1,0)
+ ;;^UTILITY(U,$J,358.3,17484,1,3,0)
+ ;;=3^Otitis Externa Infective,Left
+ ;;^UTILITY(U,$J,358.3,17484,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,17484,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,17485,0)
+ ;;=H60.393^^76^899^20
+ ;;^UTILITY(U,$J,358.3,17485,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8058,1,3,0)
- ;;=3^Fx of unsp phalanx of right ring finger, init
- ;;^UTILITY(U,$J,358.3,8058,1,4,0)
- ;;=4^S62.604A
- ;;^UTILITY(U,$J,358.3,8058,2)
- ;;=^5034410
- ;;^UTILITY(U,$J,358.3,8059,0)
- ;;=S62.605A^^33^431^99
- ;;^UTILITY(U,$J,358.3,8059,1,0)
+ ;;^UTILITY(U,$J,358.3,17485,1,3,0)
+ ;;=3^Otitis Externa Infective,Bilateral
+ ;;^UTILITY(U,$J,358.3,17485,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,17485,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,17486,0)
+ ;;=M81.0^^76^899^13
+ ;;^UTILITY(U,$J,358.3,17486,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8059,1,3,0)
- ;;=3^Fx of unsp phalanx of left ring finger, init
- ;;^UTILITY(U,$J,358.3,8059,1,4,0)
- ;;=4^S62.605A
- ;;^UTILITY(U,$J,358.3,8059,2)
- ;;=^5034417
- ;;^UTILITY(U,$J,358.3,8060,0)
- ;;=S62.606A^^33^431^102
- ;;^UTILITY(U,$J,358.3,8060,1,0)
+ ;;^UTILITY(U,$J,358.3,17486,1,3,0)
+ ;;=3^Osteopor,age-rltd w/o curnt path fractr
+ ;;^UTILITY(U,$J,358.3,17486,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,17486,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,17487,0)
+ ;;=R11.2^^76^899^2
+ ;;^UTILITY(U,$J,358.3,17487,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8060,1,3,0)
- ;;=3^Fx of unsp phalanx of right little finger, init
- ;;^UTILITY(U,$J,358.3,8060,1,4,0)
- ;;=4^S62.606A
- ;;^UTILITY(U,$J,358.3,8060,2)
- ;;=^5034424
- ;;^UTILITY(U,$J,358.3,8061,0)
- ;;=S62.607A^^33^431^97
- ;;^UTILITY(U,$J,358.3,8061,1,0)
+ ;;^UTILITY(U,$J,358.3,17487,1,3,0)
+ ;;=3^Nausea w/ Vomiting,Unspec
+ ;;^UTILITY(U,$J,358.3,17487,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,17487,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,17488,0)
+ ;;=H60.321^^76^899^19
+ ;;^UTILITY(U,$J,358.3,17488,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8061,1,3,0)
- ;;=3^Fx of unsp phalanx of left little finger, init
- ;;^UTILITY(U,$J,358.3,8061,1,4,0)
- ;;=4^S62.607A
- ;;^UTILITY(U,$J,358.3,8061,2)
- ;;=^5034431
- ;;^UTILITY(U,$J,358.3,8062,0)
- ;;=S92.901A^^33^431^79
- ;;^UTILITY(U,$J,358.3,8062,1,0)
+ ;;^UTILITY(U,$J,358.3,17488,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Right
+ ;;^UTILITY(U,$J,358.3,17488,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,17488,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,17489,0)
+ ;;=H60.322^^76^899^18
+ ;;^UTILITY(U,$J,358.3,17489,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8062,1,3,0)
- ;;=3^Fx of right foot unspec, init encntr for closed fra
- ;;^UTILITY(U,$J,358.3,8062,1,4,0)
- ;;=4^S92.901A
- ;;^UTILITY(U,$J,358.3,8062,2)
- ;;=^5045578
- ;;^UTILITY(U,$J,358.3,8063,0)
- ;;=S92.902A^^33^431^66
+ ;;^UTILITY(U,$J,358.3,17489,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Left
+ ;;^UTILITY(U,$J,358.3,17489,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,17489,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,17490,0)
+ ;;=H60.323^^76^899^17
+ ;;^UTILITY(U,$J,358.3,17490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17490,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic, Bilateral
+ ;;^UTILITY(U,$J,358.3,17490,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,17490,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,17491,0)
+ ;;=H66.91^^76^899^25
+ ;;^UTILITY(U,$J,358.3,17491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17491,1,3,0)
+ ;;=3^Otitis Media, rt ear, unspec
+ ;;^UTILITY(U,$J,358.3,17491,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,17491,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,17492,0)
+ ;;=H66.92^^76^899^24
+ ;;^UTILITY(U,$J,358.3,17492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17492,1,3,0)
+ ;;=3^Otitis Media, lft ear, unspec
+ ;;^UTILITY(U,$J,358.3,17492,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,17492,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,17493,0)
+ ;;=H66.93^^76^899^23
+ ;;^UTILITY(U,$J,358.3,17493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17493,1,3,0)
+ ;;=3^Otitis Media, biltrl, unspec
+ ;;^UTILITY(U,$J,358.3,17493,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,17493,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,17494,0)
+ ;;=E66.01^^76^899^8
+ ;;^UTILITY(U,$J,358.3,17494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17494,1,3,0)
+ ;;=3^Obesity, morbid d/t excess calories
+ ;;^UTILITY(U,$J,358.3,17494,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,17494,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,17495,0)
+ ;;=E66.9^^76^899^9
+ ;;^UTILITY(U,$J,358.3,17495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17495,1,3,0)
+ ;;=3^Obesity, unspec
+ ;;^UTILITY(U,$J,358.3,17495,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,17495,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,17496,0)
+ ;;=M19.91^^76^899^11
+ ;;^UTILITY(U,$J,358.3,17496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17496,1,3,0)
+ ;;=3^Osteoarth, prim, unspec site
+ ;;^UTILITY(U,$J,358.3,17496,1,4,0)
+ ;;=4^M19.91
+ ;;^UTILITY(U,$J,358.3,17496,2)
+ ;;=^5010854
+ ;;^UTILITY(U,$J,358.3,17497,0)
+ ;;=J00.^^76^899^1
+ ;;^UTILITY(U,$J,358.3,17497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17497,1,3,0)
+ ;;=3^Nasopharyngitis,Acute
+ ;;^UTILITY(U,$J,358.3,17497,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,17497,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,17498,0)
+ ;;=M79.2^^76^899^4
+ ;;^UTILITY(U,$J,358.3,17498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17498,1,3,0)
+ ;;=3^Neuralgia & Neuritis,Unspec
+ ;;^UTILITY(U,$J,358.3,17498,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,17498,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,17499,0)
+ ;;=I25.2^^76^899^10
+ ;;^UTILITY(U,$J,358.3,17499,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17499,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,17499,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,17499,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,17500,0)
+ ;;=L97.829^^76^899^5
+ ;;^UTILITY(U,$J,358.3,17500,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17500,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer Left Lower Leg,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17500,1,4,0)
+ ;;=4^L97.829
+ ;;^UTILITY(U,$J,358.3,17500,2)
+ ;;=^5009569
+ ;;^UTILITY(U,$J,358.3,17501,0)
+ ;;=L97.819^^76^899^6
+ ;;^UTILITY(U,$J,358.3,17501,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17501,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer Right Lower Leg,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17501,1,4,0)
+ ;;=4^L97.819
+ ;;^UTILITY(U,$J,358.3,17501,2)
+ ;;=^5009564
+ ;;^UTILITY(U,$J,358.3,17502,0)
+ ;;=L98.499^^76^899^7
+ ;;^UTILITY(U,$J,358.3,17502,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17502,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer of Skin,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17502,1,4,0)
+ ;;=4^L98.499
+ ;;^UTILITY(U,$J,358.3,17502,2)
+ ;;=^5009591
+ ;;^UTILITY(U,$J,358.3,17503,0)
+ ;;=R11.0^^76^899^3
+ ;;^UTILITY(U,$J,358.3,17503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17503,1,3,0)
+ ;;=3^Nausea w/o Vomiting
+ ;;^UTILITY(U,$J,358.3,17503,1,4,0)
+ ;;=4^R11.0
+ ;;^UTILITY(U,$J,358.3,17503,2)
+ ;;=^5019231
+ ;;^UTILITY(U,$J,358.3,17504,0)
+ ;;=M19.90^^76^899^12
+ ;;^UTILITY(U,$J,358.3,17504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17504,1,3,0)
+ ;;=3^Osteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,17504,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,17504,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,17505,0)
+ ;;=E66.3^^76^899^26
+ ;;^UTILITY(U,$J,358.3,17505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17505,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,17505,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,17505,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,17506,0)
+ ;;=K85.9^^76^900^1
+ ;;^UTILITY(U,$J,358.3,17506,1,0)
+ ;;=^358.31IA^4^2

@@ -1,6 +1,10 @@
 DITR ;SFISC/GFT-FIND FLDS TO XRF ;8SEP2011
- ;;22.0;VA FileMan;**41,168**;Mar 30, 1999;Build 25
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  N DITRCNT
 LOOP S (DFL,DTL)=DFL-1 Q:'$D(DFN(DFL))
 N S @("DFN(DFL)=$O("_DFR(DFL)_"DFN(DFL)))")

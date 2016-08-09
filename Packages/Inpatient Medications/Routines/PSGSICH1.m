@@ -1,5 +1,5 @@
 PSGSICH1 ;BIR/JCH-PROVIDER & PHARMACY OVERRIDE UTILITIES 1; 01/25/11 1:02pm
- ;;5.0;INPATIENT MEDICATIONS;**254**;16 DEC 97;Build 84
+ ;;5.0;INPATIENT MEDICATIONS;**254,281**;16 DEC 97;Build 113
  ;
  ; Reference to OCAPI^ORCHECK is supported by DBIA #4859.
  ; Reference to OCCNT^ORACPI1 is supported by DBIA #5637
@@ -35,7 +35,8 @@ GETPROVR(PSGP,PSGORD,OUTARRAY,PSJCPRS) ; Get Provider Override
  .S PSJ=0 F  S PSJ=$O(^TMP($J,"PSJ",PSJ)) Q:'PSJ  D
  ..S TXT=$G(^TMP($J,"PSJ",PSJ,"OC TEXT",1,0))
  ..S CAT=3 S:TXT["CRITICAL drug-drug" CAT=2
- ..S:TXT["Previous adverse reaction" CAT=1
+ ..S:(TXT["Previous ")&(TXT[" adverse reaction") CAT=1 ;;cmf/281 change
+ ..;;S:TXT["Previous adverse reaction" CAT=1 ;;cmf/281 removal
  ..I TXT]"" S OUTARRAY("PROVR",PSGP,+PSGORD,CAT,PSJ,0)=TXT
  .S PSJ=$O(^TMP($J,"PSJ",0))
  .D NAME^PSGSICH($G(^TMP($J,"PSJ",PSJ,"OR PROVIDER")),.X)

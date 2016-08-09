@@ -1,134 +1,52 @@
-IBDEI16N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16N ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQ(358.93)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20112,1,3,0)
- ;;=3^Malig Neop Bronchus/Lung,Unspec Part
- ;;^UTILITY(U,$J,358.3,20112,1,4,0)
- ;;=4^C34.90
- ;;^UTILITY(U,$J,358.3,20112,2)
- ;;=^5000966
- ;;^UTILITY(U,$J,358.3,20113,0)
- ;;=C65.9^^84^929^150
- ;;^UTILITY(U,$J,358.3,20113,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20113,1,3,0)
- ;;=3^Malig Neop Renal Pelvis,Unspec
- ;;^UTILITY(U,$J,358.3,20113,1,4,0)
- ;;=4^C65.9
- ;;^UTILITY(U,$J,358.3,20113,2)
- ;;=^5001253
- ;;^UTILITY(U,$J,358.3,20114,0)
- ;;=C50.912^^84^929^131
- ;;^UTILITY(U,$J,358.3,20114,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20114,1,3,0)
- ;;=3^Malig Neop Left Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,20114,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,20114,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,20115,0)
- ;;=C50.911^^84^929^153
- ;;^UTILITY(U,$J,358.3,20115,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20115,1,3,0)
- ;;=3^Malig Neop Right Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,20115,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,20115,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,20116,0)
- ;;=C50.919^^84^929^123
- ;;^UTILITY(U,$J,358.3,20116,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20116,1,3,0)
- ;;=3^Malig Neop Female Breast,Unspec Site
- ;;^UTILITY(U,$J,358.3,20116,1,4,0)
- ;;=4^C50.919
- ;;^UTILITY(U,$J,358.3,20116,2)
- ;;=^5001197
- ;;^UTILITY(U,$J,358.3,20117,0)
- ;;=C62.90^^84^929^161
- ;;^UTILITY(U,$J,358.3,20117,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20117,1,3,0)
- ;;=3^Malig Neop Testis,Unspec
- ;;^UTILITY(U,$J,358.3,20117,1,4,0)
- ;;=4^C62.90
- ;;^UTILITY(U,$J,358.3,20117,2)
- ;;=^5001236
- ;;^UTILITY(U,$J,358.3,20118,0)
- ;;=D03.9^^84^929^165
- ;;^UTILITY(U,$J,358.3,20118,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20118,1,3,0)
- ;;=3^Melanoma in Situ,Unspec
- ;;^UTILITY(U,$J,358.3,20118,1,4,0)
- ;;=4^D03.9
- ;;^UTILITY(U,$J,358.3,20118,2)
- ;;=^5001908
- ;;^UTILITY(U,$J,358.3,20119,0)
- ;;=C45.0^^84^929^166
- ;;^UTILITY(U,$J,358.3,20119,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20119,1,3,0)
- ;;=3^Mesothelioma of Pleura
- ;;^UTILITY(U,$J,358.3,20119,1,4,0)
- ;;=4^C45.0
- ;;^UTILITY(U,$J,358.3,20119,2)
- ;;=^5001095
- ;;^UTILITY(U,$J,358.3,20120,0)
- ;;=C90.01^^84^929^168
- ;;^UTILITY(U,$J,358.3,20120,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20120,1,3,0)
- ;;=3^Multiple Myeloma,In Remission
- ;;^UTILITY(U,$J,358.3,20120,1,4,0)
- ;;=4^C90.01
- ;;^UTILITY(U,$J,358.3,20120,2)
- ;;=^267515
- ;;^UTILITY(U,$J,358.3,20121,0)
- ;;=C90.00^^84^929^169
- ;;^UTILITY(U,$J,358.3,20121,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20121,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,20121,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,20121,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,20122,0)
- ;;=C94.6^^84^929^170
- ;;^UTILITY(U,$J,358.3,20122,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20122,1,3,0)
- ;;=3^Myelodysplastic Disease NEC
- ;;^UTILITY(U,$J,358.3,20122,1,4,0)
- ;;=4^C94.6
- ;;^UTILITY(U,$J,358.3,20122,2)
- ;;=^5001846
- ;;^UTILITY(U,$J,358.3,20123,0)
- ;;=D61.82^^84^929^171
- ;;^UTILITY(U,$J,358.3,20123,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20123,1,3,0)
- ;;=3^Myelophthisis
- ;;^UTILITY(U,$J,358.3,20123,1,4,0)
- ;;=4^D61.82
- ;;^UTILITY(U,$J,358.3,20123,2)
- ;;=^334037
- ;;^UTILITY(U,$J,358.3,20124,0)
- ;;=D47.9^^84^929^172
- ;;^UTILITY(U,$J,358.3,20124,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20124,1,3,0)
- ;;=3^Neop Lymphoid,Hematopoietic & Related Tissue,Uncertain Behavior
- ;;^UTILITY(U,$J,358.3,20124,1,4,0)
- ;;=4^D47.9
- ;;^UTILITY(U,$J,358.3,20124,2)
- ;;=^5002260
- ;;^UTILITY(U,$J,358.3,20125,0)
- ;;=D53.9^^84^929^176
- ;;^UTILITY(U,$J,358.3,20125,1,0)
- ;;=^358.31IA^4^2
+ ;;^DIC(358.93,0,"GL")
+ ;;=^IBE(358.93,
+ ;;^DIC("B","IMP/EXP MULTIPLE CHOICE FIELD",358.93)
+ ;;=
+ ;;^DIC(358.93,"%D",0)
+ ;;=^^2^2^2951024^^^
+ ;;^DIC(358.93,"%D",1,0)
+ ;;=This file is used as a work space for the import/export utility of the
+ ;;^DIC(358.93,"%D",2,0)
+ ;;=encounter form utilities.
+ ;;^DD(358.93,0)
+ ;;=FIELD^^1^9
+ ;;^DD(358.93,0,"DDA")
+ ;;=N
+ ;;^DD(358.93,0,"DT")
+ ;;=2960119
+ ;;^DD(358.93,0,"IX","A",358.931,.01)
+ ;;=
+ ;;^DD(358.93,0,"IX","A1",358.931,.02)
+ ;;=
+ ;;^DD(358.93,0,"IX","B",358.93,.01)
+ ;;=
+ ;;^DD(358.93,0,"IX","C",358.93,.08)
+ ;;=
+ ;;^DD(358.93,0,"NM","IMP/EXP MULTIPLE CHOICE FIELD")
+ ;;=
+ ;;^DD(358.93,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.93,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.93,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.93,.01,1,1,0)
+ ;;=358.93^B
+ ;;^DD(358.93,.01,1,1,1)
+ ;;=S ^IBE(358.93,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.93,.01,1,1,2)
+ ;;=K ^IBE(358.93,"B",$E(X,1,30),DA)
+ ;;^DD(358.93,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.93,.01,21,0)
+ ;;=^^2^2^2930623^^^^
+ ;;^DD(358.93,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.93,.01,21,2,0)
+ ;;=The division the setup is for.
+ ;;^DD(358.93,.01,"DT")
+ ;;=2930518

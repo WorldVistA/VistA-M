@@ -1,44 +1,59 @@
-DDSWP ;SFISC/MKO-WP ;1:05 PM  23 Aug 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSWP ;SFISC/MKO-WP ;19DEC2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 EDIT ;Edit the word processing field
  N I
  S DDSUE=$D(DDSTP)#2!$S($P($G(DDSU("A")),U,4)="":$P($G(DDSO(4)),U,4),1:$P(DDSU("A"),U,4))
+ I 'DDSUE S I=$P((DDSU("DD")),U,2) I I,$P($G(^DD(I,.01,0)),U,2)["I",$G(DDSGL)["(",$O(@(DDSGL_"0)")) S DDSUE=1 ;UNEDITABLE WORD-PROCESSING FIELD
  I DDSUE D  I $D(DIRUT) K DIRUT,DUOUT,DIROUT G EDITQ
- . D:DDM CLRMSG^DDS
- . K DIR S DIR(0)="E"
- . S DIR("A",1)="WARNING: This field is uneditable."
- . S DIR("A",2)="         Any changes made in the editor will not be saved."
- . S DIR("A",3)=""
- . S DIR("A")="Press RETURN to enter editor:"
- . S DIR0=IOSL-1_U_($L(DIR("A"))+1)_"^1^"_(IOSL-4)_"^0"
- . D ^DIR K DIR
- ;
+ .D:DDM CLRMSG^DDS
+ .N DDSWP D BLD^DIALOG(8178,,,"DDSWP"),MSG^DDSMSG(.DDSWP) H 2 Q  ;**
  S DDSUTL=$NA(@DDSREFT@("F"_DDP,DDSDA,DDSFLD))
  ;
  I $D(@DDSUTL@("F"))[0,$D(@(DDSGL_"0)"))#2 D
  . K @DDSUTL@("D")
  . M @DDSUTL@("D")=@($E(DDSGL,1,$L(DDSGL)-1)_")")
- ;
+MOUSEOFF W *27,"[?1000l"
  S (DY,DX)=0 X IOXY W $P(DDGLCLR,DDGLDEL,2)
  S DIC=$E(DDSUTL,1,$L(DDSUTL)-1)_",""D"",",DWPK=1
  S DIWESUB=$P($G(DDSU("DD")),U) K:DIWESUB="" DIWESUB
- D EN^DIWE
+ ;S DDWFLAGS=$G(DDWFLAGS)_"K"
+ D EN^DIWE ;,INIT^DDGLIB0()
  K DIC,DIWESUB,DWPK
  I 'DDSUE S DDSCHG=1,@DDSUTL@("F")=1
  E  K @DDSUTL@("D")
+MOUSEON I $G(DDS)>0,$G(DDSMOUSY) W *27,"[?1000h"
 EDITQ K DDSUE,DDSUTL
  Q
  ;
 WP ;At the wp field
  S DIR(0)="FO^0:0"
- S DIR("?")="^W ""Press 'RETURN' to edit this word processing field."""
+ I $D(@DDSREFT@("XCAP")) G EGP ; EXECUTABLE CAPTION writes over "+"
+ I $$WPLUS("F"_DDP,DDSDA,DDSFLD) S DIR("B")="+" ;WHEN CURSOR IS ON FIELD, "+" WILL SHOW IF THERE IS ALREADY W-P DATA THERE
+EGP S DIR("?")="^W $$EZBLD^DIALOG(8179)" ; "Press <Enter> to edit this word processing field."
  S DIR("??")="^D HELP^DDSWP"
  D ^DIR K DIR,DUOUT,DIRUT,DIROUT
  Q
+ ;
+WPLUS(FFILE,DA,FIELD) ;SAYS WHETHER WP FIELD HAS SOME DATA
+ ;EXAMPLE:
+ ;^TMP("DDS",4028,181,"F666001","889,",15,"F")=1
+ ;^TMP("DDS",4028,181,"F666001","889,",15,"M")="0^DIZ(666001,889,""17"",^666001.0"
+ N WP
+ I DA="" Q 0
+ I 'FIELD Q 0
+ I $G(@DDSREFT@(FFILE,DA,FIELD,"F"))=1 Q $O(^("D",0))>0 ;IF WE'VE EDITED, ARE THERE LINES LEFT?
+ I $G(@DDSREFT@(FFILE,DA,FIELD,"M"))?1"0^".E S WP=$P(^("M"),U,2) I WP["(" S WP=U_$$CREF^DILF(WP_0),WP=$P($G(@WP),U,3) Q ''WP ;IF WE HAVEN'T EDITED, LOOK IN THE DATA
+ Q 0
+ ;
+ ;
 HELP ;?? help at the WP field
  S DDSFN=+$P(DDSU("M"),U,3)
- D:$G(^DD(DDSFN,.01,3))]"" MSG^DDSMSG(^(3))
+ D:$G(^DD(DDSFN,.01,3))]"" MSG^DDSMSG($$HELP^DIALOGZ(DDSFN,.01)) ;**CCO/NI  WORD-PROCESSING FIELD HELP
  X:$G(^DD(DDSFN,.01,4))]"" ^(4)
  D:$D(^DD(DDSFN,.01,21)) WP^DDSMSG("^DD("_DDSFN_",.01,21)")
  K DDSFN

@@ -1,8 +1,12 @@
 PSOORCPY ;BIR/SAB-copy orders from backdoor ;10/17/96
- ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313**;DEC 1997;Build 76
- ;External references LK^ORX2 and ULK^ORX2 supported by DBIA 867
- ;External reference to ^PSDRUG supported by DBIA 221
- ;External references L, UL, PSOL, and PSOUL^PSSLOCK supported by DBIA 2789
+ ;;7.0;OUTPATIENT PHARMACY;**10,21,27,32,46,100,117,148,313,411,444**;DEC 1997;Build 34
+ ;External reference to LK^ORX2 supported by DBIA 867
+ ;External reference to ULK^ORX2 supported by DBIA 867
+ ;External reference to ^PSDRUG( supported by DBIA 221
+ ;External reference to L^PSSLOCK supported by DBIA 2789
+ ;External reference to UL^PSSLOCK supported by DBIA 2789
+ ;External reference to PSOL^PSSLOCK supported by DBIA 2789
+ ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;I '$D(^XUSEC("PSORPH",DUZ)) S VALMSG="Invalid Action Selection!",VALMBCK="" Q
  ;
  ; Cleaning up Titration/Maintenance variables (they shouldn't be defined - just to be safe)
@@ -15,7 +19,7 @@ COPY ; Rx Copy Functionality
  S PSOPLCK=$$L^PSSLOCK(PSODFN,0) I '$G(PSOPLCK) D LOCK S VALMSG=$S($P($G(PSOPLCK),"^",2)'="":$P($G(PSOPLCK),"^",2)_" is working on this patient.",1:"Another person is entering orders for this patient.") K PSOPLCK S VALMBCK="" Q
  K PSOPLCK S X=PSODFN_";DPT(" D LK^ORX2 I 'Y S VALMSG="Another person is entering orders for this patient.",VALMBCK="" D UL^PSSLOCK(PSODFN) Q
  D PSOL^PSSLOCK($P(PSOLST(ORN),"^",2)) I '$G(PSOMSG) S VALMSG=$S($P($G(PSOMSG),"^",2)'="":$P($G(PSOMSG),"^",2),1:"Another person is editing this order."),VALMBCK="" K PSOMSG G EX
- N VALMCNT K PSOEDIT S (PSOCOPY,COPY,PSORXED)=1 D FULL^VALM1
+ N VALMCNT K PSOEDIT S (PSOCOPY,COPY,PSORXED,ZZCOPY)=1 D FULL^VALM1
  S PSORXED("DFLG")=0,(RXN,DA,PSORXED("IRXN"))=$P(PSOLST(ORN),"^",2),PSORXED("RX0")=^PSRX(PSORXED("IRXN"),0),PSORXED("RX2")=$G(^(2)),PSORXED("RX3")=$G(^(3)),PSOI=$P($G(^("OR1")),"^"),PSOSIG=$P($G(^("SIG")),"^"),STAT=+^("STA")
  S PSORXED("INS")=$G(^PSRX(PSORXED("IRXN"),"INS"))
  S:$G(^PSRX(PSORXED("IRXN"),"INSS"))]"" PSORXED("SINS")=^PSRX(PSORXED("IRXN"),"INSS")
@@ -36,6 +40,10 @@ COPY ; Rx Copy Functionality
  .S VALMSG=$S('$G(PSOMTFLG):"Cannot COPY. ",1:"")_"Missing Sig"
  I '$P($G(^PSDRUG($P(PSORXED("RX0"),"^",6),2)),"^") S VALMBCK="R" G OUT
  S DREN=$P(PSORXED("RX0"),"^",6),PSODAYS=$P(PSORXED("RX0"),"^",8)
+ ; Checks if the current Days Supply value is greater than the Maximum Days Supply for the Drug
+ I '$G(PSOMTFLG) D
+ . S PSORXED("DAYS SUPPLY")=$P(PSORXED("RX0"),"^",8),PSORXED("QTY")=$P(PSORXED("RX0"),"^",7)
+ . D DAYSUP^PSOUTIL(DREN,.PSORXED,1)
  S PSORXST=+$P($G(^PS(53,$P(PSORXED("RX0"),"^",3),0)),"^",7)
  S POERR=1 D DRG^PSOORDRG K POERR
  I $G(PSORX("DFLG")) S VALMBCK="R"
@@ -55,7 +63,7 @@ EX S X=PSODFN_";DPT(" D ULK^ORX2
  D UL^PSSLOCK(PSODFN)
  K PSOMSG,PSONEW,PSOSIG,STA,DREN,PSODAYS,PSORXST,PSOCOPY,PSORXED,FST,FLD,IEN,FLN,INCOM,PSOI,COPY,SIG,SIGOK
  K PSODRUG,^TMP("PSOPO",$J),PSOMTFLG
- D CLEAN^PSOVER1,EOJ^PSONEW
+ D CLEAN^PSOVER1,EOJ^PSONEW K ZZCOPY
  Q
 LOCK ;
  I $P($G(PSOPLCK),"^")'=0 Q

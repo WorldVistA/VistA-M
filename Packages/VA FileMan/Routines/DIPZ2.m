@@ -1,6 +1,10 @@
-DIPZ2 ;SFISC/GFT,XAK-COMPILE PRINT TEMPLATES ;09:33 PM  9 Feb 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIPZ2 ;SFISC/GFT,XAK-COMPILE PRINT TEMPLATES ;07:33 PM  16 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F R=0:0 S R=$O(DXS(R)),W="" Q:'R  K:$D(DXS(R))>9 ^DIPT(DIPZ,"DXS",R) F R=R:0 S W=$O(DXS(R,W)) Q:W=""  S ^DIPT(DIPZ,"DXS",R,W)=DXS(R,W)
  S DIPZLR=DRN,DRN="",DIL=0 D NEW
 DXS I $D(^DIPT(DIPZ,"DXS")) S X=" I $D(DXS)<9 M DXS=^DIPT("_DIPZ_",""DXS"")" D L
@@ -14,7 +18,7 @@ DHD F F=2.9:0 S F=$O(^UTILITY($J,F)) Q:'F  S DIL=$L(^(F))+DIL
  S X=" Q" D L S X="HEAD ;" D L F F=2.9:0 S F=$O(^UTILITY($J,F)) Q:'F  S X=" "_^(F) D L
  S X=" W !,""" F %=1:1 S X=X_"-" I %=IOM!(%>239) S X=X_""",!!" D L Q
 END D SAVE G:DIPZQ K
- S ^DIPT(DIPZ,"ROUOLD")=DNM,^("IOM")=IOM,^("ROU")=U_DNM,^("LAST")=$S(DRN>1:DRN-1,1:""),DM=0,F=""
+EGP S ^DIPT(DIPZ,"ROUOLD")=DNM,^("IOM")=IOM,^("ROU")=U_DNM,^("LAST")=$S(DRN>1:DRN-1,1:""),DM=0,F="" I $G(DUZ("LANG")) S ^("ROULANG")=DUZ("LANG") ;**CCO/NI REMEMBER LANGUAGE
  K ^("STATS"),DXS F DIP="L","H","DITTO","CP","Q","N","S" I $D(@DIP)>9 S %X=DIP_"(",%Y="^DIPT(DIPZ,""STATS"",DIP," D %XY^%RCR
  F DIP=-1:0 S DIP=$O(^DIPT(DIPZ,"F",DIP)) Q:DIP=""  S R=^(DIP) W:'$G(DIPZS) "." D R
 K K ^UTILITY($J),^("DIPZ",$J),DIPZL,DISMIN,%X,%Y,DG,DIL,DLN,DL,DM,DMAX,DNM,DRD,DRJ,DIO,DX,DY,DRN,DIPZLR,V,R,W,Y,T,DIDXS,DINC
@@ -41,7 +45,7 @@ L S L=L+DINC,^UTILITY($J,0,L)=X Q
  ;
  ;DIALOG #1503  'routine name is too long.  Compilation...aborted'
  ;       #8025  '...routine filed.'
- ;
+ ;**CCO/NI TAG 'TEXT+15' CHANGED FOR DATE OUTPUT
 TEXT ;
  ;;CP G CP^DIO2
  ;;C S DQ(C)=Y
@@ -57,7 +61,7 @@ TEXT ;
  ;; S DISTP=DISTP+1,DILCT=DILCT+1 D:'(DISTP#100) CSTP^DIO2
  ;; Q
  ;;DT I $G(DUZ("LANG"))>1,Y W $$OUT^DIALOGU(Y,"DD") Q
- ;; I Y W $P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" " W:Y#100 $J(Y#100\1,2)_"," W Y\10000+1700 W:Y#1 "  "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+ ;; X ^DD("DD")
  ;; W Y Q
  ;;M D @DIXX
  ;; Q

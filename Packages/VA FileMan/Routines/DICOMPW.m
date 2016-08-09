@@ -1,6 +1,10 @@
-DICOMPW ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR 1/7/2004;8FEB2012
- ;;22.0;VA FileMan;**6,76,169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICOMPW ;SFISC/GFT-EVALUATE COMPUTED FLD EXPR ;2014-12-27  2:30 AM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 COLON N DICOMPW K DP,Y S DICOMPW=DICOMP ;COME HERE WHEN INPUT ENDS IN COLON
  I $D(DIC)#2,$P(X,":",2)="" S X=$P(X,":"),DIC(0)="FIZO",DIC("S")="N A S A=$P(^(0),U,2) I A[""P""!(A[""p""),'A" N DICR,DO,DIY D ^DIC K DIC S X=X_":" D:Y>0 ARC I Y>0 S X="INTERNAL(#"_+Y_")",DP=+$P($P(Y(0),U,2),"P",2)_U_$P(Y(0),U,3)
  I  I $P(Y(0),U,2)["p" S X=$P(Y(0),U,5,99),DP=+$P($P(Y(0),U,2),"p",2),DP=DP_$G(^DIC(DP,0,"GL")),Y=0 G JUMP:$P(Y(0),U,2)'["m" S DICOMPW=DICOMP+100 D IJ S Y=D_"m" Q  ;computed pointer, possibly multiple
@@ -24,32 +28,33 @@ M ;
  S I="#.01"_$E(I,M,999),M=0 Q
  ;
 ASKE ;
- S (D,DS)=0,%=1 I DICOMP["?",DICOMP["E" W !,"WILL TERMINAL USER BE ALLOWED TO SELECT PROPER ENTRY IN '"_$O(^DD(Y,0,"NM",0))_"' FILE" D YN^DICN S:%=1 DS=1
+ S (D,DS)=0,%=1 I DICOMP["?",DICOMP["E" W !,$$EZBLD^DIALOG(8203,$$FILENAME^DIALOGZ(Y)) D YN^DICN S:%=1 DS=1 ;**CCO/NI 'WILL USER SELECT?'
  S:%<0 D=% Q:%  D DICOMPW^DIQQQ G ASKE
  ;
 ASK ;
  G NO:DICOMP'["?",ASK1:DUZ(0)="@"
  S DIFILE=Y,DIAC="LAYGO" D ^DIAC K DIAC,DIFILE G:'% NO
-ASK1 W !,"DO YOU WANT TO PERMIT ADDING A NEW '"_$O(^DD(Y,0,"NM",0))_"' ENTRY"
+ASK1 W !,$$EZBLD^DIALOG(8204,$$FILENAME^DIALOGZ(Y)) ;**CCO/NI WANT TO PERMIT ADDING...?
  S %=2-(DICOMP["L"),D=0 D YN^DICN W ! I %<1 S D=-1 Q
- Q:%=2  S D=1 Q:DZ  W "WELL THEN, DO YOU WANT TO **FORCE** ADDING A NEW ENTRY EVERY TIME"
+ASK2 Q:%=2  S D=1 Q:DZ  W $$EZBLD^DIALOG(8205) ;**CCO/NI WELL, WANT TO *FORCCE* ADING...?
  S %=2-(DICOMP["L2") D YN^DICN I %<1 S D=-1 Q
  S D=3-%,DICO(2)=1 Q:%=1!'DS
- W !,"DO YOU WANT AN 'ADDING A NEW "_$O(^DD(Y,0,"NM",0))_"' MESSAGE" D YN^DICN I %<1 S D=-1 Q
+ASK3 W !,$$EZBLD^DIALOG(8206,$$FILENAME^DIALOGZ(Y)) D YN^DICN I %<1 S D=-1 Q  ;**CCO/NI WANT AN 'ADDING NEW?' MESSAGE?
  Q:%=1  S DICO(3)=% Q
 NO S D=0 Q
  ;
-DPS ;
+DPS ;COME HERE FROM DICOMP, DICOMP0, DICOMP1 TO POP THE STACK
  S X=DPS(DPS),%=$O(DPS(DPS,"$")) S:$D(DPS(DPS,"BOOL")) DBOOL=DPS(DPS,"BOOL") I %["$" S X=X_"X)"_DPS(DPS,%) D
  .N % S %=X N X S X=% F  Q:$E(X)'=" "  S X=$E(X,2,999)
- .D ^DIM I '$D(X) S W(DPS)="BAD SYNTAX!"
- I $D(DPS(DPS,"DATE")) S DATE(K+1)=1
+ .D ^DIM I '$D(X) S W(DPS)="BAD '$' SYNTAX!"
+ I $D(DPS(DPS,"DATE")) S DATE(K+1)=1 ;THE FUNCTION WAS DATE-VALUED, SO WE HAVE A DATE-VALUED EXPRESSION UP TO NOW
  S %=$D(DATE(K)) I $D(DPS(DPS,U)) S K=K+2,K(K-1)=X,K(K)=$E(DPS(DPS,U)),X=$E(DPS(DPS,U),2,99)
- I %&$D(DPS(DPS,"O"))!$D(DPS(DPS,"D"))!$D(DPS(DPS,"DATE")) S DATE(K+1)=1
+ I %&$D(DPS(DPS,"O"))!$D(DPS(DPS,"D")) S DATE(K+1)=1 ;!$D(DPS(DPS,"DATE")); "O" = DATE-VALUED IF INPUT WAS DATE-VALUED.  "D" = ALWAYS DATE-VALUED.
  E  I '$D(DPS(DPS,"ST")) S K(K+1,9)=0
  K DPS(DPS) S DPS=DPS-1
  Q
+ ;
 ARC ;
  Q:DICOMP'["W"
- I $P($G(^DD(+$P($P(Y(0),U,2),"P",2),0,"DI")),U,2)["Y" W !,$C(7),"SORRY, CAN'T EDIT A RESTRICTED"_$S($P($G(^("DI")),U)["Y":" (ARCHIVE)",1:"")_" FILE!" S Y=-1
+RES N N S N=+$P($P(Y(0),U,2),"P",2) I $P($G(^DD(N,0,"DI")),U,2)["Y" W !,$C(7),$$EZBLD^DIALOG(405,N) S Y=-1 ;**CCO/NI 'CANNOT EDIT RESTRICTED FILE'
  Q

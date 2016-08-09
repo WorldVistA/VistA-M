@@ -1,126 +1,284 @@
-IBDEI0R4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0R4 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12722,1,3,0)
- ;;=3^Cellulitis of Bilateral Orbits
- ;;^UTILITY(U,$J,358.3,12722,1,4,0)
- ;;=4^H05.013
- ;;^UTILITY(U,$J,358.3,12722,2)
- ;;=^5004562
- ;;^UTILITY(U,$J,358.3,12723,0)
- ;;=I70.331^^53^582^50
- ;;^UTILITY(U,$J,358.3,12723,1,0)
+ ;;^UTILITY(U,$J,358.3,27246,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12723,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,12723,1,4,0)
- ;;=4^I70.331
- ;;^UTILITY(U,$J,358.3,12723,2)
- ;;=^5007626
- ;;^UTILITY(U,$J,358.3,12724,0)
- ;;=I70.332^^53^582^51
- ;;^UTILITY(U,$J,358.3,12724,1,0)
+ ;;^UTILITY(U,$J,358.3,27246,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,27246,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,27246,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,27247,0)
+ ;;=F33.3^^102^1319^7
+ ;;^UTILITY(U,$J,358.3,27247,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12724,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,12724,1,4,0)
- ;;=4^I70.332
- ;;^UTILITY(U,$J,358.3,12724,2)
- ;;=^5007627
- ;;^UTILITY(U,$J,358.3,12725,0)
- ;;=I70.333^^53^582^52
- ;;^UTILITY(U,$J,358.3,12725,1,0)
+ ;;^UTILITY(U,$J,358.3,27247,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,27247,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,27247,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,27248,0)
+ ;;=F33.41^^102^1319^9
+ ;;^UTILITY(U,$J,358.3,27248,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12725,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,12725,1,4,0)
- ;;=4^I70.333
- ;;^UTILITY(U,$J,358.3,12725,2)
- ;;=^5007628
- ;;^UTILITY(U,$J,358.3,12726,0)
- ;;=I70.334^^53^582^53
- ;;^UTILITY(U,$J,358.3,12726,1,0)
+ ;;^UTILITY(U,$J,358.3,27248,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,27248,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,27248,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,27249,0)
+ ;;=F33.42^^102^1319^8
+ ;;^UTILITY(U,$J,358.3,27249,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12726,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,12726,1,4,0)
- ;;=4^I70.334
- ;;^UTILITY(U,$J,358.3,12726,2)
- ;;=^5007629
- ;;^UTILITY(U,$J,358.3,12727,0)
- ;;=I70.335^^53^582^54
- ;;^UTILITY(U,$J,358.3,12727,1,0)
+ ;;^UTILITY(U,$J,358.3,27249,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,27249,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,27249,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,27250,0)
+ ;;=F34.8^^102^1319^6
+ ;;^UTILITY(U,$J,358.3,27250,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12727,1,3,0)
- ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,12727,1,4,0)
- ;;=4^I70.335
- ;;^UTILITY(U,$J,358.3,12727,2)
- ;;=^5007630
- ;;^UTILITY(U,$J,358.3,12728,0)
- ;;=I70.341^^53^582^49
- ;;^UTILITY(U,$J,358.3,12728,1,0)
+ ;;^UTILITY(U,$J,358.3,27250,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,27250,1,4,0)
+ ;;=4^F34.8
+ ;;^UTILITY(U,$J,358.3,27250,2)
+ ;;=^5003539
+ ;;^UTILITY(U,$J,358.3,27251,0)
+ ;;=F34.1^^102^1319^21
+ ;;^UTILITY(U,$J,358.3,27251,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12728,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,12728,1,4,0)
- ;;=4^I70.341
- ;;^UTILITY(U,$J,358.3,12728,2)
- ;;=^5007633
- ;;^UTILITY(U,$J,358.3,12729,0)
- ;;=I70.342^^53^582^46
- ;;^UTILITY(U,$J,358.3,12729,1,0)
+ ;;^UTILITY(U,$J,358.3,27251,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,27251,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,27251,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,27252,0)
+ ;;=N94.3^^102^1319^22
+ ;;^UTILITY(U,$J,358.3,27252,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12729,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,12729,1,4,0)
- ;;=4^I70.342
- ;;^UTILITY(U,$J,358.3,12729,2)
- ;;=^5007634
- ;;^UTILITY(U,$J,358.3,12730,0)
- ;;=I70.343^^53^582^45
- ;;^UTILITY(U,$J,358.3,12730,1,0)
+ ;;^UTILITY(U,$J,358.3,27252,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,27252,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,27252,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,27253,0)
+ ;;=F06.34^^102^1319^3
+ ;;^UTILITY(U,$J,358.3,27253,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12730,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,12730,1,4,0)
- ;;=4^I70.343
- ;;^UTILITY(U,$J,358.3,12730,2)
- ;;=^5007635
- ;;^UTILITY(U,$J,358.3,12731,0)
- ;;=I70.344^^53^582^47
- ;;^UTILITY(U,$J,358.3,12731,1,0)
+ ;;^UTILITY(U,$J,358.3,27253,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Mixed Features,Unsp
+ ;;^UTILITY(U,$J,358.3,27253,1,4,0)
+ ;;=4^F06.34
+ ;;^UTILITY(U,$J,358.3,27253,2)
+ ;;=^5003060
+ ;;^UTILITY(U,$J,358.3,27254,0)
+ ;;=F32.8^^102^1319^4
+ ;;^UTILITY(U,$J,358.3,27254,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12731,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,12731,1,4,0)
- ;;=4^I70.344
- ;;^UTILITY(U,$J,358.3,12731,2)
- ;;=^5007636
- ;;^UTILITY(U,$J,358.3,12732,0)
- ;;=I70.345^^53^582^48
- ;;^UTILITY(U,$J,358.3,12732,1,0)
+ ;;^UTILITY(U,$J,358.3,27254,1,3,0)
+ ;;=3^Depressive Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,27254,1,4,0)
+ ;;=4^F32.8
+ ;;^UTILITY(U,$J,358.3,27254,2)
+ ;;=^5003527
+ ;;^UTILITY(U,$J,358.3,27255,0)
+ ;;=F32.9^^102^1319^5
+ ;;^UTILITY(U,$J,358.3,27255,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12732,1,3,0)
- ;;=3^Athscl Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,12732,1,4,0)
- ;;=4^I70.345
- ;;^UTILITY(U,$J,358.3,12732,2)
- ;;=^5007637
- ;;^UTILITY(U,$J,358.3,12733,0)
- ;;=I70.431^^53^582^40
- ;;^UTILITY(U,$J,358.3,12733,1,0)
+ ;;^UTILITY(U,$J,358.3,27255,1,3,0)
+ ;;=3^Depressive Disorder,Unsp
+ ;;^UTILITY(U,$J,358.3,27255,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,27255,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,27256,0)
+ ;;=F44.81^^102^1320^6
+ ;;^UTILITY(U,$J,358.3,27256,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12733,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,12733,1,4,0)
- ;;=4^I70.431
- ;;^UTILITY(U,$J,358.3,12733,2)
- ;;=^5007664
- ;;^UTILITY(U,$J,358.3,12734,0)
- ;;=I70.432^^53^582^41
- ;;^UTILITY(U,$J,358.3,12734,1,0)
+ ;;^UTILITY(U,$J,358.3,27256,1,3,0)
+ ;;=3^Dissociative Identity Disorder
+ ;;^UTILITY(U,$J,358.3,27256,1,4,0)
+ ;;=4^F44.81
+ ;;^UTILITY(U,$J,358.3,27256,2)
+ ;;=^331909
+ ;;^UTILITY(U,$J,358.3,27257,0)
+ ;;=F44.9^^102^1320^5
+ ;;^UTILITY(U,$J,358.3,27257,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12734,1,3,0)
- ;;=3^Athscl Autol Vein Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,27257,1,3,0)
+ ;;=3^Dissociative Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27257,1,4,0)
+ ;;=4^F44.9
+ ;;^UTILITY(U,$J,358.3,27257,2)
+ ;;=^5003584
+ ;;^UTILITY(U,$J,358.3,27258,0)
+ ;;=F44.0^^102^1320^2
+ ;;^UTILITY(U,$J,358.3,27258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27258,1,3,0)
+ ;;=3^Dissociative Amnesia
+ ;;^UTILITY(U,$J,358.3,27258,1,4,0)
+ ;;=4^F44.0
+ ;;^UTILITY(U,$J,358.3,27258,2)
+ ;;=^5003577
+ ;;^UTILITY(U,$J,358.3,27259,0)
+ ;;=F48.1^^102^1320^1
+ ;;^UTILITY(U,$J,358.3,27259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27259,1,3,0)
+ ;;=3^Depersonalization/Derealization Disorder
+ ;;^UTILITY(U,$J,358.3,27259,1,4,0)
+ ;;=4^F48.1
+ ;;^UTILITY(U,$J,358.3,27259,2)
+ ;;=^5003593
+ ;;^UTILITY(U,$J,358.3,27260,0)
+ ;;=F44.89^^102^1320^4
+ ;;^UTILITY(U,$J,358.3,27260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27260,1,3,0)
+ ;;=3^Dissociative Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,27260,1,4,0)
+ ;;=4^F44.89
+ ;;^UTILITY(U,$J,358.3,27260,2)
+ ;;=^5003583
+ ;;^UTILITY(U,$J,358.3,27261,0)
+ ;;=F44.1^^102^1320^3
+ ;;^UTILITY(U,$J,358.3,27261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27261,1,3,0)
+ ;;=3^Dissociative Amnesia w/ Dissociative Fugue
+ ;;^UTILITY(U,$J,358.3,27261,1,4,0)
+ ;;=4^F44.1
+ ;;^UTILITY(U,$J,358.3,27261,2)
+ ;;=^331908
+ ;;^UTILITY(U,$J,358.3,27262,0)
+ ;;=F50.02^^102^1321^1
+ ;;^UTILITY(U,$J,358.3,27262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27262,1,3,0)
+ ;;=3^Anorexia Nervosa,Binge-Eating/Purging Type
+ ;;^UTILITY(U,$J,358.3,27262,1,4,0)
+ ;;=4^F50.02
+ ;;^UTILITY(U,$J,358.3,27262,2)
+ ;;=^5003599
+ ;;^UTILITY(U,$J,358.3,27263,0)
+ ;;=F50.01^^102^1321^2
+ ;;^UTILITY(U,$J,358.3,27263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27263,1,3,0)
+ ;;=3^Anorexia Nervosa,Restricting Type
+ ;;^UTILITY(U,$J,358.3,27263,1,4,0)
+ ;;=4^F50.01
+ ;;^UTILITY(U,$J,358.3,27263,2)
+ ;;=^5003598
+ ;;^UTILITY(U,$J,358.3,27264,0)
+ ;;=F50.9^^102^1321^7
+ ;;^UTILITY(U,$J,358.3,27264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27264,1,3,0)
+ ;;=3^Feeding/Eating Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,27264,1,4,0)
+ ;;=4^F50.9
+ ;;^UTILITY(U,$J,358.3,27264,2)
+ ;;=^5003602
+ ;;^UTILITY(U,$J,358.3,27265,0)
+ ;;=F50.8^^102^1321^6
+ ;;^UTILITY(U,$J,358.3,27265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27265,1,3,0)
+ ;;=3^Feeding/Eating Disorder,Other Specified
+ ;;^UTILITY(U,$J,358.3,27265,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,27265,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,27266,0)
+ ;;=F50.8^^102^1321^3
+ ;;^UTILITY(U,$J,358.3,27266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27266,1,3,0)
+ ;;=3^Avoidant/Restrictive Food Intake Disorder
+ ;;^UTILITY(U,$J,358.3,27266,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,27266,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,27267,0)
+ ;;=F50.8^^102^1321^4
+ ;;^UTILITY(U,$J,358.3,27267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27267,1,3,0)
+ ;;=3^Binge-Eating Disorder
+ ;;^UTILITY(U,$J,358.3,27267,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,27267,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,27268,0)
+ ;;=F50.2^^102^1321^5
+ ;;^UTILITY(U,$J,358.3,27268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27268,1,3,0)
+ ;;=3^Bulimia Nervosa
+ ;;^UTILITY(U,$J,358.3,27268,1,4,0)
+ ;;=4^F50.2
+ ;;^UTILITY(U,$J,358.3,27268,2)
+ ;;=^5003600
+ ;;^UTILITY(U,$J,358.3,27269,0)
+ ;;=F50.8^^102^1321^8
+ ;;^UTILITY(U,$J,358.3,27269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27269,1,3,0)
+ ;;=3^Pica in Adults
+ ;;^UTILITY(U,$J,358.3,27269,1,4,0)
+ ;;=4^F50.8
+ ;;^UTILITY(U,$J,358.3,27269,2)
+ ;;=^5003601
+ ;;^UTILITY(U,$J,358.3,27270,0)
+ ;;=F98.21^^102^1321^9
+ ;;^UTILITY(U,$J,358.3,27270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27270,1,3,0)
+ ;;=3^Rumination Disorder
+ ;;^UTILITY(U,$J,358.3,27270,1,4,0)
+ ;;=4^F98.21
+ ;;^UTILITY(U,$J,358.3,27270,2)
+ ;;=^5003713
+ ;;^UTILITY(U,$J,358.3,27271,0)
+ ;;=Z55.9^^102^1322^1
+ ;;^UTILITY(U,$J,358.3,27271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27271,1,3,0)
+ ;;=3^Academic/Educational Problem
+ ;;^UTILITY(U,$J,358.3,27271,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,27271,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,27272,0)
+ ;;=Z56.82^^102^1322^2
+ ;;^UTILITY(U,$J,358.3,27272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27272,1,3,0)
+ ;;=3^Problems Related to Current Military Deployment Status
+ ;;^UTILITY(U,$J,358.3,27272,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,27272,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,27273,0)
+ ;;=F64.1^^102^1323^1
+ ;;^UTILITY(U,$J,358.3,27273,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,27273,1,3,0)
+ ;;=3^Gender Dysphoria in Adolescents & Adults
+ ;;^UTILITY(U,$J,358.3,27273,1,4,0)
+ ;;=4^F64.1
+ ;;^UTILITY(U,$J,358.3,27273,2)
+ ;;=^5003647
+ ;;^UTILITY(U,$J,358.3,27274,0)
+ ;;=F64.8^^102^1323^2

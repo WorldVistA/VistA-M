@@ -1,11 +1,15 @@
-DICATTDM ;GFT ;04:56 PM  17 Dec 2002
- ;;22.0;VA FileMan;**42,118**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATTDM ;GFT/GFT - SUBSCRIPT AND PIECE-POSITION FOR STORAGE OF SINGLE-VALUED DATA IN SCREENMAN ;16JAN2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
-SUBDEF ;
- S Y=$O(^DD(DICATTA,"GL",""),-1)
- I $$CHKSUB(Y) Q
-NXT I Y S Y=Y+1 Q
+ ;
+SUBDEF ;EXECUTABLE DEFAULT for FIELD 16 (SUBSCRIPT)
+ S Y=$O(^DD(DICATTA,"GL",""),-1) ;find the highest subscript now used for storage of this File's data
+ I $$CHKSUB(Y,1) Q
+NXT I Y S Y=Y+1 Q  ;get a new subscript
  F Y=+$O(^DD(DICATTA,"GL","A"),-1):1 Q:'$D(^(Y))
  Q
  ;
@@ -32,12 +36,13 @@ SUBHELP ;
  D HLP^DDSUTL(.X)
  Q
  ;
-CHKSUB(X) ;used as INPUT TRANSFORM for Fields 16 & 76
+CHKSUB(X,DISHORT) ;used as INPUT TRANSFORM for Fields 16 (SUBSCRIPT) & 76 (MUL SUBSCRIPT)  X is the subscript name.  DISHORT says 'don't go beyond 250'
  N M
- S M=$$GET^DDSVALF(20.5,"DICATT",1,"","")
+ S M=$$GET^DDSVALF(20.5,"DICATT",1,"","") ;'Is this field Multiple?'
  I $D(^DD(DICATTA,"GL",X)),M Q "Another Field is already stored at '"_X_"'"
  I $D(^(X,0)) Q "A multiple field is already stored at '"_X_"'"
- I $G(DICATTLN),$$MAX(DICATTLN,X)>250 Q "Too much to store at the '"_X_"' subscript"
+ I '$G(DICATTLN) Q 1 ;if we do not have a current length for the field, we are OK
+ S M=$S($G(DISHORT):250,1:$G(^DD("STRING_LIMIT"),255)-5) I $$MAX(DICATTLN,X)>M Q "Too much to store at the '"_X_"' subscript"
  Q 1
  ;
 MAX(L,Y) ;given L=length of new data, Y=subscript name

@@ -1,5 +1,5 @@
-MAGVRS61 ;WOIFO/DAC - RPC calls for DICOM file processing ; 15 Sep 2011 11:20 AM
- ;;3.0;IMAGING;**118**;Mar 19, 2002;Build 4525;May 01, 2013
+MAGVRS61 ;WOIFO/DAC - RPC calls for DICOM file processing ; 20 Nov 2015 11:20 AM
+ ;;3.0;IMAGING;**118,162**;Mar 19, 2002;Build 22;Nov 20, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -48,7 +48,7 @@ DUPUID(OUT,ACCESSION,DFN,TYPE,UID,STUDUID,SERUID) ; Check for duplicate UIDs in 
  I TYPE="SOP",$D(^MAGV(2005.64,"B",UID)) D
  . S SOPLINK=$$LINKED(ACCESSION,DFN,UID,"SOP",STUDUID,SERUID)
  . I SOPLINK=2 S OUT=0 Q
- . I SOPLINK="NOT AOF" S OUT=0 Q
+ . I SOPLINK="NOT AOF" S OUT=0 Q  ; P162 DAC - Check AOF before checking if duplicate
  . I SOPLINK=1 S OUT=2 Q
  . S OUT=1
  . Q
@@ -114,7 +114,6 @@ LINKED(ACCESSION,DFN,UID,UIDTYPE,STUDUIDA,SERUIDA) ; Check if duplicate UID is l
  . . S PRIEN=$P(PATPROC,U,3)
  . . Q
  . Q
- I $G(STATUS)="I" Q 2  ; No accessible record found
  I $G(PROCIEN)="" Q LINK  ; Not linked to a procedure ref
  I $G(PRIEN)="" Q LINK  ; Not linked to a procedure ref
  S PROCCASE=$P(^MAGV(2005.61,PROCIEN,0),U,1)
@@ -122,7 +121,8 @@ LINKED(ACCESSION,DFN,UID,UIDTYPE,STUDUIDA,SERUIDA) ; Check if duplicate UID is l
  I PRDFN=DFN,ACCESSION=PROCCASE S LINK=1
  I TYPE="SERIES",LINK,STUDUIDA'=STUDUIDB S LINK=0
  I TYPE="SOP",LINK,((STUDUIDA'=STUDUIDB)!(SERUIDA'=SERUIDB)) S LINK=0
- I LINK=1,TYPE="SOP",AOF'=1 S LINK="NOT AOF"
+ I LINK=1,TYPE="SOP",AOF'=1 S LINK="NOT AOF" Q LINK
+ I $G(STATUS)="I" Q 2  ; P162 DAC - Check Status after AOF check. No accessible record found.
  Q LINK
 LOGDUP(ORIGUID,NEWUID,ACCESSION,DFN,TYPE,STUDYUID,SERUID)  ; Log duplicate UIDs
  N FDA,FILE,ONEWUID,SOCTYPE

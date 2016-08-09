@@ -1,6 +1,10 @@
-DINIT3 ;SFISC/GFT-INITIALIZE VA FILEMAN ;10:37 AM  22 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT3 ;SFISC/GFT-INITIALIZE VA FILEMAN ;28AUG2008
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S ^DIC(.2,0)="DESTINATION^.21^",^(0,"GL")="^DIC(.2,"  S ^DIC(.5,0)="FUNCTION^.5I",^(0,"GL")="^DD(""FUNC"",",(^("LAYGO"),^("WR"))="@",^("DD")=U
  S ^DIC(.2,"%D",0)="^^2^2^2940908^"
  S ^DIC(.2,"%D",1,0)="This file stores destinations of data (e.g., a specific form or"
@@ -36,7 +40,7 @@ DINIT3 ;SFISC/GFT-INITIALIZE VA FILEMAN ;10:37 AM  22 Mar 1999
  D A2("SQLI_ERROR_LOG",1.52192)
  S D=0 F I="^DIPT(","^DIBT(","^DIE(" S X=$P("PRINT^SORT^INPUT",U,D+1)_" TEMPLATE",Y=D/1000+.4,^DD(Y,0,"NM",X)="",^DD(Y,.01,1,1,0)=Y_"^B",@("$P("_I_"0),U,1,2)=X_U_Y_""I"""),^DIC(Y,0)=X_"^"_Y,^(0,"GL")=I,D=D+1,^("WR")=U,^("DD")=U,^DIC("B",X,Y)=""
  ;
- F I=.2,.4,.5,.6,.7,.601,.602,.401,.4001,.4011,.4012,.402,.4021,.41,.411,.21,1,1.005,1.01,1.1,1.11,1.113,1.1132,1.12,1.13,1.1321,1.14,.403,.4031,.403115,.40315,.4032,.404,.40415,.4044,1.2,1.207,.44,.441,.4411,.447,.448,.42,.81 D XX
+DIK F I=.2,.4,.5,.6,.7,.601,.602,.401,.4001,.4011,.4012,.402,.4021,.4011624,.41,.411,.21,1,1.005,1.01,1.1,1.11,1.113,1.1132,1.12,1.13,1.1321,1.14,.403,.4031,.403115,.40315,.4032,.404,.40415,.4044,1.2,1.207,.44,.441,.4411,.447,.448,.42,.81 D XX
  F I=.4014,.40141,.401418,.401419,.83,.404421 D XX
  F I=.11,.111,.112,.114,.31,.312 D XX
  F I=.46,.461,.463 D XX
@@ -44,7 +48,7 @@ DINIT3 ;SFISC/GFT-INITIALIZE VA FILEMAN ;10:37 AM  22 Mar 1999
  F DIK="^DIC(.2,","^DIPT(","^DIST(1.2,","^DIST(.44,","^DI(.81,","^DIST(.403,","^DIST(.404,","^DIST(.46,","^DI(.85,","^DD(""IX"",","^DD(""KEY""," D X
  I $D(^DD("VERSION"))#2 K ^DIC("B") S DIK="^DIC(",DIK(1)=".01^B" D ENALL^DIK
  I '$D(^DD("VERSION"))#2 F DIK="^DIC(","^DIBT(","^DIE(" D X
- S ^DD("FUNC",0)="COMPUTED-FIELD FUNCTION^.5^"
+ S ^DD("FUNC",0)="FUNCTION^.5^"
  I $D(^DD("FUNC",7,1)),$D(^DD("VERSION")),^("VERSION")>15.4
  E  S ^DD("FUNC",7,1)="C X S X="""""
  G ^DINIT4

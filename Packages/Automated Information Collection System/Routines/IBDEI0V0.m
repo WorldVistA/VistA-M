@@ -1,132 +1,262 @@
-IBDEI0V0 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0V0 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14540,2)
- ;;=^5036972
- ;;^UTILITY(U,$J,358.3,14541,0)
- ;;=S91.104A^^53^610^22
- ;;^UTILITY(U,$J,358.3,14541,1,0)
+ ;;^UTILITY(U,$J,358.3,31179,1,4,0)
+ ;;=4^S68.124A
+ ;;^UTILITY(U,$J,358.3,31179,2)
+ ;;=^5036681
+ ;;^UTILITY(U,$J,358.3,31180,0)
+ ;;=S68.021A^^116^1526^40
+ ;;^UTILITY(U,$J,358.3,31180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14541,1,3,0)
- ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
- ;;^UTILITY(U,$J,358.3,14541,1,4,0)
- ;;=4^S91.104A
- ;;^UTILITY(U,$J,358.3,14541,2)
- ;;=^5044174
- ;;^UTILITY(U,$J,358.3,14542,0)
- ;;=S81.802A^^53^610^13
- ;;^UTILITY(U,$J,358.3,14542,1,0)
+ ;;^UTILITY(U,$J,358.3,31180,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right MCP Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31180,1,4,0)
+ ;;=4^S68.021A
+ ;;^UTILITY(U,$J,358.3,31180,2)
+ ;;=^5036630
+ ;;^UTILITY(U,$J,358.3,31181,0)
+ ;;=S68.620A^^116^1526^43
+ ;;^UTILITY(U,$J,358.3,31181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14542,1,3,0)
- ;;=3^Open Wound,Left Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,14542,1,4,0)
- ;;=4^S81.802A
- ;;^UTILITY(U,$J,358.3,14542,2)
- ;;=^5040068
- ;;^UTILITY(U,$J,358.3,14543,0)
- ;;=S41.102A^^53^610^15
- ;;^UTILITY(U,$J,358.3,14543,1,0)
+ ;;^UTILITY(U,$J,358.3,31181,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right Trnsphal Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31181,1,4,0)
+ ;;=4^S68.620A
+ ;;^UTILITY(U,$J,358.3,31181,2)
+ ;;=^5036765
+ ;;^UTILITY(U,$J,358.3,31182,0)
+ ;;=S68.626A^^116^1526^44
+ ;;^UTILITY(U,$J,358.3,31182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14543,1,3,0)
- ;;=3^Open Wound,Left Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,14543,1,4,0)
- ;;=4^S41.102A
- ;;^UTILITY(U,$J,358.3,14543,2)
- ;;=^5026333
- ;;^UTILITY(U,$J,358.3,14544,0)
- ;;=S91.001A^^53^610^16
- ;;^UTILITY(U,$J,358.3,14544,1,0)
+ ;;^UTILITY(U,$J,358.3,31182,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right Trnsphal Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31182,1,4,0)
+ ;;=4^S68.626A
+ ;;^UTILITY(U,$J,358.3,31182,2)
+ ;;=^5036783
+ ;;^UTILITY(U,$J,358.3,31183,0)
+ ;;=S68.622A^^116^1526^45
+ ;;^UTILITY(U,$J,358.3,31183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14544,1,3,0)
- ;;=3^Open Wound,Right Ankle,Unspec
- ;;^UTILITY(U,$J,358.3,14544,1,4,0)
- ;;=4^S91.001A
- ;;^UTILITY(U,$J,358.3,14544,2)
- ;;=^5044129
- ;;^UTILITY(U,$J,358.3,14545,0)
- ;;=S91.301A^^53^610^17
- ;;^UTILITY(U,$J,358.3,14545,1,0)
+ ;;^UTILITY(U,$J,358.3,31183,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right Trnsphal Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31183,1,4,0)
+ ;;=4^S68.622A
+ ;;^UTILITY(U,$J,358.3,31183,2)
+ ;;=^5036771
+ ;;^UTILITY(U,$J,358.3,31184,0)
+ ;;=S68.624A^^116^1526^46
+ ;;^UTILITY(U,$J,358.3,31184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14545,1,3,0)
- ;;=3^Open Wound,Right Foot,Unspec
- ;;^UTILITY(U,$J,358.3,14545,1,4,0)
- ;;=4^S91.301A
- ;;^UTILITY(U,$J,358.3,14545,2)
- ;;=^5044314
- ;;^UTILITY(U,$J,358.3,14546,0)
- ;;=S51.801A^^53^610^18
- ;;^UTILITY(U,$J,358.3,14546,1,0)
+ ;;^UTILITY(U,$J,358.3,31184,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right Trnsphal Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31184,1,4,0)
+ ;;=4^S68.624A
+ ;;^UTILITY(U,$J,358.3,31184,2)
+ ;;=^5036777
+ ;;^UTILITY(U,$J,358.3,31185,0)
+ ;;=S68.521A^^116^1526^47
+ ;;^UTILITY(U,$J,358.3,31185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14546,1,3,0)
- ;;=3^Open Wound,Right Forearm,Unspec
- ;;^UTILITY(U,$J,358.3,14546,1,4,0)
- ;;=4^S51.801A
- ;;^UTILITY(U,$J,358.3,14546,2)
- ;;=^5028659
- ;;^UTILITY(U,$J,358.3,14547,0)
- ;;=S91.101A^^53^610^19
- ;;^UTILITY(U,$J,358.3,14547,1,0)
+ ;;^UTILITY(U,$J,358.3,31185,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Right Trnsphal Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31185,1,4,0)
+ ;;=4^S68.521A
+ ;;^UTILITY(U,$J,358.3,31185,2)
+ ;;=^5036726
+ ;;^UTILITY(U,$J,358.3,31186,0)
+ ;;=Q17.5^^116^1526^364
+ ;;^UTILITY(U,$J,358.3,31186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14547,1,3,0)
- ;;=3^Open Wound,Right Great Toe w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,14547,1,4,0)
- ;;=4^S91.101A
- ;;^UTILITY(U,$J,358.3,14547,2)
- ;;=^5044168
- ;;^UTILITY(U,$J,358.3,14548,0)
- ;;=S61.401A^^53^610^20
- ;;^UTILITY(U,$J,358.3,14548,1,0)
+ ;;^UTILITY(U,$J,358.3,31186,1,3,0)
+ ;;=3^Prominent Ear
+ ;;^UTILITY(U,$J,358.3,31186,1,4,0)
+ ;;=4^Q17.5
+ ;;^UTILITY(U,$J,358.3,31186,2)
+ ;;=^5018514
+ ;;^UTILITY(U,$J,358.3,31187,0)
+ ;;=S68.121A^^116^1526^18
+ ;;^UTILITY(U,$J,358.3,31187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14548,1,3,0)
- ;;=3^Open Wound,Right Hand,Unspec
- ;;^UTILITY(U,$J,358.3,14548,1,4,0)
- ;;=4^S61.401A
- ;;^UTILITY(U,$J,358.3,14548,2)
- ;;=^5032981
- ;;^UTILITY(U,$J,358.3,14549,0)
- ;;=S71.001A^^53^610^21
- ;;^UTILITY(U,$J,358.3,14549,1,0)
+ ;;^UTILITY(U,$J,358.3,31187,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left MCP Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31187,1,4,0)
+ ;;=4^S68.121A
+ ;;^UTILITY(U,$J,358.3,31187,2)
+ ;;=^5036672
+ ;;^UTILITY(U,$J,358.3,31188,0)
+ ;;=S68.127A^^116^1526^19
+ ;;^UTILITY(U,$J,358.3,31188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14549,1,3,0)
- ;;=3^Open Wound,Right Hip,Unspec
- ;;^UTILITY(U,$J,358.3,14549,1,4,0)
- ;;=4^S71.001A
- ;;^UTILITY(U,$J,358.3,14549,2)
- ;;=^5036969
- ;;^UTILITY(U,$J,358.3,14550,0)
- ;;=S91.105A^^53^610^12
- ;;^UTILITY(U,$J,358.3,14550,1,0)
+ ;;^UTILITY(U,$J,358.3,31188,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left MCP Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31188,1,4,0)
+ ;;=4^S68.127A
+ ;;^UTILITY(U,$J,358.3,31188,2)
+ ;;=^5036690
+ ;;^UTILITY(U,$J,358.3,31189,0)
+ ;;=S68.123A^^116^1526^20
+ ;;^UTILITY(U,$J,358.3,31189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14550,1,3,0)
- ;;=3^Open Wound,Left Lesser Toe(s) w/o Damage to Nail,Unspec
- ;;^UTILITY(U,$J,358.3,14550,1,4,0)
- ;;=4^S91.105A
- ;;^UTILITY(U,$J,358.3,14550,2)
- ;;=^5044177
- ;;^UTILITY(U,$J,358.3,14551,0)
- ;;=S81.801A^^53^610^23
- ;;^UTILITY(U,$J,358.3,14551,1,0)
+ ;;^UTILITY(U,$J,358.3,31189,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left MCP Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31189,1,4,0)
+ ;;=4^S68.123A
+ ;;^UTILITY(U,$J,358.3,31189,2)
+ ;;=^5036678
+ ;;^UTILITY(U,$J,358.3,31190,0)
+ ;;=S68.125A^^116^1526^21
+ ;;^UTILITY(U,$J,358.3,31190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14551,1,3,0)
- ;;=3^Open Wound,Right Lower Leg,Unspec
- ;;^UTILITY(U,$J,358.3,14551,1,4,0)
- ;;=4^S81.801A
- ;;^UTILITY(U,$J,358.3,14551,2)
- ;;=^5040065
- ;;^UTILITY(U,$J,358.3,14552,0)
- ;;=S71.102A^^53^610^14
- ;;^UTILITY(U,$J,358.3,14552,1,0)
+ ;;^UTILITY(U,$J,358.3,31190,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left MCP Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31190,1,4,0)
+ ;;=4^S68.125A
+ ;;^UTILITY(U,$J,358.3,31190,2)
+ ;;=^5036684
+ ;;^UTILITY(U,$J,358.3,31191,0)
+ ;;=S68.022A^^116^1526^22
+ ;;^UTILITY(U,$J,358.3,31191,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14552,1,3,0)
- ;;=3^Open Wound,Left Thigh,Unspec
- ;;^UTILITY(U,$J,358.3,14552,1,4,0)
- ;;=4^S71.102A
- ;;^UTILITY(U,$J,358.3,14552,2)
- ;;=^5037011
- ;;^UTILITY(U,$J,358.3,14553,0)
- ;;=S71.101A^^53^610^24
- ;;^UTILITY(U,$J,358.3,14553,1,0)
+ ;;^UTILITY(U,$J,358.3,31191,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left MCP Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31191,1,4,0)
+ ;;=4^S68.022A
+ ;;^UTILITY(U,$J,358.3,31191,2)
+ ;;=^5036633
+ ;;^UTILITY(U,$J,358.3,31192,0)
+ ;;=S68.621A^^116^1526^25
+ ;;^UTILITY(U,$J,358.3,31192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14553,1,3,0)
- ;;=3^Open Wound,Right Thigh,Unspec
+ ;;^UTILITY(U,$J,358.3,31192,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Trnsphal Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31192,1,4,0)
+ ;;=4^S68.621A
+ ;;^UTILITY(U,$J,358.3,31192,2)
+ ;;=^5036768
+ ;;^UTILITY(U,$J,358.3,31193,0)
+ ;;=S68.627A^^116^1526^26
+ ;;^UTILITY(U,$J,358.3,31193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31193,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Trnsphal Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31193,1,4,0)
+ ;;=4^S68.627A
+ ;;^UTILITY(U,$J,358.3,31193,2)
+ ;;=^5036786
+ ;;^UTILITY(U,$J,358.3,31194,0)
+ ;;=S68.623A^^116^1526^27
+ ;;^UTILITY(U,$J,358.3,31194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31194,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Trnsphal Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31194,1,4,0)
+ ;;=4^S68.623A
+ ;;^UTILITY(U,$J,358.3,31194,2)
+ ;;=^5036774
+ ;;^UTILITY(U,$J,358.3,31195,0)
+ ;;=S68.625A^^116^1526^28
+ ;;^UTILITY(U,$J,358.3,31195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31195,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Trnsphal Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31195,1,4,0)
+ ;;=4^S68.625A
+ ;;^UTILITY(U,$J,358.3,31195,2)
+ ;;=^5036780
+ ;;^UTILITY(U,$J,358.3,31196,0)
+ ;;=S68.522A^^116^1526^29
+ ;;^UTILITY(U,$J,358.3,31196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31196,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left Trnsphal Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31196,1,4,0)
+ ;;=4^S68.522A
+ ;;^UTILITY(U,$J,358.3,31196,2)
+ ;;=^5036729
+ ;;^UTILITY(U,$J,358.3,31197,0)
+ ;;=S98.222A^^116^1526^13
+ ;;^UTILITY(U,$J,358.3,31197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31197,1,3,0)
+ ;;=3^Amputation,Partial Traumatic Left 2 or More Lesser Toes,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31197,1,4,0)
+ ;;=4^S98.222A
+ ;;^UTILITY(U,$J,358.3,31197,2)
+ ;;=^5046311
+ ;;^UTILITY(U,$J,358.3,31198,0)
+ ;;=M65.4^^116^1526^369
+ ;;^UTILITY(U,$J,358.3,31198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31198,1,3,0)
+ ;;=3^Radial Styloid Tenosynovitis
+ ;;^UTILITY(U,$J,358.3,31198,1,4,0)
+ ;;=4^M65.4
+ ;;^UTILITY(U,$J,358.3,31198,2)
+ ;;=^5012792
+ ;;^UTILITY(U,$J,358.3,31199,0)
+ ;;=I73.00^^116^1526^370
+ ;;^UTILITY(U,$J,358.3,31199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31199,1,3,0)
+ ;;=3^Raynaud's Syndrome w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,31199,1,4,0)
+ ;;=4^I73.00
+ ;;^UTILITY(U,$J,358.3,31199,2)
+ ;;=^5007796
+ ;;^UTILITY(U,$J,358.3,31200,0)
+ ;;=C44.129^^116^1526^374
+ ;;^UTILITY(U,$J,358.3,31200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31200,1,3,0)
+ ;;=3^SCC Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,31200,1,4,0)
+ ;;=4^C44.129
+ ;;^UTILITY(U,$J,358.3,31200,2)
+ ;;=^5001024
+ ;;^UTILITY(U,$J,358.3,31201,0)
+ ;;=C44.122^^116^1526^378
+ ;;^UTILITY(U,$J,358.3,31201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31201,1,3,0)
+ ;;=3^SCC Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,31201,1,4,0)
+ ;;=4^C44.122
+ ;;^UTILITY(U,$J,358.3,31201,2)
+ ;;=^5001023
+ ;;^UTILITY(U,$J,358.3,31202,0)
+ ;;=C44.42^^116^1526^379
+ ;;^UTILITY(U,$J,358.3,31202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31202,1,3,0)
+ ;;=3^SCC Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,31202,1,4,0)
+ ;;=4^C44.42
+ ;;^UTILITY(U,$J,358.3,31202,2)
+ ;;=^340477
+ ;;^UTILITY(U,$J,358.3,31203,0)
+ ;;=C44.229^^116^1526^373
+ ;;^UTILITY(U,$J,358.3,31203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31203,1,3,0)
+ ;;=3^SCC Skin Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,31203,1,4,0)
+ ;;=4^C44.229
+ ;;^UTILITY(U,$J,358.3,31203,2)
+ ;;=^5001036
+ ;;^UTILITY(U,$J,358.3,31204,0)
+ ;;=C44.222^^116^1526^377
+ ;;^UTILITY(U,$J,358.3,31204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31204,1,3,0)
+ ;;=3^SCC Skin Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,31204,1,4,0)
+ ;;=4^C44.222
+ ;;^UTILITY(U,$J,358.3,31204,2)
+ ;;=^5001035
+ ;;^UTILITY(U,$J,358.3,31205,0)
+ ;;=L90.5^^116^1526^382
+ ;;^UTILITY(U,$J,358.3,31205,1,0)
+ ;;=^358.31IA^4^2

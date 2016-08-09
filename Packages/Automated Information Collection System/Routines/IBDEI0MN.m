@@ -1,134 +1,282 @@
-IBDEI0MN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0MN ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10557,1,0)
+ ;;^UTILITY(U,$J,358.3,22834,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,22835,0)
+ ;;=M85.842^^89^1052^82
+ ;;^UTILITY(U,$J,358.3,22835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10557,1,3,0)
- ;;=3^Hypertension,Essential
- ;;^UTILITY(U,$J,358.3,10557,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,10557,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,10558,0)
- ;;=L71.9^^44^507^19
- ;;^UTILITY(U,$J,358.3,10558,1,0)
+ ;;^UTILITY(U,$J,358.3,22835,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,22835,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,22835,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,22836,0)
+ ;;=M85.862^^89^1052^83
+ ;;^UTILITY(U,$J,358.3,22836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10558,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,10558,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,10558,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,10559,0)
- ;;=L71.8^^44^507^18
- ;;^UTILITY(U,$J,358.3,10559,1,0)
+ ;;^UTILITY(U,$J,358.3,22836,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,22836,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,22836,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,22837,0)
+ ;;=M85.812^^89^1052^84
+ ;;^UTILITY(U,$J,358.3,22837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10559,1,3,0)
- ;;=3^Rosacea NEC
- ;;^UTILITY(U,$J,358.3,10559,1,4,0)
- ;;=4^L71.8
- ;;^UTILITY(U,$J,358.3,10559,2)
- ;;=^5009275
- ;;^UTILITY(U,$J,358.3,10560,0)
- ;;=L71.1^^44^507^17
- ;;^UTILITY(U,$J,358.3,10560,1,0)
+ ;;^UTILITY(U,$J,358.3,22837,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,22837,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,22837,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,22838,0)
+ ;;=M85.852^^89^1052^85
+ ;;^UTILITY(U,$J,358.3,22838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10560,1,3,0)
- ;;=3^Rhinophyma
- ;;^UTILITY(U,$J,358.3,10560,1,4,0)
- ;;=4^L71.1
- ;;^UTILITY(U,$J,358.3,10560,2)
- ;;=^106083
- ;;^UTILITY(U,$J,358.3,10561,0)
- ;;=S05.31XA^^44^507^13
- ;;^UTILITY(U,$J,358.3,10561,1,0)
+ ;;^UTILITY(U,$J,358.3,22838,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,22838,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,22838,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,22839,0)
+ ;;=M85.822^^89^1052^86
+ ;;^UTILITY(U,$J,358.3,22839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10561,1,3,0)
- ;;=3^Ocular Laceration Right Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
- ;;^UTILITY(U,$J,358.3,10561,1,4,0)
- ;;=4^S05.31XA
- ;;^UTILITY(U,$J,358.3,10561,2)
- ;;=^5020606
- ;;^UTILITY(U,$J,358.3,10562,0)
- ;;=S05.32XA^^44^507^12
- ;;^UTILITY(U,$J,358.3,10562,1,0)
+ ;;^UTILITY(U,$J,358.3,22839,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,22839,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,22839,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,22840,0)
+ ;;=M85.89^^89^1052^87
+ ;;^UTILITY(U,$J,358.3,22840,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10562,1,3,0)
- ;;=3^Ocular Laceration Left Eye w/o Prolapse/Loss of Intraoc Tissue,Init Encntr
- ;;^UTILITY(U,$J,358.3,10562,1,4,0)
- ;;=4^S05.32XA
- ;;^UTILITY(U,$J,358.3,10562,2)
- ;;=^5020609
- ;;^UTILITY(U,$J,358.3,10563,0)
- ;;=Z21.^^44^507^2
- ;;^UTILITY(U,$J,358.3,10563,1,0)
+ ;;^UTILITY(U,$J,358.3,22840,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,22840,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,22840,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,22841,0)
+ ;;=M85.88^^89^1052^88
+ ;;^UTILITY(U,$J,358.3,22841,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10563,1,3,0)
- ;;=3^Asymptomatic HIV Infection Status
- ;;^UTILITY(U,$J,358.3,10563,1,4,0)
- ;;=4^Z21.
- ;;^UTILITY(U,$J,358.3,10563,2)
- ;;=^5062777
- ;;^UTILITY(U,$J,358.3,10564,0)
- ;;=Z83.511^^44^507^6
- ;;^UTILITY(U,$J,358.3,10564,1,0)
+ ;;^UTILITY(U,$J,358.3,22841,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,22841,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,22841,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,22842,0)
+ ;;=M85.871^^89^1052^89
+ ;;^UTILITY(U,$J,358.3,22842,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10564,1,3,0)
- ;;=3^Family Hx of Glaucoma
- ;;^UTILITY(U,$J,358.3,10564,1,4,0)
- ;;=4^Z83.511
- ;;^UTILITY(U,$J,358.3,10564,2)
- ;;=^5063382
- ;;^UTILITY(U,$J,358.3,10565,0)
- ;;=Z83.518^^44^507^5
- ;;^UTILITY(U,$J,358.3,10565,1,0)
+ ;;^UTILITY(U,$J,358.3,22842,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,22842,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,22842,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,22843,0)
+ ;;=M85.831^^89^1052^90
+ ;;^UTILITY(U,$J,358.3,22843,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10565,1,3,0)
- ;;=3^Family Hx of Eye Disorder NEC
- ;;^UTILITY(U,$J,358.3,10565,1,4,0)
- ;;=4^Z83.518
- ;;^UTILITY(U,$J,358.3,10565,2)
- ;;=^5063383
- ;;^UTILITY(U,$J,358.3,10566,0)
- ;;=Z79.899^^44^507^10
- ;;^UTILITY(U,$J,358.3,10566,1,0)
+ ;;^UTILITY(U,$J,358.3,22843,1,3,0)
+ ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,22843,1,4,0)
+ ;;=4^M85.831
+ ;;^UTILITY(U,$J,358.3,22843,2)
+ ;;=^5014480
+ ;;^UTILITY(U,$J,358.3,22844,0)
+ ;;=M85.841^^89^1052^91
+ ;;^UTILITY(U,$J,358.3,22844,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10566,1,3,0)
- ;;=3^Long Term Current Drug Therapy NEC
- ;;^UTILITY(U,$J,358.3,10566,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,10566,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,10567,0)
- ;;=Z01.00^^44^507^4
- ;;^UTILITY(U,$J,358.3,10567,1,0)
+ ;;^UTILITY(U,$J,358.3,22844,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,22844,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,22844,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,22845,0)
+ ;;=M85.861^^89^1052^92
+ ;;^UTILITY(U,$J,358.3,22845,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10567,1,3,0)
- ;;=3^Eye/Vision Exam w/o Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10567,1,4,0)
- ;;=4^Z01.00
- ;;^UTILITY(U,$J,358.3,10567,2)
- ;;=^5062612
- ;;^UTILITY(U,$J,358.3,10568,0)
- ;;=Z01.01^^44^507^3
- ;;^UTILITY(U,$J,358.3,10568,1,0)
+ ;;^UTILITY(U,$J,358.3,22845,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,22845,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,22845,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,22846,0)
+ ;;=M85.811^^89^1052^93
+ ;;^UTILITY(U,$J,358.3,22846,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10568,1,3,0)
- ;;=3^Eye/Vision Exam w/ Abnormal Findings
- ;;^UTILITY(U,$J,358.3,10568,1,4,0)
- ;;=4^Z01.01
- ;;^UTILITY(U,$J,358.3,10568,2)
- ;;=^5062613
- ;;^UTILITY(U,$J,358.3,10569,0)
- ;;=E05.90^^44^507^21
- ;;^UTILITY(U,$J,358.3,10569,1,0)
+ ;;^UTILITY(U,$J,358.3,22846,1,3,0)
+ ;;=3^Osteopenia,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,22846,1,4,0)
+ ;;=4^M85.811
+ ;;^UTILITY(U,$J,358.3,22846,2)
+ ;;=^5014474
+ ;;^UTILITY(U,$J,358.3,22847,0)
+ ;;=M85.851^^89^1052^94
+ ;;^UTILITY(U,$J,358.3,22847,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10569,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec
- ;;^UTILITY(U,$J,358.3,10569,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,10569,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,10570,0)
- ;;=99201^^45^508^1
+ ;;^UTILITY(U,$J,358.3,22847,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,22847,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,22847,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,22848,0)
+ ;;=M85.821^^89^1052^95
+ ;;^UTILITY(U,$J,358.3,22848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22848,1,3,0)
+ ;;=3^Osteopenia,Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,22848,1,4,0)
+ ;;=4^M85.821
+ ;;^UTILITY(U,$J,358.3,22848,2)
+ ;;=^5014477
+ ;;^UTILITY(U,$J,358.3,22849,0)
+ ;;=M85.80^^89^1052^96
+ ;;^UTILITY(U,$J,358.3,22849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22849,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22849,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,22849,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,22850,0)
+ ;;=B02.0^^89^1053^46
+ ;;^UTILITY(U,$J,358.3,22850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22850,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,22850,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,22850,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,22851,0)
+ ;;=B02.29^^89^1053^36
+ ;;^UTILITY(U,$J,358.3,22851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22851,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,22851,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,22851,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,22852,0)
+ ;;=F03.90^^89^1053^10
+ ;;^UTILITY(U,$J,358.3,22852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22852,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,22852,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,22852,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,22853,0)
+ ;;=F03.91^^89^1053^9
+ ;;^UTILITY(U,$J,358.3,22853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22853,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,22853,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,22853,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,22854,0)
+ ;;=F01.50^^89^1053^12
+ ;;^UTILITY(U,$J,358.3,22854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22854,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,22854,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,22854,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,22855,0)
+ ;;=F10.27^^89^1053^11
+ ;;^UTILITY(U,$J,358.3,22855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22855,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,22855,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,22855,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,22856,0)
+ ;;=F06.1^^89^1053^6
+ ;;^UTILITY(U,$J,358.3,22856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22856,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,22856,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,22856,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,22857,0)
+ ;;=F06.8^^89^1053^21
+ ;;^UTILITY(U,$J,358.3,22857,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22857,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,22857,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,22857,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,22858,0)
+ ;;=F06.0^^89^1053^37
+ ;;^UTILITY(U,$J,358.3,22858,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22858,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,22858,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,22858,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,22859,0)
+ ;;=G44.209^^89^1053^42
+ ;;^UTILITY(U,$J,358.3,22859,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22859,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,22859,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,22859,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,22860,0)
+ ;;=F09.^^89^1053^20
+ ;;^UTILITY(U,$J,358.3,22860,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22860,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,22860,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,22860,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,22861,0)
+ ;;=F07.9^^89^1053^35
+ ;;^UTILITY(U,$J,358.3,22861,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22861,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,22861,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,22861,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,22862,0)
+ ;;=G30.0^^89^1053^1
+ ;;^UTILITY(U,$J,358.3,22862,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22862,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset

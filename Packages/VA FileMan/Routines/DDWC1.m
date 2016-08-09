@@ -1,6 +1,10 @@
-DDWC1 ;SFISC/MKO-CHANGE ;09:20 AM  27 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDWC1 ;SFISC/MKO-CHANGE ;04:37 PM  24 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 SETUP ;Setup new scrolling region
  N DDWI
  F DDWI=$$MIN(DDWMR,DDWCNT-DDWA):-1:DDWMR-4 D
@@ -14,8 +18,8 @@ SETUP ;Setup new scrolling region
  ;
  D CUP(DDWMR+1,1)
  W $P(DDGLGRA,DDGLDEL)_$TR($J("",IOM)," ",$P(DDGLGRA,DDGLDEL,3))_$P(DDGLGRA,DDGLDEL,2),!
- D CUP(DDWMR+2,1) W $P(DDGLCLR,DDGLDEL)_"   Find What:"
- D CUP(DDWMR+3,1) W $P(DDGLCLR,DDGLDEL)_"Replace With: "_$G(DDWCHG)
+FIND D CUP(DDWMR+2,1) W $P(DDGLCLR,DDGLDEL)_"   "_$$EZBLD^DIALOG(8126) ;**'FIND WHAT:'
+ D CUP(DDWMR+3,1) W $P(DDGLCLR,DDGLDEL)_$$EZBLD^DIALOG(8126.1)_$G(DDWCHG) ;**'REPLACE WITH:'
  D CUP(DDWMR+4,1) W $P(DDGLCLR,DDGLDEL)_"      Option:"_$P(DDGLCLR,DDGLDEL)_$J("",20)_DDWR1_"F"_DDWR0_"ind Next   "_DDWR1_"R"_DDWR0_"eplace   Replace "_DDWR1_"A"_DDWR0_"ll   "_DDWR1_"Q"_DDWR0_"uit"
  D CUP(DDWMR+5,1) W $P(DDGLCLR,DDGLDEL)
  Q

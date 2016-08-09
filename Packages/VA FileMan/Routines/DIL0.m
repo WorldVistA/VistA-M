@@ -1,10 +1,14 @@
-DIL0 ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;01:16 PM  26 Apr 2002
- ;;22.0;VA FileMan;**91,102**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- D XDUY S %=$P(X,U,2) G WP:%["W",M:%["m",STATS^DIL1:$D(DCL(DP_U_+W)),N:W[";N"
+DIL0 ;SFISC/GFT-TURN PRINT FLDS INTO CODE ;24JAN2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ D XDUY S %=$P(X,U,2) S:%["Cm"&(W[";W") %="w"_% G WP:%["W",M:%["m",STATS^DIL1:$D(DCL(DP_U_+W)),N:W[";N"
  I W[";W" D  S D1=$S(%["C":Y,1:$P(" S Y=",U,Y'?1" ".E)_Y_" S X=Y") D W S Y=Y_D1_" D ^DIWP" Q
- .N %,DNP S DNP=1 D ^DILL
- D ^DILL
+ .N %,DNP S DNP=1 D EN^DILL(DP,+W,1)
+ D EN^DILL(DP,+W,1)
 DN ;
  I W[";X" D  Q
  .S DE=$S(W[";C"!(W[";S"):DE,$A(Y)-32:" W ?0",1:"")
@@ -12,18 +16,19 @@ DN ;
  ..S %=Y,Y=DE,DE=% D PX^DIL S Y=DE
  .E  S Y=DE_Y
  .I $D(DIWR(DM)) D DIWR
-DNW D H:DHD I DG+DLN>IOM,DG K ^UTILITY("DIL",$J,DG) S DG='%*DM*2+2,DE=$P(W,";C",2),DG=$S(DE>0:DE-1,DE<0:IOM+DE,DG+DLN'>IOM!(W[";W"):DG,DLN>IOM:0,1:IOM-DLN),DE=" D T Q:'DN  W ?"_DG D W^DIL,H:DHD
+DNW D H:DHD!$G(DIOSUBHD) I DG+DLN>IOM,DG K ^UTILITY("DIL",$J,DG) S DG='%*DM*2+2,DE=$P(W,";C",2),DG=$S(DE>0:DE-1,DE<0:IOM+DE,DG+DLN'>IOM!(W[";W"):DG,DLN>IOM:0,1:IOM-DLN),DE=" D T Q:'DN  W ?"_DG D W^DIL,H:DHD!$G(DIOSUBHD)
  S DG=2+DLN+DG Q:$D(DNP)  I $L(DE)+$L(Y)>250 S %=Y,Y=DE,DE=% D PX^DIL S Y=DE Q
  S Y=DE_Y Q
  ;
-H S V=$P(X,U),Z=99,I=$P(W,";""",2) I I]"" S V=$P(I,"""")
-HEAD Q:V=""  S I=$P(V," ") I $L(I)>DLN S DLN=$L(I)
+H S V=$P(X,U),Z=99,I=$P(W,";""",2) I I]"" S V=$$CONVQQ^DILIBF($P(I,"""",1,$L(I,"""")-1))
+HEAD Q:V=""  S I=$P(V," ") I $L(I)>DLN S DLN=$L(I) ;Column width may have to be increased for a long word
 XD S V=$P(V," ",2,99),D=$P(V," ") I D]"",$L(I)+$L(D)<DLN S I=I_" "_D G XD
  S ^UTILITY("DIL",$J,DG,Z)=$J(I,DRJ*DLN),V(Z)="",Z=Z-1 G HEAD
  ;
 XDUY ;
  I '$D(^DD(DP,+W,0)) S X="",DU=0,Y=0 Q
  S X=^(0),DU=$P(X,U,4),Y=$P(DU,";",2),DU=$P(DU,";") I W[";T",$D(^(.1)) S X=^(.1)_U_$P(X,U,2,99)
+EGP E  S $P(X,U)=$$LABEL^DIALOGZ(DP,+W) ;**FIELD LABEL FOR OUTPUT HEADING
  S:+DU'=DU DU=""""_DU_""""
  I Y S Y="$P(X,U,"_Y_")" Q
  I Y="" S Y="D"_DM Q
@@ -34,20 +39,21 @@ WR ;
 W S DRJ=0,DIWL=DIWL+1 I '$D(DLN) S %=IOM-DG,DLN=$S(%>20:%,1:IOM)-2
  S:W[";X" $P(X,U)="" D DNW S %=$P(DE,"W ?",2)+1,Y=DLN+%-1,DIO=2,%=" S DIWL="_%_",DIWR="_$S(IOM<Y:IOM,1:Y),Y=$P(DE," W ?")_% Q
  ;
-WP S DN=%["L"_U D WR S DIO=3,Y=%_" D ^DIWP",X=F(DM-1) I DHT<0 G WP^DIPZ1
+WP S DN=%["L"_U D WR ;COME HERE FOR A W-P TYPE FIELD
+ S DIO=3,Y=%_" D ^DIWP",X=F(DM-1) I DHT<0 S I=$E(^UTILITY("DIPZ",$J,X),2,999) D WPX S ^UTILITY("DIPZ",$J,X)=" "_I Q
  I $D(^UTILITY($J,99,X)) S I=^(X) D WPX S ^UTILITY($J,99,X)=I Q
-WPX ;
- S:DN I=^DD("FUNC",38,1)_" "_I
- I DE[" D T,N" S %=$F(I," D N:$X>") S:% I=$E(I,1,%-9)_$E(I,$F(I,"T",%),999) S I=$E(DE,2,999)_" "_I
+WPX ;from DIPZ1
+ S:DN I=^DD("FUNC",38,1)_" "_I ;'NOWRAP' FUNCTION
+ I DE]"" S I=DE_" "_I ;GFT
  Q
  ;
 M S D1=" S DICMX=""D "_$E("L",%'["w")_"^DIWP"" "_$P(X,U,5,99) D WR S Y=Y_D1 Q
  ;
 N ;
- S DCL=DCL+1,D=",C="_DCL_" D D",DITTO(DCL)="",I=""
- I %["C" S X=X_" S Y=X"_D_" S X=Y",DXS="Y" G Z
- S Y=" S Y="_Y_D,DXS="Y"
-Z D V^DILL G DN
+ S DCL=DCL+1,DXS="Y",D=",Y=$$DITTO^DIO2("_DCL_",Y)",DITTO(DCL)="",I=""
+ I %["C" S X=X_" S Y=X"_D_" S X=Y" G Z
+ S Y=" S Y="_Y_D
+Z D EN^DILL(DP,+W) G DN
  ;
 DIWR ;
  G DIWR^DIPZ1:DHT I $D(DIWR(DM)),DX=DIWR(DM) S ^UTILITY($J,99,DX)="D A^DIWW" G K

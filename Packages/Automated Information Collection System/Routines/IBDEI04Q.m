@@ -1,136 +1,292 @@
-IBDEI04Q ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI04Q ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1786,1,4,0)
- ;;=4^I70.513
- ;;^UTILITY(U,$J,358.3,1786,2)
- ;;=^5007694
- ;;^UTILITY(U,$J,358.3,1787,0)
- ;;=I70.8^^11^156^15
- ;;^UTILITY(U,$J,358.3,1787,1,0)
+ ;;^UTILITY(U,$J,358.3,4470,0)
+ ;;=L03.319^^30^317^54
+ ;;^UTILITY(U,$J,358.3,4470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1787,1,3,0)
- ;;=3^Atherosclerosis of Oth Arteries
- ;;^UTILITY(U,$J,358.3,1787,1,4,0)
- ;;=4^I70.8
- ;;^UTILITY(U,$J,358.3,1787,2)
- ;;=^5007783
- ;;^UTILITY(U,$J,358.3,1788,0)
- ;;=I71.00^^11^156^62
- ;;^UTILITY(U,$J,358.3,1788,1,0)
+ ;;^UTILITY(U,$J,358.3,4470,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,4470,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,4470,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,4471,0)
+ ;;=L03.316^^30^317^55
+ ;;^UTILITY(U,$J,358.3,4471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1788,1,3,0)
- ;;=3^Dissection of Aorta,Unspec Site
- ;;^UTILITY(U,$J,358.3,1788,1,4,0)
- ;;=4^I71.00
- ;;^UTILITY(U,$J,358.3,1788,2)
- ;;=^35660
- ;;^UTILITY(U,$J,358.3,1789,0)
- ;;=I71.01^^11^156^63
- ;;^UTILITY(U,$J,358.3,1789,1,0)
+ ;;^UTILITY(U,$J,358.3,4471,1,3,0)
+ ;;=3^Cellulitis of Umbilicus
+ ;;^UTILITY(U,$J,358.3,4471,1,4,0)
+ ;;=4^L03.316
+ ;;^UTILITY(U,$J,358.3,4471,2)
+ ;;=^5009052
+ ;;^UTILITY(U,$J,358.3,4472,0)
+ ;;=L03.90^^30^317^56
+ ;;^UTILITY(U,$J,358.3,4472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1789,1,3,0)
- ;;=3^Dissection of Thoracic Aorta
- ;;^UTILITY(U,$J,358.3,1789,1,4,0)
- ;;=4^I71.01
- ;;^UTILITY(U,$J,358.3,1789,2)
- ;;=^303289
- ;;^UTILITY(U,$J,358.3,1790,0)
- ;;=I71.02^^11^156^61
- ;;^UTILITY(U,$J,358.3,1790,1,0)
+ ;;^UTILITY(U,$J,358.3,4472,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,4472,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,4472,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,4473,0)
+ ;;=L02.211^^30^317^57
+ ;;^UTILITY(U,$J,358.3,4473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1790,1,3,0)
- ;;=3^Dissection of Abdominal Aorta
- ;;^UTILITY(U,$J,358.3,1790,1,4,0)
- ;;=4^I71.02
- ;;^UTILITY(U,$J,358.3,1790,2)
- ;;=^303290
- ;;^UTILITY(U,$J,358.3,1791,0)
- ;;=I71.03^^11^156^64
- ;;^UTILITY(U,$J,358.3,1791,1,0)
+ ;;^UTILITY(U,$J,358.3,4473,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,4473,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,4473,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,4474,0)
+ ;;=L02.212^^30^317^58
+ ;;^UTILITY(U,$J,358.3,4474,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1791,1,3,0)
- ;;=3^Dissection of Thoracoabdominal Aorta
- ;;^UTILITY(U,$J,358.3,1791,1,4,0)
- ;;=4^I71.03
- ;;^UTILITY(U,$J,358.3,1791,2)
- ;;=^303291
- ;;^UTILITY(U,$J,358.3,1792,0)
- ;;=I71.1^^11^156^87
- ;;^UTILITY(U,$J,358.3,1792,1,0)
+ ;;^UTILITY(U,$J,358.3,4474,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,4474,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,4474,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,4475,0)
+ ;;=L02.31^^30^317^59
+ ;;^UTILITY(U,$J,358.3,4475,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1792,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,1792,1,4,0)
- ;;=4^I71.1
- ;;^UTILITY(U,$J,358.3,1792,2)
- ;;=^5007786
- ;;^UTILITY(U,$J,358.3,1793,0)
- ;;=I71.2^^11^156^88
- ;;^UTILITY(U,$J,358.3,1793,1,0)
+ ;;^UTILITY(U,$J,358.3,4475,1,3,0)
+ ;;=3^Cutaneous Abscess of Buttock
+ ;;^UTILITY(U,$J,358.3,4475,1,4,0)
+ ;;=4^L02.31
+ ;;^UTILITY(U,$J,358.3,4475,2)
+ ;;=^5008971
+ ;;^UTILITY(U,$J,358.3,4476,0)
+ ;;=L02.213^^30^317^60
+ ;;^UTILITY(U,$J,358.3,4476,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1793,1,3,0)
- ;;=3^Thoracic Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,1793,1,4,0)
- ;;=4^I71.2
- ;;^UTILITY(U,$J,358.3,1793,2)
- ;;=^5007787
- ;;^UTILITY(U,$J,358.3,1794,0)
- ;;=I71.3^^11^156^1
- ;;^UTILITY(U,$J,358.3,1794,1,0)
+ ;;^UTILITY(U,$J,358.3,4476,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,4476,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,4476,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,4477,0)
+ ;;=L02.01^^30^317^61
+ ;;^UTILITY(U,$J,358.3,4477,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1794,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,1794,1,4,0)
- ;;=4^I71.3
- ;;^UTILITY(U,$J,358.3,1794,2)
- ;;=^5007788
- ;;^UTILITY(U,$J,358.3,1795,0)
- ;;=I71.4^^11^156^2
- ;;^UTILITY(U,$J,358.3,1795,1,0)
+ ;;^UTILITY(U,$J,358.3,4477,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,4477,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,4477,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,4478,0)
+ ;;=L02.214^^30^317^62
+ ;;^UTILITY(U,$J,358.3,4478,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1795,1,3,0)
- ;;=3^Abdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,1795,1,4,0)
- ;;=4^I71.4
- ;;^UTILITY(U,$J,358.3,1795,2)
- ;;=^5007789
- ;;^UTILITY(U,$J,358.3,1796,0)
- ;;=I71.8^^11^156^9
- ;;^UTILITY(U,$J,358.3,1796,1,0)
+ ;;^UTILITY(U,$J,358.3,4478,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,4478,1,4,0)
+ ;;=4^L02.214
+ ;;^UTILITY(U,$J,358.3,4478,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,4479,0)
+ ;;=L02.811^^30^317^63
+ ;;^UTILITY(U,$J,358.3,4479,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1796,1,3,0)
- ;;=3^Aortic Aneurysm of Unspec Site w/ Rupture
- ;;^UTILITY(U,$J,358.3,1796,1,4,0)
- ;;=4^I71.8
- ;;^UTILITY(U,$J,358.3,1796,2)
- ;;=^9279
- ;;^UTILITY(U,$J,358.3,1797,0)
- ;;=I71.5^^11^156^89
- ;;^UTILITY(U,$J,358.3,1797,1,0)
+ ;;^UTILITY(U,$J,358.3,4479,1,3,0)
+ ;;=3^Cutaneous Abscess of Head
+ ;;^UTILITY(U,$J,358.3,4479,1,4,0)
+ ;;=4^L02.811
+ ;;^UTILITY(U,$J,358.3,4479,2)
+ ;;=^5009010
+ ;;^UTILITY(U,$J,358.3,4480,0)
+ ;;=L02.412^^30^317^64
+ ;;^UTILITY(U,$J,358.3,4480,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1797,1,3,0)
- ;;=3^Thoracoabdominal Aortic Aneurysm w/ Rupture
- ;;^UTILITY(U,$J,358.3,1797,1,4,0)
- ;;=4^I71.5
- ;;^UTILITY(U,$J,358.3,1797,2)
- ;;=^5007790
- ;;^UTILITY(U,$J,358.3,1798,0)
- ;;=I71.6^^11^156^90
- ;;^UTILITY(U,$J,358.3,1798,1,0)
+ ;;^UTILITY(U,$J,358.3,4480,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Axilla
+ ;;^UTILITY(U,$J,358.3,4480,1,4,0)
+ ;;=4^L02.412
+ ;;^UTILITY(U,$J,358.3,4480,2)
+ ;;=^5008975
+ ;;^UTILITY(U,$J,358.3,4481,0)
+ ;;=L02.612^^30^317^65
+ ;;^UTILITY(U,$J,358.3,4481,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1798,1,3,0)
- ;;=3^Thoracoabdominal Aortic Aneurysm w/o Rupture
- ;;^UTILITY(U,$J,358.3,1798,1,4,0)
- ;;=4^I71.6
- ;;^UTILITY(U,$J,358.3,1798,2)
- ;;=^5007791
- ;;^UTILITY(U,$J,358.3,1799,0)
- ;;=I72.1^^11^156^8
- ;;^UTILITY(U,$J,358.3,1799,1,0)
+ ;;^UTILITY(U,$J,358.3,4481,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,4481,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,4481,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,4482,0)
+ ;;=L02.512^^30^317^66
+ ;;^UTILITY(U,$J,358.3,4482,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1799,1,3,0)
- ;;=3^Aneurysm of Upper Extremity Artery
- ;;^UTILITY(U,$J,358.3,1799,1,4,0)
- ;;=4^I72.1
+ ;;^UTILITY(U,$J,358.3,4482,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,4482,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,4482,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,4483,0)
+ ;;=L02.416^^30^317^67
+ ;;^UTILITY(U,$J,358.3,4483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4483,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4483,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,4483,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,4484,0)
+ ;;=L02.414^^30^317^68
+ ;;^UTILITY(U,$J,358.3,4484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4484,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,4484,1,4,0)
+ ;;=4^L02.414
+ ;;^UTILITY(U,$J,358.3,4484,2)
+ ;;=^5008977
+ ;;^UTILITY(U,$J,358.3,4485,0)
+ ;;=L02.11^^30^317^69
+ ;;^UTILITY(U,$J,358.3,4485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4485,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,4485,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,4485,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,4486,0)
+ ;;=L02.818^^30^317^70
+ ;;^UTILITY(U,$J,358.3,4486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4486,1,3,0)
+ ;;=3^Cutaneous Abscess of Other Sites
+ ;;^UTILITY(U,$J,358.3,4486,1,4,0)
+ ;;=4^L02.818
+ ;;^UTILITY(U,$J,358.3,4486,2)
+ ;;=^5009011
+ ;;^UTILITY(U,$J,358.3,4487,0)
+ ;;=L02.215^^30^317^71
+ ;;^UTILITY(U,$J,358.3,4487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4487,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,4487,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,4487,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,4488,0)
+ ;;=L02.411^^30^317^72
+ ;;^UTILITY(U,$J,358.3,4488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4488,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Axilla
+ ;;^UTILITY(U,$J,358.3,4488,1,4,0)
+ ;;=4^L02.411
+ ;;^UTILITY(U,$J,358.3,4488,2)
+ ;;=^5008974
+ ;;^UTILITY(U,$J,358.3,4489,0)
+ ;;=L02.611^^30^317^73
+ ;;^UTILITY(U,$J,358.3,4489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4489,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,4489,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,4489,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,4490,0)
+ ;;=L02.511^^30^317^74
+ ;;^UTILITY(U,$J,358.3,4490,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4490,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,4490,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,4490,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,4491,0)
+ ;;=L02.415^^30^317^75
+ ;;^UTILITY(U,$J,358.3,4491,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4491,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4491,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,4491,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,4492,0)
+ ;;=L02.413^^30^317^76
+ ;;^UTILITY(U,$J,358.3,4492,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4492,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4492,1,4,0)
+ ;;=4^L02.413
+ ;;^UTILITY(U,$J,358.3,4492,2)
+ ;;=^5008976
+ ;;^UTILITY(U,$J,358.3,4493,0)
+ ;;=L02.219^^30^317^77
+ ;;^UTILITY(U,$J,358.3,4493,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4493,1,3,0)
+ ;;=3^Cutaneous Abscess of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,4493,1,4,0)
+ ;;=4^L02.219
+ ;;^UTILITY(U,$J,358.3,4493,2)
+ ;;=^5008956
+ ;;^UTILITY(U,$J,358.3,4494,0)
+ ;;=L02.216^^30^317^78
+ ;;^UTILITY(U,$J,358.3,4494,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4494,1,3,0)
+ ;;=3^Cutaneous Abscess of Umbilicus
+ ;;^UTILITY(U,$J,358.3,4494,1,4,0)
+ ;;=4^L02.216
+ ;;^UTILITY(U,$J,358.3,4494,2)
+ ;;=^5008955
+ ;;^UTILITY(U,$J,358.3,4495,0)
+ ;;=L02.91^^30^317^79
+ ;;^UTILITY(U,$J,358.3,4495,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4495,1,3,0)
+ ;;=3^Cutaneous Abscess,Unspec
+ ;;^UTILITY(U,$J,358.3,4495,1,4,0)
+ ;;=4^L02.91
+ ;;^UTILITY(U,$J,358.3,4495,2)
+ ;;=^5009016
+ ;;^UTILITY(U,$J,358.3,4496,0)
+ ;;=L98.3^^30^317^82
+ ;;^UTILITY(U,$J,358.3,4496,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4496,1,3,0)
+ ;;=3^Eosinophilic Cellulitis,Skin/Subcutaneous
+ ;;^UTILITY(U,$J,358.3,4496,1,4,0)
+ ;;=4^L98.3
+ ;;^UTILITY(U,$J,358.3,4496,2)
+ ;;=^5009576
+ ;;^UTILITY(U,$J,358.3,4497,0)
+ ;;=L72.0^^30^317^83
+ ;;^UTILITY(U,$J,358.3,4497,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4497,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,4497,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,4497,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,4498,0)
+ ;;=L72.9^^30^317^84
+ ;;^UTILITY(U,$J,358.3,4498,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4498,1,3,0)
+ ;;=3^Follicular Cyst of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,4498,1,4,0)
+ ;;=4^L72.9

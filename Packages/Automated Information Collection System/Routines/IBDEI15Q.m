@@ -1,130 +1,64 @@
-IBDEI15Q ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI15Q ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQ(358.4)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19682,1,4,0)
- ;;=4^R09.81
- ;;^UTILITY(U,$J,358.3,19682,2)
- ;;=^5019203
- ;;^UTILITY(U,$J,358.3,19683,0)
- ;;=I69.928^^84^920^22
- ;;^UTILITY(U,$J,358.3,19683,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19683,1,3,0)
- ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
- ;;^UTILITY(U,$J,358.3,19683,1,4,0)
- ;;=4^I69.928
- ;;^UTILITY(U,$J,358.3,19683,2)
- ;;=^5007557
- ;;^UTILITY(U,$J,358.3,19684,0)
- ;;=I69.328^^84^920^23
- ;;^UTILITY(U,$J,358.3,19684,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19684,1,3,0)
- ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
- ;;^UTILITY(U,$J,358.3,19684,1,4,0)
- ;;=4^I69.328
- ;;^UTILITY(U,$J,358.3,19684,2)
- ;;=^5007495
- ;;^UTILITY(U,$J,358.3,19685,0)
- ;;=E04.0^^84^921^39
- ;;^UTILITY(U,$J,358.3,19685,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19685,1,3,0)
- ;;=3^Nontoxic Diffuse Goiter
- ;;^UTILITY(U,$J,358.3,19685,1,4,0)
- ;;=4^E04.0
- ;;^UTILITY(U,$J,358.3,19685,2)
- ;;=^5002477
- ;;^UTILITY(U,$J,358.3,19686,0)
- ;;=E04.1^^84^921^41
- ;;^UTILITY(U,$J,358.3,19686,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19686,1,3,0)
- ;;=3^Nontoxic Single Thyroid Nodule
- ;;^UTILITY(U,$J,358.3,19686,1,4,0)
- ;;=4^E04.1
- ;;^UTILITY(U,$J,358.3,19686,2)
- ;;=^5002478
- ;;^UTILITY(U,$J,358.3,19687,0)
- ;;=E04.2^^84^921^40
- ;;^UTILITY(U,$J,358.3,19687,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19687,1,3,0)
- ;;=3^Nontoxic Multinodular Goiter
- ;;^UTILITY(U,$J,358.3,19687,1,4,0)
- ;;=4^E04.2
- ;;^UTILITY(U,$J,358.3,19687,2)
- ;;=^267790
- ;;^UTILITY(U,$J,358.3,19688,0)
- ;;=E01.1^^84^921^36
- ;;^UTILITY(U,$J,358.3,19688,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19688,1,3,0)
- ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
- ;;^UTILITY(U,$J,358.3,19688,1,4,0)
- ;;=4^E01.1
- ;;^UTILITY(U,$J,358.3,19688,2)
- ;;=^5002465
- ;;^UTILITY(U,$J,358.3,19689,0)
- ;;=E05.00^^84^921^56
- ;;^UTILITY(U,$J,358.3,19689,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19689,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
- ;;^UTILITY(U,$J,358.3,19689,1,4,0)
- ;;=4^E05.00
- ;;^UTILITY(U,$J,358.3,19689,2)
- ;;=^5002481
- ;;^UTILITY(U,$J,358.3,19690,0)
- ;;=E05.01^^84^921^55
- ;;^UTILITY(U,$J,358.3,19690,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19690,1,3,0)
- ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,19690,1,4,0)
- ;;=4^E05.01
- ;;^UTILITY(U,$J,358.3,19690,2)
- ;;=^5002482
- ;;^UTILITY(U,$J,358.3,19691,0)
- ;;=E05.90^^84^921^58
- ;;^UTILITY(U,$J,358.3,19691,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19691,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,19691,1,4,0)
- ;;=4^E05.90
- ;;^UTILITY(U,$J,358.3,19691,2)
- ;;=^5002492
- ;;^UTILITY(U,$J,358.3,19692,0)
- ;;=E05.91^^84^921^57
- ;;^UTILITY(U,$J,358.3,19692,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19692,1,3,0)
- ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
- ;;^UTILITY(U,$J,358.3,19692,1,4,0)
- ;;=4^E05.91
- ;;^UTILITY(U,$J,358.3,19692,2)
- ;;=^5002493
- ;;^UTILITY(U,$J,358.3,19693,0)
- ;;=E89.0^^84^921^50
- ;;^UTILITY(U,$J,358.3,19693,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19693,1,3,0)
- ;;=3^Postprocedural Hypothyroidism
- ;;^UTILITY(U,$J,358.3,19693,1,4,0)
- ;;=4^E89.0
- ;;^UTILITY(U,$J,358.3,19693,2)
- ;;=^5003035
- ;;^UTILITY(U,$J,358.3,19694,0)
- ;;=E03.2^^84^921^32
- ;;^UTILITY(U,$J,358.3,19694,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19694,1,3,0)
- ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
- ;;^UTILITY(U,$J,358.3,19694,1,4,0)
- ;;=4^E03.2
- ;;^UTILITY(U,$J,358.3,19694,2)
- ;;=^5002471
- ;;^UTILITY(U,$J,358.3,19695,0)
- ;;=E03.9^^84^921^33
+ ;;^DIC(358.4,0,"GL")
+ ;;=^IBE(358.4,
+ ;;^DIC("B","IMP/EXP SELECTION GROUP",358.4)
+ ;;=
+ ;;^DIC(358.4,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.4,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.4,"%D",2,0)
+ ;;=This file is nearly identical to file #357.4. It is used by the
+ ;;^DIC(358.4,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.4,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.4,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.4,0,"DDA")
+ ;;=N
+ ;;^DD(358.4,0,"DT")
+ ;;=2950717
+ ;;^DD(358.4,0,"ID",.02)
+ ;;=W "   ",$P(^(0),U,2)
+ ;;^DD(358.4,0,"ID",.03)
+ ;;=S %I=Y,Y=$S('$D(^(0)):"",$D(^IBE(358.2,+$P(^(0),U,3),0))#2:$P(^(0),U,1),1:""),C=$P(^DD(358.2,.01,0),U,2) D Y^DIQ:Y]"" W "   ",Y,@("$E("_DIC_"%I,0),0)") S Y=%I K %I
+ ;;^DD(358.4,0,"IX","APO",358.4,.02)
+ ;;=
+ ;;^DD(358.4,0,"IX","APO1",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"IX","B",358.4,.01)
+ ;;=
+ ;;^DD(358.4,0,"IX","D",358.4,.03)
+ ;;=
+ ;;^DD(358.4,0,"NM","IMP/EXP SELECTION GROUP")
+ ;;=
+ ;;^DD(358.4,0,"PT",358.3,.04)
+ ;;=
+ ;;^DD(358.4,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.4,.01,0)
+ ;;=HEADER^RF^^0;1^K:$L(X)>40!($L(X)<1) X
+ ;;^DD(358.4,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.4,.01,1,1,0)
+ ;;=358.4^B
+ ;;^DD(358.4,.01,1,1,1)
+ ;;=S ^IBE(358.4,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.4,.01,1,1,2)
+ ;;=K ^IBE(358.4,"B",$E(X,1,30),DA)
+ ;;^DD(358.4,.01,3)
+ ;;=What text do you want to appear at the top of this group?
+ ;;^DD(358.4,.01,21,0)
+ ;;=^^2^2^2930604^^^^
+ ;;^DD(358.4,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.4,.01,21,2,0)
+ ;;=The name given to a group of selections appearing on a selection list.
+ ;;^DD(358.4,.01,"DEL",1,0)
+ ;;=I '$G(IBLISTPR) W "...Selection Groups can only be deleted through the Encounter Form Utilities!"
+ ;;^DD(358.4,.01,"DT")
+ ;;=2930604

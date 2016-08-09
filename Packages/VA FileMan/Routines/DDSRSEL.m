@@ -1,6 +1,9 @@
-DDSRSEL ;SFISC/MKO-RECORD SELECTION ;08:14 AM  31 Jul 1995
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSRSEL ;SFISC/MKO-RECORD SELECTION ;7JAN2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 PG ;Called from:
  ;  DDS01 when user presses SELECT
@@ -13,7 +16,7 @@ PG ;Called from:
  ; DDSSEL = 1 (undefined if no record selection page)
  ;
  N P,P1 K DDSSEL
- I $D(DDSSC),$P(DDSSC(DDSSC),U,4) Q
+ I $D(DDSSC),$P($G(DDSSC(DDSSC)),U,4) Q  ;GFT
  ;
  S P="",P1=$P($G(^DIST(.403,+DDS,21)),U)
  I P1]"" D
@@ -29,9 +32,11 @@ PG ;Called from:
 GDA ;Called from DDS
  ;After a record selection page is closed get the DA from
  ;the first field on the page.
- N DDSANS,DDSREC,Y
+ N DDSANS,DDSREC,Y,PG
  S DDSANS=""
- S DDSREC=$$GET^DDSVALF(1,1,$P(^DIST(.403,+DDS,21),U))
+GFT S PG=$P($G(^DIST(.403,+DDS,21)),U) G KILL:'PG N P S P=$O(^(40,"B",PG,0)) D:P  I '$D(Y) G KILL
+ .F Y=0:0 S Y=$O(^DIST(.403,+DDS,40,P,40,Y)) Q:'Y  I $G(^(Y,"COMP MUL"))]"" K Y Q
+ E  S DDSREC=$$GET^DDSVALF(1,1,PG) ;ON THE OLD KIND OF LOOKUP PAGE, THERE IS 1 FIELD, 1 BLOCK
  ;
  K DA,DDSDAORG
  S DDSDA=DDSDASV,DDSDL=DDSDLSV
@@ -59,7 +64,7 @@ GDA ;Called from DDS
  . I DDSSC=1 D FRSTPG^DDS0(DDS,.DA,$G(DDSPAGE))
  . D CLRDAT,UNLOCK
  ;
- K DDSSEL,DDSDASV,DDSDASV,DDSDLSV,DDSORGSV
+KILL K DDSSEL,DDSDASV,DDSDASV,DDSDLSV,DDSORGSV
  Q
  ;
 ASKSAVE() ;

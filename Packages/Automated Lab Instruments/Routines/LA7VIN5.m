@@ -1,5 +1,5 @@
-LA7VIN5 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  16:03
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74,84**;Sep 27, 1994;Build 2
+LA7VIN5 ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  16:28
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,74,84,88**;Sep 27, 1994;Build 10
  ;
  ; This routine is a continuation of LA7VIN1 and is only called from there.
  ; It is called to process OBX segments for "CH" subscript tests.
@@ -55,7 +55,7 @@ OBX ;
  I LA7TEST="",LA7TEST(2)="" D  Q
  . N LA7OBX
  . S LA7OBX=LA7SEG(0)
- . D CREATE^LA7LOG(15)
+ . S LA7ERR=15,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  ;
  ; Test code not found in auto inst file, also check alternate codes,
  ; and log error if none found.
@@ -63,7 +63,7 @@ OBX ;
  . I LA7TEST'="",$D(^LAB(62.4,LA7624,3,"AC",LA7TEST)) Q
  . I LA7TEST(2)'="",$D(^LAB(62.4,LA7624,3,"AC",LA7TEST(2))) D  Q
  . . S LA7TEST=LA7TEST(2),LA7TEST(0)=LA7TEST(2,0),LA7TEST(0,1)=LA7TEST(2,1)
- . D CREATE^LA7LOG(16) S LA7TEST=""
+ . S LA7ERR=16,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1) S LA7TEST=""
  ;
  ; Units - trim leading/trailing spaces
  S LA7X=$$P^LA7VHLU(.LA7SEG,7,LA7FS),LA7UNITS=""
@@ -82,7 +82,7 @@ OBX ;
  ;
  ; Observation method
  S LA7X=$$P^LA7VHLU(.LA7SEG,18,LA7FS),LA7OBM=""
- I $P(LA7X,LA7CS,3)="99VA64_2" S LA7OBM=$P($P(LA7X,LA7CS,1),".",2)
+ I $P(LA7X,LA7CS,3)="99VA64_2" S LA7OBM=$P($P(LA7X,LA7CS,1),".",2),LA7OBM="."_LA7OBM
  ;
  ; Equipment instance identifier
  S LA7EII=$$P^LA7VHLU(.LA7SEG,19,LA7FS)
@@ -92,6 +92,7 @@ OBX ;
  ;
  ; Process ORU message results for all tests which use this test code.
  I LA7MTYP="ORU" D  Q
+ . S LA7AUTORELEASE=$$ARSTATUS(LA7OBR49,LA7OBM,LA7624) ; Set Auto Release flag
  . S LA76241=0
  . F  S LA76241=$O(^LAB(62.4,LA7624,3,"AC",LA7TEST,LA76241)) Q:'LA76241  D PROCESS
  ;
@@ -104,7 +105,7 @@ PROCESS ; Process results for a given test code
  F LA7I=0,1,2 S LA76241(LA7I)=$G(^LAB(62.4,LA7624,3,LA76241,LA7I))
  ;
  ; Chem test fields incorrect
- I LA76241(0)="" D CREATE^LA7LOG(18) Q
+ I LA76241(0)="" S LA7ERR=18,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1) Q
  ;
  ; No dataname associated with this test - skip
  S LA76304=$P($G(^LAB(60,+$P(LA76241(0),"^"),.2)),"^")
@@ -130,8 +131,10 @@ PROCESS ; Process results for a given test code
  ;
  ; NOTE - this array can be set from inside PARAM 1
  K LA7XFORM
- ; execute PARAM 1 if not a LEDI interface
- I LA7INTYP'=10 X $P(LA76241(0),"^",2)
+ ;
+ ; execute PARAM 1 if not a LEDI interface or auto release
+ I LA7INTYP'=10,LA7AUTORELEASE<1 X $P(LA76241(0),"^",2)
+ ;
  I $P(LA76241(2),"^",3)=0 Q
  I $P(LA76241(2),"^",3)=2,LA7ORS'?1(1"C",1"F",1"U",1"X") Q
  ;
@@ -140,7 +143,7 @@ PROCESS ; Process results for a given test code
  ;
  ; No value found
  I LA7VAL="" D  Q
- . D CREATE^LA7LOG(17)
+ . S LA7ERR=17,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  ;
  ; Transform result based on fields in file 62.4
  D XFORM^LA7VIN5A
@@ -174,7 +177,7 @@ PROCESS ; Process results for a given test code
  S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^")=LA7VAL
  ;
  ; Store reference ranges except for UI (LA7INTYP=1) interfaces
- I LA7INTYP'=1 D REFRNG^LA7VIN5A($$P^LA7VHLU(.LA7SEG,8,LA7FS))
+ D REFRNG^LA7VIN5A($$P^LA7VHLU(.LA7SEG,8,LA7FS))
  ;
  ; Store order/result codes/observation method except for UI (LA7INTYP=1) interfaces
  I LA7INTYP'=1 D
@@ -186,17 +189,20 @@ PROCESS ; Process results for a given test code
  . S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",3)=LA7X
  ;
  ; Store abnormal flags except for UI (LA7INTYP=1) interfaces.
- I LA7INTYP'=1 D ABFLAG^LA7VIN5A($$P^LA7VHLU(.LA7SEG,9,LA7FS))
+ D ABFLAG^LA7VIN5A($$P^LA7VHLU(.LA7SEG,9,LA7FS))
  ;
- ; Store units except for UI (LA7INTYP=1) interfaces which pull values from file #60.
- I LA7INTYP'=1,LA7UNITS'="" D
+ ; Store units except for UI non Auto Release (LA7INTYP=1,LA7AUTORELEASE=1) interfaces which pull values from file #60.
+ I LA7UNITS'="" D
+ . I LA7INTYP=1,'LA7AUTORELEASE Q
  . S LA7X=$P($G(^LAH(LA7LWL,1,LA7ISQN,LA76304)),"^",5)
  . S $P(LA7X,"!",7)=LA7UNITS
  . S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",5)=LA7X
  ;
- ; Store responsible observer on POC interfaces
- I LA7RO'="",LA7INTYP>19,LA7INTYP<30 D
- . I $P(LA7RO,"^",2) S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",4)=$P(LA7RO,"^",2)
+ ; Store responsible observer on Lab UI (1) Auto Release, POC (20), POCA (21) interfaces
+ I LA7RO'="",$P(LA7RO,"^",2) D
+ . I LA7INTYP'?1(1"1",1"20",1"21") Q
+ . I LA7INTYP=1,'LA7AUTORELEASE Q
+ . S $P(^LAH(LA7LWL,1,LA7ISQN,LA76304),"^",4)=$P(LA7RO,"^",2)
  ;
  ; Store specimen type except for UI (LA7INTYP=1) interfaces which pull values from the accession.
  I LA7INTYP'=1,$G(LA761) D
@@ -247,6 +253,16 @@ PROCESS ; Process results for a given test code
  I LA7INTYP=10,LA7SAC?1(1"A",1"G") D
  . S LA7I=$G(LA7SAC(0)) Q:'LA7I
  . S ^TMP("LA7 ORDER STATUS",$J,LA7I,+LA76241(0))=""
+ ;
+ ; Set flag if Lab UI Auto Release interface to start auto release processing routine when ;**88
+ ; finished - tasked by LA7VIN before shutdown
+ I LA7INTYP=1,LA7AUTORELEASE,$G(LA7UID)'="" D
+ . S LA76249("AR")=LA7AUTORELEASE
+ . S LA7INTYP("LWL",LA7LWL)=""
+ . S ^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL",LA7ISQN)=LA7UID_"^"_LA7624
+ . S ^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL",LA7ISQN,LA76304)=LA7624_"^"_LA7AUTORELEASE
+ . S ^TMP("LA7 AR",$J,LA7LWL,1,"AUTOREL-UID",LA7UID,LA7ISQN,LA76249)=$G(LA7AAT(1))
+ ;
  Q
  ;
  ;
@@ -267,3 +283,29 @@ FID ; Store filler id
  S ^LAH(LA7LWL,1,LA7ISQN,.1,"OBR","FID",LA76304)=LA7X
  ;
  Q
+ ;
+ ;
+ARSTATUS(LA7OBR49,LA7OBM,LA7624) ; Determine if LAB UI and auto release enabled and results are to be sent to auto release process.
+ ;
+ ; Call with LA7OBR49 = result handling code from OBR.49
+ ;             LA7OBM = WKLD Suffix code (file #64.2) from OBX.17 - .9750 = auto verification, .9760 = tech verification.
+ ;                      If "-.0000" then from OBR segment before OBX segment processed.
+ ;             LA7624 = ien of entry in AUTO INSTRUMENT file #62.4
+ ;
+ N LA7X,STATUS
+ ;
+ S STATUS=0
+ ;
+ ; Check if auto release master switch parameter is ON (1).
+ S LA7X=$$GET^XPAR("SYS^PKG","LA UI AUTO RELEASE MASTER",1,"Q")
+ ;
+ I LA7X=1,LA7OBR49="AR" S LA7X=LA7X+1
+ ;
+ ; Check OBX.17 (LA7OBM) field for WKLD suffix indicating auto or tech verification on middleware.
+ ;  If "-.0000" then from OBR segment before OBX segment processed.
+ I LA7X=2,$S(LA7OBM=".9750":1,LA7OBM=".9760":1,LA7OBM="-.0000":1,1:"") S LA7X=LA7X+1
+ ;
+ ; Check if file #62.4 entry is enabled for auto release based on auto or user verify middleware
+ I LA7X=3,$P($G(^LAB(62.4,LA7624,9)),U,11) S STATUS=$P(^LAB(62.4,LA7624,9),U,11)
+ ;
+ Q STATUS

@@ -1,134 +1,286 @@
-IBDEI0Y5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0Y5 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16031,1,4,0)
- ;;=4^D51.0
- ;;^UTILITY(U,$J,358.3,16031,2)
- ;;=^5002284
- ;;^UTILITY(U,$J,358.3,16032,0)
- ;;=D57.1^^61^716^29
- ;;^UTILITY(U,$J,358.3,16032,1,0)
+ ;;^UTILITY(U,$J,358.3,34367,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16032,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,16032,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,16032,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,16033,0)
- ;;=D64.0^^61^716^22
- ;;^UTILITY(U,$J,358.3,16033,1,0)
+ ;;^UTILITY(U,$J,358.3,34367,1,3,0)
+ ;;=3^Pulmonary Hypertension,Secondary
+ ;;^UTILITY(U,$J,358.3,34367,1,4,0)
+ ;;=4^I27.2
+ ;;^UTILITY(U,$J,358.3,34367,2)
+ ;;=^5007151
+ ;;^UTILITY(U,$J,358.3,34368,0)
+ ;;=I26.01^^125^1629^93
+ ;;^UTILITY(U,$J,358.3,34368,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16033,1,3,0)
- ;;=3^Anemia,Sideroblastic,Hereditary
- ;;^UTILITY(U,$J,358.3,16033,1,4,0)
- ;;=4^D64.0
- ;;^UTILITY(U,$J,358.3,16033,2)
- ;;=^5002344
- ;;^UTILITY(U,$J,358.3,16034,0)
- ;;=D64.1^^61^716^23
- ;;^UTILITY(U,$J,358.3,16034,1,0)
+ ;;^UTILITY(U,$J,358.3,34368,1,3,0)
+ ;;=3^Septic Pulmonary Embolism w/ Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,34368,1,4,0)
+ ;;=4^I26.01
+ ;;^UTILITY(U,$J,358.3,34368,2)
+ ;;=^5007145
+ ;;^UTILITY(U,$J,358.3,34369,0)
+ ;;=I26.90^^125^1629^94
+ ;;^UTILITY(U,$J,358.3,34369,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16034,1,3,0)
- ;;=3^Anemia,Sideroblastic,Secondary d/t Disease
- ;;^UTILITY(U,$J,358.3,16034,1,4,0)
- ;;=4^D64.1
- ;;^UTILITY(U,$J,358.3,16034,2)
- ;;=^5002345
- ;;^UTILITY(U,$J,358.3,16035,0)
- ;;=D64.2^^61^716^24
- ;;^UTILITY(U,$J,358.3,16035,1,0)
+ ;;^UTILITY(U,$J,358.3,34369,1,3,0)
+ ;;=3^Septic Pulmonary Embolism w/o Acute Cor Pulmonale
+ ;;^UTILITY(U,$J,358.3,34369,1,4,0)
+ ;;=4^I26.90
+ ;;^UTILITY(U,$J,358.3,34369,2)
+ ;;=^5007148
+ ;;^UTILITY(U,$J,358.3,34370,0)
+ ;;=J06.9^^125^1629^1
+ ;;^UTILITY(U,$J,358.3,34370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16035,1,3,0)
- ;;=3^Anemia,Sideroblastic,Secondary d/t Drugs/Toxins
- ;;^UTILITY(U,$J,358.3,16035,1,4,0)
- ;;=4^D64.2
- ;;^UTILITY(U,$J,358.3,16035,2)
- ;;=^5002346
- ;;^UTILITY(U,$J,358.3,16036,0)
- ;;=D64.9^^61^716^25
- ;;^UTILITY(U,$J,358.3,16036,1,0)
+ ;;^UTILITY(U,$J,358.3,34370,1,3,0)
+ ;;=3^AC Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,34370,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,34370,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,34371,0)
+ ;;=E66.01^^125^1629^52
+ ;;^UTILITY(U,$J,358.3,34371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16036,1,3,0)
- ;;=3^Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,16036,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,16036,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,16037,0)
- ;;=C50.912^^61^717^11
- ;;^UTILITY(U,$J,358.3,16037,1,0)
+ ;;^UTILITY(U,$J,358.3,34371,1,3,0)
+ ;;=3^Morbid Obesity
+ ;;^UTILITY(U,$J,358.3,34371,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,34371,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,34372,0)
+ ;;=E66.2^^125^1629^53
+ ;;^UTILITY(U,$J,358.3,34372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16037,1,3,0)
- ;;=3^Malig Neop Breast,Left,Unspec Site
- ;;^UTILITY(U,$J,358.3,16037,1,4,0)
- ;;=4^C50.912
- ;;^UTILITY(U,$J,358.3,16037,2)
- ;;=^5001196
- ;;^UTILITY(U,$J,358.3,16038,0)
- ;;=C50.911^^61^717^12
- ;;^UTILITY(U,$J,358.3,16038,1,0)
+ ;;^UTILITY(U,$J,358.3,34372,1,3,0)
+ ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,34372,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,34372,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,34373,0)
+ ;;=J96.01^^125^1629^5
+ ;;^UTILITY(U,$J,358.3,34373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16038,1,3,0)
- ;;=3^Malig Neop Breast,Right,Unspec Site
- ;;^UTILITY(U,$J,358.3,16038,1,4,0)
- ;;=4^C50.911
- ;;^UTILITY(U,$J,358.3,16038,2)
- ;;=^5001195
- ;;^UTILITY(U,$J,358.3,16039,0)
- ;;=D05.01^^61^717^10
- ;;^UTILITY(U,$J,358.3,16039,1,0)
+ ;;^UTILITY(U,$J,358.3,34373,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,34373,1,4,0)
+ ;;=4^J96.01
+ ;;^UTILITY(U,$J,358.3,34373,2)
+ ;;=^5008348
+ ;;^UTILITY(U,$J,358.3,34374,0)
+ ;;=J96.02^^125^1629^4
+ ;;^UTILITY(U,$J,358.3,34374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16039,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,16039,1,4,0)
- ;;=4^D05.01
- ;;^UTILITY(U,$J,358.3,16039,2)
- ;;=^5001927
- ;;^UTILITY(U,$J,358.3,16040,0)
- ;;=D05.02^^61^717^9
- ;;^UTILITY(U,$J,358.3,16040,1,0)
+ ;;^UTILITY(U,$J,358.3,34374,1,3,0)
+ ;;=3^Acute Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,34374,1,4,0)
+ ;;=4^J96.02
+ ;;^UTILITY(U,$J,358.3,34374,2)
+ ;;=^5008349
+ ;;^UTILITY(U,$J,358.3,34375,0)
+ ;;=J96.10^^125^1629^25
+ ;;^UTILITY(U,$J,358.3,34375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16040,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,16040,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,16040,2)
- ;;=^5001928
- ;;^UTILITY(U,$J,358.3,16041,0)
- ;;=D05.92^^61^717^5
- ;;^UTILITY(U,$J,358.3,16041,1,0)
+ ;;^UTILITY(U,$J,358.3,34375,1,3,0)
+ ;;=3^Chr Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,34375,1,4,0)
+ ;;=4^J96.10
+ ;;^UTILITY(U,$J,358.3,34375,2)
+ ;;=^5008350
+ ;;^UTILITY(U,$J,358.3,34376,0)
+ ;;=J96.11^^125^1629^27
+ ;;^UTILITY(U,$J,358.3,34376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16041,1,3,0)
- ;;=3^Carcinoma in Situ,Left Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,16041,1,4,0)
- ;;=4^D05.92
- ;;^UTILITY(U,$J,358.3,16041,2)
- ;;=^5001937
- ;;^UTILITY(U,$J,358.3,16042,0)
- ;;=D05.91^^61^717^6
- ;;^UTILITY(U,$J,358.3,16042,1,0)
+ ;;^UTILITY(U,$J,358.3,34376,1,3,0)
+ ;;=3^Chr Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,34376,1,4,0)
+ ;;=4^J96.11
+ ;;^UTILITY(U,$J,358.3,34376,2)
+ ;;=^5008351
+ ;;^UTILITY(U,$J,358.3,34377,0)
+ ;;=J96.12^^125^1629^26
+ ;;^UTILITY(U,$J,358.3,34377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16042,1,3,0)
- ;;=3^Carcinoma in Situ,Right Breast,Unspec Type
- ;;^UTILITY(U,$J,358.3,16042,1,4,0)
- ;;=4^D05.91
- ;;^UTILITY(U,$J,358.3,16042,2)
- ;;=^5001936
- ;;^UTILITY(U,$J,358.3,16043,0)
- ;;=D05.11^^61^717^8
- ;;^UTILITY(U,$J,358.3,16043,1,0)
+ ;;^UTILITY(U,$J,358.3,34377,1,3,0)
+ ;;=3^Chr Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,34377,1,4,0)
+ ;;=4^J96.12
+ ;;^UTILITY(U,$J,358.3,34377,2)
+ ;;=^5008352
+ ;;^UTILITY(U,$J,358.3,34378,0)
+ ;;=J96.20^^125^1629^7
+ ;;^UTILITY(U,$J,358.3,34378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16043,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,16043,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,16043,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,16044,0)
- ;;=D05.12^^61^717^7
- ;;^UTILITY(U,$J,358.3,16044,1,0)
+ ;;^UTILITY(U,$J,358.3,34378,1,3,0)
+ ;;=3^Acute and Chr Respiratory Failure
+ ;;^UTILITY(U,$J,358.3,34378,1,4,0)
+ ;;=4^J96.20
+ ;;^UTILITY(U,$J,358.3,34378,2)
+ ;;=^5008353
+ ;;^UTILITY(U,$J,358.3,34379,0)
+ ;;=J96.21^^125^1629^8
+ ;;^UTILITY(U,$J,358.3,34379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16044,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,34379,1,3,0)
+ ;;=3^Acute and Chr Respiratory Failure w/ Hypoxia
+ ;;^UTILITY(U,$J,358.3,34379,1,4,0)
+ ;;=4^J96.21
+ ;;^UTILITY(U,$J,358.3,34379,2)
+ ;;=^5008354
+ ;;^UTILITY(U,$J,358.3,34380,0)
+ ;;=J96.22^^125^1629^9
+ ;;^UTILITY(U,$J,358.3,34380,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34380,1,3,0)
+ ;;=3^Acute and Chr Respiratory Failure w/ Hypercapnia
+ ;;^UTILITY(U,$J,358.3,34380,1,4,0)
+ ;;=4^J96.22
+ ;;^UTILITY(U,$J,358.3,34380,2)
+ ;;=^5008355
+ ;;^UTILITY(U,$J,358.3,34381,0)
+ ;;=D86.0^^125^1629^92
+ ;;^UTILITY(U,$J,358.3,34381,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34381,1,3,0)
+ ;;=3^Sarcoidosis of the Lung
+ ;;^UTILITY(U,$J,358.3,34381,1,4,0)
+ ;;=4^D86.0
+ ;;^UTILITY(U,$J,358.3,34381,2)
+ ;;=^5002442
+ ;;^UTILITY(U,$J,358.3,34382,0)
+ ;;=E66.9^^125^1630^6
+ ;;^UTILITY(U,$J,358.3,34382,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34382,1,3,0)
+ ;;=3^Obesity,Unspec
+ ;;^UTILITY(U,$J,358.3,34382,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,34382,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,34383,0)
+ ;;=E66.01^^125^1630^4
+ ;;^UTILITY(U,$J,358.3,34383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34383,1,3,0)
+ ;;=3^Morbid Obesity d/t Excess Calories
+ ;;^UTILITY(U,$J,358.3,34383,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,34383,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,34384,0)
+ ;;=G25.9^^125^1630^1
+ ;;^UTILITY(U,$J,358.3,34384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34384,1,3,0)
+ ;;=3^Extrapyramidal & Movement Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,34384,1,4,0)
+ ;;=4^G25.9
+ ;;^UTILITY(U,$J,358.3,34384,2)
+ ;;=^5003803
+ ;;^UTILITY(U,$J,358.3,34385,0)
+ ;;=G25.81^^125^1630^9
+ ;;^UTILITY(U,$J,358.3,34385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34385,1,3,0)
+ ;;=3^Restless Legs Syndrome
+ ;;^UTILITY(U,$J,358.3,34385,1,4,0)
+ ;;=4^G25.81
+ ;;^UTILITY(U,$J,358.3,34385,2)
+ ;;=^5003801
+ ;;^UTILITY(U,$J,358.3,34386,0)
+ ;;=G47.30^^125^1630^10
+ ;;^UTILITY(U,$J,358.3,34386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34386,1,3,0)
+ ;;=3^Sleep Apnea,Unspec
+ ;;^UTILITY(U,$J,358.3,34386,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,34386,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,34387,0)
+ ;;=G47.00^^125^1630^3
+ ;;^UTILITY(U,$J,358.3,34387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34387,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,34387,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,34387,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,34388,0)
+ ;;=G47.10^^125^1630^2
+ ;;^UTILITY(U,$J,358.3,34388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34388,1,3,0)
+ ;;=3^Hypersomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,34388,1,4,0)
+ ;;=4^G47.10
+ ;;^UTILITY(U,$J,358.3,34388,2)
+ ;;=^332926
+ ;;^UTILITY(U,$J,358.3,34389,0)
+ ;;=G47.52^^125^1630^8
+ ;;^UTILITY(U,$J,358.3,34389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34389,1,3,0)
+ ;;=3^REM Sleep Behavior Disorder
+ ;;^UTILITY(U,$J,358.3,34389,1,4,0)
+ ;;=4^G47.52
+ ;;^UTILITY(U,$J,358.3,34389,2)
+ ;;=^332778
+ ;;^UTILITY(U,$J,358.3,34390,0)
+ ;;=R06.83^^125^1630^11
+ ;;^UTILITY(U,$J,358.3,34390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34390,1,3,0)
+ ;;=3^Snoring
+ ;;^UTILITY(U,$J,358.3,34390,1,4,0)
+ ;;=4^R06.83
+ ;;^UTILITY(U,$J,358.3,34390,2)
+ ;;=^5019192
+ ;;^UTILITY(U,$J,358.3,34391,0)
+ ;;=E66.2^^125^1630^5
+ ;;^UTILITY(U,$J,358.3,34391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34391,1,3,0)
+ ;;=3^Morbid Obesity w/ Alveolar Hypoventilation
+ ;;^UTILITY(U,$J,358.3,34391,1,4,0)
+ ;;=4^E66.2
+ ;;^UTILITY(U,$J,358.3,34391,2)
+ ;;=^5002829
+ ;;^UTILITY(U,$J,358.3,34392,0)
+ ;;=G47.33^^125^1630^7
+ ;;^UTILITY(U,$J,358.3,34392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34392,1,3,0)
+ ;;=3^Obstructive Sleep Apnea
+ ;;^UTILITY(U,$J,358.3,34392,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,34392,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,34393,0)
+ ;;=G47.31^^125^1631^1
+ ;;^UTILITY(U,$J,358.3,34393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34393,1,3,0)
+ ;;=3^Central Sleep Apnea,Primary
+ ;;^UTILITY(U,$J,358.3,34393,1,4,0)
+ ;;=4^G47.31
+ ;;^UTILITY(U,$J,358.3,34393,2)
+ ;;=^332761
+ ;;^UTILITY(U,$J,358.3,34394,0)
+ ;;=G47.36^^125^1631^2
+ ;;^UTILITY(U,$J,358.3,34394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34394,1,3,0)
+ ;;=3^Hypoventilation,Sleep Related
+ ;;^UTILITY(U,$J,358.3,34394,1,4,0)
+ ;;=4^G47.36
+ ;;^UTILITY(U,$J,358.3,34394,2)
+ ;;=^5003979
+ ;;^UTILITY(U,$J,358.3,34395,0)
+ ;;=G47.33^^125^1631^3
+ ;;^UTILITY(U,$J,358.3,34395,1,0)
+ ;;=^358.31IA^4^2

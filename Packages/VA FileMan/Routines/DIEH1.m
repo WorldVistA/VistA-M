@@ -1,27 +1,31 @@
-DIEH1 ;SFISC/DPC-DBS HELP CON'T ;2:53 PM  25 May 2001
- ;;22.0;VA FileMan;**85**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;;
-DT(DIEHDT) ;
- N P,Q
- I DIEHDT'["N" S P(1)=$S(DIEHDT["M":"or 0157",1:"or 012057")
- D
- . I DIEHDT["P" S P(2)="assumes a date in the PAST." Q
- . I DIEHDT["F" S P(2)="assumes a date in the FUTURE." Q
- . S P(2)="uses CURRENT YEAR.  Two digit year"
- . S P(3)="  assumes no more than 20 years in the future, or 80 years in the past."
- . Q
- I DIEHDT["M" D BLD^DIALOG(9110.7,.P,.P) Q
+DIEH1 ;SFISC/DPC-DBS HELP CON'T ;05:41 PM  8 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
+ ;;
+DT(DIEHDT,DIWRITE) ; **CCO/NI OPTIONAL 'DIWRITE' PARAMETER ADDED SO WE CAN CALL THIS FROM DIEQ AS WELL AS DIEFU AND DIEH FOR FOREIGN-LANGUAGE DATE-HELP
+ N P,Q
+ I DIEHDT'["N" S P(1)=$$EZBLD^DIALOG($S(DIEHDT["M":9110.8,1:9110.1)) ;22*85  **CCO/NI 'OR 0157' 'OR 120157'
+ D
+ . I DIEHDT["P" S P(2)=$$EZBLD^DIALOG(9110.2) Q  ;**CCO/NI 'PAST'
+ . I DIEHDT["F" S P(2)=$$EZBLD^DIALOG(9110.3) Q  ;**CCO/NI 'FUTURE'
+ . S P(2)=$$EZBLD^DIALOG(9110.4) ;**CCO/NI 'ASSUMES CURRENT YEAR'
+ . S P(3)=$$EZBLD^DIALOG(9110.5) ;**CCO/NI '20 YEARS future, 80 past'
+ . Q
+M I DIEHDT["M" D BLD^DIALOG(9110.7,.P,.P) G W ;22*85
  I DIEHDT'["X" D
- . N X S X="You may omit the precise day, as:  JAN, 1957."
+ . N X S X=$$EZBLD^DIALOG(9110.6) ;**CCO/NI  'MAY OMIT PRECISE DATE'
  . I $G(P(3))]"" S P(4)=X Q
  . S P(3)=X Q
  D BLD^DIALOG(9110,.P,.P)
  I DIEHDT["T"!(DIEHDT["R") D
- . I DIEHDT["S" S Q(1)="Seconds may be entered as 10:30:30 or 103030AM."
- . I DIEHDT["R" S Q(2)="Time is REQUIRED for this response."
+ . I DIEHDT["S" S Q(1)=$$EZBLD^DIALOG(9112) ;**CCO/NI 'SECONDS ALLOWED'
+ . I DIEHDT["R" S Q(2)=$$EZBLD^DIALOG(9113) ;**CCO/NI 'TIME REQUIRED'
  . D BLD^DIALOG(9111,.Q,.Q)
  . Q
+W I $G(DIWRITE) D MSG^DIALOG("WH") ;**CCO/NI NEW DIWRITE PARAMETER WRITES IT OUT
  Q
  ;

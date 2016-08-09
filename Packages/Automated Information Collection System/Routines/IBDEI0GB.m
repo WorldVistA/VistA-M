@@ -1,128 +1,294 @@
-IBDEI0GB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0GB ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7541,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,7541,1,4,0)
- ;;=4^F11.281
- ;;^UTILITY(U,$J,358.3,7541,2)
- ;;=^5003138
- ;;^UTILITY(U,$J,358.3,7542,0)
- ;;=F11.259^^30^410^42
- ;;^UTILITY(U,$J,358.3,7542,1,0)
+ ;;^UTILITY(U,$J,358.3,16343,2)
+ ;;=^5063409
+ ;;^UTILITY(U,$J,358.3,16344,0)
+ ;;=Z85.42^^64^786^23
+ ;;^UTILITY(U,$J,358.3,16344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7542,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,7542,1,4,0)
- ;;=4^F11.259
- ;;^UTILITY(U,$J,358.3,7542,2)
- ;;=^5003137
- ;;^UTILITY(U,$J,358.3,7543,0)
- ;;=F11.251^^30^410^35
- ;;^UTILITY(U,$J,358.3,7543,1,0)
+ ;;^UTILITY(U,$J,358.3,16344,1,3,0)
+ ;;=3^Personal Hx Malig Neop Parts of Uterus
+ ;;^UTILITY(U,$J,358.3,16344,1,4,0)
+ ;;=4^Z85.42
+ ;;^UTILITY(U,$J,358.3,16344,2)
+ ;;=^5063419
+ ;;^UTILITY(U,$J,358.3,16345,0)
+ ;;=Z79.01^^64^787^18
+ ;;^UTILITY(U,$J,358.3,16345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7543,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,7543,1,4,0)
- ;;=4^F11.251
- ;;^UTILITY(U,$J,358.3,7543,2)
- ;;=^5003136
- ;;^UTILITY(U,$J,358.3,7544,0)
- ;;=F11.250^^30^410^36
- ;;^UTILITY(U,$J,358.3,7544,1,0)
+ ;;^UTILITY(U,$J,358.3,16345,1,3,0)
+ ;;=3^L/T (Current) Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,16345,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,16345,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,16346,0)
+ ;;=Z76.0^^64^787^20
+ ;;^UTILITY(U,$J,358.3,16346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7544,1,3,0)
- ;;=3^Opioid Depend w/ Opioid-Induc Psychotic Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,7544,1,4,0)
- ;;=4^F11.250
- ;;^UTILITY(U,$J,358.3,7544,2)
- ;;=^5003135
- ;;^UTILITY(U,$J,358.3,7545,0)
- ;;=F11.24^^30^410^41
- ;;^UTILITY(U,$J,358.3,7545,1,0)
+ ;;^UTILITY(U,$J,358.3,16346,1,3,0)
+ ;;=3^Medication Renewal
+ ;;^UTILITY(U,$J,358.3,16346,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,16346,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,16347,0)
+ ;;=R79.1^^64^787^2
+ ;;^UTILITY(U,$J,358.3,16347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7545,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,7545,1,4,0)
- ;;=4^F11.24
- ;;^UTILITY(U,$J,358.3,7545,2)
- ;;=^5003134
- ;;^UTILITY(U,$J,358.3,7546,0)
- ;;=F11.23^^30^410^47
- ;;^UTILITY(U,$J,358.3,7546,1,0)
+ ;;^UTILITY(U,$J,358.3,16347,1,3,0)
+ ;;=3^Abnormal Coagulation Profile
+ ;;^UTILITY(U,$J,358.3,16347,1,4,0)
+ ;;=4^R79.1
+ ;;^UTILITY(U,$J,358.3,16347,2)
+ ;;=^5019591
+ ;;^UTILITY(U,$J,358.3,16348,0)
+ ;;=Z95.810^^64^787^1
+ ;;^UTILITY(U,$J,358.3,16348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7546,1,3,0)
- ;;=3^Opioid Dependence w/ Withdrawal
- ;;^UTILITY(U,$J,358.3,7546,1,4,0)
- ;;=4^F11.23
- ;;^UTILITY(U,$J,358.3,7546,2)
- ;;=^5003133
- ;;^UTILITY(U,$J,358.3,7547,0)
- ;;=F11.20^^30^410^48
- ;;^UTILITY(U,$J,358.3,7547,1,0)
+ ;;^UTILITY(U,$J,358.3,16348,1,3,0)
+ ;;=3^AICD
+ ;;^UTILITY(U,$J,358.3,16348,1,4,0)
+ ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,16348,2)
+ ;;=^5063674
+ ;;^UTILITY(U,$J,358.3,16349,0)
+ ;;=I25.3^^64^787^3
+ ;;^UTILITY(U,$J,358.3,16349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7547,1,3,0)
- ;;=3^Opioid Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,7547,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,7547,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,7548,0)
- ;;=F11.229^^30^410^40
- ;;^UTILITY(U,$J,358.3,7548,1,0)
+ ;;^UTILITY(U,$J,358.3,16349,1,3,0)
+ ;;=3^Aneurysm of Heart
+ ;;^UTILITY(U,$J,358.3,16349,1,4,0)
+ ;;=4^I25.3
+ ;;^UTILITY(U,$J,358.3,16349,2)
+ ;;=^5007112
+ ;;^UTILITY(U,$J,358.3,16350,0)
+ ;;=I35.9^^64^787^4
+ ;;^UTILITY(U,$J,358.3,16350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7548,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,7548,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,7548,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,7549,0)
- ;;=F11.222^^30^410^38
- ;;^UTILITY(U,$J,358.3,7549,1,0)
+ ;;^UTILITY(U,$J,358.3,16350,1,3,0)
+ ;;=3^Aortic Valve Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,16350,1,4,0)
+ ;;=4^I35.9
+ ;;^UTILITY(U,$J,358.3,16350,2)
+ ;;=^5007178
+ ;;^UTILITY(U,$J,358.3,16351,0)
+ ;;=Z95.2^^64^787^32
+ ;;^UTILITY(U,$J,358.3,16351,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7549,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,7549,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,7549,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,7550,0)
- ;;=F11.221^^30^410^37
- ;;^UTILITY(U,$J,358.3,7550,1,0)
+ ;;^UTILITY(U,$J,358.3,16351,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,16351,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,16351,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,16352,0)
+ ;;=I74.9^^64^787^5
+ ;;^UTILITY(U,$J,358.3,16352,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7550,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,7550,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,7550,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,7551,0)
- ;;=F11.220^^30^410^39
- ;;^UTILITY(U,$J,358.3,7551,1,0)
+ ;;^UTILITY(U,$J,358.3,16352,1,3,0)
+ ;;=3^Arterial Embolism/Thrombosis,Unspec
+ ;;^UTILITY(U,$J,358.3,16352,1,4,0)
+ ;;=4^I74.9
+ ;;^UTILITY(U,$J,358.3,16352,2)
+ ;;=^5007805
+ ;;^UTILITY(U,$J,358.3,16353,0)
+ ;;=I48.91^^64^787^6
+ ;;^UTILITY(U,$J,358.3,16353,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7551,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,7551,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,7551,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,7552,0)
- ;;=F14.29^^30^410^21
- ;;^UTILITY(U,$J,358.3,7552,1,0)
+ ;;^UTILITY(U,$J,358.3,16353,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,16353,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,16353,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,16354,0)
+ ;;=I48.92^^64^787^7
+ ;;^UTILITY(U,$J,358.3,16354,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7552,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,7552,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,7552,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,7553,0)
- ;;=F14.288^^30^410^20
- ;;^UTILITY(U,$J,358.3,7553,1,0)
+ ;;^UTILITY(U,$J,358.3,16354,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,16354,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,16354,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,16355,0)
+ ;;=Z95.0^^64^787^8
+ ;;^UTILITY(U,$J,358.3,16355,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7553,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,7553,1,4,0)
- ;;=4^F14.288
+ ;;^UTILITY(U,$J,358.3,16355,1,3,0)
+ ;;=3^Cardiac Pacemaker
+ ;;^UTILITY(U,$J,358.3,16355,1,4,0)
+ ;;=4^Z95.0
+ ;;^UTILITY(U,$J,358.3,16355,2)
+ ;;=^5063668
+ ;;^UTILITY(U,$J,358.3,16356,0)
+ ;;=I42.8^^64^787^9
+ ;;^UTILITY(U,$J,358.3,16356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16356,1,3,0)
+ ;;=3^Cardiomyopathies NEC
+ ;;^UTILITY(U,$J,358.3,16356,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,16356,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,16357,0)
+ ;;=I65.29^^64^787^10
+ ;;^UTILITY(U,$J,358.3,16357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16357,1,3,0)
+ ;;=3^Carotid Artery Occlusion/Stenosis,Unspec
+ ;;^UTILITY(U,$J,358.3,16357,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,16357,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,16358,0)
+ ;;=I23.0^^64^787^11
+ ;;^UTILITY(U,$J,358.3,16358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16358,1,3,0)
+ ;;=3^Certain Sequelae of MI
+ ;;^UTILITY(U,$J,358.3,16358,1,4,0)
+ ;;=4^I23.0
+ ;;^UTILITY(U,$J,358.3,16358,2)
+ ;;=^5007094
+ ;;^UTILITY(U,$J,358.3,16359,0)
+ ;;=I82.509^^64^787^12
+ ;;^UTILITY(U,$J,358.3,16359,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16359,1,3,0)
+ ;;=3^Chr DVT/Embolism Lower Extremity,Unspec
+ ;;^UTILITY(U,$J,358.3,16359,1,4,0)
+ ;;=4^I82.509
+ ;;^UTILITY(U,$J,358.3,16359,2)
+ ;;=^5133628
+ ;;^UTILITY(U,$J,358.3,16360,0)
+ ;;=K70.0^^64^787^13
+ ;;^UTILITY(U,$J,358.3,16360,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16360,1,3,0)
+ ;;=3^Chronic Liver Disease
+ ;;^UTILITY(U,$J,358.3,16360,1,4,0)
+ ;;=4^K70.0
+ ;;^UTILITY(U,$J,358.3,16360,2)
+ ;;=^5008784
+ ;;^UTILITY(U,$J,358.3,16361,0)
+ ;;=E56.1^^64^787^37
+ ;;^UTILITY(U,$J,358.3,16361,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16361,1,3,0)
+ ;;=3^Vitamin K Deficiency
+ ;;^UTILITY(U,$J,358.3,16361,1,4,0)
+ ;;=4^E56.1
+ ;;^UTILITY(U,$J,358.3,16361,2)
+ ;;=^5002801
+ ;;^UTILITY(U,$J,358.3,16362,0)
+ ;;=Z96.649^^64^787^16
+ ;;^UTILITY(U,$J,358.3,16362,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16362,1,3,0)
+ ;;=3^Hip Joint Replacement
+ ;;^UTILITY(U,$J,358.3,16362,1,4,0)
+ ;;=4^Z96.649
+ ;;^UTILITY(U,$J,358.3,16362,2)
+ ;;=^5063704
+ ;;^UTILITY(U,$J,358.3,16363,0)
+ ;;=Z96.659^^64^787^17
+ ;;^UTILITY(U,$J,358.3,16363,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16363,1,3,0)
+ ;;=3^Knee Joint Replacement
+ ;;^UTILITY(U,$J,358.3,16363,1,4,0)
+ ;;=4^Z96.659
+ ;;^UTILITY(U,$J,358.3,16363,2)
+ ;;=^5063708
+ ;;^UTILITY(U,$J,358.3,16364,0)
+ ;;=I69.90^^64^787^19
+ ;;^UTILITY(U,$J,358.3,16364,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16364,1,3,0)
+ ;;=3^Late Effects CVA
+ ;;^UTILITY(U,$J,358.3,16364,1,4,0)
+ ;;=4^I69.90
+ ;;^UTILITY(U,$J,358.3,16364,2)
+ ;;=^5007551
+ ;;^UTILITY(U,$J,358.3,16365,0)
+ ;;=I34.8^^64^787^21
+ ;;^UTILITY(U,$J,358.3,16365,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16365,1,3,0)
+ ;;=3^Mitral Valve Disorders NEC
+ ;;^UTILITY(U,$J,358.3,16365,1,4,0)
+ ;;=4^I34.8
+ ;;^UTILITY(U,$J,358.3,16365,2)
+ ;;=^5007172
+ ;;^UTILITY(U,$J,358.3,16366,0)
+ ;;=I23.0^^64^787^23
+ ;;^UTILITY(U,$J,358.3,16366,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16366,1,3,0)
+ ;;=3^Mural Thrombus
+ ;;^UTILITY(U,$J,358.3,16366,1,4,0)
+ ;;=4^I23.0
+ ;;^UTILITY(U,$J,358.3,16366,2)
+ ;;=^5007094
+ ;;^UTILITY(U,$J,358.3,16367,0)
+ ;;=I73.9^^64^787^28
+ ;;^UTILITY(U,$J,358.3,16367,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16367,1,3,0)
+ ;;=3^Peripheral Vascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,16367,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,16367,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,16368,0)
+ ;;=Z86.79^^64^787^29
+ ;;^UTILITY(U,$J,358.3,16368,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16368,1,3,0)
+ ;;=3^Personal Hx of Circulatory System Disease NEC
+ ;;^UTILITY(U,$J,358.3,16368,1,4,0)
+ ;;=4^Z86.79
+ ;;^UTILITY(U,$J,358.3,16368,2)
+ ;;=^5063479
+ ;;^UTILITY(U,$J,358.3,16369,0)
+ ;;=Z86.72^^64^787^30
+ ;;^UTILITY(U,$J,358.3,16369,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16369,1,3,0)
+ ;;=3^Personal Hx of Thrombophlebitis
+ ;;^UTILITY(U,$J,358.3,16369,1,4,0)
+ ;;=4^Z86.72
+ ;;^UTILITY(U,$J,358.3,16369,2)
+ ;;=^5063476
+ ;;^UTILITY(U,$J,358.3,16370,0)
+ ;;=Z86.718^^64^787^31
+ ;;^UTILITY(U,$J,358.3,16370,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16370,1,3,0)
+ ;;=3^Personal Hx of Venous Thrombosis/Embolism NEC
+ ;;^UTILITY(U,$J,358.3,16370,1,4,0)
+ ;;=4^Z86.718
+ ;;^UTILITY(U,$J,358.3,16370,2)
+ ;;=^5063475
+ ;;^UTILITY(U,$J,358.3,16371,0)
+ ;;=I26.99^^64^787^33
+ ;;^UTILITY(U,$J,358.3,16371,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16371,1,3,0)
+ ;;=3^Pulmonary Embolism NEC
+ ;;^UTILITY(U,$J,358.3,16371,1,4,0)
+ ;;=4^I26.99
+ ;;^UTILITY(U,$J,358.3,16371,2)
+ ;;=^5007150
+ ;;^UTILITY(U,$J,358.3,16372,0)
+ ;;=G45.9^^64^787^35
+ ;;^UTILITY(U,$J,358.3,16372,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16372,1,3,0)
+ ;;=3^TIA,Unspec
+ ;;^UTILITY(U,$J,358.3,16372,1,4,0)
+ ;;=4^G45.9

@@ -1,5 +1,5 @@
-PSSDOSER ;BIR/RTR-Dose edit option ;03/10/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,50,57,47,68,82,125,129,144,155**;9/30/97;Build 36
+PSSDOSER ;BIR/RTR-Dose edit option ; 21 Sep 2015  8:37 PM
+ ;;1.0;PHARMACY DATA MANAGEMENT;**34,38,50,57,47,68,82,125,129,144,155,194**;9/30/97;Build 9
  ;Reference to ^PS(50.607 supported by DBIA #2221
  ;Reference to ^PS(59 supported by DBIA #1976
  ;
@@ -74,7 +74,11 @@ STR ;Edit strength
  N PSSIENS,PSS11
  ;W !!,"Strength from National Drug File match => "_$S($E($G(PSSNATST),1)=".":"0",1:"")_$G(PSSNATST)_"    "_$P($G(^PS(50.607,+$G(PSSUN),0)),"^")
  ;W !,"Strength currently in the Drug File    => "_$S($E($P($G(^PSDRUG(PSSIEN,"DOS")),"^"),1)=".":"0",1:"")_$P($G(^PSDRUG(PSSIEN,"DOS")),"^")_"    "_$S($P($G(^PS(50.607,+$G(PSSUN),0)),"^")'["/":$P($G(^(0)),"^"),1:"") D MS^PSSDSPOP
- W ! K DIR S DIR(0)="Y",DIR("?")="Changing the strength will update all possible dosages for this Drug",DIR("B")="N",DIR("A")="Edit Strength" D ^DIR K DIR I 'Y W ! Q
+ W ! K DIR S DIR(0)="Y",DIR("?")="Changing the strength will update all possible dosages for this Drug",DIR("B")="NO",DIR("A")="Edit Strength" D ^DIR K DIR I 'Y W ! Q
+ W !!,"Changing the strength will not change the concentration."
+ W ! K DIR S DIR(0)="Y"
+ S DIR("?")="Changes in strength do not cause changes in concentration."
+ S DIR("B")="NO",DIR("A")="Are you sure you need to change the strength" D ^DIR K DIR I 'Y W ! Q
  W ! K DIE S DIE="^PSDRUG(",DA=PSSIEN,DR=901 D ^DIE K DIE W !
  I $P($G(^PSDRUG(PSSIEN,"DOS")),"^")="" K ^PSDRUG(PSSIEN,"DOS") K ^PSDRUG(PSSIEN,"DOS1") W !!,"Deleting Strength has deleted all Possible Dosages!",!
  Q

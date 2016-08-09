@@ -1,6 +1,6 @@
 IBCNEUT6 ;DAOU/ESG - IIV MISC. UTILITIES ;14-AUG-2002
- ;;2.0;INTEGRATED BILLING;**184,252,271**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,271,566**;21-MAR-94;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Can't be called from the top
  Q
@@ -43,7 +43,7 @@ AMADD(INSNAME,IBCNEXT1) ; Conditionally add an Auto Match entry based on user in
  NEW DIK,DILN,DIPA,DISYS,DIV,DK,DL,DM,DN,DOV,DP,DQ,DR,DU,DV,DZ
  ;
  ; First, check security key to see if user is allowed to do this
- I '$$KCHK^XUSRB("IBCNE IIV AUTO MATCH") G AMADDX
+ I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") G AMADDX
  ;
  S IBCNEXT1=$$UP^XLFSTR(IBCNEXT1)               ; all uppercase
  S IBCNEXT1=$$TRIM^XLFSTR(IBCNEXT1)             ; lead/trail spaces

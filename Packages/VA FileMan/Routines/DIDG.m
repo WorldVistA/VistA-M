@@ -1,6 +1,10 @@
-DIDG ;SFISC/RWF-GLOBAL MAP ;1:24 PM  1 Mar 2002
- ;;22.0;VA FileMan;**105**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIDG ;SFISC/RWF-GLOBAL MAP ;10JAN2006
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K W S DJ(Z)=D0,F=0,W=F(Z),M=1,DP=0
  W !
 UP I $D(^DD(W,0,"UP")) S Y=^("UP"),N=$O(^DD(Y,"SB",W,0)) I $D(^DD(Y,N,0)) S F=F+1,W(F)=$P($P(^(0),U,4),";",1),W=Y G UP
@@ -9,7 +13,8 @@ UP I $D(^DD(W,0,"UP")) S Y=^("UP"),N=$O(^DD(Y,"SB",W,0)) I $D(^DD(Y,N,0)) S F=F+
  ;
 L S DN(Z)=""
 A S DN(Z)=$O(^DD(F(Z),"GL",DN(Z))),DP(0)=0 I DN(Z)="" D POP Q
- S DID(Z)=DID(Z-1)_"D"_(F+Z-1)_","_DN(Z) I $O(^DD(F(Z),"GL",DN(Z),""))'=0 S W=DID(Z)_")=" W ! D WL Q:M=U
+ S DID(Z)=DID(Z-1)_"D"_(F+Z-1)_","_DN(Z) I $O(^DD(F(Z),"GL",DN(Z),""))=0 S DP=""
+ E  S W=DID(Z)_")=" W ! D WL Q:M=U
 B S DP=$O(^DD(F(Z),"GL",DN(Z),DP)) G PUSH:DP=0,A:DP=""
  S DF=$O(^DD(F(Z),"GL",DN(Z),DP,0))
  I DP(0)+1<DP F I1=DP(0)+1:1:DP-1 S W=" ^ " D WL Q:M=U
@@ -50,7 +55,7 @@ HD S DC=DC+1 D ^DIDH Q:M=U  W !,DID(Z),")= " Q
  ;
 HDR ;
  S DC=DC+1 I IOST?1"C".E W $C(7) R M:DTIME S:'$T M=U Q:M=U
-H1 W:$D(DIFF)&($Y) @IOF S DIFF=1 W "TEMPLATE LIST  --  FILE #"_DIB,?(IOM-20),$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)_"    PAGE "_DC
+H1 W:$D(DIFF)&($Y) @IOF S DIFF=1 W "TEMPLATE LIST  --  FILE #"_DIB,?(IOM-20),$$OUT^DIALOGU(DT,"FMTE","2D")_"    "_$$EZBLD^DIALOG(7095,DC) ;**CCO/NI  DATE AND 'PAGE'
  S M="",$P(M,"-",IOM)="" W !,M
  Q
  ;

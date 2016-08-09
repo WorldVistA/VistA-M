@@ -1,6 +1,10 @@
-DIFGO ;SFISC/XAK-FILEGRAM OPTIONS ;5:13 AM  7 Jun 2000
- ;;22.0;VA FileMan;**47**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFGO ;SFISC/XAK-FILEGRAM OPTIONS ;10:15 AM  7 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 0 S DIC="^DOPT(""DIFG"","
  G OPT:$D(^DOPT("DIFG",6)) S ^(0)="FILEGRAM OPTION^1.01" K ^("B")
  F X=1:1:6 S ^DOPT("DIFG",X,0)=$P($T(@X),";;",2)
@@ -38,7 +42,7 @@ EN1 S X=Y(0),Y=$P(X,U,6),Y=$S($D(^XMB(3.9,+Y,0))#2:$P(^(0),U),1:Y) W !!,Y
  W !! S S=5,D=0 F  S (D,D1)=$O(^XMB(3.9,D0,2,D)) Q:D'>0  I $D(^(D,0))#2 S X=^(0) D ^DIWP Q:'$D(D)  S D=D1,S=S+1 I $E(IOST)="C",S+4>IOSL S DIR(0)="E" D ^DIR Q:'Y  S S=0
  S:D="" (D,D1)=-1 D 0^DIWW K DIP,Y,DIWF
  Q
-DT I Y W $E(Y,6,7)," ",$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC",U,$E(Y,4,5))_" ",Y\10000+1700 W:Y#1 " @ "_$E(Y_0,9,10)_":"_$E(Y_"000",11,12) Q
+DT X ^DD("DD")
  W Y Q
  ;
 5 ;;SPECIFIERS

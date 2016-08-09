@@ -1,142 +1,280 @@
-IBDEI0AF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0AF ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4645,1,4,0)
- ;;=4^D23.61
- ;;^UTILITY(U,$J,358.3,4645,2)
- ;;=^5002071
- ;;^UTILITY(U,$J,358.3,4646,0)
- ;;=D23.71^^21^287^29
- ;;^UTILITY(U,$J,358.3,4646,1,0)
+ ;;^UTILITY(U,$J,358.3,10427,1,4,0)
+ ;;=4^H35.362
+ ;;^UTILITY(U,$J,358.3,10427,2)
+ ;;=^5005659
+ ;;^UTILITY(U,$J,358.3,10428,0)
+ ;;=H35.361^^51^592^38
+ ;;^UTILITY(U,$J,358.3,10428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4646,1,3,0)
- ;;=3^Benign Neop Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4646,1,4,0)
- ;;=4^D23.71
- ;;^UTILITY(U,$J,358.3,4646,2)
- ;;=^5002074
- ;;^UTILITY(U,$J,358.3,4647,0)
- ;;=D23.72^^21^287^24
- ;;^UTILITY(U,$J,358.3,4647,1,0)
+ ;;^UTILITY(U,$J,358.3,10428,1,3,0)
+ ;;=3^Drusen of Macula,Right Eye
+ ;;^UTILITY(U,$J,358.3,10428,1,4,0)
+ ;;=4^H35.361
+ ;;^UTILITY(U,$J,358.3,10428,2)
+ ;;=^5005658
+ ;;^UTILITY(U,$J,358.3,10429,0)
+ ;;=H35.363^^51^592^36
+ ;;^UTILITY(U,$J,358.3,10429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4647,1,3,0)
- ;;=3^Benign Neop Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4647,1,4,0)
- ;;=4^D23.72
- ;;^UTILITY(U,$J,358.3,4647,2)
- ;;=^5002075
- ;;^UTILITY(U,$J,358.3,4648,0)
- ;;=L60.4^^21^287^17
- ;;^UTILITY(U,$J,358.3,4648,1,0)
+ ;;^UTILITY(U,$J,358.3,10429,1,3,0)
+ ;;=3^Drusen of Macula,Bilateral
+ ;;^UTILITY(U,$J,358.3,10429,1,4,0)
+ ;;=4^H35.363
+ ;;^UTILITY(U,$J,358.3,10429,2)
+ ;;=^5005660
+ ;;^UTILITY(U,$J,358.3,10430,0)
+ ;;=H35.431^^51^592^66
+ ;;^UTILITY(U,$J,358.3,10430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4648,1,3,0)
- ;;=3^Beau's Lines
- ;;^UTILITY(U,$J,358.3,4648,1,4,0)
- ;;=4^L60.4
- ;;^UTILITY(U,$J,358.3,4648,2)
- ;;=^5009237
- ;;^UTILITY(U,$J,358.3,4649,0)
- ;;=D23.4^^21^287^31
- ;;^UTILITY(U,$J,358.3,4649,1,0)
+ ;;^UTILITY(U,$J,358.3,10430,1,3,0)
+ ;;=3^Paving Stone Degeneration of Retina,Right Eye
+ ;;^UTILITY(U,$J,358.3,10430,1,4,0)
+ ;;=4^H35.431
+ ;;^UTILITY(U,$J,358.3,10430,2)
+ ;;=^5005679
+ ;;^UTILITY(U,$J,358.3,10431,0)
+ ;;=H35.432^^51^592^65
+ ;;^UTILITY(U,$J,358.3,10431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4649,1,3,0)
- ;;=3^Benign Neop Skin Scalp and Neck
- ;;^UTILITY(U,$J,358.3,4649,1,4,0)
- ;;=4^D23.4
- ;;^UTILITY(U,$J,358.3,4649,2)
- ;;=^5002068
- ;;^UTILITY(U,$J,358.3,4650,0)
- ;;=C44.612^^21^287^13
- ;;^UTILITY(U,$J,358.3,4650,1,0)
+ ;;^UTILITY(U,$J,358.3,10431,1,3,0)
+ ;;=3^Paving Stone Degeneration of Retina,Left Eye
+ ;;^UTILITY(U,$J,358.3,10431,1,4,0)
+ ;;=4^H35.432
+ ;;^UTILITY(U,$J,358.3,10431,2)
+ ;;=^5005680
+ ;;^UTILITY(U,$J,358.3,10432,0)
+ ;;=H35.433^^51^592^64
+ ;;^UTILITY(U,$J,358.3,10432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4650,1,3,0)
- ;;=3^BCC Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,4650,1,4,0)
- ;;=4^C44.612
- ;;^UTILITY(U,$J,358.3,4650,2)
- ;;=^5001067
- ;;^UTILITY(U,$J,358.3,4651,0)
- ;;=L92.0^^21^288^1
- ;;^UTILITY(U,$J,358.3,4651,1,0)
+ ;;^UTILITY(U,$J,358.3,10432,1,3,0)
+ ;;=3^Paving Stone Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,10432,1,4,0)
+ ;;=4^H35.433
+ ;;^UTILITY(U,$J,358.3,10432,2)
+ ;;=^5005681
+ ;;^UTILITY(U,$J,358.3,10433,0)
+ ;;=H35.411^^51^592^52
+ ;;^UTILITY(U,$J,358.3,10433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4651,1,3,0)
- ;;=3^Granuloma Annulare
- ;;^UTILITY(U,$J,358.3,4651,1,4,0)
- ;;=4^L92.0
- ;;^UTILITY(U,$J,358.3,4651,2)
- ;;=^184052
- ;;^UTILITY(U,$J,358.3,4652,0)
- ;;=L91.8^^21^289^7
- ;;^UTILITY(U,$J,358.3,4652,1,0)
+ ;;^UTILITY(U,$J,358.3,10433,1,3,0)
+ ;;=3^Lattice Degeneration of Retina,Right Eye
+ ;;^UTILITY(U,$J,358.3,10433,1,4,0)
+ ;;=4^H35.411
+ ;;^UTILITY(U,$J,358.3,10433,2)
+ ;;=^5005671
+ ;;^UTILITY(U,$J,358.3,10434,0)
+ ;;=H35.412^^51^592^51
+ ;;^UTILITY(U,$J,358.3,10434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4652,1,3,0)
- ;;=3^Hypertrophic Skin Disorders
- ;;^UTILITY(U,$J,358.3,4652,1,4,0)
- ;;=4^L91.8
- ;;^UTILITY(U,$J,358.3,4652,2)
- ;;=^5009460
- ;;^UTILITY(U,$J,358.3,4653,0)
- ;;=D18.01^^21^289^1
- ;;^UTILITY(U,$J,358.3,4653,1,0)
+ ;;^UTILITY(U,$J,358.3,10434,1,3,0)
+ ;;=3^Lattice Degeneration of Retina,Left Eye
+ ;;^UTILITY(U,$J,358.3,10434,1,4,0)
+ ;;=4^H35.412
+ ;;^UTILITY(U,$J,358.3,10434,2)
+ ;;=^5005672
+ ;;^UTILITY(U,$J,358.3,10435,0)
+ ;;=H35.413^^51^592^50
+ ;;^UTILITY(U,$J,358.3,10435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4653,1,3,0)
- ;;=3^Hemangioma of Skin/Subcutaneous Tissue
- ;;^UTILITY(U,$J,358.3,4653,1,4,0)
- ;;=4^D18.01
- ;;^UTILITY(U,$J,358.3,4653,2)
- ;;=^267697
- ;;^UTILITY(U,$J,358.3,4654,0)
- ;;=L91.0^^21^289^6
- ;;^UTILITY(U,$J,358.3,4654,1,0)
+ ;;^UTILITY(U,$J,358.3,10435,1,3,0)
+ ;;=3^Lattice Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,10435,1,4,0)
+ ;;=4^H35.413
+ ;;^UTILITY(U,$J,358.3,10435,2)
+ ;;=^5005673
+ ;;^UTILITY(U,$J,358.3,10436,0)
+ ;;=H35.441^^51^592^1
+ ;;^UTILITY(U,$J,358.3,10436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4654,1,3,0)
- ;;=3^Hypertrophic Scar
- ;;^UTILITY(U,$J,358.3,4654,1,4,0)
- ;;=4^L91.0
- ;;^UTILITY(U,$J,358.3,4654,2)
- ;;=^5009459
- ;;^UTILITY(U,$J,358.3,4655,0)
- ;;=L68.0^^21^289^2
- ;;^UTILITY(U,$J,358.3,4655,1,0)
+ ;;^UTILITY(U,$J,358.3,10436,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Right Eye
+ ;;^UTILITY(U,$J,358.3,10436,1,4,0)
+ ;;=4^H35.441
+ ;;^UTILITY(U,$J,358.3,10436,2)
+ ;;=^5005683
+ ;;^UTILITY(U,$J,358.3,10437,0)
+ ;;=H35.442^^51^592^2
+ ;;^UTILITY(U,$J,358.3,10437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4655,1,3,0)
- ;;=3^Hirsutism
- ;;^UTILITY(U,$J,358.3,4655,1,4,0)
- ;;=4^L68.0
- ;;^UTILITY(U,$J,358.3,4655,2)
- ;;=^5009262
- ;;^UTILITY(U,$J,358.3,4656,0)
- ;;=L68.9^^21^289^5
- ;;^UTILITY(U,$J,358.3,4656,1,0)
+ ;;^UTILITY(U,$J,358.3,10437,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Left Eye
+ ;;^UTILITY(U,$J,358.3,10437,1,4,0)
+ ;;=4^H35.442
+ ;;^UTILITY(U,$J,358.3,10437,2)
+ ;;=^5005684
+ ;;^UTILITY(U,$J,358.3,10438,0)
+ ;;=H35.443^^51^592^3
+ ;;^UTILITY(U,$J,358.3,10438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4656,1,3,0)
- ;;=3^Hypertrichosis,Unspec
- ;;^UTILITY(U,$J,358.3,4656,1,4,0)
- ;;=4^L68.9
- ;;^UTILITY(U,$J,358.3,4656,2)
- ;;=^5009267
- ;;^UTILITY(U,$J,358.3,4657,0)
- ;;=L74.510^^21^289^3
- ;;^UTILITY(U,$J,358.3,4657,1,0)
+ ;;^UTILITY(U,$J,358.3,10438,1,3,0)
+ ;;=3^Age-Related Reticular Degeneration of Retina,Bilateral
+ ;;^UTILITY(U,$J,358.3,10438,1,4,0)
+ ;;=4^H35.443
+ ;;^UTILITY(U,$J,358.3,10438,2)
+ ;;=^5005685
+ ;;^UTILITY(U,$J,358.3,10439,0)
+ ;;=H35.61^^51^592^81
+ ;;^UTILITY(U,$J,358.3,10439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4657,1,3,0)
- ;;=3^Hyperhidrosis,Primary,Focal,Axilla
- ;;^UTILITY(U,$J,358.3,4657,1,4,0)
- ;;=4^L74.510
- ;;^UTILITY(U,$J,358.3,4657,2)
- ;;=^5009290
- ;;^UTILITY(U,$J,358.3,4658,0)
- ;;=L81.4^^21^289^4
- ;;^UTILITY(U,$J,358.3,4658,1,0)
+ ;;^UTILITY(U,$J,358.3,10439,1,3,0)
+ ;;=3^Retinal Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,10439,1,4,0)
+ ;;=4^H35.61
+ ;;^UTILITY(U,$J,358.3,10439,2)
+ ;;=^5005699
+ ;;^UTILITY(U,$J,358.3,10440,0)
+ ;;=H35.62^^51^592^80
+ ;;^UTILITY(U,$J,358.3,10440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4658,1,3,0)
- ;;=3^Hyperpigmentation,Other
- ;;^UTILITY(U,$J,358.3,4658,1,4,0)
- ;;=4^L81.4
- ;;^UTILITY(U,$J,358.3,4658,2)
- ;;=^5009314
- ;;^UTILITY(U,$J,358.3,4659,0)
- ;;=L90.0^^21^290^4
- ;;^UTILITY(U,$J,358.3,4659,1,0)
+ ;;^UTILITY(U,$J,358.3,10440,1,3,0)
+ ;;=3^Retinal Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,10440,1,4,0)
+ ;;=4^H35.62
+ ;;^UTILITY(U,$J,358.3,10440,2)
+ ;;=^5005700
+ ;;^UTILITY(U,$J,358.3,10441,0)
+ ;;=H35.63^^51^592^79
+ ;;^UTILITY(U,$J,358.3,10441,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10441,1,3,0)
+ ;;=3^Retinal Hemorrhage,Bilateral
+ ;;^UTILITY(U,$J,358.3,10441,1,4,0)
+ ;;=4^H35.63
+ ;;^UTILITY(U,$J,358.3,10441,2)
+ ;;=^5005701
+ ;;^UTILITY(U,$J,358.3,10442,0)
+ ;;=H35.82^^51^592^82
+ ;;^UTILITY(U,$J,358.3,10442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10442,1,3,0)
+ ;;=3^Retinal Ischemia
+ ;;^UTILITY(U,$J,358.3,10442,1,4,0)
+ ;;=4^H35.82
+ ;;^UTILITY(U,$J,358.3,10442,2)
+ ;;=^5005716
+ ;;^UTILITY(U,$J,358.3,10443,0)
+ ;;=H30.93^^51^592^15
+ ;;^UTILITY(U,$J,358.3,10443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10443,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral
+ ;;^UTILITY(U,$J,358.3,10443,1,4,0)
+ ;;=4^H30.93
+ ;;^UTILITY(U,$J,358.3,10443,2)
+ ;;=^5005435
+ ;;^UTILITY(U,$J,358.3,10444,0)
+ ;;=H30.91^^51^592^19
+ ;;^UTILITY(U,$J,358.3,10444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10444,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye
+ ;;^UTILITY(U,$J,358.3,10444,1,4,0)
+ ;;=4^H30.91
+ ;;^UTILITY(U,$J,358.3,10444,2)
+ ;;=^5133481
+ ;;^UTILITY(U,$J,358.3,10445,0)
+ ;;=H30.92^^51^592^17
+ ;;^UTILITY(U,$J,358.3,10445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10445,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye
+ ;;^UTILITY(U,$J,358.3,10445,1,4,0)
+ ;;=4^H30.92
+ ;;^UTILITY(U,$J,358.3,10445,2)
+ ;;=^5133482
+ ;;^UTILITY(U,$J,358.3,10446,0)
+ ;;=H30.891^^51^592^20
+ ;;^UTILITY(U,$J,358.3,10446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10446,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Right Eye NEC
+ ;;^UTILITY(U,$J,358.3,10446,1,4,0)
+ ;;=4^H30.891
+ ;;^UTILITY(U,$J,358.3,10446,2)
+ ;;=^5005430
+ ;;^UTILITY(U,$J,358.3,10447,0)
+ ;;=H30.892^^51^592^18
+ ;;^UTILITY(U,$J,358.3,10447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10447,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,10447,1,4,0)
+ ;;=4^H30.892
+ ;;^UTILITY(U,$J,358.3,10447,2)
+ ;;=^5005431
+ ;;^UTILITY(U,$J,358.3,10448,0)
+ ;;=H30.893^^51^592^16
+ ;;^UTILITY(U,$J,358.3,10448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10448,1,3,0)
+ ;;=3^Chorioretinal Inflammation,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,10448,1,4,0)
+ ;;=4^H30.893
+ ;;^UTILITY(U,$J,358.3,10448,2)
+ ;;=^5005432
+ ;;^UTILITY(U,$J,358.3,10449,0)
+ ;;=H31.001^^51^592^23
+ ;;^UTILITY(U,$J,358.3,10449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10449,1,3,0)
+ ;;=3^Chorioretinal Scars,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10449,1,4,0)
+ ;;=4^H31.001
+ ;;^UTILITY(U,$J,358.3,10449,2)
+ ;;=^5005436
+ ;;^UTILITY(U,$J,358.3,10450,0)
+ ;;=H31.002^^51^592^22
+ ;;^UTILITY(U,$J,358.3,10450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10450,1,3,0)
+ ;;=3^Chorioretinal Scars,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10450,1,4,0)
+ ;;=4^H31.002
+ ;;^UTILITY(U,$J,358.3,10450,2)
+ ;;=^5005437
+ ;;^UTILITY(U,$J,358.3,10451,0)
+ ;;=H31.003^^51^592^21
+ ;;^UTILITY(U,$J,358.3,10451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10451,1,3,0)
+ ;;=3^Chorioretinal Scars,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,10451,1,4,0)
+ ;;=4^H31.003
+ ;;^UTILITY(U,$J,358.3,10451,2)
+ ;;=^5005438
+ ;;^UTILITY(U,$J,358.3,10452,0)
+ ;;=H31.021^^51^592^91
+ ;;^UTILITY(U,$J,358.3,10452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10452,1,3,0)
+ ;;=3^Retinopathy,Solar,Right Eye
+ ;;^UTILITY(U,$J,358.3,10452,1,4,0)
+ ;;=4^H31.021
+ ;;^UTILITY(U,$J,358.3,10452,2)
+ ;;=^5005443
+ ;;^UTILITY(U,$J,358.3,10453,0)
+ ;;=H31.022^^51^592^90
+ ;;^UTILITY(U,$J,358.3,10453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10453,1,3,0)
+ ;;=3^Retinopathy,Solar,Left Eye
+ ;;^UTILITY(U,$J,358.3,10453,1,4,0)
+ ;;=4^H31.022
+ ;;^UTILITY(U,$J,358.3,10453,2)
+ ;;=^5005444
+ ;;^UTILITY(U,$J,358.3,10454,0)
+ ;;=H31.023^^51^592^89
+ ;;^UTILITY(U,$J,358.3,10454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10454,1,3,0)
+ ;;=3^Retinopathy,Solar,Bilateral
+ ;;^UTILITY(U,$J,358.3,10454,1,4,0)
+ ;;=4^H31.023
+ ;;^UTILITY(U,$J,358.3,10454,2)
+ ;;=^5005445
+ ;;^UTILITY(U,$J,358.3,10455,0)
+ ;;=H31.011^^51^592^54

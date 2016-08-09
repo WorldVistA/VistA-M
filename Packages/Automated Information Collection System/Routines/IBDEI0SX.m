@@ -1,130 +1,278 @@
-IBDEI0SX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0SX ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13563,1,4,0)
- ;;=4^Z85.818
- ;;^UTILITY(U,$J,358.3,13563,2)
- ;;=^5063439
- ;;^UTILITY(U,$J,358.3,13564,0)
- ;;=Z85.819^^53^594^93
- ;;^UTILITY(U,$J,358.3,13564,1,0)
+ ;;^UTILITY(U,$J,358.3,29088,1,4,0)
+ ;;=4^H54.51
+ ;;^UTILITY(U,$J,358.3,29088,2)
+ ;;=^5006365
+ ;;^UTILITY(U,$J,358.3,29089,0)
+ ;;=H54.52^^108^1407^8
+ ;;^UTILITY(U,$J,358.3,29089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13564,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lip,Oral Cavity & Pharynx,Unspec
- ;;^UTILITY(U,$J,358.3,13564,1,4,0)
- ;;=4^Z85.819
- ;;^UTILITY(U,$J,358.3,13564,2)
- ;;=^5063440
- ;;^UTILITY(U,$J,358.3,13565,0)
- ;;=Z85.01^^53^594^88
- ;;^UTILITY(U,$J,358.3,13565,1,0)
+ ;;^UTILITY(U,$J,358.3,29089,1,3,0)
+ ;;=3^Low Vision OS,Normal OD
+ ;;^UTILITY(U,$J,358.3,29089,1,4,0)
+ ;;=4^H54.52
+ ;;^UTILITY(U,$J,358.3,29089,2)
+ ;;=^5133519
+ ;;^UTILITY(U,$J,358.3,29090,0)
+ ;;=H54.61^^108^1407^10
+ ;;^UTILITY(U,$J,358.3,29090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13565,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Esophagus
- ;;^UTILITY(U,$J,358.3,13565,1,4,0)
- ;;=4^Z85.01
- ;;^UTILITY(U,$J,358.3,13565,2)
- ;;=^5063395
- ;;^UTILITY(U,$J,358.3,13566,0)
- ;;=Z85.028^^53^594^99
- ;;^UTILITY(U,$J,358.3,13566,1,0)
+ ;;^UTILITY(U,$J,358.3,29090,1,3,0)
+ ;;=3^Unqualified Visual Loss OD,Normal OS
+ ;;^UTILITY(U,$J,358.3,29090,1,4,0)
+ ;;=4^H54.61
+ ;;^UTILITY(U,$J,358.3,29090,2)
+ ;;=^5006367
+ ;;^UTILITY(U,$J,358.3,29091,0)
+ ;;=H54.62^^108^1407^11
+ ;;^UTILITY(U,$J,358.3,29091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13566,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Stomach
- ;;^UTILITY(U,$J,358.3,13566,1,4,0)
- ;;=4^Z85.028
- ;;^UTILITY(U,$J,358.3,13566,2)
- ;;=^5063397
- ;;^UTILITY(U,$J,358.3,13567,0)
- ;;=Z85.038^^53^594^90
- ;;^UTILITY(U,$J,358.3,13567,1,0)
+ ;;^UTILITY(U,$J,358.3,29091,1,3,0)
+ ;;=3^Unqualified Visual Loss OS,Normal OD
+ ;;^UTILITY(U,$J,358.3,29091,1,4,0)
+ ;;=4^H54.62
+ ;;^UTILITY(U,$J,358.3,29091,2)
+ ;;=^5133520
+ ;;^UTILITY(U,$J,358.3,29092,0)
+ ;;=H54.7^^108^1407^13
+ ;;^UTILITY(U,$J,358.3,29092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13567,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Large Intestine
- ;;^UTILITY(U,$J,358.3,13567,1,4,0)
- ;;=4^Z85.038
- ;;^UTILITY(U,$J,358.3,13567,2)
- ;;=^5063399
- ;;^UTILITY(U,$J,358.3,13568,0)
- ;;=Z85.048^^53^594^97
- ;;^UTILITY(U,$J,358.3,13568,1,0)
+ ;;^UTILITY(U,$J,358.3,29092,1,3,0)
+ ;;=3^Visual Loss,Unspec
+ ;;^UTILITY(U,$J,358.3,29092,1,4,0)
+ ;;=4^H54.7
+ ;;^UTILITY(U,$J,358.3,29092,2)
+ ;;=^5006368
+ ;;^UTILITY(U,$J,358.3,29093,0)
+ ;;=H54.8^^108^1407^1
+ ;;^UTILITY(U,$J,358.3,29093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13568,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Rectum,Rectosig Junct & Anus
- ;;^UTILITY(U,$J,358.3,13568,1,4,0)
- ;;=4^Z85.048
- ;;^UTILITY(U,$J,358.3,13568,2)
- ;;=^5063401
- ;;^UTILITY(U,$J,358.3,13569,0)
- ;;=Z85.118^^53^594^86
- ;;^UTILITY(U,$J,358.3,13569,1,0)
+ ;;^UTILITY(U,$J,358.3,29093,1,3,0)
+ ;;=3^Legal Blind,USA Definition
+ ;;^UTILITY(U,$J,358.3,29093,1,4,0)
+ ;;=4^H54.8
+ ;;^UTILITY(U,$J,358.3,29093,2)
+ ;;=^5006369
+ ;;^UTILITY(U,$J,358.3,29094,0)
+ ;;=H47.611^^108^1407^14
+ ;;^UTILITY(U,$J,358.3,29094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13569,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bronchus & Lung
- ;;^UTILITY(U,$J,358.3,13569,1,4,0)
- ;;=4^Z85.118
- ;;^UTILITY(U,$J,358.3,13569,2)
- ;;=^5063408
- ;;^UTILITY(U,$J,358.3,13570,0)
- ;;=Z85.21^^53^594^91
- ;;^UTILITY(U,$J,358.3,13570,1,0)
+ ;;^UTILITY(U,$J,358.3,29094,1,3,0)
+ ;;=3^Cortical Blindness,Right Side of Brain
+ ;;^UTILITY(U,$J,358.3,29094,1,4,0)
+ ;;=4^H47.611
+ ;;^UTILITY(U,$J,358.3,29094,2)
+ ;;=^5006166
+ ;;^UTILITY(U,$J,358.3,29095,0)
+ ;;=H47.612^^108^1407^15
+ ;;^UTILITY(U,$J,358.3,29095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13570,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Larynx
- ;;^UTILITY(U,$J,358.3,13570,1,4,0)
- ;;=4^Z85.21
- ;;^UTILITY(U,$J,358.3,13570,2)
- ;;=^5063411
- ;;^UTILITY(U,$J,358.3,13571,0)
- ;;=Z85.3^^53^594^85
- ;;^UTILITY(U,$J,358.3,13571,1,0)
+ ;;^UTILITY(U,$J,358.3,29095,1,3,0)
+ ;;=3^Cortical Blindness,Left Side of Brain
+ ;;^UTILITY(U,$J,358.3,29095,1,4,0)
+ ;;=4^H47.612
+ ;;^UTILITY(U,$J,358.3,29095,2)
+ ;;=^5006167
+ ;;^UTILITY(U,$J,358.3,29096,0)
+ ;;=H47.619^^108^1407^16
+ ;;^UTILITY(U,$J,358.3,29096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13571,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Breast
- ;;^UTILITY(U,$J,358.3,13571,1,4,0)
- ;;=4^Z85.3
- ;;^UTILITY(U,$J,358.3,13571,2)
- ;;=^5063416
- ;;^UTILITY(U,$J,358.3,13572,0)
- ;;=Z85.41^^53^594^87
- ;;^UTILITY(U,$J,358.3,13572,1,0)
+ ;;^UTILITY(U,$J,358.3,29096,1,3,0)
+ ;;=3^Cortical Blindness,Unspec Side of Brain
+ ;;^UTILITY(U,$J,358.3,29096,1,4,0)
+ ;;=4^H47.619
+ ;;^UTILITY(U,$J,358.3,29096,2)
+ ;;=^5006168
+ ;;^UTILITY(U,$J,358.3,29097,0)
+ ;;=H47.641^^108^1407^17
+ ;;^UTILITY(U,$J,358.3,29097,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13572,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Cervix Uteri
- ;;^UTILITY(U,$J,358.3,13572,1,4,0)
- ;;=4^Z85.41
- ;;^UTILITY(U,$J,358.3,13572,2)
- ;;=^5063418
- ;;^UTILITY(U,$J,358.3,13573,0)
- ;;=Z85.43^^53^594^95
- ;;^UTILITY(U,$J,358.3,13573,1,0)
+ ;;^UTILITY(U,$J,358.3,29097,1,3,0)
+ ;;=3^Disord of Visual Cortex in Vasc Disorder,Right Side of Brain
+ ;;^UTILITY(U,$J,358.3,29097,1,4,0)
+ ;;=4^H47.641
+ ;;^UTILITY(U,$J,358.3,29097,2)
+ ;;=^5006175
+ ;;^UTILITY(U,$J,358.3,29098,0)
+ ;;=H47.642^^108^1407^18
+ ;;^UTILITY(U,$J,358.3,29098,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13573,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Ovary
- ;;^UTILITY(U,$J,358.3,13573,1,4,0)
- ;;=4^Z85.43
- ;;^UTILITY(U,$J,358.3,13573,2)
- ;;=^5063420
- ;;^UTILITY(U,$J,358.3,13574,0)
- ;;=Z85.46^^53^594^96
- ;;^UTILITY(U,$J,358.3,13574,1,0)
+ ;;^UTILITY(U,$J,358.3,29098,1,3,0)
+ ;;=3^Disord of Visual Cortex in Vasc Disorder,Left Side of Brain
+ ;;^UTILITY(U,$J,358.3,29098,1,4,0)
+ ;;=4^H47.642
+ ;;^UTILITY(U,$J,358.3,29098,2)
+ ;;=^5006176
+ ;;^UTILITY(U,$J,358.3,29099,0)
+ ;;=H47.649^^108^1407^19
+ ;;^UTILITY(U,$J,358.3,29099,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13574,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Prostate
- ;;^UTILITY(U,$J,358.3,13574,1,4,0)
- ;;=4^Z85.46
- ;;^UTILITY(U,$J,358.3,13574,2)
- ;;=^5063423
- ;;^UTILITY(U,$J,358.3,13575,0)
- ;;=Z85.47^^53^594^100
- ;;^UTILITY(U,$J,358.3,13575,1,0)
+ ;;^UTILITY(U,$J,358.3,29099,1,3,0)
+ ;;=3^Disord of Visual Cortex in Vasc Disorder,Unspec Side of Brain
+ ;;^UTILITY(U,$J,358.3,29099,1,4,0)
+ ;;=4^H47.649
+ ;;^UTILITY(U,$J,358.3,29099,2)
+ ;;=^5006177
+ ;;^UTILITY(U,$J,358.3,29100,0)
+ ;;=H53.411^^108^1407^20
+ ;;^UTILITY(U,$J,358.3,29100,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13575,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Testis
- ;;^UTILITY(U,$J,358.3,13575,1,4,0)
- ;;=4^Z85.47
- ;;^UTILITY(U,$J,358.3,13575,2)
- ;;=^5063424
- ;;^UTILITY(U,$J,358.3,13576,0)
- ;;=Z85.51^^53^594^84
+ ;;^UTILITY(U,$J,358.3,29100,1,3,0)
+ ;;=3^Scotoma Involving Central Area OD
+ ;;^UTILITY(U,$J,358.3,29100,1,4,0)
+ ;;=4^H53.411
+ ;;^UTILITY(U,$J,358.3,29100,2)
+ ;;=^5006325
+ ;;^UTILITY(U,$J,358.3,29101,0)
+ ;;=H53.412^^108^1407^21
+ ;;^UTILITY(U,$J,358.3,29101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29101,1,3,0)
+ ;;=3^Scotoma Involving Central Area OS
+ ;;^UTILITY(U,$J,358.3,29101,1,4,0)
+ ;;=4^H53.412
+ ;;^UTILITY(U,$J,358.3,29101,2)
+ ;;=^5006326
+ ;;^UTILITY(U,$J,358.3,29102,0)
+ ;;=H53.413^^108^1407^22
+ ;;^UTILITY(U,$J,358.3,29102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29102,1,3,0)
+ ;;=3^Scotoma Involving Central Area Bilateral
+ ;;^UTILITY(U,$J,358.3,29102,1,4,0)
+ ;;=4^H53.413
+ ;;^UTILITY(U,$J,358.3,29102,2)
+ ;;=^5006327
+ ;;^UTILITY(U,$J,358.3,29103,0)
+ ;;=H53.481^^108^1407^23
+ ;;^UTILITY(U,$J,358.3,29103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29103,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field OD
+ ;;^UTILITY(U,$J,358.3,29103,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,29103,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,29104,0)
+ ;;=H53.482^^108^1407^24
+ ;;^UTILITY(U,$J,358.3,29104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29104,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field OS
+ ;;^UTILITY(U,$J,358.3,29104,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,29104,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,29105,0)
+ ;;=H53.483^^108^1407^25
+ ;;^UTILITY(U,$J,358.3,29105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29105,1,3,0)
+ ;;=3^Generalized Contraction of Visual Field Bilateral
+ ;;^UTILITY(U,$J,358.3,29105,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,29105,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,29106,0)
+ ;;=H53.461^^108^1407^26
+ ;;^UTILITY(U,$J,358.3,29106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29106,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects Right Side
+ ;;^UTILITY(U,$J,358.3,29106,1,4,0)
+ ;;=4^H53.461
+ ;;^UTILITY(U,$J,358.3,29106,2)
+ ;;=^5006341
+ ;;^UTILITY(U,$J,358.3,29107,0)
+ ;;=H53.462^^108^1407^27
+ ;;^UTILITY(U,$J,358.3,29107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29107,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects Left Side
+ ;;^UTILITY(U,$J,358.3,29107,1,4,0)
+ ;;=4^H53.462
+ ;;^UTILITY(U,$J,358.3,29107,2)
+ ;;=^5006342
+ ;;^UTILITY(U,$J,358.3,29108,0)
+ ;;=H53.47^^108^1407^29
+ ;;^UTILITY(U,$J,358.3,29108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29108,1,3,0)
+ ;;=3^Heteronymous Bilateral Field Defects
+ ;;^UTILITY(U,$J,358.3,29108,1,4,0)
+ ;;=4^H53.47
+ ;;^UTILITY(U,$J,358.3,29108,2)
+ ;;=^268847
+ ;;^UTILITY(U,$J,358.3,29109,0)
+ ;;=H53.40^^108^1407^30
+ ;;^UTILITY(U,$J,358.3,29109,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29109,1,3,0)
+ ;;=3^Visual Field Defects,Unspec
+ ;;^UTILITY(U,$J,358.3,29109,1,4,0)
+ ;;=4^H53.40
+ ;;^UTILITY(U,$J,358.3,29109,2)
+ ;;=^5006324
+ ;;^UTILITY(U,$J,358.3,29110,0)
+ ;;=H47.9^^108^1407^31
+ ;;^UTILITY(U,$J,358.3,29110,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29110,1,3,0)
+ ;;=3^Visual Pathway Disorders,Unspec
+ ;;^UTILITY(U,$J,358.3,29110,1,4,0)
+ ;;=4^H47.9
+ ;;^UTILITY(U,$J,358.3,29110,2)
+ ;;=^5006178
+ ;;^UTILITY(U,$J,358.3,29111,0)
+ ;;=H53.469^^108^1407^28
+ ;;^UTILITY(U,$J,358.3,29111,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29111,1,3,0)
+ ;;=3^Homonymous Bilateral Field Defects,Unspec Side
+ ;;^UTILITY(U,$J,358.3,29111,1,4,0)
+ ;;=4^H53.469
+ ;;^UTILITY(U,$J,358.3,29111,2)
+ ;;=^5006343
+ ;;^UTILITY(U,$J,358.3,29112,0)
+ ;;=G45.3^^108^1408^1
+ ;;^UTILITY(U,$J,358.3,29112,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29112,1,3,0)
+ ;;=3^Amaurosis Fugax
+ ;;^UTILITY(U,$J,358.3,29112,1,4,0)
+ ;;=4^G45.3
+ ;;^UTILITY(U,$J,358.3,29112,2)
+ ;;=^304129
+ ;;^UTILITY(U,$J,358.3,29113,0)
+ ;;=H57.01^^108^1408^5
+ ;;^UTILITY(U,$J,358.3,29113,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29113,1,3,0)
+ ;;=3^Argyll Robertson Pupil,Atypical
+ ;;^UTILITY(U,$J,358.3,29113,1,4,0)
+ ;;=4^H57.01
+ ;;^UTILITY(U,$J,358.3,29113,2)
+ ;;=^269319
+ ;;^UTILITY(U,$J,358.3,29114,0)
+ ;;=H40.033^^108^1408^2
+ ;;^UTILITY(U,$J,358.3,29114,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29114,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,29114,1,4,0)
+ ;;=4^H40.033
+ ;;^UTILITY(U,$J,358.3,29114,2)
+ ;;=^5005734
+ ;;^UTILITY(U,$J,358.3,29115,0)
+ ;;=H40.032^^108^1408^3
+ ;;^UTILITY(U,$J,358.3,29115,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,29115,1,3,0)
+ ;;=3^Anatomical Narrow Angle,Left Eye
+ ;;^UTILITY(U,$J,358.3,29115,1,4,0)
+ ;;=4^H40.032
+ ;;^UTILITY(U,$J,358.3,29115,2)
+ ;;=^5005733

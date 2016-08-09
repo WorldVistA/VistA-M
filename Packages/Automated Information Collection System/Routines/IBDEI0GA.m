@@ -1,132 +1,280 @@
-IBDEI0GA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0GA ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7528,1,4,0)
- ;;=4^S83.402A
- ;;^UTILITY(U,$J,358.3,7528,2)
- ;;=^5043106
- ;;^UTILITY(U,$J,358.3,7529,0)
- ;;=S93.402A^^30^409^3
- ;;^UTILITY(U,$J,358.3,7529,1,0)
+ ;;^UTILITY(U,$J,358.3,16316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7529,1,3,0)
- ;;=3^Sprain of Left Ankle Ligament
- ;;^UTILITY(U,$J,358.3,7529,1,4,0)
- ;;=4^S93.402A
- ;;^UTILITY(U,$J,358.3,7529,2)
- ;;=^5045777
- ;;^UTILITY(U,$J,358.3,7530,0)
- ;;=S93.401A^^30^409^12
- ;;^UTILITY(U,$J,358.3,7530,1,0)
+ ;;^UTILITY(U,$J,358.3,16316,1,3,0)
+ ;;=3^Personal Hx Malig Neop Brain
+ ;;^UTILITY(U,$J,358.3,16316,1,4,0)
+ ;;=4^Z85.841
+ ;;^UTILITY(U,$J,358.3,16316,2)
+ ;;=^5063447
+ ;;^UTILITY(U,$J,358.3,16317,0)
+ ;;=Z85.3^^64^786^6
+ ;;^UTILITY(U,$J,358.3,16317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7530,1,3,0)
- ;;=3^Sprain of Right Ankle Ligament
- ;;^UTILITY(U,$J,358.3,7530,1,4,0)
- ;;=4^S93.401A
- ;;^UTILITY(U,$J,358.3,7530,2)
- ;;=^5045774
- ;;^UTILITY(U,$J,358.3,7531,0)
- ;;=S56.511A^^30^409^37
- ;;^UTILITY(U,$J,358.3,7531,1,0)
+ ;;^UTILITY(U,$J,358.3,16317,1,3,0)
+ ;;=3^Personal Hx Malig Neop Breast
+ ;;^UTILITY(U,$J,358.3,16317,1,4,0)
+ ;;=4^Z85.3
+ ;;^UTILITY(U,$J,358.3,16317,2)
+ ;;=^5063416
+ ;;^UTILITY(U,$J,358.3,16318,0)
+ ;;=Z85.840^^64^786^12
+ ;;^UTILITY(U,$J,358.3,16318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7531,1,3,0)
- ;;=3^Strain of Right Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,7531,1,4,0)
- ;;=4^S56.511A
- ;;^UTILITY(U,$J,358.3,7531,2)
- ;;=^5031838
- ;;^UTILITY(U,$J,358.3,7532,0)
- ;;=S56.512A^^30^409^18
- ;;^UTILITY(U,$J,358.3,7532,1,0)
+ ;;^UTILITY(U,$J,358.3,16318,1,3,0)
+ ;;=3^Personal Hx Malig Neop Eye
+ ;;^UTILITY(U,$J,358.3,16318,1,4,0)
+ ;;=4^Z85.840
+ ;;^UTILITY(U,$J,358.3,16318,2)
+ ;;=^5063446
+ ;;^UTILITY(U,$J,358.3,16319,0)
+ ;;=Z85.028^^64^786^28
+ ;;^UTILITY(U,$J,358.3,16319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7532,1,3,0)
- ;;=3^Strain of Left Forearm Extn Musc/Fasc/Tend
- ;;^UTILITY(U,$J,358.3,7532,1,4,0)
- ;;=4^S56.512A
- ;;^UTILITY(U,$J,358.3,7532,2)
- ;;=^5031841
- ;;^UTILITY(U,$J,358.3,7533,0)
- ;;=S13.8XXA^^30^409^10
- ;;^UTILITY(U,$J,358.3,7533,1,0)
+ ;;^UTILITY(U,$J,358.3,16319,1,3,0)
+ ;;=3^Personal Hx Malig Neop Stomach
+ ;;^UTILITY(U,$J,358.3,16319,1,4,0)
+ ;;=4^Z85.028
+ ;;^UTILITY(U,$J,358.3,16319,2)
+ ;;=^5063397
+ ;;^UTILITY(U,$J,358.3,16320,0)
+ ;;=Z85.09^^64^786^9
+ ;;^UTILITY(U,$J,358.3,16320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7533,1,3,0)
- ;;=3^Sprain of Neck Joints/Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,7533,1,4,0)
- ;;=4^S13.8XXA
- ;;^UTILITY(U,$J,358.3,7533,2)
- ;;=^5022034
- ;;^UTILITY(U,$J,358.3,7534,0)
- ;;=S16.1XXA^^30^409^36
- ;;^UTILITY(U,$J,358.3,7534,1,0)
+ ;;^UTILITY(U,$J,358.3,16320,1,3,0)
+ ;;=3^Personal Hx Malig Neop Digestive Organs
+ ;;^UTILITY(U,$J,358.3,16320,1,4,0)
+ ;;=4^Z85.09
+ ;;^UTILITY(U,$J,358.3,16320,2)
+ ;;=^5063406
+ ;;^UTILITY(U,$J,358.3,16321,0)
+ ;;=Z85.528^^64^786^14
+ ;;^UTILITY(U,$J,358.3,16321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7534,1,3,0)
- ;;=3^Strain of Neck Muscle/Fasc/Tendon,Init Encntr
- ;;^UTILITY(U,$J,358.3,7534,1,4,0)
- ;;=4^S16.1XXA
- ;;^UTILITY(U,$J,358.3,7534,2)
- ;;=^5022358
- ;;^UTILITY(U,$J,358.3,7535,0)
- ;;=S33.5XXA^^30^409^9
- ;;^UTILITY(U,$J,358.3,7535,1,0)
+ ;;^UTILITY(U,$J,358.3,16321,1,3,0)
+ ;;=3^Personal Hx Malig Neop Kidney
+ ;;^UTILITY(U,$J,358.3,16321,1,4,0)
+ ;;=4^Z85.528
+ ;;^UTILITY(U,$J,358.3,16321,2)
+ ;;=^5063430
+ ;;^UTILITY(U,$J,358.3,16322,0)
+ ;;=Z85.05^^64^786^17
+ ;;^UTILITY(U,$J,358.3,16322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7535,1,3,0)
- ;;=3^Sprain of Lumbar Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,7535,1,4,0)
- ;;=4^S33.5XXA
- ;;^UTILITY(U,$J,358.3,7535,2)
- ;;=^5025172
- ;;^UTILITY(U,$J,358.3,7536,0)
- ;;=S13.4XXA^^30^409^1
- ;;^UTILITY(U,$J,358.3,7536,1,0)
+ ;;^UTILITY(U,$J,358.3,16322,1,3,0)
+ ;;=3^Personal Hx Malig Neop Liver
+ ;;^UTILITY(U,$J,358.3,16322,1,4,0)
+ ;;=4^Z85.05
+ ;;^UTILITY(U,$J,358.3,16322,2)
+ ;;=^5063402
+ ;;^UTILITY(U,$J,358.3,16323,0)
+ ;;=Z85.43^^64^786^21
+ ;;^UTILITY(U,$J,358.3,16323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7536,1,3,0)
- ;;=3^Sprain of Cervical Spine Ligaments,Init Encntr
- ;;^UTILITY(U,$J,358.3,7536,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,7536,2)
- ;;=^5022028
- ;;^UTILITY(U,$J,358.3,7537,0)
- ;;=F10.20^^30^410^4
- ;;^UTILITY(U,$J,358.3,7537,1,0)
+ ;;^UTILITY(U,$J,358.3,16323,1,3,0)
+ ;;=3^Personal Hx Malig Neop Ovary
+ ;;^UTILITY(U,$J,358.3,16323,1,4,0)
+ ;;=4^Z85.43
+ ;;^UTILITY(U,$J,358.3,16323,2)
+ ;;=^5063420
+ ;;^UTILITY(U,$J,358.3,16324,0)
+ ;;=Z85.850^^64^786^30
+ ;;^UTILITY(U,$J,358.3,16324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7537,1,3,0)
- ;;=3^Alcohol Dependence,Uncomplicated
- ;;^UTILITY(U,$J,358.3,7537,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,7537,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,7538,0)
- ;;=F11.29^^30^410^46
- ;;^UTILITY(U,$J,358.3,7538,1,0)
+ ;;^UTILITY(U,$J,358.3,16324,1,3,0)
+ ;;=3^Personal Hx Malig Neop Thyroid
+ ;;^UTILITY(U,$J,358.3,16324,1,4,0)
+ ;;=4^Z85.850
+ ;;^UTILITY(U,$J,358.3,16324,2)
+ ;;=^5063449
+ ;;^UTILITY(U,$J,358.3,16325,0)
+ ;;=Z85.810^^64^786^31
+ ;;^UTILITY(U,$J,358.3,16325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7538,1,3,0)
- ;;=3^Opioid Dependence w/ Unspec Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,7538,1,4,0)
- ;;=4^F11.29
- ;;^UTILITY(U,$J,358.3,7538,2)
- ;;=^5003141
- ;;^UTILITY(U,$J,358.3,7539,0)
- ;;=F11.288^^30^410^45
- ;;^UTILITY(U,$J,358.3,7539,1,0)
+ ;;^UTILITY(U,$J,358.3,16325,1,3,0)
+ ;;=3^Personal Hx Malig Neop Tongue
+ ;;^UTILITY(U,$J,358.3,16325,1,4,0)
+ ;;=4^Z85.810
+ ;;^UTILITY(U,$J,358.3,16325,2)
+ ;;=^5063438
+ ;;^UTILITY(U,$J,358.3,16326,0)
+ ;;=Z85.118^^64^786^7
+ ;;^UTILITY(U,$J,358.3,16326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7539,1,3,0)
- ;;=3^Opioid Dependence w/ Other Opioid-Induced Disorder
- ;;^UTILITY(U,$J,358.3,7539,1,4,0)
- ;;=4^F11.288
- ;;^UTILITY(U,$J,358.3,7539,2)
- ;;=^5003140
- ;;^UTILITY(U,$J,358.3,7540,0)
- ;;=F11.282^^30^410^44
- ;;^UTILITY(U,$J,358.3,7540,1,0)
+ ;;^UTILITY(U,$J,358.3,16326,1,3,0)
+ ;;=3^Personal Hx Malig Neop Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,16326,1,4,0)
+ ;;=4^Z85.118
+ ;;^UTILITY(U,$J,358.3,16326,2)
+ ;;=^5063408
+ ;;^UTILITY(U,$J,358.3,16327,0)
+ ;;=Z85.41^^64^786^8
+ ;;^UTILITY(U,$J,358.3,16327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7540,1,3,0)
- ;;=3^Opioid Dependence w/ Opioid-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,7540,1,4,0)
- ;;=4^F11.282
- ;;^UTILITY(U,$J,358.3,7540,2)
- ;;=^5003139
- ;;^UTILITY(U,$J,358.3,7541,0)
- ;;=F11.281^^30^410^43
- ;;^UTILITY(U,$J,358.3,7541,1,0)
+ ;;^UTILITY(U,$J,358.3,16327,1,3,0)
+ ;;=3^Personal Hx Malig Neop Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,16327,1,4,0)
+ ;;=4^Z85.41
+ ;;^UTILITY(U,$J,358.3,16327,2)
+ ;;=^5063418
+ ;;^UTILITY(U,$J,358.3,16328,0)
+ ;;=Z85.858^^64^786^10
+ ;;^UTILITY(U,$J,358.3,16328,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16328,1,3,0)
+ ;;=3^Personal Hx Malig Neop Endocrine Glands
+ ;;^UTILITY(U,$J,358.3,16328,1,4,0)
+ ;;=4^Z85.858
+ ;;^UTILITY(U,$J,358.3,16328,2)
+ ;;=^5063450
+ ;;^UTILITY(U,$J,358.3,16329,0)
+ ;;=Z85.01^^64^786^11
+ ;;^UTILITY(U,$J,358.3,16329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16329,1,3,0)
+ ;;=3^Personal Hx Malig Neop Esophagus
+ ;;^UTILITY(U,$J,358.3,16329,1,4,0)
+ ;;=4^Z85.01
+ ;;^UTILITY(U,$J,358.3,16329,2)
+ ;;=^5063395
+ ;;^UTILITY(U,$J,358.3,16330,0)
+ ;;=Z85.44^^64^786^13
+ ;;^UTILITY(U,$J,358.3,16330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16330,1,3,0)
+ ;;=3^Personal Hx Malig Neop Female Genital Organs
+ ;;^UTILITY(U,$J,358.3,16330,1,4,0)
+ ;;=4^Z85.44
+ ;;^UTILITY(U,$J,358.3,16330,2)
+ ;;=^5063421
+ ;;^UTILITY(U,$J,358.3,16331,0)
+ ;;=Z85.71^^64^786^1
+ ;;^UTILITY(U,$J,358.3,16331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16331,1,3,0)
+ ;;=3^Personal Hx Hodgkin Lymphoma
+ ;;^UTILITY(U,$J,358.3,16331,1,4,0)
+ ;;=4^Z85.71
+ ;;^UTILITY(U,$J,358.3,16331,2)
+ ;;=^5063435
+ ;;^UTILITY(U,$J,358.3,16332,0)
+ ;;=Z85.79^^64^786^18
+ ;;^UTILITY(U,$J,358.3,16332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16332,1,3,0)
+ ;;=3^Personal Hx Malig Neop Lymphoid/Hematopoietic/Related Tissues
+ ;;^UTILITY(U,$J,358.3,16332,1,4,0)
+ ;;=4^Z85.79
+ ;;^UTILITY(U,$J,358.3,16332,2)
+ ;;=^5063437
+ ;;^UTILITY(U,$J,358.3,16333,0)
+ ;;=Z85.831^^64^786^27
+ ;;^UTILITY(U,$J,358.3,16333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16333,1,3,0)
+ ;;=3^Personal Hx Malig Neop Soft Tissue
+ ;;^UTILITY(U,$J,358.3,16333,1,4,0)
+ ;;=4^Z85.831
+ ;;^UTILITY(U,$J,358.3,16333,2)
+ ;;=^5063445
+ ;;^UTILITY(U,$J,358.3,16334,0)
+ ;;=Z85.49^^64^786^19
+ ;;^UTILITY(U,$J,358.3,16334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16334,1,3,0)
+ ;;=3^Personal Hx Malig Neop Male Genital Organs
+ ;;^UTILITY(U,$J,358.3,16334,1,4,0)
+ ;;=4^Z85.49
+ ;;^UTILITY(U,$J,358.3,16334,2)
+ ;;=^5063426
+ ;;^UTILITY(U,$J,358.3,16335,0)
+ ;;=Z85.820^^64^786^2
+ ;;^UTILITY(U,$J,358.3,16335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16335,1,3,0)
+ ;;=3^Personal Hx Malig Melanoma of Skin
+ ;;^UTILITY(U,$J,358.3,16335,1,4,0)
+ ;;=4^Z85.820
+ ;;^UTILITY(U,$J,358.3,16335,2)
+ ;;=^5063441
+ ;;^UTILITY(U,$J,358.3,16336,0)
+ ;;=Z85.848^^64^786^22
+ ;;^UTILITY(U,$J,358.3,16336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16336,1,3,0)
+ ;;=3^Personal Hx Malig Neop Parts of Nervous Tissue
+ ;;^UTILITY(U,$J,358.3,16336,1,4,0)
+ ;;=4^Z85.848
+ ;;^UTILITY(U,$J,358.3,16336,2)
+ ;;=^5063448
+ ;;^UTILITY(U,$J,358.3,16337,0)
+ ;;=Z85.22^^64^786^20
+ ;;^UTILITY(U,$J,358.3,16337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16337,1,3,0)
+ ;;=3^Personal Hx Malig Neop Nasal Cavities/Middle Ear/Accessory Sinuses
+ ;;^UTILITY(U,$J,358.3,16337,1,4,0)
+ ;;=4^Z85.22
+ ;;^UTILITY(U,$J,358.3,16337,2)
+ ;;=^5063412
+ ;;^UTILITY(U,$J,358.3,16338,0)
+ ;;=Z85.818^^64^786^16
+ ;;^UTILITY(U,$J,358.3,16338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16338,1,3,0)
+ ;;=3^Personal Hx Malig Neop Lip/Oral Cavity/Pharynx
+ ;;^UTILITY(U,$J,358.3,16338,1,4,0)
+ ;;=4^Z85.818
+ ;;^UTILITY(U,$J,358.3,16338,2)
+ ;;=^5063439
+ ;;^UTILITY(U,$J,358.3,16339,0)
+ ;;=Z85.46^^64^786^24
+ ;;^UTILITY(U,$J,358.3,16339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16339,1,3,0)
+ ;;=3^Personal Hx Malig Neop Prostate
+ ;;^UTILITY(U,$J,358.3,16339,1,4,0)
+ ;;=4^Z85.46
+ ;;^UTILITY(U,$J,358.3,16339,2)
+ ;;=^5063423
+ ;;^UTILITY(U,$J,358.3,16340,0)
+ ;;=Z85.048^^64^786^25
+ ;;^UTILITY(U,$J,358.3,16340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16340,1,3,0)
+ ;;=3^Personal Hx Malig Neop Rectum/Rectosigmoid Junction/Anus
+ ;;^UTILITY(U,$J,358.3,16340,1,4,0)
+ ;;=4^Z85.048
+ ;;^UTILITY(U,$J,358.3,16340,2)
+ ;;=^5063401
+ ;;^UTILITY(U,$J,358.3,16341,0)
+ ;;=Z85.828^^64^786^26
+ ;;^UTILITY(U,$J,358.3,16341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16341,1,3,0)
+ ;;=3^Personal Hx Malig Neop Skin
+ ;;^UTILITY(U,$J,358.3,16341,1,4,0)
+ ;;=4^Z85.828
+ ;;^UTILITY(U,$J,358.3,16341,2)
+ ;;=^5063443
+ ;;^UTILITY(U,$J,358.3,16342,0)
+ ;;=Z85.47^^64^786^29
+ ;;^UTILITY(U,$J,358.3,16342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16342,1,3,0)
+ ;;=3^Personal Hx Malig Neop Testis
+ ;;^UTILITY(U,$J,358.3,16342,1,4,0)
+ ;;=4^Z85.47
+ ;;^UTILITY(U,$J,358.3,16342,2)
+ ;;=^5063424
+ ;;^UTILITY(U,$J,358.3,16343,0)
+ ;;=Z85.12^^64^786^32
+ ;;^UTILITY(U,$J,358.3,16343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16343,1,3,0)
+ ;;=3^Personal Hx Malig Neop Trachea
+ ;;^UTILITY(U,$J,358.3,16343,1,4,0)
+ ;;=4^Z85.12

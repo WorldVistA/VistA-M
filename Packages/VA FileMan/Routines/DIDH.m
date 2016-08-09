@@ -1,19 +1,35 @@
-DIDH ;SFISC/XAK-HDR FOR DD LISTS ;05:35 PM  24 Apr 2002
- ;;22.0;VA FileMan;**76**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIDH ;SFISC/GFT,XAK-HDR FOR DD LISTS ;13SEP2010
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D ^DIDH1 I $G(M)=U S DN=0
 Q K DDV,%F,M1 Q
+ ;
  ;
 XR S X=2,J=0,DG=F(Z) W:$Y !
 XL S J=$O(^DD(DA,0,"IX",J)) I J="" S F(Z)=DG Q
  F K=0:0 S K=$O(^DD(DA,0,"IX",J,K)) G XL:K'>0 F N=0:0 S N=$O(^DD(DA,0,"IX",J,K,N)) Q:N'>0  I 1 S F(Z)=K,DJ(Z)=N X:$D(DIGR) DIGR D:$T XL1
 XL1 F %=0:0 S %=$O(^DD(K,N,1,%)) Q:'%!(M=U)  I $D(^(%,0)),+^(0)=DA,$P(^(0),U,2)=J W:X=2 !,"CROSS",! W $P(", ^REFERENCED BY: ",U,X) S X=$P(^DD(K,N,0),U)_"("_J_")" W:($L(X)+$X+4)'<IOM !?15 W X S X=1 Q:$Y+4'>IOSL  I '$D(DIU) D H S X=2
  Q
+ ;
+ ;
+ ;
 POINT ; CALLED BY ^DD(1,.01,"DEL",.5,0)
+ N W1,DDPT,DDC,DDV,X1 S M=""
  S W1="W:$Y ! W !,""POINTED TO BY: "",?15" I $O(^DD(DA,0,"PT",""))'="" S DDPT=1
- S X="" F  S X=$O(^DD(DA,0,"PT",X)) Q:X=""  S DG=0 F  S DG=$O(^DD(DA,0,"PT",X,DG)) Q:DG=""  D PD W:$D(^DD(DA,0,"PT",X,DG)) !?15 I '$D(DIU) D H G Q:M=U
+ S X="" F  S X=$O(^DD(DA,0,"PT",X)) Q:X=""  S DG=0 F  S DG=$O(^DD(DA,0,"PT",X,DG)) Q:DG=""  D  W:$D(^DD(DA,0,"PT",X,DG)) !?15 I '$D(DIU) D H G Q:M=U
+ .I $S('$D(^DD(X,DG,0)):1,$P(^(0),U,2)["V":0,1:$P($P(^(0),U,2),"P",2)-DA) K ^DD(DA,0,"PT",X,DG) Q
+ .D PD
+ S W1="W:$Y ! W !,""POINTED TO BY COMPUTED POINTER: "",!?15" I $O(^DD(DA,0,"PTC",""))'="" S DDPT=1
+ S X="" F  S X=$O(^DD(DA,0,"PTC",X)) Q:X=""  S DG=0 F  S DG=$O(^DD(DA,0,"PTC",X,DG)) Q:DG=""  D  W:$D(^DD(DA,0,"PTC",X,DG)) !?15 I '$D(DIU) D H G Q:M=U
+ .S %=$P($G(^DD(X,DG,0)),U,2) I $P(%,"Cp",2)-DA,$P(%,"mp",2)-DA K ^DD(DA,0,"PTC",X,DG) Q
+ .D PD
  S (DG,X)=-1 K W1,DDPT Q
-PD I $S('$D(^DD(X,DG,0)):1,$P(^(0),U,2)["V":0,1:$P($P(^(0),U,2),"P",2)-DA) K ^DD(DA,0,"PT",X,DG) Q
+ ;
+PD ;
  S %=X,%F=DG
 WR I '$D(IOM) S IOP="HOME" N %X D ^%ZIS Q:POP
  I $D(DDPT) X W1 K DDPT

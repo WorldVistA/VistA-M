@@ -1,11 +1,11 @@
 PSIVOD ;BIR/JCH-CREATE NEW IV ORDER FROM OLD ONE ;25 Nov 98 / 3:34 PM
- ;;5.0; INPATIENT MEDICATIONS ;**110,127,181**;16 DEC 97;Build 190
+ ;;5.0;INPATIENT MEDICATIONS;**110,127,181,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ; Reference to ^ORX2 is supported by DBIA 867.
  ;
 COPY(DFN,OLDON) ;Ask to enter new order.
- N PSIVOORD,OLDP,PSIVCOPY,PSGCOPY M OLDP=P
+ N PSIVOORD,OLDP,PSIVCOPY,PSGCOPY,I,% M OLDP=P
  Q:'$$HIDDEN^PSJLMUTL("COPY")  D ^PSJHVARS
  I $P($G(^PS(55,PSGP,"IV",+PSGORD,.2)),U,4)="D",'$P($G(^(4)),"^",3) D  G Q
  .W !!,"Nurse verified orders with a priority of DONE may not be Copied." D PAUSE^VALM1 Q
@@ -25,13 +25,15 @@ COPY(DFN,OLDON) ;Ask to enter new order.
  I $G(P("NAT"))=""&($G(PSJORNAT)="") D  G Q
  .D FULL^VALM1 W !!,"Order not copied" D PAUSE^VALM1
  W !!,"...copying..."
+ ;RTC 178789 - not to store allergy OC until either verify or quit as non-vf order
+ ;D SETOC^PSJNEWOC(ON55)
  ;
  I '$G(PSGOEAV) D INMED
  ;
  D FULL^VALM1 W !!?5,"You are finished with the new order.",!,"The following ACTION prompt is for the original order." D PAUSE^VALM1
 Q ; Kill and exit.
  L:'$D(PSJOE) -^PS(53.45,DUZ) S PSJNKF=1 D Q^PSIV
- K FIL,I1,ND,PC,PDM,PSGDT,PSGID,PSGLMT,PSGSI,PSJNARC,PSIVAC,PSIVCHG,PSIVUP,PSIVX,PSJOPC
+ K FIL,I1,ND,PC,PDM,PSGDT,PSGID,PSGLMT,PSGSI,PSJNARC,PSIVAC,PSIVCHG,PSIVUP,PSIVX,PSJOPC,PSJAGYSV
  S VALMBCK="R"
  I '$G(PSGDT) S PSGDT=$$DATE^PSJUTL2
  S PSGACT=$$ENACTION^PSGOE1(PSGP,PSIVOORD) ; resets PSGACT after copy
@@ -46,6 +48,8 @@ INMED ;
  ;S (PSJORNAT,P("NAT"))="W"
  ;D OK^PSIVORE
  D EN^VALM("PSJ LM IV INPT ACTIVE")
+ ;RTC 178789 - Store allergy OC as non-vf order
+ D:$G(ON55)["P" SETOC^PSJNEWOC($G(ON55))
  L -^PS(55,DFN,"IV",+ON55) D ULK
  I $G(P("NAT"))="" D  G Q
  .D FULL^VALM1 W !!,"Order not copied" D PAUSE^VALM1

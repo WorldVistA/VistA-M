@@ -1,8 +1,9 @@
 RGADTP2 ;BIR/DLR-ADT PROCESSOR TO RETRIGGER A08 or A04 MESSAGES WITH AL/AL (COMMIT/APPLICATION) ACKNOWLEDGEMENTS - CONTINUED ;23 Dec 2011  1:40 PM
- ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59**;30 Apr 99;Build 1
+ ;;1.0;CLINICAL INFO RESOURCE NETWORK;**27,20,45,44,47,48,49,52,54,58,59,64**;30 Apr 99;Build 2
 DBIA ;
  ;Reference to $$ADD^VAFCEHU1 supported by IA #2753
  ;Reference to EDIT^VAFCPTED supported by IA #2784
+ ;Reference to ^DPT(DFN,.105) supported by IA #10035
  Q
 PROCIN(ARRAY,RGLOCAL,RGER,DFN,HL) ;
  N RGRSDFN,OTHSITE,NODE,ICN,CMORIEN,CMOR,SENSTVTY,RMTDOD,LOCDOD,VAFCA,VAFCA08,HERE,BOGUS,ARAY,REP ;**58,MPIC_2416: Remove CMORDISP from list. It is no longer used.
@@ -58,6 +59,8 @@ NOTLOC I 'RGLOCAL D
  .;if sending site is the CMOR OR MPI - synchronize data **45 ADDED MPI AND SSNV TO UPDATED FIELDS
  .I (OTHSITE)=(CMOR)!(OTHSITE="200M") D
  ..I HL("ETN")="A31",$G(RGRSDFN)>0 K ^XTMP("MPIF OLD RECORDS",RGRSDFN) ;**59,MVI_914: Delete the old record designation
+ ..;**RG*1.0*64/Story 220139 (cml): check for inpatient status, stop update if patient is currently an inpatient
+ ..I $G(^DPT(RGRSDFN,.105)) S RGER="-1^DFN "_RGRSDFN_":  is currently an Inpatient, MPI update not processed." Q:+RGER<0
  ..;**44 is there an outstanding edit in the ADT/HL7 PIVOT file for this patient for an identity element
  ..S RGER=$$CHKPVT^RGADTP3(.ARRAY) Q:+RGER<0
  ..N DR,ARAY2 S RGER=""

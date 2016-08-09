@@ -1,126 +1,282 @@
-IBDEI0L9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0L9 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9919,1,4,0)
- ;;=4^H40.20X4
- ;;^UTILITY(U,$J,358.3,9919,2)
- ;;=^5005817
- ;;^UTILITY(U,$J,358.3,9920,0)
- ;;=H40.2211^^44^496^23
- ;;^UTILITY(U,$J,358.3,9920,1,0)
+ ;;^UTILITY(U,$J,358.3,21443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9920,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9920,1,4,0)
- ;;=4^H40.2211
- ;;^UTILITY(U,$J,358.3,9920,2)
- ;;=^5005823
- ;;^UTILITY(U,$J,358.3,9921,0)
- ;;=H40.2212^^44^496^24
- ;;^UTILITY(U,$J,358.3,9921,1,0)
+ ;;^UTILITY(U,$J,358.3,21443,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,21443,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,21443,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,21444,0)
+ ;;=Z02.4^^89^1031^5
+ ;;^UTILITY(U,$J,358.3,21444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9921,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9921,1,4,0)
- ;;=4^H40.2212
- ;;^UTILITY(U,$J,358.3,9921,2)
- ;;=^5005824
- ;;^UTILITY(U,$J,358.3,9922,0)
- ;;=H40.2213^^44^496^25
- ;;^UTILITY(U,$J,358.3,9922,1,0)
+ ;;^UTILITY(U,$J,358.3,21444,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,21444,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,21444,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,21445,0)
+ ;;=Z00.5^^89^1031^7
+ ;;^UTILITY(U,$J,358.3,21445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9922,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9922,1,4,0)
- ;;=4^H40.2213
- ;;^UTILITY(U,$J,358.3,9922,2)
- ;;=^5005825
- ;;^UTILITY(U,$J,358.3,9923,0)
- ;;=H40.2214^^44^496^22
- ;;^UTILITY(U,$J,358.3,9923,1,0)
+ ;;^UTILITY(U,$J,358.3,21445,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,21445,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,21445,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,21446,0)
+ ;;=Z02.3^^89^1031^6
+ ;;^UTILITY(U,$J,358.3,21446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9923,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9923,1,4,0)
- ;;=4^H40.2214
- ;;^UTILITY(U,$J,358.3,9923,2)
- ;;=^5005826
- ;;^UTILITY(U,$J,358.3,9924,0)
- ;;=H40.2221^^44^496^19
- ;;^UTILITY(U,$J,358.3,9924,1,0)
+ ;;^UTILITY(U,$J,358.3,21446,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,21446,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,21446,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,21447,0)
+ ;;=Z02.89^^89^1031^1
+ ;;^UTILITY(U,$J,358.3,21447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9924,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9924,1,4,0)
- ;;=4^H40.2221
- ;;^UTILITY(U,$J,358.3,9924,2)
- ;;=^5005828
- ;;^UTILITY(U,$J,358.3,9925,0)
- ;;=H40.2222^^44^496^20
- ;;^UTILITY(U,$J,358.3,9925,1,0)
+ ;;^UTILITY(U,$J,358.3,21447,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,21447,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,21447,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,21448,0)
+ ;;=Z00.8^^89^1031^8
+ ;;^UTILITY(U,$J,358.3,21448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9925,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9925,1,4,0)
- ;;=4^H40.2222
- ;;^UTILITY(U,$J,358.3,9925,2)
- ;;=^5005829
- ;;^UTILITY(U,$J,358.3,9926,0)
- ;;=H40.2223^^44^496^21
- ;;^UTILITY(U,$J,358.3,9926,1,0)
+ ;;^UTILITY(U,$J,358.3,21448,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,21448,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,21448,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,21449,0)
+ ;;=Z02.1^^89^1031^14
+ ;;^UTILITY(U,$J,358.3,21449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9926,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9926,1,4,0)
- ;;=4^H40.2223
- ;;^UTILITY(U,$J,358.3,9926,2)
- ;;=^5133501
- ;;^UTILITY(U,$J,358.3,9927,0)
- ;;=H40.2224^^44^496^18
- ;;^UTILITY(U,$J,358.3,9927,1,0)
+ ;;^UTILITY(U,$J,358.3,21449,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,21449,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,21449,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,21450,0)
+ ;;=Z01.810^^89^1031^2
+ ;;^UTILITY(U,$J,358.3,21450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9927,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9927,1,4,0)
- ;;=4^H40.2224
- ;;^UTILITY(U,$J,358.3,9927,2)
- ;;=^5005830
- ;;^UTILITY(U,$J,358.3,9928,0)
- ;;=H40.2231^^44^496^15
- ;;^UTILITY(U,$J,358.3,9928,1,0)
+ ;;^UTILITY(U,$J,358.3,21450,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,21450,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,21450,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,21451,0)
+ ;;=Z01.811^^89^1031^16
+ ;;^UTILITY(U,$J,358.3,21451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9928,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,9928,1,4,0)
- ;;=4^H40.2231
- ;;^UTILITY(U,$J,358.3,9928,2)
- ;;=^5005832
- ;;^UTILITY(U,$J,358.3,9929,0)
- ;;=H40.2232^^44^496^16
- ;;^UTILITY(U,$J,358.3,9929,1,0)
+ ;;^UTILITY(U,$J,358.3,21451,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,21451,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,21451,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,21452,0)
+ ;;=Z01.812^^89^1031^13
+ ;;^UTILITY(U,$J,358.3,21452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9929,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9929,1,4,0)
- ;;=4^H40.2232
- ;;^UTILITY(U,$J,358.3,9929,2)
- ;;=^5005833
- ;;^UTILITY(U,$J,358.3,9930,0)
- ;;=H40.2233^^44^496^17
- ;;^UTILITY(U,$J,358.3,9930,1,0)
+ ;;^UTILITY(U,$J,358.3,21452,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,21452,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,21452,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,21453,0)
+ ;;=Z01.818^^89^1031^15
+ ;;^UTILITY(U,$J,358.3,21453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9930,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,9930,1,4,0)
- ;;=4^H40.2233
- ;;^UTILITY(U,$J,358.3,9930,2)
- ;;=^5005834
- ;;^UTILITY(U,$J,358.3,9931,0)
- ;;=H40.2234^^44^496^14
- ;;^UTILITY(U,$J,358.3,9931,1,0)
+ ;;^UTILITY(U,$J,358.3,21453,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,21453,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,21453,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,21454,0)
+ ;;=Z71.0^^89^1031^9
+ ;;^UTILITY(U,$J,358.3,21454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9931,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9931,1,4,0)
- ;;=4^H40.2234
+ ;;^UTILITY(U,$J,358.3,21454,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,21454,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,21454,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,21455,0)
+ ;;=Z59.8^^89^1031^10
+ ;;^UTILITY(U,$J,358.3,21455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21455,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,21455,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,21455,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,21456,0)
+ ;;=I20.0^^89^1032^14
+ ;;^UTILITY(U,$J,358.3,21456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21456,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,21456,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,21456,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,21457,0)
+ ;;=I25.110^^89^1032^7
+ ;;^UTILITY(U,$J,358.3,21457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21457,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21457,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,21457,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,21458,0)
+ ;;=I25.700^^89^1032^12
+ ;;^UTILITY(U,$J,358.3,21458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21458,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,21458,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,21458,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,21459,0)
+ ;;=I25.2^^89^1032^13
+ ;;^UTILITY(U,$J,358.3,21459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21459,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,21459,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,21459,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,21460,0)
+ ;;=I20.8^^89^1032^2
+ ;;^UTILITY(U,$J,358.3,21460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21460,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,21460,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,21460,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,21461,0)
+ ;;=I20.1^^89^1032^1
+ ;;^UTILITY(U,$J,358.3,21461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21461,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21461,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,21461,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,21462,0)
+ ;;=I25.119^^89^1032^5
+ ;;^UTILITY(U,$J,358.3,21462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21462,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21462,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,21462,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,21463,0)
+ ;;=I25.701^^89^1032^9
+ ;;^UTILITY(U,$J,358.3,21463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21463,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,21463,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,21463,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,21464,0)
+ ;;=I25.708^^89^1032^10
+ ;;^UTILITY(U,$J,358.3,21464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21464,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,21464,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,21464,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,21465,0)
+ ;;=I20.9^^89^1032^3
+ ;;^UTILITY(U,$J,358.3,21465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21465,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,21465,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,21465,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,21466,0)
+ ;;=I25.729^^89^1032^4
+ ;;^UTILITY(U,$J,358.3,21466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21466,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,21466,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,21466,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,21467,0)
+ ;;=I25.709^^89^1032^11
+ ;;^UTILITY(U,$J,358.3,21467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21467,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,21467,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,21467,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,21468,0)
+ ;;=I25.10^^89^1032^6
+ ;;^UTILITY(U,$J,358.3,21468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21468,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21468,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,21468,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,21469,0)
+ ;;=I25.810^^89^1032^8
+ ;;^UTILITY(U,$J,358.3,21469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21469,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,21469,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,21469,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,21470,0)
+ ;;=I65.29^^89^1033^18
+ ;;^UTILITY(U,$J,358.3,21470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21470,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,21470,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,21470,2)
+ ;;=^5007363

@@ -1,6 +1,10 @@
 DIT1 ;SFISC/GFT,TKW-TRANSFER DD'S ;30JAN2010
- ;;22.0;VA FileMan;**6,63,163**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K A W !! S A=+Y,E=A
 CHK F V=0:0 S V=$O(^DD(A,"SB",V)) Q:'V  S A(V)=0,L(V)=V#1+DHIT
  S A=$O(A(0)),B=A#1+DHIT I A'="" K A(A) G P:$P(DHIT,".")+1'>B,CHK:'$D(^DD(B)),P:DHIT["." S X=$P(^(B,0),U) S:$D(^DIC(B,0)) X=$P(^(0),U)_" FILE" W $P(^DD(A,0),U)_" WOULD COLLIDE WITH "_X,$C(7),! K L,A Q

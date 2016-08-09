@@ -1,6 +1,10 @@
 DIFROM5 ;SFISC/XAK-CREATES RTN ENDING IN 'INIT' ;03:14 PM  28 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DIFRF=0,DIFRRXT="567890ABCDEFGHIJKLMNOPQRUVWXZ",DIFRRN=E,DIFRTX=0
  S DIFRRMAX=$S($G(DIFRM)>1999:DIFRM,$G(^DD("ROU"))>1999:^("ROU"),1:2000)
  F DIFRIR=1:1 S X=0,Q=" Q",DNAME=DIFRRN_$E(DIFRRXT,DIFRIR) D  Q:DIFRF'>0

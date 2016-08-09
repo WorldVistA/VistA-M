@@ -1,124 +1,284 @@
-IBDEI0XK ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XK ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15739,1,3,0)
- ;;=3^Opioid Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15739,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,15739,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,15740,0)
- ;;=F11.921^^58^688^15
- ;;^UTILITY(U,$J,358.3,15740,1,0)
+ ;;^UTILITY(U,$J,358.3,33752,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,33753,0)
+ ;;=99212^^120^1587^2
+ ;;^UTILITY(U,$J,358.3,33753,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33753,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,33753,1,2,0)
+ ;;=2^99212
+ ;;^UTILITY(U,$J,358.3,33754,0)
+ ;;=99213^^120^1587^3
+ ;;^UTILITY(U,$J,358.3,33754,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33754,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,33754,1,2,0)
+ ;;=2^99213
+ ;;^UTILITY(U,$J,358.3,33755,0)
+ ;;=99214^^120^1587^4
+ ;;^UTILITY(U,$J,358.3,33755,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33755,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,33755,1,2,0)
+ ;;=2^99214
+ ;;^UTILITY(U,$J,358.3,33756,0)
+ ;;=99215^^120^1587^5
+ ;;^UTILITY(U,$J,358.3,33756,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33756,1,1,0)
+ ;;=1^Comprehensive
+ ;;^UTILITY(U,$J,358.3,33756,1,2,0)
+ ;;=2^99215
+ ;;^UTILITY(U,$J,358.3,33757,0)
+ ;;=99241^^120^1588^1
+ ;;^UTILITY(U,$J,358.3,33757,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33757,1,1,0)
+ ;;=1^Problem Focused
+ ;;^UTILITY(U,$J,358.3,33757,1,2,0)
+ ;;=2^99241
+ ;;^UTILITY(U,$J,358.3,33758,0)
+ ;;=99242^^120^1588^2
+ ;;^UTILITY(U,$J,358.3,33758,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33758,1,1,0)
+ ;;=1^Exp Problem Focused
+ ;;^UTILITY(U,$J,358.3,33758,1,2,0)
+ ;;=2^99242
+ ;;^UTILITY(U,$J,358.3,33759,0)
+ ;;=99243^^120^1588^3
+ ;;^UTILITY(U,$J,358.3,33759,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33759,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,33759,1,2,0)
+ ;;=2^99243
+ ;;^UTILITY(U,$J,358.3,33760,0)
+ ;;=99244^^120^1588^4
+ ;;^UTILITY(U,$J,358.3,33760,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33760,1,1,0)
+ ;;=1^Comprehensive,Moderate MDM
+ ;;^UTILITY(U,$J,358.3,33760,1,2,0)
+ ;;=2^99244
+ ;;^UTILITY(U,$J,358.3,33761,0)
+ ;;=99245^^120^1588^5
+ ;;^UTILITY(U,$J,358.3,33761,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,33761,1,1,0)
+ ;;=1^Comprehensive,High MDM
+ ;;^UTILITY(U,$J,358.3,33761,1,2,0)
+ ;;=2^99245
+ ;;^UTILITY(U,$J,358.3,33762,0)
+ ;;=97760^^121^1589^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33762,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33762,1,2,0)
+ ;;=2^97760
+ ;;^UTILITY(U,$J,358.3,33762,1,3,0)
+ ;;=3^Orthotic Mgmt/Training, Ea 15min
+ ;;^UTILITY(U,$J,358.3,33763,0)
+ ;;=97761^^121^1589^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33763,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33763,1,2,0)
+ ;;=2^97761
+ ;;^UTILITY(U,$J,358.3,33763,1,3,0)
+ ;;=3^Prosthetic Training,Ea 15min
+ ;;^UTILITY(U,$J,358.3,33764,0)
+ ;;=97762^^121^1589^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33764,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33764,1,2,0)
+ ;;=2^97762
+ ;;^UTILITY(U,$J,358.3,33764,1,3,0)
+ ;;=3^C/O for Orthotic/Prosthetic Use,Ea 15min
+ ;;^UTILITY(U,$J,358.3,33765,0)
+ ;;=97799^^121^1589^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33765,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33765,1,2,0)
+ ;;=2^97799
+ ;;^UTILITY(U,$J,358.3,33765,1,3,0)
+ ;;=3^Physical Medicine Procedure NOS
+ ;;^UTILITY(U,$J,358.3,33766,0)
+ ;;=99002^^121^1590^1^^^^1
+ ;;^UTILITY(U,$J,358.3,33766,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33766,1,2,0)
+ ;;=2^99002
+ ;;^UTILITY(U,$J,358.3,33766,1,3,0)
+ ;;=3^Device Handling
+ ;;^UTILITY(U,$J,358.3,33767,0)
+ ;;=K0739^^121^1590^2^^^^1
+ ;;^UTILITY(U,$J,358.3,33767,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33767,1,2,0)
+ ;;=2^K0739
+ ;;^UTILITY(U,$J,358.3,33767,1,3,0)
+ ;;=3^Repair for DME,Per 15 min
+ ;;^UTILITY(U,$J,358.3,33768,0)
+ ;;=99080^^121^1590^3^^^^1
+ ;;^UTILITY(U,$J,358.3,33768,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33768,1,2,0)
+ ;;=2^99080
+ ;;^UTILITY(U,$J,358.3,33768,1,3,0)
+ ;;=3^Special Reports/Forms (insur)
+ ;;^UTILITY(U,$J,358.3,33769,0)
+ ;;=99070^^121^1590^4^^^^1
+ ;;^UTILITY(U,$J,358.3,33769,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33769,1,2,0)
+ ;;=2^99070
+ ;;^UTILITY(U,$J,358.3,33769,1,3,0)
+ ;;=3^Special Supplies
+ ;;^UTILITY(U,$J,358.3,33770,0)
+ ;;=99366^^121^1590^5^^^^1
+ ;;^UTILITY(U,$J,358.3,33770,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33770,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,33770,1,3,0)
+ ;;=3^Team Conf w/ Pt by HC Pro, +30 min
+ ;;^UTILITY(U,$J,358.3,33771,0)
+ ;;=99368^^121^1590^6^^^^1
+ ;;^UTILITY(U,$J,358.3,33771,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,33771,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,33771,1,3,0)
+ ;;=3^Team Conf w/o Pt by HC Pro, +30 min
+ ;;^UTILITY(U,$J,358.3,33772,0)
+ ;;=M76.62^^122^1591^1
+ ;;^UTILITY(U,$J,358.3,33772,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15740,1,3,0)
- ;;=3^Opioid Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15740,1,4,0)
- ;;=4^F11.921
- ;;^UTILITY(U,$J,358.3,15740,2)
- ;;=^5003144
- ;;^UTILITY(U,$J,358.3,15741,0)
- ;;=F11.229^^58^688^20
- ;;^UTILITY(U,$J,358.3,15741,1,0)
+ ;;^UTILITY(U,$J,358.3,33772,1,3,0)
+ ;;=3^Achilles tendinitis, left leg
+ ;;^UTILITY(U,$J,358.3,33772,1,4,0)
+ ;;=4^M76.62
+ ;;^UTILITY(U,$J,358.3,33772,2)
+ ;;=^5013286
+ ;;^UTILITY(U,$J,358.3,33773,0)
+ ;;=M76.61^^122^1591^2
+ ;;^UTILITY(U,$J,358.3,33773,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15741,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15741,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,15741,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,15742,0)
- ;;=F11.929^^58^688^21
- ;;^UTILITY(U,$J,358.3,15742,1,0)
+ ;;^UTILITY(U,$J,358.3,33773,1,3,0)
+ ;;=3^Achilles tendinitis, right leg
+ ;;^UTILITY(U,$J,358.3,33773,1,4,0)
+ ;;=4^M76.61
+ ;;^UTILITY(U,$J,358.3,33773,2)
+ ;;=^5013285
+ ;;^UTILITY(U,$J,358.3,33774,0)
+ ;;=M24.571^^122^1591^6
+ ;;^UTILITY(U,$J,358.3,33774,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15742,1,3,0)
- ;;=3^Opioid Intoxication w/o Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15742,1,4,0)
- ;;=4^F11.929
- ;;^UTILITY(U,$J,358.3,15742,2)
- ;;=^5003146
- ;;^UTILITY(U,$J,358.3,15743,0)
- ;;=F11.122^^58^688^16
- ;;^UTILITY(U,$J,358.3,15743,1,0)
+ ;;^UTILITY(U,$J,358.3,33774,1,3,0)
+ ;;=3^Contracture,Right Ankle
+ ;;^UTILITY(U,$J,358.3,33774,1,4,0)
+ ;;=4^M24.571
+ ;;^UTILITY(U,$J,358.3,33774,2)
+ ;;=^5011420
+ ;;^UTILITY(U,$J,358.3,33775,0)
+ ;;=M24.572^^122^1591^5
+ ;;^UTILITY(U,$J,358.3,33775,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15743,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15743,1,4,0)
- ;;=4^F11.122
- ;;^UTILITY(U,$J,358.3,15743,2)
- ;;=^5003117
- ;;^UTILITY(U,$J,358.3,15744,0)
- ;;=F11.222^^58^688^17
- ;;^UTILITY(U,$J,358.3,15744,1,0)
+ ;;^UTILITY(U,$J,358.3,33775,1,3,0)
+ ;;=3^Contracture,Left Ankle
+ ;;^UTILITY(U,$J,358.3,33775,1,4,0)
+ ;;=4^M24.572
+ ;;^UTILITY(U,$J,358.3,33775,2)
+ ;;=^5011421
+ ;;^UTILITY(U,$J,358.3,33776,0)
+ ;;=M24.671^^122^1591^4
+ ;;^UTILITY(U,$J,358.3,33776,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15744,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15744,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,15744,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,15745,0)
- ;;=F11.922^^58^688^18
- ;;^UTILITY(U,$J,358.3,15745,1,0)
+ ;;^UTILITY(U,$J,358.3,33776,1,3,0)
+ ;;=3^Ankylosis,Right Ankle
+ ;;^UTILITY(U,$J,358.3,33776,1,4,0)
+ ;;=4^M24.671
+ ;;^UTILITY(U,$J,358.3,33776,2)
+ ;;=^5011445
+ ;;^UTILITY(U,$J,358.3,33777,0)
+ ;;=M24.672^^122^1591^3
+ ;;^UTILITY(U,$J,358.3,33777,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15745,1,3,0)
- ;;=3^Opioid Intoxication w/ Perceptual Disturbance w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15745,1,4,0)
- ;;=4^F11.922
- ;;^UTILITY(U,$J,358.3,15745,2)
- ;;=^5003145
- ;;^UTILITY(U,$J,358.3,15746,0)
- ;;=F11.99^^58^688^22
- ;;^UTILITY(U,$J,358.3,15746,1,0)
+ ;;^UTILITY(U,$J,358.3,33777,1,3,0)
+ ;;=3^Ankylosis,Left Ankle
+ ;;^UTILITY(U,$J,358.3,33777,1,4,0)
+ ;;=4^M24.672
+ ;;^UTILITY(U,$J,358.3,33777,2)
+ ;;=^5011446
+ ;;^UTILITY(U,$J,358.3,33778,0)
+ ;;=M76.821^^122^1591^10
+ ;;^UTILITY(U,$J,358.3,33778,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15746,1,3,0)
- ;;=3^Opioid Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15746,1,4,0)
- ;;=4^F11.99
- ;;^UTILITY(U,$J,358.3,15746,2)
- ;;=^5133352
- ;;^UTILITY(U,$J,358.3,15747,0)
- ;;=F19.10^^58^689^3
- ;;^UTILITY(U,$J,358.3,15747,1,0)
+ ;;^UTILITY(U,$J,358.3,33778,1,3,0)
+ ;;=3^Posterior Tib Tendinitis,Right Leg
+ ;;^UTILITY(U,$J,358.3,33778,1,4,0)
+ ;;=4^M76.821
+ ;;^UTILITY(U,$J,358.3,33778,2)
+ ;;=^5013293
+ ;;^UTILITY(U,$J,358.3,33779,0)
+ ;;=M76.822^^122^1591^9
+ ;;^UTILITY(U,$J,358.3,33779,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15747,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15747,1,4,0)
- ;;=4^F19.10
- ;;^UTILITY(U,$J,358.3,15747,2)
- ;;=^5003416
- ;;^UTILITY(U,$J,358.3,15748,0)
- ;;=F19.14^^58^689^1
- ;;^UTILITY(U,$J,358.3,15748,1,0)
+ ;;^UTILITY(U,$J,358.3,33779,1,3,0)
+ ;;=3^Posterior Tib Tendinitis,Left Leg
+ ;;^UTILITY(U,$J,358.3,33779,1,4,0)
+ ;;=4^M76.822
+ ;;^UTILITY(U,$J,358.3,33779,2)
+ ;;=^5013294
+ ;;^UTILITY(U,$J,358.3,33780,0)
+ ;;=M67.01^^122^1591^12
+ ;;^UTILITY(U,$J,358.3,33780,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15748,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,15748,1,4,0)
- ;;=4^F19.14
- ;;^UTILITY(U,$J,358.3,15748,2)
- ;;=^5003421
- ;;^UTILITY(U,$J,358.3,15749,0)
- ;;=F19.182^^58^689^2
- ;;^UTILITY(U,$J,358.3,15749,1,0)
+ ;;^UTILITY(U,$J,358.3,33780,1,3,0)
+ ;;=3^Short Achilles Tendon,Right Ankle
+ ;;^UTILITY(U,$J,358.3,33780,1,4,0)
+ ;;=4^M67.01
+ ;;^UTILITY(U,$J,358.3,33780,2)
+ ;;=^5012906
+ ;;^UTILITY(U,$J,358.3,33781,0)
+ ;;=M67.02^^122^1591^11
+ ;;^UTILITY(U,$J,358.3,33781,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15749,1,3,0)
- ;;=3^Psychoactive Substance Abuse NEC w/ Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,15749,1,4,0)
- ;;=4^F19.182
- ;;^UTILITY(U,$J,358.3,15749,2)
- ;;=^5003429
- ;;^UTILITY(U,$J,358.3,15750,0)
- ;;=F19.20^^58^689^6
- ;;^UTILITY(U,$J,358.3,15750,1,0)
+ ;;^UTILITY(U,$J,358.3,33781,1,3,0)
+ ;;=3^Short Achilles Tendon,Left Ankle
+ ;;^UTILITY(U,$J,358.3,33781,1,4,0)
+ ;;=4^M67.02
+ ;;^UTILITY(U,$J,358.3,33781,2)
+ ;;=^5012907
+ ;;^UTILITY(U,$J,358.3,33782,0)
+ ;;=M86.671^^122^1591^8
+ ;;^UTILITY(U,$J,358.3,33782,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15750,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15750,1,4,0)
- ;;=4^F19.20
- ;;^UTILITY(U,$J,358.3,15750,2)
- ;;=^5003431
- ;;^UTILITY(U,$J,358.3,15751,0)
- ;;=F19.21^^58^689^5
- ;;^UTILITY(U,$J,358.3,15751,1,0)
+ ;;^UTILITY(U,$J,358.3,33782,1,3,0)
+ ;;=3^Osteomyelitis,Right Ankle
+ ;;^UTILITY(U,$J,358.3,33782,1,4,0)
+ ;;=4^M86.671
+ ;;^UTILITY(U,$J,358.3,33782,2)
+ ;;=^5014641
+ ;;^UTILITY(U,$J,358.3,33783,0)
+ ;;=M86.672^^122^1591^7
+ ;;^UTILITY(U,$J,358.3,33783,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33783,1,3,0)
+ ;;=3^Osteomyelitis,Left Ankle
+ ;;^UTILITY(U,$J,358.3,33783,1,4,0)
+ ;;=4^M86.672
+ ;;^UTILITY(U,$J,358.3,33783,2)
+ ;;=^5014642
+ ;;^UTILITY(U,$J,358.3,33784,0)
+ ;;=Q66.0^^122^1591^13
+ ;;^UTILITY(U,$J,358.3,33784,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33784,1,3,0)
+ ;;=3^Talipes Equinovarus,Congenital

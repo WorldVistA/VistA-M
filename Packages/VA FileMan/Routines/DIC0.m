@@ -1,6 +1,9 @@
-DIC0 ;SFISC/TKW-Lookup routine utilities called by DIC ;12/10/99  12:10
- ;;22.0;VA FileMan;**4,20**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIC0 ;SFISC/TKW-Lookup routine utilities called by DIC ;16JAN2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 D ; Reset back to starting index for lookup.
  S D=DINDEX("START") K DINDEX S (DINDEX,DINDEX("START"))=D,DINDEX("WAY")=1
@@ -15,7 +18,7 @@ SETVAL ; If custom lookup routine (like MTLU) comes in to entry point after ASK,
  Q
  ;
 INIT ; Initialize variables at all entry points in ^DIC.
- I '$D(DIFILEI)#2 D GETFILE(.DIC,.DIFILEI,.DIENS) Q:DIFILEI=""
+ I $D(DIFILEI)[0 D GETFILE(.DIC,.DIFILEI,.DIENS) Q:DIFILEI=""
  I '$D(@(DIC_"0)")),'$D(DIC("P")),$E(DIC,1,6)'="^DOPT(" S DIC("P")=$$GETP^DIC0(DIFILEI) I DIC("P")="" S Y=-1 D Q^DIC2 Q
  I $G(DO)="" K DO D GETFA^DIC1(.DIC,.DO)
  S (DINDEX,DINDEX("START"))=D,DINDEX("WAY")=1
@@ -79,6 +82,7 @@ GETFILE(DIC,DIFILE,DIENS) ; Return file number, global references, IEN string an
  E  D
  . S DIFILE=$G(@(DIC_"0)")) I DIFILE]"" S DIFILE=+$P(DIFILE,U,2) Q
  . S DIFILE=+$G(DIC("P")) Q:DIFILE
+ . ;I DIC["^DD(",'$D(@(DIC_"0)")) S DIFILE="" Q
  . S DIFILE=$$FILENUM^DILIBF(DIC) Q
  Q:DIFILE=""
  S DIENS=","
@@ -105,7 +109,7 @@ GETP(DISUB) ; Return DIC("P") for a subfile DIFILE.
  N DIFIELD S DIFIELD=$O(^DD(DIFILE,"SB",DISUB,0)) Q:'DIFIELD ""
  Q $P($G(^DD(DIFILE,DIFIELD,0)),U,2)
  ;
-DSPH ; Display name of indexed fields when DIC(0)["T" (called from DICF2)
+DSPH ; Display name of indexed fields when DIC(0)["T" (called from DIC1 & DIC2)
  Q:$G(DS(0,"HDRDSP",DIFILEI))  S DS(0,"HDRDSP",DIFILEI)=1
  W ! N I S I=($G(DICR))*2 W:I ?I
  W "  Lookup: "

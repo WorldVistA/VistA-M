@@ -1,130 +1,282 @@
-IBDEI0QB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0QB ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12331,1,4,0)
- ;;=4^D12.7
- ;;^UTILITY(U,$J,358.3,12331,2)
- ;;=^5001970
- ;;^UTILITY(U,$J,358.3,12332,0)
- ;;=D12.8^^50^559^15
- ;;^UTILITY(U,$J,358.3,12332,1,0)
+ ;;^UTILITY(U,$J,358.3,26461,2)
+ ;;=^5003792
+ ;;^UTILITY(U,$J,358.3,26462,0)
+ ;;=G25.71^^100^1273^14
+ ;;^UTILITY(U,$J,358.3,26462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12332,1,3,0)
- ;;=3^Benign neoplasm of rectum
- ;;^UTILITY(U,$J,358.3,12332,1,4,0)
- ;;=4^D12.8
- ;;^UTILITY(U,$J,358.3,12332,2)
- ;;=^5001971
- ;;^UTILITY(U,$J,358.3,12333,0)
- ;;=D12.9^^50^559^8
- ;;^UTILITY(U,$J,358.3,12333,1,0)
+ ;;^UTILITY(U,$J,358.3,26462,1,3,0)
+ ;;=3^Tardive Akathisia
+ ;;^UTILITY(U,$J,358.3,26462,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,26462,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,26463,0)
+ ;;=G25.79^^100^1273^9
+ ;;^UTILITY(U,$J,358.3,26463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12333,1,3,0)
- ;;=3^Benign neoplasm of anus and anal canal
- ;;^UTILITY(U,$J,358.3,12333,1,4,0)
- ;;=4^D12.9
- ;;^UTILITY(U,$J,358.3,12333,2)
- ;;=^5001972
- ;;^UTILITY(U,$J,358.3,12334,0)
- ;;=E83.110^^50^559^38
- ;;^UTILITY(U,$J,358.3,12334,1,0)
+ ;;^UTILITY(U,$J,358.3,26463,1,3,0)
+ ;;=3^Medication-Induced Movement Disorder,Other
+ ;;^UTILITY(U,$J,358.3,26463,1,4,0)
+ ;;=4^G25.79
+ ;;^UTILITY(U,$J,358.3,26463,2)
+ ;;=^5003800
+ ;;^UTILITY(U,$J,358.3,26464,0)
+ ;;=T43.205A^^100^1273^4
+ ;;^UTILITY(U,$J,358.3,26464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12334,1,3,0)
- ;;=3^Hereditary hemochromatosis
- ;;^UTILITY(U,$J,358.3,12334,1,4,0)
- ;;=4^E83.110
- ;;^UTILITY(U,$J,358.3,12334,2)
- ;;=^339602
- ;;^UTILITY(U,$J,358.3,12335,0)
- ;;=E83.111^^50^559^35
- ;;^UTILITY(U,$J,358.3,12335,1,0)
+ ;;^UTILITY(U,$J,358.3,26464,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26464,1,4,0)
+ ;;=4^T43.205A
+ ;;^UTILITY(U,$J,358.3,26464,2)
+ ;;=^5050540
+ ;;^UTILITY(U,$J,358.3,26465,0)
+ ;;=T43.205D^^100^1273^5
+ ;;^UTILITY(U,$J,358.3,26465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12335,1,3,0)
- ;;=3^Hemochromatosis due to repeated red blood cell transfusions
- ;;^UTILITY(U,$J,358.3,12335,1,4,0)
- ;;=4^E83.111
- ;;^UTILITY(U,$J,358.3,12335,2)
- ;;=^5002994
- ;;^UTILITY(U,$J,358.3,12336,0)
- ;;=E83.10^^50^559^26
- ;;^UTILITY(U,$J,358.3,12336,1,0)
+ ;;^UTILITY(U,$J,358.3,26465,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,26465,1,4,0)
+ ;;=4^T43.205D
+ ;;^UTILITY(U,$J,358.3,26465,2)
+ ;;=^5050541
+ ;;^UTILITY(U,$J,358.3,26466,0)
+ ;;=T43.205S^^100^1273^6
+ ;;^UTILITY(U,$J,358.3,26466,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12336,1,3,0)
- ;;=3^Disorder of iron metabolism, unspecified
- ;;^UTILITY(U,$J,358.3,12336,1,4,0)
- ;;=4^E83.10
- ;;^UTILITY(U,$J,358.3,12336,2)
- ;;=^5002993
- ;;^UTILITY(U,$J,358.3,12337,0)
- ;;=D64.9^^50^559^5
- ;;^UTILITY(U,$J,358.3,12337,1,0)
+ ;;^UTILITY(U,$J,358.3,26466,1,3,0)
+ ;;=3^Antidepressant Discontinuation Syndrome,Sequela
+ ;;^UTILITY(U,$J,358.3,26466,1,4,0)
+ ;;=4^T43.205S
+ ;;^UTILITY(U,$J,358.3,26466,2)
+ ;;=^5050542
+ ;;^UTILITY(U,$J,358.3,26467,0)
+ ;;=G25.71^^100^1273^7
+ ;;^UTILITY(U,$J,358.3,26467,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12337,1,3,0)
- ;;=3^Anemia, unspecified
- ;;^UTILITY(U,$J,358.3,12337,1,4,0)
- ;;=4^D64.9
- ;;^UTILITY(U,$J,358.3,12337,2)
- ;;=^5002351
- ;;^UTILITY(U,$J,358.3,12338,0)
- ;;=K50.919^^50^559^24
- ;;^UTILITY(U,$J,358.3,12338,1,0)
+ ;;^UTILITY(U,$J,358.3,26467,1,3,0)
+ ;;=3^Medication-Induced Acute Akathisia
+ ;;^UTILITY(U,$J,358.3,26467,1,4,0)
+ ;;=4^G25.71
+ ;;^UTILITY(U,$J,358.3,26467,2)
+ ;;=^5003799
+ ;;^UTILITY(U,$J,358.3,26468,0)
+ ;;=G24.02^^100^1273^8
+ ;;^UTILITY(U,$J,358.3,26468,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12338,1,3,0)
- ;;=3^Crohn's disease, unspecified, with unspecified complications
- ;;^UTILITY(U,$J,358.3,12338,1,4,0)
- ;;=4^K50.919
- ;;^UTILITY(U,$J,358.3,12338,2)
- ;;=^5008651
- ;;^UTILITY(U,$J,358.3,12339,0)
- ;;=K50.918^^50^559^22
- ;;^UTILITY(U,$J,358.3,12339,1,0)
+ ;;^UTILITY(U,$J,358.3,26468,1,3,0)
+ ;;=3^Medication-Induced Acute Dystonia
+ ;;^UTILITY(U,$J,358.3,26468,1,4,0)
+ ;;=4^G24.02
+ ;;^UTILITY(U,$J,358.3,26468,2)
+ ;;=^5003785
+ ;;^UTILITY(U,$J,358.3,26469,0)
+ ;;=G21.0^^100^1273^12
+ ;;^UTILITY(U,$J,358.3,26469,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12339,1,3,0)
- ;;=3^Crohn's disease, unspecified, with other complication
- ;;^UTILITY(U,$J,358.3,12339,1,4,0)
- ;;=4^K50.918
- ;;^UTILITY(U,$J,358.3,12339,2)
- ;;=^5008650
- ;;^UTILITY(U,$J,358.3,12340,0)
- ;;=K50.914^^50^559^19
- ;;^UTILITY(U,$J,358.3,12340,1,0)
+ ;;^UTILITY(U,$J,358.3,26469,1,3,0)
+ ;;=3^Neuroleptic Malignant Syndrome
+ ;;^UTILITY(U,$J,358.3,26469,1,4,0)
+ ;;=4^G21.0
+ ;;^UTILITY(U,$J,358.3,26469,2)
+ ;;=^5003771
+ ;;^UTILITY(U,$J,358.3,26470,0)
+ ;;=T50.905A^^100^1273^1
+ ;;^UTILITY(U,$J,358.3,26470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12340,1,3,0)
- ;;=3^Crohn's disease, unspecified, with abscess
- ;;^UTILITY(U,$J,358.3,12340,1,4,0)
- ;;=4^K50.914
- ;;^UTILITY(U,$J,358.3,12340,2)
- ;;=^5008649
- ;;^UTILITY(U,$J,358.3,12341,0)
- ;;=K50.913^^50^559^20
- ;;^UTILITY(U,$J,358.3,12341,1,0)
+ ;;^UTILITY(U,$J,358.3,26470,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Init Encntr
+ ;;^UTILITY(U,$J,358.3,26470,1,4,0)
+ ;;=4^T50.905A
+ ;;^UTILITY(U,$J,358.3,26470,2)
+ ;;=^5052160
+ ;;^UTILITY(U,$J,358.3,26471,0)
+ ;;=T50.905S^^100^1273^2
+ ;;^UTILITY(U,$J,358.3,26471,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12341,1,3,0)
- ;;=3^Crohn's disease, unspecified, with fistula
- ;;^UTILITY(U,$J,358.3,12341,1,4,0)
- ;;=4^K50.913
- ;;^UTILITY(U,$J,358.3,12341,2)
- ;;=^5008648
- ;;^UTILITY(U,$J,358.3,12342,0)
- ;;=K50.912^^50^559^21
- ;;^UTILITY(U,$J,358.3,12342,1,0)
+ ;;^UTILITY(U,$J,358.3,26471,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Sequela
+ ;;^UTILITY(U,$J,358.3,26471,1,4,0)
+ ;;=4^T50.905S
+ ;;^UTILITY(U,$J,358.3,26471,2)
+ ;;=^5052162
+ ;;^UTILITY(U,$J,358.3,26472,0)
+ ;;=T50.905D^^100^1273^3
+ ;;^UTILITY(U,$J,358.3,26472,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12342,1,3,0)
- ;;=3^Crohn's disease, unspecified, with intestinal obstruction
- ;;^UTILITY(U,$J,358.3,12342,1,4,0)
- ;;=4^K50.912
- ;;^UTILITY(U,$J,358.3,12342,2)
- ;;=^5008647
- ;;^UTILITY(U,$J,358.3,12343,0)
- ;;=K50.90^^50^559^25
- ;;^UTILITY(U,$J,358.3,12343,1,0)
+ ;;^UTILITY(U,$J,358.3,26472,1,3,0)
+ ;;=3^Adverse Effect of Medication,Other,Subseq Encntr
+ ;;^UTILITY(U,$J,358.3,26472,1,4,0)
+ ;;=4^T50.905D
+ ;;^UTILITY(U,$J,358.3,26472,2)
+ ;;=^5052161
+ ;;^UTILITY(U,$J,358.3,26473,0)
+ ;;=F42.^^100^1274^5
+ ;;^UTILITY(U,$J,358.3,26473,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12343,1,3,0)
- ;;=3^Crohn's disease, unspecified, without complications
- ;;^UTILITY(U,$J,358.3,12343,1,4,0)
- ;;=4^K50.90
- ;;^UTILITY(U,$J,358.3,12343,2)
- ;;=^5008645
- ;;^UTILITY(U,$J,358.3,12344,0)
- ;;=K50.911^^50^559^23
+ ;;^UTILITY(U,$J,358.3,26473,1,3,0)
+ ;;=3^Obsessive-Compulsive Disorder
+ ;;^UTILITY(U,$J,358.3,26473,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,26473,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,26474,0)
+ ;;=F45.22^^100^1274^1
+ ;;^UTILITY(U,$J,358.3,26474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26474,1,3,0)
+ ;;=3^Body Dysmorphic Disorder
+ ;;^UTILITY(U,$J,358.3,26474,1,4,0)
+ ;;=4^F45.22
+ ;;^UTILITY(U,$J,358.3,26474,2)
+ ;;=^5003588
+ ;;^UTILITY(U,$J,358.3,26475,0)
+ ;;=F63.3^^100^1274^6
+ ;;^UTILITY(U,$J,358.3,26475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26475,1,3,0)
+ ;;=3^Trichotillomania (Hair-Pulling Disorder)
+ ;;^UTILITY(U,$J,358.3,26475,1,4,0)
+ ;;=4^F63.3
+ ;;^UTILITY(U,$J,358.3,26475,2)
+ ;;=^5003643
+ ;;^UTILITY(U,$J,358.3,26476,0)
+ ;;=L98.1^^100^1274^2
+ ;;^UTILITY(U,$J,358.3,26476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26476,1,3,0)
+ ;;=3^Excoriation (Skin-Picking) Disorder
+ ;;^UTILITY(U,$J,358.3,26476,1,4,0)
+ ;;=4^L98.1
+ ;;^UTILITY(U,$J,358.3,26476,2)
+ ;;=^186781
+ ;;^UTILITY(U,$J,358.3,26477,0)
+ ;;=F42.^^100^1274^3
+ ;;^UTILITY(U,$J,358.3,26477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26477,1,3,0)
+ ;;=3^Hoarding Disorder
+ ;;^UTILITY(U,$J,358.3,26477,1,4,0)
+ ;;=4^F42.
+ ;;^UTILITY(U,$J,358.3,26477,2)
+ ;;=^5003568
+ ;;^UTILITY(U,$J,358.3,26478,0)
+ ;;=F06.8^^100^1274^4
+ ;;^UTILITY(U,$J,358.3,26478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26478,1,3,0)
+ ;;=3^Obsessive-Compulsive & Related Disorder d/t Another Med Condition
+ ;;^UTILITY(U,$J,358.3,26478,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,26478,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,26479,0)
+ ;;=Z91.49^^100^1275^12
+ ;;^UTILITY(U,$J,358.3,26479,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26479,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma
+ ;;^UTILITY(U,$J,358.3,26479,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,26479,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,26480,0)
+ ;;=Z91.5^^100^1275^13
+ ;;^UTILITY(U,$J,358.3,26480,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26480,1,3,0)
+ ;;=3^Personal Hx of Self-Harm
+ ;;^UTILITY(U,$J,358.3,26480,1,4,0)
+ ;;=4^Z91.5
+ ;;^UTILITY(U,$J,358.3,26480,2)
+ ;;=^5063624
+ ;;^UTILITY(U,$J,358.3,26481,0)
+ ;;=Z91.82^^100^1275^11
+ ;;^UTILITY(U,$J,358.3,26481,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26481,1,3,0)
+ ;;=3^Personal Hx of Military Deployment
+ ;;^UTILITY(U,$J,358.3,26481,1,4,0)
+ ;;=4^Z91.82
+ ;;^UTILITY(U,$J,358.3,26481,2)
+ ;;=^5063626
+ ;;^UTILITY(U,$J,358.3,26482,0)
+ ;;=Z91.89^^100^1275^18
+ ;;^UTILITY(U,$J,358.3,26482,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26482,1,3,0)
+ ;;=3^Personal Risk Factors
+ ;;^UTILITY(U,$J,358.3,26482,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,26482,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,26483,0)
+ ;;=Z72.9^^100^1275^19
+ ;;^UTILITY(U,$J,358.3,26483,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26483,1,3,0)
+ ;;=3^Problem Related to Lifestyle
+ ;;^UTILITY(U,$J,358.3,26483,1,4,0)
+ ;;=4^Z72.9
+ ;;^UTILITY(U,$J,358.3,26483,2)
+ ;;=^5063267
+ ;;^UTILITY(U,$J,358.3,26484,0)
+ ;;=Z72.811^^100^1275^1
+ ;;^UTILITY(U,$J,358.3,26484,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26484,1,3,0)
+ ;;=3^Adult Antisocial Behavior
+ ;;^UTILITY(U,$J,358.3,26484,1,4,0)
+ ;;=4^Z72.811
+ ;;^UTILITY(U,$J,358.3,26484,2)
+ ;;=^5063263
+ ;;^UTILITY(U,$J,358.3,26485,0)
+ ;;=Z91.19^^100^1275^5
+ ;;^UTILITY(U,$J,358.3,26485,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26485,1,3,0)
+ ;;=3^Nonadherence to Medical Treatment
+ ;;^UTILITY(U,$J,358.3,26485,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,26485,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,26486,0)
+ ;;=E66.9^^100^1275^6
+ ;;^UTILITY(U,$J,358.3,26486,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26486,1,3,0)
+ ;;=3^Overweight or Obesity
+ ;;^UTILITY(U,$J,358.3,26486,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,26486,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,26487,0)
+ ;;=Z76.5^^100^1275^3
+ ;;^UTILITY(U,$J,358.3,26487,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26487,1,3,0)
+ ;;=3^Malingering
+ ;;^UTILITY(U,$J,358.3,26487,1,4,0)
+ ;;=4^Z76.5
+ ;;^UTILITY(U,$J,358.3,26487,2)
+ ;;=^5063302
+ ;;^UTILITY(U,$J,358.3,26488,0)
+ ;;=R41.83^^100^1275^2
+ ;;^UTILITY(U,$J,358.3,26488,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26488,1,3,0)
+ ;;=3^Borderline Intellectual Functioning
+ ;;^UTILITY(U,$J,358.3,26488,1,4,0)
+ ;;=4^R41.83
+ ;;^UTILITY(U,$J,358.3,26488,2)
+ ;;=^5019442
+ ;;^UTILITY(U,$J,358.3,26489,0)
+ ;;=Z56.82^^100^1275^4
+ ;;^UTILITY(U,$J,358.3,26489,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26489,1,3,0)
+ ;;=3^Military Deployment Status,Current

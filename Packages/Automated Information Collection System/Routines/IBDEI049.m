@@ -1,126 +1,308 @@
-IBDEI049 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI049 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1566,1,4,0)
- ;;=4^I25.709
- ;;^UTILITY(U,$J,358.3,1566,2)
- ;;=^5007120
- ;;^UTILITY(U,$J,358.3,1567,0)
- ;;=I25.711^^11^144^7
- ;;^UTILITY(U,$J,358.3,1567,1,0)
+ ;;^UTILITY(U,$J,358.3,3990,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,3990,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,3991,0)
+ ;;=R12.^^30^304^45
+ ;;^UTILITY(U,$J,358.3,3991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1567,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,1567,1,4,0)
- ;;=4^I25.711
- ;;^UTILITY(U,$J,358.3,1567,2)
- ;;=^5007122
- ;;^UTILITY(U,$J,358.3,1568,0)
- ;;=I25.718^^11^144^8
- ;;^UTILITY(U,$J,358.3,1568,1,0)
+ ;;^UTILITY(U,$J,358.3,3991,1,3,0)
+ ;;=3^Heartburn
+ ;;^UTILITY(U,$J,358.3,3991,1,4,0)
+ ;;=4^R12.
+ ;;^UTILITY(U,$J,358.3,3991,2)
+ ;;=^5019238
+ ;;^UTILITY(U,$J,358.3,3992,0)
+ ;;=R13.0^^30^304^12
+ ;;^UTILITY(U,$J,358.3,3992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1568,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1568,1,4,0)
- ;;=4^I25.718
- ;;^UTILITY(U,$J,358.3,1568,2)
- ;;=^5007123
- ;;^UTILITY(U,$J,358.3,1569,0)
- ;;=I25.719^^11^144^9
- ;;^UTILITY(U,$J,358.3,1569,1,0)
+ ;;^UTILITY(U,$J,358.3,3992,1,3,0)
+ ;;=3^Aphagia
+ ;;^UTILITY(U,$J,358.3,3992,1,4,0)
+ ;;=4^R13.0
+ ;;^UTILITY(U,$J,358.3,3992,2)
+ ;;=^5019239
+ ;;^UTILITY(U,$J,358.3,3993,0)
+ ;;=R13.10^^30^304^34
+ ;;^UTILITY(U,$J,358.3,3993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1569,1,3,0)
- ;;=3^Athscl Autologous Vein CABG w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1569,1,4,0)
- ;;=4^I25.719
- ;;^UTILITY(U,$J,358.3,1569,2)
- ;;=^5007124
- ;;^UTILITY(U,$J,358.3,1570,0)
- ;;=I25.721^^11^144^3
- ;;^UTILITY(U,$J,358.3,1570,1,0)
+ ;;^UTILITY(U,$J,358.3,3993,1,3,0)
+ ;;=3^Dysphagia,Unspec
+ ;;^UTILITY(U,$J,358.3,3993,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,3993,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,3994,0)
+ ;;=R14.0^^30^304^1
+ ;;^UTILITY(U,$J,358.3,3994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1570,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,1570,1,4,0)
- ;;=4^I25.721
- ;;^UTILITY(U,$J,358.3,1570,2)
- ;;=^5007126
- ;;^UTILITY(U,$J,358.3,1571,0)
- ;;=I25.728^^11^144^4
- ;;^UTILITY(U,$J,358.3,1571,1,0)
+ ;;^UTILITY(U,$J,358.3,3994,1,3,0)
+ ;;=3^Abdominal Distension
+ ;;^UTILITY(U,$J,358.3,3994,1,4,0)
+ ;;=4^R14.0
+ ;;^UTILITY(U,$J,358.3,3994,2)
+ ;;=^5019240
+ ;;^UTILITY(U,$J,358.3,3995,0)
+ ;;=R14.1^^30^304^42
+ ;;^UTILITY(U,$J,358.3,3995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1571,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1571,1,4,0)
- ;;=4^I25.728
- ;;^UTILITY(U,$J,358.3,1571,2)
- ;;=^5133560
- ;;^UTILITY(U,$J,358.3,1572,0)
- ;;=I25.729^^11^144^5
- ;;^UTILITY(U,$J,358.3,1572,1,0)
+ ;;^UTILITY(U,$J,358.3,3995,1,3,0)
+ ;;=3^Gas Pain
+ ;;^UTILITY(U,$J,358.3,3995,1,4,0)
+ ;;=4^R14.1
+ ;;^UTILITY(U,$J,358.3,3995,2)
+ ;;=^5019241
+ ;;^UTILITY(U,$J,358.3,3996,0)
+ ;;=R14.2^^30^304^36
+ ;;^UTILITY(U,$J,358.3,3996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1572,1,3,0)
- ;;=3^Athscl Autologous Artery CABG w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1572,1,4,0)
- ;;=4^I25.729
- ;;^UTILITY(U,$J,358.3,1572,2)
- ;;=^5133561
- ;;^UTILITY(U,$J,358.3,1573,0)
- ;;=I25.731^^11^144^25
- ;;^UTILITY(U,$J,358.3,1573,1,0)
+ ;;^UTILITY(U,$J,358.3,3996,1,3,0)
+ ;;=3^Eructation
+ ;;^UTILITY(U,$J,358.3,3996,1,4,0)
+ ;;=4^R14.2
+ ;;^UTILITY(U,$J,358.3,3996,2)
+ ;;=^5019242
+ ;;^UTILITY(U,$J,358.3,3997,0)
+ ;;=R14.3^^30^304^39
+ ;;^UTILITY(U,$J,358.3,3997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1573,1,3,0)
- ;;=3^Athscl Nonautologous Biological CABG w/ Ang Pctrs w/ Documented Spasm
- ;;^UTILITY(U,$J,358.3,1573,1,4,0)
- ;;=4^I25.731
- ;;^UTILITY(U,$J,358.3,1573,2)
- ;;=^5007128
- ;;^UTILITY(U,$J,358.3,1574,0)
- ;;=I25.738^^11^144^26
- ;;^UTILITY(U,$J,358.3,1574,1,0)
+ ;;^UTILITY(U,$J,358.3,3997,1,3,0)
+ ;;=3^Flatulence
+ ;;^UTILITY(U,$J,358.3,3997,1,4,0)
+ ;;=4^R14.3
+ ;;^UTILITY(U,$J,358.3,3997,2)
+ ;;=^5019243
+ ;;^UTILITY(U,$J,358.3,3998,0)
+ ;;=R19.11^^30^304^4
+ ;;^UTILITY(U,$J,358.3,3998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1574,1,3,0)
- ;;=3^Athscl Nonautologous Biological CABG w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1574,1,4,0)
- ;;=4^I25.738
- ;;^UTILITY(U,$J,358.3,1574,2)
- ;;=^5007129
- ;;^UTILITY(U,$J,358.3,1575,0)
- ;;=I25.739^^11^144^27
- ;;^UTILITY(U,$J,358.3,1575,1,0)
+ ;;^UTILITY(U,$J,358.3,3998,1,3,0)
+ ;;=3^Absent Bowel Sounds
+ ;;^UTILITY(U,$J,358.3,3998,1,4,0)
+ ;;=4^R19.11
+ ;;^UTILITY(U,$J,358.3,3998,2)
+ ;;=^5019262
+ ;;^UTILITY(U,$J,358.3,3999,0)
+ ;;=R19.12^^30^304^47
+ ;;^UTILITY(U,$J,358.3,3999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1575,1,3,0)
- ;;=3^Athscl Nonautologous Biological CABG w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1575,1,4,0)
- ;;=4^I25.739
- ;;^UTILITY(U,$J,358.3,1575,2)
- ;;=^5007130
- ;;^UTILITY(U,$J,358.3,1576,0)
- ;;=I25.751^^11^144^21
- ;;^UTILITY(U,$J,358.3,1576,1,0)
+ ;;^UTILITY(U,$J,358.3,3999,1,3,0)
+ ;;=3^Hyperactive Bowel Sounds
+ ;;^UTILITY(U,$J,358.3,3999,1,4,0)
+ ;;=4^R19.12
+ ;;^UTILITY(U,$J,358.3,3999,2)
+ ;;=^5019263
+ ;;^UTILITY(U,$J,358.3,4000,0)
+ ;;=R19.15^^30^304^2
+ ;;^UTILITY(U,$J,358.3,4000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1576,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplanted Hrt w/ Ang Pctrs w/ Spasm
- ;;^UTILITY(U,$J,358.3,1576,1,4,0)
- ;;=4^I25.751
- ;;^UTILITY(U,$J,358.3,1576,2)
- ;;=^5007132
- ;;^UTILITY(U,$J,358.3,1577,0)
- ;;=I25.758^^11^144^22
- ;;^UTILITY(U,$J,358.3,1577,1,0)
+ ;;^UTILITY(U,$J,358.3,4000,1,3,0)
+ ;;=3^Abnormal Bowel Sounds NEC
+ ;;^UTILITY(U,$J,358.3,4000,1,4,0)
+ ;;=4^R19.15
+ ;;^UTILITY(U,$J,358.3,4000,2)
+ ;;=^5019264
+ ;;^UTILITY(U,$J,358.3,4001,0)
+ ;;=R19.2^^30^304^72
+ ;;^UTILITY(U,$J,358.3,4001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1577,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplanted Hrt w/ Oth Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1577,1,4,0)
- ;;=4^I25.758
- ;;^UTILITY(U,$J,358.3,1577,2)
- ;;=^5007133
- ;;^UTILITY(U,$J,358.3,1578,0)
- ;;=I25.759^^11^144^23
- ;;^UTILITY(U,$J,358.3,1578,1,0)
+ ;;^UTILITY(U,$J,358.3,4001,1,3,0)
+ ;;=3^Visible Peristalsis
+ ;;^UTILITY(U,$J,358.3,4001,1,4,0)
+ ;;=4^R19.2
+ ;;^UTILITY(U,$J,358.3,4001,2)
+ ;;=^5019265
+ ;;^UTILITY(U,$J,358.3,4002,0)
+ ;;=R19.7^^30^304^30
+ ;;^UTILITY(U,$J,358.3,4002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1578,1,3,0)
- ;;=3^Athscl Native Cor Art of Transplanted Hrt w/ Unspec Ang Pctrs
- ;;^UTILITY(U,$J,358.3,1578,1,4,0)
- ;;=4^I25.759
+ ;;^UTILITY(U,$J,358.3,4002,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,4002,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,4002,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,4003,0)
+ ;;=R22.2^^30^304^68
+ ;;^UTILITY(U,$J,358.3,4003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4003,1,3,0)
+ ;;=3^Swelling/Mass/Lump,Trunk,Localized
+ ;;^UTILITY(U,$J,358.3,4003,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,4003,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,4004,0)
+ ;;=R40.3^^30^304^59
+ ;;^UTILITY(U,$J,358.3,4004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4004,1,3,0)
+ ;;=3^Persistent Vegetative State
+ ;;^UTILITY(U,$J,358.3,4004,1,4,0)
+ ;;=4^R40.3
+ ;;^UTILITY(U,$J,358.3,4004,2)
+ ;;=^5019434
+ ;;^UTILITY(U,$J,358.3,4005,0)
+ ;;=R42.^^30^304^31
+ ;;^UTILITY(U,$J,358.3,4005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4005,1,3,0)
+ ;;=3^Dizziness and Giddiness
+ ;;^UTILITY(U,$J,358.3,4005,1,4,0)
+ ;;=4^R42.
+ ;;^UTILITY(U,$J,358.3,4005,2)
+ ;;=^5019450
+ ;;^UTILITY(U,$J,358.3,4006,0)
+ ;;=R44.0^^30^304^14
+ ;;^UTILITY(U,$J,358.3,4006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4006,1,3,0)
+ ;;=3^Auditory Hallucinations
+ ;;^UTILITY(U,$J,358.3,4006,1,4,0)
+ ;;=4^R44.0
+ ;;^UTILITY(U,$J,358.3,4006,2)
+ ;;=^5019455
+ ;;^UTILITY(U,$J,358.3,4007,0)
+ ;;=R44.2^^30^304^43
+ ;;^UTILITY(U,$J,358.3,4007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4007,1,3,0)
+ ;;=3^Hallucinations NEC
+ ;;^UTILITY(U,$J,358.3,4007,1,4,0)
+ ;;=4^R44.2
+ ;;^UTILITY(U,$J,358.3,4007,2)
+ ;;=^5019457
+ ;;^UTILITY(U,$J,358.3,4008,0)
+ ;;=R44.3^^30^304^44
+ ;;^UTILITY(U,$J,358.3,4008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4008,1,3,0)
+ ;;=3^Hallucinations,Unspec
+ ;;^UTILITY(U,$J,358.3,4008,1,4,0)
+ ;;=4^R44.3
+ ;;^UTILITY(U,$J,358.3,4008,2)
+ ;;=^5019458
+ ;;^UTILITY(U,$J,358.3,4009,0)
+ ;;=R50.2^^30^304^32
+ ;;^UTILITY(U,$J,358.3,4009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4009,1,3,0)
+ ;;=3^Drug Induced Fever
+ ;;^UTILITY(U,$J,358.3,4009,1,4,0)
+ ;;=4^R50.2
+ ;;^UTILITY(U,$J,358.3,4009,2)
+ ;;=^5019507
+ ;;^UTILITY(U,$J,358.3,4010,0)
+ ;;=R50.9^^30^304^38
+ ;;^UTILITY(U,$J,358.3,4010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4010,1,3,0)
+ ;;=3^Fever,Unspec
+ ;;^UTILITY(U,$J,358.3,4010,1,4,0)
+ ;;=4^R50.9
+ ;;^UTILITY(U,$J,358.3,4010,2)
+ ;;=^5019512
+ ;;^UTILITY(U,$J,358.3,4011,0)
+ ;;=R53.0^^30^304^56
+ ;;^UTILITY(U,$J,358.3,4011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4011,1,3,0)
+ ;;=3^Neoplastic Related Fatigue
+ ;;^UTILITY(U,$J,358.3,4011,1,4,0)
+ ;;=4^R53.0
+ ;;^UTILITY(U,$J,358.3,4011,2)
+ ;;=^5019515
+ ;;^UTILITY(U,$J,358.3,4012,0)
+ ;;=R53.1^^30^304^75
+ ;;^UTILITY(U,$J,358.3,4012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4012,1,3,0)
+ ;;=3^Weakness
+ ;;^UTILITY(U,$J,358.3,4012,1,4,0)
+ ;;=4^R53.1
+ ;;^UTILITY(U,$J,358.3,4012,2)
+ ;;=^5019516
+ ;;^UTILITY(U,$J,358.3,4013,0)
+ ;;=R53.81^^30^304^53
+ ;;^UTILITY(U,$J,358.3,4013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4013,1,3,0)
+ ;;=3^Malaise NEC
+ ;;^UTILITY(U,$J,358.3,4013,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,4013,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,4014,0)
+ ;;=R53.82^^30^304^21
+ ;;^UTILITY(U,$J,358.3,4014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4014,1,3,0)
+ ;;=3^Chronic Fatigue,Unspec
+ ;;^UTILITY(U,$J,358.3,4014,1,4,0)
+ ;;=4^R53.82
+ ;;^UTILITY(U,$J,358.3,4014,2)
+ ;;=^5019519
+ ;;^UTILITY(U,$J,358.3,4015,0)
+ ;;=R53.83^^30^304^37
+ ;;^UTILITY(U,$J,358.3,4015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4015,1,3,0)
+ ;;=3^Fatigue NEC
+ ;;^UTILITY(U,$J,358.3,4015,1,4,0)
+ ;;=4^R53.83
+ ;;^UTILITY(U,$J,358.3,4015,2)
+ ;;=^5019520
+ ;;^UTILITY(U,$J,358.3,4016,0)
+ ;;=R55.^^30^304^69
+ ;;^UTILITY(U,$J,358.3,4016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4016,1,3,0)
+ ;;=3^Syncope and Collapse
+ ;;^UTILITY(U,$J,358.3,4016,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,4016,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,4017,0)
+ ;;=R56.9^^30^304^23
+ ;;^UTILITY(U,$J,358.3,4017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4017,1,3,0)
+ ;;=3^Convulsions,Unspec
+ ;;^UTILITY(U,$J,358.3,4017,1,4,0)
+ ;;=4^R56.9
+ ;;^UTILITY(U,$J,358.3,4017,2)
+ ;;=^5019524
+ ;;^UTILITY(U,$J,358.3,4018,0)
+ ;;=R68.83^^30^304^20
+ ;;^UTILITY(U,$J,358.3,4018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4018,1,3,0)
+ ;;=3^Chills w/o Fever
+ ;;^UTILITY(U,$J,358.3,4018,1,4,0)
+ ;;=4^R68.83
+ ;;^UTILITY(U,$J,358.3,4018,2)
+ ;;=^5019555
+ ;;^UTILITY(U,$J,358.3,4019,0)
+ ;;=C78.7^^30^305^91
+ ;;^UTILITY(U,$J,358.3,4019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4019,1,3,0)
+ ;;=3^Secondary Malig Neop of Liver/Intrahepatic Bile Duct
+ ;;^UTILITY(U,$J,358.3,4019,1,4,0)
+ ;;=4^C78.7
+ ;;^UTILITY(U,$J,358.3,4019,2)
+ ;;=^5001339
+ ;;^UTILITY(U,$J,358.3,4020,0)
+ ;;=C78.5^^30^305^90
+ ;;^UTILITY(U,$J,358.3,4020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4020,1,3,0)
+ ;;=3^Secondary Malig Neop of Large Intestine/Rectum
+ ;;^UTILITY(U,$J,358.3,4020,1,4,0)
+ ;;=4^C78.5
+ ;;^UTILITY(U,$J,358.3,4020,2)
+ ;;=^267327

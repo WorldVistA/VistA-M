@@ -1,124 +1,292 @@
-IBDEI0GY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0GY ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7836,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,7836,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,7837,0)
- ;;=Y36.410A^^30^415^121
- ;;^UTILITY(U,$J,358.3,7837,1,0)
+ ;;^UTILITY(U,$J,358.3,17019,1,3,0)
+ ;;=3^Neuralgia & Neuritis,Unspec
+ ;;^UTILITY(U,$J,358.3,17019,1,4,0)
+ ;;=4^M79.2
+ ;;^UTILITY(U,$J,358.3,17019,2)
+ ;;=^5013322
+ ;;^UTILITY(U,$J,358.3,17020,0)
+ ;;=I25.2^^73^859^10
+ ;;^UTILITY(U,$J,358.3,17020,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7837,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7837,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,7837,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,7838,0)
- ;;=Y36.410D^^30^415^123
- ;;^UTILITY(U,$J,358.3,7838,1,0)
+ ;;^UTILITY(U,$J,358.3,17020,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,17020,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,17020,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,17021,0)
+ ;;=L97.829^^73^859^5
+ ;;^UTILITY(U,$J,358.3,17021,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7838,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7838,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,7838,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,7839,0)
- ;;=Y36.6X0A^^30^415^113
- ;;^UTILITY(U,$J,358.3,7839,1,0)
+ ;;^UTILITY(U,$J,358.3,17021,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer Left Lower Leg,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17021,1,4,0)
+ ;;=4^L97.829
+ ;;^UTILITY(U,$J,358.3,17021,2)
+ ;;=^5009569
+ ;;^UTILITY(U,$J,358.3,17022,0)
+ ;;=L97.819^^73^859^6
+ ;;^UTILITY(U,$J,358.3,17022,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7839,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7839,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,7839,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,7840,0)
- ;;=Y36.6X0D^^30^415^115
- ;;^UTILITY(U,$J,358.3,7840,1,0)
+ ;;^UTILITY(U,$J,358.3,17022,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer Right Lower Leg,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17022,1,4,0)
+ ;;=4^L97.819
+ ;;^UTILITY(U,$J,358.3,17022,2)
+ ;;=^5009564
+ ;;^UTILITY(U,$J,358.3,17023,0)
+ ;;=L98.499^^73^859^7
+ ;;^UTILITY(U,$J,358.3,17023,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7840,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7840,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,7840,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,7841,0)
- ;;=Y36.7X0A^^30^415^128
- ;;^UTILITY(U,$J,358.3,7841,1,0)
+ ;;^UTILITY(U,$J,358.3,17023,1,3,0)
+ ;;=3^Non-Pressure Chronic Ulcer of Skin,Severity Unspec
+ ;;^UTILITY(U,$J,358.3,17023,1,4,0)
+ ;;=4^L98.499
+ ;;^UTILITY(U,$J,358.3,17023,2)
+ ;;=^5009591
+ ;;^UTILITY(U,$J,358.3,17024,0)
+ ;;=R11.0^^73^859^3
+ ;;^UTILITY(U,$J,358.3,17024,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7841,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7841,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,7841,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,7842,0)
- ;;=Y36.7X0D^^30^415^129
- ;;^UTILITY(U,$J,358.3,7842,1,0)
+ ;;^UTILITY(U,$J,358.3,17024,1,3,0)
+ ;;=3^Nausea w/o Vomiting
+ ;;^UTILITY(U,$J,358.3,17024,1,4,0)
+ ;;=4^R11.0
+ ;;^UTILITY(U,$J,358.3,17024,2)
+ ;;=^5019231
+ ;;^UTILITY(U,$J,358.3,17025,0)
+ ;;=M19.90^^73^859^12
+ ;;^UTILITY(U,$J,358.3,17025,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7842,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7842,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,7842,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,7843,0)
- ;;=Y36.810A^^30^415^22
- ;;^UTILITY(U,$J,358.3,7843,1,0)
+ ;;^UTILITY(U,$J,358.3,17025,1,3,0)
+ ;;=3^Osteoarthritis,Unspec
+ ;;^UTILITY(U,$J,358.3,17025,1,4,0)
+ ;;=4^M19.90
+ ;;^UTILITY(U,$J,358.3,17025,2)
+ ;;=^5010853
+ ;;^UTILITY(U,$J,358.3,17026,0)
+ ;;=E66.3^^73^859^26
+ ;;^UTILITY(U,$J,358.3,17026,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7843,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7843,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,7843,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,7844,0)
- ;;=Y36.810D^^30^415^23
- ;;^UTILITY(U,$J,358.3,7844,1,0)
+ ;;^UTILITY(U,$J,358.3,17026,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,17026,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,17026,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,17027,0)
+ ;;=K85.9^^73^860^1
+ ;;^UTILITY(U,$J,358.3,17027,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7844,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7844,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,7844,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,7845,0)
- ;;=Y36.820A^^30^415^19
- ;;^UTILITY(U,$J,358.3,7845,1,0)
+ ;;^UTILITY(U,$J,358.3,17027,1,3,0)
+ ;;=3^Pancreatitis, acute, unspec
+ ;;^UTILITY(U,$J,358.3,17027,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,17027,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,17028,0)
+ ;;=G20.^^73^860^2
+ ;;^UTILITY(U,$J,358.3,17028,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7845,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7845,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,7845,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,7846,0)
- ;;=Y36.820D^^30^415^20
- ;;^UTILITY(U,$J,358.3,7846,1,0)
+ ;;^UTILITY(U,$J,358.3,17028,1,3,0)
+ ;;=3^Parkinson's disease
+ ;;^UTILITY(U,$J,358.3,17028,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,17028,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,17029,0)
+ ;;=I30.0^^73^860^3
+ ;;^UTILITY(U,$J,358.3,17029,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7846,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7846,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,7846,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,7847,0)
- ;;=Y37.200A^^30^415^91
- ;;^UTILITY(U,$J,358.3,7847,1,0)
+ ;;^UTILITY(U,$J,358.3,17029,1,3,0)
+ ;;=3^Pericarditis,idiopath,acute,nonspec
+ ;;^UTILITY(U,$J,358.3,17029,1,4,0)
+ ;;=4^I30.0
+ ;;^UTILITY(U,$J,358.3,17029,2)
+ ;;=^5007157
+ ;;^UTILITY(U,$J,358.3,17030,0)
+ ;;=I73.9^^73^860^4
+ ;;^UTILITY(U,$J,358.3,17030,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7847,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7847,1,4,0)
- ;;=4^Y37.200A
- ;;^UTILITY(U,$J,358.3,7847,2)
- ;;=^5137997
- ;;^UTILITY(U,$J,358.3,7848,0)
- ;;=Y37.200D^^30^415^92
- ;;^UTILITY(U,$J,358.3,7848,1,0)
+ ;;^UTILITY(U,$J,358.3,17030,1,3,0)
+ ;;=3^Peripheral vascular disease, unspec
+ ;;^UTILITY(U,$J,358.3,17030,1,4,0)
+ ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,17030,2)
+ ;;=^184182
+ ;;^UTILITY(U,$J,358.3,17031,0)
+ ;;=F60.89^^73^860^5
+ ;;^UTILITY(U,$J,358.3,17031,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7848,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17031,1,3,0)
+ ;;=3^Personality disorders,oth,spec
+ ;;^UTILITY(U,$J,358.3,17031,1,4,0)
+ ;;=4^F60.89
+ ;;^UTILITY(U,$J,358.3,17031,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,17032,0)
+ ;;=I80.3^^73^860^7
+ ;;^UTILITY(U,$J,358.3,17032,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17032,1,3,0)
+ ;;=3^Phlebitis & thrombophlbts of low extrmties, unspec
+ ;;^UTILITY(U,$J,358.3,17032,1,4,0)
+ ;;=4^I80.3
+ ;;^UTILITY(U,$J,358.3,17032,2)
+ ;;=^5007845
+ ;;^UTILITY(U,$J,358.3,17033,0)
+ ;;=R09.1^^73^860^9
+ ;;^UTILITY(U,$J,358.3,17033,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17033,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,17033,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,17033,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,17034,0)
+ ;;=J91.8^^73^860^8
+ ;;^UTILITY(U,$J,358.3,17034,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17034,1,3,0)
+ ;;=3^Pleural effus in oth cond clsfd elsewhere
+ ;;^UTILITY(U,$J,358.3,17034,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,17034,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,17035,0)
+ ;;=J18.9^^73^860^10
+ ;;^UTILITY(U,$J,358.3,17035,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17035,1,3,0)
+ ;;=3^Pneumonia, unspec organism
+ ;;^UTILITY(U,$J,358.3,17035,1,4,0)
+ ;;=4^J18.9
+ ;;^UTILITY(U,$J,358.3,17035,2)
+ ;;=^95632
+ ;;^UTILITY(U,$J,358.3,17036,0)
+ ;;=I49.3^^73^860^12
+ ;;^UTILITY(U,$J,358.3,17036,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17036,1,3,0)
+ ;;=3^Premature ventricular depolarization
+ ;;^UTILITY(U,$J,358.3,17036,1,4,0)
+ ;;=4^I49.3
+ ;;^UTILITY(U,$J,358.3,17036,2)
+ ;;=^5007233
+ ;;^UTILITY(U,$J,358.3,17037,0)
+ ;;=L40.4^^73^860^14
+ ;;^UTILITY(U,$J,358.3,17037,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17037,1,3,0)
+ ;;=3^Psoriasis Guttate
+ ;;^UTILITY(U,$J,358.3,17037,1,4,0)
+ ;;=4^L40.4
+ ;;^UTILITY(U,$J,358.3,17037,2)
+ ;;=^5009164
+ ;;^UTILITY(U,$J,358.3,17038,0)
+ ;;=L40.1^^73^860^16
+ ;;^UTILITY(U,$J,358.3,17038,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17038,1,3,0)
+ ;;=3^Psoriasis, generalized pustular
+ ;;^UTILITY(U,$J,358.3,17038,1,4,0)
+ ;;=4^L40.1
+ ;;^UTILITY(U,$J,358.3,17038,2)
+ ;;=^5009161
+ ;;^UTILITY(U,$J,358.3,17039,0)
+ ;;=L40.0^^73^860^15
+ ;;^UTILITY(U,$J,358.3,17039,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17039,1,3,0)
+ ;;=3^Psoriasis vulgaris
+ ;;^UTILITY(U,$J,358.3,17039,1,4,0)
+ ;;=4^L40.0
+ ;;^UTILITY(U,$J,358.3,17039,2)
+ ;;=^5009160
+ ;;^UTILITY(U,$J,358.3,17040,0)
+ ;;=L40.8^^73^860^17
+ ;;^UTILITY(U,$J,358.3,17040,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17040,1,3,0)
+ ;;=3^Psoriasis, other
+ ;;^UTILITY(U,$J,358.3,17040,1,4,0)
+ ;;=4^L40.8
+ ;;^UTILITY(U,$J,358.3,17040,2)
+ ;;=^271917
+ ;;^UTILITY(U,$J,358.3,17041,0)
+ ;;=L29.9^^73^860^13
+ ;;^UTILITY(U,$J,358.3,17041,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17041,1,3,0)
+ ;;=3^Pruritus, unspec
+ ;;^UTILITY(U,$J,358.3,17041,1,4,0)
+ ;;=4^L29.9
+ ;;^UTILITY(U,$J,358.3,17041,2)
+ ;;=^5009153
+ ;;^UTILITY(U,$J,358.3,17042,0)
+ ;;=L40.3^^73^860^18
+ ;;^UTILITY(U,$J,358.3,17042,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17042,1,3,0)
+ ;;=3^Pustulosis palmaris et plantaris
+ ;;^UTILITY(U,$J,358.3,17042,1,4,0)
+ ;;=4^L40.3
+ ;;^UTILITY(U,$J,358.3,17042,2)
+ ;;=^5009163
+ ;;^UTILITY(U,$J,358.3,17043,0)
+ ;;=J02.9^^73^860^6
+ ;;^UTILITY(U,$J,358.3,17043,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17043,1,3,0)
+ ;;=3^Pharyngitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,17043,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,17043,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,17044,0)
+ ;;=Z98.89^^73^860^11
+ ;;^UTILITY(U,$J,358.3,17044,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17044,1,3,0)
+ ;;=3^Postprocedural States,Other Spec
+ ;;^UTILITY(U,$J,358.3,17044,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,17044,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,17045,0)
+ ;;=R07.9^^73^861^3
+ ;;^UTILITY(U,$J,358.3,17045,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17045,1,3,0)
+ ;;=3^Chest pain, unspec
+ ;;^UTILITY(U,$J,358.3,17045,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,17045,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,17046,0)
+ ;;=H57.13^^73^861^7
+ ;;^UTILITY(U,$J,358.3,17046,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17046,1,3,0)
+ ;;=3^Ocular pain, bilateral
+ ;;^UTILITY(U,$J,358.3,17046,1,4,0)
+ ;;=4^H57.13
+ ;;^UTILITY(U,$J,358.3,17046,2)
+ ;;=^5006384
+ ;;^UTILITY(U,$J,358.3,17047,0)
+ ;;=H57.11^^73^861^9
+ ;;^UTILITY(U,$J,358.3,17047,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17047,1,3,0)
+ ;;=3^Ocular pain, right eye
+ ;;^UTILITY(U,$J,358.3,17047,1,4,0)
+ ;;=4^H57.11
+ ;;^UTILITY(U,$J,358.3,17047,2)
+ ;;=^5006382
+ ;;^UTILITY(U,$J,358.3,17048,0)
+ ;;=H57.12^^73^861^8

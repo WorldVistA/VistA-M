@@ -1,5 +1,5 @@
-PSOUTLA ;BHAM ISC/AMC - pharmacy utility program ; 07/24/96  1:13 pm
- ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354**;DEC 1997;Build 16
+PSOUTLA ;BHAM ISC/AMC - pharmacy utility program ;07/24/96  1:13 pm
+ ;;7.0;OUTPATIENT PHARMACY;**1,15,23,56,126,222,354,444**;DEC 1997;Build 34
  ;External reference ^PS(54 supported by DBIA 2227
  ;External reference ^PSDRUG( supported by DBIA 221
 CHK I '$D(PY(PSPR)) W !?10,$C(7),"  # ",PSPR," is not a valid choice." S PSPOP=1 Q
@@ -29,24 +29,21 @@ ZIPOUT ; output transform for ZIP - prints either ZIP or ZIP+4 (in 12345-1234)
 YN ;YES/NO PROMPT
  W !?5,"'Y' FOR YES",!?5,"'N' FOR NO",!
  Q
-DAYS K PSFMAX S ED=1,PSODEA=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^",3),PSDAYS=$P(^PSRX(DA,0),"^",8),CS=0 D EDNEW K:ED PSFMAX,ED
- K:$P(^PSRX(DA,0),"^",9)'>MAX PSMAX
+DAYS ;
+ K PSFMAX S ED=1,PSODEA=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^",3),PSDAYS=$P(^PSRX(DA,0),"^",8),CS=0
+ D EDNEW K:ED PSFMAX,ED K:$P(^PSRX(DA,0),"^",9)'>MAX PSMAX
  Q
-EDNEW K PSMAX,PSFMAX F DEA=1:1 Q:$E(PSODEA,DEA)=""  I $E(+PSODEA,DEA)>1,$E(+PSODEA,DEA)<6 S CS=1
- I $D(CLOZPAT) S MAX=$S(CLOZPAT=2&(PSDAYS=14):1,CLOZPAT=2&(PSDAYS=7):3,CLOZPAT=1&(PSDAYS=7):1,1:0) G CLOZPAT
- I CS D
- .S PSOX1=$S(PTRF>5:5,1:PTRF),PSOX=$S(PSOX1=5:5,1:PSOX1)
- .S PSOX=$S('PSOX:0,PSDAYS=90:1,1:PSOX),PSDY1=$S(PSDAYS<60:5,PSDAYS'<60&(PSDAYS'>89):2,PSDAYS=90:1,1:0) S MAX=$S(PSOX'>PSDY1:PSOX,1:PSDY1)
- E  D
- .S PSOX1=PTRF,PSOX=$S(PSOX1=11:11,1:PSOX1),PSOX=$S('PSOX:0,PSDAYS=90:3,1:PSOX)
- .S PSDY1=$S(PSDAYS<60:11,PSDAYS'<60&(PSDAYS'>89):5,PSDAYS=90:3,1:0) S MAX=$S(PSOX'>PSDY1:PSOX,1:PSDY1)
-CLOZPAT I PSRF>MAX D
- .W $C(7),!!,PSRF_" refills are not correct for a "_PSDAYS_" day supply.",!,"Please enter correct # of refills for a "_PSDAYS_" day supply. Max refills allowed is "_MAX_".",!
- .;S (PSMAX("MAX"),PSFMAX("MAX"))=MAX,(PSMAX("RF"),PSFMAX("RF"))=PSRF,(PSMAX("DAYS"),PSFMAX("DAYS"))=PSDAYS,(PSMAX,PSFMAX)=1
+EDNEW ;
+ K PSMAX,PSFMAX
+ ; Retrieving the Maximum Number of Refills allowed
+ S PSMAX=$$MAXNUMRF^PSOUTIL(+$P(^PSRX(DA,0),"^",6),PSDAYS,+$P(^PSRX(DA,0),"^",3),.CLOZPAT)
+ ;
+ I PSRF>PSMAX D
+ .W $C(7),!!,PSRF_" refills are not correct for a "_PSDAYS_" day supply.",!,"Please enter correct # of refills for a "_PSDAYS_" day supply. Max refills allowed is "_PSMAX_".",!
  K PSTMAX D EDSTAT
  Q
 STATDAY K PSMAX,PSRMAX,PSFMAX,PSTMAX S PSDAYS=$P(^PSRX(DA,0),"^",8),PSRF=$P(^PSRX(DA,0),"^",9),PTST=$P(^PS(53,X,0),"^"),PTDY=$P(^(0),"^",3),PTRF=$P(^(0),"^",4)
-EDSTAT I PSRF>PTRF D EN^DDIOL(PSRF_" refills are greater than "_PTRF_" allowed for "_$P(PTST,"^")_" Rx Patient Status.","","$C(7),!") D EN^DDIOL(" ","","!") ;S PSTMAX=1,PSTMAX("PTRF")=PTRF,PSTMAX("PSRF")=PSRF,PSTMAX("PT")=$P(PTST,"^")
+EDSTAT I PSRF>PTRF D EN^DDIOL(PSRF_" refills are greater than "_PTRF_" allowed for "_$P(PTST,"^")_" Rx Patient Status.","","$C(7),!") D EN^DDIOL(" ","","!")
  Q
 PARKILL S CNT=0 F SUB=0:0 S SUB=$O(^PSRX(DA(1),"A",SUB)) Q:'SUB  S CNT=SUB
  I '$G(RESK) D  G:$D(DIRUT) PARKILL

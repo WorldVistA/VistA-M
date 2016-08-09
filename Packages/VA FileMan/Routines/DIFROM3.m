@@ -1,19 +1,31 @@
-DIFROM3 ;SFISC/XAK-CREATES RTN ENDING IN 'INIT2' (HELP FRAMES) ;02:44 PM  28 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROM3 ;SFISC/XAK-CREATES RTN ENDING IN 'INIT2' (HELP FRAMES) ;6 DEC 2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DIRS=" S DIFQ=1"
  S DNAME=E_2,DL=0,(DH,Q)=" ;" K ^UTILITY($J) F DD=1:1 S X=$T(TEXT+DD) Q:X=""  S ^UTILITY($J,DD,0)=$E(X,4,999) S:$E(X,4)="U" ^(0)=^(0)_DIRS
  S DIFROM=2 D ZI G ^DIFROM4
  ;
 FILE ;
  D:'$D(DISYS) OS^DII S DL=0,Q="Q Q",S=" ;;"
-NAME S D=$L(DH)+10
+NAME S D=0
  I DRN>12959 K DRN Q
  S DNAME=DN_$$B36(DRN)
 ZI ;
  I '$D(DIFROM(1)) S %H=+$H D YX^%DTC S DIFROM(1)=$E(Y,5,6)_"-"_$E(Y,1,3)_"-"_$E(Y,9,12)
-2 K ^UTILITY($J,0) S ^(0,1)=DNAME_" ; ; "_DIFROM(1),^(1.1)=DILN2
- S ^UTILITY($J,0,2)=DH,^UTILITY($J,0,3)=Q F L=4:1 S DL=$O(^UTILITY($J,DL)) Q:DL'>0  S ^UTILITY($J,0,L)=S_^(DL,0),D=$L(^(L))+D I D+380>DIFRM,$E(^(L),4)'="^",$E(^(L),4)'=$C(126) Q
+2 K ^UTILITY($J,0)
+ S ^(0,1)=DNAME_" ; ; "_DIFROM(1),D=$L(^(1))+2 ; (2 = CR/LF)
+ S ^(1.1)=DILN2,D=D+$L(^(1.1))+2 ; (2 = CR/LF)
+ S ^UTILITY($J,0,2)=DH,D=D+$L(^(2))+2 ; (2 ditto)
+ S ^UTILITY($J,0,3)=Q,D=D+$L(^(3))+2 ; (2 ditto)
+ F L=4:1 D  Q:DL'>0  I D+257>DIFRM,$E(^(L),4)'="^",$E(^(L),4)'=$C(126) Q  ; 255 for a line extra in M95 + 2 CR/LF
+ . S DL=$O(^UTILITY($J,DL))
+ . Q:DL'>0
+ . S ^UTILITY($J,0,L)=S_^(DL,0)
+ . S D=$L(^(L))+D+2 ; VEN/SMH - Add 2 charcaters for CR/LF
  S DRN=DRN+1,X=DNAME X ^DD("OS",DISYS,"ZS") W !,X_" HAS BEEN FILED..." G NAME:DL>0
 K K %A,%B,%C,%Z,^UTILITY($J) S DL=0 Q
  ;

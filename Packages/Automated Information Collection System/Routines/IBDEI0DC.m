@@ -1,138 +1,260 @@
-IBDEI0DC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0DC ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6118,0)
- ;;=H60.12^^30^386^13
- ;;^UTILITY(U,$J,358.3,6118,1,0)
+ ;;^UTILITY(U,$J,358.3,13337,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,13337,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,13338,0)
+ ;;=F16.24^^58^697^5
+ ;;^UTILITY(U,$J,358.3,13338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6118,1,3,0)
- ;;=3^Cellulitis External Ear,Left
- ;;^UTILITY(U,$J,358.3,6118,1,4,0)
- ;;=4^H60.12
- ;;^UTILITY(U,$J,358.3,6118,2)
- ;;=^5006441
- ;;^UTILITY(U,$J,358.3,6119,0)
- ;;=H60.11^^30^386^14
- ;;^UTILITY(U,$J,358.3,6119,1,0)
+ ;;^UTILITY(U,$J,358.3,13338,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13338,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,13338,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,13339,0)
+ ;;=F16.94^^58^697^6
+ ;;^UTILITY(U,$J,358.3,13339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6119,1,3,0)
- ;;=3^Cellulitis External Ear,Right
- ;;^UTILITY(U,$J,358.3,6119,1,4,0)
- ;;=4^H60.11
- ;;^UTILITY(U,$J,358.3,6119,2)
- ;;=^5006440
- ;;^UTILITY(U,$J,358.3,6120,0)
- ;;=H61.21^^30^386^26
- ;;^UTILITY(U,$J,358.3,6120,1,0)
+ ;;^UTILITY(U,$J,358.3,13339,1,3,0)
+ ;;=3^Hallucinogen Induced Bipolar Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13339,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,13339,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,13340,0)
+ ;;=F16.159^^58^697^7
+ ;;^UTILITY(U,$J,358.3,13340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6120,1,3,0)
- ;;=3^Impacted Cerumen,Right Ear
- ;;^UTILITY(U,$J,358.3,6120,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,6120,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,6121,0)
- ;;=H61.22^^30^386^25
- ;;^UTILITY(U,$J,358.3,6121,1,0)
+ ;;^UTILITY(U,$J,358.3,13340,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13340,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,13340,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,13341,0)
+ ;;=F16.259^^58^697^8
+ ;;^UTILITY(U,$J,358.3,13341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6121,1,3,0)
- ;;=3^Impacted Cerumen,Left Ear
- ;;^UTILITY(U,$J,358.3,6121,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,6121,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,6122,0)
- ;;=H61.23^^30^386^24
- ;;^UTILITY(U,$J,358.3,6122,1,0)
+ ;;^UTILITY(U,$J,358.3,13341,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13341,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,13341,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,13342,0)
+ ;;=F16.959^^58^697^9
+ ;;^UTILITY(U,$J,358.3,13342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6122,1,3,0)
- ;;=3^Impacted Cerumen,Bilateral 
- ;;^UTILITY(U,$J,358.3,6122,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,6122,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,6123,0)
- ;;=H81.01^^30^386^29
- ;;^UTILITY(U,$J,358.3,6123,1,0)
+ ;;^UTILITY(U,$J,358.3,13342,1,3,0)
+ ;;=3^Hallucinogen Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13342,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,13342,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,13343,0)
+ ;;=F16.99^^58^697^38
+ ;;^UTILITY(U,$J,358.3,13343,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6123,1,3,0)
- ;;=3^Meniere's Disease,Right Ear
- ;;^UTILITY(U,$J,358.3,6123,1,4,0)
- ;;=4^H81.01
- ;;^UTILITY(U,$J,358.3,6123,2)
- ;;=^5006860
- ;;^UTILITY(U,$J,358.3,6124,0)
- ;;=H81.02^^30^386^28
- ;;^UTILITY(U,$J,358.3,6124,1,0)
+ ;;^UTILITY(U,$J,358.3,13343,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,13343,1,4,0)
+ ;;=4^F16.99
+ ;;^UTILITY(U,$J,358.3,13343,2)
+ ;;=^5133359
+ ;;^UTILITY(U,$J,358.3,13344,0)
+ ;;=F16.983^^58^697^16
+ ;;^UTILITY(U,$J,358.3,13344,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6124,1,3,0)
- ;;=3^Meniere's Disease,Left Ear
- ;;^UTILITY(U,$J,358.3,6124,1,4,0)
- ;;=4^H81.02
- ;;^UTILITY(U,$J,358.3,6124,2)
- ;;=^5006861
- ;;^UTILITY(U,$J,358.3,6125,0)
- ;;=H81.03^^30^386^27
- ;;^UTILITY(U,$J,358.3,6125,1,0)
+ ;;^UTILITY(U,$J,358.3,13344,1,3,0)
+ ;;=3^Hallucinogen Persisting Perception Disorder
+ ;;^UTILITY(U,$J,358.3,13344,1,4,0)
+ ;;=4^F16.983
+ ;;^UTILITY(U,$J,358.3,13344,2)
+ ;;=^5003358
+ ;;^UTILITY(U,$J,358.3,13345,0)
+ ;;=F16.20^^58^697^37
+ ;;^UTILITY(U,$J,358.3,13345,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6125,1,3,0)
- ;;=3^Meniere's Disease,Bilateral
- ;;^UTILITY(U,$J,358.3,6125,1,4,0)
- ;;=4^H81.03
- ;;^UTILITY(U,$J,358.3,6125,2)
- ;;=^5006862
- ;;^UTILITY(U,$J,358.3,6126,0)
- ;;=H81.12^^30^386^9
- ;;^UTILITY(U,$J,358.3,6126,1,0)
+ ;;^UTILITY(U,$J,358.3,13345,1,3,0)
+ ;;=3^Phencyclidine Use Disorder,Severe
+ ;;^UTILITY(U,$J,358.3,13345,1,4,0)
+ ;;=4^F16.20
+ ;;^UTILITY(U,$J,358.3,13345,2)
+ ;;=^5003336
+ ;;^UTILITY(U,$J,358.3,13346,0)
+ ;;=F16.180^^58^697^17
+ ;;^UTILITY(U,$J,358.3,13346,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6126,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Left Ear
- ;;^UTILITY(U,$J,358.3,6126,1,4,0)
- ;;=4^H81.12
- ;;^UTILITY(U,$J,358.3,6126,2)
- ;;=^5006866
- ;;^UTILITY(U,$J,358.3,6127,0)
- ;;=H81.11^^30^386^10
- ;;^UTILITY(U,$J,358.3,6127,1,0)
+ ;;^UTILITY(U,$J,358.3,13346,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13346,1,4,0)
+ ;;=4^F16.180
+ ;;^UTILITY(U,$J,358.3,13346,2)
+ ;;=^5003332
+ ;;^UTILITY(U,$J,358.3,13347,0)
+ ;;=F16.280^^58^697^18
+ ;;^UTILITY(U,$J,358.3,13347,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6127,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Right Ear
- ;;^UTILITY(U,$J,358.3,6127,1,4,0)
- ;;=4^H81.11
- ;;^UTILITY(U,$J,358.3,6127,2)
- ;;=^5006865
- ;;^UTILITY(U,$J,358.3,6128,0)
- ;;=H81.13^^30^386^8
- ;;^UTILITY(U,$J,358.3,6128,1,0)
+ ;;^UTILITY(U,$J,358.3,13347,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13347,1,4,0)
+ ;;=4^F16.280
+ ;;^UTILITY(U,$J,358.3,13347,2)
+ ;;=^5003345
+ ;;^UTILITY(U,$J,358.3,13348,0)
+ ;;=F16.980^^58^697^19
+ ;;^UTILITY(U,$J,358.3,13348,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6128,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Bilateral
- ;;^UTILITY(U,$J,358.3,6128,1,4,0)
- ;;=4^H81.13
- ;;^UTILITY(U,$J,358.3,6128,2)
- ;;=^5006867
- ;;^UTILITY(U,$J,358.3,6129,0)
- ;;=H81.10^^30^386^11
- ;;^UTILITY(U,$J,358.3,6129,1,0)
+ ;;^UTILITY(U,$J,358.3,13348,1,3,0)
+ ;;=3^Phencyclidine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13348,1,4,0)
+ ;;=4^F16.980
+ ;;^UTILITY(U,$J,358.3,13348,2)
+ ;;=^5003357
+ ;;^UTILITY(U,$J,358.3,13349,0)
+ ;;=F16.14^^58^697^20
+ ;;^UTILITY(U,$J,358.3,13349,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6129,1,3,0)
- ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
- ;;^UTILITY(U,$J,358.3,6129,1,4,0)
- ;;=4^H81.10
- ;;^UTILITY(U,$J,358.3,6129,2)
- ;;=^5006864
- ;;^UTILITY(U,$J,358.3,6130,0)
- ;;=B37.84^^30^386^12
- ;;^UTILITY(U,$J,358.3,6130,1,0)
+ ;;^UTILITY(U,$J,358.3,13349,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13349,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,13349,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,13350,0)
+ ;;=F16.24^^58^697^21
+ ;;^UTILITY(U,$J,358.3,13350,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6130,1,3,0)
- ;;=3^Candidal Otitis Externa
- ;;^UTILITY(U,$J,358.3,6130,1,4,0)
- ;;=4^B37.84
- ;;^UTILITY(U,$J,358.3,6130,2)
- ;;=^266875
- ;;^UTILITY(U,$J,358.3,6131,0)
- ;;=H60.313^^30^386^18
- ;;^UTILITY(U,$J,358.3,6131,1,0)
+ ;;^UTILITY(U,$J,358.3,13350,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13350,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,13350,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,13351,0)
+ ;;=F16.94^^58^697^22
+ ;;^UTILITY(U,$J,358.3,13351,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13351,1,3,0)
+ ;;=3^Phencyclidine Induced Bipolar & Related Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13351,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,13351,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,13352,0)
+ ;;=F16.14^^58^697^23
+ ;;^UTILITY(U,$J,358.3,13352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13352,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13352,1,4,0)
+ ;;=4^F16.14
+ ;;^UTILITY(U,$J,358.3,13352,2)
+ ;;=^5003328
+ ;;^UTILITY(U,$J,358.3,13353,0)
+ ;;=F16.24^^58^697^24
+ ;;^UTILITY(U,$J,358.3,13353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13353,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13353,1,4,0)
+ ;;=4^F16.24
+ ;;^UTILITY(U,$J,358.3,13353,2)
+ ;;=^5003341
+ ;;^UTILITY(U,$J,358.3,13354,0)
+ ;;=F16.94^^58^697^25
+ ;;^UTILITY(U,$J,358.3,13354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13354,1,3,0)
+ ;;=3^Phencyclidine Induced Depressive Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13354,1,4,0)
+ ;;=4^F16.94
+ ;;^UTILITY(U,$J,358.3,13354,2)
+ ;;=^5003353
+ ;;^UTILITY(U,$J,358.3,13355,0)
+ ;;=F16.159^^58^697^26
+ ;;^UTILITY(U,$J,358.3,13355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13355,1,3,0)
+ ;;=3^Phencyclidine Induced Psychotic Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13355,1,4,0)
+ ;;=4^F16.159
+ ;;^UTILITY(U,$J,358.3,13355,2)
+ ;;=^5003331
+ ;;^UTILITY(U,$J,358.3,13356,0)
+ ;;=F16.259^^58^697^27
+ ;;^UTILITY(U,$J,358.3,13356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13356,1,3,0)
+ ;;=3^Phencyclidine Induced Psychotic Disorder w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13356,1,4,0)
+ ;;=4^F16.259
+ ;;^UTILITY(U,$J,358.3,13356,2)
+ ;;=^5003344
+ ;;^UTILITY(U,$J,358.3,13357,0)
+ ;;=F16.959^^58^697^28
+ ;;^UTILITY(U,$J,358.3,13357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13357,1,3,0)
+ ;;=3^Phencyclidine Induced Psychotic Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13357,1,4,0)
+ ;;=4^F16.959
+ ;;^UTILITY(U,$J,358.3,13357,2)
+ ;;=^5003356
+ ;;^UTILITY(U,$J,358.3,13358,0)
+ ;;=F16.129^^58^697^32
+ ;;^UTILITY(U,$J,358.3,13358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13358,1,3,0)
+ ;;=3^Phencyclidine Intoxication w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13358,1,4,0)
+ ;;=4^F16.129
+ ;;^UTILITY(U,$J,358.3,13358,2)
+ ;;=^5003327
+ ;;^UTILITY(U,$J,358.3,13359,0)
+ ;;=F16.229^^58^697^33
+ ;;^UTILITY(U,$J,358.3,13359,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13359,1,3,0)
+ ;;=3^Phencyclidine Intoxication w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13359,1,4,0)
+ ;;=4^F16.229
+ ;;^UTILITY(U,$J,358.3,13359,2)
+ ;;=^5003340
+ ;;^UTILITY(U,$J,358.3,13360,0)
+ ;;=F16.929^^58^697^34
+ ;;^UTILITY(U,$J,358.3,13360,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13360,1,3,0)
+ ;;=3^Phencyclidine Intoxication w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,13360,1,4,0)
+ ;;=4^F16.929
+ ;;^UTILITY(U,$J,358.3,13360,2)
+ ;;=^5003352
+ ;;^UTILITY(U,$J,358.3,13361,0)
+ ;;=F16.121^^58^697^29
+ ;;^UTILITY(U,$J,358.3,13361,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13361,1,3,0)
+ ;;=3^Phencyclidine Intoxication Delirium w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,13361,1,4,0)
+ ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,13361,2)
+ ;;=^5003325
+ ;;^UTILITY(U,$J,358.3,13362,0)
+ ;;=F16.221^^58^697^30
+ ;;^UTILITY(U,$J,358.3,13362,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,13362,1,3,0)
+ ;;=3^Phencyclidine Intoxication Delirium w/ Moderate/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,13362,1,4,0)
+ ;;=4^F16.221
+ ;;^UTILITY(U,$J,358.3,13362,2)
+ ;;=^5003339
+ ;;^UTILITY(U,$J,358.3,13363,0)
+ ;;=F16.921^^58^697^31

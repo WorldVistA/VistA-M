@@ -1,134 +1,298 @@
-IBDEI075 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI075 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3029,1,3,0)
- ;;=3^Diabetes Type 2 w/ Foot Ulcer
- ;;^UTILITY(U,$J,358.3,3029,1,4,0)
- ;;=4^E11.621
- ;;^UTILITY(U,$J,358.3,3029,2)
- ;;=^5002656
- ;;^UTILITY(U,$J,358.3,3030,0)
- ;;=E11.44^^18^213^8
- ;;^UTILITY(U,$J,358.3,3030,1,0)
+ ;;^UTILITY(U,$J,358.3,7048,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,7049,0)
+ ;;=H66.93^^42^488^34
+ ;;^UTILITY(U,$J,358.3,7049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3030,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Amyotrophy
- ;;^UTILITY(U,$J,358.3,3030,1,4,0)
- ;;=4^E11.44
- ;;^UTILITY(U,$J,358.3,3030,2)
- ;;=^5002648
- ;;^UTILITY(U,$J,358.3,3031,0)
- ;;=E11.59^^18^213^7
- ;;^UTILITY(U,$J,358.3,3031,1,0)
+ ;;^UTILITY(U,$J,358.3,7049,1,3,0)
+ ;;=3^Otitis Media,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,7049,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,7049,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,7050,0)
+ ;;=H81.10^^42^488^37
+ ;;^UTILITY(U,$J,358.3,7050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3031,1,3,0)
- ;;=3^Diabetes Type 2 w/ Circulatory Complications
- ;;^UTILITY(U,$J,358.3,3031,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,3031,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,3032,0)
- ;;=E11.638^^18^213^25
- ;;^UTILITY(U,$J,358.3,3032,1,0)
+ ;;^UTILITY(U,$J,358.3,7050,1,3,0)
+ ;;=3^Paroxysmal Veritgo,Benign,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,7050,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,7050,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,7051,0)
+ ;;=H93.13^^42^488^38
+ ;;^UTILITY(U,$J,358.3,7051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3032,1,3,0)
- ;;=3^Diabetes Type 2 w/ Oral Complications
- ;;^UTILITY(U,$J,358.3,3032,1,4,0)
- ;;=4^E11.638
- ;;^UTILITY(U,$J,358.3,3032,2)
- ;;=^5002660
- ;;^UTILITY(U,$J,358.3,3033,0)
- ;;=E11.628^^18^213^27
- ;;^UTILITY(U,$J,358.3,3033,1,0)
+ ;;^UTILITY(U,$J,358.3,7051,1,3,0)
+ ;;=3^Tinnitus,Bilateral
+ ;;^UTILITY(U,$J,358.3,7051,1,4,0)
+ ;;=4^H93.13
+ ;;^UTILITY(U,$J,358.3,7051,2)
+ ;;=^5006966
+ ;;^UTILITY(U,$J,358.3,7052,0)
+ ;;=H93.12^^42^488^39
+ ;;^UTILITY(U,$J,358.3,7052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3033,1,3,0)
- ;;=3^Diabetes Type 2 w/ Skin Complications
- ;;^UTILITY(U,$J,358.3,3033,1,4,0)
- ;;=4^E11.628
- ;;^UTILITY(U,$J,358.3,3033,2)
- ;;=^5002658
- ;;^UTILITY(U,$J,358.3,3034,0)
- ;;=E11.630^^18^213^26
- ;;^UTILITY(U,$J,358.3,3034,1,0)
+ ;;^UTILITY(U,$J,358.3,7052,1,3,0)
+ ;;=3^Tinnitus,Left Ear
+ ;;^UTILITY(U,$J,358.3,7052,1,4,0)
+ ;;=4^H93.12
+ ;;^UTILITY(U,$J,358.3,7052,2)
+ ;;=^5006965
+ ;;^UTILITY(U,$J,358.3,7053,0)
+ ;;=H93.11^^42^488^40
+ ;;^UTILITY(U,$J,358.3,7053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3034,1,3,0)
- ;;=3^Diabetes Type 2 w/ Periodontal Disease
- ;;^UTILITY(U,$J,358.3,3034,1,4,0)
- ;;=4^E11.630
- ;;^UTILITY(U,$J,358.3,3034,2)
- ;;=^5002659
- ;;^UTILITY(U,$J,358.3,3035,0)
- ;;=E11.8^^18^213^28
- ;;^UTILITY(U,$J,358.3,3035,1,0)
+ ;;^UTILITY(U,$J,358.3,7053,1,3,0)
+ ;;=3^Tinnitus,Right Ear
+ ;;^UTILITY(U,$J,358.3,7053,1,4,0)
+ ;;=4^H93.11
+ ;;^UTILITY(U,$J,358.3,7053,2)
+ ;;=^5006964
+ ;;^UTILITY(U,$J,358.3,7054,0)
+ ;;=H92.01^^42^488^33
+ ;;^UTILITY(U,$J,358.3,7054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3035,1,3,0)
- ;;=3^Diabetes Type 2 w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,3035,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,3035,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,3036,0)
- ;;=E11.9^^18^213^29
- ;;^UTILITY(U,$J,358.3,3036,1,0)
+ ;;^UTILITY(U,$J,358.3,7054,1,3,0)
+ ;;=3^Otalgia,Right Ear
+ ;;^UTILITY(U,$J,358.3,7054,1,4,0)
+ ;;=4^H92.01
+ ;;^UTILITY(U,$J,358.3,7054,2)
+ ;;=^5006945
+ ;;^UTILITY(U,$J,358.3,7055,0)
+ ;;=H92.02^^42^488^32
+ ;;^UTILITY(U,$J,358.3,7055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3036,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,3036,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,3036,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,3037,0)
- ;;=E11.36^^18^213^9
- ;;^UTILITY(U,$J,358.3,3037,1,0)
+ ;;^UTILITY(U,$J,358.3,7055,1,3,0)
+ ;;=3^Otalgia,Left Ear
+ ;;^UTILITY(U,$J,358.3,7055,1,4,0)
+ ;;=4^H92.02
+ ;;^UTILITY(U,$J,358.3,7055,2)
+ ;;=^5006946
+ ;;^UTILITY(U,$J,358.3,7056,0)
+ ;;=H92.03^^42^488^31
+ ;;^UTILITY(U,$J,358.3,7056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3037,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,3037,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,3037,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,3038,0)
- ;;=E11.22^^18^213^10
- ;;^UTILITY(U,$J,358.3,3038,1,0)
+ ;;^UTILITY(U,$J,358.3,7056,1,3,0)
+ ;;=3^Otalgia,Bilateral
+ ;;^UTILITY(U,$J,358.3,7056,1,4,0)
+ ;;=4^H92.03
+ ;;^UTILITY(U,$J,358.3,7056,2)
+ ;;=^5006947
+ ;;^UTILITY(U,$J,358.3,7057,0)
+ ;;=H91.92^^42^488^22
+ ;;^UTILITY(U,$J,358.3,7057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3038,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,3038,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,3038,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,3039,0)
- ;;=E11.29^^18^213^12
- ;;^UTILITY(U,$J,358.3,3039,1,0)
+ ;;^UTILITY(U,$J,358.3,7057,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Left Ear
+ ;;^UTILITY(U,$J,358.3,7057,1,4,0)
+ ;;=4^H91.92
+ ;;^UTILITY(U,$J,358.3,7057,2)
+ ;;=^5133554
+ ;;^UTILITY(U,$J,358.3,7058,0)
+ ;;=H91.93^^42^488^21
+ ;;^UTILITY(U,$J,358.3,7058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3039,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,3039,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,3039,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,3040,0)
- ;;=E11.21^^18^213^13
- ;;^UTILITY(U,$J,358.3,3040,1,0)
+ ;;^UTILITY(U,$J,358.3,7058,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Bilateral
+ ;;^UTILITY(U,$J,358.3,7058,1,4,0)
+ ;;=4^H91.93
+ ;;^UTILITY(U,$J,358.3,7058,2)
+ ;;=^5006944
+ ;;^UTILITY(U,$J,358.3,7059,0)
+ ;;=H91.91^^42^488^23
+ ;;^UTILITY(U,$J,358.3,7059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3040,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,3040,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,3040,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,3041,0)
- ;;=E11.39^^18^213^16
- ;;^UTILITY(U,$J,358.3,3041,1,0)
+ ;;^UTILITY(U,$J,358.3,7059,1,3,0)
+ ;;=3^Hearing Loss,Unspec,Right Ear
+ ;;^UTILITY(U,$J,358.3,7059,1,4,0)
+ ;;=4^H91.91
+ ;;^UTILITY(U,$J,358.3,7059,2)
+ ;;=^5133553
+ ;;^UTILITY(U,$J,358.3,7060,0)
+ ;;=H65.02^^42^488^4
+ ;;^UTILITY(U,$J,358.3,7060,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3041,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication
- ;;^UTILITY(U,$J,358.3,3041,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,3041,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,3042,0)
- ;;=E11.311^^18^213^20
- ;;^UTILITY(U,$J,358.3,3042,1,0)
+ ;;^UTILITY(U,$J,358.3,7060,1,3,0)
+ ;;=3^Acute Serous Otitis Media,Left Ear
+ ;;^UTILITY(U,$J,358.3,7060,1,4,0)
+ ;;=4^H65.02
+ ;;^UTILITY(U,$J,358.3,7060,2)
+ ;;=^5006571
+ ;;^UTILITY(U,$J,358.3,7061,0)
+ ;;=H60.312^^42^488^19
+ ;;^UTILITY(U,$J,358.3,7061,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7061,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,7061,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,7061,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,7062,0)
+ ;;=H60.311^^42^488^20
+ ;;^UTILITY(U,$J,358.3,7062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7062,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,7062,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,7062,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,7063,0)
+ ;;=H55.09^^42^488^30
+ ;;^UTILITY(U,$J,358.3,7063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7063,1,3,0)
+ ;;=3^Nystagmus NEC
+ ;;^UTILITY(U,$J,358.3,7063,1,4,0)
+ ;;=4^H55.09
+ ;;^UTILITY(U,$J,358.3,7063,2)
+ ;;=^87599
+ ;;^UTILITY(U,$J,358.3,7064,0)
+ ;;=H60.01^^42^488^2
+ ;;^UTILITY(U,$J,358.3,7064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7064,1,3,0)
+ ;;=3^Abscess External Ear,Right
+ ;;^UTILITY(U,$J,358.3,7064,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,7064,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,7065,0)
+ ;;=H60.02^^42^488^1
+ ;;^UTILITY(U,$J,358.3,7065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7065,1,3,0)
+ ;;=3^Abscess External Ear,Left
+ ;;^UTILITY(U,$J,358.3,7065,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,7065,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,7066,0)
+ ;;=H60.12^^42^488^13
+ ;;^UTILITY(U,$J,358.3,7066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7066,1,3,0)
+ ;;=3^Cellulitis External Ear,Left
+ ;;^UTILITY(U,$J,358.3,7066,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,7066,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,7067,0)
+ ;;=H60.11^^42^488^14
+ ;;^UTILITY(U,$J,358.3,7067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7067,1,3,0)
+ ;;=3^Cellulitis External Ear,Right
+ ;;^UTILITY(U,$J,358.3,7067,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,7067,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,7068,0)
+ ;;=H61.21^^42^488^26
+ ;;^UTILITY(U,$J,358.3,7068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7068,1,3,0)
+ ;;=3^Impacted Cerumen,Right Ear
+ ;;^UTILITY(U,$J,358.3,7068,1,4,0)
+ ;;=4^H61.21
+ ;;^UTILITY(U,$J,358.3,7068,2)
+ ;;=^5006531
+ ;;^UTILITY(U,$J,358.3,7069,0)
+ ;;=H61.22^^42^488^25
+ ;;^UTILITY(U,$J,358.3,7069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7069,1,3,0)
+ ;;=3^Impacted Cerumen,Left Ear
+ ;;^UTILITY(U,$J,358.3,7069,1,4,0)
+ ;;=4^H61.22
+ ;;^UTILITY(U,$J,358.3,7069,2)
+ ;;=^5006532
+ ;;^UTILITY(U,$J,358.3,7070,0)
+ ;;=H61.23^^42^488^24
+ ;;^UTILITY(U,$J,358.3,7070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7070,1,3,0)
+ ;;=3^Impacted Cerumen,Bilateral 
+ ;;^UTILITY(U,$J,358.3,7070,1,4,0)
+ ;;=4^H61.23
+ ;;^UTILITY(U,$J,358.3,7070,2)
+ ;;=^5006533
+ ;;^UTILITY(U,$J,358.3,7071,0)
+ ;;=H81.01^^42^488^29
+ ;;^UTILITY(U,$J,358.3,7071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7071,1,3,0)
+ ;;=3^Meniere's Disease,Right Ear
+ ;;^UTILITY(U,$J,358.3,7071,1,4,0)
+ ;;=4^H81.01
+ ;;^UTILITY(U,$J,358.3,7071,2)
+ ;;=^5006860
+ ;;^UTILITY(U,$J,358.3,7072,0)
+ ;;=H81.02^^42^488^28
+ ;;^UTILITY(U,$J,358.3,7072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7072,1,3,0)
+ ;;=3^Meniere's Disease,Left Ear
+ ;;^UTILITY(U,$J,358.3,7072,1,4,0)
+ ;;=4^H81.02
+ ;;^UTILITY(U,$J,358.3,7072,2)
+ ;;=^5006861
+ ;;^UTILITY(U,$J,358.3,7073,0)
+ ;;=H81.03^^42^488^27
+ ;;^UTILITY(U,$J,358.3,7073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7073,1,3,0)
+ ;;=3^Meniere's Disease,Bilateral
+ ;;^UTILITY(U,$J,358.3,7073,1,4,0)
+ ;;=4^H81.03
+ ;;^UTILITY(U,$J,358.3,7073,2)
+ ;;=^5006862
+ ;;^UTILITY(U,$J,358.3,7074,0)
+ ;;=H81.12^^42^488^9
+ ;;^UTILITY(U,$J,358.3,7074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7074,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,7074,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,7074,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,7075,0)
+ ;;=H81.11^^42^488^10
+ ;;^UTILITY(U,$J,358.3,7075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7075,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,7075,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,7075,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,7076,0)
+ ;;=H81.13^^42^488^8
+ ;;^UTILITY(U,$J,358.3,7076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7076,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,7076,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,7076,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,7077,0)
+ ;;=H81.10^^42^488^11
+ ;;^UTILITY(U,$J,358.3,7077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,7077,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,7077,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,7077,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,7078,0)
+ ;;=B37.84^^42^488^12

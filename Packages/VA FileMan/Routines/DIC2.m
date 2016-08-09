@@ -1,6 +1,10 @@
-DIC2 ;SF/XAK/TKW-LOOKUP (CONT) ;5/10/00  11:16
- ;;22.0;VA FileMan;**4,17,20,31,40**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIC2 ;SF/XAK/TKW-LOOKUP (CONT) ;06:31 PM  7 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 WO ; Display .01 field, Primary KEY values and Identifiers for an entry.
  I '$D(DST) N DST
  S DST=$G(DST)_"  " D WR
@@ -84,7 +88,7 @@ G ; Display index values for a single looked-up entry
  . . S:D]"" D="  "_D  I $G(DIFINDER)["p",'$D(DDS) W !
  . . Q
  . E  I '$D(DICRS) D
- . . I $G(DIDA) S D=$P(DS(1),U,2,99) I D]"" S D=%_"  "_$$FMTE^DILIBF(X_D,"1U") W:'$D(DDS) ! Q
+ . . I $G(DIDA) S D=$P(DS(1),U,2,99) I D]"" S D=%_"  "_$$DATE^DIUTL(X_D) W:'$D(DDS) ! Q  ;**CCO/NI
  . . S D=$P(DS(1),U,2,99)_$S($G(DIYX(1)):$G(DIY(1)),1:"")
  . . I $G(DIFINDER)["p" S D=X_D W:'$D(DDS)&(DIC(0)'["T") ! Q
  . . I DIC(0)["T"!($G(DIENTIRE)) S D=X_D

@@ -1,132 +1,284 @@
-IBDEI103 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI103 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16972,1,3,0)
- ;;=3^Spondylosis w/o mylpthy/rdculopthy, site unspec
- ;;^UTILITY(U,$J,358.3,16972,1,4,0)
- ;;=4^M47.819
- ;;^UTILITY(U,$J,358.3,16972,2)
- ;;=^5012076
- ;;^UTILITY(U,$J,358.3,16973,0)
- ;;=F43.0^^70^801^19
- ;;^UTILITY(U,$J,358.3,16973,1,0)
+ ;;^UTILITY(U,$J,358.3,36316,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16973,1,3,0)
- ;;=3^Stress reaction, acute
- ;;^UTILITY(U,$J,358.3,16973,1,4,0)
- ;;=4^F43.0
- ;;^UTILITY(U,$J,358.3,16973,2)
- ;;=^5003569
- ;;^UTILITY(U,$J,358.3,16974,0)
- ;;=R55.^^70^801^20
- ;;^UTILITY(U,$J,358.3,16974,1,0)
+ ;;^UTILITY(U,$J,358.3,36316,1,3,0)
+ ;;=3^Unemployment,Unspec
+ ;;^UTILITY(U,$J,358.3,36316,1,4,0)
+ ;;=4^Z56.0
+ ;;^UTILITY(U,$J,358.3,36316,2)
+ ;;=^5063107
+ ;;^UTILITY(U,$J,358.3,36317,0)
+ ;;=Z65.5^^133^1776^4
+ ;;^UTILITY(U,$J,358.3,36317,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16974,1,3,0)
- ;;=3^Syncope & collapse
- ;;^UTILITY(U,$J,358.3,16974,1,4,0)
- ;;=4^R55.
- ;;^UTILITY(U,$J,358.3,16974,2)
- ;;=^116707
- ;;^UTILITY(U,$J,358.3,16975,0)
- ;;=I69.928^^70^801^10
- ;;^UTILITY(U,$J,358.3,16975,1,0)
+ ;;^UTILITY(U,$J,358.3,36317,1,3,0)
+ ;;=3^Disaster/War/Hostility Exposure
+ ;;^UTILITY(U,$J,358.3,36317,1,4,0)
+ ;;=4^Z65.5
+ ;;^UTILITY(U,$J,358.3,36317,2)
+ ;;=^5063184
+ ;;^UTILITY(U,$J,358.3,36318,0)
+ ;;=Z56.1^^133^1776^2
+ ;;^UTILITY(U,$J,358.3,36318,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16975,1,3,0)
- ;;=3^Speech/Lang Deficits following Cerebvasc Dz
- ;;^UTILITY(U,$J,358.3,16975,1,4,0)
- ;;=4^I69.928
- ;;^UTILITY(U,$J,358.3,16975,2)
- ;;=^5007557
- ;;^UTILITY(U,$J,358.3,16976,0)
- ;;=S13.4XXA^^70^801^18
- ;;^UTILITY(U,$J,358.3,16976,1,0)
+ ;;^UTILITY(U,$J,358.3,36318,1,3,0)
+ ;;=3^Change of Job
+ ;;^UTILITY(U,$J,358.3,36318,1,4,0)
+ ;;=4^Z56.1
+ ;;^UTILITY(U,$J,358.3,36318,2)
+ ;;=^5063108
+ ;;^UTILITY(U,$J,358.3,36319,0)
+ ;;=Z55.9^^133^1776^5
+ ;;^UTILITY(U,$J,358.3,36319,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16976,1,3,0)
- ;;=3^Sprain of Ligaments Cervical Spine,Init Encrtr
- ;;^UTILITY(U,$J,358.3,16976,1,4,0)
- ;;=4^S13.4XXA
- ;;^UTILITY(U,$J,358.3,16976,2)
- ;;=^5022028
- ;;^UTILITY(U,$J,358.3,16977,0)
- ;;=M48.06^^70^801^12
- ;;^UTILITY(U,$J,358.3,16977,1,0)
+ ;;^UTILITY(U,$J,358.3,36319,1,3,0)
+ ;;=3^Education/Literacy Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,36319,1,4,0)
+ ;;=4^Z55.9
+ ;;^UTILITY(U,$J,358.3,36319,2)
+ ;;=^5063106
+ ;;^UTILITY(U,$J,358.3,36320,0)
+ ;;=Z60.3^^133^1776^1
+ ;;^UTILITY(U,$J,358.3,36320,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16977,1,3,0)
- ;;=3^Spinal Stenosis, lumbar region
- ;;^UTILITY(U,$J,358.3,16977,1,4,0)
- ;;=4^M48.06
- ;;^UTILITY(U,$J,358.3,16977,2)
- ;;=^5012093
- ;;^UTILITY(U,$J,358.3,16978,0)
- ;;=J32.9^^70^801^7
- ;;^UTILITY(U,$J,358.3,16978,1,0)
+ ;;^UTILITY(U,$J,358.3,36320,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,36320,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,36320,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,36321,0)
+ ;;=Z65.3^^133^1776^8
+ ;;^UTILITY(U,$J,358.3,36321,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16978,1,3,0)
- ;;=3^Sinusitis,Chronic,Unspec
- ;;^UTILITY(U,$J,358.3,16978,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,16978,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,16979,0)
- ;;=M48.02^^70^801^13
- ;;^UTILITY(U,$J,358.3,16979,1,0)
+ ;;^UTILITY(U,$J,358.3,36321,1,3,0)
+ ;;=3^Legal Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,36321,1,4,0)
+ ;;=4^Z65.3
+ ;;^UTILITY(U,$J,358.3,36321,2)
+ ;;=^5063182
+ ;;^UTILITY(U,$J,358.3,36322,0)
+ ;;=Z53.1^^133^1776^11
+ ;;^UTILITY(U,$J,358.3,36322,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16979,1,3,0)
- ;;=3^Spinal stenosis, cervical region
- ;;^UTILITY(U,$J,358.3,16979,1,4,0)
- ;;=4^M48.02
- ;;^UTILITY(U,$J,358.3,16979,2)
- ;;=^5012089
- ;;^UTILITY(U,$J,358.3,16980,0)
- ;;=M48.04^^70^801^15
- ;;^UTILITY(U,$J,358.3,16980,1,0)
+ ;;^UTILITY(U,$J,358.3,36322,1,3,0)
+ ;;=3^Procedure/Treatment not Done d/t Pt Belief/Group Pressure
+ ;;^UTILITY(U,$J,358.3,36322,1,4,0)
+ ;;=4^Z53.1
+ ;;^UTILITY(U,$J,358.3,36322,2)
+ ;;=^5063094
+ ;;^UTILITY(U,$J,358.3,36323,0)
+ ;;=Z63.4^^133^1776^3
+ ;;^UTILITY(U,$J,358.3,36323,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16980,1,3,0)
- ;;=3^Spinal stenosis, thoracic region
- ;;^UTILITY(U,$J,358.3,16980,1,4,0)
- ;;=4^M48.04
- ;;^UTILITY(U,$J,358.3,16980,2)
- ;;=^5012091
- ;;^UTILITY(U,$J,358.3,16981,0)
- ;;=M48.00^^70^801^14
- ;;^UTILITY(U,$J,358.3,16981,1,0)
+ ;;^UTILITY(U,$J,358.3,36323,1,3,0)
+ ;;=3^Disappearance/Death of Family Member
+ ;;^UTILITY(U,$J,358.3,36323,1,4,0)
+ ;;=4^Z63.4
+ ;;^UTILITY(U,$J,358.3,36323,2)
+ ;;=^5063168
+ ;;^UTILITY(U,$J,358.3,36324,0)
+ ;;=Z69.021^^133^1776^10
+ ;;^UTILITY(U,$J,358.3,36324,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16981,1,3,0)
- ;;=3^Spinal stenosis, site unspecified
- ;;^UTILITY(U,$J,358.3,16981,1,4,0)
- ;;=4^M48.00
- ;;^UTILITY(U,$J,358.3,16981,2)
- ;;=^5012087
- ;;^UTILITY(U,$J,358.3,16982,0)
- ;;=S14.109S^^70^801^2
- ;;^UTILITY(U,$J,358.3,16982,1,0)
+ ;;^UTILITY(U,$J,358.3,36324,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Non-Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,36324,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,36324,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,36325,0)
+ ;;=Z69.82^^133^1776^9
+ ;;^UTILITY(U,$J,358.3,36325,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16982,1,3,0)
- ;;=3^Sequela of Unspec Injury of Cervical Spinal Cord
- ;;^UTILITY(U,$J,358.3,16982,1,4,0)
- ;;=4^S14.109S
- ;;^UTILITY(U,$J,358.3,16982,2)
- ;;=^5134243
- ;;^UTILITY(U,$J,358.3,16983,0)
- ;;=S24.109S^^70^801^4
- ;;^UTILITY(U,$J,358.3,16983,1,0)
+ ;;^UTILITY(U,$J,358.3,36325,1,3,0)
+ ;;=3^Mental Hlth Svc for Perpetrator of Abuse
+ ;;^UTILITY(U,$J,358.3,36325,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,36325,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,36326,0)
+ ;;=R45.851^^133^1776^13
+ ;;^UTILITY(U,$J,358.3,36326,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16983,1,3,0)
- ;;=3^Sequela of Unspec Injury of Thoracic Spinal Cord
- ;;^UTILITY(U,$J,358.3,16983,1,4,0)
- ;;=4^S24.109S
- ;;^UTILITY(U,$J,358.3,16983,2)
- ;;=^5134384
- ;;^UTILITY(U,$J,358.3,16984,0)
- ;;=S34.109S^^70^801^3
- ;;^UTILITY(U,$J,358.3,16984,1,0)
+ ;;^UTILITY(U,$J,358.3,36326,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,36326,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,36326,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,36327,0)
+ ;;=Z65.9^^133^1776^12
+ ;;^UTILITY(U,$J,358.3,36327,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16984,1,3,0)
- ;;=3^Sequela of Unspec Injury of Lumbar Spinal Cord
- ;;^UTILITY(U,$J,358.3,16984,1,4,0)
- ;;=4^S34.109S
- ;;^UTILITY(U,$J,358.3,16984,2)
- ;;=^5134570
- ;;^UTILITY(U,$J,358.3,16985,0)
- ;;=I69.328^^70^801^11
+ ;;^UTILITY(U,$J,358.3,36327,1,3,0)
+ ;;=3^Psychosocial Circumstance Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,36327,1,4,0)
+ ;;=4^Z65.9
+ ;;^UTILITY(U,$J,358.3,36327,2)
+ ;;=^5063186
+ ;;^UTILITY(U,$J,358.3,36328,0)
+ ;;=Z56.9^^133^1776^6
+ ;;^UTILITY(U,$J,358.3,36328,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36328,1,3,0)
+ ;;=3^Employment Problems,Unspec
+ ;;^UTILITY(U,$J,358.3,36328,1,4,0)
+ ;;=4^Z56.9
+ ;;^UTILITY(U,$J,358.3,36328,2)
+ ;;=^5063117
+ ;;^UTILITY(U,$J,358.3,36329,0)
+ ;;=R45.850^^133^1776^7
+ ;;^UTILITY(U,$J,358.3,36329,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36329,1,3,0)
+ ;;=3^Homicidal Ideations
+ ;;^UTILITY(U,$J,358.3,36329,1,4,0)
+ ;;=4^R45.850
+ ;;^UTILITY(U,$J,358.3,36329,2)
+ ;;=^5019473
+ ;;^UTILITY(U,$J,358.3,36330,0)
+ ;;=Z98.89^^133^1777^13
+ ;;^UTILITY(U,$J,358.3,36330,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36330,1,3,0)
+ ;;=3^Postprocedural States,Oth Spec
+ ;;^UTILITY(U,$J,358.3,36330,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,36330,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,36331,0)
+ ;;=Z92.3^^133^1777^9
+ ;;^UTILITY(U,$J,358.3,36331,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36331,1,3,0)
+ ;;=3^Personal Hx of Irradiation
+ ;;^UTILITY(U,$J,358.3,36331,1,4,0)
+ ;;=4^Z92.3
+ ;;^UTILITY(U,$J,358.3,36331,2)
+ ;;=^5063637
+ ;;^UTILITY(U,$J,358.3,36332,0)
+ ;;=Z91.410^^133^1777^7
+ ;;^UTILITY(U,$J,358.3,36332,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36332,1,3,0)
+ ;;=3^Personal Hx of Adult Physical/Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,36332,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,36332,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,36333,0)
+ ;;=Z91.411^^133^1777^8
+ ;;^UTILITY(U,$J,358.3,36333,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36333,1,3,0)
+ ;;=3^Personal Hx of Adult Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,36333,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,36333,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,36334,0)
+ ;;=Z91.49^^133^1777^11
+ ;;^UTILITY(U,$J,358.3,36334,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36334,1,3,0)
+ ;;=3^Personal Hx of Psychological Trauma NEC
+ ;;^UTILITY(U,$J,358.3,36334,1,4,0)
+ ;;=4^Z91.49
+ ;;^UTILITY(U,$J,358.3,36334,2)
+ ;;=^5063623
+ ;;^UTILITY(U,$J,358.3,36335,0)
+ ;;=Z91.19^^133^1777^5
+ ;;^UTILITY(U,$J,358.3,36335,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36335,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,36335,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,36335,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,36336,0)
+ ;;=Z87.891^^133^1777^10
+ ;;^UTILITY(U,$J,358.3,36336,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36336,1,3,0)
+ ;;=3^Personal Hx of Nicotine Dependence
+ ;;^UTILITY(U,$J,358.3,36336,1,4,0)
+ ;;=4^Z87.891
+ ;;^UTILITY(U,$J,358.3,36336,2)
+ ;;=^5063518
+ ;;^UTILITY(U,$J,358.3,36337,0)
+ ;;=Z77.090^^133^1777^1
+ ;;^UTILITY(U,$J,358.3,36337,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36337,1,3,0)
+ ;;=3^Asbestos Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,36337,1,4,0)
+ ;;=4^Z77.090
+ ;;^UTILITY(U,$J,358.3,36337,2)
+ ;;=^5063312
+ ;;^UTILITY(U,$J,358.3,36338,0)
+ ;;=Z91.81^^133^1777^3
+ ;;^UTILITY(U,$J,358.3,36338,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36338,1,3,0)
+ ;;=3^History of Falling
+ ;;^UTILITY(U,$J,358.3,36338,1,4,0)
+ ;;=4^Z91.81
+ ;;^UTILITY(U,$J,358.3,36338,2)
+ ;;=^5063625
+ ;;^UTILITY(U,$J,358.3,36339,0)
+ ;;=Z57.8^^133^1777^6
+ ;;^UTILITY(U,$J,358.3,36339,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36339,1,3,0)
+ ;;=3^Occupational Risk Factor Exposure
+ ;;^UTILITY(U,$J,358.3,36339,1,4,0)
+ ;;=4^Z57.8
+ ;;^UTILITY(U,$J,358.3,36339,2)
+ ;;=^5063127
+ ;;^UTILITY(U,$J,358.3,36340,0)
+ ;;=Z77.011^^133^1777^4
+ ;;^UTILITY(U,$J,358.3,36340,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36340,1,3,0)
+ ;;=3^Lead Contact/Exposure
+ ;;^UTILITY(U,$J,358.3,36340,1,4,0)
+ ;;=4^Z77.011
+ ;;^UTILITY(U,$J,358.3,36340,2)
+ ;;=^5063306
+ ;;^UTILITY(U,$J,358.3,36341,0)
+ ;;=Z77.9^^133^1777^2
+ ;;^UTILITY(U,$J,358.3,36341,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36341,1,3,0)
+ ;;=3^Hazardous to Health Contact/Exposures
+ ;;^UTILITY(U,$J,358.3,36341,1,4,0)
+ ;;=4^Z77.9
+ ;;^UTILITY(U,$J,358.3,36341,2)
+ ;;=^5063326
+ ;;^UTILITY(U,$J,358.3,36342,0)
+ ;;=Z91.89^^133^1777^12
+ ;;^UTILITY(U,$J,358.3,36342,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36342,1,3,0)
+ ;;=3^Personal Risk Factors NEC
+ ;;^UTILITY(U,$J,358.3,36342,1,4,0)
+ ;;=4^Z91.89
+ ;;^UTILITY(U,$J,358.3,36342,2)
+ ;;=^5063628
+ ;;^UTILITY(U,$J,358.3,36343,0)
+ ;;=Z76.3^^133^1778^5
+ ;;^UTILITY(U,$J,358.3,36343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36343,1,3,0)
+ ;;=3^Healthy Person Accompanying Sick Person
+ ;;^UTILITY(U,$J,358.3,36343,1,4,0)
+ ;;=4^Z76.3
+ ;;^UTILITY(U,$J,358.3,36343,2)
+ ;;=^5063300
+ ;;^UTILITY(U,$J,358.3,36344,0)
+ ;;=Z71.0^^133^1778^3

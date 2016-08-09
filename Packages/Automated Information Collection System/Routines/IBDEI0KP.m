@@ -1,132 +1,280 @@
-IBDEI0KP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0KP ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9649,0)
- ;;=67210^^43^489^3^^^^1
- ;;^UTILITY(U,$J,358.3,9649,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9649,1,2,0)
- ;;=2^Destroy Retinal Lesion 1 or + Sessions,Photocoag
- ;;^UTILITY(U,$J,358.3,9649,1,3,0)
- ;;=3^67210
- ;;^UTILITY(U,$J,358.3,9650,0)
- ;;=67228^^43^489^2^^^^1
- ;;^UTILITY(U,$J,358.3,9650,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9650,1,2,0)
- ;;=2^Destroy Ext Retinopathy, one/more sessions
- ;;^UTILITY(U,$J,358.3,9650,1,3,0)
- ;;=3^67228
- ;;^UTILITY(U,$J,358.3,9651,0)
- ;;=67220^^43^489^1^^^^1
- ;;^UTILITY(U,$J,358.3,9651,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9651,1,2,0)
- ;;=2^Destroy Choroid Lesion, one/more sessions
- ;;^UTILITY(U,$J,358.3,9651,1,3,0)
- ;;=3^67220
- ;;^UTILITY(U,$J,358.3,9652,0)
- ;;=67221^^43^489^6^^^^1
- ;;^UTILITY(U,$J,358.3,9652,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9652,1,2,0)
- ;;=2^Photodynamic Therapy, one/more sessions
- ;;^UTILITY(U,$J,358.3,9652,1,3,0)
- ;;=3^67221
- ;;^UTILITY(U,$J,358.3,9653,0)
- ;;=67225^^43^489^7^^^^1
- ;;^UTILITY(U,$J,358.3,9653,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9653,1,2,0)
- ;;=2^Photodynamic Tx,2nd eye/1 session
- ;;^UTILITY(U,$J,358.3,9653,1,3,0)
- ;;=3^67225
- ;;^UTILITY(U,$J,358.3,9654,0)
- ;;=66821^^43^489^12^^^^1
- ;;^UTILITY(U,$J,358.3,9654,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9654,1,2,0)
- ;;=2^YAG Capsulotomy
- ;;^UTILITY(U,$J,358.3,9654,1,3,0)
- ;;=3^66821
- ;;^UTILITY(U,$J,358.3,9655,0)
- ;;=92134^^43^490^2^^^^1
- ;;^UTILITY(U,$J,358.3,9655,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9655,1,2,0)
- ;;=2^CPTR Ophth Dx Img Post Segmt
- ;;^UTILITY(U,$J,358.3,9655,1,3,0)
- ;;=3^92134
- ;;^UTILITY(U,$J,358.3,9656,0)
- ;;=92235^^43^490^5^^^^1
- ;;^UTILITY(U,$J,358.3,9656,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9656,1,2,0)
- ;;=2^Fluorescein Angiography
- ;;^UTILITY(U,$J,358.3,9656,1,3,0)
- ;;=3^92235
- ;;^UTILITY(U,$J,358.3,9657,0)
- ;;=92240^^43^490^7^^^^1
- ;;^UTILITY(U,$J,358.3,9657,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9657,1,2,0)
- ;;=2^ICG Angiography
- ;;^UTILITY(U,$J,358.3,9657,1,3,0)
- ;;=3^92240
- ;;^UTILITY(U,$J,358.3,9658,0)
- ;;=67145^^43^490^9^^^^1
- ;;^UTILITY(U,$J,358.3,9658,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9658,1,2,0)
- ;;=2^Laser-Retinal Tear
- ;;^UTILITY(U,$J,358.3,9658,1,3,0)
- ;;=3^67145
- ;;^UTILITY(U,$J,358.3,9659,0)
- ;;=67220^^43^490^8^^^^1
- ;;^UTILITY(U,$J,358.3,9659,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9659,1,2,0)
- ;;=2^Laser-Choroidal Lesion
- ;;^UTILITY(U,$J,358.3,9659,1,3,0)
- ;;=3^67220
- ;;^UTILITY(U,$J,358.3,9660,0)
- ;;=67221^^43^490^10^^^^1
- ;;^UTILITY(U,$J,358.3,9660,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9660,1,2,0)
- ;;=2^Photodynamic Therapy
- ;;^UTILITY(U,$J,358.3,9660,1,3,0)
- ;;=3^67221
- ;;^UTILITY(U,$J,358.3,9661,0)
- ;;=67225^^43^490^11^^^^1
- ;;^UTILITY(U,$J,358.3,9661,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9661,1,2,0)
- ;;=2^Photodynamic Therapy,2nd Eye
- ;;^UTILITY(U,$J,358.3,9661,1,3,0)
- ;;=3^67225
- ;;^UTILITY(U,$J,358.3,9662,0)
- ;;=67141^^43^490^4^^^^1
- ;;^UTILITY(U,$J,358.3,9662,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9662,1,2,0)
- ;;=2^Cryotherapy-Retinal Tear
- ;;^UTILITY(U,$J,358.3,9662,1,3,0)
- ;;=3^67141
- ;;^UTILITY(U,$J,358.3,9663,0)
- ;;=67101^^43^490^3^^^^1
- ;;^UTILITY(U,$J,358.3,9663,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9663,1,2,0)
- ;;=2^Cryotherapy-Retinal Detachment
- ;;^UTILITY(U,$J,358.3,9663,1,3,0)
- ;;=3^67101
- ;;^UTILITY(U,$J,358.3,9664,0)
- ;;=67110^^43^490^12^^^^1
- ;;^UTILITY(U,$J,358.3,9664,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,9664,1,2,0)
- ;;=2^Pneumatic Retinopexy
- ;;^UTILITY(U,$J,358.3,9664,1,3,0)
- ;;=3^67110
+ ;;^UTILITY(U,$J,358.3,20862,1,4,0)
+ ;;=4^F17.291
+ ;;^UTILITY(U,$J,358.3,20862,2)
+ ;;=^5003376
+ ;;^UTILITY(U,$J,358.3,20863,0)
+ ;;=F17.290^^86^1008^30
+ ;;^UTILITY(U,$J,358.3,20863,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20863,1,3,0)
+ ;;=3^Nicotine Dependence Oth Tobacco Product,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20863,1,4,0)
+ ;;=4^F17.290
+ ;;^UTILITY(U,$J,358.3,20863,2)
+ ;;=^5003375
+ ;;^UTILITY(U,$J,358.3,20864,0)
+ ;;=F17.221^^86^1008^24
+ ;;^UTILITY(U,$J,358.3,20864,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20864,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,20864,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,20864,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,20865,0)
+ ;;=F17.220^^86^1008^25
+ ;;^UTILITY(U,$J,358.3,20865,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20865,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20865,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,20865,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,20866,0)
+ ;;=F17.211^^86^1008^26
+ ;;^UTILITY(U,$J,358.3,20866,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20866,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,20866,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,20866,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,20867,0)
+ ;;=F17.200^^86^1008^31
+ ;;^UTILITY(U,$J,358.3,20867,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20867,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20867,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,20867,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,20868,0)
+ ;;=F11.120^^86^1008^32
+ ;;^UTILITY(U,$J,358.3,20868,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20868,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20868,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,20868,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,20869,0)
+ ;;=F11.10^^86^1008^34
+ ;;^UTILITY(U,$J,358.3,20869,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20869,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20869,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,20869,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,20870,0)
+ ;;=F11.129^^86^1008^33
+ ;;^UTILITY(U,$J,358.3,20870,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20870,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,20870,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,20870,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,20871,0)
+ ;;=F10.21^^86^1008^3
+ ;;^UTILITY(U,$J,358.3,20871,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20871,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,20871,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,20871,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,20872,0)
+ ;;=F12.10^^86^1008^5
+ ;;^UTILITY(U,$J,358.3,20872,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20872,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20872,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,20872,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,20873,0)
+ ;;=F12.20^^86^1008^7
+ ;;^UTILITY(U,$J,358.3,20873,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20873,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20873,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,20873,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,20874,0)
+ ;;=F12.21^^86^1008^6
+ ;;^UTILITY(U,$J,358.3,20874,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20874,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,20874,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,20874,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,20875,0)
+ ;;=F12.90^^86^1008^8
+ ;;^UTILITY(U,$J,358.3,20875,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20875,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,20875,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,20875,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,20876,0)
+ ;;=I83.019^^86^1009^3
+ ;;^UTILITY(U,$J,358.3,20876,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20876,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,20876,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,20876,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,20877,0)
+ ;;=I83.219^^86^1009^4
+ ;;^UTILITY(U,$J,358.3,20877,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20877,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,20877,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,20877,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,20878,0)
+ ;;=I83.029^^86^1009^1
+ ;;^UTILITY(U,$J,358.3,20878,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20878,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,20878,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,20878,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,20879,0)
+ ;;=I83.229^^86^1009^2
+ ;;^UTILITY(U,$J,358.3,20879,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20879,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,20879,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,20879,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,20880,0)
+ ;;=B00.81^^86^1010^56
+ ;;^UTILITY(U,$J,358.3,20880,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20880,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,20880,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,20880,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,20881,0)
+ ;;=D25.9^^86^1010^65
+ ;;^UTILITY(U,$J,358.3,20881,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20881,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,20881,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,20881,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,20882,0)
+ ;;=F52.9^^86^1010^103
+ ;;^UTILITY(U,$J,358.3,20882,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20882,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,20882,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,20882,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,20883,0)
+ ;;=R37.^^86^1010^104
+ ;;^UTILITY(U,$J,358.3,20883,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20883,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,20883,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,20883,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,20884,0)
+ ;;=N60.01^^86^1010^107
+ ;;^UTILITY(U,$J,358.3,20884,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20884,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,20884,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,20884,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,20885,0)
+ ;;=N60.02^^86^1010^106
+ ;;^UTILITY(U,$J,358.3,20885,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20885,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,20885,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,20885,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,20886,0)
+ ;;=N60.09^^86^1010^108
+ ;;^UTILITY(U,$J,358.3,20886,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20886,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,20886,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,20886,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,20887,0)
+ ;;=N60.11^^86^1010^31
+ ;;^UTILITY(U,$J,358.3,20887,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20887,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,20887,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,20887,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,20888,0)
+ ;;=N60.12^^86^1010^30
+ ;;^UTILITY(U,$J,358.3,20888,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20888,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,20888,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,20888,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,20889,0)
+ ;;=N64.4^^86^1010^70
+ ;;^UTILITY(U,$J,358.3,20889,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20889,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,20889,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,20889,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,20890,0)
+ ;;=N63.^^86^1010^67

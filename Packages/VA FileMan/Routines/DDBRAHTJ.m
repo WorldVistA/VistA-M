@@ -1,6 +1,10 @@
-DDBRAHTJ ;SFISC/DCL-BROWSER HYPERTEXT JUMP ;NOV 04, 1996@13:51
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRAHTJ ;SFISC/DCL-BROWSER HYPERTEXT JUMP ;18NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 JUMP(DDBRDIR) ; pass direction 1/forward -1/backward
  ;
@@ -33,7 +37,7 @@ FRWD ; forward
  ..N X,IOTM,IOBM,IOSTBM
  ..S DDBRXC2=$P(@DDBRATR,"$XCR$^",2),DDBSANX="" X DDBRXC2
  ..W:$D(IOF) @IOF
- ..S X=0 X ^%ZOSF("RM")
+ ..S X=0 X ^DD("OS",DISYS,"RM")
  ..W $P(DDGLVID,DDGLDEL,8)
  ..Q
  .I '$D(@DDBRATR) S DDBRAAH="" Q
@@ -44,7 +48,7 @@ FRWD ; forward
  .S DDBRSET=0
  .S DDBRAAH=$P(DDBRAAH,"#",2),DDBRAFLG=1
  .S DDBSA=DDBRATR,DDBSAN=DDBRANRT
- .S DDBPMSG=$G(@DDBSAN@("TITLE")) S:DDBPMSG="" DDBPMSG=$TR($P(DDBSANX,"^",$L(DDBSANX,"^")),"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+UP .S DDBPMSG=$G(@DDBSAN@("TITLE")) S:DDBPMSG="" DDBPMSG=$$UP^DILIBF($P(DDBSANX,"^",$L(DDBSANX,"^"))) ;**
  .D SAVSET
  .Q
  ;jump to another file, w-pDD#,entry:entry#anchor
@@ -124,7 +128,7 @@ NOHTJ(EM) ; no hypertext jump available
  N X,Y
  S Y=$P(DDBSANX,"^",$S(DDBSANX["$CREF$":$L(DDBSANX,"^"),1:2)),X(1)=$$CTXT^DDBR(Y,"",IOM),EM=$G(EM) S:$P(EM,"Error:",2)]"" EM="<< "_$P(EM,"Error:",2)_" >>"
  S X(2)=""
- S X(3)=$$CTXT^DDBR($S(EM]"":EM,1:"<< Hypertext jump is not avaialble >>"),"",IOM)
+ S X(3)=$$CTXT^DDBR($S(EM]"":EM,1:"<< "_$$EZBLD^DIALOG(7077)_" >>"),"",IOM) ;**NO HYPERTEXT JUMP
  W $$WS^DDBR1(.X),$C(7)
  R X:5
  Q

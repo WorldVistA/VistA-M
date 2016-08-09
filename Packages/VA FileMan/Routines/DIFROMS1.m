@@ -1,6 +1,9 @@
-DIFROMS1 ;SFISC/DCL/TKW-MOVE DD TO TARGET ARRAY ;5/5/98  12:59
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROMS1 ;SFISC/DCL/TKW-MOVE DD TO TARGET ARRAY ;17APR2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  Q
 EN ;
@@ -20,7 +23,7 @@ FILE N DSEC,DIFRD,DIFRX,DIFR01,DIFRFDD
  .M @DIFRTA@("^DIC",DIFRFILE,DIFRFILE,"%D")=^DIC(DIFRFILE,"%D")
  .S @DIFRTA@("^DIC",DIFRFILE,DIFRFILE,0)=$P(^DIC(DIFRFILE,0),"^",1,2)
  .S @DIFRTA@("^DIC",DIFRFILE,DIFRFILE,0,"GL")=^DIC(DIFRFILE,0,"GL")
- .S @DIFRTA@("^DIC",DIFRFILE,"B",@DIFRFIA@(DIFRFILE),DIFRFILE)=""
+ .S @DIFRTA@("^DIC",DIFRFILE,"B",$E(@DIFRFIA@(DIFRFILE),1,30),DIFRFILE)=""
  .Q
  I DSEC,(DIFRFDD!(DIFRPFD)) D
  .D XY^%RCR("^DIC("_DIFRFILE_",0,",$$OREF^DILF($NA(@DIFRTA@("SEC","^DIC",DIFRFILE,DIFRFILE,0))))

@@ -1,122 +1,294 @@
-IBDEI0JI ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0JI ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9064,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9064,1,4,0)
- ;;=4^E09.311
- ;;^UTILITY(U,$J,358.3,9064,2)
- ;;=^5002552
- ;;^UTILITY(U,$J,358.3,9065,0)
- ;;=E09.319^^41^473^38
- ;;^UTILITY(U,$J,358.3,9065,1,0)
+ ;;^UTILITY(U,$J,358.3,19657,0)
+ ;;=N20.0^^86^990^7
+ ;;^UTILITY(U,$J,358.3,19657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9065,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,9065,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,9065,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,9066,0)
- ;;=E09.321^^41^473^29
- ;;^UTILITY(U,$J,358.3,9066,1,0)
+ ;;^UTILITY(U,$J,358.3,19657,1,3,0)
+ ;;=3^Calculus Kidney
+ ;;^UTILITY(U,$J,358.3,19657,1,4,0)
+ ;;=4^N20.0
+ ;;^UTILITY(U,$J,358.3,19657,2)
+ ;;=^67056
+ ;;^UTILITY(U,$J,358.3,19658,0)
+ ;;=N29.^^86^990^60
+ ;;^UTILITY(U,$J,358.3,19658,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9066,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9066,1,4,0)
- ;;=4^E09.321
- ;;^UTILITY(U,$J,358.3,9066,2)
- ;;=^5002554
- ;;^UTILITY(U,$J,358.3,9067,0)
- ;;=E09.329^^41^473^30
- ;;^UTILITY(U,$J,358.3,9067,1,0)
+ ;;^UTILITY(U,$J,358.3,19658,1,3,0)
+ ;;=3^Kidney & Ureter Disorders in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19658,1,4,0)
+ ;;=4^N29.
+ ;;^UTILITY(U,$J,358.3,19658,2)
+ ;;=^5015631
+ ;;^UTILITY(U,$J,358.3,19659,0)
+ ;;=N28.9^^86^990^59
+ ;;^UTILITY(U,$J,358.3,19659,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9067,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,9067,1,4,0)
- ;;=4^E09.329
- ;;^UTILITY(U,$J,358.3,9067,2)
- ;;=^5002555
- ;;^UTILITY(U,$J,358.3,9068,0)
- ;;=E09.351^^41^473^33
- ;;^UTILITY(U,$J,358.3,9068,1,0)
+ ;;^UTILITY(U,$J,358.3,19659,1,3,0)
+ ;;=3^Kidney & Ureter Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19659,1,4,0)
+ ;;=4^N28.9
+ ;;^UTILITY(U,$J,358.3,19659,2)
+ ;;=^5015630
+ ;;^UTILITY(U,$J,358.3,19660,0)
+ ;;=N30.01^^86^990^20
+ ;;^UTILITY(U,$J,358.3,19660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9068,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9068,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,9068,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,9069,0)
- ;;=E09.359^^41^473^34
- ;;^UTILITY(U,$J,358.3,9069,1,0)
+ ;;^UTILITY(U,$J,358.3,19660,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,19660,1,4,0)
+ ;;=4^N30.01
+ ;;^UTILITY(U,$J,358.3,19660,2)
+ ;;=^5015633
+ ;;^UTILITY(U,$J,358.3,19661,0)
+ ;;=N30.00^^86^990^22
+ ;;^UTILITY(U,$J,358.3,19661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9069,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,9069,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,9069,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,9070,0)
- ;;=E08.351^^41^473^45
- ;;^UTILITY(U,$J,358.3,9070,1,0)
+ ;;^UTILITY(U,$J,358.3,19661,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Acute
+ ;;^UTILITY(U,$J,358.3,19661,1,4,0)
+ ;;=4^N30.00
+ ;;^UTILITY(U,$J,358.3,19661,2)
+ ;;=^5015632
+ ;;^UTILITY(U,$J,358.3,19662,0)
+ ;;=N30.41^^86^990^21
+ ;;^UTILITY(U,$J,358.3,19662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9070,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9070,1,4,0)
- ;;=4^E08.351
- ;;^UTILITY(U,$J,358.3,9070,2)
- ;;=^5002518
- ;;^UTILITY(U,$J,358.3,9071,0)
- ;;=E08.359^^41^473^46
- ;;^UTILITY(U,$J,358.3,9071,1,0)
+ ;;^UTILITY(U,$J,358.3,19662,1,3,0)
+ ;;=3^Cystitis w/ Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,19662,1,4,0)
+ ;;=4^N30.41
+ ;;^UTILITY(U,$J,358.3,19662,2)
+ ;;=^5015640
+ ;;^UTILITY(U,$J,358.3,19663,0)
+ ;;=N30.40^^86^990^23
+ ;;^UTILITY(U,$J,358.3,19663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9071,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,9071,1,4,0)
- ;;=4^E08.359
- ;;^UTILITY(U,$J,358.3,9071,2)
- ;;=^5002519
- ;;^UTILITY(U,$J,358.3,9072,0)
- ;;=E13.351^^41^473^27
- ;;^UTILITY(U,$J,358.3,9072,1,0)
+ ;;^UTILITY(U,$J,358.3,19663,1,3,0)
+ ;;=3^Cystitis w/o Hematuria,Irradiation
+ ;;^UTILITY(U,$J,358.3,19663,1,4,0)
+ ;;=4^N30.40
+ ;;^UTILITY(U,$J,358.3,19663,2)
+ ;;=^5015639
+ ;;^UTILITY(U,$J,358.3,19664,0)
+ ;;=N32.0^^86^990^6
+ ;;^UTILITY(U,$J,358.3,19664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9072,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9072,1,4,0)
- ;;=4^E13.351
- ;;^UTILITY(U,$J,358.3,9072,2)
- ;;=^5002680
- ;;^UTILITY(U,$J,358.3,9073,0)
- ;;=E13.359^^41^473^28
- ;;^UTILITY(U,$J,358.3,9073,1,0)
+ ;;^UTILITY(U,$J,358.3,19664,1,3,0)
+ ;;=3^Bladder-Neck Obstruction
+ ;;^UTILITY(U,$J,358.3,19664,1,4,0)
+ ;;=4^N32.0
+ ;;^UTILITY(U,$J,358.3,19664,2)
+ ;;=^5015649
+ ;;^UTILITY(U,$J,358.3,19665,0)
+ ;;=N31.9^^86^990^70
+ ;;^UTILITY(U,$J,358.3,19665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9073,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,9073,1,4,0)
- ;;=4^E13.359
- ;;^UTILITY(U,$J,358.3,9073,2)
- ;;=^5002681
- ;;^UTILITY(U,$J,358.3,9074,0)
- ;;=E09.331^^41^473^31
- ;;^UTILITY(U,$J,358.3,9074,1,0)
+ ;;^UTILITY(U,$J,358.3,19665,1,3,0)
+ ;;=3^Neurogenic Bladder Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,19665,1,4,0)
+ ;;=4^N31.9
+ ;;^UTILITY(U,$J,358.3,19665,2)
+ ;;=^5015648
+ ;;^UTILITY(U,$J,358.3,19666,0)
+ ;;=N31.1^^86^990^71
+ ;;^UTILITY(U,$J,358.3,19666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9074,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,9074,1,4,0)
- ;;=4^E09.331
- ;;^UTILITY(U,$J,358.3,9074,2)
- ;;=^5002556
- ;;^UTILITY(U,$J,358.3,9075,0)
- ;;=E09.341^^41^473^35
- ;;^UTILITY(U,$J,358.3,9075,1,0)
+ ;;^UTILITY(U,$J,358.3,19666,1,3,0)
+ ;;=3^Neuropathic Bladder,Reflex NEC
+ ;;^UTILITY(U,$J,358.3,19666,1,4,0)
+ ;;=4^N31.1
+ ;;^UTILITY(U,$J,358.3,19666,2)
+ ;;=^5015645
+ ;;^UTILITY(U,$J,358.3,19667,0)
+ ;;=N32.89^^86^990^5
+ ;;^UTILITY(U,$J,358.3,19667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9075,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/ Macula Edema
- ;;^UTILITY(U,$J,358.3,9075,1,4,0)
- ;;=4^E09.341
- ;;^UTILITY(U,$J,358.3,9075,2)
- ;;=^5002558
- ;;^UTILITY(U,$J,358.3,9076,0)
- ;;=E13.311^^41^473^49
+ ;;^UTILITY(U,$J,358.3,19667,1,3,0)
+ ;;=3^Bladder Disorders,Other Spec
+ ;;^UTILITY(U,$J,358.3,19667,1,4,0)
+ ;;=4^N32.89
+ ;;^UTILITY(U,$J,358.3,19667,2)
+ ;;=^87989
+ ;;^UTILITY(U,$J,358.3,19668,0)
+ ;;=N33.^^86^990^4
+ ;;^UTILITY(U,$J,358.3,19668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19668,1,3,0)
+ ;;=3^Bladder Disorders,Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19668,1,4,0)
+ ;;=4^N33.
+ ;;^UTILITY(U,$J,358.3,19668,2)
+ ;;=^5015654
+ ;;^UTILITY(U,$J,358.3,19669,0)
+ ;;=N34.2^^86^990^99
+ ;;^UTILITY(U,$J,358.3,19669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19669,1,3,0)
+ ;;=3^Urethritis
+ ;;^UTILITY(U,$J,358.3,19669,1,4,0)
+ ;;=4^N34.2
+ ;;^UTILITY(U,$J,358.3,19669,2)
+ ;;=^88231
+ ;;^UTILITY(U,$J,358.3,19670,0)
+ ;;=N34.1^^86^990^100
+ ;;^UTILITY(U,$J,358.3,19670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19670,1,3,0)
+ ;;=3^Urethritis,Nonspec
+ ;;^UTILITY(U,$J,358.3,19670,1,4,0)
+ ;;=4^N34.1
+ ;;^UTILITY(U,$J,358.3,19670,2)
+ ;;=^5015655
+ ;;^UTILITY(U,$J,358.3,19671,0)
+ ;;=N39.0^^86^990^104
+ ;;^UTILITY(U,$J,358.3,19671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19671,1,3,0)
+ ;;=3^Urinary Tract Infection,Site Not Spec
+ ;;^UTILITY(U,$J,358.3,19671,1,4,0)
+ ;;=4^N39.0
+ ;;^UTILITY(U,$J,358.3,19671,2)
+ ;;=^124436
+ ;;^UTILITY(U,$J,358.3,19672,0)
+ ;;=N31.0^^86^990^72
+ ;;^UTILITY(U,$J,358.3,19672,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19672,1,3,0)
+ ;;=3^Neuropathic Bladder,Uninhibited NEC
+ ;;^UTILITY(U,$J,358.3,19672,1,4,0)
+ ;;=4^N31.0
+ ;;^UTILITY(U,$J,358.3,19672,2)
+ ;;=^5015644
+ ;;^UTILITY(U,$J,358.3,19673,0)
+ ;;=R31.9^^86^990^54
+ ;;^UTILITY(U,$J,358.3,19673,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19673,1,3,0)
+ ;;=3^Hematuria,Unspec
+ ;;^UTILITY(U,$J,358.3,19673,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,19673,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,19674,0)
+ ;;=R31.0^^86^990^52
+ ;;^UTILITY(U,$J,358.3,19674,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19674,1,3,0)
+ ;;=3^Hematuria,Gross
+ ;;^UTILITY(U,$J,358.3,19674,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,19674,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,19675,0)
+ ;;=R31.2^^86^990^53
+ ;;^UTILITY(U,$J,358.3,19675,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19675,1,3,0)
+ ;;=3^Hematuria,Microscopic
+ ;;^UTILITY(U,$J,358.3,19675,1,4,0)
+ ;;=4^R31.2
+ ;;^UTILITY(U,$J,358.3,19675,2)
+ ;;=^5019327
+ ;;^UTILITY(U,$J,358.3,19676,0)
+ ;;=R31.1^^86^990^51
+ ;;^UTILITY(U,$J,358.3,19676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19676,1,3,0)
+ ;;=3^Hematuria,Benign Essential Microscopic
+ ;;^UTILITY(U,$J,358.3,19676,1,4,0)
+ ;;=4^R31.1
+ ;;^UTILITY(U,$J,358.3,19676,2)
+ ;;=^5019326
+ ;;^UTILITY(U,$J,358.3,19677,0)
+ ;;=N40.0^^86^990^30
+ ;;^UTILITY(U,$J,358.3,19677,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19677,1,3,0)
+ ;;=3^Enlarged Prostate w/o Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,19677,1,4,0)
+ ;;=4^N40.0
+ ;;^UTILITY(U,$J,358.3,19677,2)
+ ;;=^5015689
+ ;;^UTILITY(U,$J,358.3,19678,0)
+ ;;=N40.1^^86^990^29
+ ;;^UTILITY(U,$J,358.3,19678,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19678,1,3,0)
+ ;;=3^Enlarged Prostate w/ Lower Urinary Tract Symptoms
+ ;;^UTILITY(U,$J,358.3,19678,1,4,0)
+ ;;=4^N40.1
+ ;;^UTILITY(U,$J,358.3,19678,2)
+ ;;=^5015690
+ ;;^UTILITY(U,$J,358.3,19679,0)
+ ;;=N41.0^^86^990^82
+ ;;^UTILITY(U,$J,358.3,19679,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19679,1,3,0)
+ ;;=3^Prostatitis,Acute
+ ;;^UTILITY(U,$J,358.3,19679,1,4,0)
+ ;;=4^N41.0
+ ;;^UTILITY(U,$J,358.3,19679,2)
+ ;;=^259106
+ ;;^UTILITY(U,$J,358.3,19680,0)
+ ;;=N45.1^^86^990^31
+ ;;^UTILITY(U,$J,358.3,19680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19680,1,3,0)
+ ;;=3^Epididymitis
+ ;;^UTILITY(U,$J,358.3,19680,1,4,0)
+ ;;=4^N45.1
+ ;;^UTILITY(U,$J,358.3,19680,2)
+ ;;=^41396
+ ;;^UTILITY(U,$J,358.3,19681,0)
+ ;;=N45.2^^86^990^74
+ ;;^UTILITY(U,$J,358.3,19681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19681,1,3,0)
+ ;;=3^Orchitis
+ ;;^UTILITY(U,$J,358.3,19681,1,4,0)
+ ;;=4^N45.2
+ ;;^UTILITY(U,$J,358.3,19681,2)
+ ;;=^86174
+ ;;^UTILITY(U,$J,358.3,19682,0)
+ ;;=N45.3^^86^990^32
+ ;;^UTILITY(U,$J,358.3,19682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19682,1,3,0)
+ ;;=3^Epididymo-orchitis
+ ;;^UTILITY(U,$J,358.3,19682,1,4,0)
+ ;;=4^N45.3
+ ;;^UTILITY(U,$J,358.3,19682,2)
+ ;;=^5015707
+ ;;^UTILITY(U,$J,358.3,19683,0)
+ ;;=N47.2^^86^990^76
+ ;;^UTILITY(U,$J,358.3,19683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19683,1,3,0)
+ ;;=3^Paraphimosis
+ ;;^UTILITY(U,$J,358.3,19683,1,4,0)
+ ;;=4^N47.2
+ ;;^UTILITY(U,$J,358.3,19683,2)
+ ;;=^90023
+ ;;^UTILITY(U,$J,358.3,19684,0)
+ ;;=N47.1^^86^990^78
+ ;;^UTILITY(U,$J,358.3,19684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19684,1,3,0)
+ ;;=3^Phimosis
+ ;;^UTILITY(U,$J,358.3,19684,1,4,0)
+ ;;=4^N47.1
+ ;;^UTILITY(U,$J,358.3,19684,2)
+ ;;=^93340
+ ;;^UTILITY(U,$J,358.3,19685,0)
+ ;;=N47.3^^86^990^24
+ ;;^UTILITY(U,$J,358.3,19685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19685,1,3,0)
+ ;;=3^Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,19685,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,19685,2)
+ ;;=^5015726

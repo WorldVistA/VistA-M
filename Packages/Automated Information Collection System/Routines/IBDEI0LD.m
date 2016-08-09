@@ -1,130 +1,278 @@
-IBDEI0LD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0LD ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9968,1,4,0)
- ;;=4^H40.1422
- ;;^UTILITY(U,$J,358.3,9968,2)
- ;;=^5138024
- ;;^UTILITY(U,$J,358.3,9969,0)
- ;;=H40.1423^^44^496^6
- ;;^UTILITY(U,$J,358.3,9969,1,0)
+ ;;^UTILITY(U,$J,358.3,21551,2)
+ ;;=^5007713
+ ;;^UTILITY(U,$J,358.3,21552,0)
+ ;;=I70.631^^89^1035^70
+ ;;^UTILITY(U,$J,358.3,21552,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9969,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9969,1,4,0)
- ;;=4^H40.1423
- ;;^UTILITY(U,$J,358.3,9969,2)
- ;;=^5138025
- ;;^UTILITY(U,$J,358.3,9970,0)
- ;;=H40.1424^^44^496^7
- ;;^UTILITY(U,$J,358.3,9970,1,0)
+ ;;^UTILITY(U,$J,358.3,21552,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,21552,1,4,0)
+ ;;=4^I70.631
+ ;;^UTILITY(U,$J,358.3,21552,2)
+ ;;=^5007740
+ ;;^UTILITY(U,$J,358.3,21553,0)
+ ;;=I70.632^^89^1035^71
+ ;;^UTILITY(U,$J,358.3,21553,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9970,1,3,0)
- ;;=3^Capsular Glaucoma w/ Pseudoxf Lens,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9970,1,4,0)
- ;;=4^H40.1424
- ;;^UTILITY(U,$J,358.3,9970,2)
- ;;=^5138026
- ;;^UTILITY(U,$J,358.3,9971,0)
- ;;=H40.31X0^^44^496^138
- ;;^UTILITY(U,$J,358.3,9971,1,0)
+ ;;^UTILITY(U,$J,358.3,21553,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,21553,1,4,0)
+ ;;=4^I70.632
+ ;;^UTILITY(U,$J,358.3,21553,2)
+ ;;=^5007741
+ ;;^UTILITY(U,$J,358.3,21554,0)
+ ;;=I70.633^^89^1035^72
+ ;;^UTILITY(U,$J,358.3,21554,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9971,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9971,1,4,0)
- ;;=4^H40.31X0
- ;;^UTILITY(U,$J,358.3,9971,2)
- ;;=^5005852
- ;;^UTILITY(U,$J,358.3,9972,0)
- ;;=H40.31X1^^44^496^135
- ;;^UTILITY(U,$J,358.3,9972,1,0)
+ ;;^UTILITY(U,$J,358.3,21554,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,21554,1,4,0)
+ ;;=4^I70.633
+ ;;^UTILITY(U,$J,358.3,21554,2)
+ ;;=^5007742
+ ;;^UTILITY(U,$J,358.3,21555,0)
+ ;;=I70.634^^89^1035^73
+ ;;^UTILITY(U,$J,358.3,21555,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9972,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9972,1,4,0)
- ;;=4^H40.31X1
- ;;^UTILITY(U,$J,358.3,9972,2)
- ;;=^5005853
- ;;^UTILITY(U,$J,358.3,9973,0)
- ;;=H40.31X2^^44^496^136
- ;;^UTILITY(U,$J,358.3,9973,1,0)
+ ;;^UTILITY(U,$J,358.3,21555,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,21555,1,4,0)
+ ;;=4^I70.634
+ ;;^UTILITY(U,$J,358.3,21555,2)
+ ;;=^5007743
+ ;;^UTILITY(U,$J,358.3,21556,0)
+ ;;=I70.635^^89^1035^74
+ ;;^UTILITY(U,$J,358.3,21556,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9973,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9973,1,4,0)
- ;;=4^H40.31X2
- ;;^UTILITY(U,$J,358.3,9973,2)
- ;;=^5005854
- ;;^UTILITY(U,$J,358.3,9974,0)
- ;;=H40.31X3^^44^496^137
- ;;^UTILITY(U,$J,358.3,9974,1,0)
+ ;;^UTILITY(U,$J,358.3,21556,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,21556,1,4,0)
+ ;;=4^I70.635
+ ;;^UTILITY(U,$J,358.3,21556,2)
+ ;;=^5007744
+ ;;^UTILITY(U,$J,358.3,21557,0)
+ ;;=I70.641^^89^1035^65
+ ;;^UTILITY(U,$J,358.3,21557,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9974,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9974,1,4,0)
- ;;=4^H40.31X3
- ;;^UTILITY(U,$J,358.3,9974,2)
- ;;=^5133503
- ;;^UTILITY(U,$J,358.3,9975,0)
- ;;=H40.31X4^^44^496^134
- ;;^UTILITY(U,$J,358.3,9975,1,0)
+ ;;^UTILITY(U,$J,358.3,21557,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,21557,1,4,0)
+ ;;=4^I70.641
+ ;;^UTILITY(U,$J,358.3,21557,2)
+ ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,21558,0)
+ ;;=I70.642^^89^1035^66
+ ;;^UTILITY(U,$J,358.3,21558,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9975,1,3,0)
- ;;=3^Traumatic Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9975,1,4,0)
- ;;=4^H40.31X4
- ;;^UTILITY(U,$J,358.3,9975,2)
- ;;=^5005855
- ;;^UTILITY(U,$J,358.3,9976,0)
- ;;=H40.32X0^^44^496^133
- ;;^UTILITY(U,$J,358.3,9976,1,0)
+ ;;^UTILITY(U,$J,358.3,21558,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,21558,1,4,0)
+ ;;=4^I70.642
+ ;;^UTILITY(U,$J,358.3,21558,2)
+ ;;=^5007748
+ ;;^UTILITY(U,$J,358.3,21559,0)
+ ;;=I70.643^^89^1035^67
+ ;;^UTILITY(U,$J,358.3,21559,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9976,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9976,1,4,0)
- ;;=4^H40.32X0
- ;;^UTILITY(U,$J,358.3,9976,2)
- ;;=^5005856
- ;;^UTILITY(U,$J,358.3,9977,0)
- ;;=H40.32X1^^44^496^130
- ;;^UTILITY(U,$J,358.3,9977,1,0)
+ ;;^UTILITY(U,$J,358.3,21559,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,21559,1,4,0)
+ ;;=4^I70.643
+ ;;^UTILITY(U,$J,358.3,21559,2)
+ ;;=^5007749
+ ;;^UTILITY(U,$J,358.3,21560,0)
+ ;;=I70.644^^89^1035^68
+ ;;^UTILITY(U,$J,358.3,21560,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9977,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9977,1,4,0)
- ;;=4^H40.32X1
- ;;^UTILITY(U,$J,358.3,9977,2)
- ;;=^5005857
- ;;^UTILITY(U,$J,358.3,9978,0)
- ;;=H40.32X2^^44^496^131
- ;;^UTILITY(U,$J,358.3,9978,1,0)
+ ;;^UTILITY(U,$J,358.3,21560,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,21560,1,4,0)
+ ;;=4^I70.644
+ ;;^UTILITY(U,$J,358.3,21560,2)
+ ;;=^5007750
+ ;;^UTILITY(U,$J,358.3,21561,0)
+ ;;=I70.645^^89^1035^69
+ ;;^UTILITY(U,$J,358.3,21561,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9978,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9978,1,4,0)
- ;;=4^H40.32X2
- ;;^UTILITY(U,$J,358.3,9978,2)
- ;;=^5005858
- ;;^UTILITY(U,$J,358.3,9979,0)
- ;;=H40.32X3^^44^496^132
- ;;^UTILITY(U,$J,358.3,9979,1,0)
+ ;;^UTILITY(U,$J,358.3,21561,1,3,0)
+ ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Oth Part of Foot
+ ;;^UTILITY(U,$J,358.3,21561,1,4,0)
+ ;;=4^I70.645
+ ;;^UTILITY(U,$J,358.3,21561,2)
+ ;;=^5007751
+ ;;^UTILITY(U,$J,358.3,21562,0)
+ ;;=K12.0^^89^1035^258
+ ;;^UTILITY(U,$J,358.3,21562,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9979,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9979,1,4,0)
- ;;=4^H40.32X3
- ;;^UTILITY(U,$J,358.3,9979,2)
- ;;=^5133504
- ;;^UTILITY(U,$J,358.3,9980,0)
- ;;=H40.32X4^^44^496^129
- ;;^UTILITY(U,$J,358.3,9980,1,0)
+ ;;^UTILITY(U,$J,358.3,21562,1,3,0)
+ ;;=3^Recurrent Oral Aphthae
+ ;;^UTILITY(U,$J,358.3,21562,1,4,0)
+ ;;=4^K12.0
+ ;;^UTILITY(U,$J,358.3,21562,2)
+ ;;=^5008483
+ ;;^UTILITY(U,$J,358.3,21563,0)
+ ;;=K12.1^^89^1035^271
+ ;;^UTILITY(U,$J,358.3,21563,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9980,1,3,0)
- ;;=3^Traumatic Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9980,1,4,0)
- ;;=4^H40.32X4
- ;;^UTILITY(U,$J,358.3,9980,2)
- ;;=^5005859
- ;;^UTILITY(U,$J,358.3,9981,0)
- ;;=H40.33X0^^44^496^128
+ ;;^UTILITY(U,$J,358.3,21563,1,3,0)
+ ;;=3^Stomatitis NEC
+ ;;^UTILITY(U,$J,358.3,21563,1,4,0)
+ ;;=4^K12.1
+ ;;^UTILITY(U,$J,358.3,21563,2)
+ ;;=^5008484
+ ;;^UTILITY(U,$J,358.3,21564,0)
+ ;;=K12.2^^89^1035^94
+ ;;^UTILITY(U,$J,358.3,21564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21564,1,3,0)
+ ;;=3^Cellulitis & Abscess of Mouth
+ ;;^UTILITY(U,$J,358.3,21564,1,4,0)
+ ;;=4^K12.2
+ ;;^UTILITY(U,$J,358.3,21564,2)
+ ;;=^5008485
+ ;;^UTILITY(U,$J,358.3,21565,0)
+ ;;=L02.01^^89^1035^120
+ ;;^UTILITY(U,$J,358.3,21565,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21565,1,3,0)
+ ;;=3^Cutaneous Abscess of Face
+ ;;^UTILITY(U,$J,358.3,21565,1,4,0)
+ ;;=4^L02.01
+ ;;^UTILITY(U,$J,358.3,21565,2)
+ ;;=^5008944
+ ;;^UTILITY(U,$J,358.3,21566,0)
+ ;;=L02.11^^89^1035^125
+ ;;^UTILITY(U,$J,358.3,21566,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21566,1,3,0)
+ ;;=3^Cutaneous Abscess of Neck
+ ;;^UTILITY(U,$J,358.3,21566,1,4,0)
+ ;;=4^L02.11
+ ;;^UTILITY(U,$J,358.3,21566,2)
+ ;;=^5008947
+ ;;^UTILITY(U,$J,358.3,21567,0)
+ ;;=L02.211^^89^1035^117
+ ;;^UTILITY(U,$J,358.3,21567,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21567,1,3,0)
+ ;;=3^Cutaneous Abscess of Abdominal Wall
+ ;;^UTILITY(U,$J,358.3,21567,1,4,0)
+ ;;=4^L02.211
+ ;;^UTILITY(U,$J,358.3,21567,2)
+ ;;=^5008950
+ ;;^UTILITY(U,$J,358.3,21568,0)
+ ;;=L02.212^^89^1035^118
+ ;;^UTILITY(U,$J,358.3,21568,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21568,1,3,0)
+ ;;=3^Cutaneous Abscess of Back
+ ;;^UTILITY(U,$J,358.3,21568,1,4,0)
+ ;;=4^L02.212
+ ;;^UTILITY(U,$J,358.3,21568,2)
+ ;;=^5008951
+ ;;^UTILITY(U,$J,358.3,21569,0)
+ ;;=L02.213^^89^1035^119
+ ;;^UTILITY(U,$J,358.3,21569,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21569,1,3,0)
+ ;;=3^Cutaneous Abscess of Chest Wall
+ ;;^UTILITY(U,$J,358.3,21569,1,4,0)
+ ;;=4^L02.213
+ ;;^UTILITY(U,$J,358.3,21569,2)
+ ;;=^5008952
+ ;;^UTILITY(U,$J,358.3,21570,0)
+ ;;=L02.214^^89^1035^121
+ ;;^UTILITY(U,$J,358.3,21570,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21570,1,3,0)
+ ;;=3^Cutaneous Abscess of Groin
+ ;;^UTILITY(U,$J,358.3,21570,1,4,0)
+ ;;=4^L02.214
+ ;;^UTILITY(U,$J,358.3,21570,2)
+ ;;=^5008953
+ ;;^UTILITY(U,$J,358.3,21571,0)
+ ;;=L02.215^^89^1035^126
+ ;;^UTILITY(U,$J,358.3,21571,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21571,1,3,0)
+ ;;=3^Cutaneous Abscess of Perineum
+ ;;^UTILITY(U,$J,358.3,21571,1,4,0)
+ ;;=4^L02.215
+ ;;^UTILITY(U,$J,358.3,21571,2)
+ ;;=^5008954
+ ;;^UTILITY(U,$J,358.3,21572,0)
+ ;;=L02.216^^89^1035^131
+ ;;^UTILITY(U,$J,358.3,21572,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21572,1,3,0)
+ ;;=3^Cutaneous Abscess of Unbilicus
+ ;;^UTILITY(U,$J,358.3,21572,1,4,0)
+ ;;=4^L02.216
+ ;;^UTILITY(U,$J,358.3,21572,2)
+ ;;=^5008955
+ ;;^UTILITY(U,$J,358.3,21573,0)
+ ;;=L02.219^^89^1035^130
+ ;;^UTILITY(U,$J,358.3,21573,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21573,1,3,0)
+ ;;=3^Cutaneous Abscess of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,21573,1,4,0)
+ ;;=4^L02.219
+ ;;^UTILITY(U,$J,358.3,21573,2)
+ ;;=^5008956
+ ;;^UTILITY(U,$J,358.3,21574,0)
+ ;;=L02.32^^89^1035^154
+ ;;^UTILITY(U,$J,358.3,21574,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21574,1,3,0)
+ ;;=3^Furuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,21574,1,4,0)
+ ;;=4^L02.32
+ ;;^UTILITY(U,$J,358.3,21574,2)
+ ;;=^5008972
+ ;;^UTILITY(U,$J,358.3,21575,0)
+ ;;=L02.33^^89^1035^92
+ ;;^UTILITY(U,$J,358.3,21575,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21575,1,3,0)
+ ;;=3^Carbuncle of Buttock
+ ;;^UTILITY(U,$J,358.3,21575,1,4,0)
+ ;;=4^L02.33
+ ;;^UTILITY(U,$J,358.3,21575,2)
+ ;;=^5008973
+ ;;^UTILITY(U,$J,358.3,21576,0)
+ ;;=L02.415^^89^1035^129
+ ;;^UTILITY(U,$J,358.3,21576,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21576,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,21576,1,4,0)
+ ;;=4^L02.415
+ ;;^UTILITY(U,$J,358.3,21576,2)
+ ;;=^5008978
+ ;;^UTILITY(U,$J,358.3,21577,0)
+ ;;=L02.416^^89^1035^124
+ ;;^UTILITY(U,$J,358.3,21577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21577,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,21577,1,4,0)
+ ;;=4^L02.416
+ ;;^UTILITY(U,$J,358.3,21577,2)
+ ;;=^5133642
+ ;;^UTILITY(U,$J,358.3,21578,0)
+ ;;=L02.511^^89^1035^128
+ ;;^UTILITY(U,$J,358.3,21578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21578,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Hand
+ ;;^UTILITY(U,$J,358.3,21578,1,4,0)
+ ;;=4^L02.511
+ ;;^UTILITY(U,$J,358.3,21578,2)
+ ;;=^5008992
+ ;;^UTILITY(U,$J,358.3,21579,0)
+ ;;=L02.512^^89^1035^123

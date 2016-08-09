@@ -1,136 +1,48 @@
-IBDEI16L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16L ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQ(358.91)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20086,0)
- ;;=C62.12^^84^929^119
- ;;^UTILITY(U,$J,358.3,20086,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20086,1,3,0)
- ;;=3^Malig Neop Descended Left Testis
- ;;^UTILITY(U,$J,358.3,20086,1,4,0)
- ;;=4^C62.12
- ;;^UTILITY(U,$J,358.3,20086,2)
- ;;=^5001235
- ;;^UTILITY(U,$J,358.3,20087,0)
- ;;=C62.11^^84^929^120
- ;;^UTILITY(U,$J,358.3,20087,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20087,1,3,0)
- ;;=3^Malig Neop Descended Right Testis
- ;;^UTILITY(U,$J,358.3,20087,1,4,0)
- ;;=4^C62.11
- ;;^UTILITY(U,$J,358.3,20087,2)
- ;;=^5001234
- ;;^UTILITY(U,$J,358.3,20088,0)
- ;;=C15.9^^84^929^121
- ;;^UTILITY(U,$J,358.3,20088,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20088,1,3,0)
- ;;=3^Malig Neop Esophagus,Unspec
- ;;^UTILITY(U,$J,358.3,20088,1,4,0)
- ;;=4^C15.9
- ;;^UTILITY(U,$J,358.3,20088,2)
- ;;=^5000919
- ;;^UTILITY(U,$J,358.3,20089,0)
- ;;=C24.0^^84^929^122
- ;;^UTILITY(U,$J,358.3,20089,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20089,1,3,0)
- ;;=3^Malig Neop Extrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,20089,1,4,0)
- ;;=4^C24.0
- ;;^UTILITY(U,$J,358.3,20089,2)
- ;;=^5000940
- ;;^UTILITY(U,$J,358.3,20090,0)
- ;;=C23.^^84^929^124
- ;;^UTILITY(U,$J,358.3,20090,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20090,1,3,0)
- ;;=3^Malig Neop Gallbladder
- ;;^UTILITY(U,$J,358.3,20090,1,4,0)
- ;;=4^C23.
- ;;^UTILITY(U,$J,358.3,20090,2)
- ;;=^267098
- ;;^UTILITY(U,$J,358.3,20091,0)
- ;;=C32.9^^84^929^128
- ;;^UTILITY(U,$J,358.3,20091,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20091,1,3,0)
- ;;=3^Malig Neop Larynx,Unspec
- ;;^UTILITY(U,$J,358.3,20091,1,4,0)
- ;;=4^C32.9
- ;;^UTILITY(U,$J,358.3,20091,2)
- ;;=^5000956
- ;;^UTILITY(U,$J,358.3,20092,0)
- ;;=C64.2^^84^929^132
- ;;^UTILITY(U,$J,358.3,20092,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20092,1,3,0)
- ;;=3^Malig Neop Left Kidney,Except Renal Pelvis
- ;;^UTILITY(U,$J,358.3,20092,1,4,0)
- ;;=4^C64.2
- ;;^UTILITY(U,$J,358.3,20092,2)
- ;;=^5001249
- ;;^UTILITY(U,$J,358.3,20093,0)
- ;;=C65.2^^84^929^135
- ;;^UTILITY(U,$J,358.3,20093,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20093,1,3,0)
- ;;=3^Malig Neop Left Renal Pelvis
- ;;^UTILITY(U,$J,358.3,20093,1,4,0)
- ;;=4^C65.2
- ;;^UTILITY(U,$J,358.3,20093,2)
- ;;=^5001252
- ;;^UTILITY(U,$J,358.3,20094,0)
- ;;=C62.92^^84^929^136
- ;;^UTILITY(U,$J,358.3,20094,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20094,1,3,0)
- ;;=3^Malig Neop Left Testis,Unspec
- ;;^UTILITY(U,$J,358.3,20094,1,4,0)
- ;;=4^C62.92
- ;;^UTILITY(U,$J,358.3,20094,2)
- ;;=^5001238
- ;;^UTILITY(U,$J,358.3,20095,0)
- ;;=C22.8^^84^929^137
- ;;^UTILITY(U,$J,358.3,20095,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20095,1,3,0)
- ;;=3^Malig Neop Liver,Primary
- ;;^UTILITY(U,$J,358.3,20095,1,4,0)
- ;;=4^C22.8
- ;;^UTILITY(U,$J,358.3,20095,2)
- ;;=^5000939
- ;;^UTILITY(U,$J,358.3,20096,0)
- ;;=C06.9^^84^929^140
- ;;^UTILITY(U,$J,358.3,20096,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20096,1,3,0)
- ;;=3^Malig Neop Mouth,Unspec
- ;;^UTILITY(U,$J,358.3,20096,1,4,0)
- ;;=4^C06.9
- ;;^UTILITY(U,$J,358.3,20096,2)
- ;;=^5000901
- ;;^UTILITY(U,$J,358.3,20097,0)
- ;;=C11.9^^84^929^141
- ;;^UTILITY(U,$J,358.3,20097,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20097,1,3,0)
- ;;=3^Malig Neop Nasopharynx,Unspec
- ;;^UTILITY(U,$J,358.3,20097,1,4,0)
- ;;=4^C11.9
- ;;^UTILITY(U,$J,358.3,20097,2)
- ;;=^5000911
- ;;^UTILITY(U,$J,358.3,20098,0)
- ;;=C10.9^^84^929^144
- ;;^UTILITY(U,$J,358.3,20098,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20098,1,3,0)
- ;;=3^Malig Neop Oropharynx,Unspec
- ;;^UTILITY(U,$J,358.3,20098,1,4,0)
- ;;=4^C10.9
- ;;^UTILITY(U,$J,358.3,20098,2)
- ;;=^5000909
- ;;^UTILITY(U,$J,358.3,20099,0)
- ;;=C25.9^^84^929^145
+ ;;^DIC(358.91,0,"GL")
+ ;;=^IBE(358.91,
+ ;;^DIC("B","IMP/EXP MARKING AREA",358.91)
+ ;;=
+ ;;^DIC(358.91,"%D",0)
+ ;;=^^4^4^2940217^
+ ;;^DIC(358.91,"%D",1,0)
+ ;;= 
+ ;;^DIC(358.91,"%D",2,0)
+ ;;=This file is nearly identical to file #357.91. It is used by the
+ ;;^DIC(358.91,"%D",3,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.91,"%D",4,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.91,0)
+ ;;=FIELD^^.04^4
+ ;;^DD(358.91,0,"DDA")
+ ;;=N
+ ;;^DD(358.91,0,"DT")
+ ;;=2960123
+ ;;^DD(358.91,0,"IX","B",358.91,.01)
+ ;;=
+ ;;^DD(358.91,0,"NM","IMP/EXP MARKING AREA")
+ ;;=
+ ;;^DD(358.91,0,"PT",358.22,.06)
+ ;;=
+ ;;^DD(358.91,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.91,.01,0)
+ ;;=NAME^RFX^^0;1^K:$L(X)>30 X
+ ;;^DD(358.91,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.91,.01,1,1,0)
+ ;;=358.91^B
+ ;;^DD(358.91,.01,1,1,1)
+ ;;=S ^IBE(358.91,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.91,.01,1,1,2)
+ ;;=K ^IBE(358.91,"B",$E(X,1,30),DA)
+ ;;^DD(358.91,.01,3)
+ ;;=NAME MUST BE UNDER 31 CHARACTERS
+ ;;^DD(358.91,.01,21,0)
+ ;;=^^1^1^2930608^
+ ;;^DD(358.91,.01,21,1,0)
+ ;;=The name should describe the appearance of the marking area on the form.

@@ -1,6 +1,10 @@
 DIARR6 ;SFISC/DCM-PROCESS ARCHIVED FILE WITH INDEX ;11/18/92  11:49 AM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DIARFILE=$P(DIARL,U,3),DIARFN=+$P(DIARL,U,2)
  S DIARREC=$P(DIARL,U,4,99)
  F DIARXX=1:1 S DIARFLD=$P(DIARREC,U,DIARXX) Q:DIARFLD=""  S DIARFNO=$P(DIARFLD,":"),DIARFNA=$P(DIARFLD,":",2) D

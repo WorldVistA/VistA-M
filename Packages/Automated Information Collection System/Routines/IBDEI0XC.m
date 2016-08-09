@@ -1,120 +1,264 @@
-IBDEI0XC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XC ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15642,1,3,0)
- ;;=3^Alcohol-Induced Depressive & Related Disorder w/ Moderate-Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15642,1,4,0)
- ;;=4^F10.24
- ;;^UTILITY(U,$J,358.3,15642,2)
- ;;=^5003090
- ;;^UTILITY(U,$J,358.3,15643,0)
- ;;=F10.29^^58^684^37
- ;;^UTILITY(U,$J,358.3,15643,1,0)
+ ;;^UTILITY(U,$J,358.3,33539,0)
+ ;;=R40.2112^^119^1582^27
+ ;;^UTILITY(U,$J,358.3,33539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15643,1,3,0)
- ;;=3^Alcohol-Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15643,1,4,0)
- ;;=4^F10.29
- ;;^UTILITY(U,$J,358.3,15643,2)
- ;;=^5003100
- ;;^UTILITY(U,$J,358.3,15644,0)
- ;;=F10.180^^58^684^1
- ;;^UTILITY(U,$J,358.3,15644,1,0)
+ ;;^UTILITY(U,$J,358.3,33539,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,33539,1,4,0)
+ ;;=4^R40.2112
+ ;;^UTILITY(U,$J,358.3,33539,2)
+ ;;=^5019357
+ ;;^UTILITY(U,$J,358.3,33540,0)
+ ;;=R40.2111^^119^1582^28
+ ;;^UTILITY(U,$J,358.3,33540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15644,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15644,1,4,0)
- ;;=4^F10.180
- ;;^UTILITY(U,$J,358.3,15644,2)
- ;;=^5003076
- ;;^UTILITY(U,$J,358.3,15645,0)
- ;;=F10.280^^58^684^2
- ;;^UTILITY(U,$J,358.3,15645,1,0)
+ ;;^UTILITY(U,$J,358.3,33540,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,In the Field
+ ;;^UTILITY(U,$J,358.3,33540,1,4,0)
+ ;;=4^R40.2111
+ ;;^UTILITY(U,$J,358.3,33540,2)
+ ;;=^5019356
+ ;;^UTILITY(U,$J,358.3,33541,0)
+ ;;=R40.2110^^119^1582^29
+ ;;^UTILITY(U,$J,358.3,33541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15645,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/ Moderate/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15645,1,4,0)
- ;;=4^F10.280
- ;;^UTILITY(U,$J,358.3,15645,2)
- ;;=^5003096
- ;;^UTILITY(U,$J,358.3,15646,0)
- ;;=F10.980^^58^684^3
- ;;^UTILITY(U,$J,358.3,15646,1,0)
+ ;;^UTILITY(U,$J,358.3,33541,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33541,1,4,0)
+ ;;=4^R40.2110
+ ;;^UTILITY(U,$J,358.3,33541,2)
+ ;;=^5019355
+ ;;^UTILITY(U,$J,358.3,33542,0)
+ ;;=R40.20^^119^1582^36
+ ;;^UTILITY(U,$J,358.3,33542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15646,1,3,0)
- ;;=3^Alcohol Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15646,1,4,0)
- ;;=4^F10.980
- ;;^UTILITY(U,$J,358.3,15646,2)
- ;;=^5003110
- ;;^UTILITY(U,$J,358.3,15647,0)
- ;;=F10.94^^58^684^4
- ;;^UTILITY(U,$J,358.3,15647,1,0)
+ ;;^UTILITY(U,$J,358.3,33542,1,3,0)
+ ;;=3^Coma,Unspec
+ ;;^UTILITY(U,$J,358.3,33542,1,4,0)
+ ;;=4^R40.20
+ ;;^UTILITY(U,$J,358.3,33542,2)
+ ;;=^5019354
+ ;;^UTILITY(U,$J,358.3,33543,0)
+ ;;=R40.2123^^119^1582^35
+ ;;^UTILITY(U,$J,358.3,33543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15647,1,3,0)
- ;;=3^Alcohol Induced Depressive Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15647,1,4,0)
- ;;=4^F10.94
- ;;^UTILITY(U,$J,358.3,15647,2)
- ;;=^5003104
- ;;^UTILITY(U,$J,358.3,15648,0)
- ;;=F10.26^^58^684^7
- ;;^UTILITY(U,$J,358.3,15648,1,0)
+ ;;^UTILITY(U,$J,358.3,33543,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33543,1,4,0)
+ ;;=4^R40.2123
+ ;;^UTILITY(U,$J,358.3,33543,2)
+ ;;=^5019363
+ ;;^UTILITY(U,$J,358.3,33544,0)
+ ;;=R40.2122^^119^1582^32
+ ;;^UTILITY(U,$J,358.3,33544,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15648,1,3,0)
- ;;=3^Alcohol Induced Neurocog Disorder,Amnestic Cofabul Type w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15648,1,4,0)
- ;;=4^F10.26
- ;;^UTILITY(U,$J,358.3,15648,2)
- ;;=^5003094
- ;;^UTILITY(U,$J,358.3,15649,0)
- ;;=F10.96^^58^684^8
- ;;^UTILITY(U,$J,358.3,15649,1,0)
+ ;;^UTILITY(U,$J,358.3,33544,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
+ ;;^UTILITY(U,$J,358.3,33544,1,4,0)
+ ;;=4^R40.2122
+ ;;^UTILITY(U,$J,358.3,33544,2)
+ ;;=^5019362
+ ;;^UTILITY(U,$J,358.3,33545,0)
+ ;;=R40.2124^^119^1582^31
+ ;;^UTILITY(U,$J,358.3,33545,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15649,1,3,0)
- ;;=3^Alcohol Induced Neurocog Disorder,Amnestic Cofabul Type w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15649,1,4,0)
- ;;=4^F10.96
- ;;^UTILITY(U,$J,358.3,15649,2)
- ;;=^5003108
- ;;^UTILITY(U,$J,358.3,15650,0)
- ;;=F10.27^^58^684^9
- ;;^UTILITY(U,$J,358.3,15650,1,0)
+ ;;^UTILITY(U,$J,358.3,33545,1,3,0)
+ ;;=3^Coma Scale,Eyes Open,to Pain,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33545,1,4,0)
+ ;;=4^R40.2124
+ ;;^UTILITY(U,$J,358.3,33545,2)
+ ;;=^5019364
+ ;;^UTILITY(U,$J,358.3,33546,0)
+ ;;=R40.2211^^119^1582^17
+ ;;^UTILITY(U,$J,358.3,33546,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15650,1,3,0)
- ;;=3^Alcohol Induced Neurocog Disorder,Nonamnestic Confabul Type,w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15650,1,4,0)
- ;;=4^F10.27
- ;;^UTILITY(U,$J,358.3,15650,2)
- ;;=^5003095
- ;;^UTILITY(U,$J,358.3,15651,0)
- ;;=F10.97^^58^684^10
- ;;^UTILITY(U,$J,358.3,15651,1,0)
+ ;;^UTILITY(U,$J,358.3,33546,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,in the Field
+ ;;^UTILITY(U,$J,358.3,33546,1,4,0)
+ ;;=4^R40.2211
+ ;;^UTILITY(U,$J,358.3,33546,2)
+ ;;=^5019376
+ ;;^UTILITY(U,$J,358.3,33547,0)
+ ;;=R40.2210^^119^1582^16
+ ;;^UTILITY(U,$J,358.3,33547,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15651,1,3,0)
- ;;=3^Alcohol Induced Neurocog Disorder,Nonamnestic Confabul Type w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15651,1,4,0)
- ;;=4^F10.97
- ;;^UTILITY(U,$J,358.3,15651,2)
- ;;=^5003109
- ;;^UTILITY(U,$J,358.3,15652,0)
- ;;=F10.288^^58^684^5
- ;;^UTILITY(U,$J,358.3,15652,1,0)
+ ;;^UTILITY(U,$J,358.3,33547,1,3,0)
+ ;;=3^Coma Scale,Best Verbal Response,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33547,1,4,0)
+ ;;=4^R40.2210
+ ;;^UTILITY(U,$J,358.3,33547,2)
+ ;;=^5019375
+ ;;^UTILITY(U,$J,358.3,33548,0)
+ ;;=R40.2224^^119^1582^18
+ ;;^UTILITY(U,$J,358.3,33548,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15652,1,3,0)
- ;;=3^Alcohol Induced Mild Neurocog Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15652,1,4,0)
- ;;=4^F10.288
- ;;^UTILITY(U,$J,358.3,15652,2)
- ;;=^5003099
- ;;^UTILITY(U,$J,358.3,15653,0)
- ;;=F10.988^^58^684^6
- ;;^UTILITY(U,$J,358.3,15653,1,0)
+ ;;^UTILITY(U,$J,358.3,33548,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33548,1,4,0)
+ ;;=4^R40.2224
+ ;;^UTILITY(U,$J,358.3,33548,2)
+ ;;=^5019384
+ ;;^UTILITY(U,$J,358.3,33549,0)
+ ;;=R40.2223^^119^1582^19
+ ;;^UTILITY(U,$J,358.3,33549,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15653,1,3,0)
- ;;=3^Alcohol Induced Mild Neurocog Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15653,1,4,0)
- ;;=4^F10.988
- ;;^UTILITY(U,$J,358.3,15653,2)
- ;;=^5003113
+ ;;^UTILITY(U,$J,358.3,33549,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33549,1,4,0)
+ ;;=4^R40.2223
+ ;;^UTILITY(U,$J,358.3,33549,2)
+ ;;=^5019383
+ ;;^UTILITY(U,$J,358.3,33550,0)
+ ;;=R40.2222^^119^1582^20
+ ;;^UTILITY(U,$J,358.3,33550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33550,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Emger Dept
+ ;;^UTILITY(U,$J,358.3,33550,1,4,0)
+ ;;=4^R40.2222
+ ;;^UTILITY(U,$J,358.3,33550,2)
+ ;;=^5019382
+ ;;^UTILITY(U,$J,358.3,33551,0)
+ ;;=R40.2221^^119^1582^21
+ ;;^UTILITY(U,$J,358.3,33551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33551,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,in the Field
+ ;;^UTILITY(U,$J,358.3,33551,1,4,0)
+ ;;=4^R40.2221
+ ;;^UTILITY(U,$J,358.3,33551,2)
+ ;;=^5019381
+ ;;^UTILITY(U,$J,358.3,33552,0)
+ ;;=R40.2220^^119^1582^22
+ ;;^UTILITY(U,$J,358.3,33552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33552,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,Incomprehensible Words,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33552,1,4,0)
+ ;;=4^R40.2220
+ ;;^UTILITY(U,$J,358.3,33552,2)
+ ;;=^5019380
+ ;;^UTILITY(U,$J,358.3,33553,0)
+ ;;=R40.2214^^119^1582^23
+ ;;^UTILITY(U,$J,358.3,33553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33553,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33553,1,4,0)
+ ;;=4^R40.2214
+ ;;^UTILITY(U,$J,358.3,33553,2)
+ ;;=^5019379
+ ;;^UTILITY(U,$J,358.3,33554,0)
+ ;;=R40.2213^^119^1582^25
+ ;;^UTILITY(U,$J,358.3,33554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33554,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33554,1,4,0)
+ ;;=4^R40.2213
+ ;;^UTILITY(U,$J,358.3,33554,2)
+ ;;=^5019378
+ ;;^UTILITY(U,$J,358.3,33555,0)
+ ;;=R40.2212^^119^1582^24
+ ;;^UTILITY(U,$J,358.3,33555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33555,1,3,0)
+ ;;=3^Coma Scale,Best Verbal,None,Emger Dept
+ ;;^UTILITY(U,$J,358.3,33555,1,4,0)
+ ;;=4^R40.2212
+ ;;^UTILITY(U,$J,358.3,33555,2)
+ ;;=^5019377
+ ;;^UTILITY(U,$J,358.3,33556,0)
+ ;;=R40.2344^^119^1582^6
+ ;;^UTILITY(U,$J,358.3,33556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33556,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33556,1,4,0)
+ ;;=4^R40.2344
+ ;;^UTILITY(U,$J,358.3,33556,2)
+ ;;=^5019419
+ ;;^UTILITY(U,$J,358.3,33557,0)
+ ;;=R40.2343^^119^1582^7
+ ;;^UTILITY(U,$J,358.3,33557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33557,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33557,1,4,0)
+ ;;=4^R40.2343
+ ;;^UTILITY(U,$J,358.3,33557,2)
+ ;;=^5019418
+ ;;^UTILITY(U,$J,358.3,33558,0)
+ ;;=R40.2342^^119^1582^8
+ ;;^UTILITY(U,$J,358.3,33558,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33558,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Emger Dept
+ ;;^UTILITY(U,$J,358.3,33558,1,4,0)
+ ;;=4^R40.2342
+ ;;^UTILITY(U,$J,358.3,33558,2)
+ ;;=^5019417
+ ;;^UTILITY(U,$J,358.3,33559,0)
+ ;;=R40.2341^^119^1582^9
+ ;;^UTILITY(U,$J,358.3,33559,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33559,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,in the Field
+ ;;^UTILITY(U,$J,358.3,33559,1,4,0)
+ ;;=4^R40.2341
+ ;;^UTILITY(U,$J,358.3,33559,2)
+ ;;=^5019416
+ ;;^UTILITY(U,$J,358.3,33560,0)
+ ;;=R40.2340^^119^1582^10
+ ;;^UTILITY(U,$J,358.3,33560,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33560,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Flexion Withdrawal,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33560,1,4,0)
+ ;;=4^R40.2340
+ ;;^UTILITY(U,$J,358.3,33560,2)
+ ;;=^5019415
+ ;;^UTILITY(U,$J,358.3,33561,0)
+ ;;=R40.2324^^119^1582^1
+ ;;^UTILITY(U,$J,358.3,33561,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33561,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33561,1,4,0)
+ ;;=4^R40.2324
+ ;;^UTILITY(U,$J,358.3,33561,2)
+ ;;=^5019409
+ ;;^UTILITY(U,$J,358.3,33562,0)
+ ;;=R40.2323^^119^1582^4
+ ;;^UTILITY(U,$J,358.3,33562,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33562,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33562,1,4,0)
+ ;;=4^R40.2323
+ ;;^UTILITY(U,$J,358.3,33562,2)
+ ;;=^5019408
+ ;;^UTILITY(U,$J,358.3,33563,0)
+ ;;=R40.2322^^119^1582^2
+ ;;^UTILITY(U,$J,358.3,33563,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33563,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Emger Dept
+ ;;^UTILITY(U,$J,358.3,33563,1,4,0)
+ ;;=4^R40.2322
+ ;;^UTILITY(U,$J,358.3,33563,2)
+ ;;=^5019407
+ ;;^UTILITY(U,$J,358.3,33564,0)
+ ;;=R40.2321^^119^1582^5
+ ;;^UTILITY(U,$J,358.3,33564,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33564,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,in the Field
+ ;;^UTILITY(U,$J,358.3,33564,1,4,0)
+ ;;=4^R40.2321
+ ;;^UTILITY(U,$J,358.3,33564,2)
+ ;;=^5019406

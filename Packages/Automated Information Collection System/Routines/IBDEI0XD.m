@@ -1,124 +1,266 @@
-IBDEI0XD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XD ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15654,0)
- ;;=F10.159^^58^684^11
- ;;^UTILITY(U,$J,358.3,15654,1,0)
+ ;;^UTILITY(U,$J,358.3,33565,0)
+ ;;=R40.2320^^119^1582^3
+ ;;^UTILITY(U,$J,358.3,33565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15654,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15654,1,4,0)
- ;;=4^F10.159
- ;;^UTILITY(U,$J,358.3,15654,2)
- ;;=^5003075
- ;;^UTILITY(U,$J,358.3,15655,0)
- ;;=F10.259^^58^684^12
- ;;^UTILITY(U,$J,358.3,15655,1,0)
+ ;;^UTILITY(U,$J,358.3,33565,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,Extension,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33565,1,4,0)
+ ;;=4^R40.2320
+ ;;^UTILITY(U,$J,358.3,33565,2)
+ ;;=^5019405
+ ;;^UTILITY(U,$J,358.3,33566,0)
+ ;;=R40.2314^^119^1582^11
+ ;;^UTILITY(U,$J,358.3,33566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15655,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15655,1,4,0)
- ;;=4^F10.259
- ;;^UTILITY(U,$J,358.3,15655,2)
- ;;=^5003093
- ;;^UTILITY(U,$J,358.3,15656,0)
- ;;=F10.959^^58^684^13
- ;;^UTILITY(U,$J,358.3,15656,1,0)
+ ;;^UTILITY(U,$J,358.3,33566,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,24+ Hrs
+ ;;^UTILITY(U,$J,358.3,33566,1,4,0)
+ ;;=4^R40.2314
+ ;;^UTILITY(U,$J,358.3,33566,2)
+ ;;=^5019404
+ ;;^UTILITY(U,$J,358.3,33567,0)
+ ;;=R40.2313^^119^1582^14
+ ;;^UTILITY(U,$J,358.3,33567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15656,1,3,0)
- ;;=3^Alcohol Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15656,1,4,0)
- ;;=4^F10.959
- ;;^UTILITY(U,$J,358.3,15656,2)
- ;;=^5003107
- ;;^UTILITY(U,$J,358.3,15657,0)
- ;;=F10.181^^58^684^14
- ;;^UTILITY(U,$J,358.3,15657,1,0)
+ ;;^UTILITY(U,$J,358.3,33567,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,at Hospital Admission
+ ;;^UTILITY(U,$J,358.3,33567,1,4,0)
+ ;;=4^R40.2313
+ ;;^UTILITY(U,$J,358.3,33567,2)
+ ;;=^5019403
+ ;;^UTILITY(U,$J,358.3,33568,0)
+ ;;=R40.2312^^119^1582^12
+ ;;^UTILITY(U,$J,358.3,33568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15657,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15657,1,4,0)
- ;;=4^F10.181
- ;;^UTILITY(U,$J,358.3,15657,2)
- ;;=^5003077
- ;;^UTILITY(U,$J,358.3,15658,0)
- ;;=F10.282^^58^684^18
- ;;^UTILITY(U,$J,358.3,15658,1,0)
+ ;;^UTILITY(U,$J,358.3,33568,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Emerg Dept
+ ;;^UTILITY(U,$J,358.3,33568,1,4,0)
+ ;;=4^R40.2312
+ ;;^UTILITY(U,$J,358.3,33568,2)
+ ;;=^5019402
+ ;;^UTILITY(U,$J,358.3,33569,0)
+ ;;=R40.2311^^119^1582^15
+ ;;^UTILITY(U,$J,358.3,33569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15658,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15658,1,4,0)
- ;;=4^F10.282
- ;;^UTILITY(U,$J,358.3,15658,2)
- ;;=^5003098
- ;;^UTILITY(U,$J,358.3,15659,0)
- ;;=F10.982^^58^684^19
- ;;^UTILITY(U,$J,358.3,15659,1,0)
+ ;;^UTILITY(U,$J,358.3,33569,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,in the Field
+ ;;^UTILITY(U,$J,358.3,33569,1,4,0)
+ ;;=4^R40.2311
+ ;;^UTILITY(U,$J,358.3,33569,2)
+ ;;=^5019401
+ ;;^UTILITY(U,$J,358.3,33570,0)
+ ;;=R40.2310^^119^1582^13
+ ;;^UTILITY(U,$J,358.3,33570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15659,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15659,1,4,0)
- ;;=4^F10.982
- ;;^UTILITY(U,$J,358.3,15659,2)
- ;;=^5003112
- ;;^UTILITY(U,$J,358.3,15660,0)
- ;;=F10.281^^58^684^15
- ;;^UTILITY(U,$J,358.3,15660,1,0)
+ ;;^UTILITY(U,$J,358.3,33570,1,3,0)
+ ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
+ ;;^UTILITY(U,$J,358.3,33570,1,4,0)
+ ;;=4^R40.2310
+ ;;^UTILITY(U,$J,358.3,33570,2)
+ ;;=^5019400
+ ;;^UTILITY(U,$J,358.3,33571,0)
+ ;;=R40.4^^119^1582^38
+ ;;^UTILITY(U,$J,358.3,33571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15660,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15660,1,4,0)
- ;;=4^F10.281
- ;;^UTILITY(U,$J,358.3,15660,2)
- ;;=^5003097
- ;;^UTILITY(U,$J,358.3,15661,0)
- ;;=F10.981^^58^684^16
- ;;^UTILITY(U,$J,358.3,15661,1,0)
+ ;;^UTILITY(U,$J,358.3,33571,1,3,0)
+ ;;=3^Transient Alteration of Awareness
+ ;;^UTILITY(U,$J,358.3,33571,1,4,0)
+ ;;=4^R40.4
+ ;;^UTILITY(U,$J,358.3,33571,2)
+ ;;=^5019435
+ ;;^UTILITY(U,$J,358.3,33572,0)
+ ;;=V00.811A^^119^1583^45
+ ;;^UTILITY(U,$J,358.3,33572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15661,1,3,0)
- ;;=3^Alcohol Induced Sexual Dysfunction w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15661,1,4,0)
- ;;=4^F10.981
- ;;^UTILITY(U,$J,358.3,15661,2)
- ;;=^5003111
- ;;^UTILITY(U,$J,358.3,15662,0)
- ;;=F10.182^^58^684^17
- ;;^UTILITY(U,$J,358.3,15662,1,0)
+ ;;^UTILITY(U,$J,358.3,33572,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
+ ;;^UTILITY(U,$J,358.3,33572,1,4,0)
+ ;;=4^V00.811A
+ ;;^UTILITY(U,$J,358.3,33572,2)
+ ;;=^5055937
+ ;;^UTILITY(U,$J,358.3,33573,0)
+ ;;=V00.811D^^119^1583^46
+ ;;^UTILITY(U,$J,358.3,33573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15662,1,3,0)
- ;;=3^Alcohol Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15662,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,15662,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,15663,0)
- ;;=F10.121^^58^684^20
- ;;^UTILITY(U,$J,358.3,15663,1,0)
+ ;;^UTILITY(U,$J,358.3,33573,1,3,0)
+ ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33573,1,4,0)
+ ;;=4^V00.811D
+ ;;^UTILITY(U,$J,358.3,33573,2)
+ ;;=^5055938
+ ;;^UTILITY(U,$J,358.3,33574,0)
+ ;;=V00.812A^^119^1583^133
+ ;;^UTILITY(U,$J,358.3,33574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15663,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15663,1,4,0)
- ;;=4^F10.121
- ;;^UTILITY(U,$J,358.3,15663,2)
- ;;=^5003070
- ;;^UTILITY(U,$J,358.3,15664,0)
- ;;=F10.221^^58^684^21
- ;;^UTILITY(U,$J,358.3,15664,1,0)
+ ;;^UTILITY(U,$J,358.3,33574,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33574,1,4,0)
+ ;;=4^V00.812A
+ ;;^UTILITY(U,$J,358.3,33574,2)
+ ;;=^5055940
+ ;;^UTILITY(U,$J,358.3,33575,0)
+ ;;=V00.812D^^119^1583^134
+ ;;^UTILITY(U,$J,358.3,33575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15664,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15664,1,4,0)
- ;;=4^F10.221
- ;;^UTILITY(U,$J,358.3,15664,2)
- ;;=^5003084
- ;;^UTILITY(U,$J,358.3,15665,0)
- ;;=F10.921^^58^684^22
- ;;^UTILITY(U,$J,358.3,15665,1,0)
+ ;;^UTILITY(U,$J,358.3,33575,1,3,0)
+ ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33575,1,4,0)
+ ;;=4^V00.812D
+ ;;^UTILITY(U,$J,358.3,33575,2)
+ ;;=^5055941
+ ;;^UTILITY(U,$J,358.3,33576,0)
+ ;;=V00.818A^^119^1583^131
+ ;;^UTILITY(U,$J,358.3,33576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15665,1,3,0)
- ;;=3^Alcohol Intoxication Delirium w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15665,1,4,0)
- ;;=4^F10.921
- ;;^UTILITY(U,$J,358.3,15665,2)
- ;;=^5003102
+ ;;^UTILITY(U,$J,358.3,33576,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33576,1,4,0)
+ ;;=4^V00.818A
+ ;;^UTILITY(U,$J,358.3,33576,2)
+ ;;=^5055943
+ ;;^UTILITY(U,$J,358.3,33577,0)
+ ;;=V00.818D^^119^1583^132
+ ;;^UTILITY(U,$J,358.3,33577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33577,1,3,0)
+ ;;=3^Wheelchair Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33577,1,4,0)
+ ;;=4^V00.818D
+ ;;^UTILITY(U,$J,358.3,33577,2)
+ ;;=^5055944
+ ;;^UTILITY(U,$J,358.3,33578,0)
+ ;;=V00.831A^^119^1583^43
+ ;;^UTILITY(U,$J,358.3,33578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33578,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33578,1,4,0)
+ ;;=4^V00.831A
+ ;;^UTILITY(U,$J,358.3,33578,2)
+ ;;=^5055955
+ ;;^UTILITY(U,$J,358.3,33579,0)
+ ;;=V00.831D^^119^1583^44
+ ;;^UTILITY(U,$J,358.3,33579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33579,1,3,0)
+ ;;=3^Fall from Mobility Scooter,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33579,1,4,0)
+ ;;=4^V00.831D
+ ;;^UTILITY(U,$J,358.3,33579,2)
+ ;;=^5055956
+ ;;^UTILITY(U,$J,358.3,33580,0)
+ ;;=V00.832A^^119^1583^95
+ ;;^UTILITY(U,$J,358.3,33580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33580,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33580,1,4,0)
+ ;;=4^V00.832A
+ ;;^UTILITY(U,$J,358.3,33580,2)
+ ;;=^5055958
+ ;;^UTILITY(U,$J,358.3,33581,0)
+ ;;=V00.832D^^119^1583^96
+ ;;^UTILITY(U,$J,358.3,33581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33581,1,3,0)
+ ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33581,1,4,0)
+ ;;=4^V00.832D
+ ;;^UTILITY(U,$J,358.3,33581,2)
+ ;;=^5055959
+ ;;^UTILITY(U,$J,358.3,33582,0)
+ ;;=V00.838A^^119^1583^93
+ ;;^UTILITY(U,$J,358.3,33582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33582,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33582,1,4,0)
+ ;;=4^V00.838A
+ ;;^UTILITY(U,$J,358.3,33582,2)
+ ;;=^5055961
+ ;;^UTILITY(U,$J,358.3,33583,0)
+ ;;=V00.838D^^119^1583^94
+ ;;^UTILITY(U,$J,358.3,33583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33583,1,3,0)
+ ;;=3^Mobility Scooter Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33583,1,4,0)
+ ;;=4^V00.838D
+ ;;^UTILITY(U,$J,358.3,33583,2)
+ ;;=^5055962
+ ;;^UTILITY(U,$J,358.3,33584,0)
+ ;;=V00.891A^^119^1583^57
+ ;;^UTILITY(U,$J,358.3,33584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33584,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33584,1,4,0)
+ ;;=4^V00.891A
+ ;;^UTILITY(U,$J,358.3,33584,2)
+ ;;=^5055964
+ ;;^UTILITY(U,$J,358.3,33585,0)
+ ;;=V00.891D^^119^1583^58
+ ;;^UTILITY(U,$J,358.3,33585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33585,1,3,0)
+ ;;=3^Fall from Pedestrian Conveyance,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33585,1,4,0)
+ ;;=4^V00.891D
+ ;;^UTILITY(U,$J,358.3,33585,2)
+ ;;=^5055965
+ ;;^UTILITY(U,$J,358.3,33586,0)
+ ;;=V00.892A^^119^1583^99
+ ;;^UTILITY(U,$J,358.3,33586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33586,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33586,1,4,0)
+ ;;=4^V00.892A
+ ;;^UTILITY(U,$J,358.3,33586,2)
+ ;;=^5055967
+ ;;^UTILITY(U,$J,358.3,33587,0)
+ ;;=V00.892D^^119^1583^100
+ ;;^UTILITY(U,$J,358.3,33587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33587,1,3,0)
+ ;;=3^Pedestrian Conveyance Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33587,1,4,0)
+ ;;=4^V00.892D
+ ;;^UTILITY(U,$J,358.3,33587,2)
+ ;;=^5055968
+ ;;^UTILITY(U,$J,358.3,33588,0)
+ ;;=V00.898A^^119^1583^97
+ ;;^UTILITY(U,$J,358.3,33588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33588,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33588,1,4,0)
+ ;;=4^V00.898A
+ ;;^UTILITY(U,$J,358.3,33588,2)
+ ;;=^5055970
+ ;;^UTILITY(U,$J,358.3,33589,0)
+ ;;=V00.898D^^119^1583^98
+ ;;^UTILITY(U,$J,358.3,33589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33589,1,3,0)
+ ;;=3^Pedestrian Conveyance Accident NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33589,1,4,0)
+ ;;=4^V00.898D
+ ;;^UTILITY(U,$J,358.3,33589,2)
+ ;;=^5055971
+ ;;^UTILITY(U,$J,358.3,33590,0)
+ ;;=W00.0XXA^^119^1583^79
+ ;;^UTILITY(U,$J,358.3,33590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33590,1,3,0)
+ ;;=3^Fall on Same Level d/t Ice/Snow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33590,1,4,0)
+ ;;=4^W00.0XXA
+ ;;^UTILITY(U,$J,358.3,33590,2)
+ ;;=^5059510
+ ;;^UTILITY(U,$J,358.3,33591,0)
+ ;;=W00.0XXD^^119^1583^80

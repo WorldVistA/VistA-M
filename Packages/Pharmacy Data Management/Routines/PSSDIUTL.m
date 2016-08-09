@@ -1,11 +1,9 @@
 PSSDIUTL ;HP/MJE - Drug Interaction Utility ;09/22/11 5:00pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**169**;9/30/97;Build 41
+ ;;1.0;PHARMACY DATA MANAGEMENT;**169,175**;9/30/97;Build 9
  ;Reference ^PSDRUG supported by DBIA 221
  ;Reference to XTID is supported DBIS 4631
  ;Reference to IN^PSSHRQ2 supported by DBIA 5369
- ;
-CHKFDB ;ping FDB status the returned data will determine if to continue
- ;return 0 - ping successful,  -1^reason  ping failed
+CHKFDB ;ping FDB
  N BASE
  S BASE="PINGTST^"_$T(+0)
  K ^TMP($J,BASE),DRGLST
@@ -19,10 +17,8 @@ CHKFDB ;ping FDB status the returned data will determine if to continue
  .S DIR("A")="Press Return to continue...",DIR("?")="Press Return to continue"
  .W ! D ^DIR K DIRUT,DUOUT,DIR,X,Y  W @IOF
  K ^TMP($J,BASE),BASE
- ;
  N NUM,MON,TEXTSTR S DRGLST=0,NUM=1,TEXTSTR="",PSSDGCK=1 N ID,ORTYP,NDF,DRUG,ON,PSONULN,PSONULN2 S $P(PSONULN,"-",60)="-",$P(PSONULN2,"=",60)="="
  K ^TMP($J)
- ;
 SELECT ;
  K:'$G(PSORXED) CLOZPAT
  K IT,DIC,X,Y,PSODRUG("TRADE NAME"),PSODRUG("NDC"),PSODRUG("DAW"),PSODRUG("BAD") S:$G(POERR)&($P($G(OR0),"^",9)) Y=$P(^PSDRUG($P(OR0,"^",9),0),"^")
@@ -34,7 +30,6 @@ SELECT ;
  I X?1."?" W !!,"Answer with DRUG NUMBER, or GENERIC NAME, or VA PRODUCT NAME, or",!,"NATIONAL DRUG CLASS, or SYNONYM" G SELECT
  I $G(PSORXED),X["^" S PSORXED("DFLG")=1 W ! G SELECTX
  I X="^"!(X["^^")!($D(DTOUT)) S PSONEW("DFLG")=1 W ! G SELECTX
- ;I '$G(POERR),X[U,$L(X)>1 S PSODIR("FLD")=PSONEW("FLD") D JUMP^PSODIR1 S:$G(PSODIR("FIELD")) PSONEW("FIELD")=PSODIR("FIELD") K PSODIR S PSODRG("QFLG")=1 G SELECTX
  S DIC=50,DIC(0)="EMQZVT",DIC("T")="",D="B^C^VAPN^VAC"
  S DIC("S")="I $S('$D(^PSDRUG(+Y,""I"")):1,'^(""I""):1,DT'>^(""I""):1,1:0),$$GCN^PSSDIUTL(+Y),$$PKGFLG^PSSDIUTL($P($G(^PSDRUG(+Y,2)),""^"",3)),$D(^PSDRUG(""ASP"",+$G(^(2)),+Y))"
  D MIX^DIC1 K DIC,PKF2,D
@@ -51,7 +46,6 @@ SELECT ;
  S DRGLST=$G(DRGLST)+1,DRGLST(+Y)=Y_"^"_DRGLST,NUM=NUM+1 G SELECT
 SELECTX K DIC,X,Y,DTOUT,DUOUT,PSONEW("OLD VAL"),DRGLST
  Q
- ;
 GCN(PSSIENID) ;Return 0 for not matched, 1 for matched with no GCNSEQNO, 1^1 for matched with a GCNSEQNO
  N PSSNDFID,PSSGCNPT,PSSGCNID
  S PSSNDFID=$P($G(^PSDRUG(PSSIENID,"ND")),"^"),PSSGCNPT=$P($G(^PSDRUG(PSSIENID,"ND")),"^",3)
@@ -59,14 +53,12 @@ GCN(PSSIENID) ;Return 0 for not matched, 1 for matched with no GCNSEQNO, 1^1 for
  S PSSGCNID=$$PROD0^PSNAPIS(PSSNDFID,PSSGCNPT)
  I $P(PSSGCNID,"^",7) Q PSSIENID_";"_PSSNDFID_";"_$P(PSSGCNID,"^",7)
  Q PSSIENID_";"_PSSNDFID
- ;
-PKGFLG(PKF2) ;Return 0 for not in range of acceptable package flags, 1 for within range
+PKGFLG(PKF2) ;
  I $S(PKF2["O":1,1:0) Q 1
  I $S(PKF2["X":1,1:0) Q 1
  I $S(PKF2["U":1,1:0) Q 1
  I $S(PKF2["I":1,1:0) Q 1
  Q 0
- ;
 TRADE ;
  K DIR,DIC,DA,X,Y
  S DIR(0)="52,6.5" S:$G(PSOTRN)]"" DIR("B")=$G(PSOTRN) D ^DIR K DIR,DIC
@@ -74,9 +66,7 @@ TRADE ;
  I $D(DIRUT) S:$D(DUOUT)!$D(DTOUT)&('$D(PSORX("EDIT"))) PSONEW("DFLG")=1 G TRADEX
  S PSODRUG("TRADE NAME")=Y
 TRADEX I $G(PSORXED("DFLG")),$D(DIRUT) S PSORXED("DFLG")=1
- K DIRUT,DTOUT,DUOUT,X,Y,DA,DR,DIE
- Q
- ;
+ K DIRUT,DTOUT,DUOUT,X,Y,DA,DR,DIE Q
 FDBCALL S LIST="PSOPEPS",^TMP($J,LIST,"IN","DRUGDRUG")=""
  F I=0:0 S I=$O(DRGLST(I)) Q:'I  D
  .S DIEN=$P(DRGLST(I),"^"),DNM=$P(DRGLST(I),"^",2),ON="Z;"_$P(DRGLST(I),"^",3)_";PROSPECTIVE;"_$P(DRGLST(I),"^",3)
@@ -86,55 +76,44 @@ FDBCALL S LIST="PSOPEPS",^TMP($J,LIST,"IN","DRUGDRUG")=""
  .S SEQN=$P(X,"^",7)
  .S ^TMP($J,LIST,"IN","PROSPECTIVE",ON)=SEQN_"^"_ID_"^"_DIEN_"^"_DNM K ID
  S ^TMP($J,LIST,"IN","THERAPY")=""
- ;I $O(^TMP($J,LIST,"IN","PROSPECTIVE",""))]"" 
- D IN^PSSHRQ2(LIST)   ;if patient has meds
+ D IN^PSSHRQ2(LIST)
  S THSW2=0
- I +$G(^TMP($J,LIST,"OUT",0))=1 D PROC ;if order checks returned
+ I +$G(^TMP($J,LIST,"OUT",0))=1 D PROC
  I '$G(^TMP($J,LIST,"OUT",0)) W !,"No drug interactions or therapeutic duplication occurred." W ! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR G EXIT
- I +$G(^TMP($J,LIST,"OUT",0))=-1 W !,"Error: "_$P(^TMP($J,"PSOPEPS",0),"^",2),! G EXIT
+ I +$G(^TMP($J,LIST,"OUT",0))=-1 W !,"Error: "_$P(^TMP($J,"PSOPEPS","OUT",0),"^",2),! G EXIT
  G:'$D(^TMP($J,"PSOPEPS","OUT","THERAPY")) RMON
  W !,PSONULN2 K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
 RMON I $G(MON) D MON I $G(X)="" W ! D RMON
 EXIT ;
- K DRGLST,DIC,X,Y,ID,ORTYP,DIEN,DNM,PSONULN,PSSDGCK,MON,^TMP($J),LIST,PSODRUG("IEN")
- Q
- ;
+ K DRGLST,DIC,X,Y,ID,ORTYP,DIEN,DNM,PSONULN,PSSDGCK,MON,^TMP($J),LIST,PSODRUG("IEN") Q
 PROC ;
- ;I '$D(^TMP($J,LIST,"OUT","DRUGDRUG"))&'$D(^TMP($J,LIST,"OUT","THERAPY",1)) W !,"No Order Check Warnings Found",! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  I $D(PSODGCK) N PSONULN,PSONULN2,THSW2 S $P(PSONULN,"-",60)="-",$P(PSONULN2,"=",60)="=",THSW2=0
  W @IOF K ^UTILITY($J) I $O(^TMP($J,LIST,"OUT","EXCEPTIONS",""))]"" D EXC^PSODDPR5
  I '$D(^TMP($J,LIST,"OUT","DRUGDRUG"))&'$D(^TMP($J,LIST,"OUT","THERAPY",1)) W !,"No Order Check Warnings Found",! K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  I $D(PSODGCK),'$D(^TMP($J,LIST,"OUT","DRUGDRUG")),$D(^TMP($J,"PSOPEPS","OUT","THERAPY")) G DGCKTHER
- ;W @IOF K ^UTILITY($J) I $O(^TMP($J,LIST,"OUT","EXCEPTIONS",""))]"" D EXC^PSODDPR5
- I $D(^TMP($J,LIST,"OUT","DRUGDRUG")) W !,"*** DRUG INTERACTION(S) ***",!,PSONULN2,!
+ D DELDISC^PSSDIUTX I $D(^TMP($J,LIST,"OUT","DRUGDRUG")) W !,"*** DRUG INTERACTION(S) ***",!,PSONULN2,!
  N DRG,ON,CT,DRGI,PDRG,SEV,SEVH,STX,INT,CLI,PDRG S (ON,DRG,SV)="",CT=0,SEVH="Critical"
  F  S SV=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV)) Q:SV=""  F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""  D
  .F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""  F  S CT=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT)) Q:'CT  D DUP
  I $D(^TMP($J,LIST,"OUT","DRUGDRUG")) W !,PSONULN2 K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR ;(end of inter data)
 DGCKTHER I $D(^TMP($J,"PSOPEPS","OUT","THERAPY")) W @IOF W PSONULN2,!,"*** THERAPEUTIC DUPLICATION(S) ***",! D THER
- ;I $D(PSODGCK) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." W ! D ^DIR K DIR W @IOF Q
  I $D(PSODGCK),'$D(^TMP($J,LIST,"OUT","DRUGDRUG")),$D(^TMP($J,"PSOPEPS","OUT","THERAPY")) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." W ! D ^DIR K DIR W @IOF Q
 DGCKMON I $D(PSODGCK),$D(^TMP($J,LIST,"OUT","DRUGDRUG")),$G(MON) D MON I $G(X)="" W ! D DGCKMON
  Q
- ;
 THER ;
- S (THR,THR1,THR2,TCTR,TCLSTR)="" S TALWNUM=0 N TLN,TLN2 S $P(TLN,"=",60)="",$P(TLN2,"-",60)=""
- S THSW=0
- ;W !,TLN,!,"*** THERAPEUTIC DUPLICATION(S) ***",!
+ S (THR,THR1,THR2,TCTR,TCLSTR)="" S TALWNUM=0 N TLN,TLN2 S $P(TLN,"=",60)="",$P(TLN2,"-",60)="" S THSW=0
  F  S THR=$O(^TMP($J,LIST,"OUT","THERAPY",THR)) Q:THR=""  D
  .S THR1="",TCLSTR=""
  .F  S THR1=$O(^TMP($J,LIST,"OUT","THERAPY",THR,THR1)) Q:THR1=""  D
  ..S TALWNUM=TALWNUM+$G(^TMP($J,LIST,"OUT","THERAPY",THR,THR1,"ALLOW"))
  ..S TCLSTR=TCLSTR_$G(^TMP($J,LIST,"OUT","THERAPY",THR,THR1,"CLASS"))
  ..S:+$O(^TMP($J,LIST,"OUT","THERAPY",THR,THR1))'=0 TCLSTR=TCLSTR_", "
- .;I ($Y+6)>IOSL,$E(IOST)="C" D
- .;I (THSW&TALWNUM>0) K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  .I TALWNUM=0 I ($Y+8)>IOSL,$E(IOST)="C" D
  ..K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  .W:THSW !,TLN2 S THSW=1
  .I TALWNUM=0 D
  ..F  S TCTR=$O(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)) Q:TCTR=""  D
- ...W !,?12,"Drug Name: ",$P($G(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)),"^",3)
+ ...W !,?12,"Drug Name: ",$$THOSTAT^PSSCKOS($P($G(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)),U,3),THR,TCTR)
  ..W !,!,"Duplication Allowance: 0",!,?11,"Drug Class: "
  ..I $L(TCLSTR)>50 D
  ...K BSIG N BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
@@ -147,17 +126,13 @@ THER ;
  ...S I=""
  ...F  S I=$O(BSIG(I)) Q:'I  D
  ....W:I=1 BSIG(I),! W:I>1 ?23,BSIG(I)
- ...;W "LL"_TLN2,!
  ..E  D
  ...W TCLSTR
- ..;K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
- .;I TALWNUM>0 K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  .I TALWNUM>0 D
  ..S THR2="",TCLSTR=""
  ..F  S THR2=$O(^TMP($J,LIST,"OUT","THERAPY",THR,THR2)) Q:+THR2=0  D
- ...;W !,TLN,!,"TTT*** THERAPEUTIC DUPLICATION(S) ***",!
  ...F  S TCTR=$O(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)) Q:TCTR=""  D
- ....W !,?12,"Drug Name: ",$P($G(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)),"^",3)
+ ....W !,?12,"Drug Name: ",$$THOSTAT^PSSCKOS($P($G(^TMP($J,LIST,"OUT","THERAPY",THR,"DRUGS",TCTR)),U,3),THR,TCTR)
  ...W !,!,"Duplication Allowance: ",$G(^TMP($J,LIST,"OUT","THERAPY",THR,THR2,"ALLOW"))
  ...K TCLSTR S TCLSTR=^TMP($J,LIST,"OUT","THERAPY",THR,THR2,"CLASS")
  ...W !,?11,"Drug Class: "
@@ -174,33 +149,25 @@ THER ;
  .....I ($Y+6)>IOSL,$E(IOST)="C" D
  ......K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  .....W:I=1 BSIG(I),! W:I>1 ?23,BSIG(I),!
- ....;W "YY"_TLN,!
  ...E  D
  ....W TCLSTR,!
  ...I ($Y+6)>IOSL,$E(IOST)="C" D
  ....K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR
- ...;K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM,TCLSTR
- ...;W:$O(^TMP($J,LIST,"OUT","THERAPY",THR))="" !,"FF"_TLN,!
- ;K THR,THR1,TCTR,TALWNUM,TCLSTR
  Q
- ;  
 DUP ;
+ N PDRGN,DRGN S PDRGN="",DRGN=""
  I ($Y+8)>IOSL,$E(IOST)="C" D
  .K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF
  I $O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"PMON",0)) S MON=1
- ;I $O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"CMON",0)) S MON=2
- ;I $O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"PMON",0)),$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"CMON",0)) S MON=3
  S PDRG=$P(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT),"^",4)
  S CLI=$G(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"CLIN"))
  S SEV=$G(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON,CT,"SEV"))
- ;I ($Y+8)>IOSL!(($Y+8)&$L(CLI)>60),$E(IOST)="C" D
- ;.K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR W @IOF ;,!,PSONULN,! 
- ;W !,PSONULN,!,CT_". ***"_SEV_"*** with "_DRG_" and "_PDRG,!!
  S:SEVH'=SEV PSONULN="",$P(PSONULN,"=",60)="="
  I ($Y+6)>IOSL,$E(IOST)="C" D
  .K DIR S DIR(0)="E",DIR("A")="Press Return to Continue..." D ^DIR K DIR
  W:THSW2 PSONULN,! S THSW2=1
- W "***"_SEV_"*** with "_DRG_" and" W:SEV="Critical" !,?15,PDRG,!! W:SEV="Significant" !,?18,PDRG,!!
+ SET PDRGN=$$POSTAT^PSSCKOS(DRG,PDRG,SV,ON,CT),DRGN=$$OSTAT^PSSCKOS(DRG,ON)
+ W "***"_SEV_"*** Drug Interaction with ",!,DRGN_" and" W:SEV="Critical" !,PDRGN,!! W:SEV="Significant" !,PDRGN,!!
  S:SEVH'=SEV PSONULN="",$P(PSONULN,"-",60)="-"
  S SEVH=SEV
  I $L(CLI)>70 D
@@ -218,14 +185,11 @@ DUP ;
  .W CLI,!
  K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
  Q
- ;
 MON ;
  W ! K DIR S DIR("A")="Display Professional Interaction Monograph",DIR("B")="N",DIR(0)="Y",DIR("?")="Enter Y if you would like to see the Monograph." D ^DIR W !
  I X="^"!(X["^^")!($D(DTOUT)) Q
  K SEL,DIR,DTOUT,DUOUT,DIRUT Q:Y=0
- ;S MONT=$S(Y="Y":1,Y="y":1,1:1),SEL=1 K Y D BLD Q:$G(SEL)="^"
  S MONT=1,SEL=1 K Y D BLD Q:$G(SEL)=0
- ;ADD OUTPUT DEVICE
  K IOP,%ZIS,POP S %ZIS="QM" W ! D ^%ZIS
  I POP K SEL,DIR,DTOUT,DUOUT,DIRUT,MONT W !,"NOTHING PRINTED" G MON
  I $D(IO("Q")) D  Q
@@ -235,13 +199,10 @@ MON ;
  D OUT,^%ZISC
  W ! G:Y'=0 MON
  Q
- ;
 OUT ;print monograph
- ;MONT=1:PROFESSIONAL,MONT=2:CONSUMER,MONT=3:BOTH
  N DRG,ON,CT,DRGI,PDRG,SEV,STX,INT,CLI,PDRG,RNG,QX
  D:MONT=1 PROF D:MONT=2 CON D:MONT=3 PROF
  Q
- ;
 BLD ;
  K SEL,X,Y,DRG,ON,CT,RNG,^TMP($J,"PSOMON"),^TMP($J,"PSOMONP") S (DRG,ON,SV)="",CT=0
  F  S SV=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV)) Q:SV=""  F  S DRG=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG)) Q:DRG=""  F  S ON=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SV,DRG,ON)) Q:ON=""  D
@@ -260,7 +221,6 @@ BLD ;
 ONEMONO F G=1:1:$L(Y) Q:$P(Y,",",G)=""  S DRG=$O(^TMP($J,"PSOMON",$P(Y,",",G),"")),^TMP($J,"PSOMONP",$P(Y,",",G),0)=^TMP($J,"PSOMON",$P(Y,",",G),DRG)
  K ^TMP($J,"PSOMON")
  Q
- ;
 FORMAT ; WATCH OUT WITH CHANGES HERE!!!
  K BSIG,XX N BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM
  I $L(TEXTSTR)>70 D  F XX=0:0 S XX=$O(BSIG(XX)) Q:'XX  W ?5,BSIG(XX),!
@@ -272,7 +232,6 @@ FORMAT ; WATCH OUT WITH CHANGES HERE!!!
  E  W ?5,TEXTSTR,!
  K BSIG,BBSIG,BVAR,BVAR1,III,ZNT,NNN,BLIM S TEXTSTR=""
  Q
- ;
 PROF ;
  F I=0:0 S I=$O(^TMP($J,"PSOMONP",I)) Q:'I  S DRG=$P(^TMP($J,"PSOMONP",I,0),"^"),ON=$P(^(0),"^",2),CT=$P(^(0),"^",3),PDRG=$P(^(0),"^",4),SEV=$E($P(^(0),"^",5),1,1) D  Q:$D(DUOUT)!($D(DTOUT))
  .U IO W @IOF,!,PSONULN,!,"Professional Monograph",!,"Drug Interaction with "_DRG_" and "_PDRG,!
@@ -280,11 +239,9 @@ PROF ;
  ..I $Y+6>IOSL,$E(IOST)="C" D
  ...K DIR S DIR(0)="E",DIR("A")="Press Return to Continue or ""^"" to Exit" D ^DIR K DIR
  ...W @IOF,"Professional Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
- ..;W !?5,^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"PMON",QX,0)
  ..S TEXTSTR=^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"PMON",QX,0) D FORMAT
  ..I ($Y+6)>IOSL,$E(IOST)="C" W !
  K DTOUT,DUOUT
- ;End of report output here (for now) 
  D:MONT=3
  .U IO W @IOF,!,PSONULN,!,"Consumer Monograph",!?3,"Drug Interaction with "_DRG_" and "_PDRG,!
  .F QX=0:0 S QX=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"CMON",QX)) Q:'QX  D  Q:($D(DUOUT)!($D(DTOUT)))
@@ -295,7 +252,6 @@ PROF ;
  W !,PSONULN,!
  K DTOUT,DUOUT I $E(IOST)="C" K DIR S DIR(0)="E" D ^DIR K DIR,DTOUT,DUOUT
  Q
- ;
 CON F I=0:0 S I=$O(^TMP($J,"PSOMONP",I)) Q:'I  S DRG=$P(^TMP($J,"PSOMONP",I,0),"^"),ON=$P(^(0),"^",2),CT=$P(^(0),"^",3),PDRG=$P(^(0),"^",4),SEV=$P(^(0),"^",5) D  Q:$D(DUOUT)!($D(DTOUT))
  .U IO W @IOF,!,"Consumer Monograph",!?3,PSONULN,!,"Drug Interaction with "_DRG_" and "_PDRG,!
  .F QX=0:0 S QX=$O(^TMP($J,LIST,"OUT","DRUGDRUG",SEV,DRG,ON,CT,"CMON",QX)) Q:'QX  D  Q:($D(DUOUT)!($D(DTOUT)))

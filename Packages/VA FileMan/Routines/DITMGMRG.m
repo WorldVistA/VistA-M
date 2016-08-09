@@ -1,6 +1,9 @@
-DITMGMRG ;SFISC/EDE(OHPRD)-RELINK/MERGE TWO ENTRIES BELOW POINTED TO FILE ;2/24/94  16:10
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DITMGMRG ;SFISC/EDE(OHPRD)-RELINK/MERGE TWO ENTRIES BELOW POINTED TO FILE ;8MAR2006
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ; Merge two entries below pointed to file.  See ^DITMDOC.
  ;
@@ -46,6 +49,7 @@ FILES ; CALLED RECURSIVELY
 FIELDS ;
  ;W:'$D(DITMGMRG("NOTALK")) "f"
  F DITMGPFD=0:0 S DITMGPFD=$O(^DD(DITMGFLE,0,"PT",DITMGPFL,DITMGPFD)) Q:DITMGPFD'=+DITMGPFD  D
+IHS . I DITMGPFL=2,DITMGPFD=.082 Q   ;NEW LINE
  . S ^UTILITY("DITMGMRG",$J,DITMGPFL,DITMGPFD)=DITMGFLE
  . ;W:'$D(DITMGMRG("NOTALK")) $S($D(^DD(DITMGPFL,0,"UP")):"s",1:".")
  . I DITMGPFD=.01,'$D(^DD(DITMGPFL,0,"UP")),$P(^DD(DITMGPFL,.01,0),U,5,99)["DINUM" D RECURSE

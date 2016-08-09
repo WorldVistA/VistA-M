@@ -1,5 +1,5 @@
-SDAM10 ;MJK/ALB - Appt Mgt (Patient cont.); 3/18/05 3:51pm  ; Compiled March 31, 2008 16:38:47
- ;;5.3;Scheduling;**189,258,403,478,491**;Aug 13, 1993;Build 53
+SDAM10 ;ALB/MJK - Appt Mgt (Patient cont.);3/18/05 3:51pm
+ ;;5.3;Scheduling;**189,258,403,478,491,641**;Aug 13, 1993;Build 4
  ;
 HDR ; -- list screen header
  ;   input:       SDFN := ifn of pat
@@ -18,6 +18,7 @@ PAT ; -- change pat
  K TMP ;SD/478
  D FULL^VALM1 S VALMBCK="R"
  K X I $D(XQORNOD(0)) S X=$P($P(XQORNOD(0),U,4),"=",2)
+ N SDUP
  I $D(X),X="" R !!,"Select Patient: ",X:DTIME
  D RT^SDAMEX S DIC="^DPT(",DIC(0)="EMQ" D ^DIC K DIC G PAT:X["?"
 PAT1 S %=1 I Y>0 W !,"   ...OK" D YN^DICN I %=0 W "   Answer with 'Yes' or 'No'" G PAT1
@@ -28,7 +29,12 @@ PAT1 S %=1 I Y>0 W !,"   ...OK" D YN^DICN I %=0 W "   Answer with 'Yes' or 'No'"
  .I SDAMTYP="C" S VALMSG=$C(7)_"View of clinic remains in affect."
  .W !!,$G(VALMSG) H 1
  I SDAMTYP'="P" D CHGCAP^VALM("NAME","Clinic") S SDAMTYP="P"
- S (DFN,SDFN)=+Y K SDCLN,VADM D DEM^VADPT D BLD^SDAM1 ;SD/491
+ ;S (DFN,SDFN)=+Y K SDCLN,VADM D DEM^VADPT D BLD^SDAM1 ;SD/491
+ S (DFN,SDFN)=+Y K SDCLN,VADM D DEM^VADPT
+ I +VADM(6) D  G:SDUP="^" PAT   ;SD*641 - Display DoD if exists.
+ . W !!,"WARNING ",VADM(7),!!
+ . R "Press Return to Continue or ^ to Quit: ",SDUP:DTIME
+ D BLD^SDAM1
 PATQ Q
  ;
 INIT ; -- init bld vars

@@ -1,132 +1,288 @@
-IBDEI0E7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0E7 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6531,0)
- ;;=C82.30^^30^396^69
- ;;^UTILITY(U,$J,358.3,6531,1,0)
+ ;;^UTILITY(U,$J,358.3,14196,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,14196,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,14196,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,14197,0)
+ ;;=J32.1^^61^731^14
+ ;;^UTILITY(U,$J,358.3,14197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6531,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIa,Unspec Site
- ;;^UTILITY(U,$J,358.3,6531,1,4,0)
- ;;=4^C82.30
- ;;^UTILITY(U,$J,358.3,6531,2)
- ;;=^5001491
- ;;^UTILITY(U,$J,358.3,6532,0)
- ;;=C82.49^^30^396^70
- ;;^UTILITY(U,$J,358.3,6532,1,0)
+ ;;^UTILITY(U,$J,358.3,14197,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,14197,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,14197,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,14198,0)
+ ;;=J32.9^^61^731^16
+ ;;^UTILITY(U,$J,358.3,14198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6532,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,6532,1,4,0)
- ;;=4^C82.49
- ;;^UTILITY(U,$J,358.3,6532,2)
- ;;=^5001510
- ;;^UTILITY(U,$J,358.3,6533,0)
- ;;=C82.40^^30^396^71
- ;;^UTILITY(U,$J,358.3,6533,1,0)
+ ;;^UTILITY(U,$J,358.3,14198,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,14198,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,14198,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,14199,0)
+ ;;=J30.9^^61^731^11
+ ;;^UTILITY(U,$J,358.3,14199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6533,1,3,0)
- ;;=3^Follicular Lymphoma Grade IIIb,Unspec Site
- ;;^UTILITY(U,$J,358.3,6533,1,4,0)
- ;;=4^C82.40
- ;;^UTILITY(U,$J,358.3,6533,2)
- ;;=^5001501
- ;;^UTILITY(U,$J,358.3,6534,0)
- ;;=C82.99^^30^396^72
- ;;^UTILITY(U,$J,358.3,6534,1,0)
+ ;;^UTILITY(U,$J,358.3,14199,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,14199,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,14199,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,14200,0)
+ ;;=J30.0^^61^731^24
+ ;;^UTILITY(U,$J,358.3,14200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6534,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,6534,1,4,0)
- ;;=4^C82.99
- ;;^UTILITY(U,$J,358.3,6534,2)
- ;;=^5001550
- ;;^UTILITY(U,$J,358.3,6535,0)
- ;;=C82.90^^30^396^73
- ;;^UTILITY(U,$J,358.3,6535,1,0)
+ ;;^UTILITY(U,$J,358.3,14200,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,14200,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,14200,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,14201,0)
+ ;;=K05.00^^61^731^2
+ ;;^UTILITY(U,$J,358.3,14201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6535,1,3,0)
- ;;=3^Follicular Lymphoma Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,6535,1,4,0)
- ;;=4^C82.90
- ;;^UTILITY(U,$J,358.3,6535,2)
- ;;=^5001541
- ;;^UTILITY(U,$J,358.3,6536,0)
- ;;=R59.1^^30^396^58
- ;;^UTILITY(U,$J,358.3,6536,1,0)
+ ;;^UTILITY(U,$J,358.3,14201,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,14201,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,14201,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,14202,0)
+ ;;=R04.0^^61^731^17
+ ;;^UTILITY(U,$J,358.3,14202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6536,1,3,0)
- ;;=3^Enlarged Lymph Nodes,Generalized
- ;;^UTILITY(U,$J,358.3,6536,1,4,0)
- ;;=4^R59.1
- ;;^UTILITY(U,$J,358.3,6536,2)
- ;;=^5019530
- ;;^UTILITY(U,$J,358.3,6537,0)
- ;;=C91.40^^30^396^77
- ;;^UTILITY(U,$J,358.3,6537,1,0)
+ ;;^UTILITY(U,$J,358.3,14202,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,14202,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,14202,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,14203,0)
+ ;;=R09.82^^61^731^21
+ ;;^UTILITY(U,$J,358.3,14203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6537,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,6537,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,6537,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,6538,0)
- ;;=C91.42^^30^396^75
- ;;^UTILITY(U,$J,358.3,6538,1,0)
+ ;;^UTILITY(U,$J,358.3,14203,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,14203,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,14203,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,14204,0)
+ ;;=K12.30^^61^731^20
+ ;;^UTILITY(U,$J,358.3,14204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6538,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Relapse
- ;;^UTILITY(U,$J,358.3,6538,1,4,0)
- ;;=4^C91.42
- ;;^UTILITY(U,$J,358.3,6538,2)
- ;;=^5001773
- ;;^UTILITY(U,$J,358.3,6539,0)
- ;;=C91.41^^30^396^76
- ;;^UTILITY(U,$J,358.3,6539,1,0)
+ ;;^UTILITY(U,$J,358.3,14204,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,14204,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,14204,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,14205,0)
+ ;;=J30.1^^61^731^10
+ ;;^UTILITY(U,$J,358.3,14205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6539,1,3,0)
- ;;=3^Hairy Cell Leukemia,In Remission
- ;;^UTILITY(U,$J,358.3,6539,1,4,0)
- ;;=4^C91.41
- ;;^UTILITY(U,$J,358.3,6539,2)
- ;;=^5001772
- ;;^UTILITY(U,$J,358.3,6540,0)
- ;;=D57.01^^30^396^78
- ;;^UTILITY(U,$J,358.3,6540,1,0)
+ ;;^UTILITY(U,$J,358.3,14205,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,14205,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,14205,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,14206,0)
+ ;;=R09.81^^61^731^18
+ ;;^UTILITY(U,$J,358.3,14206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6540,1,3,0)
- ;;=3^Hb-SS Disease w/ Acute Chest Syndrome
- ;;^UTILITY(U,$J,358.3,6540,1,4,0)
- ;;=4^D57.01
- ;;^UTILITY(U,$J,358.3,6540,2)
- ;;=^5002307
- ;;^UTILITY(U,$J,358.3,6541,0)
- ;;=D57.00^^30^396^79
- ;;^UTILITY(U,$J,358.3,6541,1,0)
+ ;;^UTILITY(U,$J,358.3,14206,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,14206,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,14206,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,14207,0)
+ ;;=I69.928^^61^731^22
+ ;;^UTILITY(U,$J,358.3,14207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6541,1,3,0)
- ;;=3^Hb-SS Disease w/ Crisis,Unspec
- ;;^UTILITY(U,$J,358.3,6541,1,4,0)
- ;;=4^D57.00
- ;;^UTILITY(U,$J,358.3,6541,2)
- ;;=^5002306
- ;;^UTILITY(U,$J,358.3,6542,0)
- ;;=D57.02^^30^396^80
- ;;^UTILITY(U,$J,358.3,6542,1,0)
+ ;;^UTILITY(U,$J,358.3,14207,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,14207,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,14207,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,14208,0)
+ ;;=I69.328^^61^731^23
+ ;;^UTILITY(U,$J,358.3,14208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6542,1,3,0)
- ;;=3^Hb-SS Disease w/ Splenic Sequestration
- ;;^UTILITY(U,$J,358.3,6542,1,4,0)
- ;;=4^D57.02
- ;;^UTILITY(U,$J,358.3,6542,2)
- ;;=^5002308
- ;;^UTILITY(U,$J,358.3,6543,0)
- ;;=D68.32^^30^396^82
- ;;^UTILITY(U,$J,358.3,6543,1,0)
+ ;;^UTILITY(U,$J,358.3,14208,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,14208,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,14208,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,14209,0)
+ ;;=E04.0^^61^732^39
+ ;;^UTILITY(U,$J,358.3,14209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6543,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Extrinsic Circulating Anticoagulants
- ;;^UTILITY(U,$J,358.3,6543,1,4,0)
- ;;=4^D68.32
+ ;;^UTILITY(U,$J,358.3,14209,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,14209,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,14209,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,14210,0)
+ ;;=E04.1^^61^732^41
+ ;;^UTILITY(U,$J,358.3,14210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14210,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,14210,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,14210,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,14211,0)
+ ;;=E04.2^^61^732^40
+ ;;^UTILITY(U,$J,358.3,14211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14211,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,14211,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,14211,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,14212,0)
+ ;;=E01.1^^61^732^36
+ ;;^UTILITY(U,$J,358.3,14212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14212,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,14212,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,14212,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,14213,0)
+ ;;=E05.00^^61^732^56
+ ;;^UTILITY(U,$J,358.3,14213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14213,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,14213,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,14213,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,14214,0)
+ ;;=E05.01^^61^732^55
+ ;;^UTILITY(U,$J,358.3,14214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14214,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,14214,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,14214,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,14215,0)
+ ;;=E05.90^^61^732^58
+ ;;^UTILITY(U,$J,358.3,14215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14215,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,14215,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,14215,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,14216,0)
+ ;;=E05.91^^61^732^57
+ ;;^UTILITY(U,$J,358.3,14216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14216,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,14216,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,14216,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,14217,0)
+ ;;=E89.0^^61^732^50
+ ;;^UTILITY(U,$J,358.3,14217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14217,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,14217,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,14217,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,14218,0)
+ ;;=E03.2^^61^732^32
+ ;;^UTILITY(U,$J,358.3,14218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14218,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,14218,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,14218,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,14219,0)
+ ;;=E03.9^^61^732^33
+ ;;^UTILITY(U,$J,358.3,14219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14219,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,14219,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,14219,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,14220,0)
+ ;;=E06.0^^61^732^53
+ ;;^UTILITY(U,$J,358.3,14220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14220,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,14220,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,14220,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,14221,0)
+ ;;=E06.1^^61^732^54
+ ;;^UTILITY(U,$J,358.3,14221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14221,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,14221,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,14221,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,14222,0)
+ ;;=C73.^^61^732^37
+ ;;^UTILITY(U,$J,358.3,14222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14222,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,14222,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,14222,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,14223,0)
+ ;;=E10.21^^61^732^8
+ ;;^UTILITY(U,$J,358.3,14223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14223,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,14223,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,14223,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,14224,0)
+ ;;=E10.9^^61^732^12
+ ;;^UTILITY(U,$J,358.3,14224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14224,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,14224,1,4,0)
+ ;;=4^E10.9

@@ -1,132 +1,282 @@
-IBDEI13G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI13G ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18594,0)
- ;;=M00.9^^79^880^88
- ;;^UTILITY(U,$J,358.3,18594,1,0)
+ ;;^UTILITY(U,$J,358.3,39716,1,3,0)
+ ;;=3^Pain in Left Ankle
+ ;;^UTILITY(U,$J,358.3,39716,1,4,0)
+ ;;=4^M25.572
+ ;;^UTILITY(U,$J,358.3,39716,2)
+ ;;=^5011618
+ ;;^UTILITY(U,$J,358.3,39717,0)
+ ;;=M79.601^^148^1953^108
+ ;;^UTILITY(U,$J,358.3,39717,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18594,1,3,0)
- ;;=3^Pyogenic Arthritis,Unspec
- ;;^UTILITY(U,$J,358.3,18594,1,4,0)
- ;;=4^M00.9
- ;;^UTILITY(U,$J,358.3,18594,2)
- ;;=^5009693
- ;;^UTILITY(U,$J,358.3,18595,0)
- ;;=M86.10^^79^880^7
- ;;^UTILITY(U,$J,358.3,18595,1,0)
+ ;;^UTILITY(U,$J,358.3,39717,1,3,0)
+ ;;=3^Pain in Right Arm
+ ;;^UTILITY(U,$J,358.3,39717,1,4,0)
+ ;;=4^M79.601
+ ;;^UTILITY(U,$J,358.3,39717,2)
+ ;;=^5013325
+ ;;^UTILITY(U,$J,358.3,39718,0)
+ ;;=M79.602^^148^1953^98
+ ;;^UTILITY(U,$J,358.3,39718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18595,1,3,0)
- ;;=3^Acute Osteomyelitis,Unspec Site,NEC
- ;;^UTILITY(U,$J,358.3,18595,1,4,0)
- ;;=4^M86.10
- ;;^UTILITY(U,$J,358.3,18595,2)
- ;;=^5014521
- ;;^UTILITY(U,$J,358.3,18596,0)
- ;;=M86.20^^79^880^97
- ;;^UTILITY(U,$J,358.3,18596,1,0)
+ ;;^UTILITY(U,$J,358.3,39718,1,3,0)
+ ;;=3^Pain in Left Arm
+ ;;^UTILITY(U,$J,358.3,39718,1,4,0)
+ ;;=4^M79.602
+ ;;^UTILITY(U,$J,358.3,39718,2)
+ ;;=^5013326
+ ;;^UTILITY(U,$J,358.3,39719,0)
+ ;;=M79.604^^148^1953^114
+ ;;^UTILITY(U,$J,358.3,39719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18596,1,3,0)
- ;;=3^Subacute Osteomyelitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,18596,1,4,0)
- ;;=4^M86.20
- ;;^UTILITY(U,$J,358.3,18596,2)
- ;;=^5014535
- ;;^UTILITY(U,$J,358.3,18597,0)
- ;;=M86.60^^79^880^33
- ;;^UTILITY(U,$J,358.3,18597,1,0)
+ ;;^UTILITY(U,$J,358.3,39719,1,3,0)
+ ;;=3^Pain in Right Leg
+ ;;^UTILITY(U,$J,358.3,39719,1,4,0)
+ ;;=4^M79.604
+ ;;^UTILITY(U,$J,358.3,39719,2)
+ ;;=^5013328
+ ;;^UTILITY(U,$J,358.3,39720,0)
+ ;;=M79.605^^148^1953^104
+ ;;^UTILITY(U,$J,358.3,39720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18597,1,3,0)
- ;;=3^Chronic Osteomyelitis,Unspec Site,NEC
- ;;^UTILITY(U,$J,358.3,18597,1,4,0)
- ;;=4^M86.60
- ;;^UTILITY(U,$J,358.3,18597,2)
- ;;=^5014630
- ;;^UTILITY(U,$J,358.3,18598,0)
- ;;=R50.9^^79^880^52
- ;;^UTILITY(U,$J,358.3,18598,1,0)
+ ;;^UTILITY(U,$J,358.3,39720,1,3,0)
+ ;;=3^Pain in Left Leg
+ ;;^UTILITY(U,$J,358.3,39720,1,4,0)
+ ;;=4^M79.605
+ ;;^UTILITY(U,$J,358.3,39720,2)
+ ;;=^5013329
+ ;;^UTILITY(U,$J,358.3,39721,0)
+ ;;=M79.641^^148^1953^111
+ ;;^UTILITY(U,$J,358.3,39721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18598,1,3,0)
- ;;=3^Fever,Unspec
- ;;^UTILITY(U,$J,358.3,18598,1,4,0)
- ;;=4^R50.9
- ;;^UTILITY(U,$J,358.3,18598,2)
- ;;=^5019512
- ;;^UTILITY(U,$J,358.3,18599,0)
- ;;=N70.91^^79^880^90
- ;;^UTILITY(U,$J,358.3,18599,1,0)
+ ;;^UTILITY(U,$J,358.3,39721,1,3,0)
+ ;;=3^Pain in Right Hand
+ ;;^UTILITY(U,$J,358.3,39721,1,4,0)
+ ;;=4^M79.641
+ ;;^UTILITY(U,$J,358.3,39721,2)
+ ;;=^5013338
+ ;;^UTILITY(U,$J,358.3,39722,0)
+ ;;=M79.642^^148^1953^101
+ ;;^UTILITY(U,$J,358.3,39722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18599,1,3,0)
- ;;=3^Salpingitis,Unspec
- ;;^UTILITY(U,$J,358.3,18599,1,4,0)
- ;;=4^N70.91
- ;;^UTILITY(U,$J,358.3,18599,2)
- ;;=^5015806
- ;;^UTILITY(U,$J,358.3,18600,0)
- ;;=N70.93^^79^880^89
- ;;^UTILITY(U,$J,358.3,18600,1,0)
+ ;;^UTILITY(U,$J,358.3,39722,1,3,0)
+ ;;=3^Pain in Left Hand
+ ;;^UTILITY(U,$J,358.3,39722,1,4,0)
+ ;;=4^M79.642
+ ;;^UTILITY(U,$J,358.3,39722,2)
+ ;;=^5013339
+ ;;^UTILITY(U,$J,358.3,39723,0)
+ ;;=M79.671^^148^1953^110
+ ;;^UTILITY(U,$J,358.3,39723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18600,1,3,0)
- ;;=3^Salpingitis & Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,18600,1,4,0)
- ;;=4^N70.93
- ;;^UTILITY(U,$J,358.3,18600,2)
- ;;=^5015808
- ;;^UTILITY(U,$J,358.3,18601,0)
- ;;=C77.0^^79^881^8
- ;;^UTILITY(U,$J,358.3,18601,1,0)
+ ;;^UTILITY(U,$J,358.3,39723,1,3,0)
+ ;;=3^Pain in Right Foot
+ ;;^UTILITY(U,$J,358.3,39723,1,4,0)
+ ;;=4^M79.671
+ ;;^UTILITY(U,$J,358.3,39723,2)
+ ;;=^5013350
+ ;;^UTILITY(U,$J,358.3,39724,0)
+ ;;=M79.672^^148^1953^100
+ ;;^UTILITY(U,$J,358.3,39724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18601,1,3,0)
- ;;=3^Secondary Malig Neop of Head/Face/Neck Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18601,1,4,0)
- ;;=4^C77.0
- ;;^UTILITY(U,$J,358.3,18601,2)
- ;;=^5001329
- ;;^UTILITY(U,$J,358.3,18602,0)
- ;;=C77.1^^79^881^12
- ;;^UTILITY(U,$J,358.3,18602,1,0)
+ ;;^UTILITY(U,$J,358.3,39724,1,3,0)
+ ;;=3^Pain in Left Foot
+ ;;^UTILITY(U,$J,358.3,39724,1,4,0)
+ ;;=4^M79.672
+ ;;^UTILITY(U,$J,358.3,39724,2)
+ ;;=^5013351
+ ;;^UTILITY(U,$J,358.3,39725,0)
+ ;;=M54.9^^148^1953^8
+ ;;^UTILITY(U,$J,358.3,39725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18602,1,3,0)
- ;;=3^Secondary Malig Neop of Intrathoracic Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18602,1,4,0)
- ;;=4^C77.1
- ;;^UTILITY(U,$J,358.3,18602,2)
- ;;=^267315
- ;;^UTILITY(U,$J,358.3,18603,0)
- ;;=C77.2^^79^881^10
- ;;^UTILITY(U,$J,358.3,18603,1,0)
+ ;;^UTILITY(U,$J,358.3,39725,1,3,0)
+ ;;=3^Backache/Dorsalgia
+ ;;^UTILITY(U,$J,358.3,39725,1,4,0)
+ ;;=4^M54.9
+ ;;^UTILITY(U,$J,358.3,39725,2)
+ ;;=^5012314
+ ;;^UTILITY(U,$J,358.3,39726,0)
+ ;;=M48.52XG^^148^1953^19
+ ;;^UTILITY(U,$J,358.3,39726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18603,1,3,0)
- ;;=3^Secondary Malig Neop of Intra-Abdominal Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18603,1,4,0)
- ;;=4^C77.2
- ;;^UTILITY(U,$J,358.3,18603,2)
- ;;=^267316
- ;;^UTILITY(U,$J,358.3,18604,0)
- ;;=C77.3^^79^881^1
- ;;^UTILITY(U,$J,358.3,18604,1,0)
+ ;;^UTILITY(U,$J,358.3,39726,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,39726,1,4,0)
+ ;;=4^M48.52XG
+ ;;^UTILITY(U,$J,358.3,39726,2)
+ ;;=^5012169
+ ;;^UTILITY(U,$J,358.3,39727,0)
+ ;;=M48.52XS^^148^1953^20
+ ;;^UTILITY(U,$J,358.3,39727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18604,1,3,0)
- ;;=3^Secondary Malig Neop of Axilla/Upper Limb Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18604,1,4,0)
- ;;=4^C77.3
- ;;^UTILITY(U,$J,358.3,18604,2)
- ;;=^5001330
- ;;^UTILITY(U,$J,358.3,18605,0)
- ;;=C77.4^^79^881^9
- ;;^UTILITY(U,$J,358.3,18605,1,0)
+ ;;^UTILITY(U,$J,358.3,39727,1,3,0)
+ ;;=3^Collapsed Vertabra,Cervical Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,39727,1,4,0)
+ ;;=4^M48.52XS
+ ;;^UTILITY(U,$J,358.3,39727,2)
+ ;;=^5012170
+ ;;^UTILITY(U,$J,358.3,39728,0)
+ ;;=M48.57XG^^148^1953^27
+ ;;^UTILITY(U,$J,358.3,39728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18605,1,3,0)
- ;;=3^Secondary Malig Neop of Inguinal/Lower Limb Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18605,1,4,0)
- ;;=4^C77.4
- ;;^UTILITY(U,$J,358.3,18605,2)
- ;;=^5001331
- ;;^UTILITY(U,$J,358.3,18606,0)
- ;;=C77.5^^79^881^11
- ;;^UTILITY(U,$J,358.3,18606,1,0)
+ ;;^UTILITY(U,$J,358.3,39728,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,39728,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,39728,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,39729,0)
+ ;;=M48.57XS^^148^1953^28
+ ;;^UTILITY(U,$J,358.3,39729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18606,1,3,0)
- ;;=3^Secondary Malig Neop of Intrapelvic Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18606,1,4,0)
- ;;=4^C77.5
+ ;;^UTILITY(U,$J,358.3,39729,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,39729,1,4,0)
+ ;;=4^M48.57XS
+ ;;^UTILITY(U,$J,358.3,39729,2)
+ ;;=^5012190
+ ;;^UTILITY(U,$J,358.3,39730,0)
+ ;;=M48.54XD^^148^1953^29
+ ;;^UTILITY(U,$J,358.3,39730,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39730,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,39730,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,39730,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,39731,0)
+ ;;=M48.57XG^^148^1953^30
+ ;;^UTILITY(U,$J,358.3,39731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39731,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,39731,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,39731,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,39732,0)
+ ;;=M48.54XS^^148^1953^31
+ ;;^UTILITY(U,$J,358.3,39732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39732,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,39732,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,39732,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,39733,0)
+ ;;=M62.830^^148^1953^59
+ ;;^UTILITY(U,$J,358.3,39733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39733,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,39733,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,39733,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,39734,0)
+ ;;=M19.92^^148^1953^120
+ ;;^UTILITY(U,$J,358.3,39734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39734,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39734,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,39734,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,39735,0)
+ ;;=M85.872^^148^1953^80
+ ;;^UTILITY(U,$J,358.3,39735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39735,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,39735,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,39735,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,39736,0)
+ ;;=M85.832^^148^1953^81
+ ;;^UTILITY(U,$J,358.3,39736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39736,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,39736,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,39736,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,39737,0)
+ ;;=M85.842^^148^1953^82
+ ;;^UTILITY(U,$J,358.3,39737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39737,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,39737,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,39737,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,39738,0)
+ ;;=M85.862^^148^1953^83
+ ;;^UTILITY(U,$J,358.3,39738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39738,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,39738,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,39738,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,39739,0)
+ ;;=M85.812^^148^1953^84
+ ;;^UTILITY(U,$J,358.3,39739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39739,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39739,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,39739,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,39740,0)
+ ;;=M85.852^^148^1953^85
+ ;;^UTILITY(U,$J,358.3,39740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39740,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,39740,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,39740,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,39741,0)
+ ;;=M85.822^^148^1953^86
+ ;;^UTILITY(U,$J,358.3,39741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39741,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,39741,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,39741,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,39742,0)
+ ;;=M85.89^^148^1953^87
+ ;;^UTILITY(U,$J,358.3,39742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39742,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,39742,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,39742,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,39743,0)
+ ;;=M85.88^^148^1953^88
+ ;;^UTILITY(U,$J,358.3,39743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39743,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,39743,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,39743,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,39744,0)
+ ;;=M85.871^^148^1953^89

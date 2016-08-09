@@ -1,128 +1,288 @@
-IBDEI0L8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0L8 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9907,1,0)
+ ;;^UTILITY(U,$J,358.3,21414,2)
+ ;;=^5009065
+ ;;^UTILITY(U,$J,358.3,21415,0)
+ ;;=L03.898^^89^1030^36
+ ;;^UTILITY(U,$J,358.3,21415,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9907,1,3,0)
- ;;=3^Pigmentary Glaucoma,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9907,1,4,0)
- ;;=4^H40.1324
- ;;^UTILITY(U,$J,358.3,9907,2)
- ;;=^5005783
- ;;^UTILITY(U,$J,358.3,9908,0)
- ;;=H40.1330^^44^496^91
- ;;^UTILITY(U,$J,358.3,9908,1,0)
+ ;;^UTILITY(U,$J,358.3,21415,1,3,0)
+ ;;=3^Lymphangitis,Oth Sites,Acute
+ ;;^UTILITY(U,$J,358.3,21415,1,4,0)
+ ;;=4^L03.898
+ ;;^UTILITY(U,$J,358.3,21415,2)
+ ;;=^5009066
+ ;;^UTILITY(U,$J,358.3,21416,0)
+ ;;=L03.90^^89^1030^12
+ ;;^UTILITY(U,$J,358.3,21416,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9908,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9908,1,4,0)
- ;;=4^H40.1330
- ;;^UTILITY(U,$J,358.3,9908,2)
- ;;=^5005784
- ;;^UTILITY(U,$J,358.3,9909,0)
- ;;=H40.1331^^44^496^88
- ;;^UTILITY(U,$J,358.3,9909,1,0)
+ ;;^UTILITY(U,$J,358.3,21416,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21416,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,21416,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,21417,0)
+ ;;=L03.91^^89^1030^34
+ ;;^UTILITY(U,$J,358.3,21417,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9909,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,9909,1,4,0)
- ;;=4^H40.1331
- ;;^UTILITY(U,$J,358.3,9909,2)
- ;;=^5005785
- ;;^UTILITY(U,$J,358.3,9910,0)
- ;;=H40.1332^^44^496^89
- ;;^UTILITY(U,$J,358.3,9910,1,0)
+ ;;^UTILITY(U,$J,358.3,21417,1,3,0)
+ ;;=3^Lymphangitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,21417,1,4,0)
+ ;;=4^L03.91
+ ;;^UTILITY(U,$J,358.3,21417,2)
+ ;;=^5009068
+ ;;^UTILITY(U,$J,358.3,21418,0)
+ ;;=M51.26^^89^1030^32
+ ;;^UTILITY(U,$J,358.3,21418,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9910,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9910,1,4,0)
- ;;=4^H40.1332
- ;;^UTILITY(U,$J,358.3,9910,2)
- ;;=^5005786
- ;;^UTILITY(U,$J,358.3,9911,0)
- ;;=H40.1333^^44^496^90
- ;;^UTILITY(U,$J,358.3,9911,1,0)
+ ;;^UTILITY(U,$J,358.3,21418,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbar Region
+ ;;^UTILITY(U,$J,358.3,21418,1,4,0)
+ ;;=4^M51.26
+ ;;^UTILITY(U,$J,358.3,21418,2)
+ ;;=^5012249
+ ;;^UTILITY(U,$J,358.3,21419,0)
+ ;;=M51.27^^89^1030^33
+ ;;^UTILITY(U,$J,358.3,21419,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9911,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,9911,1,4,0)
- ;;=4^H40.1333
- ;;^UTILITY(U,$J,358.3,9911,2)
- ;;=^5005787
- ;;^UTILITY(U,$J,358.3,9912,0)
- ;;=H40.1334^^44^496^87
- ;;^UTILITY(U,$J,358.3,9912,1,0)
+ ;;^UTILITY(U,$J,358.3,21419,1,3,0)
+ ;;=3^Intervertebral Disc Displacement,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,21419,1,4,0)
+ ;;=4^M51.27
+ ;;^UTILITY(U,$J,358.3,21419,2)
+ ;;=^5012250
+ ;;^UTILITY(U,$J,358.3,21420,0)
+ ;;=G47.33^^89^1030^52
+ ;;^UTILITY(U,$J,358.3,21420,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9912,1,3,0)
- ;;=3^Pigmentary Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9912,1,4,0)
- ;;=4^H40.1334
- ;;^UTILITY(U,$J,358.3,9912,2)
- ;;=^5005788
- ;;^UTILITY(U,$J,358.3,9913,0)
- ;;=H40.151^^44^496^118
- ;;^UTILITY(U,$J,358.3,9913,1,0)
+ ;;^UTILITY(U,$J,358.3,21420,1,3,0)
+ ;;=3^Sleep Apnea,Obstructive
+ ;;^UTILITY(U,$J,358.3,21420,1,4,0)
+ ;;=4^G47.33
+ ;;^UTILITY(U,$J,358.3,21420,2)
+ ;;=^332763
+ ;;^UTILITY(U,$J,358.3,21421,0)
+ ;;=G44.1^^89^1030^56
+ ;;^UTILITY(U,$J,358.3,21421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9913,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Right Eye
- ;;^UTILITY(U,$J,358.3,9913,1,4,0)
- ;;=4^H40.151
- ;;^UTILITY(U,$J,358.3,9913,2)
- ;;=^5138037
- ;;^UTILITY(U,$J,358.3,9914,0)
- ;;=H40.152^^44^496^117
- ;;^UTILITY(U,$J,358.3,9914,1,0)
+ ;;^UTILITY(U,$J,358.3,21421,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,21421,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,21421,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,21422,0)
+ ;;=R73.01^^89^1030^30
+ ;;^UTILITY(U,$J,358.3,21422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9914,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Left Eye
- ;;^UTILITY(U,$J,358.3,9914,1,4,0)
- ;;=4^H40.152
- ;;^UTILITY(U,$J,358.3,9914,2)
- ;;=^5138038
- ;;^UTILITY(U,$J,358.3,9915,0)
- ;;=H40.153^^44^496^116
- ;;^UTILITY(U,$J,358.3,9915,1,0)
+ ;;^UTILITY(U,$J,358.3,21422,1,3,0)
+ ;;=3^Impaired Fasting Glucose
+ ;;^UTILITY(U,$J,358.3,21422,1,4,0)
+ ;;=4^R73.01
+ ;;^UTILITY(U,$J,358.3,21422,2)
+ ;;=^5019561
+ ;;^UTILITY(U,$J,358.3,21423,0)
+ ;;=R74.8^^89^1030^1
+ ;;^UTILITY(U,$J,358.3,21423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9915,1,3,0)
- ;;=3^Residual Stage Open-Angle Glaucoma,Bilateral
- ;;^UTILITY(U,$J,358.3,9915,1,4,0)
- ;;=4^H40.153
- ;;^UTILITY(U,$J,358.3,9915,2)
- ;;=^5138039
- ;;^UTILITY(U,$J,358.3,9916,0)
- ;;=H40.20X1^^44^496^103
- ;;^UTILITY(U,$J,358.3,9916,1,0)
+ ;;^UTILITY(U,$J,358.3,21423,1,3,0)
+ ;;=3^Abnormal Levels of Serum Enzymes
+ ;;^UTILITY(U,$J,358.3,21423,1,4,0)
+ ;;=4^R74.8
+ ;;^UTILITY(U,$J,358.3,21423,2)
+ ;;=^5019566
+ ;;^UTILITY(U,$J,358.3,21424,0)
+ ;;=R97.2^^89^1030^18
+ ;;^UTILITY(U,$J,358.3,21424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9916,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Mild Stage
- ;;^UTILITY(U,$J,358.3,9916,1,4,0)
- ;;=4^H40.20X1
- ;;^UTILITY(U,$J,358.3,9916,2)
- ;;=^5005814
- ;;^UTILITY(U,$J,358.3,9917,0)
- ;;=H40.20X2^^44^496^104
- ;;^UTILITY(U,$J,358.3,9917,1,0)
+ ;;^UTILITY(U,$J,358.3,21424,1,3,0)
+ ;;=3^Elevated Prostate Specific Antigen
+ ;;^UTILITY(U,$J,358.3,21424,1,4,0)
+ ;;=4^R97.2
+ ;;^UTILITY(U,$J,358.3,21424,2)
+ ;;=^5019748
+ ;;^UTILITY(U,$J,358.3,21425,0)
+ ;;=R03.0^^89^1030^17
+ ;;^UTILITY(U,$J,358.3,21425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9917,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9917,1,4,0)
- ;;=4^H40.20X2
- ;;^UTILITY(U,$J,358.3,9917,2)
- ;;=^5005815
- ;;^UTILITY(U,$J,358.3,9918,0)
- ;;=H40.20X3^^44^496^105
- ;;^UTILITY(U,$J,358.3,9918,1,0)
+ ;;^UTILITY(U,$J,358.3,21425,1,3,0)
+ ;;=3^Elevated BP Reading w/o Diagnosis of HTN
+ ;;^UTILITY(U,$J,358.3,21425,1,4,0)
+ ;;=4^R03.0
+ ;;^UTILITY(U,$J,358.3,21425,2)
+ ;;=^5019171
+ ;;^UTILITY(U,$J,358.3,21426,0)
+ ;;=Z91.19^^89^1030^42
+ ;;^UTILITY(U,$J,358.3,21426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9918,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Severe Stage
- ;;^UTILITY(U,$J,358.3,9918,1,4,0)
- ;;=4^H40.20X3
- ;;^UTILITY(U,$J,358.3,9918,2)
- ;;=^5005816
- ;;^UTILITY(U,$J,358.3,9919,0)
- ;;=H40.20X4^^44^496^102
- ;;^UTILITY(U,$J,358.3,9919,1,0)
+ ;;^UTILITY(U,$J,358.3,21426,1,3,0)
+ ;;=3^Noncompliance w/ Medical Treatment/Regimen
+ ;;^UTILITY(U,$J,358.3,21426,1,4,0)
+ ;;=4^Z91.19
+ ;;^UTILITY(U,$J,358.3,21426,2)
+ ;;=^5063618
+ ;;^UTILITY(U,$J,358.3,21427,0)
+ ;;=E66.01^^89^1030^43
+ ;;^UTILITY(U,$J,358.3,21427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9919,1,3,0)
- ;;=3^Primary Angle-Closure Glaucoma,Indeterminate Stage
+ ;;^UTILITY(U,$J,358.3,21427,1,3,0)
+ ;;=3^Obesity,Morbid
+ ;;^UTILITY(U,$J,358.3,21427,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,21427,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,21428,0)
+ ;;=H93.19^^89^1030^55
+ ;;^UTILITY(U,$J,358.3,21428,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21428,1,3,0)
+ ;;=3^Tinnitus,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,21428,1,4,0)
+ ;;=4^H93.19
+ ;;^UTILITY(U,$J,358.3,21428,2)
+ ;;=^5006967
+ ;;^UTILITY(U,$J,358.3,21429,0)
+ ;;=G47.00^^89^1030^31
+ ;;^UTILITY(U,$J,358.3,21429,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21429,1,3,0)
+ ;;=3^Insomnia,Unspec
+ ;;^UTILITY(U,$J,358.3,21429,1,4,0)
+ ;;=4^G47.00
+ ;;^UTILITY(U,$J,358.3,21429,2)
+ ;;=^332924
+ ;;^UTILITY(U,$J,358.3,21430,0)
+ ;;=F43.10^^89^1030^47
+ ;;^UTILITY(U,$J,358.3,21430,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21430,1,3,0)
+ ;;=3^PTSD,Unspec
+ ;;^UTILITY(U,$J,358.3,21430,1,4,0)
+ ;;=4^F43.10
+ ;;^UTILITY(U,$J,358.3,21430,2)
+ ;;=^5003570
+ ;;^UTILITY(U,$J,358.3,21431,0)
+ ;;=F43.11^^89^1030^45
+ ;;^UTILITY(U,$J,358.3,21431,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21431,1,3,0)
+ ;;=3^PTSD,Acute
+ ;;^UTILITY(U,$J,358.3,21431,1,4,0)
+ ;;=4^F43.11
+ ;;^UTILITY(U,$J,358.3,21431,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,21432,0)
+ ;;=F43.12^^89^1030^46
+ ;;^UTILITY(U,$J,358.3,21432,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21432,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,21432,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,21432,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,21433,0)
+ ;;=I25.119^^89^1030^5
+ ;;^UTILITY(U,$J,358.3,21433,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21433,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,21433,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,21433,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,21434,0)
+ ;;=I25.10^^89^1030^7
+ ;;^UTILITY(U,$J,358.3,21434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21434,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21434,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,21434,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,21435,0)
+ ;;=I25.110^^89^1030^6
+ ;;^UTILITY(U,$J,358.3,21435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21435,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,21435,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,21435,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,21436,0)
+ ;;=F17.219^^89^1030^39
+ ;;^UTILITY(U,$J,358.3,21436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21436,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,21436,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,21436,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,21437,0)
+ ;;=F17.299^^89^1030^40
+ ;;^UTILITY(U,$J,358.3,21437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21437,1,3,0)
+ ;;=3^Nicotine Dependence,E-Cigarettes
+ ;;^UTILITY(U,$J,358.3,21437,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,21437,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,21438,0)
+ ;;=Z51.5^^89^1030^48
+ ;;^UTILITY(U,$J,358.3,21438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21438,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,21438,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,21438,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,21439,0)
+ ;;=Z51.81^^89^1031^17
+ ;;^UTILITY(U,$J,358.3,21439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21439,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,21439,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,21439,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,21440,0)
+ ;;=Z02.79^^89^1031^11
+ ;;^UTILITY(U,$J,358.3,21440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21440,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,21440,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,21440,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,21441,0)
+ ;;=Z76.0^^89^1031^12
+ ;;^UTILITY(U,$J,358.3,21441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21441,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,21441,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,21441,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,21442,0)
+ ;;=Z04.9^^89^1031^3
+ ;;^UTILITY(U,$J,358.3,21442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21442,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,21442,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,21442,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,21443,0)
+ ;;=Z02.2^^89^1031^4

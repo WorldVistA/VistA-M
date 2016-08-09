@@ -1,6 +1,9 @@
-DDR0 ;SF/DCM-FileMan Delphi Components' RPCs ;4/28/98  10:52
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDR0 ;SF/DCM-FileMan Delphi Components' RPCs ;2013-03-22  1:46 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  Q
 FINDC(DDRDATA,DDR) ; -- broker callback to get list data
@@ -9,6 +12,30 @@ FINDC(DDRDATA,DDR) ; -- broker callback to get list data
  D PARSE(.DDR)
  S DDROUT=""
  D FIND^DIC(DDRFILE,DDRIENS,DDRFLDS,DDRFLAGS,DDRVAL,DDRMAX,DDRXREF,DDRSCRN,DDRID,DDROUT,"DDRERR")
+ I $G(DDRFLAGS)["P" D
+ . Q:'$D(^TMP("DILIST",$J))
+ . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT  D 1
+ . I XWBAPVER>1 S ^(.3)="[MAP]",^TMP("DILIST",$J,.4)=^TMP("DILIST",$J,0,"MAP")
+ . K ^TMP("DILIST",$J,0) S ^(.5)="[BEGIN_diDATA]",^(COUNT+1)="[END_diDATA]"
+ . Q
+ I $G(DDRFLAGS)'["P" D
+ . Q:'$D(^TMP("DILIST",$J))
+ . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT
+ . D 1,UNPACKED
+ . Q
+ D 3,4
+ Q
+FINDI(DDRDATA,DDR) ; -- improved broker callback to find data,it can handle compound index
+ N DDRFILE,DDRIENS,DDRFLDS,DDRFLAGS,DDRVAL,DDRMAX,DDRXREF,DDRSCRN,DDRID,DDRROOT,DDRERR,DDRRSLT,DDROPT,DDROUT
+ ; -- parse array to parameters
+ D PARSE(.DDR)
+ IF DDRVAL[U DO
+ .N I,DDRTMP
+ .S DDRTMP=DDRVAL
+ .K DDRVAL
+ .F I=1:1:$L(DDRTMP,U) S DDRVAL(I)=$P(DDRTMP,U,I)
+ S DDROUT=""
+ D FIND^DIC(DDRFILE,DDRIENS,DDRFLDS,DDRFLAGS,.DDRVAL,DDRMAX,DDRXREF,DDRSCRN,DDRID,DDROUT,"DDRERR")
  I $G(DDRFLAGS)["P" D
  . Q:'$D(^TMP("DILIST",$J))
  . N COUNT S COUNT=^TMP("DILIST",$J,0) Q:'COUNT  D 1

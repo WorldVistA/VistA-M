@@ -1,7 +1,11 @@
-DINIT0F9 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;17DEC2010
- ;;22.0;VA FileMan;**167**;Mar 30, 1999;Build 18
- ;Per VHA Directive 2004-038, this routine should not be modified.
- ; TAG 'ENTRY+172' CHANGED TO REMEMBER LANGUAGE OF PRINT TEMPLATE HEADER
+DINIT0F9 ;SFISC/MKO-DATA FOR FORM AND BLOCK FILES ;29JULY2014
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;TAG 'ENTRY+172' CHANGED TO REMEMBER LANGUAGE OF PRINT TEMPLATE HEADER
  F I=1:2 S X=$T(ENTRY+I) G:X="" ^DINIT0FA S Y=$E($T(ENTRY+I+1),5,999),X=$E(X,4,999),@X=Y
  Q
 ENTRY ;
@@ -149,6 +153,14 @@ ENTRY ;
  ;;=10
  ;;^DIST(.404,.10011,40,7,2)
  ;;=10,28^1^10,13^1
+ ;;^DIST(.404,.10011,40,21409,0)
+ ;;=9.5^!M^^3
+ ;;^DIST(.404,.10011,40,21409,.1)
+ ;;=S Y=$J("CANONIC FOR FILE "_$P(^DIPT(DA,0),U,4)_":",40)
+ ;;^DIST(.404,.10011,40,21409,1)
+ ;;=21409
+ ;;^DIST(.404,.10011,40,21409,2)
+ ;;=10,71^3^10,30^1 
  ;;^DIST(.404,.10011,40,8,0)
  ;;=11^SUB-HEADER SUPPRESSED^3
  ;;^DIST(.404,.10011,40,8,1)

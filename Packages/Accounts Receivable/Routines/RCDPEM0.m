@@ -1,12 +1,12 @@
 RCDPEM0 ;ALB/TMK - ERA MATCHING TO EFT (cont) ;Jun 11, 2014@13:04:03
- ;;4.5;Accounts Receivable;**173,208,220,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,220,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 MATCH(RCZ,RCPROC) ; Match EFT to ERA
  ; RCZ = ien of file 344.31
  ; RCPROC = 1 if called from EFT-EOB automatch, 0 if from manual match
- N RCER,RCRZ,RCMATCH,RCER,RC0,RC3444,RC34431,DIE,DA,DR,X,Y,Z,Z0
+ N RCER,RCRZ,RCMATCH,RCER,RC0,RC3444,RC34431,DIE,DA,DR,X,Y,Z,Z0,RCERATYP,RCXCLDE
  ; Find ERA to match to EFT by trace, date, amt
  S RC34431=$G(^RCY(344.31,RCZ,0)) Q:$P(RC34431,U,8)!$O(^RCY(344,"AEFT",RCZ,0))  ; Already matched
  I $P(RC34431,U,3)]"",$P(RC34431,U,4)]"" D   ;Must have Payor ID and Trace #
@@ -47,23 +47,27 @@ MATCH(RCZ,RCPROC) ; Match EFT to ERA
  . F  S RCM=$O(RCER(RCM)) Q:'RCM  S RCT=RCT+1,RCM(RCT)=RCER(RCM)
  . D STORERR(344.31,RCZ,.RCM)
  ;
+ ;Many checks done by this are also done AUTOCHK2^RCDPEAP1 so if these are changed, AUTOCHK2 may also need to be changed
  I RCMATCH D
  . S DIE="^RCY(344.31,",DA=RCZ,DR=".08////"_RCMATCH_";.1////"_RCRZ D ^DIE
  . S DIE="^RCY(344.4,",DA=RCRZ,DR=".09////"_RCMATCH D ^DIE
  . S ^TMP($J,"RCTOT","MATCH")=$G(^TMP($J,"RCTOT","MATCH"))+1
  . ;Lines below are added for Auto-posting - PRCA*4.5*298
- . ;Quit if this is not nightly job or medical auto posting is OFF
- . Q:'RCPROC  Q:'$P($G(^RCY(344.61,1,0)),U,2)
+ . ;Quit if this is not nightly job
+ . Q:'RCPROC
  . ;Quit if this is a zero value ERA
  . Q:+$P($G(^RCY(344.4,RCRZ,0)),U,5)=0
+ . ;Determine if ERA should be excluded using the site parameters
+ . S RCERATYP=$$PHARM^RCDPEAP1(RCRZ)
  . ;Quit if ERA payer is excluded from autopost
- . Q:$$EXCLUDE^RCDPEAP1(RCRZ)
- . ;Quit if pharmacy ERA
- . Q:$$PHARM^RCDPEAP1(RCRZ)
- . ;Ignore ERA with ERA level adjustments and exceptions
+ . S RCXCLDE=0
+ . S:'RCERATYP RCXCLDE=$$EXCLUDE^RCDPEAP1(RCRZ)
+ . S:RCERATYP RCXCLDE=$$EXCLDRX^RCDPEAP1(RCRZ)
+ . Q:RCXCLDE
+ . ;Ignore ERA with exceptions, zero balance, or ERA-level adjustments
  . Q:'$$AUTOCHK^RCDPEAP1(RCRZ)
  . ;Set AUTO-POST STATUS = UNPOSTED this is trigger for auto-post (EN^RCDPEAP)
- . D SETSTA^RCDPEAP(RCRZ,0)
+ . D SETSTA^RCDPEAP(RCRZ,0,"Auto Matching: Marked as Auto-Post Candidate")
  ;
  Q
  ;

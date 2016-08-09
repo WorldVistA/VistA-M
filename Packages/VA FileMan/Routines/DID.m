@@ -1,11 +1,15 @@
-DID ;SFISC/XAK-LIST DD'S ;8SEP2004
- ;;22.0;VA FileMan;**24,105,157**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DID ;SFISC/XAK-LIST DD'S ;2015-01-02  12:25 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D KL,L^DICRW1 I $D(DIC) S (DUB,DIB,DFF)=+Y G O:Y'=+DIB(1),SUB
 KL K DIS,DIJS,DHIT,DIB,DINM,DIDX,DIGR,DIDH,BY,DICMX,DIOEND,FLDS
  K DFF,DIFF,DID,DUB,DHD,DIC,DICS,POP,DA,DR,S,F,J,K,Z,W,X,Y,M,G,N,I
  K DIWF,DIPP,DPP,DIMS,DIPQ,DJ,DDL1,DDL2,DDL3,DDLF,DDN1,X1,DDRG,I1
- K DIDRANGE,DIDFLD,DIDTYP
+ K DIDRANGE,DIDFLD,DIDTYP,DIDCANON
  Q
  ;
 SUB S DIC="^DD("_+Y_"," G O:$O(^DD(+Y,"SB",0))'>0 S DIC(0)="AEQZ",DIC("A")="      Select SUB-FILE: ",DIC("S")="I $P(^(0),U,2)" D ^DIC G KL:$D(DTOUT) I Y>0 S (DFF,Y)=+$P(Y(0),U,2) G SUB
@@ -17,7 +21,7 @@ O1 K DIC S DIC="^DD(DFF,"
  .S DIS(0)="I $D(^DD(DFF,D0,0))",DIOEND="G L^DIDC"
  .S DIOBEG="S L=0 I $G(DQI),$D(^UTILITY($J,2)) S ^(1.5)=""W $O(^DD(DIB,0,""""NM"""",0)),"""" """" W:'$D(^DIC(DIB)) """"SUB-"""" W """"FILE """""",^(2)=""X ^(1.5) ""_^(2)"
  I +Y=4,'$D(DIFORMAT) D MOD^DID2 G KL:X[U
- S L=0,FLDS="",BY="@.001" I +Y=5 S (FR,TO)=.01,DHIT="S F(1)=DUB",DHD="W """" D H1^DIDG",DIOEND="D T^DID" G G
+TEMPONLY S L=0,FLDS="",BY="@.001" I +Y=5 S (FR,TO)=.01,DHIT="S F(1)=DUB",DHD="W """" D H1^DIDG",DIOEND="D T^DID" G G
  I +Y=8 D  G KL:DIDTYP="",KL:DIDFLD=-1,G
  . S DIDTYP=$$ASKTYP Q:DIDTYP=""
  . S DIDFLD=$$ASKFLD(DFF) Q:DIDFLD=-1
@@ -31,17 +35,23 @@ O1 K DIC S DIC="^DD(DFF,"
  I +Y=7 S DHIT="S (X1,X2)=DFF D ^DIDC",DHD="@" S DIOEND="D IOF^DID"
  I "^1^2^4^"[(U_+Y_U),'$D(DIGR) D ASKRANGE(DFF,BY,.FR,.TO) G:FR=-1 KL S DIDRANGE=FR]""
 G Q:DIB=0  S DIOEND(1)=DIOEND,DIOEND="D LOOP^DID" D EN1^DIP G KL
-LOOP I $D(Y),Y=U Q
+ ;
+ ;
+LOOP ;COME HERE FROM XECUTION OF 'DIOEND' (see G above)
+ I $D(Y),Y=U Q
  X DIOEND(1) I $D(M),M=U Q
  I IOST?1"C-".E W $C(7) R X:DTIME I X[U!'$T Q
  S DN=1,D0=0,DIB=$O(^DIC(+DIB)) Q:DIB>DIB(1)!(+DIB'=DIB)  S (F(1),DUB,DFF)=DIB,DC="," D ^DIO2 I $D(M),M=U Q
  G LOOP
  ;
+ ;
 END ;
  I $D(^UTILITY($J,"P")) W !!!?6,"FILES POINTED TO",?44,"FIELDS",! D PTR^DIDC
 D K ^UTILITY($J,"P") G IOF:DHIT["DIDX"!$G(DIDRANGE)
  D IX I M=U S DN=0 Q
-T ;
+ ;
+ ;
+T ;COME HERE FROM XECUTION OF 'DIOEND' (see TEMPONLY above)
  S S=0,M=1
 T1 S S=S+1 D:$Y+3>IOSL HDR^DIDG Q:M=U
  W !!,$S(S<4:$P("INPU^PRIN^SOR",U,S)_"T TEMPLATE(S):",1:"FORM(S)/BLOCK(S):")
@@ -49,11 +59,14 @@ T1 S S=S+1 D:$Y+3>IOSL HDR^DIDG Q:M=U
  F  S DA=$O(@DFF@("F"_F(1),DA)) Q:DA=""  D  Q:M=U
  . S DUB=0 F  S DUB=$O(@DFF@("F"_F(1),DA,DUB)) Q:'DUB  D  Q:M=U
  .. I $D(@DFF@(DUB,0))#2 S %1=^(0) D TEMPL
- K %1 G Q:M=U,T1:S<4
+ K %1 G Q:M=U
+ I S=3,$G(DIDCANON) W !,"** = CANONIC TEMPLATE",! K DIDCANON
+ G T1:S<4
 IOF W:IOST'?1"C".E @IOF Q
  ;
 TEMPL I $Y+3>IOSL D HDR^DIDG Q:M=U
- W !,$P(%1,U),?30 G:DFF["DIST" FORM
+ W !,$P(%1,U) I $G(@DFF@(DUB,"CANONIC")) W "**" S DIDCANON=1
+ W ?30 G:DFF["DIST" FORM
  S W="",Y=$P(%1,U,2) I Y D DD^%DT W Y
  W ?50,"USER #"_+$P(%1,U,5),?61 I $D(@(DFF_"(DUB,""ROU"")")) W ^("ROU")_$P("*",U,DFF["DIBT")_" "
  I $D(^("H")) S Y=^("H"),%=$L(Y) W:65+%>IOM ! W "   ",?IOM-%-1,$E(Y,1,IOM-4)
@@ -108,7 +121,7 @@ IXHEAD S DC=DC+1 I IOST?1"C".E W $C(7) R M:DTIME S:'$T M=U Q:M=U
 IXHEAD1 W:$D(DIFF)&($Y) @IOF S DIFF=1
  W $S("B"[$G(DIDTYP):"INDEX AND CROSS-REFERENCE",DIDTYP="T":"TRADITIONAL CROSS-REFERENCE",1:"NEW-STYLE INDEX")
  W " LIST -- FILE #"_DIB_$S($G(DIDFLD):", FIELD #"_DIDFLD,1:"")
- W ?(IOM-20),$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)_"    PAGE "_DC
+ W:$D(DIFF)&($Y) @IOF S DIFF=1 W "INDEX AND CROSS-REFERENCE LIST -- FILE #"_DIB,?(IOM-20),$$OUT^DIALOGU(DT,"FMTE",2)_"     "_$$EZBLD^DIALOG(7095,DC) ;**CCO/NI DATE FORMAT, 'PAGE'
  S M="",$P(M,"-",IOM)="" W !,M
  Q
  ;
@@ -120,7 +133,7 @@ KEY ;Print keys
  Q
  ;
 KEYHEAD S DC=DC+1 I IOST?1"C".E W $C(7) R M:DTIME S:'$T M=U Q:M=U
-KEYHEAD1 W:$D(DIFF)&($Y) @IOF S DIFF=1 W "KEY LIST -- FILE #"_DIB,?(IOM-20),$E(DT,4,5)_"/"_$E(DT,6,7)_"/"_$E(DT,2,3)_"    PAGE "_DC
+KEYHEAD1 W:$D(DIFF)&($Y) @IOF S DIFF=1 W "KEY LIST -- FILE #"_DIB,?(IOM-20),$$OUT^DIALOGU(DT,"FMTE",2)_"     "_$$EZBLD^DIALOG(7095,DC) ;DATE FORMAT, 'PAGE'
  S M="",$P(M,"-",IOM)="" W !,M
  Q
  ;

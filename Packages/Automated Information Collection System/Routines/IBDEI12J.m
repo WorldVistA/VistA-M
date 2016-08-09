@@ -1,132 +1,288 @@
-IBDEI12J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI12J ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18167,1,4,0)
- ;;=4^K55.0
- ;;^UTILITY(U,$J,358.3,18167,2)
- ;;=^5008705
- ;;^UTILITY(U,$J,358.3,18168,0)
- ;;=I72.4^^79^874^6
- ;;^UTILITY(U,$J,358.3,18168,1,0)
+ ;;^UTILITY(U,$J,358.3,38798,1,3,0)
+ ;;=3^Intestinal Carbohydrate Absorption Disorder NEC
+ ;;^UTILITY(U,$J,358.3,38798,1,4,0)
+ ;;=4^E74.39
+ ;;^UTILITY(U,$J,358.3,38798,2)
+ ;;=^5002928
+ ;;^UTILITY(U,$J,358.3,38799,0)
+ ;;=E83.30^^148^1939^46
+ ;;^UTILITY(U,$J,358.3,38799,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18168,1,3,0)
- ;;=3^Aneurysm of Lower Extremity Artery
- ;;^UTILITY(U,$J,358.3,18168,1,4,0)
- ;;=4^I72.4
- ;;^UTILITY(U,$J,358.3,18168,2)
- ;;=^269777
- ;;^UTILITY(U,$J,358.3,18169,0)
- ;;=I72.0^^79^874^4
- ;;^UTILITY(U,$J,358.3,18169,1,0)
+ ;;^UTILITY(U,$J,358.3,38799,1,3,0)
+ ;;=3^Phosphorus Metabolism Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,38799,1,4,0)
+ ;;=4^E83.30
+ ;;^UTILITY(U,$J,358.3,38799,2)
+ ;;=^5002997
+ ;;^UTILITY(U,$J,358.3,38800,0)
+ ;;=E83.51^^148^1939^28
+ ;;^UTILITY(U,$J,358.3,38800,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18169,1,3,0)
- ;;=3^Aneurysm of Carotid Artery
- ;;^UTILITY(U,$J,358.3,18169,1,4,0)
- ;;=4^I72.0
- ;;^UTILITY(U,$J,358.3,18169,2)
- ;;=^5007793
- ;;^UTILITY(U,$J,358.3,18170,0)
- ;;=I72.3^^79^874^5
- ;;^UTILITY(U,$J,358.3,18170,1,0)
+ ;;^UTILITY(U,$J,358.3,38800,1,3,0)
+ ;;=3^Hypocalcemia
+ ;;^UTILITY(U,$J,358.3,38800,1,4,0)
+ ;;=4^E83.51
+ ;;^UTILITY(U,$J,358.3,38800,2)
+ ;;=^60542
+ ;;^UTILITY(U,$J,358.3,38801,0)
+ ;;=E83.52^^148^1939^26
+ ;;^UTILITY(U,$J,358.3,38801,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18170,1,3,0)
- ;;=3^Aneurysm of Iliac Artery
- ;;^UTILITY(U,$J,358.3,18170,1,4,0)
- ;;=4^I72.3
- ;;^UTILITY(U,$J,358.3,18170,2)
- ;;=^269775
- ;;^UTILITY(U,$J,358.3,18171,0)
- ;;=I72.8^^79^874^3
- ;;^UTILITY(U,$J,358.3,18171,1,0)
+ ;;^UTILITY(U,$J,358.3,38801,1,3,0)
+ ;;=3^Hypercalcemia
+ ;;^UTILITY(U,$J,358.3,38801,1,4,0)
+ ;;=4^E83.52
+ ;;^UTILITY(U,$J,358.3,38801,2)
+ ;;=^59932
+ ;;^UTILITY(U,$J,358.3,38802,0)
+ ;;=E87.5^^148^1939^27
+ ;;^UTILITY(U,$J,358.3,38802,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18171,1,3,0)
- ;;=3^Aneurysm of Arteries NEC
- ;;^UTILITY(U,$J,358.3,18171,1,4,0)
- ;;=4^I72.8
- ;;^UTILITY(U,$J,358.3,18171,2)
- ;;=^5007794
- ;;^UTILITY(U,$J,358.3,18172,0)
- ;;=I72.2^^79^874^7
- ;;^UTILITY(U,$J,358.3,18172,1,0)
+ ;;^UTILITY(U,$J,358.3,38802,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,38802,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,38802,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,38803,0)
+ ;;=E89.2^^148^1939^48
+ ;;^UTILITY(U,$J,358.3,38803,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18172,1,3,0)
- ;;=3^Aneurysm of Renal Artery
- ;;^UTILITY(U,$J,358.3,18172,1,4,0)
- ;;=4^I72.2
- ;;^UTILITY(U,$J,358.3,18172,2)
- ;;=^269773
- ;;^UTILITY(U,$J,358.3,18173,0)
- ;;=I83.93^^79^874^8
- ;;^UTILITY(U,$J,358.3,18173,1,0)
+ ;;^UTILITY(U,$J,358.3,38803,1,3,0)
+ ;;=3^PostProcedural Hypoparathyroidism
+ ;;^UTILITY(U,$J,358.3,38803,1,4,0)
+ ;;=4^E89.2
+ ;;^UTILITY(U,$J,358.3,38803,2)
+ ;;=^5003037
+ ;;^UTILITY(U,$J,358.3,38804,0)
+ ;;=E89.6^^148^1939^47
+ ;;^UTILITY(U,$J,358.3,38804,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18173,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Bilateral Lower Extremities
- ;;^UTILITY(U,$J,358.3,18173,1,4,0)
- ;;=4^I83.93
- ;;^UTILITY(U,$J,358.3,18173,2)
- ;;=^5008022
- ;;^UTILITY(U,$J,358.3,18174,0)
- ;;=I83.92^^79^874^9
- ;;^UTILITY(U,$J,358.3,18174,1,0)
+ ;;^UTILITY(U,$J,358.3,38804,1,3,0)
+ ;;=3^PostProcedural Adrenocortical Hypofunction
+ ;;^UTILITY(U,$J,358.3,38804,1,4,0)
+ ;;=4^E89.6
+ ;;^UTILITY(U,$J,358.3,38804,2)
+ ;;=^5003042
+ ;;^UTILITY(U,$J,358.3,38805,0)
+ ;;=L68.0^^148^1939^25
+ ;;^UTILITY(U,$J,358.3,38805,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18174,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Left Lower Extremity
- ;;^UTILITY(U,$J,358.3,18174,1,4,0)
- ;;=4^I83.92
- ;;^UTILITY(U,$J,358.3,18174,2)
- ;;=^5008021
- ;;^UTILITY(U,$J,358.3,18175,0)
- ;;=I83.91^^79^874^10
- ;;^UTILITY(U,$J,358.3,18175,1,0)
+ ;;^UTILITY(U,$J,358.3,38805,1,3,0)
+ ;;=3^Hirsutism
+ ;;^UTILITY(U,$J,358.3,38805,1,4,0)
+ ;;=4^L68.0
+ ;;^UTILITY(U,$J,358.3,38805,2)
+ ;;=^5009262
+ ;;^UTILITY(U,$J,358.3,38806,0)
+ ;;=M80.00XA^^148^1939^2
+ ;;^UTILITY(U,$J,358.3,38806,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18175,1,3,0)
- ;;=3^Asymptomatic Varicose Veins of Right Lower Extremity
- ;;^UTILITY(U,$J,358.3,18175,1,4,0)
- ;;=4^I83.91
- ;;^UTILITY(U,$J,358.3,18175,2)
- ;;=^5008020
- ;;^UTILITY(U,$J,358.3,18176,0)
- ;;=I70.263^^79^874^12
- ;;^UTILITY(U,$J,358.3,18176,1,0)
+ ;;^UTILITY(U,$J,358.3,38806,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Fx,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,38806,1,4,0)
+ ;;=4^M80.00XA
+ ;;^UTILITY(U,$J,358.3,38806,2)
+ ;;=^5013363
+ ;;^UTILITY(U,$J,358.3,38807,0)
+ ;;=M81.0^^148^1939^3
+ ;;^UTILITY(U,$J,358.3,38807,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18176,1,3,0)
- ;;=3^Athscl Native Arteries of Bilateral Legs w/ Gangrene
- ;;^UTILITY(U,$J,358.3,18176,1,4,0)
- ;;=4^I70.263
- ;;^UTILITY(U,$J,358.3,18176,2)
- ;;=^5007605
- ;;^UTILITY(U,$J,358.3,18177,0)
- ;;=I70.262^^79^874^18
- ;;^UTILITY(U,$J,358.3,18177,1,0)
+ ;;^UTILITY(U,$J,358.3,38807,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/o Fx
+ ;;^UTILITY(U,$J,358.3,38807,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,38807,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,38808,0)
+ ;;=M85.80^^148^1939^44
+ ;;^UTILITY(U,$J,358.3,38808,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18177,1,3,0)
- ;;=3^Athscl Native Arteries of Left Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,18177,1,4,0)
- ;;=4^I70.262
- ;;^UTILITY(U,$J,358.3,18177,2)
- ;;=^5007604
- ;;^UTILITY(U,$J,358.3,18178,0)
- ;;=I70.261^^79^874^24
- ;;^UTILITY(U,$J,358.3,18178,1,0)
+ ;;^UTILITY(U,$J,358.3,38808,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,38808,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,38808,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,38809,0)
+ ;;=N62.^^148^1939^24
+ ;;^UTILITY(U,$J,358.3,38809,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18178,1,3,0)
- ;;=3^Athscl Native Arteries of Right Leg w/ Gangrene
- ;;^UTILITY(U,$J,358.3,18178,1,4,0)
- ;;=4^I70.261
- ;;^UTILITY(U,$J,358.3,18178,2)
- ;;=^5007603
- ;;^UTILITY(U,$J,358.3,18179,0)
- ;;=I70.213^^79^874^11
- ;;^UTILITY(U,$J,358.3,18179,1,0)
+ ;;^UTILITY(U,$J,358.3,38809,1,3,0)
+ ;;=3^Gynecomastia
+ ;;^UTILITY(U,$J,358.3,38809,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,38809,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,38810,0)
+ ;;=E10.43^^148^1939^6
+ ;;^UTILITY(U,$J,358.3,38810,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18179,1,3,0)
- ;;=3^Athscl Native Arteries of Bilater Legs w/ Intrmt Claud
- ;;^UTILITY(U,$J,358.3,18179,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,18179,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,18180,0)
- ;;=I70.212^^79^874^20
- ;;^UTILITY(U,$J,358.3,18180,1,0)
+ ;;^UTILITY(U,$J,358.3,38810,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,38810,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,38810,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,38811,0)
+ ;;=E10.59^^148^1939^4
+ ;;^UTILITY(U,$J,358.3,38811,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38811,1,3,0)
+ ;;=3^DM Type 1 w/ Circulatory Complications
+ ;;^UTILITY(U,$J,358.3,38811,1,4,0)
+ ;;=4^E10.59
+ ;;^UTILITY(U,$J,358.3,38811,2)
+ ;;=^5002612
+ ;;^UTILITY(U,$J,358.3,38812,0)
+ ;;=E10.618^^148^1939^5
+ ;;^UTILITY(U,$J,358.3,38812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38812,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Arthropathy
+ ;;^UTILITY(U,$J,358.3,38812,1,4,0)
+ ;;=4^E10.618
+ ;;^UTILITY(U,$J,358.3,38812,2)
+ ;;=^5002614
+ ;;^UTILITY(U,$J,358.3,38813,0)
+ ;;=E10.621^^148^1939^7
+ ;;^UTILITY(U,$J,358.3,38813,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38813,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,38813,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,38813,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,38814,0)
+ ;;=E10.622^^148^1939^11
+ ;;^UTILITY(U,$J,358.3,38814,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38814,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,38814,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,38814,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,38815,0)
+ ;;=E10.65^^148^1939^10
+ ;;^UTILITY(U,$J,358.3,38815,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38815,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycermia
+ ;;^UTILITY(U,$J,358.3,38815,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,38815,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,38816,0)
+ ;;=E10.39^^148^1939^9
+ ;;^UTILITY(U,$J,358.3,38816,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38816,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Ophthalmic Complications NEC
+ ;;^UTILITY(U,$J,358.3,38816,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,38816,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,38817,0)
+ ;;=E66.3^^148^1939^45
+ ;;^UTILITY(U,$J,358.3,38817,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38817,1,3,0)
+ ;;=3^Overweight
+ ;;^UTILITY(U,$J,358.3,38817,1,4,0)
+ ;;=4^E66.3
+ ;;^UTILITY(U,$J,358.3,38817,2)
+ ;;=^5002830
+ ;;^UTILITY(U,$J,358.3,38818,0)
+ ;;=E89.1^^148^1939^49
+ ;;^UTILITY(U,$J,358.3,38818,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38818,1,3,0)
+ ;;=3^Postprocedural Hypoinsulinemia
+ ;;^UTILITY(U,$J,358.3,38818,1,4,0)
+ ;;=4^E89.1
+ ;;^UTILITY(U,$J,358.3,38818,2)
+ ;;=^5003036
+ ;;^UTILITY(U,$J,358.3,38819,0)
+ ;;=H40.9^^148^1940^9
+ ;;^UTILITY(U,$J,358.3,38819,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38819,1,3,0)
+ ;;=3^Glaucoma,Unspec
+ ;;^UTILITY(U,$J,358.3,38819,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,38819,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,38820,0)
+ ;;=H26.9^^148^1940^5
+ ;;^UTILITY(U,$J,358.3,38820,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38820,1,3,0)
+ ;;=3^Cataract,Unspec
+ ;;^UTILITY(U,$J,358.3,38820,1,4,0)
+ ;;=4^H26.9
+ ;;^UTILITY(U,$J,358.3,38820,2)
+ ;;=^5005363
+ ;;^UTILITY(U,$J,358.3,38821,0)
+ ;;=H10.9^^148^1940^8
+ ;;^UTILITY(U,$J,358.3,38821,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38821,1,3,0)
+ ;;=3^Conjunctivitis,Unspec
+ ;;^UTILITY(U,$J,358.3,38821,1,4,0)
+ ;;=4^H10.9
+ ;;^UTILITY(U,$J,358.3,38821,2)
+ ;;=^5004716
+ ;;^UTILITY(U,$J,358.3,38822,0)
+ ;;=H11.32^^148^1940^6
+ ;;^UTILITY(U,$J,358.3,38822,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38822,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Left Eye
+ ;;^UTILITY(U,$J,358.3,38822,1,4,0)
+ ;;=4^H11.32
+ ;;^UTILITY(U,$J,358.3,38822,2)
+ ;;=^5004783
+ ;;^UTILITY(U,$J,358.3,38823,0)
+ ;;=H11.31^^148^1940^7
+ ;;^UTILITY(U,$J,358.3,38823,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38823,1,3,0)
+ ;;=3^Conjunctival Hemorrhage,Right Eye
+ ;;^UTILITY(U,$J,358.3,38823,1,4,0)
+ ;;=4^H11.31
+ ;;^UTILITY(U,$J,358.3,38823,2)
+ ;;=^5004782
+ ;;^UTILITY(U,$J,358.3,38824,0)
+ ;;=H01.002^^148^1940^3
+ ;;^UTILITY(U,$J,358.3,38824,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38824,1,3,0)
+ ;;=3^Blepharitis Unspec,Right Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,38824,1,4,0)
+ ;;=4^H01.002
+ ;;^UTILITY(U,$J,358.3,38824,2)
+ ;;=^5004239
+ ;;^UTILITY(U,$J,358.3,38825,0)
+ ;;=H01.004^^148^1940^2
+ ;;^UTILITY(U,$J,358.3,38825,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38825,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,38825,1,4,0)
+ ;;=4^H01.004
+ ;;^UTILITY(U,$J,358.3,38825,2)
+ ;;=^5004241
+ ;;^UTILITY(U,$J,358.3,38826,0)
+ ;;=H01.005^^148^1940^1
+ ;;^UTILITY(U,$J,358.3,38826,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,38826,1,3,0)
+ ;;=3^Blepharitis Unspec,Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,38826,1,4,0)
+ ;;=4^H01.005

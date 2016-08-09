@@ -1,6 +1,10 @@
-DINIT26 ;SFISC/XAK-INITIALIZE VA FILEMAN ;9/9/94  14:16
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT26 ;SFISC/XAK-INITIALIZE VA FILEMAN ;10:47 AM  13 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) G ^DINIT260:X="" S Y=$E($T(Q+I+1),5,999),X=$E(X,4,999),@X=Y
 Q Q
  ;;^DIC(1.11,0,"GL")
@@ -18,7 +22,7 @@ Q Q
  ;;^DD(1.11,0,"ID",1)
  ;;=W "   ",$O(^DD(+$P(^(0),U,2),0,"NM",0)),$E(^DIAR(1.11,Y,0),0)
  ;;^DD(1.11,0,"ID",4)
- ;;=W ?40,$E($P(^(0),U,5),4,5)_"-"_$E($P(^(0),U,5),6,7)_"-"_$E($P(^(0),U,5),2,3)
+ ;;=W ?40,$$NAKED^DIUTL("$$DATE^DIUTL($P(^(0),U,5))")
  ;;^DD(1.11,0,"ID",7)
  ;;=W "   ",$P($P($C(59)_$S($D(^DD(1.11,7,0)):$P(^(0),U,3),1:0),$C(59)_$P(^DIAR(1.11,Y,0),U,8)_":",2),$C(59),1)
  ;;^DD(1.11,0,"ID",8)

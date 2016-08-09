@@ -1,144 +1,264 @@
-IBDEI08H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI08H ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,3671,2)
- ;;=^5013342
- ;;^UTILITY(U,$J,358.3,3672,0)
- ;;=M79.644^^18^221^36
- ;;^UTILITY(U,$J,358.3,3672,1,0)
+ ;;^UTILITY(U,$J,358.3,8430,1,3,0)
+ ;;=3^Vomiting w/o Nausea
+ ;;^UTILITY(U,$J,358.3,8430,1,4,0)
+ ;;=4^R11.11
+ ;;^UTILITY(U,$J,358.3,8430,2)
+ ;;=^5019233
+ ;;^UTILITY(U,$J,358.3,8431,0)
+ ;;=S43.51XA^^42^511^11
+ ;;^UTILITY(U,$J,358.3,8431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3672,1,3,0)
- ;;=3^Pain,Finger(s),Right
- ;;^UTILITY(U,$J,358.3,3672,1,4,0)
- ;;=4^M79.644
- ;;^UTILITY(U,$J,358.3,3672,2)
- ;;=^5013341
- ;;^UTILITY(U,$J,358.3,3673,0)
- ;;=M79.672^^18^221^37
- ;;^UTILITY(U,$J,358.3,3673,1,0)
+ ;;^UTILITY(U,$J,358.3,8431,1,3,0)
+ ;;=3^Sprain of Right Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,8431,1,4,0)
+ ;;=4^S43.51XA
+ ;;^UTILITY(U,$J,358.3,8431,2)
+ ;;=^5027903
+ ;;^UTILITY(U,$J,358.3,8432,0)
+ ;;=S43.52XA^^42^511^2
+ ;;^UTILITY(U,$J,358.3,8432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3673,1,3,0)
- ;;=3^Pain,Foot,Left
- ;;^UTILITY(U,$J,358.3,3673,1,4,0)
- ;;=4^M79.672
- ;;^UTILITY(U,$J,358.3,3673,2)
- ;;=^5013351
- ;;^UTILITY(U,$J,358.3,3674,0)
- ;;=M79.671^^18^221^38
- ;;^UTILITY(U,$J,358.3,3674,1,0)
+ ;;^UTILITY(U,$J,358.3,8432,1,3,0)
+ ;;=3^Sprain of Left Acromioclavicular Joint
+ ;;^UTILITY(U,$J,358.3,8432,1,4,0)
+ ;;=4^S43.52XA
+ ;;^UTILITY(U,$J,358.3,8432,2)
+ ;;=^5027906
+ ;;^UTILITY(U,$J,358.3,8433,0)
+ ;;=S43.421A^^42^511^16
+ ;;^UTILITY(U,$J,358.3,8433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3674,1,3,0)
- ;;=3^Pain,Foot,Right
- ;;^UTILITY(U,$J,358.3,3674,1,4,0)
- ;;=4^M79.671
- ;;^UTILITY(U,$J,358.3,3674,2)
- ;;=^5013350
- ;;^UTILITY(U,$J,358.3,3675,0)
- ;;=N94.9^^18^221^34
- ;;^UTILITY(U,$J,358.3,3675,1,0)
+ ;;^UTILITY(U,$J,358.3,8433,1,3,0)
+ ;;=3^Sprain of Right Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,8433,1,4,0)
+ ;;=4^S43.421A
+ ;;^UTILITY(U,$J,358.3,8433,2)
+ ;;=^5027879
+ ;;^UTILITY(U,$J,358.3,8434,0)
+ ;;=S43.422A^^42^511^7
+ ;;^UTILITY(U,$J,358.3,8434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3675,1,3,0)
- ;;=3^Pain,Female Genital Organs/Menstrual Cycle
- ;;^UTILITY(U,$J,358.3,3675,1,4,0)
- ;;=4^N94.9
- ;;^UTILITY(U,$J,358.3,3675,2)
- ;;=^5015926
- ;;^UTILITY(U,$J,358.3,3676,0)
- ;;=M79.642^^18^221^39
- ;;^UTILITY(U,$J,358.3,3676,1,0)
+ ;;^UTILITY(U,$J,358.3,8434,1,3,0)
+ ;;=3^Sprain of Left Rotator Cuff Capsule
+ ;;^UTILITY(U,$J,358.3,8434,1,4,0)
+ ;;=4^S43.422A
+ ;;^UTILITY(U,$J,358.3,8434,2)
+ ;;=^5027882
+ ;;^UTILITY(U,$J,358.3,8435,0)
+ ;;=S53.401A^^42^511^13
+ ;;^UTILITY(U,$J,358.3,8435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3676,1,3,0)
- ;;=3^Pain,Hand,Left
- ;;^UTILITY(U,$J,358.3,3676,1,4,0)
- ;;=4^M79.642
- ;;^UTILITY(U,$J,358.3,3676,2)
- ;;=^5013339
- ;;^UTILITY(U,$J,358.3,3677,0)
- ;;=M79.641^^18^221^40
- ;;^UTILITY(U,$J,358.3,3677,1,0)
+ ;;^UTILITY(U,$J,358.3,8435,1,3,0)
+ ;;=3^Sprain of Right Elbow
+ ;;^UTILITY(U,$J,358.3,8435,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,8435,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,8436,0)
+ ;;=S53.402A^^42^511^4
+ ;;^UTILITY(U,$J,358.3,8436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3677,1,3,0)
- ;;=3^Pain,Hand,Right
- ;;^UTILITY(U,$J,358.3,3677,1,4,0)
- ;;=4^M79.641
- ;;^UTILITY(U,$J,358.3,3677,2)
- ;;=^5013338
- ;;^UTILITY(U,$J,358.3,3678,0)
- ;;=M25.552^^18^221^41
- ;;^UTILITY(U,$J,358.3,3678,1,0)
+ ;;^UTILITY(U,$J,358.3,8436,1,3,0)
+ ;;=3^Sprain of Left Elbow
+ ;;^UTILITY(U,$J,358.3,8436,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,8436,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,8437,0)
+ ;;=S56.011A^^42^511^53
+ ;;^UTILITY(U,$J,358.3,8437,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3678,1,3,0)
- ;;=3^Pain,Hip,Left
- ;;^UTILITY(U,$J,358.3,3678,1,4,0)
- ;;=4^M25.552
- ;;^UTILITY(U,$J,358.3,3678,2)
- ;;=^5011612
- ;;^UTILITY(U,$J,358.3,3679,0)
- ;;=M25.551^^18^221^42
- ;;^UTILITY(U,$J,358.3,3679,1,0)
+ ;;^UTILITY(U,$J,358.3,8437,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8437,1,4,0)
+ ;;=4^S56.011A
+ ;;^UTILITY(U,$J,358.3,8437,2)
+ ;;=^5031568
+ ;;^UTILITY(U,$J,358.3,8438,0)
+ ;;=S56.012A^^42^511^35
+ ;;^UTILITY(U,$J,358.3,8438,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3679,1,3,0)
- ;;=3^Pain,Hip,Right
- ;;^UTILITY(U,$J,358.3,3679,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,3679,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,3680,0)
- ;;=R68.84^^18^221^43
- ;;^UTILITY(U,$J,358.3,3680,1,0)
+ ;;^UTILITY(U,$J,358.3,8438,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8438,1,4,0)
+ ;;=4^S56.012A
+ ;;^UTILITY(U,$J,358.3,8438,2)
+ ;;=^5031571
+ ;;^UTILITY(U,$J,358.3,8439,0)
+ ;;=S56.111A^^42^511^41
+ ;;^UTILITY(U,$J,358.3,8439,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3680,1,3,0)
- ;;=3^Pain,Jaw
- ;;^UTILITY(U,$J,358.3,3680,1,4,0)
- ;;=4^R68.84
- ;;^UTILITY(U,$J,358.3,3680,2)
- ;;=^5019556
- ;;^UTILITY(U,$J,358.3,3681,0)
- ;;=M25.562^^18^221^44
- ;;^UTILITY(U,$J,358.3,3681,1,0)
+ ;;^UTILITY(U,$J,358.3,8439,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8439,1,4,0)
+ ;;=4^S56.111A
+ ;;^UTILITY(U,$J,358.3,8439,2)
+ ;;=^5031616
+ ;;^UTILITY(U,$J,358.3,8440,0)
+ ;;=S56.112A^^42^511^22
+ ;;^UTILITY(U,$J,358.3,8440,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3681,1,3,0)
- ;;=3^Pain,Knee,Left
- ;;^UTILITY(U,$J,358.3,3681,1,4,0)
- ;;=4^M25.562
- ;;^UTILITY(U,$J,358.3,3681,2)
- ;;=^5011615
- ;;^UTILITY(U,$J,358.3,3682,0)
- ;;=M25.561^^18^221^45
- ;;^UTILITY(U,$J,358.3,3682,1,0)
+ ;;^UTILITY(U,$J,358.3,8440,1,3,0)
+ ;;=3^Strain of Left Index Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8440,1,4,0)
+ ;;=4^S56.112A
+ ;;^UTILITY(U,$J,358.3,8440,2)
+ ;;=^5031619
+ ;;^UTILITY(U,$J,358.3,8441,0)
+ ;;=S56.113A^^42^511^49
+ ;;^UTILITY(U,$J,358.3,8441,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3682,1,3,0)
- ;;=3^Pain,Knee,Right
- ;;^UTILITY(U,$J,358.3,3682,1,4,0)
- ;;=4^M25.561
- ;;^UTILITY(U,$J,358.3,3682,2)
- ;;=^5011614
- ;;^UTILITY(U,$J,358.3,3683,0)
- ;;=M79.605^^18^221^46
- ;;^UTILITY(U,$J,358.3,3683,1,0)
+ ;;^UTILITY(U,$J,358.3,8441,1,3,0)
+ ;;=3^Strain of Right Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8441,1,4,0)
+ ;;=4^S56.113A
+ ;;^UTILITY(U,$J,358.3,8441,2)
+ ;;=^5031622
+ ;;^UTILITY(U,$J,358.3,8442,0)
+ ;;=S56.114A^^42^511^30
+ ;;^UTILITY(U,$J,358.3,8442,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3683,1,3,0)
- ;;=3^Pain,Leg,Left
- ;;^UTILITY(U,$J,358.3,3683,1,4,0)
- ;;=4^M79.605
- ;;^UTILITY(U,$J,358.3,3683,2)
- ;;=^5013329
- ;;^UTILITY(U,$J,358.3,3684,0)
- ;;=M79.662^^18^221^47
- ;;^UTILITY(U,$J,358.3,3684,1,0)
+ ;;^UTILITY(U,$J,358.3,8442,1,3,0)
+ ;;=3^Strain of Left Middle Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8442,1,4,0)
+ ;;=4^S56.114A
+ ;;^UTILITY(U,$J,358.3,8442,2)
+ ;;=^5031625
+ ;;^UTILITY(U,$J,358.3,8443,0)
+ ;;=S56.115A^^42^511^51
+ ;;^UTILITY(U,$J,358.3,8443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3684,1,3,0)
- ;;=3^Pain,Leg,Lower Left
- ;;^UTILITY(U,$J,358.3,3684,1,4,0)
- ;;=4^M79.662
- ;;^UTILITY(U,$J,358.3,3684,2)
- ;;=^5013348
- ;;^UTILITY(U,$J,358.3,3685,0)
- ;;=M79.661^^18^221^48
- ;;^UTILITY(U,$J,358.3,3685,1,0)
+ ;;^UTILITY(U,$J,358.3,8443,1,3,0)
+ ;;=3^Strain of Right Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8443,1,4,0)
+ ;;=4^S56.115A
+ ;;^UTILITY(U,$J,358.3,8443,2)
+ ;;=^5031628
+ ;;^UTILITY(U,$J,358.3,8444,0)
+ ;;=S56.417A^^42^511^43
+ ;;^UTILITY(U,$J,358.3,8444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,3685,1,3,0)
- ;;=3^Pain,Leg,Lower Right
- ;;^UTILITY(U,$J,358.3,3685,1,4,0)
- ;;=4^M79.661
+ ;;^UTILITY(U,$J,358.3,8444,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Extn Musc/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8444,1,4,0)
+ ;;=4^S56.417A
+ ;;^UTILITY(U,$J,358.3,8444,2)
+ ;;=^5031781
+ ;;^UTILITY(U,$J,358.3,8445,0)
+ ;;=S56.418A^^42^511^24
+ ;;^UTILITY(U,$J,358.3,8445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8445,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Extn Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8445,1,4,0)
+ ;;=4^S56.418A
+ ;;^UTILITY(U,$J,358.3,8445,2)
+ ;;=^5031784
+ ;;^UTILITY(U,$J,358.3,8446,0)
+ ;;=S56.811A^^42^511^39
+ ;;^UTILITY(U,$J,358.3,8446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8446,1,3,0)
+ ;;=3^Strain of Right Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8446,1,4,0)
+ ;;=4^S56.811A
+ ;;^UTILITY(U,$J,358.3,8446,2)
+ ;;=^5031862
+ ;;^UTILITY(U,$J,358.3,8447,0)
+ ;;=S56.812A^^42^511^20
+ ;;^UTILITY(U,$J,358.3,8447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8447,1,3,0)
+ ;;=3^Strain of Left Forearm Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8447,1,4,0)
+ ;;=4^S56.812A
+ ;;^UTILITY(U,$J,358.3,8447,2)
+ ;;=^5031865
+ ;;^UTILITY(U,$J,358.3,8448,0)
+ ;;=S56.116A^^42^511^32
+ ;;^UTILITY(U,$J,358.3,8448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8448,1,3,0)
+ ;;=3^Strain of Left Ring Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8448,1,4,0)
+ ;;=4^S56.116A
+ ;;^UTILITY(U,$J,358.3,8448,2)
+ ;;=^5031631
+ ;;^UTILITY(U,$J,358.3,8449,0)
+ ;;=S56.117A^^42^511^44
+ ;;^UTILITY(U,$J,358.3,8449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8449,1,3,0)
+ ;;=3^Strain of Right Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8449,1,4,0)
+ ;;=4^S56.117A
+ ;;^UTILITY(U,$J,358.3,8449,2)
+ ;;=^5031634
+ ;;^UTILITY(U,$J,358.3,8450,0)
+ ;;=S56.118A^^42^511^25
+ ;;^UTILITY(U,$J,358.3,8450,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8450,1,3,0)
+ ;;=3^Strain of Left Little Finger at Forearm Level Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8450,1,4,0)
+ ;;=4^S56.118A
+ ;;^UTILITY(U,$J,358.3,8450,2)
+ ;;=^5031637
+ ;;^UTILITY(U,$J,358.3,8451,0)
+ ;;=S56.211A^^42^511^38
+ ;;^UTILITY(U,$J,358.3,8451,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8451,1,3,0)
+ ;;=3^Strain of Right Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8451,1,4,0)
+ ;;=4^S56.211A
+ ;;^UTILITY(U,$J,358.3,8451,2)
+ ;;=^5031691
+ ;;^UTILITY(U,$J,358.3,8452,0)
+ ;;=S56.212A^^42^511^19
+ ;;^UTILITY(U,$J,358.3,8452,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8452,1,3,0)
+ ;;=3^Strain of Left Forearm Flexor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8452,1,4,0)
+ ;;=4^S56.212A
+ ;;^UTILITY(U,$J,358.3,8452,2)
+ ;;=^5031694
+ ;;^UTILITY(U,$J,358.3,8453,0)
+ ;;=S56.311A^^42^511^54
+ ;;^UTILITY(U,$J,358.3,8453,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8453,1,3,0)
+ ;;=3^Strain of Right Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8453,1,4,0)
+ ;;=4^S56.311A
+ ;;^UTILITY(U,$J,358.3,8453,2)
+ ;;=^5031715
+ ;;^UTILITY(U,$J,358.3,8454,0)
+ ;;=S56.312A^^42^511^34
+ ;;^UTILITY(U,$J,358.3,8454,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8454,1,3,0)
+ ;;=3^Strain of Left Thumb at Forearm Level Extn/Abdr Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8454,1,4,0)
+ ;;=4^S56.312A
+ ;;^UTILITY(U,$J,358.3,8454,2)
+ ;;=^5031718
+ ;;^UTILITY(U,$J,358.3,8455,0)
+ ;;=S56.411A^^42^511^42
+ ;;^UTILITY(U,$J,358.3,8455,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,8455,1,3,0)
+ ;;=3^Strain of Right Index Finger at Forearm Level Extensor Muscle/Fasc/Tendon
+ ;;^UTILITY(U,$J,358.3,8455,1,4,0)
+ ;;=4^S56.411A
+ ;;^UTILITY(U,$J,358.3,8455,2)
+ ;;=^5031763
+ ;;^UTILITY(U,$J,358.3,8456,0)
+ ;;=S56.412A^^42^511^23
+ ;;^UTILITY(U,$J,358.3,8456,1,0)
+ ;;=^358.31IA^4^2

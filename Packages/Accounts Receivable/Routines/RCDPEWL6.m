@@ -1,6 +1,6 @@
 RCDPEWL6 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,276,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,208,222,276,298,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
@@ -51,7 +51,9 @@ DISTADJ ; Distribute an adjustment that retracts a payment to other bill(s)
  ;
  S RCQUIT=0
  ;
- S (TOT,Z)=0 F  S Z=$O(RCZ1(Z)) Q:'Z  S TOT=TOT+Z
+ ; PRCA*4.5*303 - May miss if multiple amounts are equal, changed calculation to use RCZ2 instead of RCZ1 
+ ; Old code: S (TOT,Z)=0 F  S Z=$O(RCZ1(Z)) Q:'Z  S TOT=TOT+Z
+ S (TOT,Z)=0 F  S Z=$O(RCZ2(Z)) Q:'Z  S TOT=TOT+$P(RCZ2(Z),U,2)
  I TOT<RCDA(2) D  G DISTQ
  . S DIR(0)="EA",DIR("A",1)="THE ERA DOES NOT HAVE ENOUGH VALID PAYMENTS TO OFFSET THIS DISTRIBUTION",DIR("A",2)=$$WHAT(RCSCR),DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR
  F  S DIR(0)="NA^1:9999:3",DIR("A")="SELECT A LINE TO DISTRIBUTE THE ADJUSTMENT AMOUNT TO: " D  Q:RCQUIT

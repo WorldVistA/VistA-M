@@ -1,120 +1,292 @@
-IBDEI0XL ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XL ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15751,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC,In Remission
- ;;^UTILITY(U,$J,358.3,15751,1,4,0)
- ;;=4^F19.21
- ;;^UTILITY(U,$J,358.3,15751,2)
- ;;=^5003432
- ;;^UTILITY(U,$J,358.3,15752,0)
- ;;=F19.24^^58^689^4
- ;;^UTILITY(U,$J,358.3,15752,1,0)
+ ;;^UTILITY(U,$J,358.3,33784,1,4,0)
+ ;;=4^Q66.0
+ ;;^UTILITY(U,$J,358.3,33784,2)
+ ;;=^5018861
+ ;;^UTILITY(U,$J,358.3,33785,0)
+ ;;=M20.22^^122^1592^22
+ ;;^UTILITY(U,$J,358.3,33785,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15752,1,3,0)
- ;;=3^Psychoactive Substance Dependence NEC w/ Induced Mood Disorder
- ;;^UTILITY(U,$J,358.3,15752,1,4,0)
- ;;=4^F19.24
- ;;^UTILITY(U,$J,358.3,15752,2)
- ;;=^5003441
- ;;^UTILITY(U,$J,358.3,15753,0)
- ;;=F13.10^^58^690^1
- ;;^UTILITY(U,$J,358.3,15753,1,0)
+ ;;^UTILITY(U,$J,358.3,33785,1,3,0)
+ ;;=3^Hallux rigidus, left foot
+ ;;^UTILITY(U,$J,358.3,33785,1,4,0)
+ ;;=4^M20.22
+ ;;^UTILITY(U,$J,358.3,33785,2)
+ ;;=^5011046
+ ;;^UTILITY(U,$J,358.3,33786,0)
+ ;;=M20.21^^122^1592^23
+ ;;^UTILITY(U,$J,358.3,33786,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15753,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,15753,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,15753,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,15754,0)
- ;;=F13.14^^58^690^7
- ;;^UTILITY(U,$J,358.3,15754,1,0)
+ ;;^UTILITY(U,$J,358.3,33786,1,3,0)
+ ;;=3^Hallux rigidus, right foot
+ ;;^UTILITY(U,$J,358.3,33786,1,4,0)
+ ;;=4^M20.21
+ ;;^UTILITY(U,$J,358.3,33786,2)
+ ;;=^5011045
+ ;;^UTILITY(U,$J,358.3,33787,0)
+ ;;=M20.12^^122^1592^24
+ ;;^UTILITY(U,$J,358.3,33787,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15754,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Depressive,Bipolar or Related Disorder w/ Mild use Disorder
- ;;^UTILITY(U,$J,358.3,15754,1,4,0)
- ;;=4^F13.14
- ;;^UTILITY(U,$J,358.3,15754,2)
- ;;=^5003193
- ;;^UTILITY(U,$J,358.3,15755,0)
- ;;=F13.182^^58^690^8
- ;;^UTILITY(U,$J,358.3,15755,1,0)
+ ;;^UTILITY(U,$J,358.3,33787,1,3,0)
+ ;;=3^Hallux valgus (acquired), left foot
+ ;;^UTILITY(U,$J,358.3,33787,1,4,0)
+ ;;=4^M20.12
+ ;;^UTILITY(U,$J,358.3,33787,2)
+ ;;=^5011043
+ ;;^UTILITY(U,$J,358.3,33788,0)
+ ;;=M20.11^^122^1592^25
+ ;;^UTILITY(U,$J,358.3,33788,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15755,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15755,1,4,0)
- ;;=4^F13.182
- ;;^UTILITY(U,$J,358.3,15755,2)
- ;;=^5003199
- ;;^UTILITY(U,$J,358.3,15756,0)
- ;;=F13.20^^58^690^2
- ;;^UTILITY(U,$J,358.3,15756,1,0)
+ ;;^UTILITY(U,$J,358.3,33788,1,3,0)
+ ;;=3^Hallux valgus (acquired), right foot
+ ;;^UTILITY(U,$J,358.3,33788,1,4,0)
+ ;;=4^M20.11
+ ;;^UTILITY(U,$J,358.3,33788,2)
+ ;;=^5011042
+ ;;^UTILITY(U,$J,358.3,33789,0)
+ ;;=M77.42^^122^1592^30
+ ;;^UTILITY(U,$J,358.3,33789,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15756,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,15756,1,4,0)
- ;;=4^F13.20
- ;;^UTILITY(U,$J,358.3,15756,2)
- ;;=^5003202
- ;;^UTILITY(U,$J,358.3,15757,0)
- ;;=F13.21^^58^690^3
- ;;^UTILITY(U,$J,358.3,15757,1,0)
+ ;;^UTILITY(U,$J,358.3,33789,1,3,0)
+ ;;=3^Metatarsalgia, left foot
+ ;;^UTILITY(U,$J,358.3,33789,1,4,0)
+ ;;=4^M77.42
+ ;;^UTILITY(U,$J,358.3,33789,2)
+ ;;=^5013314
+ ;;^UTILITY(U,$J,358.3,33790,0)
+ ;;=M77.41^^122^1592^31
+ ;;^UTILITY(U,$J,358.3,33790,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15757,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,15757,1,4,0)
- ;;=4^F13.21
- ;;^UTILITY(U,$J,358.3,15757,2)
- ;;=^331934
- ;;^UTILITY(U,$J,358.3,15758,0)
- ;;=F13.232^^58^690^4
- ;;^UTILITY(U,$J,358.3,15758,1,0)
+ ;;^UTILITY(U,$J,358.3,33790,1,3,0)
+ ;;=3^Metatarsalgia, right foot
+ ;;^UTILITY(U,$J,358.3,33790,1,4,0)
+ ;;=4^M77.41
+ ;;^UTILITY(U,$J,358.3,33790,2)
+ ;;=^5013313
+ ;;^UTILITY(U,$J,358.3,33791,0)
+ ;;=G57.61^^122^1592^29
+ ;;^UTILITY(U,$J,358.3,33791,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15758,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/ Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,15758,1,4,0)
- ;;=4^F13.232
- ;;^UTILITY(U,$J,358.3,15758,2)
- ;;=^5003208
- ;;^UTILITY(U,$J,358.3,15759,0)
- ;;=F13.239^^58^690^5
- ;;^UTILITY(U,$J,358.3,15759,1,0)
+ ;;^UTILITY(U,$J,358.3,33791,1,3,0)
+ ;;=3^Inter-Digital Neuroma,Right Foot
+ ;;^UTILITY(U,$J,358.3,33791,1,4,0)
+ ;;=4^G57.61
+ ;;^UTILITY(U,$J,358.3,33791,2)
+ ;;=^5004057
+ ;;^UTILITY(U,$J,358.3,33792,0)
+ ;;=G57.62^^122^1592^28
+ ;;^UTILITY(U,$J,358.3,33792,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15759,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal w/o Perceptual Disturbances
- ;;^UTILITY(U,$J,358.3,15759,1,4,0)
- ;;=4^F13.239
- ;;^UTILITY(U,$J,358.3,15759,2)
- ;;=^5003209
- ;;^UTILITY(U,$J,358.3,15760,0)
- ;;=F13.24^^58^690^9
- ;;^UTILITY(U,$J,358.3,15760,1,0)
+ ;;^UTILITY(U,$J,358.3,33792,1,3,0)
+ ;;=3^Inter-Digital Neuroma,Left Foot
+ ;;^UTILITY(U,$J,358.3,33792,1,4,0)
+ ;;=4^G57.62
+ ;;^UTILITY(U,$J,358.3,33792,2)
+ ;;=^5004058
+ ;;^UTILITY(U,$J,358.3,33793,0)
+ ;;=L97.909^^122^1592^35
+ ;;^UTILITY(U,$J,358.3,33793,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15760,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic-Induced Dep,Bip or Related Disorder w/ Mod-Sev Use Disorder
- ;;^UTILITY(U,$J,358.3,15760,1,4,0)
- ;;=4^F13.24
- ;;^UTILITY(U,$J,358.3,15760,2)
- ;;=^5003210
- ;;^UTILITY(U,$J,358.3,15761,0)
- ;;=F13.231^^58^690^6
- ;;^UTILITY(U,$J,358.3,15761,1,0)
+ ;;^UTILITY(U,$J,358.3,33793,1,3,0)
+ ;;=3^Ulcer,Foot,Non-Diabetic
+ ;;^UTILITY(U,$J,358.3,33793,1,4,0)
+ ;;=4^L97.909
+ ;;^UTILITY(U,$J,358.3,33793,2)
+ ;;=^5133687
+ ;;^UTILITY(U,$J,358.3,33794,0)
+ ;;=M14.60^^122^1592^3
+ ;;^UTILITY(U,$J,358.3,33794,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15761,1,3,0)
- ;;=3^Sedative,Hypnotic or Anxiolytic Withdrawal Delirium
- ;;^UTILITY(U,$J,358.3,15761,1,4,0)
- ;;=4^F13.231
- ;;^UTILITY(U,$J,358.3,15761,2)
- ;;=^5003207
- ;;^UTILITY(U,$J,358.3,15762,0)
- ;;=F17.200^^58^691^9
- ;;^UTILITY(U,$J,358.3,15762,1,0)
+ ;;^UTILITY(U,$J,358.3,33794,1,3,0)
+ ;;=3^Charcot Deformity
+ ;;^UTILITY(U,$J,358.3,33794,1,4,0)
+ ;;=4^M14.60
+ ;;^UTILITY(U,$J,358.3,33794,2)
+ ;;=^5010714
+ ;;^UTILITY(U,$J,358.3,33795,0)
+ ;;=M24.871^^122^1592^19
+ ;;^UTILITY(U,$J,358.3,33795,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15762,1,3,0)
- ;;=3^Nicotine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,15762,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,15762,2)
- ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,33795,1,3,0)
+ ;;=3^Foot Contraction,Right Foot
+ ;;^UTILITY(U,$J,358.3,33795,1,4,0)
+ ;;=4^M24.871
+ ;;^UTILITY(U,$J,358.3,33795,2)
+ ;;=^5011468
+ ;;^UTILITY(U,$J,358.3,33796,0)
+ ;;=M24.872^^122^1592^18
+ ;;^UTILITY(U,$J,358.3,33796,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33796,1,3,0)
+ ;;=3^Foot Contraction,Left Foot
+ ;;^UTILITY(U,$J,358.3,33796,1,4,0)
+ ;;=4^M24.872
+ ;;^UTILITY(U,$J,358.3,33796,2)
+ ;;=^5011469
+ ;;^UTILITY(U,$J,358.3,33797,0)
+ ;;=M24.571^^122^1592^8
+ ;;^UTILITY(U,$J,358.3,33797,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33797,1,3,0)
+ ;;=3^Contracture,Right Foot
+ ;;^UTILITY(U,$J,358.3,33797,1,4,0)
+ ;;=4^M24.571
+ ;;^UTILITY(U,$J,358.3,33797,2)
+ ;;=^5011420
+ ;;^UTILITY(U,$J,358.3,33798,0)
+ ;;=M24.572^^122^1592^7
+ ;;^UTILITY(U,$J,358.3,33798,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33798,1,3,0)
+ ;;=3^Contracture,Left Foot
+ ;;^UTILITY(U,$J,358.3,33798,1,4,0)
+ ;;=4^M24.572
+ ;;^UTILITY(U,$J,358.3,33798,2)
+ ;;=^5011421
+ ;;^UTILITY(U,$J,358.3,33799,0)
+ ;;=M77.31^^122^1592^2
+ ;;^UTILITY(U,$J,358.3,33799,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33799,1,3,0)
+ ;;=3^Calcaneal Spur,Right Foot
+ ;;^UTILITY(U,$J,358.3,33799,1,4,0)
+ ;;=4^M77.31
+ ;;^UTILITY(U,$J,358.3,33799,2)
+ ;;=^5013310
+ ;;^UTILITY(U,$J,358.3,33800,0)
+ ;;=M77.32^^122^1592^1
+ ;;^UTILITY(U,$J,358.3,33800,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33800,1,3,0)
+ ;;=3^Calcaneal Spur,Left Foot
+ ;;^UTILITY(U,$J,358.3,33800,1,4,0)
+ ;;=4^M77.32
+ ;;^UTILITY(U,$J,358.3,33800,2)
+ ;;=^5013311
+ ;;^UTILITY(U,$J,358.3,33801,0)
+ ;;=M72.2^^122^1592^32
+ ;;^UTILITY(U,$J,358.3,33801,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33801,1,3,0)
+ ;;=3^Plantar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,33801,1,4,0)
+ ;;=4^M72.2
+ ;;^UTILITY(U,$J,358.3,33801,2)
+ ;;=^272598
+ ;;^UTILITY(U,$J,358.3,33802,0)
+ ;;=M21.41^^122^1592^17
+ ;;^UTILITY(U,$J,358.3,33802,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33802,1,3,0)
+ ;;=3^Flat Foot,Right Foot
+ ;;^UTILITY(U,$J,358.3,33802,1,4,0)
+ ;;=4^M21.41
+ ;;^UTILITY(U,$J,358.3,33802,2)
+ ;;=^5011114
+ ;;^UTILITY(U,$J,358.3,33803,0)
+ ;;=M21.42^^122^1592^16
+ ;;^UTILITY(U,$J,358.3,33803,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33803,1,3,0)
+ ;;=3^Flat Foot,Left Foot
+ ;;^UTILITY(U,$J,358.3,33803,1,4,0)
+ ;;=4^M21.42
+ ;;^UTILITY(U,$J,358.3,33803,2)
+ ;;=^5011115
+ ;;^UTILITY(U,$J,358.3,33804,0)
+ ;;=M20.31^^122^1592^21
+ ;;^UTILITY(U,$J,358.3,33804,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33804,1,3,0)
+ ;;=3^Hallux Varus,Right Foot
+ ;;^UTILITY(U,$J,358.3,33804,1,4,0)
+ ;;=4^M20.31
+ ;;^UTILITY(U,$J,358.3,33804,2)
+ ;;=^5011048
+ ;;^UTILITY(U,$J,358.3,33805,0)
+ ;;=M20.32^^122^1592^20
+ ;;^UTILITY(U,$J,358.3,33805,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33805,1,3,0)
+ ;;=3^Hallux Varus,Left Foot
+ ;;^UTILITY(U,$J,358.3,33805,1,4,0)
+ ;;=4^M20.32
+ ;;^UTILITY(U,$J,358.3,33805,2)
+ ;;=^5011049
+ ;;^UTILITY(U,$J,358.3,33806,0)
+ ;;=M20.41^^122^1592^27
+ ;;^UTILITY(U,$J,358.3,33806,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33806,1,3,0)
+ ;;=3^Hammer Toe(s),Right Foot
+ ;;^UTILITY(U,$J,358.3,33806,1,4,0)
+ ;;=4^M20.41
+ ;;^UTILITY(U,$J,358.3,33806,2)
+ ;;=^5011051
+ ;;^UTILITY(U,$J,358.3,33807,0)
+ ;;=M20.42^^122^1592^26
+ ;;^UTILITY(U,$J,358.3,33807,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33807,1,3,0)
+ ;;=3^Hammer Toe(s),Left Foot
+ ;;^UTILITY(U,$J,358.3,33807,1,4,0)
+ ;;=4^M20.42
+ ;;^UTILITY(U,$J,358.3,33807,2)
+ ;;=^5011052
+ ;;^UTILITY(U,$J,358.3,33808,0)
+ ;;=M20.5X1^^122^1592^5
+ ;;^UTILITY(U,$J,358.3,33808,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33808,1,3,0)
+ ;;=3^Claw Toe(s),Right Foot
+ ;;^UTILITY(U,$J,358.3,33808,1,4,0)
+ ;;=4^M20.5X1
+ ;;^UTILITY(U,$J,358.3,33808,2)
+ ;;=^5011053
+ ;;^UTILITY(U,$J,358.3,33809,0)
+ ;;=M20.5X2^^122^1592^4
+ ;;^UTILITY(U,$J,358.3,33809,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33809,1,3,0)
+ ;;=3^Claw Toe(s),Left Foot
+ ;;^UTILITY(U,$J,358.3,33809,1,4,0)
+ ;;=4^M20.5X2
+ ;;^UTILITY(U,$J,358.3,33809,2)
+ ;;=^5011054
+ ;;^UTILITY(U,$J,358.3,33810,0)
+ ;;=M20.61^^122^1592^15
+ ;;^UTILITY(U,$J,358.3,33810,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33810,1,3,0)
+ ;;=3^Deformity of Toe(s),Right Foot
+ ;;^UTILITY(U,$J,358.3,33810,1,4,0)
+ ;;=4^M20.61
+ ;;^UTILITY(U,$J,358.3,33810,2)
+ ;;=^5011057
+ ;;^UTILITY(U,$J,358.3,33811,0)
+ ;;=M20.62^^122^1592^14
+ ;;^UTILITY(U,$J,358.3,33811,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33811,1,3,0)
+ ;;=3^Deformity of Toe(s),Left Foot
+ ;;^UTILITY(U,$J,358.3,33811,1,4,0)
+ ;;=4^M20.62
+ ;;^UTILITY(U,$J,358.3,33811,2)
+ ;;=^5011058
+ ;;^UTILITY(U,$J,358.3,33812,0)
+ ;;=M21.961^^122^1592^12
+ ;;^UTILITY(U,$J,358.3,33812,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33812,1,3,0)
+ ;;=3^Deformity of Right Foot
+ ;;^UTILITY(U,$J,358.3,33812,1,4,0)
+ ;;=4^M21.961
+ ;;^UTILITY(U,$J,358.3,33812,2)
+ ;;=^5011171
+ ;;^UTILITY(U,$J,358.3,33813,0)
+ ;;=M21.962^^122^1592^10
+ ;;^UTILITY(U,$J,358.3,33813,1,0)
+ ;;=^358.31IA^4^2

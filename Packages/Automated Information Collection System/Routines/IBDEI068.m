@@ -1,134 +1,304 @@
-IBDEI068 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI068 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2584,1,4,0)
- ;;=4^F01.50
- ;;^UTILITY(U,$J,358.3,2584,2)
- ;;=^5003046
- ;;^UTILITY(U,$J,358.3,2585,0)
- ;;=R42.^^18^204^39
- ;;^UTILITY(U,$J,358.3,2585,1,0)
+ ;;^UTILITY(U,$J,358.3,6061,1,4,0)
+ ;;=4^E87.0
+ ;;^UTILITY(U,$J,358.3,6061,2)
+ ;;=^5003018
+ ;;^UTILITY(U,$J,358.3,6062,0)
+ ;;=E87.1^^39^432^18
+ ;;^UTILITY(U,$J,358.3,6062,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2585,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,2585,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,2585,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,2586,0)
- ;;=R45.86^^18^204^40
- ;;^UTILITY(U,$J,358.3,2586,1,0)
+ ;;^UTILITY(U,$J,358.3,6062,1,3,0)
+ ;;=3^Hypo-osmolality and Hyponatremia
+ ;;^UTILITY(U,$J,358.3,6062,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,6062,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,6063,0)
+ ;;=E87.2^^39^432^1
+ ;;^UTILITY(U,$J,358.3,6063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2586,1,3,0)
- ;;=3^Emotional Lability
- ;;^UTILITY(U,$J,358.3,2586,1,4,0)
- ;;=4^R45.86
- ;;^UTILITY(U,$J,358.3,2586,2)
- ;;=^5019475
- ;;^UTILITY(U,$J,358.3,2587,0)
- ;;=R44.3^^18^204^43
- ;;^UTILITY(U,$J,358.3,2587,1,0)
+ ;;^UTILITY(U,$J,358.3,6063,1,3,0)
+ ;;=3^Acidosis
+ ;;^UTILITY(U,$J,358.3,6063,1,4,0)
+ ;;=4^E87.2
+ ;;^UTILITY(U,$J,358.3,6063,2)
+ ;;=^5003020
+ ;;^UTILITY(U,$J,358.3,6064,0)
+ ;;=E87.3^^39^432^3
+ ;;^UTILITY(U,$J,358.3,6064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2587,1,3,0)
- ;;=3^Hallucinations,Unspec
- ;;^UTILITY(U,$J,358.3,2587,1,4,0)
- ;;=4^R44.3
- ;;^UTILITY(U,$J,358.3,2587,2)
- ;;=^5019458
- ;;^UTILITY(U,$J,358.3,2588,0)
- ;;=R46.0^^18^204^46
- ;;^UTILITY(U,$J,358.3,2588,1,0)
+ ;;^UTILITY(U,$J,358.3,6064,1,3,0)
+ ;;=3^Alkalosis
+ ;;^UTILITY(U,$J,358.3,6064,1,4,0)
+ ;;=4^E87.3
+ ;;^UTILITY(U,$J,358.3,6064,2)
+ ;;=^5003021
+ ;;^UTILITY(U,$J,358.3,6065,0)
+ ;;=E87.4^^39^432^24
+ ;;^UTILITY(U,$J,358.3,6065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2588,1,3,0)
- ;;=3^Hygiene,Personal,Very Low Level
- ;;^UTILITY(U,$J,358.3,2588,1,4,0)
- ;;=4^R46.0
- ;;^UTILITY(U,$J,358.3,2588,2)
- ;;=^5019478
- ;;^UTILITY(U,$J,358.3,2589,0)
- ;;=Z91.83^^18^204^52
- ;;^UTILITY(U,$J,358.3,2589,1,0)
+ ;;^UTILITY(U,$J,358.3,6065,1,3,0)
+ ;;=3^Mixed Acid-Base Balance Disorder
+ ;;^UTILITY(U,$J,358.3,6065,1,4,0)
+ ;;=4^E87.4
+ ;;^UTILITY(U,$J,358.3,6065,2)
+ ;;=^5003022
+ ;;^UTILITY(U,$J,358.3,6066,0)
+ ;;=E86.9^^39^432^31
+ ;;^UTILITY(U,$J,358.3,6066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2589,1,3,0)
- ;;=3^Personal Hx of Wandering
- ;;^UTILITY(U,$J,358.3,2589,1,4,0)
- ;;=4^Z91.83
- ;;^UTILITY(U,$J,358.3,2589,2)
- ;;=^5063627
- ;;^UTILITY(U,$J,358.3,2590,0)
- ;;=A81.9^^18^204^6
- ;;^UTILITY(U,$J,358.3,2590,1,0)
+ ;;^UTILITY(U,$J,358.3,6066,1,3,0)
+ ;;=3^Volume Depletion,Unspec
+ ;;^UTILITY(U,$J,358.3,6066,1,4,0)
+ ;;=4^E86.9
+ ;;^UTILITY(U,$J,358.3,6066,2)
+ ;;=^332840
+ ;;^UTILITY(U,$J,358.3,6067,0)
+ ;;=E86.0^^39^432^6
+ ;;^UTILITY(U,$J,358.3,6067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2590,1,3,0)
- ;;=3^Atypical Virus Infection of CNS,Unspec
- ;;^UTILITY(U,$J,358.3,2590,1,4,0)
- ;;=4^A81.9
- ;;^UTILITY(U,$J,358.3,2590,2)
- ;;=^5000414
- ;;^UTILITY(U,$J,358.3,2591,0)
- ;;=A81.2^^18^204^53
- ;;^UTILITY(U,$J,358.3,2591,1,0)
+ ;;^UTILITY(U,$J,358.3,6067,1,3,0)
+ ;;=3^Dehydration
+ ;;^UTILITY(U,$J,358.3,6067,1,4,0)
+ ;;=4^E86.0
+ ;;^UTILITY(U,$J,358.3,6067,2)
+ ;;=^332743
+ ;;^UTILITY(U,$J,358.3,6068,0)
+ ;;=E86.1^^39^432^22
+ ;;^UTILITY(U,$J,358.3,6068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2591,1,3,0)
- ;;=3^Progressive Multifocal Leukoencephalopathy
- ;;^UTILITY(U,$J,358.3,2591,1,4,0)
- ;;=4^A81.2
- ;;^UTILITY(U,$J,358.3,2591,2)
- ;;=^5000411
- ;;^UTILITY(U,$J,358.3,2592,0)
- ;;=B20.^^18^204^41
- ;;^UTILITY(U,$J,358.3,2592,1,0)
+ ;;^UTILITY(U,$J,358.3,6068,1,3,0)
+ ;;=3^Hypovolemia
+ ;;^UTILITY(U,$J,358.3,6068,1,4,0)
+ ;;=4^E86.1
+ ;;^UTILITY(U,$J,358.3,6068,2)
+ ;;=^332744
+ ;;^UTILITY(U,$J,358.3,6069,0)
+ ;;=E87.70^^39^432^11
+ ;;^UTILITY(U,$J,358.3,6069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2592,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/ Behavioral Disturbance
- ;;^UTILITY(U,$J,358.3,2592,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,2592,2)
- ;;=^5000555^F02.81
- ;;^UTILITY(U,$J,358.3,2593,0)
- ;;=B20.^^18^204^42
- ;;^UTILITY(U,$J,358.3,2593,1,0)
+ ;;^UTILITY(U,$J,358.3,6069,1,3,0)
+ ;;=3^Fluid Overload,Unspec
+ ;;^UTILITY(U,$J,358.3,6069,1,4,0)
+ ;;=4^E87.70
+ ;;^UTILITY(U,$J,358.3,6069,2)
+ ;;=^5003023
+ ;;^UTILITY(U,$J,358.3,6070,0)
+ ;;=E87.5^^39^432^14
+ ;;^UTILITY(U,$J,358.3,6070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2593,1,3,0)
- ;;=3^HIV Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2593,1,4,0)
- ;;=4^B20.
- ;;^UTILITY(U,$J,358.3,2593,2)
- ;;=^5000555^F02.80
- ;;^UTILITY(U,$J,358.3,2594,0)
- ;;=G10.^^18^204^44
- ;;^UTILITY(U,$J,358.3,2594,1,0)
+ ;;^UTILITY(U,$J,358.3,6070,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,6070,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,6070,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,6071,0)
+ ;;=E87.6^^39^432^20
+ ;;^UTILITY(U,$J,358.3,6071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2594,1,3,0)
- ;;=3^Huntington's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2594,1,4,0)
- ;;=4^G10.
- ;;^UTILITY(U,$J,358.3,2594,2)
- ;;=^5003751^F02.81
- ;;^UTILITY(U,$J,358.3,2595,0)
- ;;=G20.^^18^204^50
- ;;^UTILITY(U,$J,358.3,2595,1,0)
+ ;;^UTILITY(U,$J,358.3,6071,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,6071,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,6071,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,6072,0)
+ ;;=E87.8^^39^432^8
+ ;;^UTILITY(U,$J,358.3,6072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2595,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/ Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2595,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,2595,2)
- ;;=^5003770^F02.81
- ;;^UTILITY(U,$J,358.3,2596,0)
- ;;=G20.^^18^204^51
- ;;^UTILITY(U,$J,358.3,2596,1,0)
+ ;;^UTILITY(U,$J,358.3,6072,1,3,0)
+ ;;=3^Electrolyte & Fluid Balance Disorders NEC
+ ;;^UTILITY(U,$J,358.3,6072,1,4,0)
+ ;;=4^E87.8
+ ;;^UTILITY(U,$J,358.3,6072,2)
+ ;;=^5003026
+ ;;^UTILITY(U,$J,358.3,6073,0)
+ ;;=E26.81^^39^432^5
+ ;;^UTILITY(U,$J,358.3,6073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2596,1,3,0)
- ;;=3^Parkinson's Disease w/ Dementia w/o Behavioral Disturbances
- ;;^UTILITY(U,$J,358.3,2596,1,4,0)
- ;;=4^G20.
- ;;^UTILITY(U,$J,358.3,2596,2)
- ;;=^5003770^F02.80
- ;;^UTILITY(U,$J,358.3,2597,0)
- ;;=G23.1^^18^204^54
- ;;^UTILITY(U,$J,358.3,2597,1,0)
+ ;;^UTILITY(U,$J,358.3,6073,1,3,0)
+ ;;=3^Bartter's Syndrome
+ ;;^UTILITY(U,$J,358.3,6073,1,4,0)
+ ;;=4^E26.81
+ ;;^UTILITY(U,$J,358.3,6073,2)
+ ;;=^329906
+ ;;^UTILITY(U,$J,358.3,6074,0)
+ ;;=E23.2^^39^432^7
+ ;;^UTILITY(U,$J,358.3,6074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2597,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia
+ ;;^UTILITY(U,$J,358.3,6074,1,3,0)
+ ;;=3^Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,6074,1,4,0)
+ ;;=4^E23.2
+ ;;^UTILITY(U,$J,358.3,6074,2)
+ ;;=^33572
+ ;;^UTILITY(U,$J,358.3,6075,0)
+ ;;=E83.41^^39^432^15
+ ;;^UTILITY(U,$J,358.3,6075,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6075,1,3,0)
+ ;;=3^Hypermagnesemia
+ ;;^UTILITY(U,$J,358.3,6075,1,4,0)
+ ;;=4^E83.41
+ ;;^UTILITY(U,$J,358.3,6075,2)
+ ;;=^5003002
+ ;;^UTILITY(U,$J,358.3,6076,0)
+ ;;=E21.3^^39^432^17
+ ;;^UTILITY(U,$J,358.3,6076,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6076,1,3,0)
+ ;;=3^Hyperparathyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,6076,1,4,0)
+ ;;=4^E21.3
+ ;;^UTILITY(U,$J,358.3,6076,2)
+ ;;=^331438
+ ;;^UTILITY(U,$J,358.3,6077,0)
+ ;;=E83.42^^39^432^21
+ ;;^UTILITY(U,$J,358.3,6077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6077,1,3,0)
+ ;;=3^Hypomagnesemia
+ ;;^UTILITY(U,$J,358.3,6077,1,4,0)
+ ;;=4^E83.42
+ ;;^UTILITY(U,$J,358.3,6077,2)
+ ;;=^5003003
+ ;;^UTILITY(U,$J,358.3,6078,0)
+ ;;=N25.1^^39^432^25
+ ;;^UTILITY(U,$J,358.3,6078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6078,1,3,0)
+ ;;=3^Nephrogenic Diabetes Insipidus
+ ;;^UTILITY(U,$J,358.3,6078,1,4,0)
+ ;;=4^N25.1
+ ;;^UTILITY(U,$J,358.3,6078,2)
+ ;;=^5015616
+ ;;^UTILITY(U,$J,358.3,6079,0)
+ ;;=E27.49^^39^432^2
+ ;;^UTILITY(U,$J,358.3,6079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6079,1,3,0)
+ ;;=3^Adrenocortical Insufficiency,Other
+ ;;^UTILITY(U,$J,358.3,6079,1,4,0)
+ ;;=4^E27.49
+ ;;^UTILITY(U,$J,358.3,6079,2)
+ ;;=^5002743
+ ;;^UTILITY(U,$J,358.3,6080,0)
+ ;;=E72.09^^39^432^4
+ ;;^UTILITY(U,$J,358.3,6080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6080,1,3,0)
+ ;;=3^Amino-Acid Transport Disorders,Other
+ ;;^UTILITY(U,$J,358.3,6080,1,4,0)
+ ;;=4^E72.09
+ ;;^UTILITY(U,$J,358.3,6080,2)
+ ;;=^5002895
+ ;;^UTILITY(U,$J,358.3,6081,0)
+ ;;=N25.89^^39^432^23
+ ;;^UTILITY(U,$J,358.3,6081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6081,1,3,0)
+ ;;=3^Impaired Renal Tubular Function Disorders,Other
+ ;;^UTILITY(U,$J,358.3,6081,1,4,0)
+ ;;=4^N25.89
+ ;;^UTILITY(U,$J,358.3,6081,2)
+ ;;=^5015618
+ ;;^UTILITY(U,$J,358.3,6082,0)
+ ;;=E26.89^^39^432^12
+ ;;^UTILITY(U,$J,358.3,6082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6082,1,3,0)
+ ;;=3^Hyperaldosteronism,Other
+ ;;^UTILITY(U,$J,358.3,6082,1,4,0)
+ ;;=4^E26.89
+ ;;^UTILITY(U,$J,358.3,6082,2)
+ ;;=^5002737
+ ;;^UTILITY(U,$J,358.3,6083,0)
+ ;;=N25.81^^39^432^29
+ ;;^UTILITY(U,$J,358.3,6083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6083,1,3,0)
+ ;;=3^Secondary Hyperparathyroidism of Renal Origin
+ ;;^UTILITY(U,$J,358.3,6083,1,4,0)
+ ;;=4^N25.81
+ ;;^UTILITY(U,$J,358.3,6083,2)
+ ;;=^5015617
+ ;;^UTILITY(U,$J,358.3,6084,0)
+ ;;=E22.2^^39^432^28
+ ;;^UTILITY(U,$J,358.3,6084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6084,1,3,0)
+ ;;=3^SIADH
+ ;;^UTILITY(U,$J,358.3,6084,1,4,0)
+ ;;=4^E22.2
+ ;;^UTILITY(U,$J,358.3,6084,2)
+ ;;=^5002718
+ ;;^UTILITY(U,$J,358.3,6085,0)
+ ;;=E87.79^^39^432^10
+ ;;^UTILITY(U,$J,358.3,6085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6085,1,3,0)
+ ;;=3^Fluid Overload,Other
+ ;;^UTILITY(U,$J,358.3,6085,1,4,0)
+ ;;=4^E87.79
+ ;;^UTILITY(U,$J,358.3,6085,2)
+ ;;=^5003025
+ ;;^UTILITY(U,$J,358.3,6086,0)
+ ;;=E21.0^^39^432^27
+ ;;^UTILITY(U,$J,358.3,6086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6086,1,3,0)
+ ;;=3^Primary Hyperparathyroidism
+ ;;^UTILITY(U,$J,358.3,6086,1,4,0)
+ ;;=4^E21.0
+ ;;^UTILITY(U,$J,358.3,6086,2)
+ ;;=^331439
+ ;;^UTILITY(U,$J,358.3,6087,0)
+ ;;=E87.71^^39^432^30
+ ;;^UTILITY(U,$J,358.3,6087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6087,1,3,0)
+ ;;=3^Transfusion Associated Circulatory Overload
+ ;;^UTILITY(U,$J,358.3,6087,1,4,0)
+ ;;=4^E87.71
+ ;;^UTILITY(U,$J,358.3,6087,2)
+ ;;=^5003024
+ ;;^UTILITY(U,$J,358.3,6088,0)
+ ;;=D63.1^^39^433^1
+ ;;^UTILITY(U,$J,358.3,6088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6088,1,3,0)
+ ;;=3^Anemia in Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,6088,1,4,0)
+ ;;=4^D63.1
+ ;;^UTILITY(U,$J,358.3,6088,2)
+ ;;=^332908
+ ;;^UTILITY(U,$J,358.3,6089,0)
+ ;;=I12.0^^39^433^9
+ ;;^UTILITY(U,$J,358.3,6089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6089,1,3,0)
+ ;;=3^HTN w/ CKD w/ Stage 5 CKD/ESRD
+ ;;^UTILITY(U,$J,358.3,6089,1,4,0)
+ ;;=4^I12.0
+ ;;^UTILITY(U,$J,358.3,6089,2)
+ ;;=^5007065
+ ;;^UTILITY(U,$J,358.3,6090,0)
+ ;;=I95.1^^39^433^10
+ ;;^UTILITY(U,$J,358.3,6090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6090,1,3,0)
+ ;;=3^Hypotension,Orthostatic
+ ;;^UTILITY(U,$J,358.3,6090,1,4,0)
+ ;;=4^I95.1
+ ;;^UTILITY(U,$J,358.3,6090,2)
+ ;;=^60741
+ ;;^UTILITY(U,$J,358.3,6091,0)
+ ;;=I95.89^^39^433^11
+ ;;^UTILITY(U,$J,358.3,6091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,6091,1,3,0)
+ ;;=3^Hypotension,Other

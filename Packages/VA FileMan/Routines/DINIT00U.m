@@ -1,6 +1,10 @@
-DINIT00U ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;12:15 PM  25 Aug 2000
- ;;22.0;VA FileMan;**8,18**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00U ;SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;09DEC2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9213,2,1,0)
@@ -15,25 +19,25 @@ Q Q
  ;;=   Insert/replace mode toggle      <PF3>  or  <Insert Here>  or  <Insert>
  ;;^UTILITY(U,$J,.84,9213,2,6,0)
  ;;=   Set/clear tab stop              <PF1><Tab>
- ;;^UTILITY(U,$J,.84,9213,2,7,0)
+ ;;^UTILITY(U,$J,.84,9213,2,6.5,0)
  ;;=   Enter columns for tab stops     <PF1><PF1><Tab>
- ;;^UTILITY(U,$J,.84,9213,2,8,0)
+ ;;^UTILITY(U,$J,.84,9213,2,7,0)
  ;;=   Set left margin                 <PF1>,
- ;;^UTILITY(U,$J,.84,9213,2,9,0)
+ ;;^UTILITY(U,$J,.84,9213,2,8,0)
  ;;=   Set right margin                <PF1>.
- ;;^UTILITY(U,$J,.84,9213,2,10,0)
+ ;;^UTILITY(U,$J,.84,9213,2,9,0)
  ;;=   Status line toggle              <PF1>?
+ ;;^UTILITY(U,$J,.84,9213,2,10,0)
+ ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,11,0)
  ;;= 
  ;;^UTILITY(U,$J,.84,9213,2,12,0)
- ;;= 
- ;;^UTILITY(U,$J,.84,9213,2,13,0)
  ;;=\BFormatting\n
- ;;^UTILITY(U,$J,.84,9213,2,14,0)
+ ;;^UTILITY(U,$J,.84,9213,2,13,0)
  ;;= 
- ;;^UTILITY(U,$J,.84,9213,2,15,0)
+ ;;^UTILITY(U,$J,.84,9213,2,14,0)
  ;;=   Join current line to next line  <PF1>J
- ;;^UTILITY(U,$J,.84,9213,2,16,0)
+ ;;^UTILITY(U,$J,.84,9213,2,15,0)
  ;;=   Reformat paragraph              <PF1>R
  ;;^UTILITY(U,$J,.84,9214,0)
  ;;=9214^3^^5

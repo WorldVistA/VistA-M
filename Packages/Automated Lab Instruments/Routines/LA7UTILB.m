@@ -1,5 +1,5 @@
-LA7UTILB ;DALOI/JMC - Reprocess Lab HL7 Incoming Messages ;July 22, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7UTILB ;DALOI/JMC - Reprocess Lab HL7 Incoming Messages ;11/18/15  17:19
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,88**;Sep 27, 1994;Build 10
  ;
 EN ; Select a Lab HL7 message to reprocess.
  N DIC,DIR,DIROUT,DIRUT,DTOUT,FDA,LA7DIE,LA76248,LA7I,LA7LIST,LA7X,PARAM,X,Y
@@ -24,16 +24,27 @@ EN ; Select a Lab HL7 message to reprocess.
  S X=$$SELECT^LRUTIL(.DIC,.LA7LIST,"Message",10,0,1,1)
  ;
  K DIC,DIR
- I '$O(LA7LIST(0)) D CHECKQ Q
+ ;
  ; Confirm selection
- S DIR(0)="YO",DIR("A")="Reprocess these messages",DIR("B")="YES"
- D ^DIR
- I Y'=1 Q
- D SETSTAT,TASK
+ I $O(LA7LIST(0)) D
+ . S DIR(0)="YO",DIR("A")="Reprocess these messages",DIR("B")="YES"
+ . D ^DIR
+ . I Y'=1 Q
+ . D SETSTAT,TASK
+ ;
+ I '$O(LA7LIST(0)) D CHECKQ
+ ;
+ ; Check if auto release master switch parameter is ON (1) then check for any queues needing restarting.
+ I $$GET^XPAR("SYS^PKG","LA UI AUTO RELEASE MASTER",1,"Q") D CHECKARQ
+ ;
  Q
  ;
  ;
 SETSTAT ; Set status of selected messages to queued for processing
+ ;
+ ;ZEXCEPT: LA76248,LA7LIST
+ ;
+ N FDA,LA7I,LRDIE
  S LA7I=0
  F  S LA7I=$O(LA7LIST(LA7I)) Q:'LA7I  D
  . K FDA,LRDIE
@@ -46,6 +57,10 @@ SETSTAT ; Set status of selected messages to queued for processing
  ;
  ;
 TASK ; Task processing routine for each message's respective configuration
+ ;
+ ;ZEXCEPT: LA76248
+ ;
+ N LA7X
  S LA76248=0
  F  S LA76248=$O(LA76248(LA76248)) Q:'LA76248  D
  . S LA7X=$P($G(^LAHM(62.48,LA76248,0)),"^")
@@ -56,7 +71,7 @@ TASK ; Task processing routine for each message's respective configuration
  ;
  ;
 CHECKQ ; Check "IQ" incoming queued for processing queues in case need to restart.
- N DIR,DIRUT,DTOUT,DUOUT,LA76248,LA7CNT,LA7I,LA7J,LA7K
+ N DIR,DIRUT,DTOUT,DUOUT,LA76248,LA7CNT,LA7I,LA7J,LA7K,X,Y
  S (LA7I,LA7J)=0
  F  S LA7I=$O(^LAHM(62.48,LA7I)) Q:LA7I<1  D
  . I '$P(^LAHM(62.48,LA7I,0),"^",3) Q
@@ -74,6 +89,35 @@ CHECKQ ; Check "IQ" incoming queued for processing queues in case need to restar
  S LA7I=0
  F LA7I=1:1 S LA7J=$P(Y,",",LA7I) Q:LA7J<1  S LA76248(LA7J(LA7J))=""
  I $D(LA76248) D TASK
+ Q
+ ;
+ ;
+CHECKARQ ; Check LAH global for pending auto release results in case need to restart
+ ;
+ N DIR,DIRUT,DTOUT,DUOUT,LA7CNT,LA7I,LA7J,LA7K,LA7X,LRLL,LWL,X,Y
+ ;
+ S (LA7I,LA7J)=0
+ F  S LA7I=$O(^LAH(LA7I)) Q:LA7I<1  D
+ . I '$D(^LAH(LA7I,1,"AUTOREL-UID")) Q
+ . S (LA7CNT,LA7K)=0
+ . F  S LA7K=$O(^LAH(LA7I,1,"AUTOREL-UID",LA7K)) Q:LA7K=""  S LA7CNT=LA7CNT+1
+ . S LA7J=LA7J+1,LA7J(LA7J)=LA7I,DIR("A",LA7J)=LA7J_"  "_$P(^LRO(68.2,LA7I,0),"^")_" (Queue size: "_LA7CNT_" accession"_$S(LA7CNT>1:"s",1:"")_")"
+ I '$O(LA7J(0)) Q
+ ;
+ W !!
+ S DIR(0)="LO^1:"_LA7J
+ S DIR("A")="Select the number(s) of the LOAD/WORK LIST Auto Release to restart"
+ S DIR("A",.1)="The following Load Lists have results in the Auto Release queue:",DIR("A",.2)=" ",DIR("A",LA7J+1)=" "
+ D ^DIR
+ I $D(DIRUT) Q
+ ;
+ F LA7I=1:1 S LA7J=$P(Y,",",LA7I) Q:LA7J<1  S LRLL(LA7J(LA7J))=""
+ ;
+ S LWL=0
+ F  S LWL=$O(LRLL(LWL)) Q:'LWL  D
+ . S LA7X=$P(^LRO(68.2,LWL,0),"^")
+ . D QLAH^LA7VIN(LWL,"EN^LRVRAR")
+ . D EN^DDIOL("Queued auto release processing for LOAD/WORK LIST "_LA7X,"","!")
  Q
  ;
  ;

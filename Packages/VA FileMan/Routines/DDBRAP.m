@@ -1,6 +1,10 @@
-DDBRAP ;SFISC/DCL-BROWSER WP ANCHOR PROCESSOR ;NOV 04, 1996@13:53
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDBRAP ;SFISC/DCL-BROWSER WP ANCHOR PROCESSOR ;06:56 PM  31 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 WP(DDBROOT,DDBRFLG,DDBRTLE) ;
  ;Pass existing wp root, flag=c/clear all -indexes, title
@@ -54,13 +58,13 @@ IENROOT(DDBROOT,DDBRLEV) ;pass root,.variable~by reference to return
  ;
 EN ;create anchors and jumps on existing wp entry
  N DDBC,DDBFLG,DDBL,DDBPMSG,DDBSA,DDBX,IOTM,IOBM
- I '$$TEST^DDBRT W $C(7),!!,"This terminal does not support scroll region or reverse index",!! Q
+ I '$$TEST^DDBRT W $C(7),!!,$$EZBLD^DIALOG(830),!! Q  ;**
  D LIST^DDBR3(.DDBX)
- I DDBX'>0 W:DDBX=0 $C(7),!!,"No Text",!! Q
+ I DDBX'>0 W:DDBX=0 $C(7),!!,$$EZBLD^DIALOG(1404),!! Q  ;**NO TEXT
  S DDBSA=DDBX(6)
  S DDBFLG=DDBX(4)
  S DDBPMSG=DDBX(5)
- W !,"...compiling anchors and hypertext jumps..."
+ W !,"...." ;**
  D WP(DDBSA,$G(DDBRFLG),DDBPMSG)
  W !,"done!",!
  Q

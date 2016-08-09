@@ -1,5 +1,5 @@
 DPTLK7 ;OAK/ELZ - MAS PATIENT LOOKUP ENTERPRISE SEARCH ; 8/24/15 2:38pm
- ;;5.3;Registration;**915**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**915,919**;Aug 13, 1993;Build 4
  ;
 SEARCH(DGX,DGXOLD) ; do a search, pass in what the user entered
  ; DGX is what the user originally entered, name is assumed unless it
@@ -342,7 +342,7 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  ;
  S DIC("DR")="",REQ="^.02^.03^.09^"
  S DGF=.01 F  S DGF=$O(DGF(DGF)) Q:'DGF  D
- . ; if the data has a second piece, then that's interal value to use
+ . ; if the data has a second piece, then that's internal value to use
  . S DATA=$S($P(DGF(DGF),"^",2):$P(DGF(DGF),"^",2),1:DGF(DGF))
  . I DATA]""!(REQ[("^"_DGF_"^")) S DIC("DR")=DIC("DR")_DGF_$S(DATA]"":"////"_DATA,1:"")_";"
  ; patient type
@@ -353,6 +353,8 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  S DIC("DR")=DIC("DR")_".301///N;"
  ; date added
  S DIC("DR")=DIC("DR")_".097////"_DT
+ ; who added
+ S:$G(DUZ) DIC("DR")=DIC("DR")_";.096////"_DUZ
  ;
  S X=DGF(.01),DIC="^DPT(",DIC(0)="L",DLAYGO=2,VAFCNO=1
  D FILE^DICN
@@ -367,6 +369,9 @@ ADD(DGF,DG20NAME) ; - stuff in patient
  I $D(FDA) D
  . N DG20NAME
  . D UPDATE^DIE("","FDA")
+ ;
+ ; send bulletin new patient added to system
+ I SAVY>0 D BULL(SAVY)
  ;
  Q SAVY
  ;
@@ -390,3 +395,16 @@ PSEUDO(NAM,DOB) ; - return pseudo ssn
  S L2=Z,Z=L3 D CON^DGRPDD1 S L3=Z
  Q L2_L1_L3_$E(DOB,4,7)_$E(DOB,2,3)_"P"
  ;
+BULL(SAVY) ; - send bulletin that new patient added
+ N DGTEXT,DGNAM,DGSSN,DGDOB,DGB,DGZ
+ S DGB=2
+ S DGZ=$G(^DPT(SAVY,0))
+ S DGNAM=$P(DGZ,"^"),DGSSN=$P(DGZ,"^",9),DGDOB=$P(DGZ,"^",3)
+ S DGSSN=$E(DGSSN,1,3)_"-"_$E(DGSSN,4,5)_"-"_$E(DGSSN,6,10)
+ S DGDOB=$$FMTE^XLFDT(DGDOB)
+ S XMSUB="NEW PATIENT ADDED TO SYSTEM"
+ S DGTEXT(1,0)="NAME:  "_DGNAM
+ S DGTEXT(2,0)="SSN :  "_DGSSN
+ S DGTEXT(3,0)="DOB :  "_DGDOB
+ D ^DGBUL
+ Q

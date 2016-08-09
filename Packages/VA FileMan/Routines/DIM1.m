@@ -1,7 +1,9 @@
-DIM1 ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;1:55 PM  19 Jul 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- ;12276;6135531;3766;
+DIM1 ;SFISC/JFW,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;13DEC2009
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  Q:%ERR  N %A,%A1 S (%I,%N,%ERR,%(-1,2),%(-1,3))=0
  ;
@@ -76,7 +78,7 @@ EXT ; extrinsic functions and variables (FUNC)
  D %INC
  F %I=%I+1:1 S %C1=$E(%,%I) Q:%C1?1PC&("^%"'[%C1)!(%C1="")  S %C=%C_%C1
  G:%C="" E G:%C?.E1"^" E G:%C["^^" E
- S %C1=$P(%C,"^",2) I %C1]"",%C1'?1U.7AN,%C1'?1"%".7AN G E
+ S %C1=$P(%C,"^",2) I %C1]"",%C1'?1U.15AN,%C1'?1"%".15AN G E
  S %C=$P(%C,"^") I %C]"",%C'?1U.7AN,%C'?1"%".7AN,%C'?1.8N G E
  I $E(%,%I)="(",$E(%,%I+1)'=")" S %(%N,0)="P^",(%(%N,1),%(%N,2),%(%N,3))=0,%N=%N+1 G GG
  S %I=%I+$S($E(%,%I,%I+1)="()":1,1:-1)

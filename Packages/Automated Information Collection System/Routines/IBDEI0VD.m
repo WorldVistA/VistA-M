@@ -1,122 +1,282 @@
-IBDEI0VD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0VD ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14701,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,14702,0)
- ;;=Y36.300D^^53^612^127
- ;;^UTILITY(U,$J,358.3,14702,1,0)
+ ;;^UTILITY(U,$J,358.3,31564,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,31564,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,31565,0)
+ ;;=Z00.5^^119^1549^7
+ ;;^UTILITY(U,$J,358.3,31565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14702,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14702,1,4,0)
- ;;=4^Y36.300D
- ;;^UTILITY(U,$J,358.3,14702,2)
- ;;=^5061662
- ;;^UTILITY(U,$J,358.3,14703,0)
- ;;=Y36.410A^^53^612^121
- ;;^UTILITY(U,$J,358.3,14703,1,0)
+ ;;^UTILITY(U,$J,358.3,31565,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,31565,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,31565,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,31566,0)
+ ;;=Z02.3^^119^1549^6
+ ;;^UTILITY(U,$J,358.3,31566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14703,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14703,1,4,0)
- ;;=4^Y36.410A
- ;;^UTILITY(U,$J,358.3,14703,2)
- ;;=^5061691
- ;;^UTILITY(U,$J,358.3,14704,0)
- ;;=Y36.410D^^53^612^123
- ;;^UTILITY(U,$J,358.3,14704,1,0)
+ ;;^UTILITY(U,$J,358.3,31566,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,31566,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,31566,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,31567,0)
+ ;;=Z02.89^^119^1549^1
+ ;;^UTILITY(U,$J,358.3,31567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14704,1,3,0)
- ;;=3^War Op Inv Rubber Bullets,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14704,1,4,0)
- ;;=4^Y36.410D
- ;;^UTILITY(U,$J,358.3,14704,2)
- ;;=^5061692
- ;;^UTILITY(U,$J,358.3,14705,0)
- ;;=Y36.6X0A^^53^612^113
- ;;^UTILITY(U,$J,358.3,14705,1,0)
+ ;;^UTILITY(U,$J,358.3,31567,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,31567,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,31567,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,31568,0)
+ ;;=Z00.8^^119^1549^8
+ ;;^UTILITY(U,$J,358.3,31568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14705,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14705,1,4,0)
- ;;=4^Y36.6X0A
- ;;^UTILITY(U,$J,358.3,14705,2)
- ;;=^5061775
- ;;^UTILITY(U,$J,358.3,14706,0)
- ;;=Y36.6X0D^^53^612^115
- ;;^UTILITY(U,$J,358.3,14706,1,0)
+ ;;^UTILITY(U,$J,358.3,31568,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,31568,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,31568,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,31569,0)
+ ;;=Z02.1^^119^1549^14
+ ;;^UTILITY(U,$J,358.3,31569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14706,1,3,0)
- ;;=3^War Op Inv Biological Weapons,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14706,1,4,0)
- ;;=4^Y36.6X0D
- ;;^UTILITY(U,$J,358.3,14706,2)
- ;;=^5061776
- ;;^UTILITY(U,$J,358.3,14707,0)
- ;;=Y36.7X0A^^53^612^128
- ;;^UTILITY(U,$J,358.3,14707,1,0)
+ ;;^UTILITY(U,$J,358.3,31569,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,31569,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,31569,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,31570,0)
+ ;;=Z01.810^^119^1549^2
+ ;;^UTILITY(U,$J,358.3,31570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14707,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14707,1,4,0)
- ;;=4^Y36.7X0A
- ;;^UTILITY(U,$J,358.3,14707,2)
- ;;=^5061781
- ;;^UTILITY(U,$J,358.3,14708,0)
- ;;=Y36.7X0D^^53^612^129
- ;;^UTILITY(U,$J,358.3,14708,1,0)
+ ;;^UTILITY(U,$J,358.3,31570,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,31570,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,31570,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,31571,0)
+ ;;=Z01.811^^119^1549^16
+ ;;^UTILITY(U,$J,358.3,31571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14708,1,3,0)
- ;;=3^War Op w/ Chem Weapons/Unconvtl Warfare,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14708,1,4,0)
- ;;=4^Y36.7X0D
- ;;^UTILITY(U,$J,358.3,14708,2)
- ;;=^5061782
- ;;^UTILITY(U,$J,358.3,14709,0)
- ;;=Y36.810A^^53^612^22
- ;;^UTILITY(U,$J,358.3,14709,1,0)
+ ;;^UTILITY(U,$J,358.3,31571,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,31571,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,31571,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,31572,0)
+ ;;=Z01.812^^119^1549^13
+ ;;^UTILITY(U,$J,358.3,31572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14709,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14709,1,4,0)
- ;;=4^Y36.810A
- ;;^UTILITY(U,$J,358.3,14709,2)
- ;;=^5061787
- ;;^UTILITY(U,$J,358.3,14710,0)
- ;;=Y36.810D^^53^612^23
- ;;^UTILITY(U,$J,358.3,14710,1,0)
+ ;;^UTILITY(U,$J,358.3,31572,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,31572,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,31572,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,31573,0)
+ ;;=Z01.818^^119^1549^15
+ ;;^UTILITY(U,$J,358.3,31573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14710,1,3,0)
- ;;=3^Explosn of Mine Placed During War Op but Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14710,1,4,0)
- ;;=4^Y36.810D
- ;;^UTILITY(U,$J,358.3,14710,2)
- ;;=^5061788
- ;;^UTILITY(U,$J,358.3,14711,0)
- ;;=Y36.820A^^53^612^19
- ;;^UTILITY(U,$J,358.3,14711,1,0)
+ ;;^UTILITY(U,$J,358.3,31573,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,31573,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,31573,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,31574,0)
+ ;;=Z71.0^^119^1549^9
+ ;;^UTILITY(U,$J,358.3,31574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14711,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,14711,1,4,0)
- ;;=4^Y36.820A
- ;;^UTILITY(U,$J,358.3,14711,2)
- ;;=^5061793
- ;;^UTILITY(U,$J,358.3,14712,0)
- ;;=Y36.820D^^53^612^20
- ;;^UTILITY(U,$J,358.3,14712,1,0)
+ ;;^UTILITY(U,$J,358.3,31574,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,31574,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,31574,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,31575,0)
+ ;;=Z59.8^^119^1549^10
+ ;;^UTILITY(U,$J,358.3,31575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14712,1,3,0)
- ;;=3^Explosn of Bomb Placed During War Op But Expld Aft,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14712,1,4,0)
- ;;=4^Y36.820D
- ;;^UTILITY(U,$J,358.3,14712,2)
- ;;=^5061794
- ;;^UTILITY(U,$J,358.3,14713,0)
- ;;=Y37.200A^^53^612^91
- ;;^UTILITY(U,$J,358.3,14713,1,0)
+ ;;^UTILITY(U,$J,358.3,31575,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,31575,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,31575,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,31576,0)
+ ;;=I20.0^^119^1550^14
+ ;;^UTILITY(U,$J,358.3,31576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14713,1,3,0)
- ;;=3^Miltary Op Inv Explosion/Fragments,Milt,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31576,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,31576,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,31576,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,31577,0)
+ ;;=I25.110^^119^1550^7
+ ;;^UTILITY(U,$J,358.3,31577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31577,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,31577,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,31577,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,31578,0)
+ ;;=I25.700^^119^1550^12
+ ;;^UTILITY(U,$J,358.3,31578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31578,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,31578,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,31578,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,31579,0)
+ ;;=I25.2^^119^1550^13
+ ;;^UTILITY(U,$J,358.3,31579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31579,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,31579,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,31579,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,31580,0)
+ ;;=I20.8^^119^1550^2
+ ;;^UTILITY(U,$J,358.3,31580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31580,1,3,0)
+ ;;=3^Angina Pectoris,Oth Forms
+ ;;^UTILITY(U,$J,358.3,31580,1,4,0)
+ ;;=4^I20.8
+ ;;^UTILITY(U,$J,358.3,31580,2)
+ ;;=^5007078
+ ;;^UTILITY(U,$J,358.3,31581,0)
+ ;;=I20.1^^119^1550^1
+ ;;^UTILITY(U,$J,358.3,31581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31581,1,3,0)
+ ;;=3^Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,31581,1,4,0)
+ ;;=4^I20.1
+ ;;^UTILITY(U,$J,358.3,31581,2)
+ ;;=^5007077
+ ;;^UTILITY(U,$J,358.3,31582,0)
+ ;;=I25.119^^119^1550^5
+ ;;^UTILITY(U,$J,358.3,31582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31582,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,31582,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,31582,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,31583,0)
+ ;;=I25.701^^119^1550^9
+ ;;^UTILITY(U,$J,358.3,31583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31583,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Angina Pectoris w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,31583,1,4,0)
+ ;;=4^I25.701
+ ;;^UTILITY(U,$J,358.3,31583,2)
+ ;;=^5007118
+ ;;^UTILITY(U,$J,358.3,31584,0)
+ ;;=I25.708^^119^1550^10
+ ;;^UTILITY(U,$J,358.3,31584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31584,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Oth Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,31584,1,4,0)
+ ;;=4^I25.708
+ ;;^UTILITY(U,$J,358.3,31584,2)
+ ;;=^5007119
+ ;;^UTILITY(U,$J,358.3,31585,0)
+ ;;=I20.9^^119^1550^3
+ ;;^UTILITY(U,$J,358.3,31585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31585,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,31585,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,31585,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,31586,0)
+ ;;=I25.729^^119^1550^4
+ ;;^UTILITY(U,$J,358.3,31586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31586,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,31586,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,31586,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,31587,0)
+ ;;=I25.709^^119^1550^11
+ ;;^UTILITY(U,$J,358.3,31587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31587,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unspec Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,31587,1,4,0)
+ ;;=4^I25.709
+ ;;^UTILITY(U,$J,358.3,31587,2)
+ ;;=^5007120
+ ;;^UTILITY(U,$J,358.3,31588,0)
+ ;;=I25.10^^119^1550^6
+ ;;^UTILITY(U,$J,358.3,31588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31588,1,3,0)
+ ;;=3^Athscl HRT Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,31588,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,31588,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,31589,0)
+ ;;=I25.810^^119^1550^8
+ ;;^UTILITY(U,$J,358.3,31589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31589,1,3,0)
+ ;;=3^Athscl of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,31589,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,31589,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,31590,0)
+ ;;=I65.29^^119^1551^18
+ ;;^UTILITY(U,$J,358.3,31590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31590,1,3,0)
+ ;;=3^Occlusion & Stenosis Unspec Carotid Artery
+ ;;^UTILITY(U,$J,358.3,31590,1,4,0)
+ ;;=4^I65.29
+ ;;^UTILITY(U,$J,358.3,31590,2)
+ ;;=^5007363
+ ;;^UTILITY(U,$J,358.3,31591,0)
+ ;;=I65.22^^119^1551^16
+ ;;^UTILITY(U,$J,358.3,31591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31591,1,3,0)
+ ;;=3^Occlusion & Stenosis Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,31591,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,31591,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,31592,0)
+ ;;=I65.23^^119^1551^15
+ ;;^UTILITY(U,$J,358.3,31592,1,0)
+ ;;=^358.31IA^4^2

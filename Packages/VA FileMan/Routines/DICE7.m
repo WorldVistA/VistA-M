@@ -1,6 +1,10 @@
 DICE7 ;SFISC/GFT-BULLETIN X-REFS ;12:38 PM  8 Jun 1995
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K ^UTILITY("DICE",$J) S ^($J,0)="^^BULLETIN MESSAGE",DOLD=$P(^DD(DI,DL,0),U,1)
  F DIK=1,2 Q:$D(DTOUT)  D M G QQ:X[U!$D(DTOUT) I X]"" S DQI="Y(",DCOND="SENDING OF '"_DREF_"'" D DA,CC^DICE4,DA G QQ:$D(DTOUT) S DHI=0,DLAY=$S($D(DCOND):X,1:"") D S G QQ:X=U
  Q:$D(DTOUT)  G X^DICE0

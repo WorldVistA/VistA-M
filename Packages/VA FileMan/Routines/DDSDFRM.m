@@ -1,6 +1,9 @@
-DDSDFRM ;SFISC/MKO-DELETE A FORM ;09:12 AM  18 Aug 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSDFRM ;SFISC/MKO-DELETE A FORM ;11:22 AM  4 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  N %,DIC,DIOVRD,X,Y
  D INIT
@@ -58,7 +61,7 @@ QUIT ;Cleanup
 FORM() ;Prompt for form
  ;Select file
  N D,DIC
- S DDS1="DELETE FORM FROM" D W^DICRW K DDS1 G:Y<0 FORMQ
+EGP S DDS1=8108.2 D W^DICRW K DDS1 G:Y<0 FORMQ ;**CCO/NI  'DELETE FORM'
  I '$D(@(DIC_"0)")) S Y=-1 G FORMQ
  S DDSFILE=Y
  ;
@@ -69,7 +72,7 @@ FORM() ;Prompt for form
  S DIC("S")="I $P(^(0),U,8)=+DDSFILE"
  S DIC("A")="Select FORM to delete: "
  S DIC("W")=$P($T(DICW),";",3,999)
-DICW ;;N %G,%Y S %Y=Y,%G=^(0) W:$X>35 ! W ?35,"#"_Y S Y=$P(%G,U,5) W:Y]"" ?43," "_$E(Y,4,5)_"/"_$E(Y,6,7)_"/"_$E(Y,2,3) S Y=$P(%G,U,4) W:Y]"" ?53," User #"_Y S Y=$P(%G,U,8) W:Y]"" ?65," File #"_Y S Y=%Y
+DICW ;;N %G S %G=^(0) W:$X>35 ! W ?35,"#"_Y N Y S Y=$P(%G,U,5) W:Y]"" ?43,$$OUT^DIALOGU(Y,"FMTE","2D") S Y=$P(%G,U,4) W:Y]"" ?53," User #"_Y S Y=$P(%G,U,8) W:Y]"" ?65," File #"_Y ;**CCO/NI   NICE DATE FORMAT
  D IX^DIC
  ;
 FORMQ Q Y

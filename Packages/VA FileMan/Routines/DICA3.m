@@ -1,6 +1,9 @@
-DICA3 ;SEA/TOAD-VA FileMan: Updater, Adder ;17SEP2009
- ;;22.0;VA FileMan;**147,162**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICA3 ;SEA/TOAD-VA FileMan: Updater, Adder ;16FEB2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 CREATE(DIFILE,DIEN,DIROOT,DIVALUE) ;If DIEN comes in with a leading number, use it as IEN
  N DIENP S DIENP=","_$P(DIEN,",",2,999)
@@ -14,11 +17,12 @@ GETNUM ;
  N DIFAIL,DIOUT S DIFAIL=0,DIOUT=0 F  D  I DIOUT!DIFAIL Q
  . I 'DINUM S DIEN=DIEN+1 I $D(@(DIROOT_"DIEN)")) Q  ;**GFT LOOK BEFORE LOCKING
  . I DIFAUD,+$O(^DIA(DIFAUD,"B",DIEN_","))=DIEN!$D(^(DIEN)) Q  ;**GFT   DON'T PICK AN ALREADY-AUDITED NUMBER
+ . I DIEN'>0 D ERR(202,DIFILE,DIEN,.01,"ASSIGNED IEN") S DIFAIL=1 Q  ;ARTF10963 -- "The input parameter that identifies the ASSIGNED IEN is missing or invalid."
  . D LOCK^DILF(DIROOT_"DIEN)") ;**147
- . I '$T S DIFAIL=DINUM Q:'DIFAIL  D ERR(110,DIFILE,DIEN_DIENP) Q
+ . I '$T S DIFAIL=DINUM Q:'DIFAIL  D ERR(110,DIFILE,DIEN_DIENP) Q  ;RECORD IS LOCKED
 ZERO . I $D(@(DIROOT_"DIEN,0)")) L -@(DIROOT_"DIEN)") D  Q
- . . S DIFAIL=DINUM I 'DIFAIL Q
- . . D ERR(302,DIFILE,DIEN_DIENP)
+ . . S DIFAIL=DINUM I 'DIFAIL Q  ;COULDN'T DO DINUM!
+ . . D ERR(302,DIFILE,DIEN_DIENP) ;ENTRY ALREADY EXISTS
  . S DIOUT=1
  I DIFAIL S DIEN="" Q
 SETREC ;

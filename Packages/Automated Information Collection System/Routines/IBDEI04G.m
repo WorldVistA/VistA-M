@@ -1,144 +1,270 @@
-IBDEI04G ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI04G ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1656,2)
- ;;=^5004171
- ;;^UTILITY(U,$J,358.3,1657,0)
- ;;=I31.2^^11^147^13
- ;;^UTILITY(U,$J,358.3,1657,1,0)
+ ;;^UTILITY(U,$J,358.3,4192,0)
+ ;;=S61.216A^^30^309^55
+ ;;^UTILITY(U,$J,358.3,4192,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1657,1,3,0)
- ;;=3^Hemopericardium NEC
- ;;^UTILITY(U,$J,358.3,1657,1,4,0)
- ;;=4^I31.2
- ;;^UTILITY(U,$J,358.3,1657,2)
- ;;=^5007163
- ;;^UTILITY(U,$J,358.3,1658,0)
- ;;=R60.9^^11^147^11
- ;;^UTILITY(U,$J,358.3,1658,1,0)
+ ;;^UTILITY(U,$J,358.3,4192,1,3,0)
+ ;;=3^Laceration w/o FB of Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4192,1,4,0)
+ ;;=4^S61.216A
+ ;;^UTILITY(U,$J,358.3,4192,2)
+ ;;=^5032789
+ ;;^UTILITY(U,$J,358.3,4193,0)
+ ;;=S61.312A^^30^309^57
+ ;;^UTILITY(U,$J,358.3,4193,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1658,1,3,0)
- ;;=3^Edema,Unspec
- ;;^UTILITY(U,$J,358.3,1658,1,4,0)
- ;;=4^R60.9
- ;;^UTILITY(U,$J,358.3,1658,2)
- ;;=^5019534
- ;;^UTILITY(U,$J,358.3,1659,0)
- ;;=R00.0^^11^147^24
- ;;^UTILITY(U,$J,358.3,1659,1,0)
+ ;;^UTILITY(U,$J,358.3,4193,1,3,0)
+ ;;=3^Laceration w/o FB of Right Middle Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4193,1,4,0)
+ ;;=4^S61.312A
+ ;;^UTILITY(U,$J,358.3,4193,2)
+ ;;=^5032912
+ ;;^UTILITY(U,$J,358.3,4194,0)
+ ;;=S61.212A^^30^309^58
+ ;;^UTILITY(U,$J,358.3,4194,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1659,1,3,0)
- ;;=3^Tachycardia,Unspec
- ;;^UTILITY(U,$J,358.3,1659,1,4,0)
- ;;=4^R00.0
- ;;^UTILITY(U,$J,358.3,1659,2)
- ;;=^5019163
- ;;^UTILITY(U,$J,358.3,1660,0)
- ;;=R00.2^^11^147^19
- ;;^UTILITY(U,$J,358.3,1660,1,0)
+ ;;^UTILITY(U,$J,358.3,4194,1,3,0)
+ ;;=3^Laceration w/o FB of Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4194,1,4,0)
+ ;;=4^S61.212A
+ ;;^UTILITY(U,$J,358.3,4194,2)
+ ;;=^5032777
+ ;;^UTILITY(U,$J,358.3,4195,0)
+ ;;=S61.314A^^30^309^59
+ ;;^UTILITY(U,$J,358.3,4195,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1660,1,3,0)
- ;;=3^Palpitations
- ;;^UTILITY(U,$J,358.3,1660,1,4,0)
- ;;=4^R00.2
- ;;^UTILITY(U,$J,358.3,1660,2)
- ;;=^5019165
- ;;^UTILITY(U,$J,358.3,1661,0)
- ;;=R01.1^^11^147^6
- ;;^UTILITY(U,$J,358.3,1661,1,0)
+ ;;^UTILITY(U,$J,358.3,4195,1,3,0)
+ ;;=3^Laceration w/o FB of Right Ring Finger w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4195,1,4,0)
+ ;;=4^S61.314A
+ ;;^UTILITY(U,$J,358.3,4195,2)
+ ;;=^5032918
+ ;;^UTILITY(U,$J,358.3,4196,0)
+ ;;=S61.214A^^30^309^60
+ ;;^UTILITY(U,$J,358.3,4196,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1661,1,3,0)
- ;;=3^Cardiac Murmur,Unspec
- ;;^UTILITY(U,$J,358.3,1661,1,4,0)
- ;;=4^R01.1
- ;;^UTILITY(U,$J,358.3,1661,2)
- ;;=^5019169
- ;;^UTILITY(U,$J,358.3,1662,0)
- ;;=R01.0^^11^147^5
- ;;^UTILITY(U,$J,358.3,1662,1,0)
+ ;;^UTILITY(U,$J,358.3,4196,1,3,0)
+ ;;=3^Laceration w/o FB of Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4196,1,4,0)
+ ;;=4^S61.214A
+ ;;^UTILITY(U,$J,358.3,4196,2)
+ ;;=^5032783
+ ;;^UTILITY(U,$J,358.3,4197,0)
+ ;;=S41.011A^^30^309^61
+ ;;^UTILITY(U,$J,358.3,4197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1662,1,3,0)
- ;;=3^Benign/Innocent Cardiac Murmurs
- ;;^UTILITY(U,$J,358.3,1662,1,4,0)
- ;;=4^R01.0
- ;;^UTILITY(U,$J,358.3,1662,2)
- ;;=^5019168
- ;;^UTILITY(U,$J,358.3,1663,0)
- ;;=R57.0^^11^147^7
- ;;^UTILITY(U,$J,358.3,1663,1,0)
+ ;;^UTILITY(U,$J,358.3,4197,1,3,0)
+ ;;=3^Laceration w/o FB of Right Shoulder,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4197,1,4,0)
+ ;;=4^S41.011A
+ ;;^UTILITY(U,$J,358.3,4197,2)
+ ;;=^5026297
+ ;;^UTILITY(U,$J,358.3,4198,0)
+ ;;=S61.111A^^30^309^63
+ ;;^UTILITY(U,$J,358.3,4198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1663,1,3,0)
- ;;=3^Cardiogenic Shock
- ;;^UTILITY(U,$J,358.3,1663,1,4,0)
- ;;=4^R57.0
- ;;^UTILITY(U,$J,358.3,1663,2)
- ;;=^5019525
- ;;^UTILITY(U,$J,358.3,1664,0)
- ;;=R06.01^^11^147^18
- ;;^UTILITY(U,$J,358.3,1664,1,0)
+ ;;^UTILITY(U,$J,358.3,4198,1,3,0)
+ ;;=3^Laceration w/o FB of Right Thumb w/ Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4198,1,4,0)
+ ;;=4^S61.111A
+ ;;^UTILITY(U,$J,358.3,4198,2)
+ ;;=^5032726
+ ;;^UTILITY(U,$J,358.3,4199,0)
+ ;;=S61.011A^^30^309^64
+ ;;^UTILITY(U,$J,358.3,4199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1664,1,3,0)
- ;;=3^Orthopnea
- ;;^UTILITY(U,$J,358.3,1664,1,4,0)
- ;;=4^R06.01
- ;;^UTILITY(U,$J,358.3,1664,2)
- ;;=^186737
- ;;^UTILITY(U,$J,358.3,1665,0)
- ;;=R06.81^^11^147^3
- ;;^UTILITY(U,$J,358.3,1665,1,0)
+ ;;^UTILITY(U,$J,358.3,4199,1,3,0)
+ ;;=3^Laceration w/o FB of Right Thumb w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4199,1,4,0)
+ ;;=4^S61.011A
+ ;;^UTILITY(U,$J,358.3,4199,2)
+ ;;=^5032690
+ ;;^UTILITY(U,$J,358.3,4200,0)
+ ;;=S61.511A^^30^309^65
+ ;;^UTILITY(U,$J,358.3,4200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1665,1,3,0)
- ;;=3^Apnea NEC
- ;;^UTILITY(U,$J,358.3,1665,1,4,0)
- ;;=4^R06.81
- ;;^UTILITY(U,$J,358.3,1665,2)
- ;;=^5019190
- ;;^UTILITY(U,$J,358.3,1666,0)
- ;;=R06.02^^11^147^22
- ;;^UTILITY(U,$J,358.3,1666,1,0)
+ ;;^UTILITY(U,$J,358.3,4200,1,3,0)
+ ;;=3^Laceration w/o FB of Right Wrist,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4200,1,4,0)
+ ;;=4^S61.511A
+ ;;^UTILITY(U,$J,358.3,4200,2)
+ ;;=^5033026
+ ;;^UTILITY(U,$J,358.3,4201,0)
+ ;;=S01.01XA^^30^309^66
+ ;;^UTILITY(U,$J,358.3,4201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1666,1,3,0)
- ;;=3^Shortness of Breath
- ;;^UTILITY(U,$J,358.3,1666,1,4,0)
- ;;=4^R06.02
- ;;^UTILITY(U,$J,358.3,1666,2)
- ;;=^5019181
- ;;^UTILITY(U,$J,358.3,1667,0)
- ;;=R06.82^^11^147^25
- ;;^UTILITY(U,$J,358.3,1667,1,0)
+ ;;^UTILITY(U,$J,358.3,4201,1,3,0)
+ ;;=3^Laceration w/o FB of Scalp,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4201,1,4,0)
+ ;;=4^S01.01XA
+ ;;^UTILITY(U,$J,358.3,4201,2)
+ ;;=^5020036
+ ;;^UTILITY(U,$J,358.3,4202,0)
+ ;;=S01.91XA^^30^309^4
+ ;;^UTILITY(U,$J,358.3,4202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1667,1,3,0)
- ;;=3^Tachypnea NEC
- ;;^UTILITY(U,$J,358.3,1667,1,4,0)
- ;;=4^R06.82
- ;;^UTILITY(U,$J,358.3,1667,2)
- ;;=^5019191
- ;;^UTILITY(U,$J,358.3,1668,0)
- ;;=R94.30^^11^147^1
- ;;^UTILITY(U,$J,358.3,1668,1,0)
+ ;;^UTILITY(U,$J,358.3,4202,1,3,0)
+ ;;=3^Laceration w/o FB of Head,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4202,1,4,0)
+ ;;=4^S01.91XA
+ ;;^UTILITY(U,$J,358.3,4202,2)
+ ;;=^5020243
+ ;;^UTILITY(U,$J,358.3,4203,0)
+ ;;=S11.91XA^^30^309^35
+ ;;^UTILITY(U,$J,358.3,4203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1668,1,3,0)
- ;;=3^Abnormal Cardiovascular Function Study,Unspec
- ;;^UTILITY(U,$J,358.3,1668,1,4,0)
- ;;=4^R94.30
- ;;^UTILITY(U,$J,358.3,1668,2)
- ;;=^5019738
- ;;^UTILITY(U,$J,358.3,1669,0)
- ;;=R94.31^^11^147^2
- ;;^UTILITY(U,$J,358.3,1669,1,0)
+ ;;^UTILITY(U,$J,358.3,4203,1,3,0)
+ ;;=3^Laceration w/o FB of Neck,Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4203,1,4,0)
+ ;;=4^S11.91XA
+ ;;^UTILITY(U,$J,358.3,4203,2)
+ ;;=^5021530
+ ;;^UTILITY(U,$J,358.3,4204,0)
+ ;;=S91.012A^^30^309^7
+ ;;^UTILITY(U,$J,358.3,4204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1669,1,3,0)
- ;;=3^Abnormal Electrocardiogram
- ;;^UTILITY(U,$J,358.3,1669,1,4,0)
- ;;=4^R94.31
- ;;^UTILITY(U,$J,358.3,1669,2)
- ;;=^5019739
- ;;^UTILITY(U,$J,358.3,1670,0)
- ;;=G90.9^^11^147^4
- ;;^UTILITY(U,$J,358.3,1670,1,0)
+ ;;^UTILITY(U,$J,358.3,4204,1,3,0)
+ ;;=3^Laceration w/o FB of Left Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4204,1,4,0)
+ ;;=4^S91.012A
+ ;;^UTILITY(U,$J,358.3,4204,2)
+ ;;=^5044138
+ ;;^UTILITY(U,$J,358.3,4205,0)
+ ;;=S91.312A^^30^309^12
+ ;;^UTILITY(U,$J,358.3,4205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1670,1,3,0)
- ;;=3^Autonomic Nervous System Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1670,1,4,0)
- ;;=4^G90.9
+ ;;^UTILITY(U,$J,358.3,4205,1,3,0)
+ ;;=3^Laceration w/o FB of Left Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4205,1,4,0)
+ ;;=4^S91.312A
+ ;;^UTILITY(U,$J,358.3,4205,2)
+ ;;=^5044323
+ ;;^UTILITY(U,$J,358.3,4206,0)
+ ;;=S71.012A^^30^309^16
+ ;;^UTILITY(U,$J,358.3,4206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4206,1,3,0)
+ ;;=3^Laceration w/o FB of Left Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4206,1,4,0)
+ ;;=4^S71.012A
+ ;;^UTILITY(U,$J,358.3,4206,2)
+ ;;=^5036978
+ ;;^UTILITY(U,$J,358.3,4207,0)
+ ;;=S81.012A^^30^309^19
+ ;;^UTILITY(U,$J,358.3,4207,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4207,1,3,0)
+ ;;=3^Laceration w/o FB of Left Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4207,1,4,0)
+ ;;=4^S81.012A
+ ;;^UTILITY(U,$J,358.3,4207,2)
+ ;;=^5040035
+ ;;^UTILITY(U,$J,358.3,4208,0)
+ ;;=S81.812A^^30^309^24
+ ;;^UTILITY(U,$J,358.3,4208,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4208,1,3,0)
+ ;;=3^Laceration w/o FB of Left Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4208,1,4,0)
+ ;;=4^S81.812A
+ ;;^UTILITY(U,$J,358.3,4208,2)
+ ;;=^5040074
+ ;;^UTILITY(U,$J,358.3,4209,0)
+ ;;=S71.112A^^30^309^30
+ ;;^UTILITY(U,$J,358.3,4209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4209,1,3,0)
+ ;;=3^Laceration w/o FB of Left Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4209,1,4,0)
+ ;;=4^S71.112A
+ ;;^UTILITY(U,$J,358.3,4209,2)
+ ;;=^5037017
+ ;;^UTILITY(U,$J,358.3,4210,0)
+ ;;=S91.011A^^30^309^39
+ ;;^UTILITY(U,$J,358.3,4210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4210,1,3,0)
+ ;;=3^Laceration w/o FB of Right Ankle,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4210,1,4,0)
+ ;;=4^S91.011A
+ ;;^UTILITY(U,$J,358.3,4210,2)
+ ;;=^5044135
+ ;;^UTILITY(U,$J,358.3,4211,0)
+ ;;=S91.311A^^30^309^44
+ ;;^UTILITY(U,$J,358.3,4211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4211,1,3,0)
+ ;;=3^Laceration w/o FB of Right Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4211,1,4,0)
+ ;;=4^S91.311A
+ ;;^UTILITY(U,$J,358.3,4211,2)
+ ;;=^5044320
+ ;;^UTILITY(U,$J,358.3,4212,0)
+ ;;=S71.011A^^30^309^48
+ ;;^UTILITY(U,$J,358.3,4212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4212,1,3,0)
+ ;;=3^Laceration w/o FB of Right Hip,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4212,1,4,0)
+ ;;=4^S71.011A
+ ;;^UTILITY(U,$J,358.3,4212,2)
+ ;;=^5036975
+ ;;^UTILITY(U,$J,358.3,4213,0)
+ ;;=S81.011A^^30^309^51
+ ;;^UTILITY(U,$J,358.3,4213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4213,1,3,0)
+ ;;=3^Laceration w/o FB of Right Knee,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4213,1,4,0)
+ ;;=4^S81.011A
+ ;;^UTILITY(U,$J,358.3,4213,2)
+ ;;=^5040032
+ ;;^UTILITY(U,$J,358.3,4214,0)
+ ;;=S81.811A^^30^309^56
+ ;;^UTILITY(U,$J,358.3,4214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4214,1,3,0)
+ ;;=3^Laceration w/o FB of Right Lower Leg,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4214,1,4,0)
+ ;;=4^S81.811A
+ ;;^UTILITY(U,$J,358.3,4214,2)
+ ;;=^5040071
+ ;;^UTILITY(U,$J,358.3,4215,0)
+ ;;=S71.111A^^30^309^62
+ ;;^UTILITY(U,$J,358.3,4215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4215,1,3,0)
+ ;;=3^Laceration w/o FB of Right Thigh,Init Encntr
+ ;;^UTILITY(U,$J,358.3,4215,1,4,0)
+ ;;=4^S71.111A
+ ;;^UTILITY(U,$J,358.3,4215,2)
+ ;;=^5037014
+ ;;^UTILITY(U,$J,358.3,4216,0)
+ ;;=C44.00^^30^310^10
+ ;;^UTILITY(U,$J,358.3,4216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4216,1,3,0)
+ ;;=3^Malig Neop of Skin of Lip
+ ;;^UTILITY(U,$J,358.3,4216,1,4,0)
+ ;;=4^C44.00
+ ;;^UTILITY(U,$J,358.3,4216,2)
+ ;;=^340596
+ ;;^UTILITY(U,$J,358.3,4217,0)
+ ;;=C44.102^^30^310^13
+ ;;^UTILITY(U,$J,358.3,4217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4217,1,3,0)
+ ;;=3^Malig Neop of Skin of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,4217,1,4,0)
+ ;;=4^C44.102
+ ;;^UTILITY(U,$J,358.3,4217,2)
+ ;;=^5001017
+ ;;^UTILITY(U,$J,358.3,4218,0)
+ ;;=C44.109^^30^310^7
+ ;;^UTILITY(U,$J,358.3,4218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4218,1,3,0)
+ ;;=3^Malig Neop of Skin of Left Eyelid

@@ -1,132 +1,280 @@
-IBDEI0MH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0MH ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10478,2)
- ;;=^5005672
- ;;^UTILITY(U,$J,358.3,10479,0)
- ;;=H35.413^^44^505^50
- ;;^UTILITY(U,$J,358.3,10479,1,0)
+ ;;^UTILITY(U,$J,358.3,22668,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,22668,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,22669,0)
+ ;;=R25.8^^89^1051^2
+ ;;^UTILITY(U,$J,358.3,22669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10479,1,3,0)
- ;;=3^Lattice Degeneration of Retina,Bilateral
- ;;^UTILITY(U,$J,358.3,10479,1,4,0)
- ;;=4^H35.413
- ;;^UTILITY(U,$J,358.3,10479,2)
- ;;=^5005673
- ;;^UTILITY(U,$J,358.3,10480,0)
- ;;=H35.441^^44^505^1
- ;;^UTILITY(U,$J,358.3,10480,1,0)
+ ;;^UTILITY(U,$J,358.3,22669,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Other
+ ;;^UTILITY(U,$J,358.3,22669,1,4,0)
+ ;;=4^R25.8
+ ;;^UTILITY(U,$J,358.3,22669,2)
+ ;;=^5019302
+ ;;^UTILITY(U,$J,358.3,22670,0)
+ ;;=M02.30^^89^1052^141
+ ;;^UTILITY(U,$J,358.3,22670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10480,1,3,0)
- ;;=3^Age-Related Reticular Degeneration of Retina,Right Eye
- ;;^UTILITY(U,$J,358.3,10480,1,4,0)
- ;;=4^H35.441
- ;;^UTILITY(U,$J,358.3,10480,2)
- ;;=^5005683
- ;;^UTILITY(U,$J,358.3,10481,0)
- ;;=H35.442^^44^505^2
- ;;^UTILITY(U,$J,358.3,10481,1,0)
+ ;;^UTILITY(U,$J,358.3,22670,1,3,0)
+ ;;=3^Reiter's Disease,Unspec Site
+ ;;^UTILITY(U,$J,358.3,22670,1,4,0)
+ ;;=4^M02.30
+ ;;^UTILITY(U,$J,358.3,22670,2)
+ ;;=^5009790
+ ;;^UTILITY(U,$J,358.3,22671,0)
+ ;;=M10.9^^89^1052^40
+ ;;^UTILITY(U,$J,358.3,22671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10481,1,3,0)
- ;;=3^Age-Related Reticular Degeneration of Retina,Left Eye
- ;;^UTILITY(U,$J,358.3,10481,1,4,0)
- ;;=4^H35.442
- ;;^UTILITY(U,$J,358.3,10481,2)
- ;;=^5005684
- ;;^UTILITY(U,$J,358.3,10482,0)
- ;;=H35.443^^44^505^3
- ;;^UTILITY(U,$J,358.3,10482,1,0)
+ ;;^UTILITY(U,$J,358.3,22671,1,3,0)
+ ;;=3^Gout,Unspec
+ ;;^UTILITY(U,$J,358.3,22671,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,22671,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,22672,0)
+ ;;=G90.59^^89^1052^34
+ ;;^UTILITY(U,$J,358.3,22672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10482,1,3,0)
- ;;=3^Age-Related Reticular Degeneration of Retina,Bilateral
- ;;^UTILITY(U,$J,358.3,10482,1,4,0)
- ;;=4^H35.443
- ;;^UTILITY(U,$J,358.3,10482,2)
- ;;=^5005685
- ;;^UTILITY(U,$J,358.3,10483,0)
- ;;=H35.61^^44^505^81
- ;;^UTILITY(U,$J,358.3,10483,1,0)
+ ;;^UTILITY(U,$J,358.3,22672,1,3,0)
+ ;;=3^Complex Regional Pain Syndrome I,Unspec
+ ;;^UTILITY(U,$J,358.3,22672,1,4,0)
+ ;;=4^G90.59
+ ;;^UTILITY(U,$J,358.3,22672,2)
+ ;;=^5004171
+ ;;^UTILITY(U,$J,358.3,22673,0)
+ ;;=G56.01^^89^1052^12
+ ;;^UTILITY(U,$J,358.3,22673,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10483,1,3,0)
- ;;=3^Retinal Hemorrhage,Right Eye
- ;;^UTILITY(U,$J,358.3,10483,1,4,0)
- ;;=4^H35.61
- ;;^UTILITY(U,$J,358.3,10483,2)
- ;;=^5005699
- ;;^UTILITY(U,$J,358.3,10484,0)
- ;;=H35.62^^44^505^80
- ;;^UTILITY(U,$J,358.3,10484,1,0)
+ ;;^UTILITY(U,$J,358.3,22673,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22673,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,22673,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,22674,0)
+ ;;=G56.02^^89^1052^11
+ ;;^UTILITY(U,$J,358.3,22674,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10484,1,3,0)
- ;;=3^Retinal Hemorrhage,Left Eye
- ;;^UTILITY(U,$J,358.3,10484,1,4,0)
- ;;=4^H35.62
- ;;^UTILITY(U,$J,358.3,10484,2)
- ;;=^5005700
- ;;^UTILITY(U,$J,358.3,10485,0)
- ;;=H35.63^^44^505^79
- ;;^UTILITY(U,$J,358.3,10485,1,0)
+ ;;^UTILITY(U,$J,358.3,22674,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22674,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,22674,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,22675,0)
+ ;;=G56.21^^89^1052^56
+ ;;^UTILITY(U,$J,358.3,22675,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10485,1,3,0)
- ;;=3^Retinal Hemorrhage,Bilateral
- ;;^UTILITY(U,$J,358.3,10485,1,4,0)
- ;;=4^H35.63
- ;;^UTILITY(U,$J,358.3,10485,2)
- ;;=^5005701
- ;;^UTILITY(U,$J,358.3,10486,0)
- ;;=H35.82^^44^505^82
- ;;^UTILITY(U,$J,358.3,10486,1,0)
+ ;;^UTILITY(U,$J,358.3,22675,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,22675,1,4,0)
+ ;;=4^G56.21
+ ;;^UTILITY(U,$J,358.3,22675,2)
+ ;;=^5004024
+ ;;^UTILITY(U,$J,358.3,22676,0)
+ ;;=G56.22^^89^1052^55
+ ;;^UTILITY(U,$J,358.3,22676,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10486,1,3,0)
- ;;=3^Retinal Ischemia
- ;;^UTILITY(U,$J,358.3,10486,1,4,0)
- ;;=4^H35.82
- ;;^UTILITY(U,$J,358.3,10486,2)
- ;;=^5005716
- ;;^UTILITY(U,$J,358.3,10487,0)
- ;;=H30.93^^44^505^15
- ;;^UTILITY(U,$J,358.3,10487,1,0)
+ ;;^UTILITY(U,$J,358.3,22676,1,3,0)
+ ;;=3^Lesion of Ulnar Nerve,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,22676,1,4,0)
+ ;;=4^G56.22
+ ;;^UTILITY(U,$J,358.3,22676,2)
+ ;;=^5004025
+ ;;^UTILITY(U,$J,358.3,22677,0)
+ ;;=M26.60^^89^1052^180
+ ;;^UTILITY(U,$J,358.3,22677,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10487,1,3,0)
- ;;=3^Chorioretinal Inflammation,Bilateral
- ;;^UTILITY(U,$J,358.3,10487,1,4,0)
- ;;=4^H30.93
- ;;^UTILITY(U,$J,358.3,10487,2)
- ;;=^5005435
- ;;^UTILITY(U,$J,358.3,10488,0)
- ;;=H30.91^^44^505^19
- ;;^UTILITY(U,$J,358.3,10488,1,0)
+ ;;^UTILITY(U,$J,358.3,22677,1,3,0)
+ ;;=3^Temporomandibular Joint Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,22677,1,4,0)
+ ;;=4^M26.60
+ ;;^UTILITY(U,$J,358.3,22677,2)
+ ;;=^5011714
+ ;;^UTILITY(U,$J,358.3,22678,0)
+ ;;=L40.52^^89^1052^137
+ ;;^UTILITY(U,$J,358.3,22678,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10488,1,3,0)
- ;;=3^Chorioretinal Inflammation,Right Eye
- ;;^UTILITY(U,$J,358.3,10488,1,4,0)
- ;;=4^H30.91
- ;;^UTILITY(U,$J,358.3,10488,2)
- ;;=^5133481
- ;;^UTILITY(U,$J,358.3,10489,0)
- ;;=H30.92^^44^505^17
- ;;^UTILITY(U,$J,358.3,10489,1,0)
+ ;;^UTILITY(U,$J,358.3,22678,1,3,0)
+ ;;=3^Psoriatic Arthritis Mutilans
+ ;;^UTILITY(U,$J,358.3,22678,1,4,0)
+ ;;=4^L40.52
+ ;;^UTILITY(U,$J,358.3,22678,2)
+ ;;=^5009167
+ ;;^UTILITY(U,$J,358.3,22679,0)
+ ;;=L40.53^^89^1052^138
+ ;;^UTILITY(U,$J,358.3,22679,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10489,1,3,0)
- ;;=3^Chorioretinal Inflammation,Left Eye
- ;;^UTILITY(U,$J,358.3,10489,1,4,0)
- ;;=4^H30.92
- ;;^UTILITY(U,$J,358.3,10489,2)
- ;;=^5133482
- ;;^UTILITY(U,$J,358.3,10490,0)
- ;;=H30.891^^44^505^20
- ;;^UTILITY(U,$J,358.3,10490,1,0)
+ ;;^UTILITY(U,$J,358.3,22679,1,3,0)
+ ;;=3^Psoriatic Spondylitis
+ ;;^UTILITY(U,$J,358.3,22679,1,4,0)
+ ;;=4^L40.53
+ ;;^UTILITY(U,$J,358.3,22679,2)
+ ;;=^5009168
+ ;;^UTILITY(U,$J,358.3,22680,0)
+ ;;=M32.9^^89^1052^179
+ ;;^UTILITY(U,$J,358.3,22680,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10490,1,3,0)
- ;;=3^Chorioretinal Inflammation,Right Eye NEC
- ;;^UTILITY(U,$J,358.3,10490,1,4,0)
- ;;=4^H30.891
- ;;^UTILITY(U,$J,358.3,10490,2)
- ;;=^5005430
- ;;^UTILITY(U,$J,358.3,10491,0)
- ;;=H30.892^^44^505^18
- ;;^UTILITY(U,$J,358.3,10491,1,0)
+ ;;^UTILITY(U,$J,358.3,22680,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Unspec
+ ;;^UTILITY(U,$J,358.3,22680,1,4,0)
+ ;;=4^M32.9
+ ;;^UTILITY(U,$J,358.3,22680,2)
+ ;;=^5011761
+ ;;^UTILITY(U,$J,358.3,22681,0)
+ ;;=M32.0^^89^1052^175
+ ;;^UTILITY(U,$J,358.3,22681,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10491,1,3,0)
- ;;=3^Chorioretinal Inflammation,Left Eye NEC
+ ;;^UTILITY(U,$J,358.3,22681,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,22681,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,22681,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,22682,0)
+ ;;=M32.13^^89^1052^177
+ ;;^UTILITY(U,$J,358.3,22682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22682,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Lung Involvement
+ ;;^UTILITY(U,$J,358.3,22682,1,4,0)
+ ;;=4^M32.13
+ ;;^UTILITY(U,$J,358.3,22682,2)
+ ;;=^5011756
+ ;;^UTILITY(U,$J,358.3,22683,0)
+ ;;=M32.14^^89^1052^176
+ ;;^UTILITY(U,$J,358.3,22683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22683,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Glomerular Disease
+ ;;^UTILITY(U,$J,358.3,22683,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,22683,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,22684,0)
+ ;;=M32.12^^89^1052^178
+ ;;^UTILITY(U,$J,358.3,22684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22684,1,3,0)
+ ;;=3^Systemic Lupus Erythematosus,Pericarditis
+ ;;^UTILITY(U,$J,358.3,22684,1,4,0)
+ ;;=4^M32.12
+ ;;^UTILITY(U,$J,358.3,22684,2)
+ ;;=^5011755
+ ;;^UTILITY(U,$J,358.3,22685,0)
+ ;;=M05.59^^89^1052^159
+ ;;^UTILITY(U,$J,358.3,22685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22685,1,3,0)
+ ;;=3^Rheumatoid Polyneuropathy w/ Rheumatoid Arthritis of Mult Sites
+ ;;^UTILITY(U,$J,358.3,22685,1,4,0)
+ ;;=4^M05.59
+ ;;^UTILITY(U,$J,358.3,22685,2)
+ ;;=^5009976
+ ;;^UTILITY(U,$J,358.3,22686,0)
+ ;;=M05.711^^89^1052^153
+ ;;^UTILITY(U,$J,358.3,22686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22686,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,22686,1,4,0)
+ ;;=4^M05.711
+ ;;^UTILITY(U,$J,358.3,22686,2)
+ ;;=^5010001
+ ;;^UTILITY(U,$J,358.3,22687,0)
+ ;;=M05.712^^89^1052^146
+ ;;^UTILITY(U,$J,358.3,22687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22687,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,22687,1,4,0)
+ ;;=4^M05.712
+ ;;^UTILITY(U,$J,358.3,22687,2)
+ ;;=^5010002
+ ;;^UTILITY(U,$J,358.3,22688,0)
+ ;;=M05.731^^89^1052^154
+ ;;^UTILITY(U,$J,358.3,22688,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22688,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Wrist
+ ;;^UTILITY(U,$J,358.3,22688,1,4,0)
+ ;;=4^M05.731
+ ;;^UTILITY(U,$J,358.3,22688,2)
+ ;;=^5010007
+ ;;^UTILITY(U,$J,358.3,22689,0)
+ ;;=M05.732^^89^1052^147
+ ;;^UTILITY(U,$J,358.3,22689,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22689,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Wrist
+ ;;^UTILITY(U,$J,358.3,22689,1,4,0)
+ ;;=4^M05.732
+ ;;^UTILITY(U,$J,358.3,22689,2)
+ ;;=^5010008
+ ;;^UTILITY(U,$J,358.3,22690,0)
+ ;;=M05.741^^89^1052^150
+ ;;^UTILITY(U,$J,358.3,22690,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22690,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hand
+ ;;^UTILITY(U,$J,358.3,22690,1,4,0)
+ ;;=4^M05.741
+ ;;^UTILITY(U,$J,358.3,22690,2)
+ ;;=^5010010
+ ;;^UTILITY(U,$J,358.3,22691,0)
+ ;;=M05.742^^89^1052^143
+ ;;^UTILITY(U,$J,358.3,22691,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22691,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hand
+ ;;^UTILITY(U,$J,358.3,22691,1,4,0)
+ ;;=4^M05.742
+ ;;^UTILITY(U,$J,358.3,22691,2)
+ ;;=^5010011
+ ;;^UTILITY(U,$J,358.3,22692,0)
+ ;;=M05.751^^89^1052^151
+ ;;^UTILITY(U,$J,358.3,22692,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22692,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Hip
+ ;;^UTILITY(U,$J,358.3,22692,1,4,0)
+ ;;=4^M05.751
+ ;;^UTILITY(U,$J,358.3,22692,2)
+ ;;=^5010013
+ ;;^UTILITY(U,$J,358.3,22693,0)
+ ;;=M05.752^^89^1052^144
+ ;;^UTILITY(U,$J,358.3,22693,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22693,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Hip
+ ;;^UTILITY(U,$J,358.3,22693,1,4,0)
+ ;;=4^M05.752
+ ;;^UTILITY(U,$J,358.3,22693,2)
+ ;;=^5010014
+ ;;^UTILITY(U,$J,358.3,22694,0)
+ ;;=M05.761^^89^1052^152
+ ;;^UTILITY(U,$J,358.3,22694,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22694,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Right Knee
+ ;;^UTILITY(U,$J,358.3,22694,1,4,0)
+ ;;=4^M05.761
+ ;;^UTILITY(U,$J,358.3,22694,2)
+ ;;=^5010016
+ ;;^UTILITY(U,$J,358.3,22695,0)
+ ;;=M05.762^^89^1052^145
+ ;;^UTILITY(U,$J,358.3,22695,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,22695,1,3,0)
+ ;;=3^Rheumatoid Arthritis of Left Knee
+ ;;^UTILITY(U,$J,358.3,22695,1,4,0)
+ ;;=4^M05.762
+ ;;^UTILITY(U,$J,358.3,22695,2)
+ ;;=^5010017
+ ;;^UTILITY(U,$J,358.3,22696,0)
+ ;;=M05.771^^89^1052^149

@@ -1,126 +1,284 @@
-IBDEI0QC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0QC ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12344,1,0)
+ ;;^UTILITY(U,$J,358.3,26489,1,4,0)
+ ;;=4^Z56.82
+ ;;^UTILITY(U,$J,358.3,26489,2)
+ ;;=^5063115
+ ;;^UTILITY(U,$J,358.3,26490,0)
+ ;;=Z62.811^^100^1275^9
+ ;;^UTILITY(U,$J,358.3,26490,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12344,1,3,0)
- ;;=3^Crohn's disease, unspecified, with rectal bleeding
- ;;^UTILITY(U,$J,358.3,12344,1,4,0)
- ;;=4^K50.911
- ;;^UTILITY(U,$J,358.3,12344,2)
- ;;=^5008646
- ;;^UTILITY(U,$J,358.3,12345,0)
- ;;=K51.20^^50^559^56
- ;;^UTILITY(U,$J,358.3,12345,1,0)
+ ;;^UTILITY(U,$J,358.3,26490,1,3,0)
+ ;;=3^Personal Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26490,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,26490,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,26491,0)
+ ;;=Z62.812^^100^1275^7
+ ;;^UTILITY(U,$J,358.3,26491,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12345,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis without complications
- ;;^UTILITY(U,$J,358.3,12345,1,4,0)
- ;;=4^K51.20
- ;;^UTILITY(U,$J,358.3,12345,2)
- ;;=^5008659
- ;;^UTILITY(U,$J,358.3,12346,0)
- ;;=K51.211^^50^559^54
- ;;^UTILITY(U,$J,358.3,12346,1,0)
+ ;;^UTILITY(U,$J,358.3,26491,1,3,0)
+ ;;=3^Personal Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,26491,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,26491,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,26492,0)
+ ;;=Z62.810^^100^1275^8
+ ;;^UTILITY(U,$J,358.3,26492,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12346,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with rectal bleeding
- ;;^UTILITY(U,$J,358.3,12346,1,4,0)
- ;;=4^K51.211
- ;;^UTILITY(U,$J,358.3,12346,2)
- ;;=^5008660
- ;;^UTILITY(U,$J,358.3,12347,0)
- ;;=K51.212^^50^559^52
- ;;^UTILITY(U,$J,358.3,12347,1,0)
+ ;;^UTILITY(U,$J,358.3,26492,1,3,0)
+ ;;=3^Personal Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,26492,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,26492,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,26493,0)
+ ;;=Z91.83^^100^1275^22
+ ;;^UTILITY(U,$J,358.3,26493,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12347,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with intestinal obstruction
- ;;^UTILITY(U,$J,358.3,12347,1,4,0)
- ;;=4^K51.212
- ;;^UTILITY(U,$J,358.3,12347,2)
- ;;=^5008661
- ;;^UTILITY(U,$J,358.3,12348,0)
- ;;=K51.213^^50^559^51
- ;;^UTILITY(U,$J,358.3,12348,1,0)
+ ;;^UTILITY(U,$J,358.3,26493,1,3,0)
+ ;;=3^Wandering Associated w/ a Mental Disorder
+ ;;^UTILITY(U,$J,358.3,26493,1,4,0)
+ ;;=4^Z91.83
+ ;;^UTILITY(U,$J,358.3,26493,2)
+ ;;=^5063627
+ ;;^UTILITY(U,$J,358.3,26494,0)
+ ;;=Z62.810^^100^1275^10
+ ;;^UTILITY(U,$J,358.3,26494,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12348,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with fistula
- ;;^UTILITY(U,$J,358.3,12348,1,4,0)
- ;;=4^K51.213
- ;;^UTILITY(U,$J,358.3,12348,2)
- ;;=^5008662
- ;;^UTILITY(U,$J,358.3,12349,0)
- ;;=K51.214^^50^559^50
- ;;^UTILITY(U,$J,358.3,12349,1,0)
+ ;;^UTILITY(U,$J,358.3,26494,1,3,0)
+ ;;=3^Personal Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,26494,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,26494,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,26495,0)
+ ;;=Z91.412^^100^1275^14
+ ;;^UTILITY(U,$J,358.3,26495,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12349,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with abscess
- ;;^UTILITY(U,$J,358.3,12349,1,4,0)
- ;;=4^K51.214
- ;;^UTILITY(U,$J,358.3,12349,2)
- ;;=^5008663
- ;;^UTILITY(U,$J,358.3,12350,0)
- ;;=K51.218^^50^559^53
- ;;^UTILITY(U,$J,358.3,12350,1,0)
+ ;;^UTILITY(U,$J,358.3,26495,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,26495,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,26495,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,26496,0)
+ ;;=Z91.411^^100^1275^15
+ ;;^UTILITY(U,$J,358.3,26496,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12350,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with other complication
- ;;^UTILITY(U,$J,358.3,12350,1,4,0)
- ;;=4^K51.218
- ;;^UTILITY(U,$J,358.3,12350,2)
- ;;=^5008664
- ;;^UTILITY(U,$J,358.3,12351,0)
- ;;=K51.219^^50^559^55
- ;;^UTILITY(U,$J,358.3,12351,1,0)
+ ;;^UTILITY(U,$J,358.3,26496,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26496,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,26496,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,26497,0)
+ ;;=Z91.410^^100^1275^16
+ ;;^UTILITY(U,$J,358.3,26497,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12351,1,3,0)
- ;;=3^Ulcerative (chronic) proctitis with unsp complications
- ;;^UTILITY(U,$J,358.3,12351,1,4,0)
- ;;=4^K51.219
- ;;^UTILITY(U,$J,358.3,12351,2)
- ;;=^5008665
- ;;^UTILITY(U,$J,358.3,12352,0)
- ;;=K51.90^^50^559^63
- ;;^UTILITY(U,$J,358.3,12352,1,0)
+ ;;^UTILITY(U,$J,358.3,26497,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,26497,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,26497,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,26498,0)
+ ;;=Z91.410^^100^1275^17
+ ;;^UTILITY(U,$J,358.3,26498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12352,1,3,0)
- ;;=3^Ulcerative colitis, unspecified, without complications
- ;;^UTILITY(U,$J,358.3,12352,1,4,0)
- ;;=4^K51.90
- ;;^UTILITY(U,$J,358.3,12352,2)
- ;;=^5008694
- ;;^UTILITY(U,$J,358.3,12353,0)
- ;;=K51.919^^50^559^57
- ;;^UTILITY(U,$J,358.3,12353,1,0)
+ ;;^UTILITY(U,$J,358.3,26498,1,3,0)
+ ;;=3^Personal Hx of Spouse or Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,26498,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,26498,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,26499,0)
+ ;;=Z75.3^^100^1275^20
+ ;;^UTILITY(U,$J,358.3,26499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12353,1,3,0)
- ;;=3^Ulcerative colitis, unsp with unspecified complications
- ;;^UTILITY(U,$J,358.3,12353,1,4,0)
- ;;=4^K51.919
- ;;^UTILITY(U,$J,358.3,12353,2)
- ;;=^5008700
- ;;^UTILITY(U,$J,358.3,12354,0)
- ;;=K51.918^^50^559^61
- ;;^UTILITY(U,$J,358.3,12354,1,0)
+ ;;^UTILITY(U,$J,358.3,26499,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health Care Facilities
+ ;;^UTILITY(U,$J,358.3,26499,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,26499,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,26500,0)
+ ;;=Z75.4^^100^1275^21
+ ;;^UTILITY(U,$J,358.3,26500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12354,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with other complication
- ;;^UTILITY(U,$J,358.3,12354,1,4,0)
- ;;=4^K51.918
- ;;^UTILITY(U,$J,358.3,12354,2)
- ;;=^5008699
- ;;^UTILITY(U,$J,358.3,12355,0)
- ;;=K51.914^^50^559^58
- ;;^UTILITY(U,$J,358.3,12355,1,0)
+ ;;^UTILITY(U,$J,358.3,26500,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Other Helping Agencies
+ ;;^UTILITY(U,$J,358.3,26500,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,26500,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,26501,0)
+ ;;=Z70.9^^100^1276^2
+ ;;^UTILITY(U,$J,358.3,26501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,12355,1,3,0)
- ;;=3^Ulcerative colitis, unspecified with abscess
- ;;^UTILITY(U,$J,358.3,12355,1,4,0)
- ;;=4^K51.914
- ;;^UTILITY(U,$J,358.3,12355,2)
- ;;=^5008698
- ;;^UTILITY(U,$J,358.3,12356,0)
- ;;=K51.913^^50^559^59
- ;;^UTILITY(U,$J,358.3,12356,1,0)
+ ;;^UTILITY(U,$J,358.3,26501,1,3,0)
+ ;;=3^Sex Counseling
+ ;;^UTILITY(U,$J,358.3,26501,1,4,0)
+ ;;=4^Z70.9
+ ;;^UTILITY(U,$J,358.3,26501,2)
+ ;;=^5063241
+ ;;^UTILITY(U,$J,358.3,26502,0)
+ ;;=Z71.9^^100^1276^1
+ ;;^UTILITY(U,$J,358.3,26502,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26502,1,3,0)
+ ;;=3^Counseling or Consultation,Other
+ ;;^UTILITY(U,$J,358.3,26502,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,26502,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,26503,0)
+ ;;=Z60.0^^100^1277^2
+ ;;^UTILITY(U,$J,358.3,26503,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26503,1,3,0)
+ ;;=3^Phase of Life Problem
+ ;;^UTILITY(U,$J,358.3,26503,1,4,0)
+ ;;=4^Z60.0
+ ;;^UTILITY(U,$J,358.3,26503,2)
+ ;;=^5063139
+ ;;^UTILITY(U,$J,358.3,26504,0)
+ ;;=Z60.2^^100^1277^3
+ ;;^UTILITY(U,$J,358.3,26504,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26504,1,3,0)
+ ;;=3^Problem Related to Living Alone
+ ;;^UTILITY(U,$J,358.3,26504,1,4,0)
+ ;;=4^Z60.2
+ ;;^UTILITY(U,$J,358.3,26504,2)
+ ;;=^5063140
+ ;;^UTILITY(U,$J,358.3,26505,0)
+ ;;=Z60.3^^100^1277^1
+ ;;^UTILITY(U,$J,358.3,26505,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26505,1,3,0)
+ ;;=3^Acculturation Difficulty
+ ;;^UTILITY(U,$J,358.3,26505,1,4,0)
+ ;;=4^Z60.3
+ ;;^UTILITY(U,$J,358.3,26505,2)
+ ;;=^5063141
+ ;;^UTILITY(U,$J,358.3,26506,0)
+ ;;=Z60.4^^100^1277^5
+ ;;^UTILITY(U,$J,358.3,26506,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26506,1,3,0)
+ ;;=3^Social Exclusion or Rejection
+ ;;^UTILITY(U,$J,358.3,26506,1,4,0)
+ ;;=4^Z60.4
+ ;;^UTILITY(U,$J,358.3,26506,2)
+ ;;=^5063142
+ ;;^UTILITY(U,$J,358.3,26507,0)
+ ;;=Z60.5^^100^1277^6
+ ;;^UTILITY(U,$J,358.3,26507,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26507,1,3,0)
+ ;;=3^Target of (Perceived) Adverse Discrimination or Persecution
+ ;;^UTILITY(U,$J,358.3,26507,1,4,0)
+ ;;=4^Z60.5
+ ;;^UTILITY(U,$J,358.3,26507,2)
+ ;;=^5063143
+ ;;^UTILITY(U,$J,358.3,26508,0)
+ ;;=Z60.9^^100^1277^4
+ ;;^UTILITY(U,$J,358.3,26508,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26508,1,3,0)
+ ;;=3^Problem Related to Social Environment,Unspec
+ ;;^UTILITY(U,$J,358.3,26508,1,4,0)
+ ;;=4^Z60.9
+ ;;^UTILITY(U,$J,358.3,26508,2)
+ ;;=^5063145
+ ;;^UTILITY(U,$J,358.3,26509,0)
+ ;;=F65.4^^100^1278^6
+ ;;^UTILITY(U,$J,358.3,26509,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26509,1,3,0)
+ ;;=3^Pedophilica Disorder
+ ;;^UTILITY(U,$J,358.3,26509,1,4,0)
+ ;;=4^F65.4
+ ;;^UTILITY(U,$J,358.3,26509,2)
+ ;;=^5003655
+ ;;^UTILITY(U,$J,358.3,26510,0)
+ ;;=F65.2^^100^1278^1
+ ;;^UTILITY(U,$J,358.3,26510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26510,1,3,0)
+ ;;=3^Exhibitionistic Disorder
+ ;;^UTILITY(U,$J,358.3,26510,1,4,0)
+ ;;=4^F65.2
+ ;;^UTILITY(U,$J,358.3,26510,2)
+ ;;=^5003653
+ ;;^UTILITY(U,$J,358.3,26511,0)
+ ;;=F65.3^^100^1278^10
+ ;;^UTILITY(U,$J,358.3,26511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26511,1,3,0)
+ ;;=3^Voyeuristic Disorder
+ ;;^UTILITY(U,$J,358.3,26511,1,4,0)
+ ;;=4^F65.3
+ ;;^UTILITY(U,$J,358.3,26511,2)
+ ;;=^5003654
+ ;;^UTILITY(U,$J,358.3,26512,0)
+ ;;=F65.81^^100^1278^3
+ ;;^UTILITY(U,$J,358.3,26512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26512,1,3,0)
+ ;;=3^Frotteuristic Disorder
+ ;;^UTILITY(U,$J,358.3,26512,1,4,0)
+ ;;=4^F65.81
+ ;;^UTILITY(U,$J,358.3,26512,2)
+ ;;=^5003659
+ ;;^UTILITY(U,$J,358.3,26513,0)
+ ;;=F65.51^^100^1278^7
+ ;;^UTILITY(U,$J,358.3,26513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26513,1,3,0)
+ ;;=3^Sexual Masochism Disorder
+ ;;^UTILITY(U,$J,358.3,26513,1,4,0)
+ ;;=4^F65.51
+ ;;^UTILITY(U,$J,358.3,26513,2)
+ ;;=^5003657
+ ;;^UTILITY(U,$J,358.3,26514,0)
+ ;;=F65.52^^100^1278^8
+ ;;^UTILITY(U,$J,358.3,26514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26514,1,3,0)
+ ;;=3^Sexual Sadism Disorder
+ ;;^UTILITY(U,$J,358.3,26514,1,4,0)
+ ;;=4^F65.52
+ ;;^UTILITY(U,$J,358.3,26514,2)
+ ;;=^5003658
+ ;;^UTILITY(U,$J,358.3,26515,0)
+ ;;=F65.0^^100^1278^2
+ ;;^UTILITY(U,$J,358.3,26515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26515,1,3,0)
+ ;;=3^Fetishistic Disorder
+ ;;^UTILITY(U,$J,358.3,26515,1,4,0)
+ ;;=4^F65.0
+ ;;^UTILITY(U,$J,358.3,26515,2)
+ ;;=^5003651
+ ;;^UTILITY(U,$J,358.3,26516,0)
+ ;;=F65.1^^100^1278^9
+ ;;^UTILITY(U,$J,358.3,26516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26516,1,3,0)
+ ;;=3^Transvestic Disorder
+ ;;^UTILITY(U,$J,358.3,26516,1,4,0)
+ ;;=4^F65.1
+ ;;^UTILITY(U,$J,358.3,26516,2)
+ ;;=^5003652
+ ;;^UTILITY(U,$J,358.3,26517,0)
+ ;;=F65.89^^100^1278^4
+ ;;^UTILITY(U,$J,358.3,26517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26517,1,3,0)
+ ;;=3^Paraphilic Disorder,Other Specified

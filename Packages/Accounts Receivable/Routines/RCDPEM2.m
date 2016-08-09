@@ -1,10 +1,43 @@
 RCDPEM2 ;ALB/TMK/PJH - MANUAL ERA AND EFT MATCHING ;Jun 11, 2014@13:24:36
- ;;4.5;Accounts Receivable;**173,208,276,284,293,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,208,276,284,293,298,303,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
+ Q
+ ;
+ ; PRCA*4.5*303 - Manually Match EFT from Worklist screen
+MATCHWL ; Manually 'match' ERA to an EFT that originates from [RCDPE WORKLIST ERA LIST]
+ N DA,DIC,DIE,DIR,DR,DTRNG,DTOUT,DUOUT,END,RCEFT,RCERA,RCMBG,RCMATCH,RCNAME,RCQUIT,START,X,Y
+ D FULL^VALM1
+ ;
+ ; PRCA*4.5*303 moved code out because this routine grew too large
+ I $$ML0^RCDPRU() G MWQ ; if true then quit, othewise continue
+ ;
+ML1 ; Select EFT to Match to this ERA
+ S DIR("A")="SELECT THE UNMATCHED EFT TO MATCH TO AN ERA: "
+ ;
+ ; See comment in Tag M1 for PRCA*4.5*293.
+ S DIR(0)="PAO^RCY(344.31,:AEMQ",DIR("S")="I ('$P(^(0),U,8))&($P($G(^(0)),U,7))&('$P($G(^(3)),U))"
+ I $G(DTRNG) S DIR("S")=DIR("S")_"&'($P($G(^(0)),U,13)<START)&'($P($G(^(0)),U,13)>END)"
+ ; ** end PRCA*4.5*293
+ ;
+ W ! D ^DIR K DIR
+ I $D(DUOUT)!$D(DTOUT)!(Y<0) G MWQ
+ S RCEFT=+Y,RCEFT(0)=$G(^RCY(344.31,+Y,0))
+ W !
+ S DIC="^RCY(344.31,",DR="0",DA=RCEFT D EN^DIQ
+ W !
+ S DIR("A")="ARE YOU SURE THIS IS THE EFT YOU WANT TO MATCH?: ",DIR(0)="YA",DIR("B")="YES" D ^DIR K DIR
+ I $D(DUOUT)!$D(DTOUT) G MWQ
+ I Y'=1 G ML1
+ ;
+ D M12A ; Go to the Manual match, we have the ERA and EFT
+ ;
+MWQ ; Quit back to the worklist VALMBCK will be killed by List Manager.
+ D INIT^RCDPEWL7 ; Rebuild the screen because we may have changed it.
+ S VALMBCK="R",VALMBG=RCMBG
  Q
  ;
 MATCH1 ; Manually 'match' an ERA to an EFT
- N DA,DIC,DIE,DIR,DR,DTRNG,DTOUT,DUOUT,END,RCEFT,RCERA,RCMATCH,RCNAME,RCQUIT,START,X,Y
+ N DA,DIC,DIE,DIR,DR,DTRNG,DTOUT,DUOUT,END,RCEFT,RCERA,RCMATCH,RCNAME,RCQUIT,START,X,Y,RCMTFLG
  W !,"THIS OPTION WILL ALLOW YOU TO MANUALLY MATCH AN EFT DETAIL RECORD",!,"WITH AN ERA RECORD."
  ; PRCA*4.5*298 - Add ability to specify a date range
  S DIR("A")="Select by date Range? (Y/N) ",DIR(0)="YA",DIR("B")="NO" D ^DIR K DIR
@@ -54,6 +87,8 @@ M12 S DIR("A")="SELECT THE UNMATCHED ERA TO MATCH TO EFT #"_RCEFT_": "
  S DIR("A")="ARE YOU SURE THIS IS THE CORRECT ERA TO MATCH TO?: ",DIR(0)="YA",DIR("B")="YES" D ^DIR K DIR
  I $D(DUOUT)!$D(DTOUT) G M1Q
  I Y'=1 G M12
+ ;
+M12A ; PRCA*4.5*303 - MATCH WL jumps here to complete the manual match
  S RCMATCH=(+$P(RCERA(0),U,5)=+$P(RCEFT(0),U,7))
  S RCNAME=($P(RCERA(0),U,6)=$P(RCEFT(0),U,2))
  I 'RCMATCH!'RCNAME D  G:RCQUIT M1Q
@@ -66,7 +101,28 @@ M12 S DIR("A")="SELECT THE UNMATCHED ERA TO MATCH TO EFT #"_RCEFT_": "
  . I $S($D(DUOUT)!$D(DTOUT):1,Y'=1:1,1:0) S RCQUIT=1 Q
  S DIE="^RCY(344.4,",DR=".09////1",DA=RCERA D ^DIE
  I '$D(Y) S DIE="^RCY(344.31,",DR=".08////1;.1////"_RCERA,DA=RCEFT D ^DIE
- S DIR(0)="EA",DIR("A",1)="EFT #"_RCEFT_" WAS "_$S('$D(Y):"SUCCESSFULLY",1:"NOT")_" MATCHED TO ERA #"_RCERA,DIR("A")="Press ENTER to continue: " D ^DIR K DIR
+ S RCMTFLG=$S('$D(Y):1,1:0)
+ W !,"EFT #"_RCEFT_" WAS "_$S(RCMTFLG:"SUCCESSFULLY",1:"NOT")_" MATCHED TO ERA #"_RCERA
+ I 'RCMTFLG S DIR(0)="E" D ^DIR K DIR G M1Q
+ ;PRCA*4.5*304 add ability to use auto-posting for a manually matched item
+ ;  Only if the amount of payments match.
+ I 'RCMATCH D  G M1Q    ;if payment amounts don't match, don't allow for auto-posting.
+ . W !,"ERA/EFT balances do not match - cannot Mark for Auto-Post. Press any key." S DIR(0)="E" D ^DIR K DIR
+ W !
+ K DIR
+ S DIR("A")="Do you wish to mark this entry for Auto Posting (Y/N)? "
+ S DIR(0)="YA"
+ D ^DIR
+ I 'Y K DIR S DIR(0)="E" D ^DIR G M1Q
+ N AUTOPOST
+ S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA)
+ I AUTOPOST D
+ . D SETSTA^RCDPEAP(RCERA,0,"Manual Match: Marked as Auto-Post Candidate")
+ . W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"
+ I 'AUTOPOST D
+ . D AUDITLOG^RCDPEAP(RCERA,"","Manual Match: Not Marked as Auto-Post Candidate-"_$P(AUTOPOST,U,2))
+ . W !,"ERA was NOT Marked as an Auto-Post CANDIDATE - ",$P(AUTOPOST,U,2)
+ K DIR S DIR(0)="E" D ^DIR
 M1Q Q
  ;
 MATCH2 ; Manually 'match' a 0-balance EFT to a paper EOB
@@ -240,8 +296,8 @@ LNKERA ;Select ERA
  ..S TAMT=+$P(ARTND1,"^",5)
  ..W !,"AR Transaction amount: ",TAMT
  ..W !,"RECEIPT#: ",RECEPT
- ..W !,"Date of Receipt: ",$$FMTE^XLFDT($$DATE(RECEPT))
- ..W !,"Total Receipt AMOUNT: ",$J($$AMT(RECEPT),2,2),!
+ ..W !,"Date of Receipt: ",$$FMTE^XLFDT($$RCDATE^RCDPRU(RECEPT))
+ ..W !,"Total Receipt AMOUNT: ",$J($$AMT^RCDPRU(RECEPT),2,2),!
  .. ; PRCA*4.5*284 Change default response from YES to NO
  ..S DIR(0)="Y",DIR("B")="NO"
  ..S DIR("A")="Link to update Remittance entry # "_RCSCR
@@ -257,22 +313,9 @@ LNKERA ;Select ERA
  K ^TMP("RCDPEM2",$J)
  Q
  ;
+ ; Moved to RCDPRU because of size issues PRCA*4.5*303
 UPDERA(DA,RECEPT,FOUND) ;Mark ERA as posted to paper EOB
- N Y,X,DR,DIE,%
- D NOW^%DTC
- S DIE="^RCY(344.4,",FOUND=0
- ;Update Receipt #, EFT Match Status, Detail Post Status and Paper EOB
- S DR=".08///"_RECEPT_";.09///2;.14///2;20.03///1"
- ;Update Date/Time Posted and User fields
- S DR=DR_";7.01///"_%_";7.02///"_DUZ
- D ^DIE
- I '$D(Y) D
- .K DIR
- .S DIR(0)="EA"
- .S DIR("A",1)="ERA HAS BEEN MARKED AS POSTED USING PAPER EOB"
- .S DIR("A")="Press ENTER to continue: " W ! D ^DIR K DIR
- .S FOUND=1
- E  W !,"Unable to update ERA for receipt "_RECEPT,!
+ D UPDERA^RCDPRU(DA,RECEPT,.FOUND)
  Q FOUND
  ;
  ;Check FMS status
@@ -293,23 +336,6 @@ FMS(RECEPT,FLG) ;
  S RES=1
 FMSX ;
  Q RES
- ;
-DATE(RECEPT) ;
- N RCRECTDA
- ;Get receipt IEN
- S RCRECTDA=$O(^RCY(344,"B",RECEPT,0)) Q:'RCRECTDA 0
- ;Return Receipt date
- Q $P($G(^RCY(344,RCRECTDA,0)),U,3)
- ;
-AMT(RECEPT) ;Total Receipt amount
- N RCRECTDA,RCTRAN,RCTOT
- ;Get receipt IEN
- S RCRECTDA=$O(^RCY(344,"B",RECEPT,0)) Q:'RCRECTDA 0
- ;Total the Receipt transactions
- S RCTRAN=0,RCTOT=0
- F  S RCTRAN=$O(^RCY(344,RCRECTDA,1,RCTRAN)) Q:'RCTRAN  D
- .S RCTOT=RCTOT+$P($G(^RCY(344,RCRECTDA,1,RCTRAN,0)),U,4)
- Q RCTOT
  ;
 CHQ(RECEPT,BILL) ;Get check number for this bill
  N RCRECTDA,RCTRAN,RCCHK,PATBILL
@@ -349,7 +375,7 @@ M3 S DIR("A")="SELECT THE UNMATCHED 0-BALANCE ERA TO MARK AS MATCHED: "
 M3Q Q
  ;
 UNMATCH ; Used to 'unmatch' an ERA matched in error
- N X,Y,DIR,DIC,DIE,DIK,DA,DR,RCWL,RCEFT,RCQUIT
+ N X,Y,DIR,DIC,DIE,DIK,DA,DR,RCWL,RCEFT,RCQUIT,AUTOPOST
  S DIC(0)="AEMQ",DIC="^RCY(344.4,",DIC("S")="I '$P(^(0),U,8),$S('$P(^(0),U,14):1,1:$P(^(0),U,9)=3),$P(^(0),U,9)" D ^DIC K DIC
  Q:Y'>0
  S RCWL=+Y,RCQUIT=0
@@ -358,13 +384,18 @@ UNMATCH ; Used to 'unmatch' an ERA matched in error
  . W ! D ^DIR K DIR
  . I Y'=1 S RCQUIT=1 Q
  . S DIK="^RCY(344.49,",DA=RCWL D ^DIK
+ S AUTOPOST=""
  I $O(^RCY(344.31,"AERA",RCWL,0)) S RCEFT=+$O(^(0)) D  Q:RCQUIT
- . S DIR("A",1)="THIS ERA IS MATCHED TO EFT #"_RCEFT,DIR("A")="ARE YOU SURE YOU WANT TO UNMATCH THEM? ",DIR(0)="YA"
- . W ! D ^DIR K DIR
+ . S AUTOPOST=$$GET1^DIQ(344.4,RCWL_",",4.02,"I")
+ . W !!,"THIS ERA IS MATCHED TO EFT #"_RCEFT
+ . I AUTOPOST=0 W !,"* WARNING: This ERA will be Un-Marked as an Auto-Post CANDIDATE"
+ . S DIR("A")="ARE YOU SURE YOU WANT TO UNMATCH THEM? ",DIR(0)="YA"
+ . D ^DIR K DIR
  . I Y'=1 S RCQUIT=1 Q
  . S DIE="^RCY(344.31,",DR=".1///@;.08////0",DA=RCEFT D ^DIE
  . W !,"EFT #"_RCEFT_" IS NOW UNMATCHED",!
  S DIE="^RCY(344.4,",DR=".09////0;.13///@;.14////0",DA=RCWL D ^DIE
+ I AUTOPOST=0 D SETSTA^RCDPEAP(RCWL,"@","Unmatch: Removed as Auto-Post Candidate")
  S DIR("A")="ERA HAS BEEN SUCCESSFULLY UNMATCHED - Press ENTER to continue: "
  S DIR(0)="EA" W ! D ^DIR K DIR
  Q

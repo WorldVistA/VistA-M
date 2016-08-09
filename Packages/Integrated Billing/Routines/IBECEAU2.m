@@ -1,5 +1,5 @@
 IBECEAU2 ;ALB/CPM-Cancel/Edit/Add... User Prompts ; 19-APR-93
- ;;2.0;INTEGRATED BILLING;**7,52,153,176**;21-MAR-94
+ ;;2.0;INTEGRATED BILLING;**7,52,153,176,545**;21-MAR-94;Build 9
  ;;Per VHA Directive 10-93-142, this routine should not be modified.
  ;
 REAS(IBX) ; Ask for the cancellation reason.
@@ -13,7 +13,7 @@ UNIT(DEF) ; Ask for units for Rx copay charges
  ; Input:   DEF  --  Default value if previous charge is to be displayed
  N DA,DIR,DIRUT,DUOUT,DTOUT,X,X1,Y
  S DA=IBATYP,IBDESC="RX COPAYMENT" D COST^IBAUTL S IBCHG=X1
- S DIR(0)="N^::0^K:X<1!(X>3) X",DIR("A")="Units",DIR("?")="^D HUN^IBECEAU2"
+ S DIR(0)="N^::0^K:X<1!(X>12) X",DIR("A")="Units",DIR("?")="^D HUN^IBECEAU2"
  S:DEF DIR("B")=DEF D ^DIR I Y S IBUNIT=Y,IBCHG=IBCHG*Y
  I 'Y W !!,"Units not entered - transaction cannot be completed." S IBY=-1
  Q
@@ -58,7 +58,7 @@ CATC ; Display that patient is not Means Test billable.
  Q
  ;
 HUN ; Help for units
- W !!,"Please enter 1, 2, or 3 to denote a 30, 60, or 90 days supply of"
+ W !!,"Please enter 1, 2, 3, ...,12 to denote a 30, 60, 90, ...,360 days supply of"
  W !,"medication, or '^' to quit."
  Q
  ;

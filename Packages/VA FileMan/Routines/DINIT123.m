@@ -1,11 +1,15 @@
-DINIT123 ;SFISC/MKO-SORT TEMPLATE FILE ;1:13 PM  13 Nov 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT123 ;SFISC/MKO-SORT TEMPLATE FILE ;23NOV2105
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT124
 Q Q
  ;;^DD(.4014,4,23,0)
- ;;=^^2^2^2930125^^
+ ;;=^^2^2^2930125^^21401
  ;;^DD(.4014,4,23,1,0)
  ;;=This information is parsed from the user dialogue or from the BY
  ;;^DD(.4014,4,23,2,0)
@@ -130,8 +134,14 @@ Q Q
  ;;=^^1^1^2930216^
  ;;^DD(.4014,6.5,23,1,0)
  ;;=Built in CK^DIP12.
- ;;^DD(.4014,6.5,"DT")
- ;;=2930216
+ ;;^DD(.4014,21401,0)
+ ;;=FROM VALUE COMPUTATION^F^^FCOMPUTED;E1,245^D ^DIM
+ ;;^DD(.4014,21401,3)
+ ;;=Enter valid MUMPS code.
+ ;;^DD(.4014,21401,21,0)
+ ;;=^^1^1^3151109^
+ ;;^DD(.4014,21401,21,1,0)
+ ;;=MUMPS code indicating the start of the sort.
  ;;^DD(.4014,7,0)
  ;;=TO VALUE INTERNAL^F^^T;1^K:$L(X)>63!($L(X)<1) X
  ;;^DD(.4014,7,3)
@@ -172,7 +182,13 @@ Q Q
  ;;=^^1^1^2930216^
  ;;^DD(.4014,8.5,23,1,0)
  ;;=Created in CK^DIP12.
- ;;^DD(.4014,8.5,"DT")
- ;;=2930216
+ ;;^DD(.4014,21402,0)
+ ;;=TO VALUE COMPUTATION^F^^TCOMPUTED;E1,245^D ^DIM
+ ;;^DD(.4014,21402,3)
+ ;;=Enter valid MUMPS code.
+ ;;^DD(.4014,21402,21,0)
+ ;;=^^1^1^3151109^
+ ;;^DD(.4014,21402,21,1,0)
+ ;;=MUMPS code indicating the end of the sort.
  ;;^DD(.4014,9,0)
  ;;=CROSS REFERENCE DATA^F^^IX;E1,245^K:$L(X)>245!($L(X)<1) X

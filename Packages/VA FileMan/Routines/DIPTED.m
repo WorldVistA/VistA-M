@@ -1,6 +1,9 @@
-DIPTED ;SFISC/GFT-EDIT PRINT TEMPLATE ;02/24/2009
- ;;22.0;VA FileMan;**97,160**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIPTED ;SFISC/GFT-EDIT PRINT TEMPLATE ;2013-07-10  2:34 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  N DIC,DIPT,DIPTED,DRK,DIPTEDTY,I,J
  S DIC=.4,DIC(0)="AEQ",DIC("S")="I $P(^(0),U,8)=7!'$P(^(0),U,8)" D ^DIC Q:Y<1
@@ -13,7 +16,7 @@ K K ^TMP("DIPTED",$J),^UTILITY("DIP2",$J)
 EDIT(DIPT) ; EDIT PRINT TEMPLATE 'DIPT' VIA VA FILEMAN SCREEN EDITOR
  N DIPTED,DRK,DIPTEDTY,I,J
 E N DA,D0,DUOUT,DTOUT,DIPTEDER,DIPTH,L,DY,Y,DIPTX,D,C,Q,DIPTROW,DCL,DXS,DNP,DHD,DISH,DV,DJ,DL,DK,DIL
- X ^%ZOSF("EON")
+ D:'$D(DISYS) OS^DII X ^DD("OS",DISYS,"EON")
  I '$D(^DIPT(DIPT,0)) W !,"NO TEMPLATE SELECTED",! Q
  S DIPTED="Print",DIPTEDTY=$P(^(0),U,8) I DIPTEDTY=7 S DIPTED="EXPORT FIELDS"
  S DIPTED=DIPTED_" Template """_$P(^(0),U)_""""
@@ -24,7 +27,7 @@ DDW D EDIT^DDW("^TMP(""DIPTED"",$J)","M",DIPTH,"(File "_DRK_")",DIPTROW)
  I $D(DTOUT)!$D(DUOUT) K ^TMP("DIPTED",$J) W $C(7),$$EZBLD^DIALOG(8077) Q
  S (DV,DNP)="",(DIL,DJ)=0,(DL,DXS)=1,DK=DRK,J(0)=DK,I(0)=^DIC(DK,0,"GL")
  D PROCESS("^TMP(""DIPTED"",$J)")
- X ^%ZOSF("EON")
+ X ^DD("OS",DISYS,"EON")
  S DIPTROW=$O(DIPTEDER(0)) I DIPTROW W " ",DIPTEDER(DIPTROW) H 2 S DIPTH="ERROR!  Re-editing "_DIPTED K DIPTEDER G DDW
  I '$D(^UTILITY("DIP2",$J)) W "<NOTHING TO SAVE>",$C(7) G K
  S DDSCHG=1
@@ -43,7 +46,7 @@ GET(DIPTA,DIT) ;put displayable template into @DIPTA
  S (DRK,J(0))=$P(@DIT@(0),U,4),L=0,D(L)="0FIELD",C=",",D9="",Y=2,Q="""",DHD=$G(^("H")),DISH=$D(^("SUB"))
  F DS(1)=0:0 S DS(1)=$O(@DIT@("F",DS(1))) Q:DS(1)=""  S DY=^(DS(1)) D Y^DIPT
  D:D9]"" UP^DIPT
- F D=2:1 Q:'$D(DS(D))  S @DIPTA@(D-1)=$J("",D>2*$G(DIWD(D))*3)_DS(D) ;indentation showing level of subfiles
+ F D=2:1 Q:'$D(DS(D))  S @DIPTA@(D-1)=$J("",D>2*$E($G(DIWD(D)))*3)_DS(D) ;indentation showing level of subfiles
  Q
  ;
 PROCESS(DIPTA) ;puts nodes into ^UTILITY("DIP2")

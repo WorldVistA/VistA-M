@@ -1,128 +1,276 @@
-IBDEI14L ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI14L ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19143,2)
- ;;=^5006167
- ;;^UTILITY(U,$J,358.3,19144,0)
- ;;=H47.619^^82^906^16
- ;;^UTILITY(U,$J,358.3,19144,1,0)
+ ;;^UTILITY(U,$J,358.3,40885,0)
+ ;;=93975^^152^2000^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19144,1,3,0)
- ;;=3^Cortical Blindness,Unspec Side of Brain
- ;;^UTILITY(U,$J,358.3,19144,1,4,0)
- ;;=4^H47.619
- ;;^UTILITY(U,$J,358.3,19144,2)
- ;;=^5006168
- ;;^UTILITY(U,$J,358.3,19145,0)
- ;;=H47.641^^82^906^17
- ;;^UTILITY(U,$J,358.3,19145,1,0)
+ ;;^UTILITY(U,$J,358.3,40885,1,2,0)
+ ;;=2^Vascular Abdom/Pelvis,Cmplt
+ ;;^UTILITY(U,$J,358.3,40885,1,4,0)
+ ;;=4^93975
+ ;;^UTILITY(U,$J,358.3,40886,0)
+ ;;=93976^^152^2000^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19145,1,3,0)
- ;;=3^Disord of Visual Cortex in Vasc Disorder,Right Side of Brain
- ;;^UTILITY(U,$J,358.3,19145,1,4,0)
- ;;=4^H47.641
- ;;^UTILITY(U,$J,358.3,19145,2)
- ;;=^5006175
- ;;^UTILITY(U,$J,358.3,19146,0)
- ;;=H47.642^^82^906^18
- ;;^UTILITY(U,$J,358.3,19146,1,0)
+ ;;^UTILITY(U,$J,358.3,40886,1,2,0)
+ ;;=2^Vascular Abdom/Pelvis,Ltd
+ ;;^UTILITY(U,$J,358.3,40886,1,4,0)
+ ;;=4^93976
+ ;;^UTILITY(U,$J,358.3,40887,0)
+ ;;=93978^^152^2000^4^^^^1
+ ;;^UTILITY(U,$J,358.3,40887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19146,1,3,0)
- ;;=3^Disord of Visual Cortex in Vasc Disorder,Left Side of Brain
- ;;^UTILITY(U,$J,358.3,19146,1,4,0)
- ;;=4^H47.642
- ;;^UTILITY(U,$J,358.3,19146,2)
- ;;=^5006176
- ;;^UTILITY(U,$J,358.3,19147,0)
- ;;=H47.649^^82^906^19
- ;;^UTILITY(U,$J,358.3,19147,1,0)
+ ;;^UTILITY(U,$J,358.3,40887,1,2,0)
+ ;;=2^Vascular Aorta/Inferior VC/Iliac,Cmplt
+ ;;^UTILITY(U,$J,358.3,40887,1,4,0)
+ ;;=4^93978
+ ;;^UTILITY(U,$J,358.3,40888,0)
+ ;;=93979^^152^2000^5^^^^1
+ ;;^UTILITY(U,$J,358.3,40888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19147,1,3,0)
- ;;=3^Disord of Visual Cortex in Vasc Disorder,Unspec Side of Brain
- ;;^UTILITY(U,$J,358.3,19147,1,4,0)
- ;;=4^H47.649
- ;;^UTILITY(U,$J,358.3,19147,2)
- ;;=^5006177
- ;;^UTILITY(U,$J,358.3,19148,0)
- ;;=H53.411^^82^906^20
- ;;^UTILITY(U,$J,358.3,19148,1,0)
+ ;;^UTILITY(U,$J,358.3,40888,1,2,0)
+ ;;=2^Vascular Aorta/Inferior VC/Iliac,Ltd
+ ;;^UTILITY(U,$J,358.3,40888,1,4,0)
+ ;;=4^93979
+ ;;^UTILITY(U,$J,358.3,40889,0)
+ ;;=93980^^152^2000^6^^^^1
+ ;;^UTILITY(U,$J,358.3,40889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19148,1,3,0)
- ;;=3^Scotoma Involving Central Area OD
- ;;^UTILITY(U,$J,358.3,19148,1,4,0)
- ;;=4^H53.411
- ;;^UTILITY(U,$J,358.3,19148,2)
- ;;=^5006325
- ;;^UTILITY(U,$J,358.3,19149,0)
- ;;=H53.412^^82^906^21
- ;;^UTILITY(U,$J,358.3,19149,1,0)
+ ;;^UTILITY(U,$J,358.3,40889,1,2,0)
+ ;;=2^Vascular Penile,Cmplt
+ ;;^UTILITY(U,$J,358.3,40889,1,4,0)
+ ;;=4^93980
+ ;;^UTILITY(U,$J,358.3,40890,0)
+ ;;=93981^^152^2000^7^^^^1
+ ;;^UTILITY(U,$J,358.3,40890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19149,1,3,0)
- ;;=3^Scotoma Involving Central Area OS
- ;;^UTILITY(U,$J,358.3,19149,1,4,0)
- ;;=4^H53.412
- ;;^UTILITY(U,$J,358.3,19149,2)
- ;;=^5006326
- ;;^UTILITY(U,$J,358.3,19150,0)
- ;;=H53.413^^82^906^22
- ;;^UTILITY(U,$J,358.3,19150,1,0)
+ ;;^UTILITY(U,$J,358.3,40890,1,2,0)
+ ;;=2^Vascular Penile,Ltd
+ ;;^UTILITY(U,$J,358.3,40890,1,4,0)
+ ;;=4^93981
+ ;;^UTILITY(U,$J,358.3,40891,0)
+ ;;=93982^^152^2000^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19150,1,3,0)
- ;;=3^Scotoma Involving Central Area Bilateral
- ;;^UTILITY(U,$J,358.3,19150,1,4,0)
- ;;=4^H53.413
- ;;^UTILITY(U,$J,358.3,19150,2)
- ;;=^5006327
- ;;^UTILITY(U,$J,358.3,19151,0)
- ;;=H53.481^^82^906^23
- ;;^UTILITY(U,$J,358.3,19151,1,0)
+ ;;^UTILITY(U,$J,358.3,40891,1,2,0)
+ ;;=2^Aneurysm Pressure Sensor Study,Cmplt
+ ;;^UTILITY(U,$J,358.3,40891,1,4,0)
+ ;;=4^93982
+ ;;^UTILITY(U,$J,358.3,40892,0)
+ ;;=93923^^152^2001^6^^^^1
+ ;;^UTILITY(U,$J,358.3,40892,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19151,1,3,0)
- ;;=3^Generalized Contraction of Visual Field OD
- ;;^UTILITY(U,$J,358.3,19151,1,4,0)
- ;;=4^H53.481
- ;;^UTILITY(U,$J,358.3,19151,2)
- ;;=^5006344
- ;;^UTILITY(U,$J,358.3,19152,0)
- ;;=H53.482^^82^906^24
- ;;^UTILITY(U,$J,358.3,19152,1,0)
+ ;;^UTILITY(U,$J,358.3,40892,1,2,0)
+ ;;=2^Noninvasive Bil Upper/Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,40892,1,4,0)
+ ;;=4^93923
+ ;;^UTILITY(U,$J,358.3,40893,0)
+ ;;=93924^^152^2001^5^^^^1
+ ;;^UTILITY(U,$J,358.3,40893,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19152,1,3,0)
- ;;=3^Generalized Contraction of Visual Field OS
- ;;^UTILITY(U,$J,358.3,19152,1,4,0)
- ;;=4^H53.482
- ;;^UTILITY(U,$J,358.3,19152,2)
- ;;=^5006345
- ;;^UTILITY(U,$J,358.3,19153,0)
- ;;=H53.483^^82^906^25
- ;;^UTILITY(U,$J,358.3,19153,1,0)
+ ;;^UTILITY(U,$J,358.3,40893,1,2,0)
+ ;;=2^Noninvasive Bil Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,40893,1,4,0)
+ ;;=4^93924
+ ;;^UTILITY(U,$J,358.3,40894,0)
+ ;;=93925^^152^2001^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40894,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19153,1,3,0)
- ;;=3^Generalized Contraction of Visual Field Bilateral
- ;;^UTILITY(U,$J,358.3,19153,1,4,0)
- ;;=4^H53.483
- ;;^UTILITY(U,$J,358.3,19153,2)
- ;;=^5006346
- ;;^UTILITY(U,$J,358.3,19154,0)
- ;;=H53.461^^82^906^26
- ;;^UTILITY(U,$J,358.3,19154,1,0)
+ ;;^UTILITY(U,$J,358.3,40894,1,2,0)
+ ;;=2^Duplex Scan Bilat Lower Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,40894,1,4,0)
+ ;;=4^93925
+ ;;^UTILITY(U,$J,358.3,40895,0)
+ ;;=93926^^152^2001^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40895,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19154,1,3,0)
- ;;=3^Homonymous Bilateral Field Defects Right Side
- ;;^UTILITY(U,$J,358.3,19154,1,4,0)
- ;;=4^H53.461
- ;;^UTILITY(U,$J,358.3,19154,2)
- ;;=^5006341
- ;;^UTILITY(U,$J,358.3,19155,0)
- ;;=H53.462^^82^906^27
- ;;^UTILITY(U,$J,358.3,19155,1,0)
+ ;;^UTILITY(U,$J,358.3,40895,1,2,0)
+ ;;=2^Duplex Scan Unilat Lower Extrem,Ltd
+ ;;^UTILITY(U,$J,358.3,40895,1,4,0)
+ ;;=4^93926
+ ;;^UTILITY(U,$J,358.3,40896,0)
+ ;;=93930^^152^2001^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40896,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19155,1,3,0)
- ;;=3^Homonymous Bilateral Field Defects Left Side
- ;;^UTILITY(U,$J,358.3,19155,1,4,0)
- ;;=4^H53.462
- ;;^UTILITY(U,$J,358.3,19155,2)
- ;;=^5006342
- ;;^UTILITY(U,$J,358.3,19156,0)
- ;;=H53.47^^82^906^28
+ ;;^UTILITY(U,$J,358.3,40896,1,2,0)
+ ;;=2^Duplex Scan Bilat Upper Extrem,Cmplt
+ ;;^UTILITY(U,$J,358.3,40896,1,4,0)
+ ;;=4^93930
+ ;;^UTILITY(U,$J,358.3,40897,0)
+ ;;=93931^^152^2001^4^^^^1
+ ;;^UTILITY(U,$J,358.3,40897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40897,1,2,0)
+ ;;=2^Duplex Scan Unilat Upper Extrem,Ltd
+ ;;^UTILITY(U,$J,358.3,40897,1,4,0)
+ ;;=4^93931
+ ;;^UTILITY(U,$J,358.3,40898,0)
+ ;;=76775^^152^2002^1^^^^1
+ ;;^UTILITY(U,$J,358.3,40898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40898,1,2,0)
+ ;;=2^AAA
+ ;;^UTILITY(U,$J,358.3,40898,1,4,0)
+ ;;=4^76775
+ ;;^UTILITY(U,$J,358.3,40899,0)
+ ;;=76999^^152^2002^2^^^^1
+ ;;^UTILITY(U,$J,358.3,40899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40899,1,2,0)
+ ;;=2^Echo Examination Procedure
+ ;;^UTILITY(U,$J,358.3,40899,1,4,0)
+ ;;=4^76999
+ ;;^UTILITY(U,$J,358.3,40900,0)
+ ;;=76881^^152^2002^3^^^^1
+ ;;^UTILITY(U,$J,358.3,40900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40900,1,2,0)
+ ;;=2^US Extremity Nonvasc,Cmplt
+ ;;^UTILITY(U,$J,358.3,40900,1,4,0)
+ ;;=4^76881
+ ;;^UTILITY(U,$J,358.3,40901,0)
+ ;;=76882^^152^2002^4^^^^1
+ ;;^UTILITY(U,$J,358.3,40901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40901,1,2,0)
+ ;;=2^US Extremity Nonvasc,Ltd
+ ;;^UTILITY(U,$J,358.3,40901,1,4,0)
+ ;;=4^76882
+ ;;^UTILITY(U,$J,358.3,40902,0)
+ ;;=E10.40^^153^2003^82
+ ;;^UTILITY(U,$J,358.3,40902,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40902,1,3,0)
+ ;;=3^DM Type 1 w/ DM Neuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,40902,1,4,0)
+ ;;=4^E10.40
+ ;;^UTILITY(U,$J,358.3,40902,2)
+ ;;=^5002604
+ ;;^UTILITY(U,$J,358.3,40903,0)
+ ;;=E10.42^^153^2003^85
+ ;;^UTILITY(U,$J,358.3,40903,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40903,1,3,0)
+ ;;=3^DM Type 1 w/ DM Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,40903,1,4,0)
+ ;;=4^E10.42
+ ;;^UTILITY(U,$J,358.3,40903,2)
+ ;;=^5002606
+ ;;^UTILITY(U,$J,358.3,40904,0)
+ ;;=E10.43^^153^2003^79
+ ;;^UTILITY(U,$J,358.3,40904,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40904,1,3,0)
+ ;;=3^DM Type 1 w/ DM Autonomic Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,40904,1,4,0)
+ ;;=4^E10.43
+ ;;^UTILITY(U,$J,358.3,40904,2)
+ ;;=^5002607
+ ;;^UTILITY(U,$J,358.3,40905,0)
+ ;;=E10.51^^153^2003^84
+ ;;^UTILITY(U,$J,358.3,40905,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40905,1,3,0)
+ ;;=3^DM Type 1 w/ DM Periph Angiop w/o Gangrene
+ ;;^UTILITY(U,$J,358.3,40905,1,4,0)
+ ;;=4^E10.51
+ ;;^UTILITY(U,$J,358.3,40905,2)
+ ;;=^5002610
+ ;;^UTILITY(U,$J,358.3,40906,0)
+ ;;=E10.52^^153^2003^83
+ ;;^UTILITY(U,$J,358.3,40906,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40906,1,3,0)
+ ;;=3^DM Type 1 w/ DM Periph Angiop w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,40906,1,4,0)
+ ;;=4^E10.52
+ ;;^UTILITY(U,$J,358.3,40906,2)
+ ;;=^5002611
+ ;;^UTILITY(U,$J,358.3,40907,0)
+ ;;=E10.610^^153^2003^81
+ ;;^UTILITY(U,$J,358.3,40907,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40907,1,3,0)
+ ;;=3^DM Type 1 w/ DM Neuropathic Arthropathy
+ ;;^UTILITY(U,$J,358.3,40907,1,4,0)
+ ;;=4^E10.610
+ ;;^UTILITY(U,$J,358.3,40907,2)
+ ;;=^5002613
+ ;;^UTILITY(U,$J,358.3,40908,0)
+ ;;=E10.620^^153^2003^80
+ ;;^UTILITY(U,$J,358.3,40908,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40908,1,3,0)
+ ;;=3^DM Type 1 w/ DM Dermatitis
+ ;;^UTILITY(U,$J,358.3,40908,1,4,0)
+ ;;=4^E10.620
+ ;;^UTILITY(U,$J,358.3,40908,2)
+ ;;=^5002615
+ ;;^UTILITY(U,$J,358.3,40909,0)
+ ;;=E10.621^^153^2003^86
+ ;;^UTILITY(U,$J,358.3,40909,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40909,1,3,0)
+ ;;=3^DM Type 1 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,40909,1,4,0)
+ ;;=4^E10.621
+ ;;^UTILITY(U,$J,358.3,40909,2)
+ ;;=^5002616
+ ;;^UTILITY(U,$J,358.3,40910,0)
+ ;;=E10.622^^153^2003^91
+ ;;^UTILITY(U,$J,358.3,40910,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40910,1,3,0)
+ ;;=3^DM Type 1 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,40910,1,4,0)
+ ;;=4^E10.622
+ ;;^UTILITY(U,$J,358.3,40910,2)
+ ;;=^5002617
+ ;;^UTILITY(U,$J,358.3,40911,0)
+ ;;=E10.630^^153^2003^90
+ ;;^UTILITY(U,$J,358.3,40911,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40911,1,3,0)
+ ;;=3^DM Type 1 w/ Peridontal Disease
+ ;;^UTILITY(U,$J,358.3,40911,1,4,0)
+ ;;=4^E10.630
+ ;;^UTILITY(U,$J,358.3,40911,2)
+ ;;=^5002619
+ ;;^UTILITY(U,$J,358.3,40912,0)
+ ;;=E10.641^^153^2003^88
+ ;;^UTILITY(U,$J,358.3,40912,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40912,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/ Coma
+ ;;^UTILITY(U,$J,358.3,40912,1,4,0)
+ ;;=4^E10.641
+ ;;^UTILITY(U,$J,358.3,40912,2)
+ ;;=^5002621
+ ;;^UTILITY(U,$J,358.3,40913,0)
+ ;;=E10.649^^153^2003^89
+ ;;^UTILITY(U,$J,358.3,40913,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40913,1,3,0)
+ ;;=3^DM Type 1 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,40913,1,4,0)
+ ;;=4^E10.649
+ ;;^UTILITY(U,$J,358.3,40913,2)
+ ;;=^5002622
+ ;;^UTILITY(U,$J,358.3,40914,0)
+ ;;=E10.65^^153^2003^87
+ ;;^UTILITY(U,$J,358.3,40914,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40914,1,3,0)
+ ;;=3^DM Type 1 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,40914,1,4,0)
+ ;;=4^E10.65
+ ;;^UTILITY(U,$J,358.3,40914,2)
+ ;;=^5002623
+ ;;^UTILITY(U,$J,358.3,40915,0)
+ ;;=E11.40^^153^2003^96
+ ;;^UTILITY(U,$J,358.3,40915,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40915,1,3,0)
+ ;;=3^DM Type 2 w/ DM Neuropathy,Unspec

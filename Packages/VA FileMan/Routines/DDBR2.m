@@ -1,6 +1,10 @@
-DDBR2 ;SFISC/DCL-VA FILEMAN BROWSER ;26AUG2009
- ;;22.0;VA FileMan;**162**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DDBR2 ;SFISC/DCL-VA FILEMAN BROWSER ;2JAN2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 SWITCH(DDBLST,DDBRET) ;Switch to another document in list or FileMan Database
  I $E(DDBSA,1,11)="^DI(.84,920" D EXIT^DDBR0 Q  ;!(DDBSA="^XTMP(""DDBDOC"")") Q
@@ -23,8 +27,7 @@ BRMC D BRM
  .;S X=0 F  S X=$O(@DDBLST@(X)) Q:X'>0  W:X'=DDBZ !,$J(X,3),"  ",$E(@DDBLST@(X,0),1,75)
  .W !
  .K DIR0
- .;S DIR(0)="Y",DIR("A")="Do you wish to select from current list? ",DIR("B")="YES" D ^DIR,SFR("to Current List"):Y=0&(DDBFLG["R") Q:$D(DIRUT)!(Y'>0)
- .I DDBFLG'["R" S DIR(0)="Y",DIR("A")="Do you wish to select from current list",DIR("B")="YES" D ^DIR Q:$D(DIRUT)!(Y'>0)
+CUR .I DDBFLG'["R" S DIR(0)="Y",DIR("A")=$$EZBLD^DIALOG(8142),DIR("B")="YES" D ^DIR Q:$D(DIRUT)!(Y'>0)  ;"Do you wish to select from current list"
  .S DIC=$$OREF^DIQGU(DDBLST),DIC(0)="EMQ",DIC("S")="I +Y'=DDBZ",DIC("W")="W:$E(^(0))=U ^(0)",X="??" D ^DIC  ;K DIC("S") Q:Y'>0
  .S DIC(0)="AEMQ"
  .D ^DIC K DIC("S") Q:Y'>0
@@ -36,7 +39,7 @@ BRMC D BRM
  I $G(DDBLNA,-1)=-1 G PS
  I $G(DDBLNA(6))=DDBSA G PS  ;if current document selected again
  I $G(DDBLNA(6))]"",$D(@DDBLST@("APSA",DDBSA)) G PS  ;if already in list
- I DDBLNA'>0 W $C(7),!!,"** NO TEXT** ",DDBLNA(5) H 3
+NO I DDBLNA'>0 W $C(7),!!,$$EZBLD^DIALOG(1404),DDBLNA(5) H 3 ;**
  D:DDBLNA>0 SAVEDDB(DDBLST,DDBLN),WP(.DDBLNA)
 PS D PSR^DDBR0(1)
  Q
@@ -112,7 +115,7 @@ BRM ;BROWSE MANAGER SCREEN
  Q
  ;
 SFR(Y) N X
- S X(1)="",X(2)=$$CTXT^DDBR("<< SWITCH Function Restricted "_$G(Y)_" >>","",IOM)
+ S X(1)="",X(2)=$$CTXT^DDBR("<< "_$$EZBLD^DIALOG($S($G(Y):7076.1,1:7076))_" >>","",IOM) ;** 'SWITCH FUNCTION RESTRICTED'
  W $$WS^DDBR1(.X),$C(7)
  R X:3
  Q

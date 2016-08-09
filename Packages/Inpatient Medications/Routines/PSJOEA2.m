@@ -1,8 +1,9 @@
 PSJOEA2 ;BIR/MLM-INPATIENT ORDER ENTRY ; 5/11/09 7:50am
- ;;5.0;INPATIENT MEDICATIONS;**127,133,200,267,268,257**;16 DEC 97;Build 105
+ ;;5.0;INPATIENT MEDICATIONS;**127,133,200,267,268,257,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^PS(55 is supported by DBIA #2191.
  ; Reference to ^PSSLOCK is supported by DBIA #2789.
+ ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071
  ;
 CHK ;Check to be sure all the orders in the complex order series are completed, continued.
  I 'PSJCOMV,'$G(COMQUIT) N PSJO S PSJO=0 F  S PSJO=$O(^TMP("PSJCOM",$J,PSJO)) Q:'PSJO  S PSGORD=+PSJO_"P",PSGND=$G(^PS(53.1,+PSJO,0)) D
@@ -24,6 +25,7 @@ CHK ;Check to be sure all the orders in the complex order series are completed, 
  ..S PSJCOM=$P($G(^PS(55,PSGP,5,+PSGORD,.2)),"^",8) I PSJCOM]"" K ^PS(53.1,"ACX",PSJCOM,PSJO) ;S $P(^PS(55,PSGP,5,+PSGORD,4),"^",9)=1
  ..D EN1^PSJHL2(PSGP,$S(+PSJSYSU=3:"SC",+PSJSYSU=1:"SC",1:"XX"),+PSGORD_"U")     ; allow status change to be sent for pharmacists & nurses
  ..D:+PSJSYSU=1 EN1^PSJHL2(PSGP,"ZV",+PSGORD_"U") L -^PS(55,PSGP,5,+PSGORD)
+ ..I $G(PSJCOM) S ^TMP("PSODAOC",$J,"IP IEN")=PSJO_"P",^TMP("PSODAOC",$J,"IP NEW IEN")=PSGORD D SETOC^PSJNEWOC(PSGORD)
  ..; ** This is where the Automated Dispensing hook is called. Do NOT DELETE or change location **
  ..D NEWJ^PSJADM
  ..; ** END to Interface Hook **
@@ -40,6 +42,7 @@ CHK ;Check to be sure all the orders in the complex order series are completed, 
  ...S:$P(PNDP2,U,8) DR=DR_";150////"_$P(PNDP2,U,8) D ^DIE S DIE=FILE55_+PSGORDR_",0)",$P(@DIE,U,21)=OEORD
  ...D EN1^PSJHL2(DFN,"SC",PSGORDR),UNL^PSSLOCK(PSGP,PSGORDR)
  ..I 'ON55 D SETNEW^PSIVORFB
+ ..I $G(PSJCOM),ON55["V" S ^TMP("PSODAOC",$J,"IP IEN")=PSJO_"P",^TMP("PSODAOC",$J,"IP NEW IEN")=ON55 D SETOC^PSJNEWOC(ON55)
  ..S (P("NEWON"),ON)=ON55,PSGP=$P(PSGND,U,15)
  ..S VND4=$G(^TMP("PSJCOM",$J,+PSJO,4)) D
  ...N PSJRN,PSJRNDT,PSJRPH,PSJRPHD,PSJPVFL,PSJNVFL,DR,DIE,DA

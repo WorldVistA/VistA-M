@@ -1,122 +1,290 @@
-IBDEI0GV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0GV ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7799,1,0)
+ ;;^UTILITY(U,$J,358.3,16934,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7799,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,7799,1,4,0)
- ;;=4^W18.12XA
- ;;^UTILITY(U,$J,358.3,7799,2)
- ;;=^5059804
- ;;^UTILITY(U,$J,358.3,7800,0)
- ;;=W18.12XD^^30^415^62
- ;;^UTILITY(U,$J,358.3,7800,1,0)
+ ;;^UTILITY(U,$J,358.3,16934,1,3,0)
+ ;;=3^Hepatitis C,Viral,Chronic
+ ;;^UTILITY(U,$J,358.3,16934,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,16934,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,16935,0)
+ ;;=E05.90^^73^855^28
+ ;;^UTILITY(U,$J,358.3,16935,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7800,1,3,0)
- ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7800,1,4,0)
- ;;=4^W18.12XD
- ;;^UTILITY(U,$J,358.3,7800,2)
- ;;=^5137984
- ;;^UTILITY(U,$J,358.3,7801,0)
- ;;=W18.2XXA^^30^415^73
- ;;^UTILITY(U,$J,358.3,7801,1,0)
+ ;;^UTILITY(U,$J,358.3,16935,1,3,0)
+ ;;=3^Hyperthyroidism w/o Thyrotoxic Crisis/Storm,Unspec
+ ;;^UTILITY(U,$J,358.3,16935,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,16935,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,16936,0)
+ ;;=E03.9^^73^855^34
+ ;;^UTILITY(U,$J,358.3,16936,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7801,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
- ;;^UTILITY(U,$J,358.3,7801,1,4,0)
- ;;=4^W18.2XXA
- ;;^UTILITY(U,$J,358.3,7801,2)
- ;;=^5059806
- ;;^UTILITY(U,$J,358.3,7802,0)
- ;;=W18.2XXD^^30^415^74
- ;;^UTILITY(U,$J,358.3,7802,1,0)
+ ;;^UTILITY(U,$J,358.3,16936,1,3,0)
+ ;;=3^Hypothyroidism, unspec
+ ;;^UTILITY(U,$J,358.3,16936,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,16936,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,16937,0)
+ ;;=E16.2^^73^855^31
+ ;;^UTILITY(U,$J,358.3,16937,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7802,1,3,0)
- ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7802,1,4,0)
- ;;=4^W18.2XXD
- ;;^UTILITY(U,$J,358.3,7802,2)
- ;;=^5059807
- ;;^UTILITY(U,$J,358.3,7803,0)
- ;;=W18.40XA^^30^415^105
- ;;^UTILITY(U,$J,358.3,7803,1,0)
+ ;;^UTILITY(U,$J,358.3,16937,1,3,0)
+ ;;=3^Hypoglycemia, unspec
+ ;;^UTILITY(U,$J,358.3,16937,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,16937,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,16938,0)
+ ;;=E78.0^^73^855^24
+ ;;^UTILITY(U,$J,358.3,16938,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7803,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
- ;;^UTILITY(U,$J,358.3,7803,1,4,0)
- ;;=4^W18.40XA
- ;;^UTILITY(U,$J,358.3,7803,2)
- ;;=^5059818
- ;;^UTILITY(U,$J,358.3,7804,0)
- ;;=W18.40XD^^30^415^106
- ;;^UTILITY(U,$J,358.3,7804,1,0)
+ ;;^UTILITY(U,$J,358.3,16938,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,16938,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,16938,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,16939,0)
+ ;;=E78.0^^73^855^29
+ ;;^UTILITY(U,$J,358.3,16939,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7804,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7804,1,4,0)
- ;;=4^W18.40XD
- ;;^UTILITY(U,$J,358.3,7804,2)
- ;;=^5059819
- ;;^UTILITY(U,$J,358.3,7805,0)
- ;;=W18.41XA^^30^415^107
- ;;^UTILITY(U,$J,358.3,7805,1,0)
+ ;;^UTILITY(U,$J,358.3,16939,1,3,0)
+ ;;=3^Hypertriglyceridemia
+ ;;^UTILITY(U,$J,358.3,16939,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,16939,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,16940,0)
+ ;;=E78.5^^73^855^26
+ ;;^UTILITY(U,$J,358.3,16940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7805,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,7805,1,4,0)
- ;;=4^W18.41XA
- ;;^UTILITY(U,$J,358.3,7805,2)
- ;;=^5059821
- ;;^UTILITY(U,$J,358.3,7806,0)
- ;;=W18.41XD^^30^415^108
- ;;^UTILITY(U,$J,358.3,7806,1,0)
+ ;;^UTILITY(U,$J,358.3,16940,1,3,0)
+ ;;=3^Hyperlipidemia, unspec
+ ;;^UTILITY(U,$J,358.3,16940,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,16940,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,16941,0)
+ ;;=E87.1^^73^855^30
+ ;;^UTILITY(U,$J,358.3,16941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7806,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7806,1,4,0)
- ;;=4^W18.41XD
- ;;^UTILITY(U,$J,358.3,7806,2)
- ;;=^5059822
- ;;^UTILITY(U,$J,358.3,7807,0)
- ;;=W18.42XA^^30^415^109
- ;;^UTILITY(U,$J,358.3,7807,1,0)
+ ;;^UTILITY(U,$J,358.3,16941,1,3,0)
+ ;;=3^Hypo-osmolality and hyponatremia
+ ;;^UTILITY(U,$J,358.3,16941,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,16941,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,16942,0)
+ ;;=E87.5^^73^855^25
+ ;;^UTILITY(U,$J,358.3,16942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7807,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
- ;;^UTILITY(U,$J,358.3,7807,1,4,0)
- ;;=4^W18.42XA
- ;;^UTILITY(U,$J,358.3,7807,2)
- ;;=^5059824
- ;;^UTILITY(U,$J,358.3,7808,0)
- ;;=W18.42XD^^30^415^110
- ;;^UTILITY(U,$J,358.3,7808,1,0)
+ ;;^UTILITY(U,$J,358.3,16942,1,3,0)
+ ;;=3^Hyperkalemia
+ ;;^UTILITY(U,$J,358.3,16942,1,4,0)
+ ;;=4^E87.5
+ ;;^UTILITY(U,$J,358.3,16942,2)
+ ;;=^60041
+ ;;^UTILITY(U,$J,358.3,16943,0)
+ ;;=E87.6^^73^855^32
+ ;;^UTILITY(U,$J,358.3,16943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7808,1,3,0)
- ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7808,1,4,0)
- ;;=4^W18.42XD
- ;;^UTILITY(U,$J,358.3,7808,2)
- ;;=^5059825
- ;;^UTILITY(U,$J,358.3,7809,0)
- ;;=W18.43XA^^30^415^103
- ;;^UTILITY(U,$J,358.3,7809,1,0)
+ ;;^UTILITY(U,$J,358.3,16943,1,3,0)
+ ;;=3^Hypokalemia
+ ;;^UTILITY(U,$J,358.3,16943,1,4,0)
+ ;;=4^E87.6
+ ;;^UTILITY(U,$J,358.3,16943,2)
+ ;;=^60610
+ ;;^UTILITY(U,$J,358.3,16944,0)
+ ;;=G81.91^^73^855^11
+ ;;^UTILITY(U,$J,358.3,16944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7809,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
- ;;^UTILITY(U,$J,358.3,7809,1,4,0)
- ;;=4^W18.43XA
- ;;^UTILITY(U,$J,358.3,7809,2)
- ;;=^5059827
- ;;^UTILITY(U,$J,358.3,7810,0)
- ;;=W18.43XD^^30^415^104
- ;;^UTILITY(U,$J,358.3,7810,1,0)
+ ;;^UTILITY(U,$J,358.3,16944,1,3,0)
+ ;;=3^Hemiplegia affecting rt dominant side, unspec
+ ;;^UTILITY(U,$J,358.3,16944,1,4,0)
+ ;;=4^G81.91
+ ;;^UTILITY(U,$J,358.3,16944,2)
+ ;;=^5004121
+ ;;^UTILITY(U,$J,358.3,16945,0)
+ ;;=G81.92^^73^855^9
+ ;;^UTILITY(U,$J,358.3,16945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7810,1,3,0)
- ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7810,1,4,0)
- ;;=4^W18.43XD
- ;;^UTILITY(U,$J,358.3,7810,2)
- ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,16945,1,3,0)
+ ;;=3^Hemiplegia affecting lft dominant side, unspec
+ ;;^UTILITY(U,$J,358.3,16945,1,4,0)
+ ;;=4^G81.92
+ ;;^UTILITY(U,$J,358.3,16945,2)
+ ;;=^5004122
+ ;;^UTILITY(U,$J,358.3,16946,0)
+ ;;=G81.93^^73^855^12
+ ;;^UTILITY(U,$J,358.3,16946,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16946,1,3,0)
+ ;;=3^Hemiplegia affecting rt nondom side, unspec
+ ;;^UTILITY(U,$J,358.3,16946,1,4,0)
+ ;;=4^G81.93
+ ;;^UTILITY(U,$J,358.3,16946,2)
+ ;;=^5004123
+ ;;^UTILITY(U,$J,358.3,16947,0)
+ ;;=G81.94^^73^855^10
+ ;;^UTILITY(U,$J,358.3,16947,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16947,1,3,0)
+ ;;=3^Hemiplegia affecting lft nondom side, unspec
+ ;;^UTILITY(U,$J,358.3,16947,1,4,0)
+ ;;=4^G81.94
+ ;;^UTILITY(U,$J,358.3,16947,2)
+ ;;=^5004124
+ ;;^UTILITY(U,$J,358.3,16948,0)
+ ;;=H91.90^^73^855^7
+ ;;^UTILITY(U,$J,358.3,16948,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16948,1,3,0)
+ ;;=3^Hearing loss, unspec ear, unspec
+ ;;^UTILITY(U,$J,358.3,16948,1,4,0)
+ ;;=4^H91.90
+ ;;^UTILITY(U,$J,358.3,16948,2)
+ ;;=^5006943
+ ;;^UTILITY(U,$J,358.3,16949,0)
+ ;;=I10.^^73^855^27
+ ;;^UTILITY(U,$J,358.3,16949,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16949,1,3,0)
+ ;;=3^Hypertension, essential (primary)
+ ;;^UTILITY(U,$J,358.3,16949,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,16949,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,16950,0)
+ ;;=K64.8^^73^855^15
+ ;;^UTILITY(U,$J,358.3,16950,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16950,1,3,0)
+ ;;=3^Hemorrhoids, oth
+ ;;^UTILITY(U,$J,358.3,16950,1,4,0)
+ ;;=4^K64.8
+ ;;^UTILITY(U,$J,358.3,16950,2)
+ ;;=^5008774
+ ;;^UTILITY(U,$J,358.3,16951,0)
+ ;;=K64.4^^73^855^14
+ ;;^UTILITY(U,$J,358.3,16951,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16951,1,3,0)
+ ;;=3^Hemorrhoidal Skin Tags,Residual
+ ;;^UTILITY(U,$J,358.3,16951,1,4,0)
+ ;;=4^K64.4
+ ;;^UTILITY(U,$J,358.3,16951,2)
+ ;;=^269834
+ ;;^UTILITY(U,$J,358.3,16952,0)
+ ;;=I95.9^^73^855^33
+ ;;^UTILITY(U,$J,358.3,16952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16952,1,3,0)
+ ;;=3^Hypotension, unspec
+ ;;^UTILITY(U,$J,358.3,16952,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,16952,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,16953,0)
+ ;;=K40.90^^73^855^37
+ ;;^UTILITY(U,$J,358.3,16953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16953,1,3,0)
+ ;;=3^Uniltrl Ing hernia, w/o obst/ganr, not spcf as recur
+ ;;^UTILITY(U,$J,358.3,16953,1,4,0)
+ ;;=4^K40.90
+ ;;^UTILITY(U,$J,358.3,16953,2)
+ ;;=^5008591
+ ;;^UTILITY(U,$J,358.3,16954,0)
+ ;;=K40.20^^73^855^4
+ ;;^UTILITY(U,$J,358.3,16954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16954,1,3,0)
+ ;;=3^Biltrl Ing hernia, w/o obst/ganr, not spcf as recur
+ ;;^UTILITY(U,$J,358.3,16954,1,4,0)
+ ;;=4^K40.20
+ ;;^UTILITY(U,$J,358.3,16954,2)
+ ;;=^5008585
+ ;;^UTILITY(U,$J,358.3,16955,0)
+ ;;=K42.9^^73^855^36
+ ;;^UTILITY(U,$J,358.3,16955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16955,1,3,0)
+ ;;=3^Umbilical hernia w/o obst/gangr or gangrene
+ ;;^UTILITY(U,$J,358.3,16955,1,4,0)
+ ;;=4^K42.9
+ ;;^UTILITY(U,$J,358.3,16955,2)
+ ;;=^5008606
+ ;;^UTILITY(U,$J,358.3,16956,0)
+ ;;=K43.2^^73^855^35
+ ;;^UTILITY(U,$J,358.3,16956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16956,1,3,0)
+ ;;=3^Incisional hernia w/o obstr/gangr
+ ;;^UTILITY(U,$J,358.3,16956,1,4,0)
+ ;;=4^K43.2
+ ;;^UTILITY(U,$J,358.3,16956,2)
+ ;;=^5008609
+ ;;^UTILITY(U,$J,358.3,16957,0)
+ ;;=K44.9^^73^855^5
+ ;;^UTILITY(U,$J,358.3,16957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16957,1,3,0)
+ ;;=3^Diaphragmatic hernia w/o obstr/gangr
+ ;;^UTILITY(U,$J,358.3,16957,1,4,0)
+ ;;=4^K44.9
+ ;;^UTILITY(U,$J,358.3,16957,2)
+ ;;=^5008617
+ ;;^UTILITY(U,$J,358.3,16958,0)
+ ;;=K46.9^^73^855^1
+ ;;^UTILITY(U,$J,358.3,16958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16958,1,3,0)
+ ;;=3^Abdominal hernia w/o obstr/gangr, unspec
+ ;;^UTILITY(U,$J,358.3,16958,1,4,0)
+ ;;=4^K46.9
+ ;;^UTILITY(U,$J,358.3,16958,2)
+ ;;=^5008623
+ ;;^UTILITY(U,$J,358.3,16959,0)
+ ;;=K73.9^^73^855^20
+ ;;^UTILITY(U,$J,358.3,16959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16959,1,3,0)
+ ;;=3^Hepatitis C,Chronic Unspec
+ ;;^UTILITY(U,$J,358.3,16959,1,4,0)
+ ;;=4^K73.9
+ ;;^UTILITY(U,$J,358.3,16959,2)
+ ;;=^5008815
+ ;;^UTILITY(U,$J,358.3,16960,0)
+ ;;=R31.9^^73^855^8
+ ;;^UTILITY(U,$J,358.3,16960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16960,1,3,0)
+ ;;=3^Hematuria, unspec
+ ;;^UTILITY(U,$J,358.3,16960,1,4,0)
+ ;;=4^R31.9
+ ;;^UTILITY(U,$J,358.3,16960,2)
+ ;;=^5019328
+ ;;^UTILITY(U,$J,358.3,16961,0)
+ ;;=N43.3^^73^855^23
+ ;;^UTILITY(U,$J,358.3,16961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16961,1,3,0)
+ ;;=3^Hydrocele, unspec
+ ;;^UTILITY(U,$J,358.3,16961,1,4,0)
+ ;;=4^N43.3
+ ;;^UTILITY(U,$J,358.3,16961,2)
+ ;;=^5015700
+ ;;^UTILITY(U,$J,358.3,16962,0)
+ ;;=R51.^^73^855^6
+ ;;^UTILITY(U,$J,358.3,16962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16962,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,16962,1,4,0)
+ ;;=4^R51.

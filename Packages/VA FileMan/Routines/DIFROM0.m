@@ -1,6 +1,10 @@
-DIFROM0 ;SFISC/XAK-GATHER PCS TO SEND ;2:59 PM  25 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROM0 ;SFISC/XAK-GATHER PCS TO SEND ;31OCT2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S %=2,DIT=0,DIH=""
  I DPK<0,$O(F(0))>0 K DIR S DIR(0)="Y",DIR("A")="Do you want to include all the templates and forms",DIR("B")="NO",DIR("??")="^D NOPKG^DIFROMH" D ^DIR G Q:$D(DIRUT) S DIT=Y=1
  W ! S DIR(0)="YA",DIR("??")="^D ^DIFROMH",DIR("B")="YES"
@@ -10,7 +14,7 @@ DIFROM0 ;SFISC/XAK-GATHER PCS TO SEND ;2:59 PM  25 Sep 1998
 S W ! S DIR("A")="Would you like security codes sent along: ",DIR("B")="NO"
  S DIR("??")="^D S^DIFROMH" D ^DIR G Q:$D(DIRUT) S DSEC=Y=1 K ^UTILITY("DI",$J)
 M ;
- S DIR("A")="Maximum Routine Size    (2000 - 9999) : ",DIR("B")=^DD("ROU"),DIR(0)="NA^2000:9999"
+ S DIR("A")="Maximum Routine Size    (2000 - "_^DD("ROU")_") : ",DIR("B")=^DD("ROU"),DIR(0)="NA^2000:"_^DD("ROU") ; VEN/SMH V22.2
  S DIR("??")="^D M^DIFROMH" D ^DIR G Q:$D(DIRUT) S DIFRM=Y
 GO W ! D WAIT^DICD
  D:DPK>0 PKG^DIFROM12

@@ -1,11 +1,13 @@
 PRCG238Q ;WISC/BGJ-IFCAP 410 FILE CLEANUP (QUEUE) ;11/8/99
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**193**;Oct 20, 2000;Build 9
+ ;Per VA Directive 6402, this routine should not be modified.
  ;This routine is installed by patch PRC*5*238.
  ;This routine creates entries in file 443.1 for background processing
  ;by PurgeMaster.  Entries are created for files 410, 410.1 and 443.
  ;Routine PRCG238P will be utilized by PurgeMaster to actually purge the
  ;entries in these files.
+ ;
+ ;PRC*5.1*193 Added universal date control query to process
  ;
  W @IOF,!
  D MSG
@@ -15,18 +17,14 @@ V ;;5.1;IFCAP;;Oct 20, 2000
  D NOW^%DTC K %H,%,%I
  S CFY=$E(X,1,3)+1700,CFY=$S(+$E(X,4,5)>9:CFY+1,1:CFY)
  S PFY=CFY-1700-1_"0930"
- S X="Date/Fiscal Year thru which temporary requests in file 410 will be purged."
- D DATE
- I +OUT G OUT
- I $E(Y,4,7)="0000" S Y=$E(Y,1,3)_"0930"
- S PRC("TEMPDATE")=Y
- S PFY=CFY-1700-3_"0930"
- S X="Date/Fiscal Year thru which entries in file 410 not associated with an entry in file 442 will be purged."
- D DATE
- I +OUT G OUT
- I $E(Y,4,7)="0000" S Y=$E(Y,1,3)_"0930"
- K OUT
- S PRC("PERMDATE")=Y
+ ;
+DT ;Ask processing date     PRC*5.1*193
+ S PRCGOUT=$$PURGEDT^PRCGPUTL("",7)
+ I PRCGPGDT'>0!PRCGOUT G OUT
+ W !! S %A="The archiving processing will go through date "_PRCGDOUT_" is this OK?" S %=1 D ^PRCFYN G OUT:%'=1
+ W !! S %A="ARE YOU SURE" D ^PRCFYN I %'=1 W ?35,"I am confused, let's start over..." G DT
+ S Y=PRCGPGDT,PRC("PERMDATE")=Y,PRC("TEMPDATE")=Y
+ ;
 DQ ;
  I $D(ZTQUEUED) S ZTREQ="@"
  F I=1:1 S X=$T(LOAD+I) Q:$P(X,";",3)=""  D
@@ -56,7 +54,10 @@ DQ ;
  D END^PRCGU
  ;
 OUT ;
- K A,ADDVAR,ATERM,BEGDA,BTIME,CFY,COUNT,CURSOR,DX,DY,ENDA,FILE,GET,GLO,HOURS,ICOUNT,LEVEL,LINE,LREC,MIN,NEXT,OGET,OUT,PERCENT,PFY,REC,REF,ROUTINE,RTIME,SEC,TIME,TREC,TTIME,VARIABLE,X,XCOUNT,XPOS,Y,Z,PRC
+ K A,ADDVAR,ATERM,BEGDA,BTIME,CFY,COUNT,CURSOR,DX,DY,ENDA,FILE,GET,GLO
+ K HOURS,ICOUNT,LEVEL,LINE,LREC,MIN,NEXT,OGET,OUT,PERCENT,PFY,REC,REF
+ K ROUTINE,RTIME,SEC,TIME,TREC,TTIME,VARIABLE,X,XCOUNT,XPOS,Y,Z,PRC
+ K PRCGOUT,PRCGDOUT,PRCGPGDT
  D KILL^%ZISS
  Q
 GET ;
@@ -77,16 +78,6 @@ MSG ;
  W ! S X="The dates you are about to enter MUST be confirmed with A&MM "
  S X=X_"or Fiscal staff.  FAILURE TO DO SO MAY RESULT IN DATA "
  S X=X_"CORRUPTION." D MSG^PRCFQ W $C(7),$C(7),$C(7)
- Q
-DATE ;Select fiscal year
- S DIR(0)="DA^:"_PFY_":EA"
- S DIR("A")="Select DATE/FISCAL YEAR: "
- S DIR("A",1)=X
- S DIR("?")="You may only select for purging those documents which are not in the current Fiscal Year."
- S DIR("?",1)="This MUST be the same date/fiscal year you entered in the Find Archivable IFCAP Records [PRCG ARCHIVE FIND] menu option during your last archive/purge."
- D ^DIR
- S OUT=$G(DTOUT)_$G(DUOUT)_$G(DIRUT)_$G(DIROUT)
- K DTOUT,DUOUT,DIRUT,DIROUT,DIR
  Q
 LOAD ;
  ;;410;^PRCS(410,;410;PRC("TEMPDATE")_"-"_PRC("PERMDATE")

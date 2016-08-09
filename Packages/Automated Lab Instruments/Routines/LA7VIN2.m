@@ -1,5 +1,5 @@
-LA7VIN2 ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  15:49
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
+LA7VIN2 ;DALOI/JMC - Process Incoming UI Msgs, continued ;06/22/15  13:02
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,88**;Sep 27, 1994;Build 10
  ;
  ;This routine is a continuation of LA7VIN1 and is only called from there.
  Q
@@ -46,6 +46,13 @@ MSH ; Process MSH segment
  ; HL7 version
  S LA7X=$$P^LA7VHLU(.LA7SEG,12,LA7FS)
  S LA7HLV=$P(LA7X,LA7CS,1)
+ ;
+ ; Accept acknowledgement type
+ S LA7AAT(0)=$$P^LA7VHLU(.LA7SEG,15,LA7FS)
+ ;
+ ; Application acknowledgement type
+ S LA7AAT(1)=$$P^LA7VHLU(.LA7SEG,16,LA7FS)
+ ;
  Q
  ;
  ;

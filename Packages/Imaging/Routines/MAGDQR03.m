@@ -1,5 +1,5 @@
-MAGDQR03 ;WOIFO/EdM,MLH,JSL,SAF,BT,DAC,NST - Imaging RPCs for Query/Retrieve ; 01 May 2013 5:13 PM
- ;;3.0;IMAGING;**51,54,66,123,118,138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGDQR03 ;WOIFO/EdM,MLH,JSL,SAF,BT,DAC,NST - Imaging RPCs for Query/Retrieve ; 20 Jun 2015 1:36 PM
+ ;;3.0;IMAGING;**51,54,66,123,118,138,162**;Mar 19, 2002;Build 22;Jun 20 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -126,7 +126,7 @@ RESULT(TYPE,REQ,RESULT,MAGIEN,MAGDUZ,MAGDFN,MAGRORD,MAGINTERP,ERROR,FATAL) ;
  G RESULTX:'OK  ; don't return result on key mismatch
  ;
  D  G RESULTX:'OK  ; There must be a valid Study Instance UID
- . N V,T
+ . N T ; P162 - Removed the new of the local V array to prevent undefined error in MAGDQR13
  . S T="0020,000D" D Q020000D(TYPE,.REQ,.V,T,MAGDFN,MAGIEN,MAGRORD,MAGINTERP,SENSEMP,.OK)
  . S OK=(V(T)'="")
  . Q

@@ -1,5 +1,5 @@
 PSGMMIV ;BIR/MV-IV ORDER FOR THE 7/14 DAY MAR. ;25 Nov 98 / 9:24 AM
- ;;5.0;INPATIENT MEDICATIONS;**20,21,58,111,131,145,267,275**;16 DEC 97;Build 157
+ ;;5.0;INPATIENT MEDICATIONS;**20,21,58,111,131,145,267,275,326**;16 DEC 97;Build 1
  ;
  ; Reference to ^PS(52.7 supported by DBIA #2173.
  ; Reference to ^PS(55 supported by DBIA #2191.
@@ -21,7 +21,7 @@ IV ;*** Sort IV orders for 24 Hrs, 7/14 Day MAR.
  S PSGMARWC=PSGMARWN
  I $G(DRG) S X=$S($G(DRG("AD",1)):DRG("AD",1),1:$G(DRG("SOL",1))),X=$E($P(X,U,2),1,20)_U_+ON_"V" D
  . N A
- . S A=$G(^PS(55,PSGP,"IV",+ON,"DSS")) I $P(A,"^")]"" S PSGMARWN="C!"_$P(A,"^") I $G(SUB1)]"",$G(SUB2)]"",'$D(^TMP($J,TM,PSGMARWN,SUB1,SUB2)) D
+ . S A=$G(^PS(55,PSGP,"IV",+ON,"DSS")) I ($P(A,"^",1)]"")&($P(A,"^",2)]"") S PSGMARWN="C!"_$P(A,"^") I $G(SUB1)]"",$G(SUB2)]"",'$D(^TMP($J,TM,PSGMARWN,SUB1,SUB2)) D
  . . N X,Y
  . . D SPN^PSGMMAR0
  . . Q

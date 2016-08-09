@@ -1,132 +1,288 @@
-IBDEI0G3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0G3 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7439,2)
- ;;=^5019607
- ;;^UTILITY(U,$J,358.3,7440,0)
- ;;=R82.8^^30^408^23
- ;;^UTILITY(U,$J,358.3,7440,1,0)
+ ;;^UTILITY(U,$J,358.3,16118,2)
+ ;;=^334037
+ ;;^UTILITY(U,$J,358.3,16119,0)
+ ;;=D53.2^^64^774^21
+ ;;^UTILITY(U,$J,358.3,16119,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7440,1,3,0)
- ;;=3^Abnormal Urine Cytology/Histology Findings
- ;;^UTILITY(U,$J,358.3,7440,1,4,0)
- ;;=4^R82.8
- ;;^UTILITY(U,$J,358.3,7440,2)
- ;;=^5019608
- ;;^UTILITY(U,$J,358.3,7441,0)
- ;;=R82.90^^30^408^25
- ;;^UTILITY(U,$J,358.3,7441,1,0)
+ ;;^UTILITY(U,$J,358.3,16119,1,3,0)
+ ;;=3^Anemia,Scorbutic
+ ;;^UTILITY(U,$J,358.3,16119,1,4,0)
+ ;;=4^D53.2
+ ;;^UTILITY(U,$J,358.3,16119,2)
+ ;;=^5002296
+ ;;^UTILITY(U,$J,358.3,16120,0)
+ ;;=D51.0^^64^774^26
+ ;;^UTILITY(U,$J,358.3,16120,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7441,1,3,0)
- ;;=3^Abnormal Urine Findings,Unspec
- ;;^UTILITY(U,$J,358.3,7441,1,4,0)
- ;;=4^R82.90
- ;;^UTILITY(U,$J,358.3,7441,2)
- ;;=^5019609
- ;;^UTILITY(U,$J,358.3,7442,0)
- ;;=R82.91^^30^408^50
- ;;^UTILITY(U,$J,358.3,7442,1,0)
+ ;;^UTILITY(U,$J,358.3,16120,1,3,0)
+ ;;=3^Anemia,Vit B12 Defic d/t Intrinsic Factor Deficiency
+ ;;^UTILITY(U,$J,358.3,16120,1,4,0)
+ ;;=4^D51.0
+ ;;^UTILITY(U,$J,358.3,16120,2)
+ ;;=^5002284
+ ;;^UTILITY(U,$J,358.3,16121,0)
+ ;;=D57.1^^64^774^29
+ ;;^UTILITY(U,$J,358.3,16121,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7442,1,3,0)
- ;;=3^Chromoabnormalities of Urine NEC
- ;;^UTILITY(U,$J,358.3,7442,1,4,0)
- ;;=4^R82.91
- ;;^UTILITY(U,$J,358.3,7442,2)
- ;;=^5019610
- ;;^UTILITY(U,$J,358.3,7443,0)
- ;;=R82.99^^30^408^24
- ;;^UTILITY(U,$J,358.3,7443,1,0)
+ ;;^UTILITY(U,$J,358.3,16121,1,3,0)
+ ;;=3^Sickle-Cell Disease w/o Crisis
+ ;;^UTILITY(U,$J,358.3,16121,1,4,0)
+ ;;=4^D57.1
+ ;;^UTILITY(U,$J,358.3,16121,2)
+ ;;=^5002309
+ ;;^UTILITY(U,$J,358.3,16122,0)
+ ;;=D64.0^^64^774^22
+ ;;^UTILITY(U,$J,358.3,16122,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7443,1,3,0)
- ;;=3^Abnormal Urine Findings NEC
- ;;^UTILITY(U,$J,358.3,7443,1,4,0)
- ;;=4^R82.99
- ;;^UTILITY(U,$J,358.3,7443,2)
- ;;=^5019611
- ;;^UTILITY(U,$J,358.3,7444,0)
- ;;=R89.9^^30^408^19
- ;;^UTILITY(U,$J,358.3,7444,1,0)
+ ;;^UTILITY(U,$J,358.3,16122,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Hereditary
+ ;;^UTILITY(U,$J,358.3,16122,1,4,0)
+ ;;=4^D64.0
+ ;;^UTILITY(U,$J,358.3,16122,2)
+ ;;=^5002344
+ ;;^UTILITY(U,$J,358.3,16123,0)
+ ;;=D64.1^^64^774^23
+ ;;^UTILITY(U,$J,358.3,16123,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7444,1,3,0)
- ;;=3^Abnormal Organ/Tissue Specimen Findings,Unspec
- ;;^UTILITY(U,$J,358.3,7444,1,4,0)
- ;;=4^R89.9
- ;;^UTILITY(U,$J,358.3,7444,2)
- ;;=^5019702
- ;;^UTILITY(U,$J,358.3,7445,0)
- ;;=R90.0^^30^408^105
- ;;^UTILITY(U,$J,358.3,7445,1,0)
+ ;;^UTILITY(U,$J,358.3,16123,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Secondary d/t Disease
+ ;;^UTILITY(U,$J,358.3,16123,1,4,0)
+ ;;=4^D64.1
+ ;;^UTILITY(U,$J,358.3,16123,2)
+ ;;=^5002345
+ ;;^UTILITY(U,$J,358.3,16124,0)
+ ;;=D64.2^^64^774^24
+ ;;^UTILITY(U,$J,358.3,16124,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7445,1,3,0)
- ;;=3^Intracranial Space-Occupying Lesion Dx Imaging of Central Nervous System
- ;;^UTILITY(U,$J,358.3,7445,1,4,0)
- ;;=4^R90.0
- ;;^UTILITY(U,$J,358.3,7445,2)
- ;;=^5019703
- ;;^UTILITY(U,$J,358.3,7446,0)
- ;;=R90.89^^30^408^13
- ;;^UTILITY(U,$J,358.3,7446,1,0)
+ ;;^UTILITY(U,$J,358.3,16124,1,3,0)
+ ;;=3^Anemia,Sideroblastic,Secondary d/t Drugs/Toxins
+ ;;^UTILITY(U,$J,358.3,16124,1,4,0)
+ ;;=4^D64.2
+ ;;^UTILITY(U,$J,358.3,16124,2)
+ ;;=^5002346
+ ;;^UTILITY(U,$J,358.3,16125,0)
+ ;;=D64.9^^64^774^25
+ ;;^UTILITY(U,$J,358.3,16125,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7446,1,3,0)
- ;;=3^Abnormal Findings on Dx Imaging of Central Nervous System NEC
- ;;^UTILITY(U,$J,358.3,7446,1,4,0)
- ;;=4^R90.89
- ;;^UTILITY(U,$J,358.3,7446,2)
- ;;=^5019706
- ;;^UTILITY(U,$J,358.3,7447,0)
- ;;=R91.8^^30^408^18
- ;;^UTILITY(U,$J,358.3,7447,1,0)
+ ;;^UTILITY(U,$J,358.3,16125,1,3,0)
+ ;;=3^Anemia,Unspec
+ ;;^UTILITY(U,$J,358.3,16125,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,16125,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,16126,0)
+ ;;=C50.912^^64^775^11
+ ;;^UTILITY(U,$J,358.3,16126,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7447,1,3,0)
- ;;=3^Abnormal Nonspecific Lung Field Finding NEC
- ;;^UTILITY(U,$J,358.3,7447,1,4,0)
- ;;=4^R91.8
- ;;^UTILITY(U,$J,358.3,7447,2)
- ;;=^5019708
- ;;^UTILITY(U,$J,358.3,7448,0)
- ;;=R92.0^^30^408^124
- ;;^UTILITY(U,$J,358.3,7448,1,0)
+ ;;^UTILITY(U,$J,358.3,16126,1,3,0)
+ ;;=3^Malig Neop Breast,Left,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16126,1,4,0)
+ ;;=4^C50.912
+ ;;^UTILITY(U,$J,358.3,16126,2)
+ ;;=^5001196
+ ;;^UTILITY(U,$J,358.3,16127,0)
+ ;;=C50.911^^64^775^12
+ ;;^UTILITY(U,$J,358.3,16127,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7448,1,3,0)
- ;;=3^Mammographic Microcalcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,7448,1,4,0)
- ;;=4^R92.0
- ;;^UTILITY(U,$J,358.3,7448,2)
- ;;=^5019709
- ;;^UTILITY(U,$J,358.3,7449,0)
- ;;=R92.1^^30^408^123
- ;;^UTILITY(U,$J,358.3,7449,1,0)
+ ;;^UTILITY(U,$J,358.3,16127,1,3,0)
+ ;;=3^Malig Neop Breast,Right,Unspec Site
+ ;;^UTILITY(U,$J,358.3,16127,1,4,0)
+ ;;=4^C50.911
+ ;;^UTILITY(U,$J,358.3,16127,2)
+ ;;=^5001195
+ ;;^UTILITY(U,$J,358.3,16128,0)
+ ;;=D05.01^^64^775^10
+ ;;^UTILITY(U,$J,358.3,16128,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7449,1,3,0)
- ;;=3^Mammographic Calcification on Dx Image of Breast
- ;;^UTILITY(U,$J,358.3,7449,1,4,0)
- ;;=4^R92.1
- ;;^UTILITY(U,$J,358.3,7449,2)
- ;;=^5019710
- ;;^UTILITY(U,$J,358.3,7450,0)
- ;;=R92.2^^30^408^98
- ;;^UTILITY(U,$J,358.3,7450,1,0)
+ ;;^UTILITY(U,$J,358.3,16128,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,16128,1,4,0)
+ ;;=4^D05.01
+ ;;^UTILITY(U,$J,358.3,16128,2)
+ ;;=^5001927
+ ;;^UTILITY(U,$J,358.3,16129,0)
+ ;;=D05.02^^64^775^9
+ ;;^UTILITY(U,$J,358.3,16129,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7450,1,3,0)
- ;;=3^Inconclusive Mammogram
- ;;^UTILITY(U,$J,358.3,7450,1,4,0)
- ;;=4^R92.2
- ;;^UTILITY(U,$J,358.3,7450,2)
- ;;=^5019711
- ;;^UTILITY(U,$J,358.3,7451,0)
- ;;=R93.0^^30^408^10
- ;;^UTILITY(U,$J,358.3,7451,1,0)
+ ;;^UTILITY(U,$J,358.3,16129,1,3,0)
+ ;;=3^Lobular Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,16129,1,4,0)
+ ;;=4^D05.02
+ ;;^UTILITY(U,$J,358.3,16129,2)
+ ;;=^5001928
+ ;;^UTILITY(U,$J,358.3,16130,0)
+ ;;=D05.92^^64^775^5
+ ;;^UTILITY(U,$J,358.3,16130,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7451,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Skull/Head NEC
- ;;^UTILITY(U,$J,358.3,7451,1,4,0)
- ;;=4^R93.0
- ;;^UTILITY(U,$J,358.3,7451,2)
- ;;=^5019713
- ;;^UTILITY(U,$J,358.3,7452,0)
- ;;=R93.2^^30^408^9
- ;;^UTILITY(U,$J,358.3,7452,1,0)
+ ;;^UTILITY(U,$J,358.3,16130,1,3,0)
+ ;;=3^Carcinoma in Situ,Left Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,16130,1,4,0)
+ ;;=4^D05.92
+ ;;^UTILITY(U,$J,358.3,16130,2)
+ ;;=^5001937
+ ;;^UTILITY(U,$J,358.3,16131,0)
+ ;;=D05.91^^64^775^6
+ ;;^UTILITY(U,$J,358.3,16131,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7452,1,3,0)
- ;;=3^Abnormal Finding on Dx Image of Liver/Biliary Tract
+ ;;^UTILITY(U,$J,358.3,16131,1,3,0)
+ ;;=3^Carcinoma in Situ,Right Breast,Unspec Type
+ ;;^UTILITY(U,$J,358.3,16131,1,4,0)
+ ;;=4^D05.91
+ ;;^UTILITY(U,$J,358.3,16131,2)
+ ;;=^5001936
+ ;;^UTILITY(U,$J,358.3,16132,0)
+ ;;=D05.11^^64^775^8
+ ;;^UTILITY(U,$J,358.3,16132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16132,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Right Breast
+ ;;^UTILITY(U,$J,358.3,16132,1,4,0)
+ ;;=4^D05.11
+ ;;^UTILITY(U,$J,358.3,16132,2)
+ ;;=^5001930
+ ;;^UTILITY(U,$J,358.3,16133,0)
+ ;;=D05.12^^64^775^7
+ ;;^UTILITY(U,$J,358.3,16133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16133,1,3,0)
+ ;;=3^Intraductal Carcinoma in Situ,Left Breast
+ ;;^UTILITY(U,$J,358.3,16133,1,4,0)
+ ;;=4^D05.12
+ ;;^UTILITY(U,$J,358.3,16133,2)
+ ;;=^5001931
+ ;;^UTILITY(U,$J,358.3,16134,0)
+ ;;=D06.9^^64^775^2
+ ;;^UTILITY(U,$J,358.3,16134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16134,1,3,0)
+ ;;=3^Carcinoma in Situ,Cervix,Unspec
+ ;;^UTILITY(U,$J,358.3,16134,1,4,0)
+ ;;=4^D06.9
+ ;;^UTILITY(U,$J,358.3,16134,2)
+ ;;=^5001941
+ ;;^UTILITY(U,$J,358.3,16135,0)
+ ;;=D06.0^^64^775^3
+ ;;^UTILITY(U,$J,358.3,16135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16135,1,3,0)
+ ;;=3^Carcinoma in Situ,Endocervix
+ ;;^UTILITY(U,$J,358.3,16135,1,4,0)
+ ;;=4^D06.0
+ ;;^UTILITY(U,$J,358.3,16135,2)
+ ;;=^5001938
+ ;;^UTILITY(U,$J,358.3,16136,0)
+ ;;=D06.1^^64^775^4
+ ;;^UTILITY(U,$J,358.3,16136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16136,1,3,0)
+ ;;=3^Carcinoma in Situ,Exocervix
+ ;;^UTILITY(U,$J,358.3,16136,1,4,0)
+ ;;=4^D06.1
+ ;;^UTILITY(U,$J,358.3,16136,2)
+ ;;=^5001939
+ ;;^UTILITY(U,$J,358.3,16137,0)
+ ;;=D06.7^^64^775^1
+ ;;^UTILITY(U,$J,358.3,16137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16137,1,3,0)
+ ;;=3^Carcinoma in Situ,Cervix,Other Parts
+ ;;^UTILITY(U,$J,358.3,16137,1,4,0)
+ ;;=4^D06.7
+ ;;^UTILITY(U,$J,358.3,16137,2)
+ ;;=^5001940
+ ;;^UTILITY(U,$J,358.3,16138,0)
+ ;;=C53.9^^64^775^13
+ ;;^UTILITY(U,$J,358.3,16138,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16138,1,3,0)
+ ;;=3^Malig Neop Cervix Uteri,Unspec
+ ;;^UTILITY(U,$J,358.3,16138,1,4,0)
+ ;;=4^C53.9
+ ;;^UTILITY(U,$J,358.3,16138,2)
+ ;;=^5001204
+ ;;^UTILITY(U,$J,358.3,16139,0)
+ ;;=C57.01^^64^775^15
+ ;;^UTILITY(U,$J,358.3,16139,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16139,1,3,0)
+ ;;=3^Malig Neop Fallopian Tube,Right
+ ;;^UTILITY(U,$J,358.3,16139,1,4,0)
+ ;;=4^C57.01
+ ;;^UTILITY(U,$J,358.3,16139,2)
+ ;;=^5001216
+ ;;^UTILITY(U,$J,358.3,16140,0)
+ ;;=C57.02^^64^775^14
+ ;;^UTILITY(U,$J,358.3,16140,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16140,1,3,0)
+ ;;=3^Malig Neop Fallopian Tube,Left
+ ;;^UTILITY(U,$J,358.3,16140,1,4,0)
+ ;;=4^C57.02
+ ;;^UTILITY(U,$J,358.3,16140,2)
+ ;;=^5001217
+ ;;^UTILITY(U,$J,358.3,16141,0)
+ ;;=C56.1^^64^775^17
+ ;;^UTILITY(U,$J,358.3,16141,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16141,1,3,0)
+ ;;=3^Malig Neop Ovary,Right
+ ;;^UTILITY(U,$J,358.3,16141,1,4,0)
+ ;;=4^C56.1
+ ;;^UTILITY(U,$J,358.3,16141,2)
+ ;;=^5001212
+ ;;^UTILITY(U,$J,358.3,16142,0)
+ ;;=C56.2^^64^775^16
+ ;;^UTILITY(U,$J,358.3,16142,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16142,1,3,0)
+ ;;=3^Malig Neop Ovary,Left
+ ;;^UTILITY(U,$J,358.3,16142,1,4,0)
+ ;;=4^C56.2
+ ;;^UTILITY(U,$J,358.3,16142,2)
+ ;;=^5001213
+ ;;^UTILITY(U,$J,358.3,16143,0)
+ ;;=C55.^^64^775^18
+ ;;^UTILITY(U,$J,358.3,16143,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16143,1,3,0)
+ ;;=3^Malig Neop Uterus,Unspec Part
+ ;;^UTILITY(U,$J,358.3,16143,1,4,0)
+ ;;=4^C55.
+ ;;^UTILITY(U,$J,358.3,16143,2)
+ ;;=^5001211
+ ;;^UTILITY(U,$J,358.3,16144,0)
+ ;;=C52.^^64^775^19
+ ;;^UTILITY(U,$J,358.3,16144,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16144,1,3,0)
+ ;;=3^Malig Neop Vagina
+ ;;^UTILITY(U,$J,358.3,16144,1,4,0)
+ ;;=4^C52.
+ ;;^UTILITY(U,$J,358.3,16144,2)
+ ;;=^267232
+ ;;^UTILITY(U,$J,358.3,16145,0)
+ ;;=C51.9^^64^775^20
+ ;;^UTILITY(U,$J,358.3,16145,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16145,1,3,0)
+ ;;=3^Malig Neop Vulva,Unspec
+ ;;^UTILITY(U,$J,358.3,16145,1,4,0)
+ ;;=4^C51.9
+ ;;^UTILITY(U,$J,358.3,16145,2)
+ ;;=^5001202
+ ;;^UTILITY(U,$J,358.3,16146,0)
+ ;;=D66.^^64^776^7
+ ;;^UTILITY(U,$J,358.3,16146,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,16146,1,3,0)
+ ;;=3^Hereditary Factor VIII Deficiency
+ ;;^UTILITY(U,$J,358.3,16146,1,4,0)
+ ;;=4^D66.
+ ;;^UTILITY(U,$J,358.3,16146,2)
+ ;;=^5002353
+ ;;^UTILITY(U,$J,358.3,16147,0)
+ ;;=D68.9^^64^776^2

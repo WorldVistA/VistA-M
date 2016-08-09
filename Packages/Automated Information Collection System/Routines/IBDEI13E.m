@@ -1,130 +1,280 @@
-IBDEI13E ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI13E ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18568,0)
- ;;=J10.1^^79^880^53
- ;;^UTILITY(U,$J,358.3,18568,1,0)
+ ;;^UTILITY(U,$J,358.3,39660,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18568,1,3,0)
- ;;=3^Flu d/t Indentified Flu Virus w/ Respiratory Manifestations
- ;;^UTILITY(U,$J,358.3,18568,1,4,0)
- ;;=4^J10.1
- ;;^UTILITY(U,$J,358.3,18568,2)
- ;;=^5008151
- ;;^UTILITY(U,$J,358.3,18569,0)
- ;;=J11.1^^79^880^54
- ;;^UTILITY(U,$J,358.3,18569,1,0)
+ ;;^UTILITY(U,$J,358.3,39660,1,3,0)
+ ;;=3^Infective Bursitis,Right Knee
+ ;;^UTILITY(U,$J,358.3,39660,1,4,0)
+ ;;=4^M71.161
+ ;;^UTILITY(U,$J,358.3,39660,2)
+ ;;=^5013139
+ ;;^UTILITY(U,$J,358.3,39661,0)
+ ;;=M71.162^^148^1953^46
+ ;;^UTILITY(U,$J,358.3,39661,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18569,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Respiratory Manifestations NEC
- ;;^UTILITY(U,$J,358.3,18569,1,4,0)
- ;;=4^J11.1
- ;;^UTILITY(U,$J,358.3,18569,2)
- ;;=^5008158
- ;;^UTILITY(U,$J,358.3,18570,0)
- ;;=K52.9^^79^880^80
- ;;^UTILITY(U,$J,358.3,18570,1,0)
+ ;;^UTILITY(U,$J,358.3,39661,1,3,0)
+ ;;=3^Infective Bursitis,Left Knee
+ ;;^UTILITY(U,$J,358.3,39661,1,4,0)
+ ;;=4^M71.162
+ ;;^UTILITY(U,$J,358.3,39661,2)
+ ;;=^5013140
+ ;;^UTILITY(U,$J,358.3,39662,0)
+ ;;=M72.0^^148^1953^117
+ ;;^UTILITY(U,$J,358.3,39662,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18570,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis,Unspec
- ;;^UTILITY(U,$J,358.3,18570,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,18570,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,18571,0)
- ;;=K52.89^^79^880^79
- ;;^UTILITY(U,$J,358.3,18571,1,0)
+ ;;^UTILITY(U,$J,358.3,39662,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,39662,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,39662,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,39663,0)
+ ;;=M75.111^^148^1953^161
+ ;;^UTILITY(U,$J,358.3,39663,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18571,1,3,0)
- ;;=3^Noninfective Gastroenteritis/Colitis NEC
- ;;^UTILITY(U,$J,358.3,18571,1,4,0)
- ;;=4^K52.89
- ;;^UTILITY(U,$J,358.3,18571,2)
- ;;=^5008703
- ;;^UTILITY(U,$J,358.3,18572,0)
- ;;=K57.32^^79^880^46
- ;;^UTILITY(U,$J,358.3,18572,1,0)
+ ;;^UTILITY(U,$J,358.3,39663,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39663,1,4,0)
+ ;;=4^M75.111
+ ;;^UTILITY(U,$J,358.3,39663,2)
+ ;;=^5013245
+ ;;^UTILITY(U,$J,358.3,39664,0)
+ ;;=M75.112^^148^1953^160
+ ;;^UTILITY(U,$J,358.3,39664,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18572,1,3,0)
- ;;=3^Diverticulitis of Lg Intestine w/o Perforation/Abscess w/o Bleeding
- ;;^UTILITY(U,$J,358.3,18572,1,4,0)
- ;;=4^K57.32
- ;;^UTILITY(U,$J,358.3,18572,2)
- ;;=^5008725
- ;;^UTILITY(U,$J,358.3,18573,0)
- ;;=K70.10^^79^880^13
- ;;^UTILITY(U,$J,358.3,18573,1,0)
+ ;;^UTILITY(U,$J,358.3,39664,1,3,0)
+ ;;=3^Rotator Cuff Syndrome,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39664,1,4,0)
+ ;;=4^M75.112
+ ;;^UTILITY(U,$J,358.3,39664,2)
+ ;;=^5013246
+ ;;^UTILITY(U,$J,358.3,39665,0)
+ ;;=M75.51^^148^1953^10
+ ;;^UTILITY(U,$J,358.3,39665,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18573,1,3,0)
- ;;=3^Alcoholic Hepatitis w/o Ascites
- ;;^UTILITY(U,$J,358.3,18573,1,4,0)
- ;;=4^K70.10
- ;;^UTILITY(U,$J,358.3,18573,2)
- ;;=^5008785
- ;;^UTILITY(U,$J,358.3,18574,0)
- ;;=K73.0^^79^880^34
- ;;^UTILITY(U,$J,358.3,18574,1,0)
+ ;;^UTILITY(U,$J,358.3,39665,1,3,0)
+ ;;=3^Bursitis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39665,1,4,0)
+ ;;=4^M75.51
+ ;;^UTILITY(U,$J,358.3,39665,2)
+ ;;=^5133690
+ ;;^UTILITY(U,$J,358.3,39666,0)
+ ;;=M75.52^^148^1953^9
+ ;;^UTILITY(U,$J,358.3,39666,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18574,1,3,0)
- ;;=3^Chronic Persistent Hepatitis NEC
- ;;^UTILITY(U,$J,358.3,18574,1,4,0)
- ;;=4^K73.0
- ;;^UTILITY(U,$J,358.3,18574,2)
- ;;=^5008811
- ;;^UTILITY(U,$J,358.3,18575,0)
- ;;=N12.^^79^880^104
- ;;^UTILITY(U,$J,358.3,18575,1,0)
+ ;;^UTILITY(U,$J,358.3,39666,1,3,0)
+ ;;=3^Bursitis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39666,1,4,0)
+ ;;=4^M75.52
+ ;;^UTILITY(U,$J,358.3,39666,2)
+ ;;=^5133691
+ ;;^UTILITY(U,$J,358.3,39667,0)
+ ;;=M77.11^^148^1953^54
+ ;;^UTILITY(U,$J,358.3,39667,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18575,1,3,0)
- ;;=3^Tubulo-Interstitial Nephritis
- ;;^UTILITY(U,$J,358.3,18575,1,4,0)
- ;;=4^N12.
- ;;^UTILITY(U,$J,358.3,18575,2)
- ;;=^5015575
- ;;^UTILITY(U,$J,358.3,18576,0)
- ;;=N30.90^^79^880^42
- ;;^UTILITY(U,$J,358.3,18576,1,0)
+ ;;^UTILITY(U,$J,358.3,39667,1,3,0)
+ ;;=3^Lateral Epicondylitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,39667,1,4,0)
+ ;;=4^M77.11
+ ;;^UTILITY(U,$J,358.3,39667,2)
+ ;;=^5013304
+ ;;^UTILITY(U,$J,358.3,39668,0)
+ ;;=M77.12^^148^1953^53
+ ;;^UTILITY(U,$J,358.3,39668,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18576,1,3,0)
- ;;=3^Cystitis w/o Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,18576,1,4,0)
- ;;=4^N30.90
- ;;^UTILITY(U,$J,358.3,18576,2)
- ;;=^5015642
- ;;^UTILITY(U,$J,358.3,18577,0)
- ;;=N30.91^^79^880^41
- ;;^UTILITY(U,$J,358.3,18577,1,0)
+ ;;^UTILITY(U,$J,358.3,39668,1,3,0)
+ ;;=3^Lateral Epicondylitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,39668,1,4,0)
+ ;;=4^M77.12
+ ;;^UTILITY(U,$J,358.3,39668,2)
+ ;;=^5013305
+ ;;^UTILITY(U,$J,358.3,39669,0)
+ ;;=M79.1^^148^1953^61
+ ;;^UTILITY(U,$J,358.3,39669,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18577,1,3,0)
- ;;=3^Cystitis w/ Hematuria,Unspec
- ;;^UTILITY(U,$J,358.3,18577,1,4,0)
- ;;=4^N30.91
- ;;^UTILITY(U,$J,358.3,18577,2)
- ;;=^5015643
- ;;^UTILITY(U,$J,358.3,18578,0)
- ;;=N70.92^^79^880^81
- ;;^UTILITY(U,$J,358.3,18578,1,0)
+ ;;^UTILITY(U,$J,358.3,39669,1,3,0)
+ ;;=3^Myalgia
+ ;;^UTILITY(U,$J,358.3,39669,1,4,0)
+ ;;=4^M79.1
+ ;;^UTILITY(U,$J,358.3,39669,2)
+ ;;=^5013321
+ ;;^UTILITY(U,$J,358.3,39670,0)
+ ;;=M79.7^^148^1953^39
+ ;;^UTILITY(U,$J,358.3,39670,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18578,1,3,0)
- ;;=3^Oophoritis,Unspec
- ;;^UTILITY(U,$J,358.3,18578,1,4,0)
- ;;=4^N70.92
- ;;^UTILITY(U,$J,358.3,18578,2)
- ;;=^5015807
- ;;^UTILITY(U,$J,358.3,18579,0)
- ;;=N73.9^^79^880^51
- ;;^UTILITY(U,$J,358.3,18579,1,0)
+ ;;^UTILITY(U,$J,358.3,39670,1,3,0)
+ ;;=3^Fibromyalgia
+ ;;^UTILITY(U,$J,358.3,39670,1,4,0)
+ ;;=4^M79.7
+ ;;^UTILITY(U,$J,358.3,39670,2)
+ ;;=^46261
+ ;;^UTILITY(U,$J,358.3,39671,0)
+ ;;=M80.08XA^^148^1953^1
+ ;;^UTILITY(U,$J,358.3,39671,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18579,1,3,0)
- ;;=3^Female Pelvic Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,18579,1,4,0)
- ;;=4^N73.9
- ;;^UTILITY(U,$J,358.3,18579,2)
- ;;=^5015820
- ;;^UTILITY(U,$J,358.3,18580,0)
- ;;=N72.^^79^880^69
- ;;^UTILITY(U,$J,358.3,18580,1,0)
+ ;;^UTILITY(U,$J,358.3,39671,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39671,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,39671,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,39672,0)
+ ;;=M80.08XD^^148^1953^2
+ ;;^UTILITY(U,$J,358.3,39672,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18580,1,3,0)
- ;;=3^Inflammatory Disease of Cervix Uteri
+ ;;^UTILITY(U,$J,358.3,39672,1,3,0)
+ ;;=3^Age-Related Osteoporosis w/ Vertebra Fx,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,39672,1,4,0)
+ ;;=4^M80.08XD
+ ;;^UTILITY(U,$J,358.3,39672,2)
+ ;;=^5013496
+ ;;^UTILITY(U,$J,358.3,39673,0)
+ ;;=M84.48XA^^148^1953^118
+ ;;^UTILITY(U,$J,358.3,39673,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39673,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39673,1,4,0)
+ ;;=4^M84.48XA
+ ;;^UTILITY(U,$J,358.3,39673,2)
+ ;;=^5014016
+ ;;^UTILITY(U,$J,358.3,39674,0)
+ ;;=M84.48XD^^148^1953^119
+ ;;^UTILITY(U,$J,358.3,39674,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39674,1,3,0)
+ ;;=3^Pathological Fx,Oth Site,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,39674,1,4,0)
+ ;;=4^M84.48XD
+ ;;^UTILITY(U,$J,358.3,39674,2)
+ ;;=^5014017
+ ;;^UTILITY(U,$J,358.3,39675,0)
+ ;;=M87.011^^148^1953^45
+ ;;^UTILITY(U,$J,358.3,39675,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39675,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39675,1,4,0)
+ ;;=4^M87.011
+ ;;^UTILITY(U,$J,358.3,39675,2)
+ ;;=^5014658
+ ;;^UTILITY(U,$J,358.3,39676,0)
+ ;;=M87.012^^148^1953^42
+ ;;^UTILITY(U,$J,358.3,39676,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39676,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39676,1,4,0)
+ ;;=4^M87.012
+ ;;^UTILITY(U,$J,358.3,39676,2)
+ ;;=^5014659
+ ;;^UTILITY(U,$J,358.3,39677,0)
+ ;;=M87.050^^148^1953^43
+ ;;^UTILITY(U,$J,358.3,39677,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39677,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Pelvis
+ ;;^UTILITY(U,$J,358.3,39677,1,4,0)
+ ;;=4^M87.050
+ ;;^UTILITY(U,$J,358.3,39677,2)
+ ;;=^5014679
+ ;;^UTILITY(U,$J,358.3,39678,0)
+ ;;=M87.051^^148^1953^44
+ ;;^UTILITY(U,$J,358.3,39678,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39678,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Right Femur
+ ;;^UTILITY(U,$J,358.3,39678,1,4,0)
+ ;;=4^M87.051
+ ;;^UTILITY(U,$J,358.3,39678,2)
+ ;;=^5014680
+ ;;^UTILITY(U,$J,358.3,39679,0)
+ ;;=M87.052^^148^1953^41
+ ;;^UTILITY(U,$J,358.3,39679,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39679,1,3,0)
+ ;;=3^Idiopathic Aseptic Necrosis of Left Femur
+ ;;^UTILITY(U,$J,358.3,39679,1,4,0)
+ ;;=4^M87.052
+ ;;^UTILITY(U,$J,358.3,39679,2)
+ ;;=^5014681
+ ;;^UTILITY(U,$J,358.3,39680,0)
+ ;;=M87.111^^148^1953^74
+ ;;^UTILITY(U,$J,358.3,39680,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39680,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39680,1,4,0)
+ ;;=4^M87.111
+ ;;^UTILITY(U,$J,358.3,39680,2)
+ ;;=^5014701
+ ;;^UTILITY(U,$J,358.3,39681,0)
+ ;;=M87.112^^148^1953^71
+ ;;^UTILITY(U,$J,358.3,39681,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39681,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39681,1,4,0)
+ ;;=4^M87.112
+ ;;^UTILITY(U,$J,358.3,39681,2)
+ ;;=^5014702
+ ;;^UTILITY(U,$J,358.3,39682,0)
+ ;;=M87.150^^148^1953^72
+ ;;^UTILITY(U,$J,358.3,39682,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39682,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Pelvis
+ ;;^UTILITY(U,$J,358.3,39682,1,4,0)
+ ;;=4^M87.150
+ ;;^UTILITY(U,$J,358.3,39682,2)
+ ;;=^5014722
+ ;;^UTILITY(U,$J,358.3,39683,0)
+ ;;=M87.151^^148^1953^73
+ ;;^UTILITY(U,$J,358.3,39683,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39683,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Right Femur
+ ;;^UTILITY(U,$J,358.3,39683,1,4,0)
+ ;;=4^M87.151
+ ;;^UTILITY(U,$J,358.3,39683,2)
+ ;;=^5014723
+ ;;^UTILITY(U,$J,358.3,39684,0)
+ ;;=M87.152^^148^1953^70
+ ;;^UTILITY(U,$J,358.3,39684,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39684,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Left Femur
+ ;;^UTILITY(U,$J,358.3,39684,1,4,0)
+ ;;=4^M87.152
+ ;;^UTILITY(U,$J,358.3,39684,2)
+ ;;=^5014724
+ ;;^UTILITY(U,$J,358.3,39685,0)
+ ;;=M87.180^^148^1953^69
+ ;;^UTILITY(U,$J,358.3,39685,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39685,1,3,0)
+ ;;=3^Osteonecrosis d/t Drugs,Jaw
+ ;;^UTILITY(U,$J,358.3,39685,1,4,0)
+ ;;=4^M87.180
+ ;;^UTILITY(U,$J,358.3,39685,2)
+ ;;=^5014741
+ ;;^UTILITY(U,$J,358.3,39686,0)
+ ;;=M87.311^^148^1953^168
+ ;;^UTILITY(U,$J,358.3,39686,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39686,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39686,1,4,0)
+ ;;=4^M87.311
+ ;;^UTILITY(U,$J,358.3,39686,2)
+ ;;=^5014788
+ ;;^UTILITY(U,$J,358.3,39687,0)
+ ;;=M87.312^^148^1953^165
+ ;;^UTILITY(U,$J,358.3,39687,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39687,1,3,0)
+ ;;=3^Secondary Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,39687,1,4,0)
+ ;;=4^M87.312

@@ -1,9 +1,9 @@
 RCDPESP ;BIRM/EWL - ePayment Lockbox Site Parameters Definition - Files 344.61 & 344.6 ;Nov 19, 2014@15:26:16
- ;;4.5;Accounts Receivable;**298**;Nov 11, 2013;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
- N DA,DIC,DIE,DIR,DIRUT,DLAYGO,DR,DUOUT,X,Y  ; FileMan variables
+ N DA,DIC,DIE,DIR,DIRUT,DLAYGO,DR,DTOUT,DUOUT,X,Y  ; FileMan variables
  ;
  W !," Update AR Site Parameters",!
  ;
@@ -25,13 +25,27 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  ; function returns 1 on success
  S Y=$$EDILOCK^RCMSITE  ; Update EDI Lockbox site parameters
  I 'Y G ABORT  ; user entered '^'
+ ;
+ ;----------------------------------------------
+ ; prca*4.5*304
+ ; Enable/disable auto-auditing of paper bills
+ ;----------------------------------------------
+ ;
  S RCQUIT=0 W !
+ S RCQUIT=$$AUDIT^RCDPESP5
+ Q:RCQUIT
+ ;
+ W !
  I '$D(^RCY(344.61,1,0)) W !,"There is a problem with the RCDPE PARAMETER file (#344.61)." G EXIT
  ;
  ;----------------------------------------------
  ; Enable/disable auto-posting of medical claims
  ;----------------------------------------------
  N APMC,APMCT
+ ;PRCA*4.5*304 Move from Medical Auto decrease section below
+ N ADMC  ; ^DD(344.61,.03,0)="AUTO-DECREASE MED ENABLED^S^0:No;1:Yes;^0;3^Q"
+ S ADMC=""  ; Init in case Medical Auto Posting is turned off.
+ ;end PRCA*4.5*304
  ; APMC=AUTO POSTING OF MEDICAL CLAIMS ENABLED
  ; APMCT=TEMP APMC
  S APMCT=$$GET1^DIQ(344.61,"1,",.02,"I"),APMC=$S(APMCT=1:"Yes",APMCT=0:"No",1:"")
@@ -53,9 +67,8 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  W !
  ;
  ; Enable/disable auto-decrease of medical claims
- N ADMC  ; ^DD(344.61,.03,0)="AUTO-DECREASE MED ENABLED^S^0:No;1:Yes;^0;3^Q"
  K FDAEDI  ; used for FILE^DIE call
- S ADMC=$$GET1^DIQ(344.61,"1,",.03,"I")  ; get current value
+ S ADMC=$$GET1^DIQ(344.61,"1,",.03,"I") ; get current value
  K DIR S DIR(0)="YA",DIR("B")=$S(ADMC=""!(ADMC=1):"Yes",1:"No")
  S DIR("A")=$$GET1^DID(344.61,.03,,"TITLE")
  S DIR("?")=$$GET1^DID(344.61,.03,,"HELP-PROMPT")
@@ -64,6 +77,21 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  S:ADMC'=Y FDAEDI(344.61,"1,",.03)=Y,RCAUDVAL(1)="344.61^.03^1^"_Y_U_ADMC
  I Y=0 D  G RXPARMS  ; value set to No, update (if needed), go to Pharmacy params.
  . D:$D(FDAEDI) FILE^DIE(,"FDAEDI"),AUDIT(.RCAUDVAL) K RCAUDVAL
+ ;
+ ; If auto-decrease (medical for now) on, ask about CARC/RARC auto-decrease setup
+ W !
+ S RCQUIT=0
+ D CARC^RCDPESP5
+ W !
+ ; If no active CARCs Turn medical auto-decrease off, Then go to Pharacy params
+ I ($$COUNT(1)=0)&($$GET1^DIQ(344.61,"1,",.03,"I")=1) D  G RXPARMS
+ . K FDAEDI,RCAUDVAL
+ . S ADMC=$$GET1^DIQ(344.61,"1,",.03,"I")
+ . S FDAEDI(344.61,"1,",.03)=0,RCAUDVAL(1)="344.61^.03^1^"_0_U_ADMC_U_"SYSTEM disabled Medical Auto-decrease, there are NO active CARCs"
+ . D FILE^DIE(,"FDAEDI"),AUDIT(.RCAUDVAL) K RCAUDVAL
+ . W !,"*** System has DISABLED Medical Auto-decrease, there are NO active CARCs.",!
+ . D PAUSE
+ Q:RCQUIT
  ;
  ; Set number of days to wait before auto-decrease amount
  N ADMT ; ^DD(344.61,.04,0) = AUTO-DECREASE MED DAYS DEFAULT
@@ -74,14 +102,9 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
  S:ADMT'=Y FDAEDI(344.61,"1,",.04)=Y,RCAUDVAL(2)="344.61^.04^1^"_Y_U_ADMT
  ;
- ; Set maximum amount for auto-decrease amount
- N ADMA ; ^DD(344.61,.05,0)= AUTO-DECREASE MED AMT DEFAULT
- S ADMA=$$GET1^DIQ(344.61,"1,",.05)
- K DIR S:ADMA]"" DIR("B")=ADMA
- S DIR("?")=$$GET1^DID(344.61,.05,,"HELP-PROMPT")
- S DIR(0)="NA^1:1500:0",DIR("A")=$$GET1^DID(344.61,.05,,"TITLE")
- D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
- S:ADMA'=Y FDAEDI(344.61,"1,",.05)=Y,RCAUDVAL(3)="344.61^.05^1^"_Y_U_ADMA
+ ; PRCA*4.5*304 - removed general auto-decrease amount in favor of auto-decrease by CARC
+ ;
+ ; file changes to medical auto-post and auto-decrease parameters
  D FILE^DIE(,"FDAEDI")
  D:$D(RCAUDVAL) AUDIT(.RCAUDVAL)
  K RCAUDVAL
@@ -90,13 +113,44 @@ EN ; entry point for EDI Lockbox Parameters [RCDPE EDI LOCKBOX PARAMETERS]
  D EXCLLIST(2) ; Display the exclusion list
  D SETEXCL(2) I $G(RCQUIT) G ABORT ; SET/RESET exclusions
  D EXCLLIST(2) ; Display the exclusion list
+ W !
+ ;
  ; code falls through
  ;
 RXPARMS ; branch here from above
- ;------------------------
- ; Dummy code for Pharmacy
- ;------------------------
- W !!,"* ENABLE AUTO-POSTING OF PHARMACY CLAIMS(Y/N): N *",!
+ ;----------------------------------------------
+ ; Enable/disable auto-posting of pharmacy claims
+ ;----------------------------------------------
+ N APPC,APPCT
+ ; APPC=AUTO POSTING OF PHARMACY CLAIMS ENABLED
+ ; APPCT=TEMP APMC
+ S APPCT=$$GET1^DIQ(344.61,"1,",1.01,"I"),APPC=$S(APPCT=1:"Yes",APPCT=0:"No",1:"")
+ K DIR S DIR(0)="YA",DIR("B")=$S(APPC="":"Yes",1:APPC)
+ S DIR("A")=$$GET1^DID(344.61,1.01,,"TITLE")
+ S DIR("?")=$$GET1^DID(344.61,1.01,,"HELP-PROMPT")
+ D ^DIR I $D(DTOUT)!$D(DUOUT) G ABORT
+ I APPCT'=Y D  ; user updated value
+ .S FDAEDI(344.61,"1,",1.01)=Y D FILE^DIE(,"FDAEDI") K FDAEDI
+ .D NOTIFY($S(Y=1:"Yes",Y=0:"No",1:"*missing*"),1)
+ .S RCAUDVAL(1)="344.61^1.01^1^"_Y_U_('Y) D AUDIT(.RCAUDVAL) K RCAUDVAL
+ ;
+ ; If yes, set/Reset payer exclusions for pharmacy claims posting
+ I Y=1 D  G:$G(RCQUIT)=1 ABORT
+ . D EXCLLIST(3) ; Display the exclusion list
+ . D SETEXCL(3) Q:$G(RCQUIT)  ; SET/RESET exclusions
+ . D EXCLLIST(3) ; Display the exclusion list
+ . W !
+ . ;
+ ;
+ ; Show Pharmacy prompt but don't allow change
+ D:$$GET1^DIQ(344.61,"1,",1.01,"I")=1  G:$G(RCQUIT)=1 ABORT
+ . W !,"ENABLE AUTO-DECREASE OF PHARMACY CLAIMS (Y/N): NO//"
+ . W !,"   Determines if auto-decrease of pharmacy claims are enabled for this site."
+ . W !,"   NOTE:  Not editable and set to Disabled until further notice.",!
+ . K DIR S DIR(0)="EA"
+ . S DIR("A")="Press Enter to continue: "
+ . D ^DIR I $D(DTOUT)!$D(DUOUT) S RCQUIT=1
+ . W !
  ;
  ; set MEDICAL EFT OVERRIDE ^DD(344.61,.06,0) = MEDICAL EFT POST PREVENT DAYS
  N MEO S MEO=$$GET1^DIQ(344.61,"1,",.06)
@@ -137,22 +191,29 @@ PAUSE ; prompt user to press return
  S DIR("T")=3,DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR
  Q
  ;
+COUNT(TYPE) ; Count active CARCs in file 344.62 (RCDPE CARC-RARC AUTO DEC)
+ N NUM,I
+ I (TYPE'=1)&(TYPE'=0) Q 0  ; If TYPE is not active (1) or in-active (0) quit with count = 0
+ S NUM=0
+ S I="" F  S I=$O(^RCY(344.62,"ACTV",TYPE,I)) Q:I=""  S NUM=NUM+1
+ Q NUM
+ ;
 EXCLLIST(TYP) ; CHOICE determines which exclusions to list
  ; TYP - TYPE OF EXLUSION - REQUIRED
  ; IX - which index to use
  ; IEN - points to an excluded payer for the selected choice
- Q:'("^1^2^"[(U_$G(TYP)_U))  ; one or two only
+ Q:'("^1^2^3^"[(U_$G(TYP)_U))  ; one or two only
  N IX,IEN,CT,LIST S (IEN,CT)=0 W !
- S IX=$S(TYP=1:"EXMDPOST",TYP=2:"EXMDDECR",1:"") ;,TYP=3:"EXRXPOST",TYP=4:"EXRXDECR",1:"")
- S LIST="Payers excluded from "_$S(TYP=1:"Auto-Posting:",1:"Auto-Decrease:")
+ S IX=$S(TYP=1:"EXMDPOST",TYP=2:"EXMDDECR",TYP=3:"EXRXPOST",1:"") ;,TYP=4:"EXRXDECR",1:"")
+ S LIST=$S(TYP=1:"",TYP=3:"",1:"** Additional ")_"Payers excluded from "_$S(TYP=1:"Medical Auto-Posting:",TYP=3:"Pharmacy Auto-Posting",1:"Medical Auto-Decrease:")
  F  S IEN=$O(^RCY(344.6,IX,1,IEN)) Q:'IEN  D
  . S CT=CT+1
  . W:CT=1 !,LIST
  . W !,"  "_$P(^RCY(344.6,IEN,0),U,1)_" "_$P(^RCY(344.6,IEN,0),U,2)
  ;
- W:CT=0 !,"No excluded payers for "_$S(TYP=1:"Auto-Posting.",1:"Auto-Decrease.")
+ I TYP=2 W !,"All payers excluded from Auto-Posting are also excluded from Auto-Decrease."
+ W:CT=0 !,"   No "_$S(TYP=2:"additional ",1:"")_"payers excluded from "_$S(TYP=1:"Medical Auto-Posting:",TYP=3:"Pharmacy Auto-Posting",1:"Medical Auto-Decrease:")
  ; if list is for auto-decrease and there are exclusions write a message
- I TYP=2,CT W !,"All payers excluded from auto-posting are excluded from auto-decrease."
  Q
  ;
 SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
@@ -167,6 +228,7 @@ SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  ;         FILE NUMBER^FIELD NUMBER^IEN^NEW VALUE^OLD VALUE,COMMENT
  I $G(TYP)=1 S FLD=.06,CMT=1,RTYP="MEDICAL CLAIMS POSTING"
  I $G(TYP)=2 S FLD=.07,CMT=2,RTYP="MEDICAL CLAIMS DECREASE"
+ I $G(TYP)=3 S FLD=.08,CMT=3,RTYP="PHARMACY CLAIMS POSTING"
  I '$D(FLD) Q 
  ;
  W !!,"Select a Payer to add or remove from the exclusion list.",!
@@ -180,7 +242,8 @@ SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  . S STAT='$$GET1^DIQ(344.6,IENS,FLD,"I")
  . S FDAPAYER(344.6,IENS,FLD)=STAT
  . ; GET COMMENT HERE
- . K Y S DIR("A")="Comment: ",DIR(0)="FA^3:72"
+ . K Y S DIR("A")="COMMENT: ",DIR(0)="FA^3:72"
+ . S DIR("PRE")="S X=$$TRIM^XLFSTR(X,""LR"")" ; comment required and should be significant
  . S DIR("?")="Enter an explanation for "_$S(STAT:"adding the payer to",1:"removing the payer from")_" the list of Excluded Payers."
  . D ^DIR I $D(DTOUT)!$D(DUOUT)!(Y="") S RCQUIT=1 Q
  . S COMMENT=Y
@@ -190,19 +253,20 @@ SETEXCL(TYP) ; LOOP FOR SETTING PAYER EXCLUSIONS
  . . W !,$P(PREC,U,1)_" "_$P(PREC,U,2)_" has been "
  . . W $S(STAT:"added to",1:"removed from")_" the list of Excluded Payers"
  . . I TYP=1 D
- . . . W !,"If auto-decrease is turned on, "
- . . . I STAT W "this payer will be excluded from auto-decrease too."
- . . . I 'STAT,'$$GET1^DIQ(344.6,IEN_",",.07,"I") W "this payer will no longer be excluded from auto-decrease."
- . . . I 'STAT,$$GET1^DIQ(344.6,IEN_",",.07,"I") W "auto-decrease is set to be excluded for this payer."
+ . . . W !,"If medical auto-decrease is turned on, "
+ . . . I STAT W "this payer will be excluded from medical auto-decrease too."
+ . . . I 'STAT,'$$GET1^DIQ(344.6,IEN_",",.07,"I") W "this payer will no longer be excluded from Medical Auto-Decrease."
+ . . . I 'STAT,$$GET1^DIQ(344.6,IEN_",",.07,"I") W "Medical Auto-Decrease is set to be excluded for this payer."
  . . K RCAUDVAL
  . . D FILE^DIE(,"FDAPAYER")
  . . S RCAUDVAL(1)="344.6"_U_FLD_U_IEN_U_STAT_U_('STAT)_U_COMMENT
  . . D AUDIT(.RCAUDVAL) K RCAUDVAL
  Q
  ;
-NOTIFY(VAL) ; Notify CBO team of change to Site Parameters
+NOTIFY(VAL,TYPE) ; Notify CBO team of change to Site Parameters
  N GLB,GLO,MSG,SITE,SUBJ,XMINSTR,XMTO
  S SITE=$$SITE^VASITE
+ S TYPE=+$G(TYPE)  ;init optional parameter
  ; limit subject to 65 chars.
  S SUBJ=$E("Site Parameter edit, Station #"_$P(SITE,U,3)_" - "_$P(SITE,U,2),1,65)
  S MSG(1)=" "
@@ -212,7 +276,7 @@ NOTIFY(VAL) ; Notify CBO team of change to Site Parameters
  S MSG(5)="   Date/Time: "_$$FMTE^XLFDT($$NOW^XLFDT,"5ZPM")
  S MSG(6)="  Changed by: "_$P($G(^VA(200,DUZ,0)),U)
  S MSG(7)=" "
- S MSG(8)="  ENABLE AUTO-POSTING OF MEDICAL CLAIMS = "_VAL
+ S MSG(8)="  ENABLE AUTO-POSTING OF "_$S(TYPE=1:"PHARMACY",0:"MEDICAL")_" CLAIMS = "_VAL
  S MSG(9)=" "
  ;Copy message to ePayments CBO team
  S XMTO(DUZ)=""
@@ -281,8 +345,10 @@ PAYERPRM(IEN,EXMDPOST,EXMDDECR) ; USED TO UPDATE A NEW PAYER
  Q 1
  ;
 PAYRINIT(IEN) ; Add Payer Name and Payer ID to Payer table #344.6 
- Q:'$G(IEN)!('$D(^RCY(344.4,+$G(IEN)))) 0
+ ;
  N PFDA,PAYER,ID,PIENS,ERADATE
+ ;
+ Q:'$G(IEN)!('$D(^RCY(344.4,+$G(IEN)))) 0
  S PAYER=$P($G(^RCY(344.4,IEN,0)),U,6) Q:PAYER="" 0
  S ID=$P($G(^RCY(344.4,IEN,0)),U,3) Q:ID="" 0
  I $D(^RCY(344.6,"CPID",PAYER,ID)) Q 1
@@ -298,4 +364,3 @@ PAYRINIT(IEN) ; Add Payer Name and Payer ID to Payer table #344.6
  S PFDA(344.6,PIENS,.07)=0
  D UPDATE^DIE(,"PFDA")
  Q 1
- ;

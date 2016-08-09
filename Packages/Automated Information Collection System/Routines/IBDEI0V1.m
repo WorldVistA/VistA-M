@@ -1,132 +1,276 @@
-IBDEI0V1 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0V1 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14553,1,4,0)
- ;;=4^S71.101A
- ;;^UTILITY(U,$J,358.3,14553,2)
- ;;=^5037008
- ;;^UTILITY(U,$J,358.3,14554,0)
- ;;=S41.101A^^53^610^25
- ;;^UTILITY(U,$J,358.3,14554,1,0)
+ ;;^UTILITY(U,$J,358.3,31205,1,3,0)
+ ;;=3^Scar Conditions/Fibrosis of Skin
+ ;;^UTILITY(U,$J,358.3,31205,1,4,0)
+ ;;=4^L90.5
+ ;;^UTILITY(U,$J,358.3,31205,2)
+ ;;=^5009455
+ ;;^UTILITY(U,$J,358.3,31206,0)
+ ;;=L72.3^^116^1526^383
+ ;;^UTILITY(U,$J,358.3,31206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14554,1,3,0)
- ;;=3^Open Wound,Right Upper Arm,Unspec
- ;;^UTILITY(U,$J,358.3,14554,1,4,0)
- ;;=4^S41.101A
- ;;^UTILITY(U,$J,358.3,14554,2)
- ;;=^5026330
- ;;^UTILITY(U,$J,358.3,14555,0)
- ;;=E03.5^^53^611^37
- ;;^UTILITY(U,$J,358.3,14555,1,0)
+ ;;^UTILITY(U,$J,358.3,31206,1,3,0)
+ ;;=3^Sebaceous Cyst
+ ;;^UTILITY(U,$J,358.3,31206,1,4,0)
+ ;;=4^L72.3
+ ;;^UTILITY(U,$J,358.3,31206,2)
+ ;;=^5009281
+ ;;^UTILITY(U,$J,358.3,31207,0)
+ ;;=M66.242^^116^1526^388
+ ;;^UTILITY(U,$J,358.3,31207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14555,1,3,0)
- ;;=3^Myxedema Coma
- ;;^UTILITY(U,$J,358.3,14555,1,4,0)
- ;;=4^E03.5
- ;;^UTILITY(U,$J,358.3,14555,2)
- ;;=^5002474
- ;;^UTILITY(U,$J,358.3,14556,0)
- ;;=R40.2121^^53^611^33
- ;;^UTILITY(U,$J,358.3,14556,1,0)
+ ;;^UTILITY(U,$J,358.3,31207,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Left Hand
+ ;;^UTILITY(U,$J,358.3,31207,1,4,0)
+ ;;=4^M66.242
+ ;;^UTILITY(U,$J,358.3,31207,2)
+ ;;=^5012858
+ ;;^UTILITY(U,$J,358.3,31208,0)
+ ;;=M66.241^^116^1526^389
+ ;;^UTILITY(U,$J,358.3,31208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14556,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,In the Field
- ;;^UTILITY(U,$J,358.3,14556,1,4,0)
- ;;=4^R40.2121
- ;;^UTILITY(U,$J,358.3,14556,2)
- ;;=^5019361
- ;;^UTILITY(U,$J,358.3,14557,0)
- ;;=R40.2120^^53^611^34
- ;;^UTILITY(U,$J,358.3,14557,1,0)
+ ;;^UTILITY(U,$J,358.3,31208,1,3,0)
+ ;;=3^Spontaneous Rupture Extensor Tendons,Right Hand
+ ;;^UTILITY(U,$J,358.3,31208,1,4,0)
+ ;;=4^M66.241
+ ;;^UTILITY(U,$J,358.3,31208,2)
+ ;;=^5012857
+ ;;^UTILITY(U,$J,358.3,31209,0)
+ ;;=M66.342^^116^1526^390
+ ;;^UTILITY(U,$J,358.3,31209,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14557,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Unspec Time
- ;;^UTILITY(U,$J,358.3,14557,1,4,0)
- ;;=4^R40.2120
- ;;^UTILITY(U,$J,358.3,14557,2)
- ;;=^5019360
- ;;^UTILITY(U,$J,358.3,14558,0)
- ;;=R40.2114^^53^611^26
- ;;^UTILITY(U,$J,358.3,14558,1,0)
+ ;;^UTILITY(U,$J,358.3,31209,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Left Hand
+ ;;^UTILITY(U,$J,358.3,31209,1,4,0)
+ ;;=4^M66.342
+ ;;^UTILITY(U,$J,358.3,31209,2)
+ ;;=^5012882
+ ;;^UTILITY(U,$J,358.3,31210,0)
+ ;;=M66.341^^116^1526^391
+ ;;^UTILITY(U,$J,358.3,31210,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14558,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,24+ hrs
- ;;^UTILITY(U,$J,358.3,14558,1,4,0)
- ;;=4^R40.2114
- ;;^UTILITY(U,$J,358.3,14558,2)
- ;;=^5019359
- ;;^UTILITY(U,$J,358.3,14559,0)
- ;;=R40.2113^^53^611^30
- ;;^UTILITY(U,$J,358.3,14559,1,0)
+ ;;^UTILITY(U,$J,358.3,31210,1,3,0)
+ ;;=3^Spontaneous Rupture Flexor Tendons,Right Hand
+ ;;^UTILITY(U,$J,358.3,31210,1,4,0)
+ ;;=4^M66.341
+ ;;^UTILITY(U,$J,358.3,31210,2)
+ ;;=^5012881
+ ;;^UTILITY(U,$J,358.3,31211,0)
+ ;;=S93.402A^^116^1526^392
+ ;;^UTILITY(U,$J,358.3,31211,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14559,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,14559,1,4,0)
- ;;=4^R40.2113
- ;;^UTILITY(U,$J,358.3,14559,2)
- ;;=^5019358
- ;;^UTILITY(U,$J,358.3,14560,0)
- ;;=R40.2112^^53^611^27
- ;;^UTILITY(U,$J,358.3,14560,1,0)
+ ;;^UTILITY(U,$J,358.3,31211,1,3,0)
+ ;;=3^Sprain Left Ankle Ligament Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31211,1,4,0)
+ ;;=4^S93.402A
+ ;;^UTILITY(U,$J,358.3,31211,2)
+ ;;=^5045777
+ ;;^UTILITY(U,$J,358.3,31212,0)
+ ;;=S63.92XA^^116^1526^394
+ ;;^UTILITY(U,$J,358.3,31212,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14560,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Emerg Dept
- ;;^UTILITY(U,$J,358.3,14560,1,4,0)
- ;;=4^R40.2112
- ;;^UTILITY(U,$J,358.3,14560,2)
- ;;=^5019357
- ;;^UTILITY(U,$J,358.3,14561,0)
- ;;=R40.2111^^53^611^28
- ;;^UTILITY(U,$J,358.3,14561,1,0)
+ ;;^UTILITY(U,$J,358.3,31212,1,3,0)
+ ;;=3^Sprain Left Wrist/Hand Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31212,1,4,0)
+ ;;=4^S63.92XA
+ ;;^UTILITY(U,$J,358.3,31212,2)
+ ;;=^5136047
+ ;;^UTILITY(U,$J,358.3,31213,0)
+ ;;=S93.401A^^116^1526^395
+ ;;^UTILITY(U,$J,358.3,31213,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14561,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,In the Field
- ;;^UTILITY(U,$J,358.3,14561,1,4,0)
- ;;=4^R40.2111
- ;;^UTILITY(U,$J,358.3,14561,2)
- ;;=^5019356
- ;;^UTILITY(U,$J,358.3,14562,0)
- ;;=R40.2110^^53^611^29
- ;;^UTILITY(U,$J,358.3,14562,1,0)
+ ;;^UTILITY(U,$J,358.3,31213,1,3,0)
+ ;;=3^Sprain Right Ankle Ligament Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31213,1,4,0)
+ ;;=4^S93.401A
+ ;;^UTILITY(U,$J,358.3,31213,2)
+ ;;=^5045774
+ ;;^UTILITY(U,$J,358.3,31214,0)
+ ;;=S63.91XA^^116^1526^397
+ ;;^UTILITY(U,$J,358.3,31214,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14562,1,3,0)
- ;;=3^Coma Scale,Eyes Open,Never,Unspec Time
- ;;^UTILITY(U,$J,358.3,14562,1,4,0)
- ;;=4^R40.2110
- ;;^UTILITY(U,$J,358.3,14562,2)
- ;;=^5019355
- ;;^UTILITY(U,$J,358.3,14563,0)
- ;;=R40.20^^53^611^36
- ;;^UTILITY(U,$J,358.3,14563,1,0)
+ ;;^UTILITY(U,$J,358.3,31214,1,3,0)
+ ;;=3^Sprain Right Wrist/Hand Unspec Part,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31214,1,4,0)
+ ;;=4^S63.91XA
+ ;;^UTILITY(U,$J,358.3,31214,2)
+ ;;=^5136046
+ ;;^UTILITY(U,$J,358.3,31215,0)
+ ;;=C44.92^^116^1526^381
+ ;;^UTILITY(U,$J,358.3,31215,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14563,1,3,0)
- ;;=3^Coma,Unspec
- ;;^UTILITY(U,$J,358.3,14563,1,4,0)
- ;;=4^R40.20
- ;;^UTILITY(U,$J,358.3,14563,2)
- ;;=^5019354
- ;;^UTILITY(U,$J,358.3,14564,0)
- ;;=R40.2123^^53^611^35
- ;;^UTILITY(U,$J,358.3,14564,1,0)
+ ;;^UTILITY(U,$J,358.3,31215,1,3,0)
+ ;;=3^SCC Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,31215,1,4,0)
+ ;;=4^C44.92
+ ;;^UTILITY(U,$J,358.3,31215,2)
+ ;;=^5001093
+ ;;^UTILITY(U,$J,358.3,31216,0)
+ ;;=M65.9^^116^1526^402
+ ;;^UTILITY(U,$J,358.3,31216,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14564,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,at Hospital Admission
- ;;^UTILITY(U,$J,358.3,14564,1,4,0)
- ;;=4^R40.2123
- ;;^UTILITY(U,$J,358.3,14564,2)
- ;;=^5019363
- ;;^UTILITY(U,$J,358.3,14565,0)
- ;;=R40.2122^^53^611^32
- ;;^UTILITY(U,$J,358.3,14565,1,0)
+ ;;^UTILITY(U,$J,358.3,31216,1,3,0)
+ ;;=3^Synovitis/Tenosynovitis,Unspec
+ ;;^UTILITY(U,$J,358.3,31216,1,4,0)
+ ;;=4^M65.9
+ ;;^UTILITY(U,$J,358.3,31216,2)
+ ;;=^5012816
+ ;;^UTILITY(U,$J,358.3,31217,0)
+ ;;=M65.322^^116^1526^403
+ ;;^UTILITY(U,$J,358.3,31217,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14565,1,3,0)
- ;;=3^Coma Scale,Eyes Open,to Pain,Emger Dept
- ;;^UTILITY(U,$J,358.3,14565,1,4,0)
- ;;=4^R40.2122
- ;;^UTILITY(U,$J,358.3,14565,2)
- ;;=^5019362
- ;;^UTILITY(U,$J,358.3,14566,0)
- ;;=R40.2124^^53^611^31
- ;;^UTILITY(U,$J,358.3,14566,1,0)
+ ;;^UTILITY(U,$J,358.3,31217,1,3,0)
+ ;;=3^Trigger Finger,Left Index Finger
+ ;;^UTILITY(U,$J,358.3,31217,1,4,0)
+ ;;=4^M65.322
+ ;;^UTILITY(U,$J,358.3,31217,2)
+ ;;=^5012781
+ ;;^UTILITY(U,$J,358.3,31218,0)
+ ;;=M65.352^^116^1526^404
+ ;;^UTILITY(U,$J,358.3,31218,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31218,1,3,0)
+ ;;=3^Trigger Finger,Left Little Finger
+ ;;^UTILITY(U,$J,358.3,31218,1,4,0)
+ ;;=4^M65.352
+ ;;^UTILITY(U,$J,358.3,31218,2)
+ ;;=^5012790
+ ;;^UTILITY(U,$J,358.3,31219,0)
+ ;;=M65.332^^116^1526^405
+ ;;^UTILITY(U,$J,358.3,31219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31219,1,3,0)
+ ;;=3^Trigger Finger,Left Middle Finger
+ ;;^UTILITY(U,$J,358.3,31219,1,4,0)
+ ;;=4^M65.332
+ ;;^UTILITY(U,$J,358.3,31219,2)
+ ;;=^5012784
+ ;;^UTILITY(U,$J,358.3,31220,0)
+ ;;=M65.342^^116^1526^406
+ ;;^UTILITY(U,$J,358.3,31220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31220,1,3,0)
+ ;;=3^Trigger Finger,Left Ring Finger
+ ;;^UTILITY(U,$J,358.3,31220,1,4,0)
+ ;;=4^M65.342
+ ;;^UTILITY(U,$J,358.3,31220,2)
+ ;;=^5012787
+ ;;^UTILITY(U,$J,358.3,31221,0)
+ ;;=M65.312^^116^1526^407
+ ;;^UTILITY(U,$J,358.3,31221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31221,1,3,0)
+ ;;=3^Trigger Finger,Left Thumb
+ ;;^UTILITY(U,$J,358.3,31221,1,4,0)
+ ;;=4^M65.312
+ ;;^UTILITY(U,$J,358.3,31221,2)
+ ;;=^5012778
+ ;;^UTILITY(U,$J,358.3,31222,0)
+ ;;=M65.321^^116^1526^408
+ ;;^UTILITY(U,$J,358.3,31222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31222,1,3,0)
+ ;;=3^Trigger Finger,Right Index Finger
+ ;;^UTILITY(U,$J,358.3,31222,1,4,0)
+ ;;=4^M65.321
+ ;;^UTILITY(U,$J,358.3,31222,2)
+ ;;=^5012780
+ ;;^UTILITY(U,$J,358.3,31223,0)
+ ;;=M65.351^^116^1526^409
+ ;;^UTILITY(U,$J,358.3,31223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31223,1,3,0)
+ ;;=3^Trigger Finger,Right Little Finger
+ ;;^UTILITY(U,$J,358.3,31223,1,4,0)
+ ;;=4^M65.351
+ ;;^UTILITY(U,$J,358.3,31223,2)
+ ;;=^5012789
+ ;;^UTILITY(U,$J,358.3,31224,0)
+ ;;=M65.331^^116^1526^410
+ ;;^UTILITY(U,$J,358.3,31224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31224,1,3,0)
+ ;;=3^Trigger Finger,Right Middle Finger
+ ;;^UTILITY(U,$J,358.3,31224,1,4,0)
+ ;;=4^M65.331
+ ;;^UTILITY(U,$J,358.3,31224,2)
+ ;;=^5012783
+ ;;^UTILITY(U,$J,358.3,31225,0)
+ ;;=M65.341^^116^1526^411
+ ;;^UTILITY(U,$J,358.3,31225,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31225,1,3,0)
+ ;;=3^Trigger Finger,Right Ring Finger
+ ;;^UTILITY(U,$J,358.3,31225,1,4,0)
+ ;;=4^M65.341
+ ;;^UTILITY(U,$J,358.3,31225,2)
+ ;;=^5012786
+ ;;^UTILITY(U,$J,358.3,31226,0)
+ ;;=M65.311^^116^1526^412
+ ;;^UTILITY(U,$J,358.3,31226,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31226,1,3,0)
+ ;;=3^Trigger Finger,Right Thumb
+ ;;^UTILITY(U,$J,358.3,31226,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,31226,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,31227,0)
+ ;;=S53.442A^^116^1526^398
+ ;;^UTILITY(U,$J,358.3,31227,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31227,1,3,0)
+ ;;=3^Sprain Ulnar Collateral Ligament Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31227,1,4,0)
+ ;;=4^S53.442A
+ ;;^UTILITY(U,$J,358.3,31227,2)
+ ;;=^5031397
+ ;;^UTILITY(U,$J,358.3,31228,0)
+ ;;=S53.441A^^116^1526^399
+ ;;^UTILITY(U,$J,358.3,31228,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31228,1,3,0)
+ ;;=3^Sprain Ulnar Collateral Ligament Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31228,1,4,0)
+ ;;=4^S53.441A
+ ;;^UTILITY(U,$J,358.3,31228,2)
+ ;;=^5031394
+ ;;^UTILITY(U,$J,358.3,31229,0)
+ ;;=Q37.9^^116^1526^124
+ ;;^UTILITY(U,$J,358.3,31229,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31229,1,3,0)
+ ;;=3^Cleft Palate w/ Unilateral Cleft Lip
+ ;;^UTILITY(U,$J,358.3,31229,1,4,0)
+ ;;=4^Q37.9
+ ;;^UTILITY(U,$J,358.3,31229,2)
+ ;;=^5018645
+ ;;^UTILITY(U,$J,358.3,31230,0)
+ ;;=Q74.9^^116^1526^130
+ ;;^UTILITY(U,$J,358.3,31230,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31230,1,3,0)
+ ;;=3^Congenital Limb Malformation
+ ;;^UTILITY(U,$J,358.3,31230,1,4,0)
+ ;;=4^Q74.9
+ ;;^UTILITY(U,$J,358.3,31230,2)
+ ;;=^5018995
+ ;;^UTILITY(U,$J,358.3,31231,0)
+ ;;=S63.251A^^116^1526^149
+ ;;^UTILITY(U,$J,358.3,31231,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31231,1,3,0)
+ ;;=3^Dislocation Left Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31231,1,4,0)
+ ;;=4^S63.251A
+ ;;^UTILITY(U,$J,358.3,31231,2)
+ ;;=^5035268
+ ;;^UTILITY(U,$J,358.3,31232,0)
+ ;;=S63.257A^^116^1526^150
+ ;;^UTILITY(U,$J,358.3,31232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31232,1,3,0)
+ ;;=3^Dislocation Left Little Finger,Init Encntr

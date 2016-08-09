@@ -1,8 +1,10 @@
 PRCAATR ;WASH-ISC@ALTOONA,PA/RGY - VIEW TRANSACTION FOR BILLS ;2/14/96  2:46 PM
-V ;;4.5;Accounts Receivable;**36,104,172,138,233,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+V ;;4.5;Accounts Receivable;**36,104,172,138,233,276,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; PRCAAPR cleans up DEBT, DTOUT
 EN1(BILL) ;ENTRY POINT FROM PRCAAPR
- NEW X,COUNT,OUT,TRAN,SEL,PRCAATRX,PRCAIO,PRCAIOS,D0,PRCAQUE,POP,PRCAPRT,Y,ZTSK,PRCOUT
+ NEW X,COUNT,OUT,TRAN,SEL,PRCAATRX,PRCAIO,PRCAIOS,D0,PRCAQUE,POP,PRCAPRT,Y,ZTSK,PRCOUT,REJFLG
  I '$D(BILL) G Q
  I BILL'?1N.N!'$D(^PRCA(430,+BILL,0)) G Q
  ; PRCA*4.5*276
@@ -15,8 +17,10 @@ HDR ;Header
  D HDR^PRCAAPR1
  I $P($G(^PRCA(430,BILL,13)),"^") W !,"MEDICARE CONTRACTUAL ADJUSTMENT: ",$J($P($G(^PRCA(430,BILL,13)),"^"),0,2)
  I $P($G(^PRCA(430,BILL,13)),"^",2) W !,"UNREIMBURSED MEDICARE EXPENSE: ",$J($P($G(^PRCA(430,BILL,13)),"^",2),0,2)
+ ; PRCA*4.5*303 - Adding reject indicator, 'x' to bill number when applicable
+ S REJFLG=$$BILLREJ^IBJTU6($P($P($G(^PRCA(430,BILL,0)),"^"),"-",2)) ; IA# 6060
  ; PRCA*4.5*276 - attach EEOB indicator to bill number
- W !,"Bill #: ",$G(PRCOUT)_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
+ W !,"Bill #: ",$G(PRCOUT)_$S(REJFLG:"c",1:"")_$P(^PRCA(430,BILL,0),"^") D:$P(^(0),"^",9)'=+DEBT DEB
  W !!,"#",?8,"Tr #",?17,"Type",?52,"Date",?70,"Amount"
  S X="",$P(X,"-",IOM)="" W !,X
  Q

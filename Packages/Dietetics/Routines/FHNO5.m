@@ -1,6 +1,7 @@
-FHNO5 ; HISC/REL - Enter/Edit Supplemental Fdgs. ;7/27/94  14:45 
- ;;5.5;DIETETICS;**5**;Jan 28, 2005;Build 53
+FHNO5 ; HISC/REL - Enter/Edit Supplemental Fdgs. ; 3/10/16 3:11pm
+ ;;5.5;DIETETICS;**5,41**;Jan 28, 2005;Build 4
  ;patch #5 - add SF to outpatient.
+ ;patch #41 - add timeout to incremental locks
  D NOW^%DTC S NOW=%
 ASK K DIC,X,DFN,FHDFN,FHPTNM,Y S (FHMEAL,ADM,FHIDFLG,FHPNNSV)="",FHALL=1 D ^FHOMDPA
  G:'FHDFN KIL
@@ -64,7 +65,7 @@ G6 Q:WARD=""
 ADD ; Add SF
  Q:'$D(WARD)
  I WARD="" G ADDOUT
- L +^FHPT(FHDFN,"A",ADM,"SF",0)
+ L +^FHPT(FHDFN,"A",ADM,"SF",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"A",ADM,"SF",0)) S ^FHPT(FHDFN,"A",ADM,"SF",0)="^115.07^^"
  S X=^FHPT(FHDFN,"A",ADM,"SF",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
  L -^FHPT(FHDFN,"A",ADM,"SF",0) I $D(^FHPT(FHDFN,"A",ADM,"SF",NO)) G ADD
@@ -163,7 +164,7 @@ CAD ;
  Q
 ADDOUT ; Add outpt SF
  S FHMEAL=$P($G(^FHPT(FHDFN,"OP",ADM,0)),U,4),FHSFMEN=""
- L +^FHPT(FHDFN,"OP",ADM,"SF",0)
+ L +^FHPT(FHDFN,"OP",ADM,"SF",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"OP",ADM,"SF",0)) S ^FHPT(FHDFN,"OP",ADM,"SF",0)="^115.1627^^"
  S X=^FHPT(FHDFN,"OP",ADM,"SF",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
  L -^FHPT(FHDFN,"OP",ADM,"SF",0) I $D(^FHPT(FHDFN,"OP",ADM,"SF",NO)) G ADDOUT

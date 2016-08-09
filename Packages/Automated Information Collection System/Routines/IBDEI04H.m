@@ -1,140 +1,292 @@
-IBDEI04H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI04H ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1670,2)
- ;;=^5004173
- ;;^UTILITY(U,$J,358.3,1671,0)
- ;;=R56.00^^11^147^23
- ;;^UTILITY(U,$J,358.3,1671,1,0)
+ ;;^UTILITY(U,$J,358.3,4218,1,4,0)
+ ;;=4^C44.109
+ ;;^UTILITY(U,$J,358.3,4218,2)
+ ;;=^5001018
+ ;;^UTILITY(U,$J,358.3,4219,0)
+ ;;=C44.202^^30^310^12
+ ;;^UTILITY(U,$J,358.3,4219,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1671,1,3,0)
- ;;=3^Simple Febrile Convulsions
- ;;^UTILITY(U,$J,358.3,1671,1,4,0)
- ;;=4^R56.00
- ;;^UTILITY(U,$J,358.3,1671,2)
- ;;=^5019522
- ;;^UTILITY(U,$J,358.3,1672,0)
- ;;=R56.9^^11^147^9
- ;;^UTILITY(U,$J,358.3,1672,1,0)
+ ;;^UTILITY(U,$J,358.3,4219,1,3,0)
+ ;;=3^Malig Neop of Skin of Right Ear
+ ;;^UTILITY(U,$J,358.3,4219,1,4,0)
+ ;;=4^C44.202
+ ;;^UTILITY(U,$J,358.3,4219,2)
+ ;;=^5001029
+ ;;^UTILITY(U,$J,358.3,4220,0)
+ ;;=C44.209^^30^310^6
+ ;;^UTILITY(U,$J,358.3,4220,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1672,1,3,0)
- ;;=3^Convulsions,Unspec
- ;;^UTILITY(U,$J,358.3,1672,1,4,0)
- ;;=4^R56.9
- ;;^UTILITY(U,$J,358.3,1672,2)
- ;;=^5019524
- ;;^UTILITY(U,$J,358.3,1673,0)
- ;;=R42.^^11^147^10
- ;;^UTILITY(U,$J,358.3,1673,1,0)
+ ;;^UTILITY(U,$J,358.3,4220,1,3,0)
+ ;;=3^Malig Neop of Skin of Left Ear
+ ;;^UTILITY(U,$J,358.3,4220,1,4,0)
+ ;;=4^C44.209
+ ;;^UTILITY(U,$J,358.3,4220,2)
+ ;;=^5001030
+ ;;^UTILITY(U,$J,358.3,4221,0)
+ ;;=C44.300^^30^310^5
+ ;;^UTILITY(U,$J,358.3,4221,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1673,1,3,0)
- ;;=3^Dizziness and Giddiness
- ;;^UTILITY(U,$J,358.3,1673,1,4,0)
- ;;=4^R42.
- ;;^UTILITY(U,$J,358.3,1673,2)
- ;;=^5019450
- ;;^UTILITY(U,$J,358.3,1674,0)
- ;;=R50.81^^11^147^12
- ;;^UTILITY(U,$J,358.3,1674,1,0)
+ ;;^UTILITY(U,$J,358.3,4221,1,3,0)
+ ;;=3^Malig Neop of Skin of Face,Unspec
+ ;;^UTILITY(U,$J,358.3,4221,1,4,0)
+ ;;=4^C44.300
+ ;;^UTILITY(U,$J,358.3,4221,2)
+ ;;=^5001040
+ ;;^UTILITY(U,$J,358.3,4222,0)
+ ;;=C44.301^^30^310^11
+ ;;^UTILITY(U,$J,358.3,4222,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1674,1,3,0)
- ;;=3^Fever in Diseases Classified Elsewhere
- ;;^UTILITY(U,$J,358.3,1674,1,4,0)
- ;;=4^R50.81
- ;;^UTILITY(U,$J,358.3,1674,2)
- ;;=^5019508
- ;;^UTILITY(U,$J,358.3,1675,0)
- ;;=R50.82^^11^147^20
- ;;^UTILITY(U,$J,358.3,1675,1,0)
+ ;;^UTILITY(U,$J,358.3,4222,1,3,0)
+ ;;=3^Malig Neop of Skin of Nose
+ ;;^UTILITY(U,$J,358.3,4222,1,4,0)
+ ;;=4^C44.301
+ ;;^UTILITY(U,$J,358.3,4222,2)
+ ;;=^5001041
+ ;;^UTILITY(U,$J,358.3,4223,0)
+ ;;=C44.309^^30^310^4
+ ;;^UTILITY(U,$J,358.3,4223,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1675,1,3,0)
- ;;=3^Postprocedural Fever
- ;;^UTILITY(U,$J,358.3,1675,1,4,0)
- ;;=4^R50.82
- ;;^UTILITY(U,$J,358.3,1675,2)
- ;;=^5019509
- ;;^UTILITY(U,$J,358.3,1676,0)
- ;;=Z13.6^^11^147^21
- ;;^UTILITY(U,$J,358.3,1676,1,0)
+ ;;^UTILITY(U,$J,358.3,4223,1,3,0)
+ ;;=3^Malig Neop of Skin of Face NEC
+ ;;^UTILITY(U,$J,358.3,4223,1,4,0)
+ ;;=4^C44.309
+ ;;^UTILITY(U,$J,358.3,4223,2)
+ ;;=^5001042
+ ;;^UTILITY(U,$J,358.3,4224,0)
+ ;;=C44.40^^30^310^16
+ ;;^UTILITY(U,$J,358.3,4224,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1676,1,3,0)
- ;;=3^Screening for Cardiovascular Disorders
- ;;^UTILITY(U,$J,358.3,1676,1,4,0)
- ;;=4^Z13.6
- ;;^UTILITY(U,$J,358.3,1676,2)
- ;;=^5062707
- ;;^UTILITY(U,$J,358.3,1677,0)
- ;;=I25.2^^11^148^3
- ;;^UTILITY(U,$J,358.3,1677,1,0)
+ ;;^UTILITY(U,$J,358.3,4224,1,3,0)
+ ;;=3^Malig Neop of Skin of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,4224,1,4,0)
+ ;;=4^C44.40
+ ;;^UTILITY(U,$J,358.3,4224,2)
+ ;;=^340600
+ ;;^UTILITY(U,$J,358.3,4225,0)
+ ;;=C44.500^^30^310^1
+ ;;^UTILITY(U,$J,358.3,4225,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1677,1,3,0)
- ;;=3^Old MI
- ;;^UTILITY(U,$J,358.3,1677,1,4,0)
- ;;=4^I25.2
- ;;^UTILITY(U,$J,358.3,1677,2)
- ;;=^259884
- ;;^UTILITY(U,$J,358.3,1678,0)
- ;;=Z95.2^^11^148^6
- ;;^UTILITY(U,$J,358.3,1678,1,0)
+ ;;^UTILITY(U,$J,358.3,4225,1,3,0)
+ ;;=3^Malig Neop of Anal Skin
+ ;;^UTILITY(U,$J,358.3,4225,1,4,0)
+ ;;=4^C44.500
+ ;;^UTILITY(U,$J,358.3,4225,2)
+ ;;=^5001051
+ ;;^UTILITY(U,$J,358.3,4226,0)
+ ;;=C44.501^^30^310^3
+ ;;^UTILITY(U,$J,358.3,4226,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1678,1,3,0)
- ;;=3^Presence of Prosthetic Heart Valve
- ;;^UTILITY(U,$J,358.3,1678,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,1678,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,1679,0)
- ;;=Z95.1^^11^148^4
- ;;^UTILITY(U,$J,358.3,1679,1,0)
+ ;;^UTILITY(U,$J,358.3,4226,1,3,0)
+ ;;=3^Malig Neop of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,4226,1,4,0)
+ ;;=4^C44.501
+ ;;^UTILITY(U,$J,358.3,4226,2)
+ ;;=^5001052
+ ;;^UTILITY(U,$J,358.3,4227,0)
+ ;;=C44.509^^30^310^17
+ ;;^UTILITY(U,$J,358.3,4227,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1679,1,3,0)
- ;;=3^Presence of Aortocoronary Bypass Graft
- ;;^UTILITY(U,$J,358.3,1679,1,4,0)
- ;;=4^Z95.1
- ;;^UTILITY(U,$J,358.3,1679,2)
- ;;=^5063669
- ;;^UTILITY(U,$J,358.3,1680,0)
- ;;=Z98.61^^11^148^1
- ;;^UTILITY(U,$J,358.3,1680,1,0)
+ ;;^UTILITY(U,$J,358.3,4227,1,3,0)
+ ;;=3^Malig Neop of Skin of Trunk NEC
+ ;;^UTILITY(U,$J,358.3,4227,1,4,0)
+ ;;=4^C44.509
+ ;;^UTILITY(U,$J,358.3,4227,2)
+ ;;=^5001053
+ ;;^UTILITY(U,$J,358.3,4228,0)
+ ;;=C44.602^^30^310^15
+ ;;^UTILITY(U,$J,358.3,4228,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1680,1,3,0)
- ;;=3^Coronary Angioplasty Status
- ;;^UTILITY(U,$J,358.3,1680,1,4,0)
- ;;=4^Z98.61
- ;;^UTILITY(U,$J,358.3,1680,2)
- ;;=^5063742
- ;;^UTILITY(U,$J,358.3,1681,0)
- ;;=Z95.2^^11^148^7
- ;;^UTILITY(U,$J,358.3,1681,1,0)
+ ;;^UTILITY(U,$J,358.3,4228,1,3,0)
+ ;;=3^Malig Neop of Skin of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4228,1,4,0)
+ ;;=4^C44.602
+ ;;^UTILITY(U,$J,358.3,4228,2)
+ ;;=^5001064
+ ;;^UTILITY(U,$J,358.3,4229,0)
+ ;;=C44.609^^30^310^9
+ ;;^UTILITY(U,$J,358.3,4229,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1681,1,3,0)
- ;;=3^Presence of Prosthetic Heart Valve
- ;;^UTILITY(U,$J,358.3,1681,1,4,0)
- ;;=4^Z95.2
- ;;^UTILITY(U,$J,358.3,1681,2)
- ;;=^5063670
- ;;^UTILITY(U,$J,358.3,1682,0)
- ;;=Z95.3^^11^148^8
- ;;^UTILITY(U,$J,358.3,1682,1,0)
+ ;;^UTILITY(U,$J,358.3,4229,1,3,0)
+ ;;=3^Malig Neop of Skin of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,4229,1,4,0)
+ ;;=4^C44.609
+ ;;^UTILITY(U,$J,358.3,4229,2)
+ ;;=^5001065
+ ;;^UTILITY(U,$J,358.3,4230,0)
+ ;;=C44.702^^30^310^14
+ ;;^UTILITY(U,$J,358.3,4230,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1682,1,3,0)
- ;;=3^Presence of Xenogenic Heart Valve
- ;;^UTILITY(U,$J,358.3,1682,1,4,0)
- ;;=4^Z95.3
- ;;^UTILITY(U,$J,358.3,1682,2)
- ;;=^5063671
- ;;^UTILITY(U,$J,358.3,1683,0)
- ;;=Z95.4^^11^148^5
- ;;^UTILITY(U,$J,358.3,1683,1,0)
+ ;;^UTILITY(U,$J,358.3,4230,1,3,0)
+ ;;=3^Malig Neop of Skin of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,4230,1,4,0)
+ ;;=4^C44.702
+ ;;^UTILITY(U,$J,358.3,4230,2)
+ ;;=^5001076
+ ;;^UTILITY(U,$J,358.3,4231,0)
+ ;;=C44.709^^30^310^8
+ ;;^UTILITY(U,$J,358.3,4231,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1683,1,3,0)
- ;;=3^Presence of Heart Valve Replacement NEC
- ;;^UTILITY(U,$J,358.3,1683,1,4,0)
- ;;=4^Z95.4
- ;;^UTILITY(U,$J,358.3,1683,2)
- ;;=^5063672
- ;;^UTILITY(U,$J,358.3,1684,0)
- ;;=Z79.01^^11^148^2
- ;;^UTILITY(U,$J,358.3,1684,1,0)
+ ;;^UTILITY(U,$J,358.3,4231,1,3,0)
+ ;;=3^Malig Neop of Skin of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,4231,1,4,0)
+ ;;=4^C44.709
+ ;;^UTILITY(U,$J,358.3,4231,2)
+ ;;=^5001077
+ ;;^UTILITY(U,$J,358.3,4232,0)
+ ;;=C44.80^^30^310^2
+ ;;^UTILITY(U,$J,358.3,4232,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4232,1,3,0)
+ ;;=3^Malig Neop of Overlapping Sites of Skin
+ ;;^UTILITY(U,$J,358.3,4232,1,4,0)
+ ;;=4^C44.80
+ ;;^UTILITY(U,$J,358.3,4232,2)
+ ;;=^5001087
+ ;;^UTILITY(U,$J,358.3,4233,0)
+ ;;=C44.90^^30^310^18
+ ;;^UTILITY(U,$J,358.3,4233,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4233,1,3,0)
+ ;;=3^Malig Neop of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,4233,1,4,0)
+ ;;=4^C44.90
+ ;;^UTILITY(U,$J,358.3,4233,2)
+ ;;=^5001091
+ ;;^UTILITY(U,$J,358.3,4234,0)
+ ;;=C43.9^^30^311^16
+ ;;^UTILITY(U,$J,358.3,4234,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4234,1,3,0)
+ ;;=3^Malig Melanoma of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,4234,1,4,0)
+ ;;=4^C43.9
+ ;;^UTILITY(U,$J,358.3,4234,2)
+ ;;=^5001015
+ ;;^UTILITY(U,$J,358.3,4235,0)
+ ;;=C43.0^^30^311^7
+ ;;^UTILITY(U,$J,358.3,4235,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4235,1,3,0)
+ ;;=3^Malig Melanoma of Lip
+ ;;^UTILITY(U,$J,358.3,4235,1,4,0)
+ ;;=4^C43.0
+ ;;^UTILITY(U,$J,358.3,4235,2)
+ ;;=^5000994
+ ;;^UTILITY(U,$J,358.3,4236,0)
+ ;;=C43.11^^30^311^11
+ ;;^UTILITY(U,$J,358.3,4236,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4236,1,3,0)
+ ;;=3^Malig Melanoma of Right Eyelid
+ ;;^UTILITY(U,$J,358.3,4236,1,4,0)
+ ;;=4^C43.11
+ ;;^UTILITY(U,$J,358.3,4236,2)
+ ;;=^5000996
+ ;;^UTILITY(U,$J,358.3,4237,0)
+ ;;=C43.12^^30^311^4
+ ;;^UTILITY(U,$J,358.3,4237,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4237,1,3,0)
+ ;;=3^Malig Melanoma of Left Eyelid
+ ;;^UTILITY(U,$J,358.3,4237,1,4,0)
+ ;;=4^C43.12
+ ;;^UTILITY(U,$J,358.3,4237,2)
+ ;;=^5000997
+ ;;^UTILITY(U,$J,358.3,4238,0)
+ ;;=C43.21^^30^311^10
+ ;;^UTILITY(U,$J,358.3,4238,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4238,1,3,0)
+ ;;=3^Malig Melanoma of Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4238,1,4,0)
+ ;;=4^C43.21
+ ;;^UTILITY(U,$J,358.3,4238,2)
+ ;;=^5000999
+ ;;^UTILITY(U,$J,358.3,4239,0)
+ ;;=C43.22^^30^311^3
+ ;;^UTILITY(U,$J,358.3,4239,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4239,1,3,0)
+ ;;=3^Malig Melanoma of Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,4239,1,4,0)
+ ;;=4^C43.22
+ ;;^UTILITY(U,$J,358.3,4239,2)
+ ;;=^5001000
+ ;;^UTILITY(U,$J,358.3,4240,0)
+ ;;=C43.31^^30^311^8
+ ;;^UTILITY(U,$J,358.3,4240,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4240,1,3,0)
+ ;;=3^Malig Melanoma of Nose
+ ;;^UTILITY(U,$J,358.3,4240,1,4,0)
+ ;;=4^C43.31
+ ;;^UTILITY(U,$J,358.3,4240,2)
+ ;;=^5001002
+ ;;^UTILITY(U,$J,358.3,4241,0)
+ ;;=C43.39^^30^311^2
+ ;;^UTILITY(U,$J,358.3,4241,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4241,1,3,0)
+ ;;=3^Malig Melanoma of Face NEC
+ ;;^UTILITY(U,$J,358.3,4241,1,4,0)
+ ;;=4^C43.39
+ ;;^UTILITY(U,$J,358.3,4241,2)
+ ;;=^5001003
+ ;;^UTILITY(U,$J,358.3,4242,0)
+ ;;=C43.4^^30^311^14
+ ;;^UTILITY(U,$J,358.3,4242,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4242,1,3,0)
+ ;;=3^Malig Melanoma of Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,4242,1,4,0)
+ ;;=4^C43.4
+ ;;^UTILITY(U,$J,358.3,4242,2)
+ ;;=^5001004
+ ;;^UTILITY(U,$J,358.3,4243,0)
+ ;;=C43.51^^30^311^1
+ ;;^UTILITY(U,$J,358.3,4243,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4243,1,3,0)
+ ;;=3^Malig Melanoma of Anal Skin
+ ;;^UTILITY(U,$J,358.3,4243,1,4,0)
+ ;;=4^C43.51
+ ;;^UTILITY(U,$J,358.3,4243,2)
+ ;;=^5001005
+ ;;^UTILITY(U,$J,358.3,4244,0)
+ ;;=C43.52^^30^311^15
+ ;;^UTILITY(U,$J,358.3,4244,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4244,1,3,0)
+ ;;=3^Malig Melanoma of Skin of Breast
+ ;;^UTILITY(U,$J,358.3,4244,1,4,0)
+ ;;=4^C43.52
+ ;;^UTILITY(U,$J,358.3,4244,2)
+ ;;=^5001006
+ ;;^UTILITY(U,$J,358.3,4245,0)
+ ;;=C43.59^^30^311^17
+ ;;^UTILITY(U,$J,358.3,4245,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4245,1,3,0)
+ ;;=3^Malig Melanoma of Trunk NEC
+ ;;^UTILITY(U,$J,358.3,4245,1,4,0)
+ ;;=4^C43.59
+ ;;^UTILITY(U,$J,358.3,4245,2)
+ ;;=^5001007
+ ;;^UTILITY(U,$J,358.3,4246,0)
+ ;;=C43.61^^30^311^13
+ ;;^UTILITY(U,$J,358.3,4246,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,4246,1,3,0)
+ ;;=3^Malig Melanoma of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,4246,1,4,0)
+ ;;=4^C43.61
+ ;;^UTILITY(U,$J,358.3,4246,2)
+ ;;=^5001009
+ ;;^UTILITY(U,$J,358.3,4247,0)
+ ;;=C43.62^^30^311^6
+ ;;^UTILITY(U,$J,358.3,4247,1,0)
  ;;=^358.31IA^4^2

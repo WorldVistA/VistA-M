@@ -1,5 +1,5 @@
-SDLT ;ALB/LDB - CANCELLATION LETTERS ; 14 Feb 2003
- ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622**;Aug 13, 1993;Build 30
+SDLT ;ALB/LDB - CANCELLATION LETTERS ;14 Feb 2003
+ ;;5.3;Scheduling;**185,213,281,330,398,523,441,555,622,641**;Aug 13, 1993;Build 4
  ;
  ;**************************************************************************
  ;                          MODIFICATIONS
@@ -9,7 +9,7 @@ SDLT ;ALB/LDB - CANCELLATION LETTERS ; 14 Feb 2003
  ; 02/14/03  SD*5.3*281  SAUNDERS   Print letters to confidential address if
  ;                                  requested
  ; 12/2/03   SD*5.3*330  LUNDEN     Remove form feed from PRT+0
- ;
+ ; 01/21/16  SD*5.3*641  HSI        Print 1st piece of 99 node
  ;**************************************************************************
  ;
  N Z0,X
@@ -53,7 +53,7 @@ FORM S:$D(SDX) X=SDX S SDHX=X D DW^%DTC S DOW=X,X=SDHX X ^DD("FUNC",2,1) S SDT0=
  I $D(SDC),'$D(B),$P($G(^VA(407.5,SDLET,3)),U,2)="Y" D
  .W:SDLOC]"" !?6,"Location:  "_SDLOC
  I $D(SDC),'$D(B),SDTEL]"" D
- .W !?5,"Telephone:  ",SDTEL
+ .W !?5,"Telephone:  ",$P(SDTEL,U)
  .W:SDTELEXT]"" "   Telephone Ext.:  ",SDTELEXT
  I $D(SDPROV) D
  .I $D(SDC),SDPROV>0 S SDPRNM=$P(^VA(200,SDPROV,0),U,1)

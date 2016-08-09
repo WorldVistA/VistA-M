@@ -1,130 +1,282 @@
-IBDEI140 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI140 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18870,1,0)
+ ;;^UTILITY(U,$J,358.3,40275,2)
+ ;;=^5062848
+ ;;^UTILITY(U,$J,358.3,40276,0)
+ ;;=N81.6^^148^1963^97
+ ;;^UTILITY(U,$J,358.3,40276,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18870,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,18870,1,4,0)
- ;;=4^H25.041
- ;;^UTILITY(U,$J,358.3,18870,2)
- ;;=^5005275
- ;;^UTILITY(U,$J,358.3,18871,0)
- ;;=H25.042^^82^900^16
- ;;^UTILITY(U,$J,358.3,18871,1,0)
+ ;;^UTILITY(U,$J,358.3,40276,1,3,0)
+ ;;=3^Rectocele w/o Uterine Prolapse
+ ;;^UTILITY(U,$J,358.3,40276,1,4,0)
+ ;;=4^N81.6
+ ;;^UTILITY(U,$J,358.3,40276,2)
+ ;;=^259590
+ ;;^UTILITY(U,$J,358.3,40277,0)
+ ;;=Z12.39^^148^1963^101
+ ;;^UTILITY(U,$J,358.3,40277,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18871,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,18871,1,4,0)
- ;;=4^H25.042
- ;;^UTILITY(U,$J,358.3,18871,2)
- ;;=^5005276
- ;;^UTILITY(U,$J,358.3,18872,0)
- ;;=H25.043^^82^900^17
- ;;^UTILITY(U,$J,358.3,18872,1,0)
+ ;;^UTILITY(U,$J,358.3,40277,1,3,0)
+ ;;=3^Screening for Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,40277,1,4,0)
+ ;;=4^Z12.39
+ ;;^UTILITY(U,$J,358.3,40277,2)
+ ;;=^5062686
+ ;;^UTILITY(U,$J,358.3,40278,0)
+ ;;=Z12.72^^148^1963^102
+ ;;^UTILITY(U,$J,358.3,40278,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18872,1,3,0)
- ;;=3^Posterior Subcapsular Polar Age-Related Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,18872,1,4,0)
- ;;=4^H25.043
- ;;^UTILITY(U,$J,358.3,18872,2)
- ;;=^5005277
- ;;^UTILITY(U,$J,358.3,18873,0)
- ;;=H25.011^^82^900^11
- ;;^UTILITY(U,$J,358.3,18873,1,0)
+ ;;^UTILITY(U,$J,358.3,40278,1,3,0)
+ ;;=3^Screening for Malig Neop of Vagina
+ ;;^UTILITY(U,$J,358.3,40278,1,4,0)
+ ;;=4^Z12.72
+ ;;^UTILITY(U,$J,358.3,40278,2)
+ ;;=^5062691
+ ;;^UTILITY(U,$J,358.3,40279,0)
+ ;;=Z12.31^^148^1963^100
+ ;;^UTILITY(U,$J,358.3,40279,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18873,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,18873,1,4,0)
- ;;=4^H25.011
- ;;^UTILITY(U,$J,358.3,18873,2)
- ;;=^5005267
- ;;^UTILITY(U,$J,358.3,18874,0)
- ;;=H25.012^^82^900^10
- ;;^UTILITY(U,$J,358.3,18874,1,0)
+ ;;^UTILITY(U,$J,358.3,40279,1,3,0)
+ ;;=3^Screening Mammogram for Malig Neop of Breast
+ ;;^UTILITY(U,$J,358.3,40279,1,4,0)
+ ;;=4^Z12.31
+ ;;^UTILITY(U,$J,358.3,40279,2)
+ ;;=^5062685
+ ;;^UTILITY(U,$J,358.3,40280,0)
+ ;;=A59.01^^148^1963^109
+ ;;^UTILITY(U,$J,358.3,40280,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18874,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,18874,1,4,0)
- ;;=4^H25.012
- ;;^UTILITY(U,$J,358.3,18874,2)
- ;;=^5005268
- ;;^UTILITY(U,$J,358.3,18875,0)
- ;;=H25.013^^82^900^9
- ;;^UTILITY(U,$J,358.3,18875,1,0)
+ ;;^UTILITY(U,$J,358.3,40280,1,3,0)
+ ;;=3^Trichomonal Vulvovaginitis
+ ;;^UTILITY(U,$J,358.3,40280,1,4,0)
+ ;;=4^A59.01
+ ;;^UTILITY(U,$J,358.3,40280,2)
+ ;;=^121763
+ ;;^UTILITY(U,$J,358.3,40281,0)
+ ;;=N81.3^^148^1963^110
+ ;;^UTILITY(U,$J,358.3,40281,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18875,1,3,0)
- ;;=3^Cortical Age-Related Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,18875,1,4,0)
- ;;=4^H25.013
- ;;^UTILITY(U,$J,358.3,18875,2)
- ;;=^5005269
- ;;^UTILITY(U,$J,358.3,18876,0)
- ;;=H25.13^^82^900^6
- ;;^UTILITY(U,$J,358.3,18876,1,0)
+ ;;^UTILITY(U,$J,358.3,40281,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Complete
+ ;;^UTILITY(U,$J,358.3,40281,1,4,0)
+ ;;=4^N81.3
+ ;;^UTILITY(U,$J,358.3,40281,2)
+ ;;=^5015840
+ ;;^UTILITY(U,$J,358.3,40282,0)
+ ;;=N81.2^^148^1963^111
+ ;;^UTILITY(U,$J,358.3,40282,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18876,1,3,0)
- ;;=3^Age-Related Nuclear Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,18876,1,4,0)
- ;;=4^H25.13
- ;;^UTILITY(U,$J,358.3,18876,2)
- ;;=^5005286
- ;;^UTILITY(U,$J,358.3,18877,0)
- ;;=H25.12^^82^900^7
- ;;^UTILITY(U,$J,358.3,18877,1,0)
+ ;;^UTILITY(U,$J,358.3,40282,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Incomplete
+ ;;^UTILITY(U,$J,358.3,40282,1,4,0)
+ ;;=4^N81.2
+ ;;^UTILITY(U,$J,358.3,40282,2)
+ ;;=^5015839
+ ;;^UTILITY(U,$J,358.3,40283,0)
+ ;;=N76.0^^148^1963^117
+ ;;^UTILITY(U,$J,358.3,40283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18877,1,3,0)
- ;;=3^Age-Related Nuclear Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,18877,1,4,0)
- ;;=4^H25.12
- ;;^UTILITY(U,$J,358.3,18877,2)
- ;;=^5005285
- ;;^UTILITY(U,$J,358.3,18878,0)
- ;;=H25.11^^82^900^8
- ;;^UTILITY(U,$J,358.3,18878,1,0)
+ ;;^UTILITY(U,$J,358.3,40283,1,3,0)
+ ;;=3^Vaginitis,Acute
+ ;;^UTILITY(U,$J,358.3,40283,1,4,0)
+ ;;=4^N76.0
+ ;;^UTILITY(U,$J,358.3,40283,2)
+ ;;=^5015826
+ ;;^UTILITY(U,$J,358.3,40284,0)
+ ;;=N95.2^^148^1963^118
+ ;;^UTILITY(U,$J,358.3,40284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18878,1,3,0)
- ;;=3^Age-Related Nuclear Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,18878,1,4,0)
- ;;=4^H25.11
- ;;^UTILITY(U,$J,358.3,18878,2)
- ;;=^5005284
- ;;^UTILITY(U,$J,358.3,18879,0)
- ;;=H26.492^^82^900^19
- ;;^UTILITY(U,$J,358.3,18879,1,0)
+ ;;^UTILITY(U,$J,358.3,40284,1,3,0)
+ ;;=3^Vaginitis,Atrophic,Postmenopausal
+ ;;^UTILITY(U,$J,358.3,40284,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,40284,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,40285,0)
+ ;;=N76.1^^148^1963^119
+ ;;^UTILITY(U,$J,358.3,40285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18879,1,3,0)
- ;;=3^Secondary Cataract,Left Eye
- ;;^UTILITY(U,$J,358.3,18879,1,4,0)
- ;;=4^H26.492
- ;;^UTILITY(U,$J,358.3,18879,2)
- ;;=^5005359
- ;;^UTILITY(U,$J,358.3,18880,0)
- ;;=H26.491^^82^900^20
- ;;^UTILITY(U,$J,358.3,18880,1,0)
+ ;;^UTILITY(U,$J,358.3,40285,1,3,0)
+ ;;=3^Vaginitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,40285,1,4,0)
+ ;;=4^N76.1
+ ;;^UTILITY(U,$J,358.3,40285,2)
+ ;;=^5015827
+ ;;^UTILITY(U,$J,358.3,40286,0)
+ ;;=N94.810^^148^1963^121
+ ;;^UTILITY(U,$J,358.3,40286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18880,1,3,0)
- ;;=3^Secondary Cataract,Right Eye
- ;;^UTILITY(U,$J,358.3,18880,1,4,0)
- ;;=4^H26.491
- ;;^UTILITY(U,$J,358.3,18880,2)
- ;;=^5005358
- ;;^UTILITY(U,$J,358.3,18881,0)
- ;;=H26.493^^82^900^18
- ;;^UTILITY(U,$J,358.3,18881,1,0)
+ ;;^UTILITY(U,$J,358.3,40286,1,3,0)
+ ;;=3^Vulvar Vestibulitis
+ ;;^UTILITY(U,$J,358.3,40286,1,4,0)
+ ;;=4^N94.810
+ ;;^UTILITY(U,$J,358.3,40286,2)
+ ;;=^336618
+ ;;^UTILITY(U,$J,358.3,40287,0)
+ ;;=N76.2^^148^1963^122
+ ;;^UTILITY(U,$J,358.3,40287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18881,1,3,0)
- ;;=3^Secondary Cataract,Bilateral
- ;;^UTILITY(U,$J,358.3,18881,1,4,0)
- ;;=4^H26.493
- ;;^UTILITY(U,$J,358.3,18881,2)
- ;;=^5005360
- ;;^UTILITY(U,$J,358.3,18882,0)
- ;;=H43.811^^82^900^28
- ;;^UTILITY(U,$J,358.3,18882,1,0)
+ ;;^UTILITY(U,$J,358.3,40287,1,3,0)
+ ;;=3^Vulvitis,Acute
+ ;;^UTILITY(U,$J,358.3,40287,1,4,0)
+ ;;=4^N76.2
+ ;;^UTILITY(U,$J,358.3,40287,2)
+ ;;=^5015828
+ ;;^UTILITY(U,$J,358.3,40288,0)
+ ;;=N76.3^^148^1963^123
+ ;;^UTILITY(U,$J,358.3,40288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18882,1,3,0)
- ;;=3^Vitreous Degeneration,Right Eye
- ;;^UTILITY(U,$J,358.3,18882,1,4,0)
- ;;=4^H43.811
+ ;;^UTILITY(U,$J,358.3,40288,1,3,0)
+ ;;=3^Vulvitis,Subacute & Chronic
+ ;;^UTILITY(U,$J,358.3,40288,1,4,0)
+ ;;=4^N76.3
+ ;;^UTILITY(U,$J,358.3,40288,2)
+ ;;=^5015829
+ ;;^UTILITY(U,$J,358.3,40289,0)
+ ;;=N94.818^^148^1963^120
+ ;;^UTILITY(U,$J,358.3,40289,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40289,1,3,0)
+ ;;=3^Vluvodynia,Other
+ ;;^UTILITY(U,$J,358.3,40289,1,4,0)
+ ;;=4^N94.818
+ ;;^UTILITY(U,$J,358.3,40289,2)
+ ;;=^5015923
+ ;;^UTILITY(U,$J,358.3,40290,0)
+ ;;=N94.819^^148^1963^124
+ ;;^UTILITY(U,$J,358.3,40290,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40290,1,3,0)
+ ;;=3^Vulvodynia,Unspec
+ ;;^UTILITY(U,$J,358.3,40290,1,4,0)
+ ;;=4^N94.819
+ ;;^UTILITY(U,$J,358.3,40290,2)
+ ;;=^5015924
+ ;;^UTILITY(U,$J,358.3,40291,0)
+ ;;=S31.000A^^148^1964^5
+ ;;^UTILITY(U,$J,358.3,40291,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40291,1,3,0)
+ ;;=3^Open Wnd Low Back/Pelvis w/o Penet Retroperiton,Init,Unspec
+ ;;^UTILITY(U,$J,358.3,40291,1,4,0)
+ ;;=4^S31.000A
+ ;;^UTILITY(U,$J,358.3,40291,2)
+ ;;=^5023993
+ ;;^UTILITY(U,$J,358.3,40292,0)
+ ;;=S31.010A^^148^1964^2
+ ;;^UTILITY(U,$J,358.3,40292,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40292,1,3,0)
+ ;;=3^Laceration w/o FB Low Back/Pelvis w/o Penet Retroperiton,Init
+ ;;^UTILITY(U,$J,358.3,40292,1,4,0)
+ ;;=4^S31.010A
+ ;;^UTILITY(U,$J,358.3,40292,2)
+ ;;=^5023999
+ ;;^UTILITY(U,$J,358.3,40293,0)
+ ;;=T07.^^148^1964^4
+ ;;^UTILITY(U,$J,358.3,40293,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40293,1,3,0)
+ ;;=3^Multiple Injuries,Unspec
+ ;;^UTILITY(U,$J,358.3,40293,1,4,0)
+ ;;=4^T07.
+ ;;^UTILITY(U,$J,358.3,40293,2)
+ ;;=^5046377
+ ;;^UTILITY(U,$J,358.3,40294,0)
+ ;;=L08.89^^148^1964^3
+ ;;^UTILITY(U,$J,358.3,40294,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40294,1,3,0)
+ ;;=3^Local Infections Skin/Subcutaneous Tissue,Oth Spec
+ ;;^UTILITY(U,$J,358.3,40294,1,4,0)
+ ;;=4^L08.89
+ ;;^UTILITY(U,$J,358.3,40294,2)
+ ;;=^5009081
+ ;;^UTILITY(U,$J,358.3,40295,0)
+ ;;=T14.90^^148^1964^1
+ ;;^UTILITY(U,$J,358.3,40295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40295,1,3,0)
+ ;;=3^Injury,Unspec
+ ;;^UTILITY(U,$J,358.3,40295,1,4,0)
+ ;;=4^T14.90
+ ;;^UTILITY(U,$J,358.3,40295,2)
+ ;;=^5046379
+ ;;^UTILITY(U,$J,358.3,40296,0)
+ ;;=S91.002A^^148^1964^6
+ ;;^UTILITY(U,$J,358.3,40296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40296,1,3,0)
+ ;;=3^Open Wound,Left Ankle,Unspec
+ ;;^UTILITY(U,$J,358.3,40296,1,4,0)
+ ;;=4^S91.002A
+ ;;^UTILITY(U,$J,358.3,40296,2)
+ ;;=^5044132
+ ;;^UTILITY(U,$J,358.3,40297,0)
+ ;;=S91.302A^^148^1964^7
+ ;;^UTILITY(U,$J,358.3,40297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40297,1,3,0)
+ ;;=3^Open Wound,Left Foot,Unspec
+ ;;^UTILITY(U,$J,358.3,40297,1,4,0)
+ ;;=4^S91.302A
+ ;;^UTILITY(U,$J,358.3,40297,2)
+ ;;=^5044317
+ ;;^UTILITY(U,$J,358.3,40298,0)
+ ;;=S51.802A^^148^1964^8
+ ;;^UTILITY(U,$J,358.3,40298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40298,1,3,0)
+ ;;=3^Open Wound,Left Forearm,Unspec
+ ;;^UTILITY(U,$J,358.3,40298,1,4,0)
+ ;;=4^S51.802A
+ ;;^UTILITY(U,$J,358.3,40298,2)
+ ;;=^5028662
+ ;;^UTILITY(U,$J,358.3,40299,0)
+ ;;=S91.102A^^148^1964^9
+ ;;^UTILITY(U,$J,358.3,40299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40299,1,3,0)
+ ;;=3^Open Wound,Left Great Toe w/o Damage to Nail,Unspec
+ ;;^UTILITY(U,$J,358.3,40299,1,4,0)
+ ;;=4^S91.102A
+ ;;^UTILITY(U,$J,358.3,40299,2)
+ ;;=^5044171
+ ;;^UTILITY(U,$J,358.3,40300,0)
+ ;;=S61.402A^^148^1964^10
+ ;;^UTILITY(U,$J,358.3,40300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40300,1,3,0)
+ ;;=3^Open Wound,Left Hand,Unspec
+ ;;^UTILITY(U,$J,358.3,40300,1,4,0)
+ ;;=4^S61.402A
+ ;;^UTILITY(U,$J,358.3,40300,2)
+ ;;=^5032984
+ ;;^UTILITY(U,$J,358.3,40301,0)
+ ;;=S71.002A^^148^1964^11
+ ;;^UTILITY(U,$J,358.3,40301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40301,1,3,0)
+ ;;=3^Open Wound,Left Hip,Unspec
+ ;;^UTILITY(U,$J,358.3,40301,1,4,0)
+ ;;=4^S71.002A
+ ;;^UTILITY(U,$J,358.3,40301,2)
+ ;;=^5036972
+ ;;^UTILITY(U,$J,358.3,40302,0)
+ ;;=S91.104A^^148^1964^22
+ ;;^UTILITY(U,$J,358.3,40302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40302,1,3,0)
+ ;;=3^Open Wound,Right Lesser Toe(s) w/o Damage to nail,Unspec
+ ;;^UTILITY(U,$J,358.3,40302,1,4,0)
+ ;;=4^S91.104A
+ ;;^UTILITY(U,$J,358.3,40302,2)
+ ;;=^5044174
+ ;;^UTILITY(U,$J,358.3,40303,0)
+ ;;=S81.802A^^148^1964^13
+ ;;^UTILITY(U,$J,358.3,40303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40303,1,3,0)
+ ;;=3^Open Wound,Left Lower Leg,Unspec

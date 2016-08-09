@@ -1,5 +1,5 @@
-LA7VIN1 ;DALOI/JMC - Process Incoming UI Msgs, continued ;12/07/11  12:54
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74**;Sep 27, 1994;Build 229
+LA7VIN1 ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/06/16  15:51
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,74,88**;Sep 27, 1994;Build 10
  ;
  ; This routine is a continuation of LA7VIN and is only called from there.
  ; It is called with each message found in the incoming queue.
@@ -39,6 +39,12 @@ NXTMSG ;
  ;
  ; Send HL7 Application Acknowledgment message for selected interfaces/message types
  I LA7MTYP="ORM",LA7INTYP=10 D SENDACK
+ I LA7MTYP="ORU",LA7INTYP=1,LA7AAT(1)'="" D
+ . I $G(LA76249("AR")) Q  ; Auto Release will send application ACK.
+ . I LA7AAT(1)="NE" Q
+ . I LA7AAT(1)="SU",$G(LA7ERR)'="" Q
+ . I LA7AAT(1)="ER",$G(LA7ERR)="" Q
+ . D SENDACK
  ;
  ; Set id if only MSH segment received.
  I LA7SEQ<5 D
@@ -86,6 +92,9 @@ NXTMSG ;
  ;
  ; If abnormal/critical results then send bulletins
  I $D(^TMP("LA7 ABNORMAL RESULTS",$J)) D SENDACB^LA7VIN1A
+ ;
+ ; If auto release move cross-references to ^LAH from ^TMP to signal available for processing if no error.
+ I $D(^TMP("LA7 AR",$J)),$P($G(^LAHM(62.49,LA76249,0)),"^",3)'="E" M ^LAH=^TMP("LA7 AR",$J)
  ;
  D KILLMSH
  ;
@@ -243,10 +252,22 @@ PV1 ;; Process PV1 segment
  ;
 SENDACK ; Send HL7 Application Acknowledgment message for selected interfaces/message types
  ;
+ ;ZEXCEPT: LA7624,LA76248,LA76249,LA7AERR,LA7ERR,LA7UID,PNM,SSN
+ ;
  N LA
  S LA(62.48)=LA76248,LA(62.49)=LA76249
- S LA("ACK")=$S(+LA7AERR:"AE",1:"AA")
+ I $G(LA7624) S LA(62.4)=LA7624
+ S LA("ACK")=$S(+LA7ERR:"AE",1:"AA")
+ I $G(LA7UID)'="" S LA("ID",1)=LA7UID
+ I $G(LA7PNM)'="" S LA("ID",2)=LA7PNM
+ I $G(LA7SSN)'="" S LA("ID",3)=LA7SSN
+ I LA7AERR="" S LA7AERR=LA7ERR
+ I LA7AERR>0,$P(LA7AERR,"^",2)="" S $P(LA7AERR,"^",2)="See VistA Lab Universal Interface Log for specific error"
  S LA("MSG")=$P(LA7AERR,"^",2)
+ ;
+ ; Build info for ERR segment
+ D BLDERR^LA7VHLU8(.LA,LA7AERR)
+ ;
  D ACK^LA7VHLU8(.LA)
  Q
  ;
@@ -255,9 +276,9 @@ SENDACK ; Send HL7 Application Acknowledgment message for selected interfaces/me
  ; and any created by processing of segments that are within the message definition.
  ;
 KILLMSH ; Clean up variables used by MSH and following segments
- K LA7CSITE,LA7CS,LA7ECH,LA7FS,LA7HLV,LA7MEDT,LA7MID,LA7MTYP
+ K LA7AAT,LA7CSITE,LA7CS,LA7ECH,LA7FS,LA7HLV,LA7MEDT,LA7MID,LA7MTYP
  K LA7RAP,LA7RFAC,LA7SAP,LA7SEQ,LA7SFAC
- K ^TMP("LA7-ID",$J),^TMP("LA7-ORM",$J),^TMP("LA7-ORU",$J),^TMP("LA7-PL-NTE",$J)
+ K ^TMP("LA7 AR",$J),^TMP("LA7-ID",$J),^TMP("LA7-ORM",$J),^TMP("LA7-ORU",$J),^TMP("LA7-PL-NTE",$J)
  ;
 KILLMSA ; Clean up variables used by MSA and following segments
  K LA7MSATM
@@ -280,10 +301,10 @@ KILLOBR ; Clean up variables used by OBR and following segments
  K LA70070,LA760,LA761,LA762,LA7624,LA7696
  K LA7AA,LA7AD,LA7ACC,LA7AN,LA7ARI,LA7CDT,LA7FID,LA7ISQN,LA7LWL,LA7ONLT,LA7OTST
  K LA7POC,LA7PRI,LA7RSDT,LA7SAC,LA7SID,LA7SOBR,LA7SPEC,LA7SPTY,LA7SS,LA7TECH,LA7UID,LA7UR
- K LA7OBR25,LA7OBR26,LA7OBR29,LA7OBR32,LA7OBR33,LA7OBR34,LA7VPSTG
+ K LA7OBR25,LA7OBR26,LA7OBR29,LA7OBR32,LA7OBR33,LA7OBR34,LA7OBR49,LA7VPSTG
  ;
 KILLOBX ; Clean up variables used by OBX and following segments
- K LA7ORS,LA7PRODID,LA7RLNC,LA7RMK,LA7RNLT,LA7RO,LA7SOBX,LA7SUBID
+ K LA7AUTORELEASE,LA7ORS,LA7PRODID,LA7RLNC,LA7RMK,LA7RNLT,LA7RO,LA7SOBX,LA7SUBID
  ;
 KILLBLG ; Clean up variables used by BLG and following segments
  ;

@@ -1,5 +1,5 @@
 IBOTR3 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - OUTPUT ;5-JUN-91
- ;;2.0;INTEGRATED BILLING;**42,80,100,118,128,133,447,516,528**;21-MAR-94;Build 163
+ ;;2.0;INTEGRATED BILLING;**42,80,100,118,128,133,447,516,528,529**;21-MAR-94;Build 49
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCROTR3
@@ -28,6 +28,7 @@ IBX      S IBX="" F  S IBX=$O(^TMP($J,"IBOTR",IBDIV,IBX)) Q:IBX=""  D  Q:IBQUIT
  ;
 END      K IBINS,IBPAG,IBLINE,IBTDT,IBX,IBTT,IBTI,IBCALC,IBBN,IBD,IBDS,IBAFT
  K IBAMT,IBG,IBI,IBPERC,IBUNPD,X,X1,X2,IBGRP,IBOUT,STOP
+ K IBBLNO,IBRJFLAG,IBGRPD,INSC
  Q
  ;
 INS      ; - Loop through each insurance company or amount.
@@ -47,19 +48,17 @@ INS      ; - Loop through each insurance company or amount.
  ;
 BILLNO   ; - Loop through all bills for an insurance company.
  I $G(IBXTRACT) G LOOP
- I IBOUT="E" S INSC=$P(IBINS,"@@") G LOOP
+ I IBOUT="E" S IBDS=0,INSC=$P(IBINS,"@@") G LOOP
  I $Y>(IOSL-15) S IBCALC=15 D PAUSE Q:IBQUIT  D HDR Q:IBQUIT
  I IBPRNT'="G" S IBDS=0,IBTI="0^0^0^0" D INSADD
  E  I $G(IBG) S IBTT="0^0^0^0^0^0^0^0^0^0" D INSADD
 LOOP     ; add group# for p447 
- ;S IBBN="" F  S IBBN=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBBN)) Q:IBBN=""  S IBD=^(IBBN) D DETAIL Q:IBQUIT
  S IBGRP="" F  S IBGRP=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBGRP)) Q:IBGRP=""!(IBQUIT)  D
- . I IBOUT="E",IBGRP'="" S IBGRP=$S(IBGRP'=0:$$GET1^DIQ(355.3,IBGRP_",",2.02),1:"None Defined")
+ . I IBOUT="E",IBGRP'="" S IBGRPD=$S(IBGRP'=0:$$GET1^DIQ(355.3,IBGRP_",",2.02),1:"None Defined")
  . ; IB*2.0*516/TAZ Print the actual group number instead of internal group number.
- .;I IBPRNT="M" W !!,"Group #"_$S(IBGRP'=0:IBGRP,1:":  None Defined")
  . I IBOUT="R" I IBPRNT="M" W !!,"Group #: "_$S(IBGRP'=0:$$GET1^DIQ(355.3,IBGRP_",",2.02),1:"None Defined")
  . ;
- .S IBBN="" F  S IBBN=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBGRP,IBBN)) Q:IBBN=""  S IBD=^(IBBN) D DETAIL Q:IBQUIT
+ . S IBBN="" F  S IBBN=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS,IBGRP,IBBN)) Q:IBBN=""  S IBD=^(IBBN) D DETAIL Q:IBQUIT
  I IBOUT="E" Q
  I 'IBQUIT,IBOUT="R" D
  .I IBPRNT'="G" D SUBTOT^IBOTR4 ; Write insurance co. sub-totals.
@@ -71,8 +70,12 @@ DETAIL   ; - Write out detail lines.
  I IBOUT="E" D EXOUT Q
  G:IBPRNT="S" SUBTOT G:IBPRNT="G" GNDTOT
  I $Y>(IOSL-7) S IBCALC=7 D PAUSE Q:IBQUIT  D HDR Q:IBQUIT  D INSADD
- ;W !,$P(IBBN,"@@",2),?10,$P(IBBN,"@@"),?34,$$DATE($P(IBD,U,2))
- W !,$P(IBBN,"@@",2),?13,$P(IBBN,"@@"),?35,$$DATE($P(IBD,U,2))
+ ;
+ ;IB*2.0*529 Reject flag re-added back to the software.
+ S IBBLNO=$P($P(IBBN,"@@",2),"*") I IBBLNO["%" S IBBLNO=$P(IBBLNO,"%",2)
+ S IBRJFLAG=+$$BILLREJ^IBJTU6(IBBLNO),IBRJFLAG=$S(IBRJFLAG=1:"c",1:"")
+ W !,IBRJFLAG,$P(IBBN,"@@",2),?13,$P(IBBN,"@@"),?35,$$DATE($P(IBD,U,2))
+ ;end IB*2.0*529
  W ?44,$$DATE($P(IBD,U,3)),?54,$$DATE($P(IBD,U,4))
  W ?64,$S($P(IBD,U,5):$$DATE($P(IBD,U,5)),1:$P(IBD,U,5))
  S X1=$S($P(IBD,U,5):$P(IBD,U,5),1:DT),X2=$P(IBD,U,4) D ^%DTC S IBDS=IBDS+X
@@ -100,10 +103,8 @@ HDR      ; - Print the report header.
  W IBDFN,": ",$$DATE(IBBDT)," - ",$$DATE(IBEDT)
  I IBPRNT="M" W ?82,"Note: '*' after the Bill No. denotes a CLOSED bill"
  W:$D(IBAF) !,IBAFT G:IBPRNT="G" HDL
- ;W !!,"BILL",?10,"PATIENT",?55,"DATE",?64,"DATE BILL",?75,"#"
  W !!,"BILL",?13,"PATIENT",?55,"DATE",?64,"DATE BILL",?75,"#"
  W ?83,"AMOUNT",?93,"AMOUNT",?106,"AMOUNT",?117,"AMOUNT",?127,"PERC"
- ;W !,"NUMBER",?10,"NAME (AGE)",?34,"BILL FROM  -  TO",?54,"PRINTED"
  W !,"NUMBER",?13,"NAME (AGE)",?35,"BILL FROM  -  TO",?54,"PRINTED"
  W ?65,"CLOSED",?74,"DAYS",?83,"BILLED",?92,"COLLECTED",?106,"UNPAID"
  W ?117,"PENDING",?127,"COLL"
@@ -130,8 +131,12 @@ EXCHDR   ;
 EXHDL    ;
  Q
  ;
-EXOUT    ; Print excell format
- W !,INSC_U_$P(IBBN,"@@",2)_U_$P(IBBN,"@@")_U_$$DATE($P(IBD,U,2))_U_$$DATE($P(IBD,U,3))_U_$$DATE($P(IBD,U,4))
+EXOUT    ; Print excel format
+ ;IB*2.0*529 Reject flag re-added back to the software.
+ S IBBLNO=$P($P(IBBN,"@@",2),"*") I IBBLNO["%" S IBBLNO=$P(IBBLNO,"%",2)
+ S IBRJFLAG=+$$BILLREJ^IBJTU6(IBBLNO),IBRJFLAG=$S(IBRJFLAG=1:"c",1:"")
+ ;end IB*2.0*529
+ W !,$P(INSC,"~~",1)_"/"_$P(INSC,"~~",2)_U_$G(IBGRPD)_U_IBRJFLAG_$P(IBBN,"@@",2)_U_$P(IBBN,"@@")_U_$$DATE($P(IBD,U,2))_U_$$DATE($P(IBD,U,3))_U_$$DATE($P(IBD,U,4))
  W U_$S($P(IBD,U,5):$$DATE($P(IBD,U,5)),1:$P(IBD,U,5))
  S X1=$S($P(IBD,U,5):$P(IBD,U,5),1:DT),X2=$P(IBD,U,4) D ^%DTC S IBDS=IBDS+X
  W U_$J(X,4)_U_$J($P(IBD,U,6),11,2)_U_$J($P(IBD,U,7),10,2)
@@ -149,8 +154,13 @@ PAUSE    I $E(IOST,1,2)'="C-" Q
  ;
 INSADD   ; - Display Insurance Company name and address.
  ; Input: IBINS
- N D,PH,IEN
- W !!?16,"INSURANCE CARRIER: ",$P(IBINS,"@@")
+ N D,PH,IEN,IBINS1,IBPTIN
+ ;
+ ;IB*2.0*529 - display TIN with insurance company
+ S IBINS1=$P(IBINS,"@@")
+ S IBPTIN=$P(IBINS1,"~~",2),IBINS1=$P(IBINS1,"~~")
+ W !!?16,"INSURANCE CARRIER: ",IBINS1,"/",IBPTIN
+ ;end IB*2.0*529
  S IEN=$P(IBINS,"@@",2) G:'IEN INSADQ
  S D=$G(^DIC(36,IEN,.11)),PH=$P($G(^(.13)),U) G:D="" INSADQ
  W:$P(D,U)]"" !?35,$P(D,U)

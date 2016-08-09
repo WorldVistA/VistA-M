@@ -1,6 +1,9 @@
-DDGFASUB ;SFISC/MKO-MANAGE "ASUB" ARRAY ;09:36 AM  29 Mar 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDGFASUB ;SFISC/MKO-MANAGE "ASUB" ARRAY ;12:08 PM  14 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 ALL ;Get subpages into @DDGFREF@("ASUB")
  N P,B S P=0
@@ -44,4 +47,4 @@ EDIT(P) ;
  D DEL(P),ADD(P)
  Q
 UC(X) ;
- Q $TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+ Q $$UP^DILIBF(X)  ;**

@@ -1,134 +1,48 @@
-IBDEI16J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16J ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQ(358.8)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20060,0)
- ;;=C22.2^^84^929^85
- ;;^UTILITY(U,$J,358.3,20060,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20060,1,3,0)
- ;;=3^Hepatoblastoma
- ;;^UTILITY(U,$J,358.3,20060,1,4,0)
- ;;=4^C22.2
- ;;^UTILITY(U,$J,358.3,20060,2)
- ;;=^5000935
- ;;^UTILITY(U,$J,358.3,20061,0)
- ;;=D58.9^^84^929^87
- ;;^UTILITY(U,$J,358.3,20061,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20061,1,3,0)
- ;;=3^Hereditary Hemolytic Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,20061,1,4,0)
- ;;=4^D58.9
- ;;^UTILITY(U,$J,358.3,20061,2)
- ;;=^5002322
- ;;^UTILITY(U,$J,358.3,20062,0)
- ;;=C81.99^^84^929^88
- ;;^UTILITY(U,$J,358.3,20062,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20062,1,3,0)
- ;;=3^Hodgkin Lymphoma,Extranodal/Solid Organ Sites
- ;;^UTILITY(U,$J,358.3,20062,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,20062,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,20063,0)
- ;;=C81.90^^84^929^89
- ;;^UTILITY(U,$J,358.3,20063,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20063,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,20063,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,20063,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,20064,0)
- ;;=D89.2^^84^929^90
- ;;^UTILITY(U,$J,358.3,20064,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20064,1,3,0)
- ;;=3^Hypergammaglobulenemia,Unspec
- ;;^UTILITY(U,$J,358.3,20064,1,4,0)
- ;;=4^D89.2
- ;;^UTILITY(U,$J,358.3,20064,2)
- ;;=^5002455
- ;;^UTILITY(U,$J,358.3,20065,0)
- ;;=D05.12^^84^929^91
- ;;^UTILITY(U,$J,358.3,20065,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20065,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,20065,1,4,0)
- ;;=4^D05.12
- ;;^UTILITY(U,$J,358.3,20065,2)
- ;;=^5001931
- ;;^UTILITY(U,$J,358.3,20066,0)
- ;;=D05.11^^84^929^92
- ;;^UTILITY(U,$J,358.3,20066,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20066,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Right Breast
- ;;^UTILITY(U,$J,358.3,20066,1,4,0)
- ;;=4^D05.11
- ;;^UTILITY(U,$J,358.3,20066,2)
- ;;=^5001930
- ;;^UTILITY(U,$J,358.3,20067,0)
- ;;=D05.10^^84^929^93
- ;;^UTILITY(U,$J,358.3,20067,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20067,1,3,0)
- ;;=3^Intraductal Carcinoma in Situ,Unspec Breast
- ;;^UTILITY(U,$J,358.3,20067,1,4,0)
- ;;=4^D05.10
- ;;^UTILITY(U,$J,358.3,20067,2)
- ;;=^5001929
- ;;^UTILITY(U,$J,358.3,20068,0)
- ;;=D50.0^^84^929^94
- ;;^UTILITY(U,$J,358.3,20068,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20068,1,3,0)
- ;;=3^Iron Deficiency Anemia Secondary to Blood Loss
- ;;^UTILITY(U,$J,358.3,20068,1,4,0)
- ;;=4^D50.0
- ;;^UTILITY(U,$J,358.3,20068,2)
- ;;=^267971
- ;;^UTILITY(U,$J,358.3,20069,0)
- ;;=D50.9^^84^929^95
- ;;^UTILITY(U,$J,358.3,20069,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20069,1,3,0)
- ;;=3^Iron Deficiency Anemia,Unspec
- ;;^UTILITY(U,$J,358.3,20069,1,4,0)
- ;;=4^D50.9
- ;;^UTILITY(U,$J,358.3,20069,2)
- ;;=^5002283
- ;;^UTILITY(U,$J,358.3,20070,0)
- ;;=C46.9^^84^929^96
- ;;^UTILITY(U,$J,358.3,20070,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20070,1,3,0)
- ;;=3^Kaposi's Sarcoma,Unspec
- ;;^UTILITY(U,$J,358.3,20070,1,4,0)
- ;;=4^C46.9
- ;;^UTILITY(U,$J,358.3,20070,2)
- ;;=^5001108
- ;;^UTILITY(U,$J,358.3,20071,0)
- ;;=C22.0^^84^929^97
- ;;^UTILITY(U,$J,358.3,20071,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20071,1,3,0)
- ;;=3^Liver Cell Carcinoma
- ;;^UTILITY(U,$J,358.3,20071,1,4,0)
- ;;=4^C22.0
- ;;^UTILITY(U,$J,358.3,20071,2)
- ;;=^5000933
- ;;^UTILITY(U,$J,358.3,20072,0)
- ;;=D05.02^^84^929^98
- ;;^UTILITY(U,$J,358.3,20072,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20072,1,3,0)
- ;;=3^Lobular Carcinoma in Situ,Left Breast
- ;;^UTILITY(U,$J,358.3,20072,1,4,0)
- ;;=4^D05.02
- ;;^UTILITY(U,$J,358.3,20072,2)
- ;;=^5001928
+ ;;^DIC(358.8,0,"GL")
+ ;;=^IBE(358.8,
+ ;;^DIC("B","IMP/EXP TEXT AREA",358.8)
+ ;;=
+ ;;^DIC(358.8,"%D",0)
+ ;;=^^3^3^2940217^
+ ;;^DIC(358.8,"%D",1,0)
+ ;;=This file is nearly identical to file #357.8. It is used by the
+ ;;^DIC(358.8,"%D",2,0)
+ ;;=Import/Export Utility as a temporary staging area for data from that file
+ ;;^DIC(358.8,"%D",3,0)
+ ;;=that is being imported or exported.
+ ;;^DD(358.8,0)
+ ;;=FIELD^^1^7
+ ;;^DD(358.8,0,"DDA")
+ ;;=N
+ ;;^DD(358.8,0,"DT")
+ ;;=2930802
+ ;;^DD(358.8,0,"IX","B",358.8,.01)
+ ;;=
+ ;;^DD(358.8,0,"IX","C",358.8,.02)
+ ;;=
+ ;;^DD(358.8,0,"NM","IMP/EXP TEXT AREA")
+ ;;=
+ ;;^DD(358.8,0,"VRPK")
+ ;;=IBD
+ ;;^DD(358.8,.01,0)
+ ;;=NAME^RF^^0;1^K:$L(X)>30!(X?.N)!($L(X)<3)!'(X'?1P.E) X
+ ;;^DD(358.8,.01,1,0)
+ ;;=^.1
+ ;;^DD(358.8,.01,1,1,0)
+ ;;=358.8^B
+ ;;^DD(358.8,.01,1,1,1)
+ ;;=S ^IBE(358.8,"B",$E(X,1,30),DA)=""
+ ;;^DD(358.8,.01,1,1,2)
+ ;;=K ^IBE(358.8,"B",$E(X,1,30),DA)
+ ;;^DD(358.8,.01,3)
+ ;;=NAME MUST BE 3-30 CHARACTERS, NOT NUMERIC OR STARTING WITH PUNCTUATION
+ ;;^DD(358.8,.01,21,0)
+ ;;=^^2^2^2930528^
+ ;;^DD(358.8,.01,21,1,0)
+ ;;= 
+ ;;^DD(358.8,.01,21,2,0)
+ ;;=The name of the text area.

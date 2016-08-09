@@ -1,138 +1,270 @@
-IBDEI0NC ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0NC ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10892,1,4,0)
- ;;=4^L89.91
- ;;^UTILITY(U,$J,358.3,10892,2)
- ;;=^5133664
- ;;^UTILITY(U,$J,358.3,10893,0)
- ;;=L89.92^^47^522^82
- ;;^UTILITY(U,$J,358.3,10893,1,0)
+ ;;^UTILITY(U,$J,358.3,23531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10893,1,3,0)
- ;;=3^Pressure Ulcer,Stage 2,Unspec Site
- ;;^UTILITY(U,$J,358.3,10893,1,4,0)
- ;;=4^L89.92
- ;;^UTILITY(U,$J,358.3,10893,2)
- ;;=^5133667
- ;;^UTILITY(U,$J,358.3,10894,0)
- ;;=L89.93^^47^522^83
- ;;^UTILITY(U,$J,358.3,10894,1,0)
+ ;;^UTILITY(U,$J,358.3,23531,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23531,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,23531,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,23532,0)
+ ;;=W18.42XA^^89^1065^109
+ ;;^UTILITY(U,$J,358.3,23532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10894,1,3,0)
- ;;=3^Pressure Ulcer,Stage 3,Unspec Site
- ;;^UTILITY(U,$J,358.3,10894,1,4,0)
- ;;=4^L89.93
- ;;^UTILITY(U,$J,358.3,10894,2)
- ;;=^5133668
- ;;^UTILITY(U,$J,358.3,10895,0)
- ;;=L89.94^^47^522^84
- ;;^UTILITY(U,$J,358.3,10895,1,0)
+ ;;^UTILITY(U,$J,358.3,23532,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23532,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,23532,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,23533,0)
+ ;;=W18.42XD^^89^1065^110
+ ;;^UTILITY(U,$J,358.3,23533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10895,1,3,0)
- ;;=3^Pressure Ulcer,Stage 4,Unspec Site
- ;;^UTILITY(U,$J,358.3,10895,1,4,0)
- ;;=4^L89.94
- ;;^UTILITY(U,$J,358.3,10895,2)
- ;;=^5133669
- ;;^UTILITY(U,$J,358.3,10896,0)
- ;;=L89.90^^47^522^85
- ;;^UTILITY(U,$J,358.3,10896,1,0)
+ ;;^UTILITY(U,$J,358.3,23533,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23533,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,23533,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,23534,0)
+ ;;=W18.43XA^^89^1065^103
+ ;;^UTILITY(U,$J,358.3,23534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10896,1,3,0)
- ;;=3^Pressure Ulcer,Stage Unspec,Unspec Site
- ;;^UTILITY(U,$J,358.3,10896,1,4,0)
- ;;=4^L89.90
- ;;^UTILITY(U,$J,358.3,10896,2)
- ;;=^5133666
- ;;^UTILITY(U,$J,358.3,10897,0)
- ;;=L89.95^^47^522^86
- ;;^UTILITY(U,$J,358.3,10897,1,0)
+ ;;^UTILITY(U,$J,358.3,23534,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23534,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,23534,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,23535,0)
+ ;;=W18.43XD^^89^1065^104
+ ;;^UTILITY(U,$J,358.3,23535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10897,1,3,0)
- ;;=3^Pressure Ulcer,Unstageable,Unspec Site
- ;;^UTILITY(U,$J,358.3,10897,1,4,0)
- ;;=4^L89.95
- ;;^UTILITY(U,$J,358.3,10897,2)
- ;;=^5133660
- ;;^UTILITY(U,$J,358.3,10898,0)
- ;;=L28.1^^47^522^87
- ;;^UTILITY(U,$J,358.3,10898,1,0)
+ ;;^UTILITY(U,$J,358.3,23535,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23535,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,23535,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,23536,0)
+ ;;=W18.49XA^^89^1065^111
+ ;;^UTILITY(U,$J,358.3,23536,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10898,1,3,0)
- ;;=3^Prurigo Nodularis
- ;;^UTILITY(U,$J,358.3,10898,1,4,0)
- ;;=4^L28.1
- ;;^UTILITY(U,$J,358.3,10898,2)
- ;;=^5009148
- ;;^UTILITY(U,$J,358.3,10899,0)
- ;;=L28.2^^47^522^88
- ;;^UTILITY(U,$J,358.3,10899,1,0)
+ ;;^UTILITY(U,$J,358.3,23536,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23536,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,23536,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,23537,0)
+ ;;=W18.49XD^^89^1065^112
+ ;;^UTILITY(U,$J,358.3,23537,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10899,1,3,0)
- ;;=3^Prurigo,Other
- ;;^UTILITY(U,$J,358.3,10899,1,4,0)
- ;;=4^L28.2
- ;;^UTILITY(U,$J,358.3,10899,2)
- ;;=^5009149
- ;;^UTILITY(U,$J,358.3,10900,0)
- ;;=L29.9^^47^522^89
- ;;^UTILITY(U,$J,358.3,10900,1,0)
+ ;;^UTILITY(U,$J,358.3,23537,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23537,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,23537,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,23538,0)
+ ;;=W19.XXXA^^89^1065^89
+ ;;^UTILITY(U,$J,358.3,23538,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10900,1,3,0)
- ;;=3^Pruritus,Unspec
- ;;^UTILITY(U,$J,358.3,10900,1,4,0)
- ;;=4^L29.9
- ;;^UTILITY(U,$J,358.3,10900,2)
- ;;=^5009153
- ;;^UTILITY(U,$J,358.3,10901,0)
- ;;=L73.1^^47^522^90
- ;;^UTILITY(U,$J,358.3,10901,1,0)
+ ;;^UTILITY(U,$J,358.3,23538,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23538,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,23538,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,23539,0)
+ ;;=W19.XXXD^^89^1065^90
+ ;;^UTILITY(U,$J,358.3,23539,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10901,1,3,0)
- ;;=3^Pseudofolliculitis Barbae
- ;;^UTILITY(U,$J,358.3,10901,1,4,0)
- ;;=4^L73.1
- ;;^UTILITY(U,$J,358.3,10901,2)
- ;;=^5009284
- ;;^UTILITY(U,$J,358.3,10902,0)
- ;;=L40.9^^47^522^91
- ;;^UTILITY(U,$J,358.3,10902,1,0)
+ ;;^UTILITY(U,$J,358.3,23539,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23539,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,23539,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,23540,0)
+ ;;=W54.0XXA^^89^1065^11
+ ;;^UTILITY(U,$J,358.3,23540,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10902,1,3,0)
- ;;=3^Psoriasis,Unspec
- ;;^UTILITY(U,$J,358.3,10902,1,4,0)
- ;;=4^L40.9
- ;;^UTILITY(U,$J,358.3,10902,2)
- ;;=^5009171
- ;;^UTILITY(U,$J,358.3,10903,0)
- ;;=R21.^^47^522^92
- ;;^UTILITY(U,$J,358.3,10903,1,0)
+ ;;^UTILITY(U,$J,358.3,23540,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23540,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,23540,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,23541,0)
+ ;;=W54.0XXD^^89^1065^12
+ ;;^UTILITY(U,$J,358.3,23541,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10903,1,3,0)
- ;;=3^Rash/Other Nonspec Skin Eruption
- ;;^UTILITY(U,$J,358.3,10903,1,4,0)
- ;;=4^R21.
- ;;^UTILITY(U,$J,358.3,10903,2)
- ;;=^5019283
- ;;^UTILITY(U,$J,358.3,10904,0)
- ;;=L71.9^^47^522^93
- ;;^UTILITY(U,$J,358.3,10904,1,0)
+ ;;^UTILITY(U,$J,358.3,23541,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23541,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,23541,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,23542,0)
+ ;;=W55.01XA^^89^1065^9
+ ;;^UTILITY(U,$J,358.3,23542,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10904,1,3,0)
- ;;=3^Rosacea,Unspec
- ;;^UTILITY(U,$J,358.3,10904,1,4,0)
- ;;=4^L71.9
- ;;^UTILITY(U,$J,358.3,10904,2)
- ;;=^5009276
- ;;^UTILITY(U,$J,358.3,10905,0)
- ;;=L82.0^^47^522^94
- ;;^UTILITY(U,$J,358.3,10905,1,0)
+ ;;^UTILITY(U,$J,358.3,23542,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23542,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,23542,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,23543,0)
+ ;;=W55.01XD^^89^1065^10
+ ;;^UTILITY(U,$J,358.3,23543,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10905,1,3,0)
- ;;=3^Seborrheic Keratosis,Inflamed
- ;;^UTILITY(U,$J,358.3,10905,1,4,0)
- ;;=4^L82.0
- ;;^UTILITY(U,$J,358.3,10905,2)
- ;;=^303311
+ ;;^UTILITY(U,$J,358.3,23543,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23543,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,23543,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,23544,0)
+ ;;=W55.03XA^^89^1065^101
+ ;;^UTILITY(U,$J,358.3,23544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23544,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23544,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,23544,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,23545,0)
+ ;;=W55.03XD^^89^1065^102
+ ;;^UTILITY(U,$J,358.3,23545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23545,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23545,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,23545,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,23546,0)
+ ;;=X00.8XXA^^89^1065^17
+ ;;^UTILITY(U,$J,358.3,23546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23546,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23546,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,23546,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,23547,0)
+ ;;=X00.8XXD^^89^1065^18
+ ;;^UTILITY(U,$J,358.3,23547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23547,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23547,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,23547,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,23548,0)
+ ;;=X32.XXXA^^89^1065^15
+ ;;^UTILITY(U,$J,358.3,23548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23548,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23548,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,23548,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,23549,0)
+ ;;=X32.XXXD^^89^1065^16
+ ;;^UTILITY(U,$J,358.3,23549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23549,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23549,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,23549,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,23550,0)
+ ;;=Y04.0XXA^^89^1065^7
+ ;;^UTILITY(U,$J,358.3,23550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23550,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23550,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,23550,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,23551,0)
+ ;;=Y04.0XXD^^89^1065^8
+ ;;^UTILITY(U,$J,358.3,23551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23551,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23551,1,4,0)
+ ;;=4^Y04.0XXD
+ ;;^UTILITY(U,$J,358.3,23551,2)
+ ;;=^5061166
+ ;;^UTILITY(U,$J,358.3,23552,0)
+ ;;=Y04.1XXA^^89^1065^1
+ ;;^UTILITY(U,$J,358.3,23552,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23552,1,3,0)
+ ;;=3^Assault by Human Bite,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23552,1,4,0)
+ ;;=4^Y04.1XXA
+ ;;^UTILITY(U,$J,358.3,23552,2)
+ ;;=^5061168
+ ;;^UTILITY(U,$J,358.3,23553,0)
+ ;;=Y04.1XXD^^89^1065^2
+ ;;^UTILITY(U,$J,358.3,23553,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23553,1,3,0)
+ ;;=3^Assault by Human Bite,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23553,1,4,0)
+ ;;=4^Y04.1XXD
+ ;;^UTILITY(U,$J,358.3,23553,2)
+ ;;=^5061169
+ ;;^UTILITY(U,$J,358.3,23554,0)
+ ;;=Y04.2XXA^^89^1065^5
+ ;;^UTILITY(U,$J,358.3,23554,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23554,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23554,1,4,0)
+ ;;=4^Y04.2XXA
+ ;;^UTILITY(U,$J,358.3,23554,2)
+ ;;=^5061171
+ ;;^UTILITY(U,$J,358.3,23555,0)
+ ;;=Y04.8XXA^^89^1065^3
+ ;;^UTILITY(U,$J,358.3,23555,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23555,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Init Encntr
+ ;;^UTILITY(U,$J,358.3,23555,1,4,0)
+ ;;=4^Y04.8XXA
+ ;;^UTILITY(U,$J,358.3,23555,2)
+ ;;=^5061174
+ ;;^UTILITY(U,$J,358.3,23556,0)
+ ;;=Y04.2XXD^^89^1065^6
+ ;;^UTILITY(U,$J,358.3,23556,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23556,1,3,0)
+ ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23556,1,4,0)
+ ;;=4^Y04.2XXD
+ ;;^UTILITY(U,$J,358.3,23556,2)
+ ;;=^5061172
+ ;;^UTILITY(U,$J,358.3,23557,0)
+ ;;=Y04.8XXD^^89^1065^4
+ ;;^UTILITY(U,$J,358.3,23557,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23557,1,3,0)
+ ;;=3^Assault by Oth Bodily Force,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,23557,1,4,0)
+ ;;=4^Y04.8XXD

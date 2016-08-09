@@ -1,136 +1,288 @@
-IBDEI0A6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0A6 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4523,1,3,0)
- ;;=3^SCC Anal Skin
- ;;^UTILITY(U,$J,358.3,4523,1,4,0)
- ;;=4^C44.520
- ;;^UTILITY(U,$J,358.3,4523,2)
- ;;=^5001057
- ;;^UTILITY(U,$J,358.3,4524,0)
- ;;=C44.521^^21^281^2
- ;;^UTILITY(U,$J,358.3,4524,1,0)
+ ;;^UTILITY(U,$J,358.3,10178,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4524,1,3,0)
- ;;=3^SCC Skin Breast
- ;;^UTILITY(U,$J,358.3,4524,1,4,0)
- ;;=4^C44.521
- ;;^UTILITY(U,$J,358.3,4524,2)
- ;;=^5001058
- ;;^UTILITY(U,$J,358.3,4525,0)
- ;;=C44.529^^21^281^9
- ;;^UTILITY(U,$J,358.3,4525,1,0)
+ ;;^UTILITY(U,$J,358.3,10178,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Left Eye
+ ;;^UTILITY(U,$J,358.3,10178,1,4,0)
+ ;;=4^H49.22
+ ;;^UTILITY(U,$J,358.3,10178,2)
+ ;;=^5006189
+ ;;^UTILITY(U,$J,358.3,10179,0)
+ ;;=H50.89^^51^589^47
+ ;;^UTILITY(U,$J,358.3,10179,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4525,1,3,0)
- ;;=3^SCC Skin Oth Part of Trunk
- ;;^UTILITY(U,$J,358.3,4525,1,4,0)
- ;;=4^C44.529
- ;;^UTILITY(U,$J,358.3,4525,2)
- ;;=^5001059
- ;;^UTILITY(U,$J,358.3,4526,0)
- ;;=C44.622^^21^281^15
- ;;^UTILITY(U,$J,358.3,4526,1,0)
+ ;;^UTILITY(U,$J,358.3,10179,1,3,0)
+ ;;=3^Strabismus NEC
+ ;;^UTILITY(U,$J,358.3,10179,1,4,0)
+ ;;=4^H50.89
+ ;;^UTILITY(U,$J,358.3,10179,2)
+ ;;=^88142
+ ;;^UTILITY(U,$J,358.3,10180,0)
+ ;;=H55.00^^51^589^34
+ ;;^UTILITY(U,$J,358.3,10180,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4526,1,3,0)
- ;;=3^SCC Skin Right Upper Limb
- ;;^UTILITY(U,$J,358.3,4526,1,4,0)
- ;;=4^C44.622
- ;;^UTILITY(U,$J,358.3,4526,2)
- ;;=^5001070
- ;;^UTILITY(U,$J,358.3,4527,0)
- ;;=C44.629^^21^281^6
- ;;^UTILITY(U,$J,358.3,4527,1,0)
+ ;;^UTILITY(U,$J,358.3,10180,1,3,0)
+ ;;=3^Nystagmus,Unspec
+ ;;^UTILITY(U,$J,358.3,10180,1,4,0)
+ ;;=4^H55.00
+ ;;^UTILITY(U,$J,358.3,10180,2)
+ ;;=^5006370
+ ;;^UTILITY(U,$J,358.3,10181,0)
+ ;;=I67.9^^51^589^9
+ ;;^UTILITY(U,$J,358.3,10181,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4527,1,3,0)
- ;;=3^SCC Skin Left Upper Limb
- ;;^UTILITY(U,$J,358.3,4527,1,4,0)
- ;;=4^C44.629
- ;;^UTILITY(U,$J,358.3,4527,2)
- ;;=^5001071
- ;;^UTILITY(U,$J,358.3,4528,0)
- ;;=C44.722^^21^281^14
- ;;^UTILITY(U,$J,358.3,4528,1,0)
+ ;;^UTILITY(U,$J,358.3,10181,1,3,0)
+ ;;=3^Cerebrovascular Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,10181,1,4,0)
+ ;;=4^I67.9
+ ;;^UTILITY(U,$J,358.3,10181,2)
+ ;;=^5007389
+ ;;^UTILITY(U,$J,358.3,10182,0)
+ ;;=M31.6^^51^589^23
+ ;;^UTILITY(U,$J,358.3,10182,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4528,1,3,0)
- ;;=3^SCC Skin Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4528,1,4,0)
- ;;=4^C44.722
- ;;^UTILITY(U,$J,358.3,4528,2)
- ;;=^5001082
- ;;^UTILITY(U,$J,358.3,4529,0)
- ;;=C44.729^^21^281^5
- ;;^UTILITY(U,$J,358.3,4529,1,0)
+ ;;^UTILITY(U,$J,358.3,10182,1,3,0)
+ ;;=3^Giant Cell Arteritis NEC
+ ;;^UTILITY(U,$J,358.3,10182,1,4,0)
+ ;;=4^M31.6
+ ;;^UTILITY(U,$J,358.3,10182,2)
+ ;;=^5011748
+ ;;^UTILITY(U,$J,358.3,10183,0)
+ ;;=M31.5^^51^589^24
+ ;;^UTILITY(U,$J,358.3,10183,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4529,1,3,0)
- ;;=3^SCC Skin Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4529,1,4,0)
- ;;=4^C44.729
- ;;^UTILITY(U,$J,358.3,4529,2)
- ;;=^5001083
- ;;^UTILITY(U,$J,358.3,4530,0)
- ;;=C44.82^^21^281^10
- ;;^UTILITY(U,$J,358.3,4530,1,0)
+ ;;^UTILITY(U,$J,358.3,10183,1,3,0)
+ ;;=3^Giant Cell Arteritis w/ Polymyalgia Rheumatica
+ ;;^UTILITY(U,$J,358.3,10183,1,4,0)
+ ;;=4^M31.5
+ ;;^UTILITY(U,$J,358.3,10183,2)
+ ;;=^5011747
+ ;;^UTILITY(U,$J,358.3,10184,0)
+ ;;=G54.4^^51^589^29
+ ;;^UTILITY(U,$J,358.3,10184,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4530,1,3,0)
- ;;=3^SCC Skin Overlapping Sites
- ;;^UTILITY(U,$J,358.3,4530,1,4,0)
- ;;=4^C44.82
- ;;^UTILITY(U,$J,358.3,4530,2)
- ;;=^5001089
- ;;^UTILITY(U,$J,358.3,4531,0)
- ;;=L57.8^^21^281^22
- ;;^UTILITY(U,$J,358.3,4531,1,0)
+ ;;^UTILITY(U,$J,358.3,10184,1,3,0)
+ ;;=3^Lumbosacral Root Disorders NEC
+ ;;^UTILITY(U,$J,358.3,10184,1,4,0)
+ ;;=4^G54.4
+ ;;^UTILITY(U,$J,358.3,10184,2)
+ ;;=^5004011
+ ;;^UTILITY(U,$J,358.3,10185,0)
+ ;;=R25.9^^51^589^2
+ ;;^UTILITY(U,$J,358.3,10185,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4531,1,3,0)
- ;;=3^Skin Changes d/t Chr Exposure to Nonionizing Radiation
- ;;^UTILITY(U,$J,358.3,4531,1,4,0)
- ;;=4^L57.8
- ;;^UTILITY(U,$J,358.3,4531,2)
- ;;=^5009226
- ;;^UTILITY(U,$J,358.3,4532,0)
- ;;=L27.0^^21^281^23
- ;;^UTILITY(U,$J,358.3,4532,1,0)
+ ;;^UTILITY(U,$J,358.3,10185,1,3,0)
+ ;;=3^Abnormal Involuntary Movements,Unspec
+ ;;^UTILITY(U,$J,358.3,10185,1,4,0)
+ ;;=4^R25.9
+ ;;^UTILITY(U,$J,358.3,10185,2)
+ ;;=^5019303
+ ;;^UTILITY(U,$J,358.3,10186,0)
+ ;;=R25.0^^51^589^1
+ ;;^UTILITY(U,$J,358.3,10186,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4532,1,3,0)
- ;;=3^Skin Eruption,Generalized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,4532,1,4,0)
- ;;=4^L27.0
- ;;^UTILITY(U,$J,358.3,4532,2)
- ;;=^5009144
- ;;^UTILITY(U,$J,358.3,4533,0)
- ;;=L27.1^^21^281^24
- ;;^UTILITY(U,$J,358.3,4533,1,0)
+ ;;^UTILITY(U,$J,358.3,10186,1,3,0)
+ ;;=3^Abnormal Head Movements
+ ;;^UTILITY(U,$J,358.3,10186,1,4,0)
+ ;;=4^R25.0
+ ;;^UTILITY(U,$J,358.3,10186,2)
+ ;;=^5019299
+ ;;^UTILITY(U,$J,358.3,10187,0)
+ ;;=R25.1^^51^589^54
+ ;;^UTILITY(U,$J,358.3,10187,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4533,1,3,0)
- ;;=3^Skin Eruption,Localized d/t Drugs/Meds Taken Internally
- ;;^UTILITY(U,$J,358.3,4533,1,4,0)
- ;;=4^L27.1
- ;;^UTILITY(U,$J,358.3,4533,2)
- ;;=^5009145
- ;;^UTILITY(U,$J,358.3,4534,0)
- ;;=L51.1^^21^281^29
- ;;^UTILITY(U,$J,358.3,4534,1,0)
+ ;;^UTILITY(U,$J,358.3,10187,1,3,0)
+ ;;=3^Tremor,Unspec
+ ;;^UTILITY(U,$J,358.3,10187,1,4,0)
+ ;;=4^R25.1
+ ;;^UTILITY(U,$J,358.3,10187,2)
+ ;;=^5019300
+ ;;^UTILITY(U,$J,358.3,10188,0)
+ ;;=R25.2^^51^589^11
+ ;;^UTILITY(U,$J,358.3,10188,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4534,1,3,0)
- ;;=3^Stevens-Johnson Syndrome
- ;;^UTILITY(U,$J,358.3,4534,1,4,0)
- ;;=4^L51.1
- ;;^UTILITY(U,$J,358.3,4534,2)
- ;;=^336636
- ;;^UTILITY(U,$J,358.3,4535,0)
- ;;=L51.3^^21^281^30
- ;;^UTILITY(U,$J,358.3,4535,1,0)
+ ;;^UTILITY(U,$J,358.3,10188,1,3,0)
+ ;;=3^Cramp & Spasm
+ ;;^UTILITY(U,$J,358.3,10188,1,4,0)
+ ;;=4^R25.2
+ ;;^UTILITY(U,$J,358.3,10188,2)
+ ;;=^5019301
+ ;;^UTILITY(U,$J,358.3,10189,0)
+ ;;=R25.3^^51^589^18
+ ;;^UTILITY(U,$J,358.3,10189,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4535,1,3,0)
- ;;=3^Stevens-Johnson Syndrome-Toxic Epdrml Necrolysis Overlap Syndrome
- ;;^UTILITY(U,$J,358.3,4535,1,4,0)
- ;;=4^L51.3
- ;;^UTILITY(U,$J,358.3,4535,2)
- ;;=^336637
- ;;^UTILITY(U,$J,358.3,4536,0)
- ;;=Z12.83^^21^281^19
- ;;^UTILITY(U,$J,358.3,4536,1,0)
+ ;;^UTILITY(U,$J,358.3,10189,1,3,0)
+ ;;=3^Fasciculation
+ ;;^UTILITY(U,$J,358.3,10189,1,4,0)
+ ;;=4^R25.3
+ ;;^UTILITY(U,$J,358.3,10189,2)
+ ;;=^44985
+ ;;^UTILITY(U,$J,358.3,10190,0)
+ ;;=R51.^^51^589^25
+ ;;^UTILITY(U,$J,358.3,10190,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4536,1,3,0)
- ;;=3^Screening for Malig Neop of Skin
+ ;;^UTILITY(U,$J,358.3,10190,1,3,0)
+ ;;=3^Headache
+ ;;^UTILITY(U,$J,358.3,10190,1,4,0)
+ ;;=4^R51.
+ ;;^UTILITY(U,$J,358.3,10190,2)
+ ;;=^5019513
+ ;;^UTILITY(U,$J,358.3,10191,0)
+ ;;=G44.1^^51^589^56
+ ;;^UTILITY(U,$J,358.3,10191,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10191,1,3,0)
+ ;;=3^Vascular Headache NEC
+ ;;^UTILITY(U,$J,358.3,10191,1,4,0)
+ ;;=4^G44.1
+ ;;^UTILITY(U,$J,358.3,10191,2)
+ ;;=^5003934
+ ;;^UTILITY(U,$J,358.3,10192,0)
+ ;;=S02.3XXA^^51^589^22
+ ;;^UTILITY(U,$J,358.3,10192,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10192,1,3,0)
+ ;;=3^Fx of Orbital Floor,Init Encntr for Closed Fx
+ ;;^UTILITY(U,$J,358.3,10192,1,4,0)
+ ;;=4^S02.3XXA
+ ;;^UTILITY(U,$J,358.3,10192,2)
+ ;;=^5020312
+ ;;^UTILITY(U,$J,358.3,10193,0)
+ ;;=H51.9^^51^589^7
+ ;;^UTILITY(U,$J,358.3,10193,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10193,1,3,0)
+ ;;=3^Binocular Movement Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,10193,1,4,0)
+ ;;=4^H51.9
+ ;;^UTILITY(U,$J,358.3,10193,2)
+ ;;=^5006258
+ ;;^UTILITY(U,$J,358.3,10194,0)
+ ;;=H49.13^^51^589^19
+ ;;^UTILITY(U,$J,358.3,10194,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10194,1,3,0)
+ ;;=3^Fourth Trochlear Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,10194,1,4,0)
+ ;;=4^H49.13
+ ;;^UTILITY(U,$J,358.3,10194,2)
+ ;;=^5006186
+ ;;^UTILITY(U,$J,358.3,10195,0)
+ ;;=H47.013^^51^589^26
+ ;;^UTILITY(U,$J,358.3,10195,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10195,1,3,0)
+ ;;=3^Ischemic Optic Neuropathy,Bilateral
+ ;;^UTILITY(U,$J,358.3,10195,1,4,0)
+ ;;=4^H47.013
+ ;;^UTILITY(U,$J,358.3,10195,2)
+ ;;=^5006107
+ ;;^UTILITY(U,$J,358.3,10196,0)
+ ;;=D86.82^^51^589^33
+ ;;^UTILITY(U,$J,358.3,10196,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10196,1,3,0)
+ ;;=3^Multiple Cranial Nerve Palsies in Sarcoidosis
+ ;;^UTILITY(U,$J,358.3,10196,1,4,0)
+ ;;=4^D86.82
+ ;;^UTILITY(U,$J,358.3,10196,2)
+ ;;=^5002447
+ ;;^UTILITY(U,$J,358.3,10197,0)
+ ;;=H49.883^^51^589^38
+ ;;^UTILITY(U,$J,358.3,10197,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10197,1,3,0)
+ ;;=3^Paralytic Strabismus,Bilateral
+ ;;^UTILITY(U,$J,358.3,10197,1,4,0)
+ ;;=4^H49.883
+ ;;^UTILITY(U,$J,358.3,10197,2)
+ ;;=^5006205
+ ;;^UTILITY(U,$J,358.3,10198,0)
+ ;;=H49.23^^51^589^44
+ ;;^UTILITY(U,$J,358.3,10198,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10198,1,3,0)
+ ;;=3^Sixth Abducent Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,10198,1,4,0)
+ ;;=4^H49.23
+ ;;^UTILITY(U,$J,358.3,10198,2)
+ ;;=^5006190
+ ;;^UTILITY(U,$J,358.3,10199,0)
+ ;;=H49.03^^51^589^48
+ ;;^UTILITY(U,$J,358.3,10199,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10199,1,3,0)
+ ;;=3^Third Oculomotor Nerve Palsy,Bilateral
+ ;;^UTILITY(U,$J,358.3,10199,1,4,0)
+ ;;=4^H49.03
+ ;;^UTILITY(U,$J,358.3,10199,2)
+ ;;=^5006182
+ ;;^UTILITY(U,$J,358.3,10200,0)
+ ;;=H34.03^^51^589^51
+ ;;^UTILITY(U,$J,358.3,10200,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10200,1,3,0)
+ ;;=3^Transient Retinal Artery Occlusion,Bilateral
+ ;;^UTILITY(U,$J,358.3,10200,1,4,0)
+ ;;=4^H34.03
+ ;;^UTILITY(U,$J,358.3,10200,2)
+ ;;=^5005555
+ ;;^UTILITY(U,$J,358.3,10201,0)
+ ;;=Z90.01^^51^590^1
+ ;;^UTILITY(U,$J,358.3,10201,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10201,1,3,0)
+ ;;=3^Acquired Absence of Eye
+ ;;^UTILITY(U,$J,358.3,10201,1,4,0)
+ ;;=4^Z90.01
+ ;;^UTILITY(U,$J,358.3,10201,2)
+ ;;=^322068
+ ;;^UTILITY(U,$J,358.3,10202,0)
+ ;;=H04.552^^51^590^2
+ ;;^UTILITY(U,$J,358.3,10202,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10202,1,3,0)
+ ;;=3^Acquired Stenosis of Left Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,10202,1,4,0)
+ ;;=4^H04.552
+ ;;^UTILITY(U,$J,358.3,10202,2)
+ ;;=^5004539
+ ;;^UTILITY(U,$J,358.3,10203,0)
+ ;;=H04.551^^51^590^3
+ ;;^UTILITY(U,$J,358.3,10203,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10203,1,3,0)
+ ;;=3^Acquired Stenosis of Right Nasolacrimal Duct
+ ;;^UTILITY(U,$J,358.3,10203,1,4,0)
+ ;;=4^H04.551
+ ;;^UTILITY(U,$J,358.3,10203,2)
+ ;;=^5004538
+ ;;^UTILITY(U,$J,358.3,10204,0)
+ ;;=H01.115^^51^590^4
+ ;;^UTILITY(U,$J,358.3,10204,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10204,1,3,0)
+ ;;=3^Allergic Dermatitis of Left Lower Eyelid
+ ;;^UTILITY(U,$J,358.3,10204,1,4,0)
+ ;;=4^H01.115
+ ;;^UTILITY(U,$J,358.3,10204,2)
+ ;;=^5133386
+ ;;^UTILITY(U,$J,358.3,10205,0)
+ ;;=H01.114^^51^590^5
+ ;;^UTILITY(U,$J,358.3,10205,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10205,1,3,0)
+ ;;=3^Allergic Dermatitis of Left Upper Eyelid
+ ;;^UTILITY(U,$J,358.3,10205,1,4,0)
+ ;;=4^H01.114
+ ;;^UTILITY(U,$J,358.3,10205,2)
+ ;;=^5004256
+ ;;^UTILITY(U,$J,358.3,10206,0)
+ ;;=H01.112^^51^590^6
+ ;;^UTILITY(U,$J,358.3,10206,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10206,1,3,0)
+ ;;=3^Allergic Dermatitis of Right Lower Eyelid

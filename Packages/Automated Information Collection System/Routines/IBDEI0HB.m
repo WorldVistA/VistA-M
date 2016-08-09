@@ -1,124 +1,292 @@
-IBDEI0HB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0HB ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8014,0)
- ;;=S90.425A^^33^431^31
- ;;^UTILITY(U,$J,358.3,8014,1,0)
+ ;;^UTILITY(U,$J,358.3,17392,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,17392,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,17392,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,17393,0)
+ ;;=H60.03^^76^893^10
+ ;;^UTILITY(U,$J,358.3,17393,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8014,1,3,0)
- ;;=3^Blister (nonthermal), left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,8014,1,4,0)
- ;;=4^S90.425A
- ;;^UTILITY(U,$J,358.3,8014,2)
- ;;=^5043919
- ;;^UTILITY(U,$J,358.3,8015,0)
- ;;=T23.121A^^33^431^35
- ;;^UTILITY(U,$J,358.3,8015,1,0)
+ ;;^UTILITY(U,$J,358.3,17393,1,3,0)
+ ;;=3^External Ear Abscess,Bilateral
+ ;;^UTILITY(U,$J,358.3,17393,1,4,0)
+ ;;=4^H60.03
+ ;;^UTILITY(U,$J,358.3,17393,2)
+ ;;=^5006438
+ ;;^UTILITY(U,$J,358.3,17394,0)
+ ;;=H60.02^^76^893^11
+ ;;^UTILITY(U,$J,358.3,17394,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8015,1,3,0)
- ;;=3^Burn first degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8015,1,4,0)
- ;;=4^T23.121A
- ;;^UTILITY(U,$J,358.3,8015,2)
- ;;=^5047671
- ;;^UTILITY(U,$J,358.3,8016,0)
- ;;=T23.122A^^33^431^34
- ;;^UTILITY(U,$J,358.3,8016,1,0)
+ ;;^UTILITY(U,$J,358.3,17394,1,3,0)
+ ;;=3^External Ear Abscess,Left
+ ;;^UTILITY(U,$J,358.3,17394,1,4,0)
+ ;;=4^H60.02
+ ;;^UTILITY(U,$J,358.3,17394,2)
+ ;;=^5006437
+ ;;^UTILITY(U,$J,358.3,17395,0)
+ ;;=H60.01^^76^893^12
+ ;;^UTILITY(U,$J,358.3,17395,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8016,1,3,0)
- ;;=3^Burn first degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8016,1,4,0)
- ;;=4^T23.122A
- ;;^UTILITY(U,$J,358.3,8016,2)
- ;;=^5047674
- ;;^UTILITY(U,$J,358.3,8017,0)
- ;;=T23.221A^^33^431^39
- ;;^UTILITY(U,$J,358.3,8017,1,0)
+ ;;^UTILITY(U,$J,358.3,17395,1,3,0)
+ ;;=3^External Ear Abscess,Right
+ ;;^UTILITY(U,$J,358.3,17395,1,4,0)
+ ;;=4^H60.01
+ ;;^UTILITY(U,$J,358.3,17395,2)
+ ;;=^5006436
+ ;;^UTILITY(U,$J,358.3,17396,0)
+ ;;=H60.13^^76^893^13
+ ;;^UTILITY(U,$J,358.3,17396,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8017,1,3,0)
- ;;=3^Burn second degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8017,1,4,0)
- ;;=4^T23.221A
- ;;^UTILITY(U,$J,358.3,8017,2)
- ;;=^5047749
- ;;^UTILITY(U,$J,358.3,8018,0)
- ;;=T23.222A^^33^431^38
- ;;^UTILITY(U,$J,358.3,8018,1,0)
+ ;;^UTILITY(U,$J,358.3,17396,1,3,0)
+ ;;=3^External Ear Cellulitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,17396,1,4,0)
+ ;;=4^H60.13
+ ;;^UTILITY(U,$J,358.3,17396,2)
+ ;;=^5006442
+ ;;^UTILITY(U,$J,358.3,17397,0)
+ ;;=H60.12^^76^893^14
+ ;;^UTILITY(U,$J,358.3,17397,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8018,1,3,0)
- ;;=3^Burn second degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8018,1,4,0)
- ;;=4^T23.222A
- ;;^UTILITY(U,$J,358.3,8018,2)
- ;;=^5047752
- ;;^UTILITY(U,$J,358.3,8019,0)
- ;;=T23.321A^^33^431^43
- ;;^UTILITY(U,$J,358.3,8019,1,0)
+ ;;^UTILITY(U,$J,358.3,17397,1,3,0)
+ ;;=3^External Ear Cellulitis,Left
+ ;;^UTILITY(U,$J,358.3,17397,1,4,0)
+ ;;=4^H60.12
+ ;;^UTILITY(U,$J,358.3,17397,2)
+ ;;=^5006441
+ ;;^UTILITY(U,$J,358.3,17398,0)
+ ;;=H60.11^^76^893^15
+ ;;^UTILITY(U,$J,358.3,17398,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8019,1,3,0)
- ;;=3^Burn third degree of single r finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8019,1,4,0)
- ;;=4^T23.321A
- ;;^UTILITY(U,$J,358.3,8019,2)
- ;;=^5047827
- ;;^UTILITY(U,$J,358.3,8020,0)
- ;;=T23.322A^^33^431^42
- ;;^UTILITY(U,$J,358.3,8020,1,0)
+ ;;^UTILITY(U,$J,358.3,17398,1,3,0)
+ ;;=3^External Ear Cellulitis,Right
+ ;;^UTILITY(U,$J,358.3,17398,1,4,0)
+ ;;=4^H60.11
+ ;;^UTILITY(U,$J,358.3,17398,2)
+ ;;=^5006440
+ ;;^UTILITY(U,$J,358.3,17399,0)
+ ;;=G40.909^^76^893^4
+ ;;^UTILITY(U,$J,358.3,17399,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8020,1,3,0)
- ;;=3^Burn third degree of single l finger except thumb, init
- ;;^UTILITY(U,$J,358.3,8020,1,4,0)
- ;;=4^T23.322A
- ;;^UTILITY(U,$J,358.3,8020,2)
- ;;=^5047830
- ;;^UTILITY(U,$J,358.3,8021,0)
- ;;=T23.101A^^33^431^33
- ;;^UTILITY(U,$J,358.3,8021,1,0)
+ ;;^UTILITY(U,$J,358.3,17399,1,3,0)
+ ;;=3^Epilepsy,Not Intractable w/o Status Epilepticus
+ ;;^UTILITY(U,$J,358.3,17399,1,4,0)
+ ;;=4^G40.909
+ ;;^UTILITY(U,$J,358.3,17399,2)
+ ;;=^5003865
+ ;;^UTILITY(U,$J,358.3,17400,0)
+ ;;=M77.9^^76^893^3
+ ;;^UTILITY(U,$J,358.3,17400,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8021,1,3,0)
- ;;=3^Burn first degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8021,1,4,0)
- ;;=4^T23.101A
- ;;^UTILITY(U,$J,358.3,8021,2)
- ;;=^5047656
- ;;^UTILITY(U,$J,358.3,8022,0)
- ;;=T23.102A^^33^431^32
- ;;^UTILITY(U,$J,358.3,8022,1,0)
+ ;;^UTILITY(U,$J,358.3,17400,1,3,0)
+ ;;=3^Enthesopathy,Unspec
+ ;;^UTILITY(U,$J,358.3,17400,1,4,0)
+ ;;=4^M77.9
+ ;;^UTILITY(U,$J,358.3,17400,2)
+ ;;=^5013319
+ ;;^UTILITY(U,$J,358.3,17401,0)
+ ;;=K29.70^^76^894^3
+ ;;^UTILITY(U,$J,358.3,17401,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8022,1,3,0)
- ;;=3^Burn first degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8022,1,4,0)
- ;;=4^T23.102A
- ;;^UTILITY(U,$J,358.3,8022,2)
- ;;=^5047659
- ;;^UTILITY(U,$J,358.3,8023,0)
- ;;=T23.201A^^33^431^37
- ;;^UTILITY(U,$J,358.3,8023,1,0)
+ ;;^UTILITY(U,$J,358.3,17401,1,3,0)
+ ;;=3^Gastritis, w/o bleeding, unspec
+ ;;^UTILITY(U,$J,358.3,17401,1,4,0)
+ ;;=4^K29.70
+ ;;^UTILITY(U,$J,358.3,17401,2)
+ ;;=^5008552
+ ;;^UTILITY(U,$J,358.3,17402,0)
+ ;;=K21.9^^76^894^4
+ ;;^UTILITY(U,$J,358.3,17402,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8023,1,3,0)
- ;;=3^Burn second degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8023,1,4,0)
- ;;=4^T23.201A
- ;;^UTILITY(U,$J,358.3,8023,2)
- ;;=^5047734
- ;;^UTILITY(U,$J,358.3,8024,0)
- ;;=T23.202A^^33^431^36
- ;;^UTILITY(U,$J,358.3,8024,1,0)
+ ;;^UTILITY(U,$J,358.3,17402,1,3,0)
+ ;;=3^Gastro-esophageal reflux dz w/o esophagitis
+ ;;^UTILITY(U,$J,358.3,17402,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,17402,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,17403,0)
+ ;;=K92.2^^76^894^6
+ ;;^UTILITY(U,$J,358.3,17403,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8024,1,3,0)
- ;;=3^Burn second degree of left hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8024,1,4,0)
- ;;=4^T23.202A
- ;;^UTILITY(U,$J,358.3,8024,2)
- ;;=^5047737
- ;;^UTILITY(U,$J,358.3,8025,0)
- ;;=T23.301A^^33^431^41
- ;;^UTILITY(U,$J,358.3,8025,1,0)
+ ;;^UTILITY(U,$J,358.3,17403,1,3,0)
+ ;;=3^Gastrointestinal hemorrhage, unspec
+ ;;^UTILITY(U,$J,358.3,17403,1,4,0)
+ ;;=4^K92.2
+ ;;^UTILITY(U,$J,358.3,17403,2)
+ ;;=^5008915
+ ;;^UTILITY(U,$J,358.3,17404,0)
+ ;;=K52.9^^76^894^5
+ ;;^UTILITY(U,$J,358.3,17404,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8025,1,3,0)
- ;;=3^Burn third degree of right hand, unsp site, init encntr
- ;;^UTILITY(U,$J,358.3,8025,1,4,0)
- ;;=4^T23.301A
- ;;^UTILITY(U,$J,358.3,8025,2)
- ;;=^5047812
+ ;;^UTILITY(U,$J,358.3,17404,1,3,0)
+ ;;=3^Gastroenteritis & Colitis Noninfective,Unspec
+ ;;^UTILITY(U,$J,358.3,17404,1,4,0)
+ ;;=4^K52.9
+ ;;^UTILITY(U,$J,358.3,17404,2)
+ ;;=^5008704
+ ;;^UTILITY(U,$J,358.3,17405,0)
+ ;;=K82.9^^76^894^2
+ ;;^UTILITY(U,$J,358.3,17405,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17405,1,3,0)
+ ;;=3^Gallbladder disease,Unspec 
+ ;;^UTILITY(U,$J,358.3,17405,1,4,0)
+ ;;=4^K82.9
+ ;;^UTILITY(U,$J,358.3,17405,2)
+ ;;=^5008875
+ ;;^UTILITY(U,$J,358.3,17406,0)
+ ;;=H40.9^^76^894^7
+ ;;^UTILITY(U,$J,358.3,17406,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17406,1,3,0)
+ ;;=3^Glaucoma, unspec
+ ;;^UTILITY(U,$J,358.3,17406,1,4,0)
+ ;;=4^H40.9
+ ;;^UTILITY(U,$J,358.3,17406,2)
+ ;;=^5005931
+ ;;^UTILITY(U,$J,358.3,17407,0)
+ ;;=M10.9^^76^894^8
+ ;;^UTILITY(U,$J,358.3,17407,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17407,1,3,0)
+ ;;=3^Gout, unspec
+ ;;^UTILITY(U,$J,358.3,17407,1,4,0)
+ ;;=4^M10.9
+ ;;^UTILITY(U,$J,358.3,17407,2)
+ ;;=^5010404
+ ;;^UTILITY(U,$J,358.3,17408,0)
+ ;;=K21.9^^76^894^1
+ ;;^UTILITY(U,$J,358.3,17408,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17408,1,3,0)
+ ;;=3^GERD w/o Esophagitis
+ ;;^UTILITY(U,$J,358.3,17408,1,4,0)
+ ;;=4^K21.9
+ ;;^UTILITY(U,$J,358.3,17408,2)
+ ;;=^5008505
+ ;;^UTILITY(U,$J,358.3,17409,0)
+ ;;=R31.0^^76^894^9
+ ;;^UTILITY(U,$J,358.3,17409,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17409,1,3,0)
+ ;;=3^Gross Hematuria
+ ;;^UTILITY(U,$J,358.3,17409,1,4,0)
+ ;;=4^R31.0
+ ;;^UTILITY(U,$J,358.3,17409,2)
+ ;;=^5019325
+ ;;^UTILITY(U,$J,358.3,17410,0)
+ ;;=B02.9^^76^895^22
+ ;;^UTILITY(U,$J,358.3,17410,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17410,1,3,0)
+ ;;=3^Herpes (Zoster) w/o complications
+ ;;^UTILITY(U,$J,358.3,17410,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,17410,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,17411,0)
+ ;;=B19.10^^76^895^18
+ ;;^UTILITY(U,$J,358.3,17411,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17411,1,3,0)
+ ;;=3^Hepatitis B,Viral Unspec
+ ;;^UTILITY(U,$J,358.3,17411,1,4,0)
+ ;;=4^B19.10
+ ;;^UTILITY(U,$J,358.3,17411,2)
+ ;;=^5000552
+ ;;^UTILITY(U,$J,358.3,17412,0)
+ ;;=B17.10^^76^895^2
+ ;;^UTILITY(U,$J,358.3,17412,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17412,1,3,0)
+ ;;=3^Acute Hepatitis C w/o hepatic coma
+ ;;^UTILITY(U,$J,358.3,17412,1,4,0)
+ ;;=4^B17.10
+ ;;^UTILITY(U,$J,358.3,17412,2)
+ ;;=^5000542
+ ;;^UTILITY(U,$J,358.3,17413,0)
+ ;;=B18.2^^76^895^21
+ ;;^UTILITY(U,$J,358.3,17413,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17413,1,3,0)
+ ;;=3^Hepatitis C,Viral,Chronic
+ ;;^UTILITY(U,$J,358.3,17413,1,4,0)
+ ;;=4^B18.2
+ ;;^UTILITY(U,$J,358.3,17413,2)
+ ;;=^5000548
+ ;;^UTILITY(U,$J,358.3,17414,0)
+ ;;=E05.90^^76^895^28
+ ;;^UTILITY(U,$J,358.3,17414,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17414,1,3,0)
+ ;;=3^Hyperthyroidism w/o Thyrotoxic Crisis/Storm,Unspec
+ ;;^UTILITY(U,$J,358.3,17414,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,17414,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,17415,0)
+ ;;=E03.9^^76^895^34
+ ;;^UTILITY(U,$J,358.3,17415,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17415,1,3,0)
+ ;;=3^Hypothyroidism, unspec
+ ;;^UTILITY(U,$J,358.3,17415,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,17415,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,17416,0)
+ ;;=E16.2^^76^895^31
+ ;;^UTILITY(U,$J,358.3,17416,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17416,1,3,0)
+ ;;=3^Hypoglycemia, unspec
+ ;;^UTILITY(U,$J,358.3,17416,1,4,0)
+ ;;=4^E16.2
+ ;;^UTILITY(U,$J,358.3,17416,2)
+ ;;=^5002708
+ ;;^UTILITY(U,$J,358.3,17417,0)
+ ;;=E78.0^^76^895^24
+ ;;^UTILITY(U,$J,358.3,17417,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17417,1,3,0)
+ ;;=3^Hypercholesterolemia,Pure
+ ;;^UTILITY(U,$J,358.3,17417,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,17417,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,17418,0)
+ ;;=E78.0^^76^895^29
+ ;;^UTILITY(U,$J,358.3,17418,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17418,1,3,0)
+ ;;=3^Hypertriglyceridemia
+ ;;^UTILITY(U,$J,358.3,17418,1,4,0)
+ ;;=4^E78.0
+ ;;^UTILITY(U,$J,358.3,17418,2)
+ ;;=^5002966
+ ;;^UTILITY(U,$J,358.3,17419,0)
+ ;;=E78.5^^76^895^26
+ ;;^UTILITY(U,$J,358.3,17419,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17419,1,3,0)
+ ;;=3^Hyperlipidemia, unspec
+ ;;^UTILITY(U,$J,358.3,17419,1,4,0)
+ ;;=4^E78.5
+ ;;^UTILITY(U,$J,358.3,17419,2)
+ ;;=^5002969
+ ;;^UTILITY(U,$J,358.3,17420,0)
+ ;;=E87.1^^76^895^30
+ ;;^UTILITY(U,$J,358.3,17420,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17420,1,3,0)
+ ;;=3^Hypo-osmolality and hyponatremia
+ ;;^UTILITY(U,$J,358.3,17420,1,4,0)
+ ;;=4^E87.1
+ ;;^UTILITY(U,$J,358.3,17420,2)
+ ;;=^5003019
+ ;;^UTILITY(U,$J,358.3,17421,0)
+ ;;=E87.5^^76^895^25

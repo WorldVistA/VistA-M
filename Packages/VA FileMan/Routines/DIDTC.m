@@ -1,6 +1,10 @@
-DIDTC ;SFISC/XAK-DATE/TIME OPERATIONS ;4MAY2011
- ;;22.0;VA FileMan;**14,36,71,117,164,165**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIDTC ;SFISC/XAK-DATE/TIME OPERATIONS ;3JAN2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 D N %T
  I 'X1!'X2 S X="",%Y=0 Q
  S X=X1 D H S X1=%H,X=X2,X2=%Y+1 D H S X=X1-%H,%Y=%Y+1&X2

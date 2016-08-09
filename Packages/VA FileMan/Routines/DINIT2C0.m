@@ -1,6 +1,11 @@
-DINIT2C0 ;SFISC/MKO-IMPORT TEMPLATE FILE ;10:52 AM  30 Mar 1999
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT2C0 ;SFISC/MKO-IMPORT TEMPLATE FILE ;06:12 PM  16 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;**CCO/NI TAG 'Q+12' CHANGED FOR DATE FORMAT
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT3
 Q Q
@@ -15,7 +20,7 @@ Q Q
  ;;^DD(.46,0,"DT")
  ;;=2960531
  ;;^DD(.46,0,"ID","WRITE")
- ;;=N D,D1,D2 S D2=^(0) S:$X>30 D1(1,"F")="!" S D=$P(D2,U,2) S:D D1(2)="("_$$FMTE^DILIBF(D)_")",D1(2,"F")="?30" S D=$P(D2,U,5) S:D D1(3)="User #"_D,D1(3,"F")="?47" S D=$P(D2,U,4) S:D D1(4)=" File #"_D,D1(4,"F")="?59" D EN^DDIOL(.D1)
+ ;;=N D,D1,D2 S D2=^(0) S:$X>30 D1(1,"F")="!" S D=$P(D2,U,2) S:D D1(2)="("_$$DATE^DIUTL(D)_")",D1(2,"F")="?30" S D=$P(D2,U,5) S:D D1(3)="User #"_D,D1(3,"F")="?47" S D=$P(D2,U,4) S:D D1(4)=" File #"_D,D1(4,"F")="?59" D EN^DDIOL(.D1)
  ;;^DD(.46,0,"IX","B",.46,.01)
  ;;=
  ;;^DD(.46,0,"IX","F",.46,4)

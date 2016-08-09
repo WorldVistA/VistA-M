@@ -1,6 +1,10 @@
-DIARA ;SFISC/TKW,WISC/CAP-ARCHIVING FUNCTIONS (CONT) ;5/30/96  14:25
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIARA ;SFISC/TKW,WISC/CAP-ARCHIVING FUNCTIONS (CONT) ;22SEP2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 ENTD ; PURGE
  W:'$D(DIAX) !!,$C(7),$C(7),"BEFORE YOU PURGE, MAKE SURE THAT YOUR ARCHIVE MEDIUM IS READABLE!",!,"YOU MAY USE THE FIND ARCHIVED ENTRIES OPTION TO FIND THE LAST",!,"ARCHIVED RECORD APPEARING ON THE INDEX.",!
  K DIR S DIR(0)="Y",DIR("A")="Do you want to proceed",DIR("B")="NO" D ^DIR Q:$D(DUOUT)!$D(DTOUT)!($G(Y)'=1)
@@ -15,11 +19,9 @@ D0 S DA=$O(^DIBT(DIARU,1,0))
  I DA="" W !!,"<< ",$P(^DIAR(1.11,DIARC,0),U,7)," ENTRIES PURGED >>" K ^("D"),^("EX") D UPDATE^DIARU G Q
  S DIK=DIC,DIARS(0)=$S($D(@(DIC_"DA,0)")):^(0),1:"") K ^DIBT(DIARU,1,DA)
  I DIARS(0)="" S Y=$P(^DIAR(1.11,DIARC,0),U,7),$P(^(0),U,7)=Y-1 G D0
- D ^DIK G D0:DIARF'=DIARF2 S Y=DIARS(0),X=$P(Y,U) G E:'$D(DIARS)#2
-D F I=1:1 Q:$P(DIARS,U,I)=""  S %=$P(DIARS,U,I),$P(X,U,%)=$P(Y,U,%)
-E ;SETS -9 NODE & STUB IN ORIGINAL FILE.  NOT DONE FOR V18
- ;S @(DIC_"DA,-9)")=DIARC,^(0)=X
- G D0
+ D ^DIK G D0:DIARF'=DIARF2 S Y=DIARS(0),X=$P(Y,U)
+D F I=1:1 Q:$P($G(DIARS),U,I)=""  S %=$P(DIARS,U,I),$P(X,U,%)=$P(Y,U,%)
+E G D0
  ;
 ENTC ;CANCEL
  S DIC("A")="CANCEL WHICH "_$S($D(DIAX):"EXTRACT",1:"ARCHIVING")_" SELECTION: " D FILE^DIARU G Q:'$D(DIARC)

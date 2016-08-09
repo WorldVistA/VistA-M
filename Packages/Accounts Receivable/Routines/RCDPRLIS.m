@@ -1,8 +1,8 @@
-RCDPRLIS ;WISC/RFJ-list of receipts report ;1 Jun 99
- ;;4.5;Accounts Receivable;**114**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPRLIS ;WISC/RFJ - list of receipts report ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
- N DATEEND,DATESTRT
+ N DATEEND,DATESTRT,POP
  W !
  D DATESEL^RCRJRTRA("RECEIPT Opened")
  I '$G(DATESTRT)!('$G(DATEEND)) Q
@@ -15,7 +15,7 @@ RCDPRLIS ;WISC/RFJ-list of receipts report ;1 Jun 99
  W !!,"<*> please wait <*>"
  ;
 DQ ;  queued report starts here
- N %I,DATA,DATE,DATEDIS1,DATEDIS2,FMSDOCNO,NOW,PAGE,RCDPDATA,RCDPFPRE,RCRECTDA,RCRJFLAG,RCRJLINE,SCREEN,TOTALS,TYPE,X,Y
+ N %,%I,DATA,DATE,DATEDIS1,DATEDIS2,FMSDOCNO,NOW,PAGE,RCDPDATA,RCDPFPRE,RCRECTDA,RCRJFLAG,RCRJLINE,SCREEN,TOTALS,TYPE,X,Y
  K ^TMP("RCDPRLIS",$J)
  S RCRECTDA=0 F  S RCRECTDA=$O(^RCY(344,RCRECTDA)) Q:'RCRECTDA  D
  .   K RCDPDATA
@@ -56,8 +56,8 @@ DQ ;  queued report starts here
  .   S RCRECTDA=0 F  S RCRECTDA=$O(^TMP("RCDPRLIS",$J,DATE,RCRECTDA)) Q:'RCRECTDA!($G(RCRJFLAG))  D
  .   .   S DATA=^TMP("RCDPRLIS",$J,DATE,RCRECTDA)
  .   .   W !,$E(DATE,4,5),"/",$E(DATE,6,7),"/",$E(DATE,2,3)
- .   .   W ?10,$P(DATA,"^")
- .   .   W ?21,$E($P($P(DATA,"^",2)," "),1,8)        ;payment type
+ .   .   W ?9,$P(DATA,"^")
+ .   .   W ?22,$E($P($P(DATA,"^",2)," "),1,8)        ;payment type
  .   .   W ?31,$E($P(DATA,"^",3),1,2)                ;user initials
  .   .   W ?33,$J($P(DATA,"^",4),6)                  ;payment count
  .   .   W $J($P(DATA,"^",5),13,2)                   ;payment amount
@@ -91,9 +91,10 @@ Q D ^%ZISC
  ;
  ;
 H ;  header
+ N %
  S %=NOW_"  PAGE "_PAGE,PAGE=PAGE+1 I PAGE'=2!(SCREEN) W @IOF
  W $C(13),"LIST OF RECEIPTS REPORT",?(80-$L(%)),%
  W !,"  FOR THE DATE RANGE: ",DATEDIS1,"  TO  ",DATEDIS2
- W !,"DATE",?10,"RECEIPT",?21,"TYPE",?31,"US",?33,$J("COUNT",6),$J("AMOUNT",13),?55,"FMS CR DOC",?71,"STATUS"
+ W !,"DATE",?9,"RECEIPT",?22,"TYPE",?31,"US",?33,$J("COUNT",6),$J("AMOUNT",13),?55,"FMS CR DOC",?71,"STATUS"
  W !,RCRJLINE
  Q

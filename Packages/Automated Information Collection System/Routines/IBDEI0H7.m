@@ -1,130 +1,288 @@
-IBDEI0H7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0H7 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7963,1,4,0)
- ;;=4^S40.811A
- ;;^UTILITY(U,$J,358.3,7963,2)
- ;;=^5026225
- ;;^UTILITY(U,$J,358.3,7964,0)
- ;;=S40.812A^^33^431^13
- ;;^UTILITY(U,$J,358.3,7964,1,0)
+ ;;^UTILITY(U,$J,358.3,17277,1,2,0)
+ ;;=2^93005
+ ;;^UTILITY(U,$J,358.3,17277,1,3,0)
+ ;;=3^EKG,TRACING ONLY
+ ;;^UTILITY(U,$J,358.3,17278,0)
+ ;;=S9445^^75^880^1^^^^1
+ ;;^UTILITY(U,$J,358.3,17278,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,17278,1,2,0)
+ ;;=2^S9445
+ ;;^UTILITY(U,$J,358.3,17278,1,3,0)
+ ;;=3^PT EDUCATION NOC INDIV
+ ;;^UTILITY(U,$J,358.3,17279,0)
+ ;;=99090^^75^881^2^^^^1
+ ;;^UTILITY(U,$J,358.3,17279,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,17279,1,2,0)
+ ;;=2^99090
+ ;;^UTILITY(U,$J,358.3,17279,1,3,0)
+ ;;=3^COMPUTER DATA ANALYSIS
+ ;;^UTILITY(U,$J,358.3,17280,0)
+ ;;=99091^^75^881^3^^^^1
+ ;;^UTILITY(U,$J,358.3,17280,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,17280,1,2,0)
+ ;;=2^99091
+ ;;^UTILITY(U,$J,358.3,17280,1,3,0)
+ ;;=3^COLLECT/INTERPRET DATA>29 MIN
+ ;;^UTILITY(U,$J,358.3,17281,0)
+ ;;=G0299^^75^882^2^^^^1
+ ;;^UTILITY(U,$J,358.3,17281,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,17281,1,2,0)
+ ;;=2^G0299
+ ;;^UTILITY(U,$J,358.3,17281,1,3,0)
+ ;;=3^HOME VISIT BY RN,EA 15 MIN
+ ;;^UTILITY(U,$J,358.3,17282,0)
+ ;;=G0300^^75^882^1^^^^1
+ ;;^UTILITY(U,$J,358.3,17282,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,17282,1,2,0)
+ ;;=2^G0300
+ ;;^UTILITY(U,$J,358.3,17282,1,3,0)
+ ;;=3^HOME VISIT BY LPN,EA 15 MIN
+ ;;^UTILITY(U,$J,358.3,17283,0)
+ ;;=D50.9^^76^883^9
+ ;;^UTILITY(U,$J,358.3,17283,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7964,1,3,0)
- ;;=3^Abrasion,Left upper arm, initial encounter
- ;;^UTILITY(U,$J,358.3,7964,1,4,0)
- ;;=4^S40.812A
- ;;^UTILITY(U,$J,358.3,7964,2)
- ;;=^5026228
- ;;^UTILITY(U,$J,358.3,7965,0)
- ;;=S05.01XA^^33^431^46
- ;;^UTILITY(U,$J,358.3,7965,1,0)
+ ;;^UTILITY(U,$J,358.3,17283,1,3,0)
+ ;;=3^Anemia, iron defiency, unspec
+ ;;^UTILITY(U,$J,358.3,17283,1,4,0)
+ ;;=4^D50.9
+ ;;^UTILITY(U,$J,358.3,17283,2)
+ ;;=^5002283
+ ;;^UTILITY(U,$J,358.3,17284,0)
+ ;;=D64.9^^76^883^10
+ ;;^UTILITY(U,$J,358.3,17284,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7965,1,3,0)
- ;;=3^Conjunctiva/Corneal Abrasion w/o FB,Right Eye,Init Enctr
- ;;^UTILITY(U,$J,358.3,7965,1,4,0)
- ;;=4^S05.01XA
- ;;^UTILITY(U,$J,358.3,7965,2)
- ;;=^5020579
- ;;^UTILITY(U,$J,358.3,7966,0)
- ;;=S05.02XA^^33^431^45
- ;;^UTILITY(U,$J,358.3,7966,1,0)
+ ;;^UTILITY(U,$J,358.3,17284,1,3,0)
+ ;;=3^Anemia, unspec
+ ;;^UTILITY(U,$J,358.3,17284,1,4,0)
+ ;;=4^D64.9
+ ;;^UTILITY(U,$J,358.3,17284,2)
+ ;;=^5002351
+ ;;^UTILITY(U,$J,358.3,17285,0)
+ ;;=G30.9^^76^883^8
+ ;;^UTILITY(U,$J,358.3,17285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7966,1,3,0)
- ;;=3^Conjuctiva/Corneal Abrasion w/o FB,Left Eye,Init Encntr
- ;;^UTILITY(U,$J,358.3,7966,1,4,0)
- ;;=4^S05.02XA
- ;;^UTILITY(U,$J,358.3,7966,2)
- ;;=^5020582
- ;;^UTILITY(U,$J,358.3,7967,0)
- ;;=S50.311A^^33^431^17
- ;;^UTILITY(U,$J,358.3,7967,1,0)
+ ;;^UTILITY(U,$J,358.3,17285,1,3,0)
+ ;;=3^Alzheimer's disease, unspec
+ ;;^UTILITY(U,$J,358.3,17285,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,17285,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,17286,0)
+ ;;=I20.9^^76^883^12
+ ;;^UTILITY(U,$J,358.3,17286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7967,1,3,0)
- ;;=3^Abrasion,Right elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,7967,1,4,0)
- ;;=4^S50.311A
- ;;^UTILITY(U,$J,358.3,7967,2)
- ;;=^5028500
- ;;^UTILITY(U,$J,358.3,7968,0)
- ;;=S50.312A^^33^431^2
- ;;^UTILITY(U,$J,358.3,7968,1,0)
+ ;;^UTILITY(U,$J,358.3,17286,1,3,0)
+ ;;=3^Angina pectoris, unspec
+ ;;^UTILITY(U,$J,358.3,17286,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,17286,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,17287,0)
+ ;;=I35.0^^76^883^13
+ ;;^UTILITY(U,$J,358.3,17287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7968,1,3,0)
- ;;=3^Abrasion,Left elbow, initial encounter
- ;;^UTILITY(U,$J,358.3,7968,1,4,0)
- ;;=4^S50.312A
- ;;^UTILITY(U,$J,358.3,7968,2)
- ;;=^5028503
- ;;^UTILITY(U,$J,358.3,7969,0)
- ;;=S00.81XA^^33^431^15
- ;;^UTILITY(U,$J,358.3,7969,1,0)
+ ;;^UTILITY(U,$J,358.3,17287,1,3,0)
+ ;;=3^Aortic (valve) stenosis, Nonrheumatic
+ ;;^UTILITY(U,$J,358.3,17287,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,17287,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,17288,0)
+ ;;=I48.91^^76^883^16
+ ;;^UTILITY(U,$J,358.3,17288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7969,1,3,0)
- ;;=3^Abrasion,Other part of head, initial encounter
- ;;^UTILITY(U,$J,358.3,7969,1,4,0)
- ;;=4^S00.81XA
- ;;^UTILITY(U,$J,358.3,7969,2)
- ;;=^5019988
- ;;^UTILITY(U,$J,358.3,7970,0)
- ;;=S90.811A^^33^431^18
- ;;^UTILITY(U,$J,358.3,7970,1,0)
+ ;;^UTILITY(U,$J,358.3,17288,1,3,0)
+ ;;=3^Atrial fibrillation, unspec
+ ;;^UTILITY(U,$J,358.3,17288,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,17288,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,17289,0)
+ ;;=I48.92^^76^883^17
+ ;;^UTILITY(U,$J,358.3,17289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7970,1,3,0)
- ;;=3^Abrasion,Right foot, initial encounter
- ;;^UTILITY(U,$J,358.3,7970,1,4,0)
- ;;=4^S90.811A
- ;;^UTILITY(U,$J,358.3,7970,2)
- ;;=^5044051
- ;;^UTILITY(U,$J,358.3,7971,0)
- ;;=S90.812A^^33^431^3
- ;;^UTILITY(U,$J,358.3,7971,1,0)
+ ;;^UTILITY(U,$J,358.3,17289,1,3,0)
+ ;;=3^Atrial flutter, unspec
+ ;;^UTILITY(U,$J,358.3,17289,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,17289,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,17290,0)
+ ;;=I71.4^^76^883^1
+ ;;^UTILITY(U,$J,358.3,17290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7971,1,3,0)
- ;;=3^Abrasion,Left foot, initial encounter
- ;;^UTILITY(U,$J,358.3,7971,1,4,0)
- ;;=4^S90.812A
- ;;^UTILITY(U,$J,358.3,7971,2)
- ;;=^5044054
- ;;^UTILITY(U,$J,358.3,7972,0)
- ;;=S90.411A^^33^431^20
- ;;^UTILITY(U,$J,358.3,7972,1,0)
+ ;;^UTILITY(U,$J,358.3,17290,1,3,0)
+ ;;=3^Abdominal aortic aneurysm, w/o rupture
+ ;;^UTILITY(U,$J,358.3,17290,1,4,0)
+ ;;=4^I71.4
+ ;;^UTILITY(U,$J,358.3,17290,2)
+ ;;=^5007789
+ ;;^UTILITY(U,$J,358.3,17291,0)
+ ;;=J30.9^^76^883^6
+ ;;^UTILITY(U,$J,358.3,17291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7972,1,3,0)
- ;;=3^Abrasion,Right great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,7972,1,4,0)
- ;;=4^S90.411A
- ;;^UTILITY(U,$J,358.3,7972,2)
- ;;=^5043889
- ;;^UTILITY(U,$J,358.3,7973,0)
- ;;=S90.412A^^33^431^5
- ;;^UTILITY(U,$J,358.3,7973,1,0)
+ ;;^UTILITY(U,$J,358.3,17291,1,3,0)
+ ;;=3^Allergic rhinitis, unspec
+ ;;^UTILITY(U,$J,358.3,17291,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,17291,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,17292,0)
+ ;;=J45.909^^76^883^15
+ ;;^UTILITY(U,$J,358.3,17292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7973,1,3,0)
- ;;=3^Abrasion,Left great toe, initial encounter
- ;;^UTILITY(U,$J,358.3,7973,1,4,0)
- ;;=4^S90.412A
- ;;^UTILITY(U,$J,358.3,7973,2)
- ;;=^5043892
- ;;^UTILITY(U,$J,358.3,7974,0)
- ;;=S90.414A^^33^431^23
- ;;^UTILITY(U,$J,358.3,7974,1,0)
+ ;;^UTILITY(U,$J,358.3,17292,1,3,0)
+ ;;=3^Asthma, uncomplicated, unspec
+ ;;^UTILITY(U,$J,358.3,17292,1,4,0)
+ ;;=4^J45.909
+ ;;^UTILITY(U,$J,358.3,17292,2)
+ ;;=^5008256
+ ;;^UTILITY(U,$J,358.3,17293,0)
+ ;;=M12.9^^76^883^14
+ ;;^UTILITY(U,$J,358.3,17293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7974,1,3,0)
- ;;=3^Abrasion,Right lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,7974,1,4,0)
- ;;=4^S90.414A
- ;;^UTILITY(U,$J,358.3,7974,2)
- ;;=^5043898
- ;;^UTILITY(U,$J,358.3,7975,0)
- ;;=S90.415A^^33^431^8
- ;;^UTILITY(U,$J,358.3,7975,1,0)
+ ;;^UTILITY(U,$J,358.3,17293,1,3,0)
+ ;;=3^Arthropathy, unspec
+ ;;^UTILITY(U,$J,358.3,17293,1,4,0)
+ ;;=4^M12.9
+ ;;^UTILITY(U,$J,358.3,17293,2)
+ ;;=^5010666
+ ;;^UTILITY(U,$J,358.3,17294,0)
+ ;;=T78.40XA^^76^883^7
+ ;;^UTILITY(U,$J,358.3,17294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7975,1,3,0)
- ;;=3^Abrasion,Left lesser toe(s), initial encounter
- ;;^UTILITY(U,$J,358.3,7975,1,4,0)
- ;;=4^S90.415A
- ;;^UTILITY(U,$J,358.3,7975,2)
- ;;=^5043901
- ;;^UTILITY(U,$J,358.3,7976,0)
- ;;=S50.811A^^33^431^19
+ ;;^UTILITY(U,$J,358.3,17294,1,3,0)
+ ;;=3^Allergy, unspec, init encntr
+ ;;^UTILITY(U,$J,358.3,17294,1,4,0)
+ ;;=4^T78.40XA
+ ;;^UTILITY(U,$J,358.3,17294,2)
+ ;;=^5054284
+ ;;^UTILITY(U,$J,358.3,17295,0)
+ ;;=R10.9^^76^883^2
+ ;;^UTILITY(U,$J,358.3,17295,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17295,1,3,0)
+ ;;=3^Abdominal pain, unspec
+ ;;^UTILITY(U,$J,358.3,17295,1,4,0)
+ ;;=4^R10.9
+ ;;^UTILITY(U,$J,358.3,17295,2)
+ ;;=^5019230
+ ;;^UTILITY(U,$J,358.3,17296,0)
+ ;;=L40.2^^76^883^5
+ ;;^UTILITY(U,$J,358.3,17296,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17296,1,3,0)
+ ;;=3^Acrodermatitis Continua
+ ;;^UTILITY(U,$J,358.3,17296,1,4,0)
+ ;;=4^L40.2
+ ;;^UTILITY(U,$J,358.3,17296,2)
+ ;;=^5009162
+ ;;^UTILITY(U,$J,358.3,17297,0)
+ ;;=Z89.512^^76^883^3
+ ;;^UTILITY(U,$J,358.3,17297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17297,1,3,0)
+ ;;=3^Acquired Absence Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,17297,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,17297,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,17298,0)
+ ;;=Z89.511^^76^883^4
+ ;;^UTILITY(U,$J,358.3,17298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17298,1,3,0)
+ ;;=3^Acquired Absence Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,17298,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,17298,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,17299,0)
+ ;;=D51.9^^76^883^11
+ ;;^UTILITY(U,$J,358.3,17299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17299,1,3,0)
+ ;;=3^Anemia,Vitamin B12 Deficiency
+ ;;^UTILITY(U,$J,358.3,17299,1,4,0)
+ ;;=4^D51.9
+ ;;^UTILITY(U,$J,358.3,17299,2)
+ ;;=^5002289
+ ;;^UTILITY(U,$J,358.3,17300,0)
+ ;;=F43.20^^76^884^4
+ ;;^UTILITY(U,$J,358.3,17300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17300,1,3,0)
+ ;;=3^Adjustment disorder, unspec
+ ;;^UTILITY(U,$J,358.3,17300,1,4,0)
+ ;;=4^F43.20
+ ;;^UTILITY(U,$J,358.3,17300,2)
+ ;;=^5003573
+ ;;^UTILITY(U,$J,358.3,17301,0)
+ ;;=F43.21^^76^884^3
+ ;;^UTILITY(U,$J,358.3,17301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17301,1,3,0)
+ ;;=3^Adjustment disorder w/ depressed mood
+ ;;^UTILITY(U,$J,358.3,17301,1,4,0)
+ ;;=4^F43.21
+ ;;^UTILITY(U,$J,358.3,17301,2)
+ ;;=^331948
+ ;;^UTILITY(U,$J,358.3,17302,0)
+ ;;=F43.22^^76^884^1
+ ;;^UTILITY(U,$J,358.3,17302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17302,1,3,0)
+ ;;=3^Adjustment Disorder w/ Anxiety
+ ;;^UTILITY(U,$J,358.3,17302,1,4,0)
+ ;;=4^F43.22
+ ;;^UTILITY(U,$J,358.3,17302,2)
+ ;;=^331949
+ ;;^UTILITY(U,$J,358.3,17303,0)
+ ;;=F43.23^^76^884^2
+ ;;^UTILITY(U,$J,358.3,17303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17303,1,3,0)
+ ;;=3^Adjustment Disorder w/ Mixed Anxiety and Depressed Mood
+ ;;^UTILITY(U,$J,358.3,17303,1,4,0)
+ ;;=4^F43.23
+ ;;^UTILITY(U,$J,358.3,17303,2)
+ ;;=^331950
+ ;;^UTILITY(U,$J,358.3,17304,0)
+ ;;=F41.9^^76^885^4
+ ;;^UTILITY(U,$J,358.3,17304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17304,1,3,0)
+ ;;=3^Anxiety disorder, unspec
+ ;;^UTILITY(U,$J,358.3,17304,1,4,0)
+ ;;=4^F41.9
+ ;;^UTILITY(U,$J,358.3,17304,2)
+ ;;=^5003567
+ ;;^UTILITY(U,$J,358.3,17305,0)
+ ;;=F41.0^^76^885^6
+ ;;^UTILITY(U,$J,358.3,17305,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17305,1,3,0)
+ ;;=3^Panic disorder w/o agoraphobia [episodic paroxysmal anxiety]
+ ;;^UTILITY(U,$J,358.3,17305,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,17305,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,17306,0)
+ ;;=F41.1^^76^885^3
+ ;;^UTILITY(U,$J,358.3,17306,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17306,1,3,0)
+ ;;=3^Anxiety disorder, generalized
+ ;;^UTILITY(U,$J,358.3,17306,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,17306,2)
+ ;;=^50059

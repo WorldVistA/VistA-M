@@ -1,128 +1,288 @@
-IBDEI0LE ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0LE ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9981,1,0)
+ ;;^UTILITY(U,$J,358.3,21579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9981,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9981,1,4,0)
- ;;=4^H40.33X0
- ;;^UTILITY(U,$J,358.3,9981,2)
- ;;=^5005860
- ;;^UTILITY(U,$J,358.3,9982,0)
- ;;=H40.33X1^^44^496^125
- ;;^UTILITY(U,$J,358.3,9982,1,0)
+ ;;^UTILITY(U,$J,358.3,21579,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Hand
+ ;;^UTILITY(U,$J,358.3,21579,1,4,0)
+ ;;=4^L02.512
+ ;;^UTILITY(U,$J,358.3,21579,2)
+ ;;=^5008993
+ ;;^UTILITY(U,$J,358.3,21580,0)
+ ;;=L02.611^^89^1035^127
+ ;;^UTILITY(U,$J,358.3,21580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9982,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,9982,1,4,0)
- ;;=4^H40.33X1
- ;;^UTILITY(U,$J,358.3,9982,2)
- ;;=^5005861
- ;;^UTILITY(U,$J,358.3,9983,0)
- ;;=H40.33X2^^44^496^126
- ;;^UTILITY(U,$J,358.3,9983,1,0)
+ ;;^UTILITY(U,$J,358.3,21580,1,3,0)
+ ;;=3^Cutaneous Abscess of Right Foot
+ ;;^UTILITY(U,$J,358.3,21580,1,4,0)
+ ;;=4^L02.611
+ ;;^UTILITY(U,$J,358.3,21580,2)
+ ;;=^5009001
+ ;;^UTILITY(U,$J,358.3,21581,0)
+ ;;=L02.612^^89^1035^122
+ ;;^UTILITY(U,$J,358.3,21581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9983,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9983,1,4,0)
- ;;=4^H40.33X2
- ;;^UTILITY(U,$J,358.3,9983,2)
- ;;=^5005862
- ;;^UTILITY(U,$J,358.3,9984,0)
- ;;=H40.33X3^^44^496^127
- ;;^UTILITY(U,$J,358.3,9984,1,0)
+ ;;^UTILITY(U,$J,358.3,21581,1,3,0)
+ ;;=3^Cutaneous Abscess of Left Foot
+ ;;^UTILITY(U,$J,358.3,21581,1,4,0)
+ ;;=4^L02.612
+ ;;^UTILITY(U,$J,358.3,21581,2)
+ ;;=^5009002
+ ;;^UTILITY(U,$J,358.3,21582,0)
+ ;;=L02.92^^89^1035^155
+ ;;^UTILITY(U,$J,358.3,21582,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9984,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,9984,1,4,0)
- ;;=4^H40.33X3
- ;;^UTILITY(U,$J,358.3,9984,2)
- ;;=^5005863
- ;;^UTILITY(U,$J,358.3,9985,0)
- ;;=H40.33X4^^44^496^124
- ;;^UTILITY(U,$J,358.3,9985,1,0)
+ ;;^UTILITY(U,$J,358.3,21582,1,3,0)
+ ;;=3^Furuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,21582,1,4,0)
+ ;;=4^L02.92
+ ;;^UTILITY(U,$J,358.3,21582,2)
+ ;;=^5009017
+ ;;^UTILITY(U,$J,358.3,21583,0)
+ ;;=L02.93^^89^1035^93
+ ;;^UTILITY(U,$J,358.3,21583,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9985,1,3,0)
- ;;=3^Traumatic Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9985,1,4,0)
- ;;=4^H40.33X4
- ;;^UTILITY(U,$J,358.3,9985,2)
- ;;=^5005864
- ;;^UTILITY(U,$J,358.3,9986,0)
- ;;=H21.233^^44^496^26
- ;;^UTILITY(U,$J,358.3,9986,1,0)
+ ;;^UTILITY(U,$J,358.3,21583,1,3,0)
+ ;;=3^Carbuncle,Unspec
+ ;;^UTILITY(U,$J,358.3,21583,1,4,0)
+ ;;=4^L02.93
+ ;;^UTILITY(U,$J,358.3,21583,2)
+ ;;=^5009018
+ ;;^UTILITY(U,$J,358.3,21584,0)
+ ;;=L03.011^^89^1035^108
+ ;;^UTILITY(U,$J,358.3,21584,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9986,1,3,0)
- ;;=3^Degeneration of Iris,Bilateral
- ;;^UTILITY(U,$J,358.3,9986,1,4,0)
- ;;=4^H21.233
- ;;^UTILITY(U,$J,358.3,9986,2)
- ;;=^5005189
- ;;^UTILITY(U,$J,358.3,9987,0)
- ;;=H40.61X1^^44^496^40
- ;;^UTILITY(U,$J,358.3,9987,1,0)
+ ;;^UTILITY(U,$J,358.3,21584,1,3,0)
+ ;;=3^Cellulitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,21584,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,21584,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,21585,0)
+ ;;=L03.012^^89^1035^101
+ ;;^UTILITY(U,$J,358.3,21585,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9987,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9987,1,4,0)
- ;;=4^H40.61X1
- ;;^UTILITY(U,$J,358.3,9987,2)
- ;;=^5005907
- ;;^UTILITY(U,$J,358.3,9988,0)
- ;;=H40.013^^44^496^59
- ;;^UTILITY(U,$J,358.3,9988,1,0)
+ ;;^UTILITY(U,$J,358.3,21585,1,3,0)
+ ;;=3^Cellulitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,21585,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,21585,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,21586,0)
+ ;;=L03.021^^89^1035^24
+ ;;^UTILITY(U,$J,358.3,21586,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9988,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,9988,1,4,0)
- ;;=4^H40.013
- ;;^UTILITY(U,$J,358.3,9988,2)
- ;;=^5005726
- ;;^UTILITY(U,$J,358.3,9989,0)
- ;;=H40.012^^44^496^60
- ;;^UTILITY(U,$J,358.3,9989,1,0)
+ ;;^UTILITY(U,$J,358.3,21586,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Finger
+ ;;^UTILITY(U,$J,358.3,21586,1,4,0)
+ ;;=4^L03.021
+ ;;^UTILITY(U,$J,358.3,21586,2)
+ ;;=^5009022
+ ;;^UTILITY(U,$J,358.3,21587,0)
+ ;;=L03.022^^89^1035^18
+ ;;^UTILITY(U,$J,358.3,21587,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9989,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Left Eye
- ;;^UTILITY(U,$J,358.3,9989,1,4,0)
- ;;=4^H40.012
- ;;^UTILITY(U,$J,358.3,9989,2)
- ;;=^5005725
- ;;^UTILITY(U,$J,358.3,9990,0)
- ;;=H40.011^^44^496^61
- ;;^UTILITY(U,$J,358.3,9990,1,0)
+ ;;^UTILITY(U,$J,358.3,21587,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Finger
+ ;;^UTILITY(U,$J,358.3,21587,1,4,0)
+ ;;=4^L03.022
+ ;;^UTILITY(U,$J,358.3,21587,2)
+ ;;=^5009023
+ ;;^UTILITY(U,$J,358.3,21588,0)
+ ;;=L03.031^^89^1035^111
+ ;;^UTILITY(U,$J,358.3,21588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9990,1,3,0)
- ;;=3^Glaucoma Suspect/Open Angle w/ Borderline Findings,Low Risk,Right Eye
- ;;^UTILITY(U,$J,358.3,9990,1,4,0)
- ;;=4^H40.011
- ;;^UTILITY(U,$J,358.3,9990,2)
- ;;=^5005724
- ;;^UTILITY(U,$J,358.3,9991,0)
- ;;=H40.023^^44^496^84
- ;;^UTILITY(U,$J,358.3,9991,1,0)
+ ;;^UTILITY(U,$J,358.3,21588,1,3,0)
+ ;;=3^Cellulitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,21588,1,4,0)
+ ;;=4^L03.031
+ ;;^UTILITY(U,$J,358.3,21588,2)
+ ;;=^5009025
+ ;;^UTILITY(U,$J,358.3,21589,0)
+ ;;=L03.032^^89^1035^104
+ ;;^UTILITY(U,$J,358.3,21589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9991,1,3,0)
- ;;=3^Open-Angle w/ Borderline Findings,Hi Risk,Bilateral
- ;;^UTILITY(U,$J,358.3,9991,1,4,0)
- ;;=4^H40.023
- ;;^UTILITY(U,$J,358.3,9991,2)
- ;;=^5005730
- ;;^UTILITY(U,$J,358.3,9992,0)
- ;;=H40.063^^44^496^108
- ;;^UTILITY(U,$J,358.3,9992,1,0)
+ ;;^UTILITY(U,$J,358.3,21589,1,3,0)
+ ;;=3^Cellulitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,21589,1,4,0)
+ ;;=4^L03.032
+ ;;^UTILITY(U,$J,358.3,21589,2)
+ ;;=^5009026
+ ;;^UTILITY(U,$J,358.3,21590,0)
+ ;;=L03.041^^89^1035^26
+ ;;^UTILITY(U,$J,358.3,21590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9992,1,3,0)
- ;;=3^Primary Angle-Closure w/o Glaucoma Damage,Bilateral
- ;;^UTILITY(U,$J,358.3,9992,1,4,0)
- ;;=4^H40.063
- ;;^UTILITY(U,$J,358.3,9992,2)
- ;;=^5005746
- ;;^UTILITY(U,$J,358.3,9993,0)
- ;;=H40.243^^44^496^113
- ;;^UTILITY(U,$J,358.3,9993,1,0)
+ ;;^UTILITY(U,$J,358.3,21590,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Toe
+ ;;^UTILITY(U,$J,358.3,21590,1,4,0)
+ ;;=4^L03.041
+ ;;^UTILITY(U,$J,358.3,21590,2)
+ ;;=^5009028
+ ;;^UTILITY(U,$J,358.3,21591,0)
+ ;;=L03.042^^89^1035^20
+ ;;^UTILITY(U,$J,358.3,21591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9993,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Bilateral
+ ;;^UTILITY(U,$J,358.3,21591,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Toe
+ ;;^UTILITY(U,$J,358.3,21591,1,4,0)
+ ;;=4^L03.042
+ ;;^UTILITY(U,$J,358.3,21591,2)
+ ;;=^5009029
+ ;;^UTILITY(U,$J,358.3,21592,0)
+ ;;=M34.0^^89^1035^249
+ ;;^UTILITY(U,$J,358.3,21592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21592,1,3,0)
+ ;;=3^Progressive Systemic Sclerosis
+ ;;^UTILITY(U,$J,358.3,21592,1,4,0)
+ ;;=4^M34.0
+ ;;^UTILITY(U,$J,358.3,21592,2)
+ ;;=^5011778
+ ;;^UTILITY(U,$J,358.3,21593,0)
+ ;;=M34.1^^89^1035^91
+ ;;^UTILITY(U,$J,358.3,21593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21593,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,21593,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,21593,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,21594,0)
+ ;;=M34.2^^89^1035^273
+ ;;^UTILITY(U,$J,358.3,21594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21594,1,3,0)
+ ;;=3^Systemic Sclerosis Induced by Drug/Chemical
+ ;;^UTILITY(U,$J,358.3,21594,1,4,0)
+ ;;=4^M34.2
+ ;;^UTILITY(U,$J,358.3,21594,2)
+ ;;=^5011780
+ ;;^UTILITY(U,$J,358.3,21595,0)
+ ;;=M34.81^^89^1035^275
+ ;;^UTILITY(U,$J,358.3,21595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21595,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Lung Involvement
+ ;;^UTILITY(U,$J,358.3,21595,1,4,0)
+ ;;=4^M34.81
+ ;;^UTILITY(U,$J,358.3,21595,2)
+ ;;=^5011781
+ ;;^UTILITY(U,$J,358.3,21596,0)
+ ;;=M34.82^^89^1035^276
+ ;;^UTILITY(U,$J,358.3,21596,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21596,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Myopathy
+ ;;^UTILITY(U,$J,358.3,21596,1,4,0)
+ ;;=4^M34.82
+ ;;^UTILITY(U,$J,358.3,21596,2)
+ ;;=^5011782
+ ;;^UTILITY(U,$J,358.3,21597,0)
+ ;;=M34.83^^89^1035^277
+ ;;^UTILITY(U,$J,358.3,21597,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21597,1,3,0)
+ ;;=3^Systemic Sclerosis w/ Polyneuropathy
+ ;;^UTILITY(U,$J,358.3,21597,1,4,0)
+ ;;=4^M34.83
+ ;;^UTILITY(U,$J,358.3,21597,2)
+ ;;=^5011783
+ ;;^UTILITY(U,$J,358.3,21598,0)
+ ;;=M34.89^^89^1035^274
+ ;;^UTILITY(U,$J,358.3,21598,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21598,1,3,0)
+ ;;=3^Systemic Sclerosis NEC
+ ;;^UTILITY(U,$J,358.3,21598,1,4,0)
+ ;;=4^M34.89
+ ;;^UTILITY(U,$J,358.3,21598,2)
+ ;;=^5011784
+ ;;^UTILITY(U,$J,358.3,21599,0)
+ ;;=M34.9^^89^1035^278
+ ;;^UTILITY(U,$J,358.3,21599,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21599,1,3,0)
+ ;;=3^Systemic Sclerosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21599,1,4,0)
+ ;;=4^M34.9
+ ;;^UTILITY(U,$J,358.3,21599,2)
+ ;;=^5011785
+ ;;^UTILITY(U,$J,358.3,21600,0)
+ ;;=R21.^^89^1035^257
+ ;;^UTILITY(U,$J,358.3,21600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21600,1,3,0)
+ ;;=3^Rash/Nonspecific Skin Eruption
+ ;;^UTILITY(U,$J,358.3,21600,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,21600,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,21601,0)
+ ;;=R23.3^^89^1035^269
+ ;;^UTILITY(U,$J,358.3,21601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21601,1,3,0)
+ ;;=3^Spontaneous Ecchymoses
+ ;;^UTILITY(U,$J,358.3,21601,1,4,0)
+ ;;=4^R23.3
+ ;;^UTILITY(U,$J,358.3,21601,2)
+ ;;=^5019295
+ ;;^UTILITY(U,$J,358.3,21602,0)
+ ;;=L03.113^^89^1035^112
+ ;;^UTILITY(U,$J,358.3,21602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21602,1,3,0)
+ ;;=3^Cellulitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,21602,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,21602,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,21603,0)
+ ;;=L03.114^^89^1035^105
+ ;;^UTILITY(U,$J,358.3,21603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21603,1,3,0)
+ ;;=3^Cellulitis of Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,21603,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,21603,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,21604,0)
+ ;;=L03.115^^89^1035^109
+ ;;^UTILITY(U,$J,358.3,21604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21604,1,3,0)
+ ;;=3^Cellulitis of Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,21604,1,4,0)
+ ;;=4^L03.115
+ ;;^UTILITY(U,$J,358.3,21604,2)
+ ;;=^5009035
+ ;;^UTILITY(U,$J,358.3,21605,0)
+ ;;=L03.116^^89^1035^102
+ ;;^UTILITY(U,$J,358.3,21605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21605,1,3,0)
+ ;;=3^Cellulitis of Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,21605,1,4,0)
+ ;;=4^L03.116
+ ;;^UTILITY(U,$J,358.3,21605,2)
+ ;;=^5133645
+ ;;^UTILITY(U,$J,358.3,21606,0)
+ ;;=L03.123^^89^1035^27
+ ;;^UTILITY(U,$J,358.3,21606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21606,1,3,0)
+ ;;=3^Acute Lymphangitis of Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,21606,1,4,0)
+ ;;=4^L03.123
+ ;;^UTILITY(U,$J,358.3,21606,2)
+ ;;=^5009039
+ ;;^UTILITY(U,$J,358.3,21607,0)
+ ;;=L03.124^^89^1035^21
+ ;;^UTILITY(U,$J,358.3,21607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21607,1,3,0)
+ ;;=3^Acute Lymphangitis of Left Upper Limb

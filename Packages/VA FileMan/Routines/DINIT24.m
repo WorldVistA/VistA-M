@@ -1,6 +1,10 @@
-DINIT24 ;SFISC/GFT-INITIALIZE VA FILEMAN ;09:09 AM  15 Sep 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT24 ;SFISC/GFT-INITIALIZE VA FILEMAN ;13NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K ^DD(.5)
  ;BRING IN DD FOR FUNCTION FILE .5
  S ^DIC(.5,"%D",0)="^^4^4^2940908^"
@@ -64,6 +68,60 @@ OSDD ; BRING IN DD FOR MUMPS OS FILE .7 (CALLED FROM ^DINIT)
  ;;8,9 @
  ;;8,21,0 ^^1^1^2940909^
  ;;8,21,1,0 MUMPS code that saves the contents of the local symbol table.
+ ;;9,0 RIGHT MARGIN^K^^RM;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;9,3 Enter MUMPS code, 1-245 characters.
+ ;;9,9 @
+ ;;9,21,0 ^.001^1^1^3121113^^
+ ;;9,21,1,0 Sets the $I width to X characters. If X=0, then the line in set to no wrap.
+ ;;9,"DT" 3121113
+ ;;10,0 CHECK EXISTENCE OF UCI^K^^UCICHECK;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;10,3 Enter MUMPS code, 1-245 characters.
+ ;;10,9 @
+ ;;10,21,0 ^^1^1^3121113^
+ ;;10,21,1,0 Returns Y'="" if X is a valid UCI name.
+ ;;10,"DT" 3121113
+ ;;11,0 ECHO OFF^K^^EOFF;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;11,3 Enter MUMPS code, 1-245 characters.
+ ;;11,9 @
+ ;;11,21,0 ^^1^1^3121113^
+ ;;11,21,1,0 Turn off echo to the $I device.
+ ;;11,"DT" 3121113
+ ;;12,0 ECHO ON^K^^EON;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;12,3 Enter MUMPS code, 1-245 characters.
+ ;;12,9 @
+ ;;12,21,0 ^^1^1^3121113^
+ ;;12,21,1,0 Turn on echo to the $I device.
+ ;;12,"DT" 3121113
+ ;;21,0 TURN OFF READ TERMINATORS^K^^TRMOFF;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;21,3 Enter MUMPS code, 1-245 characters.
+ ;;21,9 @
+ ;;21,21,0 ^^1^1^3121113^
+ ;;21,21,1,0 Turns off all controls as terminators.
+ ;;21,"DT" 3121113
+ ;;22,0 TURN ON READ TERMINATORS^K^^TRMON;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;22,3 Enter MUMPS code, 1-245 characters.
+ ;;22,9 @
+ ;;22,21,0 ^^1^1^3121113^
+ ;;22,21,1,0 Turns on all controls as terminators.
+ ;;22,"DT" 3121113
+ ;;23,0 GET READ TERMINATOR^K^^TRMRD;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;23,3 Enter MUMPS code, 1-245 characters.
+ ;;23,9 @
+ ;;23,21,0 ^^1^1^3121113^
+ ;;23,21,1,0 Returns in Y what terminated the last READ.
+ ;;23,"DT" 3121113
+ ;;31,0 DISABLE TYPE AHEAD BUFFERING^K^^NO-TYPE-AHEAD;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;31,3 Enter MUMPS code, 1-245 characters.
+ ;;31,9 @
+ ;;31,21,0 ^^1^1^3121113^
+ ;;31,21,1,0 Turn off the TYPE-AHEAD for the device $I.
+ ;;31,"DT" 3121113
+ ;;32,0 ENABLE TYPE AHEAD BUFFERING^K^^TYPE-AHEAD;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;32,3 Enter MUMPS code, 1-245 characters.
+ ;;32,9 @
+ ;;32,21,0 ^^1^1^3121113^
+ ;;32,21,1,0 Allow TYPE-AHEAD for the device $I.
+ ;;32,"DT" 3121113
  ;;1820,0 ROUTINE EXISTENCE TEST^F^^18;E1,250^D ^DIM
  ;;1820,9 @
  ;;1820,21,0 ^^1^1^2940909^
@@ -73,6 +131,36 @@ OSDD ; BRING IN DD FOR MUMPS OS FILE .7 (CALLED FROM ^DINIT)
  ;;2425,21,0 ^^2^2^2940909^^
  ;;2425,21,1,0 MUMPS code to XECUTE to move the position of the cursor to the position
  ;;2425,21,2,0 specified by the variables IOX and IOY.
+ ;;2619,0 ZSAVE CODE^F^^ZS;E1,250^D ^DIM
+ ;;2619,9 @
+ ;;2619,21,0 ^^4^4^2940909^
+ ;;2619,21,1,0 MUMPS code that will save a routine to disk.  The name of the routine
+ ;;2619,21,2,0 must be in variable X.  The source code of the routine should be stored
+ ;;2619,21,3,0 in ^UTLITY($J,0,%Y).  Each node of the array will become a line of the
+ ;;2619,21,4,0 routine.
+ ;;2620,0 DELETE ROUTINE^K^^DEL;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;2620,3 Enter MUMPS code, 1-245 characters.
+ ;;2620,9 @
+ ;;2620,21,0 ^^1^1^3121113^
+ ;;2620,21,1,0 Delete the routine named in X from the UCI.
+ ;;2620,"DT" 3121113
+ ;;2621,0 LOAD ROUTINE INTO ARRAY^K^^LOAD;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;2621,3 Enter MUMPS code, 1-245 characters.
+ ;;2621,9 @
+ ;;2621,21,0 ^^1^1^3121113^
+ ;;2621,21,1,0 Load routine X into @(DIE_"XCNP,0)".
+ ;;2621,"DT" 3121113
+ ;;2622,0 SELECT ROUTINES^K^^RSEL;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
+ ;;2622,3 Enter MUMPS code, 1-245 characters.
+ ;;2622,9 @
+ ;;2622,21,0 ^^1^1^3121113^
+ ;;2622,21,1,0 Returns the user's selection of routines in ^UTILITY($J,"routine name").
+ ;;2622,"DT" 3121113
+ ;;21400,0 HIGHEST CHARACTER VALUE^F^^HIGHESTCHAR;E1,250^D ^DIM
+ ;;21400,3 Enter MUMPS code, 1-245 characters.
+ ;;21400,9 @
+ ;;21400,21,0 ^^1^1^3110515
+ ;;21400,21,1,0 MUMPS code that sets into the "Y" variable the highest ('stop') character for the current MUMPS environment
  ;;190416,0 WRITE FROM SDP^F^^SDP;E1,250^D ^DIM
  ;;190416,9 @
  ;;190416,21,0 ^^4^4^2940909^
@@ -84,10 +172,3 @@ OSDD ; BRING IN DD FOR MUMPS OS FILE .7 (CALLED FROM ^DINIT)
  ;;190416.1,9 @
  ;;190416.1,21,0 ^^1^1^2940909^
  ;;190416.1,21,1,0 MUMPS code that tests for the end of SDP.
- ;;2619,0 ZSAVE CODE^F^^ZS;E1,250^D ^DIM
- ;;2619,9 @
- ;;2619,21,0 ^^4^4^2940909^
- ;;2619,21,1,0 MUMPS code that will save a routine to disk.  The name of the routine
- ;;2619,21,2,0 must be in variable X.  The source code of the routine should be stored
- ;;2619,21,3,0 in ^UTLITY($J,0,%Y).  Each node of the array will become a line of the
- ;;2619,21,4,0 routine.

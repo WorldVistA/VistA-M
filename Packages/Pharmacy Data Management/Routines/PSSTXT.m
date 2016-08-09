@@ -1,5 +1,5 @@
 PSSTXT ;BIR/WRT-Edit DRUG TEXT file routine ; 11/15/01 8:11
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,55**;9/30/97
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,55,194**;9/30/97;Build 9
 BEGIN S PSSNFI=1,PSSFG=0 W !,"This option enables you to edit entries in the DRUG TEXT file.",!! F PSSQQ=1:1 K DA D ASK Q:PSSFG
 DONE K DA,PSSFG,PSSQQ,PSSNFI,NAME,PSSENT,PSSBEG,PSSEND,PSSSRT,PSSXX
  K %,D,D0,DI,DIE,DLAYGO,DQ,DR,X,Y
@@ -49,7 +49,8 @@ NAME ;
  I $G(X)["^" S PSSFG=1 Q
  I X'="",X'=PSSNAME D
  . I X["@" W "  **DELETIONS ARE NOT ALLOWED!" Q
- . S ^PS(51.7,"B",X,DA)="" K ^PS(51.7,"B",PSSNAME,DA)
+ . S ^PS(51.7,"B",$E(X,1,30),DA)=""
+ . K ^PS(51.7,"B",$E(PSSNAME,1,30),DA)
  . S $P(^PS(51.7,DA,0),"^",1)=X
  Q
  ;
@@ -57,6 +58,20 @@ TEXT ;
  W ! K DIR S DIR(0)="Y",DIR("A")="Do you want to edit the text for this entry",DIR("B")="YES" D ^DIR K DIR
  I $G(X)["^" S PSSFG=1 Q
  I '+($G(Y)) Q
- S DR="3" D ^DIE,CHECK
+ W !!,"WARNING: The absence of text lines will cause this Drug Text entry"
+ W !,"         to be completely deleted."
+ W ! S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR K DIR
+ W ! S DR="3" D ^DIE,CHECK
+ ;set flag if all text was deleted which deleted this entry
+ I '$O(^PS(51.7,DA,2,0)) D
+ . S PSSFG=1
+ . W !!,"   **** **** **** **** **** **** **** **** **** **** ****"
+ . W !!,"   The absence of text lines caused this Drug Text entry"
+ . W !,"   to be completely deleted."
+ . W !!,"   Therefore, Synonym and Inactivation Date"
+ . W !,"   will not be asked."
+ . W !!,"   **** **** **** **** **** **** **** **** **** **** ****",!!
+ . S DIR(0)="E",DIR("A")="   Press Return to continue" D ^DIR K DIR
+ . W !
  Q
  ;

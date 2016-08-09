@@ -1,13 +1,15 @@
 PSIVORE ;BIR/PR,MLM-ORDER ENTRY ;1 APR 08 / 2:37 PM
- ;;5.0;INPATIENT MEDICATIONS;**18,29,50,56,58,81,110,127,133,157,203,213,181,252,305**;16 DEC 97;Build 3
+ ;;5.0;INPATIENT MEDICATIONS;**18,29,50,56,58,81,110,127,133,157,203,213,181,252,305,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^ORX2 is supported by DBIA #867
  ; Reference to ^PSSLOCK is supported by DBIA #2789
- ; Reference to ^DICN is supported by DBIA 10009.
- ; Reference to ^DIR is supported by DBIA 10026.
- ; Reference to EN^VALM is supported by DBIA 10118.
- ; Reference to ^VADPT is supported by DBIA 10061.
+ ; Reference to ^DICN is supported by DBIA #10009.
+ ; Reference to ^DIR is supported by DBIA #10026.
+ ; Reference to EN^VALM is supported by DBIA #10118.
+ ; Reference to ^VADPT is supported by DBIA #10061.
+ ; Reference to ^DD("DD" is supported by DBIA #999.
+ ; Reference to ^TMP("PSODAOC",$J is supported by #DBIA 6071.
  ;
  N PSJNEW,PSJOUT,PSGPTMP,PPAGE,FLAG S PSJNEW=1
  ;
@@ -113,7 +115,7 @@ ENIN ;Entry for Combined IV/UD order entry. Called by PSJOE0.
 ENIN1 ;
  ;*305
  N DA,DIR,PSJOE,PSJPCAF,PSJSYSL,WSCHADM,PSJALLGY,PSJEXMSG S:$G(VAIN(4)) WSCHADM=VAIN(4)
- K P,PSIVCHG,PSJCOM
+ K P,PSIVCHG,PSJCOM,^TMP("PSODAOC",$J)
  S PSJOE=1,DIR(0)="55.01,.04O",DIR("A")="Select IV TYPE" D ^DIR
  I X]"",X'="^",$P("^PROFILE",X)="" S PSJOEPF=X Q
  S:$D(DTOUT) X="^" I "^"[X S PSJORQF=PSJORQF+$S(X="^":2,$G(FLAG):0,1:1),X="." Q
@@ -131,6 +133,8 @@ NONVF(PSJOC)  ;If file at NonVF then quit with 1
  W !,"...transcribing this non-verified order...."
  D PUT531^PSIVORFA
  D:$G(PSJOC)]"" EN1^PSJHL2(DFN,PSJOC,ON,"SEND ORDER NUMBER")
+ ;RTC 178746 - Don't store allergy here
+ ;D SETOC^PSJNEWOC(ON)
  D:ON55["V" DEL55
  NEW PSJORD S (ON55,PSJORD)=ON
  D VF^PSIVORC2

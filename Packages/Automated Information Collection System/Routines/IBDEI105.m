@@ -1,134 +1,278 @@
-IBDEI105 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI105 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16998,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,16998,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,16999,0)
- ;;=F10.229^^70^804^2
- ;;^UTILITY(U,$J,358.3,16999,1,0)
+ ;;^UTILITY(U,$J,358.3,36372,1,4,0)
+ ;;=4^Z89.202
+ ;;^UTILITY(U,$J,358.3,36372,2)
+ ;;=^5063544
+ ;;^UTILITY(U,$J,358.3,36373,0)
+ ;;=Z89.111^^133^1784^6
+ ;;^UTILITY(U,$J,358.3,36373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16999,1,3,0)
- ;;=3^Alcohol dependence w/ intoxctn, unspec
- ;;^UTILITY(U,$J,358.3,16999,1,4,0)
- ;;=4^F10.229
- ;;^UTILITY(U,$J,358.3,16999,2)
- ;;=^5003085
- ;;^UTILITY(U,$J,358.3,17000,0)
- ;;=F12.10^^70^804^4
- ;;^UTILITY(U,$J,358.3,17000,1,0)
+ ;;^UTILITY(U,$J,358.3,36373,1,3,0)
+ ;;=3^Acquired Absence of Right Hand
+ ;;^UTILITY(U,$J,358.3,36373,1,4,0)
+ ;;=4^Z89.111
+ ;;^UTILITY(U,$J,358.3,36373,2)
+ ;;=^5063537
+ ;;^UTILITY(U,$J,358.3,36374,0)
+ ;;=Z89.112^^133^1784^1
+ ;;^UTILITY(U,$J,358.3,36374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17000,1,3,0)
- ;;=3^Cannabis abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,17000,1,4,0)
- ;;=4^F12.10
- ;;^UTILITY(U,$J,358.3,17000,2)
- ;;=^5003155
- ;;^UTILITY(U,$J,358.3,17001,0)
- ;;=F12.20^^70^804^5
- ;;^UTILITY(U,$J,358.3,17001,1,0)
+ ;;^UTILITY(U,$J,358.3,36374,1,3,0)
+ ;;=3^Acquired Absence of Left Hand
+ ;;^UTILITY(U,$J,358.3,36374,1,4,0)
+ ;;=4^Z89.112
+ ;;^UTILITY(U,$J,358.3,36374,2)
+ ;;=^5063538
+ ;;^UTILITY(U,$J,358.3,36375,0)
+ ;;=Z89.121^^133^1784^11
+ ;;^UTILITY(U,$J,358.3,36375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17001,1,3,0)
- ;;=3^Cannabis dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,17001,1,4,0)
- ;;=4^F12.20
- ;;^UTILITY(U,$J,358.3,17001,2)
- ;;=^5003166
- ;;^UTILITY(U,$J,358.3,17002,0)
- ;;=F14.10^^70^804^6
- ;;^UTILITY(U,$J,358.3,17002,1,0)
+ ;;^UTILITY(U,$J,358.3,36375,1,3,0)
+ ;;=3^Acquired Absence of Right Wrist
+ ;;^UTILITY(U,$J,358.3,36375,1,4,0)
+ ;;=4^Z89.121
+ ;;^UTILITY(U,$J,358.3,36375,2)
+ ;;=^5063540
+ ;;^UTILITY(U,$J,358.3,36376,0)
+ ;;=Z89.122^^133^1784^5
+ ;;^UTILITY(U,$J,358.3,36376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17002,1,3,0)
- ;;=3^Cocaine abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,17002,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,17002,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,17003,0)
- ;;=F14.20^^70^804^7
- ;;^UTILITY(U,$J,358.3,17003,1,0)
+ ;;^UTILITY(U,$J,358.3,36376,1,3,0)
+ ;;=3^Acquired Absence of Left Wrist
+ ;;^UTILITY(U,$J,358.3,36376,1,4,0)
+ ;;=4^Z89.122
+ ;;^UTILITY(U,$J,358.3,36376,2)
+ ;;=^5063541
+ ;;^UTILITY(U,$J,358.3,36377,0)
+ ;;=Z89.211^^133^1784^9
+ ;;^UTILITY(U,$J,358.3,36377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17003,1,3,0)
- ;;=3^Cocaine dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,17003,1,4,0)
- ;;=4^F14.20
- ;;^UTILITY(U,$J,358.3,17003,2)
- ;;=^5003253
- ;;^UTILITY(U,$J,358.3,17004,0)
- ;;=F16.10^^70^804^8
- ;;^UTILITY(U,$J,358.3,17004,1,0)
+ ;;^UTILITY(U,$J,358.3,36377,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb Below Elbow
+ ;;^UTILITY(U,$J,358.3,36377,1,4,0)
+ ;;=4^Z89.211
+ ;;^UTILITY(U,$J,358.3,36377,2)
+ ;;=^5063545
+ ;;^UTILITY(U,$J,358.3,36378,0)
+ ;;=Z89.212^^133^1784^12
+ ;;^UTILITY(U,$J,358.3,36378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17004,1,3,0)
- ;;=3^Hallucinogen abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,17004,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,17004,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,17005,0)
- ;;=F16.20^^70^804^9
- ;;^UTILITY(U,$J,358.3,17005,1,0)
+ ;;^UTILITY(U,$J,358.3,36378,1,3,0)
+ ;;=3^Acquired Absence of Upper Limb Below Elbow
+ ;;^UTILITY(U,$J,358.3,36378,1,4,0)
+ ;;=4^Z89.212
+ ;;^UTILITY(U,$J,358.3,36378,2)
+ ;;=^5063546
+ ;;^UTILITY(U,$J,358.3,36379,0)
+ ;;=Z89.221^^133^1784^8
+ ;;^UTILITY(U,$J,358.3,36379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17005,1,3,0)
- ;;=3^Hallucinogen dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,17005,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,17005,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,17006,0)
- ;;=F18.10^^70^804^10
- ;;^UTILITY(U,$J,358.3,17006,1,0)
+ ;;^UTILITY(U,$J,358.3,36379,1,3,0)
+ ;;=3^Acquired Absence of Right Upper Limb Above Elbow
+ ;;^UTILITY(U,$J,358.3,36379,1,4,0)
+ ;;=4^Z89.221
+ ;;^UTILITY(U,$J,358.3,36379,2)
+ ;;=^5063548
+ ;;^UTILITY(U,$J,358.3,36380,0)
+ ;;=Z89.222^^133^1784^3
+ ;;^UTILITY(U,$J,358.3,36380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17006,1,3,0)
- ;;=3^Inhalant abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,17006,1,4,0)
- ;;=4^F18.10
- ;;^UTILITY(U,$J,358.3,17006,2)
- ;;=^5003380
- ;;^UTILITY(U,$J,358.3,17007,0)
- ;;=F17.200^^70^804^11
- ;;^UTILITY(U,$J,358.3,17007,1,0)
+ ;;^UTILITY(U,$J,358.3,36380,1,3,0)
+ ;;=3^Acquired Absence of Left Upper Limb Above Elbow
+ ;;^UTILITY(U,$J,358.3,36380,1,4,0)
+ ;;=4^Z89.222
+ ;;^UTILITY(U,$J,358.3,36380,2)
+ ;;=^5063549
+ ;;^UTILITY(U,$J,358.3,36381,0)
+ ;;=Z89.231^^133^1784^7
+ ;;^UTILITY(U,$J,358.3,36381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17007,1,3,0)
- ;;=3^Nicotine dependence, unspec, uncomp
- ;;^UTILITY(U,$J,358.3,17007,1,4,0)
- ;;=4^F17.200
- ;;^UTILITY(U,$J,358.3,17007,2)
- ;;=^5003360
- ;;^UTILITY(U,$J,358.3,17008,0)
- ;;=F11.10^^70^804^12
- ;;^UTILITY(U,$J,358.3,17008,1,0)
+ ;;^UTILITY(U,$J,358.3,36381,1,3,0)
+ ;;=3^Acquired Absence of Right Shoulder
+ ;;^UTILITY(U,$J,358.3,36381,1,4,0)
+ ;;=4^Z89.231
+ ;;^UTILITY(U,$J,358.3,36381,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,36382,0)
+ ;;=Z89.232^^133^1784^2
+ ;;^UTILITY(U,$J,358.3,36382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17008,1,3,0)
- ;;=3^Opioid abuse, uncomplicated
- ;;^UTILITY(U,$J,358.3,17008,1,4,0)
- ;;=4^F11.10
- ;;^UTILITY(U,$J,358.3,17008,2)
- ;;=^5003114
- ;;^UTILITY(U,$J,358.3,17009,0)
- ;;=F11.20^^70^804^13
- ;;^UTILITY(U,$J,358.3,17009,1,0)
+ ;;^UTILITY(U,$J,358.3,36382,1,3,0)
+ ;;=3^Acquired Absence of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,36382,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,36382,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,36383,0)
+ ;;=Z89.411^^133^1785^10
+ ;;^UTILITY(U,$J,358.3,36383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17009,1,3,0)
- ;;=3^Opioid dependence, uncomplicated
- ;;^UTILITY(U,$J,358.3,17009,1,4,0)
- ;;=4^F11.20
- ;;^UTILITY(U,$J,358.3,17009,2)
- ;;=^5003127
- ;;^UTILITY(U,$J,358.3,17010,0)
- ;;=F13.10^^70^804^16
- ;;^UTILITY(U,$J,358.3,17010,1,0)
+ ;;^UTILITY(U,$J,358.3,36383,1,3,0)
+ ;;=3^Acquired Absence of Right Great Toe
+ ;;^UTILITY(U,$J,358.3,36383,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,36383,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,36384,0)
+ ;;=Z89.412^^133^1785^3
+ ;;^UTILITY(U,$J,358.3,36384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17010,1,3,0)
- ;;=3^Sedative, hypnotic or anxiolytic abuse, uncomp
- ;;^UTILITY(U,$J,358.3,17010,1,4,0)
- ;;=4^F13.10
- ;;^UTILITY(U,$J,358.3,17010,2)
- ;;=^5003189
- ;;^UTILITY(U,$J,358.3,17011,0)
- ;;=F13.20^^70^804^17
- ;;^UTILITY(U,$J,358.3,17011,1,0)
+ ;;^UTILITY(U,$J,358.3,36384,1,3,0)
+ ;;=3^Acquired Absence of Left Great Toe
+ ;;^UTILITY(U,$J,358.3,36384,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,36384,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,36385,0)
+ ;;=Z89.421^^133^1785^14
+ ;;^UTILITY(U,$J,358.3,36385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17011,1,3,0)
- ;;=3^Sedative, hypnotic or anxiolytic dependence, uncomp
+ ;;^UTILITY(U,$J,358.3,36385,1,3,0)
+ ;;=3^Acquired Absence of Right Toe(s)
+ ;;^UTILITY(U,$J,358.3,36385,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,36385,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,36386,0)
+ ;;=Z89.422^^133^1785^7
+ ;;^UTILITY(U,$J,358.3,36386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36386,1,3,0)
+ ;;=3^Acquired Absence of Left Toe(s)
+ ;;^UTILITY(U,$J,358.3,36386,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,36386,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,36387,0)
+ ;;=Z89.431^^133^1785^9
+ ;;^UTILITY(U,$J,358.3,36387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36387,1,3,0)
+ ;;=3^Acquired Absence of Right Foot
+ ;;^UTILITY(U,$J,358.3,36387,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,36387,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,36388,0)
+ ;;=Z89.432^^133^1785^2
+ ;;^UTILITY(U,$J,358.3,36388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36388,1,3,0)
+ ;;=3^Acquired Absence of Left Foot
+ ;;^UTILITY(U,$J,358.3,36388,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,36388,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,36389,0)
+ ;;=Z89.441^^133^1785^8
+ ;;^UTILITY(U,$J,358.3,36389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36389,1,3,0)
+ ;;=3^Acquired Absence of Right Ankle
+ ;;^UTILITY(U,$J,358.3,36389,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,36389,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,36390,0)
+ ;;=Z89.442^^133^1785^1
+ ;;^UTILITY(U,$J,358.3,36390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36390,1,3,0)
+ ;;=3^Acquired Absence of Left Ankle
+ ;;^UTILITY(U,$J,358.3,36390,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,36390,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,36391,0)
+ ;;=Z89.511^^133^1785^13
+ ;;^UTILITY(U,$J,358.3,36391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36391,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,36391,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,36391,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,36392,0)
+ ;;=Z89.512^^133^1785^6
+ ;;^UTILITY(U,$J,358.3,36392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36392,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,36392,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,36392,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,36393,0)
+ ;;=Z89.611^^133^1785^12
+ ;;^UTILITY(U,$J,358.3,36393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36393,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,36393,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,36393,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,36394,0)
+ ;;=Z89.612^^133^1785^5
+ ;;^UTILITY(U,$J,358.3,36394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36394,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,36394,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,36394,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,36395,0)
+ ;;=Z89.621^^133^1785^11
+ ;;^UTILITY(U,$J,358.3,36395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36395,1,3,0)
+ ;;=3^Acquired Absence of Right Hip Joint
+ ;;^UTILITY(U,$J,358.3,36395,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,36395,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,36396,0)
+ ;;=Z89.622^^133^1785^4
+ ;;^UTILITY(U,$J,358.3,36396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36396,1,3,0)
+ ;;=3^Acquired Absence of Left Hip Joint
+ ;;^UTILITY(U,$J,358.3,36396,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,36396,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,36397,0)
+ ;;=Z75.3^^133^1786^5
+ ;;^UTILITY(U,$J,358.3,36397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36397,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,36397,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,36397,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,36398,0)
+ ;;=Z75.0^^133^1786^3
+ ;;^UTILITY(U,$J,358.3,36398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36398,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,36398,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,36398,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,36399,0)
+ ;;=Z75.1^^133^1786^4
+ ;;^UTILITY(U,$J,358.3,36399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36399,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,36399,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,36399,2)
+ ;;=^5063290

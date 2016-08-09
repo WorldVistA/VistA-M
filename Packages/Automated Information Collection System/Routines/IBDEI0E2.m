@@ -1,140 +1,266 @@
-IBDEI0E2 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0E2 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6465,2)
- ;;=^5007043
- ;;^UTILITY(U,$J,358.3,6466,0)
- ;;=I05.9^^30^395^20
- ;;^UTILITY(U,$J,358.3,6466,1,0)
+ ;;^UTILITY(U,$J,358.3,14062,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,14062,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,14062,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,14063,0)
+ ;;=L89.309^^61^729^241
+ ;;^UTILITY(U,$J,358.3,14063,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6466,1,3,0)
- ;;=3^Rheumatic Mitral Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,6466,1,4,0)
- ;;=4^I05.9
- ;;^UTILITY(U,$J,358.3,6466,2)
- ;;=^5007044
- ;;^UTILITY(U,$J,358.3,6467,0)
- ;;=I07.1^^30^395^21
- ;;^UTILITY(U,$J,358.3,6467,1,0)
+ ;;^UTILITY(U,$J,358.3,14063,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage Unspec
+ ;;^UTILITY(U,$J,358.3,14063,1,4,0)
+ ;;=4^L89.309
+ ;;^UTILITY(U,$J,358.3,14063,2)
+ ;;=^5133672
+ ;;^UTILITY(U,$J,358.3,14064,0)
+ ;;=L89.90^^61^729^247
+ ;;^UTILITY(U,$J,358.3,14064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6467,1,3,0)
- ;;=3^Rheumatic Tricuspid Insufficiency
- ;;^UTILITY(U,$J,358.3,6467,1,4,0)
- ;;=4^I07.1
- ;;^UTILITY(U,$J,358.3,6467,2)
- ;;=^5007048
- ;;^UTILITY(U,$J,358.3,6468,0)
- ;;=I07.9^^30^395^22
- ;;^UTILITY(U,$J,358.3,6468,1,0)
+ ;;^UTILITY(U,$J,358.3,14064,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unspec Stage
+ ;;^UTILITY(U,$J,358.3,14064,1,4,0)
+ ;;=4^L89.90
+ ;;^UTILITY(U,$J,358.3,14064,2)
+ ;;=^5133666
+ ;;^UTILITY(U,$J,358.3,14065,0)
+ ;;=L89.91^^61^729^243
+ ;;^UTILITY(U,$J,358.3,14065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6468,1,3,0)
- ;;=3^Rheumatic Tricuspid Valve Disease,Unspec
- ;;^UTILITY(U,$J,358.3,6468,1,4,0)
- ;;=4^I07.9
- ;;^UTILITY(U,$J,358.3,6468,2)
- ;;=^5007051
- ;;^UTILITY(U,$J,358.3,6469,0)
- ;;=I08.0^^30^395^16
- ;;^UTILITY(U,$J,358.3,6469,1,0)
+ ;;^UTILITY(U,$J,358.3,14065,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 1
+ ;;^UTILITY(U,$J,358.3,14065,1,4,0)
+ ;;=4^L89.91
+ ;;^UTILITY(U,$J,358.3,14065,2)
+ ;;=^5133664
+ ;;^UTILITY(U,$J,358.3,14066,0)
+ ;;=L89.92^^61^729^244
+ ;;^UTILITY(U,$J,358.3,14066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6469,1,3,0)
- ;;=3^Rheumatic Disorders of Mitral & Aortic Valves
- ;;^UTILITY(U,$J,358.3,6469,1,4,0)
- ;;=4^I08.0
- ;;^UTILITY(U,$J,358.3,6469,2)
- ;;=^5007052
- ;;^UTILITY(U,$J,358.3,6470,0)
- ;;=I09.89^^30^395^17
- ;;^UTILITY(U,$J,358.3,6470,1,0)
+ ;;^UTILITY(U,$J,358.3,14066,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 2
+ ;;^UTILITY(U,$J,358.3,14066,1,4,0)
+ ;;=4^L89.92
+ ;;^UTILITY(U,$J,358.3,14066,2)
+ ;;=^5133667
+ ;;^UTILITY(U,$J,358.3,14067,0)
+ ;;=L89.93^^61^729^245
+ ;;^UTILITY(U,$J,358.3,14067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6470,1,3,0)
- ;;=3^Rheumatic Heart Diseases NEC
- ;;^UTILITY(U,$J,358.3,6470,1,4,0)
- ;;=4^I09.89
- ;;^UTILITY(U,$J,358.3,6470,2)
- ;;=^5007060
- ;;^UTILITY(U,$J,358.3,6471,0)
- ;;=I47.1^^30^395^24
- ;;^UTILITY(U,$J,358.3,6471,1,0)
+ ;;^UTILITY(U,$J,358.3,14067,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 3
+ ;;^UTILITY(U,$J,358.3,14067,1,4,0)
+ ;;=4^L89.93
+ ;;^UTILITY(U,$J,358.3,14067,2)
+ ;;=^5133668
+ ;;^UTILITY(U,$J,358.3,14068,0)
+ ;;=L89.94^^61^729^246
+ ;;^UTILITY(U,$J,358.3,14068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6471,1,3,0)
- ;;=3^Supraventricular Tachycardia
- ;;^UTILITY(U,$J,358.3,6471,1,4,0)
- ;;=4^I47.1
- ;;^UTILITY(U,$J,358.3,6471,2)
- ;;=^5007223
- ;;^UTILITY(U,$J,358.3,6472,0)
- ;;=I48.0^^30^395^15
- ;;^UTILITY(U,$J,358.3,6472,1,0)
+ ;;^UTILITY(U,$J,358.3,14068,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Stage 4
+ ;;^UTILITY(U,$J,358.3,14068,1,4,0)
+ ;;=4^L89.94
+ ;;^UTILITY(U,$J,358.3,14068,2)
+ ;;=^5133669
+ ;;^UTILITY(U,$J,358.3,14069,0)
+ ;;=L89.95^^61^729^248
+ ;;^UTILITY(U,$J,358.3,14069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6472,1,3,0)
- ;;=3^Paroxysmal Atrial Fibrillation
- ;;^UTILITY(U,$J,358.3,6472,1,4,0)
- ;;=4^I48.0
- ;;^UTILITY(U,$J,358.3,6472,2)
- ;;=^90473
- ;;^UTILITY(U,$J,358.3,6473,0)
- ;;=I49.5^^30^395^23
- ;;^UTILITY(U,$J,358.3,6473,1,0)
+ ;;^UTILITY(U,$J,358.3,14069,1,3,0)
+ ;;=3^Pressure Ulcer of Unspec Site,Unstageable
+ ;;^UTILITY(U,$J,358.3,14069,1,4,0)
+ ;;=4^L89.95
+ ;;^UTILITY(U,$J,358.3,14069,2)
+ ;;=^5133660
+ ;;^UTILITY(U,$J,358.3,14070,0)
+ ;;=L92.0^^61^729^156
+ ;;^UTILITY(U,$J,358.3,14070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6473,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,6473,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,6473,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,6474,0)
- ;;=I49.8^^30^395^3
- ;;^UTILITY(U,$J,358.3,6474,1,0)
+ ;;^UTILITY(U,$J,358.3,14070,1,3,0)
+ ;;=3^Granuloma Annulare
+ ;;^UTILITY(U,$J,358.3,14070,1,4,0)
+ ;;=4^L92.0
+ ;;^UTILITY(U,$J,358.3,14070,2)
+ ;;=^184052
+ ;;^UTILITY(U,$J,358.3,14071,0)
+ ;;=L95.1^^61^729^143
+ ;;^UTILITY(U,$J,358.3,14071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6474,1,3,0)
- ;;=3^Cardiac Arrhythmias
- ;;^UTILITY(U,$J,358.3,6474,1,4,0)
- ;;=4^I49.8
- ;;^UTILITY(U,$J,358.3,6474,2)
- ;;=^5007236
- ;;^UTILITY(U,$J,358.3,6475,0)
- ;;=I49.9^^30^395^2
- ;;^UTILITY(U,$J,358.3,6475,1,0)
+ ;;^UTILITY(U,$J,358.3,14071,1,3,0)
+ ;;=3^Erythema Elevatum Diutinum
+ ;;^UTILITY(U,$J,358.3,14071,1,4,0)
+ ;;=4^L95.1
+ ;;^UTILITY(U,$J,358.3,14071,2)
+ ;;=^5009477
+ ;;^UTILITY(U,$J,358.3,14072,0)
+ ;;=L97.111^^61^729^226
+ ;;^UTILITY(U,$J,358.3,14072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6475,1,3,0)
- ;;=3^Cardiac Arrhythmia,Unspec
- ;;^UTILITY(U,$J,358.3,6475,1,4,0)
- ;;=4^I49.9
- ;;^UTILITY(U,$J,358.3,6475,2)
- ;;=^5007237
- ;;^UTILITY(U,$J,358.3,6476,0)
- ;;=R00.1^^30^395^1
- ;;^UTILITY(U,$J,358.3,6476,1,0)
+ ;;^UTILITY(U,$J,358.3,14072,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,14072,1,4,0)
+ ;;=4^L97.111
+ ;;^UTILITY(U,$J,358.3,14072,2)
+ ;;=^5009485
+ ;;^UTILITY(U,$J,358.3,14073,0)
+ ;;=L97.112^^61^729^227
+ ;;^UTILITY(U,$J,358.3,14073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6476,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,6476,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,6476,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,6477,0)
- ;;=I34.1^^30^395^14
- ;;^UTILITY(U,$J,358.3,6477,1,0)
+ ;;^UTILITY(U,$J,358.3,14073,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,14073,1,4,0)
+ ;;=4^L97.112
+ ;;^UTILITY(U,$J,358.3,14073,2)
+ ;;=^5009486
+ ;;^UTILITY(U,$J,358.3,14074,0)
+ ;;=L97.113^^61^729^228
+ ;;^UTILITY(U,$J,358.3,14074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6477,1,3,0)
- ;;=3^Nonrheumatic Mitral Valve Prolapse
- ;;^UTILITY(U,$J,358.3,6477,1,4,0)
- ;;=4^I34.1
- ;;^UTILITY(U,$J,358.3,6477,2)
- ;;=^5007170
- ;;^UTILITY(U,$J,358.3,6478,0)
- ;;=D68.4^^30^396^1
- ;;^UTILITY(U,$J,358.3,6478,1,0)
+ ;;^UTILITY(U,$J,358.3,14074,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,14074,1,4,0)
+ ;;=4^L97.113
+ ;;^UTILITY(U,$J,358.3,14074,2)
+ ;;=^5009487
+ ;;^UTILITY(U,$J,358.3,14075,0)
+ ;;=L97.114^^61^729^229
+ ;;^UTILITY(U,$J,358.3,14075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6478,1,3,0)
- ;;=3^Acquired Coagulation Factor Deficiency
- ;;^UTILITY(U,$J,358.3,6478,1,4,0)
- ;;=4^D68.4
- ;;^UTILITY(U,$J,358.3,6478,2)
- ;;=^2235
- ;;^UTILITY(U,$J,358.3,6479,0)
- ;;=D59.9^^30^396^2
- ;;^UTILITY(U,$J,358.3,6479,1,0)
+ ;;^UTILITY(U,$J,358.3,14075,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,14075,1,4,0)
+ ;;=4^L97.114
+ ;;^UTILITY(U,$J,358.3,14075,2)
+ ;;=^5009488
+ ;;^UTILITY(U,$J,358.3,14076,0)
+ ;;=L97.119^^61^729^230
+ ;;^UTILITY(U,$J,358.3,14076,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14076,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,14076,1,4,0)
+ ;;=4^L97.119
+ ;;^UTILITY(U,$J,358.3,14076,2)
+ ;;=^5009489
+ ;;^UTILITY(U,$J,358.3,14077,0)
+ ;;=L97.121^^61^729^196
+ ;;^UTILITY(U,$J,358.3,14077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14077,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,14077,1,4,0)
+ ;;=4^L97.121
+ ;;^UTILITY(U,$J,358.3,14077,2)
+ ;;=^5009490
+ ;;^UTILITY(U,$J,358.3,14078,0)
+ ;;=L97.122^^61^729^197
+ ;;^UTILITY(U,$J,358.3,14078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14078,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,14078,1,4,0)
+ ;;=4^L97.122
+ ;;^UTILITY(U,$J,358.3,14078,2)
+ ;;=^5009491
+ ;;^UTILITY(U,$J,358.3,14079,0)
+ ;;=L97.123^^61^729^198
+ ;;^UTILITY(U,$J,358.3,14079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14079,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,14079,1,4,0)
+ ;;=4^L97.123
+ ;;^UTILITY(U,$J,358.3,14079,2)
+ ;;=^5009492
+ ;;^UTILITY(U,$J,358.3,14080,0)
+ ;;=L97.124^^61^729^199
+ ;;^UTILITY(U,$J,358.3,14080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14080,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,14080,1,4,0)
+ ;;=4^L97.124
+ ;;^UTILITY(U,$J,358.3,14080,2)
+ ;;=^5009493
+ ;;^UTILITY(U,$J,358.3,14081,0)
+ ;;=L97.129^^61^729^200
+ ;;^UTILITY(U,$J,358.3,14081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14081,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Thigh w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,14081,1,4,0)
+ ;;=4^L97.129
+ ;;^UTILITY(U,$J,358.3,14081,2)
+ ;;=^5009494
+ ;;^UTILITY(U,$J,358.3,14082,0)
+ ;;=L97.211^^61^729^206
+ ;;^UTILITY(U,$J,358.3,14082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14082,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,14082,1,4,0)
+ ;;=4^L97.211
+ ;;^UTILITY(U,$J,358.3,14082,2)
+ ;;=^5009500
+ ;;^UTILITY(U,$J,358.3,14083,0)
+ ;;=L97.212^^61^729^207
+ ;;^UTILITY(U,$J,358.3,14083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14083,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Fat Layer Exposed
+ ;;^UTILITY(U,$J,358.3,14083,1,4,0)
+ ;;=4^L97.212
+ ;;^UTILITY(U,$J,358.3,14083,2)
+ ;;=^5009501
+ ;;^UTILITY(U,$J,358.3,14084,0)
+ ;;=L97.213^^61^729^208
+ ;;^UTILITY(U,$J,358.3,14084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14084,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Muscle
+ ;;^UTILITY(U,$J,358.3,14084,1,4,0)
+ ;;=4^L97.213
+ ;;^UTILITY(U,$J,358.3,14084,2)
+ ;;=^5009502
+ ;;^UTILITY(U,$J,358.3,14085,0)
+ ;;=L97.214^^61^729^209
+ ;;^UTILITY(U,$J,358.3,14085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14085,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Necrosis of Bone
+ ;;^UTILITY(U,$J,358.3,14085,1,4,0)
+ ;;=4^L97.214
+ ;;^UTILITY(U,$J,358.3,14085,2)
+ ;;=^5009503
+ ;;^UTILITY(U,$J,358.3,14086,0)
+ ;;=L97.219^^61^729^210
+ ;;^UTILITY(U,$J,358.3,14086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14086,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Right Calf w/ Unspec Severity
+ ;;^UTILITY(U,$J,358.3,14086,1,4,0)
+ ;;=4^L97.219
+ ;;^UTILITY(U,$J,358.3,14086,2)
+ ;;=^5009504
+ ;;^UTILITY(U,$J,358.3,14087,0)
+ ;;=L97.221^^61^729^176
+ ;;^UTILITY(U,$J,358.3,14087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14087,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Breakdown of Skin
+ ;;^UTILITY(U,$J,358.3,14087,1,4,0)
+ ;;=4^L97.221
+ ;;^UTILITY(U,$J,358.3,14087,2)
+ ;;=^5009505
+ ;;^UTILITY(U,$J,358.3,14088,0)
+ ;;=L97.222^^61^729^177
+ ;;^UTILITY(U,$J,358.3,14088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14088,1,3,0)
+ ;;=3^Non-Pressure Chr Ulcer of Left Calf w/ Fat Layer Exposed

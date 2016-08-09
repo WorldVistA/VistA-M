@@ -1,29 +1,42 @@
-DID1 ;SFISC/XAK,JLT-STD DD LIST ;9APR2007
- ;;22.0;VA FileMan;**7,76,105,152**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DID1 ;SFISC/XAK,JLT-STD DD LIST ;2014-12-24  12:06 PM
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DJ(Z)=D0,DDL1=14,DDL2=32 G B
  ;
 L S DJ(Z)=0
 A S DJ(Z)=$O(^DD(F(Z),DJ(Z))) I DJ(Z)'>0 S:DJ(Z)="" DJ(Z)=-1 W !! S Z=Z-1 Q
 B S N=^DD(F(Z),DJ(Z),0) K DDF I $D(DIGR),Z<2!(DJ(Z)-.01) X DIGR E  G ND
- D HD:$Y+6>IOSL Q:M=U  W !!,F(Z),",",DJ(Z)
- W ?(Z+Z+12),$P(N,U,1),?DDL2+4," "_$P(N,U,4)
+ D HD:$Y+$L(X)+6>IOSL Q:M=U  W !!,F(Z),",",DJ(Z)
+LABEL W ?(Z+Z+12),$P(N,U),?DDL2+4," "_$P(N,U,4)
+ F X=0:0 S X=$O(^DD(F(Z),DJ(Z),.008,X)) Q:'X  S W=$P($G(^(X,0)),U) I W]"",$D(^DI(.85,X,0)) S I=$P(^(0),U,2)_": " W !?(Z+Z+12-$L(I)),I,W ;**CCO/NI DISPLAY FOREIGN LABELS
  S X=$P(N,U,2)
-WP I X,$D(^DD(+X,.01,0)) S W=$P(^(0),U,2) I W["W" D
- .S X="WORD-PROCESSING #"_+X D  S X="(NOWRAP)" D:W["L"  S X="(IGNORE ""|"")" D:W["X"!(W["x")  S X="(UNEDITABLE)" D:W["I"  S X=""
+WP I X,$D(^DD(+X,.01,0)) S W=$P(^(0),U,2) I W["W" D  S X=""
+ .S X="WORD-PROCESSING #"_+X D  S X="(NOWRAP)" D:W["L"  S X="(IGNORE ""|"")" D:W["X"!(W["x")  S X="(UNEDITABLE)" D:W["I"  S X="(AUDITED)" D:$G(^("AUDIT"))]""
  ..W:$L(X)+$X+5>IOM !?18 W "   ",X
- F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","K","VARIABLE POINTER","p" I X[$E(W) D VP^DIDX:$E(W)="V" S:W="K" W="MUMPS" S:W="p" W="POINTER" W ?40," "_W G ND:M=U
+ F W="BOOLEAN","COMPUTED","FREE TEXT","SET","DATE","NUMBER","POINTER","K","VARIABLE POINTER","m","p" I X[$E(W) D VP^DIDX:$E(W)="V" S:W="K" W="MUMPS" S:W="p" W="POINTER" S:W="m" W="MULTIPLE" W ?40," "_W G ND:M=U
+TYPE S W=+$P(X,"t",2) I W,$D(^DI(.81,W,0)) S W=" ("_$P(^(0),U)_" Data Type)" D W G ND:M=U
  I +X S W=" Multiple" S W=W_" #"_+X D W G ND:M=U
  I X["V" S I=0 F  S I=$O(^DD(F(Z),D0,"V",I)) Q:I'>0  S %Y=$P(^(I,0),U) I $D(^DIC(%Y,0)),$D(@(^(0,"GL")_"0)")) S ^UTILITY($J,"P",$E($P(^(0),U),1,30),0)=%Y,^(F(Z),DJ(Z))=0
- S:I="" I=-1 G MP:X'["P"!X S Y=$P(N,U,3) I Y]"",$D(@("^"_Y_"0)")) S %Y=+$P(X,"P",2),W=" TO "_$P(^(0),U,1)_" FILE (#"_%Y_")",^UTILITY($J,"P",$E($P(^(0),U,1),1,30),0)=%Y,^(F(Z),DJ(Z))=0 D W G ND:M=U,MP
- S W=" ** TO AN UNDEFINED FILE ** " W:($L(W)+$X)'<IOM ! D W G ND:M=U
+ I 'X D
+P .N Y,NM S:X["P" Y=U_$P(N,U,3),NM=+$P(X,"P",2) I X["C" S NM=+$P(X,"p",2) I NM S Y=$G(^DIC(NM,0,"GL"))
+ .Q:'$D(Y)  N PF I Y[U,$D(@(Y_"0)")) S W=" TO "_$P(^(0),U)_" FILE (#"_NM_")",PF=$E($P(^(0),U),1,30)
+ .E  S PF="UNDEFINED FILE"_$S(NM:" (#"_NM_")",1:""),W="  ***** TO AN "_PF_$S(Y[U:", STORED IN "_$$CREF^DILF(Y),1:"")_" *******",PF="}"_PF,NM="" W:($L(W)+$X)'<IOM !
+ .S ^UTILITY($J,"P",PF,0)=NM,^(F(Z),DJ(Z))=0
+ .D W
 MP I X'["V" D RT^DIDX G:M=U ND
 S I X["S" D  G ND:M=U
- . N N1
- . S N1=$P(N,U,3) F %1=1:1 S Y=$P(N1,";",%1) Q:Y=""  W ! S W="'"_$P(Y,":",1)_"' FOR "_$P(Y,":",2)_"; " D W Q:M=U
+ .N N1,LANG
+ .S N1=$P(N,U,3) F %1=1:1 S Y=$P(N1,";",%1) Q:Y=""  W ! S W="'"_$P(Y,":")_"' FOR "_$P(Y,":",2)_"; " D W Q:M=U  D
+ ..F LANG=0:0 S LANG=$O(^DD(F(Z),DJ(Z),.007,LANG)) Q:'LANG  I $D(^(LANG,0)) W " (",$P(^(0),";",%1),")"
  G RD:$D(DINM) I X["C" S W=$P(N,U,5,99) W !?DDL1,"MUMPS CODE: " D W G ND:M=U G RD
  I "Q"'[$P(N,U,5) W !?DDL1,"INPUT TRANSFORM:" S W=$P(N,U,5,99) D W G ND:M=U
- I $D(^DD(F(Z),DJ(Z),2))#2 W !?DDL1,"OUTPUT TRANSFORM:" S W=$S($D(^DD(F(Z),DJ(Z),2.1)):^(2.1),1:^(2)) D W G ND:M=U
+OT I $D(^DD(F(Z),DJ(Z),2))#2 W !?DDL1,"OUTPUT TRANSFORM:" D  D W G ND:M=U
+ .I $P(^(0),U,2)'["O" S W="NOT EXECUTABLE!!  -- SPECIFIER NEEDS AN ""O""!"
+ .E  S W=$S($D(^DD(F(Z),DJ(Z),2.1)):^(2.1),1:^(2))
 RD D ^DID2:$O(^DD(F(Z),DJ(Z),2.99))]"" G ND:M=U I 'X S W="UNEDITABLE" W:X["I" ! D W:X["I" G N
  I $O(^DD(+X,0,"ID",""))]"" W !?DDL1,"IDENTIFIED BY:" S W="" F %=0:0 S %=$O(^DD(+X,0,"ID",%)) S:%>0 W=W_$P(^DD(+X,%,0),U)_"(#"_%_")"_$S($P(^(0),U,2)["R":"[R]",1:"")_", " I %'>0 S:W?.E1", " W=$E(W,1,$L(W)-2) D W G ND:M=U Q
  ;

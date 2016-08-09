@@ -1,9 +1,22 @@
-DIALOG ;SFISC/TKW - BUILD FILEMAN DIALOGUE ;10:29 AM  14 May 2001
-V ;;22.0;VA FileMan;**28,87**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIALOG ;SFISC/TKW - BUILD FILEMAN DIALOGUE ;2014-12-19  12:39 PM
+V ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ G GO
+ ;
+EN(DIANUM,DIPI) ;
+GO N DIERR,DIMSG,DIHELP,DIT Q:'$D(^DI(.84,DIANUM,0))  S DIT=$P(^(0),U,2)
+ K ^TMP($S(DIT=1:"DIERR",DIT=2:"DIMSG",1:"DIHELP"),$J)
+ S IOM=$G(IOM,80)
+ D BLD(DIANUM,.DIPI),MSG("W"_$E("EMH",DIT),,IOM,1)
+ Q
+ ;
 BLD(D0,DIPI,DIPE,DIALOGO,DIFLAG) ;BUILD FILEMAN DIALOG
  ;1)DIALOG file IEN, 2)Internal params, 3)External params, 4)Output array name, 5)S=Suppress blank line between messages, F=Format output like ^TMP
- N DINAKED S DINAKED=$$LGR^%ZOSV
+ N DINAKED S DINAKED=$NA(^(0))
  I $G(^DI(.84,+$G(D0),0))="" G Q1
  N E,I,J,K,L,M,N,P,R,S,X,O,DILANG S DILANG=+$G(DUZ("LANG")),DIFLAG=$G(DIFLAG)
  I $G(DIPE)]"",$O(DIPE(""))="" S DIPE(1)=DIPE
@@ -12,7 +25,7 @@ BLD(D0,DIPI,DIPE,DIALOGO,DIFLAG) ;BUILD FILEMAN DIALOG
  S O=$G(DIALOGO) S:O="" O="^TMP(",DIFLAG=DIFLAG_"F" D  S DIALOGO=O
  . S I=$E(O,$L(O)) I $E(O,1,4)="DIR(" S DIFLAG=$TR(DIFLAG,"F","")
  . I DIFLAG'["F" S O=$E(O,1,($L(O)-1))_$S(I="(":"",I=",":")",1:I) Q
- . S O=$P(O,")",1)_$S("(,"[I:"",O'["(":"(",1:",")_""""_$P("DIERR^DIMSG^DIHELP",U,R)_""""_$P(","_$J,U,O["^TMP(")_")"
+ . S O=$P(O,")",1)_$S("(,"[I:"",O'["(":"(",1:",")_""""_$P("DIERR^DIMSG^DIHELP",U,R)_""""_$P(","""_$J_"""",U,O["^TMP(")_")" ;WORRIED THAT $J WOULD NOT BE NUMERIC
  . Q
  S N=$O(@DIALOGO@(":"),-1)
  S N=N+1,(I,J,M)=0 S:R>1!(DIFLAG'["F") J=N-1
@@ -54,7 +67,7 @@ BTXT N M
  ;
 EZBLD(D0,DIPI) ;RETURN SINGLE LINE OF TEXT FROM DIALOG FILE.
  ;D0 = DIALOG file IEN, DIPI = Input Params
- N DINAKED S DINAKED=$$LGR^%ZOSV I $G(^DI(.84,+$G(D0),0))="" D Q1 Q ""
+ N DINAKED S DINAKED=$NA(^(0)) I $G(^DI(.84,+$G(D0),0))="" D Q1 Q ""
  N DILANG S DILANG=+$G(DUZ("LANG"))
  N X I DILANG>1 S X=$O(^DI(.84,+D0,4,DILANG,1,0)) S:X X=$G(^(X,0))
  I $G(X)']"" S X=$O(^DI(.84,+D0,2,0)) S:X X=$G(^(X,0))
@@ -68,7 +81,7 @@ QEZ D  Q X
  ;
 MSG(DIFLGS,DIOUT,DIMARGIN,DICOLUMN,DIINNAME) ;WRITE MESSAGES OR MOVE THEM TO SIMPLE ARRAY.
  ;1)Flags, 2)Output array name, 3)Margin width of text, 4)Starting column no., 5)Input array name.
- N Z,%,X,Y,I,J,K,N,DITYP,DIWIDTH,DITMP,DIIN,DINAKED S DINAKED=$$LGR^%ZOSV
+ N Z,%,X,Y,I,J,K,N,DITYP,DIWIDTH,DITMP,DIIN,DINAKED S DINAKED=$NA(^(0))
  S:$G(DIFLGS)="" DIFLGS="W" D
  . S DITMP=0 I $G(DIINNAME)="" S DIINNAME="^TMP(",DITMP=1 Q
  . N % S %=DIINNAME I %'["(" S DIINNAME=DIINNAME_"(" Q
@@ -76,14 +89,14 @@ MSG(DIFLGS,DIOUT,DIMARGIN,DICOLUMN,DIINNAME) ;WRITE MESSAGES OR MOVE THEM TO SIM
  . I $E(%,$L(%))=")" S DIINNAME=$P(%,")",1)_"," Q
  . S DIINNAME=%_"," Q
  S DITYP="",%=0 D
- . F Z="E","H","M" S %=%+1 I DIFLGS[Z,$D(@(DIINNAME_""""_$P("DIERR^DIHELP^DIMSG",U,%)_""""_$P(","_$J,U,(DITMP>0))_")")) S $P(DITYP,U,%)=$P("DIERR^DIHELP^DIMSG",U,%)
- . I DITYP="",$D(@(DIINNAME_"""DIERR"""_$P(","_$J,U,(DITMP>0))_")")) S DITYP="DIERR"
+ . F Z="E","H","M" S %=%+1 I DIFLGS[Z,$D(@(DIINNAME_""""_$P("DIERR^DIHELP^DIMSG",U,%)_""""_$P(","""_$J_"""",U,(DITMP>0))_")")) S $P(DITYP,U,%)=$P("DIERR^DIHELP^DIMSG",U,%)
+ . I DITYP="",$D(@(DIINNAME_"""DIERR"""_$P(","""_$J_"""",U,(DITMP>0))_")")) S DITYP="DIERR"
  . Q
  S DIWIDTH=$S($G(DIMARGIN):DIMARGIN,$G(IOM):(IOM-5),1:75),DICOLUMN=+$G(DICOLUMN)
  K:DIFLGS["A" DIOUT S (K,Z)=0
 AWS S K=K+1 I K>3 G Q1
  G:$P(DITYP,U,K)="" AWS
- S DIIN=DIINNAME_""""_$P(DITYP,U,K)_"""" S:DITMP DIIN=DIIN_","_$J
+ S DIIN=DIINNAME_""""_$P(DITYP,U,K)_"""" S:DITMP DIIN=DIIN_","""_$J_""""
  S (I,N)=0
  F  S N=$O(@(DIIN_")")@(N)) Q:'N  S:K>1 X=$G(@(DIIN_","_N_")")) D:K>1  I K=1 D:I&(DIFLGS'["B") LN S I=1,J=0 F  S J=$O(@(DIIN_")")@(N,"TEXT",J)) Q:'J  S X=$G(@(DIIN_","_N_",""TEXT"","_J_")")) D
  . I DIFLGS["A",'$G(DIMARGIN) S Z=Z+1,DIOUT(Z)=X

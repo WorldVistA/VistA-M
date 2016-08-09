@@ -1,6 +1,10 @@
 DINIT2 ;SFISC/GFT-INITIALIZE VA FILEMAN ;7/22/94  10:41
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G ^DINIT20:X?.P S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;.2,0 DESTINATION^
  ;;.2,0,"NM","DESTINATION"

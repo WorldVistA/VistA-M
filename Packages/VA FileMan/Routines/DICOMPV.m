@@ -1,6 +1,10 @@
-DICOMPV ;SFISC/GFT  BACKWARD-POINTERS IN COMPUTED FIELDS ;29JAN2005
- ;;22.0;VA FileMan;**1,6,76,114,144**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICOMPV ;SFISC/GFT - BACKWARD-POINTERS IN COMPUTED FIELDS ;13APR2007
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  N DIX,DICOTRY,DICOLEV
  D DRW^DICOMPX
 TRY F DICOTRY=1,2 S Y=$$BACK I Y[U Q:Y=U  D:$G(D)-.001 Y^DICOMPX G END
@@ -29,7 +33,7 @@ Y Q Y
 MP S DICN=$S(DA:DQI_(80+DICOB),1:"I("_DICOB_",0")_")",J=""""_$P(J,U,2)_"""",T=D S:$D(DIFG) DIFG=$P(J,"""",2)
  I DICOMP'["W" D  G POP:$D(Y) S (Y,D)=0 Q
  .N DICOMPIX S DICOMPIX=J
- .S D=Y,I(DLV0+100)=V,J(DLV+100)=D
+ .S D=Y,I(DLV0+100)=V,J(DLV0+100)=D
 RCR .D BACKPNT^DICOMPZ Q:'$D(Y)
  .S Y=D,X=$P(^DD(D,.01,0),U,2) D X^DICOMPZ
  .S D="S (D,D0)=$QS(DIMQ,$QL(DIMQ)" I DICOLEV S D=D_DICOLEV
@@ -53,8 +57,9 @@ X(Y,D) S DICN=Y ;Remember that we have used this field
 YN(SHOW) N X
  S X=$P(^DIC(Y,0),U)
  S %=1 I DICOMP["?" D
- .W !?3,"By '"_DICN_"', do you mean the "_X_" File,"
- .W !?7,"pointing via its '"_$P(^DD(DICODD,D,0),U),"' Field" S DICV=$P(^(0),U,2)
+YOU .N N ;**CCO/NI (+ next 2  lines) 'BY SO&SO, DO YOU MEAN THE SUCH&SUCH FILE, POINTING...?'
+ .S N(1)=DICN,N(2)=X,N(3)=$P(^DD(DICODD,D,0),U),DICV=$P(^(0),U,2)
+ .W !,$$EZBLD^DIALOG(8202,.N)
  .I SHOW]"" W !,"    (""",$P(J,U,2),""" ",SHOW,")"
  .D YN^DICN
  I %=1 F M=M:1:$L(I)+1 Q:$F(X,$E(I,1,M))-1-M  S W=$E(I,M+1)

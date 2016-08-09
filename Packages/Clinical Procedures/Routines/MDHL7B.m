@@ -1,6 +1,7 @@
 MDHL7B ; HOIFO/WAA -Bi-directional interface routine ;7/23/01  11:41
- ;;1.0;CLINICAL PROCEDURES;;Apr 01, 2004
+ ;;1.0;CLINICAL PROCEDURES;**41**;Apr 01, 2004;Build 3
  ;
+ ; IA# 5844 [Supported] Calls to XLFIPV
  ; This routine will take an entry from 702 and submit that data
  ; to the instrument that was indicated by the user
  ; SUB is a submit function
@@ -9,6 +10,9 @@ MDHL7B ; HOIFO/WAA -Bi-directional interface routine ;7/23/01  11:41
  ;    The function will return -1^Submission failed and why
  ;                              0^Device not Bi-Directional
  ;                              1^Study submitted
+ ;
+ ; 09/25/15 KAM Remedy ticket 1095728 patch MD*1*41 IPv6 modifications
+ ;
 TMPSUB(MDD702) ; Process a submitted entry from user.
  ; drp 16-JUL-2002 13:30:32 
  N DEVICE
@@ -45,7 +49,11 @@ EN1 ; The main entry point for the order to be processed.
  . Q
  ;
  ; DRP/16-MAY-2003 14:44:36 - Check for Loopback IP
- I $$GET1^DIQ(702.09,DEVIEN_",",.14)="127.0.0.1" D  Q
+ ; 09/25/15 KAM Remedy ticket 1095728 patch MD*1*41 IPv6 modifications
+ ; Changed next line to use new IPv6 API
+ ;
+ ;I $$GET1^DIQ(702.09,DEVIEN_",",.14)="127.0.0.1" D  Q
+ I $$CONVERT^XLFIPV($$GET1^DIQ(702.09,DEVIEN_",",.14))=$$CONVERT^XLFIPV("127.0.0.1") D  Q
  . D LOOPBACK^MDHL7XXX(MDD702,DEVIEN)
  . S RESULT=+$$GET1^DIQ(702.09,DEVIEN_",",.13,"I"),MSG="OK"
  . Q

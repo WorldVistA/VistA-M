@@ -1,6 +1,10 @@
 DIFGG ;SFISC/XAK,EDE(OHPRD)-FILEGRAM GENERATOR ;7/25/92  2:15 PM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K DIFG S DIFG=DIC,DIC("A")="Select FILEGRAM TEMPLATE: "
  S DK=+Y,DIC="^DIPT(",DIC("S")="I $P(^(0),U,8)=1 S %=^(0) I $P(%,U,4)=DK!'$L($P(%,U,4))",DIC(0)="QEAIS",D="F"_+Y
  D IX^DIC K DIC,DY Q:Y<0  S (DIFG("TEMPLATE"),DIFGT)=+Y

@@ -1,126 +1,290 @@
-IBDEI14W ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI14W ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19297,1,3,0)
- ;;=3^Occlusion & Stenosis Unspec Carotid Artery
- ;;^UTILITY(U,$J,358.3,19297,1,4,0)
- ;;=4^I65.29
- ;;^UTILITY(U,$J,358.3,19297,2)
- ;;=^5007363
- ;;^UTILITY(U,$J,358.3,19298,0)
- ;;=I65.22^^84^916^16
- ;;^UTILITY(U,$J,358.3,19298,1,0)
+ ;;^UTILITY(U,$J,358.3,41196,2)
+ ;;=^5019197
+ ;;^UTILITY(U,$J,358.3,41197,0)
+ ;;=R07.1^^153^2010^9
+ ;;^UTILITY(U,$J,358.3,41197,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19298,1,3,0)
- ;;=3^Occlusion & Stenosis Left Carotid Artery
- ;;^UTILITY(U,$J,358.3,19298,1,4,0)
- ;;=4^I65.22
- ;;^UTILITY(U,$J,358.3,19298,2)
- ;;=^5007361
- ;;^UTILITY(U,$J,358.3,19299,0)
- ;;=I65.23^^84^916^15
- ;;^UTILITY(U,$J,358.3,19299,1,0)
+ ;;^UTILITY(U,$J,358.3,41197,1,3,0)
+ ;;=3^Chest Pain on Breathing
+ ;;^UTILITY(U,$J,358.3,41197,1,4,0)
+ ;;=4^R07.1
+ ;;^UTILITY(U,$J,358.3,41197,2)
+ ;;=^5019196
+ ;;^UTILITY(U,$J,358.3,41198,0)
+ ;;=R07.81^^153^2010^58
+ ;;^UTILITY(U,$J,358.3,41198,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19299,1,3,0)
- ;;=3^Occlusion & Stenosis Bilateral Carotid Arteries
- ;;^UTILITY(U,$J,358.3,19299,1,4,0)
- ;;=4^I65.23
- ;;^UTILITY(U,$J,358.3,19299,2)
- ;;=^5007362
- ;;^UTILITY(U,$J,358.3,19300,0)
- ;;=I65.21^^84^916^17
- ;;^UTILITY(U,$J,358.3,19300,1,0)
+ ;;^UTILITY(U,$J,358.3,41198,1,3,0)
+ ;;=3^Pleurodynia
+ ;;^UTILITY(U,$J,358.3,41198,1,4,0)
+ ;;=4^R07.81
+ ;;^UTILITY(U,$J,358.3,41198,2)
+ ;;=^5019198
+ ;;^UTILITY(U,$J,358.3,41199,0)
+ ;;=R22.2^^153^2010^49
+ ;;^UTILITY(U,$J,358.3,41199,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19300,1,3,0)
- ;;=3^Occlusion & Stenosis Right Carotid Artery
- ;;^UTILITY(U,$J,358.3,19300,1,4,0)
- ;;=4^I65.21
- ;;^UTILITY(U,$J,358.3,19300,2)
- ;;=^5007360
- ;;^UTILITY(U,$J,358.3,19301,0)
- ;;=I70.219^^84^916^3
- ;;^UTILITY(U,$J,358.3,19301,1,0)
+ ;;^UTILITY(U,$J,358.3,41199,1,3,0)
+ ;;=3^Localized Swelling,Mass & Lump,Trunk
+ ;;^UTILITY(U,$J,358.3,41199,1,4,0)
+ ;;=4^R22.2
+ ;;^UTILITY(U,$J,358.3,41199,2)
+ ;;=^5019286
+ ;;^UTILITY(U,$J,358.3,41200,0)
+ ;;=R06.6^^153^2010^41
+ ;;^UTILITY(U,$J,358.3,41200,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19301,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Unspec Extrm
- ;;^UTILITY(U,$J,358.3,19301,1,4,0)
- ;;=4^I70.219
- ;;^UTILITY(U,$J,358.3,19301,2)
- ;;=^5007582
- ;;^UTILITY(U,$J,358.3,19302,0)
- ;;=I70.213^^84^916^4
- ;;^UTILITY(U,$J,358.3,19302,1,0)
+ ;;^UTILITY(U,$J,358.3,41200,1,3,0)
+ ;;=3^Hiccough
+ ;;^UTILITY(U,$J,358.3,41200,1,4,0)
+ ;;=4^R06.6
+ ;;^UTILITY(U,$J,358.3,41200,2)
+ ;;=^5019188
+ ;;^UTILITY(U,$J,358.3,41201,0)
+ ;;=R11.2^^153^2010^54
+ ;;^UTILITY(U,$J,358.3,41201,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19302,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Bilat Legs
- ;;^UTILITY(U,$J,358.3,19302,1,4,0)
- ;;=4^I70.213
- ;;^UTILITY(U,$J,358.3,19302,2)
- ;;=^5007580
- ;;^UTILITY(U,$J,358.3,19303,0)
- ;;=I70.212^^84^916^5
- ;;^UTILITY(U,$J,358.3,19303,1,0)
+ ;;^UTILITY(U,$J,358.3,41201,1,3,0)
+ ;;=3^Nausea w/ Vomiting,Unspec
+ ;;^UTILITY(U,$J,358.3,41201,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,41201,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,41202,0)
+ ;;=R11.0^^153^2010^53
+ ;;^UTILITY(U,$J,358.3,41202,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19303,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Left Leg
- ;;^UTILITY(U,$J,358.3,19303,1,4,0)
- ;;=4^I70.212
- ;;^UTILITY(U,$J,358.3,19303,2)
- ;;=^5007579
- ;;^UTILITY(U,$J,358.3,19304,0)
- ;;=I70.211^^84^916^6
- ;;^UTILITY(U,$J,358.3,19304,1,0)
+ ;;^UTILITY(U,$J,358.3,41202,1,3,0)
+ ;;=3^Nausea
+ ;;^UTILITY(U,$J,358.3,41202,1,4,0)
+ ;;=4^R11.0
+ ;;^UTILITY(U,$J,358.3,41202,2)
+ ;;=^5019231
+ ;;^UTILITY(U,$J,358.3,41203,0)
+ ;;=R11.11^^153^2010^55
+ ;;^UTILITY(U,$J,358.3,41203,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19304,1,3,0)
- ;;=3^Athscl Native Arteries of Extrm w/ Intrmt Claud,Right Leg
- ;;^UTILITY(U,$J,358.3,19304,1,4,0)
- ;;=4^I70.211
- ;;^UTILITY(U,$J,358.3,19304,2)
- ;;=^5007578
- ;;^UTILITY(U,$J,358.3,19305,0)
- ;;=I70.25^^84^916^2
- ;;^UTILITY(U,$J,358.3,19305,1,0)
+ ;;^UTILITY(U,$J,358.3,41203,1,3,0)
+ ;;=3^Nausea w/o Vomiting
+ ;;^UTILITY(U,$J,358.3,41203,1,4,0)
+ ;;=4^R11.11
+ ;;^UTILITY(U,$J,358.3,41203,2)
+ ;;=^5019233
+ ;;^UTILITY(U,$J,358.3,41204,0)
+ ;;=R12.^^153^2010^39
+ ;;^UTILITY(U,$J,358.3,41204,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19305,1,3,0)
- ;;=3^Athscl Native Arteries of Extremitis w/ Ulceration
- ;;^UTILITY(U,$J,358.3,19305,1,4,0)
- ;;=4^I70.25
- ;;^UTILITY(U,$J,358.3,19305,2)
- ;;=^5007602
- ;;^UTILITY(U,$J,358.3,19306,0)
- ;;=I70.249^^84^916^7
- ;;^UTILITY(U,$J,358.3,19306,1,0)
+ ;;^UTILITY(U,$J,358.3,41204,1,3,0)
+ ;;=3^Heartburn
+ ;;^UTILITY(U,$J,358.3,41204,1,4,0)
+ ;;=4^R12.
+ ;;^UTILITY(U,$J,358.3,41204,2)
+ ;;=^5019238
+ ;;^UTILITY(U,$J,358.3,41205,0)
+ ;;=R13.10^^153^2010^22
+ ;;^UTILITY(U,$J,358.3,41205,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19306,1,3,0)
- ;;=3^Athscl Natv Art of Lt Leg w/ Ulceration of Unspec Site
- ;;^UTILITY(U,$J,358.3,19306,1,4,0)
- ;;=4^I70.249
- ;;^UTILITY(U,$J,358.3,19306,2)
- ;;=^5007601
- ;;^UTILITY(U,$J,358.3,19307,0)
- ;;=I70.239^^84^916^8
- ;;^UTILITY(U,$J,358.3,19307,1,0)
+ ;;^UTILITY(U,$J,358.3,41205,1,3,0)
+ ;;=3^Dysphagia,Unspec
+ ;;^UTILITY(U,$J,358.3,41205,1,4,0)
+ ;;=4^R13.10
+ ;;^UTILITY(U,$J,358.3,41205,2)
+ ;;=^335307
+ ;;^UTILITY(U,$J,358.3,41206,0)
+ ;;=R14.0^^153^2010^1
+ ;;^UTILITY(U,$J,358.3,41206,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19307,1,3,0)
- ;;=3^Athscl Natv Art of Rt Leg w/ Ulcer of Unspec Site
- ;;^UTILITY(U,$J,358.3,19307,1,4,0)
- ;;=4^I70.239
- ;;^UTILITY(U,$J,358.3,19307,2)
- ;;=^5007594
- ;;^UTILITY(U,$J,358.3,19308,0)
- ;;=I70.269^^84^916^9
- ;;^UTILITY(U,$J,358.3,19308,1,0)
+ ;;^UTILITY(U,$J,358.3,41206,1,3,0)
+ ;;=3^Abdominal Distension
+ ;;^UTILITY(U,$J,358.3,41206,1,4,0)
+ ;;=4^R14.0
+ ;;^UTILITY(U,$J,358.3,41206,2)
+ ;;=^5019240
+ ;;^UTILITY(U,$J,358.3,41207,0)
+ ;;=R19.2^^153^2010^67
+ ;;^UTILITY(U,$J,358.3,41207,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19308,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Unspec Extremity
- ;;^UTILITY(U,$J,358.3,19308,1,4,0)
- ;;=4^I70.269
- ;;^UTILITY(U,$J,358.3,19308,2)
- ;;=^5007607
- ;;^UTILITY(U,$J,358.3,19309,0)
- ;;=I70.263^^84^916^10
- ;;^UTILITY(U,$J,358.3,19309,1,0)
+ ;;^UTILITY(U,$J,358.3,41207,1,3,0)
+ ;;=3^Visible Peristalsis
+ ;;^UTILITY(U,$J,358.3,41207,1,4,0)
+ ;;=4^R19.2
+ ;;^UTILITY(U,$J,358.3,41207,2)
+ ;;=^5019265
+ ;;^UTILITY(U,$J,358.3,41208,0)
+ ;;=R19.12^^153^2010^42
+ ;;^UTILITY(U,$J,358.3,41208,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19309,1,3,0)
- ;;=3^Athscl Natv Arteries of Extrm w/ Gangrene,Bilateral Legs
+ ;;^UTILITY(U,$J,358.3,41208,1,3,0)
+ ;;=3^Hyperactive Bowel Sounds
+ ;;^UTILITY(U,$J,358.3,41208,1,4,0)
+ ;;=4^R19.12
+ ;;^UTILITY(U,$J,358.3,41208,2)
+ ;;=^5019263
+ ;;^UTILITY(U,$J,358.3,41209,0)
+ ;;=R19.11^^153^2010^4
+ ;;^UTILITY(U,$J,358.3,41209,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41209,1,3,0)
+ ;;=3^Absent Bowel Sounds
+ ;;^UTILITY(U,$J,358.3,41209,1,4,0)
+ ;;=4^R19.11
+ ;;^UTILITY(U,$J,358.3,41209,2)
+ ;;=^5019262
+ ;;^UTILITY(U,$J,358.3,41210,0)
+ ;;=R19.15^^153^2010^2
+ ;;^UTILITY(U,$J,358.3,41210,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41210,1,3,0)
+ ;;=3^Abnormal Bowel Sounds,Oth
+ ;;^UTILITY(U,$J,358.3,41210,1,4,0)
+ ;;=4^R19.15
+ ;;^UTILITY(U,$J,358.3,41210,2)
+ ;;=^5019264
+ ;;^UTILITY(U,$J,358.3,41211,0)
+ ;;=R15.9^^153^2010^36
+ ;;^UTILITY(U,$J,358.3,41211,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41211,1,3,0)
+ ;;=3^Full Incontinence of Feces
+ ;;^UTILITY(U,$J,358.3,41211,1,4,0)
+ ;;=4^R15.9
+ ;;^UTILITY(U,$J,358.3,41211,2)
+ ;;=^5019247
+ ;;^UTILITY(U,$J,358.3,41212,0)
+ ;;=R19.7^^153^2010^20
+ ;;^UTILITY(U,$J,358.3,41212,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41212,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,41212,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,41212,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,41213,0)
+ ;;=T33.521A^^153^2010^31
+ ;;^UTILITY(U,$J,358.3,41213,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41213,1,3,0)
+ ;;=3^Frostbite Rt Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41213,1,4,0)
+ ;;=4^T33.521A
+ ;;^UTILITY(U,$J,358.3,41213,2)
+ ;;=^5049076
+ ;;^UTILITY(U,$J,358.3,41214,0)
+ ;;=T33.522A^^153^2010^29
+ ;;^UTILITY(U,$J,358.3,41214,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41214,1,3,0)
+ ;;=3^Frostbite Lt Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41214,1,4,0)
+ ;;=4^T33.522A
+ ;;^UTILITY(U,$J,358.3,41214,2)
+ ;;=^5049079
+ ;;^UTILITY(U,$J,358.3,41215,0)
+ ;;=T34.521A^^153^2010^35
+ ;;^UTILITY(U,$J,358.3,41215,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41215,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necros Rt Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41215,1,4,0)
+ ;;=4^T34.521A
+ ;;^UTILITY(U,$J,358.3,41215,2)
+ ;;=^5049187
+ ;;^UTILITY(U,$J,358.3,41216,0)
+ ;;=T34.522A^^153^2010^33
+ ;;^UTILITY(U,$J,358.3,41216,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41216,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necros Lt Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41216,1,4,0)
+ ;;=4^T34.522A
+ ;;^UTILITY(U,$J,358.3,41216,2)
+ ;;=^5049190
+ ;;^UTILITY(U,$J,358.3,41217,0)
+ ;;=T33.821A^^153^2010^30
+ ;;^UTILITY(U,$J,358.3,41217,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41217,1,3,0)
+ ;;=3^Frostbite Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41217,1,4,0)
+ ;;=4^T33.821A
+ ;;^UTILITY(U,$J,358.3,41217,2)
+ ;;=^5049121
+ ;;^UTILITY(U,$J,358.3,41218,0)
+ ;;=T33.822A^^153^2010^28
+ ;;^UTILITY(U,$J,358.3,41218,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41218,1,3,0)
+ ;;=3^Frostbite Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41218,1,4,0)
+ ;;=4^T33.822A
+ ;;^UTILITY(U,$J,358.3,41218,2)
+ ;;=^5049124
+ ;;^UTILITY(U,$J,358.3,41219,0)
+ ;;=T34.821A^^153^2010^34
+ ;;^UTILITY(U,$J,358.3,41219,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41219,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necros Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41219,1,4,0)
+ ;;=4^T34.821A
+ ;;^UTILITY(U,$J,358.3,41219,2)
+ ;;=^5049232
+ ;;^UTILITY(U,$J,358.3,41220,0)
+ ;;=T34.822A^^153^2010^32
+ ;;^UTILITY(U,$J,358.3,41220,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41220,1,3,0)
+ ;;=3^Frostbite w/ Tissue Necros Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41220,1,4,0)
+ ;;=4^T34.822A
+ ;;^UTILITY(U,$J,358.3,41220,2)
+ ;;=^5049235
+ ;;^UTILITY(U,$J,358.3,41221,0)
+ ;;=T69.021A^^153^2010^46
+ ;;^UTILITY(U,$J,358.3,41221,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41221,1,3,0)
+ ;;=3^Immersion Rt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41221,1,4,0)
+ ;;=4^T69.021A
+ ;;^UTILITY(U,$J,358.3,41221,2)
+ ;;=^5053963
+ ;;^UTILITY(U,$J,358.3,41222,0)
+ ;;=T69.022A^^153^2010^45
+ ;;^UTILITY(U,$J,358.3,41222,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41222,1,3,0)
+ ;;=3^Immersion Lt Foot,Init Encntr
+ ;;^UTILITY(U,$J,358.3,41222,1,4,0)
+ ;;=4^T69.022A
+ ;;^UTILITY(U,$J,358.3,41222,2)
+ ;;=^5053966
+ ;;^UTILITY(U,$J,358.3,41223,0)
+ ;;=Z02.3^^153^2010^26
+ ;;^UTILITY(U,$J,358.3,41223,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41223,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,41223,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,41223,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,41224,0)
+ ;;=Z02.1^^153^2010^25
+ ;;^UTILITY(U,$J,358.3,41224,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41224,1,3,0)
+ ;;=3^Exam for Pre-Employment
+ ;;^UTILITY(U,$J,358.3,41224,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,41224,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,41225,0)
+ ;;=Z02.89^^153^2010^24
+ ;;^UTILITY(U,$J,358.3,41225,1,0)
+ ;;=^358.31IA^4^2

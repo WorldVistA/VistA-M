@@ -1,6 +1,10 @@
-DIOS ;SFISC/GFT,TKW-BUILD SORT LOGIC ;12:07 PM  5 Aug 1999
- ;;22.0;VA FileMan;**6**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIOS ;SFISC/GFT,TKW-BUILD SORT LOGIC ;4SEP2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D INIT S ^UTILITY($J,"DX")=DX,^("F")="^UTILITY($J,0,"_DCC_U_(DPP+1)
  F X=-1:0 S X=$O(DX(X)) Q:X=""  S ^UTILITY($J,"DX",X)=DX(X)
 C K DX F DL=1:1:DPP S DX=+DPP(DL),V(DX,2)=DL,X=DP,(DPQ,DJ)=0,Z(DL)="" D A S X=999-$P($G(DPP(DL,"SER")),U,2),Y(DPQ,DX,X,$E($P(DPP(DL),U,2,3),1,30))=DL
@@ -18,7 +22,7 @@ SUB(F) ;
  F  S L=$O(J(L)) Q:L=""  I J(L)=F,$D(I(L,0)) S S=I(L,0) Q
  Q S
  ;
-A S W=$D(DPP(DL,X)),V(X)=DJ,Z(DL)=Z(DL)_X_C G ^DIOS1:'W
+A S W=$D(DPP(DL,X)),V(X)=DJ,Z(DL)=Z(DL)_X_"," G ^DIOS1:'W
  I W=1 S Z=X,V=DPP(DL,X),DJ=DJ+1,DPQ=DPQ+1,X=$O(DPP(DL,X)) S:X="" X=-1 S:+V'=V V=Q_V_Q S:$S($D(^DD(X,0,"UP")):^("UP")-Z,1:1) X=DX K J(DJ,X) S:J'<DJ&$D(J(DJ)) J=DJ-1 S J(DJ,X)=DL,V(X,1)=V,V(X,0)=Z,I(Z,X)=DL G A
  S W=-1
 O S W=$O(DPP(DL,X,W)) I W="" S X=+V G A
@@ -39,7 +43,7 @@ GO K DISETP,DISAVX S X=I,I="" I $D(V(X,2)) S I=" X P("_X_")" I $D(DIBTPGM) S I="
  I $D(DIBTPGM) S %=DX(X),%(1)=X,%(2)="DX" D SETU
  G GO
 COLON S F=$O(V(I,9,F)) I F="" G GO
- D MULPATH S DX(X)=DX(X)_$E(" S "_D2,1,$S(D2]"":$L(D2)+2,1:0))_DN I '$D(DIBTPGM) S DX(X)=DX(X)_C_F_")"
+ D MULPATH S DX(X)=DX(X)_$E(" S "_D2,1,$S(D2]"":$L(D2)+2,1:0))_DN I '$D(DIBTPGM) S DX(X)=DX(X)_","_F_")"
  S DX(X)=DX(X)_D1
  I $D(DIBTPGM) S %=DX(X),%(1)=X,%(2)="DX" D SETU
  S DN=DPP(F,DX,V(I,9,F)),V=$P(DN,U,4,99)
@@ -54,7 +58,7 @@ COLON S F=$O(V(I,9,F)) I F="" G GO
 MULPATH S DN=" "_$E("XD",$D(DIBTPGM)+1)_$P(":$T",1,$D(V(X,2)))_" DX" D
  .I $D(DIBTPGM) S DN=DN_DICDX Q
  .S DN=DN_"("_I Q
- S (D1,D2)="" F Z=J+1:1:V(X) S W="D"_Z,D(X)="("_X_C_P_")",%=W_D(X),D2=%_"="_W_C_D2,D1=$S(D1]"":D1_C,1:" S ")_W_"="_%
+ S (D1,D2)="" F Z=J+1:1:V(X) S W="D"_Z,D(X)="("_X_","_P_")",%=W_D(X),D2=%_"="_W_","_D2,D1=$S(D1]"":D1_",",1:" S ")_W_"="_%
  F V=0:1 S Y=$S($D(J(V,X)):X,$O(J(V,-1)):$O(J(V,-1)),1:-1) D:$D(D(Y))  Q:V'<V(X)
  . I V<V(X) S DN=" S D"_V_"=D"_V_D(Y)_DN
  . Q:'$D(V(X,9))

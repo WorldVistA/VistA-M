@@ -1,6 +1,9 @@
 DIAC ;SFISC/YJK-FILE ACCESS CHECK ;3/18/99  12:59
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 EN Q:'$D(DIAC)!'$D(DIFILE)
  I '$D(^DIC(DIFILE,0))#2 S (DIAC,%)=0 Q

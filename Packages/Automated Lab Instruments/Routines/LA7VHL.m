@@ -1,5 +1,5 @@
-LA7VHL ;DALOI/DLR - Main Driver for incoming HL7 V1.6 messages ;11/17/11  09:19
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,62,64,67,74**;Sep 27, 1994;Build 229
+LA7VHL ;DALOI/DLR - Main Driver for incoming HL7 V1.6 messages ;04/06/16  16:31
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**27,46,62,64,67,74,88**;Sep 27, 1994;Build 10
  ;
  ; This routine is not meant to be invoked by name
  ;
@@ -14,14 +14,14 @@ ORM ; Process incoming ORM messages
 ORU ; Process incoming ORU messages
  ;
  N DIQUIET,HLA,HLL,HLP,X,Y
- N LA76248,LA76249,LA7AAT,LA7AERR,LA7CS,LA7DT,LA7ECH,LA7FS,LA7HLS,LA7HLSA,LA7INTYP,LA7MEDT,LA7MTYP,LA7RAP,LA7PRID,LA7RSITE,LA7SAP,LA7SEQ,LA7SSITE,LA7STYP,LA7TYPE,LA7VER,LA7VI,LA7VJ,LA7X,LRQUIET
+ N LA76248,LA76249,LA7AAT,LA7AERR,LA7CS,LA7DT,LA7ECH,LA7ERR,LA7FS,LA7HLS,LA7HLSA,LA7INTYP,LA7MEDT,LA7MTYP,LA7RAP,LA7PRID,LA7RSITE,LA7SAP,LA7SEQ,LA7SSITE,LA7STYP,LA7TYPE,LA7VER,LA7VI,LA7VJ,LA7X,LRQUIET
  ;
  ; Prevent FileMan from issuing any unwanted WRITE(s).
  S (DIQUIET,LRQUIET)=1
  ; Insure DT and DILOCKTM is defined
  D DT^DICRW
  ;
- S (LA76248,LA76249,LA7INTYP,LA7SEQ)=0,LA7AERR=""
+ S (LA76248,LA76249,LA7INTYP,LA7SEQ)=0,(LA7AERR,LA7ERR)=""
  ;
  K ^TMP("HLA",$J)
  ;
@@ -67,7 +67,7 @@ ORU ; Process incoming ORU messages
  I LA76249>0 L -^LAHM(62.49,LA76249)
  ;
  ; Run processing routine
- I '$D(^LAHM(62.48,LA76248,1)) D CREATE^LA7LOG(5)
+ I '$D(^LAHM(62.48,LA76248,1)) S LA7ERR=5,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  I $D(^LAHM(62.48,LA76248,1)) X ^(1)
  ;
  ; Don't (ACK)nowledge ACK or ORR messages
@@ -88,8 +88,16 @@ ORU ; Process incoming ORU messages
  ; If LEDI interface and ORM message and no error then quit - send application ack after processing message.
  I $G(LA7AERR)="",LA7INTYP=10,$G(LA7MTYP)="ORM" S X=$$DONTPURG^HLUTIL() Q
  ;
+ ; If UI interface using enchanced acknowlegment and ORU message and no error then quit - send application ack after processing message.
+ I $G(LA7AERR)="",LA7INTYP=1,$G(LA7AAT(1))'="",$G(LA7MTYP)="ORU" S X=$$DONTPURG^HLUTIL() Q
+ ;
  ; If POC interface and error then setup HLL array
  I LA7INTYP>19,LA7INTYP<30 D
+ . S HLL("SET FOR APP ACK")=1
+ . S HLL("LINKS",1)=HL("EIDS")_"^"_$S($G(LA76248):$P(LA76248(0),"^"),1:$G(LA7SAP))
+ ;
+ ; If Lab UI interface using enhanced ack and error then setup HLL array
+ I LA7INTYP=1,$G(LA7AAT(1))'="" D
  . S HLL("SET FOR APP ACK")=1
  . S HLL("LINKS",1)=HL("EIDS")_"^"_$S($G(LA76248):$P(LA76248(0),"^"),1:$G(LA7SAP))
  ;
@@ -99,10 +107,12 @@ ORU ; Process incoming ORU messages
  ; Send ACK message
  I $D(HLA("HLA")) D
  . S HLP("NAMESPACE")="LA"
+ . S HLP("SUBSCRIBER")="^"_LA7RAP_"^"_LA7RSITE
  . D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"LM",1,.LA7HLSA,"",.HLP)
  ;
  I $D(^TMP("HLA",$J)) D
  . S HLP("NAMESPACE")="LA"
+ . S HLP("SUBSCRIBER")="^"_LA7RAP_"^"_LA7RSITE
  . D GENACK^HLMA1(HL("EID"),HLMTIENS,HL("EIDS"),"GM",1,.LA7HLSA,"",.HLP)
  ;
  Q
@@ -146,7 +156,7 @@ MSH ;;MSH
  I 'LA76248 S LA76248=+$O(^LAHM(62.48,"B",LA7SAP,0))
  I 'LA76248,$E(LA7SAP,1,11)="LA7V REMOTE" S LA76248=+$O(^LAHM(62.48,"B","LA7V COLLECTION "_$P(LA7SAP," ",3),0))
  I 'LA76248 D  Q
- . D CREATE^LA7LOG(1)
+ . S LA7ERR=1,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  . D REJECT("no config in 62.48")
  ;
  S LA76248(0)=$G(^LAHM(62.48,LA76248,0))
@@ -155,7 +165,7 @@ MSH ;;MSH
  S LA7INTYP=+$P(^LAHM(62.48,LA76248,0),"^",9)
  ;
  I '$P($G(^LAHM(62.48,LA76248,0)),"^",3) D
- . D CREATE^LA7LOG(3)
+ . S LA7ERR=3,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  . D REJECT("config is inactive")
  ;
  ; store incoming message in ^LAHM(62.49)
@@ -163,9 +173,10 @@ MSH ;;MSH
  I LA76249<1 Q
  ;
  ; update entry in 62.49
- N FDA,LA7ERR
+ N FDA,LA7FERR
  I $G(LA76248) S FDA(1,62.49,LA76249_",",.5)=LA76248
  S FDA(1,62.49,LA76249_",",1)="I"
+ I LA7ERR S FDA(1,62.49,LA76249_",",2)="E"
  S FDA(1,62.49,LA76249_",",3)=3
  S FDA(1,62.49,LA76249_",",102)=LA7SAP
  S FDA(1,62.49,LA76249_",",103)=LA7SSITE
@@ -177,7 +188,7 @@ MSH ;;MSH
  S FDA(1,62.49,LA76249_",",110)=LA7PRID
  S FDA(1,62.49,LA76249_",",111)=LA7VER
  S FDA(1,62.49,LA76249_",",700)=HL("EID")_";"_HLMTIENS_";"_HL("EIDS")
- D FILE^DIE("","FDA(1)","LA7ERR(1)")
+ D FILE^DIE("","FDA(1)","LA7FERR(1)")
  ;
  Q
  ;

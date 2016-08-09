@@ -1,6 +1,9 @@
-DDR2 ;ALB/MJK-FileMan Delphi Components' RPCs ;4/20/98  11:38
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDR2 ;ALB/MJK-FileMan Delphi Components' RPCs ;24APR2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  Q
  ;
@@ -24,9 +27,8 @@ GETSC(DDRDATA,DDR) ; DDR GETS ENTRY DATA rpc callback
  I $G(DDROPT)["U" D 11,21
  I $G(DDROPT)["?" D HLP
  Q
-1 I $D(DDRRSLT) D
+1 I $D(DDRRSLT),'$G(DIERR) D SET("[Data]") F DDRFILE=0:0 S DDRFILE=$O(DDRRSLT(DDRFILE)) Q:'DDRFILE  S DDRIENS="" F  S DDRIENS=$O(DDRRSLT(DDRFILE,DDRIENS)) Q:DDRIENS=""  D
  . N DDRFIELD,X,J
- . D SET("[Data]")
  . S DDRFIELD=0 F  S DDRFIELD=$O(DDRRSLT(DDRFILE,DDRIENS,DDRFIELD)) Q:'DDRFIELD  D
  . . ;Do not remove stripping of ',' from IENS in line below if this code should work with T11 (21.1T1) of FM components.
  . . S X=DDRFILE_"^"_$E(DDRIENS,1,$L(DDRIENS)-1)_"^"_DDRFIELD_"^"

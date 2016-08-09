@@ -1,138 +1,270 @@
-IBDEI0UV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0UV ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14474,1,3,0)
- ;;=3^Diffuse Cystic Mastopathy of Unspec Breast
- ;;^UTILITY(U,$J,358.3,14474,1,4,0)
- ;;=4^N60.19
- ;;^UTILITY(U,$J,358.3,14474,2)
- ;;=^5015775
- ;;^UTILITY(U,$J,358.3,14475,0)
- ;;=N64.4^^53^609^34
- ;;^UTILITY(U,$J,358.3,14475,1,0)
+ ;;^UTILITY(U,$J,358.3,31047,0)
+ ;;=M67.431^^116^1526^203
+ ;;^UTILITY(U,$J,358.3,31047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14475,1,3,0)
- ;;=3^Mastodynia
- ;;^UTILITY(U,$J,358.3,14475,1,4,0)
- ;;=4^N64.4
- ;;^UTILITY(U,$J,358.3,14475,2)
- ;;=^5015794
- ;;^UTILITY(U,$J,358.3,14476,0)
- ;;=N63.^^53^609^33
- ;;^UTILITY(U,$J,358.3,14476,1,0)
+ ;;^UTILITY(U,$J,358.3,31047,1,3,0)
+ ;;=3^Ganglion,Right Wrist
+ ;;^UTILITY(U,$J,358.3,31047,1,4,0)
+ ;;=4^M67.431
+ ;;^UTILITY(U,$J,358.3,31047,2)
+ ;;=^5012963
+ ;;^UTILITY(U,$J,358.3,31048,0)
+ ;;=D18.01^^116^1526^205
+ ;;^UTILITY(U,$J,358.3,31048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14476,1,3,0)
- ;;=3^Lump in Breast,Unspec
- ;;^UTILITY(U,$J,358.3,14476,1,4,0)
- ;;=4^N63.
- ;;^UTILITY(U,$J,358.3,14476,2)
- ;;=^5015791
- ;;^UTILITY(U,$J,358.3,14477,0)
- ;;=N64.51^^53^609^28
- ;;^UTILITY(U,$J,358.3,14477,1,0)
+ ;;^UTILITY(U,$J,358.3,31048,1,3,0)
+ ;;=3^Hemangioma Skin/Subcutaneous Tissue
+ ;;^UTILITY(U,$J,358.3,31048,1,4,0)
+ ;;=4^D18.01
+ ;;^UTILITY(U,$J,358.3,31048,2)
+ ;;=^267697
+ ;;^UTILITY(U,$J,358.3,31049,0)
+ ;;=L73.2^^116^1526^206
+ ;;^UTILITY(U,$J,358.3,31049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14477,1,3,0)
- ;;=3^Induration of Breast
- ;;^UTILITY(U,$J,358.3,14477,1,4,0)
- ;;=4^N64.51
- ;;^UTILITY(U,$J,358.3,14477,2)
- ;;=^5015795
- ;;^UTILITY(U,$J,358.3,14478,0)
- ;;=N64.59^^53^609^57
- ;;^UTILITY(U,$J,358.3,14478,1,0)
+ ;;^UTILITY(U,$J,358.3,31049,1,3,0)
+ ;;=3^Hidradenitis Suppurativa
+ ;;^UTILITY(U,$J,358.3,31049,1,4,0)
+ ;;=4^L73.2
+ ;;^UTILITY(U,$J,358.3,31049,2)
+ ;;=^278979
+ ;;^UTILITY(U,$J,358.3,31050,0)
+ ;;=L91.9^^116^1526^207
+ ;;^UTILITY(U,$J,358.3,31050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14478,1,3,0)
- ;;=3^Signs and Symptoms in Breast,Other
- ;;^UTILITY(U,$J,358.3,14478,1,4,0)
- ;;=4^N64.59
- ;;^UTILITY(U,$J,358.3,14478,2)
- ;;=^5015797
- ;;^UTILITY(U,$J,358.3,14479,0)
- ;;=N64.52^^53^609^37
- ;;^UTILITY(U,$J,358.3,14479,1,0)
+ ;;^UTILITY(U,$J,358.3,31050,1,3,0)
+ ;;=3^Hypertrophic Disorder of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,31050,1,4,0)
+ ;;=4^L91.9
+ ;;^UTILITY(U,$J,358.3,31050,2)
+ ;;=^5009461
+ ;;^UTILITY(U,$J,358.3,31051,0)
+ ;;=L91.0^^116^1526^208
+ ;;^UTILITY(U,$J,358.3,31051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14479,1,3,0)
- ;;=3^Nipple Discharge
- ;;^UTILITY(U,$J,358.3,14479,1,4,0)
- ;;=4^N64.52
- ;;^UTILITY(U,$J,358.3,14479,2)
- ;;=^259531
- ;;^UTILITY(U,$J,358.3,14480,0)
- ;;=N64.53^^53^609^54
- ;;^UTILITY(U,$J,358.3,14480,1,0)
+ ;;^UTILITY(U,$J,358.3,31051,1,3,0)
+ ;;=3^Hypertrophic Scar (Keloid Scar)
+ ;;^UTILITY(U,$J,358.3,31051,1,4,0)
+ ;;=4^L91.0
+ ;;^UTILITY(U,$J,358.3,31051,2)
+ ;;=^5009459
+ ;;^UTILITY(U,$J,358.3,31052,0)
+ ;;=N62.^^116^1526^210
+ ;;^UTILITY(U,$J,358.3,31052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14480,1,3,0)
- ;;=3^Retraction of Nipple
- ;;^UTILITY(U,$J,358.3,14480,1,4,0)
- ;;=4^N64.53
- ;;^UTILITY(U,$J,358.3,14480,2)
- ;;=^5015796
- ;;^UTILITY(U,$J,358.3,14481,0)
- ;;=N75.1^^53^609^5
- ;;^UTILITY(U,$J,358.3,14481,1,0)
+ ;;^UTILITY(U,$J,358.3,31052,1,3,0)
+ ;;=3^Hypertrophy of Breast
+ ;;^UTILITY(U,$J,358.3,31052,1,4,0)
+ ;;=4^N62.
+ ;;^UTILITY(U,$J,358.3,31052,2)
+ ;;=^5015790
+ ;;^UTILITY(U,$J,358.3,31053,0)
+ ;;=S64.491A^^116^1526^228
+ ;;^UTILITY(U,$J,358.3,31053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14481,1,3,0)
- ;;=3^Abscess of Bartholin's Gland
- ;;^UTILITY(U,$J,358.3,14481,1,4,0)
- ;;=4^N75.1
- ;;^UTILITY(U,$J,358.3,14481,2)
- ;;=^5015823
- ;;^UTILITY(U,$J,358.3,14482,0)
- ;;=N80.9^^53^609^18
- ;;^UTILITY(U,$J,358.3,14482,1,0)
+ ;;^UTILITY(U,$J,358.3,31053,1,3,0)
+ ;;=3^Injury Digital Nerve Left Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31053,1,4,0)
+ ;;=4^S64.491A
+ ;;^UTILITY(U,$J,358.3,31053,2)
+ ;;=^5035802
+ ;;^UTILITY(U,$J,358.3,31054,0)
+ ;;=S64.497A^^116^1526^229
+ ;;^UTILITY(U,$J,358.3,31054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14482,1,3,0)
- ;;=3^Endometriosis,Unspec
- ;;^UTILITY(U,$J,358.3,14482,1,4,0)
- ;;=4^N80.9
- ;;^UTILITY(U,$J,358.3,14482,2)
- ;;=^5015837
- ;;^UTILITY(U,$J,358.3,14483,0)
- ;;=N81.4^^53^609^61
- ;;^UTILITY(U,$J,358.3,14483,1,0)
+ ;;^UTILITY(U,$J,358.3,31054,1,3,0)
+ ;;=3^Injury Digital Nerve Left Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31054,1,4,0)
+ ;;=4^S64.497A
+ ;;^UTILITY(U,$J,358.3,31054,2)
+ ;;=^5035820
+ ;;^UTILITY(U,$J,358.3,31055,0)
+ ;;=S64.493A^^116^1526^230
+ ;;^UTILITY(U,$J,358.3,31055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14483,1,3,0)
- ;;=3^Uterovaginal Prolapse,Unspec
- ;;^UTILITY(U,$J,358.3,14483,1,4,0)
- ;;=4^N81.4
- ;;^UTILITY(U,$J,358.3,14483,2)
- ;;=^5015841
- ;;^UTILITY(U,$J,358.3,14484,0)
- ;;=N83.20^^53^609^42
- ;;^UTILITY(U,$J,358.3,14484,1,0)
+ ;;^UTILITY(U,$J,358.3,31055,1,3,0)
+ ;;=3^Injury Digital Nerve Left Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31055,1,4,0)
+ ;;=4^S64.493A
+ ;;^UTILITY(U,$J,358.3,31055,2)
+ ;;=^5035808
+ ;;^UTILITY(U,$J,358.3,31056,0)
+ ;;=S64.495A^^116^1526^231
+ ;;^UTILITY(U,$J,358.3,31056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14484,1,3,0)
- ;;=3^Ovarian Cysts,Unspec
- ;;^UTILITY(U,$J,358.3,14484,1,4,0)
- ;;=4^N83.20
- ;;^UTILITY(U,$J,358.3,14484,2)
- ;;=^5015855
- ;;^UTILITY(U,$J,358.3,14485,0)
- ;;=N83.29^^53^609^41
- ;;^UTILITY(U,$J,358.3,14485,1,0)
+ ;;^UTILITY(U,$J,358.3,31056,1,3,0)
+ ;;=3^Injury Digital Nerve Left Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31056,1,4,0)
+ ;;=4^S64.495A
+ ;;^UTILITY(U,$J,358.3,31056,2)
+ ;;=^5035814
+ ;;^UTILITY(U,$J,358.3,31057,0)
+ ;;=S64.32XA^^116^1526^232
+ ;;^UTILITY(U,$J,358.3,31057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14485,1,3,0)
- ;;=3^Ovarian Cysts,Other
- ;;^UTILITY(U,$J,358.3,14485,1,4,0)
- ;;=4^N83.29
- ;;^UTILITY(U,$J,358.3,14485,2)
- ;;=^5015856
- ;;^UTILITY(U,$J,358.3,14486,0)
- ;;=N84.8^^53^609^47
- ;;^UTILITY(U,$J,358.3,14486,1,0)
+ ;;^UTILITY(U,$J,358.3,31057,1,3,0)
+ ;;=3^Injury Digital Nerve Left Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31057,1,4,0)
+ ;;=4^S64.32XA
+ ;;^UTILITY(U,$J,358.3,31057,2)
+ ;;=^5035793
+ ;;^UTILITY(U,$J,358.3,31058,0)
+ ;;=S64.490A^^116^1526^233
+ ;;^UTILITY(U,$J,358.3,31058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14486,1,3,0)
- ;;=3^Polyp of Other Parts of Female Genital Tract
- ;;^UTILITY(U,$J,358.3,14486,1,4,0)
- ;;=4^N84.8
- ;;^UTILITY(U,$J,358.3,14486,2)
- ;;=^5015868
- ;;^UTILITY(U,$J,358.3,14487,0)
- ;;=N84.0^^53^609^45
- ;;^UTILITY(U,$J,358.3,14487,1,0)
+ ;;^UTILITY(U,$J,358.3,31058,1,3,0)
+ ;;=3^Injury Digital Nerve Right Index Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31058,1,4,0)
+ ;;=4^S64.490A
+ ;;^UTILITY(U,$J,358.3,31058,2)
+ ;;=^5035799
+ ;;^UTILITY(U,$J,358.3,31059,0)
+ ;;=S64.496A^^116^1526^234
+ ;;^UTILITY(U,$J,358.3,31059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14487,1,3,0)
- ;;=3^Polyp of Corpus Uteri
- ;;^UTILITY(U,$J,358.3,14487,1,4,0)
- ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,31059,1,3,0)
+ ;;=3^Injury Digital Nerve Right Little Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31059,1,4,0)
+ ;;=4^S64.496A
+ ;;^UTILITY(U,$J,358.3,31059,2)
+ ;;=^5035817
+ ;;^UTILITY(U,$J,358.3,31060,0)
+ ;;=S64.492A^^116^1526^235
+ ;;^UTILITY(U,$J,358.3,31060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31060,1,3,0)
+ ;;=3^Injury Digital Nerve Right Middle Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31060,1,4,0)
+ ;;=4^S64.492A
+ ;;^UTILITY(U,$J,358.3,31060,2)
+ ;;=^5035805
+ ;;^UTILITY(U,$J,358.3,31061,0)
+ ;;=S64.494A^^116^1526^236
+ ;;^UTILITY(U,$J,358.3,31061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31061,1,3,0)
+ ;;=3^Injury Digital Nerve Right Ring Finger,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31061,1,4,0)
+ ;;=4^S64.494A
+ ;;^UTILITY(U,$J,358.3,31061,2)
+ ;;=^5035811
+ ;;^UTILITY(U,$J,358.3,31062,0)
+ ;;=S64.31XA^^116^1526^237
+ ;;^UTILITY(U,$J,358.3,31062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31062,1,3,0)
+ ;;=3^Injury Digital Nerve Right Thumb,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31062,1,4,0)
+ ;;=4^S64.31XA
+ ;;^UTILITY(U,$J,358.3,31062,2)
+ ;;=^5035790
+ ;;^UTILITY(U,$J,358.3,31063,0)
+ ;;=S54.12XA^^116^1526^239
+ ;;^UTILITY(U,$J,358.3,31063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31063,1,3,0)
+ ;;=3^Injury Median Nerve Left Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31063,1,4,0)
+ ;;=4^S54.12XA
+ ;;^UTILITY(U,$J,358.3,31063,2)
+ ;;=^5031421
+ ;;^UTILITY(U,$J,358.3,31064,0)
+ ;;=S54.11XA^^116^1526^242
+ ;;^UTILITY(U,$J,358.3,31064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31064,1,3,0)
+ ;;=3^Injury Median Nerve Right Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31064,1,4,0)
+ ;;=4^S54.11XA
+ ;;^UTILITY(U,$J,358.3,31064,2)
+ ;;=^5031418
+ ;;^UTILITY(U,$J,358.3,31065,0)
+ ;;=S44.12XA^^116^1526^240
+ ;;^UTILITY(U,$J,358.3,31065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31065,1,3,0)
+ ;;=3^Injury Median Nerve Left Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31065,1,4,0)
+ ;;=4^S44.12XA
+ ;;^UTILITY(U,$J,358.3,31065,2)
+ ;;=^5027951
+ ;;^UTILITY(U,$J,358.3,31066,0)
+ ;;=S44.11XA^^116^1526^243
+ ;;^UTILITY(U,$J,358.3,31066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31066,1,3,0)
+ ;;=3^Injury Median Nerve Right Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31066,1,4,0)
+ ;;=4^S44.11XA
+ ;;^UTILITY(U,$J,358.3,31066,2)
+ ;;=^5027948
+ ;;^UTILITY(U,$J,358.3,31067,0)
+ ;;=S64.12XA^^116^1526^241
+ ;;^UTILITY(U,$J,358.3,31067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31067,1,3,0)
+ ;;=3^Injury Median Nerve Left Wrist/Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31067,1,4,0)
+ ;;=4^S64.12XA
+ ;;^UTILITY(U,$J,358.3,31067,2)
+ ;;=^5035775
+ ;;^UTILITY(U,$J,358.3,31068,0)
+ ;;=S64.11XA^^116^1526^244
+ ;;^UTILITY(U,$J,358.3,31068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31068,1,3,0)
+ ;;=3^Injury Median Nerve Right Wrist/Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31068,1,4,0)
+ ;;=4^S64.11XA
+ ;;^UTILITY(U,$J,358.3,31068,2)
+ ;;=^5035772
+ ;;^UTILITY(U,$J,358.3,31069,0)
+ ;;=S54.22XA^^116^1526^245
+ ;;^UTILITY(U,$J,358.3,31069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31069,1,3,0)
+ ;;=3^Injury Radial Nerve Left Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31069,1,4,0)
+ ;;=4^S54.22XA
+ ;;^UTILITY(U,$J,358.3,31069,2)
+ ;;=^5031430
+ ;;^UTILITY(U,$J,358.3,31070,0)
+ ;;=S44.22XA^^116^1526^246
+ ;;^UTILITY(U,$J,358.3,31070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31070,1,3,0)
+ ;;=3^Injury Radial Nerve Left Upper Arm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31070,1,4,0)
+ ;;=4^S44.22XA
+ ;;^UTILITY(U,$J,358.3,31070,2)
+ ;;=^5027960
+ ;;^UTILITY(U,$J,358.3,31071,0)
+ ;;=S64.22XA^^116^1526^247
+ ;;^UTILITY(U,$J,358.3,31071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31071,1,3,0)
+ ;;=3^Injury Radial Nerve Left Wrist/Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31071,1,4,0)
+ ;;=4^S64.22XA
+ ;;^UTILITY(U,$J,358.3,31071,2)
+ ;;=^5035784
+ ;;^UTILITY(U,$J,358.3,31072,0)
+ ;;=S54.21XA^^116^1526^248
+ ;;^UTILITY(U,$J,358.3,31072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31072,1,3,0)
+ ;;=3^Injury Radial Nerve Right Forearm,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31072,1,4,0)
+ ;;=4^S54.21XA
+ ;;^UTILITY(U,$J,358.3,31072,2)
+ ;;=^5031427
+ ;;^UTILITY(U,$J,358.3,31073,0)
+ ;;=S44.21XA^^116^1526^249
+ ;;^UTILITY(U,$J,358.3,31073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31073,1,3,0)
+ ;;=3^Injury Radial Nerve Right Upper Arm,Init Encntr

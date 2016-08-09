@@ -1,6 +1,10 @@
-DINIT00V ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ; 3/30/99  10:41:48
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT00V ;SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;09DEC2015
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^UTILITY(U,$J,.84,9233,2,4,0)
@@ -10,7 +14,7 @@ Q Q
  ;;^UTILITY(U,$J,.84,9233,2,6,0)
  ;;=-------      --------      -----------
  ;;^UTILITY(U,$J,.84,9233,2,7,0)
- ;;=EXIT         see below     Exit form (asks whether changes should be saved)
+ ;;=EXIT         see below    Exit form
  ;;^UTILITY(U,$J,.84,9233,2,8,0)
  ;;=CLOSE        <PF1>C        Close window and return to previous level
  ;;^UTILITY(U,$J,.84,9233,2,9,0)
@@ -33,6 +37,40 @@ Q Q
  ;;=Quit form without saving changes       <PF1>Q
  ;;^UTILITY(U,$J,.84,9233,2,18,0)
  ;;=Invoke Record Selection Page           <PF1>L
+ ;;^UTILITY(U,$J,.84,9233,2,19,0)
+ ;;=Print screen (including all multiples) <PF1>P
+ ;;^UTILITY(U,$J,.84,9234,0)
+ ;;=9234^3^^5
+ ;;^UTILITY(U,$J,.84,9234,1,0)
+ ;;=^^1^1^3040504
+ ;;^UTILITY(U,$J,.84,9234,1,1,0)
+ ;;=ScreenMan help for MOUSE
+ ;;^UTILITY(U,$J,.84,9234,2,0)
+ ;;=^^20^20^3040504
+ ;;^UTILITY(U,$J,.84,9234,2,1,0)
+ ;;=
+ ;;^UTILITY(U,$J,.84,9234,2,2,0)
+ ;;=Click on: - Field CAPTION, or data window, to JUMP to that Field 
+ ;;^UTILITY(U,$J,.84,9234,2,3,0)
+ ;;= 
+ ;;^UTILITY(U,$J,.84,9234,2,4,0)
+ ;;=          - BOTTOM line (left), to EXIT, SAVE, or QUIT
+ ;;^UTILITY(U,$J,.84,9234,2,5,0)
+ ;;=          
+ ;;^UTILITY(U,$J,.84,9234,2,6,0)
+ ;;=          - CURSOR to get Help for this field
+ ;;^UTILITY(U,$J,.84,9234,2,7,0)
+ ;;=                   
+ ;;^UTILITY(U,$J,.84,9234,2,8,0)
+ ;;=          - "+" signs at left top or bottom of scrolling region
+ ;;^UTILITY(U,$J,.84,9234,2,9,0)
+ ;;=          
+ ;;^UTILITY(U,$J,.84,9234,2,10,0)
+ ;;=          - INSERT (bottom right), to change typing mode to character-replace
+ ;;^UTILITY(U,$J,.84,9234,2,11,0)
+ ;;=          
+ ;;^UTILITY(U,$J,.84,9234,2,12,0)
+ ;;=          
  ;;^UTILITY(U,$J,.84,9251,0)
  ;;=9251^3^^5
  ;;^UTILITY(U,$J,.84,9251,1,0)

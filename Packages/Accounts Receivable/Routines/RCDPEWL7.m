@@ -1,5 +1,5 @@
 RCDPEWL7 ;ALB/TMK/KML - EDI LOCKBOX WORKLIST ERA DISPLAY SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,222,269,276,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**208,222,269,276,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -178,10 +178,15 @@ WL(RCERA) ; Enter worklist
  ;
  ;             input - RCERA = ien of the ERA entry in file 344.4
  ;
- N DA,DIE,DIR,DR,DTOUT,DUOUT,I,PREVENT,RC0,RCNOED,RCQUIT,RCSORT,RETCODES,STATE,TYPE,X,Y
+ N DA,DIE,DIR,DR,DTOUT,DUOUT,I,PREVENT,RC0,RCNOED,RCQUIT,RCSORT,RCEXC,RETCODES,STATE,TYPE,X,Y
  Q:RCERA'>0
- S TYPE=$S($$PHARM^RCDPEWLP(RCERA):"P",1:"M")
- I ($$XCEPT^RCDPEWLP(RCERA)]"")&(TYPE="M") D EXCDENY^RCDPEWLP Q  ;cannot process MEDICAL ERA if exception exists
+ ; PRCA*4.5*304 - Reentry if we cleared exceptions
+WL1 ; retest to make sure this ERA does not have an exception
+ S TYPE=$S($$PHARM^RCDPEWLP(RCERA):"P",1:"M"),RCEXC=0
+ ; PRCA*4.5*304 - see if we have the ERA and go to WL1 to retest.
+ I ($$XCEPT^RCDPEWLP(RCERA)]"")&(TYPE="M") D EXCDENY^RCDPEWLP Q  ;cannot process MEDICAL ERA if exception exists then fall back to Worklist.
+ ; PRCA*4.5*304 - Removed the G:($G(RCERA)'="")&&($G(RCEXC)=1) WL1 from above so it falls back to the worklist instead of going forward to the "Select ERA"
+ ; I ($$XCEPT^RCDPEWLP(RCERA)]"")&(TYPE="M") D EXCDENY^RCDPEWLP G:($G(RCERA)'="")&&($G(RCEXC)=1) WL1 Q
  S (RCQUIT,RCNOED,PREVENT)=0,RC0=$G(^RCY(344.4,RCERA,0)),RCSORT=""
  I $P(RC0,U,8) D
  . I '$D(^RCY(344.49,RCERA,0)) D  Q

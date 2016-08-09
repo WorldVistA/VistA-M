@@ -1,134 +1,294 @@
-IBDEI03N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI03N ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1277,1,4,0)
- ;;=4^H73.822
- ;;^UTILITY(U,$J,358.3,1277,2)
- ;;=^5006785
- ;;^UTILITY(U,$J,358.3,1278,0)
- ;;=H73.821^^8^130^6
- ;;^UTILITY(U,$J,358.3,1278,1,0)
+ ;;^UTILITY(U,$J,358.3,3329,2)
+ ;;=^5002655
+ ;;^UTILITY(U,$J,358.3,3330,0)
+ ;;=E11.621^^27^254^4
+ ;;^UTILITY(U,$J,358.3,3330,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1278,1,3,0)
- ;;=3^Atrophic nonflaccid tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1278,1,4,0)
- ;;=4^H73.821
- ;;^UTILITY(U,$J,358.3,1278,2)
- ;;=^5006784
- ;;^UTILITY(U,$J,358.3,1279,0)
- ;;=H72.13^^8^130^7
- ;;^UTILITY(U,$J,358.3,1279,1,0)
+ ;;^UTILITY(U,$J,358.3,3330,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,3330,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,3330,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,3331,0)
+ ;;=E11.622^^27^254^11
+ ;;^UTILITY(U,$J,358.3,3331,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1279,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1279,1,4,0)
- ;;=4^H72.13
- ;;^UTILITY(U,$J,358.3,1279,2)
- ;;=^5006749
- ;;^UTILITY(U,$J,358.3,1280,0)
- ;;=H72.12^^8^130^8
- ;;^UTILITY(U,$J,358.3,1280,1,0)
+ ;;^UTILITY(U,$J,358.3,3331,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Ulcer
+ ;;^UTILITY(U,$J,358.3,3331,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,3331,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,3332,0)
+ ;;=E11.628^^27^254^10
+ ;;^UTILITY(U,$J,358.3,3332,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1280,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1280,1,4,0)
- ;;=4^H72.12
- ;;^UTILITY(U,$J,358.3,1280,2)
- ;;=^5006748
- ;;^UTILITY(U,$J,358.3,1281,0)
- ;;=H72.11^^8^130^9
- ;;^UTILITY(U,$J,358.3,1281,1,0)
+ ;;^UTILITY(U,$J,358.3,3332,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Skin Complications
+ ;;^UTILITY(U,$J,358.3,3332,1,4,0)
+ ;;=4^E11.628
+ ;;^UTILITY(U,$J,358.3,3332,2)
+ ;;=^5002658
+ ;;^UTILITY(U,$J,358.3,3333,0)
+ ;;=E11.630^^27^254^9
+ ;;^UTILITY(U,$J,358.3,3333,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1281,1,3,0)
- ;;=3^Attic perforation of tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1281,1,4,0)
- ;;=4^H72.11
- ;;^UTILITY(U,$J,358.3,1281,2)
- ;;=^5006747
- ;;^UTILITY(U,$J,358.3,1282,0)
- ;;=H51.0^^8^130^10
- ;;^UTILITY(U,$J,358.3,1282,1,0)
+ ;;^UTILITY(U,$J,358.3,3333,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Periodontal Disease
+ ;;^UTILITY(U,$J,358.3,3333,1,4,0)
+ ;;=4^E11.630
+ ;;^UTILITY(U,$J,358.3,3333,2)
+ ;;=^5002659
+ ;;^UTILITY(U,$J,358.3,3334,0)
+ ;;=E11.638^^27^254^7
+ ;;^UTILITY(U,$J,358.3,3334,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1282,1,3,0)
- ;;=3^Bell's Palsy
- ;;^UTILITY(U,$J,358.3,1282,1,4,0)
- ;;=4^H51.0
- ;;^UTILITY(U,$J,358.3,1282,2)
- ;;=^5006250
- ;;^UTILITY(U,$J,358.3,1283,0)
- ;;=H72.03^^8^130^11
- ;;^UTILITY(U,$J,358.3,1283,1,0)
+ ;;^UTILITY(U,$J,358.3,3334,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Oral Complications
+ ;;^UTILITY(U,$J,358.3,3334,1,4,0)
+ ;;=4^E11.638
+ ;;^UTILITY(U,$J,358.3,3334,2)
+ ;;=^5002660
+ ;;^UTILITY(U,$J,358.3,3335,0)
+ ;;=E11.649^^27^254^6
+ ;;^UTILITY(U,$J,358.3,3335,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1283,1,3,0)
- ;;=3^Central perforation of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1283,1,4,0)
- ;;=4^H72.03
- ;;^UTILITY(U,$J,358.3,1283,2)
- ;;=^5006745
- ;;^UTILITY(U,$J,358.3,1284,0)
- ;;=H72.02^^8^130^12
- ;;^UTILITY(U,$J,358.3,1284,1,0)
+ ;;^UTILITY(U,$J,358.3,3335,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hypoglycemia w/o Coma
+ ;;^UTILITY(U,$J,358.3,3335,1,4,0)
+ ;;=4^E11.649
+ ;;^UTILITY(U,$J,358.3,3335,2)
+ ;;=^5002662
+ ;;^UTILITY(U,$J,358.3,3336,0)
+ ;;=E11.69^^27^254^12
+ ;;^UTILITY(U,$J,358.3,3336,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1284,1,3,0)
- ;;=3^Central perforation of tympanic membrane, left ear
- ;;^UTILITY(U,$J,358.3,1284,1,4,0)
- ;;=4^H72.02
- ;;^UTILITY(U,$J,358.3,1284,2)
- ;;=^5006744
- ;;^UTILITY(U,$J,358.3,1285,0)
- ;;=H72.01^^8^130^13
- ;;^UTILITY(U,$J,358.3,1285,1,0)
+ ;;^UTILITY(U,$J,358.3,3336,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Spec Complications
+ ;;^UTILITY(U,$J,358.3,3336,1,4,0)
+ ;;=4^E11.69
+ ;;^UTILITY(U,$J,358.3,3336,2)
+ ;;=^5002664
+ ;;^UTILITY(U,$J,358.3,3337,0)
+ ;;=K85.9^^27^254^16
+ ;;^UTILITY(U,$J,358.3,3337,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1285,1,3,0)
- ;;=3^Central perforation of tympanic membrane, right ear
- ;;^UTILITY(U,$J,358.3,1285,1,4,0)
- ;;=4^H72.01
- ;;^UTILITY(U,$J,358.3,1285,2)
- ;;=^5006743
- ;;^UTILITY(U,$J,358.3,1286,0)
- ;;=H61.23^^8^130^20
- ;;^UTILITY(U,$J,358.3,1286,1,0)
+ ;;^UTILITY(U,$J,358.3,3337,1,3,0)
+ ;;=3^Pancreatitis,Acute,Unspec
+ ;;^UTILITY(U,$J,358.3,3337,1,4,0)
+ ;;=4^K85.9
+ ;;^UTILITY(U,$J,358.3,3337,2)
+ ;;=^5008887
+ ;;^UTILITY(U,$J,358.3,3338,0)
+ ;;=R07.82^^27^254^15
+ ;;^UTILITY(U,$J,358.3,3338,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1286,1,3,0)
- ;;=3^Impacted cerumen, bilateral
- ;;^UTILITY(U,$J,358.3,1286,1,4,0)
- ;;=4^H61.23
- ;;^UTILITY(U,$J,358.3,1286,2)
- ;;=^5006533
- ;;^UTILITY(U,$J,358.3,1287,0)
- ;;=H61.22^^8^130^21
- ;;^UTILITY(U,$J,358.3,1287,1,0)
+ ;;^UTILITY(U,$J,358.3,3338,1,3,0)
+ ;;=3^Intercostal Pain
+ ;;^UTILITY(U,$J,358.3,3338,1,4,0)
+ ;;=4^R07.82
+ ;;^UTILITY(U,$J,358.3,3338,2)
+ ;;=^5019199
+ ;;^UTILITY(U,$J,358.3,3339,0)
+ ;;=R07.89^^27^254^1
+ ;;^UTILITY(U,$J,358.3,3339,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1287,1,3,0)
- ;;=3^Impacted cerumen, left ear
- ;;^UTILITY(U,$J,358.3,1287,1,4,0)
- ;;=4^H61.22
- ;;^UTILITY(U,$J,358.3,1287,2)
- ;;=^5006532
- ;;^UTILITY(U,$J,358.3,1288,0)
- ;;=H61.21^^8^130^22
- ;;^UTILITY(U,$J,358.3,1288,1,0)
+ ;;^UTILITY(U,$J,358.3,3339,1,3,0)
+ ;;=3^Chest Pain,Other
+ ;;^UTILITY(U,$J,358.3,3339,1,4,0)
+ ;;=4^R07.89
+ ;;^UTILITY(U,$J,358.3,3339,2)
+ ;;=^5019200
+ ;;^UTILITY(U,$J,358.3,3340,0)
+ ;;=I95.9^^27^254^14
+ ;;^UTILITY(U,$J,358.3,3340,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1288,1,3,0)
- ;;=3^Impacted cerumen, right ear
- ;;^UTILITY(U,$J,358.3,1288,1,4,0)
- ;;=4^H61.21
- ;;^UTILITY(U,$J,358.3,1288,2)
- ;;=^5006531
- ;;^UTILITY(U,$J,358.3,1289,0)
- ;;=H72.813^^8^130^26
- ;;^UTILITY(U,$J,358.3,1289,1,0)
+ ;;^UTILITY(U,$J,358.3,3340,1,3,0)
+ ;;=3^Hypotension,Unspec
+ ;;^UTILITY(U,$J,358.3,3340,1,4,0)
+ ;;=4^I95.9
+ ;;^UTILITY(U,$J,358.3,3340,2)
+ ;;=^5008080
+ ;;^UTILITY(U,$J,358.3,3341,0)
+ ;;=I21.4^^27^255^36
+ ;;^UTILITY(U,$J,358.3,3341,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1289,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, bilateral
- ;;^UTILITY(U,$J,358.3,1289,1,4,0)
- ;;=4^H72.813
- ;;^UTILITY(U,$J,358.3,1289,2)
- ;;=^5006756
- ;;^UTILITY(U,$J,358.3,1290,0)
- ;;=H72.812^^8^130^27
- ;;^UTILITY(U,$J,358.3,1290,1,0)
+ ;;^UTILITY(U,$J,358.3,3341,1,3,0)
+ ;;=3^NSTEMI Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,3341,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,3341,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,3342,0)
+ ;;=I50.9^^27^255^31
+ ;;^UTILITY(U,$J,358.3,3342,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1290,1,3,0)
- ;;=3^Multiple perforations of tympanic membrane, left ear
+ ;;^UTILITY(U,$J,358.3,3342,1,3,0)
+ ;;=3^Heart Failure,Unspec
+ ;;^UTILITY(U,$J,358.3,3342,1,4,0)
+ ;;=4^I50.9
+ ;;^UTILITY(U,$J,358.3,3342,2)
+ ;;=^5007251
+ ;;^UTILITY(U,$J,358.3,3343,0)
+ ;;=I50.23^^27^255^52
+ ;;^UTILITY(U,$J,358.3,3343,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3343,1,3,0)
+ ;;=3^Systolic Congestive Heart Failure,Acute/Chronic
+ ;;^UTILITY(U,$J,358.3,3343,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,3343,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,3344,0)
+ ;;=I25.10^^27^255^5
+ ;;^UTILITY(U,$J,358.3,3344,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3344,1,3,0)
+ ;;=3^Athscl Hrt Disease Native Coronary Artery w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,3344,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,3344,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,3345,0)
+ ;;=I10.^^27^255^32
+ ;;^UTILITY(U,$J,358.3,3345,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3345,1,3,0)
+ ;;=3^Hypertension
+ ;;^UTILITY(U,$J,358.3,3345,1,4,0)
+ ;;=4^I10.
+ ;;^UTILITY(U,$J,358.3,3345,2)
+ ;;=^5007062
+ ;;^UTILITY(U,$J,358.3,3346,0)
+ ;;=I49.8^^27^255^21
+ ;;^UTILITY(U,$J,358.3,3346,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3346,1,3,0)
+ ;;=3^Cardiac Arrhythmias,Oth Spec
+ ;;^UTILITY(U,$J,358.3,3346,1,4,0)
+ ;;=4^I49.8
+ ;;^UTILITY(U,$J,358.3,3346,2)
+ ;;=^5007236
+ ;;^UTILITY(U,$J,358.3,3347,0)
+ ;;=R00.1^^27^255^19
+ ;;^UTILITY(U,$J,358.3,3347,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3347,1,3,0)
+ ;;=3^Bradycardia,Unspec
+ ;;^UTILITY(U,$J,358.3,3347,1,4,0)
+ ;;=4^R00.1
+ ;;^UTILITY(U,$J,358.3,3347,2)
+ ;;=^5019164
+ ;;^UTILITY(U,$J,358.3,3348,0)
+ ;;=I48.91^^27^255^15
+ ;;^UTILITY(U,$J,358.3,3348,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3348,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,3348,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,3348,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,3349,0)
+ ;;=I48.92^^27^255^16
+ ;;^UTILITY(U,$J,358.3,3349,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3349,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,3349,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,3349,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,3350,0)
+ ;;=I47.2^^27^255^57
+ ;;^UTILITY(U,$J,358.3,3350,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3350,1,3,0)
+ ;;=3^Ventricular Tachycardia
+ ;;^UTILITY(U,$J,358.3,3350,1,4,0)
+ ;;=4^I47.2
+ ;;^UTILITY(U,$J,358.3,3350,2)
+ ;;=^125976
+ ;;^UTILITY(U,$J,358.3,3351,0)
+ ;;=I25.810^^27^255^4
+ ;;^UTILITY(U,$J,358.3,3351,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3351,1,3,0)
+ ;;=3^Atherosclerosis of CABG w/o Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,3351,1,4,0)
+ ;;=4^I25.810
+ ;;^UTILITY(U,$J,358.3,3351,2)
+ ;;=^5007141
+ ;;^UTILITY(U,$J,358.3,3352,0)
+ ;;=I25.9^^27^255^28
+ ;;^UTILITY(U,$J,358.3,3352,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3352,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,3352,1,4,0)
+ ;;=4^I25.9
+ ;;^UTILITY(U,$J,358.3,3352,2)
+ ;;=^5007144
+ ;;^UTILITY(U,$J,358.3,3353,0)
+ ;;=I25.89^^27^255^27
+ ;;^UTILITY(U,$J,358.3,3353,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3353,1,3,0)
+ ;;=3^Chronic Ischemic Heart Disease,Oth Form
+ ;;^UTILITY(U,$J,358.3,3353,1,4,0)
+ ;;=4^I25.89
+ ;;^UTILITY(U,$J,358.3,3353,2)
+ ;;=^269679
+ ;;^UTILITY(U,$J,358.3,3354,0)
+ ;;=I25.5^^27^255^35
+ ;;^UTILITY(U,$J,358.3,3354,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3354,1,3,0)
+ ;;=3^Ischemic Cardiomyopathy
+ ;;^UTILITY(U,$J,358.3,3354,1,4,0)
+ ;;=4^I25.5
+ ;;^UTILITY(U,$J,358.3,3354,2)
+ ;;=^5007115
+ ;;^UTILITY(U,$J,358.3,3355,0)
+ ;;=I42.8^^27^255^22
+ ;;^UTILITY(U,$J,358.3,3355,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3355,1,3,0)
+ ;;=3^Cardiomyopathies
+ ;;^UTILITY(U,$J,358.3,3355,1,4,0)
+ ;;=4^I42.8
+ ;;^UTILITY(U,$J,358.3,3355,2)
+ ;;=^5007199
+ ;;^UTILITY(U,$J,358.3,3356,0)
+ ;;=I42.5^^27^255^23
+ ;;^UTILITY(U,$J,358.3,3356,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3356,1,3,0)
+ ;;=3^Cardiomyopathy,Restrictive
+ ;;^UTILITY(U,$J,358.3,3356,1,4,0)
+ ;;=4^I42.5
+ ;;^UTILITY(U,$J,358.3,3356,2)
+ ;;=^5007196
+ ;;^UTILITY(U,$J,358.3,3357,0)
+ ;;=I21.19^^27^255^49
+ ;;^UTILITY(U,$J,358.3,3357,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3357,1,3,0)
+ ;;=3^STEMI Involving Coronary Artery of Inferior Wall
+ ;;^UTILITY(U,$J,358.3,3357,1,4,0)
+ ;;=4^I21.19
+ ;;^UTILITY(U,$J,358.3,3357,2)
+ ;;=^5007084
+ ;;^UTILITY(U,$J,358.3,3358,0)
+ ;;=I21.09^^27^255^48
+ ;;^UTILITY(U,$J,358.3,3358,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3358,1,3,0)
+ ;;=3^STEMI Involving Coronary Artery of Anterior Wall
+ ;;^UTILITY(U,$J,358.3,3358,1,4,0)
+ ;;=4^I21.09

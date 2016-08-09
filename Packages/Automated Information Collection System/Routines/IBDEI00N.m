@@ -1,138 +1,278 @@
-IBDEI00N ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.2)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI00N ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.2,35,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,35,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,35,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,35,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,36,0)
- ;;=CPT CODES^60^^^^^1^0^BSC^^1^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,36,2,0)
- ;;=^358.22I^3^3
- ;;^UTILITY(U,$J,358.2,36,2,1,0)
- ;;=4^ ^5^1^1^^0
- ;;^UTILITY(U,$J,358.2,36,2,2,0)
- ;;=2^ ^45^1^2^^1
- ;;^UTILITY(U,$J,358.2,36,2,3,0)
- ;;=1^ ^^2^^1^^1^^0
- ;;^UTILITY(U,$J,358.2,37,0)
- ;;=CPT CODES^61^^R^^^3^0^UBSC^^1^1^^0^^0
- ;;^UTILITY(U,$J,358.2,37,2,0)
- ;;=^358.22I^3^3
- ;;^UTILITY(U,$J,358.2,37,2,1,0)
- ;;=1^CODE^5^1^1^^0
- ;;^UTILITY(U,$J,358.2,37,2,2,0)
- ;;=2^PROCEDURE^45^1^2^^1
- ;;^UTILITY(U,$J,358.2,37,2,3,0)
- ;;=3^x^^2^^1^^1
- ;;^UTILITY(U,$J,358.2,38,0)
- ;;=TYPE OF VISIT^62^^R^^^3^0^UBSC^^6^1^^0
- ;;^UTILITY(U,$J,358.2,38,2,0)
- ;;=^358.22I^3^3
- ;;^UTILITY(U,$J,358.2,38,2,1,0)
- ;;=1^VISIT (mark one only)^31^1^2^^1
- ;;^UTILITY(U,$J,358.2,38,2,2,0)
- ;;=2^CODE^5^1^1^^0
- ;;^UTILITY(U,$J,358.2,38,2,3,0)
- ;;=3^x^^2^^1^^1
- ;;^UTILITY(U,$J,358.2,39,0)
- ;;=ICD-10 DIAGNOSES^65^^^^^4^0^SC^^8^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,39,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,39,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,39,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,39,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,39,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,39,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,40,0)
- ;;=CPT CODES^68^^^^^1^0^SC^^1^0^2^0^^0^3^3
- ;;^UTILITY(U,$J,358.2,40,1,0)
- ;;=^358.21I^3^2
- ;;^UTILITY(U,$J,358.2,40,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.2,40,1,3,0)
- ;;=2^3^54
- ;;^UTILITY(U,$J,358.2,40,2,0)
- ;;=^358.22I^3^3
- ;;^UTILITY(U,$J,358.2,40,2,1,0)
- ;;=3^ ^5^1^1^^0
- ;;^UTILITY(U,$J,358.2,40,2,2,0)
- ;;=2^ ^45^1^2^^1
- ;;^UTILITY(U,$J,358.2,40,2,3,0)
- ;;=1^ ^^2^^1^^1^^0
- ;;^UTILITY(U,$J,358.2,41,0)
- ;;=ICD-10 DIAGNOSES^69^^^^^4^0^SC^^8^0^1^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,41,1,0)
- ;;=^358.21I^1^1
- ;;^UTILITY(U,$J,358.2,41,1,1,0)
- ;;=1^2^1
- ;;^UTILITY(U,$J,358.2,41,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,41,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,41,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,41,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,41,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
- ;;^UTILITY(U,$J,358.2,41,2,5,0)
- ;;=2^S^^2^^1^^1^2^0
- ;;^UTILITY(U,$J,358.2,42,0)
- ;;=VISIT TYPE^70^^^^^1^0^C^^6^0^^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,42,1,0)
- ;;=^358.21I^2^2
- ;;^UTILITY(U,$J,358.2,42,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.2,42,1,2,0)
- ;;=2
- ;;^UTILITY(U,$J,358.2,42,2,0)
- ;;=^358.22I^4^3
- ;;^UTILITY(U,$J,358.2,42,2,1,0)
- ;;=1^ ^28^1^2^^1
- ;;^UTILITY(U,$J,358.2,42,2,3,0)
- ;;=3^^^2^^1^^1^^1
- ;;^UTILITY(U,$J,358.2,42,2,4,0)
- ;;=2^ ^5^1^1
- ;;^UTILITY(U,$J,358.2,43,0)
- ;;=CPT CODES^71^^^^^1^0^SC^^1^0^2^0^^0^3^3
- ;;^UTILITY(U,$J,358.2,43,1,0)
- ;;=^358.21I^3^2
- ;;^UTILITY(U,$J,358.2,43,1,1,0)
- ;;=1
- ;;^UTILITY(U,$J,358.2,43,1,3,0)
- ;;=2^3^54
- ;;^UTILITY(U,$J,358.2,43,2,0)
- ;;=^358.22I^3^3
- ;;^UTILITY(U,$J,358.2,43,2,1,0)
- ;;=3^ ^5^1^1^^0
- ;;^UTILITY(U,$J,358.2,43,2,2,0)
- ;;=2^ ^40^1^2^^1
- ;;^UTILITY(U,$J,358.2,43,2,3,0)
- ;;=1^ ^^2^^1^^1^^0
- ;;^UTILITY(U,$J,358.2,44,0)
- ;;=ICD-10 DIAGNOSES^74^^^^^4^0^SC^^8^0^1^0^^0^3^2
- ;;^UTILITY(U,$J,358.2,44,1,0)
- ;;=^358.21I^1^1
- ;;^UTILITY(U,$J,358.2,44,1,1,0)
- ;;=1^2^1
- ;;^UTILITY(U,$J,358.2,44,2,0)
- ;;=^358.22I^5^5
- ;;^UTILITY(U,$J,358.2,44,2,1,0)
- ;;=4^CODE^8^1^1^^0
- ;;^UTILITY(U,$J,358.2,44,2,2,0)
- ;;=3^DIAGNOSIS^95^1^2^^1
- ;;^UTILITY(U,$J,358.2,44,2,3,0)
- ;;=5^ADD^^2^^1^^1^7^0
- ;;^UTILITY(U,$J,358.2,44,2,4,0)
- ;;=1^P^^2^^1^^1^1^1
+ ;;^UTILITY(U,$J,358.3,106,1,1,0)
+ ;;=1^COMPREH HX OR EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,106,1,2,0)
+ ;;=2^99337
+ ;;^UTILITY(U,$J,358.3,107,0)
+ ;;=99324^^2^19^1
+ ;;^UTILITY(U,$J,358.3,107,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,107,1,1,0)
+ ;;=1^PROBLEM FOCUSED HX & EXAM;SF MDM
+ ;;^UTILITY(U,$J,358.3,107,1,2,0)
+ ;;=2^99324
+ ;;^UTILITY(U,$J,358.3,108,0)
+ ;;=99325^^2^19^2
+ ;;^UTILITY(U,$J,358.3,108,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,108,1,1,0)
+ ;;=1^EXPAND PROB FOCUS HX & EXAM;LOW COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,108,1,2,0)
+ ;;=2^99325
+ ;;^UTILITY(U,$J,358.3,109,0)
+ ;;=99326^^2^19^3
+ ;;^UTILITY(U,$J,358.3,109,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,109,1,1,0)
+ ;;=1^DETAILED HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,109,1,2,0)
+ ;;=2^99326
+ ;;^UTILITY(U,$J,358.3,110,0)
+ ;;=99327^^2^19^4
+ ;;^UTILITY(U,$J,358.3,110,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,110,1,1,0)
+ ;;=1^COMPREH HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,110,1,2,0)
+ ;;=2^99327
+ ;;^UTILITY(U,$J,358.3,111,0)
+ ;;=99328^^2^19^5
+ ;;^UTILITY(U,$J,358.3,111,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,111,1,1,0)
+ ;;=1^COMPREH HX & EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,111,1,2,0)
+ ;;=2^99328
+ ;;^UTILITY(U,$J,358.3,112,0)
+ ;;=99324^^2^19^6
+ ;;^UTILITY(U,$J,358.3,112,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,112,1,1,0)
+ ;;=1^Domiciliary Visit-Problem Focused
+ ;;^UTILITY(U,$J,358.3,112,1,2,0)
+ ;;=2^99324
+ ;;^UTILITY(U,$J,358.3,113,0)
+ ;;=99347^^2^20^1
+ ;;^UTILITY(U,$J,358.3,113,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,113,1,1,0)
+ ;;=1^PROBLEM FOCUSED HX OR EXAM;SF MDM
+ ;;^UTILITY(U,$J,358.3,113,1,2,0)
+ ;;=2^99347
+ ;;^UTILITY(U,$J,358.3,114,0)
+ ;;=99348^^2^20^2
+ ;;^UTILITY(U,$J,358.3,114,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,114,1,1,0)
+ ;;=1^EXPAND PROB FOCUS HX OR EXAM;LOW COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,114,1,2,0)
+ ;;=2^99348
+ ;;^UTILITY(U,$J,358.3,115,0)
+ ;;=99349^^2^20^3
+ ;;^UTILITY(U,$J,358.3,115,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,115,1,1,0)
+ ;;=1^DETAILED HX OR EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,115,1,2,0)
+ ;;=2^99349
+ ;;^UTILITY(U,$J,358.3,116,0)
+ ;;=99350^^2^20^4
+ ;;^UTILITY(U,$J,358.3,116,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,116,1,1,0)
+ ;;=1^COMPREH HX OR EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,116,1,2,0)
+ ;;=2^99350
+ ;;^UTILITY(U,$J,358.3,117,0)
+ ;;=99341^^2^21^1
+ ;;^UTILITY(U,$J,358.3,117,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,117,1,1,0)
+ ;;=1^PROBLEM FOCUSED HX & EXAM;SF MDM
+ ;;^UTILITY(U,$J,358.3,117,1,2,0)
+ ;;=2^99341
+ ;;^UTILITY(U,$J,358.3,118,0)
+ ;;=99342^^2^21^2
+ ;;^UTILITY(U,$J,358.3,118,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,118,1,1,0)
+ ;;=1^EXPAND PROB FOCUS HX & EXAM;LOW COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,118,1,2,0)
+ ;;=2^99342
+ ;;^UTILITY(U,$J,358.3,119,0)
+ ;;=99343^^2^21^3
+ ;;^UTILITY(U,$J,358.3,119,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,119,1,1,0)
+ ;;=1^DETAILED HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,119,1,2,0)
+ ;;=2^99343
+ ;;^UTILITY(U,$J,358.3,120,0)
+ ;;=99344^^2^21^4
+ ;;^UTILITY(U,$J,358.3,120,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,120,1,1,0)
+ ;;=1^COMPREH HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,120,1,2,0)
+ ;;=2^99344
+ ;;^UTILITY(U,$J,358.3,121,0)
+ ;;=99345^^2^21^5
+ ;;^UTILITY(U,$J,358.3,121,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,121,1,1,0)
+ ;;=1^COMPREH HX & EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,121,1,2,0)
+ ;;=2^99345
+ ;;^UTILITY(U,$J,358.3,122,0)
+ ;;=99366^^2^22^1
+ ;;^UTILITY(U,$J,358.3,122,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,122,1,1,0)
+ ;;=1^Interdisc Tm Conf w/ Pt/Fam,30+min,Non-Phys
+ ;;^UTILITY(U,$J,358.3,122,1,2,0)
+ ;;=2^99366
+ ;;^UTILITY(U,$J,358.3,123,0)
+ ;;=99367^^2^22^3
+ ;;^UTILITY(U,$J,358.3,123,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,123,1,1,0)
+ ;;=1^Interdisc Tm Conf w/o Pt/Fam,30+min,Physician
+ ;;^UTILITY(U,$J,358.3,123,1,2,0)
+ ;;=2^99367
+ ;;^UTILITY(U,$J,358.3,124,0)
+ ;;=99368^^2^22^2
+ ;;^UTILITY(U,$J,358.3,124,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,124,1,1,0)
+ ;;=1^Interdisc Tm Conf w/o Pt/Fam,30+min,Non-Phys
+ ;;^UTILITY(U,$J,358.3,124,1,2,0)
+ ;;=2^99368
+ ;;^UTILITY(U,$J,358.3,125,0)
+ ;;=T74.11XA^^3^23^5
+ ;;^UTILITY(U,$J,358.3,125,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,125,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,125,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,125,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,126,0)
+ ;;=T74.11XD^^3^23^6
+ ;;^UTILITY(U,$J,358.3,126,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,126,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,126,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,126,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,127,0)
+ ;;=T76.11XA^^3^23^7
+ ;;^UTILITY(U,$J,358.3,127,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,127,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,127,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,127,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,128,0)
+ ;;=T76.11XD^^3^23^8
+ ;;^UTILITY(U,$J,358.3,128,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,128,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,128,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,128,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,129,0)
+ ;;=Z69.11^^3^23^31
+ ;;^UTILITY(U,$J,358.3,129,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,129,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,129,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,129,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,130,0)
+ ;;=Z91.410^^3^23^35
+ ;;^UTILITY(U,$J,358.3,130,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,130,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical 
+ ;;^UTILITY(U,$J,358.3,130,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,130,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,131,0)
+ ;;=Z69.12^^3^23^27
+ ;;^UTILITY(U,$J,358.3,131,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,131,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,131,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,131,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,132,0)
+ ;;=T74.21XA^^3^23^13
+ ;;^UTILITY(U,$J,358.3,132,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,132,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,132,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,132,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,133,0)
+ ;;=T74.21XD^^3^23^14
+ ;;^UTILITY(U,$J,358.3,133,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,133,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,133,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,133,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,134,0)
+ ;;=T76.21XA^^3^23^15
+ ;;^UTILITY(U,$J,358.3,134,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,134,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,134,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,134,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,135,0)
+ ;;=T76.21XD^^3^23^16
+ ;;^UTILITY(U,$J,358.3,135,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,135,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,135,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,135,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,136,0)
+ ;;=Z69.81^^3^23^30
+ ;;^UTILITY(U,$J,358.3,136,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,136,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,136,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,136,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,137,0)
+ ;;=Z69.82^^3^23^22
+ ;;^UTILITY(U,$J,358.3,137,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,137,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse

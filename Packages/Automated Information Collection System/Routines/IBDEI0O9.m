@@ -1,136 +1,258 @@
-IBDEI0O9 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0O9 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11330,1,0)
+ ;;^UTILITY(U,$J,358.3,24453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11330,1,3,0)
- ;;=3^Urinary Incontinence,Urge
- ;;^UTILITY(U,$J,358.3,11330,1,4,0)
- ;;=4^N39.41
- ;;^UTILITY(U,$J,358.3,11330,2)
- ;;=Urinary Incontinence,Urge^5015680
- ;;^UTILITY(U,$J,358.3,11331,0)
- ;;=R33.0^^47^530^100
- ;;^UTILITY(U,$J,358.3,11331,1,0)
+ ;;^UTILITY(U,$J,358.3,24453,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24453,1,4,0)
+ ;;=4^F15.180
+ ;;^UTILITY(U,$J,358.3,24453,2)
+ ;;=^5003291
+ ;;^UTILITY(U,$J,358.3,24454,0)
+ ;;=F15.280^^92^1139^2
+ ;;^UTILITY(U,$J,358.3,24454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11331,1,3,0)
- ;;=3^Urinary Retention,Drug-Induced
- ;;^UTILITY(U,$J,358.3,11331,1,4,0)
- ;;=4^R33.0
- ;;^UTILITY(U,$J,358.3,11331,2)
- ;;=^5019330
- ;;^UTILITY(U,$J,358.3,11332,0)
- ;;=R33.9^^47^530^101
- ;;^UTILITY(U,$J,358.3,11332,1,0)
+ ;;^UTILITY(U,$J,358.3,24454,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24454,1,4,0)
+ ;;=4^F15.280
+ ;;^UTILITY(U,$J,358.3,24454,2)
+ ;;=^5003306
+ ;;^UTILITY(U,$J,358.3,24455,0)
+ ;;=F15.980^^92^1139^3
+ ;;^UTILITY(U,$J,358.3,24455,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11332,1,3,0)
- ;;=3^Urinary Retention,Unspec
- ;;^UTILITY(U,$J,358.3,11332,1,4,0)
- ;;=4^R33.9
- ;;^UTILITY(U,$J,358.3,11332,2)
- ;;=^5019332
- ;;^UTILITY(U,$J,358.3,11333,0)
- ;;=R39.12^^47^530^102
- ;;^UTILITY(U,$J,358.3,11333,1,0)
+ ;;^UTILITY(U,$J,358.3,24455,1,3,0)
+ ;;=3^Caffeine Induced Anxiety Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24455,1,4,0)
+ ;;=4^F15.980
+ ;;^UTILITY(U,$J,358.3,24455,2)
+ ;;=^5003320
+ ;;^UTILITY(U,$J,358.3,24456,0)
+ ;;=F15.182^^92^1139^4
+ ;;^UTILITY(U,$J,358.3,24456,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11333,1,3,0)
- ;;=3^Urinary Stream,Poor
- ;;^UTILITY(U,$J,358.3,11333,1,4,0)
- ;;=4^R39.12
- ;;^UTILITY(U,$J,358.3,11333,2)
- ;;=^5019342
- ;;^UTILITY(U,$J,358.3,11334,0)
- ;;=R39.13^^47^530^103
- ;;^UTILITY(U,$J,358.3,11334,1,0)
+ ;;^UTILITY(U,$J,358.3,24456,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mild Use Disorder
+ ;;^UTILITY(U,$J,358.3,24456,1,4,0)
+ ;;=4^F15.182
+ ;;^UTILITY(U,$J,358.3,24456,2)
+ ;;=^5003293
+ ;;^UTILITY(U,$J,358.3,24457,0)
+ ;;=F15.282^^92^1139^5
+ ;;^UTILITY(U,$J,358.3,24457,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11334,1,3,0)
- ;;=3^Urinary Stream,Splitting
- ;;^UTILITY(U,$J,358.3,11334,1,4,0)
- ;;=4^R39.13
- ;;^UTILITY(U,$J,358.3,11334,2)
- ;;=^5019343
- ;;^UTILITY(U,$J,358.3,11335,0)
- ;;=N39.9^^47^530^104
- ;;^UTILITY(U,$J,358.3,11335,1,0)
+ ;;^UTILITY(U,$J,358.3,24457,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/ Mod/Severe Use Disorder
+ ;;^UTILITY(U,$J,358.3,24457,1,4,0)
+ ;;=4^F15.282
+ ;;^UTILITY(U,$J,358.3,24457,2)
+ ;;=^5003308
+ ;;^UTILITY(U,$J,358.3,24458,0)
+ ;;=F15.982^^92^1139^6
+ ;;^UTILITY(U,$J,358.3,24458,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11335,1,3,0)
- ;;=3^Urinary System Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,11335,1,4,0)
- ;;=4^N39.9
- ;;^UTILITY(U,$J,358.3,11335,2)
- ;;=^5015688
- ;;^UTILITY(U,$J,358.3,11336,0)
- ;;=N39.0^^47^530^80
- ;;^UTILITY(U,$J,358.3,11336,1,0)
+ ;;^UTILITY(U,$J,358.3,24458,1,3,0)
+ ;;=3^Caffeine Induced Sleep Disorder w/o Use Disorder
+ ;;^UTILITY(U,$J,358.3,24458,1,4,0)
+ ;;=4^F15.982
+ ;;^UTILITY(U,$J,358.3,24458,2)
+ ;;=^5003322
+ ;;^UTILITY(U,$J,358.3,24459,0)
+ ;;=F15.99^^92^1139^9
+ ;;^UTILITY(U,$J,358.3,24459,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11336,1,3,0)
- ;;=3^UTI,Site not Specified
- ;;^UTILITY(U,$J,358.3,11336,1,4,0)
- ;;=4^N39.0
- ;;^UTILITY(U,$J,358.3,11336,2)
- ;;=^124436
- ;;^UTILITY(U,$J,358.3,11337,0)
- ;;=Z87.440^^47^530^57
- ;;^UTILITY(U,$J,358.3,11337,1,0)
+ ;;^UTILITY(U,$J,358.3,24459,1,3,0)
+ ;;=3^Caffeinie Related Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,24459,1,4,0)
+ ;;=4^F15.99
+ ;;^UTILITY(U,$J,358.3,24459,2)
+ ;;=^5133358
+ ;;^UTILITY(U,$J,358.3,24460,0)
+ ;;=R45.851^^92^1140^1
+ ;;^UTILITY(U,$J,358.3,24460,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11337,1,3,0)
- ;;=3^Personal Hx of UTI
- ;;^UTILITY(U,$J,358.3,11337,1,4,0)
- ;;=4^Z87.440
- ;;^UTILITY(U,$J,358.3,11337,2)
- ;;=^5063495
- ;;^UTILITY(U,$J,358.3,11338,0)
- ;;=R39.15^^47^530^105
- ;;^UTILITY(U,$J,358.3,11338,1,0)
+ ;;^UTILITY(U,$J,358.3,24460,1,3,0)
+ ;;=3^Suicidal Ideations
+ ;;^UTILITY(U,$J,358.3,24460,1,4,0)
+ ;;=4^R45.851
+ ;;^UTILITY(U,$J,358.3,24460,2)
+ ;;=^5019474
+ ;;^UTILITY(U,$J,358.3,24461,0)
+ ;;=F19.14^^92^1141^1
+ ;;^UTILITY(U,$J,358.3,24461,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11338,1,3,0)
- ;;=3^Urinary Urgency
- ;;^UTILITY(U,$J,358.3,11338,1,4,0)
- ;;=4^R39.15
- ;;^UTILITY(U,$J,358.3,11338,2)
- ;;=^5019345
- ;;^UTILITY(U,$J,358.3,11339,0)
- ;;=R39.0^^47^530^87
- ;;^UTILITY(U,$J,358.3,11339,1,0)
+ ;;^UTILITY(U,$J,358.3,24461,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24461,1,4,0)
+ ;;=4^F19.14
+ ;;^UTILITY(U,$J,358.3,24461,2)
+ ;;=^5003421
+ ;;^UTILITY(U,$J,358.3,24462,0)
+ ;;=F19.24^^92^1141^2
+ ;;^UTILITY(U,$J,358.3,24462,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11339,1,3,0)
- ;;=3^Urinary Extravasation
- ;;^UTILITY(U,$J,358.3,11339,1,4,0)
- ;;=4^R39.0
- ;;^UTILITY(U,$J,358.3,11339,2)
- ;;=^5019340
- ;;^UTILITY(U,$J,358.3,11340,0)
- ;;=N93.9^^47^530^81
- ;;^UTILITY(U,$J,358.3,11340,1,0)
+ ;;^UTILITY(U,$J,358.3,24462,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24462,1,4,0)
+ ;;=4^F19.24
+ ;;^UTILITY(U,$J,358.3,24462,2)
+ ;;=^5003441
+ ;;^UTILITY(U,$J,358.3,24463,0)
+ ;;=F19.94^^92^1141^3
+ ;;^UTILITY(U,$J,358.3,24463,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11340,1,3,0)
- ;;=3^Uerine/Vaginal Bleeding,Abnormal,Unspec
- ;;^UTILITY(U,$J,358.3,11340,1,4,0)
- ;;=4^N93.9
- ;;^UTILITY(U,$J,358.3,11340,2)
- ;;=^5015916
- ;;^UTILITY(U,$J,358.3,11341,0)
- ;;=N85.9^^47^530^107
- ;;^UTILITY(U,$J,358.3,11341,1,0)
+ ;;^UTILITY(U,$J,358.3,24463,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Depressive D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,24463,1,4,0)
+ ;;=4^F19.94
+ ;;^UTILITY(U,$J,358.3,24463,2)
+ ;;=^5003460
+ ;;^UTILITY(U,$J,358.3,24464,0)
+ ;;=F19.17^^92^1141^4
+ ;;^UTILITY(U,$J,358.3,24464,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11341,1,3,0)
- ;;=3^Uterus Noninflammatory Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,11341,1,4,0)
- ;;=4^N85.9
- ;;^UTILITY(U,$J,358.3,11341,2)
- ;;=^5015873
- ;;^UTILITY(U,$J,358.3,11342,0)
- ;;=N71.9^^47^530^106
- ;;^UTILITY(U,$J,358.3,11342,1,0)
+ ;;^UTILITY(U,$J,358.3,24464,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24464,1,4,0)
+ ;;=4^F19.17
+ ;;^UTILITY(U,$J,358.3,24464,2)
+ ;;=^5003426
+ ;;^UTILITY(U,$J,358.3,24465,0)
+ ;;=F19.27^^92^1141^5
+ ;;^UTILITY(U,$J,358.3,24465,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11342,1,3,0)
- ;;=3^Uterus Inflammatory Disease,Unspec
- ;;^UTILITY(U,$J,358.3,11342,1,4,0)
- ;;=4^N71.9
- ;;^UTILITY(U,$J,358.3,11342,2)
- ;;=^5015811
- ;;^UTILITY(U,$J,358.3,11343,0)
- ;;=N76.89^^47^530^109
- ;;^UTILITY(U,$J,358.3,11343,1,0)
+ ;;^UTILITY(U,$J,358.3,24465,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24465,1,4,0)
+ ;;=4^F19.27
+ ;;^UTILITY(U,$J,358.3,24465,2)
+ ;;=^5003446
+ ;;^UTILITY(U,$J,358.3,24466,0)
+ ;;=F19.97^^92^1141^6
+ ;;^UTILITY(U,$J,358.3,24466,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24466,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Maj Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,24466,1,4,0)
+ ;;=4^F19.97
+ ;;^UTILITY(U,$J,358.3,24466,2)
+ ;;=^5003465
+ ;;^UTILITY(U,$J,358.3,24467,0)
+ ;;=F19.188^^92^1141^7
+ ;;^UTILITY(U,$J,358.3,24467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24467,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24467,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,24467,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,24468,0)
+ ;;=F19.288^^92^1141^8
+ ;;^UTILITY(U,$J,358.3,24468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24468,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24468,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,24468,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,24469,0)
+ ;;=F19.988^^92^1141^9
+ ;;^UTILITY(U,$J,358.3,24469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24469,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Mild Neurocog D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,24469,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,24469,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,24470,0)
+ ;;=F19.188^^92^1141^10
+ ;;^UTILITY(U,$J,358.3,24470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24470,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24470,1,4,0)
+ ;;=4^F19.188
+ ;;^UTILITY(U,$J,358.3,24470,2)
+ ;;=^5133361
+ ;;^UTILITY(U,$J,358.3,24471,0)
+ ;;=F19.288^^92^1141^11
+ ;;^UTILITY(U,$J,358.3,24471,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24471,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24471,1,4,0)
+ ;;=4^F19.288
+ ;;^UTILITY(U,$J,358.3,24471,2)
+ ;;=^5133362
+ ;;^UTILITY(U,$J,358.3,24472,0)
+ ;;=F19.988^^92^1141^12
+ ;;^UTILITY(U,$J,358.3,24472,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24472,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Obsess-Compul & Rel D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,24472,1,4,0)
+ ;;=4^F19.988
+ ;;^UTILITY(U,$J,358.3,24472,2)
+ ;;=^5133363
+ ;;^UTILITY(U,$J,358.3,24473,0)
+ ;;=F19.159^^92^1141^13
+ ;;^UTILITY(U,$J,358.3,24473,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24473,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24473,1,4,0)
+ ;;=4^F19.159
+ ;;^UTILITY(U,$J,358.3,24473,2)
+ ;;=^5003424
+ ;;^UTILITY(U,$J,358.3,24474,0)
+ ;;=F19.259^^92^1141^14
+ ;;^UTILITY(U,$J,358.3,24474,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24474,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24474,1,4,0)
+ ;;=4^F19.259
+ ;;^UTILITY(U,$J,358.3,24474,2)
+ ;;=^5003444
+ ;;^UTILITY(U,$J,358.3,24475,0)
+ ;;=F19.959^^92^1141^15
+ ;;^UTILITY(U,$J,358.3,24475,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24475,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Psychotic D/O w/o Use D/O
+ ;;^UTILITY(U,$J,358.3,24475,1,4,0)
+ ;;=4^F19.959
+ ;;^UTILITY(U,$J,358.3,24475,2)
+ ;;=^5003463
+ ;;^UTILITY(U,$J,358.3,24476,0)
+ ;;=F19.181^^92^1141^16
+ ;;^UTILITY(U,$J,358.3,24476,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24476,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mild Use D/O
+ ;;^UTILITY(U,$J,358.3,24476,1,4,0)
+ ;;=4^F19.181
+ ;;^UTILITY(U,$J,358.3,24476,2)
+ ;;=^5003428
+ ;;^UTILITY(U,$J,358.3,24477,0)
+ ;;=F19.281^^92^1141^17
+ ;;^UTILITY(U,$J,358.3,24477,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24477,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ Mod-Sev Use D/O
+ ;;^UTILITY(U,$J,358.3,24477,1,4,0)
+ ;;=4^F19.281
+ ;;^UTILITY(U,$J,358.3,24477,2)
+ ;;=^5003448
+ ;;^UTILITY(U,$J,358.3,24478,0)
+ ;;=F19.981^^92^1141^18
+ ;;^UTILITY(U,$J,358.3,24478,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,24478,1,3,0)
+ ;;=3^Other/Unknown Substance Induced Sexual Dysfunction w/ o Use D/O

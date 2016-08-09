@@ -1,130 +1,286 @@
-IBDEI0WV ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0WV ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15421,0)
- ;;=G23.1^^58^662^34
- ;;^UTILITY(U,$J,358.3,15421,1,0)
+ ;;^UTILITY(U,$J,358.3,33063,1,3,0)
+ ;;=3^Sarcoid Iridocyclitis
+ ;;^UTILITY(U,$J,358.3,33063,1,4,0)
+ ;;=4^D86.83
+ ;;^UTILITY(U,$J,358.3,33063,2)
+ ;;=^5002448
+ ;;^UTILITY(U,$J,358.3,33064,0)
+ ;;=D84.1^^119^1574^16
+ ;;^UTILITY(U,$J,358.3,33064,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15421,1,3,0)
- ;;=3^Progressive Supranuclear Ophthalmoplegia Palsy
- ;;^UTILITY(U,$J,358.3,15421,1,4,0)
- ;;=4^G23.1
- ;;^UTILITY(U,$J,358.3,15421,2)
- ;;=^5003780
- ;;^UTILITY(U,$J,358.3,15422,0)
- ;;=F03.91^^58^662^15
- ;;^UTILITY(U,$J,358.3,15422,1,0)
+ ;;^UTILITY(U,$J,358.3,33064,1,3,0)
+ ;;=3^Defects in Complement System
+ ;;^UTILITY(U,$J,358.3,33064,1,4,0)
+ ;;=4^D84.1
+ ;;^UTILITY(U,$J,358.3,33064,2)
+ ;;=^5002439
+ ;;^UTILITY(U,$J,358.3,33065,0)
+ ;;=D81.810^^119^1574^5
+ ;;^UTILITY(U,$J,358.3,33065,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15422,1,3,0)
- ;;=3^Dementia w/ Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15422,1,4,0)
- ;;=4^F03.91
- ;;^UTILITY(U,$J,358.3,15422,2)
- ;;=^5133350
- ;;^UTILITY(U,$J,358.3,15423,0)
- ;;=F03.90^^58^662^17
- ;;^UTILITY(U,$J,358.3,15423,1,0)
+ ;;^UTILITY(U,$J,358.3,33065,1,3,0)
+ ;;=3^Biotinidase Deficiency
+ ;;^UTILITY(U,$J,358.3,33065,1,4,0)
+ ;;=4^D81.810
+ ;;^UTILITY(U,$J,358.3,33065,2)
+ ;;=^5002422
+ ;;^UTILITY(U,$J,358.3,33066,0)
+ ;;=E88.01^^119^1574^2
+ ;;^UTILITY(U,$J,358.3,33066,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15423,1,3,0)
- ;;=3^Dementia w/o Behavioral Disturbance,Unspec
- ;;^UTILITY(U,$J,358.3,15423,1,4,0)
- ;;=4^F03.90
- ;;^UTILITY(U,$J,358.3,15423,2)
- ;;=^5003050
- ;;^UTILITY(U,$J,358.3,15424,0)
- ;;=F06.30^^58^663^2
- ;;^UTILITY(U,$J,358.3,15424,1,0)
+ ;;^UTILITY(U,$J,358.3,33066,1,3,0)
+ ;;=3^Apha-1 Antitrypsin Deficiency
+ ;;^UTILITY(U,$J,358.3,33066,1,4,0)
+ ;;=4^E88.01
+ ;;^UTILITY(U,$J,358.3,33066,2)
+ ;;=^331442
+ ;;^UTILITY(U,$J,358.3,33067,0)
+ ;;=J09.X1^^119^1574^25
+ ;;^UTILITY(U,$J,358.3,33067,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15424,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition,Unspec
- ;;^UTILITY(U,$J,358.3,15424,1,4,0)
- ;;=4^F06.30
- ;;^UTILITY(U,$J,358.3,15424,2)
- ;;=^5003056
- ;;^UTILITY(U,$J,358.3,15425,0)
- ;;=F06.31^^58^663^3
- ;;^UTILITY(U,$J,358.3,15425,1,0)
+ ;;^UTILITY(U,$J,358.3,33067,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Pneumonia
+ ;;^UTILITY(U,$J,358.3,33067,1,4,0)
+ ;;=4^J09.X1
+ ;;^UTILITY(U,$J,358.3,33067,2)
+ ;;=^5008144
+ ;;^UTILITY(U,$J,358.3,33068,0)
+ ;;=J09.X2^^119^1574^26
+ ;;^UTILITY(U,$J,358.3,33068,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15425,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition w/ Depressive Features
- ;;^UTILITY(U,$J,358.3,15425,1,4,0)
- ;;=4^F06.31
- ;;^UTILITY(U,$J,358.3,15425,2)
- ;;=^5003057
- ;;^UTILITY(U,$J,358.3,15426,0)
- ;;=F06.32^^58^663^4
- ;;^UTILITY(U,$J,358.3,15426,1,0)
+ ;;^UTILITY(U,$J,358.3,33068,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Resp Manifest
+ ;;^UTILITY(U,$J,358.3,33068,1,4,0)
+ ;;=4^J09.X2
+ ;;^UTILITY(U,$J,358.3,33068,2)
+ ;;=^5008145
+ ;;^UTILITY(U,$J,358.3,33069,0)
+ ;;=J09.X3^^119^1574^27
+ ;;^UTILITY(U,$J,358.3,33069,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15426,1,3,0)
- ;;=3^Depressive Disorder d/t Another Medical Condition w/ Major Depressive-Like Episode
- ;;^UTILITY(U,$J,358.3,15426,1,4,0)
- ;;=4^F06.32
- ;;^UTILITY(U,$J,358.3,15426,2)
- ;;=^5003058
- ;;^UTILITY(U,$J,358.3,15427,0)
- ;;=F32.9^^58^663^20
- ;;^UTILITY(U,$J,358.3,15427,1,0)
+ ;;^UTILITY(U,$J,358.3,33069,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ GI Manifest
+ ;;^UTILITY(U,$J,358.3,33069,1,4,0)
+ ;;=4^J09.X3
+ ;;^UTILITY(U,$J,358.3,33069,2)
+ ;;=^5008146
+ ;;^UTILITY(U,$J,358.3,33070,0)
+ ;;=J09.X9^^119^1574^28
+ ;;^UTILITY(U,$J,358.3,33070,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15427,1,3,0)
- ;;=3^MDD,Single Episode,Unspec
- ;;^UTILITY(U,$J,358.3,15427,1,4,0)
- ;;=4^F32.9
- ;;^UTILITY(U,$J,358.3,15427,2)
- ;;=^5003528
- ;;^UTILITY(U,$J,358.3,15428,0)
- ;;=F32.0^^58^663^17
- ;;^UTILITY(U,$J,358.3,15428,1,0)
+ ;;^UTILITY(U,$J,358.3,33070,1,3,0)
+ ;;=3^Influenza d/t Indent Novel Influenza A Virus w/ Oth Manifest
+ ;;^UTILITY(U,$J,358.3,33070,1,4,0)
+ ;;=4^J09.X9
+ ;;^UTILITY(U,$J,358.3,33070,2)
+ ;;=^5008147
+ ;;^UTILITY(U,$J,358.3,33071,0)
+ ;;=J44.9^^119^1574^14
+ ;;^UTILITY(U,$J,358.3,33071,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15428,1,3,0)
- ;;=3^MDD,Single Episode,Mild
- ;;^UTILITY(U,$J,358.3,15428,1,4,0)
- ;;=4^F32.0
- ;;^UTILITY(U,$J,358.3,15428,2)
- ;;=^5003521
- ;;^UTILITY(U,$J,358.3,15429,0)
- ;;=F32.1^^58^663^18
- ;;^UTILITY(U,$J,358.3,15429,1,0)
+ ;;^UTILITY(U,$J,358.3,33071,1,3,0)
+ ;;=3^COPD,Unspec
+ ;;^UTILITY(U,$J,358.3,33071,1,4,0)
+ ;;=4^J44.9
+ ;;^UTILITY(U,$J,358.3,33071,2)
+ ;;=^5008241
+ ;;^UTILITY(U,$J,358.3,33072,0)
+ ;;=J44.1^^119^1574^12
+ ;;^UTILITY(U,$J,358.3,33072,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15429,1,3,0)
- ;;=3^MDD,Single Episode,Moderate
- ;;^UTILITY(U,$J,358.3,15429,1,4,0)
- ;;=4^F32.1
- ;;^UTILITY(U,$J,358.3,15429,2)
- ;;=^5003522
- ;;^UTILITY(U,$J,358.3,15430,0)
- ;;=F32.2^^58^663^19
- ;;^UTILITY(U,$J,358.3,15430,1,0)
+ ;;^UTILITY(U,$J,358.3,33072,1,3,0)
+ ;;=3^COPD w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,33072,1,4,0)
+ ;;=4^J44.1
+ ;;^UTILITY(U,$J,358.3,33072,2)
+ ;;=^5008240
+ ;;^UTILITY(U,$J,358.3,33073,0)
+ ;;=J42.^^119^1574^10
+ ;;^UTILITY(U,$J,358.3,33073,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15430,1,3,0)
- ;;=3^MDD,Single Episode,Severe
- ;;^UTILITY(U,$J,358.3,15430,1,4,0)
- ;;=4^F32.2
- ;;^UTILITY(U,$J,358.3,15430,2)
- ;;=^5003523
- ;;^UTILITY(U,$J,358.3,15431,0)
- ;;=F32.3^^58^663^14
- ;;^UTILITY(U,$J,358.3,15431,1,0)
+ ;;^UTILITY(U,$J,358.3,33073,1,3,0)
+ ;;=3^Bronchitis,Unspec Chronic
+ ;;^UTILITY(U,$J,358.3,33073,1,4,0)
+ ;;=4^J42.
+ ;;^UTILITY(U,$J,358.3,33073,2)
+ ;;=^5008234
+ ;;^UTILITY(U,$J,358.3,33074,0)
+ ;;=J43.9^^119^1574^22
+ ;;^UTILITY(U,$J,358.3,33074,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15431,1,3,0)
- ;;=3^MDD,Single Episode w Psychotic Features
- ;;^UTILITY(U,$J,358.3,15431,1,4,0)
- ;;=4^F32.3
- ;;^UTILITY(U,$J,358.3,15431,2)
- ;;=^5003524
- ;;^UTILITY(U,$J,358.3,15432,0)
- ;;=F32.4^^58^663^16
- ;;^UTILITY(U,$J,358.3,15432,1,0)
+ ;;^UTILITY(U,$J,358.3,33074,1,3,0)
+ ;;=3^Emphysema,Unspec
+ ;;^UTILITY(U,$J,358.3,33074,1,4,0)
+ ;;=4^J43.9
+ ;;^UTILITY(U,$J,358.3,33074,2)
+ ;;=^5008238
+ ;;^UTILITY(U,$J,358.3,33075,0)
+ ;;=J43.0^^119^1574^30
+ ;;^UTILITY(U,$J,358.3,33075,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15432,1,3,0)
- ;;=3^MDD,Single Episode,In Partial Remission
- ;;^UTILITY(U,$J,358.3,15432,1,4,0)
- ;;=4^F32.4
- ;;^UTILITY(U,$J,358.3,15432,2)
- ;;=^5003525
- ;;^UTILITY(U,$J,358.3,15433,0)
- ;;=F32.5^^58^663^15
- ;;^UTILITY(U,$J,358.3,15433,1,0)
+ ;;^UTILITY(U,$J,358.3,33075,1,3,0)
+ ;;=3^MacLeod's Syndrome
+ ;;^UTILITY(U,$J,358.3,33075,1,4,0)
+ ;;=4^J43.0
+ ;;^UTILITY(U,$J,358.3,33075,2)
+ ;;=^5008235
+ ;;^UTILITY(U,$J,358.3,33076,0)
+ ;;=J43.1^^119^1574^21
+ ;;^UTILITY(U,$J,358.3,33076,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15433,1,3,0)
- ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,33076,1,3,0)
+ ;;=3^Emphysema,Panlobular
+ ;;^UTILITY(U,$J,358.3,33076,1,4,0)
+ ;;=4^J43.1
+ ;;^UTILITY(U,$J,358.3,33076,2)
+ ;;=^5008236
+ ;;^UTILITY(U,$J,358.3,33077,0)
+ ;;=J43.2^^119^1574^19
+ ;;^UTILITY(U,$J,358.3,33077,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33077,1,3,0)
+ ;;=3^Emphysema,Centrilobular
+ ;;^UTILITY(U,$J,358.3,33077,1,4,0)
+ ;;=4^J43.2
+ ;;^UTILITY(U,$J,358.3,33077,2)
+ ;;=^5008237
+ ;;^UTILITY(U,$J,358.3,33078,0)
+ ;;=J43.8^^119^1574^20
+ ;;^UTILITY(U,$J,358.3,33078,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33078,1,3,0)
+ ;;=3^Emphysema,Other
+ ;;^UTILITY(U,$J,358.3,33078,1,4,0)
+ ;;=4^J43.8
+ ;;^UTILITY(U,$J,358.3,33078,2)
+ ;;=^87569
+ ;;^UTILITY(U,$J,358.3,33079,0)
+ ;;=J45.902^^119^1574^4
+ ;;^UTILITY(U,$J,358.3,33079,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33079,1,3,0)
+ ;;=3^Asthma w/ Status Asthmaticus,Unspec
+ ;;^UTILITY(U,$J,358.3,33079,1,4,0)
+ ;;=4^J45.902
+ ;;^UTILITY(U,$J,358.3,33079,2)
+ ;;=^5008255
+ ;;^UTILITY(U,$J,358.3,33080,0)
+ ;;=J45.901^^119^1574^3
+ ;;^UTILITY(U,$J,358.3,33080,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33080,1,3,0)
+ ;;=3^Asthma w/ Acute Exacerbation,Unspec
+ ;;^UTILITY(U,$J,358.3,33080,1,4,0)
+ ;;=4^J45.901
+ ;;^UTILITY(U,$J,358.3,33080,2)
+ ;;=^5008254
+ ;;^UTILITY(U,$J,358.3,33081,0)
+ ;;=J47.9^^119^1574^9
+ ;;^UTILITY(U,$J,358.3,33081,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33081,1,3,0)
+ ;;=3^Bronchiectasis,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33081,1,4,0)
+ ;;=4^J47.9
+ ;;^UTILITY(U,$J,358.3,33081,2)
+ ;;=^5008260
+ ;;^UTILITY(U,$J,358.3,33082,0)
+ ;;=J47.1^^119^1574^7
+ ;;^UTILITY(U,$J,358.3,33082,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33082,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Exacerbation
+ ;;^UTILITY(U,$J,358.3,33082,1,4,0)
+ ;;=4^J47.1
+ ;;^UTILITY(U,$J,358.3,33082,2)
+ ;;=^5008259
+ ;;^UTILITY(U,$J,358.3,33083,0)
+ ;;=J47.0^^119^1574^8
+ ;;^UTILITY(U,$J,358.3,33083,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33083,1,3,0)
+ ;;=3^Bronchiectasis w/ Acute Lower Respiratory Infection
+ ;;^UTILITY(U,$J,358.3,33083,1,4,0)
+ ;;=4^J47.0
+ ;;^UTILITY(U,$J,358.3,33083,2)
+ ;;=^5008258
+ ;;^UTILITY(U,$J,358.3,33084,0)
+ ;;=R09.1^^119^1574^37
+ ;;^UTILITY(U,$J,358.3,33084,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33084,1,3,0)
+ ;;=3^Pleurisy
+ ;;^UTILITY(U,$J,358.3,33084,1,4,0)
+ ;;=4^R09.1
+ ;;^UTILITY(U,$J,358.3,33084,2)
+ ;;=^95428
+ ;;^UTILITY(U,$J,358.3,33085,0)
+ ;;=J94.9^^119^1574^33
+ ;;^UTILITY(U,$J,358.3,33085,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33085,1,3,0)
+ ;;=3^Pleural Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,33085,1,4,0)
+ ;;=4^J94.9
+ ;;^UTILITY(U,$J,358.3,33085,2)
+ ;;=^5008320
+ ;;^UTILITY(U,$J,358.3,33086,0)
+ ;;=J92.9^^119^1574^36
+ ;;^UTILITY(U,$J,358.3,33086,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33086,1,3,0)
+ ;;=3^Pleural Plaque w/o Asbestos
+ ;;^UTILITY(U,$J,358.3,33086,1,4,0)
+ ;;=4^J92.9
+ ;;^UTILITY(U,$J,358.3,33086,2)
+ ;;=^5008313
+ ;;^UTILITY(U,$J,358.3,33087,0)
+ ;;=J94.8^^119^1574^34
+ ;;^UTILITY(U,$J,358.3,33087,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33087,1,3,0)
+ ;;=3^Pleural Conditions,Other Spec
+ ;;^UTILITY(U,$J,358.3,33087,1,4,0)
+ ;;=4^J94.8
+ ;;^UTILITY(U,$J,358.3,33087,2)
+ ;;=^5008319
+ ;;^UTILITY(U,$J,358.3,33088,0)
+ ;;=J86.9^^119^1574^38
+ ;;^UTILITY(U,$J,358.3,33088,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33088,1,3,0)
+ ;;=3^Pyothorax w/o Fistula
+ ;;^UTILITY(U,$J,358.3,33088,1,4,0)
+ ;;=4^J86.9
+ ;;^UTILITY(U,$J,358.3,33088,2)
+ ;;=^5008309
+ ;;^UTILITY(U,$J,358.3,33089,0)
+ ;;=J91.8^^119^1574^35
+ ;;^UTILITY(U,$J,358.3,33089,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33089,1,3,0)
+ ;;=3^Pleural Effusion in Other Conditions
+ ;;^UTILITY(U,$J,358.3,33089,1,4,0)
+ ;;=4^J91.8
+ ;;^UTILITY(U,$J,358.3,33089,2)
+ ;;=^5008311
+ ;;^UTILITY(U,$J,358.3,33090,0)
+ ;;=J84.9^^119^1574^29
+ ;;^UTILITY(U,$J,358.3,33090,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33090,1,3,0)
+ ;;=3^Interstitial Pulmonary Disease/Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,33090,1,4,0)
+ ;;=4^J84.9
+ ;;^UTILITY(U,$J,358.3,33090,2)
+ ;;=^5008304
+ ;;^UTILITY(U,$J,358.3,33091,0)
+ ;;=J98.01^^119^1574^11
+ ;;^UTILITY(U,$J,358.3,33091,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33091,1,3,0)
+ ;;=3^Bronchospasm,Acute

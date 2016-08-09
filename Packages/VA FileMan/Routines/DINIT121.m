@@ -1,6 +1,11 @@
-DINIT121 ;SFISC/MKO-SORT TEMPLATE FILE ;1:13 PM  13 Nov 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT121 ;SFISC/MKO-SORT TEMPLATE FILE ;06JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;.
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
  G ^DINIT122
 Q Q
@@ -44,13 +49,65 @@ Q Q
  ;;=
  ;;^DD(.401,1819,9.1)
  ;;=S X=$S($G(^DIBT(D0,"ROU"))]"":"YES",1:"NO")
+ ;;^DD(.401,6666,0)
+ ;;=ENTRIES^Cm^^ ; ^N FILE,DINAME,D S FILE=$P($G(^DIBT(D0,0)),U,4) I $D(^(1)) S DINAME=$G(^DIC(FILE,0,"GL"))_"D,0)" I DINAME[U F D=0:0 S D=$O(^DIBT(D0,1,D)) Q:'D  I $D(@DINAME) S X=$$GET1^DIQ(FILE,D,.01) X DICMX Q:'$D(D)
+ ;;^DD(.401,6666,21,0)
+ ;;=^^3^3^3160105^^
+ ;;^DD(.401,6666,21,1,0)
+ ;;=For SEARCH Templates, the list of the entries found and stored 
+ ;;^DD(.401,6666,21,2,0)
+ ;;=when the Template was created is accessed. 
+ ;;^DD(.401,6666,21,3,0)
+ ;;=The value of the .01 Field for each entry is displayed.
+ ;;^DD(.401,21400,0)
+ ;;=BUILD(S)^Cmp9.6^^ ; ^N DIBTNAME,D S DIBTNAME=$P($G(^DIBT(D0,0)),U)_"    FILE #"_$P($G(^(0)),U,4) F D=0:0 S D=$O(^XPD(9.6,D)) Q:'D  I $D(^(D,"KRN",.401,"NM","B",DIBTNAME)) N D0 S D0=D,X=$P(^XPD(9.6,D,0),U) X DICMX Q:'$D(D)
+ ;;^DD(.401,21400,21,0)
+ ;;=^^3^3^3160105^^
+ ;;^DD(.401,21400,21,1,0)
+ ;;=The Build File (#9.6) is searched for Builds containing the Sort Template.  
+ ;;^DD(.401,21400,21,2,0)
+ ;;=A list of the identified Builds is created for display.  
+ ;;^DD(.401,21400,21,3,0)
+ ;;=Multiple Builds will be shown if appropriate.
+ ;;^DD(.401,21409,0)
+ ;;=CANONIC FOR THIS FILE^S^1:YES^CANONIC;1
+ ;;^DD(.401,21409,1,0)
+ ;;=^.1^1^1
+ ;;^DD(.401,21409,1,1,0)
+ ;;=^^^MUMPS
+ ;;^DD(.401,21409,1,1,1)
+ ;;=N F S F=$P(^DIBT(DA,0),U,4) I F S ^DIBT("CANONIC",F,DA)=""
+ ;;^DD(.401,21409,1,1,2)
+ ;;=N F S F=$P(^DIBT(DA,0),U,4) I F K ^DIBT("CANONIC",F,DA)
+ ;;^DD(.401,21409,1,1,"%D",0)
+ ;;=^6^6^3160106
+ ;;^DD(.401,21409,1,1,"%D",1,0)
+ ;;=This cross-reference is used to identify files that have a Canonic Sort Template assigned.
+ ;;^DD(.401,21409,1,1,"%D",2,0)
+ ;;=The structure of the cross-reference is:
+ ;;^DD(.401,21409,1,1,"%D",3,0)
+ ;;=     ^DIBT("CANONIC", File#, IEN)
+ ;;^DD(.401,21409,1,1,"%D",4,0)
+ ;;= where File# identifies the file which has a Canonic Sort Template 
+ ;;^DD(.401,21409,1,1,"%D",5,0)
+ ;;=and IEN is the internal entry number of the Canonic Sort Template 
+ ;;^DD(.401,21409,1,1,"%D",6,0)
+ ;;=assigned to that file.
+ ;;^DD(.401,21409,4)
+ ;;=D HELP^DIUCANON
+ ;;^DD(.401,21409,21,0)
+ ;;=^^2^2^3151123^^^^
+ ;;^DD(.401,21409,21,1,0)
+ ;;=The Sort Template identified as CANONIC will always be presented 
+ ;;^DD(.401,21409,21,2,0)
+ ;;=to the user for selection at the Sort By: prompt.
  ;;^DD(.401,491620,0)
  ;;=PRINT TEMPLATE^F^^DIPT;1^K:'$D(^DIPT("B",X)) X
  ;;^DD(.401,491620,4)
  ;;=N D1 S D1(1)="If this Sort Template should always be used with a particular",D1(2)="Print Template, enter the name of that Print Template.",D1(3)="" D EN^DDIOL(.D1)
  ;;^DD(.4011,0)
- ;;=FIELD^.01^.01^1
- ;;^DD(.4011,0,"NM","FIELD")
+ ;;=SEARCH SPECIFICATIONS SUB-FIELD^^.01^1
+ ;;^DD(.4011,0,"NM","SEARCH SPECIFICATIONS SUB-FIELD")
  ;;=
  ;;^DD(.4011,0,"UP")
  ;;=.401

@@ -1,130 +1,288 @@
-IBDEI11B ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI11B ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17556,1,3,0)
- ;;=3^Encntr for exam & obs folwng alleged adlt rape
- ;;^UTILITY(U,$J,358.3,17556,1,4,0)
- ;;=4^Z04.41
- ;;^UTILITY(U,$J,358.3,17556,2)
- ;;=^5062660
- ;;^UTILITY(U,$J,358.3,17557,0)
- ;;=Z76.0^^73^849^11
- ;;^UTILITY(U,$J,358.3,17557,1,0)
+ ;;^UTILITY(U,$J,358.3,37523,1,3,0)
+ ;;=3^Cellulitis of Trunk,Unspec
+ ;;^UTILITY(U,$J,358.3,37523,1,4,0)
+ ;;=4^L03.319
+ ;;^UTILITY(U,$J,358.3,37523,2)
+ ;;=^5009054
+ ;;^UTILITY(U,$J,358.3,37524,0)
+ ;;=L03.90^^138^1857^34
+ ;;^UTILITY(U,$J,358.3,37524,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17557,1,3,0)
- ;;=3^Encntr for issue of repeat prescription
- ;;^UTILITY(U,$J,358.3,17557,1,4,0)
- ;;=4^Z76.0
- ;;^UTILITY(U,$J,358.3,17557,2)
- ;;=^5063297
- ;;^UTILITY(U,$J,358.3,17558,0)
- ;;=Z69.12^^73^849^13
- ;;^UTILITY(U,$J,358.3,17558,1,0)
+ ;;^UTILITY(U,$J,358.3,37524,1,3,0)
+ ;;=3^Cellulitis,Unspec
+ ;;^UTILITY(U,$J,358.3,37524,1,4,0)
+ ;;=4^L03.90
+ ;;^UTILITY(U,$J,358.3,37524,2)
+ ;;=^5009067
+ ;;^UTILITY(U,$J,358.3,37525,0)
+ ;;=L72.9^^138^1857^41
+ ;;^UTILITY(U,$J,358.3,37525,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17558,1,3,0)
- ;;=3^Encntr for mntl hlth serv for perp of spous or prtnr abuse
- ;;^UTILITY(U,$J,358.3,17558,1,4,0)
- ;;=4^Z69.12
- ;;^UTILITY(U,$J,358.3,17558,2)
- ;;=^5063233
- ;;^UTILITY(U,$J,358.3,17559,0)
- ;;=Z69.010^^73^849^14
- ;;^UTILITY(U,$J,358.3,17559,1,0)
+ ;;^UTILITY(U,$J,358.3,37525,1,3,0)
+ ;;=3^Cyst,Follicular of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,37525,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,37525,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,37526,0)
+ ;;=L12.1^^138^1857^35
+ ;;^UTILITY(U,$J,358.3,37526,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17559,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of prntl child abuse
- ;;^UTILITY(U,$J,358.3,17559,1,4,0)
- ;;=4^Z69.010
- ;;^UTILITY(U,$J,358.3,17559,2)
- ;;=^5063228
- ;;^UTILITY(U,$J,358.3,17560,0)
- ;;=Z69.11^^73^849^15
- ;;^UTILITY(U,$J,358.3,17560,1,0)
+ ;;^UTILITY(U,$J,358.3,37526,1,3,0)
+ ;;=3^Cicatricial Pemphigoid
+ ;;^UTILITY(U,$J,358.3,37526,1,4,0)
+ ;;=4^L12.1
+ ;;^UTILITY(U,$J,358.3,37526,2)
+ ;;=^5009096
+ ;;^UTILITY(U,$J,358.3,37527,0)
+ ;;=L30.2^^138^1857^38
+ ;;^UTILITY(U,$J,358.3,37527,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17560,1,3,0)
- ;;=3^Encntr for mntl hlth serv for vctm of spous or prtnr abuse
- ;;^UTILITY(U,$J,358.3,17560,1,4,0)
- ;;=4^Z69.11
- ;;^UTILITY(U,$J,358.3,17560,2)
- ;;=^5063232
- ;;^UTILITY(U,$J,358.3,17561,0)
- ;;=Z65.5^^73^849^16
- ;;^UTILITY(U,$J,358.3,17561,1,0)
+ ;;^UTILITY(U,$J,358.3,37527,1,3,0)
+ ;;=3^Cutaneous Autosensitization
+ ;;^UTILITY(U,$J,358.3,37527,1,4,0)
+ ;;=4^L30.2
+ ;;^UTILITY(U,$J,358.3,37527,2)
+ ;;=^5009155
+ ;;^UTILITY(U,$J,358.3,37528,0)
+ ;;=B37.83^^138^1857^2
+ ;;^UTILITY(U,$J,358.3,37528,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17561,1,3,0)
- ;;=3^Expsr to disaster, war & oth hostilities
- ;;^UTILITY(U,$J,358.3,17561,1,4,0)
- ;;=4^Z65.5
- ;;^UTILITY(U,$J,358.3,17561,2)
- ;;=^5063184
- ;;^UTILITY(U,$J,358.3,17562,0)
- ;;=Z59.0^^73^849^18
- ;;^UTILITY(U,$J,358.3,17562,1,0)
+ ;;^UTILITY(U,$J,358.3,37528,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,37528,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,37528,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,37529,0)
+ ;;=B37.0^^138^1857^3
+ ;;^UTILITY(U,$J,358.3,37529,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17562,1,3,0)
- ;;=3^Homelessness
- ;;^UTILITY(U,$J,358.3,17562,1,4,0)
- ;;=4^Z59.0
- ;;^UTILITY(U,$J,358.3,17562,2)
- ;;=^5063129
- ;;^UTILITY(U,$J,358.3,17563,0)
- ;;=Z59.5^^73^849^17
- ;;^UTILITY(U,$J,358.3,17563,1,0)
+ ;;^UTILITY(U,$J,358.3,37529,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,37529,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,37529,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,37530,0)
+ ;;=D04.9^^138^1857^18
+ ;;^UTILITY(U,$J,358.3,37530,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17563,1,3,0)
- ;;=3^Extreme poverty
- ;;^UTILITY(U,$J,358.3,17563,1,4,0)
- ;;=4^Z59.5
- ;;^UTILITY(U,$J,358.3,17563,2)
- ;;=^5063134
- ;;^UTILITY(U,$J,358.3,17564,0)
- ;;=Z71.7^^73^849^19
- ;;^UTILITY(U,$J,358.3,17564,1,0)
+ ;;^UTILITY(U,$J,358.3,37530,1,3,0)
+ ;;=3^Carcinoma in Situ Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,37530,1,4,0)
+ ;;=4^D04.9
+ ;;^UTILITY(U,$J,358.3,37530,2)
+ ;;=^5001925
+ ;;^UTILITY(U,$J,358.3,37531,0)
+ ;;=D04.0^^138^1857^10
+ ;;^UTILITY(U,$J,358.3,37531,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17564,1,3,0)
- ;;=3^Human immunodeficiency virus [HIV] counseling
- ;;^UTILITY(U,$J,358.3,17564,1,4,0)
- ;;=4^Z71.7
- ;;^UTILITY(U,$J,358.3,17564,2)
- ;;=^5063251
- ;;^UTILITY(U,$J,358.3,17565,0)
- ;;=Z73.4^^73^849^20
- ;;^UTILITY(U,$J,358.3,17565,1,0)
+ ;;^UTILITY(U,$J,358.3,37531,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Lip
+ ;;^UTILITY(U,$J,358.3,37531,1,4,0)
+ ;;=4^D04.0
+ ;;^UTILITY(U,$J,358.3,37531,2)
+ ;;=^267725
+ ;;^UTILITY(U,$J,358.3,37532,0)
+ ;;=D04.11^^138^1857^13
+ ;;^UTILITY(U,$J,358.3,37532,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17565,1,3,0)
- ;;=3^Inadqute social skills, not elswhr classified
- ;;^UTILITY(U,$J,358.3,17565,1,4,0)
- ;;=4^Z73.4
- ;;^UTILITY(U,$J,358.3,17565,2)
- ;;=^5063272
- ;;^UTILITY(U,$J,358.3,17566,0)
- ;;=Z79.2^^73^849^22
- ;;^UTILITY(U,$J,358.3,17566,1,0)
+ ;;^UTILITY(U,$J,358.3,37532,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,37532,1,4,0)
+ ;;=4^D04.11
+ ;;^UTILITY(U,$J,358.3,37532,2)
+ ;;=^5001910
+ ;;^UTILITY(U,$J,358.3,37533,0)
+ ;;=D04.12^^138^1857^7
+ ;;^UTILITY(U,$J,358.3,37533,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17566,1,3,0)
- ;;=3^Long term (current) use of antibiotics
- ;;^UTILITY(U,$J,358.3,17566,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,17566,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,17567,0)
- ;;=Z79.01^^73^849^23
- ;;^UTILITY(U,$J,358.3,17567,1,0)
+ ;;^UTILITY(U,$J,358.3,37533,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,37533,1,4,0)
+ ;;=4^D04.12
+ ;;^UTILITY(U,$J,358.3,37533,2)
+ ;;=^5001911
+ ;;^UTILITY(U,$J,358.3,37534,0)
+ ;;=D04.21^^138^1857^12
+ ;;^UTILITY(U,$J,358.3,37534,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17567,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
- ;;^UTILITY(U,$J,358.3,17567,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,17567,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,17568,0)
- ;;=Z79.02^^73^849^24
- ;;^UTILITY(U,$J,358.3,17568,1,0)
+ ;;^UTILITY(U,$J,358.3,37534,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,37534,1,4,0)
+ ;;=4^D04.21
+ ;;^UTILITY(U,$J,358.3,37534,2)
+ ;;=^5001913
+ ;;^UTILITY(U,$J,358.3,37535,0)
+ ;;=D04.22^^138^1857^6
+ ;;^UTILITY(U,$J,358.3,37535,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17568,1,3,0)
- ;;=3^Long term (current) use of antithrombtc/antipltlts
- ;;^UTILITY(U,$J,358.3,17568,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,17568,2)
- ;;=^5063331
+ ;;^UTILITY(U,$J,358.3,37535,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Ear/External Auricular Canal
+ ;;^UTILITY(U,$J,358.3,37535,1,4,0)
+ ;;=4^D04.22
+ ;;^UTILITY(U,$J,358.3,37535,2)
+ ;;=^5001914
+ ;;^UTILITY(U,$J,358.3,37536,0)
+ ;;=D04.30^^138^1857^5
+ ;;^UTILITY(U,$J,358.3,37536,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37536,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Face,Unspec
+ ;;^UTILITY(U,$J,358.3,37536,1,4,0)
+ ;;=4^D04.30
+ ;;^UTILITY(U,$J,358.3,37536,2)
+ ;;=^5001915
+ ;;^UTILITY(U,$J,358.3,37537,0)
+ ;;=D04.39^^138^1857^4
+ ;;^UTILITY(U,$J,358.3,37537,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37537,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Face NEC
+ ;;^UTILITY(U,$J,358.3,37537,1,4,0)
+ ;;=4^D04.39
+ ;;^UTILITY(U,$J,358.3,37537,2)
+ ;;=^5001916
+ ;;^UTILITY(U,$J,358.3,37538,0)
+ ;;=D04.4^^138^1857^16
+ ;;^UTILITY(U,$J,358.3,37538,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37538,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,37538,1,4,0)
+ ;;=4^D04.4
+ ;;^UTILITY(U,$J,358.3,37538,2)
+ ;;=^267729
+ ;;^UTILITY(U,$J,358.3,37539,0)
+ ;;=D04.5^^138^1857^17
+ ;;^UTILITY(U,$J,358.3,37539,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37539,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Trunk
+ ;;^UTILITY(U,$J,358.3,37539,1,4,0)
+ ;;=4^D04.5
+ ;;^UTILITY(U,$J,358.3,37539,2)
+ ;;=^5001917
+ ;;^UTILITY(U,$J,358.3,37540,0)
+ ;;=D04.61^^138^1857^15
+ ;;^UTILITY(U,$J,358.3,37540,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37540,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,37540,1,4,0)
+ ;;=4^D04.61
+ ;;^UTILITY(U,$J,358.3,37540,2)
+ ;;=^5001919
+ ;;^UTILITY(U,$J,358.3,37541,0)
+ ;;=D04.62^^138^1857^9
+ ;;^UTILITY(U,$J,358.3,37541,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37541,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,37541,1,4,0)
+ ;;=4^D04.62
+ ;;^UTILITY(U,$J,358.3,37541,2)
+ ;;=^5001920
+ ;;^UTILITY(U,$J,358.3,37542,0)
+ ;;=D04.71^^138^1857^14
+ ;;^UTILITY(U,$J,358.3,37542,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37542,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Right Lower Limb
+ ;;^UTILITY(U,$J,358.3,37542,1,4,0)
+ ;;=4^D04.71
+ ;;^UTILITY(U,$J,358.3,37542,2)
+ ;;=^5001922
+ ;;^UTILITY(U,$J,358.3,37543,0)
+ ;;=D04.72^^138^1857^8
+ ;;^UTILITY(U,$J,358.3,37543,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37543,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Left Lower Limb
+ ;;^UTILITY(U,$J,358.3,37543,1,4,0)
+ ;;=4^D04.72
+ ;;^UTILITY(U,$J,358.3,37543,2)
+ ;;=^5001923
+ ;;^UTILITY(U,$J,358.3,37544,0)
+ ;;=D04.8^^138^1857^11
+ ;;^UTILITY(U,$J,358.3,37544,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37544,1,3,0)
+ ;;=3^Carcinoma in Situ Skin Other Sites
+ ;;^UTILITY(U,$J,358.3,37544,1,4,0)
+ ;;=4^D04.8
+ ;;^UTILITY(U,$J,358.3,37544,2)
+ ;;=^5001924
+ ;;^UTILITY(U,$J,358.3,37545,0)
+ ;;=L72.0^^138^1857^40
+ ;;^UTILITY(U,$J,358.3,37545,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37545,1,3,0)
+ ;;=3^Cyst,Epidermal
+ ;;^UTILITY(U,$J,358.3,37545,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,37545,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,37546,0)
+ ;;=L72.11^^138^1857^42
+ ;;^UTILITY(U,$J,358.3,37546,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37546,1,3,0)
+ ;;=3^Cyst,Pilar
+ ;;^UTILITY(U,$J,358.3,37546,1,4,0)
+ ;;=4^L72.11
+ ;;^UTILITY(U,$J,358.3,37546,2)
+ ;;=^5009278
+ ;;^UTILITY(U,$J,358.3,37547,0)
+ ;;=L72.12^^138^1857^44
+ ;;^UTILITY(U,$J,358.3,37547,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37547,1,3,0)
+ ;;=3^Cyst,Trichodermal
+ ;;^UTILITY(U,$J,358.3,37547,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,37547,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,37548,0)
+ ;;=L72.3^^138^1857^43
+ ;;^UTILITY(U,$J,358.3,37548,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37548,1,3,0)
+ ;;=3^Cyst,Sebaceous
+ ;;^UTILITY(U,$J,358.3,37548,1,4,0)
+ ;;=4^L72.3
+ ;;^UTILITY(U,$J,358.3,37548,2)
+ ;;=^5009281
+ ;;^UTILITY(U,$J,358.3,37549,0)
+ ;;=A63.0^^138^1857^36
+ ;;^UTILITY(U,$J,358.3,37549,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37549,1,3,0)
+ ;;=3^Condyloma
+ ;;^UTILITY(U,$J,358.3,37549,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,37549,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,37550,0)
+ ;;=L84.^^138^1857^1
+ ;;^UTILITY(U,$J,358.3,37550,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37550,1,3,0)
+ ;;=3^Callus
+ ;;^UTILITY(U,$J,358.3,37550,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,37550,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,37551,0)
+ ;;=L03.314^^138^1857^22
+ ;;^UTILITY(U,$J,358.3,37551,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,37551,1,3,0)
+ ;;=3^Cellulitis of Groin
+ ;;^UTILITY(U,$J,358.3,37551,1,4,0)
+ ;;=4^L03.314

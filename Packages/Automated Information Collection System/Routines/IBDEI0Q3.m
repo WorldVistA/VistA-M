@@ -1,130 +1,264 @@
-IBDEI0Q3 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0Q3 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,12213,0)
- ;;=45380^^49^549^3^^^^1
- ;;^UTILITY(U,$J,358.3,12213,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12213,1,2,0)
- ;;=2^45380
- ;;^UTILITY(U,$J,358.3,12213,1,3,0)
- ;;=3^Colonoscopy w/Biopsy
- ;;^UTILITY(U,$J,358.3,12214,0)
- ;;=45384^^49^549^10^^^^1
- ;;^UTILITY(U,$J,358.3,12214,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12214,1,2,0)
- ;;=2^45384
- ;;^UTILITY(U,$J,358.3,12214,1,3,0)
- ;;=3^Colonoscopy w/Tumor Removal by hot forceps
- ;;^UTILITY(U,$J,358.3,12215,0)
- ;;=45385^^49^549^11^^^^1
- ;;^UTILITY(U,$J,358.3,12215,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12215,1,2,0)
- ;;=2^45385
- ;;^UTILITY(U,$J,358.3,12215,1,3,0)
- ;;=3^Colonoscopy w/Tumor removal by snare
- ;;^UTILITY(U,$J,358.3,12216,0)
- ;;=45379^^49^549^6^^^^1
- ;;^UTILITY(U,$J,358.3,12216,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12216,1,2,0)
- ;;=2^45379
- ;;^UTILITY(U,$J,358.3,12216,1,3,0)
- ;;=3^Colonoscopy w/FB Removal
- ;;^UTILITY(U,$J,358.3,12217,0)
- ;;=45382^^49^549^4^^^^1
- ;;^UTILITY(U,$J,358.3,12217,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12217,1,2,0)
- ;;=2^45382
- ;;^UTILITY(U,$J,358.3,12217,1,3,0)
- ;;=3^Colonoscopy w/Control hemorrhage
- ;;^UTILITY(U,$J,358.3,12218,0)
- ;;=45386^^49^549^1^^^^1
- ;;^UTILITY(U,$J,358.3,12218,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12218,1,2,0)
- ;;=2^45386
- ;;^UTILITY(U,$J,358.3,12218,1,3,0)
- ;;=3^Colonoscopy w/Balloon Dilation Stricture
- ;;^UTILITY(U,$J,358.3,12219,0)
- ;;=45391^^49^549^5^^^^1
- ;;^UTILITY(U,$J,358.3,12219,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12219,1,2,0)
- ;;=2^45391
- ;;^UTILITY(U,$J,358.3,12219,1,3,0)
- ;;=3^Colonoscopy w/EUS
- ;;^UTILITY(U,$J,358.3,12220,0)
- ;;=45392^^49^549^7^^^^1
- ;;^UTILITY(U,$J,358.3,12220,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12220,1,2,0)
- ;;=2^45392
- ;;^UTILITY(U,$J,358.3,12220,1,3,0)
- ;;=3^Colonoscopy w/Intramural FNA/Bx
- ;;^UTILITY(U,$J,358.3,12221,0)
- ;;=45381^^49^549^13^^^^1
- ;;^UTILITY(U,$J,358.3,12221,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12221,1,2,0)
- ;;=2^45381
- ;;^UTILITY(U,$J,358.3,12221,1,3,0)
- ;;=3^Colonoscopy,Submucosal Inj
- ;;^UTILITY(U,$J,358.3,12222,0)
- ;;=45389^^49^549^9^^^^1
- ;;^UTILITY(U,$J,358.3,12222,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12222,1,2,0)
- ;;=2^45389
- ;;^UTILITY(U,$J,358.3,12222,1,3,0)
- ;;=3^Colonoscopy w/Stent Placement
- ;;^UTILITY(U,$J,358.3,12223,0)
- ;;=45390^^49^549^8^^^^1
- ;;^UTILITY(U,$J,358.3,12223,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12223,1,2,0)
- ;;=2^45390
- ;;^UTILITY(U,$J,358.3,12223,1,3,0)
- ;;=3^Colonoscopy w/Resection
- ;;^UTILITY(U,$J,358.3,12224,0)
- ;;=45398^^49^549^2^^^^1
- ;;^UTILITY(U,$J,358.3,12224,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12224,1,2,0)
- ;;=2^45398
- ;;^UTILITY(U,$J,358.3,12224,1,3,0)
- ;;=3^Colonoscopy w/Band Ligation(s)
- ;;^UTILITY(U,$J,358.3,12225,0)
- ;;=45399^^49^549^14^^^^1
- ;;^UTILITY(U,$J,358.3,12225,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12225,1,2,0)
- ;;=2^45399
- ;;^UTILITY(U,$J,358.3,12225,1,3,0)
- ;;=3^Unlisted Colon Procedure
- ;;^UTILITY(U,$J,358.3,12226,0)
- ;;=43260^^49^550^11^^^^1
- ;;^UTILITY(U,$J,358.3,12226,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12226,1,2,0)
- ;;=2^43260
- ;;^UTILITY(U,$J,358.3,12226,1,3,0)
- ;;=3^ERCP, Diagnostic
- ;;^UTILITY(U,$J,358.3,12227,0)
- ;;=43264^^49^550^10^^^^1
- ;;^UTILITY(U,$J,358.3,12227,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12227,1,2,0)
- ;;=2^43264
- ;;^UTILITY(U,$J,358.3,12227,1,3,0)
- ;;=3^ERCP w/Stone Removal
- ;;^UTILITY(U,$J,358.3,12228,0)
- ;;=43262^^49^550^4^^^^1
- ;;^UTILITY(U,$J,358.3,12228,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,12228,1,2,0)
- ;;=2^43262
+ ;;^UTILITY(U,$J,358.3,26245,1,2,0)
+ ;;=2^99325
+ ;;^UTILITY(U,$J,358.3,26246,0)
+ ;;=99326^^99^1262^3
+ ;;^UTILITY(U,$J,358.3,26246,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,26246,1,1,0)
+ ;;=1^DETAILED HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,26246,1,2,0)
+ ;;=2^99326
+ ;;^UTILITY(U,$J,358.3,26247,0)
+ ;;=99327^^99^1262^4
+ ;;^UTILITY(U,$J,358.3,26247,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,26247,1,1,0)
+ ;;=1^COMPREH HX & EXAM;MOD COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,26247,1,2,0)
+ ;;=2^99327
+ ;;^UTILITY(U,$J,358.3,26248,0)
+ ;;=99328^^99^1262^5
+ ;;^UTILITY(U,$J,358.3,26248,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,26248,1,1,0)
+ ;;=1^COMPREH HX & EXAM;HIGH COMPLEX MDM
+ ;;^UTILITY(U,$J,358.3,26248,1,2,0)
+ ;;=2^99328
+ ;;^UTILITY(U,$J,358.3,26249,0)
+ ;;=T74.11XA^^100^1263^5
+ ;;^UTILITY(U,$J,358.3,26249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26249,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26249,1,4,0)
+ ;;=4^T74.11XA
+ ;;^UTILITY(U,$J,358.3,26249,2)
+ ;;=^5054146
+ ;;^UTILITY(U,$J,358.3,26250,0)
+ ;;=T74.11XD^^100^1263^6
+ ;;^UTILITY(U,$J,358.3,26250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26250,1,3,0)
+ ;;=3^Adult Physical Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26250,1,4,0)
+ ;;=4^T74.11XD
+ ;;^UTILITY(U,$J,358.3,26250,2)
+ ;;=^5054147
+ ;;^UTILITY(U,$J,358.3,26251,0)
+ ;;=T76.11XA^^100^1263^7
+ ;;^UTILITY(U,$J,358.3,26251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26251,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26251,1,4,0)
+ ;;=4^T76.11XA
+ ;;^UTILITY(U,$J,358.3,26251,2)
+ ;;=^5054221
+ ;;^UTILITY(U,$J,358.3,26252,0)
+ ;;=T76.11XD^^100^1263^8
+ ;;^UTILITY(U,$J,358.3,26252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26252,1,3,0)
+ ;;=3^Adult Physical Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,26252,1,4,0)
+ ;;=4^T76.11XD
+ ;;^UTILITY(U,$J,358.3,26252,2)
+ ;;=^5054222
+ ;;^UTILITY(U,$J,358.3,26253,0)
+ ;;=Z69.11^^100^1263^31
+ ;;^UTILITY(U,$J,358.3,26253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26253,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,26253,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,26253,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,26254,0)
+ ;;=Z91.410^^100^1263^35
+ ;;^UTILITY(U,$J,358.3,26254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26254,1,3,0)
+ ;;=3^Past Hx of Spouse/Partner Violence,Physical 
+ ;;^UTILITY(U,$J,358.3,26254,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,26254,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,26255,0)
+ ;;=Z69.12^^100^1263^27
+ ;;^UTILITY(U,$J,358.3,26255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26255,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence-Physical,Sexual or Psychological
+ ;;^UTILITY(U,$J,358.3,26255,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,26255,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,26256,0)
+ ;;=T74.21XA^^100^1263^13
+ ;;^UTILITY(U,$J,358.3,26256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26256,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,26256,1,4,0)
+ ;;=4^T74.21XA
+ ;;^UTILITY(U,$J,358.3,26256,2)
+ ;;=^5054152
+ ;;^UTILITY(U,$J,358.3,26257,0)
+ ;;=T74.21XD^^100^1263^14
+ ;;^UTILITY(U,$J,358.3,26257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26257,1,3,0)
+ ;;=3^Adult Sexual Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26257,1,4,0)
+ ;;=4^T74.21XD
+ ;;^UTILITY(U,$J,358.3,26257,2)
+ ;;=^5054153
+ ;;^UTILITY(U,$J,358.3,26258,0)
+ ;;=T76.21XA^^100^1263^15
+ ;;^UTILITY(U,$J,358.3,26258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26258,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26258,1,4,0)
+ ;;=4^T76.21XA
+ ;;^UTILITY(U,$J,358.3,26258,2)
+ ;;=^5054227
+ ;;^UTILITY(U,$J,358.3,26259,0)
+ ;;=T76.21XD^^100^1263^16
+ ;;^UTILITY(U,$J,358.3,26259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26259,1,3,0)
+ ;;=3^Adult Sexual Abuse,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,26259,1,4,0)
+ ;;=4^T76.21XD
+ ;;^UTILITY(U,$J,358.3,26259,2)
+ ;;=^5054228
+ ;;^UTILITY(U,$J,358.3,26260,0)
+ ;;=Z69.81^^100^1263^30
+ ;;^UTILITY(U,$J,358.3,26260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26260,1,3,0)
+ ;;=3^MH Svc for Victim of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,26260,1,4,0)
+ ;;=4^Z69.81
+ ;;^UTILITY(U,$J,358.3,26260,2)
+ ;;=^5063234
+ ;;^UTILITY(U,$J,358.3,26261,0)
+ ;;=Z69.82^^100^1263^22
+ ;;^UTILITY(U,$J,358.3,26261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26261,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonspousal/Nonpartner Abuse
+ ;;^UTILITY(U,$J,358.3,26261,1,4,0)
+ ;;=4^Z69.82
+ ;;^UTILITY(U,$J,358.3,26261,2)
+ ;;=^5063235
+ ;;^UTILITY(U,$J,358.3,26262,0)
+ ;;=T74.01XA^^100^1263^1
+ ;;^UTILITY(U,$J,358.3,26262,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26262,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,26262,1,4,0)
+ ;;=4^T74.01XA
+ ;;^UTILITY(U,$J,358.3,26262,2)
+ ;;=^5054140
+ ;;^UTILITY(U,$J,358.3,26263,0)
+ ;;=T74.01XD^^100^1263^2
+ ;;^UTILITY(U,$J,358.3,26263,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26263,1,3,0)
+ ;;=3^Adult Neglect,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26263,1,4,0)
+ ;;=4^T74.01XD
+ ;;^UTILITY(U,$J,358.3,26263,2)
+ ;;=^5054141
+ ;;^UTILITY(U,$J,358.3,26264,0)
+ ;;=T76.01XA^^100^1263^3
+ ;;^UTILITY(U,$J,358.3,26264,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26264,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26264,1,4,0)
+ ;;=4^T76.01XA
+ ;;^UTILITY(U,$J,358.3,26264,2)
+ ;;=^5054215
+ ;;^UTILITY(U,$J,358.3,26265,0)
+ ;;=T76.01XD^^100^1263^4
+ ;;^UTILITY(U,$J,358.3,26265,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26265,1,3,0)
+ ;;=3^Adult Neglect,Suspected,Subsequent Encounter  
+ ;;^UTILITY(U,$J,358.3,26265,1,4,0)
+ ;;=4^T76.01XD
+ ;;^UTILITY(U,$J,358.3,26265,2)
+ ;;=^5054216
+ ;;^UTILITY(U,$J,358.3,26266,0)
+ ;;=Z91.412^^100^1263^40
+ ;;^UTILITY(U,$J,358.3,26266,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26266,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Neglect
+ ;;^UTILITY(U,$J,358.3,26266,1,4,0)
+ ;;=4^Z91.412
+ ;;^UTILITY(U,$J,358.3,26266,2)
+ ;;=^5063621
+ ;;^UTILITY(U,$J,358.3,26267,0)
+ ;;=T74.31XA^^100^1263^9
+ ;;^UTILITY(U,$J,358.3,26267,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26267,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Initial Encounter  
+ ;;^UTILITY(U,$J,358.3,26267,1,4,0)
+ ;;=4^T74.31XA
+ ;;^UTILITY(U,$J,358.3,26267,2)
+ ;;=^5054158
+ ;;^UTILITY(U,$J,358.3,26268,0)
+ ;;=T74.31XD^^100^1263^10
+ ;;^UTILITY(U,$J,358.3,26268,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26268,1,3,0)
+ ;;=3^Adult Psychological Abuse,Confirmed,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26268,1,4,0)
+ ;;=4^T74.31XD
+ ;;^UTILITY(U,$J,358.3,26268,2)
+ ;;=^5054159
+ ;;^UTILITY(U,$J,358.3,26269,0)
+ ;;=T76.31XA^^100^1263^11
+ ;;^UTILITY(U,$J,358.3,26269,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26269,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Initial Encounter 
+ ;;^UTILITY(U,$J,358.3,26269,1,4,0)
+ ;;=4^T76.31XA
+ ;;^UTILITY(U,$J,358.3,26269,2)
+ ;;=^5054233
+ ;;^UTILITY(U,$J,358.3,26270,0)
+ ;;=T76.31XD^^100^1263^12
+ ;;^UTILITY(U,$J,358.3,26270,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26270,1,3,0)
+ ;;=3^Adult Psychological Abuse,Suspected,Subsequent Encounter 
+ ;;^UTILITY(U,$J,358.3,26270,1,4,0)
+ ;;=4^T76.31XD
+ ;;^UTILITY(U,$J,358.3,26270,2)
+ ;;=^5054234
+ ;;^UTILITY(U,$J,358.3,26271,0)
+ ;;=Z91.411^^100^1263^41
+ ;;^UTILITY(U,$J,358.3,26271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,26271,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,26271,1,4,0)
+ ;;=4^Z91.411
+ ;;^UTILITY(U,$J,358.3,26271,2)
+ ;;=^5063620
+ ;;^UTILITY(U,$J,358.3,26272,0)
+ ;;=Z69.021^^100^1263^18
+ ;;^UTILITY(U,$J,358.3,26272,1,0)
+ ;;=^358.31IA^4^2

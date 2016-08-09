@@ -1,134 +1,296 @@
-IBDEI046 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI046 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1528,2)
- ;;=^5007219
- ;;^UTILITY(U,$J,358.3,1529,0)
- ;;=I49.40^^11^143^33
- ;;^UTILITY(U,$J,358.3,1529,1,0)
+ ;;^UTILITY(U,$J,358.3,3902,1,3,0)
+ ;;=3^Chronic Rhinitis
+ ;;^UTILITY(U,$J,358.3,3902,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,3902,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,3903,0)
+ ;;=J32.9^^30^301^12
+ ;;^UTILITY(U,$J,358.3,3903,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1529,1,3,0)
- ;;=3^Premature Depolarization,Unspec
- ;;^UTILITY(U,$J,358.3,1529,1,4,0)
- ;;=4^I49.40
- ;;^UTILITY(U,$J,358.3,1529,2)
- ;;=^5007234
- ;;^UTILITY(U,$J,358.3,1530,0)
- ;;=I49.1^^11^143^7
- ;;^UTILITY(U,$J,358.3,1530,1,0)
+ ;;^UTILITY(U,$J,358.3,3903,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,3903,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,3903,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,3904,0)
+ ;;=J30.9^^30^301^4
+ ;;^UTILITY(U,$J,358.3,3904,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1530,1,3,0)
- ;;=3^Atrial Premature Depolarization
- ;;^UTILITY(U,$J,358.3,1530,1,4,0)
- ;;=4^I49.1
- ;;^UTILITY(U,$J,358.3,1530,2)
- ;;=^5007231
- ;;^UTILITY(U,$J,358.3,1531,0)
- ;;=I49.49^^11^143^32
- ;;^UTILITY(U,$J,358.3,1531,1,0)
+ ;;^UTILITY(U,$J,358.3,3904,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,3904,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,3904,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,3905,0)
+ ;;=R04.0^^30^301^16
+ ;;^UTILITY(U,$J,358.3,3905,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1531,1,3,0)
- ;;=3^Premature Depolarization NEC
- ;;^UTILITY(U,$J,358.3,1531,1,4,0)
- ;;=4^I49.49
- ;;^UTILITY(U,$J,358.3,1531,2)
- ;;=^5007235
- ;;^UTILITY(U,$J,358.3,1532,0)
- ;;=I49.5^^11^143^40
- ;;^UTILITY(U,$J,358.3,1532,1,0)
+ ;;^UTILITY(U,$J,358.3,3905,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,3905,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,3905,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,3906,0)
+ ;;=M67.422^^30^302^2
+ ;;^UTILITY(U,$J,358.3,3906,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1532,1,3,0)
- ;;=3^Sick Sinus Syndrome
- ;;^UTILITY(U,$J,358.3,1532,1,4,0)
- ;;=4^I49.5
- ;;^UTILITY(U,$J,358.3,1532,2)
- ;;=^110404
- ;;^UTILITY(U,$J,358.3,1533,0)
- ;;=R00.1^^11^143^9
- ;;^UTILITY(U,$J,358.3,1533,1,0)
+ ;;^UTILITY(U,$J,358.3,3906,1,3,0)
+ ;;=3^Ganglion,Left Elbow
+ ;;^UTILITY(U,$J,358.3,3906,1,4,0)
+ ;;=4^M67.422
+ ;;^UTILITY(U,$J,358.3,3906,2)
+ ;;=^5012961
+ ;;^UTILITY(U,$J,358.3,3907,0)
+ ;;=M67.412^^30^302^6
+ ;;^UTILITY(U,$J,358.3,3907,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1533,1,3,0)
- ;;=3^Bradycardia,Unspec
- ;;^UTILITY(U,$J,358.3,1533,1,4,0)
- ;;=4^R00.1
- ;;^UTILITY(U,$J,358.3,1533,2)
- ;;=^5019164
- ;;^UTILITY(U,$J,358.3,1534,0)
- ;;=T82.110A^^11^143^10
- ;;^UTILITY(U,$J,358.3,1534,1,0)
+ ;;^UTILITY(U,$J,358.3,3907,1,3,0)
+ ;;=3^Ganglion,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,3907,1,4,0)
+ ;;=4^M67.412
+ ;;^UTILITY(U,$J,358.3,3907,2)
+ ;;=^5012958
+ ;;^UTILITY(U,$J,358.3,3908,0)
+ ;;=M67.472^^30^302^1
+ ;;^UTILITY(U,$J,358.3,3908,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1534,1,3,0)
- ;;=3^Breakdown of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,1534,1,4,0)
- ;;=4^T82.110A
- ;;^UTILITY(U,$J,358.3,1534,2)
- ;;=^5054680
- ;;^UTILITY(U,$J,358.3,1535,0)
- ;;=T82.111A^^11^143^11
- ;;^UTILITY(U,$J,358.3,1535,1,0)
+ ;;^UTILITY(U,$J,358.3,3908,1,3,0)
+ ;;=3^Ganglion,Left Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,3908,1,4,0)
+ ;;=4^M67.472
+ ;;^UTILITY(U,$J,358.3,3908,2)
+ ;;=^5012976
+ ;;^UTILITY(U,$J,358.3,3909,0)
+ ;;=M67.462^^30^302^5
+ ;;^UTILITY(U,$J,358.3,3909,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1535,1,3,0)
- ;;=3^Breakdown of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,1535,1,4,0)
- ;;=4^T82.111A
- ;;^UTILITY(U,$J,358.3,1535,2)
- ;;=^5054683
- ;;^UTILITY(U,$J,358.3,1536,0)
- ;;=T82.120A^^11^143^17
- ;;^UTILITY(U,$J,358.3,1536,1,0)
+ ;;^UTILITY(U,$J,358.3,3909,1,3,0)
+ ;;=3^Ganglion,Left Knee
+ ;;^UTILITY(U,$J,358.3,3909,1,4,0)
+ ;;=4^M67.462
+ ;;^UTILITY(U,$J,358.3,3909,2)
+ ;;=^5012973
+ ;;^UTILITY(U,$J,358.3,3910,0)
+ ;;=M67.452^^30^302^4
+ ;;^UTILITY(U,$J,358.3,3910,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1536,1,3,0)
- ;;=3^Displacement of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,1536,1,4,0)
- ;;=4^T82.120A
- ;;^UTILITY(U,$J,358.3,1536,2)
- ;;=^5054692
- ;;^UTILITY(U,$J,358.3,1537,0)
- ;;=T82.121A^^11^143^18
- ;;^UTILITY(U,$J,358.3,1537,1,0)
+ ;;^UTILITY(U,$J,358.3,3910,1,3,0)
+ ;;=3^Ganglion,Left Hip
+ ;;^UTILITY(U,$J,358.3,3910,1,4,0)
+ ;;=4^M67.452
+ ;;^UTILITY(U,$J,358.3,3910,2)
+ ;;=^5012970
+ ;;^UTILITY(U,$J,358.3,3911,0)
+ ;;=M67.442^^30^302^3
+ ;;^UTILITY(U,$J,358.3,3911,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1537,1,3,0)
- ;;=3^Displacement of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,1537,1,4,0)
- ;;=4^T82.121A
- ;;^UTILITY(U,$J,358.3,1537,2)
- ;;=^5054695
- ;;^UTILITY(U,$J,358.3,1538,0)
- ;;=T82.190A^^11^143^26
- ;;^UTILITY(U,$J,358.3,1538,1,0)
+ ;;^UTILITY(U,$J,358.3,3911,1,3,0)
+ ;;=3^Ganglion,Left Hand
+ ;;^UTILITY(U,$J,358.3,3911,1,4,0)
+ ;;=4^M67.442
+ ;;^UTILITY(U,$J,358.3,3911,2)
+ ;;=^5012967
+ ;;^UTILITY(U,$J,358.3,3912,0)
+ ;;=M67.432^^30^302^7
+ ;;^UTILITY(U,$J,358.3,3912,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1538,1,3,0)
- ;;=3^Mech Compl of Cardiac Electrode,Init Encntr
- ;;^UTILITY(U,$J,358.3,1538,1,4,0)
- ;;=4^T82.190A
- ;;^UTILITY(U,$J,358.3,1538,2)
- ;;=^5054704
- ;;^UTILITY(U,$J,358.3,1539,0)
- ;;=T82.191A^^11^143^27
- ;;^UTILITY(U,$J,358.3,1539,1,0)
+ ;;^UTILITY(U,$J,358.3,3912,1,3,0)
+ ;;=3^Ganglion,Left Wrist
+ ;;^UTILITY(U,$J,358.3,3912,1,4,0)
+ ;;=4^M67.432
+ ;;^UTILITY(U,$J,358.3,3912,2)
+ ;;=^5012964
+ ;;^UTILITY(U,$J,358.3,3913,0)
+ ;;=M72.0^^30^302^16
+ ;;^UTILITY(U,$J,358.3,3913,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1539,1,3,0)
- ;;=3^Mech Compl of Cardiac Pulse Generator,Init Encntr
- ;;^UTILITY(U,$J,358.3,1539,1,4,0)
- ;;=4^T82.191A
- ;;^UTILITY(U,$J,358.3,1539,2)
- ;;=^5054707
- ;;^UTILITY(U,$J,358.3,1540,0)
- ;;=Z95.0^^11^143^35
- ;;^UTILITY(U,$J,358.3,1540,1,0)
+ ;;^UTILITY(U,$J,358.3,3913,1,3,0)
+ ;;=3^Palmar Fascial Fibromatosis
+ ;;^UTILITY(U,$J,358.3,3913,1,4,0)
+ ;;=4^M72.0
+ ;;^UTILITY(U,$J,358.3,3913,2)
+ ;;=^5013233
+ ;;^UTILITY(U,$J,358.3,3914,0)
+ ;;=M79.89^^30^302^17
+ ;;^UTILITY(U,$J,358.3,3914,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1540,1,3,0)
- ;;=3^Presence of Cardiac Pacemaker
- ;;^UTILITY(U,$J,358.3,1540,1,4,0)
- ;;=4^Z95.0
- ;;^UTILITY(U,$J,358.3,1540,2)
- ;;=^5063668
- ;;^UTILITY(U,$J,358.3,1541,0)
- ;;=Z95.810^^11^143^34
- ;;^UTILITY(U,$J,358.3,1541,1,0)
+ ;;^UTILITY(U,$J,358.3,3914,1,3,0)
+ ;;=3^Tissue Disorders NEC
+ ;;^UTILITY(U,$J,358.3,3914,1,4,0)
+ ;;=4^M79.89
+ ;;^UTILITY(U,$J,358.3,3914,2)
+ ;;=^5013357
+ ;;^UTILITY(U,$J,358.3,3915,0)
+ ;;=M67.421^^30^302^10
+ ;;^UTILITY(U,$J,358.3,3915,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1541,1,3,0)
- ;;=3^Presence of Automatic Cardiac Defibrillator
- ;;^UTILITY(U,$J,358.3,1541,1,4,0)
- ;;=4^Z95.810
+ ;;^UTILITY(U,$J,358.3,3915,1,3,0)
+ ;;=3^Ganglion,Right Elbow
+ ;;^UTILITY(U,$J,358.3,3915,1,4,0)
+ ;;=4^M67.421
+ ;;^UTILITY(U,$J,358.3,3915,2)
+ ;;=^5012960
+ ;;^UTILITY(U,$J,358.3,3916,0)
+ ;;=M67.411^^30^302^14
+ ;;^UTILITY(U,$J,358.3,3916,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3916,1,3,0)
+ ;;=3^Ganglion,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,3916,1,4,0)
+ ;;=4^M67.411
+ ;;^UTILITY(U,$J,358.3,3916,2)
+ ;;=^5012957
+ ;;^UTILITY(U,$J,358.3,3917,0)
+ ;;=M67.471^^30^302^9
+ ;;^UTILITY(U,$J,358.3,3917,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3917,1,3,0)
+ ;;=3^Ganglion,Right Ankle/Foot
+ ;;^UTILITY(U,$J,358.3,3917,1,4,0)
+ ;;=4^M67.471
+ ;;^UTILITY(U,$J,358.3,3917,2)
+ ;;=^5012975
+ ;;^UTILITY(U,$J,358.3,3918,0)
+ ;;=M67.461^^30^302^13
+ ;;^UTILITY(U,$J,358.3,3918,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3918,1,3,0)
+ ;;=3^Ganglion,Right Knee
+ ;;^UTILITY(U,$J,358.3,3918,1,4,0)
+ ;;=4^M67.461
+ ;;^UTILITY(U,$J,358.3,3918,2)
+ ;;=^5012972
+ ;;^UTILITY(U,$J,358.3,3919,0)
+ ;;=M67.451^^30^302^12
+ ;;^UTILITY(U,$J,358.3,3919,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3919,1,3,0)
+ ;;=3^Ganglion,Right Hip
+ ;;^UTILITY(U,$J,358.3,3919,1,4,0)
+ ;;=4^M67.451
+ ;;^UTILITY(U,$J,358.3,3919,2)
+ ;;=^5012969
+ ;;^UTILITY(U,$J,358.3,3920,0)
+ ;;=M67.441^^30^302^11
+ ;;^UTILITY(U,$J,358.3,3920,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3920,1,3,0)
+ ;;=3^Ganglion,Right Hand
+ ;;^UTILITY(U,$J,358.3,3920,1,4,0)
+ ;;=4^M67.441
+ ;;^UTILITY(U,$J,358.3,3920,2)
+ ;;=^5012966
+ ;;^UTILITY(U,$J,358.3,3921,0)
+ ;;=M67.431^^30^302^15
+ ;;^UTILITY(U,$J,358.3,3921,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3921,1,3,0)
+ ;;=3^Ganglion,Right Wrist
+ ;;^UTILITY(U,$J,358.3,3921,1,4,0)
+ ;;=4^M67.431
+ ;;^UTILITY(U,$J,358.3,3921,2)
+ ;;=^5012963
+ ;;^UTILITY(U,$J,358.3,3922,0)
+ ;;=M67.49^^30^302^8
+ ;;^UTILITY(U,$J,358.3,3922,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3922,1,3,0)
+ ;;=3^Ganglion,Mult Sites
+ ;;^UTILITY(U,$J,358.3,3922,1,4,0)
+ ;;=4^M67.49
+ ;;^UTILITY(U,$J,358.3,3922,2)
+ ;;=^5012979
+ ;;^UTILITY(U,$J,358.3,3923,0)
+ ;;=E09.52^^30^303^18
+ ;;^UTILITY(U,$J,358.3,3923,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3923,1,3,0)
+ ;;=3^Drug/Chem Diabetes w/ Diabetic Prph Angiopathy w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3923,1,4,0)
+ ;;=4^E09.52
+ ;;^UTILITY(U,$J,358.3,3923,2)
+ ;;=^5002571
+ ;;^UTILITY(U,$J,358.3,3924,0)
+ ;;=I96.^^30^303^19
+ ;;^UTILITY(U,$J,358.3,3924,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3924,1,3,0)
+ ;;=3^Gangrene NEC
+ ;;^UTILITY(U,$J,358.3,3924,1,4,0)
+ ;;=4^I96.
+ ;;^UTILITY(U,$J,358.3,3924,2)
+ ;;=^5008081
+ ;;^UTILITY(U,$J,358.3,3925,0)
+ ;;=I73.01^^30^303^20
+ ;;^UTILITY(U,$J,358.3,3925,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3925,1,3,0)
+ ;;=3^Raynaud's Syndrome w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3925,1,4,0)
+ ;;=4^I73.01
+ ;;^UTILITY(U,$J,358.3,3925,2)
+ ;;=^5007797
+ ;;^UTILITY(U,$J,358.3,3926,0)
+ ;;=I70.763^^30^303^4
+ ;;^UTILITY(U,$J,358.3,3926,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3926,1,3,0)
+ ;;=3^Athscl of Bypass Graft,Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3926,1,4,0)
+ ;;=4^I70.763
+ ;;^UTILITY(U,$J,358.3,3926,2)
+ ;;=^5007778
+ ;;^UTILITY(U,$J,358.3,3927,0)
+ ;;=I70.762^^30^303^5
+ ;;^UTILITY(U,$J,358.3,3927,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3927,1,3,0)
+ ;;=3^Athscl of Bypass Graft,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3927,1,4,0)
+ ;;=4^I70.762
+ ;;^UTILITY(U,$J,358.3,3927,2)
+ ;;=^5133608
+ ;;^UTILITY(U,$J,358.3,3928,0)
+ ;;=I70.761^^30^303^6
+ ;;^UTILITY(U,$J,358.3,3928,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3928,1,3,0)
+ ;;=3^Athscl of Bypass Graft,Right Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3928,1,4,0)
+ ;;=4^I70.761
+ ;;^UTILITY(U,$J,358.3,3928,2)
+ ;;=^5007777
+ ;;^UTILITY(U,$J,358.3,3929,0)
+ ;;=I70.663^^30^303^10
+ ;;^UTILITY(U,$J,358.3,3929,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3929,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Bilateral Legs w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3929,1,4,0)
+ ;;=4^I70.663
+ ;;^UTILITY(U,$J,358.3,3929,2)
+ ;;=^5007757
+ ;;^UTILITY(U,$J,358.3,3930,0)
+ ;;=I70.662^^30^303^11
+ ;;^UTILITY(U,$J,358.3,3930,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3930,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Left Leg w/ Gangrene
+ ;;^UTILITY(U,$J,358.3,3930,1,4,0)
+ ;;=4^I70.662
+ ;;^UTILITY(U,$J,358.3,3930,2)
+ ;;=^5007756
+ ;;^UTILITY(U,$J,358.3,3931,0)
+ ;;=I70.661^^30^303^12
+ ;;^UTILITY(U,$J,358.3,3931,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3931,1,3,0)
+ ;;=3^Athscl of Nonbiol Bypass,Right Leg w/ Gangrene

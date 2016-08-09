@@ -1,128 +1,286 @@
-IBDEI0XM ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XM ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15763,0)
- ;;=F17.201^^58^691^10
- ;;^UTILITY(U,$J,358.3,15763,1,0)
+ ;;^UTILITY(U,$J,358.3,33813,1,3,0)
+ ;;=3^Deformity of Left Foot
+ ;;^UTILITY(U,$J,358.3,33813,1,4,0)
+ ;;=4^M21.962
+ ;;^UTILITY(U,$J,358.3,33813,2)
+ ;;=^5011172
+ ;;^UTILITY(U,$J,358.3,33814,0)
+ ;;=M21.6X1^^122^1592^13
+ ;;^UTILITY(U,$J,358.3,33814,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15763,1,3,0)
- ;;=3^Nicotine Use Disorder,Moderate-Severe In Remission
- ;;^UTILITY(U,$J,358.3,15763,1,4,0)
- ;;=4^F17.201
- ;;^UTILITY(U,$J,358.3,15763,2)
- ;;=^5003361
- ;;^UTILITY(U,$J,358.3,15764,0)
- ;;=F17.203^^58^691^11
- ;;^UTILITY(U,$J,358.3,15764,1,0)
+ ;;^UTILITY(U,$J,358.3,33814,1,3,0)
+ ;;=3^Deformity of Right Foot NEC
+ ;;^UTILITY(U,$J,358.3,33814,1,4,0)
+ ;;=4^M21.6X1
+ ;;^UTILITY(U,$J,358.3,33814,2)
+ ;;=^5011128
+ ;;^UTILITY(U,$J,358.3,33815,0)
+ ;;=M21.6X2^^122^1592^11
+ ;;^UTILITY(U,$J,358.3,33815,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15764,1,3,0)
- ;;=3^Nicotine Withdrawal
- ;;^UTILITY(U,$J,358.3,15764,1,4,0)
- ;;=4^F17.203
- ;;^UTILITY(U,$J,358.3,15764,2)
- ;;=^5003362
- ;;^UTILITY(U,$J,358.3,15765,0)
- ;;=F17.210^^58^691^4
- ;;^UTILITY(U,$J,358.3,15765,1,0)
+ ;;^UTILITY(U,$J,358.3,33815,1,3,0)
+ ;;=3^Deformity of Left Foot NEC
+ ;;^UTILITY(U,$J,358.3,33815,1,4,0)
+ ;;=4^M21.6X2
+ ;;^UTILITY(U,$J,358.3,33815,2)
+ ;;=^5011129
+ ;;^UTILITY(U,$J,358.3,33816,0)
+ ;;=Q66.0^^122^1592^34
+ ;;^UTILITY(U,$J,358.3,33816,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15765,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15765,1,4,0)
- ;;=4^F17.210
- ;;^UTILITY(U,$J,358.3,15765,2)
- ;;=^5003365
- ;;^UTILITY(U,$J,358.3,15766,0)
- ;;=F17.211^^58^691^3
- ;;^UTILITY(U,$J,358.3,15766,1,0)
+ ;;^UTILITY(U,$J,358.3,33816,1,3,0)
+ ;;=3^Talipes Equinovarus,Congenital
+ ;;^UTILITY(U,$J,358.3,33816,1,4,0)
+ ;;=4^Q66.0
+ ;;^UTILITY(U,$J,358.3,33816,2)
+ ;;=^5018861
+ ;;^UTILITY(U,$J,358.3,33817,0)
+ ;;=Q66.4^^122^1592^33
+ ;;^UTILITY(U,$J,358.3,33817,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15766,1,3,0)
- ;;=3^Nicotine Dependence,Cigarettes,In Remission
- ;;^UTILITY(U,$J,358.3,15766,1,4,0)
- ;;=4^F17.211
- ;;^UTILITY(U,$J,358.3,15766,2)
- ;;=^5003366
- ;;^UTILITY(U,$J,358.3,15767,0)
- ;;=F17.220^^58^691^2
- ;;^UTILITY(U,$J,358.3,15767,1,0)
+ ;;^UTILITY(U,$J,358.3,33817,1,3,0)
+ ;;=3^Talipes Calconeovalgus,Congenital
+ ;;^UTILITY(U,$J,358.3,33817,1,4,0)
+ ;;=4^Q66.4
+ ;;^UTILITY(U,$J,358.3,33817,2)
+ ;;=^5018865
+ ;;^UTILITY(U,$J,358.3,33818,0)
+ ;;=Q66.89^^122^1592^9
+ ;;^UTILITY(U,$J,358.3,33818,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15767,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15767,1,4,0)
- ;;=4^F17.220
- ;;^UTILITY(U,$J,358.3,15767,2)
- ;;=^5003370
- ;;^UTILITY(U,$J,358.3,15768,0)
- ;;=F17.221^^58^691^1
- ;;^UTILITY(U,$J,358.3,15768,1,0)
+ ;;^UTILITY(U,$J,358.3,33818,1,3,0)
+ ;;=3^Deformity of Feet,Congenital NEC
+ ;;^UTILITY(U,$J,358.3,33818,1,4,0)
+ ;;=4^Q66.89
+ ;;^UTILITY(U,$J,358.3,33818,2)
+ ;;=^5018874
+ ;;^UTILITY(U,$J,358.3,33819,0)
+ ;;=Q66.7^^122^1592^6
+ ;;^UTILITY(U,$J,358.3,33819,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15768,1,3,0)
- ;;=3^Nicotine Dependence,Chewing Tobacco,In Remission
- ;;^UTILITY(U,$J,358.3,15768,1,4,0)
- ;;=4^F17.221
- ;;^UTILITY(U,$J,358.3,15768,2)
- ;;=^5003371
- ;;^UTILITY(U,$J,358.3,15769,0)
- ;;=F17.290^^58^691^5
- ;;^UTILITY(U,$J,358.3,15769,1,0)
+ ;;^UTILITY(U,$J,358.3,33819,1,3,0)
+ ;;=3^Club Feet
+ ;;^UTILITY(U,$J,358.3,33819,1,4,0)
+ ;;=4^Q66.7
+ ;;^UTILITY(U,$J,358.3,33819,2)
+ ;;=^5018870
+ ;;^UTILITY(U,$J,358.3,33820,0)
+ ;;=M20.012^^122^1593^1
+ ;;^UTILITY(U,$J,358.3,33820,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15769,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,Uncomplicated
- ;;^UTILITY(U,$J,358.3,15769,1,4,0)
- ;;=4^F17.290
- ;;^UTILITY(U,$J,358.3,15769,2)
- ;;=^5003375
- ;;^UTILITY(U,$J,358.3,15770,0)
- ;;=F17.291^^58^691^6
- ;;^UTILITY(U,$J,358.3,15770,1,0)
+ ;;^UTILITY(U,$J,358.3,33820,1,3,0)
+ ;;=3^Mallet finger,Left finger(s)
+ ;;^UTILITY(U,$J,358.3,33820,1,4,0)
+ ;;=4^M20.012
+ ;;^UTILITY(U,$J,358.3,33820,2)
+ ;;=^5011031
+ ;;^UTILITY(U,$J,358.3,33821,0)
+ ;;=M20.011^^122^1593^2
+ ;;^UTILITY(U,$J,358.3,33821,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15770,1,3,0)
- ;;=3^Nicotine Dependence,Oth Tobacco Product,In Remission
- ;;^UTILITY(U,$J,358.3,15770,1,4,0)
- ;;=4^F17.291
- ;;^UTILITY(U,$J,358.3,15770,2)
- ;;=^5003376
- ;;^UTILITY(U,$J,358.3,15771,0)
- ;;=F17.208^^58^691^7
- ;;^UTILITY(U,$J,358.3,15771,1,0)
+ ;;^UTILITY(U,$J,358.3,33821,1,3,0)
+ ;;=3^Mallet finger,Right finger(s)
+ ;;^UTILITY(U,$J,358.3,33821,1,4,0)
+ ;;=4^M20.011
+ ;;^UTILITY(U,$J,358.3,33821,2)
+ ;;=^5011030
+ ;;^UTILITY(U,$J,358.3,33822,0)
+ ;;=M65.322^^122^1593^5
+ ;;^UTILITY(U,$J,358.3,33822,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15771,1,3,0)
- ;;=3^Nicotine Induced Sleep Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15771,1,4,0)
- ;;=4^F17.208
- ;;^UTILITY(U,$J,358.3,15771,2)
- ;;=^5003363
- ;;^UTILITY(U,$J,358.3,15772,0)
- ;;=F17.209^^58^691^8
- ;;^UTILITY(U,$J,358.3,15772,1,0)
+ ;;^UTILITY(U,$J,358.3,33822,1,3,0)
+ ;;=3^Trigger finger,Left index finger
+ ;;^UTILITY(U,$J,358.3,33822,1,4,0)
+ ;;=4^M65.322
+ ;;^UTILITY(U,$J,358.3,33822,2)
+ ;;=^5012781
+ ;;^UTILITY(U,$J,358.3,33823,0)
+ ;;=M65.352^^122^1593^6
+ ;;^UTILITY(U,$J,358.3,33823,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15772,1,3,0)
- ;;=3^Nicotine Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15772,1,4,0)
- ;;=4^F17.209
- ;;^UTILITY(U,$J,358.3,15772,2)
- ;;=^5003364
- ;;^UTILITY(U,$J,358.3,15773,0)
- ;;=F14.10^^58^692^1
- ;;^UTILITY(U,$J,358.3,15773,1,0)
+ ;;^UTILITY(U,$J,358.3,33823,1,3,0)
+ ;;=3^Trigger finger,Left little finger
+ ;;^UTILITY(U,$J,358.3,33823,1,4,0)
+ ;;=4^M65.352
+ ;;^UTILITY(U,$J,358.3,33823,2)
+ ;;=^5012790
+ ;;^UTILITY(U,$J,358.3,33824,0)
+ ;;=M65.332^^122^1593^7
+ ;;^UTILITY(U,$J,358.3,33824,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15773,1,3,0)
- ;;=3^Cocaine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,15773,1,4,0)
- ;;=4^F14.10
- ;;^UTILITY(U,$J,358.3,15773,2)
- ;;=^5003239
- ;;^UTILITY(U,$J,358.3,15774,0)
- ;;=F14.14^^58^692^5
- ;;^UTILITY(U,$J,358.3,15774,1,0)
+ ;;^UTILITY(U,$J,358.3,33824,1,3,0)
+ ;;=3^Trigger finger,Left middle finger
+ ;;^UTILITY(U,$J,358.3,33824,1,4,0)
+ ;;=4^M65.332
+ ;;^UTILITY(U,$J,358.3,33824,2)
+ ;;=^5012784
+ ;;^UTILITY(U,$J,358.3,33825,0)
+ ;;=M65.342^^122^1593^8
+ ;;^UTILITY(U,$J,358.3,33825,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15774,1,3,0)
- ;;=3^Cocaine-Induced Depressive,Bipolar or Related Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15774,1,4,0)
- ;;=4^F14.14
- ;;^UTILITY(U,$J,358.3,15774,2)
- ;;=^5003244
- ;;^UTILITY(U,$J,358.3,15775,0)
- ;;=F14.182^^58^692^6
- ;;^UTILITY(U,$J,358.3,15775,1,0)
+ ;;^UTILITY(U,$J,358.3,33825,1,3,0)
+ ;;=3^Trigger finger,Left ring finger
+ ;;^UTILITY(U,$J,358.3,33825,1,4,0)
+ ;;=4^M65.342
+ ;;^UTILITY(U,$J,358.3,33825,2)
+ ;;=^5012787
+ ;;^UTILITY(U,$J,358.3,33826,0)
+ ;;=M65.321^^122^1593^9
+ ;;^UTILITY(U,$J,358.3,33826,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33826,1,3,0)
+ ;;=3^Trigger finger,Right index finger
+ ;;^UTILITY(U,$J,358.3,33826,1,4,0)
+ ;;=4^M65.321
+ ;;^UTILITY(U,$J,358.3,33826,2)
+ ;;=^5012780
+ ;;^UTILITY(U,$J,358.3,33827,0)
+ ;;=M65.351^^122^1593^10
+ ;;^UTILITY(U,$J,358.3,33827,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33827,1,3,0)
+ ;;=3^Trigger finger,Right little finger
+ ;;^UTILITY(U,$J,358.3,33827,1,4,0)
+ ;;=4^M65.351
+ ;;^UTILITY(U,$J,358.3,33827,2)
+ ;;=^5012789
+ ;;^UTILITY(U,$J,358.3,33828,0)
+ ;;=M65.331^^122^1593^11
+ ;;^UTILITY(U,$J,358.3,33828,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33828,1,3,0)
+ ;;=3^Trigger finger,Right middle finger
+ ;;^UTILITY(U,$J,358.3,33828,1,4,0)
+ ;;=4^M65.331
+ ;;^UTILITY(U,$J,358.3,33828,2)
+ ;;=^5012783
+ ;;^UTILITY(U,$J,358.3,33829,0)
+ ;;=M65.341^^122^1593^12
+ ;;^UTILITY(U,$J,358.3,33829,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33829,1,3,0)
+ ;;=3^Trigger finger,Right ring finger
+ ;;^UTILITY(U,$J,358.3,33829,1,4,0)
+ ;;=4^M65.341
+ ;;^UTILITY(U,$J,358.3,33829,2)
+ ;;=^5012786
+ ;;^UTILITY(U,$J,358.3,33830,0)
+ ;;=M65.312^^122^1593^13
+ ;;^UTILITY(U,$J,358.3,33830,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33830,1,3,0)
+ ;;=3^Trigger thumb,Left thumb
+ ;;^UTILITY(U,$J,358.3,33830,1,4,0)
+ ;;=4^M65.312
+ ;;^UTILITY(U,$J,358.3,33830,2)
+ ;;=^5012778
+ ;;^UTILITY(U,$J,358.3,33831,0)
+ ;;=M65.311^^122^1593^14
+ ;;^UTILITY(U,$J,358.3,33831,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33831,1,3,0)
+ ;;=3^Trigger thumb,Right thumb
+ ;;^UTILITY(U,$J,358.3,33831,1,4,0)
+ ;;=4^M65.311
+ ;;^UTILITY(U,$J,358.3,33831,2)
+ ;;=^5012777
+ ;;^UTILITY(U,$J,358.3,33832,0)
+ ;;=M20.031^^122^1593^4
+ ;;^UTILITY(U,$J,358.3,33832,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33832,1,3,0)
+ ;;=3^Swan-Neck Deformity,Right Finger(s)
+ ;;^UTILITY(U,$J,358.3,33832,1,4,0)
+ ;;=4^M20.031
+ ;;^UTILITY(U,$J,358.3,33832,2)
+ ;;=^5011036
+ ;;^UTILITY(U,$J,358.3,33833,0)
+ ;;=M20.032^^122^1593^3
+ ;;^UTILITY(U,$J,358.3,33833,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33833,1,3,0)
+ ;;=3^Swan-Neck Deformity,Left Finger(s)
+ ;;^UTILITY(U,$J,358.3,33833,1,4,0)
+ ;;=4^M20.032
+ ;;^UTILITY(U,$J,358.3,33833,2)
+ ;;=^5011037
+ ;;^UTILITY(U,$J,358.3,33834,0)
+ ;;=M22.42^^122^1594^1
+ ;;^UTILITY(U,$J,358.3,33834,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33834,1,3,0)
+ ;;=3^Chondromalacia patellae, left knee
+ ;;^UTILITY(U,$J,358.3,33834,1,4,0)
+ ;;=4^M22.42
+ ;;^UTILITY(U,$J,358.3,33834,2)
+ ;;=^5011187
+ ;;^UTILITY(U,$J,358.3,33835,0)
+ ;;=M22.41^^122^1594^2
+ ;;^UTILITY(U,$J,358.3,33835,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33835,1,3,0)
+ ;;=3^Chondromalacia patellae, right knee
+ ;;^UTILITY(U,$J,358.3,33835,1,4,0)
+ ;;=4^M22.41
+ ;;^UTILITY(U,$J,358.3,33835,2)
+ ;;=^5011186
+ ;;^UTILITY(U,$J,358.3,33836,0)
+ ;;=M94.262^^122^1594^3
+ ;;^UTILITY(U,$J,358.3,33836,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33836,1,3,0)
+ ;;=3^Chondromalacia, left knee
+ ;;^UTILITY(U,$J,358.3,33836,1,4,0)
+ ;;=4^M94.262
+ ;;^UTILITY(U,$J,358.3,33836,2)
+ ;;=^5015346
+ ;;^UTILITY(U,$J,358.3,33837,0)
+ ;;=M94.261^^122^1594^4
+ ;;^UTILITY(U,$J,358.3,33837,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33837,1,3,0)
+ ;;=3^Chondromalacia, right knee
+ ;;^UTILITY(U,$J,358.3,33837,1,4,0)
+ ;;=4^M94.261
+ ;;^UTILITY(U,$J,358.3,33837,2)
+ ;;=^5015345
+ ;;^UTILITY(U,$J,358.3,33838,0)
+ ;;=M24.562^^122^1594^5
+ ;;^UTILITY(U,$J,358.3,33838,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33838,1,3,0)
+ ;;=3^Contracture, left knee
+ ;;^UTILITY(U,$J,358.3,33838,1,4,0)
+ ;;=4^M24.562
+ ;;^UTILITY(U,$J,358.3,33838,2)
+ ;;=^5011418
+ ;;^UTILITY(U,$J,358.3,33839,0)
+ ;;=M24.561^^122^1594^6
+ ;;^UTILITY(U,$J,358.3,33839,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33839,1,3,0)
+ ;;=3^Contracture, right knee
+ ;;^UTILITY(U,$J,358.3,33839,1,4,0)
+ ;;=4^M24.561
+ ;;^UTILITY(U,$J,358.3,33839,2)
+ ;;=^5011417
+ ;;^UTILITY(U,$J,358.3,33840,0)
+ ;;=M25.362^^122^1594^13
+ ;;^UTILITY(U,$J,358.3,33840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33840,1,3,0)
+ ;;=3^Instability, left knee NEC
+ ;;^UTILITY(U,$J,358.3,33840,1,4,0)
+ ;;=4^M25.362
+ ;;^UTILITY(U,$J,358.3,33840,2)
+ ;;=^5011567
+ ;;^UTILITY(U,$J,358.3,33841,0)
+ ;;=M76.52^^122^1594^20
+ ;;^UTILITY(U,$J,358.3,33841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33841,1,3,0)
+ ;;=3^Patellar tendinitis, left knee

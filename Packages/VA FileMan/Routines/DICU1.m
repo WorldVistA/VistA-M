@@ -1,6 +1,9 @@
-DICU1 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup Tools, Get IDs & Index ;9/9/98  09:02
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICU1 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup Tools, Get IDs & Index ;26JUNE2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 IDENTS(DIFLAGS,DIFILE,DIDS,DIWRITE,DIDENT,DINDEX) ;
  ; get definition of fields to return with each entry
@@ -29,7 +32,7 @@ ID2 ; decide whether to auto-include the .01 in the field list
  . I DIFLAGS[4 S DIUSEKEY="1F" Q
  . I DIDS[";.01;"!(DIDS[";.01E") Q
  . S DIUSEKEY=1 N DISUB F DISUB=1:1:DINDEX("#") D  Q:'DIUSEKEY
- . . Q:DINDEX(DISUB,"FIELD")'=.01
+ . . Q:$G(DINDEX(DISUB,"FIELD"))'=.01  ;**GFT
  . . S DIUSEKEY=DINDEX(DISUB,"FILE")'=DIFILE
  . Q
  I DIUSEKEY S DIDENT(-2)=1,DIDENT=.01
@@ -58,9 +61,7 @@ ID4 . . ; Find next field in DIFIELDS input parameter.
  . . S DICOUNT=DICOUNT+1
  . . S DIDENT=$P(DIDS,";",DICOUNT)
  . . I DIDENT="",DICOUNT'<DILENGTH S DIOUTI=1
- . .
 ID4A . . ; process IX specifier
- . .
  . . I DIDENT["IX" D  Q
  . . . I $$BADIX(DIDENT) D ERR202 Q
  . . . Q:DIDS[";-IX;"
@@ -76,6 +77,16 @@ ID4B . . ; process FID, WID, and @ specifiers
  . . . I DIDENT'="WID",DIDENT'="-WID" D ERR202 Q
  . . . Q:DIDENT="-WID"!(DIDS[";-WID;")
  . . . D WRITEID^DICU11(DIFILE,.DIDENT,.DICRSR) K DIDS("WID") Q
+ID4X ..I $TR(DIDENT,"@")]"" N X,DICR S X=DIDENT I +X'=$TR(X,"IE") D  Q:$D(X)  ;***GFT
+ ...N DISVFILE
+ ...S DISVFILE=DIFILE N DIFILE S DIFILE=DISVFILE ;Q^DIC2 KILLS DIFILE
+ ...D EXPR^DICOMP(DIFILE,"m",X) Q:'$D(X)  ;Create the code to do the computation
+ ...S DICRSR=DICRSR+1 S:$G(Y)["m" DIGFT(DICRSR,"MULTIPLE")=1 S:$G(Y)["D" DIGFT(DICRSR,"DATE")=1
+ ...S Y="C"_(DICOUNT-1) ;COMPUTED
+ ...S:DIFLAGS["P" $P(DIDENT(-3),U,DICRSR)=Y ;THIS WILL BECOME THE PACKED "MAP"
+ ...S:DIFLAGS'["P" DIDENT(-3,$O(^DD(DISVFILE," "),-1)+1,Y)="" ;THIS IS THE UNPACKED MAP
+ ...S DIDENT(DICRSR,Y,0)="D COMP^DICU1("_DICRSR_")"
+ ...M DIGFT(DICRSR)=X S DIDENT=""
  . . I DIDENT["@" D:DIDENT'="@" ERR202 Q
  . . I 'DIDENT D:DIDENT'="" ERR202 Q
  . .
@@ -132,6 +143,17 @@ BLD1 ; set up format code and load with fetch code into DIDENT
  S DIDENT(DICRSR,DIDENT,0)=DIVALUE
  S DIDENT(DICRSR,DIDENT,0,"TYPE")="C"
  Q
+ ;
+ ;
+COMP(DIGFTI) ;EXECUTE A COMPUTED FIELD!   COME HERE FROM DICU2
+ N X,Y,J,I
+ S J=0 F Y=$L(DIEN,","):-1:1 S X=$P(DIEN,",",Y) I X]"" N @("D"_J) S @("D"_J)=X,J=J+1 ;Temporarily set D0,D1,etc
+ M X=DIGFT(DIGFTI)
+ I '$D(DIGFT(DIGFTI,"MULTIPLE")) X X D:$D(DIGFT(DIGFTI,"DATE"))  S ^TMP("DIMSG",$J,1)=X Q  ;SINGLE-VALUED COMPUTED EXPRESSION
+ .N Y S Y=X X:Y ^DD("DD") S X=Y
+ N DICMX S DICMX="S ^($O(^TMP(""DIMSG"",$J,999),-1)+1)=X" X X ;MULTIPLE-VALUED COMPUTED EXPRESSION
+ Q
+ ;
  ;
 ERR(DIERN,DIFILE,DIENS,DIFIELD,DI1) ;
  ;

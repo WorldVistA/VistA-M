@@ -1,9 +1,9 @@
-PSNFDAMG ;BIR/DMA - On-Demand FDA Med Guide Display ; 12 Feb 2010  8:26 AM
- ;;4.0;NATIONAL DRUG FILE;**108,263,264**; 30 Oct 98;Build 6
+PSNFDAMG ;BIR/DMA - On-Demand FDA Med Guide Display ; 14 Oct 2015  8:26 AM
+ ;;4.0;NATIONAL DRUG FILE;**108,263,264,437**; 30 Oct 98;Build 8
  ;Reference to ^PS(59.7 supported by DBIA #2613
  ;
 EN(VAPRDIEN) ; Entry point for FDA Med Guide On-Demand Printing
- N FDAMGFN,FDAMGURL,PCURL,STATUS,X
+ N FDAMGFN,FDAMGURL,PCURL,STATUS,X,PSNIP
  S FDAMGFN=$$FDAMG^PSNAPIS(VAPRDIEN)
  I FDAMGFN="" D  Q
  . W !!,"There is no FDA Medication Guide associated with this medication.",!
@@ -19,7 +19,9 @@ EN(VAPRDIEN) ; Entry point for FDA Med Guide On-Demand Printing
  ;
  D PRTURL(FDAMGURL)
  ;
- S PCURL="http://"_$S($G(IO("IP"))'="":IO("IP"),1:"127.0.0.1")_":8091/viewmg="
+ S PSNIP=$S($G(IO("IP"))'="":IO("IP"),1:"127.0.0.1")
+ I $$VERSION^XLFIPV S PSNIP="["_$$CONVERT^XLFIPV(PSNIP)_"]"
+ S PCURL="http://"_PSNIP_":8091/viewmg="
  ;
  W !!,"Please wait...",!
  ;

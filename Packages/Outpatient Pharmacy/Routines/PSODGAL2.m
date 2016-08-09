@@ -1,71 +1,212 @@
-PSODGAL2 ;BIR/SAB-displays stored DRUG ALLERGY w/sign/symptoms ;10/27/11  02:22
- ;;7.0;OUTPATIENT PHARMACY;**390**;DEC 1997;Build 86
- ;External reference to ^PS(50.605, supported by DBIA 696
- ;External reference to GETOC4^OROCAPI1 supported by DBIA 5729
- ;External reference to ^ORD(100.05 supported by DBIA 5731
- ;External reference to ^GMRD(120.83 supported by DBIA 5767
- ;External reference to ^VA(200 supported by DBIA 10060
+PSODGAL2 ; BIR/SAB - displays stored DRUG ALLERGY w/sign/symptoms ;10/27/11  02:22
+ ;;7.0;OUTPATIENT PHARMACY;**390,411**;DEC 1997;Build 95
+ ;Reference to ^PS(50.605, supported by DBIA 696
+ ;Reference to GETOC4^OROCAPI1 supported by DBIA 5729
+ ;Reference to ^ORD(100.05 supported by DBIA 5731
+ ;Reference to ^GMRD(120.83 supported by DBIA 5767
+ ;Reference to ^PS(50.416 supported by DBIA 4998
  ;
- W @IOF
- N ZORN,X,RET,DA,ZCNT,ZCNTT,XXI,ZZQ,DA,ZI,IT,SEVT,SEVN,ZFND S (ZCNT,ZCNTT,ZFND)=0
- S DA=$P(PSOLST(ORN),"^",2),ZORN=$P(^PSRX(DA,"OR1"),"^",2)
- I 'ZORN W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(DA,0),"^") G EXT
- K ^TMP("PSODAOCD",$J) D GETOC4^OROCAPI1(ZORN,.RET)
- I $O(RET(ZORN,"DATA",""))="" W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(DA,0),"^") G EXT
- F ZI=0:0 S ZI=$O(RET(ZORN,"DATA",ZI)) Q:'ZI  I $P(RET(ZORN,"DATA",ZI,1),"^")=3 S ZCNTT=1
- I 'ZCNTT W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(DA,0),"^") G EXT
- F ZI=0:0 S ZI=$O(RET(ZORN,"DATA",ZI)) Q:'ZI  I $P(RET(ZORN,"DATA",ZI,1),"^")=3 D
- .S ZCNT=ZCNT+1,^TMP("PSODAOCD",$J,"AOC",ZCNT,0)=$P(RET(ZORN,"DATA",ZI,0),"^",3)_"^"_$P(^VA(200,$P(RET(ZORN,"DATA",ZI,0),"^",4),0),"^")
+ ; This routine is called when the hidden option 'DA' is typed from the OP Medication screen
+ D FULL^VALM1
+ N ZORN,X,RET,DA,CNT,ZCNT,ZCNTT,XXI,ZZQ,DA,ZI,ZII,IT,SEVT,SEVN,ZFND,ORCT,ZWARN,DAT,CA,CAG,CLSTAT,PSOASORT,PROSPECT
+ N ZDA,ZDATB,ZST,ZQS,ZALL,ZRX,ZERO,PRTFLG,FLAG2,PSOASEV,PSOREA,PSOTYPE,PSORSITE,PSORDATA,ZIIEN,PSOPROV,PSOCAGNT
+ N PSOQUIT,DIWF,DIWL,DIWR,II,IEN
+ S (CNT,FLAG2,ZCNT,ZCNTT,ZFND,PSOQUIT,IEN)=0
+ I $G(PSODGCK) S ZRX=PSODGCRX
+ I '$G(PSODGCK) S ZRX=$P(PSOLST(ORN),"^",2)
+ S ZORN=$P(^PSRX(ZRX,"OR1"),"^",2)
+ I 'ZORN W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(ZRX,0),"^") G EXT
+ K ^TMP("PSODAOCD",$J),^TMP("PSOAL",$J) D GETOC4^OROCAPI1(ZORN,.RET)
+ I $O(RET(ZORN,"DATA",""))="" S FLAG2=1
+ ;
+ ;
+SORT ;build sort by severity, reactant/causitive agent
+ N ZIIEN,ZSIEN,ZSIGNS,SIGN,PSOASEV2,PSOZERO,SIGNS,PSOPTLOC,PSOINST,PSOREA2,PSOREAS,PSOREAB,PSODRGCL,PSODRCL2
+ N DRUGIEN,PSODCLAS,PSJREAB,PSJREAS
+ F ZI=0:0 S ZI=$O(RET(ZORN,"DATA",ZI)) Q:'ZI  D:+$P(RET(ZORN,"DATA",ZI,1),";",2)=3
  .I $G(RET(ZORN,"DATA",ZI,"OR",1,0))]"" S ^TMP("PSODAOCD",$J,"AOR",$G(RET(ZORN,"DATA",ZI,"OR",1,0)))=""
+ .S ZIIEN=0 F  S ZIIEN=$O(^ORD(100.05,ZI,4,ZIIEN)) Q:ZIIEN=""  I $D(^ORD(100.05,ZI,4,ZIIEN,0)) D
+ ..Q:$P(^ORD(100.05,ZI,0),"^",3)["CPRS"
+ ..S (PSOZERO,PSOREA,PSOTYPE,PSORSITE,PSOASEV,PSOASEV2,PROSPECT,DRUGIEN,PSJREAB,PSJREAS)=""
+ ..S PSOZERO=$G(^ORD(100.05,ZI,4,ZIIEN,0))
+ ..S PSOREAB=$P(PSOZERO,"^"),PSOREA2=$P($P(PSOZERO,"^",2),";",2)_$P($P(PSOZERO,"^",2),";"),PSOASEV=$P(PSOZERO,"^",7),PSOTYPE=$P(PSOZERO,"^",3)
+ ..S PSORSITE=$P(PSOZERO,"^",4),PSOASEV2=$S(PSOASEV=3:"A",PSOASEV="2":"B",PSOASEV=1:"C",1:"D")
+ ..I PSOREAB["/" D  S PSOREA=$E(PSOREA,3,$L(PSOREA))
+ ...F I=1:1 S PSOREAS=$P(PSOREAB,"/",I) Q:PSOREAS=""  S PSOREA=PSOREA_"/ "_PSOREAS
+ ..I PSOREAB'["/" S PSOREA=PSOREAB
+ ..;
+ ..;PROSPECTIVE DRUG/DISPENSED DRUG
+ ..I $D(^ORD(100.05,ZI,5,1,0)) S DRUGIEN=^ORD(100.05,ZI,5,1,0)
+ ..I DRUGIEN'="" S PROSPECT=$$GET1^DIQ(50,DRUGIEN,.01,"E") ;GENERIC NAME
+ ..Q:PROSPECT=""
+ ..;
+ ..;DRUG CLASS
+ ..S (PSOCAGNT,PSODRGCL,PSODCLAS,PSODRCL2)=""
+ ..F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,ZIIEN,1,ZZQ)) Q:'ZZQ!(ZZQ'?1N.N)  D
+ ...S PSODRCL2=^ORD(100.05,ZI,4,ZIIEN,1,ZZQ,0),PSODCLAS=1
+ ...S PSODRGCL=PSODRGCL_"|"_$$GET1^DIQ(50.605,PSODRCL2,1)
+ ..I PSODRGCL'?1A.AP  S PSODRGCL=$E(PSODRGCL,2,999)
+ ..S:PSODRGCL=""!(PSODRGCL="|") PSODRGCL="aaaa"
+ ..S PSOCAGNT=$S(PSODRGCL'="aaaa":PSODRGCL,1:$P(PSOREA,"|",1))
+ ..;
+ ..;SITES
+ ..I PSOTYPE="L" D  ;local site
+ ...S PSOPTLOC=$P(^PSRX(ZRX,2),"^",9),PSORSITE=$$GET1^DIQ(59,PSOPTLOC,100,"I")
+ ..S PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,0)=ZIIEN_"^"_ZI_"^"_PSOCAGNT
+ ..I '$D(PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)) S PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)=PSOTYPE_"|"_PSORSITE_"|"_$P(PSOZERO,"^",5),ZCNTT=1
+ ..I $D(PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)) D
+ ...S:PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)'[(PSOTYPE_"|"_PSORSITE_"|"_$P(PSOZERO,"^",5)) PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)=PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,1)_"^"_PSOTYPE_"|"_PSORSITE_"|"_$P(PSOZERO,"^",5)
+ ..;
+ ..;SIGNS AND SYMPTOMS
+ ..S ZSIEN="" F  S ZSIEN=$O(^ORD(100.05,ZI,4,ZIIEN,3,ZSIEN)) Q:ZSIEN=""  I $D(^ORD(100.05,ZI,4,ZIIEN,3,ZSIEN,0)) D
+ ...S ZSIGNS=^ORD(100.05,ZI,4,ZIIEN,3,ZSIEN,0)
+ ...I '$D(PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,2)) S PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,2)=ZSIGNS Q
+ ...S:PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,2)'[("|"_ZSIGNS_"|") PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,2)=PSOASORT(PROSPECT,PSOASEV2,PSOREA,PSOREA2,2)_"|"_ZSIGNS
+ ;
+ I 'ZCNTT S FLAG2=1
+ I '$G(PSODGCK)&(FLAG2) W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(ZRX,0),"^") G EXT
+ Q:FLAG2&($G(PSODGCK))
+LOOP ;
+ ;**** Begin looping through sort
+ S (PROSPECT,PSOASEV,PSOREA,PSOREA2,PSOTYPE,PSORSITE,PSORDATA,ZIIEN)=""
+ F  S PROSPECT=$O(PSOASORT(PROSPECT)) Q:PROSPECT=""  F  S PSOASEV=$O(PSOASORT(PROSPECT,PSOASEV)) Q:PSOASEV=""  D  Q:$G(VALMBCK)="R"
+ .F  S PSOREA=$O(PSOASORT(PROSPECT,PSOASEV,PSOREA)) Q:PSOREA=""  F  S PSOREA2=$O(PSOASORT(PROSPECT,PSOASEV,PSOREA,PSOREA2)) Q:PSOREA2=""  D  Q:$G(VALMBCK)="R"
+ ..;F  S ZIIEN=$O(PSOASORT(PROSPECT,PSOASEV,PSOREA,PSOREA2,ZIIEN)) Q:ZIIEN=""  D  Q:$G(VALMBCK)="R"
+ ..S PSORDATA=PSOASORT(PROSPECT,PSOASEV,PSOREA,PSOREA2,0),(ZIIEN,XXI)=$P(PSORDATA,"^",1),ZI=$P(PSORDATA,"^",2)
+ ..S PSORSITE=PSOASORT(PROSPECT,PSOASEV,PSOREA,PSOREA2,1)
+ ..D ADOC Q:$G(VALMBCK)="R"
+ ;
+PRT ; print allergy information to screen
+ D FULL^VALM1 W @IOF
+ N ZZ,PRTFLG S PRTFLG=0
+ W $C(7),!,"A Drug-Allergy Reaction exists for this medication and/or class!",!
+ S ZZ="" F  S ZZ=$O(^TMP("PSOAL",$J,ZZ)) Q:ZZ=""  D  G EXIT:PSOQUIT
+ .I PRTFLG,$G(^TMP("PSOAL",$J,ZZ,0))["Prospective Drug:" D EXT W !
+ .W !,^TMP("PSOAL",$J,ZZ,0) S PRTFLG=1 I ($Y+2)>IOSL D FF
+ ;
+ K DIR,DUOUT,DIRUT,PSOASORT
+ G EXIT:PSOQUIT
+ I $G(PRTFLG) W ! D FF
+ G EXIT
+ Q
+ ;
+ADOC ;
+ N ING,SS,DC,OH,CAG,CAUS,SEVT,SEVN,ZALL,Z,ZX,ZALL,FIRST,DRUG,DRUGS,ZCX,PSOWCA,CAUS2,ZLOC,PSOCAR,FLAG,I,ZDATE
+ N SITE,SITET,SITED,I,ZDATA,PSOCSITE
+ I XXI'="" D:$P($G(^ORD(100.05,ZI,4,XXI,0)),"^")]""
+ .S (SEVT,SEVN,CAUS,CAUS2,PSOWCA,PSOCAR,OH,DRUG,DRUGS,X,ING,SS,DC,ZALL,ZLOC,ZDATE)=""
+ .S ZALL=$G(^ORD(100.05,ZI,4,XXI,0)),ZLOC=$P(ZALL,"^",3)
+ .S CAUS=$P(ZALL,"^",1),CAUS2=$P($P(ZALL,"^",2),";")
+ .S SEVT=$P(ZALL,"^",7),SEVN=$S(SEVT=1:"MILD",SEVT=2:"MODERATE",SEVT=3:"SEVERE",1:"Not Entered")
+ .S ^TMP("PSODAOCD",$J,"CA",CAUS)=""
  .;
- .F XXI=0:0 S XXI=$O(^ORD(100.05,ZI,4,XXI)) Q:'XXI  D:$P($G(^ORD(100.05,ZI,4,XXI,0)),"^",3)]""
- ..S ZFND=1,^TMP("PSODAOCD",$J,"CA",$P(^ORD(100.05,ZI,4,XXI,0),"^",3))="",^TMP("PSODAOCD",$J,"OH")=$P(^ORD(100.05,ZI,4,XXI,0),"^",7)
- ..S IT=+$P(^ORD(100.05,ZI,4,XXI,0),"^",5)
- ..S SEVT=$P(^ORD(100.05,ZI,4,XXI,0),"^",8),SEVN=$S(SEVT=1:"MILD",SEVT=2:"MODERATE",SEVT=3:"SEVERE",1:"Not Entered")
- ..F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,XXI,1,ZZQ)) Q:'ZZQ  S ^TMP("PSODAOCD",$J,"DC",$P(^ORD(100.05,ZI,4,XXI,1,ZZQ,0),"^"))=$P(^PS(50.605,$P(^ORD(100.05,ZI,4,XXI,1,ZZQ,0),"^"),0),"^")_" "_$P(^(0),"^",2)
- ..F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,XXI,2,ZZQ)) Q:'ZZQ  S ^TMP("PSODAOCD",$J,"DI",$P(^PS(50.416,$P(^ORD(100.05,ZI,4,XXI,2,ZZQ,0),"^"),0),"^"))=""
- ..F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,XXI,3,ZZQ)) Q:'ZZQ  S ^TMP("PSODAOCD",$J,"SS",$P(^GMRD(120.83,$P(^ORD(100.05,ZI,4,XXI,3,ZZQ,0),"^"),0),"^"))=""
- I 'ZFND W !,"NO Drug Allergy Order Checks found for Rx#: "_$P(^PSRX(DA,0),"^") G EXT
- K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF="" N Z,ZI,ZX
- D FULL^VALM1 N ING,SS,DC,CA,OH,CAG S (ING,SS,DC,CA)=""
- S CA=$O(^TMP("PSODAOCD",$J,"CA",""))
- W !,"Drug Allergy Occurrence Event for Rx#: "_$P(^PSRX(DA,0),"^"),!
- S CAG="^"_$P(CA,";",2)_$P(CA,";")_",0)"
- W !,"    Causative Agent: "_$S(CA="None Found":CA,1:$P(@(CAG),"^"))
- S OH=$G(^TMP("PSODAOCD",$J,"OH")) W !,"Historical/Observed: "_$S(OH="H":"HISTORICAL",OH="O":"OBSERVED",1:"Not Entered")
- W !,"           Severity: "_SEVN
- W !,"         Ingredient: " I $O(^TMP("PSODAOCD",$J,"DI",""))]"" D
- .F  S ING=$O(^TMP("PSODAOCD",$J,"DI",ING)) Q:ING=""  S X=ING_", " D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?21,^UTILITY($J,"W",1,ZX,0),!
- .K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF="" N Z,ZI,ZX
- E  W "None Entered",!
+ .;SITES
+ .S CAUS=$P(PSOREA," ~"),PSOCSITE=""
+ .I PSORSITE'["^" D
+ ..S ZDATE=$P(PSORSITE,"|",3),ZDATE=$S(ZDATE'="":$E(ZDATE,4,5)_"/"_$E(ZDATE,6,7)_"/"_$E(ZDATE,2,3),1:"")
+ ..S PSOCSITE=$$GET1^DIQ(4,$P(PSORSITE,"|",2),.01,"E")
+ ..I PSOCSITE="" S PSOCSITE=$S(PSOCSITE'="":PSOCSITE,ZLOC="L":"LOCAL",ZLOC="R":"REMOTE",1:"Not Given")
+ ..S PSOCAR=CAUS_" ("_PSOCSITE_" - "_ZDATE_")"
+ .I PSORSITE["^" D  S:PSOCAR'="" PSOCAR=CAUS_" ("_$E(PSOCAR,3,999)_")"
+ ..F I=1:1 S ZDATA=$P(PSORSITE,"^",I) Q:ZDATA=""  S PSOCSITE="" D
+ ...S ZDATE=$P(ZDATA,"|",3),ZDATE=$S(ZDATE'="":$E(ZDATE,4,5)_"/"_$E(ZDATE,6,7)_"/"_$E(ZDATE,2,3),1:"")
+ ...S PSOCSITE=$$GET1^DIQ(4,$P(ZDATA,"|",2),.01,"E")
+ ...I PSOCSITE="" S PSOCSITE=$S(PSOCSITE'="":PSOCSITE,ZLOC="L":"LOCAL",ZLOC="R":"REMOTE",1:"Not Given")
+ ...S PSOCAR=PSOCAR_", "_PSOCSITE_" - "_ZDATE
+ .;
+ .;
+ .I PSOCAR="" S PSOCAR=CAUS
+ .;OP will only have one drug
+ .;I $D(^ORD(100.05,ZI,5,1,0)) S DRUGS=^ORD(100.05,ZI,5,1,0) I DRUGS'="" S DRUG=$$GET1^DIQ(50,DRUGS,.01,"E")
+ .;D GETS^DIQ(100.05,ZI,"50*","E","DRUGS") S:$D(DRUGS(100.06,"1,"_ZI_",",.01,"E")) DRUG=DRUGS(100.06,"1,"_ZI_",",.01,"E")
+ .S OH=$$UPPER($P(ZALL,"^",6)),^TMP("PSODAOCD",$J,"OH")=OH
+ .S IEN=$G(IEN)+1,^TMP("PSOAL",$J,IEN,0)="   Prospective Drug: "_PROSPECT,PRTFLG=1
+ .K ^UTILITY($J,"W") S DIWL=1,DIWR=58,DIWF=""
+ .S X=PSOCAR
+ .D ^DIWP S FIRST=1
+ .F ZCX=0:0 S ZCX=$O(^UTILITY($J,"W",1,ZCX)) Q:'ZCX  S:$D(^UTILITY($J,"W",1,ZCX,0)) IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(FIRST:"    Causative Agent: "_^UTILITY($J,"W",1,ZCX,0),1:"                     "_^UTILITY($J,"W",1,ZCX,0)) S FIRST=0
+ .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Historical/Observed: "_$S(OH="H":"HISTORICAL",OH="O":"OBSERVED",1:"Not Entered")
+ .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="           Severity: "_$G(SEVN)
+ .K ^UTILITY($J,"W") S DIWL=1,DIWR=58,DIWF=""
+ .;
+ .; DRUG INGREDIENT
+ .S FLAG=0
+ .K ^TMP("PSODAOCD",$J,"DI")
+ .F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,XXI,2,ZZQ)) Q:'ZZQ  S ^TMP("PSODAOCD",$J,"DI",$P(^PS(50.416,$P(^ORD(100.05,ZI,4,XXI,2,ZZQ,0),"^"),0),"^"))="",FLAG=1
+ .S X=""
+ .F  S ING=$O(^TMP("PSODAOCD",$J,"DI",ING)) Q:ING=""  S X=X_", "_ING
+ .S X=$E(X,3,999)
+ .I X'="" D
+ ..D ^DIWP
+ ..S FIRST=1
+ ..F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  S:$D(^UTILITY($J,"W",1,ZX,0)) IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(FIRST:"        Ingredients: "_^UTILITY($J,"W",1,ZX,0),1:"                      "_^UTILITY($J,"W",1,ZX,0)) S FIRST=0
+ .;
+ .; SIGNS/SYMPTOMS
+ .K ^UTILITY($J,"W"),^TMP("PSODAOCD",$J,"SS") S DIWL=1,DIWR=58,DIWF="",ING=""
+ .S (X,SIGNS,SIGN)="",SIGNS=$G(PSOASORT(PROSPECT,PSOASEV,PSOREA,PSOREA2,2))
+ .I SIGNS'="" F ZZQ=1:1 S SIGN=$P(SIGNS,"|",ZZQ) Q:SIGN=""  D
+ ..I $G(^GMRD(120.83,SIGN,0))]"" S ^TMP("PSODAOCD",$J,"SS",$P(^GMRD(120.83,SIGN,0),"^"))=""
+ .S X="",FIRST=1
+ .I $O(^TMP("PSODAOCD",$J,"SS",""))]"" S SS="" D
+ ..F  S SS=$O(^TMP("PSODAOCD",$J,"SS",SS)) Q:SS=""  S X=X_", "_SS
+ .S X=$E(X,3,999) S:X="" X="None Entered" D ^DIWP
+ .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(FIRST:"     Signs/Symptoms: "_^UTILITY($J,"W",1,ZX,0),1:"                     "_^UTILITY($J,"W",1,ZX,0)) S FIRST=0
+ .K ^UTILITY($J,"W")
+ .;
+ .; DRUG CLASS
+ .S DIWL=1,DIWR=58,DIWF="" K ^TMP("PSODAOCD",$J,"DC")
+ .F ZZQ=0:0 S ZZQ=$O(^ORD(100.05,ZI,4,XXI,1,ZZQ)) Q:'ZZQ  S ^TMP("PSODAOCD",$J,"DC",$P(^ORD(100.05,ZI,4,XXI,1,ZZQ,0),"^"))=$P(^PS(50.605,$P(^ORD(100.05,ZI,4,XXI,1,ZZQ,0),"^"),0),"^")_" "_$P(^(0),"^",2)
+ .S X="",FIRST=1
+ .F DC=0:0 S DC=$O(^TMP("PSODAOCD",$J,"DC",DC)) Q:'DC  S X=X_", "_^TMP("PSODAOCD",$J,"DC",DC)  D
+ ..I $L(X)>234 S X=$E(X,3,999) D ^DIWP S X=""
+ .I X'="" S X=$E(X,3,999)
+ .I X'="" D
+ ..D ^DIWP
+ ..F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(FIRST:"         Drug Class: "_^UTILITY($J,"W",1,ZX,0),1:"                     "_^UTILITY($J,"W",1,ZX,0)) S FIRST=0
+ ..K ^UTILITY($J,"W") N Z,ZX
  ;
- W "     Signs/Symptoms: " I $O(^TMP("PSODAOCD",$J,"SS",""))]"" D
- .F  S SS=$O(^TMP("PSODAOCD",$J,"SS",SS)) Q:SS=""  S X=SS_", " D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?21,^UTILITY($J,"W",1,ZX,0),!
- .K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF="" N Z,ZI,ZX
- E  W "None Entered",!
+ D INV  ; intervention
+ Q
  ;
- W "         Drug Class: " I $O(^TMP("PSODAOCD",$J,"DC",0))]"" D
- .F DC=0:0 S DC=$O(^TMP("PSODAOCD",$J,"DC",DC)) Q:'DC  S X=^TMP("PSODAOCD",$J,"DC",DC)_", " D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?21,^UTILITY($J,"W",1,ZX,0),!
- .K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF="" N Z,ZI,ZX
- E  W "None Found",!
+UPPER(PSOUCS) ;
+ Q $TR(PSOUCS,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;
- K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF="" N Z,ZI,ZX,OR
- S OR="" W "Provider Override Reason: " I $O(^TMP("PSODAOCD",$J,"AOR",""))]"" D
- .S OR=$O(^TMP("PSODAOCD",$J,"AOR","")) S X=OR D ^DIWP
- .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?26,^UTILITY($J,"W",1,ZX,0),!
- E  W "N/A - Order Entered Through VistA",!
- I $G(IT) D
- .K DIC,DR,DIQ,DA,INTY S DIC=9009032.4,DA=IT,DR=".01;.03;.04;.08",DIQ="INTY" D EN^DIQ1
- .W !,"  Intervention Date: "_INTY(9009032.4,IT,.01)
- .W !,"           Provider: "_INTY(9009032.4,IT,.03)
- .W !,"         Pharmacist: "_INTY(9009032.4,IT,.04)
- .W !,"     Recommendation: "_INTY(9009032.4,IT,.08)
- .K DIC,DR,DIQ,DA,INTY
- E  W !," Pharmacist Intervention Not Entered"
-EXT W !
+LOWER(PSOLCS) ;
+ Q $TR(PSOLCS,"ABCDEFGHIJKLMNOPQRSTUVWXYZ","abcdefghijklmnopqrstuvwxyz")
+ ;
+EXT ;
  K DIR,DUOUT,DIRUT,ZFND
+ D FF
+ I $D(DIRUT) G EXIT
+ Q
+EXIT ;
+ S VALMBCK="R" K DIR,DUOUT,DIRUT,ZFND,^TMP("PSODAOCD",$J),^TMP("PSOAL",$J),ZPGK
+ Q
+ ;
+INV ;display intervention
+ ;changed to add Provider & Pharmacist and put in correct sequence [ST - 6.17.2014]
+ S IEN=$G(IEN)+1,^TMP("PSOAL",$J,IEN,0)=" "
+ K ^UTILITY($J,"W") S DIWL=1,DIWR=55,DIWF=""
+ S PSOPROV="",PSOPROV="N/A - Order Check Not Evaluated by Provider"
+ I $O(^TMP("PSODAOCD",$J,"AOR",""))]"" S PSOPROV=$O(^TMP("PSODAOCD",$J,"AOR",""))
+ S X=PSOPROV,FIRST=1 D ^DIWP
+ F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=$S(FIRST:"Provider Override Reason: "_^UTILITY($J,"W",1,ZX,0),1:"                          "_^UTILITY($J,"W",1,ZX,0)) S FIRST=0
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)=" "
+ ;
+ I $P($G(^ORD(100.05,ZI,8)),"^")="" D  Q
+ .S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Pharmacist Intervention Not Entered"
+ K DIC,DR,DIQ,DA,INTY S DIC=9009032.4,DA=$P($G(^ORD(100.05,ZI,8)),"^"),DR=".01;.03;.04;.08",DIQ="INTY" D EN^DIQ1
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="Intervention Date: "_INTY(9009032.4,DA,.01)
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="         Provider: "_$S($G(INTY(9009032.4,DA,.03))]"":INTY(9009032.4,DA,.03),1:"Not Entered")
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="       Pharmacist: "_$S($G(INTY(9009032.4,DA,.04))]"":INTY(9009032.4,DA,.04),1:"Not Entered")
+ S IEN=IEN+1,^TMP("PSOAL",$J,IEN,0)="   Recommendation: "_INTY(9009032.4,DA,.08)
+ K DIC,DR,DIQ,DA,INTY
+ Q
+ ;
+FF ;
+ W !
  S DIR(0)="E",DIR("A")="Press Return to Continue",DIR("?")="Press Return to Redisplay Rx."
- D ^DIR S VALMBCK="R" K DIR,DUOUT,DIRUT,^TMP("PSODAOCD",$J)
+ D ^DIR S:$D(DUOUT)!($D(DTOUT)) PSOQUIT=1
+ K DIR,DUOUT,DIRUT,DTOUT,L
+ W @IOF
+ Q

@@ -1,9 +1,13 @@
-DIP5 ;SFISC/GFT-INITIALIZE TO PROCESS THE PRINT ;01:09 PM  13 Feb 2002
- ;;22.0;VA FileMan;**32,97**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIP5 ;SFISC/GFT-INITIALIZE TO PROCESS THE PRINT ;16NOV2007
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S %H=$H D YMD^%DTC S DT=X K %H,^UTILITY($J),^("DIL",$J)
  I $G(DIFIXPT)=1 D  G GO
- . S ^UTILITY($J,1)="S DIFIXPTH="""_DHD_""",DC=1"
+ . S ^UTILITY($J,1)="S DIFIXPTH="""_$$CONVQQ^DILIBF(DHD)_""",DC=1"
  . Q
  U IO
  S Z=IOM-33,DIOSL=IOSL,M=$P("I 1 S Y=1,DIFF=1 W:DC?.N $C(7) R:DC?.N Y:DTIME S:'$T Y=U S:Y=U (DN,S)=0 I Y'=U ",U,IOST?1"C".E)
@@ -11,9 +15,12 @@ DIP5 ;SFISC/GFT-INITIALIZE TO PROCESS THE PRINT ;01:09 PM  13 Feb 2002
  S ^UTILITY($J,1)=M_"S DC=$P(DC,"","",2)+DC+1",M=DHD?1"W ".E
  I DHD'="@@" S ^UTILITY($J,1)=^(1)_" W:$D(DIFF)&($Y) "_IOF_$P(",#",U,IOF'["#"),A1="S DIFF=1,$X=0,$Y=0" S:$L(^UTILITY($J,1))+$L(A1)>200 ^(1.3)=A1,A1="X ^(1.3)" S ^(1)=^(1)_" "_A1 K A1
  I W S ^(1)=^(1)_" W $C(7)"_$S(F:"",1:" U """_IO(0)_"""")_" R Y"_$S(F:"",1:" U IO")_" W """""
- I M S ^(1)=^(1)_" X ^(1.5)",^(1.5)=DHD G GO
+DIOSUBHD I M S ^(1)=^(1)_" X ^(1.5)",^(1.5)=DHD D:$D(DIOSUBHD)  G GO
+ .S ^(1)=^(1)_" D SUBHEADS^DIL" ;IF THERE ARE SUBHEADERS WITH SPECIAL HEADING
+ .I $G(DIPZ) N R S R=$G(^DIPT(DIPZ,"ROU")) I R?1"^"1.E S ^(1)=^UTILITY($J,1)_" D HEAD"_R Q
+ .S ^(1)=^UTILITY($J,1)_" W !,$TR($J("""","_IOM_"),"" "",""-"")"
  I DHD'?.P1"[".E1"]",DHD'?1"@".E D
- .N D,X,% S M=$P($H,C,2)\60,^UTILITY($J,2)=","_$E("!",$L(DHD)+2'<Z)_"?"_Z_" S Y="_(M#60/100+(M\60)/100+DT)_" D DT W ""    PAGE "",DC",D=3
+EGP .N D,X,% S M=$P($H,C,2)\60,^UTILITY($J,2)=" N Y S Y=""    ""_$$DATE^DIUTL("_(M#60/100+(M\60)/100+DT)_")_""   ""_$$EZBLD^DIALOG(7095,DC) W:$X+$L(Y)>IOM ! W ?IOM-$L(Y),Y",D=3 ;**CCO/NI WRITE PAGE NUMBER
  .I DIPCRIT S X="",%=0 D
  ..N A,B,S S (B,S)=1
  ..F  S %=$O(DISTXT(%)) D:'% AS Q:'%  S A=$G(DISTXT(%,0)) I A]"" S A=$$CONVQQ^DILIBF(A) D:$L(X)+$L(A)+20>IOM AS S X=X_$P(",  ^",U,(X]""))_A
@@ -58,9 +65,9 @@ INIT ;
  S DISEARCH=0 ; Initialize SEARCH Switch SO-2/24/2000
  Q
  ;
-DIPZ I $S('$D(^DIPT(DIPZ,"ROU")):1,^("ROU")'[U:1,'$D(^("IOM")):1,1:^("IOM")>IOM)!X S Y=DIPZ D F^DIP21 K DIPZ G GO
+DIPZ I $S('$D(^DIPT(DIPZ,"ROU")):1,^("ROU")'[U:1,'$D(^("IOM")):1,1:^("IOM")>IOM)!X!$S($G(^("ROULANG")):^("ROULANG")-$G(DUZ("LANG")),1:0) S Y=DIPZ D F^DIP21 K DIPZ G GO ;**CCO/NI DON'T USE PRINT TEMPLATE COMPILED IN WRONG LANGUAGE
  S Y=DIPZ D F^DIP21 S DK=DCC D INIT S ^UTILITY($J,99,1)="D "_^DIPT(DIPZ,"ROU"),DX=1
- S X="" F DG=0:0 S X=$O(^DIPT(DIPZ,"STATS",X)) Q:X=""  S %X="^DIPT(DIPZ,""STATS"",X,",%Y=X_"(" D %XY^%RCR
+ S X="" F DG=0:0 S X=$O(^DIPT(DIPZ,"STATS",X)) Q:X=""  M @X=^(X)
  F X=-1:0 S X=$O(^DIPT(DIPZ,"T",X)) Q:'X  S ^UTILITY($J,"T",X)=^(X)
  F X=-1:0 S X=$O(DPQ(X)) Q:X=""  F %=-1:0 S %=$O(DPQ(X,%)) Q:%=""  K:$D(^DIPT("AF",X,$S(%:%,1:.001),DIPZ)) DPQ(X,%)
  G ^DIL2

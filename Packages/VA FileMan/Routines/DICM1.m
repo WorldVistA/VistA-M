@@ -1,6 +1,10 @@
-DICM1 ;SFISC/XAK,TKW-LOOKUP WHEN INPUT MUST BE TRANSFORMED ;2/8/00  09:29
- ;;22.0;VA FileMan;**20,29**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICM1 ;SFISC/XAK,TKW-LOOKUP WHEN INPUT MUST BE TRANSFORMED ;20 Jun 2008
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  G @Y
  ;
 P ;POINTERS
@@ -96,6 +100,10 @@ SOU ;
  ;
 ACT ;
  S DIY=Y,DIY(1)=DIC,DIC("W")="",DIX=X
-A X:$D(^DD(+DO(2),0,"ACT")) ^("ACT") I Y<0 S DIC=DIY(1),X=DIX K DIC("W"),DO Q
- I DO(2)["P" N % S %=^DD(+DO(2),.01,0) I $P(%,U,2)["P",$P(%,U,3)]"" S DIC=U_$P(%,U,3) K DO D DO^DIC1 I $D(@(DIC_+$P(Y,U,2)_",0)")) S Y=+$P(Y,U,2)_U_$P(^(0),U) G A
- S Y=DIY,DIC=DIY(1),X=DIX K DIC("W"),DO D DO^DIC1 Q
+A I $G(DO(2)) X:$D(^DD(+DO(2),0,"ACT")) ^("ACT")
+ I Y<0 S DIC=DIY(1),X=DIX G W
+ I $G(DO(2))["P" N % S %=^DD(+DO(2),.01,0) I $P(%,U,2)["P",$P(%,U,3)]"" S DIC=U_$P(%,U,3) D DO I $D(@(DIC_+$P(Y,U,2)_",0)")) S Y=+$P(Y,U,2)_U_$P(^(0),U) G A
+ S Y=DIY,DIC=DIY(1),X=DIX
+W K DIC("W")
+DO K DO D DO^DIC1
+ Q

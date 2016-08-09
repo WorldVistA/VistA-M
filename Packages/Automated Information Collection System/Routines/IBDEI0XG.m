@@ -1,126 +1,268 @@
-IBDEI0XG ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0XG ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15690,1,4,0)
- ;;=4^F12.922
- ;;^UTILITY(U,$J,358.3,15690,2)
- ;;=^5003181
- ;;^UTILITY(U,$J,358.3,15691,0)
- ;;=F12.980^^58^686^1
- ;;^UTILITY(U,$J,358.3,15691,1,0)
+ ;;^UTILITY(U,$J,358.3,33644,2)
+ ;;=^5059804
+ ;;^UTILITY(U,$J,358.3,33645,0)
+ ;;=W18.12XD^^119^1583^62
+ ;;^UTILITY(U,$J,358.3,33645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15691,1,3,0)
- ;;=3^Cannabis Induced Anxiety Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15691,1,4,0)
- ;;=4^F12.980
- ;;^UTILITY(U,$J,358.3,15691,2)
- ;;=^5003186
- ;;^UTILITY(U,$J,358.3,15692,0)
- ;;=F12.159^^58^686^2
- ;;^UTILITY(U,$J,358.3,15692,1,0)
+ ;;^UTILITY(U,$J,358.3,33645,1,3,0)
+ ;;=3^Fall from Toilet w/ Strike Against Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33645,1,4,0)
+ ;;=4^W18.12XD
+ ;;^UTILITY(U,$J,358.3,33645,2)
+ ;;=^5137984
+ ;;^UTILITY(U,$J,358.3,33646,0)
+ ;;=W18.2XXA^^119^1583^73
+ ;;^UTILITY(U,$J,358.3,33646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15692,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15692,1,4,0)
- ;;=4^F12.159
- ;;^UTILITY(U,$J,358.3,15692,2)
- ;;=^5003162
- ;;^UTILITY(U,$J,358.3,15693,0)
- ;;=F12.259^^58^686^3
- ;;^UTILITY(U,$J,358.3,15693,1,0)
+ ;;^UTILITY(U,$J,358.3,33646,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33646,1,4,0)
+ ;;=4^W18.2XXA
+ ;;^UTILITY(U,$J,358.3,33646,2)
+ ;;=^5059806
+ ;;^UTILITY(U,$J,358.3,33647,0)
+ ;;=W18.2XXD^^119^1583^74
+ ;;^UTILITY(U,$J,358.3,33647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15693,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/ Mod/Severe Use Disorder
- ;;^UTILITY(U,$J,358.3,15693,1,4,0)
- ;;=4^F12.259
- ;;^UTILITY(U,$J,358.3,15693,2)
- ;;=^5003174
- ;;^UTILITY(U,$J,358.3,15694,0)
- ;;=F12.959^^58^686^4
- ;;^UTILITY(U,$J,358.3,15694,1,0)
+ ;;^UTILITY(U,$J,358.3,33647,1,3,0)
+ ;;=3^Fall in Empty Shower/Bathtub,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33647,1,4,0)
+ ;;=4^W18.2XXD
+ ;;^UTILITY(U,$J,358.3,33647,2)
+ ;;=^5059807
+ ;;^UTILITY(U,$J,358.3,33648,0)
+ ;;=W18.40XA^^119^1583^105
+ ;;^UTILITY(U,$J,358.3,33648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15694,1,3,0)
- ;;=3^Cannabis Induced Psychotic Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15694,1,4,0)
- ;;=4^F12.959
- ;;^UTILITY(U,$J,358.3,15694,2)
- ;;=^5003185
- ;;^UTILITY(U,$J,358.3,15695,0)
- ;;=F12.988^^58^686^5
- ;;^UTILITY(U,$J,358.3,15695,1,0)
+ ;;^UTILITY(U,$J,358.3,33648,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33648,1,4,0)
+ ;;=4^W18.40XA
+ ;;^UTILITY(U,$J,358.3,33648,2)
+ ;;=^5059818
+ ;;^UTILITY(U,$J,358.3,33649,0)
+ ;;=W18.40XD^^119^1583^106
+ ;;^UTILITY(U,$J,358.3,33649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15695,1,3,0)
- ;;=3^Cannabis Induced Sleep Disorder w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15695,1,4,0)
- ;;=4^F12.988
- ;;^UTILITY(U,$J,358.3,15695,2)
- ;;=^5003187
- ;;^UTILITY(U,$J,358.3,15696,0)
- ;;=F12.929^^58^686^13
- ;;^UTILITY(U,$J,358.3,15696,1,0)
+ ;;^UTILITY(U,$J,358.3,33649,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33649,1,4,0)
+ ;;=4^W18.40XD
+ ;;^UTILITY(U,$J,358.3,33649,2)
+ ;;=^5059819
+ ;;^UTILITY(U,$J,358.3,33650,0)
+ ;;=W18.41XA^^119^1583^107
+ ;;^UTILITY(U,$J,358.3,33650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15696,1,3,0)
- ;;=3^Cannabis Intoxication w/o Perceptual Disturbances w/o Use Disorder
- ;;^UTILITY(U,$J,358.3,15696,1,4,0)
- ;;=4^F12.929
- ;;^UTILITY(U,$J,358.3,15696,2)
- ;;=^5003182
- ;;^UTILITY(U,$J,358.3,15697,0)
- ;;=F12.99^^58^686^15
- ;;^UTILITY(U,$J,358.3,15697,1,0)
+ ;;^UTILITY(U,$J,358.3,33650,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33650,1,4,0)
+ ;;=4^W18.41XA
+ ;;^UTILITY(U,$J,358.3,33650,2)
+ ;;=^5059821
+ ;;^UTILITY(U,$J,358.3,33651,0)
+ ;;=W18.41XD^^119^1583^108
+ ;;^UTILITY(U,$J,358.3,33651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15697,1,3,0)
- ;;=3^Cannabis Related Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15697,1,4,0)
- ;;=4^F12.99
- ;;^UTILITY(U,$J,358.3,15697,2)
- ;;=^5003188
- ;;^UTILITY(U,$J,358.3,15698,0)
- ;;=F16.10^^58^687^17
- ;;^UTILITY(U,$J,358.3,15698,1,0)
+ ;;^UTILITY(U,$J,358.3,33651,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping on Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33651,1,4,0)
+ ;;=4^W18.41XD
+ ;;^UTILITY(U,$J,358.3,33651,2)
+ ;;=^5059822
+ ;;^UTILITY(U,$J,358.3,33652,0)
+ ;;=W18.42XA^^119^1583^109
+ ;;^UTILITY(U,$J,358.3,33652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15698,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,15698,1,4,0)
- ;;=4^F16.10
- ;;^UTILITY(U,$J,358.3,15698,2)
- ;;=^5003323
- ;;^UTILITY(U,$J,358.3,15699,0)
- ;;=F16.20^^58^687^18
- ;;^UTILITY(U,$J,358.3,15699,1,0)
+ ;;^UTILITY(U,$J,358.3,33652,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33652,1,4,0)
+ ;;=4^W18.42XA
+ ;;^UTILITY(U,$J,358.3,33652,2)
+ ;;=^5059824
+ ;;^UTILITY(U,$J,358.3,33653,0)
+ ;;=W18.42XD^^119^1583^110
+ ;;^UTILITY(U,$J,358.3,33653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15699,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,15699,1,4,0)
- ;;=4^F16.20
- ;;^UTILITY(U,$J,358.3,15699,2)
- ;;=^5003336
- ;;^UTILITY(U,$J,358.3,15700,0)
- ;;=F16.21^^58^687^19
- ;;^UTILITY(U,$J,358.3,15700,1,0)
+ ;;^UTILITY(U,$J,358.3,33653,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling d/t Stepping into Hole,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33653,1,4,0)
+ ;;=4^W18.42XD
+ ;;^UTILITY(U,$J,358.3,33653,2)
+ ;;=^5059825
+ ;;^UTILITY(U,$J,358.3,33654,0)
+ ;;=W18.43XA^^119^1583^103
+ ;;^UTILITY(U,$J,358.3,33654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15700,1,3,0)
- ;;=3^Phencyclidine Use Disorder,Moderate-Severe,In Remission
- ;;^UTILITY(U,$J,358.3,15700,1,4,0)
- ;;=4^F16.21
- ;;^UTILITY(U,$J,358.3,15700,2)
- ;;=^5003337
- ;;^UTILITY(U,$J,358.3,15701,0)
- ;;=F16.983^^58^687^16
- ;;^UTILITY(U,$J,358.3,15701,1,0)
+ ;;^UTILITY(U,$J,358.3,33654,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33654,1,4,0)
+ ;;=4^W18.43XA
+ ;;^UTILITY(U,$J,358.3,33654,2)
+ ;;=^5059827
+ ;;^UTILITY(U,$J,358.3,33655,0)
+ ;;=W18.43XD^^119^1583^104
+ ;;^UTILITY(U,$J,358.3,33655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15701,1,3,0)
- ;;=3^Hallucinogen Persisting Perception Disorder
- ;;^UTILITY(U,$J,358.3,15701,1,4,0)
- ;;=4^F16.983
- ;;^UTILITY(U,$J,358.3,15701,2)
- ;;=^5003358
- ;;^UTILITY(U,$J,358.3,15702,0)
- ;;=F16.121^^58^687^10
- ;;^UTILITY(U,$J,358.3,15702,1,0)
+ ;;^UTILITY(U,$J,358.3,33655,1,3,0)
+ ;;=3^Slipping/Tripping w/o Fall d/t Step from One Level to Another,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33655,1,4,0)
+ ;;=4^W18.43XD
+ ;;^UTILITY(U,$J,358.3,33655,2)
+ ;;=^5059828
+ ;;^UTILITY(U,$J,358.3,33656,0)
+ ;;=W18.49XA^^119^1583^111
+ ;;^UTILITY(U,$J,358.3,33656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15702,1,3,0)
- ;;=3^Hallucinogen Intoxication Delirium w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,15702,1,4,0)
- ;;=4^F16.121
+ ;;^UTILITY(U,$J,358.3,33656,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33656,1,4,0)
+ ;;=4^W18.49XA
+ ;;^UTILITY(U,$J,358.3,33656,2)
+ ;;=^5059830
+ ;;^UTILITY(U,$J,358.3,33657,0)
+ ;;=W18.49XD^^119^1583^112
+ ;;^UTILITY(U,$J,358.3,33657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33657,1,3,0)
+ ;;=3^Slipping/Tripping/Stumbling w/o Falling NEC,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33657,1,4,0)
+ ;;=4^W18.49XD
+ ;;^UTILITY(U,$J,358.3,33657,2)
+ ;;=^5059831
+ ;;^UTILITY(U,$J,358.3,33658,0)
+ ;;=W19.XXXA^^119^1583^89
+ ;;^UTILITY(U,$J,358.3,33658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33658,1,3,0)
+ ;;=3^Fall,Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33658,1,4,0)
+ ;;=4^W19.XXXA
+ ;;^UTILITY(U,$J,358.3,33658,2)
+ ;;=^5059833
+ ;;^UTILITY(U,$J,358.3,33659,0)
+ ;;=W19.XXXD^^119^1583^90
+ ;;^UTILITY(U,$J,358.3,33659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33659,1,3,0)
+ ;;=3^Fall,Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33659,1,4,0)
+ ;;=4^W19.XXXD
+ ;;^UTILITY(U,$J,358.3,33659,2)
+ ;;=^5059834
+ ;;^UTILITY(U,$J,358.3,33660,0)
+ ;;=W54.0XXA^^119^1583^11
+ ;;^UTILITY(U,$J,358.3,33660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33660,1,3,0)
+ ;;=3^Bitten by Dog,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33660,1,4,0)
+ ;;=4^W54.0XXA
+ ;;^UTILITY(U,$J,358.3,33660,2)
+ ;;=^5060256
+ ;;^UTILITY(U,$J,358.3,33661,0)
+ ;;=W54.0XXD^^119^1583^12
+ ;;^UTILITY(U,$J,358.3,33661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33661,1,3,0)
+ ;;=3^Bitten by Dog,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33661,1,4,0)
+ ;;=4^W54.0XXD
+ ;;^UTILITY(U,$J,358.3,33661,2)
+ ;;=^5060257
+ ;;^UTILITY(U,$J,358.3,33662,0)
+ ;;=W55.01XA^^119^1583^9
+ ;;^UTILITY(U,$J,358.3,33662,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33662,1,3,0)
+ ;;=3^Bitten by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33662,1,4,0)
+ ;;=4^W55.01XA
+ ;;^UTILITY(U,$J,358.3,33662,2)
+ ;;=^5060265
+ ;;^UTILITY(U,$J,358.3,33663,0)
+ ;;=W55.01XD^^119^1583^10
+ ;;^UTILITY(U,$J,358.3,33663,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33663,1,3,0)
+ ;;=3^Bitten by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33663,1,4,0)
+ ;;=4^W55.01XD
+ ;;^UTILITY(U,$J,358.3,33663,2)
+ ;;=^5060266
+ ;;^UTILITY(U,$J,358.3,33664,0)
+ ;;=W55.03XA^^119^1583^101
+ ;;^UTILITY(U,$J,358.3,33664,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33664,1,3,0)
+ ;;=3^Scratched by Cat,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33664,1,4,0)
+ ;;=4^W55.03XA
+ ;;^UTILITY(U,$J,358.3,33664,2)
+ ;;=^5060268
+ ;;^UTILITY(U,$J,358.3,33665,0)
+ ;;=W55.03XD^^119^1583^102
+ ;;^UTILITY(U,$J,358.3,33665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33665,1,3,0)
+ ;;=3^Scratched by Cat,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33665,1,4,0)
+ ;;=4^W55.03XD
+ ;;^UTILITY(U,$J,358.3,33665,2)
+ ;;=^5060269
+ ;;^UTILITY(U,$J,358.3,33666,0)
+ ;;=X00.8XXA^^119^1583^17
+ ;;^UTILITY(U,$J,358.3,33666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33666,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33666,1,4,0)
+ ;;=4^X00.8XXA
+ ;;^UTILITY(U,$J,358.3,33666,2)
+ ;;=^5060679
+ ;;^UTILITY(U,$J,358.3,33667,0)
+ ;;=X00.8XXD^^119^1583^18
+ ;;^UTILITY(U,$J,358.3,33667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33667,1,3,0)
+ ;;=3^Exp to Uncontrolled Bldg Fire,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33667,1,4,0)
+ ;;=4^X00.8XXD
+ ;;^UTILITY(U,$J,358.3,33667,2)
+ ;;=^5060680
+ ;;^UTILITY(U,$J,358.3,33668,0)
+ ;;=X32.XXXA^^119^1583^15
+ ;;^UTILITY(U,$J,358.3,33668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33668,1,3,0)
+ ;;=3^Exp to Sunlight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33668,1,4,0)
+ ;;=4^X32.XXXA
+ ;;^UTILITY(U,$J,358.3,33668,2)
+ ;;=^5060847
+ ;;^UTILITY(U,$J,358.3,33669,0)
+ ;;=X32.XXXD^^119^1583^16
+ ;;^UTILITY(U,$J,358.3,33669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33669,1,3,0)
+ ;;=3^Exp to Sunlight,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,33669,1,4,0)
+ ;;=4^X32.XXXD
+ ;;^UTILITY(U,$J,358.3,33669,2)
+ ;;=^5060848
+ ;;^UTILITY(U,$J,358.3,33670,0)
+ ;;=Y04.0XXA^^119^1583^7
+ ;;^UTILITY(U,$J,358.3,33670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33670,1,3,0)
+ ;;=3^Assault by Unarmed Fight,Init Encntr
+ ;;^UTILITY(U,$J,358.3,33670,1,4,0)
+ ;;=4^Y04.0XXA
+ ;;^UTILITY(U,$J,358.3,33670,2)
+ ;;=^5061165
+ ;;^UTILITY(U,$J,358.3,33671,0)
+ ;;=Y04.0XXD^^119^1583^8

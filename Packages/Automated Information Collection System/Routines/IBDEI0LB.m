@@ -1,126 +1,288 @@
-IBDEI0LB ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0LB ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9944,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,9944,1,4,0)
- ;;=4^H40.63X1
- ;;^UTILITY(U,$J,358.3,9944,2)
- ;;=^5005915
- ;;^UTILITY(U,$J,358.3,9945,0)
- ;;=H40.63X2^^44^496^31
- ;;^UTILITY(U,$J,358.3,9945,1,0)
+ ;;^UTILITY(U,$J,358.3,21497,2)
+ ;;=^5007068
+ ;;^UTILITY(U,$J,358.3,21498,0)
+ ;;=I13.0^^89^1034^4
+ ;;^UTILITY(U,$J,358.3,21498,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9945,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9945,1,4,0)
- ;;=4^H40.63X2
- ;;^UTILITY(U,$J,358.3,9945,2)
- ;;=^5005916
- ;;^UTILITY(U,$J,358.3,9946,0)
- ;;=H40.63X3^^44^496^32
- ;;^UTILITY(U,$J,358.3,9946,1,0)
+ ;;^UTILITY(U,$J,358.3,21498,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 1-4 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21498,1,4,0)
+ ;;=4^I13.0
+ ;;^UTILITY(U,$J,358.3,21498,2)
+ ;;=^5007067
+ ;;^UTILITY(U,$J,358.3,21499,0)
+ ;;=I13.11^^89^1034^7
+ ;;^UTILITY(U,$J,358.3,21499,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9946,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,9946,1,4,0)
- ;;=4^H40.63X3
- ;;^UTILITY(U,$J,358.3,9946,2)
- ;;=^5005917
- ;;^UTILITY(U,$J,358.3,9947,0)
- ;;=H40.63X4^^44^496^29
- ;;^UTILITY(U,$J,358.3,9947,1,0)
+ ;;^UTILITY(U,$J,358.3,21499,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/o Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21499,1,4,0)
+ ;;=4^I13.11
+ ;;^UTILITY(U,$J,358.3,21499,2)
+ ;;=^5007069
+ ;;^UTILITY(U,$J,358.3,21500,0)
+ ;;=I13.2^^89^1034^5
+ ;;^UTILITY(U,$J,358.3,21500,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9947,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9947,1,4,0)
- ;;=4^H40.63X4
- ;;^UTILITY(U,$J,358.3,9947,2)
- ;;=^5005918
- ;;^UTILITY(U,$J,358.3,9948,0)
- ;;=H40.51X0^^44^496^54
- ;;^UTILITY(U,$J,358.3,9948,1,0)
+ ;;^UTILITY(U,$J,358.3,21500,1,3,0)
+ ;;=3^HTN Hrt & Chr Kdny Dis w/ Hrt Fail w/ Stg 5 Chr Kdny
+ ;;^UTILITY(U,$J,358.3,21500,1,4,0)
+ ;;=4^I13.2
+ ;;^UTILITY(U,$J,358.3,21500,2)
+ ;;=^5007070
+ ;;^UTILITY(U,$J,358.3,21501,0)
+ ;;=I48.91^^89^1034^1
+ ;;^UTILITY(U,$J,358.3,21501,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9948,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9948,1,4,0)
- ;;=4^H40.51X0
- ;;^UTILITY(U,$J,358.3,9948,2)
- ;;=^5005888
- ;;^UTILITY(U,$J,358.3,9949,0)
- ;;=H40.51X1^^44^496^55
- ;;^UTILITY(U,$J,358.3,9949,1,0)
+ ;;^UTILITY(U,$J,358.3,21501,1,3,0)
+ ;;=3^Atrial Fibrillation,Unspec
+ ;;^UTILITY(U,$J,358.3,21501,1,4,0)
+ ;;=4^I48.91
+ ;;^UTILITY(U,$J,358.3,21501,2)
+ ;;=^5007229
+ ;;^UTILITY(U,$J,358.3,21502,0)
+ ;;=I48.92^^89^1034^2
+ ;;^UTILITY(U,$J,358.3,21502,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9949,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9949,1,4,0)
- ;;=4^H40.51X1
- ;;^UTILITY(U,$J,358.3,9949,2)
- ;;=^5005889
- ;;^UTILITY(U,$J,358.3,9950,0)
- ;;=H40.51X2^^44^496^56
- ;;^UTILITY(U,$J,358.3,9950,1,0)
+ ;;^UTILITY(U,$J,358.3,21502,1,3,0)
+ ;;=3^Atrial Flutter,Unspec
+ ;;^UTILITY(U,$J,358.3,21502,1,4,0)
+ ;;=4^I48.92
+ ;;^UTILITY(U,$J,358.3,21502,2)
+ ;;=^5007230
+ ;;^UTILITY(U,$J,358.3,21503,0)
+ ;;=B07.9^^89^1035^288
+ ;;^UTILITY(U,$J,358.3,21503,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9950,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9950,1,4,0)
- ;;=4^H40.51X2
- ;;^UTILITY(U,$J,358.3,9950,2)
- ;;=^5005890
- ;;^UTILITY(U,$J,358.3,9951,0)
- ;;=H40.51X3^^44^496^57
- ;;^UTILITY(U,$J,358.3,9951,1,0)
+ ;;^UTILITY(U,$J,358.3,21503,1,3,0)
+ ;;=3^Viral Wart,Unspec
+ ;;^UTILITY(U,$J,358.3,21503,1,4,0)
+ ;;=4^B07.9
+ ;;^UTILITY(U,$J,358.3,21503,2)
+ ;;=^5000519
+ ;;^UTILITY(U,$J,358.3,21504,0)
+ ;;=A63.0^^89^1035^34
+ ;;^UTILITY(U,$J,358.3,21504,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9951,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,9951,1,4,0)
- ;;=4^H40.51X3
- ;;^UTILITY(U,$J,358.3,9951,2)
- ;;=^5133507
- ;;^UTILITY(U,$J,358.3,9952,0)
- ;;=H40.51X4^^44^496^58
- ;;^UTILITY(U,$J,358.3,9952,1,0)
+ ;;^UTILITY(U,$J,358.3,21504,1,3,0)
+ ;;=3^Anogenital (Venereal) Warts
+ ;;^UTILITY(U,$J,358.3,21504,1,4,0)
+ ;;=4^A63.0
+ ;;^UTILITY(U,$J,358.3,21504,2)
+ ;;=^5000360
+ ;;^UTILITY(U,$J,358.3,21505,0)
+ ;;=B35.0^^89^1035^279
+ ;;^UTILITY(U,$J,358.3,21505,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9952,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,9952,1,4,0)
- ;;=4^H40.51X4
- ;;^UTILITY(U,$J,358.3,9952,2)
- ;;=^5005891
- ;;^UTILITY(U,$J,358.3,9953,0)
- ;;=H40.52X0^^44^496^49
- ;;^UTILITY(U,$J,358.3,9953,1,0)
+ ;;^UTILITY(U,$J,358.3,21505,1,3,0)
+ ;;=3^Tinea Barbae and Tinea Capitis
+ ;;^UTILITY(U,$J,358.3,21505,1,4,0)
+ ;;=4^B35.0
+ ;;^UTILITY(U,$J,358.3,21505,2)
+ ;;=^5000604
+ ;;^UTILITY(U,$J,358.3,21506,0)
+ ;;=B35.1^^89^1035^284
+ ;;^UTILITY(U,$J,358.3,21506,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9953,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,9953,1,4,0)
- ;;=4^H40.52X0
- ;;^UTILITY(U,$J,358.3,9953,2)
- ;;=^5005892
- ;;^UTILITY(U,$J,358.3,9954,0)
- ;;=H40.52X1^^44^496^50
- ;;^UTILITY(U,$J,358.3,9954,1,0)
+ ;;^UTILITY(U,$J,358.3,21506,1,3,0)
+ ;;=3^Tinea Unguium
+ ;;^UTILITY(U,$J,358.3,21506,1,4,0)
+ ;;=4^B35.1
+ ;;^UTILITY(U,$J,358.3,21506,2)
+ ;;=^119748
+ ;;^UTILITY(U,$J,358.3,21507,0)
+ ;;=B35.6^^89^1035^281
+ ;;^UTILITY(U,$J,358.3,21507,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9954,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,9954,1,4,0)
- ;;=4^H40.52X1
- ;;^UTILITY(U,$J,358.3,9954,2)
- ;;=^5005893
- ;;^UTILITY(U,$J,358.3,9955,0)
- ;;=H40.52X2^^44^496^51
- ;;^UTILITY(U,$J,358.3,9955,1,0)
+ ;;^UTILITY(U,$J,358.3,21507,1,3,0)
+ ;;=3^Tinea Cruris
+ ;;^UTILITY(U,$J,358.3,21507,1,4,0)
+ ;;=4^B35.6
+ ;;^UTILITY(U,$J,358.3,21507,2)
+ ;;=^119711
+ ;;^UTILITY(U,$J,358.3,21508,0)
+ ;;=B35.3^^89^1035^283
+ ;;^UTILITY(U,$J,358.3,21508,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9955,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,9955,1,4,0)
- ;;=4^H40.52X2
- ;;^UTILITY(U,$J,358.3,9955,2)
- ;;=^5005894
- ;;^UTILITY(U,$J,358.3,9956,0)
- ;;=H40.52X3^^44^496^52
- ;;^UTILITY(U,$J,358.3,9956,1,0)
+ ;;^UTILITY(U,$J,358.3,21508,1,3,0)
+ ;;=3^Tinea Pedis
+ ;;^UTILITY(U,$J,358.3,21508,1,4,0)
+ ;;=4^B35.3
+ ;;^UTILITY(U,$J,358.3,21508,2)
+ ;;=^119732
+ ;;^UTILITY(U,$J,358.3,21509,0)
+ ;;=B35.5^^89^1035^282
+ ;;^UTILITY(U,$J,358.3,21509,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9956,1,3,0)
- ;;=3^Glaucoma Sec to Oth Eye Disorder,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,21509,1,3,0)
+ ;;=3^Tinea Imbricata
+ ;;^UTILITY(U,$J,358.3,21509,1,4,0)
+ ;;=4^B35.5
+ ;;^UTILITY(U,$J,358.3,21509,2)
+ ;;=^119725
+ ;;^UTILITY(U,$J,358.3,21510,0)
+ ;;=B35.4^^89^1035^280
+ ;;^UTILITY(U,$J,358.3,21510,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21510,1,3,0)
+ ;;=3^Tinea Corporis
+ ;;^UTILITY(U,$J,358.3,21510,1,4,0)
+ ;;=4^B35.4
+ ;;^UTILITY(U,$J,358.3,21510,2)
+ ;;=^119704
+ ;;^UTILITY(U,$J,358.3,21511,0)
+ ;;=B35.8^^89^1035^137
+ ;;^UTILITY(U,$J,358.3,21511,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21511,1,3,0)
+ ;;=3^Dermatophytoses,Other
+ ;;^UTILITY(U,$J,358.3,21511,1,4,0)
+ ;;=4^B35.8
+ ;;^UTILITY(U,$J,358.3,21511,2)
+ ;;=^5000606
+ ;;^UTILITY(U,$J,358.3,21512,0)
+ ;;=B36.9^^89^1035^272
+ ;;^UTILITY(U,$J,358.3,21512,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21512,1,3,0)
+ ;;=3^Superficial Mycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,21512,1,4,0)
+ ;;=4^B36.9
+ ;;^UTILITY(U,$J,358.3,21512,2)
+ ;;=^5000611
+ ;;^UTILITY(U,$J,358.3,21513,0)
+ ;;=D69.0^^89^1035^32
+ ;;^UTILITY(U,$J,358.3,21513,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21513,1,3,0)
+ ;;=3^Allergic Purpura
+ ;;^UTILITY(U,$J,358.3,21513,1,4,0)
+ ;;=4^D69.0
+ ;;^UTILITY(U,$J,358.3,21513,2)
+ ;;=^5002365
+ ;;^UTILITY(U,$J,358.3,21514,0)
+ ;;=B00.9^^89^1035^158
+ ;;^UTILITY(U,$J,358.3,21514,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21514,1,3,0)
+ ;;=3^Herpesviral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,21514,1,4,0)
+ ;;=4^B00.9
+ ;;^UTILITY(U,$J,358.3,21514,2)
+ ;;=^5000480
+ ;;^UTILITY(U,$J,358.3,21515,0)
+ ;;=B02.9^^89^1035^291
+ ;;^UTILITY(U,$J,358.3,21515,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21515,1,3,0)
+ ;;=3^Zoster w/o Complications
+ ;;^UTILITY(U,$J,358.3,21515,1,4,0)
+ ;;=4^B02.9
+ ;;^UTILITY(U,$J,358.3,21515,2)
+ ;;=^5000501
+ ;;^UTILITY(U,$J,358.3,21516,0)
+ ;;=D17.9^^89^1035^89
+ ;;^UTILITY(U,$J,358.3,21516,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21516,1,3,0)
+ ;;=3^Benign Lipomatous Neop,Unspec
+ ;;^UTILITY(U,$J,358.3,21516,1,4,0)
+ ;;=4^D17.9
+ ;;^UTILITY(U,$J,358.3,21516,2)
+ ;;=^5002020
+ ;;^UTILITY(U,$J,358.3,21517,0)
+ ;;=E08.621^^89^1035^134
+ ;;^UTILITY(U,$J,358.3,21517,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21517,1,3,0)
+ ;;=3^DM d/t Underlying Condition w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,21517,1,4,0)
+ ;;=4^E08.621
+ ;;^UTILITY(U,$J,358.3,21517,2)
+ ;;=^5002534
+ ;;^UTILITY(U,$J,358.3,21518,0)
+ ;;=E09.621^^89^1035^133
+ ;;^UTILITY(U,$J,358.3,21518,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21518,1,3,0)
+ ;;=3^DM d/t Drug/Chemical w/ Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,21518,1,4,0)
+ ;;=4^E09.621
+ ;;^UTILITY(U,$J,358.3,21518,2)
+ ;;=^5002576
+ ;;^UTILITY(U,$J,358.3,21519,0)
+ ;;=H05.011^^89^1035^110
+ ;;^UTILITY(U,$J,358.3,21519,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21519,1,3,0)
+ ;;=3^Cellulitis of Right Orbit
+ ;;^UTILITY(U,$J,358.3,21519,1,4,0)
+ ;;=4^H05.011
+ ;;^UTILITY(U,$J,358.3,21519,2)
+ ;;=^5004560
+ ;;^UTILITY(U,$J,358.3,21520,0)
+ ;;=H05.012^^89^1035^103
+ ;;^UTILITY(U,$J,358.3,21520,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21520,1,3,0)
+ ;;=3^Cellulitis of Left Orbit
+ ;;^UTILITY(U,$J,358.3,21520,1,4,0)
+ ;;=4^H05.012
+ ;;^UTILITY(U,$J,358.3,21520,2)
+ ;;=^5004561
+ ;;^UTILITY(U,$J,358.3,21521,0)
+ ;;=H05.013^^89^1035^97
+ ;;^UTILITY(U,$J,358.3,21521,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21521,1,3,0)
+ ;;=3^Cellulitis of Bilateral Orbits
+ ;;^UTILITY(U,$J,358.3,21521,1,4,0)
+ ;;=4^H05.013
+ ;;^UTILITY(U,$J,358.3,21521,2)
+ ;;=^5004562
+ ;;^UTILITY(U,$J,358.3,21522,0)
+ ;;=I70.331^^89^1035^50
+ ;;^UTILITY(U,$J,358.3,21522,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21522,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Thigh
+ ;;^UTILITY(U,$J,358.3,21522,1,4,0)
+ ;;=4^I70.331
+ ;;^UTILITY(U,$J,358.3,21522,2)
+ ;;=^5007626
+ ;;^UTILITY(U,$J,358.3,21523,0)
+ ;;=I70.332^^89^1035^51
+ ;;^UTILITY(U,$J,358.3,21523,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21523,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Calf
+ ;;^UTILITY(U,$J,358.3,21523,1,4,0)
+ ;;=4^I70.332
+ ;;^UTILITY(U,$J,358.3,21523,2)
+ ;;=^5007627
+ ;;^UTILITY(U,$J,358.3,21524,0)
+ ;;=I70.333^^89^1035^52
+ ;;^UTILITY(U,$J,358.3,21524,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21524,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Ankle
+ ;;^UTILITY(U,$J,358.3,21524,1,4,0)
+ ;;=4^I70.333
+ ;;^UTILITY(U,$J,358.3,21524,2)
+ ;;=^5007628
+ ;;^UTILITY(U,$J,358.3,21525,0)
+ ;;=I70.334^^89^1035^53
+ ;;^UTILITY(U,$J,358.3,21525,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21525,1,3,0)
+ ;;=3^Athscl Bypass of Right Leg w/ Ulcer of Heel/Midfoot
+ ;;^UTILITY(U,$J,358.3,21525,1,4,0)
+ ;;=4^I70.334
+ ;;^UTILITY(U,$J,358.3,21525,2)
+ ;;=^5007629
+ ;;^UTILITY(U,$J,358.3,21526,0)
+ ;;=I70.335^^89^1035^54

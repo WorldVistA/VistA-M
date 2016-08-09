@@ -1,134 +1,282 @@
-IBDEI13H ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI13H ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18606,2)
- ;;=^267319
- ;;^UTILITY(U,$J,358.3,18607,0)
- ;;=C77.8^^79^881^16
- ;;^UTILITY(U,$J,358.3,18607,1,0)
+ ;;^UTILITY(U,$J,358.3,39744,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18607,1,3,0)
- ;;=3^Secondary Malig Neop of Mult Region Lymph Nodes
- ;;^UTILITY(U,$J,358.3,18607,1,4,0)
- ;;=4^C77.8
- ;;^UTILITY(U,$J,358.3,18607,2)
- ;;=^5001332
- ;;^UTILITY(U,$J,358.3,18608,0)
- ;;=C78.01^^79^881^18
- ;;^UTILITY(U,$J,358.3,18608,1,0)
+ ;;^UTILITY(U,$J,358.3,39744,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,39744,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,39744,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,39745,0)
+ ;;=M85.831^^148^1953^90
+ ;;^UTILITY(U,$J,358.3,39745,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18608,1,3,0)
- ;;=3^Secondary Malig Neop of Right Lung
- ;;^UTILITY(U,$J,358.3,18608,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,18608,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,18609,0)
- ;;=C78.02^^79^881^14
- ;;^UTILITY(U,$J,358.3,18609,1,0)
+ ;;^UTILITY(U,$J,358.3,39745,1,3,0)
+ ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,39745,1,4,0)
+ ;;=4^M85.831
+ ;;^UTILITY(U,$J,358.3,39745,2)
+ ;;=^5014480
+ ;;^UTILITY(U,$J,358.3,39746,0)
+ ;;=M85.841^^148^1953^91
+ ;;^UTILITY(U,$J,358.3,39746,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18609,1,3,0)
- ;;=3^Secondary Malig Neop of Left Lung
- ;;^UTILITY(U,$J,358.3,18609,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,18609,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,18610,0)
- ;;=C79.19^^79^881^21
- ;;^UTILITY(U,$J,358.3,18610,1,0)
+ ;;^UTILITY(U,$J,358.3,39746,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,39746,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,39746,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,39747,0)
+ ;;=M85.861^^148^1953^92
+ ;;^UTILITY(U,$J,358.3,39747,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18610,1,3,0)
- ;;=3^Secondary Malig Neop of Urinary Organs NEC
- ;;^UTILITY(U,$J,358.3,18610,1,4,0)
- ;;=4^C79.19
- ;;^UTILITY(U,$J,358.3,18610,2)
- ;;=^267332
- ;;^UTILITY(U,$J,358.3,18611,0)
- ;;=C79.11^^79^881^2
- ;;^UTILITY(U,$J,358.3,18611,1,0)
+ ;;^UTILITY(U,$J,358.3,39747,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,39747,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,39747,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,39748,0)
+ ;;=M85.811^^148^1953^93
+ ;;^UTILITY(U,$J,358.3,39748,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18611,1,3,0)
- ;;=3^Secondary Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,18611,1,4,0)
- ;;=4^C79.11
- ;;^UTILITY(U,$J,358.3,18611,2)
- ;;=^5001346
- ;;^UTILITY(U,$J,358.3,18612,0)
- ;;=C79.2^^79^881^20
- ;;^UTILITY(U,$J,358.3,18612,1,0)
+ ;;^UTILITY(U,$J,358.3,39748,1,3,0)
+ ;;=3^Osteopenia,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,39748,1,4,0)
+ ;;=4^M85.811
+ ;;^UTILITY(U,$J,358.3,39748,2)
+ ;;=^5014474
+ ;;^UTILITY(U,$J,358.3,39749,0)
+ ;;=M85.851^^148^1953^94
+ ;;^UTILITY(U,$J,358.3,39749,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18612,1,3,0)
- ;;=3^Secondary Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,18612,1,4,0)
- ;;=4^C79.2
- ;;^UTILITY(U,$J,358.3,18612,2)
- ;;=^267333
- ;;^UTILITY(U,$J,358.3,18613,0)
- ;;=C79.31^^79^881^5
- ;;^UTILITY(U,$J,358.3,18613,1,0)
+ ;;^UTILITY(U,$J,358.3,39749,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,39749,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,39749,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,39750,0)
+ ;;=M85.821^^148^1953^95
+ ;;^UTILITY(U,$J,358.3,39750,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18613,1,3,0)
- ;;=3^Secondary Malig Neop of Brain
- ;;^UTILITY(U,$J,358.3,18613,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,18613,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,18614,0)
- ;;=C79.32^^79^881^7
- ;;^UTILITY(U,$J,358.3,18614,1,0)
+ ;;^UTILITY(U,$J,358.3,39750,1,3,0)
+ ;;=3^Osteopenia,Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,39750,1,4,0)
+ ;;=4^M85.821
+ ;;^UTILITY(U,$J,358.3,39750,2)
+ ;;=^5014477
+ ;;^UTILITY(U,$J,358.3,39751,0)
+ ;;=M85.80^^148^1953^96
+ ;;^UTILITY(U,$J,358.3,39751,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18614,1,3,0)
- ;;=3^Secondary Malig Neop of Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,18614,1,4,0)
- ;;=4^C79.32
- ;;^UTILITY(U,$J,358.3,18614,2)
- ;;=^5001348
- ;;^UTILITY(U,$J,358.3,18615,0)
- ;;=C79.51^^79^881^3
- ;;^UTILITY(U,$J,358.3,18615,1,0)
+ ;;^UTILITY(U,$J,358.3,39751,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,39751,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,39751,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,39752,0)
+ ;;=B02.0^^148^1954^46
+ ;;^UTILITY(U,$J,358.3,39752,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18615,1,3,0)
- ;;=3^Secondary Malig Neop of Bone
- ;;^UTILITY(U,$J,358.3,18615,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,18615,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,18616,0)
- ;;=C79.52^^79^881^4
- ;;^UTILITY(U,$J,358.3,18616,1,0)
+ ;;^UTILITY(U,$J,358.3,39752,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,39752,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,39752,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,39753,0)
+ ;;=B02.29^^148^1954^36
+ ;;^UTILITY(U,$J,358.3,39753,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18616,1,3,0)
- ;;=3^Secondary Malig Neop of Bone Marrow
- ;;^UTILITY(U,$J,358.3,18616,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,18616,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,18617,0)
- ;;=C79.61^^79^881^19
- ;;^UTILITY(U,$J,358.3,18617,1,0)
+ ;;^UTILITY(U,$J,358.3,39753,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,39753,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,39753,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,39754,0)
+ ;;=F03.90^^148^1954^10
+ ;;^UTILITY(U,$J,358.3,39754,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18617,1,3,0)
- ;;=3^Secondary Malig Neop of Right Ovary
- ;;^UTILITY(U,$J,358.3,18617,1,4,0)
- ;;=4^C79.61
- ;;^UTILITY(U,$J,358.3,18617,2)
- ;;=^5001353
- ;;^UTILITY(U,$J,358.3,18618,0)
- ;;=C79.62^^79^881^15
- ;;^UTILITY(U,$J,358.3,18618,1,0)
+ ;;^UTILITY(U,$J,358.3,39754,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,39754,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,39754,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,39755,0)
+ ;;=F03.91^^148^1954^9
+ ;;^UTILITY(U,$J,358.3,39755,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18618,1,3,0)
- ;;=3^Secondary Malig Neop of Left Ovary
- ;;^UTILITY(U,$J,358.3,18618,1,4,0)
- ;;=4^C79.62
- ;;^UTILITY(U,$J,358.3,18618,2)
- ;;=^5001354
- ;;^UTILITY(U,$J,358.3,18619,0)
- ;;=C79.71^^79^881^17
- ;;^UTILITY(U,$J,358.3,18619,1,0)
+ ;;^UTILITY(U,$J,358.3,39755,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,39755,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,39755,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,39756,0)
+ ;;=F01.50^^148^1954^12
+ ;;^UTILITY(U,$J,358.3,39756,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18619,1,3,0)
- ;;=3^Secondary Malig Neop of Right Adrenal Gland
- ;;^UTILITY(U,$J,358.3,18619,1,4,0)
- ;;=4^C79.71
+ ;;^UTILITY(U,$J,358.3,39756,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,39756,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,39756,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,39757,0)
+ ;;=F10.27^^148^1954^11
+ ;;^UTILITY(U,$J,358.3,39757,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39757,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,39757,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,39757,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,39758,0)
+ ;;=F06.1^^148^1954^6
+ ;;^UTILITY(U,$J,358.3,39758,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39758,1,3,0)
+ ;;=3^Catatonic Disorder d/t Known Physiological Condition
+ ;;^UTILITY(U,$J,358.3,39758,1,4,0)
+ ;;=4^F06.1
+ ;;^UTILITY(U,$J,358.3,39758,2)
+ ;;=^5003054
+ ;;^UTILITY(U,$J,358.3,39759,0)
+ ;;=F06.8^^148^1954^21
+ ;;^UTILITY(U,$J,358.3,39759,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39759,1,3,0)
+ ;;=3^Mental Disorders d/t Known Physiological Condition,Other
+ ;;^UTILITY(U,$J,358.3,39759,1,4,0)
+ ;;=4^F06.8
+ ;;^UTILITY(U,$J,358.3,39759,2)
+ ;;=^5003062
+ ;;^UTILITY(U,$J,358.3,39760,0)
+ ;;=F06.0^^148^1954^37
+ ;;^UTILITY(U,$J,358.3,39760,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39760,1,3,0)
+ ;;=3^Psychotic Disorder w/ Hallucin d/t Known Physiol Condition
+ ;;^UTILITY(U,$J,358.3,39760,1,4,0)
+ ;;=4^F06.0
+ ;;^UTILITY(U,$J,358.3,39760,2)
+ ;;=^5003053
+ ;;^UTILITY(U,$J,358.3,39761,0)
+ ;;=G44.209^^148^1954^42
+ ;;^UTILITY(U,$J,358.3,39761,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39761,1,3,0)
+ ;;=3^Tension-Type Headache,Not Intractable,Unspec
+ ;;^UTILITY(U,$J,358.3,39761,1,4,0)
+ ;;=4^G44.209
+ ;;^UTILITY(U,$J,358.3,39761,2)
+ ;;=^5003936
+ ;;^UTILITY(U,$J,358.3,39762,0)
+ ;;=F09.^^148^1954^20
+ ;;^UTILITY(U,$J,358.3,39762,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39762,1,3,0)
+ ;;=3^Mental Disorder d/t Known Physiological Condition,Unspec
+ ;;^UTILITY(U,$J,358.3,39762,1,4,0)
+ ;;=4^F09.
+ ;;^UTILITY(U,$J,358.3,39762,2)
+ ;;=^5003067
+ ;;^UTILITY(U,$J,358.3,39763,0)
+ ;;=F07.9^^148^1954^35
+ ;;^UTILITY(U,$J,358.3,39763,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39763,1,3,0)
+ ;;=3^Personality & Behavrl Disorder d/t Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,39763,1,4,0)
+ ;;=4^F07.9
+ ;;^UTILITY(U,$J,358.3,39763,2)
+ ;;=^5003066
+ ;;^UTILITY(U,$J,358.3,39764,0)
+ ;;=G30.0^^148^1954^1
+ ;;^UTILITY(U,$J,358.3,39764,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39764,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Early Onset
+ ;;^UTILITY(U,$J,358.3,39764,1,4,0)
+ ;;=4^G30.0
+ ;;^UTILITY(U,$J,358.3,39764,2)
+ ;;=^5003805
+ ;;^UTILITY(U,$J,358.3,39765,0)
+ ;;=G30.8^^148^1954^3
+ ;;^UTILITY(U,$J,358.3,39765,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39765,1,3,0)
+ ;;=3^Alzheimer's Disease,Other
+ ;;^UTILITY(U,$J,358.3,39765,1,4,0)
+ ;;=4^G30.8
+ ;;^UTILITY(U,$J,358.3,39765,2)
+ ;;=^5003807
+ ;;^UTILITY(U,$J,358.3,39766,0)
+ ;;=G30.1^^148^1954^2
+ ;;^UTILITY(U,$J,358.3,39766,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39766,1,3,0)
+ ;;=3^Alzheimer's Disease w/ Late Onset
+ ;;^UTILITY(U,$J,358.3,39766,1,4,0)
+ ;;=4^G30.1
+ ;;^UTILITY(U,$J,358.3,39766,2)
+ ;;=^5003806
+ ;;^UTILITY(U,$J,358.3,39767,0)
+ ;;=G30.9^^148^1954^4
+ ;;^UTILITY(U,$J,358.3,39767,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39767,1,3,0)
+ ;;=3^Alzheimer's Disease,Unspec
+ ;;^UTILITY(U,$J,358.3,39767,1,4,0)
+ ;;=4^G30.9
+ ;;^UTILITY(U,$J,358.3,39767,2)
+ ;;=^5003808
+ ;;^UTILITY(U,$J,358.3,39768,0)
+ ;;=G21.4^^148^1954^45
+ ;;^UTILITY(U,$J,358.3,39768,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39768,1,3,0)
+ ;;=3^Vascular Parkinsonism
+ ;;^UTILITY(U,$J,358.3,39768,1,4,0)
+ ;;=4^G21.4
+ ;;^UTILITY(U,$J,358.3,39768,2)
+ ;;=^5003776
+ ;;^UTILITY(U,$J,358.3,39769,0)
+ ;;=G20.^^148^1954^34
+ ;;^UTILITY(U,$J,358.3,39769,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39769,1,3,0)
+ ;;=3^Parkinson's Disease
+ ;;^UTILITY(U,$J,358.3,39769,1,4,0)
+ ;;=4^G20.
+ ;;^UTILITY(U,$J,358.3,39769,2)
+ ;;=^5003770
+ ;;^UTILITY(U,$J,358.3,39770,0)
+ ;;=G25.0^^148^1954^15
+ ;;^UTILITY(U,$J,358.3,39770,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39770,1,3,0)
+ ;;=3^Essential Tremor
+ ;;^UTILITY(U,$J,358.3,39770,1,4,0)
+ ;;=4^G25.0
+ ;;^UTILITY(U,$J,358.3,39770,2)
+ ;;=^5003791
+ ;;^UTILITY(U,$J,358.3,39771,0)
+ ;;=G25.2^^148^1954^44
+ ;;^UTILITY(U,$J,358.3,39771,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39771,1,3,0)
+ ;;=3^Tremor,Other Spec Forms
+ ;;^UTILITY(U,$J,358.3,39771,1,4,0)
+ ;;=4^G25.2
+ ;;^UTILITY(U,$J,358.3,39771,2)
+ ;;=^5003793

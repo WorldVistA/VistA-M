@@ -1,5 +1,5 @@
-PSSPOIMO ;BIR/RTR/WRT-Edit Orderable Item Name and Inactive date ; 4/28/09 4:39pm
- ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191**;9/30/97;Build 40
+PSSPOIMO ;BIR/RTR/WRT-Edit Orderable Item Name and Inactive date ;4/28/09 4:39pm
+ ;;1.0;PHARMACY DATA MANAGEMENT;**29,32,38,47,68,102,125,141,153,159,166,172,191,189**;9/30/97;Build 54
  S PSSITE=+$O(^PS(59.7,0)) I +$P($G(^PS(59.7,PSSITE,80)),"^",2)<2 W !!?3,"Orderable Item Auto-Create has not been completed yet!",! K PSSITE K DIR S DIR("A")="Press RETURN to continue",DIR(0)="E" D ^DIR K DIR Q
  K PSSITE W !!,"This option enables you to edit Orderable Item names, Formulary status,",!,"drug text, Inactive Dates, and Synonyms."
 EN I $D(PSOIEN) L -^PS(50.7,PSOIEN)
@@ -68,7 +68,8 @@ DISP N PSSLFLAG,PSSLDATE S FLAG=1 D HEAD F ZZ=0:0 S ZZ=$O(^PSDRUG("ASP",PSOIEN,Z
  S (FLAG,PSSLFLAG)=0
  F ZZ=0:0 S ZZ=$O(^PS(52.6,"AOI",PSOIEN,ZZ)) Q:'ZZ!($G(PSOUT))  D:($Y+5)>IOSL HEAD Q:$G(PSOUT)  I ZZ D
  .S PSSLFLAG=1
- .W !,$P($G(^PS(52.6,ZZ,0)),"^"),?42,"(A)"
+ .W !,$P($G(^PS(52.6,ZZ,0)),"^"),?31," (A) "
+ .W ?40,"Additive Strength: ",$S($$GET1^DIQ(52.6,ZZ,19)'="":$$GET1^DIQ(52.6,ZZ,19)_" "_$$GET1^DIQ(52.6,ZZ,2),1:"N/A")," "
  .S PSSLDATE=$P($G(^PS(52.6,ZZ,"I")),"^") I PSSLDATE D DTEX
  Q:$G(PSOUT)
  ;I $G(PSSLFLAG) W !

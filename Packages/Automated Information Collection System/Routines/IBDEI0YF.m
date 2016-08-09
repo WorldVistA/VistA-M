@@ -1,132 +1,286 @@
-IBDEI0YF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0YF ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16163,1,0)
+ ;;^UTILITY(U,$J,358.3,34644,1,4,0)
+ ;;=4^B38.2
+ ;;^UTILITY(U,$J,358.3,34644,2)
+ ;;=^295703
+ ;;^UTILITY(U,$J,358.3,34645,0)
+ ;;=B45.0^^125^1641^79
+ ;;^UTILITY(U,$J,358.3,34645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16163,1,3,0)
- ;;=3^Panmyelosis w/ Myelofibrosis,Acute,In Remission
- ;;^UTILITY(U,$J,358.3,16163,1,4,0)
- ;;=4^C94.41
- ;;^UTILITY(U,$J,358.3,16163,2)
- ;;=^5001844
- ;;^UTILITY(U,$J,358.3,16164,0)
- ;;=C94.42^^61^724^39
- ;;^UTILITY(U,$J,358.3,16164,1,0)
+ ;;^UTILITY(U,$J,358.3,34645,1,3,0)
+ ;;=3^Pulmonary Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,34645,1,4,0)
+ ;;=4^B45.0
+ ;;^UTILITY(U,$J,358.3,34645,2)
+ ;;=^5000669
+ ;;^UTILITY(U,$J,358.3,34646,0)
+ ;;=A31.0^^125^1641^80
+ ;;^UTILITY(U,$J,358.3,34646,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16164,1,3,0)
- ;;=3^Panmyelosis w/ Myelofibrosis,Acute,In Relapse
- ;;^UTILITY(U,$J,358.3,16164,1,4,0)
- ;;=4^C94.42
- ;;^UTILITY(U,$J,358.3,16164,2)
- ;;=^5001845
- ;;^UTILITY(U,$J,358.3,16165,0)
- ;;=D47.1^^61^724^36
- ;;^UTILITY(U,$J,358.3,16165,1,0)
+ ;;^UTILITY(U,$J,358.3,34646,1,3,0)
+ ;;=3^Pulmonary Mycobacterial Infection
+ ;;^UTILITY(U,$J,358.3,34646,1,4,0)
+ ;;=4^A31.0
+ ;;^UTILITY(U,$J,358.3,34646,2)
+ ;;=^5000149
+ ;;^UTILITY(U,$J,358.3,34647,0)
+ ;;=A43.0^^125^1641^81
+ ;;^UTILITY(U,$J,358.3,34647,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16165,1,3,0)
- ;;=3^Myeloproliferative Disease,Chr
- ;;^UTILITY(U,$J,358.3,16165,1,4,0)
- ;;=4^D47.1
- ;;^UTILITY(U,$J,358.3,16165,2)
- ;;=^5002256
- ;;^UTILITY(U,$J,358.3,16166,0)
- ;;=D47.9^^61^724^37
- ;;^UTILITY(U,$J,358.3,16166,1,0)
+ ;;^UTILITY(U,$J,358.3,34647,1,3,0)
+ ;;=3^Pulmonary Nocardiosis
+ ;;^UTILITY(U,$J,358.3,34647,1,4,0)
+ ;;=4^A43.0
+ ;;^UTILITY(U,$J,358.3,34647,2)
+ ;;=^5000223
+ ;;^UTILITY(U,$J,358.3,34648,0)
+ ;;=B90.9^^125^1641^83
+ ;;^UTILITY(U,$J,358.3,34648,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16166,1,3,0)
- ;;=3^Neop Uncrt Behavior Lymphoid/Hematopoietic/Related Tissue,Unspec
- ;;^UTILITY(U,$J,358.3,16166,1,4,0)
- ;;=4^D47.9
- ;;^UTILITY(U,$J,358.3,16166,2)
- ;;=^5002260
- ;;^UTILITY(U,$J,358.3,16167,0)
- ;;=C80.0^^61^724^4
- ;;^UTILITY(U,$J,358.3,16167,1,0)
+ ;;^UTILITY(U,$J,358.3,34648,1,3,0)
+ ;;=3^Sequelae of Respiratory/Unspec TB
+ ;;^UTILITY(U,$J,358.3,34648,1,4,0)
+ ;;=4^B90.9
+ ;;^UTILITY(U,$J,358.3,34648,2)
+ ;;=^5000827
+ ;;^UTILITY(U,$J,358.3,34649,0)
+ ;;=J41.0^^125^1641^84
+ ;;^UTILITY(U,$J,358.3,34649,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16167,1,3,0)
- ;;=3^Disseminated Malig Neop,Unspec
- ;;^UTILITY(U,$J,358.3,16167,1,4,0)
- ;;=4^C80.0
- ;;^UTILITY(U,$J,358.3,16167,2)
- ;;=^5001388
- ;;^UTILITY(U,$J,358.3,16168,0)
- ;;=D47.2^^61^724^28
- ;;^UTILITY(U,$J,358.3,16168,1,0)
+ ;;^UTILITY(U,$J,358.3,34649,1,3,0)
+ ;;=3^Simple Chr Bronchitis
+ ;;^UTILITY(U,$J,358.3,34649,1,4,0)
+ ;;=4^J41.0
+ ;;^UTILITY(U,$J,358.3,34649,2)
+ ;;=^269946
+ ;;^UTILITY(U,$J,358.3,34650,0)
+ ;;=B44.2^^125^1641^85
+ ;;^UTILITY(U,$J,358.3,34650,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16168,1,3,0)
- ;;=3^Monoclonal Gammopathy
- ;;^UTILITY(U,$J,358.3,16168,1,4,0)
- ;;=4^D47.2
- ;;^UTILITY(U,$J,358.3,16168,2)
- ;;=^5002257
- ;;^UTILITY(U,$J,358.3,16169,0)
- ;;=C90.00^^61^724^29
- ;;^UTILITY(U,$J,358.3,16169,1,0)
+ ;;^UTILITY(U,$J,358.3,34650,1,3,0)
+ ;;=3^Tonsillar Aspergillosis
+ ;;^UTILITY(U,$J,358.3,34650,1,4,0)
+ ;;=4^B44.2
+ ;;^UTILITY(U,$J,358.3,34650,2)
+ ;;=^5000665
+ ;;^UTILITY(U,$J,358.3,34651,0)
+ ;;=A15.0^^125^1641^86
+ ;;^UTILITY(U,$J,358.3,34651,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16169,1,3,0)
- ;;=3^Multiple Myeloma,Not in Remission
- ;;^UTILITY(U,$J,358.3,16169,1,4,0)
- ;;=4^C90.00
- ;;^UTILITY(U,$J,358.3,16169,2)
- ;;=^5001752
- ;;^UTILITY(U,$J,358.3,16170,0)
- ;;=C84.00^^61^724^31
- ;;^UTILITY(U,$J,358.3,16170,1,0)
+ ;;^UTILITY(U,$J,358.3,34651,1,3,0)
+ ;;=3^Tuberculosis of Lung
+ ;;^UTILITY(U,$J,358.3,34651,1,4,0)
+ ;;=4^A15.0
+ ;;^UTILITY(U,$J,358.3,34651,2)
+ ;;=^5000062
+ ;;^UTILITY(U,$J,358.3,34652,0)
+ ;;=A15.6^^125^1641^87
+ ;;^UTILITY(U,$J,358.3,34652,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16170,1,3,0)
- ;;=3^Mycosis Fungoides,Unspec Site
- ;;^UTILITY(U,$J,358.3,16170,1,4,0)
- ;;=4^C84.00
- ;;^UTILITY(U,$J,358.3,16170,2)
- ;;=^5001621
- ;;^UTILITY(U,$J,358.3,16171,0)
- ;;=C84.09^^61^724^30
- ;;^UTILITY(U,$J,358.3,16171,1,0)
+ ;;^UTILITY(U,$J,358.3,34652,1,3,0)
+ ;;=3^Tuberculous Pleurisy
+ ;;^UTILITY(U,$J,358.3,34652,1,4,0)
+ ;;=4^A15.6
+ ;;^UTILITY(U,$J,358.3,34652,2)
+ ;;=^5000064
+ ;;^UTILITY(U,$J,358.3,34653,0)
+ ;;=H60.503^^125^1641^26
+ ;;^UTILITY(U,$J,358.3,34653,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16171,1,3,0)
- ;;=3^Mycosis Fungoides,Extrnod & Solid Org Sites
- ;;^UTILITY(U,$J,358.3,16171,1,4,0)
- ;;=4^C84.09
- ;;^UTILITY(U,$J,358.3,16171,2)
- ;;=^5001630
- ;;^UTILITY(U,$J,358.3,16172,0)
- ;;=C79.71^^61^725^2
- ;;^UTILITY(U,$J,358.3,16172,1,0)
+ ;;^UTILITY(U,$J,358.3,34653,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,34653,1,4,0)
+ ;;=4^H60.503
+ ;;^UTILITY(U,$J,358.3,34653,2)
+ ;;=^5006469
+ ;;^UTILITY(U,$J,358.3,34654,0)
+ ;;=H60.502^^125^1641^27
+ ;;^UTILITY(U,$J,358.3,34654,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16172,1,3,0)
- ;;=3^Malig Neop Adrenal Gland,Right,Secondary
- ;;^UTILITY(U,$J,358.3,16172,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,16172,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,16173,0)
- ;;=C79.72^^61^725^1
- ;;^UTILITY(U,$J,358.3,16173,1,0)
+ ;;^UTILITY(U,$J,358.3,34654,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Left Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,34654,1,4,0)
+ ;;=4^H60.502
+ ;;^UTILITY(U,$J,358.3,34654,2)
+ ;;=^5006468
+ ;;^UTILITY(U,$J,358.3,34655,0)
+ ;;=H60.501^^125^1641^28
+ ;;^UTILITY(U,$J,358.3,34655,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16173,1,3,0)
- ;;=3^Malig Neop Adrenal Gland,Left,Secondary
- ;;^UTILITY(U,$J,358.3,16173,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,16173,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,16174,0)
- ;;=C79.51^^61^725^5
- ;;^UTILITY(U,$J,358.3,16174,1,0)
+ ;;^UTILITY(U,$J,358.3,34655,1,3,0)
+ ;;=3^AC Noninfective Otitis Externa,Right Ear,Unspec
+ ;;^UTILITY(U,$J,358.3,34655,1,4,0)
+ ;;=4^H60.501
+ ;;^UTILITY(U,$J,358.3,34655,2)
+ ;;=^5006467
+ ;;^UTILITY(U,$J,358.3,34656,0)
+ ;;=J15.9^^125^1641^46
+ ;;^UTILITY(U,$J,358.3,34656,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16174,1,3,0)
- ;;=3^Malig Neop Bone,Secondary
- ;;^UTILITY(U,$J,358.3,16174,1,4,0)
- ;;=4^C79.51
- ;;^UTILITY(U,$J,358.3,16174,2)
- ;;=^5001350
- ;;^UTILITY(U,$J,358.3,16175,0)
- ;;=C79.52^^61^725^4
- ;;^UTILITY(U,$J,358.3,16175,1,0)
+ ;;^UTILITY(U,$J,358.3,34656,1,3,0)
+ ;;=3^Bacterial Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,34656,1,4,0)
+ ;;=4^J15.9
+ ;;^UTILITY(U,$J,358.3,34656,2)
+ ;;=^5008178
+ ;;^UTILITY(U,$J,358.3,34657,0)
+ ;;=B97.10^^125^1641^58
+ ;;^UTILITY(U,$J,358.3,34657,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16175,1,3,0)
- ;;=3^Malig Neop Bone Marrow,Secondary
- ;;^UTILITY(U,$J,358.3,16175,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,16175,2)
- ;;=^5001351
+ ;;^UTILITY(U,$J,358.3,34657,1,3,0)
+ ;;=3^Enterovirus as Cause of Diseases Classified Elsewhere,Unspec
+ ;;^UTILITY(U,$J,358.3,34657,1,4,0)
+ ;;=4^B97.10
+ ;;^UTILITY(U,$J,358.3,34657,2)
+ ;;=^5000861
+ ;;^UTILITY(U,$J,358.3,34658,0)
+ ;;=J30.0^^125^1641^88
+ ;;^UTILITY(U,$J,358.3,34658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34658,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,34658,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,34658,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,34659,0)
+ ;;=B34.9^^125^1641^89
+ ;;^UTILITY(U,$J,358.3,34659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34659,1,3,0)
+ ;;=3^Viral Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,34659,1,4,0)
+ ;;=4^B34.9
+ ;;^UTILITY(U,$J,358.3,34659,2)
+ ;;=^5000603
+ ;;^UTILITY(U,$J,358.3,34660,0)
+ ;;=J12.9^^125^1641^90
+ ;;^UTILITY(U,$J,358.3,34660,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34660,1,3,0)
+ ;;=3^Viral Pneumonia,Unspec
+ ;;^UTILITY(U,$J,358.3,34660,1,4,0)
+ ;;=4^J12.9
+ ;;^UTILITY(U,$J,358.3,34660,2)
+ ;;=^5008169
+ ;;^UTILITY(U,$J,358.3,34661,0)
+ ;;=J84.114^^125^1642^1
+ ;;^UTILITY(U,$J,358.3,34661,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34661,1,3,0)
+ ;;=3^AC Interstitial Pneumonitis
+ ;;^UTILITY(U,$J,358.3,34661,1,4,0)
+ ;;=4^J84.114
+ ;;^UTILITY(U,$J,358.3,34661,2)
+ ;;=^340536
+ ;;^UTILITY(U,$J,358.3,34662,0)
+ ;;=J84.09^^125^1642^2
+ ;;^UTILITY(U,$J,358.3,34662,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34662,1,3,0)
+ ;;=3^Alveolar/Parieto-Alveolar Conditions NEC
+ ;;^UTILITY(U,$J,358.3,34662,1,4,0)
+ ;;=4^J84.09
+ ;;^UTILITY(U,$J,358.3,34662,2)
+ ;;=^5008299
+ ;;^UTILITY(U,$J,358.3,34663,0)
+ ;;=J67.2^^125^1642^3
+ ;;^UTILITY(U,$J,358.3,34663,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34663,1,3,0)
+ ;;=3^Bird Fancier's Lung
+ ;;^UTILITY(U,$J,358.3,34663,1,4,0)
+ ;;=4^J67.2
+ ;;^UTILITY(U,$J,358.3,34663,2)
+ ;;=^14840
+ ;;^UTILITY(U,$J,358.3,34664,0)
+ ;;=J68.4^^125^1642^5
+ ;;^UTILITY(U,$J,358.3,34664,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34664,1,3,0)
+ ;;=3^Chr Resp Cond d/t Chemicals/Gases/Fumes/Vapors
+ ;;^UTILITY(U,$J,358.3,34664,1,4,0)
+ ;;=4^J68.4
+ ;;^UTILITY(U,$J,358.3,34664,2)
+ ;;=^5008285
+ ;;^UTILITY(U,$J,358.3,34665,0)
+ ;;=M34.1^^125^1642^4
+ ;;^UTILITY(U,$J,358.3,34665,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34665,1,3,0)
+ ;;=3^CR(E)ST Syndrome
+ ;;^UTILITY(U,$J,358.3,34665,1,4,0)
+ ;;=4^M34.1
+ ;;^UTILITY(U,$J,358.3,34665,2)
+ ;;=^5011779
+ ;;^UTILITY(U,$J,358.3,34666,0)
+ ;;=J84.116^^125^1642^6
+ ;;^UTILITY(U,$J,358.3,34666,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34666,1,3,0)
+ ;;=3^Cryptogenic Organizing Pneumonia
+ ;;^UTILITY(U,$J,358.3,34666,1,4,0)
+ ;;=4^J84.116
+ ;;^UTILITY(U,$J,358.3,34666,2)
+ ;;=^340539
+ ;;^UTILITY(U,$J,358.3,34667,0)
+ ;;=J84.117^^125^1642^7
+ ;;^UTILITY(U,$J,358.3,34667,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34667,1,3,0)
+ ;;=3^Desquamative Interstitial Pneumonia
+ ;;^UTILITY(U,$J,358.3,34667,1,4,0)
+ ;;=4^J84.117
+ ;;^UTILITY(U,$J,358.3,34667,2)
+ ;;=^340540
+ ;;^UTILITY(U,$J,358.3,34668,0)
+ ;;=M32.0^^125^1642^8
+ ;;^UTILITY(U,$J,358.3,34668,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34668,1,3,0)
+ ;;=3^Drug-Induced Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,34668,1,4,0)
+ ;;=4^M32.0
+ ;;^UTILITY(U,$J,358.3,34668,2)
+ ;;=^5011752
+ ;;^UTILITY(U,$J,358.3,34669,0)
+ ;;=M32.11^^125^1642^9
+ ;;^UTILITY(U,$J,358.3,34669,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34669,1,3,0)
+ ;;=3^Endocarditis in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,34669,1,4,0)
+ ;;=4^M32.11
+ ;;^UTILITY(U,$J,358.3,34669,2)
+ ;;=^5011754
+ ;;^UTILITY(U,$J,358.3,34670,0)
+ ;;=J67.0^^125^1642^10
+ ;;^UTILITY(U,$J,358.3,34670,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34670,1,3,0)
+ ;;=3^Farmer's Lung
+ ;;^UTILITY(U,$J,358.3,34670,1,4,0)
+ ;;=4^J67.0
+ ;;^UTILITY(U,$J,358.3,34670,2)
+ ;;=^44962
+ ;;^UTILITY(U,$J,358.3,34671,0)
+ ;;=M32.14^^125^1642^11
+ ;;^UTILITY(U,$J,358.3,34671,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34671,1,3,0)
+ ;;=3^Glomerular Disease in Systemic Lupus Erythematosus
+ ;;^UTILITY(U,$J,358.3,34671,1,4,0)
+ ;;=4^M32.14
+ ;;^UTILITY(U,$J,358.3,34671,2)
+ ;;=^5011757
+ ;;^UTILITY(U,$J,358.3,34672,0)
+ ;;=J67.9^^125^1642^12
+ ;;^UTILITY(U,$J,358.3,34672,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34672,1,3,0)
+ ;;=3^Hypersensitivity Pneumonitis d/t Unspec Organic Dust
+ ;;^UTILITY(U,$J,358.3,34672,1,4,0)
+ ;;=4^J67.9

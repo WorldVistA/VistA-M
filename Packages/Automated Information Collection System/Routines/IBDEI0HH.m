@@ -1,124 +1,288 @@
-IBDEI0HH ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0HH ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8088,1,0)
+ ;;^UTILITY(U,$J,358.3,17564,2)
+ ;;=^5003638
+ ;;^UTILITY(U,$J,358.3,17565,0)
+ ;;=F60.1^^76^902^11
+ ;;^UTILITY(U,$J,358.3,17565,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8088,1,3,0)
- ;;=3^Toxic effect of unsp gases, fumes and vapors, acc, init
- ;;^UTILITY(U,$J,358.3,8088,1,4,0)
- ;;=4^T59.91XA
- ;;^UTILITY(U,$J,358.3,8088,2)
- ;;=^5053042
- ;;^UTILITY(U,$J,358.3,8089,0)
- ;;=S41.111A^^33^431^135
- ;;^UTILITY(U,$J,358.3,8089,1,0)
+ ;;^UTILITY(U,$J,358.3,17565,1,3,0)
+ ;;=3^Schizoid personality disorder
+ ;;^UTILITY(U,$J,358.3,17565,1,4,0)
+ ;;=4^F60.1
+ ;;^UTILITY(U,$J,358.3,17565,2)
+ ;;=^108271
+ ;;^UTILITY(U,$J,358.3,17566,0)
+ ;;=F21.^^76^902^12
+ ;;^UTILITY(U,$J,358.3,17566,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8089,1,3,0)
- ;;=3^Laceration w/o fb of right upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,8089,1,4,0)
- ;;=4^S41.111A
- ;;^UTILITY(U,$J,358.3,8089,2)
- ;;=^5026336
- ;;^UTILITY(U,$J,358.3,8090,0)
- ;;=S41.112A^^33^431^123
- ;;^UTILITY(U,$J,358.3,8090,1,0)
+ ;;^UTILITY(U,$J,358.3,17566,1,3,0)
+ ;;=3^Schizotypal disorder
+ ;;^UTILITY(U,$J,358.3,17566,1,4,0)
+ ;;=4^F21.
+ ;;^UTILITY(U,$J,358.3,17566,2)
+ ;;=^5003477
+ ;;^UTILITY(U,$J,358.3,17567,0)
+ ;;=M54.10^^76^903^3
+ ;;^UTILITY(U,$J,358.3,17567,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8090,1,3,0)
- ;;=3^Laceration w/o fb of left upper arm, init encntr
- ;;^UTILITY(U,$J,358.3,8090,1,4,0)
- ;;=4^S41.112A
- ;;^UTILITY(U,$J,358.3,8090,2)
- ;;=^5026339
- ;;^UTILITY(U,$J,358.3,8091,0)
- ;;=S61.210A^^33^431^128
- ;;^UTILITY(U,$J,358.3,8091,1,0)
+ ;;^UTILITY(U,$J,358.3,17567,1,3,0)
+ ;;=3^Radiculopathy, site unspec
+ ;;^UTILITY(U,$J,358.3,17567,1,4,0)
+ ;;=4^M54.10
+ ;;^UTILITY(U,$J,358.3,17567,2)
+ ;;=^5012295
+ ;;^UTILITY(U,$J,358.3,17568,0)
+ ;;=R21.^^76^903^5
+ ;;^UTILITY(U,$J,358.3,17568,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8091,1,3,0)
- ;;=3^Laceration w/o fb of right indx fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8091,1,4,0)
- ;;=4^S61.210A
- ;;^UTILITY(U,$J,358.3,8091,2)
- ;;=^5032771
- ;;^UTILITY(U,$J,358.3,8092,0)
- ;;=S61.211A^^33^431^116
- ;;^UTILITY(U,$J,358.3,8092,1,0)
+ ;;^UTILITY(U,$J,358.3,17568,1,3,0)
+ ;;=3^Rash & other nonspec skin eruption
+ ;;^UTILITY(U,$J,358.3,17568,1,4,0)
+ ;;=4^R21.
+ ;;^UTILITY(U,$J,358.3,17568,2)
+ ;;=^5019283
+ ;;^UTILITY(U,$J,358.3,17569,0)
+ ;;=M06.9^^76^903^6
+ ;;^UTILITY(U,$J,358.3,17569,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8092,1,3,0)
- ;;=3^Laceration w/o fb of left indx fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8092,1,4,0)
- ;;=4^S61.211A
- ;;^UTILITY(U,$J,358.3,8092,2)
- ;;=^5032774
- ;;^UTILITY(U,$J,358.3,8093,0)
- ;;=S61.212A^^33^431^132
- ;;^UTILITY(U,$J,358.3,8093,1,0)
+ ;;^UTILITY(U,$J,358.3,17569,1,3,0)
+ ;;=3^Rheumatoid arthritis, unspec
+ ;;^UTILITY(U,$J,358.3,17569,1,4,0)
+ ;;=4^M06.9
+ ;;^UTILITY(U,$J,358.3,17569,2)
+ ;;=^5010145
+ ;;^UTILITY(U,$J,358.3,17570,0)
+ ;;=J31.0^^76^903^7
+ ;;^UTILITY(U,$J,358.3,17570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8093,1,3,0)
- ;;=3^Laceration w/o fb of right mid finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8093,1,4,0)
- ;;=4^S61.212A
- ;;^UTILITY(U,$J,358.3,8093,2)
- ;;=^5032777
- ;;^UTILITY(U,$J,358.3,8094,0)
- ;;=S61.213A^^33^431^120
- ;;^UTILITY(U,$J,358.3,8094,1,0)
+ ;;^UTILITY(U,$J,358.3,17570,1,3,0)
+ ;;=3^Rhinitis, chronic
+ ;;^UTILITY(U,$J,358.3,17570,1,4,0)
+ ;;=4^J31.0
+ ;;^UTILITY(U,$J,358.3,17570,2)
+ ;;=^24434
+ ;;^UTILITY(U,$J,358.3,17571,0)
+ ;;=M54.12^^76^903^1
+ ;;^UTILITY(U,$J,358.3,17571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8094,1,3,0)
- ;;=3^Laceration w/o fb of left mid finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8094,1,4,0)
- ;;=4^S61.213A
- ;;^UTILITY(U,$J,358.3,8094,2)
- ;;=^5032780
- ;;^UTILITY(U,$J,358.3,8095,0)
- ;;=S61.214A^^33^431^133
- ;;^UTILITY(U,$J,358.3,8095,1,0)
+ ;;^UTILITY(U,$J,358.3,17571,1,3,0)
+ ;;=3^Radiculopathy, cervical region
+ ;;^UTILITY(U,$J,358.3,17571,1,4,0)
+ ;;=4^M54.12
+ ;;^UTILITY(U,$J,358.3,17571,2)
+ ;;=^5012297
+ ;;^UTILITY(U,$J,358.3,17572,0)
+ ;;=M54.16^^76^903^2
+ ;;^UTILITY(U,$J,358.3,17572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8095,1,3,0)
- ;;=3^Laceration w/o fb of right rng fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8095,1,4,0)
- ;;=4^S61.214A
- ;;^UTILITY(U,$J,358.3,8095,2)
- ;;=^5032783
- ;;^UTILITY(U,$J,358.3,8096,0)
- ;;=S61.215A^^33^431^121
- ;;^UTILITY(U,$J,358.3,8096,1,0)
+ ;;^UTILITY(U,$J,358.3,17572,1,3,0)
+ ;;=3^Radiculopathy, lumbar region
+ ;;^UTILITY(U,$J,358.3,17572,1,4,0)
+ ;;=4^M54.16
+ ;;^UTILITY(U,$J,358.3,17572,2)
+ ;;=^5012301
+ ;;^UTILITY(U,$J,358.3,17573,0)
+ ;;=M54.14^^76^903^4
+ ;;^UTILITY(U,$J,358.3,17573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8096,1,3,0)
- ;;=3^Laceration w/o fb of left rng fngr w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8096,1,4,0)
- ;;=4^S61.215A
- ;;^UTILITY(U,$J,358.3,8096,2)
- ;;=^5032786
- ;;^UTILITY(U,$J,358.3,8097,0)
- ;;=S61.216A^^33^431^130
- ;;^UTILITY(U,$J,358.3,8097,1,0)
+ ;;^UTILITY(U,$J,358.3,17573,1,3,0)
+ ;;=3^Radiculopathy, thoracic region
+ ;;^UTILITY(U,$J,358.3,17573,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,17573,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,17574,0)
+ ;;=L72.3^^76^904^1
+ ;;^UTILITY(U,$J,358.3,17574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8097,1,3,0)
- ;;=3^Laceration w/o fb of right litttle finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8097,1,4,0)
- ;;=4^S61.216A
- ;;^UTILITY(U,$J,358.3,8097,2)
- ;;=^5032789
- ;;^UTILITY(U,$J,358.3,8098,0)
- ;;=S61.217A^^33^431^118
- ;;^UTILITY(U,$J,358.3,8098,1,0)
+ ;;^UTILITY(U,$J,358.3,17574,1,3,0)
+ ;;=3^Sebaceous cyst
+ ;;^UTILITY(U,$J,358.3,17574,1,4,0)
+ ;;=4^L72.3
+ ;;^UTILITY(U,$J,358.3,17574,2)
+ ;;=^5009281
+ ;;^UTILITY(U,$J,358.3,17575,0)
+ ;;=R06.02^^76^904^5
+ ;;^UTILITY(U,$J,358.3,17575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8098,1,3,0)
- ;;=3^Laceration w/o fb of left little finger w/o damage to nail, init
- ;;^UTILITY(U,$J,358.3,8098,1,4,0)
- ;;=4^S61.217A
- ;;^UTILITY(U,$J,358.3,8098,2)
- ;;=^5032792
- ;;^UTILITY(U,$J,358.3,8099,0)
- ;;=S91.311A^^33^431^124
- ;;^UTILITY(U,$J,358.3,8099,1,0)
+ ;;^UTILITY(U,$J,358.3,17575,1,3,0)
+ ;;=3^Shortness of breath
+ ;;^UTILITY(U,$J,358.3,17575,1,4,0)
+ ;;=4^R06.02
+ ;;^UTILITY(U,$J,358.3,17575,2)
+ ;;=^5019181
+ ;;^UTILITY(U,$J,358.3,17576,0)
+ ;;=J01.90^^76^904^6
+ ;;^UTILITY(U,$J,358.3,17576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8099,1,3,0)
- ;;=3^Laceration w/o fb of right foot, init encntr
- ;;^UTILITY(U,$J,358.3,8099,1,4,0)
- ;;=4^S91.311A
- ;;^UTILITY(U,$J,358.3,8099,2)
- ;;=^5044320
- ;;^UTILITY(U,$J,358.3,8100,0)
- ;;=S91.312A^^33^431^112
+ ;;^UTILITY(U,$J,358.3,17576,1,3,0)
+ ;;=3^Sinusitis, acute, unspec
+ ;;^UTILITY(U,$J,358.3,17576,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,17576,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,17577,0)
+ ;;=G47.9^^76^904^9
+ ;;^UTILITY(U,$J,358.3,17577,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17577,1,3,0)
+ ;;=3^Sleep disorder, unspec
+ ;;^UTILITY(U,$J,358.3,17577,1,4,0)
+ ;;=4^G47.9
+ ;;^UTILITY(U,$J,358.3,17577,2)
+ ;;=^5003990
+ ;;^UTILITY(U,$J,358.3,17578,0)
+ ;;=G47.30^^76^904^8
+ ;;^UTILITY(U,$J,358.3,17578,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17578,1,3,0)
+ ;;=3^Sleep apnea, unspec
+ ;;^UTILITY(U,$J,358.3,17578,1,4,0)
+ ;;=4^G47.30
+ ;;^UTILITY(U,$J,358.3,17578,2)
+ ;;=^5003977
+ ;;^UTILITY(U,$J,358.3,17579,0)
+ ;;=M46.90^^76^904^16
+ ;;^UTILITY(U,$J,358.3,17579,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17579,1,3,0)
+ ;;=3^Spondylopathy, inflammatory, unspec, site unspec
+ ;;^UTILITY(U,$J,358.3,17579,1,4,0)
+ ;;=4^M46.90
+ ;;^UTILITY(U,$J,358.3,17579,2)
+ ;;=^5012030
+ ;;^UTILITY(U,$J,358.3,17580,0)
+ ;;=M47.819^^76^904^17
+ ;;^UTILITY(U,$J,358.3,17580,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17580,1,3,0)
+ ;;=3^Spondylosis w/o mylpthy/rdculopthy, site unspec
+ ;;^UTILITY(U,$J,358.3,17580,1,4,0)
+ ;;=4^M47.819
+ ;;^UTILITY(U,$J,358.3,17580,2)
+ ;;=^5012076
+ ;;^UTILITY(U,$J,358.3,17581,0)
+ ;;=F43.0^^76^904^19
+ ;;^UTILITY(U,$J,358.3,17581,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17581,1,3,0)
+ ;;=3^Stress reaction, acute
+ ;;^UTILITY(U,$J,358.3,17581,1,4,0)
+ ;;=4^F43.0
+ ;;^UTILITY(U,$J,358.3,17581,2)
+ ;;=^5003569
+ ;;^UTILITY(U,$J,358.3,17582,0)
+ ;;=R55.^^76^904^20
+ ;;^UTILITY(U,$J,358.3,17582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17582,1,3,0)
+ ;;=3^Syncope & collapse
+ ;;^UTILITY(U,$J,358.3,17582,1,4,0)
+ ;;=4^R55.
+ ;;^UTILITY(U,$J,358.3,17582,2)
+ ;;=^116707
+ ;;^UTILITY(U,$J,358.3,17583,0)
+ ;;=I69.928^^76^904^10
+ ;;^UTILITY(U,$J,358.3,17583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17583,1,3,0)
+ ;;=3^Speech/Lang Deficits following Cerebvasc Dz
+ ;;^UTILITY(U,$J,358.3,17583,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,17583,2)
+ ;;=^5007557
+ ;;^UTILITY(U,$J,358.3,17584,0)
+ ;;=S13.4XXA^^76^904^18
+ ;;^UTILITY(U,$J,358.3,17584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17584,1,3,0)
+ ;;=3^Sprain of Ligaments Cervical Spine,Init Encrtr
+ ;;^UTILITY(U,$J,358.3,17584,1,4,0)
+ ;;=4^S13.4XXA
+ ;;^UTILITY(U,$J,358.3,17584,2)
+ ;;=^5022028
+ ;;^UTILITY(U,$J,358.3,17585,0)
+ ;;=M48.06^^76^904^12
+ ;;^UTILITY(U,$J,358.3,17585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17585,1,3,0)
+ ;;=3^Spinal Stenosis, lumbar region
+ ;;^UTILITY(U,$J,358.3,17585,1,4,0)
+ ;;=4^M48.06
+ ;;^UTILITY(U,$J,358.3,17585,2)
+ ;;=^5012093
+ ;;^UTILITY(U,$J,358.3,17586,0)
+ ;;=J32.9^^76^904^7
+ ;;^UTILITY(U,$J,358.3,17586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17586,1,3,0)
+ ;;=3^Sinusitis,Chronic,Unspec
+ ;;^UTILITY(U,$J,358.3,17586,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,17586,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,17587,0)
+ ;;=M48.02^^76^904^13
+ ;;^UTILITY(U,$J,358.3,17587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17587,1,3,0)
+ ;;=3^Spinal stenosis, cervical region
+ ;;^UTILITY(U,$J,358.3,17587,1,4,0)
+ ;;=4^M48.02
+ ;;^UTILITY(U,$J,358.3,17587,2)
+ ;;=^5012089
+ ;;^UTILITY(U,$J,358.3,17588,0)
+ ;;=M48.04^^76^904^15
+ ;;^UTILITY(U,$J,358.3,17588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17588,1,3,0)
+ ;;=3^Spinal stenosis, thoracic region
+ ;;^UTILITY(U,$J,358.3,17588,1,4,0)
+ ;;=4^M48.04
+ ;;^UTILITY(U,$J,358.3,17588,2)
+ ;;=^5012091
+ ;;^UTILITY(U,$J,358.3,17589,0)
+ ;;=M48.00^^76^904^14
+ ;;^UTILITY(U,$J,358.3,17589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17589,1,3,0)
+ ;;=3^Spinal stenosis, site unspecified
+ ;;^UTILITY(U,$J,358.3,17589,1,4,0)
+ ;;=4^M48.00
+ ;;^UTILITY(U,$J,358.3,17589,2)
+ ;;=^5012087
+ ;;^UTILITY(U,$J,358.3,17590,0)
+ ;;=S14.109S^^76^904^2
+ ;;^UTILITY(U,$J,358.3,17590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17590,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Cervical Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17590,1,4,0)
+ ;;=4^S14.109S
+ ;;^UTILITY(U,$J,358.3,17590,2)
+ ;;=^5134243
+ ;;^UTILITY(U,$J,358.3,17591,0)
+ ;;=S24.109S^^76^904^4
+ ;;^UTILITY(U,$J,358.3,17591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17591,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Thoracic Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17591,1,4,0)
+ ;;=4^S24.109S
+ ;;^UTILITY(U,$J,358.3,17591,2)
+ ;;=^5134384
+ ;;^UTILITY(U,$J,358.3,17592,0)
+ ;;=S34.109S^^76^904^3
+ ;;^UTILITY(U,$J,358.3,17592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17592,1,3,0)
+ ;;=3^Sequela of Unspec Injury of Lumbar Spinal Cord
+ ;;^UTILITY(U,$J,358.3,17592,1,4,0)
+ ;;=4^S34.109S
+ ;;^UTILITY(U,$J,358.3,17592,2)
+ ;;=^5134570
+ ;;^UTILITY(U,$J,358.3,17593,0)
+ ;;=I69.328^^76^904^11

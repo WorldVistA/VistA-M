@@ -1,16 +1,15 @@
-PSIVEDT ;BIR/MLM-EDIT IV ORDER ;10 Feb 98 / 3:23 PM
- ;;5.0;INPATIENT MEDICATIONS ;**4,110,127,133,134,181,252**;16 DEC 97;Build 69
+PSIVEDT ;BIR/MLM - EDIT IV ORDER ;2/10/98 3:23 PM
+ ;;5.0;INPATIENT MEDICATIONS;**4,110,127,133,134,181,252,281**;16 DEC 97;Build 113
  ;
- ; Reference to ^DD(53.1 is supported by DBIA 2256.
+ ; Reference to ^PS(53.1 is supported by DBIA 2256.
  ; Reference to ^PS(52.7 is supported by DBIA 2173.
- ; Reference to ^PS(52.6 is supported by DBIA 1231.
  ; Reference to ^PS(51.2 is supported by DBIA 2178.
  ; Reference to ^PS(50.7 is supported by DBIA 2180.
  ; Reference to ^PS(55 is supported by DBIA 2191.
  ;
 EDIT ;
  ;Store the DRG array.  If it changed then to do an OC
- NEW TMPDRG,PSJFLG57
+ NEW TMPDRG,PSJFLG57,PSIVE,PSIALLFL
  D SAVEDRG^PSIVEDRG(.TMPDRG,.DRG)
  I $G(DFN)&($G(PSJORD)["V") I $$COMPLEX^PSJOE(DFN,PSJORD) D
  . N X,Y,PARENT,P2ND S P2ND=$S($G(^PS(55,PSGP,"IV",+PSJORD,.2)):$G(^PS(55,PSGP,"IV",+PSJORD,.2)),1:$G(^PS(55,PSGP,5,+PSJORD,.2)))
@@ -18,7 +17,8 @@ EDIT ;
  . I PARENT D FULL^VALM1 W !!?5,"This order is part of a complex order. Please review the following ",!?5,"associated orders before changing this order." D CMPLX^PSJCOM1(PSGP,PARENT,PSJORD)
  S DONE=0
  F PSIVE=1:1 S:DONE&$E(PSIVAC)="C" OREND=1 Q:PSIVE>$L(EDIT,U)!(DONE)  Q:'$L($P(EDIT,U,PSIVE))  D @($P(EDIT,U,PSIVE)) S:$E(PSIVAC,2)="N" PSIVOK=PSIVOK_U_$P(EDIT,U,PSIVE) I $E(X)=U,$L(X)>1 S:PSIVE>1 PSIVE=PSIVE-1 F  D FF Q:Y<0  D @Y Q:$E(X)'=U
- I $G(PSJOCCHK) K PSJOCCHK D OC^PSIVOC
+ I $G(PSGORQF) K PSIVEDIT S PSJOCCHK=1,PSIVENO=1 ;RTC 151046
+ I '$G(PSGORQF),$G(PSJOCCHK) K PSJOCCHK,PSIVENO D OC^PSIVOC
  K EDIT,PSIVOK,PSGDI
  ;If quit then restore DRG( to pre-edit state
  I $G(PSGORQF) D SAVEDRG^PSIVEDRG(.DRG,.TMPDRG)
@@ -79,13 +79,14 @@ EDIT ;
  I $G(DFN)&($G(ON)["V") I $$COMPLEX^PSJOE(DFN,ON) D  Q
  .Q:$G(PSJBKDR)  W !!?5,"This is a Complex Order. Provider may not be edited at this point." D PAUSE^VALM1
  I $E(PSIVAC)="O" W !!,"Only additives marked for use in IV Fluid Order Entry may be selected."
+ ; Reference to ^PS(52.6 is supported by DBIA 1231.
  S FIL=52.6,DRGT="AD",DRGTN="ADDITIVE" D DRG^PSIVEDRG,DKILL
  ;I $G(X)="^" G DKILL
  ;If Solution prompt is next then wait to do dose checks after all solutions are entered.
  ;PSJFLG57 is set so OC is triggered when the user entered ^ADDITIVE.
  I $$COMPARE^PSJMISC(.DRG,.TMPDRG) D
  . D ENSTOP^PSIVCAL
- . I $S($G(PSJFLG57):1,($G(EDIT)'["58"):1,1:0) K PSJFLG57,PSJOCCHK D OC^PSIVOC
+ . I $S($G(PSJFLG57):1,($G(EDIT)'["58"):1,1:0) K PSJFLG57,PSJOCCHK D OC^PSIVOC S:$G(EDIT)]"" PSJENHOC=1
  I $G(X)="^" G DKILL
  Q
  ;
@@ -101,9 +102,10 @@ EDIT ;
  . NEW X,PSJALLGY
  . K PSJALLGY
  . D SETDD^PSIVOC(1)
- . D GMRAOC^PSJOC
+ . D GMRAOC^PSJOC S:'$G(PSGORQF) PSIALLFL=1
  . K PSJALLGY
- I PSJCMPFG K PSJOCCHK D ENSTOP^PSIVCAL D OC^PSIVOC
+ Q:$G(PSGORQF)
+ I PSJCMPFG K PSJOCCHK D ENSTOP^PSIVCAL D OC^PSIVOC S:$G(EDIT)]"" PSJENHOC=1
  K PSJCMPFG
  I $G(X)="^" G DKILL
  ;
@@ -129,7 +131,7 @@ DKILL ; Kill for drug edit.
  Q
  ;
 66 ; Provider's comments.
- N DA,DIE,DIR S DA=PSIVUP,DIE="^PS(53.45,",DR=4 D ^DIE S PSGSI=X,Y=1
+ N DA,DIE,DIR,DR S DA=PSIVUP,DIE="^PS(53.45,",DR=4 D ^DIE S PSGSI=X,Y=1
  Q
  ;
 101 ; Orderable Item.

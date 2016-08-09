@@ -1,6 +1,6 @@
-RCDPLPL1 ;WISC/RFJ/PJH - link payments listmanager options ; 5/25/11 2:53pm
- ;;4.5;Accounts Receivable;**114,148,153,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPLPL1 ;WISC/RFJ/PJH - link payments listmanager options ;5/25/11 2:53pm
+ ;;4.5;Accounts Receivable;**114,148,153,208,269,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -77,7 +77,6 @@ RECEIPT ;  receipt profile
  I $G(RCDPFXIT) S VALMBCK="Q"
  Q
  ;
- ;
 CLEARSUS ;  flag a payment as being cleared from suspense
  D FULL^VALM1
  S VALMBCK="R"
@@ -100,11 +99,21 @@ CLEARSUS ;  flag a payment as being cleared from suspense
  W !,"               Transaction: ",RCTRANDA
  W !,"  Unapplied Deposit Number: ",$P($G(^RCY(344,RCRECTDA,1,RCTRANDA,2)),"^",5)
  D EDITFMS^RCDPURET(RCRECTDA,RCTRANDA,"")
+ ;
+ ;PRCA*4.5*304 Force a comment and update audit Log
+ ;ask for comment
+ D ADDCMT(RCRECTDA,RCTRANDA)
+ ;
+ ;
+ ;If the CR document was filed, update the Audit Log and suspense status
+ I $P($G(^RCY(344,RCRECTDA,1,RCTRANDA,2)),U,6)'="" D
+ . D AUDIT^RCBEPAY(RCRECTDA,RCTRANDA,"R")
+ . D SUSPDIS^RCBEPAY(RCRECTDA,RCTRANDA,"R")
+ ;end PRCA*4.5*304
+ ;
  S VALMBCK="R"
  D INIT^RCDPLPLM
  Q
- ;
- ;
  ;
  ;
 SELPAY() ;  select a payment from the form list
@@ -162,3 +171,25 @@ ASKTYPE() ;  ask the type of match
  D ^DIR
  I $G(DTOUT)!($G(DUOUT)) S Y=-1
  Q $S(Y=1:"EQUAL TO",Y=2:"CONTAINING",1:-1)
+ ;
+ ;PRCA*4.5*304
+ADDCMT(RCRECTDA,RCTRANDA)   ;ask for a comment for the suspense entry
+ ;
+ N DA,DIDEL,DIE,DIR,DIRUT,DIROUT,DR,DTOUT,DUOUT,RCDCMT,X,Y
+ S RCDCMT=""
+ F  D  Q:RCDCMT'=""
+ . S DIR(0)="FAO^1:50"
+ . S DIR("A")="Comment: "
+ . D ^DIR
+ . ;strip all leading and trailing spaces
+ . S Y=$$TRIM^XLFSTR(Y)
+ . I (Y="")!(Y="^") W !,"A comment is required when changing the status of an item in Suspense.  Please try again." Q
+ . S RCDCMT=Y
+ ;
+ ; Update the comment field
+ S DR="1.02////"_RCDCMT
+ S DIE="^RCY(344,"_RCRECTDA_",1,"
+ S DA=RCTRANDA,DA(1)=RCRECTDA
+ D ^DIE
+ D LASTEDIT^RCDPUREC(RCRECTDA)
+ Q

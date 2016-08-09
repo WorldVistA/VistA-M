@@ -1,134 +1,254 @@
-IBDEI0AY ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0AY ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4913,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4913,1,2,0)
- ;;=2^A4690
- ;;^UTILITY(U,$J,358.3,4913,1,3,0)
- ;;=3^DIALYZER, EACH
- ;;^UTILITY(U,$J,358.3,4914,0)
- ;;=93000^^26^311^15^^^^1
- ;;^UTILITY(U,$J,358.3,4914,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4914,1,2,0)
- ;;=2^93000
- ;;^UTILITY(U,$J,358.3,4914,1,3,0)
- ;;=3^ELECTROCARDIOGRAM COMPLETE
- ;;^UTILITY(U,$J,358.3,4915,0)
- ;;=A4730^^26^311^16^^^^1
- ;;^UTILITY(U,$J,358.3,4915,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4915,1,2,0)
- ;;=2^A4730
- ;;^UTILITY(U,$J,358.3,4915,1,3,0)
- ;;=3^FISTULA CANNULATION SET, EA
- ;;^UTILITY(U,$J,358.3,4916,0)
- ;;=90935^^26^311^18^^^^1
- ;;^UTILITY(U,$J,358.3,4916,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4916,1,2,0)
- ;;=2^90935
- ;;^UTILITY(U,$J,358.3,4916,1,3,0)
- ;;=3^HEMODIALYSIS ONE EVALUATION
- ;;^UTILITY(U,$J,358.3,4917,0)
- ;;=90937^^26^311^19^^^^1
- ;;^UTILITY(U,$J,358.3,4917,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4917,1,2,0)
- ;;=2^90937
- ;;^UTILITY(U,$J,358.3,4917,1,3,0)
- ;;=3^HEMODIALYSIS REPEATED EVAL
- ;;^UTILITY(U,$J,358.3,4918,0)
- ;;=E1590^^26^311^17^^^^1
- ;;^UTILITY(U,$J,358.3,4918,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4918,1,2,0)
- ;;=2^E1590
- ;;^UTILITY(U,$J,358.3,4918,1,3,0)
- ;;=3^HEMODIALYSIS MACHINE
- ;;^UTILITY(U,$J,358.3,4919,0)
- ;;=49421^^26^311^20^^^^1
- ;;^UTILITY(U,$J,358.3,4919,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4919,1,2,0)
- ;;=2^49421
- ;;^UTILITY(U,$J,358.3,4919,1,3,0)
- ;;=3^INS TUN IP CATH FOR DIAL OPN
- ;;^UTILITY(U,$J,358.3,4920,0)
- ;;=36556^^26^311^21^^^^1
- ;;^UTILITY(U,$J,358.3,4920,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4920,1,2,0)
- ;;=2^36556
- ;;^UTILITY(U,$J,358.3,4920,1,3,0)
- ;;=3^INSERT NON-TUNNEL CV CATH
- ;;^UTILITY(U,$J,358.3,4921,0)
- ;;=99195^^26^311^22^^^^1
- ;;^UTILITY(U,$J,358.3,4921,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4921,1,2,0)
- ;;=2^99195
- ;;^UTILITY(U,$J,358.3,4921,1,3,0)
- ;;=3^PHLEBOTOMY THERAPEUTIC
- ;;^UTILITY(U,$J,358.3,4922,0)
- ;;=S0630^^26^311^23^^^^1
- ;;^UTILITY(U,$J,358.3,4922,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4922,1,2,0)
- ;;=2^S0630
- ;;^UTILITY(U,$J,358.3,4922,1,3,0)
- ;;=3^REMOVAL OF SUTURES BY MD
- ;;^UTILITY(U,$J,358.3,4923,0)
- ;;=49422^^26^311^24^^^^1
- ;;^UTILITY(U,$J,358.3,4923,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4923,1,2,0)
- ;;=2^49422
- ;;^UTILITY(U,$J,358.3,4923,1,3,0)
- ;;=3^REMOVE PERM CANNULA/CATHETER
- ;;^UTILITY(U,$J,358.3,4924,0)
- ;;=49422^^26^311^25^^^^1
- ;;^UTILITY(U,$J,358.3,4924,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4924,1,2,0)
- ;;=2^49422
- ;;^UTILITY(U,$J,358.3,4924,1,3,0)
- ;;=3^REMOVE TUNNELED IP CATH
- ;;^UTILITY(U,$J,358.3,4925,0)
- ;;=A4740^^26^311^26^^^^1
- ;;^UTILITY(U,$J,358.3,4925,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4925,1,2,0)
- ;;=2^A4740
- ;;^UTILITY(U,$J,358.3,4925,1,3,0)
- ;;=3^SHUNT ACCESSORY
- ;;^UTILITY(U,$J,358.3,4926,0)
- ;;=A4714^^26^311^27^^^^1
- ;;^UTILITY(U,$J,358.3,4926,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4926,1,2,0)
- ;;=2^A4714
- ;;^UTILITY(U,$J,358.3,4926,1,3,0)
- ;;=3^TREATED WATER PER GALLON
- ;;^UTILITY(U,$J,358.3,4927,0)
- ;;=A4706^^26^311^4^^^^1
- ;;^UTILITY(U,$J,358.3,4927,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4927,1,2,0)
- ;;=2^A4706
- ;;^UTILITY(U,$J,358.3,4927,1,3,0)
- ;;=3^BICARBONATE CONC SOL PER GALLON
- ;;^UTILITY(U,$J,358.3,4928,0)
- ;;=90965^^26^312^1^^^^1
- ;;^UTILITY(U,$J,358.3,4928,1,0)
- ;;=^358.31IA^3^2
- ;;^UTILITY(U,$J,358.3,4928,1,2,0)
- ;;=2^90965
- ;;^UTILITY(U,$J,358.3,4928,1,3,0)
- ;;=3^ESRD HOME PT SERV P MO AGE 12-19
- ;;^UTILITY(U,$J,358.3,4929,0)
- ;;=90966^^26^312^2^^^^1
- ;;^UTILITY(U,$J,358.3,4929,1,0)
- ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,10959,1,4,0)
+ ;;=4^E10.39
+ ;;^UTILITY(U,$J,358.3,10959,2)
+ ;;=^5002603
+ ;;^UTILITY(U,$J,358.3,10960,0)
+ ;;=E10.321^^53^605^3
+ ;;^UTILITY(U,$J,358.3,10960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10960,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10960,1,4,0)
+ ;;=4^E10.321
+ ;;^UTILITY(U,$J,358.3,10960,2)
+ ;;=^5002594
+ ;;^UTILITY(U,$J,358.3,10961,0)
+ ;;=E10.329^^53^605^4
+ ;;^UTILITY(U,$J,358.3,10961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10961,1,3,0)
+ ;;=3^DM Type 1 w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10961,1,4,0)
+ ;;=4^E10.329
+ ;;^UTILITY(U,$J,358.3,10961,2)
+ ;;=^5002595
+ ;;^UTILITY(U,$J,358.3,10962,0)
+ ;;=E10.331^^53^605^5
+ ;;^UTILITY(U,$J,358.3,10962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10962,1,3,0)
+ ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10962,1,4,0)
+ ;;=4^E10.331
+ ;;^UTILITY(U,$J,358.3,10962,2)
+ ;;=^5002596
+ ;;^UTILITY(U,$J,358.3,10963,0)
+ ;;=E10.339^^53^605^6
+ ;;^UTILITY(U,$J,358.3,10963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10963,1,3,0)
+ ;;=3^DM Type 1 w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10963,1,4,0)
+ ;;=4^E10.339
+ ;;^UTILITY(U,$J,358.3,10963,2)
+ ;;=^5002597
+ ;;^UTILITY(U,$J,358.3,10964,0)
+ ;;=E10.341^^53^605^9
+ ;;^UTILITY(U,$J,358.3,10964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10964,1,3,0)
+ ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10964,1,4,0)
+ ;;=4^E10.341
+ ;;^UTILITY(U,$J,358.3,10964,2)
+ ;;=^5002598
+ ;;^UTILITY(U,$J,358.3,10965,0)
+ ;;=E10.349^^53^605^10
+ ;;^UTILITY(U,$J,358.3,10965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10965,1,3,0)
+ ;;=3^DM Type 1 w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10965,1,4,0)
+ ;;=4^E10.349
+ ;;^UTILITY(U,$J,358.3,10965,2)
+ ;;=^5002599
+ ;;^UTILITY(U,$J,358.3,10966,0)
+ ;;=E10.351^^53^605^7
+ ;;^UTILITY(U,$J,358.3,10966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10966,1,3,0)
+ ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10966,1,4,0)
+ ;;=4^E10.351
+ ;;^UTILITY(U,$J,358.3,10966,2)
+ ;;=^5002600
+ ;;^UTILITY(U,$J,358.3,10967,0)
+ ;;=E10.359^^53^605^8
+ ;;^UTILITY(U,$J,358.3,10967,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10967,1,3,0)
+ ;;=3^DM Type 1 w/ Prolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10967,1,4,0)
+ ;;=4^E10.359
+ ;;^UTILITY(U,$J,358.3,10967,2)
+ ;;=^5002601
+ ;;^UTILITY(U,$J,358.3,10968,0)
+ ;;=E08.311^^53^605^39
+ ;;^UTILITY(U,$J,358.3,10968,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10968,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10968,1,4,0)
+ ;;=4^E08.311
+ ;;^UTILITY(U,$J,358.3,10968,2)
+ ;;=^5002510
+ ;;^UTILITY(U,$J,358.3,10969,0)
+ ;;=E08.319^^53^605^40
+ ;;^UTILITY(U,$J,358.3,10969,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10969,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10969,1,4,0)
+ ;;=4^E08.319
+ ;;^UTILITY(U,$J,358.3,10969,2)
+ ;;=^5002511
+ ;;^UTILITY(U,$J,358.3,10970,0)
+ ;;=E08.321^^53^605^41
+ ;;^UTILITY(U,$J,358.3,10970,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10970,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10970,1,4,0)
+ ;;=4^E08.321
+ ;;^UTILITY(U,$J,358.3,10970,2)
+ ;;=^5002512
+ ;;^UTILITY(U,$J,358.3,10971,0)
+ ;;=E08.329^^53^605^42
+ ;;^UTILITY(U,$J,358.3,10971,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10971,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10971,1,4,0)
+ ;;=4^E08.329
+ ;;^UTILITY(U,$J,358.3,10971,2)
+ ;;=^5002513
+ ;;^UTILITY(U,$J,358.3,10972,0)
+ ;;=E08.331^^53^605^43
+ ;;^UTILITY(U,$J,358.3,10972,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10972,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10972,1,4,0)
+ ;;=4^E08.331
+ ;;^UTILITY(U,$J,358.3,10972,2)
+ ;;=^5002514
+ ;;^UTILITY(U,$J,358.3,10973,0)
+ ;;=E08.339^^53^605^44
+ ;;^UTILITY(U,$J,358.3,10973,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10973,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Moderate Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10973,1,4,0)
+ ;;=4^E08.339
+ ;;^UTILITY(U,$J,358.3,10973,2)
+ ;;=^5002515
+ ;;^UTILITY(U,$J,358.3,10974,0)
+ ;;=E08.341^^53^605^47
+ ;;^UTILITY(U,$J,358.3,10974,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10974,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10974,1,4,0)
+ ;;=4^E08.341
+ ;;^UTILITY(U,$J,358.3,10974,2)
+ ;;=^5002516
+ ;;^UTILITY(U,$J,358.3,10975,0)
+ ;;=E08.349^^53^605^48
+ ;;^UTILITY(U,$J,358.3,10975,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10975,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Severe Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10975,1,4,0)
+ ;;=4^E08.349
+ ;;^UTILITY(U,$J,358.3,10975,2)
+ ;;=^5002517
+ ;;^UTILITY(U,$J,358.3,10976,0)
+ ;;=E09.311^^53^605^37
+ ;;^UTILITY(U,$J,358.3,10976,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10976,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10976,1,4,0)
+ ;;=4^E09.311
+ ;;^UTILITY(U,$J,358.3,10976,2)
+ ;;=^5002552
+ ;;^UTILITY(U,$J,358.3,10977,0)
+ ;;=E09.319^^53^605^38
+ ;;^UTILITY(U,$J,358.3,10977,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10977,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10977,1,4,0)
+ ;;=4^E09.319
+ ;;^UTILITY(U,$J,358.3,10977,2)
+ ;;=^5002553
+ ;;^UTILITY(U,$J,358.3,10978,0)
+ ;;=E09.321^^53^605^29
+ ;;^UTILITY(U,$J,358.3,10978,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10978,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10978,1,4,0)
+ ;;=4^E09.321
+ ;;^UTILITY(U,$J,358.3,10978,2)
+ ;;=^5002554
+ ;;^UTILITY(U,$J,358.3,10979,0)
+ ;;=E09.329^^53^605^30
+ ;;^UTILITY(U,$J,358.3,10979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10979,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10979,1,4,0)
+ ;;=4^E09.329
+ ;;^UTILITY(U,$J,358.3,10979,2)
+ ;;=^5002555
+ ;;^UTILITY(U,$J,358.3,10980,0)
+ ;;=E09.351^^53^605^33
+ ;;^UTILITY(U,$J,358.3,10980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10980,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10980,1,4,0)
+ ;;=4^E09.351
+ ;;^UTILITY(U,$J,358.3,10980,2)
+ ;;=^5002560
+ ;;^UTILITY(U,$J,358.3,10981,0)
+ ;;=E09.359^^53^605^34
+ ;;^UTILITY(U,$J,358.3,10981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10981,1,3,0)
+ ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10981,1,4,0)
+ ;;=4^E09.359
+ ;;^UTILITY(U,$J,358.3,10981,2)
+ ;;=^5002561
+ ;;^UTILITY(U,$J,358.3,10982,0)
+ ;;=E08.351^^53^605^45
+ ;;^UTILITY(U,$J,358.3,10982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10982,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,10982,1,4,0)
+ ;;=4^E08.351
+ ;;^UTILITY(U,$J,358.3,10982,2)
+ ;;=^5002518
+ ;;^UTILITY(U,$J,358.3,10983,0)
+ ;;=E08.359^^53^605^46
+ ;;^UTILITY(U,$J,358.3,10983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10983,1,3,0)
+ ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,10983,1,4,0)
+ ;;=4^E08.359
+ ;;^UTILITY(U,$J,358.3,10983,2)
+ ;;=^5002519
+ ;;^UTILITY(U,$J,358.3,10984,0)
+ ;;=E13.351^^53^605^27
+ ;;^UTILITY(U,$J,358.3,10984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10984,1,3,0)
+ ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema

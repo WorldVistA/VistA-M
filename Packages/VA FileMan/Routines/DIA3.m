@@ -1,6 +1,10 @@
 DIA3 ;SFISC/GFT-UPDATE POINTERS, CHECK CODE IN INPUT STRING, CHECK FILE ACCESS ;19SEP2004
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S Y=DIA("P"),DH=1,DTO=DIA D PTS^DIT:'$D(^UTILITY("DIT",$J,0)) S ^UTILITY("DIT",$J,0)=0 Q:$D(^(0))<9
  D ASK^DITP Q:%-1
  S Y=0 I @("$O("_DIC_"0))'>0") G D
@@ -12,12 +16,12 @@ DITP S (^UTILITY("DIT",$J,DIA(1)),^(DIA(1)_";"_$E(DIA,2,999)))=+Y_";"_$E(DIA,2,9
  W !?4,"("_$P("DELETION^RE-POINTING",U,''Y+1)_" WILL OCCUR WHEN YOU LEAVE 'ENTER/EDIT' OPTION)"
  Q
  ;
-FIXPT(DIFLG,DIFILE,DIDELIEN,DIPTIEN) ;DELETE OR REPOINT POINTERS
+FIXPT(DIFLG,DIFILE,DIDELIEN,DIPTIEN) ;DELETE OR REPOINT POINTERS  ---never done??
  ;In V21, will just delete pointers.  Later, DIPTIEN will be record to repoint to.
  ;DIFLG="D" (delete), DIFILE=File# previously pointed to, DIDELIEN=Record# previously pointed to, DIPTIEN=New pointed-to record(future)
  N %X,%Y,X,Y,DIPTIEN,DIFIXPT,DIFIXPTC,DIFIXPTH D  I $G(X)]"" D BLD^DIALOG(201,X) Q
  . S X="DIFLG" Q:$G(DIFLG)'="D"  S X="DIDELIEN" Q:'$G(DIDELIEN)  S X="DIFILE" Q:'$G(DIFILE)  Q:$G(^DIC(DIFILE,0,"GL"))=""
- . S X="DIPTIEN" I $G(DIPTIEN) S Y=$G(^DD(DIFILE,0,"GL")) Q:Y=""  I '$D(@(Y_DIPTIEN_",0)")) Q
+ . S X="DIPTIEN" I $G(DIPTIEN) S Y=$G(^DD(DIFILE,0,"GL")) Q:Y=""  I '$D(@(Y_DIPTIEN_",0)")) Q  ;<<<Kevin T found bad code 11/14/05
  . K X Q
  S DIPTIEN=+$G(DIPTIEN),(DIFIXPT,DIFIXPTC)=1
  N %,BY,D,DHD,DHIT,DIA,DIC,DISTOP,DL,DR,DTO,FLDS,FR,IOP,L,TO,X,Y,Z K ^UTILITY("DIT",$J),^TMP("DIFIXPT",$J)

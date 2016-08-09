@@ -1,6 +1,10 @@
-DINIT001 ; SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;11:25 AM  22 Aug 2006
- ;;22.0;VA FileMan;**150**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT001 ;SFISC/TKW-DIALOG & LANGUAGE FILE INITS ;15JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) S @X=Y
 Q Q
  ;;^DIC(.84,0,"GL")
@@ -80,7 +84,7 @@ Q Q
  ;;^DD(.84,1,"DT")
  ;;=2940523
  ;;^DD(.84,1.2,0)
- ;;=PACKAGE^RP9.4'^DIC(9.4,^0;4^Q
+ ;;=PACKAGE^P9.4'^DIC(9.4,^0;4^Q
  ;;^DD(.84,1.2,1,0)
  ;;=^.1
  ;;^DD(.84,1.2,1,1,0)
@@ -178,7 +182,17 @@ Q Q
  ;;^DD(.84,4,21,7,0)
  ;;=PARAMETER field in this file to document the parameter.
  ;;^DD(.84,5,0)
- ;;=PARAMETER^.845^^3;0
+ ;;=PARAMETER^.845A^^3;0
+ ;;^DD(.84,5,21,0)
+ ;;=^^4^4^3160115
+ ;;^DD(.84,5,21,1,0)
+ ;;=This multiple is used for documentation purposes only.  
+ ;;^DD(.84,5,21,2,0)
+ ;;=It documents the parameters passed to the BLD^DIALOG 
+ ;;^DD(.84,5,21,3,0)
+ ;;=and $$EZBLD^DIALOG message building calls.  
+ ;;^DD(.84,5,21,4,0)
+ ;;=The parameters are identified and their purpose described.
  ;;^DD(.84,6,0)
  ;;=POST MESSAGE ACTION^K^^6;E1,245^K:$L(X)>245 X D:$D(X) ^DIM
  ;;^DD(.84,6,3)

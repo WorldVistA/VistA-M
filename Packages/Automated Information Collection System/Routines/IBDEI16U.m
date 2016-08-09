@@ -1,132 +1,34 @@
-IBDEI16U ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
- Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
+IBDEI16U ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
+ Q:'DIFQR(358.99)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,20202,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20202,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Bladder
- ;;^UTILITY(U,$J,358.3,20202,1,4,0)
- ;;=4^Z85.51
- ;;^UTILITY(U,$J,358.3,20202,2)
- ;;=^5063428
- ;;^UTILITY(U,$J,358.3,20203,0)
- ;;=Z85.528^^84^930^89
- ;;^UTILITY(U,$J,358.3,20203,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20203,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Kidney
- ;;^UTILITY(U,$J,358.3,20203,1,4,0)
- ;;=4^Z85.528
- ;;^UTILITY(U,$J,358.3,20203,2)
- ;;=^5063430
- ;;^UTILITY(U,$J,358.3,20204,0)
- ;;=Z85.6^^84^930^80
- ;;^UTILITY(U,$J,358.3,20204,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20204,1,3,0)
- ;;=3^Personal Hx of Leukemia
- ;;^UTILITY(U,$J,358.3,20204,1,4,0)
- ;;=4^Z85.6
- ;;^UTILITY(U,$J,358.3,20204,2)
- ;;=^5063434
- ;;^UTILITY(U,$J,358.3,20205,0)
- ;;=Z85.72^^84^930^104
- ;;^UTILITY(U,$J,358.3,20205,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20205,1,3,0)
- ;;=3^Personal Hx of Non-Hodgkin Lymphomas
- ;;^UTILITY(U,$J,358.3,20205,1,4,0)
- ;;=4^Z85.72
- ;;^UTILITY(U,$J,358.3,20205,2)
- ;;=^5063436
- ;;^UTILITY(U,$J,358.3,20206,0)
- ;;=Z85.79^^84^930^94
- ;;^UTILITY(U,$J,358.3,20206,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20206,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Lymphoid,Hematpoetc & Rel Tissue
- ;;^UTILITY(U,$J,358.3,20206,1,4,0)
- ;;=4^Z85.79
- ;;^UTILITY(U,$J,358.3,20206,2)
- ;;=^5063437
- ;;^UTILITY(U,$J,358.3,20207,0)
- ;;=Z85.820^^84^930^83
- ;;^UTILITY(U,$J,358.3,20207,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20207,1,3,0)
- ;;=3^Personal Hx of Malig Melanoma of Skin
- ;;^UTILITY(U,$J,358.3,20207,1,4,0)
- ;;=4^Z85.820
- ;;^UTILITY(U,$J,358.3,20207,2)
- ;;=^5063441
- ;;^UTILITY(U,$J,358.3,20208,0)
- ;;=Z85.828^^84^930^98
- ;;^UTILITY(U,$J,358.3,20208,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20208,1,3,0)
- ;;=3^Personal Hx of Malig Neop of Skin
- ;;^UTILITY(U,$J,358.3,20208,1,4,0)
- ;;=4^Z85.828
- ;;^UTILITY(U,$J,358.3,20208,2)
- ;;=^5063443
- ;;^UTILITY(U,$J,358.3,20209,0)
- ;;=Z85.71^^84^930^78
- ;;^UTILITY(U,$J,358.3,20209,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20209,1,3,0)
- ;;=3^Personal Hx of Hodgkin Lymphoma
- ;;^UTILITY(U,$J,358.3,20209,1,4,0)
- ;;=4^Z85.71
- ;;^UTILITY(U,$J,358.3,20209,2)
- ;;=^5063435
- ;;^UTILITY(U,$J,358.3,20210,0)
- ;;=Z65.8^^84^930^138
- ;;^UTILITY(U,$J,358.3,20210,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20210,1,3,0)
- ;;=3^Psychosocial Circumstance Related Problems
- ;;^UTILITY(U,$J,358.3,20210,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,20210,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,20211,0)
- ;;=Z86.11^^84^930^115
- ;;^UTILITY(U,$J,358.3,20211,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20211,1,3,0)
- ;;=3^Personal Hx of Tuberculosis
- ;;^UTILITY(U,$J,358.3,20211,1,4,0)
- ;;=4^Z86.11
- ;;^UTILITY(U,$J,358.3,20211,2)
- ;;=^5063461
- ;;^UTILITY(U,$J,358.3,20212,0)
- ;;=Z86.13^^84^930^82
- ;;^UTILITY(U,$J,358.3,20212,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20212,1,3,0)
- ;;=3^Personal Hx of Malaria
- ;;^UTILITY(U,$J,358.3,20212,1,4,0)
- ;;=4^Z86.13
- ;;^UTILITY(U,$J,358.3,20212,2)
- ;;=^5063463
- ;;^UTILITY(U,$J,358.3,20213,0)
- ;;=Z86.73^^84^930^112
- ;;^UTILITY(U,$J,358.3,20213,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20213,1,3,0)
- ;;=3^Personal Hx of TIA & Cereb Infrc w/o Residual Deficits
- ;;^UTILITY(U,$J,358.3,20213,1,4,0)
- ;;=4^Z86.73
- ;;^UTILITY(U,$J,358.3,20213,2)
- ;;=^5063477
- ;;^UTILITY(U,$J,358.3,20214,0)
- ;;=Z86.79^^84^930^75
- ;;^UTILITY(U,$J,358.3,20214,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,20214,1,3,0)
- ;;=3^Personal Hx of Circulatory System Diseases
- ;;^UTILITY(U,$J,358.3,20214,1,4,0)
- ;;=4^Z86.79
- ;;^UTILITY(U,$J,358.3,20214,2)
- ;;=^5063479
+ ;;^UTILITY(U,$J,358.99)
+ ;;=^IBE(358.99,
+ ;;^UTILITY(U,$J,358.99,0)
+ ;;=IMP/EXP AICS DATA ELEMENTS^358.99^5^5
+ ;;^UTILITY(U,$J,358.99,1,0)
+ ;;=SHORT NARRATIVE (30 CHAR)^^^^_______________________________^30^10^^^^^NARR
+ ;;^UTILITY(U,$J,358.99,1,10)
+ ;;=a^^^################################
+ ;;^UTILITY(U,$J,358.99,2,0)
+ ;;=CPT-4 PROCEDURE CODE^5^^^^5^10^^^^^CPT-4
+ ;;^UTILITY(U,$J,358.99,2,1)
+ ;;=D INPUTCPT^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.99,2,10)
+ ;;=a^XNNNN
+ ;;^UTILITY(U,$J,358.99,3,0)
+ ;;=ICD-9 DIAGNOSIS CODE^7^^^____.__^7^10^^^^^ICD-9
+ ;;^UTILITY(U,$J,358.99,3,1)
+ ;;=D INPUTICD^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.99,3,10)
+ ;;=a^XF^^NNNN.NN
+ ;;^UTILITY(U,$J,358.99,4,0)
+ ;;=SHORT NARRATIVE (60 CHAR)^60^^^___________________________________________________________^60^10^^^^^NARR
+ ;;^UTILITY(U,$J,358.99,4,10)
+ ;;=a^^^###########################################################
+ ;;^UTILITY(U,$J,358.99,5,0)
+ ;;=ICD-10 DIAGNOSIS CODE^8^^^___.____^8^10^^^^^ICD10
+ ;;^UTILITY(U,$J,358.99,5,1)
+ ;;=D INPICD10^IBDFN8(.X)
+ ;;^UTILITY(U,$J,358.99,5,10)
+ ;;=a^XF^^ANX.XXXX

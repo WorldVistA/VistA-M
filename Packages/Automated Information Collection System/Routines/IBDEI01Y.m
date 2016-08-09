@@ -1,134 +1,282 @@
-IBDEI01Y ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI01Y ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,423,1,4,0)
- ;;=4^G47.411
- ;;^UTILITY(U,$J,358.3,423,2)
- ;;=^5003981
- ;;^UTILITY(U,$J,358.3,424,0)
- ;;=G47.37^^3^48^2
- ;;^UTILITY(U,$J,358.3,424,1,0)
+ ;;^UTILITY(U,$J,358.3,1470,0)
+ ;;=Z01.811^^9^124^5
+ ;;^UTILITY(U,$J,358.3,1470,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,424,1,3,0)
- ;;=3^Central Sleep Apnea,Comorbid w/ Opioid Use
- ;;^UTILITY(U,$J,358.3,424,1,4,0)
- ;;=4^G47.37
- ;;^UTILITY(U,$J,358.3,424,2)
- ;;=^332767
- ;;^UTILITY(U,$J,358.3,425,0)
- ;;=G47.31^^3^48^3
- ;;^UTILITY(U,$J,358.3,425,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,425,1,3,0)
- ;;=3^Central Sleep Apnea,Idiopathic Central Sleep Apnea
- ;;^UTILITY(U,$J,358.3,425,1,4,0)
- ;;=4^G47.31
- ;;^UTILITY(U,$J,358.3,425,2)
- ;;=^332761
- ;;^UTILITY(U,$J,358.3,426,0)
- ;;=F51.11^^3^48^10
- ;;^UTILITY(U,$J,358.3,426,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,426,1,3,0)
- ;;=3^Hypersomnolence Disorder
- ;;^UTILITY(U,$J,358.3,426,1,4,0)
- ;;=4^F51.11
- ;;^UTILITY(U,$J,358.3,426,2)
- ;;=^5003609
- ;;^UTILITY(U,$J,358.3,427,0)
- ;;=F51.01^^3^48^13
- ;;^UTILITY(U,$J,358.3,427,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,427,1,3,0)
- ;;=3^Insomnia Disorder
- ;;^UTILITY(U,$J,358.3,427,1,4,0)
- ;;=4^F51.01
- ;;^UTILITY(U,$J,358.3,427,2)
- ;;=^5003603
- ;;^UTILITY(U,$J,358.3,428,0)
- ;;=G47.36^^3^48^24
- ;;^UTILITY(U,$J,358.3,428,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,428,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Comorbid Sleep-Related Hypoventilation
- ;;^UTILITY(U,$J,358.3,428,1,4,0)
- ;;=4^G47.36
- ;;^UTILITY(U,$J,358.3,428,2)
- ;;=^5003979
- ;;^UTILITY(U,$J,358.3,429,0)
- ;;=G47.35^^3^48^25
- ;;^UTILITY(U,$J,358.3,429,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,429,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Congenital Central Alveolar Hypoventilation
- ;;^UTILITY(U,$J,358.3,429,1,4,0)
- ;;=4^G47.35
- ;;^UTILITY(U,$J,358.3,429,2)
- ;;=^332765
- ;;^UTILITY(U,$J,358.3,430,0)
- ;;=G47.34^^3^48^26
- ;;^UTILITY(U,$J,358.3,430,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,430,1,3,0)
- ;;=3^Sleep-Related Hypoventilation,Idiopathic Hypoventilation
- ;;^UTILITY(U,$J,358.3,430,1,4,0)
- ;;=4^G47.34
- ;;^UTILITY(U,$J,358.3,430,2)
- ;;=^5003978
- ;;^UTILITY(U,$J,358.3,431,0)
- ;;=G47.9^^3^48^28
- ;;^UTILITY(U,$J,358.3,431,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,431,1,3,0)
- ;;=3^Sleep-Wake Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,431,1,4,0)
- ;;=4^G47.9
- ;;^UTILITY(U,$J,358.3,431,2)
- ;;=^5003990
- ;;^UTILITY(U,$J,358.3,432,0)
- ;;=F10.10^^3^49^27
- ;;^UTILITY(U,$J,358.3,432,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,432,1,3,0)
- ;;=3^Alcohol Use Disorder,Mild
- ;;^UTILITY(U,$J,358.3,432,1,4,0)
- ;;=4^F10.10
- ;;^UTILITY(U,$J,358.3,432,2)
- ;;=^5003068
- ;;^UTILITY(U,$J,358.3,433,0)
- ;;=F10.14^^3^49^34
- ;;^UTILITY(U,$J,358.3,433,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,433,1,3,0)
- ;;=3^Alcohol-Induced Bipolar & Related Disorder/Depressive Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,433,1,4,0)
- ;;=4^F10.14
- ;;^UTILITY(U,$J,358.3,433,2)
- ;;=^5003072
- ;;^UTILITY(U,$J,358.3,434,0)
- ;;=F10.182^^3^49^36
- ;;^UTILITY(U,$J,358.3,434,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,434,1,3,0)
- ;;=3^Alcohol-Induced Sleep Disorder w/ Mild Use Disorder
- ;;^UTILITY(U,$J,358.3,434,1,4,0)
- ;;=4^F10.182
- ;;^UTILITY(U,$J,358.3,434,2)
- ;;=^5003078
- ;;^UTILITY(U,$J,358.3,435,0)
- ;;=F10.20^^3^49^28
- ;;^UTILITY(U,$J,358.3,435,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,435,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe
- ;;^UTILITY(U,$J,358.3,435,1,4,0)
- ;;=4^F10.20
- ;;^UTILITY(U,$J,358.3,435,2)
- ;;=^5003081
- ;;^UTILITY(U,$J,358.3,436,0)
- ;;=F10.21^^3^49^29
- ;;^UTILITY(U,$J,358.3,436,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,436,1,3,0)
- ;;=3^Alcohol Use Disorder,Moderate-Severe In Remission
+ ;;^UTILITY(U,$J,358.3,1470,1,3,0)
+ ;;=3^Preprocedural Respiratory Exam
+ ;;^UTILITY(U,$J,358.3,1470,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,1470,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,1471,0)
+ ;;=92583^^10^125^33^^^^1
+ ;;^UTILITY(U,$J,358.3,1471,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1471,1,2,0)
+ ;;=2^92583
+ ;;^UTILITY(U,$J,358.3,1471,1,3,0)
+ ;;=3^Select Picture Audiometry
+ ;;^UTILITY(U,$J,358.3,1472,0)
+ ;;=92555^^10^125^35^^^^1
+ ;;^UTILITY(U,$J,358.3,1472,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1472,1,2,0)
+ ;;=2^92555
+ ;;^UTILITY(U,$J,358.3,1472,1,3,0)
+ ;;=3^Speech Audiometry Threshold
+ ;;^UTILITY(U,$J,358.3,1473,0)
+ ;;=92556^^10^125^36^^^^1
+ ;;^UTILITY(U,$J,358.3,1473,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1473,1,2,0)
+ ;;=2^92556
+ ;;^UTILITY(U,$J,358.3,1473,1,3,0)
+ ;;=3^Speech Audiometry, Complete
+ ;;^UTILITY(U,$J,358.3,1474,0)
+ ;;=92564^^10^125^32^^^^1
+ ;;^UTILITY(U,$J,358.3,1474,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1474,1,2,0)
+ ;;=2^92564
+ ;;^UTILITY(U,$J,358.3,1474,1,3,0)
+ ;;=3^SISI Hearing Test
+ ;;^UTILITY(U,$J,358.3,1475,0)
+ ;;=92572^^10^125^37^^^^1
+ ;;^UTILITY(U,$J,358.3,1475,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1475,1,2,0)
+ ;;=2^92572
+ ;;^UTILITY(U,$J,358.3,1475,1,3,0)
+ ;;=3^Staggered Spondaic Word Test
+ ;;^UTILITY(U,$J,358.3,1476,0)
+ ;;=92565^^10^125^38^^^^1
+ ;;^UTILITY(U,$J,358.3,1476,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1476,1,2,0)
+ ;;=2^92565
+ ;;^UTILITY(U,$J,358.3,1476,1,3,0)
+ ;;=3^Stenger Test, Pure Tone
+ ;;^UTILITY(U,$J,358.3,1477,0)
+ ;;=92577^^10^125^39^^^^1
+ ;;^UTILITY(U,$J,358.3,1477,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1477,1,2,0)
+ ;;=2^92577
+ ;;^UTILITY(U,$J,358.3,1477,1,3,0)
+ ;;=3^Stenger Test, Speech
+ ;;^UTILITY(U,$J,358.3,1478,0)
+ ;;=92576^^10^125^40^^^^1
+ ;;^UTILITY(U,$J,358.3,1478,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1478,1,2,0)
+ ;;=2^92576
+ ;;^UTILITY(U,$J,358.3,1478,1,3,0)
+ ;;=3^Synthetic Sentence Test
+ ;;^UTILITY(U,$J,358.3,1479,0)
+ ;;=92563^^10^125^42^^^^1
+ ;;^UTILITY(U,$J,358.3,1479,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1479,1,2,0)
+ ;;=2^92563
+ ;;^UTILITY(U,$J,358.3,1479,1,3,0)
+ ;;=3^Tone Decay Hearing Test
+ ;;^UTILITY(U,$J,358.3,1480,0)
+ ;;=92567^^10^125^43^^^^1
+ ;;^UTILITY(U,$J,358.3,1480,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1480,1,2,0)
+ ;;=2^92567
+ ;;^UTILITY(U,$J,358.3,1480,1,3,0)
+ ;;=3^Tympanometry
+ ;;^UTILITY(U,$J,358.3,1481,0)
+ ;;=92579^^10^125^45^^^^1
+ ;;^UTILITY(U,$J,358.3,1481,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1481,1,2,0)
+ ;;=2^92579
+ ;;^UTILITY(U,$J,358.3,1481,1,3,0)
+ ;;=3^Visual Audiometry (VRA)
+ ;;^UTILITY(U,$J,358.3,1482,0)
+ ;;=92625^^10^125^41^^^^1
+ ;;^UTILITY(U,$J,358.3,1482,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1482,1,2,0)
+ ;;=2^92625
+ ;;^UTILITY(U,$J,358.3,1482,1,3,0)
+ ;;=3^Tinnitus Assessment
+ ;;^UTILITY(U,$J,358.3,1483,0)
+ ;;=92568^^10^125^2^^^^1
+ ;;^UTILITY(U,$J,358.3,1483,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1483,1,2,0)
+ ;;=2^92568
+ ;;^UTILITY(U,$J,358.3,1483,1,3,0)
+ ;;=3^Acoustic Reflex Testing
+ ;;^UTILITY(U,$J,358.3,1484,0)
+ ;;=92559^^10^125^3^^^^1
+ ;;^UTILITY(U,$J,358.3,1484,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1484,1,2,0)
+ ;;=2^92559
+ ;;^UTILITY(U,$J,358.3,1484,1,3,0)
+ ;;=3^Audiometric Testing,Group
+ ;;^UTILITY(U,$J,358.3,1485,0)
+ ;;=92585^^10^125^4^^^^1
+ ;;^UTILITY(U,$J,358.3,1485,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1485,1,2,0)
+ ;;=2^92585
+ ;;^UTILITY(U,$J,358.3,1485,1,3,0)
+ ;;=3^Auditor Evoke Potent, Compre
+ ;;^UTILITY(U,$J,358.3,1486,0)
+ ;;=92586^^10^125^5^^^^1
+ ;;^UTILITY(U,$J,358.3,1486,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1486,1,2,0)
+ ;;=2^92586
+ ;;^UTILITY(U,$J,358.3,1486,1,3,0)
+ ;;=3^Auditor Evoke Potent, Limit
+ ;;^UTILITY(U,$J,358.3,1487,0)
+ ;;=92620^^10^125^7^^^^1
+ ;;^UTILITY(U,$J,358.3,1487,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1487,1,2,0)
+ ;;=2^92620
+ ;;^UTILITY(U,$J,358.3,1487,1,3,0)
+ ;;=3^Auditory Function, 60 Min
+ ;;^UTILITY(U,$J,358.3,1488,0)
+ ;;=92621^^10^125^6^^^^1
+ ;;^UTILITY(U,$J,358.3,1488,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1488,1,2,0)
+ ;;=2^92621
+ ;;^UTILITY(U,$J,358.3,1488,1,3,0)
+ ;;=3^Auditory Function, + 15 Min
+ ;;^UTILITY(U,$J,358.3,1489,0)
+ ;;=92557^^10^125^10^^^^1
+ ;;^UTILITY(U,$J,358.3,1489,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1489,1,2,0)
+ ;;=2^92557
+ ;;^UTILITY(U,$J,358.3,1489,1,3,0)
+ ;;=3^Comprehensive Audiometric Exam
+ ;;^UTILITY(U,$J,358.3,1490,0)
+ ;;=92582^^10^125^11^^^^1
+ ;;^UTILITY(U,$J,358.3,1490,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1490,1,2,0)
+ ;;=2^92582
+ ;;^UTILITY(U,$J,358.3,1490,1,3,0)
+ ;;=3^Conditioning Play Audiometry
+ ;;^UTILITY(U,$J,358.3,1491,0)
+ ;;=92571^^10^125^18^^^^1
+ ;;^UTILITY(U,$J,358.3,1491,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1491,1,2,0)
+ ;;=2^92571
+ ;;^UTILITY(U,$J,358.3,1491,1,3,0)
+ ;;=3^Filtered Speech Test
+ ;;^UTILITY(U,$J,358.3,1492,0)
+ ;;=92596^^10^125^12^^^^1
+ ;;^UTILITY(U,$J,358.3,1492,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1492,1,2,0)
+ ;;=2^92596
+ ;;^UTILITY(U,$J,358.3,1492,1,3,0)
+ ;;=3^Ear Protector Attenuation
+ ;;^UTILITY(U,$J,358.3,1493,0)
+ ;;=92584^^10^125^13^^^^1
+ ;;^UTILITY(U,$J,358.3,1493,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1493,1,2,0)
+ ;;=2^92584
+ ;;^UTILITY(U,$J,358.3,1493,1,3,0)
+ ;;=3^Electrocochleography
+ ;;^UTILITY(U,$J,358.3,1494,0)
+ ;;=92562^^10^125^25^^^^1
+ ;;^UTILITY(U,$J,358.3,1494,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1494,1,2,0)
+ ;;=2^92562
+ ;;^UTILITY(U,$J,358.3,1494,1,3,0)
+ ;;=3^Loudness Balance Test
+ ;;^UTILITY(U,$J,358.3,1495,0)
+ ;;=92588^^10^125^27^^^^1
+ ;;^UTILITY(U,$J,358.3,1495,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1495,1,2,0)
+ ;;=2^92588
+ ;;^UTILITY(U,$J,358.3,1495,1,3,0)
+ ;;=3^Otoacoustic Emissions,Diagnostic
+ ;;^UTILITY(U,$J,358.3,1496,0)
+ ;;=92587^^10^125^28^^^^1
+ ;;^UTILITY(U,$J,358.3,1496,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1496,1,2,0)
+ ;;=2^92587
+ ;;^UTILITY(U,$J,358.3,1496,1,3,0)
+ ;;=3^Otoacoustic Emissions,Limited
+ ;;^UTILITY(U,$J,358.3,1497,0)
+ ;;=92552^^10^125^29^^^^1
+ ;;^UTILITY(U,$J,358.3,1497,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1497,1,2,0)
+ ;;=2^92552
+ ;;^UTILITY(U,$J,358.3,1497,1,3,0)
+ ;;=3^Pure Tone Audiometry, Air
+ ;;^UTILITY(U,$J,358.3,1498,0)
+ ;;=92553^^10^125^30^^^^1
+ ;;^UTILITY(U,$J,358.3,1498,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1498,1,2,0)
+ ;;=2^92553
+ ;;^UTILITY(U,$J,358.3,1498,1,3,0)
+ ;;=3^Pure Tone Audiometry, Air & Bone
+ ;;^UTILITY(U,$J,358.3,1499,0)
+ ;;=92570^^10^125^1^^^^1
+ ;;^UTILITY(U,$J,358.3,1499,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1499,1,2,0)
+ ;;=2^92570
+ ;;^UTILITY(U,$J,358.3,1499,1,3,0)
+ ;;=3^Acoustic Immittance Testing
+ ;;^UTILITY(U,$J,358.3,1500,0)
+ ;;=92558^^10^125^16^^^^1
+ ;;^UTILITY(U,$J,358.3,1500,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1500,1,2,0)
+ ;;=2^92558
+ ;;^UTILITY(U,$J,358.3,1500,1,3,0)
+ ;;=3^Evoked Otoacoustic Emmissions,Scrn,Auto
+ ;;^UTILITY(U,$J,358.3,1501,0)
+ ;;=92611^^10^125^26^^^^1
+ ;;^UTILITY(U,$J,358.3,1501,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1501,1,2,0)
+ ;;=2^92611
+ ;;^UTILITY(U,$J,358.3,1501,1,3,0)
+ ;;=3^Motion Fluoroscopic Eval Swallowing
+ ;;^UTILITY(U,$J,358.3,1502,0)
+ ;;=92612^^10^125^22^^^^1
+ ;;^UTILITY(U,$J,358.3,1502,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1502,1,2,0)
+ ;;=2^92612
+ ;;^UTILITY(U,$J,358.3,1502,1,3,0)
+ ;;=3^Flexible Fiberoptic Eval Swallowing
+ ;;^UTILITY(U,$J,358.3,1503,0)
+ ;;=92626^^10^125^14^^^^1
+ ;;^UTILITY(U,$J,358.3,1503,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,1503,1,2,0)
+ ;;=2^92626
+ ;;^UTILITY(U,$J,358.3,1503,1,3,0)
+ ;;=3^Eval Aud Rehab Status,1st hr
+ ;;^UTILITY(U,$J,358.3,1504,0)
+ ;;=92627^^10^125^15^^^^1
+ ;;^UTILITY(U,$J,358.3,1504,1,0)
+ ;;=^358.31IA^3^2

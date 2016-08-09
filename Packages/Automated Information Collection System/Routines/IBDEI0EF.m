@@ -1,138 +1,288 @@
-IBDEI0EF ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0EF ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,6636,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,6636,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,6637,0)
- ;;=C79.31^^30^396^112
- ;;^UTILITY(U,$J,358.3,6637,1,0)
+ ;;^UTILITY(U,$J,358.3,14421,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6637,1,3,0)
- ;;=3^Malig Neop Brain,Secondary
- ;;^UTILITY(U,$J,358.3,6637,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,6637,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,6638,0)
- ;;=C79.72^^30^396^127
- ;;^UTILITY(U,$J,358.3,6638,1,0)
+ ;;^UTILITY(U,$J,358.3,14421,1,3,0)
+ ;;=3^Deficient Foreskin
+ ;;^UTILITY(U,$J,358.3,14421,1,4,0)
+ ;;=4^N47.3
+ ;;^UTILITY(U,$J,358.3,14421,2)
+ ;;=^5015726
+ ;;^UTILITY(U,$J,358.3,14422,0)
+ ;;=N47.5^^61^736^1
+ ;;^UTILITY(U,$J,358.3,14422,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6638,1,3,0)
- ;;=3^Malig Neop Left Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,6638,1,4,0)
- ;;=4^C79.72
- ;;^UTILITY(U,$J,358.3,6638,2)
- ;;=^5001357
- ;;^UTILITY(U,$J,358.3,6639,0)
- ;;=C78.02^^30^396^131
- ;;^UTILITY(U,$J,358.3,6639,1,0)
+ ;;^UTILITY(U,$J,358.3,14422,1,3,0)
+ ;;=3^Adhesions Prepuce & Glans Penis
+ ;;^UTILITY(U,$J,358.3,14422,1,4,0)
+ ;;=4^N47.5
+ ;;^UTILITY(U,$J,358.3,14422,2)
+ ;;=^5015728
+ ;;^UTILITY(U,$J,358.3,14423,0)
+ ;;=N47.4^^61^736^19
+ ;;^UTILITY(U,$J,358.3,14423,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6639,1,3,0)
- ;;=3^Malig Neop Left Lung,Secondary
- ;;^UTILITY(U,$J,358.3,6639,1,4,0)
- ;;=4^C78.02
- ;;^UTILITY(U,$J,358.3,6639,2)
- ;;=^5001336
- ;;^UTILITY(U,$J,358.3,6640,0)
- ;;=C78.7^^30^396^136
- ;;^UTILITY(U,$J,358.3,6640,1,0)
+ ;;^UTILITY(U,$J,358.3,14423,1,3,0)
+ ;;=3^Cyst of Prepuce,Benign
+ ;;^UTILITY(U,$J,358.3,14423,1,4,0)
+ ;;=4^N47.4
+ ;;^UTILITY(U,$J,358.3,14423,2)
+ ;;=^5015727
+ ;;^UTILITY(U,$J,358.3,14424,0)
+ ;;=N47.8^^61^736^25
+ ;;^UTILITY(U,$J,358.3,14424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6640,1,3,0)
- ;;=3^Malig Neop Liver/Intrahepatic Bile Duct,Secondary
- ;;^UTILITY(U,$J,358.3,6640,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,6640,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,6641,0)
- ;;=C79.71^^30^396^149
- ;;^UTILITY(U,$J,358.3,6641,1,0)
+ ;;^UTILITY(U,$J,358.3,14424,1,3,0)
+ ;;=3^Disorders of Prepuce
+ ;;^UTILITY(U,$J,358.3,14424,1,4,0)
+ ;;=4^N47.8
+ ;;^UTILITY(U,$J,358.3,14424,2)
+ ;;=^5015730
+ ;;^UTILITY(U,$J,358.3,14425,0)
+ ;;=N47.7^^61^736^58
+ ;;^UTILITY(U,$J,358.3,14425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6641,1,3,0)
- ;;=3^Malig Neop Right Adrenal Gland,Secondary
- ;;^UTILITY(U,$J,358.3,6641,1,4,0)
- ;;=4^C79.71
- ;;^UTILITY(U,$J,358.3,6641,2)
- ;;=^5001356
- ;;^UTILITY(U,$J,358.3,6642,0)
- ;;=C78.01^^30^396^153
- ;;^UTILITY(U,$J,358.3,6642,1,0)
+ ;;^UTILITY(U,$J,358.3,14425,1,3,0)
+ ;;=3^Inflammatory Diseases of Prepuce
+ ;;^UTILITY(U,$J,358.3,14425,1,4,0)
+ ;;=4^N47.7
+ ;;^UTILITY(U,$J,358.3,14425,2)
+ ;;=^5015729
+ ;;^UTILITY(U,$J,358.3,14426,0)
+ ;;=N47.6^^61^736^3
+ ;;^UTILITY(U,$J,358.3,14426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6642,1,3,0)
- ;;=3^Malig Neop Right Lung,Secondary
- ;;^UTILITY(U,$J,358.3,6642,1,4,0)
- ;;=4^C78.01
- ;;^UTILITY(U,$J,358.3,6642,2)
- ;;=^5001335
- ;;^UTILITY(U,$J,358.3,6643,0)
- ;;=C79.70^^30^396^104
- ;;^UTILITY(U,$J,358.3,6643,1,0)
+ ;;^UTILITY(U,$J,358.3,14426,1,3,0)
+ ;;=3^Balanoposthitis
+ ;;^UTILITY(U,$J,358.3,14426,1,4,0)
+ ;;=4^N47.6
+ ;;^UTILITY(U,$J,358.3,14426,2)
+ ;;=^12530
+ ;;^UTILITY(U,$J,358.3,14427,0)
+ ;;=N48.1^^61^736^2
+ ;;^UTILITY(U,$J,358.3,14427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6643,1,3,0)
- ;;=3^Malig Neop Adrenal Gland Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,6643,1,4,0)
- ;;=4^C79.70
- ;;^UTILITY(U,$J,358.3,6643,2)
- ;;=^5001355
- ;;^UTILITY(U,$J,358.3,6644,0)
- ;;=C78.00^^30^396^137
- ;;^UTILITY(U,$J,358.3,6644,1,0)
+ ;;^UTILITY(U,$J,358.3,14427,1,3,0)
+ ;;=3^Balanitis
+ ;;^UTILITY(U,$J,358.3,14427,1,4,0)
+ ;;=4^N48.1
+ ;;^UTILITY(U,$J,358.3,14427,2)
+ ;;=^12525
+ ;;^UTILITY(U,$J,358.3,14428,0)
+ ;;=N52.34^^61^736^38
+ ;;^UTILITY(U,$J,358.3,14428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6644,1,3,0)
- ;;=3^Malig Neop Lung Unspec,Secondary
- ;;^UTILITY(U,$J,358.3,6644,1,4,0)
- ;;=4^C78.00
- ;;^UTILITY(U,$J,358.3,6644,2)
- ;;=^5001334
- ;;^UTILITY(U,$J,358.3,6645,0)
- ;;=D57.1^^30^396^178
- ;;^UTILITY(U,$J,358.3,6645,1,0)
+ ;;^UTILITY(U,$J,358.3,14428,1,3,0)
+ ;;=3^Erectile Dysfunction Following Simple Prostatectomy
+ ;;^UTILITY(U,$J,358.3,14428,1,4,0)
+ ;;=4^N52.34
+ ;;^UTILITY(U,$J,358.3,14428,2)
+ ;;=^5015760
+ ;;^UTILITY(U,$J,358.3,14429,0)
+ ;;=N52.39^^61^736^40
+ ;;^UTILITY(U,$J,358.3,14429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6645,1,3,0)
- ;;=3^Sickle-Cell Disease w/o Crisis
- ;;^UTILITY(U,$J,358.3,6645,1,4,0)
- ;;=4^D57.1
- ;;^UTILITY(U,$J,358.3,6645,2)
- ;;=^5002309
- ;;^UTILITY(U,$J,358.3,6646,0)
- ;;=D75.1^^30^396^176
- ;;^UTILITY(U,$J,358.3,6646,1,0)
+ ;;^UTILITY(U,$J,358.3,14429,1,3,0)
+ ;;=3^Erectile Dysfunction Post-Surgical
+ ;;^UTILITY(U,$J,358.3,14429,1,4,0)
+ ;;=4^N52.39
+ ;;^UTILITY(U,$J,358.3,14429,2)
+ ;;=^5015761
+ ;;^UTILITY(U,$J,358.3,14430,0)
+ ;;=N52.33^^61^736^39
+ ;;^UTILITY(U,$J,358.3,14430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6646,1,3,0)
- ;;=3^Polycythemia,Secondary
- ;;^UTILITY(U,$J,358.3,6646,1,4,0)
- ;;=4^D75.1
- ;;^UTILITY(U,$J,358.3,6646,2)
- ;;=^186856
- ;;^UTILITY(U,$J,358.3,6647,0)
- ;;=C90.30^^30^396^179
- ;;^UTILITY(U,$J,358.3,6647,1,0)
+ ;;^UTILITY(U,$J,358.3,14430,1,3,0)
+ ;;=3^Erectile Dysfunction Following Urethral Surgery
+ ;;^UTILITY(U,$J,358.3,14430,1,4,0)
+ ;;=4^N52.33
+ ;;^UTILITY(U,$J,358.3,14430,2)
+ ;;=^5015759
+ ;;^UTILITY(U,$J,358.3,14431,0)
+ ;;=N52.32^^61^736^36
+ ;;^UTILITY(U,$J,358.3,14431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6647,1,3,0)
- ;;=3^Solitary Plasmacytoma,Not in Remission
- ;;^UTILITY(U,$J,358.3,6647,1,4,0)
- ;;=4^C90.30
- ;;^UTILITY(U,$J,358.3,6647,2)
- ;;=^5001759
- ;;^UTILITY(U,$J,358.3,6648,0)
- ;;=D56.3^^30^396^180
- ;;^UTILITY(U,$J,358.3,6648,1,0)
+ ;;^UTILITY(U,$J,358.3,14431,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Cystectomy
+ ;;^UTILITY(U,$J,358.3,14431,1,4,0)
+ ;;=4^N52.32
+ ;;^UTILITY(U,$J,358.3,14431,2)
+ ;;=^5015758
+ ;;^UTILITY(U,$J,358.3,14432,0)
+ ;;=N52.31^^61^736^37
+ ;;^UTILITY(U,$J,358.3,14432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6648,1,3,0)
- ;;=3^Thalassemia Minor
- ;;^UTILITY(U,$J,358.3,6648,1,4,0)
- ;;=4^D56.3
- ;;^UTILITY(U,$J,358.3,6648,2)
- ;;=^340497
- ;;^UTILITY(U,$J,358.3,6649,0)
- ;;=D56.9^^30^396^181
- ;;^UTILITY(U,$J,358.3,6649,1,0)
+ ;;^UTILITY(U,$J,358.3,14432,1,3,0)
+ ;;=3^Erectile Dysfunction Following Radical Prostatectomy
+ ;;^UTILITY(U,$J,358.3,14432,1,4,0)
+ ;;=4^N52.31
+ ;;^UTILITY(U,$J,358.3,14432,2)
+ ;;=^5015757
+ ;;^UTILITY(U,$J,358.3,14433,0)
+ ;;=N52.2^^61^736^43
+ ;;^UTILITY(U,$J,358.3,14433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,6649,1,3,0)
- ;;=3^Thalassemia,Unspec
- ;;^UTILITY(U,$J,358.3,6649,1,4,0)
- ;;=4^D56.9
- ;;^UTILITY(U,$J,358.3,6649,2)
- ;;=^340606
+ ;;^UTILITY(U,$J,358.3,14433,1,3,0)
+ ;;=3^Erectile Dysfunction,Drug-Induced
+ ;;^UTILITY(U,$J,358.3,14433,1,4,0)
+ ;;=4^N52.2
+ ;;^UTILITY(U,$J,358.3,14433,2)
+ ;;=^5015756
+ ;;^UTILITY(U,$J,358.3,14434,0)
+ ;;=N52.03^^61^736^34
+ ;;^UTILITY(U,$J,358.3,14434,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14434,1,3,0)
+ ;;=3^Erectile Dysfunction Comb Artrl Insuff & Corporo-Venous Occlusv
+ ;;^UTILITY(U,$J,358.3,14434,1,4,0)
+ ;;=4^N52.03
+ ;;^UTILITY(U,$J,358.3,14434,2)
+ ;;=^5015754
+ ;;^UTILITY(U,$J,358.3,14435,0)
+ ;;=N52.02^^61^736^35
+ ;;^UTILITY(U,$J,358.3,14435,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14435,1,3,0)
+ ;;=3^Erectile Dysfunction Corporo-Venous Occlusive
+ ;;^UTILITY(U,$J,358.3,14435,1,4,0)
+ ;;=4^N52.02
+ ;;^UTILITY(U,$J,358.3,14435,2)
+ ;;=^5015753
+ ;;^UTILITY(U,$J,358.3,14436,0)
+ ;;=N52.1^^61^736^42
+ ;;^UTILITY(U,$J,358.3,14436,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14436,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,14436,1,4,0)
+ ;;=4^N52.1
+ ;;^UTILITY(U,$J,358.3,14436,2)
+ ;;=^5015755
+ ;;^UTILITY(U,$J,358.3,14437,0)
+ ;;=N52.01^^61^736^41
+ ;;^UTILITY(U,$J,358.3,14437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14437,1,3,0)
+ ;;=3^Erectile Dysfunction d/t Arterial Insufficiency
+ ;;^UTILITY(U,$J,358.3,14437,1,4,0)
+ ;;=4^N52.01
+ ;;^UTILITY(U,$J,358.3,14437,2)
+ ;;=^5015752
+ ;;^UTILITY(U,$J,358.3,14438,0)
+ ;;=N95.2^^61^736^81
+ ;;^UTILITY(U,$J,358.3,14438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14438,1,3,0)
+ ;;=3^Postmenopausal Atrophic Vaginitis
+ ;;^UTILITY(U,$J,358.3,14438,1,4,0)
+ ;;=4^N95.2
+ ;;^UTILITY(U,$J,358.3,14438,2)
+ ;;=^270577
+ ;;^UTILITY(U,$J,358.3,14439,0)
+ ;;=R30.9^^61^736^65
+ ;;^UTILITY(U,$J,358.3,14439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14439,1,3,0)
+ ;;=3^Micturition Painful,Unspec
+ ;;^UTILITY(U,$J,358.3,14439,1,4,0)
+ ;;=4^R30.9
+ ;;^UTILITY(U,$J,358.3,14439,2)
+ ;;=^5019324
+ ;;^UTILITY(U,$J,358.3,14440,0)
+ ;;=R30.0^^61^736^26
+ ;;^UTILITY(U,$J,358.3,14440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14440,1,3,0)
+ ;;=3^Dysuria
+ ;;^UTILITY(U,$J,358.3,14440,1,4,0)
+ ;;=4^R30.0
+ ;;^UTILITY(U,$J,358.3,14440,2)
+ ;;=^5019322
+ ;;^UTILITY(U,$J,358.3,14441,0)
+ ;;=R33.9^^61^736^105
+ ;;^UTILITY(U,$J,358.3,14441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14441,1,3,0)
+ ;;=3^Urine Retention,Unspec
+ ;;^UTILITY(U,$J,358.3,14441,1,4,0)
+ ;;=4^R33.9
+ ;;^UTILITY(U,$J,358.3,14441,2)
+ ;;=^5019332
+ ;;^UTILITY(U,$J,358.3,14442,0)
+ ;;=R32.^^61^736^103
+ ;;^UTILITY(U,$J,358.3,14442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14442,1,3,0)
+ ;;=3^Urinary Incontinence,Unspec
+ ;;^UTILITY(U,$J,358.3,14442,1,4,0)
+ ;;=4^R32.
+ ;;^UTILITY(U,$J,358.3,14442,2)
+ ;;=^5019329
+ ;;^UTILITY(U,$J,358.3,14443,0)
+ ;;=N39.41^^61^736^101
+ ;;^UTILITY(U,$J,358.3,14443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14443,1,3,0)
+ ;;=3^Urge Incontinence
+ ;;^UTILITY(U,$J,358.3,14443,1,4,0)
+ ;;=4^N39.41
+ ;;^UTILITY(U,$J,358.3,14443,2)
+ ;;=^5015680
+ ;;^UTILITY(U,$J,358.3,14444,0)
+ ;;=R35.0^^61^736^63
+ ;;^UTILITY(U,$J,358.3,14444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14444,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,14444,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,14444,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,14445,0)
+ ;;=R35.1^^61^736^73
+ ;;^UTILITY(U,$J,358.3,14445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14445,1,3,0)
+ ;;=3^Nocturia
+ ;;^UTILITY(U,$J,358.3,14445,1,4,0)
+ ;;=4^R35.1
+ ;;^UTILITY(U,$J,358.3,14445,2)
+ ;;=^5019335
+ ;;^UTILITY(U,$J,358.3,14446,0)
+ ;;=R39.11^^61^736^64
+ ;;^UTILITY(U,$J,358.3,14446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14446,1,3,0)
+ ;;=3^Micturition Hesitancy
+ ;;^UTILITY(U,$J,358.3,14446,1,4,0)
+ ;;=4^R39.11
+ ;;^UTILITY(U,$J,358.3,14446,2)
+ ;;=^5019341
+ ;;^UTILITY(U,$J,358.3,14447,0)
+ ;;=R39.16^^61^736^95
+ ;;^UTILITY(U,$J,358.3,14447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14447,1,3,0)
+ ;;=3^Straining to Void
+ ;;^UTILITY(U,$J,358.3,14447,1,4,0)
+ ;;=4^R39.16
+ ;;^UTILITY(U,$J,358.3,14447,2)
+ ;;=^5019346
+ ;;^UTILITY(U,$J,358.3,14448,0)
+ ;;=R36.0^^61^736^97
+ ;;^UTILITY(U,$J,358.3,14448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14448,1,3,0)
+ ;;=3^Urethral Discharge w/o Blood
+ ;;^UTILITY(U,$J,358.3,14448,1,4,0)
+ ;;=4^R36.0
+ ;;^UTILITY(U,$J,358.3,14448,2)
+ ;;=^5019337
+ ;;^UTILITY(U,$J,358.3,14449,0)
+ ;;=R36.9^^61^736^98
+ ;;^UTILITY(U,$J,358.3,14449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,14449,1,3,0)
+ ;;=3^Urethral Discharge,Unspec

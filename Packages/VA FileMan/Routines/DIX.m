@@ -1,6 +1,10 @@
-DIX ;SFISC/GFT,NHRC/DRH-STATISTICS ;4/18/91  9:40 AM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIX ;SFISC/GFT,NHRC/DRH-STATISTICS ;05:46 PM  16 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DIK="^DOPT(""DIX"","
  G F:$D(^DOPT("DIX",3)) S ^(0)="STATISTICAL ROUTINE^1.01^" F I=1:1:3 S ^DOPT("DIX",I,0)=$E($T(F+I),4,99)
  D IXALL^DIK
@@ -19,14 +23,9 @@ DQ U IO S:+DHDR'=0 DIXMM=+DHDR S:'$D(DHDR) DHDR="" I DHDR="" G HDR
 SITE W:$D(DIFF)&($Y) @IOF S DIFF=1 W:$D(^DD("SITE"))&(DHDR["S") !,"(",^("SITE"),")"
  I $D(DIC) I DHDR["F",@("$D("_DIC_"0))") W "  ",$P(^(0),U,1)," FILE"
  I $D(DUZ)#2,DHDR["U",$S($D(^VA(200,+DUZ,0)):1,1:$D(^DIC(3,+DUZ,0))) W "  USER: ",$P(^(0),U,1)," "
- W ?(DIXMM-(DHDR["T"*10)-($D(PG)*10)-8) I DHDR["T" D INT W %TIM W "  " K %TIM
- I '$D(DT) S X="T" D ^%DT S DT=Y
- W $E(DT,4,5),"/",DT#100,"/",$E(DT,2,3) I $D(PG) W "  PAGE ",PG S PG=PG+1
+ W ?(DIXMM-(DHDR["T"*10)-($D(PG)*10)-18) ;**CCO/NI ALLOW SPACE AT RIGHT
+DT W $$DATE^DIUTL(DT) I $D(PG) W "  ",$$EZBLD^DIALOG(7095,PG) S PG=PG+1 ;**CCO/NI  DATE FORMAT AND PAGE
 HDR F J=1:1 Q:'$D(DHDR(J))  W !?(DHDR["C"*(DIXMM-$L(DHDR(J))\2)),$E(DHDR(J),1,DIXMM)
  W ! Q:DHDR'["L"
 LINE F %=1:1:DIXMM W "-"
  W ! Q
-INT S %M=$P($H,",",2)\60
-20 S %N=" AM" S:%M'<720 %M=%M-720,%N=" PM" S:%M<60 %M=%M+720
-25 S %I=%M\600 S:'%I %I=" " S %TIM=%I_(%M\60#10)_":"_(%M#60\10)_(%M#10)_%N
-30 K %M,%N,%I

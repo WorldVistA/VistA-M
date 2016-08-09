@@ -1,15 +1,18 @@
-DIARCALC ;SFISC/TKW,WISC/CAP-ARCHIVING Variables Doc / Misc Calc. ;10/7/95  07:29
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIARCALC ;SFISC/TKW,WISC/CAP-ARCHIVING Variables Doc / Misc Calc.;06:10 PM  5 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
  ;COMPUTE BOUNDARIES
 FROM ;SELECT FROM VALUE 4 SORT
  S X="F" D G
- I $D(DIARS) S:A="" A=$P(DIARS,U,2) S:A="" A="FIRST" G Q
+FIRST I $D(DIARS) S:A="" A=$P(DIARS,U,2) S:A="" A=$$EZBLD^DIALOG(7070) G Q ;**CCO/NI  'FIRST'
  D H Q:X=""  S DIARS=Y_U_X Q
 TO ;SELECT TO VALUE 4 SORT
  S X="T" D G
- I $D(DIARE) S:A="" A=$P(DIARE,U,2) S:A="" A="LAST" G Q
+LAST I $D(DIARE) S:A="" A=$P(DIARE,U,2) S:A="" A=$$EZBLD^DIALOG(7071) G Q ;**CCO/NI 'LAST'
  D H Q:X=""  S DIARE=Y_U_X Q
 G S DIART=L,L=0 I $D(DIPP(DJ,X)) S A=$P(DIPP(DJ,X),U,2) Q
  I $D(DPP(DJ,X)) S A=$P(DPP(DJ,X),U,2) Q
@@ -17,7 +20,7 @@ G S DIART=L,L=0 I $D(DIPP(DJ,X)) S A=$P(DIPP(DJ,X),U,2) Q
 H ;
  S %=X,%1=DISV
  I +%1,$D(^DIBT(%1,2,DJ,%)) S (X,%2)=$P(^(%),U,2) I "z"'[X
- E  S %2=$S(%="T":"LAST",1:"FIRST"),X=""
+EGP E  S %2=$S(%="T":$$EZBLD^DIALOG(7071),1:$$EZBLD^DIALOG(7070)),X="" ;**CCO/NI 'FIRST' OR 'LAST'
  I X="",'$D(DIAR) S A=%2,L=DIART G Q
  D CK:X'=""
  S L=DIART,A=$S(%="F"&(X]%2):X,%="T"&(%2]X)&(X'=""):X,A'="":A,1:%2)

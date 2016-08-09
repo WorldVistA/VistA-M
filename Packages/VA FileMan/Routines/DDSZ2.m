@@ -1,6 +1,10 @@
-DDSZ2 ;SFISC/MKO-LOAD SCR, NAV, AND ORDER INFO ;11:40 AM  26 Aug 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSZ2 ;SFISC/MKO-LOAD SCR, NAV, AND ORDER INFO ;21JAN2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 EN(SC,N,O,RNAV) ;
  ;Input:
  ;  DDSPG
@@ -92,15 +96,19 @@ ORD(O) ;Setup field order info
 RNAV(DDSRNAV,DDSO) ;Setup nav and fo info for rep blocks
  N DDSBO,DDSN,B,D1,D2,DN,F,F1,FO,LN,NX,RT
  S DDSBO="" F  S DDSBO=$O(DDSRNAV(DDSBO)) Q:DDSBO=""  D
- . ;N %X,%Y K DDSN S %X="DDSRNAV("_DDSBO_",",%Y="DDSN(" D %XY^%RCR
  . K DDSN M DDSN=DDSRNAV(DDSBO)
  . S D1="" F  S D1=$O(DDSN(D1)) Q:D1=""  D:$D(DDSN(D1))#2
  .. S B=DDSN(D1)
+ .. N HITE S HITE=$$HITE^DDSR(B)
  .. S D2="" F  S D2=$O(DDSN(D1,D2)) Q:D2=""  D
  ... S F=DDSN(D1,D2),LN="" Q:F[","
  ... D NAV1(.DDSN,.DDSRNAV,D1,D2,.LN)
  ... S $P(@DDSREFS@(DDSPG,B,F,"N"),U,6,9)=LN
- . ;
+ ... Q:HITE<2  ;GFT
+FIRST ...S FO=$O(DDSO(DDSBO,"")) S:FO FO=DDSO(DDSBO,FO)
+ ...S F1=$O(DDSO(DDSBO,""),-1) S:F1 F1=DDSO(DDSBO,F1)
+ ... I $P(@DDSREFS@(DDSPG,B,F,"N"),U,9)["-" S $P(^("N"),U,9)=$P(^("N"),U,4) I $P(^("N"),U,4)[","!'$P(^("N"),U,4) S $P(^("N"),U,9)=F1_",-1" ;WHERE 'F4' GOES
+ ... I $P(^("N"),U,8)["+" S $P(^("N"),U,8)=$P(^("N"),U,3) I '$P(^("N"),U,3) S $P(^("N"),U,8)=FO_",+1" ;WHERE 'TAB' GOES
  . S B=+$G(DDSO(+DDSBO)) Q:'B
  . S FO=$O(DDSO(DDSBO,"")) Q:FO=""
  . S (F,F1)=DDSO(DDSBO,FO)

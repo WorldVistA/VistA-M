@@ -1,5 +1,5 @@
 RCDPEAA2 ;ALB/KML - APAR Screen - SELECTED EOB ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -16,7 +16,7 @@ INIT(RCIENS) ; Entry point for List template to build the display of the EEOB on
  ;
  ;
 BLD(RCIENS) ; Display selected EEOB  on APAR screen
- N RCZ0,RCECME,REASON,V1,RCLI1,TLINE,RCSCR,Z,ZZ,Z0,ZZ1,RC0,RCTL,RCTS
+ N RCZ0,RCECME,REASON,V1,RCLI1,TLINE,RCSCR,Z,ZZ,Z0,ZZ1,RC0,RCTL,RCTS,RCCL,RCCL1
  S RCSCR=$P(RCIENS,U),Z=$P(^RCY(344.49,RCSCR,1,$P(RCIENS,U,2),0),U),RCPROG="RCDPEAA2"
  I Z#1=0 S ZZ=+$O(^RCY(344.49,RCSCR,1,"B",Z,0)) I ZZ D
  . S Z0=Z F  S Z0=$O(^RCY(344.49,RCSCR,1,"B",Z0)) Q:((Z0\1)'=(Z\1))  S Z=Z0,ZZ1=+$O(^RCY(344.49,RCSCR,1,"B",Z0,0)) I ZZ1 D
@@ -29,6 +29,15 @@ BLD(RCIENS) ; Display selected EEOB  on APAR screen
  . S REASON=$$GET1^DIQ(344.41,$P(RCZ0,U,9)_","_RCSCR_",",5)  ; AUTOPOST REJECTION REASON (344.41,5)
  . S TLINE=$$TOPLINE(RCZ0)
  . D SET(TLINE,$P(RCZ0,U),$P(RCZ0,U),ZZ)
+ . ; PRCA*4.5*304 - Add claim comment to screen if it exists for this ERA EEOB detail line
+ . S:$P(RCZ0,U,9)'="" RCCL=$$GET1^DIQ(344.41,$P(RCZ0,U,9)_","_RCSCR_",",4)
+ . D:$G(RCCL)'=""  ; If we have a ERA Detail line comment, display it
+ . . D SLINE(RCCL,"RCCL1",58,76)
+ . . S TLINE=$J("",4)_"Claim Comment: "_RCCL1(1)
+ . . D SET(TLINE,$P(RCZ0,U),$P(RCZ0,U),ZZ)
+ . . ; If we have a second line for the comment then put it on the screen
+ . . I RCCL1>1 D SET($J("",4)_RCCL1(2),$P(RCZ0,U),$P(RCZ0,U),ZZ) I RCCL1=3 D SET($J("",4)_RCCL1(3),$P(RCZ0,U),$P(RCZ0,U),ZZ)
+ . ; **End of *304 modifications**
  . ; sub-line info (e.g., "n.001")
  . S ZZ1=0 F  S ZZ1=$O(^TMP("RCS",$J,ZZ,ZZ1)) Q:'ZZ1  D
  . . S RCZZ0=$G(^RCY(344.49,RCSCR,1,ZZ1,0))
@@ -67,6 +76,23 @@ TOPLINE(RCZ0) ; Function returns the top line of the EEOB display
  S A=" "_$S($P(RCZ0,U,13):"(V)",1:"   ")_"EEOB: ERA Seq #"_$S($P(RCZ0,U,9)[",":"'s",1:"")_" "_$S($P(RCZ0,U,9)'="":$P(RCZ0,U,9),1:"None")_"   Net Payment Amt: "_$J(+$P(RCZ0,U,6),"",2)
  I $G(^TMP($J,"RC_REVIEW")) S A=A_"  Reviewed?: "_$S($P(RCZ0,U,11)="":"NO",1:$$EXTERNAL^DILFD(344.491,.11,,$P(RCZ0,U,11)))
  Q A
+ ;
+ ;PRCA*4.5*304 - Split long line into printable lenghts
+SLINE(ZIN,ZARR,FLN,SLN) ;
+ ; ZIN - Input string; ZARR - Array output of lines ; FLN - First line length ; SLN - Subsequent line lengths
+ ; Assumes ZIN max length is 132 characters and FLN and SLN variables will make ZIN fit in 3 lines.
+ N ZL,ZI,ZM
+ I $L(ZIN)<(FLN+1) S @ZARR@(1)=ZIN,@ZARR=1 Q
+ ; Otherwise we are spanning more than 1 line
+ S ZL="" F ZI=1:1 Q:($L(ZL)+$L($P(ZIN," ",ZI)))>FLN  S ZL=ZL_$S($L(ZL)>0:" ",1:"")_$P(ZIN," ",ZI)
+ S @ZARR@(1)=ZL,ZL=$P(ZIN," ",ZI,9999)
+ I $L(ZL)<(SLN+1) S @ZARR@(2)=ZL,@ZARR=2 Q
+ ; Spilling onto a third line.
+ S ZM="" F ZI=1:1 Q:($L(ZM)+$L($P(ZL," ",ZI)))>SLN  S ZM=ZM_$S($L(ZM)>0:" ",1:"")_$P(ZL," ",ZI)
+ S @ZARR@(2)=ZM,ZM=$P(ZL," ",ZI,9999)
+ S @ZARR@(3)=ZM,@ZARR=3
+ Q
+ ; **END of *304 changes**
  ;
 CLINES(RCZZ0,RCT,ZZ1) ;  called from BLD ; set up the claim information lines
  ; 

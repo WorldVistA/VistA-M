@@ -1,19 +1,60 @@
-DIFROM1 ;SFISC/XAK-CREATES RTNS WITH DD'S ;02:23 PM  28 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
-L S DH=" F I=1:2 S X=$T(Q+I) Q:X=""""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y",F=$O(F(F))
+DIFROM1 ;SFISC/XAK-CREATES RTNS WITH DD'S ;29OCT2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+L S DH=" F I=1:2 S X=$T(Q+I) Q:X=""""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,999) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y",F=$O(F(F))
  I F'>0 D:DSEC SEC K ^UTILITY("DI",$J) G ^DIFROM11
  S ^UTILITY($J,DL+1,0)="^DIC("_F_",0,""GL"")",^UTILITY($J,DL+2,0)="="_F(F,0),^UTILITY($J,DL+3,0)="^DIC(""B"","""_F(F)_""","_F_")",^UTILITY($J,DL+4,0)="=",DL=DL+4
  S DH=" Q:'DIFQ("_F_") "_DH
- F E="%","%D" S %X="^DIC("_F_","""_E_""",",E=0 D %XY
+EGP F E="ALANG","%","%D" S %X="^DIC("_F_","""_E_""",",E=0 D %XY ;**CCO/NI TO TRANSPORT FOREIGN-LANGUAGE FILE NAMES
  I DSEC S E="" F DSEC=DSEC:1 S E=$O(^DIC(F,0,E)) Q:E=""  I E'="GL" S ^UTILITY("DI",$J,DSEC,0)="^DIC("_F_",0,"""_E_""")" S DSEC=DSEC+1 S ^UTILITY("DI",$J,DSEC,0)="="_^DIC(F,0,E)
  F D=0:0 S D=$O(F(F,D)),E=0,%X="^DD("_D_",0" Q:D'>0  S ^UTILITY($J,DL+1,0)=%X_")",DL=DL+2,^UTILITY($J,DL,0)="="_^DD(D,0),%X=%X_"," D V F X=0:0 S X=$O(^DD(D,X)) Q:X'>0  S %X="^DD("_D_","_X_",",E="%Z#2" D SAVE:$D(F(F,D))<9!$D(F(F,D,X))
+ ;
+KEYSNIX ; TRANSPORT INDEXES AND KEYS; VEN/SMH for FM V22.2 (fallthrough)
+ ; FIA array has same format as F currently has. We will just reuse F.
+ ; But we need to store it in a global as DIFROMS* uses naked refs.
+ K ^UTILITY("FIA",$J),^UTILITY("KX",$J) ; FIA, Keys and Index output.
+ M ^UTILITY("FIA",$J)=F ; Load FIA.
+ ;
+ ; Export DD from KIDS. Includes ^DD and ^DIC.
+ ; New Style Indexes and Keys get exported too.
+ ; Unfortunately, Indexes and Keys code expects DIFROM Server Style ^DD array.
+ ; So this is the easiest way to get them out from the Server.
+ D DDOUT^DIFROMS(F,"",$NA(^UTILITY("FIA",$J)),$NA(^UTILITY("KX",$J)))
+ ;
+ ; We don't need this any more.
+ K ^UTILITY("FIA",$J)
+ ;
+ ; Remove ^DD and ^DIC from the output array.
+ K ^UTILITY("KX",$J,"^DD")
+ K ^UTILITY("KX",$J,"^DIC")
+ ;
+ ; Now we loop through output global and store in ^UTILITY($J) so that DIFROM
+ ; will store the global in the outputted routines
+ N GREF S GREF=$NA(^UTILITY("KX",$J)) ; Global reference for $Q
+ N LREF S LREF=$E(GREF,1,$L(GREF)-1)  ; Last reference -- w/o the comma.
+ F  S GREF=$Q(@GREF) Q:GREF'[LREF  D  ; Loop until the Global doesn't match itself.
+ . S DL=DL+1                     ; next line
+ . N REF2STORE S REF2STORE=GREF  ; We need to change the stored reference for the destination system.
+ . S $P(REF2STORE,",",2)="$J"    ; Remove our job number, and just put $J. Destination system will resolve it.
+ . S ^UTILITY($J,DL,0)=REF2STORE ; Store ref
+ . S DL=DL+1                     ; next line
+ . S ^UTILITY($J,DL,0)="="_@GREF ; store the value.
+ ;
+ ; We don't need this anymore.
+ K ^UTILITY("KX",$J)
+ ;
+ ; This dumps the routines out for all of the above (^DD, ^DIC, and ^UTILITY("KX")
+ ; Last part (IFff) says if data doesn't come with file do the next file.
  D FILE^DIFROM3 G:'$D(DRN) EQ^DIFROM11 I $P(F(F,-222),U,7)'="y" G L
+ ;
  S DL=DL+1,E="%Z#2=0",%X=F(F,0),@("D="_%X_"0)")
  S ^UTILITY($J,DL+1,0)="^UTILITY(U,$J,"_F_")",^UTILITY($J,DL+2,0)="="_%X,^UTILITY($J,DL+3,0)="^UTILITY(U,$J,"_F_",0)",^UTILITY($J,DL+4,0)="="_D,%Y="^UTILITY(U,$J,"_F_",",%Z=0,%C(-1)=0,%B=0,%A="",DL=DL+5
  D N S DH=$P(DH,"DIFQ")_"DIFQR"_$P(DH,"DIFQ",2,99)
  D FILE^DIFROM3 G:'$D(DRN) EQ^DIFROM11 G L
- ;
 SAVE K DSV I $D(^(X,8)) S DSV(8)=^(8) K ^(8)
  F %Z=8.5,9 I $D(^(%Z)),^(%Z)'=U,'($P(^(0),U,2)["K"&(^(%Z)="@")) S DSV(%Z)=^(%Z) K ^(%Z)
  D %XY

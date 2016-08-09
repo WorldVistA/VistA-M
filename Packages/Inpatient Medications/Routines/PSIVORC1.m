@@ -1,5 +1,5 @@
-PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,37,69,110,157,134,181,263,270,279**;16 DEC 97;Build 150
+PSIVORC1 ;BIR/MLM - PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98  11:36 AM
+ ;;5.0;INPATIENT MEDICATIONS;**1,37,69,110,157,134,181,263,270,279,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^DD("DD" is supported by DBIA 10017.
  ; Reference to ^DD( is supported by DBIA 2255.
@@ -13,7 +13,7 @@ PSIVORC1 ;BIR/MLM-PROCESS INCOMPLETE IV ORDER - CONT ;13 Jan 98 / 11:36 AM
  ;
 53 ; IV Type
  I $G(PSGORD)["P",$G(PSGAT),($G(P(9))]"") D
- .N X,PSGS0Y,ZZ,LYN,ZZND,ZZNDW S X=P(9) S PSGS0Y="",ZZ=0 D FIND^DIC(51.1,,,,X,,"APPSJ",,,"LYN")
+ .N X,PSGS0Y,PSGS0XT,ZZ,LYN,ZZND,ZZNDW S X=P(9) S PSGS0Y="",ZZ=0 D FIND^DIC(51.1,,,,X,,"APPSJ",,,"LYN")
  .S ZZ=$O(LYN("DILIST",2,ZZ)) I ZZ S ZZ=+LYN("DILIST",2,ZZ) I ZZ S ZZND=$G(^PS(51.1,ZZ,0)) S PSGST=$P(ZZND,U,5),PSGS0XT=$P(ZZND,U,3) I $G(PSJPWD) D
  ..N ZZNDW S ZZNDW=$G(^PS(51.1,ZZ,1,PSJPWD,0)) I $P(ZZNDW,"^",2)]"" S PSGS0Y=$P(ZZNDW,"^",2),$P(ZZND,"^",2)=PSGS0Y
  .S ZZ=0 F  S ZZ=$O(LYN("DILIST",1,ZZ)) Q:'ZZ  I $G(LYN("DILIST",1,ZZ))'=X K LYN("DILIST",1,ZZ),LYN("DILIST",2,ZZ),LYN("DILIST","ID",ZZ,1)
@@ -93,7 +93,7 @@ ENHLP ; order entry fields' help
  W:$D(^DD(F1,F2,12)) !,"("_^(12)_")" D FIELD^DID(F1,F2,"","XECUTABLE HELP","PSJX") I $D(PSJX("XECUTABLE HELP")) X PSJX("XECUTABLE HELP")
  ;
  ; new code
- D FIELD^DID(F1,F2,"","DESCRIPTION","PSJD")
+ D FIELD^DID(F1,F2,"","DESCRIPTION","PSJD") NEW F
  G:$S($G(X)="?":1,1:'$O(PSJD("DESCRIPTION",0))) SC F F=0:0 S F=$O(PSJD("DESCRIPTION",F)) Q:'F  I $D(PSJD("DESCRIPTION",F)) W !?2,PSJD("DESCRIPTION",F)
 SC ;
  I F2=5!(F2=6) W !,"CHOOSE FROM:",!?8,0,?16,"NO",!?8,1,?16,"YES" Q
@@ -106,6 +106,7 @@ COMPLTE ;
  D CKORD^PSIVORC2 I $G(PSJFNDS)!$S($G(PSIVDSFG):0,PSIVCHG:1,1:0)!$$INFRATE^PSJMISC(DFN,ON,P(8),P("DTYP")) D
  . K PSJFNDS
  . I $$SEECMENT^PSIVEDRG() S PSGORQF=1 W !!,"*** One or more Additives has an invalid value for the bottle number(s).",! D PAUSE^PSJMISC() Q
+ . S PSJDSVFY=1
  . D IN^PSJOCDS($G(ON),"IV","")
  . Q:$G(PSGORQF)
  . Q:'PSIVCHG
@@ -175,6 +176,6 @@ SETNML55 ; Set NUMBER OF LABELS into ^PS(55,DFN,"IV",+ON55,0
 SETNL531 ;  Set NUMBER OF LABELS into ^PS(53.1,+PSGORD,8
  ;          Added to PROTOCOL PSJI LM VERIFY after call to VF^PSJLIACT
  ;          Made necessary by 11th hour code conflicts caused by MOCHA 2.0
- Q:'$D(P("NUMLBL"))  Q:'$G(DFN)  Q:'$G(PSGORD)  Q:'$G(PS(53.1,+PSGORD,0))  ; $D is intentional - may edit from something to nothing
+ Q:'$D(P("NUMLBL"))  Q:'$G(DFN)  Q:'$G(PSGORD)  Q:'$G(^PS(53.1,+PSGORD,0))  ; $D is intentional - may edit from something to nothing
  S $P(^PS(53.1,+PSGORD,17),"^",1)=$G(P("NUMLBL"))
  Q

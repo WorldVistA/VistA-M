@@ -1,120 +1,292 @@
-IBDEI0LN ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0LN ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,10094,1,0)
+ ;;^UTILITY(U,$J,358.3,21828,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10094,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Unspec Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10094,1,4,0)
- ;;=4^E09.319
- ;;^UTILITY(U,$J,358.3,10094,2)
- ;;=^5002553
- ;;^UTILITY(U,$J,358.3,10095,0)
- ;;=E09.321^^44^500^29
- ;;^UTILITY(U,$J,358.3,10095,1,0)
+ ;;^UTILITY(U,$J,358.3,21828,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Left Ear
+ ;;^UTILITY(U,$J,358.3,21828,1,4,0)
+ ;;=4^H81.12
+ ;;^UTILITY(U,$J,358.3,21828,2)
+ ;;=^5006866
+ ;;^UTILITY(U,$J,358.3,21829,0)
+ ;;=H81.11^^89^1036^10
+ ;;^UTILITY(U,$J,358.3,21829,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10095,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10095,1,4,0)
- ;;=4^E09.321
- ;;^UTILITY(U,$J,358.3,10095,2)
- ;;=^5002554
- ;;^UTILITY(U,$J,358.3,10096,0)
- ;;=E09.329^^44^500^30
- ;;^UTILITY(U,$J,358.3,10096,1,0)
+ ;;^UTILITY(U,$J,358.3,21829,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Right Ear
+ ;;^UTILITY(U,$J,358.3,21829,1,4,0)
+ ;;=4^H81.11
+ ;;^UTILITY(U,$J,358.3,21829,2)
+ ;;=^5006865
+ ;;^UTILITY(U,$J,358.3,21830,0)
+ ;;=H81.13^^89^1036^8
+ ;;^UTILITY(U,$J,358.3,21830,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10096,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Mild Nonprolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10096,1,4,0)
- ;;=4^E09.329
- ;;^UTILITY(U,$J,358.3,10096,2)
- ;;=^5002555
- ;;^UTILITY(U,$J,358.3,10097,0)
- ;;=E09.351^^44^500^33
- ;;^UTILITY(U,$J,358.3,10097,1,0)
+ ;;^UTILITY(U,$J,358.3,21830,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Bilateral
+ ;;^UTILITY(U,$J,358.3,21830,1,4,0)
+ ;;=4^H81.13
+ ;;^UTILITY(U,$J,358.3,21830,2)
+ ;;=^5006867
+ ;;^UTILITY(U,$J,358.3,21831,0)
+ ;;=H81.10^^89^1036^11
+ ;;^UTILITY(U,$J,358.3,21831,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10097,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10097,1,4,0)
- ;;=4^E09.351
- ;;^UTILITY(U,$J,358.3,10097,2)
- ;;=^5002560
- ;;^UTILITY(U,$J,358.3,10098,0)
- ;;=E09.359^^44^500^34
- ;;^UTILITY(U,$J,358.3,10098,1,0)
+ ;;^UTILITY(U,$J,358.3,21831,1,3,0)
+ ;;=3^Benign Paroxysmal Vertigo,Unspec Ear
+ ;;^UTILITY(U,$J,358.3,21831,1,4,0)
+ ;;=4^H81.10
+ ;;^UTILITY(U,$J,358.3,21831,2)
+ ;;=^5006864
+ ;;^UTILITY(U,$J,358.3,21832,0)
+ ;;=B37.84^^89^1036^12
+ ;;^UTILITY(U,$J,358.3,21832,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10098,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10098,1,4,0)
- ;;=4^E09.359
- ;;^UTILITY(U,$J,358.3,10098,2)
- ;;=^5002561
- ;;^UTILITY(U,$J,358.3,10099,0)
- ;;=E08.351^^44^500^45
- ;;^UTILITY(U,$J,358.3,10099,1,0)
+ ;;^UTILITY(U,$J,358.3,21832,1,3,0)
+ ;;=3^Candidal Otitis Externa
+ ;;^UTILITY(U,$J,358.3,21832,1,4,0)
+ ;;=4^B37.84
+ ;;^UTILITY(U,$J,358.3,21832,2)
+ ;;=^266875
+ ;;^UTILITY(U,$J,358.3,21833,0)
+ ;;=H60.313^^89^1036^18
+ ;;^UTILITY(U,$J,358.3,21833,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10099,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10099,1,4,0)
- ;;=4^E08.351
- ;;^UTILITY(U,$J,358.3,10099,2)
- ;;=^5002518
- ;;^UTILITY(U,$J,358.3,10100,0)
- ;;=E08.359^^44^500^46
- ;;^UTILITY(U,$J,358.3,10100,1,0)
+ ;;^UTILITY(U,$J,358.3,21833,1,3,0)
+ ;;=3^Diffuse Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,21833,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,21833,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,21834,0)
+ ;;=B37.0^^89^1037^13
+ ;;^UTILITY(U,$J,358.3,21834,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10100,1,3,0)
- ;;=3^Diab d/t Undrl Cond w/ Prolif Diab Rtnop w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10100,1,4,0)
- ;;=4^E08.359
- ;;^UTILITY(U,$J,358.3,10100,2)
- ;;=^5002519
- ;;^UTILITY(U,$J,358.3,10101,0)
- ;;=E13.351^^44^500^27
- ;;^UTILITY(U,$J,358.3,10101,1,0)
+ ;;^UTILITY(U,$J,358.3,21834,1,3,0)
+ ;;=3^Candidal Stomatitis
+ ;;^UTILITY(U,$J,358.3,21834,1,4,0)
+ ;;=4^B37.0
+ ;;^UTILITY(U,$J,358.3,21834,2)
+ ;;=^5000612
+ ;;^UTILITY(U,$J,358.3,21835,0)
+ ;;=B37.83^^89^1037^12
+ ;;^UTILITY(U,$J,358.3,21835,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10101,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10101,1,4,0)
- ;;=4^E13.351
- ;;^UTILITY(U,$J,358.3,10101,2)
- ;;=^5002680
- ;;^UTILITY(U,$J,358.3,10102,0)
- ;;=E13.359^^44^500^28
- ;;^UTILITY(U,$J,358.3,10102,1,0)
+ ;;^UTILITY(U,$J,358.3,21835,1,3,0)
+ ;;=3^Candidal Cheilitis
+ ;;^UTILITY(U,$J,358.3,21835,1,4,0)
+ ;;=4^B37.83
+ ;;^UTILITY(U,$J,358.3,21835,2)
+ ;;=^5000622
+ ;;^UTILITY(U,$J,358.3,21836,0)
+ ;;=J00.^^89^1037^6
+ ;;^UTILITY(U,$J,358.3,21836,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10102,1,3,0)
- ;;=3^DM w/ Prolif Diab Retinopathy w/o Macular Edema
- ;;^UTILITY(U,$J,358.3,10102,1,4,0)
- ;;=4^E13.359
- ;;^UTILITY(U,$J,358.3,10102,2)
- ;;=^5002681
- ;;^UTILITY(U,$J,358.3,10103,0)
- ;;=E09.331^^44^500^31
- ;;^UTILITY(U,$J,358.3,10103,1,0)
+ ;;^UTILITY(U,$J,358.3,21836,1,3,0)
+ ;;=3^Acute Nasopharyngitis 
+ ;;^UTILITY(U,$J,358.3,21836,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,21836,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,21837,0)
+ ;;=J01.00^^89^1037^5
+ ;;^UTILITY(U,$J,358.3,21837,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10103,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Moderate Nonprolif Diab Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10103,1,4,0)
- ;;=4^E09.331
- ;;^UTILITY(U,$J,358.3,10103,2)
- ;;=^5002556
- ;;^UTILITY(U,$J,358.3,10104,0)
- ;;=E09.341^^44^500^35
- ;;^UTILITY(U,$J,358.3,10104,1,0)
+ ;;^UTILITY(U,$J,358.3,21837,1,3,0)
+ ;;=3^Acute Maxillary Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21837,1,4,0)
+ ;;=4^J01.00
+ ;;^UTILITY(U,$J,358.3,21837,2)
+ ;;=^5008116
+ ;;^UTILITY(U,$J,358.3,21838,0)
+ ;;=J01.10^^89^1037^1
+ ;;^UTILITY(U,$J,358.3,21838,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10104,1,3,0)
- ;;=3^Diab d/t Drug/Chem w/ Severe Nonprolif Diab Retinopathy w/ Macula Edema
- ;;^UTILITY(U,$J,358.3,10104,1,4,0)
- ;;=4^E09.341
- ;;^UTILITY(U,$J,358.3,10104,2)
- ;;=^5002558
- ;;^UTILITY(U,$J,358.3,10105,0)
- ;;=E13.311^^44^500^49
- ;;^UTILITY(U,$J,358.3,10105,1,0)
+ ;;^UTILITY(U,$J,358.3,21838,1,3,0)
+ ;;=3^Acute Frontal Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21838,1,4,0)
+ ;;=4^J01.10
+ ;;^UTILITY(U,$J,358.3,21838,2)
+ ;;=^5008118
+ ;;^UTILITY(U,$J,358.3,21839,0)
+ ;;=J02.9^^89^1037^7
+ ;;^UTILITY(U,$J,358.3,21839,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,10105,1,3,0)
- ;;=3^Diab w/ Unspec Diabetic Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,10105,1,4,0)
- ;;=4^E13.311
+ ;;^UTILITY(U,$J,358.3,21839,1,3,0)
+ ;;=3^Acute Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21839,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,21839,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,21840,0)
+ ;;=J03.91^^89^1037^8
+ ;;^UTILITY(U,$J,358.3,21840,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21840,1,3,0)
+ ;;=3^Acute Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21840,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,21840,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,21841,0)
+ ;;=J04.0^^89^1037^3
+ ;;^UTILITY(U,$J,358.3,21841,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21841,1,3,0)
+ ;;=3^Acute Laryngitis
+ ;;^UTILITY(U,$J,358.3,21841,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,21841,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,21842,0)
+ ;;=J06.0^^89^1037^4
+ ;;^UTILITY(U,$J,358.3,21842,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21842,1,3,0)
+ ;;=3^Acute Laryngopharyngitis
+ ;;^UTILITY(U,$J,358.3,21842,1,4,0)
+ ;;=4^J06.0
+ ;;^UTILITY(U,$J,358.3,21842,2)
+ ;;=^269876
+ ;;^UTILITY(U,$J,358.3,21843,0)
+ ;;=J06.9^^89^1037^9
+ ;;^UTILITY(U,$J,358.3,21843,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21843,1,3,0)
+ ;;=3^Acute Upper Respiratory Infection,Unspec
+ ;;^UTILITY(U,$J,358.3,21843,1,4,0)
+ ;;=4^J06.9
+ ;;^UTILITY(U,$J,358.3,21843,2)
+ ;;=^5008143
+ ;;^UTILITY(U,$J,358.3,21844,0)
+ ;;=J33.9^^89^1037^19
+ ;;^UTILITY(U,$J,358.3,21844,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21844,1,3,0)
+ ;;=3^Nasal Polyp,Unspec
+ ;;^UTILITY(U,$J,358.3,21844,1,4,0)
+ ;;=4^J33.9
+ ;;^UTILITY(U,$J,358.3,21844,2)
+ ;;=^5008208
+ ;;^UTILITY(U,$J,358.3,21845,0)
+ ;;=J32.0^^89^1037^15
+ ;;^UTILITY(U,$J,358.3,21845,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21845,1,3,0)
+ ;;=3^Chronic Maxillary Sinusitis
+ ;;^UTILITY(U,$J,358.3,21845,1,4,0)
+ ;;=4^J32.0
+ ;;^UTILITY(U,$J,358.3,21845,2)
+ ;;=^24407
+ ;;^UTILITY(U,$J,358.3,21846,0)
+ ;;=J32.1^^89^1037^14
+ ;;^UTILITY(U,$J,358.3,21846,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21846,1,3,0)
+ ;;=3^Chronic Frontal Sinusitis
+ ;;^UTILITY(U,$J,358.3,21846,1,4,0)
+ ;;=4^J32.1
+ ;;^UTILITY(U,$J,358.3,21846,2)
+ ;;=^24380
+ ;;^UTILITY(U,$J,358.3,21847,0)
+ ;;=J32.9^^89^1037^16
+ ;;^UTILITY(U,$J,358.3,21847,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21847,1,3,0)
+ ;;=3^Chronic Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21847,1,4,0)
+ ;;=4^J32.9
+ ;;^UTILITY(U,$J,358.3,21847,2)
+ ;;=^5008207
+ ;;^UTILITY(U,$J,358.3,21848,0)
+ ;;=J30.9^^89^1037^11
+ ;;^UTILITY(U,$J,358.3,21848,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21848,1,3,0)
+ ;;=3^Allergic Rhinitis,Unspec
+ ;;^UTILITY(U,$J,358.3,21848,1,4,0)
+ ;;=4^J30.9
+ ;;^UTILITY(U,$J,358.3,21848,2)
+ ;;=^5008205
+ ;;^UTILITY(U,$J,358.3,21849,0)
+ ;;=J30.0^^89^1037^24
+ ;;^UTILITY(U,$J,358.3,21849,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21849,1,3,0)
+ ;;=3^Vasomotor Rhinitis
+ ;;^UTILITY(U,$J,358.3,21849,1,4,0)
+ ;;=4^J30.0
+ ;;^UTILITY(U,$J,358.3,21849,2)
+ ;;=^5008201
+ ;;^UTILITY(U,$J,358.3,21850,0)
+ ;;=K05.00^^89^1037^2
+ ;;^UTILITY(U,$J,358.3,21850,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21850,1,3,0)
+ ;;=3^Acute Gingivitis,Plaque Induced
+ ;;^UTILITY(U,$J,358.3,21850,1,4,0)
+ ;;=4^K05.00
+ ;;^UTILITY(U,$J,358.3,21850,2)
+ ;;=^334192
+ ;;^UTILITY(U,$J,358.3,21851,0)
+ ;;=R04.0^^89^1037^17
+ ;;^UTILITY(U,$J,358.3,21851,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21851,1,3,0)
+ ;;=3^Epistaxis
+ ;;^UTILITY(U,$J,358.3,21851,1,4,0)
+ ;;=4^R04.0
+ ;;^UTILITY(U,$J,358.3,21851,2)
+ ;;=^5019173
+ ;;^UTILITY(U,$J,358.3,21852,0)
+ ;;=R09.82^^89^1037^21
+ ;;^UTILITY(U,$J,358.3,21852,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21852,1,3,0)
+ ;;=3^Postnasal Drip
+ ;;^UTILITY(U,$J,358.3,21852,1,4,0)
+ ;;=4^R09.82
+ ;;^UTILITY(U,$J,358.3,21852,2)
+ ;;=^97058
+ ;;^UTILITY(U,$J,358.3,21853,0)
+ ;;=K12.30^^89^1037^20
+ ;;^UTILITY(U,$J,358.3,21853,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21853,1,3,0)
+ ;;=3^Oral Mucositis,Unspec
+ ;;^UTILITY(U,$J,358.3,21853,1,4,0)
+ ;;=4^K12.30
+ ;;^UTILITY(U,$J,358.3,21853,2)
+ ;;=^5008486
+ ;;^UTILITY(U,$J,358.3,21854,0)
+ ;;=J30.1^^89^1037^10
+ ;;^UTILITY(U,$J,358.3,21854,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21854,1,3,0)
+ ;;=3^Allergic Rhinitis d/t Pollen
+ ;;^UTILITY(U,$J,358.3,21854,1,4,0)
+ ;;=4^J30.1
+ ;;^UTILITY(U,$J,358.3,21854,2)
+ ;;=^269906
+ ;;^UTILITY(U,$J,358.3,21855,0)
+ ;;=R09.81^^89^1037^18
+ ;;^UTILITY(U,$J,358.3,21855,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21855,1,3,0)
+ ;;=3^Nasal Congestion
+ ;;^UTILITY(U,$J,358.3,21855,1,4,0)
+ ;;=4^R09.81
+ ;;^UTILITY(U,$J,358.3,21855,2)
+ ;;=^5019203
+ ;;^UTILITY(U,$J,358.3,21856,0)
+ ;;=I69.928^^89^1037^22
+ ;;^UTILITY(U,$J,358.3,21856,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,21856,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Disease
+ ;;^UTILITY(U,$J,358.3,21856,1,4,0)
+ ;;=4^I69.928
+ ;;^UTILITY(U,$J,358.3,21856,2)
+ ;;=^5007557

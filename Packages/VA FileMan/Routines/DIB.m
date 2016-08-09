@@ -1,8 +1,13 @@
-DIB ;SFISC/GFT,XAK-CREATE A NEW FILE ;8:53 AM  27 Mar 2002
- ;;22.0;VA FileMan;**107**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIB ;SFISC/GFT,XAK-CREATE A NEW FILE ;9JUN2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  W !! K DLAYGO,DTOUT D W^DICRW G Q:$D(DTOUT) K DICS,DIA Q:Y<0
-1 Q:'$D(@(DIC_"0)"))  I $P($G(^DD(+$P(@(DIC_"0)"),U,2),0,"DI")),U,2)["Y" W !!,$C(7),"RESTRICTED"_$S($P(^("DI"),U)["Y":" (ARCHIVE)",1:"")_" FILE - NO EDITING ALLOWED!" Q
+1 I '$D(@(DIC_"0)")) W !!,$C(7),"DATA GLOBAL DOES NOT EXIST!" K DIC Q
+ I $P($G(^DD(+$P(@(DIC_"0)"),U,2),0,"DI")),U,2)["Y" W !!,$C(7),"RESTRICTED"_$S($P(^("DI"),U)["Y":" (ARCHIVE)",1:"")_" FILE - NO EDITING ALLOWED!" Q
  S:$D(@(DIC_"0)")) DIA=DIC,X=^(0),(DI,J(0),DIA("P"))=+$P(X,U,2)
  D QQ S DR="",(L,DRS,DIAP,DB,DSC)=0,F=-1,I(0)=DIA,DXS=1
  D EN^DIA:$O(^DD(DI,.01))>0 I $D(DR) G ^DIA2

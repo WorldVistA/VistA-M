@@ -1,6 +1,11 @@
-DINIT12 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;16FEB2010
- ;;22.0;VA FileMan;**104,163**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DINIT12 ;SFISC/GFT,XAK-INITIALIZE VA FILEMAN ;07JAN2016
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;**CCO/NI TAGS 'EGP'& 'EGP+1' ADDED TO CREATE NEW FIELDS IN PRINT TEMPLATES, TO REMEMBER THE DEVELOPER'S LANGUAGE, T+1 FOR DATE FORMAT
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G T:X?.P S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;.4,0 FIELD^^1819^21
  ;;.4,0,"DT" 2950909
@@ -34,6 +39,22 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G T:X?.P S @("^DD("_$E($P(X," ",2),3,99
  ;;.4,1815,1,1,2 D DELETROU^DIEZ($TR(X,U))
  ;;.4,1816,0 PREVIOUS ROUTINE INVOKED^F^^ROUOLD;E1,13^Q
  ;;.4,1816,9 @
+ ;;.4,21409,0 CANONIC FOR THIS FILE^S^1:YES^CANONIC;1^I DA<1 K X
+ ;;.4,21409,1,0 ^.1^1^1
+ ;;.4,21409,1,1,0 ^^^MUMPS
+ ;;.4,21409,1,1,1 N F S F=$P(@(DIC_"DA,0)"),U,4) I F S @(DIC_"""CANONIC"",F,DA)=""""")
+ ;;.4,21409,1,1,2 N F S F=$P(@(DIC_"DA,0)"),U,4) I F K @(DIC_"""CANONIC"",F,DA)")
+ ;;.4,21409,1,1,"%D",0 ^6^6^3160104
+ ;;.4,21409,1,1,"%D",1,0 This cross-reference is used to identify files that have a Canonic Print Template assigned.
+ ;;.4,21409,1,1,"%D",2,0 The structure of the cross-reference is:
+ ;;.4,21409,1,1,"%D",3,0      ^DIPT("CANONIC", File#, IEN)
+ ;;.4,21409,1,1,"%D",4,0 where File# identifies the file which has a Canonic Print Template 
+ ;;.4,21409,1,1,"%D",5,0 and IEN is the internal entry number of the Canonic Print Template 
+ ;;.4,21409,1,1,"%D",6,0 assigned to that file.
+ ;;.4,21409,4 D HELP^DIUCANON
+ ;;.4,21409,21,0 ^^2^2^3151125^^^^
+ ;;.4,21409,21,1,0 The Print Template identified as CANONIC will always be presented 
+ ;;.4,21409,21,2,0 to the user for selection at the First Print FIELD: prompt.
  ;;.4,10,0 DESCRIPTION^.4001^^%D;0
  ;;.4001,0 DESCRIPTION SUB-FIELD^^.01^1
  ;;.4001,0,"NM","DESCRIPTION"
@@ -41,11 +62,20 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) G T:X?.P S @("^DD("_$E($P(X," ",2),3,99
  ;;.4001,.01,0 DESCRIPTION^W^^0;1^Q
  ;
 T ;
- ;;N D,D1,D2 S D2=^(0) S:$X>30 D1(1,"F")="!" S D=$P(D2,U,2) S:D D1(2)="("_$$FMTE^DILIBF(D)_")",D1(2,"F")="?30" S D=$P(D2,U,5) S:D D1(3)=" User #"_D,D1(3,"F")="?50" S D=$P(D2,U,4) S:D D1(4)=" File #"_D,D1(4,"F")="?59" D EN^DDIOL(.D1)
+ ;;N D,D1,D2 S D2=^(0) S:$X>30 D1(1,"F")="!" S D=$P(D2,U,2) S:D D1(2)="("_$$DATE^DIUTL(D)_")",D1(2,"F")="?30" S D=$P(D2,U,5) S:D D1(3)=" User #"_D,D1(3,"F")="?50" S D=$P(D2,U,4) S:D D1(4)=" File #"_D,D1(4,"F")="?59" D EN^DDIOL(.D1)
  S ^DD(.4,0,"ID","WRITE")=$P($T(T+1),";",3,99)
- S %X="^DD(.4," S %Y="^DD(.402," D %XY^%RCR
+ S %X="^DD(.4," S %Y="^DD(.402," D %XY^%RCR ;MAKE INPUT TEMPLATE DD FROM PRINT TEMPLATE DD!
  S %X="^DD(.4001," S %Y="^DD(.4021," D %XY^%RCR
  K ^DD(.402,1804),^("SB",.404),^DD(.402,"GL","RD",0,1804)
+ S ^DD(.402,21409,1,1,"%D",0)="^6^6^3160107"
+ S ^DD(.402,21409,1,1,"%D",1,0)="This cross-reference is used to identify files that have a Canonic Edit Template assigned."
+ S ^DD(.402,21409,1,1,"%D",2,0)="The structure of the cross-reference is:"
+ S ^DD(.402,21409,1,1,"%D",3,0)="     ^DIE(""CANONIC"", File#, IEN)"
+ S ^DD(.402,21409,1,1,"%D",4,0)=" where File# identifies the file which has a Canonic Edit Template "
+ S ^DD(.402,21409,1,1,"%D",5,0)="and IEN is the internal entry number of the Canonic Edit Template "
+ S ^DD(.402,21409,1,1,"%D",6,0)="assigned to that file."
+ S ^DD(.402,21409,21,1,0)="The Input Template identified as CANONIC will always be presented "
+ S ^DD(.402,21409,21,2,0)="to the user for selection at the EDIT WHICH FIELD: prompt."
  S ^DIC(.4,"%D",0)="^^3^3^2940908^"
  S ^DIC(.4,"%D",1,0)="This file stores the PRINT FIELDS data and other information about print"
  S ^DIC(.4,"%D",2,0)="templates.  These templates are used in the Print, Filegram, Extract, and"
@@ -58,7 +88,7 @@ DD1 F I=1:1 S X=$T(DD1+I),Y=$P(X," ",3,99) G DD2:X?.P S @("^DD("_$E($P(X," ",2),
  ;;.402,0,"ID","WRITED" I $G(DZ)?1"???".E N % S %=0 F  S %=$O(^DIE(Y,"%D",%)) Q:%'>0  I $D(^(%,0))#2 D EN^DDIOL(^(0),"","!?5")
  ;;.4,1620,9 ^
  ;;.4,1620,9.01
- ;;.4,1620,9.1 D ^DIET
+ ;;.4,1620,9.1 
  ;;.402,1620,0 EDIT FIELDS^Cm^^ ; ^D EN^DIET
  ;;.402,1620,21,0 ^
  ;;.402,1620,21,1,0 This multi-line field displays all the "EDIT" prompts of this Input Template
@@ -69,8 +99,23 @@ DD1 F I=1:1 S X=$T(DD1+I),Y=$P(X," ",3,99) G DD2:X?.P S @("^DD("_$E($P(X," ",2),
  ;;.4,1819,9 ^
  ;;.4,1819,9.01
  ;;.4,1819,9.1 S X=$S('$D(^DIPT(D0,"ROU"))#2:"NO",^("ROU")="":"NO",1:"YES")
+EGP ;;.4,1819.1,0 LANGUAGE IN WHICH COMPILED^P.85^DI(.85,^ROULANG;1
+ ;;.4,1819.1,3 Enter a language from the Language File.
+ ;;.4,1819.1,21,0 ^
+ ;;.4,1819.1,21,1,0 The identified language is used when this Print Template is compiled.
+ ;;.4,709.1,0 LANGUAGE OF HEADING^P.85^DI(.85,^HLANG;1
+ ;;.4,709.1,3 Enter a language from the Language File.
+ ;;.4,709.1,21,0 ^
+ ;;.4,709.1,21,1,0 The identified language is used when producing the Heading of prints using this template.
  ;;.402,1819,0 COMPILED^CJ3^^ ; ^S X=$S('$D(^DIE(D0,"ROU"))#2:"NO",^("ROU")="":"NO",1:"YES")
  ;;.402,1819,9.1 S X=$S('$D(^DIE(D0,"ROU"))#2:"NO",^("ROU")="":"NO",1:"YES")
+ ;;.402,1819,9 ^
+ ;;.402,1819,9.01
+ ;;.402,21400,0 BUILD(S)^Cmp9.6^^ ; ^N DIENAME,D S DIENAME=$P($G(^DIE(D0,0)),U)_"    FILE #"_$P($G(^(0)),U,4) F D=0:0 S D=$O(^XPD(9.6,D)) Q:'D  I $D(^(D,"KRN",.402,"NM","B",DIENAME)) N D0 S D0=D,X=$P(^XPD(9.6,D,0),U) X DICMX Q:'$D(D)
+ ;;.402,21400,21,0 ^^3^3^3160107^
+ ;;.402,21400,21,1,0 This computed field searches the Build File(#9.6) for Builds containing the Edit Template.
+ ;;.402,21400,21,2,0 A list of the identified Builds is created for display. 
+ ;;.402,21400,21,3,0 Multiple Builds will be shown if appropriate.
  ;;
-DD2 N DICNT F DICNT=0:1:7 D @("^DINIT12"_DICNT)
+DD2 N DICNT F DICNT=0:1:7 D @("^DINIT12"_DICNT) ;---REDUNDANT?
  K DICNT G ^DINIT13

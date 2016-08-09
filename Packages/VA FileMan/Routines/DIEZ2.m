@@ -1,6 +1,10 @@
-DIEZ2 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;20SEP2004
- ;;22.0;VA FileMan;**11,95,159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIEZ2 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;15JUN2006
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  K DIEZAR D RECXR^DIEZ4(.DIEZAR)
  K ^DIE(DIEZ,"AR") M:$D(DIEZAR) ^DIE(DIEZ,"AR")=DIEZAR
  S %X="^UTILITY($J,""AF"",",%Y="^DIE(""AF""," D %XY^%RCR
@@ -23,7 +27,7 @@ XREF ;
  S X="C"_DQ_"S S X="""" G:DG(DQ)=X C"_DQ_"F1 K DB" D L S X=""
  S DIEZX=L,DIEZLN=L
  F %=0:0 S %=$O(^DD(DP,DI,1,%)) Q:%'>0  S DW=^(%,1),X=X_" S X=DG(DQ),DIC=DIE" D SK ;then the SET XREFS
- I DV["a" S X=X_" I $D(DE("_DQ_"))'[0!(^DD(DP,DIFLD,""AUDIT"")'=""e"") S X=DG(DQ),DIIX=3_U_DIFLD D AUDIT^DIET" D X
+ I DV["a" S X=X_" I $D(DE("_DQ_"))'[0!($G(^DD(DP,DIFLD,""AUDIT""))[""y"") S X=DG(DQ),DIIX=3_U_DIFLD D AUDIT^DIET" D X
  D OVERFLO
  ;Build index code and code to check key
  D INDEX
@@ -51,10 +55,11 @@ OVERFLO I DIEZLN+T+100<DMAX!'DIEZLN Q
 MUL ;
  S DNR=%,DW=$P(DW,";",1),X=$P(^DD(+DV,0),U,4)_U_DV_U_DW_U,%=^(.01,0),DV=+DV_$P(%,U,2)
  G 1:DV'["W" I DPR]"" S F=0,Q=DPR D QFF S X=" S DE(1,0)="_Q D L
- S X=" S Y="""_$S(DIEZP]"":DIEZP_U_$P(%,U,2,9),1:%)_""",DG="""_DW_""",DC=""^"_+DV_""" D DIEN^DIWE K DE(1) G A" D L S X=" ;" D L,AF
+WPEGP S X=" S Y=""^"_$P(%,U,2,9)_""" S $P(Y,U)="_$S(DIEZP]"":""""_DIEZP_"""",1:"$$LABEL^DIALOGZ(DP,"_DI_")")_" S DG="""_DW_""",DC=""^"_+DV_""" D DIEN^DIWE K DE(1) G A" D L S X=" ;" D L,AF ;**CC0/NI WORD-PROCESSING FIELD LABEL
  S ^UTILITY($J,"AF",+DV,.01,DIEZ)="" D AB G NX^DIEZ0
  ;
-1 S X=" S DIFLD="_DI_",DGO=""^"_DNM_DNR_""",DC="""_X_""",DV="""_DV_""",DW=""0;1"",DOW="""_$S(DIEZP]"":DIEZP,1:$P(^(0),U))_""",DLB=$P($$EZBLD^DIALOG(8042,DOW),"": "") S:D DC=DC_D",DPP=DV["M",DU=$P(^(0),U,3) D L,DU:DU]""
+1 ;**CCO/NI COMPILE 'SELECT FIELD:' SO IT WORKS FOR ANY LANGUAGE
+ S X=" S DIFLD="_DI_",DGO=""^"_DNM_DNR_""",DC="""_X_""",DV="""_DV_""",DW=""0;1"",DOW="_$S(DIEZP]"":""""_DIEZP_"""",1:"$$LABEL^DIALOGZ(DP,DIFLD)")_",DLB=$P($$EZBLD^DIALOG(8042,DOW),"": "") S:D DC=DC_D",DPP=DV["M",DU=$P(^(0),U,3) D L,DU:DU]""
  S X=$P(" G RE:D",U,DPP)_" I $D(DSC("_+DV_"))#2,$P(DSC("_+DV_"),""I $D(^UTILITY("",1)="""" X DSC("_+DV_") S D=$O(^(0)) S:D="""" D=-1 G M"_DQ D L
  S:+DW'=DW DW=""""_DW_"""" S X=" S D=$S($D("_DIE_"DA,"_DW_",0)):$P(^(0),U,3,4),$O(^(0))'="""":$O(^(0)),1:-1)" D L
  S X="M"_DQ_" I D>0 S DC=DC_D I $D("_DIE_"DA,"_DW_",+D,0)) S DE("_DQ_")=$P(^(0),U,1)" D L

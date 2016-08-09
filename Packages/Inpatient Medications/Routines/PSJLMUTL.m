@@ -1,14 +1,14 @@
 PSJLMUTL ;BIR/MLM - INPATIENT LISTMAN UTILITIES ; 9/12/07 10:28am
- ;;5.0;INPATIENT MEDICATIONS ;**7,67,58,85,111,160,198,320**;16 DEC 97;Build 7
+ ;;5.0;INPATIENT MEDICATIONS ;**7,67,58,85,111,160,198,320,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^ORD(101 is supported by DBIA #872.
  ; Reference to ^PS(50.606 is supported by DBIA #2174.
  ; Reference to ^PS(50.7 is supported by DBIA #2180.
  ; Reference to ^PS(55 is supported by DBIA #2191.
- ; Reference to ^PSDRUG is supported by DBIA #2192.
+ ; Reference to ^PSDRUG( is supported by DBIA #2192.
  ; Reference to ^GMRAPEM0 is supported by DBIA #190.
  ; Reference to ^SDAMA203 is supported by DBIA #4133.
- ; Reference to ^VSIT is supported by DBIA #1905.
+ ; Reference to SELECTED^VSIT is supported by DBIA #1905.
  ;
 NEWALL(DFN) ; Enter Allergy info.
  ;
@@ -63,6 +63,7 @@ SDA N PSJPAD,PSJCLIN,PSJCLINO,PSJAPD,PSJSCI,PSJCLOK,VAERR K ^TMP("PSJVSIT"),PSJD
  Q
  ;
 ENC(SDPATDFN,SDCLIEN) ;
+ I '$G(PSGDT) D NOW^%DTC S PSGDT=% ;*281
  N SDFROM,DT,SUBVIS,VIS S SDSTART=$$FMADD^XLFDT($P(PSGDT,"."),-1),SDEND=$$FMADD^XLFDT($P(PSGDT,"."),+365) K ^TMP("VSIT",$J)
  D SELECTED^VSIT(SDPATDFN,SDSTART,SDEND,SDCLIEN) N VIS S VIS=0 F  S VIS=$O(^TMP("VSIT",$J,VIS)) Q:'VIS  D
  . S SUBVIS=0 F  S SUBVIS=$O(^TMP("VSIT",$J,VIS,SUBVIS)) Q:'SUBVIS  D

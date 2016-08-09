@@ -1,6 +1,9 @@
-DDSPRNT1 ;SFISC/MKO-PRINT A FORM ;11:49 AM  17 Nov 1994
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDSPRNT1 ;SFISC/MKO-PRINT A FORM ;9DEC2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 PAGE ;Print page properties
  I $Y+7'<IOSL!(DDSPBRK&'$D(DDSPFRST)) D HEADER^DDSPRNT Q:$D(DIRUT)
@@ -54,7 +57,7 @@ PAGE ;Print page properties
  ;
 BLOCK ;Print Block properties
  S DDSCOL1=8,DDSCOL2=15,DDSCOL3=39
- F X=0,1,2 S DDSBK(X)=$G(^DIST(.403,+DDSFORM,40,DDSPG,40,DDSBK,X))
+ F X=0,1,2,"COMP MUL","COMP MUL PTR" S DDSBK(X)=$G(^DIST(.403,+DDSFORM,40,DDSPG,40,DDSBK,X))
  Q:DDSBK(0)=""
  ;
  D W($P(DDSBK(0),U,2),DDSCOL1) Q:$D(DIRUT)
@@ -69,6 +72,8 @@ BLOCK ;Print Block properties
  D WR("INITIAL POSITION:",$P(DDSBK(2),U,3)) Q:$D(DIRUT)
  D WR("DISALLOW LAYGO",$P(DDSBK(2),U,4)) Q:$D(DIRUT)
  D WR("FIELD FOR SELECTION:",$P(DDSBK(2),U,5)) Q:$D(DIRUT)
+ D WR("COMPUTED MULTIPLE:",DDSBK("COMP MUL")) Q:$D(DIRUT)
+ D WR("COMPUTED MULTIPLE POINTER:",DDSBK("COMP MUL PTR")) Q:$D(DIRUT)
  ;
  D WR("PRE ACTION:",$G(^DIST(.403,+DDSFORM,40,DDSPG,40,DDSBK,11))) Q:$D(DIRUT)
  D WR("POST ACTION:",$G(^DIST(.403,+DDSFORM,40,DDSPG,40,DDSBK,12))) Q:$D(DIRUT)

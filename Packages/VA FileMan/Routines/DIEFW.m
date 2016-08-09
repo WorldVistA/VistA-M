@@ -1,7 +1,11 @@
 DIEFW ;SFISC/DPC-FILER WP ;22MAR2006
- ;;22.0;VA FileMan;**1,8,147**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
-WP(DIEFF,DIEFIEN,DIEFFLD,DIEFWPFL,DIEFTSRC,DIEFOUT) ;
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+WP(DIEFF,DIEFIEN,DIEFFLD,DIEFWPFL,DIEFTSRC,DIEFOUT) ;(FILE,IENS,FIELD,FLAGS,wp_root,msg_root)
 WPX ;
  S DIEFWPFL=$G(DIEFWPFL)
  I '$D(DIQUIET) N DIQUIET S DIQUIET=1
@@ -29,7 +33,7 @@ OUT I $G(DIEFOUT)]"" D CALLOUT^DIEFU(DIEFOUT)
  Q
  ;
 PUTWP(DIEFWPFL,DIEFTSRC,DIEFNODE) ;
- N BEGIN
+ N BEGIN D WP^DIET(DIEFF,DIEFFLD,DIEFIEN,DIEFNODE)
  I "@"[DIEFTSRC K @DIEFNODE Q
  I '($D(@DIEFTSRC)\10) D BLD^DIALOG(305,DIEFTSRC,DIEFTSRC) Q
  I $G(DIEFWPFL)'["A" S BEGIN=1 K @DIEFNODE

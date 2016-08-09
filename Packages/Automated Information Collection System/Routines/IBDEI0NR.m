@@ -1,130 +1,278 @@
-IBDEI0NR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0NR ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,11091,1,4,0)
- ;;=4^E11.44
- ;;^UTILITY(U,$J,358.3,11091,2)
- ;;=^5002648
- ;;^UTILITY(U,$J,358.3,11092,0)
- ;;=E11.59^^47^527^7
- ;;^UTILITY(U,$J,358.3,11092,1,0)
+ ;;^UTILITY(U,$J,358.3,23967,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11092,1,3,0)
- ;;=3^Diabetes Type 2 w/ Circulatory Complications
- ;;^UTILITY(U,$J,358.3,11092,1,4,0)
- ;;=4^E11.59
- ;;^UTILITY(U,$J,358.3,11092,2)
- ;;=^5002652
- ;;^UTILITY(U,$J,358.3,11093,0)
- ;;=E11.638^^47^527^25
- ;;^UTILITY(U,$J,358.3,11093,1,0)
+ ;;^UTILITY(U,$J,358.3,23967,1,3,0)
+ ;;=3^TRAUMATIC BRAIN INJURY,Diffuse w/ Unspec Duration of LOC,Sequela
+ ;;^UTILITY(U,$J,358.3,23967,1,4,0)
+ ;;=4^S06.2X9S
+ ;;^UTILITY(U,$J,358.3,23967,2)
+ ;;=^5020755
+ ;;^UTILITY(U,$J,358.3,23968,0)
+ ;;=F02.81^^92^1104^50
+ ;;^UTILITY(U,$J,358.3,23968,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11093,1,3,0)
- ;;=3^Diabetes Type 2 w/ Oral Complications
- ;;^UTILITY(U,$J,358.3,11093,1,4,0)
- ;;=4^E11.638
- ;;^UTILITY(U,$J,358.3,11093,2)
- ;;=^5002660
- ;;^UTILITY(U,$J,358.3,11094,0)
- ;;=E11.628^^47^527^27
- ;;^UTILITY(U,$J,358.3,11094,1,0)
+ ;;^UTILITY(U,$J,358.3,23968,1,3,0)
+ ;;=3^Major Neurocog D/O d/t TBI w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,23968,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,23968,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,23969,0)
+ ;;=F02.80^^92^1104^51
+ ;;^UTILITY(U,$J,358.3,23969,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11094,1,3,0)
- ;;=3^Diabetes Type 2 w/ Skin Complications
- ;;^UTILITY(U,$J,358.3,11094,1,4,0)
- ;;=4^E11.628
- ;;^UTILITY(U,$J,358.3,11094,2)
- ;;=^5002658
- ;;^UTILITY(U,$J,358.3,11095,0)
- ;;=E11.630^^47^527^26
- ;;^UTILITY(U,$J,358.3,11095,1,0)
+ ;;^UTILITY(U,$J,358.3,23969,1,3,0)
+ ;;=3^Major Neurocog D/O d/t TBI w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,23969,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,23969,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,23970,0)
+ ;;=G31.84^^92^1104^64
+ ;;^UTILITY(U,$J,358.3,23970,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11095,1,3,0)
- ;;=3^Diabetes Type 2 w/ Periodontal Disease
- ;;^UTILITY(U,$J,358.3,11095,1,4,0)
- ;;=4^E11.630
- ;;^UTILITY(U,$J,358.3,11095,2)
- ;;=^5002659
- ;;^UTILITY(U,$J,358.3,11096,0)
- ;;=E11.8^^47^527^28
- ;;^UTILITY(U,$J,358.3,11096,1,0)
+ ;;^UTILITY(U,$J,358.3,23970,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t TBI
+ ;;^UTILITY(U,$J,358.3,23970,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,23970,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,23971,0)
+ ;;=F01.51^^92^1104^48
+ ;;^UTILITY(U,$J,358.3,23971,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11096,1,3,0)
- ;;=3^Diabetes Type 2 w/ Unspec Complications
- ;;^UTILITY(U,$J,358.3,11096,1,4,0)
- ;;=4^E11.8
- ;;^UTILITY(U,$J,358.3,11096,2)
- ;;=^5002665
- ;;^UTILITY(U,$J,358.3,11097,0)
- ;;=E11.9^^47^527^29
- ;;^UTILITY(U,$J,358.3,11097,1,0)
+ ;;^UTILITY(U,$J,358.3,23971,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,23971,1,4,0)
+ ;;=4^F01.51
+ ;;^UTILITY(U,$J,358.3,23971,2)
+ ;;=^5003047
+ ;;^UTILITY(U,$J,358.3,23972,0)
+ ;;=F01.50^^92^1104^49
+ ;;^UTILITY(U,$J,358.3,23972,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11097,1,3,0)
- ;;=3^Diabetes Type 2 w/o Complications
- ;;^UTILITY(U,$J,358.3,11097,1,4,0)
- ;;=4^E11.9
- ;;^UTILITY(U,$J,358.3,11097,2)
- ;;=^5002666
- ;;^UTILITY(U,$J,358.3,11098,0)
- ;;=E11.36^^47^527^9
- ;;^UTILITY(U,$J,358.3,11098,1,0)
+ ;;^UTILITY(U,$J,358.3,23972,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob VASCULAR DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,23972,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,23972,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,23973,0)
+ ;;=G31.84^^92^1104^65
+ ;;^UTILITY(U,$J,358.3,23973,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11098,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Cataract
- ;;^UTILITY(U,$J,358.3,11098,1,4,0)
- ;;=4^E11.36
- ;;^UTILITY(U,$J,358.3,11098,2)
- ;;=^5002642
- ;;^UTILITY(U,$J,358.3,11099,0)
- ;;=E11.22^^47^527^10
- ;;^UTILITY(U,$J,358.3,11099,1,0)
+ ;;^UTILITY(U,$J,358.3,23973,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t VASCULAR DISEASE
+ ;;^UTILITY(U,$J,358.3,23973,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,23973,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,23974,0)
+ ;;=R41.9^^92^1104^68
+ ;;^UTILITY(U,$J,358.3,23974,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11099,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Chronic Kidney Disease
- ;;^UTILITY(U,$J,358.3,11099,1,4,0)
- ;;=4^E11.22
- ;;^UTILITY(U,$J,358.3,11099,2)
- ;;=^5002630
- ;;^UTILITY(U,$J,358.3,11100,0)
- ;;=E11.29^^47^527^12
- ;;^UTILITY(U,$J,358.3,11100,1,0)
+ ;;^UTILITY(U,$J,358.3,23974,1,3,0)
+ ;;=3^Neurocognitive Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,23974,1,4,0)
+ ;;=4^R41.9
+ ;;^UTILITY(U,$J,358.3,23974,2)
+ ;;=^5019449
+ ;;^UTILITY(U,$J,358.3,23975,0)
+ ;;=F06.31^^92^1105^1
+ ;;^UTILITY(U,$J,358.3,23975,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11100,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Kidney Complication
- ;;^UTILITY(U,$J,358.3,11100,1,4,0)
- ;;=4^E11.29
- ;;^UTILITY(U,$J,358.3,11100,2)
- ;;=^5002631
- ;;^UTILITY(U,$J,358.3,11101,0)
- ;;=E11.21^^47^527^13
- ;;^UTILITY(U,$J,358.3,11101,1,0)
+ ;;^UTILITY(U,$J,358.3,23975,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Depressive Features
+ ;;^UTILITY(U,$J,358.3,23975,1,4,0)
+ ;;=4^F06.31
+ ;;^UTILITY(U,$J,358.3,23975,2)
+ ;;=^5003057
+ ;;^UTILITY(U,$J,358.3,23976,0)
+ ;;=F06.32^^92^1105^2
+ ;;^UTILITY(U,$J,358.3,23976,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11101,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Nephropathy
- ;;^UTILITY(U,$J,358.3,11101,1,4,0)
- ;;=4^E11.21
- ;;^UTILITY(U,$J,358.3,11101,2)
- ;;=^5002629
- ;;^UTILITY(U,$J,358.3,11102,0)
- ;;=E11.39^^47^527^16
- ;;^UTILITY(U,$J,358.3,11102,1,0)
+ ;;^UTILITY(U,$J,358.3,23976,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Major Depressive-Like Episode
+ ;;^UTILITY(U,$J,358.3,23976,1,4,0)
+ ;;=4^F06.32
+ ;;^UTILITY(U,$J,358.3,23976,2)
+ ;;=^5003058
+ ;;^UTILITY(U,$J,358.3,23977,0)
+ ;;=F32.9^^92^1105^20
+ ;;^UTILITY(U,$J,358.3,23977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11102,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Ophthalmic Complication
- ;;^UTILITY(U,$J,358.3,11102,1,4,0)
- ;;=4^E11.39
- ;;^UTILITY(U,$J,358.3,11102,2)
- ;;=^5002643
- ;;^UTILITY(U,$J,358.3,11103,0)
- ;;=E11.311^^47^527^20
- ;;^UTILITY(U,$J,358.3,11103,1,0)
+ ;;^UTILITY(U,$J,358.3,23977,1,3,0)
+ ;;=3^MDD,Single Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,23977,1,4,0)
+ ;;=4^F32.9
+ ;;^UTILITY(U,$J,358.3,23977,2)
+ ;;=^5003528
+ ;;^UTILITY(U,$J,358.3,23978,0)
+ ;;=F32.0^^92^1105^17
+ ;;^UTILITY(U,$J,358.3,23978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,11103,1,3,0)
- ;;=3^Diabetes Type 2 w/ Diabetic Retinopathy w/ Macular Edema
- ;;^UTILITY(U,$J,358.3,11103,1,4,0)
- ;;=4^E11.311
- ;;^UTILITY(U,$J,358.3,11103,2)
- ;;=^5002632
- ;;^UTILITY(U,$J,358.3,11104,0)
- ;;=E11.319^^47^527^19
+ ;;^UTILITY(U,$J,358.3,23978,1,3,0)
+ ;;=3^MDD,Single Episode,Mild
+ ;;^UTILITY(U,$J,358.3,23978,1,4,0)
+ ;;=4^F32.0
+ ;;^UTILITY(U,$J,358.3,23978,2)
+ ;;=^5003521
+ ;;^UTILITY(U,$J,358.3,23979,0)
+ ;;=F32.1^^92^1105^18
+ ;;^UTILITY(U,$J,358.3,23979,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23979,1,3,0)
+ ;;=3^MDD,Single Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,23979,1,4,0)
+ ;;=4^F32.1
+ ;;^UTILITY(U,$J,358.3,23979,2)
+ ;;=^5003522
+ ;;^UTILITY(U,$J,358.3,23980,0)
+ ;;=F32.2^^92^1105^19
+ ;;^UTILITY(U,$J,358.3,23980,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23980,1,3,0)
+ ;;=3^MDD,Single Episode,Severe
+ ;;^UTILITY(U,$J,358.3,23980,1,4,0)
+ ;;=4^F32.2
+ ;;^UTILITY(U,$J,358.3,23980,2)
+ ;;=^5003523
+ ;;^UTILITY(U,$J,358.3,23981,0)
+ ;;=F32.3^^92^1105^14
+ ;;^UTILITY(U,$J,358.3,23981,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23981,1,3,0)
+ ;;=3^MDD,Single Episode w Psychotic Features
+ ;;^UTILITY(U,$J,358.3,23981,1,4,0)
+ ;;=4^F32.3
+ ;;^UTILITY(U,$J,358.3,23981,2)
+ ;;=^5003524
+ ;;^UTILITY(U,$J,358.3,23982,0)
+ ;;=F32.4^^92^1105^16
+ ;;^UTILITY(U,$J,358.3,23982,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23982,1,3,0)
+ ;;=3^MDD,Single Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,23982,1,4,0)
+ ;;=4^F32.4
+ ;;^UTILITY(U,$J,358.3,23982,2)
+ ;;=^5003525
+ ;;^UTILITY(U,$J,358.3,23983,0)
+ ;;=F32.5^^92^1105^15
+ ;;^UTILITY(U,$J,358.3,23983,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23983,1,3,0)
+ ;;=3^MDD,Single Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,23983,1,4,0)
+ ;;=4^F32.5
+ ;;^UTILITY(U,$J,358.3,23983,2)
+ ;;=^5003526
+ ;;^UTILITY(U,$J,358.3,23984,0)
+ ;;=F33.9^^92^1105^13
+ ;;^UTILITY(U,$J,358.3,23984,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23984,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Unspec
+ ;;^UTILITY(U,$J,358.3,23984,1,4,0)
+ ;;=4^F33.9
+ ;;^UTILITY(U,$J,358.3,23984,2)
+ ;;=^5003537
+ ;;^UTILITY(U,$J,358.3,23985,0)
+ ;;=F33.0^^92^1105^10
+ ;;^UTILITY(U,$J,358.3,23985,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23985,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Mild
+ ;;^UTILITY(U,$J,358.3,23985,1,4,0)
+ ;;=4^F33.0
+ ;;^UTILITY(U,$J,358.3,23985,2)
+ ;;=^5003529
+ ;;^UTILITY(U,$J,358.3,23986,0)
+ ;;=F33.1^^92^1105^11
+ ;;^UTILITY(U,$J,358.3,23986,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23986,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Moderate
+ ;;^UTILITY(U,$J,358.3,23986,1,4,0)
+ ;;=4^F33.1
+ ;;^UTILITY(U,$J,358.3,23986,2)
+ ;;=^5003530
+ ;;^UTILITY(U,$J,358.3,23987,0)
+ ;;=F33.2^^92^1105^12
+ ;;^UTILITY(U,$J,358.3,23987,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23987,1,3,0)
+ ;;=3^MDD,Recurrent Episode,Severe
+ ;;^UTILITY(U,$J,358.3,23987,1,4,0)
+ ;;=4^F33.2
+ ;;^UTILITY(U,$J,358.3,23987,2)
+ ;;=^5003531
+ ;;^UTILITY(U,$J,358.3,23988,0)
+ ;;=F33.3^^92^1105^7
+ ;;^UTILITY(U,$J,358.3,23988,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23988,1,3,0)
+ ;;=3^MDD,Recurrent Episode w/ Psychotic Features
+ ;;^UTILITY(U,$J,358.3,23988,1,4,0)
+ ;;=4^F33.3
+ ;;^UTILITY(U,$J,358.3,23988,2)
+ ;;=^5003532
+ ;;^UTILITY(U,$J,358.3,23989,0)
+ ;;=F33.41^^92^1105^9
+ ;;^UTILITY(U,$J,358.3,23989,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23989,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Partial Remission
+ ;;^UTILITY(U,$J,358.3,23989,1,4,0)
+ ;;=4^F33.41
+ ;;^UTILITY(U,$J,358.3,23989,2)
+ ;;=^5003534
+ ;;^UTILITY(U,$J,358.3,23990,0)
+ ;;=F33.42^^92^1105^8
+ ;;^UTILITY(U,$J,358.3,23990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23990,1,3,0)
+ ;;=3^MDD,Recurrent Episode,In Full Remission
+ ;;^UTILITY(U,$J,358.3,23990,1,4,0)
+ ;;=4^F33.42
+ ;;^UTILITY(U,$J,358.3,23990,2)
+ ;;=^5003535
+ ;;^UTILITY(U,$J,358.3,23991,0)
+ ;;=F34.8^^92^1105^6
+ ;;^UTILITY(U,$J,358.3,23991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23991,1,3,0)
+ ;;=3^Disruptive Mood Dysregulation Disorder
+ ;;^UTILITY(U,$J,358.3,23991,1,4,0)
+ ;;=4^F34.8
+ ;;^UTILITY(U,$J,358.3,23991,2)
+ ;;=^5003539
+ ;;^UTILITY(U,$J,358.3,23992,0)
+ ;;=F34.1^^92^1105^21
+ ;;^UTILITY(U,$J,358.3,23992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23992,1,3,0)
+ ;;=3^Persistent Depressive Disorder (Dysthmia)
+ ;;^UTILITY(U,$J,358.3,23992,1,4,0)
+ ;;=4^F34.1
+ ;;^UTILITY(U,$J,358.3,23992,2)
+ ;;=^331913
+ ;;^UTILITY(U,$J,358.3,23993,0)
+ ;;=N94.3^^92^1105^22
+ ;;^UTILITY(U,$J,358.3,23993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23993,1,3,0)
+ ;;=3^Premenstrual Dysphoric Disorder
+ ;;^UTILITY(U,$J,358.3,23993,1,4,0)
+ ;;=4^N94.3
+ ;;^UTILITY(U,$J,358.3,23993,2)
+ ;;=^5015919
+ ;;^UTILITY(U,$J,358.3,23994,0)
+ ;;=F06.34^^92^1105^3
+ ;;^UTILITY(U,$J,358.3,23994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,23994,1,3,0)
+ ;;=3^Depressive Disorder d/t Another Med Cond w/ Mixed Features,Unsp

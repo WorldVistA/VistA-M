@@ -1,134 +1,286 @@
-IBDEI0IW ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0IW ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8784,1,4,0)
- ;;=4^T85.398A
- ;;^UTILITY(U,$J,358.3,8784,2)
- ;;=^5055559
- ;;^UTILITY(U,$J,358.3,8785,0)
- ;;=T86.840^^41^468^58
- ;;^UTILITY(U,$J,358.3,8785,1,0)
+ ;;^UTILITY(U,$J,358.3,19046,2)
+ ;;=^5003571
+ ;;^UTILITY(U,$J,358.3,19047,0)
+ ;;=F43.12^^86^978^46
+ ;;^UTILITY(U,$J,358.3,19047,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8785,1,3,0)
- ;;=3^Corneal Transplant Rejection
- ;;^UTILITY(U,$J,358.3,8785,1,4,0)
- ;;=4^T86.840
- ;;^UTILITY(U,$J,358.3,8785,2)
- ;;=^5055744
- ;;^UTILITY(U,$J,358.3,8786,0)
- ;;=T86.841^^41^468^57
- ;;^UTILITY(U,$J,358.3,8786,1,0)
+ ;;^UTILITY(U,$J,358.3,19047,1,3,0)
+ ;;=3^PTSD,Chronic
+ ;;^UTILITY(U,$J,358.3,19047,1,4,0)
+ ;;=4^F43.12
+ ;;^UTILITY(U,$J,358.3,19047,2)
+ ;;=^5003572
+ ;;^UTILITY(U,$J,358.3,19048,0)
+ ;;=I25.119^^86^978^5
+ ;;^UTILITY(U,$J,358.3,19048,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8786,1,3,0)
- ;;=3^Corneal Transplant Failure
- ;;^UTILITY(U,$J,358.3,8786,1,4,0)
- ;;=4^T86.841
- ;;^UTILITY(U,$J,358.3,8786,2)
- ;;=^5055745
- ;;^UTILITY(U,$J,358.3,8787,0)
- ;;=T85.318A^^41^468^22
- ;;^UTILITY(U,$J,358.3,8787,1,0)
+ ;;^UTILITY(U,$J,358.3,19048,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,19048,1,4,0)
+ ;;=4^I25.119
+ ;;^UTILITY(U,$J,358.3,19048,2)
+ ;;=^5007111
+ ;;^UTILITY(U,$J,358.3,19049,0)
+ ;;=I25.10^^86^978^7
+ ;;^UTILITY(U,$J,358.3,19049,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8787,1,3,0)
- ;;=3^Breakdown of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,8787,1,4,0)
- ;;=4^T85.318A
- ;;^UTILITY(U,$J,358.3,8787,2)
- ;;=^5055541
- ;;^UTILITY(U,$J,358.3,8788,0)
- ;;=T85.328A^^41^468^59
- ;;^UTILITY(U,$J,358.3,8788,1,0)
+ ;;^UTILITY(U,$J,358.3,19049,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/o Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,19049,1,4,0)
+ ;;=4^I25.10
+ ;;^UTILITY(U,$J,358.3,19049,2)
+ ;;=^5007107
+ ;;^UTILITY(U,$J,358.3,19050,0)
+ ;;=I25.110^^86^978^6
+ ;;^UTILITY(U,$J,358.3,19050,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8788,1,3,0)
- ;;=3^Displacement of Ocular Prosthetic Device/Implant/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,8788,1,4,0)
- ;;=4^T85.328A
- ;;^UTILITY(U,$J,358.3,8788,2)
- ;;=^5055550
- ;;^UTILITY(U,$J,358.3,8789,0)
- ;;=H11.013^^41^468^2
- ;;^UTILITY(U,$J,358.3,8789,1,0)
+ ;;^UTILITY(U,$J,358.3,19050,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,19050,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,19050,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,19051,0)
+ ;;=F17.219^^86^978^39
+ ;;^UTILITY(U,$J,358.3,19051,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8789,1,3,0)
- ;;=3^Amyloid Pterygium,Bilateral
- ;;^UTILITY(U,$J,358.3,8789,1,4,0)
- ;;=4^H11.013
- ;;^UTILITY(U,$J,358.3,8789,2)
- ;;=^5004722
- ;;^UTILITY(U,$J,358.3,8790,0)
- ;;=H21.513^^41^468^6
- ;;^UTILITY(U,$J,358.3,8790,1,0)
+ ;;^UTILITY(U,$J,358.3,19051,1,3,0)
+ ;;=3^Nicotine Dependence,Cigarettes
+ ;;^UTILITY(U,$J,358.3,19051,1,4,0)
+ ;;=4^F17.219
+ ;;^UTILITY(U,$J,358.3,19051,2)
+ ;;=^5003369
+ ;;^UTILITY(U,$J,358.3,19052,0)
+ ;;=F17.299^^86^978^40
+ ;;^UTILITY(U,$J,358.3,19052,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8790,1,3,0)
- ;;=3^Anterior Synechiae,Bilateral
- ;;^UTILITY(U,$J,358.3,8790,1,4,0)
- ;;=4^H21.513
- ;;^UTILITY(U,$J,358.3,8790,2)
- ;;=^5005241
- ;;^UTILITY(U,$J,358.3,8791,0)
- ;;=H18.423^^41^468^12
- ;;^UTILITY(U,$J,358.3,8791,1,0)
+ ;;^UTILITY(U,$J,358.3,19052,1,3,0)
+ ;;=3^Nicotine Dependence,E-Cigarettes
+ ;;^UTILITY(U,$J,358.3,19052,1,4,0)
+ ;;=4^F17.299
+ ;;^UTILITY(U,$J,358.3,19052,2)
+ ;;=^5003379
+ ;;^UTILITY(U,$J,358.3,19053,0)
+ ;;=Z51.5^^86^978^48
+ ;;^UTILITY(U,$J,358.3,19053,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8791,1,3,0)
- ;;=3^Band Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,8791,1,4,0)
- ;;=4^H18.423
- ;;^UTILITY(U,$J,358.3,8791,2)
- ;;=^5005068
- ;;^UTILITY(U,$J,358.3,8792,0)
- ;;=H10.503^^41^468^19
- ;;^UTILITY(U,$J,358.3,8792,1,0)
+ ;;^UTILITY(U,$J,358.3,19053,1,3,0)
+ ;;=3^Palliative Care Encounter
+ ;;^UTILITY(U,$J,358.3,19053,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,19053,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,19054,0)
+ ;;=Z51.81^^86^979^17
+ ;;^UTILITY(U,$J,358.3,19054,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8792,1,3,0)
- ;;=3^Blepharoconjunctivitis,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,8792,1,4,0)
- ;;=4^H10.503
- ;;^UTILITY(U,$J,358.3,8792,2)
- ;;=^5004699
- ;;^UTILITY(U,$J,358.3,8793,0)
- ;;=H18.13^^41^468^23
- ;;^UTILITY(U,$J,358.3,8793,1,0)
+ ;;^UTILITY(U,$J,358.3,19054,1,3,0)
+ ;;=3^Therapeutic Drug Level Monitoring
+ ;;^UTILITY(U,$J,358.3,19054,1,4,0)
+ ;;=4^Z51.81
+ ;;^UTILITY(U,$J,358.3,19054,2)
+ ;;=^5063064
+ ;;^UTILITY(U,$J,358.3,19055,0)
+ ;;=Z02.79^^86^979^11
+ ;;^UTILITY(U,$J,358.3,19055,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8793,1,3,0)
- ;;=3^Bullous Keratopathy,Bilateral
- ;;^UTILITY(U,$J,358.3,8793,1,4,0)
- ;;=4^H18.13
- ;;^UTILITY(U,$J,358.3,8793,2)
- ;;=^5005034
- ;;^UTILITY(U,$J,358.3,8794,0)
- ;;=H17.13^^41^468^26
- ;;^UTILITY(U,$J,358.3,8794,1,0)
+ ;;^UTILITY(U,$J,358.3,19055,1,3,0)
+ ;;=3^Issue of Medical Certificate NEC
+ ;;^UTILITY(U,$J,358.3,19055,1,4,0)
+ ;;=4^Z02.79
+ ;;^UTILITY(U,$J,358.3,19055,2)
+ ;;=^5062641
+ ;;^UTILITY(U,$J,358.3,19056,0)
+ ;;=Z76.0^^86^979^12
+ ;;^UTILITY(U,$J,358.3,19056,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8794,1,3,0)
- ;;=3^Central Corneal Opacity,Bilateral
- ;;^UTILITY(U,$J,358.3,8794,1,4,0)
- ;;=4^H17.13
- ;;^UTILITY(U,$J,358.3,8794,2)
- ;;=^5004993
- ;;^UTILITY(U,$J,358.3,8795,0)
- ;;=H16.013^^41^468^29
- ;;^UTILITY(U,$J,358.3,8795,1,0)
+ ;;^UTILITY(U,$J,358.3,19056,1,3,0)
+ ;;=3^Issue of Repeat Prescription
+ ;;^UTILITY(U,$J,358.3,19056,1,4,0)
+ ;;=4^Z76.0
+ ;;^UTILITY(U,$J,358.3,19056,2)
+ ;;=^5063297
+ ;;^UTILITY(U,$J,358.3,19057,0)
+ ;;=Z04.9^^86^979^3
+ ;;^UTILITY(U,$J,358.3,19057,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8795,1,3,0)
- ;;=3^Central Corneal Ulcer,Bilateral
- ;;^UTILITY(U,$J,358.3,8795,1,4,0)
- ;;=4^H16.013
- ;;^UTILITY(U,$J,358.3,8795,2)
- ;;=^5004872
- ;;^UTILITY(U,$J,358.3,8796,0)
- ;;=H11.123^^41^468^32
- ;;^UTILITY(U,$J,358.3,8796,1,0)
+ ;;^UTILITY(U,$J,358.3,19057,1,3,0)
+ ;;=3^Exam & Observation for Unsp Reason
+ ;;^UTILITY(U,$J,358.3,19057,1,4,0)
+ ;;=4^Z04.9
+ ;;^UTILITY(U,$J,358.3,19057,2)
+ ;;=^5062666
+ ;;^UTILITY(U,$J,358.3,19058,0)
+ ;;=Z02.2^^86^979^4
+ ;;^UTILITY(U,$J,358.3,19058,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8796,1,3,0)
- ;;=3^Conjunctival Concretions,Bilateral
- ;;^UTILITY(U,$J,358.3,8796,1,4,0)
- ;;=4^H11.123
- ;;^UTILITY(U,$J,358.3,8796,2)
- ;;=^5004751
- ;;^UTILITY(U,$J,358.3,8797,0)
- ;;=H11.443^^41^468^35
- ;;^UTILITY(U,$J,358.3,8797,1,0)
+ ;;^UTILITY(U,$J,358.3,19058,1,3,0)
+ ;;=3^Exam for Admission to Residential Institution
+ ;;^UTILITY(U,$J,358.3,19058,1,4,0)
+ ;;=4^Z02.2
+ ;;^UTILITY(U,$J,358.3,19058,2)
+ ;;=^5062635
+ ;;^UTILITY(U,$J,358.3,19059,0)
+ ;;=Z02.4^^86^979^5
+ ;;^UTILITY(U,$J,358.3,19059,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8797,1,3,0)
- ;;=3^Conjunctival Cysts,Bilateral
+ ;;^UTILITY(U,$J,358.3,19059,1,3,0)
+ ;;=3^Exam for Driving License
+ ;;^UTILITY(U,$J,358.3,19059,1,4,0)
+ ;;=4^Z02.4
+ ;;^UTILITY(U,$J,358.3,19059,2)
+ ;;=^5062637
+ ;;^UTILITY(U,$J,358.3,19060,0)
+ ;;=Z00.5^^86^979^7
+ ;;^UTILITY(U,$J,358.3,19060,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19060,1,3,0)
+ ;;=3^Exam of Potential Donor of Organ/Tissue
+ ;;^UTILITY(U,$J,358.3,19060,1,4,0)
+ ;;=4^Z00.5
+ ;;^UTILITY(U,$J,358.3,19060,2)
+ ;;=^5062607
+ ;;^UTILITY(U,$J,358.3,19061,0)
+ ;;=Z02.3^^86^979^6
+ ;;^UTILITY(U,$J,358.3,19061,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19061,1,3,0)
+ ;;=3^Exam for Recruitment to Armed Forces
+ ;;^UTILITY(U,$J,358.3,19061,1,4,0)
+ ;;=4^Z02.3
+ ;;^UTILITY(U,$J,358.3,19061,2)
+ ;;=^5062636
+ ;;^UTILITY(U,$J,358.3,19062,0)
+ ;;=Z02.89^^86^979^1
+ ;;^UTILITY(U,$J,358.3,19062,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19062,1,3,0)
+ ;;=3^Admin Exam NEC
+ ;;^UTILITY(U,$J,358.3,19062,1,4,0)
+ ;;=4^Z02.89
+ ;;^UTILITY(U,$J,358.3,19062,2)
+ ;;=^5062645
+ ;;^UTILITY(U,$J,358.3,19063,0)
+ ;;=Z00.8^^86^979^8
+ ;;^UTILITY(U,$J,358.3,19063,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19063,1,3,0)
+ ;;=3^General Exam NEC
+ ;;^UTILITY(U,$J,358.3,19063,1,4,0)
+ ;;=4^Z00.8
+ ;;^UTILITY(U,$J,358.3,19063,2)
+ ;;=^5062611
+ ;;^UTILITY(U,$J,358.3,19064,0)
+ ;;=Z02.1^^86^979^14
+ ;;^UTILITY(U,$J,358.3,19064,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19064,1,3,0)
+ ;;=3^Pre-Employment Exam
+ ;;^UTILITY(U,$J,358.3,19064,1,4,0)
+ ;;=4^Z02.1
+ ;;^UTILITY(U,$J,358.3,19064,2)
+ ;;=^5062634
+ ;;^UTILITY(U,$J,358.3,19065,0)
+ ;;=Z01.810^^86^979^2
+ ;;^UTILITY(U,$J,358.3,19065,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19065,1,3,0)
+ ;;=3^Cardiovascular Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19065,1,4,0)
+ ;;=4^Z01.810
+ ;;^UTILITY(U,$J,358.3,19065,2)
+ ;;=^5062625
+ ;;^UTILITY(U,$J,358.3,19066,0)
+ ;;=Z01.811^^86^979^16
+ ;;^UTILITY(U,$J,358.3,19066,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19066,1,3,0)
+ ;;=3^Respiratory Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19066,1,4,0)
+ ;;=4^Z01.811
+ ;;^UTILITY(U,$J,358.3,19066,2)
+ ;;=^5062626
+ ;;^UTILITY(U,$J,358.3,19067,0)
+ ;;=Z01.812^^86^979^13
+ ;;^UTILITY(U,$J,358.3,19067,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19067,1,3,0)
+ ;;=3^Lab Preprocedural Exam
+ ;;^UTILITY(U,$J,358.3,19067,1,4,0)
+ ;;=4^Z01.812
+ ;;^UTILITY(U,$J,358.3,19067,2)
+ ;;=^5062627
+ ;;^UTILITY(U,$J,358.3,19068,0)
+ ;;=Z01.818^^86^979^15
+ ;;^UTILITY(U,$J,358.3,19068,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19068,1,3,0)
+ ;;=3^Preprocedural Exam NEC
+ ;;^UTILITY(U,$J,358.3,19068,1,4,0)
+ ;;=4^Z01.818
+ ;;^UTILITY(U,$J,358.3,19068,2)
+ ;;=^5062628
+ ;;^UTILITY(U,$J,358.3,19069,0)
+ ;;=Z71.0^^86^979^9
+ ;;^UTILITY(U,$J,358.3,19069,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19069,1,3,0)
+ ;;=3^Hlth Service to Consult on Behalf of Another
+ ;;^UTILITY(U,$J,358.3,19069,1,4,0)
+ ;;=4^Z71.0
+ ;;^UTILITY(U,$J,358.3,19069,2)
+ ;;=^5063242
+ ;;^UTILITY(U,$J,358.3,19070,0)
+ ;;=Z59.8^^86^979^10
+ ;;^UTILITY(U,$J,358.3,19070,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19070,1,3,0)
+ ;;=3^Housing/Economic Circumstance Problems
+ ;;^UTILITY(U,$J,358.3,19070,1,4,0)
+ ;;=4^Z59.8
+ ;;^UTILITY(U,$J,358.3,19070,2)
+ ;;=^5063137
+ ;;^UTILITY(U,$J,358.3,19071,0)
+ ;;=I20.0^^86^980^14
+ ;;^UTILITY(U,$J,358.3,19071,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19071,1,3,0)
+ ;;=3^Unstable Angina
+ ;;^UTILITY(U,$J,358.3,19071,1,4,0)
+ ;;=4^I20.0
+ ;;^UTILITY(U,$J,358.3,19071,2)
+ ;;=^5007076
+ ;;^UTILITY(U,$J,358.3,19072,0)
+ ;;=I25.110^^86^980^7
+ ;;^UTILITY(U,$J,358.3,19072,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19072,1,3,0)
+ ;;=3^Athscl Hrt Dis of Native Cor Art w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,19072,1,4,0)
+ ;;=4^I25.110
+ ;;^UTILITY(U,$J,358.3,19072,2)
+ ;;=^5007108
+ ;;^UTILITY(U,$J,358.3,19073,0)
+ ;;=I25.700^^86^980^12
+ ;;^UTILITY(U,$J,358.3,19073,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19073,1,3,0)
+ ;;=3^Athscl of CABG,Unspec w/ Unstable Angina Pectoris
+ ;;^UTILITY(U,$J,358.3,19073,1,4,0)
+ ;;=4^I25.700
+ ;;^UTILITY(U,$J,358.3,19073,2)
+ ;;=^5007117
+ ;;^UTILITY(U,$J,358.3,19074,0)
+ ;;=I25.2^^86^980^13
+ ;;^UTILITY(U,$J,358.3,19074,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19074,1,3,0)
+ ;;=3^Old Myocardial Infarction
+ ;;^UTILITY(U,$J,358.3,19074,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,19074,2)
+ ;;=^259884

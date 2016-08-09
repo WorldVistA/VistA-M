@@ -1,5 +1,5 @@
 RAHLR1 ;HISC/GJC - Generate Common Order (ORM) Message ;11/10/99  10:42
- ;;5.0;Radiology/Nuclear Medicine;**47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**47,125**;Mar 16, 1998;Build 1
  ;Generates msg whenever a case is registered or cancelled or examined
  ;              registered   cancelled   examined   complete
  ; Order control : NW            CA         XO         XO
@@ -139,6 +139,7 @@ PARENT(PRGE,PRNT) ;Define fields ORC-8 & OBR-29 known as PARENT
  ;        PRNT=parent/descendant if yes, specify if exam or printset
  ;return: VALUE=ORIGINAL ORDER PURGED if purged, EXAMSET: proc_name
  ;        if examset, PRINTSET: proc_name if printset, or null.
+ N VALUE ;RA5P125
  I PRGE,(PRGE'>DT) S VALUE="ORIGINAL ORDER PURGED"
  I PRNT S VALUE=$S(PRNT=1:"Examset: ",1:"Printset: ")_$P($G(^RAMIS(71,+$P(RAZORD,U,2),0)),U)
  Q $G(VALUE)

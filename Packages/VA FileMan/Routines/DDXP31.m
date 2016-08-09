@@ -1,16 +1,24 @@
-DDXP31 ;SFISC/DPC-CREATE EXPORT TEMPLATE ;10/14/94  14:56
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDXP31 ;SFISC/DPC-CREATE EXPORT TEMPLATE ;30SEP2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 XPT ;
- S DDXPOUT=0
- S DIR(0)="F^2:30",DIR("A")="Enter name for EXPORT Template"
- S DIR("?",1)="Enter the name of the Export Template to be produced.",DIR("?",2)="The name must be from 2 to 30 characters.",DIR("?")="The new Export Template cannot overwrite an existing Print Template file entry."
- D ^DIR K DIR
- I $D(DIRUT) S DDXPOUT=1 Q
- S DIC="^DIPT(",DIC(0)="XL",DLAYGO=0 W ! D ^DIC K DIC,DLAYGO
- I '$P(Y,U,3) W !,$C(7),$P(Y,U,2)_" entry in the Print Template file already exists.",!,"Please enter the name of a new template.",!! G XPT
+ N DIC,DIR,DLAYGO
+ W ! S DDXPOUT=0
+ ;S DIR(0)="F^2:30",DIR("A")="Enter name for EXPORT Template"
+ ;S DIR("?",1)="Enter the name of the Export Template to be produced.",DIR("?",2)="The name must be from 2 to 30 characters." ;,DIR("?")="The new Export Template cannot overwrite an existing Print Template file entry."
+ ;D ^DIR
+ ;I $D(DIRUT) S DDXPOUT=1 Q
+ S DIC("S")="I $P(^(0),U,8)=3,$P(^(0),U,4)=DDXPFINO,$P(^(0),U,5)=DUZ!'$P(^(0),U,5)" ;**GFT Let them pick one of their own existing EXPORT TEMPLATES for this FILE
+ S DIC="^DIPT(",DIC(0)="AOVELZ",DLAYGO=0 W ! D ^DIC I Y<0 S DDXPOUT=1 Q
+ I '$P(Y,U,3) S $P(^(0),U,4)="",X=0 F  S X=$O(^(X)) Q:X=""  K ^(X) ;Throw away FILE so it can be stuffed back. throw away rest of Template
+ ;'$P(Y,U,3) W !,$C(7),$P(Y,U,2)_" entry in the Print Template file already exists.",!,"Please enter the name of a new template.",!! G XPT
  S DDXPXTNO=+Y
  Q
+ ;
 LENGTH ;
  W !!,"This template will produce fixed length records."
  W !,"Enter the length of each field below."
@@ -64,6 +72,7 @@ RIOM S DIR(0)=".44,7" D ^DIR K DIR
  I Y>255,$P(DDXPFMZO,U,6) W !!,$C(7),"The length cannot be greater than 255 when sending fixed length records.",! G RIOM
  S DDXPIOM=Y
  Q
+ ;
 ASKDELM ;
  S DDXPOUT=0
  W !!,"You can choose a delimiter to be placed between output fields.",!,"Enter <RET> to use no delimiter.",!,"Enter '^' to stop the creation of an EXPORT template.",!

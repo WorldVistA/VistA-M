@@ -1,124 +1,284 @@
-IBDEI0UR ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0UR ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14424,1,0)
+ ;;^UTILITY(U,$J,358.3,30939,1,3,0)
+ ;;=3^Accessory Breast
+ ;;^UTILITY(U,$J,358.3,30939,1,4,0)
+ ;;=4^Q83.1
+ ;;^UTILITY(U,$J,358.3,30939,2)
+ ;;=^5019055
+ ;;^UTILITY(U,$J,358.3,30940,0)
+ ;;=Q83.3^^116^1526^3
+ ;;^UTILITY(U,$J,358.3,30940,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14424,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Unspec
- ;;^UTILITY(U,$J,358.3,14424,1,4,0)
- ;;=4^F11.229
- ;;^UTILITY(U,$J,358.3,14424,2)
- ;;=^5003132
- ;;^UTILITY(U,$J,358.3,14425,0)
- ;;=F11.222^^53^607^38
- ;;^UTILITY(U,$J,358.3,14425,1,0)
+ ;;^UTILITY(U,$J,358.3,30940,1,3,0)
+ ;;=3^Accessory Nipple
+ ;;^UTILITY(U,$J,358.3,30940,1,4,0)
+ ;;=4^Q83.3
+ ;;^UTILITY(U,$J,358.3,30940,2)
+ ;;=^5019057
+ ;;^UTILITY(U,$J,358.3,30941,0)
+ ;;=M95.0^^116^1526^4
+ ;;^UTILITY(U,$J,358.3,30941,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14425,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication w/ Perceptual Disturbance
- ;;^UTILITY(U,$J,358.3,14425,1,4,0)
- ;;=4^F11.222
- ;;^UTILITY(U,$J,358.3,14425,2)
- ;;=^5003131
- ;;^UTILITY(U,$J,358.3,14426,0)
- ;;=F11.221^^53^607^37
- ;;^UTILITY(U,$J,358.3,14426,1,0)
+ ;;^UTILITY(U,$J,358.3,30941,1,3,0)
+ ;;=3^Acquired Deformity of Nose
+ ;;^UTILITY(U,$J,358.3,30941,1,4,0)
+ ;;=4^M95.0
+ ;;^UTILITY(U,$J,358.3,30941,2)
+ ;;=^5015367
+ ;;^UTILITY(U,$J,358.3,30942,0)
+ ;;=H61.113^^116^1526^5
+ ;;^UTILITY(U,$J,358.3,30942,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14426,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication Delirium
- ;;^UTILITY(U,$J,358.3,14426,1,4,0)
- ;;=4^F11.221
- ;;^UTILITY(U,$J,358.3,14426,2)
- ;;=^5003130
- ;;^UTILITY(U,$J,358.3,14427,0)
- ;;=F11.220^^53^607^39
- ;;^UTILITY(U,$J,358.3,14427,1,0)
+ ;;^UTILITY(U,$J,358.3,30942,1,3,0)
+ ;;=3^Acquired Deformity of Pinna,Bilateral
+ ;;^UTILITY(U,$J,358.3,30942,1,4,0)
+ ;;=4^H61.113
+ ;;^UTILITY(U,$J,358.3,30942,2)
+ ;;=^5006520
+ ;;^UTILITY(U,$J,358.3,30943,0)
+ ;;=H61.112^^116^1526^6
+ ;;^UTILITY(U,$J,358.3,30943,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14427,1,3,0)
- ;;=3^Opioid Dependence w/ Intoxication,Uncomplicated
- ;;^UTILITY(U,$J,358.3,14427,1,4,0)
- ;;=4^F11.220
- ;;^UTILITY(U,$J,358.3,14427,2)
- ;;=^5003129
- ;;^UTILITY(U,$J,358.3,14428,0)
- ;;=F14.29^^53^607^21
- ;;^UTILITY(U,$J,358.3,14428,1,0)
+ ;;^UTILITY(U,$J,358.3,30943,1,3,0)
+ ;;=3^Acquired Deformity of Pinna,Left Ear
+ ;;^UTILITY(U,$J,358.3,30943,1,4,0)
+ ;;=4^H61.112
+ ;;^UTILITY(U,$J,358.3,30943,2)
+ ;;=^5006519
+ ;;^UTILITY(U,$J,358.3,30944,0)
+ ;;=H61.111^^116^1526^7
+ ;;^UTILITY(U,$J,358.3,30944,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14428,1,3,0)
- ;;=3^Cocaine Dependence w/ Unspec Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,14428,1,4,0)
- ;;=4^F14.29
- ;;^UTILITY(U,$J,358.3,14428,2)
- ;;=^5003268
- ;;^UTILITY(U,$J,358.3,14429,0)
- ;;=F14.288^^53^607^20
- ;;^UTILITY(U,$J,358.3,14429,1,0)
+ ;;^UTILITY(U,$J,358.3,30944,1,3,0)
+ ;;=3^Acquired Deformity of Pinna,Right Ear
+ ;;^UTILITY(U,$J,358.3,30944,1,4,0)
+ ;;=4^H61.111
+ ;;^UTILITY(U,$J,358.3,30944,2)
+ ;;=^5006518
+ ;;^UTILITY(U,$J,358.3,30945,0)
+ ;;=C44.91^^116^1526^94
+ ;;^UTILITY(U,$J,358.3,30945,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14429,1,3,0)
- ;;=3^Cocaine Dependence w/ Other Cocaine-Induced Disorder
- ;;^UTILITY(U,$J,358.3,14429,1,4,0)
- ;;=4^F14.288
- ;;^UTILITY(U,$J,358.3,14429,2)
- ;;=^5003267
- ;;^UTILITY(U,$J,358.3,14430,0)
- ;;=F14.282^^53^607^14
- ;;^UTILITY(U,$J,358.3,14430,1,0)
+ ;;^UTILITY(U,$J,358.3,30945,1,3,0)
+ ;;=3^BCC of Skin,Unspec
+ ;;^UTILITY(U,$J,358.3,30945,1,4,0)
+ ;;=4^C44.91
+ ;;^UTILITY(U,$J,358.3,30945,2)
+ ;;=^5001092
+ ;;^UTILITY(U,$J,358.3,30946,0)
+ ;;=C44.119^^116^1526^86
+ ;;^UTILITY(U,$J,358.3,30946,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14430,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sleep Disorder
- ;;^UTILITY(U,$J,358.3,14430,1,4,0)
- ;;=4^F14.282
- ;;^UTILITY(U,$J,358.3,14430,2)
- ;;=^5003266
- ;;^UTILITY(U,$J,358.3,14431,0)
- ;;=F14.281^^53^607^15
- ;;^UTILITY(U,$J,358.3,14431,1,0)
+ ;;^UTILITY(U,$J,358.3,30946,1,3,0)
+ ;;=3^BCC of Skin,Left Eyelid
+ ;;^UTILITY(U,$J,358.3,30946,1,4,0)
+ ;;=4^C44.119
+ ;;^UTILITY(U,$J,358.3,30946,2)
+ ;;=^5001021
+ ;;^UTILITY(U,$J,358.3,30947,0)
+ ;;=C44.112^^116^1526^92
+ ;;^UTILITY(U,$J,358.3,30947,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14431,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Sexual Dysfunction
- ;;^UTILITY(U,$J,358.3,14431,1,4,0)
- ;;=4^F14.281
- ;;^UTILITY(U,$J,358.3,14431,2)
- ;;=^5003265
- ;;^UTILITY(U,$J,358.3,14432,0)
- ;;=F14.280^^53^607^12
- ;;^UTILITY(U,$J,358.3,14432,1,0)
+ ;;^UTILITY(U,$J,358.3,30947,1,3,0)
+ ;;=3^BCC of Skin,Right Eyelid
+ ;;^UTILITY(U,$J,358.3,30947,1,4,0)
+ ;;=4^C44.112
+ ;;^UTILITY(U,$J,358.3,30947,2)
+ ;;=^5001020
+ ;;^UTILITY(U,$J,358.3,30948,0)
+ ;;=C44.41^^116^1526^93
+ ;;^UTILITY(U,$J,358.3,30948,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14432,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induced Anxiety Disorder
- ;;^UTILITY(U,$J,358.3,14432,1,4,0)
- ;;=4^F14.280
- ;;^UTILITY(U,$J,358.3,14432,2)
- ;;=^5003264
- ;;^UTILITY(U,$J,358.3,14433,0)
- ;;=F14.259^^53^607^11
- ;;^UTILITY(U,$J,358.3,14433,1,0)
+ ;;^UTILITY(U,$J,358.3,30948,1,3,0)
+ ;;=3^BCC of Skin,Scalp/Neck
+ ;;^UTILITY(U,$J,358.3,30948,1,4,0)
+ ;;=4^C44.41
+ ;;^UTILITY(U,$J,358.3,30948,2)
+ ;;=^340476
+ ;;^UTILITY(U,$J,358.3,30949,0)
+ ;;=C44.219^^116^1526^85
+ ;;^UTILITY(U,$J,358.3,30949,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14433,1,3,0)
- ;;=3^Cocaine Dependence w/ Cocaine-Induc Psychotic Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,14433,1,4,0)
- ;;=4^F14.259
- ;;^UTILITY(U,$J,358.3,14433,2)
- ;;=^5003263
- ;;^UTILITY(U,$J,358.3,14434,0)
- ;;=F14.251^^53^607^10
- ;;^UTILITY(U,$J,358.3,14434,1,0)
+ ;;^UTILITY(U,$J,358.3,30949,1,3,0)
+ ;;=3^BCC of Skin,Left Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,30949,1,4,0)
+ ;;=4^C44.219
+ ;;^UTILITY(U,$J,358.3,30949,2)
+ ;;=^5001033
+ ;;^UTILITY(U,$J,358.3,30950,0)
+ ;;=C44.212^^116^1526^91
+ ;;^UTILITY(U,$J,358.3,30950,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14434,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psychotic Disorder w/ Hallucin
- ;;^UTILITY(U,$J,358.3,14434,1,4,0)
- ;;=4^F14.251
- ;;^UTILITY(U,$J,358.3,14434,2)
- ;;=^5003262
- ;;^UTILITY(U,$J,358.3,14435,0)
- ;;=F14.250^^53^607^9
- ;;^UTILITY(U,$J,358.3,14435,1,0)
+ ;;^UTILITY(U,$J,358.3,30950,1,3,0)
+ ;;=3^BCC of Skin,Right Ear/External Auric Canal
+ ;;^UTILITY(U,$J,358.3,30950,1,4,0)
+ ;;=4^C44.212
+ ;;^UTILITY(U,$J,358.3,30950,2)
+ ;;=^5001032
+ ;;^UTILITY(U,$J,358.3,30951,0)
+ ;;=G51.0^^116^1526^95
+ ;;^UTILITY(U,$J,358.3,30951,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14435,1,3,0)
- ;;=3^Cocaine Depend w/ Cocaine-Induc Psych Disorder w/ Delusions
- ;;^UTILITY(U,$J,358.3,14435,1,4,0)
- ;;=4^F14.250
- ;;^UTILITY(U,$J,358.3,14435,2)
- ;;=^5003261
- ;;^UTILITY(U,$J,358.3,14436,0)
- ;;=F14.24^^53^607^13
+ ;;^UTILITY(U,$J,358.3,30951,1,3,0)
+ ;;=3^Bell's Palsy
+ ;;^UTILITY(U,$J,358.3,30951,1,4,0)
+ ;;=4^G51.0
+ ;;^UTILITY(U,$J,358.3,30951,2)
+ ;;=^13238
+ ;;^UTILITY(U,$J,358.3,30952,0)
+ ;;=D16.4^^116^1526^96
+ ;;^UTILITY(U,$J,358.3,30952,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30952,1,3,0)
+ ;;=3^Benign Neop Bones of Skull/Face
+ ;;^UTILITY(U,$J,358.3,30952,1,4,0)
+ ;;=4^D16.4
+ ;;^UTILITY(U,$J,358.3,30952,2)
+ ;;=^267606
+ ;;^UTILITY(U,$J,358.3,30953,0)
+ ;;=D21.12^^116^1526^97
+ ;;^UTILITY(U,$J,358.3,30953,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30953,1,3,0)
+ ;;=3^Benign Neop Connective/Soft Tissue,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30953,1,4,0)
+ ;;=4^D21.12
+ ;;^UTILITY(U,$J,358.3,30953,2)
+ ;;=^5002032
+ ;;^UTILITY(U,$J,358.3,30954,0)
+ ;;=D21.11^^116^1526^98
+ ;;^UTILITY(U,$J,358.3,30954,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30954,1,3,0)
+ ;;=3^Benign Neop Connective/Soft Tissue,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30954,1,4,0)
+ ;;=4^D21.11
+ ;;^UTILITY(U,$J,358.3,30954,2)
+ ;;=^5002031
+ ;;^UTILITY(U,$J,358.3,30955,0)
+ ;;=D21.9^^116^1526^100
+ ;;^UTILITY(U,$J,358.3,30955,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30955,1,3,0)
+ ;;=3^Benign Neop Connective/Soft Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,30955,1,4,0)
+ ;;=4^D21.9
+ ;;^UTILITY(U,$J,358.3,30955,2)
+ ;;=^5002040
+ ;;^UTILITY(U,$J,358.3,30956,0)
+ ;;=D10.0^^116^1526^101
+ ;;^UTILITY(U,$J,358.3,30956,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30956,1,3,0)
+ ;;=3^Benign Neop Lip
+ ;;^UTILITY(U,$J,358.3,30956,1,4,0)
+ ;;=4^D10.0
+ ;;^UTILITY(U,$J,358.3,30956,2)
+ ;;=^267578
+ ;;^UTILITY(U,$J,358.3,30957,0)
+ ;;=D11.9^^116^1526^103
+ ;;^UTILITY(U,$J,358.3,30957,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30957,1,3,0)
+ ;;=3^Benign Neop Major Salivary Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,30957,1,4,0)
+ ;;=4^D11.9
+ ;;^UTILITY(U,$J,358.3,30957,2)
+ ;;=^5001962
+ ;;^UTILITY(U,$J,358.3,30958,0)
+ ;;=S14.3XXA^^116^1526^111
+ ;;^UTILITY(U,$J,358.3,30958,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30958,1,3,0)
+ ;;=3^Brachial Plexus Injury,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30958,1,4,0)
+ ;;=4^S14.3XXA
+ ;;^UTILITY(U,$J,358.3,30958,2)
+ ;;=^5022205
+ ;;^UTILITY(U,$J,358.3,30959,0)
+ ;;=G56.02^^116^1526^113
+ ;;^UTILITY(U,$J,358.3,30959,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30959,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30959,1,4,0)
+ ;;=4^G56.02
+ ;;^UTILITY(U,$J,358.3,30959,2)
+ ;;=^5004019
+ ;;^UTILITY(U,$J,358.3,30960,0)
+ ;;=G56.01^^116^1526^114
+ ;;^UTILITY(U,$J,358.3,30960,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30960,1,3,0)
+ ;;=3^Carpal Tunnel Syndrome,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30960,1,4,0)
+ ;;=4^G56.01
+ ;;^UTILITY(U,$J,358.3,30960,2)
+ ;;=^5004018
+ ;;^UTILITY(U,$J,358.3,30961,0)
+ ;;=L03.012^^116^1526^116
+ ;;^UTILITY(U,$J,358.3,30961,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30961,1,3,0)
+ ;;=3^Cellulitis,Left Finger
+ ;;^UTILITY(U,$J,358.3,30961,1,4,0)
+ ;;=4^L03.012
+ ;;^UTILITY(U,$J,358.3,30961,2)
+ ;;=^5009020
+ ;;^UTILITY(U,$J,358.3,30962,0)
+ ;;=L03.114^^116^1526^117
+ ;;^UTILITY(U,$J,358.3,30962,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30962,1,3,0)
+ ;;=3^Cellulitis,Left Upper Limb
+ ;;^UTILITY(U,$J,358.3,30962,1,4,0)
+ ;;=4^L03.114
+ ;;^UTILITY(U,$J,358.3,30962,2)
+ ;;=^5009034
+ ;;^UTILITY(U,$J,358.3,30963,0)
+ ;;=L03.011^^116^1526^118
+ ;;^UTILITY(U,$J,358.3,30963,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30963,1,3,0)
+ ;;=3^Cellulitis,Right Finger
+ ;;^UTILITY(U,$J,358.3,30963,1,4,0)
+ ;;=4^L03.011
+ ;;^UTILITY(U,$J,358.3,30963,2)
+ ;;=^5009019
+ ;;^UTILITY(U,$J,358.3,30964,0)
+ ;;=L03.113^^116^1526^119
+ ;;^UTILITY(U,$J,358.3,30964,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30964,1,3,0)
+ ;;=3^Cellulitis,Right Upper Limb
+ ;;^UTILITY(U,$J,358.3,30964,1,4,0)
+ ;;=4^L03.113
+ ;;^UTILITY(U,$J,358.3,30964,2)
+ ;;=^5009033
+ ;;^UTILITY(U,$J,358.3,30965,0)
+ ;;=Q35.9^^116^1526^123
+ ;;^UTILITY(U,$J,358.3,30965,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30965,1,3,0)
+ ;;=3^Cleft Palate w/ Cleft Lip,Unspec
+ ;;^UTILITY(U,$J,358.3,30965,1,4,0)
+ ;;=4^Q35.9
+ ;;^UTILITY(U,$J,358.3,30965,2)
+ ;;=^5018634
+ ;;^UTILITY(U,$J,358.3,30966,0)
+ ;;=S58.112A^^116^1526^50
+ ;;^UTILITY(U,$J,358.3,30966,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30966,1,3,0)
+ ;;=3^Amputation,Traumatic,Left Arm Between Elbow & Wrist Level,Init Encntr
+ ;;^UTILITY(U,$J,358.3,30966,1,4,0)
+ ;;=4^S58.112A
+ ;;^UTILITY(U,$J,358.3,30966,2)
+ ;;=^5031928
+ ;;^UTILITY(U,$J,358.3,30967,0)
+ ;;=S98.012A^^116^1526^51
+ ;;^UTILITY(U,$J,358.3,30967,1,0)
+ ;;=^358.31IA^4^2

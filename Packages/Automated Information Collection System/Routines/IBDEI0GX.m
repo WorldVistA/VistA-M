@@ -1,130 +1,290 @@
-IBDEI0GX ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0GX ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,7824,0)
- ;;=X32.XXXD^^30^415^16
- ;;^UTILITY(U,$J,358.3,7824,1,0)
+ ;;^UTILITY(U,$J,358.3,16990,2)
+ ;;=^338532
+ ;;^UTILITY(U,$J,358.3,16991,0)
+ ;;=I05.0^^73^858^6
+ ;;^UTILITY(U,$J,358.3,16991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7824,1,3,0)
- ;;=3^Exp to Sunlight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7824,1,4,0)
- ;;=4^X32.XXXD
- ;;^UTILITY(U,$J,358.3,7824,2)
- ;;=^5060848
- ;;^UTILITY(U,$J,358.3,7825,0)
- ;;=Y04.0XXA^^30^415^7
- ;;^UTILITY(U,$J,358.3,7825,1,0)
+ ;;^UTILITY(U,$J,358.3,16991,1,3,0)
+ ;;=3^Mitral valve stenosis, rheumatic
+ ;;^UTILITY(U,$J,358.3,16991,1,4,0)
+ ;;=4^I05.0
+ ;;^UTILITY(U,$J,358.3,16991,2)
+ ;;=^5007041
+ ;;^UTILITY(U,$J,358.3,16992,0)
+ ;;=I34.1^^73^858^5
+ ;;^UTILITY(U,$J,358.3,16992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7825,1,3,0)
- ;;=3^Assault by Unarmed Fight,Init Encntr
- ;;^UTILITY(U,$J,358.3,7825,1,4,0)
- ;;=4^Y04.0XXA
- ;;^UTILITY(U,$J,358.3,7825,2)
- ;;=^5061165
- ;;^UTILITY(U,$J,358.3,7826,0)
- ;;=Y04.0XXD^^30^415^8
- ;;^UTILITY(U,$J,358.3,7826,1,0)
+ ;;^UTILITY(U,$J,358.3,16992,1,3,0)
+ ;;=3^Mitral valve prolapse, nonrheumatic
+ ;;^UTILITY(U,$J,358.3,16992,1,4,0)
+ ;;=4^I34.1
+ ;;^UTILITY(U,$J,358.3,16992,2)
+ ;;=^5007170
+ ;;^UTILITY(U,$J,358.3,16993,0)
+ ;;=G35.^^73^858^8
+ ;;^UTILITY(U,$J,358.3,16993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7826,1,3,0)
- ;;=3^Assault by Unarmed Fight,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7826,1,4,0)
- ;;=4^Y04.0XXD
- ;;^UTILITY(U,$J,358.3,7826,2)
- ;;=^5061166
- ;;^UTILITY(U,$J,358.3,7827,0)
- ;;=Y04.1XXA^^30^415^1
- ;;^UTILITY(U,$J,358.3,7827,1,0)
+ ;;^UTILITY(U,$J,358.3,16993,1,3,0)
+ ;;=3^Multiple sclerosis
+ ;;^UTILITY(U,$J,358.3,16993,1,4,0)
+ ;;=4^G35.
+ ;;^UTILITY(U,$J,358.3,16993,2)
+ ;;=^79761
+ ;;^UTILITY(U,$J,358.3,16994,0)
+ ;;=E46.^^73^858^2
+ ;;^UTILITY(U,$J,358.3,16994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7827,1,3,0)
- ;;=3^Assault by Human Bite,Init Encntr
- ;;^UTILITY(U,$J,358.3,7827,1,4,0)
- ;;=4^Y04.1XXA
- ;;^UTILITY(U,$J,358.3,7827,2)
- ;;=^5061168
- ;;^UTILITY(U,$J,358.3,7828,0)
- ;;=Y04.1XXD^^30^415^2
- ;;^UTILITY(U,$J,358.3,7828,1,0)
+ ;;^UTILITY(U,$J,358.3,16994,1,3,0)
+ ;;=3^Malnutrition, protein-calorie, unspec
+ ;;^UTILITY(U,$J,358.3,16994,1,4,0)
+ ;;=4^E46.
+ ;;^UTILITY(U,$J,358.3,16994,2)
+ ;;=^5002790
+ ;;^UTILITY(U,$J,358.3,16995,0)
+ ;;=I21.3^^73^858^9
+ ;;^UTILITY(U,$J,358.3,16995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7828,1,3,0)
- ;;=3^Assault by Human Bite,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7828,1,4,0)
- ;;=4^Y04.1XXD
- ;;^UTILITY(U,$J,358.3,7828,2)
- ;;=^5061169
- ;;^UTILITY(U,$J,358.3,7829,0)
- ;;=Y04.2XXA^^30^415^5
- ;;^UTILITY(U,$J,358.3,7829,1,0)
+ ;;^UTILITY(U,$J,358.3,16995,1,3,0)
+ ;;=3^Myocardial Infarction w/ STEMI,Site Unspec
+ ;;^UTILITY(U,$J,358.3,16995,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,16995,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,16996,0)
+ ;;=R53.81^^73^858^1
+ ;;^UTILITY(U,$J,358.3,16996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7829,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Init Encntr
- ;;^UTILITY(U,$J,358.3,7829,1,4,0)
- ;;=4^Y04.2XXA
- ;;^UTILITY(U,$J,358.3,7829,2)
- ;;=^5061171
- ;;^UTILITY(U,$J,358.3,7830,0)
- ;;=Y04.8XXA^^30^415^3
- ;;^UTILITY(U,$J,358.3,7830,1,0)
+ ;;^UTILITY(U,$J,358.3,16996,1,3,0)
+ ;;=3^Malaise
+ ;;^UTILITY(U,$J,358.3,16996,1,4,0)
+ ;;=4^R53.81
+ ;;^UTILITY(U,$J,358.3,16996,2)
+ ;;=^5019518
+ ;;^UTILITY(U,$J,358.3,16997,0)
+ ;;=G43.909^^73^858^4
+ ;;^UTILITY(U,$J,358.3,16997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7830,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Init Encntr
- ;;^UTILITY(U,$J,358.3,7830,1,4,0)
- ;;=4^Y04.8XXA
- ;;^UTILITY(U,$J,358.3,7830,2)
- ;;=^5061174
- ;;^UTILITY(U,$J,358.3,7831,0)
- ;;=Y04.2XXD^^30^415^6
- ;;^UTILITY(U,$J,358.3,7831,1,0)
+ ;;^UTILITY(U,$J,358.3,16997,1,3,0)
+ ;;=3^Migraine,Not Intrctbl,w/o Status Migrainosus
+ ;;^UTILITY(U,$J,358.3,16997,1,4,0)
+ ;;=4^G43.909
+ ;;^UTILITY(U,$J,358.3,16997,2)
+ ;;=^5003909
+ ;;^UTILITY(U,$J,358.3,16998,0)
+ ;;=G58.9^^73^858^7
+ ;;^UTILITY(U,$J,358.3,16998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7831,1,3,0)
- ;;=3^Assault by Strike/Bumped by Another Person,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7831,1,4,0)
- ;;=4^Y04.2XXD
- ;;^UTILITY(U,$J,358.3,7831,2)
- ;;=^5061172
- ;;^UTILITY(U,$J,358.3,7832,0)
- ;;=Y04.8XXD^^30^415^4
- ;;^UTILITY(U,$J,358.3,7832,1,0)
+ ;;^UTILITY(U,$J,358.3,16998,1,3,0)
+ ;;=3^Mononeuropathy,Unspec
+ ;;^UTILITY(U,$J,358.3,16998,1,4,0)
+ ;;=4^G58.9
+ ;;^UTILITY(U,$J,358.3,16998,2)
+ ;;=^5004065
+ ;;^UTILITY(U,$J,358.3,16999,0)
+ ;;=R35.0^^73^858^3
+ ;;^UTILITY(U,$J,358.3,16999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7832,1,3,0)
- ;;=3^Assault by Oth Bodily Force,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7832,1,4,0)
- ;;=4^Y04.8XXD
- ;;^UTILITY(U,$J,358.3,7832,2)
- ;;=^5061175
- ;;^UTILITY(U,$J,358.3,7833,0)
- ;;=Y36.200A^^30^415^124
- ;;^UTILITY(U,$J,358.3,7833,1,0)
+ ;;^UTILITY(U,$J,358.3,16999,1,3,0)
+ ;;=3^Micturition Frequency
+ ;;^UTILITY(U,$J,358.3,16999,1,4,0)
+ ;;=4^R35.0
+ ;;^UTILITY(U,$J,358.3,16999,2)
+ ;;=^5019334
+ ;;^UTILITY(U,$J,358.3,17000,0)
+ ;;=I25.2^^73^858^10
+ ;;^UTILITY(U,$J,358.3,17000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7833,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7833,1,4,0)
- ;;=4^Y36.200A
- ;;^UTILITY(U,$J,358.3,7833,2)
- ;;=^5061607
- ;;^UTILITY(U,$J,358.3,7834,0)
- ;;=Y36.200D^^30^415^125
- ;;^UTILITY(U,$J,358.3,7834,1,0)
+ ;;^UTILITY(U,$J,358.3,17000,1,3,0)
+ ;;=3^Myocardial Infarction,Healed/Old
+ ;;^UTILITY(U,$J,358.3,17000,1,4,0)
+ ;;=4^I25.2
+ ;;^UTILITY(U,$J,358.3,17000,2)
+ ;;=^259884
+ ;;^UTILITY(U,$J,358.3,17001,0)
+ ;;=H60.313^^73^859^14
+ ;;^UTILITY(U,$J,358.3,17001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7834,1,3,0)
- ;;=3^War Op Inv Unspec Explosion/Fragments,Milt,Subs Encntr
- ;;^UTILITY(U,$J,358.3,7834,1,4,0)
- ;;=4^Y36.200D
- ;;^UTILITY(U,$J,358.3,7834,2)
- ;;=^5061608
- ;;^UTILITY(U,$J,358.3,7835,0)
- ;;=Y36.300A^^30^415^126
- ;;^UTILITY(U,$J,358.3,7835,1,0)
+ ;;^UTILITY(U,$J,358.3,17001,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Bilateral
+ ;;^UTILITY(U,$J,358.3,17001,1,4,0)
+ ;;=4^H60.313
+ ;;^UTILITY(U,$J,358.3,17001,2)
+ ;;=^5006449
+ ;;^UTILITY(U,$J,358.3,17002,0)
+ ;;=H60.311^^73^859^16
+ ;;^UTILITY(U,$J,358.3,17002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7835,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Init Encntr
- ;;^UTILITY(U,$J,358.3,7835,1,4,0)
- ;;=4^Y36.300A
- ;;^UTILITY(U,$J,358.3,7835,2)
- ;;=^5061661
- ;;^UTILITY(U,$J,358.3,7836,0)
- ;;=Y36.300D^^30^415^127
- ;;^UTILITY(U,$J,358.3,7836,1,0)
+ ;;^UTILITY(U,$J,358.3,17002,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Right
+ ;;^UTILITY(U,$J,358.3,17002,1,4,0)
+ ;;=4^H60.311
+ ;;^UTILITY(U,$J,358.3,17002,2)
+ ;;=^5006447
+ ;;^UTILITY(U,$J,358.3,17003,0)
+ ;;=H60.312^^73^859^15
+ ;;^UTILITY(U,$J,358.3,17003,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,7836,1,3,0)
- ;;=3^War Op Inv Unspec Fire/Conflagr/Hot Subst,Milt,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,17003,1,3,0)
+ ;;=3^Otitis Externa Diffuse,Left
+ ;;^UTILITY(U,$J,358.3,17003,1,4,0)
+ ;;=4^H60.312
+ ;;^UTILITY(U,$J,358.3,17003,2)
+ ;;=^5006448
+ ;;^UTILITY(U,$J,358.3,17004,0)
+ ;;=H60.391^^73^859^22
+ ;;^UTILITY(U,$J,358.3,17004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17004,1,3,0)
+ ;;=3^Otitis Externa Infective,Right
+ ;;^UTILITY(U,$J,358.3,17004,1,4,0)
+ ;;=4^H60.391
+ ;;^UTILITY(U,$J,358.3,17004,2)
+ ;;=^5006459
+ ;;^UTILITY(U,$J,358.3,17005,0)
+ ;;=H60.392^^73^859^21
+ ;;^UTILITY(U,$J,358.3,17005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17005,1,3,0)
+ ;;=3^Otitis Externa Infective,Left
+ ;;^UTILITY(U,$J,358.3,17005,1,4,0)
+ ;;=4^H60.392
+ ;;^UTILITY(U,$J,358.3,17005,2)
+ ;;=^5006460
+ ;;^UTILITY(U,$J,358.3,17006,0)
+ ;;=H60.393^^73^859^20
+ ;;^UTILITY(U,$J,358.3,17006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17006,1,3,0)
+ ;;=3^Otitis Externa Infective,Bilateral
+ ;;^UTILITY(U,$J,358.3,17006,1,4,0)
+ ;;=4^H60.393
+ ;;^UTILITY(U,$J,358.3,17006,2)
+ ;;=^5006461
+ ;;^UTILITY(U,$J,358.3,17007,0)
+ ;;=M81.0^^73^859^13
+ ;;^UTILITY(U,$J,358.3,17007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17007,1,3,0)
+ ;;=3^Osteopor,age-rltd w/o curnt path fractr
+ ;;^UTILITY(U,$J,358.3,17007,1,4,0)
+ ;;=4^M81.0
+ ;;^UTILITY(U,$J,358.3,17007,2)
+ ;;=^5013555
+ ;;^UTILITY(U,$J,358.3,17008,0)
+ ;;=R11.2^^73^859^2
+ ;;^UTILITY(U,$J,358.3,17008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17008,1,3,0)
+ ;;=3^Nausea w/ Vomiting,Unspec
+ ;;^UTILITY(U,$J,358.3,17008,1,4,0)
+ ;;=4^R11.2
+ ;;^UTILITY(U,$J,358.3,17008,2)
+ ;;=^5019237
+ ;;^UTILITY(U,$J,358.3,17009,0)
+ ;;=H60.321^^73^859^19
+ ;;^UTILITY(U,$J,358.3,17009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17009,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Right
+ ;;^UTILITY(U,$J,358.3,17009,1,4,0)
+ ;;=4^H60.321
+ ;;^UTILITY(U,$J,358.3,17009,2)
+ ;;=^5006451
+ ;;^UTILITY(U,$J,358.3,17010,0)
+ ;;=H60.322^^73^859^18
+ ;;^UTILITY(U,$J,358.3,17010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17010,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic,Left
+ ;;^UTILITY(U,$J,358.3,17010,1,4,0)
+ ;;=4^H60.322
+ ;;^UTILITY(U,$J,358.3,17010,2)
+ ;;=^5006452
+ ;;^UTILITY(U,$J,358.3,17011,0)
+ ;;=H60.323^^73^859^17
+ ;;^UTILITY(U,$J,358.3,17011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17011,1,3,0)
+ ;;=3^Otitis Externa Hemorrhagic, Bilateral
+ ;;^UTILITY(U,$J,358.3,17011,1,4,0)
+ ;;=4^H60.323
+ ;;^UTILITY(U,$J,358.3,17011,2)
+ ;;=^5006453
+ ;;^UTILITY(U,$J,358.3,17012,0)
+ ;;=H66.91^^73^859^25
+ ;;^UTILITY(U,$J,358.3,17012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17012,1,3,0)
+ ;;=3^Otitis Media, rt ear, unspec
+ ;;^UTILITY(U,$J,358.3,17012,1,4,0)
+ ;;=4^H66.91
+ ;;^UTILITY(U,$J,358.3,17012,2)
+ ;;=^5006640
+ ;;^UTILITY(U,$J,358.3,17013,0)
+ ;;=H66.92^^73^859^24
+ ;;^UTILITY(U,$J,358.3,17013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17013,1,3,0)
+ ;;=3^Otitis Media, lft ear, unspec
+ ;;^UTILITY(U,$J,358.3,17013,1,4,0)
+ ;;=4^H66.92
+ ;;^UTILITY(U,$J,358.3,17013,2)
+ ;;=^5006641
+ ;;^UTILITY(U,$J,358.3,17014,0)
+ ;;=H66.93^^73^859^23
+ ;;^UTILITY(U,$J,358.3,17014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17014,1,3,0)
+ ;;=3^Otitis Media, biltrl, unspec
+ ;;^UTILITY(U,$J,358.3,17014,1,4,0)
+ ;;=4^H66.93
+ ;;^UTILITY(U,$J,358.3,17014,2)
+ ;;=^5006642
+ ;;^UTILITY(U,$J,358.3,17015,0)
+ ;;=E66.01^^73^859^8
+ ;;^UTILITY(U,$J,358.3,17015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17015,1,3,0)
+ ;;=3^Obesity, morbid d/t excess calories
+ ;;^UTILITY(U,$J,358.3,17015,1,4,0)
+ ;;=4^E66.01
+ ;;^UTILITY(U,$J,358.3,17015,2)
+ ;;=^5002826
+ ;;^UTILITY(U,$J,358.3,17016,0)
+ ;;=E66.9^^73^859^9
+ ;;^UTILITY(U,$J,358.3,17016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17016,1,3,0)
+ ;;=3^Obesity, unspec
+ ;;^UTILITY(U,$J,358.3,17016,1,4,0)
+ ;;=4^E66.9
+ ;;^UTILITY(U,$J,358.3,17016,2)
+ ;;=^5002832
+ ;;^UTILITY(U,$J,358.3,17017,0)
+ ;;=M19.91^^73^859^11
+ ;;^UTILITY(U,$J,358.3,17017,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17017,1,3,0)
+ ;;=3^Osteoarth, prim, unspec site
+ ;;^UTILITY(U,$J,358.3,17017,1,4,0)
+ ;;=4^M19.91
+ ;;^UTILITY(U,$J,358.3,17017,2)
+ ;;=^5010854
+ ;;^UTILITY(U,$J,358.3,17018,0)
+ ;;=J00.^^73^859^1
+ ;;^UTILITY(U,$J,358.3,17018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17018,1,3,0)
+ ;;=3^Nasopharyngitis,Acute
+ ;;^UTILITY(U,$J,358.3,17018,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,17018,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,17019,0)
+ ;;=M79.2^^73^859^4
+ ;;^UTILITY(U,$J,358.3,17019,1,0)
+ ;;=^358.31IA^4^2

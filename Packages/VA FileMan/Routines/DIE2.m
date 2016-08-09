@@ -1,6 +1,10 @@
-DIE2 ;SFISC/GFT,XAK-DELETE AND ENTRY ;12:45 PM  17 Sep 2002
- ;;22.0;VA FileMan;**4,11,95**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIE2 ;SFISC/GFT,XAK-DELETE AN ENTRY ;12:37 PM  20 Feb 2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D F,DL Q:$D(DTOUT)  G B^DIED:Y=2,A^DIED:Y,UP^DIE1:DL>1,Q^DIE1
  ;
 F S D=$P(DQ(DQ),U,4) S:DP+1 D=DIFLD Q
@@ -16,10 +20,16 @@ DL ;
  I Y,$D(^DIC(%,0,"DEL")) S X=^("DEL")
  E  G DD:'$D(^DD(%,X,8.5)) S X=^(8.5)
  G DD:X="" F %=1:1:$L(X) G DD:DUZ(0)[$E(X,%)
-DAR W !,"'DELETE ACCESS' REQUIRED!!"
+DAR D  ;**CCO/NI "DELETE ACCESS REQUIRED"   thru next 5 lines
+ .N IN,OUT
+ .S IN(1)=$$LABEL^DIALOGZ(DP,DIFLD),IN(2)=$$FILENAME^DIALOGZ(DP)
+ .D BLD^DIALOG(712,.IN,,"OUT"),EN^DDIOL(.OUT)
 X I $D(DB(DQ)) D N G A
- W:'$D(DIER) $C(7),"??" W:DV["R"&'$D(DIER) "  Required" W:$D(^DD("KEY","F",DP,D))&'$D(DIER) $S(DV'["R":"  Required",1:"")_" Key field" G R
-DD G MD:DV S DH=0,DU=0 F  S DH=$O(^DD(DP,D,"DEL",DH)) Q:DH=""  I $D(^(DH,0)) X ^(0) Q:$D(DTOUT)  G X:$T
+ W:$D(^DD("KEY","F",DP,D))!(DV["R")&'$D(DIER) "  ",$$EZBLD^DIALOG(8041) G R ;This is a required response. Enter '^' to exit
+ ;
+ ;
+DD G MD:DV S DH=0,DU=0 F  S DH=$O(^DD(DP,D,"DEL",DH)) Q:DH=""  I $D(^(DH,0)) X ^(0) Q:$D(DTOUT)  G X:$T ;IF SWITCH ON MEANS NO DELETION ALLOWED
+CC ;CONSISTENCY CHECK WOULD GO HERE
  S DH=-1,X=DQ(DQ) I Y,$E(@(DIE_"0)"))'=U S X=^(0)
  D D G R:X I Y D FIREREC(DP) S X=DE(DQ) D DEL:$D(DIU(0)) K DE,DG,DQ,DB S DIK=DIE D ^DIK S Y=0 K:DL<2 DA Q
 S S X="",DG($P(DQ(DQ),U,4))="" D:'$G(DIEZFLAG) LOADXR^DIED

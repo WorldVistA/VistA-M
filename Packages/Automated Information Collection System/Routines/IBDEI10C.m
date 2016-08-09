@@ -1,130 +1,266 @@
-IBDEI10C ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI10C ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,17090,1,4,0)
- ;;=4^Z73.4
- ;;^UTILITY(U,$J,358.3,17090,2)
- ;;=^5063272
- ;;^UTILITY(U,$J,358.3,17091,0)
- ;;=Z79.2^^70^809^22
- ;;^UTILITY(U,$J,358.3,17091,1,0)
+ ;;^UTILITY(U,$J,358.3,36570,0)
+ ;;=R41.0^^135^1800^15
+ ;;^UTILITY(U,$J,358.3,36570,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17091,1,3,0)
- ;;=3^Long term (current) use of antibiotics
- ;;^UTILITY(U,$J,358.3,17091,1,4,0)
- ;;=4^Z79.2
- ;;^UTILITY(U,$J,358.3,17091,2)
- ;;=^321546
- ;;^UTILITY(U,$J,358.3,17092,0)
- ;;=Z79.01^^70^809^23
- ;;^UTILITY(U,$J,358.3,17092,1,0)
+ ;;^UTILITY(U,$J,358.3,36570,1,3,0)
+ ;;=3^Delirium,Other Specified
+ ;;^UTILITY(U,$J,358.3,36570,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,36570,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,36571,0)
+ ;;=R41.0^^135^1800^16
+ ;;^UTILITY(U,$J,358.3,36571,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17092,1,3,0)
- ;;=3^Long term (current) use of anticoagulants
- ;;^UTILITY(U,$J,358.3,17092,1,4,0)
- ;;=4^Z79.01
- ;;^UTILITY(U,$J,358.3,17092,2)
- ;;=^5063330
- ;;^UTILITY(U,$J,358.3,17093,0)
- ;;=Z79.02^^70^809^24
- ;;^UTILITY(U,$J,358.3,17093,1,0)
+ ;;^UTILITY(U,$J,358.3,36571,1,3,0)
+ ;;=3^Delirium,Unspec
+ ;;^UTILITY(U,$J,358.3,36571,1,4,0)
+ ;;=4^R41.0
+ ;;^UTILITY(U,$J,358.3,36571,2)
+ ;;=^5019436
+ ;;^UTILITY(U,$J,358.3,36572,0)
+ ;;=G31.09^^135^1800^20
+ ;;^UTILITY(U,$J,358.3,36572,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17093,1,3,0)
- ;;=3^Long term (current) use of antithrombtc/antipltlts
- ;;^UTILITY(U,$J,358.3,17093,1,4,0)
- ;;=4^Z79.02
- ;;^UTILITY(U,$J,358.3,17093,2)
- ;;=^5063331
- ;;^UTILITY(U,$J,358.3,17094,0)
- ;;=Z79.82^^70^809^25
- ;;^UTILITY(U,$J,358.3,17094,1,0)
+ ;;^UTILITY(U,$J,358.3,36572,1,3,0)
+ ;;=3^Frontotemporal Disease
+ ;;^UTILITY(U,$J,358.3,36572,1,4,0)
+ ;;=4^G31.09
+ ;;^UTILITY(U,$J,358.3,36572,2)
+ ;;=^329916
+ ;;^UTILITY(U,$J,358.3,36573,0)
+ ;;=F02.81^^135^1800^36
+ ;;^UTILITY(U,$J,358.3,36573,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17094,1,3,0)
- ;;=3^Long term (current) use of aspirin
- ;;^UTILITY(U,$J,358.3,17094,1,4,0)
- ;;=4^Z79.82
- ;;^UTILITY(U,$J,358.3,17094,2)
- ;;=^5063340
- ;;^UTILITY(U,$J,358.3,17095,0)
- ;;=Z79.899^^70^809^21
- ;;^UTILITY(U,$J,358.3,17095,1,0)
+ ;;^UTILITY(U,$J,358.3,36573,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36573,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36573,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36574,0)
+ ;;=F02.80^^135^1800^37
+ ;;^UTILITY(U,$J,358.3,36574,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17095,1,3,0)
- ;;=3^Long term (current) drug therapy, oth
- ;;^UTILITY(U,$J,358.3,17095,1,4,0)
- ;;=4^Z79.899
- ;;^UTILITY(U,$J,358.3,17095,2)
- ;;=^5063343
- ;;^UTILITY(U,$J,358.3,17096,0)
- ;;=Z79.51^^70^809^26
- ;;^UTILITY(U,$J,358.3,17096,1,0)
+ ;;^UTILITY(U,$J,358.3,36574,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36574,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36574,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36575,0)
+ ;;=F02.81^^135^1800^42
+ ;;^UTILITY(U,$J,358.3,36575,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17096,1,3,0)
- ;;=3^Long term (current) use of inhaled steroids
- ;;^UTILITY(U,$J,358.3,17096,1,4,0)
- ;;=4^Z79.51
- ;;^UTILITY(U,$J,358.3,17096,2)
- ;;=^5063335
- ;;^UTILITY(U,$J,358.3,17097,0)
- ;;=Z79.4^^70^809^27
- ;;^UTILITY(U,$J,358.3,17097,1,0)
+ ;;^UTILITY(U,$J,358.3,36575,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36575,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36575,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36576,0)
+ ;;=F02.80^^135^1800^43
+ ;;^UTILITY(U,$J,358.3,36576,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17097,1,3,0)
- ;;=3^Long term (current) use of insulin
- ;;^UTILITY(U,$J,358.3,17097,1,4,0)
- ;;=4^Z79.4
- ;;^UTILITY(U,$J,358.3,17097,2)
- ;;=^5063334
- ;;^UTILITY(U,$J,358.3,17098,0)
- ;;=Z79.1^^70^809^28
- ;;^UTILITY(U,$J,358.3,17098,1,0)
+ ;;^UTILITY(U,$J,358.3,36576,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Prob FRONTOTEMP LOBAR DEGEN w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36576,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36576,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36577,0)
+ ;;=G31.84^^135^1800^58
+ ;;^UTILITY(U,$J,358.3,36577,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17098,1,3,0)
- ;;=3^Long term (current) use of non-stroidl non-inflam (NSAID)
- ;;^UTILITY(U,$J,358.3,17098,1,4,0)
- ;;=4^Z79.1
- ;;^UTILITY(U,$J,358.3,17098,2)
- ;;=^5063332
- ;;^UTILITY(U,$J,358.3,17099,0)
- ;;=Z79.891^^70^809^29
- ;;^UTILITY(U,$J,358.3,17099,1,0)
+ ;;^UTILITY(U,$J,358.3,36577,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t FRONTOTEMP LOBAR DEGEN
+ ;;^UTILITY(U,$J,358.3,36577,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,36577,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,36578,0)
+ ;;=F02.81^^135^1800^26
+ ;;^UTILITY(U,$J,358.3,36578,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17099,1,3,0)
- ;;=3^Long term (current) use of opiate analgesic
- ;;^UTILITY(U,$J,358.3,17099,1,4,0)
- ;;=4^Z79.891
- ;;^UTILITY(U,$J,358.3,17099,2)
- ;;=^5063342
- ;;^UTILITY(U,$J,358.3,17100,0)
- ;;=Z79.52^^70^809^30
- ;;^UTILITY(U,$J,358.3,17100,1,0)
+ ;;^UTILITY(U,$J,358.3,36578,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36578,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36578,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36579,0)
+ ;;=F02.80^^135^1800^27
+ ;;^UTILITY(U,$J,358.3,36579,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17100,1,3,0)
- ;;=3^Long term (current) use of systemic steroids
- ;;^UTILITY(U,$J,358.3,17100,1,4,0)
- ;;=4^Z79.52
- ;;^UTILITY(U,$J,358.3,17100,2)
- ;;=^5063336
- ;;^UTILITY(U,$J,358.3,17101,0)
- ;;=Z91.19^^70^809^40
- ;;^UTILITY(U,$J,358.3,17101,1,0)
+ ;;^UTILITY(U,$J,358.3,36579,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HIV INFECTION w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36579,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36579,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36580,0)
+ ;;=G31.84^^135^1800^59
+ ;;^UTILITY(U,$J,358.3,36580,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17101,1,3,0)
- ;;=3^Pt's noncmplnc w oth med'l trmnt & regimen
- ;;^UTILITY(U,$J,358.3,17101,1,4,0)
- ;;=4^Z91.19
- ;;^UTILITY(U,$J,358.3,17101,2)
- ;;=^5063618
- ;;^UTILITY(U,$J,358.3,17102,0)
- ;;=Z73.89^^70^809^32
- ;;^UTILITY(U,$J,358.3,17102,1,0)
+ ;;^UTILITY(U,$J,358.3,36580,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t HIV INFECTION
+ ;;^UTILITY(U,$J,358.3,36580,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,36580,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,36581,0)
+ ;;=F02.81^^135^1800^28
+ ;;^UTILITY(U,$J,358.3,36581,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,17102,1,3,0)
- ;;=3^Prblms related to life mngmt difficulty, oth
- ;;^UTILITY(U,$J,358.3,17102,1,4,0)
- ;;=4^Z73.89
- ;;^UTILITY(U,$J,358.3,17102,2)
- ;;=^5063280
- ;;^UTILITY(U,$J,358.3,17103,0)
- ;;=Z55.9^^70^809^31
+ ;;^UTILITY(U,$J,358.3,36581,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36581,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36581,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36582,0)
+ ;;=F02.80^^135^1800^29
+ ;;^UTILITY(U,$J,358.3,36582,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36582,1,3,0)
+ ;;=3^Major Neurocog D/O d/t HUNTINGTON'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36582,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36582,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36583,0)
+ ;;=G31.84^^135^1800^60
+ ;;^UTILITY(U,$J,358.3,36583,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36583,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t HUNTINGTON'S DISEASE
+ ;;^UTILITY(U,$J,358.3,36583,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,36583,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,36584,0)
+ ;;=G31.83^^135^1800^23
+ ;;^UTILITY(U,$J,358.3,36584,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36584,1,3,0)
+ ;;=3^Lewy Body Disease
+ ;;^UTILITY(U,$J,358.3,36584,1,4,0)
+ ;;=4^G31.83
+ ;;^UTILITY(U,$J,358.3,36584,2)
+ ;;=^329888
+ ;;^UTILITY(U,$J,358.3,36585,0)
+ ;;=F02.81^^135^1800^52
+ ;;^UTILITY(U,$J,358.3,36585,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36585,1,3,0)
+ ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36585,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36585,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36586,0)
+ ;;=F02.80^^135^1800^53
+ ;;^UTILITY(U,$J,358.3,36586,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36586,1,3,0)
+ ;;=3^Major Neurocog D/O w/ Poss LEWY BODIES w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36586,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36586,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36587,0)
+ ;;=F02.81^^135^1800^54
+ ;;^UTILITY(U,$J,358.3,36587,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36587,1,3,0)
+ ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36587,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36587,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36588,0)
+ ;;=F02.80^^135^1800^55
+ ;;^UTILITY(U,$J,358.3,36588,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36588,1,3,0)
+ ;;=3^Major Neurocog D/O w/ Prob LEWY BODIES w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36588,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36588,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36589,0)
+ ;;=G31.84^^135^1800^66
+ ;;^UTILITY(U,$J,358.3,36589,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36589,1,3,0)
+ ;;=3^Mild Neurocog D/O w/ LEWY BODIES
+ ;;^UTILITY(U,$J,358.3,36589,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,36589,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,36590,0)
+ ;;=F02.81^^135^1800^30
+ ;;^UTILITY(U,$J,358.3,36590,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36590,1,3,0)
+ ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36590,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36590,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36591,0)
+ ;;=F02.80^^135^1800^31
+ ;;^UTILITY(U,$J,358.3,36591,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36591,1,3,0)
+ ;;=3^Major Neurocog D/O d/t MULTIPLE ETIOLOGIES w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36591,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36591,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36592,0)
+ ;;=G31.84^^135^1800^61
+ ;;^UTILITY(U,$J,358.3,36592,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36592,1,3,0)
+ ;;=3^Mild Neurocog D/O d/t MULTIPLE ETIOLOGIES
+ ;;^UTILITY(U,$J,358.3,36592,1,4,0)
+ ;;=4^G31.84
+ ;;^UTILITY(U,$J,358.3,36592,2)
+ ;;=^5003813
+ ;;^UTILITY(U,$J,358.3,36593,0)
+ ;;=G90.3^^135^1800^67
+ ;;^UTILITY(U,$J,358.3,36593,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36593,1,3,0)
+ ;;=3^Multi-System Degeneration of Autonomic Nervous System
+ ;;^UTILITY(U,$J,358.3,36593,1,4,0)
+ ;;=4^G90.3
+ ;;^UTILITY(U,$J,358.3,36593,2)
+ ;;=^5004162
+ ;;^UTILITY(U,$J,358.3,36594,0)
+ ;;=F02.81^^135^1800^38
+ ;;^UTILITY(U,$J,358.3,36594,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36594,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/ Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36594,1,4,0)
+ ;;=4^F02.81
+ ;;^UTILITY(U,$J,358.3,36594,2)
+ ;;=^5003049
+ ;;^UTILITY(U,$J,358.3,36595,0)
+ ;;=F02.80^^135^1800^39
+ ;;^UTILITY(U,$J,358.3,36595,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,36595,1,3,0)
+ ;;=3^Major Neurocog D/O d/t Poss PARKINSON'S DISEASE w/o Behav Disturb
+ ;;^UTILITY(U,$J,358.3,36595,1,4,0)
+ ;;=4^F02.80
+ ;;^UTILITY(U,$J,358.3,36595,2)
+ ;;=^5003048
+ ;;^UTILITY(U,$J,358.3,36596,0)
+ ;;=F02.81^^135^1800^44

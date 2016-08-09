@@ -1,6 +1,7 @@
-RCBEPAY ;WISC/RFJ-payment processing (top routine)                  ;1 Jun 00
- ;;4.5;Accounts Receivable;**153**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCBEPAY ;WISC/RFJ - payment processing (top routine) ;1 Jun 00
+ ;;4.5;Accounts Receivable;**153,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  Q
  ;
  ;
@@ -9,7 +10,7 @@ PROCESS(RCRECTDA,RCPAYDA) ;  process a payment for receipt
  ;  rcpayda  - payment ien file 344 under rcrectda
  ;  returns 0 if processed, 1^error if not processed
  ;
- N RCACCT,RCBILLDA,RCDATA,RCERROR,RCPAYAMT,RCPAYDAT,RCTRANDA,X
+ N RCACCT,RCBILLDA,RCDATA,RCERROR,RCPAYAMT,RCPAYDAT,RCTRANDA,X,RCERROR
  ;
  ;  lock the receipt payment
  L +^RCY(344,RCRECTDA,1,RCPAYDA):10
@@ -19,7 +20,17 @@ PROCESS(RCRECTDA,RCPAYDA) ;  process a payment for receipt
  S RCDATA=^RCY(344,RCRECTDA,1,RCPAYDA,0)
  ;
  ;  there is no account, this will go to suspense
- I $P(RCDATA,"^",3)="" L -^RCY(344,RCRECTDA,1,RCPAYDA) Q 0
+ I $P(RCDATA,"^",3)="" L -^RCY(344,RCRECTDA,1,RCPAYDA) D  Q RCERROR
+ . S RCERROR=0
+ . I '$T S RCERROR="1^Another user is updating the Suspense File Audit Log."  Q
+ . ;
+ . ;file a "P"ending entry in the Suspense Audit Log File and for the disposition
+ . ;if not already there and not $0 payment (auto-adjustment back to FMS).
+ . I '$D(^RCY(344,RCRECTDA,1,RCPAYDA,3)),($P($G(^RCY(344,RCRECTDA,1,RCPAYDA,0)),U,4)'=0) D
+ . . D AUDIT(RCRECTDA,RCPAYDA,"I")
+ . . ;
+ . . ;update disposition
+ . . D SUSPDIS(RCRECTDA,RCPAYDA,"P")
  ;
  ;  check the payment for errors
  S X=$$CHECKPAY^RCBEPAYC(RCRECTDA,RCPAYDA)
@@ -106,3 +117,44 @@ SETERROR(RCRECTDA,RCPAYDA,RCERROR) ;  store the error on the receipt
  ;  error exists, set the posting error
  I RCERROR'="" S $P(^RCY(344,RCRECTDA,1,RCPAYDA,1),"^")=$E(RCERROR,1,60)
  Q
+ ;
+ ;
+AUDIT(RCRECTDA,RCPAYDA,RCSTAT)  ; store entry in Suspense Audit Log
+ N RCAUDIT,RCDATA,RCDATA1,RCDATA0
+ ;
+ ; get the data elements
+ S RCDATA=$G(^RCY(344,RCRECTDA,0))  ;double check these
+ S RCDATA0=$G(^RCY(344,RCRECTDA,1,RCPAYDA,0))
+ S RCDATA1=$G(^RCY(344,RCRECTDA,1,RCPAYDA,1))
+ ;
+ ; set up array
+ S RCAUDIT(344.71,"+1,",.01)=$$NOW^XLFDT      ;Date/Time Stamp
+ S RCAUDIT(344.71,"+1,",.02)=DUZ              ;User
+ S RCAUDIT(344.71,"+1,",.03)=$P(RCDATA,U,1)   ;Receipt #
+ S RCAUDIT(344.71,"+1,",.04)=RCPAYDA          ;Transaction #
+ S RCAUDIT(344.71,"+1,",.05)=$P(RCDATA0,U,4)  ;Amount
+ S RCAUDIT(344.71,"+1,",.06)=$P(RCDATA0,U,9)  ;Claim #
+ S RCAUDIT(344.71,"+1,",.07)=RCSTAT           ;Status
+ S RCAUDIT(344.71,"+1,",.08)=$P(RCDATA1,U,2)  ;Reason text
+ ;
+ ;file entry
+ D UPDATE^DIE(,"RCAUDIT")
+ Q
+ ;
+ ;
+SUSPDIS(RCRECTDA,RCTRANDA,RCSTAT)     ;Update the disposition field
+ ;
+ N DA,DR,DIE,DTOUT
+ S DA=RCTRANDA,DA(1)=RCRECTDA,DIE="^RCY(344,"_DA(1)_",1,"
+ S DR="3.01////"_RCSTAT_";"
+ I RCSTAT="P" D
+ . S DR=DR_"3.02////"_$$NOW^XLFDT_";"
+ . S DR=DR_"3.03////"_DUZ_";"
+ I RCSTAT'="P" D
+ . S DR=DR_"3.04////"_$$NOW^XLFDT_";"
+ . S DR=DR_"3.05////"_DUZ_";"
+ S DR=$P(DR,";",1,$L(DR,";")-1)
+ ;
+ D ^DIE
+ Q
+ ; 

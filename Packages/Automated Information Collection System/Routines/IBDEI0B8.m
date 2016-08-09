@@ -1,130 +1,288 @@
-IBDEI0B8 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0B8 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,5066,2)
- ;;=^5055626
- ;;^UTILITY(U,$J,358.3,5067,0)
- ;;=K65.0^^27^327^10
- ;;^UTILITY(U,$J,358.3,5067,1,0)
+ ;;^UTILITY(U,$J,358.3,11233,1,3,0)
+ ;;=3^Entropion Left Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,11233,1,4,0)
+ ;;=4^H02.004
+ ;;^UTILITY(U,$J,358.3,11233,2)
+ ;;=^5004276
+ ;;^UTILITY(U,$J,358.3,11234,0)
+ ;;=H02.002^^53^608^39
+ ;;^UTILITY(U,$J,358.3,11234,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5067,1,3,0)
- ;;=3^Generalized (acute) Peritonitis
- ;;^UTILITY(U,$J,358.3,5067,1,4,0)
- ;;=4^K65.0
- ;;^UTILITY(U,$J,358.3,5067,2)
- ;;=^332799
- ;;^UTILITY(U,$J,358.3,5068,0)
- ;;=G60.9^^27^327^14
- ;;^UTILITY(U,$J,358.3,5068,1,0)
+ ;;^UTILITY(U,$J,358.3,11234,1,3,0)
+ ;;=3^Entropion Right Lower Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,11234,1,4,0)
+ ;;=4^H02.002
+ ;;^UTILITY(U,$J,358.3,11234,2)
+ ;;=^5133394
+ ;;^UTILITY(U,$J,358.3,11235,0)
+ ;;=H02.001^^53^608^40
+ ;;^UTILITY(U,$J,358.3,11235,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5068,1,3,0)
- ;;=3^Hereditary & Idiopathic Neuropathy,Unspec
- ;;^UTILITY(U,$J,358.3,5068,1,4,0)
- ;;=4^G60.9
- ;;^UTILITY(U,$J,358.3,5068,2)
- ;;=^5004071
- ;;^UTILITY(U,$J,358.3,5069,0)
- ;;=T82.838A^^27^327^12
- ;;^UTILITY(U,$J,358.3,5069,1,0)
+ ;;^UTILITY(U,$J,358.3,11235,1,3,0)
+ ;;=3^Entropion Right Upper Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,11235,1,4,0)
+ ;;=4^H02.001
+ ;;^UTILITY(U,$J,358.3,11235,2)
+ ;;=^5004274
+ ;;^UTILITY(U,$J,358.3,11236,0)
+ ;;=H04.202^^53^608^41
+ ;;^UTILITY(U,$J,358.3,11236,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5069,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Init Encntr
- ;;^UTILITY(U,$J,358.3,5069,1,4,0)
- ;;=4^T82.838A
- ;;^UTILITY(U,$J,358.3,5069,2)
- ;;=^5054929
- ;;^UTILITY(U,$J,358.3,5070,0)
- ;;=T82.838D^^27^327^13
- ;;^UTILITY(U,$J,358.3,5070,1,0)
+ ;;^UTILITY(U,$J,358.3,11236,1,3,0)
+ ;;=3^Epiphora Left Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,11236,1,4,0)
+ ;;=4^H04.202
+ ;;^UTILITY(U,$J,358.3,11236,2)
+ ;;=^5004485
+ ;;^UTILITY(U,$J,358.3,11237,0)
+ ;;=H04.201^^53^608^42
+ ;;^UTILITY(U,$J,358.3,11237,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5070,1,3,0)
- ;;=3^Hemorrhage of Vascular Graft/Fistula,Subs Encntr
- ;;^UTILITY(U,$J,358.3,5070,1,4,0)
- ;;=4^T82.838D
- ;;^UTILITY(U,$J,358.3,5070,2)
- ;;=^5054930
- ;;^UTILITY(U,$J,358.3,5071,0)
- ;;=E83.81^^27^327^15
- ;;^UTILITY(U,$J,358.3,5071,1,0)
+ ;;^UTILITY(U,$J,358.3,11237,1,3,0)
+ ;;=3^Epiphora Right Lacrimal Gland,Unspec
+ ;;^UTILITY(U,$J,358.3,11237,1,4,0)
+ ;;=4^H04.201
+ ;;^UTILITY(U,$J,358.3,11237,2)
+ ;;=^5004484
+ ;;^UTILITY(U,$J,358.3,11238,0)
+ ;;=H52.01^^53^609^13
+ ;;^UTILITY(U,$J,358.3,11238,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5071,1,3,0)
- ;;=3^Hungry Bone Syndrome
- ;;^UTILITY(U,$J,358.3,5071,1,4,0)
- ;;=4^E83.81
- ;;^UTILITY(U,$J,358.3,5071,2)
- ;;=^336538
- ;;^UTILITY(U,$J,358.3,5072,0)
- ;;=T85.71XA^^27^327^21
- ;;^UTILITY(U,$J,358.3,5072,1,0)
+ ;;^UTILITY(U,$J,358.3,11238,1,3,0)
+ ;;=3^Hypermetropia,Right Eye
+ ;;^UTILITY(U,$J,358.3,11238,1,4,0)
+ ;;=4^H52.01
+ ;;^UTILITY(U,$J,358.3,11238,2)
+ ;;=^5006260
+ ;;^UTILITY(U,$J,358.3,11239,0)
+ ;;=H52.02^^53^609^12
+ ;;^UTILITY(U,$J,358.3,11239,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5072,1,3,0)
- ;;=3^Infection d/t Peritoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,5072,1,4,0)
- ;;=4^T85.71XA
- ;;^UTILITY(U,$J,358.3,5072,2)
- ;;=^5055670
- ;;^UTILITY(U,$J,358.3,5073,0)
- ;;=T85.71XD^^27^327^22
- ;;^UTILITY(U,$J,358.3,5073,1,0)
+ ;;^UTILITY(U,$J,358.3,11239,1,3,0)
+ ;;=3^Hypermetropia,Left Eye
+ ;;^UTILITY(U,$J,358.3,11239,1,4,0)
+ ;;=4^H52.02
+ ;;^UTILITY(U,$J,358.3,11239,2)
+ ;;=^5006261
+ ;;^UTILITY(U,$J,358.3,11240,0)
+ ;;=H52.13^^53^609^15
+ ;;^UTILITY(U,$J,358.3,11240,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5073,1,3,0)
- ;;=3^Infection d/t Peritoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,5073,1,4,0)
- ;;=4^T85.71XD
- ;;^UTILITY(U,$J,358.3,5073,2)
- ;;=^5055671
- ;;^UTILITY(U,$J,358.3,5074,0)
- ;;=T82.7XXA^^27^327^19
- ;;^UTILITY(U,$J,358.3,5074,1,0)
+ ;;^UTILITY(U,$J,358.3,11240,1,3,0)
+ ;;=3^Myopia,Bilateral
+ ;;^UTILITY(U,$J,358.3,11240,1,4,0)
+ ;;=4^H52.13
+ ;;^UTILITY(U,$J,358.3,11240,2)
+ ;;=^5006266
+ ;;^UTILITY(U,$J,358.3,11241,0)
+ ;;=H52.11^^53^609^17
+ ;;^UTILITY(U,$J,358.3,11241,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5074,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Init Encntr
- ;;^UTILITY(U,$J,358.3,5074,1,4,0)
- ;;=4^T82.7XXA
- ;;^UTILITY(U,$J,358.3,5074,2)
- ;;=^5054911
- ;;^UTILITY(U,$J,358.3,5075,0)
- ;;=T82.7XXD^^27^327^20
- ;;^UTILITY(U,$J,358.3,5075,1,0)
+ ;;^UTILITY(U,$J,358.3,11241,1,3,0)
+ ;;=3^Myopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,11241,1,4,0)
+ ;;=4^H52.11
+ ;;^UTILITY(U,$J,358.3,11241,2)
+ ;;=^5006264
+ ;;^UTILITY(U,$J,358.3,11242,0)
+ ;;=H52.12^^53^609^16
+ ;;^UTILITY(U,$J,358.3,11242,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5075,1,3,0)
- ;;=3^Infection d/t Dialysis Catheter or AV Fistula/Graft,Subs Encntr
- ;;^UTILITY(U,$J,358.3,5075,1,4,0)
- ;;=4^T82.7XXD
- ;;^UTILITY(U,$J,358.3,5075,2)
- ;;=^5054912
- ;;^UTILITY(U,$J,358.3,5076,0)
- ;;=T85.631A^^27^327^23
- ;;^UTILITY(U,$J,358.3,5076,1,0)
+ ;;^UTILITY(U,$J,358.3,11242,1,3,0)
+ ;;=3^Myopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,11242,1,4,0)
+ ;;=4^H52.12
+ ;;^UTILITY(U,$J,358.3,11242,2)
+ ;;=^5006265
+ ;;^UTILITY(U,$J,358.3,11243,0)
+ ;;=H52.201^^53^609^4
+ ;;^UTILITY(U,$J,358.3,11243,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5076,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Init Encntr
- ;;^UTILITY(U,$J,358.3,5076,1,4,0)
- ;;=4^T85.631A
- ;;^UTILITY(U,$J,358.3,5076,2)
- ;;=^5055643
- ;;^UTILITY(U,$J,358.3,5077,0)
- ;;=T85.631D^^27^327^24
- ;;^UTILITY(U,$J,358.3,5077,1,0)
+ ;;^UTILITY(U,$J,358.3,11243,1,3,0)
+ ;;=3^Astigmatism,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,11243,1,4,0)
+ ;;=4^H52.201
+ ;;^UTILITY(U,$J,358.3,11243,2)
+ ;;=^5006267
+ ;;^UTILITY(U,$J,358.3,11244,0)
+ ;;=H52.202^^53^609^3
+ ;;^UTILITY(U,$J,358.3,11244,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5077,1,3,0)
- ;;=3^Leakage of Intraperitoneal Dialysis Catheter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,5077,1,4,0)
- ;;=4^T85.631D
- ;;^UTILITY(U,$J,358.3,5077,2)
- ;;=^5055644
- ;;^UTILITY(U,$J,358.3,5078,0)
- ;;=H54.8^^27^327^25
- ;;^UTILITY(U,$J,358.3,5078,1,0)
+ ;;^UTILITY(U,$J,358.3,11244,1,3,0)
+ ;;=3^Astigmatism,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,11244,1,4,0)
+ ;;=4^H52.202
+ ;;^UTILITY(U,$J,358.3,11244,2)
+ ;;=^5006268
+ ;;^UTILITY(U,$J,358.3,11245,0)
+ ;;=H52.31^^53^609^2
+ ;;^UTILITY(U,$J,358.3,11245,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,5078,1,3,0)
- ;;=3^Legal Blindness,USA Definition
- ;;^UTILITY(U,$J,358.3,5078,1,4,0)
- ;;=4^H54.8
- ;;^UTILITY(U,$J,358.3,5078,2)
- ;;=^5006369
- ;;^UTILITY(U,$J,358.3,5079,0)
- ;;=N25.89^^27^327^18
- ;;^UTILITY(U,$J,358.3,5079,1,0)
+ ;;^UTILITY(U,$J,358.3,11245,1,3,0)
+ ;;=3^Anisometropia
+ ;;^UTILITY(U,$J,358.3,11245,1,4,0)
+ ;;=4^H52.31
+ ;;^UTILITY(U,$J,358.3,11245,2)
+ ;;=^7839
+ ;;^UTILITY(U,$J,358.3,11246,0)
+ ;;=H53.021^^53^609^26
+ ;;^UTILITY(U,$J,358.3,11246,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11246,1,3,0)
+ ;;=3^Refractive Amblyopia,Right Eye
+ ;;^UTILITY(U,$J,358.3,11246,1,4,0)
+ ;;=4^H53.021
+ ;;^UTILITY(U,$J,358.3,11246,2)
+ ;;=^5006299
+ ;;^UTILITY(U,$J,358.3,11247,0)
+ ;;=H53.022^^53^609^25
+ ;;^UTILITY(U,$J,358.3,11247,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11247,1,3,0)
+ ;;=3^Refractive Amblyopia,Left Eye
+ ;;^UTILITY(U,$J,358.3,11247,1,4,0)
+ ;;=4^H53.022
+ ;;^UTILITY(U,$J,358.3,11247,2)
+ ;;=^5006300
+ ;;^UTILITY(U,$J,358.3,11248,0)
+ ;;=H53.31^^53^609^1
+ ;;^UTILITY(U,$J,358.3,11248,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11248,1,3,0)
+ ;;=3^Abnormal Retinal Correspondence
+ ;;^UTILITY(U,$J,358.3,11248,1,4,0)
+ ;;=4^H53.31
+ ;;^UTILITY(U,$J,358.3,11248,2)
+ ;;=^268844
+ ;;^UTILITY(U,$J,358.3,11249,0)
+ ;;=H53.30^^53^609^5
+ ;;^UTILITY(U,$J,358.3,11249,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11249,1,3,0)
+ ;;=3^Binocular Vision Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,11249,1,4,0)
+ ;;=4^H53.30
+ ;;^UTILITY(U,$J,358.3,11249,2)
+ ;;=^5006322
+ ;;^UTILITY(U,$J,358.3,11250,0)
+ ;;=H53.481^^53^609^6
+ ;;^UTILITY(U,$J,358.3,11250,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11250,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Right Eye
+ ;;^UTILITY(U,$J,358.3,11250,1,4,0)
+ ;;=4^H53.481
+ ;;^UTILITY(U,$J,358.3,11250,2)
+ ;;=^5006344
+ ;;^UTILITY(U,$J,358.3,11251,0)
+ ;;=H53.482^^53^609^7
+ ;;^UTILITY(U,$J,358.3,11251,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11251,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Left Eye
+ ;;^UTILITY(U,$J,358.3,11251,1,4,0)
+ ;;=4^H53.482
+ ;;^UTILITY(U,$J,358.3,11251,2)
+ ;;=^5006345
+ ;;^UTILITY(U,$J,358.3,11252,0)
+ ;;=H53.483^^53^609^8
+ ;;^UTILITY(U,$J,358.3,11252,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11252,1,3,0)
+ ;;=3^Contraction of Visual Field,Generalized,Bilateral
+ ;;^UTILITY(U,$J,358.3,11252,1,4,0)
+ ;;=4^H53.483
+ ;;^UTILITY(U,$J,358.3,11252,2)
+ ;;=^5006346
+ ;;^UTILITY(U,$J,358.3,11253,0)
+ ;;=H51.12^^53^609^9
+ ;;^UTILITY(U,$J,358.3,11253,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11253,1,3,0)
+ ;;=3^Convergence Excess
+ ;;^UTILITY(U,$J,358.3,11253,1,4,0)
+ ;;=4^H51.12
+ ;;^UTILITY(U,$J,358.3,11253,2)
+ ;;=^5006252
+ ;;^UTILITY(U,$J,358.3,11254,0)
+ ;;=H51.11^^53^609^10
+ ;;^UTILITY(U,$J,358.3,11254,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11254,1,3,0)
+ ;;=3^Convergence Insufficiency
+ ;;^UTILITY(U,$J,358.3,11254,1,4,0)
+ ;;=4^H51.11
+ ;;^UTILITY(U,$J,358.3,11254,2)
+ ;;=^5006251
+ ;;^UTILITY(U,$J,358.3,11255,0)
+ ;;=H52.03^^53^609^11
+ ;;^UTILITY(U,$J,358.3,11255,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11255,1,3,0)
+ ;;=3^Hypermetropia,Bilateral
+ ;;^UTILITY(U,$J,358.3,11255,1,4,0)
+ ;;=4^H52.03
+ ;;^UTILITY(U,$J,358.3,11255,2)
+ ;;=^5006262
+ ;;^UTILITY(U,$J,358.3,11256,0)
+ ;;=H55.89^^53^609^14
+ ;;^UTILITY(U,$J,358.3,11256,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11256,1,3,0)
+ ;;=3^Irregular Eye Movements NEC
+ ;;^UTILITY(U,$J,358.3,11256,1,4,0)
+ ;;=4^H55.89
+ ;;^UTILITY(U,$J,358.3,11256,2)
+ ;;=^5006374
+ ;;^UTILITY(U,$J,358.3,11257,0)
+ ;;=H53.62^^53^609^19
+ ;;^UTILITY(U,$J,358.3,11257,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11257,1,3,0)
+ ;;=3^Night Blindness,Acquired
+ ;;^UTILITY(U,$J,358.3,11257,1,4,0)
+ ;;=4^H53.62
+ ;;^UTILITY(U,$J,358.3,11257,2)
+ ;;=^265401
+ ;;^UTILITY(U,$J,358.3,11258,0)
+ ;;=H53.63^^53^609^20
+ ;;^UTILITY(U,$J,358.3,11258,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11258,1,3,0)
+ ;;=3^Night Blindness,Congenital
+ ;;^UTILITY(U,$J,358.3,11258,1,4,0)
+ ;;=4^H53.63
+ ;;^UTILITY(U,$J,358.3,11258,2)
+ ;;=^265396
+ ;;^UTILITY(U,$J,358.3,11259,0)
+ ;;=H53.69^^53^609^18
+ ;;^UTILITY(U,$J,358.3,11259,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11259,1,3,0)
+ ;;=3^Night Blindness NEC
+ ;;^UTILITY(U,$J,358.3,11259,1,4,0)
+ ;;=4^H53.69
+ ;;^UTILITY(U,$J,358.3,11259,2)
+ ;;=^87726
+ ;;^UTILITY(U,$J,358.3,11260,0)
+ ;;=H52.521^^53^609^23
+ ;;^UTILITY(U,$J,358.3,11260,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11260,1,3,0)
+ ;;=3^Paresis of Accommodation,Right eye
+ ;;^UTILITY(U,$J,358.3,11260,1,4,0)
+ ;;=4^H52.521
+ ;;^UTILITY(U,$J,358.3,11260,2)
+ ;;=^5006282
+ ;;^UTILITY(U,$J,358.3,11261,0)
+ ;;=H52.522^^53^609^22
+ ;;^UTILITY(U,$J,358.3,11261,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,11261,1,3,0)
+ ;;=3^Paresis of Accommodation,Left Eye
+ ;;^UTILITY(U,$J,358.3,11261,1,4,0)
+ ;;=4^H52.522

@@ -1,5 +1,5 @@
-LA7VIN2A ;DALOI/JMC - Process Incoming UI Msgs, continued ;11/17/11  15:52
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**74**;Sep 27, 1994;Build 229
+LA7VIN2A ;DALOI/JMC - Process Incoming UI Msgs, continued ;09/10/15  09:03
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**74,88**;Sep 27, 1994;Build 10
  ;
  ;This routine is a continuation of LA7VIN2 and is only called from there.
  Q
@@ -58,13 +58,15 @@ RCOM ; Store result comments in ORU messages
  . N LA7I
  . S LA7I=0
  . F  S LA7I=$O(LA7RMK(0,LA7I)) Q:'LA7I  D
+ . . I $G(LA7AUTORELEASE) D RMKSET^LASET(LA7LWL,LA7ISQN,LA7RMK,$P(LA7RMK(0,LA7I),"^",2)) Q
  . . I '$P(LA7RMK(0,LA7I),"^") Q
  . . ; Don't store if status not "FINAL"
  . . I $P(LA7RMK(0,LA7I),"^")=2,"CFUX"'[$G(LA7ORS) Q
  . . D RMKSET^LASET(LA7LWL,LA7ISQN,LA7RMK,$P(LA7RMK(0,LA7I),"^",2))
  ;
  ; Store comment in 1 node of ^LAH global
- I $G(LA7SS)="CH",$P(LA7624(0),"^",17) D RMKSET^LASET(LA7LWL,LA7ISQN,LA7RMK,"") Q
+ I $G(LA7SS)="CH" D  Q
+ . I $P(LA7624(0),"^",17)!($G(LA7AUTORELEASE)) D RMKSET^LASET(LA7LWL,LA7ISQN,LA7RMK,"")
  ;
  ; Store "MI" subscript comments/remarks in specific places.
  ;  - Don't store comments from ORR messages - handled by mail bulletin

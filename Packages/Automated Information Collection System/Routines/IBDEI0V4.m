@@ -1,126 +1,280 @@
-IBDEI0V4 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0V4 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14590,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,in the Field
- ;;^UTILITY(U,$J,358.3,14590,1,4,0)
- ;;=4^R40.2311
- ;;^UTILITY(U,$J,358.3,14590,2)
- ;;=^5019401
- ;;^UTILITY(U,$J,358.3,14591,0)
- ;;=R40.2310^^53^611^13
- ;;^UTILITY(U,$J,358.3,14591,1,0)
+ ;;^UTILITY(U,$J,358.3,31285,0)
+ ;;=S61.401A^^116^1526^352
+ ;;^UTILITY(U,$J,358.3,31285,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14591,1,3,0)
- ;;=3^Coma Scale,Best Motor Resp,None,Unspec Time
- ;;^UTILITY(U,$J,358.3,14591,1,4,0)
- ;;=4^R40.2310
- ;;^UTILITY(U,$J,358.3,14591,2)
- ;;=^5019400
- ;;^UTILITY(U,$J,358.3,14592,0)
- ;;=R40.4^^53^611^38
- ;;^UTILITY(U,$J,358.3,14592,1,0)
+ ;;^UTILITY(U,$J,358.3,31285,1,3,0)
+ ;;=3^Open Wound Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31285,1,4,0)
+ ;;=4^S61.401A
+ ;;^UTILITY(U,$J,358.3,31285,2)
+ ;;=^5032981
+ ;;^UTILITY(U,$J,358.3,31286,0)
+ ;;=S61.200A^^116^1526^353
+ ;;^UTILITY(U,$J,358.3,31286,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14592,1,3,0)
- ;;=3^Transient Alteration of Awareness
- ;;^UTILITY(U,$J,358.3,14592,1,4,0)
- ;;=4^R40.4
- ;;^UTILITY(U,$J,358.3,14592,2)
- ;;=^5019435
- ;;^UTILITY(U,$J,358.3,14593,0)
- ;;=V00.811A^^53^612^45
- ;;^UTILITY(U,$J,358.3,14593,1,0)
+ ;;^UTILITY(U,$J,358.3,31286,1,3,0)
+ ;;=3^Open Wound Right Index Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31286,1,4,0)
+ ;;=4^S61.200A
+ ;;^UTILITY(U,$J,358.3,31286,2)
+ ;;=^5032741
+ ;;^UTILITY(U,$J,358.3,31287,0)
+ ;;=S61.206A^^116^1526^354
+ ;;^UTILITY(U,$J,358.3,31287,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14593,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Init Encntr
- ;;^UTILITY(U,$J,358.3,14593,1,4,0)
- ;;=4^V00.811A
- ;;^UTILITY(U,$J,358.3,14593,2)
- ;;=^5055937
- ;;^UTILITY(U,$J,358.3,14594,0)
- ;;=V00.811D^^53^612^46
- ;;^UTILITY(U,$J,358.3,14594,1,0)
+ ;;^UTILITY(U,$J,358.3,31287,1,3,0)
+ ;;=3^Open Wound Right Little Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31287,1,4,0)
+ ;;=4^S61.206A
+ ;;^UTILITY(U,$J,358.3,31287,2)
+ ;;=^5032759
+ ;;^UTILITY(U,$J,358.3,31288,0)
+ ;;=S61.202A^^116^1526^355
+ ;;^UTILITY(U,$J,358.3,31288,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14594,1,3,0)
- ;;=3^Fall from Moving Wheelchair (pwered),Subs Encntr
- ;;^UTILITY(U,$J,358.3,14594,1,4,0)
- ;;=4^V00.811D
- ;;^UTILITY(U,$J,358.3,14594,2)
- ;;=^5055938
- ;;^UTILITY(U,$J,358.3,14595,0)
- ;;=V00.812A^^53^612^133
- ;;^UTILITY(U,$J,358.3,14595,1,0)
+ ;;^UTILITY(U,$J,358.3,31288,1,3,0)
+ ;;=3^Open Wound Right Middle Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31288,1,4,0)
+ ;;=4^S61.202A
+ ;;^UTILITY(U,$J,358.3,31288,2)
+ ;;=^5032747
+ ;;^UTILITY(U,$J,358.3,31289,0)
+ ;;=S61.204A^^116^1526^356
+ ;;^UTILITY(U,$J,358.3,31289,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14595,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,14595,1,4,0)
- ;;=4^V00.812A
- ;;^UTILITY(U,$J,358.3,14595,2)
- ;;=^5055940
- ;;^UTILITY(U,$J,358.3,14596,0)
- ;;=V00.812D^^53^612^134
- ;;^UTILITY(U,$J,358.3,14596,1,0)
+ ;;^UTILITY(U,$J,358.3,31289,1,3,0)
+ ;;=3^Open Wound Right Ring Finger w/o Nail Damage,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31289,1,4,0)
+ ;;=4^S61.204A
+ ;;^UTILITY(U,$J,358.3,31289,2)
+ ;;=^5032753
+ ;;^UTILITY(U,$J,358.3,31290,0)
+ ;;=H02.403^^116^1526^365
+ ;;^UTILITY(U,$J,358.3,31290,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14596,1,3,0)
- ;;=3^Wheelchair Colliding w/ Stationary Obj,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14596,1,4,0)
- ;;=4^V00.812D
- ;;^UTILITY(U,$J,358.3,14596,2)
- ;;=^5055941
- ;;^UTILITY(U,$J,358.3,14597,0)
- ;;=V00.818A^^53^612^131
- ;;^UTILITY(U,$J,358.3,14597,1,0)
+ ;;^UTILITY(U,$J,358.3,31290,1,3,0)
+ ;;=3^Ptosis Bilateral Eyelids,Unspec
+ ;;^UTILITY(U,$J,358.3,31290,1,4,0)
+ ;;=4^H02.403
+ ;;^UTILITY(U,$J,358.3,31290,2)
+ ;;=^5004355
+ ;;^UTILITY(U,$J,358.3,31291,0)
+ ;;=H02.402^^116^1526^366
+ ;;^UTILITY(U,$J,358.3,31291,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14597,1,3,0)
- ;;=3^Wheelchair Accident NEC,Init Encntr
- ;;^UTILITY(U,$J,358.3,14597,1,4,0)
- ;;=4^V00.818A
- ;;^UTILITY(U,$J,358.3,14597,2)
- ;;=^5055943
- ;;^UTILITY(U,$J,358.3,14598,0)
- ;;=V00.818D^^53^612^132
- ;;^UTILITY(U,$J,358.3,14598,1,0)
+ ;;^UTILITY(U,$J,358.3,31291,1,3,0)
+ ;;=3^Ptosis Left Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,31291,1,4,0)
+ ;;=4^H02.402
+ ;;^UTILITY(U,$J,358.3,31291,2)
+ ;;=^5004354
+ ;;^UTILITY(U,$J,358.3,31292,0)
+ ;;=H02.401^^116^1526^367
+ ;;^UTILITY(U,$J,358.3,31292,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14598,1,3,0)
- ;;=3^Wheelchair Accident NEC,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14598,1,4,0)
- ;;=4^V00.818D
- ;;^UTILITY(U,$J,358.3,14598,2)
- ;;=^5055944
- ;;^UTILITY(U,$J,358.3,14599,0)
- ;;=V00.831A^^53^612^43
- ;;^UTILITY(U,$J,358.3,14599,1,0)
+ ;;^UTILITY(U,$J,358.3,31292,1,3,0)
+ ;;=3^Ptosis Right Eyelid,Unspec
+ ;;^UTILITY(U,$J,358.3,31292,1,4,0)
+ ;;=4^H02.401
+ ;;^UTILITY(U,$J,358.3,31292,2)
+ ;;=^5004353
+ ;;^UTILITY(U,$J,358.3,31293,0)
+ ;;=S53.402A^^116^1526^393
+ ;;^UTILITY(U,$J,358.3,31293,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14599,1,3,0)
- ;;=3^Fall from Mobility Scooter,Init Encntr
- ;;^UTILITY(U,$J,358.3,14599,1,4,0)
- ;;=4^V00.831A
- ;;^UTILITY(U,$J,358.3,14599,2)
- ;;=^5055955
- ;;^UTILITY(U,$J,358.3,14600,0)
- ;;=V00.831D^^53^612^44
- ;;^UTILITY(U,$J,358.3,14600,1,0)
+ ;;^UTILITY(U,$J,358.3,31293,1,3,0)
+ ;;=3^Sprain Left Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31293,1,4,0)
+ ;;=4^S53.402A
+ ;;^UTILITY(U,$J,358.3,31293,2)
+ ;;=^5031364
+ ;;^UTILITY(U,$J,358.3,31294,0)
+ ;;=S53.401A^^116^1526^396
+ ;;^UTILITY(U,$J,358.3,31294,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14600,1,3,0)
- ;;=3^Fall from Mobility Scooter,Subs Encntr
- ;;^UTILITY(U,$J,358.3,14600,1,4,0)
- ;;=4^V00.831D
- ;;^UTILITY(U,$J,358.3,14600,2)
- ;;=^5055956
- ;;^UTILITY(U,$J,358.3,14601,0)
- ;;=V00.832A^^53^612^95
- ;;^UTILITY(U,$J,358.3,14601,1,0)
+ ;;^UTILITY(U,$J,358.3,31294,1,3,0)
+ ;;=3^Sprain Right Elbow,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31294,1,4,0)
+ ;;=4^S53.401A
+ ;;^UTILITY(U,$J,358.3,31294,2)
+ ;;=^5031361
+ ;;^UTILITY(U,$J,358.3,31295,0)
+ ;;=Z48.3^^116^1526^8
+ ;;^UTILITY(U,$J,358.3,31295,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14601,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Init Encntr
- ;;^UTILITY(U,$J,358.3,14601,1,4,0)
- ;;=4^V00.832A
- ;;^UTILITY(U,$J,358.3,14601,2)
- ;;=^5055958
- ;;^UTILITY(U,$J,358.3,14602,0)
- ;;=V00.832D^^53^612^96
- ;;^UTILITY(U,$J,358.3,14602,1,0)
+ ;;^UTILITY(U,$J,358.3,31295,1,3,0)
+ ;;=3^Aftercare Following Neoplasm Surgery
+ ;;^UTILITY(U,$J,358.3,31295,1,4,0)
+ ;;=4^Z48.3
+ ;;^UTILITY(U,$J,358.3,31295,2)
+ ;;=^5063046
+ ;;^UTILITY(U,$J,358.3,31296,0)
+ ;;=C44.511^^116^1526^84
+ ;;^UTILITY(U,$J,358.3,31296,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14602,1,3,0)
- ;;=3^Mobility Scooter Colliding w/ Stationary Obj,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,31296,1,3,0)
+ ;;=3^BCC of Skin,Breast
+ ;;^UTILITY(U,$J,358.3,31296,1,4,0)
+ ;;=4^C44.511
+ ;;^UTILITY(U,$J,358.3,31296,2)
+ ;;=^5001055
+ ;;^UTILITY(U,$J,358.3,31297,0)
+ ;;=C44.01^^116^1526^87
+ ;;^UTILITY(U,$J,358.3,31297,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31297,1,3,0)
+ ;;=3^BCC of Skin,Lip
+ ;;^UTILITY(U,$J,358.3,31297,1,4,0)
+ ;;=4^C44.01
+ ;;^UTILITY(U,$J,358.3,31297,2)
+ ;;=^340464
+ ;;^UTILITY(U,$J,358.3,31298,0)
+ ;;=C44.311^^116^1526^88
+ ;;^UTILITY(U,$J,358.3,31298,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31298,1,3,0)
+ ;;=3^BCC of Skin,Nose
+ ;;^UTILITY(U,$J,358.3,31298,1,4,0)
+ ;;=4^C44.311
+ ;;^UTILITY(U,$J,358.3,31298,2)
+ ;;=^5001044
+ ;;^UTILITY(U,$J,358.3,31299,0)
+ ;;=C44.319^^116^1526^90
+ ;;^UTILITY(U,$J,358.3,31299,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31299,1,3,0)
+ ;;=3^BCC of Skin,Oth Parts of Face
+ ;;^UTILITY(U,$J,358.3,31299,1,4,0)
+ ;;=4^C44.319
+ ;;^UTILITY(U,$J,358.3,31299,2)
+ ;;=^5001045
+ ;;^UTILITY(U,$J,358.3,31300,0)
+ ;;=C44.519^^116^1526^89
+ ;;^UTILITY(U,$J,358.3,31300,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31300,1,3,0)
+ ;;=3^BCC of Skin,Oth Part of Trunk
+ ;;^UTILITY(U,$J,358.3,31300,1,4,0)
+ ;;=4^C44.519
+ ;;^UTILITY(U,$J,358.3,31300,2)
+ ;;=^5001056
+ ;;^UTILITY(U,$J,358.3,31301,0)
+ ;;=D21.6^^116^1526^99
+ ;;^UTILITY(U,$J,358.3,31301,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31301,1,3,0)
+ ;;=3^Benign Neop Connective/Soft Tissue,Trunk (Back)
+ ;;^UTILITY(U,$J,358.3,31301,1,4,0)
+ ;;=4^D21.6
+ ;;^UTILITY(U,$J,358.3,31301,2)
+ ;;=^5002039
+ ;;^UTILITY(U,$J,358.3,31302,0)
+ ;;=D16.5^^116^1526^102
+ ;;^UTILITY(U,$J,358.3,31302,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31302,1,3,0)
+ ;;=3^Benign Neop Lower Jaw
+ ;;^UTILITY(U,$J,358.3,31302,1,4,0)
+ ;;=4^D16.5
+ ;;^UTILITY(U,$J,358.3,31302,2)
+ ;;=^13302
+ ;;^UTILITY(U,$J,358.3,31303,0)
+ ;;=D23.12^^116^1526^105
+ ;;^UTILITY(U,$J,358.3,31303,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31303,1,3,0)
+ ;;=3^Benign Neop Skin Left Eyelid
+ ;;^UTILITY(U,$J,358.3,31303,1,4,0)
+ ;;=4^D23.12
+ ;;^UTILITY(U,$J,358.3,31303,2)
+ ;;=^5002062
+ ;;^UTILITY(U,$J,358.3,31304,0)
+ ;;=D23.11^^116^1526^107
+ ;;^UTILITY(U,$J,358.3,31304,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31304,1,3,0)
+ ;;=3^Benign Neop Skin Right Eyelid
+ ;;^UTILITY(U,$J,358.3,31304,1,4,0)
+ ;;=4^D23.11
+ ;;^UTILITY(U,$J,358.3,31304,2)
+ ;;=^5002061
+ ;;^UTILITY(U,$J,358.3,31305,0)
+ ;;=D23.5^^116^1526^109
+ ;;^UTILITY(U,$J,358.3,31305,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31305,1,3,0)
+ ;;=3^Benign Neop Skin Trunk
+ ;;^UTILITY(U,$J,358.3,31305,1,4,0)
+ ;;=4^D23.5
+ ;;^UTILITY(U,$J,358.3,31305,2)
+ ;;=^5002069
+ ;;^UTILITY(U,$J,358.3,31306,0)
+ ;;=L03.211^^116^1526^115
+ ;;^UTILITY(U,$J,358.3,31306,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31306,1,3,0)
+ ;;=3^Cellulitis,Face
+ ;;^UTILITY(U,$J,358.3,31306,1,4,0)
+ ;;=4^L03.211
+ ;;^UTILITY(U,$J,358.3,31306,2)
+ ;;=^5009043
+ ;;^UTILITY(U,$J,358.3,31307,0)
+ ;;=L03.811^^116^1526^120
+ ;;^UTILITY(U,$J,358.3,31307,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31307,1,3,0)
+ ;;=3^Cellulitis,Scalp
+ ;;^UTILITY(U,$J,358.3,31307,1,4,0)
+ ;;=4^L03.811
+ ;;^UTILITY(U,$J,358.3,31307,2)
+ ;;=^5009063
+ ;;^UTILITY(U,$J,358.3,31308,0)
+ ;;=T86.829^^116^1526^125
+ ;;^UTILITY(U,$J,358.3,31308,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31308,1,3,0)
+ ;;=3^Complication,Unspec,Skin Graft (Allo/Autograft)
+ ;;^UTILITY(U,$J,358.3,31308,1,4,0)
+ ;;=4^T86.829
+ ;;^UTILITY(U,$J,358.3,31308,2)
+ ;;=^5055738
+ ;;^UTILITY(U,$J,358.3,31309,0)
+ ;;=S60.222A^^116^1526^136
+ ;;^UTILITY(U,$J,358.3,31309,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31309,1,3,0)
+ ;;=3^Contusion Left Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31309,1,4,0)
+ ;;=4^S60.222A
+ ;;^UTILITY(U,$J,358.3,31309,2)
+ ;;=^5032279
+ ;;^UTILITY(U,$J,358.3,31310,0)
+ ;;=S60.221A^^116^1526^139
+ ;;^UTILITY(U,$J,358.3,31310,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31310,1,3,0)
+ ;;=3^Contusion Right Hand,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31310,1,4,0)
+ ;;=4^S60.221A
+ ;;^UTILITY(U,$J,358.3,31310,2)
+ ;;=^5032276
+ ;;^UTILITY(U,$J,358.3,31311,0)
+ ;;=S60.10XA^^116^1526^142
+ ;;^UTILITY(U,$J,358.3,31311,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31311,1,3,0)
+ ;;=3^Contusion Unspec Finger w/ Damage to Nail,Init Encntr
+ ;;^UTILITY(U,$J,358.3,31311,1,4,0)
+ ;;=4^S60.10XA
+ ;;^UTILITY(U,$J,358.3,31311,2)
+ ;;=^5032249
+ ;;^UTILITY(U,$J,358.3,31312,0)
+ ;;=Z48.00^^116^1526^121
+ ;;^UTILITY(U,$J,358.3,31312,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31312,1,3,0)
+ ;;=3^Change/Removal Non-Surg Dressing

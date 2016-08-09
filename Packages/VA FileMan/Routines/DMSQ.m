@@ -1,6 +1,10 @@
 DMSQ ;SFISC/EZ-CALLS INTO SQLI CODE ;10/30/97  16:25
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
 SETUP ;entry point to begin SQLI projection process
  ;gives interactive user a chance to cancel out before continuing

@@ -1,11 +1,11 @@
-RCDPDPLM ;WISC/RFJ-deposit profile listmanager top routine ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,149**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPDPLM ;WISC/RFJ - deposit profile listmanager top routine ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,149,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N RCDEPTDA,RCDPFXIT
  ;
  F  D  Q:'RCDEPTDA
- .   W !! S RCDEPTDA=$$SELDEPT^RCDPUDEP(1)  ;  allow adding new deposit
+ .   W !! S RCDEPTDA=$$PREPDEPT^RCDPUDEP()  ;  PRCA*4.5*304 allow adding new deposit
  .   I RCDEPTDA<1 S RCDEPTDA=0 Q
  .   D EN^VALM("RCDP DEPOSIT PROFILE")
  .   ;  fast exit
@@ -30,17 +30,17 @@ INIT ;  initialization for list manager list
  .   S ^TMP("RCDPDPLM",$J,"IDX",RCLINE,RCLINE)=RCRECTDA
  .   D SET(RCLINE,RCLINE,1,80,0,IORVON,IORVOFF)
  .   ;  receipt
- .   D SET("",RCLINE,5,80,.01)
+ .   D SET("",RCLINE,5,18,.01)   ;PRCA*4.5*304
  .   ;  type of payment
- .   D SET("",RCLINE,17,80,.04)
+ .   D SET("",RCLINE,19,36,.04)   ;PRCA*4.5*304
  .   ;  date opened
  .   I RCDPDATA(344,RCRECTDA,.03,"I") D
- .   .   D SET($E(RCDPDATA(344,RCRECTDA,.03,"I"),4,5)_"/"_$E(RCDPDATA(344,RCRECTDA,.03,"I"),6,7)_"/"_$E(RCDPDATA(344,RCRECTDA,.03,"I"),2,3),RCLINE,35,42)
+ .   .   D SET($E(RCDPDATA(344,RCRECTDA,.03,"I"),4,5)_"/"_$E(RCDPDATA(344,RCRECTDA,.03,"I"),6,7)_"/"_$E(RCDPDATA(344,RCRECTDA,.03,"I"),2,3),RCLINE,37,44)
  .   ;  by (check for null before calling set)
  .   I RCDPDATA(344,RCRECTDA,.02,"E")'="" D
  .   .   S X=$E($P(RCDPDATA(344,RCRECTDA,.02,"E"),",",2))_$E(RCDPDATA(344,RCRECTDA,.02,"E"))
  .   .   I RCDPDATA(344,RCRECTDA,.02,"I")=.5 S X="ar"
- .   .   D SET(X,RCLINE,45,46)
+ .   .   D SET(X,RCLINE,46,47)
  .   ;  date processed
  .   I RCDPDATA(344,RCRECTDA,.08,"I") D
  .   .   D SET($E(RCDPDATA(344,RCRECTDA,.08,"I"),4,5)_"/"_$E(RCDPDATA(344,RCRECTDA,.08,"I"),6,7)_"/"_$E(RCDPDATA(344,RCRECTDA,.08,"I"),2,3),RCLINE,49,56)

@@ -1,122 +1,280 @@
-IBDEI152 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI152 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,19373,1,0)
+ ;;^UTILITY(U,$J,358.3,41377,0)
+ ;;=I82.431^^156^2021^25
+ ;;^UTILITY(U,$J,358.3,41377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19373,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,19373,1,4,0)
- ;;=4^I70.535
- ;;^UTILITY(U,$J,358.3,19373,2)
- ;;=^5007706
- ;;^UTILITY(U,$J,358.3,19374,0)
- ;;=I70.541^^84^918^55
- ;;^UTILITY(U,$J,358.3,19374,1,0)
+ ;;^UTILITY(U,$J,358.3,41377,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Pop Vein
+ ;;^UTILITY(U,$J,358.3,41377,1,4,0)
+ ;;=4^I82.431
+ ;;^UTILITY(U,$J,358.3,41377,2)
+ ;;=^5007865
+ ;;^UTILITY(U,$J,358.3,41378,0)
+ ;;=I82.432^^156^2021^15
+ ;;^UTILITY(U,$J,358.3,41378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19374,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,19374,1,4,0)
- ;;=4^I70.541
- ;;^UTILITY(U,$J,358.3,19374,2)
- ;;=^5007709
- ;;^UTILITY(U,$J,358.3,19375,0)
- ;;=I70.542^^84^918^56
- ;;^UTILITY(U,$J,358.3,19375,1,0)
+ ;;^UTILITY(U,$J,358.3,41378,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Pop Vein
+ ;;^UTILITY(U,$J,358.3,41378,1,4,0)
+ ;;=4^I82.432
+ ;;^UTILITY(U,$J,358.3,41378,2)
+ ;;=^5007866
+ ;;^UTILITY(U,$J,358.3,41379,0)
+ ;;=I82.433^^156^2021^5
+ ;;^UTILITY(U,$J,358.3,41379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19375,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,19375,1,4,0)
- ;;=4^I70.542
- ;;^UTILITY(U,$J,358.3,19375,2)
- ;;=^5007710
- ;;^UTILITY(U,$J,358.3,19376,0)
- ;;=I70.543^^84^918^57
- ;;^UTILITY(U,$J,358.3,19376,1,0)
+ ;;^UTILITY(U,$J,358.3,41379,1,3,0)
+ ;;=3^AC Embol & Thromb Bil Pop Vein
+ ;;^UTILITY(U,$J,358.3,41379,1,4,0)
+ ;;=4^I82.433
+ ;;^UTILITY(U,$J,358.3,41379,2)
+ ;;=^5007867
+ ;;^UTILITY(U,$J,358.3,41380,0)
+ ;;=I82.4Y1^^156^2021^26
+ ;;^UTILITY(U,$J,358.3,41380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19376,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,19376,1,4,0)
- ;;=4^I70.543
- ;;^UTILITY(U,$J,358.3,19376,2)
- ;;=^5007711
- ;;^UTILITY(U,$J,358.3,19377,0)
- ;;=I70.544^^84^918^58
- ;;^UTILITY(U,$J,358.3,19377,1,0)
+ ;;^UTILITY(U,$J,358.3,41380,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Prox LE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41380,1,4,0)
+ ;;=4^I82.4Y1
+ ;;^UTILITY(U,$J,358.3,41380,2)
+ ;;=^5007877
+ ;;^UTILITY(U,$J,358.3,41381,0)
+ ;;=I82.4Y2^^156^2021^16
+ ;;^UTILITY(U,$J,358.3,41381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19377,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,19377,1,4,0)
- ;;=4^I70.544
- ;;^UTILITY(U,$J,358.3,19377,2)
- ;;=^5007712
- ;;^UTILITY(U,$J,358.3,19378,0)
- ;;=I70.545^^84^918^59
- ;;^UTILITY(U,$J,358.3,19378,1,0)
+ ;;^UTILITY(U,$J,358.3,41381,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Prox LE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41381,1,4,0)
+ ;;=4^I82.4Y2
+ ;;^UTILITY(U,$J,358.3,41381,2)
+ ;;=^5007878
+ ;;^UTILITY(U,$J,358.3,41382,0)
+ ;;=I82.4Y3^^156^2021^6
+ ;;^UTILITY(U,$J,358.3,41382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19378,1,3,0)
- ;;=3^Athscl Nonaut Bio Bypass of Left Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,19378,1,4,0)
- ;;=4^I70.545
- ;;^UTILITY(U,$J,358.3,19378,2)
- ;;=^5007713
- ;;^UTILITY(U,$J,358.3,19379,0)
- ;;=I70.631^^84^918^70
- ;;^UTILITY(U,$J,358.3,19379,1,0)
+ ;;^UTILITY(U,$J,358.3,41382,1,3,0)
+ ;;=3^AC Embol & Thromb Bil Prox LE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41382,1,4,0)
+ ;;=4^I82.4Y3
+ ;;^UTILITY(U,$J,358.3,41382,2)
+ ;;=^5007879
+ ;;^UTILITY(U,$J,358.3,41383,0)
+ ;;=I82.611^^156^2021^29
+ ;;^UTILITY(U,$J,358.3,41383,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19379,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,19379,1,4,0)
- ;;=4^I70.631
- ;;^UTILITY(U,$J,358.3,19379,2)
- ;;=^5007740
- ;;^UTILITY(U,$J,358.3,19380,0)
- ;;=I70.632^^84^918^71
- ;;^UTILITY(U,$J,358.3,19380,1,0)
+ ;;^UTILITY(U,$J,358.3,41383,1,3,0)
+ ;;=3^AC Embol & Thromb Rt UE Superfic Veins
+ ;;^UTILITY(U,$J,358.3,41383,1,4,0)
+ ;;=4^I82.611
+ ;;^UTILITY(U,$J,358.3,41383,2)
+ ;;=^5007915
+ ;;^UTILITY(U,$J,358.3,41384,0)
+ ;;=I82.612^^156^2021^19
+ ;;^UTILITY(U,$J,358.3,41384,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19380,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Calf
- ;;^UTILITY(U,$J,358.3,19380,1,4,0)
- ;;=4^I70.632
- ;;^UTILITY(U,$J,358.3,19380,2)
- ;;=^5007741
- ;;^UTILITY(U,$J,358.3,19381,0)
- ;;=I70.633^^84^918^72
- ;;^UTILITY(U,$J,358.3,19381,1,0)
+ ;;^UTILITY(U,$J,358.3,41384,1,3,0)
+ ;;=3^AC Embol & Thromb Lt UE Superfic Veins
+ ;;^UTILITY(U,$J,358.3,41384,1,4,0)
+ ;;=4^I82.612
+ ;;^UTILITY(U,$J,358.3,41384,2)
+ ;;=^5007916
+ ;;^UTILITY(U,$J,358.3,41385,0)
+ ;;=I82.613^^156^2021^9
+ ;;^UTILITY(U,$J,358.3,41385,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19381,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Ankle
- ;;^UTILITY(U,$J,358.3,19381,1,4,0)
- ;;=4^I70.633
- ;;^UTILITY(U,$J,358.3,19381,2)
- ;;=^5007742
- ;;^UTILITY(U,$J,358.3,19382,0)
- ;;=I70.634^^84^918^73
- ;;^UTILITY(U,$J,358.3,19382,1,0)
+ ;;^UTILITY(U,$J,358.3,41385,1,3,0)
+ ;;=3^AC Embol & Thromb Bil UE Superfic Vein
+ ;;^UTILITY(U,$J,358.3,41385,1,4,0)
+ ;;=4^I82.613
+ ;;^UTILITY(U,$J,358.3,41385,2)
+ ;;=^5007917
+ ;;^UTILITY(U,$J,358.3,41386,0)
+ ;;=I82.621^^156^2021^28
+ ;;^UTILITY(U,$J,358.3,41386,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19382,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Heel/Midfoot
- ;;^UTILITY(U,$J,358.3,19382,1,4,0)
- ;;=4^I70.634
- ;;^UTILITY(U,$J,358.3,19382,2)
- ;;=^5007743
- ;;^UTILITY(U,$J,358.3,19383,0)
- ;;=I70.635^^84^918^74
- ;;^UTILITY(U,$J,358.3,19383,1,0)
+ ;;^UTILITY(U,$J,358.3,41386,1,3,0)
+ ;;=3^AC Embol & Thromb Rt UE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41386,1,4,0)
+ ;;=4^I82.621
+ ;;^UTILITY(U,$J,358.3,41386,2)
+ ;;=^5007919
+ ;;^UTILITY(U,$J,358.3,41387,0)
+ ;;=I82.622^^156^2021^18
+ ;;^UTILITY(U,$J,358.3,41387,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19383,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Right Leg w/ Ulcer of Oth Part of Foot
- ;;^UTILITY(U,$J,358.3,19383,1,4,0)
- ;;=4^I70.635
- ;;^UTILITY(U,$J,358.3,19383,2)
- ;;=^5007744
- ;;^UTILITY(U,$J,358.3,19384,0)
- ;;=I70.641^^84^918^65
- ;;^UTILITY(U,$J,358.3,19384,1,0)
+ ;;^UTILITY(U,$J,358.3,41387,1,3,0)
+ ;;=3^AC Embol & Thromb Lt UE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41387,1,4,0)
+ ;;=4^I82.622
+ ;;^UTILITY(U,$J,358.3,41387,2)
+ ;;=^5007920
+ ;;^UTILITY(U,$J,358.3,41388,0)
+ ;;=I82.623^^156^2021^8
+ ;;^UTILITY(U,$J,358.3,41388,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,19384,1,3,0)
- ;;=3^Athscl Nonbiol Bypass of Left Leg w/ Ulcer of Thigh
- ;;^UTILITY(U,$J,358.3,19384,1,4,0)
- ;;=4^I70.641
- ;;^UTILITY(U,$J,358.3,19384,2)
- ;;=^5007747
+ ;;^UTILITY(U,$J,358.3,41388,1,3,0)
+ ;;=3^AC Embol & Thromb Bil UE Deep Veins
+ ;;^UTILITY(U,$J,358.3,41388,1,4,0)
+ ;;=4^I82.623
+ ;;^UTILITY(U,$J,358.3,41388,2)
+ ;;=^5007921
+ ;;^UTILITY(U,$J,358.3,41389,0)
+ ;;=I82.601^^156^2021^30
+ ;;^UTILITY(U,$J,358.3,41389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41389,1,3,0)
+ ;;=3^AC Embol & Thromb Rt UE Veins,Unspec
+ ;;^UTILITY(U,$J,358.3,41389,1,4,0)
+ ;;=4^I82.601
+ ;;^UTILITY(U,$J,358.3,41389,2)
+ ;;=^5007912
+ ;;^UTILITY(U,$J,358.3,41390,0)
+ ;;=I82.602^^156^2021^20
+ ;;^UTILITY(U,$J,358.3,41390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41390,1,3,0)
+ ;;=3^AC Embol & Thromb Lt UE Veins,Unspec
+ ;;^UTILITY(U,$J,358.3,41390,1,4,0)
+ ;;=4^I82.602
+ ;;^UTILITY(U,$J,358.3,41390,2)
+ ;;=^5007913
+ ;;^UTILITY(U,$J,358.3,41391,0)
+ ;;=I82.603^^156^2021^10
+ ;;^UTILITY(U,$J,358.3,41391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41391,1,3,0)
+ ;;=3^AC Embol & Thromb Bil UE Veins,Unspec
+ ;;^UTILITY(U,$J,358.3,41391,1,4,0)
+ ;;=4^I82.603
+ ;;^UTILITY(U,$J,358.3,41391,2)
+ ;;=^5007914
+ ;;^UTILITY(U,$J,358.3,41392,0)
+ ;;=I82.A11^^156^2021^21
+ ;;^UTILITY(U,$J,358.3,41392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41392,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Ax Vein
+ ;;^UTILITY(U,$J,358.3,41392,1,4,0)
+ ;;=4^I82.A11
+ ;;^UTILITY(U,$J,358.3,41392,2)
+ ;;=^5007942
+ ;;^UTILITY(U,$J,358.3,41393,0)
+ ;;=I82.A12^^156^2021^11
+ ;;^UTILITY(U,$J,358.3,41393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41393,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Ax Vein
+ ;;^UTILITY(U,$J,358.3,41393,1,4,0)
+ ;;=4^I82.A12
+ ;;^UTILITY(U,$J,358.3,41393,2)
+ ;;=^5007943
+ ;;^UTILITY(U,$J,358.3,41394,0)
+ ;;=I82.A13^^156^2021^1
+ ;;^UTILITY(U,$J,358.3,41394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41394,1,3,0)
+ ;;=3^AC Embol & Thromb Bil Ax Vein
+ ;;^UTILITY(U,$J,358.3,41394,1,4,0)
+ ;;=4^I82.A13
+ ;;^UTILITY(U,$J,358.3,41394,2)
+ ;;=^5007944
+ ;;^UTILITY(U,$J,358.3,41395,0)
+ ;;=I82.B11^^156^2021^27
+ ;;^UTILITY(U,$J,358.3,41395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41395,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Subclav Vein
+ ;;^UTILITY(U,$J,358.3,41395,1,4,0)
+ ;;=4^I82.B11
+ ;;^UTILITY(U,$J,358.3,41395,2)
+ ;;=^5007950
+ ;;^UTILITY(U,$J,358.3,41396,0)
+ ;;=I82.B12^^156^2021^17
+ ;;^UTILITY(U,$J,358.3,41396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41396,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Subclav Vein
+ ;;^UTILITY(U,$J,358.3,41396,1,4,0)
+ ;;=4^I82.B12
+ ;;^UTILITY(U,$J,358.3,41396,2)
+ ;;=^5007951
+ ;;^UTILITY(U,$J,358.3,41397,0)
+ ;;=I82.B13^^156^2021^7
+ ;;^UTILITY(U,$J,358.3,41397,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41397,1,3,0)
+ ;;=3^AC Embol & Thromb Bil Subclav Vein
+ ;;^UTILITY(U,$J,358.3,41397,1,4,0)
+ ;;=4^I82.B13
+ ;;^UTILITY(U,$J,358.3,41397,2)
+ ;;=^5007952
+ ;;^UTILITY(U,$J,358.3,41398,0)
+ ;;=I82.C11^^156^2021^24
+ ;;^UTILITY(U,$J,358.3,41398,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41398,1,3,0)
+ ;;=3^AC Embol & Thromb Rt Int Jug Vein
+ ;;^UTILITY(U,$J,358.3,41398,1,4,0)
+ ;;=4^I82.C11
+ ;;^UTILITY(U,$J,358.3,41398,2)
+ ;;=^5007958
+ ;;^UTILITY(U,$J,358.3,41399,0)
+ ;;=I82.C12^^156^2021^14
+ ;;^UTILITY(U,$J,358.3,41399,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41399,1,3,0)
+ ;;=3^AC Embol & Thromb Lt Int Jug Vein
+ ;;^UTILITY(U,$J,358.3,41399,1,4,0)
+ ;;=4^I82.C12
+ ;;^UTILITY(U,$J,358.3,41399,2)
+ ;;=^5007959
+ ;;^UTILITY(U,$J,358.3,41400,0)
+ ;;=I82.C13^^156^2021^4
+ ;;^UTILITY(U,$J,358.3,41400,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41400,1,3,0)
+ ;;=3^AC Embol & Thromb Bil Int Jug Vein
+ ;;^UTILITY(U,$J,358.3,41400,1,4,0)
+ ;;=4^I82.C13
+ ;;^UTILITY(U,$J,358.3,41400,2)
+ ;;=^5007960
+ ;;^UTILITY(U,$J,358.3,41401,0)
+ ;;=I82.890^^156^2021^31
+ ;;^UTILITY(U,$J,358.3,41401,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41401,1,3,0)
+ ;;=3^AC Embol & Thromb oth Spec Veins
+ ;;^UTILITY(U,$J,358.3,41401,1,4,0)
+ ;;=4^I82.890
+ ;;^UTILITY(U,$J,358.3,41401,2)
+ ;;=^5007938
+ ;;^UTILITY(U,$J,358.3,41402,0)
+ ;;=I83.011^^156^2021^170
+ ;;^UTILITY(U,$J,358.3,41402,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41402,1,3,0)
+ ;;=3^Varic Veins RLE w/ Ulc of Thigh
+ ;;^UTILITY(U,$J,358.3,41402,1,4,0)
+ ;;=4^I83.011
+ ;;^UTILITY(U,$J,358.3,41402,2)
+ ;;=^5007973
+ ;;^UTILITY(U,$J,358.3,41403,0)
+ ;;=I83.012^^156^2021^166
+ ;;^UTILITY(U,$J,358.3,41403,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41403,1,3,0)
+ ;;=3^Varic Veins RLE w/ Ulc of Calf
+ ;;^UTILITY(U,$J,358.3,41403,1,4,0)
+ ;;=4^I83.012
+ ;;^UTILITY(U,$J,358.3,41403,2)
+ ;;=^5007974
+ ;;^UTILITY(U,$J,358.3,41404,0)
+ ;;=I83.013^^156^2021^164
+ ;;^UTILITY(U,$J,358.3,41404,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,41404,1,3,0)
+ ;;=3^Varic Veins RLE w/ Ulc of Ankle

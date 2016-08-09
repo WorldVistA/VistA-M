@@ -1,6 +1,10 @@
 DIE9 ;SFISC/GFT-JUMPING, FILING, MULTIPLES ;8:03 AM  13 Aug 1997
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  G:$A(X)-94 X:'$P(DW,";E",2),@("T^"_DNM)
  I $D(DIE("NO^")),DIE("NO^")="OUTOK"'&(X=U) W $C(7),!?3,"Sorry, ""^"" is not allowed!" G B
  S X=$P(X,U,2),DIC(0)="E"

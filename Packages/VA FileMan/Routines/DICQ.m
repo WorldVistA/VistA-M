@@ -1,6 +1,10 @@
-DICQ ;SFISC/XAK,TKW-HELP FOR LOOKUPS ;7:20 AM  17 May 2007
- ;;22.0;VA FileMan;**4,3,57,151**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DICQ ;SFISC/XAK,TKW-HELP FOR LOOKUPS ;26DEC2005
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  S DZ=X D:DIC(0)]"" DQ
  I '$D(DDS),$G(DDH) D ^DDSU
  S:$D(DZ) X=DZ K DZ,DDH,DIZ,DDD I $D(DTOUT) S Y=-1 D Q^DIC2 Q
@@ -10,14 +14,14 @@ DQ ; Main entry point for displaying online ^DIC help (list of current
  ; entries in a file.
  N %,%Y,X,Y,DD,DDC,DDD,DS,DID01,DICNT,DIDONE,DIFROM,DIPART,DIW,DIX,DIY,DIZ,DIUPRITE,DST,DIBEGSUB,DIBEGIX
  I $D(DZ)[0 N DZ S DZ=""
- S DDC=$S($D(DDS):7,1:15)
+ S DDC=$S($D(DDS):7,1:$G(IOSL,24)-9) ;USE SCREEN LENGTH
  N:'$D(DDH) DDH S DDH=+$G(DDH)
  S DIBEGIX=D
- I '($D(DIRECUR)#2) N DIRECUR S DIRECUR=0
- I '$D(DO) N DO D GETFA^DIC1(.DIC,.DO)
+ I $D(DIRECUR)[0 N DIRECUR S DIRECUR=0
+ I '$D(DO(2)) N DO D GETFA^DIC1(.DIC,.DO)
  I DO="0^-1" K DO S DST="  Pointed-to File does not exist!" D % Q
  S DICNT=$P(DO,U,4),DIY=DO D DIY
- S X=$S($D(^DD(+DO(2),.001,0)):$P(^(0),U,1),DIC(0)["N":"NUMBER",1:""),DIUPRITE=X]""
+NUMEGP S X=$S($D(^DD(+DO(2),.001,0)):$$LABEL^DIALOGZ(+DO(2),.001),DIC(0)["N":$$EZBLD^DIALOG(7099),1:""),DIUPRITE=X]"" ;**CCO/NI "NUMBER"
  S DIW=^DD(+DO(2),.01,0),DIW=$P(DIW,U,2,3)
  G:$D(^DD(+DO(2),0,"QUES")) @^("QUES")
  I DIUPRITE S DS=.001 D DS
@@ -53,7 +57,7 @@ IX N DD,DIF,DIFIL,DIFLD,DIFORCE,DIEND,DITMP,I,P,F,X,%
  . . . S DS=.002 Q
  . . E  S X=DIFLD S:DIFILEI'=DIFIL X=DIFIL_" "_DIFLD S:DS]"" DS=DS_"^" S DS=DS_X
  . . S X=$G(DIX(I,"PROMPT"))
- . . I X="",$D(^DD(+DIFIL,+DIFLD,0))#2 S X=$P(^(0),U)
+FIELDNM . . I $D(^DD(+DIFIL,+DIFLD,0))#2 S X=$$LABEL^DIALOGZ(+DIFIL,+DIFLD) ;**CCO/NI  NAME OF LOOKUP FIELD
  . . I I=1 S %=DIX(1,"TYPE")
  . . Q:X=""  I DIX("#")=1,X=$G(DS(.002)) Q
  . . I $L(X)+$L(P)'>70 S P=P_$P(" & ^",U,P]"")_X Q

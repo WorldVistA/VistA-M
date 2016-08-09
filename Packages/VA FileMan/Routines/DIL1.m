@@ -1,6 +1,10 @@
-DIL1 ;SFISC/GFT-STATS, NUMBER FIELD, ON-THE-FLY ;04:27 PM  26 Aug 1999
- ;;22.0;VA FileMan;**2**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIL1 ;SFISC/GFT-STATS, NUMBER FIELD, ON-THE-FLY ;24JAN2013
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  I $A(W)=34 D  Q
  .N A9
  .S Y="" F A9=0:0 S Y=Y_""""_$P(W,"""",2)_"""",W=$P(W,"""",3,99) Q:$A(W)'=34&($A(W)'=95)  S:$A(W)=95 Y=Y_$C(95),W=$P(W,"_",2,99)
@@ -8,9 +12,9 @@ DIL1 ;SFISC/GFT-STATS, NUMBER FIELD, ON-THE-FLY ;04:27 PM  26 Aug 1999
  .S %=$L(Y)-5 S:'DLN DLN=% S:DRJ Y=" W ?"_(DG+DLN-%)_Y D DN^DIL0,T^DIL
 NUMB S:DN<0 O=999 S X="",DRJ=0 I W?1"0".E D  D T^DIL Q
  .K DPQ(DP,0)
- .S Y="D"_(DIL-DIL0),X=$G(^DD(DP,.001,0),"NUMBER^^^^$L(X)>12")
+ .S Y="D"_(DIL-DIL0),X=$$LABEL^DIALOGZ(DP,.001)_U_$P($G(^DD(DP,.001,0)),U,2,99) S:X?.P X=$$EZBLD^DIALOG(7099)_"^^^^$L(X)>12" ;**CCO/NI
  .I $D(DCL(DP_U_0)) D DE^DIL,STATS Q
- .D ^DILL,DE^DIL,DN^DIL0
+ .D EN^DILL(DP,.001,1),DE^DIL,DN^DIL0
  S DN=$E(W,$L(W)),X=$P(W,";") K DLN I DM,$A(X)=94 S W=F_W G UP^DIL
 COMP D  D T^DIL Q
  .N V,DILDATE,DILCUT
@@ -21,10 +25,10 @@ COMP D  D T^DIL Q
  .I X?.E1" D DT K DIP" S DILCUT=11,DILDATE="D"
  .I X?.E1" D DT K Y" S DILCUT=9,DILDATE="D"
  .S X=$E(X,1,$L(X)-DILCUT)_" K DIP K:DN Y"
- .I W[";N" S DCL=DCL+1,X=X_" S Y=X,C="_DCL_" D D S X=Y",DITTO(DCL)=""
+DITTO .I W[";N" S DCL=DCL+1,X=X_" S X=$$DITTO^DIO2("_DCL_",X)",DITTO(DCL)=""
  .S Y=" "_X,X="^^^^"_X,%=DN,DN=-3
  .I W[";m" D W D  Q
- ..S X="D "_$E("L",W'[";w")_"^DIWP",V=$F(Y,"D ^DIWP")
+ ..S X="D "_$E("L",W'[";w"&(W'[";W"))_"^DIWP",V=$F(Y,"D ^DIWP")
  ..I V S Y=$E(Y,1,V-8)_X_$E(Y,V,999)
  ..E  S Y=" S DICMX="""_X_""""_Y
  .I DILCUT S V=$G(DILDATE) D CLC^DILL
@@ -43,7 +47,7 @@ WR S D1=" S Y="_$P(Y,"W ",2,999),Y="" D W^DIL0
  ;
 STATS ;
  N TYPE
- I DG<10!(DG>900) S DG=10 D DE^DIL I DE'["!" S DE=" W:$X>8 !"_DE
+ I DG<10!(DG>900),'$G(DIONOSUB) S DG=10 D DE^DIL I DE'["!" S DE=" W:$X>8 !"_DE ;LEAVE FIRST 8 CHARS ON OUTPUT LINE FOR "SUBTOTAL"
  S TYPE=$P(X,U,2),V=DP_U_+W,I=DCL(V),D=+I I D S DSUM="" G E
  S (D,DCL)=DCL+1,DCL(V)=D_I
  S DXS=$S(I["*":"C",I["#":"S",I["&":"A",I["+":"P",1:1),V=TYPE,%=":Y"_$S(TYPE["C":"'?.""*""",Y["$E":"'?."" """,1:"]""""")
@@ -55,8 +59,9 @@ S S Q(D)=0,L(D)=9999999999,H(D)=-L(D) I $P(TYPE,"I",2) S DLN=+$P(TYPE,"I",2)
 P S N(D)=0
 A S (S(D),DRJ)=0
  S DSUM=",C="_D_" D "_DXS_%
-E I TYPE["C" D V^DILL S Y=Y_" S Y=X"_DSUM,DXS=$S($D(^DD(DP,+W,9.02)):^(9.02),1:0) G UTIL
-DILL S DXS=DSUM,Y=" S Y="_Y_DXS,I="",DXS="Y" D V^DILL
+E I TYPE["C" D
+ .D EN^DILL(DP,+W) S Y=Y_" S Y=X"_DSUM,DXS=$S($D(^DD(DP,+W,9.02)):^(9.02),1:0)
+ E  S DXS=DSUM,Y=" S Y="_Y_DXS,I="",DXS="Y" D EN^DILL(DP,+W)
 UTIL K DSUM S ^UTILITY($J,"T",DG)=DLN_U_D_U_DRJ_U_$P(X,U,2)_U_I
  D  D DN^DIL0 Q
  .I DXS?1E Q
@@ -64,7 +69,7 @@ UTIL K DSUM S ^UTILITY($J,"T",DG)=DLN_U_D_U_DRJ_U_$P(X,U,2)_U_I
  .I '$D(DNP) S V=$L(Y)+$L(DE) S:V<250 Y=DE_Y I V>249 S V=Y,Y=DE D PX^DIL S Y=V
  .S DE=X,V=DLN N X,DLN,DNP S X=DE,DLN=V,DNP="" ;'Do Not Print' hidden fields
 LOOP .F  S DE="",V=$P(DN,";"),W=$P(V,U,2),DN=$P(DN,";",2,99) Q:V=""  D:'$D(DCL(V))
- ..D PX^DIL,XDUY^DIL0,^DILL
+ ..D PX^DIL,XDUY^DIL0,EN^DILL(DP,W,1)
  ..I $P(X,U,2)'["C" S Y=",X=$G("_DI_C_DU_"))"_$P(",Y=",U,Y'[" S Y=")_Y
  ..E  S Y=Y_" S Y=X"
  ..S (D,DCL)=DCL+1,S(D)=0,DCL(DP_U_+W)=D,Y=" S C="_D_Y_" D A"

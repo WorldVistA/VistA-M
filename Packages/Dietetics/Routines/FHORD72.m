@@ -1,5 +1,6 @@
-FHORD72 ; HISC/NCA - Diet Order Utilities (cont) ;12/4/00  10:36
- ;;5.5;DIETETICS;;Jan 28, 2005
+FHORD72 ; HISC/NCA - Diet Order Utilities (cont) ; 3/10/16 3:16pm
+ ;;5.5;DIETETICS;**41**;Jan 28, 2005;Build 4
+ ;Patch 41 - adds timeout to incremental locks
 ADD ; Add diet associated Standing Orders and Supplemental Feeding Menu
  S PDFLG=0 Q:'X1  I $D(FHYES) Q:FHYES
  N FHOR S FHOR=$P($G(^FHPT(FHDFN,"A",ADM,"DI",X1,0)),"^",2,6)
@@ -22,14 +23,14 @@ A4 D UPD^FHMTK7
 KIL K COM,DPAT,EVT,FP,L,LN,LP,LS,M,M1,M2,MEAL,N,NM,NO,NUM,NX,OPAT,P,PP,PNN,PNO,R1,SF,SP,X3,^TMP($J),Z
  Q
 SO ; Add Standing Order
- L +^FHPT(FHDFN,"A",ADM,"SP",0)
+ L +^FHPT(FHDFN,"A",ADM,"SP",0):$S($G(DILOCKTM):DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"A",ADM,"SP",0)) S ^FHPT(FHDFN,"A",ADM,"SP",0)="^115.08^^"
  S X=^FHPT(FHDFN,"A",ADM,"SP",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
  L -^FHPT(FHDFN,"A",ADM,"SP",0) I $D(^FHPT(FHDFN,"A",ADM,"SP",NO)) G SO
  S ^FHPT(FHDFN,"A",ADM,"SP",NO,0)=NO_"^"_SP_"^"_MEAL_"^"_NOW_"^"_DUZ_"^^^"_NUM,^FHPT("ASP",FHDFN,ADM,NO)="",LS=LS_NO_","
  S EVT="S^O^"_NO D ^FHORX Q
 SF ; Add Supplemental Feeding
- L +^FHPT(FHDFN,"A",ADM,"SF",0)
+ L +^FHPT(FHDFN,"A",ADM,"SF",0):$S($G(DILOCKTM):DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"A",ADM,"SF",0)) S ^FHPT(FHDFN,"A",ADM,"SF",0)="^115.07^^"
  S X=^FHPT(FHDFN,"A",ADM,"SF",0),NO=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_NO_"^"_($P(X,"^",4)+1)
  L -^FHPT(FHDFN,"A",ADM,"SF",0) I $D(^FHPT(FHDFN,"A",ADM,"SF",NO)) G SF

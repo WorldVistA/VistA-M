@@ -1,138 +1,274 @@
-IBDEI03K ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI03K ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,1237,2)
- ;;=^5006986
- ;;^UTILITY(U,$J,358.3,1238,0)
- ;;=H93.291^^8^127^3
- ;;^UTILITY(U,$J,358.3,1238,1,0)
+ ;;^UTILITY(U,$J,358.3,3242,1,2,0)
+ ;;=2^94640
+ ;;^UTILITY(U,$J,358.3,3242,1,3,0)
+ ;;=3^INHALATION TREATMENT
+ ;;^UTILITY(U,$J,358.3,3243,0)
+ ;;=94664^^26^248^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3243,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3243,1,2,0)
+ ;;=2^94664
+ ;;^UTILITY(U,$J,358.3,3243,1,3,0)
+ ;;=3^DEMO/EVAL PT USE OF NEBULIZER
+ ;;^UTILITY(U,$J,358.3,3244,0)
+ ;;=94667^^26^248^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3244,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3244,1,2,0)
+ ;;=2^94667
+ ;;^UTILITY(U,$J,358.3,3244,1,3,0)
+ ;;=3^CHEST WALL MANIPULATION
+ ;;^UTILITY(U,$J,358.3,3245,0)
+ ;;=94660^^26^248^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3245,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3245,1,2,0)
+ ;;=2^94660
+ ;;^UTILITY(U,$J,358.3,3245,1,3,0)
+ ;;=3^CPAP MANAGEMENT
+ ;;^UTILITY(U,$J,358.3,3246,0)
+ ;;=32400^^26^249^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3246,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3246,1,2,0)
+ ;;=2^32400
+ ;;^UTILITY(U,$J,358.3,3246,1,3,0)
+ ;;=3^PLEURAL BIOPSY
+ ;;^UTILITY(U,$J,358.3,3247,0)
+ ;;=32554^^26^249^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3247,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3247,1,2,0)
+ ;;=2^32554
+ ;;^UTILITY(U,$J,358.3,3247,1,3,0)
+ ;;=3^ASPIRATE PLEURA W/O IMAGING
+ ;;^UTILITY(U,$J,358.3,3248,0)
+ ;;=32555^^26^249^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3248,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3248,1,2,0)
+ ;;=2^32555
+ ;;^UTILITY(U,$J,358.3,3248,1,3,0)
+ ;;=3^ASPIRATE PLEURA W/ IMAGING
+ ;;^UTILITY(U,$J,358.3,3249,0)
+ ;;=99291^^26^250^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3249,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3249,1,2,0)
+ ;;=2^99291
+ ;;^UTILITY(U,$J,358.3,3249,1,3,0)
+ ;;=3^CRITICAL CARE E&M,30-74 MIN
+ ;;^UTILITY(U,$J,358.3,3250,0)
+ ;;=99292^^26^250^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3250,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3250,1,2,0)
+ ;;=2^99292
+ ;;^UTILITY(U,$J,358.3,3250,1,3,0)
+ ;;=3^CRITICAL CARE E&M,EA ADDL 30 MIN
+ ;;^UTILITY(U,$J,358.3,3251,0)
+ ;;=G0425^^26^251^1^^^^1
+ ;;^UTILITY(U,$J,358.3,3251,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3251,1,2,0)
+ ;;=2^G0425
+ ;;^UTILITY(U,$J,358.3,3251,1,3,0)
+ ;;=3^INPT/TELECONSULT,INIT,30 MIN
+ ;;^UTILITY(U,$J,358.3,3252,0)
+ ;;=G0426^^26^251^2^^^^1
+ ;;^UTILITY(U,$J,358.3,3252,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3252,1,2,0)
+ ;;=2^G0426
+ ;;^UTILITY(U,$J,358.3,3252,1,3,0)
+ ;;=3^INPT/TELECONSULT,INIT,50 MIN
+ ;;^UTILITY(U,$J,358.3,3253,0)
+ ;;=G0427^^26^251^3^^^^1
+ ;;^UTILITY(U,$J,358.3,3253,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3253,1,2,0)
+ ;;=2^G0427
+ ;;^UTILITY(U,$J,358.3,3253,1,3,0)
+ ;;=3^INPT/TELECONSULT,INIT,70 MIN
+ ;;^UTILITY(U,$J,358.3,3254,0)
+ ;;=G0406^^26^251^4^^^^1
+ ;;^UTILITY(U,$J,358.3,3254,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3254,1,2,0)
+ ;;=2^G0406
+ ;;^UTILITY(U,$J,358.3,3254,1,3,0)
+ ;;=3^INPT/TELE FOLLOW-UP,15 MIN
+ ;;^UTILITY(U,$J,358.3,3255,0)
+ ;;=G0407^^26^251^5^^^^1
+ ;;^UTILITY(U,$J,358.3,3255,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3255,1,2,0)
+ ;;=2^G0407
+ ;;^UTILITY(U,$J,358.3,3255,1,3,0)
+ ;;=3^INPT/TELE FOLLOW-UP,25 MIN
+ ;;^UTILITY(U,$J,358.3,3256,0)
+ ;;=G0408^^26^251^6^^^^1
+ ;;^UTILITY(U,$J,358.3,3256,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3256,1,2,0)
+ ;;=2^G0408
+ ;;^UTILITY(U,$J,358.3,3256,1,3,0)
+ ;;=3^INPT/TELE FOLLOW-UP,35 MIN
+ ;;^UTILITY(U,$J,358.3,3257,0)
+ ;;=G0459^^26^251^7^^^^1
+ ;;^UTILITY(U,$J,358.3,3257,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,3257,1,2,0)
+ ;;=2^G0459
+ ;;^UTILITY(U,$J,358.3,3257,1,3,0)
+ ;;=3^INPT/TELE PHARM MGMT
+ ;;^UTILITY(U,$J,358.3,3258,0)
+ ;;=I63.50^^27^252^1
+ ;;^UTILITY(U,$J,358.3,3258,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1238,1,3,0)
- ;;=3^Abnormal auditory perceptions, right ear NEC
- ;;^UTILITY(U,$J,358.3,1238,1,4,0)
- ;;=4^H93.291
- ;;^UTILITY(U,$J,358.3,1238,2)
- ;;=^5006985
- ;;^UTILITY(U,$J,358.3,1239,0)
- ;;=H92.13^^8^127^25
- ;;^UTILITY(U,$J,358.3,1239,1,0)
+ ;;^UTILITY(U,$J,358.3,3258,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Unspec Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3258,1,4,0)
+ ;;=4^I63.50
+ ;;^UTILITY(U,$J,358.3,3258,2)
+ ;;=^5007343
+ ;;^UTILITY(U,$J,358.3,3259,0)
+ ;;=I63.511^^27^252^2
+ ;;^UTILITY(U,$J,358.3,3259,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1239,1,3,0)
- ;;=3^Otorrhea, bilateral
- ;;^UTILITY(U,$J,358.3,1239,1,4,0)
- ;;=4^H92.13
- ;;^UTILITY(U,$J,358.3,1239,2)
- ;;=^5006952
- ;;^UTILITY(U,$J,358.3,1240,0)
- ;;=H92.12^^8^127^26
- ;;^UTILITY(U,$J,358.3,1240,1,0)
+ ;;^UTILITY(U,$J,358.3,3259,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Mid Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3259,1,4,0)
+ ;;=4^I63.511
+ ;;^UTILITY(U,$J,358.3,3259,2)
+ ;;=^5007344
+ ;;^UTILITY(U,$J,358.3,3260,0)
+ ;;=I63.512^^27^252^3
+ ;;^UTILITY(U,$J,358.3,3260,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1240,1,3,0)
- ;;=3^Otorrhea, left ear
- ;;^UTILITY(U,$J,358.3,1240,1,4,0)
- ;;=4^H92.12
- ;;^UTILITY(U,$J,358.3,1240,2)
- ;;=^5006951
- ;;^UTILITY(U,$J,358.3,1241,0)
- ;;=H92.11^^8^127^27
- ;;^UTILITY(U,$J,358.3,1241,1,0)
+ ;;^UTILITY(U,$J,358.3,3260,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Mid Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3260,1,4,0)
+ ;;=4^I63.512
+ ;;^UTILITY(U,$J,358.3,3260,2)
+ ;;=^5007345
+ ;;^UTILITY(U,$J,358.3,3261,0)
+ ;;=I63.521^^27^252^4
+ ;;^UTILITY(U,$J,358.3,3261,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1241,1,3,0)
- ;;=3^Otorrhea, right ear
- ;;^UTILITY(U,$J,358.3,1241,1,4,0)
- ;;=4^H92.11
- ;;^UTILITY(U,$J,358.3,1241,2)
- ;;=^5006950
- ;;^UTILITY(U,$J,358.3,1242,0)
- ;;=Z85.841^^8^127^28
- ;;^UTILITY(U,$J,358.3,1242,1,0)
+ ;;^UTILITY(U,$J,358.3,3261,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Ant Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3261,1,4,0)
+ ;;=4^I63.521
+ ;;^UTILITY(U,$J,358.3,3261,2)
+ ;;=^5007346
+ ;;^UTILITY(U,$J,358.3,3262,0)
+ ;;=I63.522^^27^252^5
+ ;;^UTILITY(U,$J,358.3,3262,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1242,1,3,0)
- ;;=3^Personal history of malignant neoplasm of brain
- ;;^UTILITY(U,$J,358.3,1242,1,4,0)
- ;;=4^Z85.841
- ;;^UTILITY(U,$J,358.3,1242,2)
- ;;=^5063447
- ;;^UTILITY(U,$J,358.3,1243,0)
- ;;=Z97.4^^8^127^29
- ;;^UTILITY(U,$J,358.3,1243,1,0)
+ ;;^UTILITY(U,$J,358.3,3262,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Ant Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3262,1,4,0)
+ ;;=4^I63.522
+ ;;^UTILITY(U,$J,358.3,3262,2)
+ ;;=^5007347
+ ;;^UTILITY(U,$J,358.3,3263,0)
+ ;;=I63.531^^27^252^6
+ ;;^UTILITY(U,$J,358.3,3263,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1243,1,3,0)
- ;;=3^Presence of external hearing-aid
- ;;^UTILITY(U,$J,358.3,1243,1,4,0)
- ;;=4^Z97.4
- ;;^UTILITY(U,$J,358.3,1243,2)
- ;;=^5063730
- ;;^UTILITY(U,$J,358.3,1244,0)
- ;;=H93.243^^8^127^31
- ;;^UTILITY(U,$J,358.3,1244,1,0)
+ ;;^UTILITY(U,$J,358.3,3263,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Post Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3263,1,4,0)
+ ;;=4^I63.531
+ ;;^UTILITY(U,$J,358.3,3263,2)
+ ;;=^5007348
+ ;;^UTILITY(U,$J,358.3,3264,0)
+ ;;=I63.532^^27^252^7
+ ;;^UTILITY(U,$J,358.3,3264,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1244,1,3,0)
- ;;=3^Temporary auditory threshold shift, bilateral
- ;;^UTILITY(U,$J,358.3,1244,1,4,0)
- ;;=4^H93.243
- ;;^UTILITY(U,$J,358.3,1244,2)
- ;;=^5006982
- ;;^UTILITY(U,$J,358.3,1245,0)
- ;;=H93.242^^8^127^32
- ;;^UTILITY(U,$J,358.3,1245,1,0)
+ ;;^UTILITY(U,$J,358.3,3264,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Post Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3264,1,4,0)
+ ;;=4^I63.532
+ ;;^UTILITY(U,$J,358.3,3264,2)
+ ;;=^5007349
+ ;;^UTILITY(U,$J,358.3,3265,0)
+ ;;=I63.541^^27^252^8
+ ;;^UTILITY(U,$J,358.3,3265,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1245,1,3,0)
- ;;=3^Temporary auditory threshold shift, left ear
- ;;^UTILITY(U,$J,358.3,1245,1,4,0)
- ;;=4^H93.242
- ;;^UTILITY(U,$J,358.3,1245,2)
- ;;=^5006981
- ;;^UTILITY(U,$J,358.3,1246,0)
- ;;=H93.241^^8^127^33
- ;;^UTILITY(U,$J,358.3,1246,1,0)
+ ;;^UTILITY(U,$J,358.3,3265,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Right Cereblr Artery
+ ;;^UTILITY(U,$J,358.3,3265,1,4,0)
+ ;;=4^I63.541
+ ;;^UTILITY(U,$J,358.3,3265,2)
+ ;;=^5007350
+ ;;^UTILITY(U,$J,358.3,3266,0)
+ ;;=I63.542^^27^252^9
+ ;;^UTILITY(U,$J,358.3,3266,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1246,1,3,0)
- ;;=3^Temporary auditory threshold shift, right ear
- ;;^UTILITY(U,$J,358.3,1246,1,4,0)
- ;;=4^H93.241
- ;;^UTILITY(U,$J,358.3,1246,2)
- ;;=^5006980
- ;;^UTILITY(U,$J,358.3,1247,0)
- ;;=H93.13^^8^127^34
- ;;^UTILITY(U,$J,358.3,1247,1,0)
+ ;;^UTILITY(U,$J,358.3,3266,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Left Cereblr Artery
+ ;;^UTILITY(U,$J,358.3,3266,1,4,0)
+ ;;=4^I63.542
+ ;;^UTILITY(U,$J,358.3,3266,2)
+ ;;=^5007351
+ ;;^UTILITY(U,$J,358.3,3267,0)
+ ;;=I63.59^^27^252^10
+ ;;^UTILITY(U,$J,358.3,3267,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1247,1,3,0)
- ;;=3^Tinnitus, bilateral
- ;;^UTILITY(U,$J,358.3,1247,1,4,0)
- ;;=4^H93.13
- ;;^UTILITY(U,$J,358.3,1247,2)
- ;;=^5006966
- ;;^UTILITY(U,$J,358.3,1248,0)
- ;;=H93.12^^8^127^35
- ;;^UTILITY(U,$J,358.3,1248,1,0)
+ ;;^UTILITY(U,$J,358.3,3267,1,3,0)
+ ;;=3^Cerebral Infarction d/t Occls/Stenosis of Cerebral Artery
+ ;;^UTILITY(U,$J,358.3,3267,1,4,0)
+ ;;=4^I63.59
+ ;;^UTILITY(U,$J,358.3,3267,2)
+ ;;=^5007352
+ ;;^UTILITY(U,$J,358.3,3268,0)
+ ;;=I63.9^^27^252^11
+ ;;^UTILITY(U,$J,358.3,3268,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1248,1,3,0)
- ;;=3^Tinnitus, left ear
- ;;^UTILITY(U,$J,358.3,1248,1,4,0)
- ;;=4^H93.12
- ;;^UTILITY(U,$J,358.3,1248,2)
- ;;=^5006965
- ;;^UTILITY(U,$J,358.3,1249,0)
- ;;=H93.11^^8^127^36
- ;;^UTILITY(U,$J,358.3,1249,1,0)
+ ;;^UTILITY(U,$J,358.3,3268,1,3,0)
+ ;;=3^Cerebral Infarction,Unspec
+ ;;^UTILITY(U,$J,358.3,3268,1,4,0)
+ ;;=4^I63.9
+ ;;^UTILITY(U,$J,358.3,3268,2)
+ ;;=^5007355
+ ;;^UTILITY(U,$J,358.3,3269,0)
+ ;;=I65.21^^27^252^29
+ ;;^UTILITY(U,$J,358.3,3269,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1249,1,3,0)
- ;;=3^Tinnitus, right ear
- ;;^UTILITY(U,$J,358.3,1249,1,4,0)
- ;;=4^H93.11
- ;;^UTILITY(U,$J,358.3,1249,2)
- ;;=^5006964
- ;;^UTILITY(U,$J,358.3,1250,0)
- ;;=H93.92^^8^127^21
- ;;^UTILITY(U,$J,358.3,1250,1,0)
+ ;;^UTILITY(U,$J,358.3,3269,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,3269,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,3269,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,3270,0)
+ ;;=I65.22^^27^252^28
+ ;;^UTILITY(U,$J,358.3,3270,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,1250,1,3,0)
- ;;=3^Left Ear Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,1250,1,4,0)
- ;;=4^H93.92
- ;;^UTILITY(U,$J,358.3,1250,2)
- ;;=^5006997
- ;;^UTILITY(U,$J,358.3,1251,0)
- ;;=H93.91^^8^127^30
+ ;;^UTILITY(U,$J,358.3,3270,1,3,0)
+ ;;=3^Occlusion/Stenosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,3270,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,3270,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,3271,0)
+ ;;=I65.23^^27^252^27
+ ;;^UTILITY(U,$J,358.3,3271,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3271,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,3271,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,3271,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,3272,0)
+ ;;=G45.9^^27^252^32
+ ;;^UTILITY(U,$J,358.3,3272,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,3272,1,3,0)
+ ;;=3^Transient Cerebral Ischemic Attack,Unspec

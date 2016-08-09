@@ -1,132 +1,280 @@
-IBDEI0X6 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0X6 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,15565,2)
- ;;=^5003637
- ;;^UTILITY(U,$J,358.3,15566,0)
- ;;=F60.2^^58^677^1
- ;;^UTILITY(U,$J,358.3,15566,1,0)
+ ;;^UTILITY(U,$J,358.3,33369,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,In Remission
+ ;;^UTILITY(U,$J,358.3,33369,1,4,0)
+ ;;=4^F17.221
+ ;;^UTILITY(U,$J,358.3,33369,2)
+ ;;=^5003371
+ ;;^UTILITY(U,$J,358.3,33370,0)
+ ;;=F17.220^^119^1578^25
+ ;;^UTILITY(U,$J,358.3,33370,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15566,1,3,0)
- ;;=3^Antisocial Personality Disorder
- ;;^UTILITY(U,$J,358.3,15566,1,4,0)
- ;;=4^F60.2
- ;;^UTILITY(U,$J,358.3,15566,2)
- ;;=^9066
- ;;^UTILITY(U,$J,358.3,15567,0)
- ;;=F60.81^^58^677^6
- ;;^UTILITY(U,$J,358.3,15567,1,0)
+ ;;^UTILITY(U,$J,358.3,33370,1,3,0)
+ ;;=3^Nicotine Dependence Chewing Tobacco,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33370,1,4,0)
+ ;;=4^F17.220
+ ;;^UTILITY(U,$J,358.3,33370,2)
+ ;;=^5003370
+ ;;^UTILITY(U,$J,358.3,33371,0)
+ ;;=F17.211^^119^1578^26
+ ;;^UTILITY(U,$J,358.3,33371,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15567,1,3,0)
- ;;=3^Narcissistic Personality Disorder
- ;;^UTILITY(U,$J,358.3,15567,1,4,0)
- ;;=4^F60.81
- ;;^UTILITY(U,$J,358.3,15567,2)
- ;;=^331919
- ;;^UTILITY(U,$J,358.3,15568,0)
- ;;=F60.6^^58^677^2
- ;;^UTILITY(U,$J,358.3,15568,1,0)
+ ;;^UTILITY(U,$J,358.3,33371,1,3,0)
+ ;;=3^Nicotine Dependence Cigarettes,In Remission
+ ;;^UTILITY(U,$J,358.3,33371,1,4,0)
+ ;;=4^F17.211
+ ;;^UTILITY(U,$J,358.3,33371,2)
+ ;;=^5003366
+ ;;^UTILITY(U,$J,358.3,33372,0)
+ ;;=F17.200^^119^1578^31
+ ;;^UTILITY(U,$J,358.3,33372,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15568,1,3,0)
- ;;=3^Avoidant Personality Disorder
- ;;^UTILITY(U,$J,358.3,15568,1,4,0)
- ;;=4^F60.6
- ;;^UTILITY(U,$J,358.3,15568,2)
- ;;=^331920
- ;;^UTILITY(U,$J,358.3,15569,0)
- ;;=F60.3^^58^677^3
- ;;^UTILITY(U,$J,358.3,15569,1,0)
+ ;;^UTILITY(U,$J,358.3,33372,1,3,0)
+ ;;=3^Nicotine Dependence,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33372,1,4,0)
+ ;;=4^F17.200
+ ;;^UTILITY(U,$J,358.3,33372,2)
+ ;;=^5003360
+ ;;^UTILITY(U,$J,358.3,33373,0)
+ ;;=F11.120^^119^1578^32
+ ;;^UTILITY(U,$J,358.3,33373,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15569,1,3,0)
- ;;=3^Borderline Personality Disorder
- ;;^UTILITY(U,$J,358.3,15569,1,4,0)
- ;;=4^F60.3
- ;;^UTILITY(U,$J,358.3,15569,2)
- ;;=^331921
- ;;^UTILITY(U,$J,358.3,15570,0)
- ;;=F60.89^^58^677^9
- ;;^UTILITY(U,$J,358.3,15570,1,0)
+ ;;^UTILITY(U,$J,358.3,33373,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33373,1,4,0)
+ ;;=4^F11.120
+ ;;^UTILITY(U,$J,358.3,33373,2)
+ ;;=^5003115
+ ;;^UTILITY(U,$J,358.3,33374,0)
+ ;;=F11.10^^119^1578^34
+ ;;^UTILITY(U,$J,358.3,33374,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15570,1,3,0)
- ;;=3^Personality Disorder NEC
- ;;^UTILITY(U,$J,358.3,15570,1,4,0)
- ;;=4^F60.89
- ;;^UTILITY(U,$J,358.3,15570,2)
- ;;=^5003638
- ;;^UTILITY(U,$J,358.3,15571,0)
- ;;=F60.9^^58^677^10
- ;;^UTILITY(U,$J,358.3,15571,1,0)
+ ;;^UTILITY(U,$J,358.3,33374,1,3,0)
+ ;;=3^Opioid Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33374,1,4,0)
+ ;;=4^F11.10
+ ;;^UTILITY(U,$J,358.3,33374,2)
+ ;;=^5003114
+ ;;^UTILITY(U,$J,358.3,33375,0)
+ ;;=F11.129^^119^1578^33
+ ;;^UTILITY(U,$J,358.3,33375,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15571,1,3,0)
- ;;=3^Personality Disorder,Unspec
- ;;^UTILITY(U,$J,358.3,15571,1,4,0)
- ;;=4^F60.9
- ;;^UTILITY(U,$J,358.3,15571,2)
- ;;=^5003639
- ;;^UTILITY(U,$J,358.3,15572,0)
- ;;=Z65.4^^58^678^4
- ;;^UTILITY(U,$J,358.3,15572,1,0)
+ ;;^UTILITY(U,$J,358.3,33375,1,3,0)
+ ;;=3^Opioid Abuse w/ Intoxication,Unspec
+ ;;^UTILITY(U,$J,358.3,33375,1,4,0)
+ ;;=4^F11.129
+ ;;^UTILITY(U,$J,358.3,33375,2)
+ ;;=^5003118
+ ;;^UTILITY(U,$J,358.3,33376,0)
+ ;;=F10.21^^119^1578^3
+ ;;^UTILITY(U,$J,358.3,33376,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15572,1,3,0)
- ;;=3^Victim of Crime,Terrorism or Torture
- ;;^UTILITY(U,$J,358.3,15572,1,4,0)
- ;;=4^Z65.4
- ;;^UTILITY(U,$J,358.3,15572,2)
- ;;=^5063183
- ;;^UTILITY(U,$J,358.3,15573,0)
- ;;=Z65.0^^58^678^1
- ;;^UTILITY(U,$J,358.3,15573,1,0)
+ ;;^UTILITY(U,$J,358.3,33376,1,3,0)
+ ;;=3^Alcohol Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,33376,1,4,0)
+ ;;=4^F10.21
+ ;;^UTILITY(U,$J,358.3,33376,2)
+ ;;=^5003082
+ ;;^UTILITY(U,$J,358.3,33377,0)
+ ;;=F12.10^^119^1578^5
+ ;;^UTILITY(U,$J,358.3,33377,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15573,1,3,0)
- ;;=3^Conviction in Civil/Criminal Proceedings w/o Imprisonment
- ;;^UTILITY(U,$J,358.3,15573,1,4,0)
- ;;=4^Z65.0
- ;;^UTILITY(U,$J,358.3,15573,2)
- ;;=^5063179
- ;;^UTILITY(U,$J,358.3,15574,0)
- ;;=Z65.2^^58^678^3
- ;;^UTILITY(U,$J,358.3,15574,1,0)
+ ;;^UTILITY(U,$J,358.3,33377,1,3,0)
+ ;;=3^Cannabis Abuse,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33377,1,4,0)
+ ;;=4^F12.10
+ ;;^UTILITY(U,$J,358.3,33377,2)
+ ;;=^5003155
+ ;;^UTILITY(U,$J,358.3,33378,0)
+ ;;=F12.20^^119^1578^7
+ ;;^UTILITY(U,$J,358.3,33378,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15574,1,3,0)
- ;;=3^Problems Related to Release from Prison
- ;;^UTILITY(U,$J,358.3,15574,1,4,0)
- ;;=4^Z65.2
- ;;^UTILITY(U,$J,358.3,15574,2)
- ;;=^5063181
- ;;^UTILITY(U,$J,358.3,15575,0)
- ;;=Z65.3^^58^678^2
- ;;^UTILITY(U,$J,358.3,15575,1,0)
+ ;;^UTILITY(U,$J,358.3,33378,1,3,0)
+ ;;=3^Cannabis Dependence,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33378,1,4,0)
+ ;;=4^F12.20
+ ;;^UTILITY(U,$J,358.3,33378,2)
+ ;;=^5003166
+ ;;^UTILITY(U,$J,358.3,33379,0)
+ ;;=F12.21^^119^1578^6
+ ;;^UTILITY(U,$J,358.3,33379,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15575,1,3,0)
- ;;=3^Problems Related to Oth Legal Circumstances
- ;;^UTILITY(U,$J,358.3,15575,1,4,0)
- ;;=4^Z65.3
- ;;^UTILITY(U,$J,358.3,15575,2)
- ;;=^5063182
- ;;^UTILITY(U,$J,358.3,15576,0)
- ;;=Z65.8^^58^679^5
- ;;^UTILITY(U,$J,358.3,15576,1,0)
+ ;;^UTILITY(U,$J,358.3,33379,1,3,0)
+ ;;=3^Cannabis Dependence,In Remission
+ ;;^UTILITY(U,$J,358.3,33379,1,4,0)
+ ;;=4^F12.21
+ ;;^UTILITY(U,$J,358.3,33379,2)
+ ;;=^5003167
+ ;;^UTILITY(U,$J,358.3,33380,0)
+ ;;=F12.90^^119^1578^8
+ ;;^UTILITY(U,$J,358.3,33380,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15576,1,3,0)
- ;;=3^Religious/Spiritual Problem;Oth Problem Related to Psychosocial Circumstances
- ;;^UTILITY(U,$J,358.3,15576,1,4,0)
- ;;=4^Z65.8
- ;;^UTILITY(U,$J,358.3,15576,2)
- ;;=^5063185
- ;;^UTILITY(U,$J,358.3,15577,0)
- ;;=Z64.0^^58^679^4
- ;;^UTILITY(U,$J,358.3,15577,1,0)
+ ;;^UTILITY(U,$J,358.3,33380,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,33380,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,33380,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,33381,0)
+ ;;=I83.019^^119^1579^3
+ ;;^UTILITY(U,$J,358.3,33381,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15577,1,3,0)
- ;;=3^Problems Related to Unwanted Pregnancy
- ;;^UTILITY(U,$J,358.3,15577,1,4,0)
- ;;=4^Z64.0
- ;;^UTILITY(U,$J,358.3,15577,2)
- ;;=^5063176
- ;;^UTILITY(U,$J,358.3,15578,0)
- ;;=Z64.1^^58^679^3
- ;;^UTILITY(U,$J,358.3,15578,1,0)
+ ;;^UTILITY(U,$J,358.3,33381,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,33381,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,33381,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,33382,0)
+ ;;=I83.219^^119^1579^4
+ ;;^UTILITY(U,$J,358.3,33382,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,15578,1,3,0)
- ;;=3^Problems Related to Multiparity
+ ;;^UTILITY(U,$J,358.3,33382,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,33382,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,33382,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,33383,0)
+ ;;=I83.029^^119^1579^1
+ ;;^UTILITY(U,$J,358.3,33383,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33383,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,33383,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,33383,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,33384,0)
+ ;;=I83.229^^119^1579^2
+ ;;^UTILITY(U,$J,358.3,33384,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33384,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,33384,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,33384,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,33385,0)
+ ;;=B00.81^^119^1580^56
+ ;;^UTILITY(U,$J,358.3,33385,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33385,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,33385,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,33385,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,33386,0)
+ ;;=D25.9^^119^1580^65
+ ;;^UTILITY(U,$J,358.3,33386,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33386,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,33386,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,33386,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,33387,0)
+ ;;=F52.9^^119^1580^103
+ ;;^UTILITY(U,$J,358.3,33387,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33387,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,33387,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,33387,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,33388,0)
+ ;;=R37.^^119^1580^104
+ ;;^UTILITY(U,$J,358.3,33388,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33388,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,33388,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,33388,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,33389,0)
+ ;;=N60.01^^119^1580^107
+ ;;^UTILITY(U,$J,358.3,33389,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33389,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,33389,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,33389,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,33390,0)
+ ;;=N60.02^^119^1580^106
+ ;;^UTILITY(U,$J,358.3,33390,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33390,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,33390,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,33390,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,33391,0)
+ ;;=N60.09^^119^1580^108
+ ;;^UTILITY(U,$J,358.3,33391,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33391,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,33391,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,33391,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,33392,0)
+ ;;=N60.11^^119^1580^31
+ ;;^UTILITY(U,$J,358.3,33392,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33392,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,33392,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,33392,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,33393,0)
+ ;;=N60.12^^119^1580^30
+ ;;^UTILITY(U,$J,358.3,33393,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33393,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,33393,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,33393,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,33394,0)
+ ;;=N64.4^^119^1580^70
+ ;;^UTILITY(U,$J,358.3,33394,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33394,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,33394,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,33394,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,33395,0)
+ ;;=N63.^^119^1580^67
+ ;;^UTILITY(U,$J,358.3,33395,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33395,1,3,0)
+ ;;=3^Lump in Breast,Unspec
+ ;;^UTILITY(U,$J,358.3,33395,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,33395,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,33396,0)
+ ;;=N64.51^^119^1580^61
+ ;;^UTILITY(U,$J,358.3,33396,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,33396,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,33396,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,33396,2)
+ ;;=^5015795

@@ -1,19 +1,21 @@
 PSOORUT2 ;ISC BHAM/SAB - build listman screen ; 3/20/07 9:47am
- ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390**;DEC 1997;Build 86
- ;External reference to SDPHARM1 supported by DBIA 4196
- ;External reference ^PS(55 supported by DBIA 2228
- ;External reference ^DIC(31 supported by DBIA 658
- ;External reference ^DPT(D0,.372 supported by DBIA 1476
- ;External references to ^ORRDI1 supported by DBIA 4659
- ;External references to ^XTMP("ORRDI" supported by DBIA 4660
- ;External reference to ^GMRADPT supported by DBIA 190
+ ;;7.0;OUTPATIENT PHARMACY;**11,146,132,182,233,243,261,268,264,305,390,411**;DEC 1997;Build 95
+ ;External reference to $$PRIAPT^SDPHARM1 supported by DBIA 4196
+ ;External reference to ^PS(55 supported by DBIA 2228
+ ;External reference to ^DIC(31 supported by DBIA 658
+ ;External reference to ^ORRDI1 supported by DBIA 4659
+ ;External reference to ^DPT(DFN,.372 supported by DBIA 1476
+ ;External reference to ^XTMP("ORRDI" supported by DBIA 4660
+ ;External reference to ^GMRADPT supported by DBIA 10099
  ;External reference to $$TERMLKUP^ORB31 supported by DBIA 5140
  ;External reference to $$BSA^PSSDSAPI supported by DBIA 5425
  ;External reference to ^ORQQVI supported by DBIA 5770
  ;External reference to ^ORQPTQ4 supported by DBIA 5785
  ;External reference to ^ORQQLR1 supported by DBIA 5787
+ ;External reference to ^VADPT supported by DBIA 10061
  ;
  K ^TMP("PSOHDR",$J),^TMP("PSOPI",$J) S DFN=PSODFN D ^VADPT,ADD^VADPT
+ N I1,PSCNT,PSDIS,PSON,PSOTEL,PSOTMP
  S ^TMP("PSOHDR",$J,1,0)=VADM(1),^TMP("PSOHDR",$J,2,0)=$P(VADM(2),"^",2)
  S ^TMP("PSOHDR",$J,3,0)=$P(VADM(3),"^",2),^TMP("PSOHDR",$J,4,0)=VADM(4),^TMP("PSOHDR",$J,5,0)=$P(VADM(5),"^",2)
  D NVA
@@ -97,7 +99,9 @@ REMOTE ;
  I $T(GET^ORRDI1)]"" S PSOSIEN=$G(IEN) D GET^ORRDI1(DFN,"ART") S IEN=PSOSIEN K PSOSIEN D
  .I $P($G(^XTMP("ORRDI","ART",DFN,0)),"^",3)=0 S PSORALG(1)="No remote allergies"
  .S S1=0,LEN=65,PSORALG=1,PSORALG(1)="" F  S S1=$O(^XTMP("ORRDI","ART",DFN,S1)) Q:'S1  D
- ..S A=$G(^XTMP("ORRDI","ART",DFN,S1,"REACTANT",0)),REAC=$P(A,"^",2),FILE=$P($P(A,"^",3),"99VA",2)
+ ..S A=$G(^XTMP("ORRDI","ART",DFN,S1,"GMRALLERGY",0))
+ ..S REAC=$P(A,"^",2) Q:REAC=""
+ ..S FILE=$P($P(A,"^",3),"99VA",2)
  ..I FILE'=50.6,FILE'=120.82,FILE'=50.605,FILE'=50.416 Q
  ..S ^TMP($J,"PSOART",REAC)=""
  .S REAC="" F  S REAC=$O(^TMP($J,"PSOART",REAC)) Q:REAC=""  D
@@ -111,7 +115,7 @@ REMOTE2 ;
  Q
   ;
 ALLERGY ;ALLERGIES & REACTIONS
- N GMRA,GMRAL,PSORY,ALCNT,EEE,PSOLG,PSOLGA,TEXT,CCC,CCC2
+ N GMRA,GMRAL,PSORY,ALCNT,EEE,PSOLG,PSOLGA,TEXT,CCC,CCC2,LENGTH
  K ^TMP($J,"PSOALWA")
  I '$D(DFN) S DFN=PSODFN
  S GMRA="0^0^111" D ^GMRADPT
@@ -130,7 +134,7 @@ ALLERGY ;ALLERGIES & REACTIONS
  F CCC=3,4,5 I '$O(^TMP($J,"PSOAPT",CCC,0)) K ^TMP($J,"PSOAPT",CCC)
  D PSONOAL
  I CCC="NKA" S ^TMP($J,"PSOAPT",2,1)="No Known Allergies" K ^TMP($J,"PSOAPT",3)
- S CCC=1,OUT=0
+ N OUT S CCC=1,OUT=0
  F  S CCC=$O(^TMP($J,"PSOAPT",CCC)) Q:CCC=""  D  Q:OUT
  .S TEXT=$G(^TMP($J,"PSOAPT",CCC))
  .I TEXT="No Allergy Assessment" S PSONOAL=TEXT Q

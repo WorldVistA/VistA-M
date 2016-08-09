@@ -1,6 +1,10 @@
-DIQG ;SFISC/DCL-DATA RETRIEVAL PRIMITIVE ;24AUG2009
- ;;22.0;VA FileMan;**76,118,133,149,162**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIQG ;SFISC/DCL-DATA RETRIEVAL PRIMITIVE ;3MAY2011
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 GET(DIQGR,DA,DR,DIQGPARM,DIQGETA,DIQGERRA,DIQGIPAR) ; file,rec,fld,parm,targetarray,errarray,int
 DDENTRY I $G(U)'="^" N U S U="^"
  I '$G(DA) N X S X(1)="RECORD" Q $$F(.X,2)
@@ -38,8 +42,11 @@ GIVEUP Q $$F(.DIQGEY,7)
  ;
 DIQ I DIQGDRN=.001 S Y=DA
  G BMW:C,REAL:C'["C"
-C I C["m" N X S X(1)="MULTILINE COMPUTED" Q $$F(.X,3)
- ;I DIQGPI Q "" MAR2001 GFT
+C I C["m" N X D  G:'$D(X) FE Q:DIQGWPO $NA(@DIQGETA) Q "" ;S X(1)="MULTILINE COMPUTED" Q $$F(.X,3)
+ .N D,DICMX
+ .I DIQGETA="" S X(1)="TARGET ARRAY for the MULTI-LINE COMPUTED FIELD" D BLD^DIALOG(202,.X) K X Q
+ .S DICMX="S @DIQGETA@(D"_$S(DIQGZN:",0",1:"")_")=X" ;"Z" PARAMETER SAYS TO PUT ZERO NODES IN MULTIPLE
+ .X $P(@DIQGDN@(DIQGDRN,0),U,5,999) ;XECUTE COMPUTED MULTIPLE
  I DIQGDN="^DD(1.005)",DIQGDRN=1 S X=@DIQGSI@(DA,0)
  N DCC,DIQGH,X,DFF S DIQGH=$G(DIERR),DCC=DIQGR,DFF=+$P(DCC,"(",2)
  I $D(@DIQGDN@(DIQGDRN,9.01)),$D(^(9.1)) D CMPAUD(^(9.1),^(9.01)) I $D(X) X X I 1
@@ -49,7 +56,7 @@ C I C["m" N X S X(1)="MULTILINE COMPUTED" Q $$F(.X,3)
  .D BLD^DIALOG(120,"FIELD")
  I $G(X)=""!DIQGPI Q $G(X)
 CP I C["p",X S C=+$P(C,"p",2) I C,$D(^DIC(C,0,"GL")),$D(@(^("GL")_"0)")),$D(^(X,0)) Q $$EXTERNAL^DIDU(C,.01,"",$P(^(0),U))
- Q $S(C["D":$$FMTE^DILIBF(X,"1U"),1:X)
+ Q $S(C["D":$$DATE^DIUTL(X),1:X)  ;***
  ;
 REAL I $E($P(DIQGD4,";",2))="E" S Y=$E($G(@DIQGSI@(DA,P)),$E($P($P(DIQGD4,";",2),","),2,99),$P($P(DIQGD4,";",2),",",2)) S:Y?." " Y="" ;SPACES ARE NULL
 AUDIT I $G(DIQGAUDD) D  ;Is there an AUDIT TRAIL for the field?
@@ -61,7 +68,8 @@ AUDIT I $G(DIQGAUDD) D  ;Is there an AUDIT TRAIL for the field?
  I 'DIQGPI&(C["O"!(C["S")!(C["P")!(C["V")!(C["D"))&($D(@DIQGDN@(DIQGDRN,0))) S C=$P(^(0),"^",2) Q $$EXTERNAL^DIDU(+$P(DIQGDN,"(",2),DIQGDRN,"A",Y)  ;"ALLOW" bad data
  Q $G(Y)
  ;
-BMW I C,$P(^DD(+C,.01,0),"^",2)["W" Q:DIQGWPB "$CREF$"_DIQGR_DA_","_$$Q^DIQGU(P)_")" D  G:X="" FE Q:DIQGWPO $NA(@DIQGETA) Q:DIQGIPAR "$WP$" Q ""
+BMW ;PUT WORD-PROCESSING FIELD INTO @DIQGETA
+ I C,$P(^DD(+C,.01,0),"^",2)["W" Q:DIQGWPB "$CREF$"_DIQGR_DA_","_$$Q^DIQGU(P)_")" D  G:X="" FE Q:DIQGWPO $NA(@DIQGETA) Q:DIQGIPAR "$WP$" Q ""
  .I DIQGETA']"" K X S X(1)="TARGET ARRAY" D BLD^DIALOG(202,.X) S X="" Q
  .S X=DIQGR_DA_","_$$Q^DIQGU(P)_")"
  .I '$O(@X@(0)) S X="" Q
@@ -74,7 +82,7 @@ BMW I C,$P(^DD(+C,.01,0),"^",2)["W" Q:DIQGWPB "$CREF$"_DIQGR_DA_","_$$Q^DIQGU(P)
 CREF(X) N L,X1,X2,X3 S X1=$P(X,"("),X2=$P(X,"(",2,99),L=$L(X2),X3=$TR($E(X2,L),",)"),X2=$E(X2,1,(L-1))_X3 Q X1_$S(X2]"":"("_X2_")",1:"")
 WP(DIQGSA,DIQGTA,DIQGZN,DIQGP) N DIQG S DIQG=0 F  S DIQG=$O(@DIQGSA@(DIQG)) Q:DIQG'>0  I $D(^(DIQG,0)) S @$S(DIQGZN:"@DIQGTA@(DIQG,0)",1:"@DIQGTA@(DIQG)")=^(0)
  Q:DIQGP "$WP$" Q ""
-DY(Y) Q $$FMTE^DILIBF(Y,"1U")
+DY(Y) Q $$DATE^DIUTL(Y)  ;***
 IEN(IEN,DA) S DA=$P(IEN,",") N I F I=2:1 Q:$P(IEN,",",I)=""  S DA(I-1)=$P(IEN,",",I)
  Q
 DDROOT(X) Q:'$D(^DD(X)) "" Q "^DD("_X_","
@@ -91,7 +99,7 @@ CMPAUD(DEXPR,DIQGS) ;DEXPR is Expression, DIQGS is string of Fields used
  Q
 EXPR(DIFILE,DIEXPR) I DIQGPI K X Q:$TR(DIEXPR," 1234567890.?")=""  S DIEXPR="INTERNAL("_DIEXPR_")"
  D EXPR^DICOMP(DIFILE,"",DIEXPR,.DIQGS)
- I 'DIQGPI,$G(Y)["D",Y'["m",$D(X)#2 S X=X_" S X=$$FMTE^DILIBF(X,""5U"")"
+ I 'DIQGPI,$G(Y)["D",Y'["m",$D(X)#2 S X=X_" S X=$$DATE^DIUTL(X)"
  Q
  ;
 F(DIQGEY,X) D BLD^DIALOG($P($T(TXT+X),";",4),.DIQGEY)

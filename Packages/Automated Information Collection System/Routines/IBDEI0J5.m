@@ -1,128 +1,292 @@
-IBDEI0J5 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0J5 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8900,1,0)
+ ;;^UTILITY(U,$J,358.3,19298,1,3,0)
+ ;;=3^Acne NEC
+ ;;^UTILITY(U,$J,358.3,19298,1,4,0)
+ ;;=4^L70.8
+ ;;^UTILITY(U,$J,358.3,19298,2)
+ ;;=^87239
+ ;;^UTILITY(U,$J,358.3,19299,0)
+ ;;=L70.9^^86^983^7
+ ;;^UTILITY(U,$J,358.3,19299,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8900,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,8900,1,4,0)
- ;;=4^H40.2232
- ;;^UTILITY(U,$J,358.3,8900,2)
- ;;=^5005833
- ;;^UTILITY(U,$J,358.3,8901,0)
- ;;=H40.2233^^41^469^17
- ;;^UTILITY(U,$J,358.3,8901,1,0)
+ ;;^UTILITY(U,$J,358.3,19299,1,3,0)
+ ;;=3^Acne,Unspec
+ ;;^UTILITY(U,$J,358.3,19299,1,4,0)
+ ;;=4^L70.9
+ ;;^UTILITY(U,$J,358.3,19299,2)
+ ;;=^5009273
+ ;;^UTILITY(U,$J,358.3,19300,0)
+ ;;=L71.0^^86^983^235
+ ;;^UTILITY(U,$J,358.3,19300,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8901,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,8901,1,4,0)
- ;;=4^H40.2233
- ;;^UTILITY(U,$J,358.3,8901,2)
- ;;=^5005834
- ;;^UTILITY(U,$J,358.3,8902,0)
- ;;=H40.2234^^41^469^14
- ;;^UTILITY(U,$J,358.3,8902,1,0)
+ ;;^UTILITY(U,$J,358.3,19300,1,3,0)
+ ;;=3^Perioral Dermatitis
+ ;;^UTILITY(U,$J,358.3,19300,1,4,0)
+ ;;=4^L71.0
+ ;;^UTILITY(U,$J,358.3,19300,2)
+ ;;=^5009274
+ ;;^UTILITY(U,$J,358.3,19301,0)
+ ;;=L71.1^^86^983^259
+ ;;^UTILITY(U,$J,358.3,19301,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8902,1,3,0)
- ;;=3^Chr Angle-Closure Glaucoma,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,8902,1,4,0)
- ;;=4^H40.2234
- ;;^UTILITY(U,$J,358.3,8902,2)
- ;;=^5005835
- ;;^UTILITY(U,$J,358.3,8903,0)
- ;;=H40.241^^41^469^115
- ;;^UTILITY(U,$J,358.3,8903,1,0)
+ ;;^UTILITY(U,$J,358.3,19301,1,3,0)
+ ;;=3^Rhinophyma
+ ;;^UTILITY(U,$J,358.3,19301,1,4,0)
+ ;;=4^L71.1
+ ;;^UTILITY(U,$J,358.3,19301,2)
+ ;;=^106083
+ ;;^UTILITY(U,$J,358.3,19302,0)
+ ;;=L71.8^^86^983^260
+ ;;^UTILITY(U,$J,358.3,19302,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8903,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Right Eye
- ;;^UTILITY(U,$J,358.3,8903,1,4,0)
- ;;=4^H40.241
- ;;^UTILITY(U,$J,358.3,8903,2)
- ;;=^5005843
- ;;^UTILITY(U,$J,358.3,8904,0)
- ;;=H40.242^^41^469^114
- ;;^UTILITY(U,$J,358.3,8904,1,0)
+ ;;^UTILITY(U,$J,358.3,19302,1,3,0)
+ ;;=3^Rosacea NEC
+ ;;^UTILITY(U,$J,358.3,19302,1,4,0)
+ ;;=4^L71.8
+ ;;^UTILITY(U,$J,358.3,19302,2)
+ ;;=^5009275
+ ;;^UTILITY(U,$J,358.3,19303,0)
+ ;;=L71.9^^86^983^261
+ ;;^UTILITY(U,$J,358.3,19303,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8904,1,3,0)
- ;;=3^Residual Stage Angle-Closure Glaucoma,Left Eye
- ;;^UTILITY(U,$J,358.3,8904,1,4,0)
- ;;=4^H40.242
- ;;^UTILITY(U,$J,358.3,8904,2)
- ;;=^5005844
- ;;^UTILITY(U,$J,358.3,8905,0)
- ;;=H40.61X0^^41^469^43
- ;;^UTILITY(U,$J,358.3,8905,1,0)
+ ;;^UTILITY(U,$J,358.3,19303,1,3,0)
+ ;;=3^Rosacea,Unspec
+ ;;^UTILITY(U,$J,358.3,19303,1,4,0)
+ ;;=4^L71.9
+ ;;^UTILITY(U,$J,358.3,19303,2)
+ ;;=^5009276
+ ;;^UTILITY(U,$J,358.3,19304,0)
+ ;;=L72.0^^86^983^142
+ ;;^UTILITY(U,$J,358.3,19304,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8905,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,8905,1,4,0)
- ;;=4^H40.61X0
- ;;^UTILITY(U,$J,358.3,8905,2)
- ;;=^5005906
- ;;^UTILITY(U,$J,358.3,8906,0)
- ;;=H40.61X2^^41^469^41
- ;;^UTILITY(U,$J,358.3,8906,1,0)
+ ;;^UTILITY(U,$J,358.3,19304,1,3,0)
+ ;;=3^Epidermal Cyst
+ ;;^UTILITY(U,$J,358.3,19304,1,4,0)
+ ;;=4^L72.0
+ ;;^UTILITY(U,$J,358.3,19304,2)
+ ;;=^5009277
+ ;;^UTILITY(U,$J,358.3,19305,0)
+ ;;=L72.12^^86^983^285
+ ;;^UTILITY(U,$J,358.3,19305,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8906,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,8906,1,4,0)
- ;;=4^H40.61X2
- ;;^UTILITY(U,$J,358.3,8906,2)
- ;;=^5005908
- ;;^UTILITY(U,$J,358.3,8907,0)
- ;;=H40.61X3^^41^469^42
- ;;^UTILITY(U,$J,358.3,8907,1,0)
+ ;;^UTILITY(U,$J,358.3,19305,1,3,0)
+ ;;=3^Trichodermal Cyst
+ ;;^UTILITY(U,$J,358.3,19305,1,4,0)
+ ;;=4^L72.12
+ ;;^UTILITY(U,$J,358.3,19305,2)
+ ;;=^5009279
+ ;;^UTILITY(U,$J,358.3,19306,0)
+ ;;=L72.2^^86^983^270
+ ;;^UTILITY(U,$J,358.3,19306,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8907,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,8907,1,4,0)
- ;;=4^H40.61X3
- ;;^UTILITY(U,$J,358.3,8907,2)
- ;;=^5133509
- ;;^UTILITY(U,$J,358.3,8908,0)
- ;;=H40.61X4^^41^469^39
- ;;^UTILITY(U,$J,358.3,8908,1,0)
+ ;;^UTILITY(U,$J,358.3,19306,1,3,0)
+ ;;=3^Steatocystoma Multiplex
+ ;;^UTILITY(U,$J,358.3,19306,1,4,0)
+ ;;=4^L72.2
+ ;;^UTILITY(U,$J,358.3,19306,2)
+ ;;=^5009280
+ ;;^UTILITY(U,$J,358.3,19307,0)
+ ;;=L72.8^^86^983^151
+ ;;^UTILITY(U,$J,358.3,19307,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8908,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,8908,1,4,0)
- ;;=4^H40.61X4
- ;;^UTILITY(U,$J,358.3,8908,2)
- ;;=^5005909
- ;;^UTILITY(U,$J,358.3,8909,0)
- ;;=H40.62X1^^41^469^35
- ;;^UTILITY(U,$J,358.3,8909,1,0)
+ ;;^UTILITY(U,$J,358.3,19307,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue NEC
+ ;;^UTILITY(U,$J,358.3,19307,1,4,0)
+ ;;=4^L72.8
+ ;;^UTILITY(U,$J,358.3,19307,2)
+ ;;=^5009282
+ ;;^UTILITY(U,$J,358.3,19308,0)
+ ;;=L72.9^^86^983^152
+ ;;^UTILITY(U,$J,358.3,19308,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8909,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,8909,1,4,0)
- ;;=4^H40.62X1
- ;;^UTILITY(U,$J,358.3,8909,2)
- ;;=^5005911
- ;;^UTILITY(U,$J,358.3,8910,0)
- ;;=H40.62X0^^41^469^38
- ;;^UTILITY(U,$J,358.3,8910,1,0)
+ ;;^UTILITY(U,$J,358.3,19308,1,3,0)
+ ;;=3^Follicular Cysts of Skin/Subcutaneous Tissue,Unspec
+ ;;^UTILITY(U,$J,358.3,19308,1,4,0)
+ ;;=4^L72.9
+ ;;^UTILITY(U,$J,358.3,19308,2)
+ ;;=^5009283
+ ;;^UTILITY(U,$J,358.3,19309,0)
+ ;;=L73.0^^86^983^3
+ ;;^UTILITY(U,$J,358.3,19309,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8910,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Unspec Stage
- ;;^UTILITY(U,$J,358.3,8910,1,4,0)
- ;;=4^H40.62X0
- ;;^UTILITY(U,$J,358.3,8910,2)
- ;;=^5005910
- ;;^UTILITY(U,$J,358.3,8911,0)
- ;;=H40.62X2^^41^469^36
- ;;^UTILITY(U,$J,358.3,8911,1,0)
+ ;;^UTILITY(U,$J,358.3,19309,1,3,0)
+ ;;=3^Acne Keloid
+ ;;^UTILITY(U,$J,358.3,19309,1,4,0)
+ ;;=4^L73.0
+ ;;^UTILITY(U,$J,358.3,19309,2)
+ ;;=^2149
+ ;;^UTILITY(U,$J,358.3,19310,0)
+ ;;=L73.2^^86^983^159
+ ;;^UTILITY(U,$J,358.3,19310,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8911,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,8911,1,4,0)
- ;;=4^H40.62X2
- ;;^UTILITY(U,$J,358.3,8911,2)
- ;;=^5005912
- ;;^UTILITY(U,$J,358.3,8912,0)
- ;;=H40.62X3^^41^469^37
- ;;^UTILITY(U,$J,358.3,8912,1,0)
+ ;;^UTILITY(U,$J,358.3,19310,1,3,0)
+ ;;=3^Hidradenitis Suppurativa
+ ;;^UTILITY(U,$J,358.3,19310,1,4,0)
+ ;;=4^L73.2
+ ;;^UTILITY(U,$J,358.3,19310,2)
+ ;;=^278979
+ ;;^UTILITY(U,$J,358.3,19311,0)
+ ;;=L73.9^^86^983^153
+ ;;^UTILITY(U,$J,358.3,19311,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8912,1,3,0)
- ;;=3^Drug-Induced Glaucoma,Left Eye,Severe Stage
+ ;;^UTILITY(U,$J,358.3,19311,1,3,0)
+ ;;=3^Follicular Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,19311,1,4,0)
+ ;;=4^L73.9
+ ;;^UTILITY(U,$J,358.3,19311,2)
+ ;;=^5009286
+ ;;^UTILITY(U,$J,358.3,19312,0)
+ ;;=L82.0^^86^983^160
+ ;;^UTILITY(U,$J,358.3,19312,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19312,1,3,0)
+ ;;=3^Inflamed Seborrheic Keratosis
+ ;;^UTILITY(U,$J,358.3,19312,1,4,0)
+ ;;=4^L82.0
+ ;;^UTILITY(U,$J,358.3,19312,2)
+ ;;=^303311
+ ;;^UTILITY(U,$J,358.3,19313,0)
+ ;;=L82.1^^86^983^264
+ ;;^UTILITY(U,$J,358.3,19313,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19313,1,3,0)
+ ;;=3^Seborrheic Keratosis NEC
+ ;;^UTILITY(U,$J,358.3,19313,1,4,0)
+ ;;=4^L82.1
+ ;;^UTILITY(U,$J,358.3,19313,2)
+ ;;=^303312
+ ;;^UTILITY(U,$J,358.3,19314,0)
+ ;;=L84.^^86^983^116
+ ;;^UTILITY(U,$J,358.3,19314,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19314,1,3,0)
+ ;;=3^Corns and Callosities
+ ;;^UTILITY(U,$J,358.3,19314,1,4,0)
+ ;;=4^L84.
+ ;;^UTILITY(U,$J,358.3,19314,2)
+ ;;=^271920
+ ;;^UTILITY(U,$J,358.3,19315,0)
+ ;;=L85.0^^86^983^8
+ ;;^UTILITY(U,$J,358.3,19315,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19315,1,3,0)
+ ;;=3^Acquired Ichthyosis
+ ;;^UTILITY(U,$J,358.3,19315,1,4,0)
+ ;;=4^L85.0
+ ;;^UTILITY(U,$J,358.3,19315,2)
+ ;;=^5009320
+ ;;^UTILITY(U,$J,358.3,19316,0)
+ ;;=L85.1^^86^983^10
+ ;;^UTILITY(U,$J,358.3,19316,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19316,1,3,0)
+ ;;=3^Acquired Keratosis Palmaris et Plantaris
+ ;;^UTILITY(U,$J,358.3,19316,1,4,0)
+ ;;=4^L85.1
+ ;;^UTILITY(U,$J,358.3,19316,2)
+ ;;=^5009321
+ ;;^UTILITY(U,$J,358.3,19317,0)
+ ;;=L85.2^^86^983^166
+ ;;^UTILITY(U,$J,358.3,19317,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19317,1,3,0)
+ ;;=3^Keratosis Punctata
+ ;;^UTILITY(U,$J,358.3,19317,1,4,0)
+ ;;=4^L85.2
+ ;;^UTILITY(U,$J,358.3,19317,2)
+ ;;=^5009322
+ ;;^UTILITY(U,$J,358.3,19318,0)
+ ;;=L85.3^^86^983^289
+ ;;^UTILITY(U,$J,358.3,19318,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19318,1,3,0)
+ ;;=3^Xerosis Cutis
+ ;;^UTILITY(U,$J,358.3,19318,1,4,0)
+ ;;=4^L85.3
+ ;;^UTILITY(U,$J,358.3,19318,2)
+ ;;=^5009323
+ ;;^UTILITY(U,$J,358.3,19319,0)
+ ;;=L86.^^86^983^164
+ ;;^UTILITY(U,$J,358.3,19319,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19319,1,3,0)
+ ;;=3^Keratoderma in Diseases Classified Elsewhere
+ ;;^UTILITY(U,$J,358.3,19319,1,4,0)
+ ;;=4^L86.
+ ;;^UTILITY(U,$J,358.3,19319,2)
+ ;;=^5009326
+ ;;^UTILITY(U,$J,358.3,19320,0)
+ ;;=L87.0^^86^983^165
+ ;;^UTILITY(U,$J,358.3,19320,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19320,1,3,0)
+ ;;=3^Keratosis Follicularis et Parafollicularis in Cutem Penetrans
+ ;;^UTILITY(U,$J,358.3,19320,1,4,0)
+ ;;=4^L87.0
+ ;;^UTILITY(U,$J,358.3,19320,2)
+ ;;=^5009327
+ ;;^UTILITY(U,$J,358.3,19321,0)
+ ;;=L87.2^^86^983^141
+ ;;^UTILITY(U,$J,358.3,19321,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19321,1,3,0)
+ ;;=3^Elastosis Perforans Serpiginosa
+ ;;^UTILITY(U,$J,358.3,19321,1,4,0)
+ ;;=4^L87.2
+ ;;^UTILITY(U,$J,358.3,19321,2)
+ ;;=^5009329
+ ;;^UTILITY(U,$J,358.3,19322,0)
+ ;;=L89.300^^86^983^242
+ ;;^UTILITY(U,$J,358.3,19322,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19322,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Unstageable
+ ;;^UTILITY(U,$J,358.3,19322,1,4,0)
+ ;;=4^L89.300
+ ;;^UTILITY(U,$J,358.3,19322,2)
+ ;;=^5009389
+ ;;^UTILITY(U,$J,358.3,19323,0)
+ ;;=L89.301^^86^983^237
+ ;;^UTILITY(U,$J,358.3,19323,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19323,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 1
+ ;;^UTILITY(U,$J,358.3,19323,1,4,0)
+ ;;=4^L89.301
+ ;;^UTILITY(U,$J,358.3,19323,2)
+ ;;=^5009390
+ ;;^UTILITY(U,$J,358.3,19324,0)
+ ;;=L89.302^^86^983^238
+ ;;^UTILITY(U,$J,358.3,19324,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19324,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 2
+ ;;^UTILITY(U,$J,358.3,19324,1,4,0)
+ ;;=4^L89.302
+ ;;^UTILITY(U,$J,358.3,19324,2)
+ ;;=^5009391
+ ;;^UTILITY(U,$J,358.3,19325,0)
+ ;;=L89.303^^86^983^239
+ ;;^UTILITY(U,$J,358.3,19325,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19325,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 3
+ ;;^UTILITY(U,$J,358.3,19325,1,4,0)
+ ;;=4^L89.303
+ ;;^UTILITY(U,$J,358.3,19325,2)
+ ;;=^5009392
+ ;;^UTILITY(U,$J,358.3,19326,0)
+ ;;=L89.304^^86^983^240
+ ;;^UTILITY(U,$J,358.3,19326,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,19326,1,3,0)
+ ;;=3^Pressure Ulcer of Buttock,Stage 4
+ ;;^UTILITY(U,$J,358.3,19326,1,4,0)
+ ;;=4^L89.304
+ ;;^UTILITY(U,$J,358.3,19326,2)
+ ;;=^5009393
+ ;;^UTILITY(U,$J,358.3,19327,0)
+ ;;=L89.309^^86^983^241

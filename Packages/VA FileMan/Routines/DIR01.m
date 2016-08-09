@@ -1,7 +1,11 @@
-DIR01 ;SFISC/MKO-FIELD EDITOR ;12:37 PM  15 Feb 1995
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
- I DIR0A]"",DIR0C=1 D F X IOXY Q:DIR0QT
+DIR01 ;SFISC/MKO-FIELD EDITOR ;12DEC2004
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ I DIR0A]"",DIR0C=1 D F X IOXY Q:DIR0QT  ;There's a default answer; single-char READ
  F  D E X IOXY Q:DIR0QT
  Q
  ;
@@ -149,8 +153,24 @@ QT ;
 CL ;
 SV ;
 RF ;
+PRNT ;
  S DIR0QT=1
  Q
+ ;
+MOUSERT ;not used(?)
+ Q
+MOUSEDN N % R *%,*%
+ Q
+ ;
+MOUSE ;
+ X DDGLZOSF("EOFF") R *DDSMX,*DDSMY X DDGLZOSF("EON") S DDSMX=DDSMX-33,DDSMY=DDSMY-33,DDSMOUSY=1 ;Get $X,$Y from mouse
+ S X="" F  S X=$O(DDSMOUSE(DDSMY,X)) Q:X=""!(X>DDSMX)  S P=$O(DDSMOUSE(DDSMY,X,"")) I P'<DDSMX S X=$G(DDSMOUSE(DDSMY,X,P,1)) S:X]"" DIR0A=X Q  ;MOUSE clicked on CHOICE
+ I +DIR0=DDSMY,DDSMX'<$P(DIR0,U,2),$P(DIR0,U,2)+$P(DIR0,U,3)-1'<DDSMX D  ;MOUSE CLICK is where we already are
+ .S DIR0CH="CR" ;SELECT if this is "CLOSE" Command, or if field is filled in, & has BRANCHING LOGIC or is just REACHABLE
+ .I $G(DIR0A)]"",$G(DDS) Q:DDSMY+1=IOSL  I $G(DDSBK),$G(DDO) Q:$G(^DIST(.404,DDSBK,40,DDO,10))]""!($P($G(^(4)),U,4)=2)
+ .S DIR0A="??" ;Otherwise, give HELP
+ G EX
+ ;
 NOP W $C(7)
  Q
  ;
@@ -163,7 +183,7 @@ READ(Y) ;Out: Y=char or mnemonic
  I Y'="TO",$D(DIR0KD) D @DIR0KD
  Q
  ;
-PREAD(DIR0LEN,DIR0ST,Y) ;
+PREAD(DIR0LEN,DIR0ST,Y) ;CALLED BY DIR03.  Y is really DIR0CH
  ; Y = Mnem, Null if DIR0LEN chars read or invalid
  X DDGLZOSF("EON")
  R DIR0ST#DIR0LEN:DTIME E  S Y="TO" Q
@@ -179,7 +199,7 @@ MNE(Y) ;Out: Y=mnemonic, or -1 if invalid
  F  D MNELOOP Q:F
  Q
  ;
-MNELOOP ;
+MNELOOP ;translate IN to OUT
  S S=S_$C(Y)
  I DIR0(DIR0P_"IN")'[(U_S) D  I Y=-1 D FLUSH Q
  . I $C(Y)'?1L S Y=-1 Q

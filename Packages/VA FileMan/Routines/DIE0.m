@@ -1,22 +1,26 @@
-DIE0 ;SFISC/GFT-BRANCHING, UP-ARROWING ;27MAR2006
- ;;22.0;VA FileMan;**60,159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIE0 ;SFISC/GFT-BRANCHING, UP-ARROWING ;23DEC2005
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  G Q^DIE1:$D(DTOUT) G:X'?1"^".E T^DIED:$P($P(DQ(DQ),U,4),";E",2),X
- I $D(DIE("NO^")),X=U,DIE("NO^")'["OUTOK" W !?3,"EXIT NOT ALLOWED " G X
- I $D(DIE("NO^")),X?1"^"1E.E,DIE("NO^")'["BACK" W !?3,"JUMPING NOT ALLOWED " G X
+ I $D(DIE("NO^")),X=U,DIE("NO^")'["OUTOK" W !?3,$$EZBLD^DIALOG(3095) G X ;**
+ I $D(DIE("NO^")),X?1"^"1E.E,DIE("NO^")'["BACK" W !?3,$$EZBLD^DIALOG(3096) G X ;**
  I $L(X,"^")-1>1 S X=$E(X,2,99) G DIE0
  S X=$P(X,U,2),DIC(0)="E"
 OUT I X=""!(DP<0) S DIK=X,DC=$S($D(DQ(DQ))#2:$P(DQ(DQ),U,4),1:DQ) G OUT^DIE1
  I DR]"" G A:X?1"@".N S DIC("S")="D S^DIE0" S:'$D(DR(DIE1,DP)) DR(DIE1,DP)=DR
  S DDBK=0,DIC="^DD("_DP_"," D ^DIC I Y>0 D S
- E  W:DDBK !?3,"JUMPING FORWARD NOT ALLOWED "
+ E  W:DDBK !?3,$$EZBLD^DIALOG(3097)
  K DTOUT,DIC,DDBK,DDFND,DDONE,A0,A1,A2
  I Y<0 S DG=DK,DH=":"_DM G X
  S DI=$S(DH[":":+Y,1:DH),DK=DG D ^DIE1:$D(DG)>9 K DG,DB,DE,DQ,DIFLD S DQ=0 G JMP^DIE
 X W:X'["?"&'$D(ZTQUEUED) $C(7),"??" G B^DIED:'$D(DB(DQ)),B^DIE1
  ;
 BR ;From ^DIED
- S Y=U,X=$G(X) X DQ(0,DQ) D:$D(DIEFIRE)#2 FIREREC^DIE1 G A^DIED:$D(Y)[0,A^DIED:Y=U S D=$S(+Y=Y:9999,1:DQ),X="" I 0[Y S DQ=0 G OUT
+ S Y=U,X=$G(X) X DQ(0,DQ) D:$D(DIEFIRE)#2 FIREREC^DIE1 G A^DIED:$D(Y)[0,A^DIED:Y=U S D=$S(+Y=Y:9999,1:DQ),X="" I 0[Y S DQ=0 G OUT ;MAKE SURE 'X' EXISTS, AFTER W-P
 D S D=D+1 I '$D(DQ(D)) G D:$D(DQ(0,D)) S DQ=9999,X=Y,DIC(0)="FO" G OUT
  G D:$P(DQ(D),Y,1)]"" S DQ=D G RE^DIED
  ;

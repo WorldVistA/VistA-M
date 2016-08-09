@@ -1,132 +1,284 @@
-IBDEI0KA ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0KA ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,9430,1,4,0)
- ;;=4^H35.721
- ;;^UTILITY(U,$J,358.3,9430,2)
- ;;=^5005707
- ;;^UTILITY(U,$J,358.3,9431,0)
- ;;=H35.722^^41^478^99
- ;;^UTILITY(U,$J,358.3,9431,1,0)
+ ;;^UTILITY(U,$J,358.3,20443,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9431,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,9431,1,4,0)
- ;;=4^H35.722
- ;;^UTILITY(U,$J,358.3,9431,2)
- ;;=^5005708
- ;;^UTILITY(U,$J,358.3,9432,0)
- ;;=H35.723^^41^478^100
- ;;^UTILITY(U,$J,358.3,9432,1,0)
+ ;;^UTILITY(U,$J,358.3,20443,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,20443,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,20443,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,20444,0)
+ ;;=M48.57XG^^86^1000^30
+ ;;^UTILITY(U,$J,358.3,20444,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9432,1,3,0)
- ;;=3^Serous Detachment of Retinal Pigment Epithelium,Bilateral
- ;;^UTILITY(U,$J,358.3,9432,1,4,0)
- ;;=4^H35.723
- ;;^UTILITY(U,$J,358.3,9432,2)
- ;;=^5005709
- ;;^UTILITY(U,$J,358.3,9433,0)
- ;;=H35.731^^41^478^43
- ;;^UTILITY(U,$J,358.3,9433,1,0)
+ ;;^UTILITY(U,$J,358.3,20444,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Del Healing
+ ;;^UTILITY(U,$J,358.3,20444,1,4,0)
+ ;;=4^M48.57XG
+ ;;^UTILITY(U,$J,358.3,20444,2)
+ ;;=^5012189
+ ;;^UTILITY(U,$J,358.3,20445,0)
+ ;;=M48.54XS^^86^1000^31
+ ;;^UTILITY(U,$J,358.3,20445,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9433,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Right Eye
- ;;^UTILITY(U,$J,358.3,9433,1,4,0)
- ;;=4^H35.731
- ;;^UTILITY(U,$J,358.3,9433,2)
- ;;=^5005711
- ;;^UTILITY(U,$J,358.3,9434,0)
- ;;=H35.732^^41^478^44
- ;;^UTILITY(U,$J,358.3,9434,1,0)
+ ;;^UTILITY(U,$J,358.3,20445,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Subs Encntr,Sequela
+ ;;^UTILITY(U,$J,358.3,20445,1,4,0)
+ ;;=4^M48.54XS
+ ;;^UTILITY(U,$J,358.3,20445,2)
+ ;;=^5012178
+ ;;^UTILITY(U,$J,358.3,20446,0)
+ ;;=M62.830^^86^1000^59
+ ;;^UTILITY(U,$J,358.3,20446,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9434,1,3,0)
- ;;=3^Hemorrhagic Detachment of Retinal Pigment Epithelium,Left Eye
- ;;^UTILITY(U,$J,358.3,9434,1,4,0)
- ;;=4^H35.732
- ;;^UTILITY(U,$J,358.3,9434,2)
- ;;=^5005712
- ;;^UTILITY(U,$J,358.3,9435,0)
- ;;=H35.341^^41^478^57
- ;;^UTILITY(U,$J,358.3,9435,1,0)
+ ;;^UTILITY(U,$J,358.3,20446,1,3,0)
+ ;;=3^Muscle Spasm of Back
+ ;;^UTILITY(U,$J,358.3,20446,1,4,0)
+ ;;=4^M62.830
+ ;;^UTILITY(U,$J,358.3,20446,2)
+ ;;=^5012680
+ ;;^UTILITY(U,$J,358.3,20447,0)
+ ;;=M19.92^^86^1000^120
+ ;;^UTILITY(U,$J,358.3,20447,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9435,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Right Eye
- ;;^UTILITY(U,$J,358.3,9435,1,4,0)
- ;;=4^H35.341
- ;;^UTILITY(U,$J,358.3,9435,2)
- ;;=^5005650
- ;;^UTILITY(U,$J,358.3,9436,0)
- ;;=H35.342^^41^478^56
- ;;^UTILITY(U,$J,358.3,9436,1,0)
+ ;;^UTILITY(U,$J,358.3,20447,1,3,0)
+ ;;=3^Post-Traumatic Osteoarthritis,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20447,1,4,0)
+ ;;=4^M19.92
+ ;;^UTILITY(U,$J,358.3,20447,2)
+ ;;=^5010855
+ ;;^UTILITY(U,$J,358.3,20448,0)
+ ;;=M85.872^^86^1000^80
+ ;;^UTILITY(U,$J,358.3,20448,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9436,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Left Eye
- ;;^UTILITY(U,$J,358.3,9436,1,4,0)
- ;;=4^H35.342
- ;;^UTILITY(U,$J,358.3,9436,2)
- ;;=^5005651
- ;;^UTILITY(U,$J,358.3,9437,0)
- ;;=H35.343^^41^478^55
- ;;^UTILITY(U,$J,358.3,9437,1,0)
+ ;;^UTILITY(U,$J,358.3,20448,1,3,0)
+ ;;=3^Osteopenia,Left Ankle & Foot
+ ;;^UTILITY(U,$J,358.3,20448,1,4,0)
+ ;;=4^M85.872
+ ;;^UTILITY(U,$J,358.3,20448,2)
+ ;;=^5014493
+ ;;^UTILITY(U,$J,358.3,20449,0)
+ ;;=M85.832^^86^1000^81
+ ;;^UTILITY(U,$J,358.3,20449,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9437,1,3,0)
- ;;=3^Macular Cyst/Hole/Pseudohole,Bilateral
- ;;^UTILITY(U,$J,358.3,9437,1,4,0)
- ;;=4^H35.343
- ;;^UTILITY(U,$J,358.3,9437,2)
- ;;=^5005652
- ;;^UTILITY(U,$J,358.3,9438,0)
- ;;=H35.381^^41^478^104
- ;;^UTILITY(U,$J,358.3,9438,1,0)
+ ;;^UTILITY(U,$J,358.3,20449,1,3,0)
+ ;;=3^Osteopenia,Left Forearm
+ ;;^UTILITY(U,$J,358.3,20449,1,4,0)
+ ;;=4^M85.832
+ ;;^UTILITY(U,$J,358.3,20449,2)
+ ;;=^5014481
+ ;;^UTILITY(U,$J,358.3,20450,0)
+ ;;=M85.842^^86^1000^82
+ ;;^UTILITY(U,$J,358.3,20450,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9438,1,3,0)
- ;;=3^Toxic Maculopathy,Right Eye
- ;;^UTILITY(U,$J,358.3,9438,1,4,0)
- ;;=4^H35.381
- ;;^UTILITY(U,$J,358.3,9438,2)
- ;;=^5005666
- ;;^UTILITY(U,$J,358.3,9439,0)
- ;;=H35.382^^41^478^103
- ;;^UTILITY(U,$J,358.3,9439,1,0)
+ ;;^UTILITY(U,$J,358.3,20450,1,3,0)
+ ;;=3^Osteopenia,Left Hand
+ ;;^UTILITY(U,$J,358.3,20450,1,4,0)
+ ;;=4^M85.842
+ ;;^UTILITY(U,$J,358.3,20450,2)
+ ;;=^5014484
+ ;;^UTILITY(U,$J,358.3,20451,0)
+ ;;=M85.862^^86^1000^83
+ ;;^UTILITY(U,$J,358.3,20451,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9439,1,3,0)
- ;;=3^Toxic Maculopathy,Left Eye
- ;;^UTILITY(U,$J,358.3,9439,1,4,0)
- ;;=4^H35.382
- ;;^UTILITY(U,$J,358.3,9439,2)
- ;;=^5005667
- ;;^UTILITY(U,$J,358.3,9440,0)
- ;;=H35.371^^41^478^69
- ;;^UTILITY(U,$J,358.3,9440,1,0)
+ ;;^UTILITY(U,$J,358.3,20451,1,3,0)
+ ;;=3^Osteopenia,Left Lower Leg
+ ;;^UTILITY(U,$J,358.3,20451,1,4,0)
+ ;;=4^M85.862
+ ;;^UTILITY(U,$J,358.3,20451,2)
+ ;;=^5014490
+ ;;^UTILITY(U,$J,358.3,20452,0)
+ ;;=M85.812^^86^1000^84
+ ;;^UTILITY(U,$J,358.3,20452,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9440,1,3,0)
- ;;=3^Puckering of Macular,Right Eye
- ;;^UTILITY(U,$J,358.3,9440,1,4,0)
- ;;=4^H35.371
- ;;^UTILITY(U,$J,358.3,9440,2)
- ;;=^5005662
- ;;^UTILITY(U,$J,358.3,9441,0)
- ;;=H35.372^^41^478^68
- ;;^UTILITY(U,$J,358.3,9441,1,0)
+ ;;^UTILITY(U,$J,358.3,20452,1,3,0)
+ ;;=3^Osteopenia,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,20452,1,4,0)
+ ;;=4^M85.812
+ ;;^UTILITY(U,$J,358.3,20452,2)
+ ;;=^5014475
+ ;;^UTILITY(U,$J,358.3,20453,0)
+ ;;=M85.852^^86^1000^85
+ ;;^UTILITY(U,$J,358.3,20453,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9441,1,3,0)
- ;;=3^Puckering of Macular,Left Eye
- ;;^UTILITY(U,$J,358.3,9441,1,4,0)
- ;;=4^H35.372
- ;;^UTILITY(U,$J,358.3,9441,2)
- ;;=^5005663
- ;;^UTILITY(U,$J,358.3,9442,0)
- ;;=H35.362^^41^478^37
- ;;^UTILITY(U,$J,358.3,9442,1,0)
+ ;;^UTILITY(U,$J,358.3,20453,1,3,0)
+ ;;=3^Osteopenia,Left Thigh
+ ;;^UTILITY(U,$J,358.3,20453,1,4,0)
+ ;;=4^M85.852
+ ;;^UTILITY(U,$J,358.3,20453,2)
+ ;;=^5014487
+ ;;^UTILITY(U,$J,358.3,20454,0)
+ ;;=M85.822^^86^1000^86
+ ;;^UTILITY(U,$J,358.3,20454,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,9442,1,3,0)
- ;;=3^Drusen of Macula,Left Eye
- ;;^UTILITY(U,$J,358.3,9442,1,4,0)
- ;;=4^H35.362
- ;;^UTILITY(U,$J,358.3,9442,2)
- ;;=^5005659
- ;;^UTILITY(U,$J,358.3,9443,0)
- ;;=H35.361^^41^478^38
- ;;^UTILITY(U,$J,358.3,9443,1,0)
+ ;;^UTILITY(U,$J,358.3,20454,1,3,0)
+ ;;=3^Osteopenia,Left Upper Arm
+ ;;^UTILITY(U,$J,358.3,20454,1,4,0)
+ ;;=4^M85.822
+ ;;^UTILITY(U,$J,358.3,20454,2)
+ ;;=^5014478
+ ;;^UTILITY(U,$J,358.3,20455,0)
+ ;;=M85.89^^86^1000^87
+ ;;^UTILITY(U,$J,358.3,20455,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20455,1,3,0)
+ ;;=3^Osteopenia,Multiple Sites
+ ;;^UTILITY(U,$J,358.3,20455,1,4,0)
+ ;;=4^M85.89
+ ;;^UTILITY(U,$J,358.3,20455,2)
+ ;;=^5014495
+ ;;^UTILITY(U,$J,358.3,20456,0)
+ ;;=M85.88^^86^1000^88
+ ;;^UTILITY(U,$J,358.3,20456,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20456,1,3,0)
+ ;;=3^Osteopenia,Other Site
+ ;;^UTILITY(U,$J,358.3,20456,1,4,0)
+ ;;=4^M85.88
+ ;;^UTILITY(U,$J,358.3,20456,2)
+ ;;=^5134059
+ ;;^UTILITY(U,$J,358.3,20457,0)
+ ;;=M85.871^^86^1000^89
+ ;;^UTILITY(U,$J,358.3,20457,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20457,1,3,0)
+ ;;=3^Osteopenia,Right Foot & Ankle
+ ;;^UTILITY(U,$J,358.3,20457,1,4,0)
+ ;;=4^M85.871
+ ;;^UTILITY(U,$J,358.3,20457,2)
+ ;;=^5014492
+ ;;^UTILITY(U,$J,358.3,20458,0)
+ ;;=M85.831^^86^1000^90
+ ;;^UTILITY(U,$J,358.3,20458,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20458,1,3,0)
+ ;;=3^Osteopenia,Right Forearm
+ ;;^UTILITY(U,$J,358.3,20458,1,4,0)
+ ;;=4^M85.831
+ ;;^UTILITY(U,$J,358.3,20458,2)
+ ;;=^5014480
+ ;;^UTILITY(U,$J,358.3,20459,0)
+ ;;=M85.841^^86^1000^91
+ ;;^UTILITY(U,$J,358.3,20459,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20459,1,3,0)
+ ;;=3^Osteopenia,Right Hand
+ ;;^UTILITY(U,$J,358.3,20459,1,4,0)
+ ;;=4^M85.841
+ ;;^UTILITY(U,$J,358.3,20459,2)
+ ;;=^5014483
+ ;;^UTILITY(U,$J,358.3,20460,0)
+ ;;=M85.861^^86^1000^92
+ ;;^UTILITY(U,$J,358.3,20460,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20460,1,3,0)
+ ;;=3^Osteopenia,Right Lower Leg
+ ;;^UTILITY(U,$J,358.3,20460,1,4,0)
+ ;;=4^M85.861
+ ;;^UTILITY(U,$J,358.3,20460,2)
+ ;;=^5014489
+ ;;^UTILITY(U,$J,358.3,20461,0)
+ ;;=M85.811^^86^1000^93
+ ;;^UTILITY(U,$J,358.3,20461,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20461,1,3,0)
+ ;;=3^Osteopenia,Right Shoulder
+ ;;^UTILITY(U,$J,358.3,20461,1,4,0)
+ ;;=4^M85.811
+ ;;^UTILITY(U,$J,358.3,20461,2)
+ ;;=^5014474
+ ;;^UTILITY(U,$J,358.3,20462,0)
+ ;;=M85.851^^86^1000^94
+ ;;^UTILITY(U,$J,358.3,20462,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20462,1,3,0)
+ ;;=3^Osteopenia,Right Thigh
+ ;;^UTILITY(U,$J,358.3,20462,1,4,0)
+ ;;=4^M85.851
+ ;;^UTILITY(U,$J,358.3,20462,2)
+ ;;=^5014486
+ ;;^UTILITY(U,$J,358.3,20463,0)
+ ;;=M85.821^^86^1000^95
+ ;;^UTILITY(U,$J,358.3,20463,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20463,1,3,0)
+ ;;=3^Osteopenia,Right Upper Arm
+ ;;^UTILITY(U,$J,358.3,20463,1,4,0)
+ ;;=4^M85.821
+ ;;^UTILITY(U,$J,358.3,20463,2)
+ ;;=^5014477
+ ;;^UTILITY(U,$J,358.3,20464,0)
+ ;;=M85.80^^86^1000^96
+ ;;^UTILITY(U,$J,358.3,20464,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20464,1,3,0)
+ ;;=3^Osteopenia,Unspec Site
+ ;;^UTILITY(U,$J,358.3,20464,1,4,0)
+ ;;=4^M85.80
+ ;;^UTILITY(U,$J,358.3,20464,2)
+ ;;=^5014473
+ ;;^UTILITY(U,$J,358.3,20465,0)
+ ;;=B02.0^^86^1001^46
+ ;;^UTILITY(U,$J,358.3,20465,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20465,1,3,0)
+ ;;=3^Zoster Encephalitis
+ ;;^UTILITY(U,$J,358.3,20465,1,4,0)
+ ;;=4^B02.0
+ ;;^UTILITY(U,$J,358.3,20465,2)
+ ;;=^5000488
+ ;;^UTILITY(U,$J,358.3,20466,0)
+ ;;=B02.29^^86^1001^36
+ ;;^UTILITY(U,$J,358.3,20466,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20466,1,3,0)
+ ;;=3^Postherpetic Nervous System Involvement,Other
+ ;;^UTILITY(U,$J,358.3,20466,1,4,0)
+ ;;=4^B02.29
+ ;;^UTILITY(U,$J,358.3,20466,2)
+ ;;=^5000492
+ ;;^UTILITY(U,$J,358.3,20467,0)
+ ;;=F03.90^^86^1001^10
+ ;;^UTILITY(U,$J,358.3,20467,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20467,1,3,0)
+ ;;=3^Dementia w/o Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,20467,1,4,0)
+ ;;=4^F03.90
+ ;;^UTILITY(U,$J,358.3,20467,2)
+ ;;=^5003050
+ ;;^UTILITY(U,$J,358.3,20468,0)
+ ;;=F03.91^^86^1001^9
+ ;;^UTILITY(U,$J,358.3,20468,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20468,1,3,0)
+ ;;=3^Dementia w/ Behavioral Disturbance,Unspec
+ ;;^UTILITY(U,$J,358.3,20468,1,4,0)
+ ;;=4^F03.91
+ ;;^UTILITY(U,$J,358.3,20468,2)
+ ;;=^5133350
+ ;;^UTILITY(U,$J,358.3,20469,0)
+ ;;=F01.50^^86^1001^12
+ ;;^UTILITY(U,$J,358.3,20469,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20469,1,3,0)
+ ;;=3^Dementia,Vascular w/o Behavioral Disturbance
+ ;;^UTILITY(U,$J,358.3,20469,1,4,0)
+ ;;=4^F01.50
+ ;;^UTILITY(U,$J,358.3,20469,2)
+ ;;=^5003046
+ ;;^UTILITY(U,$J,358.3,20470,0)
+ ;;=F10.27^^86^1001^11
+ ;;^UTILITY(U,$J,358.3,20470,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,20470,1,3,0)
+ ;;=3^Dementia,Alcohol-Induced/Persist w/ Alcohol Dependence
+ ;;^UTILITY(U,$J,358.3,20470,1,4,0)
+ ;;=4^F10.27
+ ;;^UTILITY(U,$J,358.3,20470,2)
+ ;;=^5003095
+ ;;^UTILITY(U,$J,358.3,20471,0)
+ ;;=F06.1^^86^1001^6

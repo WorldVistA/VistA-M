@@ -1,6 +1,10 @@
-DIFROMS5 ;SCISC/DCL-DIFROM SERVER PROCESS TEMPLATES OUT ;1:40 PM  4 Sep 1998
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIFROMS5 ;SCISC/DCL-DIFROM SERVER PROCESS TEMPLATES OUT ;5APR2003
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  Q
  ;
 EDEOUT ;EXTENDED DATABASE ELEMENTS OUT
@@ -65,14 +69,14 @@ T404 ;PROCESS BLOCKS
  S D1=0
  F  S D1=$O(@DIFRTRT@(40,D1)) Q:'D1  I $D(^(D1,0)) S DIFR1=+$P(^(0),U,2) D
  .I $D(^DIST(.404,DIFR1,0)) D
- ..S $P(@DIFRTRT@(40,D1,0),U,2)=$P(^DIST(.404,DIFR1,0),U)
+ ..S $P(@DIFRTRT@(40,D1,0),U,2)=$P(^DIST(.404,DIFR1,0),U) ;SEND PAGE'S HEADER BLOCK NAME, instead of NUMBER POINTER
  ..M @DIFRTA@(.404,DIFR1)=^DIST(.404,DIFR1)
  ..K @DIFRTA@(.404,DIFR1,40,"B"),^("C"),^("D")
  ..Q
  .S D2=0
  .F  S D2=$O(@DIFRTRT@(40,D1,40,D2)) Q:'D2  I $D(^(D2,0)) S DIFR2=+^(0) D
  ..I $D(^DIST(.404,DIFR2)) D
- ...S $P(@DIFRTRT@(40,D1,40,D2,0),U)=$P(^DIST(.404,DIFR2,0),U)
+ ...S $P(@DIFRTRT@(40,D1,40,D2,0),U)=$P(^DIST(.404,DIFR2,0),U) ;SEND THE BLOCK NAME, instead of NUMBER POINTER
  ...M @DIFRTA@(.404,DIFR2)=^DIST(.404,DIFR2)
  ...K @DIFRTA@(.404,DIFR2,40,"B"),^("C"),^("D")
  ...Q
@@ -81,7 +85,7 @@ T404 ;PROCESS BLOCKS
  Q
  ;
 DIALOG ;
- Q:'$D(@DIFRTRT@(0))  K ^(4),^(3,"B")
+ Q:'$D(@DIFRTRT@(0))  K ^(3,"B") K @DIFRTRT@(4,"B") ;GFT -- USED TO KILL ^(4) SO TRANSLATIONS WOULD NOT BE TRANSPORTED!
  Q:$G(DIFRF)'>0
  S:DIFRF DIFRF=$P($G(^DIC(9.4,DIFRF,0)),"^"),$P(@DIFRTRT@(0),"^",4)=DIFRF
  Q

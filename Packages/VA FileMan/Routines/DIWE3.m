@@ -1,6 +1,10 @@
-DIWE3 ;SFISC/GFT-WP - MOVE, DELETE, REPEAT, TRANSFER ;12:49 PM  5 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIWE3 ;SFISC/GFT-WP - MOVE, DELETE, REPEAT, TRANSFER ;02:10 PM  8 Dec 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 M ;MOVE
  S DWAFT=1 G 1:X=U,OPT:'X S (DW1,DW3)=0 D MOVE Q:$D(DTOUT)  S:DW1>DW3 DW1=DW1+I,DW2=DW2+I D DEL:DW1
 1 G ^DIWE1
@@ -11,25 +15,25 @@ R ;REPEAT
  S DWAFT=1 G 1:X=U,OPT:'X D MOVE
  G 1
  ;
-D ;DELETE
- S DW1=X G 1:X=U,OPT:'X W "  thru: "_DW1_"// " R DW2:DTIME S:'$T DTOUT=1
+D ;DELETE; **CCO/NI  MOST LINES FROM HERE TO 'YN' HAVE BEEN CHANGED
+ S DW1=X G 1:X=U,OPT:'X W "  "_$$EZBLD^DIALOG(8117)_DW1_"// " R DW2:DTIME S:'$T DTOUT=1
  G 1:DW2=U!'$T S:DW2="" DW2=DW1 I DW1>DW2 W $C(7),"??" G OPT
  I DW2>DWLC S DW2=DWLC W "  ("_DW2_")"
- S X=DW2-DW1+1,%=2 W !,"OK TO REMOVE "_X_" LINE"_$E("S",X>1)
- D YN^DICN I %-1 W "  <NOTHING DELETED>" G 1
- S %=2 I DW1=1,DW2=DWLC W !,$C(7),"ARE YOU SURE YOU WANT TO DELETE THIS ENTIRE TEXT" D YN^DICN G 1:%-1
+ S X=DW2-DW1+1,%=2 W !,$$EZBLD^DIALOG(8116,X)
+ D YN^DICN I %-1 W "  ",$$EZBLD^DIALOG(8114) G 1
+ S %=2 I DW1=1,DW2=DWLC W !,$C(7),$$EZBLD^DIALOG(8115) D YN^DICN G 1:%-1
  D DEL K DWL G 1
  ;
-F R !,"From line: ",DWL:DTIME S:'$T DTOUT=1 G Q:DWL=U!'$T
+F W !,$$EZBLD^DIALOG(8118) R DWL:DTIME S:'$T DTOUT=1 G Q:DWL=U!'$T ;'FROM LINE:  '
  I DWL?."?" D H G F
- I +DWL'=DWL W $C(7)," ??    Please enter a number." G F
-MOVE R "  thru: ",DW2:DTIME S:'$T DTOUT=1 G Q:DW2=U!'$T S DW1=DWL
- I $E(DW2)="E"!($E(DW2)="e") S DW2=9999999
+ I +DWL'=DWL W $C(7)," ??  ",$$EZBLD^DIALOG(8054) G F
+MOVE W "  ",$$EZBLD^DIALOG(8117) R DW2:DTIME S:'$T DTOUT=1 G Q:DW2=U!'$T S DW1=DWL ;**CCO/NI 'THRU:'
+ I DW2=$$UP^DILIBF($$EZBLD^DIALOG(7097)) S DW2=DWLC ;*CCO/NI "END" FOR END
  I 'DW2 S DW2=DW1 W " (",DW1,")"
- S %=2 G YN:'DWAFT R " after line: ",DW3:DTIME S:'$T DTOUT=1 G Q:DW3=U!'$T
+ S %=2 G YN:'DWAFT W "  ",$$EZBLD^DIALOG(8119) R DW3:DTIME S:'$T DTOUT=1 G Q:DW3=U!'$T ;**CCO/NI 'AFTER LINE:'
  I DW1-1<DW3,DW2>DW3 G Q
  I DW1<1!(DW2>DWLC)!(DW1>DW2)!(DW3<0)!(DW3>DWLC)!(+DW3'=DW3) G Q
-YN W !,"ARE YOU SURE" D YN^DICN
+YN W !,$$EZBLD^DIALOG(7050) D YN^DICN
  G Q:%-1 K ^UTILITY($J,"W") S I=0
  I DWAFT?.N X "S J=DW1-.1 F  S J=$O("_DIC_"J)) Q:J>DW2!(J'>0)  I $D(^(J,0)) S X=^(0) D O" S:J="" J=-1 G DN
  I DW1>DW2 G Q
@@ -45,23 +49,22 @@ H N DIR,X,Y,DIRUT,%
  S DIR(0)="E"
  F %=1:1 Q:'$D(^TMP($J,"DIWE3",%))  S X=$G(^(%,0)) W !,$J(%,3),">",X I %#15=0 D ^DIR Q:X=U!$D(DIRUT)
  Q
-Q W "  <NO CHANGE>",$C(7) S DW1=0 K DWL,X,DICMX,DWAFT Q
+Q W "  ",$$EZBLD^DIALOG(8121) S DW1=0 K DWL,X,DICMX,DWAFT Q  ;**CCO/NI  'NO CHANGE'
 O S I=I+1,^UTILITY($J,"W",I,0)=X Q
-Z ;
+ ;
+Z ;TRANSFER
  Q:X=""!(X[U)!(X>DWLC)  S DW3=X
  N VAL,FILE,FLD,WPROOT,IENS,ARR,RT,FI,FD,WPRT,IEN S FI=0,RT=DIC
  D RT(RT,"ARR") I $G(ARR)=U G Z0
  S FI=ARR("FILE"),FD=ARR("FLDNO"),WPRT=ARR("ROOT"),IEN=ARR("IENS")
 Z0 N MSG S MSG="",FILE=FI,FLD=$G(FD),WPROOT=$G(WPRT),IENS=$G(IEN)
- R !,"From what text: ",VAL:DTIME I '$T!(U[VAL)!(VAL="") S DUOUT=1 Q
+ W !,$$EZBLD^DIALOG(8131) R VAL:DTIME I '$T!(U[VAL)!(VAL="") S DUOUT=1 Q  ;**CCO/NI 'FROM WHAT TEXT'
  I VAL?1."?" D  G Z0
  .N X,Y,D,DIC,DIR,DZ,DIX,DIY,DIZ,DO,DD
- .W !! I $G(FILE)=3.9 W ?5,"Enter the message number or SUBJECT of another mailman message, OR ",!
- .I FILE,FILE'=3.9 W ?5,"Select another entry in this file OR"
- .W !?5,"Use relational syntax to pick up information from a word-processing",!?5,"field in another file.",!
- .W ?5,"ex.  ""VALUE"":FILE NAME:WORD PROCESSING FIELD NAME",!
+ .S X=8132 D:$G(FILE)=3.9  S X=8133 D:$G(FILE)-3.9&$G(FILE)  S X=8134 D
+ ..D BLD^DIALOG(X),MSG^DIALOG("WH")
  .I FILE D
- ..W !,"Do you want the entire "_$O(^DD(FILE,0,"NM",0))_" list?"
+EGP ..W !,$$EZBLD^DIALOG(8064),$$EZBLD^DIALOG(8066,$O(^DD(FILE,0,"NM",0))),"?" ;**CCO/NI 'WANT THE ENTIRE LIST'
  ..S DZ="??" S DIR(0)="Y" D ^DIR Q:'Y
  ..S DIC=WPROOT,DIC(0)="QEM",D="B" D DQ^DICQ
  ..Q
@@ -103,43 +106,38 @@ RT1 ;
  S @DIARR@("IENS")=IENS
  Q
  ;
-PRSREL N X,FTYPE,T,M,W,I,FI,FD,WPRT S X=VAL
+PRSREL N DIFNM,FIELD,X,FTYPE,T,M,W,I,FI,FD,WPRT S X=VAL ;**CCO/NI
  S T=$F(X," IN ") I T S X=$E(X,1,T-5),W=":",M=T-4,I=X_W_$E(VAL,T,999),T=$F(I," FILE",M) S:T&$F(W,$E(I,T)) I=$E(I,1,T-6)_$E(I,T,999) S X=I
  S VAL=$P(X,":"),FI=$P(X,":",2),FD=$P(X,":",3)
  I 'VAL,VAL'?1"`".N,VAL'?1"""".E1"""" S MSG="INVALID SYNTAX" Q
  I $E(VAL)=$C(34) D
  . I VAL?3"""".E3"""" S @("VAL="_VAL) Q
  . S VAL=$E(VAL,2,$L(VAL)-1)
- S FI=$S(FI="":0,FI&($G(^DIC(FI,0))]""):FI,FI'?.N:$O(^DIC("B",FI,"")),1:0)
- I 'FI S MSG="INVALID FILE" Q
- D DIAC I 'FI S MSG="NO READ ACCESS TO FILE" Q
+ S DIFNM=FI,FI=$S(FI="":0,FI&($G(^DIC(FI,0))]""):FI,FI'?.N:$O(^DIC("B",FI,"")),1:0) ;**CCO/NI  REMEMBER FILE NAME
+ I 'FI S MSG=$$EZBLD^DIALOG(409,DIFNM) Q  ;**CCO/NI INVALID FILE
+ACC D DIAC S FIELD=FD I 'FI S MSG=$$EZBLD^DIALOG(1410) Q  ;**CCO/NI " NO READ ACCESS TO FILE"
  S FD=$S(FD:FD,FD'?.N:$O(^DD(FI,"B",FD,"")),1:0)
- I 'FD!('$D(^DD(FI,+FD,0))) S MSG="INVALID FIELD" Q
- I FD S FTYPE=$P($G(^DD(+$P($G(^DD(FI,FD,0)),U,2),.01,0)),U,2) I FTYPE'["W" S MSG="NOT A WORD PROCESSING FLD" Q
+ I 'FD!('$D(^DD(FI,+FD,0))) S DIFNM("FILE")=FI,DIFNM(1)=FIELD,MSG=$$EZBLD^DIALOG(501,.DIFNM) Q  ;**CCO/NI "INVALID FIELD"
+ I FD S FTYPE=$P($G(^DD(+$P($G(^DD(FI,FD,0)),U,2),.01,0)),U,2) I FTYPE'["W" S MSG=$$EZBLD^DIALOG(504,FD) Q  ;**CCO/NI 'NOT W-P'
  I FTYPE["L" D
  .N DIR,X,Y
- .W $C(7),!!,"WARNING!",!,"The field you are transferring text from displays text without wrapping."
- .W !,"The field you are transferring text into may display text differently."
- .W !!,"Do you want to continue?",! N X,Y,DIR S DIR(0)="Y" D ^DIR
- .W ! S:'Y MSG="TEXT TRANSFER CANCELLED" Q
+ .D BLD^DIALOG(8130),MSG^DIALOG("WM") S DIR(0)="Y" D ^DIR ;**CCO/NI   WARNING ABOUT NON-WRAP
+ .W ! S:'Y MSG=$$EZBLD^DIALOG(8135) Q  ;**CCO/NI 'CANCELLED'
  S:MSG="" FILE=FI,FLD=FD,WPROOT=$G(^DIC(FI,0,"GL")) Q
 DIC N X,DIC,Y
  S DIC=WPROOT,X=VAL,DIC(0)="QEM" D ^DIC
- I Y<0 S MSG="NO RECORD FOUND" Q
+ I Y<0 S MSG=$$EZBLD^DIALOG(1402) Q  ;**CCO/NI "NO RECORD FOUND"
  I IENS]"" S IENS=+Y_","_IENS
  E  S IENS=+Y_","
  Q
 GET1 N X K ^TMP($J,"DIWE3")
  S X=$$GET1^DIQ(FILE,IENS,FLD,"Z","^TMP($J,""DIWE3"")")
  I $D(^TMP($J,"DIWE3")) Q
- S MSG="NO TEXT TO TRANSFER FROM"
+ S MSG=$$EZBLD^DIALOG(1403) ;**CCO/NI "NO TEXT TO TRANSFER FROM"
  Q
-NW N DIR,X,Y
- W $C(7),!!,"WARNING!",!,"The field you are transferring text from displays text without wrapping."
- W !,"The field you are transferring text into may display text differently."
- W !!,"Do you want to continue?",! N X,Y,DIR S DIR(0)="Y" D ^DIR
- W ! S:'Y MSG="TEXT TRANSFER CANCELLED" Q
-Q0 W "  <"_MSG_">",$C(7) Q
+ ;
+Q0 W:$X ! W "  <"_MSG_">",$C(7) Q  ;**CCO/NI  DO LINE FEED
+ ;
 DIAC I FI=3.9 Q
  N DIAC,DIFILE
  S DIAC="RD",DIFILE=FI
@@ -147,11 +145,11 @@ DIAC I FI=3.9 Q
  Q
 XM(Z) N %,A9,XMZ,ARR,MSG,A1
  S A1=Z
-% W !,"Transfer which Response: Original Message// " R A9:DTIME I A9[U S MSG="TEXT TRANSFER CANCELLED",Z=0 D Q0 Q
+% W !,"Transfer which Response: Original Message// " R A9:DTIME I A9[U S MSG=$$EZBLD^DIALOG(8135),Z=0 D Q0 Q  ;**CCO/NI 'CANCELLED'
  I A9?1."?" S XMZ=+Z D ENT8^XMAH S Z=A1 G %
  I A9=""!(A9=0)!(A9="O") Q
  I A9 D  Q:Z
  . N A0 S %=$$HDR^XMGAPI2(+Y,.ARR,9) S A0=$G(ARR("RSP",A9))
  . I A0 S Z=A0 Q
- . S MSG="INVALID RESPONSE",Z=0 D Q0
+ . S MSG=$$EZBLD^DIALOG(1401),Z=0 D Q0 ;**CCO/NI 'INVALID RESPONSE'
  S Z=A1 G %

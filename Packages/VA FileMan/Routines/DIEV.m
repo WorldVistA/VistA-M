@@ -1,6 +1,10 @@
 DIEV ;SFISC/DPC-DATA VALIDATOR ;22SEP2009
- ;;22.0;VA FileMan;**55,160**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 VAL(DIEVF,DIEVIEN,DIEVFLD,DIEVFLG,DIEVAL,DIEVANS,DIEVFAR,DIOUTAR) ;
 VALX ;
  N DIEV0,DIEVP2,DA,D,I,C,G K DIEVANS
@@ -101,7 +105,7 @@ INT(%B1,%B2,DIEVFLG,X,DIEVANS,%B3,%B) ;
  I %B["S" S X=$$UP^DILIBF(X)
  S %A=%B1_","_%B2_",V",%E=0,DIR("V")="",%T=$E(%B1)
  S DIEVECNT=$G(DIERR)
- S:DIEVFLG["N" DIRDINUM=1 D 1^DIR1
+ S:DIEVFLG["N" DIRDINUM=1 D 1^DIR1 ;input transform to 52,3 KILLs off "Y" variable!
  I DIEVECNT'=$G(DIERR) S DIEVANS=U D HKERR^DILIBF(%B1,$G(DIEVIEN),%B2,"screen on a pointer or set of codes or in an input transform") K:$G(DIRDINUM) DINUM Q
  I %E S DIEVANS=U K:$G(DIRDINUM) DINUM Q
  S DIEVANS=$S(%B'["P":Y,1:$P(Y,U))

@@ -1,6 +1,11 @@
-DINIT11A ;SFISC/XAK-INITIALIZE VA FILEMAN ;12:28 PM  6 Jan 2000
- ;;22.0;VA FileMan;**26**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DINIT11A ;SFISC/XAK-INITIALIZE VA FILEMAN ;06:30 PM  5 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+EGP I '$D(^DD("DD")) S ^("DD")="S Y=$$FMTE^DILIBF(Y,""5U"")" ;**CCO/NI DO NOT WRITE OVER DATE-OUTPUT CODE
 DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S @("^DD("_$E($P(X," ",2),3,99)_")=Y")
  ;;.001,0 DESCRIPTION^
  ;;.001,.01,0 DESCRIPTION^W^^0;1
@@ -57,5 +62,4 @@ DD F I=1:1 S X=$T(DD+I),Y=$P(X," ",3,99) Q:X?.P  S @("^DD("_$E($P(X," ",2),3,99)
  ;;.3,.01,1,1,1 S ^DD(DA(2),"GR",X,DA(1),DA)=""
  ;;.3,.01,1,1,2 K ^DD(DA(2),"GR",X,DA(1),DA)
  ;;"$O" S Y="%" F %=0:0 S Y=$O(@Y) Q:Y=""  S %=$D(@Y) S:%#2 @(X_"Y)="_Y) I %>9 S %X=Y_"(",%Y=X_"Y," D %XY^%RCR
- ;;"DD" S Y=$$FMTE^DILIBF(Y,"5U")
  ;;"KWIC" ^AND^THE^THEN^FOR^FROM^OTHER^THAN^WITH^THEIR^SOME^THIS^and^the^then^for^from^other^than^with^their^some^this

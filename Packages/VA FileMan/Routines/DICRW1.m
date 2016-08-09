@@ -1,10 +1,14 @@
-DICRW1 ;SFISC/XAK-SELECT A FILE ;1/30/91  4:18 PM
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICRW1 ;SFISC/XAK-SELECT A FILE ;11:06 AM  12 Oct 1999
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 L ;LIST DD'S
- S DIB(1)=0 S D=" START WITH" D C2 G C4:U[X&(Y<0),L:Y<0
-C3 S D="      GO TO" D C2 G C3:Y<0&(X'[U)
- I Y<DIB(1),X'[U W $C(7),!," The 'START WITH' File Number must be less than the 'GO TO' File Number." G L
+ S DIB(1)=0 S D=8101.1 D C2 G C4:U[X&(Y<0),L:Y<0 ;**CCO/NI 'START WITH WHAT FILE'
+C3 S D=8101.2 D C2 G C3:Y<0&(X'[U) ;**CCO/NI  'GO TO WHAT FILE'
+ERR I Y<DIB(1),X'[U W $C(7),!,$$EZBLD^DIALOG(1510) G L ;**CCO/NI  START WITH > GO TO
 C4 I X[U!'$D(DIC) K DIC Q
  S X=DIB(1),DIB(1)=+Y,Y=X Q
 C2 D R1^DICRW D:$D(DDUC) DU S DIC(0)="QEI" D DIC^DICRW K DIAC,DIFILE Q:X[U!'$D(DIC)!(Y=-1)  S:DIB(1)=0 DIB(1)=+Y Q

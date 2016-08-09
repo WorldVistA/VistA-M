@@ -1,6 +1,9 @@
-DICATTD8 ;SFISC/GFT;12:19 PM  13 Dec 2001;VARIABLE POINTER FIELDS
- ;;22.0;VA FileMan;**44,42,83**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICATTD8 ;SFISC/GFT - VARIABLE POINTER FIELDS ;12:19 PM  13 Dec 2001
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 GET ;
  K DICATTVP

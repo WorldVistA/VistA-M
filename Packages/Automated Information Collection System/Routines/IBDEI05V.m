@@ -1,138 +1,276 @@
-IBDEI05V ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI05V ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,2409,1,0)
+ ;;^UTILITY(U,$J,358.3,5663,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5663,1,2,0)
+ ;;=2^11047
+ ;;^UTILITY(U,$J,358.3,5663,1,3,0)
+ ;;=3^DEBRIDE BONE,EA ADDL 20sq cm
+ ;;^UTILITY(U,$J,358.3,5664,0)
+ ;;=98960^^35^403^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5664,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5664,1,2,0)
+ ;;=2^98960
+ ;;^UTILITY(U,$J,358.3,5664,1,3,0)
+ ;;=3^SELF-MGMT ED/TRAIN 1 PT,30 MIN
+ ;;^UTILITY(U,$J,358.3,5665,0)
+ ;;=98961^^35^403^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5665,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5665,1,2,0)
+ ;;=2^98961
+ ;;^UTILITY(U,$J,358.3,5665,1,3,0)
+ ;;=3^SELF-MGMT ED/TRN 2-4 PT,30 MIN
+ ;;^UTILITY(U,$J,358.3,5666,0)
+ ;;=98962^^35^403^9^^^^1
+ ;;^UTILITY(U,$J,358.3,5666,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5666,1,2,0)
+ ;;=2^98962
+ ;;^UTILITY(U,$J,358.3,5666,1,3,0)
+ ;;=3^SELF-MGMT ED/TRN 5-8 PT,30 MIN
+ ;;^UTILITY(U,$J,358.3,5667,0)
+ ;;=S9455^^35^403^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5667,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5667,1,2,0)
+ ;;=2^S9455
+ ;;^UTILITY(U,$J,358.3,5667,1,3,0)
+ ;;=3^DIABETIC MGMT PROGRAM,GRP
+ ;;^UTILITY(U,$J,358.3,5668,0)
+ ;;=S9460^^35^403^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5668,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5668,1,2,0)
+ ;;=2^S9460
+ ;;^UTILITY(U,$J,358.3,5668,1,3,0)
+ ;;=3^DIABETIC MGMT PROGRAM,NURSE
+ ;;^UTILITY(U,$J,358.3,5669,0)
+ ;;=S9465^^35^403^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5669,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5669,1,2,0)
+ ;;=2^S9465
+ ;;^UTILITY(U,$J,358.3,5669,1,3,0)
+ ;;=3^DIABETIC MGMT PROGRAM,DIETITIAN
+ ;;^UTILITY(U,$J,358.3,5670,0)
+ ;;=S9470^^35^403^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5670,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5670,1,2,0)
+ ;;=2^S9470
+ ;;^UTILITY(U,$J,358.3,5670,1,3,0)
+ ;;=3^NUTRITIONAL COUNSELING,DIETITIAN
+ ;;^UTILITY(U,$J,358.3,5671,0)
+ ;;=G0108^^35^403^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5671,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5671,1,2,0)
+ ;;=2^G0108
+ ;;^UTILITY(U,$J,358.3,5671,1,3,0)
+ ;;=3^DIABETES OUTPT SLF MGMT TRN,IND 30MIN
+ ;;^UTILITY(U,$J,358.3,5672,0)
+ ;;=G0109^^35^403^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5672,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5672,1,2,0)
+ ;;=2^G0109
+ ;;^UTILITY(U,$J,358.3,5672,1,3,0)
+ ;;=3^DIABETES OUTPT SLF MGMT TRN,GRP 30MIN
+ ;;^UTILITY(U,$J,358.3,5673,0)
+ ;;=97802^^35^404^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5673,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5673,1,2,0)
+ ;;=2^97802
+ ;;^UTILITY(U,$J,358.3,5673,1,3,0)
+ ;;=3^Med Nut Tx,Init,Indiv per 15Min
+ ;;^UTILITY(U,$J,358.3,5674,0)
+ ;;=97803^^35^404^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5674,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5674,1,2,0)
+ ;;=2^97803
+ ;;^UTILITY(U,$J,358.3,5674,1,3,0)
+ ;;=3^Reassess/Interv,Indiv per 15Min
+ ;;^UTILITY(U,$J,358.3,5675,0)
+ ;;=97804^^35^404^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5675,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5675,1,2,0)
+ ;;=2^97804
+ ;;^UTILITY(U,$J,358.3,5675,1,3,0)
+ ;;=3^Group Tx,2 or More per 30Min
+ ;;^UTILITY(U,$J,358.3,5676,0)
+ ;;=97605^^35^405^6^^^^1
+ ;;^UTILITY(U,$J,358.3,5676,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5676,1,2,0)
+ ;;=2^97605
+ ;;^UTILITY(U,$J,358.3,5676,1,3,0)
+ ;;=3^NEG PRESS WND TX W/ DME </= 50 CM
+ ;;^UTILITY(U,$J,358.3,5677,0)
+ ;;=97606^^35^405^7^^^^1
+ ;;^UTILITY(U,$J,358.3,5677,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5677,1,2,0)
+ ;;=2^97606
+ ;;^UTILITY(U,$J,358.3,5677,1,3,0)
+ ;;=3^NEG PRESS WND TX W/ DME > 50 CM
+ ;;^UTILITY(U,$J,358.3,5678,0)
+ ;;=97607^^35^405^4^^^^1
+ ;;^UTILITY(U,$J,358.3,5678,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5678,1,2,0)
+ ;;=2^97607
+ ;;^UTILITY(U,$J,358.3,5678,1,3,0)
+ ;;=3^NEG PRESS WND TX NON DME EQUIP </= 50 CM
+ ;;^UTILITY(U,$J,358.3,5679,0)
+ ;;=97608^^35^405^5^^^^1
+ ;;^UTILITY(U,$J,358.3,5679,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5679,1,2,0)
+ ;;=2^97608
+ ;;^UTILITY(U,$J,358.3,5679,1,3,0)
+ ;;=3^NEG PRESS WND TX NON DME EQUIP > 50 CM
+ ;;^UTILITY(U,$J,358.3,5680,0)
+ ;;=97597^^35^405^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5680,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5680,1,2,0)
+ ;;=2^97597
+ ;;^UTILITY(U,$J,358.3,5680,1,3,0)
+ ;;=3^DEBRIDE,OPEN WOUND </= 20SQ CM
+ ;;^UTILITY(U,$J,358.3,5681,0)
+ ;;=97598^^35^405^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5681,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5681,1,2,0)
+ ;;=2^97598
+ ;;^UTILITY(U,$J,358.3,5681,1,3,0)
+ ;;=3^DEBRIDE,OPEN WOUND EA ADDL 20SQ CM
+ ;;^UTILITY(U,$J,358.3,5682,0)
+ ;;=97610^^35^405^3^^^^1
+ ;;^UTILITY(U,$J,358.3,5682,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5682,1,2,0)
+ ;;=2^97610
+ ;;^UTILITY(U,$J,358.3,5682,1,3,0)
+ ;;=3^LOW FREQ,NON-THERM US W/ WOUND ASSESS
+ ;;^UTILITY(U,$J,358.3,5683,0)
+ ;;=97602^^35^405^8^^^^1
+ ;;^UTILITY(U,$J,358.3,5683,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5683,1,2,0)
+ ;;=2^97602
+ ;;^UTILITY(U,$J,358.3,5683,1,3,0)
+ ;;=3^REM OF DEVITAL TISS NON-SELECT
+ ;;^UTILITY(U,$J,358.3,5684,0)
+ ;;=99415^^35^406^1^^^^1
+ ;;^UTILITY(U,$J,358.3,5684,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5684,1,2,0)
+ ;;=2^99415
+ ;;^UTILITY(U,$J,358.3,5684,1,3,0)
+ ;;=3^Prolonged Clinical Staff Service;1st hr
+ ;;^UTILITY(U,$J,358.3,5685,0)
+ ;;=99416^^35^406^2^^^^1
+ ;;^UTILITY(U,$J,358.3,5685,1,0)
+ ;;=^358.31IA^3^2
+ ;;^UTILITY(U,$J,358.3,5685,1,2,0)
+ ;;=2^99416
+ ;;^UTILITY(U,$J,358.3,5685,1,3,0)
+ ;;=3^Prolonged Clin Staff Svc;Ea Addl 30 min
+ ;;^UTILITY(U,$J,358.3,5686,0)
+ ;;=E11.9^^36^407^86
+ ;;^UTILITY(U,$J,358.3,5686,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2409,1,3,0)
- ;;=3^Spont ruptr of flexor tendons, lft hand
- ;;^UTILITY(U,$J,358.3,2409,1,4,0)
- ;;=4^M66.342
- ;;^UTILITY(U,$J,358.3,2409,2)
- ;;=^5012882
- ;;^UTILITY(U,$J,358.3,2410,0)
- ;;=M67.01^^15^186^92
- ;;^UTILITY(U,$J,358.3,2410,1,0)
+ ;;^UTILITY(U,$J,358.3,5686,1,3,0)
+ ;;=3^Diabetes Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,5686,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,5686,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,5687,0)
+ ;;=E10.9^^36^407^52
+ ;;^UTILITY(U,$J,358.3,5687,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2410,1,3,0)
- ;;=3^Short Achilles tendon (acquired), rt ankle
- ;;^UTILITY(U,$J,358.3,2410,1,4,0)
- ;;=4^M67.01
- ;;^UTILITY(U,$J,358.3,2410,2)
- ;;=^5012906
- ;;^UTILITY(U,$J,358.3,2411,0)
- ;;=M67.02^^15^186^91
- ;;^UTILITY(U,$J,358.3,2411,1,0)
+ ;;^UTILITY(U,$J,358.3,5687,1,3,0)
+ ;;=3^Diabetes Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,5687,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,5687,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,5688,0)
+ ;;=E11.65^^36^407^68
+ ;;^UTILITY(U,$J,358.3,5688,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2411,1,3,0)
- ;;=3^Short Achilles tendon (acquired), lft ankle
- ;;^UTILITY(U,$J,358.3,2411,1,4,0)
- ;;=4^M67.02
- ;;^UTILITY(U,$J,358.3,2411,2)
- ;;=^5012907
- ;;^UTILITY(U,$J,358.3,2412,0)
- ;;=M62.40^^15^186^26
- ;;^UTILITY(U,$J,358.3,2412,1,0)
+ ;;^UTILITY(U,$J,358.3,5688,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,5688,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,5688,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,5689,0)
+ ;;=E11.21^^36^407^57
+ ;;^UTILITY(U,$J,358.3,5689,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2412,1,3,0)
- ;;=3^Contracture of muscle, unspec site
- ;;^UTILITY(U,$J,358.3,2412,1,4,0)
- ;;=4^M62.40
- ;;^UTILITY(U,$J,358.3,2412,2)
- ;;=^5012631
- ;;^UTILITY(U,$J,358.3,2413,0)
- ;;=M72.0^^15^186^76
- ;;^UTILITY(U,$J,358.3,2413,1,0)
+ ;;^UTILITY(U,$J,358.3,5689,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Diab Nephropathy
+ ;;^UTILITY(U,$J,358.3,5689,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,5689,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,5690,0)
+ ;;=E11.22^^36^407^54
+ ;;^UTILITY(U,$J,358.3,5690,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2413,1,3,0)
- ;;=3^Palmar fascial fibromatosis [Dupuytren]
- ;;^UTILITY(U,$J,358.3,2413,1,4,0)
- ;;=4^M72.0
- ;;^UTILITY(U,$J,358.3,2413,2)
- ;;=^5013233
- ;;^UTILITY(U,$J,358.3,2414,0)
- ;;=M72.2^^15^186^80
- ;;^UTILITY(U,$J,358.3,2414,1,0)
+ ;;^UTILITY(U,$J,358.3,5690,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Chronic Kidney Disease
+ ;;^UTILITY(U,$J,358.3,5690,1,4,0)
+ ;;=4^E11.22
+ ;;^UTILITY(U,$J,358.3,5690,2)
+ ;;=^5002630
+ ;;^UTILITY(U,$J,358.3,5691,0)
+ ;;=E11.29^^36^407^71
+ ;;^UTILITY(U,$J,358.3,5691,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2414,1,3,0)
- ;;=3^Plantar fascial fibromatosis
- ;;^UTILITY(U,$J,358.3,2414,1,4,0)
- ;;=4^M72.2
- ;;^UTILITY(U,$J,358.3,2414,2)
- ;;=^272598
- ;;^UTILITY(U,$J,358.3,2415,0)
- ;;=M62.838^^15^186^68
- ;;^UTILITY(U,$J,358.3,2415,1,0)
+ ;;^UTILITY(U,$J,358.3,5691,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Kidney Complications NEC
+ ;;^UTILITY(U,$J,358.3,5691,1,4,0)
+ ;;=4^E11.29
+ ;;^UTILITY(U,$J,358.3,5691,2)
+ ;;=^5002631
+ ;;^UTILITY(U,$J,358.3,5692,0)
+ ;;=E11.321^^36^407^72
+ ;;^UTILITY(U,$J,358.3,5692,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2415,1,3,0)
- ;;=3^Muscle spasm, oth
- ;;^UTILITY(U,$J,358.3,2415,1,4,0)
- ;;=4^M62.838
- ;;^UTILITY(U,$J,358.3,2415,2)
- ;;=^5012682
- ;;^UTILITY(U,$J,358.3,2416,0)
- ;;=M62.9^^15^186^27
- ;;^UTILITY(U,$J,358.3,2416,1,0)
+ ;;^UTILITY(U,$J,358.3,5692,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Mild Nonprlf Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,5692,1,4,0)
+ ;;=4^E11.321
+ ;;^UTILITY(U,$J,358.3,5692,2)
+ ;;=^5002634
+ ;;^UTILITY(U,$J,358.3,5693,0)
+ ;;=E11.329^^36^407^73
+ ;;^UTILITY(U,$J,358.3,5693,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2416,1,3,0)
- ;;=3^Disorder of muscle, unspec
- ;;^UTILITY(U,$J,358.3,2416,1,4,0)
- ;;=4^M62.9
- ;;^UTILITY(U,$J,358.3,2416,2)
- ;;=^5012684
- ;;^UTILITY(U,$J,358.3,2417,0)
- ;;=M79.1^^15^186^69
- ;;^UTILITY(U,$J,358.3,2417,1,0)
+ ;;^UTILITY(U,$J,358.3,5693,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Mild Nonprlf Diab Rtnop w/o Macular Edema
+ ;;^UTILITY(U,$J,358.3,5693,1,4,0)
+ ;;=4^E11.329
+ ;;^UTILITY(U,$J,358.3,5693,2)
+ ;;=^5002635
+ ;;^UTILITY(U,$J,358.3,5694,0)
+ ;;=E11.331^^36^407^74
+ ;;^UTILITY(U,$J,358.3,5694,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2417,1,3,0)
- ;;=3^Myalgia
- ;;^UTILITY(U,$J,358.3,2417,1,4,0)
- ;;=4^M79.1
- ;;^UTILITY(U,$J,358.3,2417,2)
- ;;=^5013321
- ;;^UTILITY(U,$J,358.3,2418,0)
- ;;=M79.2^^15^186^70
- ;;^UTILITY(U,$J,358.3,2418,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2418,1,3,0)
- ;;=3^Neuralgia & neuritis, unspec
- ;;^UTILITY(U,$J,358.3,2418,1,4,0)
- ;;=4^M79.2
- ;;^UTILITY(U,$J,358.3,2418,2)
- ;;=^5013322
- ;;^UTILITY(U,$J,358.3,2419,0)
- ;;=M21.751^^15^186^113
- ;;^UTILITY(U,$J,358.3,2419,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2419,1,3,0)
- ;;=3^Unequal limb length (acq), rt femur
- ;;^UTILITY(U,$J,358.3,2419,1,4,0)
- ;;=4^M21.751
- ;;^UTILITY(U,$J,358.3,2419,2)
- ;;=^5011140
- ;;^UTILITY(U,$J,358.3,2420,0)
- ;;=M21.752^^15^186^109
- ;;^UTILITY(U,$J,358.3,2420,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2420,1,3,0)
- ;;=3^Unequal limb length (acq), lft femur
- ;;^UTILITY(U,$J,358.3,2420,1,4,0)
- ;;=4^M21.752
- ;;^UTILITY(U,$J,358.3,2420,2)
- ;;=^5011141
- ;;^UTILITY(U,$J,358.3,2421,0)
- ;;=M21.761^^15^186^114
- ;;^UTILITY(U,$J,358.3,2421,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2421,1,3,0)
- ;;=3^Unequal limb length (acq), rt tibia
- ;;^UTILITY(U,$J,358.3,2421,1,4,0)
- ;;=4^M21.761
- ;;^UTILITY(U,$J,358.3,2421,2)
- ;;=^5011143
- ;;^UTILITY(U,$J,358.3,2422,0)
- ;;=M21.762^^15^186^111
- ;;^UTILITY(U,$J,358.3,2422,1,0)
- ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,2422,1,3,0)
- ;;=3^Unequal limb length (acq), lft tibia
+ ;;^UTILITY(U,$J,358.3,5694,1,3,0)
+ ;;=3^Diabetes Type 2 w/ Moderate Nonprlf Diab Rtnop w/ Macular Edema
+ ;;^UTILITY(U,$J,358.3,5694,1,4,0)
+ ;;=4^E11.331
+ ;;^UTILITY(U,$J,358.3,5694,2)
+ ;;=^5002636

@@ -1,5 +1,5 @@
 PRCSUT3 ;WISC/SAW/PLT/BGJ-TRANSACTION UTILITY PROGRAM ; 21 Apr 93  10:18 AM
-V ;;5.1;IFCAP;**115,123,149,150,180,189**;Oct 20, 2000;Build 1
+V ;;5.1;IFCAP;**115,123,149,150,180,191**;Oct 20, 2000;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
  ;PRC*5.1*150 RGB 4/23/12  Control the node 0 counter for file 410
@@ -8,7 +8,7 @@ V ;;5.1;IFCAP;**115,123,149,150,180,189**;Oct 20, 2000;Build 1
  ;PRC*5.1*180 RGB 10/22/12  Added switch coming from IFCAP 1358 
  ;processing to insure new entry check uses file 424, not file 410.
  ;
- ;PRC*5.1*189 RGB 6/12/14   Added check to file 424 new entry check
+ ;PRC*5.1*191 RGB 6/12/14   Added check to file 424 new entry check
  ;                          that the user is alerted when there are
  ;                          only approx 100 entries left so they can
  ;                          finalize obligation for liquidation which
@@ -23,14 +23,14 @@ EN ;CREATE NEW TRANSACTION NUMBER
 EN1 G:'$D(X) OUT1 S NODE=0,PIECE=2 I $D(PRCS("TYPE")) G:'X OUT1 S T(1)=$O(^DD(410.1,"B",PRCS("TYPE"),0)) G:'T(1)!('$D(^DD(410.1,+T(1),0))) OUT1
  S DIC="^PRCS(410.1,",MSG="",ZERSW=0
  ;I $D(^PRCS(410.1,"B",X)) S N="",N=$O(^PRCS(410.1,"B",X,N)),DA=N L +^PRCS410.1,N):15 G:$T=0 OUT1 S T=$P(^PRCS(410.1,N,NODE),"^",PIECE)+1 S:T<1 T=1 L -^PRCS(410.1,N))
- I $D(^PRCS(410.1,"B",X)) S N="",N=$O(^PRCS(410.1,"B",X,N)),DA=N S T=$P(^PRCS(410.1,N,NODE),"^",PIECE)+1 S:T>9999 T=9999 S:T<1 T=1     ;PRC*5.1*189
+ I $D(^PRCS(410.1,"B",X)) S N="",N=$O(^PRCS(410.1,"B",X,N)),DA=N S T=$P(^PRCS(410.1,N,NODE),"^",PIECE)+1 S:T>9999&(X'["FC") T=9999 S:T<1 T=1     ;PRC*5.1*191
  I '$D(^PRCS(410.1,"B",X)) S T=1,DLAYGO=410.1,DIC="^PRCS(410.1,",DIC(0)="FLXZ" D ^DIC K DLAYGO G:Y<0 W4 S DA=+Y
  S HDA=DA
 T S T="000"_T,T=$E(T,$L(T)-3,$L(T))
 T1 I $D(REP),$G(PRCE424)'=1 S X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1,X=$P(X,"-",1,4) G:T>9999 CANCK G T    ;PRC*5.1*180
  I '$D(REP),'$D(PRCS("TYPE")),$G(PRCE424)'=1 S X=Z,X=X_"-"_T I $D(^PRCS(410,"B",X)) S T=+T+1 G:T>9999 CANCK G T    ;PRC*5.1*180
- I ('$D(REP)&$D(PRCS("TYPE")))!($G(PRCE424)=1) S Z=X,X=X_"-"_T I $D(^PRC(424,"B",X)) S T=+T+1,X=Z G:T>9999 CER424 G T   ;PRC*5.1*180, PRC*5.1*189
- I ('$D(REP)&$D(PRCS("TYPE")))!($G(PRCE424)=1),T>9900 G CER424    ;PRC*5.1*189
+ I ('$D(REP)&$D(PRCS("TYPE")))!($G(PRCE424)=1) S Z=X,X=X_"-"_T I $D(^PRC(424,"B",X)) S T=+T+1,X=Z G:T>9999 CER424 G T   ;PRC*5.1*180, PRC*5.1*191
+ I ('$D(REP)&$D(PRCS("TYPE")))!($G(PRCE424)=1),T>9900 G CER424    ;PRC*5.1*191
 TEX S DA=HDA L +^PRCS(410.1,DA):15 S $P(^PRCS(410.1,DA,NODE),U,PIECE)=+T,$P(^(0),U,3)=DT L -^PRCS(410.1,DA)
 OUT K DA,DIC,N,NODE,PIECE,PRCS("TYPE"),PRCSL,T,Z,HDA Q
 OUT1 S X="",Y=-1 D OUT Q
@@ -77,7 +77,7 @@ CER S MSG="No open sequence number found for "_Z_" for transaction"
  I $G(PRCRMPR)=1 S X="#"
  K DA,DIK,ZZH,IEN410
  G OUT1
-CER424 ;424 AVAILABLE SLOT CHECK      ;PRC*5.1*189 CHECK FOR AVAILABLE 424 ENTRIES FOR 1358
+CER424 ;424 AVAILABLE SLOT CHECK      ;PRC*5.1*191 CHECK FOR AVAILABLE 424 ENTRIES FOR 1358
  S PRCX1=$P(X,"-",1,2)_"-",PRCTT=0,PRCX3=0
  F PRCI=1:1:9999 S PRCX2=PRCX1_$E("0000",1,4-$L(PRCI))_PRCI S:$D(^PRC(424,"B",PRCX2)) PRCTT=PRCTT+1 I '$D(^PRC(424,"B",PRCX2)),'PRCX3 S PRCX3=PRCI
  K PRCX1,PRCX2,PRCI

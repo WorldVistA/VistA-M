@@ -1,11 +1,11 @@
-GMRAHDR ;SLC/DAN - HDR calls for ART ;4/1/09  13:55
- ;;4.0;Adverse Reaction Tracking;**18,24,26,42**;Mar 29, 1996;Build 4
+GMRAHDR ;SLC/DAN - HDR CALLS FOR ART ;01/13/2014  07:54
+ ;;4.0;Adverse Reaction Tracking;**18,24,26,42,46**;Mar 29, 1996;Build 62
  ;
  ;The variable GMRADONT can be set before making a call to this
  ;routine if you'd like to be able to change data but not have it
  ;sent to the HDR.  If GMRADONT has a positive value then nothing
  ;will be queued to be sent to the HDR.
- ;A check will also be made for the existence of VAFCA08 to indicate
+ ;A check will also be made for the existence of XDRDVALF to indicate
  ;whether a patient merge is taking place.  If so, then data isn't
  ;sent to the HDR.
  ;
@@ -15,7 +15,7 @@ SETADR ;Call here when updating data
  S IEN=$S($D(DA)=1:DA,1:DA($O(DA("?"),-1)))
  I +$P($G(^GMR(120.8,IEN,0)),U,12)=0 Q  ;Stop if it isn't signed off yet
  I $$TESTPAT^VADPT($P(^GMR(120.8,IEN,0),U)) Q  ;24 Don't send data for test patients
- D TASK("ADR",IEN),UPDRDI ;26 Schedule entry to be sent to HDR, note new data for RDI
+ D TASK("ADR",IEN) ;26 Schedule entry to be sent to HDR
  I $P($G(^GMR(120.8,IEN,0)),U,6)="o" S OIEN=+$O(^GMR(120.85,"C",IEN,0)) I $D(^GMR(120.85,OIEN,0)),'+$G(^GMR(120.8,IEN,"ER")) D TASK("OBS",OIEN) ;If observed reaction, send observed data on sign off
  Q
  ;
@@ -25,7 +25,7 @@ KILLADR ;Call here when data is deleted
  S IEN=$S($D(DA)=1:DA,1:DA($O(DA("?"),-1)))
  I $P($G(^GMR(120.8,IEN,0)),U,12)=0 Q  ;Stop if it isn't signed off yet
  I $$TESTPAT^VADPT($P(^GMR(120.8,IEN,0),U)) Q  ;24 Don't send data for test patients
- D TASK("ADR",IEN),UPDRDI ;26 Schedule entry to be sent to the HDR, note new data for RDI
+ D TASK("ADR",IEN) ;26 Schedule entry to be sent to the HDR
  Q
  ;
 SETAA ;Action taken when assessment is changed
@@ -73,7 +73,7 @@ TASK(TYPE,IEN) ;Create task, if needed, and add entry to list of items to be sen
  Q
  ;
 DQ ;Send data to HDR
- N TYPE,IEN,A
+ N GMRAERR,TYPE,IEN,A
  F  L +^XTMP("GMRAHDR"):1 Q:$T  ;Get control of global
  F TYPE="ADR","ASMT","OBS" I $D(^XTMP("GMRAHDR",TYPE)) D
  .S IEN=0 F  S IEN=$O(^XTMP("GMRAHDR",TYPE,IEN)) Q:'+IEN  I $L($T(QUEUE^VDEFQM)) S A=$$QUEUE^VDEFQM("ORU^R01","SUBTYPE="_$S(TYPE="ADR":"ALGY",TYPE="ASMT":"ADAS",1:"ADRA")_"^IEN="_IEN,.GMRAERR)
@@ -81,16 +81,14 @@ DQ ;Send data to HDR
  L -^XTMP("GMRAHDR")
  Q
  ;
-UPDRDI ;Create flag to let RDI know that patient data has changed
- N PIEN,ERR
- S PIEN=$P($G(^GMR(120.8,IEN,0)),U) Q:'+PIEN  ;Quit if no patient IEN
- I '$D(^XTMP("GMRAOC",PIEN)) Q  ;If no current patient data then no need to set flag
- F  L +^XTMP("GMRAOC",PIEN):1 Q:$T
- S ERR=+$G(^GMR(120.8,IEN,"ER"))
- S ^XTMP("GMRAOC",PIEN,$S('ERR:"NEW",1:"ERROR"))=""
- L -^XTMP("GMRAOC",PIEN)
- Q
- ;
 TSKOK(ZTSK) ;Check to see if task is active.  Section added in patch 42
  D ISQED^%ZTLOAD
  Q +ZTSK(0)
+HDRDATA() ;RETRIEVE HDR DATA
+ ;RETURN: -1 => HDR DOES NOT EXIST OR IS NOT AVAILABLE
+ ;        # => NUMBER OF RETRIEVED REACTIONS
+ N RETURN
+ Q:'$L($T(HAVEHDR^ORRDI1)) -1
+ Q:'$$HAVEHDR^ORRDI1 -1
+ S RETURN=$$GET^ORRDI1(DFN,"ART")
+ Q RETURN

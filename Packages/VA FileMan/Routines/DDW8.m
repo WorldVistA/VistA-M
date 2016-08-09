@@ -1,10 +1,13 @@
-DDW8 ;SFISC/MKO-COPY, CUT, PASTE ;2:15 PM  5 Jul 1996
- ;;22.0;VA FileMan;;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DDW8 ;SFISC/MKO-COPY, CUT, PASTE ;12:09 PM  24 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
  ;
 CUT() ;Cut selected text
  N DDWADJ,DDWC1,DDWC2,DDWCSV,DDWISIN,DDWNDEL,DDWR1,DDWR2,DDWRSV
- I '$D(DDWMARK) D ERR("No text selected.") Q
+ I '$D(DDWMARK) D ERR($$EZBLD^DIALOG(1404)) Q  ;**'NO TEXT'
  ;
  S DDWED=1
  S DDWISIN=$$ISINSEL()
@@ -22,7 +25,7 @@ CUT() ;Cut selected text
  ;
 COPY() ;Copy selected text
  N DDWC1,DDWC2,DDWISIN,DDWR1,DDWR2
- I '$D(DDWMARK) D ERR("No text selected.") Q
+ I '$D(DDWMARK) D ERR($$EZBLD^DIALOG(1404)) Q  ;**'NO TEXT'
  ;
  S DDWISIN=$$ISINSEL()
  D PMARK(DDWMARK,.DDWR1,.DDWC1,.DDWR2,.DDWC2)
@@ -36,7 +39,7 @@ COPYBUF ;Copy selected text to buffer
  K ^TMP("DDWB",$J)
  S DDWND=0
  ;
- D:DDWR2-DDWR1>50 MSG^DDW("Copying text to buffer ...")
+ D:DDWR2-DDWR1>50 MSG^DDW(" ...") ;**
  ;
  F DDWI=DDWR1:1:$$MIN(DDWA,DDWR2) D
  . S DDWND=DDWND+1
@@ -61,7 +64,7 @@ COPYBUF ;Copy selected text to buffer
  ;
 PASTE() ;Paste text
  I $D(DDWMARK) D ERR("You curently have text selected.") Q
- I '$D(^TMP("DDWB",$J)) D ERR("The buffer contains no text.") Q
+ I '$D(^TMP("DDWB",$J)) D ERR($$EZBLD^DIALOG(1404)) Q  ;**
  ;
  S DDWED=1
  N DDWBSIZ,DDWFC,DDWI,DDWLST,DDWNSV,DDWTXT,DDWX

@@ -1,25 +1,31 @@
-DIEQ ;SFISC/XAK,YJK-HELP DURING INPUT ;09:13 AM  27 Jul 2001
- ;;22.0;VA FileMan;**4,3,59**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DIEQ ;SFISC/XAK,YJK-HELP DURING INPUT ;24AUG2006
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 BN S D=$P(DQ(DQ),U,4) S:DP+1 D=DIFLD
  S DZ=X D EN1 G B^DIED
 QQ ;
  I DV,DV["*",$D(^DD(+DV,.01,0)) S DQ(DQ)=$P(DQ(DQ),U,1,4)_U_$P(^(0),U,5,99)
-EN1 S DDH=0 G M:DV I DP<0 D HP G P
- I X="?"!(X["BAD") F DG=3,12 Q:DG=12&($G(DISORT))  I $D(^DD(DP,D,DG)) S X=^(DG),A1="T" D N
+EN1 N DDH,DST,A1 S DDH=0 G M:DV I DP<0 D HP G P
+HELP I X="?"!(X["BAD") S X=$$HELP^DIALOGZ(DP,D),A1="T" D N:X]"" I '$G(DISORT),$D(^DD(DP,D,12)) S X=^(12) D N ;***CCO/NI HELP MESSAGE
  D H G:'$D(DZ) Q
  ;
 P I DV["P" K DO S DIC=U_DU,D="B",DIC(0)="M"_$E("L",DV'["'") G AST:DV["*"&('$G(DISORT)) D DQ^DICQ D %
 VP I DV["V" S DU=DP S:DV DU=+DO(2),D=.01 D V G Q
-D I DV["D" S %(0)=0,%DT=$P($P($P(DQ(DQ),U,5,9),"%DT=""",2),"""",1) D HELP^%DTC
-S I DV["S" X:($D(^DD(DP,D,12.1))#2)&('$G(DISORT)) ^(12.1) S A1="T",DST=$$EZBLD^DIALOG(8068)_" " D DS,S1 K DIC("S")
+D I DV["D" S %(0)=0 D DT^DIEH1($P($P($P(DQ(DQ),U,5,9),"%DT=""",2),""""),1) ;**CCO/NI REPLACES CALL TO HELP^%DTC
+S I DV["S" D:'$G(DISORT) SETSCR^DIR(DP,D) S A1="T",DST=$$EZBLD^DIALOG(8068)_" " D DS D  K DIC("S")
+ .N A,A1,A2
+ .S A=$P(DQ(DQ),U,3)
+ .I $G(DUZ("LANG"))>1,A=$P(^DD(DP,D,0),U,3) S A=$$SETIN^DIALOGZ_";" ;NAKED
+ .F DG=1:1 S Y=$P(A,";",DG) Q:Y=""  S D=$P(Y,":",2),Y=$P(Y,":") I 1 X:$D(DIC("S")) DIC("S") I  S A2="",$P(A2," ",15-($L(Y)+7))=" ",DST="  "_Y_A2_" "_D D DS
 Q K DST,A1 S:$D(DIE) DIC=DIE S D=0 I $D(DDH)>10 D LIST^DDSU
  D:DV UDA
  Q
  ;
  ;
-S1 F DG=1:1 S Y=$P($P(DQ(DQ),U,3),";",DG) Q:Y=""  S D=$P(Y,":",2),Y=$P(Y,":",1) X:$D(DIC("S")) DIC("S") I  S A2="",$P(A2," ",15-($L(Y)+7))=" ",DST="  "_Y_A2_" "_D D DS
- K A1,A2 Q
  ;
 N F  Q:X=""  F %=$L(X," "):-1:1 I $L($P(X," ",1,%))<75 S DST=$P(X," ",1,%) D DS D:X'="" N1 Q
  S X=DZ
@@ -61,7 +67,7 @@ H I '$G(DISORT),$D(^DD(DP,D,4)) S A1="X",DST=^(4) D DS,LIST^DDSU Q:'$D(DZ)!$D(DD
 BK S DDH=$G(DDH)+1,DDH(DDH,"T")=" " Q
  ;
 V S DDH=+$G(DDH),A1="T",DST=$$EZBLD^DIALOG(8071) D DS
- F Y=0:0 S Y=$O(^DD(DU,D,"V",Y)) Q:Y'>0  I $D(^(Y,0)) S Y(0)=^(0) X:$D(DIC("V")) DIC("V") I  I $D(^DIC(+Y(0),0)) S Y(1)=$P(Y(0),U,4),Y(2)=$P(Y(0),U,2),DST=$$EZBLD^DIALOG(8072,.Y) K Y(1),Y(2) D DS
+EGP F Y=0:0 S Y=$O(^DD(DU,D,"V",Y)) Q:Y'>0  I $D(^(Y,0)) S Y(0)=^(0) X:$D(DIC("V")) DIC("V") I  I $D(^DIC(+Y(0),0)) S Y(1)=$P(Y(0),U,4),Y(2)=$$FILENAME^DIALOGZ(+Y(0)),DST=$$EZBLD^DIALOG(8072,.Y) K Y(1),Y(2) D DS ;**CCO/NI V-P FILE NAMES
  D BK S DST=$$EZBLD^DIALOG(8073) D DS S DU="" D BK I DZ'?1"??".E K X,DZ Q
  D T^DIEQ1 K X,DZ Q
  ;

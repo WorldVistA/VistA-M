@@ -1,138 +1,276 @@
-IBDEI13D ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI13D ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18554,1,4,0)
- ;;=4^H83.01
- ;;^UTILITY(U,$J,358.3,18554,2)
- ;;=^5006894
- ;;^UTILITY(U,$J,358.3,18555,0)
- ;;=H83.02^^79^880^72
- ;;^UTILITY(U,$J,358.3,18555,1,0)
+ ;;^UTILITY(U,$J,358.3,39633,0)
+ ;;=M47.814^^148^1953^170
+ ;;^UTILITY(U,$J,358.3,39633,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18555,1,3,0)
- ;;=3^Labyrinthitis of Left Ear
- ;;^UTILITY(U,$J,358.3,18555,1,4,0)
- ;;=4^H83.02
- ;;^UTILITY(U,$J,358.3,18555,2)
- ;;=^5006895
- ;;^UTILITY(U,$J,358.3,18556,0)
- ;;=H83.03^^79^880^71
- ;;^UTILITY(U,$J,358.3,18556,1,0)
+ ;;^UTILITY(U,$J,358.3,39633,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,39633,1,4,0)
+ ;;=4^M47.814
+ ;;^UTILITY(U,$J,358.3,39633,2)
+ ;;=^5012071
+ ;;^UTILITY(U,$J,358.3,39634,0)
+ ;;=M47.817^^148^1953^171
+ ;;^UTILITY(U,$J,358.3,39634,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18556,1,3,0)
- ;;=3^Labyrinthitis of Bilateral Ears
- ;;^UTILITY(U,$J,358.3,18556,1,4,0)
- ;;=4^H83.03
- ;;^UTILITY(U,$J,358.3,18556,2)
- ;;=^5006896
- ;;^UTILITY(U,$J,358.3,18557,0)
- ;;=I38.^^79^880^47
- ;;^UTILITY(U,$J,358.3,18557,1,0)
+ ;;^UTILITY(U,$J,358.3,39634,1,3,0)
+ ;;=3^Spondylosis w/o Myelopathy/Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,39634,1,4,0)
+ ;;=4^M47.817
+ ;;^UTILITY(U,$J,358.3,39634,2)
+ ;;=^5012074
+ ;;^UTILITY(U,$J,358.3,39635,0)
+ ;;=M48.50XA^^148^1953^21
+ ;;^UTILITY(U,$J,358.3,39635,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18557,1,3,0)
- ;;=3^Endocarditis,Valve Unspec
- ;;^UTILITY(U,$J,358.3,18557,1,4,0)
- ;;=4^I38.
- ;;^UTILITY(U,$J,358.3,18557,2)
- ;;=^40327
- ;;^UTILITY(U,$J,358.3,18558,0)
- ;;=J00.^^79^880^6
- ;;^UTILITY(U,$J,358.3,18558,1,0)
+ ;;^UTILITY(U,$J,358.3,39635,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39635,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,39635,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,39636,0)
+ ;;=M48.50XD^^148^1953^22
+ ;;^UTILITY(U,$J,358.3,39636,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18558,1,3,0)
- ;;=3^Acute Nasopharyngitis
- ;;^UTILITY(U,$J,358.3,18558,1,4,0)
- ;;=4^J00.
- ;;^UTILITY(U,$J,358.3,18558,2)
- ;;=^5008115
- ;;^UTILITY(U,$J,358.3,18559,0)
- ;;=J01.90^^79^880^9
- ;;^UTILITY(U,$J,358.3,18559,1,0)
+ ;;^UTILITY(U,$J,358.3,39636,1,3,0)
+ ;;=3^Collapsed Vertebra NEC,Site Unspec,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,39636,1,4,0)
+ ;;=4^M48.50XD
+ ;;^UTILITY(U,$J,358.3,39636,2)
+ ;;=^5012160
+ ;;^UTILITY(U,$J,358.3,39637,0)
+ ;;=M48.52XA^^148^1953^23
+ ;;^UTILITY(U,$J,358.3,39637,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18559,1,3,0)
- ;;=3^Acute Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,18559,1,4,0)
- ;;=4^J01.90
- ;;^UTILITY(U,$J,358.3,18559,2)
- ;;=^5008127
- ;;^UTILITY(U,$J,358.3,18560,0)
- ;;=J02.9^^79^880^8
- ;;^UTILITY(U,$J,358.3,18560,1,0)
+ ;;^UTILITY(U,$J,358.3,39637,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39637,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,39637,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,39638,0)
+ ;;=M48.52XD^^148^1953^24
+ ;;^UTILITY(U,$J,358.3,39638,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18560,1,3,0)
- ;;=3^Acute Pharyngitis,Unspec
- ;;^UTILITY(U,$J,358.3,18560,1,4,0)
- ;;=4^J02.9
- ;;^UTILITY(U,$J,358.3,18560,2)
- ;;=^5008130
- ;;^UTILITY(U,$J,358.3,18561,0)
- ;;=J03.90^^79^880^10
- ;;^UTILITY(U,$J,358.3,18561,1,0)
+ ;;^UTILITY(U,$J,358.3,39638,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,39638,1,4,0)
+ ;;=4^M48.52XD
+ ;;^UTILITY(U,$J,358.3,39638,2)
+ ;;=^5012168
+ ;;^UTILITY(U,$J,358.3,39639,0)
+ ;;=M48.54XA^^148^1953^32
+ ;;^UTILITY(U,$J,358.3,39639,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18561,1,3,0)
- ;;=3^Acute Tonsillitis,Unspec
- ;;^UTILITY(U,$J,358.3,18561,1,4,0)
- ;;=4^J03.90
- ;;^UTILITY(U,$J,358.3,18561,2)
- ;;=^5008135
- ;;^UTILITY(U,$J,358.3,18562,0)
- ;;=J04.0^^79^880^5
- ;;^UTILITY(U,$J,358.3,18562,1,0)
+ ;;^UTILITY(U,$J,358.3,39639,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39639,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,39639,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,39640,0)
+ ;;=M48.54XD^^148^1953^33
+ ;;^UTILITY(U,$J,358.3,39640,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18562,1,3,0)
- ;;=3^Acute Laryngitis
- ;;^UTILITY(U,$J,358.3,18562,1,4,0)
- ;;=4^J04.0
- ;;^UTILITY(U,$J,358.3,18562,2)
- ;;=^5008137
- ;;^UTILITY(U,$J,358.3,18563,0)
- ;;=J06.9^^79^880^11
- ;;^UTILITY(U,$J,358.3,18563,1,0)
+ ;;^UTILITY(U,$J,358.3,39640,1,3,0)
+ ;;=3^Collapsed Vertebra,Throacic Region,Subs Encntr
+ ;;^UTILITY(U,$J,358.3,39640,1,4,0)
+ ;;=4^M48.54XD
+ ;;^UTILITY(U,$J,358.3,39640,2)
+ ;;=^5012176
+ ;;^UTILITY(U,$J,358.3,39641,0)
+ ;;=M48.57XA^^148^1953^25
+ ;;^UTILITY(U,$J,358.3,39641,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18563,1,3,0)
- ;;=3^Acute Upper Respiratory Infection,Unspec
- ;;^UTILITY(U,$J,358.3,18563,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,18563,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,18564,0)
- ;;=J20.9^^79^880^4
- ;;^UTILITY(U,$J,358.3,18564,1,0)
+ ;;^UTILITY(U,$J,358.3,39641,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,39641,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,39641,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,39642,0)
+ ;;=M48.57XD^^148^1953^26
+ ;;^UTILITY(U,$J,358.3,39642,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18564,1,3,0)
- ;;=3^Acute Bronchitis,Unspec
- ;;^UTILITY(U,$J,358.3,18564,1,4,0)
- ;;=4^J20.9
- ;;^UTILITY(U,$J,358.3,18564,2)
- ;;=^5008195
- ;;^UTILITY(U,$J,358.3,18565,0)
- ;;=J32.9^^79^880^35
- ;;^UTILITY(U,$J,358.3,18565,1,0)
+ ;;^UTILITY(U,$J,358.3,39642,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Subs Encntr,Rt Healing
+ ;;^UTILITY(U,$J,358.3,39642,1,4,0)
+ ;;=4^M48.57XD
+ ;;^UTILITY(U,$J,358.3,39642,2)
+ ;;=^5012188
+ ;;^UTILITY(U,$J,358.3,39643,0)
+ ;;=M50.30^^148^1953^13
+ ;;^UTILITY(U,$J,358.3,39643,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18565,1,3,0)
- ;;=3^Chronic Sinusitis,Unspec
- ;;^UTILITY(U,$J,358.3,18565,1,4,0)
- ;;=4^J32.9
- ;;^UTILITY(U,$J,358.3,18565,2)
- ;;=^5008207
- ;;^UTILITY(U,$J,358.3,18566,0)
- ;;=J18.9^^79^880^86
- ;;^UTILITY(U,$J,358.3,18566,1,0)
+ ;;^UTILITY(U,$J,358.3,39643,1,3,0)
+ ;;=3^Cervical Disc Degeneration,Unspec Region
+ ;;^UTILITY(U,$J,358.3,39643,1,4,0)
+ ;;=4^M50.30
+ ;;^UTILITY(U,$J,358.3,39643,2)
+ ;;=^5012227
+ ;;^UTILITY(U,$J,358.3,39644,0)
+ ;;=M51.14^^148^1953^52
+ ;;^UTILITY(U,$J,358.3,39644,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18566,1,3,0)
- ;;=3^Pneumonia,Unspec Organism
- ;;^UTILITY(U,$J,358.3,18566,1,4,0)
- ;;=4^J18.9
- ;;^UTILITY(U,$J,358.3,18566,2)
- ;;=^95632
- ;;^UTILITY(U,$J,358.3,18567,0)
- ;;=J11.00^^79^880^55
- ;;^UTILITY(U,$J,358.3,18567,1,0)
+ ;;^UTILITY(U,$J,358.3,39644,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,39644,1,4,0)
+ ;;=4^M51.14
+ ;;^UTILITY(U,$J,358.3,39644,2)
+ ;;=^5012243
+ ;;^UTILITY(U,$J,358.3,39645,0)
+ ;;=M51.17^^148^1953^51
+ ;;^UTILITY(U,$J,358.3,39645,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18567,1,3,0)
- ;;=3^Flu d/t Unidentified Flu Virus w/ Unspec Type of Pneumonia
- ;;^UTILITY(U,$J,358.3,18567,1,4,0)
- ;;=4^J11.00
- ;;^UTILITY(U,$J,358.3,18567,2)
- ;;=^5008156
+ ;;^UTILITY(U,$J,358.3,39645,1,3,0)
+ ;;=3^Intvrt Disc Disorder w/ Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,39645,1,4,0)
+ ;;=4^M51.17
+ ;;^UTILITY(U,$J,358.3,39645,2)
+ ;;=^5012246
+ ;;^UTILITY(U,$J,358.3,39646,0)
+ ;;=M51.34^^148^1953^50
+ ;;^UTILITY(U,$J,358.3,39646,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39646,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,39646,1,4,0)
+ ;;=4^M51.34
+ ;;^UTILITY(U,$J,358.3,39646,2)
+ ;;=^5012251
+ ;;^UTILITY(U,$J,358.3,39647,0)
+ ;;=M51.37^^148^1953^49
+ ;;^UTILITY(U,$J,358.3,39647,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39647,1,3,0)
+ ;;=3^Intvrt Disc Degeneration,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,39647,1,4,0)
+ ;;=4^M51.37
+ ;;^UTILITY(U,$J,358.3,39647,2)
+ ;;=^5012254
+ ;;^UTILITY(U,$J,358.3,39648,0)
+ ;;=M54.14^^148^1953^140
+ ;;^UTILITY(U,$J,358.3,39648,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39648,1,3,0)
+ ;;=3^Radiculopathy,Thoracic Region
+ ;;^UTILITY(U,$J,358.3,39648,1,4,0)
+ ;;=4^M54.14
+ ;;^UTILITY(U,$J,358.3,39648,2)
+ ;;=^5012299
+ ;;^UTILITY(U,$J,358.3,39649,0)
+ ;;=M54.17^^148^1953^139
+ ;;^UTILITY(U,$J,358.3,39649,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39649,1,3,0)
+ ;;=3^Radiculopathy,Lumbosacral Region
+ ;;^UTILITY(U,$J,358.3,39649,1,4,0)
+ ;;=4^M54.17
+ ;;^UTILITY(U,$J,358.3,39649,2)
+ ;;=^5012302
+ ;;^UTILITY(U,$J,358.3,39650,0)
+ ;;=M54.2^^148^1953^14
+ ;;^UTILITY(U,$J,358.3,39650,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39650,1,3,0)
+ ;;=3^Cervicalgia
+ ;;^UTILITY(U,$J,358.3,39650,1,4,0)
+ ;;=4^M54.2
+ ;;^UTILITY(U,$J,358.3,39650,2)
+ ;;=^5012304
+ ;;^UTILITY(U,$J,358.3,39651,0)
+ ;;=M54.31^^148^1953^163
+ ;;^UTILITY(U,$J,358.3,39651,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39651,1,3,0)
+ ;;=3^Sciatica,Right Side
+ ;;^UTILITY(U,$J,358.3,39651,1,4,0)
+ ;;=4^M54.31
+ ;;^UTILITY(U,$J,358.3,39651,2)
+ ;;=^5012306
+ ;;^UTILITY(U,$J,358.3,39652,0)
+ ;;=M54.32^^148^1953^162
+ ;;^UTILITY(U,$J,358.3,39652,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39652,1,3,0)
+ ;;=3^Sciatica,Left Side
+ ;;^UTILITY(U,$J,358.3,39652,1,4,0)
+ ;;=4^M54.32
+ ;;^UTILITY(U,$J,358.3,39652,2)
+ ;;=^5012307
+ ;;^UTILITY(U,$J,358.3,39653,0)
+ ;;=M54.5^^148^1953^57
+ ;;^UTILITY(U,$J,358.3,39653,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39653,1,3,0)
+ ;;=3^Low Back Pain
+ ;;^UTILITY(U,$J,358.3,39653,1,4,0)
+ ;;=4^M54.5
+ ;;^UTILITY(U,$J,358.3,39653,2)
+ ;;=^5012311
+ ;;^UTILITY(U,$J,358.3,39654,0)
+ ;;=M60.9^^148^1953^62
+ ;;^UTILITY(U,$J,358.3,39654,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39654,1,3,0)
+ ;;=3^Myositis,Unspec
+ ;;^UTILITY(U,$J,358.3,39654,1,4,0)
+ ;;=4^M60.9
+ ;;^UTILITY(U,$J,358.3,39654,2)
+ ;;=^5012409
+ ;;^UTILITY(U,$J,358.3,39655,0)
+ ;;=M62.40^^148^1953^35
+ ;;^UTILITY(U,$J,358.3,39655,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39655,1,3,0)
+ ;;=3^Contracture of Muscle,Unspec
+ ;;^UTILITY(U,$J,358.3,39655,1,4,0)
+ ;;=4^M62.40
+ ;;^UTILITY(U,$J,358.3,39655,2)
+ ;;=^5012631
+ ;;^UTILITY(U,$J,358.3,39656,0)
+ ;;=M62.831^^148^1953^60
+ ;;^UTILITY(U,$J,358.3,39656,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39656,1,3,0)
+ ;;=3^Muscle Spasm of Calf
+ ;;^UTILITY(U,$J,358.3,39656,1,4,0)
+ ;;=4^M62.831
+ ;;^UTILITY(U,$J,358.3,39656,2)
+ ;;=^5012681
+ ;;^UTILITY(U,$J,358.3,39657,0)
+ ;;=M62.838^^148^1953^58
+ ;;^UTILITY(U,$J,358.3,39657,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39657,1,3,0)
+ ;;=3^Muscle Spasm NEC
+ ;;^UTILITY(U,$J,358.3,39657,1,4,0)
+ ;;=4^M62.838
+ ;;^UTILITY(U,$J,358.3,39657,2)
+ ;;=^5012682
+ ;;^UTILITY(U,$J,358.3,39658,0)
+ ;;=M70.21^^148^1953^64
+ ;;^UTILITY(U,$J,358.3,39658,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39658,1,3,0)
+ ;;=3^Olecranon Bursitis,Right Elbow
+ ;;^UTILITY(U,$J,358.3,39658,1,4,0)
+ ;;=4^M70.21
+ ;;^UTILITY(U,$J,358.3,39658,2)
+ ;;=^5013047
+ ;;^UTILITY(U,$J,358.3,39659,0)
+ ;;=M70.22^^148^1953^63
+ ;;^UTILITY(U,$J,358.3,39659,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,39659,1,3,0)
+ ;;=3^Olecranon Bursitis,Left Elbow
+ ;;^UTILITY(U,$J,358.3,39659,1,4,0)
+ ;;=4^M70.22
+ ;;^UTILITY(U,$J,358.3,39659,2)
+ ;;=^5013048
+ ;;^UTILITY(U,$J,358.3,39660,0)
+ ;;=M71.161^^148^1953^47

@@ -1,132 +1,274 @@
-IBDEI0TT ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0TT ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,13978,2)
- ;;=^5014681
- ;;^UTILITY(U,$J,358.3,13979,0)
- ;;=M87.111^^53^599^74
- ;;^UTILITY(U,$J,358.3,13979,1,0)
+ ;;^UTILITY(U,$J,358.3,29990,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13979,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Shoulder
- ;;^UTILITY(U,$J,358.3,13979,1,4,0)
- ;;=4^M87.111
- ;;^UTILITY(U,$J,358.3,13979,2)
- ;;=^5014701
- ;;^UTILITY(U,$J,358.3,13980,0)
- ;;=M87.112^^53^599^71
- ;;^UTILITY(U,$J,358.3,13980,1,0)
+ ;;^UTILITY(U,$J,358.3,29990,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Nonparental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,29990,1,4,0)
+ ;;=4^Z69.021
+ ;;^UTILITY(U,$J,358.3,29990,2)
+ ;;=^5063231
+ ;;^UTILITY(U,$J,358.3,29991,0)
+ ;;=Z69.011^^113^1441^23
+ ;;^UTILITY(U,$J,358.3,29991,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13980,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Shoulder
- ;;^UTILITY(U,$J,358.3,13980,1,4,0)
- ;;=4^M87.112
- ;;^UTILITY(U,$J,358.3,13980,2)
- ;;=^5014702
- ;;^UTILITY(U,$J,358.3,13981,0)
- ;;=M87.150^^53^599^72
- ;;^UTILITY(U,$J,358.3,13981,1,0)
+ ;;^UTILITY(U,$J,358.3,29991,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Abuse
+ ;;^UTILITY(U,$J,358.3,29991,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,29991,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,29992,0)
+ ;;=Z69.011^^113^1441^24
+ ;;^UTILITY(U,$J,358.3,29992,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13981,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Pelvis
- ;;^UTILITY(U,$J,358.3,13981,1,4,0)
- ;;=4^M87.150
- ;;^UTILITY(U,$J,358.3,13981,2)
- ;;=^5014722
- ;;^UTILITY(U,$J,358.3,13982,0)
- ;;=M87.151^^53^599^73
- ;;^UTILITY(U,$J,358.3,13982,1,0)
+ ;;^UTILITY(U,$J,358.3,29992,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Neglect
+ ;;^UTILITY(U,$J,358.3,29992,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,29992,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,29993,0)
+ ;;=Z69.011^^113^1441^25
+ ;;^UTILITY(U,$J,358.3,29993,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13982,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Right Femur
- ;;^UTILITY(U,$J,358.3,13982,1,4,0)
- ;;=4^M87.151
- ;;^UTILITY(U,$J,358.3,13982,2)
- ;;=^5014723
- ;;^UTILITY(U,$J,358.3,13983,0)
- ;;=M87.152^^53^599^70
- ;;^UTILITY(U,$J,358.3,13983,1,0)
+ ;;^UTILITY(U,$J,358.3,29993,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,29993,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,29993,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,29994,0)
+ ;;=Z69.011^^113^1441^26
+ ;;^UTILITY(U,$J,358.3,29994,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13983,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Left Femur
- ;;^UTILITY(U,$J,358.3,13983,1,4,0)
- ;;=4^M87.152
- ;;^UTILITY(U,$J,358.3,13983,2)
- ;;=^5014724
- ;;^UTILITY(U,$J,358.3,13984,0)
- ;;=M87.180^^53^599^69
- ;;^UTILITY(U,$J,358.3,13984,1,0)
+ ;;^UTILITY(U,$J,358.3,29994,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Parental Child Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,29994,1,4,0)
+ ;;=4^Z69.011
+ ;;^UTILITY(U,$J,358.3,29994,2)
+ ;;=^5063229
+ ;;^UTILITY(U,$J,358.3,29995,0)
+ ;;=Z69.12^^113^1441^17
+ ;;^UTILITY(U,$J,358.3,29995,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13984,1,3,0)
- ;;=3^Osteonecrosis d/t Drugs,Jaw
- ;;^UTILITY(U,$J,358.3,13984,1,4,0)
- ;;=4^M87.180
- ;;^UTILITY(U,$J,358.3,13984,2)
- ;;=^5014741
- ;;^UTILITY(U,$J,358.3,13985,0)
- ;;=M87.311^^53^599^168
- ;;^UTILITY(U,$J,358.3,13985,1,0)
+ ;;^UTILITY(U,$J,358.3,29995,1,3,0)
+ ;;=3^MH SVC for Perpetrator of Spousal/Partner Neglect
+ ;;^UTILITY(U,$J,358.3,29995,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,29995,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,29996,0)
+ ;;=Z69.12^^113^1441^28
+ ;;^UTILITY(U,$J,358.3,29996,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13985,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,13985,1,4,0)
- ;;=4^M87.311
- ;;^UTILITY(U,$J,358.3,13985,2)
- ;;=^5014788
- ;;^UTILITY(U,$J,358.3,13986,0)
- ;;=M87.312^^53^599^165
- ;;^UTILITY(U,$J,358.3,13986,1,0)
+ ;;^UTILITY(U,$J,358.3,29996,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,29996,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,29996,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,29997,0)
+ ;;=Z69.12^^113^1441^29
+ ;;^UTILITY(U,$J,358.3,29997,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13986,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Shoulder
- ;;^UTILITY(U,$J,358.3,13986,1,4,0)
- ;;=4^M87.312
- ;;^UTILITY(U,$J,358.3,13986,2)
- ;;=^5014789
- ;;^UTILITY(U,$J,358.3,13987,0)
- ;;=M87.350^^53^599^166
- ;;^UTILITY(U,$J,358.3,13987,1,0)
+ ;;^UTILITY(U,$J,358.3,29997,1,3,0)
+ ;;=3^MH Svc for Perpetrator of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,29997,1,4,0)
+ ;;=4^Z69.12
+ ;;^UTILITY(U,$J,358.3,29997,2)
+ ;;=^5063233
+ ;;^UTILITY(U,$J,358.3,29998,0)
+ ;;=Z69.11^^113^1441^32
+ ;;^UTILITY(U,$J,358.3,29998,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13987,1,3,0)
- ;;=3^Secondary Osteonecrosis,Pelvis
- ;;^UTILITY(U,$J,358.3,13987,1,4,0)
- ;;=4^M87.350
- ;;^UTILITY(U,$J,358.3,13987,2)
- ;;=^5014809
- ;;^UTILITY(U,$J,358.3,13988,0)
- ;;=M87.351^^53^599^167
- ;;^UTILITY(U,$J,358.3,13988,1,0)
+ ;;^UTILITY(U,$J,358.3,29998,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,29998,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,29998,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,29999,0)
+ ;;=Z69.11^^113^1441^33
+ ;;^UTILITY(U,$J,358.3,29999,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13988,1,3,0)
- ;;=3^Secondary Osteonecrosis,Right Femur
- ;;^UTILITY(U,$J,358.3,13988,1,4,0)
- ;;=4^M87.351
- ;;^UTILITY(U,$J,358.3,13988,2)
- ;;=^5014810
- ;;^UTILITY(U,$J,358.3,13989,0)
- ;;=M87.352^^53^599^164
- ;;^UTILITY(U,$J,358.3,13989,1,0)
+ ;;^UTILITY(U,$J,358.3,29999,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Physical
+ ;;^UTILITY(U,$J,358.3,29999,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,29999,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,30000,0)
+ ;;=Z69.11^^113^1441^34
+ ;;^UTILITY(U,$J,358.3,30000,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13989,1,3,0)
- ;;=3^Secondary Osteonecrosis,Left Femur
- ;;^UTILITY(U,$J,358.3,13989,1,4,0)
- ;;=4^M87.352
- ;;^UTILITY(U,$J,358.3,13989,2)
- ;;=^5014811
- ;;^UTILITY(U,$J,358.3,13990,0)
- ;;=M87.811^^53^599^79
- ;;^UTILITY(U,$J,358.3,13990,1,0)
+ ;;^UTILITY(U,$J,358.3,30000,1,3,0)
+ ;;=3^MH Svc for Victim of Spousal/Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,30000,1,4,0)
+ ;;=4^Z69.11
+ ;;^UTILITY(U,$J,358.3,30000,2)
+ ;;=^5063232
+ ;;^UTILITY(U,$J,358.3,30001,0)
+ ;;=Z62.812^^113^1441^36
+ ;;^UTILITY(U,$J,358.3,30001,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13990,1,3,0)
- ;;=3^Osteonecrosis,Right Shoulder
- ;;^UTILITY(U,$J,358.3,13990,1,4,0)
- ;;=4^M87.811
- ;;^UTILITY(U,$J,358.3,13990,2)
- ;;=^5014831
- ;;^UTILITY(U,$J,358.3,13991,0)
- ;;=M87.812^^53^599^76
- ;;^UTILITY(U,$J,358.3,13991,1,0)
+ ;;^UTILITY(U,$J,358.3,30001,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Neglect
+ ;;^UTILITY(U,$J,358.3,30001,1,4,0)
+ ;;=4^Z62.812
+ ;;^UTILITY(U,$J,358.3,30001,2)
+ ;;=^5063155
+ ;;^UTILITY(U,$J,358.3,30002,0)
+ ;;=Z62.810^^113^1441^37
+ ;;^UTILITY(U,$J,358.3,30002,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,13991,1,3,0)
- ;;=3^Osteonecrosis,Left Shoulder
+ ;;^UTILITY(U,$J,358.3,30002,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Physical Abuse
+ ;;^UTILITY(U,$J,358.3,30002,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,30002,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,30003,0)
+ ;;=Z62.810^^113^1441^39
+ ;;^UTILITY(U,$J,358.3,30003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30003,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Sexual Abuse
+ ;;^UTILITY(U,$J,358.3,30003,1,4,0)
+ ;;=4^Z62.810
+ ;;^UTILITY(U,$J,358.3,30003,2)
+ ;;=^5063153
+ ;;^UTILITY(U,$J,358.3,30004,0)
+ ;;=Z62.811^^113^1441^38
+ ;;^UTILITY(U,$J,358.3,30004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30004,1,3,0)
+ ;;=3^Personal Past Hx of Childhood Psychological Abuse
+ ;;^UTILITY(U,$J,358.3,30004,1,4,0)
+ ;;=4^Z62.811
+ ;;^UTILITY(U,$J,358.3,30004,2)
+ ;;=^5063154
+ ;;^UTILITY(U,$J,358.3,30005,0)
+ ;;=Z91.410^^113^1441^42
+ ;;^UTILITY(U,$J,358.3,30005,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30005,1,3,0)
+ ;;=3^Personal Past Hx of Spouse or Partner Violence,Sexual
+ ;;^UTILITY(U,$J,358.3,30005,1,4,0)
+ ;;=4^Z91.410
+ ;;^UTILITY(U,$J,358.3,30005,2)
+ ;;=^5063619
+ ;;^UTILITY(U,$J,358.3,30006,0)
+ ;;=F06.4^^113^1442^3
+ ;;^UTILITY(U,$J,358.3,30006,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30006,1,3,0)
+ ;;=3^Anxiety Disorder d/t Another Medical Condition
+ ;;^UTILITY(U,$J,358.3,30006,1,4,0)
+ ;;=4^F06.4
+ ;;^UTILITY(U,$J,358.3,30006,2)
+ ;;=^5003061
+ ;;^UTILITY(U,$J,358.3,30007,0)
+ ;;=F41.0^^113^1442^12
+ ;;^UTILITY(U,$J,358.3,30007,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30007,1,3,0)
+ ;;=3^Panic Disorder
+ ;;^UTILITY(U,$J,358.3,30007,1,4,0)
+ ;;=4^F41.0
+ ;;^UTILITY(U,$J,358.3,30007,2)
+ ;;=^5003564
+ ;;^UTILITY(U,$J,358.3,30008,0)
+ ;;=F41.1^^113^1442^10
+ ;;^UTILITY(U,$J,358.3,30008,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30008,1,3,0)
+ ;;=3^Generalized Anxiety Disorder
+ ;;^UTILITY(U,$J,358.3,30008,1,4,0)
+ ;;=4^F41.1
+ ;;^UTILITY(U,$J,358.3,30008,2)
+ ;;=^50059
+ ;;^UTILITY(U,$J,358.3,30009,0)
+ ;;=F40.10^^113^1442^17
+ ;;^UTILITY(U,$J,358.3,30009,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30009,1,3,0)
+ ;;=3^Social Anxiety Disorder (Social Phobia)
+ ;;^UTILITY(U,$J,358.3,30009,1,4,0)
+ ;;=4^F40.10
+ ;;^UTILITY(U,$J,358.3,30009,2)
+ ;;=^5003544
+ ;;^UTILITY(U,$J,358.3,30010,0)
+ ;;=F40.218^^113^1442^2
+ ;;^UTILITY(U,$J,358.3,30010,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30010,1,3,0)
+ ;;=3^Animal Phobia
+ ;;^UTILITY(U,$J,358.3,30010,1,4,0)
+ ;;=4^F40.218
+ ;;^UTILITY(U,$J,358.3,30010,2)
+ ;;=^5003547
+ ;;^UTILITY(U,$J,358.3,30011,0)
+ ;;=F40.228^^113^1442^11
+ ;;^UTILITY(U,$J,358.3,30011,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30011,1,3,0)
+ ;;=3^Natural Environment Phobia
+ ;;^UTILITY(U,$J,358.3,30011,1,4,0)
+ ;;=4^F40.228
+ ;;^UTILITY(U,$J,358.3,30011,2)
+ ;;=^5003549
+ ;;^UTILITY(U,$J,358.3,30012,0)
+ ;;=F40.230^^113^1442^6
+ ;;^UTILITY(U,$J,358.3,30012,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30012,1,3,0)
+ ;;=3^Fear of Blood
+ ;;^UTILITY(U,$J,358.3,30012,1,4,0)
+ ;;=4^F40.230
+ ;;^UTILITY(U,$J,358.3,30012,2)
+ ;;=^5003550
+ ;;^UTILITY(U,$J,358.3,30013,0)
+ ;;=F40.231^^113^1442^7
+ ;;^UTILITY(U,$J,358.3,30013,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30013,1,3,0)
+ ;;=3^Fear of Injections & Transfusions
+ ;;^UTILITY(U,$J,358.3,30013,1,4,0)
+ ;;=4^F40.231
+ ;;^UTILITY(U,$J,358.3,30013,2)
+ ;;=^5003551
+ ;;^UTILITY(U,$J,358.3,30014,0)
+ ;;=F40.232^^113^1442^9
+ ;;^UTILITY(U,$J,358.3,30014,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30014,1,3,0)
+ ;;=3^Fear of Other Medical Care
+ ;;^UTILITY(U,$J,358.3,30014,1,4,0)
+ ;;=4^F40.232
+ ;;^UTILITY(U,$J,358.3,30014,2)
+ ;;=^5003552
+ ;;^UTILITY(U,$J,358.3,30015,0)
+ ;;=F40.233^^113^1442^8
+ ;;^UTILITY(U,$J,358.3,30015,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30015,1,3,0)
+ ;;=3^Fear of Injury
+ ;;^UTILITY(U,$J,358.3,30015,1,4,0)
+ ;;=4^F40.233
+ ;;^UTILITY(U,$J,358.3,30015,2)
+ ;;=^5003553
+ ;;^UTILITY(U,$J,358.3,30016,0)
+ ;;=F40.248^^113^1442^16
+ ;;^UTILITY(U,$J,358.3,30016,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,30016,1,3,0)
+ ;;=3^Situational Phobia 
+ ;;^UTILITY(U,$J,358.3,30016,1,4,0)
+ ;;=4^F40.248
+ ;;^UTILITY(U,$J,358.3,30016,2)
+ ;;=^5003558
+ ;;^UTILITY(U,$J,358.3,30017,0)
+ ;;=F93.0^^113^1442^15

@@ -1,6 +1,10 @@
-DICM3 ;SFISC/XAK,TKW-PROCESS INDIVIDUAL FILE FOR VAR PTR ;12/7/99  14:59
- ;;22.0;VA FileMan;**16,4,20**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICM3 ;SFISC/XAK,TKW-PROCESS INDIVIDUAL FILE FOR VAR PTR ;07:39 PM  8 Aug 2002
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
 DIC ; Does recursive ^DIC call to single pointed-to file.
  Q:$D(DIVP(+DIVPDIC))
  I $D(DIV("V")) N % D  X % I '$T K Y S Y=-1 D DQ Q
@@ -75,7 +79,7 @@ DQ I $D(DIC("PTRIX")) M DIV("PTRIX")=DIC("PTRIX")
  ;
 H1 W:'$D(DDS) !
  N A1,DST,DIPAR S A1="T"
- S DIPAR(1)=$P(DIVPDIC,U,2),DIPAR(2)=$P($G(^DD(DIVDO,DIVY,0)),U)
+EGP S DIPAR(1)=$$FILENAME^DIALOGZ(+DIVPDIC),DIPAR(2)=$$LABEL^DIALOGZ(DIVDO,DIVY) ;**CCO/NI NAME OF FILE, AND VARIABLE-POINTER FIELD THAT POINTS TO IT
  S DST=$$EZBLD^DIALOG(8097,.DIPAR)
  D S^DIE3 W:'$D(DDS) ! Q
  ;

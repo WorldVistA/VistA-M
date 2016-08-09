@@ -1,6 +1,8 @@
-RCDPURET ;WISC/RFJ-receipt utilities (transactions) ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,141,169,173,196,221**;Mar 20, 1995
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPURET ;WISC/RFJ - Receipt Utilities (Transactions) ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,141,169,173,196,221,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ;use of IBRFN in tag PB allowed by private IA 2031
  Q
  ;
  ;
@@ -35,7 +37,7 @@ EDITTRAN(RECTDA,TRANDA) ;  edit a receipt transaction
  I '$D(^RCY(344,RECTDA,1,TRANDA,0)) Q 0
  ;
  N %,%DT,%T,%Y,C,D,D0,D1,DA,DATA,DDH,DI,DIC,DICR,DIE,DIG,DIH,DIPGM,DIU,DIV,DIW,DG,DQ,DR,DZ,RCAMOUNT,RCTYPE,RESULT,X,Y
- N RCXAMONT,RCXSUSP,RCXADJ,RCERA,RCADJ,RCXERA
+ N RCXAMONT,RCXSUSP,RCXSUSP1,RCXADJ,RCERA,RCADJ,RCXERA
  ;
  ;  build dr string based on type of payment on receipt
  S RCTYPE=$P($G(^RC(341.1,+$P(^RCY(344,RECTDA,0),"^",4),0)),"^",2)
@@ -51,7 +53,14 @@ EDITTRAN(RECTDA,TRANDA) ;  edit a receipt transaction
  S DR=DR_"S Y=$S('$P(^RCY(344,DA(1),1,DA,0),U,9):""@1"",1:""@2"");"
  ;  ask comment if no acct (unapplied)
  S RCXSUSP="W !?5,""NOTE: This payment will be posted to the station's suspense fund."""
- S DR=DR_"@1;X RCXSUSP;1.02;S Y=""@3"";"
+ ;
+ ; PRCA*4.5*304 - Force user to type something
+ ; Check for the the existance of a comment.  If none currently exists,
+ ;   go to new code to prompt user and enforce entry of a comment, otherwise
+ ;   use the existing field call to edit it.
+ S RCXSUSP1="S:$P($G(^RCY(344,DA(1),1,DA,1)),U,2)="""" Y=""@4"""
+ S DR=DR_"@1;X RCXSUSP;X RCXSUSP1;1.02R;S Y=""@3"";@4;1.02///^S X=$$GETRSN^RCDPURET;S Y=""@3"";"
+ ;
  ;  payment amount
  S RCXAMONT="W !,""  Amount Owed: $"",$J($$PAYDEF^RCDPURET($P(^RCY(344,DA(1),1,DA,0),U,9)),0,2)"
  S DR=DR_"@2;X RCXAMONT;@3;.04;"
@@ -105,12 +114,20 @@ EDITACCT(RECTDA,TRANDA) ;  edit the account on a receipt
  ;
  ;
 DELEACCT(RECTDA,TRANDA) ;  delete the account on a receipt
- N D,D0,D1,DA,DI,DIC,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR,X
- S DR=".09///@;.03///@;"
+ N D,D0,D1,DA,DI,DIC,DICR,DIE,DIG,DIH,DIU,DIV,DIW,DQ,DR,X,CMT
+ ;
+ ;Add comment indicating error in processing.
+ S CMT="Error encountered.  Still in Suspense"
+ S DR=".09///@;.03///@;1.02///"_CMT_";"
  S (DIC,DIE)="^RCY(344,"_RECTDA_",1,"
  S DA=TRANDA,DA(1)=RECTDA
  D ^DIE
  D LASTEDIT^RCDPUREC(RECTDA)
+ ;
+ ;PRCA*4.5*304
+ ;Update the Audit Log ans Suspense status back to Pending and In Suspense
+ D AUDIT^RCBEPAY(RECTDA,TRANDA,"I")
+ D SUSPDIS^RCBEPAY(RECTDA,TRANDA,"P")
  Q
  ;
  ;
@@ -201,3 +218,17 @@ TRACE(DEBTOR) ;ENTER TOP TRACE NUMBER FOR TOP RECEIPTS
  S (DIC,DIE)="^RCD(340,",DR=6.07 D ^DIE
  S TRACE=$P($G(^RCD(340,DA,6)),"^",7)
 TRACEQ Q TRACE
+ ;
+ ;PRCA*4.5*304 - Force user to enter a comment if item is in suspense
+GETRSN() ;
+ ;
+ N X,Y,DTOUT,DUOUT,DIR,DIROUT,DIRUT,RCTODAY
+ ;
+ ; Get the Comment:  Assume the end date is today.
+ F  D  Q:Y'=""
+ . S DIR("?")="ENTER THE REASON FOR PLACING THE RECEIPT ITEM INTO THE SUSPENSE FUND"
+ . S DIR(0)="FA^1:60",DIR("A")="COMMENT: " D ^DIR K DIR
+ . I $G(DTOUT)!$G(DUOUT) S Y="^" Q
+ . S Y=$$TRIM^XLFSTR(Y)
+ . I Y="" W !,"A comment is required when changing the status of an item in Suspense.  Please",!,"try again." Q
+ Q Y

@@ -1,6 +1,12 @@
 PRCH1A3 ;WISC/PLT-PRCH1A continued ;9/8/98  11:10
-V ;;5.1;IFCAP;;Oct 20, 2000
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**184**;Oct 20, 2000;Build 8
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*184 If Final Charge edited from 'Y' to 'N' add logic to
+ ;            flip the attached 2237s from Running Balance Status
+ ;            'O' back to 'A' to insure they are carried forward
+ ;            to next fiscal quarter.
+ ;
  QUIT  ;invalid entry
  ;
 RC ;entry point - prch1d
@@ -8,6 +14,7 @@ RC ;entry point - prch1d
  ;confirm receipt with the user; otherwise check file #442,
  ;node 11 before asking the user any questions.
  ;
+ N PRCFOLD
  S PRCE=^PRC(442,PRCRI(442),0),PRCCP=$P($G(^(23)),"^",16),PRCR=$P($G(^(23)),"^",15)
  I PRCR="N",$P($G(^PRC(442,PRCRI(442),23)),"^",11)="S" D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),43) I $G(X)=-1 D EXIT QUIT
  I PRCR="N",$P($G(^PRC(442,PRCRI(442),23)),"^",11)="P" D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),43) I $G(X)=-1 D EXIT QUIT
@@ -33,6 +40,7 @@ RC ;entry point - prch1d
  ;station.
  I PRCR="",$P($G(^PRC(442,PRCRI(442),23)),"^",11)="P" D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),"43////Y") I $G(X)=-1 D EXIT QUIT
  ;
+ S PRCFOLD=^PRCH(440.6,PRCRI(440.6),1)
  W !,"WARNING: If a credit or additional charge is expected against this order number"
  W !,"do NOT respond YES."
  D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),"44;15////R;45////"_DUZ) I $G(X)=-1 D EXIT QUIT
@@ -48,6 +56,10 @@ RC ;entry point - prch1d
  I $P(PRCF,"^",4)="N" D
  . S PRCVAL="" D EDIT^PRC0B(.X,"442;^PRC(442,;"_PRCRI(442),"44Are you going to dispute this charge amount?//NO;S PRCVAL=X W:X?1""Y"".U !,""You must file a disputed claim form with Purchase Card Company.""")
  . I PRCVAL?1"Y".U D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),"15////D")
+ . I $P(PRCFOLD,"^",4)="Y" D       ;PRC*5.1*184 Check for Final Charge edit from 'yes' to 'no' to flip RB status in file 410 linked 2237s
+ .. S PRCRI(410)=0
+ .. F  S PRCRI(410)=$O(^PRC(442,PRCRI(442),13,PRCRI(410))) QUIT:'PRCRI(410)  D:PRCRI(410) ERS410^PRC0G(PRCRI(410)_"^A")
+ .. Q
  . QUIT
  I $P(PRCF,"^",4)="Y" D EDIT^PRC0B(.X,"440.6;^PRCH(440.6,;"_PRCRI(440.6),"15////R"),EDIT^PRC0B(.X,"442;^PRC(442,;"_PRCRI(442),"44////N")
  I $P(PRCF,"^",4)="Y",PRCRI(410) D

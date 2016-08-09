@@ -1,128 +1,284 @@
-IBDEI13W ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI13W ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,18818,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,18818,1,4,0)
- ;;=4^H40.1223
- ;;^UTILITY(U,$J,358.3,18818,2)
- ;;=^5133492
- ;;^UTILITY(U,$J,358.3,18819,0)
- ;;=H40.1224^^82^899^33
- ;;^UTILITY(U,$J,358.3,18819,1,0)
+ ;;^UTILITY(U,$J,358.3,40162,0)
+ ;;=F12.90^^148^1961^8
+ ;;^UTILITY(U,$J,358.3,40162,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18819,1,3,0)
- ;;=3^glc,Low-Tension,Left Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,18819,1,4,0)
- ;;=4^H40.1224
- ;;^UTILITY(U,$J,358.3,18819,2)
- ;;=^5005766
- ;;^UTILITY(U,$J,358.3,18820,0)
- ;;=H40.1230^^82^899^32
- ;;^UTILITY(U,$J,358.3,18820,1,0)
+ ;;^UTILITY(U,$J,358.3,40162,1,3,0)
+ ;;=3^Cannabis Use,Unspec,Uncomplicated
+ ;;^UTILITY(U,$J,358.3,40162,1,4,0)
+ ;;=4^F12.90
+ ;;^UTILITY(U,$J,358.3,40162,2)
+ ;;=^5003178
+ ;;^UTILITY(U,$J,358.3,40163,0)
+ ;;=I83.019^^148^1962^3
+ ;;^UTILITY(U,$J,358.3,40163,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18820,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Stage Unspec
- ;;^UTILITY(U,$J,358.3,18820,1,4,0)
- ;;=4^H40.1230
- ;;^UTILITY(U,$J,358.3,18820,2)
- ;;=^5005767
- ;;^UTILITY(U,$J,358.3,18821,0)
- ;;=H40.1231^^82^899^29
- ;;^UTILITY(U,$J,358.3,18821,1,0)
+ ;;^UTILITY(U,$J,358.3,40163,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,40163,1,4,0)
+ ;;=4^I83.019
+ ;;^UTILITY(U,$J,358.3,40163,2)
+ ;;=^5007979
+ ;;^UTILITY(U,$J,358.3,40164,0)
+ ;;=I83.219^^148^1962^4
+ ;;^UTILITY(U,$J,358.3,40164,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18821,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Mild Stage
- ;;^UTILITY(U,$J,358.3,18821,1,4,0)
- ;;=4^H40.1231
- ;;^UTILITY(U,$J,358.3,18821,2)
- ;;=^5005768
- ;;^UTILITY(U,$J,358.3,18822,0)
- ;;=H40.1232^^82^899^30
- ;;^UTILITY(U,$J,358.3,18822,1,0)
+ ;;^UTILITY(U,$J,358.3,40164,1,3,0)
+ ;;=3^Varicose Veins Right Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,40164,1,4,0)
+ ;;=4^I83.219
+ ;;^UTILITY(U,$J,358.3,40164,2)
+ ;;=^5008003
+ ;;^UTILITY(U,$J,358.3,40165,0)
+ ;;=I83.029^^148^1962^1
+ ;;^UTILITY(U,$J,358.3,40165,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18822,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Moderate Stage
- ;;^UTILITY(U,$J,358.3,18822,1,4,0)
- ;;=4^H40.1232
- ;;^UTILITY(U,$J,358.3,18822,2)
- ;;=^5005769
- ;;^UTILITY(U,$J,358.3,18823,0)
- ;;=H40.1233^^82^899^31
- ;;^UTILITY(U,$J,358.3,18823,1,0)
+ ;;^UTILITY(U,$J,358.3,40165,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer,Unspec
+ ;;^UTILITY(U,$J,358.3,40165,1,4,0)
+ ;;=4^I83.029
+ ;;^UTILITY(U,$J,358.3,40165,2)
+ ;;=^5007986
+ ;;^UTILITY(U,$J,358.3,40166,0)
+ ;;=I83.229^^148^1962^2
+ ;;^UTILITY(U,$J,358.3,40166,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18823,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Severe Stage
- ;;^UTILITY(U,$J,358.3,18823,1,4,0)
- ;;=4^H40.1233
- ;;^UTILITY(U,$J,358.3,18823,2)
- ;;=^5005770
- ;;^UTILITY(U,$J,358.3,18824,0)
- ;;=H40.1234^^82^899^28
- ;;^UTILITY(U,$J,358.3,18824,1,0)
+ ;;^UTILITY(U,$J,358.3,40166,1,3,0)
+ ;;=3^Varicose Veins Left Lower Extrem w/ Ulcer & Inflam,Unspec
+ ;;^UTILITY(U,$J,358.3,40166,1,4,0)
+ ;;=4^I83.229
+ ;;^UTILITY(U,$J,358.3,40166,2)
+ ;;=^5008010
+ ;;^UTILITY(U,$J,358.3,40167,0)
+ ;;=B00.81^^148^1963^56
+ ;;^UTILITY(U,$J,358.3,40167,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18824,1,3,0)
- ;;=3^glc,Low-Tension,Bilateral,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,18824,1,4,0)
- ;;=4^H40.1234
- ;;^UTILITY(U,$J,358.3,18824,2)
- ;;=^5005771
- ;;^UTILITY(U,$J,358.3,18825,0)
- ;;=H40.1310^^82^899^67
- ;;^UTILITY(U,$J,358.3,18825,1,0)
+ ;;^UTILITY(U,$J,358.3,40167,1,3,0)
+ ;;=3^Herpesviral Hepatitis
+ ;;^UTILITY(U,$J,358.3,40167,1,4,0)
+ ;;=4^B00.81
+ ;;^UTILITY(U,$J,358.3,40167,2)
+ ;;=^5000478
+ ;;^UTILITY(U,$J,358.3,40168,0)
+ ;;=D25.9^^148^1963^65
+ ;;^UTILITY(U,$J,358.3,40168,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18825,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,18825,1,4,0)
- ;;=4^H40.1310
- ;;^UTILITY(U,$J,358.3,18825,2)
- ;;=^5005775
- ;;^UTILITY(U,$J,358.3,18826,0)
- ;;=H40.1311^^82^899^64
- ;;^UTILITY(U,$J,358.3,18826,1,0)
+ ;;^UTILITY(U,$J,358.3,40168,1,3,0)
+ ;;=3^Leiomyoma of Uterus,Unspec
+ ;;^UTILITY(U,$J,358.3,40168,1,4,0)
+ ;;=4^D25.9
+ ;;^UTILITY(U,$J,358.3,40168,2)
+ ;;=^5002081
+ ;;^UTILITY(U,$J,358.3,40169,0)
+ ;;=F52.9^^148^1963^103
+ ;;^UTILITY(U,$J,358.3,40169,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18826,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Mild Stage
- ;;^UTILITY(U,$J,358.3,18826,1,4,0)
- ;;=4^H40.1311
- ;;^UTILITY(U,$J,358.3,18826,2)
- ;;=^5005776
- ;;^UTILITY(U,$J,358.3,18827,0)
- ;;=H40.1312^^82^899^65
- ;;^UTILITY(U,$J,358.3,18827,1,0)
+ ;;^UTILITY(U,$J,358.3,40169,1,3,0)
+ ;;=3^Sexual Dysfnct Not d/t a Sub/Known Physiol Cond,Unspec
+ ;;^UTILITY(U,$J,358.3,40169,1,4,0)
+ ;;=4^F52.9
+ ;;^UTILITY(U,$J,358.3,40169,2)
+ ;;=^5003625
+ ;;^UTILITY(U,$J,358.3,40170,0)
+ ;;=R37.^^148^1963^104
+ ;;^UTILITY(U,$J,358.3,40170,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18827,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Moderate Stage
- ;;^UTILITY(U,$J,358.3,18827,1,4,0)
- ;;=4^H40.1312
- ;;^UTILITY(U,$J,358.3,18827,2)
- ;;=^5005777
- ;;^UTILITY(U,$J,358.3,18828,0)
- ;;=H40.1313^^82^899^66
- ;;^UTILITY(U,$J,358.3,18828,1,0)
+ ;;^UTILITY(U,$J,358.3,40170,1,3,0)
+ ;;=3^Sexual Dysfunction,Unspec
+ ;;^UTILITY(U,$J,358.3,40170,1,4,0)
+ ;;=4^R37.
+ ;;^UTILITY(U,$J,358.3,40170,2)
+ ;;=^5019339
+ ;;^UTILITY(U,$J,358.3,40171,0)
+ ;;=N60.01^^148^1963^107
+ ;;^UTILITY(U,$J,358.3,40171,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18828,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Severe Stage
- ;;^UTILITY(U,$J,358.3,18828,1,4,0)
- ;;=4^H40.1313
- ;;^UTILITY(U,$J,358.3,18828,2)
- ;;=^5005778
- ;;^UTILITY(U,$J,358.3,18829,0)
- ;;=H40.1314^^82^899^63
- ;;^UTILITY(U,$J,358.3,18829,1,0)
+ ;;^UTILITY(U,$J,358.3,40171,1,3,0)
+ ;;=3^Solitary Cyst of Right Breast
+ ;;^UTILITY(U,$J,358.3,40171,1,4,0)
+ ;;=4^N60.01
+ ;;^UTILITY(U,$J,358.3,40171,2)
+ ;;=^5015770
+ ;;^UTILITY(U,$J,358.3,40172,0)
+ ;;=N60.02^^148^1963^106
+ ;;^UTILITY(U,$J,358.3,40172,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18829,1,3,0)
- ;;=3^glc,Pigmentary,Right Eye,Indeterminate Stage
- ;;^UTILITY(U,$J,358.3,18829,1,4,0)
- ;;=4^H40.1314
- ;;^UTILITY(U,$J,358.3,18829,2)
- ;;=^5005779
- ;;^UTILITY(U,$J,358.3,18830,0)
- ;;=H40.1320^^82^899^62
- ;;^UTILITY(U,$J,358.3,18830,1,0)
+ ;;^UTILITY(U,$J,358.3,40172,1,3,0)
+ ;;=3^Solitary Cyst of Left Breast
+ ;;^UTILITY(U,$J,358.3,40172,1,4,0)
+ ;;=4^N60.02
+ ;;^UTILITY(U,$J,358.3,40172,2)
+ ;;=^5015771
+ ;;^UTILITY(U,$J,358.3,40173,0)
+ ;;=N60.09^^148^1963^108
+ ;;^UTILITY(U,$J,358.3,40173,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,18830,1,3,0)
- ;;=3^glc,Pigmentary,Left Eye,Stage Unspec
- ;;^UTILITY(U,$J,358.3,18830,1,4,0)
- ;;=4^H40.1320
+ ;;^UTILITY(U,$J,358.3,40173,1,3,0)
+ ;;=3^Solitary Cyst of Unspec Breast
+ ;;^UTILITY(U,$J,358.3,40173,1,4,0)
+ ;;=4^N60.09
+ ;;^UTILITY(U,$J,358.3,40173,2)
+ ;;=^5015772
+ ;;^UTILITY(U,$J,358.3,40174,0)
+ ;;=N60.11^^148^1963^31
+ ;;^UTILITY(U,$J,358.3,40174,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40174,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Right Breast
+ ;;^UTILITY(U,$J,358.3,40174,1,4,0)
+ ;;=4^N60.11
+ ;;^UTILITY(U,$J,358.3,40174,2)
+ ;;=^5015773
+ ;;^UTILITY(U,$J,358.3,40175,0)
+ ;;=N60.12^^148^1963^30
+ ;;^UTILITY(U,$J,358.3,40175,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40175,1,3,0)
+ ;;=3^Diffuse Cystic Mastopathy of Left Breast
+ ;;^UTILITY(U,$J,358.3,40175,1,4,0)
+ ;;=4^N60.12
+ ;;^UTILITY(U,$J,358.3,40175,2)
+ ;;=^5015774
+ ;;^UTILITY(U,$J,358.3,40176,0)
+ ;;=N64.4^^148^1963^70
+ ;;^UTILITY(U,$J,358.3,40176,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40176,1,3,0)
+ ;;=3^Mastodynia
+ ;;^UTILITY(U,$J,358.3,40176,1,4,0)
+ ;;=4^N64.4
+ ;;^UTILITY(U,$J,358.3,40176,2)
+ ;;=^5015794
+ ;;^UTILITY(U,$J,358.3,40177,0)
+ ;;=N63.^^148^1963^67
+ ;;^UTILITY(U,$J,358.3,40177,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40177,1,3,0)
+ ;;=3^Lump in Breast,Unspec
+ ;;^UTILITY(U,$J,358.3,40177,1,4,0)
+ ;;=4^N63.
+ ;;^UTILITY(U,$J,358.3,40177,2)
+ ;;=^5015791
+ ;;^UTILITY(U,$J,358.3,40178,0)
+ ;;=N64.51^^148^1963^61
+ ;;^UTILITY(U,$J,358.3,40178,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40178,1,3,0)
+ ;;=3^Induration of Breast
+ ;;^UTILITY(U,$J,358.3,40178,1,4,0)
+ ;;=4^N64.51
+ ;;^UTILITY(U,$J,358.3,40178,2)
+ ;;=^5015795
+ ;;^UTILITY(U,$J,358.3,40179,0)
+ ;;=N64.59^^148^1963^105
+ ;;^UTILITY(U,$J,358.3,40179,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40179,1,3,0)
+ ;;=3^Signs and Symptoms in Breast,Other
+ ;;^UTILITY(U,$J,358.3,40179,1,4,0)
+ ;;=4^N64.59
+ ;;^UTILITY(U,$J,358.3,40179,2)
+ ;;=^5015797
+ ;;^UTILITY(U,$J,358.3,40180,0)
+ ;;=N64.52^^148^1963^73
+ ;;^UTILITY(U,$J,358.3,40180,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40180,1,3,0)
+ ;;=3^Nipple Discharge
+ ;;^UTILITY(U,$J,358.3,40180,1,4,0)
+ ;;=4^N64.52
+ ;;^UTILITY(U,$J,358.3,40180,2)
+ ;;=^259531
+ ;;^UTILITY(U,$J,358.3,40181,0)
+ ;;=N64.53^^148^1963^99
+ ;;^UTILITY(U,$J,358.3,40181,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40181,1,3,0)
+ ;;=3^Retraction of Nipple
+ ;;^UTILITY(U,$J,358.3,40181,1,4,0)
+ ;;=4^N64.53
+ ;;^UTILITY(U,$J,358.3,40181,2)
+ ;;=^5015796
+ ;;^UTILITY(U,$J,358.3,40182,0)
+ ;;=N75.1^^148^1963^8
+ ;;^UTILITY(U,$J,358.3,40182,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40182,1,3,0)
+ ;;=3^Abscess of Bartholin's Gland
+ ;;^UTILITY(U,$J,358.3,40182,1,4,0)
+ ;;=4^N75.1
+ ;;^UTILITY(U,$J,358.3,40182,2)
+ ;;=^5015823
+ ;;^UTILITY(U,$J,358.3,40183,0)
+ ;;=N80.9^^148^1963^38
+ ;;^UTILITY(U,$J,358.3,40183,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40183,1,3,0)
+ ;;=3^Endometriosis,Unspec
+ ;;^UTILITY(U,$J,358.3,40183,1,4,0)
+ ;;=4^N80.9
+ ;;^UTILITY(U,$J,358.3,40183,2)
+ ;;=^5015837
+ ;;^UTILITY(U,$J,358.3,40184,0)
+ ;;=N81.4^^148^1963^112
+ ;;^UTILITY(U,$J,358.3,40184,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40184,1,3,0)
+ ;;=3^Uterovaginal Prolapse,Unspec
+ ;;^UTILITY(U,$J,358.3,40184,1,4,0)
+ ;;=4^N81.4
+ ;;^UTILITY(U,$J,358.3,40184,2)
+ ;;=^5015841
+ ;;^UTILITY(U,$J,358.3,40185,0)
+ ;;=N83.20^^148^1963^79
+ ;;^UTILITY(U,$J,358.3,40185,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40185,1,3,0)
+ ;;=3^Ovarian Cysts,Unspec
+ ;;^UTILITY(U,$J,358.3,40185,1,4,0)
+ ;;=4^N83.20
+ ;;^UTILITY(U,$J,358.3,40185,2)
+ ;;=^5015855
+ ;;^UTILITY(U,$J,358.3,40186,0)
+ ;;=N83.29^^148^1963^78
+ ;;^UTILITY(U,$J,358.3,40186,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40186,1,3,0)
+ ;;=3^Ovarian Cysts,Other
+ ;;^UTILITY(U,$J,358.3,40186,1,4,0)
+ ;;=4^N83.29
+ ;;^UTILITY(U,$J,358.3,40186,2)
+ ;;=^5015856
+ ;;^UTILITY(U,$J,358.3,40187,0)
+ ;;=N84.8^^148^1963^87
+ ;;^UTILITY(U,$J,358.3,40187,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40187,1,3,0)
+ ;;=3^Polyp of Other Parts of Female Genital Tract
+ ;;^UTILITY(U,$J,358.3,40187,1,4,0)
+ ;;=4^N84.8
+ ;;^UTILITY(U,$J,358.3,40187,2)
+ ;;=^5015868
+ ;;^UTILITY(U,$J,358.3,40188,0)
+ ;;=N84.0^^148^1963^85
+ ;;^UTILITY(U,$J,358.3,40188,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40188,1,3,0)
+ ;;=3^Polyp of Corpus Uteri
+ ;;^UTILITY(U,$J,358.3,40188,1,4,0)
+ ;;=4^N84.0
+ ;;^UTILITY(U,$J,358.3,40188,2)
+ ;;=^270517
+ ;;^UTILITY(U,$J,358.3,40189,0)
+ ;;=N84.9^^148^1963^86
+ ;;^UTILITY(U,$J,358.3,40189,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,40189,1,3,0)
+ ;;=3^Polyp of Female Genital Tract,Unspec
+ ;;^UTILITY(U,$J,358.3,40189,1,4,0)
+ ;;=4^N84.9
+ ;;^UTILITY(U,$J,358.3,40189,2)
+ ;;=^5015869

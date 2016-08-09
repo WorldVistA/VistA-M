@@ -1,134 +1,282 @@
-IBDEI0AP ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0AP ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,4790,1,0)
+ ;;^UTILITY(U,$J,358.3,10717,1,3,0)
+ ;;=3^Filamentary Keratitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,10717,1,4,0)
+ ;;=4^H16.123
+ ;;^UTILITY(U,$J,358.3,10717,2)
+ ;;=^5004907
+ ;;^UTILITY(U,$J,358.3,10718,0)
+ ;;=H10.413^^53^600^77
+ ;;^UTILITY(U,$J,358.3,10718,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4790,1,3,0)
- ;;=3^Femoral Nerve Lesion,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4790,1,4,0)
- ;;=4^G57.22
- ;;^UTILITY(U,$J,358.3,4790,2)
- ;;=^5004046
- ;;^UTILITY(U,$J,358.3,4791,0)
- ;;=G57.31^^24^305^94
- ;;^UTILITY(U,$J,358.3,4791,1,0)
+ ;;^UTILITY(U,$J,358.3,10718,1,3,0)
+ ;;=3^Giant Papillary Conjunctivitis,Bilateral,Chronic
+ ;;^UTILITY(U,$J,358.3,10718,1,4,0)
+ ;;=4^H10.413
+ ;;^UTILITY(U,$J,358.3,10718,2)
+ ;;=^5004686
+ ;;^UTILITY(U,$J,358.3,10719,0)
+ ;;=H21.03^^53^600^83
+ ;;^UTILITY(U,$J,358.3,10719,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4791,1,3,0)
- ;;=3^Lateral Popliteal Nerve Lesion,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4791,1,4,0)
- ;;=4^G57.31
- ;;^UTILITY(U,$J,358.3,4791,2)
- ;;=^5004048
- ;;^UTILITY(U,$J,358.3,4792,0)
- ;;=G57.32^^24^305^93
- ;;^UTILITY(U,$J,358.3,4792,1,0)
+ ;;^UTILITY(U,$J,358.3,10719,1,3,0)
+ ;;=3^Hyphema,Bilateral
+ ;;^UTILITY(U,$J,358.3,10719,1,4,0)
+ ;;=4^H21.03
+ ;;^UTILITY(U,$J,358.3,10719,2)
+ ;;=^5005174
+ ;;^UTILITY(U,$J,358.3,10720,0)
+ ;;=H20.053^^53^600^86
+ ;;^UTILITY(U,$J,358.3,10720,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4792,1,3,0)
- ;;=3^Lateral Popliteal Nerve Lesion,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4792,1,4,0)
- ;;=4^G57.32
- ;;^UTILITY(U,$J,358.3,4792,2)
- ;;=^5004049
- ;;^UTILITY(U,$J,358.3,4793,0)
- ;;=G57.41^^24^305^98
- ;;^UTILITY(U,$J,358.3,4793,1,0)
+ ;;^UTILITY(U,$J,358.3,10720,1,3,0)
+ ;;=3^Hypopyon,Bilateral
+ ;;^UTILITY(U,$J,358.3,10720,1,4,0)
+ ;;=4^H20.053
+ ;;^UTILITY(U,$J,358.3,10720,2)
+ ;;=^5005152
+ ;;^UTILITY(U,$J,358.3,10721,0)
+ ;;=H21.263^^53^600^92
+ ;;^UTILITY(U,$J,358.3,10721,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4793,1,3,0)
- ;;=3^Medial Popliteal Nerve Lesion,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4793,1,4,0)
- ;;=4^G57.41
- ;;^UTILITY(U,$J,358.3,4793,2)
- ;;=^5004051
- ;;^UTILITY(U,$J,358.3,4794,0)
- ;;=G57.42^^24^305^97
- ;;^UTILITY(U,$J,358.3,4794,1,0)
+ ;;^UTILITY(U,$J,358.3,10721,1,3,0)
+ ;;=3^Iris Atrophy,Bilateral
+ ;;^UTILITY(U,$J,358.3,10721,1,4,0)
+ ;;=4^H21.263
+ ;;^UTILITY(U,$J,358.3,10721,2)
+ ;;=^5005201
+ ;;^UTILITY(U,$J,358.3,10722,0)
+ ;;=H16.293^^53^600^98
+ ;;^UTILITY(U,$J,358.3,10722,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4794,1,3,0)
- ;;=3^Medial Popliteal Nerve Lesion,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4794,1,4,0)
- ;;=4^G57.42
- ;;^UTILITY(U,$J,358.3,4794,2)
- ;;=^5004052
- ;;^UTILITY(U,$J,358.3,4795,0)
- ;;=G57.51^^24^305^136
- ;;^UTILITY(U,$J,358.3,4795,1,0)
+ ;;^UTILITY(U,$J,358.3,10722,1,3,0)
+ ;;=3^Keratoconjunctivitis,Bilateral NEC
+ ;;^UTILITY(U,$J,358.3,10722,1,4,0)
+ ;;=4^H16.293
+ ;;^UTILITY(U,$J,358.3,10722,2)
+ ;;=^5004945
+ ;;^UTILITY(U,$J,358.3,10723,0)
+ ;;=H16.203^^53^600^99
+ ;;^UTILITY(U,$J,358.3,10723,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4795,1,3,0)
- ;;=3^Tarsal Tunnel Syndrome,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4795,1,4,0)
- ;;=4^G57.51
- ;;^UTILITY(U,$J,358.3,4795,2)
- ;;=^5004054
- ;;^UTILITY(U,$J,358.3,4796,0)
- ;;=G57.52^^24^305^135
- ;;^UTILITY(U,$J,358.3,4796,1,0)
+ ;;^UTILITY(U,$J,358.3,10723,1,3,0)
+ ;;=3^Keratoconjunctivitis,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,10723,1,4,0)
+ ;;=4^H16.203
+ ;;^UTILITY(U,$J,358.3,10723,2)
+ ;;=^5004919
+ ;;^UTILITY(U,$J,358.3,10724,0)
+ ;;=H18.603^^53^600^104
+ ;;^UTILITY(U,$J,358.3,10724,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4796,1,3,0)
- ;;=3^Tarsal Tunnel Syndrome,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4796,1,4,0)
- ;;=4^G57.52
- ;;^UTILITY(U,$J,358.3,4796,2)
- ;;=^5004055
- ;;^UTILITY(U,$J,358.3,4797,0)
- ;;=G57.61^^24^305^130
- ;;^UTILITY(U,$J,358.3,4797,1,0)
+ ;;^UTILITY(U,$J,358.3,10724,1,3,0)
+ ;;=3^Keratoconus,Bilateral,Unspec
+ ;;^UTILITY(U,$J,358.3,10724,1,4,0)
+ ;;=4^H18.603
+ ;;^UTILITY(U,$J,358.3,10724,2)
+ ;;=^5005091
+ ;;^UTILITY(U,$J,358.3,10725,0)
+ ;;=H16.043^^53^600^115
+ ;;^UTILITY(U,$J,358.3,10725,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4797,1,3,0)
- ;;=3^Plantar Nerve Lesion,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4797,1,4,0)
- ;;=4^G57.61
- ;;^UTILITY(U,$J,358.3,4797,2)
- ;;=^5004057
- ;;^UTILITY(U,$J,358.3,4798,0)
- ;;=G57.62^^24^305^129
- ;;^UTILITY(U,$J,358.3,4798,1,0)
+ ;;^UTILITY(U,$J,358.3,10725,1,3,0)
+ ;;=3^Marginal Corneal Ulcer,Bilateral
+ ;;^UTILITY(U,$J,358.3,10725,1,4,0)
+ ;;=4^H16.043
+ ;;^UTILITY(U,$J,358.3,10725,2)
+ ;;=^5004884
+ ;;^UTILITY(U,$J,358.3,10726,0)
+ ;;=H16.423^^53^600^121
+ ;;^UTILITY(U,$J,358.3,10726,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4798,1,3,0)
- ;;=3^Plantar Nerve Lesion,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4798,1,4,0)
- ;;=4^G57.62
- ;;^UTILITY(U,$J,358.3,4798,2)
- ;;=^5004058
- ;;^UTILITY(U,$J,358.3,4799,0)
- ;;=G57.71^^24^305^3
- ;;^UTILITY(U,$J,358.3,4799,1,0)
+ ;;^UTILITY(U,$J,358.3,10726,1,3,0)
+ ;;=3^Pannus Corneal,Bilateral
+ ;;^UTILITY(U,$J,358.3,10726,1,4,0)
+ ;;=4^H16.423
+ ;;^UTILITY(U,$J,358.3,10726,2)
+ ;;=^5004974
+ ;;^UTILITY(U,$J,358.3,10727,0)
+ ;;=H17.823^^53^600^127
+ ;;^UTILITY(U,$J,358.3,10727,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4799,1,3,0)
- ;;=3^Causalgia,Right Lower Limb
- ;;^UTILITY(U,$J,358.3,4799,1,4,0)
- ;;=4^G57.71
- ;;^UTILITY(U,$J,358.3,4799,2)
- ;;=^5133365
- ;;^UTILITY(U,$J,358.3,4800,0)
- ;;=G57.72^^24^305^1
- ;;^UTILITY(U,$J,358.3,4800,1,0)
+ ;;^UTILITY(U,$J,358.3,10727,1,3,0)
+ ;;=3^Peripheral Opacity of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,10727,1,4,0)
+ ;;=4^H17.823
+ ;;^UTILITY(U,$J,358.3,10727,2)
+ ;;=^5005000
+ ;;^UTILITY(U,$J,358.3,10728,0)
+ ;;=H11.153^^53^600^130
+ ;;^UTILITY(U,$J,358.3,10728,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4800,1,3,0)
- ;;=3^Causalgia,Left Lower Limb
- ;;^UTILITY(U,$J,358.3,4800,1,4,0)
- ;;=4^G57.72
- ;;^UTILITY(U,$J,358.3,4800,2)
- ;;=^5133366
- ;;^UTILITY(U,$J,358.3,4801,0)
- ;;=G57.81^^24^305^106
- ;;^UTILITY(U,$J,358.3,4801,1,0)
+ ;;^UTILITY(U,$J,358.3,10728,1,3,0)
+ ;;=3^Pinguecula,Bilateral
+ ;;^UTILITY(U,$J,358.3,10728,1,4,0)
+ ;;=4^H11.153
+ ;;^UTILITY(U,$J,358.3,10728,2)
+ ;;=^5004763
+ ;;^UTILITY(U,$J,358.3,10729,0)
+ ;;=H18.053^^53^600^133
+ ;;^UTILITY(U,$J,358.3,10729,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4801,1,3,0)
- ;;=3^Mononeuropathies,Right Lower Limb,Spec
- ;;^UTILITY(U,$J,358.3,4801,1,4,0)
- ;;=4^G57.81
- ;;^UTILITY(U,$J,358.3,4801,2)
- ;;=^5133367
- ;;^UTILITY(U,$J,358.3,4802,0)
- ;;=G57.82^^24^305^104
- ;;^UTILITY(U,$J,358.3,4802,1,0)
+ ;;^UTILITY(U,$J,358.3,10729,1,3,0)
+ ;;=3^Posterior Corneal Pigmentations,Bilateral
+ ;;^UTILITY(U,$J,358.3,10729,1,4,0)
+ ;;=4^H18.053
+ ;;^UTILITY(U,$J,358.3,10729,2)
+ ;;=^5005025
+ ;;^UTILITY(U,$J,358.3,10730,0)
+ ;;=H21.543^^53^600^136
+ ;;^UTILITY(U,$J,358.3,10730,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,4802,1,3,0)
- ;;=3^Mononeuropathies,Left Lower Limb,Spec
- ;;^UTILITY(U,$J,358.3,4802,1,4,0)
- ;;=4^G57.82
- ;;^UTILITY(U,$J,358.3,4802,2)
- ;;=^5133368
- ;;^UTILITY(U,$J,358.3,4803,0)
- ;;=G57.91^^24^305^110
+ ;;^UTILITY(U,$J,358.3,10730,1,3,0)
+ ;;=3^Posterior Synechiae,Bilateral
+ ;;^UTILITY(U,$J,358.3,10730,1,4,0)
+ ;;=4^H21.543
+ ;;^UTILITY(U,$J,358.3,10730,2)
+ ;;=^5005253
+ ;;^UTILITY(U,$J,358.3,10731,0)
+ ;;=H11.003^^53^600^139
+ ;;^UTILITY(U,$J,358.3,10731,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10731,1,3,0)
+ ;;=3^Pterygium,Bilateral
+ ;;^UTILITY(U,$J,358.3,10731,1,4,0)
+ ;;=4^H11.003
+ ;;^UTILITY(U,$J,358.3,10731,2)
+ ;;=^5004719
+ ;;^UTILITY(U,$J,358.3,10732,0)
+ ;;=H16.143^^53^600^142
+ ;;^UTILITY(U,$J,358.3,10732,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10732,1,3,0)
+ ;;=3^Punctate Keratitis,Bilateral
+ ;;^UTILITY(U,$J,358.3,10732,1,4,0)
+ ;;=4^H16.143
+ ;;^UTILITY(U,$J,358.3,10732,2)
+ ;;=^5004915
+ ;;^UTILITY(U,$J,358.3,10733,0)
+ ;;=H21.553^^53^600^145
+ ;;^UTILITY(U,$J,358.3,10733,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10733,1,3,0)
+ ;;=3^Recession of Chamber Angle,Bilateral
+ ;;^UTILITY(U,$J,358.3,10733,1,4,0)
+ ;;=4^H21.553
+ ;;^UTILITY(U,$J,358.3,10733,2)
+ ;;=^5005257
+ ;;^UTILITY(U,$J,358.3,10734,0)
+ ;;=H18.833^^53^600^148
+ ;;^UTILITY(U,$J,358.3,10734,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10734,1,3,0)
+ ;;=3^Recurrent Erosion of Cornea,Bilateral
+ ;;^UTILITY(U,$J,358.3,10734,1,4,0)
+ ;;=4^H18.833
+ ;;^UTILITY(U,$J,358.3,10734,2)
+ ;;=^5005128
+ ;;^UTILITY(U,$J,358.3,10735,0)
+ ;;=H11.233^^53^600^154
+ ;;^UTILITY(U,$J,358.3,10735,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10735,1,3,0)
+ ;;=3^Symblepharon,Bilateral
+ ;;^UTILITY(U,$J,358.3,10735,1,4,0)
+ ;;=4^H11.233
+ ;;^UTILITY(U,$J,358.3,10735,2)
+ ;;=^5004775
+ ;;^UTILITY(U,$J,358.3,10736,0)
+ ;;=H10.213^^53^600^157
+ ;;^UTILITY(U,$J,358.3,10736,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10736,1,3,0)
+ ;;=3^Toxic Conjunctivitis,Bilateral,Acute
+ ;;^UTILITY(U,$J,358.3,10736,1,4,0)
+ ;;=4^H10.213
+ ;;^UTILITY(U,$J,358.3,10736,2)
+ ;;=^5004670
+ ;;^UTILITY(U,$J,358.3,10737,0)
+ ;;=H21.1X1^^53^600^162
+ ;;^UTILITY(U,$J,358.3,10737,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10737,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Right Eye
+ ;;^UTILITY(U,$J,358.3,10737,1,4,0)
+ ;;=4^H21.1X1
+ ;;^UTILITY(U,$J,358.3,10737,2)
+ ;;=^5005175
+ ;;^UTILITY(U,$J,358.3,10738,0)
+ ;;=H21.1X2^^53^600^161
+ ;;^UTILITY(U,$J,358.3,10738,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10738,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Left Eye
+ ;;^UTILITY(U,$J,358.3,10738,1,4,0)
+ ;;=4^H21.1X2
+ ;;^UTILITY(U,$J,358.3,10738,2)
+ ;;=^5005176
+ ;;^UTILITY(U,$J,358.3,10739,0)
+ ;;=H21.1X3^^53^600^160
+ ;;^UTILITY(U,$J,358.3,10739,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10739,1,3,0)
+ ;;=3^Vascular D/O of Iris & Ciliary Body,Bilateral
+ ;;^UTILITY(U,$J,358.3,10739,1,4,0)
+ ;;=4^H21.1X3
+ ;;^UTILITY(U,$J,358.3,10739,2)
+ ;;=^5005177
+ ;;^UTILITY(U,$J,358.3,10740,0)
+ ;;=H31.401^^53^601^13
+ ;;^UTILITY(U,$J,358.3,10740,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10740,1,3,0)
+ ;;=3^Choroidal Detachment,Right Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10740,1,4,0)
+ ;;=4^H31.401
+ ;;^UTILITY(U,$J,358.3,10740,2)
+ ;;=^5005476
+ ;;^UTILITY(U,$J,358.3,10741,0)
+ ;;=H31.402^^53^601^12
+ ;;^UTILITY(U,$J,358.3,10741,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10741,1,3,0)
+ ;;=3^Choroidal Detachment,Left Eye,Unspec
+ ;;^UTILITY(U,$J,358.3,10741,1,4,0)
+ ;;=4^H31.402
+ ;;^UTILITY(U,$J,358.3,10741,2)
+ ;;=^5005477
+ ;;^UTILITY(U,$J,358.3,10742,0)
+ ;;=H31.421^^53^601^120
+ ;;^UTILITY(U,$J,358.3,10742,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10742,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Right Eye
+ ;;^UTILITY(U,$J,358.3,10742,1,4,0)
+ ;;=4^H31.421
+ ;;^UTILITY(U,$J,358.3,10742,2)
+ ;;=^5005483
+ ;;^UTILITY(U,$J,358.3,10743,0)
+ ;;=H31.422^^53^601^119
+ ;;^UTILITY(U,$J,358.3,10743,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10743,1,3,0)
+ ;;=3^Serous Choroidal Detachment,Left Eye
+ ;;^UTILITY(U,$J,358.3,10743,1,4,0)
+ ;;=4^H31.422
+ ;;^UTILITY(U,$J,358.3,10743,2)
+ ;;=^5005484
+ ;;^UTILITY(U,$J,358.3,10744,0)
+ ;;=H21.231^^53^601^28
+ ;;^UTILITY(U,$J,358.3,10744,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,10744,1,3,0)
+ ;;=3^Degeneration of Iris,Right Eye
+ ;;^UTILITY(U,$J,358.3,10744,1,4,0)
+ ;;=4^H21.231
+ ;;^UTILITY(U,$J,358.3,10744,2)
+ ;;=^5005187
+ ;;^UTILITY(U,$J,358.3,10745,0)
+ ;;=H21.232^^53^601^27

@@ -1,6 +1,10 @@
 DIEZ0 ;SFISC/GFT-COMPILE INPUT TEMPLATE ;13SEP2004
- ;;22.0;VA FileMan;**159**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D L
 DL S DQ=0,DK=0,DQFF=0
 MR S DK=DK+1,DH=$P(DR,";",DK),DI=$P(DH,":",1),(DIEZP,DIEZDUP,DIEZR)="" G:'DI K:DI=0,PB S DPR=$P(DH,"//",2,99),DM=+DI S:DPR]"" DI=$P(DI,"//",1),DH=""
@@ -12,13 +16,14 @@ MR S DK=DK+1,DH=$P(DR,";",DK),DI=$P(DH,":",1),(DIEZP,DIEZDUP,DIEZR)="" G:'DI K:D
 K S DM=$P(DH,":",2),DM=$S(DM:DM,1:+DI) I DI,$D(^DD(DP,+DI)) G S
 NX ;
  S DI=$O(^DD(DP,+DI)),DIEZP="" S:DI="" DI=-1 G MR:DI'>0,MR:DI>DM
-S S Y=^DD(DP,+DI,0),DV=$P(Y,U,2)_$E("#",Y["DINUM")_DIEZR_DIEZDUP S:DIEZP=""&'DV DIEZP=$P(Y,U,1)
- S X=DIEZP,DW=$P(Y,U,4) G NX:$A(DW)=32 I T>DMAX D SV G:DIEZQ K^DIEZ2 G S
+S S Y=^DD(DP,+DI,0),DV=$P(Y,U,2)_$E("#",Y["DINUM")_DIEZR_DIEZDUP ;**CCO/NI FIELD NAME (THRU NEXT 2 LINES)
+ S X=$S(DIEZP=""&'DV:"$$LABEL^DIALOGZ(DP,DIFLD)",1:""""_DIEZP_"""")
+ S DW=$P(Y,U,4) G NX:$A(DW)=32 I T>DMAX D SV G:DIEZQ K^DIEZ2 G S
  W:'$G(DIEZS) "." S DQ=DQ+1,DI=+DI,DU=$P(Y,U,3),%=" S "
  K DIEZOT I DV["O",$D(^(2)) D O^DIEZ2
  I DQFF S %=" D:$D(DG)>9 F^DIE17,DE S DQ="_DQ_",",DQFF=0
  I DV S Y=X,X=DQ_%_"D=0 K DE(1) ;"_DI D L,DRN G MUL^DIEZ2
- S ^UTILITY($J,U,$P(DW,";",1),$P(DW,";",2),DQ)="",T=T+35,X=DQ_%_"DW="""_DW_""",DV="""_DV_""",DU="""",DLB="""_X_""",DIFLD="_DI D L
+VARS S ^UTILITY($J,U,$P(DW,";",1),$P(DW,";",2),DQ)="",T=T+35,X=DQ_%_"DW="""_DW_""",DV="""_DV_""",DU="""",DIFLD="_DI_",DLB="_X D L ;**CCO/NI COMPILE 'SET DLB=$$LABEL^DIALOGZ...' RATHER THAN FIELD NAME, SO IT WORKS FOR ANY LANGUAGE
  I $D(DIEZOT) S X=DIEZOT D L K DIEZOT
  S DIEZXREF=$O(^DD("IX","F",DP,DI,0))
  I $O(^DD(DP,DI,1,0))>0!(DV["a")!DIEZXREF D

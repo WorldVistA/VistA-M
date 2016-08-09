@@ -1,6 +1,10 @@
 DDS5 ;SFISC/MKO-MULTS,NEXT/PREV PAGE,NEXT BLOCK ;9:53 AM  1 Oct 1999
- ;;22.0;VA FileMan;**8**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  I X="" D:DDSOLD="" NF^DDS01 D:DDSOLD]"" DM^DDS6 Q
  I DIR0N,$D(DUZ)#2 S ^DISV(DUZ,$E(DDSGL,1,28))=$E(DDSGL,29,999)_X
  I $G(@DDSREFS@("ASUB",DDSPG,DDSBK,DDO))]"" S DDS5PG=^(DDO)

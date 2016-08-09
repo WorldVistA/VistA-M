@@ -1,5 +1,5 @@
 RCDPEWL1 ;ALB/TMK - ELECTRONIC EOB WORKLIST SCREEN ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,222,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,208,222,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  ; IA for read access to ^IBM(361.1 = 4051
  ; IA for call to ^DGENA = 3812
@@ -9,7 +9,7 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  ; Assume RCSCR = ien from file 344.49
  ; RCSORT = "" or 'N' for no sort  'F' for 0-pays first, 'L' for last
  ;
- N A,A0,B,B0,Q,Q0,Q1,QQ,V1,X,Y,Z,Z0,Z3,ZZ,ZZ1,RCT,RCZ,RCZ0,RCZZ0,RCSA,RCAZ,RCAZ0,RCSCT,RCS1,RCLI1,RCY34441,RCZERO,RCTS,RCTL
+ N A,A0,B,B0,Q,Q0,Q1,QQ,V1,X,Y,Z,Z0,Z3,ZZ,ZZ1,RCT,RCZ,RCZ0,RCZZ0,RCSA,RCAZ,RCAZ0,RCSCT,RCS1,RCLI1,RCY34441,RCZERO,RCTS,RCTL,RCCL,RCCL1
  N RCECME,RXARRAY,RC4,RECEIPT,AUTOERA  ;prca*4.5*298
  S RCSORT=$P($G(RCSORT),U),RCSORT=$S(RCSORT="":"N",1:RCSORT)
  K ^TMP("RCDPE-EOB_WL",$J),^TMP("RCDPE-EOB_WLDX",$J),^TMP($J,"RCS"),^TMP("RC_BILL",$J)
@@ -41,6 +41,15 @@ BLD(RCSORT) ; Build the detail display record for the WL scratch pad record
  . I $G(^TMP($J,"RC_EEOBPOST"))="U",RECEIPT'="" Q
  . S RCTS=RCTS+1,A=$$TOPLINE(RCZ0,RCTS)
  . D SET(A,RCTS,RCTS,ZZ)
+ . ; PRCA*4.5*304 - Add claim comment to screen if it exists for this ERA EEOB detail line
+ . S:$P(RCZ0,U,9)'="" RCCL=$$GET1^DIQ(344.41,$P(RCZ0,U,9)_","_RCSCR_",",4)
+ . D:$G(RCCL)'=""  ; If we have a ERA Detail line comment, display it
+ . . D SLINE^RCDPEAA2(RCCL,"RCCL1",56,74)
+ . . N TLINE S TLINE=$J("",8)_"Claim Comment: "_RCCL1(1)
+ . . D SET(TLINE,RCTS,RCTS,ZZ)
+ . . ; If we have a second or third line for the comment then put it on the screen
+ . . I RCCL1>1 D SET($J("",8)_RCCL1(2),RCTS,RCTS,ZZ) I RCCL1=3 D SET($J("",8)_RCCL1(3),RCTS,RCTS,ZZ)
+ . ; **End of *304 modifications**
  . I $P(RCY34441,U,11) D
  .. D SET("EEOB TRANSFERRED TO "_$E($P($G(^DIC(4,+$P(RCY34441,U,11),0)),U),1,20)_" "_$$FMTE^XLFDT($P(RCY34441,U,12),"2D")_" STATUS: "_$$EXTERNAL^DILFD(344.41,.1,"",+$P(RCY34441,U,10)),RCTS,RCTS,ZZ)
  . ;

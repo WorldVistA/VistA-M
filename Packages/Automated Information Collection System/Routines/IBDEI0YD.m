@@ -1,126 +1,286 @@
-IBDEI0YD ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0YD ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16138,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,In Remission
- ;;^UTILITY(U,$J,358.3,16138,1,4,0)
- ;;=4^C92.11
- ;;^UTILITY(U,$J,358.3,16138,2)
- ;;=^5001793
- ;;^UTILITY(U,$J,358.3,16139,0)
- ;;=C92.10^^61^724^34
- ;;^UTILITY(U,$J,358.3,16139,1,0)
+ ;;^UTILITY(U,$J,358.3,34588,0)
+ ;;=J20.9^^125^1641^16
+ ;;^UTILITY(U,$J,358.3,34588,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16139,1,3,0)
- ;;=3^Myeloid Leukemia,BCR/ABL-Positive,Chr,Not in Remission
- ;;^UTILITY(U,$J,358.3,16139,1,4,0)
- ;;=4^C92.10
- ;;^UTILITY(U,$J,358.3,16139,2)
- ;;=^5001792
- ;;^UTILITY(U,$J,358.3,16140,0)
- ;;=C91.40^^61^724^7
- ;;^UTILITY(U,$J,358.3,16140,1,0)
+ ;;^UTILITY(U,$J,358.3,34588,1,3,0)
+ ;;=3^AC Bronchitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34588,1,4,0)
+ ;;=4^J20.9
+ ;;^UTILITY(U,$J,358.3,34588,2)
+ ;;=^5008195
+ ;;^UTILITY(U,$J,358.3,34589,0)
+ ;;=H60.523^^125^1641^17
+ ;;^UTILITY(U,$J,358.3,34589,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16140,1,3,0)
- ;;=3^Hairy Cell Leukemia,Not in Remission
- ;;^UTILITY(U,$J,358.3,16140,1,4,0)
- ;;=4^C91.40
- ;;^UTILITY(U,$J,358.3,16140,2)
- ;;=^5001771
- ;;^UTILITY(U,$J,358.3,16141,0)
- ;;=C81.90^^61^724^19
- ;;^UTILITY(U,$J,358.3,16141,1,0)
+ ;;^UTILITY(U,$J,358.3,34589,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,34589,1,4,0)
+ ;;=4^H60.523
+ ;;^UTILITY(U,$J,358.3,34589,2)
+ ;;=^5006476
+ ;;^UTILITY(U,$J,358.3,34590,0)
+ ;;=H60.522^^125^1641^18
+ ;;^UTILITY(U,$J,358.3,34590,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16141,1,3,0)
- ;;=3^Hodgkin Lymphoma,Unspec Site
- ;;^UTILITY(U,$J,358.3,16141,1,4,0)
- ;;=4^C81.90
- ;;^UTILITY(U,$J,358.3,16141,2)
- ;;=^5001451
- ;;^UTILITY(U,$J,358.3,16142,0)
- ;;=C81.99^^61^724^26
- ;;^UTILITY(U,$J,358.3,16142,1,0)
+ ;;^UTILITY(U,$J,358.3,34590,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,34590,1,4,0)
+ ;;=4^H60.522
+ ;;^UTILITY(U,$J,358.3,34590,2)
+ ;;=^5006475
+ ;;^UTILITY(U,$J,358.3,34591,0)
+ ;;=H60.521^^125^1641^19
+ ;;^UTILITY(U,$J,358.3,34591,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16142,1,3,0)
- ;;=3^Lymphoma,Extrnod & Solid Org Sites,Unspec
- ;;^UTILITY(U,$J,358.3,16142,1,4,0)
- ;;=4^C81.99
- ;;^UTILITY(U,$J,358.3,16142,2)
- ;;=^5001460
- ;;^UTILITY(U,$J,358.3,16143,0)
- ;;=C81.00^^61^724^16
- ;;^UTILITY(U,$J,358.3,16143,1,0)
+ ;;^UTILITY(U,$J,358.3,34591,1,3,0)
+ ;;=3^AC Chemical Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,34591,1,4,0)
+ ;;=4^H60.521
+ ;;^UTILITY(U,$J,358.3,34591,2)
+ ;;=^5006474
+ ;;^UTILITY(U,$J,358.3,34592,0)
+ ;;=H60.543^^125^1641^20
+ ;;^UTILITY(U,$J,358.3,34592,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16143,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Lymphocyte,Unspec Site
- ;;^UTILITY(U,$J,358.3,16143,1,4,0)
- ;;=4^C81.00
- ;;^UTILITY(U,$J,358.3,16143,2)
- ;;=^5001391
- ;;^UTILITY(U,$J,358.3,16144,0)
- ;;=C81.09^^61^724^15
- ;;^UTILITY(U,$J,358.3,16144,1,0)
+ ;;^UTILITY(U,$J,358.3,34592,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,34592,1,4,0)
+ ;;=4^H60.543
+ ;;^UTILITY(U,$J,358.3,34592,2)
+ ;;=^5006484
+ ;;^UTILITY(U,$J,358.3,34593,0)
+ ;;=H60.542^^125^1641^21
+ ;;^UTILITY(U,$J,358.3,34593,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16144,1,3,0)
- ;;=3^Hodgkin Lymphoma,Nodular Lymphocyte,Extrnod & Solid Org Site
- ;;^UTILITY(U,$J,358.3,16144,1,4,0)
- ;;=4^C81.09
- ;;^UTILITY(U,$J,358.3,16144,2)
- ;;=^5001400
- ;;^UTILITY(U,$J,358.3,16145,0)
- ;;=C81.40^^61^724^12
- ;;^UTILITY(U,$J,358.3,16145,1,0)
+ ;;^UTILITY(U,$J,358.3,34593,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,34593,1,4,0)
+ ;;=4^H60.542
+ ;;^UTILITY(U,$J,358.3,34593,2)
+ ;;=^5006483
+ ;;^UTILITY(U,$J,358.3,34594,0)
+ ;;=H60.541^^125^1641^22
+ ;;^UTILITY(U,$J,358.3,34594,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16145,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte-Rich,Unspec Site
- ;;^UTILITY(U,$J,358.3,16145,1,4,0)
- ;;=4^C81.40
- ;;^UTILITY(U,$J,358.3,16145,2)
- ;;=^5001431
- ;;^UTILITY(U,$J,358.3,16146,0)
- ;;=C81.49^^61^724^11
- ;;^UTILITY(U,$J,358.3,16146,1,0)
+ ;;^UTILITY(U,$J,358.3,34594,1,3,0)
+ ;;=3^AC Eczematoid Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,34594,1,4,0)
+ ;;=4^H60.541
+ ;;^UTILITY(U,$J,358.3,34594,2)
+ ;;=^5006482
+ ;;^UTILITY(U,$J,358.3,34595,0)
+ ;;=J04.0^^125^1641^23
+ ;;^UTILITY(U,$J,358.3,34595,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16146,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte-Rich,Extrnod & Solid Org Sites
- ;;^UTILITY(U,$J,358.3,16146,1,4,0)
- ;;=4^C81.49
- ;;^UTILITY(U,$J,358.3,16146,2)
- ;;=^5001440
- ;;^UTILITY(U,$J,358.3,16147,0)
- ;;=C81.30^^61^724^10
- ;;^UTILITY(U,$J,358.3,16147,1,0)
+ ;;^UTILITY(U,$J,358.3,34595,1,3,0)
+ ;;=3^AC Laryngitis
+ ;;^UTILITY(U,$J,358.3,34595,1,4,0)
+ ;;=4^J04.0
+ ;;^UTILITY(U,$J,358.3,34595,2)
+ ;;=^5008137
+ ;;^UTILITY(U,$J,358.3,34596,0)
+ ;;=J04.2^^125^1641^24
+ ;;^UTILITY(U,$J,358.3,34596,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16147,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte Depleted,Unspec Site
- ;;^UTILITY(U,$J,358.3,16147,1,4,0)
- ;;=4^C81.30
- ;;^UTILITY(U,$J,358.3,16147,2)
- ;;=^5001421
- ;;^UTILITY(U,$J,358.3,16148,0)
- ;;=C81.39^^61^724^9
- ;;^UTILITY(U,$J,358.3,16148,1,0)
+ ;;^UTILITY(U,$J,358.3,34596,1,3,0)
+ ;;=3^AC Laryngotracheitis
+ ;;^UTILITY(U,$J,358.3,34596,1,4,0)
+ ;;=4^J04.2
+ ;;^UTILITY(U,$J,358.3,34596,2)
+ ;;=^269868
+ ;;^UTILITY(U,$J,358.3,34597,0)
+ ;;=J00.^^125^1641^25
+ ;;^UTILITY(U,$J,358.3,34597,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16148,1,3,0)
- ;;=3^Hodgkin Lymphoma,Lymphocyte Depleted,Extrnod & Solid Org Site
- ;;^UTILITY(U,$J,358.3,16148,1,4,0)
- ;;=4^C81.39
- ;;^UTILITY(U,$J,358.3,16148,2)
- ;;=^5001430
- ;;^UTILITY(U,$J,358.3,16149,0)
- ;;=C81.20^^61^724^14
- ;;^UTILITY(U,$J,358.3,16149,1,0)
+ ;;^UTILITY(U,$J,358.3,34597,1,3,0)
+ ;;=3^AC Nasopharyngitis
+ ;;^UTILITY(U,$J,358.3,34597,1,4,0)
+ ;;=4^J00.
+ ;;^UTILITY(U,$J,358.3,34597,2)
+ ;;=^5008115
+ ;;^UTILITY(U,$J,358.3,34598,0)
+ ;;=J02.8^^125^1641^29
+ ;;^UTILITY(U,$J,358.3,34598,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16149,1,3,0)
- ;;=3^Hodgkin Lymphoma,Mixed Cellularity,Unspec Site
- ;;^UTILITY(U,$J,358.3,16149,1,4,0)
- ;;=4^C81.20
- ;;^UTILITY(U,$J,358.3,16149,2)
- ;;=^5001411
- ;;^UTILITY(U,$J,358.3,16150,0)
- ;;=C81.29^^61^724^13
- ;;^UTILITY(U,$J,358.3,16150,1,0)
+ ;;^UTILITY(U,$J,358.3,34598,1,3,0)
+ ;;=3^AC Pharyngitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,34598,1,4,0)
+ ;;=4^J02.8
+ ;;^UTILITY(U,$J,358.3,34598,2)
+ ;;=^5008129
+ ;;^UTILITY(U,$J,358.3,34599,0)
+ ;;=J02.9^^125^1641^30
+ ;;^UTILITY(U,$J,358.3,34599,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16150,1,3,0)
- ;;=3^Hodgkin Lymphoma,Mixed Cellularity,Extrnod & Solid Org Sites
+ ;;^UTILITY(U,$J,358.3,34599,1,3,0)
+ ;;=3^AC Pharyngitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34599,1,4,0)
+ ;;=4^J02.9
+ ;;^UTILITY(U,$J,358.3,34599,2)
+ ;;=^5008130
+ ;;^UTILITY(U,$J,358.3,34600,0)
+ ;;=B40.0^^125^1641^31
+ ;;^UTILITY(U,$J,358.3,34600,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34600,1,3,0)
+ ;;=3^AC Pulmonary Blastomycosis
+ ;;^UTILITY(U,$J,358.3,34600,1,4,0)
+ ;;=4^B40.0
+ ;;^UTILITY(U,$J,358.3,34600,2)
+ ;;=^5000639
+ ;;^UTILITY(U,$J,358.3,34601,0)
+ ;;=H60.553^^125^1641^32
+ ;;^UTILITY(U,$J,358.3,34601,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34601,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Bilateral
+ ;;^UTILITY(U,$J,358.3,34601,1,4,0)
+ ;;=4^H60.553
+ ;;^UTILITY(U,$J,358.3,34601,2)
+ ;;=^5006488
+ ;;^UTILITY(U,$J,358.3,34602,0)
+ ;;=H60.552^^125^1641^33
+ ;;^UTILITY(U,$J,358.3,34602,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34602,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Left Ear
+ ;;^UTILITY(U,$J,358.3,34602,1,4,0)
+ ;;=4^H60.552
+ ;;^UTILITY(U,$J,358.3,34602,2)
+ ;;=^5006487
+ ;;^UTILITY(U,$J,358.3,34603,0)
+ ;;=H60.551^^125^1641^34
+ ;;^UTILITY(U,$J,358.3,34603,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34603,1,3,0)
+ ;;=3^AC Reactive Otitis Externa,Right Ear
+ ;;^UTILITY(U,$J,358.3,34603,1,4,0)
+ ;;=4^H60.551
+ ;;^UTILITY(U,$J,358.3,34603,2)
+ ;;=^5006486
+ ;;^UTILITY(U,$J,358.3,34604,0)
+ ;;=J01.91^^125^1641^35
+ ;;^UTILITY(U,$J,358.3,34604,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34604,1,3,0)
+ ;;=3^AC Recurrent Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34604,1,4,0)
+ ;;=4^J01.91
+ ;;^UTILITY(U,$J,358.3,34604,2)
+ ;;=^5008128
+ ;;^UTILITY(U,$J,358.3,34605,0)
+ ;;=J03.81^^125^1641^36
+ ;;^UTILITY(U,$J,358.3,34605,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34605,1,3,0)
+ ;;=3^AC Recurrent Tonsillitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,34605,1,4,0)
+ ;;=4^J03.81
+ ;;^UTILITY(U,$J,358.3,34605,2)
+ ;;=^5008134
+ ;;^UTILITY(U,$J,358.3,34606,0)
+ ;;=J03.91^^125^1641^37
+ ;;^UTILITY(U,$J,358.3,34606,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34606,1,3,0)
+ ;;=3^AC Recurrent Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34606,1,4,0)
+ ;;=4^J03.91
+ ;;^UTILITY(U,$J,358.3,34606,2)
+ ;;=^5008136
+ ;;^UTILITY(U,$J,358.3,34607,0)
+ ;;=J01.90^^125^1641^38
+ ;;^UTILITY(U,$J,358.3,34607,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34607,1,3,0)
+ ;;=3^AC Sinusitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34607,1,4,0)
+ ;;=4^J01.90
+ ;;^UTILITY(U,$J,358.3,34607,2)
+ ;;=^5008127
+ ;;^UTILITY(U,$J,358.3,34608,0)
+ ;;=J03.80^^125^1641^39
+ ;;^UTILITY(U,$J,358.3,34608,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34608,1,3,0)
+ ;;=3^AC Tonsillitis d/t Specified Organisms
+ ;;^UTILITY(U,$J,358.3,34608,1,4,0)
+ ;;=4^J03.80
+ ;;^UTILITY(U,$J,358.3,34608,2)
+ ;;=^5008133
+ ;;^UTILITY(U,$J,358.3,34609,0)
+ ;;=J03.90^^125^1641^40
+ ;;^UTILITY(U,$J,358.3,34609,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34609,1,3,0)
+ ;;=3^AC Tonsillitis,Unspec
+ ;;^UTILITY(U,$J,358.3,34609,1,4,0)
+ ;;=4^J03.90
+ ;;^UTILITY(U,$J,358.3,34609,2)
+ ;;=^5008135
+ ;;^UTILITY(U,$J,358.3,34610,0)
+ ;;=B44.81^^125^1641^43
+ ;;^UTILITY(U,$J,358.3,34610,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34610,1,3,0)
+ ;;=3^Allergic Bronchopulmonary Aspergillosis
+ ;;^UTILITY(U,$J,358.3,34610,1,4,0)
+ ;;=4^B44.81
+ ;;^UTILITY(U,$J,358.3,34610,2)
+ ;;=^10945
+ ;;^UTILITY(U,$J,358.3,34611,0)
+ ;;=B44.9^^125^1641^45
+ ;;^UTILITY(U,$J,358.3,34611,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34611,1,3,0)
+ ;;=3^Aspergillosis,Unspec
+ ;;^UTILITY(U,$J,358.3,34611,1,4,0)
+ ;;=4^B44.9
+ ;;^UTILITY(U,$J,358.3,34611,2)
+ ;;=^5000668
+ ;;^UTILITY(U,$J,358.3,34612,0)
+ ;;=B40.9^^125^1641^47
+ ;;^UTILITY(U,$J,358.3,34612,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34612,1,3,0)
+ ;;=3^Blastomycosis,Unspec
+ ;;^UTILITY(U,$J,358.3,34612,1,4,0)
+ ;;=4^B40.9
+ ;;^UTILITY(U,$J,358.3,34612,2)
+ ;;=^5000646
+ ;;^UTILITY(U,$J,358.3,34613,0)
+ ;;=J18.0^^125^1641^48
+ ;;^UTILITY(U,$J,358.3,34613,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34613,1,3,0)
+ ;;=3^Bronchopneumonia,Unspec Organism
+ ;;^UTILITY(U,$J,358.3,34613,1,4,0)
+ ;;=4^J18.0
+ ;;^UTILITY(U,$J,358.3,34613,2)
+ ;;=^5008182
+ ;;^UTILITY(U,$J,358.3,34614,0)
+ ;;=B45.1^^125^1641^49
+ ;;^UTILITY(U,$J,358.3,34614,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34614,1,3,0)
+ ;;=3^Cerebral Cryptococcosis
+ ;;^UTILITY(U,$J,358.3,34614,1,4,0)
+ ;;=4^B45.1
+ ;;^UTILITY(U,$J,358.3,34614,2)
+ ;;=^5000670
+ ;;^UTILITY(U,$J,358.3,34615,0)
+ ;;=J16.0^^125^1641^50
+ ;;^UTILITY(U,$J,358.3,34615,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34615,1,3,0)
+ ;;=3^Chlamydial Pneumonia
+ ;;^UTILITY(U,$J,358.3,34615,1,4,0)
+ ;;=4^J16.0
+ ;;^UTILITY(U,$J,358.3,34615,2)
+ ;;=^5008179
+ ;;^UTILITY(U,$J,358.3,34616,0)
+ ;;=B40.1^^125^1641^51

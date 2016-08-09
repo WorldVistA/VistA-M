@@ -1,136 +1,272 @@
-IBDEI0Y7 ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0Y7 ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16058,0)
- ;;=D68.9^^61^718^2
- ;;^UTILITY(U,$J,358.3,16058,1,0)
+ ;;^UTILITY(U,$J,358.3,34423,1,4,0)
+ ;;=4^C34.81
+ ;;^UTILITY(U,$J,358.3,34423,2)
+ ;;=^5000964
+ ;;^UTILITY(U,$J,358.3,34424,0)
+ ;;=C38.4^^125^1633^17
+ ;;^UTILITY(U,$J,358.3,34424,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16058,1,3,0)
- ;;=3^Coagulation Defect,Unspec
- ;;^UTILITY(U,$J,358.3,16058,1,4,0)
- ;;=4^D68.9
- ;;^UTILITY(U,$J,358.3,16058,2)
- ;;=^5002364
- ;;^UTILITY(U,$J,358.3,16059,0)
- ;;=E83.110^^61^718^3
- ;;^UTILITY(U,$J,358.3,16059,1,0)
+ ;;^UTILITY(U,$J,358.3,34424,1,3,0)
+ ;;=3^Malig Neop Pleura
+ ;;^UTILITY(U,$J,358.3,34424,1,4,0)
+ ;;=4^C38.4
+ ;;^UTILITY(U,$J,358.3,34424,2)
+ ;;=^267140
+ ;;^UTILITY(U,$J,358.3,34425,0)
+ ;;=C34.01^^125^1633^20
+ ;;^UTILITY(U,$J,358.3,34425,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16059,1,3,0)
- ;;=3^Hemochromatosis,Hereditary
- ;;^UTILITY(U,$J,358.3,16059,1,4,0)
- ;;=4^E83.110
- ;;^UTILITY(U,$J,358.3,16059,2)
- ;;=^339602
- ;;^UTILITY(U,$J,358.3,16060,0)
- ;;=D47.3^^61^718^6
- ;;^UTILITY(U,$J,358.3,16060,1,0)
+ ;;^UTILITY(U,$J,358.3,34425,1,3,0)
+ ;;=3^Malig Neop Right Main Bronchus
+ ;;^UTILITY(U,$J,358.3,34425,1,4,0)
+ ;;=4^C34.01
+ ;;^UTILITY(U,$J,358.3,34425,2)
+ ;;=^5000958
+ ;;^UTILITY(U,$J,358.3,34426,0)
+ ;;=C34.92^^125^1633^9
+ ;;^UTILITY(U,$J,358.3,34426,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16060,1,3,0)
- ;;=3^Hemorrhagic Thrombocythemia,Essential
- ;;^UTILITY(U,$J,358.3,16060,1,4,0)
- ;;=4^D47.3
- ;;^UTILITY(U,$J,358.3,16060,2)
- ;;=^5002258
- ;;^UTILITY(U,$J,358.3,16061,0)
- ;;=D69.1^^61^718^9
- ;;^UTILITY(U,$J,358.3,16061,1,0)
+ ;;^UTILITY(U,$J,358.3,34426,1,3,0)
+ ;;=3^Malig Neop Left Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,34426,1,4,0)
+ ;;=4^C34.92
+ ;;^UTILITY(U,$J,358.3,34426,2)
+ ;;=^5000968
+ ;;^UTILITY(U,$J,358.3,34427,0)
+ ;;=C34.91^^125^1633^18
+ ;;^UTILITY(U,$J,358.3,34427,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16061,1,3,0)
- ;;=3^Qualitative Platelet Defects
- ;;^UTILITY(U,$J,358.3,16061,1,4,0)
- ;;=4^D69.1
- ;;^UTILITY(U,$J,358.3,16061,2)
- ;;=^101922
- ;;^UTILITY(U,$J,358.3,16062,0)
- ;;=D69.6^^61^718^10
- ;;^UTILITY(U,$J,358.3,16062,1,0)
+ ;;^UTILITY(U,$J,358.3,34427,1,3,0)
+ ;;=3^Malig Neop Right Bronchus/Lung,Unspec Part
+ ;;^UTILITY(U,$J,358.3,34427,1,4,0)
+ ;;=4^C34.91
+ ;;^UTILITY(U,$J,358.3,34427,2)
+ ;;=^5000967
+ ;;^UTILITY(U,$J,358.3,34428,0)
+ ;;=C34.12^^125^1633^12
+ ;;^UTILITY(U,$J,358.3,34428,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16062,1,3,0)
- ;;=3^Thrombocytopenia,Unspec
- ;;^UTILITY(U,$J,358.3,16062,1,4,0)
- ;;=4^D69.6
- ;;^UTILITY(U,$J,358.3,16062,2)
- ;;=^5002370
- ;;^UTILITY(U,$J,358.3,16063,0)
- ;;=I80.9^^61^718^8
- ;;^UTILITY(U,$J,358.3,16063,1,0)
+ ;;^UTILITY(U,$J,358.3,34428,1,3,0)
+ ;;=3^Malig Neop Left Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34428,1,4,0)
+ ;;=4^C34.12
+ ;;^UTILITY(U,$J,358.3,34428,2)
+ ;;=^5000962
+ ;;^UTILITY(U,$J,358.3,34429,0)
+ ;;=C34.11^^125^1633^21
+ ;;^UTILITY(U,$J,358.3,34429,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16063,1,3,0)
- ;;=3^Phlebitis & Thrombophlebitis,Unspec Site
- ;;^UTILITY(U,$J,358.3,16063,1,4,0)
- ;;=4^I80.9
- ;;^UTILITY(U,$J,358.3,16063,2)
- ;;=^93357
- ;;^UTILITY(U,$J,358.3,16064,0)
- ;;=M31.1^^61^718^11
- ;;^UTILITY(U,$J,358.3,16064,1,0)
+ ;;^UTILITY(U,$J,358.3,34429,1,3,0)
+ ;;=3^Malig Neop Right Upper Lobe Bronchus/Lung
+ ;;^UTILITY(U,$J,358.3,34429,1,4,0)
+ ;;=4^C34.11
+ ;;^UTILITY(U,$J,358.3,34429,2)
+ ;;=^5000961
+ ;;^UTILITY(U,$J,358.3,34430,0)
+ ;;=C39.0^^125^1633^22
+ ;;^UTILITY(U,$J,358.3,34430,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16064,1,3,0)
- ;;=3^Thrombotic Microangiopathy
- ;;^UTILITY(U,$J,358.3,16064,1,4,0)
- ;;=4^M31.1
- ;;^UTILITY(U,$J,358.3,16064,2)
- ;;=^119061
- ;;^UTILITY(U,$J,358.3,16065,0)
- ;;=D68.312^^61^718^1
- ;;^UTILITY(U,$J,358.3,16065,1,0)
+ ;;^UTILITY(U,$J,358.3,34430,1,3,0)
+ ;;=3^Malig Neop Upper Respiratory Tract,Unspec Part
+ ;;^UTILITY(U,$J,358.3,34430,1,4,0)
+ ;;=4^C39.0
+ ;;^UTILITY(U,$J,358.3,34430,2)
+ ;;=^5000971
+ ;;^UTILITY(U,$J,358.3,34431,0)
+ ;;=C78.02^^125^1633^23
+ ;;^UTILITY(U,$J,358.3,34431,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16065,1,3,0)
- ;;=3^Antiphospholipid Antibody w/ Hemorrhagic Disorder
- ;;^UTILITY(U,$J,358.3,16065,1,4,0)
- ;;=4^D68.312
- ;;^UTILITY(U,$J,358.3,16065,2)
- ;;=^340503
- ;;^UTILITY(U,$J,358.3,16066,0)
- ;;=D68.318^^61^718^5
- ;;^UTILITY(U,$J,358.3,16066,1,0)
+ ;;^UTILITY(U,$J,358.3,34431,1,3,0)
+ ;;=3^Secondary Malig Neop Left Lung
+ ;;^UTILITY(U,$J,358.3,34431,1,4,0)
+ ;;=4^C78.02
+ ;;^UTILITY(U,$J,358.3,34431,2)
+ ;;=^5001336
+ ;;^UTILITY(U,$J,358.3,34432,0)
+ ;;=C78.01^^125^1633^24
+ ;;^UTILITY(U,$J,358.3,34432,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16066,1,3,0)
- ;;=3^Hemorrhagic Disorder d/t Circ Anticoag NEC
- ;;^UTILITY(U,$J,358.3,16066,1,4,0)
- ;;=4^D68.318
- ;;^UTILITY(U,$J,358.3,16066,2)
- ;;=^340504
- ;;^UTILITY(U,$J,358.3,16067,0)
- ;;=D68.311^^61^718^4
- ;;^UTILITY(U,$J,358.3,16067,1,0)
+ ;;^UTILITY(U,$J,358.3,34432,1,3,0)
+ ;;=3^Secondary Malig Neop Right Lung
+ ;;^UTILITY(U,$J,358.3,34432,1,4,0)
+ ;;=4^C78.01
+ ;;^UTILITY(U,$J,358.3,34432,2)
+ ;;=^5001335
+ ;;^UTILITY(U,$J,358.3,34433,0)
+ ;;=I50.41^^125^1634^1
+ ;;^UTILITY(U,$J,358.3,34433,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16067,1,3,0)
- ;;=3^Hemophilia,Acquired
- ;;^UTILITY(U,$J,358.3,16067,1,4,0)
- ;;=4^D68.311
- ;;^UTILITY(U,$J,358.3,16067,2)
- ;;=^340502
- ;;^UTILITY(U,$J,358.3,16068,0)
- ;;=Z51.89^^61^719^8
- ;;^UTILITY(U,$J,358.3,16068,1,0)
+ ;;^UTILITY(U,$J,358.3,34433,1,3,0)
+ ;;=3^AC Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34433,1,4,0)
+ ;;=4^I50.41
+ ;;^UTILITY(U,$J,358.3,34433,2)
+ ;;=^5007248
+ ;;^UTILITY(U,$J,358.3,34434,0)
+ ;;=I50.31^^125^1634^2
+ ;;^UTILITY(U,$J,358.3,34434,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16068,1,3,0)
- ;;=3^Specified Aftercare Encounter
- ;;^UTILITY(U,$J,358.3,16068,1,4,0)
- ;;=4^Z51.89
- ;;^UTILITY(U,$J,358.3,16068,2)
- ;;=^5063065
- ;;^UTILITY(U,$J,358.3,16069,0)
- ;;=Z51.11^^61^719^1
- ;;^UTILITY(U,$J,358.3,16069,1,0)
+ ;;^UTILITY(U,$J,358.3,34434,1,3,0)
+ ;;=3^AC Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34434,1,4,0)
+ ;;=4^I50.31
+ ;;^UTILITY(U,$J,358.3,34434,2)
+ ;;=^5007244
+ ;;^UTILITY(U,$J,358.3,34435,0)
+ ;;=I50.43^^125^1634^4
+ ;;^UTILITY(U,$J,358.3,34435,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16069,1,3,0)
- ;;=3^Antineoplastic Chemotherapy Encounter
- ;;^UTILITY(U,$J,358.3,16069,1,4,0)
- ;;=4^Z51.11
- ;;^UTILITY(U,$J,358.3,16069,2)
- ;;=^5063061
- ;;^UTILITY(U,$J,358.3,16070,0)
- ;;=Z71.3^^61^719^5
- ;;^UTILITY(U,$J,358.3,16070,1,0)
+ ;;^UTILITY(U,$J,358.3,34435,1,3,0)
+ ;;=3^AC on Chr Combined Systolic & Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34435,1,4,0)
+ ;;=4^I50.43
+ ;;^UTILITY(U,$J,358.3,34435,2)
+ ;;=^5007250
+ ;;^UTILITY(U,$J,358.3,34436,0)
+ ;;=I50.33^^125^1634^5
+ ;;^UTILITY(U,$J,358.3,34436,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16070,1,3,0)
- ;;=3^Dietary Counseling & Surveillance
- ;;^UTILITY(U,$J,358.3,16070,1,4,0)
- ;;=4^Z71.3
- ;;^UTILITY(U,$J,358.3,16070,2)
- ;;=^5063245
- ;;^UTILITY(U,$J,358.3,16071,0)
- ;;=Z31.5^^61^719^6
+ ;;^UTILITY(U,$J,358.3,34436,1,3,0)
+ ;;=3^AC on Chr Diastolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34436,1,4,0)
+ ;;=4^I50.33
+ ;;^UTILITY(U,$J,358.3,34436,2)
+ ;;=^5007246
+ ;;^UTILITY(U,$J,358.3,34437,0)
+ ;;=I50.23^^125^1634^6
+ ;;^UTILITY(U,$J,358.3,34437,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34437,1,3,0)
+ ;;=3^AC on Chr Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34437,1,4,0)
+ ;;=4^I50.23
+ ;;^UTILITY(U,$J,358.3,34437,2)
+ ;;=^5007242
+ ;;^UTILITY(U,$J,358.3,34438,0)
+ ;;=I50.21^^125^1634^3
+ ;;^UTILITY(U,$J,358.3,34438,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34438,1,3,0)
+ ;;=3^AC Systolic Congestive Hrt Failure
+ ;;^UTILITY(U,$J,358.3,34438,1,4,0)
+ ;;=4^I50.21
+ ;;^UTILITY(U,$J,358.3,34438,2)
+ ;;=^5007240
+ ;;^UTILITY(U,$J,358.3,34439,0)
+ ;;=I20.9^^125^1634^8
+ ;;^UTILITY(U,$J,358.3,34439,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34439,1,3,0)
+ ;;=3^Angina Pectoris,Unspec
+ ;;^UTILITY(U,$J,358.3,34439,1,4,0)
+ ;;=4^I20.9
+ ;;^UTILITY(U,$J,358.3,34439,2)
+ ;;=^5007079
+ ;;^UTILITY(U,$J,358.3,34440,0)
+ ;;=I25.721^^125^1634^9
+ ;;^UTILITY(U,$J,358.3,34440,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34440,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,34440,1,4,0)
+ ;;=4^I25.721
+ ;;^UTILITY(U,$J,358.3,34440,2)
+ ;;=^5007126
+ ;;^UTILITY(U,$J,358.3,34441,0)
+ ;;=I25.728^^125^1634^10
+ ;;^UTILITY(U,$J,358.3,34441,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34441,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,34441,1,4,0)
+ ;;=4^I25.728
+ ;;^UTILITY(U,$J,358.3,34441,2)
+ ;;=^5133560
+ ;;^UTILITY(U,$J,358.3,34442,0)
+ ;;=I25.729^^125^1634^11
+ ;;^UTILITY(U,$J,358.3,34442,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34442,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,34442,1,4,0)
+ ;;=4^I25.729
+ ;;^UTILITY(U,$J,358.3,34442,2)
+ ;;=^5133561
+ ;;^UTILITY(U,$J,358.3,34443,0)
+ ;;=I25.720^^125^1634^12
+ ;;^UTILITY(U,$J,358.3,34443,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34443,1,3,0)
+ ;;=3^Athscl Autologous Artery CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,34443,1,4,0)
+ ;;=4^I25.720
+ ;;^UTILITY(U,$J,358.3,34443,2)
+ ;;=^5007125
+ ;;^UTILITY(U,$J,358.3,34444,0)
+ ;;=I25.711^^125^1634^13
+ ;;^UTILITY(U,$J,358.3,34444,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34444,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,34444,1,4,0)
+ ;;=4^I25.711
+ ;;^UTILITY(U,$J,358.3,34444,2)
+ ;;=^5007122
+ ;;^UTILITY(U,$J,358.3,34445,0)
+ ;;=I25.718^^125^1634^14
+ ;;^UTILITY(U,$J,358.3,34445,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34445,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,34445,1,4,0)
+ ;;=4^I25.718
+ ;;^UTILITY(U,$J,358.3,34445,2)
+ ;;=^5007123
+ ;;^UTILITY(U,$J,358.3,34446,0)
+ ;;=I25.719^^125^1634^15
+ ;;^UTILITY(U,$J,358.3,34446,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34446,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Ang Pctrs,Unspec
+ ;;^UTILITY(U,$J,358.3,34446,1,4,0)
+ ;;=4^I25.719
+ ;;^UTILITY(U,$J,358.3,34446,2)
+ ;;=^5007124
+ ;;^UTILITY(U,$J,358.3,34447,0)
+ ;;=I25.710^^125^1634^16
+ ;;^UTILITY(U,$J,358.3,34447,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34447,1,3,0)
+ ;;=3^Athscl Autologous Vein CABG w/ Unstable Ang Pctrs
+ ;;^UTILITY(U,$J,358.3,34447,1,4,0)
+ ;;=4^I25.710
+ ;;^UTILITY(U,$J,358.3,34447,2)
+ ;;=^5007121
+ ;;^UTILITY(U,$J,358.3,34448,0)
+ ;;=I25.761^^125^1634^17
+ ;;^UTILITY(U,$J,358.3,34448,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34448,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs w/ Documented Spasm
+ ;;^UTILITY(U,$J,358.3,34448,1,4,0)
+ ;;=4^I25.761
+ ;;^UTILITY(U,$J,358.3,34448,2)
+ ;;=^5007136
+ ;;^UTILITY(U,$J,358.3,34449,0)
+ ;;=I25.768^^125^1634^18
+ ;;^UTILITY(U,$J,358.3,34449,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,34449,1,3,0)
+ ;;=3^Athscl Bypass Cor Art Transplt Hrt w/ Ang Pctrs NEC
+ ;;^UTILITY(U,$J,358.3,34449,1,4,0)
+ ;;=4^I25.768
+ ;;^UTILITY(U,$J,358.3,34449,2)
+ ;;=^5007137
+ ;;^UTILITY(U,$J,358.3,34450,0)
+ ;;=I25.769^^125^1634^19
+ ;;^UTILITY(U,$J,358.3,34450,1,0)
+ ;;=^358.31IA^4^2

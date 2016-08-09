@@ -1,132 +1,278 @@
-IBDEI0YS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0YS ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,16339,0)
- ;;=C79.52^^64^739^31
- ;;^UTILITY(U,$J,358.3,16339,1,0)
+ ;;^UTILITY(U,$J,358.3,35004,1,4,0)
+ ;;=4^I80.211
+ ;;^UTILITY(U,$J,358.3,35004,2)
+ ;;=^5007831
+ ;;^UTILITY(U,$J,358.3,35005,0)
+ ;;=I80.221^^125^1653^19
+ ;;^UTILITY(U,$J,358.3,35005,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16339,1,3,0)
- ;;=3^Secondary Malig Neop  Bone Marrow
- ;;^UTILITY(U,$J,358.3,16339,1,4,0)
- ;;=4^C79.52
- ;;^UTILITY(U,$J,358.3,16339,2)
- ;;=^5001351
- ;;^UTILITY(U,$J,358.3,16340,0)
- ;;=C92.00^^64^739^25
- ;;^UTILITY(U,$J,358.3,16340,1,0)
+ ;;^UTILITY(U,$J,358.3,35005,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Popliteal Vein
+ ;;^UTILITY(U,$J,358.3,35005,1,4,0)
+ ;;=4^I80.221
+ ;;^UTILITY(U,$J,358.3,35005,2)
+ ;;=^5007835
+ ;;^UTILITY(U,$J,358.3,35006,0)
+ ;;=I80.231^^125^1653^20
+ ;;^UTILITY(U,$J,358.3,35006,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16340,1,3,0)
- ;;=3^Myeloblastic Leukemia,Acute,Not in Remission
- ;;^UTILITY(U,$J,358.3,16340,1,4,0)
- ;;=4^C92.00
- ;;^UTILITY(U,$J,358.3,16340,2)
- ;;=^5001789
- ;;^UTILITY(U,$J,358.3,16341,0)
- ;;=C92.40^^64^739^30
- ;;^UTILITY(U,$J,358.3,16341,1,0)
+ ;;^UTILITY(U,$J,358.3,35006,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Tibial Vein
+ ;;^UTILITY(U,$J,358.3,35006,1,4,0)
+ ;;=4^I80.231
+ ;;^UTILITY(U,$J,358.3,35006,2)
+ ;;=^5007839
+ ;;^UTILITY(U,$J,358.3,35007,0)
+ ;;=I80.03^^125^1653^6
+ ;;^UTILITY(U,$J,358.3,35007,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16341,1,3,0)
- ;;=3^Promyelocytic Leukemia,Acute,Not in Remission
- ;;^UTILITY(U,$J,358.3,16341,1,4,0)
- ;;=4^C92.40
- ;;^UTILITY(U,$J,358.3,16341,2)
- ;;=^5001801
- ;;^UTILITY(U,$J,358.3,16342,0)
- ;;=C92.50^^64^739^27
- ;;^UTILITY(U,$J,358.3,16342,1,0)
+ ;;^UTILITY(U,$J,358.3,35007,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Bilateral Lower Extremity Superfic Vessels
+ ;;^UTILITY(U,$J,358.3,35007,1,4,0)
+ ;;=4^I80.03
+ ;;^UTILITY(U,$J,358.3,35007,2)
+ ;;=^5007823
+ ;;^UTILITY(U,$J,358.3,35008,0)
+ ;;=I80.02^^125^1653^12
+ ;;^UTILITY(U,$J,358.3,35008,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16342,1,3,0)
- ;;=3^Myelomonocytic Leukemia,Acute,Not in Remission
- ;;^UTILITY(U,$J,358.3,16342,1,4,0)
- ;;=4^C92.50
- ;;^UTILITY(U,$J,358.3,16342,2)
- ;;=^5001804
- ;;^UTILITY(U,$J,358.3,16343,0)
- ;;=C78.7^^64^739^36
- ;;^UTILITY(U,$J,358.3,16343,1,0)
+ ;;^UTILITY(U,$J,358.3,35008,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Left Lower Extremity Superfic Vessels
+ ;;^UTILITY(U,$J,358.3,35008,1,4,0)
+ ;;=4^I80.02
+ ;;^UTILITY(U,$J,358.3,35008,2)
+ ;;=^5007822
+ ;;^UTILITY(U,$J,358.3,35009,0)
+ ;;=I80.01^^125^1653^18
+ ;;^UTILITY(U,$J,358.3,35009,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16343,1,3,0)
- ;;=3^Secondary Malig Neop Liver & Intrahepatic Bile Duct
- ;;^UTILITY(U,$J,358.3,16343,1,4,0)
- ;;=4^C78.7
- ;;^UTILITY(U,$J,358.3,16343,2)
- ;;=^5001339
- ;;^UTILITY(U,$J,358.3,16344,0)
- ;;=C91.10^^64^739^4
- ;;^UTILITY(U,$J,358.3,16344,1,0)
+ ;;^UTILITY(U,$J,358.3,35009,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Right Lower Extremity Superfic Vessels
+ ;;^UTILITY(U,$J,358.3,35009,1,4,0)
+ ;;=4^I80.01
+ ;;^UTILITY(U,$J,358.3,35009,2)
+ ;;=^5007821
+ ;;^UTILITY(U,$J,358.3,35010,0)
+ ;;=I80.9^^125^1653^21
+ ;;^UTILITY(U,$J,358.3,35010,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16344,1,3,0)
- ;;=3^Lymphocytic Leukemia B-Cell Type,Chronic,Not in Remission
- ;;^UTILITY(U,$J,358.3,16344,1,4,0)
- ;;=4^C91.10
- ;;^UTILITY(U,$J,358.3,16344,2)
- ;;=^5001765
- ;;^UTILITY(U,$J,358.3,16345,0)
- ;;=D46.9^^64^739^26
- ;;^UTILITY(U,$J,358.3,16345,1,0)
+ ;;^UTILITY(U,$J,358.3,35010,1,3,0)
+ ;;=3^Phlebitis/Thromophlebitis Unspec Site
+ ;;^UTILITY(U,$J,358.3,35010,1,4,0)
+ ;;=4^I80.9
+ ;;^UTILITY(U,$J,358.3,35010,2)
+ ;;=^93357
+ ;;^UTILITY(U,$J,358.3,35011,0)
+ ;;=R91.8^^125^1654^2
+ ;;^UTILITY(U,$J,358.3,35011,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16345,1,3,0)
- ;;=3^Myelodysplastic Syndrome,Unspec
- ;;^UTILITY(U,$J,358.3,16345,1,4,0)
- ;;=4^D46.9
- ;;^UTILITY(U,$J,358.3,16345,2)
- ;;=^334031
- ;;^UTILITY(U,$J,358.3,16346,0)
- ;;=C79.31^^64^739^33
- ;;^UTILITY(U,$J,358.3,16346,1,0)
+ ;;^UTILITY(U,$J,358.3,35011,1,3,0)
+ ;;=3^Abnormal Lung Field Findings
+ ;;^UTILITY(U,$J,358.3,35011,1,4,0)
+ ;;=4^R91.8
+ ;;^UTILITY(U,$J,358.3,35011,2)
+ ;;=^5019708
+ ;;^UTILITY(U,$J,358.3,35012,0)
+ ;;=R63.4^^125^1654^3
+ ;;^UTILITY(U,$J,358.3,35012,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16346,1,3,0)
- ;;=3^Secondary Malig Neop Brain
- ;;^UTILITY(U,$J,358.3,16346,1,4,0)
- ;;=4^C79.31
- ;;^UTILITY(U,$J,358.3,16346,2)
- ;;=^5001347
- ;;^UTILITY(U,$J,358.3,16347,0)
- ;;=C79.32^^64^739^34
- ;;^UTILITY(U,$J,358.3,16347,1,0)
+ ;;^UTILITY(U,$J,358.3,35012,1,3,0)
+ ;;=3^Abnormal Weight Loss
+ ;;^UTILITY(U,$J,358.3,35012,1,4,0)
+ ;;=4^R63.4
+ ;;^UTILITY(U,$J,358.3,35012,2)
+ ;;=^5019542
+ ;;^UTILITY(U,$J,358.3,35013,0)
+ ;;=R10.0^^125^1654^4
+ ;;^UTILITY(U,$J,358.3,35013,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16347,1,3,0)
- ;;=3^Secondary Malig Neop Cerebral Meninges
- ;;^UTILITY(U,$J,358.3,16347,1,4,0)
- ;;=4^C79.32
- ;;^UTILITY(U,$J,358.3,16347,2)
- ;;=^5001348
- ;;^UTILITY(U,$J,358.3,16348,0)
- ;;=G89.3^^64^739^28
- ;;^UTILITY(U,$J,358.3,16348,1,0)
+ ;;^UTILITY(U,$J,358.3,35013,1,3,0)
+ ;;=3^Acute Abdomen
+ ;;^UTILITY(U,$J,358.3,35013,1,4,0)
+ ;;=4^R10.0
+ ;;^UTILITY(U,$J,358.3,35013,2)
+ ;;=^885
+ ;;^UTILITY(U,$J,358.3,35014,0)
+ ;;=M80.08XA^^125^1654^58
+ ;;^UTILITY(U,$J,358.3,35014,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16348,1,3,0)
- ;;=3^Neoplasm Related Pain
- ;;^UTILITY(U,$J,358.3,16348,1,4,0)
- ;;=4^G89.3
- ;;^UTILITY(U,$J,358.3,16348,2)
- ;;=^5004159
- ;;^UTILITY(U,$J,358.3,16349,0)
- ;;=C79.82^^64^739^35
- ;;^UTILITY(U,$J,358.3,16349,1,0)
+ ;;^UTILITY(U,$J,358.3,35014,1,3,0)
+ ;;=3^Osteoporosis,Age-Related w/ Vertebra Fx,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35014,1,4,0)
+ ;;=4^M80.08XA
+ ;;^UTILITY(U,$J,358.3,35014,2)
+ ;;=^5013495
+ ;;^UTILITY(U,$J,358.3,35015,0)
+ ;;=K52.2^^125^1654^5
+ ;;^UTILITY(U,$J,358.3,35015,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16349,1,3,0)
- ;;=3^Secondary Malig Neop Genital Organs
- ;;^UTILITY(U,$J,358.3,16349,1,4,0)
- ;;=4^C79.82
- ;;^UTILITY(U,$J,358.3,16349,2)
- ;;=^267339
- ;;^UTILITY(U,$J,358.3,16350,0)
- ;;=I50.9^^64^740^7
- ;;^UTILITY(U,$J,358.3,16350,1,0)
+ ;;^UTILITY(U,$J,358.3,35015,1,3,0)
+ ;;=3^Allergic/Dietetic Gastroenteritis/Colitis
+ ;;^UTILITY(U,$J,358.3,35015,1,4,0)
+ ;;=4^K52.2
+ ;;^UTILITY(U,$J,358.3,35015,2)
+ ;;=^5008701
+ ;;^UTILITY(U,$J,358.3,35016,0)
+ ;;=R63.0^^125^1654^6
+ ;;^UTILITY(U,$J,358.3,35016,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16350,1,3,0)
- ;;=3^Heart Failure,Unspec
- ;;^UTILITY(U,$J,358.3,16350,1,4,0)
- ;;=4^I50.9
- ;;^UTILITY(U,$J,358.3,16350,2)
- ;;=^5007251
- ;;^UTILITY(U,$J,358.3,16351,0)
- ;;=I73.9^^64^740^13
- ;;^UTILITY(U,$J,358.3,16351,1,0)
+ ;;^UTILITY(U,$J,358.3,35016,1,3,0)
+ ;;=3^Anorexia
+ ;;^UTILITY(U,$J,358.3,35016,1,4,0)
+ ;;=4^R63.0
+ ;;^UTILITY(U,$J,358.3,35016,2)
+ ;;=^7939
+ ;;^UTILITY(U,$J,358.3,35017,0)
+ ;;=R09.01^^125^1654^7
+ ;;^UTILITY(U,$J,358.3,35017,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,16351,1,3,0)
- ;;=3^Peripheral Vascular Disease,Unspec
- ;;^UTILITY(U,$J,358.3,16351,1,4,0)
- ;;=4^I73.9
+ ;;^UTILITY(U,$J,358.3,35017,1,3,0)
+ ;;=3^Asphyxia
+ ;;^UTILITY(U,$J,358.3,35017,1,4,0)
+ ;;=4^R09.01
+ ;;^UTILITY(U,$J,358.3,35017,2)
+ ;;=^11005
+ ;;^UTILITY(U,$J,358.3,35018,0)
+ ;;=R07.9^^125^1654^12
+ ;;^UTILITY(U,$J,358.3,35018,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35018,1,3,0)
+ ;;=3^Chest Pain,Unspec
+ ;;^UTILITY(U,$J,358.3,35018,1,4,0)
+ ;;=4^R07.9
+ ;;^UTILITY(U,$J,358.3,35018,2)
+ ;;=^5019201
+ ;;^UTILITY(U,$J,358.3,35019,0)
+ ;;=M48.52XA^^125^1654^13
+ ;;^UTILITY(U,$J,358.3,35019,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35019,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervical Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35019,1,4,0)
+ ;;=4^M48.52XA
+ ;;^UTILITY(U,$J,358.3,35019,2)
+ ;;=^5012167
+ ;;^UTILITY(U,$J,358.3,35020,0)
+ ;;=M48.53XA^^125^1654^14
+ ;;^UTILITY(U,$J,358.3,35020,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35020,1,3,0)
+ ;;=3^Collapsed Vertebra,Cervicothoracic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35020,1,4,0)
+ ;;=4^M48.53XA
+ ;;^UTILITY(U,$J,358.3,35020,2)
+ ;;=^5012171
+ ;;^UTILITY(U,$J,358.3,35021,0)
+ ;;=M48.56XA^^125^1654^15
+ ;;^UTILITY(U,$J,358.3,35021,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35021,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbar Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35021,1,4,0)
+ ;;=4^M48.56XA
+ ;;^UTILITY(U,$J,358.3,35021,2)
+ ;;=^5012183
+ ;;^UTILITY(U,$J,358.3,35022,0)
+ ;;=M48.57XA^^125^1654^16
+ ;;^UTILITY(U,$J,358.3,35022,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35022,1,3,0)
+ ;;=3^Collapsed Vertebra,Lumbosacral Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35022,1,4,0)
+ ;;=4^M48.57XA
+ ;;^UTILITY(U,$J,358.3,35022,2)
+ ;;=^5012187
+ ;;^UTILITY(U,$J,358.3,35023,0)
+ ;;=M48.51XA^^125^1654^17
+ ;;^UTILITY(U,$J,358.3,35023,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35023,1,3,0)
+ ;;=3^Collapsed Vertebra,Occipito/Atlanto/Axial Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35023,1,4,0)
+ ;;=4^M48.51XA
+ ;;^UTILITY(U,$J,358.3,35023,2)
+ ;;=^5012163
+ ;;^UTILITY(U,$J,358.3,35024,0)
+ ;;=M48.58XA^^125^1654^18
+ ;;^UTILITY(U,$J,358.3,35024,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35024,1,3,0)
+ ;;=3^Collapsed Vertebra,Sacral/Sacrococcygeal Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35024,1,4,0)
+ ;;=4^M48.58XA
+ ;;^UTILITY(U,$J,358.3,35024,2)
+ ;;=^5012191
+ ;;^UTILITY(U,$J,358.3,35025,0)
+ ;;=M48.50XA^^125^1654^21
+ ;;^UTILITY(U,$J,358.3,35025,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35025,1,3,0)
+ ;;=3^Collapsed Vertebra,Unspec Site,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35025,1,4,0)
+ ;;=4^M48.50XA
+ ;;^UTILITY(U,$J,358.3,35025,2)
+ ;;=^5012159
+ ;;^UTILITY(U,$J,358.3,35026,0)
+ ;;=M48.54XA^^125^1654^19
+ ;;^UTILITY(U,$J,358.3,35026,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35026,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracic Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35026,1,4,0)
+ ;;=4^M48.54XA
+ ;;^UTILITY(U,$J,358.3,35026,2)
+ ;;=^5012175
+ ;;^UTILITY(U,$J,358.3,35027,0)
+ ;;=M48.55XA^^125^1654^20
+ ;;^UTILITY(U,$J,358.3,35027,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35027,1,3,0)
+ ;;=3^Collapsed Vertebra,Thoracolumbar Region,Init Encntr
+ ;;^UTILITY(U,$J,358.3,35027,1,4,0)
+ ;;=4^M48.55XA
+ ;;^UTILITY(U,$J,358.3,35027,2)
+ ;;=^5012179
+ ;;^UTILITY(U,$J,358.3,35028,0)
+ ;;=K59.00^^125^1654^22
+ ;;^UTILITY(U,$J,358.3,35028,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35028,1,3,0)
+ ;;=3^Constipation,Unspec
+ ;;^UTILITY(U,$J,358.3,35028,1,4,0)
+ ;;=4^K59.00
+ ;;^UTILITY(U,$J,358.3,35028,2)
+ ;;=^323537
+ ;;^UTILITY(U,$J,358.3,35029,0)
+ ;;=R05.^^125^1654^23
+ ;;^UTILITY(U,$J,358.3,35029,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35029,1,3,0)
+ ;;=3^Cough
+ ;;^UTILITY(U,$J,358.3,35029,1,4,0)
+ ;;=4^R05.
+ ;;^UTILITY(U,$J,358.3,35029,2)
+ ;;=^5019179
+ ;;^UTILITY(U,$J,358.3,35030,0)
+ ;;=R19.7^^125^1654^24
+ ;;^UTILITY(U,$J,358.3,35030,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35030,1,3,0)
+ ;;=3^Diarrhea,Unspec
+ ;;^UTILITY(U,$J,358.3,35030,1,4,0)
+ ;;=4^R19.7
+ ;;^UTILITY(U,$J,358.3,35030,2)
+ ;;=^5019276
+ ;;^UTILITY(U,$J,358.3,35031,0)
+ ;;=M89.9^^125^1654^9
+ ;;^UTILITY(U,$J,358.3,35031,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,35031,1,3,0)
+ ;;=3^Bone Disorder,Unspec
+ ;;^UTILITY(U,$J,358.3,35031,1,4,0)
+ ;;=4^M89.9
+ ;;^UTILITY(U,$J,358.3,35031,2)
+ ;;=^5015119

@@ -1,13 +1,17 @@
-DIM2 ;SFISC/XAK,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;6JUN2012
- ;;22.0;VA FileMan;**169**;Mar 30, 1999;Build 26
- ;Per VHA Directive 2004-038, this routine should not be modified.
+DIM2 ;SFISC/XAK,GFT,TOAD-FileMan: M Syntax Checker, Exprs ;20NOV2012
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  ;12277;4186487;4104;
  ;
 SUB ; "(": open paren situations (GG^DIM1)
  F %J=%I-1:-1 S %C1=$E(%,%J) Q:%C1'?1(1UN,1"%")
  S %C1=$E(%,%J+1,%I-1)
  I %C1]"",%C1'?1(1U,1"%").UN G ERR
- ;I %C1]"",%[("."_%C1) G ERR ;GFT 7/28/2000  DID NOT ALLOW "W A(6)-$$X(.A)"
+ ;I %C1]"",%[("."_%C1) G ERR ;DID NOT ALLOW "W A(6)-$$X(.A)"
  S %(%N,0)=$S(%C1]""!($E(%,%J)="^"):"V^",$E(%,%J)="@":"@^",1:"0^")
  S %(%N,1)=0,%(%N,2)=0,%(%N,3)=0,%N=%N+1 G 1
  ;
@@ -93,7 +97,7 @@ OPCHK ; ensure that the characters before and after the operator are OK
  F %F="*","]" I %C=%F,%L2=%F S %I=%I+1,%L2=$E(%,%I+1) Q
  I %L2="" G ERR ;                         all: require after
  I %L2'?1UN,%Z2'[%L2 G ERR ;              all: screen after
- I %C="'","!&[]?=<>"'[%L2,%L1?1(1")",1UN) G ERR ; unary ': not binary
+ I %C="'","!&[]?=<>"'[%L2,%L1?1(1")",1UN) G ERR ;GFT: unary "'" may precede an operator, can't follow a variable name
  G 1
  ;
 1 ; common exit point for all of ^DIM2

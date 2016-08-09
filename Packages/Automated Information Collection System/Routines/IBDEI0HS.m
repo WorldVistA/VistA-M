@@ -1,140 +1,286 @@
-IBDEI0HS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0HS ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,8222,1,4,0)
- ;;=4^H91.91
- ;;^UTILITY(U,$J,358.3,8222,2)
- ;;=^5133553
- ;;^UTILITY(U,$J,358.3,8223,0)
- ;;=H91.92^^33^432^20
- ;;^UTILITY(U,$J,358.3,8223,1,0)
+ ;;^UTILITY(U,$J,358.3,17878,2)
+ ;;=^5063551
+ ;;^UTILITY(U,$J,358.3,17879,0)
+ ;;=Z89.232^^78^936^2
+ ;;^UTILITY(U,$J,358.3,17879,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8223,1,3,0)
- ;;=3^Hearing Loss,Left Ear,Unspec
- ;;^UTILITY(U,$J,358.3,8223,1,4,0)
- ;;=4^H91.92
- ;;^UTILITY(U,$J,358.3,8223,2)
- ;;=^5133554
- ;;^UTILITY(U,$J,358.3,8224,0)
- ;;=H91.93^^33^432^19
- ;;^UTILITY(U,$J,358.3,8224,1,0)
+ ;;^UTILITY(U,$J,358.3,17879,1,3,0)
+ ;;=3^Acquired Absence of Left Shoulder
+ ;;^UTILITY(U,$J,358.3,17879,1,4,0)
+ ;;=4^Z89.232
+ ;;^UTILITY(U,$J,358.3,17879,2)
+ ;;=^5063552
+ ;;^UTILITY(U,$J,358.3,17880,0)
+ ;;=Z89.411^^78^937^10
+ ;;^UTILITY(U,$J,358.3,17880,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8224,1,3,0)
- ;;=3^Hearing Loss,Bilateral,Unspec
- ;;^UTILITY(U,$J,358.3,8224,1,4,0)
- ;;=4^H91.93
- ;;^UTILITY(U,$J,358.3,8224,2)
- ;;=^5006944
- ;;^UTILITY(U,$J,358.3,8225,0)
- ;;=I10.^^33^432^17
- ;;^UTILITY(U,$J,358.3,8225,1,0)
+ ;;^UTILITY(U,$J,358.3,17880,1,3,0)
+ ;;=3^Acquired Absence of Right Great Toe
+ ;;^UTILITY(U,$J,358.3,17880,1,4,0)
+ ;;=4^Z89.411
+ ;;^UTILITY(U,$J,358.3,17880,2)
+ ;;=^5063554
+ ;;^UTILITY(U,$J,358.3,17881,0)
+ ;;=Z89.412^^78^937^3
+ ;;^UTILITY(U,$J,358.3,17881,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8225,1,3,0)
- ;;=3^Essential (primary) hypertension
- ;;^UTILITY(U,$J,358.3,8225,1,4,0)
- ;;=4^I10.
- ;;^UTILITY(U,$J,358.3,8225,2)
- ;;=^5007062
- ;;^UTILITY(U,$J,358.3,8226,0)
- ;;=J06.9^^33^432^2
- ;;^UTILITY(U,$J,358.3,8226,1,0)
+ ;;^UTILITY(U,$J,358.3,17881,1,3,0)
+ ;;=3^Acquired Absence of Left Great Toe
+ ;;^UTILITY(U,$J,358.3,17881,1,4,0)
+ ;;=4^Z89.412
+ ;;^UTILITY(U,$J,358.3,17881,2)
+ ;;=^5063555
+ ;;^UTILITY(U,$J,358.3,17882,0)
+ ;;=Z89.421^^78^937^14
+ ;;^UTILITY(U,$J,358.3,17882,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8226,1,3,0)
- ;;=3^Acute upper respiratory infection, unspecified
- ;;^UTILITY(U,$J,358.3,8226,1,4,0)
- ;;=4^J06.9
- ;;^UTILITY(U,$J,358.3,8226,2)
- ;;=^5008143
- ;;^UTILITY(U,$J,358.3,8227,0)
- ;;=J32.4^^33^432^12
- ;;^UTILITY(U,$J,358.3,8227,1,0)
+ ;;^UTILITY(U,$J,358.3,17882,1,3,0)
+ ;;=3^Acquired Absence of Right Toe(s)
+ ;;^UTILITY(U,$J,358.3,17882,1,4,0)
+ ;;=4^Z89.421
+ ;;^UTILITY(U,$J,358.3,17882,2)
+ ;;=^5063557
+ ;;^UTILITY(U,$J,358.3,17883,0)
+ ;;=Z89.422^^78^937^7
+ ;;^UTILITY(U,$J,358.3,17883,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8227,1,3,0)
- ;;=3^Chronic pansinusitis
- ;;^UTILITY(U,$J,358.3,8227,1,4,0)
- ;;=4^J32.4
- ;;^UTILITY(U,$J,358.3,8227,2)
- ;;=^5008206
- ;;^UTILITY(U,$J,358.3,8228,0)
- ;;=J32.8^^33^432^11
- ;;^UTILITY(U,$J,358.3,8228,1,0)
+ ;;^UTILITY(U,$J,358.3,17883,1,3,0)
+ ;;=3^Acquired Absence of Left Toe(s)
+ ;;^UTILITY(U,$J,358.3,17883,1,4,0)
+ ;;=4^Z89.422
+ ;;^UTILITY(U,$J,358.3,17883,2)
+ ;;=^5063558
+ ;;^UTILITY(U,$J,358.3,17884,0)
+ ;;=Z89.431^^78^937^9
+ ;;^UTILITY(U,$J,358.3,17884,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8228,1,3,0)
- ;;=3^Chronic Sinusitis NEC
- ;;^UTILITY(U,$J,358.3,8228,1,4,0)
- ;;=4^J32.8
- ;;^UTILITY(U,$J,358.3,8228,2)
- ;;=^269890
- ;;^UTILITY(U,$J,358.3,8229,0)
- ;;=J30.9^^33^432^4
- ;;^UTILITY(U,$J,358.3,8229,1,0)
+ ;;^UTILITY(U,$J,358.3,17884,1,3,0)
+ ;;=3^Acquired Absence of Right Foot
+ ;;^UTILITY(U,$J,358.3,17884,1,4,0)
+ ;;=4^Z89.431
+ ;;^UTILITY(U,$J,358.3,17884,2)
+ ;;=^5063560
+ ;;^UTILITY(U,$J,358.3,17885,0)
+ ;;=Z89.432^^78^937^2
+ ;;^UTILITY(U,$J,358.3,17885,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8229,1,3,0)
- ;;=3^Allergic rhinitis, unspecified
- ;;^UTILITY(U,$J,358.3,8229,1,4,0)
- ;;=4^J30.9
- ;;^UTILITY(U,$J,358.3,8229,2)
- ;;=^5008205
- ;;^UTILITY(U,$J,358.3,8230,0)
- ;;=J40.^^33^432^8
- ;;^UTILITY(U,$J,358.3,8230,1,0)
+ ;;^UTILITY(U,$J,358.3,17885,1,3,0)
+ ;;=3^Acquired Absence of Left Foot
+ ;;^UTILITY(U,$J,358.3,17885,1,4,0)
+ ;;=4^Z89.432
+ ;;^UTILITY(U,$J,358.3,17885,2)
+ ;;=^5063561
+ ;;^UTILITY(U,$J,358.3,17886,0)
+ ;;=Z89.441^^78^937^8
+ ;;^UTILITY(U,$J,358.3,17886,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8230,1,3,0)
- ;;=3^Bronchitis, not specified as acute or chronic
- ;;^UTILITY(U,$J,358.3,8230,1,4,0)
- ;;=4^J40.
- ;;^UTILITY(U,$J,358.3,8230,2)
- ;;=^17164
- ;;^UTILITY(U,$J,358.3,8231,0)
- ;;=J45.909^^33^432^7
- ;;^UTILITY(U,$J,358.3,8231,1,0)
+ ;;^UTILITY(U,$J,358.3,17886,1,3,0)
+ ;;=3^Acquired Absence of Right Ankle
+ ;;^UTILITY(U,$J,358.3,17886,1,4,0)
+ ;;=4^Z89.441
+ ;;^UTILITY(U,$J,358.3,17886,2)
+ ;;=^5063563
+ ;;^UTILITY(U,$J,358.3,17887,0)
+ ;;=Z89.442^^78^937^1
+ ;;^UTILITY(U,$J,358.3,17887,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8231,1,3,0)
- ;;=3^Asthma,Uncomplicated,Unspec
- ;;^UTILITY(U,$J,358.3,8231,1,4,0)
- ;;=4^J45.909
- ;;^UTILITY(U,$J,358.3,8231,2)
- ;;=^5008256
- ;;^UTILITY(U,$J,358.3,8232,0)
- ;;=K52.9^^33^432^29
- ;;^UTILITY(U,$J,358.3,8232,1,0)
+ ;;^UTILITY(U,$J,358.3,17887,1,3,0)
+ ;;=3^Acquired Absence of Left Ankle
+ ;;^UTILITY(U,$J,358.3,17887,1,4,0)
+ ;;=4^Z89.442
+ ;;^UTILITY(U,$J,358.3,17887,2)
+ ;;=^5063564
+ ;;^UTILITY(U,$J,358.3,17888,0)
+ ;;=Z89.511^^78^937^13
+ ;;^UTILITY(U,$J,358.3,17888,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8232,1,3,0)
- ;;=3^Noninfective gastroenteritis and colitis, unspecified
- ;;^UTILITY(U,$J,358.3,8232,1,4,0)
- ;;=4^K52.9
- ;;^UTILITY(U,$J,358.3,8232,2)
- ;;=^5008704
- ;;^UTILITY(U,$J,358.3,8233,0)
- ;;=M25.511^^33^432^38
- ;;^UTILITY(U,$J,358.3,8233,1,0)
+ ;;^UTILITY(U,$J,358.3,17888,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,17888,1,4,0)
+ ;;=4^Z89.511
+ ;;^UTILITY(U,$J,358.3,17888,2)
+ ;;=^5063566
+ ;;^UTILITY(U,$J,358.3,17889,0)
+ ;;=Z89.512^^78^937^6
+ ;;^UTILITY(U,$J,358.3,17889,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8233,1,3,0)
- ;;=3^Pain in right shoulder
- ;;^UTILITY(U,$J,358.3,8233,1,4,0)
- ;;=4^M25.511
- ;;^UTILITY(U,$J,358.3,8233,2)
- ;;=^5011602
- ;;^UTILITY(U,$J,358.3,8234,0)
- ;;=M25.512^^33^432^35
- ;;^UTILITY(U,$J,358.3,8234,1,0)
+ ;;^UTILITY(U,$J,358.3,17889,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Below Knee
+ ;;^UTILITY(U,$J,358.3,17889,1,4,0)
+ ;;=4^Z89.512
+ ;;^UTILITY(U,$J,358.3,17889,2)
+ ;;=^5063567
+ ;;^UTILITY(U,$J,358.3,17890,0)
+ ;;=Z89.611^^78^937^12
+ ;;^UTILITY(U,$J,358.3,17890,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8234,1,3,0)
- ;;=3^Pain in left shoulder
- ;;^UTILITY(U,$J,358.3,8234,1,4,0)
- ;;=4^M25.512
- ;;^UTILITY(U,$J,358.3,8234,2)
- ;;=^5011603
- ;;^UTILITY(U,$J,358.3,8235,0)
- ;;=M25.551^^33^432^36
- ;;^UTILITY(U,$J,358.3,8235,1,0)
+ ;;^UTILITY(U,$J,358.3,17890,1,3,0)
+ ;;=3^Acquired Absence of Right Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,17890,1,4,0)
+ ;;=4^Z89.611
+ ;;^UTILITY(U,$J,358.3,17890,2)
+ ;;=^5063572
+ ;;^UTILITY(U,$J,358.3,17891,0)
+ ;;=Z89.612^^78^937^5
+ ;;^UTILITY(U,$J,358.3,17891,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,8235,1,3,0)
- ;;=3^Pain in right hip
- ;;^UTILITY(U,$J,358.3,8235,1,4,0)
- ;;=4^M25.551
- ;;^UTILITY(U,$J,358.3,8235,2)
- ;;=^5011611
- ;;^UTILITY(U,$J,358.3,8236,0)
- ;;=M25.552^^33^432^33
+ ;;^UTILITY(U,$J,358.3,17891,1,3,0)
+ ;;=3^Acquired Absence of Left Leg Above Knee
+ ;;^UTILITY(U,$J,358.3,17891,1,4,0)
+ ;;=4^Z89.612
+ ;;^UTILITY(U,$J,358.3,17891,2)
+ ;;=^5063573
+ ;;^UTILITY(U,$J,358.3,17892,0)
+ ;;=Z89.621^^78^937^11
+ ;;^UTILITY(U,$J,358.3,17892,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17892,1,3,0)
+ ;;=3^Acquired Absence of Right Hip Joint
+ ;;^UTILITY(U,$J,358.3,17892,1,4,0)
+ ;;=4^Z89.621
+ ;;^UTILITY(U,$J,358.3,17892,2)
+ ;;=^5063575
+ ;;^UTILITY(U,$J,358.3,17893,0)
+ ;;=Z89.622^^78^937^4
+ ;;^UTILITY(U,$J,358.3,17893,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17893,1,3,0)
+ ;;=3^Acquired Absence of Left Hip Joint
+ ;;^UTILITY(U,$J,358.3,17893,1,4,0)
+ ;;=4^Z89.622
+ ;;^UTILITY(U,$J,358.3,17893,2)
+ ;;=^5063576
+ ;;^UTILITY(U,$J,358.3,17894,0)
+ ;;=Z75.3^^78^938^5
+ ;;^UTILITY(U,$J,358.3,17894,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17894,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Health-Care Facilities
+ ;;^UTILITY(U,$J,358.3,17894,1,4,0)
+ ;;=4^Z75.3
+ ;;^UTILITY(U,$J,358.3,17894,2)
+ ;;=^5063292
+ ;;^UTILITY(U,$J,358.3,17895,0)
+ ;;=Z75.0^^78^938^3
+ ;;^UTILITY(U,$J,358.3,17895,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17895,1,3,0)
+ ;;=3^Medical Services Not Available in Home
+ ;;^UTILITY(U,$J,358.3,17895,1,4,0)
+ ;;=4^Z75.0
+ ;;^UTILITY(U,$J,358.3,17895,2)
+ ;;=^5063289
+ ;;^UTILITY(U,$J,358.3,17896,0)
+ ;;=Z75.1^^78^938^4
+ ;;^UTILITY(U,$J,358.3,17896,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17896,1,3,0)
+ ;;=3^Pt Awaiting Admission to Adequate Facility Elsewhere
+ ;;^UTILITY(U,$J,358.3,17896,1,4,0)
+ ;;=4^Z75.1
+ ;;^UTILITY(U,$J,358.3,17896,2)
+ ;;=^5063290
+ ;;^UTILITY(U,$J,358.3,17897,0)
+ ;;=Z75.4^^78^938^6
+ ;;^UTILITY(U,$J,358.3,17897,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17897,1,3,0)
+ ;;=3^Unavailability/Inaccessibility of Helping Agencies
+ ;;^UTILITY(U,$J,358.3,17897,1,4,0)
+ ;;=4^Z75.4
+ ;;^UTILITY(U,$J,358.3,17897,2)
+ ;;=^5063293
+ ;;^UTILITY(U,$J,358.3,17898,0)
+ ;;=Z75.8^^78^938^2
+ ;;^UTILITY(U,$J,358.3,17898,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17898,1,3,0)
+ ;;=3^Medical Facilities/Health Care Problems
+ ;;^UTILITY(U,$J,358.3,17898,1,4,0)
+ ;;=4^Z75.8
+ ;;^UTILITY(U,$J,358.3,17898,2)
+ ;;=^5063295
+ ;;^UTILITY(U,$J,358.3,17899,0)
+ ;;=Z71.9^^78^938^1
+ ;;^UTILITY(U,$J,358.3,17899,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17899,1,3,0)
+ ;;=3^Counseling,Unspec
+ ;;^UTILITY(U,$J,358.3,17899,1,4,0)
+ ;;=4^Z71.9
+ ;;^UTILITY(U,$J,358.3,17899,2)
+ ;;=^5063254
+ ;;^UTILITY(U,$J,358.3,17900,0)
+ ;;=Z51.89^^78^939^1
+ ;;^UTILITY(U,$J,358.3,17900,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17900,1,3,0)
+ ;;=3^Aftercare,Oth Spec
+ ;;^UTILITY(U,$J,358.3,17900,1,4,0)
+ ;;=4^Z51.89
+ ;;^UTILITY(U,$J,358.3,17900,2)
+ ;;=^5063065
+ ;;^UTILITY(U,$J,358.3,17901,0)
+ ;;=Z51.5^^78^939^2
+ ;;^UTILITY(U,$J,358.3,17901,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,17901,1,3,0)
+ ;;=3^Palliative Care
+ ;;^UTILITY(U,$J,358.3,17901,1,4,0)
+ ;;=4^Z51.5
+ ;;^UTILITY(U,$J,358.3,17901,2)
+ ;;=^5063063
+ ;;^UTILITY(U,$J,358.3,17902,0)
+ ;;=99201^^79^940^1
+ ;;^UTILITY(U,$J,358.3,17902,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17902,1,1,0)
+ ;;=1^Problem Focus
+ ;;^UTILITY(U,$J,358.3,17902,1,2,0)
+ ;;=2^99201
+ ;;^UTILITY(U,$J,358.3,17903,0)
+ ;;=99202^^79^940^2
+ ;;^UTILITY(U,$J,358.3,17903,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17903,1,1,0)
+ ;;=1^Expanded Problem Focus
+ ;;^UTILITY(U,$J,358.3,17903,1,2,0)
+ ;;=2^99202
+ ;;^UTILITY(U,$J,358.3,17904,0)
+ ;;=99203^^79^940^3
+ ;;^UTILITY(U,$J,358.3,17904,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17904,1,1,0)
+ ;;=1^Detailed
+ ;;^UTILITY(U,$J,358.3,17904,1,2,0)
+ ;;=2^99203
+ ;;^UTILITY(U,$J,358.3,17905,0)
+ ;;=99204^^79^940^4
+ ;;^UTILITY(U,$J,358.3,17905,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17905,1,1,0)
+ ;;=1^Comprehensive, Moderate
+ ;;^UTILITY(U,$J,358.3,17905,1,2,0)
+ ;;=2^99204
+ ;;^UTILITY(U,$J,358.3,17906,0)
+ ;;=99205^^79^940^5
+ ;;^UTILITY(U,$J,358.3,17906,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17906,1,1,0)
+ ;;=1^Comprehensive, High
+ ;;^UTILITY(U,$J,358.3,17906,1,2,0)
+ ;;=2^99205
+ ;;^UTILITY(U,$J,358.3,17907,0)
+ ;;=99211^^79^941^1
+ ;;^UTILITY(U,$J,358.3,17907,1,0)
+ ;;=^358.31IA^2^2
+ ;;^UTILITY(U,$J,358.3,17907,1,1,0)
+ ;;=1^Nursing Visit (no MD seen)
+ ;;^UTILITY(U,$J,358.3,17907,1,2,0)
+ ;;=2^99211
+ ;;^UTILITY(U,$J,358.3,17908,0)
+ ;;=99212^^79^941^2

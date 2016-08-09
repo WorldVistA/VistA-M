@@ -1,6 +1,10 @@
 DICE4 ;SFISC/GFT-TRIGGER LOGIC ;26NOV2004
- ;;22.0;VA FileMan;**6,37,157**;Mar 30, 1999;Build 1
- ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
  D SET S DTAG="S DIH=$G("_DREF_DSUB_")),DIV=X "_$P("I $D(^(0)) ","""",A>99)_X_",DIH="_DIN_",DIG="_DENEW_" D ^DICR",X=""
  S:$L(DE)+$L(DTAG)>160&($L(DE)>30) ^UTILITY("DICE",$J,DIK+.1)=DE,DE="X "_DA_DIK_".1)" S X=DE
 F ;

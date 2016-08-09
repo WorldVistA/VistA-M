@@ -1,5 +1,5 @@
 PSJLIFN ;BIR/MV-IV FINISH USING LM ;13 Jan 98 / 11:32 AM
- ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252**;16 DEC 97;Build 69
+ ;;5.0;INPATIENT MEDICATIONS ;**1,29,34,37,42,47,50,56,94,80,116,110,181,261,252,313**;16 DEC 97;Build 26
  ;
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
  ; Reference to ^PS(52.6 supported by DBIA #1231.
@@ -68,7 +68,9 @@ FINISH ; Prompt for missing data
  ;*          list(ORDCHK^PSJLMUT1)
  ;* PSGORQF defined means cancel the order due to order check.
  ;Q:'$$LS^PSSLOCK(DFN,PSJORD)
- N PSJCOM,PSIVEDIT S PSJCOM=+$P($G(^PS(53.1,+PSJORD,.2)),"^",8)
+ N PSJCOM,PSIVEDIT
+ D GTDRG^PSIVORFA
+ S PSJCOM=+$P($G(^PS(53.1,+PSJORD,.2)),"^",8)
  K PSJIVBD,PSGRDTX,PSIVEDIT
  N FIL,PSIVS,DRGOC,PSIVXD,DRGTMP,PSIVOCON,PSGORQF,ON55,NSFF K PSGORQF S NSFF=1
  S (ON,PSIVOCON,ON55,PSGORD)=PSJORD Q:PSJORD'=PSJMAI  I $G(PSJLYN)]"" Q:PSJORD'=PSJLYN
@@ -92,6 +94,10 @@ FINISH ; Prompt for missing data
  S VALMBG=1
  I $E(P("OT"))="F" S DNE=0 I $G(PSGORQF) D RE^VALM4 Q
  I $G(PSGORQF) S VALMBCK="R",P(4)="" K DRG Q
+ ;
+ ; Will prompt users to choose Dispense IV Additive when more than one are available for the Orderable Item
+ N PSJQUIT S PSJQUIT=0 D MULTADDS I $G(PSJQUIT) S VALMBCK="R" Q
+ ;
  S PSIVEDIT=""
  S PSIVOK="1^3^10^25^26^39^57^58^59^63^64" D CKFLDS^PSIVORC1 I EDIT]"" D EDIT^PSIVEDT
  ;S PSIVOK="1^3^10^25^26^39^57^58^59^63^64" D CKFLDS^PSIVORC1 I EDIT]"" S PSIVEDIT=EDIT D EDIT^PSIVEDT
@@ -100,6 +106,7 @@ FINISH ; Prompt for missing data
  ;PSJ*5*261 - Remedy #490875 PSPO 2040 
  D ENSTOP^PSIVCAL
  ;D:'$G(PSGORQF) IN^PSJOCDS($G(ON),"IV","")
+  ;If quit then restore DRG( to pre-edit state
  I $G(PSGORQF) D GT531^PSIVORFA(DFN,ON) Q
  I $G(DONE) S VALMBCK="R" Q
  ;* PSJFNDS is set so dosing is trigger during finishing without changes to the add/sol
@@ -111,6 +118,34 @@ FINISH ; Prompt for missing data
  I $G(PSGORQF) S VALMBG=1 D RE^VALM4
  K NSFF
  Q
+ ;
+MULTADDS ; If there are multiple IV Additives per Orderable Item, it will prompt for selection
+ N TMPDRG
+ S PSJQUIT=0
+ I $O(DRG("AD",0)) D  I PSJQUIT D SAVEDRG^PSIVEDRG(.DRG,.TMPDRG) Q
+ . D SAVEDRG^PSIVEDRG(.TMPDRG,.DRG)
+ . N PSIDX,OI,IVLIST
+ . F PSIDX=1:1 Q:'$D(DRG("AD",PSIDX))  D  I PSJQUIT Q
+ . . S OI=$P(DRG("AD",PSIDX),"^",6) I 'OI Q
+ . . K IVLIST D IVADDCNT(OI,.IVLIST) I $O(IVLIST(""),-1)'>1 Q
+ . . W !!,"More than one dispense IV Additives are available for:"
+ . . W !,"Orderable Item: ",$$GET1^DIQ(50.7,OI,.01)
+ . . W !,"  Ordered Dose: ",$P(DRG("AD",PSIDX),"^",3)
+ . . W !!,"Please select the correct dispense IV Additive below for this order:"
+ . . N DIR,IVADD,IVCNT,X,Y,DIRUT,DUOUT
+ . . S DIR("?")="Please select the correct dispense IV Additive below for this order:"
+ . . F IVCNT=1:1 Q:'$D(IVLIST(IVCNT))  D  I PSJQUIT Q
+ . . . S IVADD=IVLIST(IVCNT)
+ . . . S X="  "_IVCNT_"  "_$$GET1^DIQ(52.6,IVADD,.01)
+ . . . S $E(X,45)="Additive Strength: "_$S($$GET1^DIQ(52.6,IVADD,19)'="":$$GET1^DIQ(52.6,IVADD,19)_" "_$$GET1^DIQ(52.6,IVADD,2),1:"N/A")
+ . . . S DIR("A",IVCNT)=X
+ . . S DIR("A")="Select (1 - "_(IVCNT-1)_"): "
+ . . S DIR(0)="LA^1:"_(IVCNT-1) D ^DIR I $D(DUOUT)!$D(DIRUT) S PSJQUIT=1 Q
+ . . I (Y>0) D
+ . . . S $P(DRG("AD",PSIDX),"^",1,2)=+IVLIST(+Y)_"^"_$$GET1^DIQ(52.6,+IVLIST(+Y),.01)
+ . W !
+ Q
+ ;
 ORDCHK ;* Do order check for Inpatient Meds IV.
  ; PSGORQF is defined (CONT^PSGSICHK) if not log an intervention
  ; No longer use after PSJ*5*181
@@ -162,4 +197,19 @@ OCORD ;* Do order check for each drug against the drugs within the order.
  . NEW TYPE F TYPE="DI" D ORDCHK^PSJLIFNI(PSJDFN,TYPE)
  S DFN=PSJDFN
  D SAVEDRG^PSIVEDRG(.DRG,.TMPDRG)
+ Q
+ ;
+IVADDCNT(OI,IVLIST) ; Returns the number of IV Addtives Associated to the OI and Marked for IV Order Dialog
+ ;Input: OI - PHARMACY ORDERABLE ITEM file (#50.7) IEN
+ ;Output: $$IVADDCNT - Number of IV Additives linked to the Orderable Item
+ ;        IVLIST(IV_IEN) - List of IV Additives linked to the Orderable Item
+ N IVADD,IVADDCNT
+ S IVADDCNT=0,IVADD=""
+ F  S IVADD=$O(^PS(52.6,"AOI",OI,IVADD)) Q:'IVADD  D
+ . ; Not Used in the IV Order Dialog
+ . I '$$GET1^DIQ(52.6,IVADD,17,"I") Q
+ . ; Other IV Solution is INACTIVE
+ . I $$GET1^DIQ(52.6,IVADD,12,"I"),($$GET1^DIQ(52.6,IVADD,12,"I")'>DT) Q
+ . ; Other IV Dispense Drug
+ . S IVADDCNT=IVADDCNT+1,IVLIST(IVADDCNT)=IVADD
  Q

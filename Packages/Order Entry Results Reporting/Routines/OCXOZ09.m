@@ -1,4 +1,4 @@
-OCXOZ09 ;SLC/RJS,CLA - Order Check Scan ;JUN 14,2013 at 09:03
+OCXOZ09 ;SLC/RJS,CLA - Order Check Scan ;MAY 26,2016 at 15:49
  ;;3.0;ORDER ENTRY/RESULTS REPORTING;**32,221,243**;Dec 17,1997;Build 242
  ;;  ;;ORDER CHECK EXPERT version 1.01 released OCT 29,1998
  ;
@@ -101,7 +101,7 @@ CHK201 ; Look through the current environment for valid Event/Elements for this 
  ;      Local Extrinsic Functions
  ; RECBAR( ----------> RECENT BARIUM STUDY
  ;
- S OCXDF(65)=$$ORCHK^GMRAOR(OCXDF(37),"CM","") I $L(OCXDF(65)),(OCXDF(65)) S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) D CHK207
+ S OCXDF(65)=$$ORCHK2^GMRAOR(OCXDF(37),"CM","") I $L(OCXDF(65)),(OCXDF(65)) S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) D CHK207
  S OCXDF(69)=$P($$RECBAR(OCXDF(37),48),"^",1) I $L(OCXDF(69)),(OCXDF(69)) S OCXDF(73)=$P($G(OCXPSD),"|",1) I $L(OCXDF(73)) S OCXDF(67)=$$CM^ORQQRA(OCXDF(73)) D CHK217
  Q
  ;
@@ -120,7 +120,7 @@ CHK207 ; Look through the current environment for valid Event/Elements for this 
  ; CLIST( -----------> STRING CONTAINS ONE OF A LIST OF VALUES
  ; CONTRANS( --------> CONTRAST MEDIA CODE TRANSLATION
  ;
- I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N,L,C,G,B") S OCXDF(66)=$$CONTRANS(OCXDF(67)),OCXDF(159)=$P($$ORCHK^GMRAOR(OCXDF(37),"CM","",1),"^",2) D CHK211
+ I $L(OCXDF(67)),$$CLIST(OCXDF(67),"M,I,N,L,C,G,B") S OCXDF(66)=$$CONTRANS(OCXDF(67)),OCXDF(159)=$P($$ORCHK2^GMRAOR(OCXDF(37),"CM","",1),"^",2) D CHK211
  Q
  ;
 CHK211 ; Look through the current environment for valid Event/Elements for this patient.

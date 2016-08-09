@@ -1,6 +1,6 @@
 ORDER CHECKS
 ZWR
-^ORD(100.8,0)="ORDER CHECKS^100.8^33^27"
+^ORD(100.8,0)="ORDER CHECKS^100.8^99^28"
 ^ORD(100.8,1,0)="ESTIMATED CREATININE CLEARANCE"
 ^ORD(100.8,1,1,0)="^^4^4^3010429^"
 ^ORD(100.8,1,1,1,0)="Triggered upon entry into a pharmacy ordering dialog. CPRS"
@@ -163,6 +163,11 @@ ZWR
 ^ORD(100.8,36,1,1,0)="This order check refers to Clinical Reminder Rules that will look at the "
 ^ORD(100.8,36,1,2,0)="Orderable Item that is getting placed and determin if a Reminder Rule "
 ^ORD(100.8,36,1,3,0)="should fire. "
+^ORD(100.8,99,0)="REMOTE DATA UNAVAILABLE"
+^ORD(100.8,99,1,0)="^^3^3^3160526"
+^ORD(100.8,99,1,1,0)="Triggered by the order checking system, this order check is generated when"
+^ORD(100.8,99,1,2,0)="the remote data interoperability (RDI) client is unable to obtain all"
+^ORD(100.8,99,1,3,0)="available data from the Health Data Repository (HDR)."
 ^ORD(100.8,"B","ALLERGY-CONTRAST MEDIA INTERAC",4)=""
 ^ORD(100.8,"B","ALLERGY-DRUG INTERACTION",3)=""
 ^ORD(100.8,"B","AMINOGLYCOSIDE ORDERED",20)=""
@@ -191,5 +196,6 @@ ZWR
 ^ORD(100.8,"B","POLYPHARMACY",26)=""
 ^ORD(100.8,"B","RECENT BARIUM STUDY",14)=""
 ^ORD(100.8,"B","RECENT ORAL CHOLECYSTOGRAM",15)=""
+^ORD(100.8,"B","REMOTE DATA UNAVAILABLE",99)=""
 ^ORD(100.8,"B","RENAL FUNCTIONS OVER AGE 65",21)=""
 ^ORD(100.8,"B","SIGNIFICANT DRUG INTERACTION",31)=""

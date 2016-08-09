@@ -1,134 +1,284 @@
-IBDEI02J ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI02J ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,698,1,0)
+ ;;^UTILITY(U,$J,358.3,2080,1,4,0)
+ ;;=4^I21.02
+ ;;^UTILITY(U,$J,358.3,2080,2)
+ ;;=^5007081
+ ;;^UTILITY(U,$J,358.3,2081,0)
+ ;;=I21.01^^14^162^5
+ ;;^UTILITY(U,$J,358.3,2081,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,698,1,2,0)
- ;;=2^NERVE BLK CERVICAL PLEXUS,INJ
- ;;^UTILITY(U,$J,358.3,698,1,4,0)
- ;;=4^64413
- ;;^UTILITY(U,$J,358.3,699,0)
- ;;=64402^^5^72^8^^^^1
- ;;^UTILITY(U,$J,358.3,699,1,0)
+ ;;^UTILITY(U,$J,358.3,2081,1,3,0)
+ ;;=3^STEMI Involving Left Main Coronary Artery
+ ;;^UTILITY(U,$J,358.3,2081,1,4,0)
+ ;;=4^I21.01
+ ;;^UTILITY(U,$J,358.3,2081,2)
+ ;;=^5007080
+ ;;^UTILITY(U,$J,358.3,2082,0)
+ ;;=I21.19^^14^162^3
+ ;;^UTILITY(U,$J,358.3,2082,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,699,1,2,0)
- ;;=2^NERVE BLK FACIAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,699,1,4,0)
- ;;=4^64402
- ;;^UTILITY(U,$J,358.3,700,0)
- ;;=64447^^5^72^10^^^^1
- ;;^UTILITY(U,$J,358.3,700,1,0)
+ ;;^UTILITY(U,$J,358.3,2082,1,3,0)
+ ;;=3^STEMI Involving Coronary Artery of Inferior Wall
+ ;;^UTILITY(U,$J,358.3,2082,1,4,0)
+ ;;=4^I21.19
+ ;;^UTILITY(U,$J,358.3,2082,2)
+ ;;=^5007084
+ ;;^UTILITY(U,$J,358.3,2083,0)
+ ;;=I22.1^^14^162^8
+ ;;^UTILITY(U,$J,358.3,2083,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,700,1,2,0)
- ;;=2^NERVE BLK FEMORAL NERVE,SNGL INJ
- ;;^UTILITY(U,$J,358.3,700,1,4,0)
- ;;=4^64447
- ;;^UTILITY(U,$J,358.3,701,0)
- ;;=64448^^5^72^9^^^^1
- ;;^UTILITY(U,$J,358.3,701,1,0)
+ ;;^UTILITY(U,$J,358.3,2083,1,3,0)
+ ;;=3^Subsequent STEMI of Inferior Wall
+ ;;^UTILITY(U,$J,358.3,2083,1,4,0)
+ ;;=4^I22.1
+ ;;^UTILITY(U,$J,358.3,2083,2)
+ ;;=^5007090
+ ;;^UTILITY(U,$J,358.3,2084,0)
+ ;;=I21.4^^14^162^1
+ ;;^UTILITY(U,$J,358.3,2084,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,701,1,2,0)
- ;;=2^NERVE BLK FEMORAL NERVE,CONT INFUSION
- ;;^UTILITY(U,$J,358.3,701,1,4,0)
- ;;=4^64448
- ;;^UTILITY(U,$J,358.3,702,0)
- ;;=64405^^5^72^11^^^^1
- ;;^UTILITY(U,$J,358.3,702,1,0)
+ ;;^UTILITY(U,$J,358.3,2084,1,3,0)
+ ;;=3^NSTEMI
+ ;;^UTILITY(U,$J,358.3,2084,1,4,0)
+ ;;=4^I21.4
+ ;;^UTILITY(U,$J,358.3,2084,2)
+ ;;=^5007088
+ ;;^UTILITY(U,$J,358.3,2085,0)
+ ;;=I21.3^^14^162^6
+ ;;^UTILITY(U,$J,358.3,2085,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,702,1,2,0)
- ;;=2^NERVE BLK GREATER OCCIPITAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,702,1,4,0)
- ;;=4^64405
- ;;^UTILITY(U,$J,358.3,703,0)
- ;;=64425^^5^72^12^^^^1
- ;;^UTILITY(U,$J,358.3,703,1,0)
+ ;;^UTILITY(U,$J,358.3,2085,1,3,0)
+ ;;=3^STEMI of Unspec Site
+ ;;^UTILITY(U,$J,358.3,2085,1,4,0)
+ ;;=4^I21.3
+ ;;^UTILITY(U,$J,358.3,2085,2)
+ ;;=^5007087
+ ;;^UTILITY(U,$J,358.3,2086,0)
+ ;;=I34.2^^14^163^2
+ ;;^UTILITY(U,$J,358.3,2086,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,703,1,2,0)
- ;;=2^NERVE BLK ILIOINGUINAL/ILIOHYPOGASTRIC,INJ
- ;;^UTILITY(U,$J,358.3,703,1,4,0)
- ;;=4^64425
- ;;^UTILITY(U,$J,358.3,704,0)
- ;;=64450^^5^72^17^^^^1
- ;;^UTILITY(U,$J,358.3,704,1,0)
+ ;;^UTILITY(U,$J,358.3,2086,1,3,0)
+ ;;=3^Nonrheumatic Mitral Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,2086,1,4,0)
+ ;;=4^I34.2
+ ;;^UTILITY(U,$J,358.3,2086,2)
+ ;;=^5007171
+ ;;^UTILITY(U,$J,358.3,2087,0)
+ ;;=I35.0^^14^163^1
+ ;;^UTILITY(U,$J,358.3,2087,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,704,1,2,0)
- ;;=2^NERVE BLK PERIPH NERVE/BRANCH NEC
- ;;^UTILITY(U,$J,358.3,704,1,4,0)
- ;;=4^64450
- ;;^UTILITY(U,$J,358.3,705,0)
- ;;=64508^^5^72^5^^^^1
- ;;^UTILITY(U,$J,358.3,705,1,0)
+ ;;^UTILITY(U,$J,358.3,2087,1,3,0)
+ ;;=3^Nonrheumatic Aortic Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,2087,1,4,0)
+ ;;=4^I35.0
+ ;;^UTILITY(U,$J,358.3,2087,2)
+ ;;=^5007174
+ ;;^UTILITY(U,$J,358.3,2088,0)
+ ;;=I36.1^^14^163^4
+ ;;^UTILITY(U,$J,358.3,2088,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,705,1,2,0)
- ;;=2^NERVE BLK CAROTID SINUS,INJ
- ;;^UTILITY(U,$J,358.3,705,1,4,0)
- ;;=4^64508
- ;;^UTILITY(U,$J,358.3,706,0)
- ;;=64530^^5^72^6^^^^1
- ;;^UTILITY(U,$J,358.3,706,1,0)
+ ;;^UTILITY(U,$J,358.3,2088,1,3,0)
+ ;;=3^Nonrheumatic Tricuspid Valve Insufficiency
+ ;;^UTILITY(U,$J,358.3,2088,1,4,0)
+ ;;=4^I36.1
+ ;;^UTILITY(U,$J,358.3,2088,2)
+ ;;=^5007180
+ ;;^UTILITY(U,$J,358.3,2089,0)
+ ;;=I37.0^^14^163^3
+ ;;^UTILITY(U,$J,358.3,2089,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,706,1,2,0)
- ;;=2^NERVE BLK CELIAC PLEXUS,INJ
- ;;^UTILITY(U,$J,358.3,706,1,4,0)
- ;;=4^64530
- ;;^UTILITY(U,$J,358.3,707,0)
- ;;=64520^^5^72^15^^^^1
- ;;^UTILITY(U,$J,358.3,707,1,0)
+ ;;^UTILITY(U,$J,358.3,2089,1,3,0)
+ ;;=3^Nonrheumatic Pulmonary Valve Stenosis
+ ;;^UTILITY(U,$J,358.3,2089,1,4,0)
+ ;;=4^I37.0
+ ;;^UTILITY(U,$J,358.3,2089,2)
+ ;;=^5007184
+ ;;^UTILITY(U,$J,358.3,2090,0)
+ ;;=I51.1^^14^164^1
+ ;;^UTILITY(U,$J,358.3,2090,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,707,1,2,0)
- ;;=2^NERVE BLK LUMBAR/THORACIC,INJ
- ;;^UTILITY(U,$J,358.3,707,1,4,0)
- ;;=4^64520
- ;;^UTILITY(U,$J,358.3,708,0)
- ;;=64505^^5^72^22^^^^1
- ;;^UTILITY(U,$J,358.3,708,1,0)
+ ;;^UTILITY(U,$J,358.3,2090,1,3,0)
+ ;;=3^Rupture of Chordae Tendineae NEC
+ ;;^UTILITY(U,$J,358.3,2090,1,4,0)
+ ;;=4^I51.1
+ ;;^UTILITY(U,$J,358.3,2090,2)
+ ;;=^5007253
+ ;;^UTILITY(U,$J,358.3,2091,0)
+ ;;=I51.2^^14^164^2
+ ;;^UTILITY(U,$J,358.3,2091,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,708,1,2,0)
- ;;=2^NERVE BLK SPHEOPALATINE GANGLION
- ;;^UTILITY(U,$J,358.3,708,1,4,0)
- ;;=4^64505
- ;;^UTILITY(U,$J,358.3,709,0)
- ;;=64420^^5^72^13^^^^1
- ;;^UTILITY(U,$J,358.3,709,1,0)
+ ;;^UTILITY(U,$J,358.3,2091,1,3,0)
+ ;;=3^Rupture of Papillary Muscle NEC
+ ;;^UTILITY(U,$J,358.3,2091,1,4,0)
+ ;;=4^I51.2
+ ;;^UTILITY(U,$J,358.3,2091,2)
+ ;;=^5007254
+ ;;^UTILITY(U,$J,358.3,2092,0)
+ ;;=I38.^^14^165^4
+ ;;^UTILITY(U,$J,358.3,2092,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,709,1,2,0)
- ;;=2^NERVE BLK INTERCOSTAL NERVE,SNGL INJ
- ;;^UTILITY(U,$J,358.3,709,1,4,0)
- ;;=4^64420
- ;;^UTILITY(U,$J,358.3,710,0)
- ;;=64421^^5^72^14^^^^1
- ;;^UTILITY(U,$J,358.3,710,1,0)
+ ;;^UTILITY(U,$J,358.3,2092,1,3,0)
+ ;;=3^Endocarditis Valve,Unspec
+ ;;^UTILITY(U,$J,358.3,2092,1,4,0)
+ ;;=4^I38.
+ ;;^UTILITY(U,$J,358.3,2092,2)
+ ;;=^40327
+ ;;^UTILITY(U,$J,358.3,2093,0)
+ ;;=T82.01XA^^14^165^1
+ ;;^UTILITY(U,$J,358.3,2093,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,710,1,2,0)
- ;;=2^NERVE BLK INTERCOSTAL,MULTI,REG BLK
- ;;^UTILITY(U,$J,358.3,710,1,4,0)
- ;;=4^64421
- ;;^UTILITY(U,$J,358.3,711,0)
- ;;=64435^^5^72^16^^^^1
- ;;^UTILITY(U,$J,358.3,711,1,0)
+ ;;^UTILITY(U,$J,358.3,2093,1,3,0)
+ ;;=3^Breakdown of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2093,1,4,0)
+ ;;=4^T82.01XA
+ ;;^UTILITY(U,$J,358.3,2093,2)
+ ;;=^5054668
+ ;;^UTILITY(U,$J,358.3,2094,0)
+ ;;=T82.02XA^^14^165^2
+ ;;^UTILITY(U,$J,358.3,2094,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,711,1,2,0)
- ;;=2^NERVE BLK PARACERVICAL,INJ
- ;;^UTILITY(U,$J,358.3,711,1,4,0)
- ;;=4^64435
- ;;^UTILITY(U,$J,358.3,712,0)
- ;;=64410^^5^72^18^^^^1
- ;;^UTILITY(U,$J,358.3,712,1,0)
+ ;;^UTILITY(U,$J,358.3,2094,1,3,0)
+ ;;=3^Displacement of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2094,1,4,0)
+ ;;=4^T82.02XA
+ ;;^UTILITY(U,$J,358.3,2094,2)
+ ;;=^5054671
+ ;;^UTILITY(U,$J,358.3,2095,0)
+ ;;=T82.03XA^^14^165^5
+ ;;^UTILITY(U,$J,358.3,2095,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,712,1,2,0)
- ;;=2^NERVE BLK PHRENIC NERVE,INJ
- ;;^UTILITY(U,$J,358.3,712,1,4,0)
- ;;=4^64410
- ;;^UTILITY(U,$J,358.3,713,0)
- ;;=64430^^5^72^19^^^^1
- ;;^UTILITY(U,$J,358.3,713,1,0)
+ ;;^UTILITY(U,$J,358.3,2095,1,3,0)
+ ;;=3^Leakage of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2095,1,4,0)
+ ;;=4^T82.03XA
+ ;;^UTILITY(U,$J,358.3,2095,2)
+ ;;=^5054674
+ ;;^UTILITY(U,$J,358.3,2096,0)
+ ;;=T82.09XA^^14^165^7
+ ;;^UTILITY(U,$J,358.3,2096,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,713,1,2,0)
- ;;=2^NERVE BLK PUDENDAL NERVE,INJ
- ;;^UTILITY(U,$J,358.3,713,1,4,0)
- ;;=4^64430
- ;;^UTILITY(U,$J,358.3,714,0)
- ;;=64445^^5^72^21^^^^1
- ;;^UTILITY(U,$J,358.3,714,1,0)
+ ;;^UTILITY(U,$J,358.3,2096,1,3,0)
+ ;;=3^Mech Compl of Heart Valve Prosthesis,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2096,1,4,0)
+ ;;=4^T82.09XA
+ ;;^UTILITY(U,$J,358.3,2096,2)
+ ;;=^5054677
+ ;;^UTILITY(U,$J,358.3,2097,0)
+ ;;=T82.817A^^14^165^3
+ ;;^UTILITY(U,$J,358.3,2097,1,0)
  ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2097,1,3,0)
+ ;;=3^Embolism of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2097,1,4,0)
+ ;;=4^T82.817A
+ ;;^UTILITY(U,$J,358.3,2097,2)
+ ;;=^5054914
+ ;;^UTILITY(U,$J,358.3,2098,0)
+ ;;=T82.867A^^14^165^10
+ ;;^UTILITY(U,$J,358.3,2098,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2098,1,3,0)
+ ;;=3^Thrombosis of Cardiac Prosthetic Device/Implant/Graft,Init Encntr
+ ;;^UTILITY(U,$J,358.3,2098,1,4,0)
+ ;;=4^T82.867A
+ ;;^UTILITY(U,$J,358.3,2098,2)
+ ;;=^5054944
+ ;;^UTILITY(U,$J,358.3,2099,0)
+ ;;=Z95.2^^14^165^9
+ ;;^UTILITY(U,$J,358.3,2099,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2099,1,3,0)
+ ;;=3^Presence of Prosthetic Heart Valve
+ ;;^UTILITY(U,$J,358.3,2099,1,4,0)
+ ;;=4^Z95.2
+ ;;^UTILITY(U,$J,358.3,2099,2)
+ ;;=^5063670
+ ;;^UTILITY(U,$J,358.3,2100,0)
+ ;;=Z98.89^^14^165^8
+ ;;^UTILITY(U,$J,358.3,2100,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2100,1,3,0)
+ ;;=3^Postprocedural States NEC
+ ;;^UTILITY(U,$J,358.3,2100,1,4,0)
+ ;;=4^Z98.89
+ ;;^UTILITY(U,$J,358.3,2100,2)
+ ;;=^5063754
+ ;;^UTILITY(U,$J,358.3,2101,0)
+ ;;=Z79.01^^14^165^6
+ ;;^UTILITY(U,$J,358.3,2101,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2101,1,3,0)
+ ;;=3^Long Term Current Use of Anticoagulants
+ ;;^UTILITY(U,$J,358.3,2101,1,4,0)
+ ;;=4^Z79.01
+ ;;^UTILITY(U,$J,358.3,2101,2)
+ ;;=^5063330
+ ;;^UTILITY(U,$J,358.3,2102,0)
+ ;;=I65.1^^14^166^75
+ ;;^UTILITY(U,$J,358.3,2102,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2102,1,3,0)
+ ;;=3^Occlusion/Stenosis of Basilar Artery
+ ;;^UTILITY(U,$J,358.3,2102,1,4,0)
+ ;;=4^I65.1
+ ;;^UTILITY(U,$J,358.3,2102,2)
+ ;;=^269747
+ ;;^UTILITY(U,$J,358.3,2103,0)
+ ;;=I63.22^^14^166^52
+ ;;^UTILITY(U,$J,358.3,2103,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2103,1,3,0)
+ ;;=3^Cerebral Inarction d/t Unspec Occlusion/Stenosis of Basilar Arteries
+ ;;^UTILITY(U,$J,358.3,2103,1,4,0)
+ ;;=4^I63.22
+ ;;^UTILITY(U,$J,358.3,2103,2)
+ ;;=^5007315
+ ;;^UTILITY(U,$J,358.3,2104,0)
+ ;;=I65.21^^14^166^81
+ ;;^UTILITY(U,$J,358.3,2104,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2104,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,2104,1,4,0)
+ ;;=4^I65.21
+ ;;^UTILITY(U,$J,358.3,2104,2)
+ ;;=^5007360
+ ;;^UTILITY(U,$J,358.3,2105,0)
+ ;;=I65.22^^14^166^78
+ ;;^UTILITY(U,$J,358.3,2105,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2105,1,3,0)
+ ;;=3^Occlusion/Stenosis of Left Carotid Artery
+ ;;^UTILITY(U,$J,358.3,2105,1,4,0)
+ ;;=4^I65.22
+ ;;^UTILITY(U,$J,358.3,2105,2)
+ ;;=^5007361
+ ;;^UTILITY(U,$J,358.3,2106,0)
+ ;;=I65.23^^14^166^76
+ ;;^UTILITY(U,$J,358.3,2106,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2106,1,3,0)
+ ;;=3^Occlusion/Stenosis of Bilateral Carotid Arteries
+ ;;^UTILITY(U,$J,358.3,2106,1,4,0)
+ ;;=4^I65.23
+ ;;^UTILITY(U,$J,358.3,2106,2)
+ ;;=^5007362
+ ;;^UTILITY(U,$J,358.3,2107,0)
+ ;;=I63.031^^14^166^56
+ ;;^UTILITY(U,$J,358.3,2107,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2107,1,3,0)
+ ;;=3^Cerebral Infarction d/t Thrombosis of Right Carotid Artery
+ ;;^UTILITY(U,$J,358.3,2107,1,4,0)
+ ;;=4^I63.031
+ ;;^UTILITY(U,$J,358.3,2107,2)
+ ;;=^5007299
+ ;;^UTILITY(U,$J,358.3,2108,0)
+ ;;=I65.01^^14^166^82
+ ;;^UTILITY(U,$J,358.3,2108,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,2108,1,3,0)
+ ;;=3^Occlusion/Stenosis of Right Vertebral Artery

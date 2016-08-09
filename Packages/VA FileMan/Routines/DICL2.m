@@ -1,6 +1,11 @@
-DICL2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup: Lister, Part 3 ;12/13/99  09:17
- ;;22.0;VA FileMan;**20**;Mar 30, 1999;Build 1
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+DICL2 ;SEA/TOAD,SF/TKW-VA FileMan: Lookup: Lister, Part 3 ;11JUNE2008
+ ;;22.2;VA FileMan;;Jan 05, 2016;Build 42
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;;Submitted to OSEHRA 5 January 2015 by the VISTA Expertise Network.
+ ;;Based on Medsphere Systems Corporation's MSC FileMan 1051.
+ ;;Licensed under the terms of the Apache License, Version 2.0.
+ ;
+ ;.
 SCREEN(DIFILE,DIEN,DIFLAGS,DIFIEN,DISCREEN,DINDEX,DI0NODE) ;
  ;
  ; return 1 if entry should be screened out
@@ -99,7 +104,7 @@ A2 ; increment the number found; if it's the max, we flag to make the
 A3 ; increment (or decrement) the output list subscript
  ;
  S DILIST("ORDER")=$S(DIFLAGS[4:DIDENT(-1),1:DILIST("ORDER")+DINDEX("WAY"))
- N DA M DA=DIEN
+ N DA M DA=DIEN I '$D(DA(1)) N D0 S D0=DA ;***
  ;
 A4 ; output the specified values of the record
  ;

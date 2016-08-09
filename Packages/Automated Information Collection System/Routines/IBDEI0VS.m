@@ -1,132 +1,280 @@
-IBDEI0VS ; ; 17-FEB-2016
- ;;3.0;IB ENCOUNTER FORM IMP/EXP;;JUN 29, 2015
+IBDEI0VS ; ; 12-MAY-2016
+ ;;3.0;IB ENCOUNTER FORM IMP/EXP;;MAY 12, 2016
  Q:'DIFQR(358.3)  F I=1:2 S X=$T(Q+I) Q:X=""  S Y=$E($T(Q+I+1),4,999),X=$E(X,4,999) S:$A(Y)=126 I=I+1,Y=$E(Y,2,999)_$E($T(Q+I+1),5,99) S:$A(Y)=61 Y=$E(Y,2,999) X NO E  S @X=Y
 Q Q
- ;;^UTILITY(U,$J,358.3,14901,2)
- ;;=^5009423
- ;;^UTILITY(U,$J,358.3,14902,0)
- ;;=L89.524^^56^633^16
- ;;^UTILITY(U,$J,358.3,14902,1,0)
+ ;;^UTILITY(U,$J,358.3,31977,0)
+ ;;=I69.328^^119^1555^23
+ ;;^UTILITY(U,$J,358.3,31977,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14902,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage 4
- ;;^UTILITY(U,$J,358.3,14902,1,4,0)
- ;;=4^L89.524
- ;;^UTILITY(U,$J,358.3,14902,2)
- ;;=^5009424
- ;;^UTILITY(U,$J,358.3,14903,0)
- ;;=L89.529^^56^633^17
- ;;^UTILITY(U,$J,358.3,14903,1,0)
+ ;;^UTILITY(U,$J,358.3,31977,1,3,0)
+ ;;=3^Speech/Lang Deficit Following Cerebvasc Infarc
+ ;;^UTILITY(U,$J,358.3,31977,1,4,0)
+ ;;=4^I69.328
+ ;;^UTILITY(U,$J,358.3,31977,2)
+ ;;=^5007495
+ ;;^UTILITY(U,$J,358.3,31978,0)
+ ;;=E04.0^^119^1556^39
+ ;;^UTILITY(U,$J,358.3,31978,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14903,1,3,0)
- ;;=3^Pressure Ulcer Left Ankle,Stage Unspec
- ;;^UTILITY(U,$J,358.3,14903,1,4,0)
- ;;=4^L89.529
- ;;^UTILITY(U,$J,358.3,14903,2)
- ;;=^5133674
- ;;^UTILITY(U,$J,358.3,14904,0)
- ;;=L89.610^^56^633^84
- ;;^UTILITY(U,$J,358.3,14904,1,0)
+ ;;^UTILITY(U,$J,358.3,31978,1,3,0)
+ ;;=3^Nontoxic Diffuse Goiter
+ ;;^UTILITY(U,$J,358.3,31978,1,4,0)
+ ;;=4^E04.0
+ ;;^UTILITY(U,$J,358.3,31978,2)
+ ;;=^5002477
+ ;;^UTILITY(U,$J,358.3,31979,0)
+ ;;=E04.1^^119^1556^41
+ ;;^UTILITY(U,$J,358.3,31979,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14904,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Unstageable
- ;;^UTILITY(U,$J,358.3,14904,1,4,0)
- ;;=4^L89.610
- ;;^UTILITY(U,$J,358.3,14904,2)
- ;;=^5009430
- ;;^UTILITY(U,$J,358.3,14905,0)
- ;;=L89.611^^56^633^79
- ;;^UTILITY(U,$J,358.3,14905,1,0)
+ ;;^UTILITY(U,$J,358.3,31979,1,3,0)
+ ;;=3^Nontoxic Single Thyroid Nodule
+ ;;^UTILITY(U,$J,358.3,31979,1,4,0)
+ ;;=4^E04.1
+ ;;^UTILITY(U,$J,358.3,31979,2)
+ ;;=^5002478
+ ;;^UTILITY(U,$J,358.3,31980,0)
+ ;;=E04.2^^119^1556^40
+ ;;^UTILITY(U,$J,358.3,31980,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14905,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,14905,1,4,0)
- ;;=4^L89.611
- ;;^UTILITY(U,$J,358.3,14905,2)
- ;;=^5009431
- ;;^UTILITY(U,$J,358.3,14906,0)
- ;;=L89.612^^56^633^80
- ;;^UTILITY(U,$J,358.3,14906,1,0)
+ ;;^UTILITY(U,$J,358.3,31980,1,3,0)
+ ;;=3^Nontoxic Multinodular Goiter
+ ;;^UTILITY(U,$J,358.3,31980,1,4,0)
+ ;;=4^E04.2
+ ;;^UTILITY(U,$J,358.3,31980,2)
+ ;;=^267790
+ ;;^UTILITY(U,$J,358.3,31981,0)
+ ;;=E01.1^^119^1556^36
+ ;;^UTILITY(U,$J,358.3,31981,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14906,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 2
- ;;^UTILITY(U,$J,358.3,14906,1,4,0)
- ;;=4^L89.612
- ;;^UTILITY(U,$J,358.3,14906,2)
- ;;=^5009432
- ;;^UTILITY(U,$J,358.3,14907,0)
- ;;=L89.613^^56^633^81
- ;;^UTILITY(U,$J,358.3,14907,1,0)
+ ;;^UTILITY(U,$J,358.3,31981,1,3,0)
+ ;;=3^Iodine-Deficiency Related Multinodular (Endemic) Goiter
+ ;;^UTILITY(U,$J,358.3,31981,1,4,0)
+ ;;=4^E01.1
+ ;;^UTILITY(U,$J,358.3,31981,2)
+ ;;=^5002465
+ ;;^UTILITY(U,$J,358.3,31982,0)
+ ;;=E05.00^^119^1556^56
+ ;;^UTILITY(U,$J,358.3,31982,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14907,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 3
- ;;^UTILITY(U,$J,358.3,14907,1,4,0)
- ;;=4^L89.613
- ;;^UTILITY(U,$J,358.3,14907,2)
- ;;=^5009433
- ;;^UTILITY(U,$J,358.3,14908,0)
- ;;=L89.614^^56^633^82
- ;;^UTILITY(U,$J,358.3,14908,1,0)
+ ;;^UTILITY(U,$J,358.3,31982,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/o Thyrotoxic Crisis
+ ;;^UTILITY(U,$J,358.3,31982,1,4,0)
+ ;;=4^E05.00
+ ;;^UTILITY(U,$J,358.3,31982,2)
+ ;;=^5002481
+ ;;^UTILITY(U,$J,358.3,31983,0)
+ ;;=E05.01^^119^1556^55
+ ;;^UTILITY(U,$J,358.3,31983,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14908,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage 4
- ;;^UTILITY(U,$J,358.3,14908,1,4,0)
- ;;=4^L89.614
- ;;^UTILITY(U,$J,358.3,14908,2)
- ;;=^5009434
- ;;^UTILITY(U,$J,358.3,14909,0)
- ;;=L89.619^^56^633^83
- ;;^UTILITY(U,$J,358.3,14909,1,0)
+ ;;^UTILITY(U,$J,358.3,31983,1,3,0)
+ ;;=3^Thyrotoxicosis w/ Diffuse Goiter w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,31983,1,4,0)
+ ;;=4^E05.01
+ ;;^UTILITY(U,$J,358.3,31983,2)
+ ;;=^5002482
+ ;;^UTILITY(U,$J,358.3,31984,0)
+ ;;=E05.90^^119^1556^58
+ ;;^UTILITY(U,$J,358.3,31984,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14909,1,3,0)
- ;;=3^Pressure Ulcer Right Heel,Stage Unspec
- ;;^UTILITY(U,$J,358.3,14909,1,4,0)
- ;;=4^L89.619
- ;;^UTILITY(U,$J,358.3,14909,2)
- ;;=^5133676
- ;;^UTILITY(U,$J,358.3,14910,0)
- ;;=L89.620^^56^633^36
- ;;^UTILITY(U,$J,358.3,14910,1,0)
+ ;;^UTILITY(U,$J,358.3,31984,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/o Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,31984,1,4,0)
+ ;;=4^E05.90
+ ;;^UTILITY(U,$J,358.3,31984,2)
+ ;;=^5002492
+ ;;^UTILITY(U,$J,358.3,31985,0)
+ ;;=E05.91^^119^1556^57
+ ;;^UTILITY(U,$J,358.3,31985,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14910,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Unstageable
- ;;^UTILITY(U,$J,358.3,14910,1,4,0)
- ;;=4^L89.620
- ;;^UTILITY(U,$J,358.3,14910,2)
- ;;=^5009435
- ;;^UTILITY(U,$J,358.3,14911,0)
- ;;=L89.621^^56^633^31
- ;;^UTILITY(U,$J,358.3,14911,1,0)
+ ;;^UTILITY(U,$J,358.3,31985,1,3,0)
+ ;;=3^Thyrotoxicosis,Unspec w/ Thyrotoxic Crisis/Storm
+ ;;^UTILITY(U,$J,358.3,31985,1,4,0)
+ ;;=4^E05.91
+ ;;^UTILITY(U,$J,358.3,31985,2)
+ ;;=^5002493
+ ;;^UTILITY(U,$J,358.3,31986,0)
+ ;;=E89.0^^119^1556^50
+ ;;^UTILITY(U,$J,358.3,31986,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14911,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 1
- ;;^UTILITY(U,$J,358.3,14911,1,4,0)
- ;;=4^L89.621
- ;;^UTILITY(U,$J,358.3,14911,2)
- ;;=^5009436
- ;;^UTILITY(U,$J,358.3,14912,0)
- ;;=L89.622^^56^633^32
- ;;^UTILITY(U,$J,358.3,14912,1,0)
+ ;;^UTILITY(U,$J,358.3,31986,1,3,0)
+ ;;=3^Postprocedural Hypothyroidism
+ ;;^UTILITY(U,$J,358.3,31986,1,4,0)
+ ;;=4^E89.0
+ ;;^UTILITY(U,$J,358.3,31986,2)
+ ;;=^5003035
+ ;;^UTILITY(U,$J,358.3,31987,0)
+ ;;=E03.2^^119^1556^32
+ ;;^UTILITY(U,$J,358.3,31987,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14912,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 2
- ;;^UTILITY(U,$J,358.3,14912,1,4,0)
- ;;=4^L89.622
- ;;^UTILITY(U,$J,358.3,14912,2)
- ;;=^5009437
- ;;^UTILITY(U,$J,358.3,14913,0)
- ;;=L89.623^^56^633^33
- ;;^UTILITY(U,$J,358.3,14913,1,0)
+ ;;^UTILITY(U,$J,358.3,31987,1,3,0)
+ ;;=3^Hypothyroidism d/t Meds/Oth Exogenous Substances
+ ;;^UTILITY(U,$J,358.3,31987,1,4,0)
+ ;;=4^E03.2
+ ;;^UTILITY(U,$J,358.3,31987,2)
+ ;;=^5002471
+ ;;^UTILITY(U,$J,358.3,31988,0)
+ ;;=E03.9^^119^1556^33
+ ;;^UTILITY(U,$J,358.3,31988,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14913,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 3
- ;;^UTILITY(U,$J,358.3,14913,1,4,0)
- ;;=4^L89.623
- ;;^UTILITY(U,$J,358.3,14913,2)
- ;;=^5009438
- ;;^UTILITY(U,$J,358.3,14914,0)
- ;;=L89.624^^56^633^34
- ;;^UTILITY(U,$J,358.3,14914,1,0)
+ ;;^UTILITY(U,$J,358.3,31988,1,3,0)
+ ;;=3^Hypothyroidism,Unspec
+ ;;^UTILITY(U,$J,358.3,31988,1,4,0)
+ ;;=4^E03.9
+ ;;^UTILITY(U,$J,358.3,31988,2)
+ ;;=^5002476
+ ;;^UTILITY(U,$J,358.3,31989,0)
+ ;;=E06.0^^119^1556^53
+ ;;^UTILITY(U,$J,358.3,31989,1,0)
  ;;=^358.31IA^4^2
- ;;^UTILITY(U,$J,358.3,14914,1,3,0)
- ;;=3^Pressure Ulcer Left Heel,Stage 4
+ ;;^UTILITY(U,$J,358.3,31989,1,3,0)
+ ;;=3^Thyroiditis,Acute
+ ;;^UTILITY(U,$J,358.3,31989,1,4,0)
+ ;;=4^E06.0
+ ;;^UTILITY(U,$J,358.3,31989,2)
+ ;;=^2692
+ ;;^UTILITY(U,$J,358.3,31990,0)
+ ;;=E06.1^^119^1556^54
+ ;;^UTILITY(U,$J,358.3,31990,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31990,1,3,0)
+ ;;=3^Thyroiditis,Subacute
+ ;;^UTILITY(U,$J,358.3,31990,1,4,0)
+ ;;=4^E06.1
+ ;;^UTILITY(U,$J,358.3,31990,2)
+ ;;=^119376
+ ;;^UTILITY(U,$J,358.3,31991,0)
+ ;;=C73.^^119^1556^37
+ ;;^UTILITY(U,$J,358.3,31991,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31991,1,3,0)
+ ;;=3^Malig Neop of Thyroid Gland
+ ;;^UTILITY(U,$J,358.3,31991,1,4,0)
+ ;;=4^C73.
+ ;;^UTILITY(U,$J,358.3,31991,2)
+ ;;=^267296
+ ;;^UTILITY(U,$J,358.3,31992,0)
+ ;;=E10.21^^119^1556^8
+ ;;^UTILITY(U,$J,358.3,31992,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31992,1,3,0)
+ ;;=3^DM Type 1 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,31992,1,4,0)
+ ;;=4^E10.21
+ ;;^UTILITY(U,$J,358.3,31992,2)
+ ;;=^5002589
+ ;;^UTILITY(U,$J,358.3,31993,0)
+ ;;=E10.9^^119^1556^12
+ ;;^UTILITY(U,$J,358.3,31993,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31993,1,3,0)
+ ;;=3^DM Type 1 w/o Complications
+ ;;^UTILITY(U,$J,358.3,31993,1,4,0)
+ ;;=4^E10.9
+ ;;^UTILITY(U,$J,358.3,31993,2)
+ ;;=^5002626
+ ;;^UTILITY(U,$J,358.3,31994,0)
+ ;;=E11.21^^119^1556^17
+ ;;^UTILITY(U,$J,358.3,31994,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31994,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Nephropathy
+ ;;^UTILITY(U,$J,358.3,31994,1,4,0)
+ ;;=4^E11.21
+ ;;^UTILITY(U,$J,358.3,31994,2)
+ ;;=^5002629
+ ;;^UTILITY(U,$J,358.3,31995,0)
+ ;;=E11.39^^119^1556^18
+ ;;^UTILITY(U,$J,358.3,31995,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31995,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Ophthalmic Complication NEC
+ ;;^UTILITY(U,$J,358.3,31995,1,4,0)
+ ;;=4^E11.39
+ ;;^UTILITY(U,$J,358.3,31995,2)
+ ;;=^5002643
+ ;;^UTILITY(U,$J,358.3,31996,0)
+ ;;=E11.43^^119^1556^15
+ ;;^UTILITY(U,$J,358.3,31996,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31996,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Autonomic Neuropathy
+ ;;^UTILITY(U,$J,358.3,31996,1,4,0)
+ ;;=4^E11.43
+ ;;^UTILITY(U,$J,358.3,31996,2)
+ ;;=^5002647
+ ;;^UTILITY(U,$J,358.3,31997,0)
+ ;;=E11.59^^119^1556^13
+ ;;^UTILITY(U,$J,358.3,31997,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31997,1,3,0)
+ ;;=3^DM Type 2 w/ Circulatory Complications NEC
+ ;;^UTILITY(U,$J,358.3,31997,1,4,0)
+ ;;=4^E11.59
+ ;;^UTILITY(U,$J,358.3,31997,2)
+ ;;=^5002652
+ ;;^UTILITY(U,$J,358.3,31998,0)
+ ;;=E11.618^^119^1556^14
+ ;;^UTILITY(U,$J,358.3,31998,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31998,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Arthropathy NEC
+ ;;^UTILITY(U,$J,358.3,31998,1,4,0)
+ ;;=4^E11.618
+ ;;^UTILITY(U,$J,358.3,31998,2)
+ ;;=^5002654
+ ;;^UTILITY(U,$J,358.3,31999,0)
+ ;;=E11.621^^119^1556^16
+ ;;^UTILITY(U,$J,358.3,31999,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,31999,1,3,0)
+ ;;=3^DM Type 2 w/ Diabetic Foot Ulcer
+ ;;^UTILITY(U,$J,358.3,31999,1,4,0)
+ ;;=4^E11.621
+ ;;^UTILITY(U,$J,358.3,31999,2)
+ ;;=^5002656
+ ;;^UTILITY(U,$J,358.3,32000,0)
+ ;;=E11.622^^119^1556^20
+ ;;^UTILITY(U,$J,358.3,32000,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32000,1,3,0)
+ ;;=3^DM Type 2 w/ Skin Ulcer NEC
+ ;;^UTILITY(U,$J,358.3,32000,1,4,0)
+ ;;=4^E11.622
+ ;;^UTILITY(U,$J,358.3,32000,2)
+ ;;=^5002657
+ ;;^UTILITY(U,$J,358.3,32001,0)
+ ;;=E11.65^^119^1556^19
+ ;;^UTILITY(U,$J,358.3,32001,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32001,1,3,0)
+ ;;=3^DM Type 2 w/ Hyperglycemia
+ ;;^UTILITY(U,$J,358.3,32001,1,4,0)
+ ;;=4^E11.65
+ ;;^UTILITY(U,$J,358.3,32001,2)
+ ;;=^5002663
+ ;;^UTILITY(U,$J,358.3,32002,0)
+ ;;=E11.9^^119^1556^21
+ ;;^UTILITY(U,$J,358.3,32002,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32002,1,3,0)
+ ;;=3^DM Type 2 w/o Complications
+ ;;^UTILITY(U,$J,358.3,32002,1,4,0)
+ ;;=4^E11.9
+ ;;^UTILITY(U,$J,358.3,32002,2)
+ ;;=^5002666
+ ;;^UTILITY(U,$J,358.3,32003,0)
+ ;;=E13.9^^119^1556^22
+ ;;^UTILITY(U,$J,358.3,32003,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32003,1,3,0)
+ ;;=3^Diabetes Mellitus (Secondary) w/o Complications NEC
+ ;;^UTILITY(U,$J,358.3,32003,1,4,0)
+ ;;=4^E13.9
+ ;;^UTILITY(U,$J,358.3,32003,2)
+ ;;=^5002704
+ ;;^UTILITY(U,$J,358.3,32004,0)
+ ;;=E16.2^^119^1556^29
+ ;;^UTILITY(U,$J,358.3,32004,1,0)
+ ;;=^358.31IA^4^2
+ ;;^UTILITY(U,$J,358.3,32004,1,3,0)
+ ;;=3^Hypoglycemia,Unspec

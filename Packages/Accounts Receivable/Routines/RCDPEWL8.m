@@ -1,6 +1,6 @@
 RCDPEWL8 ;ALB/TMK/PJH - EDI LOCKBOX WORKLIST ERA LEVEL ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**208,269,276,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**208,269,276,298,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
 FILESP ; Action that files the split lines
@@ -227,3 +227,33 @@ BATED ; Entry point to batch edit options
 BATEDQ S VALMBCK="R"
  Q
  ;
+AUTOPOST(SOURCE) ;
+ ; Input:
+ ;   SOURCE
+ ;      1:Called by Worklist (RCDPE WORKLIST ERA MARK FOR AUTO POST)
+ ;      2:Called by Scratchpad (RCDPE WORKLIST EOB MARK FOR AUTO POST)
+ ;   If SOURCE=2, RCSCR will be set to the IEN of 344.4
+ ;
+ D FULL^VALM1
+ ;
+ ; If called by Worklist (SOURCE=1), then ask which ERA
+ ; If called by Scratchpad (SOURCE=2), ERA is already in variable RCSCR
+ N RCERA
+ I SOURCE=1 S RCERA=$$SEL^RCDPEWL7()
+ I SOURCE=2 S RCERA=$G(RCSCR)
+ I 'RCERA S VALMCK="R" Q
+ ;
+ N AUTOPOST
+ S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCERA)
+ I AUTOPOST D
+ . D SETSTA^RCDPEAP(RCERA,0,"Worklist: Marked as Auto-Post Candidate")
+ . W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"
+ I 'AUTOPOST D
+ . D AUDITLOG^RCDPEAP(RCERA,"","Worklist: Not Marked as Auto-Post Candidate-"_$P(AUTOPOST,U,2))
+ . W !,"ERA was NOT Marked as an Auto-Post CANDIDATE - ",$P(AUTOPOST,U,2)
+ ;
+AUTOPSTQ ;
+ K DIR
+ S DIR(0)="E" D ^DIR
+ S VALMBCK="R"
+ Q
