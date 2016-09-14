@@ -1,5 +1,5 @@
 PSXMISC1 ;BIR/WPB,BAB-Transmission Data Validation ;MAR 1,2002@13:13:34
- ;;2.0;CMOP;**3,18,23,28,30,42,41,52,54,58,64,76**;11 Apr 97;Build 5
+ ;;2.0;CMOP;**3,18,23,28,30,42,41,52,54,58,64,76,78**;11 Apr 97;Build 6
  ;Reference to ^PSDRUG(  supported by DBIA #1983
  ;Reference to ^PS(52.5, supported by DBIA #1978
  ;Reference to ^PSRX(    supported by DBIA #1977
@@ -40,7 +40,7 @@ CHKDATA ;checks the data elements in PSRX before putting the rx in 550.2
  N PSXCSC,PSXCSD S PSXCSRX=""
  S PSXCSC=$P($G(^PSDRUG(RXNUM,0)),"^",3)
  ;Can't trans DEA schedule 1 or 2
- I $G(PSXCSC)[1!$G(PSXCSC)[2 S PSXOK=10 Q
+ I $G(PSXCSC)[1!($G(PSXCSC)[2) S PSXOK=10 Q
  ;If CS must be DEA 3-5 to qualify
  F PSXCSD=3:1:5 I PSXCSC[PSXCSD S PSXCSRX=1
  ;If not CS drug and CS trans eliminate

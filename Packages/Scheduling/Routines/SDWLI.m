@@ -1,5 +1,5 @@
-SDWLI ;BPOI/TEH - DISPLAY PENDING APPOINTMENTS;6/1/05
- ;;5.3;scheduling;**263,327,394,446,524,505,611**;08/13/93;Build 9
+SDWLI ;BPOI/TEH - DISPLAY PENDING APPOINTMENTS ;1/11/16 10:31am
+ ;;5.3;scheduling;**263,327,394,446,524,505,611,645**;08/13/93;Build 7
  ;
  ;
  ;******************************************************************
@@ -127,7 +127,9 @@ DISP ;Display Wait List Data
  .I $D(SDWLSCP) W !,"Service Connected Priority - ",$$EXTERNAL^DILFD(409.3,15,,SDWLSCP)
  .W:SDWLP ?15 W:'SDWLP ! W "Institution - ",$$EXTERNAL^DILFD(409.3,2,,SDWLIN)
  .W !,"Entered by - " S X=$$EXTERNAL^DILFD(409.3,9,,SDWLDUZ) W X
- .S SDWRB=0 I SDWLPRV W !,"Requested By - ",$$EXTERNAL^DILFD(409.3,11,,SDWLPRV),?55,"Date Desired - ",SDWLDTD
+ .; SD*5.3*645 - replaced Date Desired with CID/Preferred Date
+ .;S SDWRB=0 I SDWLPRV W !,"Requested By - ",$$EXTERNAL^DILFD(409.3,11,,SDWLPRV),?55,"Date Desired - ",SDWLDTD
+ .S SDWRB=0 I SDWLPRV W !,"Requested By - ",$$EXTERNAL^DILFD(409.3,11,,SDWLPRV),?49,"CID/Preferred Date - ",SDWLDTD
  .I SDWLPRV=1 W !,"Provider - ",$$EXTERNAL^DILFD(409.3,12,,SDWLPROV)
  .I $D(SDWLCOM),SDWLCOM'="" W !,"Comments - ",SDWLCOM
  .I $D(^TMP("SDWLI",$J,SDWLCNT,"SDOP")) N SDOP S SDOP=^("SDOP") W !,"Reopen Reason: ",$P(SDOP,U) D

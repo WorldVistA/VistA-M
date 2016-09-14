@@ -1,5 +1,5 @@
-SDWLRPT1 ;;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1;06/12/2002 ; 29 Aug 2002  2:54 PM
- ;;5.3;scheduling;**263,399,394**;AUG 13 1993
+SDWLRPT1 ;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1 ;1/5/16 3:39pm
+ ;;5.3;scheduling;**263,399,394,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -79,7 +79,9 @@ PRINT ;Print Report
  .....S SDWLRBY=$P(^SDWL(409.3,SDWLE,0),U,12),SDWLRPV=$P(^SDWL(409.3,SDWLE,0),U,13)
  .....S SDWLPH=$G(VAPA(8)) I SDWLAPTD'="" S Y=SDWLAPTD D DD^%DT S SDWLAPTD=Y
  .....W !!,SDWLNAM
- .....W ?35,SDWLSSN I SDWLAPTD'="" W ?50,"Desired Date: ",SDWLAPTD
+ .....; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user
+ .....;W ?35,SDWLSSN I SDWLAPTD'="" W ?50,"Desired Date: ",SDWLAPTD
+ .....W ?35,SDWLSSN I SDWLAPTD'="" W ?48,"CID/Preferred Date: ",SDWLAPTD
  .....W !,"Primary Eligibility: ",$P(SDWLELIG,U,2)
  .....;PATCH SD*5.3*394 See Note.
  .....N SDWLSCP
@@ -107,7 +109,9 @@ HD ;Header
  .W ?45,SDWLINS
  F I=1:1 S X=$P($P(SDWLINS,";",I),"^",2) Q:X=""  W:I>1 ! W ?45,X
  S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBDT=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLEDT=Y
- W !,?23,"Date Desired Range: ",SDWLBDT
+ ; SD*5.3*645 - replaced 'Date Desired' with 'CID/Preferred Date', adjusted format
+ ;W !,?23,"Date Desired Range: ",SDWLBDT
+ W !,?17,"CID/Preferred Date Range: ",SDWLBDT
  I SDWLEDT'="" W " to ",SDWLEDT
  S X=$P(SDWLCT2,U,2)
  W !?26,"Report Category: ",$S($P(SDWLCT1,U,1)="C":"CLINIC",1:"SPECIALTY") I X="ALL" W " ALL"

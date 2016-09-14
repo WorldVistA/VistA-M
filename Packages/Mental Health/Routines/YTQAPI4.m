@@ -1,7 +1,9 @@
-YTQAPI4 ;ASF/ALB MHQ REMOTE PROCEEDURES CHOICE/CHOICETYPE ; 4/3/07 1:44pm
- ;;5.01;MENTAL HEALTH;**85**;DEC 30,1994;Build 48
+YTQAPI4 ;ASF/ALB,HIOFO/FT - MHQ REMOTE PROCEDURES CHOICE/CHOICETYPE ;1/28/13 1:04pm
+ ;;5.01;MENTAL HEALTH;**85,108**;DEC 30,1994;Build 17
+ ;Reference to ^XLFSTR supported by DBIA #10104
  Q
 IDENTAE(YSDATA,YS) ;choiceidentifier add/edit
+ ;entry point for YTQ CHOICEIDENT rpc
  ;input:CT as Choicetype IEN
  ;      ID a N,0 or 1
  ;Output: added or eddited
@@ -11,7 +13,7 @@ IDENTAE(YSDATA,YS) ;choiceidentifier add/edit
  I '$D(^YTT(601.751,"B",YSCT)) S YSDATA(1)="[ERROR]",YSDATA(2)=YSCT_"^not found" Q  ;-->out
  S YSID=$G(YS("ID"))
  I (YSID'="1")&(YSID'="0")&(YSID'="N") S YSDATA(1)="[ERROR]",YSDATA(1)="bad id" Q  ;--out
- I $D(^YTT(601.89,"B",YSCT)) S DA=$O(^YTT(601.89,"B",YSCT,0)) S $P(^YTT(601.89,DA,0),U,2)=YSID,YSDATA(2)="eddited" Q  ;good edit
+ I $D(^YTT(601.89,"B",YSCT)) S DA=$O(^YTT(601.89,"B",YSCT,0)) S $P(^YTT(601.89,DA,0),U,2)=YSID,YSDATA(2)="edited" Q  ;good edit
  L +^YTT(601.89):30
  S DA=$$NEW^YTQLIB(601.89)
  S ^YTT(601.89,DA,0)=YSCT_U_YSID
@@ -21,6 +23,7 @@ IDENTAE(YSDATA,YS) ;choiceidentifier add/edit
  S YSDATA(1)="[DATA]",YSDATA(2)=DA_"^added"
  Q
 TESTADD(YSDATA,YS) ;add new instrument
+ ;entry point for YTQ TEST ADD rpc
  ;input:CODE must be unique
  ;Output: new ien^added
  N DA,YSCODE
@@ -36,13 +39,14 @@ TESTADD(YSDATA,YS) ;add new instrument
  S YSDATA(1)="[DATA]",YSDATA(2)=DA_"^added"
  Q
 ADDCH(YSDATA,YS) ; check, report, force add a choice
+ ;entry point for YTQ CHOICE ADD rpc
  N YSFORCE,YSTXT,YSIEN,DIK,DA,X,YSLEG
  S YSFORCE=$G(YS("FORCE"),"N")
  S YSTXT=$G(YS("TEXT"))
  S YSLEG=$G(YS("LEGACY"))
  I YSTXT="" S YSDATA(1)="[ERROR]",YSDATA(2)="no choice text" Q  ;-->out
  I $D(^YTT(601.75,"C",YSTXT)) S YSIEN=$O(^YTT(601.75,"C",YSTXT,0)) S YSDATA(1)="[DATA]",YSDATA(2)=YSIEN_"^existed",YSDATA(3)=YSTXT Q  ;--> out
- S X=YSTXT X ^DD("FUNC",13,1)
+ S X=$$UP^XLFSTR(YSTXT)
  I (YSFORCE'?1"Y".E)&($D(^YTT(601.75,"AU",X))) S YSIEN=$O(^YTT(601.75,"AU",X,0)),YSDATA(1)="[DATA]",YSDATA(2)=YSIEN_"^question force",YSDATA(3)=^YTT(601.75,YSIEN,1) Q  ;-->out
  S DA=$$NEW^YTQLIB(601.75)
  L +^YTT(601.75,DA):30
@@ -52,6 +56,7 @@ ADDCH(YSDATA,YS) ; check, report, force add a choice
  S YSDATA(1)="[DATA]",YSDATA(2)=DA_"^added",YSDATA(3)=YSTXT
  Q
 CTADD(YSDATA,YS) ;add new choicetype
+ ;entry point for YTQ CHOICETYPE ADD rpc
  ;input: list of choice iens in numbered sequence ex YS(1)=3,YS(2)=22
  ;output NEW choice type number
  N YSI,YSERR,DA,YSFOUND,YSCTDA,YSCTX,I
@@ -77,8 +82,9 @@ CKEX ;check for existing choiceType
  S:YSFOUND>1 YSFOUND=YSCTX
  Q
 CTDEL(YSDATA,YS) ;delete a choicetype
+ ;entry point for YTQ CHOICETYPE DELETE rpc
  ;Input: CHOICETYPE
- ;output: DELETED if sucessful
+ ;output: DELETED if successful
  ;        LIST OF question iens if in use
  N YSCT,DA,DIK,N
  S YSCT=$G(YS("CHOICETYPE"),0)
@@ -99,6 +105,7 @@ CHFIND(YSDATA,YS) ;find a choice in choicetypes
  F  S YSCT=$O(^YTT(601.751,"ACT",YSCH,YSCT)) Q:YSCT'>0  S N=N+1,YSDATA(N)=YSCT
  Q
 CTDESC(YSDATA,YS) ;describe choicetype
+ ;entry point for YTQ CHOICETYPE DESCRIBE rpc
  ;input; CHOICETYPE
  ;output: CHOICETYPE^choicetype ien^sequence^choice ien^choice text
  N YSCTN,YSCT,YSCH,N,YSQ,G
@@ -112,20 +119,22 @@ CTDESC(YSDATA,YS) ;describe choicetype
  . I YSCH?1N.N S YSDATA(N)=YSDATA(N)_$G(^YTT(601.75,YSCH,1))
  Q
 ORPHCT(YSDATA) ;find and delete orphan choiceTypes
+ ;entry point for YTQ CHOICETYPE ORPHAN DELETE rpc
  ;INPUT: none
  ;OUTPUT: list of choicetypes deleted
  N N,YSCT,YSDA,DA
- L ^YTT(601.751):30
+ L +^YTT(601.751):30
  S YSCT=0,N=1,DIK="^YTT(601.751,",YSDATA(1)="[DATA]",YSDATA(2)="none"
  F  S YSCT=$O(^YTT(601.751,"B",YSCT)) Q:YSCT'>0  I '$D(^YTT(601.72,"ACT",YSCT)) D
  . S YSDA=0 F  S YSDA=$O(^YTT(601.751,"B",YSCT,YSDA)) Q:YSDA'>0  S N=N+1,YSDATA(N)=YSCT_U_YSDA,DA=YSDA D ^DIK
  L -^YTT(601.751)
  Q
 ORPHCH(YSDATA) ;find and delete orphan choices
+ ;entry point for YTQ ORPHAN DELETE rpc
  ;INPUT none
  ;OUTPUT list of choices deleted
  N N,YSCH,YSDA,DA
- L ^YTT(601.75):30
+ L +^YTT(601.75):30
  S YSCH=0,N=1,YSDATA="[DATA]",YSDATA(2)="none",DIK="^YTT(601.75,"
  F  S YSCH=$O(^YTT(601.75,YSCH)) Q:YSCH'>0  I '$D(^YTT(601.751,"ACT",YSCH)) D
  . S N=N+1,YSDATA(N)=YSCH,DA=YSCH D ^DIK

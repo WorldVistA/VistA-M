@@ -1,6 +1,6 @@
-RCDPURE1 ;WISC/RFJ - process a receipt ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+RCDPURE1 ;WISC/RFJ - Process a Receipt ;Jun 06, 2014@19:11:19
+ ;;4.5;Accounts Receivable;**114,148,153,169,204,173,214,217,296,298,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
  ;
@@ -9,8 +9,30 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  ;  if $g(rcscreen) = 1 show messages during processing
  ;  if $g(rcscreen) = 2 store messages during processing
  ; 
- N RCPAYDA,RCDPFPAY,RCERROR,RCMSG,RCEFT,RCERA
+ N RCPAYDA,RCDPFPAY,RCERROR,RCMSG,RCEFT,RCERA,RCPAYDT0,RCPAYDT1,RCSUSPAR,RCI,RCJ,RCCMTFLG
  K ^TMP($J,"RCDPEMSG"),^TMP("RCDPE-RECEIPT-ERROR",$J)
+ S RCCMTFLG=""
+ ;
+ ; === No comments ===  PRCA*4.5*304
+ ; If there are entries in suspense with no comments, AND, posting manually, not through auto-posting, display the list of entries
+ I RCSCREEN=1 D  Q:RCCMTFLG
+ . S RCSUSPAR="",RCPAYDA=0
+ . F  S RCPAYDA=$O(^RCY(344,RCRECTDA,1,RCPAYDA)) Q:'RCPAYDA  D
+ . . S RCPAYDT0=$G(^RCY(344,RCRECTDA,1,RCPAYDA,0))
+ . . S RCPAYDT1=$G(^RCY(344,RCRECTDA,1,RCPAYDA,1))
+ . . ; If there is no Bill linked, and the pay amount is not 0 and there is no comment, add to the list
+ . . I $P(RCPAYDT0,U,9)="",($P(RCPAYDT0,U,4)'=0),($P(RCPAYDT1,U,2)="") S RCSUSPAR(RCPAYDA)=""
+ . ;
+ . S RCI="" I $O(RCSUSPAR(RCI)) D  Q
+ . . I '$G(RCSCREEN) Q
+ . . S RCMSG="The following line items are in suspense: "
+ . . S RCJ="" F  S RCJ=$O(RCSUSPAR(RCJ)) Q:'RCJ  D
+ . . . S RCMSG=RCMSG_RCJ_","
+ . . S RCMSG=$E(RCMSG,1,$L(RCMSG)-1)
+ . . D MSG(RCMSG,RCSCREEN,"!!")
+ . . S RCMSG="Please add the appropriate comment(s) to these line items before re-processing this receipt."
+ . . D MSG(RCMSG,RCSCREEN,"!!")
+ . . S RCCMTFLG=1
  ;
  ;  first mark the receipt as processed/closed to prevent changing the
  ;  data if the receipt does not fully process.  this will lock the
@@ -102,6 +124,7 @@ PROCESS(RCRECTDA,RCSCREEN) ;  process a receipt, update ar, generate cr/tr docum
  . I +$O(^RCY(344.4,"ARCT",RCRECTDA,0)) S DIE="^RCY(344.4,",DR=".14////1",DA=+$O(^RCY(344.4,"ARCT",RCRECTDA,0)) D ^DIE
  . I $P($G(^RCY(344,RCRECTDA,0)),U,17) S Z=$P($G(^RCY(344.31,+$P(^RCY(344,RCRECTDA,0),U,17),0)),U,15) I Z'="" S DA=RCRECTDA,DIE="^RCY(344,",DR=".16////"_Z D ^DIE
  I $G(RCSCREEN) D
+ . N Y
  . I '$G(REFMS)&(DT>$$LDATE^RCRJR(DT)) S Y=$E($$FPS^RCAMFN01(DT,1),1,5)_"01" D DD^%DT W !! S RCMSG="   * * * * Transmission will be held until "_Y_" * * * *" D MSG(RCMSG,RCSCREEN,"!!")
  ;
  ;

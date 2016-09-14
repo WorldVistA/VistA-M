@@ -1,6 +1,7 @@
 PSJOCDI ;BIR/MV - DISPLAY DRUG INTERACTION ORDER CHECKS ;6 Jun 07 / 3:37 PM
- ;;5.0;INPATIENT MEDICATIONS ;**181,260,252,257**;16 DEC 97;Build 105
- ; Reference to ^PSODRDU2 is supported by DBIA #2189.
+ ;;5.0;INPATIENT MEDICATIONS;**181,260,252,257,281**;16 DEC 97;Build 113
+ ;Reference to ^PSODRDU2 is supported by DBIA #2189
+ ;Reference to ^PS(55 is supported by DBIA #2191
  ;
 DI ;
  NEW PSJDN,PSJDNM,PSJMON,PSJOCLST,PSJPON,PSJSEV,PSJHDR,PSJRDI,PSJ2,PSJONFLG,PSJCRTCL,PSJSORT,PSJGROUP,PSJCLINF,PSJDXOPT
@@ -30,6 +31,7 @@ DSPLOC ;Display drug drug interaction - sorted by severity, prospective drug (50
  NEW PSJDN,PSJDNV,PSJPON,PSJP,PSJX,X,PSJXSEV,PSJXNM,PSJXNM1,PSJXSORT,PSJXDN,PSJSORT,PSJPSPEC,PSJPROFL,PSJ2,PSJSEV,PSJHDRS,PSJDSPON,PSJCLINF
  ;
  K PSJPAUSE
+ I '$G(PSJDRGIF) D PAUSE^PSJMISC(1,0) W @IOF D LINE^PSJMISC("=",81) S PSJDEFLG=1
  ;Get the last drug in the sort list so a '=' line is printed instead of '.'
  S PSJLINE=".",PSJHDRS=""
  S PSJXSEV=$O(PSJOCLST(""),-1)
@@ -41,7 +43,7 @@ DSPLOC ;Display drug drug interaction - sorted by severity, prospective drug (50
  ;S PSJSEV="" F  S PSJSEV=$O(PSJOCLST(PSJSEV)) Q:PSJSEV=""  D
  ;Displaying Critical orders
  S PSJSEV="C"
- I $D(PSJCRTCL) D LINE^PSJMISC("=",81)
+ ;I $D(PSJCRTCL) D LINE^PSJMISC("=",81)
  F PSJSORT=0:0 S PSJSORT=$O(PSJCRTCL(PSJSORT)) Q:'PSJSORT  D
  . F PSJGROUP=0:0 S PSJGROUP=$O(PSJCRTCL(PSJSORT,PSJGROUP)) Q:'PSJGROUP  D
  .. S X=$G(PSJCRTCL(PSJSORT,PSJGROUP))
@@ -67,16 +69,17 @@ DSPCRTCL(PSJPSPEC,PSJPROFL) ;Display Critical orders
  .. D DISPON
  Q
 DISPON ; Display orders & clin effects if applied.
+ I ($Y+8)>IOSL D PAUSE^PSJMISC(1,0) W @IOF
  F X=1:1:11 S PSJP(X)=$P(PSJDNV,U,X)
  S PSJCLINF=$P(PSJDNV,U,12)
  I ($G(PSJHDR)'=$P(PSJDNV,U,3))!(PSJHDRS'=PSJSEV) S PSJHDR=$P(PSJDNV,U,3),PSJHDRS=PSJSEV K PSJDSPON D HDR(PSJHDR)
  I ($Y+8)>IOSL D PAUSE^PSJMISC(1,0) W @IOF
  I PSJSORT=10 D
- . S PSJONFLG=1
+ . S (PSJDRGIF,PSJONFLG)=1
  . I $P(PSJCLINF,";",2) D DISPCLN^PSJCLNOC(.PSJP,PSJCLINF) Q
  . D DSPDRG(PSJP(4),$P(PSJDNV,U,2),PSJCLINF)
  I ($Y+6)>IOSL D PAUSE^PSJMISC(1,0) W @IOF
- I PSJSORT>10 S PSJONFLG=1 D
+ I PSJSORT>10 S (PSJDRGIF,PSJONFLG)=1 D  ;PSJDRGIF - drug interaction displayed
  . I $D(PSJDSPON($P(PSJP(4),";",2))) Q
  . S PSJDSPON($P(PSJP(4),";",2))=""
  . I $P($P(PSJDNV,U,12),";",2) D DISPCLN^PSJCLNOC(.PSJP,PSJCLINF) Q
@@ -178,13 +181,75 @@ INTERV ;Log intervention.  Required for Critical.
  .... D:'$D(PSJDGCK) INTERV^PSJGMRA("SIGNIFICANT DRUG INTERACTION",$P(PSJNDV,U,3))
  Q
 HDR(PSJDNM) ;Display the intro text on drug interaction
- W !,"This patient is receiving the following order(s) that have a "
- W $S($G(PSJSEV)="C":"CRITICAL",$G(PSJSEV)="S":"SIGNIFICANT",1:"")_" Drug"
- W !,"Interaction with "_$G(PSJDNM)_":",!
+ NEW PSJSTCK,PSJCNT SET PSJSTCK="",PSJCNT=0
+ ;
+ IF $G(PSJDGCK) FOR  SET PSJCNT=$O(^TMP($J,"PSJPRE","IN","PROSPECTIVE",PSJCNT))  Q:PSJCNT=""!(PSJSTCK'="")  D
+ .IF PSJDNM=$P(^TMP($J,"PSJPRE","IN","PROSPECTIVE",PSJCNT),U,4) SET PSJSTCK=$$PSTAT(PSJCNT)
+ IF $G(PSJSTCK)'="" D  Q
+ .W !,"This patient is receiving the following order(s) that have a "
+ .W $S($G(PSJSEV)="C":"CRITICAL",$G(PSJSEV)="S":"SIGNIFICANT",1:"")_" Drug"
+ .W !,"Interaction with "_$G(PSJDNM)_$G(PSJSTCK)_":",!
+ IF '$G(PSJDGCK)  D  Q
+ .W !,"This patient is receiving the following order(s) that have a "
+ .W $S($G(PSJSEV)="C":"CRITICAL",$G(PSJSEV)="S":"SIGNIFICANT",1:"")_" Drug"
+ .W !,"Interaction with "_$G(PSJDNM)_":",!
  Q
-DSPDRG(PSJPON,PSJDNM,PSJCLINF) ;Display order info or drug name from prospective.
+PSTAT(PSJPONCK) ;**Display order status - CCR 5980
+ NEW PSJONCK,PSJCNT,PSJIND,PSJCKOS,PSJCKST
+ SET PSJCKOS="",PSJCKST="",PSJONCK=0,PSJCNT=0,PSJIND=""
+ ;
+ Q:'$G(PSJDGCK) PSJCKST
+ ;
+ IF $P(PSJPONCK,";",2)="" S PSJCKST=" (Prospective)" Q PSJCKST
+ IF $P(PSJPONCK,";",1)="P" S PSJCKST=" (OP Pending)" Q PSJCKST
+ IF $P(PSJPONCK,";",1)="O" D  SET PSJCKST=" (Local Rx #"_$P(^PSRX($P(PSJPONCK,";",2),0),U,1)_" ("_PSJCKOS_"))" Q PSJCKST
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=0 SET PSJCKOS="Active" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=1 SET PSJCKOS="Non-Verified" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=2 SET PSJCKOS="Refill" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=3 SET PSJCKOS="Hold" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=4 SET PSJCKOS="Drug Interactions" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=5 SET PSJCKOS="Suspended" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=10 SET PSJCKOS="Done" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=11 SET PSJCKOS="Expired" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=12 SET PSJCKOS="Discontinued" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=13 SET PSJCKOS="Deleted" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=14 SET PSJCKOS="Discontinued by provider" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=15 SET PSJCKOS="Discontinued (Edit)" Q
+ .IF $P(^PSRX($P(PSJPONCK,";",2),"STA"),U,1)=16 SET PSJCKOS="Provider Hold" Q
+ IF $P(PSJPONCK,";",1)="N" SET PSJCKST=" (Non-VA)" Q PSJCKST
+ IF PSJCKST=""  SET PSJCNT=$L($P(PSJPONCK,";",2)),PSJIND=$E($P(PSJPONCK,";",2),PSJCNT),PSJONCK=+$P(PSJPONCK,";",2)
+ IF $G(PSJIND)="P" D  Q PSJCKST
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="A" SET PSJCKST=" (IP Active)" Q
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="D" SET PSJCKST=" (IP Discontinued)" Q
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="I" SET PSJCKST=" (IP Incomplete)" Q
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="N" SET PSJCKST=" (IP Non-Verified)" Q
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="U" SET PSJCKST=" (IP Unreleased)" Q
+ .IF $P(^PS(53.1,PSJONCK,0),U,9)="P" SET PSJCKST=" (IP Pending)" Q
+ IF $G(PSJIND)="U" D  Q PSJCKST
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="A" SET PSJCKST=" (IP Active)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="D" SET PSJCKST=" (IP Discontinued)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="E" SET PSJCKST=" (IP Expired)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="H" SET PSJCKST=" (IP Hold)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="R" SET PSJCKST=" (IP Renewed)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="RE" SET PSJCKST=" (IP Reinstated)" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="DE" SET PSJCKST=" (IP Discontinued (Edit))" Q
+ .IF $P(^PS(55,$G(DFN),5,PSJONCK,0),U,9)="DR" SET PSJCKST=" (IP Discontinued (Renewal))" Q
+ IF $G(PSJIND)="V" D  Q PSJCKST
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="A" SET PSJCKST=" (IP Active)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="H" SET PSJCKST=" (IP Hold)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="R" SET PSJCKST=" (IP Renewed)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="D" SET PSJCKST=" (IP Discontinued)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="E" SET PSJCKST=" (IP Expired)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="P" SET PSJCKST=" (IP Purge)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="O" SET PSJCKST=" (IP On call)" Q
+ .IF $P(^PS(55,$G(DFN),"IV",PSJONCK,0),U,17)="N" SET PSJCKST=" (IP Non-Verified)" Q
+ Q PSJCKST
+ ;
+DSPDRG(PSJPON,PSJDNM,PSJCLINF) ;Display order info or drug name from prospective. CCR 6454
  Q:$G(PSJPON)=""
- I $P(PSJPON,";",3)="PROSPECTIVE" W !?8,$G(PSJDNM),! Q
+ ;IF $G(PSJDGCK) NEW PSJSTCK SET PSJSTCK=$$PSTAT(PSJPON)
+ ;IF $G(PSJDGCK),$G(PSJSTCK)'="" W !,?8,$G(PSJDNM)_$G(PSJSTCK),! Q
+ I $P(PSJPON,";",3)="PROSPECTIVE" W !?8,$G(PSJDNM)_" (Prospective)",! Q
  I $D(PSJDSPON($P(PSJPON,";",2))) Q
  S PSJDSPON($P(PSJPON,";",2))=""
  I ($Y+8)>IOSL D PAUSE^PSJMISC(1,0) W @IOF

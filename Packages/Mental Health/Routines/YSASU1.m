@@ -1,5 +1,8 @@
-YSASU1 ;ASF/ALB- ASI MANAGEMENT UTILITITIES CONT ;2/4/98  10:02
- ;;5.01;MENTAL HEALTH;**38**;Dec 30, 1994
+YSASU1 ;ASF/ALB,HIOFO/FT - ASI MANAGEMENT UTILITITIES CONT ;1/30/13  4:09pm
+ ;;5.01;MENTAL HEALTH;**38,108**;Dec 30, 1994;Build 17
+ ;Reference to XUP API supported by DBIA #4409
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to XMD API supported by DBIA #10070
 PTLST ;patient list
  S YSASN=YSASN+1,^TMP("YSASU",$J,"M",YSASN)=" "
  S YSASN=YSASN+1,^TMP("YSASU",$J,"M",YSASN)="Name"_$E(YSASS,1,17)_"SSN   Interview Class Special        Transmitted Queued"
@@ -31,4 +34,5 @@ MAIL2 ; SEND MAILMAN
  ..D ^XMD
  ..S YSASCNT2=0
  ..K ^TMP("YSASM",$J)
+ ..S DTIME=$$DTIME^XUP(DUZ)
  Q

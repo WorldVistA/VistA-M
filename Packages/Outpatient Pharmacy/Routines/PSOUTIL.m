@@ -1,5 +1,7 @@
-PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/15/15  10:58
- ;;7.0;OUTPATIENT PHARMACY;**64,456**;DEC 1997;Build 2
+PSOUTIL ;IHS/DSD/JCM - outpatient pharmacy utility routine ;12/28/15 4:01pm
+ ;;7.0;OUTPATIENT PHARMACY;**64,456,444**;DEC 1997;Build 34
+ ;External reference $$MXDAYSUP^PSSUTIL1 supported by DBIA 6229
+ ;
  W !!,$C(7),"This routine not callable from PSOUTIL.."
  Q
  ;
@@ -28,12 +30,12 @@ RNPSOSD ;update PSOSD array for renewals
 PROV(PSORENW) ;called from psoornew
 CHKPRV ;check inactive providers and cosinging providers called from PSORENW (renew rx)
  N OK
- I '$D(^VA(200,PSORENW("PROVIDER"),0)) D   G:PSORENW("DFLG") CHKPRVX
+ I '$D(^VA(200,PSORENW("PROVIDER"),0)) D  I 'OK G:PSORENW("DFLG") CHKPRVX
  .W !,$C(7),"Provider not in New Person File .. You must select a new provider"
  .S PSODIR("FIELD")=0 K PSORENW("PROVIDER") D PROV^PSODIR(.PSORENW)
  .S:$G(PSORENW("PROVIDER"))']"" PSORENW("DFLG")=1
  ;
- I '$G(^VA(200,PSORENW("PROVIDER"),"PS")) D   I 'OK G:PSORENW("DFLG") CHKPRVX
+ I '$G(^VA(200,PSORENW("PROVIDER"),"PS")) D   G:PSORENW("DFLG") CHKPRVX
  .I $$ISSPLY(),$D(^XUSEC("ORSUPPLY",PSORENW("PROVIDER"))) S OK=1 Q
  .S OK=0 W !,$C(7),$P(^VA(200,PSORENW("PROVIDER"),0),"^")_" is not a Valid provider .. You must select a new provider"
  .S PSODIR("FIELD")=0 K PSORENW("PROVIDER") D PROV^PSODIR(.PSORENW)
@@ -172,3 +174,74 @@ ISSPLY() ;is the drug a supply item
  I $G(PSODRUG("VA CLASS"))="" Q 0
  I PSODRUG("VA CLASS")?1"XA".E!(PSODRUG("VA CLASS")?1"XX".E)!(PSODRUG("VA CLASS")="DX900"&(PSODRUG("DEA")["S")) Q 1
  Q 0
+ ;
+DAYSUP(DRUG,RXARR,RCLQTY) ; Adjusts DAYS SUPPLY and QUANTITY based on the maximum allowed
+ ; Input: DRUG   - DRUG file (#50) IEN
+ ;        RXARR  - Array containing prescription information
+ ;        RVWQTY - Re-calculate Quantity (1: YES / 0: NO) 
+ ;Output: RXARR  - Array with "DAYS SUPPLY" and "QTY" values modified
+ ;
+ ; - Invalid Dispense Drug
+ I '$D(^PSDRUG(+$G(DRUG),0))!'$D(RXARR) Q
+ N MXDAYSUP,RXDAYSUP,RXQTY,NEWQTY
+ S MXDAYSUP=$$MXDAYSUP^PSSUTIL1(DRUG)
+ S RXDAYSUP=+$G(RXARR("DAYS SUPPLY"))
+ I RXDAYSUP>MXDAYSUP D
+ . W !!,"The current DAYS SUPPLY value (",RXDAYSUP,") exceeds the Maximum allowed"
+ . W !,"for ",$$GET1^DIQ(50,DRUG,.01)," (",MXDAYSUP,") and will be reset.",$C(7)
+ . S RXARR("DAYS SUPPLY")=MXDAYSUP
+ . S RXQTY=+$G(RXARR("QTY"))
+ . I $G(RCLQTY),RXQTY,RCLQTY'=RXQTY D
+ . . S NEWQTY=((RXQTY*MXDAYSUP)/RXDAYSUP)+.5\1
+ . . W !!,"The Quantity was changed from ",RXQTY," to ",NEWQTY,"."
+ . . S RXARR("QTY")=NEWQTY
+ . W !!,"Please, review the modified order before accepting it."
+ . W ! N DIR S DIR(0)="E",DIR("A")="Press Return to continue" D ^DIR
+ Q
+ ;
+MAXNUMRF(DRUG,DAYSUP,PTST,CLOZPAT) ; Returns the Maximum Number of Refills Allowed
+ ; Input: DRUG     - DRUG file (#50) IEN
+ ;        DAYSUP   - Number of DAYS SUPPLY per fill
+ ;        PTST     - RX PATIENT STATUES (#53) IEN
+ ;        CLOZPAT  - Clozapine Indicator Variable (used throughout PSO)
+ ;Output: MAXNUMRF - Maximum Number of Refills
+ ;
+ N MAXNUMRF,DEAHDLG,CSDRUG,MAXPTST
+ ; - Invalid Drug or DAYS SUPPLY value
+ I '$D(^PSDRUG(+$G(DRUG),0))!'$G(DAYSUP) Q 0
+ ;
+ ; - Calculating Maximum for Clozapine Drug
+ I $D(CLOZPAT) Q $S(CLOZPAT=2&(DAYSUP=14):1,CLOZPAT=2&(DAYSUP=7):3,CLOZPAT=1&(DAYSUP=7):1,1:0)
+ ;
+ ; - Non-Refillable Drugs based on DEA SPECIAL HDLG field
+ S DEAHDLG=$$GET1^DIQ(50,DRUG,3)
+ I DEAHDLG["A"&(DEAHDLG'["B")!(DEAHDLG["F")!(DEAHDLG[1)!(DEAHDLG[2) Q 0
+ S CSDRUG=0 I (DEAHDLG[3)!(DEAHDLG[4)!(DEAHDLG[5) S CSDRUG=1
+ ;
+ ; - The Maximum Number of Refills Calculation is different for up to 90 Days Supply Vs. Above 90 Days Supply
+ I $G(CSDRUG) D
+ . I DAYSUP'>90 D
+ . . S MAXNUMRF=$S(DAYSUP<60:5,DAYSUP'<60&(DAYSUP'>89):2,DAYSUP=90:1,1:0)
+ . E  D
+ . . S MAXNUMRF=182\DAYSUP-1
+ E  D
+ . I DAYSUP'>90 D
+ . . S MAXNUMRF=$S(DAYSUP<60:11,DAYSUP'<60&(DAYSUP'>89):5,DAYSUP=90:3,1:0)
+ . E  D
+ . . S MAXNUMRF=365\DAYSUP-1
+ ;
+ ; - Adjusting Maximum based Rx Patient Status 
+ I $G(PTST) S MAXPTST=$$GET1^DIQ(53,PTST,4) I MAXNUMRF>MAXPTST S MAXNUMRF=MAXPTST
+ ;
+ Q MAXNUMRF
+ ;
+BADADDFL(RXIEN) ; Indicate whether an Rx should be flagged with a Bad Address
+ ; Input: RXIEN    - Rx IEN (#52) to be checked
+ ;Output: BADADDFL - 1: Rx Flagged for Bad Address / 0: Rx NOT Flagged Bad Address 
+ N BADADDFL,LSTLBLSQ,LSTLBLTX
+ S BADADDFL=0
+ I '$G(^PSRX(+$G(RXIEN),0)) Q BADADDFL
+ S LSTLBLSQ=$O(^PSRX(+RXIEN,"L",9999),-1)
+ I LSTLBLSQ D
+ . S LSTLBLTX=$G(^PSRX(+RXIEN,"L",LSTLBLSQ,0)) I LSTLBLTX["(BAD ADDRESS)" S BADADDFL=1
+ Q BADADDFL

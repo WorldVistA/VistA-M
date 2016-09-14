@@ -1,5 +1,5 @@
-SDWLRQ1 ;;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT;06/12/2002 ; 20 Aug 2002  2:10 PM
- ;;5.3;scheduling;**263,399,412,425,448**;AUG 13 1993
+SDWLRQ1 ;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT ;1/5/16 10:44am
+ ;;5.3;scheduling;**263,399,412,425,448,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -61,11 +61,15 @@ DATE ;Date range selection
  I %=1 S ^TMP("SDWLRQ1",$J,"DATE")="ALL" G E1
  Q:%=0
  Q:%=-1
- S SDWLERR=0 W ! S %DT="AE",%DT("A")="Start with Desired Appointment Date: " D ^%DT
+ ; SD*5.3*645 - replaced 'Desired Date' with 'CID/Preferred Date'
+ ;S SDWLERR=0 W ! S %DT="AE",%DT("A")="Start with Desired Appointment Date: " D ^%DT
+ S SDWLERR=0 W ! S %DT="AE",%DT("A")="Start with CID/Preferred Appointment Date: " D ^%DT
  I X["^" S SDWLERR=1 Q
  G E1:Y<0 S SDWLBDT=Y
  Q:$D(DUOUT)
- S %DT(0)=SDWLBDT,%DT("A")="End with Desired Appointment Date: " D ^%DT G DATE:Y<1 S SDWLEDT=Y K %DT(0),%DT("A")
+ ; SD*5.3*645 - replaced 'Desired Date' with 'CID/Preferred Date'
+ ;S %DT(0)=SDWLBDT,%DT("A")="End with Desired Appointment Date: " D ^%DT G DATE:Y<1 S SDWLEDT=Y K %DT(0),%DT("A")
+ S %DT(0)=SDWLBDT,%DT("A")="End with CID/Preferred Appointment Date: " D ^%DT G DATE:Y<1 S SDWLEDT=Y K %DT(0),%DT("A")
  G DATE:$D(DUOUT)
  I SDWLEDT<SDWLBDT W !,"Beginning Date must be greater than Ending Date." G DATE
  S ^TMP("SDWLRQ1",$J,"DATE")=SDWLBDT_"^"_SDWLEDT Q
@@ -105,7 +109,9 @@ CT I SDWLCT2'["ALL" D
  .I $D(SDWLY) S I="" F   S I=$O(SDWLY(I)) Q:I=""  W:I>1 !,?35 W $$EXTERNAL^DILFD(SDWLF,.01,,SDWLY(I))
  I SDWLCT2["ALL" W !,?16,"Report Category: " W $S(SDWLCT1["C":"Clinic",1:"Service Specialty"),!,?36 W "ALL "
  Q
-DA W !,?13,"Date Desired Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y
+ ; SD*5.3*645 - replaced 'Date Desired' with 'CID/Preferred Date', adjusted format
+DA ;W !,?13,"Date Desired Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y
+ W !,?7,"CID/Preferred Date Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y
  W " ",SDWLBD
  I SDWLED'="" W " to ",SDWLED
  Q

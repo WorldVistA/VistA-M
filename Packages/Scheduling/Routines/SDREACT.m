@@ -1,5 +1,5 @@
-SDREACT ;ALB/TMP - REACTIVATE A CLINIC ; 30 APR 85  9:02 am 
- ;;5.3;Scheduling;**63,167,380,568**;Aug 13, 1993;Build 14
+SDREACT ;ALB/TMP - REACTIVATE A CLINIC ;JAN 15, 2016
+ ;;5.3;Scheduling;**63,167,380,568,627**;Aug 13, 1993;Build 249
  S:'$D(DTIME) DTIME=300 I '$D(DT) D DT^SDUTL
  S DIC="^SC(",DIC(0)="AEMZQ",DIC("A")="Select CLINIC NAME: ",DIC("S")="I $P(^(0),""^"",3)=""C"",'$G(^(""OOS""))"
  D TURNON^DIAUTL(44,".01;8;2502;2503;2505;2506")
@@ -17,6 +17,7 @@ REACT S SDREACT="" S %DT("A")="Enter date clinic is to be reactivated: ",%DT="AE
  I '$D(SDREACT) W *7,!,"Clinic not reactivated!!!" G END
  F I=0:1:6 F I1=0:0 S I1=$O(^SC(DA,"T"_I,I1)),I2=$S(I1'>0:0,'$D(^(I1,1)):0,^(1)]"":1,1:0) Q:I2  I I1'>0 D CLEAN Q
  K IENS,FDA S IENS=DA_",",FDA(44,IENS,2506)=SDH D FILE^DIE("","FDA")
+ D SDEC(DA,SDH)  ;alb/sat 627
  S Y=SDH D DTS^SDUTL W !,*7,"Clinic will be reactivated effective ",Y
 MORE W !,"Do you want to set up additional availabilities for this clinic now" S %=1 D YN^DICN I '% W !,"ANSWER (Y)ES OR (N)O" G MORE
  G:(%-1)!(%<0) END S SDZQ=1 G EN^SDB
@@ -57,3 +58,12 @@ CLEAN F I2=0:0 S I2=$O(^SC(DA,"T"_I,I2)) Q:I2'>0  K ^(I2)
  Q
  ;
 END K CNT,D0,DA,DIC,DH,DO,DOW,H1,H2,HSDX,SDX1,SDZQ,SI,I,I1,I2,J,K,LT,M1,M2,NSL,POP,SC,SD,SDH,SDFSW,SDIN,SDINACT,SDN,SDO,SDRE,SDRE1,SDREACT,SDTOP,SI,SL,SLT,STARTDAY,STIME,T1,T2,X,X1,X2,Y Q
+ ;
+SDEC(SC,SDDATE) ;update REACTIVATED DATE/TIME in SDEC RESOURCE  ;alb/sat 627
+ N SDFDA,SDRES
+ S SDRES=$$GETRES^SDECUTL(SC,1)
+ Q:SDRES=""
+ S SDFDA(409.831,SDRES_",",.025)=SDDATE
+ S SDFDA(409.831,SDRES_",",.026)=DUZ
+ D UPDATE^DIE("","SDFDA")
+ Q

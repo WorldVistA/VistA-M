@@ -1,5 +1,5 @@
-ECOBU ;BP/CMF - Utility Object
- ;;2.0;EVENT CAPTURE;**100**;8 May 96;Build 21
+ECOBU ;BP/CMF - Utility Object ;8/21/2015
+ ;;2.0;EVENT CAPTURE;**100,129**;8 May 96;Build 7
  ;@author  - Chris Flegel
  ;@date    - 17 May 2009
  ;@version - 1.0
@@ -27,6 +27,8 @@ HANDLERS(RESULT,HANDLE,METHOD,PARAMS) ;;
  .Q
  D METHOD(.HANDLER,HANDLE_".Methods.Find1."_METHOD)
  D METHOD^ECOBM(.EXECUTER,HANDLER_".GetHandler")
+ I $G(EXECUTER)="" Q  ;EC*129
+ I ($P(EXECUTER,"^")=0)!($P(EXECUTER,"^")=-1) Q  ;EC*129
  D @EXECUTER
  Q
  ;;
@@ -359,6 +361,7 @@ METHOD(RESULT,ARGUMENT)  ;
  ; argument=handle.method.(additional.params...)
  N HANDLE,METHOD,PARAMS
  D PARSE("Handle",ARGUMENT)
+ I $G(HANDLE)'="",'$D(@HANDLE) S RESULT="-1^No data at handle: "_HANDLE_"." Q  ;EC*129 - JAM
  D PARSE("Method",ARGUMENT)
  D PARSE("Params",ARGUMENT)
  I METHOD="Collect" D ECOB30(.RESULT,HANDLE,PARAMS) Q

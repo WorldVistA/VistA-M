@@ -1,13 +1,12 @@
 PSOVER1 ;BHAM ISC/SAB - verify one rx ;3/9/05 12:53pm
- ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**32,46,90,131,202,207,148,243,268,281,324,358,251,375,387,379,390,372,416,411**;DEC 1997;Build 95
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference to PSOUL^PSSLOCK supported by DBIA 2789
  ;External reference ^PS(55 supported by DBIA 2228
- ;External reference to PSSORPH is supported by DBIA 3234
+ ;External reference to DOSE^PSSORPH is supported by DBIA 3234
  ;External references to ^ORRDI1 supported by DBIA 4659
  ;External reference ^XTMP("ORRDI" supported by DBIA 4660
  ;External reference to $$DS^PSSDSAPI supported by DBIA 5425
- ;External reference to ^PS(4 supported by DBIA 2229
  ;External reference to $$GETNDC^PSSNDCUT supported by DBIA 4707
  ;External reference to ^DPT( supported by DBIA 3097
  ;External reference to ^PS(50.606 supported by DBIA 2174
@@ -22,6 +21,7 @@ REDO ;
  I '$D(PSODFN) S PSODFN=$P(^PSRX(PSONV,0),"^",2)
  ;
 EDIT ;
+ N PSDNEW,PSDOLD
  S (PSDNEW,PSDOLD)="",PSDOLD=$P(^PSDRUG($P(^PSRX(PSONV,0),"^",6),0),"^")_"^"_PSONV
  S DA=PSONV D ^PSORXPR
  I $G(PKI1)=2 D DCV1^PSOPKIV1 G OUT
@@ -46,18 +46,20 @@ PROF I '$D(PSOSD) W !,$C(7),"This patient has no other prescriptions on file",!!
  D HD^PSODDPR2() D ^PSODSPL D SHOW2^PSOVER G EDIT Q
  ;
 EXPIRE S RX0=^PSRX(DA,0),X1=$P($P(RX0,"^",13),"."),X2=$P(RX0,"^",9)+1*$P(RX0,"^",8),X2=$S($P(RX0,"^",8)=X2:X2,X2<181:184,X2=360:366,1:X2),X=X1 D:X1&X2 C^%DTC
- K ^PS(55,PSDFN,"P","A",+$P(^PSRX(DA,2),"^",6),DA) S ^PS(55,PSDFN,"P","A",X,DA)="",$P(^PSRX(DA,2),"^",6)=X,$P(^PS(4,DA,0),"^",7)=X Q
+ K ^PS(55,PSDFN,"P","A",+$P(^PSRX(DA,2),"^",6),DA) S ^PS(55,PSDFN,"P","A",X,DA)="",$P(^PSRX(DA,2),"^",6)=X,$P(^PS(52.4,DA,0),"^",7)=X K X1,X2 Q
  ;
 ORDCHK ;
+ S PSOVER1=1
  S RX0=^PSRX(PSONV,0)
  D ORDCK
  I $G(PSOQUIT) S:$G(PSOCLK) PSOQUIT=0 S:'$G(PSOCLK) PSORX("DFLG")=1  ;if verify by clerk continue on with the next Rx; if not exit
  I $G(PSOVQUIT)!$G(PSORX("DFLG")) G OUT
  ;------
-VERIFY ; 
+VERIFY ;
  D FULL^VALM1 G:'$P(PSOPAR,"^",2) VERY
  W !,$P(^DPT(DFN,0),"^"),?40,"ID#:"_VA("PID") W:$D(INT)!$D(PSONV) "  RX#: "_$S($D(INT):$P(INT,"^"),$D(^PSRX(PSONV)):$P(^PSRX(PSONV,0),"^"),1:"") W:$D(PSODRUG("NAME")) !,PSODRUG("NAME"),!
- S DIR("A")="VERIFY FOR "_PSONAM_" ? (Y/N/Delete/Quit): ",DIR("B")="Y",DIR(0)="SA^Y:YES;N:NO;D:DELETE;Q:QUIT"
+ I $G(PSONAM)="" S PSONAM=$P(^DPT(PSDFN,0),"^")
+ S DIR("A")="VERIFY FOR "_PSONAM_"? (Y/N/Delete/Quit): ",DIR("B")="Y",DIR(0)="SA^Y:YES;N:NO;D:DELETE;Q:QUIT"
  S DIR("?",1)="Enter Y (or return) to verify this prescription",DIR("?",2)="N to leave this prescription non-verified and to end this session of verification",DIR("?")="D to delete this prescription"
  D ^DIR K DIR
  I Y="N"!("Q^"[$E(Y)) D  G OUT
@@ -67,7 +69,7 @@ VERIFY ;
  G DELETE:Y="D"
 VERY I $G(PKI1)=1 D REA^PSOPKIV1 G:'$D(PKIR) VERIFY
  K ^PSRX(PSONV,"DAI") S $P(^PSRX(PSONV,3),"^",6)=""
- K ^PSRX(PSONV,"DRI"),SPFL
+ K ^PSRX(PSONV,"DRI"),SPFL1
  I '$O(^PSRX(PSONV,6,0)) D  I $D(DUOUT)!($D(DTOUT)) W !!,"Rx: "_$P(^PSRX(DA,0),"^")_" not Verified!!",! H 2 G OUT
  .W !!,"Dosing Instructions Missing. Please add!",!
  .I $P($G(^PSRX(PSONV,"SIG")),"^")]"",'$P($G(^("SIG")),"^",2) W "SIG: "_$P(^PSRX(PSONV,"SIG"),"^"),!
@@ -84,19 +86,15 @@ VERY I $G(PKI1)=1 D REA^PSOPKIV1 G:'$D(PKIR) VERIFY
  .D EN^PSOFSIG(.PSORXED,1),UDSIG^PSOORED3 H 2
  S DA=PSONV,$P(^PSRX(DA,2),"^",10)=DUZ,DRG=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^")
  I $P(^PSRX(DA,2),"^",2)>DT,$P(PSOPAR,"^",6) D  G KILL
- .S (SPFL1,PSOVER)="",PSORX("FILL DATE")=$P(^(2),"^",2),RXF=0
+ .S (SPFL1,PSOVER)="",PSORX("FILL DATE")=$P(^PSRX(DA,2),"^",2),RXF=0
  .D UPSUS S PSTRIVER=1 D SUS^PSORXL
  .K PSORX("FILL DATE"),PSTRIVER
+ .I $D(^TMP("PSODAOC",$J)) D ^PSONEWOC K ^TMP("PSODAOC",$J)
  S PSOVER(PSONV)="" S $P(^PSRX(PSONV,"STA"),"^")=0,DRG=$P(^PSDRUG($P(^PSRX(DA,0),"^",6),0),"^")
  S $P(PSOSD("NON-VERIFIED",DRG),"^",2)=0,PSOSD("ACTIVE",DRG)=PSOSD("NON-VERIFIED",DRG)
+ I $D(^TMP("PSODAOC",$J)) D ^PSONEWOC K ^TMP("PSODAOC",$J)
  I $G(PKI1)=1,$G(PKIR)]"" D ACT^PSOPKIV1(DA)
  K PSOSD("NON-VERIFIED",DRG) D EN^PSOHLSN1(PSONV,"SC","CM","") ;S VALMBCK=""
- ;saves drug allergy order chks pso*7*390
- I +$G(^TMP("PSODAOC",$J,1,0)) D
- .I $G(PSORX("DFLG")) K ^TMP("PSODAOC",$J) Q
- .N RXN,PSODAOC S RXN=PSONV,PSODAOC="Rx Backdoor VERIFIED NEW Order Acceptance_OP"
- .D DAOC^PSONEW
- .K ^TMP("PSODAOC",$J),RET
  ;
  ; - Calling ECME for claims generation and transmission / REJECT handling
  N ACTION
@@ -109,10 +107,11 @@ VERY I $G(PKI1)=1 D REA^PSOPKIV1 G:'$D(PKIR) VERIFY
  ;
 KILL S DA=PSONV,DIK="^PS(52.4," D ^DIK K DA,DIK D DCORD^PSONEW2
 OUT ;
+ K PSOVER1
  I '$G(PSOCLK) S:$G(DIRUT)!($G(DTOUT)) PSORX("DFLG")=1 K DIRUT,DTOUT,DUOUT,UPFLAGX D CLEAN S VALMBCK="Q" Q
  I $G(PSOCLK) S PSORX("DFLG")=0 K UPFLAGX D CLEAN Q
-DELETE K UPFLAGX D DELETE^PSOVER2 G:$G(UPFLAGX) OUT K PSOSD("NON-VERIFIED",$G(DRG)) Q
-QUIT S PSOQUIT="" D CLEAN Q
+DELETE K UPFLAGX,PSOVER1 D DELETE^PSOVER2 G:$G(UPFLAGX) OUT K PSOSD("NON-VERIFIED",$G(DRG)) Q
+QUIT S PSOQUIT="" D CLEAN K PSOVER1 Q
 UPSUS S $P(PSOSD("NON-VERIFIED",DRG),"^",2)=5,PSOSD("ACTIVE",DRG)=PSOSD("NON-VERIFIED",DRG) K PSOSD("NON-VERIFIED",DRG) D EN^PSOHLSN1(PSONV,"SC","CM","")
  Q
 CLEAN ;cleans up tmp("psorxdc") global
@@ -179,11 +178,11 @@ ORDCK ;
  I $$GET1^DIQ(52,PSONV,100,"I")=13 S PSORX("DFLG")=1 Q
  I $G(PSVERFLG),$G(PSOCLK) S PSVERFLG=0
  I $G(PSOCLK),$G(PSORX("DFLG")) S PSOVQUIT=1 K PSORX("DFLG"),DIRUT,DTOUT Q
- Q:PSORX("DFLG")
+ Q:PSORX("DFLG")!($G(PSOQUIT))
  D:'$G(PSORX("DFLG")) DOSCK^PSODOSUT("V")
  I $$GET1^DIQ(52,PSONV,100,"I")=13 S PSORX("DFLG")=1 Q
  I $G(PSOCLK),$G(PSORX("DFLG")) S PSOVQUIT=1 K PSORX("DFLG"),DIRUT,DTOUT Q
- Q:PSORX("DFLG")!($G(PSOQUIT))
+ Q:PSORX("DFLG")
  S PSOLST(ORNZZ)=PRNXZ(ORNZZ),ORN=ORNZZ K PSORENW("OIRXN")
  Q
  ;

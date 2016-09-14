@@ -1,5 +1,5 @@
-SDCODEL ;ALB/RMO,ESW - Delete - Check Out; 27 APR 1993 3:00 pm ; 10/10/02 5:38pm
- ;;5.3;Scheduling;**20,27,44,97,105,110,132,257**;Aug 13, 1993
+SDCODEL ;ALB/RMO - Delete Check Out ;JAN 15, 2016
+ ;;5.3;Scheduling;**20,27,44,97,105,110,132,257,627**;Aug 13, 1993;Build 249
  ;
 EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; Input  -- SDOE     Outpatient Encounter file IEN
@@ -22,7 +22,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ;
  I $G(SDMOD) W !!,">>> Deleting check out information..."
  ;
- ; -- delete child data for appts, dispos and stop code addition
+ ; -- delete child data for appts, disposition and stop code addition
  I "^1^2^3^"[("^"_SDORG_"^") D CHLD(SDOE,SDMOD) ;SD/257
  ;
  ; -- delete SDOE pointers and co d/t
@@ -36,6 +36,7 @@ EN(SDOE,SDMOD,SDELHDL,SDELSRC) ;Delete Check Out
  ; -- do final deletes for sdoe
  D CO(SDOE,SDMOD)
  D OE(SDOE,SDMOD)
+ D SDEC(DFN,SDT,SDCL)   ;delete checkout in SDEC APPOINTMENT  ;alb/sat 627
  ;
  I $G(SDMOD) W !,">>> done."
  ;
@@ -85,4 +86,10 @@ COMDT(SDOE,SDMOD) ;Delete Check Out Process Completion Date
  N DA,DE,DIE,DQ,DR
  I $G(SDMOD) W !?3,"...deleting check out process completion date"
  S DA=SDOE,DIE="^SCE(",DR=".07///@" D ^DIE
+ Q
+ ;
+SDEC(DFN,SDT,SDCL)   ;delete check out in SDEC APPOINTMENT  ;alb/sat 627
+ N SDECAPID
+ S SDECAPID=$$APPTGET^SDECUTL(DFN,SDT,SDCL)
+ D CANAPPT^SDEC25(SDECAPID)
  Q

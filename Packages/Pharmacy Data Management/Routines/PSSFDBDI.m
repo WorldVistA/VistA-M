@@ -1,5 +1,5 @@
 PSSFDBDI ;BIR/LE - Sends XML Request to PEPS via HWSC for Dose Information ;01/23/12
- ;;1.0;PHARMACY DATA MANAGEMENT;**160**;9/30/97;Build 76
+ ;;1.0;PHARMACY DATA MANAGEMENT;**160,175**;9/30/97;Build 9
  ;
  ;Reference to PSNDF(50.68 supported by DBIA 3735
  ;
@@ -140,7 +140,7 @@ PARSXML(AREADER,PSSGCN,PSSOUT) ; extract the list of routes from XML results
  .; inside dosing attributes
  .I ATOKEN="dispensableDrugName" S DTOKEN="",DTOKEN=$$GETTOKEN(AREADER) S $P(PSSOUT2(GCNSEQ),"^",3)=$P(DTOKEN,"<>",2) Q
  .I ATOKEN="dispensableDrugDescription"  S DTOKEN="",DTOKEN=$$GETTOKEN(AREADER) S $P(PSSOUT2(GCNSEQ),"^",4)=$P(DTOKEN,"<>",2) Q
- .I NODETYPE="dosingInfo(attributes)" S FTYPE="doseRanges",GCNSEQ=$P($P(ATOKEN,"^",2),"=",2),FDBDX=$P($P(ATOKEN,"^",1),"=",2) S PSSOUT2(GCNSEQ)=GCNSEQ_"^"_PSSGCN_"^^^"_FDBDX Q
+ .I NODETYPE="dosingInfo(attributes)" S FTYPE="doseRanges",GCNSEQ=$P($P(ATOKEN,"^",2),"=",2),FDBDX=$P($P(ATOKEN,"^",1),"=",2) S:$G(GCNSEQ)="999" GCNSEQ=$G(FDBDX),FDBDX="999" S PSSOUT2(GCNSEQ)=GCNSEQ_"^"_PSSGCN_"^^^"_FDBDX Q
  .I NODETYPE="doseRange(attributes)"  S (FIELD,FLDNAM,FLDDATA)="" S PSSSEQ=PSSSEQ+1,FTYPE="doseRanges" D 
  ..F I=1:1:4 S FIELD=$P(ATOKEN,"^",I),FLDNAM=$P(FIELD,"="),FLDDATA=$P(FIELD,"=",2) D SETARRAY
  ..D DOSE

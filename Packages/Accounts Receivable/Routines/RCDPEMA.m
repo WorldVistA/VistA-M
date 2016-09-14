@@ -1,5 +1,5 @@
 RCDPEMA ;ALB/PJH - AUTO-POSTING RECEIPT CREATION ;Oct 15, 2014@12:37:52
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 RCPTDET(RCRZ,RECTDA1,RCLINES,RCER) ; Adds detail to a receipt based on file 344.49 and exceptions in array RCLINES
@@ -67,9 +67,10 @@ DET(RCZ,RCR,RECTDA1,RCTRANDA) ; Store receipt detail
  S DR=DR_".04////"_(+$P(RCZ0,U,3))_";.27////"_RCR_";"
  I $P(RC0,U,5)'="" S DR=DR_".1////"_$P(RC0,U,5)_";"
  I $P(RC0,U,6)'="" S DR=DR_".08////"_$P(RC0,U,6)_";"
- S RCCOM=$P(RCZ0,U,10)
  S Z=0 F  S Z=$O(^RCY(344.49,RCZ,1,RCR,1,Z)) Q:'Z  I $P($G(^(Z,0)),U,5)=1 S DR=DR_".28////1;" Q  ; Update receipt line with dec adj flag
- I $P(RCUP,U,2)["**ADJ" S DR=DR_"1.02////"_$E($S(RCCOM'="":RCCOM_"/",1:"")_$S($P($P(RCUP,U,2),"ADJ",2):"ERA adjustment - no bill referenced",1:"Total of EFT mismatched to ERA"),1,60)_";"
+ S RCCOM=$P(RCZ0,U,10)
+ I $P(RCUP,U,2)["**ADJ" S RCCOM=RCCOM_$S(RCCOM'="":"/",1:"")_$S($P($P(RCUP,U,2),"ADJ",2):"ERA adjustment - no bill referenced",1:"Total of EFT mismatched to ERA")
+ I RCCOM]"" S DR=DR_"1.02////"_$E(RCCOM,1,60)_";"
  I $P($G(^RCY(344.49,RCZ,0)),U,4)'="" S DR=DR_".07////"_$P($G(^RCY(344.49,RCZ,0)),U,4)_";"
  S DA(1)=RECTDA1,DA=RCTRANDA,DIE="^RCY(344,"_DA(1)_",1,"
  D ^DIE

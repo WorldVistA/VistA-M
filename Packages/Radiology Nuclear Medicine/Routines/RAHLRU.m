@@ -1,5 +1,5 @@
 RAHLRU ;HISC/GJC - utilities for HL7 messaging ;03/16/98  11:03
- ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103,47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**10,25,81,103,47,125**;Mar 16, 1998;Build 1
  ;
  ; 08/13/2010 BP/KAM RA*5*103 Outside Report Status Code needs 'F'
  ;Integration Agreements
@@ -168,10 +168,37 @@ OBR21(HLECH,RA7002) ;builds the OBR-21 field; called from RAHLR1A
  K RA4Q,RA44Q,RA791Q,RA792Q,RAPCS,RAPSS
  Q $$ESCAPE^RAHLRU(RAX)
  ;
+BLDHLP ;build the HLP("EXCLUDE SUBSCRIBER",n) array
+ ; is HLP("EXCLUDE SUBSCRIBER",n) defined? If yes get 'n'
+ N RAX,RAY S RAX="EXCLUDE SUBSCRIBER"
+ S RAY=$$HLPEXSUB(.HLP)
+ I RAY="" M HLP(RAX)=RASSS(RAX) Q
+ N RAI S RAI=0
+ F  S RAI=$O(RASSS(RAX,RAI)) Q:RAI'>0  D
+ .S RAY=RAY+1,HLP(RAX,RAY)=RASSS(RAX,RAI)
+ .Q
+ Q
+ ;
+HLPEXSUB(A) ;determine the last subscript (n) of a local array
+ ;whose format is: A("EXCLUDE SUBSCRIBER",n)
+ ;Input: A = local array name;
+ Q $O(A("EXCLUDE SUBSCRIBER",$C(32)),-1)
+ ;
 GENERATE ;Broadcast the HL7 message (courtesy of the VistA HL7 application)
  N HLEID,HLARYTYP,HLFORMAT,HLMTIEN,HLP
  S HLEID=RAEID,HLARYTYP="LM",HLFORMAT=1,HLMTIEN="",HLP("PRIORITY")="I"
- ;D:$D(RASSSX(HLEID)) GETHLP^RAHLRS1(HLEID,.HLP,"RASSSX")
+ ;
+ ;1 - RASSSX is set by the 'Resend Radiology HL7 Messages By Date Range'
+ ;    option. GETHLP sets the HLP("EXCLUDE SUBSCRIBER" array
+ D:$D(RASSSX(HLEID)) GETHLP^RAHLRS1(HLEID,.HLP,"RASSSX") ;RA5P125
+ ;
+ ;2 - Do we return this HL7 message to the application that broadcasted
+ ;    it? The following code also sets the HLP("EXCLUDE SUBSCRIBER" array
+ D:$D(RASSS("EXCLUDE SUBSCRIBER"))\10 BLDHLP ;RA5P125
+ ;
+ ;Note: Events 1 & 2 are independent of one another. They will never
+ ;      set the HLP array in the same process.
+ ;
  D GENERATE^HLMA(RAEID,HLARYTYP,HLFORMAT,.HLRESLT,HLMTIEN,.HLP)
  D GSTATUS^RAHLACK(.HLRESLT,RAEID) K HLRESLT
  ;

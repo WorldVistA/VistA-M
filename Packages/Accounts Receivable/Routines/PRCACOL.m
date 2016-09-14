@@ -1,6 +1,6 @@
-PRCACOL ;WASH-ISC@ALTOONA,PA/LDB-Payment History Report ;9/27/93  4:31 PM
-V ;;4.5;Accounts Receivable;**165,198,264**;Mar 20, 1995;Build 1
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+PRCACOL ;WASH-ISC@ALTOONA,PA/LDB - Payment History Report ;9/27/93  4:31 PM
+V ;;4.5;Accounts Receivable;**165,198,264,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ;Ask debtor and date range for payment history
  N DPTNOFZY,DPTNOFZK S (DPTNOFZY,DPTNOFZK)=1
@@ -41,6 +41,7 @@ EXIT2 I $E(IOST,1,2)'="C-" W @IOF D ^%ZISC Q
  G EN
  ;
 TRANS ;Build array of transactions
+ N BILL
  S (PG,TOTPD,TOTREF,TOTPRIN,TOTINT,TOTADM)=0,$P(LINE,"-",75)="-" K ^TMP($J) D DT^DICRW
  S BILL=0 F  S BILL=$O(^PRCA(430,"C",DEBTOR,BILL)) Q:'BILL  D
  .S TN=0 F  S TN=$O(^PRCA(433,"C",+BILL,TN)) Q:'TN  D
@@ -58,8 +59,8 @@ PRINT ;Print transactions
  S DATE=0 F  S DATE=$O(^TMP($J,"PRCACOL",DATE)) Q:'DATE  Q:$D(DIRUT)  D
  .S TN=0 F  S TN=$O(^TMP($J,"PRCACOL",DATE,TN)) Q:'TN  D SCRN Q:$D(DIRUT)  D
  ..S PNODE=^TMP($J,"PRCACOL",DATE,TN) W !,$$FMTE^XLFDT($P(PNODE,U,2),"1D"),?15,$P($G(^PRCA(430,+$P(PNODE,U),0)),U)
- ..W ?27,$P(PNODE,U,3),?32,$P(PNODE,U,4),?42 S AMT=$P(PNODE,U,5) W $J(AMT,6,2)
- ..F X=1:1:3 S X(X)=$P(PNODE,U,X+5) W:X=1 ?50,$J(X(X),6,2) W:X=2 ?58,$J(X(X),6,2) W:X=3 ?66,$J(X(X),6,2)
+ ..W ?27,$P(PNODE,U,3),?32,$P(PNODE,U,4),?45 S AMT=$P(PNODE,U,5) W $J(AMT,6,2)
+ ..F X=1:1:3 S X(X)=$P(PNODE,U,X+5) W:X=1 ?53,$J(X(X),6,2) W:X=2 ?61,$J(X(X),6,2) W:X=3 ?69,$J(X(X),6,2)
  ..D SCRN Q:$D(DIRUT)
  ..Q
  .Q
@@ -88,5 +89,5 @@ HDR ;Heading for report
  W !,?20,"------------------------------"
  W !!,?18,"For Patient: ",$$NAM^RCFN01(DEBTOR),!,?25,"SSN : ",$$SSN^RCFN01(DEBTOR)
  W !,?20,"For dates: ",$$FMTE^XLFDT(BDATE,"ID"),"-",$$FMTE^XLFDT(EDATE,"1D")
- W !!,"    DATE OF",!,"PAYMENT/REFUND",?16,"BILL #",?25,"REFUND",?32,"RECEIPT #",?42,"AMOUNT",?51,"PRIN.",?59,"INT.",?67,"ADMIN.",!,LINE
+ W !!,"    DATE OF",!,"PAYMENT/REFUND",?16,"BILL #",?25,"REFUND",?32,"RECEIPT #",?45,"AMOUNT",?54,"PRIN.",?62,"INT.",?70,"ADMIN.",!,LINE
  Q

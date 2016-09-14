@@ -1,22 +1,27 @@
-YSASSEL ;ALB/ASF-ASI SELECTOR ;4/16/98  16:42
- ;;5.01;MENTAL HEALTH;**24,30,38,76**;Dec 30, 1994
-ADDEDIT ;
+YSASSEL ;ALB/ASF,HIOFO/FT - ASI SELECTOR ;1/29/13  10:19am
+ ;;5.01;MENTAL HEALTH;**24,30,38,76,108**;Dec 30, 1994;Build 17
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to %ZISC supported by IA #10089
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
+ ;
+ADDEDIT ;entry point for YSAS ADD/EDIT ASI option
+ ;Patch 108 no longer allows new ASIs through this roll & scroll option, only the MHA GUI.
+ N YSASPIEN
  K ^TMP($J,"YSASI")
  D PT
  Q:YSASPIEN<1
- I '$D(^YSTX(604,"C",YSASPIEN)) D ASKNEW Q
+ I '$D(^YSTX(604,"C",YSASPIEN)) D ASKNEW,CLEANUP Q
  W @IOF,?25,"***** Add - Edit *****"
  D TLD,TLP
  W !
- S DIR(0)=DIR(0)_"N:NEW",DIR("A")="Select number or NEW: " D ^DIR K DIR
- I Y?1N.N D  Q
+ S DIR(0)=DIR(0),DIR("A")="Select number: " D ^DIR K DIR
+ I Y?1N.N D
  .S YSASSIEN=+^TMP($J,"YSASI",Y)
  . I $P(^TMP($J,"YSASI",Y),U,5)=1 W !,"This ASI has already been signed. You may no longer edit it!",$C(7) Q
  . D OLCL
  . Q
- Q:Y'="N"
- K DIR S DIR(0)="SA^1:Full Intake;2:Lite Intake;3:Followup ASI",DIR("A")="Select Type: ",DIR("B")="Followup" D ^DIR K DIR Q:$D(DIRUT)  S YSASTYP=+Y
- D AA^YSASA2(YSASPIEN,YSASTYP),OLCL
+ D CLEANUP
  Q
 OLCL ;online vs clerk
  D SCREENH^YSASA2
@@ -27,7 +32,8 @@ OLCL ;online vs clerk
  D MAIN^YSASOL(YSASPIEN,YSASSIEN):Y=1,MAIN^YSASA2(YSASPIEN,YSASSIEN):Y=2
  L -^YSTX(604,YSASPIEN)
  Q
-SELPRINT ;
+SELPRINT ;entry point for YSAS ASI PRINT option
+ N YSASPIEN
  K ^TMP($J,"YSASI")
  D PT
  Q:YSASPIEN<1
@@ -36,8 +42,11 @@ SELPRINT ;
  W !
  S DIR("A")="Select ASI number: " D ^DIR K DIR W !,X,"  ",Y H 2
  I Y?1N.N W $C(7) S YSASSIEN=+^TMP($J,"YSASI",Y) D EN1^YSASPRT(YSASSIEN)
+ D CLEANUP
  Q
 NARR ;narrative output
+ ;entry point for YSAS NARRATIVE PRINT option
+ N YSASPIEN
  K ^TMP($J,"YSASI")
  D PT
  Q:YSASPIEN<1
@@ -50,17 +59,14 @@ NARR ;narrative output
  ;I YSASCL=3 W !!,"Narrative Report not available for follow ups. Please use Item Report",$C(7) Q
  D EN1^YSASNAR(YSASSIEN)
  D ^%ZISC
+ D CLEANUP
  Q
 ASKNEW ;
  W !,"There are no previous ASI's on file.",!
- S DIR("A")="Do you wish to add a new ASI for this patient"
- S DIR("B")="NO",DIR(0)="Y" D ^DIR K DIR Q:Y'=1
- K DIR S DIR(0)="SA^1:Full AS1;2:Lite ASI;3:Followup ASI",DIR("A")="Select ASI Type: "
- S DIR("B")=$S($P(^YSTX(604.8,1,0),U,2)="L":"Lite",1:"Full") D ^DIR K DIR Q:$D(DIRUT)  S YSASTYP=+Y
- I YSASTYP=3 S DIR("A")="No previous ASIs are on file for this patient. Are you sure you want to enter a FOLLOWUP",DIR("B")="NO",DIR(0)="Y" D ^DIR K DIR Q:Y'=1
- D AA^YSASA2(YSASPIEN,YSASTYP),OLCL
+ W !,"Please use the MHA GUI located on the CPRS Tools Menu to enter new ASIs."
  Q
 PT ;patient lookup
+ N DIC
  S DIC="^DPT(",DIC(0)="AEMQ"
  D ^DIC
  S YSASPIEN=+Y
@@ -82,27 +88,42 @@ TLD ;load ASI list
 TLP ; print list
  Q:'$D(^TMP($J,"YSASI"))
  S YSL="",$P(YSL,"_",79)=""
- S DFN=YSASPIEN D DEM^VADPT
- ;W @IOF
- W !,VADM(1),"   ",$P(VADM(2),U,2),?45,"Addiction Severity Index History",!
+ N DFN S DFN=YSASPIEN D DEM^VADPT
+ W !,VADM(1),"   ""xxx-xx-",$E($P(VADM(2),U,2),8,11),?45,"Addiction Severity Index History",!
  W " #",?7,"Date",?18,"Class",?30,"Interviewer",!,YSL,!
  S YSASC=0
  F  S YSASC=$O(^TMP($J,"YSASI",YSASC)) Q:YSASC'>0  D
  . S YSASG=^TMP($J,"YSASI",YSASC)
  . W !,$J(YSASC,3)," "
- . ;W $P(YSASG,U,2)
  . W $$FMTE^XLFDT($P(YSASG,U,2),"5ZD")
  . W ?18,$P(YSASG,U,3)
  . W ?28,$P(YSASG,U,4)
  . W ?55,$S($P(YSASG,U,5)=1:"Signed",1:"## Not Signed ##")
  ;
  Q
+CLEANUP ;clean up variables
+ K DIC,DIR,DIRUT,DIROUT,DTOUT,DUOUT,X,Y
+ K YSASC,YSASCL,YSASDT,YSASG,YSASIEN,YSASINT,YSASIG,YSL,YSASPIEN,YSASSIEN
+ D KVA^VADPT
+ Q
 BROWSE ;
  D WP^DDBR(604.68,YSA_",",1,"R",YSTITLE)
  Q
-ASICHECK N YSTITLE,YSA S YSTITLE="ASI CHECKING MANUAL",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
-ASISHORT N YSTITLE,YSA S YSTITLE="ASI SHORT GUIDE",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
-ASIQE N YSTITLE,YSA S YSTITLE="COMMON QUESTIONS AND ERRORS",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
-ASIHOLL N YSTITLE,YSA S YSTITLE="HOLLINGSHEAD CATEGORIES",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
-ASIDRUG N YSTITLE,YSA S YSTITLE="LIST OF COMMONLY USED DRUGS",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
-ASIUSER N YSTITLE,YSA S YSTITLE="ASI USER GUIDE",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE Q
+ASICHECK ;entry point for YSAS ASI CHECKING GUIDE option
+ N YSTITLE,YSA S YSTITLE="ASI CHECKING MANUAL",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q
+ASISHORT ;entry point for YSAS SHORT GUIDE option
+ N YSTITLE,YSA S YSTITLE="ASI SHORT GUIDE",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q
+ASIQE ;entry point for YSAS QUESTIONS AND ERRORS option
+ N YSTITLE,YSA S YSTITLE="COMMON QUESTIONS AND ERRORS",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q
+ASIHOLL ;entry point for YSAS HOLLINGSHEAD CATEGORIES option
+ N YSTITLE,YSA S YSTITLE="HOLLINGSHEAD CATEGORIES",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q
+ASIDRUG ;entry point for YSAS ASI COMMON DRUGS
+ N YSTITLE,YSA S YSTITLE="LIST OF COMMONLY USED DRUGS",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q
+ASIUSER ;entry point for YSAS USER GUIDE option
+ N YSTITLE,YSA S YSTITLE="ASI USER GUIDE",YSA=$O(^YSTX(604.68,"B",YSTITLE,0)) Q:YSA'>1  D BROWSE
+ Q

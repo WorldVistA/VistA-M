@@ -1,5 +1,5 @@
 RCDPEAA1 ;ALB/KML - AUTO POST AWAITING RESOLUTION (APAR) - LIST OF UNPOSTED EEOBS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -18,6 +18,7 @@ INIT ; Entry point for List template to build the display of EEOBs on APAR
  ; contained in the global ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,parameter name)
  ;
  N FDTTM,RCDA
+ S RCAPAR=1
  D FULL^VALM1,CLEAN^VALM10
  K ^TMP($J,"RCDPE_APAR_EEOB_LIST")
  K ^TMP("RCDPE-APAR_EEOB_WL",$J),^TMP("RCDPE-APAR_EEOB_WLDX",$J)
@@ -92,9 +93,12 @@ SET(X,RCSEQ,RCDA,RCDA1,BALANCE,TOTPOSTD) ; -- set ListManager arrays
  Q
  ;
 HDR ;
- N X,LINE
- S X=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"))
- S VALMHDR(1)="Current View:"_$J("",4)_$S($P(X,U)="A"!(X=""):"ALL PAYERS",1:"PAYERS: "_$P(X,U,2)_"-"_$P(X,U,3))
+ N RCPAYR,X,LINE,RCMDRX,Y
+ S RCPAYR=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"))
+ S RCMDRX=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
+ S Y=$S(RCMDRX="M":"MEDICAL",RCMDRX="P":"PHARMACY",1:"MEDICAL + PHARMACY")_" CLAIMS"
+ S X=$S(($P(RCPAYR,U)="A")!(RCPAYR=""):"ALL PAYERS",1:"PAYERS: "_$P(RCPAYR,U,2)_"-"_$P(RCPAYR,U,3))
+ S VALMHDR(1)="Current View:"_$J("",4)_Y_" for "_X
  S VALMHDR(2)=""
  S LINE="      "_$$CJ^XLFSTR("ERA#.Seq",14)_"   "_$$CJ^XLFSTR("Claim#",10)_"    "_$$CJ^XLFSTR("Posted Amt",12)
  S LINE=LINE_"   "_$$CJ^XLFSTR("Post Date",8)_"   "_$$CJ^XLFSTR("Un-posted Bal",12)
@@ -103,6 +107,7 @@ HDR ;
  ;
 EXIT ; -- Clean up list
  K ^TMP("RCDPE-APAR_EEOB_WL",$J),^TMP("RCDPE-APAR_EEOB_WLDX",$J),^TMP("RCDPE_APAR_EEOB_PARAMS",$J),^TMP($J,"RCDPE_APAR_EEOB_LIST")
+ K RCAPAR
  Q
  ;
 PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for APAR EEOB Worklist
@@ -111,25 +116,28 @@ PARAMS(SOURCE) ; Retrieve/Edit/Save View Parameters for APAR EEOB Worklist
  ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p1: All Payers/Range of Payers ("A": All/"R":Range of Payers)
  ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p2: START WITH PAYER (e.g.,'AET') (Range Limited Only)
  ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")p3: GO TO PAYER (e.g.,'AETZ') (Range Limited Only)
+ ;        ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX""): (M)edical, (P)harmacy, or (B)
+ ;
  ;        Or RCQUIT=1
  N DIR,X,Y,DUOUT,DTOUT,RCPAYR,RCPAYRDF,RCXPAR,RCDRLIM,RCERROR,RCAUTOPDF
- N RCTYPEDF
+ N RCTYPEDF,RCQ
  ;
  ; Retrieving user's saved parameters (If found, Quit)
  I SOURCE="MO" D  I $G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))'="" G PARAMSQ
  . K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J)
  . D GETLST^XPAR(.RCXPAR,"USR","RCDPE APAR","I")
  . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=$S($G(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"))'="":$TR(RCXPAR("ALL_PAYERS/RANGE_OF_PAYERS"),";","^"),1:"A")
+ . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=$S($G(RCXPAR("MEDICAL/PHARMACY"))'="":$TR(RCXPAR("MEDICAL/PHARMACY"),";","^"),1:"B")
  ;
  ;
 PAYR ; Payer Selection
- S RCPAYRDF=^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")
+ S RCPAYRDF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")),RCQUIT=0
  K DIR S DIR(0)="SA^A:ALL;R:RANGE",DIR("A")="(A)LL PAYERS, (R)ANGE OF PAYER NAMES: "
  S DIR("B")="ALL" S:$P(RCPAYRDF,"^")'="" DIR("B")=$P(RCPAYRDF,"^")
  W ! D ^DIR
  I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 G PARAMSQ
  S RCPAYR=Y I RCPAYR="A" S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=Y
- I RCPAYR="R" D  I RCQUIT K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") G PAYR
+ I RCPAYR="R" D  I RCQUIT K ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR") G PARAMSQ
  . W !,"NAMES YOU SELECT HERE WILL BE THE PAYER NAMES FROM THE ERA, NOT THE INS FILE"
  . K DIR S DIR("?")="ENTER A NAME BETWEEN 1 AND 30 CHARACTERS IN UPPERCASE"
  . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="START WITH PAYER NAME: "
@@ -139,15 +147,23 @@ PAYR ; Payer Selection
  . S RCPAYR("FROM")=Y
  . K DIR S DIR("?")="ENTER A NAME BETWEEN 1 AND 30 CHARACTERS IN UPPERCASE"
  . S DIR(0)="FA^1:30^K:X'?.U X",DIR("A")="GO TO PAYER NAME: ",DIR("B")=$E(RCPAYR("FROM"),1,27)_"ZZZ"
- . S:$P(RCPAYRDF,"^",3)'="" DIR("B")=$P(RCPAYRDF,"^",3)
  . W ! D ^DIR K DIR
  . I $D(DTOUT)!$D(DUOUT) S RCQUIT=1 Q
  . S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")=RCPAYR_"^"_RCPAYR("FROM")_"^"_Y
  ;
+ ; Ask for Medical or Pharmacy (Or Both)
+ N DEF
+ S DEF=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
+ S DEF=$S(DEF="P":"PHARMACY",DEF="M":"MEDICAL",1:"BOTH")
+ S RCQ=$$RTYPE^RCDPESP2(DEF) I RCQ=-1 S RCQUIT=1 G PARAMSQ
+ S ^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX")=RCQ
+ ;
  ; Option to save as User Preferred View
  K DIR W ! S DIR(0)="YA",DIR("B")="NO",DIR("A")="DO YOU WANT TO SAVE THIS AS YOUR PREFERRED VIEW (Y/N)? "
  D ^DIR
- I Y=1 D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","ALL_PAYERS/RANGE_OF_PAYERS",$TR(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"),"^",";"),.RCERROR)
+ I Y=1 D
+ . D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","ALL_PAYERS/RANGE_OF_PAYERS",$TR(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR"),"^",";"),.RCERROR)
+ . D EN^XPAR(DUZ_";VA(200,","RCDPE APAR","MEDICAL/PHARMACY",$TR(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"),"^",";"),.RCERROR)
  ;
 PARAMSQ ; Quit
  Q
@@ -158,15 +174,28 @@ FILTER(RCDA) ; Returns 1 if record in entry 344.4 passes
  ; 
  ; input - RCDA = IEN OF 344.4
  ; output - returns 1 or 0
- N OK,RC0,RCPAYR,RCPAYFR,RCPAYTO
+ N OK,RC0,RCPAYR,RCPAYFR,RCPAYTO,RCIEN,RCECME,RCERATYP
  S OK=1,RC0=$G(^RCY(344.4,RCDA,0))
  ;
  S RCPAYR=$P($G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")),U),RCPAYFR=$P($G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")),U,2),RCPAYTO=$P($G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCPAYR")),U,3)
+ S RCERATYP=$G(^TMP("RCDPE_APAR_EEOB_PARAMS",$J,"RCMEDRX"))
  ; Payer name
  I RCPAYR'="A" D  G:'OK FQ
  . N Q
  . S Q=$$UP^RCDPEARL($P(RC0,U,6))
  . I $S(Q=RCPAYFR:1,Q=RCPAYTO:1,Q]RCPAYFR:RCPAYTO]Q,1:0) Q
+ . S OK=0
+ ; ERA Type (Medical/Pharmacy)
+ I RCERATYP'="B" D
+ . ;check the first EOB in the ERA to see if it is a Pharmacy or Medical ERA
+ . S RCIEN=$O(^RCY(344.4,RCDA,1,0))
+ . I RCIEN="" S OK=0 Q
+ . S RCECME=$P($G(^RCY(344.4,RCDA,1,RCIEN,4)),U,2)
+ . ; If requested filter is Pharmacy and there is an ECME #, display
+ . I RCECME="",RCERATYP="M" Q
+ . ; If requested filter is Medical and there is no ECME #, display
+ . I RCECME'="",RCERATYP="P" Q
+ . ; Otherwise, not valid on the filter, don't display
  . S OK=0
 FQ Q OK
  ;

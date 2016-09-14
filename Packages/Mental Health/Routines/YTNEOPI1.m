@@ -1,5 +1,6 @@
-YTNEOPI1 ;ALB/ASF-NEO PI-R TEST PROFILE ;7/28/95  12:56 ;
- ;;5.01;MENTAL HEALTH;**10**;Dec 30, 1994
+YTNEOPI1 ;ALB/ASF,HIOFO/FT - NEO PI-R TEST PROFILE ;3/20/13 5:00pm
+ ;;5.01;MENTAL HEALTH;**10,108**;Dec 30, 1994;Build 17
+ ;No external references
 A ;setup
  K YSAST S YSTV=75,YSBV=25,YSINC=1,YSLE=5 F J=31,32,33,34,35,1:1:30 S A(J)=$P(S,U,J) S:A(J)>YSTV A(J)=YSTV S:A(J)<YSBV A(J)=YSBV
  S YSVS=1,YSHS="75,65,55,45,35,25^"
@@ -56,7 +57,7 @@ IR2 W $S($E(X,I)=1:"SD",$E(X,I)=2:" D",$E(X,I)=3:" N",$E(X,I)=4:" A",$E(X,I)=5:"
 VALD ;validity index
  D DTA^YTREPT W !!?30,"Validity Indices",!
  D RD^YTNEOPI
- I $L($E(X,1,240),"X")>42 W !,"Profile not scored as respondant has skipped more",!,"than 41 items.",! Q
+ I $L($E(X,1,240),"X")>42 W !,"Profile not scored as respondent has skipped more",!,"than 41 items.",! Q
  S YSVFLAG=0
  D SS,241,YN,RAND,VTXT
  Q
@@ -65,15 +66,15 @@ VTXT I YSVFLAG=0 W !,"Validity indices are within normal limits and the obtained
  W !,"TEST RESULTS ARE NOT CONSIDERED VALID. The profile will",!,"be printed but it should only be used if the administrator has reason to"
  W !,"believe that the profile is valid despite these indications of inaccurate",!,"or random responding."
  Q
-241 S Y=$E(X,241) I (Y<3)!(Y="X") S YSVFLAG=2 W !,"The respondant has denied answering the questions honestly and accurately."
+241 S Y=$E(X,241) I (Y<3)!(Y="X") S YSVFLAG=2 W !,"The respondent has denied answering the questions honestly and accurately."
  Q
 RAND ;randon resp
  S Y=$E(X,1,240) I (Y?.E7"1".E)!(Y?.E10"2".E)!(Y?.E11"3".E)!(Y?.E15"4".E)!(Y?.E10"5".E) S YSVFLAG=2 W !,"The rater has used the same response option repeatedly in a manner",!,"that suggests random responding."
  Q
 YN ;yea_nea
  S Y=$E(X,1,240),Y=($L(Y,5)-1)+($L(Y,4)-1)
- I Y>149 S YSVFLAG=1 W !,"This profile should be interpreted with CAUTION because a strong acquiescence",!,"bias may have influnced the results."
- I Y<51 S YSVFLAG=1 W !,"This profile should be interpreted with CAUTION because a strong nay-saying",!,"bias may have influnced the results."
+ I Y>149 S YSVFLAG=1 W !,"This profile should be interpreted with CAUTION because a strong acquiescence",!,"bias may have influenced the results."
+ I Y<51 S YSVFLAG=1 W !,"This profile should be interpreted with CAUTION because a strong nay-saying",!,"bias may have influenced the results."
  Q
 SS ;scale skips
  F I=1:1:30 D SS1:$P(YSXK,U,I)>3

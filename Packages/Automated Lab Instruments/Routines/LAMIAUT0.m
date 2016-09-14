@@ -1,5 +1,5 @@
 LAMIAUT0 ;SLC/FHS -  MICRO AUTO INSTRUMENT PROGRAM VITEK ;7/20/90  09:31 ;
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**42**;Sep 27, 1994
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**42,91**;Sep 27, 1994;Build 4
 EN ;
  D CLEAN,^LRPARAM S LRMIDEF=$P(^LAB(69.9,1,1),U,10),LRMIOTH=$P(^(1),U,11),LRINI=$P(^VA(200,DUZ,0),U,2),LRMICOM=$S($D(^DD(63.31,.01,0)):$P(^(0),U,5,99),1:"S Q9=""1,68,KM"" D COM^LRNUM"),LRMICOMS=$P($P(LRMICOM,",",3),"""",1)
  S LRTEC=LRINI K DIC S DIC=68,DIC(0)="ZMAQE",DIC("S")="I $P(^(0),U,2)=""MI""" D ^DIC G CLEAN:Y<1 S (LRCAPMS,LRAAD,LRCAPWA)=+Y,LAMIAUTO=1
@@ -10,7 +10,7 @@ ACCESS I $P(Y(0),U,14),'$D(^XUSEC($P(^DIC(19.1,$P(Y(0),U,14),0),U),DUZ)) W !!?10
  S %DT="AEP",%DT("A")="Select "_$S(LRTRAN=""!("WMQD"]LRTRAN):"Accession Date: ",1:"Accession Year: ")
  S %DT("B")=$$FMTE^XLFDT($$CADT^LA7UTIL(LRAAD),"1") ; Calculate default date based on accession transform.
  D DATE^LRWU S LRADDF=+Y I LRADDF<1 G CLEAN
- K DIC S LREND=0,LRACC="",LRSS="MI",DIC=62.4,DIC("S")="I +Y<99",DIC(0)="AQEZ",DIC("A")="Select Auto Instrument: " D ^DIC G:Y<1 CLEAN S LRLL=$P(Y(0),U,4),LRINST=+Y I '$L(LRLL) W $C(7),!!!,?10,"No Load List For "_$P(Y,U,2),! G CLEAN
+ K DIC S LREND=0,LRACC="",LRSS="MI",DIC=62.4,DIC("S")="I +Y<1000",DIC(0)="AQEZ",DIC("A")="Select Auto Instrument: " D ^DIC G:Y<1 CLEAN S LRLL=$P(Y(0),U,4),LRINST=+Y I '$L(LRLL) W $C(7),!!!,?10,"No Load List For "_$P(Y,U,2),! G CLEAN
  I '$O(^LAH(LRLL,1,"C",0)) W !!,$C(7),$P(Y(0),U)," Has no data   TRY LATER " D CLEAN Q
  S LRVT="VS" I $L($P(Y(0),U,15)) S LRVT=$P(Y(0),U,15)
  S LRFMT=$P(^LAB(69.9,1,0),U,11),LRFMT=$S(LRFMT="":"I",1:LRFMT)

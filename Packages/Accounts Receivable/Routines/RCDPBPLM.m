@@ -1,7 +1,6 @@
 RCDPBPLM ;WISC/RFJ - bill profile ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,153,159,241,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
- ;
+ ;;4.5;Accounts Receivable;**114,153,159,241,276,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;  called from menu option (19)
  ;
@@ -47,6 +46,8 @@ INIT ;  initialization for list manager list
  S PRCOUT=$$COMP3^PRCAAPR(RCBILLDA)
  I PRCOUT'="%" S PRCOUT=$$IBEEOBCK^PRCAAPR1(RCBILLDA)
  S RCLINE=RCLINE+1 ; D SET("Bill Number",RCLINE,1,80,.01,IOUON,IOUOFF)
+ ; IA# 6060 for $$BILLREJ^IBJTU6
+ S PRCOUT=PRCOUT_$S($$BILLREJ^IBJTU6($P($P($G(RCDPDATA(430,RCBILLDA,.01,"E")),"^"),"-",2)):"c",1:"") ;PRCA*4.5*303 Add indicator for rejects
  D SET("Bill Number: "_$G(PRCOUT)_$P(RCDPDATA(430,RCBILLDA,.01,"E"),"^"),RCLINE,1,80,0,IOUON,IOUOFF)
  D SET("Category",RCLINE,40,80,2)
  S RCLINE=RCLINE+1 D SET("Date  Prepared",RCLINE,1,80,10)

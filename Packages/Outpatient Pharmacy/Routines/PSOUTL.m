@@ -1,8 +1,10 @@
-PSOUTL ;BHAM ISC/SAB - pso utility routine ;4/28/09 4:14pm
- ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313**;DEC 1997;Build 76
- ;External reference SERV^IBARX1 supported by DBIA 2245
- ;External reference ^PS(55,     supported by DBIA 2228
- ;External reference ^PSSDIUTL is supported by DBIA# 5737.
+PSOUTL ;BHAM ISC/SAB - PSO utility routine ;4/28/09 4:14pm
+ ;;7.0;OUTPATIENT PHARMACY;**1,21,126,174,218,259,324,390,313,411**;DEC 1997;Build 95
+ ;External reference to $$SERV^IBARX1 supported by DBIA 2245
+ ;External reference to ^PS(55 supported by DBIA 2228
+ ;External reference to ^PSSDIUTL supported by DBIA 5737
+ ;External reference to ^DD("DD" supported by DBIA 999
+ ;External reference to ^PS(50.7 supported by DBIA 2223
  ;
  ;*218 prevent refill from being deleted if pending processing via
  ; external dispense machines
@@ -14,6 +16,7 @@ SUSPCAN ;dcl rx from suspense used in new, renew AND verification of Rxs
  S $P(^PSRX(PSRX,3),"^",7)="DISCONTINUED FROM SUSPENSE BEFORE FILLING" K PSI,SUSX,SUS1,SUS2 Q
  ;
 ACTLOG ;
+ N PSS
  F PSI=0:0 S PSI=$O(^PSRX(PSRX,"A",PSI)) I 'PSI!'$O(^(PSI)) S ^PSRX(PSRX,"A",+PSI+1,0)=DT_"^"_PSREA_"^"_PSOCLC_"^"_PSRXREF_"^"_PSMSG,^PSRX(PSRX,"A",0)="^52.3DA^"_(+PSI+1)_"^"_(+PSI+1) Q
 ACTOUT I PSREA="C" S PSI=$S($D(^PSRX(PSRX,2)):+$P(^(2),"^",6),1:0) K:$D(^PS(55,PSDFN,"P","A",PSI,PSRX)) ^(PSRX) S ^PS(55,PSDFN,"P","A",DT,PSRX)="" Q
  I PSREA="R" F PSI=0:0 S PSI=$O(^PSRX(PSRX,"A",PSI)) Q:'PSI  I $D(^(PSI,0)),$P(^(0),"^",2)="C" S PSS=+^(0)
@@ -26,7 +29,7 @@ QUES ;INSTRUCTIONS FOR RENEW AND REFILL
  W !?5,"For example: 1,2,5 or 123456,33254A,232323B."
  W !?5,"Do not enter the same number twice, duplicates are not allowed."
  Q
-ENDVCHK S PSOPOP=0 Q:'PSODIV  Q:'$P(^PSRX(PSRX,2),"^",9)!($P(^(2),"^",9)=PSOSITE)
+ENDVCHK N ANS,PSPOP S PSPOP=0 Q:'PSODIV  Q:'$P(^PSRX(PSRX,2),"^",9)!($P(^(2),"^",9)=PSOSITE)
 CHK1 I '$P(PSOSYS,"^",2) W !?10,$C(7),"RX# ",$P(^PSRX(PSRX,0),"^")," is not a valid choice. (Different Division)" S PSPOP=1 Q
  I $P(PSOSYS,"^",3) W !?10,$C(7),"RX# ",$P(^PSRX(PSRX,0),"^")," is from another division. Continue? (Y/N) " R ANS:DTIME I ANS="^"!(ANS="") S PSPOP=1 Q
  I (ANS']"")!("YNyn"'[$E(ANS)) W !?10,$C(7),"Answer 'YES' or 'NO'." G CHK1
@@ -46,7 +49,7 @@ S52 S (RIFN,PSOSX)=0 F  S RIFN=$O(^PSRX(DA(1),1,RIFN)) Q:'RIFN  S RFID=$P(^PSRX(
  .S $P(^PS(52.5,SFN,0),"^",2)=RFID,^PS(52.5,"C",RFID,SFN)=""
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="Q" S ^PS(52.5,"AQ",RFID,+$P(^PS(52.5,SFN,0),"^",3),SFN)="" D SCMPX^PSOCMOP(SFN,"Q")
  .I $P($G(^PS(52.5,SFN,0)),"^",7)="" S ^PS(52.5,"AC",+$P(^PS(52.5,SFN,0),"^",3),RFID,SFN)=""
- K SFN,RFIN,RFID,PSOSX,PSOSXDT Q
+ K SFN,RIFN,RFID,PSOSX,PSOSXDT Q
 KILL N DFN
  I SFN D
  .S $P(^PSRX(DA(1),"STA"),"^")=0 Q:'$D(^PS(52.5,SFN,0))  S DFN=+$P(^PS(52.5,SFN,0),"^",3),PAT=$P(^DPT(DFN,0),"^")
@@ -100,7 +103,8 @@ IBSS N PSOHLP S PSOHLP(1,"F")="!!"
  S PSOHLP(4,"F")="!!"
  D EN^DDIOL(.PSOHLP) K PSOHLP
  Q
-IBSSR S PSOIBFL=0 F PSOIBLP=0:0 S PSOIBLP=$O(^DIC(49,PSOIBLP)) Q:'PSOIBLP!(PSOIBFL)  S Y=PSOIBLP,PSOIBST=$$SERV^IBARX1(+Y) I $G(PSOIBST) S DIE="^PS(59,",DA=PSOSITE,DR="1003////"_PSOIBLP D ^DIE K DIE D  S PSOIBFL=1
+IBSSR N PSOIBFL,PSOIBLP,PSOIBST S PSOIBFL=0
+ F PSOIBLP=0:0 S PSOIBLP=$O(^DIC(49,PSOIBLP)) Q:'PSOIBLP!(PSOIBFL)  S Y=PSOIBLP,PSOIBST=$$SERV^IBARX1(+Y) I $G(PSOIBST) S DIE="^PS(59,",DA=PSOSITE,DR="1003////"_PSOIBLP D ^DIE K DIE D  S PSOIBFL=1
  .W $C(7),!!,"There was an invalid entry in your IB SERVICE/SECTION field in your Outpatient",!,"Site Parameter file, but we have fixed the problem for you, and you",!,"may continue!" Q
  Q
 WARN ;
@@ -153,7 +157,7 @@ ECAN(PSOXRX) ;Clean up Rx when expired
  S DA=$O(^PS(52.5,"B",PSOXRX,0)) I DA K DIK S DIK="^PS(52.5," D ^DIK K DIK
  I $D(^PS(52.4,PSOXRX,0)) K DIK S DIK="^PS(52.4,",DA=PSOXRX D ^DIK K DIK
  I $G(^PSRX(PSOXRX,"H"))]"" K:$P(^PSRX(PSOXRX,"H"),"^") ^PSRX("AH",$P(^PSRX(PSOXRX,"H"),"^"),PSOXRX) S ^PSRX(PSOXRX,"H")=""
- I '$P($G(^PSRX(PSOXRX,2)),"^",2) K DIE S DIE="^PSRX(",DA=PSOXRX,DR="22///"_DT D ^DIE
+ I '$P($G(^PSRX(PSOXRX,2)),"^",2) K DIE S DIE="^PSRX(",DA=PSOXRX,DR="22///"_DT D ^DIE K DA,DR
  Q
 CMOP ;CMOP("L")=LAST FILL... if it is orig Rx =0
  ;CMOP(FILL #)=CMOP status from 52[TRAN=0,DISP=1,RETRAN=2,NOT DISP=3
@@ -253,22 +257,30 @@ PSSDGCK ;
  Q
  ;
 PSOSUPCK(CHK) ;
+ I $G(PSODGCKX) Q 0
  I '($P($G(^PSDRUG(CHK,0)),"^",3)["S"!($E($P($G(^PSDRUG(CHK,0)),"^",2),1,2)="XA")) K CHK Q 0
  W !!,"You have selected a supply item, please select another drug"
  W !,"or leave blank and hit enter for Profile Order Checks." W !
  K CHK
  Q 1
  ;
-PRFLP ;ZB POST+18^PSODRG THE RUN D LOOP^ZZME3
- N PSODRUG S (DGCKSTA,DGCKDNM)="" S PSODGCKF=1
- I $D(PSOSD) F  S DGCKSTA=$O(PSOSD(DGCKSTA)) Q:DGCKSTA=""  F  S DGCKDNM=$O(PSOSD(DGCKSTA,DGCKDNM)) Q:DGCKDNM=""  D
- .S DIC=50,DIC(0)="MQZV",X=DGCKDNM D ^DIC K DIC
- .S DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC Q:Y=-1
- .S PSODRUG("IEN")=DGCKDNM,PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
- .S:+$G(^PSDRUG(+Y,2)) PSODRUG("OI")=+$G(^(2)),PSODRUG("OIN")=$P(^PS(50.7,+$G(^(2)),0),"^")
- .S PSODRUG("NDF")=$S($G(^PSDRUG(DGCKDNM,"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
- .S PSODFN=DFN D ^PSODGAL1
- .K X,Y,DTOUT,DUOUT
+PRFLP ;
+ N PSODRUG,PSODGCRX,PSOALLGY,PSODRIEN,PSODATA S (DGCKSTA,DGCKDNM)="" S PSODGCKF=1
+ I $D(PSOSD) D
+ .F  S DGCKSTA=$O(PSOSD(DGCKSTA)) Q:DGCKSTA=""  F  S DGCKDNM=$O(PSOSD(DGCKSTA,DGCKDNM)) Q:DGCKDNM=""  D
+ ..S DIC=50,DIC(0)="MQZV",X=DGCKDNM D ^DIC K DIC
+ ..S DIC=50,DIC(0)="MQZV",X=+Y D ^DIC K DIC Q:Y=-1
+ ..S PSODRUG("IEN")=$P(Y,"^"),PSODRUG("VA CLASS")=$P(Y(0),"^",2),PSODRUG("NAME")=$P(Y(0),"^")
+ ..I '$D(PSOALLGY(DGCKDNM,PSODRUG("IEN"))) S PSOALLGY(DGCKDNM,PSODRUG("IEN"))=PSODRUG("VA CLASS")_"^"_PSODRUG("NAME")_"^"_$P(PSOSD(DGCKSTA,DGCKDNM),"^")
+ .S (DGCKDNM,PSODRIEN)=""
+ .F  S DGCKDNM=$O(PSOALLGY(DGCKDNM)) Q:DGCKDNM=""  F  S PSODRIEN=$O(PSOALLGY(DGCKDNM,PSODRIEN)) Q:PSODRIEN=""  D
+ ..S PSODRUG("IEN")=PSODRIEN,PSODATA="",PSODATA=PSOALLGY(DGCKDNM,PSODRIEN)
+ ..S PSODRUG("VA CLASS")=$P(PSODATA,"^"),PSODRUG("NAME")=$P(PSODATA,"^",2)
+ ..S:+$G(^PSDRUG(PSODRUG("IEN"),2)) PSODRUG("OI")=+$G(^(2)),PSODRUG("OIN")=$P(^PS(50.7,+$G(^(2)),0),"^")
+ ..S PSODRUG("NDF")=$S($G(^PSDRUG(PSODRUG("IEN"),"ND"))]"":+^("ND")_"A"_$P(^("ND"),"^",3),1:0)
+ ..S PSODFN=DFN S PSODGCRX=$P(PSODATA,"^",3)
+ ..D ^PSODGAL1
+ ..K X,Y,DTOUT,DUOUT
  K DGCKSTA,DGCKDNM,PSODGCKF,X,Y,DTOUT,DUOUT
  Q
  ;

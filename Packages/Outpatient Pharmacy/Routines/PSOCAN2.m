@@ -1,7 +1,7 @@
 PSOCAN2 ;BHAM ISC/JMB - rx cancel with speed ability drug check ; 2/16/12 3:40pm
- ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379,396,390,372,416**;DEC 1997;Build 32
+ ;;7.0;OUTPATIENT PHARMACY;**8,18,62,46,88,164,235,148,259,281,287,251,375,379,396,390,372,416,411**;DEC 1997;Build 95
  ;External reference to ^PSDRUG supported by DBIA 221
-REINS N DODR,ORN
+REINS N DODR,ORN,PSOREINO S PSOREINO=1
  I $G(PSODFN)'=$G(PSOODOSP) K PSORX("DOSING OFF"),PSOREINF S PSOODOSP=PSODFN
  I $P(^PSRX(DA,2),"^",6)<DT D  Q
  .S Y=$P(^PSRX(DA,2),"^",6) X ^DD("DD")
@@ -73,7 +73,8 @@ DRGDRG ;Checks for drug/drug interaction, duplicate drug and class
  S REA=$P(PSCAN($P(^PSRX(PSORENW("OIRXN"),0),"^")),"^",2)
  W ! S:$G(HOLD(STAT,NAME))]"" PSOSD(STAT,NAME)=$G(HOLD(STAT,NAME)) K HOLD,STA,STAT,PSORENW("OIRXN")
  ;saves drug allergy order chks pso*7*390
- I +$G(^TMP("PSODAOC",$J,1,0)) D
+ ;I +$G(^TMP("PSODAOC",$J,1,0)) D
+ I $D(^TMP("PSODAOC",$J)) D
  .N RXN,PSODAOC S RXN=ZRXN,PSODAOC="Rx Reinstate Order Acceptance_OP"
  .D DAOC^PSONEW
  .K ^TMP("PSODAOC",$J),RET

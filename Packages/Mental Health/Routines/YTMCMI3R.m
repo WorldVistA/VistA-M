@@ -1,5 +1,6 @@
-YTMCMI3R ;ALB/ASF-MCMI3 REPORT ;9/3/02  15:57
- ;;5.01;MENTAL HEALTH;**76**;Dec 30, 1994
+YTMCMI3R ;ALB/ASF,HIOFO/FT - MCMI3 REPORT ;4/29/13 2:44pm
+ ;;5.01;MENTAL HEALTH;**76,108**;Dec 30, 1994;Build 17
+ ;No external references
 REPT ;reports
  S (YSTOUT,YSUOUT)=""
  S X=$P(^YTT(601,YSTEST,"P"),U),A=$P(^("P"),U,2),B=$P(^("P"),U,3),L1=58-A\2,L2=L1+A+4 S:A<9 A=9
@@ -9,7 +10,7 @@ REPT ;reports
  W:YSINPT?1A !,"Patient entered as an ",$S(YSINPT="I":"Inpatient",1:"Outpatient"),"." W:YSINPT="" !,"No setting entered, patient assumed to be outpatient."
  W !,"Duration of recent Axis I episode: "
  W:YSDUR?1N $P("Cannot Categorize^Less than 1 week^1-4 weeks^1-3 months^3-12 months^Periodic; 1-3 years^Coninuous; 1-3 years^Periodic; 3-7 years^Continuous 3-7 years^More than 7 years",U,YSDUR+1)
- W !
+ W !,"Inconsistency (Scale W)="_$P(R,U,29),!
  F I=2:1:28 D  D:IOST?1"C-".E&($Y>21) SCR^YTREPT Q:YSTOUT!YSUOUT
  . W:I=2 !,"Modifying Indices"
  . W:I=5 !,"Clinical Personality Patterns"

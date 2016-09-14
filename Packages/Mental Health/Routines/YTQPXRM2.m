@@ -1,7 +1,10 @@
-YTQPXRM2 ;ALB/ASF- MHA3 API FOR CLINICAL REMINDERS ; 7/27/07 1:25pm
- ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 48
+YTQPXRM2 ;ALB/ASF,HIOFO/FT - MHA3 API FOR CLINICAL REMINDERS ; 1/28/13 4:25pm
+ ;;5.01;MENTAL HEALTH;**85,108**;Dec 30, 1994;Build 17
  ;Reference to ^PXRMINDX(601.2, supported by DBIA #4114
- ;Reference to ^PXRMINDX(601.84, supported by DBIA #??????
+ ;Reference to ^PXRMINDX(601.84, supported by DBIA #4290
+ ;
+ ;The following entry points are documented in ICR 5035:
+ ; PTTEST
  Q
 PTTEST(YSDATA,YS) ;all data scores for a specific patient
  ;Input:
@@ -12,7 +15,7 @@ PTTEST(YSDATA,YS) ;all data scores for a specific patient
  ;YS("LIMIT"): Last N administrations [optional]
  ;Output
  ;YSDATA(1)=[DATA]^NUMBER FOUND
- ;YSDATA(OCCURANCE,1:999) most recent to least recent occurance for this test for this patient
+ ;YSDATA(OCCURRENCE,1:999) most recent to least recent occurrence for this test for this patient
  N YSBEG,YSCODE,R1,R2,R3,YSADATE,YSEND,YSLIMIT,YSLM,YSOCC,YSSCALE,YSSTAFF,YSZ,YSZN,G,YSORT,YSCODEN,YS601,%DT,DAS,DFN,IFN,NI,N,N1,N2,YSID,X,Y,YSNEG,YSDFN
  K ^TMP($J,"YSG"),YSDATA
  D PARSE(.YS)
@@ -67,7 +70,7 @@ GAFPT ;gaf for pt IN time
  F  S IFN=$O(^YSD(627.8,"C",DFN,IFN),YSORT) Q:(IFN'>0)!(NI=YSLM)  D
  . S X=$P($G(^YSD(627.8,IFN,60)),U,3)
  . Q:X=""
- . S X=$P($G(^YSD(627.8,IFN,0)),U,3)
+ . S X=+$P($G(^YSD(627.8,IFN,0)),U,3) ;FT  6/7/12 Remedy #391317
  . Q:(X<YSBEG)!(X>YSEND)
  . S NI=NI+1
  . S ^TMP($J,"YSGAF",X,IFN)=""

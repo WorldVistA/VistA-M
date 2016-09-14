@@ -1,6 +1,8 @@
 PRCAAPR1 ;WASH-ISC@ALTOONA,PA/RGY - PATIENT ACCOUNT PROFILE ;2/12/97  11:48 AM
- ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284**;Mar 20, 1995;Build 35
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**34,45,108,143,141,206,192,218,276,275,284,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
+ ; PRCAAPR cleans up BILL, COUNT, DEBT, DTOUT, DIC, OUT, PRCADB, SEL, X
 HDR ;Head for Account profile
  S X="",$P(X,"=",23)="" W @IOF,!,X,"   A c c o u n t   P r o f i l e   ",X
 HDR1 N DMC,IBRX,RSN,TOP4,TOP6,DPTFLG,ACCTNUM,RCCV
@@ -58,12 +60,15 @@ BHDR ;Display status line
  W Y F X=1:1:IOM-$X-1 W "-"
  Q
 BLN ;
- N PRCOUT
+ N PRCOUT,REJFLAG
  I $Y+5>IOSL,COUNT D READ G:$D(OUT) Q2 D HDR,HDR2,BHDR
  ; PRCA*4.5*276, attach EOB indicator '%' to bill # when applicable
  S PRCOUT=$$COMP3^PRCAAPR(BILL)
  I STAT1'=99,PRCOUT'="%" S PRCOUT=$$IBEEOBCK(BILL)
- S:STAT1'=99 COUNT=COUNT+1,^TMP("PRCAAPR",$J,"O",COUNT)=BILL S X=$S(STAT1=99:BILL,1:$G(PRCOUT)_$G(^PRCA(430,BILL,0)))
+ ; PRCA*4.5*303 - add reject indicator to kbill if applicable ; #IA 6060
+ S REJFLAG=0 S:STAT1'=99 REJFLAG=$$BILLREJ^IBJTU6($P($P($G(^PRCA(430,BILL,0)),"^"),"-",2))
+ S:STAT1'=99 COUNT=COUNT+1,^TMP("PRCAAPR",$J,"O",COUNT)=BILL S X=$S(STAT1=99:BILL,1:$G(PRCOUT)_$S(REJFLAG:"c",1:"")_$G(^PRCA(430,BILL,0)))
+ ; PRCA*4.5*303 - End
  W !,$S(STAT1'=99:COUNT,1:"*"),?4,$P(X,"^") W:STAT1'=99 ?20,$$SLH^RCFN01($P(X,"^",10))
  W:STAT1'=99 ?31,$S($P(X,"^",2)=31:"TRIC PT",1:$E($P($G(^PRCA(430.2,$S($O(^PRCA(430.2,"AC",24,0))=$P(X,"^",2):+$P(X,"^",16),1:+$P(X,"^",2)),0)),"^"),1,7))  ; PRCA*4.5*192 changed CHMP PT to TRIC PT
  W:STAT1=99 ?31,"PAYMENT"

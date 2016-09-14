@@ -1,13 +1,15 @@
 PSODRG ;IHS/DSD/JCM - ORDER ENTRY DRUG SELECTION ;2/16/12 12:50pm
- ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427**;DEC 1997;Build 21
- ;Reference ^PSDRUG supported by DBIA 221
- ;Reference ^PS(50.7 supported by DBIA 2223
- ;Reference to PSSDIN supported by DBIA 3166
- ;Reference to $$NDCFMT^PSSNDCUT supported by IA 4707
- ;Reference to OROCAPI controlled subscription supported by IA 5367
- ;Reference to $$OITM^ORX8 supported by IA 5469
- ;Reference to ^VADPT supported by IA 10061
+ ;;7.0;OUTPATIENT PHARMACY;**20,23,36,53,54,46,112,139,207,148,243,268,324,251,375,387,398,390,427,411,458**;DEC 1997;Build 2
+ ;Reference to ^PSDRUG( supported by DBIA 221
+ ;Reference to ^PS(50.7 supported by DBIA 2223
+ ;Reference to $$PROMPT^PSSDIN supported by DBIA 3166
+ ;Reference to EN^PSSDIN supported by DBIA 3166
+ ;Reference to $$GETNDC^PSSNDCUT supported by DBIA 4707
+ ;Reference to ^OROCAPI controlled subscription supported by DBIA 5367
+ ;Reference to $$OITM^ORX8 supported by DBIA 5469
+ ;Reference to ^VADPT supported by DBIA 10061
  ;Reference to IN^PSSHRQ2 supported by DBIA 5369
+ ;Reference to ^XTMP("ORRDI" supported by DBIA 5440
  ;----------------------------------------------------------
 START ;
  S (PSONEW("DFLG"),PSONEW("FIELD"),PSODRG("QFLG"))=0 K PSORX("DFLG")
@@ -97,13 +99,16 @@ NFI ;display restriction/guidelines
  K NFI Q
 POST ;order checks
  N LIST S LIST="PSOPEPS"
- K PSODOSD,^TMP("PSORXDC",$J),^TMP($J,LIST)
+ K PSODOSD,^TMP("PSORXDC",$J),^TMP($J,LIST),^TMP("PSODAOC",$J)
  K ZDGDG,ZTHER,IT,PSODLQT,PSODOSD
+ I $D(^XTMP("ORRDI","OUTAGE INFO","DOWN")) S ^TMP("PSODAOC",$J,"NORDI",1,0)="Remote data not available - Only local order checks processed."
  S ^TMP($J,LIST,"IN","PING")="" D IN^PSSHRQ2(LIST)
- K DIR I $P(^TMP($J,LIST,"OUT",0),"^")=-1 D DATACK^PSODDPRE
+ K DIR I $P(^TMP($J,LIST,"OUT",0),"^")=-1 D
+ .D DATACK^PSODDPRE
+ .S ^TMP("PSODAOC",$J,"NOSYS",1,0)="No Enhanced Order Checks can be performed. Reason(s): "_$P($G(^TMP($J,LIST,"OUT",0)),"^",2)
  K ^TMP($J,LIST,"IN"),^TMP($J,LIST,"OUT","EXCEPTIONS")
  G:$G(PSORX("DFLG"))!($G(PSORXED("DFLG"))) POSTX
- K PSORX("INTERVENE") N STAT,SIG,PTR,NDF,VAP S PSORX("DFLG")=0
+ K PSORX("INTERVENE"),PSOQUIT N STAT,SIG,PTR,NDF,VAP S PSORX("DFLG")=0
  W !! D HD^PSODDPR2():(($Y+5)'>IOSL)
  D ^PSOBUILD
  D:'$D(PSODGCK) @$S($G(COPY):"^PSOCPPRE",1:"^PSODDPRE") ; Duplicate drug check
@@ -112,46 +117,60 @@ POST ;order checks
  I $P($G(^PSDRUG(PSODRUG("IEN"),"CLOZ1")),"^")="PSOCLO1" W !,"Now doing Clozapine Order checks.  Please wait...",! D CLOZ
  G:PSORX("DFLG") POSTX
  D HD^PSODDPR2():(($Y+5)'>IOSL)
- W !,"Now doing allergy checks.  Please wait...",!
+ W !,"Now doing allergy checks.  Please wait...",! H 1
  S PSONOAL="" D ALLERGY^PSOORUT2 D:PSONOAL'="" NOALRGY K PSONOAL
  D HD^PSODDPR2():(($Y+5)'>IOSL)
- G:PSORX("DFLG") POSTX
- I '$D(PSODGCKX) D ^PSODGAL1 K PSORX("INTERVENE")
- ;This is the allergy check for profile drugs
+ I '$G(PSODGCKX) D ^PSODGAL1 K PSORX("INTERVENE")
+ G:PSORX("DFLG")!$G(PSOQUIT) POSTX
+ ;This is the allergy check for profile drugs CK action
  I $D(PSODGCK),$D(PSOSD) D PRFLP^PSOUTL
+ G:$G(PSORX("DFLG")) POSTX ;pso*7*412
+ G:$G(PSOSPRNW)&($G(PSORENW("DFLG"))) POSTX ;speed renew
  ;aminoglycoside
- N AOC
+ N AOC,CROCPFLG S CROCPFLG=0
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  S AOC=$$AOC^OROCAPI(PSODFN,$P(PSODRUG("NDF"),"A",2)) I $P(AOC,"^",4)]"" D
+ .S CROCPFLG=1
  .W !!,"***Aminoglycoside Ordered***",!!
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=78,DIWF="" S X=$P(AOC,"^",4) D ^DIWP
- .W !! F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?2,^UTILITY($J,"W",1,ZX,0),! D HD^PSODDPR2():(($Y+5)'>IOSL)
+ .W ! F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?2,^UTILITY($J,"W",1,ZX,0),! D HD^PSODDPR2():(($Y+5)'>IOSL)
  .K ^UTILITY($J,"W")
+ .S ^TMP("PSODAOC",$J,"CPRS",$P(AOC,"^",2),0)=PSODRUG("IEN")_"^"_$P(AOC,"^",4)
+ .W !
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  ;dangerous meds for pat >64
  I $G(PSODRUG("OI")) D
  .N OI,OIR S OI=$$OITM^ORX8(PSODRUG("OI"),"99PSP") Q:'OI
  .S OIR=$$DOC^OROCAPI(PSODFN,OI) I $P(OIR,"^",4)]"" D
+ ..S CROCPFLG=1
  ..D HD^PSODDPR2():(($Y+5)'>IOSL) W !!,"***Dangerous Meds for Patient >64***",!! S DFN=PSODFN D DEM^VADPT
  ..K ^UTILITY($J,"W") S DIWL=1,DIWR=78,DIWF="" S X=$P(OIR,"^",4) D ^DIWP
  ..F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?2,^UTILITY($J,"W",1,ZX,0),! D HD^PSODDPR2():(($Y+5)'>IOSL)
  ..K ^UTILITY($J,"W")
+ ..S ^TMP("PSODAOC",$J,"CPRS",$P(OIR,"^",2),0)=PSODRUG("IEN")_"^"_$P(OIR,"^",4)
+ ..W !
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  ;metformin lab results
  N GOC S GOC=$$GOC^OROCAPI(PSODFN,PSODRUG("NAME")) I $P(GOC,"^",4)]"" D
+ .S CROCPFLG=1
  .W !!,"***Metformin Lab Results***",!!
  .K ^UTILITY($J,"W") S DIWL=1,DIWR=78,DIWF="" S X=$P(GOC,"^",4) D ^DIWP
  .F ZX=0:0 S ZX=$O(^UTILITY($J,"W",1,ZX)) Q:'ZX  W ?2,^UTILITY($J,"W",1,ZX,0),! D HD^PSODDPR2():(($Y+5)'>IOSL)
  .K ^UTILITY($J,"W")
+ .S ^TMP("PSODAOC",$J,"CPRS",$P(GOC,"^",2),0)=PSODRUG("IEN")_"^"_$P(GOC,"^",4)
+ .W !
  D HD^PSODDPR2():(($Y+5)'>IOSL)
- K DIWF,DIWL,DIWR,ZX,DFN
- I $G(PSODRUG("DEA"))["S"!($E($G(PSODRUG("VA CLASS")),1,2)="XA") D  G POSTX ;stops if drug is supply
+ ;clinical reminder oc
+ D:'$G(PSONCROC) CK^PSOCROC K CROCPFLG I $G(PSORX("DFLG")) Q
+ K DIWF,DIWL,DIWR,ZX,DFN,CROCPFLG
+ I $G(PSODRUG("DEA"))["S"!($E($G(PSODRUG("VA CLASS")),1,2)="XA"),'$G(PSODGCK) D  G POSTX ;stops if drug is supply
  .W !,"Now Processing Enhanced Order Checks!  Please wait...",! H 1
  ;enhanced OC
  D HD^PSODDPR2():(($Y+5)'>IOSL)
  W ! D @$S($G(COPY):"OBX^PSOCPPRE",1:"OBX^PSODDPRE") ; Set PSORX("DFLG")=1 if process to stop new enhanced order checks
 POSTX ;
- K IT,^TMP($J,"DI"),PSORX("INTERVENE"),DA,^TMP($J,"PSODRDI"),ZDGDG,ZTHER K ^TMP($J,"DI"_PSODFN),PSZZQUIT
+ K IT,^TMP($J,"DI"),PSORX("INTERVENE"),DA,^TMP($J,"PSODRDI"),ZDGDG,ZTHER,^TMP($J,"DI"_PSODFN),PSZZQUIT
+ I '$G(PSORXED),'$G(PSOREINS) K PSOQUIT
  Q
  ;
 EOJ ;

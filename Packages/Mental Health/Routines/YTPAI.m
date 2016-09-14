@@ -1,8 +1,9 @@
-YTPAI ;ASF/ALB- PAI TEST ;7/14/00  10:26
- ;;5.01;MENTAL HEALTH;**10,66**;Dec 30, 1994
+YTPAI ;ASF/ALB,HIOFO/FT - PAI TEST ;3/21/13  9:56am
+ ;;5.01;MENTAL HEALTH;**10,66,108**;Dec 30, 1994;Build 17
  ;
  ;Reference to $$SQRT^XLFMTH supported by IA #10105
  ;
+ ;called from ^YTT(601,216,"R")
  S YSLFT=0,YSNOITEM="DONE^YTPAI"
 MAIN ;
  S (R,S)="^",YSMX=4
@@ -46,7 +47,7 @@ KK S YSNUMX=0
  F I=1:2 Q:$P(Y,U,I)=""  S YSIT=$P(Y,U,I),A=$P(Y,U,I+1),B=$E(X,YSIT),YSTL=YSTL+$S(B="X":0,A="D":B-1,1:YSMX-B) S:B="X" YSNUMX=YSNUMX+1
  I (YSNUMX/(I-1))>.2 S YSTL="X"
  Q
-STND ;stanard T scores
+STND ;standard T scores
  F J=2:1:53 S A=$P(R,U,J) S:A?.N X=^YTT(601,YSTEST,"S",J,"M"),S(J)=$J((A-$P(X,U)/$P(X,U,2)*10+50),0,0) S:A="X" S(J)="X" S S=S_S(J)_U
  Q
 ADDIT ;additional indexes
@@ -70,7 +71,7 @@ ADDIT ;additional indexes
  I $P(S,U,14)-$P(S,U,11)>9 S YSINDX=YSINDX+1
  I $P(S,U,52)-$P(S,U,46)>14 S YSINDX=YSINDX+1
  I $P(S,U,22)-$P(S,U,49)>9 S YSINDX=YSINDX+1
- W !?2,"Defensivness Index = ",$J(YSINDX,3)
+ W !?2,"Defensiveness Index = ",$J(YSINDX,3)
 XBAR ;
  S YSINDX=0 F I=5,9,13,17,21,25,29,33,38,42,43 S YSINDX=YSINDX+$P(S,U,I)
  W !?2,"Mean Clinical Elevation = ",$J(YSINDX/11,4,0)
@@ -85,7 +86,7 @@ FITW W !,$P(^YTT(601,YSTEST,"G",1,1,K,0),U,1),?35,$J(9-N,6,3)
 FIT1 S (X1,Y1,X12,Y12,YSXY)=0,N=1
  S YSFIT=^YTT(601,YSTEST,"G",1,1,K,0)
  F I=1,2,3,4,5,9,13,17,21,25,29,33,38,42,43,44,48:1:53 D FITLOOP
- ;stanadrd dev t scores
+ ;standard dev t scores
  S YSXBAR=X1/22
  S YSXSD=$$SQRT^XLFMTH(X12/22-(YSXBAR*YSXBAR))
  ;standard dev fit data
@@ -106,7 +107,7 @@ CRIT ;
  W !!,"Potential for Aggression" F I=21,61,101,181 D CRITW
  W !!,"Substance Abuse" F I=55,222 D CRITW
  W !!,"Potential Malingering" F I=9,49,129,249 D CRITW
- W !!,"Ureliability/Resistance" F I=31,71,311 D CRITW
+ W !!,"Unreliability/Resistance" F I=31,71,311 D CRITW
  W !!,"Traumatic Stressors" F I=34,114,194,274 D CRITW
  Q
 CRITW ; write critical items

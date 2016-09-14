@@ -1,9 +1,16 @@
 PRCSEB ;SF-ISC/LJP/SAW/DXH/DAP - CPA EDITS CON'T ;7.26.99
-V ;;5.1;IFCAP;**81,174**;Oct 20, 2000;Build 23
- ;Per VHA Directive 10-93-142, this routine should not be modified.
+V ;;5.1;IFCAP;**81,174,184**;Oct 20, 2000;Build 8
+ ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*184  Check for error message indicating no 2237 seq nos.
+ ;             remaining to be used out of the max 9999 available
+ ;             for FCP FY-FQ.
+ ;
 ENRB ;ENTER CP CLERK REQUEST FROM OPTION PRCSENRB
  D ENF^PRCSUT(1) G W2:'$D(PRC("SITE")) G EXIT:'$D(PRC("QTR"))!(Y<0)
- D EN1^PRCSUT3 Q:'X  S PRCSX1=X D EN2^PRCSUT3 Q:'$D(PRCSX1)  S X=PRCSX1,T1=DA  D W L +^PRCS(410,DA):15 G ENRB:$T=0 I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)) S:$P(^(0),"^",11)="Y" PRCS2=1
+ S MSG="" D EN1^PRCSUT3 Q:'X  I MSG'="" W !!,MSG,! S DIR(0)="EAO",DIR("A")="Press <Enter> to exit processing..." D ^DIR K DIR,MSG Q      ;PRC*5.1*184
+ K MSG        ;PRC*5.1*184
+ S PRCSX1=X D EN2^PRCSUT3 Q:'$D(PRCSX1)  S X=PRCSX1,T1=DA  D W L +^PRCS(410,DA):15 G ENRB:$T=0 I $D(^PRC(420,PRC("SITE"),1,+PRC("CP"),0)) S:$P(^(0),"^",11)="Y" PRCS2=1
  ;
  ;*81 Check site parameter to see if issue books should be allowed
  D CKPRM

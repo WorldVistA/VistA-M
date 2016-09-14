@@ -1,5 +1,7 @@
-YSDX3UB ;SLC/DJP/LJA-Continuation of Utilities for Diagnosis Entry in the MH Medical Record ;09/07/94 13:11
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YSDX3UB ;SLC/DJP/LJA,HIOFO/FT - Continuation of Utilities for Diagnosis Entry in the MH Medical Record ;4/10/13 9:46am
+ ;;5.01;MENTAL HEALTH;**108**;Dec 30, 1994;Build 17
+ ;Reference to ^XLFSTR supported by DBIA #10104
+ ;Reference to ^XQH supported by DBIA #10074
  ;D RECORD^YSDX0001("^YSDX3UB") ;Used for testing.  Inactivated in YSDX0001...
  ;
 MODIF ; Called by routine YSDX3
@@ -107,7 +109,7 @@ MSET ;
  ;  YSQCH( -- req
  QUIT:'$D(YSQCH)  ;->
  N DA,DIE,DR,YSLP,YSQIEN,YSQSFOR,YSQUSEL
- L +^YSD(627.8,YSDA)
+ L +^YSD(627.8,YSDA):DILOCKTM
  S DIE="^YSD(627.8,",DA=YSDA
  S YSLP="YSQCH"
  F  S YSLP=$Q(@YSLP) QUIT:YSLP'["YSQCH("  D

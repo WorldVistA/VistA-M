@@ -1,7 +1,9 @@
-YTQAPI1 ;ASF/ALB- MHAX REMOTE PROCEDURES ; 4/3/07 10:50am
- ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 48
+YTQAPI1 ;ASF/ALB,HIOFO/FT - MHAX REMOTE PROCEDURES ; 1/23/13 1:46pm
+ ;;5.01;MENTAL HEALTH;**85,108**;Dec 30, 1994;Build 17
+ ;No external references
  Q
 RULES(YSDATA,YS) ;list rules for a survey
+ ;entry point for YTQ RULES rpc
  ;input: CODE as test name
  ;output: Field^Value
  N YSBOOL,YSQID,YSRID,YSTESTN,YSTEST,G,G1,G2,N,N1,N2,Z
@@ -29,6 +31,7 @@ RULES(YSDATA,YS) ;list rules for a survey
  . S N2=N2+1,YSDATA(N2)=Z(YSQID,YSBOOL,N1,3)
  Q
 EDAD(YSDATA,YS) ;Edit and Save Data
+ ;entry point for YTQ SAVE rpc
  N YSSER,YSX,YSNN,YSRESULT,G,YSF,YSV,N,YSIEN,YSFILEN
  K ^TMP("YSMHI",$J)
  S YSFILEN=$G(YS("FILEN"))
@@ -37,18 +40,19 @@ EDAD(YSDATA,YS) ;Edit and Save Data
  S N=0 F  S N=$O(YS(N)) Q:N'>0  D  Q:$G(YSRESULT)="^"
  . S G=YS(N)
  . S YSF=$P(G,U),YSV=$P(G,U,2),YSX=$P(G,U,3)
- . I '$D(^DD(YSFILEN,YSF)) S YSRESULT=1 Q
+ . I '$$VFIELD^DILFD(YSFILEN,YSF) S YSRESULT=1 Q
  . I YSV="" S YSRESULT=1 Q
  . S ^TMP("YSMHI",$J,YSFILEN,YSIEN,YSF)=YSV
  . D:YSX'=1 VAL^DIE(YSFILEN,YSIEN,+YSF,"E",YSV,.YSRESULT)
  . ;
  I $G(YSRESULT)="^" S YSDATA(1)="[ERROR]",YSDATA(2)="Value for Field Not Valid^"_YSV_U_YSF Q  ;--> out
  D UPDATE^DIE("E","^TMP(""YSMHI"",$J)","YSNN","YSERR")
- I $D(YSSER) S YSDATA(1)="[ERROR]",YSDATA(2)="Update Error" Q  ;-->out
+ I $D(YSERR) S YSDATA(1)="[ERROR]",YSDATA(2)="Update Error" Q  ;-->out
  S YSDATA(1)="[DATA]",YSDATA(2)="Update ok^"_$G(YSNN(1))_U_$G(YSNN(1,0))
  ;
  Q
 WPED(YSDATA,YS) ;Replace WP field
+ ;entry point for YTQ WP FILER rpc
  ;INPUT: filen,ien,field,ys(1)...ys(x)= text
  N YSF,N,YSIEN,YSERR,YSFILEN
  K ^TMP("YSMHI",$J)
@@ -65,6 +69,7 @@ WPED(YSDATA,YS) ;Replace WP field
  S YSDATA(1)="[DATA]",YSDATA(2)="ZZUpdate ok WP "_YSIEN
  Q
 GETANS(YSDATA,YS) ;get an answer
+ ;entry point for YTQ GETANS rpc
  ;AD = ADMINISTRATION #
  ;QN= QUESTION #
  N G,G1,N,YSAD,YSQN
@@ -79,7 +84,7 @@ GETANS(YSDATA,YS) ;get an answer
  . S:$P(^YTT(601.85,G,0),U,4)?1N.N N=N+1,YSDATA(N)=$P(^YTT(601.85,G,0),U,4) ;ASF 3/10/04 ***
  . F  S G1=$O(^YTT(601.85,G,1,G1)) Q:G1'>0  S N=N+1,YSDATA(N)=$G(^YTT(601.85,G,1,G1,0))
  Q
-CAPIE(YSDATA,YS) ;
+CAPIE(YSDATA,YS) ;entry point for YTQ CAPIE rpc
  N N,N1,N2,YSFIELDS,YSFILEN,YSIENS,X
  K ^TMP("YS",$J)
  K ^TMP("YSDATA",$J) S YSDATA=$NA(^TMP("YSDATA",$J))

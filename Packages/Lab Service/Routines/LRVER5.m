@@ -1,5 +1,5 @@
-LRVER5 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;05/17/12  15:37
- ;;5.2;LAB SERVICE;**42,153,283,286,350**;Sep 27, 1994;Build 230
+LRVER5 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;05/12/16  09:47
+ ;;5.2;LAB SERVICE;**42,153,283,286,350,458**;Sep 27, 1994;Build 10
  ;
  ; ZEXCEPT is used to identify variables which are external to a specific TAG
  ;         used in conjunction with Eclipse M-editor.
@@ -202,7 +202,7 @@ CH W !,"Enter for example: 5*2/4+1 and 3.5 will be returned [i.e. ((5*2)/4)+1=3.
  ;
 V25 ; From LRVER4, LRSTUF2
  ;
- ;ZEXCEPT: AGE,LRDEL,LRDUZ,LRDV,LRFP,LRNG,LRNGS,LRSA,LRSB,LRSPEC,LRTS,N,SEX,X2
+ ;ZEXCEPT: AGE,LRDEL,LRDUZ,LRDV,LRFP,LRNG,LRNGS,LRSA,LRSB,LRSPEC,LRTS,LRVF,N,SEX,X2
  ;
  N LRTX,LRX
  S (LRDV,LRNG,LRDEL,LRNGS)=""
@@ -225,16 +225,19 @@ V25 ; From LRVER4, LRSTUF2
  ;
 NORM ;
  ;
- ; Use previously stored units/normals if editing previous results.
- I $G(LRSB),$D(LRSA(LRSB)) D
- . I $P(LRSA(LRSB),"^")?1(1"pending",1"comment",1"canc") Q
- . S LRNG=$P(LRSA(LRSB),"^",5),LRNG=$TR(LRNG,"!","^")
+ ; Use previously stored units/normals if editing previous verified results.
+ I $G(LRSB) D
+ . I $D(LRSA(LRSB)) D
+ . . I $P(LRSA(LRSB),"^")?1(1"pending",1"comment",1"canc") Q
+ . . S LRNG=$P(LRSA(LRSB),"^",5),LRNG=$TR(LRNG,"!","^")
  ;
  D NORM2
  ;
  Q
  ;
 NORM2 ;
+ ;
+ ;ZEXCEPT: AGE,LRNG,LRNGS,LRX,SEX
  ;
  I $G(SEX)="" S SEX="M"
  I $G(AGE)="" S AGE=99

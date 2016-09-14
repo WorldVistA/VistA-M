@@ -1,6 +1,6 @@
 IBJDF11 ;ALB/CPM - THIRD PARTY FOLLOW-UP REPORT (COMPILE) ;09-JAN-97
- ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451**;21-MAR-94;Build 47
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**69,80,118,128,204,205,227,451,530**;21-MAR-94;Build 71
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 DQ ; - Tasked entry point.
  K ^TMP("IBJDF1",$J) S IBQ=0
@@ -45,7 +45,9 @@ DQ ; - Tasked entry point.
  .; - Get remaining claim information.
  .; IB*2.0*451 - get 1st/3rd party payment EEOB indicator for bill
  .S IBPFLAG=$$EEOB^IBOA31(IBA)
- .S IBWDP=$P(IBAR,U,10),IBWBN=$G(IBPFLAG)_$P(IBAR,U) ; flag bill # when applicable
+ .S IBWDP=$P(IBAR,U,10)
+ .;IB*2.0*530 Add indicator for rejects - External Bill # (.01) value is passed in, not IEN
+ .S IBWBN=$G(IBPFLAG)_$S(+$$BILLREJ^IBJTU6($P($G(^DGCR(399,IBA,0)),U)):"c",1:"")_$P(IBAR,U) ; flag bill # when applicable
  .S IBBU=$G(^DGCR(399,IBA,"U")),IBWFR=+IBBU,IBWTO=$P(IBBU,U,2)
  .S IBWSC=$$OTH($P(IBWPT,U,5),$P(IBWIN,"@@",2),IBWFR),IBWOR=$P(IBAR,U,3)
  .S IBWSI=$P($G(^DPT(+$P(IBWPT,U,5),.312,+$P($G(^DGCR(399,IBA,"MP")),U,2),0)),U,2)

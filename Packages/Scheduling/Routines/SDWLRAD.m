@@ -1,5 +1,5 @@
-SDWLRAD ;;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT;06/12/2002 ; 20 Aug 2002  2:10 PM
- ;;5.3;scheduling;**263**;AUG 13 1993
+SDWLRAD ;IOFO BAY PINES/TEH - ADHOC WAIT LIST REPORT ;1/5/16 4:21pm
+ ;;5.3;scheduling;**263,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -80,7 +80,9 @@ DIS ;Display Parameters
  .S X="SDWL"_SDWLI,@X=$O(^TMP("SDWLRAD",$J,SDWLI,""))
  I SDWLINS'="ALL" D
  .I 'E W !,"Institution: ALL INSTITUTIONS"
- W !,"Date Desired Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y W " ",SDWLBD," to ",SDWLED
+ ; SD*5.3*645 - replaced 'Date Desired' with 'CID/Preferred Date'
+ ;W !,"Date Desired Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y W " ",SDWLBD," to ",SDWLED
+ W !,"CID/Preferred Date Range: " S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBD=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLED=Y W " ",SDWLBD," to ",SDWLED
  W !,"Report Category: ",$S(SDWLCAT="C":" Clinic",1:" Service/Specialty")
  W !,"Priority: ",$S(SDWLPRI="I":" Immediate",1:" Future")
  W !,"Output Format: ",$S(SDWLFORM="D":" Detailed",1:" Summary")

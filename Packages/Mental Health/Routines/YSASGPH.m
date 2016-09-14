@@ -1,40 +1,43 @@
-YSASGPH ;ALB/ASF-ASI MULTIPLE OUTPUT ;2/25/97  14:05
- ;;5.01;MENTAL HEALTH;**24,30,37**;Dec 30, 1994
+YSASGPH ;ALB/ASF,HIOFO/FT - ASI MULTIPLE OUTPUT ;1/30/13  11:20pm
+ ;;5.01;MENTAL HEALTH;**24,30,37,108**;Dec 30, 1994;Build 17
+ ;Reference to ^XUTMDEVQ supported by DBIA #1519
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
  Q
-EN ;
+EN ;entry point for YSAS ASI COMPOSITE SCORES option
+ N YSASPIEN
  D PT
  Q:YSASPIEN'>0
- I '$D(^YSTX(604,"C",YSASPIEN)) W !,"No ASIs found for this patient" Q
+ I '$D(^YSTX(604,"C",YSASPIEN)) W !,"No ASIs found for this patient.",! Q
  W !
- ;ASK DEVICE 
- N YSASQUIT,%ZIS,POP
- S %ZIS="QM"
- D ^%ZIS
- Q:$G(POP)
- I $D(IO("Q")) D  Q
- .N ZTRTN,ZTDESC,ZTSAVE
- .S ZTRTN="ENQ^YSASGPH"
- .S ZTDESC="YSASGPH ASI COMPOSITE PRINT"
- .S ZTSAVE("YSASPIEN")=""
- .D ^%ZTLOAD
- .D HOME^%ZIS
- .Q
+ N ZTRTN,ZTDESC,ZTSAVE
+ S ZTRTN="ENQ^YSASGPH",ZTDESC="YSASGPH ASI COMPOSITE PRINT",ZTSAVE("YSASPIEN")=""
+ D EN^XUTMDEVQ(ZTRTN,ZTDESC,.ZTSAVE,"")
+ D HOME^%ZIS
+ Q
+ENQ ;queue task entry
  U IO
-ENQ ;que task entry
  S:$D(ZTQUEUED) ZTREQ="@"
- N YSASC,YSASCL,YSASDT,YSASIG,YSASINT,YSASQUIT
+ N I,G,G1,G2,N
+ N YSASC,YSASCL,YSASDT,YSASIG,YSASINT
  D TLD
  D TLP
  D GR,GR2
- D ^%ZISC
+ K ^TMP($J,"YSASI")
+ Q
+ ;D ^%ZISC
  Q
 PT ;patient lookup
+ N DIC
  S DIC="^DPT(",DIC(0)="AEMQ"
  D ^DIC
  S YSASPIEN=+Y
  Q
 TLD ;load ASI list
  K ^TMP($J,"YSASI")
+ N YSASIEN
  S YSASIEN=0,YSASC=0
  F  S YSASIEN=$O(^YSTX(604,"C",YSASPIEN,YSASIEN)) Q:YSASIEN'>0  D
  . S YSASC=YSASC+1
@@ -72,7 +75,9 @@ GR2 ;change scores
  Q
 TLP ; print list
  Q:'$D(^TMP($J,"YSASI"))
+ N DFN
  S DFN=YSASPIEN D DEM^VADPT
- W @IOF
- W !,VADM(1),"   ",$P(VADM(2),U,2),?$X+5,"ASI Composite Scores",!
+ W:$Y>0 @IOF
+ W !,VADM(1),"   ","xxx-xx-"_$E($P(VADM(2),U,2),8,11),?$X+5,"ASI Composite Scores",!
+ D KVA^VADPT
  Q

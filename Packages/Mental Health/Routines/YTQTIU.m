@@ -1,5 +1,5 @@
-YTQTIU ;ASF/ALB- MHAX TIU ;2/14/05 6:57pm ; 12/7/09 3:10pm
- ;;5.01;MENTAL HEALTH;**85,96**;Dec 30, 1994;Build 46
+YTQTIU ;ASF/ALB,HIOFO/FT - MHAX TIU ; 3/27/13 1:28pm
+ ;;5.01;MENTAL HEALTH;**85,96,108**;Dec 30, 1994;Build 17
  ;Reference to TIUPUTU APIs supported by DBIA #3351
  ;Reference to TIUSRVA APIs supported by DBIA #5541
  ;Reference to VADPT APIs supported by DBIA #10061
@@ -8,7 +8,7 @@ YTQTIU ;ASF/ALB- MHAX TIU ;2/14/05 6:57pm ; 12/7/09 3:10pm
  ;Reference to PXAPI APIs supported by DBIA #1889
  ;Reference to TIUSRVR1 supported by DBIA #2944
  Q
-PCREATE(YSDATA,YS) ;pn creation
+PCREATE(YSDATA,YS) ;entry point for YTQ PN CREATE rpc
  ;Input AD AS ien of 601.84 mh administration
  ; YS(1...X) as text of note
  N DFN,N,N1,N2,Y,J1,J2,YSAD,YSAVED,YSENC,YSHOSP,YSOK,YSORD,YSRPRIVL,YST,YSTIT,YSTS,YSVISIT,YSVSIT,YSVSTR,YST1,YSTIUX,YSTIUDA
@@ -47,7 +47,7 @@ PCREATE(YSDATA,YS) ;pn creation
  S YSTIUX(1202)=YSORD
  ;
  D DEM^VADPT,PID^VADPT S YSNM=VADM(1),YSSEX=$P(VADM(5),U),YSDOB=$P(VADM(3),U,2),YSAGE=VADM(4),YSSSN=VA("PID")
- S $P(YSHDR," ",60)="",YSHDR=YSSSN_"  "_YSNM_YSHDR,YSHDR=$E(YSHDR,1,44)_YSSEX_" AGE "_YSAGE
+ S $P(YSHDR," ",60)="",YSHDR="xxx-xx-"_$E(YSSSN,8,11)_"  "_YSNM_YSHDR,YSHDR=$E(YSHDR,1,44)_YSSEX_" AGE "_YSAGE
  D:'$D(^YTT(601.93,"C",YSINS)) BOTTOM ;add boilerplate at end if no report ASF 8/20/08
  I YSTIUDA>0 D UPDATE Q  ;-->out
  D TXTCK(0)

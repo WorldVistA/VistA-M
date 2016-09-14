@@ -1,5 +1,5 @@
 SRHLSCRN ;B'HAM ISC/DLR - Surgery Interface Menu to initial field settings ; [ 05/06/98   7:14 AM ]
- ;;3.0; Surgery ;**41**;24 Jun 93
+ ;;3.0;Surgery ;**41,186**;24 Jun 93;Build 3
  ; Per VHA Directive 10-93-142, this routine SHOULD NOT be modified.
  N CNT,CNT1,OUT,SRA,SRX,SRY,SROBR,SROBX
  S (CNT,SRX)=0 F  S SRX=$O(^SRO(133.2,SRX)) Q:'SRX  I $D(^SRO(133.2,SRX,2,0)) S CNT=CNT+1,CNT(CNT)=SRX D
@@ -40,7 +40,7 @@ HDR1(SROBR,SROBX) ;header for the OBX Menu
  Q SROBX
 OBR ;
  N X,X1
- D KDIR S DIR("A")="Do you wish to change the current setting of "_$P(^SRO(133.2,CNT(SROBR),0),U),DIR(0)="133.2,3^O",DA=CNT(SROBR) D ^DIR I $D(DIRUT) S OUT=1
+ D KDIR S DIR("A")="Do you wish to change the current setting of "_$P(^SRO(133.2,CNT(SROBR),0),U),DIR(0)="133.2,3^O",DA=CNT(SROBR) D ^DIR I $D(DIRUT) S OUT=1 Q
  S $P(^SRO(133.2,CNT(SROBR),0),U,4)=Y I $D(^SRO(133.2,CNT(SROBR),1,0)) S X=0 F  S X=$O(^SRO(133.2,CNT(SROBR),1,X)) Q:'X  S:Y'="S/R" $P(^SRO(133.2,X,0),U,4)=Y
  S SRA=Y I Y="S/R" K DA
  I SRA="S" D

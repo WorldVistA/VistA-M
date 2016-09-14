@@ -1,5 +1,5 @@
 PSOUTLA1 ;BHAM ISC/RTR-Pharmacy utility program cont. ; 17 Jun 2011  2:21 PM
- ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206,388**;DEC 1997;Build 6
+ ;;7.0;OUTPATIENT PHARMACY;**35,186,218,259,206,388,444**;DEC 1997;Build 34
  ;External reference to File ^PS(55 supported by DBIA 2228
  ;External reference to File ^PSDRUG supported by DBIA 221
  ;External reference to File ^PS(59.7 supported by DBIA 694
@@ -120,12 +120,21 @@ DEACHK(PSIRXN,PSDEA,PSDAYS,PCLOZ,PSOCS,PSMAXRF) ;Apply DEA restrictions
  ;no refills allowed on sched 2
  I $P(PSOCS,"^",2)=1 S PSMAXRF=$$NUMFILLS(PSIRXN) Q 2  ;*388
  ;
- ;set max refill for controlled substance & other based on days supply
+ ; Checking past dispensed DAYS SUPPLY to make sure the refill does not exceed maximum allowed (PSO*7*444)
  S PSDAYS=+$G(PSDAYS)
- I PSOCS D
- . S PSMAXRF=$S(PSDAYS<60:5,PSDAYS'<60&(PSDAYS'>89):2,PSDAYS=90:1,1:0)
+ I PSOCS,$$TOTALDS+PSDAYS>184 Q 1
+ I 'PSOCS,$$TOTALDS+PSDAYS>365 Q 1
+ ;
+ ;set max refill for controlled substance & other based on days supply
+ I $G(PSIRXN) D
+ . S PSMAXRF=$$MAXNUMRF^PSOUTIL(+$P(^PSRX(PSIRXN,0),"^",6),PSDAYS,+$P(^PSRX(PSIRXN,0),"^",3))
  E  D
- . S PSMAXRF=$S(PSDAYS<60:11,PSDAYS'<60&(PSDAYS'>89):5,PSDAYS=90:3,1:0)
+ . I PSOCS D
+ . . I PSDAYS'>90 S PSMAXRF=$S(PSDAYS<60:5,PSDAYS'<60&(PSDAYS'>89):2,PSDAYS=90:1,1:0)
+ . . I PSDAYS>90 S PSMAXRF=182\PSDAYS-1
+ . E  D
+ . . I PSDAYS'>90 S PSMAXRF=$S(PSDAYS<60:11,PSDAYS'<60&(PSDAYS'>89):5,PSDAYS=90:3,1:0)
+ . . I PSDAYS>90 S PSMAXRF=365\PSDAYS-1
  ;
  ;get number of fills if applies & compare to Max refills
  N PNFILLS S PNFILLS=$$NUMFILLS(PSIRXN)
@@ -142,6 +151,18 @@ NUMFILLS(PSIRXN) ;Return number of fills thus far, or 0 if doesn't apply
  S (RFN,RFNC)=0
  F  S RFN=$O(^PSRX(PSIRXN,1,RFN)) Q:'RFN  S RFNC=RFNC+1
  Q RFNC
+ ;
+TOTALDS(RXIEN) ; Return the Total number of Days Supply for a prescription
+ ; Input: RXIEN   - PRESCRIPTION file (#52) IEN (Internal Entry Number)
+ ;Output: TOTALDS - Sum of DAYS SUPPLY field from all Rx Fills (original + Refills only)
+ ;
+ Q:'$G(RXIEN) 0
+ N TOTALDS,RXFILL
+ S TOTALDS=$$GET1^DIQ(52,RXIEN,8)
+ S RXFILL=0
+ F  S RXFILL=$O(^PSRX(RXIEN,1,RXFILL)) Q:'RXFILL  D
+ . S TOTALDS=TOTALDS+$$GET1^DIQ(52.1,RXFILL_","_RXIEN,1.1)
+ Q TOTALDS
  ;
 REFIP(RXI,RFIL,TYP) ;Check if refill is Not Released and In Process and
  ;           pending Auto Release by an external dispense machine.

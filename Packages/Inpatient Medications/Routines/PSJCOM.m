@@ -1,5 +1,5 @@
 PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;02 Feb 2001  12:20 PM
- ;;5.0;INPATIENT MEDICATIONS;**110,186,267**;16 DEC 97;Build 158
+ ;;5.0;INPATIENT MEDICATIONS;**110,186,267,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^VALM1 is supported by DBIA 10116.
  ; Reference to ^PS(55 is supported by DBIA 2191.
@@ -7,6 +7,7 @@ PSJCOM ;BIR/CML3-FINISH COMPLEX UNIT DOSE ORDERS ENTERED THROUGH OE/RR ;02 Feb 2
  ; Reference to ^%RCR is supported by DBIA 10022.
  ; Reference to ^DIR is supported by DBIA 10026.
  ; Reference to ^TIUEDIT is supported by DBIA 2410.
+ ; Reference to ^TMP("PSODAOC",$J supported by DBIA 6071.
  ;
 UPD ;
  Q:'PSJCOM
@@ -31,6 +32,8 @@ UPD ;
  Q
 VFY ; change status, move to 55, and change label record
  Q:'PSJCOM
+ S ^TMP("PSODAOC",$J,"IP IEN")=PSGORD
+ D SETOC^PSJNEWOC(PSGORD)
  I '$D(^TMP("PSJCOM",$J,+PSGORD)) M ^TMP("PSJCOM",$J,+PSGORD)=^PS(53.1,+PSGORD)
  NEW PSJDOSE,PSJDSFLG
  D DOSECHK^PSJDOSE
@@ -73,7 +76,7 @@ DONE ;
  .N DIR W ! S DIR(0)="S^Y:Yes;N:No",DIR("A")="Do you want to enter a Progress Note",DIR("B")="No" D ^DIR
  .Q:Y="N"
  .D MAIN^TIUEDIT(3,.TIUDA,PSGP,"","","","",1)
- S VALMBCK="Q" K CHK,DA,DIE,F,DP,DR,ND,PSGAL,PSGODA,PSJDOSE,PSJVAR,VND4,X Q
+ S VALMBCK="Q" K CHK,DA,DIE,F,DP,DR,ND,PSGAL,PSGODA,PSJDOSE,PSJVAR,VND4,X,%X,%Y,Q,QQ Q
  ;
 DDCHK ; dispense drug check
  S DRGF=$S('$D(^TMP("PSJCOM2",$J,+PSGORD)):"^TMP(""PSJCOM"","_$J_","_+PSGORD_",",1:"^TMP(""PSJCOM2"","_$J_","_+PSGORD_","),CHK=$S('$O(@(DRGF_"1,0)")):7,1:0)

@@ -1,12 +1,12 @@
-YSASRU ;ASF/ALB - ASI ROLLUP ;11/14/11 12:21PM
- ;;5.01;MENTAL HEALTH;**24,30,32,38,55,106**;Dec 30, 1994;Build 10
+YSASRU ;ASF/ALB,HIOFO/FT - ASI ROLLUP ;2/21/13 10:01am
+ ;;5.01;MENTAL HEALTH;**24,30,32,38,55,106,108**;Dec 30, 1994;Build 17
  ;Reference to XMD supported by IA #10070
  ;Reference to XLFDT supported by DBIA #10103
  ;Reference to ^DPT( supported by DBIA #10035
  ;Reference to ^VA(200 supported by DBIA #10060
  ;Reference to FILE 4 fields supported by DBIA #10090
  Q
-EN ;
+EN ;entry point for YSAS NATIONAL ROLLUP option
  S:$D(ZTQUEUED) ZTREQ="@"
  Q  ;ASF 10/13/11 stop all rollups
  N XMSUB,XMTEXT,XMY,XMZ,YSASIEN,YSASNOW,YSASSITE,YSFLD,YSIE,YSN
@@ -51,7 +51,7 @@ SET ;data entry
  F YSFLD="15.01,15.02,15.03","15.04,15.05,15.06","15.07,15.08,15.09","15.11,15.12,15.14","15.15,15.16,15.17","15.18,15.19,15.21","15.22,15.23,15.24" D GETFH
  F YSFLD="15.25,15.26,15.27","16.01,16.02,16.03","16.04,16.05,16.06","16.07,16.08,16.09","16.11,16.12,16.14" D GETFH
  Q
-GETI ;internal FM retrive
+GETI ;internal FM retrieve
  S YSIE=$S(YSFLD>10&(YSFLD<11):"",YSFLD=".02":"",YSFLD=.09:"",YSFLD=".05":"",YSFLD="2":"",YSFLD=1:"",1:"I")
  S X=$$GET1^DIQ(604,YSASIEN_",",YSFLD,YSIE)
  S ^TMP($J,"YSASRU",YSN,0)=$G(^TMP($J,"YSASRU",YSN,0))_X_U
@@ -69,7 +69,7 @@ XMIT ;transmit
  K XMZ S %DT="T",X="NOW" D ^%DT,DD^%DT
  S YSASNOW=Y
  ;S YSASSITE=$P(^DIC(4,$P(^XMB(1,1,"XUS"),"^",17),0),"^",1)
- S YSASSITE=$$SITE^YSASCF
+ S YSASSITE=$$SITE^YSASU()
  K XMY S XMY($P(^YSTX(604.8,1,2),U))=""
  S XMDUZ="ASI ROLLUP",XMTEXT="^TMP($J,""YSASRU"",",XMSUB="ASI Admins data from: "_YSASSITE_" on "_YSASNOW D ^XMD
  Q
@@ -88,7 +88,7 @@ INFORM ;local mail info
  K XMZ S %DT="T",X="NOW" D ^%DT,DD^%DT
  S YSASNOW=Y
  ;S YSASSITE=$P(^DIC(4,$P(^XMB(1,1,"XUS"),"^",17),0),"^",1)
- S YSASSITE=$$SITE^YSASCF
+ S YSASSITE=$$SITE^YSASU()
  K XMY S X=0 F  S X=$O(^YSTX(604.8,"AB",X)) Q:X'>0  S XMY($P(^VA(200,X,0),U))=""
  S XMDUZ="ASI ROLLUP",XMTEXT="^TMP($J,""YSASINFO"",",XMSUB="ASI data SENT from: "_YSASSITE_" on "_YSASNOW D ^XMD
  Q

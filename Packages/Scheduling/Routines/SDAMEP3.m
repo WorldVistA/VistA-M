@@ -1,5 +1,5 @@
-SDAMEP3 ;ALB/CAW - Extended Display (Appt. Event Log) ; 16 May 2001  6:31 PM
- ;;5.3;Scheduling;**20,241**;Aug 13, 1993
+SDAMEP3 ;ALB/CAW - Extended Display (Appt. Event Log) ;1/5/16 12:24pm
+ ;;5.3;Scheduling;**20,241,645**;Aug 13, 1993;Build 7
  ;
 APLOG ;
  D SET^SDAMEP1("                       *** Appointment Event Log ***")
@@ -59,7 +59,8 @@ CWT ;Clinic Wait Time Information
  D SET^SDAMEP1(X)
  ;
  S X=""
- S X=$$SETSTR^VALM1("         Desired date:",X,5,SDWIDTH+6)
+ ; SD*5.3*645 - replaced Desired date with CID/Preferred date when presented to the user
+ S X=$$SETSTR^VALM1("   CID/Preferred date:",X,5,SDWIDTH+6)
  S X=$$SETSTR^VALM1($S('SDCWT:"N/A",1:SDPT(2.98,SDT,27)),X,SDFSTCOL+10,50)
  D SET^SDAMEP1(X)
  ;
@@ -79,9 +80,10 @@ CWT ;Clinic Wait Time Information
  D SET^SDAMEP1(X)
  D SET^SDAMEP1("")
  I SDCWT D  Q
+ .;SD*5.3*645 - replaced 'Desired date' with 'CID/Preferred date' when presented to the user
  .D SET^SDAMEP1("NOTE: Clinic Wait Time1 represents the difference between the date the")
  .D SET^SDAMEP1("      appointment was entered and the date it was performed.  Clinic Wait")
- .D SET^SDAMEP1("      Time2 represents the difference between the 'desired date' and the")
+ .D SET^SDAMEP1("      Time2 represents the difference between the 'CID/Preferred date' and the")
  .D SET^SDAMEP1("      date the appointment was performed.")
  .Q
  D SET^SDAMEP1("")

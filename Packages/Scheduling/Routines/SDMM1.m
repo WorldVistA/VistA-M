@@ -1,5 +1,5 @@
-SDMM1 ;ALB/GRR - MULTIPLE BOOKINGS ; 2/7/05 8:16am
- ;;5.3;Scheduling;**28,206,168,327,622**;Aug 13, 1993;Build 30
+SDMM1 ;ALB/GRR - MULTIPLE BOOKINGS ;1/5/16 12:23pm
+ ;;5.3;Scheduling;**28,206,168,327,622,645**;Aug 13, 1993;Build 7
 MAKE S (SDX3,X,SD)=Y,SM=0 D DOW^SDM0 I $D(^DPT(DFN,"S",X)) S I=^(X,0) I $P(I,"^",2)'["C" W !,"PATIENT ALREADY HAS APPOINTMENT ON ",$P("JAN^FEB^MAR^APR^MAY^JUN^JUL^AUG^SEP^OCT^NOV^DEC","^",$E(X,4,5))," ",$E(X,6,7)," AT THAT TIME" Q
  S SDX7=X D SDFT^SDMM S X=SDX7 I $P(SDX3,".")'<SDEDT W !,*7,"EXCEEDS MAXIMUM DAYS FOR FUTURE APPOINTMENT!!",*7 Q
 S S SDNOT=0 I '$D(^SC(SC,"ST",$P(X,"."),1)) S SS=$O(^SC(+SC,"T"_Y,X)) G X:'SS,X:^(SS,1)="" S ^SC(+SC,"ST",$P(X,"."),1)=$E($P($T(DAY),U,Y+2),1,2)_" "_$E(X,6,7)_$J("",SI+SI-6)_^(1),^(0)=$P(X,".")
@@ -10,14 +10,15 @@ SC S POP=0,SD=X D SC^SDM1 I SDLOCK W ! D DT W " HAS BEEN LOCKED BY ANOTHER USER 
  S SM=9 G SC
  ;
 OK S ^SC(SC,"ST",$P(X,"."),1)=S,^SC(SC,"S",X,0)=X S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
-S1 L ^SC(SC,"S",X,1):5 G:'$T S1 F Y=1:1 I '$D(^SC(SC,"S",X,1,Y)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(Y,0)=DFN_U_(+SL)_U_U_D_U_U_$S($D(DUZ):DUZ,1:"")_U_DT_U_U_U_$S(+SDEMP:+SDEMP,1:"") S SDY=Y L  Q
+S1 L +^SC(SC,"S",X,1):5 G:'$T S1 F Y=1:1 I '$D(^SC(SC,"S",X,1,Y)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(Y,0)=DFN_U_(+SL)_U_U_D_U_U_$S($D(DUZ):DUZ,1:"")_U_DT_U_U_U_$S(+SDEMP:+SDEMP,1:"") S SDY=Y L  Q
  I SM S ^("OB")="O" ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,"OB")
  I $D(^SC(SC,"RAD")),^("RAD")="Y"!(^("RAD")=1) S ^SC("ARAD",SC,X,DFN)=""
  S SDINP=$$INP^SDAM2(DFN,X)
  S COV=3,SDYC="",COV=$S(COLLAT=1:1,1:3),SDYC=$S(COLLAT=7:1,1:""),^DPT(DFN,"S",X,0)=SC_"^"_$$STATUS^SDM1A(SC,SDINP,X)_"^^^^^"_COV_"^^^^"_SDYC_"^^^^^"_SDAPTYP_"^^^"_DT_"^^^^^^M^0",SDMADE=1
  ; SD*5.3*622 - set desired date for appointment
- I SDZ>1 S ^DPT(DFN,"S",SD,1)=$P($G(SD),".",1)
- E  S ^DPT(DFN,"S",SD,1)=SDDATE
+ ; SD*5.3*645 - added follow-up indicator, desired date is now also known as CID/Preferred Date
+ I SDZ>1 S ^DPT(DFN,"S",SD,1)=$P($G(SD),".",1)_U_SDSRFU
+ E  S ^DPT(DFN,"S",SD,1)=SDDATE_U_SDSRFU  ; end changes for SD*5.3*645
  D XRDT(DFN,X)  ;xref DATE APPT. MADE field
  K:$D(^DPT("ASDCN",SC,X,DFN)) ^(DFN) K:$D(^DPT(DFN,"S",X,"R")) ^("R")
  S SDRT="A",SDTTM=X,SDPL=SDY,SDSC=SC D RT^SDUTL

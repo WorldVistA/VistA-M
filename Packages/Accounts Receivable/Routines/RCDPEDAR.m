@@ -1,5 +1,5 @@
 RCDPEDAR ;ALB/TMK - ACTIVITY REPORT ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,276,284,283,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,276,284,283,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  Q
  ;
@@ -385,7 +385,8 @@ EFTDTL(Z2,Z3,RCSTOP,RCDET,RCFMS1,RCNJ) ; Display EFT Detail
  S X=$$SETSTR^VALM1(RCPAY_"/"_$P(Z3,U,3),"",15,65) ; PRCA*4.5*298
  D SL(X)
  S X=""
- I $P(Z3,U,9) S X=$$SETSTR^VALM1($P($G(^RCY(344,+$P(Z3,U,9),0)),U),X,46,10)
+ ;PRCA*4.5*304 - lengthen receipt number display to 12
+ I $P(Z3,U,9) S X=$$SETSTR^VALM1($P($G(^RCY(344,+$P(Z3,U,9),0)),U),X,46,12)
  S X=$$SETSTR^VALM1($G(RCFMS1(Z2)),X,61,19)
  D:$$PC HDR(.RCSTOP,RCDET,RCNJ) Q:RCSTOP
  D SL(X)

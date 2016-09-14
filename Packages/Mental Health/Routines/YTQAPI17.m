@@ -1,11 +1,12 @@
-YTQAPI17 ;ALB/ASF - MHA REMOTE PROCEDURES IMPORT ;3/18/10 3:16pm
- ;;5.01;MENTAL HEALTH;**96**;Dec 30, 1994;Build 46
+YTQAPI17 ;ALB/ASF,HIOFO/FT - MHA REMOTE PROCEDURES IMPORT ;1/23/13 4:27pm
+ ;;5.01;MENTAL HEALTH;**96,108**;Dec 30, 1994;Build 17
+ ;No external references
  Q
- ;No external references in this routine
 SAVEALL(YSDATA,YS) ;save all answers from an administration
+ ;entry point for YTQ SET ANSWER ALL rpc
  ;input: AD = ADMINISTRATION #
  ;output: [DATA] vs [ERROR]
- N G,G1,N,N1,YSIENS,YSAD,YSQN,YSCI,YSCODE,YSOP,YSFLAG
+ N N,N1,YSIENS,YSAD,YSQN,YSCI,YSCODE,YSOP,YSFLAG
  S YSDATA(1)="[ERROR]"
  S YSAD=$G(YS("AD"))
  I YSAD'?1N.N S YSDATA(2)="bad ad num" Q  ;-->out
@@ -18,7 +19,7 @@ SAVEALL(YSDATA,YS) ;save all answers from an administration
  . ;set new ien
  . I '$D(^YTT(601.85,"AC",YSAD,YSQN)) S YSIENS="",YSIENS=$$NEW^YTQLIB(601.85)
  . I YSIENS'?1N.N S YSFLAG=1,YSDATA(1)="[ERROR]",YSDATA(2)="bad ans ien" Q  ;-->out
- . L +^YTT(601.85,YSIENS):3
+ . L +^YTT(601.85,YSIENS):DILOCKTM
  . I '$T S YSFLAG=1,YSDATA(1)="[ERROR]",YSDATA(2)="time out" Q  ;-->out
  . S ^YTT(601.85,YSIENS,0)=YSIENS_U_YSAD_U_YSQN_U_YSCI
  . L -^YTT(601.85,YSIENS)

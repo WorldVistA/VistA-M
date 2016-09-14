@@ -1,5 +1,5 @@
-SDAPIAP ;ALB/MJK - Outpatient API/Appointments ; 22 FEB 1994 11:30 am
- ;;5.3;Scheduling;**27,132**;08/13/93
+SDAPIAP ;ALB/MJK - Outpatient API/Appointments ;JAN 15, 2016
+ ;;5.3;Scheduling;**27,132,627**;08/13/93;Build 249
  ;
 EN(DFN,SDT,SDCL,SDUZ,SDMODE,SDVIEN) ; -- check api for appts
  N SDDA,SDOE
@@ -7,7 +7,7 @@ EN(DFN,SDT,SDCL,SDUZ,SDMODE,SDVIEN) ; -- check api for appts
  ; -- verify that check-out can occur
  D CHECK(DFN,SDT,SDCL,.SDDA) I $$ERRCHK^SDAPIER() G ENQ
  ;
- ; -- file check-out data ; get encount ien
+ ; -- file check-out data ; get encounter ien
  S SDOE=$$FILE(DFN,SDT,SDCL,SDUZ,SDDA,SDMODE,$G(SDVIEN))
  ;
 ENQ Q SDOE
@@ -24,7 +24,7 @@ CHECK(DFN,SDT,SDCL,SDDA) ; -- check if event can occur/allowed
  ; -- error if no slot for appt
  S SDDA=$$FIND^SDAM2(DFN,SDT,SDCL) I 'SDDA D ERRFILE^SDAPIER(102,SDT_U_SDCL) G CHECKQ
  ;
- ; -- get appt status data 
+ ; -- get appt status data
  S STATUS=$$STATUS^SDAM1(DFN,SDT,SDCL,SDATA,SDDA)
  ;
  ; -- error if current status won't allow checking-out
@@ -54,6 +54,14 @@ FILE(DFN,SDT,SDCL,SDUZ,SDDA,SDMODE,SDVIEN) ; -- file data
  ; -- time stamp check-out and log data
  D DT(DFN,SDT,SDCL,SDDA,$G(@SDROOT@("DATE/TIME")))
  D LOGDATA(SDOE)
+ ;
+ ; -- update SDEC APPOINTMENT  ;alb/sat 627
+ I $G(@SDROOT@("DATE/TIME")) D
+ .N SDECAPPT,SDECVPRV
+ .S SDECAPPT=$$APPTGET^SDECUTL(DFN,SDT,SDCL)  ;get SDEC APPOINTMENT ien
+ .S SDECVPRV=$O(^AUPNVPRV("AD",+$G(SDVIEN),0))
+ .D CO1^SDEC25B(SDECAPPT,@SDROOT@("DATE/TIME"),SDOE,SDECVPRV)  ;call update
+ ;end addition/modification  ;alb/sat 627
  ;
  ; -- process data
  D FILE^SDAPICO(SDOE,SDUZ)
@@ -86,7 +94,7 @@ DTQ Q
 LOGDATA(SDOE,SDLOG) ; -- log user, date/time and other data
  N DIE,DA,DR,Y,X
  S SDLOG("USER")=$S(+$G(SDUZ):+SDUZ,1:$G(DUZ)) ; -- editing user
- S SDLOG("DATE/TIME")=$$NOW^XLFDT()            ; -- last edited 
+ S SDLOG("DATE/TIME")=$$NOW^XLFDT()            ; -- last edited
  S DIE="^SCE(",DA=SDOE,DR="[SD ENCOUNTER LOG]" D ^DIE
  Q
  ;

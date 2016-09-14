@@ -1,5 +1,6 @@
-FHORD7 ; HISC/REL/NCA/JH - Diet Order Utilities ;4/5/96  11:27
- ;;5.5;DIETETICS;**8**;Jan 28, 2005;Build 28
+FHORD7 ; HISC/REL/NCA/JH - Diet Order Utilities ; 3/10/16 3:13pm
+ ;;5.5;DIETETICS;**8,41**;Jan 28, 2005;Build 4
+ ;Patch #41 - adds timeout to incremental locks
 CUR ; Get Diet
  S FHZ115="P"_DFN D CHECK^FHOMDPA I FHDFN="" Q
  S X1=$G(^FHPT(FHDFN,"A",ADM,0)),FHORD=$P(X1,"^",2),X1=$P(X1,"^",3),(FHLD,FHOR,X,Y)=""
@@ -57,7 +58,7 @@ U2 I $P(^FHPT(FHDFN,"A",ADM,0),"^",2,3)=X1_"^"_X2 Q
 U3 S (X1,X2)="" G U2
 SK K ^FHPT(FHDFN,"A",ADM,"AC",A1) S Z6=-1 G ACR^FHORD71
 ORD ; Get next order #
- L +^FHPT(FHDFN,"A",ADM,"DI",0)
+ L +^FHPT(FHDFN,"A",ADM,"DI",0):$S($G(DILOCKTM):DILOCKTM,1:3)
  I '$D(^FHPT(FHDFN,"A",ADM,"DI",0)) S ^FHPT(FHDFN,"A",ADM,"DI",0)="^115.02A^^"
  S X=^FHPT(FHDFN,"A",ADM,"DI",0),FHORD=$P(X,"^",3)+1,^(0)=$P(X,"^",1,2)_"^"_FHORD_"^"_($P(X,"^",4)+1)
  L -^FHPT(FHDFN,"A",ADM,"DI",0) Q:'$D(^FHPT(FHDFN,"A",ADM,"DI",FHORD))  G ORD

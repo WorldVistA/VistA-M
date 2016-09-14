@@ -1,5 +1,5 @@
-LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;Jun 24, 2008
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66,74**;Sep 27, 1994;Build 229
+LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;04/19/16  16:27
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,67,72,66,74,88**;Sep 27, 1994;Build 10
  ;
  ; This routine is a continuation of LA7VIN5.
  ; It performs processing of fields in OBX segments.
@@ -8,6 +8,7 @@ LA7VIN5A ;DALOI/JMC - Process Incoming UI Msgs, continued ;Jun 24, 2008
  ;
 XFORM ; Transform the result based on fields 12,13,14,16,17 in the Chem Test
  ; multiple in the Auto Instrument file (62.4), or set on the fly from PARAM 1
+ ;
  N LA7I
  S LA7XFORM=LA76241(2)
  ;
@@ -33,6 +34,8 @@ XFORM ; Transform the result based on fields 12,13,14,16,17 in the Chem Test
  I $P(LA7XFORM,"^",5) D
  . I LA7INTYP=10,LA7SAC?1(1"A",1"G") Q
  . S LA7LIMIT=1
+ ; Check if Lab UI and auto release then always set ordered tests only.
+ I LA7INTYP=1,LA7AUTORELEASE S LA7LIMIT=1
  ;
  ; Decimal places if number of places defined
  I $P(LA7XFORM,"^")?1.N D JUSTDEC
@@ -70,7 +73,7 @@ CHKDIE ; Check if value to be stored passes input transform of field in DD
  I LA7Y="^" D
  . N LA7X
  . S LA7X=$G(LA7ERR("DIERR",1,"TEXT",1))
- . D CREATE^LA7LOG(37)
+ . S LA7ERR=37,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  . S LA7VAL=""
  Q
  ;
@@ -88,7 +91,7 @@ JUSTDEC ; Justify to number of places specified
  I "NUMERIC^FREE TEXT"'[LA7DDTYP D  Q
  . N LA7FLDNM
  . S LA7FLDNM=$$GET1^DID(63.04,LA76304,"","LABEL")
- . D CREATE^LA7LOG(38)
+ . S LA7ERR=38,LA7AERR=$$CREATE^LA7LOG(LA7ERR,1)
  ;
  S LA7X=LA7VAL,(LA7FMT,LA7PRFIX)=""
  ;
@@ -141,8 +144,10 @@ PRDID(LA7PRDID,LA7SFAC,LA7CS) ; Process/Store Producer's ID
 REFRNG(LA7X) ; Process/Store References Range.
  ; Call with LA7X = reference range to store.
  ;
- Q:$G(LA7INTYP)=1
  N LA7Y,X,Y
+ ;
+ ; Check if Lab UI and not auto release then quit otherwise store ranges.
+ I LA7INTYP=1,'LA7AUTORELEASE Q
  ;
  ; Check if site does not want to store reference ranges on POC test.
  I LA7INTYP>19,LA7INTYP<30,+$P(LA76241(2),"^",10)=0 Q
@@ -185,8 +190,10 @@ ABFLAG(LA7X) ; Process/Store Abnormal Flags.
  ; Converts flag to interpretation based on HL7 Table 0078.
  ; If no match store code instead of interpretation
  ;
- Q:LA7INTYP=1
  N I,LA7I,LA7Y,X
+ ;
+ ; Check if Lab UI and not auto release then quit otherwise store abnormal flags.
+ I LA7INTYP=1,'LA7AUTORELEASE Q
  ;
  ; Store abnormal flags in LAH global with results.
  ; Currently only storing high/low and critical flags

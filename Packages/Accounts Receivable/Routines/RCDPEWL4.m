@@ -1,6 +1,6 @@
 RCDPEWL4 ;ALB/TMK/PJH - ELECTRONIC EOB WORKLIST ACTIONS ;Jun 06, 2014@19:11:19
- ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,208,269,298,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
  ; RCSCR variable must be defined for this routine
  Q
  ;
@@ -55,8 +55,9 @@ NEWREC ; Create a new receipt from scratch pad entry
  S (RCSTOP,RCOK)=0,VALMBCK="R"
  S RECTDA=$P($G(^RCY(344.49,RCSCR,0)),U,2)
  I 'RECTDA S RECTDA=$P($G(^RCY(344.4,RCSCR,0)),U,8)
+ ; PRCA*4.5*303 - Corrected receipt number display to use RECTDA in the DIR("A",1) variable
  I RECTDA D  G NEWRECQ
- . S DIR(0)="EA",DIR("A",1)="THIS ERA ALREADY HAS A RECEIPT - "_$P($G(^RCY(344,+$P($G(^RCY(344.49,RCSCR,0)),U,2),0)),U)_" - NO RECEIPT CREATED",DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR
+ . S DIR(0)="EA",DIR("A",1)="THIS ERA ALREADY HAS A RECEIPT - "_$P($G(^RCY(344,RECTDA,0)),U)_" - NO RECEIPT CREATED",DIR("A")="PRESS RETURN TO CONTINUE" W ! D ^DIR K DIR
  S DIR("A",1)="THIS ACTION WILL CREATE THE RECEIPT FOR THIS ERA.  ONCE THE RECEIPT IS",DIR("A",2)=" CREATED HERE, NO MORE AUTOMATIC ADJUSTMENTS MAY BE MADE FOR THIS ERA.",DIR("A",3)=" "
  S DIR("A")="ARE YOU SURE YOU ARE READY TO CREATE THIS RECEIPT?: ",DIR("B")="NO",DIR(0)="YA"
  W ! D ^DIR K DIR W !
@@ -127,3 +128,48 @@ VRECPTQ ;
  S VALMBCK=$S('$G(RCSCR):"Q",1:"R")
  Q
  ;
+ ; PRCA*4.5*303 - Receipt Processing 
+RECPROC ; Receipt Processing
+ ; Called by RCDPE EOB WORKLIST RECEIPT PROCESSING protocol
+ ; Assume RCSCR is the IEN from file 344.49 (and 344.4)
+ ; Variable RCRECTDA is needed by RECEIPT PROFILE so is not newed
+ ; Variable RCDPFXIT is used by RCDPLPLM for immediate exit so newed it here so that does not happen
+ ;
+ N ARRAY,RECIEN,RECEIPT,CNT,DIR,X,Y,DTOUT,DUOUT,DROUT,DIRUT,I,LIST,RCDPFXIT
+ D FULL^VALM1
+ S VALMBCK="R"
+ ;
+ ; Get list of receipts from the ERA detail multiple
+ S RECIEN=0,CNT=0
+ F  S RECIEN=$O(^RCY(344.4,RCSCR,1,"RECEIPT",RECIEN)) Q:'RECIEN  D
+ . S RECEIPT=$P($G(^RCY(344,RECIEN,0)),U)
+ . I RECEIPT]"" S CNT=CNT+1,ARRAY(CNT)=RECEIPT_"^"_RECIEN
+ ;
+ ; The array of receipts does not exist, this could be a non auto-posted ERA; so only 1 receipt will be assigned; retrieve at 344.4, .08
+ I '$D(ARRAY),$$GET1^DIQ(344.4,RCSCR_",",.08)'="" S CNT=1,ARRAY(1)=$$GET1^DIQ(344.4,RCSCR_",",.08,"E")_"^"_$$GET1^DIQ(344.4,RCSCR_",",.08,"I")
+ ;
+ ; No receipt - display mesage and quit
+ I CNT=0 K DIR S DIR("A",1)="No receipts exist for this ERA." G RECPROCQ
+ ;
+ ; One receipt - Use it
+ I CNT=1 S RCRECTDA=$P(ARRAY(1),U,2) G RECPROC1
+ ;
+ ; Multiple receipts - User needs to select
+ W !
+ S LIST=""
+ F I=1:1:CNT S LIST=LIST_$S(LIST]"":";",1:"")_I_":"_$P(ARRAY(I),U,1)
+ S DIR(0)="SO^"_LIST,DIR("A")="Select Receipt"
+ D ^DIR
+ I Y<1!(Y>CNT) K DIR S DIR("A",1)="No selection made" G RECPROCQ
+ S RCRECTDA=$P(ARRAY(Y),U,2)
+RECPROC1 ;
+ D EN^VALM("RCDP RECEIPT PROFILE")
+ ; If RCDPFXIT is set, exit option entirely was selected so quit back to the menu
+ I $G(RCDPFXIT) S VALMBCK="Q"
+ Q
+ ;
+RECPROCQ ;
+ ; Display the message in DIR("A",1) and then press enter
+ S DIR(0)="EA",DIR("A")="Press ENTER to continue: "
+ W ! D ^DIR K DIR
+ Q

@@ -1,12 +1,13 @@
-SDM0 ;SF/GFT - MAKE APPOINTMENT ;11 Jun 2001  5:20 PM
- ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622**;Aug 13, 1993;Build 30
+SDM0 ;SF/GFT - MAKE APPOINTMENT ;1/5/16 12:26pm
+ ;;5.3;Scheduling;**140,167,206,186,223,237,241,384,334,547,621,622,645**;Aug 13, 1993;Build 7
  I $D(SDXXX) S SDOK=1 Q
  N SDSRTY,SDDATE,SDSDATE,SDDATE2,SDSRFU,SDDMAX,SDONCE
  ;Prompt for scheduling request type
 M N SDHX,SDXF,SDXD
  Q:'$$SRTY(.SDSRTY)  S:SDSRTY SDDATE=DT
- ;  SD*5.3*622 - let user see desired date
- I $D(SDDATE) S Y=SDDATE,SDDATE2=$$FMTE^XLFDT(Y) W !!,"APPOINTMENT DESIRED DATE:  "_SDDATE2 W ! H 3
+ ; SD*5.3*622 - let user see desired date
+ ; SD*5.3*645 - replaced DESIRED DATE with CID/PREFERRED DATE
+ I $D(SDDATE) S Y=SDDATE,SDDATE2=$$FMTE^XLFDT(Y) W !!,"APPOINTMENT CID/PREFERRED DATE:  "_SDDATE2 W ! H 3
  ;Calculate appointment follow-up indicator
  S SDSRFU=$$PTFU(DFN,SC)
  ;Determine maximum days for scheduling
@@ -144,16 +145,20 @@ DDATE(SDDATE,SDSRTY,SDMAX) ;Desired date selection
  ;
  Q:SDSRTY 1
  W !!?2,"Select one of the following:",!
- W !?5,"'F'",?20,"for First available following a specified date"
- W !?5,"Date",?20,"(or date computation such as 'T+2M') for a desired date"
- I DFN>0 W !?5,"Date/time",?20,"to schedule a specific appointment - Note: PAST dates",!?20,"must include the Year in the input."  ;added note SD*5.3*547
- W !?5,"'?'",?20,"for detailed help"
+ W !?5,"'F'",?19,"for First available following a specified date"
+ ; SD*5.3*645 - replaced desired date with CID/Preferred date, adjusted format
+ ; W !?5,"Date",?19,"(or date computation such as 'T+2M') for a desired date"
+ W !?5,"Date",?19,"(or date computation such as 'T+2M') for a CID/Preferred date"
+ I DFN>0 W !?5,"Date/time",?19,"to schedule a specific appointment - Note: PAST dates",!?19,"must include the Year in the input."  ;added note SD*5.3*547
+ W !?5,"'?'",?19,"for detailed help"
 DASK N DIR,X,Y,SDX,DTOUT,DUOUT
  ;
  ;BP OIFO/TEH PATCH SD*5.3*384 ; SD*5.3*547 added note to help text
  ;
  S DIR(0)="F^1:30"
- S DIR("A")="ENTER THE DATE DESIRED FOR THIS APPOINTMENT"
+ ; SD*5.3*645 - replaced DATE DESIRED with CID/PREFERRED DATE
+ ; S DIR("A")="ENTER THE DATE DESIRED FOR THIS APPOINTMENT"
+ S DIR("A")="ENTER THE CID/PREFERRED DATE FOR THIS APPOINTMENT"
  S DIR("?",1)="  Enter the date that is desired for this appointment."
  S DIR("?",2)="  NOTE: PAST dates must include the Year in the input."
  S DIR("?",3)=""

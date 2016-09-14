@@ -1,29 +1,32 @@
-YSASRU1 ;ASF/ALB- ASI NATIONAL ROLL UP UTILS ;3/19/97  16:50
- ;;5.01;MENTAL HEALTH;**24,30,32,38**;Dec 30, 1994
+YSASRU1 ;ASF/ALB,HIOFO/FT - ASI NATIONAL ROLL UP UTILS ;2/21/13  11:11am
+ ;;5.01;MENTAL HEALTH;**24,30,32,38,108**;Dec 30, 1994;Build 17
+ ;Reference to ^%ZTLOAD supported by IA #10063
  Q
 RESENDI ;individual resend
+ ;entry point for YSAS ASI ADD INDIVIDUAL option
  N DIC,YSASIEN
  S DIC="^YSTX(604,",DIC(0)="AEQM",DIC("A")="Select ASI Administration:" D ^DIC
  Q:Y'>0
  S YSASIEN=+Y
  I $P($G(^YSTX(604,YSASIEN,.5)),U)'=1 W !,"This ASI has not been signed and cannot be transmitted!",$C(7) G RESENDI
  S DA=YSASIEN,DIE="^YSTX(604,",DR="5.5///1"
- L +^YSTX(604,YSASIEN):9999 Q:'$T
+ L +^YSTX(604,YSASIEN):DILOCKTM Q:'$T
  D ^DIE
  L -^YSTX(604,YSASIEN)
  W !,"Placed in transmission list"
  G RESENDI
  ;
 TIMED ;send all signed given between
+ ;entry point for YSAS ASI ADD RANGE option
  N YSASE,YSASNB,YSASL
  W !,"PLEASE use this option ONLY when instructed to do so by the",!,"Remote Systems Support staff!"
  K DIR S DIR(0)="Y",DIR("A")="Have you been instructed to resend data",DIR("B")="No"
  D ^DIR Q:Y'=1
  K DIR S DIR(0)="D^2960101:DT",DIR("A")="Enter Earliest Date" D ^DIR
- Q:$D(DIURT)
+ Q:$D(DIRUT)
  S YSASE=Y
  K DIR S DIR(0)="D^"_YSASE_":DT",DIR("A")="Enter Latest Date" D ^DIR
- Q:$D(DIURT)
+ Q:$D(DIRUT)
  S YSASL=Y
  S YSASE=YSASE-.001,YSASNB=0
  F I=1:1 S YSASE=$O(^YSTX(604,"AD",YSASE)) Q:YSASE>YSASL!(YSASE'>0)  D
@@ -33,6 +36,7 @@ TIMED ;send all signed given between
  W !,YSASNB," ASI's added to the transmission list"
  Q
 QUEIT ; task out resend
+ ;entry point for YSAS ASI REQUE option
  S X1=DT,X2=7 D C^%DTC
  K DIR S DIR(0)="D^NOW:"_X_":EFXR",DIR("A")="Resend Date and Time",DIR("B")="T@11pm"
  D ^DIR
@@ -41,6 +45,7 @@ QUEIT ; task out resend
  W !,"Thanks........" H 2
  Q
 AA ; print awaiting report
+ ;entry point for YSAS ASI AWAITING option
  S DIC="^YSTX(604,",L=0,FLDS=".05;""DATE"",.02;L30,.04;L5,.09;L20",BY="5.5,.05,.02"
  S FR(1)="",FR(2)="",FR(3)="",DHD="ASI Awaitng Transmission List"
  D EN1^DIP

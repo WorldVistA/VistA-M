@@ -1,5 +1,5 @@
-SDWLRPS1 ;;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1-SUMMARY;06/12/2002 ; 20 Aug 2002  2:10 PM
- ;;5.3;scheduling;**263,412**;AUG 13 1993
+SDWLRPS1 ;IOFO BAY PINES/TEH - WAIT LIST REPORT FORMAT 1-SUMMARY ;1/5/16 3:40pm
+ ;;5.3;scheduling;**263,412,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -111,7 +111,9 @@ HD ;Header
  .W ?45,SDWLINS
  F I=1:1 S X=$P($P(SDWLINS,";",I),"^",2) Q:X=""  W:I>1 ! W ?45,X
  S Y=$P(SDWLDATE,U,1) D DD^%DT S SDWLBDT=Y S Y=$P(SDWLDATE,U,2) D DD^%DT S SDWLEDT=Y
- W !,?23,"Date Desired Range: ",SDWLBDT," to ",SDWLEDT
+ ; SD*5.3*645 - replaced 'Date Desired' with 'CID/Preferred Date'
+ ;W !,?23,"Date Desired Range: ",SDWLBDT," to ",SDWLEDT
+ W !,?18,"CID/Preferred Date Range: ",SDWLBDT," to ",SDWLEDT
  S X=$P(SDWLCT2,U,2)
  W !?27,"Report Category: ",$S($P(SDWLCT1,U,1)="C":"CLINIC",1:"SPECIALTY") I X="ALL" W " ALL"
  I X'="ALL" D
@@ -122,7 +124,9 @@ HD ;Header
  Q
 HD1 ;
  W:$D(IOF) @IOF
- W !!,"Name",?30,"Date Entered",?45,"Date Desired",?60,"# of Days Waiting",!
+ ; SD*5.3*645 - replaced 'Date Desired' with 'CID/PD' and adjusted format
+ ;W !!,"Name",?30,"Date Entered",?45,"Date Desired",?60,"# of Days Waiting",!
+ W !!,"Name",?30,"Date Entered",?47,"CID/PD",?60,"# of Days Waiting",!
 END K X1,X2,CT1,CT2,DATE,I,INS,OPEN,FORM
  K ^TMP("SDWLRPT1",$J) Q
  ;

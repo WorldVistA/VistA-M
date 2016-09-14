@@ -1,6 +1,6 @@
-RCDPURED ;WISC/RFJ - file 344 receipt/payment dd calls ;1 Jun 99
- ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271**;Mar 20, 1995;Build 29
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+RCDPURED ;WISC/RFJ - File 344 Receipt/Payment DD Calls ;1 Jun 99
+ ;;4.5;Accounts Receivable;**114,169,174,196,202,244,268,271,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ; Reference to $$REC^IBRFN supported by DBIA 2031
  ;
@@ -47,6 +47,9 @@ CHGAMT ;  called from the input transform on the transaction amount (.04)
  I +$P(ORIGDATA,"^",4)=+X Q
  ;  payment amount increased
  I $P(ORIGDATA,"^",4)<X Q
+ ;PRCA*4.5*304 - surpress new transaction if from Multiple split Link Payment.
+ ;  undeclared parameter RCSPRSS is defined (only defined in RCDPLPL4)
+ I $G(RCSPRSS) Q
  ;  amount was changed
  ;  enter a new transaction
  S TRANDA=$$ADDTRAN^RCDPURET(DA(1))
@@ -84,20 +87,33 @@ PAYCHK ;  called from the input transform on the transaction amount (.04)
  ;
 PNORBILL ;  called by the input transform in receipt file 344, transaction
  ;  multiple (field 1), patient name or bill number (sub field .09)
- I $L(X)>20!($L(X)<1) K X Q
  ;
- N DFN,RCBILL,RCINPUT,RCOUTPUT,Y,RCTYP,DIC,RCDISP
+ ;  Also called by Link payment processing (RCDPLPL4) - PRCA*4.5*304
+ ;
+ ;PRCA*4.5*304 - Change max length to match the max length of the Patient's name in the patient file.
+ ;
+ ;  Undeclared parameter - RCSPRSS - Surpress screen output  (0 - No, don't surpress, 1-Yes, surpress)
+ ; 
+ I $L(X)>30!($L(X)<1) K X Q
+ ;
+ N DFN,RCBILL,RCINPUT,RCOUTPUT,Y,RCTYP,DIC,RCDISP,RCLKFLG,RCPAY
  ;
  S RCINPUT=$TR(X,"abcdefghijklmnopqrstuvwxyz","ABCDEFGHIJKLMNOPQRSTUVWXYZ")
  ;  try and lookup on bill number
  S X=$S($O(^PRCA(430,"B",RCINPUT,0)):$O(^(0))_";PRCA(430,",$O(^PRCA(430,"D",RCINPUT,0)):$O(^(0))_";PRCA(430,",1:RCINPUT)
- I X[";PRCA(430," D DISPLAY(X)
+ ;
+ I X[";PRCA(430,",'$G(RCSPRSS) D DISPLAY(X)
+ ;
  ;  bill not found, try and lookup on patient
- I X=RCINPUT S DIC="^DPT(",DIC(0)="EM" D ^DIC S X=+Y_";DPT("
+ ;PRCA*4.5*304 - Echo info back to the user if not surpressed
+ I X=RCINPUT S DIC="^DPT(",DIC(0)=$S($G(RCSPRSS):"M",1:"EM") D ^DIC S X=+Y_";DPT("
  ;  new value in variable X (output in X)
  ;
- ;  patient not found, type of payment = check/mo
- I +$G(Y)<0,($P($G(^RCY(344,DA(1),0)),"^",4)=4) D
+ ;PRCA*4.5*304 - allow EDI Lockbox payment type to look up bills by ECME and RX #'s
+ ;  patient not found, type of payment = check/mo or EDI LOCKBOX
+ S RCPAY=$P($G(^RCY(344,DA(1),0)),"^",4)
+ S RCLKFLG=$S(RCPAY=4:1,RCPAY=14:1,1:0)
+ I +$G(Y)<0,RCLKFLG D
  .   S (X,Y)=$$REC^IBRFN(RCINPUT,.RCTYP,.RCDISP),(RCBILL,X)=X_";PRCA(430,"    ; DBIA 2031
  .   I Y>0 D
  .   .   N DIR,DIQ2,DIRUT,DTOUT,DUOUT,RCPRM
@@ -107,7 +123,7 @@ PNORBILL ;  called by the input transform in receipt file 344, transaction
  .   .   S DIR("B")="No",DIR("A",1)=" "
  .   .   S DIR(0)="Y^O" D ^DIR S:'Y Y=-1
  .   .   I Y'>0 Q
- .   .   W !!,$P($G(^PRCA(430,+RCBILL,0)),"^")," "
+ .   .   I '$G(RCSPRSS) W !!,$P($G(^PRCA(430,+RCBILL,0)),"^")," "  ;PRCA*4.5*304
  .   .   D DISPLAY(RCBILL)
  .   .   S X=RCBILL
  ;  output in variable X

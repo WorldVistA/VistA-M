@@ -1,5 +1,5 @@
 RADLQ3 ;HISC/GJC-Delq Status/Incomplete Rpt's ;5/7/97  15:58
- ;;5.0;Radiology/Nuclear Medicine;**87,93,47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**87,93,47,125**;Mar 16, 1998;Build 1
  ; 11/15/07 BAY/KAM RA*5*87 Rem Call 217642 change pat ssn to display last four
  ; 05/09/08 BAY/KAM RA*5*93 Rem Call 246868 correct printing of *** OUTPATIENT ***
 DISPXAM ; Display exam statuses for selected Imaging Types.  These exam
@@ -35,6 +35,8 @@ DISPXAM ; Display exam statuses for selected Imaging Types.  These exam
 OUTPUT ; Print out the results
  N RAEOS I $D(RAVAR(0)),(RAVAR(0)'=RAVAR) S RAEOS=6
  E  S RAEOS=4
+ N RACN ;RA5P125 RACN overwrite
+ ; Remedy 1287775
  F I=1:1:$L(RANODE,"^") D
  . S @$P("RACN^RAPRC^RAST^RADT^RAWHE^RARP^RASSN^RAVRFIED^RAIPHY^RATECH","^",I)=$P(RANODE,"^",I)
  . Q

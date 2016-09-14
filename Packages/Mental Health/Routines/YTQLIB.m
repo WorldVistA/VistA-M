@@ -1,5 +1,7 @@
-YTQLIB ;ASF/ALB MHQ LIBRARY FUNCTIONS ; 4/4/07 2:00pm
- ;;5.01;MENTAL HEALTH;**85**;Dec 30, 1994;Build 48
+YTQLIB ;ASF/ALB,HIOFO/FT - MHQ LIBRARY FUNCTIONS ; 9/16/13 12:19pm
+ ;;5.01;MENTAL HEALTH;**85,108**;Dec 30, 1994;Build 17
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to ^XUSEC supported by IA #10076
  Q
 TSLIST(YSDATA) ;list tests and surveys
  N YSTESTN,YSTEST,N
@@ -12,18 +14,18 @@ TSLIST(YSDATA) ;list tests and surveys
  Q
  ;
 NEW(YSFILEN) ;Adding New Entries - return an internal number - EXTRINSIC FUNCTION
- ;if $D YSPROG then National and pointers less than 100,000 else pointers greater than 100,000
+ ;if $D YSPROG then National and pointers less than 200,000 else pointers greater than 200,000
  N MHQ2X,YS
  K YSPROG
  S:$D(^XUSEC("YSPROG",DUZ)) YSPROG=1
  S YS=$P($G(^YTT(YSFILEN,0)),U,3) S:YS<1 YS=1
- I $D(YSPROG) S YS=$S(YS<100000:YS,1:1)
- I '$D(YSPROG) S YS=$S(YS>100000:YS,1:100000)
- F MHQ2X=YS:1 I '$D(^YTT(YSFILEN,MHQ2X)) L ^YTT(YSFILEN,MHQ2X):0 Q:$T
+ I $D(YSPROG) S YS=$S(YS<200000:YS,1:1)
+ I '$D(YSPROG) S YS=$S(YS>200000:YS,1:200000)
+ F MHQ2X=YS:1 I '$D(^YTT(YSFILEN,MHQ2X)) L +^YTT(YSFILEN,MHQ2X):DILOCKTM Q:$T
  Q MHQ2X
  ;
 ADMCK(YSDATA,YS) ;check administration
- N G,K,YSA,YSAD,YSCANS,YSCOMP,YSCTREF,YSDFN,YSDG,YSDS,YSIEN,YSINS,YSK,YSQN
+ N G,K,N,YSA,YSAD,YSCANS,YSCOMP,YSCTREF,YSDFN,YSDG,YSDS,YSIEN,YSINS,YSK,YSQN
  S N=1
  S YSDATA(1)="[ERROR]"
  S YSAD=$G(YS("AD"))
@@ -50,4 +52,4 @@ ADMCK(YSDATA,YS) ;check administration
  . S YSDATA(1)="[DATA]" K YSDATA(2) D SAYQ
  Q
 SAY W !,N,"  ",YSAD,"  ",YSDATA(1),"  ",$G(YSDATA(2)) Q
-SAYQ W !?10,$G(YSDATA(1)),"  ",YSAD,"  ",YSQN,"  ",YSA,"  ctype: ",YSCTREF,"  Cans: ",YSCANS Q
+SAYQ W !?10,$G(YSDATA(1)),"  ",YSAD,"  ",YSQN,"  ",YSA,"  ctype: ",$G(YSCTREF),"  Cans: ",YSCANS Q

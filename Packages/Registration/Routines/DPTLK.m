@@ -1,5 +1,5 @@
 DPTLK ;ALB/RMO,RTK - MAS Patient Look-up Main Routine ; 3/22/05 4:19pm
- ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915**;Aug 13, 1993;Build 6
+ ;;5.3;Registration;**32,72,93,73,136,157,197,232,265,277,223,327,244,513,528,541,576,600,485,633,629,647,769,857,876,915,919**;Aug 13, 1993;Build 4
  ;
  ; mods made for magstripe read 12/96 - JFP
  ; mods made for VIC 4.0 (barcode and magstripe) read 4/2012 - ELZ (*857)
@@ -78,7 +78,7 @@ CHKPAT1 .S X=DPTX
  .S DPTDFN=$S($D(DPTS(Y)):Y,1:-1)
  ; -- Check for index lookups
  I '$G(DGVIC40)!(DPTX?9N) D ^DPTLK1  D  G QK:$D(DTOUT)!($D(DUOUT)&(DIC(0)'["A")),ASKPAT:$D(DUOUT),CHKPAT:DPTDFN<0,CHKDFN:DPTDFN>0 I DIC(0)["N",$D(^DPT(DPTX,0)) S Y=X D SETDPT^DPTLK1 S DPTDFN=$S($D(DPTS(Y)):Y,1:-1) G CHKDFN
- . I DPTDFN<1,$P($G(XQY0),"^",2)="Register a Patient",$T(PATIENT^MPIFXMLP)'="" D
+ . I DPTDFN<1,$P($G(XQY0),"^",2)="Register a Patient",$T(PATIENT^MPIFXMLP)'="",'MAG D
  .. S DPTDFN=$$SEARCH^DPTLK7(DPTX,$G(DPTXX))
  .. I DPTDFN<1 K DO,D,DIC("W"),DPTCNT,DPTS,DPTSEL,DPTSZ S DPTDFN=-1,Y=-1,(DPTX,DPTXX)=""
  .. S DPTSZ=1000 I $D(^DD("OS"))#2 S DPTSZ=$S(+$P(^DD("OS",^("OS"),0),U,2):$P(^(0),U,2),1:DPTSZ)
@@ -194,7 +194,12 @@ IATA(X) ; --
  ; -- checks for no data
  I IATA="" Q "Q"
  ; -- checks for new card, look-up DFN
- I $E(X,1,29)?1"%"9NP1"^"17UNP1"?" S IATA=$$CARD(+$P($P(X,"%",2),"^"))
+ I $E(X,1,29)?1"%"9NP1"^"17UNP1"?" D
+ . N CARD
+ . S CARD=+$P($P(X,"%",2),"^")
+ . ; **919, Story 220135 (elz) log the card activity
+ . D CARDLOG^MPIFAPI(CARD,"VHIC","SWIPE")
+ . S IATA=$$CARD(CARD)
  ; -- Returns SSN or `DFN value
  I IATA'="" Q $P(IATA,"^")
  Q "Q"
@@ -231,6 +236,8 @@ BARCODE(X) ;
  ;
  N CARD
  S CARD=$$B32TO10($E(X,10,15)) I 'CARD Q "Q"
+ ; **919, Story 220135 (elz) log the card activity
+ D CARDLOG^MPIFAPI(CARD,"VHIC","SCAN")
  Q $$CARD(CARD)
  ;
 CACCARD(X) ;
@@ -252,6 +259,8 @@ CACCARD(X) ;
  ;
 EDIPI(EDIPI) ; - returns `DFN from EDIPI number
  N DFN,VICFAC
+ ; **919, Story 220135 (elz) log the card activity
+ D CARDLOG^MPIFAPI(EDIPI,"CAC","SCAN")
  S VICFAC=+$$LKUP^XUAF4("200DOD") ; national DOD station number
  S DFN=+$G(^DGCN(391.91,+$O(^DGCN(391.91,"ASID",EDIPI,VICFAC,0)),0))
  S DGVIC40=EDIPI ; saving EDIPI number here so I don't have to look later

@@ -1,5 +1,5 @@
-ECOB ;BP/CMF - base object 
- ;;2.0;EVENT CAPTURE;**100,107,110**;8 May 96;Build 4
+ECOB ;BP/CMF - base object ;8/21/2015
+ ;;2.0;EVENT CAPTURE;**100,107,110,129**;8 May 96;Build 7
  ;@author  - Chris Flegel
  ;@date    - 17 May 2009
  ;@version - 1.0
@@ -50,6 +50,8 @@ COLLECT(HANDLE,CHILD,SCOPE,PROPERTY) ; attach or collect child objects
 DESTROY(HANDLE) ; cleanup
  N CHILD
  S CHILD=0
+ I ($G(HANDLE)="") Q 1  ;EC*129
+ I ($P(HANDLE,"^")=0)!($P(HANDLE,"^")=-1) Q 1  ;EC*129
  F  S CHILD=$O(@HANDLE@("Pr","Handle",CHILD)) Q:'CHILD  D
  .K @CHILD
  .Q
@@ -63,6 +65,8 @@ FUNCTION(HANDLE,ARGUMENT)  ;
  ;;
 GET(RESULT,HANDLE,SCOPE,PROPERTY) ; get simple property
  I $G(HANDLE)="" S RESULT="-1^Handle does not exist." Q  ;EC*110 - BGP
+ I ($P(HANDLE,"^")=0)!($P(HANDLE,"^")=-1) S RESULT="-1^Handle does not exist." Q  ;EC*129 - JAM
+ I ($P(HANDLE,"^",2)="") S RESULT="-1^Invalid handle." Q  ;EC*129
  I '$D(@HANDLE) S RESULT="-1^No data at handle: "_HANDLE_"." Q  ;EC*110
  S SCOPE=$S($G(SCOPE)'="":SCOPE,1:"Pu")
  S PROPERTY=$S($G(PROPERTY)'="":PROPERTY,1:"-1")
@@ -83,6 +87,7 @@ METHOD(RESULT,ARGUMENT) ; most basic handler
  D PARSE("Tag",TAG)
  Q:TAG("routine")="METHOD^DGOB"  ;stop recursive call
  Q:TAG("routine")=""
+ Q:($P(TAG("routine"),"^")=0)!($P(TAG("routine"),"^")=-1)  ;EC*129
  I $T(@TAG("routine"))'="" D  Q
  .I TAG("parameters")="(.RESULT,ARGUMENT)" D @TAG
  Q
@@ -110,6 +115,7 @@ SELF(RESULT,HANDLE,CLASS,NAME,ROUTINE,PARENT) ; set 'self' properties of object
  ;;
 SET(RESULT,HANDLE,SCOPE,PROPERTY,VALUE) ; set simple property
  I $G(HANDLE)="" S RESULT="-1^Handle does not exist" Q  ;EC*110
+  I ($P(HANDLE,"^")=0)!($P(HANDLE,"^")=-1) S RESULT="-1^Handle does not exist." Q  ;EC*129
  I '$D(@HANDLE) S RESULT="-1^No data at handle: "_HANDLE_"." Q  ;EC*110
  S SCOPE=$S($G(SCOPE)'="":SCOPE,1:"Pu")
  S PROPERTY=$S($G(PROPERTY)'="":PROPERTY,1:"-1")

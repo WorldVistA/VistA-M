@@ -1,5 +1,6 @@
-YTMMPI2C ;DALISC/LJA - Show Comments ;11/09/93 10:37
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YTMMPI2C ;DALISC/LJA,HIOFO/FT - Show Comments ;5/17/13 3:19pm
+ ;;5.01;MENTAL HEALTH;**108**;Dec 30, 1994;Build 17
+ ;Reference to ^VA(200, supported by DBIA #10060
  ;
 COMM ;  YSDFN,YSET,YSED -- req
  QUIT:'($G(YSDFN)*$G(YSET)*$G(YSED))  ;->
@@ -86,12 +87,10 @@ WAIT ;
 COMMBT ;
  F  QUIT:(IOSL-$Y)<4  W !
  S X="",$P(X,"-",IOM+1)="" W X,!
- W YSSSN,?20,YSNM,?55,YSSEX,$S(YSSEX="F":"emale",1:"ale"),?70,"Age: ",YSAGE
+ W "xxx-xx-"_$E(YSSSN,8,11),?20,YSNM,?55,YSSEX,$S(YSSEX="F":"emale",1:"ale"),?70,"Age: ",YSAGE
  QUIT
  ;
 COMMHEAD ;
  W:$Y>1 !
  W YTCDT,?15,"Author: ",$E(YTCA,1,20),?45,"Transcriber: ",$E(YTCT,1,20),!
  QUIT
- ;
-EOR ;YTMMPI2C - Show Comments ;11/8/93 15:40

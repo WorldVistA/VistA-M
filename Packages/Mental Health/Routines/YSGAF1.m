@@ -1,5 +1,14 @@
-YSGAF1 ;ASF/ALB- GLOBAL ASSESSMENT OF FUNCTIONNING CONT;9/25/97  11:19 ;11/10/97  16:08
- ;;5.01;MENTAL HEALTH;**33**;Dec 30, 1994
+YSGAF1 ;ASF/ALB,HIOFO/FT - GLOBAL ASSESSMENT OF FUNCTIONING CONT ;3/11/13 1:0pm
+ ;;5.01;MENTAL HEALTH;**33,108**;Dec 30, 1994;Build 17
+ ;Reference to ^DIC(40.7 supported by DBIA #557
+ ;Reference to ^SDAMA301 supported by DBIA #4433
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to FILE 44 fields supported by DBIA #10040
+ ;Reference to ^VA(200 supported by IA #10060
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to %ZTLOAD supported by IA #10063
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^%ZISC supported by IA #10089
  Q
 ONELOC ;single hospital location
  N DIC,Y
@@ -23,18 +32,31 @@ ONLYREQ ;only > ysdays
  Q:$D(DIRUT)  S YSONLY=Y
  Q
 LP1 ;loop to create tmp pt list
+ N YSARRAY,YSCOUNT,YSI,YSJ,YSNODE,YSPAT,YSSTAT
  K ^TMP("YSGAF",$J)
- S YSDD=YSDATE
- F  S YSDD=$O(^SC(YSCLIN,"S",YSDD)) Q:YSDD<1!(YSDD\1-YSDATE)  D LP2
+ S YSARRAY(1)=YSDATE_";"_YSDATE_".235959"
+ S YSARRAY(2)=YSCLIN
+ S YSARRAY("SORT")="P" ;sort by patient then appt d/t
+ S YSARRAY("FLDS")="3;4" ;appt status & patient
+ S YSCOUNT=$$SDAPI^SDAMA301(.YSARRAY)
+ Q:'YSCOUNT  ;no appts or error found
+ S YSI=0 ;dfn
+ F  S YSI=$O(^TMP($J,"SDAMA301",YSI)) Q:'YSI  D
+ .S YSJ=0 ;appt d/t
+ .F  S YSJ=$O(^TMP($J,"SDAMA301",YSI,YSJ)) Q:'YSJ  D
+ ..S YSNODE=$G(^TMP($J,"SDAMA301",YSI,YSJ))
+ ..Q:YSNODE=""
+ ..S YSSTAT=$P($P(YSNODE,U,3),";",1)
+ ..Q:$S(YSSTAT="R":0,YSSTAT="I":0,1:1)  ;process kept appts & inpatient, quit all others
+ ..S YSPAT=$P(YSNODE,U,4)
+ ..S DFN=$P(YSPAT,";",1)
+ ..S YSPTN=$P(YSPAT,";",2)
+ ..Q:DFN=""
+ ..Q:YSPTN=""
+ ..S ^TMP("YSGAF",$J,"A",YSPTN,DFN)=""
+ K ^TMP($J,"SDAMA301")
  Q
-LP2 ;apps at one time
- S K=0 F  S K=$O(^SC(YSCLIN,"S",YSDD,1,K)) Q:K<1  D:$G(^SC(YSCLIN,"S",YSDD,1,K,0))
- . S YSG=^SC(YSCLIN,"S",YSDD,1,K,0)
- . S DFN=+YSG,YSPTN=$P(^DPT(DFN,0),U)
- . Q:$P($G(^DPT(DFN,"S",YSDD,0)),U,2)'=""  ;dont list if cancelled, noshow or ip
- . S ^TMP("YSGAF",$J,"A",YSPTN,DFN)=""
- Q
-HX ;GAF history
+HX ;entry point for YSGAF HISTORY option
  N %DT,DA,DIE,DIR,DIRUT,DLAYGO,DR,K,VA,VADM,X,X1,X2,Y,YSCLIN,YSCNAME,YSDA,YSDATE,YSDAYS,YSDD,YSDXEG,YSDXEL,YSDXEN,YSG,YSGAFLC,YSGAFLD,YSGAFLN,YSGC,YSGD,YSGN,YSGR,YSGT,YSLINE,YSN,YSONLY,YSOUT,YSPAGE,YSPTN,YSRULE,YSSTOP
  K DIC,DFN D ^YSLRP Q:'$D(DFN)
  ;ASK DEVICE 
@@ -74,7 +96,7 @@ TOP ;
  S YSGT="   10   20   30   40   50   60   70   80   90    |"
  S YSGR="####|####|####|####|####|####|####|####|####|####|"
  W @IOF,"Global Assessment of Functioning Historical Listing"
- W !,VADM(1),?$X+5,VA("PID"),?45,"printed: "
+ W !,VADM(1),?$X+5,"xxx-xx-"_$E(VA("PID"),8,11),?45,"printed: "
  D NOW^%DTC S Y=% X ^DD("DD") W Y
  S YSLINE="",$P(YSLINE,"-",79)="" W !,YSLINE
  W !,"Date",?10,"Clinician",?26,"GAF",?30,YSGT

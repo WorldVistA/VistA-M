@@ -1,0 +1,133 @@
+GMRCXR ; ALB/SAT - GMR DD UTILITY ;JAN 15, 2016
+ ;;3.0;CONSULT/REQUEST TRACKING;**83**;Dec 27, 1997;Build 11
+ ;DD support for VISTA SCHEDULING ENHANCEMENT SD*5.3*627
+ ;Reference is made to ICR #6184
+ ;
+ Q
+AG123S1(GMRCDA1,X) ;build AG xref ;called by 'Set Logic' and 'Kill Logic' of the New Style AG cross reference #336 in file 123
+ ;GMRCDA1  = DA(1) IEN pointer to REQUEST/CONSULTATION file 123
+ ;X        = DATE OF REQUEST in FM format from field 3 of top level of file 123
+ N CHK
+ S X=$G(X,0)
+ S CHK=$$REQCHK(GMRCDA1)
+ S:CHK=0 ^GMR(123,"AG",X,GMRCDA1)=""
+ K:+CHK ^GMR(123,"AG",X,GMRCDA1)
+ Q
+ ;
+REQCHK(GMRCID) ;check activities to determine if the REQUEST/CONSULTATION entry is still active and not scheduled
+ N GMRCCAN,GMRCCANF,GMRCDC,GMRCDONE,GMRCES,GMRCESF,GMRCNOD,GMRCPDC,GMRC40,GMRCACT,GMRCRPA,GMRCSCH,GMRCSCHF,GMRCSER,GMRCST,GMRCSTF
+ N GMRCCS,GMRCPA
+ S GMRCPA=$O(^ORD(100.01,"B","ACTIVE",0))
+ S GMRCPDC=$O(^ORD(100.01,"B","DISCONTINUED",0))
+ S GMRCCS=$$GET1^DIQ(123,GMRCID_",",8,"I")
+ Q:GMRCCS=GMRCPDC 1   ;don't return this entry if CPRS STATUS is DISCONTINUED
+ Q:$$GET1^DIQ(123,GMRCID_",",8,"I")=GMRCPDC 1   ;don't include this entry if CPRS STATUS is DISCONTINUED
+ S GMRCSCH=$$GETIEN("SCHEDULED")
+ S GMRCST=$$GETIEN("STATUS CHANGE")
+ S GMRCCAN=$$GETIEN("CANCELLED")
+ S GMRCDONE=$$GETIEN("COMPLETE/UPDATE")
+ S GMRCDC=$$GETIEN("DISCONTINUED")
+ S GMRCES=$$GETIEN("EDIT/RESUBMITTED")
+ S GMRCNOD=$G(^GMR(123,GMRCID,0))
+ S GMRCSER=$P(GMRCNOD,U,5)
+ S DFN=$P(GMRCNOD,U,2)
+ S (GMRCCANF,GMRCESF,GMRCSCHF,GMRCSTF)=0
+ ;GMRCESF - if 1 we have determined this request should be returned (return 0)
+ S GMRCRPA=9999999 F  S GMRCRPA=$O(^GMR(123,GMRCID,40,GMRCRPA),-1) Q:GMRCRPA'>0  D  Q:GMRCCANF=1  Q:GMRCSCHF=1  Q:GMRCESF=1
+ .S GMRC40=$G(^GMR(123,GMRCID,40,GMRCRPA,0))
+ .S GMRCACT=$P(GMRC40,U,2)   ;ACTIVITY field 1
+ .I GMRCACT'=GMRCSCH,GMRCACT'=GMRCST,GMRCACT'=GMRCCAN,GMRCACT'=GMRCDONE,GMRCACT'=GMRCDC,GMRCACT'=GMRCES Q  ;only watch the ones we need
+ .I GMRCACT=GMRCCAN!(GMRCACT=GMRCDONE)!(GMRCACT=GMRCDC) S GMRCCANF=1 Q    ;skip completed consults/mgh
+ .I GMRCACT=GMRCES S GMRCESF=1 Q
+ .I GMRCACT=GMRCSCH,GMRCSTF=1 S GMRCESF=1 Q
+ .I GMRCACT=GMRCSCH,GMRCSTF'=1,$$SCHED(DFN,$P(GMRC40,U,3),GMRCSER) S GMRCSCHF=1 Q
+ .;I GMRCACT=GMRCST,$$FINDTXT(GMRCID,GMRCRPA) S GMRCSTF=1
+ .I GMRCACT=GMRCST,GMRCCS=GMRCPA S GMRCSTF=1
+ Q:GMRCSCHF GMRCSCHF
+ Q:GMRCCANF GMRCCANF
+ Q:GMRCESF 0
+ Q 0
+ ;
+GETIEN(GMRCNM) ;get ID from REQUEST ACTION TYPES file 123.1
+ N Y
+ S Y=$O(^GMR(123.1,"B",GMRCNM,0))
+ Q Y
+ ;
+SCHED(DFN,GMRCDT,GMRCSVC) ;look for appointment with stop code matching one in REQUEST SERVICES
+ ;INPUT:
+ ; DFN     - patient ID pointer to PATIENT file
+ ; GMRCDT - actual activity date in FM format
+ ; GMRCSVC  - request services ID pointer to REQUEST SERVICES file 123.5
+ ;RETURN:
+ ; 0 = no appointment found with matching stop code
+ ; 1 = appointment found with matching stop code
+ ;Q 1   ;do not check for match for now
+ N GMRCAPI,GMRCARR,GMRCI,GMRCJ,GMRCRET,GMRCSTP,GMRCSTPL
+ S GMRCRET=0
+ S GMRCSVC=$G(GMRCSVC)
+ Q:GMRCSVC="" 0
+ S GMRCDT=$P($G(GMRCDT),".",1)
+ I GMRCDT'?7N S GMRCDT=1000103
+ S GMRCI=0 F  S GMRCI=$O(^GMR(123.5,GMRCSVC,688,GMRCI)) Q:GMRCI'>0  D
+ .S GMRCSTPL(+$P($G(^GMR(123.5,GMRCSVC,688,GMRCI,0)),U,1))=""
+ K ^TMP($J,"SDAMA301"),GMRCARR
+ S GMRCARR(1)=$P($$FMADD^XLFDT(GMRCDT,-1),".",1)_";"   ;go back 1 day and look forward for appt with matching stop code
+ S GMRCARR(4)=DFN
+ S GMRCARR("FLDS")="2;13"
+ S GMRCAPI=$$SDAPI^SDAMA301(.GMRCARR)
+ ;GMRCI - pointer to file 44; GMRCJ - appt date/time
+ S GMRCI=0 F  S GMRCI=$O(^TMP($J,"SDAMA301",DFN,GMRCI)) Q:GMRCI'>0  D  Q:+GMRCRET
+ .S GMRCJ=0 F  S GMRCJ=$O(^TMP($J,"SDAMA301",DFN,GMRCI,GMRCJ)) Q:GMRCJ'>0  D  Q:+GMRCRET
+ ..S GMRCSTP=+$P($G(^TMP($J,"SDAMA301",DFN,GMRCI,GMRCJ)),U,13)
+ ..S:$D(GMRCSTPL(+GMRCSTP)) GMRCRET=1
+ K ^TMP($J,"SDAMA301"),GMRCARR
+ Q GMRCRET
+ ;
+FINDTXT(GMRCID,GMRCRPA,GMRCTXT) ;find text in word processing field
+ ;INPUT:
+ ; GMRCID - Pointer to REQUEST/CONSULTATION file
+ ; GMRCRPA - Pointer to REQUEST PROCESSING ACTIVITY in REQUEST/CONSULTATION file
+ ; GMRCTXT - (optional) text to search for; defaults to "CANCELLED BY THE PATIENT"
+ ;RETURN:
+ ; 1=Text Fount; 0=Not Found
+ N GMRCI,GMRCPREV,GMRCRET,GMRCTHIS
+ S (GMRCTHIS,GMRCPREV)=""
+ S GMRCRET=0
+ S:$G(GMRCTXT)="" GMRCTXT="CANCELLED BY"
+ S GMRCI=0 F  S GMRCI=$O(^GMR(123,GMRCID,40,GMRCRPA,1,GMRCI)) Q:GMRCI=""  D  Q:GMRCRET=1
+ .S GMRCTHIS=$S($E(GMRCPREV,$L(GMRCPREV))="-":"",1:" ")_$G(^GMR(123,GMRCID,40,GMRCRPA,1,GMRCI,0))
+ .I $$UP^XLFSTR(GMRCPREV_GMRCTHIS)[GMRCTXT S GMRCRET=1
+ .S GMRCPREV=GMRCTHIS  ;keep 'this' line for next iteration in case the phrase wraps around onto 2 lines
+ Q GMRCRET
+ ;
+POST ;post install for GMRC*3*83
+ D XREF
+ Q
+XREF  ;create and build NEW style AG for all REQUEST/CONSULTATION entries in file 123
+ N GMRCXR,GMRCRES,GMRCOUT
+ S GMRCXR("FILE")=123
+ S GMRCXR("NAME")="AG"
+ S GMRCXR("SHORT DESCR")="Index of active REQUEST/CONSULTs with no appointment scheduled."
+ S GMRCXR("TYPE")="M"
+ S GMRCXR("EXECUTION")="F"
+ S GMRCXR("ACTIVITY")="IR"
+ S GMRCXR("ROOT TYPE")="W"
+ S GMRCXR("ROOT FILE")=123.02
+ S GMRCXR("USE")="S"
+ S GMRCXR("DESCR",1)="This cross reference contains entries of the REQUEST/CONSULTATION file"
+ S GMRCXR("DESCR",2)="that do not have an appointment scheduled."
+ S GMRCXR("DESCR",3)="This is determined based on the content and order of the entries in"
+ S GMRCXR("DESCR",4)="the REQUEST PROCESSING ACTIVITY multiple field 40.  This cross"
+ S GMRCXR("DESCR",5)="reference will be updated with any update to the ACTIVITY field under"
+ S GMRCXR("DESCR",6)="the REQUEST PROCESSING ACTIVITY multiple and that update will be"
+ S GMRCXR("DESCR",7)="determined based on all REQUEST PROCESSING ACTIVITY entries."
+ S GMRCXR("DESCR",8)="This cross reference was added in GMRC*3.0*83."
+ S GMRCXR("SET")="D AG123S1^GMRCXR(DA(1),X)"
+ S GMRCXR("KILL")="D AG123S1^GMRCXR(DA(1),X)"
+ S GMRCXR("WHOLE KILL")="K ^GMR(123,""AG"")"
+ S GMRCXR("VAL",1)="S X=+$P($G(^GMR(123,DA(1),0)),U,7)"
+ S GMRCXR("VAL",1,"TYP")="C"
+ S GMRCXR("VAL",1,"SUBSCRIPT")=1
+ S GMRCXR("VAL",1,"COLLATION")="F"
+ D CREIXN^DDMOD(.GMRCXR,"S",.GMRCRES,"GMRCOUT")
+ Q

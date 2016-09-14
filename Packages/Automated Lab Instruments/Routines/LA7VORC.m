@@ -1,5 +1,5 @@
-LA7VORC ;DALOI/JMC - LAB ORC Segment message builder ;Aug 27, 2007
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68**;Sep 27, 1994;Build 56
+LA7VORC ;DALOI/JMC - LAB ORC Segment message builder ;08/20/15  17:26
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,64,68,88**;Sep 27, 1994;Build 10
  ;
  Q
  ;
@@ -15,8 +15,8 @@ ORC2(LA7VAL,LA7FS,LA7ECH) ; Build ORC-2 sequence - Placer order number
  ;            LA7VAL("SITE") = placer facility
  ;             LA7FS = HL field separator
  ;            LA7ECH = HL encoding characters
- ;            
- N LAXY,LA7Y
+ ;
+ N LA7X,LA7Y
  ;
  S $P(LA7Y,$E(LA7ECH),1)=$$CHKDATA^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
  I $G(LA7VAL("NMSP"))'="" S $P(LA7Y,$E(LA7ECH),2)=LA7VAL("NMSP")
@@ -33,7 +33,7 @@ ORC3(LA7VAL,LA7FS,LA7ECH) ; Build ORC-3 sequence - Filler order number
  ;            LA7VAL("SITE") = placer facility
  ;             LA7FS = HL field separator
  ;            LA7ECH = HL encoding characters
- ;            
+ ;
  N LA7X,LA7Y
  ;
  S $P(LA7Y,$E(LA7ECH),1)=$$CHKDATA^LA7VHLU3(LA7VAL,LA7FS_LA7ECH)
@@ -110,7 +110,7 @@ ORC12(LA7DUZ,LA7DIV,LA7FS,LA7ECH,LA7IDTYP) ; Build ORC-12 sequence - Ordering pr
  ;              LA7FS = HL field separator
  ;             LA7ECH = HL encoding characters
  ;           LA7IDTYP = id type to return (0:DUZ 1:VPID 2:NPI)
- ;           
+ ;
  ; Returns ORC-12 sequence
  ; Also used to build OBR-16 sequence
  ;
@@ -153,6 +153,23 @@ ORC13(LA7J,LA7FS,LA7ECH) ; Build ORC-13 sequence - Enterer's location
  . S $P(LA7Y,$E(LA7ECH,1),4)=$TR(LA7Z,$E(LA7ECH,1),$E(LA7ECH,4))
  ;
  Q LA7Y
+ ;
+ ;
+ORC14(LA7200,LA7DT,LA7FS,LA7ECH) ; Build ORC-14 sequence - Order Callback Phone Number ;**88
+ ; Call with LA7200 = ien of provider in file #200
+ ;            LA7DT = "as of" date in FileMan format
+ ;            LA7FS = HL field separator
+ ;           LA7ECH = HL encoding characters
+ ;
+ ; Returns ORC-14 sequence
+ ;
+ N LA7FLDSEQ,LA7ERR,LA7X,LA7Y,X,Y
+ ;
+ D GETLST^XPAR(.LA7X,"USR^SYS^PKG","LA UI PROVIDER CONTACT INFO","I",.LA7ERR)
+ S LA7Y=0,LA7FLDSEQ=""
+ F  S LA7Y=$O(LA7X(LA7Y)) Q:LA7Y<1  S LA7FLDSEQ=LA7FLDSEQ_".13"_LA7X(LA7Y)_";"
+ ;
+ Q $$XTN^LA7VHLU9(200,LA7200,LA7FLDSEQ,2,LA7DT,LA7FS,LA7ECH)
  ;
  ;
 ORC17(LA74,LA7FS,LA7ECH) ; Build ORC-17 sequence - Entering organization

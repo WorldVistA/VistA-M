@@ -1,6 +1,10 @@
-YTMCMI3 ;ALB/ASF-MCMI3 ;9/3/02  15:35
- ;;5.01;MENTAL HEALTH;**76**;Dec 30, 1994
-MAIN ;
+YTMCMI3 ;ALB/ASF,HIOFO/FT - MCMI3 ;5/1/13 10:28am
+ ;;5.01;MENTAL HEALTH;**76,108**;Dec 30, 1994;Build 17
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to XLFDT APIs supported by DBIA #10103
+ ;
+ ;called from ^YTT(601,246,"R") and ^YTT(601.6,246,1)
+MAIN ;displays the MCMI3 report text
  N A,B,G,I,L1,L2,N,X,YSANS,YSDAS,YSDAS1,YSIN,YSSID,YSTOUT,YSUOUT,YSVFLAG
  D PTVAR^YSLRP
  D RD
@@ -13,8 +17,15 @@ MAIN ;
  D DENIAL,LIMIT
  D:YSTY["*" REPT^YTMCMI3R
  Q
-RD S X=^YTD(601.2,YSDFN,1,YSTEST,1,YSED,1)
+RD ;retrieve answer codes
+ N YS176177
+ S X=^YTD(601.2,YSDFN,1,YSTEST,1,YSED,1)
  S YSINPT=$E(X,176),YSDUR=$E(X,177)
+ I (YSINPT="")&(YSDUR="") D
+ .S YS176177=$$INP(YSDFN,YSED)
+ .S:$P(YS176177,U,1)]"" YSINPT=$P(YS176177,U,1)
+ .S:$P(YS176177,U,2)]"" YSDUR=$P(YS176177,U,2)
+ .;S YSINPT="I",YSDUR=0 ;for testing purposes only
  Q
 VALIDITY ;check if ok to score
  S YSVFLAG=0
@@ -22,22 +33,24 @@ VALIDITY ;check if ok to score
  I $P(R,U)>1 S YSVFLAG="V scale" Q
  I ($P(R,U,2)>178)!($P(R,U,2)<34) S YSVFLAG="X scale" Q
  I (YSAGE<18) S YSVFLAG="too young" Q
+ I $P(R,U,29)>9 S YSVFLAG="W scale"
  Q
 RAW ; raw scores
- S R="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
+ S R="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
  F N=1,3:1:28 D
  . S G=^YTT(601,YSTEST,"S",N,"K",1,0),I=1
  . F  S YSIN=$P(G,U,I),YSANS=$E($P(G,U,I+1),1),YSWT=$P($P(G,U,I+1),";",2),I=I+2 Q:YSIN=""  S:$E(X,YSIN)=YSANS $P(R,U,N)=$P(R,U,N)+YSWT
  F I=5:1:15 S:I'=10 $P(R,U,2)=$P(R,U,2)+$P(R,U,I) S:I=10 $P(R,U,2)=$P(R,U,2)+($P(R,U,I)*.666666)
  S G=$P(R,U,2) S $P(R,U,2)=$S(G#1>.49999999:G\1+1,1:G\1)
+ D WSCALE
  Q
 BR ;base rate scores
  S S="0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0^0"
  F I=3:1:28 S $P(S,U,I)=$P(^YTT(601,YSTEST,"S",I,YSSEX),U,$P(R,U,I)+1)
- I $P(R,U,2)<40 S $P(S,U,2)=0 Q
- I $P(R,U,2)>169 S $P(S,U,2)=100 Q
- I $P(R,U,2)<100 S $P(S,U,2)=$P(^YTT(601,YSTEST,"S",2,"M"),U,$P(R,U,2)-39)
- I $P(R,U,2)>99 S $P(S,U,2)=$P(^YTT(601,YSTEST,"S",2,"MS"),U,$P(R,U,2)-99)
+ I $P(R,U,2)<39 S $P(S,U,2)=0 Q
+ I $P(R,U,2)>174 S $P(S,U,2)=100 Q
+ I $P(R,U,2)<105 S $P(S,U,2)=$P(^YTT(601,YSTEST,"S",2,"M"),U,$P(R,U,2)-37)
+ I $P(R,U,2)>104 S $P(S,U,2)=$P(^YTT(601,YSTEST,"S",2,"MS"),U,$P(R,U,2)-104)
  Q
 DCA ;disclosure adjustment
  ;1-8B
@@ -102,3 +115,51 @@ DENIAL ;denial/complaint
  Q:(YSHI'=9)&(YSHI'=10)&(YSHI'=13)
  S YSBR="",YSHI="" F I=13,9,10 S:$P(S,U,I)>YSBR YSBR=$P(S,U,I),YSHI=I
  S $P(S,U,YSHI)=$P(S,U,YSHI)+8
+ Q
+INP(YSDFN,YSDOT) ;Determine if inpatient and duration
+ ;  Input: YSDFN = dfn
+ ;         YSDOT = date of test
+ ; Output: piece1^piece2 
+ ;         where piece 1 = I for Inpatient or O for Outpatient
+ ;               piece 2 = duration of stay before test given
+ ;                         0 = more than 4 weeks
+ ;                         1 = less than 1 week
+ ;                         2 = 1- 4 weeks
+ N DFN,VAINDT,YSADMDT,YSDAYS,YSFLAG,X,Y
+ S YSDFN=$G(YSDFN),YSDOT=$G(YSDOT),YSFLAG="O^"
+ I YSDFN="" Q YSFLAG
+ I YSDOT="" Q YSFLAG
+ S DFN=YSDFN,VAINDT=YSDOT
+ D IN5^VADPT
+ S YSADMDT=$P(VAIP(3),U,1) ;admission date/time
+ D KVAR^VADPT
+ I YSADMDT="" Q YSFLAG
+ S YSDAYS=+$$FMDIFF($P(YSDOT,".",1),$P(YSADMDT,".",1),1)
+ I YSDAYS="" Q YSFLAG
+ I YSDAYS<7 Q "I^1"
+ I YSDAYS>27 Q "I^0"
+ I (YSDAYS>6)&(YSDAYS<28) Q "I^2"
+ Q YSFLAG
+ ;
+FMDIFF(YSX1,YSX2,YSX3) ;Calculate number of days between admission and
+ ;date test was given
+ ;  Input: YSX1 = date/time patient was admitted
+ ;         YSX2 = date/time patient was given test
+ ;         YSX3 = flag for count of days
+ ; Output: number of days between YSX1 and YSX2
+ S YSX1=$G(YSX1),YSX2=$G(YSX2),YSX3=$G(YSX3,1)
+ I YSX1="" Q ""
+ I YSX2="" Q ""
+ Q $$FMDIFF^XLFDT($P(YSX1,".",1),$P(YSX2,".",1),YSX3)
+ ;
+WSCALE ;calculate Inconsistent responses
+ N YSWA1,YSWA2,YSWI,YSWNODE,YSWP,YSWPAIR,YSWQ1,YSWQ2,YSWQA1,YSWQA2
+ F YSWI=1:1:5 D
+ .S YSWNODE=$G(^YTT(601,YSTEST,"S",29,"K",YSWI,0))
+ .F YSWP=1:1:$L(YSWNODE,U) D
+ ..S YSWPAIR=$P(YSWNODE,U,YSWP)
+ ..S YSWQA1=$P(YSWPAIR,"-",1),YSWQA2=$P(YSWPAIR,"-",2)
+ ..S YSWQ1=$P(YSWQA1,";",1),YSWA1=$P(YSWQA1,";",2)
+ ..S YSWQ2=$P(YSWQA2,";",1),YSWA2=$P(YSWQA2,";",2)
+ ..I ($E(X,YSWQ1)=YSWA1)&($E(X,YSWQ2)=YSWA2) S $P(R,U,29)=$P(R,U,29)+1
+ Q

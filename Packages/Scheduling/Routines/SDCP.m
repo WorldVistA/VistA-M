@@ -1,5 +1,5 @@
-SDCP ;BSN/GRR - CLINIC LIST ;15 MAR 1999  4:10 PM
- ;;5.3;Scheduling;**140,171,187,354,622,635**;Aug 13, 1993;Build 3
+SDCP ;BSN/GRR - CLINIC LIST ;15 MAR 1999 4:10 PM
+ ;;5.3;Scheduling;**140,171,187,354,622,635,641**;Aug 13, 1993;Build 4
  D ASK2^SDDIV G:Y<0 END S VAUTNI=1 D CLINIC^VAUTOMA G:Y<0 END
 QUE N ZTSAVE F Y="VAUTD","VAUTD(","VAUTC","VAUTC(" S ZTSAVE(Y)=""
  D EN^XUTMDEVQ("START^SDCP","Clinic Profile",.ZTSAVE) Q
@@ -42,7 +42,8 @@ L(SDT,SDCOL,SDVAL) ;Print field label
 PRT I $Y+13>IOSL D:IOSL<25 SEEND:$E(IOST,1,2)="C-" Q:END  D TOF
  S SDNO="" W ! D L("Clinic",19,NAME),L("Abbr.",62,ABBR)
  S SDPRTTOF=1   ; SD*5.3*622 - SDPRTTOF helps prevent double Headers
- W ! D L("Location",19,$E(LOC,1,30)),L("Telephone",62,$S($D(^SC(SC,99)):^SC(SC,99),1:""))
+ ; SD*5.3*641 - get 1st piece of 99 node
+ W ! D L("Location",19,$E(LOC,1,30)),L("Telephone",62,$S($D(^SC(SC,99)):$P($G(^SC(SC,99)),U),1:""))
  ; SD*5.3*622 - add new field telephone extension
  W ! D L("Telephone Ext.",19,$S($D(^SC(SC,99.1)):^SC(SC,99.1),1:""))
  ; SD*5.3*635 - add new fields #60-62

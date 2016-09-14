@@ -1,5 +1,5 @@
-ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/28/15  08:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395**;Dec 17, 1997;Build 11
+ORWDXC ; SLC/KCM - Utilities for Order Checking ;01/28/15  09:02
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**10,141,221,243,280,346,345,311,395,269**;Dec 17, 1997;Build 85
  ;
 ON(VAL) ; returns E if order checking enabled, otherwise D
  S VAL=$$GET^XPAR("DIV^SYS^PKG","ORK SYSTEM ENABLE/DISABLE")
@@ -127,25 +127,29 @@ USID(ORITMX) ; Return universal svc ID for an orderable item
 CHK2LST ; creates list that can be passed to broker from ORCHECK array
  ; expects ORCHECK to be present and populates LST
  D REMDUPS ;similar to REMDUPS^ORCHECK
- N ORIFN,ORID,CDL,I,ILST,LASTIFN,RESERVED,ORCHECK2,ORNUM,OLIST S ILST=0,LASTIFN=0,RESERVED=0,OLIST=0
+ N ORIFN,ORID,CDL,I,ILST,LASTIFN,RESERVED,ORCHECK2,ORNUM,OLIST,SORT
+ S ILST=0,LASTIFN=0,RESERVED=0,OLIST=0,SORT=""
  S ORIFN="" F  S ORIFN=$O(ORCHECK(ORIFN)) Q:ORIFN=""  D
  . S CDL=0 F  S CDL=$O(ORCHECK(ORIFN,CDL)) Q:'CDL  D
+ . . S SORT=$S(+SORT=0:CDL,CDL<+SORT:CDL,1:+SORT)
  . . S I=0 F  S I=$O(ORCHECK(ORIFN,CDL,I)) Q:'I  D
  . . . S ORCHECK2(ORIFN,CDL,+ORCHECK(ORIFN,CDL,I),I)=ORCHECK(ORIFN,CDL,I)
+ . S:SORT'="" SORT(SORT,ORIFN)="",SORT=""
  K ORCHECK
  S ORIFN="" F  S ORIFN=$O(ORCHECK2(ORIFN)) Q:ORIFN=""  D
  . S CDL=0 F  S CDL=$O(ORCHECK2(ORIFN,CDL)) Q:'CDL  D
  . . S ORNUM=0 F  S ORNUM=$O(ORCHECK2(ORIFN,CDL,ORNUM)) Q:'ORNUM  D
  . . . S I=0 F  S I=$O(ORCHECK2(ORIFN,CDL,ORNUM,I)) Q:'I  D
  . . . . S OLIST=OLIST+1,ORCHECK(ORIFN,CDL,OLIST)=ORCHECK2(ORIFN,CDL,ORNUM,I)
- S ORIFN="" F  S ORIFN=$O(ORCHECK(ORIFN)) Q:ORIFN=""  D
- . S CDL=0 F  S CDL=$O(ORCHECK(ORIFN,CDL)) Q:'CDL  D
- . . S I=0 F  S I=$O(ORCHECK(ORIFN,CDL,I)) Q:'I  D
- . . . I LASTIFN'=ORIFN S LASTIFN=ORIFN,RESERVED=ILST+1,ILST=ILST+1 ; saves a spot for the RDI warning at the top of each order's checks
- . . . S ORID=ORIFN I +ORID,(+ORID=ORID) S ORID=ORID_";1"
- . . . I '$P(ORCHECK(ORIFN,CDL,I),U,2) Q  ; CDL="" means don't show
- . . . I $P(ORCHECK(ORIFN,CDL,I),U,1)=99 S LST(RESERVED)=ORID_U_ORCHECK(ORIFN,CDL,I) Q  ;Put RDI warning at the top of each order's checks
- . . . S ILST=ILST+1,LST(ILST)=ORID_U_ORCHECK(ORIFN,CDL,I)
+ S SORT=0 F  S SORT=$O(SORT(SORT)) Q:'SORT  D
+ . S ORIFN="" F  S ORIFN=$O(SORT(SORT,ORIFN)) Q:ORIFN=""  D
+ . . S CDL=0 F  S CDL=$O(ORCHECK(ORIFN,CDL)) Q:'CDL  D
+ . . . S I=0 F  S I=$O(ORCHECK(ORIFN,CDL,I)) Q:'I  D
+ . . . . I LASTIFN'=ORIFN S LASTIFN=ORIFN,RESERVED=ILST+1,ILST=ILST+1 ; saves a spot for the RDI warning at the top of each order's checks
+ . . . . S ORID=ORIFN I +ORID,(+ORID=ORID) S ORID=ORID_";1"
+ . . . . I '$P(ORCHECK(ORIFN,CDL,I),U,2) Q  ; CDL="" means don't show
+ . . . . I $P(ORCHECK(ORIFN,CDL,I),U,1)=99 S LST(RESERVED)=ORID_U_ORCHECK(ORIFN,CDL,I) Q  ;Put RDI warning at the top of each order's checks
+ . . . . S ILST=ILST+1,LST(ILST)=ORID_U_ORCHECK(ORIFN,CDL,I)
  Q
 LST2CHK ; create ORCHECK array from list passed by broker
  N ORIFN,CDL,I,ILST S I=0
@@ -204,7 +208,7 @@ OPOS(DFN) ;handles saving and removing order checks that should only be displaye
  S I="" F  S I=$O(ORCHECK(I)) Q:'$L(I)  D
  .S J=0 F  S J=$O(ORCHECK(I,J)) Q:'J  D
  ..S K=0 F  S K=$O(ORCHECK(I,J,K)) Q:'K  D
- ...N ORTXT,ORTXT0,ORTXTI,ORXTRAI
+ ...N ORTXT,ORTXTO,ORTXT0,ORTXTI,ORXTRAI
  ...S ORTXTO="These checks could not be completed for this patient:"
  ...Q:(ORCHECK(I,J,K)'[ORTXTO)
  ...S ORTXT=ORTXTO

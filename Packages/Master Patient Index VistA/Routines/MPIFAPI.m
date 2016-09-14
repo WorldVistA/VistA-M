@@ -1,5 +1,5 @@
 MPIFAPI ;CMC/BP-APIS FOR MPI ;DEC 21, 1998
- ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,55,56,60,61**;30 Apr 99;Build 3
+ ;;1.0;MASTER PATIENT INDEX VISTA;**1,3,14,16,17,21,27,28,33,35,37,43,45,44,46,48,55,56,60,61,62**;30 Apr 99;Build 3
  ; Integration Agreements Utilized:
  ;   ^DPT( - #2070 and #4079
  ;   ^DPT("AICN", ^DPT("AMPIMIS", ^DPT("ASCN2" - #2070
@@ -206,4 +206,20 @@ VIC40(DFN,ICN) ; -- only allowed for approved package use
  S TIME=$$NOW^XLFDT
  S INDEX=1
  D UPDATE^MPIFQ0(DFN,ICN,"")
+ Q
+ ;
+CARDLOG(MPIFID,MPIFTYPE,MPIFEVNT) ; - Function to log cards swiped or scanned
+ ; input:   MPIFID = ID from card swiped or scanned
+ ;        MPIFTYPE = type of card, either VHIC or CAC
+ ;        MPIFEVNT = type of event, either SWIPE or SCAN
+ N MPIFNEXT
+ I '$G(MPIFID) Q
+ I $G(MPIFTYPE)'="VHIC",$G(MPIFTYPE)'="CAC" Q
+ I $G(MPIFEVNT)'="SWIPE",$G(MPIFEVNT)'="SCAN" Q
+ L +^XTMP("MPIFCARD",0):5
+ S MPIFID=MPIFID_$S(MPIFTYPE="VHIC":"~PI~USVHA~742V1",1:"~NI~USDOD~200DOD")
+ S ^XTMP("MPIFCARD",0)=$$FMADD^XLFDT(DT,90)_"^"_DT_"^"_"VHIC/CAC card swipe/scan log"
+ S MPIFNEXT=$O(^XTMP("MPIFCARD",DT,":"),-1)+1
+ S ^XTMP("MPIFCARD",DT,MPIFNEXT)=$$NOW^XLFDT_"^"_MPIFID_"^"_MPIFTYPE_"^"_MPIFEVNT_"^"_$P($G(XQY0),"^",2)
+ L -^XTMP("MPIFCARD",0)
  Q

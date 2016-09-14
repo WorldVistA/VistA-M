@@ -1,5 +1,5 @@
-PSSSCHED ;BIR/JMC-BUILD SCHEDULE LIST FOR CPRS GUI SELECTION;02/27/08
- ;;1.0;PHARMACY DATA MANAGEMENT;**94**;9/30/97;Build 26
+PSSSCHED ;BIR/JMC-BUILD SCHEDULE LIST FOR CPRS GUI SELECTION ; 10/15/15 4:21pm
+ ;;1.0;PHARMACY DATA MANAGEMENT;**94,189**;9/30/97;Build 54
  ;
  ;
  Q  ;Cannot be called directly.  Must use API
@@ -45,6 +45,7 @@ SCHED(PSSWIEN,PSSARRY) ;Receive ward IEN from CPRS and return list of schedules.
  . S PSSSKED1="",PSSSK=1
  . F  S PSSSKED1=$O(^PS(51.1,"APPSJ",PSSSKED,PSSSKED1)) Q:PSSSKED1=""  D
  . . Q:$P($G(^PS(51.1,PSSSKED1,0)),"^",5)=""
+ . . Q:$$GET1^DIQ(51.1,PSSSKED1,12,"I")  ;Schedule is marked Inactive
  . . S ^TMP("PSSDUP",$J,PSSSKED,PSSSK)=PSSSKED1  ;Identify duplicate schedules to work with.
  . . S ^TMP("PSSADMIN",$J,"STD",PSSSKED,PSSSKED1)=$S($P($G(^PS(51.1,PSSSKED1,1,PSSWIEN,0)),"^",2)'="":$P($G(^PS(51.1,PSSSKED1,1,PSSWIEN,0)),"^",2),1:$P($G(^PS(51.1,PSSSKED1,0)),"^",2))
  . . S PSSSK=PSSSK+1

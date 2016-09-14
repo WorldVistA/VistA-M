@@ -1,6 +1,6 @@
 IBCNEAMC ;DAOU/ESG - IIV AUTO MATCH BUFFER LISTING ;11-JUN-2002
- ;;2.0;INTEGRATED BILLING;**184,252**;21-MAR-94
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**184,252,566**;21-MAR-94;Build 1
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 EN ; -- main entry point for IBCNE AUTO MATCH BUFFER LIST
  NEW IBCNENIL,COL,CTRLCOL,FINISH,POP,VALMBCK,X,%DT
@@ -88,9 +88,9 @@ SELECT ; -- select an entry from the list
  D FULL^VALM1
  ;
  ; Check for Auto Match security key before allowing selection
- I '$$KCHK^XUSRB("IBCNE IIV AUTO MATCH") D  G SELECTX
+ I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G SELECTX
  . W !!?5,"You don't hold the proper security key to access this function."
- . W !?5,"The necessary key is IBCNE IIV AUTO MATCH.  Please see your manager."
+ . W !?5,"The necessary key is IBCNE EIV MAINTENANCE.  Please see your manager."
  . D PAUSE^VALM1
  . Q
  ;
@@ -137,9 +137,9 @@ LINK ; -- link to the Auto Match Enter/Edit option
  D FULL^VALM1
  ;
  ; Check for Auto Match security key before allowing selection
- I '$$KCHK^XUSRB("IBCNE IIV AUTO MATCH") D  G LINKX
+ I '$$KCHK^XUSRB("IBCNE EIV MAINTENANCE") D  G LINKX
  . W !!?5,"You don't hold the proper security key to access this function."
- . W !?5,"The necessary key is IBCNE IIV AUTO MATCH.  Please see your manager."
+ . W !?5,"The necessary key is IBCNE EIV MAINTENANCE.  Please see your manager."
  . D PAUSE^VALM1
  . Q
  ;

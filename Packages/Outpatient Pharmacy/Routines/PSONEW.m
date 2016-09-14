@@ -1,13 +1,13 @@
-PSONEW ;BIR/SAB-new rx order main driver ;07/26/96
- ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417,313**;DEC 1997;Build 76
- ;External references L and UL^PSSLOCK supported by DBIA 2789
+PSONEW ;BIR/SAB - new rx order main driver ;07/26/96
+ ;;7.0;OUTPATIENT PHARMACY;**11,27,32,46,94,130,268,225,251,379,390,417,313,411**;DEC 1997;Build 95
+ ;External reference to UL^PSSLOCK supported by DBIA 2789
+ ;External reference to $$L^PSSLOCK supported by DBIA 2789
  ;External reference to ^VA(200 supported by DBIA 224
- ;External reference to ^XUSEC supported by DBIA 10076
+ ;External reference to ^XUSEC( supported by DBIA 10076
  ;External reference to ^ORX1 supported by DBIA 2186
  ;External reference to ^ORX2 supported by DBIA 867
  ;External reference to ^TIUEDIT supported by DBIA 2410
- ;External reference to SAVEOC4^OROCAPI1 supported by DBIA 5729
- ;External reference to ^ORD(100.05, supported by DBIA 5731
+ ;External reference to ^DD("DILOCKTM" supported by DBIA 999
  ;---------------------------------------------------------------
 OERR ;backdoor new rx for v7
  K PSOREEDT,COPY,SPEED,PSOEDIT,DUR,DRET,PSOTITRX,PSOMTFLG N PSOCKCON,PSODAOC
@@ -48,19 +48,19 @@ DEL ;
  . K PSOX,PSOY Q
 EOJ ;
  I $D(PSONEW("RX #")) L -^PSRX("B",PSONEW("RX #")) ; +Lock set in PSONRXN
- K PSONOEDT,PSONEW,PSODRUG,ANQDATA,LSI,C,MAX,MIN,NDF,REF,SIG,SER,PSOFLAG,PSOHI,PSOLO,PSONOOR,PSOCOUU,PSOCOU,PSORX("EDIT")
+ K PSONOEDT,PSONEW,PSODRUG,ANQDATA,LSI,C,MAX,MIN,NDF,REF,SIG,SER,PSOFLAG,PSOHI,PSOLO,PSONOOR,PSOCOUU,PSOCOU,PSORX("EDIT"),ZNEW
  D CLEAN^PSOVER1
  K ^TMP("PSORXDC",$J),RORD,ACOM,ACNT,CRIT,DEF,F1,GG,I1,IEN,INDT,LAST,MSG,NIEN,STA,DUR,DRET,PSOPRC
  S (ZRXN,RXN)=$O(^TMP("PSORXN",$J,0)) I RXN D
  .S RXN1=^TMP("PSORXN",$J,RXN) D EN^PSOHLSN1(RXN,$P(RXN1,"^"),$P(RXN1,"^",2),"",$P(RXN1,"^",3))
  .I $P(^PSRX(RXN,"STA"),"^")=5 D EN^PSOHLSN1(RXN,"SC","ZS","")
  .;saves drug allergy order chks pso*7*390
- .I +$G(^TMP("PSODAOC",$J,1,0)) D
- ..S RXN=ZRXN,PSODAOC="Rx Backdoor "_$S($P(^PSRX(RXN,"STA"),"^")=4:"NON-VERIFIED ",1:"")_"NEW Order Acceptance_OP"
- ..D DAOC
- K ZRXN,RXN,RXN1,^TMP("PSORXN",$J),^TMP("PSODAOC",$J),RET,PSODAOC
+ .I $D(^TMP("PSODAOC",$J)) D
+ ..S RXN=ZRXN,PSODAOC="Rx Backdoor "_$S($P(^PSRX(RXN,"STA"),"^")=4:"NON-VERIFIED ",1:"")_"NEW Order Acceptance_OP",ZNEW=1
+ .D DAOC
+ K ZRXN,RXN,RXN1,^TMP("PSORXN",$J),^TMP("PSODAOC",$J),RET,PSODAOC,ZNEW
  I $G(PSONOTE) D FULL^VALM1,MAIN^TIUEDIT(3,.TIUDA,PSODFN,"","","","",1)
- K PSONOTE,PSOCKCON
+ K PSONOTE,PSOCKCON,ZZCOPY
  ;W !! K DIR S DIR(0)="E",DIR("?")="Press Return to continue",DIR("A")="Press Return to Continue" D ^DIR K DIR,DTOUT,DUOUT
  Q
 NOOR ;asks nature of order
@@ -101,31 +101,6 @@ NOORE(PSONEW) ;entry point for renew
  D NOOR I $D(DIRUT) S PSONEW("DFLG")=1 Q
  S PSONEW("NOO")=PSONOOR
  Q
-DAOC ;stores drug allergies w/sign/symptoms
- Q:'$D(^TMP("PSODAOC",$J,1,0))
- N DA,OCCDT,ORN,ORL,Z,RET S OCCDT=$$NOW^XLFDT,ORN=$P(^PSRX(RXN,"OR1"),"^",2)
- S ORL(1,1)=ORN_"^"_PSODAOC_"^"_DUZ_"^"_OCCDT_"^3^"
- S ORL(1,2)="A Drug-Allergy Reaction exists for this medication and/or class"
- D SAVEOC^OROCAPI1(.ORL,.RET)
- S DA=$O(RET(1,0)) Q:'DA
- S $P(^ORD(100.05,DA,0),"^",2)=6
- S ^ORD(100.05,DA,4,0)="100.517PA^1^1"
- S ^ORD(100.05,DA,4,1,0)=^TMP("PSODAOC",$J,1,0)
- S ^ORD(100.05,DA,4,"B",$P(^TMP("PSODAOC",$J,1,0),"^"),1)=""
- ;
- I $O(^TMP("PSODAOC",$J,1,0)) F I=0:0 S I=$O(^TMP("PSODAOC",$J,1,I)) Q:'I  D
- .S ^ORD(100.05,DA,4,1,1,0)="100.5173PA^"_I_"^"_I
- .S ^ORD(100.05,DA,4,1,1,I,0)=^TMP("PSODAOC",$J,1,I)
- .S ^ORD(100.05,DA,4,1,1,"B",^TMP("PSODAOC",$J,1,I),I)=""
- ;
- I $O(^TMP("PSODAOC",$J,2,0)) S Z=0 F I=0:0 S I=$O(^TMP("PSODAOC",$J,2,I)) Q:'I  S Z=Z+1 D
- .S ^ORD(100.05,DA,4,1,2,0)="100.5174PA^"_Z_"^"_Z
- .S ^ORD(100.05,DA,4,1,2,Z,0)=^TMP("PSODAOC",$J,2,I)
- .S ^ORD(100.05,DA,4,1,2,"B",^TMP("PSODAOC",$J,2,I),Z)=""
- ;
- I $O(^TMP("PSODAOC",$J,3,0)) F I=0:0 S I=$O(^TMP("PSODAOC",$J,3,I)) Q:'I  D
- .S ^ORD(100.05,DA,4,1,3,0)="100.5175PA^"_I_"^"_I
- .S ^ORD(100.05,DA,4,1,3,I,0)=^TMP("PSODAOC",$J,3,I)
- .S ^ORD(100.05,DA,4,1,3,"B",^TMP("PSODAOC",$J,3,I),I)=""
- K ^TMP("PSODAOC",$J)
+DAOC ;adds all backdoor order checks to file 100.05.
+ D ^PSONEWOC K ^TMP("PSODAOC",$J),PSRDI
  Q

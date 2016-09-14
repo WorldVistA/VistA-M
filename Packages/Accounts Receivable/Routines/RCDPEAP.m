@@ -1,12 +1,12 @@
 RCDPEAP ;ALB/PJH - AUTO POST MATCHING EFT ERA PAIR ;Oct 15, 2014@12:36:51
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  ;Read ^IBM(361.1) via Private IA 4051
  ;
 EN ;Auto-post ERA Receipts
  ;Process newly matched and matched but unprocessed ERAs
  D EN1
- ;Process previously processed ERA's 
+ ;Process previously processed ERA's
  D EN2
  Q
  ;
@@ -17,7 +17,7 @@ EN1 ;Auto-post newly matched and matched but unprocessed ERA
  F  S RCRZ=$O(^RCY(344.4,"E",0,RCRZ)) Q:'RCRZ  D
  .;Get EFT reference
  .S RCEFTDA=$O(^RCY(344.31,"AERA",RCRZ,"")) Q:'RCEFTDA
- .;Check that EFT funds were posted to FMS and Accepted by FMS 
+ .;Check that EFT funds were posted to FMS and Accepted by FMS.  If not, quit and go to next unposted ERA
  .N RCOK,RCDEPTDA,RCRECTDA
  .S RCOK=1
  .I $P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFTDA,0)),0)),U,8),$P($G(^RCY(344.31,+RCEFTDA,0)),U,7) D  Q:'RCOK
@@ -35,17 +35,17 @@ AUTOPOST(RCEFTDA,RCERA) ;
  ; RCERA = ien of file #344.4
  ;
  ;Lock ERA
- L +^RCY(344.4,RCERA):5 Q:'$T 
+ L +^RCY(344.4,RCERA):5 Q:'$T
  ;
  ;Build Scratchpad and Verify Lines
  N ALLOK,RCRCPTDA,RCSCR,RCTRDA,RCERR,RCLINES,ZEROBAL
  K ^TMP($J,"RCDPEWLA")
  S RCSCR=$$SCRPAD(RCERA)
  ; Re-set AUTO-POST STATUS  if unable to create scratchpad
- I 'RCSCR D SETSTA(RCERA,"@") Q
+ I 'RCSCR D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create scratchpad") G AUTOQ
  ;
- ; ERA cannot be autoposted; remove any pre-existing value to the AUTO-POST STATUS (344.4, 4.02) so ERA can be processed manually in the Worklist
- I $D(^TMP($J,"RCDPEWLA","ERA LEVEL ADJUSTMENT EXISTS")) D SETSTA(RCERA,"@") Q
+ ; ERA cannot be autoposted; remove any pre-existing value to the AUTO-POST STATUS so ERA can be processed manually in the Worklist
+ I $D(^TMP($J,"RCDPEWLA","ERA LEVEL ADJUSTMENT EXISTS")) D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-ERA level Adjustment(s)") G AUTOQ
  ;
  ;Check if all lines can be posted
  S ALLOK=$$ALLOK(RCERA,RCSCR,.ZEROBAL,.RCLINES)
@@ -54,7 +54,7 @@ AUTOPOST(RCEFTDA,RCERA) ;
  I ALLOK D POSTALL(RCERA)
  ;
  ; If 'ALLOK and 'ZEROBAL(matching postive/negative pairs to not balance out to zero), then ERA needs to go to the standard worklist for manual receipt processing
- I 'ALLOK,'ZEROBAL D SETSTA(RCERA,"@") G AUTOQ
+ I 'ALLOK,'ZEROBAL D SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-+/- pairs do not balance") G AUTOQ
  ;
  ;If 'ALLOK and some of the lines passed validation then post receipt to summary ERA and set AUTO-POST STATUS = PARTIAL
  ;Un-posted lines fall to APAR list for processing.
@@ -64,38 +64,31 @@ AUTOQ D UNLOCKE
  Q
  ;
 EN2 ;Auto-Post Previously Processed ERA
- N AUTORCPT,CLAIM,COMPLETE,EOBIEN,RCERA,RCIFN,RCDSUB
- S RCERA=0,AUTORCPT=1 ;Variable AUTORCPT suppresses #344 trigger update to ERA receipt field 
+ N AUTORCPT,CLAIM,COMPLETE,EOBIEN,RCERA,RCIFN,RCRCPTDA,RCLINES
+ S RCERA=0,AUTORCPT=1 ;Variable AUTORCPT suppresses #344 trigger update to ERA receipt field
  ;Scan ERA file for auto-post candidates with AUTO-POST STATUS = PARTIAL
  F  S RCERA=$O(^RCY(344.4,"E",1,RCERA)) Q:'RCERA  D
- . ;Ignore if just posted in EN1^RCDPEAP
+ . ;Ignore if it was just partially posted in POSTLNS so we do not process again
  . Q:$D(^TMP("RCDPEAP",$J,RCERA))
- . ;Build cross reference of ERA line to scratchpad line
- . N RCARRAY D BUILD(RCERA,.RCARRAY) Q:'RCARRAY 
- . ;Scan ERA for lines marked for auto-post
- . N LINE,RCLINES,RESULT,SUB,WLINE,ALLOK S RCDSUB=0,RCLINES=0,ALLOK=1
- . F  S RCDSUB=$O(^RCY(344.4,RCERA,1,RCDSUB)) Q:'RCDSUB  D
- . . ;Check if line is marked for auto post
- . . I '$P($G(^RCY(344.4,RCERA,1,RCDSUB,5)),U,2) S ALLOK=0 Q
- . . ;Get scratchpad node for this ERA line
- . . S RCLINES(RCDSUB)="0^UNABLE TO AUTO-POST CLAIM LINE",SUB=$G(RCARRAY(RCDSUB)) I 'SUB S ALLOK=0 Q
- . . ;Validate scratchpad line 
- . . I '$$VALID(RCERA,SUB,.RESULT) S LINE=$O(RESULT("")),$P(RCLINES(RCDSUB),U,3)=$S(RESULT(LINE)["GENERAL":7,RESULT(LINE)["BALANCE":6,1:5),ALLOK=0 Q
- . . ;Line is still OK to post
- . . S RCLINES(RCDSUB)="1^AUTO-POST",RCLINES=$G(RCLINES)+1
- . ;
- . ;If valid lines found create receipt for those lines
- . I RCLINES D 
+ . ;Set receipt variable to null for each ERA so that the receipt number from the previous ERA is not hanging around
+ . S RCRCPTDA=""
+ . ;Check if there are lines that are set for auto-posting and if they can be posted or have errors.
+ . K RCLINES
+ . S RCLINES=0
+ . D VALID^RCDPEAP1(RCERA,.RCLINES)
+ . ;If valid lines found create receipt for those lines (Variable RCLINES is only incremented for valid lines)
+ . I RCLINES D
  . . N RCEFTDA,RCDEPTDA,RCRECTDA
  . . ;Get EFT reference
  . . S RCEFTDA=$O(^RCY(344.31,"AERA",RCERA,"")) Q:'RCEFTDA
- . . ;Get deposit ticket and EFT receipt 
+ . . ;Get deposit ticket and EFT receipt
  . . S RCDEPTDA=+$P($G(^RCY(344.3,+$G(^RCY(344.31,+RCEFTDA,0)),0)),U,3),RCRECTDA=+$O(^RCY(344,"AD",+RCDEPTDA,0))
  . . ;ERA Receipt is created from scratchpad entry - type 14 is EDI Lockbox payment
  . . S RCRCPTDA=$$BLDRCPT^RCDPEMA(RCERA) ; Creates basic receipt for ERA of payment type EDI LOCKBOX; 2nd parameter means an alpha suffix on receipt number
+ . . K RCERR
  . . D RCPTDET^RCDPEMA(RCERA,RCRCPTDA,.RCLINES,.RCERR) ; Adds detail to a receipt based on file 344.49 and RCLINES array
  . . ;Unable to create receipt - clear scratchpad, reset AUTO-POST STATUS = NULL
- . . I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@") Q 
+ . . I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create receipt") Q
  . . ;Lock ERA receipt and deposit ticket
  . . I '$$LOCKREC^RCDPRPLU(RCRCPTDA) Q
  . . I '$$LOCKDEP^RCDPDPLU(RCDEPTDA) D UNLOCKR Q
@@ -105,24 +98,21 @@ EN2 ;Auto-Post Previously Processed ERA
  . . D ERAREF(RCERA,RCRCPTDA)
  . . ;Unlock deposit ticket and receipt
  . . D UNLOCKR
- . ; update EEOB lines with receipt # or auto-post rejection reason
- . I $D(RCRCPTDA) D
- . . D RECDET^RCDPEAP1(RCERA,RCRCPTDA,.RCLINES)
- . ; if no receipt created, then update rejection reason and reset MARK FOR AUTOPOST
- . E  D
- . . D REJDET^RCDPEAP1(RCERA,.RCLINES)
+ . ;Update ERA and ERA detail lines with receipt # or auto-post rejection reason
+ . D ERADET^RCDPEAP1(RCERA,RCRCPTDA,.RCLINES)
  . ;Determine if posting complete for this ERA
  . S COMPLETE=$$COMPLETE(RCERA)
  . ;If complete update ERA detail post status to POSTED
  . I COMPLETE S DIE="^RCY(344.4,",DR=".14////1",DA=RCERA D ^DIE
+ . ;Update the audit log
+ . D AUDITLOG(RCERA,$S(COMPLETE:2,1:1),"Auto Posting: Previously processed ERA posting attempt")
  . ;Set ERA auto-post status and update latest auto-post date
  . S DIE="^RCY(344.4,",DR="4.01////"_DT_";4.02////"_$S(COMPLETE:2,1:1),DA=RCERA D ^DIE
  ;Unlock ERA
  D UNLOCKE
  Q
- ;=====================================
+ ;
  ;Functions/Sub-routines in alpha order
- ;=====================================
  ;
 ACTIVE(EOBIEN) ;Verify claim is active
  ; EOBIEN - IEN of file 361.1
@@ -132,7 +122,7 @@ ACTIVE(EOBIEN) ;Verify claim is active
  ;Get #399 claim number from EOB
  S RCIFN=$P($G(^IBM(361.1,EOBIEN,0)),U) Q:'RCIFN 0
  S RCBILL=$P($G(^DGCR(399,RCIFN,0)),U) Q:RCBILL="" 0  ; IA 4051
- ;Check if bill is cancelled or closed 
+ ;Check if bill is cancelled or closed
  S RCSTATUS=$P($G(^DGCR(399,RCIFN,0)),U,13)
  Q $S(RCSTATUS=0:0,RCSTATUS=7:0,1:1)
  ; 
@@ -148,7 +138,7 @@ ALLOK(RCERA,RCSCR,ZEROBAL,RCLINES) ;Verify which scratchpad lines are able to au
  S (ZEROBAL,ALLOK)=1
  S (SUB,RCLINES)=0
  F  S SUB=$O(^RCY(344.49,RCSCR,1,"B",SUB)) Q:SUB=""  D
- . ;Get scratchpad line and data 
+ . ;Get scratchpad line and data
  . S SUB1=$O(^RCY(344.49,RCSCR,1,"B",SUB,"")) Q:'SUB1  S WLINE=$G(^RCY(344.49,RCSCR,1,SUB1,0)),AMT=$P(WLINE,U,3)
  . ;If integer sequence, get ERA line reference and verify flag and then quit for this sequence and go on to the non-integer sequence to finish validation
  . I $P(WLINE,U)?1N.N S VERIFY=1 S ERALINE=$P(WLINE,U,9) S:'$P(WLINE,U,13) ALLOK=0,RCLINES(ERALINE)="0^^1",VERIFY=0 Q
@@ -168,12 +158,32 @@ ALLOK(RCERA,RCSCR,ZEROBAL,RCLINES) ;Verify which scratchpad lines are able to au
  . S $P(RCLINES(ERALINE),U)=1,$P(RCLINES(ERALINE),U,3)=$P(WLINE,U,6),RCLINES=$G(RCLINES)+1
  Q ALLOK
  ;
+AUDITLOG(DA,RCNEWST,RCREASON) ;
+ ; Update the Auto-post Audit Log
+ ;
+ I '$G(DA) Q
+ I $G(RCREASON)="" Q
+ ;
+ N RCAUDIT,RCOLDST,DIE,DR,X,Y,DTOUT,DUOUT,DROUT,DIRUT
+ ; Get the current status
+ S RCOLDST=$$GET1^DIQ(344.4,DA_",",4.02,"I")
+ ; If the new status is null, set to old status (no change)
+ I $G(RCNEWST)="" S RCNEWST=RCOLDST
+ ; File
+ S RCAUDIT(344.72,"+1,",.01)=$$NOW^XLFDT ;Date/Time Stamp
+ S RCAUDIT(344.72,"+1,",.02)=DUZ         ;User
+ S RCAUDIT(344.72,"+1,",.03)=DA          ;ERA #
+ S RCAUDIT(344.72,"+1,",.04)=RCOLDST     ;Old Status
+ I RCNEWST'="@" S RCAUDIT(344.72,"+1,",.05)=RCNEWST ;New status
+ S RCAUDIT(344.72,"+1,",.06)=$E(RCREASON,1,80) ;Reason text
+ D UPDATE^DIE(,"RCAUDIT")
+ Q
  ;
 BUILD(RCSCR,ARRAY) ;Build list of ERA lines
  ;
- ;           RCSCR = ien of file 344.49
- ;           ARRAY = the array that will hold the list of ERA lines, passed by reference
- ;           
+ ; RCSCR = ien of file 344.49
+ ; ARRAY = the array that will hold the list of ERA lines, passed by reference
+ ;
  N FOUND,SCRLINE,SUB,SUB1
  K ARRAY
  S SUB=0,ARRAY=0
@@ -182,14 +192,14 @@ BUILD(RCSCR,ARRAY) ;Build list of ERA lines
  . S SUB1=$O(^RCY(344.49,RCSCR,1,"B",SUB,"")) Q:'SUB1
  . ;Ignore zero lines
  . Q:'$P($G(^RCY(344.49,RCSCR,1,SUB1,0)),U,3)
- . ;Index scratchpad line by ERA sequence 
+ . ;Index scratchpad line by ERA sequence
  . S ARRAY($P($G(^RCY(344.49,RCSCR,1,SUB1,0)),U,9))=SUB1,ARRAY=$G(ARRAY)+1
  Q
  ;
 CHECKPAY(ARRAY,CLAIM) ;Check balance versus payments
- ;     ARRAY = array of claim numbers and respective payment amounts
- ;             e.g. ARRAY(430 ien) = 123.04
- ;     CLAIM = AR BILL (344.491, .07) - IEN of file 430
+ ; ARRAY = array of claim numbers and respective payment amounts
+ ;         e.g. ARRAY(430 ien) = 123.04
+ ; CLAIM = AR BILL (344.491, .07) - IEN of file 430
  Q:'CLAIM 0
  ; get the payment amount to be posted to the claim
  S AMT=ARRAY(CLAIM)
@@ -208,8 +218,8 @@ CLEAR(DA) ;Clear scratchpad
  ;
 COMPLETE(RCSCR) ;Check for non-zero lines without a receipt
  ;
- ;           RCSCR = ien of file 344.49
- ;           returns status of check (1 or 0)
+ ; RCSCR = ien of file 344.49
+ ; Returns status of check (1 or 0)
  N RCSUB,SCRSUB,COMPLETE,SCRLINE,RCERA
  ;Default to complete
  S SCRSUB=0,COMPLETE=1,RCERA=RCSCR
@@ -231,11 +241,10 @@ ERAREF(RCSCR,RCRCPTDA) ; update ERA reference and EFT record IEN in file 344
  S DIE="^RCY(344,",DA=RCRCPTDA,DR=".18////"_RCSCR_$S(Z:";.17////"_Z,1:"") D ^DIE
  Q
  ;
- ;
 NOTOK(RCSCR) ;Verify all scratchpad lines passed auto verify (V)
  ;
- ;           RCSCR = ien of file 344.49
- ;           returns status of check (1 or 0)
+ ; RCSCR = ien of file 344.49
+ ; Returns status of check (1 or 0)
  N NOTOK,SUB
  S SUB=0,NOTOK=0
  F  S SUB=$O(^RCY(344.49,RCSCR,1,SUB)) Q:'SUB  D  Q:NOTOK
@@ -244,22 +253,23 @@ NOTOK(RCSCR) ;Verify all scratchpad lines passed auto verify (V)
  Q NOTOK
  ;
 POSTALL(RCERA) ; all lines in ERA get posted on first attempt of auto-post
- ; 
- ;         RCERA = ien of 344.4
+ ;
+ ; RCERA = ien of 344.4
  ;
  ;ERA Receipt is created from scratchpad entry - type 14 is EDI Lockbox payment
  S RCRCPTDA=$$BLDRCPT^RCDPUREC(DT,"",+$O(^RC(341.1,"AC",14,0)))  ; Creates basic receipt for ERA of payment type EDI LOCKBOX; 2nd parameter means no alpha suffix on receipt number
  D RCPTDET^RCDPEM(RCSCR,RCRCPTDA,.RCERR) ; Adds detail to a receipt based on file 344.49
  ;
  ;Unable to create receipt - clear scratchpad, reset AUTO-POST STATUS = NULL
- I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@") Q
+ I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create receipt") Q
  ;
  ;Lock ERA receipt and deposit ticket
  I '$$LOCKREC^RCDPRPLU(RCRCPTDA) Q
  I '$$LOCKDEP^RCDPDPLU(RCDEPTDA) D UNLOCKR Q
  ;
  ;Process Receipt to FMS
- D PROCESS^RCDPURE1(RCRCPTDA,2) I $D(^TMP("RCDPE-RECEIPT-ERROR",$J)) D CLEAR(RCSCR),SETSTA(RCERA,"@"),UNLOCKR Q
+ D PROCESS^RCDPURE1(RCRCPTDA,2)
+ I $D(^TMP("RCDPE-RECEIPT-ERROR",$J)) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Error in receipt processing"),UNLOCKR Q
  ;
  ; update 344, .18 ERA REFERENCE field
  D ERAREF(RCSCR,RCRCPTDA)
@@ -267,6 +277,8 @@ POSTALL(RCERA) ; all lines in ERA get posted on first attempt of auto-post
  ;Unlock deposit ticket and receipt
  D UNLOCKR
  ;
+ ;Update the audit log
+ D AUDITLOG(RCERA,2,"Auto Posting: ERA posted successfully")
  ;Update ERA receipt and detail post status
  S DIE="^RCY(344.4,",DR=".14////1;.08////"_RCRCPTDA,DA=RCERA D ^DIE
  ;Set ERA auto-post status to 'complete' and update latest auto-post date
@@ -284,8 +296,9 @@ POSTALL(RCERA) ; all lines in ERA get posted on first attempt of auto-post
  ;
 POSTERA(RCERA,RCLINES) ; only some of the EEOB lines passed validation on first attempt (DAY 1) of auto-post
  ; therefore assign the receipt number and 'partial' post status to ERA summary
- ;         RCERA = ien of 344.4
- ;         RCLINES = array of ERA line references
+ ;
+ ; RCERA = ien of 344.4
+ ; RCLINES = array of ERA line references
  ;
  ; no lines passed validation;  at lease 1 EEOB line needs to pass validation before assigning a receipt to the ERA
  I RCLINES=0 S RCRCPTDA="" G POSTERAQ
@@ -294,13 +307,15 @@ POSTERA(RCERA,RCLINES) ; only some of the EEOB lines passed validation on first 
  D RCPTDET^RCDPEMA(RCSCR,RCRCPTDA,.RCLINES,.RCERR) ; Adds detail to a receipt based on file 344.49 and RCLINES array
  ;
  ;Unable to create receipt - clear scratchpad, reset AUTO-POST STATUS = NULL
- I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@") Q 
+ I $O(RCERR("")) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Unable to create receipt") Q
+ ;
  ;Lock ERA receipt and deposit ticket
  I '$$LOCKREC^RCDPRPLU(RCRCPTDA) Q
  I '$$LOCKDEP^RCDPDPLU(RCDEPTDA) D UNLOCKR Q
  ;
  ;Process Receipt to FMS
- D PROCESS^RCDPURE1(RCRCPTDA,2) I $D(^TMP("RCDPE-RECEIPT-ERROR",$J)) D CLEAR(RCSCR),SETSTA(RCERA,"@"),UNLOCKR Q
+ D PROCESS^RCDPURE1(RCRCPTDA,2)
+ I $D(^TMP("RCDPE-RECEIPT-ERROR",$J)) D CLEAR(RCSCR),SETSTA(RCERA,"@","Auto Posting: Removed from Auto Posting-Error in receipt processing"),UNLOCKR Q
  ;
  ; update 344, .18 ERA REFERENCE field
  D ERAREF(RCSCR,RCRCPTDA)
@@ -309,15 +324,16 @@ POSTERA(RCERA,RCLINES) ; only some of the EEOB lines passed validation on first 
  D UNLOCKR
  ;Update ERA receipt and detail post status
  S DIE="^RCY(344.4,",DR=".14////5;.08////"_RCRCPTDA,DA=RCERA D ^DIE
-POSTERAQ ; 
+POSTERAQ ;
  D POSTLNS(RCERA,RCRCPTDA,.RCLINES)
  Q
  ;
 POSTLNS(RCERA,RCRCPTDA,RCLINES) ; this subroutine should only be called when some of the EEOB lines
  ;                                passed validation on FIRST attempt (DAY 1) of auto-post
- ;         RCERA = ien of ERA entry in 344.4
- ;         RCRCPTDA = ien of receipt entry in 344 or undefined if receipt not created since none of the lines passed validation
- ;         RCLINES = array of ERA line references
+ ;
+ ; RCERA = ien of ERA entry in 344.4
+ ; RCRCPTDA = ien of receipt entry in 344 or undefined if receipt not created since none of the lines passed validation
+ ; RCLINES = array of ERA line references
  ;
  ;Mark ERA as processed to prevent reprocessing in EN2^RCDPEAP which runs next
  S ^TMP("RCDPEAP",$J,RCERA)=""
@@ -327,20 +343,21 @@ POSTLNS(RCERA,RCRCPTDA,RCLINES) ; this subroutine should only be called when som
  S RCLIN=0 F  S RCLIN=$O(RCLINES(RCLIN)) Q:'RCLIN  D
  . ; flag the line if it was rejected during validation
  . S REJECT=0 I '$P(RCLINES(RCLIN),U) S REJECT=1
- . ;get all ERA line references (e.g. RCLINES(RCLIN) could have multiple line # referencese) 
- . ;Need to parse out each line reference so that the necessary fields can be updated for the specific line.
+ . ;get all ERA line references (e.g. RCLINES(RCLIN) could have multiple line # referencese)
+ . ;Need to parse out each line reference so that the necessary fields can be updated for the specific line
  . F RCI=1:1 S LNUM=$P(RCLIN,",",RCI) Q:LNUM=""  D
  . . S DA(1)=RCERA,DA=LNUM,DIE="^RCY(344.4,"_DA(1)_",1,"
  . . ;If not posted then the AUTO-POST REJECTION REASON (344.41,5) needs to be updated ;otherwise update line with receipt number and auto-post date
  . . I REJECT S DR="5////"_$P(RCLINES(RCLIN),U,3)
  . . E  S DR=".25////"_RCRCPTDA_";9////"_DT
  . . D ^DIE
- .;Set ERA AUTO-POST STATUS = PARTIAL and update auto-post date
+ ;Update the Audit Log
+ D AUDITLOG(RCERA,1,"Auto Posting: Some of the ERA lines went to APAR")
+ ;Set ERA AUTO-POST STATUS = PARTIAL and update auto-post date
  S DIE="^RCY(344.4,",DR="4.01////"_DT_";4.02////1",DA=RCERA D ^DIE
  Q
  ;
 SCRPAD(RCERA) ;Build Scratchpad entry in #344.49 for the ERA
- ;
  N RC0,RC5,RCSCR,RCDAT,X
  S RC0=$G(^RCY(344.4,RCERA,0)),RC5=$G(^RCY(344.4,RCERA,5))
  ;Ignore is this ERA already has a receipt
@@ -358,10 +375,17 @@ SCRPAD(RCERA) ;Build Scratchpad entry in #344.49 for the ERA
 SCRPADX ;Return Scratchpad IEN
  Q RCSCR
  ;
-SETSTA(DA,STATUS) ;Set ERA auto-post status
+SETSTA(DA,STATUS,RCREASON) ;Set ERA auto-post status
+ ; Log status change
+ I '$G(DA) Q
+ I $G(STATUS)="" Q
+ ;
+ D AUDITLOG(DA,STATUS,$G(RCREASON))
+ ; Update status
  N DIE,DR
  S DIE="^RCY(344.4,",DR="4.02////"_STATUS D ^DIE
  Q
+ ;
  ;
 UNLOCKR ;Unlock ERA receipt and deposit ticket
  L -^RCY(344,RCRCPTDA)
@@ -372,7 +396,7 @@ UNLOCKE ;Unlock ERA
  L -^RCY(344.4,RCERA)
  Q
  ;
-VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by EN2^RCDPEAP and APAR/Mark for Auto-post
+VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by APAR/Mark for Auto-post
  ;Input
  ;  RCSCR   - #344.4/#344.49 file IEN
  ;  SCRLINE - Subscript of first scratchpad entry for the ERA line
@@ -387,17 +411,17 @@ VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by EN2^RCDPEAP an
  ;            e.g. split line number 2
  ;                 RCARRAY(2.001)="K800002^CLAIM REFERRED TO GENERAL COUNCIL"
  ;                 RCARRAY(2.006)="K800003^PAYMENT EXCEEDS CLAIM BALANCE"
- ; 
+ ;
  N CLAIM,DONE,SEQ,SEQ1,SUB,STATUS,WLINE
  K RCARRAY,CLARRAY
  S SUB=SCRLINE,SEQ=$P($G(^RCY(344.49,RCSCR,1,SUB,0)),U),DONE=0
  F  S SUB=$O(^RCY(344.49,RCSCR,1,SUB)) Q:SUB=""  D  Q:DONE
  . ;Get scratchpad N.001 line and data
  . S WLINE=$G(^RCY(344.49,RCSCR,1,SUB,0)),SEQ1=$P(WLINE,".") I SEQ1'=SEQ S DONE=1 Q
- . ;Get claim number from N.00N line - ignore suspense lines 
+ . ;Get claim number from N.00N line - ignore suspense lines
  . S CLAIM=$P(WLINE,U,7) I 'CLAIM Q
  . ;Claim must be OPEN or ACTIVE
- . S STATUS=$P($G(^PRCA(430,CLAIM,0)),"^",8) I STATUS'=42,STATUS'=16 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^NOT AN ACTIVE CLAIM" Q 
+ . S STATUS=$P($G(^PRCA(430,CLAIM,0)),"^",8) I STATUS'=42,STATUS'=16 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^NOT AN ACTIVE CLAIM" Q
  . ;check that payment does not exceed balance and no pending payments (at the time of auto posting)
  . S CLARRAY(CLAIM)=+$G(CLARRAY(CLAIM))+$P(WLINE,U,3) I '$$CHECKPAY(.CLARRAY,CLAIM) S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT EXCEEDS CLAIM BALANCE" Q
  . ;Check if referred to general council
@@ -406,4 +430,3 @@ VALID(RCSCR,SCRLINE,RCARRAY) ;Validates Scratchpad line - Used by EN2^RCDPEAP an
  . I $P(WLINE,U,6)<0 S RCARRAY(SEQ1)=$P(WLINE,U,2)_"^PAYMENT AMOUNT IS NEGATIVE" Q
  ;Returns 1 if line is OK
  Q $S($O(RCARRAY(""))]"":0,1:1)
- ;

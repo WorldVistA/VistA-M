@@ -1,5 +1,5 @@
 RCDPEX32 ;ALB/TMK - ELECTRONIC EOB EXCEPTION PROCESSING - FILE 344.4 ;Aug 14, 2014@16:27:32
- ;;4.5;Accounts Receivable;**173,249,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**173,249,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EDITNUM ; Edit invalid claim # to valid, refile EOB
@@ -91,9 +91,21 @@ EDITNUM ; Edit invalid claim # to valid, refile EOB
  . S DA(1)=RCXDA1,DA=RCXDA
  . D CHGED(.DA,RCEOB,RCSAVE,.RCBILL)
  . S DIE="^RCY(344.4,"_DA(1)_",1,",DR="1///@" D ^DIE
- . S DIR("A",1)="EEOB Filed. "_$S(RCBILL>0:"Its detail may be viewed using Third Party Joint Inquiry.",1:"")
+ . D ^DIE
+ . W !!,"EEOB Filed. "_$S(RCBILL>0:"Its detail may be viewed using Third Party Joint Inquiry.",1:"")
+ . ; Check if auto-post candidate
+ . N AUTOPOST
+ . S AUTOPOST=$$AUTOCHK2^RCDPEAP1(RCXDA1)
+ . I AUTOPOST D
+ .. D SETSTA^RCDPEAP(RCXDA1,0,"Exceptions: Marked as Auto-Post Candidate")
+ .. W !,"ERA has been successfully Marked as an Auto-Post CANDIDATE"
+ . I 'AUTOPOST D
+ .. D AUDITLOG^RCDPEAP(RCXDA1,"","Exceptions: Not Marked as Auto-Post Candidate-"_$P(AUTOPOST,U,2))
+ .. W !,"ERA was NOT Marked as an Auto-Post CANDIDATE - ",$P(AUTOPOST,U,2)
+ . ;
+ . K DIR
  . S DIR("A")="PRESS RETURN TO CONTINUE ",DIR(0)="EA"
- . W ! D ^DIR K DIR
+ . D ^DIR K DIR
  . S VALMBG=1
  ;
 EDITNQ I $G(RCCHG) D BLD^RCDPEX2
@@ -114,7 +126,9 @@ CHGED(DA,RCEOB,RCSAVE,RCBILL) ;  Update Invalid Bill # for EOB
 EDITRXC ; Edit pharmacy comment - PRCA*4.5*298
  N DA,DIC,DIE,DIR,DR,Q,Q0,RC,RC0,RCBILL,RCDA,RCDSEL,RCEOB,RCSAVE,RCWARN,RCXDA,RCXDA1,X,Y
  D FULL^VALM1
- D SEL^RCDPEX3(.RCDA)
+ ; PRCA*4.5*304 - Pharmacy claim selection based coming from Exception or APAR screen 
+ I '$D(RCAPAR) D SEL^RCDPEX3(.RCDA)
+ I $D(RCAPAR) D SEL^RCDPEX3(.RCDA,1)
  ;Only allow action if the selected exception has an ECME number
  S RCDSEL=$O(RCDA(0)) D:RCDSEL
  .N IENS,RCRXNO,RCRLSDT   ; IENS for FileMan, Rx number, Rx release date
@@ -137,4 +151,3 @@ EDITRXC ; Edit pharmacy comment - PRCA*4.5*298
  K ^TMP($J,"RCDP-EOB"),^TMP($J,"RCDPEOB","HDR"),^TMP("RCDPERR-EOB",$J)
  S VALMBCK="R"
  Q
- ;

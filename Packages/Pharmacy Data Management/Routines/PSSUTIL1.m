@@ -1,5 +1,5 @@
 PSSUTIL1 ;BIR/RTR-Utility routine ;08/21/00
- ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69,166**;9/30/97;Build 9
+ ;;1.0;PHARMACY DATA MANAGEMENT;**38,66,69,166,189**;9/30/97;Build 54
  ;Reference to ^PS(50.607 supported by DBIA #2221
  ;Reference to ^PSNAPIS supported by DBIA 2531
  ;
@@ -144,3 +144,42 @@ IVX ;
  .I +$P($G(^PSNDF(50.68,PSSK,7)),"^") S PSSK=$P(^(7),"^"),PSSI($S($E(PSSK,2)="n":$E(PSSK)_".5",1:PSSK))=""
  Q
  ;
+MAXDS(INPUT) ; Returns the Maximum Day Supply to CPRS for a specific Drug or Orderable Item
+ ; Input: INPUT("PSOI") - PHARMACY ORDERABLE ITEM (#50.7) IEN  
+ ;        INPUT("DRUG") - DRUG file (#50) IEN
+ ;Output: Maximum Days Supply (1 thru 365) - Default: 90
+ ;
+ N MAXDS,DRG,DRGMAXDS
+ I +$G(INPUT("DRUG")) Q $$MXDAYSUP(+INPUT("DRUG"))
+ S MAXDS=90
+ I +$G(INPUT("PSOI")) D
+ . S DRG=0
+ . F  S DRG=$O(^PSDRUG("ASP",+INPUT("PSOI"),DRG)) Q:'DRG  D
+ . . S DRGMAXDS=$$MXDAYSUP(DRG) I DRGMAXDS>MAXDS S MAXDS=DRGMAXDS
+ Q MAXDS
+ ;
+MXDAYSUP(DRUG) ; Returns the Maximum Day Supply for the Dispense Drug
+ ; Input: DRUG     - Pointer to the DRUG file (#50)
+ ;Output: MXDAYSUP - Maximum Days Supply allowed for the Dispense Drug
+ ;
+ N MXDAYSUP,DRGMAXDS,NDFMAXDS,VAPRDIEN,DEASPHLG
+ ; - Default value = 90
+ S MXDAYSUP=90
+ ; - Invalid Dispense Drug
+ I '$D(^PSDRUG(+$G(DRUG),0)) Q MXDAYSUP
+ ; - Retrieving Dispense Drug (If value is populated)
+ S DRGMAXDS=$$GET1^DIQ(50,DRUG,66) I DRGMAXDS S MXDAYSUP=DRGMAXDS
+ ; - Retrieving NDF Maximum (If Drug is matched to NDF and value is populated)
+ S VAPRDIEN=+$$GET1^DIQ(50,DRUG,22,"I")
+ I VAPRDIEN D
+ . S NDFMAXDS=$$GET1^DIQ(50.68,VAPRDIEN,32)
+ . I NDFMAXDS,'DRGMAXDS S MXDAYSUP=NDFMAXDS
+ . I NDFMAXDS,DRGMAXDS,NDFMAXDS<DRGMAXDS S MXDAYSUP=NDFMAXDS
+ ; - Controlled Substances have different upper limits (not 365)
+ S DEASPHLG=$$GET1^DIQ(50,DRUG,3)
+ I DEASPHLG["2",MXDAYSUP>30 S MXDAYSUP=30
+ I (DEASPHLG["3")!(DEASPHLG["4")!(DEASPHLG["5"),MXDAYSUP>90 S MXDAYSUP=90
+ ;- Clozapine Drug
+ I $P($G(^PSDRUG(DRUG,"CLOZ1")),"^")="PSOCLO1" S MXDAYSUP=28
+ ;
+ Q MXDAYSUP

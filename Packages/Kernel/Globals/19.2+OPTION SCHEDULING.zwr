@@ -1,6 +1,6 @@
 OPTION SCHEDULING
 ZWR
-^DIC(19.2,0)="OPTION SCHEDULING^19.2PI^21^18"
+^DIC(19.2,0)="OPTION SCHEDULING^19.2PI^23^20"
 ^DIC(19.2,0,"AUDIT")="@"
 ^DIC(19.2,0,"DD")="@"
 ^DIC(19.2,0,"DEL")="@"
@@ -36,6 +36,8 @@ ZWR
 ^DIC(19.2,20,1)="1082732"
 ^DIC(19.2,21,0)="11555^3160208.01^^^^24H"
 ^DIC(19.2,21,1)="1083136"
+^DIC(19.2,22,0)="11667^3161012.02^^^^24H"
+^DIC(19.2,23,0)="11669^3161011.03^^^^1D"
 ^DIC(19.2,"%D",0)="^^6^6^2941121^^"
 ^DIC(19.2,"%D",1,0)="This file hold records that relate to the scheduling of options"
 ^DIC(19.2,"%D",2,0)="to run on a one time basis or more likely on a schedule."
@@ -61,3 +63,5 @@ ZWR
 ^DIC(19.2,"B",11419,18)=""
 ^DIC(19.2,"B",11495,20)=""
 ^DIC(19.2,"B",11555,21)=""
+^DIC(19.2,"B",11667,22)=""
+^DIC(19.2,"B",11669,23)=""

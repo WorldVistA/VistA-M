@@ -1,5 +1,5 @@
-PSIVORFB ;BIR/MLM-FILE/RETRIEVE ORDERS IN ^PS(55 ;25 Sep 98 / 2:24 PM
- ;;5.0;INPATIENT MEDICATIONS ;**3,18,28,68,58,85,110,111,120,134,213,161,181,273,267,285,257,299**;16 DEC 97;Build 11
+PSIVORFB ;BIR/MLM - FILE/RETRIEVE ORDERS IN ^PS(55 ;25 Sep 98 / 2:24 PM
+ ;;5.0;INPATIENT MEDICATIONS;**3,18,28,68,58,85,110,111,120,134,213,161,181,273,267,285,257,299,323**;16 DEC 97;Build 10
  ;
  ; Reference to ^PS(50.7 is supported by DBIA #2180.
  ; Reference to ^PS(51.2 is supported by DBIA #2178.
@@ -53,6 +53,7 @@ LOCK0 F  L +^PS(55,DFN,"IV",0):$S($G(DILOCKTM)>0:DILOCKTM,1:3) I  Q
 SET55 ; Move data from local variables to 55.
  I '$D(ON55) W !,"*** Can't create this order at this time ***" Q
  N DA,DIK,ND,PSIVACT,PSIVDUR,PSJTROPI,PSJTROPL
+ I P(9)["PRN" S $P(ZZND,"^",3)="",PSGS0XT="",P(15)=""  ;*323 - If the schedule is changed to PRN, make sure the frequency of the original schedule is removed.
  I (($P($G(ZZND),"^",3))=""&($G(PSGS0XT)="")) S P(15)="" ;*285 - Prevent frequency hangover when changing from non-null to null
  S:'$D(P(21)) (P(21),P("21FLG"))="" S ND(0)=+ON55,P(22)=$S(VAIN(4):+VAIN(4),1:.5) F X=2:1:23 I $D(P(X)) S $P(ND(0),U,X)=P(X)
  S ND(.3)=$G(P("INS")),ND(2.5)="" N X S X=$S($G(PSGORD):PSGORD,1:$G(ON)) I X D

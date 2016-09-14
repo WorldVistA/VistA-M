@@ -7,6 +7,8 @@ ZWR
 ^SC(2,0)="SECURE MESSAGING^SM^Z^1^^^^^^^Secure Messaging System^^^^^^Y^^N^^^4^^^^^^"
 ^SC("AC","C",1)=""
 ^SC("AC","Z",2)=""
+^SC("AG","C","LAB DIV 050 OOS ID 108",1)=""
+^SC("AG","Z","SECURE MESSAGING",2)=""
 ^SC("AOOS",1,1)=""
 ^SC("AST",111,1)=""
 ^SC("B","LAB DIV 050 OOS ID 108",1)=""

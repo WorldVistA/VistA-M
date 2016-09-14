@@ -1,5 +1,5 @@
-SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine  ;24 Jun 2008 11:57 AM
- ;;5.3;Scheduling;**446,528,567,594,611**;Aug 13 1993;Build 9
+SDM2A ;ALB/OG - MAKE APPOINTMENT - overflow routine ;1/11/16 10:34am
+ ;;5.3;Scheduling;**446,528,567,594,611,645**;Aug 13 1993;Build 7
  ;
  ;
 WL(SC) ;Wait List Hook/teh patch 263 ;SD/327 passed 'SC'
@@ -90,7 +90,9 @@ WLCL120A(SDWLAPDT,SDDATE1,SC) ;
  S SDWLDFN=$O(^SDWL(409.32,"B",+SC,0))
  I SDWLDFN'="",$P($G(^SDWL(409.32,SDWLDFN,0)),U,4)'="" Q 1
  S DIR(0)="Y",DIR("B")="YES"
- S DIR("A")="Add to EWL",DIR("A",1)="The date is more than 120 days beyond the Desired Date"
+ ; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user
+ ;S DIR("A")="Add to EWL",DIR("A",1)="The date is more than 120 days beyond the Desired Date"
+ S DIR("A")="Add to EWL",DIR("A",1)="The date is more than 120 days beyond the CID/Preferred Date"
  W ! D ^DIR
  ;SD*5.3*594 allow appointment creation for appointments that have an appointment date
  ;that is greater than 120 days from the desired date.
@@ -102,9 +104,13 @@ WLCL120A(SDWLAPDT,SDDATE1,SC) ;
 WLCLASK() ; No appointment availability warning. ; sd/446
  N DIR
  S DIR(0)="Y"
- S DIR("A",1)="No appointments are available within 120 days of the Desired Date."
+ ; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user
+ ;S DIR("A",1)="No appointments are available within 120 days of the Desired Date."
+ S DIR("A",1)="No appointments are available within 120 days of the CID/Preferred Date."
  S DIR("A",2)="Do you want to place this patient on the Electronic Wait List"
- S DIR("A",3)="or change the desired date?"
+ ; SD*5.3*645 - replaced Desired Date with CID/Preferred Date when presented to the user
+ ;S DIR("A",3)="or change the desired date?"
+ S DIR("A",3)="or change the CID/Preferred Date?"
  S DIR("A",4)=""
  S DIR("A",5)="Enter ""Y"" to place on EWL, ""N"" to go back"
  S DIR("A")="or ""^"" to return to the CLINIC: prompt. "

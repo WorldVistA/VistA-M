@@ -1,12 +1,16 @@
 RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
- ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75**;Mar 16, 1998;Build 4
+ ;;5.0;Radiology/Nuclear Medicine;**8,10,15,31,45,75,123**;Mar 16, 1998;Build 7
  ; Input:  RADFN= Internal Number to Rad/Nuc Med Patient File #70
  ;         RAOIFN= Internal Number to Rad/Nuc Med Orders File #75.1
  ;         RAX= Null (Used to check for an '^')
  ;         RAPGE= 0 (Used as a page counter)
  ;
+ ; Supported IA #1120 reference to EN6^GMRVUTL  5-P123
+ ;
  ; 1-p75 10/12/2006 GJC RA*5*75 Remedy 162508 Modify Patient AGE calc
  ; 2-p75 10/12/2006 GJC RA*5*75 set REASON FOR STUDY to a local variable
+ ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
+ ; 
  S:$D(ZTQUEUED) ZTREQ="@"
  G Q:'$D(^DPT(RADFN,0)) S RADPT0=^(0) G Q:'$D(^RAO(75.1,RAOIFN,0)) S RAORD0=^(0)
  K ^UTILITY($J,"W"),^(1) S RAOSTSYM="dc^c^h^^p^^^s",$P(RALNE,"-",79)="",$P(RALNE1,"=",79)="",DIWL=5,DIWR=75,DIWF="WC75"
@@ -35,6 +39,13 @@ RAORD5 ;HISC/CAH,FPT,GJC AISC/RMO-Print A Request ;8/4/97  14:47
  D:RA("PHY")'="UNKNOWN" PHONE("R",+$P(RAORD0,"^",14))
  ; Get current primary and attending physicians
  S DFN=RADFN,VA200=1 D IN5^VADPT K VA200 S:'$D(VAIP(18)) VAIP(18)=""
+ ; *** NSR 20140507 Start Mod to print weight & date taken in Radiology requests 5-P123 ***
+ S DFN=RADFN,GMRVSTR="WT"
+ D EN6^GMRVUTL
+ S RA("WT")=$P(X,U,8)
+ S Y=$P(X,U) D DD^%DT S RA("WTDT")=Y
+ ; actual print code located in RAORD6
+ ; *** NSR 20140507 End Mod to print weight & date taken in Radiology requests ***
  I '+$G(VAIP(7)) D
  . ; If the Primary Physician is not found (based on inpatient episode)
  . ; find the current Primary Care Practitioner (See patch SD*5.3*30)

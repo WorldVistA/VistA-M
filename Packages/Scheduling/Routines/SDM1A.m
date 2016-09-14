@@ -1,5 +1,6 @@
-SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;8/18/05 12:57pm;6/22/09 6:16pm
- ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622**;Aug 13, 1993;Build 30
+SDM1A ;SF/GFT,ALB/TMP - MAKE APPOINTMENT ;JAN 15, 2016
+ ;;5.3;Scheduling;**26,94,155,206,168,223,241,263,327,478,446,544,621,622,627**;Aug 13, 1993;Build 249
+ ;
 OK I $D(SDMLT) D ^SDM4 Q:X="^"!(SDMADE=2)
  S ^SC(SC,"ST",$P(SD,"."),1)=S,^DPT(DFN,"S",SD,0)=SC,^SC(SC,"S",SD,0)=SD S:'$D(^DPT(DFN,"S",0)) ^(0)="^2.98P^^" S:'$D(^SC(SC,"S",0)) ^(0)="^44.001DA^^" L
 S1 L +^SC(SC,"S",SD,1):$G(DILOCKTM,5) W:'$T "Another user is editing this record.  Trying again.",! G:'$T S1 F SDY=1:1 I '$D(^SC(SC,"S",SD,1,SDY)) S:'$D(^(0)) ^(0)="^44.003PA^^" S ^(SDY,0)=DFN_U_(+SL)_"^^^^"_$G(DUZ)_U_DT L -^SC(SC,"S",SD,1) Q
@@ -8,6 +9,7 @@ S1 L +^SC(SC,"S",SD,1):$G(DILOCKTM,5) W:'$T "Another user is editing this record
  S SDINP=$$INP^SDAM2(DFN,SD)
  ;-- added sub-category
  S COV=3,SDYC="",COV=$S(COLLAT=1:1,1:3),SDYC=$S(COLLAT=7:1,1:"")
+ S:SD<DT SDSRTY="W"
  S ^DPT(DFN,"S",SD,0)=SC_"^"_$$STATUS(SC,SDINP,SD)_"^^^^^"_COV_"^^^^"_SDYC_"^^^^^"_SDAPTYP_U_$G(SD17)_"^"_$G(DUZ)_U_DT_"^^^^^"_$G(SDXSCAT)_U_$P($G(SDSRTY),U,2)_U_$$NAVA^SDMANA(SC,SD,$P($G(SDSRTY),U,2)) ;544 added DUZ
  S ^DPT(DFN,"S",SD,1)=$G(SDDATE)_U_$G(SDSRFU)
  I $D(SDMULT) S SDCLNCND=^SC(SC,0),STPCOD=$P(SDCLNCND,U,7),TMPYCLNC=SC_U_$P(SDCLNCND,U) D A^SDCNSLT ;SD/478 MULTI CLINIC OPTION SELECTED
@@ -29,14 +31,26 @@ EWLCHK ;check if patient has any open EWL entries (SD/372)
  K ^TMP($J,"SDAMA301"),^TMP($J,"APPT")
  D APPT^SDWLEVAL(DFN,SD,SC)
  Q:'$D(^TMP($J,"APPT"))
+ N SDWL,SDWLF,SDWLIST S SDWL="" S SDWLF=0   ;alb/sat 627
  N SDEV D EN^SDWLEVAL(DFN,.SDEV) I SDEV,$L(SDEV(1))>0 D
  .K ^TMP("SDWLPL",$J),^TMP($J,"SDWLPL")
  .D INIT^SDWLPL(DFN,"M")
  .Q:'$D(^TMP($J,"SDWLPL"))
  .D LIST^SDWLPL("M",DFN)
- .F  Q:'$D(^TMP($J,"SDWLPL"))  N SDR D ANSW^SDWLEVAL(1,.SDR) I 'SDR D LIST^SDWLPL("M",DFN) D
+ .D SDGET(.SDWLIST)   ;alb/sat 627
+ .F  Q:'$D(^TMP($J,"SDWLPL"))  N SDR D ANSW^SDWLEVAL(1,.SDR) S:SDR SDWLF=1 I 'SDR D LIST^SDWLPL("M",DFN) D
  ..F  N SDR D ANSW^SDWLEVAL(0,.SDR) Q:'$D(^TMP($J,"SDWLPL"))  I 'SDR W !,"MUST ENTER A REASON NOT TO DISPOSITION MATCHED EWL ENTRY",!
- ;CREATE 120 FLAG IF APPLICABLE; appt created 
+ .S:+SDWLF SDWL=$$SDWL(.SDWLIST)   ;alb/sat 627
+ ;update SDEC APPOINTMENT file 409.84  ;alb/sat 627
+ N SDECAR,SDREC,SDRES
+ S SDREC=""
+ I $G(CNSLTLNK)="",SDWL="" S SDREC=$$RECALL^SDECUTL(DFN,SD,SDSC)  ;check if recall appt
+ I SDWL="",$G(CNSLTLNK)="",SDREC="" S SDECAR=$$SDWLA(DFN,SD,SDSC,SDDATE,$G(SDAPTYP))
+ S SDRES=$$GETRES^SDECUTL(SC)
+ S SDAPTYP=$G(SDAPTYP) S:SDAPTYP="" SDAPTYP=$$GET1^DIQ(44,SC_",",2507,"I")
+ D SDECADD^SDEC07(SD,$$FMADD^XLFDT(SD,,,+SL),DFN,SDRES,0,SDDATE,"",$S(+SDWL:"E|"_SDWL,+$G(CNSLTLNK):"C|"_CNSLTLNK,+SDREC:"R|"_SDREC,+SDECAR:"A|"_SDECAR,1:""),,SC,,,,SDAPTYP) ;ADD SDEC APPOINTMENT ENTRY
+ ;end addition/modification  ;alb/sat 627
+ ;CREATE 120 FLAG IF APPLICABLE; appt created
 FLG N SDST S SDST=$G(^TMP($J,"APPT",1)) I +SDST>0 D
  .Q  ; sd/446
  .N SDT,SDDES,SDPAR,SDDES1,SDT1 S SDPAR=0 S SDT=+SDST,SDDES=$P(SDST,U,17) I SDDES="" S SDDES=DT ; today's date if no desired date
@@ -90,7 +104,7 @@ OTHER R !,"  OTHER INFO: ",D:DTIME I D["^" W !,*7,"'^' not allowed - hit return 
  I D]"",D?."?"!(D'?.ANP) W "  ENTER LAB, SCAN, ETC." G OTHER
  I $L($G(^SC(SC,"S",SD,1,SDY,0)))+$L(D)+$L(DT)+$S($D(DUZ):$L(DUZ),1:0)>250 D MSG^SDMM G OTHER  ; sd/446
  ;S $P(^(0),"^",4)=D,$P(^(0),U,6,7)=$S($D(DUZ):DUZ,1:"")_U_DT ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,0)
- S $P(^(0),"^",4)=D ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,0) 544 moved DUZ&DT to tag S1.  
+ S $P(^(0),"^",4)=D ;NAKED REFERENCE - ^SC(IFN,"S",Date,1,SDY,0) 544 moved DUZ&DT to tag S1.
  D:$D(TMP) LINK^SDCNSLT(SC,SDY,SD,CNSLTLNK) ;SD/478
  D:$D(TMP) EDITCS^SDCNSLT(SD,TMPD,TMPYCLNC,CNSLTLNK) ;SD/478
  K TMP  ;SD/478
@@ -219,14 +233,70 @@ CANT(DFN,SDT,SDOE) ;Determine if clinic appt. has been marked "NT"
  N SDAPP S SDAPP=$G(^DPT(DFN,"S",SDT,0))
  Q:$P(SDAPP,U,20)'=SDOE 0
  Q $P(SDAPP,U,2)="NT"
+SDGET(SDWLIST)  ;build array of wait list entries that are in ^TMP($J,"SDWLPL")
+ N SDI
+ K SDWLIST
+ S SDI="" F  S SDI=$O(^TMP($J,"SDWLPL",SDI)) Q:SDI=""  D
+ .S SDWLIST(+$G(^TMP($J,"SDWLPL",SDI)))=""
+ Q
  ; -- Variable doc for above tags
  ;     SDCL := file 44 ien
  ;      SDT := appt date/time
  ;      DFN := file 2 ien
  ;     SDDA := ^SC(SDCL,"S",SDT,1,SDDA,0)
- ;    SDACT := current x-ref action 'set' or 'kill' 
+ ;    SDACT := current x-ref action 'set' or 'kill'
  ;  SDCOCMP := check out completed date
  ;   SDCODT := check out date/time
  ;     SDOE := Outpatient Encounter ien
- ;    SDINP := inpatient status ('I' or null)    
- ;    SDINP := inpatient status ('I' or null)    
+ ;    SDINP := inpatient status ('I' or null)
+ ;    SDINP := inpatient status ('I' or null)
+ ;
+SDWL(SDWLIST)  ;determine EWL that was closed for this appointment   ;alb/sat  SD/627
+ N SDI
+ S SDI="" F  S SDI=$O(^TMP($J,"SDWLPL",SDI)) Q:SDI=""  D
+ .I $D(SDWLIST(+$G(^TMP($J,"SDWLPL",SDI)))) K SDWLIST(+$G(^TMP($J,"SDWLPL",SDI)))
+ Q $O(SDWLIST(0))
+SDWLA(DFN,SD,SDSC,SDDATE,SDAPTYP)  ;add SDEC APPT REQUEST entry  ;alb/sat  SD/627
+ ;INPUT:
+ ; DFN
+ ; SD     = appointment date/time in fm format
+ ; SDSC   = clinic code pointer to HOSPITAL LOCATION file
+ ; SDDATE = desired date of appointment
+ ; SDAPTYP = pointer to APPOINTMENT TYPE file 409.1
+ N SDECINP,SDWLSTAT,SDARIEN,SDWLRET
+ S SDAPTYP=$G(SDAPTYP)
+ ;get clinic location name
+ K ^TMP("SDEC50",$J,"PCSTGET")
+ D PCSTGET^SDEC(.SDWLRET,DFN,SDSC)
+ S SDWLSTAT=$P($P($G(^TMP("SDEC50",$J,"PCSTGET",1)),$C(30),1),U,2)
+ K ^TMP("SDEC50",$J,"PCSTGET")
+ ;set appt request entry
+ S SDECINP(1)=""
+ S SDECINP(2)=DFN                 ;patient
+ S SDECINP(3)=$E($$NOW^XLFDT,1,12)  ;originating date/time
+ S SDECINP(4)=DUZ(2)              ;institution
+ S SDECINP(5)="APPOINTMENT"   ;wait list type - specific clinic
+ S SDECINP(6)=SDSC               ;clinic
+ S SDECINP(7)=DUZ                ;originating user
+ S SDECINP(8)="ASAP"             ;priority
+ S SDECINP(9)="PATIENT"          ;requested by
+ S SDECINP(11)=SDDATE             ;desired date of appointment
+ ;S SDECINP(16)=$S(SDWLSTAT="YES":"ESTABLISHED",1:"NEW")
+ S SDECINP(14)="NO"               ;multiple appointment RTC
+ S SDECINP(15)=0
+ S SDECINP(16)=0
+ S:+SDAPTYP SDECINP(22)=+SDAPTYP  ;appointment type
+ K SDWLRET
+ S SDWLRET=""
+ D ARSET1^SDEC(.SDWLRET,.SDECINP)
+ S SDARIEN=$P($P(SDWLRET,$C(30),2),U,1)
+ S SDWLRET=""
+ Q:'$D(^SDEC(409.85,+SDARIEN,0)) ""
+ ;close appt request entry
+ K INP
+ S INP(1)=SDARIEN
+ S INP(2)="REMOVED/SCHEDULED-ASSIGNED"
+ S INP(3)=DUZ
+ S INP(4)=$P(SD,".",1)
+ D ARCLOSE1^SDEC(.SDWLRET,.INP)
+ Q SDARIEN

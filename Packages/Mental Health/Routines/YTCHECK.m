@@ -1,9 +1,12 @@
-YTCHECK ;SLC/TGA-CHECK PSYCH TEST/INTERVIEW DATA BASE ; 7/10/89  11:21 ;03/11/94 12:13
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
- ;
+YTCHECK ;SLC/TGA,HIOFO/FT - CHECK PSYCH TEST/INTERVIEW DATA BASE ;2/6/13 3:51pm
+ ;;5.01;MENTAL HEALTH;**108**;Dec 30, 1994;Build 17
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to %ZTLOAD supported by IA #10063
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^%ZISC supported by IA #10089
  ; Called from the top by  MENU option YSMCHK
  ;
-S ;
+S ;entry point for YSMCHK option
  W @IOF,?22,"Check Psych Test/Interview Data Base"
  W !!,"You may use this option for individual patients or all patients."
  W !,"If you use it for individual patients, you may elect to delete any unknown"
@@ -14,7 +17,7 @@ S ;
  W !!,"THIS OPTION SHOULD NOT BE RUN WHILE TESTS/INTERVIEWS ARE UNDERWAY!",$C(7)
 1 ;
  W !!,"Check (I)ndividual patient or (A)ll patients:  I// " R A:DTIME S YSTOUT='$T,YSUOUT=A["^" G:YSTOUT!YSUOUT KIL S A=$TR($E(A),"ia","IA")
- I "AI"'[A W:A'["?" " ?",$C(7) W !,"Type 'I' to check an individial patient's data or 'A' to check all patients." G 1
+ I "AI"'[A W:A'["?" " ?",$C(7) W !,"Type 'I' to check an individual patient's data or 'A' to check all patients." G 1
  S YSN=$S("I"[A:0,1:1),YSD=0,YSE=0 G:'YSN 2
  R !!,"(L)ist or (D)elete errors: ",A:DTIME S YSTOUT='$T,YSUOUT=A["^" G:YSTOUT!YSUOUT KIL S A=$TR($E(A),"ld","LD") I "LD"'[A W:A'["?" " ?",$C(7) G S
  S YSD=$S("D"[A:1,1:0)
@@ -29,8 +32,9 @@ ENP ;
 CK ;
  ;G:'$D(^YTT(601,T,0)) CK1 S L=$P(^(0),U,11),L1=0 S:$G(^YTD(601.2,P,1,T,1,D,99))="MMPIR" L=1132 L +^YTD(601.2,P) S I=0 F  S I=$O(^YTD(601.2,P,1,T,1,D,I)) Q:'I!(I>50)  S L1=L1+$L(^(I))
  G:'$D(^YTT(601,T,0)) CK1
- S L=$P(^(0),U,11),L1=0
- L +^YTD(601.2,P) S I=0
+ S L=$P(^YTT(601,T,0),U,11),L1=0
+ L +^YTD(601.2,P):DILOCKTM I '$T W !,"Could not lock ^YTD(601.2,"_P_") entry. Moving on to next patient."
+ S I=0
  F  S I=$O(^YTD(601.2,P,1,T,1,D,I)) Q:'I!(I>50)  S L1=L1+$L(^(I))
  ;
  ; 3/10/94 LJA  Changes made to display MMPR correctly, when it is...
@@ -61,13 +65,13 @@ MMPIRCK(L,L1) ;  If MMPIR and EXP=566 and GOT=1132... OK
 D ;
  S D(0)=0 I '$D(^YTT(601,T,0)) S YSE=YSE+1 D:IOST?1"P".E HD:$Y+8>IOSL W ! W:YSN YSNM W ?31,"Unknown Instrument" S X="instrument" D DEL:'YSN I YSD K ^YTD(601.2,P,1,T),^YTD(601.2,P,1,"B",T) W " - DELETED" Q
  S D=0 F  S D=$O(^YTD(601.2,P,1,T,1,D)) Q:'D  D CK
- I D(0)>0 L +^YTD(601.2,P,1,T,1,0) S ^YTD(601.2,P,1,T,1,0)="^601.22DA^"_C_"^"_D(0) L -^YTD(601.2,P,1,T,1,0) S:'$D(^YTD(601.2,P,1,"B",T,T)) ^(T)="" Q
+ I D(0)>0 L +^YTD(601.2,P,1,T,1,0):DILOCKTM S ^YTD(601.2,P,1,T,1,0)="^601.22DA^"_C_"^"_D(0) L -^YTD(601.2,P,1,T,1,0) S:'$D(^YTD(601.2,P,1,"B",T,T)) ^(T)="" Q
  K ^YTD(601.2,P,1,T) Q
 T ;
  S (T(0),T)=0 F  S T=$O(^YTD(601.2,P,1,T)) Q:'T  D D I D(0)>0 S T(0)=T(0)+1,H=T S:'$D(^YTD(601.2,P,1,"B",T,T)) ^(T)=""
- I T(0)>0 L +^YTD(601.2,P,1,0) S ^YTD(601.2,P,1,0)="^601.21PA^"_H_"^"_T(0) L -^YTD(601.2,P,1,0) S:YSN P(0)=P(0)+1,P1=P
+ I T(0)>0 L +^YTD(601.2,P,1,0):DILOCKTM S ^YTD(601.2,P,1,0)="^601.21PA^"_H_"^"_T(0) L -^YTD(601.2,P,1,0) S:YSN P(0)=P(0)+1,P1=P
  I T(0)>0 S I=0 F  S I=$O(^YTD(601.2,P,1,"B",I)) Q:'I  K:'$D(^YTD(601.2,P,1,I,0)) ^YTD(601.2,P,1,"B",I)
- Q:T(0)  K ^YTD(601.2,P),^YTD(601.2,"B",P) Q:YSN  L +^YTD(601.2,0) S X=$P(^YTD(601.2,0),U,4),X=X-1 S:X<1 X=0 S $P(^(0),U,4)=X L -^YTD(601.2,0) Q
+ Q:T(0)  K ^YTD(601.2,P),^YTD(601.2,"B",P) Q:YSN  L +^YTD(601.2,0):DILOCKTM S X=$P(^YTD(601.2,0),U,4),X=X-1 S:X<1 X=0 S $P(^(0),U,4)=X L -^YTD(601.2,0) Q
 P ;
  S YSDFN=P,YSNM=$S($D(^DPT(P,0)):$P(^(0),U),1:"Unknown Patient") I '$D(^DPT(P,0)) S YSE=YSE+1 D:IOST?1"P".E HD:$Y+8>IOSL W !,"Unknown patient found" I YSD K ^YTD(601.2,P),^YTD(601.2,"B",P,P) W " - DELETED" Q
 P1 I 'YSN,'$D(^YTD(601.2,P)),'$D(^YTD(601.4,P)) W !,"No data on this patient." S YSDFN=-1 Q
@@ -77,12 +81,12 @@ INC ;
  I $O(^YTD(601.4,P,1,0))>0 D:IOST?1"P".E HD:$Y+8>IOSL W ! W:YSN YSNM W ?31,"Incomplete Session(s) found"
  Q
 DEL ;
- S YSD=0 W !!,"DELETE this ",X,"? " R A:DTIME S YSTOUT='$T,YSUOUT=A["^" Q:YSTOUT!YSUOUT  S A=$E(A) I "YyNn"'[A W:A'["?" " ?",$C(7) G DEL
+ S YSD=0 W !!,"DELETE this ",X,"? " R A:DTIME S YSTOUT='$T,YSUOUT=A["^" Q:YSTOUT!YSUOUT  S A=$E(A) I "YyNn"'[A W "    Please respond Y or N",$C(7) G DEL
  S:"Yy"[A YSD=1 Q
 END ;
- I YSN L +^YTD(601.2,0) S $P(^YTD(601.2,0),U,3)=P1,$P(^(0),U,4)=P(0) L -^YTD(601.2,0) D KILL^%ZTLOAD
+ I YSN L +^YTD(601.2,0):DILOCKTM S $P(^YTD(601.2,0),U,3)=P1,$P(^(0),U,4)=P(0) L -^YTD(601.2,0) D KILL^%ZTLOAD
  W:'YSE !!,"NO ERRORS FOUND" W ! D:YSN ^%ZISC
 KIL ;
  K %,%ZIS,%Y,A,C,D,H,I,IO("Q"),L,L1,P,P1,T,X,Y,YSAGE,YSD,YSDFN,YSDOB,YSL,YSN,YSNM,YSSEX,YSSSN,ZTSK Q
 HD ;
- W @IOF,!,"Test/Interview Database Report on " S Y=DT D DT^YTAUDIT W !! Q
+ W:$Y>0 @IOF,!,"Test/Interview Database Report on " S Y=DT D DT^YTAUDIT W !! Q

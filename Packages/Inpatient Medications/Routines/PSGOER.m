@@ -1,5 +1,5 @@
-PSGOER ;BIR/CML3-RENEW A SINGLE ORDER ; 4/27/11 9:54am
- ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278**;16 DEC 97;Build 4
+PSGOER ;BIR/CML3 - RENEW A SINGLE ORDER ;4/27/11 9:54am
+ ;;5.0;INPATIENT MEDICATIONS ;**11,30,29,35,70,58,95,110,111,133,141,198,181,246,278,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^PS(51.1 supported by DBIA 2177.
  ; Reference to ^PS(55 supported by DBIA 2191.
@@ -7,6 +7,7 @@ PSGOER ;BIR/CML3-RENEW A SINGLE ORDER ; 4/27/11 9:54am
  ; Reference to ^PSBAPIPM is supported by DBIA 3564.
  ; Reference to ^PS(59.7 is supported by DBIA 2181.
  ; Reference to ^PSDRUG( is supported by DBIA 2192.
+ ; Reference to ^TMP("PSODAOC",$J is supported by DBIA 6071.
  ;
  ; renew a single order
  I $G(PSJCOM) D ^PSJCOMR Q
@@ -55,6 +56,9 @@ SPEED ;
  N PSGOEAV S PSGOEAV=+PSJSYSU
  W !!,"...updating order..." K DA S DA(1)=PSGP,DA=+PSGORD,PSGAL("C")=PSJSYSU*10+18000 D ^PSGAL5 W "."
  I $$LS^PSSLOCK(PSGP,PSGORD) D UPDREN(PSGORD,PSGDT,PSGOEPR,PSGOFD,PSJNOO),UPDRENOE(PSGP,PSGORD,PSGDT) D UNL^PSSLOCK(PSGP,PSGORD)
+ S ^TMP("PSODAOC",$J,"IP IEN")=PSGORD   ;set up which IEN will be used to store order checks
+ D SETOC^PSJNEWOC(PSGORD) ;PSJ*5*281 stores order checks
+ K ^TMP("PSODAOC",$J),^TMP("PSJDAOC",$J)
  ;
  I 'PSGOERDP,$P(PSJSYSW0,"^",4),PSGFD'<PSGWLL S $P(^PS(55,PSGP,5.1),"^")=+PSGFD
  W ".DONE!" S VALMBCK="Q" Q

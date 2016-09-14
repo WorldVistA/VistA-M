@@ -1,5 +1,5 @@
-PSJIBAG ;BIR/JCH-IV PARAMETER VALIDATION ; 08/10/12 12:26pm
- ;;5.0;INPATIENT MEDICATIONS;**279**;16 DEC 97;Build 150
+PSJIBAG ;BIR/JCH - IV PARAMETER VALIDATION ; 08/10/12 12:26pm
+ ;;5.0;INPATIENT MEDICATIONS;**279,326**;16 DEC 97;Build 1
  ;;Per VHA Directive 2004-038 (or future revisions regarding same), this routine should not be modified.
  ;
  ; Reference to ^PSBPOIV is supported by DBIA #5434
@@ -38,7 +38,7 @@ VFY(DFN,PSIVON55,INVDT,PSJAVAIL) ; If AUTO-VERIFY turned off, veryifying pharmac
  I '$G(PSJAVAIL),($G(BCINVF)]"") W !!!?6,"**  Edit to ",BCINVF," has invalidated the following IV labels  **" D
  .W !?4,"(Invalid IV labels cannot be reprinted or marked as Infusing in BCMA)"
  I $G(PSJAVAIL) W !!!?12,"**  The following labels are available  **"
- D DATA(DFN,+PSIVON55,,$S($G(PSJAVAIL):"",1:INVDT),$S($G(PSJAVAIL):PSJAVAIL,1:""),.PSJINIV)
+ D DATA(DFN,PSIVON55,,$S($G(PSJAVAIL):"",1:INVDT),$S($G(PSJAVAIL):PSJAVAIL,1:""),.PSJINIV)
  I '$G(PSJAVAIL) D
  .N DIR,DA S DIR(0)="SAO^P:PRINT",DIR("A")="Enter 'P' to print list of Invalidated Labels or RETURN to continue: " D ^DIR
  .I '($G(Y)="P") K ^TMP("PSJINBAG",$J) Q
@@ -112,7 +112,7 @@ DEV(DFN,ON55,INVDT) ;Device
  I POP S IOP=PSJION S %ZIS("A")="Select DEVICE:" D ^%ZIS K IOP,PSJION W !,"Please try later!" G EXIT
  K PSJION I $D(IO("Q")) D  G EXIT
  .S ZTDESC="Invalidated IV Labels Report",ZTRTN="EN2^PSJIBAG"
- .F G="DFN","ON55","PSJIPRNT","INVDT","PSJDOLJ" S:$D(@G) ZTSAVE(G)=""
+ .F G="DFN","ON55","PSJIPRNT","INVDT","PSJDOLJ","ON","PSJSYSU" S:$D(@G) ZTSAVE(G)=""
  .K IO("Q") D ^%ZTLOAD W:$D(ZTSK) !,"Report is Queued to print!" K ZTSK
  D EN2 W ! D PAUSE^PSJLMUT1
 EXIT ;

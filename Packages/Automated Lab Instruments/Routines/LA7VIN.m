@@ -1,5 +1,5 @@
-LA7VIN ;DALOI/JMC - Process Incoming Lab HL7 Messages ;11/17/11  15:38
- ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,67,74**;Sep 27, 1994;Build 229
+LA7VIN ;DALOI/JMC - Process Incoming Lab HL7 Messages ;11/18/15  12:29
+ ;;5.2;AUTOMATED LAB INSTRUMENTS;**46,67,74,88**;Sep 27, 1994;Build 10
  ;
  ; This routine processes incoming messages for various Lab HL7 configurations.
  Q
@@ -39,7 +39,8 @@ EN ; Only one process should run at a time
  F LA7LOOP=1:1:60 D  Q:$G(ZTSTOP)
  . ; Check if task has been requested to stop
  . I $$S^%ZTLOAD("Idle - waiting for new messages to process") S ZTSTOP=1 Q
- . D GETIN H 5
+ . D GETIN
+ . I LA7LOOP<60 H 5
  ;
  ; Release lock
  L -^LAHM(62.48,"Z",LA76248)
@@ -88,7 +89,7 @@ GETIN ; Check the incoming queue for messages and then call LA7VIN1 to process t
  . D NXTMSG^LA7VIN1
  . L -^LAHM(62.49,LA76249)
  . S LA7MSGPROCESSED=LA7MSGPROCESSED+1
- . I (LA7MSGPROCESSED#50)=0 D CHKPROC
+ . I (LA7MSGPROCESSED#10)=0 D CHKPROC
  ;
  K ^TMP("LA7TREE",$J)
  ;
@@ -105,6 +106,14 @@ CHKPROC ; Check if any processing routine need to be tasked to process info in L
  . S LA7I=0
  . F  S LA7I=$O(LA7INTYP("LWL",LA7I)) Q:'LA7I  D
  . . D QLAH(LA7I,"EN^LRVRPOC")
+ . . K LA7INTYP("LWL",LA7I)
+ ;
+ ; If universal interface and auto-release turned on then task job(s) to process results in LAH. ;**88
+ I LA7INTYP=1,$D(LA7INTYP("LWL")) D
+ . I $G(ZTSTOP)=1 Q
+ . S LA7I=0
+ . F  S LA7I=$O(LA7INTYP("LWL",LA7I)) Q:'LA7I  D
+ . . D QLAH(LA7I,"EN^LRVRAR")
  . . K LA7INTYP("LWL",LA7I)
  ;
  Q
@@ -154,7 +163,6 @@ QLAH(LWL,ZTRTN) ; Call here to queue result processing routine to run in the bac
  S ZTDTH=$H,ZTIO="",ZTDESC="Result Processing for "_$P(^LRO(68.2,LWL,0),"^")
  S ZTSAVE("LRLL")=LWL
  D ^%ZTLOAD
- ;
  ;
  Q
  ;

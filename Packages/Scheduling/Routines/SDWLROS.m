@@ -1,5 +1,5 @@
-SDWLROS ;;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT-SUMMARY;06/12/2002 ; 20 Aug 2002  2:10 PM
- ;;5.3;scheduling;**263,414**;AUG 13 1993
+SDWLROS ;IOFO BAY PINES/TEH - WAIT LIST OVERDUE REPORT-SUMMARY ;1/5/16 9:25am
+ ;;5.3;scheduling;**263,414,645**;AUG 13 1993;Build 7
  ;
  ;
  ;******************************************************************
@@ -107,6 +107,8 @@ HD ;Header
  S X=$G(SDWLFORM) W !,?28,"Output Format: ",$S(SDWLFORM="S":"Summary",1:"Detailed")
  Q
 HD1 ;
- W !!,"Name",?30,"Date Entered",?45,"Date Desired",?60,"# of Days Waiting",!!
+ ; SD*5.3*645 - changed 'Date Desired' to 'CID/PD' due to space limit
+ ;W !!,"Name",?30,"Date Entered",?45,"Date Desired",?60,"# of Days Waiting",!!
+ W !!,"Name",?30,"Date Entered",?47,"CID/PD",?60,"# of Days Waiting",!!
  Q
 END K X1,X2,SDWLAPDT,CT,CT1,CT2,I,OPEN,INS,FORM,VADM Q

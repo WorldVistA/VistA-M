@@ -1,6 +1,6 @@
 IBOTR2 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - COMPILATION ;5-JUN-91
- ;;2.0;INTEGRATED BILLING;**21,42,52,80,100,118,128,451,447**;21-MAR-94;Build 80
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**21,42,52,80,100,118,128,451,447,529**;21-MAR-94;Build 49
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  ;MAP TO DGCROTR2
  ;
@@ -22,7 +22,7 @@ IBOTR2 ;ALB/CPM - INSURANCE PAYMENT TREND REPORT - COMPILATION ;5-JUN-91
  ;I $D(XRT0) S:'$D(XRTN) XRTN="IBOTR2" D T1^%ZOSV ;stop rt clock
 ENQ I $D(ZTQUEUED) S ZTREQ="@" Q
  K IB,IBAO,IBAP,IBCNT,IBDA,DFN,IBBC,DIC,DA,DR,DIQ,IBDP,IBDBC,IBSCF,IBSCT
- K IBCFL,IBDIV,IBQUIT,IBEVT,^TMP($J) D ^%ZISC
+ K IBCFL,IBDIV,IBQUIT,IBEVT,IBPTIN,IBPFLAG,^TMP($J) D ^%ZISC
  Q
  ;
 COMP ; - Compile Bill-Accounts Receivable records for report.
@@ -38,6 +38,7 @@ COMP ; - Compile Bill-Accounts Receivable records for report.
  ;
  ; IB*2.0*451 - get EEOB indicator '%' for bill
  S IBPFLAG=$$EEOB^IBOA31(IBDA) ; get 1st/3rd party payment when applicable
+ ;
  S IBBN=$P(IBD,U),DFN=+$P(IBD,U,2),IBEVT=+$P(IBD,U,3),IBBC=$P(IBD,U,5)
  S:IBBN="" IBBN="NULL" Q:IBBRT="O"&("12"[IBBC)  Q:IBBRT="I"&("34"[IBBC)
  S IBDBC=$$CLO^PRCAFN(IBDA) Q:IBARST="O"&(IBDBC>-2)!(IBARST="C"&(IBDBC<-1))
@@ -57,7 +58,14 @@ COMP ; - Compile Bill-Accounts Receivable records for report.
  ;
 CANC ; - Keep cancelled bills if CANCEL BILL? field was selected or answer
  ;   to 'Do you want to include cancelled receivables?' prompt was YES.
- S IBCFL=0,IBINS=IBINS_"@@"_IBD Q:'$D(^DGCR(399,IBDA,"S"))  S IBD=^("S")
+ S IBCFL=0
+ ;
+ ;IB*2.0*529 - add Payer TIN to Insurance name for report output
+ S IBPTIN=$$PTIN(IBDA)  ; Retrieve Payer TIN
+ S:IBPTIN="" IBPTIN="UNKNOWN"
+ S IBINS=IBINS_"~~"_IBPTIN_"@@"_IBD
+ ;
+ Q:'$D(^DGCR(399,IBDA,"S"))  S IBD=^("S")
  S IBCNC=0 I "^26^39^"[(U_$P($G(^PRCA(430,IBDA,0)),U,8)_U) S IBCNC=1
  I $G(IBCANC),($P(IBD,U,16)!(IBCNC)) S IBCFL=1 G PTDE ; Add canc. bill.
  I $G(IBAF)'=16 Q:$P(IBD,U,16)!(IBCNC)  ;      Bill has been cancelled.
@@ -83,6 +91,7 @@ BUILD ; - Retrieve A/R data and build sort global.
  N IBGRP
  S IBAO=$$ORI^PRCAFN(IBDA) S:IBAO<0 IBAO=0
  S IBAP=$$TPR^PRCAFN(IBDA) S:IBAP<0 IBAP=0
+ ;
  ; Add group number to report P447
  S IBGRP=$$POLICY^IBCEF(IBDA,18) S:IBGRP="" IBGRP=0
  ;S ^TMP($J,"IBOTR",IBDIV,IBBRTY,IBINS,$$NAMAGE(DFN,IBEVT)_"@@"_IBBN)=U_IBSCF_U_IBSCT_U_IBDP_U_IBDBC_U_IBAO_U_IBAP_U_IBCFL
@@ -94,6 +103,7 @@ BUILD ; - Retrieve A/R data and build sort global.
  ;
 SORT ; - Create sort global based on amount owed/amount paid, if necessary.  Add Group# w/ p447
  N IBGRP
+ ;
  I 'IBSDIV S IBDIV=0
  S IBX="" F  S IBX=$O(^TMP($J,"IBOTR",IBDIV,IBX)) Q:IBX=""  D
  .S IBINS="" F  S IBINS=$O(^TMP($J,"IBOTR",IBDIV,IBX,IBINS)) Q:IBINS=""  D
@@ -114,3 +124,15 @@ NAMAGE(DFN,EVT) ; - Return patient name and age.
  E  S X1=EVT S:'X1 X1=DT D ^%DTC S X=X\365.25
  ;Q $E($P(DPT0,U),1,18)_" ("_X_")"
  Q $E($P(DPT0,U),1,16)_" ("_X_")"
+ ;
+PTIN(IBDA) ; Retrieve Payer TIN for insurance company
+ ;
+ ; IBDA is the IEN of the bill # in file #399 and must be valid
+ N IBTIN,IBVAL,Z
+ S IBTIN="",Z=""
+ I '$G(IBDA) Q IBTIN
+ S Z=$O(^IBM(361.1,"B",IBDA,Z))
+ Q:'Z IBTIN
+ S IBVAL=$G(^IBM(361.1,Z,0))
+ S IBTIN=$P(IBVAL,"^",3)
+ Q IBTIN  ; Quit with Payer TIN, if it was sent with the ERA

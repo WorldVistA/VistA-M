@@ -1,5 +1,5 @@
 PSSVIDRG ;BIR/PR,WRT-ADD OR EDIT IV DRUGS ; 11/19/09 11:02am
- ;;1.0;PHARMACY DATA MANAGEMENT;**2,10,32,38,125,146,174**;9/30/97;Build 19
+ ;;1.0;PHARMACY DATA MANAGEMENT;**2,10,32,38,125,146,174,189**;9/30/97;Build 54
  ;
  ;Reference to ENIVKV^PSGSETU is supported by DBIA # 2153.
  ;Reference to ^PSIV is supported by DBIA # 2155.
@@ -28,8 +28,12 @@ ENS2 ; IV Solutions Editing
  . I $D(PSSY(X)) S Y=$G(PSSY(X))
  G K1:($G(Y)<0)
  W ! K PSSEL1 S PSSASK="SOLUTIONS",DRUG=+Y,DIE=FI,(DA,ENTRY)=+Y,DR=".01" D EECK G K1:$G(PSSEL1)="^" I $G(PSSEL1)=2 S Y=0 W ! G NS2
- N PSSQUIT S PSSQUIT=0
- S PSSDRG=$P($G(^PS(52.7,ENTRY,0)),"^",2),DA=ENTRY,DIE="^PS(52.7,",DR="D PRNMHD^PSSVIDRG;.01;.01///^S X=$$PRNM^PSSVIDRG();.02;1///^S X=$$GEND^PSSVIDRG($S($G(DISPDRG):DISPDRG,$G(PSSDRG):PSSDRG,1:""""));D GETD^PSSVIDRG;2:8;10:15;17:99999"
+ N PSSQUIT,PSSINADT S PSSQUIT=0
+ S PSSINADT=$$GET1^DIQ(52.7,ENTRY,8,"I")
+ S PSSDRG=$P($G(^PS(52.7,ENTRY,0)),"^",2),DA=ENTRY
+ S DIE="^PS(52.7,",DR="D PRNMHD^PSSVIDRG;.01;.01///^S X=$$PRNM^PSSVIDRG();.02;"
+ S DR=DR_"1///^S X=$$GEND^PSSVIDRG($S($G(DISPDRG):DISPDRG,$G(PSSDRG):PSSDRG,1:""""));D GETD^PSSVIDRG;"
+ S DR=DR_"2:7;@8;8;D IVSOLINA^PSSVIDRG;10:15;17:99999"
  N PSSENTRY I $G(DA) S PSSENTRY=DA D ^DIE I '$G(PSSQUIT) D MFS^PSSDEE K PSFLGS,PSSY
  Q
 ENA ;Enter here to enter/edit additives.
@@ -77,7 +81,9 @@ KDRG K B,DA,DG,DIC,DIE,DIJ,DIX,DIY,DIYS,DLAYGO,DO,DRUG,DRUGEDIT,FI,I,J,P,PSIV,PS
  Q
  ;
 GETD ;See if generic drug is inactive in file 50.
- I $D(^PSDRUG(X,"I")),^("I"),(DT+1>+^("I")) W $C(7),$C(7),!!,"This drug is inactive and will not be selectable during IV order entry.",! S ^PS(FI,DRUG,"I")=^PSDRUG(X,"I")
+ I $D(^PSDRUG(X,"I")),^("I"),(DT+1>+^("I")) D
+ . W $C(7),$C(7),!!,"This drug is inactive and will not be selectable during IV order entry.",!
+ . S ^PS(FI,DRUG,"I")=^PSDRUG(X,"I")
  Q
 ENTDRG ;This module is no longer utilized by the Inpatient Medications application.
  ;Will print word-processing field in IV add. file (52.6) and
@@ -138,12 +144,6 @@ PRNM() ; PSS*1*146 compare and confirm Print name change
  N PRNMDONE,%,FI,PRNAME,DUP,DUPLIC S PRNMDONE=0
  S FI=DIC I FI'["^" S FI="^PS("_FI_","
  S FI=FI_DA_",0)",PRNAME=$P($G(@FI),"^")
- ;I PSPRNM'=PRNAME S DUPLIC=0 D  I DUPLIC Q PSPRNM
- ;. S DUP=DIC I DUP'["^" S DUP="^PS("_DUP_","
- ;. S DUP="$O("_DIC_"""B"","""_PRNAME_""","_DA_"))!$O("_DIC_"""B"","""_PRNAME_""","_DA_"),-1)"
- ;. I @DUP D
- ;. . W !,"PRINT NAME ALREADY ON FILE! PRINT NAME reset to "_PSPRNM,!,$C(7)
- ;. . S DUPLIC=1
  I (PSPRNM]"")&(PRNAME]"")&(PSPRNM'=PRNAME) F  Q:$G(PRNMDONE)  D
  . W !,"  ARE YOU SURE YOU WANT TO CHANGE THE PRINT NAME TO "_PRNAME
  . S %=2 D YN^DICN
@@ -179,4 +179,19 @@ GEND(CUR) ;PSS*1*146
 NEW(FI) ; add new additive/solution
  N DA,DIC,DIE,DR,DLAYGO
  S (DLAYGO,DIC)=FI,DIC(0)="QEALMNTV",DIC("T")="" D ^DIC K DIC
+ Q
+ ;
+IVSOLINA ; Checking for Duplicate IV Solution Volume when INACTIVATION DATE is removed
+ ; Global variable: PSSINADT - INACTIVATION DATE value being deleted
+ I '$G(PSSINADT),$$GET1^DIQ(52.7,DA,8,"I") S PSSINADT=$$GET1^DIQ(52.7,DA,8,"I")
+ ;I +$G(PSSINADT),('X&PSSINADT)!(X&(X'=PSSINADT)) D
+ I 'X!(X>DT) D
+ . N OI
+ . I $$GET1^DIQ(52.7,DA,17,"I") D
+ . . S OI=+$$GET1^DIQ(52.7,DA,9,"I")
+ . . I $$CKDUPSOL^PSSDDUT2(OI,DA,+$$GET1^DIQ(52.7,DA,2),1) D
+ . . . S $P(^PS(52.7,DA,"I"),"^")=$G(PSSINADT)
+ . . . S Y="@8"
+ . . E  S PSSINADT=X
+ E  S PSSINADT=X
  Q

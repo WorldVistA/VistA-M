@@ -1,5 +1,7 @@
-YTMMPI2B ;ALB/ASF-MMPI2 HARRIS:LINGOS,CRIT,OS ;6/19/03  14:43
- ;;5.01;MENTAL HEALTH;**10,31,76,70**;Dec 30, 1994
+YTMMPI2B ;ALB/ASF,HIOFO/FT - MMPI2 HARRIS:LINGOS,CRIT,OS ;3/19/13 9:38am
+ ;;5.01;MENTAL HEALTH;**10,31,76,70,108**;Dec 30, 1994;Build 17
+ ;No external references
+ ;
 SCOR ;
  S (R,S)="" F J=44:1:84 D T0^YTMMPI2A S P=YSSX D LK^YTMMPI2A
  K A,YSTVL S YSSCALE=S,YSRAW=R
@@ -16,7 +18,8 @@ HL ;HARRIS LINGOS
  F J=44:1:71 S YSN=$P(^YTT(601,YSTEST,"S",J,0),U,2),R=$P(YSRAW,U,J-43),S=$P(YSSCALE,U,J-43) D:YSN?.E1"1".E HLPARNT W !?3,$E($P(YSN," ",2,9),1,36)," (",$P(YSN," "),")",?50,$J(R,4),?65,$J(S,4) D:$Y+4>IOSL&(IOST?1"C-".E) WAIT Q:YSLFT
  Q
 HLPARNT ;
- W:J'=44 !! W !,$S(J=44:"Depression",J=49:"Hysteria",J=54:"Psychopathic Deviate",J=59:"Paranoia",J=62:"Schizophrenia",1:"Hypomania")," Subscales",! Q
+ I J'=44 W !," "
+ W !,$S(J=44:"Depression",J=49:"Hysteria",J=54:"Psychopathic Deviate",J=59:"Paranoia",J=62:"Schizophrenia",1:"Hypomania")," Subscales",! Q
 WAIT ;
  I IOST'?1"C-".E D DTA^YTREPT Q
  ; %%  ANOTHER READER CALL ???? LOOK YSLFT = YSTOUT %%%
@@ -62,7 +65,7 @@ CRIT ;CRITICAL ITEMS
 CRIT1 ;
  S YSN=$P(^YTT(601,YSTEST,"S",J,0),U,2),YSKY=$S($D(^YTT(601,YSTEST,"S",J,YSSX_"K")):^(YSSX_"K"),1:^YTT(601,YSTEST,"S",J,"K",1,0))
  I $D(^YTT(601,YSTEST,"S",J,"K",2,0)) S YSKY=YSKY_^(0)
- S X(0)=^YTD(601.2,YSDFN,1,YSTEST,1,YSED,1),X(1)=^(2),X(2)=^(3) D:$Y+4>IOSL WAIT Q:YSLFT  W !!!,YSN,!
+ S X(0)=^YTD(601.2,YSDFN,1,YSTEST,1,YSED,1),X(1)=^(2),X(2)=^(3) D:$Y+4>IOSL WAIT Q:YSLFT  W !," ",!," ",!,YSN,!
  F I=1:2 S YSIT=$P(YSKY,U,I) Q:YSIT'?1N.N  S B=$P(YSKY,U,I+1) I $E(X(YSIT\200),YSIT#200)=B S YSCNT=YSCNT+1 D L,WAIT:$Y+4>IOSL
  Q
 L W !,$J(YSIT,5),". " F K=1:1 Q:'$D(^YTT(601,YSTEST,"Q",YSIT,"T",K))  W:K'=1 !?7 W ^YTT(601,YSTEST,"Q",YSIT,"T",K,0)

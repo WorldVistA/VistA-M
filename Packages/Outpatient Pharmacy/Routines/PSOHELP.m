@@ -1,5 +1,5 @@
 PSOHELP ;BHAM ISC/SAB-outpatient utility routine ; 10/17/07 7:41am
- ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276,282**;DEC 1997;Build 18
+ ;;7.0;OUTPATIENT PHARMACY;**3,23,29,48,46,117,131,222,268,206,276,282,444**;DEC 1997;Build 34
  ;External reference ^PS(51 supported by DBIA 2224
  ;External reference ^PSDRUG( supported by DBIA 221
  ;External reference ^PS(56 supported by DBIA 2229
@@ -65,14 +65,8 @@ MAX S:$G(EXH) P(7)=$P(^PSRX(DA,0),"^",8),P(5)=$P(^(0),"^",6),P(2)=+$P(^(0),"^",3
  S PSODEA=$P(^PSDRUG(P(5),0),"^",3),CS=0
  I $D(CLOZPAT) S MAX=$S(CLOZPAT=2&($P(^PSRX(DA,0),"^",8)=14):1,CLOZPAT=2&($P(^PSRX(DA,0),"^",8)=7):3,CLOZPAT=1&($P(^PSRX(DA,0),"^",8)=7):1,1:0),MIN=0 Q
  I PSODEA["A"&(PSODEA'["B")!(PSODEA["F")!(PSODEA[1)!(PSODEA[2) D EN^DDIOL("No refills allowed on "_$S(PSODEA["A":"this narcotic drug.",1:"this drug."),"","!") D EN^DDIOL(" ","","!") S $P(^PSRX(DA,0),"^",9)=0 K X,Y,PSODEA,CS,PTST Q
- F DEA=1:1 Q:$E(PSODEA,DEA)=""  I $E(+PSODEA,DEA)>1,$E(+PSODEA,DEA)<6 S CS=1
- S PSOELSE=CS I PSOELSE D
- .S PSOX1=$S(PTRF>5:5,1:PTRF),PSOT=$S(PSOX1=5:5,1:PSOX1)
- .S PSOT=$S('PSOT:0,P(7)=90:1,1:PSOT),PSDY1=$S(P(7)<60:5,P(7)'<60&(P(7)'>89):2,P(7)=90:1,1:0) S MAX=$S(PSOT'>PSDY1:PSOT,1:PSDY1)
- I 'PSOELSE D
- .S PSOX1=PTRF,PSOT=$S(PSOX1=11:11,1:PSOX1),PSOT=$S('PSOT:0,P(7)=90:3,1:PSOT)
- .S PSDY1=$S(P(7)<60:11,P(7)'<60&(P(7)'>89):5,P(7)=90:3,1:0) S MAX=$S(PSOT'>PSDY1:PSOT,1:PSDY1)
- K PSODEA,PSOELSE,PSOT,PSOX1,PSDY,PSDY1,DEA,CS
+ ; Retrieving the Maximum Number of Refills allowed
+ S MAX=$$MAXNUMRF^PSOUTIL(+$G(P(5)),+$G(P(7)),+$G(P(2)),.CLOZPAT)
  I $D(X) S MIN=0 I $D(DA) F REF=0:0 S REF=$O(^PSRX(DA,1,REF)) Q:'REF  I $D(^(REF,0)) S MIN=MIN+1
  I $G(EXH) D EN^DDIOL("Enter a number Between "_MIN_" AND "_MAX_".","","!?10") K P(2),P(5),P(7),MAX,MAX1,MIN,REF
  Q

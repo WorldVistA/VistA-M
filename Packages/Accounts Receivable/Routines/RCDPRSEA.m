@@ -1,6 +1,6 @@
-RCDPRSEA ;WISC/RFJ/PJH - extended search ; 5/25/11 3:07pm
- ;;4.5;Accounts Receivable;**114,148,208,269**;Mar 20, 1995;Build 113
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+RCDPRSEA ;WISC/RFJ/PJH - extended search ;5/25/11 3:07pm
+ ;;4.5;Accounts Receivable;**114,148,208,269,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  N DATEEND,DATESTRT,RCTRACE,RCCHECK,RCCREDIT,RCSEARCH,RCTYPE,%ZIS,ZTSAVE,ZTDESC,ZTQUEUED,ZTRTN,POP
  ;  search check or credit card
@@ -78,7 +78,7 @@ DISPLAY ;  display the payment
  ;  receipt
  W !,$P(DATA,"^")
  ;  date opened
- W ?13,$E($P(DATA,"^",3),4,5),"/",$E($P(DATA,"^",3),6,7),"/",$E($P(DATA,"^",3),2,3)
+ W ?15,$E($P(DATA,"^",3),4,5),"/",$E($P(DATA,"^",3),6,7),"/",$E($P(DATA,"^",3),2,3)
  ;  transaction number
  W ?24,RCTRANDA
  S DATA=$G(^RCY(344,RCRECTDA,1,RCTRANDA,0))
@@ -103,7 +103,7 @@ H ;  header
  W $S(RCSEARCH=1:"CHECK ",RCSEARCH=2:"CREDIT CARD ",1:"TRACE # ")
  W $S(RCTYPE="E":"EQUALS ",1:"CONTAINS ")
  W $G(RCCHECK),$G(RCTRACE),$G(RCCREDIT)
- W !,"RECEIPT",?13,"OPENDATE",?24,"TRANS",?30,"ACCOUNT",?54,$J("AMOUNT",8)
+ W !,"RECEIPT",?15,"OPENDATE",?24,"TRANS",?30,"ACCOUNT",?54,$J("AMOUNT",8)
  W !,"   "
  W $S(RCSEARCH=1:"CHECK#",RCSEARCH=2:"CREDITCARD#",1:"TRACE#")
  W !,RCRJLINE

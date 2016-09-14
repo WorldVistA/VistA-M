@@ -1,6 +1,7 @@
 RAORD61 ;HISC/GJC-Print A Request Cont. ;2/2/98  15:28
- ;;5.0;Radiology/Nuclear Medicine;**45,68,47**;Mar 16, 1998;Build 21
+ ;;5.0;Radiology/Nuclear Medicine;**45,68,47,123**;Mar 16, 1998;Build 7
  ;11/18/05 KAM Remedy Call 100930 Remove extra dash lines
+ ; 5-P123 6/23/2015 MJT RA*5*123 NSR 20140507 print weight & date taken in Radiology requests
  ;
 TC ;technologist information & comment (called from RAORD6)
  N RA18FL,RA18ARR,RA18EX,RA18CNI,RA18DTI,RA18PRC,RA18ND,RA18TC S RA18EX=0,RA18CNI=0
@@ -25,6 +26,6 @@ TC ;technologist information & comment (called from RAORD6)
  ... ;tech comm
  ... W !
  ... S RA18EX=$$TXTOUT^RAUTL11(^TMP($J,"RAE2",RADFN,RA18CNI,RA18PRC,"TCOM",1),1,70,-1,"",4,1,1,1)
- ... D HD^RAORD6:($Y+6)>IOSL
+ ... D HD^RAORD6:($Y+10)>IOSL   ; 5-P123
  Q
  ;

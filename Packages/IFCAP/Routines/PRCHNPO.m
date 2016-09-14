@@ -1,6 +1,12 @@
 PRCHNPO ;WISC/SC,ID/RSD/RHD/DGL/BGJ-ENTER NEW PURCHASE ORDER/REQUISITION ; 4/2/01 1:50pm
-V ;;5.1;IFCAP;**7,11,79,108,123**;Oct 20, 2000;Build 6
+V ;;5.1;IFCAP;**7,11,79,108,123,184**;Oct 20, 2000;Build 8
  ;Per VHA Directive 2004-038, this routine should not be modified.
+ ;
+ ;PRC*5.1*184 Added check for Purchase Card orders to insure there
+ ;            are sufficient requisition sequence entries (>5) for
+ ;            requisition created in file 410 for related FCP used
+ ;            and control for Running Balance Report.
+ ;
  S NOTCOMPL=0 ;Initialize for Incomplete Template.
  D SWITCH^PRCHUTL K ERRFLG ; SET LOG/ISMS SWITCH
  K PRCSIP ; Initialize Inventory point variable
@@ -17,6 +23,7 @@ V ;;5.1;IFCAP;**7,11,79,108,123**;Oct 20, 2000;Build 6
  ; Check ERRFLG to see if the user entered an up-arrow to get out or
  ; did not select a credit card name. The flag ERRFLG is set at the
  ; input templates above.
+ I $G(ERRFLG)=99 G ERR      ;PRC*5.1*184 Check for error flag coming from Input Template for Purchase Cards
  I $G(ERRFLG)=42 G ERR
  I $G(ERRFLG)=38 G ERR
  I $G(ERRFLG)=1 G ERR

@@ -1,0 +1,363 @@
+PSJNEWOC ;BIR/SAB - STORES BACKDOOR ORDER CHECKS IN FILE #100.05 ;11/08/2012
+ ;;5.0;INPATIENT MEDICATIONS;**281**;16 DEC 97;Build 113
+ ;External reference to SAVEOC^OROCAPI1 supported by DBIA 5729
+ ;External reference to ^ORD(100.05, supported by DBIA 5731
+ ;External reference to ^TMP("PSODAOC",$J is supported by DBIA 6071
+ ;External reference to DAOC^PSONEWOA is supported by DBIA 6072
+ ;External reference to ^PS(55 is supported by DBIA 2191
+ ;---------------------------------------------------------------
+ACT ;
+ ;store order checks
+ N PSJAOC1,DA,DR,DIC,DIE,RXORDER,X,Y
+ S RXORDER=$G(^TMP("PSODAOC",$J,"IP IEN")),RXN=+RXORDER  ; this set in routines that call ^PSJNEWOC
+ ;
+ACT3 ;
+ I '$D(^TMP("PSODAOC",$J)),$G(PSJVERFY) D  Q
+ .D SET3
+ .N ORDNUM,OCHISIEN,X,OLDOCCUR
+ .S ORDNUM=$$GET1^DIQ(55.06,+RXORDER_","_DFN_",",$S(RXORDER["U":66,1:110),"I")
+ .Q:ORDNUM=""
+ .I $D(^ORD(100.05,"B",ORDNUM)) D
+ ..S OCHISIEN="" F  S OCHISIEN=$O(^ORD(100.05,"B",ORDNUM,OCHISIEN)) Q:OCHISIEN=""  D
+ ...K DA,DIC,DIE,DR
+ ...S DA=OCHISIEN,DIE="^ORD(100.05,",DR="2///"_PSJDAOC
+ ...D ^DIE
+ ;
+ACT2 ;
+ ;I $D(^XTMP("ORRDI","OUTAGE INFO","DOWN")) D NORDI^PSJNEWO1
+ ;I $G(^TMP("PSJDAOC",$J,"CLOZ",0))]"" S PSOZH="Clozapine" D CLOZ^PSONEWO1
+ ;I $D(^TMP("PSJDAOC",$J,"CROC")) D CROCLOG^PSJCROC
+ ;I $D(^TMP($J,"CROCIV")) D CRIVLOG^PSJCROC
+ I $D(^TMP("PSODAOC",$J,"ALLERGY")) S PSJAOC1=1 D DAOC K PSJAOC1 ;drug allergies
+ ;I $D(^TMP("PSJDAOC",$J,"DI",0))]"" S PSJKIND="DI",PSJZH="Drug Interaction" D SET ;drug interaction
+ ;I $D(^TMP("PSJDAOC",$J,"DT")) S PSJKIND="DT",PSJZH="Duplicate Therapy" D SET ;dup drug therapy
+ ;I $O(^TMP("PSJDAOC",$J,"CPRS",0)) D CPRS ;cprs order checks
+ ;I $G(^TMP("PSJDAOC",$J,"NOSYS",1,0))]"" D NOSYS ;fdb down
+ ;I $O(^TMP("PSJDAOC",$J,"EXEC",0)) D EXEC ;order chk execeptions
+ ;I $O(^TMP("PSJDAOC",$J,"DRG","ERROR",0))!($O(^TMP("PSJDAOC",$J,"THP","ERROR",0))) D ERROR ;order chk errors
+ ;I $O(^TMP("PSJDAOC",$J,"DOSE","ERROR",0)) D DERROR^PSJNEWO1 ;dosing order chk errors
+ ;I $O(^TMP("PSJDAOC",$J,"DOSE","EXEC",0)) D DEXEC^PSJNEWO1 ;dosing order chk exceptions
+ ;I $O(^TMP("PSJDAOC",$J,"DOSE","MSG",0)) D DMSG^PSJNEWO1 ;dosing order chk messages
+ ;I $G(^TMP("PSJDAOC",$J,"DOSE NOSYS",1,0))]"" D NODSYS^PSJNEWO1 ;dosing fdb down
+ ;;K ^TMP("PSJDAOC",$J) killed elsewhere
+ K RET,PSJDAOC,PI,ZORMGS,RXN
+ Q
+ ;
+VF1(PSGORD) ;
+ ;Q:+$G(PSGORD)=""
+ N RXORDER,DA,DR,DIC,DIE,PSJAOC1,X,Y
+ S RXORDER=$G(^TMP("PSODAOC",$J,"IP NEW IEN"))
+ D ACT3
+ Q
+ ;
+VF2 ;verify within same session
+ N PSJAOC1,DA,DR,DIC,DIE,RXORDER,X,Y
+ S PSJAOC1=1,RXORDER=$G(^TMP("PSODAOC",$J,"IP NEW IEN"))
+ D DAOC^PSONEWOA
+ I '$G(PSJREN) D
+ .; -- RTC 227903 - r 544306095 w $J for IP IEN and IP NEW IEN
+ .K ^TMP("PSODAOC",$J,"ALLERGY"),^TMP("PSODAOC",$J,"IP IEN"),^TMP("PSODAOC",$J,"IP NEW IEN")
+ Q
+ ;
+DAOC ;allergy
+ N PSJDATA
+ S PSJDATA="IP",PSJDATA=PSJDATA_"^"_$S($D(PSJOCFG):PSJOCFG,1:"")_"^"_RXORDER_"^"_$G(ORN)
+ S ^TMP("PSODAOC",$J,"ALLERGY","ALLERGY PKG")=PSJDATA
+ S PSOZH="Allergy"
+ D DAOC^PSONEWOA
+ I '$G(PSJREN) D
+ .; -- RTC 227903 - r 544306095 w $J for IP IEN and IP NEW IEN
+ .K ^TMP("PSODAOC",$J,"ALLERGY"),^TMP("PSODAOC",$J,"IP IEN"),^TMP("PSODAOC",$J,"IP NEW IEN")
+ Q
+ ;
+SET ;DEFINED 100.05
+ N DA,DR,DIC,DIE,OCCDT,ORN,ORL,RET,SEV,ZOC,ZZX,ZTOT,ZDRG,ZORT,ZCHK,ZCLZ,ZX,PSJDAOCN,PSOSTYP,CLASS,CLASSIEN,STATUS,ODA,ZVA,ADDSOLS
+ S RXN=+RXORDER
+ ;S PSJDAOC=$$LBL(RXN)
+ S OCCDT=$$NOW^XLFDT ;,ORN=$P(^PSRX(RXN,"OR1"),"^",2),ZCLZ=""
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ ;
+BEGIN ;
+ S (ZCLZ,SEV,ZVA)="",ZX=0
+ F  S SEV=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV)) Q:SEV=""!(SEV="Z")  F  S ZVA=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA)) Q:ZVA=""  D
+ .N IT,SEVERITY S (PSOSTYP,SEVERITY,IT,ODA)=""
+ .K DA,DR,DIC,DIE
+ .D GETADD
+ .I PSJKIND="DI" D
+ ..S IT=$G(^TMP("PSJDAOC",$J,"DI","Z","INT")),SEVERITY=$S(SEV="C":18,1:31)
+ .I PSJKIND="DT" S SEVERITY=17
+ .K DA,RET,ORL
+ .D SET3
+ .S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^"_SEVERITY_"^"
+ .I $L($P(ORL(1,1),"^",2))>40 S $P(ORL(1,1),"^",2)=$E($P(ORL(1,1),"^",2),1,40)
+ .S ORL(1,2,1)=PSJZH_" exists for this medication."
+ .D SAVEOC^OROCAPI1(.ORL,.RET)
+ .S DA=$O(RET(1,0)) Q:'DA
+ .S:ODA'=DA ODA=DA
+ .S DR="1///6"
+ .S:$G(IT) DR=DR_";81///"_IT
+ .S DIE="^ORD(100.05,",DR=DR_$S(PSJKIND="DI":";83///"_SEV_";84///C",PSJKIND="DD":";84///V",1:";84///C")
+ .I $E(DR,1)=";" S DR=$E(DR,2,999)
+ .D ^DIE
+ .D SET2
+ Q
+ ;
+SET2 ;
+ ; #50 - DISPENSE DRUGS^100.06PA^^5;0
+ I $D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,50)) S X="",X=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,50,X)) D
+ .K DIC,DIE
+ .S DA(1)=DA,DIC="^ORD(100.05,"_DA(1)_",5,",DIC(0)="Z"
+ .D FILE^DICN
+ ;
+GRP1 ;
+ ; #60 - GROUP ONE PHARMACY ORDERS^100.07VA^^6;0
+ ; OP PENDING ORDERS - IEN;PS(52.41,
+ ; IP RX - IEN;PS(53.1,
+ ; OP RX - IEN;PSRX(
+ N ZORT,ZIEN,NODE
+ S ZX=0 K DIC,DIE
+ I $D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,60)) F  S ZX=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,60,ZX)) Q:'ZX!(ZX="CL")  D
+ .S ZORT="",ZORT=^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,60,ZX,0)
+ .S DA(1)=DA,X=ZORT,DIC="^ORD(100.05,"_DA(1)_",6,",DIC(0)="Z"
+ .D FILE^DICN
+ .K DIC
+ .S ODA(1)=DA(1)
+ .S NODE=6 D IV
+ ;
+GRP2 ;
+ ;GROUP TWO PHARMACY ORDER FIELD (#70)
+ ;Data is formatted as follows:
+ ;"N;ien" => Non-VA Medications  ^PS(55,DFN,"NVA",ien)
+ ;"R;rx#" => Remote Outpatient   ^PSRX(ien  Prescription Number
+ ;^TMP("PSJDAOC",545384920,"DI","C","WARFARIN NA 10MG TAB",70,1,0)="R;1^7134039^ACTIVE^BOISE, ID"
+ N PSJRSITE,PSJRIEN,PSJRSTAT,PSJRIEN,PSJRSTAT,PSJRSITE,PSJRSITI,PSJRDRG,PSJREMD
+ S ZX=0,(PSJRIEN,PSJRSITE,PSJREMD)=""
+ I $D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,70)) F  S ZX=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,70,ZX)) Q:'ZX  D
+ .S ZORT="",ZORT=^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,70,ZX,0)
+ .S (PSJRIEN,PSJRSITI,PSJRSITE)=""
+ .;I $P(ZORT,";")="R" S PSJRIEN=$P(ZORT,"^",2),PSJRSITE=$P(ZORT,"^",4),PSJRSITI=$O(^DIC(4,"B",PSJRSITE,PSJRSITI)),PSJRDRG=$P(ZORT,"^",5),ZORT="R;"_PSJRIEN
+ .I $P(ZORT,";")="R" D
+ ..S PSJRIEN=$P($P(ZORT,"^"),";",2),PSJRSITE=$P($P(ZORT,"^"),";",3),PSJRDRG=$P(ZORT,"^",2)
+ ..S:PSJRSITE'="" PSJRSITI=$O(^DIC(4,"B",PSJRSITE,PSJRSITI))
+ ..S ZORT="R;"_PSJRIEN_"^"_PSJRSITI
+ .K DIC
+ .S DA(1)=DA,X=ZORT,DIC="^ORD(100.05,"_DA(1)_",7,",DIC(0)="Z"
+ .D FILE^DICN
+ .S NODE=7 D IV
+ ;
+CLINEFF ;clinical effects
+ ;TMP("PSJDAOC",545384920,"DI","C","WARFARIN NA 10MG TAB","CL",0)
+ N PSJFILE,PSJIENS,PSJCLEFF,DIWL,DIWR,DIWF,DINUM,DR,OLDX,OLD,PSJER
+ Q:'$D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"CL",1,0))
+ K DIC,DIE,DR,^UTILITY($J,"W")
+ S DIWL=1,DIWR=78,DIWF="",(DINUM,PSJCLEFF,OLDX)=""
+ I SEV="S" S X="*** Refer to MONOGRAPH for SIGNIFICANT INTERACTION CLINICAL EFFECTS" D ^DIWP G CLINEFF1
+ F  S PSJCLEFF=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"CL",PSJCLEFF)) Q:PSJCLEFF=""  D  S OLDX=X
+ .S X="",X=^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"CL",PSJCLEFF,0) I X'=OLDX D ^DIWP
+CLINEFF1 ;
+ K DA,DIC,DIE,DR,DIR
+ S DA(1)=ODA
+ S X="",DIC="^ORD(100.05,"_DA(1)_",10,",DIC(0)="Z"
+ S (DA,DINUM)=$O(^ORD(100.05,DA(1),10,9999),-1)+1
+ D FILE^DICN
+ K DIC,DIE,DR,DIR
+ S PSJFILE=100.05,PSJCLEFF="",PSJCLEFF=$NA(^UTILITY($J,"W",1))
+ D WP^DIE(PSJFILE,DA(1),100,"",PSJCLEFF,"PSJER")
+ K ^UTILITY($J,"W")
+ ;
+ ;for some strange reason if you put the following code before CLINEFF the clinical effects aren't stored.
+ K DIC,DIE,DIR,DA
+ S DA=ODA
+ I $P(ZORT,";")="R" D
+ .S DIE="^ORD(100.05,"_DA_",7,",DA(2)=DA,DA(1)=7,DR="2///"_PSJRSITI
+ .S DA=99999,(PSJREMD,DA)=$O(^ORD(100.05,DA(2),7,DA),-1)
+ .D ^DIE
+ Q
+ ;
+IV ;IV additive and solutions
+ N ZSIEN,DACNT,NODE2,IVTYPE,IVSOL,DA,DIE,DR,DIC
+ S (ZSIEN,IVSOL,ZIEN,DACNT)="",ZSIEN=$P(ZORT,";",2)_$P(ZORT,";"),NODE2=1
+ I $D(ADDSOLS(ZSIEN)) F IVTYPE="A","S" F  S ZIEN=$O(ADDSOLS(ZSIEN,IVTYPE,ZIEN)) Q:ZIEN=""  D
+ .I IVTYPE="S"&('$G(IVSOL)) S DACNT="",NODE2=2,IVSOL=1
+ .S DACNT=DACNT+1
+ .D ADDSOL
+ Q
+ ;
+ADDSOL ;set interacting Additives and solutions for IV's
+ ;^TMP("PSJDAOC",545555046,"DI","C","FLUCONAZOLE 100 MG","ADD",1,0)="36V^38"
+ N IVIENS,DINUM,X,LAYGO,PSOCNT,X
+ S (DA,DA(2),DA(1),X)="",DA(2)=ODA,DA(1)=DACNT,PSOCNT=0
+ S LAYGO=$S(NODE=6&(IVTYPE="A"):100.14,NODE=6&(IVTYPE="S"):100.72,NODE=7&(IVTYPE="A"):100.113,NODE=7&(IVTYPE="S"):100.114)
+ S DIC="^ORD(100.05,"_DA(2)_","_NODE_","_DACNT_","_NODE2_",",DIC(0)="LZ"
+ S (DA,DINUM)=$O(^ORD(100.05,DA(2),NODE,DACNT,NODE2,9999),-1)+1
+ S X=ZIEN,DR=".01///"_X
+ D FILE^DICN K DD,DO
+ Q
+ ;
+GETADD ;interacting Additives for IV's
+ N IVIENS
+ I $D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"ADD")) F  S ZX=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"ADD",ZX)) Q:'ZX  D
+ .S IVIENS="",IVIENS=^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"ADD",ZX,0)
+ .S ADDSOLS($P(IVIENS,"^"),"A",$P(IVIENS,"^",2))=""
+ ;
+GETSOLS ;interacting solutions for IV's
+ I $D(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"SOL")) F  S ZX=$O(^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"SOL",ZX)) Q:'ZX  D
+ .S IVIENS="",IVIENS=^TMP("PSJDAOC",$J,PSJKIND,SEV,ZVA,"SOL",ZX,0)
+ .S ADDSOLS("S",$P(IVIENS,"^"),"S",$P(IVIENS,"^",2))=""
+ Q
+ ;
+SET3 ;
+ ; set the variables needed for all order checks
+ N PSJVER,STOP,SETORDER
+ S:'$D(PSJOCFG) PSJOCFG=""
+ I '$G(PSJEDITO),$G(PSJVFY) D  Q:$G(STOP)
+ .I PSJORD["P",PSJORD'=PSGORD D
+ ..Q:PSGORD=""
+ ..S PSJDAOC="IP "_$S(PSGORD["U":"UD",PSGORD["V":"IV",$G(ON55)["V":"IV",$G(ON55)["U":"UD",1:"")_" RPh Verification "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:""),STOP=1
+ ;
+ I $G(PSIEDITO) D  Q:$G(STOP)
+ .I '$G(PSIOCVFY) D
+ ..S PSJDAOC="IP Pending Non-Verified "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:""),STOP=1
+ ;
+ I $G(PSIOCVFY)!(PSJOCFG["RENEW") D  Q:$G(STOP)
+ .S PSJVER="",PSJVER=$S(RXORDER["P"&(PSGORD["U"):"UD",RXORDER["U":"UD",RXORDER["P"&(PSGORD["V"):"IV",RXORDER["V":"IV",$D(^PS(53.1,+RXORDER)):"IV",$G(ON55)["V":"IV",$G(ON55)["U":"UD",1:"")
+ .S PSJDAOC="IP "_PSJVER_" RPh Verification "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:""),STOP=1
+ .K PSIEDITO
+ ;
+ S PSJDAOC="IP "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:"")
+ S PSJDAOC=$S(PSJORD["P"!(PSJORD["N"):"IP Pending Non-Verified "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:""),PSJORD["U"!(PSJORD["V"):"IP RPh Verification ",1:"")
+ ;I $D(^PS(55,+RXORDER)) D
+ I $G(PSJVERFY)!($G(PSIOCVFY)) D
+ .S PSJVER=$S(RXORDER["P"&(PSGORD["U"):"UD",RXORDER["U":"UD",RXORDER["P"&(PSGORD["V"):"IV",RXORDER["V":"IV",$G(ON55)["V":"IV",$G(ON55)["U":"UD",1:"")
+ .S PSJDAOC="IP "_PSJVER_" RPh Verification "_$S($G(PSJOCFG)]"":$P(PSJOCFG," ")_" ",1:"")
+ Q
+ ;
+CPRS N XZX,ZORMSG,ZDRG F XZX=0:0 S XZX=$O(^TMP("PSJDAOC",$J,"CPRS",XZX)) Q:'XZX  D CPRSA
+ K ^TMP("PSJDAOC",$J,"CPRS")
+ Q
+CPRSA N DA,OCCDT,ORL,Z,RET,ORTY,ZDRG,ORN,RXN
+ S RXN=+RXORDER
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ S OCCDT=$$NOW^XLFDT
+ S ZDRG=$P(^TMP("PSJDAOC",$J,"CPRS",XZX,0),"^"),ZORMGS=$P(^(0),"^",2),ORTY=$P(^(0),"^",3)
+ D SET3
+ S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^"_ORTY_"^"
+ I $L($P(ORL(1,1),"^",2))>40 S $P(ORL(1,1),"^",2)=$E($P(ORL(1,1),"^",2),1,40)
+ S ORL(1,2,1)=ZORMGS
+ D SAVEOC^OROCAPI1(.ORL,.RET)
+ S DA=$O(RET(1,0)) Q:'DA
+ S DIE="^ORD(100.05,",DR="1///6;84///V" D ^DIE
+ D
+ .N DIC  ; #50 - DISPENSE DRUGS^100.06PA^^5;0
+ .S DA(1)=DA,X=ZDRG,DIC="^ORD(100.05,"_DA(1)_",5,",DIC(0)="Z"
+ .D FILE^DICN
+ D
+ .N DIC  ; #70 - GROUP TWO PHARMACY ORDERS^100.11A^^7;0
+ .;S X=faux variable pointer based on order type
+ .;Data is formatted as follows:
+ .; 
+ .;"N;ien" => Non-VA Medications
+ .;           ^PS(55,DFN,"NVA",ien)
+ .; 
+ .;"R;rx#" => Remote Outpatient
+ .;           Prescription Number
+ .; 
+ .;"U;ien" => Unit Dose Medications
+ .;           ^PS(55,DFN,5,ien)
+ .; 
+ .;"V;ien" => IV Medications
+ .;           ^PS(55,DFN,"IV",ien)
+ .;S X=$S(RXORDER["P":"P;"_+RXORDER_";PS(53.11",RXORDER["U":"U;"_+RXORDER_";PS(55,"_DFN_",5,",RXORDER["V":"V;"_+RXORDER_";PS(55,"_DFN_",IV",RXORDER["N":"N;"_+RXORDER_";PS(55.05,"_DFN_",NVA")
+ .S X=$S(RXORDER["P":"P;"_+RXORDER,RXORDER["U":"U;"_+RXORDER,RXORDER["V":"V;"_+RXORDER,RXORDER["N":"N;"_+RXORDER)
+ .S DA(1)=DA,DIC="^ORD(100.05,"_DA(1)_",7,",DIC(0)="Z"
+ .D FILE^DICN
+ .Q
+ Q
+ ;
+NOSYS ;
+ N DA,OCCDT,ORL,Z,RET,PSJDAOC,RXN,ORN
+ S RXN=+RXORDER
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ S OCCDT=$$NOW^XLFDT
+ D SET3
+ S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^25^"
+ I $L($P(ORL(1,1),"^",2))>40 S $P(ORL(1,1),"^",2)=$E($P(ORL(1,1),"^",2),1,40)
+ S ORL(1,2,1)="Order Checks could not be done, please complete a manual check for Drug Interactions and Duplicate Therapy. "_^TMP("PSJDAOC",$J,"NOSYS",1,0)
+ D SAVEOC^OROCAPI1(.ORL,.RET)
+ S DA=$O(RET(1,0)) Q:'DA
+ S DIE="^ORD(100.05,",DR="84///C" D ^DIE
+ Q
+EXEC ;order chk exeception
+ N DA,OCCDT,ORL,RET,SEV,ZOC,ZZX,ZTOT,ZDRG,ZORT,ZCHK,ORN,RXN
+ S RXN=+RXORDER
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ F ZOC=0:0 S ZOC=$O(^TMP("PSJDAOC",$J,"EXEC",ZOC)) Q:'ZOC  D
+ .S OCCDT=$$NOW^XLFDT
+ .D SET3
+ .S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^25^"
+ .I $L($P(ORL(1,1),"^",2))>40 S $P(ORL(1,1),"^",2)=$E($P(ORL(1,1),"^",2),1,40)
+ .S ORL(1,2,1)=^TMP("PSJDAOC",$J,"EXEC",ZOC)
+ .D SAVEOC^OROCAPI1(.ORL,.RET)
+ .S DA=$O(RET(1,0)) Q:'DA
+ .S DIE="^ORD(100.05,",DR="84///C" D ^DIE
+ .Q
+ Q
+ERROR ;order drug chk errors
+ N DA,OCCDT,ORL,Z,RET,PSJDAOC,RX,ORN,RXN
+ S RXN=+RXORDER
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ F ZOC=0:0 S ZOC=$O(^TMP("PSJDAOC",$J,"DRG","ERROR",ZOC)) Q:'ZOC  D
+ .S OCCDT=$$NOW^XLFDT
+ .D SET3
+ .S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^25^"
+ .I $L($P(ORL(1,1),"^",2))>40 S $P(ORL(1,1),"^",2)=$E($P(ORL(1,1),"^",2),1,40)
+ .S ORL(1,2,1)=^TMP("PSJDAOC",$J,"DRG","ERROR",ZOC)
+ .D SAVEOC^OROCAPI1(.ORL,.RET)
+ .S DA=$O(RET(1,0)) Q:'DA
+ .S DIE="^ORD(100.05,",DR="84///C" D ^DIE
+ .Q
+ ;
+ N DA,OCCDT,ORL,Z,RET,PSJDAOC,RXN,ORN
+ S RXN=+RXORDER
+ S ORN=$S(RXORDER["N"!(RXORDER["P"):$$GET1^DIQ(53.1,RXN,49),RXORDER["U":$$GET1^DIQ(55.06,RXN_","_DFN_",",66),RXORDER["V":$$GET1^DIQ(55.01,RXN_","_DFN_",",110),1:-1)
+ Q:ORN=-1
+ F ZOC=0:0 S ZOC=$O(^TMP("PSODAOC",$J,"THP","ERROR",ZOC)) Q:'ZOC  D
+ .S OCCDT=$$NOW^XLFDT
+ .D SET3
+ .S ORL(1,1)=ORN_"^"_PSJDAOC_"^"_DUZ_"^"_OCCDT_"^25^"
+ .S ORL(1,2,1)=^TMP("PSODAOC",$J,"THP","ERROR",ZOC)
+ .D SAVEOC^OROCAPI1(.ORL,.RET)
+ .S DA=$O(RET(1,0)) Q:'DA
+ .S DIE="^ORD(100.05,",DR="84///C" D ^DIE
+ .Q
+ Q
+ ;
+SETOC(PSJORDNM) ;SET ORDER CHECKS IN TO FILE 100.05
+ ;PSJ*5*260
+ ;verify within same session - store allergies just seen for non-verified order
+ Q:'$G(PSJORDNM)
+ N PSJORDN1,X,Y,DIR,DIC,DIE,DR,DA S PSJORDN1=PSJORDNM
+ I '$D(^TMP("PSODAOC",$J,"ALLERGY")) D
+ .D VF1^PSJNEWOA ;IV
+ ;
+ I $D(^TMP("PSODAOC",$J,"ALLERGY")) D
+ .N DA,OCCDT,ORN,ORL,Z,RET,PSJDAOC,RXN
+ .S RXORDER=PSJORDN1
+ .S RXN=+RXORDER,^TMP("PSODAOC",$J,"IP IEN")=RXORDER  ;set up which IEN will be used to store order checks
+ .S PSJDAOC="IP "_$S(RXORDER["P":"Pending/Non-Verified",RXORDER["U":"UD",RXORDER["V":"IV",1:"")_" Allergy",OCCDT=$$NOW^XLFDT
+ .I RXORDER["P" S ORN=$P(^PS(53.1,+RXORDER,0),U,21)
+ .I RXORDER["U" S ORN=$P(^PS(55,DFN,5,+RXORDER,0),U,21)
+ .I RXORDER["V" S ORN=$P(^PS(55,DFN,"IV",+RXORDER,0),U,21)
+ .Q:'$G(ORN)
+ .D DAOC2
+ Q
+ ;
+DAOC2 ;I +$G(PSGORD) S ^TMP("PSODAOC",$J,"IP IEN")=PSGORD   ;set up which IEN will be used to store order checks
+ D ACT^PSJNEWOC ;psj*5*281 stores order checks
+ Q:$G(PSJEDITO)!($G(PSIEDITO))
+ Q

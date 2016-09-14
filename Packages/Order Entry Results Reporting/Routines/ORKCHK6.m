@@ -1,5 +1,5 @@
-ORKCHK6 ; SLC/CLA - Support routine called by ORKCHK to do SESSION mode order checks ;05/10/12  13:30
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,280,272,346,345**;Dec 17, 1997;Build 32
+ORKCHK6 ; SLC/CLA - Support routine called by ORKCHK to do SESSION mode order checks ;08/18/14  08:37
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**6,32,74,87,94,123,162,190,249,280,272,346,345,269**;Dec 17, 1997;Build 85
  Q
  ;
 EN(ORKS,ORKDFN,ORKA,ORENT,ORKTMODE) ;perform order checking for entire ordering session
@@ -106,13 +106,7 @@ RXOCS ;drug-drug interaction, duplicate drug order, duplicate drug class
  ...S ORPSNUM=$P(XX,U,2)  ;get the associated order number
  ...S ORKMSG=$P(XX,U,4)
  ...S ORKS("ORK",ORDUPCD_","_$G(ORNUM)_","_ORPSNUM_","_$E(ORKMSG,1,225))=ORNUM_U_ORDUPCN_U_ORDUPCD_U_ORKMSG
- Q:ORALLRF="D"
- N ORKAL
- I $L($G(HL7NPTR)),($G(HL7NCOD)="99NDF") D
- .D RXN^ORQQAL(.ORKAL,ORKDFN,"DR",HL7NPTR,$G(HL7LPTR)) I (ORKAL>0) D
- ..Q:$L($P(ORKAL,U,2))<1
- ..S ORKMSG="Previous adverse reaction to: "_$P(ORKAL,U,2)
- ..S ORKS("ORK",ORALLRD_","_$G(ORNUM)_","_$E(ORKMSG,1,225))=ORNUM_U_ORALLRN_U_ORALLRD_U_ORKMSG
+ D RXOCS^ORKCHK5
  Q
  ;
 PARAMS(ORKNAME,ORKNUM,ORKFLAG,ORKDNGR) ; get parameter values for an order chk

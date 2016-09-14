@@ -1,6 +1,6 @@
 RCDPEX2 ;ALB/TMK/KML/PJH - ELECTRONIC EOB DETAIL EXCEPTION MAIN LIST TEMPLATE ;Aug 14, 2014@15:07:21
- ;;4.5;Accounts Receivable;**173,269,298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**173,269,298,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 INIT ; -- set up initial variables
  S U="^",VALMCNT=0,VALMBG=1
@@ -10,9 +10,13 @@ INIT ; -- set up initial variables
 REBLD ; Set up formatted global
  ;
 BLD ; -- build list of messages from file 344.4
- N RCBILL,RCSUB,RCSEQ,RCMSG1,RCEXC,RCS,RCER,RCDPDATA,RCX,RCX1,RC0,RCDECME,DA,X,DR,Y
+ N RCBILL,RCSUB,RCSEQ,RCMSG1,RCEXC,RCS,RCER,RCDPDATA,RCX,RCX1,RC0,RCDECME,DA,X,DR,Y,RCPYRIEN
  K ^TMP("RCDPEX_SUM-EOB",$J),^TMP("RCDPEX_SUM-EOBDX",$J)
+ K ^TMP("RCDPEADP",$J)  ; temp insurance array
  S (RCMSG,RCSEQ,VALMCNT)=0
+ ;
+ ; Get list of payers if list isn't already built - PRCA*4.5*304
+ D PYRARY^RCDPENRU(RCPYRLST("START"),RCPYRLST("END"),1)
  ;
  ; Extract from 344.4
  S RCER=0
@@ -23,6 +27,15 @@ BLD ; -- build list of messages from file 344.4
  . S RCX("TRACE")=$G(RCDPDATA(344.4,RCSUB,.02,"E"))
  . S RCX("INCOID")=$G(RCDPDATA(344.4,RCSUB,.03,"E"))
  . S RCX("PAYFROM")=$G(RCDPDATA(344.4,RCSUB,.06,"E"))
+ . ;
+ . ;quit if the exception is not for a specified ERA (processing from the general worklist)
+ . I $G(RCDWLIEN)'="",(RCDWLIEN'=+RCSUB) Q
+ . ;
+ . S RCPYRIEN=$O(^RCY(344.6,"B",RCX("PAYFROM"),""))  ;Extract the IEN for the payer lookup
+ . ;
+ . ; quit if specific ERA not requested, payer not in list and range of payer(s) was selected to process
+ . I '$G(RCDWLIEN),'$$INSCHK^RCDPENRU(RCPYRIEN) Q
+ . ;
  . S RCS=0 F  S RCS=$O(^RCY(344.4,"AEXC",RCER,RCMSG,RCS)) Q:'RCS  S RC0=$G(^RCY(344.4,RCMSG,1,RCS,0)) D
  .. S DA(1)=RCMSG,DA=RCS,RCSUB=DA_","_DA(1)_","
  .. S DR=".01;.02;.03;.05;.07;.08;.1;.11;.12;.15;.24;9.01",DA=RCS D DIQ3444(.DA,DR)

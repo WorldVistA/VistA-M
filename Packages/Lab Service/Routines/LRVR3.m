@@ -1,5 +1,5 @@
-LRVR3 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;5/31/12  9:39
- ;;5.2;LAB SERVICE;**42,121,153,286,291,350**;Sep 27, 1994;Build 230
+LRVR3 ;DALOI/STAFF - LAB ROUTINE DATA VERIFICATION ;04/05/16  12:22
+ ;;5.2;LAB SERVICE;**42,121,153,286,291,350,458**;Sep 27, 1994;Build 10
  ;
  D V1
  I $D(LRLOCKER)#2 L -@(LRLOCKER) K LRLOCKER
@@ -96,7 +96,7 @@ V11 ; Still locked from V1 L ^LR(LRDFN,LRSS,LRIDT)
  . I LRSITE'="" S LRDATA(.03)=LRSITE_";DIC(4,"
  . D SETREF^LRUEPR(LRDFN,LRDATA(.01),.LRDATA,1)
  ;
-A3 ; Called from LRVRPOC
+A3 ; Called from LRVRPOC, LRVRAR
  ;
  ; Set reporting site in file #63.
  D SETRL^LRVERA(LRDFN,LRSS,LRIDT,DUZ(2))
@@ -160,10 +160,11 @@ ZAP2 ;Clear ^LAH(
  ;
  ;
 ZAPALL(LRLL,LAIEN) ;Clean up
- N I,NODE,SEG,SUB
+ N I,NODE,SEG,SEGID,SUB
  Q:'$G(LRLL)!('$G(LAIEN))
  ;
  S NODE=$G(^LAH(LRLL,1,LAIEN,0))
+ K ^LAH(LRLL,1,"AUTOREL",LAIEN)
  K ^LAH(LRLL,1,"B",+$P(NODE,U)_";"_+$P(NODE,U,2),LAIEN)
  K ^LAH(LRLL,1,"C",+$P(NODE,U,5),LAIEN)
  K ^LAH(LRLL,1,"D",+$P(NODE,U,6),LAIEN)
@@ -171,6 +172,7 @@ ZAPALL(LRLL,LAIEN) ;Clean up
  ;
  S NODE("U")=$P($G(^LAH(LRLL,1,LAIEN,.3)),U)
  I NODE("U")'="" D
+ . K ^LAH(LRLL,1,"AUTOREL-UID",NODE("U"),LAIEN)
  . K ^LAH(LRLL,1,"U",NODE("U"),LAIEN)
  . S I=0
  . F  S I=$O(^LAH("LA7 AMENDED RESULTS",NODE("U"),I)) Q:'I  D
@@ -250,3 +252,62 @@ UICHK() ; Confirm that user wants to process UI type results as reference lab re
  I Y=1 S LROK=1
  ;
  Q LROK
+ ;
+ ;
+LRNIGHT ; Entry point from LRNIGHT to clean up LAH global for selected entries.
+ ;
+ ;ZEXCEPT: ZTQUEUED,ZTREQ,ZTSTOP
+ ;
+ N I,LRCNT,LRCUTOFFDT,LRDAYSKEEP,LRERROR,LRI,LRINST,LRISQN,LRLIST,LRLL,LRROOT,X
+ S DT=$$DT^XLFDT
+ ;
+ ; If rollover has not completed then requeue task 5 minutes in future.
+ I +$G(^LAB(69.9,1,"RO"))'=(+$H) D  Q
+ . I $D(ZTQUEUED) S ZTREQ=$$HADD^XLFDT($H,0,0,5,0) Q
+ . W !!,"Lab Rollover has not completed as of "_$$HTE^XLFDT($H,"1M")_" ... Aborting."
+ ;
+ D GETLST^XPAR(.LRLIST,"PKG","LR WORKLIST DATA CLEANUP",,.LRERROR)
+ I '$D(LRLIST) Q
+ ;
+ S LRI=0
+ F  S LRI=$O(LRLIST(LRI)) Q:'LRI  D  Q:$G(ZTSTOP)
+ . S LRLL=$P(LRLIST(LRI),U),LRDAYSKEEP=$P(LRLIST(LRI),U,2),LRCUTOFFDT=DT
+ . I LRDAYSKEEP>0 S LRCUTOFFDT=$$FMADD^XLFDT(DT,-LRDAYSKEEP)
+ . I '$D(^LAH(LRLL)) Q
+ . I $$S^%ZTLOAD("Processing LRLL: "_LRLL) S ZTSTOP=1 Q
+ . L +^LAH(LRLL):DILOCKTM+60 Q:'$T
+ . S (LRCNT,LRISQN)=0
+ . F  S LRISQN=$O(^LAH(LRLL,1,LRISQN)) Q:'LRISQN  D  Q:$G(ZTSTOP)
+ . . S LRCNT=LRCNT+1
+ . . I '(LRCNT#100) I $$S^%ZTLOAD("Processing LRLL: "_LRLL_"  LRISQN: "_LRISQN) S ZTSTOP=1 Q
+ . . I '$P($G(^LAH(LRLL,1,LRISQN,0)),"^",11) D UPDT^LAGEN(LRLL,LRISQN) Q  ; No date, put current d/t, skip
+ . . I $P($G(^LAH(LRLL,1,LRISQN,0)),"^",11)'<LRCUTOFFDT Q  ; Skip - Keep
+ . . S LRINST=LRLL,I=LRISQN
+ . . N LRLL,LRISQN,LRCUTOFFDT
+ . . D ZAPALL(LRINST,I)
+ . L -^LAH(LRLL)
+ ;
+ D CHECKARI
+ ;
+ I $D(ZTQUEUED) S ZTREQ="@"
+ ;
+ Q
+ ;
+ ;
+CHECKARI ; Check amended result index for orphans.
+ ;
+ ;ZEXCEPT: ZTQUEUED
+ ;
+ N LRCNT,LRI,LRISQN,LRLL,LRROOT
+ ;
+ I '$D(ZTQUEUED) W !!,"Checking LAH global Amended Result Index for Orphans",!
+ S LRROOT="^LAH(""LA7 AMENDED RESULTS"")",LRCNT=0
+ F  S LRROOT=$Q(@LRROOT) Q:LRROOT=""  Q:$QS(LRROOT,1)'="LA7 AMENDED RESULTS"  D
+ . S LRI=$QS(LRROOT,3),LRLL=$QS(LRROOT,4),LRISQN=$QS(LRROOT,5)
+ . I $D(^LAH(LRLL,1,LRISQN,LRI)) Q
+ . I '$D(ZTQUEUED) W !,"Deleting index: ",LRROOT," = ",@LRROOT
+ . K @LRROOT S LRCNT=LRCNT+1
+ ;
+ I '$D(ZTQUEUED) W !,$S(LRCNT:LRCNT,1:"No")," indexes found needing deletion."
+ ;
+ Q

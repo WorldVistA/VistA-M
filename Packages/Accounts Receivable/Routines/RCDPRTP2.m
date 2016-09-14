@@ -1,13 +1,16 @@
 RCDPRTP2 ;ALB/LDB - CLAIMS MATCHING REPORT ;1/26/01  3:16 PM
- ;;4.5;Accounts Receivable;**151,276**;Mar 20, 1995;Build 87
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**151,276,303**;Mar 20, 1995;Build 84
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
 PRINT1 ;
+ N REJECT
  I $Y>(IOSL-2) D PAUSE Q:$G(RCQ)  D HDR^RCDPRTP1,HDR1
  ; PRCA*4.5*276 - get EEOB indicator '%'and attach it to the bill number when applicable. Adjust report tabs to make room for EEOB indicator '%'.
  N RC430 S RC430=+$O(^PRCA(430,"B",""_$P(RCIBDAT,"^",4)_"",0))
  S RCEEOB=$$EEOB(RC430)
- W !,$S(RCTP=RCBILL:"*",$D(RCTP(RCTP)):"*",1:" "),$G(RCEEOB)_$P(RCIBDAT,"^",4),?17,$P(RCIBDAT,"^",5),?24
+ ; #IA 6060 for $$BILLREJ^IBJTU6
+ S REJECT=$S($$BILLREJ^IBJTU6($P($P(RCIBDAT,"^",4),"-",2)):"c",1:" ") ;PRCA*4.5*303 Add indicator for rejects
+ W !,$S(RCTP=RCBILL:"*",$D(RCTP(RCTP)):"*",1:" "),$G(RCEEOB)_REJECT_$P(RCIBDAT,"^",4),?17,$P(RCIBDAT,"^",5),?24
  W $$STAT(RCTP),?31,$$DATE(+RCIBDAT),?42,$$DATE($P(RCIBDAT,"^",2))
  S Y=$S($G(RCTP(RCTP)):RCTP(RCTP),$G(^TMP("RCDPRTPB",$J,RCNAM,RCBILL)):^(RCBILL),1:"") I RCTP=RCBILL!($D(RCTP(RCTP))) W ?53,$$DATE(Y)
  S RCAMT=$P($G(^PRCA(430,+RCTP,0)),"^",3),RCAMT1=$P($G(^PRCA(430,+RCTP,7)),"^",7) W ?64,$J(RCAMT,9,2)

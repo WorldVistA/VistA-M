@@ -1,10 +1,11 @@
 PSSPOIMN ;BIR/RTR/WRT-Orderable Item manual create ;09/01/98
- ;;1.0;PHARMACY DATA MANAGEMENT;**15,32,34,38,51,57,82,125**;9/30/97;Build 2
+ ;;1.0;PHARMACY DATA MANAGEMENT;**15,32,34,38,51,57,82,125,189**;9/30/97;Build 54
  ;
  ;Reference to ^PS(59 supported by DBIA #1976
  ;Reference to $$PSJDF^PSNAPIS(P1,P3) supported by DBIA #2531
  ;Reference to $$VAGN^PSNAPIS(P1) supported by DBIA #2531
  ;
+ N PSSDONE
  S PSSITE=+$O(^PS(59.7,0)) I +$P($G(^PS(59.7,PSSITE,80)),"^",2)<2 W !!?3,"Orderable Item Auto-Create has not been completed yet!",! K PSSITE,DIR S DIR(0)="E",DIR("A")="Press RETURN to continue" D ^DIR K DIR Q
  K PSSITE D MESS^PSSPOIM1
 BEG I $D(PSIEN) L -^PSDRUG(PSIEN)
@@ -32,7 +33,13 @@ END I $D(PSIEN) I '$G(PSSHUIDG) D DRG^PSSHUIDG(PSIEN) D  L -^PSDRUG(PSIEN)
  G END^PSSPOIM1
 REM D TMP
  I $O(^TMP($J,"PSSOO",0)) H 1 D OTHER^PSSPOIM1,DISP
- Q:$G(PSOUT)  I $O(^TMP($J,"PSSOO",0)),$G(MATCH) S PSSP=MATCH D ^PSSPOIM1 Q:(PSOUT)!(PSNO)  S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_MATCH  D ^DIE K DIE S PSITEM=MATCH D COM Q
+ I $G(PSOUT) Q
+ S PSSDONE=0
+ I $O(^TMP($J,"PSSOO",0)),$G(MATCH) D  I PSSDONE Q
+ .S PSSP=MATCH D ^PSSPOIM1 Q:(PSOUT)!(PSNO)
+ .;Checking whether the Orderable Item would have duplicate IV Solution Volumes
+ .I $$CKDUPVOL(+MATCH,PSIEN) Q
+ .S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_MATCH  D ^DIE K DIE S PSITEM=MATCH,PSSDONE=1 D COM
  G MCHA
 TMP K ^TMP($J,"PSSOO") S PSCNT=0 I +$P(NODE,"^"),+$P(NODE,"^",3) F ZZ=0:0 S ZZ=$O(^PSDRUG("AND",+NODE,ZZ)) Q:'ZZ  I +$P($G(^PSDRUG(ZZ,2)),"^"),$P(^PSDRUG(ZZ,2),"^")'=$G(POINT),$D(^PS(50.7,$P(^PSDRUG(ZZ,2),"^"),0)) S OTH=$G(^PSDRUG(ZZ,"ND")) D
  .I +$P(OTH,"^"),+$P(OTH,"^",3),DOSEFV'=0 S DA=$P(OTH,"^"),K=$P(OTH,"^",3),X=$$PSJDF^PSNAPIS(DA,K),DOSA=X I DOSA'=0,DOSEFV=DOSA D
@@ -45,8 +52,15 @@ DISPO Q:$G(PSOUT)  W ! K DIR S DIR(0)="N",DIR("A")="Choose number of Orderable I
  Q:Y["^"  I '$D(^TMP($J,"PSSOO",+Y)) W !!,?5,"INVALID NUMBER" G DISPO
  S MATCH=$P(^TMP($J,"PSSOO",+Y),"^") Q
  S PSOUT=1 Q
-MCH I $O(^TMP($J,"PSSOO",0)) H 1 D OTHER^PSSPOIM1,DISP
- Q:$G(PSOUT)  I $O(^TMP($J,"PSSOO",0)),$G(MATCH) S PSSP=MATCH D ^PSSPOIM1 Q:(PSOUT)!(PSNO)  K DIE S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_MATCH D ^DIE S PSITEM=MATCH D COM Q
+MCH ;
+ I $O(^TMP($J,"PSSOO",0)) H 1 D OTHER^PSSPOIM1,DISP
+ I $G(PSOUT) Q
+ S PSSDONE=0
+ I $O(^TMP($J,"PSSOO",0)),$G(MATCH) D  I PSSDONE Q
+ .S PSSP=MATCH D ^PSSPOIM1 I (PSOUT)!(PSNO) Q
+ .;Checking whether the Orderable Item would have duplicate IV Solution Volumes
+ .I $$CKDUPVOL(+MATCH,PSIEN) Q
+ .K DIE S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_MATCH D ^DIE S PSITEM=MATCH D COM S PSSDONE=1
 MCHA W ! I $G(DOSEFORM)'="" W !?3,"Dosage Form -> ",DOSEFORM,!! K DIR S DIR(0)="Y",DIR("B")="NO",DIR("A")="Match to another Orderable Item with same Dosage Form" D ^DIR G:Y=1 LOOK I Y["^"!(Y="")!($D(DTOUT)) Q
  I $G(DOSEFORM)="" K DIC S DIC="^PS(50.606,",DIC(0)="QEAMZ",DIC("A")="Choose Dosage Form: " D ^DIC Q:$D(DTOUT)!($D(DUOUT))!(Y<1)  S DOSEPTR=+Y W !!?3,"Dose Form -> ",$G(Y(0,0))
  I $G(DOSEFORM)="" K DIR W ! S DIR(0)="Y",DIR("B")="NO",DIR("A")="Match to another Orderable Item with same Dosage Form" D ^DIR
@@ -56,8 +70,12 @@ MCHAN W !! I $L(VAGEN)>40 W !,"VA Generic Name -> ",VAGEN,!
  K DIR S DIR(0)="F^3:40",DIR("A")="Orderable Item Name" S:$L(VAGEN)>2&($L(VAGEN)<41) DIR("B")=VAGEN
  D ^DIR Q:$D(DUOUT)!($D(DTOUT))!(Y["^")!(Y="")
  I X[""""!($A(X)=45)!('(X'?1P.E))!(X?2"z".E) W $C(7),!!?5,"??" G MCHAN
- S (X,SPHOLD)=Y,(STOP,PSNO)=0 F COMM=0:0 S COMM=$O(^PS(50.7,"ADF",SPHOLD,DOSEPTR,COMM)) Q:'COMM!(STOP)!($G(PSOUT))  I COMM,$P($G(^PS(50.7,COMM,0)),"^",3)="" D
- .S PSSP=COMM D ^PSSPOIM1 S:PSNO STOP=1 Q:PSOUT!(STOP)  K DIE S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_COMM D ^DIE S PSITEM=COMM D COM S STOP=1 Q
+ S (X,SPHOLD)=Y,(STOP,PSNO)=0
+ F COMM=0:0 S COMM=$O(^PS(50.7,"ADF",SPHOLD,DOSEPTR,COMM)) Q:'COMM!(STOP)!($G(PSOUT))  I COMM,$P($G(^PS(50.7,COMM,0)),"^",3)="" D
+ .S PSSP=COMM D ^PSSPOIM1 S:PSNO STOP=1 I PSOUT!(STOP) Q
+ .;Checking whether the Orderable Item would have duplicate IV Solution Volumes
+ .I $$CKDUPVOL(+COMM,PSIEN) S PSOUT=1 Q
+ .K DIE S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_COMM D ^DIE S PSITEM=COMM D COM S STOP=1
  Q:PSOUT
  I STOP,$G(PSNO) G MCHAN
  Q:STOP
@@ -66,8 +84,18 @@ MCHAN W !! I $L(VAGEN)>40 W !,"VA Generic Name -> ",VAGEN,!
  G:PSNO MCHAN Q:PSOUT  K DIC S DIC="^PS(50.7,",DIC(0)="L",X=SPHOLD,DIC("DR")=".02////"_DOSEPTR K DD,DO D FILE^DICN K DD,DO D:Y<1  G:(Y<1) MCHAN S NEWSP=+Y,DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_NEWSP D ^DIE S PSVAR1=1,PSITEM=NEWSP D COM Q
  .W $C(7),!?5,"Invalid entry!",!! Q
  Q
-LOOK W !!!?3,"Enter ?? for Pharmacy Orderable Item List!",!
- K DIC S DIC="^PS(50.7,",DIC(0)="QEAM",DIC("S")="I $P($G(^(0)),""^"",2)=DOSEPTR,$P($G(^(0)),""^"",3)=""""" D ^DIC I Y>0 S (NEWSP,PSSP)=+Y D ^PSSPOIM1 G:PSNO LOOK Q:PSOUT  S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_NEWSP D ^DIE S PSITEM=NEWSP D COM Q
+ ;
+LOOK ;
+ N PSSDONE
+ W !!!?3,"Enter ?? for Pharmacy Orderable Item List!",!
+ K DIC S DIC="^PS(50.7,",DIC(0)="QEAM"
+ S DIC("S")="I $P($G(^(0)),""^"",2)=DOSEPTR,$P($G(^(0)),""^"",3)=""""" D ^DIC
+ S PSSDONE=0
+ I Y>0 D  I PSSDONE Q
+ .S (NEWSP,PSSP)=+Y D ^PSSPOIM1 G:PSNO LOOK I PSOUT Q
+ .;Checking whether the Orderable Item would have duplicate IV Solution Volumes
+ .I $$CKDUPVOL(+NEWSP,PSIEN) Q
+ .S DIE="^PSDRUG(",DA=PSIEN,DR="2.1////"_NEWSP D ^DIE S PSITEM=NEWSP D COM S PSSDONE=1
  W ! K DIR S DIR(0)="Y",DIR("B")="YES",DIR("A")="Create a new Orderable Item to match" D ^DIR I Y=1 G MCHAN
  Q
 COM W !,"Match Complete!",! D EN^PSSPOIM1(PSITEM) Q
@@ -113,3 +141,23 @@ MOREH ;
 MODT ;
  S Y=$G(PSSMODT) I $G(Y) D DD^%DT W ?50,$G(Y) K Y
  Q
+ ;
+CKDUPVOL(OIIEN,DRUGIEN) ; Checks OI to see if it will have duplicate IV Solution Volumes
+ ; Input: OIIEN   - PHARMACY ORDERABLE ITEM File (#50.7) IEN
+ ;        DRUGIEN - DRUG File (#50) IEN
+ ;Output: DUPVOL  - 0: No Duplicate Volume / 1: Duplicate Volume
+ N DUPVOL,IVSOL,PSSQUIT S (IVSOL,DUPVOL)=0
+ F  S IVSOL=$O(^PS(52.7,"AC",DRUGIEN,IVSOL)) Q:'IVSOL  D  I DUPVOL Q
+ .; IV Solution field USED IN IV FLUID ORDER ENTRY set to 'NO'
+ .I '$$GET1^DIQ(52.7,IVSOL,17,"I") Q
+ .; IV Solution is INACTIVE, no issues
+ .I $$GET1^DIQ(52.7,IVSOL,8,"I"),$$GET1^DIQ(52.7,IVSOL,8,"I")'>DT Q
+ .I $$CKDUPSOL^PSSDDUT2(OIIEN,IVSOL,$$GET1^DIQ(52.7,IVSOL,2),0) D
+ ..W !!,"Matching ",$$GET1^DIQ(50,DRUGIEN,.01)," to ",$$GET1^DIQ(50.7,OIIEN,.01)," would cause the"
+ ..W !,"orderable item to have more than one Active IV Solution with the same volume"
+ ..W !,"marked to be used in the IV FLUID ORDER ENTRY, which is not allowed."
+ ..W !,""
+ ..W !,"Please, review the IV Solutions associated with this drug before matching it"
+ ..W !,"to this orderable item or match it to a different orderable item."
+ ..S DUPVOL=1
+ Q DUPVOL

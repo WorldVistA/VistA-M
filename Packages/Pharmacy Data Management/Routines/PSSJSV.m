@@ -1,5 +1,5 @@
 PSSJSV ;BIR/CML3/WRT-SCHEDULE VALIDATION ;06/24/96
- ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146**;9/30/97;Build 34
+ ;;1.0;PHARMACY DATA MANAGEMENT;**20,38,56,59,110,121,143,149,146,189**;9/30/97;Build 54
  ;
  ; Reference to ^PS(51.15 is supported by DBIA #2132
  ; Reference to $$UP^XLFSTR(P1) is supported by DBIA #10104
@@ -92,7 +92,7 @@ ENFQD ; frequency default
  S X=$S(Z["'":1,(Z["D"&(Z'["AD"))!(Z["AM")!(Z["PM")!(Z["HS"&(Z'["THS")):1440,Z["H"&(Z'["TH"):60,Z["AC"!(Z["PC"):480,Z["W":10080,Z["M":40320,1:"") Q:'X  S:X2 X=X\X2 S:'X2 X=X*X1 Q
  ;
 ENFREQ ;validate frequency
- K:+X'=X!(X>129600)!(X<1)!(X?.E1"."1N.N) X
+ K:+X'=X!(X>525600)!(X<1)!(X?.E1"."1N.N) X
  Q
  ;
 ENDNV ; day of the week name

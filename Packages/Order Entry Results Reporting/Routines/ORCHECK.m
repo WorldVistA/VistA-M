@@ -1,5 +1,5 @@
-ORCHECK ;SLC/MKB-Order checking calls ;06/28/13  07:51
- ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357,352,345,311**;Dec 17, 1997;Build 30
+ORCHECK ;SLC/MKB-Order checking calls ;05/14/14  11:46
+ ;;3.0;ORDER ENTRY/RESULTS REPORTING;**7,56,70,94,141,215,243,293,280,346,357,352,345,311,269**;Dec 17, 1997;Build 85
  ;;Per VHA Directive 2004-038, this routine should not be modified.
 DISPLAY ; -- DISPLAY event [called from ORCDLG,ORCACT4,ORCMED]
  ;    Expects ORVP, ORNMSP, ORTAB, [ORWARD]
@@ -135,7 +135,7 @@ CANCEL() ; -- Returns 1 or 0: Cancel order(s)?
  ;
 REASON() ; -- Reason for overriding order checks
  ; I '$D(^XUSEC("ORES",DUZ)),'$D(^XUSEC("ORELSE",DUZ)) Q  ??
- N X,Y,DIR
+ N X,Y,DIR,DTOUT,DUOUT,DIRUT,DIROUT
  S DIR(0)="FA^2:80^K:X?1."" "" X",DIR("A")="REASON FOR OVERRIDE: "
  S DIR("?")="Enter a justification for overriding these order checks, up to 80 characters"
  D ^DIR I $D(DTOUT)!$D(DUOUT) S Y="^"
@@ -228,7 +228,7 @@ OCAPI(IFN,ORPLACE) ;IA #4859
  ;if it has been signed then show SIGNATURE_CPRS ocs
  I 'ORFLAG D GETOC5^OROCAPI1(ORN,"SIGNATURE_CPRS",.RET)
  I $D(RET) S I=0 F  S I=$O(RET(ORN,"DATA",I)) Q:'I  S CNT=CNT+1 D
- .S ^TMP($J,ORPLACE,CNT,"OC NUMBER")=$P($G(RET(ORN,"DATA",I,1)),U)
+ .S ^TMP($J,ORPLACE,CNT,"OC NUMBER")=$P($P($G(RET(ORN,"DATA",I,1)),U),";",2)
  .S ^TMP($J,ORPLACE,CNT,"OC LEVEL")=$P($G(RET(ORN,"DATA",I,1)),U,2)
  .M ^TMP($J,ORPLACE,CNT,"OC TEXT")=RET(ORN,"DATA",I,"OC")
  .S ^TMP($J,ORPLACE,CNT,"OR REASON")=$G(RET(ORN,"DATA",I,"OR",1,0))

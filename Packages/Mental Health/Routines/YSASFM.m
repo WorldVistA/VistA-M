@@ -1,47 +1,55 @@
-YSASFM ;ASF/ALB- FILEMAN ASI REPORTS ;4/9/98  13:45
- ;;5.01;MENTAL HEALTH;**24,30,32,37,38,55,76**;Dec 30, 1994
+YSASFM ;ASF/ALB,HIOFO/FT - FILEMAN ASI REPORTS ;2/5/13  1:28pm
+ ;;5.01;MENTAL HEALTH;**24,30,32,37,38,55,76,108**;Dec 30, 1994;Build 17
+ ;Reference to ^VA(200, supported by DBIA #10060
  Q
 INTDATE ;interviewer by date
+ ;entry point for YSAS ASI INTERVIEWER REPORT option
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("ASI Report by Interviewer")
- S DIC="^YSTX(604,",L=0,FLDS="!.02,.0209,.05,.04",BY="+.09,.05",DIPCRIT=1 D EN1^DIP
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI INTERVIEWER BY DATE]",BY="+.09,.05",DIPCRIT=1 D EN1^DIP
  Q
 SINGLEI ;single interviewer
+ ;entry point for YSAS ASI SINGLE INTERVIEWER option
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("ASI Report by Single Interviewer")
  S DIC="^VA(200,",DIC(0)="AEMQ",DIC("A")="Select ASI Interviewer: " D ^DIC Q:Y'>0  S YSINT=$P(Y,U,2)
- S DIC="^YSTX(604,",L=0,FLDS="!.02,.0209,.05,.04",BY="+.09,.05",DIPCRIT=1
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI INTERVIEWER BY DATE]",BY="+.09,.05",DIPCRIT=1
  S FR(1)=YSINT,TO(1)=YSINT,FR(2)="?",TO(2)="?"
  D EN1^DIP
  Q
 ALPHADT ; Name by date
+ ;entry point for YSAS ASI BY PATIENT option
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("ASI Report by Patient Name")
- S DIC="^YSTX(604,",L=0,FLDS="!.02;L30;C1,.0209;L10,.05;L12,.09;L20"
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI NAME BY DATE]"
  S BY=".02,.05",DIPCRIT=1 D EN1^DIP
  Q
 UNSIGN ;incomplete ASIs
+ ;entry point for YSAS ASI INCOMPLETE option
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("Incomplete ASI Report")
- S DIC="^YSTX(604,",L=0,FLDS="!.02;L30;C1,.0209;L10,.05;L12,.09;L20"
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI NAME BY DATE]"
  S BY="@.51,.05",FR="@,?",TO="@,?",DIPCRIT=1,DHD="Incomplete ASI Administrations" D EN1^DIP
  Q
 DTORD ;date sort
+ ;entry point for YSAS ASI DATE ORDER option
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("ASI Report by Interview Date")
- S DIC="^YSTX(604,",L=0,FLDS="!.02;L30;C1,.0209;L10,.05;L12,.09;L20"
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI NAME BY DATE]"
  S BY=".05,.02",DIPCRIT=1 D EN1^DIP
  Q
 SSNORD ;order by SSN
+ ;entry point for YSAS ASI SSN ORDER option 
  N DIE,DIC,DR,DA,FLDS,L,TO,FR,BY,DHD,DIPCRIT,X,Y,YSINT
  D TOP("ASI Report by Social Security Number")
- S DIC="^YSTX(604,",L=0,FLDS="!.0209;L10;C1,.02;L30,.05;L12,.04;L5,.51;L3"
- S BY=".0209,.05",FR=",?",TO=FR,DIPCRIT=1 D EN1^DIP
+ S DIC="^YSTX(604,",L=0,FLDS="[YS ASI BY SSN]"
+ S BY="@.0209,.05",FR=",?",TO=FR,DIPCRIT=1 D EN1^DIP
  Q
 TOP(X) ;HEADING
  W @IOF,!?15,"***** ",X," *****",!,"please queue all reports",!
  Q
 PARAM ;edit ASI Parameters file
+ ;entry point for YSAS ASI PARAMETERS option
  W @IOF,!,"***** Edit ASI Site Parameters *****",!
  S DIE="^YSTX(604.8,",DA=1,DR=".02:2"
  L +^YSTX(604.8,DA):9999 Q:'$T
@@ -49,6 +57,7 @@ PARAM ;edit ASI Parameters file
  L -^YSTX(604.8,DA)
  Q
 PROGRAM ;activate/inactivate programs
+ ;entry point for YSAS ASI PROGRAM ACTIVATION option
  N DIC,DIE,DR,DA,X,Y
  S DIC="^YSTX(604.26,",DIC(0)="AEQ" D ^DIC Q:Y'>0
  S DA=+Y,DIE=DIC,DR=3
@@ -58,6 +67,7 @@ PROGRAM ;activate/inactivate programs
  G PROGRAM
  ;
 CLEAR ; delete UNSIGNED ASI
+ ;entry point for YSAS ASI DATA DELETION option 
  K ^TMP($J,"YSASI")
  D PT^YSASSEL
  Q:YSASPIEN<1
@@ -74,6 +84,7 @@ CLEAR ; delete UNSIGNED ASI
  W !,"ASI deleted...."
  Q
 DEFED ;default editor
+ ;entry point for YSAS ASI DEFAULT EDITOR option
  N YSASIEN,DIC,DIE,DA,YSFIELD,YSFDA
  W @IOF,?10,"*** ASI Default Editor ***",!
 DEFED1 S DIC("A")="Select ASI Item: ",DIC="^YSTX(604.66,",DIC(0)="AEQM" D ^DIC

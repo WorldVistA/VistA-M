@@ -1,27 +1,35 @@
-FBAARJP ;AISC/GRR - PRINT REJECTS PENDING ACTION ;4/17/2012
- ;;3.5;FEE BASIS;**132**;JAN 30, 1995;Build 17
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+FBAARJP ;AISC/GRR - PRINT REJECTS PENDING ACTION ;12/23/15  15:25
+ ;;3.5;FEE BASIS;**132,165**;JAN 30, 1995;Build 7
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ; ICR# 10103 XLFDT, ICR# 10005 DT^DICRW
+ D:$D(DT)#10=0 DT^DICRW
  ; ask batch status to report
  S DIR(0)="S^1:CENTRAL FEE ACCEPTED;2:VOUCHERED;3:BOTH"
  S DIR("A")="Select batch status to report"
  S DIR("B")="BOTH"
  D ^DIR K DIR Q:$D(DIRUT)
  S FBSTATL=$S(Y=1:"^F^",Y=2:"^V^",1:"^F^V^")
- S VAR="FBSTATL",VAL="",PGM="START^FBAARJP"
+ S DIR(0)="D^:DT:EP",DIR("A")="Exclude rejects transmitted before"
+ S DIR("B")=$$FMTE^XLFDT($$FMADD^XLFDT(DT,-730),5)
+ S DIR("?")="  Do not include time.",DIR("?",1)="Enter earliest transmission date for payment to be included on report."
+ S DIR("?",2)="Response must not be a future date."
+ D ^DIR K DIR G:$D(DIRUT) END
+ S FBSTARTD=Y
+ S VAR="FBSTATL^FBSTARTD",VAL="",PGM="START^FBAARJP"
  D ZIS^FBAAUTL G:FBPOP END
 START U IO W:$E(IOST,1,2)="C-" @IOF K QQ,B S (Q,UL)="",$P(Q,"=",80)="=",$P(UL,"-",80)="-",(FBAAOUT,CNT,FBINTOT)=0
  D MED:$D(^FBAAC("AH")) G END:FBAAOUT D TRAV:$D(^FBAAC("AG")) G END:FBAAOUT D PHARM:$D(^FBAA(162.1,"AF")) G END:FBAAOUT D CHNH:$D(^FBAAI("AH")) G END:FBAAOUT
  I 'CNT W !!,*7,"No Rejects Pending!"
 END K FBTYPE,FBVDUZ,FBVD,FBPV,CNT,D,I,PGM,Q,UL,VAL,VAR,Y,Z,A1,A2,A3,B,FBAACPT,FBIN,FBNUM,FBRR,FBINTOT,CPTDESC,FBAAOUT,FBVP,J,K,T,X,L,M,N,S,V,VID,XY,ZS,POP,A,B2,FBINOLD
- K FBAC,FBAP,FBDX,FBK,FBL,FBPDT,FBPROC,FBSC,FBTD,FBFD,FBSTATL
+ K FBAC,FBAP,FBDX,FBK,FBL,FBPDT,FBPROC,FBSC,FBTD,FBFD,FBSTATL,FBSTARTD,DIRUT
  D CLOSE^FBAAUTL Q
-MED F B=0:0 S B=$O(^FBAAC("AH",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U) S B(0)=^(0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D MORE
+MED F B=0:0 S B=$O(^FBAAC("AH",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U),$$DATEOK(B,FBSTARTD) S B(0)=^FBAA(161.7,B,0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D MORE
  Q
 MORE D HED,HED^FBAACCB,HEDB
  F J=0:0 S J=$O(^FBAAC("AH",B,J)) Q:J'>0!(FBAAOUT)  F K=0:0 S K=$O(^FBAAC("AH",B,J,K)) Q:K'>0!(FBAAOUT)  F L=0:0 S L=$O(^FBAAC("AH",B,J,K,L)) Q:L'>0!(FBAAOUT)  F M=0:0 S M=$O(^FBAAC("AH",B,J,K,L,M)) Q:M'>0!(FBAAOUT)  D SET^FBAACCB,WRITM
  Q:FBAAOUT  W !,UL,! D ASKH^FBAACCB0:$E(IOST,1,2)["C-"&('$G(FBNNP)) Q:FBAAOUT  W:'$G(FBNNP) @IOF
  Q
-HEDB W !,"Batch Number: ",FBNUM,?21,"Voucher Date: ",$$DATX^FBAAUTL(FBVD),?44,"Voucherer: ",$S(FBVDUZ="":"",$D(^VA(200,FBVDUZ,0)):$P(^(0),"^",1),1:"Unknown"),!
+HEDB W !,"Batch Number: ",FBNUM,?22,"Voucher Date: ",$$DATX^FBAAUTL(FBVD),?45,"Voucherer: ",$S(FBVDUZ="":"",$D(^VA(200,FBVDUZ,0)):$P(^(0),"^",1),1:"Unknown"),!
  Q
 WRITM Q:FBAAOUT  S CNT=CNT+1
  N FBL,FBTXT
@@ -30,7 +38,7 @@ WRITM Q:FBAAOUT  S CNT=CNT+1
  . I $Y+3>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HED^FBAACCB
  . W !,FBTXT(FBL)
  Q
-TRAV F B=0:0 S B=$O(^FBAAC("AG",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U) S B(0)=^(0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D TMORE
+TRAV F B=0:0 S B=$O(^FBAAC("AG",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U),$$DATEOK(B,FBSTARTD) S B(0)=^FBAA(161.7,B,0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D TMORE
  Q
 TMORE D HED,HEDP^FBAACCB0,HEDB
  F J=0:0 S J=$O(^FBAAC("AG",B,J)) Q:J'>0  F K=0:0 S K=$O(^FBAAC("AG",B,J,K)) Q:K'>0  S Y(0)=^FBAAC(J,3,K,0) D SETT^FBAACCB0,WRITT
@@ -43,7 +51,7 @@ WRITT S CNT=CNT+1
  . I $Y+3>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HEDP^FBAACCB0
  . W !,FBTXT(FBL)
  Q
-PHARM F B=0:0 S B=$O(^FBAA(162.1,"AF",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U) S B(0)=^(0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D PMORE
+PHARM F B=0:0 S B=$O(^FBAA(162.1,"AF",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U),$$DATEOK(B,FBSTARTD) S B(0)=^FBAA(161.7,B,0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D PMORE
  Q
 PMORE D HED,HED^FBAACCB,HEDB
  F A=0:0 S A=$O(^FBAA(162.1,"AF",B,A)) Q:A'>0!(FBAAOUT)  S FBIN=A D SETV^FBAACCB0 F B2=0:0 S B2=$O(^FBAA(162.1,"AF",B,A,B2)) Q:B2'>0!(FBAAOUT)  I $D(^FBAA(162.1,A,"RX",B2,0)) S Z(0)=^(0) D MORE^FBAACCB1,WRITP
@@ -56,7 +64,7 @@ WRITP S CNT=CNT+1
  . I $Y+3>IOSL D ASKH^FBAACCB0:$E(IOST,1,2)["C-" Q:FBAAOUT  W @IOF D HED^FBAACCB
  . W !,FBTXT(FBL)
  Q
-CHNH F B=0:0 S B=$O(^FBAAI("AH",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U) S B(0)=^(0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D CMORE
+CHNH F B=0:0 S B=$O(^FBAAI("AH",B)) Q:B'>0!(FBAAOUT)  I $D(^FBAA(161.7,B,0)),FBSTATL[(U_^("ST")_U),$$DATEOK(B,FBSTARTD) S B(0)=^FBAA(161.7,B,0),FBTYPE=$P(B(0),"^",3),FBNUM=$P(B(0),"^",1),FBVD=$P(B(0),"^",12),FBVDUZ=$P(B(0),"^",16) D CMORE
  Q
 CMORE D HED,HEDC^FBAACCB1,HEDB
  F I=0:0 S I=$O(^FBAAI("AH",B,I)) Q:I'>0!(FBAAOUT)  I $D(^FBAAI(I,0)) S Z(0)=^(0) D CMORE^FBAACCB1,WRITC
@@ -72,7 +80,7 @@ WRITC Q:FBAAOUT  S CNT=CNT+1
  ;
 HED ;write header for report if sent to printer
  Q:$E(IOST,1,2)="C-"
- W !?31,"REJECTS PENDING ACTION",!?30,$E(Q,1,24),!
+ W !?3,"REJECTS PENDING ACTION - ",$S(FBSTATL["F^V":"CF Accepted & Vouchered",FBSTATL["F":"Central Fee Accepted",FBSTATL["V":"Vouchered",1:"")," Trans Since: ",$$FMTE^XLFDT(FBSTARTD,5),!?3,$E(Q,1,74),!
  Q
  ;
 REJTXT(FBFILE,FBIENS,FBTXT) ; get reject text for line item
@@ -185,3 +193,12 @@ RCDES(FBRC,FBRM,FBARR) ; Reject Code Description
  ;
  K ^UTILITY($J,"W")
  Q
+ ;
+DATEOK(FBATID,FBSTART) ;Compares batch transmission date to start date
+ ; Returns 0 if transmission date earlier than start date
+ ; Returns 1 if transmission date equals or is later
+ N FBX,FBY
+ Q:FBATID'>0 0 Q:FBSTART="" 0
+ S FBY=$P($P($G(^FBAA(161.7,FBATID,0)),U,14),".")
+ S FBX=$S(FBY="":1,FBY<FBSTART:0,1:1)
+ Q FBX

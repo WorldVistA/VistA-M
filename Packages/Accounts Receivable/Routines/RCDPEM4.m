@@ -1,5 +1,5 @@
 RCDPEM4 ;OIFO-BAYPINES/PJH - EPAYMENTS AUDIT REPORTS ;Nov 17, 2014@17:00:41
- ;;4.5;Accounts Receivable;**276,284,298**;Mar 20, 1995;Build 121
+ ;;4.5;Accounts Receivable;**276,284,298,304**;Mar 20, 1995;Build 104
  ;Per VA Directive 6402, this routine should not be modified.
  ;
 EOB ; EEOB Move/Copy/Rmove Audit Report [RCDPE EEOB MOVE/COPY/RMOVE RPT]
@@ -163,7 +163,7 @@ DISP ; Format the display for screen/printer or MS Excel
  ..I RCRTYP="ERA" D  ; ERA posted with paper EOB
  ...I 'RCLSTMGR,$Y>(IOSL-RCHDR(0)) D HDRLST^RCDPEARL(.RCSTOP,.RCHDR) Q:RCSTOP
  ...S Y=$$PAD^RCDPEARL($P(RCNTRY,U,5),11)  ; ERA#
- ...S Y=Y_$$PAD^RCDPEARL($P(RCNTRY,U,6),12) ;RECEIPT#
+ ...S Y=Y_$$PAD^RCDPEARL($P(RCNTRY,U,6),13) ;RECEIPT#
  ...S Y=Y_$$PAD^RCDPEARL($P(RCNTRY,U,3),18) ;DATE/TIME
  ...S Y=Y_$$PAD^RCDPEARL($P(RCNTRY,U,4),16) ;USER LASTNAME,FIRSTNAME
  ...S Y=Y_$P(RCNTRY,U,7) ;MATCH STATUS
@@ -266,8 +266,8 @@ HDRBLD ; create the report header
  .S Y="" F J="CHAMPVA","TRICARE" S Y=Y_" "_J_": "_$S($G(RCXCLUDE(J)):"NO",1:"YES")_"    "
  .S HCNT=HCNT+1,RCHDR(HCNT)=$J("",80-$L(Y)\2)_Y
  .S HCNT=HCNT+1,RCHDR(HCNT)=""
- .S HCNT=HCNT+1,RCHDR(HCNT)="                       Date/Time         User Who        EFT Match Status"
- .S HCNT=HCNT+1,RCHDR(HCNT)="ERA #      Receipt #   ERA Updated       Updated             Detail Post Status"
+ .S HCNT=HCNT+1,RCHDR(HCNT)="                        Date/Time         User Who        EFT Match Status"
+ .S HCNT=HCNT+1,RCHDR(HCNT)="ERA #      Receipt #    ERA Updated       Updated             Detail Post Status"
  .S RCHDR(0)=HCNT  ; header line count
  ;
  I RCRTYP="EOB" D
@@ -313,8 +313,8 @@ HDRLM ; create the Listman header
  .S Y="Date Range: "_START_" - "_END_" (DATE ERA UPDATED)"
  .S HCNT=HCNT+1,RCHDR(HCNT)=Y
  .S HCNT=HCNT+1,RCHDR(HCNT)=""
- .S HCNT=HCNT+1,RCHDR(HCNT)="                       Date/Time         User Who        EFT Match Status"
- .S HCNT=HCNT+1,RCHDR(HCNT)="ERA #      Receipt #   ERA Updated       Updated             Detail Post Status"
+ .S HCNT=HCNT+1,RCHDR(HCNT)="                        Date/Time         User Who        EFT Match Status"
+ .S HCNT=HCNT+1,RCHDR(HCNT)="ERA #      Receipt #    ERA Updated       Updated             Detail Post Status"
  .S RCHDR(0)=HCNT  ; header line count
  ;
  I RCRTYP="EOB" D

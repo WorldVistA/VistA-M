@@ -1,5 +1,5 @@
-MAGVAG03 ;WOIFO/NST/DAC - Write Location calls ; 20 Oct 2014 10:23 AM
- ;;3.0;IMAGING;**118,142**;Mar 19, 2002;Build 15;Oct 20, 2014
+MAGVAG03 ;WOIFO/NST - Write Location calls ; 20 Aug 2015 4:23 PM
+ ;;3.0;IMAGING;**118,142,162**;Mar 19, 2002;Build 22;Aug 25, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |

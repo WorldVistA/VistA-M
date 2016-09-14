@@ -1,5 +1,5 @@
-PSIV ;BIR/PR,MLM-MISC UTILITIES ;19 Mar 99 / 9:45 AM
- ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267,275**;16 DEC 97;Build 157
+PSIV ;BIR/PR,MLM - MISC UTILITIES ;3/19/99 9:45 AM
+ ;;5.0;INPATIENT MEDICATIONS;**7,16,29,38,53,56,72,58,110,181,267,275,281**;16 DEC 97;Build 113
  ;
  ; Reference to ^PS(55 is supported by DBIA 2191
  ; Reference to ^PSSLOCK is supported by DBIA 2789
@@ -9,7 +9,6 @@ PSIV ;BIR/PR,MLM-MISC UTILITIES ;19 Mar 99 / 9:45 AM
  ; Reference to ^DIR is supported by DBIA 10026
  ; Reference to ^VALM is supported by DBIA 10118
  ; Reference to ^VALM1 is supported by DBIA 10116
- ; Reference to ^PS(51.1 is supported by DBIA 2177
  ;
 ENGETP ;Enter here to select patient.
  K DIC S DIC("W")="W ""  "",$P(^(0),""^"",9) W:$D(^(.1)) ""  "",^(.1)",DIC="^DPT(",DIC(0)="QEM"
@@ -39,6 +38,7 @@ PAT I $P(X,"^",5)]"",@$P(X,"^",5,999) G KILL
 KILL S X=QUX K QUX,QUX1,QUD,PSJDCEXP Q
  ;
 ENADM ;Edit administration schedules.
+ ; reference to ^PS(51.1 is supported by DBIA #2177
  S DIC="^PS(51.1,",DIC(0)="QEAML",DLAYGO=51.1 D ^DIC K:+Y<0 %,DA,D0,DIC,DIE,DLAYGO,DR,Z,Y Q:'$D(Y)  S DIE=DIC,DR=".01;1",DA=+Y K DIC D ^DIE G ENADM
  ;
 ENOW D NOW^%DTC S Y=% K %,%H,%I
@@ -116,6 +116,8 @@ GTON(X) ;
  I ($G(REF)]"") Q REF
  Q ""
 OV1 ;
+ ;PSJENHOC=1 if DI,DT were displayed. This will be used by dosing OC to check if error messages should display or not
+ NEW PSJDSVFY,PSJENHOC
  S (ON,ON55,P("PON"))=9999999999-ON_$S(ON["V":"V",1:"P")
  I PSIVBR["D ^PSIVVW1" D
  . S VALMSG="Select either ""AL"" , ""LL"" or ""AL,LL"" for both"
@@ -136,6 +138,6 @@ Q ;
  K ^TMP("PSIV",$J),^TMP("PSJ",$J),^TMP("PSJPRO",$J),^TMP("PSJALL",$J),^TMP("PSJI",$J),^TMP("PSJON",$J)
  K DRG,DRGI,DRGN,DRGT,ERR,I,JJ,MI,N,N2,ON,ON55,P,P1,P3,P16,P17,PNOW,PS,PSGODD,PSGODDD,PSIV,PSIVAAT,PSIVACT,PSIVADM,PSIVAT
  K PSIVC,PSIVDT,PSIVFLAG,PSIVLN,PSIVNOW,PSIVNU,PSIVON,PSIVOV1,PSIVOV2,PSIVREA,PSIVSTR,PSIVSTRT,PSIVNOL,PSIVTYPE,PSJNKF
- K PSJORF,PSJORIFN,RDWARD,START,STOP,SCHED,USER,V,XT
+ K PSJORF,PSJORIFN,RDWARD,START,STOP,SCHED,USER,V,XT,DUOUT,DTOUT
  K %,%I,DIC,PSIVC,PSIVNU,PSIVON,PSIVREA,PSIVOV1,PSIVOV2,RDWARD,V,VAERR,VW,X,X2,Y,Y1,Z,Z1,Z2
  Q

@@ -1,8 +1,8 @@
 PRCHNPOC ;RB-MNTFW-CONT. OF EDIT PO ;8/7/14  19:48
-V ;;5.1;IFCAP;**189**;Oct 20, 2000;Build 1
+V ;;5.1;IFCAP;**191**;Oct 20, 2000;Build 4
  ;Per VA Directive 6402, this routine should not be modified
  ;
- ;PRC*5.1*189 Prompt Pay call made from PRCHNPO1 to insure
+ ;PRC*5.1*191 Prompt Pay call made from PRCHNPO1 to insure
  ;            ONLY one entry is added/edited with the PP
  ;            field defined as multiple.
  ;

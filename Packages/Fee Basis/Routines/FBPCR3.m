@@ -1,6 +1,6 @@
 FBPCR3 ;AISC/GRR,TET-PHARMACY POTENTIAL COST RECOVERY, SORT/PRINT ;30 Jun 2006  1:49 PM
- ;;3.5;FEE BASIS;**48,69,98**;JAN 30, 1995;Build 54
- ;;Per VHA Directive 10-93-142, this routine should not be modified.
+ ;;3.5;FEE BASIS;**48,69,98,166**;JAN 30, 1995;Build 7
+ ;;Per VA Directive 6402, this routine should not be modified.
 EN ;entry point
  S (FBCATC,FBINS,FBPSF)=0
 SORT ;sort by date certified for payment, patient, invoice number ien, rx ien
@@ -90,8 +90,10 @@ INSCK(FBDT,FBDA1,FBPI) ;possible cost recovery fcn call
  ;                   fbda1=ien if fee patient file, patient ien
  ;                    fbpi=fee program
  ;Output variables:   fbins=1 if possible recovery, 0 if no
- S FBINS=0,FBDT=FBDT+.1,FBDT=+$O(^FBAAA("AIC",FBDA1,-FBDT))
- I FBDT S FBINS=$O(^FBAAA("AIC",FBDA1,FBDT,0)) I FBINS="Y" D
- .N FBDA S FBDA=+$O(^FBAAA("AIC",FBDA1,FBDT,FBINS,0))
- .I $P($G(^FBAAA(FBDA1,1,FBDA,0)),U,3)'=FBPI S FBINS=0
+ N FBDA,FBFLAG,FBINS
+ S FBINS=0,FBFLAG=0,FBDT=FBDT+.1,FBDT=+$O(^FBAAA("AIC",FBDA1,-FBDT))
+ I FBDT S FBINS=$O(^FBAAA("AIC",FBDA1,FBDT,"N")) I FBINS="Y" D
+ .S FBDA=0 F  S FBDA=$O(^FBAAA("AIC",FBDA1,FBDT,FBINS,FBDA)) Q:'FBDA  D  ; Get both inpatient and outpatient pcr - FB*3.5*166
+ ..I $P($G(^FBAAA(FBDA1,1,FBDA,0)),U,3)=FBPI S FBFLAG=1
+ I 'FBFLAG S FBINS=0
  Q $S(FBINS="Y":1,1:0)

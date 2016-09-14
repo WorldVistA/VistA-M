@@ -1,8 +1,11 @@
-YSDX3B ;SLC/DJP-Entry of Axis 4 & Axis 5 Diagnoses for the Mental Health Medical Record ;8/29/89  08:51
- ;;5.01;MENTAL HEALTH;**33,43,49**;Dec 30, 1994
+YSDX3B ;SLC/DJP,HIOFO/FT - Entry of Axis 4 & Axis 5 Diagnoses for the Mental Health Medical Record ;5/9/13 9:41am
+ ;;5.01;MENTAL HEALTH;**33,43,49,108**;Dec 30, 1994;Build 17
+ ;Reference to ^DPT( supported by DBIA #10035
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to ^XQH supported by DBIA #10074
  ;D RECORD^YSDX0001("YSDX3B^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  ;
-AXIS4 ;  Called by routine YSCEN1, YSDX3
+AXIS4 ;  Called by routine YSDX3
  ;  Entry of Axis 4 information
  ;D RECORD^YSDX0001("AXIS4^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  W !!,"AXIS 4",!,"------"
@@ -36,28 +39,30 @@ AX41 ;
  ;D RECORD^YSDX0001("AX41^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  W !!,"Enter short narrative (1-60 characters) describing source of stress."
  Q
-AXIS5 ;  Called by routines YSCEN1, YSDX3
+AXIS5 ;  Called by routines YSDX3
  ;D RECORD^YSDX0001("AXIS5^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  ;Entry of Axis 5 information
  W !!,"AXIS 5",!,"------",! D GAF^YSDX3UB
 AX51 ;
  ;D RECORD^YSDX0001("AX51^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
- W !!,"Enter RATING OF CURRENT FUNCTIONING:  " R X5:DTIME S YSTOUT='$T,YSUOUT=X5["^" I YSTOUT!YSUOUT S YSQT=1 Q
- Q:X5=""  I X5="?" D AX5 K X5 G AX51
- I X5["??" S XQH="YS-GAF SCALE" D EN^XQH K X5 G AX51
- I X5>100!(X5<1)!(X5'?.N) D AX5 K X5 G AX51
- K DD,DO,DA,DINUM
- S X="NOW",%DT="TR" D ^%DT S X=Y
- S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN S YSDA=+Y
- D PATSTAT
- S DIE="^YSD(627.8,",DA=YSDA,DR=".02////"_YSDFN_";.03///^S X=""NOW"";.04///^S X=YSDUZ;.05////"_DUZ_";66////"_YSSTAT_";65///^S X=X5"
- L +^YSD(627.8,DA):9999
- D ^DIE
- L -^YSD(627.8,DA)
- K DA,DIC,DIE,DR
- D EN^YSGAFOBX(YSDA)
- S YSTOUT=$D(DTOUT),YSUOUT=$O(Y(""))]"" I YSTOUT!YSUOUT S DIK="^YSD(627.8,",DA=YSDA D ^DIK Q
+ W !!,"Sorry, with the release of DSM5 new GAF entries are no longer allowed.",!
  Q
+ ;W !!,"Enter RATING OF CURRENT FUNCTIONING:  " R X5:DTIME S YSTOUT='$T,YSUOUT=X5["^" I YSTOUT!YSUOUT S YSQT=1 Q
+ ;Q:X5=""  I X5="?" D AX5 K X5 G AX51
+ ;I X5["??" S XQH="YS-GAF SCALE" D EN^XQH K X5 G AX51
+ ;I X5>100!(X5<1)!(X5'?.N) D AX5 K X5 G AX51
+ ;K DD,DO,DA,DINUM
+ ;S X="NOW",%DT="TR" D ^%DT S X=Y
+ ;S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN S YSDA=+Y
+ ;D PATSTAT
+ ;S DIE="^YSD(627.8,",DA=YSDA,DR=".02////"_YSDFN_";.03///^S X=""NOW"";.04///^S X=YSDUZ;.05////"_DUZ_";66////"_YSSTAT_";65///^S X=X5"
+ ;L +^YSD(627.8,DA):9999
+ ;D ^DIE
+ ;L -^YSD(627.8,DA)
+ ;K DA,DIC,DIE,DR
+ ;D EN^YSGAFOBX(YSDA)
+ ;S YSTOUT=$D(DTOUT),YSUOUT=$O(Y(""))]"" I YSTOUT!YSUOUT S DIK="^YSD(627.8,",DA=YSDA D ^DIK Q
+ ;Q
 GAFQ ;
  ;D RECORD^YSDX0001("GAF1^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  S:'$D(YSGAF) G5=0 W !!,"Highest GAF past year: ",G5 W:$D(G11) " (dtd ",G11,")" W "//  " R G7:DTIME S YSTOUT='$T,YSUOUT=G7["^" G:G7="" AX51 I YSTOUT!YSUOUT S YSQT=1 Q
@@ -65,7 +70,8 @@ GAFQ ;
  I G7["?" D GAF2 K G7 G GAFQ
  I G7>100!(G7<1)!(G7?.E1"."1N.N) D GAF3 K G7 G GAFQ
  S %DT="AEX",X="N",%DT("A")="As of: " D ^%DT K %DT("A") S G8=$P(Y,"."),G9=(G8-1),YSOLD=G9_"."_$P(Y,".",2) D GAFUP
-AX5 W !!,"Enter rating of current functioning as indicated on GAF Scale (100-1).",!,"Enter ""??"" for additional information on the GAF Scale.",!
+AX5 ;
+ ;W !!,"Enter rating of current functioning as indicated on GAF Scale (100-1).",!,"Enter ""??"" for additional information on the GAF Scale.",!
  Q
 GAF2 ;
  ;D RECORD^YSDX0001("GAF2^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
@@ -73,19 +79,21 @@ GAF2 ;
 GAF3 ;
  W " ??",!,"Type a number (1-100) relevant to the GAF Scale." Q
 GAFUP ;
+ W !!,"Sorry, with the release of DSM5 new GAF entries are no longer allowed.",!
+ Q
  ;D RECORD^YSDX0001("GAFUP^YSDX3B") ;Used for testing.  Inactivated in YSDX0001...
  ;S DIC="^YSD(627.8,",DIC(0)="L",X=YSOLD,DLAYGO=627 D ^DIC Q:Y'>0  S YSDA=+Y
- K DD,DO,DA,DINUM
- S X="NOW",%DT="TR" D ^%DT S X=Y
- S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN S YSDA=+Y
- D PATSTAT
- S DIE="^YSD(627.8,",DA=YSDA,DR=".02////"_YSDFN_";.03///^S X=YSOLD;.04///^S X=YSDUZ;.05///^S X=""`""_DUZ;66////"_YSSTAT_";65///^S X=G7"
- L +^YSD(627.8,DA):9999
- D ^DIE
- L -^YSD(627.8,DA)
- K DA,DIC,DIE,DR
- D EN^YSGAFOBX(YSDA)
- Q
+ ;K DD,DO,DA,DINUM
+ ;S X="NOW",%DT="TR" D ^%DT S X=Y
+ ;S DIC="^YSD(627.8,",DIC(0)="L",DLAYGO=627.8 D FILE^DICN S YSDA=+Y
+ ;D PATSTAT
+ ;S DIE="^YSD(627.8,",DA=YSDA,DR=".02////"_YSDFN_";.03///^S X=YSOLD;.04///^S X=YSDUZ;.05///^S X=""`""_DUZ;66////"_YSSTAT_";65///^S X=G7"
+ ;L +^YSD(627.8,DA):9999
+ ;D ^DIE
+ ;L -^YSD(627.8,DA)
+ ;K DA,DIC,DIE,DR
+ ;D EN^YSGAFOBX(YSDA)
+ ;Q
  ;
 PATSTAT ;
  K VAIP

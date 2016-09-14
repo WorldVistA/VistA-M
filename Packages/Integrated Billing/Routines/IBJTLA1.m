@@ -1,5 +1,5 @@
 IBJTLA1 ;ALB/ARH - TPI ACTIVE BILLS LIST BUILD ;2/14/95
- ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276,451,516**;21-MAR-94;Build 123
+ ;;2.0;INTEGRATED BILLING;**39,80,61,51,153,137,183,276,451,516,530**;21-MAR-94;Build 71
  ;;Per VA Directive 6402, this routine should not be modified.
  ;
 BLDA ; build active list for third party joint inquiry active list
@@ -11,12 +11,14 @@ BLDA ; build active list for third party joint inquiry active list
  Q
  ;
 SCRN ; add bill to screen list (IBIFN,DFN must be defined)
- N X,IBY,IBD0,IBDU,IBDM,TYPE S X=""
+ N X,IBY,IBD0,IBDU,IBDM,TYPE,REJFLAG,INDFLG S X=""
  S IBCNT=IBCNT+1,IBD0=$G(^DGCR(399,+IBIFN,0)),IBDU=$G(^DGCR(399,+IBIFN,"U")),IBDM=$G(^DGCR(399,+IBIFN,"M"))
  S IBY=IBCNT,X=$$SETFLD^VALM1(IBY,X,"NUMBER")
  ; IB*2.0*451 - get EEOB indicator for bill # when applicable
  S IBPFLAG=$$EEOB(+IBIFN)
- S IBY=$S($G(IBPFLAG)'="":"%",1:" ")_$P(IBD0,U,1)_$$ECME^IBTRE(IBIFN),X=$$SETFLD^VALM1(IBY,X,"BILL") ;add EEOB indicator '%' to bill number when applicable
+ S REJFLAG=+$$BILLREJ^IBJTU6($P(IBD0,U)) ;IB*2.0*530 Add indicator for rejects
+ S INDFLG=$S($G(IBPFLAG)'="":"%",1:"")_$S(REJFLAG:"c",1:"") S:INDFLG="" INDFLG=" "
+ S IBY=INDFLG_$P(IBD0,U,1)_$$ECME^IBTRE(IBIFN),X=$$SETFLD^VALM1(IBY,X,"BILL") ;add EEOB indicator '%' to bill number when applicable
  S IBY=$S($$REF^IBJTU31(+IBIFN):"r",1:""),X=$$SETFLD^VALM1(IBY,X,"REFER")
  S IBY=$S($$IB^IBRUTL(+IBIFN,0):"*",1:""),X=$$SETFLD^VALM1(IBY,X,"HD")
  S IBY=$$DATE($P(IBDU,U,1)),X=$$SETFLD^VALM1(IBY,X,"STFROM")

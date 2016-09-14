@@ -1,8 +1,8 @@
 PRCHMA2 ;WISC/AKS-Amendments to purchase orders and requisitions ;6/9/96  20:44
- ;;5.1;IFCAP;**189**;Oct 20, 2000;Build 1
+ ;;5.1;IFCAP;**191**;Oct 20, 2000;Build 4
  ;Per VA Directive 6402, this routine should not be modified.
  ;
- ;PRC*5.1*189 Modify Prompt Pay % handling during Amendment to
+ ;PRC*5.1*191 Modify Prompt Pay % handling during Amendment to
  ;            insure ONLY one PP entry is allowed and only able
  ;            to allow/edit one entry in what is defined as a
  ;            multiple field.
@@ -86,10 +86,10 @@ EN14 ;Prompt payment edit
  N DIC,DIE,DA,DR,Y,PRCHX,PRCHXX,PRCHVAL,PRCHDA,%X,%Y,PRCHPP
  I '$D(^PRC(443.6,PRCHPO,5)) D
  .S %X="^PRC(442,PRCHPO,5,",%Y="^PRC(443.6,PRCHPO,5," D %XY^%RCR
- ;PRC*5.1*189 Code below insures only a single Prompt Pay entry
+ ;PRC*5.1*191 Code below insures only a single Prompt Pay entry
  ;            allowed and only that single entry can be edited,
  ;            if one defined in multiple field.
- ;Begin PRC*189
+ ;Begin PRC*191
  S PRCHPP=$O(^PRC(443.6,PRCHPO,5,0)) D:PRCHPP
  . S (PRCHDA,DA)=PRCHPP
  . S PRCHVAL=$G(^PRC(443.6,PRCHPO,5,DA,0)),Y(0)=PRCHVAL
@@ -103,7 +103,7 @@ EN14 ;Prompt payment edit
  . S DA(1)=PRCHPO,DIE="^PRC(443.6,"_DA(1)_",5,"
  . S DR=".01//^S X=""NET"";1//^S X=30"
  . D ^DIE
- ;End PRC*189
+ ;End PRC*191
  S DA(1)=PRCHPO,DA=PRCHDA,PRCHX=X
  S X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U)) D EN0^PRCHAMXB
  S X=$S(PRCHXX=1:0,1:$P(PRCHVAL,U,2)) D EN1^PRCHAMXB

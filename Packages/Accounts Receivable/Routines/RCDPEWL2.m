@@ -1,5 +1,5 @@
-RCDPEWL2 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ; 7/7/10 6:43pm
- ;;4.5;Accounts Receivable;**173,208,269,298**;Mar 20, 1995;Build 121
+RCDPEWL2 ;ALB/TMK/KML - ELECTRONIC EOB WORKLIST ACTIONS ;7/7/10 6:43pm
+ ;;4.5;Accounts Receivable;**173,208,269,298,303**;Mar 20, 1995;Build 84
  ;;Per VA Directive 6402, this routine should not be modified.
  ; IA for call to OPTION^IBJTLA = 4121
  ; IA for call to ASK^IBRREL = 306
@@ -318,3 +318,28 @@ NOTAV ; Display not available msg
  S VALMBCK="R"
  Q
  ;
+ ;PRCA*4.5*303 - Add jump to ECME Information from the ERA Worklist Research
+ ; IA 1992 - BILL/CLAIMS file (#399)
+ ; RCIENS exists before this code is called if coming from APAR
+ ; RCERA, RCSCR are assumed to exist before this code is called
+GOECME ; Select an EEOB and then jump to the [IBJT ECME RESP INFO SCREEN]
+ N RCDA,RCDAZ,RCDG,Z,Z0,IBIFN,DFN,RCAPAR
+ S RCAPAR=0
+ I '$D(RCSCR) S RCAPAR=1,(RCERA,RCSCR)=$P($G(RCIENS),U,1) ; From APAR RCSCR & RCERA not defined
+ G:($G(RCERA)="")!($G(RCSCR)="") GOEBQ
+ D FULL^VALM1
+ D SEL^RCDPEWL(.RCDA)
+ S RCDA=+$O(RCDA(0)),RCDA=$G(RCDA(RCDA))
+ I RCDA="" G GOEBQ
+ S RCDA=$P($G(^RCY(344.49,RCSCR,1,+RCDA,0)),U,9)
+ S IBIFN=$P($G(^RCY(344.4,RCERA,1,RCDA,0)),U,2) S:+IBIFN'=0 RCDG=$P($G(^IBM(361.1,IBIFN,0)),U,1)
+ I $G(RCDG)="" W !!,"Problem with Bill IEN: "_IBIFN_", ERA: "_RCERA_" Please report this issue." D PAUSE^VALM1 G GOEBQ
+ S DFN=$P($G(^DGCR(399,RCDG,0)),U,2)
+ I RCAPAR S IBIFN=RCDG
+ I '$$ISRX^IBCEF1(IBIFN) W !!,"Not available. This is not a Pharmacy Claim." D PAUSE^VALM1 G GOEBQ
+ I $$ECME^IBTRE(IBIFN)="" W !!,"Not available. This is a Pharmacy Claim, but not an ECME Claim." D PAUSE^VALM1 G GOEBQ
+ D EN^VALM("IBJT ECME RESP INFO")
+ ;
+GOEBQ S VALMBCK="R"
+ I RCAPAR K RCSCR,RCERA ; Clean up if we are in APAR
+ Q

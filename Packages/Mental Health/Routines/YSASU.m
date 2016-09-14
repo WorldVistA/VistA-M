@@ -1,14 +1,19 @@
-YSASU ;ASF/ALB-ASI MANAGEMENT REPORTS ;2/4/98  10:27
- ;;5.01;MENTAL HEALTH;**38**;Dec 30, 1994
-MAIN ;
+YSASU ;ASF/ALB,HIOFO/FT - ASI MANAGEMENT REPORTS ;2/7/13 9:50am
+ ;;5.01;MENTAL HEALTH;**38,108**;Dec 30, 1994;Build 17
+ ;Reference to ^DPT supported by IA #10035
+ ;Reference to %ZTLOAD APIs supported by DBIA #10063
+ ;Reference to %ZISC supported by IA #10089
+ ;Reference to FILE 4 fields supported by DBIA #10090
+ ;Reference to $$SITE^VASITE supported by IA #10112
+MAIN ;entry point for YSAS MANAGEMENT REPORT option
  K ^TMP("YSASU",$J) N G,G0,G5,GP5,J,N,Y,YSASBDT,YSASCNT,YSASCNT2,YSASDT,YSASEDT,YSASITE,YSASMCNT,YSASMTC,YSASN,YSASS,YSAWAIT,YSCLASS,YSFL,YSIFN,YSLOC,YSNAME,YSSIGND,YSTOT,YSSPEC,YSTRANS
  W @IOF,!?10,"Addiction Severity Index",!?15,"Site Report by Date"
  D DTRANGE Q:YSASBDT=""!(YSASEDT="")
  W !!,"Results returned via Mailman. Please queue this report for after hours."
 QUEUE ;
  ;S YSASITE=$P(^DIC(4,+^YSTX(604.8,1,0),0),U)
- S YSASITE=$$SITE^YSASCF
- K IOP,ZTIO,ZTSAVE
+ S YSASITE=$$SITE()
+ N IOP,ZTDESC,ZTIO,ZTRTN,ZTSAVE
  S ZTIO="",ZTSAVE("YSAS*")="",ZTRTN="ENQ^YSASU",ZTDESC="YSAS ASI SITE REPORT" D ^%ZTLOAD
  I '$D(ZTSK) Q
  W !!,"Your Task Number is "_ZTSK D ^%ZISC
@@ -23,13 +28,14 @@ ENQ ;queue entry
 ZZ S N=0 F  S N=$O(^TMP("YSASU",$J,"M",N)) Q:N'>0  W !,^(N)
  Q
 DTRANGE ;date range
+ N %DT
  W ! S (YSASBDT,YSASEDT)="",%DT("A")="Beginning Date for ASI Range: ",%DT="AEX" D ^%DT
  Q:Y'>0
  S YSASBDT=+Y
  W ! S %DT("A")="Ending Date for ASI Range: " D ^%DT
  Q:Y'>0
  S YSASEDT=+Y
- I (YSASEDT>0)&(YSASEDT<YSASBDT) W !,?7,"Ending Date must be closer to today th an Beginning Date",! H 2 W $C(7) G DTRANGE
+ I (YSASEDT>0)&(YSASEDT<YSASBDT) W !,?7,"Ending Date must be closer to today than Beginning Date",! H 2 W $C(7) G DTRANGE
  Q
 FINDIT ; loop thru 604 by date
  S (YSCLASS(-1),YSCLASS(1),YSCLASS(2),YSCLASS(3),YSTOT,YSSPEC(-1),YSSPEC(1),YSSPEC(2),YSSPEC(3),YSSPEC("N"),YSSIGND(0),YSSIGND(1),YSAWAIT(0),YSAWAIT(1),YSTRANS(0),YSTRANS(1))=0
@@ -63,3 +69,7 @@ BUILDIT ;build output tmp
  S YSASN=YSASN+1,^TMP("YSASU",$J,"M",YSASN)=YSAWAIT(1)_" are in the queue for the next transmission"
  S YSASN=YSASN+1,^TMP("YSASU",$J,"M",YSASN)=" "
  Q
+SITE() ;get site name
+ N YSDA
+ S YSDA=+$P($$SITE^VASITE,U)
+ Q $$GET1^DIQ(4,YSDA_",",.01)

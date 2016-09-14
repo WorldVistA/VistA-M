@@ -1,5 +1,5 @@
-ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;6/17/15  12:40
- ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154**;Dec 22, 1997 ;Build 13
+ECXBCM ;ALB/JAP-Bar Code Medical Administration Extract ;12/4/15  10:46
+ ;;3.0;DSS EXTRACTS;**107,127,132,136,143,144,148,149,154,160**;Dec 22, 1997 ;Build 1
  ;
 BEG ;entry point from option
  ;ECFILE=^ECX(727.833,
@@ -10,7 +10,7 @@ BEG ;entry point from option
 START ; start package specific extract
  ; 
  N ECXVAP,RERUN,ECXLDT ;143,154
- S RERUN=0,ECXLDT=+$P($G(ECX(728,1,ECNODE)),U,ECPIECE) I ECXLDT'<ECSD S RERUN=1 ;154 If re-running date range, set RERUN to 1
+ S RERUN=0,ECXLDT=+$P($G(^ECX(728,1,ECNODE)),U,ECPIECE) I ECXLDT'<ECSD S RERUN=1 ;154 If re-running date range, set RERUN to 1, 160 added ^ to global reference
  S ECED=ECED+.3,ECD=ECSD1
  S PIEN=0
  I $G(ECSD)="" S ECSD=DT
@@ -42,7 +42,7 @@ GET(ECSD,ECED) ;get extract data
  I ECXORN["U" Q:$$CHKUD(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOUDO^ECXUTL5(ECXDFN,+ECXORN)
  I ECXORN["V" Q:$$CHKIV(ECXDFN,ECSD,ECED)  S:ECXA="O" ECXOSC=$$DOIVPO^ECXUTL5(ECXDFN,+ECXORN)
  S ECXASTA=$$GET1^DIQ(53.79,RIEN,.09,"I")
- I "^G^S^C^"'[("^"_ECXASTA_"^") Q  ;process 'G'iven,'S'topped,'C'ompleted
+ I "^G^S^C^I^"'[("^"_ECXASTA_"^") Q  ;160 process 'G'iven, 'S'topped,'C'ompleted,'I'nfusing
  ;get patient demographics
  S ECXERR=0 D PAT(ECXDFN,IDAT,.ECXERR) Q:ECXERR
  S ECPRO=$$ORDPROV^ECXUTL(ECXDFN,ECXORN,"")
@@ -164,7 +164,7 @@ CCODE(RIEN) ; get component information
  ..S CCIEN=$S(I=.5:CCIEN_";PSDRUG(",I=.6:CCIEN_";PS(52.6,",I=.7:CCIEN_";PS(52.7,",1:"")
  ..S CCDGVN=$P(DATA,U,3) ;148 Reset component dose given to original value
  ..S CCUNIT=$P(DATA,U,4) ;148 Reset component unit to original value
- ..I $$MULTI I '$$FIRST Q  ;154 If it's a multi-dose container, only count if it's the 1st administration
+ ..I ECXORN["U" I $$MULTI I '$$FIRST Q  ;154,160 If it's a unit dose type order and it's a multi-dose container, only count if it's the 1st administration
  ..D CMPT
  Q
  ;

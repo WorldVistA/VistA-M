@@ -1,6 +1,6 @@
 IBJTU6 ;ALB/ESG - TPJI UTILITIES/APIs ;9/2/11
- ;;2.0;INTEGRATED BILLING;**452**;21-MAR-94;Build 26
- ;;Per VHA Directive 2004-038, this routine should not be modified.
+ ;;2.0;INTEGRATED BILLING;**452,530**;21-MAR-94;Build 71
+ ;;Per VA Directive 6402, this routine should not be modified.
  ;
  Q
  ;
@@ -57,3 +57,17 @@ IBDSP(TYPE,IBIFN,DFN,IBCDFN,IBLMDISPA,VALMHDR) ; Build IB display array data
 IBDSPX ;
  Q
  ;
+BILLREJ(BILL) ;Is the bill a reject?
+ ; Input:
+ ; BILL - Bill number from #399 - External Value (.01), not IEN
+ ; Output:
+ ; REJECT - Reject status (blank = not found, 0 = not a reject, 1 = rejected)
+ ;
+ N IEN,PTR,SEV,REJECT
+ I BILL="" Q ""  ;no bill #
+ S REJECT=0,IEN=$O(^DGCR(399,"B",BILL,"")) Q:'IEN ""
+ I '$D(^IBM(361,"B",IEN)) Q ""  ;no entry in #361
+ S PTR=0 F  S PTR=$O(^IBM(361,"B",IEN,PTR)) Q:'PTR  D  Q:REJECT
+ . S SEV=$$GET1^DIQ(361,PTR_",",.03,"I")
+ . I SEV="R" S REJECT=1
+ Q REJECT

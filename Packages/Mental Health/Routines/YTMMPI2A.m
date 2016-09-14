@@ -1,5 +1,6 @@
-YTMMPI2A ;ALB/ASF-MMPI2 REPORT; ;4/21/92  08:54
- ;;5.01;MENTAL HEALTH;;Dec 30, 1994
+YTMMPI2A ;ALB/ASF,HIOFO/FT - MMPI2 REPORT; ;2/14/13 11:41am
+ ;;5.01;MENTAL HEALTH;**108**;Dec 30, 1994;Build 17
+ ;No external references
 T0 ;
  S L=200,M=0,YSKK=1,YSTL=0 D RD
 T01X ;
@@ -51,10 +52,10 @@ LK S A=A(J),R=R_A_U,L1=$P(^YTT(601,YSTEST,"S",J,P),U) I A<L1 S YSTVL=$P(^(P),U,2
  S YSTVL=$P(^(P),U,A+2-L1) I YSTVL="" S YSTVL=$P(^(P),U,$L(^(P),"^"))
 LK1 ;
  S S=S_YSTVL_"^" Q
-SHORT ;MOVE MMPI2 INCOMPLETE TO SHORT FORM
- S S=$O(^YTT(601,"B","MMP2S",0)),C=$O(^YTT(601,"B","CLERK",0)),F=$O(^YTT(601,"B","MMPI2",0))
- D ^YSLRP Q:YSDFN'>0  I '$D(^YTD(601.4,YSDFN,1,C))!($P(^(C,0),U,6)'=F) W !!,"No Incomplete MMPI-2 found for this patient" H 3 Q
- I '$D(^YTD(601.4,YSDFN,1,C,2))!($L(^(2))<170) W !,"Patient did not answer the required 370 questions" H 3 Q
- L +^YTD(601.4,YSDFN) S ^YTD(601.4,YSDFN,1,S,0)=^YTD(601.4,YSDFN,1,C,0),YSORD=$P(^(0),U,7),^YTD(601.4,YSDFN,1,S,1)=^YTD(601.4,YSDFN,1,C,1),^YTD(601.4,YSDFN,1,S,2)=$E(^YTD(601.4,YSDFN,1,C,2),1,170)
- L -^YTD(601.4,YSDFN) S DIK="^YTD(601.4,YSDFN,1,",DA=C,DA(1)=YSDFN D ^DIK K DA,DIK
- S YSRP="",(YSEN,YSTEST)=S D ^YTFILE W !,"DONE",$C(7) H 1 Q
+ ;SHORT ;MOVE MMPI2 INCOMPLETE TO SHORT FORM
+ ;S S=$O(^YTT(601,"B","MMP2S",0)),C=$O(^YTT(601,"B","CLERK",0)),F=$O(^YTT(601,"B","MMPI2",0))
+ ;D ^YSLRP Q:YSDFN'>0  I '$D(^YTD(601.4,YSDFN,1,C))!($P(^(C,0),U,6)'=F) W !!,"No Incomplete MMPI-2 found for this patient" H 3 Q
+ ;I '$D(^YTD(601.4,YSDFN,1,C,2))!($L(^(2))<170) W !,"Patient did not answer the required 370 questions" H 3 Q
+ ;L +^YTD(601.4,YSDFN) S ^YTD(601.4,YSDFN,1,S,0)=^YTD(601.4,YSDFN,1,C,0),YSORD=$P(^(0),U,7),^YTD(601.4,YSDFN,1,S,1)=^YTD(601.4,YSDFN,1,C,1),^YTD(601.4,YSDFN,1,S,2)=$E(^YTD(601.4,YSDFN,1,C,2),1,170)
+ ;L -^YTD(601.4,YSDFN) S DIK="^YTD(601.4,YSDFN,1,",DA=C,DA(1)=YSDFN D ^DIK K DA,DIK
+ ;S YSRP="",(YSEN,YSTEST)=S D ^YTFILE W !,"DONE",$C(7) H 1 Q

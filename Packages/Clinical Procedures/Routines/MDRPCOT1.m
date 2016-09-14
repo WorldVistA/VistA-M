@@ -1,5 +1,5 @@
 MDRPCOT1 ; HOIFO/NCA/DP - Object RPCs (TMDTransaction) - Continued ;3/13/09  11:18
- ;;1.0;CLINICAL PROCEDURES;**5,11,21**;Apr 01, 2004;Build 30
+ ;;1.0;CLINICAL PROCEDURES;**5,11,21,41**;Apr 01, 2004;Build 3
  ; Integration Agreements:
  ; IA# 2263 [Supported] calls to XPAR
  ; IA# 3067 [Private] Reads fields in Consults file (#123).
@@ -8,6 +8,9 @@ MDRPCOT1 ; HOIFO/NCA/DP - Object RPCs (TMDTransaction) - Continued ;3/13/09  11:
  ; IA# 10040 [Supported] Hospital Location File Access
  ; IA# 10061 [Supported] Calls to VADPT
  ; IA# 10103 [Supported] Calls to XLFDT.
+ ; IA# 5844 [Supported] Calls to XLFIPV
+ ;
+ ; 09/25/15 KAM Remedy Call 1095728  Patch MD*1*41 IPv6 modifications
  ;
 DELERR(MDTIEN) ; [Procedure] Delete Imaging Error Messages
  S MDLP=0 F  S MDLP=$O(^MDD(702,MDTIEN,.091,MDLP)) Q:'MDLP  D
@@ -57,7 +60,12 @@ SUBMIT(STUDY) ; [Function] Submit all non-pending/uncomplete images in transacti
  N DATA,DEVIEN,MDACQ,MDC,MDCRES,MDCTR,MDLOC,MDAR,MDARR,MDDT,MDFDA,MDDEL,MDIEN,MDIENS,MDIMG,MDL,MDLPB,MDMAG,MDMULT,MDR,MDST,MDX,MDY,MDZ
  S MDIEN=+STUDY,MDIENS=MDIEN_",",MDLPB=0
  S DEVIEN=$P(^MDD(702,STUDY,0),U,11)
- S:$$GET1^DIQ(702.09,DEVIEN_",",.14)="127.0.0.1" MDLPB=1
+ ;
+ ; 09/25/15 KAM Remedy Ticket 1095728 IPv6 modifications
+ ; Changed next line to use API
+ ;S:$$GET1^DIQ(702.09,DEVIEN_",",.14)="127.0.0.1" MDLPB=1
+ S:$$CONVERT^XLFIPV($$GET1^DIQ(702.09,DEVIEN_",",.14))=$$CONVERT^XLFIPV("127.0.0.1") MDLPB=1
+ ;
  S MDMULT=$$MULT(+MDIEN)
  S MDST=$$GET1^DIQ(702,MDIEN,.09,"I") ; I 'MDMULT&('MDLPB)&("13"[MDST) Q "-1^Study not in proper status"
  I MDMULT&(MDST=1) Q "-1^Study not in proper status"

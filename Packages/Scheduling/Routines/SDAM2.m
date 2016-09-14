@@ -1,5 +1,5 @@
-SDAM2 ;ALB/MJK - Appt Mgt (cont); 8/18/05 12:10pm  ; Compiled April 16, 2007 09:43:32
- ;;5.3;Scheduling;**250,296,327,478,446**;Aug 13, 1993;Build 77
+SDAM2 ;ALB/MJK - Appt Mgt (cont) ;JAN 15, 2016
+ ;;5.3;Scheduling;**250,296,327,478,446,627**;Aug 13, 1993;Build 249
  ;
 CI ; -- protocol SDAM APPT CHECK IN entry pt
  ; input:  VALMY := array entries
@@ -18,7 +18,7 @@ CI ; -- protocol SDAM APPT CHECK IN entry pt
  ;
 ONE(DFN,SDCL,SDT,SDDA,SDASK,SDAMCIDT) ; -- check in one appt
  ; input:  DFN := ifn of patient
- ;        SDCL := clinic# 
+ ;        SDCL := clinic#
  ;         SDT := appt d/t
  ;        SDDA := ifn in ^SC multiple or null
  ;       SDASK := ask d/t of ci always [1|yes or 0|no]
@@ -45,6 +45,12 @@ ONE(DFN,SDCL,SDT,SDDA,SDASK,SDAMCIDT) ; -- check in one appt
  I DR="",$P(^SC(SDCL,0),U,24)!(SDASK) S DR="309//"_$S(SDAMCIDT:$$FTIME^VALM1(SDAMCIDT),1:"NOW")
  I DR="" S DR="309///"_$S(SDAMCIDT:"/"_SDAMCIDT,1:"NOW")
  S DA(2)=SDCL,DA(1)=SDT,DA=SDDA,DIE="^SC("_DA(2)_",""S"","_DA(1)_",1," D ^DIE
+ ;update SDEC APPOINTMENT   ;alb/sat 627
+ N SDECAPPT,SDECDT
+ S SDECAPPT=$$APPTGET^SDECUTL(DFN,SDT,SDCL)
+ S SDECDT=$$GET1^DIQ(44.003,SDDA_","_SDT_","_SDCL_",",309,"I")
+ D SDECCHK^SDEC25(SDECAPPT,SDECDT)
+ ;alb/sat 627 end addition/modification
  D AFTER^SDAMEVT(.SDATA,DFN,SDT,SDCL,SDDA,SDCIHDL)
  I '$P(SDATA("AFTER","STATUS"),U,4),'$P(SDATA("BEFORE","STATUS"),U,4) W !?8,*7,"...appointment has not been checked in" D PAUSE^VALM1
  I SDATA("BEFORE","STATUS")'=SDATA("AFTER","STATUS") D
@@ -121,7 +127,7 @@ DATE ; -- change date range
  S VALMBCK="R"
 DATEQ K VALMB,VALMBEG,VALMEND Q
  ;
-INP(DFN,VDATE) ; -- determine inpat status ; dom is not an inpat appt
+INP(DFN,VDATE) ; -- determine inpatient status ; dom is not an inpatient appt
  N SDINP,VAINDT,VADMVT
  S SDINP="",VAINDT=VDATE D ADM^VADPT2 G INPQ:'VADMVT
  I $P(^DG(43,1,0),U,21),$P($G(^DIC(42,+$P($G(^DGPM(VADMVT,0)),U,6),0)),U,3)="D" G INPQ

@@ -1,10 +1,13 @@
-YSASPRT ;ALB/ASF-ASI PRINTER ;3/7/03  14:54
- ;;5.01;MENTAL HEALTH;**24,30,38,76**;Dec 30, 1994
+YSASPRT ;ALB/ASF,HIOFO/FT - ASI PRINTER ;1/31/13  10:33am
+ ;;5.01;MENTAL HEALTH;**24,30,38,76,108**;Dec 30, 1994;Build 17
+ ;Reference to VADPT APIs supported by DBIA #10061
+ ;Reference to %ZTLOAD supported by IA #10063
+ ;Reference to ^%ZIS supported by IA #10086
+ ;Reference to ^%ZISC supported by IA #10089
+ ;Reference to ^XLFDT APIs supported by DBIA #10103
 EN1(YSASDA) ;Entry point to display ASI
  Q:$G(YSASDA)'>0
  N YSASN,YSASNA,YSZZ,YSHDR,YSASD,YSAST,YSAS0,DIERR,YSI,YSASC
- ;D DICI^YSASO(.YSASDA)
- ;Q:$G(YSASDA)'>0
  ;ASK DEVICE 
  N YSASQUIT,%ZIS,POP
  S %ZIS="QM"
@@ -18,8 +21,8 @@ EN1(YSASDA) ;Entry point to display ASI
  .D ^%ZTLOAD
  .D HOME^%ZIS
  .Q
- U IO
 QTEP ;Queued Task Entry Point
+ U IO
  S:$D(ZTQUEUED) ZTREQ="@"
  N N,YSAS0,YSASC,YSASD,YSASIG,YSASN,YSASNA,YSASQUIT,YSAST,YSHDR,YSI,YSI1,YSZZ
  S YSZZ=0
@@ -30,18 +33,15 @@ QTEP ;Queued Task Entry Point
  S YSAST=$$GET1^DIQ(604,YSASDA_",",.04)
  S YSASC=$$GET1^DIQ(604,YSASDA_",",.09)
  S YSASIG=$$GET1^DIQ(604,YSASDA_",",.51,"I")
- S YSHDR=VADM(1)_"  "_$P(VADM(2),U,2)_$J("",(20-$L(VADM(1))))_" ASI "_YSAST_"  on "_YSASD_" by: "_YSASC
+ S YSHDR=VADM(1)_"  "_"xxx-xx-"_$E($P(VADM(2),U,2),8,11)_$J("",(20-$L(VADM(1))))_" ASI "_YSAST_"  on "_YSASD_" by: "_YSASC
  W @IOF,YSHDR,! W:'YSASIG ?25,"##### Unsigned Draft #####",!
- ;F YSI=10:1:17,20 D  Q:YSZZ
  S Y=YSAST_" ITEM REPORT",YSI1=$O(^YSTX(604.68,"B",Y,-1)) Q:YSI1'>0
  F YSI=YSI1,20 D  Q:YSZZ
  . D CSR^YSASOSR(YSASDA,"^TMP($J,""YSASOSR1"","_YSI_")","^YSTX(604.68,"_YSI_",1)")
  . D PRT
- ;D HOME^%ZIS U IO
  D ^%ZISC
  Q
 PRT ; Print output
- ;W @IOF,YSHDR,! W:'YSASIG ?25,"##### Unsigned Draft #####",!
  S N=0 F  S N=$O(^TMP($J,"YSASOSR1",YSI,N)) Q:N'>0!YSZZ  D
  . W !,^TMP($J,"YSASOSR1",YSI,N)
  . I IOT'="HFS" D:$Y+4>IOSL WAIT ;ASF 3/7/03

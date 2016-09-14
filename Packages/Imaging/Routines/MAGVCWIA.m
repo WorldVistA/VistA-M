@@ -1,5 +1,5 @@
-MAGVCWIA ;;WOIFO/MAT - DICOM Storage Commit RPCs  ; 24 Jul 2013  8:58 PM
- ;;3.0;IMAGING;**138**;Mar 19, 2002;Build 5380;Sep 03, 2013
+MAGVCWIA ;WOIFO/MAT,DAC - DICOM Storage Commit RPCs  ; 20 Nov 2015  8:58 PM
+ ;;3.0;IMAGING;**138,162**;Mar 19, 2002;Build 22;Nov 20, 2015
  ;; Per VHA Directive 2004-038, this routine should not be modified.
  ;; +---------------------------------------------------------------+
  ;; | Property of the US Government.                                |
@@ -207,6 +207,9 @@ ACTGET(RETURN,WIIEN,STAT) ;
  S:$G(STAT)="" STAT=0
  N CALLSTAT S CALLSTAT=0
  ;--- Process first if STAT.
+ N WISTAT ; P162 DAC - No need to look up failed statuses and prevent statuses to be reset to "FAILURE"
+ S WISTAT=$$GET1^DIQ(2006.941,WIIEN,3) ; P162 DAC
+ I (WISTAT="SENDING RESPONSE FAILED")!(WISTAT="FAILURE") S STAT=0 ; P162 DAC
  I STAT=1 N ERROR S CALLSTAT=$$MAIN^MAGVCQRY(.ERROR,WIIEN)
  I +CALLSTAT<0 S RETURN(0)=CALLSTAT Q
  ;
@@ -260,6 +263,10 @@ ACTGET(RETURN,WIIEN,STAT) ;
  ;   RETURN     target output array
  ;   [HOSTNAME] value of input tag "HostName" on which to filter.
  ;                    (if omitted, returns all HostNames)
+ ;
+ ;   [WILIMIT]  maxium number of work items to return in one RPC call
+ ;   [LASTIEN]  the last work item IEN returned in the previous RPC call
+ ;
  ; Output
  ; ======
  ;   Error:   (0)    <0`errmsg
@@ -270,9 +277,9 @@ ACTGET(RETURN,WIIEN,STAT) ;
  ;                     -4 Retries Left
  ;                     -5 HostName
  ;
-ACTLIST(RETURN,HOSTNAME) ;
+ACTLIST(RETURN,HOSTNAME,WILIMIT,LASTIEN) ; P162 DAC - Modified to support additional parameters and return smaller lists
  ;
- S HOSTNAME=$G(HOSTNAME)
+ S HOSTNAME=$G(HOSTNAME),WILIMIT=$G(WILIMIT),LASTIEN=$G(LASTIEN)
  ;
  ;--- Get IEN of "StorageCommit" entry in WORKLIST file (#2006.9412).
  N SCIEN S SCIEN=$$FIND1^DIC(2006.9412,,,"StorageCommit")
@@ -281,7 +288,9 @@ ACTLIST(RETURN,HOSTNAME) ;
  N OUT K OUT
  N FILE S FILE=2006.941
  N WIIEN S WIIEN=""
- F  S WIIEN=$O(^MAGV(FILE,"T",SCIEN,WIIEN)) Q:WIIEN=""  D
+ N COUNTER S COUNTER=0
+ I LASTIEN'="" S WIIEN=LASTIEN
+ F  S WIIEN=$O(^MAGV(FILE,"T",SCIEN,WIIEN)) Q:WIIEN=""  Q:COUNTER=WILIMIT  D  ; P162 DAC - Added work Item Limit check
  . ;
  . N WISTATUS S WISTATUS=$$GET1^DIQ(FILE,WIIEN,3)
  . ;--- Recover tag-embedded data.
@@ -301,15 +310,17 @@ ACTLIST(RETURN,HOSTNAME) ;
  . ;--- Optional filter by HOSTNAME.
  . I HOSTNAME="" D
  . . S OUT(RESPDTTM)=WIIEN_"|"_WISTATUS_"|"_RESPDTTM_"|"_RETRY2GO_"|"_HOST
+ . . S COUNTER=COUNTER+1  ; P162 DAC - Increment record returned counter
  . . Q
  . E  D
  . . S:HOSTNAME=HOST OUT(RESPDTTM)=WIIEN_"|"_WISTATUS_"|"_RESPDTTM_"|"_RETRY2GO_"|"_HOST
+ . . S COUNTER=COUNTER+1  ; P162 DAC - Increment record returned counter
  . . Q
  . Q
  ;--- Re-index array & return.
  N CT,NOD S (CT,NOD)=0
  F  S NOD=$O(OUT(NOD)) Q:NOD=""  S CT=CT+1,RETURN(CT)=OUT(NOD)
- S RETURN(0)=0_"`"_CT
+ S RETURN(0)=0_"`"_CT  ; P162 DAC  - Return record count
  Q
  ;##### Update Storage Commit Work Item Status
  ;      RPC: MAGVC WI UPDATE STATUS

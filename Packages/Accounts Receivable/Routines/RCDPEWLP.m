@@ -1,25 +1,25 @@
 RCDPEWLP ;ALBANY/KML - EDI LOCKBOX ERA and EEOB WORKLIST procedures ;Oct 15, 2014@12:37:32
- ;;4.5;Accounts Receivable;**298**;Mar 20, 1995;Build 121
- ;Per VA Directive 6402, this routine should not be modified.
+ ;;4.5;Accounts Receivable;**298,303,304**;Mar 20, 1995;Build 104
+ ;;Per VA Directive 6402, this routine should not be modified.
+ ;
  Q
  ;
  ; prca*4.5*298 - procedures built to handle outstanding EFTs; and ERAs with exceptions;
  ;
 AGEDEFTS(ERADA,TYPE) ; search medical or pharmacy aged EFTs that have not been posted 
- ;   ENTRY point for the Select ERA action on the ERA Worklist screen
- ;      input - ERADA = Internal Entry Number in file 344.4
- ;              TYPE = represents if pharmacy or medical ERA
- ;                      "M" (medical ERA-EFT); "P" (phamacy ERA-EFT);
- ;       OUTPUT - UNPOST
- ;                        = 1P - error condition for aged, unposted pharmacy EFTs
- ;                        = 2P - warning condition for aged,unposted medical EFTs
- ;                        = 3P  - Override exists for aged, unposted pharmacy EFTs
- ;                        = 1M - error condition for aged, unposted medical EFTs
- ;                        = 2M - warning condition for aged, unposted medical EFTs
- ;                        = 3M  - Override exists for aged, unposted medical EFTs
- ;                        = 0  - there exist no error or warning conditions
- ;  possible values for UNPOST = "1P" or "2P" or "3P" or "1M" or "2M" or "3M" or "1P^1M" or "1P^2M" or"
- ;                               "1P^3M" or "2P^1M" or "2P^2M" or "2P^3M" or "3P^1M" or "3P^2M" or "3P^3M"
+ ; ENTRY point for the Select ERA action on the ERA Worklist screen
+ ; Input - ERADA = IEN in file 344.4
+ ;         TYPE = pharmacy or medical ERA
+ ;                "M" (medical ERA-EFT); "P" (phamacy ERA-EFT);
+ ; Output = 1P - error for aged, unposted pharmacy EFTs
+ ;          2P - warning for aged,unposted medical EFTs
+ ;          3P - Override exists for aged, unposted pharmacy EFTs
+ ;          1M - error for aged, unposted medical EFTs
+ ;          2M - warning for aged, unposted medical EFTs
+ ;          3M - Override exists for aged, unposted medical EFTs
+ ;          0  - there exist no error or warning conditions
+ ;          Can be combinations - "1P" or "2P" or "3P" or "1M" or "2M" or "3M" or "1P^1M" or "1P^2M" or"
+ ;                                "1P^3M" or "2P^1M" or "2P^2M" or "2P^3M" or "3P^1M" or "3P^2M" or "3P^3M"
  ;
  ; 1. If there are unposted payments (EFTs) associated with third party medical claims more than 14 calendar days old, 
  ;       the system shall display a WARNING message for action Select ERA on the ERA WORKLIST, and allow to enter the worklist
@@ -56,21 +56,12 @@ AEFTSQ ;
  Q UNPOST
  ;
 GETEFTS(TYPE,OPTION) ; ENTRY point for Unposted EFT Override option; 
- ;  set up search criteria for unposted EFTs; if aged, unposted EFTs exist then generate warning/prevention messages
- ;           input - 
- ;                   TYPE = "M" (medical ERA-EFT); "P" (phamacy ERA-EFT); "B" (both pharmacy and medical)
- ;                   OPTION = if = null or undefined then Select ERA action on the ERA Worklist called this function
- ;                            if = 1 then Override option called this function
- ;       OUTPUT - OUTCOME
- ;                        = 1P - error condition for aged, unposted pharmacy EFTs
- ;                        = 2P - warning condition for aged,unposted medical EFTs
- ;                        = 3P  - Override exists for aged, unposted pharmacy EFTs
- ;                        = 1M - error condition for aged, unposted medical EFTs
- ;                        = 2M - warning condition for aged, unposted medical EFTs
- ;                        = 3M  - Override exists for aged, unposted medical EFTs
- ;                        = 0  - there exist no error or warning conditions
- ;  possible values for OUTCOME = "1P" or "2P" or "3P" or "1M" or "2M" or "3M" or "1P^1M" or "1P^2M" or"
- ;                               "1P^3M" or "2P^1M" or "2P^2M" or "2P^3M" or "3P^1M" or "3P^2M" or "3P^3M"
+ ;  Set up search criteria for unposted EFTs; if aged, unposted EFTs exist then generate warning/prevention messages
+ ;  Input
+ ;    TYPE = "M" (medical ERA-EFT); "P" (phamacy ERA-EFT); "B" (both pharmacy and medical)
+ ;    OPTION = if = null or undefined then Select ERA action on the ERA Worklist called this function
+ ;             if = 1 then Override option called this function
+ ;    Output - See output for AGEDEFS
  ;
  N OVERRIDE,DAYSLIMIT,OUTCOME,TRARRY,ARRAY,STR,X,DTARRY
  S OPTION=$G(OPTION)
@@ -116,24 +107,36 @@ EFTDET(RECVDT,TYPE,DAYSLIMT,TRARRY) ;  gather EFT data
  ; 
  ;        output - TRARRY  = array of trace numbers that need to be reported as aged and unposted  
  ;  
- N AGED,EFT0,EFTDA,ERAREC,MSTATUS,TRACE
+ N EFTDA
  S EFTDA=""
- F  S RECVDT=$O(^RCY(344.31,"ADR",RECVDT)) Q:'RECVDT  F  S EFTDA=$O(^RCY(344.31,"ADR",RECVDT,EFTDA)) Q:'EFTDA  D
- . S EFT0=$G(^RCY(344.31,EFTDA,0)) Q:EFT0=""
- . Q:+$P(EFT0,U,7)=0  ;ignore zero payment amts
- . I $P($G(^RCY(344.31,EFTDA,3)),U,2)]"" Q  ; Ignore duplicate EFTs which have been removed 
- . S ERAREC=+$P(EFT0,U,10)  ; ERA RECORD (344.31, .1)  pointer to ERA record
- . I ERAREC,$P($G(^RCY(344.4,ERAREC,0)),U,14)=1 Q  ; DETAIL POST STATUS (344.4, .14);  ignore posted ERA-EFTs 
- . I 'ERAREC,$P($G(^RCY(344.31,EFTDA,0)),U,8) Q:$$PROC(EFTDA)  ;Exclude EFT matched to Paper EOB if receipt is processed
- . S MSTATUS=+$P(EFT0,U,8)  ;  MATCH STATUS (344.31,, .08)
- . S AGED=$$FMDIFF^XLFDT(DT,RECVDT)  ; get aged number of days of the EFT
- . S TRACE=$P(EFT0,U,4)  ; TRACE # (344.31, .04)
- . I (TYPE="B")!(TYPE="P"),$$PHARM(ERAREC) D
- . . I AGED>DAYSLIMT("P") S TRARRY("ERROR","P",TRACE)="ERA = "_ERAREC_U_MSTATUS Q   ; aged unposted EFT that generates the error message and will prevent user from entering the scratchpad with the selected ERA
- . . I '$D(TRARRY("ERROR")),AGED>21 S TRARRY("WARNING","P",TRACE)="ERA = "_ERAREC_U_MSTATUS   ;aged unposted PHARMACY EFT that will generate a warning message when entering the scratchpad with the selected ERA
- . I (TYPE="B")!(TYPE="M"),'$$PHARM(ERAREC) D
- . . I AGED>DAYSLIMT("M") S TRARRY("ERROR","M",TRACE)="ERA = "_ERAREC_U_MSTATUS Q  ; aged unposted EFT that generates the error message and will prevent user from entering the scratchpad with the selected ERA
- . . I '$D(TRARRY("ERROR")),AGED>14 S TRARRY("WARNING","M",TRACE)="ERA = "_ERAREC_U_MSTATUS  ;aged unposted MEDICAL EFT that will generate a warning message when entering the scratchpad with the selected ERA
+ F  S RECVDT=$O(^RCY(344.31,"ADR",RECVDT)) Q:'RECVDT  F  S EFTDA=$O(^RCY(344.31,"ADR",RECVDT,EFTDA)) Q:'EFTDA  D CHKEFT(RECVDT,EFTDA,TYPE,.DAYSLIMT,.TRARRY)
+ Q
+ ;
+CHKEFT(RECVDT,EFTDA,TYPE,DAYSLIMT,TRARRY) ;
+ ; Check an individual EFT for warnings/errors
+ ; Input:
+ ;   RECVDT: Date Received
+ ;   EFTDA: IEN of EDI THIRD PARY EFT DETAIL
+ ;   TYPE     = "M" (medical ERA-EFT); "P" (phamacy ERA-EFT); "B" (both pharmacy and medical)
+ ;   DAYSLIMT =  number of days an EFT can age before post prevention rules apply 
+ ;   TRARRY: Array with warning error info
+ ;
+ N EFT0,ERAREC,MSTATUS,AGED,TRACE
+ S EFT0=$G(^RCY(344.31,EFTDA,0)) Q:EFT0=""  ; Ignore if no data
+ Q:+$P(EFT0,U,7)=0  ; Ignore zero payment amts
+ I $P($G(^RCY(344.31,EFTDA,3)),U,2)]"" Q  ; Ignore duplicate EFTs which have been removed 
+ S ERAREC=+$P(EFT0,U,10)  ; ERA RECORD (344.31, .1)  pointer to ERA record
+ I ERAREC,$P($G(^RCY(344.4,ERAREC,0)),U,14)=1 Q  ; DETAIL POST STATUS (344.4, .14);  ignore posted ERA-EFTs 
+ I 'ERAREC,$P($G(^RCY(344.31,EFTDA,0)),U,8) Q:$$PROC(EFTDA)  ;Exclude EFT matched to Paper EOB if receipt is processed
+ S MSTATUS=+$P(EFT0,U,8)  ;  MATCH STATUS (344.31,, .08)
+ S AGED=$$FMDIFF^XLFDT(DT,RECVDT)  ; get aged number of days of the EFT
+ S TRACE=$P(EFT0,U,4)  ; TRACE # (344.31, .04)
+ I (TYPE="B")!(TYPE="P"),$$PHARM(ERAREC) D
+ . I AGED>DAYSLIMT("P") S TRARRY("ERROR","P",TRACE)="ERA = "_ERAREC_U_MSTATUS Q   ; aged unposted EFT that generates the error message and will prevent user from entering the scratchpad with the selected ERA
+ . I '$D(TRARRY("ERROR")),AGED>21 S TRARRY("WARNING","P",TRACE)="ERA = "_ERAREC_U_MSTATUS   ;aged unposted PHARMACY EFT that will generate a warning message when entering the scratchpad with the selected ERA
+ I (TYPE="B")!(TYPE="M"),'$$PHARM(ERAREC) D
+ . I AGED>DAYSLIMT("M") S TRARRY("ERROR","M",TRACE)="ERA = "_ERAREC_U_MSTATUS Q  ; aged unposted EFT that generates the error message and will prevent user from entering the scratchpad with the selected ERA
+ . I '$D(TRARRY("ERROR")),AGED>14 S TRARRY("WARNING","M",TRACE)="ERA = "_ERAREC_U_MSTATUS  ;aged unposted MEDICAL EFT that will generate a warning message when entering the scratchpad with the selected ERA
  Q
  ;
 PROC(EFTDA) ; Check if TR Receipt for an EFT linked to Paper EOB is processed 
@@ -200,14 +203,25 @@ PREVMSG(TYPE,DAYS,STR) ;  Display Error message when aged, unposted EFTs exist
  Q
  ;
 EXCDENY ; praca*4.5*298 display access denied message for those ERAs that are selected off the ERA Worklist and have exceptions  
- N DIR
- S DIR(0)="EA"
+ ; PRCA*4.5*304 - undeclared parameters (from WL^RCDPEWL7): RCERA and RCEXC 
+ N DIR,Y,RCDWLIEN,X,Y,DTOUT,DUOUT,DIRUT,DIROUT
+ S DIR(0)="YA"
  S DIR("A",1)="ACCESS DENIED:  Scratchpad creation is not allowed when third party"
  S DIR("A",2)="medical exceptions exist.  Fix Transmission Exceptions first and then Data"
  S DIR("A",3)="Exceptions with the EXE EDI Lockbox 3rd Party Exceptions option which is"
  S DIR("A",4)="located on the EDI Lockbox Main Menu."
  S DIR("A",5)=""
- S DIR("A")="Press ENTER to continue: " W ! D ^DIR
+ ;PRCA*4.5*304 - Allow users to go and fix exceptions
+ S DIR("A")="Do you want to begin clearing Exceptions for this ERA (Y/N)?: "
+ S DIR("B")="Y"
+ W ! D ^DIR
+ ;
+ ;PRCA*4.5*304 - allow jump to work on Exceptions
+ ;If they wish to work on the exceptions, send the necessary data, default the payer range to ALL (for now)
+ I Y=1 D  S:$G(RCMBG)'="" VALMBG=RCMBG S:$G(RCDWLIEN)'="" RCERA=RCDWLIEN S RCEXC=1 K RCMBG ; VALMBCK="R" 
+ . S RCMBG=$G(VALMBG)
+ . S RCDWLIEN=RCERA
+ . D EN^RCDPEX1
  Q
  ;
 EXCWARN(ERADA) ; prca*4.5*298  generate warning when exception exists
